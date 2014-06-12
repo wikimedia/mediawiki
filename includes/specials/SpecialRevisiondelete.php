@@ -445,10 +445,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Html::hidden( 'type', $this->typeName ) .
 				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
 				Xml::closeElement( 'fieldset' ) . "\n";
-		} else {
-			$out = '';
-		}
-		if ( $this->mIsAllowed ) {
 			$out .= Xml::closeElement( 'form' ) . "\n";
 			// Show link to edit the dropdown reasons
 			if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
@@ -461,6 +457,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				);
 				$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
 			}
+		} else {
+			$out = '';
 		}
 		$this->getOutput()->addHTML( $out );
 	}
