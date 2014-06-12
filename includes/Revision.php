@@ -1652,19 +1652,19 @@ class Revision implements IDBAccessObject {
 	 * @return bool
 	 */
 	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
-		if ( $bitfield & $field ) { // aspect is deleted
-			if ( $bitfield & self::DELETED_RESTRICTED ) {
-				$permission = 'suppressrevision';
+		if( $bitfield & $field ) { // aspect is deleted
+			if ( $user === null ) {
+				global $wgUser;
+				$user = $wgUser;
+			}
+			if ( $bitfield & self::DELETED_RESTRICTED) {
+				$permission = $user->isAllowed( 'suppressrevision' ) ? 'suppressrevision' : 'viewsuppressed';
 			} elseif ( $field & self::DELETED_TEXT ) {
 				$permission = 'deletedtext';
 			} else {
 				$permission = 'deletedhistory';
 			}
 			wfDebug( "Checking for $permission due to $field match on $bitfield\n" );
-			if ( $user === null ) {
-				global $wgUser;
-				$user = $wgUser;
-			}
 			return $user->isAllowed( $permission );
 		} else {
 			return true;
