@@ -27,7 +27,10 @@ module.exports = function ( grunt ) {
 			all: [
 				'<%= jshint.all %>',
 				// Auto-generated file with JSON (double quotes)
-				'!tests/qunit/data/mediawiki.jqueryMsg.data.js'
+				'!tests/qunit/data/mediawiki.jqueryMsg.data.js',
+				// Skip functions are stored as script files but wrapped in a function when
+				// executed. node-jscs trips on the would-be "Illegal return statement".
+				'!resources/src/es5-skip.js'
 
 			// Exclude all files ignored by jshint
 			].concat( grunt.file.read( '.jshintignore' ).split( '\n' ).reduce( function ( patterns, pattern ) {
