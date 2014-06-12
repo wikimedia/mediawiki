@@ -1471,7 +1471,8 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @param string|null|bool $section Null/false, a section number (0, 1, 2, T1, T2, ...) or "new".
+	 * @param string|number|null|bool $sectionId Section identifier as a number or string
+	 * (e.g. 0, 1 or 'T-1'), null/false for the whole page or 'new' for a new section.
 	 * @param string $text New text of the section.
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
 	 * @param string $edittime Revision timestamp or null to use the current revision.
@@ -1481,13 +1482,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @deprecated since 1.21, use replaceSectionAtRev() instead
 	 */
-	public function replaceSection( $section, $text, $sectionTitle = '',
+	public function replaceSection( $sectionId, $text, $sectionTitle = '',
 		$edittime = null
 	) {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		//NOTE: keep condition in sync with condition in replaceSectionContent!
-		if ( strval( $section ) == '' ) {
+		if ( strval( $sectionId ) === '' ) {
 			// Whole-page edit; let the whole text through
 			return $text;
 		}
@@ -1500,7 +1501,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// could even make section title, but that's not required.
 		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() );
 
-		$newContent = $this->replaceSectionContent( $section, $sectionContent, $sectionTitle,
+		$newContent = $this->replaceSectionContent( $sectionId, $sectionContent, $sectionTitle,
 			$edittime );
 
 		return ContentHandler::getContentText( $newContent );
@@ -1521,7 +1522,9 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @param string|null|bool $section Null/false, a section number (0, 1, 2, T1, T2, ...) or "new".
+	 * @param string|number|null|bool $sectionId Section identifier as a number or string
+	 * (e.g. 0, 1 or 'T-1'), null/false or an empty string for the whole page
+	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
 	 * @param string $edittime Revision timestamp or null to use the current revision.
@@ -1532,12 +1535,12 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.21
 	 * @deprecated since 1.24, use replaceSectionAtRev instead
 	 */
-	public function replaceSectionContent( $section, Content $sectionContent, $sectionTitle = '',
+	public function replaceSectionContent( $sectionId, Content $sectionContent, $sectionTitle = '',
 		$edittime = null ) {
 		wfProfileIn( __METHOD__ );
 
 		$baseRevId = null;
-		if ( $edittime && $section !== 'new' ) {
+		if ( $edittime && $sectionId !== 'new' ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
 			if ( $rev ) {
@@ -1546,11 +1549,13 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		wfProfileOut( __METHOD__ );
-		return $this->replaceSectionAtRev( $section, $sectionContent, $sectionTitle, $baseRevId );
+		return $this->replaceSectionAtRev( $sectionId, $sectionContent, $sectionTitle, $baseRevId );
 	}
 
 	/**
-	 * @param string|null|bool $section Null/false, a section number (0, 1, 2, T1, T2, ...) or "new".
+	 * @param string|number|null|bool $sectionId Section identifier as a number or string
+	 * (e.g. 0, 1 or 'T-1'), null/false or an empty string for the whole page
+	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
 	 * @param string $baseRevId integer|null
@@ -1560,12 +1565,12 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @since 1.24
 	 */
-	public function replaceSectionAtRev( $section, Content $sectionContent,
+	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
 		$sectionTitle = '', $baseRevId = null
 	) {
 		wfProfileIn( __METHOD__ );
 
-		if ( strval( $section ) == '' ) {
+		if ( strval( $sectionId ) === '' ) {
 			// Whole-page edit; let the whole text through
 			$newContent = $sectionContent;
 		} else {
@@ -1576,7 +1581,7 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			// Bug 30711: always use current version when adding a new section
-			if ( is_null( $baseRevId ) || $section == 'new' ) {
+			if ( is_null( $baseRevId ) || $sectionId === 'new' ) {
 				$oldContent = $this->getContent();
 			} else {
 				// TODO: try DB_SLAVE first
@@ -1585,7 +1590,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 				if ( !$rev ) {
 					wfDebug( __METHOD__ . " asked for bogus section (page: " .
-						$this->getId() . "; section: $section)\n" );
+						$this->getId() . "; section: $sectionId)\n" );
 					wfProfileOut( __METHOD__ );
 					return null;
 				}
@@ -1599,7 +1604,7 @@ class WikiPage implements Page, IDBAccessObject {
 				return null;
 			}
 
-			$newContent = $oldContent->replaceSection( $section, $sectionContent, $sectionTitle );
+			$newContent = $oldContent->replaceSection( $sectionId, $sectionContent, $sectionTitle );
 		}
 
 		wfProfileOut( __METHOD__ );

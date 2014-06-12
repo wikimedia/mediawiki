@@ -583,7 +583,7 @@ class HTMLForm extends ContextSource {
 	 * Add header text, inside the form.
 	 *
 	 * @param string $msg Complete text of message to display
-	 * @param string $section The section to add the header to
+	 * @param string|null $section The section to add the header to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -605,7 +605,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.19
 	 *
 	 * @param string $msg Complete text of message to display
-	 * @param string $section The section to add the header to
+	 * @param string|null $section The section to add the header to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -623,7 +623,7 @@ class HTMLForm extends ContextSource {
 	 * Add footer text, inside the form.
 	 *
 	 * @param string $msg complete text of message to display
-	 * @param string $section The section to add the footer text to
+	 * @param string|null $section The section to add the footer text to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -645,7 +645,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.19
 	 *
 	 * @param string $msg Complete text of message to display
-	 * @param string $section The section to add the footer text to
+	 * @param string|null $section The section to add the footer text to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */

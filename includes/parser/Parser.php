@@ -5735,7 +5735,7 @@ class Parser {
 	 * External callers should use the getSection and replaceSection methods.
 	 *
 	 * @param string $text Page wikitext
-	 * @param string $section A section identifier string of the form:
+	 * @param string|number $sectionId A section identifier string of the form:
 	 *   "<flag1> - <flag2> - ... - <section number>"
 	 *
 	 * Currently the only recognised flag is "T", which means the target section number
@@ -5757,7 +5757,7 @@ class Parser {
 	 * @return string For "get", the extracted section text.
 	 *   for "replace", the whole page with the section replaced.
 	 */
-	private function extractSections( $text, $section, $mode, $newText = '' ) {
+	private function extractSections( $text, $sectionId, $mode, $newText = '' ) {
 		global $wgTitle; # not generally used but removes an ugly failure mode
 
 		$magicScopeVariable = $this->lock();
@@ -5767,7 +5767,7 @@ class Parser {
 
 		# Process section extraction flags
 		$flags = 0;
-		$sectionParts = explode( '-', $section );
+		$sectionParts = explode( '-', $sectionId );
 		$sectionIndex = array_pop( $sectionParts );
 		foreach ( $sectionParts as $part ) {
 			if ( $part === 'T' ) {
@@ -5876,12 +5876,14 @@ class Parser {
 	 * If a section contains subsections, these are also returned.
 	 *
 	 * @param string $text Text to look in
-	 * @param string $section Section identifier
-	 * @param string $deftext Default to return if section is not found
+	 * @param string|number $sectionId Section identifier as a number or string
+	 * (e.g. 0, 1 or 'T-1').
+	 * @param string $defaultText Default to return if section is not found
+	 *
 	 * @return string Text of the requested section
 	 */
-	public function getSection( $text, $section, $deftext = '' ) {
-		return $this->extractSections( $text, $section, "get", $deftext );
+	public function getSection( $text, $sectionId, $defaultText = '' ) {
+		return $this->extractSections( $text, $sectionId, 'get', $defaultText );
 	}
 
 	/**
@@ -5889,13 +5891,15 @@ class Parser {
 	 * specified by $section has been replaced with $text. If the target
 	 * section does not exist, $oldtext is returned unchanged.
 	 *
-	 * @param string $oldtext Former text of the article
-	 * @param int $section Section identifier
-	 * @param string $text Replacing text
+	 * @param string $oldText Former text of the article
+	 * @param string|number $sectionId Section identifier as a number or string
+	 * (e.g. 0, 1 or 'T-1').
+	 * @param string $newText Replacing text
+	 *
 	 * @return string Modified text
 	 */
-	public function replaceSection( $oldtext, $section, $text ) {
-		return $this->extractSections( $oldtext, $section, "replace", $text );
+	public function replaceSection( $oldText, $sectionId, $newText ) {
+		return $this->extractSections( $oldText, $sectionId, 'replace', $newText );
 	}
 
 	/**
