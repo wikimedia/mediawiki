@@ -80,6 +80,19 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param integer $limit Maximum number of results to return
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit = 10 ) {
+		$subpages = array( 'edit', 'raw' );
+		$escaped = preg_quote( $search );
+		return array_slice( preg_grep( "/^$escaped/i", $subpages ), 0, $limit );
+	}
+
+	/**
 	 * Get a FormOptions object containing the default options
 	 *
 	 * @return FormOptions

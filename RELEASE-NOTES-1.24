@@ -64,6 +64,9 @@ production.
   that won't deplete openssl's entropy pool.
 * ResourceLoader: File modules can now provide a skip function that uses an
   inline feature test to bypass loading of the module.
+* (bug 20210) Special pages may now provide autocompletion of their subpage
+  names in search suggestions. Right now the only useful implementation is in
+  Special:Log, but more are to come.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

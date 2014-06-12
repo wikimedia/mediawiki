@@ -166,10 +166,26 @@ abstract class PrefixSearch {
 	protected function specialSearch( $search, $limit ) {
 		global $wgContLang;
 
-		# normalize searchKey, so aliases with spaces can be found - bug 25675
-		$search = str_replace( ' ', '_', $search );
+		list( $searchKey, $subpageSearch ) = explode( '/', $search, 2 );
 
-		$searchKey = $wgContLang->caseFold( $search );
+		// Handle subpage search separately.
+		if ( $subpageSearch !== null ) {
+			// Try matching the full search string as a page name
+			$specialTitle = Title::makeTitleSafe( NS_SPECIAL, $searchKey );
+			$special = SpecialPageFactory::getPage( $specialTitle->getText() );
+			if ( $special ) {
+				$subpages = $special->prefixSearchSubpages( $subpageSearch, $limit );
+				return array_map( function ( $sub ) use ( $specialTitle ) {
+					return $specialTitle->getSubpage( $sub );
+				}, $subpages );
+			} else {
+				return array();
+			}
+		}
+
+		# normalize searchKey, so aliases with spaces can be found - bug 25675
+		$searchKey = str_replace( ' ', '_', $searchKey );
+		$searchKey = $wgContLang->caseFold( $searchKey );
 
 		// Unlike SpecialPage itself, we want the canonical forms of both
 		// canonical and alias title forms...
