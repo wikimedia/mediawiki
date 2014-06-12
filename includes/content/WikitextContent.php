@@ -37,17 +37,17 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * @param string $section
+	 * @param string|number $sectionId
 	 *
 	 * @return Content|bool|null
 	 *
 	 * @see Content::getSection()
 	 */
-	public function getSection( $section ) {
+	public function getSection( $sectionId ) {
 		global $wgParser;
 
 		$text = $this->getNativeData();
-		$sect = $wgParser->getSection( $text, $section, false );
+		$sect = $wgParser->getSection( $text, $sectionId, false );
 
 		if ( $sect === false ) {
 			return false;
@@ -57,7 +57,7 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * @param string $section
+	 * @param string|number|null|bool $sectionId
 	 * @param Content $with
 	 * @param string $sectionTitle
 	 *
@@ -66,7 +66,7 @@ class WikitextContent extends TextContent {
 	 *
 	 * @see Content::replaceSection()
 	 */
-	public function replaceSection( $section, Content $with, $sectionTitle = '' ) {
+	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' ) {
 		wfProfileIn( __METHOD__ );
 
 		$myModelId = $this->getModel();
@@ -82,13 +82,13 @@ class WikitextContent extends TextContent {
 		$oldtext = $this->getNativeData();
 		$text = $with->getNativeData();
 
-		if ( $section === '' ) {
+		if ( strval( $sectionId ) === '' ) {
 			wfProfileOut( __METHOD__ );
 
 			return $with; # XXX: copy first?
 		}
 
-		if ( $section == 'new' ) {
+		if ( $sectionId === 'new' ) {
 			# Inserting a new section
 			$subject = $sectionTitle ? wfMessage( 'newsectionheaderdefaultlevel' )
 					->rawParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
@@ -101,7 +101,7 @@ class WikitextContent extends TextContent {
 			# Replacing an existing section; roll out the big guns
 			global $wgParser;
 
-			$text = $wgParser->replaceSection( $oldtext, $section, $text );
+			$text = $wgParser->replaceSection( $oldtext, $sectionId, $text );
 		}
 
 		$newContent = new WikitextContent( $text );

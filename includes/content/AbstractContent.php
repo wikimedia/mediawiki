@@ -342,7 +342,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @see Content::replaceSection
 	 */
-	public function replaceSection( $section, Content $with, $sectionTitle = '' ) {
+	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' ) {
 		return null;
 	}
 
