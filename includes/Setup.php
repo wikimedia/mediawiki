@@ -98,10 +98,6 @@ if ( $wgDeletedDirectory === false ) {
 	$wgDeletedDirectory = "{$wgUploadDirectory}/deleted";
 }
 
-if ( isset( $wgFileStore['deleted']['directory'] ) ) {
-	$wgDeletedDirectory = $wgFileStore['deleted']['directory'];
-}
-
 if ( isset( $wgFooterIcons['copyright'] )
 	&& isset( $wgFooterIcons['copyright']['copyright'] )
 	&& $wgFooterIcons['copyright']['copyright'] === array()
@@ -161,11 +157,7 @@ $wgLockManagers[] = array(
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
 if ( !$wgLocalFileRepo ) {
-	if ( isset( $wgFileStore['deleted']['hash'] ) ) {
-		$deletedHashLevel = $wgFileStore['deleted']['hash'];
-	} else {
-		$deletedHashLevel = $wgHashedUploadDirectory ? 3 : 0;
-	}
+	$deletedHashLevel = $wgHashedUploadDirectory ? 3 : 0;
 	$wgLocalFileRepo = array(
 		'class' => 'LocalRepo',
 		'name' => 'local',
