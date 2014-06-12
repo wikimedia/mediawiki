@@ -236,7 +236,7 @@ class LBFactorySimple extends LBFactory {
 	 * @return LoadBalancer
 	 */
 	function newMainLB( $wiki = false ) {
-		global $wgDBservers, $wgMasterWaitTimeout;
+		global $wgDBservers;
 		if ( $wgDBservers ) {
 			$servers = $wgDBservers;
 		} else {
@@ -267,7 +267,6 @@ class LBFactorySimple extends LBFactory {
 
 		return new LoadBalancer( array(
 			'servers' => $servers,
-			'masterWaitTimeout' => $wgMasterWaitTimeout
 		) );
 	}
 

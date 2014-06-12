@@ -45,7 +45,6 @@ class LoadBalancer {
 	/**
 	 * @param array $params with keys:
 	 *   servers           Required. Array of server info structures.
-	 *   masterWaitTimeout Replication lag wait timeout
 	 *   loadMonitor       Name of a class used to fetch server lag and load.
 	 * @throws MWException
 	 */
@@ -54,12 +53,7 @@ class LoadBalancer {
 			throw new MWException( __CLASS__ . ': missing servers parameter' );
 		}
 		$this->mServers = $params['servers'];
-
-		if ( isset( $params['waitTimeout'] ) ) {
-			$this->mWaitTimeout = $params['waitTimeout'];
-		} else {
-			$this->mWaitTimeout = 10;
-		}
+		$this->mWaitTimeout = 10;
 
 		$this->mReadIndex = -1;
 		$this->mWriteIndex = -1;
