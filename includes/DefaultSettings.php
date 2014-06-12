@@ -4354,6 +4354,8 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 #$wgGroupPermissions['suppress']['hideuser'] = true;
 // To hide revisions/log items from users and Sysops
 #$wgGroupPermissions['suppress']['suppressrevision'] = true;
+// To view revisions/log items hidden from users and Sysops
+#$wgGroupPermissions['suppress']['viewsuppressed'] = true;
 // For private suppression log access
 #$wgGroupPermissions['suppress']['suppressionlog'] = true;
 
