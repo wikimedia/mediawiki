@@ -457,7 +457,7 @@ class LogEventsList extends ContextSource {
 	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
 		if ( $bitfield & $field ) {
 			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
-				$permission = 'suppressrevision';
+				$permission = $user->isAllowed( 'suppressrevision' ) ? 'suppressrevision' : 'viewsuppressed';
 			} else {
 				$permission = 'deletedhistory';
 			}
