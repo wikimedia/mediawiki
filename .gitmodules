@@ -341,7 +341,3 @@
 	path = extensions/VectorBeta
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VectorBeta.git
 	branch = wmf/1.23wmf22
-[submodule "extensions/Echo"]
-	path = extensions/Echo
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Echo.git
-	branch = REL1_23
