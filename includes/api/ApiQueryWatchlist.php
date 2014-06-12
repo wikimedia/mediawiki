@@ -224,7 +224,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
 			if ( !$user->isAllowed( 'deletedhistory' ) ) {
 				$bitmask = Revision::DELETED_USER;
-			} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+			} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 				$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 			} else {
 				$bitmask = 0;
@@ -238,7 +238,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		// entirely from the watchlist, or someone could guess the title.
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = LogPage::DELETED_ACTION;
-		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;
