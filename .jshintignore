@@ -12,3 +12,6 @@ tests/frontend/node_modules/**
 
 # github.com/jshint/jshint/issues/729
 tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js
+
+# skip functions return outside of a function so can't pass jscs
+resources/es5-skip.js
