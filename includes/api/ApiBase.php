@@ -2066,8 +2066,14 @@ abstract class ApiBase extends ContextSource {
 	 * It is used to show possible errors in action=paraminfo
 	 * see bug 25248
 	 * @return bool
+	 *
+	 * @since 1.24 This setting automatically returns true whenever
+	 * self::isWriteMode() or self::mustBePosted() is also true.
 	 */
 	public function needsToken() {
+		if ( $this->isWriteMode() || $this->mustBePosted() ) {
+			return true;
+		}
 		return false;
 	}
 

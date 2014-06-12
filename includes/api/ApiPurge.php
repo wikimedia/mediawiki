@@ -126,6 +126,10 @@ class ApiPurge extends ApiBase {
 		return !$this->getUser()->isAllowed( 'purge' );
 	}
 
+	public function needsToken() {
+		return false;
+	}
+
 	public function getAllowedParams( $flags = 0 ) {
 		$result = array(
 			'forcelinkupdate' => false,
