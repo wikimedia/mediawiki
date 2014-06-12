@@ -402,7 +402,17 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 
 		// Show form if the user can submit
-		if ( $this->mIsAllowed ) {
+		$list = $this->getList();
+		$list->reset();
+		$bitfield = $list->current()->getBits(); // existing field
+		if (
+			$this->mIsAllowed
+			&& !(
+				$this->getUser()->isAllowed( 'viewsuppressed' )
+				&& !$this->getUser()->isAllowed( 'suppressrevision' )
+				&& $bitfield & Revision::DELETED_RESTRICTED
+			)
+		) {
 			$out = Xml::openElement( 'form', array( 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ),
 					'id' => 'mw-revdel-form-revisions' ) ) .
@@ -444,12 +454,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
 				Html::hidden( 'type', $this->typeName ) .
 				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
-				Xml::closeElement( 'fieldset' ) . "\n";
-		} else {
-			$out = '';
-		}
-		if ( $this->mIsAllowed ) {
-			$out .= Xml::closeElement( 'form' ) . "\n";
+				Xml::closeElement( 'fieldset' ) . "\n" .
+				Xml::closeElement( 'form' ) . "\n";
 			// Show link to edit the dropdown reasons
 			if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Revdelete-reason-dropdown' );
@@ -461,6 +467,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				);
 				$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
 			}
+		} else {
+			$out = '';
 		}
 		$this->getOutput()->addHTML( $out );
 	}
