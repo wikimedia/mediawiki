@@ -3839,46 +3839,34 @@ HTML
 	public function getEditButtons( &$tabindex ) {
 		$buttons = array();
 
-		// @todo FIXME: Hardcoded square brackets.
-		$temp = array(
+		$attribs = array(
 			'id' => 'wpSave',
 			'name' => 'wpSave',
 			'type' => 'submit',
 			'tabindex' => ++$tabindex,
 			'value' => wfMessage( 'savearticle' )->text(),
-			'accesskey' => wfMessage( 'accesskey-save' )->text(),
-			'title' => wfMessage( 'tooltip-save' )->text()
-				. ' [' . wfMessage( 'accesskey-save' )->text() . ']',
-		);
-		$buttons['save'] = Xml::element( 'input', $temp, '' );
+		) + Linker::tooltipAndAccesskeyAttribs( 'save' );
+		$buttons['save'] = Xml::element( 'input', $attribs, '' );
 
 		++$tabindex; // use the same for preview and live preview
-		// @todo FIXME: Hardcoded square brackets.
-		$temp = array(
+		$attribs = array(
 			'id' => 'wpPreview',
 			'name' => 'wpPreview',
 			'type' => 'submit',
 			'tabindex' => $tabindex,
 			'value' => wfMessage( 'showpreview' )->text(),
-			'accesskey' => wfMessage( 'accesskey-preview' )->text(),
-			'title' => wfMessage( 'tooltip-preview' )->text()
-				. ' [' . wfMessage( 'accesskey-preview' )->text() . ']',
-		);
-		$buttons['preview'] = Xml::element( 'input', $temp, '' );
+		) + Linker::tooltipAndAccesskeyAttribs( 'preview' );
+		$buttons['preview'] = Xml::element( 'input', $attribs, '' );
 		$buttons['live'] = '';
 
-		// @todo FIXME: Hardcoded square brackets.
-		$temp = array(
+		$attribs = array(
 			'id' => 'wpDiff',
 			'name' => 'wpDiff',
 			'type' => 'submit',
 			'tabindex' => ++$tabindex,
 			'value' => wfMessage( 'showdiff' )->text(),
-			'accesskey' => wfMessage( 'accesskey-diff' )->text(),
-			'title' => wfMessage( 'tooltip-diff' )->text()
-				. ' [' . wfMessage( 'accesskey-diff' )->text() . ']',
-		);
-		$buttons['diff'] = Xml::element( 'input', $temp, '' );
+		) + Linker::tooltipAndAccesskeyAttribs( 'diff' );
+		$buttons['diff'] = Xml::element( 'input', $attribs, '' );
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
