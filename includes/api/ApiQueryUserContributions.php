@@ -193,7 +193,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// see the username.
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = Revision::DELETED_USER;
-		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;

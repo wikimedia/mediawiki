@@ -456,20 +456,18 @@ class LogEventsList extends ContextSource {
 	 */
 	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
 		if ( $bitfield & $field ) {
-			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
-				$permission = 'suppressrevision';
-			} else {
-				$permission = 'deletedhistory';
-			}
-			wfDebug( "Checking for $permission due to $field match on $bitfield\n" );
 			if ( $user === null ) {
 				global $wgUser;
 				$user = $wgUser;
 			}
-
-			return $user->isAllowed( $permission );
+			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
+				$permissions = array( 'suppressrevision', 'viewsuppressed' );
+			} else {
+				$permissions = array( 'deletedhistory' );
+			}
+			wfDebug( "Checking for " . implode( ', ', $permissions ) . " due to $field match on $bitfield\n" );
+			return call_user_func_array( array( $user, 'isAllowedAny' ), $permissions );
 		}
-
 		return true;
 	}
 
