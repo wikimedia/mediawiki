@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (99068355d6)
+ * OOjs UI v0.1.0-pre (9f4f250f88)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Jun 10 2014 11:03:38 GMT-0700 (PDT)
+ * Date: Wed Jun 11 2014 17:02:17 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -865,7 +865,7 @@
   height: 3em;
 }
 
-.oo-ui-outlineControlsWidget-adders,
+.oo-ui-outlineControlsWidget-items,
 .oo-ui-outlineControlsWidget-movers {
   float: left;
   height: 2em;
@@ -885,12 +885,12 @@
   background-repeat: no-repeat;
 }
 
-.oo-ui-outlineControlsWidget-adders {
+.oo-ui-outlineControlsWidget-items {
   float: left;
   margin-left: 0;
 }
 
-.oo-ui-outlineControlsWidget-adders .oo-ui-buttonWidget {
+.oo-ui-outlineControlsWidget-items .oo-ui-buttonWidget {
   float: left;
 }
 
