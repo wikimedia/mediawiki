@@ -37,6 +37,7 @@ production.
   configurations are $wgDeletedDirectory and $wgHashedUploadDirectory.
 * The deprecated $wgUseCommaCount variable has been removed.
 * $wgEnableSorbs and $wgSorbsUrl have been removed.
+* $wgEnableCounterDisplay has been added to turn counter display on and off.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate

@@ -636,7 +636,7 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected static function pageCounts( Title $title ) {
-		global $wgRCMaxAge, $wgDisableCounters, $wgMiserMode;
+		global $wgRCMaxAge, $wgEnableCounterDisplay, $wgMiserMode;
 
 		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
@@ -644,7 +644,7 @@ class InfoAction extends FormlessAction {
 		$dbr = wfGetDB( DB_SLAVE );
 		$result = array();
 
-		if ( !$wgDisableCounters ) {
+		if ( $wgEnableCounterDisplay ) {
 			// Number of views
 			$views = (int)$dbr->selectField(
 				'page',

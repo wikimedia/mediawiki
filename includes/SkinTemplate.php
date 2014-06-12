@@ -296,7 +296,7 @@ class SkinTemplate extends Skin {
 	protected function prepareQuickTemplate() {
 		global $wgContLang, $wgScript, $wgStylePath,
 			$wgMimeType, $wgJsMimeType, $wgXhtmlNamespaces, $wgHtml5Version,
-			$wgDisableCounters, $wgSitename, $wgLogo, $wgMaxCredits,
+			$wgEnableCounterDisplay, $wgSitename, $wgLogo, $wgMaxCredits,
 			$wgShowCreditsIfMax, $wgPageShowWatchingUsers, $wgArticlePath,
 			$wgScriptPath, $wgServer;
 
@@ -422,7 +422,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'numberofwatchingusers', false );
 		if ( $out->isArticle() && $title->exists() ) {
 			if ( $this->isRevisionCurrent() ) {
-				if ( !$wgDisableCounters ) {
+				if ( $wgEnableCounterDisplay ) {
 					$viewcount = $this->getWikiPage()->getCount();
 					if ( $viewcount ) {
 						$tpl->set( 'viewcount', $this->msg( 'viewcount' )->numParams( $viewcount )->parse() );
