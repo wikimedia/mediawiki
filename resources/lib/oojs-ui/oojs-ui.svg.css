@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (9f4f250f88)
+ * OOjs UI v0.1.0-pre (c5ae888f67)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Jun 11 2014 17:02:17 GMT-0700 (PDT)
+ * Date: Wed Jun 11 2014 18:10:09 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -1151,7 +1151,15 @@
 }
 
 .oo-ui-indicator-down {
-  background-image: /* @embed */ url(images/indicators/down.svg);
+  background-image: /* @embed */ url(images/indicators/arrow-down.svg);
+}
+
+.oo-ui-indicator-next {
+  background-image: /* @embed */ url(images/indicators/arrow-ltr.svg);
+}
+
+.oo-ui-indicator-previous {
+  background-image: /* @embed */ url(images/indicators/arrow-rtl.svg);
 }
 
 .oo-ui-indicator-required {
@@ -1159,5 +1167,5 @@
 }
 
 .oo-ui-indicator-up {
-  background-image: /* @embed */ url(images/indicators/up.svg);
+  background-image: /* @embed */ url(images/indicators/arrow-up.svg);
 }
