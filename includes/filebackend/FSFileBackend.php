@@ -213,7 +213,13 @@ class FSFileBackend extends FileBackendStore {
 				wfEscapeShellArg( $this->cleanPathSlashes( $tempFile->getPath() ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
-			$status->value = new FSFileOpHandle( $this, $params, 'Create', $cmd, $dest );
+			$handler = function( $errors, Status $status, array $params, $cmd ) {
+				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
+					$status->fatal( 'backend-fail-create', $params['dst'] );
+					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
+				}
+			};
+			$status->value = new FSFileOpHandle( $this, $params, $handler, $cmd, $dest );
 			$tempFile->bind( $status->value );
 		} else { // immediate write
 			$this->trapWarnings();
@@ -228,16 +234,6 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * @see FSFileBackend::doExecuteOpHandlesInternal()
-	 */
-	protected function getResponseCreate( $errors, Status $status, array $params, $cmd ) {
-		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
-			$status->fatal( 'backend-fail-create', $params['dst'] );
-			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
-		}
 	}
 
 	protected function doStoreInternal( array $params ) {
@@ -256,7 +252,13 @@ class FSFileBackend extends FileBackendStore {
 				wfEscapeShellArg( $this->cleanPathSlashes( $params['src'] ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
-			$status->value = new FSFileOpHandle( $this, $params, 'Store', $cmd, $dest );
+			$handler = function( $errors, Status $status, array $params, $cmd ) {
+				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
+					$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
+					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
+				}
+			};
+			$status->value = new FSFileOpHandle( $this, $params, $handler, $cmd, $dest );
 		} else { // immediate write
 			$this->trapWarnings();
 			$ok = copy( $params['src'], $dest );
@@ -275,16 +277,6 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * @see FSFileBackend::doExecuteOpHandlesInternal()
-	 */
-	protected function getResponseStore( $errors, Status $status, array $params, $cmd ) {
-		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
-			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
-			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
-		}
 	}
 
 	protected function doCopyInternal( array $params ) {
@@ -318,7 +310,13 @@ class FSFileBackend extends FileBackendStore {
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
-			$status->value = new FSFileOpHandle( $this, $params, 'Copy', $cmd, $dest );
+			$handler = function( $errors, Status $status, array $params, $cmd ) {
+				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
+					$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
+				}
+			};
+			$status->value = new FSFileOpHandle( $this, $params, $handler, $cmd, $dest );
 		} else { // immediate write
 			$this->trapWarnings();
 			$ok = ( $source === $dest ) ? true : copy( $source, $dest );
@@ -339,16 +337,6 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * @see FSFileBackend::doExecuteOpHandlesInternal()
-	 */
-	protected function getResponseCopy( $errors, Status $status, array $params, $cmd ) {
-		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
-			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
-			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
-		}
 	}
 
 	protected function doMoveInternal( array $params ) {
@@ -382,7 +370,13 @@ class FSFileBackend extends FileBackendStore {
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
-			$status->value = new FSFileOpHandle( $this, $params, 'Move', $cmd );
+			$handler = function( $errors, Status $status, array $params, $cmd ) {
+				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
+					$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
+				}
+			};
+			$status->value = new FSFileOpHandle( $this, $params, $handler, $cmd );
 		} else { // immediate write
 			$this->trapWarnings();
 			$ok = ( $source === $dest ) ? true : rename( $source, $dest );
@@ -396,16 +390,6 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * @see FSFileBackend::doExecuteOpHandlesInternal()
-	 */
-	protected function getResponseMove( $errors, Status $status, array $params, $cmd ) {
-		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
-			$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
-			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
-		}
 	}
 
 	protected function doDeleteInternal( array $params ) {
@@ -431,7 +415,13 @@ class FSFileBackend extends FileBackendStore {
 				wfIsWindows() ? 'DEL' : 'unlink',
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) )
 			) );
-			$status->value = new FSFileOpHandle( $this, $params, 'Copy', $cmd );
+			$handler = function( $errors, Status $status, array $params, $cmd ) {
+				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
+					$status->fatal( 'backend-fail-delete', $params['src'] );
+					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
+				}
+			};
+			$status->value = new FSFileOpHandle( $this, $params, $handler, $cmd );
 		} else { // immediate write
 			$this->trapWarnings();
 			$ok = unlink( $source );
@@ -444,16 +434,6 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * @see FSFileBackend::doExecuteOpHandlesInternal()
-	 */
-	protected function getResponseDelete( $errors, Status $status, array $params, $cmd ) {
-		if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
-			$status->fatal( 'backend-fail-delete', $params['src'] );
-			trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
-		}
 	}
 
 	/**
@@ -716,8 +696,8 @@ class FSFileBackend extends FileBackendStore {
 
 		foreach ( $fileOpHandles as $index => $fileOpHandle ) {
 			$status = Status::newGood();
-			$function = 'getResponse' . $fileOpHandle->call;
-			$this->$function( $errs[$index], $status, $fileOpHandle->params, $fileOpHandle->cmd );
+			$function = $fileOpHandle->call;
+			$function( $errs[$index], $status, $fileOpHandle->params, $fileOpHandle->cmd );
 			$statuses[$index] = $status;
 			if ( $status->isOK() && $fileOpHandle->chmodPath ) {
 				$this->chmod( $fileOpHandle->chmodPath );
