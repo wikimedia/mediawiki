@@ -15,7 +15,7 @@ release and submitting bug reports.
 * (bug 13250) Restored method for clearing a watchlist in web UI
   so that users with large watchlists don't have to perform
   contortions to clear them.
-* When $wgJobRunRate is higher that zero, jobs are now executed via an
+* When $wgJobRunRate is higher than zero, jobs are now executed via an
   asynchronous HTTP request to a MediaWiki entry point. This may require
   increasing the number of server worker threads. $wgRunJobsAsync has been
   added to disable this feature if needed, falling back to executing the job
@@ -280,12 +280,11 @@ changes to languages because of Bugzilla reports.
 * The rc_type field in the recentchanges table has been superseded by a new
   rc_source field.  The rc_source field is a string representation of the
   change type where rc_type was a numeric constant.  This field is not yet
-  queried but will be in a future point release of 1.22.
-** Utilize update.php to create and populate this new field.  On larger wiki's
+  queried but will be in a future release.
+** Utilize update.php to create and populate this new field.  On larger wikis
    which do not wish to update recentchanges table in one large update please
-   review the sql and comments in maintenance/archives/patch-rc_source.sql.
-** The rc_type field of recentchanges will be deprecated in a future point
-   release.
+   review the SQL and comments in maintenance/archives/patch-rc_source.sql.
+** The rc_type field of recentchanges will be deprecated in a future release.
 * The global variable $wgArticle has been removed after a lengthy deprecation.
 * The global functions addButton and insertTags (for mw.toolbar.addButton and
   mw.toolbar.insertTags) now emits mw.log.warn when accessed.
