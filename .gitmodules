@@ -93,10 +93,6 @@
 	path = extensions/DPLforum
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DPLforum.git
 	branch = REL1_23
-[submodule "extensions/Echo"]
-	path = extensions/Echo
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Echo.git
-	branch = REL1_23
 [submodule "extensions/Elastica"]
 	path = extensions/Elastica
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Elastica.git
