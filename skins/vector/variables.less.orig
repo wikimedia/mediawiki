@@ -1,4 +1,4 @@
-@html-font-size: 100%;
+@html-font-size: 1em;
 
 // Page content
 // FIXME: Use global variable since Echo and CentralNotice use this variable
