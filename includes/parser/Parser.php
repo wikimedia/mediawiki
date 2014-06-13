@@ -5369,6 +5369,7 @@ class Parser {
 			$ig->add( $title, $label, $alt, $link, $handlerOptions );
 		}
 		$html = $ig->toHTML();
+		wfRunHooks( 'AfterParserFetchFileAndTitle', array( $this, $ig, &$html ) );
 		wfProfileOut( __METHOD__ );
 		return $html;
 	}
