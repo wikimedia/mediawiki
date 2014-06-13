@@ -270,6 +270,14 @@ abstract class ImageGalleryBase extends ContextSource {
 	}
 
 	/**
+	 * Returns the list of images this gallery contains
+	 * @return array
+	 */
+	public function getImages() {
+		return $this->mImages;
+	}
+
+	/**
 	 * isEmpty() returns true if the gallery contains no images
 	 * @return bool
 	 */
