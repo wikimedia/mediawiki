@@ -37,9 +37,9 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 		);
 	}
 
-	// No reason to hide this link on Special:Specialpages
 	public function isListed() {
-		return true;
+		global $wgUser;
+		return $wgUser->isAllowed( 'createaccount' );
 	}
 
 	protected function getGroupName() {
