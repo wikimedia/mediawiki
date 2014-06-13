@@ -113,6 +113,10 @@ figure[typeof~='mw:Image/Frame'] > *:first-child > img,
 	margin: 4px;
 }
 
+/* Hide the caption for frameless and plain floated images */
+figure[typeof~="mw:Image/Frameless"] > figcaption,
+figure[typeof~="mw:Image"] > figcaption { display: none }
+
 /*
  * Finally, some basic styling for Parsoid render testing.
  * Only Parsoid directly sets .mw-body-content directly on the body, so this
