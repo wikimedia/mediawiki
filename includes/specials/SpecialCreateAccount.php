@@ -42,6 +42,14 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 		return true;
 	}
 
+	public function isRestricted() {
+		return true;
+	}
+
+	public function userCanExecute( User $user ) {
+		return $user->isAllowed( 'createaccount' );
+	}
+
 	protected function getGroupName() {
 		return 'login';
 	}
