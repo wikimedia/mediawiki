@@ -29,6 +29,7 @@ class UserloginTemplate extends BaseTemplate {
 		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
 ?>
 <div class="mw-ui-container">
+	<div id="userloginprompt"><?php  $this->msgWiki('loginprompt') ?></div>
 	<?php if ( $this->haveData( 'languages' ) ) { ?>
 		<div id="languagelinks">
 			<p><?php $this->html( 'languages' ); ?></p>
