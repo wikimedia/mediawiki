@@ -1662,7 +1662,7 @@
 	"allarticles": "所有页面",
 	"allinnamespace": "所有页面（$1名字空间）",
 	"allpagessubmit": "提交",
-	"allpagesprefix": "显示有该前缀的页面：",
+	"allpagesprefix": "显示页面的前缀：",
 	"allpagesbadtitle": "给定的页面标题是非法的，或者具有一个内部语言或内部 wiki 的前缀。它可能包含一个或更多的不能用于标题的字符。",
 	"allpages-bad-ns": "在{{SITENAME}}中没有一个叫做\"$1\"的名字空间。",
 	"allpages-hide-redirects": "隐藏重定向",
