@@ -71,6 +71,8 @@ production.
 * (bug 20210) Special pages may now provide autocompletion of their subpage
   names in search suggestions. Right now the only useful implementation is in
   Special:Log, but more are to come.
+* Special:MostLinkedTemplates is no longer limited to transclusions from the
+  Template namespace.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
@@ -146,6 +148,7 @@ changes to languages because of Bugzilla reports.
   All special pages should subclass SpecialPage and implement the execute() method.
 * (bug 63755) The deprecated constants RC_MOVE and RC_MOVE_OVER_REDIRECT were
   removed.
+* Special:MostLinkedTemplates has been renamed to Special:MostTranscludedPages.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
