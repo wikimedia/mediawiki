@@ -34,6 +34,7 @@ class UserloginTemplate extends BaseTemplate {
 			<p><?php $this->html( 'languages' ); ?></p>
 		</div>
 	<?php } ?>
+	<div id="userloginprompt"><?php  $this->msgWiki('loginprompt') ?></div>
 	<div id="userloginForm">
 		<form name="userlogin" class="mw-ui-vform" method="post" action="<?php $this->text( 'action' ); ?>">
 			<?php if ( $this->data['loggedin'] ) { ?>
