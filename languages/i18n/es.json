@@ -109,7 +109,8 @@
 			"Csbotero",
 			"아라",
 			"Mcervera",
-			"Wifidel"
+			"Wifidel",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -120,7 +121,7 @@
 	"tog-usenewrc": "Agrupar los cambios por página en los cambios recientes y en la lista de seguimiento",
 	"tog-numberheadings": "Numerar automáticamente los encabezados",
 	"tog-showtoolbar": "Mostrar la barra de edición",
-	"tog-editondblclick": "Editar las páginas al hace doble clic",
+	"tog-editondblclick": "Editar las páginas al hacer doble clic",
 	"tog-editsectiononrightclick": "Permitir modificar secciones al pulsar con el botón secundario del ratón en sus títulos",
 	"tog-watchcreations": "Añadir las páginas que cree y los archivos que suba a mi lista de seguimento",
 	"tog-watchdefault": "Añadir las páginas y archivos que edite a mi lista de seguimiento",
@@ -1622,7 +1623,7 @@
 	"wantedtemplates": "Plantillas requeridas",
 	"mostlinked": "Artículos más enlazados",
 	"mostlinkedcategories": "Categorías más enlazadas",
-	"mostlinkedtemplates": "Plantillas más enlazadas",
+	"mostlinkedtemplates": "Páginas más transcluídas",
 	"mostcategories": "Páginas con más categorías",
 	"mostimages": "Imágenes más usadas",
 	"mostinterwikis": "Páginas con más interwikis",

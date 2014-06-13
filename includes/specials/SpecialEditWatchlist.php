@@ -118,6 +118,21 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param integer $limit Maximum number of results to return
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit = 10 ) {
+		// SpecialWatchlist uses SpecialEditWatchlist::getMode, so new types should be added
+		// here and there - no 'edit' here, because that the default for this page
+		$subpages = array( 'clear', 'raw' );
+		$escaped = preg_quote( $search );
+		return array_slice( preg_grep( "/^$escaped/i", $subpages ), 0, $limit );
+	}
+
+	/**
 	 * Extract a list of titles from a blob of text, returning
 	 * (prefixed) strings; unwatchable titles are ignored
 	 *

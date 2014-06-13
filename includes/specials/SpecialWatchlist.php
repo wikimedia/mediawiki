@@ -87,7 +87,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit = 10 ) {
-		$subpages = array( 'edit', 'raw' );
+		// See also SpecialEditWatchlist::prefixSearchSubpages
+		$subpages = array( 'clear', 'edit', 'raw' );
 		$escaped = preg_quote( $search );
 		return array_slice( preg_grep( "/^$escaped/i", $subpages ), 0, $limit );
 	}

@@ -912,6 +912,7 @@
 	"powersearch-togglelabel": "Selecteren:",
 	"powersearch-toggleall": "Alle",
 	"powersearch-togglenone": "Geen",
+	"powersearch-remember": "Onthoud selectie voor toekomstige zoekopdrachten",
 	"search-external": "Extern zoeken",
 	"searchdisabled": "Zoeken in {{SITENAME}} is niet mogelijk.\nU kunt gebruik maken van Google.\nDe gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.",
 	"search-error": "Er is een fout opgetreden tijdens het zoeken: $1",

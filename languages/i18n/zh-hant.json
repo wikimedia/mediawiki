@@ -1563,7 +1563,7 @@
 	"wantedtemplates": "需要的樣版",
 	"mostlinked": "最多連結頁面",
 	"mostlinkedcategories": "最多連結分類",
-	"mostlinkedtemplates": "最多連結的樣版",
+	"mostlinkedtemplates": "最多被嵌入包含的頁面",
 	"mostcategories": "最多分類頁面",
 	"mostimages": "最多連結檔案",
 	"mostinterwikis": "最多 Interwiki 連結的頁面",
