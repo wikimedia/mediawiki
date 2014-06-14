@@ -187,6 +187,17 @@
 				return defaultUri.clone();
 			}
 
+			if ( !this.protocol && !this.host && this.path && this.path.charAt( 0 ) !== '/' ) {
+				// A real relative URL, relative to defaultUri.path. We can't really handle that since we cannot
+				// figure out whether the last path component of defaultUri.path is a directory or a file.
+				throw new Error( 'Bad constructor arguments' );
+			}
+
+			// Support URLs with no explicit path.
+			if ( !this.path ) {
+				this.path = "/";
+			}
+
 			// protocol-relative URLs
 			if ( !this.protocol ) {
 				this.protocol = defaultUri.protocol;
@@ -199,11 +210,7 @@
 					this.port = defaultUri.port;
 				}
 			}
-			if ( this.path && this.path.charAt( 0 ) !== '/' ) {
-				// A real relative URL, relative to defaultUri.path. We can't really handle that since we cannot
-				// figure out whether the last path component of defaultUri.path is a directory or a file.
-				throw new Error( 'Bad constructor arguments' );
-			}
+
 			if ( !( this.protocol && this.host && this.path ) ) {
 				throw new Error( 'Bad constructor arguments' );
 			}
