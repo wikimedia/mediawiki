@@ -329,10 +329,6 @@
 	path = extensions/MultimediaViewer
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MultimediaViewer.git
 	branch = REL1_23
-[submodule "extensions/Popups"]
-	path = extensions/Popups
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Popups.git
-	branch = wmf/1.23wmf22
 [submodule "extensions/PageImages"]
 	path = extensions/PageImages
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PageImages.git
