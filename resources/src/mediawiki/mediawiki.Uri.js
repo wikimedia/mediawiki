@@ -199,6 +199,10 @@
 					this.port = defaultUri.port;
 				}
 			}
+			// Support URLs that don't have a path component explicitly mentioned
+			if ( this.path === "" ) {
+				this.path = "/";
+			}
 			if ( this.path && this.path.charAt( 0 ) !== '/' ) {
 				// A real relative URL, relative to defaultUri.path. We can't really handle that since we cannot
 				// figure out whether the last path component of defaultUri.path is a directory or a file.
