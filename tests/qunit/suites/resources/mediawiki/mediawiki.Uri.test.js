@@ -60,6 +60,14 @@
 		} );
 	} );
 
+	QUnit.test( 'URLs with no explicit path component', 2, function( assert ) {
+		var uri;
+
+		uri = new mw.Uri( 'http://wikimedia.org' );
+		assert.strictEqual( uri.host, 'wikimedia.org' );
+		assert.strictEqual( uri.path, '/' );
+	} );
+
 	QUnit.test( 'Constructor( String[, Object ] )', 10, function ( assert ) {
 		var uri;
 
