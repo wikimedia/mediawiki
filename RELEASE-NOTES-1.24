@@ -37,8 +37,9 @@ production.
 * Added a new hook, "SidebarBeforeOutput", to allow to edit the structure of
   the sidebar just before its display.
 * (bug 49156) Added the mediawiki.cookie ResourceLoader module, which wraps
-  jQuery.cookie so that getting/setting a cookie is syntactically and functionally
-  similar to using the WebRequest#getCookie/WebResponse#setcookie methods.
+  jquery.cookie so that getting/setting a cookie is syntactically and
+  functionally similar to using the WebRequest::getCookie() and
+  WebResponse::setcookie() methods.
 * (bug 44740) jQuery upgraded from 1.8.3 to 1.11.1. A new configuration option,
   $wgIncludejQueryMigrate, also loads the jQuery Migrate hack to let extensions
   and gadgets use the long-deprecated functions that were removed in jQuery 1.9.
@@ -51,17 +52,18 @@ production.
   can probably be changed to no longer special-case redirects.
 * Header font set to a serif font stack. See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
-* (bug 65567) Added a new hook, "BeforeHttpsRedirect", to allow cancellation of the HTTP
-  to HTTPS redirect due to forceHTTPS cookie, userRequires, etc.  This is only for page views,
-  since this hook doesn't affect UserLogin, OAuth, CentralAuth, etc.
-  ATTENTION: This hook is likely to be removed soon due to overall design of the system.
+* (bug 65567) Added a new hook, "BeforeHttpsRedirect", to allow cancellation of
+  the HTTP to HTTPS redirect due to forceHTTPS cookie, userRequires, etc. This
+  is only for page views, since this hook doesn't affect UserLogin, OAuth,
+  CentralAuth, etc. ATTENTION: This hook is likely to be removed soon due to
+  overall design of the system.
 * (bug 17367) It is now possible to add pages to your watchlist from
   Special:UnwatchedPages without reloading the special page.
 * New methods setVolatile and isVolatile are added to PPFrame, so that
   extensions such as Cite.php can mark that their output is volatile and
   shouldn't be cached.
-* (bug 52817) Advanced search options are now saved on the search page itself, rather
-  than in a dedicated pane in the preferences panel.
+* (bug 52817) Advanced search options are now saved on the search page itself,
+  rather than in a dedicated pane in the preferences panel.
 * (bug 44591) The dropdown actions menu (little triangle next to page tabs) in
   the Vector skin has gained a label that should make it more discoverable.
 * MWCryptHKDF added for fast, cryptographically secure random number generation
@@ -78,7 +80,7 @@ production.
 * (bug 49116) Footer copyright notice is now always displayed in user language
   rather than content language (same as copyright notice for editing interface).
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
-  restriction was present in the parameters.  Images with both the "frame"
+  restriction was present in the parameters. Images with both the "frame"
   option and a size specification set will now always ignore the provided
   size and display an unscaled image, as the documentation has always
   claimed it would.
@@ -145,7 +147,7 @@ changes to languages because of Bugzilla reports.
 * The deprecated 'SpecialVersionExtensionTypes' hook was removed.
 * (bug 63891) Add 'X-Robots-Tag: noindex' header in action=render pages.
 * SpecialPage no longer supports the syntax for invoking wfSpecial*() functions.
-  All special pages should subclass SpecialPage and implement the execute() method.
+  Special pages should subclass SpecialPage and implement the execute() method.
 * (bug 63755) The deprecated constants RC_MOVE and RC_MOVE_OVER_REDIRECT were
   removed.
 * Special:MostLinkedTemplates has been renamed to Special:MostTranscludedPages.
