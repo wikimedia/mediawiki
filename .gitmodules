@@ -341,6 +341,3 @@
 	path = extensions/Echo
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Echo.git
 	branch = REL1_23
-[submodule "extensions/Popups"]
-	path = extensions/Popups
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Popsups.git
