@@ -211,6 +211,18 @@
 				return defaultUri.clone();
 			}
 
+			// Protocol and host can be left out in relative urls, but then the path
+			// must be present and start with a slash since we cannot know whether the path
+			// is a directory or a file.
+			if ( !this.protocol && !this.host && this.path && this.path[ 0 ] !== '/' ) {
+				throw new Error( 'Bad constructor arguments' );
+			}
+
+			// Support URLs with no explicit path.
+			if ( !this.path ) {
+				this.path = '/';
+			}
+
 			// protocol-relative URLs
 			if ( !this.protocol ) {
 				this.protocol = defaultUri.protocol;
@@ -223,11 +235,7 @@
 					this.port = defaultUri.port;
 				}
 			}
-			if ( this.path && this.path[ 0 ] !== '/' ) {
-				// A real relative URL, relative to defaultUri.path. We can't really handle that since we cannot
-				// figure out whether the last path component of defaultUri.path is a directory or a file.
-				throw new Error( 'Bad constructor arguments' );
-			}
+
 			if ( !( this.protocol && this.host && this.path ) ) {
 				throw new Error( 'Bad constructor arguments' );
 			}

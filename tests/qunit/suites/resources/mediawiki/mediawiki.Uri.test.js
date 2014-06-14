@@ -465,6 +465,14 @@
 		);
 	} );
 
+	QUnit.test( 'URL without path component', 2, function ( assert ) {
+		var uri;
+
+		uri = new mw.Uri( 'http://wikimedia.org' );
+		assert.strictEqual( uri.host, 'wikimedia.org' );
+		assert.strictEqual( uri.path, '/' );
+	} );
+
 	QUnit.test( 'Handle protocol-relative URLs', 5, function ( assert ) {
 		var UriRel, uri;
 
