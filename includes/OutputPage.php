@@ -2132,6 +2132,11 @@ class OutputPage extends ContextSource {
 				$coreModules[] = 'mediawiki.hidpi';
 			}
 
+			// Support for $wgBreakFrames
+			if ( $this->getFrameOptions() == 'DENY' ) {
+				$coreModules[] = 'mediawiki.breakframes';
+			}
+
 			$this->addModules( $coreModules );
 			foreach ( $modules as $group ) {
 				$this->addModules( $group );
@@ -3140,7 +3145,6 @@ $templates
 			'wgUserName' => $user->isAnon() ? null : $user->getName(),
 			'wgUserGroups' => $user->getEffectiveGroups(),
 			'wgCategories' => $this->getCategories(),
-			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
 			'wgPageContentLanguage' => $lang->getCode(),
 			'wgPageContentModel' => $title->getContentModel(),
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
