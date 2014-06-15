@@ -107,12 +107,7 @@ class RequestContext implements IContextSource {
 	 * @return WebRequest
 	 */
 	public function getRequest() {
-		if ( $this->request === null ) {
-			global $wgRequest; # fallback to $wg till we can improve this
-			$this->request = $wgRequest;
-		}
-
-		return $this->request;
+		return $this->request ?: new WebRequest();
 	}
 
 	/**
@@ -136,12 +131,7 @@ class RequestContext implements IContextSource {
 	 * @return Title|null
 	 */
 	public function getTitle() {
-		if ( $this->title === null ) {
-			global $wgTitle; # fallback to $wg till we can improve this
-			$this->title = $wgTitle;
-		}
-
-		return $this->title;
+		return $this->title ?: null;
 	}
 
 	/**
@@ -271,17 +261,6 @@ class RequestContext implements IContextSource {
 	/**
 	 * Set the Language object
 	 *
-	 * @deprecated since 1.19 Use setLanguage instead
-	 * @param Language|string $l Language instance or language code
-	 */
-	public function setLang( $l ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		$this->setLanguage( $l );
-	}
-
-	/**
-	 * Set the Language object
-	 *
 	 * @param Language|string $l Language instance or language code
 	 * @throws MWException
 	 * @since 1.19
@@ -296,16 +275,6 @@ class RequestContext implements IContextSource {
 		} else {
 			throw new MWException( __METHOD__ . " was passed an invalid type of data." );
 		}
-	}
-
-	/**
-	 * @deprecated since 1.19 Use getLanguage instead
-	 * @return Language
-	 */
-	public function getLang() {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		return $this->getLanguage();
 	}
 
 	/**
@@ -452,7 +421,6 @@ class RequestContext implements IContextSource {
 
 	/**
 	 * Import the resolved user IP, HTTP headers, user ID, and session ID.
-	 * This sets the current session and sets $wgUser and $wgRequest.
 	 * Once the return value falls out of scope, the old context is restored.
 	 * This function can only be called within CLI mode scripts.
 	 *
@@ -468,7 +436,7 @@ class RequestContext implements IContextSource {
 	 */
 	public static function importScopedSession( array $params ) {
 		if ( PHP_SAPI !== 'cli' ) {
-			// Don't send random private cookies or turn $wgRequest into FauxRequest
+			// Don't send random private cookies or turn WebRequest into FauxRequest
 			throw new MWException( "Sessions can only be imported in cli mode." );
 		} elseif ( !strlen( $params['sessionId'] ) ) {
 			throw new MWException( "No session ID was specified." );
@@ -486,8 +454,6 @@ class RequestContext implements IContextSource {
 		}
 
 		$importSessionFunction = function ( User $user, array $params ) {
-			global $wgRequest, $wgUser;
-
 			$context = RequestContext::getMain();
 			// Commit and close any current session
 			session_write_close(); // persist
@@ -495,13 +461,11 @@ class RequestContext implements IContextSource {
 			$_SESSION = array(); // clear in-memory array
 			// Remove any user IP or agent information
 			$context->setRequest( new FauxRequest() );
-			$wgRequest = $context->getRequest(); // b/c
 			// Now that all private information is detached from the user, it should
 			// be safe to load the new user. If errors occur or an exception is thrown
 			// and caught (leaving the main context in a mixed state), there is no risk
 			// of the User object being attached to the wrong IP, headers, or session.
 			$context->setUser( $user );
-			$wgUser = $context->getUser(); // b/c
 			if ( strlen( $params['sessionId'] ) ) { // don't make a new random ID
 				wfSetupSession( $params['sessionId'] ); // sets $_SESSION
 			}
@@ -512,7 +476,6 @@ class RequestContext implements IContextSource {
 			}
 			// Set the current context to use the new WebRequest
 			$context->setRequest( $request );
-			$wgRequest = $context->getRequest(); // b/c
 		};
 
 		// Stash the old session and load in the new one
