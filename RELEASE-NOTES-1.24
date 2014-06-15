@@ -154,6 +154,8 @@ changes to languages because of Bugzilla reports.
 * The skin autodiscovery mechanism has been deprecated and will be removed in
   MediaWiki 1.25. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery
   for migration guide for creators and users of custom skins that relied on it.
+* In RequestContext.php, removed getLang() and setLang() which have been deprecated
+  since 1.19 and were replaced by getLanguage() and setLanguage() respectively.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
