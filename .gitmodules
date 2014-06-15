@@ -341,3 +341,6 @@
 	path = extensions/Echo
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Echo.git
 	branch = REL1_23
+[submodule "extensions/GlobalUsage"]
+	path = extensions/GlobalUsage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GlobalUsage.git
