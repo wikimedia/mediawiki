@@ -8,7 +8,10 @@
 		isIE6 = ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( ua ) && parseFloat( RegExp.$1 ) <= 6.0 ),
 		onloadFuncts = [];
 
-if ( mw.config.get( 'wgBreakFrames' ) ) {
+// Deprecated: Migrated to module 'mediawiki.breakframes'
+// To keep cached pages working, the javascript is kept here until version 1.25
+// Old cached pages are determined with on existing config var 'wgBreakFrames'
+if ( mw.config.exists( 'wgBreakFrames' ) && mw.config.get( 'wgBreakFrames' ) ) {
 	// Note: In IE < 9 strict comparison to window is non-standard (the standard didn't exist yet)
 	// it works only comparing to window.self or window.window (http://stackoverflow.com/q/4850978/319266)
 	if ( win.top !== win.self ) {
