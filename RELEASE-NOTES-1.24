@@ -21,6 +21,9 @@ production.
 * $wgDBClusterTimeout has been removed.
 * $wgProxyKey has been removed. It is no longer used by MediaWiki core.
   Ensure $wgSecretKey is set in LocalSettings.php.
+* $wgBlockAllowsUTEdit is now set to true by default. This allows
+  blocked users to edit their talk pages unless explicitly disabled
+  when they are being blocked.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
