@@ -965,6 +965,10 @@ return array(
 			'jquery.cookie',
 		),
 	),
+	'mediawiki.breakframes' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.breakframes.js',
+		'position' => 'top',
+	),
 
 	/* MediaWiki Action */
 
