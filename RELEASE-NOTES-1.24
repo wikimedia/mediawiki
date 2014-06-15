@@ -149,6 +149,8 @@ changes to languages because of Bugzilla reports.
 * (bug 63755) The deprecated constants RC_MOVE and RC_MOVE_OVER_REDIRECT were
   removed.
 * Special:MostLinkedTemplates has been renamed to Special:MostTranscludedPages.
+* Removed functions readOnlyPage(), blockedPage(), userNotLoggedInPage(), and
+  noCreatePermission() from EditPage.php (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
