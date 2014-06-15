@@ -4132,7 +4132,7 @@ $wgAutoblockExpiry = 86400;
 /**
  * Set this to true to allow blocked users to edit their own user talk page.
  */
-$wgBlockAllowsUTEdit = false;
+$wgBlockAllowsUTEdit = true;
 
 /**
  * Allow sysops to ban users from accessing Emailuser
