@@ -171,12 +171,7 @@ class UploadFromUrl extends UploadBase {
 	 */
 	public static function isValidRequest( $request ) {
 		global $wgUser;
-
-		$url = $request->getVal( 'wpUploadFileURL' );
-
-		return !empty( $url )
-			&& Http::isValidURI( $url )
-			&& $wgUser->isAllowed( 'upload_by_url' );
+		return $wgUser->isAllowed( 'upload_by_url' );
 	}
 
 	/**
@@ -195,7 +190,7 @@ class UploadFromUrl extends UploadBase {
 	 */
 	public function fetchFile( $httpOptions = array() ) {
 		if ( !Http::isValidURI( $this->mUrl ) ) {
-			return Status::newFatal( 'http-invalid-url' );
+			return Status::newFatal( 'http-invalid-url', $this->mUrl );
 		}
 
 		if ( !self::isAllowedHost( $this->mUrl ) ) {
