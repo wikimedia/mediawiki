@@ -2189,7 +2189,7 @@
 	"importbadinterwiki": "인터위키 링크가 잘못되었습니다.",
 	"importsuccess": "가져오기 완료!",
 	"importnosources": "문서를 가져올 출처가 정의되지 않았고 문서 역사 올리기가 비활성화되었습니다.",
-	"importnofile": "가져오기용 파일이 올려지지 않았습니다.",
+	"importnofile": "가져오기 파일이 올려지지 않았습니다.",
 	"importuploaderrorsize": "파일 올리기를 통한 가져오기에 실패했습니다.\n파일이 허용된 크기 제한보다 큽니다.",
 	"importuploaderrorpartial": "가져오기 파일을 올리는 데 실패하였습니다.\n파일이 부분적으로만 올려졌습니다.",
 	"importuploaderrortemp": "가져오기 파일을 올리는 데 실패했습니다.\n임시 폴더가 존재하지 않습니다.",
