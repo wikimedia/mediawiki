@@ -344,3 +344,6 @@
 [submodule "extensions/GlobalUsage"]
 	path = extensions/GlobalUsage
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GlobalUsage.git
+[submodule "extensions/LocalisationCacheHack"]
+	path = extensions/LocalisationCacheHack
+	url = https://github.com/orain/localisationcachehack
