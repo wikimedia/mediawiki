@@ -554,19 +554,6 @@ class SpecialPage {
 	/**
 	 * Shortcut to get user's language
 	 *
-	 * @deprecated since 1.19 Use getLanguage instead
-	 * @return Language
-	 * @since 1.18
-	 */
-	public function getLang() {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		return $this->getLanguage();
-	}
-
-	/**
-	 * Shortcut to get user's language
-	 *
 	 * @return Language
 	 * @since 1.19
 	 */
