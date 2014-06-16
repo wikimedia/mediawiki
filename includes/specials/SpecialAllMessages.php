@@ -27,7 +27,7 @@
  * @file
  * @ingroup SpecialPage
  */
-class SpecialAllmessages extends SpecialPage {
+class SpecialAllMessages extends SpecialPage {
 	/**
 	 * @var AllmessagesTablePager
 	 */
@@ -85,7 +85,7 @@ class SpecialAllmessages extends SpecialPage {
  * Use TablePager for prettified output. We have to pretend that we're
  * getting data from a table when in fact not all of it comes from the database.
  */
-class AllmessagesTablePager extends TablePager {
+class AllMessagesTablePager extends TablePager {
 	protected $filter, $prefix, $langcode, $displayPrefix;
 
 	public $mLimitsShown;
