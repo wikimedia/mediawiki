@@ -98,13 +98,37 @@ class Preferences {
 
 		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
 
+		self::loadPreferenceValues( $user, $context, $defaultPreferences );
+		self::$defaultPreferences = $defaultPreferences;
+		return $defaultPreferences;
+	}
+
+	/**
+	 * Given an array filters any preferences marked in $wgHiddenPrefs
+	 * @param array $prefs an array of preferences
+	 * @return array of filtered preferences
+	 */
+	static function filterHiddenPreferences( $prefs ) {
 		## Remove preferences that wikis don't want to use
 		global $wgHiddenPrefs;
 		foreach ( $wgHiddenPrefs as $pref ) {
-			if ( isset( $defaultPreferences[$pref] ) ) {
-				unset( $defaultPreferences[$pref] );
+			if ( isset( $prefs[$pref] ) ) {
+				unset( $prefs[$pref] );
 			}
 		}
+		return $prefs;
+	}
+
+	/**
+	 * Loads existing values for a given array of preferences
+	 * @throws MWException
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param array defaultPreferences to load values for
+	 * @return array|null
+	 */
+	static function loadPreferenceValues( $user, $context, &$defaultPreferences ) {
+		$defaultPreferences = self::filterHiddenPreferences( $defaultPreferences );
 
 		## Make sure that form fields have their parent set. See bug 41337.
 		$dummyForm = new HTMLForm( array(), $context );
@@ -137,8 +161,6 @@ class Preferences {
 				throw new MWException( "Global default '$globalDefault' is invalid for field $name" );
 			}
 		}
-
-		self::$defaultPreferences = $defaultPreferences;
 
 		return $defaultPreferences;
 	}
