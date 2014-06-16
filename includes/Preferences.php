@@ -92,7 +92,6 @@ class Preferences {
 		self::renderingPreferences( $user, $context, $defaultPreferences );
 		self::editingPreferences( $user, $context, $defaultPreferences );
 		self::rcPreferences( $user, $context, $defaultPreferences );
-		self::watchlistPreferences( $user, $context, $defaultPreferences );
 		self::searchPreferences( $user, $context, $defaultPreferences );
 		self::miscPreferences( $user, $context, $defaultPreferences );
 
