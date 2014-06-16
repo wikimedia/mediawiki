@@ -44,7 +44,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->requireLogin( 'watchlistanontext' );
 
 		$output = $this->getOutput();
+		$output->addModuleStyles( 'mediawiki.ui.icons' );
 		$request = $this->getRequest();
+
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
 		if ( $mode !== false ) {
@@ -373,12 +375,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	public function doHeader( $opts ) {
 		$user = $this->getUser();
-
 		$this->getOutput()->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
 				->rawParams( SpecialEditWatchlist::buildTools( null ) )
 		);
+		$this->doWatchlistFilterHeader( $opts );
+	}
 
+	public function doWatchlistFilterHeader( $opts ) {
+		$user = $this->getUser();
 		$this->setTopText( $opts );
 
 		$lang = $this->getLanguage();
