@@ -223,17 +223,6 @@ abstract class Action {
 	}
 
 	/**
-	 * Shortcut to get the user Language being used for this instance
-	 *
-	 * @deprecated since 1.19 Use getLanguage instead
-	 * @return Language
-	 */
-	final public function getLang() {
-		wfDeprecated( __METHOD__, '1.19' );
-		return $this->getLanguage();
-	}
-
-	/**
 	 * Shortcut to get the Title object from the page
 	 * @return Title
 	 */

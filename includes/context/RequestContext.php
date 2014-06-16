@@ -299,16 +299,6 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.19 Use getLanguage instead
-	 * @return Language
-	 */
-	public function getLang() {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		return $this->getLanguage();
-	}
-
-	/**
 	 * Get the Language object.
 	 * Initialization of user or request objects can depend on this.
 	 *
