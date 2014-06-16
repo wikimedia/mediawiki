@@ -1126,11 +1126,18 @@
 			} else {
 				$el = $( '<a>' );
 				if ( typeof arg === 'function' ) {
-					$el.attr( 'href', '#' )
-					.click( function ( e ) {
-						e.preventDefault();
+					$el.attr( {
+						role: 'button',
+						tabindex: 0
 					} )
-					.click( arg );
+					.on( 'click keypress', function ( e ) {
+						if (
+							e.type === 'click' ||
+							e.type === 'keypress' && e.which === 13
+						) {
+							arg();
+						}
+					} );
 				} else {
 					$el.attr( 'href', textify( arg ) );
 				}

@@ -11,6 +11,7 @@ a {
 	text-decoration: none;
 	color: #0645ad;
 	background: none;
+	cursor: pointer; /* Always cursor:pointer even without href */
 }
 
 a:visited {
