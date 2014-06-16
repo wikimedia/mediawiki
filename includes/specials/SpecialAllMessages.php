@@ -51,8 +51,7 @@ class SpecialAllMessages extends SpecialPage {
 
 		$this->setHeaders();
 
-		global $wgUseDatabaseMessages;
-		if ( !$wgUseDatabaseMessages ) {
+		if ( !$this->getConfig()->get( 'UseDatabaseMessages' ) ) {
 			$out->addWikiMsg( 'allmessagesnotsupportedDB' );
 
 			return;
@@ -148,15 +147,13 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	function buildForm() {
-		global $wgScript;
-
 		$attrs = array( 'id' => 'mw-allmessages-form-lang', 'name' => 'lang' );
 		$msg = wfMessage( 'allmessages-language' );
 		$langSelect = Xml::languageSelector( $this->langcode, false, null, $attrs, $msg );
 
 		$out = Xml::openElement( 'form', array(
 				'method' => 'get',
-				'action' => $wgScript,
+				'action' => $this->getConfig()->get( 'Script' ),
 				'id' => 'mw-allmessages-form'
 			) ) .
 			Xml::fieldset( $this->msg( 'allmessages-filter-legend' )->text() ) .
