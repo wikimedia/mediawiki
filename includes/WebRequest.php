@@ -755,17 +755,6 @@ class WebRequest {
 	}
 
 	/**
-	 * HTML-safe version of appendQuery().
-	 * @deprecated: Deprecated in 1.20, warnings in 1.21, remove in 1.22.
-	 *
-	 * @param string $query Query string fragment; do not include initial '?'
-	 * @return string
-	 */
-	public function escapeAppendQuery( $query ) {
-		return htmlspecialchars( $this->appendQuery( $query ) );
-	}
-
-	/**
 	 * @param string $key
 	 * @param string $value
 	 * @param bool $onlyquery
