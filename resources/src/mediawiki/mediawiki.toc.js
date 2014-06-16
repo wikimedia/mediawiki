@@ -30,9 +30,16 @@
 		if ( $toc.length && $tocTitle.length && $tocList.length && !$tocToggleLink.length ) {
 			hideToc = mw.cookie.get( 'hidetoc' ) === '1';
 
-			$tocToggleLink = $( '<a href="#" id="togglelink"></a>' )
+			$tocToggleLink = $( '<a role="button" tabindex="0" id="togglelink"></a>' )
 				.text( mw.msg( hideToc ? 'showtoc' : 'hidetoc' ) )
-				.click( toggleToc );
+				.on( 'click keypress', function ( e ) {
+					if (
+						e.type === 'click' ||
+						e.type === 'keypress' && e.which === 13
+					) {
+						toggleToc();
+					}
+				} );
 
 			$tocTitle.append(
 				$tocToggleLink
