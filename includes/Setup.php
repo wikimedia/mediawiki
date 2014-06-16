@@ -366,10 +366,6 @@ if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
 // Blacklisted file extensions shouldn't appear on the "allowed" list
 $wgFileExtensions = array_values( array_diff ( $wgFileExtensions, $wgFileBlacklist ) );
 
-if ( $wgArticleCountMethod === null ) {
-	$wgArticleCountMethod = $wgUseCommaCount ? 'comma' : 'link';
-}
-
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 	// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged - No GlobalFunction here yet.
 	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( "$IP/LocalSettings.php" ) ) );

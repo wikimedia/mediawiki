@@ -3926,9 +3926,6 @@ $wgTranscludeCacheExpiry = 3600;
  * - 'any': all pages as considered as valid articles
  * - 'comma': the page must contain a comma to be considered valid
  * - 'link': the page must contain a [[wiki link]] to be considered valid
- * - null: the value will be set at run time depending on $wgUseCommaCount:
- *         if $wgUseCommaCount is false, it will be 'link', if it is true
- *         it will be 'comma'
  *
  * See also See https://www.mediawiki.org/wiki/Manual:Article_count
  *
@@ -3936,13 +3933,7 @@ $wgTranscludeCacheExpiry = 3600;
  * to update it, you will need to run the maintenance/updateArticleCount.php
  * script.
  */
-$wgArticleCountMethod = null;
-
-/**
- * Backward compatibility setting, will set $wgArticleCountMethod if it is null.
- * @deprecated since 1.18; use $wgArticleCountMethod instead
- */
-$wgUseCommaCount = false;
+$wgArticleCountMethod = 'link';
 
 /**
  * wgHitcounterUpdateFreq sets how often page counters should be updated, higher
