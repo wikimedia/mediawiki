@@ -70,7 +70,7 @@ figure[typeof*='mw:Image'] {
 		float: none;
 	}
 
-	figcaption {
+	> figcaption {
 		display: table-caption;
 		caption-side: bottom;
 		/* In mw-core the font-size is duplicated, 94% in thumbiner
@@ -106,9 +106,9 @@ figure[typeof~='mw:Image/Frame'] {
 	float: right;
 }
 
-figure[typeof~='mw:Image/Thumb'] img,
-figure[typeof~='mw:Image/Frame'] img,
-.mw-image-border img {
+figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
+figure[typeof~='mw:Image/Frame'] > *:first-child > img,
+.mw-image-border > *:first-child > img {
 	border: 1px solid #cccccc;
 	margin: 4px;
 }
