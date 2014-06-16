@@ -737,7 +737,7 @@
 	"recentchanges-label-unpatrolled": "Bu tahrir hali tekshirilmagan",
 	"recentchanges-label-plusminus": "Sahifa vazni qanchaga oʻzgargani (bayt)",
 	"recentchanges-legend-heading": "'''Izoh:'''",
-	"recentchanges-legend-newpage": "([[Special:NewPages|alohida roʻyxat]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|alohida roʻyxat]])",
 	"rcnotefrom": "Quyida <strong>$2</strong> dan keyin amalga oshirilgan oʻzgarishlar keltirilgan (oxirgi <strong>$1</strong> tasi)",
 	"rclistfrom": "$3, $2 dan keyingi oʻzgarishlarni koʻrsat",
 	"rcshowhideminor": "Kichik tahrirlarni $1",

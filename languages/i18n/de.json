@@ -1209,7 +1209,7 @@
 	"recentchanges-label-unpatrolled": "Nicht-kontrollierte Änderung",
 	"recentchanges-label-plusminus": "Die Änderung der Seitengröße in Bytes",
 	"recentchanges-legend-heading": "'''Legende:'''",
-	"recentchanges-legend-newpage": "(siehe auch die [[Special:NewPages|Liste neuer Seiten]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (siehe auch die [[Special:NewPages|Liste neuer Seiten]])",
 	"recentchanges-legend-plusminus": "''(±123)''",
 	"rcnotefrom": "Angezeigt werden die Änderungen seit <strong>$2</strong> (max. <strong>$1</strong> Einträge).",
 	"rclistfrom": "Nur Änderungen seit $3, $2 Uhr zeigen.",

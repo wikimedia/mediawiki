@@ -1171,7 +1171,7 @@
 	"recentchanges-label-unpatrolled": "Aquesta modificació encara no s'ha patrullat",
 	"recentchanges-label-plusminus": "La mida de la pàgina ha canviat aquest nombre de bytes",
 	"recentchanges-legend-heading": "'''Llegenda:'''",
-	"recentchanges-legend-newpage": "(vegeu també la [[Special:NewPages|llista de pàgines noves]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vegeu també la [[Special:NewPages|llista de pàgines noves]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "A sota hi ha els canvis des de <strong>$2</strong> (es mostren fins <strong>$1</strong>).",
 	"rclistfrom": "Mostra els canvis nous des de $3 $2",

@@ -1129,7 +1129,7 @@
 	"recentchanges-label-unpatrolled": "Táto úprava zatiaľ nebola strážená",
 	"recentchanges-label-plusminus": "Veľkosť stránky sa zmenila o toľkoto bajtov",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "(pozri tiež [[Special:NewPages|zoznam nových stránok]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (pozri tiež [[Special:NewPages|zoznam nových stránok]])",
 	"rcnotefrom": "Nižšie sú zobrazené úpravy od <strong>$2</strong> (do <strong>$1</strong>).",
 	"rclistfrom": "Zobraziť nové úpravy počnúc od $3 $2",
 	"rcshowhideminor": "$1 drobné úpravy",

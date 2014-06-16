@@ -1157,7 +1157,7 @@
 	"recentchanges-label-unpatrolled": "Tato změna dosud nebyla prověřena",
 	"recentchanges-label-plusminus": "Velikost stránky se změnila o tolik bajtů",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "(vizte též [[Special:NewPages|seznam nových stránek]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vizte též [[Special:NewPages|seznam nových stránek]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Níže jsou změny od <strong>$2</strong> ({{PLURAL:$1|zobrazena|zobrazeny|zobrazeno}} nejvýše <strong>$1</strong>).",
 	"rclistfrom": "Ukázat nové změny, počínaje od $2, $3",

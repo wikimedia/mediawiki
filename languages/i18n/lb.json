@@ -1133,7 +1133,7 @@
 	"recentchanges-label-unpatrolled": "Dës Ännerung gouf nach net nogekuckt",
 	"recentchanges-label-plusminus": "D'Gréisst vun der Säit huet sech ëm déi Zuel vu Bytes geännert",
 	"recentchanges-legend-heading": "'''Legend:'''",
-	"recentchanges-legend-newpage": "(kuckt och [[Special:NewPages|Lëscht vun den neie Säiten]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (kuckt och [[Special:NewPages|Lëscht vun den neie Säiten]])",
 	"recentchanges-legend-plusminus": "''(±123)''",
 	"rcnotefrom": "Ugewise ginn d'Ännerunge vum <strong>$2</strong> un (maximal <strong>$1</strong> Ännerunge gi gewisen).",
 	"rclistfrom": "Nei Ännerunge vu(n) $3 $2 u weisen",

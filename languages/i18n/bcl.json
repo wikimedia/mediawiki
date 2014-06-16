@@ -1117,7 +1117,7 @@
 	"recentchanges-label-unpatrolled": "Ining pagliwat dae pa tabi pinagpatrolyahan",
 	"recentchanges-label-plusminus": "An kadakulaan nin pahina pinagliwat sa paagi kaining numero nin mga bayta",
 	"recentchanges-legend-heading": "'''Kabalaynan:'''",
-	"recentchanges-legend-newpage": "(hilngon man [[Special:NewPages|listahan kan mga baguhong pahina]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (hilngon man [[Special:NewPages|listahan kan mga baguhong pahina]])",
 	"recentchanges-legend-plusminus": "(''±saro-duwa-tolo'')",
 	"rcnotefrom": "Sa ibaba iyo an mga kaliwatan poon kan '''$2''' (sagkod sa '''$1''' na ipinapahiling).",
 	"rclistfrom": "Ipahiling an baguhon na mga kaliwatan magpoon kan $3 $2",

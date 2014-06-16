@@ -1145,7 +1145,7 @@
 	"recentchanges-label-unpatrolled": "Esta edición aínda non foi comprobada",
 	"recentchanges-label-plusminus": "O tamaño da páxina variou este número de bytes",
 	"recentchanges-legend-heading": "'''Lenda:'''",
-	"recentchanges-legend-newpage": "(véxase tamén a [[Special:NewPages|lista de páxinas novas]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (véxase tamén a [[Special:NewPages|lista de páxinas novas]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "A continuación móstranse os cambios feitos desde o <strong>$3</strong> ás <strong>$4</strong> (móstranse <strong>$1</strong> como máximo).",
 	"rclistfrom": "Mostrar os cambios novos desde o $3 ás $2",

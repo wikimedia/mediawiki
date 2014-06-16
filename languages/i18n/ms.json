@@ -1150,7 +1150,7 @@
 	"recentchanges-label-unpatrolled": "Suntingan ini belum dirondai",
 	"recentchanges-label-plusminus": "Saiz laman telah berubah sebanyak jumlah bait ini",
 	"recentchanges-legend-heading": "'''Petunjuk:'''",
-	"recentchanges-legend-newpage": "(lihat juga [[Special:NewPages|senarai laman baru]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (lihat juga [[Special:NewPages|senarai laman baru]])",
 	"rcnotefrom": "Yang berikut adalah semua suntingan sejak <b>$2</b> (yang dipaparkan sehingga <b>$1</b>).",
 	"rclistfrom": "Paparkan perubahan sejak $3 $2",
 	"rcshowhideminor": "$1 suntingan kecil",

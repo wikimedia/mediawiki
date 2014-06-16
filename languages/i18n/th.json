@@ -1146,7 +1146,7 @@
 	"recentchanges-label-unpatrolled": "การแก้ไขนี้ยังไม่ได้ตรวจสอบ",
 	"recentchanges-label-plusminus": "ขนาดของหน้าเปลี่ยนไปด้วยจำนวนไบต์เท่านี้",
 	"recentchanges-legend-heading": "'''คำอธิบายสัญลักษณ์:'''",
-	"recentchanges-legend-newpage": "(ดูเพิ่มที่[[Special:NewPages|รายชื่อหน้าใหม่]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ดูเพิ่มที่[[Special:NewPages|รายชื่อหน้าใหม่]])",
 	"rcnotefrom": "ด้านล่างเป็นการเปลี่ยนแปลงตั้งแต่ <strong>$2</strong> (มากสุด <strong>$1</strong> รายการ)",
 	"rclistfrom": "แสดงการเปลี่ยนแปลงใหม่เริ่มตั้งแต่ $3 $2",
 	"rcshowhideminor": "$1การแก้ไขเล็กน้อย",

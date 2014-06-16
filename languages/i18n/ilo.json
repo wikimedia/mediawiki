@@ -1134,7 +1134,7 @@
 	"recentchanges-label-unpatrolled": "Daytoy a panag-urnos ket saan pay a napatruliaan",
 	"recentchanges-label-plusminus": "Ti panagbaliw ti kadakkel ti panid babaen ti bilang dagiti byte",
 	"recentchanges-legend-heading": "'''Leyenda:'''",
-	"recentchanges-legend-newpage": "(kitaen pay ti [[Special:NewPages|listaan ti baro a pampanid]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (kitaen pay ti [[Special:NewPages|listaan ti baro a pampanid]])",
 	"rcnotefrom": "Dita baba ket dagiti sinukatan manipud idi strong>$2</strong> (agingga iti <strong>$1</strong> a naipakita).",
 	"rclistfrom": "Ipakita dagiti kabarbaro a sinukatan a mangrugi manipud idi $3 $2",
 	"rcshowhideminor": "$1 dagiti bassit a panag-urnos",

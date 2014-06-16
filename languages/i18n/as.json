@@ -1119,7 +1119,7 @@
 	"recentchanges-label-unpatrolled": "এই সম্পাদনাটো এতিয়াও পৰীক্ষা কৰা হোৱা নাই",
 	"recentchanges-label-plusminus": "পৃষ্ঠাৰ আকাৰ এই পৰিমাণৰ বাইট পৰিৱৰ্তন হৈছে",
 	"recentchanges-legend-heading": "'''ব্যাখ্যা:'''",
-	"recentchanges-legend-newpage": "(লগতে [[Special:NewPages|নতুন পৃষ্ঠাসমূহৰ তালিকা]] চাওক)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (লগতে [[Special:NewPages|নতুন পৃষ্ঠাসমূহৰ তালিকা]] চাওক)",
 	"recentchanges-legend-plusminus": "(''±১২৩'')",
 	"rcnotefrom": "তলত '''$2''' ৰ পৰা হোৱা ('''$1''' লৈকে) পৰিৱৰ্তন দেখুৱা হৈছে ।",
 	"rclistfrom": "$3 $2ৰ পৰা নতুন সালসলনি দেখুৱাওক",

@@ -724,7 +724,7 @@
 	"recentchanges-label-minor": "Бу, кичик бир денъиштирме",
 	"recentchanges-label-bot": "Бу бир ботнынъ япкъан денъиштирмеси",
 	"recentchanges-label-unpatrolled": "Бу денъиштирме аля даа тешкерильмеген",
-	"recentchanges-legend-newpage": "([[Special:NewPages|янъы саифелер джедвелине]] де бакъынъыз)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|янъы саифелер джедвелине]] де бакъынъыз)",
 	"rcnotefrom": "'''$2''' тарихындан итибарен япылгъан денъиштирмелер ашагъыдадыр (энъ чокъ '''$1''' дане саифе косьтериле).",
 	"rclistfrom": "$3 $2 тарихындан берли япылгъан денъиштирмелерни косьтер",
 	"rcshowhideminor": "кичик денъиштирмелерни $1",

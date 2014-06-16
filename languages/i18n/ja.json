@@ -1193,7 +1193,7 @@
 	"recentchanges-label-unpatrolled": "巡回されていない編集",
 	"recentchanges-label-plusminus": "ページ サイズの増減 (バイト単位)",
 	"recentchanges-legend-heading": "'''凡例:'''",
-	"recentchanges-legend-newpage": "([[Special:NewPages|新しいページ一覧]]も参照)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|新しいページ一覧]]も参照)",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"rcnotefrom": "以下は<strong>$2</strong>以降の更新です (最大 <strong>$1</strong> 件)。",
 	"rclistfrom": "$3の$2以降の更新を表示する",

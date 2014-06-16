@@ -1076,7 +1076,7 @@
 	"recentchanges-label-unpatrolled": "Бұл өңдеме әлі тексеруден өтпеді.",
 	"recentchanges-label-plusminus": "Байт бойынша беттің өзгеріс өлшемі",
 	"recentchanges-legend-heading": "'''Шартты белгілер:'''",
-	"recentchanges-legend-newpage": "(қ: [[Special:NewPages|бөлек бетте]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (қ: [[Special:NewPages|бөлек бетте]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"rcnotefrom": "Төменде <strong>$2</strong> кезінен бергі (<strong>$1</strong> өңдемеге дейін) өзгерістер көрсетіледі.",
 	"rclistfrom": "$2, $3 кезінен бергі жаңа өзгерістерді көрсет.",

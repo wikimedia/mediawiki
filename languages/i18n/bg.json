@@ -1086,7 +1086,7 @@
 	"recentchanges-label-unpatrolled": "Тази редакция все още не е проверена",
 	"recentchanges-label-plusminus": "Размерът на страницата е променен с този брой байтове",
 	"recentchanges-legend-heading": "'''Легенда:'''",
-	"recentchanges-legend-newpage": "(вижте също [[Special:NewPages|списъка с нови страници]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (вижте също [[Special:NewPages|списъка с нови страници]])",
 	"rcnotefrom": "Дадени са промените от <strong>$2</strong> (до <strong>$1</strong> показани).",
 	"rclistfrom": "Показване на промени, като се започва от $3 $2",
 	"rcshowhideminor": "$1 на малки промени",

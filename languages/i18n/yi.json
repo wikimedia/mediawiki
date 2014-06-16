@@ -1136,7 +1136,7 @@
 	"recentchanges-label-unpatrolled": "די רעדאקטירונג איז נאך נישט נאכגעקוקט",
 	"recentchanges-label-plusminus": "בלאט גרייס געענדערט מיט דער צאל בייטן",
 	"recentchanges-legend-heading": "'''לעגענדע:'''",
-	"recentchanges-legend-newpage": "(זעט אויך [[Special:NewPages|די רשימה פון נייע בלעטער]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (זעט אויך [[Special:NewPages|די רשימה פון נייע בלעטער]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "פֿאלגנד זענען די ענדערונגען זײַט <strong>$2</strong> (ביז <strong>$1</strong>).",
 	"rclistfrom": "װײַזן נײַע ענדערונגען פֿון $3 $2",

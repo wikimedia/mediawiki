@@ -1157,7 +1157,7 @@
 	"recentchanges-label-unpatrolled": "עריכה זו טרם נבדקה",
 	"recentchanges-label-plusminus": "גודל הדף השתנה במספר זה של בתים",
 	"recentchanges-legend-heading": "'''מקרא:'''",
-	"recentchanges-legend-newpage": "(ראו גם [[Special:NewPages|רשימת דפים חדשים]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ראו גם [[Special:NewPages|רשימת דפים חדשים]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "להלן השינויים שבוצעו החל מ‏‏֫־<b>$2</b> (עד <b>$1</b> מוצגים).",
 	"rclistfrom": "הצגת שינויים חדשים החל מ־$2, $3",

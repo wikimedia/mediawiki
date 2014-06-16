@@ -724,7 +724,7 @@
 	"recentchanges-label-minor": "Bu, kiçik bir deñiştirme",
 	"recentchanges-label-bot": "Bu bir botnıñ yapqan deñiştirmesi",
 	"recentchanges-label-unpatrolled": "Bu deñiştirme alâ daa teşkerilmegen",
-	"recentchanges-legend-newpage": "([[Special:NewPages|yañı saifeler cedveline]] de baqıñız)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|yañı saifeler cedveline]] de baqıñız)",
 	"rcnotefrom": "'''$2''' tarihından itibaren yapılğan deñiştirmeler aşağıdadır (eñ çоq '''$1''' dane saife kösterile).",
 	"rclistfrom": "$3 $2 tarihından berli yapılğan deñiştirmelerni köster",
 	"rcshowhideminor": "kiçik deñiştirmelerni $1",

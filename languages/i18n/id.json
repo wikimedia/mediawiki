@@ -1179,7 +1179,7 @@
 	"recentchanges-label-unpatrolled": "Suntingan ini belum terpatroli",
 	"recentchanges-label-plusminus": "Perubahan ukuran halaman dalam bita",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "(lihat pula [[Special:NewPages|daftar halaman baru]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (lihat pula [[Special:NewPages|daftar halaman baru]])",
 	"rcnotefrom": "Di bawah ini adalah perubahan sejak <strong>$2</strong> (ditampilkan sampai <strong>$1</strong> perubahan).",
 	"rclistfrom": "Perlihatkan perubahan terbaru sejak $3 $2",
 	"rcshowhideminor": "$1 suntingan kecil",

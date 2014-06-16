@@ -1146,7 +1146,7 @@
 	"recentchanges-label-unpatrolled": "Ова измена још није патролирана",
 	"recentchanges-label-plusminus": "Промена величине странице у бајтовима",
 	"recentchanges-legend-heading": "'''Легенда:'''",
-	"recentchanges-legend-newpage": "([[Special:NewPages|списак нових страница]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|списак нових страница]])",
 	"rcnotefrom": "Испод су измене од <strong>$2</strong> (до <strong>$1</strong> измена).",
 	"rclistfrom": "Прикажи нове измене почев од $2 $3",
 	"rcshowhideminor": "$1 мање измене",

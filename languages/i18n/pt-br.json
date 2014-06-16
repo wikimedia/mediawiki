@@ -1197,7 +1197,7 @@
 	"recentchanges-label-unpatrolled": "Esta edição ainda não foi patrulhada",
 	"recentchanges-label-plusminus": "Alteração no tamanho da página, em bytes",
 	"recentchanges-legend-heading": "'''Legenda''':",
-	"recentchanges-legend-newpage": "(veja também a [[Special:NewPages|lista de páginas novas]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (veja também a [[Special:NewPages|lista de páginas novas]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Abaixo estão mostradas as alterações desde <strong>$2</strong> (até <strong>$1</strong>).",
 	"rclistfrom": "Mostrar as novas alterações a partir das $3 $2",

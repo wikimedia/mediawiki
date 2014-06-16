@@ -1142,7 +1142,7 @@
 	"recentchanges-label-unpatrolled": "Urejanje še ni bilo pregledano",
 	"recentchanges-label-plusminus": "uporabnik je velikost strani spremenil za tolikšno število bajtov",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "(glej tudi [[Special:NewPages|seznam novih strani]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (glej tudi [[Special:NewPages|seznam novih strani]])",
 	"rcnotefrom": "Navedene so spremembe od <strong>$2</strong> dalje (prikazujem jih do <strong>$1</strong>).",
 	"rclistfrom": "Prikaži spremembe od $3 $2 naprej",
 	"rcshowhideminor": "$1 manjša urejanja",

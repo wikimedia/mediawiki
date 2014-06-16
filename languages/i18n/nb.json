@@ -1171,7 +1171,7 @@
 	"recentchanges-label-unpatrolled": "Denne redigeringen har ikke blitt patruljert ennå",
 	"recentchanges-label-plusminus": "Sidestørrelsen kan endres med dette antallet bytes",
 	"recentchanges-legend-heading": "'''Tegnforklaring:'''",
-	"recentchanges-legend-newpage": "(se også [[Special:NewPages|liste av nye sider]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (se også [[Special:NewPages|liste av nye sider]])",
 	"recentchanges-legend-plusminus": "«(±123)»",
 	"rcnotefrom": "Nedenfor er endringene gjort siden <strong>$2</strong> (frem til <strong>$1</strong> vises).",
 	"rclistfrom": "Vis nye endringer fra og med $3 $2",

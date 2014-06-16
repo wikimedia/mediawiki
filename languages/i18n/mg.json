@@ -1120,7 +1120,7 @@
 	"recentchanges-label-unpatrolled": "Ity fanovana ity dia mbola tsy voamarina",
 	"recentchanges-label-plusminus": "IO ny isan'ny oktety niova tamin'ilay pejy",
 	"recentchanges-legend-heading": "'''Maribolana:'''",
-	"recentchanges-legend-newpage": "(jereo koa ny [[Special:NewPage|lisitry ny pejy vaovao]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (jereo koa ny [[Special:NewPage|lisitry ny pejy vaovao]])",
 	"rcnotefrom": "Ity eto ambany ity ny lisitry ny vao niova manomboka ny <b>$2</b> (hatramin'ny <b>$1</b> no miseho).",
 	"rclistfrom": "Asehoy izay vao niova manomboka ny $3 $2",
 	"rcshowhideminor": "$1 ny fanovàna kely",

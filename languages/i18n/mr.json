@@ -1139,7 +1139,7 @@
 	"recentchanges-label-unpatrolled": "हे संपादन अजून तपासल्या गेले नाही",
 	"recentchanges-label-plusminus": "या पानाचा आकार इतक्या बाइट्स ने बदलला",
 	"recentchanges-legend-heading": "'''विवरण:'''",
-	"recentchanges-legend-newpage": "([[Special:NewPages|नविन पानांची यादी]] हेही पाहा)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नविन पानांची यादी]] हेही पाहा)",
 	"recentchanges-legend-plusminus": "(''±१२३'')",
 	"rcnotefrom": "खाली <b>$2</b> पासूनचे ('''$1''' पर्यंत) बदल दाखविले आहेत.",
 	"rclistfrom": "$3 $2 नंतर केले गेलेले बदल दाखवा.",

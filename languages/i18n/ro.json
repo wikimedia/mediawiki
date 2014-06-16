@@ -1154,7 +1154,7 @@
 	"recentchanges-label-unpatrolled": "Această modificare nu a fost încă verificată",
 	"recentchanges-label-plusminus": "Dimensiunea paginii s-a modificat corespunzător acestui număr de octeți",
 	"recentchanges-legend-heading": "'''Legendă:'''",
-	"recentchanges-legend-newpage": "(vedeți și [[Special:NewPages|lista cu pagini noi]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vedeți și [[Special:NewPages|lista cu pagini noi]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Dedesubt sunt modificările începând cu <b>$2</b> (maximum <b>$1</b> afișate).",
 	"rclistfrom": "Se afișează modificările începând cu $3, $2",

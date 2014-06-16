@@ -817,7 +817,7 @@
 	"recentchanges-label-bot": "Hanc recensionem automaton fecit",
 	"recentchanges-label-unpatrolled": "Haec recensio nondum est examinata",
 	"recentchanges-label-plusminus": "Magnitudo paginae per istam copiam octetorum mutata est",
-	"recentchanges-legend-newpage": "(vide etiam [[Special:NewPages|indicem paginarum novarum]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vide etiam [[Special:NewPages|indicem paginarum novarum]])",
 	"rcnotefrom": "Subter sunt '''$1''' nuperrime mutata in proxima '''$2''' die.",
 	"rclistfrom": "Monstrare mutata nova incipiens ab $3 $2",
 	"rcshowhideminor": "$1 recensiones minores",

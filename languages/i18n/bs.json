@@ -1090,7 +1090,7 @@
 	"recentchanges-label-unpatrolled": "Ova izmjena još nije patrolirana",
 	"recentchanges-label-plusminus": "Veličina stranice promijenila se za ovoliko bajtova",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "(također pogledajte [[Special:NewPages|spisak novih stranica]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (također pogledajte [[Special:NewPages|spisak novih stranica]])",
 	"rcnotefrom": "Ispod su izmjene od <strong>$2</strong> (do <strong>$1</strong> prikazano).",
 	"rclistfrom": "Prikaži nove izmjene počev od $3 $2",
 	"rcshowhideminor": "$1 male izmjene",

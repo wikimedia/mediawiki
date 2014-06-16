@@ -352,7 +352,7 @@
 	"recentchanges-label-bot": "Sta mudifica hè stata effettuata da un botu",
 	"recentchanges-label-unpatrolled": "Sta mudifica ùn hè ancu stata verificata",
 	"recentchanges-label-plusminus": "A dimensione di a pagina hè stata cambiata di 'ssu numaru d'ottetti",
-	"recentchanges-legend-newpage": "(vede ancu [[Special:NewPages|a lista di e pagine nove]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vede ancu [[Special:NewPages|a lista di e pagine nove]])",
 	"rcnotefrom": "Quì seguitanu e mudifiche dapoi u '''$2''' ('''$1''' à u massimu).",
 	"rclistfrom": "Mustrà e mudifiche dapoi u $3 $2",
 	"rcshowhideminor": "$1 i cambiamenti minori",

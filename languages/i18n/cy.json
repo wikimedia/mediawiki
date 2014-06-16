@@ -1126,7 +1126,7 @@
 	"recentchanges-label-unpatrolled": "Nid yw'r golygiad hwn wedi derbyn ymweliad patrôl eto",
 	"recentchanges-label-plusminus": "Newidiodd maint y dudalen o'r nifer hwn o feitiau",
 	"recentchanges-legend-heading": "'''Allwedd:'''",
-	"recentchanges-legend-newpage": "(gweler hefyd [[Special:NewPages|restr y tudalennau newydd]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (gweler hefyd [[Special:NewPages|restr y tudalennau newydd]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Isod rhestrir pob newid er <strong>'''$2'''</strong> (ymddengys hyd at <strong>'''$1'''</strong> ohonynt).",
 	"rclistfrom": "Dangos newidiadau newydd, gan ddechrau ers $3 $2",

@@ -1181,7 +1181,7 @@
 	"recentchanges-label-unpatrolled": "該編輯尚未巡查",
 	"recentchanges-label-plusminus": "該頁面變更的大小 (位元組)",
 	"recentchanges-legend-heading": "'''說明：'''",
-	"recentchanges-legend-newpage": "(請參考 [[Special:NewPages|最新頁面]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (請參考 [[Special:NewPages|最新頁面]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"rcnotefrom": "以下為自 <strong>$2</strong> 以來的變更 (最多顯示 <strong>$1</strong> 筆)。",
 	"rclistfrom": "顯示自 $3 $2 以來的最近變更",

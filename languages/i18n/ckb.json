@@ -1060,7 +1060,7 @@
 	"recentchanges-label-unpatrolled": "ئەم دەستکارییە ھێشتا پاس نەدراوە",
 	"recentchanges-label-plusminus": "قەبارەی پەڕە ئەوەندە بایت گۆڕاوە",
 	"recentchanges-legend-heading": "'''کورتکراوەکان:'''",
-	"recentchanges-legend-newpage": "(ھەروەھا بڕوانە [[Special:NewPages|پێرستی پەڕە نوێکان]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ھەروەھا بڕوانە [[Special:NewPages|پێرستی پەڕە نوێکان]])",
 	"recentchanges-legend-plusminus": "(''±۱٢٣'')",
 	"rcnotefrom": "ژێرەوە گۆڕانکارییەکانە لە <strong>$2</strong>ەوە (ھەتا <strong>$1</strong> نیشان دراوە).",
 	"rclistfrom": "گۆڕانکارییە نوێکان نیشان بدە بە دەستپێکردن لە $3 $2",

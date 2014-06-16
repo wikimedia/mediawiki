@@ -1009,7 +1009,7 @@
 	"recentchanges-label-unpatrolled": "Šis labojums vēl nav pārbaudīts",
 	"recentchanges-label-plusminus": "Par tik baitiem tika izmainīts lapas izmērs",
 	"recentchanges-legend-heading": "'''Apzīmējumi:'''",
-	"recentchanges-legend-newpage": "(skatīt arī [[Special:NewPages|jaunās lapas]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (skatīt arī [[Special:NewPages|jaunās lapas]])",
 	"rcnotefrom": "Šobrīd redzamas izmaiņas kopš '''$2''' (parādītas ne vairāk par '''$1''').",
 	"rclistfrom": "Parādīt jaunas izmaiņas kopš $3 $2",
 	"rcshowhideminor": "$1 maznozīmīgos",

@@ -880,7 +880,7 @@
 	"recentchanges-label-bot": "ای ويرايشت نه يه بوت انجوم ديئه",
 	"recentchanges-label-unpatrolled": "ای ويرايشت هنی تيه واداشت نبيه",
 	"recentchanges-legend-heading": "'''میراث:'''",
-	"recentchanges-legend-newpage": "(همچنو بوینیت [[ویجه:بلگیا تازه|نوم گه بلگیا تازه]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (همچنو بوینیت [[ویجه:بلگیا تازه|نوم گه بلگیا تازه]])",
 	"rcnotefrom": "د هار آلشتیا د $2 هیئن(د بال د $1 نشون دئه بیه)",
 	"rclistfrom": "آلشتیا تازه ایی که وا $3 $2 شرو بیه نشونش بئه",
 	"rcshowhideminor": "ويرايشتيا کؤچک $1",

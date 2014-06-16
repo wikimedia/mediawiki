@@ -1168,7 +1168,7 @@
 	"recentchanges-label-unpatrolled": "این ویرایش هنوز گشت‌زنی نشده‌است",
 	"recentchanges-label-plusminus": "حجم صفحه به اندازه این بایت‌ها تغییر یافته‌است",
 	"recentchanges-legend-heading": "'''اختصارها:'''",
-	"recentchanges-legend-newpage": "(همچنین به [[Special:NewPages|فهرست صفحات جدید]] نگاه کنید)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (همچنین به [[Special:NewPages|فهرست صفحات جدید]] نگاه کنید)",
 	"recentchanges-legend-plusminus": "('' ±۱۲۳'')",
 	"rcnotefrom": "در زیر تغییرات از <strong>$2</strong> (تا <strong>$1</strong> نشان داده شده‌است).",
 	"rclistfrom": "نمایش تغییرات جدید با شروع از $3 $2",

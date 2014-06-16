@@ -891,7 +891,7 @@
 	"recentchanges-label-minor": "Quela chì l'è una mudifega piscinina.",
 	"recentchanges-label-bot": "Quela mudifega chì l'ha fada un bot",
 	"recentchanges-label-unpatrolled": "Quela mudifega chì a l'è stada mimga anmò verificada.",
-	"recentchanges-legend-newpage": "(arda apò [[Special:NewPages|la lìsta de le pàgine nöe]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (arda apò [[Special:NewPages|la lìsta de le pàgine nöe]])",
 	"rcnotefrom": "Chì de sota gh'è la lista di mudifegh de <b>$2</b> (fina a <b>$1</b>).",
 	"rclistfrom": "Fà vidè i cambiament növ a partì de $3 $2",
 	"rcshowhideminor": "$1 i mudifegh piscinín",

@@ -1143,7 +1143,7 @@
 	"recentchanges-label-unpatrolled": "Αυτή η επεξεργασία δεν έχει ελεγχθεί ακόμα",
 	"recentchanges-label-plusminus": "Μεταβολή του μεγέθους της σελίδας σε bytes",
 	"recentchanges-legend-heading": "'''Υπόμνημα:'''",
-	"recentchanges-legend-newpage": "(δείτε [[Special:NewPages|Νέες σελίδες]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (δείτε [[Special:NewPages|Νέες σελίδες]])",
 	"rcnotefrom": "Παρακάτω είναι οι αλλαγές από τις <strong>$2</strong>  (εμφανίζονται μέχρι <strong>$1</strong> ).",
 	"rclistfrom": "Εμφάνιση νέων αλλαγών αρχίζοντας από $3 $2",
 	"rcshowhideminor": "$1 μικροεπεξεργασιών",

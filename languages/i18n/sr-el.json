@@ -1137,7 +1137,7 @@
 	"recentchanges-label-unpatrolled": "Ova izmena još nije patrolirana",
 	"recentchanges-label-plusminus": "Promena veličine stranice u bajtovima",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "([[Special:NewPages|spisak novih stranica]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|spisak novih stranica]])",
 	"rcnotefrom": "Ispod su izmene od <b>$2</b> (do <b>$1</b> izmena).",
 	"rclistfrom": "Prikaži nove izmene počev od $2 $3",
 	"rcshowhideminor": "$1 manje izmene",

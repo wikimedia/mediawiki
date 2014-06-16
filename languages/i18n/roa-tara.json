@@ -1105,7 +1105,7 @@
 	"recentchanges-label-bot": "Stu cangiamende ha state fatte da 'nu bot",
 	"recentchanges-label-unpatrolled": "Stu cangiamende non g'à state angore condrollate",
 	"recentchanges-legend-heading": "'''Leggende:'''",
-	"recentchanges-legend-newpage": "('ndruche pure [[Special:NewPages|elenghe de le pàggene nuève]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ('ndruche pure [[Special:NewPages|elenghe de le pàggene nuève]])",
 	"rcnotefrom": "Sotte stonne le cangiaminde da '''$2''' ('nzigne a '''$1''' fatte vedè).",
 	"rclistfrom": "Fà vedè le urteme cangiaminde partenne da $3 $2",
 	"rcshowhideminor": "$1 cangiaminde stuèdeche",

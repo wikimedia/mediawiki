@@ -1119,7 +1119,7 @@
 	"recentchanges-label-unpatrolled": "Kay llamk'apusqaqa manaraqmi patrullasqachu",
 	"recentchanges-label-plusminus": "P'anqap chhikan, kay byte yupaywan wakinchasqa",
 	"recentchanges-legend-heading": "'''Sut'ichana:'''",
-	"recentchanges-legend-newpage": "([[Special:NewPages|musuq p'anqakunatapas]] qhaway)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|musuq p'anqakunatapas]] qhaway)",
 	"rcnotefrom": "Kay qatiqpiqa <strong>$2</strong>-mantapacha (<strong>$1</strong>-kama) hukchasqakunatam rikunki.",
 	"rclistfrom": "$3 $2-manta musuq hukchasqakunata rikuchiy",
 	"rcshowhideminor": "$1 uchuylla llamk'apusqakunata",

@@ -1015,7 +1015,7 @@
 	"recentchanges-label-bot": "'S e bot a rinn an deasachadh seo",
 	"recentchanges-label-unpatrolled": "Cha deach freiceadan tron deasachadh seo fhathast",
 	"recentchanges-label-plusminus": "Seo meud atharrachadh na duilleige ann am byte",
-	"recentchanges-legend-newpage": "(faic [[Special:NewPages|liosta nan duilleagan ùra]] cuideachd)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (faic [[Special:NewPages|liosta nan duilleagan ùra]] cuideachd)",
 	"rcnotefrom": "Gheibhear na mùthaidhean a-mach o <strong>$2</strong> (gu ruige <strong>$1</strong>) gu h-ìosal.",
 	"rclistfrom": "Seall na mùthaidhean ùra a-mach o $3 $2",
 	"rcshowhideminor": "$1 mùthaidhean beaga",

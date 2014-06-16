@@ -1084,7 +1084,7 @@
 	"recentchanges-label-unpatrolled": "Endringa er ikkje patruljert enno",
 	"recentchanges-label-plusminus": "Storleiken til sida vart endra med så mange byte",
 	"recentchanges-legend-heading": "'''Tyding:'''",
-	"recentchanges-legend-newpage": "(sjå dessutan [[Special:NewPages|lista over nye sider]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sjå dessutan [[Special:NewPages|lista over nye sider]])",
 	"rcnotefrom": "Nedanfor er endringane gjorde sidan <strong>$2</strong> viste (opp til <strong>$1</strong> stykke)",
 	"rclistfrom": "Vis nye endringar sidan $3 $2",
 	"rcshowhideminor": "$1 småplukk",

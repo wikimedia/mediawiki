@@ -1187,7 +1187,7 @@
 	"recentchanges-label-unpatrolled": "Це редагування ще не було відпатрульоване",
 	"recentchanges-label-plusminus": "Розмір сторінки змінився на таке число байтів",
 	"recentchanges-legend-heading": "'''Легенда:'''",
-	"recentchanges-legend-newpage": "(див. також [[Special:NewPages|список нових сторінок]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (див. також [[Special:NewPages|список нових сторінок]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Нижче відображені редагування з <strong>$2</strong> (до <strong>$1</strong>).",
 	"rclistfrom": "Показати редагування починаючи з $3 $2.",

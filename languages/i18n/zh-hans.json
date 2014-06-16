@@ -1208,7 +1208,7 @@
 	"recentchanges-label-unpatrolled": "该编辑尚未巡查",
 	"recentchanges-label-plusminus": "该页面字节数的前后变化",
 	"recentchanges-legend-heading": "'''说明：'''",
-	"recentchanges-legend-newpage": "（见[[Special:NewPages|新页面列表]]）",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}（见[[Special:NewPages|新页面列表]]）",
 	"recentchanges-legend-plusminus": "（''±123''）",
 	"rcnotefrom": "下面是<strong>$2</strong>之后的更改（最多显示<strong>$1</strong>个）。",
 	"rclistfrom": "显示$3 $2之后的新更改",

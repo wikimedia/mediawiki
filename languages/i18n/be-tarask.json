@@ -1144,7 +1144,7 @@
 	"recentchanges-label-unpatrolled": "Гэтае рэдагаваньне яшчэ не было адпатруляванае",
 	"recentchanges-label-plusminus": "Памер старонкі зьмяніўся на такую колькасьць байтаў",
 	"recentchanges-legend-heading": "'''Легенда:'''",
-	"recentchanges-legend-newpage": "(глядзіце таксама [[Special:NewPages|сьпіс новых старонак]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (глядзіце таксама [[Special:NewPages|сьпіс новых старонак]])",
 	"rcnotefrom": "Ніжэй знаходзяцца зьмены з <strong>$2</strong> (да <strong>$1</strong> на старонку).",
 	"rclistfrom": "Паказаць зьмены з $2 $3",
 	"rcshowhideminor": "$1 дробныя праўкі",

@@ -1158,7 +1158,7 @@
 	"recentchanges-label-unpatrolled": "ഇതുവരെ റോന്തുചുറ്റപ്പെടാത്ത തിരുത്ത്",
 	"recentchanges-label-plusminus": "താളിന്റെ വലിപ്പം ഇത്രയും ബൈറ്റുകൾ മാറിയിരിക്കുന്നു",
 	"recentchanges-legend-heading": "'''സൂചന:'''",
-	"recentchanges-legend-newpage": "([[Special:NewPages|പുതിയ താളുകളുടെ പട്ടികയും]] കാണുക)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|പുതിയ താളുകളുടെ പട്ടികയും]] കാണുക)",
 	"rcnotefrom": "<strong>$2</strong> മുതലുള്ള മാറ്റങ്ങൾ (<strong>$1</strong> എണ്ണം വരെ കാണാം).",
 	"rclistfrom": "$3 $2 മുതലുള്ള മാറ്റങ്ങൾ പ്രദർശിപ്പിക്കുക",
 	"rcshowhideminor": "ചെറുതിരുത്തലുകൾ $1",

@@ -1104,7 +1104,7 @@
 	"recentchanges-label-unpatrolled": "Aldaketa hau ez da oraindik patruilatua izan",
 	"recentchanges-label-plusminus": "Orriaren neurriak byte kopuru honen gorabehera izan du",
 	"recentchanges-legend-heading": "'''Azalpenak:'''",
-	"recentchanges-legend-newpage": "(ikus, gainera, [[Special:NewPages|orri berrien zerrenda]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ikus, gainera, [[Special:NewPages|orri berrien zerrenda]])",
 	"rcnotefrom": "Jarraian azaltzen diren aldaketak data honetatik aurrerakoak dira: <b>$2</b> (gehienez <b>$1</b> erakusten dira).",
 	"rclistfrom": "Erakutsi $3 $2 ondorengo aldaketa berriak",
 	"rcshowhideminor": "$1 aldaketa txikiak",

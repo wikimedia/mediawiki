@@ -1152,7 +1152,7 @@
 	"recentchanges-label-unpatrolled": "Ова уредување сè уште не е испатролирано",
 	"recentchanges-label-plusminus": "Промена на големината на страницата во бајти",
 	"recentchanges-legend-heading": "'''Легенда:'''",
-	"recentchanges-legend-newpage": "(погл. и [[Special:NewPages|списокот на нови страници]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (погл. и [[Special:NewPages|списокот на нови страници]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Подолу се промените направени од <strong>$2</strong> наваму (се прикажуваат до <b>$1</b>).",
 	"rclistfrom": "Прикажи нови промени почнувајќи од $3 $2",

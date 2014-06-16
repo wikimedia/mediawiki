@@ -1142,7 +1142,7 @@
 	"recentchanges-label-unpatrolled": "Iste modification non ha ancora essite patruliate",
 	"recentchanges-label-plusminus": "Le dimension del pagina ha cambiate de iste numero de bytes",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "(vide etiam le [[Special:NewPages|lista de nove paginas]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vide etiam le [[Special:NewPages|lista de nove paginas]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Ecce le modificationes a partir del <strong>$3 a $4</strong> (usque a <strong>$1</strong> entratas).",
 	"rclistfrom": "Monstrar nove modificationes a partir de $3 $2",

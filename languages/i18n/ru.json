@@ -1197,7 +1197,7 @@
 	"recentchanges-label-unpatrolled": "Эта правка ещё никем не патрулировалась",
 	"recentchanges-label-plusminus": "Размер страницы изменился на данное количество байт",
 	"recentchanges-legend-heading": "'''Легенда:'''",
-	"recentchanges-legend-newpage": "(см. также [[Special:NewPages|список новых страниц]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (см. также [[Special:NewPages|список новых страниц]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Ниже перечислены изменения с <strong>$2</strong> (показано не более <strong>$1</strong>).",
 	"rclistfrom": "Показать изменения с $3 $2.",

@@ -1141,7 +1141,7 @@
 	"recentchanges-label-unpatrolled": "Eno vurnayış hewna dewriya nêbiyo",
 	"recentchanges-label-plusminus": "Ebadê pele de bazê bayti de vayeyê cı",
 	"recentchanges-legend-heading": "'''Kıtabek:'''",
-	"recentchanges-legend-newpage": "([[Special:NewPages|Lista pelanê neweyan]] zi bıvêne)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|Lista pelanê neweyan]] zi bıvêne)",
 	"recentchanges-legend-plusminus": "''(±123)''",
 	"rcnotefrom": "Cêr de <strong>$2</strong> ra nata vurnayışiyê asenê (tewr vêşi <strong>$1</strong> asenê).",
 	"rclistfrom": "$3 $2 ra tepiya vurnayışanê neweyan bımocne",

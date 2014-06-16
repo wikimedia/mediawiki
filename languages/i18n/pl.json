@@ -1199,7 +1199,7 @@
 	"recentchanges-label-unpatrolled": "Ta edycja nie została jeszcze sprawdzona",
 	"recentchanges-label-plusminus": "Zmieniony rozmiar strony (liczba bajtów)",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "(zobacz też [[Special:NewPages|listę nowych stron]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zobacz też [[Special:NewPages|listę nowych stron]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Poniżej pokazano zmiany wykonane po '''$2''' (nie więcej niż '''$1''' pozycji).",
 	"rclistfrom": "Pokaż nowe zmiany od $3 $2",

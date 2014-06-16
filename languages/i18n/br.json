@@ -1120,7 +1120,7 @@
 	"recentchanges-label-unpatrolled": "N'eo ket bet gwiriet ar c'hemm-mañ evit c'hoazh.",
 	"recentchanges-label-plusminus": "Kemmet eo ment ar bajenn eus an niver-mañ a oktedoù",
 	"recentchanges-legend-heading": "'''Alc'hwez :'''",
-	"recentchanges-legend-newpage": "(gwelet ivez [[Special:NewPages|roll ar pajennoù nevez]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (gwelet ivez [[Special:NewPages|roll ar pajennoù nevez]])",
 	"rcnotefrom": "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an <strong>$2</strong> (<strong>$1</strong> d'ar muiañ).",
 	"rclistfrom": "Diskouez ar c'hemmoù diwezhañ abaoe an $3 $2",
 	"rcshowhideminor": "$1 ar c'hemmoù dister",

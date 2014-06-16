@@ -1114,7 +1114,7 @@
 	"recentchanges-label-unpatrolled": "ეს რედაქტირება გადაუმოწმებელია",
 	"recentchanges-label-plusminus": "ცვლილებების ზომა ბაიტებში",
 	"recentchanges-legend-heading": "'''ლეგენდა:'''",
-	"recentchanges-legend-newpage": "(იხ. აგრეთვე [[Special:NewPages|ახალი გვერდების სია]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (იხ. აგრეთვე [[Special:NewPages|ახალი გვერდების სია]])",
 	"rcnotefrom": "ქვემოთ მოყვანილია ცვლილებები <strong>$2</strong>-დან (ნაჩვენებია არაუმეტეს <strong>$1</strong>).",
 	"rclistfrom": "ახალი ცვლილებების ჩვენება დაწყებული $3 $2-დან",
 	"rcshowhideminor": "მცირე რედაქტირების $1",

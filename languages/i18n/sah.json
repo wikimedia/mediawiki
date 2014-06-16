@@ -1135,7 +1135,7 @@
 	"recentchanges-label-unpatrolled": "Бу уларытыы өссө ботурууллана илик",
 	"recentchanges-label-plusminus": "Сирэй кээмэйэ бачча баайтынан уларыйбыт",
 	"recentchanges-legend-heading": "'''Легендата:'''",
-	"recentchanges-legend-newpage": "(өссө көр: [[Special:NewPages|Саҥа сирэйдэр тиһиктэрэ]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (өссө көр: [[Special:NewPages|Саҥа сирэйдэр тиһиктэрэ]])",
 	"rcnotefrom": "Улартыылар бу кэмтэн ыла көрдөрүлүннүлэр: <strong>$2</strong> (мантан элбэх көрдөрүллүбэтэ: <strong>$1</strong>).",
 	"rclistfrom": "Бу кэм $3 $2 кэнниттэн оҥоһуллубуттары көрдөр",
 	"rcshowhideminor": "$1 кыра уларыйыылары",

@@ -1068,7 +1068,7 @@
 	"recentchanges-label-minor": "यो साधारण सम्पादन हो",
 	"recentchanges-label-bot": "यो सम्पादन बोटद्वारा गरिएको थियो",
 	"recentchanges-label-unpatrolled": "यो सम्पादन अहिले सम्म पट्रोल गरिएको छैन",
-	"recentchanges-legend-newpage": "([[Special:NewPages|list of new pages]] यो पनि हेर्नुहोस्)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|list of new pages]] यो पनि हेर्नुहोस्)",
 	"recentchanges-legend-plusminus": "(''±१२३'')",
 	"rcnotefrom": "'''$2''' देखिका परिवर्तनहरु तल ('''$1''' सम्मका देखाइन्छ)।",
 	"rclistfrom": "$3 $2 देखिका नयाँ परिवर्तनहरू देखाउनु",

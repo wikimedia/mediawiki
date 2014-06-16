@@ -1148,7 +1148,7 @@
 	"recentchanges-label-unpatrolled": "ఈ దిద్దుబాటు మీద నిఘా లేదు",
 	"recentchanges-label-plusminus": "ఈ పేజి పరిమాణంలో  జరిగిన మార్పుల  బైట్ల సంఖ్య",
 	"recentchanges-legend-heading": "'''సూచిక :'''",
-	"recentchanges-legend-newpage": "([[Special:NewPages|కొత్త పేజీల జాబితా]]ను కూడా చూడండి)",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|కొత్త పేజీల జాబితా]]ను కూడా చూడండి)",
 	"rcnotefrom": "<strong>$2</strong> నుండి జరిగిన మార్పులు (<strong>$1</strong> వరకు) కింద చూపబడ్డాయి.",
 	"rclistfrom": "$3, $2 నుండి జరిగిన మార్పులను చూపించు",
 	"rcshowhideminor": "చిన్న మార్పులను $1",

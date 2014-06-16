@@ -1023,7 +1023,7 @@
 	"recentchanges-label-bot": "Din il-modifika ġiet effettwata minn bot",
 	"recentchanges-label-unpatrolled": "Din il-modifika għadha ma ġietx verifikata",
 	"recentchanges-label-plusminus": "Id-daqs tal-paġna nbidel b'dan in-numru ta' bytes",
-	"recentchanges-legend-newpage": "(ara wkoll il-[[Special:NewPages|lista tal-paġni l-ġodda]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ara wkoll il-[[Special:NewPages|lista tal-paġni l-ġodda]])",
 	"rcnotefrom": "Ħawn taħt jinsabu l-modifiki minn '''$2''' (sa '''$1''').",
 	"rclistfrom": "Uri l-modifiki ġodda li jibdew minn $3 $2",
 	"rcshowhideminor": "$1 modifiki żgħar",
