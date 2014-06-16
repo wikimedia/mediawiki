@@ -607,8 +607,7 @@ class XmlDumpWriter {
 		$out .= '    ' . Xml::element( 'ns', array(), strval( $row->page_namespace ) ) . "\n";
 		$out .= '    ' . Xml::element( 'id', array(), strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
-			$page = WikiPage::factory( $title );
-			$redirect = $page->getRedirectTarget();
+			$redirect = $title->followRedirects();
 			if ( $redirect instanceof Title && $redirect->isValidRedirectTarget() ) {
 				$out .= '    ';
 				$out .= Xml::element( 'redirect', array( 'title' => self::canonicalTitle( $redirect ) ) );

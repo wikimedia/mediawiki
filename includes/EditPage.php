@@ -1259,6 +1259,7 @@ class EditPage {
 		}
 
 		$title = Title::newFromText( $preload );
+		$title = $title->followRedirects();
 		# Check for existence to avoid getting MediaWiki:Noarticletext
 		if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
 			//TODO: somehow show a warning to the user!
@@ -1266,15 +1267,6 @@ class EditPage {
 		}
 
 		$page = WikiPage::factory( $title );
-		if ( $page->isRedirect() ) {
-			$title = $page->getRedirectTarget();
-			# Same as before
-			if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
-				//TODO: somehow show a warning to the user!
-				return $handler->makeEmptyContent();
-			}
-			$page = WikiPage::factory( $title );
-		}
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
 		$content = $page->getContent( Revision::RAW );

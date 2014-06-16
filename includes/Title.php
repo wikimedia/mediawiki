@@ -5065,4 +5065,20 @@ class Title {
 		wfRunHooks( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
 	}
+
+	/**
+	 * If page is a redirect, follow what it redirects to, and return that title.
+	 * If not a redirect, just return the current title.
+	 *
+	 * @return Title
+	 */
+	public function followRedirects(){
+		if ( $this->isRedirect() ) {
+			$page = WikiPage::factory( $this );
+			$content = $page->getContent( Revision::FOR_PUBLIC );
+			return $content->getUltimateRedirectTarget();
+		}
+
+		return $this;
+	}
 }

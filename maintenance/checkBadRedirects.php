@@ -48,9 +48,8 @@ class CheckBadRedirects extends Maintenance {
 
 		foreach ( $result as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$rev = Revision::newFromId( $row->page_latest );
-			if ( $rev ) {
-				$target = $rev->getContent()->getRedirectTarget();
+			if ( $title ) {
+				$target = $title->followRedirects();
 				if ( !$target ) {
 					$this->output( $title->getPrefixedText() . "\n" );
 				}
