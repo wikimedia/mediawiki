@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialPrefixindex extends SpecialAllpages {
+class SpecialPrefixindex extends SpecialAllPages {
 
 	/**
 	 * Whether to remove the searched prefix from the displayed link. Useful

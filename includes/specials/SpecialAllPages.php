@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialAllpages extends IncludableSpecialPage {
+class SpecialAllPages extends IncludableSpecialPage {
 
 	/**
 	 * Maximum number of pages to show on single subpage.
