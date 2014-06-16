@@ -90,7 +90,7 @@
 					whiteSpace: 'nowrap'
 				} );
 
-			$bugNoteLink = $( '<a>' ).attr( { href: '#' } ).click( function () {
+			$bugNoteLink = $( '<a>' ).click( function () {
 				fb.displayBugs();
 			} );
 

@@ -24,8 +24,7 @@
 		$col = $( '<td colspan="2"></td>' );
 
 		$link = $( '<a>', {
-			text: showText,
-			href: '#'
+			text: showText
 		} ).click( function () {
 			if ( $table.hasClass( 'collapsed' ) ) {
 				$( this ).text( hideText );
