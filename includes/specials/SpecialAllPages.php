@@ -98,11 +98,10 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @return string
 	 */
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
-		global $wgScript;
 		$t = $this->getPageTitle();
 
 		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
-		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $this->getConfig()->get( 'Script' ) ) );
 		$out .= Html::hidden( 'title', $t->getPrefixedText() );
 		$out .= Xml::openElement( 'fieldset' );
 		$out .= Xml::element( 'legend', null, $this->msg( 'allpages' )->text() );
