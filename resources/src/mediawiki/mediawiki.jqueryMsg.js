@@ -1086,7 +1086,11 @@
 			} else {
 				$el = $( '<a>' );
 				if ( typeof arg === 'function' ) {
-					$el.click( arg ).attr( 'href', '#' );
+					$el.attr( 'href', '#' )
+					.click( function ( e ) {
+						e.preventDefault();
+					} )
+					.click( arg );
 				} else {
 					$el.attr( 'href', arg.toString() );
 				}
