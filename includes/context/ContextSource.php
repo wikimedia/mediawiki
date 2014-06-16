@@ -137,18 +137,6 @@ abstract class ContextSource implements IContextSource {
 	/**
 	 * Get the Language object
 	 *
-	 * @deprecated since 1.19 Use getLanguage instead
-	 * @return Language
-	 */
-	public function getLang() {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		return $this->getLanguage();
-	}
-
-	/**
-	 * Get the Language object
-	 *
 	 * @since 1.19
 	 * @return Language
 	 */
