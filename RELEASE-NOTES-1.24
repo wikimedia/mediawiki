@@ -35,6 +35,7 @@ production.
 * Users in the 'sysop' group have access to Special:MergeHistory by default.
 * $wgFileStore was removed after having been deprecated in 1.17. Alternative
   configurations are $wgDeletedDirectory and $wgHashedUploadDirectory.
+* The deprecated $wgUseCommaCount variable has been removed.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
