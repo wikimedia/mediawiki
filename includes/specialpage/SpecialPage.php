@@ -27,10 +27,9 @@
  * Includes some static functions for handling the special page list deprecated
  * in favor of SpecialPageFactory.
  *
- * @todo Turn this into a real ContextSource
  * @ingroup SpecialPage
  */
-class SpecialPage {
+class SpecialPage extends ContextSource {
 	// The canonical name of this special page
 	// Also used for the default <h1> heading, @see getDescription()
 	protected $mName;
@@ -50,12 +49,6 @@ class SpecialPage {
 
 	// Whether the special page can be included in an article
 	protected $mIncludable;
-
-	/**
-	 * Current request context
-	 * @var IContextSource
-	 */
-	protected $mContext;
 
 	/**
 	 * Get a localised Title object for a specified special page name
@@ -485,73 +478,6 @@ class SpecialPage {
 	}
 
 	/**
-	 * Sets the context this SpecialPage is executed in
-	 *
-	 * @param IContextSource $context
-	 * @since 1.18
-	 */
-	public function setContext( $context ) {
-		$this->mContext = $context;
-	}
-
-	/**
-	 * Gets the context this SpecialPage is executed in
-	 *
-	 * @return IContextSource|RequestContext
-	 * @since 1.18
-	 */
-	public function getContext() {
-		if ( $this->mContext instanceof IContextSource ) {
-			return $this->mContext;
-		} else {
-			wfDebug( __METHOD__ . " called and \$mContext is null. " .
-				"Return RequestContext::getMain(); for sanity\n" );
-
-			return RequestContext::getMain();
-		}
-	}
-
-	/**
-	 * Get the WebRequest being used for this instance
-	 *
-	 * @return WebRequest
-	 * @since 1.18
-	 */
-	public function getRequest() {
-		return $this->getContext()->getRequest();
-	}
-
-	/**
-	 * Get the OutputPage being used for this instance
-	 *
-	 * @return OutputPage
-	 * @since 1.18
-	 */
-	public function getOutput() {
-		return $this->getContext()->getOutput();
-	}
-
-	/**
-	 * Shortcut to get the User executing this instance
-	 *
-	 * @return User
-	 * @since 1.18
-	 */
-	public function getUser() {
-		return $this->getContext()->getUser();
-	}
-
-	/**
-	 * Shortcut to get the skin being used for this instance
-	 *
-	 * @return Skin
-	 * @since 1.18
-	 */
-	public function getSkin() {
-		return $this->getContext()->getSkin();
-	}
-
-	/**
 	 * Shortcut to get user's language
 	 *
 	 * @deprecated since 1.19 Use getLanguage instead
@@ -565,32 +491,13 @@ class SpecialPage {
 	}
 
 	/**
-	 * Shortcut to get user's language
-	 *
-	 * @return Language
-	 * @since 1.19
-	 */
-	public function getLanguage() {
-		return $this->getContext()->getLanguage();
-	}
-
-	/**
-	 * Shortcut to get main config object
-	 * @return Config
-	 * @since 1.24
-	 */
-	public function getConfig() {
-		return $this->getContext()->getConfig();
-	}
-
-	/**
 	 * Return the full title, including $par
 	 *
 	 * @return Title
 	 * @since 1.18
 	 */
 	public function getFullTitle() {
-		return $this->getContext()->getTitle();
+		return parent::getTitle();
 	}
 
 	/**
@@ -611,10 +518,7 @@ class SpecialPage {
 	 * @see wfMessage
 	 */
 	public function msg( /* $args */ ) {
-		$message = call_user_func_array(
-			array( $this->getContext(), 'msg' ),
-			func_get_args()
-		);
+		$message = parent::msg( func_get_args() );
 		// RequestContext passes context to wfMessage, and the language is set from
 		// the context, but setting the language for Message class removes the
 		// interface message status, which breaks for example usernameless gender
