@@ -320,7 +320,7 @@
 	} );
 
 // Tests that {{-transformation vs. general parsing are done as requested
-	QUnit.test( 'Curly brace transformation', 14, function ( assert ) {
+	QUnit.test( 'Curly brace transformation', 16, function ( assert ) {
 		var oldUserLang = mw.config.get( 'wgUserLanguage' );
 
 		assertBothModes( assert, ['gender-msg', 'Bob', 'male'], 'Bob: blue', 'gender is resolved' );
@@ -368,6 +368,16 @@
 			formatParse( 'external-link-replace', 'http://example.com' ),
 			'Foo <a href="http://example.com">bar</a>',
 			'External link message processed when format is \'parse\''
+		);
+		assert.htmlEqual(
+			formatParse( 'external-link-replace', $( '<i>' ) ),
+			'Foo <i>bar</i>',
+			'External link message processed as jQuery object when format is \'parse\''
+		);
+		assert.htmlEqual(
+			formatParse( 'external-link-replace', function () {} ),
+			'Foo <a href="#">bar</a>',
+			'External link message processed as function when format is \'parse\''
 		);
 
 		mw.config.set( 'wgUserLanguage', oldUserLang );
