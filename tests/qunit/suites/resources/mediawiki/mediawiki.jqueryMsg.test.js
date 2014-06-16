@@ -662,7 +662,7 @@
 		);
 		assert.htmlEqual(
 			formatParse( 'external-link-replace', function () {} ),
-			'Foo <a href="#">bar</a>',
+			'Foo <a role="button" tabindex="0">bar</a>',
 			'External link message processed as function when format is \'parse\''
 		);
 
