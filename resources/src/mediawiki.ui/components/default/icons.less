@@ -19,3 +19,32 @@
 	.background-size( 32px, 32px );
 	background-repeat: no-repeat;
 }
+
+// Settings/Cog icon
+//
+// Use this for pointing to interfaces which have configuration settings
+//
+// Markup:
+// <a class="mw-ui-icon mw-ui-icon-settings">Text invisible</a>
+//
+// Styleguide 4.2.1.
+.mw-ui-icon-settings {
+	.background-image-svg( 'images/cog.svg', 'images/cog.png' );
+}
+
+// Corner Icons
+//
+// This will push an icon to the top-right (top-left in RTL mode) corner of
+// the container.
+//
+// Markup:
+// <div class="kss-example">
+//   <a class="mw-ui-icon mw-ui-icon-settings mw-ui-icon-corner">Text invisible</a>
+// </div>
+//
+// Styleguide 4.3.
+.mw-ui-icon-corner {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
