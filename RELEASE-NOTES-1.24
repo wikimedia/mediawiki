@@ -236,6 +236,7 @@ changes to languages because of Bugzilla reports.
 * Removed Title::getEscapedText(). (deprecated since 1.19)
 * Removed Language::getFallbackLanguageCode(). (deprecated since 1.19)
 * Removed WikiPage::isBigDeletion(). (deprecated since 1.19)
+* The deprecated $wgUseCommaCount variable has been removed.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
