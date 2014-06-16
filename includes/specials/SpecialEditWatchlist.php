@@ -42,6 +42,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	const EDIT_CLEAR = 1;
 	const EDIT_RAW = 2;
 	const EDIT_NORMAL = 3;
+	const EDIT_PREFERENCES = 4;
 
 	protected $successMessage;
 
@@ -65,6 +66,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->requireLogin( 'watchlistanontext' );
 
 		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.ui.icons' );
 
 		$this->checkPermissions();
 		$this->checkReadOnly();
@@ -83,8 +85,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 		}
 		$mode = self::getMode( $this->getRequest(), $mode );
-
 		switch ( $mode ) {
+			case self::EDIT_PREFERENCES:
+				$out->setPageTitle( $this->msg( 'watchlistedit-preferences-title' ) );
+				$form = $this->getPreferencesForm();
+				$form->show();
+				break;
 			case self::EDIT_RAW:
 				$out->setPageTitle( $this->msg( 'watchlistedit-raw-title' ) );
 				$form = $this->getRawForm();
@@ -670,6 +676,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$mode = strtolower( $request->getVal( 'action', $par ) );
 
 		switch ( $mode ) {
+			case 'preferences':
+			case self::EDIT_PREFERENCES:
+				return self::EDIT_PREFERENCES;
 			case 'clear':
 			case self::EDIT_CLEAR:
 				return self::EDIT_CLEAR;
@@ -710,11 +719,37 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 		}
 
+		$settingsLink =  Html::element( 'a', array(
+			'class' => 'mw-ui-icon-settings mw-ui-icon mw-ui-icon-corner',
+			'href' => SpecialPage::getTitleFor( 'EditWatchlist', 'preferences' )->getLocalUrl(),
+		), wfMessage( 'watchlist-settings' )->text() );
+
 		return Html::rawElement(
 			'span',
 			array( 'class' => 'mw-watchlist-toollinks' ),
 			wfMessage( 'parentheses', $wgLang->pipeList( $tools ) )->text()
-		);
+		) . $settingsLink;
+	}
+
+	/**
+	 * Create a Preferences Form for watchlist preferences
+	 * @return PreferencesForm
+	 */
+	public function getPreferencesForm() {
+		$prefs = array();
+		$user = $this->getUser();
+		$ctx = $this->getContext();
+		$prefs = array();
+		Preferences::watchlistPreferences( $user, $ctx, $prefs );
+		Preferences::loadPreferenceValues( $user, $ctx, $prefs );
+
+		$htmlForm = new PreferencesForm( $prefs, $ctx, 'prefs' );
+		$htmlForm->setModifiedUser( $user );
+		$htmlForm->setId( 'mw-prefs-form' );
+		$htmlForm->setSubmitText( $ctx->msg( 'saveprefs' )->text() );
+		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
+		$htmlForm->setAction( SpecialPage::getTitleFor( $this->getName(), 'Preferences' )->getLocalUrl() );
+		return $htmlForm;
 	}
 }
 

@@ -1,0 +1,21 @@
+@import "mediawiki.mixins";
+
+.mw-ui-icon-corner {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.mw-ui-icon {
+	width: 24px;
+	height: 24px;
+	text-indent: -999px;
+	overflow: hidden;
+	display: block;
+	.background-size( 24px, 24px );
+	background-repeat: no-repeat;
+}
+
+.mw-ui-icon-settings {
+	.background-image-svg( 'images/cog.svg', 'images/cog.png' );
+}

@@ -1480,6 +1480,15 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	// Module for icon styles
+	'mediawiki.ui.icons' => array(
+		'skinStyles' => array(
+			'default' => 'resources/src/mediawiki.ui/components/default/icons.less',
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
 	/* OOjs */
 	// WARNING: OOjs and OOjs-UI are NOT COMPATIBLE with older browsers and
 	// WILL BREAK if loaded in browsers that don't support ES5

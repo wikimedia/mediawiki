@@ -44,6 +44,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->requireLogin( 'watchlistanontext' );
 
 		$output = $this->getOutput();
+		$output->addModuleStyles( 'mediawiki.ui.icons' );
 		$request = $this->getRequest();
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
