@@ -2621,6 +2621,7 @@ class EditPage {
 	 */
 	protected function showHeader() {
 		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
+		global $wgAllowUserCss, $wgAllowUserJs;
 
 		if ( $this->mTitle->isTalkPage() ) {
 			$wgOut->addWikiMsg( 'talkpagetext' );
@@ -2721,14 +2722,14 @@ class EditPage {
 					);
 				}
 				if ( $this->formtype !== 'preview' ) {
-					if ( $this->isCssSubpage ) {
+					if ( $this->isCssSubpage && $wgAllowUserCss ) {
 						$wgOut->wrapWikiMsg(
 							"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
 							array( 'usercssyoucanpreview' )
 						);
 					}
 
-					if ( $this->isJsSubpage ) {
+					if ( $this->isJsSubpage && $wgAllowUserJs ) {
 						$wgOut->wrapWikiMsg(
 							"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
 							array( 'userjsyoucanpreview' )
@@ -3451,6 +3452,7 @@ HTML
 	 */
 	function getPreviewText() {
 		global $wgOut, $wgUser, $wgRawHtml, $wgLang;
+		global $wgAllowUserCss, $wgAllowUserJs;
 
 		wfProfileIn( __METHOD__ );
 
@@ -3516,8 +3518,14 @@ HTML
 
 				if ( $content->getModel() == CONTENT_MODEL_CSS ) {
 					$format = 'css';
+					if ( $level === 'user' && !$wgAllowUserCss ) {
+						$format = false;
+					}
 				} elseif ( $content->getModel() == CONTENT_MODEL_JAVASCRIPT ) {
 					$format = 'js';
+					if ( $level === 'user' && !$wgAllowUserJs ) {
+						$format = false;
+					}
 				} else {
 					$format = false;
 				}
