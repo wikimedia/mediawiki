@@ -98,6 +98,20 @@ class Preferences {
 
 		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
 
+		self::loadPreferenceValues( $user, $context, $defaultPreferences );
+		self::$defaultPreferences = $defaultPreferences;
+		return $defaultPreferences;
+	}
+
+	/**
+	 * Loads existing values for a given array of preferences
+	 * @throws MWException
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param array defaultPreferences to load values for
+	 * @return array|null
+	 */
+	static function loadPreferenceValues( $user, $context, &$defaultPreferences ) {
 		## Remove preferences that wikis don't want to use
 		global $wgHiddenPrefs;
 		foreach ( $wgHiddenPrefs as $pref ) {
@@ -137,8 +151,6 @@ class Preferences {
 				throw new MWException( "Global default '$globalDefault' is invalid for field $name" );
 			}
 		}
-
-		self::$defaultPreferences = $defaultPreferences;
 
 		return $defaultPreferences;
 	}
