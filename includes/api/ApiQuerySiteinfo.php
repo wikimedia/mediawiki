@@ -401,7 +401,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
 			if (substr( $row['iw_url'], 0, 2) == '//') {
-				$val['protorel'] = true;
+				$val['protorel'] = '';
 			}
 			if ( isset( $row['iw_wikiid'] ) ) {
 				$val['wikiid'] = $row['iw_wikiid'];
