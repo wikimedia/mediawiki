@@ -28,7 +28,7 @@ class LessFileCompilationTest extends MediaWikiTestCase {
 	 */
 	public function __construct( $file, ResourceLoaderModule $module ) {
 		if ( !is_string( $file ) || !is_file( $file ) || !is_readable( $file ) ) {
-			throw PHPUnit_Util_InvalidArgumentHelper::factory( 1, 'readable file' );
+			throw PHPUnit_Util_InvalidArgumentHelper::factory( 1, 'readable file: ', $file );
 		}
 
 		parent::__construct( 'testLessFileCompilation' );
