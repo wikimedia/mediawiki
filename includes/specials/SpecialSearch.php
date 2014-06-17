@@ -412,7 +412,7 @@ class SpecialSearch extends SpecialPage {
 		if ( $num === 0 ) {
 			if ( $textStatus ) {
 				$out->addHTML( '<div class="error">' .
-					htmlspecialchars( $textStatus->getWikiText( 'search-error' ) ) . '</div>' );
+					$textStatus->getMessage( 'search-error' ) . '</div>' );
 			} else {
 				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
 					array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
