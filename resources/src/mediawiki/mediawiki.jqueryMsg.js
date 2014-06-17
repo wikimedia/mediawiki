@@ -1086,7 +1086,18 @@
 			} else {
 				$el = $( '<a>' );
 				if ( typeof arg === 'function' ) {
-					$el.click( arg ).attr( 'href', '#' );
+					$el.attr( {
+						tabindex: 0,
+						role: 'button'
+					} )
+					.on( 'click keypress', function ( e ) {
+						if (
+							e.type === 'click' ||
+							e.type === 'keypress' && e.which === 13
+						) {
+							arg();
+						}
+					} );
 				} else {
 					$el.attr( 'href', arg.toString() );
 				}
