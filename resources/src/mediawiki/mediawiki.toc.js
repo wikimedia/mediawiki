@@ -35,7 +35,7 @@
 		if ( $toc.length && $tocTitle.length && $tocList.length && !$tocToggleLink.length ) {
 			hideToc = $.cookie( 'mw_hidetoc' ) === '1';
 
-			$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
+			$tocToggleLink = $( '<a href="#" id="togglelink"></a>' )
 				.text( hideToc ? mw.msg( 'showtoc' ) : mw.msg( 'hidetoc' ) )
 				.click( function ( e ) {
 					e.preventDefault();
