@@ -936,7 +936,7 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/specials
 	'ActiveUsersPager' => 'includes/specials/SpecialActiveusers.php',
-	'AllmessagesTablePager' => 'includes/specials/SpecialAllmessages.php',
+	'AllMessagesTablePager' => 'includes/specials/SpecialAllMessages.php',
 	'AncientPagesPage' => 'includes/specials/SpecialAncientpages.php',
 	'BlockListPager' => 'includes/specials/SpecialBlockList.php',
 	'BrokenRedirectsPage' => 'includes/specials/SpecialBrokenRedirects.php',
@@ -980,7 +980,7 @@ $wgAutoloadLocalClasses = array(
 	'RandomPage' => 'includes/specials/SpecialRandompage.php',
 	'ShortPagesPage' => 'includes/specials/SpecialShortpages.php',
 	'SpecialActiveUsers' => 'includes/specials/SpecialActiveusers.php',
-	'SpecialAllmessages' => 'includes/specials/SpecialAllmessages.php',
+	'SpecialAllMessages' => 'includes/specials/SpecialAllMessages.php',
 	'SpecialAllMyUploads' => 'includes/specials/SpecialMyRedirectPages.php',
 	'SpecialAllPages' => 'includes/specials/SpecialAllPages.php',
 	'SpecialBlankpage' => 'includes/specials/SpecialBlankpage.php',

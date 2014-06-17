@@ -59,7 +59,7 @@ class DeleteEqualMessages extends Maintenance {
 		// Normalise message names for NS_MEDIAWIKI page_title
 		$messageNames = array_map( array( $wgContLang, 'ucfirst' ), $messageNames );
 
-		$statuses = AllmessagesTablePager::getCustomisedStatuses( $messageNames, $langCode, $nonContLang );
+		$statuses = AllMessagesTablePager::getCustomisedStatuses( $messageNames, $langCode, $nonContLang );
 		// getCustomisedStatuses is stripping the sub page from the page titles, add it back
 		$titleSuffix = $nonContLang ? "/$langCode" : '';
 
