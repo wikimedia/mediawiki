@@ -5,6 +5,7 @@
  * Created on May 13, 2007
  *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
+ * Copyright © 2014 Tito Bouzout "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,8 +60,12 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			$this->addWhere( $whereQuery );
 		}
 
+		if ( $params['dir'] !== null ) {
+			$sort = ( $params['dir'] == 'descending' ? ' DESC' : 'ASC' );
+			$this->addOption( 'ORDER BY', 'el_id' . $sort );
+		}
 		// Don't order by el_from if it's constant in the WHERE clause
-		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
+		else if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
 			$this->addOption( 'ORDER BY', 'el_from' );
 		}
 
@@ -113,6 +118,13 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				),
+			),
 			'offset' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
@@ -130,6 +142,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 
 		return array(
 			'limit' => 'How many links to return',
+			'dir' => 'Direction to sort in',
 			'offset' => 'When more results are available, use this to continue',
 			'protocol' => array(
 				"Protocol of the URL. If empty and {$p}query set, the protocol is http.",
