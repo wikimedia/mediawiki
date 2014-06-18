@@ -2592,10 +2592,12 @@ function wfIsHHVM() {
 /**
  * Swap two variables
  *
+ * @deprecated since 1.24
  * @param mixed $x
  * @param mixed $y
  */
 function swap( &$x, &$y ) {
+	wfDeprecated( __FUNCTION__, '1.24' );
 	$z = $x;
 	$x = $y;
 	$y = $z;
