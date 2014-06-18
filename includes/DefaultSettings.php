@@ -1281,7 +1281,7 @@ $wgDjvuTxt = null;
  * Path of the djvutoxml executable
  * This works like djvudump except much, much slower as of version 3.5.
  *
- * For now we  recommend you use djvudump instead. The djvuxml output is
+ * For now we recommend you use djvudump instead. The djvuxml output is
  * probably more stable, so we'll switch back to it as soon as they fix
  * the efficiency problem.
  * http://sourceforge.net/tracker/index.php?func=detail&aid=1704049&group_id=32953&atid=406583
@@ -1295,7 +1295,7 @@ $wgDjvuToXML = null;
 
 /**
  * Shell command for the DJVU post processor
- * Default: pnmtopng, since ddjvu generates ppm output
+ * Default: pnmtojpeg, since ddjvu generates ppm output
  * Set this to false to output the ppm file directly.
  */
 $wgDjvuPostProcessor = 'pnmtojpeg';
