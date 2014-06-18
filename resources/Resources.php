@@ -272,7 +272,11 @@ return array(
 		'scripts' => 'resources/lib/jquery/jquery.hoverIntent.js',
 	),
 	'jquery.json' => array(
-		'scripts' => 'resources/lib/jquery/jquery.json.js',
+		// @deprecated since 1.24: Use the 'json' module and global JSON object instead.
+		'scripts' => array(
+			'resources/lib/jquery/jquery.json.js',
+			'resources/src/jquery.json-deprecate.js',
+		),
 		'targets' => array( 'mobile', 'desktop' ),
 	),
 	'jquery.localize' => array(
@@ -316,7 +320,7 @@ return array(
 	),
 	'jquery.jStorage' => array(
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
-		'dependencies' => 'jquery.json',
+		'dependencies' => 'json',
 	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/src/jquery/jquery.suggestions.js',
@@ -716,6 +720,13 @@ return array(
 		'group' => 'jquery.ui',
 	),
 
+	/* json2 */
+
+	'json' => array(
+		'scripts' => 'resources/lib/json2/json2.js',
+		'skipFunction' => 'resources/src/json-skip.js',
+	),
+
 	/* Moment.js */
 
 	'moment' => array(
@@ -909,7 +920,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.inspect.js',
 		'dependencies' => array(
 			'jquery.byteLength',
-			'jquery.json',
+			'json',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
