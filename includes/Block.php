@@ -20,6 +20,9 @@
  * @file
  */
 class Block {
+	/** @var array Array of string values should be represented as 'infinity'*/
+	public static $infinityValues = array( 'infinite', 'indefinite', 'infinity', 'never' );
+
 	/** @var string */
 	public $mReason;
 

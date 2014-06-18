@@ -150,7 +150,7 @@ class ProtectionForm {
 		} else {
 			$value = $this->mExpirySelection[$action];
 		}
-		if ( $value == 'infinite' || $value == 'indefinite' || $value == 'infinity' ) {
+		if ( in_array($value, Block::$infinityValues ) ) {
 			$time = wfGetDB( DB_SLAVE )->getInfinity();
 		} else {
 			$unix = strtotime( $value );
