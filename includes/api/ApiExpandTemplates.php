@@ -89,6 +89,7 @@ class ApiExpandTemplates extends ApiBase {
 		// if they didn't want any output except (probably) the parse tree,
 		// then don't bother actually fully expanding it
 		if ( $prop || $params['prop'] === null ) {
+			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );
 			$frame = $wgParser->getPreprocessor()->newFrame();
 			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, null, $frame );
 			if ( $params['prop'] === null ) {
