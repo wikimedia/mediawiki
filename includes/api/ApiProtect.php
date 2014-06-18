@@ -77,7 +77,7 @@ class ApiProtect extends ApiBase {
 				$this->dieUsageMsg( array( 'protect-invalidlevel', $p[1] ) );
 			}
 
-			if ( in_array( $expiry[$i], array( 'infinite', 'indefinite', 'infinity', 'never' ) ) ) {
+			if ( wfIsInfinity( $expiry[$i] ) ) {
 				$expiryarray[$p[0]] = $db->getInfinity();
 			} else {
 				$exp = strtotime( $expiry[$i] );
