@@ -3942,47 +3942,48 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *
 	 * - '{$var}' should be used for text and is passed through the database's
 	 *   addQuotes method.
-	 * - `{$var}` should be used for identifiers (eg: table and database names),
-	 *   it is passed through the database's addIdentifierQuotes method which
+	 * - `{$var}` should be used for identifiers (e.g. table and database names).
+	 *   It is passed through the database's addIdentifierQuotes method which
 	 *   can be overridden if the database uses something other than backticks.
-	 * - / *$var* / is just encoded, besides traditional table prefix and
-	 *   table options its use should be avoided.
+	 * - / *_* / or / *$wgDBprefix* / prefixes and quotes the following table name.
+	 * - / *i* / prefixes and quotes the following index name.
+	 * - In all other cases, / *$var* / is just left unencoded. Its use should be
+	 *   limited to table options. In 1.23 and older, string encoding was applied.
 	 *
 	 * @param string $ins SQL statement to replace variables in
 	 * @return string The new SQL statement with variables replaced
 	 */
-	protected function replaceSchemaVars( $ins ) {
-		$vars = $this->getSchemaVars();
-		foreach ( $vars as $var => $value ) {
-			// replace '{$var}'
-			$ins = str_replace( '\'{$' . $var . '}\'', $this->addQuotes( $value ), $ins );
-			// replace `{$var}`
-			$ins = str_replace( '`{$' . $var . '}`', $this->addIdentifierQuotes( $value ), $ins );
-			// replace /*$var*/
-			$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $value ), $ins );
-		}
-
-		return $ins;
-	}
-
-	/**
-	 * Replace variables in sourced SQL
-	 *
-	 * @param string $ins
-	 * @return string
-	 */
 	protected function replaceVars( $ins ) {
-		$ins = $this->replaceSchemaVars( $ins );
-
-		// Table prefixes
-		$ins = preg_replace_callback( '!/\*(?:\$wgDBprefix|_)\*/([a-zA-Z_0-9]*)!',
-			array( $this, 'tableNameCallback' ), $ins );
-
-		// Index names
-		$ins = preg_replace_callback( '!/\*i\*/([a-zA-Z_0-9]*)!',
-			array( $this, 'indexNameCallback' ), $ins );
-
-		return $ins;
+		$that = $this;
+		$vars = $this->getSchemaVars();
+		return preg_replace_callback(
+			'!
+				/\* (\$wgDBprefix|[_i]) \*/ (\w*) | # 1-2. tableName, indexName
+				\'\{\$ (\w+) }\'                  | # 3. addQuotes
+				`\{\$ (\w+) }`                    | # 4. addIdentifierQuotes
+				/\*\$ (\w+) \*/                     # 5. leave unencoded
+			!x',
+			function ( $m ) use ( $that, $vars ) {
+				// Note: weird isset() and loose equality checks are a forward-compatible
+				// workaround for https://bugs.php.net/bug.php?id=51881
+				if ( isset( $m[1] ) && $m[1] != '' ) {
+					if ( $m[1] === 'i' ) {
+						return $this->indexName( $m[2] );
+					} else {
+						return $this->tableName( $m[2] );
+					}
+				} elseif ( isset( $m[3] ) && $m[3] != '' && array_key_exists( $m[3], $vars ) ) {
+					return $this->addQuotes( $vars[$m[3]] );
+				} elseif ( isset( $m[4] ) && $m[4] != '' && array_key_exists( $m[4], $vars ) ) {
+					return $this->addIdentifierQuotes( $vars[$m[4]] );
+				} elseif ( isset( $m[5] ) && $m[5] != '' && array_key_exists( $m[5], $vars ) ) {
+					return $vars[$m[5]];
+				} else {
+					return $m[0];
+				}
+			},
+			$ins
+		);
 	}
 
 	/**
@@ -4009,26 +4010,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	protected function getDefaultSchemaVars() {
 		return array();
-	}
-
-	/**
-	 * Table name callback
-	 *
-	 * @param array $matches
-	 * @return string
-	 */
-	protected function tableNameCallback( $matches ) {
-		return $this->tableName( $matches[1] );
-	}
-
-	/**
-	 * Index name callback
-	 *
-	 * @param array $matches
-	 * @return string
-	 */
-	protected function indexNameCallback( $matches ) {
-		return $this->indexName( $matches[1] );
 	}
 
 	/**
