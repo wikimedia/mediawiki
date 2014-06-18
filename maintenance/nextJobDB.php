@@ -57,28 +57,24 @@ class NextJobDB extends Maintenance {
 			return; // no DBs with jobs or cache is both empty and locked
 		}
 
-		do {
-			$again = false;
-
-			$candidates = array(); // list of (type, db)
-			// Flatten the tree of candidates into a flat list so that a random
-			// item can be selected, weighing each queue (type/db tuple) equally.
-			foreach ( $pendingDBs as $type => $dbs ) {
-				if (
-					( is_array( $types ) && in_array( $type, $types ) ) ||
-					( $types === false && !in_array( $type, $wgJobTypesExcludedFromDefaultQueue ) )
-				) {
-					foreach ( $dbs as $db ) {
-						$candidates[] = array( $type, $db );
-					}
+		$candidates = array(); // list of (type, db)
+		// Flatten the tree of candidates into a flat list so that a random
+		// item can be selected, weighing each queue (type/db tuple) equally.
+		foreach ( $pendingDBs as $type => $dbs ) {
+			if (
+				( is_array( $types ) && in_array( $type, $types ) ) ||
+				( $types === false && !in_array( $type, $wgJobTypesExcludedFromDefaultQueue ) )
+			) {
+				foreach ( $dbs as $db ) {
+					$candidates[] = array( $type, $db );
 				}
 			}
-			if ( !count( $candidates ) ) {
-				return; // no jobs for this type
-			}
+		}
+		if ( !count( $candidates ) ) {
+			return; // no jobs for this type
+		}
 
-			list( $type, $db ) = $candidates[mt_rand( 0, count( $candidates ) - 1 )];
-		} while ( $again );
+		list( $type, $db ) = $candidates[mt_rand( 0, count( $candidates ) - 1 )];
 
 		if ( $this->hasOption( 'types' ) ) {
 			$this->output( $db . " " . $type . "\n" );
