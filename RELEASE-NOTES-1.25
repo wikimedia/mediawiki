@@ -250,6 +250,18 @@ changes to languages because of Bugzilla reports.
   fail for custom tokens registered only via the deprecated ApiTokensGetTokenTypes
   hook. The ApiQueryTokensRegisterTypes hook should be used for this to work.
 * Added wgRelevantArticleId to the client-side config, for use on special pages.
+* Changed parsing of variables in schema (.sql) files:
+** The substituted values are no longer parsed. (Formerly, several passes
+   were made for each variable, so depending on the order in which variables
+   were defined, variables might have been found inside encoded values. This
+   is no longer the case.)
+** Variables are no longer string encoded when the /*$var*/ syntax is used.
+   If string encoding is necessary, use the '{$var}' syntax instead.
+** Variable names must only consist of one or more of the characters
+   "A-Za-z0-9_".
+** In source text of the form '{$A}'{$B}' or `{$A}`{$B}`, where variable A
+   does not exist yet variable B does, the latter may not be replaced.
+   However, this difference is unlikely to arise in practice.
 
 == Compatibility ==
 
