@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (c5ae888f67)
+ * OOjs UI v0.1.0-pre (7a0e222a75)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Jun 11 2014 18:10:09 GMT-0700 (PDT)
+ * Date: Wed Jun 18 2014 16:19:15 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -486,18 +486,32 @@ OO.ui.Element.scrollIntoView = function ( el, config ) {
 	// Configuration initialization
 	config = config || {};
 
-	var anim = {},
+	var rel, anim = {},
 		callback = typeof config.complete === 'function' && config.complete,
 		sc = this.getClosestScrollableContainer( el, config.direction ),
 		$sc = $( sc ),
 		eld = this.getDimensions( el ),
 		scd = this.getDimensions( sc ),
+		$win = $( this.getWindow( el ) );
+
+	// Compute the distances between the edges of el and the edges of the scroll viewport
+	if ( $sc.is( 'body' ) ) {
+		// If the scrollable container is the <body> this is easy
+		rel = {
+			'top': eld.rect.top,
+			'bottom': $win.innerHeight() - eld.rect.bottom,
+			'left': eld.rect.left,
+			'right': $win.innerWidth() - eld.rect.right
+		};
+	} else {
+		// Otherwise, we have to subtract el's coordinates from sc's coordinates
 		rel = {
 			'top': eld.rect.top - ( scd.rect.top + scd.borders.top ),
 			'bottom': scd.rect.bottom - scd.borders.bottom - scd.scrollbar.bottom - eld.rect.bottom,
 			'left': eld.rect.left - ( scd.rect.left + scd.borders.left ),
 			'right': scd.rect.right - scd.borders.right - scd.scrollbar.right - eld.rect.right
 		};
+	}
 
 	if ( !config.direction || config.direction === 'y' ) {
 		if ( rel.top < 0 ) {
@@ -606,6 +620,7 @@ OO.ui.Element.prototype.scrollElementIntoView = function ( config ) {
 /**
  * Bind a handler for an event on this.$element
  *
+ * @deprecated Use jQuery#on instead.
  * @param {string} event
  * @param {Function} callback
  */
@@ -616,6 +631,7 @@ OO.ui.Element.prototype.onDOMEvent = function ( event, callback ) {
 /**
  * Unbind a handler bound with #offDOMEvent
  *
+ * @deprecated Use jQuery#off instead.
  * @param {string} event
  * @param {Function} callback
  */
@@ -624,105 +640,33 @@ OO.ui.Element.prototype.offDOMEvent = function ( event, callback ) {
 };
 
 ( function () {
-	// Static
-
-	// jQuery 1.8.3 has a bug with handling focusin/focusout events inside iframes.
-	// Firefox doesn't support focusin/focusout at all, so we listen for 'focus'/'blur' on the
-	// document, and simulate a 'focusin'/'focusout' event on the target element and make
-	// it bubble from there.
-	//
-	// - http://jsfiddle.net/sw3hr/
-	// - http://bugs.jquery.com/ticket/14180
-	// - https://github.com/jquery/jquery/commit/1cecf64e5aa4153
-	function specialEvent( simulatedName, realName ) {
-		function handler( e ) {
-			jQuery.event.simulate(
-				simulatedName,
-				e.target,
-				jQuery.event.fix( e ),
-				/* bubble = */ true
-			);
-		}
-
-		return {
-			setup: function () {
-				var doc = this.ownerDocument || this,
-					attaches = $.data( doc, 'ooui-' + simulatedName + '-attaches' );
-				if ( !attaches ) {
-					doc.addEventListener( realName, handler, true );
-				}
-				$.data( doc, 'ooui-' + simulatedName + '-attaches', ( attaches || 0 ) + 1 );
-			},
-			teardown: function () {
-				var doc = this.ownerDocument || this,
-					attaches = $.data( doc, 'ooui-' + simulatedName + '-attaches' ) - 1;
-				if ( !attaches ) {
-					doc.removeEventListener( realName, handler, true );
-					$.removeData( doc, 'ooui-' + simulatedName + '-attaches' );
-				} else {
-					$.data( doc, 'ooui-' + simulatedName + '-attaches', attaches );
-				}
-			}
-		};
-	}
-
-	var hasOwn = Object.prototype.hasOwnProperty,
-		specialEvents = {
-			focusin: specialEvent( 'focusin', 'focus' ),
-			focusout: specialEvent( 'focusout', 'blur' )
-		};
-
 	/**
 	 * Bind a handler for an event on a DOM element.
 	 *
-	 * Uses jQuery internally for everything except for events which are
-	 * known to have issues in the browser or in jQuery. This method
-	 * should become obsolete eventually.
+	 * Used to be for working around a jQuery bug (jqbug.com/14180),
+	 * but obsolete as of jQuery 1.11.0.
 	 *
 	 * @static
+	 * @deprecated Use jQuery#on instead.
 	 * @param {HTMLElement|jQuery} el DOM element
 	 * @param {string} event Event to bind
 	 * @param {Function} callback Callback to call when the event fires
 	 */
 	OO.ui.Element.onDOMEvent = function ( el, event, callback ) {
-		var orig;
-
-		if ( hasOwn.call( specialEvents, event ) ) {
-			// Replace jQuery's override with our own
-			orig = $.event.special[event];
-			$.event.special[event] = specialEvents[event];
-
-			$( el ).on( event, callback );
-
-			// Restore
-			$.event.special[event] = orig;
-		} else {
-			$( el ).on( event, callback );
-		}
+		$( el ).on( event, callback );
 	};
 
 	/**
 	 * Unbind a handler bound with #static-method-onDOMEvent.
 	 *
+	 * @deprecated Use jQuery#off instead.
 	 * @static
 	 * @param {HTMLElement|jQuery} el DOM element
 	 * @param {string} event Event to unbind
 	 * @param {Function} [callback] Callback to unbind
 	 */
 	OO.ui.Element.offDOMEvent = function ( el, event, callback ) {
-		var orig;
-		if ( hasOwn.call( specialEvents, event ) ) {
-			// Replace jQuery's override with our own
-			orig = $.event.special[event];
-			$.event.special[event] = specialEvents[event];
-
-			$( el ).off( event, callback );
-
-			// Restore
-			$.event.special[event] = orig;
-		} else {
-			$( el ).off( event, callback );
-		}
+		$( el ).off( event, callback );
 	};
 }() );
 /**
@@ -1341,6 +1285,10 @@ OO.ui.Window.prototype.open = function ( data ) {
 
 	// Open the window
 	this.opening = $.Deferred();
+
+	// So we can restore focus on closing
+	this.$prevFocus = $( document.activeElement );
+
 	this.frame.load().done( OO.ui.bind( function () {
 		this.$element.show();
 		this.visible = true;
@@ -1404,6 +1352,11 @@ OO.ui.Window.prototype.close = function ( data ) {
 			this.opened.resolve();
 		}
 		this.$element.hide();
+		// Restore focus to whatever was focused before opening
+		if ( this.$prevFocus ) {
+			this.$prevFocus.focus();
+			this.$prevFocus = undefined;
+		}
 		this.visible = false;
 		this.closing.resolve();
 		// Now that we are totally done closing, it's safe to allow opening
@@ -1608,7 +1561,7 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 	this.$element.on( 'mousedown', false );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-dialog' );
+	this.$element.addClass( 'oo-ui-dialog' ).attr( 'role', 'dialog' );
 	this.setSize( config.size );
 };
 

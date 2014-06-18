@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="12px"
-	 height="12px" viewBox="0 0 12 12" style="enable-background:new 0 0 12 12;" xml:space="preserve">
+	 height="12px" viewBox="0 0 12 12">
 <g id="ltr" opacity="0.75">
-	<path d="M3.023,8.977 L3.023,2 L8.976,5.489 z" fill="#000000" id="arrow"/>
+	<path id="arrow" d="M3,9 L3,2 L9,5.5 z"/>
 </g>
 </svg>

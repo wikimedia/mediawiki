@@ -6,6 +6,8 @@
 		]
 	},
 	"ooui-dialog-action-close": "ಮುಚ್ಚಿ",
+	"ooui-outline-control-move-down": "ವಸ್ತು ಕೆಲ್ಗೆ ಸ್ಥಲಾನ್ಥರಿಸು",
+	"ooui-outline-control-move-up": "ವಸ್ತು ಮೆಲೆ ಸ್ಥಲಾನ್ಥರಿಸು",
 	"ooui-outline-control-remove": "ವಸ್ತು ತೆಗೆ",
 	"ooui-toolbar-more": "ಹೆಚ್ಚು",
 	"ooui-dialog-confirm-title": "ಧೃಡಪಡಿಸು",
