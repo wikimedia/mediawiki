@@ -3895,10 +3895,7 @@ class Language {
 			}
 		}
 
-		// Since usually only infinite or indefinite is only on list, so try
-		// equivalents if still here.
-		$indefs = array( 'infinite', 'infinity', 'indefinite' );
-		if ( in_array( $str, $indefs ) ) {
+		if ( wfIsInfinity( $str ) ) {
 			foreach ( $indefs as $val ) {
 				$show = array_search( $val, $duration, true );
 				if ( $show !== false ) {
