@@ -393,7 +393,7 @@
 	'tt-latn' => 'tatarça',	# Tatar (Latin script)
 	'tum' => 'chiTumbuka',  # Tumbuka
 	'tw' => 'Twi',			# Twi, (FIXME!)
-	'ty' => 'Reo Mā`ohi',	# Tahitian
+	'ty' => 'reo tahiti',	# Tahitian
 	'tyv' => 'тыва дыл',	# Tyvan
 	'udm' => 'удмурт',	# Udmurt
 	'ug' => 'ئۇيغۇرچە / Uyghurche',	# Uyghur (multiple scripts - defaults to Arabic)
