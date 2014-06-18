@@ -104,6 +104,7 @@ class MIMEsearchPage extends QueryPage {
 		global $wgScript;
 
 		$mime = $par ? $par : $this->getRequest()->getText( 'mime' );
+		$mime = trim( $mime );
 
 		$this->setHeaders();
 		$this->outputHeader();
