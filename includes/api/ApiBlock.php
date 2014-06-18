@@ -78,7 +78,7 @@ class ApiBlock extends ApiBase {
 				'other',
 				$params['reason']
 			),
-			'Expiry' => $params['expiry'] == 'never' ? 'infinite' : $params['expiry'],
+			'Expiry' => wfIsInfinity( $params['expiry'] ) ? 'infinite' : $params['expiry'],
 			'HardBlock' => !$params['anononly'],
 			'CreateAccount' => $params['nocreate'],
 			'AutoBlock' => $params['autoblock'],
