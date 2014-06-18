@@ -8,7 +8,8 @@
 			"Roderick Mallia",
 			"Urhixidur",
 			"아라",
-			"CharlieTheCabbie"
+			"CharlieTheCabbie",
+			"Leli Forte"
 		]
 	},
 	"tog-underline": "Ħoloq sottolinjati:",
@@ -332,7 +333,7 @@
 	"viewsourcetext": "Tista' tara u tikkopja s-sors ta' din il-paġna:",
 	"viewyourtext": "Tista' tara u tikkopja s-sors tal-'''modifiki tiegħek''' fuq din il-paġna:",
 	"protectedinterface": "Din il-paġna għanda element li tagħmel parti mill-interfaċċa tal-utent tas-software, u għaldaqstant ġiet protetta sabiex ma jkunx hemm abbuż.",
-	"editinginterface": "'''Avviż:''' Qiegħed tagħmel modifiki lejn paġna li qegħdha tintuża biex tipprovdi interfaċċa għall-messaġġi tas-software. Kull modifika f'din il-paġna se taffetwa l-apparenza tal-faċċata tal-utenti kollha. Għat-traduzzjonijiet, ikkunsidra l-possibilità li tuża'  [//translatewiki.net/wiki/Main_Page?setlang=mt translatewiki.net], il-proġett MediaWiki għal-lokalizzazzjoni.",
+	"editinginterface": "'''Avviż:''' Qiegħed tagħmel modifiki lejn paġna li qiegħda tintuża biex tipprovdi interfaċċa għall-messaġġi tas-software. Kull modifika f'din il-paġna se taffetwa l-apparenza tal-faċċata tal-utenti kollha. Għat-traduzzjonijiet, ikkunsidra l-possibilità li tuża  [//translatewiki.net/wiki/Main_Page?setlang=mt translatewiki.net], il-proġett MediaWiki għal-lokalizzazzjoni.",
 	"cascadeprotected": "Din il-paġna ġiet protetta mill-modifiki, minħabba li tinkludi {{PLURAL:$1|paġni, li huwa|paġni, li huma}} protetti bil-preferenza tal-\"kaskata\" mixewla:\n$2",
 	"namespaceprotected": "Inti m'għandhekx il-permess li timodifika paġni fin-''namespace'' '''$1''.",
 	"customcssprotected": "M'għandekx il-permessi neċessarji sabiex timmodifika din il-paġna tas-CSS, minħabba li għandha tqegħid personali ta' utent ieħor.",

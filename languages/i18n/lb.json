@@ -1228,7 +1228,7 @@
 	"largefileserver": "Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.",
 	"emptyfile": "De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.",
 	"windows-nonascii-filename": "Dës Wiki ënnerstëtzt d'Spezialzeechen an de Fichiersnimm net.",
-	"fileexists": "Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g.\n<strong>[[:$1]]</strong> wann Dir net sécher sidd, ob Dir den Numm ännere wëllt.\n[[$1|thumb]]",
+	"fileexists": "Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g.\n<strong>[[:$1]]</strong> no wann {{GENDER:|Dir}} net sécher sidd, ob Dir en ännere wëllt.\n[[$1|thumb]]",
 	"filepageexists": "D'Beschreiwungssäit fir dëse Fichier gouf schonn als <strong>[[:$1]]</strong> ugeluecht, et gëtt awer kee Fichier mat deem Numm.\n\nDe Resumé deen Dir agitt, gëtt net op d'Beschreiwungssäit iwwerholl.\nFir datt Äre Resumé do opdaucht musst Dir e manuell änneren.\n[[$1|thumb]]",
 	"fileexists-extension": "E Fichier mat engem ähnlechen Numm gëtt et schonn: [[$2|thumb]]\n* Numm vum Fichier deen Dir versicht eropzelueden: <strong>[[:$1]]</strong>\n* Numm vum Fichier deen et scho gëtt: <strong>[[:$2]]</strong>\nWielt w.e.g. en aneren Numm.",
 	"fileexists-thumbnail-yes": "Beim Fichier schéngt et sech ëm e klengt Bild ''(Miniatur)'' ze handelen. [[$1|thumb]]\nKuckt de Fichier <strong>[[:$1]]</strong> w.e.g. no.\nWann et sech ëm d'Bild an der Originalgréisst handelt, da brauch kee separat Bild als Miniatur eropgelueden ze ginn.",

@@ -106,7 +106,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Scoopfinder",
-			"Akeron"
+			"Akeron",
+			"Linedwell"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -1334,7 +1335,7 @@
 	"largefileserver": "La taille de ce fichier est supérieure au maximum autorisé.",
 	"emptyfile": "Le fichier que vous voulez importer semble vide.\nCeci peut être dû à une erreur dans le nom du fichier.\nVeuillez vérifier que vous désirez vraiment importer ce fichier.",
 	"windows-nonascii-filename": "Ce wiki ne supporte pas les noms de fichiers avec des caractères spéciaux.",
-	"fileexists": "Un fichier existe déjà sous ce nom.\nMerci de vérifier <strong>[[:$1]]</strong> si vous n'êtes pas certain{{GENDER:||e|}} de vouloir le modifier.\n[[$1|thumb]]",
+	"fileexists": "Un fichier existe déjà sous ce nom.\nMerci de vérifier <strong>[[:$1]]</strong> si vous n'êtes pas certain{{GENDER:||e|}} de vouloir le remplacer.\n[[$1|thumb]]",
 	"filepageexists": "La page de description pour ce fichier a déjà été créée ici <strong>[[:$1]]</strong>, mais aucun fichier n'existe actuellement sous ce nom.\nLe résumé que vous allez spécifier n'apparaîtra pas sur la page de description.\nPour que ce soit le cas, vous devrez modifier manuellement la page. [[$1|thumb]]",
 	"fileexists-extension": "Un fichier existe avec un nom proche : [[$2|thumb]]\n* Nom du fichier à importer : <strong>[[:$1]]</strong>\n* Nom du fichier existant : <strong>[[:$2]]</strong>\nVeuillez choisir un autre nom.",
 	"fileexists-thumbnail-yes": "Le fichier semble être une image en taille réduite ''(vignette)''. [[$1|thumb]]\nVeuillez vérifier le fichier <strong>[[:$1]]</strong>.\nSi le fichier vérifié est la même image avec la taille initiale, il n'y a pas besoin d'importer une version réduite.",

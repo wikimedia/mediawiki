@@ -1059,7 +1059,7 @@
 	"right-purge": "확인 없이 문서의 캐시를 새로 고침",
 	"right-autoconfirmed": "IP 기반의 속도 제한에 영향을 받지 않음",
 	"right-bot": "봇의 편집으로 취급",
-	"right-nominornewtalk": "토론 문서를 새로 만들때 사소한 편집 사용 불가능",
+	"right-nominornewtalk": "토론 문서에 사소한 편집으로 새 메시지를 보낼 수 없음",
 	"right-apihighlimits": "API 상한 상승",
 	"right-writeapi": "API 작성",
 	"right-delete": "문서 삭제",
