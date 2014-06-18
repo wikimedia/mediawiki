@@ -679,7 +679,7 @@ class SpecialBlock extends FormSpecialPage {
 			# Recheck params here...
 			if ( $type != Block::TYPE_USER ) {
 				$data['HideUser'] = false; # IP users should not be hidden
-			} elseif ( !in_array( $data['Expiry'], array( 'infinite', 'infinity', 'indefinite' ) ) ) {
+			} elseif ( !wfIsInfinity( $data['Expiry'] ) ) {
 				# Bad expiry.
 				return array( 'ipb_expiry_temp' );
 			} elseif ( $wgHideUserContribLimit !== false
@@ -854,7 +854,7 @@ class SpecialBlock extends FormSpecialPage {
 			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 
-		if ( $expiry == 'infinite' || $expiry == 'indefinite' ) {
+		if ( wfIsInfinity( $expiry ) ) {
 			$expiry = $infinity;
 		} else {
 			$expiry = strtotime( $expiry );
