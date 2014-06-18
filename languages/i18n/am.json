@@ -537,6 +537,7 @@
 	"edit-gone-missing": "ገጹን ማሳደስ አልተቻለም።  እንደ ጠፋ ይመስላል።",
 	"edit-conflict": "ተቃራኒ ለውጥ።",
 	"edit-no-change": "በጽሕፈቱ አንዳችም አልተለወጠምና ለውጥዎ ቸል ተብሏል።",
+	"postedit-confirmation-saved": "እርማትዎ ተቆጥቧል",
 	"edit-already-exists": "አዲስ ገጽ ለመፍጠር አልተቻለም፤\nገና ይኖራልና።",
 	"defaultmessagetext": "የቆየው ጽሕፈት",
 	"content-model-javascript": "ጃቫ ስክሪፕት",

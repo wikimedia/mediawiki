@@ -5,7 +5,8 @@
 			"Joseph",
 			"Rhinestorm",
 			"SiLveRLeaD",
-			"Trncmvsr"
+			"Trncmvsr",
+			"Sayginer"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -128,6 +129,7 @@
 	"config-admin-name": "Kullanıcı adınız:",
 	"config-admin-password": "Şifre:",
 	"config-admin-password-confirm": "Şifre tekrar:",
+	"config-admin-help": "Buraya tercih ettiğiniz kullanıcı adını girin; örneğin \"Joe Bloggs\". Bu vikide oturum açmak için kullanacağınız addır.",
 	"config-admin-name-blank": "Bir yönetici kullanıcı adını giriniz.",
 	"config-admin-name-invalid": "Belirtilen ad \"<nowiki> $1 </nowiki>\" geçersiz.\nFarklı bir kullanıcı adı belirtin.",
 	"config-admin-password-blank": "Yönetici hesabı için bir parola girin.",
@@ -141,8 +143,10 @@
 	"config-optional-skip": "Şimdiden sıkıldım, sadece wikiyi yükle.",
 	"config-profile": "Kullanıcı hakları profili:",
 	"config-profile-wiki": "Açık wiki",
+	"config-profile-no-anon": "Hesap oluşturmak gerekli",
 	"config-profile-fishbowl": "Yalnızca yetkili editörler",
 	"config-profile-private": "Özel wiki",
+	"config-profile-help": "Vikiler, mümkün olan en fazla kişiye değişiklik imkânı verdiğinizde, en iyi şekilde çalışır.\nMediaWiki'de son değişiklikleri incelemek ve tecrübesiz veya kötü niyetli kullanıcıların verdiği zararları geri almak kolaydır.\n\nAncak birçok kişi MediaWiki'yi farklı şekillerde kullanışlı bulmaktadır ve bazen herkesi viki yolunun faydalarına ikna etmek zordur.\nYani seçim sizin.\n\n<strong>{{int:config-profile-wiki}}</strong> modeli, giriş yapmamış olsa bile herkese değişiklik izni verir.\n\n<strong>{{int:config-profile-no-anon}}</strong> kullanan bir viki ise daha izlenebilirdir ancak sıradan, basit, gündelik katkı yapan kullanıcıları caydırabilir.\n\n<strong>{{int:config-profile-fishbowl}}</strong> onaylanmış kullanıcıların değişikliklerine izin verir ama herkes sayfaları ve sayfa geçmişlerini görebilir.\n\n<strong>{{int:config-profile-private}}</strong> sadece onaylanmış kullanıcıları değişiklik yapma ve sayfaları görme imkânı tanır.\n\nDaha karmaşık kullanıcı hakkı ayarları, yüklemeden sonra görülebilir; [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights ilgili kılavuza] bakınız.",
 	"config-license": "Telif Hakkı ve Lisans",
 	"config-license-gfdl": "GNU Free Documentation License 1.3 veya üstü",
 	"config-license-pd": "Kamu Malı",
@@ -150,6 +154,7 @@
 	"config-email-settings": "E-posta ayarları",
 	"config-enable-email": "Giden e-posta etkinleştirme",
 	"config-email-user": "Kullanıcıdan kullanıcıya e-posta gönderimini etkinleştir",
+	"config-email-user-help": "Eğer tercihlerinde etkinleştirmişlerse, kullanıcıların birbirlerine e-posta göndermesine izin ver.",
 	"config-email-watchlist": "Watchlist bildirimini etkinleştirmek",
 	"config-email-auth": "E-posta kimlik doğrulamasını etkinleştir",
 	"config-email-sender": "E-posta adresini ayarlayın",

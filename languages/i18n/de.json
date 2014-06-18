@@ -1304,7 +1304,7 @@
 	"largefileserver": "Die Datei ist größer als die vom Server eingestellte Maximalgröße.",
 	"emptyfile": "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrolliere, ob du die Datei wirklich hochladen willst.",
 	"windows-nonascii-filename": "Dieses Wiki unterstützt keine Dateinamen, die Sonderzeichen enthalten.",
-	"fileexists": "Eine Datei dieses Namens ist bereits vorhanden. Bitte prüfe <strong>[[:$1]]</strong>, sofern du dir nicht sicher bist, ob du sie ändern möchtest.\n[[$1|thumb]]",
+	"fileexists": "Eine Datei dieses Namens ist bereits vorhanden. Bitte prüfe <strong>[[:$1]]</strong>, sofern {{GENDER:|du}} dir nicht sicher bist, ob du sie ändern möchtest.\n[[$1|thumb]]",
 	"filepageexists": "Eine Beschreibungsseite wurde bereits als <strong>[[:$1]]</strong> erstellt, es ist aber keine Datei mit diesem Namen vorhanden.\nDie eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen.\nDie Beschreibungsseite musst du nach dem Hochladen der Datei noch manuell bearbeiten.\n[[$1|thumb]]",
 	"fileexists-extension": "Eine Datei ähnlichen Namens ist bereits vorhanden: [[$2|thumb]]\n* Name der hochzuladenden Datei: <strong>[[:$1]]</strong>\n* Name der bereits vorhandenen Datei: <strong>[[:$2]]</strong>\nBitte wähle einen anderen Namen.",
 	"fileexists-thumbnail-yes": "Bei der Datei scheint es sich um ein Bild verringerter Größe ''(Miniatur)'' zu handeln. [[$1|thumb]]\nBitte prüfe die Datei <strong>[[:$1]]</strong>.\nWenn es sich um das Bild in Originalgröße handelt, so braucht kein separates Vorschaubild hochgeladen zu werden.",

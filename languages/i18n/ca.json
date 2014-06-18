@@ -767,7 +767,7 @@
 	"revdelete-nooldid-title": "La revisió objectiu no és vàlida",
 	"revdelete-nooldid-text": "No heu especificat unes revisions objectius per a realitzar aquesta\nfunció, la revisió especificada no existeix, o bé esteu provant d'amagar l'actual revisió.",
 	"revdelete-no-file": "El fitxer especificat no existeix.",
-	"revdelete-show-file-confirm": "Esteu segurs que voleu veure una revisió esborrada del fitxer «<nowiki>$1</nowiki>» de $2 a $3?",
+	"revdelete-show-file-confirm": "Esteu segur que voleu veure una revisió esborrada del fitxer «<nowiki>$1</nowiki>» de $2 a $3?",
 	"revdelete-show-file-submit": "Sí",
 	"revdelete-selected-text": "{{PLURAL:$1|Versió seleccionada|Versions seleccionades}} de [[:$2]]:",
 	"revdelete-selected-file": "{{PLURAL:$1|Versió seleccionada|Versions seleccionades}} del fitxer [[:$2]]:",

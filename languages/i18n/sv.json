@@ -1283,7 +1283,7 @@
 	"largefileserver": "Denna fil är större än vad servern ställts in att tillåta.",
 	"emptyfile": "Filen du laddade upp verkar vara tom; felet kan bero på ett stavfel i filnamnet. Kontrollera om du verkligen vill ladda upp denna fil.",
 	"windows-nonascii-filename": "Denna wiki stödjer inte filnamn med specialtecken.",
-	"fileexists": "Det finns redan en fil med detta namn.\nTitta på <strong>[[:$1]]</strong>, såvida du inte är säker på att du vill ändra den.\n[[$1|thumb]]",
+	"fileexists": "Det finns redan en fil med detta namn. Titta på <strong>[[:$1]]</strong>, om {{GENDER:|du}} inte är säker på att {{GENDER:|du}} vill ändra den.\n[[$1|thumb]]",
 	"filepageexists": "Beskrivningssidan för denna fil har redan skapats på <strong>[[:$1]]</strong>, men just nu finns ingen fil med detta namn.\nDen sammanfattning du skriver här kommer inte visas på beskrivningssidan.\nFör att din sammanfattning ska visas där, så måste du redigera beskrivningssidan manuellt.\n[[$1|thumb]]",
 	"fileexists-extension": "En fil med ett liknande namn finns redan: [[$2|thumb]]\n* Namn på den fil du försöker ladda upp: <strong>[[:$1]]</strong>\n* Namn på filen som redan finns: <strong>[[:$2]]</strong>\nVar vänlig välj ett annat namn.",
 	"fileexists-thumbnail-yes": "Filen verkar vara en bild med förminskad storlek ''(miniatyrbild)''. [[$1|thumb]]\nVar vänlig kontrollera filen <strong>[[:$1]]</strong>.\nOm det är samma fil i originalstorlek så är det inte nödvändigt att ladda upp en extra miniatyrbild.",

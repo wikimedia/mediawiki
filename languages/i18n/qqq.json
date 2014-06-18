@@ -1228,7 +1228,7 @@
 	"group-suppress-member": "{{doc-group|suppress|member}}\nThis is a member of the optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].\n\n{{Identical|Oversight}}",
 	"grouppage-user": "{{doc-group|user|page}}",
 	"grouppage-autoconfirmed": "{{doc-group|autoconfirmed|page}}",
-	"grouppage-bot": "{{doc-group|bot|page}}",
+	"grouppage-bot": "{{doc-group|bot|page}}\n{{Identical|Bot}}",
 	"grouppage-sysop": "{{doc-group|sysop|page}}",
 	"grouppage-bureaucrat": "{{doc-group|bureaucrat|page}}",
 	"grouppage-suppress": "{{doc-group|suppress|page}}\n{{Identical|Oversight}}",

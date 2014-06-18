@@ -18,7 +18,8 @@
 			"Cwek",
 			"아라",
 			"Ktchankt",
-			"Kc kennylau"
+			"Kc kennylau",
+			"Mywood"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -188,7 +189,7 @@
 	"history_short": "歷史",
 	"updatedmarker": "我上次來之後嘅修改",
 	"printableversion": "可打印版本",
-	"permalink": "永久連結",
+	"permalink": "固定連結",
 	"print": "印",
 	"view": "去睇",
 	"edit": "改",
@@ -948,7 +949,7 @@
 	"action-userrights-interwiki": "編輯響其它wiki用戶嘅權限",
 	"action-siteadmin": "鎖同解鎖資料庫",
 	"nchanges": "$1次更改",
-	"recentchanges": "最近更改",
+	"recentchanges": "最近改過嘅嘢",
 	"recentchanges-legend": "最近更改選項",
 	"recentchanges-summary": "追蹤對哩一個 wiki 嘅最後更改。",
 	"recentchanges-feed-description": "追蹤對哩一個 wiki 度呢個集合嘅最後更改。",
