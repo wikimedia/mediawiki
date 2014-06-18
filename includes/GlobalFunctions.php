@@ -4160,6 +4160,17 @@ function wfCanIPUseHTTPS( $ip ) {
 }
 
 /**
+ * Determine input string is represents as infinity
+ *
+ * @param string $str The string to determine
+ * @return bool
+ */
+function wfIsInfinity( $str ) {
+	$infinityValues = array( 'infinite', 'indefinite', 'infinity', 'never' );
+	return in_array( $str, $infinityValues );
+}
+
+/**
  * Work out the IP address based on various globals
  * For trusted proxies, use the XFF client IP (first of the chain)
  *
