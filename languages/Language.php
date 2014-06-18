@@ -1880,7 +1880,7 @@ class Language {
 	/**
 	 * Used by date() and time() to adjust the time output.
 	 *
-	 * @param int $ts The time in date('YmdHis') format
+	 * @param string $ts The time in date('YmdHis') format
 	 * @param mixed $tz Adjust the time by this amount (default false, mean we
 	 *   get user timecorrection setting)
 	 * @return int
