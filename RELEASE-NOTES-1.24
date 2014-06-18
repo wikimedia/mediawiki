@@ -78,6 +78,8 @@ production.
 * Skins can now use 'remoteSkinPath' when defining ResourceLoader modules.
   This works the same as 'remoteExtPath' but is relative to the skins/ folder
   instead of the extensions/ folder.
+* Added the json2.js polyfill for the ES5 JSON.stringify and JSON.parse methods.
+  Exposed as module "json" with a skip function to optimise loading.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
@@ -159,6 +161,7 @@ changes to languages because of Bugzilla reports.
   for migration guide for creators and users of custom skins that relied on it.
 * ResourceLoaderFileModule#getAllStyleFiles now returns all style files and all
   skin style files used by the module.
+* The "jquery.json" module has been deprecated. Use the "json" module instead.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
