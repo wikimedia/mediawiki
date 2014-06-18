@@ -1880,7 +1880,7 @@ class Language {
 	/**
 	 * Used by date() and time() to adjust the time output.
 	 *
-	 * @param int $ts The time in date('YmdHis') format
+	 * @param string $ts The time in date('YmdHis') format
 	 * @param mixed $tz Adjust the time by this amount (default false, mean we
 	 *   get user timecorrection setting)
 	 * @return int
@@ -2020,7 +2020,7 @@ class Language {
 	}
 
 	/**
-	 * @param mixed $ts The time format which needs to be turned into a
+	 * @param string $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param bool $adj Whether to adjust the time output according to the
 	 *   user configured offset ($timecorrection)
@@ -2039,7 +2039,7 @@ class Language {
 	}
 
 	/**
-	 * @param mixed $ts The time format which needs to be turned into a
+	 * @param string $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param bool $adj Whether to adjust the time output according to the
 	 *   user configured offset ($timecorrection)
@@ -2058,7 +2058,7 @@ class Language {
 	}
 
 	/**
-	 * @param mixed $ts The time format which needs to be turned into a
+	 * @param string $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param bool $adj Whether to adjust the time output according to the
 	 *   user configured offset ($timecorrection)
@@ -2149,7 +2149,7 @@ class Language {
 	 * Internal helper function for userDate(), userTime() and userTimeAndDate()
 	 *
 	 * @param string $type Can be 'date', 'time' or 'both'
-	 * @param mixed $ts The time format which needs to be turned into a
+	 * @param string $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param User $user User object used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
