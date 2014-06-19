@@ -9,18 +9,7 @@
 language: php
 
 php:
-  - hhvm
-  - 5.3
-  - 5.4
-  - 5.5
-  - 5.6
-
-matrix:
-  allow_failures:
-    - php: 5.3
-    - php: 5.4
-    - php: 5.5
-    - php: 5.6
+  - hhvm-nightly
 
 services:
   - mysql
@@ -33,16 +22,15 @@ branches:
 
 before_install:
   - sudo apt-get install -qq djvulibre-bin tidy
+  - sudo /home/travis/.phpenv/versions/hhvm-nightly/bin/composer self-update
 
 before_script:
-  # Initialise submodules, in case we're testing a Wikimedia production branch.
-  - git submodule update --init --recursive
   # Travis CI's HHVM environment provides PHPUnit as a phar file, but
   # MediaWiki's test suite only works if individual PHPUnit files are
   # actual files on disk (bug 58881).
-  - composer require 'phpunit/phpunit=3.7.*' --prefer-source
+  - /home/travis/.phpenv/versions/hhvm-nightly/bin/composer install --prefer-source
   - >
-      php maintenance/install.php testwiki admin
+      php maintenance/install.php traviswiki admin
       --pass travis
       --dbname traviswiki
       --dbuser travis
@@ -61,3 +49,11 @@ script:
         php tests/phpunit/phpunit.php \
         --with-phpunitdir ./vendor/phpunit/phpunit
       fi
+
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#mediawiki-core"
+    on_success: change
+    on_failure: change
+    skip_join: true
