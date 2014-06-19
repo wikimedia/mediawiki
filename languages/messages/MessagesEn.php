@@ -435,6 +435,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'MostRevisions' ),
 	'Movepage'                  => array( 'MovePage' ),
 	'Mycontributions'           => array( 'MyContributions' ),
+	'MyLanguage'                => array( 'MyLanguage' ),
 	'Mypage'                    => array( 'MyPage' ),
 	'Mytalk'                    => array( 'MyTalk' ),
 	'Myuploads'                 => array( 'MyUploads', 'MyFiles' ),
