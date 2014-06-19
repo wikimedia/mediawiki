@@ -370,6 +370,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendInterwikiMap( $property, $filter ) {
+		global $wgExtraInterlanguageLinkPrefixes;
+
 		$local = null;
 		if ( $filter === 'local' ) {
 			$local = 1;
@@ -396,9 +398,24 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( $row['iw_trans'] == '1' ) {
 				$val['trans'] = '';
 			}
+
 			if ( isset( $langNames[$prefix] ) ) {
 				$val['language'] = $langNames[$prefix];
 			}
+			if ( in_array( $prefix, $wgExtraInterlanguageLinkPrefixes ) ) {
+				$val['extralanglink'] = '';
+
+				$linktext = wfMessage( "interlanguage-link-$prefix" );
+				if ( !$linktext->isDisabled() ) {
+					$val['linktext'] = $linktext->text();
+				}
+
+				$sitename = wfMessage( "interlanguage-link-sitename-$prefix" );
+				if ( !$sitename->isDisabled() ) {
+					$val['sitename'] = $sitename->text();
+				}
+			}
+
 			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
 			if (substr( $row['iw_url'], 0, 2) == '//') {
 				$val['protorel'] = '';
