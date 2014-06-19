@@ -79,6 +79,10 @@ $dateFormats = array(
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+
+	'jMY time' => 'H:i',
+	'jMY date' => 'j M Y',
+	'jMY both' => 'H:i، j M Y', # Arabic comma
 );
 
 $digitTransformTable = array(
