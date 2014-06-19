@@ -87,6 +87,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		} else {
 			$mysqli->options( MYSQLI_SET_CHARSET_NAME, 'binary' );
 		}
+		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, 3 );
 
 		$numAttempts = 2;
 		for ( $i = 0; $i < $numAttempts; $i++ ) {
