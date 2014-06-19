@@ -237,9 +237,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$scale = array();
 			$scale['height'] = $params['urlheight'];
 		} else {
-			$scale = null;
 			if ( $params['urlparam'] ) {
-				$this->dieUsage( "{$p}urlparam requires {$p}urlwidth", "urlparam_no_width" );
+				// Audio files might not have a width/height.
+				$scale = array();
+			} else {
+				$scale = null;
 			}
 		}
 
@@ -256,6 +258,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @return array Array of parameters for transform.
 	 */
 	protected function mergeThumbParams( $image, $thumbParams, $otherParams ) {
+		if ( $thumbParams === null ) {
+			// No scaling requested
+			return null;
+		}
 		if ( !isset( $thumbParams['width'] ) && isset( $thumbParams['height'] ) ) {
 			// We want to limit only by height in this situation, so pass the
 			// image's full width as the limiting width. But some file types
@@ -269,6 +275,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( !$otherParams ) {
+			$this->checkParameterNormalise( $image, $thumbParams );
 			return $thumbParams;
 		}
 		$p = $this->getModulePrefix();
@@ -289,11 +296,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// handlers.
 			$this->setWarning( "Could not parse {$p}urlparam for " . $image->getName()
 				. '. Using only width and height' );
-
+			$this->checkParameterNormalise( $image, $thumbParams );
 			return $thumbParams;
 		}
 
-		if ( isset( $paramList['width'] ) ) {
+		if ( isset( $paramList['width'] ) && isset( $thumbParams['width'] ) ) {
 			if ( intval( $paramList['width'] ) != intval( $thumbParams['width'] ) ) {
 				$this->setWarning( "Ignoring width value set in {$p}urlparam ({$paramList['width']}) "
 					. "in favor of width value derived from {$p}urlwidth/{$p}urlheight "
@@ -307,7 +314,33 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 
-		return $thumbParams + $paramList;
+		$finalParams = $thumbParams + $paramList;
+		$this->checkParameterNormalise( $image, $finalParams );
+		return $finalParams;
+	}
+
+	/**
+	 * Verify that the final image parameters can be normalised.
+	 *
+	 * This doesn't use the normalised parameters, since $file->transform
+	 * expects the pre-normalised parameters, but doing the normalisation
+	 * allows us to catch certain error conditions early (such as missing
+	 * required parameter).
+	 *
+	 * @param $image File
+	 * @param $finalParams array List of parameters to transform image with
+	 */
+	protected function checkParameterNormalise( $image, $finalParams ) {
+		$h = $image->getHandler();
+		if ( !$h ) {
+			return;
+		}
+		// Note: normaliseParams modifies the array in place, but we aren't interested
+		// in the actual normalised version, only if we can actually normalise them,
+		// so we use the functions scope to throw away the normalisations.
+		if ( !$h->normaliseParams( $image, $finalParams ) ) {
+			$this->dieUsage( "Could not normalise image parameters for " . $image->getName(), "urlparamnormal" );
+		}
 	}
 
 	/**
@@ -717,7 +750,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			),
 			'urlheight' => "Similar to {$p}urlwidth.",
 			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
-				"might use 'page15-100px'. {$p}urlwidth must be used and be consistent with {$p}urlparam" ),
+				"might use 'page15-100px'."
+			)
 			'limit' => 'How many image revisions to return per image',
 			'start' => 'Timestamp to start listing from',
 			'end' => 'Timestamp to stop listing at',
@@ -880,7 +914,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => "{$p}urlwidth", 'info' => "{$p}urlheight cannot be used without {$p}urlwidth" ),
 			array( 'code' => 'urlparam', 'info' => "Invalid value for {$p}urlparam" ),
-			array( 'code' => 'urlparam_no_width', 'info' => "{$p}urlparam requires {$p}urlwidth" ),
+			array( 'code' => 'urlparamnormal', 'info' => "Could not normalise image parameters" ),
 		) );
 	}
 
