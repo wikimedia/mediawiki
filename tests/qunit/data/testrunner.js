@@ -136,6 +136,12 @@
 				return true;
 			}
 
+			// Don't iterate over the module registry (the 'script' references would
+			// be listed as untested methods otherwise)
+			if ( val === mw.loader.moduleRegistry ) {
+				return true;
+			}
+
 			return false;
 		};
 
