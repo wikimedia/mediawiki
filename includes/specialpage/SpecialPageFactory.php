@@ -160,6 +160,7 @@ class SpecialPageFactory {
 		'Emailuser' => 'SpecialEmailUser',
 		'Movepage' => 'MovePageForm',
 		'Mycontributions' => 'SpecialMycontributions',
+		'MyLanguage' => 'SpecialMyLanguage',
 		'Mypage' => 'SpecialMypage',
 		'Mytalk' => 'SpecialMytalk',
 		'Myuploads' => 'SpecialMyuploads',

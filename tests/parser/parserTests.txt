@@ -20769,6 +20769,23 @@ parsoid=html2wt
 # of new content
 # -----------------------------------------------------------------
 
+!! test
+Special:MyLanguage redlinking
+!! wikitext
+[[Special:MyLanguage]]
+[[Special:MyLanguage/]]
+[[Special:MyLanguage/main_Page]]
+[[Special:MyLanguage/Template:Foo]]
+[[Special:MyLanguage/This page should not exist]]
+!! html
+<p><a href="/wiki/Special:MyLanguage" class="new" title="Special:MyLanguage (page does not exist)">Special:MyLanguage</a>
+<a href="/wiki/Special:MyLanguage/" class="new" title="Special:MyLanguage/ (page does not exist)">Special:MyLanguage/</a>
+<a href="/wiki/Special:MyLanguage/main_Page" title="Special:MyLanguage/main Page">Special:MyLanguage/main_Page</a>
+<a href="/wiki/Special:MyLanguage/Template:Foo" title="Special:MyLanguage/Template:Foo">Special:MyLanguage/Template:Foo</a>
+<a href="/wiki/Special:MyLanguage/This_page_should_not_exist" class="new" title="Special:MyLanguage/This page should not exist (page does not exist)">Special:MyLanguage/This page should not exist</a>
+</p>
+!! end
+
 TODO:
 more images
 more tables
