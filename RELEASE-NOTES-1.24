@@ -21,6 +21,7 @@ production.
 * $wgDBClusterTimeout has been removed.
 * $wgProxyKey has been removed. It is no longer used by MediaWiki core.
   Ensure $wgSecretKey is set in LocalSettings.php.
+* $wgNamespacesToBeSearchedDefault now defaults to $wgContentNamespaces.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate

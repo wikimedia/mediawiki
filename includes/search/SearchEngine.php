@@ -397,7 +397,9 @@ class SearchEngine {
 	public static function defaultNamespaces() {
 		global $wgNamespacesToBeSearchedDefault;
 
-		return array_keys( $wgNamespacesToBeSearchedDefault, true );
+		return $wgNamespacesToBeSearchedDefault !== false ?
+			array_keys( $wgNamespacesToBeSearchedDefault, true )
+			$wgContentNamespaces;
 	}
 
 	/**

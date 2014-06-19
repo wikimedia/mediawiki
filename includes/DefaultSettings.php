@@ -5310,7 +5310,8 @@ $wgSearchSuggestCacheExpiry = 1200;
 $wgDisableSearchUpdate = false;
 
 /**
- * List of namespaces which are searched by default.
+ * List of namespaces which are searched by default. False means to search all
+ * content namespaces by default.
  *
  * @par Example:
  * @code
@@ -5318,9 +5319,7 @@ $wgDisableSearchUpdate = false;
  * $wgNamespacesToBeSearchedDefault[NS_PROJECT] = true;
  * @endcode
  */
-$wgNamespacesToBeSearchedDefault = array(
-	NS_MAIN => true,
-);
+$wgNamespacesToBeSearchedDefault = false;
 
 /**
  * Disable the internal MySQL-based search, to allow it to be
