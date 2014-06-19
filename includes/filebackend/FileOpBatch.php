@@ -167,7 +167,11 @@ class FileOpBatch {
 			// or the backend does not support async ops and did it synchronously.
 			foreach ( $performOpsBatch as $i => $fileOp ) {
 				if ( !isset( $status->success[$i] ) ) { // didn't already fail in precheck()
-					$subStatus = $fileOp->attemptAsync();
+					// Parallel ops may be disabled in config due to missing dependencies,
+					// (e.g. needing popen()). When they are, $performOpsBatch has size 1.
+					$subStatus = ( count( $performOpsBatch ) > 1 )
+						? $fileOp->attemptAsync()
+						: $fileOp->attempt();
 					if ( $subStatus->value instanceof FileBackendStoreOpHandle ) {
 						$opHandles[$i] = $subStatus->value; // deferred
 					} else {
