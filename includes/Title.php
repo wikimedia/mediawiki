@@ -4644,7 +4644,10 @@ class Title {
 				return (bool)wfFindFile( $this );
 			case NS_SPECIAL:
 				// valid special page
-				return SpecialPageFactory::exists( $this->getDBkey() );
+				$special = SpecialPageFactory::getPage( $this->getDBkey() );
+				$parts = explode( '/', $this->getDBkey(), 2 );
+				$subpage = isset( $parts[1] ) ? $parts[1] : null;
+				return $special && $special->subpageExists( $subpage );
 			case NS_MAIN:
 				// selflink, possibly with fragment
 				return $this->mDbkeyform == '';
