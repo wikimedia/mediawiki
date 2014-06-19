@@ -81,8 +81,8 @@
 
 		// Bind begin and end to QUnit.
 		QUnit.begin( function () {
-			that.walkTheObject( null, masterVariable, masterVariable, [], CompletenessTest.ACTION_INJECT );
-			log( 'CompletenessTest/walkTheObject/ACTION_INJECT', that );
+			that.walkTheObject( masterVariable, null, masterVariable, [] );
+			log( 'CompletenessTest/walkTheObject', that );
 		});
 
 		QUnit.done( function () {
@@ -168,10 +168,6 @@
 		return this;
 	}
 
-	/* Static members */
-	CompletenessTest.ACTION_INJECT = 500;
-	CompletenessTest.ACTION_CHECK = 501;
-
 	/* Public methods */
 	CompletenessTest.fn = CompletenessTest.prototype = {
 
@@ -189,20 +185,24 @@
 		 *  Initially this is the same as currVar.
 		 * @param parentPathArray {Array} Array of names that indicate our breadcrumb path starting at
 		 *  masterVariable. Not including currName.
-		 * @param action {Number} What is this function supposed to do (ACTION_INJECT or ACTION_CHECK)
 		 */
-		walkTheObject: function ( currName, currVar, masterVariable, parentPathArray, action ) {
-			var key, value, currPathArray,
-				type = util.type( currVar ),
-				that = this;
+		walkTheObject: function ( currObj, currName, masterVariable, parentPathArray ) {
+			var key, value, currVal, type,
+				ct = this,
+				currPathArray = parentPathArray;
 
-			currPathArray = parentPathArray;
 			if ( currName ) {
 				currPathArray.push( currName );
+				currVal = currObj[currName];
+			} else {
+				currName = '(root)';
+				currVal = currObj;
 			}
 
+			type = util.type( currVal );
+
 			// Hard ignores
-			if ( this.ignoreFn( currVar, that, currPathArray ) ) {
+			if ( this.ignoreFn( currVal, this, currPathArray ) ) {
 				return null;
 			}
 
@@ -215,45 +215,22 @@
 
 			// Functions
 			if ( type === 'function' ) {
-
-				if ( !currVar.prototype || util.isEmptyObject( currVar.prototype ) ) {
-
-					if ( action === CompletenessTest.ACTION_INJECT ) {
-
-						that.injectionTracker[ currPathArray.join( '.' ) ] = true;
-						that.injectCheck( masterVariable, currPathArray, function () {
-							that.methodCallTracker[ currPathArray.join( '.' ) ] = true;
-						} );
-					}
-
-				// We don't support checking object constructors yet...
-				// ...we can check the prototypes fine, though.
-				} else {
-					if ( action === CompletenessTest.ACTION_INJECT ) {
-
-						for ( key in currVar.prototype ) {
-							if ( hasOwn.call( currVar.prototype, key ) ) {
-								value = currVar.prototype[key];
-								if ( key === 'constructor' ) {
-									continue;
-								}
-
-								that.walkTheObject( key, value, masterVariable, currPathArray.concat( 'prototype' ), action );
-							}
-						}
-
-					}
+				// Don't put a spy in constructor functions as it messes with
+				// instanceof etc.
+				if ( !currVal.prototype || util.isEmptyObject( currVal.prototype ) ) {
+					this.injectionTracker[ currPathArray.join( '.' ) ] = true;
+					this.injectCheck( currObj, currName, function () {
+						ct.methodCallTracker[ currPathArray.join( '.' ) ] = true;
+					} );
 				}
-
 			}
 
 			// Recursively. After all, this is the *completeness* test
-			if ( type === 'function' || type === 'object' ) {
-				for ( key in currVar ) {
-					if ( hasOwn.call( currVar, key ) ) {
-						value = currVar[key];
-
-						that.walkTheObject( key, value, masterVariable, currPathArray.slice(), action );
+			// This also traverses static properties and the prototype of a constructor
+			if ( type === 'object' || type === 'function' ) {
+				for ( key in currVal ) {
+					if ( hasOwn.call( currVal, key ) ) {
+						this.walkTheObject( currVal, key, masterVariable, currPathArray.slice() );
 					}
 				}
 			}
@@ -294,27 +271,23 @@
 		 * @param objectPathArray {Array}
 		 * @param injectFn {Function}
 		 */
-		injectCheck: function ( masterVariable, objectPathArray, injectFn ) {
-			var i, len, prev, memberName, lastMember,
-				curr = masterVariable;
+		injectCheck: function ( obj, key, injectFn ) {
+			var spy,
+				val = obj[ key ];
 
-			// Get the object in question through the path from the master variable,
-			// We can't pass the value directly because we need to re-define the object
-			// member and keep references to the parent object, member name and member
-			// value at all times.
-			for ( i = 0, len = objectPathArray.length; i < len; i++ ) {
-				memberName = objectPathArray[i];
+			spy = function () {
+				injectFn();
+				return val.apply( this, arguments );
+			};
 
-				prev = curr;
-				curr = prev[memberName];
-				lastMember = memberName;
-			}
+			// Make the spy inherit from the original so that its static methods are also
+			// visible in the spy (e.g. when we inject a check into mw.log, mw.log.warn
+			// must remain accessible).
+			/*jshint proto:true */
+			spy.__proto__ = val;
 
 			// Objects are by reference, members (unless objects) are not.
-			prev[lastMember] = function () {
-				injectFn();
-				return curr.apply( this, arguments );
-			};
+			obj[ key ] = spy;
 		}
 	};
 
