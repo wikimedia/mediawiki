@@ -102,6 +102,8 @@ production.
   The feature needs to be enabled with $wgPageLanguageUseDB=true and
   permission needs to be set for 'pagelang'.
 * Upgrade Moment.js to v2.7.0.
+* New special page, MyLanguages, to redirect users to subpages with localised
+  versions of a page. (Integrated from Extension:Translate)
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
