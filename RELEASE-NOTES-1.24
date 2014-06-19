@@ -78,6 +78,8 @@ production.
 * Skins can now use 'remoteSkinPath' when defining ResourceLoader modules.
   This works the same as 'remoteExtPath' but is relative to the skins/ folder
   instead of the extensions/ folder.
+* New special page, MyLanguages, to redirect users to localised versions of
+  pages. (Integrated from Extension:Translate)
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

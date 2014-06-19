@@ -1011,6 +1011,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialLog' => 'includes/specials/SpecialLog.php',
 	'SpecialMergeHistory' => 'includes/specials/SpecialMergeHistory.php',
 	'SpecialMycontributions' => 'includes/specials/SpecialMyRedirectPages.php',
+	'SpecialMyLanguage' => 'includes/specials/SpecialMyLanguage.php',
 	'SpecialMypage' => 'includes/specials/SpecialMyRedirectPages.php',
 	'SpecialMytalk' => 'includes/specials/SpecialMyRedirectPages.php',
 	'SpecialMyuploads' => 'includes/specials/SpecialMyRedirectPages.php',
