@@ -1392,7 +1392,7 @@ class User {
 	 * @return array Array of String options
 	 */
 	public static function getDefaultOptions() {
-		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
+		global $wgContentNamespaces, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
 
 		static $defOpt = null;
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && $defOpt !== null ) {
@@ -1409,7 +1409,7 @@ class User {
 			$defOpt[$langCode == $wgContLang->getCode() ? 'variant' : "variant-$langCode"] = $langCode;
 		}
 		foreach ( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
-			$defOpt['searchNs' . $nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
+			$defOpt['searchNs' . $nsnum] = isset( $wgContentNamespaces[$nsnum] );
 		}
 		$defOpt['skin'] = $wgDefaultSkin;
 
