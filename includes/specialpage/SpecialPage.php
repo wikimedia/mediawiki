@@ -287,6 +287,19 @@ class SpecialPage {
 	}
 
 	/**
+	 * Returns whether a given supbpage for this special page "exists" in the sense of how links to it should
+	 * be rendered - red or blue.
+	 *
+	 * @since 1.24
+	 *
+	 * @param string $subpage
+	 * @return bool
+	 */
+	public function subpageExists( $subpage ) {
+		return true;
+	}
+
+	/**
 	 * If the user is not logged in, throws UserNotLoggedIn error.
 	 *
 	 * Default error message includes a link to Special:Userlogin with properly set 'returnto' query
