@@ -12,7 +12,7 @@
  *
  * @author Timo Tijhof, 2011-2012
  */
-( function ( $ ) {
+( function ( mw, $ ) {
 	'use strict';
 
 	var util,
@@ -77,12 +77,20 @@
 		this.lazyLimit = 2000;
 		this.lazyCounter = 0;
 
-		var that = this;
+		var that = this, warn;
 
 		// Bind begin and end to QUnit.
 		QUnit.begin( function () {
+			// Suppress warnings (e.g. deprecation notices for accessing the properties)
+			warn = mw.log.warn;
+			mw.log.warn = $.noop;
+
 			that.walkTheObject( null, masterVariable, masterVariable, [], CompletenessTest.ACTION_INJECT );
 			log( 'CompletenessTest/walkTheObject/ACTION_INJECT', that );
+
+			// Restore warnings
+			mw.log.warn = warn;
+			warn = undefined;
 		});
 
 		QUnit.done( function () {
@@ -321,4 +329,4 @@
 	/* Expose */
 	window.CompletenessTest = CompletenessTest;
 
-}( jQuery ) );
+}( mediaWiki, jQuery ) );
