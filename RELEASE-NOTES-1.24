@@ -121,6 +121,7 @@ production.
   The old format is still used if prop isn't provided, but this is deprecated.
 * meta=userinfo can now return the count of unread pages on the watchlist.
 * list=watchlist can now filter by unread status.
+* prop=imageinfo no longer requires iiurlwidth to be set when using iiurlparam.
 
 === Languages updated in 1.24 ===
 
