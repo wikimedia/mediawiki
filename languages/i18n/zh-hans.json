@@ -2880,6 +2880,7 @@
 	"confirm-watch-top": "将此页添加到您的监视吗？",
 	"confirm-unwatch-button": "确定",
 	"confirm-unwatch-top": "从监视列表中删除此页吗？",
+	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"colon-separator": "：",
 	"pipe-separator": "&#32;|&#32;",

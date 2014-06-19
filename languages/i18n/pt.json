@@ -1285,7 +1285,7 @@
 	"largefileserver": "O tamanho deste ficheiro é superior ao permitido pela configuração do servidor.",
 	"emptyfile": "O ficheiro que enviou parece estar vazio.\nIsto pode dever-se a um erro no nome do ficheiro.\nVerifique se é realmente este o ficheiro que deseja carregar, por favor.",
 	"windows-nonascii-filename": "A wiki não aceita nomes de ficheiros com caracteres especiais.",
-	"fileexists": "Já existe um ficheiro com este nome.\nVerifique <strong>[[:$1]]</strong> caso não tenha a certeza de que quer alterar o ficheiro atual, por favor.\n[[$1|thumb]]",
+	"fileexists": "Já existe um ficheiro com este nome. Verifique <strong>[[:$1]]</strong> caso não tenha a certeza de que quer alterá-lo.\n[[$1|thumb]]",
 	"filepageexists": "A página de descrição deste ficheiro já foi criada em <strong>[[:$1]]</strong>, mas neste momento não existe nenhum ficheiro com este nome.\nO resumo que introduzir não aparecerá na página de descrição.\nPara fazê-lo aparecer, terá de editar a página manualmente.\n[[$1|thumb]]",
 	"fileexists-extension": "Já existe um ficheiro de nome semelhante: [[$2|thumb]]\n* Nome do ficheiro que está sendo carregado: <strong>[[:$1]]</strong>\n* Nome do ficheiro existente: <strong>[[:$2]]</strong>\nEscolha um nome diferente, por favor.",
 	"fileexists-thumbnail-yes": "O ficheiro aparenta ser uma imagem de tamanho reduzido (''miniatura'', ou ''thumbnail)''. [[$1|thumb]]\nVerifique o ficheiro <strong>[[:$1]]</strong>, por favor.\nSe este ficheiro é a mesma imagem mas no tamanho original, não é necessário carregar uma miniatura.",

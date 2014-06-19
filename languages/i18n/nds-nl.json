@@ -2303,7 +2303,7 @@
 	"weeks": "{{PLURAL:$1|één weke|$1 weken}}",
 	"months": "{{PLURAL:$1|een maond|$1 maonden}}",
 	"years": "{{PLURAL:$1|één jaor|$1 jaor}}",
-	"ago": "$1 eleen",
+	"ago": "$1 elejen",
 	"just-now": "onderlest",
 	"hours-ago": "$1 {{PLURAL:$1|uur}} elejen",
 	"minutes-ago": "$1 {{PLURAL:$1|minuut|minuten}} elejen",

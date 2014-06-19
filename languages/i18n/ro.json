@@ -1250,7 +1250,7 @@
 	"largefileserver": "Fișierul este mai mare decât este configurat serverul să permită.",
 	"emptyfile": "Fișierul pe care l-ați încărcat pare a fi gol. Aceasta poate fi datorită unei greșeli în numele fișierului. Verificați dacă într-adevăr doriți să încărcați acest fișier.",
 	"windows-nonascii-filename": "Acest wiki nu acceptă nume de fișiere care conțin caractere speciale.",
-	"fileexists": "Un fișier cu același nume există deja, vă rugăm verificați <strong>[[:$1]]</strong> dacă nu sunteți sigur dacă doriți să îl modificați.\n[[$1|thumb]]",
+	"fileexists": "Un fișier cu același nume există deja; vă rugăm să verificați <strong>[[:$1]]</strong> în cazul în care nu sunteți sigur{{GENDER:||ă|}} că doriți să îl modificați.\n[[$1|thumb]]",
 	"filepageexists": "Pagina cu descrierea fișierului a fost deja creată la <strong>[[:$1]]</strong>, dar niciun fișier cu acest nume nu există în acest moment.\nSumarul pe care l-ai introdus nu va apărea în pagina cu descriere.\nPentru ca sumarul tău să apară, va trebui să îl adaugi manual.\n[[$1|miniatură]]",
 	"fileexists-extension": "Un fișier cu un nume similar există: [[$2|thumb]]\n* Numele fișierului de încărcat: <strong>[[:$1]]</strong>\n* Numele fișierului existent: <strong>[[:$2]]</strong>\nTe rog alege alt nume.",
 	"fileexists-thumbnail-yes": "Fișierul pare a fi o imagine cu o rezoluție scăzută ''(thumbnail)''. [[$1|thumb]]\nVerifică fișierul<strong>[[:$1]]</strong>.\nDacă fișierul verificat este identic cu imaginea originală nu este necesară încărcarea altui thumbnail.",
