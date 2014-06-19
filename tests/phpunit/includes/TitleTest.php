@@ -20,6 +20,16 @@ class TitleTest extends MediaWikiTestCase {
 		) );
 	}
 
+	public function addDBData() {
+		$this->db->replace( 'interwiki', 'iw_prefix',
+			array(
+				'iw_prefix' => 'externalwiki',
+				'iw_url' => '//example.com/$1',
+				'iw_api' => '//example.com/api.php',
+			)
+		);
+	}
+
 	/**
 	 * @covers Title::legalChars
 	 */
@@ -605,5 +615,32 @@ class TitleTest extends MediaWikiTestCase {
 	public function testGetFragment( $full, $fragment ) {
 		$title = Title::newFromText( $full );
 		$this->assertEquals( $fragment, $title->getFragment() );
+	}
+
+	/**
+	 * @covers Title::isAlwaysKnown
+	 * @dataProvider provideIsAlwaysKnown
+	 * @param string $page
+	 * @param bool $isKnown
+	 */
+	public function testIsAlwaysKnown( $page, $isKnown ) {
+		$title = Title::newFromText( $page );
+		$this->assertEquals( $isKnown, $title->isAlwaysKnown() );
+	}
+
+	public function provideIsAlwaysKnown() {
+		return array(
+			array( 'Some nonexistent page', false ),
+			array( 'UTPage', false ),
+			array( '#test', true ),
+			array( 'Special:BlankPage', true ),
+			array( 'Special:MyLanguage', false ),
+			array( 'Special:MyLanguage/', false ),
+			array( 'Special:MyLanguage/Some nonexistent page', false ),
+			array( 'Special:MyLanguage/UTPage', true ),
+			array( 'MediaWiki:Parentheses', true ),
+			array( 'MediaWiki:Some nonexistent message', false ),
+			array( 'externalwiki:Interwiki link', true ),
+		);
 	}
 }
