@@ -136,6 +136,12 @@
 				return true;
 			}
 
+			// Don't inject a spy in mw.log. Overriding it will blow away
+			// mw.log.warn etc.
+			if ( val === mw.log ) {
+				return true;
+			}
+
 			return false;
 		};
 
