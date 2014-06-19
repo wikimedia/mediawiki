@@ -215,36 +215,29 @@
 
 			// Functions
 			if ( type === 'function' ) {
+				if ( action === CompletenessTest.ACTION_INJECT ) {
 
-				if ( !currVar.prototype || util.isEmptyObject( currVar.prototype ) ) {
+					that.injectionTracker[ currPathArray.join( '.' ) ] = true;
+					that.injectCheck( masterVariable, currPathArray, function () {
+						that.methodCallTracker[ currPathArray.join( '.' ) ] = true;
+					} );
 
-					if ( action === CompletenessTest.ACTION_INJECT ) {
-
-						that.injectionTracker[ currPathArray.join( '.' ) ] = true;
-						that.injectCheck( masterVariable, currPathArray, function () {
-							that.methodCallTracker[ currPathArray.join( '.' ) ] = true;
-						} );
-					}
-
-				// We don't support checking object constructors yet...
-				// ...we can check the prototypes fine, though.
-				} else {
-					if ( action === CompletenessTest.ACTION_INJECT ) {
-
+					// If the function looks like a object constructor, also
+					// walk its prototype.
+					if ( currVar.prototype ) {
 						for ( key in currVar.prototype ) {
 							if ( hasOwn.call( currVar.prototype, key ) ) {
 								value = currVar.prototype[key];
 								if ( key === 'constructor' ) {
+									// Don't recurse.
 									continue;
 								}
 
 								that.walkTheObject( key, value, masterVariable, currPathArray.concat( 'prototype' ), action );
 							}
 						}
-
 					}
 				}
-
 			}
 
 			// Recursively. After all, this is the *completeness* test
@@ -295,7 +288,7 @@
 		 * @param injectFn {Function}
 		 */
 		injectCheck: function ( masterVariable, objectPathArray, injectFn ) {
-			var i, len, prev, memberName, lastMember,
+			var i, len, prev, memberName, lastMember, spy,
 				curr = masterVariable;
 
 			// Get the object in question through the path from the master variable,
@@ -310,11 +303,19 @@
 				lastMember = memberName;
 			}
 
-			// Objects are by reference, members (unless objects) are not.
-			prev[lastMember] = function () {
+			spy = function () {
 				injectFn();
 				return curr.apply( this, arguments );
 			};
+
+			// Make the spy inherit from the original so that its static methods are also
+			// visible in the spy (e.g. when we inject a check into mw.log, mw.log.warn
+			// must remain accessible).
+			/*jshint proto:true */
+			spy.__proto__ = curr;
+
+			// Objects are by reference, members (unless objects) are not.
+			prev[lastMember] = spy;
 		}
 	};
 
