@@ -1002,6 +1002,7 @@
 	"mergehistory-empty": "Used in [[Special:MergeHistory]].",
 	"mergehistory-success": "Used in [[Special:MergeHistory]].\n* $1 - target page title\n* $2 - destination page title\n* $3 - number of revisions which succeeded to merge",
 	"mergehistory-fail": "Used as error message in [[Special:MergeHistory]].",
+	"mergehistory-fail-toobig": "Used as error message in [[Special:MergeHistory]].\n* $1 - maximum allowed number of revisions that can be moved",
 	"mergehistory-no-source": "Used as error message in [[Special:MergeHistory]].\n* $1 - source page title\nSee also:\n* {{msg-mw|mergehistory-invalid-source}}\n* {{msg-mw|mergehistory-invalid-destination}}\n* {{msg-mw|mergehistory-no-destination}}\n* {{msg-mw|mergehistory-same-destination}}",
 	"mergehistory-no-destination": "Used as error message in [[Special:MergeHistory]].\n* $1 - destination page title\nSee also:\n* {{msg-mw|mergehistory-invalid-source}}\n* {{msg-mw|mergehistory-no-source}}\n* {{msg-mw|mergehistory-invalid-destination}}\n* {{msg-mw|mergehistory-same-destination}}",
 	"mergehistory-invalid-source": "Used as error message in [[Special:MergeHistory]].\n\nSee also:\n* {{msg-mw|mergehistory-no-source}}\n* {{msg-mw|mergehistory-invalid-destination}}\n* {{msg-mw|mergehistory-no-destination}}\n* {{msg-mw|mergehistory-same-destination}}",
