@@ -348,8 +348,8 @@ class SpecialPageFactory {
 				return new $className;
 			} elseif ( is_array( $rec ) ) {
 				// @deprecated, officially since 1.18, unofficially since forever
-				wfDebug( "Array syntax for \$wgSpecialPages is deprecated, " .
-					"define a subclass of SpecialPage instead." );
+				wfDeprecated( "Array syntax for \$wgSpecialPages is deprecated, " .
+					"define a subclass of SpecialPage instead.", '1.18' );
 				$className = array_shift( $rec );
 				self::getList()->$realName = MWFunction::newObj( $className, $rec );
 			}
