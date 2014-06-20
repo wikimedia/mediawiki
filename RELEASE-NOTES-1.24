@@ -175,6 +175,8 @@ changes to languages because of Bugzilla reports.
   have since become subclasses of the Action class. (deprecated since 1.19)
 * SearchEngineReplacePrefixesComplete hook was removed.
 * SearchGetNearMatchBefore hook was removed.
+* SpecialSearchNoResults hook was removed, SpecialSearchResults is now called
+  regardless of whether there are results
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
