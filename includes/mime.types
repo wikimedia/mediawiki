@@ -169,3 +169,8 @@ application/vnd.ms-excel.sheet.binary.macroEnabled.12 xlsb
 model/vnd.dwfx+xps dwfx
 application/vnd.ms-xpsdocument xps
 application/x-opc+zip docx dotx docm dotm potx ppsx pptx ppam pptm potm ppsm xlsx xltx xlsm xltm xlam xlsb dwfx xps
+chemical/x-mdl-molfile mol
+chemical/x-mdl-sdfile sdf
+chemical/x-mdl-rxnfile rxn
+chemical/x-mdl-rdfile rd
+chemical/x-mdl-rgfile rg

@@ -82,6 +82,11 @@ text/plain txt
 text/html html htm
 video/ogg ogv ogm ogg
 video/mpeg mpg mpeg
+chemical/x-mdl-molfile mol
+chemical/x-mdl-sdfile sdf
+chemical/x-mdl-rxnfile rxn
+chemical/x-mdl-rdfile rd
+chemical/x-mdl-rgfile rg
 END_STRING
 );
 
@@ -130,6 +135,11 @@ text/plain [TEXT]
 text/html [TEXT]
 video/ogg [VIDEO]
 video/mpeg [VIDEO]
+chemical/x-mdl-molfile       [DRAWING]
+chemical/x-mdl-sdfile        [DRAWING]
+chemical/x-mdl-rxnfile       [DRAWING]
+chemical/x-mdl-rdfile        [DRAWING]
+chemical/x-mdl-rgfile        [DRAWING]
 unknown/unknown application/octet-stream application/x-empty [UNKNOWN]
 END_STRING
 );
@@ -295,7 +305,7 @@ class MimeMagic {
 				continue;
 			}
 
-			#print "processing MIME INFO line $s<br>";
+			# print "processing MIME INFO line $s<br>";
 
 			$match = array();
 			if ( preg_match( '!\[\s*(\w+)\s*\]!', $s, $match ) ) {
@@ -479,6 +489,13 @@ class MimeMagic {
 		return in_array( strtolower( $extension ), $types );
 	}
 
+	function isChemFileExtension( $extension ) {
+		static $types = array(
+			'mol', 'sdf', 'rxn', 'rd', 'rg',
+		);
+		return in_array( strtolower( $extension ), $types );
+	}
+
 	/**
 	 * Improves a mime type using the file extension. Some file formats are very generic,
 	 * so their mime type is not very meaningful. A more useful mime type can be derived
@@ -518,6 +535,8 @@ class MimeMagic {
 					".$ext is not a known OPC extension.\n" );
 				$mime = 'application/zip';
 			}
+		} elseif ( ( $mime === 'text/plain' ) && $this->isChemFileExtension( $ext ) ) {
+			$mime = $this->guessTypesForExtension( $ext );
 		}
 
 		if ( isset( $this->mMimeTypeAliases[$mime] ) ) {
@@ -561,6 +580,60 @@ class MimeMagic {
 
 		wfDebug( __METHOD__ . ": guessed mime type of $file: $mime\n" );
 		return $mime;
+	}
+
+	/**
+	 * Guess chemical mime types from file contents.
+	 *
+	 * @param string $head
+	 * @param string $tail
+	 * @return bool|string Mime type
+	 */
+	private function doGuessChemicalMime( $head, $tail ) {
+		# Note that a lot of chemical table files contain embedded molfiles.
+		# Therefore, always check for them before checking for molfiles!
+		$headers = array(
+			'$RXN'                              => 'chemical/x-mdl-rxnfile',
+			'$RDFILE '                          => 'chemical/x-mdl-rdfile',
+			'$MDL'                              => 'chemical/x-mdl-rgfile',
+		);
+		$tailsRegExps = array(
+			# MDL-Molfile with all kind of line endings
+			'/\n\s*$$$$\s*$/'                   => 'chemical/x-mdl-sdfile',
+			'/\n\s*M  END\s*$/'                 => 'chemical/x-mdl-molfile',
+		);
+		$headersRegExps = array(
+			# MDL-Molfile counts line
+			# #atoms #bond_numbers #atom_lists [obsolete] [999|#propery_lines] <version>
+			'/\n(\s*\d{1,3}\s+){3}[^\n]*(?:\d+\s+){1,12}V\d{4,5}\n/'
+			                                    => 'chemical/x-mdl-molfile',
+		);
+
+		# Compare headers
+		foreach ( $headers as $magic => $candidate ) {
+			if ( strncmp( $head, $magic, strlen( $magic ) ) === 0 ) {
+				wfDebug( __METHOD__ . ": magic header in $file recognized as $candidate\n" );
+				return $candidate;
+			}
+		}
+
+		# Match tails
+		foreach ( $tailsRegExps as $regExp => $candidate ) {
+			if ( preg_match( $regExp, $tail ) ) {
+				wfDebug( __METHOD__ . ": magic tail in $file recognized as $candidate\n" );
+				return $candidate;
+			}
+		}
+
+		# Match headers
+		foreach ( $headersRegExps as $regExp => $candidate ) {
+			if ( preg_match( $regExp, $head ) ) {
+				wfDebug( __METHOD__ . ": regexp in $file recognized as $candidate\n" );
+				return $candidate;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -617,7 +690,7 @@ class MimeMagic {
 		);
 
 		foreach ( $headers as $magic => $candidate ) {
-			if ( strncmp( $head, $magic, strlen( $magic ) ) == 0 ) {
+			if ( strncmp( $head, $magic, strlen( $magic ) ) === 0 ) {
 				wfDebug( __METHOD__ . ": magic header in $file recognized as $candidate\n" );
 				return $candidate;
 			}
@@ -746,7 +819,7 @@ class MimeMagic {
 			return 'image/vnd.djvu';
 		}
 
-		return false;
+		return $this->doGuessChemicalMime( $head, $tail );
 	}
 
 	/**
@@ -921,7 +994,7 @@ class MimeMagic {
 
 		if ( $m ) {
 			# normalize
-			$m = preg_replace( '![;, ].*$!', '', $m ); #strip charset, etc
+			$m = preg_replace( '![;, ].*$!', '', $m ); # strip charset, etc
 			$m = trim( $m );
 			$m = strtolower( $m );
 
