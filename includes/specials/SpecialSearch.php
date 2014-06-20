@@ -308,51 +308,37 @@ class SpecialSearch extends SpecialPage {
 				)
 			)
 		);
+
+		// Get number of results
+		$titleMatchesNum = $textMatchesNum = $numTitleMatches = $numTextMatches = 0;
+		if ( $titleMatches ) {
+			$titleMatchesNum = $titleMatches->numRows();
+			$numTitleMatches = $titleMatches->getTotalHits();
+		}
+		if ( $textMatches ) {
+			$textMatchesNum = $textMatches->numRows();
+			$numTextMatches = $textMatches->getTotalHits();
+		}
+		$num = $titleMatchesNum + $textMatchesNum;
+		$totalRes = $numTitleMatches + $numTextMatches;
+
 		$out->addHtml(
 			# This is an awful awful ID name. It's not a table, but we
 			# named it poorly from when this was a table so now we're
 			# stuck with it
 			Xml::openElement( 'div', array( 'id' => 'mw-search-top-table' ) ) .
-			$this->shortDialog( $term ) .
-			Xml::closeElement( 'div' )
+			$this->shortDialog( $term, $num, $totalRes ) .
+			Xml::closeElement( 'div' ) .
+			$this->formHeader( $term, $this->profile ) .
+			Xml::closeElement( 'form' )
 		);
 
 		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
 		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
-			$out->addHTML( $this->formHeader( $term, 0, 0 ) );
-			$out->addHtml( $this->getProfileForm( $this->profile, $term ) );
-			$out->addHTML( '</form>' );
-
 			// Empty query -- straight view of search form
 			return;
 		}
 
-		// Get number of results
-		$titleMatchesNum = $titleMatches ? $titleMatches->numRows() : 0;
-		$textMatchesNum = $textMatches ? $textMatches->numRows() : 0;
-		// Total initial query matches (possible false positives)
-		$num = $titleMatchesNum + $textMatchesNum;
-
-		// Get total actual results (after second filtering, if any)
-		$numTitleMatches = $titleMatches && !is_null( $titleMatches->getTotalHits() ) ?
-			$titleMatches->getTotalHits() : $titleMatchesNum;
-		$numTextMatches = $textMatches && !is_null( $textMatches->getTotalHits() ) ?
-			$textMatches->getTotalHits() : $textMatchesNum;
-
-		// get total number of results if backend can calculate it
-		$totalRes = 0;
-		if ( $titleMatches && !is_null( $titleMatches->getTotalHits() ) ) {
-			$totalRes += $titleMatches->getTotalHits();
-		}
-		if ( $textMatches && !is_null( $textMatches->getTotalHits() ) ) {
-			$totalRes += $textMatches->getTotalHits();
-		}
-
-		// show number of results and current offset
-		$out->addHTML( $this->formHeader( $term, $num, $totalRes ) );
-		$out->addHtml( $this->getProfileForm( $this->profile, $term ) );
-
-		$out->addHtml( Xml::closeElement( 'form' ) );
 		$out->addHtml( "<div class='searchresults'>" );
 
 		// prev/next links
@@ -883,26 +869,6 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param string $profile
-	 * @param string $term
-	 * @return string
-	 */
-	protected function getProfileForm( $profile, $term ) {
-		// Hidden stuff
-		$opts = array();
-		$opts['profile'] = $this->profile;
-
-		if ( $profile === 'advanced' ) {
-			return $this->powerSearchBox( $term, $opts );
-		} else {
-			$form = '';
-			wfRunHooks( 'SpecialSearchProfileForm', array( $this, &$form, $profile, $term, $opts ) );
-
-			return $form;
-		}
-	}
-
-	/**
 	 * Generates the power search box at [[Special:Search]]
 	 *
 	 * @param string $term Search term
@@ -1042,11 +1008,9 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * @param string $term
-	 * @param int $resultsShown
-	 * @param int $totalNum
 	 * @return string
 	 */
-	protected function formHeader( $term, $resultsShown, $totalNum ) {
+	protected function formHeader( $term, $profile ) {
 		$out = Xml::openElement( 'div', array( 'class' => 'mw-search-formheader' ) );
 
 		$bareterm = $term;
@@ -1085,31 +1049,20 @@ class SpecialSearch extends SpecialPage {
 		}
 		$out .= Xml::closeElement( 'ul' );
 		$out .= Xml::closeElement( 'div' );
-
-		// Results-info
-		if ( $resultsShown > 0 ) {
-			if ( $totalNum > 0 ) {
-				$top = $this->msg( 'showingresultsheader' )
-					->numParams( $this->offset + 1, $this->offset + $resultsShown, $totalNum )
-					->params( wfEscapeWikiText( $term ) )
-					->numParams( $resultsShown )
-					->parse();
-			} elseif ( $resultsShown >= $this->limit ) {
-				$top = $this->msg( 'showingresults' )
-					->numParams( $this->limit, $this->offset + 1 )
-					->parse();
-			} else {
-				$top = $this->msg( 'showingresultsnum' )
-					->numParams( $this->limit, $this->offset + 1, $resultsShown )
-					->parse();
-			}
-			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ),
-				Xml::tags( 'ul', null, Xml::tags( 'li', null, $top ) )
-			);
-		}
-
 		$out .= Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
 		$out .= Xml::closeElement( 'div' );
+
+		// Hidden stuff
+		$opts = array();
+		$opts['profile'] = $this->profile;
+
+		if ( $profile === 'advanced' ) {
+			$out .= $this->powerSearchBox( $term, $opts );
+		} else {
+			$form = '';
+			wfRunHooks( 'SpecialSearchProfileForm', array( $this, &$form, $profile, $term, $opts ) );
+			$out .= $form;
+		}
 
 		return $out;
 	}
@@ -1118,7 +1071,7 @@ class SpecialSearch extends SpecialPage {
 	 * @param string $term
 	 * @return string
 	 */
-	protected function shortDialog( $term ) {
+	protected function shortDialog( $term, $resultsShown, $totalNum ) {
 		$out = Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 		$out .= Html::hidden( 'profile', $this->profile ) . "\n";
 		// Term box
@@ -1133,6 +1086,16 @@ class SpecialSearch extends SpecialPage {
 			$this->msg( 'searchbutton' )->text(),
 			array( 'class' => array( 'mw-ui-button', 'mw-ui-progressive' ) )
 		) . "\n";
+
+		// Results-info
+		if ( $totalNum > 0 ) {
+			$top = $this->msg( 'showingresultsheader' )
+				->numParams( $this->offset + 1, $this->offset + $resultsShown, $totalNum )
+				->params( wfEscapeWikiText( $term ) )
+				->numParams( $resultsShown )
+				->parse();
+			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ), $top );
+		}
 
 		return $out . $this->didYouMeanHtml;
 	}
