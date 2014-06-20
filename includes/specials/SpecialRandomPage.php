@@ -62,10 +62,14 @@ class SpecialRandomPage extends SpecialPage {
 	}
 
 	public function setNamespace( $ns ) {
-		if ( !$ns || $ns < NS_MAIN ) {
+		if ( !$this->isValidNS( $ns ) ) {
 			$ns = NS_MAIN;
 		}
 		$this->namespaces = [ $ns ];
+	}
+
+	private function isValidNS( $ns ) {
+		return $ns !== false && $ns >= 0;
 	}
 
 	// select redirects instead of normal pages?
@@ -74,11 +78,7 @@ class SpecialRandomPage extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		if ( is_string( $par ) ) {
-			// Testing for stringiness since we want to catch
-			// the empty string to mean main namespace only.
-			$this->setNamespace( $this->getContentLanguage()->getNsIndex( $par ) );
-		}
+		$this->parsePar( $par );
 
 		$title = $this->getRandomTitle();
 
@@ -95,6 +95,41 @@ class SpecialRandomPage extends SpecialPage {
 		$query = array_merge( $this->getRequest()->getValues(), $redirectParam );
 		unset( $query['title'] );
 		$this->getOutput()->redirect( $title->getFullURL( $query ) );
+	}
+
+	/**
+	 * Parse the subpage parameter that specifies namespaces
+	 *
+	 * @param string $par Subpage to special page
+	 */
+	private function parsePar( $par ) {
+		// Testing for stringiness since we want to catch
+		// the empty string to mean main namespace only.
+		if ( is_string( $par ) ) {
+			$ns = $this->getContentLanguage()->getNsIndex( $par );
+			if ( $ns === false && strpos( $par, ',' ) !== false ) {
+				$nsList = [];
+				// Comma separated list
+				$parSplit = explode( ',', $par );
+				foreach ( $parSplit as $potentialNs ) {
+					$ns = $this->getContentLanguage()->getNsIndex( $potentialNs );
+					if ( $this->isValidNS( $ns ) ) {
+						$nsList[] = $ns;
+					}
+					// Remove duplicate values, and re-index array
+					$nsList = array_unique( $nsList );
+					$nsList = array_values( $nsList );
+					$this->namespaces = $nsList;
+				}
+			} else {
+				// Note, that the case of $par being something
+				// like "main" which is not a namespace, falls
+				// through to here, and sets NS_MAIN, allowing
+				// Special:Random/main or Special:Random/article
+				// to work as expected.
+				$this->setNamespace( $this->getContentLanguage()->getNsIndex( $par ) );
+			}
+		}
 	}
 
 	/**
