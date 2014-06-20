@@ -41,16 +41,6 @@ class SearchResultSet {
 	}
 
 	/**
-	 * Return true if results are included in this result set.
-	 * STUB
-	 *
-	 * @return bool
-	 */
-	function hasResults() {
-		return false;
-	}
-
-	/**
 	 * Some search modes return a total hit count for the query
 	 * in the entire article database. This may include pages
 	 * in namespaces that would not be matched on the given
@@ -200,12 +190,8 @@ class SearchNearMatchResultSet extends SearchResultSet {
 		$this->result = $match;
 	}
 
-	public function hasResult() {
-		return (bool)$this->result;
-	}
-
 	public function numRows() {
-		return $this->hasResults() ? 1 : 0;
+		return $this->result ? 1 : 0;
 	}
 
 	public function next() {
