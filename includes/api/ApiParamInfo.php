@@ -29,33 +29,29 @@
  */
 class ApiParamInfo extends ApiBase {
 
-	/**
-	 * @var ApiQuery
-	 */
-	protected $queryObj;
-
-	public function __construct( ApiMain $main, $action ) {
-		parent::__construct( $main, $action );
-		$this->queryObj = new ApiQuery( $this->getMain(), 'query' );
-	}
-
 	public function execute() {
 		// Get parameters
 		$params = $this->extractRequestParams();
 		$resultObj = $this->getResult();
 
 		$res = array();
+		if ( isset( $params['submodules'] ) && !isset( $params['mainmoduleforsubmodules'] ) ) {
+			$this->dieUsage(
+				'You must specify the "mainmoduleforsubmodules" parameter when using "submodules".',
+				'nomainmoduleforsubmodules'
+			);
+		}
 
 		$this->addModulesInfo( $params, 'modules', $res, $resultObj );
 
-		$this->addModulesInfo( $params, 'querymodules', $res, $resultObj );
+		$this->addModulesInfo( $params, 'submodules', $res, $resultObj );
 
 		if ( $params['mainmodule'] ) {
 			$res['mainmodule'] = $this->getClassInfo( $this->getMain() );
 		}
 
 		if ( $params['pagesetmodule'] ) {
-			$pageSet = new ApiPageSet( $this->queryObj );
+			$pageSet = new ApiPageSet( $this->getMain()->getModuleManager()->getModule( 'query' ) );
 			$res['pagesetmodule'] = $this->getClassInfo( $pageSet );
 		}
 
@@ -75,11 +71,16 @@ class ApiParamInfo extends ApiBase {
 		if ( !is_array( $params[$type] ) ) {
 			return;
 		}
-		$isQuery = ( $type === 'querymodules' );
-		if ( $isQuery ) {
-			$mgr = $this->queryObj->getModuleManager();
-		} else {
-			$mgr = $this->getMain()->getModuleManager();
+		$mgr = $this->getMain()->getModuleManager();
+		$isSubmodule = ( $type === 'submodules' );
+		if ( $isSubmodule ) {
+			$mgr = $mgr->getModule( $params['mainmoduleforsubmodules'] )->getModuleManager();
+			if ( $mgr === null ) {
+				$this->dieUsage(
+					"The \"{$params['mainmoduleforsubmodules']}\" module does not support submodules",
+					'nosubmodules'
+				);
+			}
 		}
 		$res[$type] = array();
 		foreach ( $params[$type] as $mod ) {
@@ -90,8 +91,8 @@ class ApiParamInfo extends ApiBase {
 			$obj = $mgr->getModule( $mod );
 			$item = $this->getClassInfo( $obj );
 			$item['name'] = $mod;
-			if ( $isQuery ) {
-				$item['querytype'] = $mgr->getModuleGroup( $mod );
+			if ( $isSubmodule ) {
+				$item['moduletype'] = $mgr->getModuleGroup( $mod );
 			}
 			$res[$type][] = $item;
 		}
@@ -314,8 +315,6 @@ class ApiParamInfo extends ApiBase {
 	public function getAllowedParams() {
 		$modules = $this->getMain()->getModuleManager()->getNames( 'action' );
 		sort( $modules );
-		$querymodules = $this->queryObj->getModuleManager()->getNames();
-		sort( $querymodules );
 		$formatmodules = $this->getMain()->getModuleManager()->getNames( 'format' );
 		sort( $formatmodules );
 
@@ -324,9 +323,11 @@ class ApiParamInfo extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => $modules,
 			),
-			'querymodules' => array(
+			'mainmoduleforsubmodules' => array( // @todo better name for this?
+				ApiBase::PARAM_TYPE => $modules,
+			),
+			'submodules' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $querymodules,
 			),
 			'mainmodule' => false,
 			'pagesetmodule' => false,
@@ -338,9 +339,11 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
 			'modules' => 'List of module names (value of the action= parameter)',
-			'querymodules' => 'List of query module names (value of prop=, meta= or list= parameter)',
+			'submodules' => "List of submodule names for the {$p}mainmoduleforsubmodules module",
+			'mainmoduleforsubmodules' => 'The module to use when getting submodules',
 			'mainmodule' => 'Get information about the main (top-level) module as well',
 			'pagesetmodule' => 'Get information about the pageset module ' .
 				'(providing titles= and friends) as well',
@@ -354,7 +357,8 @@ class ApiParamInfo extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=paraminfo&modules=parse&querymodules=allpages|siteinfo'
+			'api.php?action=paraminfo&modules=parse',
+			'api.php?action=paraminfo&mainmoduleforsubmodules=query&submodules=allpages|siteinfo',
 		);
 	}
 
