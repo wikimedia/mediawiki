@@ -800,7 +800,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Ei Version|$2 Versione}} vui däre Unterschidsaazeig ($1) {{PLURAL:$2|isch|sin}} nit gfunde wore.\n\nDää Fähler chunnt normalerwyys dur e veraltete Link zue dr Versionsgschicht vun ere Syte, wu in dr Zwischezyt glescht woren isch.\nEinzelheite chasch im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech] bschaue.",
 	"searchresults": "Suech-Ergäbnis",
 	"searchresults-title": "Suechergebniss fir „$1“",
-	"toomanymatches": "D Aazahl vu dr Suechergebniss isch z gross, bitte versuech e anderi Abfrog.",
 	"titlematches": "Iberyystimmige mit Sytentitel",
 	"textmatches": "Iberyystimmige mit Inhalte",
 	"notextmatches": "Kei Iberyystimmige mit Inhalte",

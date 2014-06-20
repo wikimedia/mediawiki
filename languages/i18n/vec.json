@@ -770,7 +770,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Na version|$2 version}} de sta difarensa ($1) {{PLURAL:$2|nó ła xe sta trovà|nó łe xe stae trovae}}.\n\nCuesto se verifega de sołito seguendo un ligamente vecio de un dif a na pàjina scansełà.\nI detaji i pol esar catai inte'l [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de łe scansełasion].",
 	"searchresults": "Risultati de la riserca",
 	"searchresults-title": "Risultati de la riserca de \"$1\"",
-	"toomanymatches": "Xe stà catà massa corispondense, par piaser próa a modificar la richiesta.",
 	"titlematches": "In tei titoli de le pagine",
 	"textmatches": "Corispondense nel testo de le pagine",
 	"notextmatches": "Nei testi de le pagine no gò catà gnente",

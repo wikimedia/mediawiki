@@ -832,7 +832,6 @@
 	"difference-missing-revision": "A(z) \"{{PAGENAME}}\" nevű oldal #$1 $2 változata nem létezik.\n\nEzt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás használata okozza. Részletek a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatóak.",
 	"searchresults": "A keresés eredménye",
 	"searchresults-title": "Keresési eredmények: „$1”",
-	"toomanymatches": "Túl sok találat van, próbálkozz egy másik lekérdezéssel",
 	"titlematches": "Címbeli egyezések",
 	"textmatches": "Szövegbeli egyezések",
 	"notextmatches": "Nincsenek szövegbeli egyezések",

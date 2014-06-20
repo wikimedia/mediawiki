@@ -799,7 +799,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Eén versie|$2 versies}} van disse verschillen ($1) {{PLURAL:$2|is|bin}} niet evunnen.\n\nDit kömp meestentieds deur t volgen van n verouwerde verwiezing naor n zied die vortedaon is.\nWaorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
 	"searchresults": "Zeukresultaoten",
 	"searchresults-title": "Zeukresultaoten veur \"$1\"",
-	"toomanymatches": "Der waren te veule resultaoten. Probeer n aandere zeukopdrachte.",
 	"titlematches": "Overeenkomst mit t onderwarp",
 	"textmatches": "Overeenkomst mit teksten",
 	"notextmatches": "Gien overeenstemming",

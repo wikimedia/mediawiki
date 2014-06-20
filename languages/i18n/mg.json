@@ -808,7 +808,6 @@
 	"difference-missing-revision": "Tsy hita ny versiona $2{{PLURAL:$2||}} ny fahasamihafanna ($1) an'ity pejy ity.\n\nVokatry ny fanarahana rohy fampitahana lany daty mankany amy pejy efa voafafa izan . Ho hita eo amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafàna] ny antsipirihany.",
 	"searchresults": "Valim-pikarohana",
 	"searchresults-title": "Valim-pikarohana ho an'ny « $1 »",
-	"toomanymatches": "Betsaka loatra ny isan'ny mitovy naverina, mametraha fangatahana hafa.",
 	"titlematches": "Mifanitsy amin'ny lohatenin'ny lahatsoratra",
 	"textmatches": "Mifanitsy amin'ny votoatin'ny pejy",
 	"notextmatches": "Tsy nahitana votoatim-pejy mifanaraka",

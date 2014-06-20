@@ -780,7 +780,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Ein versjón sum liggur ímillum|$1 versjónir sum liggja ímillum}} skrivaðar av meira enn $2 {{PLURAL:$2|brúkara|brúkarum}} ikki víst)",
 	"searchresults": "Leitúrslit",
 	"searchresults-title": "Leiti úrslit fyri \"$1\"",
-	"toomanymatches": "Alt ov nógvar úrslit vóru funnin, vinarliga royn aftur við nýggjum fyrispurningi",
 	"titlematches": "Síðu heiti samsvarar",
 	"textmatches": "Teksturin á síðuni samsvarar",
 	"notextmatches": "Ongin síðutekstur samsvarar",

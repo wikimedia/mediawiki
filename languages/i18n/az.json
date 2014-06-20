@@ -733,7 +733,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$2|Bir istifadəçi|$2 istifadəçi}} tərəfindən edilən {{PLURAL:$1|bir ara redaktə|$1 ara redaktə}} göstərilmir)",
 	"searchresults": "Axtarış nəticələri",
 	"searchresults-title": "''$1'' üçün axtarış nəticələri",
-	"toomanymatches": "Üst-üstə düşən çoxlu hal tapılıb, lütfən yeni sorğu göndərin",
 	"titlematches": "Səhifə adı eynidir",
 	"textmatches": "Mətn eynidir",
 	"notextmatches": "Məqalələrdə uyğun məzmun tapılmadı",

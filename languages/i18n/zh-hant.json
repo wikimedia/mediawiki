@@ -52,7 +52,8 @@
 			"乌拉跨氪",
 			"아라",
 			"Vincent Liu",
-			"Mywood"
+			"Mywood",
+			"Cwek"
 		]
 	},
 	"tog-underline": "連結底線：",
@@ -740,9 +741,9 @@
 	"previousrevision": "←上個修訂",
 	"nextrevision": "下個修訂→",
 	"currentrevisionlink": "最新修訂",
-	"cur": "現",
+	"cur": "目前",
 	"next": "後筆",
-	"last": "前",
+	"last": "前筆",
 	"page_first": "第一頁",
 	"page_last": "最後頁",
 	"histlegend": "比較選擇的版本差異：選要比較修訂版本的單選方塊並點選網頁底部的按鈕進行比較。<br />\n符號說明：<strong>({{int:cur}})</strong> = 與最新的修訂版本比較，<strong>({{int:last}})</strong> = 與前一筆修訂版本比較，<strong>{{int:minoreditletter}}</strong> = 小修訂。",
@@ -862,7 +863,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|1次修訂|$2 次修訂}}差異($1)不存在。\n\n這通常是因為過時的頁面修訂差異鏈接被刪除。\n詳情請閱[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]。",
 	"searchresults": "搜尋結果",
 	"searchresults-title": "\"$1\" 的搜尋結果",
-	"toomanymatches": "太多符合條件的結果，請嘗試使用較複雜的查詢",
 	"titlematches": "頁面標題符合",
 	"textmatches": "頁面內容符合",
 	"notextmatches": "沒有符合的頁面內容",

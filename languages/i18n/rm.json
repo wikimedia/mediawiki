@@ -739,7 +739,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Ina versiun|$2 versiuns}} da questa differenza ($1) {{PLURAL:$2|n'è betg vegnida chattada|n'èn betg vegnidas chattadas}}.\n\nPer ordinari vegn quai chaschunà dad ina colliaziun da diff antiquada ad ina pagian ch'è vegnida stizzada. \nDetagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protocol da stizzar].",
 	"searchresults": "Resultats da tschertga",
 	"searchresults-title": "Resultats da tschertga per \"$1\"",
-	"toomanymatches": "Il dumber dals resultats è memia grond. Tschertga per plaschair auters terms.",
 	"titlematches": "Titels da paginas che correspundan",
 	"textmatches": "Texts da paginas che correspundan",
 	"notextmatches": "Nagin text correspunda",

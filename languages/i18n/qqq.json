@@ -1032,7 +1032,6 @@
 	"search-summary": "{{doc-specialpagesummary|search}}",
 	"searchresults": "This is the title of the page that contains the results of a search.\n\n{{Identical|Search results}}",
 	"searchresults-title": "Appears as page title in the html header of the search result special page.\n\nParameters:\n* $1 - the search term",
-	"toomanymatches": "Used as section header in [[Special:Search]], when there are too many hits.",
 	"titlematches": "Used as section header in [[Special:Search]].\n\nThis message is followed by search results.",
 	"textmatches": "When displaying search results",
 	"notextmatches": "Error message when there are no results",

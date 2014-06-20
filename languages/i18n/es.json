@@ -923,7 +923,6 @@
 	"difference-missing-revision": "No {{PLURAL:$2|se ha encontrado|se han encontrado}} {{PLURAL:$2|una revisión|$2 revisiones}} de esta diferencia ($1).\n\nEsto suele deberse a seguir un enlace obsoleto hacia una página que ya ha sido borrada.\nLos detalles pueden encontrarse en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrado].",
 	"searchresults": "Resultados de la búsqueda",
 	"searchresults-title": "Resultados de la búsqueda de «$1»",
-	"toomanymatches": "Se han obtenido muchos resultados; por favor intenta una consulta diferente",
 	"titlematches": "Coincidencias de título de artículo",
 	"textmatches": "Coincidencias de texto de artículo",
 	"notextmatches": "No hay coincidencias de texto de artículo",

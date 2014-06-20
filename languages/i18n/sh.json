@@ -808,7 +808,6 @@
 	"difference-missing-revision": "Ne mogu da pronađem {{PLURAL:$2|jednu izmenu|$2 izmene|$2 izmena}} od ove razlike ($1).\n\nOvo se obično dešava kada pratite zastarjelu vezu do stranice koja je obrisana.\nViše informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
 	"searchresults": "Rezultati pretrage",
 	"searchresults-title": "Rezultati pretrage za \"$1\"",
-	"toomanymatches": "Pronađeno je previše rezultata, molimo pokušajte unijeti konkretniji izraz",
 	"titlematches": "Naslov članka odgovara",
 	"textmatches": "Tekst stranice odgovara",
 	"notextmatches": "Tekst stranice ne odgovara",

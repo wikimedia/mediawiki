@@ -856,7 +856,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Satu revisi|$2 revisi}} dari perbedaan ini ($1) {{PLURAL:$2|tidak|tidak}} ditemukan.\n\nHal ini biasanya disebabkan oleh tautan diff yang kedaluwarsa ke halaman yang sudah dihapus.\nRinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 	"searchresults": "Hasil pencarian",
 	"searchresults-title": "Hasil pencarian untuk \"$1\"",
-	"toomanymatches": "Pencarian menghasilkan terlalu banyak hasil, silakan masukkan kueri lain",
 	"titlematches": "Judul halaman yang sama",
 	"textmatches": "Teks halaman yang cocok",
 	"notextmatches": "Tidak ada teks halaman yang cocok",

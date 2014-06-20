@@ -14,7 +14,8 @@
 			"VIGNERON",
 			"Y-M D",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Pymouss"
 		]
 	},
 	"tog-underline": "Liammoù islinennet",
@@ -408,7 +409,7 @@
 	"userlogin-loggedin": "Kevreet oc'h dija evel {{GENDER:$1|$1}}.\nImplijit ar furmskrid amañ dindan evit kevreañ evel un implijer all.",
 	"userlogin-createanother": "Krouiñ ur gont all",
 	"createacct-emailrequired": "Chomlec'h postel",
-	"createacct-emailoptional": "Chomlec'h postel (direizh)",
+	"createacct-emailoptional": "Chomlec'h postel (diret)",
 	"createacct-email-ph": "Skrivit ho chomlec'h postel",
 	"createacct-another-email-ph": "Ebarzhiñ ur chomlec'h postel",
 	"createaccountmail": "Implijout ur ger-tremen dibad ha kas anezhañ d'ar chomlec'h postel diferetDre bostel",
@@ -808,7 +809,6 @@
 	"difference-missing-revision": "!!{{PLURAL:$2|Un adweladur|$2 adweladurioù}} eus an disheñvelder ($1) {{PLURAL:$2|n'eo ket bet kavet|n'int ket bet adkavet}}.\n\nC'hoarvezout a ra peurliesañ pa vez heuliet ul liamm disheñvel dispredet war-zu ur bajenn zo bet dilamet.\nGallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} renabl an dilamadurioù].",
 	"searchresults": "Disoc'hoù enklask",
 	"searchresults-title": "Disoc'hoù klask evit \"$1\"",
-	"toomanymatches": "Re a respontoù a glot gant ar goulenn, klaskit gant ur goulenn all",
 	"titlematches": "Klotadurioù gant an titloù",
 	"textmatches": "Klotadurioù en testennoù",
 	"notextmatches": "N'emañ ar ger(ioù) goulennet e testenn pennad ebet",

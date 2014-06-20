@@ -816,7 +816,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Eng Versioun|$2 Versioune}} vun dëser Differenz ($1) {{PLURAL:$2|gouf|goufen}} net fonnt.\n\nDat geschitt normalerweis wann Dir op e vereelste Link vun enger Versioun vun enger Säit klickt déi geläscht ginn ass.\nDetailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbuch vum Läschen].",
 	"searchresults": "Resultat vum Sichen",
 	"searchresults-title": "Resultater vum Sichen no \"$1\"",
-	"toomanymatches": "Zevill Resultater goufe fonnt, versicht w.e.g. eng aner Ufro",
 	"titlematches": "Iwwereneestëmmungen am Säitentitel",
 	"textmatches": "Iwwereneestëmmungen am Säitentext",
 	"notextmatches": "Keng Iwwereneestëmmungen",

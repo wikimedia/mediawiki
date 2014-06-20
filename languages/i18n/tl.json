@@ -794,7 +794,6 @@
 	"difference-missing-revision": "Hindi natagpuan ang {{PLURAL:$2|isang rebisyon|$2 mga rebisyon}} ng kaibahang ($1) ito.\n\nKaraniwang itong isinanhi ng pagsunod sa isang wala na sa panahong kawing sa pagkakaiba na papunta sa isang pahinang nabura na.\nMatatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
 	"searchresults": "Kinalabasan/Resulta ng paghahanap",
 	"searchresults-title": "Resulta ng paghahanap para sa \"$1\"",
-	"toomanymatches": "Napakaraming mga tumutugmang ibinalik, pakisubok ang isang ibang tanong",
 	"titlematches": "Tumutugma ang pamagat ng pahina",
 	"textmatches": "Tumutugma ang teksto ng pahina",
 	"notextmatches": "Walang katugmang pahina ng teksto",

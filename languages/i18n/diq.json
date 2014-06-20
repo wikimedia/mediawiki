@@ -824,7 +824,6 @@
 	"difference-missing-revision": "Ferqê {{PLURAL:$2|Yew rewizyonê|$2 rewizyonê}} {{PLURAL:$2|dı|dı}} ($1) sero çıniyo.\n\nNo normal de werênayış dê pelanê besterneyan dı ena xırabin asena.\nDetayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tiya dı] aseno.",
 	"searchresults": "Neticeyê geyrayışi",
 	"searchresults-title": "Qandê \"$1\" neticeyê geyrayışi",
-	"toomanymatches": "Zêde teki (zewci) peyser çarnay, şıma rê zehmet, be persê do bin ra bıcerrebnên.",
 	"titlematches": "Tekê (zewcê) sernameyê pele",
 	"textmatches": "Tekê (zewcê) nuştey pele",
 	"notextmatches": "tekê (zewcê) nuştey pele çıniyê",

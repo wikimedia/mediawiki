@@ -872,7 +872,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.\n\nIsto é geralmente causado por seguir uma ligação de histórico desatualizada para uma página que foi eliminada.\nOs detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
 	"searchresults": "Resultados da pesquisa",
 	"searchresults-title": "Resultados da pesquisa de \"$1\"",
-	"toomanymatches": "Foram devolvidos demasiados resultados; tente outro termo de pesquisa, por favor",
 	"titlematches": "Resultados no título das páginas",
 	"textmatches": "Resultados no conteúdo das páginas",
 	"notextmatches": "Não foi possível localizar, no conteúdo das páginas, o termo pesquisado",

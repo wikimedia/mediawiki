@@ -800,7 +800,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Uređivanje|$2 uređivanja}} sljedeće šifre ($1) ne {{PLURAL:$2|postoji|postoje}}.\n\nOvo je obično uzrokovano kada kliknete na zastarjelu poveznicu na stranice koja je obrisana.\nViše informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
 	"searchresults": "Rezultati pretrage",
 	"searchresults-title": "Rezultati traženja za \"$1\"",
-	"toomanymatches": "Preveliki broj rezultata, molimo probajte drukčiji upit",
 	"titlematches": "Pronađene stranice prema naslovu",
 	"textmatches": "Pronađene stranice prema tekstu članka",
 	"notextmatches": "Nema pronađenih stranica prema tekstu članka",

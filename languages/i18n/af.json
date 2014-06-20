@@ -803,7 +803,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|'n Weergawe|$2 weergawes}} van die verskil ($1) {{PLURAL:$2|is|is}} nie gevind nie.\n\nDit word meestal veroorsaak deur die volg van 'n verouderde verwysing na 'n bladsy wat verwyder is.\nDetails kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.",
 	"searchresults": "Soekresultate",
 	"searchresults-title": "Soekresultate vir \"$1\"",
-	"toomanymatches": "Te veel resultate. Probeer asseblief 'n ander soektog.",
 	"titlematches": "Artikeltitel resultate",
 	"textmatches": "Artikelteks resultate",
 	"notextmatches": "Geen artikelteks resultate nie",

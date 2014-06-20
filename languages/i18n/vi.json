@@ -838,7 +838,6 @@
 	"difference-missing-revision": "Không tìm thấy {{PLURAL:$2|một phiên bản|$2 phiên bản}} trong khác biệt này ($1).\n\nLỗi này thường xuất hiện đối khi theo dõi liên kết lỗi thời đến khác biệt giữa các bản của trang đã bị xóa.\nXem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 	"searchresults": "Kết quả tìm kiếm",
 	"searchresults-title": "Kết quả tìm kiếm “$1”",
-	"toomanymatches": "Có quá nhiều kết quả được trả về, xin hãy thử câu tìm kiếm khác",
 	"titlematches": "Đề mục tương tự",
 	"textmatches": "Câu chữ tương tự",
 	"notextmatches": "Không tìm thấy nội dung trang",

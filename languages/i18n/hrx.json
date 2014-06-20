@@ -805,7 +805,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Ein Version|$2 Versione}} der Unnerschiedsoonzeich ($1) {{PLURAL:$2|woard|worre}} net gefund.\n\nDer Fehler weard normalerweis von en veraltete Link zur Versionsgeschicht von en Seit verursacht, wo zwischichzeitlich abgewischt woard.\nEinzelheite sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Abwasch-Logbuch] voarhand.",
 	"searchresults": "Suchergebnisse",
 	"searchresults-title": "Suchergebnisse für „$1“",
-	"toomanymatches": "Die Oonzoohl von der Suchergebnisse ist zu gross, bittschön versuch en annre Abfroch.",
 	"titlematches": "Üwereinstimmunge mit Seitetitle",
 	"textmatches": "Üwereinstimmunge mit Inhalte",
 	"notextmatches": "Ken Üwereinstimmunge mit Inhalte",

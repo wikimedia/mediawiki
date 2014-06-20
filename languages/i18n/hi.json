@@ -853,7 +853,6 @@
 	"difference-missing-revision": "इस अंतर {{PLURAL:$2|का एक अवतरण|के $2 अवतरण}} ($1) नहीं {{PLURAL:$2|पाया गया|पाए गए}}।\n\nयह आम तौर पर एक हटाए गए पृष्ठ के अवतरणों में अंतर ढूँढने पर होता है। अधिक जानकारी [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} हटाने के लॉग] में पायी जा सकती है।",
 	"searchresults": "खोज परिणाम",
 	"searchresults-title": "\"$1\" के लिए खोज परिणाम",
-	"toomanymatches": "अत्यधिक जवाब मिले हैं, कृपया खोजशब्द बदलें",
 	"titlematches": "पृष्ठ शीर्षक मिलान",
 	"textmatches": "पृष्ठ पाठ मिलान",
 	"notextmatches": "किसी भी पृष्ठ में यह सामग्री नहीं मिली",

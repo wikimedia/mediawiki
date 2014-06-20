@@ -668,7 +668,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخ متوسطه}} by {{PLURAL:$2|يوزر واحد |$2 يوزرات}}  مش معروضه)",
 	"searchresults": "نتايج التدوير",
 	"searchresults-title": "نتايج التدوير على \"$1\"",
-	"toomanymatches": "لقينا حاجات كتيرة متطابقة، لو سمحت تجرب استعلام مختلف",
 	"titlematches": "عنوان الصفحة زى",
 	"textmatches": "نص الصفحة بيطابق",
 	"notextmatches": "ما لقيناش أى نص مطابق",

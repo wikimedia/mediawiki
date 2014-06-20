@@ -852,7 +852,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Yhtä versiota|$2 versiota}} tästä vertailusta ($1) {{PLURAL:$2|ei}} löytynyt.\n\nUseimmiten tämä johtuu vanhentuneesta vertailulinkistä poistettuun sivuun.\nLisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",
 	"searchresults": "Hakutulokset",
 	"searchresults-title": "Haun tulokset hakusanalle ”$1”",
-	"toomanymatches": "Liian monta osumaa. Kokeile erilaista kyselyä.",
 	"titlematches": "Osumat sivujen otsikoissa",
 	"textmatches": "Osumat sivujen teksteissä",
 	"notextmatches": "Hakusanaa ei löytynyt sivujen teksteistä",

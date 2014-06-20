@@ -819,7 +819,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|$2 revízia|$2 revízie|$2 revízií}} pre požadovaný rozdiel ($1) {{PLURAL:$2|neexistuje|neexistujú|neexistuje}}.\n\nPravdepodobne ste nasledovali zastaraný odkaz na rozdiel revízií, z ktorých niektorá bola medzičasom odstránená.\nPodrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname zmazaní].",
 	"searchresults": "Výsledky vyhľadávania",
 	"searchresults-title": "Výsledky hľadania „$1“",
-	"toomanymatches": "Hľadanie vrátilo príliš veľa výsledkov. Prosím, skúste inú požiadavku.",
 	"titlematches": "Vyhovujúce názvy stránok",
 	"textmatches": "Zhody v textoch stránok",
 	"notextmatches": "V textoch stránok nebola nájdená zhoda",

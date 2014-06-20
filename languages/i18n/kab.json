@@ -793,7 +793,6 @@
 	"difference-missing-revision": "{{PLURAL:$1|Yiwet tacaggart|$1 ticaggartin}} n tameẓla agi ($1) {{PLURAL:$2|ur tella ara (ulac)|ur llant ara (ulac)}}.\n\nAcku azday n tameẓla, ɣef wayen tsennedeḍ, d-aqbur. Asebter yemḥa.\nTzemreḍ ad affeḍ tilɣa deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} uɣmis n isebtar yekksen].",
 	"searchresults": "Igmad n unadi",
 	"searchresults-title": "Igmad n unadi i \"$1\"",
-	"toomanymatches": "Teceggeɛeḍ amḍan ameqqṛan n igemmaḍ, ilaq ad ceggeɛeḍ tuttra nniḍen.",
 	"titlematches": "Ayen yecban azwel n umegrad",
 	"textmatches": "Ayen yecban azwel n usebter",
 	"notextmatches": "ulac ayen yecban azwel n usebter",

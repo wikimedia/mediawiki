@@ -884,7 +884,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Una versione|$2 versioni}} di questa differenza ($1) {{PLURAL:$2|non è stata trovata|non sono state trovate}}.\n\nQuesto si verifica solitamente seguendo un collegamento obsoleto di un diff a una pagina cancellata.\nI dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro delle cancellazioni].",
 	"searchresults": "Risultati della ricerca",
 	"searchresults-title": "Risultati della ricerca di \"$1\"",
-	"toomanymatches": "Troppe corrispondenze. Modificare la richiesta.",
 	"titlematches": "Corrispondenze nel titolo delle pagine",
 	"textmatches": "Corrispondenze nel testo delle pagine",
 	"notextmatches": "Nessuna corrispondenza nel testo delle pagine",

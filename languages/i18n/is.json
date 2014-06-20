@@ -788,7 +788,6 @@
 	"difference-missing-revision": "$2 {{PLURAL:$2|útgáfa|útgáfur}} samanburðarins ($1) {{PLURAL:$2|fannst|fundust}} ekki.\n\nÞetta gerist oftast þegar úreldur samanburðartengill tengir á síðu sem hefur verið eytt.\nFrekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingarskránni].",
 	"searchresults": "Leitarniðurstöður",
 	"searchresults-title": "Leitarniðurstöður fyrir „$1“",
-	"toomanymatches": "Of mörgum niðurstöðum var skilað, gjörðu svo vel og reyndu aðra fyrirspurn",
 	"titlematches": "Titlar greina sem pössuðu við fyrirspurnina",
 	"textmatches": "Leitarorð fannst/fundust í innihaldi eftirfarandi greina",
 	"notextmatches": "Engar samsvaranir á texta í síðum",

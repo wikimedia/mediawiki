@@ -850,7 +850,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|مراجعة واحدة|$2 مراجعات}} لهذا الفرق ($1) {{PLURAL:$2|لم|لم}} يتم إيجادها.\n\nهذا يحدث عادة عن طريق اتباع وصلة فرق قديمة لصفحة تم حذفها.\nالتفاصيل يمكن إيجادها في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 	"searchresults": "نتائج البحث",
 	"searchresults-title": "نتائج البحث عن \"$1\"",
-	"toomanymatches": "وجدت مطابقات كثيرة، من فضلك جرب استعلاما مختلفا",
 	"titlematches": "عنوان الصفحة يطابق",
 	"textmatches": "نص الصفحة يطابق",
 	"notextmatches": "لم يتم إيجاد أي نص مطابق",

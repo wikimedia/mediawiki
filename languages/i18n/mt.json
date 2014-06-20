@@ -735,7 +735,6 @@
 	"diff-multi-manyusers": "(Mhux qed {{PLURAL:$1|tintwera reviżjoni intermedja|jintwerew $1 reviżjonijit intermedji}} mingħand iktar minn $2 {{PLURAL:$2|utent|$2 utenti}})",
 	"searchresults": "Riżultat tat-tfittxija",
 	"searchresults-title": "Riżultati tat-tfittxija għal \"$1\"",
-	"toomanymatches": "Ħafna tqabbil ġew ritornati, jekk jogħġbok prova inkjesta differenti",
 	"titlematches": "Titlu tal-paġna taqbel",
 	"textmatches": "It-test tal-paġni, jaqbel",
 	"notextmatches": "L-ebda test ta' paġna ma jaqbel",

@@ -817,7 +817,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Ein Version|$2 Versione}} vun heh däm Verjlisch zwesche Versione ($1) {{PLURAL:$2|hammer}} nit jefonge.\n\nEsu jät kütt för jewöhnlesch, wam_mer enem övverhollte Lengk ob der Ongerscheid zwesche de Versione vun en Sigg follesch, di zweschedren fottjeschmeße woode es.\nMieh doh drövver fengk mer em [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbooch vum Sigge Fottschmiiße].",
 	"searchresults": "Wat beim Söke eruskom",
 	"searchresults-title": "Noh „$1“ jesoht.",
-	"toomanymatches": "Dat wore zo vill Treffer, beß esu joot, un donn en annder Ußwahl probeere!",
 	"titlematches": "Zopass Üvverschrefte",
 	"textmatches": "Sigge met däm Täx",
 	"notextmatches": "Kein Sigg met däm Tex",

@@ -829,7 +829,6 @@
 	"difference-missing-revision": "ไม่พบรุ่น{{PLURAL:$2|รุ่น| $2 รุ่น}}ของผลต่างนี้ ($1)\n\nโดยปกติเกิดจากการเข้าลิงก์ผลต่างของหน้าที่ถูกลบไปแล้ว \nดูรายละเอียดได้ที่[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ปูมการลบ]",
 	"searchresults": "ผลการค้นหา",
 	"searchresults-title": "ผลการค้นหาสำหรับ \"$1\"",
-	"toomanymatches": "พบตรงกันมากเกินไป กรุณาลองใช้คำค้นหาอื่น",
 	"titlematches": "พบชื่อเรื่องหน้าตรงกัน",
 	"textmatches": "พบข้อความตรงในหน้า",
 	"notextmatches": "ไม่พบข้อความตรงในหน้า",

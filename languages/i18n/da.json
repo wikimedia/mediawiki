@@ -845,7 +845,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|En revision|$2 revisioner}} af denne forskel ($1) {{PLURAL:$2|blev|blev}} ikke fundet.\n\nDette skyldes normalt et forældet diff link til en side der er slettet.\nDetaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
 	"searchresults": "Søgeresultater",
 	"searchresults-title": "Søgeresultater for \"$1\"",
-	"toomanymatches": "Søgningen fandt for mange sider. Prøv venligst med en anden søgning.",
 	"titlematches": "Artikeltitler der opfyldte forespørgslen",
 	"textmatches": "Artikeltekster der opfyldte forespørgslen",
 	"notextmatches": "Ingen artikeltekster opfyldte forespørgslen",

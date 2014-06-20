@@ -842,7 +842,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Unu revizio|$2 revizioj}} de ĉi tiu malsameco ($1) ne {{PLURAL:$2|estis|estis}} trovebla.\n\nLa kutima kaŭzo estas sekvi malaktualan malsamo-ligilon al paĝo forviŝita.\nDetaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de forviŝoj].",
 	"searchresults": "Serĉrezultoj",
 	"searchresults-title": "Serĉrezultoj por \"$1\"",
-	"toomanymatches": "Tro da serĉo-trafoj estis trovitaj; bonvolu provi malsaman serĉomendon.",
 	"titlematches": "Trovitaj laŭ titolo",
 	"textmatches": "Trovitaj laŭ enhavo",
 	"notextmatches": "Neniu trovita laŭ enhavo",

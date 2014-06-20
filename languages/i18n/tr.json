@@ -863,7 +863,6 @@
 	"difference-missing-revision": "Bu farkın {{PLURAL:$2|bir revizyonu|$2 revizyonu}} ($1) {{PLURAL:$2|bulunamadı|bulunamadı}}.\n\nBu genellikle, silinen bir sayfaya olan eski tarihli bir fark sayfasına bağlantılardan dolayı olur.\nAyrıntılar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme günlüğünde] bulunabilir.",
 	"searchresults": "Arama sonuçları",
 	"searchresults-title": "\"$1\" için arama sonuçları",
-	"toomanymatches": "Çok fazla eşleşme döndü, lütfen başka bir sorgu seçin",
 	"titlematches": "Madde adı eşleşiyor",
 	"textmatches": "Sayfa metni eşleşiyor",
 	"notextmatches": "Hiçbir sayfada bulunamadı",

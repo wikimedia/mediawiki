@@ -766,7 +766,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Àtúnyẹ̀wò kan|Àwọn àtúnyẹ̀wò $2}} ìyàtọ̀ yìí ($1) kò {{PLURAL:$2|sí|sí}}.\n\nÈyí ṣẹlẹ̀ nítorí pé ẹ tẹ̀lé àjápọ̀ ìyàtọ̀ tí kò ṣiṣẹ́ mọ́ wá sí ojúewé tó ti jẹ́ píparẹ́.\nẸ̀kúnrẹ́rẹ́ wà nínú [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} àkọọ́lẹ̀ ìparẹ́].",
 	"searchresults": "Àwọn èsì àwárí",
 	"searchresults-title": "Àwọn èsì àwárí fún \"$1\"",
-	"toomanymatches": "Àwọn ìbáramu ti pọ̀jù, ẹ jọ̀wọ́ ẹ gbìyànjú lọ́nà mìíràn",
 	"titlematches": "Àkọlé ojúewé báramu",
 	"textmatches": "Ọ̀rọ̀ ojúewé tóbáramu:",
 	"notextmatches": "Kò sí ọ̀rọ̀ ojúewé tóbáramu",
