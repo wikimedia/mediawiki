@@ -167,6 +167,7 @@ changes to languages because of Bugzilla reports.
   skin style files used by the module.
 * Removed getLang() from IContextSource and subclasses. (deprecated since 1.19)
 * Removed WebRequest::escapeAppendQuery(). (deprecated since 1.20)
+* SearchEngineReplacePrefixesComplete hook was removed.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
