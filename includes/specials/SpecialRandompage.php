@@ -27,7 +27,7 @@
  *
  * @ingroup SpecialPage
  */
-class RandomPage extends SpecialPage {
+class RandomPage extends IncludableSpecialPage {
 	private $namespaces; // namespaces to select pages from
 	protected $isRedir = false; // should the result be a redirect?
 	protected $extra = array(); // Extra SQL statements
@@ -54,7 +54,7 @@ class RandomPage extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgContLang;
+		global $wgContLang, $wgParser;
 
 		if ( $par ) {
 			$this->setNamespace( $wgContLang->getNsIndex( $par ) );
@@ -71,10 +71,22 @@ class RandomPage extends SpecialPage {
 			return;
 		}
 
-		$redirectParam = $this->isRedirect() ? array( 'redirect' => 'no' ) : array();
-		$query = array_merge( $this->getRequest()->getValues(), $redirectParam );
-		unset( $query['title'] );
-		$this->getOutput()->redirect( $title->getFullURL( $query ) );
+		if ( $this->including() ) {
+			// eww icky globals
+			$oldParser = $wgParser;
+			$wgParser = new Parser;
+			$text = '{{:' . $title->getPrefixedDBKey() . '}}';
+			if ( !$this->getRequest()->getBool( 'noShowTitle', false ) ) {
+				$text = '=' . wfEscapeWikiText( $title->getPrefixedText() ) . "=\n" . $text;
+			}
+			$this->getOutput()->addWikiTextTitleTidy( $text, $oldParser->getTitle(), false );
+			$wgParser = $oldParser;
+		} else {
+			$redirectParam = $this->isRedirect() ? array( 'redirect' => 'no' ) : array();
+			$query = array_merge( $this->getRequest()->getValues(), $redirectParam );
+			unset( $query['title'] );
+			$this->getOutput()->redirect( $title->getFullURL( $query ) );
+		}
 	}
 
 	/**
