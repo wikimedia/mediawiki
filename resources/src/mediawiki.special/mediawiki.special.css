@@ -130,21 +130,14 @@ div.searchresult {
 .mw-search-formheader div.search-types ul li.current a:hover {
 	text-decoration: none;
 }
-.mw-search-formheader div.results-info {
+#mw-search-top-table div.results-info {
 	float: right;
 	padding: 0.5em;
 	padding-right: 0.75em;
+	color: #666;
+	font-size: 95%;
 }
-.mw-search-formheader div.results-info ul {
-	margin: 0 !important;
-	padding: 0 !important;
-	list-style: none !important;
-}
-.mw-search-formheader div.results-info ul li {
-	float: right;
-	margin: 0;
-	padding: 0;
-}
+
 fieldset#mw-searchoptions {
 	margin: 0;
 	padding: 0.5em 0.75em 0.75em 0.75em !important;
