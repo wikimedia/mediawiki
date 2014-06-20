@@ -268,15 +268,6 @@ class DerivativeContext extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.19 Use getLanguage instead
-	 * @return Language
-	 */
-	public function getLang() {
-		wfDeprecated( __METHOD__, '1.19' );
-		$this->getLanguage();
-	}
-
-	/**
 	 * Get the Language object
 	 *
 	 * @return Language
