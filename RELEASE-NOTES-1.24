@@ -189,6 +189,8 @@ changes to languages because of Bugzilla reports.
 * Removed ImageGalleryBase::useSkin(). (deprecated since 1.18)
 * Removed DatabaseMysqlBase::getLagFromProcesslist(). (deprecated since 1.19)
 * Removed LoadBalancer::closeConnecton(). (deprecated since 1.18)
+* SpecialSearchNoResults hook was removed, SpecialSearchResults is now called
+  regardless of whether there are results
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

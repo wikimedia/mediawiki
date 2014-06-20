@@ -2502,15 +2502,10 @@ $specialSearch: SpecialSearch object ($this)
 $output: $wgOut
 $term: Search term specified by the user
 
-'SpecialSearchResults': Called before search result display when there are
-matches.
+'SpecialSearchResults': Called before search result display
 $term: string of search term
-&$titleMatches: empty or SearchResultSet object
-&$textMatches: empty or SearchResultSet object
-
-'SpecialSearchNoResults': Called before search result display when there are no
-matches.
-$term: string of search term
+&$titleMatches: empty or SearchResultSet object, will be null with no matches
+&$textMatches: empty or SearchResultSet object, will be null with no matches
 
 'SpecialStatsAddExtra': Add extra statistic at the end of Special:Statistics.
 &$extraStats: Array to save the new stats
