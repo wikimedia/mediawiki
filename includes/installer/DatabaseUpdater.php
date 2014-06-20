@@ -455,6 +455,7 @@ abstract class DatabaseUpdater {
 			flush();
 			if ( $ret !== false ) {
 				$updatesDone[] = $origParams;
+				wfWaitForSlaves();
 			} else {
 				$updatesSkipped[] = array( $func, $params, $origParams );
 			}
