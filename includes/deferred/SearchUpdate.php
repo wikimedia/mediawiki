@@ -81,10 +81,10 @@ class SearchUpdate implements DeferrableUpdate {
 		wfProfileIn( __METHOD__ );
 
 		$page = WikiPage::newFromId( $this->id, WikiPage::READ_LATEST );
-		$indexTitle = $this->indexTitle();
 
 		foreach ( SearchEngine::getSearchTypes() as $type ) {
 			$search = SearchEngine::create( $type );
+			$indexTitle = $this->indexTitle( $search );
 			if ( !$search->supports( 'search-update' ) ) {
 				continue;
 			}
@@ -181,13 +181,13 @@ class SearchUpdate implements DeferrableUpdate {
 	 *
 	 * @return string A stripped-down title string ready for the search index
 	 */
-	private function indexTitle() {
+	private function indexTitle( SearchEngine $search ) {
 		global $wgContLang;
 
 		$ns = $this->title->getNamespace();
 		$title = $this->title->getText();
 
-		$lc = SearchEngine::legalSearchChars() . '&#;';
+		$lc = $search->legalSearchChars() . '&#;';
 		$t = $wgContLang->normalizeForSearch( $title );
 		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
 		$t = $wgContLang->lc( $t );
