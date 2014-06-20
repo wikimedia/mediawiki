@@ -183,6 +183,25 @@ class SpecialPage {
 	}
 
 	/**
+	 * How long to cache page when it is being included.
+	 *
+	 * @note If cache time is not 0, then the current user becomes an anon
+	 *   if you want to do any per-user customizations, than this method
+	 *   must be overriden to return 0.
+	 * @since 1.24
+	 * @return int|bool Time in seconds, 0 to disable caching altogether,
+	 *  false to use the parent page's cache settings
+	 */
+	public function maxIncludeCacheTime() {
+		global $wgMiserMode;
+		if ( !$wgMiserMode ) {
+			return 0;
+		} else {
+			return 60*60;
+		}
+	}
+
+	/**
 	 * Whether the special page is being evaluated via transclusion
 	 * @param bool $x
 	 * @return bool

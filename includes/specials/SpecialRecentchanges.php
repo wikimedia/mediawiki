@@ -746,4 +746,19 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function isIncludable() {
 		return true;
 	}
+
+	/**
+	 * How long to cache page when it is being included.
+	 *
+	 * @return int|bool Time in seconds, 0 to disable caching altogether
+	 */
+	public function maxIncludeCacheTime() {
+		global $wgMiserMode;
+		if ( !$wgMiserMode ) {
+			return 0;
+		} else {
+			return 60*5;
+		}
+	}
+
 }

@@ -3484,6 +3484,7 @@ class Parser {
 					&& $this->mOptions->getAllowSpecialInclusion()
 					&& $this->ot['html']
 				) {
+					$specialPage = SpecialPageFactory::getPage( $title->getDBkey() );
 					// Pass the template arguments as URL parameters.
 					// "uselang" will have no effect since the Language object
 					// is forced to the one defined in ParserOptions.
@@ -3502,7 +3503,12 @@ class Parser {
 					$context = new RequestContext;
 					$context->setTitle( $title );
 					$context->setRequest( new FauxRequest( $pageArgs ) );
-					$context->setUser( $this->getUser() );
+					if ( $specialPage && $specialPage->maxIncludeCacheTime() === 0 ) {
+						$context->setUser( $this->getUser() );
+					} else {
+						// If this page is cached, then we better not be per user.
+						$context->setUser( new User );
+					}
 					$context->setLanguage( $this->mOptions->getUserLangObj() );
 					$ret = SpecialPageFactory::capturePath( $title, $context );
 					if ( $ret ) {
@@ -3510,7 +3516,9 @@ class Parser {
 						$this->mOutput->addOutputPageMetadata( $context->getOutput() );
 						$found = true;
 						$isHTML = true;
-						$this->disableCache();
+						if ( $specialPage && $specialPage->maxIncludeCacheTime() !== false ) {
+							$this->mOutput->updateCacheExpiry( $specialPage->maxIncludeCacheTime() );
+						}
 					}
 				} elseif ( MWNamespace::isNonincludable( $title->getNamespace() ) ) {
 					$found = false; # access denied
