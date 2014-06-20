@@ -166,6 +166,7 @@ changes to languages because of Bugzilla reports.
 * ResourceLoaderFileModule#getAllStyleFiles now returns all style files and all
   skin style files used by the module.
 * Removed getLang() from IContextSource and subclasses. (deprecated since 1.19)
+* SearchEngineReplacePrefixesComplete hook was removed.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

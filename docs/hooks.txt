@@ -2182,12 +2182,6 @@ searches.
 $term : Search term string
 &$title : Current Title object that is being returned (null if none found).
 
-'SearchEngineReplacePrefixesComplete': Run after SearchEngine::replacePrefixes().
-$searchEngine : The SearchEngine object. Users of this hooks will be interested
-in the $searchEngine->namespaces array.
-$query : Original query.
-&$parsed : Resultant query with the prefixes stripped.
-
 'SearchResultInitFromTitle': Set the revision used when displaying a page in
 search results.
 $title : Current Title object being displayed in search results.
