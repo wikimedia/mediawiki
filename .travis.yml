@@ -10,7 +10,6 @@ language: php
 
 php:
   - hhvm-nightly
-  - 5.3
 
 services:
   - mysql
