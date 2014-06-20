@@ -806,7 +806,6 @@
 	"difference-missing-revision": "Kay wakin kaymanta ($1) {{PLURAL:$2|huk musuqchasqa|$2 musuqchasqakuna}} manam tarisqachu.\n\nKayqa tukurqanman qullusqa p'anchaman t'inkimuq mawk'ayasqa wiñay kawsay t'inkiraykuchá.\nImaymanata [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] tariykiman.",
 	"searchresults": "Maskaymanta tarisqakuna",
 	"searchresults-title": "\"$1\" nisqapaq maskaspa taripasqakuna",
-	"toomanymatches": "Nisyu taripasqakunam kutisqa, ama hina kaspa, huk taripanawan ruraykachay",
 	"titlematches": "P'anqakunap sutinkunapi tarisqa",
 	"textmatches": "P'anqakunap qillqankunapi tarisqa",
 	"notextmatches": "Manam ima p'anqakunap qillqankunapipas tarisqachu",

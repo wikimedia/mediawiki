@@ -820,7 +820,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Nun s'alcontró|Nun s'alcontraron}} {{PLURAL:$2|una revisión|$2 revisiones}} d'esta diferencia ($1).\n\nDe vezu la causa d'esto ye siguir un enllaz de diferencia antiguu a una páxina que se desanició.\nSe puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 	"searchresults": "Resultaos de la busca",
 	"searchresults-title": "Resultaos de buscar \"$1\"",
-	"toomanymatches": "Atopáronse demasiaes coincidencies, por favor fai una consulta diferente",
 	"titlematches": "Coincidencies de los títulos de la páxina",
 	"textmatches": "Coincidencies del testu de la páxina",
 	"notextmatches": "Nun hai coincidencies nel testu de la páxina",

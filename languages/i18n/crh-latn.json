@@ -557,7 +557,6 @@
 	"diff-multi-manyusers": "($2-den ziyade {{PLURAL:$2|qullanıcı|qullanıcı}}nıñ yapqan {{PLURAL:$1|bir ara versiyası|$1 ara versiyası}} kösterilmey)",
 	"searchresults": "Qıdıruv neticeleri",
 	"searchresults-title": "\"$1\" içün qıdıruv neticeleri",
-	"toomanymatches": "Pek çoq eşleşme çıqtı, lütfen, başqa bir soratma saylañız",
 	"titlematches": "Saife adı bir kele",
 	"textmatches": "Saife metni bir kele",
 	"notextmatches": "İç bir saifede tapılamadı",

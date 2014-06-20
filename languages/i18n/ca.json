@@ -852,7 +852,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Una revisió|$2 revisions}} d'aquesta diferència ($1) no {{PLURAL:$2|s'ha|s'han}} trobat.\n\nAixò passa generalment en seguir un enllaç obsolet de diferències a una pàgina que s'ha suprimit.\nEs pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre de supressions].",
 	"searchresults": "Resultats de la cerca",
 	"searchresults-title": "Resultats de la recerca de «$1»",
-	"toomanymatches": "S'han retornat masses coincidències. Proveu-ho amb una consulta diferent.",
 	"titlematches": "Coincidències de títol de la pàgina",
 	"textmatches": "Coincidències de text de pàgina",
 	"notextmatches": "No hi ha cap coincidència de text de pàgina",

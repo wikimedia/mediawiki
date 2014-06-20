@@ -823,7 +823,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Jadna wersija|$2 wersiji|$2 wersije|$2 wersijow}} toś togo rozdźěla ($1) {{PLURAL:$2|njejo se namakała|njejstej se namakałej|njejsu namakali|njejo se namakało}}.\n\nPśicyna jo zwětšego zestarjony diferencny wótkaz k bokoju, kótaryž jo se wulašował.\nDrobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow] namakaś.",
 	"searchresults": "Wuslědki pytanja",
 	"searchresults-title": "Pytańske wuslědki za \"$1\"",
-	"toomanymatches": "Pśewjele pytańskich wuslědkow, pšosym wopytaj druge wótpšašanje.",
 	"titlematches": "boki z wótpowědujucym napismom",
 	"textmatches": "Boki z wótpowědujucym tekstom",
 	"notextmatches": "Boki z wótpowědujucym tekstom njeeksistěruju.",

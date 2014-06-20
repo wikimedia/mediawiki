@@ -791,7 +791,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|'Na revisione|$2 revisiune}} de sta differenze ($1) {{PLURAL:$2|non g'onne|non g'onne}} state acchiate.\n\nQuiste succede normalmende purcé 'u cunde jè collegate a 'na pàgene ca ha state scangellate.\nLe dettaglie le puè acchià jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archivije de le scangellaziune].",
 	"searchresults": "Resultete d'a ricerche",
 	"searchresults-title": "Resultete d'a ricerche pe \"$1\"",
-	"toomanymatches": "Troppe combronde sciute bbuene onne state returnete, pe piacere prueve cu 'n'otra inderrogazione",
 	"titlematches": "'U titele d'a pàgene se iacchje",
 	"textmatches": "'U teste d'a pàgene combacie",
 	"notextmatches": "Nisciune teste de pàgene s'accocchie cu 'a recerche",

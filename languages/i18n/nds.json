@@ -633,7 +633,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Een Twischenversion|$1 Twischenversionen}} von mehr as $2 {{PLURAL:$2|Bruker|Brukers}} warrt nich wiest)",
 	"searchresults": "Söökresultaten",
 	"searchresults-title": "Söökresultaten för „$1“",
-	"toomanymatches": "To veel Sieden funnen för de Söök, versöök en annere Affraag.",
 	"titlematches": "Övereenstimmen mit Överschriften",
 	"textmatches": "Övereenstimmen mit Texten",
 	"notextmatches": "Kene Övereenstimmen",

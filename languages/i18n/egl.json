@@ -813,7 +813,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|'Na versiòun|$2 versiòun}} ed cla diferèinsa ché ($1) {{PLURAL:$2|an n'é mìa stêda catêda|în mìa stêdi catêdi}}. \n\nCòst a sucēd ed sôlit quând a's và adrē a un colegamèint vèc ed 'na diff a 'na pàgina scanşlêda. I particulêr a pōlen èser catê int al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} regéster dal scanşladûri].",
 	"searchresults": "Rişultê 'd la sērca",
 	"searchresults-title": "Rişultê 'd la sērca ed \"$1\"",
-	"toomanymatches": "Trôpi relasiòun. Cambiêr la dmânda.",
 	"titlematches": "Rapôrt int al tétol dal pàgini",
 	"textmatches": "Rapôrt int al tèst dal pàgini",
 	"notextmatches": "Nisóna relasiòun int al tèst dal pàgini",

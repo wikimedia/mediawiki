@@ -810,7 +810,6 @@
 	"difference-missing-revision": "Ni chafwyd hyd i $1 {{PLURAL:$2|diwygiad|diwygiad|ddiwygiad|diwygiad}} o'r gwahaniaeth ($1) {{PLURAL:$2|hwn}}.\n\nFel arfer, fe ddigwydd hyn pan mae person wedi dilyn hen gyswllt gwahaniaeth i dudalen sydd erbyn hyn wedi cael ei ddileu.\nMae manylion pellach i'w cael yn [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg y dileuon].",
 	"searchresults": "Canlyniadau'r chwiliad",
 	"searchresults-title": "Canlyniadau chwilio am \"$1\"",
-	"toomanymatches": "Cafwyd hyd i ormod o enghreifftiau o'r term chwilio; ceisiwch chwilio am derm arall",
 	"titlematches": "Teitlau erthygl yn cyfateb",
 	"textmatches": "Testun erthygl yn cyfateb",
 	"notextmatches": "Does dim testun yn cyfateb",

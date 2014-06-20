@@ -789,7 +789,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Éin versjon|$2 versjonar}} av skilnaden ($1) vart ikkje {{PLURAL:$2|funnen|funne}}.\n\nDette skriv seg som oftast frå at ein har fylgt ei forelda versjonslenkje til ei side som er sletta.\nDetaljar kan ein finna i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 	"searchresults": "Søkjeresultat",
 	"searchresults-title": "Søkjeresultat for «$1»",
-	"toomanymatches": "Søket gav for mange treff, prøv ei anna spørjing",
 	"titlematches": "Sidetitlar med treff på førespurnaden",
 	"textmatches": "Sider med treff på førespurnaden",
 	"notextmatches": "Ingen sider hadde treff på førespurnaden",

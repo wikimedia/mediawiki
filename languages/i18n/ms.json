@@ -832,7 +832,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Satu semakan|$2 semakan}} bagi perbezaan ini ($1) tidak ditemui.\n\nHal ini biasanya disebabkan oleh pautan perbezaan yang lapuk ke halaman yang sudah dihapuskan.\nButirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 	"searchresults": "Hasil carian",
 	"searchresults-title": "Hasil carian \"$1\"",
-	"toomanymatches": "Terlalu banyak padanan dipulangkan, sila cuba pertanyaan lain",
 	"titlematches": "Padanan tajuk laman",
 	"textmatches": "Padanan teks laman",
 	"notextmatches": "Tiada teks laman yang sepadan",

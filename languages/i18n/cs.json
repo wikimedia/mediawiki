@@ -838,7 +838,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Jedna z revizí|$2 revize|$2 revizí}} k požadovanému porovnání ($1) {{PLURAL:$2|neexistuje|neexistují|neexistuje}}.\n\nToto je obvykle způsobeno tím, že jste následovali zastaralý odkaz na historickou verzi stránky, jež byla smazána.\nPodrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 	"searchresults": "Výsledky hledání",
 	"searchresults-title": "Výsledky hledání „$1“",
-	"toomanymatches": "Požadavku odpovídá příliš mnoho záznamů, zkuste jiný dotaz.",
 	"titlematches": "Stránky s odpovídajícím názvem",
 	"textmatches": "Stránky s odpovídajícím textem",
 	"notextmatches": "Žádné stránky textem neodpovídají.",

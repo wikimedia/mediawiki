@@ -813,7 +813,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Yin reveesion|$2 reveesions}} o this difference ($1) {{PLURAL:$2|wis|were}} na foond.\n\nThis is usuallie caused bi follaein aen ootdated diff airtin til ae page that's been delytit.\nDetails can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].",
 	"searchresults": "Rake ootcomes",
 	"searchresults-title": "Rake ootcome fer \"$1\"",
-	"toomanymatches": "Ower moni matches were returned, please try ae different speirin",
 	"titlematches": "Page teetle matches",
 	"textmatches": "Page tex matches",
 	"notextmatches": "Nae page tex matches",

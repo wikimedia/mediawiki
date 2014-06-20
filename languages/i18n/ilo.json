@@ -815,7 +815,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Maysa a panagbalbaliw|$2 kadagiti panagbalbaliw}} iti daytoy a paggiddiatan ($1) {{PLURAL:$2|ket ti|ket dagiti}} saan a naburikan.\n\nDaytoy ket kadawyan a gapuanan babaen ti sumaganad a nabaak a panilpo tipaggiddiatan ti maysa a panid a naikkaten.\nDagiti salaysay ket mabalin a mabirukan idiay [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} listaan ti panagikkat].",
 	"searchresults": "Dagiti nagbanagan ti panagbiruk",
 	"searchresults-title": "Dagiti nabirukan a nagbanagan para iti \"$1\"",
-	"toomanymatches": "Adu unay ti napasubli nga agpapada, pangngaasi a padasem ti sabali a panagsapul",
 	"titlematches": "Dagiti kapadpada a titulo ti panid",
 	"textmatches": "Dagiti agpapada a testo ti panid",
 	"notextmatches": "Awan dagiti kapadpada a testo ti panid",

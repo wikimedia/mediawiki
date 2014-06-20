@@ -811,7 +811,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Una revision|$2 revisions}} d'aquesta diferéncia ($1) {{PLURAL:$2|es pas estada trobada|son pas estadas trobadas}}.\n\nAquò se produtz en general en seguent un ligam de diferéncia obsolèta cap a una pagina qu'es estada suprimada.\nPodètz trobar de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
 	"searchresults": "Resultats de la recèrca",
 	"searchresults-title": "Resultats de la recèrca per « $1 »",
-	"toomanymatches": "Tròp d’ocuréncias son estadas trobadas, sètz pregat de sometre una requèsta diferenta.",
 	"titlematches": "Correspondéncias dins los títols d'articles",
 	"textmatches": "Correspondéncias dins los tèxtes d'articles",
 	"notextmatches": "Cap de tèxte d'article correspond pas a la recèrca",

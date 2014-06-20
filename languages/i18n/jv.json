@@ -793,7 +793,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Sak pambenahan|$2 pambenahan}} saka prabédan iki ($1) {{PLURAL:$2|ora ditemokaké|ora ditemokaké}}.\n\nIki biasané kasebab pranala prabedan sing wis ora kanggo saka kaca isi wis dibusak.\nRinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log busak].",
 	"searchresults": "Kasil panggolèkan",
 	"searchresults-title": "Kasil panggolèkan saka \"$1\"",
-	"toomanymatches": "Olèhé panjenengan golèk ngasilaké kakèhan pituwas, mangga nglebokaké ''query'' liyané",
 	"titlematches": "Irah-irahan artikel sing cocog",
 	"textmatches": "Tèks artikel sing cocog",
 	"notextmatches": "Ora ana tèks kaca sing cocog",

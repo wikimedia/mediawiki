@@ -826,7 +826,6 @@
 	"difference-missing-revision": "Non se {{PLURAL:$2|atopou revisión ningunha|atoparon $2 revisións}} desta diferenza ($1).\n\nA miúdo, isto está provocado por seguir unha ligazón de diferenzas obsoleta cara a unha páxina que foi borrada.\nO [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados] contén máis detalles.",
 	"searchresults": "Resultados da procura",
 	"searchresults-title": "Resultados da procura de \"$1\"",
-	"toomanymatches": "Devolvéronse demasiadas coincidencias; inténteo cunha consulta diferente",
 	"titlematches": "O título da páxina coincide",
 	"textmatches": "O texto da páxina coincide",
 	"notextmatches": "Non se atopou o texto en ningunha páxina",

@@ -823,7 +823,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Un version|$2 versiones}} de iste differentia ($1) non ha essite trovate.\n\nIsto es generalmente causate per sequer un ligamine de diff obsolete a un pagina que ha essite delite.\nDetalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 	"searchresults": "Resultatos del recerca",
 	"searchresults-title": "Resultatos del recerca de \"$1\"",
-	"toomanymatches": "Se retornava troppo de resultatos. Per favor prova un altere consulta.",
 	"titlematches": "Correspondentias in le titulos de paginas",
 	"textmatches": "Resultatos in le texto de paginas",
 	"notextmatches": "Nulle resultato in le texto de paginas",

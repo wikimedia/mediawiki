@@ -727,7 +727,6 @@
 	"diff-multi-manyusers": "({{PLURAL:$1|Viena starpversija|$1 starpversijas}}, ko saglabājuši vairāk nekā $2 {{PLURAL:$2|lietotājs|lietotāji}}, nav parādīta{{PLURAL:$1||s}})",
 	"searchresults": "Meklēšanas rezultāti",
 	"searchresults-title": "Meklēšanas rezultāti \"$1\"",
-	"toomanymatches": "Tika atgriezti poārāk daudzi rezultāti, lūdzu pamēģini citādāku pieprasījumu",
 	"titlematches": "Rezultāti virsrakstos",
 	"textmatches": "Rezultāti lapu tekstos",
 	"notextmatches": "Neviena rezultāta, meklējot lapas tekstā",

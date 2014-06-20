@@ -811,7 +811,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|Ian werjuun|$2 werjuunen}} faan di ferskeel ($1) {{PLURAL:$2|as|san}} ei fünjen wurden.\n\nDet komt diar miast faan, dat en ual ferwisang stregen wurden as.\nDü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logbuk faan stregen sidjen] efterlees.",
 	"searchresults": "Fünjen sidjen",
 	"searchresults-title": "Fünjen sidjen för „$1“",
-	"toomanymatches": "Diar kaam tuföl resultaaten üüb din uunfraag. Ferschük det ööders.",
 	"titlematches": "Auerianstemangen mä sidjennöömer",
 	"textmatches": "Auerianstemangen mä teksten",
 	"notextmatches": "Nian auerianstemangen mä teksten",

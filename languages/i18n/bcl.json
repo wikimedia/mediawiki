@@ -804,7 +804,6 @@
 	"difference-missing-revision": "{{PLURAL:$2|sarong rebisyon|$2 mga rebisyon}} kaining diperensiya ($1) {{PLURAL:$2|na iyo an|kaidto na iyo an}} dae nanagboan.\n\nIni pirmihan na pinagkakausa sa paagi nin pagsusunod nin luwas sa petsang diff na kasugponan pasiring sa sarong pahina na pinagpura na.\nAn mga detalye mapuwedeng matatagboan sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} talaan kan pinagpuraan].",
 	"searchresults": "Resulta kan paghahánap",
 	"searchresults-title": "Resulta kan paghahanap para sa \"$1\"",
-	"toomanymatches": "Kadakol-dakol na angay an ipigbalik, probaran an ibang kahaputan",
 	"titlematches": "Angay an título kan artíkulo",
 	"textmatches": "Angay an teksto nin páhina",
 	"notextmatches": "Mayong ángay na teksto nin páhina",
