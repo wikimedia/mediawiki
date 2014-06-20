@@ -56,7 +56,9 @@ class RandomPage extends SpecialPage {
 	public function execute( $par ) {
 		global $wgContLang;
 
-		if ( $par ) {
+		if ( is_string( $par ) ) {
+			// Testing for stringiness since we want to catch
+			// the empty string to mean main namespace only.
 			$this->setNamespace( $wgContLang->getNsIndex( $par ) );
 		}
 
