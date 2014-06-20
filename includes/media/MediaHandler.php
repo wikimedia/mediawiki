@@ -108,10 +108,20 @@ abstract class MediaHandler {
 	 * Get an image size array like that returned by getimagesize(), or false if it
 	 * can't be determined.
 	 *
+	 * This function is used for determining the width, height and bitdepth directly
+	 * from an image. The results are stroed in the database in the img_width,
+	 * img_height, img_bits fields.
+	 *
+	 * @note If this is a multipage file, return the width and height of the
+	 *  first page.
+	 *
 	 * @param File $image The image object, or false if there isn't one
 	 * @param string $path the filename
 	 * @return array Follow the format of PHP getimagesize() internal function.
-	 *   See http://www.php.net/getimagesize
+	 *   See http://www.php.net/getimagesize. MediaWiki will only ever use the
+	 *   first two array keys (the width and height), and the 'bits' associative
+	 *   key. All other array keys are ignored. Returning a 'bits' key is optional
+	 *   as not all formats have a notion of "bitdepth".
 	 */
 	abstract function getImageSize( $image, $path );
 
@@ -121,7 +131,7 @@ abstract class MediaHandler {
 	 * @param File $image The image object, or false if there isn't one.
 	 *   Warning, FSFile::getPropsFromPath might pass an (object)array() instead (!)
 	 * @param string $path The filename
-	 * @return string
+	 * @return string A string of metadata in php serialized form (Run through serialize())
 	 */
 	function getMetadata( $image, $path ) {
 		return '';
@@ -175,6 +185,8 @@ abstract class MediaHandler {
 
 	/**
 	 * Get a string describing the type of metadata, for display purposes.
+	 *
+	 * @note This method is currently unused.
 	 * @param File $image
 	 * @return string
 	 */
@@ -189,8 +201,13 @@ abstract class MediaHandler {
 	 * MediaHandler::METADATA_GOOD for if the metadata is a-ok,
 	 * MediaHanlder::METADATA_COMPATIBLE if metadata is old but backwards
 	 * compatible (which may or may not trigger a metadata reload).
+	 *
+	 * @note Returning self::METADATA_BAD will trigger a metadata reload from
+	 *  file on page view. Always returning this from a broken file, or suddenly
+	 *  triggering as bad metadata for a large number of files can cause
+	 *  performance problems.
 	 * @param File $image
-	 * @param array $metadata
+	 * @param string $metadata The metadata in serialized form
 	 * @return bool
 	 */
 	function isMetadataValid( $image, $metadata ) {
