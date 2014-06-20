@@ -1876,6 +1876,7 @@ class Parser {
 	 * @private
 	 */
 	function replaceInternalLinks2( &$s ) {
+		global $wgExtraInterlanguageLinkPrefixes;
 		wfProfileIn( __METHOD__ );
 
 		wfProfileIn( __METHOD__ . '-setup' );
@@ -2096,11 +2097,12 @@ class Parser {
 			if ( $noforce ) {
 				# Interwikis
 				wfProfileIn( __METHOD__ . "-interwiki" );
-				if ( $iw && $this->mOptions->getInterwikiMagic()
-					&& $nottalk && Language::fetchLanguageName( $iw, null, 'mw' )
+				if (
+					$iw && $this->mOptions->getInterwikiMagic() && $nottalk && (
+						Language::fetchLanguageName( $iw, null, 'mw' ) ||
+						in_array( $iw, $wgExtraInterlanguageLinkPrefixes )
+					)
 				) {
-					// XXX: the above check prevents links to sites with identifiers that are not language codes
-
 					# Bug 24502: filter duplicates
 					if ( !isset( $this->mLangLinkLanguages[$iw] ) ) {
 						$this->mLangLinkLanguages[$iw] = true;

@@ -21,6 +21,10 @@ production.
 * $wgDBClusterTimeout has been removed.
 * $wgProxyKey has been removed. It is no longer used by MediaWiki core.
   Ensure $wgSecretKey is set in LocalSettings.php.
+* $wgExtraInterlanguageLinkPrefixes is a new configuration variable that
+  contains an array of interwiki prefixes that should be treated as language
+  prefixes (i.e. turned into interlanguage links when $wgInterwikiMagic is set
+  to true).
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate

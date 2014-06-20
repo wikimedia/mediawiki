@@ -384,6 +384,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$langNames = Language::fetchLanguageNames( $langCode );
 
 		$getPrefixes = Interwiki::getAllPrefixes( $local );
+		$extraLangPrefixes = $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' );
 		$data = array();
 
 		foreach ( $getPrefixes as $row ) {
@@ -396,9 +397,24 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( $row['iw_trans'] == '1' ) {
 				$val['trans'] = '';
 			}
+
 			if ( isset( $langNames[$prefix] ) ) {
 				$val['language'] = $langNames[$prefix];
 			}
+			if ( in_array( $prefix, $extraLangPrefixes ) ) {
+				$val['extralanglink'] = '';
+
+				$linktext = wfMessage( "interlanguage-link-$prefix" );
+				if ( !$linktext->isDisabled() ) {
+					$val['linktext'] = $linktext->text();
+				}
+
+				$sitename = wfMessage( "interlanguage-link-sitename-$prefix" );
+				if ( !$sitename->isDisabled() ) {
+					$val['sitename'] = $sitename->text();
+				}
+			}
+
 			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
 			if (substr( $row['iw_url'], 0, 2) == '//') {
 				$val['protorel'] = '';
@@ -743,6 +759,15 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
+		// Messages for $wgExtraInterlanguageLinkPrefixes depend on user language
+		if (
+			count( $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' ) ) &&
+			!is_null( $params['prop'] ) &&
+			in_array( 'interwikimap', $params['prop'] )
+		) {
+			return 'anon-public-user-private';
+		}
+
 		return 'public';
 	}
 
