@@ -465,6 +465,22 @@ class TestFileIterator implements Iterator {
 					continue;
 				}
 
+				if ( $this->section == 'endtransparenthooks' ) {
+					$this->checkSection( 'transparenthooks' );
+
+					foreach ( explode( "\n", $this->sectionData['transparenthooks'] ) as $line ) {
+						$line = trim( $line );
+
+						if ( $line ) {
+							$delayedParserTest->requireTransparentHook( $line );
+						}
+					}
+
+					$this->clearSection();
+
+					continue;
+				}
+
 				if ( $this->section == 'end' ) {
 					$this->checkSection( 'test' );
 					// "input" and "result" are old section names allowed
@@ -601,6 +617,7 @@ class DelayedParserTest {
 	/** Initialized on construction */
 	private $hooks;
 	private $fnHooks;
+	private $transparentHooks;
 
 	public function __construct() {
 		$this->reset();
@@ -613,6 +630,7 @@ class DelayedParserTest {
 	public function reset() {
 		$this->hooks = array();
 		$this->fnHooks = array();
+		$this->transparentHooks = array();
 	}
 
 	/**
@@ -641,6 +659,14 @@ class DelayedParserTest {
 			}
 		}
 
+		# Trigger delayed transparent hooks. Any failure will make us abort
+		foreach ( $this->transparentHooks as $hook ) {
+			$ret = $parserTest->requireTransparentHook( $hook );
+			if ( !$ret ) {
+				return false;
+			}
+		}
+
 		# Delayed execution was successful.
 		return true;
 	}
@@ -661,6 +687,15 @@ class DelayedParserTest {
 	 */
 	public function requireFunctionHook( $fnHook ) {
 		$this->fnHooks[] = $fnHook;
+	}
+
+	/**
+	 * Similar to ParserTest object but does not run anything
+	 * Use unleash() to really execute the hook function
+	 * @param string $fnHook
+	 */
+	public function requireTransparentHook( $hook ) {
+		$this->transparentHooks[] = $hook;
 	}
 
 }
