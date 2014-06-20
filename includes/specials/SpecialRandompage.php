@@ -42,7 +42,7 @@ class RandomPage extends SpecialPage {
 	}
 
 	public function setNamespace( $ns ) {
-		if ( !$ns || $ns < NS_MAIN ) {
+		if ( !$this->isValidNS( $ns ) ) {
 			$ns = NS_MAIN;
 		}
 		$this->namespaces = array( $ns );
@@ -54,14 +54,7 @@ class RandomPage extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgContLang;
-
-		if ( is_string( $par ) ) {
-			// Testing for stringiness since we want to catch
-			// the empty string to mean main namespace only.
-			$this->setNamespace( $wgContLang->getNsIndex( $par ) );
-		}
-
+		$this->parsePar( $par );
 		$title = $this->getRandomTitle();
 
 		if ( is_null( $title ) ) {
@@ -77,6 +70,46 @@ class RandomPage extends SpecialPage {
 		$query = array_merge( $this->getRequest()->getValues(), $redirectParam );
 		unset( $query['title'] );
 		$this->getOutput()->redirect( $title->getFullURL( $query ) );
+	}
+
+	/**
+	 * Parse the subpage parameter that specifies namespaces
+	 *
+	 * @param $par String Subpage to special page
+	 */
+	protected function parsePar( $par ) {
+		global $wgContLang;
+
+		// Testing for stringiness since we want to catch
+		// the empty string to mean main namespace only.
+		if ( is_string( $par ) ) {
+			$ns = $wgContLang->getNsIndex( $par );
+			if ( $ns === false && strpos( $par, ',' ) !== false ) {
+				// Comma separated list
+				$parSplit = explode( ',', $par );
+				foreach( $parSplit as $potentialNs ) {
+					$ns = $wgContLang->getNsIndex( $potentialNs );
+					if ( $this->isValidNS( $ns ) ) {
+						$nsList[] = $ns;
+					}
+					// Remove duplicate values, and re-index array
+					$nsList = array_unique( $nsList );
+					$nsList = array_values( $nsList );
+					$this->namespaces = $nsList;
+				}
+			} else {
+				// Note, that the case of $par being something
+				// like "main" which is not a namespace, falls
+				// through to here, and sets NS_MAIN, allowing
+				// Special:Random/main or Special:Random/article
+				// to work as expected.
+				$this->setNamespace( $wgContLang->getNsIndex( $par ) );
+			}
+		}
+	}
+
+	private function isValidNS( $ns ) {
+		return $ns !== false && $ns >= 0;
 	}
 
 	/**
