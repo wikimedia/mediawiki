@@ -107,6 +107,7 @@ production.
   recover the original code of extension tags.
 
 === Web API changes in 1.24 ===
+* BREAKING CHANGE: the WDDX formatter has been removed
 * action=parse API now supports prop=modules, which provides the list of
   ResourceLoader modules that should be used to enhance the parsed content.
 * action=query&meta=siteinfo&siprop=interwikimap returns a new "protorel"
@@ -125,6 +126,7 @@ production.
   The old format is still used if prop isn't provided, but this is deprecated.
 * meta=userinfo can now return the count of unread pages on the watchlist.
 * list=watchlist can now filter by unread status.
+
 
 === Languages updated in 1.24 ===
 
