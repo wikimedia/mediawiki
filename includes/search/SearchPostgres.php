@@ -42,10 +42,6 @@ class SearchPostgres extends SearchDatabase {
 		$olderror = error_reporting( E_ERROR );
 		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
 		error_reporting( $olderror );
-		if ( !$resultSet ) {
-			// Needed for "Query requires full scan, GIN doesn't support it"
-			return new SearchResultTooMany();
-		}
 		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
@@ -54,9 +50,6 @@ class SearchPostgres extends SearchDatabase {
 		$olderror = error_reporting( E_ERROR );
 		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
 		error_reporting( $olderror );
-		if ( !$resultSet ) {
-			return new SearchResultTooMany();
-		}
 		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
 	}
 

@@ -556,13 +556,6 @@ class SearchEngine {
 }
 
 /**
- * @ingroup Search
- */
-class SearchResultTooMany {
-	# # Some search engines may bail out if too many matches are found
-}
-
-/**
  * Dummy class to be used when non-supported Database engine is present.
  * @todo FIXME: Dummy class should probably try something at least mildly useful,
  * such as a LIKE search through titles.

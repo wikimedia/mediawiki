@@ -253,9 +253,7 @@ class SpecialSearch extends SpecialPage {
 		$rewritten = $search->replacePrefixes( $term );
 
 		$titleMatches = $search->searchTitle( $rewritten );
-		if ( !( $titleMatches instanceof SearchResultTooMany ) ) {
-			$textMatches = $search->searchText( $rewritten );
-		}
+		$textMatches = $search->searchText( $rewritten );
 
 		$textStatus = null;
 		if ( $textMatches instanceof Status ) {
@@ -318,13 +316,6 @@ class SpecialSearch extends SpecialPage {
 			$this->shortDialog( $term ) .
 			Xml::closeElement( 'div' )
 		);
-
-		// Sometimes the search engine knows there are too many hits
-		if ( $titleMatches instanceof SearchResultTooMany ) {
-			$out->wrapWikiMsg( "==$1==\n", 'toomanymatches' );
-
-			return;
-		}
 
 		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
 		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {

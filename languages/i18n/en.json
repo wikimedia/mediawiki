@@ -869,7 +869,6 @@
 	"search-summary": "",
 	"searchresults": "Search results",
 	"searchresults-title": "Search results for \"$1\"",
-	"toomanymatches": "Too many matches were returned, please try a different query",
 	"titlematches": "Page title matches",
 	"textmatches": "Page text matches",
 	"notextmatches": "No page text matches",

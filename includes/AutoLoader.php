@@ -909,7 +909,6 @@ $wgAutoloadLocalClasses = array(
 	'SearchPostgres' => 'includes/search/SearchPostgres.php',
 	'SearchResult' => 'includes/search/SearchResult.php',
 	'SearchResultSet' => 'includes/search/SearchResultSet.php',
-	'SearchResultTooMany' => 'includes/search/SearchEngine.php',
 	'SearchSqlite' => 'includes/search/SearchSqlite.php',
 	'SqlSearchResultSet' => 'includes/search/SearchResultSet.php',
 
