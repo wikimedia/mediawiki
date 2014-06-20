@@ -4221,5 +4221,5 @@ function wfIsTrustedProxy( $ip ) {
  * @since 1.23 Supports CIDR ranges in $wgSquidServersNoPurge
  */
 function wfIsConfiguredProxy( $ip ) {
-	return IP::isTrustedProxy( $ip );
+	return IP::isConfiguredProxy( $ip );
 }
