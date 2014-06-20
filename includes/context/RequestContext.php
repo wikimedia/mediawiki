@@ -271,17 +271,6 @@ class RequestContext implements IContextSource {
 	/**
 	 * Set the Language object
 	 *
-	 * @deprecated since 1.19 Use setLanguage instead
-	 * @param Language|string $l Language instance or language code
-	 */
-	public function setLang( $l ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		$this->setLanguage( $l );
-	}
-
-	/**
-	 * Set the Language object
-	 *
 	 * @param Language|string $l Language instance or language code
 	 * @throws MWException
 	 * @since 1.19
