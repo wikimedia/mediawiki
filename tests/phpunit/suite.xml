@@ -54,6 +54,7 @@ phpunit.php enables colors for other OSs at runtime
 	</groups>
 	<filter>
 		<whitelist addUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">../../extensions</directory>
 			<directory suffix=".php">../../includes</directory>
 			<directory suffix=".php">../../languages</directory>
 			<directory suffix=".php">../../maintenance</directory>
