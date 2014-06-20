@@ -95,8 +95,6 @@ class ApiMain extends ApiBase {
 		'jsonfm' => 'ApiFormatJson',
 		'php' => 'ApiFormatPhp',
 		'phpfm' => 'ApiFormatPhp',
-		'wddx' => 'ApiFormatWddx',
-		'wddxfm' => 'ApiFormatWddx',
 		'xml' => 'ApiFormatXml',
 		'xmlfm' => 'ApiFormatXml',
 		'yaml' => 'ApiFormatYaml',

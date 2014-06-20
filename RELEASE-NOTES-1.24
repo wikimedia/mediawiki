@@ -103,6 +103,7 @@ production.
   recover the original code of extension tags.
 
 === Web API changes in 1.24 ===
+* WDDX format support has been removed.
 * action=parse API now supports prop=modules, which provides the list of
   ResourceLoader modules that should be used to enhance the parsed content.
 * action=query&meta=siteinfo&siprop=interwikimap returns a new "protorel"
