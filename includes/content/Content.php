@@ -378,10 +378,9 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $sectionId The section's ID, given as a numeric string.
-	 *    The ID "0" retrieves the section before the first heading, "1" the
-	 *    text between the first heading (included) and the second heading
-	 *    (excluded), etc.
+	 * @param string|number $sectionId Section identifier as a number or string
+	 * (e.g. 0, 1 or 'T-1'). The ID "0" retrieves the section before the first heading, "1" the
+	 * text between the first heading (included) and the second heading (excluded), etc.
 	 *
 	 * @return Content|bool|null The section, or false if no such section
 	 *    exist, or null if sections are not supported.
@@ -394,13 +393,15 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param mixed $section Null/false or a section number (0, 1, 2, T1, T2...), or "new"
+	 * @param string|number|null|bool $sectionId Section identifier as a number or string
+	 * (e.g. 0, 1 or 'T-1'), null/false or an empty string for the whole page
+	 * or 'new' for a new section.
 	 * @param Content $with New content of the section
 	 * @param string $sectionTitle New section's subject, only if $section is 'new'
 	 *
 	 * @return string|null Complete article text, or null if error
 	 */
-	public function replaceSection( $section, Content $with, $sectionTitle = '' );
+	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' );
 
 	/**
 	 * Returns a Content object with pre-save transformations applied (or this

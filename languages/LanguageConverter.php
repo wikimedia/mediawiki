@@ -1062,8 +1062,8 @@ class LanguageConverter {
 	 * @param Content $content New page content
 	 * @param string $summary Edit summary of the edit
 	 * @param bool $isMinor Was the edit marked as minor?
-	 * @param bool $isWatch Did the user watch this page or not?
-	 * @param string|int $section
+	 * @param null $isWatch Unused.
+	 * @param null $section Unused.
 	 * @param int $flags Bitfield
 	 * @param Revision|null $revision New Revision object or null
 	 * @return bool True
