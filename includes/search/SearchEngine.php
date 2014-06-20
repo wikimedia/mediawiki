@@ -166,11 +166,6 @@ class SearchEngine {
 			);
 		}
 
-		$titleResult = null;
-		if ( !wfRunHooks( 'SearchGetNearMatchBefore', array( $allSearchTerms, &$titleResult ) ) ) {
-			return $titleResult;
-		}
-
 		foreach ( $allSearchTerms as $term ) {
 
 			# Exact match? No need to look further.
