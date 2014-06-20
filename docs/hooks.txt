@@ -2161,11 +2161,6 @@ $data: the data stored in old_text.  The meaning depends on $flags: if external
 $flags: a comma-delimited list of strings representing the options used.  May
   include: utf8 (this will always be set for new revisions); gzip; external.
 
-'SearchGetNearMatchBefore': Perform exact-title-matches in "go" searches before
-the normal operations.
-$allSearchTerms : Array of the search terms in all content languages
-&$titleResult : Outparam; the value to return. A Title object or null.
-
 'SearchAfterNoDirectMatch': If there was no match for the exact result. This
 runs before lettercase variants are attempted, whereas 'SearchGetNearMatch'
 runs after.
