@@ -3338,6 +3338,32 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Set a login cookie on the user's client. Defers to User::setCookie to set
+	 * the cookie.
+	 *
+	 * @see User::setCookie
+	 *
+	 * @param string $name Name of the cookie to set
+	 * @param string $value Value to set
+	 * @param int $exp Expiration time, as a UNIX time value;
+	 *                   if 0 or not specified, use the default $wgLoginCookieExpiration
+	 * @param bool $secure
+	 *  true: Force setting the secure attribute when setting the cookie
+	 *  false: Force NOT setting the secure attribute when setting the cookie
+	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
+	 * @param array $params Array of options sent passed to WebResponse::setcookie()
+	 */
+	protected function setLoginCookie( $name, $value, $exp = 0, $secure = null, $params = array() ) {
+		global $wgLoginCookieExpiration;
+
+		if ( !$exp && $wgLoginCookieExpiration ) {
+			$exp = time() + $wgLoginCookieExpiration;
+		}
+
+		$this->setCookie( $name, $value, $exp, $secure, $params );
+	}
+
+	/**
 	 * Set the default cookies for this session on the user's client.
 	 *
 	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
@@ -3386,7 +3412,7 @@ class User implements IDBAccessObject {
 			if ( $value === false ) {
 				$this->clearCookie( $name );
 			} else {
-				$this->setCookie( $name, $value, 0, $secure );
+				$this->setLoginCookie( $name, $value, 0, $secure );
 			}
 		}
 
@@ -3398,7 +3424,7 @@ class User implements IDBAccessObject {
 		 * standard time setting, based on if rememberme was set.
 		 */
 		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
-			$this->setCookie(
+			$this->setLoginCookie(
 				'forceHTTPS',
 				'true',
 				$rememberMe ? 0 : null,
