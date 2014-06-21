@@ -1555,6 +1555,7 @@ class EditPage {
 	public function internalAttemptSave( &$result, $bot = false ) {
 		$this->bot = $bot;
 		$status = $this->updateContent( $result );
+		wfRunHooks( 'EditPage::afterAttemptSave', array( $this, $status ) );
 
 		return $status;
 	}
