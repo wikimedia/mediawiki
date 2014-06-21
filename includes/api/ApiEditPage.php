@@ -397,7 +397,7 @@ class ApiEditPage extends ApiBase {
 		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 
-		$status = $ep->internalAttemptSave( $result, $user->isAllowed( 'bot' ) && $params['bot'] );
+		$status = $ep->internalAttemptSave( $result, $params['bot'] );
 		$wgRequest = $oldRequest;
 
 		switch ( $status->value ) {
