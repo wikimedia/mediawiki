@@ -164,6 +164,14 @@ class MimeMagic {
 	 */
 	protected $mIEAnalyzer;
 
+	/** @var string Extra MIME types, set for example by media handling extensions
+	 */
+	private $mExtraTypes = '';
+
+	/** @var string Extra MIME info, set for example by media handling extensions
+	 */
+	private $mExtraInfo = '';
+
 	/** @var MimeMagic The singleton instance
 	 */
 	private static $instance = null;
@@ -197,11 +205,15 @@ class MimeMagic {
 			wfDebug( __METHOD__ . ": no mime types file defined, using build-ins only.\n" );
 		}
 
+		# Allow media handling extensions adding MIME-types
+		wfRunHooks( 'MimeMagicCustomTypes', array( $this ) );
+		$types .= "\n" . $this->mExtraTypes;
+
 		$types = str_replace( array( "\r\n", "\n\r", "\n\n", "\r\r", "\r" ), "\n", $types );
 		$types = str_replace( "\t", " ", $types );
 
 		$this->mMimeToExt = array();
-		$this->mToMime = array();
+		$this->mExtToMime = array();
 
 		$lines = explode( "\n", $types );
 		foreach ( $lines as $s ) {
@@ -272,6 +284,10 @@ class MimeMagic {
 			wfDebug( __METHOD__ . ": no mime info file defined, using build-ins only.\n" );
 		}
 
+		# Allow media handling extensions adding MIME-info
+		wfRunHooks( 'MimeMagicCustomInfo', array( $this ) );
+		$info .= "\n" . $this->mExtraInfo;
+
 		$info = str_replace( array( "\r\n", "\n\r", "\n\n", "\r\r", "\r" ), "\n", $info );
 		$info = str_replace( "\t", " ", $info );
 
@@ -340,6 +356,26 @@ class MimeMagic {
 			self::$instance = new MimeMagic;
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Adds to the list mapping MIME to file extensions.
+	 * As an extension author, you are encouraged to submit patches to
+	 * MediaWiki's core to add new MIME types to mime.types.
+	 * @param string $types
+	 */
+	public function addExtraTypes( $types ) {
+		$this->mExtraTypes .= "\n" . $types;
+	}
+
+	/**
+	 * Adds to the list mapping MIME to media type.
+	 * As an extension author, you are encouraged to submit patches to
+	 * MediaWiki's core to add new MIME info to mime.info.
+	 * @param string $info
+	 */
+	public function addExtraInfo( $info ) {
+		$this->mExtraInfo .= "\n" . $info;
 	}
 
 	/**
@@ -519,6 +555,9 @@ class MimeMagic {
 				$mime = 'application/zip';
 			}
 		}
+
+		# Media handling extensions can improve the MIME detected
+		wfRunHooks( 'MimeMagicImproveFromExtension', array( $this, $ext, &$mime ) );
 
 		if ( isset( $this->mMimeTypeAliases[$mime] ) ) {
 			$mime = $this->mMimeTypeAliases[$mime];
@@ -746,7 +785,17 @@ class MimeMagic {
 			return 'image/vnd.djvu';
 		}
 
-		return false;
+		# Media handling extensions can guess the MIME by content
+		# It's intentionally here so that if core is wrong about a type (false positive),
+		# people will hopefully nag and submit patches :)
+		$mime = false;
+		# Some strings by reference for performance - assuming well-behaved hooks
+		wfRunHooks(
+			'MimeMagicGuessFromContent',
+			array( $this, &$head, &$tail, $file, &$mime )
+		);
+
+		return $mime;
 	}
 
 	/**
