@@ -221,9 +221,12 @@ class LocalSettingsGenerator {
 						wfBoolToStr( $perm ) . ";\n";
 				}
 			}
-			if ( $this->groupPermissions['*']['edit'] === false
-				&& $this->groupPermissions['*']['createaccount'] === false
-				&& $this->groupPermissions['*']['read'] !== false
+			if ( ( isset( $this->groupPermissions['*']['edit'] ) &&
+					$this->groupPermissions['*']['edit'] === false )
+				&& ( isset( $this->groupPermissions['*']['createaccount'] ) &&
+					$this->groupPermissions['*']['createaccount'] === false )
+				&& ( isset( $this->groupPermissions['*']['read'] ) &&
+					$this->groupPermissions['*']['read'] !== false )
 			) {
 				$noFollow = "\n# Set \$wgNoFollowLinks to true if you open up your wiki to editing by\n"
 					. "# the general public and wish to apply nofollow to external links as a\n"
