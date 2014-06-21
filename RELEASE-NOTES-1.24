@@ -82,6 +82,9 @@ production.
 * Skins can now use 'remoteSkinPath' when defining ResourceLoader modules.
   This works the same as 'remoteExtPath' but is relative to the skins/ folder
   instead of the extensions/ folder.
+* (bug 66699) The expiration of the login cookies ($wgLoginCookieExpiration) can
+  be configured independently of the expiration of all cookies
+  ($wgCookieExpiration).
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

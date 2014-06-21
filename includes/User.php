@@ -3307,7 +3307,7 @@ class User {
 	 * @param string $name Name of the cookie to set
 	 * @param string $value Value to set
 	 * @param int $exp Expiration time, as a UNIX time value;
-	 *                   if 0 or not specified, use the default $wgCookieExpiration
+	 *                   if 0 or not specified, use the default $wgLoginCookieExpiration
 	 * @param bool $secure
 	 *  true: Force setting the secure attribute when setting the cookie
 	 *  false: Force NOT setting the secure attribute when setting the cookie
@@ -3315,6 +3315,12 @@ class User {
 	 * @param array $params Array of options sent passed to WebResponse::setcookie()
 	 */
 	protected function setCookie( $name, $value, $exp = 0, $secure = null, $params = array() ) {
+		global $wgLoginCookieExpiration;
+
+		if ( !$exp && $wgLoginCookieExpiration ) {
+			$exp = time() + $wgLoginCookieExpiration;
+		}
+
 		$params['secure'] = $secure;
 		$this->getRequest()->response()->setcookie( $name, $value, $exp, $params );
 	}
