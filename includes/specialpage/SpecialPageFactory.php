@@ -364,8 +364,8 @@ class SpecialPageFactory {
 	 * Return categorised listable special pages which are available
 	 * for the current user, and everyone.
 	 *
-	 * @param User $user User object to check permissions, $wgUser will be used if
-	 *   if not provided
+	 * @param User $user User object to check permissions, $wgUser will be used
+	 *        if not provided
 	 * @return array ( string => Specialpage )
 	 */
 	public static function getUsablePages( User $user = null ) {
