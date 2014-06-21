@@ -197,11 +197,19 @@ class MimeMagic {
 			wfDebug( __METHOD__ . ": no mime types file defined, using build-ins only.\n" );
 		}
 
+		# Allow media handling extensions adding MIME-types
+		wfRunHooks( 'MimeMagicCustomTypes', array(
+			$this,
+			function ( $extraTypes ) use ( &$types ) {
+				$types = $types . "\n" . $extraTypes;
+			}
+		) );
+
 		$types = str_replace( array( "\r\n", "\n\r", "\n\n", "\r\r", "\r" ), "\n", $types );
 		$types = str_replace( "\t", " ", $types );
 
 		$this->mMimeToExt = array();
-		$this->mToMime = array();
+		$this->mExtToMime = array();
 
 		$lines = explode( "\n", $types );
 		foreach ( $lines as $s ) {
@@ -271,6 +279,13 @@ class MimeMagic {
 		} else {
 			wfDebug( __METHOD__ . ": no mime info file defined, using build-ins only.\n" );
 		}
+
+		# Allow media handling extensions adding MIME-info
+		wfRunHooks( 'MimeMagicCustomInfo', array( $this,
+			function ( $extraInfo ) use ( &$info ) {
+				$info = $info . "\n" . $extraInfo;
+			}
+		) );
 
 		$info = str_replace( array( "\r\n", "\n\r", "\n\n", "\r\r", "\r" ), "\n", $info );
 		$info = str_replace( "\t", " ", $info );
@@ -520,6 +535,9 @@ class MimeMagic {
 			}
 		}
 
+		# Media handling extensions can improve the MIME detected
+		wfRunHooks( 'MimeMagicImproveFromExtension', array( $this, $ext, &$mime ) );
+
 		if ( isset( $this->mMimeTypeAliases[$mime] ) ) {
 			$mime = $this->mMimeTypeAliases[$mime];
 		}
@@ -746,7 +764,17 @@ class MimeMagic {
 			return 'image/vnd.djvu';
 		}
 
-		return false;
+		# Media handling extensions can guess the MIME by content
+		# It's intentionally here so that if core is wrong about a type (false positive),
+		# people will hopefully nag and submit patches :)
+		$mime = false;
+		# Some strings by reference for performance - assuming well-behaved hooks
+		wfRunHooks(
+			'MimeMagicGuessFromContent',
+			array( $this, &$head, &$tail, $file, &$mime )
+		);
+
+		return $mime;
 	}
 
 	/**
