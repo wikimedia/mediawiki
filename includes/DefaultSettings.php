@@ -3152,6 +3152,63 @@ $wgEnableCanonicalServerLink = false;
 $wgResourceModules = array();
 
 /**
+ * Allows one to add custom skin-defined styles to existing modules. It's only possible to override
+ * or add to the 'skinStyles' key, 'styles' is not modifiable.
+ *
+ * ResourceLoader loads the files from the 'styles' key and the 'skinStyles[$currentSkinName]' key,
+ * or 'skinStyles["default"]' if there are no 'skinStyles' for the current skin.
+ *
+ *
+ * For example, to define 'skinStyles' of skin 'foo' for module 'bar', do the following:
+ *
+ *   $wgResourceModules['bar'] = array(
+ *     'styles' => 'resources/base-style.css',
+ *   );
+ *   $wgResourceModuleStyles['foo'] = array(
+ *     'bar' => 'Foo/bar-styles.css';          // assumed to be relative to skins/ directory
+ *   );
+ *
+ * This is mostly equivalent to:
+ *
+ *   $wgResourceModules['bar'] = array(
+ *     'styles' => 'resources/base-style.css',
+ *     'skinStyles' => array(
+ *       'foo' => 'skins/Foo/bar-styles.css',
+ *     )
+ *   );
+ *
+ *
+ * If the module defines 'skinStyles["default"]' and you want to add to them instead of overriding,
+ * do the following:
+ *
+ *   $wgResourceModules['bar'] = array(
+ *     'styles' => 'resources/base-style.css',
+ *     'skinStyles' => array(
+ *       'default' => 'resources/fancy-style.css',
+ *     )
+ *   );
+ *   $wgResourceModuleStyles['+foo'] = array(  // note the '+' character
+ *     'bar' => 'Foo/bar-styles.css';          // assumed to be relative to skins/ directory
+ *   );
+ *
+ * This is mostly equivalent to:
+ *
+ *   $wgResourceModules['bar'] = array(
+ *     'styles' => 'resources/base-style.css',
+ *     'skinStyles' => array(
+ *       'default' => 'resources/fancy-style.css',
+ *       'foo' => array( 'resources/style.css', 'skins/Foo/bar-styles.css' ),
+ *     )
+ *   );
+ *
+ *
+ * In other words, if you want your module to provide non-overridable styles, use 'styles';
+ * if you want it to provide default styles that skins can override, use 'skinStyles["default"]'.
+ *
+ */
+$wgResourceModuleStyles = array();
+
+/**
  * Extensions should register foreign module sources here. 'local' is a
  * built-in source that is not in this array, but defined by
  * ResourceLoader::__construct() so that it cannot be unset.

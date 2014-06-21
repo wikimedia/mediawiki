@@ -221,7 +221,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function __construct( $options = array(), $localBasePath = null,
 		$remoteBasePath = null
 	) {
-		global $IP, $wgScriptPath, $wgResourceBasePath;
+		global $IP, $wgScriptPath, $wgResourceBasePath, $wgStyleDirectory, $wgStylePath;
 		$this->localBasePath = $localBasePath === null ? $IP : $localBasePath;
 		if ( $remoteBasePath !== null ) {
 			$this->remoteBasePath = $remoteBasePath;
@@ -238,6 +238,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			global $wgStylePath;
 			$this->remoteBasePath = $wgStylePath . '/' . $options['remoteSkinPath'];
 		}
+
+		$this->localBaseAuxPath = $wgStyleDirectory;
+		$this->remoteBaseAuxPath = $wgStylePath;
 
 		foreach ( $options as $member => $option ) {
 			switch ( $member ) {
@@ -571,6 +574,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	protected function getLocalPath( $path ) {
+		if ( substr( $path, 0, 5 ) === '<AUX>' ) {
+			return $this->localBaseAuxPath . '/' . substr( $path, 5 );
+		}
+		
 		return "{$this->localBasePath}/$path";
 	}
 
@@ -579,6 +586,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	protected function getRemotePath( $path ) {
+		if ( substr( $path, 0, 5 ) === '<AUX>' ) {
+			return $this->remoteBaseAuxPath . '/' . substr( $path, 5 );
+		}
+		
 		return "{$this->remoteBasePath}/$path";
 	}
 

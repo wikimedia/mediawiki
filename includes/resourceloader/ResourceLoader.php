@@ -277,7 +277,16 @@ class ResourceLoader {
 				throw new MWException( "ResourceLoader module name '$name' is invalid, "
 					. "see ResourceLoader::isValidModuleName()" );
 			}
-
+			
+			// Sanity check for parameters
+			if ( !( $info instanceof ResourceLoaderModule || is_array( $info ) ) ) {
+				wfProfileOut( __METHOD__ );
+				throw new MWException(
+					'ResourceLoader module info type error for module \'' . $name .
+					'\': expected ResourceLoaderModule or array (got: ' . gettype( $info ) . ')'
+				);
+			}
+			
 			// Attach module
 			if ( $info instanceof ResourceLoaderModule ) {
 				$this->moduleInfos[$name] = array( 'object' => $info );
@@ -286,12 +295,44 @@ class ResourceLoader {
 			} elseif ( is_array( $info ) ) {
 				// New calling convention
 				$this->moduleInfos[$name] = $info;
-			} else {
-				wfProfileOut( __METHOD__ );
-				throw new MWException(
-					'ResourceLoader module info type error for module \'' . $name .
-					'\': expected ResourceLoaderModule or array (got: ' . gettype( $info ) . ')'
-				);
+			}
+			
+			// Last-minute changes
+			
+			// Apply custom skin-defined styles to existing modules.
+			global $wgResourceModuleStyles;
+			foreach ( $wgResourceModuleStyles as $skinName => $skinStyles ) {
+				// Add skin styles for this skin. 
+				
+				// If this module already defines skinStyles for this skin, ignore $wgResourceModuleStyles.
+				if ( isset( $this->moduleInfos[$name]['skinStyles'][$skinName] ) ) {
+					continue;
+				}
+				
+				// If $name is preceded with a '+', the defined style files will be  to 'default'
+				// skinStyles, otherwise 'default' will be ignored as it normally would be.
+				if ( isset( $skinStyles[ $name ] ) ) {
+					$mode = '';
+				} else if ( isset( $skinStyles[ '+' . $name ] ) ) {
+					$mode = '+';
+				} else {
+					continue;
+				}
+				
+				// WE NEED A BETTER WAY TO DO THIS
+				$styleFiles = array();
+				foreach ( (array)$skinStyles[ $mode . $name ] as $file ) {
+					$styleFiles[] = '<AUX>' . $file; // horrible hack
+				}
+				
+				if ( $mode === '+' ) {
+					$styleFiles = array_merge(
+						$this->moduleInfos[$name]['skinStyles']['default'],
+						$styleFiles
+					);
+				}
+				
+				$this->moduleInfos[$name]['skinStyles'][$skinName] = $styleFiles;
 			}
 		}
 

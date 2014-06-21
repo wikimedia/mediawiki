@@ -58,3 +58,8 @@ $wgResourceModules['skins.vector.js'] = array(
 	'remoteSkinPath' => 'Vector',
 	'localBasePath' => __DIR__,
 );
+
+$wgResourceModuleStyles['vector'] = array(
+	'mediawiki.special' => 'Vector/special.less',
+	'mediawiki.special.preferences' => 'Vector/special.preferences.less',
+);
