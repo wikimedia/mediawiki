@@ -129,26 +129,6 @@ class SrConverter extends LanguageConverter {
 	}
 
 	/**
-	 * An ugly function wrapper for parsing Image titles
-	 * (to prevent image name conversion)
-	 *
-	 * @param string $text
-	 * @param bool $toVariant
-	 *
-	 * @return string
-	 */
-	function autoConvert( $text, $toVariant = false ) {
-		global $wgTitle;
-		if ( is_object( $wgTitle ) && $wgTitle->getNamespace() == NS_FILE ) {
-			$imagename = $wgTitle->getNsText();
-			if ( preg_match( "/^$imagename:/", $text ) ) {
-				return $text;
-			}
-		}
-		return parent::autoConvert( $text, $toVariant );
-	}
-
-	/**
 	 *  It translates text into variant, specials:
 	 *    - ommiting roman numbers
 	 *
