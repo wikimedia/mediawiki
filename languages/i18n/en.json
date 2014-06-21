@@ -3231,6 +3231,7 @@
 	"version-hook-name": "Hook name",
 	"version-hook-subscribedby": "Subscribed by",
 	"version-version": "($1)",
+	"version-no-ext-name": "[no name]",
 	"version-svn-revision": "r$1",
 	"version-license": "MediaWiki License",
 	"version-ext-license": "License",
