@@ -436,6 +436,7 @@ class ApiParse extends ApiBase {
 		$popts->enableLimitReport( !$params['disablepp'] );
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
+		$popts->setEditSection( !$params['disableeditsection'] );
 
 		wfProfileOut( __METHOD__ );
 
@@ -748,6 +749,7 @@ class ApiParse extends ApiBase {
 			'uselang' => null,
 			'section' => null,
 			'disablepp' => false,
+			'disableeditsection' => false,
 			'generatexml' => false,
 			'preview' => false,
 			'sectionpreview' => false,
@@ -816,6 +818,7 @@ class ApiParse extends ApiBase {
 			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
 			'disablepp' => 'Disable the PP Report from the parser output',
+			'disableeditsection' => 'Disable edit section links from the parser output',
 			'generatexml' => "Generate XML parse tree (requires contentmodel=$wikitext)",
 			'preview' => 'Parse in preview mode',
 			'sectionpreview' => 'Parse in section preview mode (enables preview mode too)',
