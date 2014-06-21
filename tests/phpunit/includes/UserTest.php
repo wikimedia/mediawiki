@@ -466,4 +466,89 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertGreaterThan(
 			$touched, $user->getDBTouched(), "user_touched increased with casOnTouched() #2" );
 	}
+
+	public static function setExtendedLoginCookieDataProvider() {
+		$data = array();
+		$now = time();
+
+		$secondsInDay = 86400;
+
+		// Arbitrary durations, in units of days, to ensure it chooses the
+		// right one.  There is a 5-minute grace period (see testSetExtendedLoginCookie)
+		// to work around slow tests, since we're not currently mocking time() for PHP.
+
+		$durationOne = $secondsInDay * 5;
+		$durationTwo = $secondsInDay * 29;
+		$durationThree = $secondsInDay * 17;
+
+		// If $wgExtendedLoginCookieExpiration is null, then the expiry passed to
+		// set cookie is time() + $wgCookieExpiration
+		$data[] = array(
+			null,
+			$durationOne,
+			$now + $durationOne,
+		);
+
+		// If $wgExtendedLoginCookieExpiration isn't null, then the expiry passed to
+		// set cookie is $now + $wgExtendedLoginCookieExpiration
+		$data[] = array(
+			$durationTwo,
+			$durationThree,
+			$now + $durationTwo,
+		);
+
+		return $data;
+	}
+
+	/**
+	 * @dataProvider setExtendedLoginCookieDataProvider
+	 * @covers User::getRequest
+	 * @covers User::setCookie
+	 * @backupGlobals enabled
+	 */
+	public function testSetExtendedLoginCookie(
+		$extendedLoginCookieExpiration,
+		$cookieExpiration,
+		$expectedExpiry
+	) {
+		$this->setMwGlobals( array(
+			'wgExtendedLoginCookieExpiration' => $extendedLoginCookieExpiration,
+			'wgCookieExpiration' => $cookieExpiration,
+		) );
+
+		$response = $this->getMock( 'WebResponse' );
+		$setcookieSpy = $this->any();
+		$response->expects( $setcookieSpy )
+			->method( 'setcookie' );
+
+		$request = new MockWebRequest( $response );
+		$user = new UserProxy( User::newFromSession( $request ) );
+		$user->setExtendedLoginCookie( 'name', 'value', true );
+
+		$setcookieInvocations = $setcookieSpy->getInvocations();
+		$setcookieInvocation = end( $setcookieInvocations );
+		$actualExpiry = $setcookieInvocation->parameters[ 2 ];
+
+		// TODO: ± 300 seconds compensates for
+		// slow-running tests. However, the dependency on the time
+		// function should be removed.  This requires some way
+		// to mock/isolate User->setExtendedLoginCookie's call to time()
+		$this->assertEquals( $expectedExpiry, $actualExpiry, '', 300 );
+	}
+}
+
+class UserProxy extends User {
+
+	/**
+	 * @var User
+	 */
+	protected $user;
+
+	public function __construct( User $user ) {
+		$this->user = $user;
+	}
+
+	public function setExtendedLoginCookie( $name, $value, $secure ) {
+		$this->user->setExtendedLoginCookie( $name, $value, $secure );
+	}
 }

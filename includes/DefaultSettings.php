@@ -5274,6 +5274,22 @@ $wgProxyList = array();
 $wgCookieExpiration = 180 * 86400;
 
 /**
+ * The identifiers of the login cookies that can have their lifetimes
+ * extended independently of all other login cookies.
+ *
+ * @var string[]
+ */
+$wgExtendedLoginCookies = array( 'UserID', 'Token' );
+
+/**
+ * Default login cookie lifetime, in seconds. Setting
+ * $wgExtendLoginCookieExpiration to null will use $wgCookieExpiration to
+ * calculate the cookie lifetime. As with $wgCookieExpiration, 0 will make
+ * login cookies session-only.
+ */
+$wgExtendedLoginCookieExpiration = null;
+
+/**
  * Set to set an explicit domain on the login cookies eg, "justthis.domain.org"
  * or ".any.subdomain.net"
  */

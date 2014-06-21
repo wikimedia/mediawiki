@@ -1282,8 +1282,9 @@ class LoginForm extends SpecialPage {
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
 		global $wgEnableEmail, $wgEnableUserEmail;
 		global $wgHiddenPrefs, $wgLoginLanguageSelector;
-		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
+		global $wgAuth, $wgEmailConfirmToEdit;
 		global $wgSecureLogin, $wgPasswordResetRoutes;
+		global $wgExtendedLoginCookieExpiration, $wgCookieExpiration;
 
 		$titleObj = $this->getPageTitle();
 		$user = $this->getUser();
@@ -1406,7 +1407,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'emailothers', $wgEnableUserEmail );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'resetlink', $resetLink );
-		$template->set( 'canremember', ( $wgCookieExpiration > 0 ) );
+		$template->set( 'canremember', $wgExtendedLoginCookieExpiration === null ? ( $wgCookieExpiration > 0 ) : ( $wgExtendedLoginCookieExpiration > 0 ) );
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
