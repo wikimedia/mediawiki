@@ -7,6 +7,12 @@ define( 'NS_UNITTEST_TALK', 5601 );
  * @group Database
  */
 class UserTest extends MediaWikiTestCase {
+
+	/**
+	 * @var WebRequest
+	 */
+	protected $request;
+
 	/**
 	 * @var User
 	 */
@@ -384,5 +390,78 @@ class UserTest extends MediaWikiTestCase {
 		$fifth = User::newFromId( $id );
 		$sixth = User::newFromName( 'EqualUnitTestUser' );
 		$this->assertTrue( $fifth->equals( $sixth ) );
+	}
+
+	public static function setExtendedLoginCookieDataProvider() {
+		$data = array();
+
+		// If $wgExtendedLoginCookieExpiration is null, then the expiry passed to
+		// set cookie is time() + $wgLoginExpiration
+		$data[] = array(
+			null,
+			1234,
+			time() + 1234,
+		);
+
+		// If $wgExtendedLoginCookieExpiration isn't null, then the expiry passed to
+		// set cookie is time() + $wgExtendedLoginCookieExpiration
+		$data[] = array(
+			5678,
+			9012,
+			time() + 5678,
+		);
+
+		return $data;
+	}
+
+	/**
+	 * @dataProvider setExtendedLoginCookieDataProvider
+	 * @covers User::getRequest
+	 * @covers User::setCookie
+	 * @backupGlobals enabled
+	 */
+	public function testSetExtendedLoginCookie(
+		$extendedLoginCookieExpiration,
+		$cookieExpiration,
+		$expectedExpiry
+	) {
+		global $wgExtendedLoginCookieExpiration, $wgCookieExpiration;
+
+		$wgExtendedLoginCookieExpiration = $extendedLoginCookieExpiration;
+		$wgCookieExpiration = $cookieExpiration;
+
+		$response = $this->getMock( 'WebResponse' );
+		$setcookieSpy = $this->any();
+		$response->expects( $setcookieSpy )
+			->method( 'setcookie' );
+
+		$request = new MockWebRequest( $response );
+		$user = new UserProxy( User::newFromSession( $request ) );
+		$user->setExtendedLoginCookie( 'name', 'value', true );
+
+		$setcookieInvocations = $setcookieSpy->getInvocations();
+		$setcookieInvocation = end( $setcookieInvocations );
+		$actualExpiry = $setcookieInvocation->parameters[ 2 ];
+
+		// TODO (phuedx, 2014/09/21): ± 60 seconds compensates for
+		// slow-running tests. However, the dependency on the time
+		// function should be removed.
+		$this->assertEquals( $expectedExpiry, $actualExpiry, '', 60 );
+	}
+}
+
+class UserProxy extends User {
+
+	/**
+	 * @var User
+	 */
+	protected $user;
+
+	public function __construct( User $user ) {
+		$this->user = $user;
+	}
+
+	public function setExtendedLoginCookie( $name, $value, $secure ) {
+		$this->user->setExtendedLoginCookie( $name, $value, $secure );
 	}
 }

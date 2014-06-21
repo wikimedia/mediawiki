@@ -80,6 +80,9 @@ production.
   they will add the proper credits to the skins or extensions section.
 * Update QUnit from v1.14.0 to v1.16.0.
 * Update Moment.js from v2.8.3 to v2.8.4.
+* (T68699) The expiration of the UserID and Token login cookies
+  ($wgExtendedLoginCookieExpiration) can be configured independently of the
+  expiration of all other cookies ($wgCookieExpiration).
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
