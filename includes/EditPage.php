@@ -1557,6 +1557,7 @@ class EditPage {
 
 		$status = $this->updateContent( $result, $bot );
 
+		wfRunHooks( 'EditPage::afterAttemptSave', array( $this, $status ) );
 		wfProfileOut( __METHOD__ );
 		return $status;
 	}
