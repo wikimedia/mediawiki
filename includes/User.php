@@ -3307,6 +3307,33 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Set an extended login cookie on the user's client. Defers to
+	 * User::setCookie to set the cookie.
+	 *
+	 * @see User::setCookie
+	 *
+	 * @param string $name Name of the cookie to set
+	 * @param string $value Value to set
+	 * @param int $exp Expiration time, as a UNIX time value;
+	 *                   if 0 or not specified, use the default
+	 *                   $wgExtendedLoginCookieExpiration
+	 * @param bool $secure
+	 *  true: Force setting the secure attribute when setting the cookie
+	 *  false: Force NOT setting the secure attribute when setting the cookie
+	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
+	 * @param array $params Array of options sent passed to WebResponse::setcookie()
+	 */
+	protected function setExtendedLoginCookie( $name, $value, $exp = 0, $secure = null, $params = array() ) {
+		global $wgExtendedLoginCookieExpiration;
+
+		if ( !$exp && $wgExtendedLoginCookieExpiration ) {
+			$exp = time() + $wgExtendedLoginCookieExpiration;
+		}
+
+		$this->setCookie( $name, $value, $exp, $secure, $params );
+	}
+
+	/**
 	 * Set the default cookies for this session on the user's client.
 	 *
 	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
@@ -3315,6 +3342,8 @@ class User implements IDBAccessObject {
 	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
 	 */
 	public function setCookies( $request = null, $secure = null, $rememberMe = false ) {
+		global $wgExtendedLoginCookies;
+
 		if ( $request === null ) {
 			$request = $this->getRequest();
 		}
@@ -3354,6 +3383,8 @@ class User implements IDBAccessObject {
 		foreach ( $cookies as $name => $value ) {
 			if ( $value === false ) {
 				$this->clearCookie( $name );
+			} elseif ( $rememberMe && in_array( $name, $wgExtendedLoginCookies ) ) {
+				$this->setExtendedLoginCookie( $name, $value, 0, $secure );
 			} else {
 				$this->setCookie( $name, $value, 0, $secure );
 			}
