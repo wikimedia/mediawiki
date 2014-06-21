@@ -68,7 +68,7 @@ $namespaceAliases = array(
 	'특수기능' => NS_SPECIAL,
 	'MediaWiki토론' => NS_MEDIAWIKI_TALK,
 	'그림' => NS_FILE,
-	'파일토론' => NS_FILE_TALK,
+	'그림토론' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(
