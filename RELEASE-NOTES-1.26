@@ -13,7 +13,9 @@ production.
 === New features in 1.26 ===
 * Change tags can now be hidden in the interface by disabling the associated
   "tag-<id>" interface message.
-
+* (T68699) The expiration of the UserID and Token login cookies
+  ($wgExtendedLoginCookieExpiration) can be configured independently of the
+  expiration of all other cookies ($wgCookieExpiration).
 ==== External libraries ====
 
 === Bug fixes in 1.26 ===
