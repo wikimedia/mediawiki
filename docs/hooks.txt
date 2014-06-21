@@ -1041,7 +1041,7 @@ yourself. Alternatively, modifying $error and returning true will cause the
 contents of $error to be echoed at the top of the edit form as wikitext.
 Return true without altering $error to allow the edit to proceed.
 
-'EditPage::showReadOnlyForm:initial: similar to EditPage::showEditForm:initial
+'EditPage::showReadOnlyForm:initial': similar to EditPage::showEditForm:initial
 but for the readonly 'view source' variant of the edit form.
 $editor: EditPage instance (object)
 &$out: an OutputPage instance to write to

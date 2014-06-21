@@ -63,6 +63,8 @@ class FindHooks extends Maintenance {
 		$documented = $this->getHooksFromDoc( $IP . '/docs/hooks.txt' );
 		$potential = array();
 		$bad = array();
+
+		// TODO: Don't hardcode the list of directories
 		$pathinc = array(
 			$IP . '/',
 			$IP . '/includes/',
@@ -99,6 +101,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/specialpage/',
 			$IP . '/includes/specials/',
 			$IP . '/includes/upload/',
+			$IP . '/includes/utils/',
 			$IP . '/languages/',
 			$IP . '/maintenance/',
 			$IP . '/maintenance/language/',
@@ -106,6 +109,8 @@ class FindHooks extends Maintenance {
 			$IP . '/tests/parser/',
 			$IP . '/tests/phpunit/suites/',
 			$IP . '/skins/',
+			$IP . '/skins/monobook/',
+			$IP . '/skins/Vector/',
 		);
 
 		foreach ( $pathinc as $dir ) {
