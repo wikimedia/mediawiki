@@ -3386,6 +3386,27 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Set an extended login cookie on the user's client. The expiry of the cookie
+	 * is controlled by the $wgExtendedLoginCookieExpiration configuration
+	 * variable.
+	 *
+	 * @see User::setCookie
+	 *
+	 * @param string $name Name of the cookie to set
+	 * @param string $value Value to set
+	 * @param bool $secure
+	 *  true: Force setting the secure attribute when setting the cookie
+	 *  false: Force NOT setting the secure attribute when setting the cookie
+	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
+	 */
+	protected function setExtendedLoginCookie( $name, $value, $secure ) {
+		global $wgExtendedLoginCookieExpiration;
+
+		$exp = time() + $wgExtendedLoginCookieExpiration;
+		$this->setCookie( $name, $value, $exp, $secure );
+	}
+
+	/**
 	 * Set the default cookies for this session on the user's client.
 	 *
 	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
@@ -3433,6 +3454,8 @@ class User implements IDBAccessObject {
 		foreach ( $cookies as $name => $value ) {
 			if ( $value === false ) {
 				$this->clearCookie( $name );
+			} elseif ( $rememberMe && in_array( $name, $wgExtendedLoginCookies ) ) {
+				$this->setExtendedLoginCookie( $name, $value, $secure );
 			} else {
 				$this->setCookie( $name, $value, 0, $secure );
 			}

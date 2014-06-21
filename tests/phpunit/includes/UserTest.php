@@ -7,6 +7,12 @@ define( 'NS_UNITTEST_TALK', 5601 );
  * @group Database
  */
 class UserTest extends MediaWikiTestCase {
+
+	/**
+	 * @var WebRequest
+	 */
+	protected $request;
+
 	/**
 	 * @var User
 	 */
@@ -358,5 +364,49 @@ class UserTest extends MediaWikiTestCase {
 			array( 'with / slash', array( 'creatable' => false, 'usable' => false, 'valid' => false,
 				'false' => 'With / slash' ), 'With slash' ),
 		);
+	}
+
+	/**
+	 * @covers User::getRequest
+	 * @covers User::setCookie
+	 */
+	public function testSetExtendedLoginCookie() {
+		global $wgExtendedLoginCookieExpiration;
+
+		$response = $this->getMock( 'WebResponse' );
+		$setcookieSpy = $this->any();
+		$response->expects( $setcookieSpy )
+			->method( 'setcookie' );
+
+		$request = new MockWebRequest( $response );
+		$user = new UserProxy( User::newFromSession( $request ) );
+		$user->setExtendedLoginCookie( 'name', 'value', true );
+
+		$expectedExpiry = time() + $wgExtendedLoginCookieExpiration;
+
+		$setcookieInvocations = $setcookieSpy->getInvocations();
+		$setcookieInvocation = end( $setcookieInvocations );
+		$actualExpiry = $setcookieInvocation->parameters[ 2 ];
+
+		// TODO (phuedx, 2014/09/21): ± 60 seconds compensates for
+		// slow-running tests. However, the dependency on the time
+		// function should be removed.
+		$this->assertEquals( $expectedExpiry, $actualExpiry, '', 60 );
+	}
+}
+
+class UserProxy extends User {
+
+	/**
+	 * @var User
+	 */
+	protected $user;
+
+	public function __construct( User $user ) {
+		$this->user = $user;
+	}
+
+	public function setExtendedLoginCookie( $name, $value, $secure ) {
+		$this->user->setExtendedLoginCookie( $name, $value, $secure );
 	}
 }
