@@ -5648,13 +5648,6 @@ $wgRCEngines = array(
 );
 
 /**
- * Enable user search in Special:Newpages
- * This is really a temporary hack around an index install bug on some Wikipedias.
- * Kill it once fixed.
- */
-$wgEnableNewpagesUserFilter = true;
-
-/**
  * Use RC Patrolling to check for vandalism
  */
 $wgUseRCPatrol = true;
