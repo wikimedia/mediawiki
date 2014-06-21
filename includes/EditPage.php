@@ -342,7 +342,7 @@ class EditPage {
 	/** @var null */
 	public $scrolltop = null;
 
-	/** @var bool */
+	/** @var bool Bot flag was requested */
 	public $bot = true;
 
 	/** @var null|string */
@@ -376,6 +376,9 @@ class EditPage {
 
 	/** @var bool */
 	protected $edit;
+
+	/** @var Content Textbox contents we are trying to save */
+	protected $textboxContent;
 
 	/**
 	 * @param Article $article
@@ -1283,9 +1286,8 @@ class EditPage {
 	public function attemptSave( &$resultDetails = false ) {
 		global $wgUser;
 
-		# Allow bots to exempt some edits from bot flagging
-		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
-		$status = $this->internalAttemptSave( $resultDetails, $bot );
+		$resultDetails = array();
+		$status = $this->updateContent( $resultDetails );
 
 		Hooks::run( 'EditPage::attemptSave:after', array( $this, $status, $resultDetails ) );
 
@@ -1296,7 +1298,7 @@ class EditPage {
 	 * Handle status, such as after attempt save
 	 *
 	 * @param Status $status
-	 * @param array|bool $resultDetails
+	 * @param array $resultDetails
 	 *
 	 * @throws ErrorPageError
 	 * @return bool False, if output is done, true if rest of the form should be displayed
@@ -1501,7 +1503,8 @@ class EditPage {
 	 *     false otherwise.
 	 *   - redirect (bool): Set if doEditContent is OK. True if resulting
 	 *     revision is a redirect.
-	 * @param bool $bot True if edit is being made under the bot right.
+	 * @param bool $bot True if the caller is requesting this edit be made
+	 *   under the bot right.
 	 *
 	 * @return Status Status object, possibly with a message, but always with
 	 *   one of the AS_* constants in $status->value,
@@ -1511,10 +1514,29 @@ class EditPage {
 	 *   where error metadata is set in the object and retrieved later instead
 	 *   of being returned, e.g. AS_CONTENT_TOO_BIG and
 	 *   AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some
-	 * time.
+	 *   time.
+	 *   Note that this function is in use as a public interface, despite the
+	 *   "internal-" hint.  Deprecate it once there is something better to move
+	 *   towards.
 	 */
-	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
+	public function internalAttemptSave( &$result, $bot = false ) {
+		$this->bot = $bot;
+		$status = $this->updateContent( $result );
+
+		return $status;
+	}
+
+	/**
+	 * Preliminary checks which may prevent an edit
+	 *
+	 * Has the side-effect of setting up textboxContent from raw input.
+	 *
+	 * @param $result array Additional details about the error.
+	 *
+	 * @return Status
+	 */
+	protected function checkAttemptSave( &$result ) {
+		global $wgUser, $wgRequest, $wgMaxArticleSize;
 
 		$status = Status::newGood();
 
@@ -1543,7 +1565,7 @@ class EditPage {
 
 		try {
 			# Construct Content object
-			$textbox_content = $this->toEditContent( $this->textbox1 );
+			$this->textboxContent = $this->toEditContent( $this->textbox1 );
 		} catch ( MWContentSerializationException $ex ) {
 			$status->fatal(
 				'content-failed-to-parse',
@@ -1557,7 +1579,7 @@ class EditPage {
 
 		# Check image redirect
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
-			$textbox_content->isRedirect() &&
+			$this->textboxContent->isRedirect() &&
 			!$wgUser->isAllowed( 'upload' )
 		) {
 				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
@@ -1660,6 +1682,27 @@ class EditPage {
 			return $status;
 		}
 
+		return $status;
+	}
+
+	/**
+	 * Attempt to save new content
+	 *
+	 * Performs all pre-save checks and then updates the page with new content.
+	 * Shares all the shortcomings documented in internalAttemptSave().
+	 *
+	 * @param $result array Additional information about the save.
+	 *
+	 * @return Status
+	 */
+	protected function updateContent( &$result ) {
+		global $wgUser, $wgParser, $wgMaxArticleSize;
+
+		$status = $this->checkAttemptSave( $result );
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
 		$this->mArticle->loadPageData( 'fromdbmaster' );
@@ -1691,11 +1734,11 @@ class EditPage {
 				return $status;
 			}
 
-			if ( !$this->runPostMergeFilters( $textbox_content, $status, $wgUser ) ) {
+			if ( !$this->runPostMergeFilters( $this->textboxContent, $status, $wgUser ) ) {
 				return $status;
 			}
 
-			$content = $textbox_content;
+			$content = $this->textboxContent;
 
 			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
@@ -1764,7 +1807,7 @@ class EditPage {
 
 				$content = $this->mArticle->replaceSectionContent(
 					$this->section,
-					$textbox_content,
+					$this->textboxContent,
 					$sectionTitle,
 					$this->edittime
 				);
@@ -1772,7 +1815,7 @@ class EditPage {
 				wfDebug( __METHOD__ . ": getting section '{$this->section}'\n" );
 				$content = $this->mArticle->replaceSectionContent(
 					$this->section,
-					$textbox_content,
+					$this->textboxContent,
 					$sectionTitle
 				);
 			}
@@ -1780,7 +1823,7 @@ class EditPage {
 			if ( is_null( $content ) ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
 				$this->isConflict = true;
-				$content = $textbox_content; // do not try to merge here!
+				$content = $this->textboxContent; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
 				# Attempt merge
 				if ( $this->mergeChangesIntoContent( $content ) ) {
@@ -1880,6 +1923,7 @@ class EditPage {
 			return $status;
 		}
 
+		$bot = $this->bot && $wgUser->isAllowed( 'bot' );
 		$flags = EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $new ? EDIT_NEW : EDIT_UPDATE ) |
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
