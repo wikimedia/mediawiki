@@ -3,6 +3,7 @@
 		"authors": []
 	},
 	"skinname-monobook": "{{optional}}",
-	"monobook.css": "{{optional}}\nCSS applied to users using Monobook skin.",
-	"monobook.js": "{{optional}}\nJS for users using Monobook skin."
+	"monobook-desc": "{{desc|name=MonoBook|url=http://www.mediawiki.org/wiki/Skin:MonoBook}}",
+	"monobook.css": "{{optional}}\nCSS applied to users using MonoBook skin.",
+	"monobook.js": "{{optional}}\nJS for users using MonoBook skin."
 }
