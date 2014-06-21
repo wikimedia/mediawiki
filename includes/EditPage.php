@@ -325,7 +325,7 @@ class EditPage {
 	/** @var null */
 	public $scrolltop = null;
 
-	/** @var bool */
+	/** @var bool Bot flag was requested */
 	public $bot = true;
 
 	/** @var null|string */
@@ -362,6 +362,9 @@ class EditPage {
 
 	/** @var bool */
 	public $live;
+
+	/** @var Content Subject of save attempt */
+	protected $textboxContent;
 
 	/**
 	 * @param Article $article
@@ -1358,10 +1361,8 @@ class EditPage {
 	public function attemptSave() {
 		global $wgUser;
 
-		$resultDetails = false;
-		# Allow bots to exempt some edits from bot flagging
-		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
-		$status = $this->internalAttemptSave( $resultDetails, $bot );
+		$resultDetails = array();
+		$status = $this->updateContent( $resultDetails );
 
 		return $this->handleStatus( $status, $resultDetails );
 	}
@@ -1370,7 +1371,7 @@ class EditPage {
 	 * Handle status, such as after attempt save
 	 *
 	 * @param Status $status
-	 * @param array|bool $resultDetails
+	 * @param array $resultDetails
 	 *
 	 * @throws ErrorPageError
 	 * @return bool false, if output is done, true if rest of the form should be displayed
@@ -1535,7 +1536,8 @@ class EditPage {
 	 *     false otherwise.
 	 *   - redirect (bool): Set if doEditContent is OK. True if resulting
 	 *     revision is a redirect.
-	 * @param bool $bot True if edit is being made under the bot right.
+	 * @param bool $bot True if the caller is requesting this edit be made
+	 *   under the bot right.
 	 *
 	 * @return Status Status object, possibly with a message, but always with
 	 *   one of the AS_* constants in $status->value,
@@ -1545,22 +1547,39 @@ class EditPage {
 	 *   where error metadata is set in the object and retrieved later instead
 	 *   of being returned, e.g. AS_CONTENT_TOO_BIG and
 	 *   AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some
-	 * time.
+	 *   time.
+	 *   Note that this function is in use as a public interface, despite the
+	 *   "internal-" hint.  Deprecate it once there is something better to move
+	 *   towards.
 	 */
-	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
+	public function internalAttemptSave( &$result, $bot = false ) {
+		wfProfileIn( __METHOD__ );
+
+		$this->bot = $bot;
+		$status = $this->updateContent( $result );
+
+		wfProfileOut( __METHOD__ );
+		return $status;
+	}
+
+	/**
+	 * Preliminary checks which may prevent an edit
+	 *
+	 * Has the side-effect of setting up textboxContent from raw input.
+	 *
+	 * @param $result array Additional details about the error.
+	 *
+	 * @return Status
+	 */
+	protected function checkAttemptSave( &$result ) {
+		global $wgUser, $wgRequest, $wgMaxArticleSize;
 
 		$status = Status::newGood();
-
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-checks' );
 
 		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1577,14 +1596,12 @@ class EditPage {
 			);
 			$status->fatal( 'spamprotectionmatch', false );
 			$status->value = self::AS_SPAM_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
 		try {
 			# Construct Content object
-			$textbox_content = $this->toEditContent( $this->textbox1 );
+			$this->textboxContent = $this->toEditContent( $this->textbox1 );
 		} catch ( MWContentSerializationException $ex ) {
 			$status->fatal(
 				'content-failed-to-parse',
@@ -1593,21 +1610,16 @@ class EditPage {
 				$ex->getMessage()
 			);
 			$status->value = self::AS_PARSE_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
 		# Check image redirect
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
-			$textbox_content->isRedirect() &&
+			$this->textboxContent->isRedirect() &&
 			!$wgUser->isAllowed( 'upload' )
 		) {
 				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
-
-				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
 
 				return $status;
 		}
@@ -1637,8 +1649,6 @@ class EditPage {
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
 			$status->fatal( 'spamprotectionmatch', $match );
 			$status->value = self::AS_SPAM_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 		if ( !wfRunHooks(
@@ -1648,15 +1658,11 @@ class EditPage {
 			# Error messages etc. could be handled within the hook...
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		} elseif ( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1665,8 +1671,6 @@ class EditPage {
 			$wgUser->spreadAnyEditBlock();
 			# Check block state against master, thus 'false'.
 			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1675,22 +1679,16 @@ class EditPage {
 			// Error will be displayed by showEditForm()
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
 		if ( !$wgUser->isAllowed( 'edit' ) ) {
 			if ( $wgUser->isAnon() ) {
 				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
-				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			} else {
 				$status->fatal( 'readonlytext' );
 				$status->value = self::AS_READ_ONLY_PAGE_LOGGED;
-				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 		}
@@ -1698,15 +1696,11 @@ class EditPage {
 		if ( wfReadOnly() ) {
 			$status->fatal( 'readonlytext' );
 			$status->value = self::AS_READ_ONLY_PAGE;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
 			$status->fatal( 'actionthrottledtext' );
 			$status->value = self::AS_RATE_LIMITED;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1714,12 +1708,31 @@ class EditPage {
 		# confirmation
 		if ( $this->wasDeletedSinceLastEdit() && !$this->recreate ) {
 			$status->setResult( false, self::AS_ARTICLE_WAS_DELETED );
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
+		return $status;
+	}
+
+	/**
+	 * Attempt to save new content
+	 *
+	 * Performs all pre-save checks and then updates the page with new content.
+	 * Shares all the shortcomings documented in internalAttemptSave().
+	 *
+	 * @param $result array Additional information about the save.
+	 *
+	 * @return Status
+	 */
+	protected function updateContent( &$result ) {
+		global $wgUser, $wgParser, $wgMaxArticleSize;
+
+		wfProfileIn( __METHOD__ . '-checks' );
+		$status = $this->checkAttemptSave( $result );
 		wfProfileOut( __METHOD__ . '-checks' );
+		if ( !$status->isGood() ) {
+			return $status;
+		}
 
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
@@ -1732,7 +1745,6 @@ class EditPage {
 				$status->fatal( 'nocreatetext' );
 				$status->value = self::AS_NO_CREATE_PERMISSION;
 				wfDebug( __METHOD__ . ": no create permission\n" );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
@@ -1748,16 +1760,14 @@ class EditPage {
 
 			if ( $this->textbox1 === $defaultText ) {
 				$status->setResult( false, self::AS_BLANK_ARTICLE );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
-			if ( !$this->runPostMergeFilters( $textbox_content, $status, $wgUser ) ) {
-				wfProfileOut( __METHOD__ );
+			if ( !$this->runPostMergeFilters( $this->textboxContent, $status, $wgUser ) ) {
 				return $status;
 			}
 
-			$content = $textbox_content;
+			$content = $this->textboxContent;
 
 			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
@@ -1845,7 +1855,7 @@ class EditPage {
 
 				$content = $this->mArticle->replaceSectionContent(
 					$this->section,
-					$textbox_content,
+					$this->textboxContent,
 					$sectionTitle,
 					$this->edittime
 				);
@@ -1853,7 +1863,7 @@ class EditPage {
 				wfDebug( __METHOD__ . ": getting section '{$this->section}'\n" );
 				$content = $this->mArticle->replaceSectionContent(
 					$this->section,
-					$textbox_content,
+					$this->textboxContent,
 					$sectionTitle
 				);
 			}
@@ -1861,7 +1871,7 @@ class EditPage {
 			if ( is_null( $content ) ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
 				$this->isConflict = true;
-				$content = $textbox_content; // do not try to merge here!
+				$content = $this->textboxContent; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
 				# Attempt merge
 				if ( $this->mergeChangesIntoContent( $content ) ) {
@@ -1877,12 +1887,10 @@ class EditPage {
 
 			if ( $this->isConflict ) {
 				$status->setResult( false, self::AS_CONFLICT_DETECTED );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
 			if ( !$this->runPostMergeFilters( $content, $status, $wgUser ) ) {
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
@@ -1892,7 +1900,6 @@ class EditPage {
 					$this->missingSummary = true;
 					$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
 					$status->value = self::AS_SUMMARY_NEEDED;
-					wfProfileOut( __METHOD__ );
 					return $status;
 				}
 
@@ -1901,7 +1908,6 @@ class EditPage {
 					$this->missingComment = true;
 					$status->fatal( 'missingcommenttext' );
 					$status->value = self::AS_TEXTBOX_EMPTY;
-					wfProfileOut( __METHOD__ );
 					return $status;
 				}
 			} elseif ( !$this->allowBlankSummary
@@ -1912,7 +1918,6 @@ class EditPage {
 				$this->missingSummary = true;
 				$status->fatal( 'missingsummary' );
 				$status->value = self::AS_SUMMARY_NEEDED;
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
@@ -1968,10 +1973,10 @@ class EditPage {
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
+		$bot = $this->bot && $wgUser->isAllowed( 'bot' );
 		$flags = EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $new ? EDIT_NEW : EDIT_UPDATE ) |
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
@@ -1992,7 +1997,6 @@ class EditPage {
 				// Destroys data doEdit() put in $status->value but who cares
 				$doEditStatus->value = self::AS_END;
 			}
-			wfProfileOut( __METHOD__ );
 			return $doEditStatus;
 		}
 
@@ -2003,7 +2007,6 @@ class EditPage {
 		}
 		$result['redirect'] = $content->isRedirect();
 		$this->updateWatchlist();
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
