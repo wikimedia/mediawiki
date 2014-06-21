@@ -4850,6 +4850,12 @@ $wgProxyList = array();
 $wgCookieExpiration = 180 * 86400;
 
 /**
+ * Default login cookie lifetime, in seconds. If $wgLoginCookieExpiration is 0
+ * then $wgCookieExpiration is used.
+ */
+$wgLoginCookieExpiration = 0;
+
+/**
  * Set to set an explicit domain on the login cookies eg, "justthis.domain.org"
  * or ".any.subdomain.net"
  */

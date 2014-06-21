@@ -7,6 +7,12 @@ define( 'NS_UNITTEST_TALK', 5601 );
  * @group Database
  */
 class UserTest extends MediaWikiTestCase {
+
+	/**
+	 * @var WebRequest
+	 */
+	protected $request;
+
 	/**
 	 * @var User
 	 */
@@ -294,5 +300,87 @@ class UserTest extends MediaWikiTestCase {
 		// On the forbidden list
 		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
 		$this->assertEquals( 'password-login-forbidden', $user->getPasswordValidity( 'Passpass' ) );
+	}
+
+	public static function setCookieDataProvider() {
+		$data = array();
+
+		// If exp is zero and $wgLoginCookieExpiration is non-zero, then the
+		// expiry passed to setcookie is time() + $wgLoginCookieExpiration.
+		$data[] = array(
+			0,
+			1234,
+			time() + 1234,
+		);
+
+		// If exp is non-zero, then exp is passed to setcookie regardless of the
+		// value of $wgLoginCookieExpiration.
+		$data[] = array(
+			123456789,
+			1234,
+			123456789,
+		);
+
+		// If exp and $wgLoginCookieExpiration are zero, then the expiry passed
+		// to setcookie is zero.
+		$data[] = array(
+			0,
+			0,
+			0,
+			true,
+		);
+
+		return $data;
+	}
+
+	/**
+	 * @dataProvider setCookieDataProvider
+	 *
+	 * @covers User::getRequest
+	 * @covers User::setCookie
+	 */
+	public function testSetCookie($expiry, $actualWgLoginCookieExpiration, $expectedExpiry) {
+		global $wgLoginCookieExpiration;
+
+		// XXX (phuedx, 2014/09/20): The following spies on a call to
+		// WebResponse#setcookie from User#setCookie and records the "exp"
+		// argument.
+		$actualExpiry = null;
+		$response = $this->getMock( 'WebResponse' );
+		$response->expects( $this->once() )
+			->method( 'setcookie' )
+			->will( $this->returnCallback( function () use ( &$actualExpiry ) {
+				$arguments = func_get_args();
+				$actualExpiry = $arguments[ 2 ];
+			} ) );
+		$request = new MockWebRequest( $response );
+		$user = new UserProxy( User::newFromSession( $request ) );
+
+		$backupWgLoginCookieExpiration = $wgLoginCookieExpiration;
+		$wgLoginCookieExpiration = $actualWgLoginCookieExpiration;
+
+		$user->setCookie( 'name', 'value', $expiry );
+
+		$wgLoginCookieExpiration = $backupWgLoginCookieExpiration;
+
+		// TODO (phuedx, 2014/09/21): ± 2 seconds compensates for slow-running
+		// tests. Find out if this value is appropriate for the CI environment.
+		$this->assertEquals( $expectedExpiry, $actualExpiry, '', 2 );
+	}
+}
+
+class UserProxy extends User {
+
+	/**
+	 * @var User
+	 */
+	protected $user;
+
+	public function __construct( User $user ) {
+		$this->user = $user;
+	}
+
+	public function setCookie( $name, $value, $exp = 0, $secure = null, $params = array() ) {
+		$this->user->setCookie( $name, $value, $exp, $secure, $params );
 	}
 }
