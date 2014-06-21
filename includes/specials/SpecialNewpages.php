@@ -40,8 +40,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function setup( $par ) {
-		global $wgEnableNewpagesUserFilter;
-
 		// Options
 		$opts = new FormOptions();
 		$this->opts = $opts; // bind
@@ -71,9 +69,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		// Validate
 		$opts->validateIntBounds( 'limit', 0, 5000 );
-		if ( !$wgEnableNewpagesUserFilter ) {
-			$opts->setValue( 'username', '' );
-		}
 	}
 
 	protected function parseParams( $par ) {
@@ -204,7 +199,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function form() {
-		global $wgEnableNewpagesUserFilter, $wgScript;
+		global $wgScript;
 
 		// Consume values
 		$this->opts->consumeValue( 'offset' ); // don't carry offset, DWIW
@@ -265,15 +260,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 				$tagFilterSelector .
 				'</td>
 			</tr>' ) : '' ) .
-			( $wgEnableNewpagesUserFilter ?
-				'<tr>
+			'<tr>
 				<td class="mw-label">' .
 					Xml::label( $this->msg( 'newpages-username' )->text(), 'mw-np-username' ) .
 					'</td>
 				<td class="mw-input">' .
 					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
 					'</td>
-			</tr>' : '' ) .
+			</tr>' .
 			'<tr> <td></td>
 				<td class="mw-submit">' .
 			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
@@ -512,7 +506,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		global $wgEnableNewpagesUserFilter;
 		$conds = array();
 		$conds['rc_new'] = 1;
 
@@ -532,8 +525,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			}
 		}
 
-		# $wgEnableNewpagesUserFilter - temp WMF hack
-		if ( $wgEnableNewpagesUserFilter && $user ) {
+		if ( $user ) {
 			$conds['rc_user_text'] = $user->getText();
 			$rcIndexes = 'rc_user_text';
 		} elseif ( User::groupHasPermission( '*', 'createpage' ) &&
