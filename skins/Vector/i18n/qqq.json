@@ -3,6 +3,7 @@
 		"authors": []
 	},
 	"skinname-vector": "{{optional}}",
+	"vector-desc": "{{desc|name=Vector|url=http://www.mediawiki.org/wiki/Skin:Vector}}",
 	"vector.css": "{{optional}}",
 	"vector.js": "{{optional}}",
 	"vector-action-addsection": "Used in the Vector skin. See for example {{canonicalurl:Talk:Main_Page|useskin=vector}}",

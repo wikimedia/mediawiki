@@ -25,7 +25,11 @@
 $wgExtensionCredits['skin'][] = array(
 	'path' => __FILE__,
 	'name' => 'Vector',
+	'namemsg' => 'skinname-vector',
+	'descriptionmsg' => 'vector-desc',
 	'url' => 'https://www.mediawiki.org/wiki/Skin:Vector',
+	'author' => array( 'Trevor Parscal', 'Roan Kattouw', 'contributors' ),
+	'license-name' => 'GPLv2+',
 );
 
 // Register files
