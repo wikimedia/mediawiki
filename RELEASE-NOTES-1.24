@@ -86,6 +86,9 @@ production.
   to 'name', to allow for the name to be localizable. 'name' should still be
   specified for backwards-compatibility and to define the path Special:Version
   uses to find extension license information.
+* (bug 66699) The expiration of the login cookies ($wgLoginCookieExpiration) can
+  be configured independently of the expiration of all cookies
+  ($wgCookieExpiration).
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
