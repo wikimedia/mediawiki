@@ -6083,6 +6083,7 @@ $wgAutoloadAttemptLowercase = true;
  * $wgExtensionCredits[$type][] = array(
  *     'path' => __FILE__,
  *     'name' => 'Example extension',
+ *     'namemsg' => 'exampleextension-name',
  *     'author' => array(
  *         'Foo Barstein',
  *     ),
@@ -6102,15 +6103,24 @@ $wgAutoloadAttemptLowercase = true;
  *    'skin', 'api', or 'other', or any additional types as specified through the
  *    ExtensionTypes hook as used in SpecialVersion::getExtensionTypes().
  *
+ * - name: Name of extension as an inline string instead of localizable message.
+ *    Do not omit this even if 'namemsg' is provided, as it is used to override
+ *    the path Special:Version uses to find extension's license info, and is
+ *    required for backwards-compatibility with MediaWiki 1.23 and older.
+ *
+ * - namemsg (since MW 1.24): A message key for a message containing the
+ *    extension's name, if the name is localizable. (For example, skin names
+ *    usually are.)
+ *
  * - author: A string or an array of strings. Authors can be linked using
  *    the regular wikitext link syntax. To have an internationalized version of
  *    "and others" show, add an element "...". This element can also be linked,
  *    for instance "[http://example ...]".
  *
  * - descriptionmsg: A message key or an an array with message key and parameters:
- *    `'descriptionmsg' => array( 'exampleextension-desc', param1, param2, ... ),`
+ *    `'descriptionmsg' => 'exampleextension-desc',`
  *
- * - description: Description of extension as inline string instead of
+ * - description: Description of extension as an inline string instead of
  *    localizable message (omit in favour of 'descriptionmsg').
  *
  * - license-name: Short name of the license (used as label for the link), such

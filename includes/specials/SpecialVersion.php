@@ -587,7 +587,16 @@ class SpecialVersion extends SpecialPage {
 
 		// We must obtain the information for all the bits and pieces!
 		// ... such as extension names and links
-		$extensionName = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
+		if ( isset( $extension['namemsg'] ) ) {
+			// Localized name of extension
+			$extensionName = $this->msg( $extension['namemsg'] )->text();
+		} elseif ( isset( $extension['name'] ) ) {
+			// Non localized version
+			$extensionName = $extension['name'];
+		} else {
+			$extensionName = '[no name]';
+		}
+
 		if ( isset( $extension['url'] ) ) {
 			$extensionNameLink = Linker::makeExternalLink(
 				$extension['url'],
