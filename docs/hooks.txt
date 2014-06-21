@@ -1750,6 +1750,32 @@ caches.
 $title: name of the page changed.
 $text: new contents of the page.
 
+'MimeMagicCustomInfo': Before processing the list mapping MIME types to media
+types.
+$mimeMagic: Instance of MimeMagic.
+$addToList: Call-back function expecting a string parameter containing extra
+  assignments. Format is the same as in mime.info.
+
+'MimeMagicCustomTypes': Before processing the list mapping MIME types to file
+extensions.
+$mimeMagic: Instance of MimeMagic.
+$addToList: Call-back function expecting a string parameter containing extra
+  assignments. Format is the same as in mime.types.
+
+'MimeMagicImproveFromExtension': Allows MW extensions to further improve the
+MIME type detected by considering the file extension.
+$mimeMagic: Instance of MimeMagic.
+$ext: File extension.
+&$mime: MIME type (in/out).
+
+'MimeMagicGuessFromContent': Allows MW extensions guess the MIME by content.
+$mimeMagic: Instance of MimeMagic.
+&$head: First 1024 bytes of the file in a string (in - Do not alter!).
+&$tail: More or equal than last 65558 bytes of the file in a string
+  (in - Do not alter!).
+$file: File path.
+&$mime: MIME type (out).
+
 'ModifyExportQuery': Modify the query used by the exporter.
 $db: The database object to be queried.
 &$tables: Tables in the query.
