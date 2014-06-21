@@ -3393,6 +3393,7 @@
 	"version-hook-name": "Shown in [[Special:Version]].\n\nFor meaning of hook see [[mw:Special:MyLanguage/Manual:Hooks|mw:Manual:Hooks]] and [[w:Hooking]].",
 	"version-hook-subscribedby": "Shown in [[Special:Version]]",
 	"version-version": "{{Optional}}\nUsed in [[Special:Version]]. Preceded by the MediaWiki extension name.\n\nParameters:\n* $1 - version number of the extension",
+	"version-no-ext-name": "Used in [[Special:Version]], in the rows of the main table when a name for an extension is not provided.",
 	"version-svn-revision": "{{Identical|Revision}}{{optional}}\nUsed in [[Special:Version]], preceeding the Subversion revision numbers of the extensions loaded inside brackets, like this: \"({{int:version-revision}} r012345\"). Parameters:\n* $1 - (Unused) directory revision number or empty string\n* $2 - checkout revision number",
 	"version-license": "Used specifically for the MediaWiki software.\n\nUsed as heading in [[Special:Version]].",
 	"version-ext-license": "Used in [[Special:Version]].\n\nUsed as label for the link pointing to the extension's license page. e.g. [[Special:Version/License/Maps]]\n{{Identical|License}}",

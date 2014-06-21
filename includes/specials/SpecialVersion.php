@@ -594,7 +594,7 @@ class SpecialVersion extends SpecialPage {
 			// Non localized version
 			$extensionName = $extension['name'];
 		} else {
-			$extensionName = '[no name]';
+			$extensionName = $this->msg( 'version-no-ext-name' )->text();
 		}
 
 		if ( isset( $extension['url'] ) ) {
