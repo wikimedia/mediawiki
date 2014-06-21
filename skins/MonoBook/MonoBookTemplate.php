@@ -20,41 +20,11 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @todo document
  * @file
  * @ingroup Skins
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( -1 );
-}
-
 /**
- * Inherit main code from SkinTemplate, set the CSS and template filter.
- * @todo document
- * @ingroup Skins
- */
-class SkinMonoBook extends SkinTemplate {
-	/** Using monobook. */
-	public $skinname = 'monobook';
-	public $template = 'MonoBookTemplate';
-
-	/**
-	 * @param OutputPage $out
-	 */
-	function setupSkinUserCss( OutputPage $out ) {
-		parent::setupSkinUserCss( $out );
-
-		$out->addModuleStyles( array( 'mediawiki.skinning.interface', 'skins.monobook.styles' ) );
-
-		// TODO: Migrate all of these
-		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
-		$out->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
-	}
-}
-
-/**
- * @todo document
  * @ingroup Skins
  */
 class MonoBookTemplate extends BaseTemplate {

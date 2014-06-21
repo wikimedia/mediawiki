@@ -118,24 +118,6 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
-	/**
-	 * Skins
-	 * Be careful not to add 'scripts' to these modules,
-	 * since they are loaded with OutputPage::addModuleStyles so that the skin styles
-	 * apply without javascript.
-	 * If a skin needs custom js in the interface, register a separate module
-	 * and add it to the load queue with OutputPage::addModules.
-	 *
-	 * See Vector for an example.
-	 */
-	'skins.monobook.styles' => array(
-		'styles' => array(
-			'main.css' => array( 'media' => 'screen' ),
-		),
-		'remoteSkinPath' => 'monobook',
-		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/monobook',
-	),
-
 	/* jQuery */
 
 	'jquery' => array(

@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"skinname-monobook": "{{optional}}",
+	"monobook.css": "{{optional}}\nCSS applied to users using Monobook skin.",
+	"monobook.js": "{{optional}}\nJS for users using Monobook skin."
+}
