@@ -1922,42 +1922,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Info about this page
-	 * @deprecated since 1.19
-	 */
-	public function info() {
-		wfDeprecated( __METHOD__, '1.19' );
-		Action::factory( 'info', $this )->show();
-	}
-
-	/**
-	 * Handle action=purge
-	 * @deprecated since 1.19
-	 * @return Action|bool|null false if the action is disabled, null if it is not recognised
-	 */
-	public function purge() {
-		return Action::factory( 'purge', $this )->show();
-	}
-
-	/**
-	 * Handle action=revert
-	 * @deprecated since 1.19
-	 */
-	public function revert() {
-		wfDeprecated( __METHOD__, '1.19' );
-		Action::factory( 'revert', $this )->show();
-	}
-
-	/**
-	 * Handle action=rollback
-	 * @deprecated since 1.19
-	 */
-	public function rollback() {
-		wfDeprecated( __METHOD__, '1.19' );
-		Action::factory( 'rollback', $this )->show();
-	}
-
-	/**
 	 * Use PHP's magic __get handler to handle accessing of
 	 * raw WikiPage fields for backwards compatibility.
 	 *
