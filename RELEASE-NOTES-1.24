@@ -118,6 +118,8 @@ production.
 * Upgrade jQuery Cookie to v1.2.0.
 * (bug 20476) Add a "viewsuppressed" user right to be able to view
   suppressed content but not suppress it ("suppressrevision" right).
+* Added a new hook, "OutputPageScriptsForBottomQueue", to add modules to the
+  bottom queue that should be requested in a dedicated <script> request.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
