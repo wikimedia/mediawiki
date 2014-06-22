@@ -11,7 +11,8 @@
 			"乌拉跨氪",
 			"十弌",
 			"아라",
-			"Mywood"
+			"Mywood",
+			"Cwek"
 		]
 	},
 	"tog-underline": "鏈接下橫線：",
@@ -157,17 +158,6 @@
 	"qbmyoptions": "我頁",
 	"faq": "FAQ",
 	"faqpage": "Project:FAQ",
-	"vector-action-addsection": "加話題",
-	"vector-action-delete": "刪",
-	"vector-action-move": "移",
-	"vector-action-protect": "保",
-	"vector-action-undelete": "弗刪",
-	"vector-action-unprotect": "换保护状态",
-	"vector-view-create": "建",
-	"vector-view-edit": "编",
-	"vector-view-history": "望页史",
-	"vector-view-view": "读",
-	"vector-view-viewsource": "望源码",
 	"actions": "动作",
 	"namespaces": "名字空间",
 	"variants": "变量",

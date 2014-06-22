@@ -2774,7 +2774,7 @@
 	"months": "Full word for \"months\". $1 is the number of months.",
 	"years": "Full word for \"years\".\n\nParameters:\n* $1 - the number of years",
 	"ago": "Phrase for indicating how long ago something happened. Parameters:\n* $1 - some kind of timestamp\n{{Identical|Ago}}",
-	"just-now": "Phrase for indicating something happened just now.",
+	"just-now": "Phrase for indicating something happened just now.\n{{Identical|Just now}}",
 	"hours-ago": "Phrase for indicating that something occurred a certain number of hours ago.\n\nParameters:\n* $1 - number of hours",
 	"minutes-ago": "Phrase for indicating that something occurred a certain number of minutes ago.\n\nParameters:\n* $1 - number of minutes",
 	"seconds-ago": "Phrase for indicating that something occurred a certain number of seconds ago.\n\nParameters:\n* $1 - number of seconds",
