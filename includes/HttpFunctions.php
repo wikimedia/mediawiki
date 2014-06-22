@@ -330,8 +330,8 @@ class MWHttpRequest {
 	public function proxySetup() {
 		global $wgHTTPProxy;
 
-		// If there is an explicit proxy set and proxies are not disabled, then use it
-		if ( $this->proxy && !$this->noProxy ) {
+		// If the proxy is already set or noProxy is set, skip setup process
+		if ( $this->proxy || $this->noProxy ) {
 			return;
 		}
 
