@@ -1,6 +1,6 @@
 <?php
 /**
- * Handle action=render
+ * Renders the target page.
  *
  * Copyright © 2012 Timo Tijhof
  *
@@ -24,9 +24,7 @@
  */
 
 /**
- * Handle action=render
- *
- * This is a wrapper that will call Article::render().
+ * Class to render the target page.
  *
  * @ingroup Actions
  */
@@ -41,6 +39,10 @@ class RenderAction extends FormlessAction {
 	}
 
 	public function show() {
-		$this->page->render();
+		$this->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
+		$this->getOutput()->setArticleBodyOnly( true );
+		$this->getOutput()->enableSectionEditLinks( false );
+		$view = new ViewAction();
+		$view->show();
 	}
 }

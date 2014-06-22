@@ -173,6 +173,8 @@ changes to languages because of Bugzilla reports.
 * Removed WebRequest::escapeAppendQuery(). (deprecated since 1.20)
 * Removed info(), purge(), revert() and rollback() from the Article class; they
   have since become subclasses of the Action class. (deprecated since 1.19)
+* Deprecated Article::render() in favor of RenderAction::show(), to consolidate
+  subclasses of the Action class.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
