@@ -1,8 +1,6 @@
 <?php
 /**
- * Handle action=render
- *
- * Copyright © 2012 Timo Tijhof
+ * Renders the target page.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,13 +18,10 @@
  *
  * @file
  * @ingroup Actions
- * @author Timo Tijhof
  */
 
 /**
- * Handle action=render
- *
- * This is a wrapper that will call Article::render().
+ * Class to render the target page.
  *
  * @ingroup Actions
  */
@@ -41,6 +36,11 @@ class RenderAction extends FormlessAction {
 	}
 
 	public function show() {
-		$this->page->render();
+		$this->getOutput()->setIndexPolicy( 'noindex' );
+		$this->getOutput()->setArticleBodyOnly( true );
+		$this->getOutput()->enableSectionEditLinks( false );
+		// Hack to bypass ImagePage::view() and use Article::view()
+		$view = new ViewAction( new Article( $this->getTitle() ), $this->getContext() );
+		$view->show();
 	}
 }

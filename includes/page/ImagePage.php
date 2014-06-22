@@ -93,10 +93,12 @@ class ImagePage extends Article {
 	/**
 	 * Handler for action=render
 	 * Include body text only; none of the image extras
+	 *
+	 * @deprecated since 1.24
 	 */
 	public function render() {
-		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		parent::view();
+		wfDeprecated( __METHOD__, '1.24' );
+		Action::factory( 'render', $this, $this->getContext() )->show();
 	}
 
 	public function view() {
