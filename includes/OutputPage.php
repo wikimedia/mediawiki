@@ -2794,6 +2794,7 @@ $templates
 			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 
 			// Extract modules that know they're empty
+			/** @var ResourceLoaderModule $module */
 			foreach ( $grpModules as $key => $module ) {
 				// Inline empty modules: since they're empty, just mark them as 'ready' (bug 46857)
 				// If we're only getting the styles, we don't need to do anything for empty modules.
@@ -3059,6 +3060,14 @@ $templates
 		$links[] = $this->makeResourceLoaderLink( 'user.groups', ResourceLoaderModule::TYPE_COMBINED,
 			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 		);
+
+		$modules = array();
+		wfRunHooks( 'OutputPageScriptsForBottomQueue', array( $this, &$modules ) );
+		if ( $modules ) {
+			$links[] = $this->makeResourceLoaderLink( $modules, ResourceLoaderModule::TYPE_COMBINED,
+				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+			);
+		}
 
 		return self::getHtmlFromLoaderLinks( $links );
 	}
