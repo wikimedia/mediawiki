@@ -2710,7 +2710,7 @@ $templates
 	 *   call rather than a "<script src='...'>" tag.
 	 * @return string The html "<script>", "<link>" and "<style>" tags
 	 */
-	protected function makeResourceLoaderLink( $modules, $only, $useESI = false,
+	public function makeResourceLoaderLink( $modules, $only, $useESI = false,
 		array $extraQuery = array(), $loadCall = false
 	) {
 		global $wgResourceLoaderUseESI;
@@ -2794,6 +2794,7 @@ $templates
 			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 
 			// Extract modules that know they're empty
+			/** @var ResourceLoaderModule $module */
 			foreach ( $grpModules as $key => $module ) {
 				// Inline empty modules: since they're empty, just mark them as 'ready' (bug 46857)
 				// If we're only getting the styles, we don't need to do anything for empty modules.
@@ -3059,6 +3060,8 @@ $templates
 		$links[] = $this->makeResourceLoaderLink( 'user.groups', ResourceLoaderModule::TYPE_COMBINED,
 			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 		);
+
+		wfRunHooks( 'OutputPageScriptsForBottomQueue', array( $this, &$links, $inHead ) );
 
 		return self::getHtmlFromLoaderLinks( $links );
 	}
