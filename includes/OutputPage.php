@@ -3058,6 +3058,14 @@ $templates
 			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 		);
 
+		$modules = array();
+		wfRunHooks( 'OutputPageScriptsForBottomQueue', array( $this, &$modules ) );
+		if ( $modules ) {
+			$links[] = $this->makeResourceLoaderLink( $modules, ResourceLoaderModule::TYPE_COMBINED,
+				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+			);
+		}
+
 		return self::getHtmlFromLoaderLinks( $links );
 	}
 
