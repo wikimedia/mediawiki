@@ -1494,12 +1494,12 @@ class Article implements Page {
 
 	/**
 	 * Handle action=render
+	 *
+	 * @deprecated since 1.24
 	 */
 	public function render() {
-		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
-		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		$this->getContext()->getOutput()->enableSectionEditLinks( false );
-		$this->view();
+		wfDeprecated( __METHOD__, '1.24' );
+		Action::factory( 'render', $this )->show();
 	}
 
 	/**
