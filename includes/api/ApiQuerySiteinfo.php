@@ -385,6 +385,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$getPrefixes = Interwiki::getAllPrefixes( $local );
 		$extraLangPrefixes = $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' );
+		$localInterwikis = $this->getConfig()->get( 'LocalInterwikis' );
 		$data = array();
 
 		foreach ( $getPrefixes as $row ) {
@@ -400,6 +401,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 			if ( isset( $langNames[$prefix] ) ) {
 				$val['language'] = $langNames[$prefix];
+			}
+			if ( in_array( $prefix, $localInterwikis ) ) {
+				$val['localinterwiki'] = '';
 			}
 			if ( in_array( $prefix, $extraLangPrefixes ) ) {
 				$val['extralanglink'] = '';
