@@ -2360,6 +2360,10 @@ software.
 $software: The array of software in format 'name' => 'version'. See
   SpecialVersion::softwareInformation().
 
+'SpecialPageBeforeFormDisplay': Before executing the HTMLForm object.
+$name: name of the special page
+&$form: HTMLForm object
+
 'SpecialBlockModifyFormFields': Add more fields to Special:Block
 $sp: SpecialPage object, for context
 &$fields: Current HTMLForm fields
