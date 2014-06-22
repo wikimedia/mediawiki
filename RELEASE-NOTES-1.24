@@ -196,6 +196,8 @@ changes to languages because of Bugzilla reports.
 * Removed DatabaseMysqlBase::getLagFromProcesslist(). (deprecated since 1.19)
 * Removed LoadBalancer::closeConnecton(). (deprecated since 1.18)
 * Removed ApiBase::createContext(). (deprecated since 1.19)
+* The render() functions of the Article class and its subclasses were moved to
+  RenderAction::show(), to consolidate the Action subclasses.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
