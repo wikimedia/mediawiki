@@ -2095,7 +2095,7 @@ $article: the page the form is shown for
 $out: OutputPage object
 
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw.
-&$obj: RawPage object
+&$obj: RawAction object
 &$text: The text that's going to be the output
 
 'RecentChange_save': Called at the end of RecentChange::save().
