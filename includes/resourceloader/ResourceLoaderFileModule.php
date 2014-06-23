@@ -218,27 +218,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *     )
 	 * @endcode
 	 */
-	public function __construct( $options = array(), $localBasePath = null,
+	public function __construct(
+		$options = array(),
+		$localBasePath = null,
 		$remoteBasePath = null
 	) {
-		global $IP, $wgScriptPath, $wgResourceBasePath;
-		$this->localBasePath = $localBasePath === null ? $IP : $localBasePath;
-		if ( $remoteBasePath !== null ) {
-			$this->remoteBasePath = $remoteBasePath;
-		} else {
-			$this->remoteBasePath = $wgResourceBasePath === null ? $wgScriptPath : $wgResourceBasePath;
-		}
+		// localBasePath and remoteBasePath both have unbelievably long fallback chains
+		// and need to be handled separately.
+		list( $this->localBasePath, $this->remoteBasePath ) =
+			self::extractBasePaths( $options, $localBasePath, $remoteBasePath );
 
-		if ( isset( $options['remoteExtPath'] ) ) {
-			global $wgExtensionAssetsPath;
-			$this->remoteBasePath = $wgExtensionAssetsPath . '/' . $options['remoteExtPath'];
-		}
-
-		if ( isset( $options['remoteSkinPath'] ) ) {
-			global $wgStylePath;
-			$this->remoteBasePath = $wgStylePath . '/' . $options['remoteSkinPath'];
-		}
-
+		// Extract, validate and normalise remaining options
 		foreach ( $options as $member => $option ) {
 			switch ( $member ) {
 				// Lists of file paths
@@ -281,8 +271,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				// Single strings
 				case 'group':
 				case 'position':
-				case 'localBasePath':
-				case 'remoteBasePath':
 				case 'skipFunction':
 					$this->{$member} = (string)$option;
 					break;
@@ -293,9 +281,59 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					break;
 			}
 		}
+	}
+
+	/**
+	 * Extract a pair of local and remote base paths from module definition information.
+	 * Implementation note: the amount of global state used in this function is staggering.
+	 *
+	 * @param array $options Module definition
+	 * @param string $localBasePath Path to use if not provided in module definition. Defaults
+	 *     to $IP
+	 * @param string $remoteBasePath Path to use if not provided in module definition. Defaults
+	 *     to $wgScriptPath
+	 * @return array array( localBasePath, remoteBasePath )
+	 */
+	public static function extractBasePaths(
+		$options = array(),
+		$localBasePath = null,
+		$remoteBasePath = null
+	) {
+		global $IP, $wgScriptPath, $wgResourceBasePath;
+
+		// The different ways these checks are done, and their ordering, look very silly,
+		// but were preserved for backwards-compatibility just in case. Tread lightly.
+
+		$localBasePath = $localBasePath === null ? $IP : $localBasePath;
+		if ( $remoteBasePath !== null ) {
+			$remoteBasePath = $remoteBasePath;
+		} else {
+			$remoteBasePath = $wgResourceBasePath === null ? $wgScriptPath : $wgResourceBasePath;
+		}
+
+		if ( isset( $options['remoteExtPath'] ) ) {
+			global $wgExtensionAssetsPath;
+			$remoteBasePath = $wgExtensionAssetsPath . '/' . $options['remoteExtPath'];
+		}
+
+		if ( isset( $options['remoteSkinPath'] ) ) {
+			global $wgStylePath;
+			$remoteBasePath = $wgStylePath . '/' . $options['remoteSkinPath'];
+		}
+
+		if ( array_key_exists( 'localBasePath', $options ) ) {
+			$localBasePath = (string)$options['localBasePath'];
+		}
+
+		if ( array_key_exists( 'remoteBasePath', $options ) ) {
+			$remoteBasePath = (string)$options['remoteBasePath'];
+		}
+
 		// Make sure the remote base path is a complete valid URL,
 		// but possibly protocol-relative to avoid cache pollution
-		$this->remoteBasePath = wfExpandUrl( $this->remoteBasePath, PROTO_RELATIVE );
+		$remoteBasePath = wfExpandUrl( $remoteBasePath, PROTO_RELATIVE );
+
+		return array( $localBasePath, $remoteBasePath );
 	}
 
 	/**
@@ -567,18 +605,26 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/* Protected Methods */
 
 	/**
-	 * @param string $path
+	 * @param string|ResourceLoaderFilePath $path
 	 * @return string
 	 */
 	protected function getLocalPath( $path ) {
+		if ( $path instanceof ResourceLoaderFilePath ) {
+			return $path->getLocalPath();
+		}
+
 		return "{$this->localBasePath}/$path";
 	}
 
 	/**
-	 * @param string $path
+	 * @param string|ResourceLoaderFilePath $path
 	 * @return string
 	 */
 	protected function getRemotePath( $path ) {
+		if ( $path instanceof ResourceLoaderFilePath ) {
+			return $path->getRemotePath();
+		}
+
 		return "{$this->remoteBasePath}/$path";
 	}
 
@@ -808,13 +854,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected function readStyleFile( $path, $flip ) {
 		$localPath = $this->getLocalPath( $path );
+		$remotePath = $this->getRemotePath( $path );
 		if ( !file_exists( $localPath ) ) {
 			$msg = __METHOD__ . ": style file not found: \"$localPath\"";
 			wfDebugLog( 'resourceloader', $msg );
 			throw new MWException( $msg );
 		}
 
-		if ( $this->getStyleSheetLang( $path ) === 'less' ) {
+		if ( $this->getStyleSheetLang( $localPath ) === 'less' ) {
 			$style = $this->compileLESSFile( $localPath );
 			$this->hasGeneratedStyles = true;
 		} else {
@@ -824,20 +871,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $flip ) {
 			$style = CSSJanus::transform( $style, true, false );
 		}
-		$dirname = dirname( $path );
-		if ( $dirname == '.' ) {
-			// If $path doesn't have a directory component, don't prepend a dot
-			$dirname = '';
-		}
-		$dir = $this->getLocalPath( $dirname );
-		$remoteDir = $this->getRemotePath( $dirname );
+		$localDir = dirname( $localPath );
+		$remoteDir = dirname( $remotePath );
 		// Get and register local file references
 		$this->localFileRefs = array_merge(
 			$this->localFileRefs,
-			CSSMin::getLocalFileReferences( $style, $dir )
+			CSSMin::getLocalFileReferences( $style, $localDir )
 		);
 		return CSSMin::remap(
-			$style, $dir, $remoteDir, true
+			$style, $localDir, $remoteDir, true
 		);
 	}
 
