@@ -736,12 +736,12 @@ CREATE TABLE /*_*/uploadstash (
   -- chunk counter starts at 0, current offset is stored in us_size
   us_chunk_inx int NULL,
 
-  -- Serialized file properties from File::getPropsFromPath
+  -- Serialized file properties from FSFile::getProps()
   us_props nvarchar(max),
 
   -- file size in bytes
   us_size int NOT NULL,
-  -- this hash comes from File::sha1Base36(), and is 31 characters
+  -- this hash comes from FSFile::getSha1Base36(), and is 31 characters
   us_sha1 nvarchar(31) NOT NULL,
   us_mime nvarchar(255),
   -- Media type as defined by the MEDIATYPE_xxx constants, should duplicate definition in the image table

@@ -26,10 +26,10 @@ CREATE TABLE /*_*/uploadstash (
 
 	us_status varchar(50) not null,
 
-	-- file properties from File::getPropsFromPath.  these may prove unnecessary.
+	-- file properties from FSFile::getProps().  these may prove unnecessary.
 	--
 	us_size int unsigned NOT NULL,
-	-- this hash comes from File::sha1Base36(), and is 31 characters
+	-- this hash comes from FSFile::getSha1Base36(), and is 31 characters
 	us_sha1 varchar(31) NOT NULL,
 	us_mime varchar(255),
 	-- Media type as defined by the MEDIATYPE_xxx constants, should duplicate definition in the image table
