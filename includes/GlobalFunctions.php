@@ -3068,7 +3068,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
  * @param array $environ optional environment variables which should be
  *   added to the executed command environment.
  * @param array $limits Optional array with limits(filesize, memory, time, walltime)
- *   this overwrites the global wgShellMax* limits.
+ *   this overwrites the global wgMaxShell* limits.
  * @return string Collected stdout and stderr as a string
  */
 function wfShellExecWithStderr( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
