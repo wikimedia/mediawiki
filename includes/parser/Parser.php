@@ -5339,7 +5339,7 @@ class Parser {
 							} else {
 								$localLinkTitle = Title::newFromText( $linkValue );
 								if ( $localLinkTitle !== null ) {
-									$link = $localLinkTitle->getLocalURL();
+									$link = $localLinkTitle->getLinkURL();
 								}
 							}
 							break;
