@@ -131,19 +131,6 @@ class SpecialPage {
 		return $this->mRestriction;
 	}
 
-	/**
-	 * Get the file which will be included by SpecialPage::execute() if your extension is
-	 * still stuck in the past and hasn't overridden the execute() method.  No modern code
-	 * should want or need to know this.
-	 * @return string
-	 * @deprecated since 1.18
-	 */
-	function getFile() {
-		wfDeprecated( __METHOD__, '1.18' );
-
-		return $this->mFile;
-	}
-
 	// @todo FIXME: Decide which syntax to use for this, and stick to it
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
