@@ -986,8 +986,9 @@ function wfMatchesDomainList( $url, $domains ) {
  *   For backward compatibility, it can also take a boolean:
  *     - true: same as 'all'
  *     - false: same as 'log'
+ * @param array $context Additional logging context data
  */
-function wfDebug( $text, $dest = 'all' ) {
+function wfDebug( $text, $dest = 'all', array $context = array() ) {
 	global $wgDebugRawPage, $wgDebugLogPrefix;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
@@ -1011,13 +1012,12 @@ function wfDebug( $text, $dest = 'all' ) {
 		MWDebug::debugMsg( $text );
 	}
 
-	$ctx = array();
 	if ( $wgDebugLogPrefix !== '' ) {
-		$ctx['prefix'] = $wgDebugLogPrefix;
+		$context['prefix'] = $wgDebugLogPrefix;
 	}
 
 	$logger = MWLogger::getInstance( 'wfDebug' );
-	$logger->debug( trim( $text ), $ctx );
+	$logger->debug( trim( $text ), $context );
 }
 
 /**
@@ -1083,6 +1083,7 @@ function wfDebugMem( $exact = false ) {
  * a sampling factor.
  *
  * @since 1.23 support for sampling log messages via $wgDebugLogGroups.
+ * @since 1.24 support for additional context data
  *
  * @param string $logGroup
  * @param string $text
@@ -1094,8 +1095,9 @@ function wfDebugMem( $exact = false ) {
  *   For backward compatibility, it can also take a boolean:
  *     - true: same as 'all'
  *     - false: same as 'private'
+ * @param array $context Additional logging context data
  */
-function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
+function wfDebugLog( $logGroup, $text, $dest = 'all', array $context = array() ) {
 	global $wgDebugLogGroups;
 
 	// Turn $dest into a string if it's a boolean (for b/c)
@@ -1112,19 +1114,19 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 	}
 
 	$logger = MWLogger::getInstance( $logGroup );
-	$logger->debug( $text, array(
-		'private' => ( $dest === 'private' ),
-	) );
+	$context['private'] = ( $dest === 'private' );
+	$logger->debug( $text, $context );
 }
 
 /**
  * Log for database errors
  *
  * @param string $text Database error message.
+ * @param array $context Additional logging context data
  */
-function wfLogDBError( $text ) {
+function wfLogDBError( $text, $context = array() ) {
 	$logger = MWLogger::getInstance( 'wfLogDBError' );
-	$logger->error( trim( $text ) );
+	$logger->error( trim( $text ), $context );
 }
 
 /**
@@ -1179,13 +1181,13 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  *
  * @param string $text
  * @param string $file Filename
+ * @param array $context Additional logging context data
  * @throws MWException
  */
-function wfErrorLog( $text, $file ) {
+function wfErrorLog( $text, $file, array $context = array() ) {
 	$logger = MWLogger::getInstance( 'wfErrorLog' );
-	$logger->info( trim( $text ), array(
-		'destination' => $file,
-	) );
+	$context['destination'] = $file;
+	$logger->info( trim( $text ), $context );
 }
 
 /**

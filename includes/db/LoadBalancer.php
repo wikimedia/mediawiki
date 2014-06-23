@@ -741,17 +741,27 @@ class LoadBalancer {
 	 */
 	private function reportConnectionError() {
 		$conn = $this->mErrorConnection; // The connection which caused the error
+		$context = array(
+			'method' => __METHOD__,
+			'last_error' => $this->mLastError,
+		);
 
 		if ( !is_object( $conn ) ) {
 			// No last connection, probably due to all servers being too busy
-			wfLogDBError( "LB failure with no last connection. Connection error: {$this->mLastError}" );
+			wfLogDBError(
+				"LB failure with no last connection. Connection error: {last_error}",
+				$context
+			);
 
 			// If all servers were busy, mLastError will contain something sensible
 			throw new DBConnectionError( null, $this->mLastError );
 		} else {
-			$server = $conn->getProperty( 'mServer' );
-			wfLogDBError( "Connection error: {$this->mLastError} ({$server})" );
-			$conn->reportConnectionError( "{$this->mLastError} ({$server})" ); // throws DBConnectionError
+			$context['db_server'] = $conn->getProperty( 'mServer' );
+			wfLogDBError(
+				"Connection error: {last_error} ({db_server})",
+				$context
+			);
+			$conn->reportConnectionError( "{$this->mLastError} ({$context['db_server']})" ); // throws DBConnectionError
 		}
 
 		return false; /* not reached */
