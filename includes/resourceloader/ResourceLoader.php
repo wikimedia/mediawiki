@@ -278,6 +278,15 @@ class ResourceLoader {
 					. "see ResourceLoader::isValidModuleName()" );
 			}
 
+			// Sanity check for parameters
+			if ( !( $info instanceof ResourceLoaderModule || is_array( $info ) ) ) {
+				wfProfileOut( __METHOD__ );
+				throw new MWException(
+					'ResourceLoader module info type error for module \'' . $name .
+					'\': expected ResourceLoaderModule or array (got: ' . gettype( $info ) . ')'
+				);
+			}
+
 			// Attach module
 			if ( $info instanceof ResourceLoaderModule ) {
 				$this->moduleInfos[$name] = array( 'object' => $info );
@@ -286,12 +295,47 @@ class ResourceLoader {
 			} elseif ( is_array( $info ) ) {
 				// New calling convention
 				$this->moduleInfos[$name] = $info;
-			} else {
-				wfProfileOut( __METHOD__ );
-				throw new MWException(
-					'ResourceLoader module info type error for module \'' . $name .
-					'\': expected ResourceLoaderModule or array (got: ' . gettype( $info ) . ')'
-				);
+			}
+
+			// Last-minute changes
+
+			// Apply custom skin-defined styles to existing modules.
+			if ( $this->isAFileModule( $name ) ) {
+				global $wgResourceModuleStyles;
+				foreach ( $wgResourceModuleStyles as $skinName => $skinStyles ) {
+					// If this module already defines skinStyles for this skin, ignore $wgResourceModuleStyles.
+					if ( isset( $this->moduleInfos[$name]['skinStyles'][$skinName] ) ) {
+						continue;
+					}
+
+					// If $name is preceded with a '+', the defined style files will be added to 'default'
+					// skinStyles, otherwise 'default' will be ignored as it normally would be.
+					if ( isset( $skinStyles[ $name ] ) ) {
+						$paths = (array)$skinStyles[ $name ];
+						$styleFiles = array();
+					} else if ( isset( $skinStyles[ '+' . $name ] ) ) {
+						$paths = (array)$skinStyles[ '+' . $name ];
+						$styleFiles = isset( $this->moduleInfos[$name]['skinStyles']['default'] ) ?
+							$this->moduleInfos[$name]['skinStyles']['default'] :
+							array();
+					} else {
+						continue;
+					}
+
+					// Add new file paths, remapping them to refer to our directories and not use settings
+					// from the module we're modifying. These can come from the base definition or be defined
+					// for each module.
+					list( $localBasePath, $remoteBasePath ) =
+						ResourceLoaderFileModule::extractBasePaths( $skinStyles );
+					list( $localBasePath, $remoteBasePath ) =
+						ResourceLoaderFileModule::extractBasePaths( $paths, $localBasePath, $remoteBasePath );
+
+					foreach ( $paths as $path ) {
+						$styleFiles[] = new ResourceLoaderFilePath( $path, $localBasePath, $remoteBasePath );
+					}
+
+					$this->moduleInfos[$name]['skinStyles'][$skinName] = $styleFiles;
+				}
 			}
 		}
 
@@ -446,6 +490,24 @@ class ResourceLoader {
 		}
 
 		return $this->modules[$name];
+	}
+
+	/**
+	 * Return whether the definition of a module corresponds to a simple ResourceLoaderFileModule.
+	 *
+	 * @param string $name Module name
+	 * @return boolean
+	 */
+	protected function isAFileModule( $name ) {
+		if ( !isset( $this->moduleInfos[$name] ) ) {
+			return false;
+		}
+		$info = $this->moduleInfos[$name];
+		if ( isset( $info['object'] ) || isset( $info['class'] ) ) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	/**
