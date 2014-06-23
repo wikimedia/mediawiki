@@ -15135,6 +15135,37 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 !! end
 
 !! test
+Gallery with link that has fragment
+!! wikitext
+<gallery>
+image:foobar.jpg|link=Main_Page
+image:foobar.jpg|link=Main_Page#section
+image:foobar.jpg|link=Main Page#section|caption
+</gallery>
+!! html
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/Main_Page"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/Main_Page#section"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/Main_Page#section"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!! test
 Gallery with wikitext inside caption
 !! wikitext
 <gallery>
