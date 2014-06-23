@@ -83,15 +83,7 @@ class Article implements Page {
 	 */
 	public function __construct( Title $title, $oldId = null ) {
 		$this->mOldId = $oldId;
-		$this->mPage = $this->newPage( $title );
-	}
-
-	/**
-	 * @param Title $title
-	 * @return WikiPage
-	 */
-	protected function newPage( Title $title ) {
-		return new WikiPage( $title );
+		$this->mPage = new WikiPage( $title );
 	}
 
 	/**
