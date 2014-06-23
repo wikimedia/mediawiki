@@ -799,6 +799,23 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
+	 * Create a log context to pass to wfLogDBError or other logging functions.
+	 *
+	 * @param array $extras Additional data to add to context
+	 * @return array
+	 */
+	protected function getLogContext( array $extras = array() ) {
+		return array_merge(
+			array(
+				'db_server' => $this->mServer,
+				'db_name' => $this->mDBname,
+				'db_user' => $this->mUser,
+			),
+			$extras
+		);
+	}
+
+	/**
 	 * Closes a database connection.
 	 * if it is open : commits any open transactions
 	 *
@@ -1015,7 +1032,13 @@ abstract class DatabaseBase implements IDatabase {
 				$elapsed = round( microtime( true ) - $wgRequestTime, 3 );
 				if ( $elapsed < 300 ) {
 					# Not a database error to lose a transaction after a minute or two
-					wfLogDBError( "Connection lost and reconnected after {$elapsed}s, query: $sqlx" );
+					wfLogDBError(
+						"Connection lost and reconnected after {$elapsed}s, query: $sqlx",
+						$this->getLogContext( array(
+							'method' => __METHOD__,
+							'query' => $sqlx,
+						) )
+					);
 				}
 				if ( $hadTrx ) {
 					# Leave $ret as false and let an error be reported.
@@ -1063,7 +1086,16 @@ abstract class DatabaseBase implements IDatabase {
 			$this->ignoreErrors( $ignore );
 		} else {
 			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
-			wfLogDBError( "$fname\t{$this->mServer}\t$errno\t$error\t$sql1line" );
+			wfLogDBError(
+				"{fname}\t{db_server}\t{errno}\t{error}\t{sql1line}",
+				$this->getLogContext( array(
+					'method' => __METHOD__,
+					'errno' => $errno,
+					'error' => $error,
+					'sql1line' => $sql1line,
+					'fname' => $fname,
+				) )
+			);
 			wfDebug( "SQL ERROR: " . $error . "\n" );
 			throw new DBQueryError( $this, $error, $errno, $sql, $fname );
 		}
@@ -3338,7 +3370,12 @@ abstract class DatabaseBase implements IDatabase {
 				$msg = "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
 					" performing implicit commit!";
 				wfWarn( $msg );
-				wfLogDBError( $msg );
+				wfLogDBError( $msg,
+					$this->getLogContext( array(
+						'method' => __METHOD__,
+						'fname' => $fname,
+					) )
+				);
 			} else {
 				// if the transaction was automatic and has done write operations,
 				// log it if $wgDebugDBTransactions is enabled.
