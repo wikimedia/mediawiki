@@ -69,7 +69,7 @@ class GlobalVarConfig implements Config {
 	 */
 	protected function getWithPrefix( $prefix, $name ) {
 		$var = $prefix . $name;
-		if ( !isset( $GLOBALS[ $var ] ) ) {
+		if ( !array_key_exists( $var, $GLOBALS ) ) {
 			throw new ConfigException( __METHOD__ . ": undefined variable: '$var'" );
 		}
 		return $GLOBALS[ $var ];
