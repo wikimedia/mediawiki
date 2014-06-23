@@ -349,6 +349,20 @@ class SpecialPage {
 	}
 
 	/**
+	 * Helper function for implementations of prefixSearchSubpages() that
+	 * filter the values in memory (as oppposed to making a query).
+	 *
+	 * @since 1.24
+	 * @param string $search
+	 * @param array $subpages
+	 * @return string[]
+	 */
+	protected static function prefixSearchArray( $search, Array $subpages ) {
+		$escaped = preg_quote( $search );
+		return array_slice( preg_grep( "/^$escaped/i", $subpages ), 0, $limit );
+	}
+
+	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
 	 */
 	function setHeaders() {
