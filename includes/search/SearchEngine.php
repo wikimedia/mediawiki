@@ -420,17 +420,6 @@ class SearchEngine {
 	}
 
 	/**
-	 * Return a 'cleaned up' search string
-	 *
-	 * @param string $text
-	 * @return string
-	 */
-	function filter( $text ) {
-		$lc = $this->legalSearchChars();
-		return trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
-	}
-
-	/**
 	 * Load up the appropriate search engine class for the currently
 	 * active database backend, and return a configured instance.
 	 *

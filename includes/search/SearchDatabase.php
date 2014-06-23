@@ -43,4 +43,15 @@ class SearchDatabase extends SearchEngine {
 			$this->db = wfGetDB( DB_SLAVE );
 		}
 	}
+
+	/**
+	 * Return a 'cleaned up' search string
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	protected function filter( $text ) {
+		$lc = $this->legalSearchChars();
+		return trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
+	}
 }
