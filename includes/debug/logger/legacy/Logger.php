@@ -178,7 +178,8 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 			// Default formatting is wfDebugLog's historic style
 			$text = self::formatAsWfDebugLog( $channel, $message, $context );
 		}
-		return $text;
+
+		return self::interpolate( $text, $context );
 	}
 
 
@@ -192,6 +193,11 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 	 */
 	protected static function formatAsWfDebug( $channel, $message, $context ) {
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $message );
+		if ( isset( $context['seconds_elapsed'] ) ) {
+			// Prepend elapsed request time and real memory usage with two
+			// trailing spaces.
+			$text = "{$context['seconds_elapsed']} {$context['memory_used']}  {$text}";
+		}
 		if ( isset( $context['prefix'] ) ) {
 			$text = "{$context['prefix']}{$text}";
 		}
@@ -245,6 +251,24 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 		$host = wfHostname();
 		$text = "{$time} {$host} {$wiki}: {$message}\n";
 		return $text;
+	}
+
+
+	/**
+	 * Interpolate placeholders in logging message.
+	 *
+	 * @param string $message
+	 * @param array $context
+	 */
+	public static function interpolate( $message, array $context ) {
+		if ( strpos( $message, '{' ) !== false ) {
+			$replace = array();
+			foreach ( $context as $key => $val ) {
+				$replace['{' . $key . '}'] = $val;
+			}
+			$message = strtr( $message, $replace );
+		}
+		return $message;
 	}
 
 
