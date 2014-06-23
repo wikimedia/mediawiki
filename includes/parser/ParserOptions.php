@@ -422,11 +422,6 @@ class ParserOptions {
 		return wfSetVar( $this->mTidy, $x );
 	}
 
-	/** @deprecated since 1.19 */
-	function setSkin( $x ) {
-		wfDeprecated( __METHOD__, '1.19' );
-	}
-
 	function setInterfaceMessage( $x ) {
 		return wfSetVar( $this->mInterfaceMessage, $x );
 	}
