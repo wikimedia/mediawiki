@@ -2936,6 +2936,7 @@
 	"version-hook-name": "שם ה־Hook",
 	"version-hook-subscribedby": "הפונקציה הרושמת",
 	"version-version": "($1)",
+	"version-no-ext-name": "[ללא שם]",
 	"version-license": "רישיון עבור מדיה־ויקי",
 	"version-ext-license": "רישיון",
 	"version-ext-colheader-name": "הרחבה",

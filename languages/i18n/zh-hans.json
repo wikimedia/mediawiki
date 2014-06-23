@@ -2939,6 +2939,7 @@
 	"version-hook-name": "钩名",
 	"version-hook-subscribedby": "署名",
 	"version-version": "（版本 $1）",
+	"version-no-ext-name": "[无名称]",
 	"version-license": "MediaWiki协议",
 	"version-ext-license": "许可协议",
 	"version-ext-colheader-name": "扩展程序",

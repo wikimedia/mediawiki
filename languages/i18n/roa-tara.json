@@ -2898,6 +2898,7 @@
 	"version-hook-name": "Nome de l'hook",
 	"version-hook-subscribedby": "Sottoscritte da",
 	"version-version": "(Versione $1)",
+	"version-no-ext-name": "[nisciune nome]",
 	"version-svn-revision": "(r$2)",
 	"version-license": "Licenze",
 	"version-ext-license": "Licenze",

@@ -3017,6 +3017,7 @@
 	"version-hook-name": "フック名",
 	"version-hook-subscribedby": "使用個所",
 	"version-version": "(バージョン $1)",
+	"version-no-ext-name": "[名前なし]",
 	"version-license": "MediaWiki のライセンス",
 	"version-ext-license": "ライセンス",
 	"version-ext-colheader-name": "拡張機能",

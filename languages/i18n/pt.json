@@ -2887,6 +2887,7 @@
 	"version-hook-name": "Nome do hook",
 	"version-hook-subscribedby": "Subscrito por",
 	"version-version": "(Versão $1)",
+	"version-no-ext-name": "[sem nome]",
 	"version-license": "Licença do MediaWiki",
 	"version-ext-license": "Licença",
 	"version-ext-colheader-name": "Extensão",

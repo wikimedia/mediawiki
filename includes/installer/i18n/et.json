@@ -32,7 +32,7 @@
 	"config-db-port": "Andmebaasi port:",
 	"config-invalid-db-type": "Vigane andmebaasi tüüp",
 	"config-site-name": "Viki nimi:",
-	"config-site-name-blank": "Sisestage lehekülje nimi.",
+	"config-site-name-blank": "Sisesta võrgukoha nimi.",
 	"config-project-namespace": "Projekti nimeruum:",
 	"config-ns-generic": "Projekt",
 	"config-admin-box": "Administraatorikonto",
