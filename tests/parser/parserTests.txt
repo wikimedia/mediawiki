@@ -15135,6 +15135,29 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 !! end
 
 !! test
+Gallery with link that has fragment
+!! wikitext
+<gallery>
+image:foobar.jpg|link=Main_Page
+image:foobar.jpg|link=Main_Page#section
+</gallery>
+!! html
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 215px"><div style="width: 215px">
+			<div class="thumb" style="width: 210px;"><div style="margin:64.5px auto;"><a href="/wiki/Main_Page"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="21" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+		<li class="gallerybox" style="width: 215px"><div style="width: 215px">
+			<div class="thumb" style="width: 210px;"><div style="margin:64.5px auto;"><a href="/wiki/Main_Page#section"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="21" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!! test
 Gallery with wikitext inside caption
 !! wikitext
 <gallery>
