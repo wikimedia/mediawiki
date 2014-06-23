@@ -93,7 +93,13 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			if ( !$error ) {
 				$error = $this->lastError();
 			}
-			wfLogDBError( "Error connecting to {$this->mServer}: $error" );
+			wfLogDBError(
+				"Error connecting to {db_server}: {error}",
+				$this->getLogContext( array(
+					'method' => __METHOD__,
+					'error' => $error,
+				) )
+			);
 			wfDebug( "DB connection error\n" .
 				"Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
@@ -108,7 +114,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$success = $this->selectDB( $dbName );
 			wfRestoreWarnings();
 			if ( !$success ) {
-				wfLogDBError( "Error selecting database $dbName on server {$this->mServer}" );
+				wfLogDBError(
+					"Error selecting database {db_name} on server {db_server}",
+					$this->getLogContext( array(
+						'method' => __METHOD__,
+					) )
+				);
 				wfDebug( "Error selecting database $dbName on server {$this->mServer} " .
 					"from client host " . wfHostname() . "\n" );
 
@@ -129,7 +140,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			// Use doQuery() to avoid opening implicit transactions (DBO_TRX)
 			$success = $this->doQuery( "SET sql_mode = $mode", __METHOD__ );
 			if ( !$success ) {
-				wfLogDBError( "Error setting sql_mode to $mode on server {$this->mServer}" );
+				wfLogDBError(
+					"Error setting sql_mode to $mode on server {db_server}",
+					$this->getLogContext( array(
+						'method' => __METHOD__,
+					) )
+				);
 				wfProfileOut( __METHOD__ );
 				$this->reportConnectionError( "Error setting sql_mode to $mode" );
 			}
