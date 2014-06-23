@@ -8,7 +8,7 @@ This is a maintenance release of the MediaWiki 1.23 branch.
 === Changes since 1.23.3 ===
 
 * (bug 65998) Make MySQLi work with non-standard socket.
-
+* (bug 66986) GlobalVarConfig shouldn't throw exceptions for null-valued config settings
 == MediaWiki 1.23.3 ==
 
 This is a maintenance release of the MediaWiki 1.23 branch.
