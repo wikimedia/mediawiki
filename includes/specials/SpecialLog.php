@@ -127,8 +127,7 @@ class SpecialLog extends SpecialPage {
 		$subpages = $wgLogTypes;
 		$subpages[] = 'all';
 		sort( $subpages );
-		$escaped = preg_quote( $search );
-		return array_slice( preg_grep( "/^$escaped/i", $subpages ), 0, $limit );
+		return self::prefixSearchArray( $search, $limit, $subpages );
 	}
 
 	private function parseParams( FormOptions $opts, $par ) {
