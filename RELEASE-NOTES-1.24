@@ -182,6 +182,7 @@ changes to languages because of Bugzilla reports.
 * CLDRPluralRuleEvaluator_Range to CLDRPluralRuleEvaluatorRange
 * CSSJanus_Tokenizer to CSSJanusTokenizer
 * MediaWiki_I18N to MediaWikiI18N
+* Parser_DiffTest to ParserDiffTest
 * RevDel_ArchiveItem to RevDelArchiveItem
 * RevDel_ArchiveList to RevDelArchiveList
 * RevDel_ArchivedFileItem to RevDelArchivedFileItem

@@ -24,7 +24,7 @@
 /**
  * @ingroup Parser
  */
-class Parser_DiffTest
+class ParserDiffTest
 {
 	var $parsers, $conf;
 	var $shortOutput = false;
@@ -98,7 +98,7 @@ class Parser_DiffTest
 			} else {
 				$diff = '[too many parsers]';
 			}
-			$msg = "Parser_DiffTest: results mismatch on call to $name\n";
+			$msg = "ParserDiffTest: results mismatch on call to $name\n";
 			if ( !$this->shortOutput ) {
 				$msg .= 'Arguments: ' . $this->formatArray( $args ) . "\n";
 			}
