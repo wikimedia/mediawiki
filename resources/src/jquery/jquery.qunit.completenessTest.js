@@ -12,7 +12,7 @@
  *
  * @author Timo Tijhof, 2011-2012
  */
-( function ( $ ) {
+( function ( mw, $ ) {
 	'use strict';
 
 	var util,
@@ -64,6 +64,8 @@
 	 *  were not called from that instance.
 	 */
 	function CompletenessTest( masterVariable, ignoreFn ) {
+		var warn,
+			that = this;
 
 		// Keep track in these objects. Keyed by strings with the
 		// method names (ie. 'my.foo', 'my.bar', etc.) values are boolean true.
@@ -77,12 +79,18 @@
 		this.lazyLimit = 2000;
 		this.lazyCounter = 0;
 
-		var that = this;
-
 		// Bind begin and end to QUnit.
 		QUnit.begin( function () {
+			// Suppress warnings (e.g. deprecation notices for accessing the properties)
+			warn = mw.log.warn;
+			mw.log.warn = $.noop;
+
 			that.walkTheObject( masterVariable, null, masterVariable, [] );
 			log( 'CompletenessTest/walkTheObject', that );
+
+			// Restore warnings
+			mw.log.warn = warn;
+			warn = undefined;
 		});
 
 		QUnit.done( function () {
@@ -294,4 +302,4 @@
 	/* Expose */
 	window.CompletenessTest = CompletenessTest;
 
-}( jQuery ) );
+}( mediaWiki, jQuery ) );
