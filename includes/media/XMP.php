@@ -23,7 +23,7 @@
 
 /**
  * Class for reading xmp data containing properties relevant to
- * images, and spitting out an array that FormatExif accepts.
+ * images, and spitting out an array that FormatMetadata accepts.
  *
  * Note, this is not meant to recognize every possible thing you can
  * encode in XMP. It should recognize all the properties we want.
