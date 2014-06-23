@@ -25,6 +25,7 @@ class NewParserTest extends MediaWikiTestCase {
 	public $savedGlobals = array();
 	public $hooks = array();
 	public $functionHooks = array();
+	public $transparentHooks = array();
 
 	//Fuzz test
 	public $maxFuzzTestLength = 300;
@@ -943,6 +944,12 @@ class NewParserTest extends MediaWikiTestCase {
 		global $wgParser;
 		$wgParser->firstCallInit(); // make sure hooks are loaded.
 		return isset( $wgParser->mFunctionHooks[$name] );
+	}
+
+	public function requireTransparentHook( $name ) {
+		global $wgParser;
+		$wgParser->firstCallInit(); // make sure hooks are loaded.
+		return isset( $wgParser->mTransparentTagHooks[$name] );
 	}
 
 	//Various "cleanup" functions

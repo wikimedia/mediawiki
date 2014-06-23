@@ -145,6 +145,7 @@ class ParserTest {
 
 		$this->hooks = array();
 		$this->functionHooks = array();
+		$this->transparentHooks = array();
 		self::setUp();
 	}
 
@@ -526,6 +527,10 @@ class ParserTest {
 		foreach ( $this->functionHooks as $tag => $bits ) {
 			list( $callback, $flags ) = $bits;
 			$parser->setFunctionHook( $tag, $callback, $flags );
+		}
+
+		foreach ( $this->transparentHooks as $tag => $callback ) {
+			$parser->setTransparentTagHook( $tag, $callback );
 		}
 
 		wfRunHooks( 'ParserTestParser', array( &$parser ) );
@@ -1517,6 +1522,29 @@ class ParserTest {
 			$this->functionHooks[$name] = $wgParser->mFunctionHooks[$name];
 		} else {
 			echo "   This test suite requires the '$name' function hook extension, skipping.\n";
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Steal a callback function from the primary parser, save it for
+	 * application to our scary parser. If the hook is not installed,
+	 * abort processing of this file.
+	 *
+	 * @param string $name
+	 * @return bool True if function hook is present
+	 */
+	public function requireTransparentHook( $name ) {
+		global $wgParser;
+
+		$wgParser->firstCallInit(); // make sure hooks are loaded.
+
+		if ( isset( $wgParser->mTransparentTagHooks[$name] ) ) {
+			$this->transparentHooks[$name] = $wgParser->mTransparentTagHooks[$name];
+		} else {
+			echo "   This test suite requires the '$name' transparent hook extension, skipping.\n";
 			return false;
 		}
 
