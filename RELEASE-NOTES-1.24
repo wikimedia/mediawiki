@@ -215,6 +215,7 @@ changes to languages because of Bugzilla reports.
 ==== Removed classes ====
 * IPBlockForm - Use SpecialBlock directly
 * WatchlistEditor - Use SpecialEditWatchlist directly
+* FormatExif - Use FormatMetadata directly
 
 == Compatibility ==
 

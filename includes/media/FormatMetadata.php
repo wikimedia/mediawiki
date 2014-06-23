@@ -1871,29 +1871,3 @@ class FormatMetadata extends ContextSource {
 		return $priorityLanguages;
 	}
 }
-
-/** For compatability with old FormatExif class
- * which some extensions use.
- *
- * @deprecated since 1.18
- *
- */
-class FormatExif {
-	/** @var array */
-	private $meta;
-
-	/**
-	 * @param array $meta
-	 */
-	function __construct( $meta ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		$this->meta = $meta;
-	}
-
-	/**
-	 * @return array
-	 */
-	function getFormattedData() {
-		return FormatMetadata::getFormattedData( $this->meta );
-	}
-}

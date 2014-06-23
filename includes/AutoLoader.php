@@ -741,7 +741,6 @@ $wgAutoloadLocalClasses = array(
 	'DjVuImage' => 'includes/media/DjVuImage.php',
 	'Exif' => 'includes/media/Exif.php',
 	'ExifBitmapHandler' => 'includes/media/ExifBitmap.php',
-	'FormatExif' => 'includes/media/FormatMetadata.php',
 	'FormatMetadata' => 'includes/media/FormatMetadata.php',
 	'GIFHandler' => 'includes/media/GIF.php',
 	'GIFMetadataExtractor' => 'includes/media/GIFMetadataExtractor.php',
