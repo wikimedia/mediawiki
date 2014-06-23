@@ -440,7 +440,7 @@ class SpecialSearch extends SpecialPage {
 
 		if ( $title->isKnown() ) {
 			$messageName = 'searchmenu-exists';
-		} elseif ( $title->userCan( 'create', $this->getUser() ) ) {
+		} elseif ( $title->quickUserCan( 'create', $this->getUser() ) ) {
 			$messageName = 'searchmenu-new';
 		} else {
 			$messageName = 'searchmenu-new-nocreate';
