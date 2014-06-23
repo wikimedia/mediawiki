@@ -950,6 +950,8 @@ function wfMatchesDomainList( $url, $domains ) {
  * $wgDebugRawPage - if false, 'action=raw' hits will not result in debug output.
  * $wgDebugComments - if on, some debug items may appear in comments in the HTML output.
  *
+ * @since 1.25 support for additional context data
+ *
  * @param string $text
  * @param string|bool $dest Destination of the message:
  *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
@@ -957,9 +959,11 @@ function wfMatchesDomainList( $url, $domains ) {
  *   For backward compatibility, it can also take a boolean:
  *     - true: same as 'all'
  *     - false: same as 'log'
+ * @param array $context Additional logging context data
  */
-function wfDebug( $text, $dest = 'all' ) {
+function wfDebug( $text, $dest = 'all', array $context = array() ) {
 	global $wgDebugRawPage, $wgDebugLogPrefix;
+	global $wgDebugTimestamps, $wgRequestTime;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -972,23 +976,36 @@ function wfDebug( $text, $dest = 'all' ) {
 		$dest = 'log';
 	}
 
-	$timer = wfDebugTimer();
-	if ( $timer !== '' ) {
-		// Prepend elapsed request time and real memory usage to each line
-		$text = preg_replace( '/[^\n]/', $timer . '\0', $text, 1 );
+	$text = trim( $text );
+
+	// Inline logic from deprecated wfDebugTimer()
+	if ( $wgDebugTimestamps ) {
+		$context['seconds_elapsed'] = sprintf(
+			'%6.4f',
+			microtime( true ) - $wgRequestTime
+		);
+		$context['memory_used'] = sprintf(
+			'%5.1fM',
+			( memory_get_usage( true ) / ( 1024 * 1024 ) )
+		);
 	}
 
 	if ( $dest === 'all' ) {
-		MWDebug::debugMsg( $text );
+		$prefix = '';
+		if ( $wgDebugTimestamps ) {
+			// Prepend elapsed request time and real memory usage with two
+			// trailing spaces.
+			$prefix = "{$context['seconds_elapsed']} {$context['memory_used']}  ";
+		}
+		MWDebug::debugMsg( "{$prefix}{$text}" );
 	}
 
-	$ctx = array();
 	if ( $wgDebugLogPrefix !== '' ) {
-		$ctx['prefix'] = $wgDebugLogPrefix;
+		$context['prefix'] = $wgDebugLogPrefix;
 	}
 
 	$logger = MWLogger::getInstance( 'wfDebug' );
-	$logger->debug( rtrim( $text, "\n" ), $ctx );
+	$logger->debug( $text, $context );
 }
 
 /**
@@ -1017,10 +1034,13 @@ function wfIsDebugRawPage() {
 /**
  * Get microsecond timestamps for debug logs
  *
+ * @deprecated since 1.25
  * @return string
  */
 function wfDebugTimer() {
 	global $wgDebugTimestamps, $wgRequestTime;
+
+	wfDeprecated( __METHOD__, '1.25' );
 
 	if ( !$wgDebugTimestamps ) {
 		return '';
@@ -1054,6 +1074,7 @@ function wfDebugMem( $exact = false ) {
  * a sampling factor.
  *
  * @since 1.23 support for sampling log messages via $wgDebugLogGroups.
+ * @since 1.25 support for additional context data
  *
  * @param string $logGroup
  * @param string $text
@@ -1065,8 +1086,9 @@ function wfDebugMem( $exact = false ) {
  *   For backward compatibility, it can also take a boolean:
  *     - true: same as 'all'
  *     - false: same as 'private'
+ * @param array $context Additional logging context data
  */
-function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
+function wfDebugLog( $logGroup, $text, $dest = 'all', array $context = array() ) {
 	global $wgDebugLogGroups;
 
 	// Turn $dest into a string if it's a boolean (for b/c)
@@ -1083,19 +1105,19 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 	}
 
 	$logger = MWLogger::getInstance( $logGroup );
-	$logger->debug( $text, array(
-		'private' => ( $dest === 'private' ),
-	) );
+	$context['private'] = ( $dest === 'private' );
+	$logger->debug( $text, $context );
 }
 
 /**
  * Log for database errors
  *
  * @param string $text Database error message.
+ * @param array $context Additional logging context data
  */
-function wfLogDBError( $text ) {
+function wfLogDBError( $text, $context = array() ) {
 	$logger = MWLogger::getInstance( 'wfLogDBError' );
-	$logger->error( trim( $text ) );
+	$logger->error( trim( $text ), $context );
 }
 
 /**
@@ -1147,16 +1169,17 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  *
  * Can also log to TCP or UDP with the syntax udp://host:port/prefix. This will
  * send lines to the specified port, prefixed by the specified prefix and a space.
+ * @since 1.25 support for additional context data
  *
  * @param string $text
  * @param string $file Filename
+ * @param array $context Additional logging context data
  * @throws MWException
  */
-function wfErrorLog( $text, $file ) {
+function wfErrorLog( $text, $file, array $context = array() ) {
 	$logger = MWLogger::getInstance( 'wfErrorLog' );
-	$logger->info( trim( $text ), array(
-		'destination' => $file,
-	) );
+	$context['destination'] = $file;
+	$logger->info( trim( $text ), $context );
 }
 
 /**
