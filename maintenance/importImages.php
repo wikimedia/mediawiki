@@ -177,7 +177,7 @@ if ( $count > 0 ) {
 			if ( isset( $options['skip-dupes'] ) ) {
 				$repo = $image->getRepo();
 				# XXX: we end up calculating this again when actually uploading. that sucks.
-				$sha1 = File::sha1Base36( $file );
+				$sha1 = FSFile::getSha1Base36FromPath( $file );
 
 				$dupes = $repo->findBySha1( $sha1 );
 
