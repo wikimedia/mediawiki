@@ -813,7 +813,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					ApiBase::PROP_NULLABLE => true
 				),
 				'logtype' => array(
-					ApiBase::PROP_TYPE => $config->get( 'LogTypes' ),
+					ApiBase::PROP_TYPE => $this->getConfig()->get( 'LogTypes' ),
 					ApiBase::PROP_NULLABLE => true
 				),
 				'logaction' => array(
