@@ -3555,7 +3555,7 @@ HTML
 
 			$previewHTML = $parserOutput->getText();
 			$this->mParserOutput = $parserOutput;
-			$wgOut->addParserOutputNoText( $parserOutput );
+			$wgOut->addParserOutputMetadata( $parserOutput );
 
 			if ( count( $parserOutput->getWarnings() ) ) {
 				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );

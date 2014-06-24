@@ -1627,7 +1627,6 @@ class OutputPage extends ContextSource {
 	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputNoText( &$parserOutput ) {
-		wfDeprecated( __METHOD__, '1.24' );
 		$this->addParserOutputMetadata( $parserOutput );
 	}
 

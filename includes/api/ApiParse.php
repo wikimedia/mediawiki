@@ -325,7 +325,7 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
 			$context = $this->getContext();
 			$context->setTitle( $titleObj );
-			$context->getOutput()->addParserOutputNoText( $p_result );
+			$context->getOutput()->addParserOutputMetadata( $p_result );
 
 			if ( isset( $prop['headitems'] ) ) {
 				$headItems = $this->formatHeadItems( $p_result->getHeadItems() );
