@@ -244,6 +244,9 @@ class SqlBagOStuff extends BagOStuff {
 						// We do not want to flush the TRX as that can break callers.
 						$db->trxLevel() ? array( 'LOCK IN SHARE MODE' ) : array()
 					);
+					if ( $res === false ) {
+						continue;
+					}
 					foreach ( $res as $row ) {
 						$row->serverIndex = $serverIndex;
 						$row->tableName = $tableName;
@@ -579,7 +582,7 @@ class SqlBagOStuff extends BagOStuff {
 							$conds,
 							__METHOD__,
 							array( 'LIMIT' => 100, 'ORDER BY' => 'exptime' ) );
-						if ( !$rows->numRows() ) {
+						if ( $rows === false || !$rows->numRows() ) {
 							break;
 						}
 						$keys = array();
