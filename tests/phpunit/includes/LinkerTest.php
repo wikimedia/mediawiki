@@ -91,6 +91,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 */
 	public function testFormatComment( $expected, $comment, $title = false, $local = false ) {
 		$this->setMwGlobals( array(
+			'wgScript' => '/wiki/index.php',
 			'wgArticlePath' => '/wiki/$1',
 			'wgWellFormedXml' => true,
 		) );
