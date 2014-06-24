@@ -86,6 +86,8 @@ production.
   to 'name', to allow for the name to be localizable. 'name' should still be
   specified for backwards-compatibility and to define the path Special:Version
   uses to find extension license information.
+* Browser tests are now included to verify basic wiki functionality in developer
+  environments. For details on running tests, see tests/browser/README.mediawiki.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
