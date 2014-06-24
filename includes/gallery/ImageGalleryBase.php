@@ -222,17 +222,6 @@ abstract class ImageGalleryBase extends ContextSource {
 	}
 
 	/**
-	 * Instruct the class to use a specific skin for rendering
-	 *
-	 * @param Skin $skin
-	 * @deprecated since 1.18 Not used anymore
-	 */
-	function useSkin( $skin ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		/* no op */
-	}
-
-	/**
 	 * Add an image to the gallery.
 	 *
 	 * @param Title $title Title object of the image that is added to the gallery

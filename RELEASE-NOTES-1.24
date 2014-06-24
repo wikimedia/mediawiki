@@ -175,6 +175,7 @@ changes to languages because of Bugzilla reports.
 * Removed info(), purge(), revert() and rollback() from the Article class; they
   have since become subclasses of the Action class. (deprecated since 1.19)
 * SearchEngineReplacePrefixesComplete hook was removed.
+* Removed ImageGalleryBase::useSkin(). (deprecated since 1.18)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
