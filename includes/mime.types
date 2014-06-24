@@ -35,6 +35,7 @@ application/x-gzip gz
 application/x-hdf hdf
 application/x-jar jar
 application/x-javascript js
+application/json json
 application/x-koan skp skd skt skm
 application/x-latex latex
 application/x-netcdf nc cdf
@@ -109,6 +110,7 @@ model/mesh msh mesh silo
 model/vrml wrl vrml
 text/calendar ics ifb
 text/css css
+text/csv csv
 text/html html htm
 text/plain txt
 text/richtext rtx
