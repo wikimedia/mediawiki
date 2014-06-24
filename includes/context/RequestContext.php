@@ -308,22 +308,28 @@ class RequestContext implements IContextSource {
 
 			global $wgLanguageCode, $wgContLang;
 
-			$request = $this->getRequest();
-			$user = $this->getUser();
+			try {
+				$request = $this->getRequest();
+				$user = $this->getUser();
 
-			$code = $request->getVal( 'uselang', $user->getOption( 'language' ) );
-			$code = self::sanitizeLangCode( $code );
+				$code = $request->getVal( 'uselang', $user->getOption( 'language' ) );
+				$code = self::sanitizeLangCode( $code );
 
-			wfRunHooks( 'UserGetLanguageObject', array( $user, &$code, $this ) );
+				wfRunHooks( 'UserGetLanguageObject', array( $user, &$code, $this ) );
 
-			if ( $code === $wgLanguageCode ) {
-				$this->lang = $wgContLang;
-			} else {
-				$obj = Language::factory( $code );
-				$this->lang = $obj;
+				if ( $code === $wgLanguageCode ) {
+					$this->lang = $wgContLang;
+				} else {
+					$obj = Language::factory( $code );
+					$this->lang = $obj;
+				}
+
+				unset( $this->recursion );
 			}
-
-			unset( $this->recursion );
+			catch ( Exception $ex ) {
+				unset( $this->recursion );
+				throw $ex;
+			}
 		}
 
 		return $this->lang;
