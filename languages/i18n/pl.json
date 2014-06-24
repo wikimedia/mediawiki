@@ -2944,6 +2944,7 @@
 	"version-hook-name": "Nazwa haka (ang. hook name)",
 	"version-hook-subscribedby": "Zapotrzebowany przez",
 	"version-version": "(Wersja $1)",
+	"version-no-ext-name": "[bez nazwy]",
 	"version-license": "Licencja MediaWiki",
 	"version-ext-license": "Licencja",
 	"version-ext-colheader-name": "Rozszerzenie",

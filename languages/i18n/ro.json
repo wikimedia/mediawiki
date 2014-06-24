@@ -2853,6 +2853,7 @@
 	"version-hook-name": "Nume hook",
 	"version-hook-subscribedby": "Subscris de",
 	"version-version": "($1)",
+	"version-no-ext-name": "[fără nume]",
 	"version-license": "Licență MediaWiki",
 	"version-ext-license": "Licență",
 	"version-ext-colheader-name": "Extensie",
