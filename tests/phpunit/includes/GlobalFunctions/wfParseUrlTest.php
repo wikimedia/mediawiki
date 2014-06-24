@@ -68,6 +68,14 @@ class WfParseUrlTest extends MediaWikiTestCase {
 				)
 			),
 			array(
+				'https://example.org',
+				array(
+					'scheme' => 'https',
+					'delimiter' => '://',
+					'host' => 'example.org',
+				)
+			),
+			array(
 				'http://id:key@example.org:123/path?foo=bar#baz',
 				array(
 					'scheme' => 'http',
