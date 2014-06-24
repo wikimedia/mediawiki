@@ -22,6 +22,8 @@ production.
 === Bug fixes in 1.25 ===
 * (bug 71003) No additional code will be generated to try to load CSS-embedded
   SVG images in Internet Explorer 6 and 7, as they don't support them anyway.
+* (bug 67021) On Special:BookSources, corrected validation of ISBNs (both
+  10- and 13-digit forms) containing "X".
 
 === Action API changes in 1.25 ===
 * (bug 65403) XML tag highlighting is now only performed for formats
