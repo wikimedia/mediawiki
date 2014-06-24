@@ -26,7 +26,6 @@
  * The parser creates links to this page when dealing with ISBNs in wikitext
  *
  * @author Rob Church <robchur@gmail.com>
- * @todo Validate ISBNs using the standard check-digit method
  * @ingroup SpecialPage
  */
 class SpecialBookSources extends SpecialPage {
@@ -81,7 +80,7 @@ class SpecialBookSources extends SpecialPage {
 			}
 
 			$check = ( 10 - ( $sum % 10 ) ) % 10;
-			if ( $check == $isbn[12] ) {
+			if ( (string)$check === $isbn[12] ) {
 				return true;
 			}
 		} elseif ( strlen( $isbn ) == 10 ) {
@@ -93,7 +92,7 @@ class SpecialBookSources extends SpecialPage {
 			if ( $check == 10 ) {
 				$check = "X";
 			}
-			if ( $check == $isbn[9] ) {
+			if ( (string)$check === $isbn[9] ) {
 				return true;
 			}
 		}
