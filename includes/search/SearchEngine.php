@@ -318,7 +318,6 @@ class SearchEngine {
 
 		$parsed = $query;
 		if ( strpos( $query, ':' ) === false ) { // nothing to do
-			wfRunHooks( 'SearchEngineReplacePrefixesComplete', array( $this, $query, &$parsed ) );
 			return $parsed;
 		}
 
@@ -337,8 +336,6 @@ class SearchEngine {
 		if ( trim( $parsed ) == '' ) {
 			$parsed = $query; // prefix was the whole query
 		}
-
-		wfRunHooks( 'SearchEngineReplacePrefixesComplete', array( $this, $query, &$parsed ) );
 
 		return $parsed;
 	}
