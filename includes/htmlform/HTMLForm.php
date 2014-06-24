@@ -305,15 +305,6 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Add the HTMLForm-specific JavaScript, if it hasn't been
-	 * done already.
-	 * @deprecated since 1.18 load modules with ResourceLoader instead
-	 */
-	static function addJS() {
-		wfDeprecated( __METHOD__, '1.18' );
-	}
-
-	/**
 	 * Get the HTMLFormField subclass for this descriptor.
 	 *
 	 * The descriptor can be passed either 'class' which is the name of
