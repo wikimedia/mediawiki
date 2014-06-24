@@ -30,9 +30,8 @@
 			rcid = mw.util.getParamValue( 'rcid', href );
 			apiRequest = new mw.Api();
 
-			apiRequest.post( {
+			apiRequest.postWithToken( 'patrol', {
 				action: 'patrol',
-				token: mw.user.tokens.get( 'patrolToken' ),
 				rcid: rcid
 			} )
 			.done( function ( data ) {
