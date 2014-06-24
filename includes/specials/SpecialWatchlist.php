@@ -331,6 +331,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$output->showLagWarning( $lag );
 		}
 
+		# If no rows to display, show message before try to render the list
+		if ( $rows->numRows() == 0 ) {
+			$output->wrapWikiMsg(
+				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
+			);
+			return;
+		}
+
 		$dbr->dataSeek( $rows, 0 );
 
 		$list = ChangesList::newFromContext( $this->getContext() );
@@ -370,13 +378,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 		$s .= $list->endRecentChangesList();
 
-		if ( $rows->numRows() == 0 ) {
-			$output->wrapWikiMsg(
-				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
-			);
-		} else {
-			$output->addHTML( $s );
-		}
+		$output->addHTML( $s );
 	}
 
 	/**
