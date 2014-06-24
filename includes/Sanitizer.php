@@ -383,7 +383,7 @@ class Sanitizer {
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt', 'rb', 'rp', 'p', 'span', 'abbr', 'dfn',
+				'ruby', 'rb', 'rp', 'rt', 'rtc', 'p', 'span', 'abbr', 'dfn',
 				'kbd', 'samp', 'data', 'time', 'mark'
 			);
 			$htmlsingle = array(
@@ -1685,10 +1685,10 @@ class Sanitizer {
 			# http://www.whatwg.org/html/text-level-semantics.html#the-ruby-element
 			'ruby'       => $common,
 			# rbc
-			# rtc
 			'rb'         => $common,
-			'rt'         => $common, #array_merge( $common, array( 'rbspan' ) ),
 			'rp'         => $common,
+			'rt'         => $common, #array_merge( $common, array( 'rbspan' ) ),
+			'rtc'         => $common,
 
 			# MathML root element, where used for extensions
 			# 'title' may not be 100% valid here; it's XHTML
