@@ -28,7 +28,11 @@ class WfParseUrlTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( 'wgUrlProtocols', array(
-			'//', 'http://', 'file://', 'mailto:',
+			'//',
+			'http://',
+			'https://',
+			'file://',
+			'mailto:',
 		) );
 	}
 
@@ -36,11 +40,9 @@ class WfParseUrlTest extends MediaWikiTestCase {
 	 * @dataProvider provideURLs
 	 */
 	public function testWfParseUrl( $url, $parts ) {
-		$partsDump = var_export( $parts, true );
 		$this->assertEquals(
 			$parts,
-			wfParseUrl( $url ),
-			"Testing $url parses to $partsDump"
+			wfParseUrl( $url )
 		);
 	}
 
@@ -63,6 +65,14 @@ class WfParseUrlTest extends MediaWikiTestCase {
 				'http://example.org',
 				array(
 					'scheme' => 'http',
+					'delimiter' => '://',
+					'host' => 'example.org',
+				)
+			),
+			array(
+				'https://example.org',
+				array(
+					'scheme' => 'https',
 					'delimiter' => '://',
 					'host' => 'example.org',
 				)
