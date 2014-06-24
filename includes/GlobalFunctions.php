@@ -144,6 +144,12 @@ if ( !function_exists( 'hash_equals' ) ) {
 		$known_string_len = strlen( $known_string );
 		$user_string_len = strlen( $user_string );
 		$result = $known_string_len ^ $user_string_len;
+		if ( !$known_string_len ) {
+			// Hopefully this will never happen, though if it does, avoid
+			// "Division by zero" and "Uninitialized string offset" errors.
+			$known_string = "\0";
+			$known_string_len = 1;
+		}
 		for ( $i = 0; $i < $user_string_len; $i++ ) {
 			$result |= ord( $known_string[$i % $known_string_len] ) ^ ord( $user_string[$i] );
 		}
