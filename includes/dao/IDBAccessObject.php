@@ -28,10 +28,12 @@
  * functions. In general, objects should assume READ_NORMAL if no flags are explicitly given,
  * though certain objects may assume READ_LATEST for common use case or legacy reasons.
  *
- * There are three types of reads:
- *   - READ_NORMAL  : Potentially cached read of data (e.g. from a slave or stale replica)
- *   - READ_LATEST  : Up-to-date read as of transaction start (e.g. from master or a quorum read)
- *   - READ_LOCKING : Up-to-date read as of now, that locks the records for the transaction
+ * There are four types of reads:
+ *   - READ_NORMAL    : Potentially cached read of data (e.g. from a slave or stale replica)
+ *   - READ_LATEST    : Up-to-date read as of transaction start (e.g. from master or a quorum read)
+ *   - READ_LOCKING   : Up-to-date read as of now, that locks (shared) the records
+ *   - READ_EXCLUSIVE : Up-to-date read as of now, that locks (exclusive) the records
+ * All record locks persist for the duration of the transaction.
  *
  * Callers should use READ_NORMAL (or pass in no flags) unless the read determines a write.
  * In theory, such cases may require READ_LOCKING, though to avoid contention, READ_LATEST is
@@ -47,7 +49,8 @@
 interface IDBAccessObject {
 	// Constants for object loading bitfield flags (higher => higher QoS)
 	const READ_LATEST = 1; // read from the master
-	const READ_LOCKING = 3; // READ_LATEST and "FOR UPDATE"
+	const READ_LOCKING = 3; // READ_LATEST (1) and "LOCK IN SHARE MODE" (2)
+	const READ_EXCLUSIVE = 7; // READ_LOCKING (3) and "FOR UPDATE" (4)
 
 	// Convenience constant for callers to explicitly request slave data
 	const READ_NORMAL = 0; // read from the slave
