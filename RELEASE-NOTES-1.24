@@ -179,6 +179,7 @@ changes to languages because of Bugzilla reports.
 * SearchEngineReplacePrefixesComplete hook was removed.
 * Removed HTMLForm::addJS(). (deprecated since 1.18)
 * Removed LogEventsList::showHeader(). (deprecated since 1.19)
+* Removed ImageGalleryBase::useSkin(). (deprecated since 1.18)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
