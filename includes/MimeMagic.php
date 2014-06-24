@@ -518,6 +518,12 @@ class MimeMagic {
 					".$ext is not a known OPC extension.\n" );
 				$mime = 'application/zip';
 			}
+		} elseif ( $mime === 'text/plain' && $this->findMediaType( ".$ext" ) === MEDIATYPE_TEXT ) {
+			// Textual types are sometimes not recognized properly.
+			// If detected as text/plain, and has an extension which is textual
+			// improve to the extension's type. For example, csv and json are often
+			// misdetected as text/plain.
+			$mime = $this->guessTypesForExtension( $ext );
 		}
 
 		if ( isset( $this->mMimeTypeAliases[$mime] ) ) {
