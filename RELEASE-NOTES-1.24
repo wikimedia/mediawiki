@@ -218,6 +218,7 @@ changes to languages because of Bugzilla reports.
 * IPBlockForm - Use SpecialBlock directly
 * WatchlistEditor - Use SpecialEditWatchlist directly
 * Site, MediaWikiSite, SiteObject, SiteList, SiteArray, SiteSQLStore, Sites, SiteStore - Unused in core
+* IORMRow, IORMTable, ORMRow, ORMTable, ORMResult, ORMIterator, ApiQueryORM - Use an actual ORM
 
 == Compatibility ==
 
