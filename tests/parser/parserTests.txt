@@ -1093,6 +1093,59 @@ Non-html5 tags should be accepted
 </p>
 !! end
 
+## a,rtc not permitted
+## i,b,br omitted
+!! test
+Text-level semantic html elements in wikitext
+!! wikitext
+<em>text</em>
+<strong>text</strong>
+<small>text</small>
+<s>text</s>
+<cite>text</cite>
+<q>text</q>
+<dfn>text</dfn>
+<abbr>text</abbr>
+<data>text</data>
+<time>text</time>
+<code>text</code>
+<var>text</var>
+<samp>text</samp>
+<kbd>text</kbd>
+<sub>text</sub>
+<u>text</u>
+<mark>text</mark>
+<ruby><rb>明日<rp>(</rp><rt>Ashita</rt><rp>)</rp></rb></ruby>
+<bdi>text</bdi>
+<bdo>text</bdo>
+<span>text</span>
+<wbr />
+!! html
+<p><em>text</em>
+<strong>text</strong>
+<small>text</small>
+<s>text</s>
+<cite>text</cite>
+<q>text</q>
+<dfn>text</dfn>
+<abbr>text</abbr>
+<data>text</data>
+<time>text</time>
+<code>text</code>
+<var>text</var>
+<samp>text</samp>
+<kbd>text</kbd>
+<sub>text</sub>
+<u>text</u>
+<mark>text</mark>
+<ruby><rb>明日<rp>(</rp><rt>Ashita</rt><rp>)</rp></rb></ruby>
+<bdi>text</bdi>
+<bdo>text</bdo>
+<span>text</span>
+<wbr />
+</p>
+!! end
+
 !! test
 Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 !! wikitext
@@ -1221,6 +1274,16 @@ parsoid
 !! html
 <p><span typeof="mw:Transclusion mw:Entity" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&amp;ndash;"}},"i":0}}]}'>&ndash;</span>
 </p>
+!! end
+
+!! test
+Properly escape nowiki when combined with other wiki markup
+!! options
+parsoid=html2wt
+!! wikitext
+<nowiki>* &lt;/nowiki&gt;</nowiki> tag
+!! html
+<p>* &lt;/nowiki&gt; tag</p>
 !! end
 
 ###
@@ -4458,6 +4521,16 @@ Parenthesis in external links, w/ transclusion or comment
 <p>(<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url","a":{"href":"http://example.com"},"sa":{"href":"http://example.com&lt;!-- hi -->"}}'>http://example.com</a>)</p>
 !! end
 
+!! test
+Replace invalid link targets when serializing
+!! options
+parsoid=html2wt
+!! html
+<a rel="mw:WikiLink" href="./]] foo [[bar">Manual</a>
+!! wikitext
+[[MediaWiki:Badtitletext|Manual]]
+!! end
+
 ###
 ### Quotes
 ###
@@ -5185,6 +5258,23 @@ Table cell with a single comment
 
 !! end
 
+!! test
+Table-cell after a comment-only-empty-line
+!! wikitext
+{|
+|a
+<!--c1-->
+<!--c2-->| b
+|}
+!! html/parsoid
+<table>
+<tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'>a</td>
+<!--c1-->
+<!--c2--><td data-parsoid='{"autoInsertedEnd":true}'> b</td></tr>
+</tbody></table>
+
+!! end
+
 # The expected HTML structure in this test is debatable. The PHP parser does
 # not parse this kind of table at all. The main focus for Parsoid is on
 # round-tripping, so this output is ok for now. TODO: revisit!
@@ -5348,6 +5438,54 @@ foo
 <p>foo</p></td></tr>
 </tbody></table>
 !!end
+
+!! test
+Strip unsupported table tags
+!! options
+parsoid=html2wt
+!! html
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Savings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>January</td>
+<td>$100</td>
+</tr>
+<tr>
+<td>February</td>
+<td>$80</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td>Sum</td>
+<td>$180</td>
+</tr>
+</tfoot>
+</table>
+!! wikitext
+{|
+
+!Month
+!Savings
+
+|January
+|$100
+
+|-
+|February
+|$80
+
+|Sum
+|$180
+
+|}
+!! end
 
 ###
 ### Internal links
@@ -19399,6 +19537,47 @@ a
 	 b</p>
 !! end
 
+!! test
+2. Leading whitespace in non-indent-pre contexts should not be escaped
+!! options
+parsoid
+!! wikitext
+foo <ref>''a''
+ b</ref>
+!! html
+<p>foo <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"&lt;i data-parsoid=&#39;{\"dsr\":[9,14,2,2]}&#39;>a&lt;/i>\n b"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
+!! end
+
+!! test
+3. Leading whitespace in indent-pre suppressing contexts should not be escaped
+!! options
+parsoid
+!! wikitext
+<blockquote>
+ a
+ <span>b</span>
+ c
+</blockquote>
+!! html
+<blockquote>
+<p>
+ a
+ <span>b</span>
+ c</p>
+</blockquote>
+!! end
+
+!! test
+4. Leading whitespace in indent-pre suppressing contexts should not be escaped
+!! options
+parsoid
+!! wikitext
+ [[File:Foobar.jpg|thumb|caption]]
+!! html
+!! html/parsoid
+ <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
+!! end
+
 #### --------------- Behavior Switches --------------------
 !! test
 1. Valid behavior switches should be escaped
@@ -19406,8 +19585,10 @@ a
 parsoid=html2wt
 !! wikitext
 <nowiki>__TOC__</nowiki>
+''<nowiki>__TOC__</nowiki>''
 !! html
 __TOC__
+<i>__TOC__</i>
 !! end
 
 !! test
@@ -19798,6 +19979,20 @@ Indented block & table
  <tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'>foo</td></tr>
  </tbody></table>
 !!end
+
+!! test
+Indent and comment before table row
+!! wikitext
+{|
+ <!--hi-->|-
+ | there
+|}
+!! html/parsoid
+<table data-parsoid='{}'>
+ <!--hi--><tbody data-parsoid='{}'><tr data-parsoid='{"startTagSrc":"|-","autoInsertedEnd":true}'>
+ <td data-parsoid='{"autoInsertedEnd":true}'> there</td></tr>
+</tbody></table>
+!! end
 
 !!test
 Empty TR followed by a template-generated TR
@@ -20470,21 +20665,21 @@ foo
 !! end
 
 !! test
-Strip leading whitespace when handling indent-pre inducing tags
+Nowiki-wrap leading whitespace when handling indent-pre inducing tags
 !! options
 parsoid=html2wt
 !! wikitext
 foo
-<span>bar</span>
+<nowiki> </nowiki><span>bar</span>
 
 <span>foo2
-</span>bar2
+<nowiki> </nowiki></span>bar2
 
 <div>foo</div>
-<span>bar</span>
+<nowiki> </nowiki><span>bar</span>
 
 <div>
-<span>foo</span>
+<nowiki> </nowiki><span>foo</span>
 </div>
 !! html
 <p>foo</p>
