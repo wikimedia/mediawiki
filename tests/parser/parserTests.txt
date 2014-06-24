@@ -1093,7 +1093,7 @@ Non-html5 tags should be accepted
 </p>
 !! end
 
-## a,rtc not permitted
+## a not permitted
 ## i,b,br omitted
 !! test
 Text-level semantic html elements in wikitext
@@ -1115,7 +1115,7 @@ Text-level semantic html elements in wikitext
 <sub>text</sub>
 <u>text</u>
 <mark>text</mark>
-<ruby><rb>明日<rp>(</rp><rt>Ashita</rt><rp>)</rp></rb></ruby>
+<ruby><rtc><rb>明日</rb><rp>(</rp><rt>Ashita</rt><rp>)</rp></rtc></ruby>
 <bdi>text</bdi>
 <bdo>text</bdo>
 <span>text</span>
@@ -1138,11 +1138,51 @@ Text-level semantic html elements in wikitext
 <sub>text</sub>
 <u>text</u>
 <mark>text</mark>
-<ruby><rb>明日<rp>(</rp><rt>Ashita</rt><rp>)</rp></rb></ruby>
+<ruby><rtc><rb>明日</rb><rp>(</rp><rt>Ashita</rt><rp>)</rp></rtc></ruby>
 <bdi>text</bdi>
 <bdo>text</bdo>
 <span>text</span>
 <wbr />
+</p>
+!! end
+
+# test cases taken from
+# http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element
+!! test
+Ruby markup (W3C-style)
+!! wikitext
+; Mono-ruby for individual base characters
+: <ruby>日<rt>に</rt>本<rt>ほん</rt>語<rt>ご</rt></ruby>
+; Group ruby
+: <ruby>今日<rt>きょう</rt></ruby>
+; Jukugo ruby
+: <ruby>法<rb>華</rb><rb>経</rb><rt>ほ</rt><rt>け</rt><rt>きょう</rt></ruby>
+; Inline ruby
+: <ruby>東<rb>京</rb><rp>(</rp><rt>とう</rt><rt>きょう</rt><rp>)</rp></ruby>
+; Double-sided ruby
+: <ruby><rb>旧</rb><rb>金</rb><rb>山</rb><rt>jiù</rt><rt>jīn</rt><rt>shān</rt><rtc>San Francisco</rtc></ruby>
+
+<ruby>
+<rb>♥</rb><rtc><rt>Heart</rt></rtc><rtc lang=fr><rt>Cœur</rt></rtc>
+<rb>☘</rb><rtc><rt>Shamrock</rt></rtc><rtc lang=fr><rt>Trèfle</rt></rtc>
+<rb>✶</rb><rtc><rt>Star</rt></rtc><rtc lang=fr><rt>Étoile</rt></rtc>
+</ruby>
+!! html
+<dl><dt> Mono-ruby for individual base characters</dt>
+<dd> <ruby>日<rt>に</rt>本<rt>ほん</rt>語<rt>ご</rt></ruby></dd>
+<dt> Group ruby</dt>
+<dd> <ruby>今日<rt>きょう</rt></ruby></dd>
+<dt> Jukugo ruby</dt>
+<dd> <ruby>法<rb>華</rb><rb>経</rb><rt>ほ</rt><rt>け</rt><rt>きょう</rt></ruby></dd>
+<dt> Inline ruby</dt>
+<dd> <ruby>東<rb>京</rb><rp>(</rp><rt>とう</rt><rt>きょう</rt><rp>)</rp></ruby></dd>
+<dt> Double-sided ruby</dt>
+<dd> <ruby><rb>旧</rb><rb>金</rb><rb>山</rb><rt>jiù</rt><rt>jīn</rt><rt>shān</rt><rtc>San Francisco</rtc></ruby></dd></dl>
+<p><ruby>
+<rb>♥</rb><rtc><rt>Heart</rt></rtc><rtc lang="fr"><rt>Cœur</rt></rtc>
+<rb>☘</rb><rtc><rt>Shamrock</rt></rtc><rtc lang="fr"><rt>Trèfle</rt></rtc>
+<rb>✶</rb><rtc><rt>Star</rt></rtc><rtc lang="fr"><rt>Étoile</rt></rtc>
+</ruby>
 </p>
 !! end
 
