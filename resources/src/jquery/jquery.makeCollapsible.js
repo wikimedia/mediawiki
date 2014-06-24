@@ -292,8 +292,8 @@
 			} else {
 				collapsibleId = $collapsible.attr( 'id' ) || '';
 				if ( collapsibleId.indexOf( 'mw-customcollapsible-' ) === 0 ) {
-					$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
-					$customTogglers.addClass( 'mw-customtoggle' );
+					$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) )
+						.addClass( 'mw-customtoggle' );
 				}
 			}
 
@@ -305,8 +305,9 @@
 					togglingHandler( $( this ), $collapsible, e, opts );
 				};
 
-				$toggleLink = $customTogglers;
-				$toggleLink.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+				$toggleLink = $customTogglers
+					.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
+					.prop( 'tabIndex', 0 );
 
 			} else {
 				// If this is not a custom case, do the default: wrap the
@@ -325,7 +326,8 @@
 							$toggleLink = buildDefaultToggleLink().appendTo( $caption );
 						} else {
 							actionHandler = premadeToggleHandler;
-							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
+								.prop( 'tabIndex', 0 );
 						}
 					} else {
 						// The toggle-link will be in one the the cells (td or th) of the first row
@@ -337,7 +339,8 @@
 							$toggleLink = buildDefaultToggleLink().prependTo( $firstItem.eq( -1 ) );
 						} else {
 							actionHandler = premadeToggleHandler;
-							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
+								.prop( 'tabIndex', 0 );
 						}
 					}
 
@@ -359,7 +362,8 @@
 						$toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent().prependTo( $collapsible );
 					} else {
 						actionHandler = premadeToggleHandler;
-						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
+							.prop( 'tabIndex', 0 );
 					}
 
 				} else { // <div>, <p> etc.
@@ -377,14 +381,11 @@
 						$toggleLink = buildDefaultToggleLink().prependTo( $collapsible );
 					} else {
 						actionHandler = premadeToggleHandler;
-						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
+							.prop( 'tabIndex', 0 );
 					}
 				}
 			}
-
-			// Attributes for accessibility. This isn't necessary when the toggler is already
-			// an <a> or a <button> etc., but it doesn't hurt either, and it's consistent.
-			$toggleLink.prop( 'tabIndex', 0 );
 
 			// Initial state
 			if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
