@@ -573,11 +573,30 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDate( $format, $ts, $expected, $msg ) {
+		$ttl = null;
 		$this->assertEquals(
 			$expected,
-			$this->getLang()->sprintfDate( $format, $ts ),
+			$this->getLang()->sprintfDate( $format, $ts, null, $ttl ),
 			"sprintfDate('$format', '$ts'): $msg"
 		);
+		if ( $ttl ) {
+			$dt = new DateTime( $ts );
+			$lastValidTS = $dt->add( new DateInterval( 'PT' . ( $ttl - 1 ) . 'S' ) )->format( 'YmdHis' );
+			$this->assertEquals(
+				$expected,
+				$this->getLang()->sprintfDate( $format, $lastValidTS, null ),
+				"sprintfDate('$format', '$ts'): TTL $ttl too high (output was different at $lastValidTS)"
+			);
+		} else {
+			// advance the time enough to make all of the possible outputs different (except possibly L)
+			$dt = new DateTime( $ts );
+			$newTS = $dt->add( new DateInterval( 'P1Y1M8DT13H1M1S' ) )->format( 'YmdHis' );
+			$this->assertEquals(
+				$expected,
+				$this->getLang()->sprintfDate( $format, $newTS, null ),
+				"sprintfDate('$format', '$ts'): Missing TTL (output was different at $newTS)"
+			);
+		}
 	}
 
 	/**
