@@ -373,7 +373,7 @@ class CoreParserFunctions {
 		// list of disallowed tags for DISPLAYTITLE
 		// these will be escaped even though they are allowed in normal wiki text
 		$bad = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'blockquote', 'ol', 'ul', 'li', 'hr',
-			'table', 'tr', 'th', 'td', 'dl', 'dd', 'caption', 'p', 'ruby', 'rb', 'rt', 'rp', 'br' );
+			'table', 'tr', 'th', 'td', 'dl', 'dd', 'caption', 'p', 'ruby', 'rb', 'rt', 'rtc', 'rp', 'br' );
 
 		// disallow some styles that could be used to bypass $wgRestrictDisplayTitle
 		if ( $wgRestrictDisplayTitle ) {
