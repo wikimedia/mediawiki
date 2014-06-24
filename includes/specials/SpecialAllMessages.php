@@ -367,12 +367,8 @@ class AllMessagesTablePager extends TablePager {
 				$talk = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
 				$translation = Linker::makeExternalLink(
 					'https://translatewiki.net/w/i.php?' . wfArrayToCgi( array(
-						'title' => 'Special:SearchTranslations',
-						'group' => 'mediawiki',
-						'grouppath' => 'mediawiki',
-						'query' => 'language:' . $this->getLanguage()->getCode() . '^25 ' .
-							'messageid:"MediaWiki:' . $value . '"^10 "' .
-							$this->msg( $value )->inLanguage( 'en' )->plain() . '"'
+						'title' => 'MediaWiki:' . $value . '/' . $this->getLanguage()->getCode(),
+						'action' => 'edit'
 					) ),
 					$this->msg( 'allmessages-filter-translate' )->text()
 				);
