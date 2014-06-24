@@ -49,13 +49,13 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'doRemoveNotNullEmptyDefaults' ),
 			array( 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ),
 
-			//1.18
+			// 1.18
 			array( 'addIndex', 'user', 'i02', 'patch-user_email_index.sql' ),
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
 			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
 			array( 'doRecentchangesFK2Cascade' ),
 
-			//1.19
+			// 1.19
 			array( 'addIndex', 'logging', 'i05', 'patch-logging_type_action_index.sql' ),
 			array( 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1_field.sql' ),
 			array( 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1_field.sql' ),
@@ -66,12 +66,12 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'job', 'i02', 'patch-job_timestamp_index.sql' ),
 			array( 'doPageRestrictionsPKUKFix' ),
 
-			//1.20
+			// 1.20
 			array( 'addIndex', 'ipblocks', 'i05', 'patch-ipblocks_i05_index.sql' ),
 			array( 'addIndex', 'revision', 'i05', 'patch-revision_i05_index.sql' ),
 			array( 'dropField', 'category', 'cat_hidden', 'patch-cat_hidden.sql' ),
 
-			//1.21
+			// 1.21
 			array( 'addField', 'revision', 'rev_content_format',
 				'patch-revision-rev_content_format.sql' ),
 			array( 'addField', 'revision', 'rev_content_model',
@@ -93,14 +93,14 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user_former_groups', 'ufg_group',
 				'patch-ufg_group-length-increase-255.sql' ),
 
-			//1.23
+			// 1.23
 			array( 'addIndex', 'logging', 'i06', 'patch-logging_user_text_type_time_index.sql' ),
 			array( 'addIndex', 'logging', 'i07', 'patch-logging_user_text_time_index.sql' ),
 			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
 			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
 
-			//1.24
+			// 1.24
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
