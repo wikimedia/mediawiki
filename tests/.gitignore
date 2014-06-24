@@ -1,0 +1,4 @@
+# Puppet-managed dependencies for browser tests
+.bundle
+.gem
+.ruby-version
