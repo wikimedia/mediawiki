@@ -70,9 +70,6 @@ $wgAutoloadClasses += array(
 	'WikitextContentTest' => "$testDir/phpunit/includes/content/WikitextContentTest.php",
 
 	# tests/phpunit/includes/db
-	'ORMRowTest' => "$testDir/phpunit/includes/db/ORMRowTest.php",
-	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
-	'PageORMTableForTesting' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
 
 	# tests/phpunit/languages
