@@ -606,8 +606,8 @@ class SpecialPageFactory {
 	 */
 	static function getTitleForAlias( $alias ) {
 		$name = self::resolveAlias( $alias );
-		if ( $name ) {
-			return SpecialPage::getTitleFor( $name );
+		if ( $name[0] != null ) {
+			return SpecialPage::getTitleFor( $name[0], $name[1] );
 		} else {
 			return null;
 		}
