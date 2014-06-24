@@ -84,7 +84,6 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'enableContentHandlerUseDB' ),
 			array( 'dropField', 'site_stats', 'ss_admins', 'patch-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
-			array( 'addTable', 'sites', 'patch-sites.sql' ),
 			array( 'addField', 'filearchive', 'fa_sha1', 'patch-fa_sha1.sql' ),
 			array( 'addField', 'job', 'job_token', 'patch-job_token.sql' ),
 			array( 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ),
