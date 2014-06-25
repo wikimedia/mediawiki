@@ -136,6 +136,13 @@ abstract class Maintenance {
 	 * @return bool
 	 */
 	public static function shouldExecute() {
+		global $wgCommandLineMode;
+
+		if ( !function_exists( 'debug_backtrace' ) ) {
+			// If someone has a better idea...
+			return $wgCommandLineMode;
+		}
+
 		$bt = debug_backtrace();
 		$count = count( $bt );
 		if ( $count < 2 ) {
