@@ -1,6 +1,20 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.23.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.0 ===
+
+* (bug 65839) SECURITY: Prevent external resources in SVG files.
+* (bug 67025) Special:Watchlist: Don't try to render empty row.
+* (bug 66922) Don't allow some E_NOTICE messages to end up in the LocalSettings.php.
+* (bug 66467) FileBackend: Avoid using popen() when "parallelize" is disabled.
+* (bug 66428) MimeMagic: Don't seek before BOF. This has weird side effects
+  like only extracting the tail of the file partially or not at all.
+* (bug 66182) Removed -x flag on some php files.
+
 == MediaWiki 1.23 ==
 
 MediaWiki 1.23.0 is the stable branch and is recommended for use in production.
