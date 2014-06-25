@@ -314,9 +314,13 @@ class HtmlFormatter {
 	}
 
 	/**
+	 * Helper function for parseItemsToRemove(). This function extracts the selector type
+	 * and the raw name of a selector from a CSS-style selector string and assigns those
+	 * values to parameters passed by reference. For example, if given '#toc' as the
+	 * $selector parameter, it will assign 'ID' as the $type and 'toc' as the $rawName.
 	 * @param string $selector CSS selector to parse
-	 * @param string $type
-	 * @param string $rawName
+	 * @param string $type The type of selector (ID, CLASS, TAG_CLASS, or TAG)
+	 * @param string $rawName The raw name of the selector
 	 * @return bool Whether the selector was successfully recognised
 	 */
 	protected function parseSelector( $selector, &$type, &$rawName ) {
@@ -340,7 +344,8 @@ class HtmlFormatter {
 	}
 
 	/**
-	 * Transforms CSS selectors into an internal representation suitable for processing
+	 * Transforms CSS-style selectors into an internal representation suitable for
+	 * processing by filterContent()
 	 * @return array
 	 */
 	protected function parseItemsToRemove() {
