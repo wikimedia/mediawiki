@@ -2111,9 +2111,11 @@ function wfClientAcceptsGzip( $force = false ) {
  * @param int $deflimit Default limit if none supplied
  * @param string $optionname Name of a user preference to check against
  * @return array
+ * @deprecated since 1.24, just call WebRequest::getLimitOffset() directly
  */
 function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 	global $wgRequest;
+	wfDeprecated( __METHOD__, '1.24' );
 	return $wgRequest->getLimitOffset( $deflimit, $optionname );
 }
 
