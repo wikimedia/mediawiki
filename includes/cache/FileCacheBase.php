@@ -143,8 +143,13 @@ abstract class FileCacheBase {
 	 */
 	public function fetchText() {
 		if ( $this->useGzip() ) {
-			$fh = gzopen( $this->cachePath(), 'rb' );
-
+			if ( !function_exists( 'gzopen' ) ) {
+				// See bug 66952
+				$fh = gzopen64( $this->cachePath(), 'rb' );
+			} else {
+				$fh = gzopen( $this->cachePath(), 'rb' );	
+			}
+			
 			return stream_get_contents( $fh );
 		} else {
 			return file_get_contents( $this->cachePath() );
