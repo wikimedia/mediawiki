@@ -147,6 +147,19 @@ class ForeignAPIFile extends File {
 		return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );
 	}
 
+	/**
+	 * Indicate, if this file will be transformed on this server or if it is a foreign file,
+	 * which only gets fetched and displayed.
+	 *
+	 * Override this, when transform() is overridden.
+	 * 
+	 * @return bool
+	 * @since 1.24
+	 */
+	public function transformIsLocal() {
+		return false; // the foreign server does all the work
+	}
+
 	// Info we can get from API...
 
 	/**

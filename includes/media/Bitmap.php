@@ -55,14 +55,19 @@ class BitmapHandler extends ImageHandler {
 			}
 		}
 
-		# Check if the file is smaller than the maximum image area for thumbnailing
-		$checkImageAreaHookResult = null;
-		wfRunHooks(
-			'BitmapHandlerCheckImageArea',
-			array( $image, &$params, &$checkImageAreaHookResult )
-		);
+		if ( $image->transformIsLocal() ) {
+			# Check if the file is smaller than the maximum image area for thumbnailing
+			$checkImageAreaHookResult = null;
+			wfRunHooks(
+				'BitmapHandlerCheckImageArea',
+				array( $image, &$params, &$checkImageAreaHookResult )
+			);
 
-		if ( is_null( $checkImageAreaHookResult ) ) {
+			if ( !is_null( $checkImageAreaHookResult ) ) {
+				// was set by hook, so return that value
+				return $checkImageAreaHookResult;
+			}
+
 			global $wgMaxImageArea;
 
 			if ( $srcWidth * $srcHeight > $wgMaxImageArea
@@ -73,8 +78,6 @@ class BitmapHandler extends ImageHandler {
 				# the entire file in memory
 				return false;
 			}
-		} else {
-			return $checkImageAreaHookResult;
 		}
 
 		return true;
