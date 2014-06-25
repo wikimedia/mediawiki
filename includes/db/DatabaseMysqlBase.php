@@ -638,47 +638,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @deprecated since 1.19, use getLagFromSlaveStatus
-	 *
-	 * @return bool|int
-	 */
-	function getLagFromProcesslist() {
-		wfDeprecated( __METHOD__, '1.19' );
-		$res = $this->query( 'SHOW PROCESSLIST', __METHOD__ );
-		if ( !$res ) {
-			return false;
-		}
-		# Find slave SQL thread
-		foreach ( $res as $row ) {
-			/* This should work for most situations - when default db
-			 * for thread is not specified, it had no events executed,
-			 * and therefore it doesn't know yet how lagged it is.
-			 *
-			 * Relay log I/O thread does not select databases.
-			 */
-			if ( $row->User == 'system user' &&
-				$row->State != 'Waiting for master to send event' &&
-				$row->State != 'Connecting to master' &&
-				$row->State != 'Queueing master event to the relay log' &&
-				$row->State != 'Waiting for master update' &&
-				$row->State != 'Requesting binlog dump' &&
-				$row->State != 'Waiting to reconnect after a failed master event read' &&
-				$row->State != 'Reconnecting after a failed master event read' &&
-				$row->State != 'Registering slave on master'
-			) {
-				# This is it, return the time (except -ve)
-				if ( $row->Time > 0x7fffffff ) {
-					return false;
-				} else {
-					return $row->Time;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * Wait for the slave to catch up to a given master position.
 	 * @todo Return values for this and base class are rubbish
 	 *
