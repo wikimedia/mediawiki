@@ -361,10 +361,12 @@ class Sanitizer {
 	 * @param array|bool $args Arguments for the processing callback
 	 * @param array $extratags For any extra tags to include
 	 * @param array $removetags For any tags (default or extra) to exclude
+	 * @param callable $textCallback Callback to make any changes to text
+	 *   (i.e., not tag names or attributes)
 	 * @return string
 	 */
 	static function removeHTMLtags( $text, $processCallback = null,
-		$args = array(), $extratags = array(), $removetags = array()
+		$args = array(), $extratags = array(), $removetags = array(), $textCallback = null
 	) {
 		global $wgUseTidy, $wgAllowMicrodataAttributes, $wgAllowImageTag;
 
@@ -556,6 +558,9 @@ class Sanitizer {
 					}
 					if ( !$badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
+						if ( is_callable( $textCallback ) ) {
+							call_user_func_array( $textCallback, array( &$rest ) );
+						}
 						$close = ( $brace == '/>' && !$slash ) ? ' /' : '';
 						$text .= "<$slash$t$newparams$close>$rest";
 						continue;

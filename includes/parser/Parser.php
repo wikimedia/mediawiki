@@ -407,17 +407,6 @@ class Parser {
 
 		$text = $this->mStripState->unstripGeneral( $text );
 
-		# Clean up special characters, only run once, next-to-last before doBlockLevels
-		$fixtags = array(
-			# french spaces, last one Guillemet-left
-			# only if there is something before the space
-			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#160;',
-			# french spaces, Guillemet-right
-			'/(\\302\\253) /' => '\\1&#160;',
-			'/&#160;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, bug #11874.
-		);
-		$text = preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
-
 		$text = $this->doBlockLevels( $text, $linestart );
 
 		$this->replaceLinkHolders( $text );
@@ -1201,6 +1190,20 @@ class Parser {
 	}
 
 	/**
+	 * Convert French spaces to &#160;
+	 */
+	private static function frenchSpacesCallback( $text ) {
+		$fixtags = array(
+			# french spaces, last one Guillemet-left
+			# only if there is something before the space
+			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#160;',
+			# french spaces, Guillemet-right
+			'/(\\302\\253) /' => '\\1&#160;',
+		);
+		$text = preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
+	}
+
+	/**
 	 * Helper function for parse() that transforms wiki markup into
 	 * HTML. Only called for $mOutputType == self::OT_HTML.
 	 *
@@ -1244,7 +1247,9 @@ class Parser {
 			$text,
 			array( &$this, 'attributeStripCallback' ),
 			false,
-			array_keys( $this->mTransparentTagHooks )
+			array_keys( $this->mTransparentTagHooks ),
+			array(),
+			array( 'Parser', 'frenchSpacesCallback' )
 		);
 		wfRunHooks( 'InternalParseBeforeLinks', array( &$this, &$text, &$this->mStripState ) );
 
