@@ -88,6 +88,8 @@ production.
   uses to find extension license information.
 * Browser tests are now included to verify basic wiki functionality in developer
   environments. For details on running tests, see tests/browser/README.mediawiki.
+* All API requests made by JS now request JSON with UTF-8 entities not escaped,
+  reducing data size.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
