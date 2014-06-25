@@ -375,12 +375,12 @@ class TransactionProfiler {
 	public function transactionWritingIn( $server, $db, $id ) {
 		$name = "{$server} ({$db}) (TRX#$id)";
 		if ( isset( $this->mDBTrxHoldingLocks[$name] ) ) {
-			++$this->mDBTrxHoldingLocks[$name]['refs'];
-		} else {
-			$this->mDBTrxHoldingLocks[$name] = array(
-				'refs' => 1, 'start' => microtime( true ), 'conns' => array() );
-			$this->mDBTrxMethodTimes[$name] = array();
+			wfDebugLog( 'DBPerformance', "Nested transaction for '$name' - out of sync." );
 		}
+		$this->mDBTrxHoldingLocks[$name] =
+			array( 'start' => microtime( true ), 'conns' => array() );
+		$this->mDBTrxMethodTimes[$name] = array();
+
 		foreach ( $this->mDBTrxHoldingLocks as $name => &$info ) {
 			$info['conns'][$name] = 1; // track all DBs in transactions for this transaction
 		}
@@ -425,26 +425,28 @@ class TransactionProfiler {
 	 */
 	public function transactionWritingOut( $server, $db, $id ) {
 		$name = "{$server} ({$db}) (TRX#$id)";
-		if ( --$this->mDBTrxHoldingLocks[$name]['refs'] <= 0 ) {
-			$slow = false;
-			foreach ( $this->mDBTrxMethodTimes[$name] as $info ) {
-				$realtime = $info[1];
-				if ( $realtime >= $this->mDBLockThreshold ) {
-					$slow = true;
-					break;
-				}
-			}
-			if ( $slow ) {
-				$dbs = implode( ', ', array_keys( $this->mDBTrxHoldingLocks[$name]['conns'] ) );
-				$msg = "Sub-optimal transaction on DB(s) [{$dbs}]:\n";
-				foreach ( $this->mDBTrxMethodTimes[$name] as $i => $info ) {
-					list( $method, $realtime ) = $info;
-					$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
-				}
-				wfDebugLog( 'DBPerformance', $msg );
-			}
-			unset( $this->mDBTrxHoldingLocks[$name] );
-			unset( $this->mDBTrxMethodTimes[$name] );
+		if ( !isset( $this->mDBTrxMethodTimes[$name] ) ) {
+			wfDebugLog( 'DBPerformance', "Detected no transaction for '$name' - out of sync." );
+			return;
 		}
+		$slow = false;
+		foreach ( $this->mDBTrxMethodTimes[$name] as $info ) {
+			$realtime = $info[1];
+			if ( $realtime >= $this->mDBLockThreshold ) {
+				$slow = true;
+				break;
+			}
+		}
+		if ( $slow ) {
+			$dbs = implode( ', ', array_keys( $this->mDBTrxHoldingLocks[$name]['conns'] ) );
+			$msg = "Sub-optimal transaction on DB(s) [{$dbs}]:\n";
+			foreach ( $this->mDBTrxMethodTimes[$name] as $i => $info ) {
+				list( $method, $realtime ) = $info;
+				$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
+			}
+			wfDebugLog( 'DBPerformance', $msg );
+		}
+		unset( $this->mDBTrxHoldingLocks[$name] );
+		unset( $this->mDBTrxMethodTimes[$name] );
 	}
 }
