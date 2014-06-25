@@ -61,29 +61,6 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			}
 		}
 
-		# Check if the file is smaller than the maximum image area for thumbnailing
-		# For historical reasons, hook starts with BitmapHandler
-		$checkImageAreaHookResult = null;
-		Hooks::run(
-			'BitmapHandlerCheckImageArea',
-			array( $image, &$params, &$checkImageAreaHookResult )
-		);
-
-		if ( is_null( $checkImageAreaHookResult ) ) {
-			global $wgMaxImageArea;
-
-			if ( $srcWidth * $srcHeight > $wgMaxImageArea
-				&& !( $image->getMimeType() == 'image/jpeg'
-					&& $this->getScalerType( false, false ) == 'im' )
-			) {
-				# Only ImageMagick can efficiently downsize jpg images without loading
-				# the entire file in memory
-				return false;
-			}
-		} else {
-			return $checkImageAreaHookResult;
-		}
-
 		return true;
 	}
 
@@ -188,6 +165,11 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			# Client-side image scaling, use the source URL
 			# Using the destination URL in a TRANSFORM_LATER request would be incorrect
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
+		}
+
+		if ( !$this->isImageAreaOkForThumbnaling( $image, $params ) ) {
+			global $wgMaxImageArea;
+			return new TransformTooBigImageAreaError( $params, $wgMaxImageArea );
 		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
@@ -595,5 +577,44 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 */
 	public function mustRender( $file ) {
 		return $this->canRotate() && $this->getRotation( $file ) != 0;
+	}
+
+	/**
+	 * Check if the file is smaller than the maximum image area for thumbnailing.
+	 *
+	 * Runs the 'BitmapHandlerCheckImageArea' hook.
+	 *
+	 * @param File $file
+	 * @param array $params
+	 * @return bool
+	 * @since 1.25
+	 */
+	public function isImageAreaOkForThumbnaling( $file, $params ) {
+		global $wgMaxImageArea;
+
+		# For historical reasons, hook starts with BitmapHandler
+		$checkImageAreaHookResult = null;
+		Hooks::run(
+			'BitmapHandlerCheckImageArea',
+			array( $file, $params, &$checkImageAreaHookResult )
+		);
+
+		if ( !is_null( $checkImageAreaHookResult ) ) {
+			// was set by hook, so return that value
+			return (bool)$checkImageAreaHookResult;
+		}
+
+		$srcWidth = $file->getWidth( $params['page'] );
+		$srcHeight = $file->getHeight( $params['page'] );
+
+		if ( $srcWidth * $srcHeight > $wgMaxImageArea
+			&& !( $file->getMimeType() == 'image/jpeg'
+				&& $this->getScalerType( false, false ) == 'im' )
+		) {
+			# Only ImageMagick can efficiently downsize jpg images without loading
+			# the entire file in memory
+			return false;
+		}
+		return true;
 	}
 }
