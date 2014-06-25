@@ -1,9 +1,5 @@
-*/
-!common/
-!common/*
-!monobook/
-!monobook/*
-!vector/
-!vector/*
-
-*.php
+/*
+!/common/
+!/MonoBook/
+!/Vector/
+!/.gitignore
