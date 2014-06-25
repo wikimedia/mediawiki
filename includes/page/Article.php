@@ -2060,29 +2060,41 @@ class Article implements Page {
 
 	/**
 	 * @return array
+	 *
+	 * @deprecated since 1.24, use WikiPage::selectFields() instead
 	 */
 	public static function selectFields() {
+		wfDeprecated( __METHOD__, '1.24' );
 		return WikiPage::selectFields();
 	}
 
 	/**
 	 * @param Title $title
+	 *
+	 * @deprecated since 1.24, use WikiPage::onArticleCreate() instead
 	 */
 	public static function onArticleCreate( $title ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		WikiPage::onArticleCreate( $title );
 	}
 
 	/**
 	 * @param Title $title
+	 *
+	 * @deprecated since 1.24, use WikiPage::onArticleDelete() instead
 	 */
 	public static function onArticleDelete( $title ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		WikiPage::onArticleDelete( $title );
 	}
 
 	/**
 	 * @param Title $title
+	 *
+	 * @deprecated since 1.24, use WikiPage::onArticleEdit() instead
 	 */
 	public static function onArticleEdit( $title ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		WikiPage::onArticleEdit( $title );
 	}
 
