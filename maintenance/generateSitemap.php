@@ -408,7 +408,13 @@ class GenerateSitemap extends Maintenance {
 	 * @return resource
 	 */
 	function open( $file, $flags ) {
-		$resource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
+		if ( !function_exists( 'gzopen' ) ) {
+			//See bug 66952
+			$resource = $this->compress ? gzopen64( $file, $flags ) : fopen( $file, $flags );	
+		} else {
+			$resource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
+		}
+		
 		if ( $resource === false ) {
 			throw new MWException( __METHOD__
 				. " error opening file $file with flags $flags. Check permissions?" );
