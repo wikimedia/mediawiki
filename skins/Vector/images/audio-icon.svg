@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="10"
+   height="10"
+   id="svg6167">
+  <defs
+     id="defs6169">
+    <linearGradient
+       id="linearGradient6707">
+      <stop
+         id="stop6709"
+         style="stop-color:#b2bf46;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop6711"
+         style="stop-color:#c8d17b;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       x1="22.262903"
+       y1="9.1418257"
+       x2="22.262903"
+       y2="5.3889236"
+       id="linearGradient6713"
+       xlink:href="#linearGradient6707"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.96979296,0,0,0.96979296,858.75554,710.2631)" />
+  </defs>
+  <metadata
+     id="metadata6172">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-877.85712,-710.2193)"
+     id="layer1">
+    <path
+       d="m 880.63649,710.74799 0,5.78845 c -0.30291,0.0337 -0.60613,0.10534 -0.90918,0.24245 -1.08747,0.49204 -1.62536,1.48002 -1.21224,2.21234 0.41311,0.73233 1.60977,0.91632 2.69723,0.42429 0.87694,-0.39677 1.37959,-1.10894 1.33347,-1.75775 l 0,-0.15153 0,-3.81856 2.93968,0 0,2.84876 c -0.30894,0.0309 -0.62965,0.10227 -0.93948,0.24245 -1.07493,0.48636 -1.6206,1.48846 -1.21225,2.21234 0.40836,0.72389 1.59201,0.91065 2.66694,0.42429 0.87404,-0.39547 1.38893,-1.11233 1.33346,-1.75775 l 0,-0.15153 0,-6.75825 -6.69763,0 z"
+       id="path6186"
+       style="fill:url(#linearGradient6713);fill-opacity:1;stroke:#757f2a;stroke-width:0.96979296px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+</svg>

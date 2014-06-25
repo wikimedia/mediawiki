@@ -1,10 +1,55 @@
 @import "mediawiki.mixins.less";
 // External links
+
 #content {
 	.external {
 		background-position: center right;
 		background-repeat: no-repeat;
 		.background-image-svg('images/external-link-ltr-icon.svg', 'images/external-link-ltr-icon.png');
 		padding-right: 13px;
+	}
+
+	// Any element with any of the classes styles below will also be .external, so we can assume that
+	// .external's rules are applied. These are not written as .external.link-https etc. to avoid
+	// breaking existing custom CSS overrides.
+
+	// https://
+	.link-https {
+		.background-image-svg('images/lock-icon.svg', 'images/lock-icon.png');
+	}
+
+	// mailto:
+	.link-mailto {
+		.background-image-svg('images/mail-icon.svg', 'images/mail-icon.png');
+	}
+
+	// news:
+	.link-news {
+		.background-image-svg('images/news-icon.svg', 'images/news-icon.png');
+	}
+
+	// ftp://
+	.link-ftp {
+		.background-image-svg('images/file-icon.svg', 'images/file-icon.png');
+	}
+
+	// irc://, ircs://
+	.link-irc {
+		.background-image-svg('images/talk-icon.svg', 'images/talk-icon.png');
+	}
+
+	// .ogg, .mid, .midi, .mp3, .wav, .wma
+	.link-audio {
+		.background-image-svg('images/audio-icon.svg', 'images/audio-icon.png');
+	}
+
+	// .ogm, .avi, .mpeg, .mpg
+	.link-video {
+		.background-image-svg('images/video-icon.svg', 'images/video-icon.png');
+	}
+
+	// .pdf
+	.link-document {
+		.background-image-svg('images/document-icon.svg', 'images/document-icon.png');
 	}
 }

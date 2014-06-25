@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="10"
+   height="10"
+   id="svg7339">
+  <defs
+     id="defs7341">
+    <linearGradient
+       id="linearGradient7918">
+      <stop
+         id="stop7920"
+         style="stop-color:#e2e2e2;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop7922"
+         style="stop-color:#f8f8f8;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <radialGradient
+       cx="-16.71875"
+       cy="3.344311"
+       r="2"
+       fx="-16.71875"
+       fy="3.344311"
+       id="radialGradient7931"
+       xlink:href="#linearGradient7918"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4065972,0,0,2.1428629,6.7977966,-4.7132748)" />
+  </defs>
+  <metadata
+     id="metadata7344">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-783.57141,-687.36218)"
+     id="layer1">
+    <g
+       transform="translate(19.984375,0.08593751)"
+       id="g7926">
+      <path
+         d="m -18.5,0.40625 0,9.09375 7.03125,0 0,-6.84375 -2.25,-2.25 -4.78125,0 z"
+         transform="translate(783.57141,687.36218)"
+         id="rect7358"
+         style="fill:#ffffff;fill-opacity:1;stroke:#878787;stroke-width:0.89999998;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         d="m -17.03125,2 0,6.09375 4,0 0,-5.28125 -0.84375,0 0,-0.8125 -3.15625,0 z"
+         transform="translate(783.57141,687.36218)"
+         id="rect7896"
+         style="fill:url(#radialGradient7931);fill-opacity:1;stroke:none" />
+      <path
+         d="m -13.8125,0.32812497 0,2.35937503 2.34375,0"
+         transform="translate(783.57141,687.36218)"
+         id="path7894"
+         style="fill:none;stroke:#878787;stroke-width:0.89999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+  </g>
+</svg>
