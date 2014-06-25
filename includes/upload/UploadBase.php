@@ -118,7 +118,7 @@ abstract class UploadBase {
 	 * Can be overridden by subclasses.
 	 *
 	 * @param User $user
-	 * @return bool
+	 * @return bool|string
 	 */
 	public static function isAllowed( $user ) {
 		foreach ( array( 'upload', 'edit' ) as $permission ) {
