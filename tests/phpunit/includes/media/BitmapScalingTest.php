@@ -110,7 +110,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 		$file = new FakeDimensionFile( array( 4000, 4000 ) );
 		$handler = new BitmapHandler;
 		$params = array( 'width' => '3700' ); // Still bigger than max size.
-		$this->assertEquals( 'TransformParameterError',
+		$this->assertEquals( 'TransformTooBigImageAreaError',
 			get_class( $handler->doTransform( $file, 'dummy path', '', $params ) ) );
 	}
 
@@ -122,7 +122,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 		$file->mustRender = true;
 		$handler = new BitmapHandler;
 		$params = array( 'width' => '5000' ); // Still bigger than max size.
-		$this->assertEquals( 'TransformParameterError',
+		$this->assertEquals( 'TransformTooBigImageAreaError',
 			get_class( $handler->doTransform( $file, 'dummy path', '', $params ) ) );
 	}
 

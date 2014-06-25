@@ -474,3 +474,24 @@ class TransformParameterError extends MediaTransformError {
 			wfMessage( 'thumbnail_invalid_params' )->text() );
 	}
 }
+
+/**
+ * Shortcut class for parameter file size errors
+ *
+ * @ingroup Media
+ * @since 1.24
+ */
+class TransformTooBigImageAreaError extends MediaTransformError {
+	function __construct( $params, $maxImageArea ) {
+		$msg = wfMessage( 'thumbnail_toobigimagearea' );
+
+		parent::__construct( 'thumbnail_error',
+			max( isset( $params['width'] ) ? $params['width'] : 0, 120 ),
+			max( isset( $params['height'] ) ? $params['height'] : 0, 120 ),
+			$msg->rawParams(
+				$msg->getLanguage()->formatComputingNumbers(
+					$maxImageArea, 1000, "size-$1pixel" )
+				)->text()
+			);
+	}
+}
