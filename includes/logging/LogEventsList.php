@@ -69,25 +69,6 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * Set page title and show header for this log type
-	 * @param array $type
-	 * @deprecated since 1.19
-	 */
-	public function showHeader( $type ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		// If only one log type is used, then show a special message...
-		$headerType = count( $type ) == 1 ? $type[0] : '';
-		$out = $this->getOutput();
-		if ( LogPage::isLogType( $headerType ) ) {
-			$page = new LogPage( $headerType );
-			$out->setPageTitle( $page->getName()->text() );
-			$out->addHTML( $page->getDescription()->parseAsBlock() );
-		} else {
-			$out->addHTML( $this->msg( 'alllogstext' )->parse() );
-		}
-	}
-
-	/**
 	 * Show options for the log list
 	 *
 	 * @param array|string $types
