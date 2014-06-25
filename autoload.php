@@ -1175,6 +1175,7 @@ $wgAutoloadLocalClasses = array(
 	'TraditionalImageGallery' => __DIR__ . '/includes/gallery/TraditionalImageGallery.php',
 	'TransactionProfiler' => __DIR__ . '/includes/profiler/TransactionProfiler.php',
 	'TransformParameterError' => __DIR__ . '/includes/media/MediaTransformOutput.php',
+	'TransformTooBigImageAreaError' => __DIR__ . '/includes/media/MediaTransformOutput.php',
 	'TransformationalImageHandler' => __DIR__ . '/includes/media/TransformationalImageHandler.php',
 	'UDPRCFeedEngine' => __DIR__ . '/includes/rcfeed/UDPRCFeedEngine.php',
 	'UIDGenerator' => __DIR__ . '/includes/utils/UIDGenerator.php',
