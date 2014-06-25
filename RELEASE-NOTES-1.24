@@ -181,6 +181,7 @@ changes to languages because of Bugzilla reports.
 * Removed LogEventsList::showHeader(). (deprecated since 1.19)
 * Removed ImageGalleryBase::useSkin(). (deprecated since 1.18)
 * Removed DatabaseMysqlBase::getLagFromProcesslist(). (deprecated since 1.19)
+* Removed LoadBalancer::closeConnecton(). (deprecated since 1.18)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

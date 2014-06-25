@@ -873,17 +873,6 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Deprecated function, typo in function name
-	 *
-	 * @deprecated since 1.18
-	 * @param DatabaseBase $conn
-	 */
-	function closeConnecton( $conn ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		$this->closeConnection( $conn );
-	}
-
-	/**
 	 * Close a connection
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
 	 * If you use $conn->close() directly, the load balancer won't update its state.
