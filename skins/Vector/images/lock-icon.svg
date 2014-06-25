@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="10"
+   height="10"
+   id="svg3813">
+  <defs
+     id="defs3815">
+    <linearGradient
+       id="linearGradient4348">
+      <stop
+         id="stop4350"
+         style="stop-color:#fff8bb;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop4352"
+         style="stop-color:#e9d84d;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <radialGradient
+       cx="806.97711"
+       cy="720.04266"
+       r="4.5721774"
+       fx="806.97711"
+       fy="720.04266"
+       id="radialGradient4394"
+       xlink:href="#linearGradient4348"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.66177697,-3.2424834e-7,5.5632116e-7,1.1354276,273.09596,-96.976308)" />
+  </defs>
+  <metadata
+     id="metadata3818">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-817.85712,-715.93359)"
+     id="layer1">
+    <g
+       transform="translate(14.984745,-0.12063576)"
+       id="g4389">
+      <rect
+         width="8.1443548"
+         height="6.0609155"
+         x="803.37238"
+         y="719.4939"
+         id="rect3832"
+         style="fill:url(#radialGradient4394);fill-opacity:1;stroke:#888a85;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         d="m 2.4622467,2.0134813 a 2.9673231,1.420527 0 0 1 5.9346461,10e-8 l -2.9673231,0 z"
+         transform="matrix(0.98668274,0,0,2.0515802,802.05109,715.32099)"
+         id="path4346"
+         style="fill:none;stroke:#888a85;stroke-width:0.68014622;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         d="m 807.32587,723.57494 0,-1.12645"
+         id="path4368"
+         style="fill:none;stroke:#ac5f08;stroke-width:1.04513526px;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:0.69072164" />
+    </g>
+  </g>
+</svg>
