@@ -38,16 +38,16 @@ class UploadFromUrl extends UploadBase {
 
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature. If the
-	 * user is not allowed, return the name of the user right as a string. If
-	 * the user is allowed, have the parent do further permissions checking.
+	 * user is not allowed, return false. If the user is allowed, have the
+	 * parent do further permissions checking.
 	 *
 	 * @param User $user
 	 *
-	 * @return bool|string
+	 * @return bool
 	 */
 	public static function isAllowed( $user ) {
 		if ( !$user->isAllowed( 'upload_by_url' ) ) {
-			return 'upload_by_url';
+			return false;
 		}
 
 		return parent::isAllowed( $user );
