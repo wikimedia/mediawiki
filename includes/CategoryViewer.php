@@ -707,7 +707,10 @@ class CategoryViewer extends ContextSource {
 			// to refresh the incorrect category table entry -- which should be
 			// quick due to the small number of entries.
 			$totalcnt = $rescnt;
-			$this->cat->refreshCounts();
+			$category = $this->cat;
+			wfGetDB( DB_MASTER )->onTransactionIdle( function() use ( $category ) {
+				$category->refreshCounts();
+			} );
 		} else {
 			// Case 3: hopeless.  Don't give a total count at all.
 			// Messages: category-subcat-count-limited, category-article-count-limited,
