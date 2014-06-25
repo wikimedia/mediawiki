@@ -178,6 +178,10 @@ changes to languages because of Bugzilla reports.
   have since become subclasses of the Action class. (deprecated since 1.19)
 * SearchEngineReplacePrefixesComplete hook was removed.
 * Removed HTMLForm::addJS(). (deprecated since 1.18)
+* The following global functions were removed after having been deprecated
+  since 1.18: wfMsg, wfMsgNoTrans, wfMsgForContent, wfMsgForContentNoTrans,
+  wfMsgReal, wfMsgGetKey, wfMsgHtml, wfMsgWikiHtml, wfMsgExt, wfEmptyMsg. Use
+  of wfMessage or the Message class is preferred.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
