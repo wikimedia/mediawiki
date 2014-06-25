@@ -101,6 +101,8 @@ production.
   The feature needs to be enabled with $wgPageLanguageUseDB=true and
   permission needs to be set for 'pagelang'.
 * Upgrade Moment.js to v2.7.0.
+* All API requests made by JS now request JSON with non-ASCII characters not
+  escaped, reducing download size.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
