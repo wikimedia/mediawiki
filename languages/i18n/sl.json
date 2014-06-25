@@ -845,7 +845,6 @@
 	"searchall": "vse",
 	"showingresults": "Prikazujem do '''$1''' {{PLURAL:$1|zadetek|zadetka|zadetke|zadetkov}}, začenši s št. '''$2'''.",
 	"showingresultsinrange": "Spodaj prikazujem {{PLURAL:$1|1=<strong>1</strong> rezultat|<strong>$1</strong> rezultata|<strong>$1</strong> rezultate|<strong>$1</strong> rezultatov}} v razponu od št. <strong>$2</strong> do št. <strong>$3</strong>.",
-	"showingresultsnum": "Prikazujem '''$3''' {{PLURAL:$3|zadetek|zadetka|zadetke|zadetkov|zadetkov}}, začenši s št. '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Zadetek '''$1''' od '''$3'''|Zadetki '''$1 - $2''' od skupno '''$3'''}} za povpraševanje '''$4'''",
 	"search-nonefound": "Ni bilo zadetkov, ki ustrezajo poizvedbi.",
 	"powersearch-legend": "Napredno iskanje",

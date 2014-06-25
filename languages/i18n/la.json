@@ -606,7 +606,6 @@
 	"searchrelated": "relata",
 	"searchall": "omnia",
 	"showingresults": "Subter monstrans {{PLURAL:$1|'''1''' eventu|'''$1''' eventibus}} tenus incipiens ab #'''$2'''.",
-	"showingresultsnum": "Subter monstrans {{PLURAL:$3|'''1''' eventum|'''$3''' eventus}} incipiens ab #'''$2'''.",
 	"search-nonefound": "Nullae paginae quaesitionem tuam adaequant.",
 	"powersearch-legend": "Quaerere callidissime",
 	"powersearch-ns": "Quaerere in spatiis nominalibus:",

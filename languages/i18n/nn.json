@@ -809,7 +809,6 @@
 	"searchrelated": "relatert",
 	"searchall": "alle",
 	"showingresults": "Nedanfor er opp til {{PLURAL:$1|'''eitt'''|'''$1'''}} resultat som byrjar med nummer '''$2''' vist{{PLURAL:$1||e}}.",
-	"showingresultsnum": "Nedanfor er {{PLURAL:$3|'''eitt'''|'''$3'''}} resultat som byrjar med nummer '''$2''' {{PLURAL:$3|vist|viste}}.",
 	"showingresultsheader": "{{PLURAL:$5|Resultat '''$1''' av '''$3'''|Resultat '''$1 - $2''' av '''$3'''}} for '''$4'''",
 	"search-nonefound": "Ingen resultat svarte til førespurnaden.",
 	"powersearch-legend": "Avansert søk",

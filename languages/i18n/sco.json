@@ -838,7 +838,6 @@
 	"searchall": "aw",
 	"showingresults": "Shawin ablo up tae {{PLURAL:$1|'''1''' ootcome|'''$1''' ootcomes}} stertin wi #'''$2'''.",
 	"showingresultsinrange": "Shawin ablo up til {{PLURAL:$1|<strong>1</strong> ootcome|<strong>$1</strong> ootcome}} in range #<strong>$2</strong> til #<strong>$3</strong>.",
-	"showingresultsnum": "Shawin ablo {{PLURAL:$3|'''1''' ootcome|'''$3''' ootcomes}} stertin wi #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Ootcome <strong>$1</strong> o <strong>$3</strong>|Ootcomes <strong>$1 - $2</strong> o <strong>$3</strong>}} fer <strong>$4</strong>",
 	"search-nonefound": "Thaur were naw ootcomes matchin the speiring.",
 	"powersearch-legend": "Advanced rake",

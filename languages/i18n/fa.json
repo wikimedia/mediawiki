@@ -872,7 +872,6 @@
 	"searchall": "همه",
 	"showingresults": "نمایش حداکثر {{PLURAL:$1|'''۱''' نتیجه|'''$1''' نتیجه}} در پایین، آغاز از شماره '''$2'''.",
 	"showingresultsinrange": "نمایش در پائین تا {{PLURAL:$1|<strong>1</strong> نتیجه|<strong>$1</strong> نتیجه}} in range #<strong>$2</strong> تا #<strong>$3</strong>.",
-	"showingresultsnum": "نمایش حداکثر '''$3''' {{PLURAL:$3|نتیجه|نتیجه}} در پایین، آغاز از شماره '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|نتیجهٔ '''$1''' از '''$3'''|نتایج '''$1 تا $2''' از '''$3'''}} برای '''$4'''",
 	"search-nonefound": "نتیجه‌ای منطبق با درخواست پیدا نشد.",
 	"powersearch-legend": "جستجوی پیشرفته",

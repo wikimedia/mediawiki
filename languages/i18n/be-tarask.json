@@ -848,7 +848,6 @@
 	"searchall": "усе",
 	"showingresults": "Ніжэй {{PLURAL:$1|паданы|паданыя|паданыя}} да '''$1''' {{PLURAL:$1|выніку|вынікаў|вынікаў}}, пачынаючы з #<b>$2</b>.",
 	"showingresultsinrange": "Ніжэй паказаныя да {{PLURAL:$1|<strong>$1</strong> выніку ў|<strong>$1</strong> вынікаў у}} дыяпазоне ад <strong>$2</strong> да <strong>$3</strong>.",
-	"showingresultsnum": "Ніжэй паказаны сьпіс з '''$3''' {{PLURAL:$3|выніка|вынікаў|вынікаў}}, пачынаючы ад № '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|1=Вынік '''$1''' з '''$3'''|Вынікі '''$1—$2''' з '''$3'''}} для '''$4'''",
 	"search-nonefound": "Супадзеньняў па запыце ня знойдзена.",
 	"powersearch-legend": "Удасканалены пошук",

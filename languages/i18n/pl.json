@@ -902,7 +902,6 @@
 	"searchall": "wszystkie",
 	"showingresults": "Poniżej znajduje się lista {{PLURAL:$1|z '''1''' wynikiem|'''$1''' wyników}}, rozpoczynając od wyniku numer '''$2'''.",
 	"showingresultsinrange": "Poniżej wyświetlono co najwyżej {{PLURAL:$1|<strong>1</strong> wynik|<strong>$1</strong> wyniki|<strong>$1</strong> wyników}} w zakresie od <strong>$2</strong> do <strong>$3</strong>.",
-	"showingresultsnum": "Poniżej znajduje się lista {{PLURAL:$3|z '''1''' wynikiem|'''$3''' wyników}}, rozpoczynając od wyniku numer '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Wynik '''$1''' z '''$3'''|Wyniki '''$1 – $2''' z '''$3'''}} dla '''$4'''",
 	"search-nonefound": "Brak wyników spełniających kryteria podane w zapytaniu.",
 	"powersearch-legend": "Wyszukiwanie zaawansowane",

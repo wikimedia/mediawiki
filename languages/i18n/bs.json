@@ -805,7 +805,6 @@
 	"searchrelated": "povezano",
 	"searchall": "sve",
 	"showingresults": "Dolje {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od '''$2'''.",
-	"showingresultsnum": "Dolje {{PLURAL:$3|je prikazan '''1''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}} počev od #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Rezultat '''$1''' od '''$3'''|Rezultati '''$1 - $2''' od '''$3'''}} za '''$4'''",
 	"search-nonefound": "Nisu pronađeni rezultati koji odgovaraju upitu.",
 	"powersearch-legend": "Napredna pretraga",

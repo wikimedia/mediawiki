@@ -912,7 +912,6 @@
 	"searchall": "所有",
 	"showingresults": "下面显示从第'''$2'''条结果开始的'''$1'''条结果。",
 	"showingresultsinrange": "下面显示区间#<strong>$2</strong>至#<strong>$3</strong>的<strong>$1</strong>条结果。",
-	"showingresultsnum": "下面显示从第'''$2'''条结果开始的'''$3'''条结果。",
 	"showingresultsheader": "关于<strong>$4</strong>的{{PLURAL:$5|第<strong>$1</strong>条结果，共<strong>$3</strong>条结果|第<strong>$1 - $2</strong>条结果，共<strong>$3</strong>条结果}}",
 	"search-nonefound": "找不到和查询相匹配的结果。",
 	"powersearch-legend": "高级搜索",

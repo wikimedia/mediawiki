@@ -858,7 +858,6 @@
 	"searchall": "toate",
 	"showingresults": "Mai jos {{PLURAL:$1|apare '''1''' rezultat|apar '''$1''' rezultate|apar '''$1''' de rezultate}} începând cu nr. <b>$2</b>.",
 	"showingresultsinrange": "Mai jos se afișează un număr de până la {{PLURAL:$1|<strong>1</strong> rezultat|<strong>$1</strong> rezultate|<strong>$1</strong> de rezultate}} din intervalul #<strong>$2</strong> la #<strong>$3</strong>.",
-	"showingresultsnum": "Mai jos {{PLURAL:$3|apare '''1''' rezultat|apar '''$3''' rezultate|apar '''$3''' de rezultate}} cu nr. <b>$2</b>.",
 	"showingresultsheader": "{{PLURAL:$5|Rezultatul '''$1''' din '''$3'''|Rezultatele '''$1 - $2''' din '''$3'''}} pentru '''$4'''",
 	"search-nonefound": "Nu sunt rezultate conforme interogării.",
 	"powersearch-legend": "Căutare avansată",

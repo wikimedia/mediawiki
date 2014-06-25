@@ -894,7 +894,6 @@
 	"searchall": "alla",
 	"showingresults": "Nedan visas upp till {{PLURAL:$1|'''1''' post|'''$1''' poster}} från och med nummer '''$2'''.",
 	"showingresultsinrange": "Nedan visas upp till {{PLURAL:$3|<strong>1</strong> resultat|<strong>$1</strong> resultat}} mellan nummer <strong>$2</strong> och nummer <strong>$3</strong>.",
-	"showingresultsnum": "Nedan visas {{PLURAL:$3|'''1''' post|'''$3''' poster}} från och med nummer '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultat '''$1''' av '''$3'''|Resultat '''$1 - $2''' av '''$3'''}} för '''$4'''",
 	"search-nonefound": "Inga resultat matchade frågan.",
 	"powersearch-legend": "Avancerad sökning",

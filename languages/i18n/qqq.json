@@ -1056,7 +1056,6 @@
 	"searchall": "{{Identical|All}}",
 	"showingresults": "This message is used on some special pages such as [[Special:WantedCategories]]. Parameters:\n* $1 - the total number of results in the batch shown\n* $2 - the number of the first item listed\nSee also:\n* {{msg-mw|Showingresultsnum}}",
 	"showingresultsinrange": "Used in pagination of [[Special:MostLinkedCategories]]. Parameters:\n* $1 - the total number of results in the batch shown\n* $2 - the number of the first item listed\n* $3 - the number of last item in the batch shown\n\nSee also {{msg-mw|Showingresults}}",
-	"showingresultsnum": "Parameters:\n* $1 - (Unused) the total number of results in the batch shown\n* $2 - the first number in the batch of results\n* $3 - the number of results on the page\nSee also:\n* {{msg-mw|Showingresults}}",
 	"showingresultsheader": "Used in search results of [[Special:Search]]. Parameters:\n* $1 - minimum offset\n* $2 - maximum offset\n* $3 - total number of results\n* $4 - the search term\n* $5 - number of results",
 	"search-nonefound": "Message shown when a search returned no results (when using the default MediaWiki search engine).",
 	"powersearch-legend": "Advanced search\n\n{{Identical|Advanced search}}",

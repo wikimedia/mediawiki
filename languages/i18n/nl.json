@@ -891,7 +891,6 @@
 	"searchall": "alle",
 	"showingresults": "Hieronder {{PLURAL:$1|staat '''1''' resultaat|staan '''$1''' resultaten}} vanaf #'''$2'''.",
 	"showingresultsinrange": "Hieronder {{PLURAL:$1|wordt|worden}} maximaal {{PLURAL:$1|<strong>1</strong> resultaat|<strong>$1 </strong>resultaten}} weergegeven in het bereik #<strong>$2</strong> tot #<strong>$3</strong>.",
-	"showingresultsnum": "Hieronder {{PLURAL:$3|staat '''1''' resultaat|staan '''$3''' resultaten}} vanaf #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultaat '''$1''' van '''$3'''|Resultaten '''$1 - $2''' van '''$3'''}} voor '''$4'''",
 	"search-nonefound": "Er zijn geen resultaten voor uw zoekopdracht.",
 	"powersearch-legend": "Uitgebreid zoeken",

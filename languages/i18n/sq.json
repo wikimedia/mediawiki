@@ -795,7 +795,6 @@
 	"searchrelated": "të ngjashme",
 	"searchall": "të gjitha",
 	"showingresults": "Më poshtë tregohen {{PLURAL:$1|'''1''' përfundim|'''$1''' përfundime}} duke filluar nga #'''$2'''.",
-	"showingresultsnum": "Më poshtë tregohen {{PLURAL:$3|'''1''' përfundim|'''$3''' përfundime}} duke filluar nga #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Rezultati '''$1''' nga '''$3'''|Rezultatet '''$1 - $2''' nga '''$3'''}} për '''$4'''",
 	"search-nonefound": "Nuk ka rezultate që përputhen me kërkesën.",
 	"powersearch-legend": "Kërkim i përparuar",

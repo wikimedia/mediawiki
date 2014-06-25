@@ -851,7 +851,6 @@
 	"searchall": "ทั้งหมด",
 	"showingresults": "ด้านล่างแสดง <strong>1</strong> ผลลัพธ์ เริ่มตั้งแต่รายการที่ <strong>$2</strong>",
 	"showingresultsinrange": "ด้านล่างแสดงมากสุด {{PLURAL:$1|<strong>1</strong>|<strong>$1</strong>}} ผลลัพธ์ ในพิสัย #<strong>$2</strong> ถึง #<strong>$3</strong>",
-	"showingresultsnum": "ด้านล่างแสดง <strong>$3</strong> ผลลัพธ์ เริ่มตั้งแต่รายการที่ <strong>$2</strong>",
 	"showingresultsheader": "{{PLURAL:$5|ผลการค้นหา <strong>$1</strong> จาก <strong>$3</strong>|ผลการค้นหา <strong>$1 - $2</strong> จาก <strong>$3</strong>}} สำหรับ <strong>$4</strong>",
 	"search-nonefound": "ไม่มีผลลัพธ์ตรงกับคำค้น",
 	"powersearch-legend": "ค้นหาระดับสูง",

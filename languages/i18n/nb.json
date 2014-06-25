@@ -874,7 +874,6 @@
 	"searchall": "alle",
 	"showingresults": "Nedenfor vises opptil {{PLURAL:$1|'''ett''' resultat|'''$1''' resultater}} fra og med nummer <b>$2</b>.",
 	"showingresultsinrange": "Nedenfor vises opptil {{PLURAL:$1|<strong>1</strong> resultat|<strong>$1</strong> resulter}} i området #<strong>$2</strong> til #<strong>$3</strong>.",
-	"showingresultsnum": "Nedenfor vises {{PLURAL:$3|'''ett''' resultat|'''$3''' resultater}} fra og med nummer '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultat '''$1''' av '''$3'''|Resultat '''$1 - $2''' av '''$3'''}} for '''$4'''",
 	"search-nonefound": "Ingen resultater passet til søket.",
 	"powersearch-legend": "Avansert søk",

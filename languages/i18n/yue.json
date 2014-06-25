@@ -811,7 +811,6 @@
 	"searchrelated": "有關",
 	"searchall": "全部",
 	"showingresults": "'自#'''$2'''起顯示最多'''$1'''個結果。",
-	"showingresultsnum": "自#'''$2'''起顯示'''$3'''個結果。",
 	"showingresultsheader": "對'''$4'''嘅{{PLURAL:$5|第'''$1'''到第'''$3'''項結果|第'''$1 - $2'''項，共'''$3'''項結果}}",
 	"search-nonefound": "響個查詢度無結果配合。",
 	"powersearch-legend": "進階搵嘢",

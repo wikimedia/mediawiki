@@ -535,7 +535,6 @@
 	"searchrelated": "相關其",
 	"searchall": "全部",
 	"showingresults": "顯示趁#<b>$2</b>開始其{{PLURAL:$1|'''$1'''萆結果}}。",
-	"showingresultsnum": "顯示趁#<b>$2</b>開始其{{PLURAL:$3|'''$3'''萆結果}}。",
 	"preferences": "設定",
 	"mypreferences": "我其設定",
 	"prefs-edits": "修改數量：",

@@ -830,7 +830,6 @@
 	"searchrelated": "disoc'hoù kar",
 	"searchall": "An holl",
 	"showingresults": "Diskouez betek {{PLURAL:$1|'''1''' disoc'h|'''$1''' disoc'h}} o kregiñ gant #'''$2'''.",
-	"showingresultsnum": "Diskouez {{PLURAL:$3|'''1''' disoc'h|'''$3''' disoc'h}} o kregiñ gant #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Disoc'h '''$1''' diwar '''$3'''|Disoc'hoù '''$1 - $2''' diwar '''$3'''}} evit '''$4'''",
 	"search-nonefound": "An enklask-mañ ne zisoc'h war netra.",
 	"powersearch-legend": "Klask araokaet",

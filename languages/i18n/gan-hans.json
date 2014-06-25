@@ -570,7 +570,6 @@
 	"searchrelated": "相关",
 	"searchall": "所有",
 	"showingresults": "底下从第<b>$2</b>条显示起先𠮶<b>$1</b>条结果:",
-	"showingresultsnum": "底下从第<b>$2</b>条显示起先𠮶<b>$3</b>条结果:",
 	"showingresultsheader": "'''$4'''𠮶{{PLURAL:$5|第'''$1'''到第'''$3'''只结果|第'''$1 - $2'''只，拢共'''$3'''只结果}}",
 	"search-nonefound": "冇合到𠮶查询结果。",
 	"powersearch-legend": "高级搜寻",

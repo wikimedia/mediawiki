@@ -885,7 +885,6 @@
 	"searchall": "hepsi",
 	"showingresults": "$2. sonuçtan başlayarak {{PLURAL:$1|'''1''' sonuç |'''$1''' sonuç }} aşağıdadır:",
 	"showingresultsinrange": "<strong>$2</strong> ile <strong>$3</strong> arasında toplam <strong>$1</strong> sonuç gösteriliyor.",
-	"showingresultsnum": "'''$2''' sonuçtan başlayarak {{PLURAL:$3|'''1''' sonuç|'''$3''' sonuç}} aşağıdadır:",
 	"showingresultsheader": "'''$4''' için {{PLURAL:$5|'''$3''' sonuçtan '''$1'''i|'''$1 - $2''' arası '''$3''' sonuç}}",
 	"search-nonefound": "Sorguyla eşleşen bir sonuç yok.",
 	"powersearch-legend": "Gelişmiş arama",

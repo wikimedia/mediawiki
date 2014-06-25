@@ -888,7 +888,6 @@
 	"searchall": "усі",
 	"showingresults": "Нижче {{PLURAL:$1|показане|показані|показані}} '''$1''' {{PLURAL:$1|результат|результати|результатів}}, починаючи з №&nbsp;'''$2'''",
 	"showingresultsinrange": "Нижче показано до {{PLURAL:$1|<strong>1</strong> результата|<strong>$1</strong> результатів|<strong>$1</strong> результати}} у діапазоні від #<strong>$2</strong> до #<strong>$3</strong>.",
-	"showingresultsnum": "Нижче показано <strong>$3</strong> {{PLURAL:$3|результат|результати|результатів}}, починаючи з №&nbsp;<strong>$2</strong>.",
 	"showingresultsheader": "{{PLURAL:$5|1=Результат '''$1''' з '''$3'''|Результати '''$1 — $2''' з '''$3'''}} для '''$4'''",
 	"search-nonefound": "Не знайдено результатів, що відповідають запиту.",
 	"powersearch-legend": "Розширений пошук",

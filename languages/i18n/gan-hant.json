@@ -567,7 +567,6 @@
 	"searchrelated": "相關",
 	"searchall": "所有",
 	"showingresults": "底下從第<b>$2</b>條顯示起先嗰<b>$1</b>條結果:",
-	"showingresultsnum": "底下從第<b>$2</b>條顯示起先嗰<b>$3</b>條結果:",
 	"showingresultsheader": "'''$4'''嗰{{PLURAL:$5|第'''$1'''到第'''$3'''隻結果|第'''$1 - $2'''隻，攏共'''$3'''隻結果}}",
 	"search-nonefound": "冇合到嗰查詢結果。",
 	"powersearch-legend": "高級搜尋",

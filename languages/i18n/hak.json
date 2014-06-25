@@ -698,7 +698,6 @@
 	"searchrelated": "相關",
 	"searchall": "全部",
 	"showingresults": "Ha-mien hién-sṳ chhiùng thi-'''$2'''-thiàu khôi-sṳ́ ke '''$1'''-thiàu kiet-kó:",
-	"showingresultsnum": "下背展示從第'''$2'''條開始嘅'''{{PLURAL:$3|1|$3}}'''條結果。",
 	"showingresultsheader": "對'''$4'''嘅{{PLURAL:$5|第'''$1'''到第'''$3'''隻結果|第'''$1 - $2'''隻，共'''$3'''隻結果}}",
 	"search-nonefound": "在查詢肚無結果相符。",
 	"powersearch-legend": "高級搜尋",

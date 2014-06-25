@@ -728,7 +728,6 @@
 	"searchrelated": "currilati",
 	"searchall": "tutti",
 	"showingresults": "Ammustra nzinu a {{PLURAL:$1|'''1''' risurtatu|'''$1''' risurtati}} a pàrtiri dô nùmmuru '''$2'''.",
-	"showingresultsnum": "L'alencu cunteni {{PLURAL:$3|'''1''' risurtatu|'''$3''' risurtati}} a pàrtiri dû nùmmuru '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Risultatu '''$1''' di '''$3'''|Risultati '''$1 - $2''' di '''$3'''}} pi '''$4'''",
 	"search-nonefound": "La circata nun desi nuddu risurtatu.",
 	"powersearch-legend": "Ricerca avanzata",

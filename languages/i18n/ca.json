@@ -874,7 +874,6 @@
 	"searchall": "tots",
 	"showingresults": "Tot seguit es {{PLURAL:$1|mostra el resultat|mostren els <b>$1</b> resultats començant pel número <b>$2</b>}}.",
 	"showingresultsinrange": "Es mostren a continuació fins a {{PLURAL:$1|<strong>1</strong> resultat|<strong>$1</strong> resultats}} de #<strong>$2</strong> a #<strong>$3</strong>.",
-	"showingresultsnum": "Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.",
 	"showingresultsheader": "{{PLURAL:$5|Resultat '''$1''' de '''$3'''|Resultats '''$1 - $2''' de '''$3'''}} per '''$4'''",
 	"search-nonefound": "La cerca no ha donat cap resultat.",
 	"powersearch-legend": "Cerca avançada",

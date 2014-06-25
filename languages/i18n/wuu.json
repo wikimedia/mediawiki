@@ -725,7 +725,6 @@
 	"searchrelated": "相关",
 	"searchall": "全部",
 	"showingresults": "下头显示从第<b>$2</b>条开始个<b>$1</b>条结果：",
-	"showingresultsnum": "下头显示从第<b>$2</b>条开始个<b>$3</b>条结果：",
 	"showingresultsheader": "对'''$4'''个{{PLURAL:$5|第'''$1'''至第'''$3'''项结果|第'''$1－$2'''项，共'''$3'''个结果}}",
 	"search-nonefound": "查询呒有结果。",
 	"powersearch-legend": "高级搜索",

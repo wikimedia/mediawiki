@@ -863,7 +863,6 @@
 	"searchall": "ĉiuj",
 	"showingresults": "Montras {{PLURAL:$1|'''1''' trovitan|'''$1''' trovitajn}} ekde la #'''$2'''-a.",
 	"showingresultsinrange": "Malsupre montriĝas {{PLURAL:$1|<strong>1</strong> rezulto|<strong>$1</strong> rezultoj}} en la intervalo #<strong>$2</strong> ĝis #<strong>$3</strong>.",
-	"showingresultsnum": "Montras {{PLURAL:$3|'''1''' trovitan|'''$3''' trovitajn}} ekde la #'''$2'''-a.",
 	"showingresultsheader": "{{PLURAL:$5|Rezulto '''$1''' el '''$3'''|Rezultoj '''$1 – $2''' el '''$3'''}} por '''$4'''",
 	"search-nonefound": "La serĉomendo rezultis kun neniuj trafoj.",
 	"powersearch-legend": "Progresa serĉo",

@@ -815,7 +815,6 @@
 	"searchrelated": "kaugnay",
 	"searchall": "lahat",
 	"showingresults": "Ipinapakita sa ibaba ang magpahanggang sa {{PLURAL:$1|'''1''' resultang|'''$1''' mga resultang}} nagsisimula sa #'''$2'''.",
-	"showingresultsnum": "Ipinapakita sa ibaba ang {{PLURAL:$3|'''1''' resultang|'''$3''' mga resultang}} nagsisimula sa #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultang '''$1''' ng '''$3'''|Mga resultang '''$1 - $2''' ng '''$3'''}} para sa '''$4'''",
 	"search-nonefound": "Walang mga resultang tumutugma sa katanungan/pagtatanong.",
 	"powersearch-legend": "Paghahanap na may mas mataas na antas",

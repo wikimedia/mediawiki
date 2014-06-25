@@ -796,7 +796,6 @@
 	"searchrelated": "бейламлы",
 	"searchall": "бютеу",
 	"showingresults": "Тюбюрек №&nbsp;<strong>$2</strong> башлаб <strong>$1</strong> {{PLURAL:$1|1=эсеб|эсебле}} {{PLURAL:$1|1=кёргюзюлгенди|кёргюзюлгендиле}}.",
-	"showingresultsnum": "Тюбюрек №&nbsp;<strong>$2</strong> башлаб <strong>$3</strong> {{PLURAL:$3|1=эсеб|эсебле}} {{PLURAL:$3|1=кёргюзюлгенди|кёргюзюлгендиле}}.",
 	"showingresultsheader": "'''$4''' ючюн {{PLURAL:$5|1='''$3''' эсебден '''$1'''|'''$1 — $2''' арасы '''$3''' эсеб}}",
 	"search-nonefound": "Соруу бла келишген эсеб джокъду",
 	"powersearch-legend": "Кенг излеу",

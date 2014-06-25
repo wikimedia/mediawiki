@@ -800,7 +800,6 @@
 	"searchrelated": "líknandi",
 	"searchall": "alt",
 	"showingresults": "Niðanfyri standa upp til {{PLURAL:$1|'''$1''' úrslit, sum byrjar|'''$1''' úrslit, sum byrja}} við #<b>$2</b>.",
-	"showingresultsnum": "Niðanfyri standa {{PLURAL:$3|'''1''' úrslit, sum byrjar|'''$3''' úrslit, sum byrja}} við #<b>$2</b>.",
 	"showingresultsheader": "{{PLURAL:$5|Úrslit '''$1''' av '''$3'''|Úrslit '''$1 - $2''' av '''$3'''}} fyri '''$4'''",
 	"search-nonefound": "Leitingin gav onki úrslit.",
 	"powersearch-legend": "Víðkað leitan",

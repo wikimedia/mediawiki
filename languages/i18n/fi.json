@@ -874,7 +874,6 @@
 	"searchall": "kaikki",
 	"showingresults": "Alla on vain {{PLURAL:$1|<strong>1</strong> hakutulos|<strong>$1</strong> hakutulosta}} alkaen tuloksesta nro <strong>$2</strong>.",
 	"showingresultsinrange": "Alla näytetään {{PLURAL:$1|<strong>1</strong> tulos|<strong>$1</strong> tulosta}} väliltä <strong>$2</strong> – <strong>$3</strong>.",
-	"showingresultsnum": "Alla on {{PLURAL:$3|<strong>1</strong> hakutulos|<strong>$3</strong> hakutulosta}} alkaen tuloksesta nro <strong>$2</strong>.",
 	"showingresultsheader": "{{PLURAL:$5|Tulokset '''$1'''–'''$3'''|Tulokset '''$1'''–'''$2''' kaikkiaan '''$3''' osuman joukosta}} haulle '''$4'''",
 	"search-nonefound": "Hakusi ei tuottanut tulosta.",
 	"powersearch-legend": "Laajennettu haku",

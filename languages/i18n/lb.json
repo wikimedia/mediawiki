@@ -837,7 +837,6 @@
 	"searchrelated": "a Verbindng",
 	"searchall": "all",
 	"showingresults": "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
-	"showingresultsnum": "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$3''' Resultater}}, ugefaange mat #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultat '''$1''' vu(n) '''$3'''|Resultater '''$1 - $2''' vu(n) '''$3'''}} fir '''$4'''",
 	"search-nonefound": "Fir Är Ufro gouf näischt fonnt.",
 	"powersearch-legend": "Erweidert Sich",

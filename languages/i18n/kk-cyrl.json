@@ -790,7 +790,6 @@
 	"searchrelated": "қатысты",
 	"searchall": "барлық",
 	"showingresults": "Төменде нөмір '''$2''' орнынан бастап барынша '''$1''' нәтиже көрсетіледі.",
-	"showingresultsnum": "Төменде нөмір '''$2''' орнынан бастап '''$3''' нәтиже көрсетіледі.",
 	"showingresultsheader": "«<strong>$4</strong>» сұранысына {{PLURAL:$5|тек <strong>$1</strong> нәтиже табылды|табылған <strong>$3</strong> нәтиженің <strong>$1 - $2</strong> аралығы көрсетілген}}",
 	"search-nonefound": "Сұрауға сәйкес нәтижелер табылмады.",
 	"powersearch-legend": "Кеңейтілген іздеу",

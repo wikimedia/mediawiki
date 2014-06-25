@@ -945,7 +945,6 @@
 	"searchall": "todos",
 	"showingresults": "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} comenzando por el n.º '''$2'''.",
 	"showingresultsinrange": "Abajo se muestran hasta {{PLURAL:$1|<strong>1</strong> resultado|<strong>$1</strong> resultados}} en el rango #<strong>$2</strong> hasta #<strong>$3</strong>.",
-	"showingresultsnum": "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} comenzando por el n.º '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1-$2''' de '''$3'''}} para '''$4'''",
 	"search-nonefound": "No hay resultados que cumplan los criterios de búsqueda.",
 	"powersearch-legend": "Búsqueda avanzada",

@@ -861,7 +861,6 @@
 	"searchall": "הכול",
 	"showingresults": "{{PLURAL:$1|מוצגת תוצאה <strong>אחת</strong>|מוצגות עד <strong>$1</strong> תוצאות}} החל ממספר <strong>$2</strong>:",
 	"showingresultsinrange": "{{PLURAL:$1|מוצגת תוצאה <strong>אחת</strong>|מוצגות עד <strong>$1</strong> תוצאות}} בין המספרים <strong>$2</strong> ו‏‏־<strong>$3</strong>:",
-	"showingresultsnum": "{{PLURAL:$3|מוצגת תוצאה '''אחת'''|מוצגות '''$3''' תוצאות}} החל ממספר '''$2''':",
 	"showingresultsheader": "{{PLURAL:$5|תוצאה '''$1''' מתוך '''$3'''|תוצאות '''$1 - $2''' מתוך '''$3'''}} עבור '''$4'''",
 	"search-nonefound": "לא נמצאו תוצאות המתאימות לחיפוש.",
 	"powersearch-legend": "חיפוש מתקדם",

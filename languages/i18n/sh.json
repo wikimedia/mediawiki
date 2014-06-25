@@ -831,7 +831,6 @@
 	"searchall": "sve",
 	"showingresults": "Dole {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od '''$2'''.",
 	"showingresultsinrange": "Ispod {{PLURAL:$1|je prikazan <strong>1</strong> rezultat|su prikazana <strong>$1</strong> rezultata|je prikazano <strong>$1</strong> rezultata}}, u rasponu od <strong>$2</strong> do <strong>$3</strong>.",
-	"showingresultsnum": "Dolje {{PLURAL:$3|je prikazan '''1''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}} počev od #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Rezultat '''$1''' od '''$3'''|Rezultati '''$1 - $2''' od '''$3'''}} za '''$4'''",
 	"search-nonefound": "Nisu pronađeni rezultati koji odgovaraju upitu.",
 	"powersearch-legend": "Napredna pretraga",

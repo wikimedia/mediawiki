@@ -902,7 +902,6 @@
 	"searchrelated": "relacionados",
 	"searchall": "todos",
 	"showingresults": "A seguir {{PLURAL:$1|é mostrado '''um''' resultado|são mostrados até '''$1''' resultados}}, iniciando no '''$2'''º.",
-	"showingresultsnum": "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
 	"showingresultsheader": "{{PLURAL:$5|Resulado '''$1''' de '''$3'''|Resultados '''$1 - $2''' de '''$3'''}} para '''$4'''",
 	"search-nonefound": "Não há resultados que correspondam à consulta.",
 	"powersearch-legend": "Pesquisa avançada",

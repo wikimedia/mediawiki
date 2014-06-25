@@ -872,7 +872,6 @@
 	"searchall": "الكل",
 	"showingresults": "معروض بالأسفل {{PLURAL:$1|'''1''' نتيجة|'''$1''' نتيجة}} بدءا من رقم '''$2'''.",
 	"showingresultsinrange": "معروض بالأسفل حتى {{PLURAL:$1|<strong>1</strong> نتيجة|<strong>$1</strong> نتائج}} في النطاق #<strong>$2</strong> إلى #<strong>$3</strong>.",
-	"showingresultsnum": "معروض بالأسفل {{PLURAL:$3|'''نتيجة واحدة'''|'''$3''' نتيجة}} بدءا من رقم'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|النتيجة '''$1''' من'''$3'''|النتائج '''$1 - $2''' من'''$3'''}} ل'''$4'''",
 	"search-nonefound": "لا توجد نتائج تطابق الاستعلام.",
 	"powersearch-legend": "بحث متقدم",

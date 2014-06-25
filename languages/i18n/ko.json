@@ -871,7 +871,6 @@
 	"searchall": "모두",
 	"showingresults": "'''$2'''번 부터의 {{PLURAL:$1|결과 '''1'''개|결과 '''$1'''개}}입니다.",
 	"showingresultsinrange": "#<strong>$2</strong>부터 #<strong>$3</strong>까지의 범위에서 <strong>$1</strong>개의 {{PLURAL:$1|결과}}가 아래에 보입니다.",
-	"showingresultsnum": "'''$2'''번 부터의 {{PLURAL:$3|결과 '''1'''개|결과 '''$3'''개}}입니다.",
 	"showingresultsheader": "'''$4''' 검색어에 대한 {{PLURAL:$5|결과 '''$3'''개 중 '''$1'''개|결과 '''$3'''개 중 '''$1 - $2'''번째}}",
 	"search-nonefound": "검색어와 일치하는 결과가 없습니다.",
 	"powersearch-legend": "고급 검색",

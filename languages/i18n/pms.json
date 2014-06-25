@@ -843,7 +843,6 @@
 	"searchall": "tuti",
 	"showingresults": "Ambelessì-sota a treuva fin a {{PLURAL:$1|'''1'''|'''$1'''}} arzultà, a parte dal nùmer #'''$2'''.",
 	"showingresultsinrange": "Smon-e sì-sota fin-a a {{PLURAL:$1|<strong>1</strong>|<strong>$1</strong>}} arzultà ant la serie da #<strong>$2</strong> a #<strong>$3</strong>.",
-	"showingresultsnum": "Ambelessì-sota a treuva {{PLURAL:$3|'''1'''|'''$3'''}} arzultà a parte da #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Arzultà '''$1''' ëd '''$3'''|Arzultà '''$1 - $2''' ëd '''$3'''}} për '''$4'''",
 	"search-nonefound": "A-i é gnun arzultà për l'arserca.",
 	"powersearch-legend": "Arserca avansà",

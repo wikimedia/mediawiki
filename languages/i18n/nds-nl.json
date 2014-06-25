@@ -819,7 +819,6 @@
 	"searchrelated": "verwaant",
 	"searchall": "alles",
 	"showingresults": "Hieronder {{PLURAL:$1|steet '''1''' resultaot|staon '''$1''' resultaoten}}  <b>$1</b> vanaof nummer <b>$2</b>.",
-	"showingresultsnum": "Hieronder {{PLURAL:$3|steet '''1''' resultaot|staon '''$3''' resultaoten}} vanaof nummer '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultaot '''$1''' van '''$3'''|Resultaoten '''$1 - $2''' van '''$3'''}} veur '''$4'''",
 	"search-nonefound": "Der bin gien resultaoten veur de zeukopdrachte.",
 	"powersearch-legend": "Uutebreid zeuken",

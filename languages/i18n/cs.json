@@ -861,7 +861,6 @@
 	"searchall": "vše",
 	"showingresults": "Níže zobrazuji nejvýše <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.",
 	"showingresultsinrange": "Níže zobrazuji nejvýše <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} v rozsahu #<strong>$2</strong>–#<strong>$3</strong>.",
-	"showingresultsnum": "Zobrazuji <strong>$3</strong> {{PLURAL:$3|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.",
 	"showingresultsheader": "{{PLURAL:$5|Výsledek '''$1''' z '''$3'''|Výsledky '''$1–$2''' z '''$3'''}} pro '''$4'''",
 	"search-nonefound": "Na váš dotaz nebyly nalezeny žádné výsledky.",
 	"powersearch-legend": "Rozšířené vyhledávání",
