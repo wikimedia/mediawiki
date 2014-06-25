@@ -89,16 +89,6 @@ class MWNamespace {
 	}
 
 	/**
-	 * @see self::isSubject
-	 * @deprecated since 1.19 Please use the more consistently named isSubject
-	 * @return bool
-	 */
-	public static function isMain( $index ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		return self::isSubject( $index );
-	}
-
-	/**
 	 * Is the given namespace a talk namespace?
 	 *
 	 * @param int $index Namespace index
