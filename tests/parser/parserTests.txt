@@ -2974,7 +2974,7 @@ Definition list with news link containing colon
 !! wikitext
 ;  news:alt.wikipedia.rox: This isn't even a real newsgroup!
 !! html
-<dl><dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a></dt>
+<dl><dt>  <a rel="nofollow" class="external free link-news" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a></dt>
 <dd> This isn't even a real newsgroup!</dd></dl>
 
 !! end
@@ -2984,7 +2984,7 @@ Malformed definition list with colon
 !! wikitext
 ;  news:alt.wikipedia.rox -- don't crash or enter an infinite loop
 !! html
-<dl><dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop</dt></dl>
+<dl><dt>  <a rel="nofollow" class="external free link-news" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop</dt></dl>
 
 !! end
 
@@ -3809,7 +3809,7 @@ Link to non-http image, no img tag
 !! wikitext
 Link to non-http image, no img tag: ftp://example.com/test.jpg
 !! html
-<p>Link to non-http image, no img tag: <a rel="nofollow" class="external free" href="ftp://example.com/test.jpg">ftp://example.com/test.jpg</a>
+<p>Link to non-http image, no img tag: <a rel="nofollow" class="external free link-ftp" href="ftp://example.com/test.jpg">ftp://example.com/test.jpg</a>
 </p>
 !! end
 
@@ -3845,7 +3845,7 @@ External links: old URL-in-URL bug, mixed protocols
 !! wikitext
 And again with mixed protocols: [ftp://example.com?url=http://example.com link]
 !! html
-<p>And again with mixed protocols: <a rel="nofollow" class="external text" href="ftp://example.com?url=http://example.com">link</a>
+<p>And again with mixed protocols: <a rel="nofollow" class="external text link-ftp" href="ftp://example.com?url=http://example.com">link</a>
 </p>
 !!end
 
@@ -4448,7 +4448,7 @@ Percent encoding in external links
 !! wikitext
 [https://github.com/search?l=&q=ResourceLoader+%40wikimedia Search]
 !! html/php
-<p><a rel="nofollow" class="external text" href="https://github.com/search?l=&amp;q=ResourceLoader+%40wikimedia">Search</a>
+<p><a rel="nofollow" class="external text link-https" href="https://github.com/search?l=&amp;q=ResourceLoader+%40wikimedia">Search</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:ExtLink"
@@ -5066,7 +5066,7 @@ parsoid=wt2html,html2html
 !! html/php
 <table>
 <tr>
-<td>[<a rel="nofollow" class="external free" href="ftp://%7Cx">ftp://%7Cx</a></td>
+<td>[<a rel="nofollow" class="external free link-ftp" href="ftp://%7Cx">ftp://%7Cx</a></td>
 <td>]" onmouseover="alert(document.cookie)"&gt;test
 </td>
 </tr>
@@ -11010,7 +11010,7 @@ BUG 1887: A mailto link with a thumbnail
 !! wikitext
 [[File:Foobar.jpg|thumb|Please mailto:nobody@example.com]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Please <a rel="nofollow" class="external free" href="mailto:nobody@example.com">mailto:nobody@example.com</a></div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Please <a rel="nofollow" class="external free link-mailto" href="mailto:nobody@example.com">mailto:nobody@example.com</a></div></div></div>
 
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption>Please <a rel="mw:ExtLink" href="mailto:nobody@example.com">mailto:nobody@example.com</a></figcaption></figure>
@@ -11161,7 +11161,7 @@ Bug 3090: External links other than http: in image captions
 !! wikitext
 [[File:Foobar.jpg|thumb|200x200px|This caption has [irc://example.net irc] and [https://example.com Secure] ext links in it.]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This caption has <a rel="nofollow" class="external text" href="irc://example.net">irc</a> and <a rel="nofollow" class="external text" href="https://example.com">Secure</a> ext links in it.</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This caption has <a rel="nofollow" class="external text link-irc" href="irc://example.net">irc</a> and <a rel="nofollow" class="external text link-https" href="https://example.com">Secure</a> ext links in it.</div></div></div>
 
 !! html/parsoid
 <figure typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="23" width="200"/></a><figcaption>This caption has <a rel="mw:ExtLink" href="irc://example.net">irc</a> and <a rel="mw:ExtLink" href="https://example.com">Secure</a> ext links in it.</figcaption></figure>
@@ -13831,11 +13831,11 @@ ftp://inlineftp
 
 mailto:inline@mail.tld
 !! html/php
-<p><a rel="nofollow" class="external autonumber" href="http://first/">[1]</a> <a rel="nofollow" class="external autonumber" href="http://second">[2]</a> <a rel="nofollow" class="external autonumber" href="ftp://ftp">[3]</a>
-</p><p><a rel="nofollow" class="external free" href="ftp://inlineftp">ftp://inlineftp</a>
-</p><p><a rel="nofollow" class="external text" href="mailto:enclosed@mail.tld">With target</a>
-</p><p><a rel="nofollow" class="external autonumber" href="mailto:enclosed@mail.tld">[4]</a>
-</p><p><a rel="nofollow" class="external free" href="mailto:inline@mail.tld">mailto:inline@mail.tld</a>
+<p><a rel="nofollow" class="external autonumber" href="http://first/">[1]</a> <a rel="nofollow" class="external autonumber" href="http://second">[2]</a> <a rel="nofollow" class="external autonumber link-ftp" href="ftp://ftp">[3]</a>
+</p><p><a rel="nofollow" class="external free link-ftp" href="ftp://inlineftp">ftp://inlineftp</a>
+</p><p><a rel="nofollow" class="external text link-mailto" href="mailto:enclosed@mail.tld">With target</a>
+</p><p><a rel="nofollow" class="external autonumber link-mailto" href="mailto:enclosed@mail.tld">[4]</a>
+</p><p><a rel="nofollow" class="external free link-mailto" href="mailto:inline@mail.tld">mailto:inline@mail.tld</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:ExtLink" href="http://first/"></a> <a rel="mw:ExtLink" href="http://second"></a> <a rel="mw:ExtLink" href="ftp://ftp"></a></p>
@@ -13925,7 +13925,7 @@ Fuzz testing: Parser21
 !! html
 <table>
 <tr>
-<th> <a rel="nofollow" class="external free" href="irc://{{ftp://a">irc://{{ftp://a</a>" onmouseover="alert('hello world');"
+<th> <a rel="nofollow" class="external free link-irc" href="irc://{{ftp://a">irc://{{ftp://a</a>" onmouseover="alert('hello world');"
 </th>
 <td>
 </td>
@@ -15047,7 +15047,7 @@ Handling of &#x0A; in URLs
 !! wikitext
 ** irc://&#x0A;a
 !! html/php
-<ul><li><ul><li> <a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a></li></ul></li></ul>
+<ul><li><ul><li> <a rel="nofollow" class="external free link-irc" href="irc://%0Aa">irc://%0Aa</a></li></ul></li></ul>
 
 !! html/parsoid
 <ul><li><ul><li> <a rel="mw:ExtLink" href="irc://
@@ -15060,7 +15060,7 @@ Handling of %0A in URLs
 !! wikitext
 ** irc://%0Aa
 !! html/php
-<ul><li><ul><li> <a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a></li></ul></li></ul>
+<ul><li><ul><li> <a rel="nofollow" class="external free link-irc" href="irc://%0Aa">irc://%0Aa</a></li></ul></li></ul>
 
 !! html/parsoid
 <ul><li><ul><li> <a rel="mw:ExtLink" href="irc://%0Aa">irc://%0Aa</a></li></ul></li></ul>
@@ -16422,8 +16422,8 @@ gopher://www.google.com
 <a rel="nofollow" class="external free" href="gopher://www.google.com">gopher://www.google.com</a>
 <a rel="nofollow" class="external free" href="http://www.google.com">http://www.google.com</a>
 <a rel="nofollow" class="external free" href="gopher://www.google.com">gopher://www.google.com</a>
-<a rel="nofollow" class="external text" href="https://www.google.com">irc://www.google.com</a>
-<a rel="nofollow" class="external text" href="ftp://www.google.com">www.гоогле.цом/фтп://дир</a>
+<a rel="nofollow" class="external text link-https" href="https://www.google.com">irc://www.google.com</a>
+<a rel="nofollow" class="external text link-ftp" href="ftp://www.google.com">www.гоогле.цом/фтп://дир</a>
 <a rel="nofollow" class="external text" href="//www.google.com">www.гоогле.цом</a>
 </p>
 !! end

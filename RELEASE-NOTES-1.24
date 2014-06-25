@@ -179,6 +179,8 @@ changes to languages because of Bugzilla reports.
 * SearchEngineReplacePrefixesComplete hook was removed.
 * Removed HTMLForm::addJS(). (deprecated since 1.18)
 * Removed LogEventsList::showHeader(). (deprecated since 1.19)
+* (bug 54604) The Vector skin's external link icons, removed in 1.23, have been
+  reimplemented and restored.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

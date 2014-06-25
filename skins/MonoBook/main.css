@@ -149,8 +149,7 @@ table.rimage {
 }
 
 /*
-** keep the whitespace in front of the ^=, hides rule from konqueror
-** this is css3, the validator doesn't like it when validating as css2
+** external link icon styles
 */
 #bodyContent a.external {
 	/* @embed */
@@ -158,69 +157,51 @@ table.rimage {
 	padding-right: 13px;
 }
 
-#bodyContent a.external[href ^="https://"],
-.link-https {
+#bodyContent a.link-https {
 	/* @embed */
-	background: url(lock_icon.gif) center right no-repeat;
+	background-image: url(lock_icon.gif);
 	padding-right: 16px;
 }
 
-#bodyContent a.external[href ^="mailto:"],
-.link-mailto {
+#bodyContent a.link-mailto {
 	/* @embed */
-	background: url(mail_icon.gif) center right no-repeat;
+	background-image: url(mail_icon.gif);
 	padding-right: 18px;
 }
 
-#bodyContent a.external[href ^="news:"] {
+#bodyContent a.link-news {
 	/* @embed */
-	background: url(news_icon.png) center right no-repeat;
+	background-image: url(news_icon.png);
 	padding-right: 18px;
 }
 
-#bodyContent a.external[href ^="ftp://"],
-.link-ftp {
+#bodyContent a.link-ftp {
 	/* @embed */
-	background: url(file_icon.gif) center right no-repeat;
+	background-image: url(file_icon.gif);
 	padding-right: 18px;
 }
 
-#bodyContent a.external[href ^="irc://"],
-#bodyContent a.external[href ^="ircs://"],
-.link-irc {
+#bodyContent a.link-irc {
 	/* @embed */
-	background: url(discussionitem_icon.gif) center right no-repeat;
+	background-image: url(discussionitem_icon.gif);
 	padding-right: 18px;
 }
 
-#bodyContent a.external[href $=".ogg"], #bodyContent a.external[href $=".OGG"],
-#bodyContent a.external[href $=".mid"], #bodyContent a.external[href $=".MID"],
-#bodyContent a.external[href $=".midi"], #bodyContent a.external[href $=".MIDI"],
-#bodyContent a.external[href $=".mp3"], #bodyContent a.external[href $=".MP3"],
-#bodyContent a.external[href $=".wav"], #bodyContent a.external[href $=".WAV"],
-#bodyContent a.external[href $=".wma"], #bodyContent a.external[href $=".WMA"],
-.link-audio {
+#bodyContent a.link-audio {
 	/* @embed */
-	background: url(audio.png) center right no-repeat;
+	background-image: url(audio.png);
 	padding-right: 13px;
 }
 
-#bodyContent a.external[href $=".ogm"], #bodyContent a.external[href $=".OGM"],
-#bodyContent a.external[href $=".avi"], #bodyContent a.external[href $=".AVI"],
-#bodyContent a.external[href $=".mpeg"], #bodyContent a.external[href $=".MPEG"],
-#bodyContent a.external[href $=".mpg"], #bodyContent a.external[href $=".MPG"],
-.link-video {
+#bodyContent a.link-video {
 	/* @embed */
-	background: url(video.png) center right no-repeat;
+	background-image: url(video.png);
 	padding-right: 13px;
 }
 
-#bodyContent a.external[href $=".pdf"], #bodyContent a.external[href $=".PDF"],
-#bodyContent a.external[href *=".pdf#"], #bodyContent a.external[href *=".PDF#"],
-#bodyContent a.external[href *=".pdf?"], #bodyContent a.external[href *=".PDF?"],
-.link-document {
+#bodyContent a.link-document {
 	/* @embed */
-	background: url(document.png) center right no-repeat;
+	background-image: url(document.png);
 	padding-right: 12px;
 }
 

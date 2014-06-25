@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="10"
+   height="10"
+   id="svg4396">
+  <defs
+     id="defs4398">
+    <linearGradient
+       id="linearGradient4947">
+      <stop
+         id="stop4949"
+         style="stop-color:#d2d2d2;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop4951"
+         style="stop-color:#f6f6f6;stop-opacity:0"
+         offset="1" />
+    </linearGradient>
+    <radialGradient
+       cx="861.14233"
+       cy="699.01233"
+       r="4.9871311"
+       fx="861.14233"
+       fy="699.01233"
+       id="radialGradient4962"
+       xlink:href="#linearGradient4947"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1817158,0,0,1.1856764,-156.48316,-109.77743)" />
+  </defs>
+  <metadata
+     id="metadata4401">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-832.14288,-690.2193)"
+     id="layer1">
+    <g
+       transform="translate(-23.99948,-20.005085)"
+       id="g4957">
+      <path
+         d="m 856.64003,714.98211 4.51344,-4.27677 4.49122,4.2557 0,4.78239 -8.96019,0 z"
+         id="path4415"
+         style="fill:url(#radialGradient4962);fill-opacity:1;stroke:#888a85;stroke-width:0.96960205px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+      <path
+         d="m 858.18557,715.14414 2.96409,-2.80866 2.94949,2.79482"
+         id="path4937"
+         style="fill:#a8a7a3;fill-opacity:1;stroke:none" />
+      <path
+         d="m 857.89337,719.26617 3.26025,-3.14859 3.23877,3.11734 -3.24112,-1.90625 z"
+         id="path4955"
+         style="fill:#888a85;fill-opacity:1;stroke:none" />
+    </g>
+  </g>
+</svg>
