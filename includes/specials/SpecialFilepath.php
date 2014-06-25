@@ -37,7 +37,12 @@ class SpecialFilepath extends RedirectSpecialPage {
 	function getRedirect( $par ) {
 		$file = $par ?: $this->getRequest()->getText( 'file' );
 
-		return SpecialPage::getSafeTitleFor( 'Redirect', 'file/' . $file );
+		if ( $file ) {
+			$argument = "file/$file";
+		} else {
+			$argument = 'file';
+		}
+		return SpecialPage::getSafeTitleFor( 'Redirect', $argument );
 	}
 
 	protected function getGroupName() {
