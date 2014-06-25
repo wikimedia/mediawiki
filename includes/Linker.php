@@ -1190,11 +1190,34 @@ class Linker {
 		# Allow HTML entities (for bug 13815)
 		$comment = Sanitizer::escapeHtmlAllowEntities( $comment );
 
+		# Substitute messages:
+		$comment = self::substituteMessagesInComment( $comment );
+
 		# Render autocomments and make links:
 		$comment = self::formatAutocomments( $comment, $title, $local, $wikiId );
 		$comment = self::formatLinksInComment( $comment, $title, $local, $wikiId );
 
 		return $comment;
+	}
+
+	/**
+	 * Substitute messages in comment
+	 *
+	 * @param string $comment Text containing messages
+	 * @return string
+	 */
+	public static function substituteMessagesInComment( $comment ) {
+		return preg_replace_callback(
+			'/
+				\{\{int:
+				([^\}|]+) # 1. message; message names cannot include } or |
+				\}\}
+			/xi',
+			function ( $match ) {
+				return wfMessage( $match[1] )->escaped();
+			},
+			$comment
+		);
 	}
 
 	/**
