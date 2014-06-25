@@ -2873,7 +2873,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	$cmd = $envcmd . $cmd;
 
 	$useLogPipe = false;
-	if ( php_uname( 's' ) == 'Linux' ) {
+	if ( is_executable( '/bin/bash' ) ) {
 		$time = intval ( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
 		if ( isset( $limits['walltime'] ) ) {
 			$wallTime = intval( $limits['walltime'] );
