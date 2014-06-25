@@ -142,6 +142,11 @@
 				delete parameters.token;
 			}
 
+			// Ensure that all JSON requests are requested in a more compact form
+			if ( parameters.format === 'json' ) {
+				parameters.utf8 = '';
+			}
+
 			// If multipart/form-data has been requested and emulation is possible, emulate it
 			if (
 				ajaxOptions.type === 'POST' &&
