@@ -184,6 +184,7 @@ changes to languages because of Bugzilla reports.
 * Removed LoadBalancer::closeConnecton(). (deprecated since 1.18)
 * Removed ApiBase::createContext(). (deprecated since 1.19)
 * Removed MWNamespace::isMain(). (deprecated since 1.19)
+* Removed Preferences::loadOldSearchNs(). (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
