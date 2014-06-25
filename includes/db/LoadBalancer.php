@@ -414,11 +414,7 @@ class LoadBalancer {
 	public function &getConnection( $i, $groups = array(), $wiki = false ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( $i == DB_LAST ) {
-			wfProfileOut( __METHOD__ );
-			throw new MWException( 'Attempt to call ' . __METHOD__ .
-				' with deprecated server index DB_LAST' );
-		} elseif ( $i === null || $i === false ) {
+		if ( $i === null || $i === false ) {
 			wfProfileOut( __METHOD__ );
 			throw new MWException( 'Attempt to call ' . __METHOD__ .
 				' with invalid server index' );
