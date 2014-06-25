@@ -1086,6 +1086,28 @@ class Linker {
 		if ( isset( $attribs['class'] ) && $attribs['class'] ) {
 			$class .= " {$attribs['class']}";
 		}
+
+		// CSS classes for link icons
+		if ( preg_match( "|^https://|", $url ) ) {
+			$class .= " link-https";
+		} elseif ( preg_match( "|^mailto:|", $url ) ) {
+			$class .= " link-mailto";
+		} elseif ( preg_match( "|^news:|", $url ) ) {
+			$class .= " link-news";
+		} elseif ( preg_match( "|^ftp://|", $url ) ) {
+			$class .= " link-ftp";
+		} elseif ( preg_match( "|^ircs?://|", $url ) ) { // irc:// or ircs://
+			$class .= " link-irc";
+		}
+
+		if ( preg_match( "/\.(?:ogg|mid|midi|mp3|wav|wma)$/i", $url ) ) {
+			$class .= " link-audio";
+		} elseif ( preg_match( "/\.(?:ogm|avi|mpeg|mpg)$/i", $url ) ) {
+			$class .= " link-video";
+		} elseif ( preg_match( "/\.pdf$/i", $url ) ) {
+			$class .= " link-document";
+		}
+
 		$attribs['class'] = $class;
 
 		if ( $escape ) {
