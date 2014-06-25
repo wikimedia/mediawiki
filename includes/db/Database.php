@@ -269,6 +269,13 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected $mTrxLevel = 0;
 
 	/**
+	 * Either a short hexidecimal string if a transaction is active or ""
+	 *
+	 * @var string
+	 */
+	protected $mTrxShortId = '';
+
+	/**
 	 * Remembers the function name given for starting the most recent transaction via begin().
 	 * Used to provide additional context for error reporting.
 	 *
@@ -1054,8 +1061,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		# Keep track of whether the transaction has write queries pending
 		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
 			$this->mTrxDoneWrites = true;
-			$id = spl_object_hash( $this );
-			Profiler::instance()->transactionWritingIn( $this->mServer, $this->mDBname, $id );
+			Profiler::instance()->transactionWritingIn(
+				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 
 		$queryProf = '';
@@ -1072,6 +1079,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
 				$totalProf = 'DatabaseBase::query';
 			}
+			# Include query transaction state
+			$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
+
+			$trx = $this->mTrxLevel ? 'TRX=yes' : 'TRX=no';
 			wfProfileIn( $totalProf );
 			wfProfileIn( $queryProf );
 		}
@@ -3412,8 +3423,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->runOnTransactionPreCommitCallbacks();
 			$this->doCommit( $fname );
 			if ( $this->mTrxDoneWrites ) {
-				$id = spl_object_hash( $this );
-				Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname, $id );
+				Profiler::instance()->transactionWritingOut(
+					$this->mServer, $this->mDBname, $this->mTrxShortId );
 			}
 			$this->runOnTransactionIdleCallbacks();
 		}
@@ -3431,6 +3442,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->mTrxAtomicLevels = new SplStack;
 		$this->mTrxIdleCallbacks = array();
 		$this->mTrxPreCommitCallbacks = array();
+		$this->mTrxShortId = wfRandomString( 12 );
 	}
 
 	/**
@@ -3489,8 +3501,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->runOnTransactionPreCommitCallbacks();
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
-			$id = spl_object_hash( $this );
-			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname, $id );
+			Profiler::instance()->transactionWritingOut(
+				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 		$this->runOnTransactionIdleCallbacks();
 	}
@@ -3546,8 +3558,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->mTrxPreCommitCallbacks = array(); // cancel
 		$this->mTrxAtomicLevels = new SplStack;
 		if ( $this->mTrxDoneWrites ) {
-			$id = spl_object_hash( $this );
-			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname, $id );
+			Profiler::instance()->transactionWritingOut(
+				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 	}
 
