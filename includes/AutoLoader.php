@@ -757,6 +757,7 @@ $wgAutoloadLocalClasses = array(
 	'TiffHandler' => 'includes/media/Tiff.php',
 	'TransformationalImageHandler' => 'includes/media/TransformationalImageHandler.php',
 	'TransformParameterError' => 'includes/media/MediaTransformOutput.php',
+	'TransformTooBigImageAreaError' => 'includes/media/MediaTransformOutput.php',
 	'XCFHandler' => 'includes/media/XCF.php',
 	'XMPInfo' => 'includes/media/XMPInfo.php',
 	'XMPReader' => 'includes/media/XMP.php',
