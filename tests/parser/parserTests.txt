@@ -13064,6 +13064,15 @@ Bug 3244: HTML attribute safety (extension; unsafe)
 
 !! end
 
+!! test
+Comment stripping in style attributes (bug 67092)
+!! wikitext
+<blockquote style="border: 1px solid #aaa /* foo */;"></blockquote>
+!! html
+<blockquote style="border: 1px solid #aaa ;"></blockquote>
+
+!! end
+
 # More MSIE fun discovered by Tom Gilder
 
 !! test
