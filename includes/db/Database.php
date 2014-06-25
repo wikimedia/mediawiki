@@ -1063,6 +1063,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 
 		if ( !Profiler::instance()->isStub() ) {
+			# Include query transaction state
+			$trx = $this->mTrxLevel ? 'TRX=yes' : 'TRX=no';
 			# generalizeSQL will probably cut down the query to reasonable
 			# logging size most of the time. The substr is really just a sanity check.
 			if ( $isMaster ) {
@@ -1072,6 +1074,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
 				$totalProf = 'DatabaseBase::query';
 			}
+			$queryProf .= " [$trx]";
 			wfProfileIn( $totalProf );
 			wfProfileIn( $queryProf );
 		}
