@@ -419,7 +419,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Generate wikitext showing extensions name, URL, author and description.
+	 * Generate wikitext showing the name, URL, author and description of each extension.
 	 *
 	 * @return string Wikitext
 	 */
@@ -469,7 +469,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Generate wikitext showing skins name, URL, author and description.
+	 * Generate wikitext showing the name, URL, author and description of each skin.
 	 *
 	 * @return string Wikitext
 	 */
