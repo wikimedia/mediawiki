@@ -1188,9 +1188,6 @@ return array(
 	'mediawiki.special' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
-		'skinStyles' => array(
-			'vector' => 'skins/Vector/special.less', // FIXME this should use $wgStyleDirectory
-		),
 	),
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.block.js',
@@ -1237,9 +1234,6 @@ return array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.preferences.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.css',
 		'position' => 'top',
-		'skinStyles' => array(
-			'vector' => 'skins/Vector/special.preferences.less', // FIXME this should use $wgStyleDirectory
-		),
 		'messages' => array(
 			'prefs-tabs-navigation-hint',
 		),
