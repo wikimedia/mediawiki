@@ -78,16 +78,31 @@ class PHPUnitMaintClass extends Maintenance {
 		if ( $this->hasOption( 'with-phpunitdir' ) ) {
 			$phpunitDir = $this->getOption( 'with-phpunitdir' );
 			# Sanity checks
-			if ( !is_dir( $phpunitDir ) ) {
+			if ( !file_exists( $phpunitDir ) ) {
 				$this->error( "--with-phpunitdir should be set to an existing directory", 1 );
 			}
-			if ( !is_readable( $phpunitDir . "/PHPUnit/Runner/Version.php" ) ) {
-				$this->error( "No usable PHPUnit installation in $phpunitDir.\nAborting.\n", 1 );
-			}
 
-			# Now prepends provided PHPUnit directory
 			$this->output( "Will attempt loading PHPUnit from `$phpunitDir`\n" );
-			set_include_path( $phpunitDir . PATH_SEPARATOR . get_include_path() );
+			if ( is_dir( $phpunitDir ) ) {
+				# PHPUnit directory
+				if ( !is_readable( $phpunitDir . "/PHPUnit/Runner/Version.php" ) ) {
+					$this->error( "No usable PHPUnit installation in $phpunitDir.\nAborting.\n", 1 );
+				}
+
+				# Now prepends provided PHPUnit directory
+				set_include_path( $phpunitDir . PATH_SEPARATOR . get_include_path() );
+			} elseif ( is_file( $phpunitDir ) ) {
+				# phpunit.phar
+				try {
+					# Constructing new phar object will trigger an exception if
+					# the file is no valid phar archive
+					new Phar( $phpunitDir );
+
+					include $phpunitDir;
+				} catch ( \UnexpectedValueException $e ) {
+					$this->error( "No usable PHPUnit installation in $phpunitDir.\nAborting.\n", 1 );
+				}
+			}
 
 			# Cleanup $args array so the option and its value do not
 			# pollute PHPUnit
