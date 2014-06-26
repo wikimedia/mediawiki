@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Moha",
+			"Tifinaghes"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-action-addsection": "ⵔⵏⵓ ⴰⵙⵏⵜⵍ",
+	"vector-action-delete": "ⵓⴽⵓⵙ",
+	"vector-action-move": "ⵙⵎⵓⵜⵜⵉ",
+	"vector-action-undelete": "ⵙⵙⵓⵖⴰⵍ ⵓⴽⵓⵙ",
+	"vector-action-unprotect": "ⴱⴷⴷⴻⵍ ⵜⴰⵙⵜⴰⵏⵜ",
+	"vector-view-create": "ⴰⵔⴰ",
+	"vector-view-edit": "ⴱⴷⴷⴻⵍ",
+	"vector-view-history": "ⵥⵕ ⴰⵎⵣⵔⵓⵢ",
+	"vector-view-view": "ⵖⵔ",
+	"vector-view-viewsource": "ⵥⵕ ⴰⵖⴱⴰⵍⵓ"
+}

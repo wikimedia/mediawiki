@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"CERminator",
+			"Kal-El"
+		]
+	},
+	"skinname-monobook": "MonoKnjiga",
+	"monobook.css": "/* CSS umetnut ovdje uticat će na korisnike koji koriste Monobook skin */",
+	"monobook.js": "/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste MonoBook skin */"
+}

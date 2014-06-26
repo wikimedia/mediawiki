@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cainamarques",
+			"Diego Queiroz",
+			"Giro720",
+			"Helder.wiki",
+			555
+		]
+	},
+	"vector-desc": "Melhora a interface do usuário ao utilizar o tema Vector",
+	"vector.js": "/* Qualquer JavaScript aqui colocado afetará os usuários do skin Vector */",
+	"vector-action-addsection": "Adicionar tópico",
+	"vector-action-delete": "Eliminar",
+	"vector-action-move": "Mover",
+	"vector-action-protect": "Proteger",
+	"vector-action-undelete": "Restaurar",
+	"vector-action-unprotect": "Alterar a proteção",
+	"vector-view-create": "Criar",
+	"vector-view-edit": "Editar",
+	"vector-view-history": "Ver histórico",
+	"vector-view-view": "Ler",
+	"vector-view-viewsource": "Ver código-fonte",
+	"vector-more-actions": "Mais"
+}

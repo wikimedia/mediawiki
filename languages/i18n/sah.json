@@ -840,7 +840,6 @@
 	"searchall": "бары",
 	"showingresults": "Манна {{PLURAL:$1|түмүк|түмүктэр}} {{PLURAL:$1|көрдөрүлүннэ|көрдөрүлүннүлэр}} <strong>$1</strong> , мантан саҕалаан №&nbsp;<strong>$2</strong>.",
 	"showingresultsinrange": "Манна {{PLURAL:$1|<strong>1</strong> түмүк|<strong>$1</strong> түмүк}} мантан саҕалаан <strong>$2</strong> маныаха дылы <strong>$3</strong> көрдөрүлүннэ.",
-	"showingresultsnum": "Манна {{PLURAL:$3|түмүк|түмүктэр}} {{PLURAL:$3|көрдөрөлүннэ|көрдөрүлүннүлэр}} <strong>$3</strong>, мантан саҕалаан №&nbsp;<strong>$2</strong>.",
 	"showingresultsheader": "'''$4''' анаммыт {{PLURAL:$5|мантан '''$3''' түмүгэ - '''$1'''|мантан '''$3''' түмүктэрэ '''$1 - $2'''}}",
 	"search-nonefound": "Көрдөбүлгэ эппиэттиир билэлэр көстүбэтилэр.",
 	"powersearch-legend": "Дириҥэтэн көрдөөһүн",

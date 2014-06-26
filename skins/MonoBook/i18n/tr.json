@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dbl2010"
+		]
+	},
+	"monobook.css": "/* Buraya konulacak CSS kodu tüm Monobook teması kullanan tüm kullanıcılarda etkin olur */"
+}

@@ -1,0 +1,4 @@
+{
+	"monobook.css": "/* 箇首嗰 CSS 會礙到正用Monobook皮膚嗰用戶 */",
+	"monobook.js": "/* 伓再使用；請用[[MediaWiki:common.js]] */"
+}

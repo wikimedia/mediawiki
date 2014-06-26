@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Maartenvdbent"
+		]
+	},
+	"monobook.css": "/* Littikschrieuwen nit twinge */",
+	"monobook.js": "/* Ferallerd; benutsje insteede deerfon [[MediaWiki:common.js]] */"
+}

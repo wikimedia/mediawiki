@@ -1,0 +1,5 @@
+{
+	"skinname-monobook": "MonoBook",
+	"monobook.css": "/* 響呢度放 CSS 碼去改用戶用嘅 Monobook 畫面 */",
+	"monobook.js": "/* 響每一次個頁面載入時，用 Monobook 畫面嘅用戶都會載入呢度任何嘅JavaScript */"
+}

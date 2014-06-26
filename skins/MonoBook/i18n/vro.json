@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Võrok"
+		]
+	},
+	"monobook.css": "/* Taa lehe pääl om Monobook-vällänägemist muutvit kujonduisi. */",
+	"monobook.js": "/* Olõi soovitõt; pruugiq [[MediaWiki:common.js]] */"
+}

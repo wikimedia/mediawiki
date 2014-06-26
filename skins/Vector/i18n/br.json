@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fulup",
+			"Y-M D"
+		]
+	},
+	"skinname-vector": "Vektor",
+	"vector-desc": "Gwellaat a ra elfennoù eus ar gwiskadur Vector war an etrefas implijer.",
+	"vector.css": "/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Vektor */",
+	"vector.js": "/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Vektor */",
+	"vector-action-addsection": "Rannbennad nevez",
+	"vector-action-delete": "Diverkañ",
+	"vector-action-move": "Adenvel",
+	"vector-action-protect": "Gwareziñ",
+	"vector-action-undelete": "Diziverkañ",
+	"vector-action-unprotect": "Cheñch gwarez",
+	"vector-view-create": "Krouiñ",
+	"vector-view-edit": "Kemmañ",
+	"vector-view-history": "Gwelet an istor",
+	"vector-view-view": "Lenn",
+	"vector-view-viewsource": "Sellet ouzh tarzh an destenn",
+	"vector-more-actions": "Muioc'h"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Siebrand"
+		]
+	},
+	"skinname-monobook": "Monobook",
+	"monobook.css": "/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Monobook */",
+	"monobook.js": "/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Monobook gebruiken */"
+}

@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gmelfi",
+			"Melos"
+		]
+	},
+	"vector-action-addsection": "Agghiunci argumentu",
+	"vector-action-delete": "Elìmina",
+	"vector-action-move": "Sposta",
+	"vector-action-protect": "Pruteggi",
+	"vector-action-undelete": "Riprìstina",
+	"vector-action-unprotect": "Cancia la prutizzioni",
+	"vector-view-create": "Crea",
+	"vector-view-edit": "Cancia",
+	"vector-view-history": "Talìa a storia",
+	"vector-view-view": "Leggi",
+	"vector-view-viewsource": "Talìa la fonti",
+	"vector-more-actions": "Àutri cosi"
+}

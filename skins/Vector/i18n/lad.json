@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Universal Life"
+		]
+	},
+	"vector-action-addsection": "Ajustar sujeto",
+	"vector-action-delete": "Efassar",
+	"vector-action-move": "Taşirear",
+	"vector-action-protect": "Guadrar",
+	"vector-action-undelete": "Traer atrás",
+	"vector-action-unprotect": "Trocar proteksyon",
+	"vector-view-create": "Criar",
+	"vector-view-edit": "Trocar",
+	"vector-view-history": "Ver la istoria",
+	"vector-view-view": "Meldar",
+	"vector-view-viewsource": "Ver su manadero"
+}

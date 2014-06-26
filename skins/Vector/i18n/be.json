@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mikalai Udodau",
+			"Yury Tarasievich",
+			"Дзяніс Тутэйшы",
+			"Хомелка"
+		]
+	},
+	"vector-desc": "Паляпшае элементы інтэрфэйсу ўдзельніка для кажуха Vector",
+	"vector-action-addsection": "Дадаць тэму",
+	"vector-action-delete": "Сцерці",
+	"vector-action-move": "Перанесці",
+	"vector-action-protect": "Ахова",
+	"vector-action-undelete": "Аднавіць",
+	"vector-action-unprotect": "Змяніць ахову",
+	"vector-view-create": "Стварыць",
+	"vector-view-edit": "Правіць",
+	"vector-view-history": "Паказаць гісторыю",
+	"vector-view-view": "Чытаць",
+	"vector-view-viewsource": "Паказаць зыходны тэкст",
+	"vector-more-actions": "Яшчэ"
+}

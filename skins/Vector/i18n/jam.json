@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hazard-SJ",
+			"Yocahuna"
+		]
+	},
+	"vector-action-addsection": "Ad tapik",
+	"vector-action-delete": "Diliit",
+	"vector-action-move": "Muuv",
+	"vector-action-protect": "Protek",
+	"vector-action-undelete": "Andiliit",
+	"vector-action-unprotect": "Neu protektian",
+	"vector-view-create": "Kriet",
+	"vector-view-edit": "Hedit",
+	"vector-view-history": "Vyuu ischri",
+	"vector-view-view": "Riid",
+	"vector-view-viewsource": "Vyuu Suos"
+}

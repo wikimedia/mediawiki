@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Insübrich",
+			"Ninonino"
+		]
+	},
+	"vector-action-addsection": "Giunta argument",
+	"vector-action-delete": "Scancela",
+	"vector-action-move": "Sposta",
+	"vector-action-protect": "Prutegg",
+	"vector-action-undelete": "Recüpera",
+	"vector-action-unprotect": "Càmbia la protesiù",
+	"vector-view-create": "Crea",
+	"vector-view-edit": "Mudifega",
+	"vector-view-history": "Varda la storia",
+	"vector-view-view": "Legg",
+	"vector-view-viewsource": "Varda el codes",
+	"vector-more-actions": "Amò"
+}

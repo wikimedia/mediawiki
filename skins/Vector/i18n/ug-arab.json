@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Arlin",
+			"Sahran",
+			"Tel'et"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector.css": "/* CSS placed here will affect users of the Vector skin */",
+	"vector.js": "/* Any JavaScript here will be loaded for users using the Vector skin */",
+	"vector-action-addsection": "يېڭى تېما قوش",
+	"vector-action-delete": "ئۆچۈر",
+	"vector-action-move": "يۆتكە",
+	"vector-action-protect": "قوغدا",
+	"vector-action-undelete": "ئەسلىگە قايتۇر",
+	"vector-action-unprotect": "قوغداش ئۆزگەرت",
+	"vector-view-create": "قۇر",
+	"vector-view-edit": "تەھرىر",
+	"vector-view-history": "تارىخ كۆرسەت",
+	"vector-view-view": "ئوقۇ",
+	"vector-view-viewsource": "مەنبەنى كۆرسەت"
+}

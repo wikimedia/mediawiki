@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Boulaur",
+			"Cedric31"
+		]
+	},
+	"vector-desc": "Melhoraments dels elements de l'interfàcia d'utilizaire de l'abilhatge Vector.",
+	"vector.css": "/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Vector */",
+	"vector.js": "/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Vector unicament. */",
+	"vector-action-addsection": "Apondre un subjècte",
+	"vector-action-delete": "Suprimir",
+	"vector-action-move": "Tornar nomenar",
+	"vector-action-protect": "Protegir",
+	"vector-action-undelete": "Restablir",
+	"vector-action-unprotect": "Suprimir la proteccion",
+	"vector-view-create": "Crear",
+	"vector-view-edit": "Modificar",
+	"vector-view-history": "Veire l'istoric",
+	"vector-view-view": "Legir",
+	"vector-view-viewsource": "Veire la font"
+}

@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrisportelli"
+		]
+	},
+	"vector-desc": "Ittejjeb l-elementi tal-interfaċċa tal-utent tal-aspett grafiku Vector.",
+	"vector-action-addsection": "Żid diskussjoni",
+	"vector-action-delete": "Ħassar",
+	"vector-action-move": "Mexxi",
+	"vector-action-protect": "Ipproteġi",
+	"vector-action-undelete": "Irkupra",
+	"vector-action-unprotect": "Biddel il-protezzjoni",
+	"vector-view-create": "Oħloq",
+	"vector-view-edit": "Editja",
+	"vector-view-history": "Ara l-kronoloġija",
+	"vector-view-view": "Aqra",
+	"vector-view-viewsource": "Ara s-sors"
+}

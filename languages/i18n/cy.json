@@ -833,7 +833,6 @@
 	"searchall": "oll",
 	"showingresults": "Yn dangos $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 	"showingresultsinrange": "Yn dangos hyd at {{PLURAL:$1||<strong>1</strong> canlyniad|<strong>$1</strong> ganlyniad|$1 o ganlyniadau}} isod yn yr ystod #<strong>$2</strong> i #<strong>$3</strong>.",
-	"showingresultsnum": "Yn dangos $3 {{PLURAL:$3|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5||Canlyniad '''$1''' o blith '''$3'''|Canlyniadau '''$1 - $2''' o blith '''$3'''|Canlyniadau '''$1 - $2''' o blith '''$3'''|Canlyniadau '''$1 - $2''' o blith '''$3'''|Canlyniadau '''$1 - $2''' o blith '''$3'''}} ar gyfer '''$4'''",
 	"search-nonefound": "Ni chafwyd dim canlyniadau i'r ymholiad.",
 	"powersearch-legend": "Chwiliad uwch",

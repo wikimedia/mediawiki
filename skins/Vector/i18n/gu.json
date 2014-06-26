@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aritra",
+			"Ashok modhvadia",
+			"Dsvyas"
+		]
+	},
+	"vector-desc": "વેક્ટર સ્કીનના યુઝર ઈંટરફેઝ ના તત્વોને સુધારે છે",
+	"vector-action-addsection": "નવી ચર્ચા",
+	"vector-action-delete": "રદ કરો",
+	"vector-action-move": "ખસેડો",
+	"vector-action-protect": "સુરક્ષિત કરો",
+	"vector-action-undelete": "રદ કરેલું પાછું વાળો",
+	"vector-action-unprotect": "સુરક્ષા બદલો",
+	"vector-view-create": "બનાવો",
+	"vector-view-edit": "ફેરફાર કરો",
+	"vector-view-history": "ઇતિહાસ જુઓ",
+	"vector-view-view": "વાંચો",
+	"vector-view-viewsource": "સ્રોત જુઓ"
+}

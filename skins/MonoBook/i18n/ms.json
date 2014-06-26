@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anakmalaysia"
+		]
+	},
+	"skinname-monobook": "MonoBook",
+	"monobook.css": "/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Monobook */"
+}

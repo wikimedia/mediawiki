@@ -577,7 +577,6 @@
 	"searchrelated": "багълы",
 	"searchall": "эписи",
 	"showingresults": "Ашагъыда №&nbsp;<strong>$2</strong>ден башлап {{PLURAL:$1|1='''1''' нетидже|'''$1''' нетидже}} булуна.",
-	"showingresultsnum": "Ашагъыда №&nbsp;'''$2'''ден башлап {{PLURAL:$3|1='''1''' нетидже|'''$3''' нетидже}} булуна.",
 	"search-nonefound": "Соратманен эшлешкен бир нетидже ёкъ.",
 	"powersearch-legend": "Тафсилятлы къыдырув",
 	"powersearch-ns": "Бу исим фезаларында къыдыр:",

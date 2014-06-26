@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chelin"
+		]
+	},
+	"vector-action-addsection": "Aggiunge chiacchierata",
+	"vector-action-delete": "Scancèlla",
+	"vector-action-move": "Spusta",
+	"vector-action-protect": "Prutegge",
+	"vector-action-undelete": "Ripristina",
+	"vector-action-unprotect": "Càgna prutezzione",
+	"vector-view-create": "Cria",
+	"vector-view-edit": "Càgna",
+	"vector-view-history": "Vere cronologgia",
+	"vector-view-view": "Legge",
+	"vector-view-viewsource": "Vere sorgente"
+}

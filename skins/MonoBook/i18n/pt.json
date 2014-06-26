@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"skinname-monobook": "MonoBook",
+	"monobook.css": "/* Código CSS colocado aqui afectará os utilizadores do tema Monobook */",
+	"monobook.js": "/* Código Javascript colocado aqui será carregado para utilizadores do tema Monobook */"
+}

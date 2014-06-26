@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lam-ang",
+			"Saluyot"
+		]
+	},
+	"vector-desc": "Pasayaatenna ti interface ti agar-aramat no agusar ti kudil a Vector",
+	"vector-action-addsection": "Agnayon ti topiko",
+	"vector-action-delete": "Ikkaten",
+	"vector-action-move": "Iyalis",
+	"vector-action-protect": "Salakniban",
+	"vector-action-undelete": "Isubli ti inikkat",
+	"vector-action-unprotect": "Sukatan ti salaknib",
+	"vector-view-create": "Agaramid",
+	"vector-view-edit": "Urnosen",
+	"vector-view-history": "Kitaen ti pakasaritaan",
+	"vector-view-view": "Basaen",
+	"vector-view-viewsource": "Kitaen ti taudan",
+	"vector-more-actions": "Adu pay"
+}

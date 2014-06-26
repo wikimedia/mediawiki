@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Avicennasis",
+			"John Reid",
+			"Omnipaedista"
+		]
+	},
+	"vector-action-addsection": "Eik topic",
+	"vector-action-delete": "Delyte",
+	"vector-action-move": "Muiv",
+	"vector-action-protect": "Fend",
+	"vector-action-undelete": "Ondelyte",
+	"vector-action-unprotect": "Chynge protection",
+	"vector-view-create": "Ceaut",
+	"vector-view-edit": "Eedit",
+	"vector-view-history": "See histerie",
+	"vector-view-view": "Read",
+	"vector-view-viewsource": "See Soorce"
+}

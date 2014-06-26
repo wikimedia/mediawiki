@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06",
+			"Brest"
+		]
+	},
+	"skinname-vector": "Векторско",
+	"vector-desc": "Ги подобрува корисничкиот посредник кога се користи рувото „Векторско“",
+	"vector.css": "/* Тука поставениот CSS се однесува на корисниците на рувото „Векторско“ */",
+	"vector.js": "/* Тука поставениот JavaScript  ќе им се вчитува на корисниците што го користат рувото „Векторско“ */",
+	"vector-action-addsection": "Додај тема",
+	"vector-action-delete": "Избриши",
+	"vector-action-move": "Премести",
+	"vector-action-protect": "Заштити",
+	"vector-action-undelete": "Врати",
+	"vector-action-unprotect": "Измени заштита",
+	"vector-view-create": "Создај",
+	"vector-view-edit": "Уреди",
+	"vector-view-history": "Историја",
+	"vector-view-view": "Читај",
+	"vector-view-viewsource": "Извор",
+	"vector-more-actions": "Повеќе"
+}

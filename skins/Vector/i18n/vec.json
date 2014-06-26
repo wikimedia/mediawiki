@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Alunardon90",
+			"Candalua",
+			"Frigotoni",
+			"GatoSelvadego",
+			"Vajotwo"
+		]
+	},
+	"vector-desc": "Potensia l'interfacia utente có se dopara el tema Vector",
+	"vector-action-addsection": "Zonta discusion",
+	"vector-action-delete": "Scanseła",
+	"vector-action-move": "Sposta",
+	"vector-action-protect": "Protezi",
+	"vector-action-undelete": "Recupera",
+	"vector-action-unprotect": "Canbia ła protesion",
+	"vector-view-create": "Crea",
+	"vector-view-edit": "Canbia",
+	"vector-view-history": "Varda ła storia",
+	"vector-view-view": "Lezi",
+	"vector-view-viewsource": "Varda el testo"
+}

@@ -834,7 +834,6 @@
 	"searchall": "aaltumaal",
 	"showingresults": "Heer {{PLURAL:$1|as '''1''' resultaat|san '''$1''' resultaaten}}, jo began mä numer '''$2.'''",
 	"showingresultsinrange": "Oner {{PLURAL:$1|woort <strong>ian</strong> resultaat|wurd bit tu <strong>$1</strong> resultaaten}} tesken <strong>$2</strong> an <strong>$3</strong> uunwiset.",
-	"showingresultsnum": "Heer {{PLURAL:$3|as '''1''' resultaat|san '''$3''' resultaaten}}, jo began mä numer '''$2.'''",
 	"showingresultsheader": "{{PLURAL:$5|resultaat '''$1''' faan '''$3'''|resultaaten '''$1-$2''' faan '''$3'''}}, för '''$4.'''",
 	"search-nonefound": "För din uunfraag san nian resultaaten fünjen wurden.",
 	"powersearch-legend": "Ütjwidjet schüken",

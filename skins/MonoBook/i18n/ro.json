@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Firilacroco"
+		]
+	},
+	"skinname-monobook": "Monobook",
+	"monobook.css": "/* modificați acest fișier pentru a adapta înfățișarea monobook-ului pentru tot situl*/"
+}

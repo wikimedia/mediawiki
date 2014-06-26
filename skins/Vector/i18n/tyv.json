@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Agilight",
+			"Sborsody"
+		]
+	},
+	"skinname-vector": "Вектор",
+	"vector-action-addsection": "Кол сөстү немелээри",
+	"vector-action-delete": "Ырадыры",
+	"vector-action-move": "Шимчээри",
+	"vector-action-protect": "Камгалаары",
+	"vector-action-undelete": "Эгидер",
+	"vector-action-unprotect": "Камгалалды өскертири",
+	"vector-view-create": "Чаяары",
+	"vector-view-edit": "Эдер",
+	"vector-view-history": "Төөгүнү көөрү",
+	"vector-view-view": "Номчуур",
+	"vector-view-viewsource": "Дөзү бижиин көөрү"
+}

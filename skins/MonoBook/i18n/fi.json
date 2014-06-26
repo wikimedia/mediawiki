@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Crt"
+		]
+	},
+	"skinname-monobook": "Monobook",
+	"monobook.css": "/* Tämä sivu sisältää Monobook-ulkoasua muuttavia tyylejä. */",
+	"monobook.js": "/* Tämän sivun JavaScript-koodi liitetään Monobook-tyyliin */"
+}

@@ -834,7 +834,6 @@
 	"searchall": "Totes",
 	"showingresults": "Afichatge de <b>$1</b> resultat{{PLURAL:$1||s}} a partir del n°<b>$2</b>.",
 	"showingresultsinrange": "Afichar çaijós fins a {{PLURAL:$1|<strong>1</strong> resultat|<strong>$1</strong> resultats}} dins la seria #<strong>$2</strong> a #<strong>$3</strong>.",
-	"showingresultsnum": "Afichatge {{PLURAL:$3|d''''1''' resultat|de '''$3''' resultats}} a partir del #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultat '''$1'''|Resultats '''$1 - $2'''}} de '''$3''' per '''$4'''",
 	"search-nonefound": "I a pas cap de resultat correspondent a la requèsta.",
 	"powersearch-legend": "Recèrca avançada",

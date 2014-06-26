@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16",
+			"Darth Kule",
+			"Gianfranco",
+			"Melos",
+			"Pietrodn"
+		]
+	},
+	"vector-desc": "Potenzia l'interfaccia utente quando si usa la skin Vector",
+	"vector.css": "/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Vector */",
+	"vector.js": "/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Vector */",
+	"vector-action-addsection": "Aggiungi discussione",
+	"vector-action-delete": "Cancella",
+	"vector-action-move": "Sposta",
+	"vector-action-protect": "Proteggi",
+	"vector-action-undelete": "Ripristina",
+	"vector-action-unprotect": "Cambia la protezione",
+	"vector-view-create": "Crea",
+	"vector-view-edit": "Modifica",
+	"vector-view-history": "Cronologia",
+	"vector-view-view": "Leggi",
+	"vector-view-viewsource": "Visualizza sorgente",
+	"vector-more-actions": "Altro"
+}

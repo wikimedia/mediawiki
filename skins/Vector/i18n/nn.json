@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gunnernett",
+			"Njardarlogar"
+		]
+	},
+	"vector-action-addsection": "Nytt emne",
+	"vector-action-delete": "Slett",
+	"vector-action-move": "Flytt",
+	"vector-action-protect": "Vern",
+	"vector-action-undelete": "Gjenopprett",
+	"vector-action-unprotect": "Endra vern",
+	"vector-view-create": "Opprett",
+	"vector-view-edit": "Endre",
+	"vector-view-history": "Sjå historikken",
+	"vector-view-view": "Les",
+	"vector-view-viewsource": "Sjå kjelda",
+	"vector-more-actions": "Meir"
+}

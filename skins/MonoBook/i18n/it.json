@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16",
+			"Darth Kule"
+		]
+	},
+	"monobook-desc": "La skin classica di MediaWiki dal 2004, prende il nome dall'immagine in bianco e nero del libro usata come sfondo della pagina",
+	"monobook.css": "/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Monobook */",
+	"monobook.js": "/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin MonoBook */"
+}

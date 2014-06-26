@@ -848,7 +848,6 @@
 	"searchall": "todo",
 	"showingresults": "{{PLURAL:$1|Móstrase '''1''' resultado|Móstranse '''$1''' resultados}}, comezando polo número '''$2'''.",
 	"showingresultsinrange": "{{PLURAL:$1|Móstrase <strong>1</strong> resultado|Móstranse <strong>$1</strong> resultados}}, comezando polo número <strong>$2</strong> e rematando polo número <strong>$3</strong>.",
-	"showingresultsnum": "A continuación {{PLURAL:$3|móstrase '''1''' resultado|móstranse '''$3''' resultados}}, comezando polo número '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados do '''$1''' ao '''$2''', dun total de '''$3''',}} para \"'''$4'''\"",
 	"search-nonefound": "Non se atopou ningún resultado que coincidise coa procura.",
 	"powersearch-legend": "Busca avanzada",

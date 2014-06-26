@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Makuba",
+			"Renan"
+		]
+	},
+	"vector.css": "/* CSS colocat ci va afectar usatores de pelle Vector */",
+	"vector.js": "/* Alquel JavaScript ci va esser cargat por usatores que usa li pelle Vector */",
+	"vector-action-addsection": "Adjunter tema",
+	"vector-action-delete": "Deleter",
+	"vector-action-move": "Mover",
+	"vector-action-protect": "Gardar",
+	"vector-action-undelete": "Restituer",
+	"vector-action-unprotect": "Desgardar",
+	"vector-view-create": "Crear",
+	"vector-view-edit": "Redacter",
+	"vector-view-history": "Historie de versiones",
+	"vector-view-view": "Leer",
+	"vector-view-viewsource": "Vider fonte"
+}

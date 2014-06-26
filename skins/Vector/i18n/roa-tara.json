@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"skinname-vector": "Vettore",
+	"vector-desc": "Migliore l'elemende de l'inderfacce utende quanne ause 'a visualizzazzione Vector",
+	"vector.css": "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Vettore */",
+	"vector.js": "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Vettore */",
+	"vector-action-addsection": "Aggiunge 'na discussiona",
+	"vector-action-delete": "Scangille",
+	"vector-action-move": "Spuèste",
+	"vector-action-protect": "Protegge",
+	"vector-action-undelete": "Repristine",
+	"vector-action-unprotect": "Cange 'a protezione",
+	"vector-view-create": "Ccreje",
+	"vector-view-edit": "Cange",
+	"vector-view-history": "Vide 'u cunde",
+	"vector-view-view": "Ligge",
+	"vector-view-viewsource": "Vide 'u sorgende"
+}

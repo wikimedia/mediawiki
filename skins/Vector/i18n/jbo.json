@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gleki"
+		]
+	},
+	"vector-action-addsection": "jmina la'e se casnu",
+	"vector-action-delete": "vimcu",
+	"vector-action-move": "stika lo cmene",
+	"vector-action-protect": "bandu",
+	"vector-view-create": "zbasu",
+	"vector-view-edit": "stika",
+	"vector-view-history": "lo ckupau citri",
+	"vector-view-view": "tcidu",
+	"vector-view-viewsource": "cpacu lo krasi",
+	"vector-more-actions": "ji'a"
+}

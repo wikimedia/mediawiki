@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fryed-peach",
+			"青子守歌"
+		]
+	},
+	"skinname-monobook": "モノブック",
+	"monobook.css": "/* ここに記述したCSSはモノブック外装の利用者に影響します */",
+	"monobook.js": "/* ここにあるすべてのJavaScriptは、モノブック外装を使用している利用者に対して読み込まれます */"
+}

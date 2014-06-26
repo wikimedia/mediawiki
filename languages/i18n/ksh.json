@@ -840,7 +840,6 @@
 	"searchall": "all",
 	"showingresults": "Onge {{PLURAL:$1|weed <strong>eine</strong>|wääde bes <strong>$1</strong>|weed <strong>keine</strong>}} vun de jefonge Endrähsch jezeisch, vun de Nommer <strong>$2</strong> av.",
 	"showingresultsinrange": "{{PLURAL:$1|<strong>Ein</strong> Saachjropp|<strong>$1</strong> Saachjroppe|Kein Saachjropp}}, vun Nommer <strong>$2</strong> bes Nommer <strong>$3</strong> {{PLURAL:$1|weed|wääde|weed}} heh opjeleß.",
-	"showingresultsnum": "Onge {{PLURAL:$3|es ein|sin <strong>$3</strong>|sin <strong>kein</strong>}} vun de jefonge Endrähsch opjeleß, vun de Nommer <strong>$2</strong> av.",
 	"showingresultsheader": "Jefonge un aanjezeisch: {{PLURAL:$5|'''$1''' vun '''$3'''|'''$1''' beß '''$2''' vun '''$3'''|nix}} för '''$4'''",
 	"search-nonefound": "Mer han nix zopaß jefonge för Ding Aanfrohch.",
 	"powersearch-legend": "Extra Söhke",

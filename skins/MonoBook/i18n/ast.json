@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"monobook.css": "/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Monobook */",
+	"monobook.js": "/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu MonoBook */"
+}

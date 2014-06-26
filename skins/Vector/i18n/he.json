@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Rotemliss"
+		]
+	},
+	"skinname-vector": "וקטור",
+	"vector-desc": "הרחבת ממשק המשתמש בעת השימוש בעיצוב וקטור",
+	"vector.css": "/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Vector בלבד */",
+	"vector.js": "/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Vector */",
+	"vector-action-addsection": "הוספת נושא",
+	"vector-action-delete": "מחיקה",
+	"vector-action-move": "העברה",
+	"vector-action-protect": "הגנה",
+	"vector-action-undelete": "ביטול מחיקה",
+	"vector-action-unprotect": "שינוי הגנה",
+	"vector-view-create": "יצירה",
+	"vector-view-edit": "עריכה",
+	"vector-view-history": "הצגת היסטוריה",
+	"vector-view-view": "קריאה",
+	"vector-view-viewsource": "הצגת מקור",
+	"vector-more-actions": "עוד"
+}

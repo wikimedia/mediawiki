@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Huuchin"
+		]
+	},
+	"vector-action-addsection": "Төриг немх",
+	"vector-action-delete": "Һарһх",
+	"vector-action-move": "Көндәх",
+	"vector-action-protect": "Харсх",
+	"vector-action-undelete": "Һарһх биш",
+	"vector-action-unprotect": "Харсх биш",
+	"vector-view-create": "Бүтәх",
+	"vector-view-edit": "Чиклх",
+	"vector-view-history": "Тууҗин хәләвр",
+	"vector-view-view": "Умшлһн",
+	"vector-view-viewsource": "Темдгллһнә хәләвр"
+}

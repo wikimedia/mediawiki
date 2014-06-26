@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lionslayer",
+			"Myanmars"
+		]
+	},
+	"vector-action-addsection": "အကြောင်းအရာအသစ် ထပ်ထည့်ရန်",
+	"vector-action-delete": "ဖျက်​ပါ​",
+	"vector-action-move": "ရွှေ့ပါ",
+	"vector-action-protect": "ထိမ်း​သိမ်း​ပါ​",
+	"vector-action-undelete": "မဖျက်တော့ရန်",
+	"vector-action-unprotect": "ကာကွယ်ခြင်းကို ပြောင်းလဲရန်",
+	"vector-view-create": "စတင်ရေးသားရန်",
+	"vector-view-edit": "ပြင်ရန်",
+	"vector-view-history": "ရာဇဝင်ကြည့်ရန်",
+	"vector-view-view": "ဖတ်ရန်",
+	"vector-view-viewsource": "ရင်းမြစ်ကို ကြည့်ရန်"
+}

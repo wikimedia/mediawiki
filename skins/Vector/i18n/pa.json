@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aalam",
+			"Babanwalia",
+			"Raj Singh",
+			"TariButtar"
+		]
+	},
+	"vector-action-addsection": "ਵਿਸ਼ਾ ਜੋੜੋ",
+	"vector-action-delete": "ਹਟਾਓ",
+	"vector-action-move": "ਭੇਜੋ",
+	"vector-action-protect": "ਸੁਰੱਖਿਆ",
+	"vector-action-undelete": "ਹਟਾਉਣਾ-ਵਾਪਸ",
+	"vector-action-unprotect": "ਸੁਰੱਖਿਆ ਬਦਲੋ",
+	"vector-view-create": "ਬਣਾਓ",
+	"vector-view-edit": "ਸੋਧੋ",
+	"vector-view-history": "ਅਤੀਤ ਵੇਖੋ",
+	"vector-view-view": "ਪੜ੍ਹੋ",
+	"vector-view-viewsource": "ਸਰੋਤ ਵੇਖੋ"
+}

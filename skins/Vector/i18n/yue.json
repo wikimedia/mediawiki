@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ktchankt",
+			"Waihorace"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-desc": "改進Vector畫面嘅界面元素。",
+	"vector.css": "/* 響呢度放 CSS 碼去改用戶用嘅域達畫面 */",
+	"vector.js": "/* 響每一次個頁面載入時，用域達畫面嘅用戶都會載入呢度任何嘅JavaScript */",
+	"vector-action-addsection": "加主題",
+	"vector-action-delete": "剷走",
+	"vector-action-move": "搬",
+	"vector-action-protect": "保護",
+	"vector-action-undelete": "取消剷走",
+	"vector-action-unprotect": "改保護",
+	"vector-view-create": "開",
+	"vector-view-edit": "改",
+	"vector-view-history": "睇吓歷史",
+	"vector-view-view": "閱",
+	"vector-view-viewsource": "睇吓原始碼",
+	"vector-more-actions": "更多"
+}

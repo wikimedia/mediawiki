@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Calak",
+			"Romaine",
+			"SPQRobin",
+			"Siebrand",
+			"Troefkaart"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-desc": "Verbetert de gebruikersinterface van het uiterlijk Vector",
+	"vector.css": "/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Vector */",
+	"vector.js": "/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Vector gebruiken */",
+	"vector-action-addsection": "Kopje toevoegen",
+	"vector-action-delete": "Verwijderen",
+	"vector-action-move": "Hernoemen",
+	"vector-action-protect": "Beveiligen",
+	"vector-action-undelete": "Terugplaatsen",
+	"vector-action-unprotect": "Beveiliging wijzigen",
+	"vector-view-create": "Aanmaken",
+	"vector-view-edit": "Bewerken",
+	"vector-view-history": "Geschiedenis weergeven",
+	"vector-view-view": "Lezen",
+	"vector-view-viewsource": "Brontekst bekijken",
+	"vector-more-actions": "Meer"
+}

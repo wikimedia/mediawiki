@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ooswesthoesbes"
+		]
+	},
+	"vector-desc": "Verbaetertj de vectorgebroekersinterface-illemente",
+	"vector-action-addsection": "Voog köpke toe",
+	"vector-action-delete": "Ewegsjaffe",
+	"vector-action-move": "Verplaats",
+	"vector-action-protect": "Besjirm",
+	"vector-action-undelete": "Plaats trök",
+	"vector-action-unprotect": "Anger beveiliging",
+	"vector-view-create": "Maak aan",
+	"vector-view-edit": "Bewirk",
+	"vector-view-history": "Bekiek de gesjiedenis",
+	"vector-view-view": "Laes",
+	"vector-view-viewsource": "Bekiek bróntèks"
+}

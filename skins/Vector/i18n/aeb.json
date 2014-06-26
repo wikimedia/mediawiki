@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Csisc",
+			"Malekbr"
+		]
+	},
+	"vector-action-addsection": "أضف موضوعا",
+	"vector-action-delete": "احذف",
+	"vector-action-move": "انقل",
+	"vector-action-protect": "احم",
+	"vector-action-undelete": "استرجع الحذف",
+	"vector-action-unprotect": "غير الحماية",
+	"vector-view-create": "أنشئ",
+	"vector-view-edit": "Baddel",
+	"vector-view-history": "Warri l'historique",
+	"vector-view-view": "Aqra",
+	"vector-view-viewsource": "اعرض المصدر"
+}

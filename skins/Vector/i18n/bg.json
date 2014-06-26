@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Borislav",
+			"DCLXVI",
+			"Spiritia"
+		]
+	},
+	"vector-desc": "Подобрява елементите от потребителския интерфейс на облик Вектор.",
+	"vector-action-addsection": "Добавяне на тема",
+	"vector-action-delete": "Изтриване",
+	"vector-action-move": "Преместване",
+	"vector-action-protect": "Защита",
+	"vector-action-undelete": "Възстановяване",
+	"vector-action-unprotect": "Промяна на защитата",
+	"vector-view-create": "Създаване",
+	"vector-view-edit": "Редактиране",
+	"vector-view-history": "История",
+	"vector-view-view": "Преглед",
+	"vector-view-viewsource": "Преглед на кода"
+}

@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chorobek",
+			"Growingup",
+			"Ztimur",
+			"Викиней"
+		]
+	},
+	"vector-action-addsection": "Тема кошуу",
+	"vector-action-delete": "Өчүрүү",
+	"vector-action-move": "Аталышын өзгөртүү",
+	"vector-action-protect": "Коргоо",
+	"vector-action-undelete": "Калыбына келтирүү",
+	"vector-action-unprotect": "Коргоону өзгөртүү",
+	"vector-view-create": "Түзүү",
+	"vector-view-edit": "Оңдоо",
+	"vector-view-history": "Тарыхын кароо",
+	"vector-view-view": "Окуу",
+	"vector-view-viewsource": "Кайнарын кароо"
+}

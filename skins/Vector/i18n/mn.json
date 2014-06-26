@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chinneeb",
+			"MongolWiki",
+			"Wisdom"
+		]
+	},
+	"vector-action-addsection": "Сэдэв нэмэх",
+	"vector-action-delete": "Устгах",
+	"vector-action-move": "Зөөх",
+	"vector-action-protect": "Хамгаалах",
+	"vector-action-undelete": "Үл устгах",
+	"vector-action-unprotect": "Хамгаалалтаа солих",
+	"vector-view-create": "Үүсгэх",
+	"vector-view-edit": "Засварлах",
+	"vector-view-history": "Түүх",
+	"vector-view-view": "Унших",
+	"vector-view-viewsource": "Кодыг харах"
+}

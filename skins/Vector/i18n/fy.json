@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kening Aldgilles",
+			"SK-luuut"
+		]
+	},
+	"vector-action-delete": "Fuortsmite",
+	"vector-action-move": "Werneam",
+	"vector-action-protect": "Beskermje",
+	"vector-action-undelete": "Tebeksette",
+	"vector-action-unprotect": "Beskerming fuorthelje",
+	"vector-view-create": "Oanmeitsje",
+	"vector-view-edit": "Wizigje",
+	"vector-view-history": "Skiednis sjen litte",
+	"vector-view-view": "Lês",
+	"vector-view-viewsource": "Besjoch de boarne"
+}

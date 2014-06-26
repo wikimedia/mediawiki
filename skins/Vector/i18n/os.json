@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amikeco",
+			"Bouron"
+		]
+	},
+	"vector-action-addsection": "Нæуæг ныхас бакæнын",
+	"vector-action-delete": "Схафын",
+	"vector-action-move": "Ном ивын",
+	"vector-action-protect": "Сæхгæнын",
+	"vector-action-undelete": "Рацаразын",
+	"vector-action-unprotect": "Ивын хъахъхъæд",
+	"vector-view-create": "Скæнын",
+	"vector-view-edit": "Ивын",
+	"vector-view-history": "Истори",
+	"vector-view-view": "Кæсын",
+	"vector-view-viewsource": "Код кæсын"
+}

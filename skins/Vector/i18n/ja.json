@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fryed-peach",
+			"Marine-Blue",
+			"Penn Station",
+			"Shirayuki",
+			"Whym",
+			"青子守歌"
+		]
+	},
+	"skinname-vector": "ベクター",
+	"vector-desc": "ベクター外装の使用時にユーザーインターフェイスを強化する",
+	"vector.css": "/* ここに記述したCSSはベクター外装の利用者に影響します */",
+	"vector.js": "/* ここにあるすべてのJavaScriptは、ベクター外装を使用している利用者に対して読み込まれます */",
+	"vector-action-addsection": "話題追加",
+	"vector-action-delete": "削除",
+	"vector-action-move": "移動",
+	"vector-action-protect": "保護",
+	"vector-action-undelete": "復元",
+	"vector-action-unprotect": "保護再設定",
+	"vector-view-create": "作成",
+	"vector-view-edit": "編集",
+	"vector-view-history": "履歴表示",
+	"vector-view-view": "閲覧",
+	"vector-view-viewsource": "ソースを閲覧",
+	"vector-more-actions": "その他"
+}

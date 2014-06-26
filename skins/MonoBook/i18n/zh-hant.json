@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cwlin0416"
+		]
+	},
+	"monobook.css": "/* 此 CSS 會影響使用 Monobook 介面外觀的使用者 */",
+	"monobook.js": "/* 此 JavaScript 會用於使用 Monobook 介面外觀使用者 */"
+}

@@ -837,7 +837,6 @@
 	"searchall": "amin",
 	"showingresults": "Maiparang dita baba agingga {{PLURAL:$1|iti '''1''' a nagbanagan|dagiti '''$1''' a nagbanagan}} a mangrugi iti #'''$2'''.",
 	"showingresultsinrange": "Mangipakpakita aginggana {{PLURAL:$1|iti <strong>1</strong> a resulta|dagiti <strong>$1</strong> a resulta}} iti sakop ti #<strong>$2</strong> aginggana ti #<strong>$3</strong>.",
-	"showingresultsnum": "Maipakpakita dita baba  {{PLURAL:$3|iti '''1''' a nagbanagan|dagiti '''$3''' a nagbanagan}} a mangrugi iti #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Nagbanagan a '''$1''' iti '''$3'''|Dagiti Nagbanagan a '''$1 - $2''' iti '''$3'''}} para iti '''$4'''",
 	"search-nonefound": "Awan ti nagbanagan a kapadpada ti sinapul.",
 	"powersearch-legend": "Napasayat a panagbiruk",

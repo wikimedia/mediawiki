@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Arslan",
+			"Khalid Mahmood"
+		]
+	},
+	"vector-desc": "ورتن والے دے وکھالے",
+	"vector-action-addsection": "مضمون پاؤ",
+	"vector-action-delete": "مکاؤ",
+	"vector-action-move": "ٹرو",
+	"vector-action-protect": "بچاؤ",
+	"vector-action-undelete": "واپس لیاؤ",
+	"vector-action-unprotect": "تبدیلی بچاؤ",
+	"vector-view-create": "بناؤ",
+	"vector-view-edit": "لکھو",
+	"vector-view-history": "تریخ وکھاؤ",
+	"vector-view-view": "پڑھو",
+	"vector-view-viewsource": "ویکھو"
+}

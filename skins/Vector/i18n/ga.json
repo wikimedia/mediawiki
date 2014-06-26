@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kscanne",
+			"Kwekubo",
+			"Moydow"
+		]
+	},
+	"skinname-vector": "Veicteoir",
+	"vector-action-addsection": "Cuir topaic leis",
+	"vector-action-delete": "Scrios",
+	"vector-action-move": "Athainmnigh",
+	"vector-action-protect": "Glasáil",
+	"vector-action-undelete": "Díscrios",
+	"vector-action-unprotect": "Díghlasáil",
+	"vector-view-create": "Cruthaigh",
+	"vector-view-edit": "Athraigh an lch seo",
+	"vector-view-history": "Féach ar stair",
+	"vector-view-view": "Léigh",
+	"vector-view-viewsource": "Féach ar fhoinse"
+}
