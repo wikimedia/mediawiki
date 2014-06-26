@@ -684,6 +684,7 @@ return array(
 
 	'json' => array(
 		'scripts' => 'resources/lib/json2/json2.js',
+		'targets' => array( 'desktop', 'mobile' ),
 		'skipFunction' => 'resources/src/json-skip.js',
 	),
 
@@ -1456,7 +1457,8 @@ return array(
 		'scripts' => array(
 			'resources/lib/es5-shim/es5-shim.js',
 		),
-		'skipFunction' => 'resources/src/es5-skip.js'
+		'targets' => array( 'desktop', 'mobile' ),
+		'skipFunction' => 'resources/src/es5-skip.js',
 	),
 
 	/* OOjs */
