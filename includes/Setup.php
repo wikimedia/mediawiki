@@ -94,6 +94,9 @@ if ( $wgReadOnlyFile === false ) {
 if ( $wgFileCacheDirectory === false ) {
 	$wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 }
+if ( $wgGitInfoCacheDirectory === false ) {
+	$wgGitInfoCacheDirectory = "{$wgFileCacheDirectory}/gitinfo";
+}
 if ( $wgDeletedDirectory === false ) {
 	$wgDeletedDirectory = "{$wgUploadDirectory}/deleted";
 }

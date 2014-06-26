@@ -6,7 +6,7 @@ class GitInfoTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->setMwGlobals( 'wgCacheDirectory', __DIR__ . '/../data' );
+		$this->setMwGlobals( 'wgGitInfoCacheDirectory', __DIR__ . '/../data/gitinfo' );
 	}
 
 	public function testValidJsonData() {
