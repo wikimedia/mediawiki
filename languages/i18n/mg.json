@@ -830,7 +830,6 @@
 	"searchrelated": "voadinika",
 	"searchall": "rehetra",
 	"showingresults": "Omeo ny valiny{{PLURAL:$1||}} miisa hatramin'ny <b>$1</b> manomboka ny #<b>$2</b>.",
-	"showingresultsnum": "Omeo ny valiny miisa <b>$3</b> manomboka ny #<b>$2</b>.{{PLURAL:||}}",
 	"showingresultsheader": "{{PLURAL:$5}}Valim-pikaronhana '''$1x–$2''' an'i '''$3''' ho an'i '''$4'''",
 	"search-nonefound": "Tsy nahitana valiny ilay fanontaniana.",
 	"powersearch-legend": "Fikarohana havanana",

@@ -828,7 +828,6 @@
 	"searchall": "tukuy",
 	"showingresults": "Qhipanpiqa rikuchkanki {{PLURAL:$1|'''1''' tarisqatam|'''$1'''-kama tarisqakunatam}}, '''$2''' huchhawan qallarispa.",
 	"showingresultsinrange": "Qhipanpiqa rikuchkanki {{PLURAL:$1|<strong>1</strong>-kama tarisqatam|<strong>$1</strong>-kama tarisqakunatam}}, #<strong>$2</strong> huchhamanta #<strong>$3</strong> huchhakama.",
-	"showingresultsnum": "Qhipanpiqa rikuchkanki {{PLURAL:$3|'''1''' tarisqatam|'''$3''' tarisqakunatam}}, '''$2''' yupaywan qallarispa.",
 	"showingresultsheader": "{{PLURAL:$5|Taripasqa: '''$1''', '''$3'''-manta|Taripasqa: '''$1 - $2''', '''$3'''-manta}}, '''$4'''-paq",
 	"search-nonefound": "Maskaypaq kay hina kachun nisqakamaqa manam kanchu taripasqakuna.",
 	"powersearch-legend": "Ñawparikusqa maskay",

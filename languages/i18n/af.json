@@ -823,7 +823,6 @@
 	"searchrelated": "verwante",
 	"searchall": "alle",
 	"showingresults": "Hier volg {{PLURAL:$1|'''1''' resultaat|'''$1''' resultate}} vanaf #'''$2'''.",
-	"showingresultsnum": "Hier onder {{PLURAL:$3|is '''1''' resultaat|is '''$3''' resultate}} vanaf #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultaat '''$1''' van '''$3'''|Resultate '''$1 - $2''' van '''$3'''}} vir '''$4'''",
 	"search-nonefound": "Daar is geen resultate vir u soekopdrag nie.",
 	"powersearch-legend": "Gevorderde soektog",

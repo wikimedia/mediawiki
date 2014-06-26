@@ -866,7 +866,6 @@
 	"searchrelated": "relateret",
 	"searchall": "alle",
 	"showingresults": "Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.",
-	"showingresultsnum": "Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.",
 	"showingresultsheader": "{{PLURAL:$5|Resultat '''$1''' af '''$3'''|Resultat '''$1 - $2''' af '''$3'''}} for '''$4'''",
 	"search-nonefound": "Søgningen gav ingen resultater.",
 	"powersearch-legend": "Avanceret søgning",

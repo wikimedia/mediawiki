@@ -572,7 +572,6 @@
 	"searchrelated": "bogʻlangan",
 	"searchall": "barchasi",
 	"showingresults": "Quyida №'''$2'''dan boshlab {{PLURAL:$1|'''bitta''' natija|'''$1''' ta natija}} koʻrsatilgan.",
-	"showingresultsnum": "Quyida №'''$2'''dan boshlab '''$1''' ta {{PLURAL:$1|natija}} ko'rsatildi.",
 	"showingresultsheader": "<strong>$4</strong> uchun jami {{PLURAL:$5|<strong>$3</strong> tadan <strong>$1</strong> ta natija koʻrsatildi|<strong>$3</strong> tadan <strong>$1</strong> — <strong>$2</strong> chi natijalar koʻrsatildi}}",
 	"search-nonefound": "Talabga javob beradigan natija topilmadi.",
 	"powersearch-legend": "Kengaytirilgan qidiruv",

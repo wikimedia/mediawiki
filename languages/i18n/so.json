@@ -574,7 +574,6 @@
 	"searchrelated": "La xiriiro",
 	"searchall": "Dhamaan",
 	"showingresults": "Waxaa hoos laga heley{{PLURAL:$1|'''1''' natiijo|'''$1''' natiijooyin}} ka biloow #'''$2'''.",
-	"showingresultsnum": "Hoos waxaa laga helay {{PLURAL:$3|'''1''' Natiijo|'''$3''' Natiijooyin}} Ka billow #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Natiijada  '''$1''' ee '''$3'''|Natiijooyinka '''$1 - $2'''  oo ah  '''$3'''}} ee '''$4'''",
 	"search-nonefound": "Wax natiijo oo ka soo baxay ma jirto wixii aad raadisay",
 	"powersearch-legend": "Sidii aad wax uugu raadin laheed",

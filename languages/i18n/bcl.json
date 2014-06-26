@@ -825,7 +825,6 @@
 	"searchrelated": "kauyon",
 	"searchall": "gabós",
 	"showingresults": "Pigpapahiling sa babâ sagkod sa {{PLURAL:$1|'''1''' resulta|'''$1''' mga resulta}} poon sa #'''$2'''.",
-	"showingresultsnum": "Pigpapahiling sa babâ {{PLURAL:$3|'''1''' resulta|'''$3''' mga resulta}} poon sa #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resulta '''$1''' kan '''$3'''|Mga Resulta '''$1 - $2''' kan '''$3'''}} para sa '''$4'''",
 	"search-nonefound": "Mayo nin mga resulta na panampok sa kahaputan.",
 	"powersearch-legend": "Adbansiyadong paghahanap",

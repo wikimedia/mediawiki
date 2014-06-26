@@ -821,7 +821,6 @@
 	"searchrelated": "verwandt",
 	"searchall": "alli",
 	"showingresults": "Do {{PLURAL:$1|isch '''1''' Ergebnis|sin '''$1''' Ergebniss}}, s fangt aa mit dr Nummerer '''$2.'''",
-	"showingresultsnum": "Do {{PLURAL:$3|isch '''1''' Ergebnis|sin '''$3''' Ergebniss}}, s fangt aa mit dr Nummere '''$2.'''",
 	"showingresultsheader": "{{PLURAL:$5|Ergebnis '''$1''' vu '''$3'''|Ergebnis '''$1 - $2''' vu '''$3'''}} fir '''$4'''",
 	"search-nonefound": "Fir Dyyni Suechaafrog sin keini Ergebniss gfunde wore.",
 	"powersearch-legend": "Erwytereti Suech",

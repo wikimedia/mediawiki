@@ -847,7 +847,6 @@
 	"searchall": "सर्व",
 	"showingresults": "#'''$2'''पासून {{PLURAL:$1|'''1'''पर्यंतचा निकाल|'''$1'''पर्यंतचे निकाल}} खाली दाखवले आहे.",
 	"showingresultsinrange": "खाली #<strong>$2</strong> ते #<strong>$3</strong> पर्यंतच्या कक्षेतील {{PLURAL:$1|<strong>१</strong> निकाल दाखविला आहे|<strong>$1</strong> निकाल दाखविले आहेत}}.",
-	"showingresultsnum": "खाली दिलेले #'''$2'''पासून सुरू होणारे  {{PLURAL:$3|'''1''' निकाल|'''$3''' निकाल}}.",
 	"showingresultsheader": "'''$4''' साठी {{PLURAL:$5|'''$3'''पैकी '''$1''' निकाल|'''$3''' पैकी '''$1 - $2''' निकाल}}",
 	"search-nonefound": "दिलेल्या पृच्छेशी जुळणारे निकाल नाहीत.",
 	"powersearch-legend": "प्रगत शोध",
