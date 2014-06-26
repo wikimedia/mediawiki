@@ -320,7 +320,7 @@ class Category {
 		wfProfileIn( __METHOD__ );
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 
 		# Insert the row if it doesn't exist yet (e.g., this is being run via
 		# update.php from a pre-1.16 schema).  TODO: This will cause lots and
@@ -360,7 +360,7 @@ class Category {
 			array( 'cat_title' => $this->mName ),
 			__METHOD__
 		);
-		$dbw->commit( __METHOD__ );
+		$dbw->endAtomic( __METHOD__ );
 
 		wfProfileOut( __METHOD__ );
 
