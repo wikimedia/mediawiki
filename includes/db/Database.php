@@ -3479,17 +3479,18 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			);
 		}
 
-		if ( $flush !== 'flush' ) {
-			if ( !$this->mTrxLevel ) {
-				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
-			} elseif ( $this->mTrxAutomatic ) {
-				wfWarn( "$fname: Explicit commit of implicit transaction. Something may be out of sync!" );
-			}
-		} else {
+		if ( $flush === 'flush' ) {
 			if ( !$this->mTrxLevel ) {
 				return; // nothing to do
 			} elseif ( !$this->mTrxAutomatic ) {
 				wfWarn( "$fname: Flushing an explicit transaction, getting out of sync!" );
+			}
+		} else {
+			if ( !$this->mTrxLevel ) {
+				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
+				return; // nothing to do
+			} elseif ( $this->mTrxAutomatic ) {
+				wfWarn( "$fname: Explicit commit of implicit transaction. Something may be out of sync!" );
 			}
 		}
 
