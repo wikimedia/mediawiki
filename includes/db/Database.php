@@ -3537,6 +3537,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( $flush !== 'flush' ) {
 			if ( !$this->mTrxLevel ) {
 				wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
+				return; // nothing to do
 			} elseif ( $this->mTrxAutomatic ) {
 				wfWarn( "$fname: Explicit rollback of implicit transaction. Something may be out of sync!" );
 			}
