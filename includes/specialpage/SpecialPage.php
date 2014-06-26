@@ -345,8 +345,8 @@ class SpecialPage {
 	 * @param array $subpages
 	 * @return string[]
 	 */
-	protected static function prefixSearchArray( $search, $limit, Array $subpages ) {
-		$escaped = preg_quote( $search );
+	protected static function prefixSearchArray( $search, $limit, array $subpages ) {
+		$escaped = preg_quote( $search, '/' );
 		return array_slice( preg_grep( "/^$escaped/i", $subpages ), 0, $limit );
 	}
 
