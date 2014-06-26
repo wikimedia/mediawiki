@@ -338,7 +338,7 @@ abstract class BagOStuff {
 	 */
 	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
 		return $this->incr( $key, $value ) ||
-			$this->add( $key, $init, $ttl ) || $this->incr( $key, $value );
+			$this->add( $key, (int)$init, $ttl ) || $this->incr( $key, $value );
 	}
 
 	/**

@@ -285,7 +285,7 @@ class UIDGenerator {
 		if ( $cache ) {
 			$counter = $cache->incr( $bucket, $count );
 			if ( $counter === false ) {
-				if ( !$cache->add( $bucket, $count ) ) {
+				if ( !$cache->add( $bucket, (int)$count ) ) {
 					throw new MWException( 'Unable to set value to ' . get_class( $cache ) );
 				}
 				$counter = $count;
