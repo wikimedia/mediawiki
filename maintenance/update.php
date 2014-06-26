@@ -162,19 +162,24 @@ class UpdateMediaWiki extends Maintenance {
 		$updater = DatabaseUpdater::newForDb( $db, $shared, $this );
 		$updater->doUpdates( $updates );
 
-		foreach ( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
-			$child = $this->runChild( $maint );
+		// If the schema option is set then we dont want to run maintenance
+		// scripts, they will talk to the db directly rather than writing
+		// to $this->fileHandle
+		if ( !$this->hasOption( 'schema' ) ) {
+			foreach ( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
+				$child = $this->runChild( $maint );
 
-			// LoggedUpdateMaintenance is checking the updatelog itself
-			$isLoggedUpdate = is_a( $child, 'LoggedUpdateMaintenance' );
+				// LoggedUpdateMaintenance is checking the updatelog itself
+				$isLoggedUpdate = is_a( $child, 'LoggedUpdateMaintenance' );
 
-			if ( !$isLoggedUpdate && $updater->updateRowExists( $maint ) ) {
-				continue;
-			}
+				if ( !$isLoggedUpdate && $updater->updateRowExists( $maint ) ) {
+					continue;
+				}
 
-			$child->execute();
-			if ( !$isLoggedUpdate ) {
-				$updater->insertUpdateRow( $maint );
+				$child->execute();
+				if ( !$isLoggedUpdate ) {
+					$updater->insertUpdateRow( $maint );
+				}
 			}
 		}
 
