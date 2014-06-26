@@ -6414,6 +6414,16 @@ Blah blah blah
 !! end
 
 !! test
+"Extra" interlanguage links (bug 32189 / gerrit 111390)
+!! wikitext
+Blah blah blah
+[[mul:Multilingual]]
+!! html
+<p>Blah blah blah
+</p>
+!! end
+
+!! test
 Parsoid-specific test: Wikilinks with &nbsp; should RT properly
 !! options
 language=ln

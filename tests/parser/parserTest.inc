@@ -153,6 +153,7 @@ class ParserTest {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
 			$wgExtraNamespaces, $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
+			$wgExtraInterlanguageLinkPrefixes,
 			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
 			$wgArticlePath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
 			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgLockManagers;
@@ -223,6 +224,9 @@ class ParserTest {
 		if ( $wgStyleDirectory === false ) {
 			$wgStyleDirectory = "$IP/skins";
 		}
+		// "extra language links"
+		// see https://gerrit.wikimedia.org/r/111390
+		array_push( $wgExtraInterlanguageLinkPrefixes, 'mul' );
 
 		self::setupInterwikis();
 	}
@@ -273,6 +277,11 @@ class ParserTest {
 					'iw_local' => 1 ),
 				'ru' => array(
 					'iw_url' => 'http://ru.wikipedia.org/wiki/$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 1 ),
+				'mul' => array(
+					'iw_url' => 'http://wikisource.org/wiki/$1',
 					'iw_api' => '',
 					'iw_wikiid' => '',
 					'iw_local' => 1 ),
