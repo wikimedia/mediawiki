@@ -133,6 +133,8 @@ production.
   no longer be displayed in the sidebar when $wgInterwikiMagic is true.
 * New special page, MyLanguages, to redirect users to subpages with localised
   versions of a page. (Integrated from Extension:Translate)
+* Skins can now define custom styles for default ResourceLoader modules using
+  the $wgResourceModuleSkinStyles global. See the Vector skin for examples.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
