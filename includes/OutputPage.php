@@ -1608,7 +1608,7 @@ class OutputPage extends ContextSource {
 		$oldTidy = $popts->setTidy( $tidy );
 		$popts->setInterfaceMessage( (bool)$interface );
 
-		$parserOutput = $wgParser->parse(
+		$parserOutput = $wgParser->getFreshParser()->parse(
 			$text, $title, $popts,
 			$linestart, true, $this->mRevisionId
 		);
@@ -1768,7 +1768,7 @@ class OutputPage extends ContextSource {
 			$oldLang = $popts->setTargetLanguage( $language );
 		}
 
-		$parserOutput = $wgParser->parse(
+		$parserOutput = $wgParser->getFreshParser()->parse(
 			$text, $this->getTitle(), $popts,
 			$linestart, true, $this->mRevisionId
 		);

@@ -6335,4 +6335,23 @@ class Parser {
 
 		return $html;
 	}
+
+	/**
+	 * Return this parser if it is not doing anything, otherwise
+	 * get a fresh parser. You can use this method by doing
+	 * $myParser = $wgParser->getFreshParser(), or more simply
+	 * $wgParser->getFreshParser()->parse( ... );
+	 * if you're unsure if $wgParser is safe to use.
+	 *
+	 * @since 1.24
+	 * @return Parser A parser object that is not parsing anything
+	 */
+	public function getFreshParser() {
+		global $wgParserConf;
+		if ( $this->mInParse ) {
+			return new $wgParserConf['class']( $wgParserConf );
+		} else {
+			return $this;
+		}
+	}
 }
