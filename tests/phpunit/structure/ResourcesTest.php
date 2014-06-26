@@ -37,7 +37,11 @@ class ResourcesTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testDependencies() {
+	/**
+	 * Verify that nothing explicitly depends on the 'jquery' and 'mediawiki' modules.
+	 * They are always loaded.
+	 */
+	public function testUnnecessaryDependencies() {
 		$data = self::getAllModules();
 		$illegalDeps = array( 'jquery', 'mediawiki' );
 
@@ -48,6 +52,51 @@ class ResourcesTest extends MediaWikiTestCase {
 					$module->getDependencies(),
 					"Module '$moduleName' must not depend on '$illegalDep'"
 				);
+			}
+		}
+	}
+
+	/**
+	 * Verify that all modules specified as dependencies of other modules actually exist.
+	 */
+	public function testMissingDependencies() {
+		$data = self::getAllModules();
+		$validDeps = array_keys( $data );
+
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			foreach ( $module->getDependencies() as $dep ) {
+				$this->assertContains(
+					$dep,
+					$validDeps,
+					"The module '$dep' required by '$moduleName' must exist"
+				);
+			}
+		}
+	}
+
+	/**
+	 * Verify that all dependencies of all modules are always satisfiable with the 'targets' defined
+	 * for the involved modules.
+	 *
+	 * Example: A depends on B. A has targets: mobile, desktop. B has targets: desktop. Therefore the
+	 * dependency is sometimes unsatisfiable: it's impossible to load module A on mobile.
+	 */
+	public function testUnsatisfiableDependencies() {
+		$data = self::getAllModules();
+		$validDeps = array_keys( $data );
+
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			$moduleTargets = $module->getTargets();
+			foreach ( $module->getDependencies() as $dep ) {
+				$targets = $data['modules'][$dep]->getTargets();
+				foreach ( $moduleTargets as $moduleTarget ) {
+					$this->assertContains(
+						$moduleTarget,
+						$targets,
+						"The module '$moduleName' must not have target '$moduleTarget'"
+							. "because its dependency '$dep' does not have it"
+					);
+				}
 			}
 		}
 	}
