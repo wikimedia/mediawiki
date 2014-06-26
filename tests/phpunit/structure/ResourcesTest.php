@@ -255,7 +255,7 @@ class ResourcesTest extends MediaWikiTestCase {
 				$cases[] = array(
 					$method->invoke( $module, $file ),
 					$moduleName,
-					$file,
+					( $file instanceof ResourceLoaderFilePath ? $file->getPath() : $file ),
 				);
 			}
 		}
