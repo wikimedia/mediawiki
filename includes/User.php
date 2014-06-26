@@ -56,7 +56,7 @@ class PasswordError extends MWException {
  * for rendering normal pages are set in the cookie to minimize use
  * of the database.
  */
-class User {
+class User implements IDBAccessObject {
 	/**
 	 * Global constants made accessible as class constants so that autoloader
 	 * magic can be used.
@@ -1169,9 +1169,10 @@ class User {
 	 * Load user and user_group data from the database.
 	 * $this->mId must be set, this is how the user is identified.
 	 *
+	 * @param integer $flags Supports User::READ_LOCKING
 	 * @return bool True if the user exists, false if the user is anonymous
 	 */
-	public function loadFromDatabase() {
+	public function loadFromDatabase( $flags = 0 ) {
 		// Paranoia
 		$this->mId = intval( $this->mId );
 
@@ -1186,7 +1187,10 @@ class User {
 			'user',
 			self::selectFields(),
 			array( 'user_id' => $this->mId ),
-			__METHOD__
+			__METHOD__,
+			( $flags & self::READ_LOCKING == self::READ_LOCKING )
+				? array( 'LOCK IN SHARE MODE' )
+				: array()
 		);
 
 		wfRunHooks( 'UserLoadFromDatabase', array( $this, &$s ) );
@@ -3605,17 +3609,25 @@ class User {
 			array( 'IGNORE' )
 		);
 		if ( !$dbw->affectedRows() ) {
-			if ( !$inWrite ) {
-				// XXX: Get out of REPEATABLE-READ so the SELECT below works.
-				// Often this case happens early in views before any writes.
-				// This shows up at least with CentralAuth.
+			// The queries below cannot happen in the same REPEATABLE-READ snapshot.
+			// Handle this by COMMIT, if possible, or by LOCK IN SHARE MODE otherwise.
+			if ( $inWrite ) {
+				// Can't commit due to pending writes that may need atomicity.
+				// This may cause some lock contention unlike the case below.
+				$options = array( 'LOCK IN SHARE MODE' );
+				$flags = self::READ_LOCKING;
+			} else {
+				// Often, this case happens early in views before any writes when
+				// using CentralAuth. It's should be OK to commit and break the snapshot.
 				$dbw->commit( __METHOD__, 'flush' );
+				$options = array();
+				$flags = 0;
 			}
 			$this->mId = $dbw->selectField( 'user', 'user_id',
-				array( 'user_name' => $this->mName ), __METHOD__ );
+				array( 'user_name' => $this->mName ), __METHOD__, $options );
 			$loaded = false;
 			if ( $this->mId ) {
-				if ( $this->loadFromDatabase() ) {
+				if ( $this->loadFromDatabase( $flags ) ) {
 					$loaded = true;
 				}
 			}
