@@ -91,6 +91,7 @@ production.
   uses to find extension license information.
 * Browser tests are now included to verify basic wiki functionality in developer
   environments. For details on running tests, see tests/browser/README.mediawiki.
+* Upgrade jStorage to v0.4.10.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
