@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dbc334",
+			"Smihael",
+			"Yerpo"
+		]
+	},
+	"vector-desc": "Izboljša uporabniški vmesnik pri uporabi kože Vector.",
+	"vector-action-addsection": "Dodaj temo",
+	"vector-action-delete": "Izbriši",
+	"vector-action-move": "Prestavi",
+	"vector-action-protect": "Zaščiti",
+	"vector-action-undelete": "Vrni",
+	"vector-action-unprotect": "Spremeni zaščito",
+	"vector-view-create": "Ustvari",
+	"vector-view-edit": "Uredi",
+	"vector-view-history": "Zgodovina",
+	"vector-view-view": "Preberi",
+	"vector-view-viewsource": "Izvorno besedilo",
+	"vector-more-actions": "Več"
+}

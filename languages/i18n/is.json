@@ -810,7 +810,6 @@
 	"searchrelated": "tengt",
 	"searchall": "öllum",
 	"showingresults": "Sýni <strong>$1</strong> {{PLURAL:$1|niðurstöðu|niðurstöður}} frá og með #<strong>$2</strong>.",
-	"showingresultsnum": "Sýni {{PLURAL:$3|'''$3''' niðurstöðu|'''$3''' niðurstöður}} frá og með #<b>$2</b>.",
 	"showingresultsheader": "{{PLURAL:$5|Niðurstaða '''$1''' af '''$3'''|Niðurstöður'''$1 - $2''' af '''$3'''}} fyrir '''$4'''",
 	"search-nonefound": "Engar niðurstöður pössuðu við fyrirspurnina.",
 	"powersearch-legend": "Ítarlegri leit",

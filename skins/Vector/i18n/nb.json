@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Danmichaelo",
+			"Event",
+			"Nghtwlkr"
+		]
+	},
+	"vector-desc": "Forbedrer brukergrensesnittet for Vector-utseendet.",
+	"vector-action-addsection": "Nytt emne",
+	"vector-action-delete": "Slett",
+	"vector-action-move": "Flytt",
+	"vector-action-protect": "Beskytt",
+	"vector-action-undelete": "Gjenopprett",
+	"vector-action-unprotect": "Endre beskyttelse",
+	"vector-view-create": "Opprett",
+	"vector-view-edit": "Rediger",
+	"vector-view-history": "Vis historikk",
+	"vector-view-view": "Les",
+	"vector-view-viewsource": "Vis kilden",
+	"vector-more-actions": "Mer"
+}

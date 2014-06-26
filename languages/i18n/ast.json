@@ -843,7 +843,6 @@
 	"searchall": "toos",
 	"showingresults": "Abaxo {{PLURAL:$1|amuésase '''un''' resultáu|amuésense '''$1''' resultaos}}, entamando col #'''$2'''.",
 	"showingresultsinrange": "Más abaxo s'{{PLURAL:$1|amuesa|amuesen}} fasta {{PLURAL:$1|<strong>1</strong> resultáu|<strong>$1</strong> resultaos}} nel rangu ente #<strong>$2</strong> y #<strong>$3</strong>.",
-	"showingresultsnum": "Abaxo {{PLURAL:$3|amuésase '''un''' resultáu|amuésense '''$3''' resultaos}}, entamando col #'''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultáu '''$1''' de '''$3'''|Resultaos '''$1 - $2''' de '''$3'''}} pa '''$4'''",
 	"search-nonefound": "Nun hebo resultaos que casaren cola consulta.",
 	"powersearch-legend": "Busca avanzada",

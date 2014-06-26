@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anjoeli9806"
+		]
+	},
+	"vector-action-addsection": "Magdugang sang topiko",
+	"vector-action-delete": "Panason",
+	"vector-action-move": "Saylohon",
+	"vector-action-protect": "Pangapinan",
+	"vector-action-undelete": "Dulaon ang pagpanas",
+	"vector-action-unprotect": "Ilisan ang pagpangapin",
+	"vector-view-create": "Himuon",
+	"vector-view-edit": "Ilisan",
+	"vector-view-history": "Lantawon ang kasaysayan",
+	"vector-view-view": "Magbasa",
+	"vector-view-viewsource": "Lantawon ang ginhalinan"
+}

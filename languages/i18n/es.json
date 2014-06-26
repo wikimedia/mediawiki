@@ -884,6 +884,7 @@
 	"mergehistory-empty": "No hay revisiones fusionables.",
 	"mergehistory-success": "$3 {{PLURAL:$3|revisión|revisiones}} de [[:$1]] fusionadas de forma exitosa en [[:$2]].",
 	"mergehistory-fail": "No se puede realizar la fusión de historiales, por favor revisa la página y los parámetros de tiempo.",
+	"mergehistory-fail-toobig": "No se puede fusionar el historial ya que más del límite de $1 {{PLURAL:$1|revisión|revisiones}} se moverían.",
 	"mergehistory-no-source": "La página origen $1 no existe.",
 	"mergehistory-no-destination": "La página destino $1 no existe.",
 	"mergehistory-invalid-source": "La página origen debe tener un título válido.",

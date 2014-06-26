@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Assele",
+			"Haqmar"
+		]
+	},
+	"skinname-vector": "Векторлы",
+	"vector-desc": "\"Векторлы\" күренешенең ҡулланыусы интерфейсында яҡшыртыуҙар.",
+	"vector-action-addsection": "Тема өҫтәргә",
+	"vector-action-delete": "Юйырға",
+	"vector-action-move": "Исемен үҙгәртергә",
+	"vector-action-protect": "Һаҡларға",
+	"vector-action-undelete": "Тергеҙергә",
+	"vector-action-unprotect": "Һаҡлауҙы үҙгәртергә",
+	"vector-view-create": "Яһау",
+	"vector-view-edit": "Үҙгәртергә",
+	"vector-view-history": "Тарихты ҡарау",
+	"vector-view-view": "Уҡыу",
+	"vector-view-viewsource": "Сығанаҡты ҡарарға"
+}

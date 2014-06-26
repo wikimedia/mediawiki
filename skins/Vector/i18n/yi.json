@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joystick",
+			"פוילישער"
+		]
+	},
+	"skinname-vector": "וועקטאר",
+	"vector-desc": "פֿאַרבעסערט דעם באניצער אויבערפֿלאַך ווען מען ניצט די וועקטאר ווײַזונג.",
+	"vector.css": "/* CSS געשטעלט דא ווירקט נאר אויפן וועקטאר סקין */",
+	"vector-action-addsection": "צושטעלן טעמע",
+	"vector-action-delete": "אויסמעקן",
+	"vector-action-move": "באַוועגן",
+	"vector-action-protect": "שיצן",
+	"vector-action-undelete": "מבטל זיין אויסמעקן",
+	"vector-action-unprotect": "ענדערונג באַשיצונג",
+	"vector-view-create": "שאַפֿן",
+	"vector-view-edit": "רעדאַקטירן",
+	"vector-view-history": "ווײַזן היסטאָריע",
+	"vector-view-view": "לייענען",
+	"vector-view-viewsource": "ווײַזן מקור",
+	"vector-more-actions": "נאך"
+}

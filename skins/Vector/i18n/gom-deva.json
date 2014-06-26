@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Darshan kandolkar",
+			"Pooja tople",
+			"Sanket.prabhu26",
+			"Supriya kankumbikar"
+		]
+	},
+	"vector-action-addsection": "माथाळो दियात",
+	"vector-action-delete": "काडून उडयात",
+	"vector-action-move": "दुसरेकडे व्हरात",
+	"vector-action-protect": "राख",
+	"vector-view-create": "निर्माण कर",
+	"vector-view-edit": "बदल",
+	"vector-view-history": "इतिहास पळेयात",
+	"vector-view-view": "वाचचें",
+	"vector-view-viewsource": "उगम पळेयात"
+}

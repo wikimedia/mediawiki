@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño",
+			"Xosé"
+		]
+	},
+	"skinname-monobook": "MonoBook",
+	"monobook.css": "/* O CSS que se coloque aquí afectará a quen use a aparencia Monobook */",
+	"monobook.js": "/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia MonoBook */"
+}

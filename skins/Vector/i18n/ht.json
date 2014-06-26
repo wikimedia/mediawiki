@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Boukman",
+			"Internoob",
+			"Masterches"
+		]
+	},
+	"vector-action-addsection": "Ajoute yon sijè",
+	"vector-action-delete": "Efase",
+	"vector-action-move": "Chanje non",
+	"vector-action-protect": "Pwoteje",
+	"vector-action-undelete": "Retabli",
+	"vector-action-unprotect": "Pa pwoteje",
+	"vector-view-create": "Kreye",
+	"vector-view-edit": "Modifye",
+	"vector-view-history": "Gade istorik",
+	"vector-view-view": "Li",
+	"vector-view-viewsource": "Wè kòd tèks sa a"
+}

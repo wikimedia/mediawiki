@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aftab1995",
+			"Bellayet",
+			"Leemon2010",
+			"Nasir8891",
+			"Tauhid16",
+			"Wikitanvir"
+		]
+	},
+	"skinname-vector": "ভেক্টর",
+	"vector-desc": "ভেক্টর স্কিনের ইন্টারফেস উপাদানের উন্নতি সাধন",
+	"vector-action-addsection": "বিষয় যোগ",
+	"vector-action-delete": "অপসারণ",
+	"vector-action-move": "স্থানান্তর",
+	"vector-action-protect": "সুরক্ষা",
+	"vector-action-undelete": "পুনরুদ্ধার",
+	"vector-action-unprotect": "সুরক্ষা পরিবর্তন",
+	"vector-view-create": "তৈরি",
+	"vector-view-edit": "সম্পাদনা",
+	"vector-view-history": "ইতিহাস",
+	"vector-view-view": "পড়ুন",
+	"vector-view-viewsource": "উৎস দেখুন",
+	"vector-more-actions": "আরও"
+}

@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Als-Holder"
+		]
+	},
+	"vector-desc": "Verbesserige an dr Elemänt vu dr Benutzeroberflechi bim Vector-skin",
+	"vector-action-addsection": "Abschnitt zuefiege",
+	"vector-action-delete": "Lesche",
+	"vector-action-move": "Verschiebe",
+	"vector-action-protect": "Schitze",
+	"vector-action-undelete": "Widerhärstelle",
+	"vector-action-unprotect": "Syteschutz ändere",
+	"vector-view-create": "Aalege",
+	"vector-view-edit": "Bearbeite",
+	"vector-view-history": "Versionsgschicht",
+	"vector-view-view": "Läse",
+	"vector-view-viewsource": "Quälltext aaluege"
+}

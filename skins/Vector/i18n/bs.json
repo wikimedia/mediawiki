@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"CERminator",
+			"DzWiki",
+			"KWiki"
+		]
+	},
+	"vector-desc": "Poboljšava elemente korisničkog interfejsa u koži Vector.",
+	"vector-action-addsection": "Dodaj temu",
+	"vector-action-delete": "Izbriši",
+	"vector-action-move": "Preusmjeri",
+	"vector-action-protect": "Zaštiti",
+	"vector-action-undelete": "Vrati obrisano",
+	"vector-action-unprotect": "Promijeni zaštitu",
+	"vector-view-create": "Napravi",
+	"vector-view-edit": "Uredi",
+	"vector-view-history": "Pregled historije",
+	"vector-view-view": "Čitanje",
+	"vector-view-viewsource": "Pogledaj izvor"
+}

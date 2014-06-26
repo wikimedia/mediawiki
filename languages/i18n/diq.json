@@ -846,7 +846,6 @@
 	"searchall": "pêro",
 	"showingresults": "#<strong>$2</strong> netican ra {{PLURAL:$1|<strong>1</strong> netice cêr dero|<strong>$1</strong> neticey cêr derê}}.",
 	"showingresultsinrange": "{{PLURAL:$1|<strong>1</strong> netice|<strong>$1</strong> neticey}} be mabeynê #<strong>$2</strong> ra be #<strong>$3</strong> cêr asenê.",
-	"showingresultsnum": "#<strong>$2</strong> netican ra {{PLURAL:$3|<strong>1</strong> netice cêr dero|<strong>$3</strong> neticey cêr derê}}.",
 	"showingresultsheader": "{{PLURAL:$5|Neticeyê '''$1''' of '''$3'''|Neticeyanê '''$1 - $2''' hetê '''$3'''}} qe '''$4'''",
 	"search-nonefound": "Zey perskerdışê şıma netice nêvêniya.",
 	"powersearch-legend": "Cıgeyrayışo hera",

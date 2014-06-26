@@ -814,7 +814,6 @@
 	"searchrelated": "kagandhèng",
 	"searchall": "kabèh",
 	"showingresults": "Ing ngisor iki dituduhaké {{PLURAL:$1|'''1''' kasil|'''$1''' kasil}}, wiwitané saking #<strong>$2</strong>.",
-	"showingresultsnum": "Ing ngisor iki dituduhaké {{PLURAL:$3|'''1''' kasil|'''$3''' kasil}}, wiwitané saka #<strong>$2</strong>.",
 	"showingresultsheader": "{{PLURAL:$5|Asil '''$1''' saka '''$3'''|Asil '''$1 - $2''' saka '''$3'''}} kanggo '''$4'''",
 	"search-nonefound": "Ora ana kasil sing cocog karo pitakonan (''query'').",
 	"powersearch-legend": "Panggolèkan sabanjuré (''advance search'')",

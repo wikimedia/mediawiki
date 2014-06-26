@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"ChrisPtDe"
+		]
+	},
+	"skinname-vector": "Vèctor",
+	"vector-desc": "Mèlyoracions des èlèments de l’entèrface usanciér de l’habelyâjo « Vèctor ».",
+	"vector.css": "/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Vèctor ». */",
+	"vector.js": "/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Vèctor ». */",
+	"vector-action-addsection": "Apondre na chousa",
+	"vector-action-delete": "Suprimar",
+	"vector-action-move": "Dèplaciér",
+	"vector-action-protect": "Protègiér",
+	"vector-action-undelete": "Refâre",
+	"vector-action-unprotect": "Changiér la protèccion",
+	"vector-view-create": "Fâre",
+	"vector-view-edit": "Changiér",
+	"vector-view-history": "Vêre l’historico",
+	"vector-view-view": "Liére",
+	"vector-view-viewsource": "Vêre lo tèxto sôrsa"
+}

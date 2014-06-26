@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bresta"
+		]
+	},
+	"monobook.css": "/* CSS i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Monobook */",
+	"monobook.js": "/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen MonoBook */"
+}

@@ -760,7 +760,6 @@
 	"searchrelated": "sumegliant",
 	"searchall": "tuts",
 	"showingresults": "Sutvart èn enfin {{PLURAL:$1|'''in''' resultat|'''$1''' resultats}} cumenzond cun il numer '''$2'''.",
-	"showingresultsnum": "Qua èn {{PLURAL:$3|'''1''' resultat|'''$3''' resultats}}, cumenzond cun il number '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Resultat '''$1''' da '''$3'''|Resultats '''$1-$2''' da '''$3'''}} per '''$4'''",
 	"search-nonefound": "Per il term tschertgà èn nagins resultats vegnids chattads.",
 	"powersearch-legend": "Tschertga extendida",

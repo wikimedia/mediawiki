@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sasan700",
+			"Умар"
+		]
+	},
+	"skinname-vector": "Векторан",
+	"vector-action-addsection": "ТӀетоха хьедар",
+	"vector-action-delete": "ДӀаяккха",
+	"vector-action-move": "ЦӀе хийца",
+	"vector-action-protect": "Гlаролла дé",
+	"vector-action-undelete": "Меттахlоттадé",
+	"vector-action-unprotect": "ГӀароллех къаста",
+	"vector-view-create": "Кхоллар",
+	"vector-view-edit": "Нисъе",
+	"vector-view-history": "АгӀона хийцамаш",
+	"vector-view-view": "Éшар",
+	"vector-view-viewsource": "Билглонашка хьажа",
+	"vector-more-actions": "Кхин"
+}

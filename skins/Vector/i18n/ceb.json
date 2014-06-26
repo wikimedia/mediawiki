@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jordz"
+		]
+	},
+	"vector-action-addsection": "Pagdugang og topiko",
+	"vector-action-delete": "Papasa",
+	"vector-action-move": "Ibalhin",
+	"vector-action-protect": "Protektahi",
+	"vector-action-undelete": "Ayaw papasa",
+	"vector-action-unprotect": "Ayaw protektahi",
+	"vector-view-create": "Himoa",
+	"vector-view-edit": "Usba",
+	"vector-view-history": "Tan-awa ang kaagi",
+	"vector-view-view": "Basaha",
+	"vector-view-viewsource": "Tan-awa ang ginikanan"
+}

@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Filipinayzd",
+			"Geopoet"
+		]
+	},
+	"vector-action-addsection": "Idagdag an topic",
+	"vector-action-delete": "puráon",
+	"vector-action-move": "Ibalyó",
+	"vector-action-protect": "Protektaran",
+	"vector-action-undelete": "Bawion sa pagkapara",
+	"vector-action-unprotect": "Ribayan an proteksyon",
+	"vector-view-create": "Magmukna",
+	"vector-view-edit": "Liwatón",
+	"vector-view-history": "Tanawon sa historiya",
+	"vector-view-view": "Basáha",
+	"vector-view-viewsource": "Hilingón an ginikánan"
+}

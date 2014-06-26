@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ignatus",
+			"JenVan",
+			"Kaganer",
+			"Nemo bis",
+			"Okras",
+			"Александр Сигачёв"
+		]
+	},
+	"skinname-vector": "Векторное",
+	"vector-desc": "Улучшает пользовательский интерфейс для темы оформления «Векторное»",
+	"vector.css": "/* Размещённый здесь CSS будет применяться к векторной теме оформления  */",
+	"vector.js": "/* Размещённый здесь код JavaScript будет загружаться пользователям, использующим тему оформления Vector */",
+	"vector-action-addsection": "Добавить тему",
+	"vector-action-delete": "Удалить",
+	"vector-action-move": "Переименовать",
+	"vector-action-protect": "Защитить",
+	"vector-action-undelete": "Восстановить",
+	"vector-action-unprotect": "Изменить защиту",
+	"vector-view-create": "Создание",
+	"vector-view-edit": "Править",
+	"vector-view-history": "История",
+	"vector-view-view": "Читать",
+	"vector-view-viewsource": "Просмотр разметки",
+	"vector-more-actions": "Ещё"
+}

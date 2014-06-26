@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Numulunj pilgae"
+		]
+	},
+	"vector-action-addsection": "Поладомс мезень колга корхтамс",
+	"vector-action-delete": "Нардамс",
+	"vector-action-move": "Шашфтомс",
+	"vector-action-protect": "Араламс",
+	"vector-action-undelete": "Мърдафтомс",
+	"vector-action-unprotect": "Араламать полафтомс",
+	"vector-view-create": "Тиемс",
+	"vector-view-edit": "Петнемс",
+	"vector-view-history": "История няфтемс",
+	"vector-view-view": "Морафтомс",
+	"vector-view-viewsource": "Лисьма няфтемс"
+}

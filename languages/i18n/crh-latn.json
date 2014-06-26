@@ -577,7 +577,6 @@
 	"searchrelated": "bağlı",
 	"searchall": "episi",
 	"showingresults": "Aşağıda №&nbsp;<strong>$2</strong>den başlap {{PLURAL:$1|'''1''' netice|'''$1''' netice}} buluna.",
-	"showingresultsnum": "Aşağıda №&nbsp;'''$2'''den başlap {{PLURAL:$3|'''1''' netice|'''$3''' netice}} buluna.",
 	"search-nonefound": "Soratmanen eşleşken bir netice yoq.",
 	"powersearch-legend": "Tafsilâtlı qıdıruv",
 	"powersearch-ns": "Bu isim fezalarında qıdır:",

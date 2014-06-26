@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ex13",
+			"Tivek"
+		]
+	},
+	"vector-desc": "Poboljšava elemente korisničkog sučelja stila Vector.",
+	"vector-action-addsection": "Dodaj temu",
+	"vector-action-delete": "Izbriši",
+	"vector-action-move": "Premjesti",
+	"vector-action-protect": "Zaštiti",
+	"vector-action-undelete": "Vrati",
+	"vector-action-unprotect": "Promijeni zaštitu",
+	"vector-view-create": "Započni",
+	"vector-view-edit": "Uredi",
+	"vector-view-history": "Vidi stare izmjene",
+	"vector-view-view": "Čitaj",
+	"vector-view-viewsource": "Vidi izvor"
+}

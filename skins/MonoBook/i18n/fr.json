@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gomoko",
+			"Verdy p"
+		]
+	},
+	"skinname-monobook": "Monobook",
+	"monobook-desc": "L’habillage classique de MédiaWiki depuis 2004, nommé d’après la photo en noir et blanc d’un livre dans l’arrière-plan de la page",
+	"monobook.css": "/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook. */",
+	"monobook.js": "/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage MonoBook uniquement. */"
+}

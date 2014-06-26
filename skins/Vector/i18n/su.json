@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kandar"
+		]
+	},
+	"vector-action-addsection": "Jieun jejer anyar",
+	"vector-action-delete": "Hapus",
+	"vector-action-move": "Pindahkeun",
+	"vector-action-protect": "Konci",
+	"vector-action-undelete": "Bolaykeun ngahapus",
+	"vector-action-unprotect": "Robah protéksi",
+	"vector-view-create": "Jieun",
+	"vector-view-edit": "Édit",
+	"vector-view-history": "Témbongkeun jujutan",
+	"vector-view-view": "Baca",
+	"vector-view-viewsource": "Témbongkeun sumber"
+}

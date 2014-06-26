@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kghbln",
+			"Metalhead64",
+			"The Evil IP address",
+			"Umherirrender"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-desc": "Ermöglicht zusätzliche Verbesserungen der Benutzeroberfläche „Vector“",
+	"vector.css": "/* Das folgende CSS wird für Benutzer der Vector-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */",
+	"vector.js": "/* Das folgende JavaScript wird für Benutzer der Vector-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */",
+	"vector-action-addsection": "Abschnitt hinzufügen",
+	"vector-action-delete": "Löschen",
+	"vector-action-move": "Verschieben",
+	"vector-action-protect": "Schützen",
+	"vector-action-undelete": "Wiederherstellen",
+	"vector-action-unprotect": "Seitenschutz ändern",
+	"vector-view-create": "Erstellen",
+	"vector-view-edit": "Bearbeiten",
+	"vector-view-history": "Versionsgeschichte",
+	"vector-view-view": "Lesen",
+	"vector-view-viewsource": "Quelltext anzeigen",
+	"vector-more-actions": "Mehr"
+}

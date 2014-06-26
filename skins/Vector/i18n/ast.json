@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Esbardu",
+			"Xuacu"
+		]
+	},
+	"vector-desc": "Ameyora la interfaz d'usuariu al usar l'aspeutu Vector.",
+	"vector.css": "/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Vector */",
+	"vector.js": "/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Vector */",
+	"vector-action-addsection": "Amestar seición",
+	"vector-action-delete": "Desaniciar",
+	"vector-action-move": "Treslladar",
+	"vector-action-protect": "Protexer",
+	"vector-action-undelete": "Restaurar",
+	"vector-action-unprotect": "Camudar la proteición",
+	"vector-view-create": "Crear",
+	"vector-view-edit": "Editar",
+	"vector-view-history": "Ver historial",
+	"vector-view-view": "Lleer",
+	"vector-view-viewsource": "Ver fonte"
+}

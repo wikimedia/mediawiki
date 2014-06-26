@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"StefanusRA"
+		]
+	},
+	"vector-action-addsection": "Nambah topik",
+	"vector-action-delete": "Busek",
+	"vector-action-move": "Pindah",
+	"vector-action-protect": "Reksa",
+	"vector-action-undelete": "Batalna pambusakan",
+	"vector-action-unprotect": "Owahi pangreksan",
+	"vector-view-create": "Gawe",
+	"vector-view-edit": "Sunting",
+	"vector-view-history": "Sajarah kaca",
+	"vector-view-view": "Waca",
+	"vector-view-viewsource": "Deleng sumbere"
+}

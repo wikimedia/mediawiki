@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anakmalaysia",
+			"Aurora",
+			"Pizza1016"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-desc": "Meningkatkan antara muka pengguna ketika menggunakan kulit Vector",
+	"vector.css": "/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Vector */",
+	"vector-action-addsection": "Buka topik",
+	"vector-action-delete": "Hapus",
+	"vector-action-move": "Pindah",
+	"vector-action-protect": "Lindung",
+	"vector-action-undelete": "Nyahhapus",
+	"vector-action-unprotect": "Ubah perlindungan",
+	"vector-view-create": "Cipta",
+	"vector-view-edit": "Sunting",
+	"vector-view-history": "Lihat sejarah",
+	"vector-view-view": "Baca",
+	"vector-view-viewsource": "Lihat sumber"
+}

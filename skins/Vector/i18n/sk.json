@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Helix84",
+			"Rudko",
+			"Sudo77(new)"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-desc": "Vylepšuje prvky používateľského rozhrania témy vzhľady Vector",
+	"vector.css": "/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Vector */",
+	"vector.js": "/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Vector */",
+	"vector-action-addsection": "Pridať tému",
+	"vector-action-delete": "Zmazať",
+	"vector-action-move": "Presunúť",
+	"vector-action-protect": "Zamknúť",
+	"vector-action-undelete": "Obnoviť",
+	"vector-action-unprotect": "Zmeniť stav ochrany",
+	"vector-view-create": "Vytvoriť",
+	"vector-view-edit": "Upraviť",
+	"vector-view-history": "Zobraziť históriu",
+	"vector-view-view": "Čítať",
+	"vector-view-viewsource": "Zobraziť zdroj",
+	"vector-more-actions": "Viac"
+}

@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"EugeneZelenko",
+			"Red Winged Duck",
+			"Wizardist"
+		]
+	},
+	"skinname-vector": "Вэктар",
+	"vector-desc": "Паляпшае элемэнты інтэрфэйсу карыстальніка для афармленьня «Вэктар»",
+	"vector-action-addsection": "Дадаць тэму",
+	"vector-action-delete": "Выдаліць",
+	"vector-action-move": "Перанесьці",
+	"vector-action-protect": "Абараніць",
+	"vector-action-undelete": "Аднавіць",
+	"vector-action-unprotect": "Зьмяніць абарону",
+	"vector-view-create": "Стварыць",
+	"vector-view-edit": "Рэдагаваць",
+	"vector-view-history": "Паказаць гісторыю",
+	"vector-view-view": "Чытаць",
+	"vector-view-viewsource": "Паказаць крыніцу",
+	"vector-more-actions": "Болей"
+}

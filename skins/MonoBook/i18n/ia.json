@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"skinname-monobook": "MonoBook",
+	"monobook.css": "/* Le CSS placiate hic afficera le usatores del apparentia MonoBook */",
+	"monobook.js": "/* Omne JavaScript hic se executara pro le usatores del apparentia MonoBook */"
+}

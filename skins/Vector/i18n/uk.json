@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"AS",
+			"Ahonc",
+			"Base",
+			"Calak",
+			"Dim Grits",
+			"NickK",
+			"Prima klasy4na",
+			"Тест"
+		]
+	},
+	"skinname-vector": "Векторне",
+	"vector-desc": "Покращує інтерфейс користувача для оформлення «Вектор»",
+	"vector.css": "/* Розміщений тут CSS-код буде використаний в темі оформлення Векторне */",
+	"vector.js": "/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують векторну тему оформлення */",
+	"vector-action-addsection": "Додати тему",
+	"vector-action-delete": "Вилучити",
+	"vector-action-move": "Перейменувати",
+	"vector-action-protect": "Захистити",
+	"vector-action-undelete": "Відновити",
+	"vector-action-unprotect": "Зміна захисту",
+	"vector-view-create": "Створити",
+	"vector-view-edit": "Редагувати",
+	"vector-view-history": "Переглянути історію",
+	"vector-view-view": "Читати",
+	"vector-view-viewsource": "Переглянути код",
+	"vector-more-actions": "Більше"
+}

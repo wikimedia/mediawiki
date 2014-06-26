@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ggajendra",
+			"Umeshberma"
+		]
+	},
+	"skinname-vector": "सदिश",
+	"vector-action-addsection": "विचार-बिन्दु जोड़ू",
+	"vector-action-delete": "मेटाउ",
+	"vector-action-move": "घसकाउ",
+	"vector-action-protect": "रक्षण करू",
+	"vector-action-undelete": "आपस लाउ",
+	"vector-action-unprotect": "सुरक्षा बदलू",
+	"vector-view-create": "बनाउ",
+	"vector-view-edit": "सम्पादन करू",
+	"vector-view-history": "इतिहास देखू",
+	"vector-view-view": "पढ़ू",
+	"vector-view-viewsource": "जड़ि देखू"
+}

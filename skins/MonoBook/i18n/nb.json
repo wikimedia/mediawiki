@@ -1,0 +1,5 @@
+{
+	"skinname-monobook": "Monobook",
+	"monobook.css": "/* CSS i denne fila vil gjelde alle som bruker drakta Monobook */",
+	"monobook.js": "/* Javascript i denne fila vil gjelde for brukere av drakta Monobook */"
+}

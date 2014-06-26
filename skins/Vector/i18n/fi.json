@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Crt",
+			"Nedergard",
+			"Nike",
+			"Pxos"
+		]
+	},
+	"vector-desc": "Parantaa käyttöliittymää Vector-ulkoasua käytettäessä.",
+	"vector.css": "/* Tämä sivu sisältää Vector-ulkoasua muuttavia tyylejä. */",
+	"vector.js": "/* Tämän sivun JavaScript-koodi liitetään Vector-tyyliin */",
+	"vector-action-addsection": "Lisää aihe",
+	"vector-action-delete": "Poista",
+	"vector-action-move": "Siirrä",
+	"vector-action-protect": "Suojaa",
+	"vector-action-undelete": "Palauta",
+	"vector-action-unprotect": "Muuta suojausta",
+	"vector-view-create": "Luo",
+	"vector-view-edit": "Muokkaa",
+	"vector-view-history": "Näytä historia",
+	"vector-view-view": "Lue",
+	"vector-view-viewsource": "Näytä lähdekoodi",
+	"vector-more-actions": "Muut"
+}

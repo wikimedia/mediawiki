@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"vector-desc": "Verbessert am Benotzer-Interface Elementer wann d'Ausgesinn ''Vector'' benotzt gëtt.",
+	"vector-action-addsection": "Sujet derbäisetzen",
+	"vector-action-delete": "Läschen",
+	"vector-action-move": "Réckelen",
+	"vector-action-protect": "Spären",
+	"vector-action-undelete": "Restauréieren",
+	"vector-action-unprotect": "Spär änneren",
+	"vector-view-create": "Uleeën",
+	"vector-view-edit": "Änneren",
+	"vector-view-history": "Versioune weisen",
+	"vector-view-view": "Liesen",
+	"vector-view-viewsource": "Quellcode weisen",
+	"vector-more-actions": "Méi"
+}

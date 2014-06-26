@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Arifin.wijaya",
+			"Bennylin",
+			"Farras",
+			"Iwan Novirion",
+			"Rex"
+		]
+	},
+	"skinname-vector": "Vektor",
+	"vector-desc": "Meningkatkan antarmuka pengguna dengan menggunakan kulit vektor",
+	"vector.css": "/* CSS nan ado di siko diterapkan pado kulik Vektor. */",
+	"vector.js": "/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Vector */",
+	"vector-action-addsection": "Bagian baru",
+	"vector-action-delete": "Hapus",
+	"vector-action-move": "Pindahkan",
+	"vector-action-protect": "Lindungi",
+	"vector-action-undelete": "Pembatalan penghapusan",
+	"vector-action-unprotect": "Ubah perlindungan",
+	"vector-view-create": "Buat",
+	"vector-view-edit": "Sunting",
+	"vector-view-history": "Versi terdahulu",
+	"vector-view-view": "Baca",
+	"vector-view-viewsource": "Lihat sumber",
+	"vector-more-actions": "Lainnya"
+}

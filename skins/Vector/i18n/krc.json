@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iltever",
+			"Къарачайлы"
+		]
+	},
+	"skinname-vector": "Вектор",
+	"vector-desc": "«Вектор» темагъа къошулуучу интерфейсни игилендириулери",
+	"vector-action-addsection": "Джангы тема къош",
+	"vector-action-delete": "Кетер",
+	"vector-action-move": "Атын ауушдур",
+	"vector-action-protect": "Джакъла",
+	"vector-action-undelete": "Къайтар",
+	"vector-action-unprotect": "Джакълауну тюрлендир",
+	"vector-view-create": "Къура",
+	"vector-view-edit": "Тюрлендир",
+	"vector-view-history": "Тарихи",
+	"vector-view-view": "Окъу",
+	"vector-view-viewsource": "Кодха къара",
+	"vector-more-actions": "Энтда"
+}

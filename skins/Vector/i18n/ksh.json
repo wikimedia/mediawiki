@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Purodha"
+		]
+	},
+	"skinname-vector": "Vektor",
+	"vector-desc": "Verbäßert de Schnettschtäll för der Minsch met dä Vektor Bovverfläsch.",
+	"vector.css": "/* CSS heh aan dä Stell wirrek nur op de Ovverflääsch „Vector“ */",
+	"vector.js": "/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch \"Vector\" jescheck */",
+	"vector-action-addsection": "Ne neue Afschnet onge draan!",
+	"vector-action-delete": "Fottschmiiße!",
+	"vector-action-move": "Ömnänne!",
+	"vector-action-protect": "Schöze!",
+	"vector-action-undelete": "Zerökholle!",
+	"vector-action-unprotect": "Schoz ändere!",
+	"vector-view-create": "Neu Schriive!",
+	"vector-view-edit": "Ändere!",
+	"vector-view-history": "Versione zeije!",
+	"vector-view-view": "Lesse!",
+	"vector-view-viewsource": "Wikitex aanlooere!"
+}

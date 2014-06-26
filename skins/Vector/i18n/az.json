@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"AZISS",
+			"Arystanbek",
+			"Gulmammad",
+			"Sortilegus",
+			"Vago",
+			"Vugar 1981",
+			"Wertuose"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector.css": "/* Burada yerləşən CSS Vector istifadəçilərinə tətbiq olunur */",
+	"vector.js": "/* Burada Vector skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */",
+	"vector-action-addsection": "Mövzu əlavə et",
+	"vector-action-delete": "Sil",
+	"vector-action-move": "Adını dəyişdir",
+	"vector-action-protect": "Mühafizə et",
+	"vector-action-undelete": "Bərpa et",
+	"vector-action-unprotect": "Mühafizəni kənarlaşdır",
+	"vector-view-create": "Yarat",
+	"vector-view-edit": "Redaktə",
+	"vector-view-history": "Tarixçəyə bax",
+	"vector-view-view": "Oxu",
+	"vector-view-viewsource": "Mənbəyə bax",
+	"vector-more-actions": "Daha"
+}

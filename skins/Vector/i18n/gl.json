@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Elisardojm",
+			"Toliño",
+			"Vivaelcelta"
+		]
+	},
+	"vector-desc": "Mellora a interface de usuario ao usar a aparencia Vector",
+	"vector.css": "/* O CSS que se coloque aquí afectará a quen use a aparencia Vector */",
+	"vector.js": "/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Vector */",
+	"vector-action-addsection": "Nova sección",
+	"vector-action-delete": "Borrar",
+	"vector-action-move": "Mover",
+	"vector-action-protect": "Protexer",
+	"vector-action-undelete": "Restaurar",
+	"vector-action-unprotect": "Cambiar a protección",
+	"vector-view-create": "Crear",
+	"vector-view-edit": "Editar",
+	"vector-view-history": "Ver o historial",
+	"vector-view-view": "Ler",
+	"vector-view-viewsource": "Ver o código fonte",
+	"vector-more-actions": "Máis"
+}

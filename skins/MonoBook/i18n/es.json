@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sanbec",
+			"Vivaelcelta"
+		]
+	},
+	"skinname-monobook": "MonoBook",
+	"monobook.css": "/* El CSS colocado en esta página afectará a los usuarios que usen la apariencia \"MonoBook\" */",
+	"monobook.js": "/* El código JavaScript que se ponga aquí será cargado por los usuarios de la apariencia MonoBook */"
+}

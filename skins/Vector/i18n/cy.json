@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lloffiwr"
+		]
+	},
+	"vector-desc": "Yn gwella ar y rhyngwyneb yn y wedd Vector.",
+	"vector-action-addsection": "Ychwanegu adran",
+	"vector-action-delete": "Dileu",
+	"vector-action-move": "Symud",
+	"vector-action-protect": "Diogelu",
+	"vector-action-undelete": "Adfer",
+	"vector-action-unprotect": "Newid y diogelwch",
+	"vector-view-create": "Dechrau",
+	"vector-view-edit": "Golygu",
+	"vector-view-history": "Gweld yr hanes",
+	"vector-view-view": "Darllen",
+	"vector-view-viewsource": "Dangos côd y dudalen"
+}

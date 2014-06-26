@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"AdiJapan",
+			"Danutz",
+			"Firilacroco",
+			"Minisarm",
+			"Strainu"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-desc": "Îmbunătățiri ale interfeței când se utilizează interfața Vector.",
+	"vector.css": "/* CSS plasate aici vor afecta utilizatorii stilului Vector */",
+	"vector-action-addsection": "Mesaj nou",
+	"vector-action-delete": "Ștergere",
+	"vector-action-move": "Redenumire",
+	"vector-action-protect": "Protejare",
+	"vector-action-undelete": "Recuperare",
+	"vector-action-unprotect": "Modificare protecție",
+	"vector-view-create": "Creare",
+	"vector-view-edit": "Modificare",
+	"vector-view-history": "Istoric",
+	"vector-view-view": "Lectură",
+	"vector-view-viewsource": "Sursă pagină",
+	"vector-more-actions": "Mai mult"
+}

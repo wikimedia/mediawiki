@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sp5uhe"
+		]
+	},
+	"skinname-monobook": "Książka",
+	"monobook.css": "/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Książka */",
+	"monobook.js": "/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Książka */"
+}

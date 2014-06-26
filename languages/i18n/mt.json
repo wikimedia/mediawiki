@@ -756,7 +756,6 @@
 	"searchrelated": "relatati",
 	"searchall": "kollha",
 	"showingresults": "Hawn taħt ġie inkluż massimu ta' {{PLURAL:$1|riżultat '''1''' li jibda|'''$1''' riżultat li jibdew}} bin-numru '''$2'''.",
-	"showingresultsnum": "Hawn taħt {{PLURAL:$3|jinsab riżultat '''1''' li jibda|jinsabu '''$3''' riżultati li jibdew}} bin-numru '''$2'''.",
 	"showingresultsheader": "{{PLURAL:$5|Riżultat '''$1''' minn '''$3'''|Riżultati '''$1 - $2''' minn '''$3'''}} għal '''$4'''",
 	"search-nonefound": "It-tfittxija ma tat l-ebda riżultat.",
 	"powersearch-legend": "Tfittxija avvanzata",

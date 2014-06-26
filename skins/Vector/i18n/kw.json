@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kernoweger",
+			"Kw-Moon",
+			"Nrowe"
+		]
+	},
+	"vector-action-addsection": "Keworra testen",
+	"vector-action-delete": "Dilea",
+	"vector-action-move": "Gwaya",
+	"vector-action-protect": "Difres",
+	"vector-action-undelete": "Disdhilea",
+	"vector-action-unprotect": "Chanjya difresans",
+	"vector-view-create": "Gwruthyl",
+	"vector-view-edit": "Chanjya",
+	"vector-view-history": "Gweles an istori",
+	"vector-view-view": "Redya",
+	"vector-view-viewsource": "Gweles an bennfenten"
+}

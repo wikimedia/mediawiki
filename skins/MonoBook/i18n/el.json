@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dead3y3"
+		]
+	},
+	"monobook.css": "/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Monobook skin */",
+	"monobook.js": "/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το MonoBook skin */"
+}

@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Martinwiss",
+			"Najami",
+			"Skalman",
+			"WikiPhoenix"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-desc": "Förbättrar användargränssnittet när man använder Vector-utseendet",
+	"vector.css": "/* CSS som skrivs här kommer att påverka alla användare av skalet Vector */",
+	"vector.js": "/* JavaScript här kommer att laddas för dem som använder skalet Vector */",
+	"vector-action-addsection": "Nytt ämne",
+	"vector-action-delete": "Radera",
+	"vector-action-move": "Flytta",
+	"vector-action-protect": "Skrivskydda",
+	"vector-action-undelete": "Återställ",
+	"vector-action-unprotect": "Ändra skydd",
+	"vector-view-create": "Skapa",
+	"vector-view-edit": "Redigera",
+	"vector-view-history": "Visa historik",
+	"vector-view-view": "Visa",
+	"vector-view-viewsource": "Visa källa",
+	"vector-more-actions": "Mer"
+}

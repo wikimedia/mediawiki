@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Garas"
+		]
+	},
+	"skinname-monobook": "MonoBook",
+	"monobook.css": "/* Čia įdėtas CSS bus rodomas Monobook išvaizdos naudotojams */",
+	"monobook.js": "/* Šis JavaScript bus įkeltas tik „MonoBook“ išvaizdos naudotojams. */"
+}

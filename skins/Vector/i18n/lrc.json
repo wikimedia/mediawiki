@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mogoeilor"
+		]
+	},
+	"vector-action-addsection": "موضوع اضاف بكيد",
+	"vector-action-delete": "حذف بكيد",
+	"vector-action-move": "جاوه جا بوئيت",
+	"vector-action-protect": "حمايت بكيد",
+	"vector-action-undelete": "حذف نبيئني",
+	"vector-action-unprotect": "حمايت آلشت بكيد",
+	"vector-view-create": "راس كردن",
+	"vector-view-edit": "ويرايشت",
+	"vector-view-history": "ديئن ويرگار",
+	"vector-view-view": "حنن",
+	"vector-view-viewsource": "سرچشمه نه بوينيت"
+}

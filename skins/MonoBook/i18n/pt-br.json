@@ -1,0 +1,5 @@
+{
+	"skinname-monobook": "MonoBook",
+	"monobook.css": "/* o código CSS colocado aqui terá efeito nos usuários do tema Monobook */",
+	"monobook.js": "/* Qualquer JavaScript aqui colocado afetará os usuários do skin MonoBook */"
+}

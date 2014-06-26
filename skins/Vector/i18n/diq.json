@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Asmen",
+			"Calak",
+			"Erdemaslancan",
+			"Mirzali"
+		]
+	},
+	"skinname-vector": "Vektor",
+	"vector-desc": "Yeweniya asayışa vektori da rıasayışe karberi keno weş.",
+	"vector-action-addsection": "Mewzu vıraze",
+	"vector-action-delete": "Bestere",
+	"vector-action-move": "Bere",
+	"vector-action-protect": "Bışevekne",
+	"vector-action-undelete": "Esterıtışi peyser bıgê",
+	"vector-action-unprotect": "Starkerdışi bıvurne",
+	"vector-view-create": "Vıraze",
+	"vector-view-edit": "Bıvurne",
+	"vector-view-history": "Tarixê pele bıvêne",
+	"vector-view-view": "Bıwane",
+	"vector-view-viewsource": "Çımey bıvêne",
+	"vector-more-actions": "Zêde"
+}

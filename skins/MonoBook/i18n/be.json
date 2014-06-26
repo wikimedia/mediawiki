@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yury Tarasievich"
+		]
+	},
+	"skinname-monobook": "Манабук",
+	"monobook.css": "/* CSS, упісаны сюды, будзе дзейнічаць на браўзер кожнага чытача з актыўнай світай Monobook */",
+	"monobook.js": "/* Any JavaScript here will be loaded for users using the MonoBook skin */"
+}

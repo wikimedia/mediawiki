@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Daniel Harahap",
+			"WBT003Bugari",
+			"WBT006Hendra",
+			"WBT009Anju"
+		]
+	},
+	"vector-action-addsection": "Bagian na imbaru",
+	"vector-action-delete": "Sesa",
+	"vector-action-move": "Pahusor",
+	"vector-action-protect": "Ramoti",
+	"vector-action-undelete": "unang sesa",
+	"vector-action-unprotect": "Uba parlindungan",
+	"vector-view-create": "Tompa",
+	"vector-view-edit": "Paubah",
+	"vector-view-history": "Patudu andorang na",
+	"vector-view-view": "Jaha",
+	"vector-view-viewsource": "Ida haroanna"
+}

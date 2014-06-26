@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Armando-Martin",
+			"Crazymadlover",
+			"Dalton2",
+			"Fitoschido",
+			"Locos epraix",
+			"Manuelt15",
+			"MarcoAurelio",
+			"Miguel2706",
+			"Platonides",
+			"Vivaelcelta"
+		]
+	},
+	"skinname-vector": "Vector",
+	"vector-desc": "Mejora la interfaz de usuario cuando se utiliza Vector como aspecto",
+	"vector.css": "/* El CSS colocado en esta página afectará a los usuarios que usen la apariencia \"Vector\" */",
+	"vector.js": "/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la apariencia Vector */",
+	"vector-action-addsection": "Nueva sección",
+	"vector-action-delete": "Borrar",
+	"vector-action-move": "Trasladar",
+	"vector-action-protect": "Proteger",
+	"vector-action-undelete": "Restaurar",
+	"vector-action-unprotect": "Cambiar protección",
+	"vector-view-create": "Crear",
+	"vector-view-edit": "Editar",
+	"vector-view-history": "Ver historial",
+	"vector-view-view": "Leer",
+	"vector-view-viewsource": "Ver código",
+	"vector-more-actions": "Más"
+}

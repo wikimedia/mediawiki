@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Calak",
+			"Ebraminio",
+			"Huji",
+			"Reza1615",
+			"Zack90"
+		]
+	},
+	"skinname-vector": "برداری",
+	"vector-desc": "بهبود در عناصر رابط کاربری در زمان استفاده از پوستهٔ وکتور",
+	"vector-action-addsection": "افزودن بخش",
+	"vector-action-delete": "حذف",
+	"vector-action-move": "انتقال",
+	"vector-action-protect": "محافظت",
+	"vector-action-undelete": "احیا",
+	"vector-action-unprotect": "تغییر سطح حفاظت",
+	"vector-view-create": "ایجاد",
+	"vector-view-edit": "ویرایش",
+	"vector-view-history": "نمایش تاریخچه",
+	"vector-view-view": "خواندن",
+	"vector-view-viewsource": "نمایش مبدأ",
+	"vector-more-actions": "بیشتر"
+}

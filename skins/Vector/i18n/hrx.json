@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Paul Beppler"
+		]
+	},
+	"vector-action-addsection": "Abschnitt hinzufüche",
+	"vector-action-delete": "Lösche",
+	"vector-action-move": "Verschiebe",
+	"vector-action-protect": "Schütz",
+	"vector-action-undelete": "Wiederherstelle",
+	"vector-action-unprotect": "Seiteschutz ännre",
+	"vector-view-create": "Erstell",
+	"vector-view-edit": "Beoorbeite",
+	"vector-view-history": "Versionsgeschicht",
+	"vector-view-view": "Lese",
+	"vector-view-viewsource": "Quelltext oonzeiche"
+}

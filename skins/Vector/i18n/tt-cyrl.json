@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Don Alessandro",
+			"Rinatus",
+			"Ильнар",
+			"Рашат Якупов"
+		]
+	},
+	"skinname-vector": "Сызымлы",
+	"vector-action-addsection": "Яңа тема өстәү",
+	"vector-action-delete": "Бетерү",
+	"vector-action-move": "Күчерү",
+	"vector-action-protect": "Яклау",
+	"vector-action-undelete": "Кайтару",
+	"vector-action-unprotect": "Яклауны үзгәртү",
+	"vector-view-create": "Төзү",
+	"vector-view-edit": "Үзгәртү",
+	"vector-view-history": "Тарихын карау",
+	"vector-view-view": "Уку",
+	"vector-view-viewsource": "Чыганагын карау"
+}

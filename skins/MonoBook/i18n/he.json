@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rotemliss"
+		]
+	},
+	"skinname-monobook": "מונובוק",
+	"monobook.css": "/* הסגנונות הנכתבים כאן ישפיעו על העיצוב MonoBook בלבד */",
+	"monobook.js": "/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Monobook */"
+}

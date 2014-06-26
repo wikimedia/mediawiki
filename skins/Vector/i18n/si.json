@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Thushara",
+			"දසනැබළයෝ",
+			"පසිඳු කාවින්ද",
+			"සුරනිමල"
+		]
+	},
+	"vector-desc": "දෛශික පෘෂ්ඨයේ පරිශීලක අතුරු මුහුණත් මූලිකාංග මත දියුණු කරයි",
+	"vector-action-addsection": "මාතෘකාව එක්කරන්න",
+	"vector-action-delete": "මකන්න",
+	"vector-action-move": "ගෙනයන්න",
+	"vector-action-protect": "ආරක්‍ෂණය",
+	"vector-action-undelete": "මකාදැමීම අවලංගු කරන්න",
+	"vector-action-unprotect": "ආරක්ෂණ තත්වය වෙනස් කරන්න",
+	"vector-view-create": "තනන්න",
+	"vector-view-edit": "සංස්කරණය",
+	"vector-view-history": "ඉතිහාසය නරඹන්න",
+	"vector-view-view": "කියවන්න",
+	"vector-view-viewsource": "මූලාශ්‍රය නරඹන්න",
+	"vector-more-actions": "තවත්"
+}

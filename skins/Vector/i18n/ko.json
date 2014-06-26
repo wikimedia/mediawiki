@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"ITurtle",
+			"Kwj2772",
+			"아라"
+		]
+	},
+	"skinname-vector": "벡터",
+	"vector-desc": "벡터 스킨을 사용할 때 사용자 인터페이스를 향상합니다",
+	"vector.css": "/* 이 CSS 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */",
+	"vector.js": "/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */",
+	"vector-action-addsection": "새 주제",
+	"vector-action-delete": "삭제",
+	"vector-action-move": "옮기기",
+	"vector-action-protect": "보호",
+	"vector-action-undelete": "삭제 취소",
+	"vector-action-unprotect": "보호 설정 바꾸기",
+	"vector-view-create": "만들기",
+	"vector-view-edit": "편집",
+	"vector-view-history": "역사 보기",
+	"vector-view-view": "읽기",
+	"vector-view-viewsource": "원본 보기",
+	"vector-more-actions": "더 보기"
+}
