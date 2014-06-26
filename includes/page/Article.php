@@ -1209,12 +1209,10 @@ class Article implements Page {
 			$this->getContext()->getRequest()->response()->header( "HTTP/1.1 404 Not Found" );
 		}
 
-		if ( $validUserPage ) {
-			// Also apply the robot policy for nonexisting user pages (as those aren't served as 404)
-			$policy = $this->getRobotPolicy( 'view' );
-			$outputPage->setIndexPolicy( $policy['index'] );
-			$outputPage->setFollowPolicy( $policy['follow'] );
-		}
+		// Also apply the robot policy for nonexisting pages (even if a 404 was used for sanity)
+		$policy = $this->getRobotPolicy( 'view' );
+		$outputPage->setIndexPolicy( $policy['index'] );
+		$outputPage->setFollowPolicy( $policy['follow'] );
 
 		$hookResult = wfRunHooks( 'BeforeDisplayNoArticleText', array( $this ) );
 
