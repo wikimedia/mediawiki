@@ -5200,21 +5200,6 @@ $wgParserTestFiles = array(
 );
 
 /**
- * If configured, specifies target CodeReview installation to send test
- * result data from 'parserTests.php --upload'
- *
- * Something like this:
- * $wgParserTestRemote = array(
- *     'api-url' => 'https://www.mediawiki.org/w/api.php',
- *     'repo'    => 'MediaWiki',
- *     'suite'   => 'ParserTests',
- *     'path'    => '/trunk/phase3', // not used client-side; for reference
- *     'secret'  => 'qmoicj3mc4mcklmqw', // Shared secret used in HMAC validation
- * );
- */
-$wgParserTestRemote = false;
-
-/**
  * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
  */
 $wgEnableJavaScriptTest = false;
