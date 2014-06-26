@@ -322,14 +322,14 @@ class RedisBagOStuff extends BagOStuff {
 		$this->logRequest( 'incr', $key, $server, $result );
 		return $result;
 	}
-
 	/**
 	 * @param mixed $data
 	 * @return string
 	 */
 	protected function serialize( $data ) {
-		// Ignore digit strings and ints so INCR/DECR work
-		return ( is_int( $data ) || ctype_digit( $data ) ) ? $data : serialize( $data );
+		// Serialize anything but integers so INCR/DECR work
+		// Do not store integer-like strings as integers to avoid type confusion (bug 60563)
+		return is_int( $data ) ? $data : serialize( $data );
 	}
 
 	/**
@@ -337,8 +337,7 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return mixed
 	 */
 	protected function unserialize( $data ) {
-		// Ignore digit strings and ints so INCR/DECR work
-		return ( is_int( $data ) || ctype_digit( $data ) ) ? $data : unserialize( $data );
+		return ctype_digit( $data ) ? intval( $data ) : unserialize( $data );
 	}
 
 	/**
