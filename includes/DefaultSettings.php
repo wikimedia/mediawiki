@@ -3152,6 +3152,84 @@ $wgEnableCanonicalServerLink = false;
 $wgResourceModules = array();
 
 /**
+ * Allows one to add custom skin-defined styles to existing modules. It's only possible to override
+ * or add to the 'skinStyles' key, 'styles' is not modifiable.
+ *
+ * ResourceLoader loads the files from the 'styles' key and the 'skinStyles[$currentSkinName]' key,
+ * or 'skinStyles["default"]' if there are no 'skinStyles' for the current skin.
+ *
+ *
+ * (Note that the examples below, other than the final two, do not support $wgStyleDirectory nor
+ * $wgStylePath. You should define localBasePath and remoteBasePath for all overrides, as described
+ * at the bottom of this comment; this is not done in the examples for brevity.)
+ *
+ * For example, to define 'skinStyles' of skin 'foo' for module 'bar', do the following:
+ *
+ *   $wgResourceModules['bar'] = array(
+ *     'styles' => 'resources/bar/base-style.css',
+ *   );
+ *   $wgResourceModuleSkinStyles['foo'] = array(
+ *     'bar' => 'skins/Foo/bar-styles.css',
+ *   );
+ *
+ * This is mostly equivalent to:
+ *
+ *   $wgResourceModules['bar'] = array(
+ *     'styles' => 'resources/bar/base-style.css',
+ *     'skinStyles' => array(
+ *       'foo' => 'skins/Foo/bar-styles.css',
+ *     ),
+ *   );
+ *
+ *
+ * If the module defines 'skinStyles["default"]' and you want to add to them instead of overriding,
+ * do the following:
+ *
+ *   $wgResourceModules['bar'] = array(
+ *     'styles' => 'resources/bar/base-style.css',
+ *     'skinStyles' => array(
+ *       'default' => 'resources/bar/fancy-style.css',
+ *     ),
+ *   );
+ *   $wgResourceModuleSkinStyles['+foo'] = array(   // note the '+' character
+ *     'bar' => 'skins/Foo/bar-styles.css',
+ *   );
+ *
+ * This is mostly equivalent to:
+ *
+ *   $wgResourceModules['bar'] = array(
+ *     'styles' => 'resources/bar/base-style.css',
+ *     'skinStyles' => array(
+ *       'default' => 'resources/bar/fancy-style.css',
+ *       'foo' => array( 'resources/bar/style.css', 'skins/Foo/bar-styles.css' ),
+ *     ),
+ *   );
+ *
+ * In other words, if you want your module to provide non-overridable styles, use 'styles';
+ * if you want it to provide default styles that skins can override, use 'skinStyles["default"]'.
+ *
+ * You may also define the localBasePath and remoteBasePath (or remoteExtPath/remoteSkinPath),
+ * either for all modules modified for given skin (first example below) or for each module
+ * separately (second example). The defaults are the same as for regular modules, and are not
+ * influenced by the settings of the module being modified.
+ *
+ *   $wgResourceModuleSkinStyles['foo'] = array(
+ *     'bar' => 'bar-styles.css',
+ *     'remoteSkinPath' => 'Foo',
+ *     'localBasePath' => __DIR__,
+ *   );
+ *
+ *   $wgResourceModuleSkinStyles['foo'] = array(
+ *     'bar' => array(
+ *       'bar-styles.css',
+ *       'remoteSkinPath' => 'Foo',
+ *       'localBasePath' => __DIR__,
+ *     ),
+ *   );
+ */
+$wgResourceModuleSkinStyles = array();
+
+/**
  * Extensions should register foreign module sources here. 'local' is a
  * built-in source that is not in this array, but defined by
  * ResourceLoader::__construct() so that it cannot be unset.
