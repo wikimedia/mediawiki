@@ -142,7 +142,7 @@
 				return;
 			} catch ( e ) {}
 			try {
-				console.log( $.toJSON( data, null, 2 ) );
+				console.log( JSON.stringify( data, null, 2 ) );
 				return;
 			} catch ( e ) {}
 			mw.log( data );

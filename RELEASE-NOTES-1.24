@@ -83,6 +83,8 @@ production.
 * Skins can now use 'remoteSkinPath' when defining ResourceLoader modules.
   This works the same as 'remoteExtPath' but is relative to the skins/ folder
   instead of the extensions/ folder.
+* Added the json2.js polyfill for the ES5 JSON.stringify and JSON.parse methods.
+  Exposed as module "json" with a skip function to optimise loading.
 * Extensions and skins may now use 'namemsg' in $wgExtensionCredits in addition
   to 'name', to allow for the name to be localizable. 'name' should still be
   specified for backwards-compatibility and to define the path Special:Version
@@ -178,6 +180,7 @@ changes to languages because of Bugzilla reports.
 * Removed info(), purge(), revert() and rollback() from the Article class; they
   have since become subclasses of the Action class. (deprecated since 1.19)
 * SearchEngineReplacePrefixesComplete hook was removed.
+* The "jquery.json" module has been deprecated. Use the "json" module instead.
 * Removed HTMLForm::addJS(). (deprecated since 1.18)
 * Removed LogEventsList::showHeader(). (deprecated since 1.19)
 
