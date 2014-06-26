@@ -106,6 +106,10 @@ if ( $wgDeletedDirectory === false ) {
 	$wgDeletedDirectory = "{$wgUploadDirectory}/deleted";
 }
 
+if ( $wgGitInfoCacheDirectory === false && $wgCacheDirectory !== false ) {
+	$wgGitInfoCacheDirectory = "{$wgCacheDirectory}/gitinfo";
+}
+
 if ( isset( $wgFileStore['deleted']['directory'] ) ) {
 	$wgDeletedDirectory = $wgFileStore['deleted']['directory'];
 }
