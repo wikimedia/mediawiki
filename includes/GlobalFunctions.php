@@ -105,6 +105,19 @@ if ( !function_exists( 'gzdecode' ) ) {
 	}
 }
 
+// Work around for the incorrect naming of gzopen() function when
+// PHP is compiled as a 32-bit binary with large file support.
+// https://bugs.php.net/bug.php?id=53829
+if ( !function_exists( 'gzopen' ) && function_exists( 'gzopen64' ) ) {
+	/**
+	* @codeCoverageIgnore
+	* @return resource|false
+	*/
+	function gzopen( $file, $flags, $use_include_path = 0 ) {
+		return gzopen64( $file, $flags, $use_include_path = 0 );
+	}
+}
+
 // hash_equals function only exists in PHP >= 5.6.0
 if ( !function_exists( 'hash_equals' ) ) {
 	/**
