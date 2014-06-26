@@ -105,6 +105,20 @@ if ( !function_exists( 'gzdecode' ) ) {
 	}
 }
 
+/**
+ * When PHP 5.3+ is compiled against certain versions of Zlib,
+ * gzopen is replace by gzopen64.
+ */
+if ( !function_exists( 'gzopen' ) ) {
+	/**
+	* @codeCoverageIgnore
+	* @return pointer to the file, false on failure
+	*/
+	function gzopen( $file, $flags ) {
+		return gzopen64( $file, $flags );
+	}
+}
+
 // hash_equals function only exists in PHP >= 5.6.0
 if ( !function_exists( 'hash_equals' ) ) {
 	/**
