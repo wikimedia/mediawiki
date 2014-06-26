@@ -544,7 +544,6 @@ class EmailNotification {
 				$fname = __METHOD__;
 				$dbw->onTransactionIdle(
 					function() use ( $dbw, $timestamp, $watchers, $title, $fname ) {
-						$dbw->begin( $fname );
 						$dbw->update( 'watchlist',
 							array( /* SET */
 								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
@@ -554,7 +553,6 @@ class EmailNotification {
 								'wl_title' => $title->getDBkey(),
 							), $fname
 						);
-						$dbw->commit( $fname );
 					}
 				);
 			}
