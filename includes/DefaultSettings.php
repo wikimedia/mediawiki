@@ -3190,6 +3190,111 @@ $wgEnableCanonicalServerLink = false;
 $wgResourceModules = array();
 
 /**
+ * Skin-specific styles for resource modules.
+ *
+ * These are later added to the 'skinStyles' list of the existing module. The 'styles' list can
+ * not be modified or disabled.
+ *
+ * For example, here is a module "bar" and how skin Foo would provide additional styles for it.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['bar'] = array(
+ *     'scripts' => 'resources/bar/bar.js',
+ *     'styles' => 'resources/bar/main.css',
+ *   );
+ *
+ *   $wgResourceModuleSkinStyles['foo'] = array(
+ *     'bar' => 'skins/Foo/bar.css',
+ *   );
+ * @endcode
+ *
+ * This is mostly equivalent to:
+ *
+ * @par Equivalent:
+ * @code
+ *   $wgResourceModules['bar'] = array(
+ *     'scripts' => 'resources/bar/bar.js',
+ *     'styles' => 'resources/bar/main.css',
+ *     'skinStyles' => array(
+ *       'foo' => skins/Foo/bar.css',
+ *     ),
+ *   );
+ * @endcode
+ *
+ * If the module already defines its own entry in `skinStyles` for a given skin, then
+ * $wgResourceModuleSkinStyles is ignored.
+ *
+ * If a module defines a `skinStyles['default']` the skin may want to extend that instead
+ * of replacing them. This can be done using the `+` prefix.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['bar'] = array(
+ *     'scripts' => 'resources/bar/bar.js',
+ *     'styles' => 'resources/bar/basic.css',
+ *     'skinStyles' => array(
+ *       'default' => 'resources/bar/additional.css',
+ *     ),
+ *   );
+ *   // Note the '+' character:
+ *   $wgResourceModuleSkinStyles['+foo'] = array(
+ *     'bar' => 'skins/Foo/bar.css',
+ *   );
+ * @endcode
+ *
+ * This is mostly equivalent to:
+ *
+ * @par Equivalent:
+ * @code
+ *   $wgResourceModules['bar'] = array(
+ *     'scripts' => 'resources/bar/bar.js',
+ *     'styles' => 'resources/bar/basic.css',
+ *     'skinStyles' => array(
+ *       'default' => 'resources/bar/additional.css',
+ *       'foo' => array(
+ *         'resources/bar/additional.css',
+ *         'skins/Foo/bar.css',
+ *       ),
+ *     ),
+ *   );
+ * @endcode
+ *
+ * In other words, as a module author, use the `styles` list for stylesheets that may not be
+ * disabled by a skin. To provide default styles that may be extended or replaced,
+ * use `skinStyles['default']`.
+ *
+ * As with $wgResourceModules, paths default to being relative to the MediaWiki root.
+ * You should always provide a localBasePath and remoteBasePath (or remoteExtPath/remoteSkinPath).
+ * Either for all skin styles at once (first example below) or for each module separately (second
+ * example).
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModuleSkinStyles['foo'] = array(
+ *     'bar' => 'bar.css',
+ *     'quux' => 'quux.css',
+ *     'remoteSkinPath' => 'Foo',
+ *     'localBasePath' => __DIR__,
+ *   );
+ *
+ *   $wgResourceModuleSkinStyles['foo'] = array(
+ *     'bar' => array(
+ *       'bar.css',
+ *       'remoteSkinPath' => 'Foo',
+ *       'localBasePath' => __DIR__,
+ *     ),
+ *     'quux' => array(
+ *       'quux.css',
+ *       'remoteSkinPath' => 'Foo',
+ *       'localBasePath' => __DIR__,
+ *     ),
+ *   );
+ * @endcode
+ */
+$wgResourceModuleSkinStyles = array();
+
+/**
  * Extensions should register foreign module sources here. 'local' is a
  * built-in source that is not in this array, but defined by
  * ResourceLoader::__construct() so that it cannot be unset.
