@@ -1,16 +1,17 @@
 /*!
- * OOjs UI v0.1.0-pre (9aad824bd6)
+ * OOjs UI v0.1.0-pre (b9d403a678)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Jun 25 2014 10:59:56 GMT-0700 (PDT)
+ * Date: 2014-06-26T23:45:59Z
  */
 ( function ( OO ) {
 
 'use strict';
+
 /**
  * Namespace for all classes, static methods and static properties.
  *
@@ -172,6 +173,7 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
 	};
 
 } )();
+
 /**
  * DOM element abstraction.
  *
@@ -669,6 +671,7 @@ OO.ui.Element.prototype.offDOMEvent = function ( event, callback ) {
 		$( el ).off( event, callback );
 	};
 }() );
+
 /**
  * Embedded iframe with the same styles as its parent.
  *
@@ -899,6 +902,7 @@ OO.ui.Frame.prototype.setSize = function ( width, height ) {
 	this.$element.css( { 'width': width, 'height': height } );
 	return this;
 };
+
 /**
  * Container for elements in a child frame.
  *
@@ -1364,6 +1368,7 @@ OO.ui.Window.prototype.close = function ( data ) {
 
 	return this.closing.promise();
 };
+
 /**
  * Set of mutually exclusive windows.
  *
@@ -1529,6 +1534,7 @@ OO.ui.WindowSet.prototype.addWindow = function ( win ) {
 	} );
 	this.$element.append( win.$element );
 };
+
 /**
  * Modal dialog window.
  *
@@ -1761,6 +1767,7 @@ OO.ui.Dialog.prototype.popPending = function () {
 
 	return this;
 };
+
 /**
  * Container for elements.
  *
@@ -1790,6 +1797,7 @@ OO.ui.Layout = function OoUiLayout( config ) {
 
 OO.inheritClass( OO.ui.Layout, OO.ui.Element );
 OO.mixinClass( OO.ui.Layout, OO.EventEmitter );
+
 /**
  * User interface control.
  *
@@ -1875,6 +1883,7 @@ OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
 	this.wasDisabled = isDisabled;
 	return this;
 };
+
 /**
  * A list of functions, called in sequence.
  *
@@ -1991,6 +2000,7 @@ OO.ui.Process.prototype.next = function ( step, context ) {
 	this.steps.push( [ step, context || null ] );
 	return this;
 };
+
 /**
  * Dialog for showing a confirmation/warning message.
  *
@@ -2051,8 +2061,6 @@ OO.ui.ConfirmationDialog.prototype.initialize = function () {
 		this.okButton.$element,
 		this.cancelButton.$element
 	);
-
-	this.connect( this, { 'teardown': [ 'close', 'cancel' ] } );
 };
 
 /*
@@ -2096,11 +2104,12 @@ OO.ui.ConfirmationDialog.prototype.getTeardownProcess = function ( data ) {
 		.first( function () {
 			if ( data === 'ok' ) {
 				this.opened.resolve();
-			} else if ( data === 'cancel' ) {
+			} else { // data === 'cancel', or no data
 				this.opened.reject();
 			}
 		}, this );
 };
+
 /**
  * Element with a button.
  *
@@ -2208,6 +2217,7 @@ OO.ui.ButtonedElement.prototype.setActive = function ( value ) {
 	this.$button.toggleClass( 'oo-ui-buttonedElement-active', !!value );
 	return this;
 };
+
 /**
  * Element that can be automatically clipped to visible boundaies.
  *
@@ -2335,18 +2345,23 @@ OO.ui.ClippableElement.prototype.clip = function () {
 	if ( clipWidth ) {
 		this.$clippable.css( { 'overflow-x': 'auto', 'width': desiredWidth } );
 	} else {
-		this.$clippable.css( { 'overflow-x': '', 'width': this.idealWidth || '' } );
+		this.$clippable.css( 'width', this.idealWidth || '' );
+		this.$clippable.width(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
+		this.$clippable.css( 'overflow-x', '' );
 	}
 	if ( clipHeight ) {
 		this.$clippable.css( { 'overflow-y': 'auto', 'height': desiredHeight } );
 	} else {
-		this.$clippable.css( { 'overflow-y': '', 'height': this.idealHeight || '' } );
+		this.$clippable.css( 'height', this.idealHeight || '' );
+		this.$clippable.height(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
+		this.$clippable.css( 'overflow-y', '' );
 	}
 
 	this.clipped = clipWidth || clipHeight;
 
 	return this;
 };
+
 /**
  * Element with named flags that can be added, removed, listed and checked.
  *
@@ -2446,6 +2461,7 @@ OO.ui.FlaggableElement.prototype.setFlags = function ( flags ) {
 	}
 	return this;
 };
+
 /**
  * Element containing a sequence of child elements.
  *
@@ -2644,6 +2660,7 @@ OO.ui.GroupElement.prototype.clearItems = function () {
 	this.items = [];
 	return this;
 };
+
 /**
  * Element containing an icon.
  *
@@ -2731,6 +2748,7 @@ OO.ui.IconedElement.prototype.setIcon = function ( icon ) {
 OO.ui.IconedElement.prototype.getIcon = function () {
 	return this.icon;
 };
+
 /**
  * Element containing an indicator.
  *
@@ -2844,6 +2862,7 @@ OO.ui.IndicatedElement.prototype.getIndicator = function () {
 OO.ui.IndicatedElement.prototype.getIndicatorTitle = function () {
 	return this.indicatorTitle;
 };
+
 /**
  * Element containing a label.
  *
@@ -2942,6 +2961,7 @@ OO.ui.LabeledElement.prototype.fitLabel = function () {
 	}
 	return this;
 };
+
 /**
  * Popuppable element.
  *
@@ -2992,6 +3012,7 @@ OO.ui.PopuppableElement.prototype.showPopup = function () {
 OO.ui.PopuppableElement.prototype.hidePopup = function () {
 	this.popup.hide();
 };
+
 /**
  * Element with a title.
  *
@@ -3058,6 +3079,7 @@ OO.ui.TitledElement.prototype.setTitle = function ( title ) {
 OO.ui.TitledElement.prototype.getTitle = function () {
 	return this.title;
 };
+
 /**
  * Generic toolbar tool.
  *
@@ -3309,6 +3331,7 @@ OO.ui.Tool.prototype.destroy = function () {
 	this.toolbar.disconnect( this );
 	this.$element.remove();
 };
+
 /**
  * Collection of tool groups.
  *
@@ -3517,6 +3540,7 @@ OO.ui.Toolbar.prototype.releaseTool = function ( tool ) {
 OO.ui.Toolbar.prototype.getToolAccelerator = function () {
 	return undefined;
 };
+
 /**
  * Factory for tools.
  *
@@ -3629,6 +3653,7 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
 	}
 	return names;
 };
+
 /**
  * Collection of tools.
  *
@@ -3947,6 +3972,7 @@ OO.ui.ToolGroup.prototype.destroy = function () {
 	}
 	this.$element.remove();
 };
+
 /**
  * Factory for tool groups.
  *
@@ -3985,6 +4011,7 @@ OO.ui.ToolGroupFactory.static.getDefaultClasses = function () {
 		OO.ui.MenuToolGroup
 	];
 };
+
 /**
  * Layout made of a fieldset and optional legend.
  *
@@ -4032,6 +4059,7 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
 /* Static Properties */
 
 OO.ui.FieldsetLayout.static.tagName = 'div';
+
 /**
  * Layout made of a field and optional label.
  *
@@ -4147,6 +4175,7 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 
 	return this;
 };
+
 /**
  * Layout made of proportionally sized columns and rows.
  *
@@ -4307,6 +4336,7 @@ OO.ui.GridLayout.prototype.update = function () {
 OO.ui.GridLayout.prototype.getPanel = function ( x, y ) {
 	return this.panels[( x * this.widths.length ) + y];
 };
+
 /**
  * Layout containing a series of pages.
  *
@@ -4725,6 +4755,7 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
 
 	return this;
 };
+
 /**
  * Layout that expands to cover the entire area of its parent, with optional scrolling and padding.
  *
@@ -4757,6 +4788,7 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
+
 /**
  * Page within an booklet layout.
  *
@@ -4850,6 +4882,7 @@ OO.ui.PageLayout.prototype.setActive = function ( active ) {
 		this.emit( 'active', this.active );
 	}
 };
+
 /**
  * Layout containing a series of mutually exclusive pages.
  *
@@ -5020,6 +5053,7 @@ OO.ui.StackLayout.prototype.setItem = function ( item ) {
 
 	return this;
 };
+
 /**
  * Horizontal bar layout of tools as icon buttons.
  *
@@ -5049,6 +5083,7 @@ OO.ui.BarToolGroup.static.titleTooltips = true;
 OO.ui.BarToolGroup.static.accelTooltips = true;
 
 OO.ui.BarToolGroup.static.name = 'bar';
+
 /**
  * Popup list of tools with an icon and optional label.
  *
@@ -5201,6 +5236,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 		}
 	}
 };
+
 /**
  * Drop down list layout of tools as labeled icon buttons.
  *
@@ -5228,6 +5264,7 @@ OO.inheritClass( OO.ui.ListToolGroup, OO.ui.PopupToolGroup );
 OO.ui.ListToolGroup.static.accelTooltips = true;
 
 OO.ui.ListToolGroup.static.name = 'list';
+
 /**
  * Drop down menu layout of tools as selectable menu items.
  *
@@ -5282,6 +5319,7 @@ OO.ui.MenuToolGroup.prototype.onUpdateState = function () {
 
 	this.setLabel( labelTexts.join( ', ' ) || ' ' );
 };
+
 /**
  * Tool that shows a popup when selected.
  *
@@ -5339,6 +5377,7 @@ OO.ui.PopupTool.prototype.onSelect = function () {
 OO.ui.PopupTool.prototype.onUpdateState = function () {
 	this.setActive( false );
 };
+
 /**
  * Group widget.
  *
@@ -5389,6 +5428,7 @@ OO.ui.GroupWidget.prototype.setDisabled = function ( disabled ) {
 
 	return this;
 };
+
 /**
  * Item widget.
  *
@@ -5433,6 +5473,7 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
 
 	return this;
 };
+
 /**
  * Icon widget.
  *
@@ -5468,6 +5509,7 @@ OO.mixinClass( OO.ui.IconWidget, OO.ui.TitledElement );
 /* Static Properties */
 
 OO.ui.IconWidget.static.tagName = 'span';
+
 /**
  * Indicator widget.
  *
@@ -5503,6 +5545,7 @@ OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.TitledElement );
 /* Static Properties */
 
 OO.ui.IndicatorWidget.static.tagName = 'span';
+
 /**
  * Container for multiple related buttons.
  *
@@ -5534,6 +5577,7 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 
 OO.inheritClass( OO.ui.ButtonGroupWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
+
 /**
  * Button widget.
  *
@@ -5634,6 +5678,7 @@ OO.ui.ButtonWidget.prototype.onKeyPress = function ( e ) {
 	}
 	return false;
 };
+
 /**
  * Input widget.
  *
@@ -5829,6 +5874,7 @@ OO.ui.InputWidget.prototype.focus = function () {
 	this.$input.focus();
 	return this;
 };
+
 /**
  * Checkbox widget.
  *
@@ -5895,6 +5941,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
 		}, this ) );
 	}
 };
+
 /**
  * Label widget.
  *
@@ -5947,6 +5994,7 @@ OO.ui.LabelWidget.prototype.onClick = function () {
 	this.input.simulateLabelClick();
 	return false;
 };
+
 /**
  * Lookup input widget.
  *
@@ -6180,6 +6228,7 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
 	// Stub, implemented in subclass
 	return [];
 };
+
 /**
  * Option widget.
  *
@@ -6397,6 +6446,7 @@ OO.ui.OptionWidget.prototype.flash = function () {
 OO.ui.OptionWidget.prototype.getData = function () {
 	return this.data;
 };
+
 /**
  * Selection of options.
  *
@@ -6908,6 +6958,7 @@ OO.ui.SelectWidget.prototype.clearItems = function () {
 
 	return this;
 };
+
 /**
  * Menu item widget.
  *
@@ -6934,6 +6985,7 @@ OO.ui.MenuItemWidget = function OoUiMenuItemWidget( data, config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.MenuItemWidget, OO.ui.OptionWidget );
+
 /**
  * Menu widget.
  *
@@ -7191,6 +7243,7 @@ OO.ui.MenuWidget.prototype.hide = function () {
 
 	return this;
 };
+
 /**
  * Inline menu of options.
  *
@@ -7298,6 +7351,7 @@ OO.ui.InlineMenuWidget.prototype.onClick = function ( e ) {
 	}
 	return false;
 };
+
 /**
  * Menu section item widget.
  *
@@ -7327,6 +7381,7 @@ OO.inheritClass( OO.ui.MenuSectionItemWidget, OO.ui.OptionWidget );
 OO.ui.MenuSectionItemWidget.static.selectable = false;
 
 OO.ui.MenuSectionItemWidget.static.highlightable = false;
+
 /**
  * Create an OO.ui.OutlineWidget object.
  *
@@ -7352,6 +7407,7 @@ OO.ui.OutlineWidget = function OoUiOutlineWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.OutlineWidget, OO.ui.SelectWidget );
+
 /**
  * Creates an OO.ui.OutlineControlsWidget object.
  *
@@ -7465,6 +7521,7 @@ OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
 	this.downButton.setDisabled( !movable || selectedItem === lastMovable );
 	this.removeButton.setDisabled( !removable );
 };
+
 /**
  * Creates an OO.ui.OutlineItemWidget object.
  *
@@ -7591,6 +7648,7 @@ OO.ui.OutlineItemWidget.prototype.setLevel = function ( level ) {
 
 	return this;
 };
+
 /**
  * Option widget that looks like a button.
  *
@@ -7644,6 +7702,7 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
 
 	return this;
 };
+
 /**
  * Select widget containing button options.
  *
@@ -7666,6 +7725,7 @@ OO.ui.ButtonSelectWidget = function OoUiButtonSelectWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
+
 /**
  * Container for content that is overlaid and positioned absolutely.
  *
@@ -7911,6 +7971,7 @@ OO.ui.PopupWidget.prototype.display = function ( width, height, transition ) {
 
 	return this;
 };
+
 /**
  * Button that shows and hides a popup.
  *
@@ -7962,6 +8023,7 @@ OO.ui.PopupButtonWidget.prototype.onClick = function ( e ) {
 	}
 	return false;
 };
+
 /**
  * Search widget.
  *
@@ -8115,6 +8177,7 @@ OO.ui.SearchWidget.prototype.getQuery = function () {
 OO.ui.SearchWidget.prototype.getResults = function () {
 	return this.results;
 };
+
 /**
  * Text input widget.
  *
@@ -8327,6 +8390,7 @@ OO.ui.TextInputWidget.prototype.select = function () {
 	this.$input.select();
 	return this;
 };
+
 /**
  * Menu for a text input widget.
  *
@@ -8427,6 +8491,7 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
 	this.setIdealSize( $container.width() );
 	return this;
 };
+
 /**
  * Width with on and off states.
  *
@@ -8486,6 +8551,7 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
 	}
 	return this;
 };
+
 /**
  * Button that toggles on and off.
  *
@@ -8544,6 +8610,7 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 
 	return this;
 };
+
 /**
  * Switch that slides on and off.
  *
@@ -8597,4 +8664,7 @@ OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
 		this.setValue( !this.value );
 	}
 };
+
 }( OO ) );
+
+//# sourceMappingURL=oojs-ui.js.map
