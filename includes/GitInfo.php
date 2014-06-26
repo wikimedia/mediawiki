@@ -56,7 +56,13 @@ class GitInfo {
 	 * @see precomputeValues
 	 */
 	public function __construct( $repoDir, $usePrecomputed = true ) {
+		wfDebugLog( 'gitinfo',
+			__METHOD__ . "({$repoDir}," . ( $usePrecomputed ) ? 'true' : 'false' . ')'
+		);
 		$this->cacheFile = self::getCacheFilePath( $repoDir );
+		wfDebugLog( 'gitinfo',
+			"Using cacheFile={$this->cacheFile} for {$repoDir}"
+		);
 		if ( $usePrecomputed &&
 			$this->cacheFile !== null &&
 			is_readable( $this->cacheFile )
@@ -65,9 +71,11 @@ class GitInfo {
 				file_get_contents( $this->cacheFile ),
 				true
 			);
+			wfDebugLog( 'gitinfo', "Loaded git data from cache for {$repoDir}" );
 		}
 
 		if ( !$this->cacheIsComplete() ) {
+			wfDebugLog( 'gitinfo', "Cache incomplete for {$repoDir}" );
 			$this->basedir = $repoDir . DIRECTORY_SEPARATOR . '.git';
 			if ( is_readable( $this->basedir ) && !is_dir( $this->basedir ) ) {
 				$GITfile = file_get_contents( $this->basedir );
@@ -87,27 +95,52 @@ class GitInfo {
 	}
 
 	/**
+	 * Get the path to the GitInfo cache directory.
+	 *
+	 * @return string $wgGitInfoCacheDirectory, $wgCacheDirectory/gitinfo or
+	 * null if caching is disabled.
+	 * @since 1.24
+	 */
+	protected static function getCacheDirectory() {
+		global $wgGitInfoCacheDirectory, $wgCacheDirectory;
+		static $cacheDir = null;
+		if ( $cacheDir === null &&
+			( $wgGitInfoCacheDirectory || $wgCacheDirectory )
+		) {
+				if ( $wgGitInfoCache ) {
+					$cacheDir = $wgGitInfoCacheDirectory;
+				} else {
+					$cacheDir = $wgCacheDirectory . DIRECTORY_SEPARATOR . 'gitinfo';
+				}
+		}
+		return $cacheDir;
+	}
+
+	/**
 	 * Compute the path to the cache file for a given directory.
 	 *
 	 * @param string $repoDir The root directory of the repo where .git can be found
-	 * @return string Path to GitInfo cache file in $wgCacheDirectory or null if
-	 * $wgCacheDirectory is false (cache disabled).
+	 * @return string Path to GitInfo cache file or null if caching is disabled
+	 * @see getCacheDirectory
+	 * @since 1.24
 	 */
 	protected static function getCacheFilePath( $repoDir ) {
-		global $IP, $wgCacheDirectory;
-		if ( $wgCacheDirectory ) {
-			// Transform path to git repo to something we can safely embed in a filename
-			$repoName = $repoDir;
+		global $IP;
+
+		if ( self::getCacheDirectory() ) {
+			// Convert both $IP and $repoDir to canonical paths to protect against
+			// $IP having changed between the settings files and runtime.
+			$realIP = realpath( $IP );
+			$repoName = realpath( $repoDir );
 			if ( strpos( $repoName, $IP ) === 0 ) {
 				// Strip $IP from path
 				$repoName = substr( $repoName, strlen( $IP ) );
 			}
+			// Transform path to git repo to something we can safely embed in
+			// a filename
 			$repoName = strtr( $repoName, DIRECTORY_SEPARATOR, '-' );
 			$fileName = 'info' . $repoName . '.json';
-			return implode(
-				DIRECTORY_SEPARATOR,
-				array( $wgCacheDirectory, 'gitinfo', $fileName )
-			);
+			return self::getCacheDirectory() . DIRECTORY_SEPARATOR . $fileName;
 		}
 		return null;
 	}
@@ -330,7 +363,9 @@ class GitInfo {
 			$this->getRemoteUrl();
 
 			if ( !$this->cacheIsComplete() ) {
-				wfDebugLog( "Failed to compute GitInfo for \"{$this->basedir}\"" );
+				wfDebugLog( 'gitinfo',
+					"Failed to compute GitInfo for \"{$this->basedir}\""
+				);
 				return;
 			}
 
