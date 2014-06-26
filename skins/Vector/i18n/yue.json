@@ -6,7 +6,6 @@
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "改進Vector畫面嘅界面元素。",
 	"vector.css": "/* 響呢度放 CSS 碼去改用戶用嘅域達畫面 */",
 	"vector.js": "/* 響每一次個頁面載入時，用域達畫面嘅用戶都會載入呢度任何嘅JavaScript */",
 	"vector-action-addsection": "加主題",
