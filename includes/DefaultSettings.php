@@ -2154,6 +2154,12 @@ $wgCachePages = true;
 $wgCacheEpoch = '20030516000000';
 
 /**
+ * Directory where GitInfo will look for pre-computed cache files. If false,
+ * $wgCacheDirectory/gitinfo will be used.
+ */
+$wgGitInfoCacheDirectory = false;
+
+/**
  * Bump this number when changing the global style sheets and JavaScript.
  *
  * It should be appended in the query string of static CSS and JS includes,
