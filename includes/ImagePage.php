@@ -447,6 +447,8 @@ class ImagePage extends Article {
 
 					if ( $page > 1 ) {
 						$label = $out->parse( wfMessage( 'imgmultipageprev' )->text(), false );
+						// on the client side, this link is generated in ajaxifyPageNavigation()
+						// in the mediawiki.page.image.pagination module
 						$link = Linker::linkKnown(
 							$this->getTitle(),
 							$label,
