@@ -1496,7 +1496,7 @@ $result: Change this value to override the result of wfIsTrustedProxy()
 $url: URL used to upload from
 &$allowed: Boolean indicating if uploading is allowed for given URL
 
-'isValidEmailAddr': Override the result of User::isValidEmailAddr(), for
+'isValidEmailAddr': Override the result of Sanitizer::validateEmail(), for
 instance to return false if the domain name doesn't match your organization.
 $addr: The e-mail address entered by the user
 &$result: Set this and return false to override the internal checks
