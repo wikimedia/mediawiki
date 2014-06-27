@@ -621,6 +621,14 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		return $status;
 	}
+	
+	public function getGlobalDefaults() {
+		// The default $wgDBmwschema is null, which breaks Postgres and other DBMSes that require
+		// the use of a schema, so we need to set it here
+		return array(
+			'wgDBmwschema' => 'mediawiki',
+		);
+	}
 
 	public function setupPLpgSQL() {
 		// Connect as the install user, since it owns the database and so is
