@@ -198,6 +198,7 @@ changes to languages because of Bugzilla reports.
 * Removed ApiBase::createContext(). (deprecated since 1.19)
 * Removed MWNamespace::isMain(). (deprecated since 1.19)
 * Removed Preferences::loadOldSearchNs(). (deprecated since 1.19)
+* Removed OutputPage::getStatusMessage(). (deprecated since 1.18)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

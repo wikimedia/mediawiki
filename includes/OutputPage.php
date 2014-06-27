@@ -2070,19 +2070,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get the message associated with the HTTP response code $code
-	 *
-	 * @param int $code Status code
-	 * @return string|null Message or null if $code is not in the list of messages
-	 *
-	 * @deprecated since 1.18 Use HttpStatus::getMessage() instead.
-	 */
-	public static function getStatusMessage( $code ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return HttpStatus::getMessage( $code );
-	}
-
-	/**
 	 * Finally, all the text has been munged and accumulated into
 	 * the object, let's actually output it:
 	 */
