@@ -4262,9 +4262,10 @@ class Parser {
 	 * Special:TrackingCategories.
 	 *
 	 * @param string $msg Message key
+	 * @param string|bool $sortKey Sort key. If unspecified or false, uses the default
 	 * @return bool Whether the addition was successful
 	 */
-	public function addTrackingCategory( $msg ) {
+	public function addTrackingCategory( $msg, $sortKey = false ) {
 		if ( $this->mTitle->getNamespace() === NS_SPECIAL ) {
 			wfDebug( __METHOD__ . ": Not adding tracking category $msg to special page!\n" );
 			return false;
@@ -4282,7 +4283,10 @@ class Parser {
 
 		$containerCategory = Title::makeTitleSafe( NS_CATEGORY, $cat );
 		if ( $containerCategory ) {
-			$this->mOutput->addCategory( $containerCategory->getDBkey(), $this->getDefaultSort() );
+			if ( $sortKey === false ) {
+				$sortKey = $this->getDefaultSort();
+			}
+			$this->mOutput->addCategory( $containerCategory->getDBkey(), $sortKey );
 			return true;
 		} else {
 			wfDebug( __METHOD__ . ": [[MediaWiki:$msg]] is not a valid title!\n" );
