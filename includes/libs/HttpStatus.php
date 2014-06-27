@@ -28,8 +28,6 @@ class HttpStatus {
 	/**
 	 * Get the message associated with HTTP response code $code
 	 *
-	 * Replace OutputPage::getStatusMessage( $code )
-	 *
 	 * @param $code Integer: status code
 	 * @return String or null: message or null if $code is not in the list of
 	 *         messages
