@@ -298,9 +298,9 @@ class RedisBagOStuff extends BagOStuff {
 	 * command. But we are constrained by the memcached-like interface to
 	 * return null in that case. Once the key exists, further increments are
 	 * atomic.
-	 * @param string $key
-	 * @param int $value
-	 * @param bool|mixed
+	 * @param string $key Key to increase
+	 * @param int $value Value to add to $key (Default 1)
+	 * @return int|bool New value or false on failure
 	 */
 	public function incr( $key, $value = 1 ) {
 		$section = new ProfileSection( __METHOD__ );
@@ -313,7 +313,7 @@ class RedisBagOStuff extends BagOStuff {
 			return null;
 		}
 		try {
-			$result = $this->unserialize( $conn->incrBy( $key, $value ) );
+			$result = $conn->incrBy( $key, $value );
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
