@@ -12,9 +12,9 @@ class TitleTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( array(
 			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
+			'wgContLang' => new Language,
 			// User language
-			'wgLang' => Language::factory( 'en' ),
+			'wgLang' => new Language,
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
 		) );
@@ -309,34 +309,18 @@ class TitleTest extends MediaWikiTestCase {
 
 		$title = Title::newFromDBkey( $source );
 
-		global $wgGroupPermissions;
-		$oldPermissions = $wgGroupPermissions;
-		// Disallow all so we can ensure our regex works
-		$wgGroupPermissions = array();
-		$wgGroupPermissions['*']['read'] = false;
+		$this->setMwGlobals( array(
+			// Disallow all so we can ensure our regex works
+			'wgGroupPermissions' => array( '*' => array( 'read' => false ) ),
+			// Undo any LocalSettings explicite whitelists so they won't cause a
+			// failing test to succeed. Set it to some random non sense just
+			// to make sure we properly test Title::checkReadPermissions()
+			'wgWhitelistRead' => array( 'some random non sense title' ),
+			'wgWhitelistReadRegexp' => $whitelistRegexp,
+		) );
 
-		global $wgWhitelistRead;
-		$oldWhitelist = $wgWhitelistRead;
-		// Undo any LocalSettings explicite whitelists so they won't cause a
-		// failing test to succeed. Set it to some random non sense just
-		// to make sure we properly test Title::checkReadPermissions()
-		$wgWhitelistRead = array( 'some random non sense title' );
+		$errors = $title->userCan( $action, new User );
 
-		global $wgWhitelistReadRegexp;
-		$oldWhitelistRegexp = $wgWhitelistReadRegexp;
-		$wgWhitelistReadRegexp = $whitelistRegexp;
-
-		// Just use $wgUser which in test is a user object for '127.0.0.1'
-		global $wgUser;
-		// Invalidate user rights cache to take in account $wgGroupPermissions
-		// change above.
-		$wgUser->clearInstanceCache();
-		$errors = $title->userCan( $action, $wgUser );
-
-		// Restore globals
-		$wgGroupPermissions = $oldPermissions;
-		$wgWhitelistRead = $oldWhitelist;
-		$wgWhitelistReadRegexp = $oldWhitelistRegexp;
 
 		if ( is_bool( $expected ) ) {
 			# Forge the assertion message depending on the assertion expectation
