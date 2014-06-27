@@ -39,8 +39,7 @@ function wfInstallerMain() {
 
 		if( $installer->request->getVal( "css" ) ) {
 			// Do not display errors on css pages
-			$cssDir = $installer->request->getVal( "css" );
-			$installer->outputCss( $cssDir );
+			$installer->outputCss();
 			exit;
 		}
 
