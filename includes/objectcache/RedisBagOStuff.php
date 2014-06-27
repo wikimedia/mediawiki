@@ -313,7 +313,7 @@ class RedisBagOStuff extends BagOStuff {
 			return null;
 		}
 		try {
-			$result = $this->unserialize( $conn->incrBy( $key, $value ) );
+			$result = $conn->incrBy( $key, $value );
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
