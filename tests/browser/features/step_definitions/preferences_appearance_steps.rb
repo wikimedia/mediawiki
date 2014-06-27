@@ -18,7 +18,7 @@ When(/^I navigate to Preferences$/) do
 end
 
 Then(/^I can click Save$/) do
-  on(PreferencesAppearancePage).save_button_element.should exist
+  on(PreferencesPage).save_button_element.should exist
 end
 
 Then(/^I can restore default settings$/) do
@@ -26,12 +26,11 @@ Then(/^I can restore default settings$/) do
 end
 
 Then(/^I can see local time$/) do
-  @browser.text.should match Regexp.escape("Local time")
   on(PreferencesAppearancePage).local_time_span_element.should exist
 end
 
-Then(/^I can see server time$/) do
-  @browser.text.should match Regexp.escape("Server time")
+Then(/^I can see time offset section$/) do
+  on(PreferencesAppearancePage).time_offset_table_element.should be_visible
 end
 
 Then(/^I can select date format$/) do
@@ -49,7 +48,6 @@ Then(/^I can select image size$/) do
 end
 
 Then(/^I can select my time zone$/) do
-  @browser.text.should match Regexp.escape("Time zone")
   on(PreferencesAppearancePage) do |page|
     page.time_offset_select_element.should exist
     page.other_offset_element.should exist
