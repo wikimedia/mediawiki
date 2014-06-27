@@ -328,6 +328,8 @@ class Status {
 	 *
 	 * @param Status $other Other Status object
 	 * @param bool $overwriteValue Whether to override the "value" member
+	 *
+	 * @return Status $this
 	 */
 	public function merge( $other, $overwriteValue = false ) {
 		$this->errors = array_merge( $this->errors, $other->errors );
@@ -337,6 +339,8 @@ class Status {
 		}
 		$this->successCount += $other->successCount;
 		$this->failCount += $other->failCount;
+
+		return $this;
 	}
 
 	/**
