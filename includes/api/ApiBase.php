@@ -224,21 +224,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Create a new RequestContext object to use e.g. for calls to other parts
-	 * the software.
-	 * The object will have the WebRequest and the User object set to the ones
-	 * used in this instance.
-	 *
-	 * @deprecated since 1.19 use getContext to get the current context
-	 * @return DerivativeContext
-	 */
-	public function createContext() {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		return new DerivativeContext( $this->getContext() );
-	}
-
-	/**
 	 * Set warning section for this module. Users should monitor this
 	 * section to notice any changes in API. Multiple calls to this
 	 * function will result in the warning messages being separated by
