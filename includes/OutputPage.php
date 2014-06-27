@@ -1346,18 +1346,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Return whether user JavaScript is allowed for this page
-	 * @deprecated since 1.18 Load modules with ResourceLoader, and origin and
-	 *     trustworthiness is identified and enforced automagically.
-	 * @return bool
-	 */
-	public function isUserJsAllowed() {
-		wfDeprecated( __METHOD__, '1.18' );
-		return $this->getAllowedModules( ResourceLoaderModule::TYPE_SCRIPTS ) >=
-			ResourceLoaderModule::ORIGIN_USER_INDIVIDUAL;
-	}
-
-	/**
 	 * Show what level of JavaScript / CSS untrustworthiness is allowed on this page
 	 * @see ResourceLoaderModule::$origin
 	 * @param string $type ResourceLoaderModule TYPE_ constant
