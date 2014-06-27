@@ -51,7 +51,7 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 		# Do the call, should not spurt a fatal error.
 		$special = new SpecialPreferences();
 		$special->setContext( $context );
-		$special->execute( array() );
+		$this->assertNull( $special->execute( array() ) );
 	}
 
 }
