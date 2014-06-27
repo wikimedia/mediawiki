@@ -337,6 +337,11 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return mixed
 	 */
 	protected function unserialize( $data ) {
+		// Redis has integer replies for some commands, e.g. INCRBY
+		if ( is_int( $data ) ) {
+			return $data;
+		}
+
 		return ctype_digit( $data ) ? intval( $data ) : unserialize( $data );
 	}
 
