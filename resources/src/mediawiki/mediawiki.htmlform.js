@@ -233,6 +233,7 @@
 	} );
 
 	function enhance( $root ) {
+		var $matrixTooltips, $autocomplete;
 
 		/**
 		 * @ignore
@@ -338,10 +339,27 @@
 			} );
 		}
 
-		var $matrixTooltips = $root.find( '.mw-htmlform-matrix .mw-htmlform-tooltip' );
+		$matrixTooltips = $root.find( '.mw-htmlform-matrix .mw-htmlform-tooltip' );
 		if ( $matrixTooltips.length ) {
 			mw.loader.using( 'jquery.tipsy', function () {
 				$matrixTooltips.tipsy( { gravity: 's' } );
+			} );
+		}
+
+		// Set up autocomplete fields
+		$autocomplete = $root.find( '.mw-htmlform-autocomplete' );
+		if ( $autocomplete.length ) {
+			mw.loader.using( 'jquery.suggestions', function () {
+				$autocomplete.suggestions( {
+					fetch: function ( val ) {
+						var $el = $( this );
+						$el.suggestions( 'suggestions',
+							$.grep( $el.data( 'autocomplete' ), function ( v ) {
+								return v.indexOf( val ) === 0;
+							} )
+						);
+					}
+				} );
 			} );
 		}
 
