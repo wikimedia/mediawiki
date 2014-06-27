@@ -911,17 +911,12 @@ EOT
 
 	/**
 	 * Delete the file, or an earlier version of it
+	 * @deprecated since 1.24
 	 */
 	public function delete() {
-		$file = $this->mPage->getFile();
-		if ( !$file->exists() || !$file->isLocal() || $file->getRedirected() ) {
-			// Standard article deletion
-			parent::delete();
-			return;
-		}
-
-		$deleter = new FileDeleteForm( $file );
-		$deleter->execute();
+		wfDeprecated( __METHOD__, '1.24' );
+		$deleter = new DeleteAction( new WikiFilePage( $this->getTitle() ), RequestContext::getMain() );
+		$deleter->show();
 	}
 
 	/**

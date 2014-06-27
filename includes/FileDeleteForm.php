@@ -26,6 +26,7 @@
  * File deletion user interface
  *
  * @ingroup Media
+ * @deprecated since 1.24
  */
 class FileDeleteForm {
 
@@ -49,8 +50,10 @@ class FileDeleteForm {
 	 * Constructor
 	 *
 	 * @param File $file File object we're deleting
+	 * @deprecated since 1.24
 	 */
 	public function __construct( $file ) {
+		wfDeprecated( __CLASS__, '1.24' );
 		$this->title = $file->getTitle();
 		$this->file = $file;
 	}
