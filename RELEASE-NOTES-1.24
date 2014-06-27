@@ -96,6 +96,7 @@ production.
   for Template:! for purposes such as passing pipes inside of parameters.
 * (bug 20790) The block log snippet on Special:Contributions and while
   editing user and user talk pages now works for IP range blocks.
+* Added HTMLAutoCompleteSelectField.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
