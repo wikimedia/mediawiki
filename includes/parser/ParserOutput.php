@@ -517,10 +517,11 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @param string $msg Message key
 	 * @param Title $title title of the page which is being tracked
+	 * @param string|bool $sortKey Sort key. If unspecified or false, uses the default
 	 * @return bool Whether the addition was successful
 	 * @since 1.25
 	 */
-	public function addTrackingCategory( $msg, $title ) {
+	public function addTrackingCategory( $msg, $title, $sortKey = false ) {
 		if ( $title->getNamespace() === NS_SPECIAL ) {
 			wfDebug( __METHOD__ . ": Not adding tracking category $msg to special page!\n" );
 			return false;
@@ -539,7 +540,10 @@ class ParserOutput extends CacheTime {
 
 		$containerCategory = Title::makeTitleSafe( NS_CATEGORY, $cat );
 		if ( $containerCategory ) {
-			$this->addCategory( $containerCategory->getDBkey(), $this->getProperty( 'defaultsort' ) ?: '' );
+			if ( $sortKey === false ) {
+				$sortKey = $this->getProperty( 'defaultsort' ) ?: '';
+			}
+			$this->addCategory( $containerCategory->getDBkey(), $sortKey );
 			return true;
 		} else {
 			wfDebug( __METHOD__ . ": [[MediaWiki:$msg]] is not a valid title!\n" );

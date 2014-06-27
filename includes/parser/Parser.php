@@ -4370,10 +4370,11 @@ class Parser {
 	/**
 	 * @see ParserOutput::addTrackingCategory()
 	 * @param string $msg Message key
+	 * @param string|bool $sortKey Sort key. If unspecified or false, uses the default
 	 * @return bool Whether the addition was successful
 	 */
-	public function addTrackingCategory( $msg ) {
-		return $this->mOutput->addTrackingCategory( $msg, $this->mTitle );
+	public function addTrackingCategory( $msg, $sortKey = false ) {
+		return $this->mOutput->addTrackingCategory( $msg, $this->mTitle, $sortKey );
 	}
 
 	/**
