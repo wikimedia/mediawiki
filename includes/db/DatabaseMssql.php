@@ -1003,6 +1003,11 @@ class DatabaseMssql extends DatabaseBase {
 			wfDebug( "Attempting to call tableExists on a remote table" );
 			return false;
 		}
+		
+		if ( $schema === false ) {
+			global $wgDBmwschema;
+			$schema = $wgDBmwschema;
+		}
 
 		$res = $this->query( "SELECT 1 FROM INFORMATION_SCHEMA.TABLES
 			WHERE TABLE_TYPE = 'BASE TABLE'
@@ -1344,7 +1349,7 @@ class DatabaseMssql extends DatabaseBase {
 			// Used internally, we want the schema split off from the table name and returned
 			// as a list with 3 elements (database, schema, table)
 			$table = explode( '.', $table );
-			if ( count( $table ) == 2 ) {
+			while ( count( $table ) < 3 ) {
 				array_unshift( $table, false );
 			}
 		}

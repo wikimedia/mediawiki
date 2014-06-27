@@ -394,6 +394,9 @@ abstract class Installer {
 			foreach ( $installer->getGlobalNames() as $var ) {
 				if ( isset( $defaults[$var] ) ) {
 					$this->settings[$var] = $defaults[$var];
+					// also override the global itself so things outside of the installer can pick
+					// up on the values we are setting
+					$GLOBALS[$var] = $defaults[$var];
 				} else {
 					$this->settings[$var] = $GLOBALS[$var];
 				}

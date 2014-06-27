@@ -647,6 +647,14 @@ class MssqlInstaller extends DatabaseInstaller {
 
 		return $status;
 	}
+	
+	public function getGlobalDefaults() {
+		// The default $wgDBmwschema is null, which breaks Postgres and other DBMSes that require
+		// the use of a schema, so we need to set it here
+		return array(
+			'wgDBmwschema' => 'mediawiki',
+		);
+	}
 
 	/**
 	 * Try to see if the login exists
