@@ -4,11 +4,12 @@
 			"Martinwiss",
 			"Najami",
 			"Skalman",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Lokal Profil"
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "Förbättrar användargränssnittet när man använder Vector-utseendet",
+	"vector-skin-desc": "Modern version av MonoBook med ett nytt utseende och flera användarvänlighetsförbättringar",
 	"vector.css": "/* CSS som skrivs här kommer att påverka alla användare av skalet Vector */",
 	"vector.js": "/* JavaScript här kommer att laddas för dem som använder skalet Vector */",
 	"vector-action-addsection": "Nytt ämne",

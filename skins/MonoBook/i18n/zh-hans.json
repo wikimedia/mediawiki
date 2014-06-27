@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Xiaomingyan"
+			"Xiaomingyan",
+			"Cwek"
 		]
 	},
+	"monobook-desc": "自2004年就出现的经典MediaWiki皮肤，",
 	"monobook.css": "/* 放置于这里的CSS将影响使用MonoBook皮肤的用户 */",
 	"monobook.js": "/* 这里的任何JavaScript将为使用MonoBook皮肤的用户加载 */"
 }

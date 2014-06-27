@@ -2649,7 +2649,7 @@
 	"scarytranscludefailed": "[Dobava predloška nije uspjela za $1]",
 	"scarytranscludefailed-httpstatus": "[Preuzimanje predloška nije uspjelo za $1: HTTP $2]",
 	"scarytranscludetoolong": "[URL je predug]",
-	"deletedwhileediting": "'''Upozorenje''': Ova stranica je obrisana nakon što ste počeli uređivati!",
+	"deletedwhileediting": "'''Upozorenje''': ova stranica je obrisana nakon što ste počeli uređivati!",
 	"confirmrecreate": "Suradnik [[User:$1|$1]] ([[User talk:$1|talk]]) izbrisao je ovaj članak nakon što ste ga počeli uređivati. Razlog brisanja\n: ''$2''\nPotvrdite namjeru vraćanja ovog članka.",
 	"confirmrecreate-noreason": "Suradnik [[User:$1|$1]] ([[User talk:$1|razgovor]]) je obrisao ovaj članak nakon što ste ga počeli uređivati. Molimo potvrdite da stvarno želite ponovo započeti ovaj članak.",
 	"recreate": "Vrati",
