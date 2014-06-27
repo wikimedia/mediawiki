@@ -1017,7 +1017,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *     for a successful read query, or false on failure if $tempIgnore set
 	 */
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
-		global $wgUser, $wgDebugDBTransactions;
+		global $wgUser, $wgDebugDBTransactions, $wgDebugDumpSqlLength;
 
 		$this->mLastQuery = $sql;
 		if ( !$this->mDoneWrites && $this->isWriteQuery( $sql ) ) {
@@ -1091,7 +1091,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			static $cnt = 0;
 
 			$cnt++;
-			$sqlx = substr( $commentedSql, 0, 500 );
+			$sqlx = $wgDebugDumpSqlLength ? substr( $commentedSql, 0, $wgDebugDumpSqlLength )
+				: $commentedSql;
 			$sqlx = strtr( $sqlx, "\t\n", '  ' );
 
 			$master = $isMaster ? 'master' : 'slave';
@@ -1122,7 +1123,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			if ( $this->ping() ) {
 				global $wgRequestTime;
 				wfDebug( "Reconnected\n" );
-				$sqlx = substr( $commentedSql, 0, 500 );
+				$sqlx = $wgDebugDumpSqlLength ? substr( $commentedSql, 0, $wgDebugDumpSqlLength )
+					: $commentedSql;
 				$sqlx = strtr( $sqlx, "\t\n", '  ' );
 				$elapsed = round( microtime( true ) - $wgRequestTime, 3 );
 				if ( $elapsed < 300 ) {

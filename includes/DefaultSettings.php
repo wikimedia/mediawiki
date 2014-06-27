@@ -4976,6 +4976,13 @@ $wgDebugDBTransactions = false;
 $wgDebugDumpSql = false;
 
 /**
+ * Trim logged SQL queries to this many bytes. Set 0/false/null to do no
+ * trimming.
+ * @since 1.24
+ */
+$wgDebugDumpSqlLength = 500;
+
+/**
  * Map of string log group names to log destinations.
  *
  * If set, wfDebugLog() output for that group will go to that file instead
