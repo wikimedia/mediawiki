@@ -3378,7 +3378,7 @@
 	"version": "{{doc-special|Version}}\n{{Identical|Version}}",
 	"version-summary": "{{doc-specialpagesummary|version}}",
 	"version-extensions": "Header on [[Special:Version]].",
-	"version-skins": "Header on [[Special:Version]].",
+	"version-skins": "Header on [[Special:Version]].\n\nSee also:\n* {{msg-mw|Version-software}}\n* {{msg-mw|Version-extensions}}",
 	"version-specialpages": "Part of [[Special:Version]].\n{{Identical|Special page}}",
 	"version-parserhooks": "This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.",
 	"version-variables": "{{Identical|Variable}}",

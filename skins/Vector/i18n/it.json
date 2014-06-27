@@ -8,7 +8,7 @@
 			"Pietrodn"
 		]
 	},
-	"vector-desc": "Potenzia l'interfaccia utente quando si usa la skin Vector",
+	"vector-skin-desc": "Versione moderna del MonoBook con un'aspetto nuovo e molti miglioramenti dell'usabilità",
 	"vector.css": "/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Vector */",
 	"vector.js": "/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Vector */",
 	"vector-action-addsection": "Aggiungi discussione",

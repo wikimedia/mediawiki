@@ -7,7 +7,7 @@
 		]
 	},
 	"skinname-vector": "벡터",
-	"vector-desc": "벡터 스킨을 사용할 때 사용자 인터페이스를 향상합니다",
+	"vector-skin-desc": "모노북 스킨을 사용할 때 사용자 인터페이스를 향상합니다",
 	"vector.css": "/* 이 CSS 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */",
 	"vector.js": "/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */",
 	"vector-action-addsection": "새 주제",

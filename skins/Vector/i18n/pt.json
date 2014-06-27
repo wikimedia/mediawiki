@@ -10,7 +10,7 @@
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "Melhora os elementos da interface do utilizador para o tema Vector",
+	"vector-skin-desc": "Versão moderna do MonoBook com um visual fresco e várias melhorias de usabilidade",
 	"vector.css": "/* Código CSS colocado aqui afectará os utilizadores do tema Vector */",
 	"vector.js": "/* Código Javascript colocado aqui será carregado para utilizadores do tema Vector */",
 	"vector-action-addsection": "Adicionar&nbsp;tópico",

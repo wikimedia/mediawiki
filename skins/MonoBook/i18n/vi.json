@@ -4,6 +4,6 @@
 			"Minh Nguyen"
 		]
 	},
-	"monobook.css": "/* Mã CSS đặt ở đây sẽ ảnh hưởng đến thành viên sử dụng hình dạng MonoBook */",
-	"monobook.js": "/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài MonoBook */"
+	"monobook.css": "/* Mã CSS đặt ở đây sẽ ảnh hưởng đến thành viên sử dụng giao diện MonoBook */",
+	"monobook.js": "/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng giao diện MonoBook */"
 }

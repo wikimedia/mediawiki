@@ -10,7 +10,7 @@
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "Améliore l’interface utilisateur lors de l'utilisation de l'habillage Vecteur",
+	"vector-skin-desc": "Version moderne de MonoBook avec un aspect rajeuni et beaucoup d’améliorations ergonomiques",
 	"vector.css": "/* Le CSS placé ici affectera les utilisateurs de l’habillage Vector. */",
 	"vector.js": "/* Tout code JavaScript placé ici sera chargé pour les utilisateurs de l’habillage Vector */",
 	"vector-action-addsection": "Ajouter un sujet",
