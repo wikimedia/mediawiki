@@ -173,6 +173,7 @@ production.
   the user will now see "Animals#Dog" in their browser instead of "Dog#Dog".
 * API token handling has been rewritten. Any API module using tokens will need
   to be updated.
+* Added HTMLAutoCompleteSelectField.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
