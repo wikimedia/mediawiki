@@ -63,10 +63,8 @@ then
 	exit 0
 fi
 
-# Build the distribution (using grunt-test instead of grunt-build, because we
-# want to run unit tests first, and because grunt-build is for a release build
-# and wouldn't put a git hash in the file headers)
-npm install && grunt test || exit 1
+# Build the distribution via npm install's implicit grunt build
+npm install || exit 1
 
 # Get the list of changes
 NEWCHANGES=$(git log $OLDHASH.. --oneline --no-merges --reverse --color=never)
