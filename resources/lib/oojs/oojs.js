@@ -1,16 +1,17 @@
 /*!
- * OOjs v1.0.9
+ * OOjs v1.0.10
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Apr 02 2014 14:20:50 GMT-0700 (PDT)
+ * Date: Wed Jun 18 2014 20:03:40 GMT-0700 (PDT)
  */
 ( function ( global ) {
 
 'use strict';
+/*exported toString */
 var
 	/**
 	 * Namespace for all classes, static methods and static properties.
@@ -22,33 +23,6 @@ var
 	toString = oo.toString;
 
 /* Class Methods */
-
-/**
- * Assert whether a value is a plain object or not.
- *
- * @param {Mixed} obj
- * @return {boolean}
- */
-oo.isPlainObject = function ( obj ) {
-	// Any object or value whose internal [[Class]] property is not "[object Object]"
-	if ( toString.call( obj ) !== '[object Object]' ) {
-		return false;
-	}
-
-	// The try/catch suppresses exceptions thrown when attempting to access
-	// the "constructor" property of certain host objects suich as window.location
-	// in Firefox < 20 (https://bugzilla.mozilla.org/814622)
-	try {
-		if ( obj.constructor &&
-				!hasOwn.call( obj.constructor.prototype, 'isPrototypeOf' ) ) {
-			return false;
-		}
-	} catch ( e ) {
-		return false;
-	}
-
-	return true;
-};
 
 /**
  * Utility to initialize a class for OO inheritance.
@@ -106,7 +80,12 @@ oo.inheritClass = function ( targetFn, originFn ) {
 
 	var targetConstructor = targetFn.prototype.constructor;
 
-	targetFn.super = originFn;
+	// Using ['super'] instead of .super because 'super' is not supported
+	// by IE 8 and below (bug 63303).
+	// Provide .parent as alias for code supporting older browsers which
+	// allows people to comply with their style guide.
+	targetFn['super'] = targetFn.parent = originFn;
+
 	targetFn.prototype = Object.create( originFn.prototype, {
 		// Restore constructor property of targetFn
 		constructor: {
@@ -255,6 +234,12 @@ oo.compare = function ( a, b, asymmetrical ) {
 	}
 
 	for ( k in a ) {
+		if ( !hasOwn.call( a, k ) ) {
+			// Support es3-shim: Without this filter, comparing [] to {} will be false in ES3
+			// because the shimmed "forEach" is enumerable and shows up in Array but not Object.
+			continue;
+		}
+
 		aValue = a[k];
 		bValue = b[k];
 		aType = typeof aValue;
@@ -457,6 +442,38 @@ oo.simpleArrayIntersection = function ( a, b ) {
 oo.simpleArrayDifference = function ( a, b ) {
 	return simpleArrayCombine( a, b, false );
 };
+/*global hasOwn, toString */
+
+/**
+ * Assert whether a value is a plain object or not.
+ *
+ * @param {Mixed} obj
+ * @return {boolean}
+ */
+oo.isPlainObject = function ( obj ) {
+	/*jshint eqnull:true, eqeqeq:false */
+
+	// Any object or value whose internal [[Class]] property is not "[object Object]"
+	// Support IE8: Explicitly filter out DOM nodes
+	// Support IE8: Explicitly filter out Window object (needs loose comparison)
+	if ( !obj || toString.call( obj ) !== '[object Object]' || obj.nodeType || ( obj != null && obj == obj.window ) ) {
+		return false;
+	}
+
+	// The try/catch suppresses exceptions thrown when attempting to access
+	// the "constructor" property of certain host objects suich as window.location
+	// in Firefox < 20 (https://bugzilla.mozilla.org/814622)
+	try {
+		if ( obj.constructor &&
+				!hasOwn.call( obj.constructor.prototype, 'isPrototypeOf' ) ) {
+			return false;
+		}
+	} catch ( e ) {
+		return false;
+	}
+
+	return true;
+};
 /**
  * @class OO.EventEmitter
  *
@@ -529,11 +546,12 @@ oo.EventEmitter.prototype.on = function ( event, callback, args, context ) {
  * @chainable
  */
 oo.EventEmitter.prototype.once = function ( event, listener ) {
-	var eventEmitter = this;
-	return this.on( event, function listenerWrapper() {
-		eventEmitter.off( event, listenerWrapper );
-		listener.apply( eventEmitter, Array.prototype.slice.call( arguments, 0 ) );
-	} );
+	var eventEmitter = this,
+		listenerWrapper = function () {
+			eventEmitter.off( event, listenerWrapper );
+			listener.apply( eventEmitter, Array.prototype.slice.call( arguments, 0 ) );
+		};
+	return this.on( event, listenerWrapper );
 };
 
 /**
@@ -761,7 +779,7 @@ oo.Registry.prototype.lookup = function ( name ) {
  * @constructor
  */
 oo.Factory = function OoFactory() {
-	oo.Factory.super.call( this );
+	oo.Factory.parent.call( this );
 
 	// Properties
 	this.entries = [];
@@ -801,7 +819,7 @@ oo.Factory.prototype.register = function ( constructor ) {
 	}
 	this.entries.push( name );
 
-	oo.Factory.super.prototype.register.call( this, name, constructor );
+	oo.Factory.parent.prototype.register.call( this, name, constructor );
 };
 
 /**
