@@ -52,6 +52,7 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 		$special = new SpecialPreferences();
 		$special->setContext( $context );
 		$special->execute( array() );
+		$this->assertContains( $context->getOutput()->getModules(), 'mediawiki.htmlform' );
 	}
 
 }
