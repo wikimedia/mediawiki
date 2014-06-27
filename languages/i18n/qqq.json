@@ -1576,6 +1576,7 @@
 	"license-header": "Used as section header in [[Special:Upload]].\n\nSee also:\n* {{msg-mw|Filedesc}}\n* {{msg-mw|Filestatus}}\n* {{msg-mw|Filesource}}\n{{Identical|Licensing}}",
 	"nolicense": "{{Identical|None selected}}",
 	"licenses": "{{notranslate}}",
+	"licenses-edit": "Label text for a link on Special:Upload to edit MediaWiki:Licenses",
 	"license-nopreview": "Error message when a certain license does not exist",
 	"upload_source_url": "Used in [[Special:Upload]].\n\nSee also:\n* {{msg-mw|Sourcefilename|label}}\n* {{msg-mw|Sourceurl|label}}\n* {{msg-mw|Upload source file}}\n* {{msg-mw|Upload-maxfilesize}}",
 	"upload_source_file": "Used in [[Special:Upload]].\n\nSee also:\n* {{msg-mw|Sourcefilename|label}}\n* {{msg-mw|Sourceurl|label}}\n* {{msg-mw|Upload source url}}\n* {{msg-mw|Upload-maxfilesize}}",

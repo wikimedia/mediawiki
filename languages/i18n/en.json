@@ -1414,6 +1414,7 @@
 	"license-header": "Licensing",
 	"nolicense": "None selected",
 	"licenses": "-",
+	"licenses-edit": "Edit license options",
 	"license-nopreview": "(Preview not available)",
 	"upload_source_url": "(a valid, publicly accessible URL)",
 	"upload_source_file": "(a file on your computer)",
