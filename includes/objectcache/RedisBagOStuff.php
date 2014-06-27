@@ -300,7 +300,7 @@ class RedisBagOStuff extends BagOStuff {
 	 * atomic.
 	 * @param string $key
 	 * @param int $value
-	 * @param bool|mixed
+	 * @return int|bool New value or false on failure
 	 */
 	public function incr( $key, $value = 1 ) {
 		$section = new ProfileSection( __METHOD__ );
@@ -313,7 +313,7 @@ class RedisBagOStuff extends BagOStuff {
 			return null;
 		}
 		try {
-			$result = $this->unserialize( $conn->incrBy( $key, $value ) );
+			$result = $conn->incrBy( $key, $value );
 		} catch ( RedisException $e ) {
 			$result = false;
 			$this->handleException( $conn, $e );
