@@ -3,6 +3,7 @@
  * Sanity checks for making sure registered resources are sane.
  *
  * @file
+ * @group ResourceLoader
  * @author Antoine Musso
  * @author Niklas Laxström
  * @author Santhosh Thottingal
@@ -38,7 +39,7 @@ class ResourcesTest extends MediaWikiTestCase {
 	}
 
 	public function testDependencies() {
-		$data = self::getAllModules();
+		$data = $this->getAllModules();
 		$illegalDeps = array( 'jquery', 'mediawiki' );
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
@@ -55,13 +56,9 @@ class ResourcesTest extends MediaWikiTestCase {
 	/**
 	 * Get all registered modules from ResouceLoader.
 	 */
-	protected static function getAllModules() {
-		global $wgEnableJavaScriptTest;
-
-		// Test existance of test suite files as well
-		// (can't use setUp or setMwGlobals because providers are static)
-		$org_wgEnableJavaScriptTest = $wgEnableJavaScriptTest;
-		$wgEnableJavaScriptTest = true;
+	protected function getAllModules() {
+		// Test existence of test suite files as well
+		$this->setMwGlobals( 'wgEnableJavaScriptTest', true );
 
 		// Initialize ResourceLoader
 		$rl = new ResourceLoader();
@@ -71,9 +68,6 @@ class ResourcesTest extends MediaWikiTestCase {
 		foreach ( $rl->getModuleNames() as $moduleName ) {
 			$modules[$moduleName] = $rl->getModule( $moduleName );
 		}
-
-		// Restore settings
-		$wgEnableJavaScriptTest = $org_wgEnableJavaScriptTest;
 
 		return array(
 			'modules' => $modules,
@@ -86,8 +80,8 @@ class ResourcesTest extends MediaWikiTestCase {
 	 * Get all stylesheet files from modules that are an instance of
 	 * ResourceLoaderFileModule (or one of its subclasses).
 	 */
-	public static function provideMediaStylesheets() {
-		$data = self::getAllModules();
+	public function provideMediaStylesheets() {
+		$data = $this->getAllModules();
 		$cases = array();
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
@@ -132,8 +126,8 @@ class ResourcesTest extends MediaWikiTestCase {
 	 * Since the raw data is stored in protected properties, we have to
 	 * overrride this through ReflectionObject methods.
 	 */
-	public static function provideResourceFiles() {
-		$data = self::getAllModules();
+	public function provideResourceFiles() {
+		$data = $this->getAllModules();
 		$cases = array();
 
 		// See also ResourceLoaderFileModule::__construct

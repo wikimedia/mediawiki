@@ -55,7 +55,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param Title|string $title
 	 * @param string $model
 	 * @return WikiPage
 	 */
@@ -216,15 +216,13 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doQuickEdit
 	 */
 	public function testDoQuickEdit() {
-		global $wgUser;
-
 		$this->hideDeprecated( "WikiPage::doQuickEdit" );
 
 		//NOTE: assume help namespace will default to wikitext
 		$page = $this->createPage( "Help:WikiPageTest_testDoQuickEdit", "original text" );
 
 		$text = "quick text";
-		$page->doQuickEdit( $text, $wgUser, "testing q" );
+		$page->doQuickEdit( $text, new User(), "testing q" );
 
 		# ---------------------
 		$page = new WikiPage( $page->getTitle() );
@@ -235,8 +233,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doQuickEditContent
 	 */
 	public function testDoQuickEditContent() {
-		global $wgUser;
-
 		$page = $this->createPage(
 			"WikiPageTest_testDoQuickEditContent",
 			"original text",
@@ -248,7 +244,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 			$page->getTitle(),
 			CONTENT_MODEL_WIKITEXT
 		);
-		$page->doQuickEditContent( $content, $wgUser, "testing q" );
+		$page->doQuickEditContent( $content, new User(), "testing q" );
 
 		# ---------------------
 		$page = new WikiPage( $page->getTitle() );

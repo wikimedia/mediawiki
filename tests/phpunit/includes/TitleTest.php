@@ -418,14 +418,16 @@ class TitleTest extends MediaWikiTestCase {
 	public function testGetPageViewLanguage( $expected, $titleText, $contLang,
 		$lang, $variant, $msg = ''
 	) {
-		global $wgLanguageCode, $wgContLang, $wgLang, $wgDefaultLanguageVariant, $wgAllowUserJs;
-
 		// Setup environnement for this test
-		$wgLanguageCode = $contLang;
-		$wgContLang = Language::factory( $contLang );
-		$wgLang = Language::factory( $lang );
-		$wgDefaultLanguageVariant = $variant;
-		$wgAllowUserJs = true;
+		$this->setMwGlobals(
+			array(
+				'wgLanguageCode' => $contLang,
+				'wgContLang' => Language::factory( $contLang ),
+				'wgLang' => Language::factory( $lang ),
+				'wgDefaultLanguageVariant' => $variant,
+				'wgAllowUserJs' => true,
+			)
+		);
 
 		$title = Title::newFromText( $titleText );
 		$this->assertInstanceOf( 'Title', $title,

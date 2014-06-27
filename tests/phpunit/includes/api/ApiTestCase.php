@@ -84,10 +84,10 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 		// set up global environment
 		if ( $user ) {
-			$wgUser = $user;
+			$this->setMwGlobals( 'wgUser', $user );
 		}
 
-		$wgRequest = new FauxRequest( $params, true, $session );
+		$this->setMwGlobals( 'wgRequest', new FauxRequest( $params, true, $session ) );
 		RequestContext::getMain()->setRequest( $wgRequest );
 
 		// set up local environment

@@ -17,8 +17,6 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	/** @var DerivativeContext */
 	private $mContext;
 
-	private $mOldGetPreferencesHooks = false;
-
 	private static $Success = array( 'options' => 'success' );
 
 	protected function setUp() {
@@ -50,23 +48,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$this->mTested = new ApiOptions( $main, 'options' );
 
-		global $wgHooks;
-		if ( !isset( $wgHooks['GetPreferences'] ) ) {
-			$wgHooks['GetPreferences'] = array();
-		}
-		$this->mOldGetPreferencesHooks = $wgHooks['GetPreferences'];
-		$wgHooks['GetPreferences'][] = array( $this, 'hookGetPreferences' );
-	}
-
-	protected function tearDown() {
-		global $wgHooks;
-
-		if ( $this->mOldGetPreferencesHooks !== false ) {
-			$wgHooks['GetPreferences'] = $this->mOldGetPreferencesHooks;
-			$this->mOldGetPreferencesHooks = false;
-		}
-
-		parent::tearDown();
+		$this->setMwGlobals( 'wgHooks',
+			array( 'GetPreferences' => array( array( $this, 'hookGetPreferences' ) ) )
+		);
 	}
 
 	public function hookGetPreferences( $user, &$preferences ) {

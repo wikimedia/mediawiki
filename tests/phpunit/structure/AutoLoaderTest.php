@@ -1,6 +1,7 @@
 <?php
 
 class AutoLoaderTest extends MediaWikiTestCase {
+	private $testLocalClasses;
 	protected function setUp() {
 		global $wgAutoloadLocalClasses, $wgAutoloadClasses;
 
