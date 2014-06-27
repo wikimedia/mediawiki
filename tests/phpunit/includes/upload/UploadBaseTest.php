@@ -9,21 +9,14 @@ class UploadBaseTest extends MediaWikiTestCase {
 	protected $upload;
 
 	protected function setUp() {
-		global $wgHooks;
 		parent::setUp();
 
 		$this->upload = new UploadTestHandler;
-		$this->hooks = $wgHooks;
-		$wgHooks['InterwikiLoadPrefix'][] = function ( $prefix, &$data ) {
+
+		$this->setMwGlobals( 'wgHooks', array( 'InterwikiLoadPrefix' => array(
+			function ( $prefix, &$data ) {
 			return false;
-		};
-	}
-
-	protected function tearDown() {
-		global $wgHooks;
-		$wgHooks = $this->hooks;
-
-		parent::tearDown();
+		} ) ) );
 	}
 
 	/**
@@ -112,22 +105,18 @@ class UploadBaseTest extends MediaWikiTestCase {
 	 * This method should be abstracted so we can test different settings.
 	 */
 	public function testMaxUploadSize() {
-		global $wgMaxUploadSize;
-		$savedGlobal = $wgMaxUploadSize; // save global
-		global $wgFileExtensions;
-		$wgFileExtensions[] = 'txt';
+		$this->setMwGlobals( array(
+			'wgFileExtensions' => array( 'txt' ),
+			'wgMaxUploadSize' => 100,
+		) );
 
-		$wgMaxUploadSize = 100;
-
-		$filename = $this->createFileOfSize( $wgMaxUploadSize );
+		$filename = $this->createFileOfSize( 100 );
 		$this->upload->initializePathInfo( basename( $filename ) . '.txt', $filename, 100 );
 		$result = $this->upload->verifyUpload();
 		unlink( $filename );
 
 		$this->assertEquals(
 			array( 'status' => UploadBase::OK ), $result );
-
-		$wgMaxUploadSize = $savedGlobal; // restore global
 	}
 }
 

@@ -10,8 +10,6 @@
 class TitleMethodsTest extends MediaWikiTestCase {
 
 	protected function setUp() {
-		global $wgContLang;
-
 		parent::setUp();
 
 		$this->mergeMwGlobalArrayValue(
@@ -30,16 +28,13 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		);
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
-		$wgContLang->resetNamespaces(); # reset namespace cache
+		$this->setMwGlobals( 'wgContLang', Language::factory( 'en' ) );
 	}
 
 	protected function tearDown() {
-		global $wgContLang;
-
 		parent::tearDown();
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
-		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
 	public static function provideEquals() {

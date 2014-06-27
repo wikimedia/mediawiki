@@ -248,9 +248,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getPasswordExpired()
 	 */
 	public function testPasswordExpire() {
-		global $wgPasswordExpireGrace;
-		$wgTemp = $wgPasswordExpireGrace;
-		$wgPasswordExpireGrace = 3600 * 24 * 7; // 7 days
+		$this->setMwGlobals( 'wgPasswordExpireGrace', 3600 * 24 * 7 ); // 7 days
 
 		$user = User::newFromName( 'UnitTestUser' );
 		$user->loadDefaults();
@@ -263,8 +261,6 @@ class UserTest extends MediaWikiTestCase {
 		$ts = time() - ( 3600 * 24 * 10 ); // 10 days ago
 		$user->expirePassword( $ts );
 		$this->assertEquals( 'hard', $user->getPasswordExpired() );
-
-		$wgPasswordExpireGrace = $wgTemp;
 	}
 
 	/**
