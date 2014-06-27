@@ -968,7 +968,11 @@ return array(
 	),
 	'mediawiki.page.image.pagination' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.image.pagination.js',
-		'dependencies' => array( 'jquery.spinner' )
+		'dependencies' => array(
+			'mediawiki.Uri',
+			'mediawiki.util',
+			'jquery.spinner',
+		)
 	),
 
 	/* MediaWiki Special pages */
