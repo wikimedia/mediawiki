@@ -22,8 +22,9 @@
 			konqueror: [['>=', '4.11']],
 			docomo: false,
 			blackberry: false,
-			ipod: false,
-			iphone: false
+			// Support for iOS 6 or higher. It has not been tested on iOS 5 or lower 
+			ipod: [['>=', 6]],
+			iphone: [['>=', 6]]
 		};
 
 		if ( !$.client.test( map ) ) {
