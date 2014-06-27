@@ -2,6 +2,7 @@
 
 /**
  * @group Database
+ * @group RequestContext
  */
 class RequestContextTest extends MediaWikiTestCase {
 
@@ -53,6 +54,11 @@ class RequestContextTest extends MediaWikiTestCase {
 				'USER-AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0'
 			)
 		);
+		// importScopedSession() sets these variables
+		$this->setMwGlobals( array(
+			'wgUser' => new User,
+			'wgRequest' => new FauxRequest,
+		) );
 		$sc = RequestContext::importScopedSession( $sinfo ); // load new context
 
 		$info = $context->exportSession();
