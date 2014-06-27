@@ -526,7 +526,11 @@ class SpecialSearch extends SpecialPage {
 
 		if ( $user->isLoggedIn() &&
 			!is_null( $request->getVal( 'nsRemember' ) ) &&
-			$user->matchEditToken( $request->getVal( 'nsToken' ) )
+			$user->matchEditToken(
+				$request->getVal( 'nsToken' ),
+				'searchnamespace',
+				$request
+			)
 		) {
 			// Reset namespace preferences: namespaces are not searched
 			// when they're not mentioned in the URL parameters.
@@ -970,7 +974,13 @@ class SpecialSearch extends SpecialPage {
 		$remember = '';
 		$user = $this->getUser();
 		if ( $user->isLoggedIn() ) {
-			$remember .= Html::hidden( 'nsToken', $user->getEditToken() ) .
+			$remember .= Html::hidden(
+				'nsToken',
+				$user->getEditToken(
+					'searchnamespace',
+					$this->getRequest()
+				)
+			) .
 			Xml::checkLabel(
 				wfMessage( 'powersearch-remember' )->text(),
 				'nsRemember',
