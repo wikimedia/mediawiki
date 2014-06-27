@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (b9d403a678)
+ * OOjs UI v0.1.0-pre (a63f03882e)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-06-26T23:45:59Z
+ * Date: 2014-06-27T23:51:18Z
  */
 ( function ( OO ) {
 
@@ -8666,5 +8666,3 @@ OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
 };
 
 }( OO ) );
-
-//# sourceMappingURL=oojs-ui.js.map
