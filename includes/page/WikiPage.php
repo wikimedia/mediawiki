@@ -277,7 +277,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectFields() {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
 		$fields = array(
 			'page_id',
@@ -296,6 +296,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
+		}
+
+		if ( $wgPageLanguageUseDB ) {
+			$fields[] = 'page_lang';
 		}
 
 		return $fields;
