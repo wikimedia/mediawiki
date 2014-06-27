@@ -69,6 +69,11 @@ class RequestContext implements IContextSource {
 	private $config;
 
 	/**
+	 * @var RequestContext
+	 */
+	private static $instance = null;
+
+	/**
 	 * Set the Config object
 	 *
 	 * @param Config $c
@@ -411,12 +416,21 @@ class RequestContext implements IContextSource {
 	 * @return RequestContext
 	 */
 	public static function getMain() {
-		static $instance = null;
-		if ( $instance === null ) {
-			$instance = new self;
+		if ( self::$instance === null ) {
+			self::$instance = new self;
 		}
 
-		return $instance;
+		return self::$instance;
+	}
+
+	/**
+	 * Resets singleton returned by getMain(). Should be called only from unit tests.
+	 */
+	public static function resetMain() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( __METHOD__ . '() should be called only from unit tests!' );
+		}
+		self::$instance = null;
 	}
 
 	/**

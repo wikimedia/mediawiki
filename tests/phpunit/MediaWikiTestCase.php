@@ -245,6 +245,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$GLOBALS[$key] = $value;
 		}
 		$this->mwGlobals = array();
+		RequestContext::resetMain();
 
 		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
