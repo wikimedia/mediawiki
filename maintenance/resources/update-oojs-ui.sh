@@ -64,7 +64,7 @@ then
 fi
 
 # Build the distribution
-npm install || exit 1
+npm install && grunt git-build || exit 1
 
 # Get the list of changes
 NEWCHANGES=$(git log $OLDHASH.. --oneline --no-merges --reverse --color=never)
