@@ -12,8 +12,6 @@
 	 * @param {string|mw.Title|string[]|mw.Title[]} pages Full page name or instance of mw.Title, or an
 	 *  array thereof. If an array is passed, the return value passed to the promise will also be an
 	 *  array of appropriate objects.
-	 * @param {Function} [ok] Success callback (deprecated)
-	 * @param {Function} [err] Error callback (deprecated)
 	 * @return {jQuery.Promise}
 	 * @return {Function} return.done
 	 * @return {Object|Object[]} return.done.watch Object or list of objects (depends on the `pages`
@@ -22,7 +20,7 @@
 	 * @return {boolean} return.done.watch.watched Whether the page is now watched or unwatched
 	 * @return {string} return.done.watch.message Parsed HTML of the confirmational interface message
 	 */
-	function doWatchInternal( pages, ok, err, addParams ) {
+	function doWatchInternal( pages, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
 		// documentation in the public method...
 		var apiPromise = this.postWithToken( 'watch',
@@ -36,19 +34,11 @@
 			)
 		);
 
-		// Backwards compatibility (< MW 1.20)
-		if ( ok || err ) {
-			mw.track( 'mw.deprecate', 'api.cbParam' );
-			mw.log.warn( 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.' );
-		}
-
 		return apiPromise
 			.then( function ( data ) {
 				// If a single page was given (not an array) respond with a single item as well.
 				return $.isArray( pages ) ? data.watch : data.watch[0];
 			} )
-			.done( ok )
-			.fail( err )
 			.promise( { abort: apiPromise.abort } );
 	}
 
@@ -58,16 +48,17 @@
 		 *
 		 * @inheritdoc #doWatchInternal
 		 */
-		watch: function ( pages, ok, err ) {
-			return doWatchInternal.call( this, pages, ok, err );
+		watch: function ( pages ) {
+			return doWatchInternal.call( this, pages );
 		},
+
 		/**
 		 * Convenience method for `action=watch&unwatch=1`.
 		 *
 		 * @inheritdoc #doWatchInternal
 		 */
-		unwatch: function ( pages, ok, err ) {
-			return doWatchInternal.call( this, pages, ok, err, { unwatch: 1 } );
+		unwatch: function ( pages ) {
+			return doWatchInternal.call( this, pages, { unwatch: 1 } );
 		}
 	} );
 
