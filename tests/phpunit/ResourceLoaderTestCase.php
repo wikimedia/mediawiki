@@ -43,6 +43,8 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	protected $dependencies = array();
 	protected $group = null;
 	protected $source = 'local';
+	protected $script = '';
+	protected $styles = '';
 	protected $skipFunction = null;
 	protected $targets = array( 'test' );
 
@@ -50,6 +52,14 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 		foreach ( $options as $key => $value ) {
 			$this->$key = $value;
 		}
+	}
+
+	public function getScript( ResourceLoaderContext $context ) {
+		return $this->script;
+	}
+
+	public function getStyles( ResourceLoaderContext $context ) {
+		return array( '' => $this->styles );
 	}
 
 	public function getDependencies() {
