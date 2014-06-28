@@ -231,3 +231,12 @@ div.tright {
 div.tleft {
 	margin: .5em 1.4em 1.3em 0;
 }
+
+/* Print link */
+.client-js #t-print-printableversion {
+	display: none;
+}
+
+.client-nojs #t-print-print {
+	display: none;
+}
