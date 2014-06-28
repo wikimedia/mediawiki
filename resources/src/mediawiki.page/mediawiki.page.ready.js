@@ -70,7 +70,6 @@
 				} );
 			} );
 		}
-
 	} );
 
 }( mediaWiki, jQuery ) );

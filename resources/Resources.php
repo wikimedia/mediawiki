@@ -1348,6 +1348,10 @@ return array(
 			'jquery.mw-jump',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+		'messages' => array(
+			'print',
+			'tooltip-t-print',
+		),
 	),
 	'mediawiki.page.startup' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.startup.js',

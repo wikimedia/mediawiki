@@ -92,8 +92,18 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $this->data['nav_urls']['print'] ) && $this->data['nav_urls']['print'] ) {
 			$toolbox['print'] = $this->data['nav_urls']['print'];
 			$toolbox['print']['id'] = 't-print';
-			$toolbox['print']['rel'] = 'alternate';
-			$toolbox['print']['msg'] = 'printableversion';
+			$toolbox['print']['links']['printableversion'] = $this->data['nav_urls']['print'];
+			$toolbox['print']['links']['printableversion']['single-id'] = 't-printableversion';
+			$toolbox['print']['links']['printableversion']['rel'] = 'alternate';
+			$toolbox['print']['links']['printableversion']['msg'] = 'printableversion';
+			$toolbox['print']['links']['printableversion']['id'] = 't-print-printableversion';
+			$toolbox['print']['links']['print'] = $this->data['nav_urls']['print'];
+			$toolbox['print']['links']['print']['single-id'] = 't-print';
+			$toolbox['print']['links']['print']['href'] = 'javascript:window.print();';
+			$toolbox['print']['links']['print']['msg'] = 'print';
+			// Override the default "Printable version" text
+			unset($toolbox['print']['links']['print']['text']);
+			$toolbox['print']['links']['print']['id'] = 't-print-print';
 		}
 		if ( isset( $this->data['nav_urls']['permalink'] ) && $this->data['nav_urls']['permalink'] ) {
 			$toolbox['permalink'] = $this->data['nav_urls']['permalink'];
