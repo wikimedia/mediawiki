@@ -458,6 +458,22 @@ class ResourceLoader {
 	}
 
 	/**
+	 * Get the URL to the load.php endpoint for the given
+	 * ResourceLoader source
+	 *
+	 * @since 1.24
+	 * @param string $source
+	 * @throws MWException on an invalid $source name
+	 * @return string
+	 */
+	public function getLoadScript( $source ) {
+		if ( !isset( $this->sources[$source] ) ) {
+			throw new MWException( "The $source source was never registered in ResourceLoader." );
+		}
+		return $this->sources[$source]['loadScript'];
+	}
+
+	/**
 	 * Output a response to a load request, including the content-type header.
 	 *
 	 * @param ResourceLoaderContext $context Context in which a response should be formed
@@ -1232,6 +1248,27 @@ class ResourceLoader {
 
 	/**
 	 * Build a load.php URL
+	 *
+	 * @since 1.24
+	 * @param ResourceLoaderContext $context
+	 * @param string $source name of the ResourceLoader source
+	 * @param array $extraQuery
+	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)
+	 */
+	public function createLoaderURL( ResourceLoaderContext $context, $source = 'local',
+		$extraQuery = array()
+	) {
+		$query = self::createLoaderQuery( $context, $extraQuery );
+		$script = $this->getLoadScript( $source );
+
+		// Prevent the IE6 extension check from being triggered (bug 28840)
+		// by appending a character that's invalid in Windows extensions ('*')
+		return wfExpandUrl( wfAppendQuery( $script, $query ) . '&*', PROTO_RELATIVE );
+	}
+
+	/**
+	 * Build a load.php URL
+	 * @deprecated since 1.24, use createLoaderURL instead
 	 * @param array $modules Array of module names (strings)
 	 * @param string $lang Language code
 	 * @param string $skin Skin name
@@ -1256,7 +1293,31 @@ class ResourceLoader {
 
 		// Prevent the IE6 extension check from being triggered (bug 28840)
 		// by appending a character that's invalid in Windows extensions ('*')
-		return wfExpandUrl( wfAppendQuery( $wgLoadScript, $query ) . '&*', PROTO_RELATIVE );
+		return wfExpandUrl( wfAppendQuery( $script, $query ) . '&*', PROTO_RELATIVE );
+	}
+
+	/**
+	 * Helper for createLoaderURL()
+	 *
+	 * @since 1.24
+	 * @see makeLoaderQuery
+	 * @param ResourceLoaderContext $context
+	 * @param array $extraQuery
+	 * @return array
+	 */
+	public static function createLoaderQuery( ResourceLoaderContext $context, $extraQuery = array() ) {
+		return self::makeLoaderQuery(
+			$context->getModules(),
+			$context->getLanguage(),
+			$context->getSkin(),
+			$context->getUser(),
+			$context->getVersion(),
+			$context->getDebug(),
+			$context->getOnly(),
+			$context->getRequest()->getBool( 'printable' ),
+			$context->getRequest()->getBool( 'handheld' ),
+			$extraQuery
+		);
 	}
 
 	/**
