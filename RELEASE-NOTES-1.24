@@ -435,6 +435,8 @@ changes to languages because of Bugzilla reports.
 * TablePager::getBody() is now 'final' and can't be overridden in subclasses.
 * TablePager::getBody() is deprecated, use getBodyOutput() or getFullOutput().
 * Removed deprecated mw.user.name() and mw.user.anonymous() methods. (deprecated since 1.20)
+* Removed deprecated 'ok' and 'err' parameters in the mediawiki.api modules. (deprecated since 1.20)
+* Removed deprecated 'async' parameter from the mw.Api#getCategories() method. (deprecated since 1.20)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
