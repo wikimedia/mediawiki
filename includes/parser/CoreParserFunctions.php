@@ -242,7 +242,12 @@ class CoreParserFunctions {
 	}
 
 	static function canonicalurle( $parser, $s = '', $arg = null ) {
-		return self::urlFunction( 'escapeCanonicalURL', $s, $arg );
+		$temp = self::urlFunction( 'getCanonicalURL', $s, $arg );
+		if ( !is_string( $temp ) ) {
+			return $temp;
+		} else {
+			return htmlspecialchars( $temp );
+		}
 	}
 
 	static function urlFunction( $func, $s = '', $arg = null ) {
