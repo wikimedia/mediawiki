@@ -853,6 +853,8 @@ $wgAutoloadLocalClasses = array(
 	'MachineReadableRCFeedFormatter' => 'includes/rcfeed/MachineReadableRCFeedFormatter.php',
 
 	# includes/resourceloader
+	'DerivativeResourceLoaderContext' =>
+		'includes/resourceloader/DerivativeResourceLoaderContext.php',
 	'ResourceLoader' => 'includes/resourceloader/ResourceLoader.php',
 	'ResourceLoaderContext' => 'includes/resourceloader/ResourceLoaderContext.php',
 	'ResourceLoaderFileModule' => 'includes/resourceloader/ResourceLoaderFileModule.php',

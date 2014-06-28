@@ -130,6 +130,39 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			),
 		);
 	}
+
+	public static function fakeSources() {
+		return array(
+			'examplewiki' => array(
+				'loadScript' => '//example.org/w/load.php',
+				'apiScript' => '//example.org/w/api.php',
+			),
+			'example2wiki' => array(
+				'loadScript' => '//example.com/w/load.php',
+				'apiScript' => '//example.com/w/api.php',
+			),
+		);
+	}
+
+	/**
+	 * @covers ResourceLoader::getLoadScript
+	 */
+	public function testGetLoadScript() {
+		$this->setMwGlobals( 'wgResourceLoaderSources', array() );
+		$rl = new ResourceLoader();
+		$sources = self::fakeSources();
+		$rl->addSource( $sources );
+		foreach ( array( 'examplewiki', 'example2wiki' ) as $name ) {
+			$this->assertEquals( $rl->getLoadScript( $name ), $sources[$name]['loadScript'] );
+		}
+
+		try {
+			$rl->getLoadScript( 'thiswasneverreigstered' );
+			$this->assertTrue( false, 'ResourceLoader::getLoadScript should have thrown an exception' );
+		} catch ( MWException $e ) {
+			$this->assertTrue( true );
+		}
+	}
 }
 
 /* Hooks */
