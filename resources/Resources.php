@@ -1149,6 +1149,9 @@ return array(
 			'mediawiki.util',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+		'messages' => array(
+			'print',
+		),
 	),
 	'mediawiki.page.startup' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.startup.js',

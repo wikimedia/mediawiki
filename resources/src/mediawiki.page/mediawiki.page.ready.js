@@ -35,6 +35,12 @@
 		// Add accesskey hints to the tooltips
 		mw.util.updateTooltipAccessKeys();
 
+		// Replace "Printable version" link with "Print"
+		$( '#t-print > a' ).text( mw.message( 'print' ) ).click( function() {
+			event.preventDefault();
+			window.print();
+		} );
+
 	} );
 
 }( mediaWiki, jQuery ) );
