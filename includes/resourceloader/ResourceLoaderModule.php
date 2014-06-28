@@ -144,17 +144,17 @@ abstract class ResourceLoaderModule {
 	 * @return array Array of URLs
 	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
-		$url = ResourceLoader::makeLoaderURL(
-			array( $this->getName() ),
-			$context->getLanguage(),
-			$context->getSkin(),
-			$context->getUser(),
-			$context->getVersion(),
-			true, // debug
-			'scripts', // only
-			$context->getRequest()->getBool( 'printable' ),
-			$context->getRequest()->getBool( 'handheld' )
+		$resourceLoader = $context->getResourceLoader();
+		$derivative = new DerivativeResourceLoaderContext( $context );
+		$derivative->setModules( array( $this->getName() ) );
+		$derivative->setOnly( 'scripts' );
+		$derivative->setDebug( true );
+
+		$url = $resourceLoader->createLoaderURL(
+			$derivative,
+			$this->getSource()
 		);
+
 		return array( $url );
 	}
 
@@ -191,17 +191,17 @@ abstract class ResourceLoaderModule {
 	 * @return array array( mediaType => array( URL1, URL2, ... ), ... )
 	 */
 	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
-		$url = ResourceLoader::makeLoaderURL(
-			array( $this->getName() ),
-			$context->getLanguage(),
-			$context->getSkin(),
-			$context->getUser(),
-			$context->getVersion(),
-			true, // debug
-			'styles', // only
-			$context->getRequest()->getBool( 'printable' ),
-			$context->getRequest()->getBool( 'handheld' )
+		$resourceLoader = $context->getResourceLoader();
+		$derivative = new DerivativeResourceLoaderContext( $context );
+		$derivative->setModules( array( $this->getName() ) );
+		$derivative->setOnly( 'styles' );
+		$derivative->setDebug( true );
+
+		$url = $resourceLoader->createLoaderURL(
+			$derivative,
+			$this->getSource()
 		);
+
 		return array( 'all' => array( $url ) );
 	}
 
