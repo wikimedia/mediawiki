@@ -58,6 +58,15 @@
 			 */
 			mw.hook( 'wikipage.categories' ).fire( $nodes );
 		}
+
+		$( '#t-print-print' )
+			.attr( 'accesskey', $( '#t-print-printableversion' ).attr( 'accesskey' ) )
+			.updateTooltipAccessKeys()
+			.click( function ( event ) {
+				window.print();
+				event.preventDefault();
+			} );
+		$( '#t-print-printableversion' ).removeAttr( 'accesskey' )
 	} );
 
 }( mediaWiki, jQuery ) );

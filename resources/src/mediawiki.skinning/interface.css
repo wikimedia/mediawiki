@@ -79,3 +79,12 @@ textarea {
 span.subpages {
 	display: block;
 }
+
+/* Print link */
+.client-js #t-print-printableversion {
+	display: none;
+}
+
+.client-nojs #t-print-print {
+	display: none;
+}
