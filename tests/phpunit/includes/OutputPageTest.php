@@ -135,4 +135,58 @@ class OutputPageTest extends MediaWikiTestCase {
 			'message' => 'On request with handheld querystring and media is screen, returns null'
 		) );
 	}
+
+	public static function provideMakeResourceLoaderLink() {
+		return array(
+			// JavaScript module
+			array(
+				array( 'mediawiki.api', ResourceLoaderModule::TYPE_SCRIPTS ),
+				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.api&amp;only=scripts&amp;skin=vector&amp;*"></script>
+'
+			),
+			// Two styles-only modules
+			array(
+				array( array( 'mediawiki.skinning.interface', 'mediawiki.ui.button' ), ResourceLoaderModule::TYPE_STYLES ),
+				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.skinning.interface%7Cmediawiki.ui.button&amp;only=styles&amp;skin=vector&amp;*" />
+'
+			),
+			// A private module that gets inlined
+			array(
+				array( 'user.tokens', ResourceLoaderModule::TYPE_COMBINED ),
+				'<script>if(window.mw){
+mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:f47f038f09d6ac0c11c8b132f0717602 */
+}</script>
+'
+			),
+			// a JavaScript module with ESI enabled
+			array(
+				array( 'mediawiki.api', ResourceLoaderModule::TYPE_SCRIPTS, true ),
+				'<script>/*<![CDATA[*/<esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.api&amp;only=scripts&amp;skin=vector&amp;*" />/*]]>*/</script>
+'
+			),
+			// A style module with ESI enabled
+			array(
+				array( 'mediawiki.ui.button', ResourceLoaderModule::TYPE_STYLES, true ),
+				'<style>/*<![CDATA[*/<esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.ui.button&amp;only=styles&amp;skin=vector&amp;*" />/*]]>*/</style>
+',
+			),
+		);
+	}
+
+
+	/**
+	 * @dataProvider provideMakeResourceLoaderLink
+	 * @covers OutputPage::makeResourceLoaderLink
+	 */
+	public function testMakeResourceLoaderLink( $args, $expectedHtml) {
+		$this->setMwGlobals( 'wgResourceLoaderUseESI', true );
+		$class = new ReflectionClass( 'OutputPage' );
+		$method = $class->getMethod( 'makeResourceLoaderLink' );
+		$method->setAccessible( true );
+		$ctx = new RequestContext();
+		$out = new OutputPage( $ctx );
+		$links = $method->invokeArgs( $out, $args );
+		$this->assertEquals( $links['html'], $expectedHtml );
+	}
 }
