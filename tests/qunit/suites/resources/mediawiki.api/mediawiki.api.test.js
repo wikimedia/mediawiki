@@ -61,44 +61,6 @@
 		} );
 	} );
 
-	QUnit.test( 'Deprecated callback methods', function ( assert ) {
-		QUnit.expect( 3 );
-
-		var api = new mw.Api();
-
-		this.suppressWarnings();
-
-		api.get( {}, function () {
-			assert.ok( true, 'Function argument treated as success callback.' );
-		} );
-
-		api.get( {}, {
-			ok: function () {
-				assert.ok( true, '"ok" property treated as success callback.' );
-			}
-		} );
-
-		api.get( { action: 'doesntexist' }, {
-			err: function () {
-				assert.ok( true, '"err" property treated as error callback.' );
-			}
-		} );
-
-		this.restoreWarnings();
-
-		this.server.respondWith( /action=query/, function ( request ) {
-			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
-		} );
-
-		this.server.respondWith( /action=doesntexist/, function ( request ) {
-			request.respond( 200, { 'Content-Type': 'application/json' },
-				'{ "error": { "code": "unknown_action" } }'
-			);
-		} );
-
-		this.server.respond();
-	} );
-
 	QUnit.test( 'getToken( pre-populated )', function ( assert ) {
 		QUnit.expect( 2 );
 
