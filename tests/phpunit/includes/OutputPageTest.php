@@ -135,4 +135,84 @@ class OutputPageTest extends MediaWikiTestCase {
 			'message' => 'On request with handheld querystring and media is screen, returns null'
 		) );
 	}
+
+	public static function provideMakeResourceLoaderLink() {
+		return array(
+			// Load module script only
+			array(
+				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
+				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=vector&amp;*"></script>
+'
+			),
+			// Load module styles only
+			// This also tests the order the modules are put into the url
+			array(
+				array( array( 'test.baz', 'test.foo', 'test.bar' ), ResourceLoaderModule::TYPE_STYLES ),
+				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=vector&amp;*">
+'
+			),
+			// Load private module (combined)
+			array(
+				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
+				'<script>if(window.mw){
+mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n/* cache key: ' . wfWikiId() . ':resourceloader:filter:minify-css:7:fd8ea20b3336b2bfb230c789d430067a */"]},{});
+/* cache key: ' . wfWikiId() . ':resourceloader:filter:minify-js:7:771f01e82fa1f74ff3e0f53307c07516 */
+}</script>
+'
+			),
+			// Load module script with with ESI
+			array(
+				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS, true ),
+				'<script><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=vector&amp;*" /></script>
+'
+			),
+			// Load module styles with with ESI
+			array(
+				array( 'test.foo', ResourceLoaderModule::TYPE_STYLES, true ),
+				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=vector&amp;*" /></style>
+',
+			),
+		);
+	}
+
+
+	/**
+	 * @dataProvider provideMakeResourceLoaderLink
+	 * @covers OutputPage::makeResourceLoaderLink
+	 */
+	public function testMakeResourceLoaderLink( $args, $expectedHtml) {
+		$this->setMwGlobals( array(
+			'wgResourceLoaderUseESI' => true,
+			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
+			// Affects whether CDATA is inserted
+			'wgWellFormedXml' => false,
+		) );
+		$class = new ReflectionClass( 'OutputPage' );
+		$method = $class->getMethod( 'makeResourceLoaderLink' );
+		$method->setAccessible( true );
+		$ctx = new RequestContext();
+		$out = new OutputPage( $ctx );
+		$rl = $out->getResourceLoader();
+		$rl->register( array(
+			'test.foo' => new ResourceLoaderTestModule(array(
+				'script' => 'mw.test.foo( { a: true } );',
+				'styles' => '.mw-test-foo { content: "style"; }',
+			)),
+			'test.bar' => new ResourceLoaderTestModule(array(
+				'script' => 'mw.test.bar( { a: true } );',
+				'styles' => '.mw-test-bar { content: "style"; }',
+			)),
+			'test.baz' => new ResourceLoaderTestModule(array(
+				'script' => 'mw.test.baz( { a: true } );',
+				'styles' => '.mw-test-baz { content: "style"; }',
+			)),
+			'test.quux' => new ResourceLoaderTestModule(array(
+				'script' => 'mw.test.baz( { token: 123 } );',
+				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
+				'group' => 'private',
+			)),
+		) );
+		$links = $method->invokeArgs( $out, $args );
+		$this->assertEquals( $expectedHtml, $links['html'] );
+	}
 }
