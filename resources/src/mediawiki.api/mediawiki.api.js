@@ -130,7 +130,6 @@
 		ajax: function ( parameters, ajaxOptions ) {
 			var token,
 				apiDeferred = $.Deferred(),
-				msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.',
 				xhr, key, formData;
 
 			parameters = $.extend( {}, this.defaults.parameters, parameters );
@@ -181,21 +180,6 @@
 					// it'll be wrong and the server will fail to decode the POST body
 					delete ajaxOptions.contentType;
 				}
-			}
-
-			// Backwards compatibility: Before MediaWiki 1.20,
-			// callbacks were done with the 'ok' and 'err' property in ajaxOptions.
-			if ( ajaxOptions.ok ) {
-				mw.track( 'mw.deprecate', 'api.cbParam' );
-				mw.log.warn( msg );
-				apiDeferred.done( ajaxOptions.ok );
-				delete ajaxOptions.ok;
-			}
-			if ( ajaxOptions.err ) {
-				mw.track( 'mw.deprecate', 'api.cbParam' );
-				mw.log.warn( msg );
-				apiDeferred.fail( ajaxOptions.err );
-				delete ajaxOptions.err;
 			}
 
 			// Make the AJAX request
