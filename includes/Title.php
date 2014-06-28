@@ -1844,19 +1844,6 @@ class Title {
 	}
 
 	/**
-	 * HTML-escaped version of getCanonicalURL()
-	 *
-	 * @see self::getLocalURL for the arguments.
-	 * @since 1.18
-	 * @return string
-	 * @deprecated since 1.19
-	 */
-	public function escapeCanonicalURL( $query = '', $query2 = false ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		return htmlspecialchars( $this->getCanonicalURL( $query, $query2 ) );
-	}
-
-	/**
 	 * Get the edit URL for this Title
 	 *
 	 * @return string The URL, or a null string if this is an interwiki link
