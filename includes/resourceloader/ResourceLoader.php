@@ -1242,13 +1242,20 @@ class ResourceLoader {
 	 * @param bool $printable Printable mode
 	 * @param bool $handheld Handheld mode
 	 * @param array $extraQuery Extra query parameters to add
+	 * @param string $source name of the ResourceLoader source to use
 	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)
 	 */
 	public static function makeLoaderURL( $modules, $lang, $skin, $user = null,
 		$version = null, $debug = false, $only = null, $printable = false,
-		$handheld = false, $extraQuery = array()
+		$handheld = false, $extraQuery = array(), $source = 'local'
 	) {
-		global $wgLoadScript;
+		global $wgLoadScript, $wgResourceLoaderSources;
+
+		if ( $source == 'local' ) {
+			$script = $wgLoadScript;
+		} else {
+			$script = $wgResourceLoaderSources[$source]['loadScript'];
+		}
 
 		$query = self::makeLoaderQuery( $modules, $lang, $skin, $user, $version, $debug,
 			$only, $printable, $handheld, $extraQuery
@@ -1256,7 +1263,7 @@ class ResourceLoader {
 
 		// Prevent the IE6 extension check from being triggered (bug 28840)
 		// by appending a character that's invalid in Windows extensions ('*')
-		return wfExpandUrl( wfAppendQuery( $wgLoadScript, $query ) . '&*', PROTO_RELATIVE );
+		return wfExpandUrl( wfAppendQuery( $script, $query ) . '&*', PROTO_RELATIVE );
 	}
 
 	/**

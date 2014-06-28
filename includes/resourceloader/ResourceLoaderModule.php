@@ -153,7 +153,9 @@ abstract class ResourceLoaderModule {
 			true, // debug
 			'scripts', // only
 			$context->getRequest()->getBool( 'printable' ),
-			$context->getRequest()->getBool( 'handheld' )
+			$context->getRequest()->getBool( 'handheld' ),
+			array(),
+			$this->getSource()
 		);
 		return array( $url );
 	}
@@ -200,7 +202,9 @@ abstract class ResourceLoaderModule {
 			true, // debug
 			'styles', // only
 			$context->getRequest()->getBool( 'printable' ),
-			$context->getRequest()->getBool( 'handheld' )
+			$context->getRequest()->getBool( 'handheld' ),
+			array(),
+			$this->getSource()
 		);
 		return array( 'all' => array( $url ) );
 	}
