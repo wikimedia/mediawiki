@@ -208,21 +208,21 @@ class ResourceLoaderContext {
 	 * @return bool
 	 */
 	public function shouldIncludeScripts() {
-		return is_null( $this->only ) || $this->only === 'scripts';
+		return is_null( $this->getOnly() ) || $this->getOnly() === 'scripts';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function shouldIncludeStyles() {
-		return is_null( $this->only ) || $this->only === 'styles';
+		return is_null( $this->getOnly() ) || $this->getOnly() === 'styles';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function shouldIncludeMessages() {
-		return is_null( $this->only ) || $this->only === 'messages';
+		return is_null( $this->getOnly() ) || $this->getOnly() === 'messages';
 	}
 
 	/**
@@ -231,8 +231,8 @@ class ResourceLoaderContext {
 	public function getHash() {
 		if ( !isset( $this->hash ) ) {
 			$this->hash = implode( '|', array(
-				$this->getLanguage(), $this->getDirection(), $this->skin, $this->user,
-				$this->debug, $this->only, $this->version
+				$this->getLanguage(), $this->getDirection(), $this->getSkin(), $this->getUser(),
+				$this->getDebug(), $this->getOnly(), $this->getVersion()
 			) );
 		}
 		return $this->hash;
