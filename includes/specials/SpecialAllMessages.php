@@ -55,10 +55,9 @@ class SpecialAllMessages extends SpecialPage {
 			$out->addWikiMsg( 'allmessagesnotsupportedDB' );
 
 			return;
-		} else {
-			$this->outputHeader( 'allmessagestext' );
 		}
 
+		$this->outputHeader( 'allmessagestext' );
 		$out->addModuleStyles( 'mediawiki.special' );
 
 		$this->table = new AllmessagesTablePager(
