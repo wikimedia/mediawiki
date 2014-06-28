@@ -2585,30 +2585,6 @@ class Title {
 	}
 
 	/**
-	 * Update the title protection status
-	 *
-	 * @deprecated since 1.19; use WikiPage::doUpdateRestrictions() instead.
-	 * @param string $create_perm Permission required for creation
-	 * @param string $reason Reason for protection
-	 * @param string $expiry Expiry timestamp
-	 * @return bool
-	 */
-	public function updateTitleProtection( $create_perm, $reason, $expiry ) {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		global $wgUser;
-
-		$limit = array( 'create' => $create_perm );
-		$expiry = array( 'create' => $expiry );
-
-		$page = WikiPage::factory( $this );
-		$cascade = false;
-		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $wgUser );
-
-		return $status->isOK();
-	}
-
-	/**
 	 * Remove any title protection due to page existing
 	 */
 	public function deleteTitleProtection() {

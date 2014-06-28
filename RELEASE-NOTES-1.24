@@ -200,6 +200,7 @@ changes to languages because of Bugzilla reports.
 * Removed Preferences::loadOldSearchNs(). (deprecated since 1.19)
 * Removed OutputPage::getStatusMessage(). (deprecated since 1.18)
 * Removed OutputPage::isUserJsAllowed(). (deprecated since 1.18)
+* Removed Title::updateTitleProtection(). (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
