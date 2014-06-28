@@ -2746,8 +2746,8 @@ $templates
 			$extraQuery['target'] = $this->mTarget;
 		}
 
-		// Create keyed-by-group list of module objects from modules list
-		$groups = array();
+		// Create keyed-by-source and then keyed-by-group list of module objects from modules list
+		$sortedModules = array();
 		$resourceLoader = $this->getResourceLoader();
 		foreach ( $modules as $name ) {
 			$module = $resourceLoader->getModule( $name );
@@ -2762,136 +2762,126 @@ $templates
 				continue;
 			}
 
-			$group = $module->getGroup();
-			if ( !isset( $groups[$group] ) ) {
-				$groups[$group] = array();
-			}
-			$groups[$group][$name] = $module;
+			$sortedModules[$module->getSource()][$module->getGroup()][$name] = $module;
 		}
 
-		foreach ( $groups as $group => $grpModules ) {
-			// Special handling for user-specific groups
-			$user = null;
-			if ( ( $group === 'user' || $group === 'private' ) && $this->getUser()->isLoggedIn() ) {
-				$user = $this->getUser()->getName();
-			}
-
-			// Create a fake request based on the one we are about to make so modules return
-			// correct timestamp and emptiness data
-			$query = ResourceLoader::makeLoaderQuery(
-				array(), // modules; not determined yet
-				$this->getLanguage()->getCode(),
-				$this->getSkin()->getSkinName(),
-				$user,
-				null, // version; not determined yet
-				ResourceLoader::inDebugMode(),
-				$only === ResourceLoaderModule::TYPE_COMBINED ? null : $only,
-				$this->isPrintable(),
-				$this->getRequest()->getBool( 'handheld' ),
-				$extraQuery
-			);
-			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
-
-			// Extract modules that know they're empty
-			foreach ( $grpModules as $key => $module ) {
-				// Inline empty modules: since they're empty, just mark them as 'ready' (bug 46857)
-				// If we're only getting the styles, we don't need to do anything for empty modules.
-				if ( $module->isKnownEmpty( $context ) ) {
-					unset( $grpModules[$key] );
-					if ( $only !== ResourceLoaderModule::TYPE_STYLES ) {
-						$links['states'][$key] = 'ready';
-					}
+		foreach ( $sortedModules as $source => $groups ) {
+			foreach ( $groups as $group => $grpModules ) {
+				// Special handling for user-specific groups
+				$user = null;
+				if ( ( $group === 'user' || $group === 'private' ) && $this->getUser()->isLoggedIn() ) {
+					$user = $this->getUser()->getName();
 				}
-			}
 
-			// If there are no non-empty modules, skip this group
-			if ( count( $grpModules ) === 0 ) {
-				continue;
-			}
+				// Create a fake request based on the one we are about to make so modules return
+				// correct timestamp and emptiness data
+				$query = ResourceLoader::makeLoaderQuery(
+					array(), // modules; not determined yet
+					$this->getLanguage()->getCode(),
+					$this->getSkin()->getSkinName(),
+					$user,
+					null, // version; not determined yet
+					ResourceLoader::inDebugMode(),
+					$only === ResourceLoaderModule::TYPE_COMBINED ? null : $only,
+					$this->isPrintable(),
+					$this->getRequest()->getBool( 'handheld' ),
+					$extraQuery
+				);
+				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
+				$derivative = new DerivativeResourceLoaderContext( $context );
 
-			// Inline private modules. These can't be loaded through load.php for security
-			// reasons, see bug 34907. Note that these modules should be loaded from
-			// getHeadScripts() before the first loader call. Otherwise other modules can't
-			// properly use them as dependencies (bug 30914)
-			if ( $group === 'private' ) {
-				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
-					$links['html'] .= Html::inlineStyle(
-						$resourceLoader->makeModuleResponse( $context, $grpModules )
-					);
-				} else {
-					$links['html'] .= Html::inlineScript(
-						ResourceLoader::makeLoaderConditionalScript(
-							$resourceLoader->makeModuleResponse( $context, $grpModules )
-						)
-					);
-				}
-				$links['html'] .= "\n";
-				continue;
-			}
-
-			// Special handling for the user group; because users might change their stuff
-			// on-wiki like user pages, or user preferences; we need to find the highest
-			// timestamp of these user-changeable modules so we can ensure cache misses on change
-			// This should NOT be done for the site group (bug 27564) because anons get that too
-			// and we shouldn't be putting timestamps in Squid-cached HTML
-			$version = null;
-			if ( $group === 'user' ) {
-				// Get the maximum timestamp
-				$timestamp = 1;
-				foreach ( $grpModules as $module ) {
-					$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
-				}
-				// Add a version parameter so cache will break when things change
-				$version = wfTimestamp( TS_ISO_8601_BASIC, $timestamp );
-			}
-
-			$url = ResourceLoader::makeLoaderURL(
-				array_keys( $grpModules ),
-				$this->getLanguage()->getCode(),
-				$this->getSkin()->getSkinName(),
-				$user,
-				$version,
-				ResourceLoader::inDebugMode(),
-				$only === ResourceLoaderModule::TYPE_COMBINED ? null : $only,
-				$this->isPrintable(),
-				$this->getRequest()->getBool( 'handheld' ),
-				$extraQuery
-			);
-			if ( $useESI && $wgResourceLoaderUseESI ) {
-				$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
-				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
-					$link = Html::inlineStyle( $esi );
-				} else {
-					$link = Html::inlineScript( $esi );
-				}
-			} else {
-				// Automatically select style/script elements
-				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
-					$link = Html::linkedStyle( $url );
-				} elseif ( $loadCall ) {
-					$link = Html::inlineScript(
-						ResourceLoader::makeLoaderConditionalScript(
-							Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
-						)
-					);
-				} else {
-					$link = Html::linkedScript( $url );
-
-					// For modules requested directly in the html via <link> or <script>,
-					// tell mw.loader they are being loading to prevent duplicate requests.
-					foreach ( $grpModules as $key => $module ) {
-						// Don't output state=loading for the startup module..
-						if ( $key !== 'startup' ) {
-							$links['states'][$key] = 'loading';
+				// Extract modules that know they're empty
+				foreach ( $grpModules as $key => $module ) {
+					// Inline empty modules: since they're empty, just mark them as 'ready' (bug 46857)
+					// If we're only getting the styles, we don't need to do anything for empty modules.
+					if ( $module->isKnownEmpty( $context ) ) {
+						unset( $grpModules[$key] );
+						if ( $only !== ResourceLoaderModule::TYPE_STYLES ) {
+							$links['states'][$key] = 'ready';
 						}
 					}
 				}
-			}
 
-			if ( $group == 'noscript' ) {
-				$links['html'] .= Html::rawElement( 'noscript', array(), $link ) . "\n";
-			} else {
-				$links['html'] .= $link . "\n";
+				// If there are no non-empty modules, skip this group
+				if ( count( $grpModules ) === 0 ) {
+					continue;
+				}
+
+				// Inline private modules. These can't be loaded through load.php for security
+				// reasons, see bug 34907. Note that these modules should be loaded from
+				// getHeadScripts() before the first loader call. Otherwise other modules can't
+				// properly use them as dependencies (bug 30914)
+				if ( $group === 'private' ) {
+					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
+						$links['html'] .= Html::inlineStyle(
+							$resourceLoader->makeModuleResponse( $context, $grpModules )
+						);
+					} else {
+						$links['html'] .= Html::inlineScript(
+							ResourceLoader::makeLoaderConditionalScript(
+								$resourceLoader->makeModuleResponse( $context, $grpModules )
+							)
+						);
+					}
+					$links['html'] .= "\n";
+					continue;
+				}
+
+				// Special handling for the user group; because users might change their stuff
+				// on-wiki like user pages, or user preferences; we need to find the highest
+				// timestamp of these user-changeable modules so we can ensure cache misses on change
+				// This should NOT be done for the site group (bug 27564) because anons get that too
+				// and we shouldn't be putting timestamps in Squid-cached HTML
+				$version = null;
+				if ( $group === 'user' ) {
+					// Get the maximum timestamp
+					$timestamp = 1;
+					foreach ( $grpModules as $module ) {
+						$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
+					}
+					// Add a version parameter so cache will break when things change
+					$derivative->setVersion( wfTimestamp( TS_ISO_8601_BASIC, $timestamp ) );
+				}
+
+				$derivative->setModules( $grpModules );
+				$url = $resourceLoader->createLoaderURL( $context, $source, $extraQuery );
+
+				if ( $useESI && $wgResourceLoaderUseESI ) {
+					$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
+					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
+						$link = Html::inlineStyle( $esi );
+					} else {
+						$link = Html::inlineScript( $esi );
+					}
+				} else {
+					// Automatically select style/script elements
+					if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
+						$link = Html::linkedStyle( $url );
+					} elseif ( $loadCall ) {
+						$link = Html::inlineScript(
+							ResourceLoader::makeLoaderConditionalScript(
+								Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
+							)
+						);
+					} else {
+						$link = Html::linkedScript( $url );
+
+						// For modules requested directly in the html via <link> or <script>,
+						// tell mw.loader they are being loading to prevent duplicate requests.
+						foreach ( $grpModules as $key => $module ) {
+							// Don't output state=loading for the startup module..
+							if ( $key !== 'startup' ) {
+								$links['states'][$key] = 'loading';
+							}
+						}
+					}
+				}
+
+				if ( $group == 'noscript' ) {
+					$links['html'] .= Html::rawElement( 'noscript', array(), $link ) . "\n";
+				} else {
+					$links['html'] .= $link . "\n";
+				}
 			}
 		}
 
