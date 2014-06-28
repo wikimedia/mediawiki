@@ -59,6 +59,15 @@
 		}
 		$nodes.updateTooltipAccessKeys();
 
+		// Replace "Printable version" link with "Print"
+		$( '#t-print > a' )
+			.text( mw.msg( 'print' ) )
+			.attr( 'title', mw.msg( 'tooltip-t-print' ) )
+			.updateTooltipAccessKeys()
+			.click( function ( event ) {
+				event.preventDefault();
+				window.print();
+			} );
 	} );
 
 }( mediaWiki, jQuery ) );
