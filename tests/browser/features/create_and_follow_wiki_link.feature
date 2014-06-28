@@ -1,4 +1,4 @@
-
+@chrome @clean @en.wikipedia.beta.wmflabs.org @firefox @phantomjs @test2.wikipedia.org
 Feature: Create Page With Wiki Link
 
   Scenario: Create Page With Wiki Link
