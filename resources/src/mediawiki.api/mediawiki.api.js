@@ -75,32 +75,14 @@
 	mw.Api.prototype = {
 
 		/**
-		 * Normalize the ajax options for compatibility and/or convenience methods.
-		 *
-		 * @param {Object} [arg] An object contaning one or more of options.ajax.
-		 * @return {Object} Normalized ajax options.
-		 */
-		normalizeAjaxOptions: function ( arg ) {
-			// Arg argument is usually empty
-			// (before MW 1.20 it was used to pass ok callbacks)
-			var opts = arg || {};
-			// Options can also be a success callback handler
-			if ( typeof arg === 'function' ) {
-				opts = { ok: arg };
-			}
-			return opts;
-		},
-
-		/**
 		 * Perform API get request
 		 *
 		 * @param {Object} parameters
-		 * @param {Object|Function} [ajaxOptions]
+		 * @param {Object} [ajaxOptions]
 		 * @return {jQuery.Promise}
 		 */
 		get: function ( parameters, ajaxOptions ) {
-			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
-			ajaxOptions.type = 'GET';
+			ajaxOptions = $.extend( {}, ajaxOptions, { type: 'GET' } );
 			return this.ajax( parameters, ajaxOptions );
 		},
 
@@ -110,12 +92,11 @@
 		 * TODO: Post actions for non-local hostnames will need proxy.
 		 *
 		 * @param {Object} parameters
-		 * @param {Object|Function} [ajaxOptions]
+		 * @param {Object} [ajaxOptions]
 		 * @return {jQuery.Promise}
 		 */
 		post: function ( parameters, ajaxOptions ) {
-			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
-			ajaxOptions.type = 'POST';
+			ajaxOptions = $.extend( {}, ajaxOptions, { type: 'POST' } );
 			return this.ajax( parameters, ajaxOptions );
 		},
 
@@ -130,7 +111,6 @@
 		ajax: function ( parameters, ajaxOptions ) {
 			var token,
 				apiDeferred = $.Deferred(),
-				msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.',
 				xhr, key, formData;
 
 			parameters = $.extend( {}, this.defaults.parameters, parameters );
@@ -181,21 +161,6 @@
 					// it'll be wrong and the server will fail to decode the POST body
 					delete ajaxOptions.contentType;
 				}
-			}
-
-			// Backwards compatibility: Before MediaWiki 1.20,
-			// callbacks were done with the 'ok' and 'err' property in ajaxOptions.
-			if ( ajaxOptions.ok ) {
-				mw.track( 'mw.deprecate', 'api.cbParam' );
-				mw.log.warn( msg );
-				apiDeferred.done( ajaxOptions.ok );
-				delete ajaxOptions.ok;
-			}
-			if ( ajaxOptions.err ) {
-				mw.track( 'mw.deprecate', 'api.cbParam' );
-				mw.log.warn( msg );
-				apiDeferred.fail( ajaxOptions.err );
-				delete ajaxOptions.err;
 			}
 
 			// Make the AJAX request
