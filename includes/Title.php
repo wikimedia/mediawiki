@@ -1778,21 +1778,6 @@ class Title {
 
 	/**
 	 * Get an HTML-escaped version of the URL form, suitable for
-	 * using in a link, without a server name or fragment
-	 *
-	 * @see self::getLocalURL for the arguments.
-	 * @param string $query
-	 * @param bool|string $query2
-	 * @return string The URL
-	 * @deprecated since 1.19
-	 */
-	public function escapeLocalURL( $query = '', $query2 = false ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		return htmlspecialchars( $this->getLocalURL( $query, $query2 ) );
-	}
-
-	/**
-	 * Get an HTML-escaped version of the URL form, suitable for
 	 * using in a link, including the server name and fragment
 	 *
 	 * @see self::getLocalURL for the arguments.
