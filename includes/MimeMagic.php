@@ -994,7 +994,7 @@ class MimeMagic {
 			$head = fread( $f, 256 );
 			fclose( $f );
 
-			$head = strtolower( $head );
+			$head = str_replace( 'ffmpeg2theora', '', strtolower( $head ) );
 
 			// This is an UGLY HACK, file should be parsed correctly
 			if ( strpos( $head, 'theora' ) !== false ) {
