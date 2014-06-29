@@ -857,6 +857,11 @@ class Language {
 			include "$IP/languages/Names.php";
 		}
 
+		// If passed an invalid language name to use, just use autonyms.
+		if ( $inLanguage !== null && !Language::isValidCode( $inLanguage ) ) {
+			$inLanguage = null;
+		}
+
 		$names = array();
 
 		if ( $inLanguage ) {
