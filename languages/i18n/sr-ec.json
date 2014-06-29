@@ -505,7 +505,7 @@
 	"resetpass-expired-soft": "Ваша лозинка је истекла и морате поставити нову. Поставите нову лозинку или кликните „{{int:resetpass-submit-cancel}}“ да је поставите касније.",
 	"resetpass-validity-soft": "Ваша лозинка није ваљана: $1\n\nМолимо изаберите нову или кликните „{{int:resetpass-submit-cancel}}“ да ресетујете касније.",
 	"passwordreset": "Обнављање лозинке",
-	"passwordreset-text-one": "Попуните овај образац да бисте ресетовали лозинку.",
+	"passwordreset-text-one": "Попуните овај образац да бисте добили привремену лозинку на е-пошту.",
 	"passwordreset-text-many": "{{PLURAL:$1|Испуните једно од поља како би сте добили привремену лозинку на е-пошту.}}",
 	"passwordreset-legend": "Поништи лозинку",
 	"passwordreset-disabled": "Обнављање лозинке је онемогућено на овом викију.",
@@ -3183,11 +3183,11 @@
 	"expand_templates_input": "Унос:",
 	"expand_templates_output": "Резултат",
 	"expand_templates_xml_output": "XML излаз",
-	"expand_templates_html_output": "Сиров ХТМЛ излаз",
+	"expand_templates_html_output": "Сиров HTML излаз",
 	"expand_templates_ok": "У реду",
 	"expand_templates_remove_comments": "Уклони коментаре",
 	"expand_templates_remove_nowiki": "Поништава ефекат <nowiki> тагова у приказу чланака",
-	"expand_templates_generate_xml": "прикажи XML стабло",
-	"expand_templates_generate_rawhtml": "Покажи сиров ХТМЛ",
+	"expand_templates_generate_xml": "Прикажи XML стабло",
+	"expand_templates_generate_rawhtml": "Прикажи сиров HTML",
 	"expand_templates_preview": "Приказ"
 }

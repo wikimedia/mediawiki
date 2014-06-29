@@ -3171,5 +3171,15 @@
 	"expand_templates_remove_nowiki": "הסרת תגי <nowiki> בתוצאה",
 	"expand_templates_generate_xml": "הצגת עץ הפענוח של XML",
 	"expand_templates_generate_rawhtml": "הצגת HTML גולמי",
-	"expand_templates_preview": "תצוגה מקדימה"
+	"expand_templates_preview": "תצוגה מקדימה",
+	"pagelanguage": "בורר שפת הדף",
+	"pagelang-name": "דף",
+	"pagelang-language": "שפה",
+	"pagelang-use-default": "להשתמש בשפה הרגילה",
+	"pagelang-select-lang": "בחירת שפה",
+	"right-pagelang": "שינוי שפת הדף",
+	"action-pagelang": "לשנות את שפת הדף",
+	"log-name-pagelang": "יומן שינוי שפה",
+	"log-description-pagelang": "זהו יומן של שינויים בשפות של הדפים.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|שינה|שינתה}} את שפת הדף $3 מ$4 ל$5."
 }

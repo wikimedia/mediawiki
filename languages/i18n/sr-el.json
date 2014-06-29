@@ -496,7 +496,7 @@
 	"resetpass-expired-soft": "Vaša lozinka je istekla i morate postaviti novu. Postavite novu lozinku ili kliknite „{{int:resetpass-submit-cancel}}“ da je postavite kasnije.",
 	"resetpass-validity-soft": "Vaša lozinka nije valjana: $1\n\nMolimo izaberite novu ili kliknite „{{int:resetpass-submit-cancel}}“ da resetujete kasnije.",
 	"passwordreset": "Obnavljanje lozinke",
-	"passwordreset-text-one": "Popunite ovaj obrazac da biste resetovali lozinku.",
+	"passwordreset-text-one": "Popunite ovaj obrazac da biste dobili privremenu lozinku na e-poštu.",
 	"passwordreset-text-many": "{{PLURAL:$1|Ispunite jedno od polja kako bi ste dobili privremenu lozinku na e-poštu.}}",
 	"passwordreset-legend": "Poništi lozinku",
 	"passwordreset-disabled": "Obnavljanje lozinke je onemogućeno na ovom vikiju.",
@@ -3170,6 +3170,6 @@
 	"expand_templates_ok": "U redu",
 	"expand_templates_remove_comments": "Ukloni komentare",
 	"expand_templates_remove_nowiki": "Poništava efekat <nowiki> tagova u prikazu članaka",
-	"expand_templates_generate_xml": "prikaži XML stablo",
+	"expand_templates_generate_xml": "Prikaži XML stablo",
 	"expand_templates_preview": "Prikaz"
 }

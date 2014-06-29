@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Fúlvio"
 		]
 	},
 	"skinname-monobook": "MonoBook",
+	"monobook-desc": "A clássica skin do MediaWiki desde 2004, tendo este nome devido a uma imagem em preto-e-branco de um livro no plano de fundo da página",
 	"monobook.css": "/* Código CSS colocado aqui afectará os utilizadores do tema Monobook */",
 	"monobook.js": "/* Código Javascript colocado aqui será carregado para utilizadores do tema Monobook */"
 }

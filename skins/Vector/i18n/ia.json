@@ -4,7 +4,7 @@
 			"McDutchie"
 		]
 	},
-	"vector-desc": "Meliora le elementos del interfacie de usator del apparentia Vector.",
+	"vector-skin-desc": "Version moderne de MonoBook con aspecto rejuvenescite e multe meliorationes de usabilitate.",
 	"vector.css": "/* Le CSS placiate hic afficera le usatores del apparentia Vector */",
 	"vector.js": "/* Omne JavaScript hic se executara pro le usatores del apparentia Vector */",
 	"vector-action-addsection": "Adder topico",

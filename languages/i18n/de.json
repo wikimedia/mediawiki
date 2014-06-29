@@ -3176,5 +3176,15 @@
 	"expand_templates_remove_nowiki": "<nowiki>-Tags in der Ausgabe unterdrücken",
 	"expand_templates_generate_xml": "XML-Parser-Baum zeigen",
 	"expand_templates_generate_rawhtml": "Rohes HTML anzeigen",
-	"expand_templates_preview": "Vorschau"
+	"expand_templates_preview": "Vorschau",
+	"pagelanguage": "Seitensprachenauswahl",
+	"pagelang-name": "Seite",
+	"pagelang-language": "Sprache",
+	"pagelang-use-default": "Standardsprache verwenden",
+	"pagelang-select-lang": "Sprache auswählen",
+	"right-pagelang": "Seitensprache ändern",
+	"action-pagelang": "die Seitensprache zu ändern",
+	"log-name-pagelang": "Sprachenänderungs-Logbuch",
+	"log-description-pagelang": "Dies ist ein Logbuch mit Änderungen an Seitensprachen.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|änderte}} die Seitensprache für $3 von $4 nach $5."
 }

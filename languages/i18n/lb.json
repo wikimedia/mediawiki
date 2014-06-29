@@ -2791,7 +2791,7 @@
 	"duplicate-defaultsort": "'''Opgepasst:''' Den Zortéierschlëssel \"$2\" iwwerschreift de virege Standard-Zortéierschlëssel \"$1\".",
 	"version": "Versioun",
 	"version-extensions": "Installéiert Erweiderungen",
-	"version-skins": "Skins/Layout",
+	"version-skins": "Installéiert Skins/Layout",
 	"version-specialpages": "Spezialsäiten",
 	"version-parserhooks": "Parser-Erweiderungen",
 	"version-variables": "Variabelen",
@@ -2808,6 +2808,7 @@
 	"version-license": "MediaWiki-Lizenz",
 	"version-ext-license": "Lizenz",
 	"version-ext-colheader-name": "Erweiderung",
+	"version-skin-colheader-name": "Ausgesinn",
 	"version-ext-colheader-version": "Versioun",
 	"version-ext-colheader-license": "Lizenz",
 	"version-ext-colheader-description": "Beschreiwung",
@@ -3029,5 +3030,11 @@
 	"expand_templates_remove_nowiki": "<nowiki>-Taggen am Resultat suppriméieren",
 	"expand_templates_generate_xml": "Weis d'Struktur vum XML",
 	"expand_templates_generate_rawhtml": "HTML-Format weisen",
-	"expand_templates_preview": "Kucken ouni ofzespäicheren"
+	"expand_templates_preview": "Kucken ouni ofzespäicheren",
+	"pagelang-name": "Säit",
+	"pagelang-language": "Sprooch",
+	"pagelang-use-default": "Standard-Sprooch benotzen",
+	"pagelang-select-lang": "Sprooch eraussichen",
+	"right-pagelang": "Sprooch vun der Säit änneren",
+	"action-pagelang": "d'Sprooch vun der Säit änneren"
 }

@@ -3225,5 +3225,15 @@
 	"expand_templates_remove_nowiki": "Притаи <nowiki> ознаки во резултатот",
 	"expand_templates_generate_xml": "Прикажи XML-дрво на расчленувањето",
 	"expand_templates_generate_rawhtml": "Прикажувај сиров HTML",
-	"expand_templates_preview": "Преглед"
+	"expand_templates_preview": "Преглед",
+	"pagelanguage": "Изборник за јазик на страницата",
+	"pagelang-name": "Страница",
+	"pagelang-language": "Јазик",
+	"pagelang-use-default": "Користи стандарден јазик",
+	"pagelang-select-lang": "Одберете јазик",
+	"right-pagelang": "Менување јазик на страница",
+	"action-pagelang": "менување јазик на страница",
+	"log-name-pagelang": "Дневник на менување на јазикот",
+	"log-description-pagelang": "Ова е дневник на менувања на јазикот на страницата.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|го смени}} јазикот на страницата $3 од $4 на $5."
 }

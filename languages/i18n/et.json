@@ -2809,7 +2809,7 @@
 	"duplicate-defaultsort": "'''Hoiatus:''' Järjestamisvõti \"$2\" tühistab eespool oleva järjestamisvõtme \"$1\".",
 	"version": "Versioon",
 	"version-extensions": "Paigaldatud lisad",
-	"version-skins": "Kujundused",
+	"version-skins": "Paigaldatud kujundused",
 	"version-specialpages": "Erileheküljed",
 	"version-parserhooks": "Parserihaagid",
 	"version-variables": "Muutujad",
@@ -2826,6 +2826,7 @@
 	"version-license": "MediaWiki litsents",
 	"version-ext-license": "Litsents",
 	"version-ext-colheader-name": "Lisa",
+	"version-skin-colheader-name": "Kujundus",
 	"version-ext-colheader-version": "Versioon",
 	"version-ext-colheader-license": "Litsents",
 	"version-ext-colheader-description": "Kirjeldus",
@@ -3057,5 +3058,15 @@
 	"expand_templates_remove_nowiki": "Ära näita tulemuses <nowiki>-silte",
 	"expand_templates_generate_xml": "Näita XML-liigenduspuud",
 	"expand_templates_generate_rawhtml": "Näita toor-HTMLi",
-	"expand_templates_preview": "Eelvaade"
+	"expand_templates_preview": "Eelvaade",
+	"pagelanguage": "Lehekülje keele valik",
+	"pagelang-name": "Lehekülg",
+	"pagelang-language": "Keel",
+	"pagelang-use-default": "Kasuta vaikekeelt",
+	"pagelang-select-lang": "Vali keel",
+	"right-pagelang": "Muuta lehekülje keelt",
+	"action-pagelang": "muuta lehekülje keelt",
+	"log-name-pagelang": "Keele muutmise logi",
+	"log-description-pagelang": "Siia on logitud lehekülgede keele muutmised.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|muutis}} lehekülje \"$3\" keelt: $4 → $5."
 }
