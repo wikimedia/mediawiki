@@ -124,7 +124,7 @@ if ( isset( $wgFooterIcons['poweredby'] )
 	&& $wgFooterIcons['poweredby']['mediawiki']['src'] === null
 ) {
 	$wgFooterIcons['poweredby']['mediawiki']['src'] =
-		"$wgStylePath/common/images/poweredby_mediawiki_88x31.png";
+		"$wgStylePath/common/images/poweredby_mediawiki.svg";
 }
 
 /**
