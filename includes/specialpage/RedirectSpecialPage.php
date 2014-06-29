@@ -153,10 +153,6 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
  * preference, useful for preloaded edits where you know preview wouldn't be
  * useful.
  *
- * - internaledit, externaledit, mode: Allows forcing the use of the
- * internal/external editor, e.g. to force the internal editor for
- * short/simple preloaded edits.
- *
  * - redlink: Affects the message the user sees if their talk page/user talk
  * page does not currently exist. Avoids confusion for newbies with no user
  * pages over why they got a "permission error" following this link:
@@ -194,7 +190,7 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 			# Options for preloaded edits
 			'preload', 'editintro', 'preloadtitle', 'summary', 'nosummary',
 			# Options for overriding user settings
-			'preview', 'internaledit', 'externaledit', 'mode', 'minor', 'watchthis',
+			'preview', 'minor', 'watchthis',
 			# Options for history/diffs
 			'section', 'oldid', 'diff', 'dir',
 			'limit', 'offset', 'feed',
