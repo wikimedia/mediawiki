@@ -776,18 +776,21 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Create a diff-to-previous link for this revision for this page.
 	 *
-	 * @param Revision $prevRev The previous revision
-	 * @param mixed $next The newer revision
+	 * @param Revision $prevRev The revision being displayed
+	 * @param stdClass|string|null $next The next revision in list (that is
+	 *        the previous one in chronological order).
+	 *        May either be a row, "unkown" or null.
 	 * @return string
 	 */
 	function lastLink( $prevRev, $next ) {
 		$last = $this->historyPage->message['last'];
-		# $next may either be a Row, null, or "unkown"
-		$nextRev = is_object( $next ) ? new Revision( $next ) : $next;
-		if ( is_null( $next ) ) {
+
+		if ( $next === null ) {
 			# Probably no next row
 			return $last;
-		} elseif ( $next === 'unknown' ) {
+		}
+
+		if ( $next === 'unknown' ) {
 			# Next row probably exists but is unknown, use an oldid=prev link
 			return Linker::linkKnown(
 				$this->getTitle(),
@@ -798,21 +801,25 @@ class HistoryPager extends ReverseChronologicalPager {
 					'oldid' => 'prev'
 				)
 			);
-		} elseif ( !$prevRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
+		}
+
+		$nextRev = new Revision( $next );
+
+		if ( !$prevRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
 			|| !$nextRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
 		) {
 			return $last;
-		} else {
-			return Linker::linkKnown(
-				$this->getTitle(),
-				$last,
-				array(),
-				array(
-					'diff' => $prevRev->getId(),
-					'oldid' => $next->rev_id
-				)
-			);
 		}
+
+		return Linker::linkKnown(
+			$this->getTitle(),
+			$last,
+			array(),
+			array(
+				'diff' => $prevRev->getId(),
+				'oldid' => $next->rev_id
+			)
+		);
 	}
 
 	/**
