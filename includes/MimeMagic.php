@@ -485,14 +485,6 @@ class MimeMagic {
 	 * by looking at the file extension. Typically, this method would be called on the
 	 * result of guessMimeType().
 	 *
-	 * Currently, this method does the following:
-	 *
-	 * If $mime is "unknown/unknown" and isRecognizableExtension( $ext ) returns false,
-	 * return the result of guessTypesForExtension($ext).
-	 *
-	 * If $mime is "application/x-opc+zip" and isMatchingExtension( $ext, $mime )
-	 * gives true, return the result of guessTypesForExtension($ext).
-	 *
 	 * @param string $mime The mime type, typically guessed from a file's content.
 	 * @param string $ext The file extension, as taken from the file name
 	 *
@@ -518,6 +510,12 @@ class MimeMagic {
 					".$ext is not a known OPC extension.\n" );
 				$mime = 'application/zip';
 			}
+		} elseif ( $mime === 'text/plain' && $this->findMediaType( ".$ext" ) === MEDIATYPE_TEXT ) {
+			// Textual types are sometimes not recognized properly.
+			// If detected as text/plain, and has an extension which is textual
+			// improve to the extension's type. For example, csv and json are often
+			// misdetected as text/plain.
+			$mime = $this->guessTypesForExtension( $ext );
 		}
 
 		if ( isset( $this->mMimeTypeAliases[$mime] ) ) {
