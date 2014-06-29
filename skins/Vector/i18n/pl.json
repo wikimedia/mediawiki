@@ -6,7 +6,6 @@
 		]
 	},
 	"skinname-vector": "Wektor",
-	"vector-desc": "Usprawnia elementy interfejsu użytkownika skórki Wektor",
 	"vector.css": "/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Wektor */",
 	"vector.js": "/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Wektor */",
 	"vector-action-addsection": "Dodaj temat",

@@ -9,7 +9,6 @@
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "Verbetert de gebruikersinterface van het uiterlijk Vector",
 	"vector.css": "/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Vector */",
 	"vector.js": "/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Vector gebruiken */",
 	"vector-action-addsection": "Kopje toevoegen",

@@ -6,7 +6,6 @@
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "Nagpapainam sa mga sangkap ng dugtungang-mukha na pangtatagamit ng pabalat ng Vector.",
 	"vector.css": "/* Ang inilagay na CSS dito ay makakaapekto sa mga tagagamit ng pabalat na Vector */",
 	"vector.js": "/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na Vector */",
 	"vector-action-addsection": "Magdagdag ng paksa",

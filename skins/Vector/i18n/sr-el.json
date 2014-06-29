@@ -8,7 +8,6 @@
 		]
 	},
 	"skinname-vector": "Vektorsko",
-	"vector-desc": "Poboljšava korisničke elemente sučelja za presvlaku Vektor.",
 	"vector.css": "/* CSS postavljen ovde će uticati na sve korisnike teme „Vektorsko“ */",
 	"vector.js": "/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Vektorsko“ */",
 	"vector-action-addsection": "Dodaj temu",

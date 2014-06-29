@@ -5,7 +5,6 @@
 		]
 	},
 	"skinname-vector": "Vektor",
-	"vector-desc": "Vylepšuje uživatelské rozhraní při užití vzhledu Vektor",
 	"vector.css": "/* Zde uvedené CSS bude ovlivňovat pouze styl „Vektor“ */",
 	"vector.js": "/* JavaScript pro uživatele používající vzhled „Vektor“ */",
 	"vector-action-addsection": "Přidat téma",

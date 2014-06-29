@@ -9,7 +9,6 @@
 			"Tgr"
 		]
 	},
-	"vector-desc": "Fejlesztések a Vector felület felhasználói felületének elemein.",
 	"vector.css": "/* Az ide elhelyezett CSS hatással lesz a Vector felület használóira */",
 	"vector.js": "/* A Vector felületet használó szerkesztők számára betöltendő JavaScriptek */",
 	"vector-action-addsection": "Új téma nyitása",

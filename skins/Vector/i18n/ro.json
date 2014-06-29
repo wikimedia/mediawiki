@@ -9,7 +9,6 @@
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "Îmbunătățiri ale interfeței când se utilizează interfața Vector.",
 	"vector.css": "/* CSS plasate aici vor afecta utilizatorii stilului Vector */",
 	"vector-action-addsection": "Mesaj nou",
 	"vector-action-delete": "Ștergere",

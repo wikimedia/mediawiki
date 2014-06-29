@@ -6,7 +6,6 @@
 		]
 	},
 	"skinname-vector": "וקטור",
-	"vector-desc": "הרחבת ממשק המשתמש בעת השימוש בעיצוב וקטור",
 	"vector.css": "/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Vector בלבד */",
 	"vector.js": "/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Vector */",
 	"vector-action-addsection": "הוספת נושא",

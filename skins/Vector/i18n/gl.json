@@ -6,7 +6,6 @@
 			"Vivaelcelta"
 		]
 	},
-	"vector-desc": "Mellora a interface de usuario ao usar a aparencia Vector",
 	"vector.css": "/* O CSS que se coloque aquí afectará a quen use a aparencia Vector */",
 	"vector.js": "/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Vector */",
 	"vector-action-addsection": "Nova sección",

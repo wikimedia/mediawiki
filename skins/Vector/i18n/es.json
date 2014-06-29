@@ -14,7 +14,6 @@
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "Mejora la interfaz de usuario cuando se utiliza Vector como aspecto",
 	"vector.css": "/* El CSS colocado en esta página afectará a los usuarios que usen la apariencia \"Vector\" */",
 	"vector.js": "/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la apariencia Vector */",
 	"vector-action-addsection": "Nueva sección",

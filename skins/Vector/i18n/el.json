@@ -9,7 +9,6 @@
 			"ZaDiak"
 		]
 	},
-	"vector-desc": "Παρέχει βελτίωση στα στοιχεία διεπαφής χρήστη του skin Vector.",
 	"vector.css": "/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Vector skin */",
 	"vector.js": "/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Vector skin */",
 	"vector-action-addsection": "Προσθήκη θέματος",

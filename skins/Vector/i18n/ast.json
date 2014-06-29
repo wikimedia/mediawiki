@@ -5,7 +5,6 @@
 			"Xuacu"
 		]
 	},
-	"vector-desc": "Ameyora la interfaz d'usuariu al usar l'aspeutu Vector.",
 	"vector.css": "/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Vector */",
 	"vector.js": "/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Vector */",
 	"vector-action-addsection": "Amestar seición",
