@@ -197,6 +197,9 @@ changes to languages because of Bugzilla reports.
 * Removed DatabaseMysqlBase::getLagFromProcesslist(). (deprecated since 1.19)
 * Removed LoadBalancer::closeConnecton(). (deprecated since 1.18)
 * Removed ApiBase::createContext(). (deprecated since 1.19)
+* BREAKING CHANGE: The undocumented Special{$this->getName()}BeforeFormDisplay
+  set of hooks has been removed and replaced by a single new hook
+  SpecialPageBeforeFormDisplay.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
