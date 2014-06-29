@@ -491,43 +491,63 @@ class ImageListPager extends TablePager {
 	}
 
 	function getForm() {
-		global $wgScript, $wgMiserMode;
-		$inputForm = array();
-		$inputForm['table_pager_limit_label'] = $this->getLimitSelect( array( 'tabindex' => 1 ) );
+		global $wgMiserMode;
+
+		$fields = array();
+		$fields['limit'] = array(
+			'type' => 'select',
+			'name' => 'limit',
+			'label-message' => 'table_pager_limit_label',
+			'options' => $this->getLimitSelectList(),
+			'default' => $this->mLimit,
+		);
+
 		if ( !$wgMiserMode ) {
-			$inputForm['listfiles_search_for'] = Html::input(
-				'ilsearch',
-				$this->mSearch,
-				'text',
-				array(
-					'size' => '40',
-					'maxlength' => '255',
-					'id' => 'mw-ilsearch',
-					'tabindex' => 2,
-				)
+			$fields['ilsearch'] = array(
+				'type' => 'text',
+				'name' => 'ilsearch',
+				'id' => 'mw-ilsearch',
+				'label-message' => 'listfiles_search_for',
+				'default' => $this->mSearch,
+				'size' => '40',
+				'maxlength' => '255',
 			);
 		}
-		$inputForm['username'] = Html::input( 'user', $this->mUserName, 'text', array(
+
+		$fields['user'] = array(
+			'type' => 'text',
+			'name' => 'user',
+			'id' => 'mw-listfiles-user',
+			'label-message' => 'username',
+			'default' => $this->mUserName,
 			'size' => '40',
 			'maxlength' => '255',
-			'id' => 'mw-listfiles-user',
-			'tabindex' => 3,
-		) );
+		);
 
-		$inputForm['listfiles-show-all'] = Html::input( 'ilshowall', 1, 'checkbox', array(
-			'checked' => $this->mShowAll,
-			'tabindex' => 4,
-		) );
+		$fields['ilshowall'] = array(
+			'type' => 'check',
+			'name' => 'ilshowall',
+			'id' => 'mw-listfiles-show-all',
+			'label-message' => 'listfiles-show-all',
+			'default' => $this->mShowAll,
+		);
 
-		return Html::openElement( 'form',
-			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' )
-		) .
-			Xml::fieldset( $this->msg( 'listfiles' )->text() ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-			Xml::buildForm( $inputForm, 'table_pager_limit_submit', array( 'tabindex' => 5 ) ) .
-			$this->getHiddenFields( array( 'limit', 'ilsearch', 'user', 'title', 'ilshowall' ) ) .
-			Html::closeElement( 'fieldset' ) .
-			Html::closeElement( 'form' ) . "\n";
+		$query = $this->getRequest()->getQueryValues();
+		unset( $query['title'] );
+		unset( $query['limit'] );
+		unset( $query['ilsearch'] );
+		unset( $query['user'] );
+
+		$form = new HTMLForm( $fields, $this->getContext() );
+
+		$form->setMethod( 'get' );
+		$form->setId( 'mw-listfiles-form' );
+		$form->setWrapperLegendMsg( 'listfiles' );
+		$form->setSubmitTextMsg( 'table_pager_limit_submit' );
+		$form->addHiddenFields( $query );
+
+		$form->prepareForm();
+		$form->displayForm( '' );
 	}
 
 	function getTableClass() {
