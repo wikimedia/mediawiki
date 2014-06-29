@@ -132,7 +132,11 @@ class LinkSearchPage extends QueryPage {
 				'target',
 				'target',
 				50,
-				$target
+				$target,
+				array(
+					// URLs are always ltr
+					dir => 'ltr',
+				)
 			) . "\n";
 
 		if ( !$wgMiserMode ) {
