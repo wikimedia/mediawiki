@@ -5,7 +5,6 @@
 			"Cedric31"
 		]
 	},
-	"vector-desc": "Melhoraments dels elements de l'interfàcia d'utilizaire de l'abilhatge Vector.",
 	"vector.css": "/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Vector */",
 	"vector.js": "/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Vector unicament. */",
 	"vector-action-addsection": "Apondre un subjècte",

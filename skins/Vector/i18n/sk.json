@@ -7,7 +7,6 @@
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "Vylepšuje prvky používateľského rozhrania témy vzhľady Vector",
 	"vector.css": "/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Vector */",
 	"vector.js": "/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Vector */",
 	"vector-action-addsection": "Pridať tému",

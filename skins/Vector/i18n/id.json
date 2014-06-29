@@ -9,7 +9,6 @@
 		]
 	},
 	"skinname-vector": "Vektor",
-	"vector-desc": "Meningkatkan antarmuka pengguna dengan menggunakan kulit vektor",
 	"vector.css": "/* CSS nan ado di siko diterapkan pado kulik Vektor. */",
 	"vector.js": "/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Vector */",
 	"vector-action-addsection": "Bagian baru",

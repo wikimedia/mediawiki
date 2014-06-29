@@ -6,7 +6,6 @@
 		]
 	},
 	"skinname-vector": "Vektor",
-	"vector-desc": "Gwellaat a ra elfennoù eus ar gwiskadur Vector war an etrefas implijer.",
 	"vector.css": "/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Vektor */",
 	"vector.js": "/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Vektor */",
 	"vector-action-addsection": "Rannbennad nevez",

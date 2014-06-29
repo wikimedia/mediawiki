@@ -10,7 +10,6 @@
 		]
 	},
 	"skinname-vector": "ベクター",
-	"vector-desc": "ベクター外装の使用時にユーザーインターフェイスを強化する",
 	"vector.css": "/* ここに記述したCSSはベクター外装の利用者に影響します */",
 	"vector.js": "/* ここにあるすべてのJavaScriptは、ベクター外装を使用している利用者に対して読み込まれます */",
 	"vector-action-addsection": "話題追加",

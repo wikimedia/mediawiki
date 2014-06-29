@@ -7,7 +7,6 @@
 			"Pxos"
 		]
 	},
-	"vector-desc": "Parantaa käyttöliittymää Vector-ulkoasua käytettäessä.",
 	"vector.css": "/* Tämä sivu sisältää Vector-ulkoasua muuttavia tyylejä. */",
 	"vector.js": "/* Tämän sivun JavaScript-koodi liitetään Vector-tyyliin */",
 	"vector-action-addsection": "Lisää aihe",

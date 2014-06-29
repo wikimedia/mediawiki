@@ -5,7 +5,6 @@
 		]
 	},
 	"skinname-vector": "Vector",
-	"vector-desc": "Milloras en os elementos d'interficie d'usuario de l'aparencia Vector.",
 	"vector.css": "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Vector */",
 	"vector.js": "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que usen a piel Vector */",
 	"vector-action-addsection": "Adhibir nueva sección",

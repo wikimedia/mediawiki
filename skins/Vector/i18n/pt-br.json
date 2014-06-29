@@ -8,7 +8,6 @@
 			555
 		]
 	},
-	"vector-desc": "Melhora a interface do usuário ao utilizar o tema Vector",
 	"vector.js": "/* Qualquer JavaScript aqui colocado afetará os usuários do skin Vector */",
 	"vector-action-addsection": "Adicionar tópico",
 	"vector-action-delete": "Eliminar",
