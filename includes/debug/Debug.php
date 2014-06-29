@@ -513,6 +513,7 @@ class MWDebug {
 		$result->setIndexedTagName( $debugInfo['debugLog'], 'msg' );
 		$result->setIndexedTagName( $debugInfo['queries'], 'query' );
 		$result->setIndexedTagName( $debugInfo['includes'], 'queries' );
+		$result->setIndexedTagName( $debugInfo['profile'], 'function' );
 		$result->addValue( null, 'debuginfo', $debugInfo );
 	}
 
