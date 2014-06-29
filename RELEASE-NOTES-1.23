@@ -11,6 +11,7 @@ This is a maintenance release of the MediaWiki 1.23 branch.
 * (bug 64970) Fix support for blobs on DatabaseOracle::update
 * (bug 66574) Display MediaWiki:Loginprompt on the login page
 * (bug 67870) wfShellExec() cuts off stdout at multiples of 8192 bytes
+* (bug 60629) Handle invalid language code gracefully in Language::fetchLanguageNames
 
 == MediaWiki 1.23.2 ==
 
