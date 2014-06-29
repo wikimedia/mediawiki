@@ -26,8 +26,7 @@
 /**
  * Page edition handler
  *
- * This is a wrapper that will call the EditPage class, or ExternalEdit
- * if $wgUseExternalEditor is set to true and requested by the user.
+ * This is a wrapper that will call the EditPage class or a custom editor from an extension.
  *
  * @ingroup Actions
  */
