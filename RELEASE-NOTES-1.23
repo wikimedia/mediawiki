@@ -14,6 +14,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 * (bug 66428) MimeMagic: Don't seek before BOF. This has weird side effects
   like only extracting the tail of the file partially or not at all.
 * (bug 66182) Removed -x flag on some php files.
+* (bug 60629) Handle invalid language code gracefully in Language::fetchLanguageNames
 
 == MediaWiki 1.23 ==
 
