@@ -857,6 +857,11 @@ class Language {
 			include "$IP/languages/Names.php";
 		}
 
+		// If passed an invalid language code to use, fallback to en
+		if ( $inLanguage !== null && !Language::isValidCode( $inLanguage ) ) {
+			$inLanguage = 'en';
+		}
+
 		$names = array();
 
 		if ( $inLanguage ) {
