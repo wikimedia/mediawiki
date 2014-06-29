@@ -27,8 +27,6 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 $forms_whitelist['amazon'] = array(
 	'file' => $form_dirs['amazon'] . '/amazon.html',
 	'gateway' => 'amazon',
-	'countries' => array( '+' => 'US',),
-	'currencies' => array( '+' => 'USD',),
 	'payment_methods' => array('amazon' => 'ALL'),
 	'redirect',
 );
@@ -36,8 +34,6 @@ $forms_whitelist['amazon'] = array(
 $forms_whitelist['amazon-recurring'] = array(
 	'file' => $form_dirs['amazon'] . '/amazon-recurring.html',
 	'gateway' => 'amazon',
-	'countries' => array( '+' => 'US',),
-	'currencies' => array( '+' => 'USD',),
 	'payment_methods' => array('amazon' => 'ALL'),
 	'redirect',
 	'recurring',
