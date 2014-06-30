@@ -290,8 +290,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			''
 		);
 
-		if ( !wfRunHooks( 'ChangesListSpecialPageQuery',
-			array( $this->getName(), &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) )
+		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
+			$opts )
 		) {
 			return false;
 		}
@@ -305,6 +305,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			__METHOD__,
 			$query_options,
 			$join_conds
+		);
+	}
+
+	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) {
+		return wfRunHooks(
+			'ChangesListSpecialPageQuery',
+			array( $this->getName(), &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts )
 		);
 	}
 
