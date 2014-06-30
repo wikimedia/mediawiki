@@ -85,6 +85,7 @@ class ApiMain extends ApiBase {
 		'options' => 'ApiOptions',
 		'imagerotate' => 'ApiImageRotate',
 		'revisiondelete' => 'ApiRevisionDelete',
+		'pagelang' => 'ApiPageLanguage'
 	);
 
 	/**

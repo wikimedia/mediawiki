@@ -102,6 +102,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'email' => array( 'ApiQueryInfo', 'getEmailToken' ),
 			'import' => array( 'ApiQueryInfo', 'getImportToken' ),
 			'watch' => array( 'ApiQueryInfo', 'getWatchToken' ),
+			'pagelang' => array( 'ApiQueryInfo', 'getPagelangToken' )
 		);
 		wfRunHooks( 'APIQueryInfoTokens', array( &$this->tokenFunctions ) );
 
@@ -246,6 +247,20 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		return ApiQueryInfo::$cachedTokens['options'];
+	}
+
+	public static function getPagelangToken( $pageid, $title ) {
+		global $wgUser;
+		if ( !$wgUser->isAllowed( 'pagelang' ) ) {
+			return false;
+		}
+
+		// The token is always the same, let's exploit that
+		if ( !isset( ApiQueryInfo::$cachedTokens['block'] ) ) {
+			ApiQueryInfo::$cachedTokens['pagelang'] = $wgUser->getEditToken();
+		}
+
+		return ApiQueryInfo::$cachedTokens['pagelang'];
 	}
 
 	public function execute() {
