@@ -175,7 +175,7 @@
 	"config-ns-invalid": "Direizh eo an esaouenn anv \"<nowiki>$1</nowiki>\" spisaet.\nMerkit un esaouenn anv disheñvel evit ar raktres.",
 	"config-ns-conflict": "Tabut zo etre an esaouenn anv spisaet \"<nowiki>$1</nowiki>\" hag un esaouenn anv dre ziouer eus MediaWiki.\nSpisait un anv raktres esaouenn anv all.",
 	"config-admin-box": "Kont merour",
-	"config-admin-name": "Hoc'h anv-implijer :",
+	"config-admin-name": "Hoc'h anv implijer :",
 	"config-admin-password": "Ger-tremen :",
 	"config-admin-password-confirm": "Adskrivañ ar ger-tremen :",
 	"config-admin-help": "Merkit hoc'h anv implijer amañ, da skouer \"Yann Vlog\".\nHemañ eo an anv a implijot evit kevreañ d'ar wiki-mañ.",

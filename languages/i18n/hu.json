@@ -34,7 +34,8 @@
 			"Tgr",
 			"Xbspiro",
 			"아라",
-			"Csega"
+			"Csega",
+			"ViDam"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2964,5 +2965,14 @@
 	"expand_templates_remove_nowiki": "<nowiki> tagek mellőzése az eredményben",
 	"expand_templates_generate_xml": "XML elemzési fa mutatása",
 	"expand_templates_generate_rawhtml": "Nyers HTML megjelenítése",
-	"expand_templates_preview": "Előnézet"
+	"expand_templates_preview": "Előnézet",
+	"pagelanguage": "Oldalnyelv-választó",
+	"pagelang-name": "Oldal",
+	"pagelang-language": "Nyelv",
+	"pagelang-use-default": "Alapértelmezett nyelv használata",
+	"pagelang-select-lang": "Nyelv kiválasztása",
+	"right-pagelang": "Oldal nyelvének megváltoztatása",
+	"action-pagelang": "oldal nyelvének módosítása",
+	"log-name-pagelang": "Nyelvváltoztatások naplója",
+	"log-description-pagelang": "Ebben a naplóban a lap nyelvének változásait követheted nyomon."
 }

@@ -3138,5 +3138,15 @@
 	"expand_templates_remove_nowiki": "Undertryck <nowiki> taggar i resultatet",
 	"expand_templates_generate_xml": "Visa parseträd som XML",
 	"expand_templates_generate_rawhtml": "Visa rå HTML",
-	"expand_templates_preview": "Förhandsvisning"
+	"expand_templates_preview": "Förhandsvisning",
+	"pagelanguage": "Språkväljare för sidor",
+	"pagelang-name": "Sida",
+	"pagelang-language": "Språk",
+	"pagelang-use-default": "Använd standardspråk",
+	"pagelang-select-lang": "Välj språk",
+	"right-pagelang": "Ändra sidans språk",
+	"action-pagelang": "ändra sidspråket",
+	"log-name-pagelang": "Ändra språklogg",
+	"log-description-pagelang": "Detta är en logg över ändringar i sidspråken.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|ändrade}} sidspråket för $3 från $4 till $5."
 }

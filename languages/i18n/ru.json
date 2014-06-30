@@ -3219,5 +3219,15 @@
 	"expand_templates_remove_nowiki": "Подавлять теги <nowiki> в результате",
 	"expand_templates_generate_xml": "Показать дерево разбора XML",
 	"expand_templates_generate_rawhtml": "Показать HTML",
-	"expand_templates_preview": "Предпросмотр"
+	"expand_templates_preview": "Предпросмотр",
+	"pagelanguage": "Выбор языка страницы",
+	"pagelang-name": "Страница",
+	"pagelang-language": "Язык",
+	"pagelang-use-default": "Использовать язык по умолчанию",
+	"pagelang-select-lang": "Выберите язык",
+	"right-pagelang": "Изменить язык страницы",
+	"action-pagelang": "изменять язык страницы",
+	"log-name-pagelang": "Журнал изменения языка",
+	"log-description-pagelang": "Это журнал изменений в языках страницы.",
+	"logentry-pagelang-pagelang": "$1 изменил{{GENDER:$2||а}} язык страницы для $3 с $4 на $5."
 }

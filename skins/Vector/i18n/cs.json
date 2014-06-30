@@ -5,6 +5,7 @@
 		]
 	},
 	"skinname-vector": "Vektor",
+	"vector-skin-desc": "Moderní verze MonoBooku s novějším vzhledem a vylepšenou použitelností",
 	"vector.css": "/* Zde uvedené CSS bude ovlivňovat pouze styl „Vektor“ */",
 	"vector.js": "/* JavaScript pro uživatele používající vzhled „Vektor“ */",
 	"vector-action-addsection": "Přidat téma",

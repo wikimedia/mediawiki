@@ -75,7 +75,8 @@
 			"阿pp",
 			"Hudafu",
 			"아라",
-			"Mywood"
+			"Mywood",
+			"Impersonator 1"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -3176,5 +3177,15 @@
 	"expand_templates_remove_nowiki": "在结果中隐藏<nowiki>标签",
 	"expand_templates_generate_xml": "显示XML语法树",
 	"expand_templates_generate_rawhtml": "显示原始HTML",
-	"expand_templates_preview": "预览"
+	"expand_templates_preview": "预览",
+	"pagelanguage": "页面语言选择器",
+	"pagelang-name": "页面",
+	"pagelang-language": "语言",
+	"pagelang-use-default": "使用默认语言",
+	"pagelang-select-lang": "选择语言",
+	"right-pagelang": "更改页面语言",
+	"action-pagelang": "更改页面语言",
+	"log-name-pagelang": "更改语言日志",
+	"log-description-pagelang": "这是页面语言更改的日志。",
+	"logentry-pagelang-pagelang": "$1{{GENDER:$2|更改}}$3的页面语言：从$4改为$5。"
 }

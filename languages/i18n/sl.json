@@ -3081,5 +3081,15 @@
 	"expand_templates_remove_nowiki": "V rezultatu odstrani oznake <nowiki>",
 	"expand_templates_generate_xml": "Pokaži razčlenitveno drevo XML",
 	"expand_templates_generate_rawhtml": "Prikaži surovi HTML",
-	"expand_templates_preview": "Predogled"
+	"expand_templates_preview": "Predogled",
+	"pagelanguage": "Izbirnik jezika strani",
+	"pagelang-name": "Stran",
+	"pagelang-language": "Jezik",
+	"pagelang-use-default": "Uporabi privzeti jezik",
+	"pagelang-select-lang": "Izberite jezik",
+	"right-pagelang": "Spreminjanje jezika strani",
+	"action-pagelang": "spreminjanje jezika strani",
+	"log-name-pagelang": "Dnevnik spreminjanja jezika",
+	"log-description-pagelang": "Dnevnik sprememb jezika strani.",
+	"logentry-pagelang-pagelang": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} jezik strani $3 z jezika $4 na jezik $5."
 }

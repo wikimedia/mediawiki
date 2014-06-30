@@ -58,7 +58,7 @@
 	"tog-watchlisthideminor": "Сакриј мање измене са списка надгледања",
 	"tog-watchlisthideliu": "Сакриј измене пријављених корисника са списка надгледања",
 	"tog-watchlisthideanons": "Сакриј измене анонимних корисника са списка надгледања",
-	"tog-watchlisthidepatrolled": "Сакриј прегледане измене са списка надгледања",
+	"tog-watchlisthidepatrolled": "Сакриј патролиране измене са списка надгледања",
 	"tog-ccmeonemails": "Пошаљи ми копије е-порука које пошаљем другим корисницима",
 	"tog-diffonly": "Не приказуј садржај странице испод разлика",
 	"tog-showhiddencats": "Прикажи скривене категорије",
@@ -3189,5 +3189,10 @@
 	"expand_templates_remove_nowiki": "Поништава ефекат <nowiki> тагова у приказу чланака",
 	"expand_templates_generate_xml": "Прикажи XML стабло",
 	"expand_templates_generate_rawhtml": "Прикажи сиров HTML",
-	"expand_templates_preview": "Приказ"
+	"expand_templates_preview": "Приказ",
+	"pagelang-name": "Страница",
+	"pagelang-language": "Језик",
+	"pagelang-select-lang": "Изабери језик",
+	"right-pagelang": "промена језика странице",
+	"action-pagelang": "промену језика странице"
 }

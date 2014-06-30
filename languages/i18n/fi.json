@@ -3118,5 +3118,15 @@
 	"expand_templates_remove_nowiki": "Poista <nowiki>-tagit tulosteesta",
 	"expand_templates_generate_xml": "Näytä XML-jäsennyspuu",
 	"expand_templates_generate_rawhtml": "Näytä raaka HTML",
-	"expand_templates_preview": "Esikatselu"
+	"expand_templates_preview": "Esikatselu",
+	"pagelanguage": "Sivun kielen valinta",
+	"pagelang-name": "Sivu",
+	"pagelang-language": "Kieli",
+	"pagelang-use-default": "Käytä oletuskieltä",
+	"pagelang-select-lang": "Valitse kieli",
+	"right-pagelang": "Vaihda sivun kieli",
+	"action-pagelang": "muuttaa sivun kieliasetuksia",
+	"log-name-pagelang": "Kielenvaihtoloki",
+	"log-description-pagelang": "Tämä on loki, johon merkitään muutokset sivujen kieliasetuksissa.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|muutti}} sivun kieltä sivulla $3 kielestä $4 kieleksi $5."
 }

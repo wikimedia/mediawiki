@@ -3087,5 +3087,15 @@
 	"expand_templates_remove_nowiki": "Suprimă etichetele <nowiki> în rezultat",
 	"expand_templates_generate_xml": "Arată arborele de analiză XML",
 	"expand_templates_generate_rawhtml": "Arată HTML brut",
-	"expand_templates_preview": "Previzualizare"
+	"expand_templates_preview": "Previzualizare",
+	"pagelanguage": "Selector limbă pagină",
+	"pagelang-name": "Pagină",
+	"pagelang-language": "Limbă",
+	"pagelang-use-default": "Folosește limba implicită",
+	"pagelang-select-lang": "Alege limba",
+	"right-pagelang": "Modifică limba paginii",
+	"action-pagelang": "modificați limba paginii",
+	"log-name-pagelang": "Jurnal modificare limbă",
+	"log-description-pagelang": "Acesta este un jurnal cu modificări ale limbii paginilor.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|a modificat}} limba paginii pentru $3 din $4 în $5."
 }

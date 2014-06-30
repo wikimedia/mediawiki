@@ -53,7 +53,9 @@
 			"아라",
 			"Vincent Liu",
 			"Mywood",
-			"Cwek"
+			"Cwek",
+			"Impersonator 1",
+			"LNDDYL"
 		]
 	},
 	"tog-underline": "連結底線：",
@@ -1152,7 +1154,7 @@
 	"action-siteadmin": "鎖定和解除鎖定資料庫",
 	"action-sendemail": "發送電子郵件",
 	"action-editmywatchlist": "編輯您的監視清單",
-	"action-viewmywatchlist": "查看您的監視清單",
+	"action-viewmywatchlist": "檢視您的監視清單",
 	"action-viewmyprivateinfo": "查看您的個人資料",
 	"action-editmyprivateinfo": "編輯您的個人資料",
 	"nchanges": "$1 次變更",
@@ -2067,7 +2069,7 @@
 	"move-page": "移動 $1",
 	"move-page-legend": "移動頁面",
 	"movepagetext": "以下表格可以用來重新命名頁面，並將該頁面的所有歷史記錄一併移至擁有新名稱的頁面。\n舊標題的頁面將會變成重定向頁面，指向使用新標題的頁面。\n您可以選擇自動更新所有指向舊頁面的重定向，讓它們改為指向新頁面。\n若您選擇不自動更新，請檢查有沒有[[Special:DoubleRedirects|雙重重定向]]或[[Special:BrokenRedirects|損壞的重定向]]需要修正。\n您有責任讓連結繼續指向正確的地方。\n\n請注意，若新的頁面名稱已經被使用，則此頁面將<strong>不會</strong>移動至該處，除非新名稱下是個重定向頁面而且沒有任何編輯記錄。\n即是說，您可以將錯誤移動至其他名稱的頁面還原到原有名稱，但不能覆蓋任何現有的頁面。\n\n<strong>警告！</strong>\n這個動作對受歡迎的頁面來說可能是重大而唐突的更改；\n在行動前請先確認您了解移動可能帶來的後果。",
-	"movepagetext-noredirectfixer": "以下表格可以用來重新命名頁面，並將該頁面的所有歷史記錄一併移至擁有新名稱的頁面。\n舊標題的頁面將會變成重定向頁面，指向使用新標題的頁面。\n請檢查有沒有[[Special:DoubleRedirects|雙重重定向]]或[[Special:BrokenRedirects|損壞的重定向]]需要修正。\n您有責任讓連結繼續指向正確的地方。\n\n請注意，若新的頁面名稱已經被使用，則此頁面將<strong>不會</strong>移動至該處，除非新名稱下是個重定向頁面而且沒有任何編輯記錄。\n即是說，您可以將錯誤移動至其他名稱的頁面還原到原有名稱，但不能覆蓋任何現有的頁面。\n\n<strong>警告！</strong>\n這個動作對受歡迎的頁面來說可能是重大而唐突的更改；\n在行動前請先確認您了解移動可能帶來的後果。",
+	"movepagetext-noredirectfixer": "以下表格可以用來重新命名頁面，並將該頁面的所有歷史記錄一併移至擁有新名稱的頁面。\n舊標題的頁面將會變成重新導向頁面，指向使用新標題的頁面。\n請檢查有沒有[[Special:DoubleRedirects|雙重重新導向]]或[[Special:BrokenRedirects|損壞的重新導向]]需要修正。\n您有責任讓連結繼續指向正確的地方。\n\n請注意，若新的頁面名稱已經被使用，則此頁面將<strong>不會</strong>移動至該處，除非新名稱下是個重新導向頁面而且沒有任何編輯記錄。\n即是說，您可以將錯誤移動至其他名稱的頁面還原到原有名稱，但不能覆蓋任何現有的頁面。\n\n<strong>警告！</strong>\n這個動作對受歡迎的頁面來說可能是重大而唐突的更改；\n在行動前請先確認您了解移動可能帶來的後果。",
 	"movepagetalktext": "相關的的對話頁面 (如果有的話) 會自動與該頁面一起移動，<strong>除非：</strong>\n*新的名稱已有一個存在的對話頁面，或\n*您未勾選此核選方塊。\n\n在上述情況下，若有必要您必須手動移動或合併已存在的頁面。",
 	"movearticle": "移動頁面：",
 	"moveuserpage-warning": "<strong>警告：</strong>您正要移動使用者頁面，請注意只有使用者頁面會變更名稱，並<em>不會</em>重新命名使用者。",
@@ -3138,5 +3140,15 @@
 	"expand_templates_remove_nowiki": "在結果中禁止顯示 <nowiki> 標籤",
 	"expand_templates_generate_xml": "顯示 XML 解析樹",
 	"expand_templates_generate_rawhtml": "顯示原始 HTML",
-	"expand_templates_preview": "預覽"
+	"expand_templates_preview": "預覽",
+	"pagelanguage": "頁面語言選擇器",
+	"pagelang-name": "頁面",
+	"pagelang-language": "語言",
+	"pagelang-use-default": "使用預設語言",
+	"pagelang-select-lang": "選擇語言",
+	"right-pagelang": "更改頁面語言",
+	"action-pagelang": "更改頁面語言",
+	"log-name-pagelang": "更改語言日誌",
+	"log-description-pagelang": "這是頁面語言更改日誌。",
+	"logentry-pagelang-pagelang": "$1{{GENDER:$2|更改}}$3頁面語言從$4到$5。"
 }
