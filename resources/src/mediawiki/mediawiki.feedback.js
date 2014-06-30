@@ -296,7 +296,8 @@
 
 			this.displaySubmitting();
 
-			this.api.newSection( this.title, subject, message ).done( ok ).fail( err );
+			// Post the message, resolving redirects
+			this.api.newSection( this.title, subject, message, { redirect: true } ).done( ok ).fail( err );
 		},
 
 		/**
