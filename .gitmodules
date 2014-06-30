@@ -353,3 +353,6 @@
 [submodule "extensions/CategoryTagSorter"]
 	path = extensions/CategoryTagSorter
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CategoryTagSorter
+[submodule "extensions/MultiCategorySearch"]
+	path = extensions/MultiCategorySearch
+	url = https://github.com/Orain/MultiCategorySearch.git
