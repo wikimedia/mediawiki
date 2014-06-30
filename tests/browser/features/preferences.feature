@@ -25,7 +25,7 @@ Feature: Preferences
       And I can click Save
       And I can restore default settings
       And I can select date format
-      And I can see server time
+      And I can see time offset section
       And I can see local time
       And I can select my time zone
 
