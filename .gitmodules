@@ -347,3 +347,9 @@
 [submodule "extensions/LocalisationCacheHack"]
 	path = extensions/LocalisationCacheHack
 	url = https://github.com/orain/localisationcachehack
+[submodule "extensions/RefreshSpecial"]
+	path = extensions/RefreshSpecial
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/RefreshSpecial
+[submodule "extensions/CategoryTagSorter"]
+	path = extensions/CategoryTagSorter
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CategoryTagSorter
