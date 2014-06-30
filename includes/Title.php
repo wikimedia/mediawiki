@@ -424,6 +424,7 @@ class Title {
 	 * @param stdClass|bool $row Database row
 	 */
 	public function loadFromRow( $row ) {
+		global $wgLanguageCode;
 		if ( $row ) { // page found
 			if ( isset( $row->page_id ) ) {
 				$this->mArticleID = (int)$row->page_id;
@@ -444,6 +445,7 @@ class Title {
 			}
 			if ( isset( $row->page_lang ) ) {
 				$this->mDbPageLanguage = (string)$row->page_lang;
+				$this->mPageLanguage[1] = $wgLanguageCode;
 			}
 		} else { // page not found
 			$this->mArticleID = 0;
@@ -5003,7 +5005,8 @@ class Title {
 			wfProfileOut( __METHOD__ );
 		}
 
-		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
+		// No need to run it if mPageLanguage is set
+		if ( !$this->mPageLanguage[0] || $this->mPageLanguage[1] !== $wgLanguageCode ) {
 			// This is the main place to determine the page language,
 			// it calls ContentHandler and the DB.
 
@@ -5026,25 +5029,21 @@ class Title {
 			// if the page content lang is defined on-wiki, use that
 			// "usedb" should also (especially) be checked for in the frontend
 			if( $wgPageLanguageUseDB && $settings['usedb'] === true ) {
-				if( $this->mDbPageLanguage ) {
-					$settings['dbvalue'] = $this->mDbPageLanguage;
-				} else {
+				// We haven't read the page language yet, do it here
+				if ( !$this->mPageLanguage[1] ) {
 					$dbr = wfGetDB( DB_SLAVE );
-					$row = $dbr->selectRow(
+					$this->mDbPageLanguage = $dbr->selectField(
 						'page',
 						'page_lang',
 						array( 'page_id' => $this->getArticleID() ),
 						__METHOD__
 					);
-					if( isset( $row->page_lang ) ) {
-						$settings['dbvalue'] = $row->page_lang;
-					}
 				}
+				$settings['dbvalue'] = $this->mDbPageLanguage;
 			}
 
 			// cache our settings for this Title object
 			$this->mPageLanguage = array( $settings, $wgLanguageCode );
-
 		} else {
 			$settings = $this->mPageLanguage[0];
 		}
