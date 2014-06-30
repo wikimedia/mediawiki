@@ -104,13 +104,17 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Get the default language for the wiki
-		// Returns the default since the page is not loaded from DB
-		$defLang = $title->getPageLanguage()->getCode();
+		$settings = $title->getPageLanguageSettings( false );
+		$defLang = $settings['pagelanguage']->getCode();
 
 		$pageId =  $title->getArticleID();
-
 		// Check if article exists
 		if ( !$pageId ) {
+			return false;
+		}
+
+		// Check if user is allowed to edit the page
+		if( !$title->userCan( 'edit' ) ) {
 			return false;
 		}
 
