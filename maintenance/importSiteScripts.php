@@ -70,33 +70,40 @@ class ImportSiteScripts extends Maintenance {
 	protected function fetchScriptList() {
 		$data = array(
 			'action' => 'query',
-			'format' => 'php', //'json',
+			'format' => 'json',
 			'list' => 'allpages',
 			'apnamespace' => '8',
 			'aplimit' => '500',
+			'continue' => '',
 		);
 		$baseUrl = $this->getArg( 0 );
 		$pages = array();
 
-		do {
+		while ( true ) {
 			$url = wfAppendQuery( $baseUrl, $data );
 			$strResult = Http::get( $url );
-			//$result = FormatJson::decode( $strResult ); // Still broken
-			$result = unserialize( $strResult );
+			$result = FormatJson::decode( $strResult, true );
 
-			if ( !empty( $result['query']['allpages'] ) ) {
-				foreach ( $result['query']['allpages'] as $page ) {
-					if ( substr( $page['title'], -3 ) === '.js' ) {
-						strtok( $page['title'], ':' );
-						$pages[] = strtok( '' );
-					}
+			$page = null;
+			foreach ( $result['query']['allpages'] as $page ) {
+				if ( substr( $page['title'], -3 ) === '.js' ) {
+					strtok( $page['title'], ':' );
+					$pages[] = strtok( '' );
 				}
 			}
-			if ( !empty( $result['query-continue'] ) ) {
-				$data['apfrom'] = $result['query-continue']['allpages']['apfrom'];
-				$this->output( "Fetching new batch from {$data['apfrom']}\n" );
+
+			if ( $page !== null ) {
+				$this->output( "Fetched list up to {$page['title']}\n" );
 			}
-		} while ( isset( $result['query-continue'] ) );
+
+			if ( isset( $result['continue'] ) ) { // >= 1.21
+				$data = array_replace( $data, $result['continue'] );
+			} elseif ( isset( $result['query-continue']['allpages'] ) ) { // <= 1.20
+				$data = array_replace( $data, $result['query-continue']['allpages'] );
+			} else {
+				break;
+			}
+		}
 
 		return $pages;
 	}
