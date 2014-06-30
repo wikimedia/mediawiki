@@ -35,6 +35,7 @@ class ApiTokens extends ApiBase {
 
 		$types = $this->getTokenTypes();
 		foreach ( $params['type'] as $type ) {
+			$a = $types[$type];
 			$val = call_user_func( $types[$type], null, null );
 
 			if ( $val === false ) {
@@ -60,7 +61,7 @@ class ApiTokens extends ApiBase {
 		wfProfileIn( __METHOD__ );
 		$types = array( 'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' ) );
 		$names = array( 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
-			'email', 'import', 'watch', 'options' );
+			'email', 'import', 'watch', 'options', 'pagelang' );
 		foreach ( $names as $name ) {
 			$types[$name] = array( 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' );
 		}

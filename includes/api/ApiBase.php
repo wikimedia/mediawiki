@@ -1916,7 +1916,16 @@ abstract class ApiBase extends ContextSource {
 			'info' => 'The file is missing an extension'
 		),
 
-		'mustbeloggedin' => array( 'code' => 'mustbeloggedin', 'info' => 'You must be logged in to $1.' )
+		'mustbeloggedin' => array( 'code' => 'mustbeloggedin', 'info' => 'You must be logged in to $1.' ),
+
+		'cantchangelang' => array(
+			'code' => 'permissiondenied',
+			'info' => 'User does not have permissions to change language.'
+		),
+		'no-change' => array(
+			'code' => 'no-change',
+			'info' => 'Page language change failed.'
+		)
 	);
 	// @codingStandardsIgnoreEnd
 
