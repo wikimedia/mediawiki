@@ -77,9 +77,9 @@ class ChangeTags {
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
 	 * @param string|array $tags Tags to add to the change
-	 * @param int $rc_id rc_id of the change to add the tags to
-	 * @param int $rev_id rev_id of the change to add the tags to
-	 * @param int $log_id Log_id of the change to add the tags to
+	 * @param int|null $rc_id rc_id of the change to add the tags to
+	 * @param int|null $rev_id rev_id of the change to add the tags to
+	 * @param int|null $log_id Log_id of the change to add the tags to
 	 * @param string $params params to put in the ct_params field of table 'change_tag'
 	 *
 	 * @throws MWException
@@ -143,7 +143,7 @@ class ChangeTags {
 			'ts_log_id' => $log_id )
 		);
 
-		## Update the summary row.
+		// Update the summary row.
 		// $prevTags can be out of date on slaves, especially when addTags is called consecutively,
 		// causing loss of tags added recently in tag_summary table.
 		$prevTags = $dbw->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );

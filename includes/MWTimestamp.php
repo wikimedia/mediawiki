@@ -268,7 +268,7 @@ class MWTimestamp {
 		// first value.
 		if ( $data[0] == 'System' ) {
 			// First value is System, so use the system offset.
-			if ( isset( $wgLocalTZoffset ) ) {
+			if ( $wgLocalTZoffset !== null ) {
 				$diff = $wgLocalTZoffset;
 			}
 		} elseif ( $data[0] == 'Offset' ) {
