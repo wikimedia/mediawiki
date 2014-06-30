@@ -279,9 +279,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			''
 		);
 
-		wfRunHooks( 'SpecialWatchlistQuery',
-			array( &$conds, &$tables, &$join_conds, &$fields, $opts ),
-			'1.23' );
+		$this->runMainQueryHook( &$tables, &$fields,& $conds, &$query_options, &$join_conds, $opts );
 
 		return $dbr->select(
 			$tables,
@@ -291,6 +289,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$query_options,
 			$join_conds
 		);
+	}
+
+	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) {
+		return parent::runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts )
+			&& wfRunHooks(
+				'SpecialWatchlistQuery',
+				array( &$conds, &$tables, &$join_conds, &$fields, $opts ),
+				'1.23'
+			);
 	}
 
 	/**

@@ -229,10 +229,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$opts['tagfilter']
 		);
 
-		if ( !wfRunHooks( 'SpecialRecentChangesQuery',
-			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ),
-			'1.23' )
-		) {
+		if ( !$this->runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) ) {
 			return false;
 		}
 
@@ -253,6 +250,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		return $rows;
+	}
+
+	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) {
+		return parent::runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts )
+			&& wfRunHooks(
+				'SpecialRecentChangesQuery',
+				array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ),
+				'1.23'
+			);
 	}
 
 	public function outputFeedLinks() {
