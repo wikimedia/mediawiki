@@ -124,7 +124,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		);
 
 		// Url to redirect to after the operation
-		$this->goToUrl = $title->getFullURL();
+		$this->goToUrl = $title->getFullURL( 'action=purge' );
 
 		// Check if user wants to use default language
 		if ( $data['selectoptions'] == 1 ) {
