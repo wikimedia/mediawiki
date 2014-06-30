@@ -150,8 +150,8 @@ class Title {
 	/** @var bool The (string) language code of the page's language and content code. */
 	private $mPageLanguage = false;
 
-	/** @var string The page language code from the database */
-	private $mDbPageLanguage = null;
+	/** @var bool|string The page language code from the database, false means not read from DB */
+	private $mDbPageLanguage = false;
 
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
@@ -1192,7 +1192,7 @@ class Title {
 		// @todo ConversionTable should become a separate content model.
 
 		return $this->getNamespace() == NS_MEDIAWIKI &&
-			strpos( $this->getText(), 'Conversiontable/' ) === 0;
+		strpos( $this->getText(), 'Conversiontable/' ) === 0;
 	}
 
 	/**
@@ -1237,8 +1237,8 @@ class Title {
 	 */
 	public function isCssJsSubpage() {
 		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
-					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
+			&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
+				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
 	}
 
 	/**
@@ -1997,7 +1997,7 @@ class Title {
 			}
 		} elseif ( $action == 'move' ) {
 			if ( !$user->isAllowed( 'move-rootuserpages' )
-					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
+				&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-user-page' );
 			}
@@ -2028,11 +2028,11 @@ class Title {
 				// User can't move anything
 				$errors[] = array( 'movenotallowed' );
 			} elseif ( !$user->isAllowed( 'move-rootuserpages' )
-					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
+				&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-to-user-page' );
 			} elseif ( !$user->isAllowed( 'move-categorypages' )
-					&& $this->mNamespace == NS_CATEGORY ) {
+				&& $this->mNamespace == NS_CATEGORY ) {
 				// Show category page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-to-category-page' );
 			}
@@ -2497,7 +2497,7 @@ class Title {
 
 		$errors = array();
 		while ( count( $checks ) > 0 &&
-				!( $short && count( $errors ) > 0 ) ) {
+			!( $short && count( $errors ) > 0 ) ) {
 			$method = array_shift( $checks );
 			$errors = $this->$method( $action, $user, $errors, $doExpensiveQueries, $short );
 		}
@@ -2851,8 +2851,8 @@ class Title {
 			$this->loadRestrictions();
 		}
 		return isset( $this->mRestrictions[$action] )
-				? $this->mRestrictions[$action]
-				: array();
+			? $this->mRestrictions[$action]
+			: array();
 	}
 
 	/**
@@ -3678,7 +3678,7 @@ class Title {
 
 		// Content model checks
 		if ( !$wgContentHandlerUseDB &&
-				$this->getContentModel() !== $nt->getContentModel() ) {
+			$this->getContentModel() !== $nt->getContentModel() ) {
 			// can't move a page if that would change the page's content model
 			$errors[] = array(
 				'bad-target-model',
@@ -3844,7 +3844,7 @@ class Title {
 			$dbw->update( 'categorylinks',
 				array(
 					'cl_sortkey' => Collation::singleton()->getSortKey(
-						$nt->getCategorySortkey( $prefix ) ),
+							$nt->getCategorySortkey( $prefix ) ),
 					'cl_timestamp=cl_timestamp' ),
 				array(
 					'cl_from' => $pageid,
@@ -4097,8 +4097,8 @@ class Title {
 			$count++;
 			if ( $count > $wgMaximumMovedPages ) {
 				$retval[$oldSubpage->getPrefixedText()] =
-						array( 'movepage-max-pages',
-							$wgMaximumMovedPages );
+					array( 'movepage-max-pages',
+						$wgMaximumMovedPages );
 				break;
 			}
 
@@ -4113,9 +4113,9 @@ class Title {
 				continue;
 			}
 			$newPageName = preg_replace(
-					'#^' . preg_quote( $this->getDBkey(), '#' ) . '#',
-					StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # bug 21234
-					$oldSubpage->getDBkey() );
+				'#^' . preg_quote( $this->getDBkey(), '#' ) . '#',
+				StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # bug 21234
+				$oldSubpage->getDBkey() );
 			if ( $oldSubpage->isTalkPage() ) {
 				$newNs = $nt->getTalkPage()->getNamespace();
 			} else {
@@ -4226,7 +4226,7 @@ class Title {
 		} else {
 			# Fail safe (not a redirect after all. strange.)
 			wfDebug( __METHOD__ . ": failsafe: database sais " . $nt->getPrefixedDBkey() .
-						" is a redirect, but it doesn't contain a valid redirect.\n" );
+				" is a redirect, but it doesn't contain a valid redirect.\n" );
 			return false;
 		}
 	}
@@ -4576,8 +4576,8 @@ class Title {
 	public function equals( Title $title ) {
 		// Note: === is necessary for proper matching of number-like titles.
 		return $this->getInterwiki() === $title->getInterwiki()
-			&& $this->getNamespace() == $title->getNamespace()
-			&& $this->getDBkey() === $title->getDBkey();
+		&& $this->getNamespace() == $title->getNamespace()
+		&& $this->getDBkey() === $title->getDBkey();
 	}
 
 	/**
@@ -4588,8 +4588,8 @@ class Title {
 	 */
 	public function isSubpageOf( Title $title ) {
 		return $this->getInterwiki() === $title->getInterwiki()
-			&& $this->getNamespace() == $title->getNamespace()
-			&& strpos( $this->getDBkey(), $title->getDBkey() . '/' ) === 0;
+		&& $this->getNamespace() == $title->getNamespace()
+		&& strpos( $this->getDBkey(), $title->getDBkey() . '/' ) === 0;
 	}
 
 	/**
@@ -5026,7 +5026,7 @@ class Title {
 			// if the page content lang is defined on-wiki, use that
 			// "usedb" should also (especially) be checked for in the frontend
 			if( $wgPageLanguageUseDB && $settings['usedb'] === true ) {
-				if( $this->mDbPageLanguage ) {
+				if( $this->mDbPageLanguage !== false ) {
 					$settings['dbvalue'] = $this->mDbPageLanguage;
 				} else {
 					$dbr = wfGetDB( DB_SLAVE );
