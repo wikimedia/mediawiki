@@ -30,9 +30,14 @@
  */
 class SpecialPageLanguage extends FormSpecialPage {
 	/**
-	 * @var $goToUrl URL to go to if language change successful
+	 * @var string Page name for the page for which language is to be changed
 	 */
-	private $goToUrl;
+	private $pageName;
+
+	/**
+	 * @var string Language code for target language
+	 */
+	private $targetLang;
 
 	public function __construct() {
 		parent::__construct( 'PageLanguage', 'pagelang' );
@@ -123,9 +128,6 @@ class SpecialPageLanguage extends FormSpecialPage {
 			__METHOD__
 		);
 
-		// Url to redirect to after the operation
-		$this->goToUrl = $title->getFullURL();
-
 		// Check if user wants to use default language
 		if ( $data['selectoptions'] == 1 ) {
 			$langNew = null;
@@ -137,6 +139,9 @@ class SpecialPageLanguage extends FormSpecialPage {
 		if ( $langNew === $langOld ) {
 			return false;
 		}
+
+		$this->pageName = $data['pagename'];
+		$this->lang = $langNew;
 
 		// Hardcoded [def] if the language is set to null
 		$logOld = $langOld ? $langOld : $defLang . '[def]';
@@ -175,7 +180,24 @@ class SpecialPageLanguage extends FormSpecialPage {
 	}
 
 	public function onSuccess() {
-		// Success causes a redirect
-		$this->getOutput()->redirect( $this->goToUrl );
+		$redirectTitle = Title::newFromText( $this->pageName );
+		// Url to redirect to after the operation
+		$page = WikiPage::factory( $redirectTitle );
+
+		if ( $page->doPurge() ) {
+			// Success causes a redirect
+			$url = $redirectTitle->getFullURL();
+			$this->getOutput()->redirect( $url );
+		} else {
+			// Purge failed, just show a success message and add a client side purge
+			$this->getOutput()->wrapWikiMsg(
+				"<div class=\"successbox\">\n$1\n</div>",
+				array( 'changelang-success',
+					$this->pageName,
+					$this->targetLang
+				)
+			);
+			$this->getOutput()->addReturnTo( $redirectTitle, 'action=purge' );
+		}
 	}
 }

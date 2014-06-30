@@ -3520,5 +3520,6 @@
 	"action-pagelang": "change the page language",
 	"log-name-pagelang": "Change language log",
 	"log-description-pagelang": "This is a log of changes in page languages.",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|changed}} page language for $3 from $4 to $5."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|changed}} page language for $3 from $4 to $5.",
+	"changelang-success": "Successfully changed page language for $1 to $2."
 }
