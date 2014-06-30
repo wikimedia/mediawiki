@@ -47,23 +47,31 @@
 		 * @param {mw.Title|String} title Target page
 		 * @param {string} header
 		 * @param {string} message wikitext message
+		 * @param {Object} [additionalParams] Additional API parameters, e.g. `{ redirect: true }`
 		 * @param {Function} [ok] Success handler (deprecated)
 		 * @param {Function} [err] Error handler (deprecated)
 		 * @return {jQuery.Promise}
 		 */
-		newSection: function ( title, header, message, ok, err ) {
+		newSection: function ( title, header, message, additionalParams, ok, err ) {
+			// Until we remove 'ok' and 'err' parameters, we have to support code that passes them but not
+			// additionalParams...
+			if ( $.isFunction( additionalParams ) ) {
+				err = ok;
+				ok = additionalParams;
+				additionalParams = undefined;
+			}
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
 			}
-			return this.postWithEditToken( {
+			return this.postWithEditToken( $.extend( {
 				action: 'edit',
 				section: 'new',
 				format: 'json',
 				title: String( title ),
 				summary: header,
 				text: message
-			} ).done( ok ).fail( err );
+			}, additionalParams ) ).done( ok ).fail( err );
 		}
 	} );
 
