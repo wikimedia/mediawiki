@@ -3164,5 +3164,15 @@
 	"expand_templates_remove_nowiki": "Elimina il tag <nowiki> nel risultato",
 	"expand_templates_generate_xml": "Mostra albero sintattico XML",
 	"expand_templates_generate_rawhtml": "Mostra HTML",
-	"expand_templates_preview": "Anteprima"
+	"expand_templates_preview": "Anteprima",
+	"pagelanguage": "Seleziona lingua della pagina",
+	"pagelang-name": "Pagina",
+	"pagelang-language": "Lingua",
+	"pagelang-use-default": "Utilizza la lingua predefinita",
+	"pagelang-select-lang": "Seleziona lingua",
+	"right-pagelang": "Modifica la lingua della pagina",
+	"action-pagelang": "modificare la lingua della pagina",
+	"log-name-pagelang": "Modifiche lingua",
+	"log-description-pagelang": "Questo è un registro delle modifiche alla lingua delle pagine.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|ha modificato}} la lingua della pagina $3 da $4 a $5."
 }

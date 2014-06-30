@@ -3093,5 +3093,6 @@
 	"expand_templates_remove_nowiki": "Падаўляць тэгі <nowiki> у выніку",
 	"expand_templates_generate_xml": "Паказаць дрэва аналізу XML",
 	"expand_templates_generate_rawhtml": "Паказаць HTML",
-	"expand_templates_preview": "Папярэдні прагляд"
+	"expand_templates_preview": "Папярэдні прагляд",
+	"pagelanguage": "Выбар мовы старонкі"
 }

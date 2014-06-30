@@ -432,7 +432,7 @@
 	"wrongpasswordempty": "Ger-tremen ebet. Lakait unan mar plij.",
 	"passwordtooshort": "{{PLURAL:$1|1 arouezenn|$1 arouezenn}} hir a rank bezañ ar gerioù-tremen da nebeutañ.",
 	"password-name-match": "Rankout a ra ho ker-tremen bezañ disheñvel diouzh hoc'h anv implijer.",
-	"password-login-forbidden": "Berzet eo ober gant an anv-implijer hag ar ger-tremen-mañ.",
+	"password-login-forbidden": "Berzet eo ober gant an anv implijer hag ar ger-tremen-mañ.",
 	"mailmypassword": "Adderaouekaat ar ger-tremen",
 	"passwordremindertitle": "Ho ker-tremen berrbad nevez evit {{SITENAME}}",
 	"passwordremindertext": "Unan bennak (c'hwi moarvat gant ar chomlec'h IP $1)\nen deus goulennet ma vo kaset dezhañ ur ger-tremen nevez evit {{SITENAME}} ($4).\nSavet ez eus bet ur ger-tremen da c'hortoz evit an implijer \"$2\" hag a zo \"$3\".\nMard eo se a felle deoc'h ober e vo ret deoc'h kevreañ ha cheñch ho ker-tremen bremañ. Didalvez e vo ho ker ker-tremen da c'hortoz a-benn {{PLURAL:$5|un devezh|$5 devezh}}\n\nMard eo bet graet ar goulenn gant unan bennak all, pe m'hoc'h eus soñj eus ho ker-tremen bremañ ha\nma ne fell ket deoc'h cheñch anezhañ ken, e c'hallit leuskel ar postel-mañ a-gostez ha kenderc'hel d'ober gant ho ker-tremen kozh.",
@@ -2779,7 +2779,7 @@
 	"duplicate-defaultsort": "Diwallit : Frikañ a ra an alc'hwez dre ziouer \"$2\" an hini a oa a-raok \"$1\".",
 	"version": "Stumm",
 	"version-extensions": "Astennoù staliet",
-	"version-skins": "Gwiskadurioù",
+	"version-skins": "Gwiskadurioù staliet",
 	"version-specialpages": "Pajennoù dibar",
 	"version-parserhooks": "Galvoù dielfennañ",
 	"version-variables": "Argemmennoù",
@@ -3018,5 +3018,10 @@
 	"expand_templates_remove_nowiki": "Diverkañ a ra ar balizennoù <nowiki> en disoc'h",
 	"expand_templates_generate_xml": "Gwelet ar gwezennadur XML",
 	"expand_templates_generate_rawhtml": "Diskouez an HTML kriz",
-	"expand_templates_preview": "Rakwelet"
+	"expand_templates_preview": "Rakwelet",
+	"pagelang-name": "Pajenn",
+	"pagelang-language": "Yezh",
+	"pagelang-use-default": "Implijout ar yezh dre ziouer",
+	"pagelang-select-lang": "Dibab ar yezh",
+	"right-pagelang": "Cheñch yezh ar bajenn"
 }

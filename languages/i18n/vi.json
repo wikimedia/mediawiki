@@ -836,8 +836,8 @@
 	"nextn-title": "$1 {{PLURAL:$1|kết quả|kết quả}} sau",
 	"shown-title": "Hiển thị $1 {{PLURAL:$1|kết quả|kết quả}} mỗi trang",
 	"viewprevnext": "Xem ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "* Trang '''[[$1]]'''",
-	"searchmenu-new": "'''Tạo trang “[[:$1]]” trên wiki này!''' {{PLURAL:$2|0=|Hãy xem {{PLURAL:$2|kết quả|các kết quả}} tìm kiếm:}}",
+	"searchmenu-exists": "<strong>Có trang với tên “[[:$1]]” trên wiki này.</strong> {{PLURAL:$2|0=|Xem thêm các kết quả tìm kiếm bên dưới:}}",
+	"searchmenu-new": "'''Tạo trang “[[:$1]]” trên wiki này!''' {{PLURAL:$2|0=|Xem thêm {{PLURAL:$2|kết quả|các kết quả}} tìm kiếm:}}",
 	"searchprofile-articles": "Trang nội dung",
 	"searchprofile-images": "Đa phương tiện",
 	"searchprofile-everything": "Tất cả",
@@ -3185,5 +3185,15 @@
 	"expand_templates_remove_nowiki": "Bỏ qua thẻ <nowiki> trong kết quả",
 	"expand_templates_generate_xml": "Xem cây phân tích XML",
 	"expand_templates_generate_rawhtml": "Hiển thị HTML thô",
-	"expand_templates_preview": "Xem trước"
+	"expand_templates_preview": "Xem trước",
+	"pagelanguage": "Chọn ngôn ngữ trang",
+	"pagelang-name": "Trang",
+	"pagelang-language": "Ngôn ngữ",
+	"pagelang-use-default": "Sử dụng ngôn ngữ mặc định",
+	"pagelang-select-lang": "Chọn ngôn ngữ",
+	"right-pagelang": "Thay đổi ngôn ngữ của trang",
+	"action-pagelang": "thay đổi ngôn ngữ của trang",
+	"log-name-pagelang": "Nhật trình thay đổi ngôn ngữ",
+	"log-description-pagelang": "Nhật trình này ghi các thay đổi ngôn ngữ của các trang.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2}}đã đổi ngôn ngữ của trang $3 từ $4 thành $5."
 }
