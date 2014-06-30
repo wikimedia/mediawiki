@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="13"
+   height="12.999996"
+   id="svg5144">
+  <defs
+     id="defs5146" />
+  <metadata
+     id="metadata5149">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-36.467808,-258.39005)"
+     id="layer1">
+    <path
+       d="m 38.089132,260.39003 -0.621324,0.62133 0,5.75735 0.621324,0.62132 1.689453,0 -0.621324,2.72794 4.310547,-2.72794 4.378677,0 0.621323,-0.62132 0,-5.75735 -0.621323,-0.62133 z m 0.378676,1 9,0 0,5 -4,0 -2.902114,1.8966 0.902114,-1.8966 -3,0 z"
+       id="path4802-8-9"
+       style="opacity:0.98999999;fill:#3366bb;fill-opacity:1;stroke:none;display:inline" />
+  </g>
+</svg>
