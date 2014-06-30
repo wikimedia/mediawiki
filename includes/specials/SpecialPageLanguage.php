@@ -96,81 +96,53 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 * @param array $data
 	 */
 	public function onSubmit( array $data ) {
-		$title = Title::newFromText( $data['pagename'] );
-
-		// Check if title is valid
-		if ( !$title ) {
-			return false;
-		}
-
-		// Get the default language for the wiki
-		// Returns the default since the page is not loaded from DB
-		$defLang = $title->getPageLanguage()->getCode();
-
-		$pageId =  $title->getArticleID();
-
-		// Check if article exists
-		if ( !$pageId ) {
-			return false;
-		}
-
-		// Load the page language from DB
-		$dbw = wfGetDB( DB_MASTER );
-		$langOld = $dbw->selectField(
-			'page',
-			'page_lang',
-			array( 'page_id' => $pageId ),
-			__METHOD__
+		// GET request for token to change page language
+		$tokenParams = new DerivativeRequest(
+			$this->getRequest(),
+			array(
+				'action' => 'tokens',
+				'type' => 'pagelang'
+			),
+			false
 		);
 
-		// Url to redirect to after the operation
-		$this->goToUrl = $title->getFullURL();
+		$tokenApi = new ApiMain( $tokenParams );
+		$tokenApi->execute();
+		$res = & $tokenApi->getResultData();
+
+		$tokens = $res['tokens'];
+		$token = $tokens['pagelangtoken'];
 
 		// Check if user wants to use default language
 		if ( $data['selectoptions'] == 1 ) {
-			$langNew = null;
+			$lang = null;
 		} else {
-			$langNew = $data['language'];
+			$lang = $data['language'];
 		}
 
-		// No change in language
-		if ( $langNew === $langOld ) {
-			return false;
-		}
-
-		// Hardcoded [def] if the language is set to null
-		$logOld = $langOld ? $langOld : $defLang . '[def]';
-		$logNew = $langNew ? $langNew : $defLang . '[def]';
-
-		// Writing new page language to database
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update(
-			'page',
-			array( 'page_lang' => $langNew ),
+		// POST API for changing page language
+		$pageLangParams = new DerivativeRequest(
+			$this->getRequest(),
 			array(
-				'page_id' => $pageId,
-				'page_lang' => $langOld
+				'action' => 'pagelang',
+				'page' => $data['pagename'],
+				'lang' => $lang,
+				'token' => $token
 			),
-			__METHOD__
+			true
 		);
 
-		if ( !$dbw->affectedRows() ) {
-			return false;
+		// Write enabled API
+		$pageLangApi = new ApiMain( $pageLangParams, true );
+
+		try {
+			$pageLangApi->execute();
+			// Url to redirect to after the operation
+			$this->goToUrl = Title::newFromText( $data['pagename'] )->getFullURL( 'action=purge' );
 		}
-
-		// Logging change of language
-		$logParams = array(
-			'4::oldlanguage' => $logOld,
-			'5::newlanguage' => $logNew
-		);
-		$entry = new ManualLogEntry( 'pagelang', 'pagelang' );
-		$entry->setPerformer( $this->getUser() );
-		$entry->setTarget( $title );
-		$entry->setParameters( $logParams );
-
-		$logid = $entry->insert();
-		$entry->publish( $logid );
-
+		catch ( Exception $e ) {
+			return $e->getMessage();
+		}
 		return true;
 	}
 
