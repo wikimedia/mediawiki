@@ -3682,5 +3682,9 @@
 	"action-pagelang": "{{Doc-action|pagelang}}",
 	"log-name-pagelang": "Display entry for log name for changes in page language in Special:Log.",
 	"log-description-pagelang": "Display description for log name for changes in page language in Special:Log.",
-	"logentry-pagelang-pagelang": "Log entry for page language changes in Special:Log."
+	"logentry-pagelang-pagelang": "Log entry for page language changes in Special:Log.",
+	"changelang-success": "Success message to be displayed on successful change of language $1 is the page name, $2 is the new language.",
+	"page-noexist": "Error message to be displayed if the page doesn't exist.",
+	"page-changelang-nopermission": "Error message shown when a user doesn't have permissions for changing page language.",
+	"changelang-none": "Error message shown when there is no change in page language."
 }
