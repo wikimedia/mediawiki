@@ -296,7 +296,7 @@
 
 			this.displaySubmitting();
 
-			this.api.newSection( this.title, subject, message, ok, err );
+			this.api.newSection( this.title, subject, message ).done( ok ).fail( err );
 		},
 
 		/**
