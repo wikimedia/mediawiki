@@ -356,3 +356,6 @@
 [submodule "extensions/MultiCategorySearch"]
 	path = extensions/MultiCategorySearch
 	url = https://github.com/Orain/MultiCategorySearch.git
+[submodule "extensions/TocTree"]
+	path = extensions/TocTree
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TocTree
