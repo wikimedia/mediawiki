@@ -164,36 +164,39 @@ class FindHooks extends Maintenance {
 	 * @return array of documented hooks
 	 */
 	private function getHooksFromOnlineDoc() {
-		// All hooks
-		$allhookdata = Http::get(
-			'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&'
-			. 'cmtitle=Category:MediaWiki_hooks&cmlimit=500&format=php'
-		);
-		$allhookdata = unserialize( $allhookdata );
-		$allhooks = array();
-		foreach ( $allhookdata['query']['categorymembers'] as $page ) {
-			$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
-			if ( $found ) {
-				$hook = str_replace( ' ', '_', $matches[1] );
-				$allhooks[] = $hook;
-			}
-		}
-		// Removed hooks
-		$oldhookdata = Http::get(
-			'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&'
-			. 'cmtitle=Category:Removed_hooks&cmlimit=500&format=php'
-		);
-		$oldhookdata = unserialize( $oldhookdata );
-		$removed = array();
-		foreach ( $oldhookdata['query']['categorymembers'] as $page ) {
-			$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
-			if ( $found ) {
-				$hook = str_replace( ' ', '_', $matches[1] );
-				$removed[] = $hook;
-			}
-		}
-
+		$allhooks = $this->getHooksFromOnlineDocCategory( 'MediaWiki_hooks' );
+		$removed = $this->getHooksFromOnlineDocCategory( 'Removed_hooks' );
 		return array_diff( $allhooks, $removed );
+	}
+
+	/**
+	 * @param string $title
+	 * @return array
+	 */
+	private function getHooksFromOnlineDocCategory( $title ) {
+		$params = array(
+			'action' => 'query',
+			'list' => 'categorymembers',
+			'cmtitle' => "Category:$title",
+			'cmlimit' => 500,
+			'format' => 'json',
+			'continue' => '',
+		);
+
+		$retval = array();
+		while ( true ) {
+			$json = Http::get( wfAppendQuery( 'http://www.mediawiki.org/w/api.php', $params ) );
+			$data = FormatJson::decode( $json, true );
+			foreach ( $data['query']['categorymembers'] as $page ) {
+				if ( preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $m ) ) {
+					$retval[] = str_replace( ' ', '_', $m[1] );
+				}
+			}
+			if ( empty( $data['continue'] ) ) {
+				return $retval;
+			}
+			$params = array_replace( $params, $data['continue'] );
+		}
 	}
 
 	/**
