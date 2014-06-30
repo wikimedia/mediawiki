@@ -60,6 +60,7 @@
 				action: 'edit',
 				section: 'new',
 				format: 'json',
+				redirect: true,
 				title: String( title ),
 				summary: header,
 				text: message
