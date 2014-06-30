@@ -104,13 +104,25 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Get the default language for the wiki
-		// Returns the default since the page is not loaded from DB
-		$defLang = $title->getPageLanguage()->getCode();
+		$settings = $title->getPageLanguageSettings( false );
+		$defLang = $settings['pagelanguage']->getCode();
 
 		$pageId =  $title->getArticleID();
-
 		// Check if article exists
 		if ( !$pageId ) {
+			return false;
+		}
+
+		$user = $this->getUser();
+		$rights = $user->getRights();
+
+		// If page is protected, only allow change language if user has permissions
+		if ( $title->isProtected() && !in_array( 'protect', $rights ) ) {
+			return false;
+		}
+
+		// For semi protected pages, user should be logged in
+		if ( $title->isSemiProtected() && !$user->isLoggedIn() ) {
 			return false;
 		}
 
@@ -164,7 +176,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'5::newlanguage' => $logNew
 		);
 		$entry = new ManualLogEntry( 'pagelang', 'pagelang' );
-		$entry->setPerformer( $this->getUser() );
+		$entry->setPerformer( $user );
 		$entry->setTarget( $title );
 		$entry->setParameters( $logParams );
 
