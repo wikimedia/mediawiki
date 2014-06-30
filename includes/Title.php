@@ -150,8 +150,8 @@ class Title {
 	/** @var bool The (string) language code of the page's language and content code. */
 	private $mPageLanguage = false;
 
-	/** @var string The page language code from the database */
-	private $mDbPageLanguage = null;
+	/** @var bool|string The page language code from the database, false means not read from DB */
+	private $mDbPageLanguage = false;
 
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
@@ -5026,7 +5026,7 @@ class Title {
 			// if the page content lang is defined on-wiki, use that
 			// "usedb" should also (especially) be checked for in the frontend
 			if( $wgPageLanguageUseDB && $settings['usedb'] === true ) {
-				if( $this->mDbPageLanguage ) {
+				if( $this->mDbPageLanguage !== false ) {
 					$settings['dbvalue'] = $this->mDbPageLanguage;
 				} else {
 					$dbr = wfGetDB( DB_SLAVE );
