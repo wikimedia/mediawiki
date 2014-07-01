@@ -782,7 +782,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	function lastLink( $prevRev, $next ) {
 		$last = $this->historyPage->message['last'];
-		# $next may either be a Row, null, or "unkown"
+		# $next may either be a Row, null, or "unknown"
 		$nextRev = is_object( $next ) ? new Revision( $next ) : $next;
 		if ( is_null( $next ) ) {
 			# Probably no next row
