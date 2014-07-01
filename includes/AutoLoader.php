@@ -136,7 +136,6 @@ $wgAutoloadLocalClasses = array(
 	'MimeMagic' => 'includes/MimeMagic.php',
 	'MWHookException' => 'includes/Hooks.php',
 	'MWHttpRequest' => 'includes/HttpFunctions.php',
-	'MWInit' => 'includes/Init.php',
 	'MWNamespace' => 'includes/Namespace.php',
 	'OutputPage' => 'includes/OutputPage.php',
 	'Pager' => 'includes/Pager.php',

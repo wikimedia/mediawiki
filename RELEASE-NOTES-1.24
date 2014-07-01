@@ -236,6 +236,8 @@ changes to languages because of Bugzilla reports.
 * Removed Title::getEscapedText(). (deprecated since 1.19)
 * Removed Language::getFallbackLanguageCode(). (deprecated since 1.19)
 * Removed WikiPage::isBigDeletion(). (deprecated since 1.19)
+* Removed MWInit class which contained functions related to a now discontinued
+  PHP compiler called hphpc. (deprecated since 1.22)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
