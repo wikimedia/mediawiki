@@ -153,7 +153,7 @@ class ActionTest extends MediaWikiTestCase {
 
 	public function testNull_canNotBeInstantiated() {
 		$page = $this->getPage();
-		$action = Action::factory( null, $page );
+		$action = Action::factory( null, $page, $this->getContext() );
 
 		$this->assertNull( $action );
 	}
@@ -173,7 +173,7 @@ class ActionTest extends MediaWikiTestCase {
 
 	public function testDisabledAction_factoryReturnsFalse() {
 		$page = $this->getPage();
-		$action = Action::factory( 'disabled', $page );
+		$action = Action::factory( 'disabled', $page, $this->getContext() );
 
 		$this->assertFalse( $action );
 	}
