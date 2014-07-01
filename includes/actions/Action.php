@@ -34,7 +34,7 @@
  * format (protect, delete, move, etc), and the just-do-something format (watch, rollback,
  * patrol, etc). The FormAction and FormlessAction classes represent these two groups.
  */
-abstract class Action implements MessageLocalizer {
+abstract class Action extends ContextSource implements MessageLocalizer {
 
 	/**
 	 * Page on which we're performing the action
@@ -42,13 +42,6 @@ abstract class Action implements MessageLocalizer {
 	 * @var WikiPage|Article|ImagePage|CategoryPage|Page $page
 	 */
 	protected $page;
-
-	/**
-	 * IContextSource if specified; otherwise we'll use the Context from the Page
-	 * @since 1.17
-	 * @var IContextSource $context
-	 */
-	protected $context;
 
 	/**
 	 * The fields used to create the HTMLForm
@@ -94,6 +87,15 @@ abstract class Action implements MessageLocalizer {
 	 */
 	final public static function factory( $action, Page $page, IContextSource $context = null ) {
 		$classOrCallable = self::getClass( $action, $page->getActionOverrides() );
+		if ( $context === null ) {
+			wfWarn( __METHOD__ . ' called without providing a $context is deprecated.' );
+			// NOTE: $this->page can be a WikiPage, which does not have a context.
+			if ( $page instanceof Article ) {
+				$context = $page->getContext();
+			} else {
+				$context = RequestContext::getMain();
+			}
+		}
 
 		if ( is_string( $classOrCallable ) ) {
 			if ( !class_exists( $classOrCallable ) ) {
@@ -171,108 +173,14 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
-	 * Get the IContextSource in use here
-	 * @since 1.17
-	 * @return IContextSource
-	 */
-	final public function getContext() {
-		if ( $this->context instanceof IContextSource ) {
-			return $this->context;
-		} elseif ( $this->page instanceof Article ) {
-			// NOTE: $this->page can be a WikiPage, which does not have a context.
-			wfDebug( __METHOD__ . ": no context known, falling back to Article's context.\n" );
-			return $this->page->getContext();
-		}
-
-		wfWarn( __METHOD__ . ': no context known, falling back to RequestContext::getMain().' );
-		return RequestContext::getMain();
-	}
-
-	/**
-	 * Get the WebRequest being used for this instance
-	 * @since 1.17
-	 *
-	 * @return WebRequest
-	 */
-	final public function getRequest() {
-		return $this->getContext()->getRequest();
-	}
-
-	/**
-	 * Get the OutputPage being used for this instance
-	 * @since 1.17
-	 *
-	 * @return OutputPage
-	 */
-	final public function getOutput() {
-		return $this->getContext()->getOutput();
-	}
-
-	/**
-	 * Shortcut to get the User being used for this instance
-	 * @since 1.17
-	 *
-	 * @return User
-	 */
-	final public function getUser() {
-		return $this->getContext()->getUser();
-	}
-
-	/**
-	 * Shortcut to get the Skin being used for this instance
-	 * @since 1.17
-	 *
-	 * @return Skin
-	 */
-	final public function getSkin() {
-		return $this->getContext()->getSkin();
-	}
-
-	/**
-	 * Shortcut to get the user Language being used for this instance
-	 *
-	 * @return Language
-	 */
-	final public function getLanguage() {
-		return $this->getContext()->getLanguage();
-	}
-
-	/**
-	 * Shortcut to get the Title object from the page
-	 * @since 1.17
-	 *
-	 * @return Title
-	 */
-	final public function getTitle() {
-		return $this->page->getTitle();
-	}
-
-	/**
-	 * Get a Message object with context set
-	 * Parameters are the same as wfMessage()
-	 *
-	 * @return Message
-	 */
-	final public function msg( $key ) {
-		$params = func_get_args();
-		return call_user_func_array( [ $this->getContext(), 'msg' ], $params );
-	}
-
-	/**
 	 * Only public since 1.21
 	 *
 	 * @param Page $page
 	 * @param IContextSource|null $context
 	 */
-	public function __construct( Page $page, IContextSource $context = null ) {
-		if ( $context === null ) {
-			wfWarn( __METHOD__ . ' called without providing a Context object.' );
-			// NOTE: We could try to initialize $context using $page->getContext(),
-			//      if $page is an Article. That however seems to not work seamlessly.
-		}
-
+	public function __construct( Page $page, IContextSource $context ) {
+		$this->setContext( $context );
 		$this->page = $page;
-		$this->context = $context;
 	}
 
 	/**
