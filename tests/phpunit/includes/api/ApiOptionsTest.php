@@ -17,7 +17,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	/** @var DerivativeContext */
 	private $mContext;
 
-	private $mOldGetPreferencesHooks = false;
+	private $mOldGetPreferencesHooks;
 
 	private static $Success = array( 'options' => 'success' );
 
@@ -61,10 +61,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	protected function tearDown() {
 		global $wgHooks;
 
-		if ( $this->mOldGetPreferencesHooks !== false ) {
-			$wgHooks['GetPreferences'] = $this->mOldGetPreferencesHooks;
-			$this->mOldGetPreferencesHooks = false;
-		}
+		$wgHooks['GetPreferences'] = $this->mOldGetPreferencesHooks;
+		$this->mOldGetPreferencesHooks = false;
 
 		parent::tearDown();
 	}
