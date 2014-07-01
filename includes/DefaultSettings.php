@@ -1514,7 +1514,7 @@ $wgUsersNotifiedOnAllChanges = array();
 $wgDBserver = 'localhost';
 
 /**
- * Database port number (for PostgreSQL)
+ * Database port number (for PostgreSQL and Microsoft SQL Server).
  */
 $wgDBport = 5432;
 
@@ -1540,11 +1540,21 @@ $wgDBtype = 'mysql';
 
 /**
  * Whether to use SSL in DB connection.
+ *
+ * This setting is only used $wgLBFactoryConf['class'] is set to
+ * 'LBFactorySimple' and $wgDBservers is an empty array; otherwise
+ * the DBO_SSL flag must be set in the 'flags' option of the database
+ * connection to achieve the same functionality.
  */
 $wgDBssl = false;
 
 /**
  * Whether to use compression in DB connection.
+ *
+ * This setting is only used $wgLBFactoryConf['class'] is set to
+ * 'LBFactorySimple' and $wgDBservers is an empty array; otherwise
+ * the DBO_COMPRESS flag must be set in the 'flags' option of the database
+ * connection to achieve the same functionality.
  */
 $wgDBcompress = false;
 
@@ -1652,7 +1662,7 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *   - dbname:      Default database name
  *   - user:        DB user
  *   - password:    DB password
- *   - type:        "mysql" or "postgres"
+ *   - type:        DB type
  *
  *   - load:        Ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0.
  *                  If this is zero for any given server, no normal query traffic will be
@@ -4971,7 +4981,12 @@ $wgDebugComments = false;
 $wgDebugDBTransactions = false;
 
 /**
- * Write SQL queries to the debug log
+ * Write SQL queries to the debug log.
+ *
+ * This setting is only used $wgLBFactoryConf['class'] is set to
+ * 'LBFactorySimple' and $wgDBservers is an empty array; otherwise
+ * the DBO_DEBUG flag must be set in the 'flags' option of the database
+ * connection to achieve the same functionality.
  */
 $wgDebugDumpSql = false;
 
