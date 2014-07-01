@@ -204,6 +204,8 @@ changes to languages because of Bugzilla reports.
   set of hooks has been removed and replaced by a single new hook
   SpecialPageBeforeFormDisplay.
 * (bug 65781) Removed block warning on included {{Special:Contributions}}
+* Removed MWInit class which contained functions related to a now discontinued
+  PHP compiler called hphpc. (deprecated since 1.22)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
