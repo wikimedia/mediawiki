@@ -112,7 +112,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				wfProfileIn( $logName . ' (clone-db)' );
 
 				// switch to a temporary clone of the database
-				self::setupTestDB( $this->db, $this->dbPrefix() );
+				static::setupTestDB( $this->db, $this->dbPrefix() );
 
 				if ( ( $this->db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
 					$this->resetDB();
