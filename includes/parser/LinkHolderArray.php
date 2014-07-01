@@ -272,7 +272,6 @@ class LinkHolderArray {
 	public function replace( &$text ) {
 		wfProfileIn( __METHOD__ );
 
-		/** @todo FIXME: replaceInternal doesn't return a value */
 		$colours = $this->replaceInternal( $text );
 		$this->replaceInterwiki( $text );
 
@@ -283,10 +282,12 @@ class LinkHolderArray {
 	/**
 	 * Replace internal links
 	 * @param string $text
+	 *
+	 * @return array
 	 */
 	protected function replaceInternal( &$text ) {
 		if ( !$this->internals ) {
-			return;
+			return array();
 		}
 
 		wfProfileIn( __METHOD__ );
@@ -438,6 +439,7 @@ class LinkHolderArray {
 
 		wfProfileOut( __METHOD__ . '-replace' );
 		wfProfileOut( __METHOD__ );
+		return $colours;
 	}
 
 	/**
