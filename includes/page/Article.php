@@ -1978,10 +1978,13 @@ class Article implements Page {
 	 * @param string $reason
 	 * @param User $user
 	 * @return Status
+	 *
+	 * @deprecated since 1.24, use WikiPage::doUpdateRestrictions() instead
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade,
 		$reason, User $user
 	) {
+		wfDeprecated( __METHOD__, '1.24' );
 		return $this->mPage->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $user );
 	}
 
@@ -1991,10 +1994,13 @@ class Article implements Page {
 	 * @param int $cascade
 	 * @param array $expiry
 	 * @return bool
+	 *
+	 * @deprecated since 1.24, use WikiPage::doUpdateRestrictions() instead
 	 */
 	public function updateRestrictions( $limit = array(), $reason = '',
 		&$cascade = 0, $expiry = array()
 	) {
+		wfDeprecated( __METHOD__, '1.24' );
 		return $this->mPage->doUpdateRestrictions(
 			$limit,
 			$expiry,
@@ -2011,10 +2017,13 @@ class Article implements Page {
 	 * @param bool $commit
 	 * @param string $error
 	 * @return bool
+	 *
+	 * @deprecated since 1.24, use WikiPage::doDeleteArticle() instead
 	 */
 	public function doDeleteArticle( $reason, $suppress = false, $id = 0,
 		$commit = true, &$error = ''
 	) {
+		wfDeprecated( __METHOD__, '1.24' );
 		return $this->mPage->doDeleteArticle( $reason, $suppress, $id, $commit, $error );
 	}
 
@@ -2026,8 +2035,11 @@ class Article implements Page {
 	 * @param array $resultDetails
 	 * @param User|null $user
 	 * @return array
+	 *
+	 * @deprecated since 1.24, use WikiPage::doRollback() instead
 	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		$user = is_null( $user ) ? $this->getContext()->getUser() : $user;
 		return $this->mPage->doRollback( $fromP, $summary, $token, $bot, $resultDetails, $user );
 	}
@@ -2039,8 +2051,11 @@ class Article implements Page {
 	 * @param array $resultDetails
 	 * @param User|null $guser
 	 * @return array
+	 *
+	 * @deprecated since 1.24, use WikiPage::commitRollback() instead
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		$guser = is_null( $guser ) ? $this->getContext()->getUser() : $guser;
 		return $this->mPage->commitRollback( $fromP, $summary, $bot, $resultDetails, $guser );
 	}
@@ -2048,8 +2063,11 @@ class Article implements Page {
 	/**
 	 * @param bool $hasHistory
 	 * @return mixed
+	 *
+	 * @deprecated since 1.24, use ContentHandler::getAutoDeleteReason() instead
 	 */
 	public function generateReason( &$hasHistory ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		$title = $this->mPage->getTitle();
 		$handler = ContentHandler::getForTitle( $title );
 		return $handler->getAutoDeleteReason( $title, $hasHistory );
