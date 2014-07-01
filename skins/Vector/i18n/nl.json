@@ -5,10 +5,12 @@
 			"Romaine",
 			"SPQRobin",
 			"Siebrand",
-			"Troefkaart"
+			"Troefkaart",
+			"Sjoerddebruin"
 		]
 	},
 	"skinname-vector": "Vector",
+	"vector-skin-desc": "Moderne versie van MonoBook met een fris uiterlijk en verbeteringen op het gebied van gebruiksvriendelijkheid",
 	"vector.css": "/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Vector */",
 	"vector.js": "/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Vector gebruiken */",
 	"vector-action-addsection": "Kopje toevoegen",

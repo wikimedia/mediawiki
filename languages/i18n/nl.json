@@ -2896,7 +2896,7 @@
 	"duplicate-defaultsort": "'''Waarschuwing:''' de standaardsortering \"$2\" krijgt voorrang voor de sortering \"$1\".",
 	"version": "Versie",
 	"version-extensions": "Geïnstalleerde uitbreidingen",
-	"version-skins": "Vormgevingen",
+	"version-skins": "Geïnstalleerde vormgevingen",
 	"version-specialpages": "Speciale pagina's",
 	"version-parserhooks": "Parserhooks",
 	"version-variables": "Variabelen",
@@ -2912,6 +2912,7 @@
 	"version-license": "Licentie voor MediaWiki",
 	"version-ext-license": "Licentie",
 	"version-ext-colheader-name": "Uitbreiding",
+	"version-skin-colheader-name": "Vormgeving",
 	"version-ext-colheader-version": "Versie",
 	"version-ext-colheader-license": "Licentie",
 	"version-ext-colheader-description": "Beschrijving",
@@ -3145,5 +3146,8 @@
 	"expand_templates_remove_nowiki": "Tags <nowiki> in resultaat onderdrukken",
 	"expand_templates_generate_xml": "XML-parserboom bekijken",
 	"expand_templates_generate_rawhtml": "Ruwe HTML weergeven",
-	"expand_templates_preview": "Voorvertoning"
+	"expand_templates_preview": "Voorvertoning",
+	"pagelang-name": "Pagina",
+	"pagelang-language": "Taal",
+	"pagelang-select-lang": "Taal selecteren"
 }

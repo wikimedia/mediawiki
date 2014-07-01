@@ -2850,7 +2850,7 @@
 	"duplicate-defaultsort": "'''മുന്നറിയിപ്പ്:''' ക്രമപ്പെടുത്താനുള്ള ചാവിയായ \"$2\" മുമ്പ് ക്രമപ്പെടുത്താനുള്ള ചാവിയായിരുന്ന \"$1\" എന്നതിനെ അതിലംഘിക്കുന്നു.",
 	"version": "പതിപ്പ്",
 	"version-extensions": "ഇൻസ്റ്റോൾ ചെയ്തിട്ടുള്ള അനുബന്ധങ്ങൾ",
-	"version-skins": "ദൃശ്യരൂപങ്ങൾ",
+	"version-skins": "ഇൻസ്റ്റോൾ ചെയ്തിട്ടുള്ള ദൃശ്യരൂപങ്ങൾ",
 	"version-specialpages": "പ്രത്യേക താളുകൾ",
 	"version-parserhooks": "പാഴ്‌സർ കൊളുത്തുകൾ",
 	"version-variables": "ചരങ്ങൾ",
@@ -2867,6 +2867,7 @@
 	"version-license": "മീഡിയവിക്കി ഉപയോഗാനുമതി",
 	"version-ext-license": "അനുമതി",
 	"version-ext-colheader-name": "അനുബന്ധം",
+	"version-skin-colheader-name": "ദൃശ്യരൂപം",
 	"version-ext-colheader-version": "പതിപ്പ്",
 	"version-ext-colheader-license": "ഉപയോഗാനുമതി",
 	"version-ext-colheader-description": "വിവരണം",
@@ -3100,5 +3101,15 @@
 	"expand_templates_remove_nowiki": "ഫലങ്ങളിലെ <nowiki> റ്റാഗുകൾ ഒതുക്കുക",
 	"expand_templates_generate_xml": "എക്സ്.എം.എൽ. പാഴ്‌സർ ട്രീ പ്രദർശിപ്പിക്കുക",
 	"expand_templates_generate_rawhtml": "അസംസ്കൃത എച്ച്.റ്റി.എം.എൽ. പ്രദർശിപ്പിക്കുക",
-	"expand_templates_preview": "എങ്ങനെയുണ്ടെന്നു കാണുക"
+	"expand_templates_preview": "എങ്ങനെയുണ്ടെന്നു കാണുക",
+	"pagelanguage": "താളിന്റെ ഭാഷാ തിരഞ്ഞെടുപ്പ് സൗകര്യം",
+	"pagelang-name": "താൾ",
+	"pagelang-language": "ഭാഷ",
+	"pagelang-use-default": "സ്വതേയുള്ള ഭാഷ ഉപയോഗിക്കുക",
+	"pagelang-select-lang": "ഭാഷ തിരഞ്ഞെടുക്കുക",
+	"right-pagelang": "താളിന്റെ ഭാഷ മാറ്റുക",
+	"action-pagelang": "താളിന്റെ ഭാഷ മാറ്റുക",
+	"log-name-pagelang": "ഭാഷ മാറ്റലിന്റെ രേഖ",
+	"log-description-pagelang": "താളുകളുടെ ഭാഷകൾ മാറ്റിയതിന്റെ രേഖകൾ ഇവിടെക്കാണാം.",
+	"logentry-pagelang-pagelang": "$3 എന്ന താളിന്റെ ഭാഷയായിരുന്ന $4, $1 $5 ആയി {{GENDER:$2|മാറ്റി}}."
 }

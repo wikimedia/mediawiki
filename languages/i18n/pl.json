@@ -841,6 +841,7 @@
 	"mergehistory-empty": "Brak historii zmian do scalenia.",
 	"mergehistory-success": "$3 {{PLURAL:$3|zmiana|zmiany|zmian}} w [[:$1]] zostało scalonych z [[:$2]].",
 	"mergehistory-fail": "Scalenie historii zmian jest niewykonalne. Zmień ustawienia parametrów.",
+	"mergehistory-fail-toobig": "Nie można połączyć historii, gdyż wymagałoby to przeniesienia więcej niż maksymalnej dopuszczalnej liczby $1 {{PLURAL:$1|wersji}}.",
 	"mergehistory-no-source": "Strona źródłowa $1 nie istnieje.",
 	"mergehistory-no-destination": "Strona docelowa $1 nie istnieje.",
 	"mergehistory-invalid-source": "Strona źródłowa musi mieć poprawną nazwę.",
@@ -3179,5 +3180,15 @@
 	"expand_templates_remove_nowiki": "Ukrywaj w wyniku znaczniki <nowiki>",
 	"expand_templates_generate_xml": "Pokaż drzewo analizatora składni w formacie XML",
 	"expand_templates_generate_rawhtml": "Pokaż surowy HTML",
-	"expand_templates_preview": "Podgląd"
+	"expand_templates_preview": "Podgląd",
+	"pagelanguage": "Wybór języka strony",
+	"pagelang-name": "Strona",
+	"pagelang-language": "Język",
+	"pagelang-use-default": "Użyj domyślnego języka",
+	"pagelang-select-lang": "Wybierz język",
+	"right-pagelang": "Zmiana języka strony",
+	"action-pagelang": "zmiany języka strony",
+	"log-name-pagelang": "Rejestr zmian języka",
+	"log-description-pagelang": "Rejestr zmian języków przypisanych do poszczególnych stron",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|zmienił|zmieniła}} język strony $3 z „$4” na „$5”."
 }

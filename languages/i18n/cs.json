@@ -3154,5 +3154,15 @@
 	"expand_templates_remove_nowiki": "Potlačit ve výsledku značky <nowiki>",
 	"expand_templates_generate_xml": "Zobrazit syntaktický strom v XML",
 	"expand_templates_generate_rawhtml": "Zobrazit surové HTML",
-	"expand_templates_preview": "Náhled"
+	"expand_templates_preview": "Náhled",
+	"pagelanguage": "Volba jazyka stránky",
+	"pagelang-name": "Stránka",
+	"pagelang-language": "Jazyk",
+	"pagelang-use-default": "Použít implicitní jazyk",
+	"pagelang-select-lang": "Vybrat jazyk",
+	"right-pagelang": "Změnit jazyk stránky",
+	"action-pagelang": "měnit jazyk stránky",
+	"log-name-pagelang": "Kniha změn jazyků",
+	"log-description-pagelang": "Toto je protokol změn jazyků stránek.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|změnil|změnila}} jazyk stránky $3 z $4 na $5."
 }

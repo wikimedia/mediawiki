@@ -3189,5 +3189,12 @@
 	"expand_templates_remove_nowiki": "Suprimir <nowiki> etiquetas en resultado",
 	"expand_templates_generate_xml": "Mostrar el árbol XML.",
 	"expand_templates_generate_rawhtml": "Mostrar HTML en crudo",
-	"expand_templates_preview": "Previsualización"
+	"expand_templates_preview": "Previsualización",
+	"pagelanguage": "Selector de idioma de página",
+	"pagelang-name": "Página",
+	"pagelang-language": "Idioma",
+	"pagelang-use-default": "Utilizar el idioma predeterminado",
+	"pagelang-select-lang": "Seleccionar idioma",
+	"right-pagelang": "Cambiar el idioma de la página",
+	"action-pagelang": "cambiar el idioma de la página"
 }
