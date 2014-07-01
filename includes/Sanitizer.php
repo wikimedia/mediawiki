@@ -1097,8 +1097,9 @@ class Sanitizer {
 		global $wgExperimentalHtmlIds;
 		$options = (array)$options;
 
+		$id = Sanitizer::decodeCharReferences( $id );
+
 		if ( $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
-			$id = Sanitizer::decodeCharReferences( $id );
 			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
 			$id = trim( $id, '_' );
 			if ( $id === '' ) {
@@ -1115,7 +1116,7 @@ class Sanitizer {
 			'%' => '.'
 		);
 
-		$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
+		$id = urlencode( strtr( $id, ' ', '_' ) );
 		$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
 
 		if ( !preg_match( '/^[a-zA-Z]/', $id )
