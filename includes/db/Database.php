@@ -1022,7 +1022,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->mLastQuery = $sql;
 		if ( !$this->mDoneWrites && $this->isWriteQuery( $sql ) ) {
 			# Set a flag indicating that writes have been done
-			wfDebug( __METHOD__ . ": Writes done: $sql\n" );
+			wfDebug( __METHOD__ . ': Writes done: ' . DatabaseBase::generalizeSQL( $sql ) . "\n" );
 			$this->mDoneWrites = true;
 		}
 
