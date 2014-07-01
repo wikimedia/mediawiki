@@ -995,7 +995,7 @@ class Message {
 	 * @throws MWException If message key array is empty.
 	 */
 	protected function fetchMessage() {
-		if ( !isset( $this->message ) ) {
+		if ( $this->message === null ) {
 			$cache = MessageCache::singleton();
 			if ( is_array( $this->key ) ) {
 				if ( !count( $this->key ) ) {
@@ -1054,7 +1054,7 @@ class RawMessage extends Message {
 	 */
 	public function fetchMessage() {
 		// Just in case the message is unset somewhere.
-		if ( !isset( $this->message ) ) {
+		if ( $this->message === null ) {
 			$this->message = $this->key;
 		}
 		return $this->message;
