@@ -18,7 +18,8 @@
 
 div#simpleSearch {
 	display: block;
-	width: 14em;
+	width: 12.6em;
+	padding-right: 1.4em;
 	height: 1.4em;
 	margin-top: 0.65em;
 	position: relative;
@@ -32,7 +33,6 @@ div#simpleSearch {
 
 	// Styles for both the search input and the button
 	input {
-		position: absolute;
 		margin: 0;
 		padding: 0;
 		border: 0;
@@ -42,9 +42,7 @@ div#simpleSearch {
 
 	// The search input
 	#searchInput {
-		top: 0;
-		left: 0;
-		width: 90%;
+		width: 100%;
 		padding: 0.2em 0 0.2em 0.2em;
 		font-size: 13px;
 		direction: ltr;
@@ -87,14 +85,14 @@ div#simpleSearch {
 	// present the fulltext search one obscures the 'Go' one.
 	#searchButton,
 	#mw-searchButton {
+		position: absolute;
 		top: 0;
 		right: 0;
-		width: 10%;
+		width: 1.65em;
 		height: 100%;
 		cursor: pointer;
 		/* Hide button text and replace it with the image. */
-		/* This would be 100% if not for Firefox shenanigans (bug 60900). */
-		text-indent: 200%;
+		text-indent: -99999px;
 		/* Needed to make IE6 respect the text-indent. */
 		line-height: 1;
 		/* Opera 12 on RTL flips the text in a funny way without this. */
