@@ -606,8 +606,7 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public static function isIP( $name ) {
-		return preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/', $name )
-			|| IP::isIPv6( $name );
+		return IP::isIPAddress( $name );
 	}
 
 	/**
