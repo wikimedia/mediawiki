@@ -538,22 +538,25 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$count = 0;
 
 		foreach ( $this->getWatchlistInfo() as $namespace => $pages ) {
-			if ( $namespace >= 0 ) {
-				$fields['TitlesNs' . $namespace] = array(
-					'class' => 'EditWatchlistCheckboxSeriesField',
-					'options' => array(),
-					'section' => "ns$namespace",
-				);
-			}
+			$options = array();
 
 			foreach ( array_keys( $pages ) as $dbkey ) {
 				$title = Title::makeTitleSafe( $namespace, $dbkey );
 
 				if ( $this->checkTitle( $title, $namespace, $dbkey ) ) {
 					$text = $this->buildRemoveLine( $title );
-					$fields['TitlesNs' . $namespace]['options'][$text] = $title->getPrefixedText();
+					$options[$text] = $title->getPrefixedText();
 					$count++;
 				}
+			}
+
+			// checkTitle can filter some options out, avoid empty sections
+			if ( count( $options ) > 0 ) {
+				$fields['TitlesNs' . $namespace] = array(
+					'class' => 'EditWatchlistCheckboxSeriesField',
+					'options' => $options,
+					'section' => "ns$namespace",
+				);
 			}
 		}
 		$this->cleanupWatchlist();
