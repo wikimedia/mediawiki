@@ -41,7 +41,7 @@ class ViewAction extends FormlessAction {
 	}
 
 	public function show() {
-		$config = $this->context->getConfig();
+		$config = $this->getContext()->getConfig();
 
 		if (
 			$config->get( 'DebugToolbar' ) == false && // don't let this get stuck on pages
