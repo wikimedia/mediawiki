@@ -329,7 +329,7 @@ class LinkHolderArray {
 				$where[] = $dbr->makeList(
 					array(
 						'page_namespace' => $ns,
-						'page_title' => $pages,
+						'page_title' => array_unique( $pages ),
 					),
 					LIST_AND
 				);
