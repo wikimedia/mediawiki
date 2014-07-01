@@ -126,6 +126,31 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideIPs
+	 * @covers User::isIP
+	 */
+	public function testIsIP( $value, $result, $message ) {
+		$this->assertEquals( $this->user->isIP( $value ), $result, $message );
+	}
+
+	public static function provideIPs() {
+		return array(
+			array( '', false, 'Empty string' ),
+			array( ' ', false, 'Blank space' ),
+			array( '10.0.0.0', true, 'IPv4 private 10/8' ),
+			array( '10.255.255.255', true, 'IPv4 private 10/8' ),
+			array( '192.168.1.1', true, 'IPv4 private 192.168/16' ),
+			array( '203.0.113.0', true, 'IPv4 example' ),
+			array( '2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff', true, 'IPv6 example' ),
+			// Not valid IPs but classified as such by MediaWiki for negated asserting
+			// of whether this might be the identifier of a logged-out user or whether
+			// to allow usernames like it.
+			array( '300.300.300.300', true, 'Looks too much like an IPv4 address' ),
+			array( '203.0.113.xxx', true, 'Assigned by UseMod to cloaked logged-out users' ),
+		);
+	}
+
+	/**
 	 * @dataProvider provideUserNames
 	 * @covers User::isValidUserName
 	 */
@@ -148,6 +173,9 @@ class UserTest extends MediaWikiTestCase {
 			array( 'Abcdകഖഗഘ', true, ' Mixed scripts' ),
 			array( 'ജോസ്‌തോമസ്', false, 'ZWNJ- Format control character' ),
 			array( 'Ab　cd', false, ' Ideographic space' ),
+			array( '300.300.300.300', false, 'Looks too much like an IPv4 address' ),
+			array( '302.113.311.900', false, 'Looks too much like an IPv4 address' ),
+			array( '203.0.113.xxx', false, 'Reserved for usage by UseMod for cloaked logged-out users' ),
 		);
 	}
 
@@ -157,7 +185,7 @@ class UserTest extends MediaWikiTestCase {
 	 * Extensions and core
 	 */
 	public function testAllRightsWithMessage() {
-		//Getting all user rights, for core: User::$mCoreRights, for extensions: $wgAvailableRights
+		// Getting all user rights, for core: User::$mCoreRights, for extensions: $wgAvailableRights
 		$allRights = User::getAllRights();
 		$allMessageKeys = Language::getMessageKeysFor( 'en' );
 
