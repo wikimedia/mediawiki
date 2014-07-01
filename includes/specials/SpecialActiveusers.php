@@ -92,12 +92,16 @@ class ActiveUsersPager extends UsersPager {
 	function getQueryInfo() {
 		$dbr = $this->getDatabase();
 
+		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
+		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 		$conds = array(
 			'qcc_type' => 'activeusers',
 			'qcc_namespace' => NS_USER,
 			'user_name = qcc_title',
 			'rc_user_text = qcc_title',
-			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ) // Don't count wikidata.
+			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
+			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
+			'rc_timestamp >= ' . $dbr->addQuotes( $timestamp ),
 		);
 		if ( $this->requestedUser != '' ) {
 			$conds[] = 'qcc_title >= ' . $dbr->addQuotes( $this->requestedUser );
