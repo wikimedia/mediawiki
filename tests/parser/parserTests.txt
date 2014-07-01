@@ -12939,6 +12939,75 @@ section 5
 !! end
 
 !! test
+Header with space, plus and underscore as entity
+!! wikitext
+Id should not contain + for spaces
+
+== Space between Text ==
+section 1
+
+== Space-Entity&#32;between&#32;Text ==
+section 2
+
+== Plus+between+Text ==
+section 3
+
+== Plus-Entity&#43;between&#43;Text ==
+section 4
+
+== Underscore_between_Text ==
+section 5
+
+== Underscore-Entity&#95;between&#95;Text ==
+section 6
+
+[[#Space between Text]]
+[[#Space-Entity&#32;between&#32;Text]]
+[[#Plus+between+Text]]
+[[#Plus-Entity&#43;between&#43;Text]]
+[[#Underscore_between_Text]]
+[[#Underscore-Entity&#95;between&#95;Text]]
+!! html
+<p>Id should not contain + for spaces
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Space_between_Text"><span class="tocnumber">1</span> <span class="toctext">Space between Text</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Space-Entity_between_Text"><span class="tocnumber">2</span> <span class="toctext">Space-Entity&#32;between&#32;Text</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Plus.2Bbetween.2BText"><span class="tocnumber">3</span> <span class="toctext">Plus+between+Text</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Plus-Entity.2Bbetween.2BText"><span class="tocnumber">4</span> <span class="toctext">Plus-Entity&#43;between&#43;Text</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Underscore_between_Text"><span class="tocnumber">5</span> <span class="toctext">Underscore_between_Text</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Underscore-Entity_between_Text"><span class="tocnumber">6</span> <span class="toctext">Underscore-Entity&#95;between&#95;Text</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Space_between_Text">Space between Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Space between Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>section 1
+</p>
+<h2><span class="mw-headline" id="Space-Entity_between_Text">Space-Entity&#32;between&#32;Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Space-Entity between Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>section 2
+</p>
+<h2><span class="mw-headline" id="Plus.2Bbetween.2BText">Plus+between+Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Plus+between+Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>section 3
+</p>
+<h2><span class="mw-headline" id="Plus-Entity.2Bbetween.2BText">Plus-Entity&#43;between&#43;Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Plus-Entity+between+Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>section 4
+</p>
+<h2><span class="mw-headline" id="Underscore_between_Text">Underscore_between_Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Underscore between Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>section 5
+</p>
+<h2><span class="mw-headline" id="Underscore-Entity_between_Text">Underscore-Entity&#95;between&#95;Text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Underscore-Entity_between_Text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>section 6
+</p><p><a href="#Space_between_Text">#Space between Text</a>
+<a href="#Space-Entity_between_Text">#Space-Entity&#32;between&#32;Text</a>
+<a href="#Plus.2Bbetween.2BText">#Plus+between+Text</a>
+<a href="#Plus-Entity.2Bbetween.2BText">#Plus-Entity&#43;between&#43;Text</a>
+<a href="#Underscore_between_Text">#Underscore_between_Text</a>
+<a href="#Underscore-Entity_between_Text">#Underscore-Entity&#95;between&#95;Text</a>
+</p>
+!! end
+
+!! test
 Headers with excess '=' characters
 (Are similar tests necessary beyond the 1st level?)
 !! wikitext
