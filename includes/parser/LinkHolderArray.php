@@ -27,9 +27,16 @@
 class LinkHolderArray {
 	var $internals = array(), $interwikis = array();
 	var $size = 0;
+
+	/**
+	 * @var Parser
+	 */
 	var $parent;
 	protected $tempIdOffset;
 
+	/**
+	 * @param Parser $parent
+	 */
 	function __construct( $parent ) {
 		$this->parent = $parent;
 	}
@@ -144,6 +151,10 @@ class LinkHolderArray {
 		return $texts;
 	}
 
+	/**
+	 * @param array $m
+	 * @return string
+	 */
 	protected function mergeForeignCallback( $m ) {
 		return $m[1] . ( $m[2] + $this->tempIdOffset ) . $m[3];
 	}
@@ -297,6 +308,7 @@ class LinkHolderArray {
 		$queries = array();
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $entry ) {
+				/** @var Title $title */
 				$title = $entry['title'];
 				$pdbk = $entry['pdbk'];
 
@@ -490,6 +502,7 @@ class LinkHolderArray {
 		// Then add variants of links to link batch
 		$parentTitle = $this->parent->getTitle();
 		foreach ( $titlesAttrs as $i => $attrs ) {
+			/** @var Title $title */
 			list( $index, $title ) = $attrs;
 			$ns = $title->getNamespace();
 			$text = $title->getText();
