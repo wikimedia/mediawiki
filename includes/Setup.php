@@ -573,26 +573,33 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode &&
 wfProfileOut( $fname . '-session' );
 wfProfileIn( $fname . '-globals' );
 
+/**
+ * @var Language $wgContLang
+ */
 $wgContLang = Language::factory( $wgLanguageCode );
 $wgContLang->initEncoding();
 $wgContLang->initContLang();
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
+
+/**
+ * @var User $wgUser
+ */
 $wgUser = RequestContext::getMain()->getUser(); // BackCompat
 
 /**
- * @var $wgLang Language
+ * @var Language $wgLang
  */
 $wgLang = new StubUserLang;
 
 /**
- * @var OutputPage
+ * @var OutputPage $wgOut
  */
 $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 
 /**
- * @var $wgParser Parser
+ * @var Parser $wgParser
  */
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
@@ -601,7 +608,9 @@ if ( !is_object( $wgAuth ) ) {
 	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
 }
 
-# Placeholders in case of DB error
+/**
+ * @var Title $wgTitle
+ */
 $wgTitle = null;
 
 $wgDeferredUpdateList = array();
