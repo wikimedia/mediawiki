@@ -537,7 +537,10 @@ class EmailNotification {
 				), __METHOD__
 			);
 			foreach ( $res as $row ) {
-				$watchers[] = intval( $row->wl_user );
+				$username = User::whoIs( intval( $row->wl_user ) );
+				if ( !in_array( $username, $wgUsersNotifiedOnAllChanges ) ) {
+					$watchers[] = intval( $row->wl_user );
+				}
 			}
 			if ( $watchers ) {
 				// Update wl_notificationtimestamp for all watching users except the editor
