@@ -133,7 +133,7 @@ abstract class FormAction extends Action {
 	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
-			$this->context = clone $this->getContext();
+			$this->setContext( clone $this->getContext() );
 
 			// This will throw exceptions if there's a problem
 			$this->checkCanExecute( $this->getUser() );

@@ -272,7 +272,7 @@ class RawPage extends RawAction {
 		if ( $request !== false ) {
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setRequest( $request );
-			$this->context = $context;
+			$this->setContext( $context );
 		}
 	}
 
