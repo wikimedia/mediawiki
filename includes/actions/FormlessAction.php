@@ -78,9 +78,9 @@ abstract class FormlessAction extends Action {
 	public function execute( array $data = null, $captureErrors = true ) {
 		try {
 			// Set a new context so output doesn't leak.
-			$this->context = clone $this->getContext();
+			$this->setContext( clone $this->getContext() );
 			if ( is_array( $data ) ) {
-				$this->context->setRequest( new FauxRequest( $data, false ) );
+				$this->getContext()->setRequest( new FauxRequest( $data, false ) );
 			}
 
 			// This will throw exceptions if there's a problem
