@@ -1109,18 +1109,20 @@ abstract class File {
 	function iconThumb() {
 		global $wgStylePath, $wgStyleDirectory;
 
-		$try = array( 'fileicon-' . $this->getExtension() . '.png', 'fileicon.png' );
-		foreach ( $try as $icon ) {
-			$path = '/common/images/icons/' . $icon;
-			$filepath = $wgStyleDirectory . $path;
-			if ( file_exists( $filepath ) ) { // always FS
-				$params = array( 'width' => 120, 'height' => 120 );
+		$iconBasePath = 'common/images/icons';
 
-				return new ThumbnailImage( $this, $wgStylePath . $path, false, $params );
-			}
+		$icon = 'fileicon-' . $this->getExtension() . '.png';
+		if ( !file_exists( "$wgStyleDirectory/$iconBasePath/$icon" ) ) {
+			// Fall back to default icon if there isn't one for this file type
+			$icon = 'fileicon.png';
 		}
 
-		return null;
+		return new ThumbnailImage(
+			$this,
+			"$wgStylePath/$iconBasePath/$icon",
+			false,
+			array( 'width' => 120, 'height' => 120 )
+		);
 	}
 
 	/**
