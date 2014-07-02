@@ -1,5 +1,6 @@
-Security reminder: MediaWiki does not require PHP's register_globals. If you
-have it on, turn it '''off''' if you can.
+Security reminder: If you have PHP's register_globals option set, you should
+turn it off. Although MediaWiki will work with it enabled, it exposes your
+server to potential security vulnerabilities.
 
 == MediaWiki 1.24 ==
 
