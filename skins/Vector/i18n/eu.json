@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Unai Fdz. de Betoño",
-			"Xabier Armendaritz"
+			"Xabier Armendaritz",
+			"Fitoschido"
 		]
 	},
 	"vector-action-addsection": "Gehitu atala",
@@ -15,5 +16,6 @@
 	"vector-view-edit": "Aldatu",
 	"vector-view-history": "Ikusi historia",
 	"vector-view-view": "Irakurri",
-	"vector-view-viewsource": "Kodea ikusia"
+	"vector-view-viewsource": "Kodea ikusia",
+	"vector-more-actions": "Gehiago"
 }

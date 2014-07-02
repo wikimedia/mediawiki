@@ -14,9 +14,10 @@
 		]
 	},
 	"skinname-vector": "Vector",
+	"vector-skin-desc": "Versión moderna de MonoBook, con un aspecto actualizado y muchas mejoras de usabilidad",
 	"vector.css": "/* El CSS colocado en esta página afectará a los usuarios que usen la apariencia \"Vector\" */",
 	"vector.js": "/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la apariencia Vector */",
-	"vector-action-addsection": "Nueva sección",
+	"vector-action-addsection": "Sección nueva",
 	"vector-action-delete": "Borrar",
 	"vector-action-move": "Trasladar",
 	"vector-action-protect": "Proteger",

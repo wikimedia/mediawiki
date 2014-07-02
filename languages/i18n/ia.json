@@ -11,7 +11,8 @@
 			"Shirayuki",
 			"Yfdyh000",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Carlosedepaula"
 		]
 	},
 	"tog-underline": "Sublinear ligamines:",
@@ -3074,5 +3075,11 @@
 	"expand_templates_remove_nowiki": "Supprimer le etiquettas <nowiki> in le resultato",
 	"expand_templates_generate_xml": "Monstrar arbore syntactic XML",
 	"expand_templates_generate_rawhtml": "Monstrar HTML brute",
-	"expand_templates_preview": "Previsualisation"
+	"expand_templates_preview": "Previsualisation",
+	"pagelang-name": "Pagina",
+	"pagelang-language": "Lingua",
+	"pagelang-use-default": "Usar lingua predefinite",
+	"pagelang-select-lang": "Selige lingua",
+	"right-pagelang": "Cambiar lingua del pagina",
+	"action-pagelang": "Cambiar lingua del pagina"
 }

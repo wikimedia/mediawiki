@@ -2177,7 +2177,7 @@
 	"pageinfo-lasttime": "Datum posljednje izmjene",
 	"pageinfo-edits": "Ukupan broj izmjena",
 	"pageinfo-authors": "Ukupan broj različitih autora",
-	"pageinfo-recent-edits": "Broj nedavnih izmjena (u poslednjih $1)",
+	"pageinfo-recent-edits": "Broj nedavnih izmjena (u posljednjih $1)",
 	"pageinfo-recent-authors": "Broj nedavnih različitih autora",
 	"pageinfo-magic-words": "{{PLURAL:$1|Čarobna riječ|Čarobne riječi}} ($1)",
 	"pageinfo-hidden-categories": "{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}} ($1)",
