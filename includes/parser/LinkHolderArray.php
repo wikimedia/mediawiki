@@ -332,22 +332,11 @@ class LinkHolderArray {
 					$colours[$pdbk] = 'new';
 				} else {
 					# Not in the link cache, add it to the query
-					$queries[$ns][] = $title->getDBkey();
+					$queries[$ns][$title->getDBkey()] = true;
 				}
 			}
 		}
 		if ( $queries ) {
-			$where = array();
-			foreach ( $queries as $ns => $pages ) {
-				$where[] = $dbr->makeList(
-					array(
-						'page_namespace' => $ns,
-						'page_title' => array_unique( $pages ),
-					),
-					LIST_AND
-				);
-			}
-
 			$fields = array( 'page_id', 'page_namespace', 'page_title',
 				'page_is_redirect', 'page_len', 'page_latest' );
 
@@ -358,7 +347,7 @@ class LinkHolderArray {
 			$res = $dbr->select(
 				'page',
 				$fields,
-				$dbr->makeList( $where, LIST_OR ),
+				$dbr->makeWhereFrom2d( $queries, 'page_namespace', 'page_title' ),
 				__METHOD__
 			);
 
