@@ -1265,7 +1265,8 @@ class WebInstallerOptions extends WebInstallerPage {
 		$extsAvailable = $this->parent->findExtensions();
 		$extsToInstall = array();
 		foreach ( $extsAvailable as $ext ) {
-			if ( $this->parent->request->getCheck( 'config_ext-' . $ext ) ) {
+			$this->parent->setVarsFromRequest( array( "ext-$ext" ) );
+			if ( $this->getVar( "ext-$ext" ) ) {
 				$extsToInstall[] = $ext;
 			}
 		}
