@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="12px"
-	 height="12px" viewBox="0 0 12 12">
-  <g id="required" opacity="0.75">
-    <path d="M5,1 L7,1 L7,11 L5,11 z"/>
-    <path d="M9.83,2.634 L10.83,4.366 L2.17,9.366 L1.17,7.634 z"/>
-    <path d="M1.17,4.366 L2.17,2.634 L10.83,7.634 L9.83,9.366 z"/>
-  </g>
-  <defs/>
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+    <g id="required" opacity=".75">
+        <path d="M5 1h2v10h-2zM9.83 2.634l1 1.732-8.66 5-1-1.732zM1.17 4.366l1-1.732 8.66 5-1 1.732z"/>
+    </g>
 </svg>

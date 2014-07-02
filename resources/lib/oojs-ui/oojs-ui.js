@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (a63f03882e)
+ * OOjs UI v0.1.0-pre (432a76f7d4)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-06-27T23:51:18Z
+ * Date: 2014-07-02T16:19:00Z
  */
 ( function ( OO ) {
 
@@ -2136,11 +2136,12 @@ OO.ui.ButtonedElement = function OoUiButtonedElement( $button, config ) {
 	this.$button.on( 'mousedown', OO.ui.bind( this.onMouseDown, this ) );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-buttonedElement' );
+	this.$element
+		.addClass( 'oo-ui-buttonedElement' )
+		.prop( 'tabIndex', config.tabIndex || 0 );
 	this.$button
 		.addClass( 'oo-ui-buttonedElement-button' )
-		.attr( 'role', 'button' )
-		.prop( 'tabIndex', config.tabIndex || 0 );
+		.attr( 'role', 'button' );
 	if ( config.frameless ) {
 		this.$element.addClass( 'oo-ui-buttonedElement-frameless' );
 	} else {
@@ -3118,7 +3119,9 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.$title.addClass( 'oo-ui-tool-title' );
 	this.$link
 		.addClass( 'oo-ui-tool-link' )
-		.append( this.$icon, this.$title );
+		.append( this.$icon, this.$title )
+		.prop( 'tabIndex', 0 )
+		.attr( 'role', 'button' );
 	this.$element
 		.data( 'oo-ui-tool', this )
 		.addClass(
