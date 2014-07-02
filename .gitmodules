@@ -359,3 +359,12 @@
 [submodule "extensions/TocTree"]
 	path = extensions/TocTree
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TocTree
+[submodule "extensions/MagicNoCache"]
+	path = extensions/MagicNoCache
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MagicNoCache.git
+[submodule "extensions/PageTools"]
+	path = extensions/PageTools
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PageTools.git
+[submodule "extensions/ParserFun"]
+	path = extensions/ParserFun
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ParserFun.git
