@@ -4,7 +4,6 @@
 
 	var uacount = 0,
 		// Object keyed by userAgent. Value is an array (human-readable name, client-profile object, navigator.platform value)
-		// Info based on results from http://toolserver.org/~krinkle/testswarm/job/174/
 		uas = {
 			// Internet Explorer 6
 			// Internet Explorer 7
