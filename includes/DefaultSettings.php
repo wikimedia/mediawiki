@@ -2051,6 +2051,20 @@ $wgObjectCaches = array(
 );
 
 /**
+ * Map of store names to configuration arrays.
+ *
+ * Example:
+ * $wgBloomFilterStores['main'] = array(
+ *  'class'        => 'BloomCacheRedis',
+ *  'redisServers' => array( '127.0.0.1:6379' => 100 ),
+ *  'redisConfig'  => array( 'connectTimeout' => 2 )
+ * );
+ *
+ * @since 1.24
+ */
+$wgBloomFilterStores = array();
+
+/**
  * The expiry time for the parser cache, in seconds.
  * The default is 86400 (one day).
  */
