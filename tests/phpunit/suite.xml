@@ -6,7 +6,7 @@ phpunit.php enables colors for other OSs at runtime
 -->
 <phpunit bootstrap="./bootstrap.php"
 	colors="false"
-	backupGlobals="false"
+	backupGlobals="true"
 	convertErrorsToExceptions="true"
 	convertNoticesToExceptions="true"
 	convertWarningsToExceptions="true"

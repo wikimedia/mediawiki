@@ -57,14 +57,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private $tmpFiles = array();
 
 	/**
-	 * Holds original values of MediaWiki configuration settings
-	 * to be restored in tearDown().
-	 * See also setMwGlobals().
-	 * @var array
-	 */
-	private $mwGlobals = array();
-
-	/**
 	 * Table name prefixes. Oracle likes it shorter.
 	 */
 	const DB_PREFIX = 'unittest_';
@@ -240,11 +232,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->db->ignoreErrors( false );
 		}
 
-		// Restore mw globals
-		foreach ( $this->mwGlobals as $key => $value ) {
-			$GLOBALS[$key] = $value;
-		}
-		$this->mwGlobals = array();
 		RequestContext::resetMain();
 
 		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
@@ -275,29 +262,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Sets a global, maintaining a stashed version of the previous global to be
-	 * restored in tearDown
-	 *
-	 * The key is added to the array of globals that will be reset afterwards
-	 * in the tearDown().
-	 *
-	 * @example
-	 * <code>
-	 *     protected function setUp() {
-	 *         $this->setMwGlobals( 'wgRestrictStuff', true );
-	 *     }
-	 *
-	 *     function testFoo() {}
-	 *
-	 *     function testBar() {}
-	 *         $this->assertTrue( self::getX()->doStuff() );
-	 *
-	 *         $this->setMwGlobals( 'wgRestrictStuff', false );
-	 *         $this->assertTrue( self::getX()->doStuff() );
-	 *     }
-	 *
-	 *     function testQuux() {}
-	 * </code>
+	 * This function was used for modifying globals while saving their state,
+	 * however now all globals are always automatically backed up.
 	 *
 	 * @param array|string $pairs Key to the global variable, or an array
 	 *  of key/value pairs.
@@ -305,59 +271,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *  if an array is given as first argument).
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.24
 	 */
 	protected function setMwGlobals( $pairs, $value = null ) {
 		if ( is_string( $pairs ) ) {
 			$pairs = array( $pairs => $value );
 		}
-
-		$this->stashMwGlobals( array_keys( $pairs ) );
-
 		foreach ( $pairs as $key => $value ) {
 			$GLOBALS[$key] = $value;
-		}
-	}
-
-	/**
-	 * Stashes the global, will be restored in tearDown()
-	 *
-	 * Individual test functions may override globals through the setMwGlobals() function
-	 * or directly. When directly overriding globals their keys should first be passed to this
-	 * method in setUp to avoid breaking global state for other tests
-	 *
-	 * That way all other tests are executed with the same settings (instead of using the
-	 * unreliable local settings for most tests and fix it only for some tests).
-	 *
-	 * @param array|string $globalKeys Key to the global variable, or an array of keys.
-	 *
-	 * @throws Exception when trying to stash an unset global
-	 * @since 1.23
-	 */
-	protected function stashMwGlobals( $globalKeys ) {
-		if ( is_string( $globalKeys ) ) {
-			$globalKeys = array( $globalKeys );
-		}
-
-		foreach ( $globalKeys as $globalKey ) {
-			// NOTE: make sure we only save the global once or a second call to
-			// setMwGlobals() on the same global would override the original
-			// value.
-			if ( !array_key_exists( $globalKey, $this->mwGlobals ) ) {
-				if ( !array_key_exists( $globalKey, $GLOBALS ) ) {
-					throw new Exception( "Global with key {$globalKey} doesn't exist and cant be stashed" );
-				}
-				// NOTE: we serialize then unserialize the value in case it is an object
-				// this stops any objects being passed by reference. We could use clone
-				// and if is_object but this does account for objects within objects!
-				try {
-					$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
-				}
-					// NOTE; some things such as Closures are not serializable
-					// in this case just set the value!
-				catch ( Exception $e ) {
-					$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
-				}
-			}
 		}
 	}
 
@@ -372,6 +293,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @throws MWException if the designated global is not an array.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.24
 	 */
 	protected function mergeMwGlobalArrayValue( $name, $values ) {
 		if ( !isset( $GLOBALS[$name] ) ) {
