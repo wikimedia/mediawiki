@@ -515,6 +515,13 @@ abstract class Installer {
 	public static function getExistingLocalSettings() {
 		global $IP;
 
+		// You might be wondering why this is here. Well if you don't do this
+		// then some poorly-formed extensions try to call their own classes
+		// after immediately registering them. We really need to get extension
+		// registration out of the global scope and into a real format.
+		// @see https://bugzilla.wikimedia.org/67440
+		global $wgAutoloadClasses;
+
 		wfSuppressWarnings();
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );
 		wfRestoreWarnings();
