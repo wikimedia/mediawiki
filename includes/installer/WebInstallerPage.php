@@ -1230,6 +1230,8 @@ class WebInstallerOptions extends WebInstallerPage {
 			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers',
 			'wgUseInstantCommons' ) );
 
+		$retVal = true;
+
 		if ( !array_key_exists( $this->getVar( '_RightsProfile' ), $this->parent->rightsProfiles )
 		) {
 			reset( $this->parent->rightsProfiles );
@@ -1240,8 +1242,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		if ( $code == 'cc-choose' ) {
 			if ( !$this->getVar( '_CCDone' ) ) {
 				$this->parent->showError( 'config-cc-not-chosen' );
-
-				return false;
+				$retVal = false;
 			}
 		} elseif ( array_key_exists( $code, $this->parent->licenses ) ) {
 			// Messages:
@@ -1276,8 +1277,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$memcServers = explode( "\n", $this->getVar( '_MemCachedServers' ) );
 			if ( !$memcServers ) {
 				$this->parent->showError( 'config-memcache-needservers' );
-
-				return false;
+				$retVal = false;
 			}
 
 			foreach ( $memcServers as $server ) {
@@ -1287,21 +1287,18 @@ class WebInstallerOptions extends WebInstallerPage {
 						&& ( gethostbyname( $memcParts[0] ) == $memcParts[0] ) )
 				) {
 					$this->parent->showError( 'config-memcache-badip', $memcParts[0] );
-
-					return false;
+					$retVal = false;
 				} elseif ( !isset( $memcParts[1] ) ) {
 					$this->parent->showError( 'config-memcache-noport', $memcParts[0] );
-
-					return false;
+					$retVal = false;
 				} elseif ( $memcParts[1] < 1 || $memcParts[1] > 65535 ) {
 					$this->parent->showError( 'config-memcache-badport', 1, 65535 );
-
-					return false;
+					$retVal = false;
 				}
 			}
 		}
 
-		return true;
+		return $retVal;
 	}
 
 }
