@@ -207,8 +207,7 @@ class SpecialSearch extends SpecialPage {
 
 		$profile = new ProfileSection( __METHOD__ );
 		$search = $this->getSearchEngine();
-		// Request an extra result to determine whether a "next page" link is useful
-		$search->setLimitOffset( $this->limit + 1, $this->offset );
+		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
 		$this->saveNamespaces();
 		$search->prefix = $this->mPrefix;
@@ -352,7 +351,7 @@ class SpecialSearch extends SpecialPage {
 					$this->offset,
 					$this->limit,
 					$this->powerSearchOptions() + array( 'search' => $term ),
-					max( $titleMatchesNum, $textMatchesNum ) <= $this->limit
+					$this->limit + $this->offset >= $totalRes
 				);
 			}
 			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
@@ -551,11 +550,9 @@ class SpecialSearch extends SpecialPage {
 
 		$out = "<ul class='mw-search-results'>\n";
 		$result = $matches->next();
-		$count = 0;
-		while ( $result && $count < $this->limit ) {
+		while ( $result ) {
 			$out .= $this->showHit( $result, $terms );
 			$result = $matches->next();
-			$count++;
 		}
 		$out .= "</ul>\n";
 
