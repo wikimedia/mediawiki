@@ -28,6 +28,10 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'bar' => 5,
 			),
 		) );
+
+		/* Hooks */
+		global $wgHooks;
+		$wgHooks['ResourceLoaderRegisterModules'][] = 'ResourceLoaderTest::resourceLoaderRegisterModules';
 	}
 
 	/* Hook Methods */
@@ -131,7 +135,3 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		);
 	}
 }
-
-/* Hooks */
-global $wgHooks;
-$wgHooks['ResourceLoaderRegisterModules'][] = 'ResourceLoaderTest::resourceLoaderRegisterModules';

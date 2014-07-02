@@ -146,6 +146,9 @@ class RepoGroup {
 		}
 
 		# Check the local repo
+		if ( !is_callable( array( $this->localRepo, 'findFile' ) ) ) {
+			var_dump( $this->localRepo );
+		}
 		$image = $this->localRepo->findFile( $title, $options );
 
 		# Check the foreign repos
