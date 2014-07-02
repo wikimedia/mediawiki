@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-if command -v npm > /dev/null ; then
+if command -v npmxxx > /dev/null ; then
   npm install
 else
-  echo "You need to install Node.JS!"
-  echo "See http://nodejs.org/"
+  echo "You need to install npm and Node.js!"
+  echo "See https://www.npmjs.org/doc/README.html and http://nodejs.org/"
   exit 1
 fi
