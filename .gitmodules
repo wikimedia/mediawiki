@@ -469,3 +469,6 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/core/vendor.git
+[submodule "extensions/Mantle"]
+	path = extensions/Mantle
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Mantle.git
