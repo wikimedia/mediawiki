@@ -5601,9 +5601,11 @@ $wgRC2UDPOmitBots = false;
  * Destinations to which notifications about recent changes
  * should be sent.
  *
- * As of MediaWiki 1.22, the only supported 'engine' parameter option in core
- * is 'UDPRCFeedEngine', which is used to send recent changes over UDP to the
- * specified server.
+ * As of MediaWiki 1.22, there are 2 supported 'engine' parameter option in core:
+ *   * 'UDPRCFeedEngine', which is used to send recent changes over UDP to the
+ *      specified server.
+ *   * 'RedisPubSubFeedEngine', which is used to send recent changes to Redis.
+ *
  * The common options are:
  *   * 'uri' -- the address to which the notices are to be sent.
  *   * 'formatter' -- the class name (implementing RCFeedFormatter) which will
@@ -5613,10 +5615,12 @@ $wgRC2UDPOmitBots = false;
  *   * 'omit_user' -- whether edits by registered users should be in the feed
  *   * 'omit_minor' -- whether minor edits should be in the feed
  *   * 'omit_patrolled' -- whether patrolled edits should be in the feed
+ *
  *  The IRC-specific options are:
  *   * 'add_interwiki_prefix' -- whether the titles should be prefixed with
  *     the first entry in the $wgLocalInterwikis array (or the value of
  *     $wgLocalInterwiki, if set)
+ *
  *  The JSON-specific options are:
  *   * 'channel' -- if set, the 'channel' parameter is also set in JSON values.
  *
