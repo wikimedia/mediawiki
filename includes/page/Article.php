@@ -950,7 +950,14 @@ class Article implements Page {
 		global $wgRedirectSources;
 		$outputPage = $this->getContext()->getOutput();
 
-		$rdfrom = $this->getContext()->getRequest()->getVal( 'rdfrom' );
+		$request = $this->getContext()->getRequest();
+		$rdfrom = $request->getVal( 'rdfrom' );
+
+		// Construct a URL for the current page view, but with the target title
+		$query = $request->getValues();
+		unset( $query['rdfrom'] );
+		unset( $query['title'] );
+		$fullRedirectTargetURL = $this->getTitle()->getFullURL( $query, false, PROTO_CURRENT );
 
 		if ( isset( $this->mRedirectedFrom ) ) {
 			// This is an internally redirected page view.
@@ -965,11 +972,13 @@ class Article implements Page {
 
 				$outputPage->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
 
-				// Set the fragment if one was specified in the redirect
-				if ( $this->getTitle()->hasFragment() ) {
-					$outputPage->addJsConfigVars( 'wgRedirectToFragment', $this->getTitle()->getFragmentForURL() );
-					$outputPage->addModules( 'mediawiki.action.view.redirectToFragment' );
-				}
+				// Add the script to update the displayed URL and
+				// set the fragment if one was specified in the redirect
+				$outputPage->addJsConfigVars( array(
+					'wgInternalRedirectToFragment' => $this->getTitle()->getFragmentForURL(),
+					'wgInternalRedirectTargetURL' => $fullRedirectTargetURL,
+				) );
+				$outputPage->addModules( 'mediawiki.action.view.redirect' );
 
 				// Add a <link rel="canonical"> tag
 				$outputPage->setCanonicalUrl( $this->getTitle()->getLocalURL() );
@@ -985,6 +994,12 @@ class Article implements Page {
 			if ( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
 				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
 				$outputPage->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
+
+				// Add the script to update the displayed URL
+				$outputPage->addJsConfigVars( array(
+					'wgInternalRedirectTargetURL' => $fullRedirectTargetURL,
+				) );
+				$outputPage->addModules( 'mediawiki.action.view.redirect' );
 
 				return true;
 			}
