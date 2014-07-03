@@ -38,6 +38,7 @@ script:
   - php tests/phpunit/phpunit.php
 
 notifications:
+  email: false
   irc:
     channels:
       - "chat.freenode.net#mediawiki-core"
