@@ -367,6 +367,9 @@ class RepoGroup {
 	 * @return bool
 	 */
 	function forEachForeignRepo( $callback, $params = array() ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
 		foreach ( $this->foreignRepos as $repo ) {
 			$args = array_merge( array( $repo ), $params );
 			if ( call_user_func_array( $callback, $args ) ) {
@@ -382,6 +385,9 @@ class RepoGroup {
 	 * @return bool
 	 */
 	function hasForeignRepos() {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
 		return (bool)$this->foreignRepos;
 	}
 
