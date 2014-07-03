@@ -198,7 +198,7 @@ class HashRing {
 			}
 		}
 		if ( !$this->liveRing ) {
-			throw UnexpectedValueException( "The live ring is currently empty." );
+			throw new UnexpectedValueException( "The live ring is currently empty." );
 		}
 
 		return $this->liveRing;
