@@ -87,6 +87,7 @@ class TitleTest extends MediaWikiTestCase {
 			str_repeat( 'x', 252 ),
 			// interwiki prefix
 			'localtestiw: #anchor',
+			'localtestiw:',
 			'localtestiw:foo',
 			'localtestiw: foo # anchor',
 			'localtestiw: Talk: Sandbox # anchor',
@@ -147,7 +148,6 @@ class TitleTest extends MediaWikiTestCase {
 			'Category: ',
 			'Category: #bar',
 			// interwiki prefix
-			'localtestiw:',
 			'localtestiw: Talk: # anchor',
 			'localtestiw: Talk:'
 		) as $text ) {
