@@ -1101,7 +1101,8 @@ class SpecialSearch extends SpecialPage {
 				->params( wfEscapeWikiText( $term ) )
 				->numParams( $resultsShown )
 				->parse();
-			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ), $top );
+			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ), $top ) .
+				Xml::element( 'div', array( 'style' => 'clear:both' ) );
 		}
 
 		return $out . $this->didYouMeanHtml;
