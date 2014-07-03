@@ -105,13 +105,20 @@ class ApiFeedContributions extends ApiBase {
 	protected function feedItem( $row ) {
 		$title = Title::makeTitle( intval( $row->page_namespace ), $row->page_title );
 		if ( $title && $title->userCan( 'read', $this->getUser() ) ) {
+			$revision = Revision::newFromRow( $row );
+			$text = FeedUtils::formatDiffRow(
+				$revision->getTitle(),
+				$revision->getTitle()->getPreviousRevisionID( $revision->getId() ),
+				$revision->getId(),
+				$revision->getTimestamp(),
+				$revision->getComment()
+			);
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
-			$revision = Revision::newFromRow( $row );
 
 			return new FeedItem(
 				$title->getPrefixedText(),
-				$this->feedItemDesc( $revision ),
+				$text,
 				$title->getFullURL( array( 'diff' => $revision->getId() ) ),
 				$date,
 				$this->feedItemAuthor( $revision ),
