@@ -114,9 +114,10 @@ abstract class FormSpecialPage extends SpecialPage {
 	/**
 	 * Process the form on POST submission.
 	 * @param array $data
-	 * @return bool|array True for success, false for didn't-try, array of errors on failure
+	 * @param HTMLForm $form
+	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
 	 */
-	abstract public function onSubmit( array $data );
+	abstract public function onSubmit( array $data /* $form = null */ );
 
 	/**
 	 * Do something exciting on successful processing of the form, most likely to show a
