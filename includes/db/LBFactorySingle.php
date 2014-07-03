@@ -71,7 +71,7 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
-	 * @param string|array $callback
+	 * @param string|callable $callback
 	 * @param array $params
 	 */
 	function forEachLB( $callback, $params = array() ) {

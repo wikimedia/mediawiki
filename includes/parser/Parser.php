@@ -5013,9 +5013,9 @@ class Parser {
 	 * private variables.**
 	 *
 	 * @param string $tag The tag to use, e.g. 'hook' for "<hook>"
-	 * @param mixed $callback The callback function (and object) to use for the tag
+	 * @param callable $callback The callback function (and object) to use for the tag
 	 * @throws MWException
-	 * @return mixed|null The old value of the mTagHooks array associated with the hook
+	 * @return callable|null The old value of the mTagHooks array associated with the hook
 	 */
 	public function setHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
@@ -5044,9 +5044,9 @@ class Parser {
 	 * @todo better document or deprecate this
 	 *
 	 * @param string $tag The tag to use, e.g. 'hook' for "<hook>"
-	 * @param mixed $callback The callback function (and object) to use for the tag
+	 * @param callable $callback The callback function (and object) to use for the tag
 	 * @throws MWException
-	 * @return mixed|null The old value of the mTagHooks array associated with the hook
+	 * @return callable|null The old value of the mTagHooks array associated with the hook
 	 */
 	function setTransparentTagHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
@@ -5085,7 +5085,7 @@ class Parser {
 	 *   isHTML                    The returned text is HTML, armour it against wikitext transformation
 	 *
 	 * @param string $id The magic word ID
-	 * @param mixed $callback The callback function (and object) to use
+	 * @param callable $callback The callback function (and object) to use
 	 * @param int $flags A combination of the following flags:
 	 *     SFH_NO_HASH   No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
 	 *

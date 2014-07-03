@@ -1583,7 +1583,7 @@ class FileRepo {
 	 * This only acts on the current version of files, not any old versions.
 	 * May use either the database or the filesystem.
 	 *
-	 * @param array|string $callback
+	 * @param callable $callback
 	 * @return void
 	 */
 	public function enumFiles( $callback ) {
@@ -1594,7 +1594,7 @@ class FileRepo {
 	 * Call a callback function for every public file in the repository.
 	 * May use either the database or the filesystem.
 	 *
-	 * @param array|string $callback
+	 * @param callable $callback
 	 * @return void
 	 */
 	protected function enumFilesInStorage( $callback ) {

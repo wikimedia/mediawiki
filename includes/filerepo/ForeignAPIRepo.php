@@ -575,7 +575,7 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param array|string $callback
+	 * @param callable $callback
 	 * @throws MWException
 	 */
 	function enumFiles( $callback ) {
