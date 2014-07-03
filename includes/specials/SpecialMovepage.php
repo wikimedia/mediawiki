@@ -567,10 +567,14 @@ class MovePageForm extends UnlistedSpecialPage {
 		$oldLink = Linker::link(
 			$ot,
 			null,
-			array(),
+			array( 'id' => 'movepage-oldlink' ),
 			array( 'redirect' => 'no' )
 		);
-		$newLink = Linker::linkKnown( $nt );
+		$newLink = Linker::linkKnown(
+			$nt,
+			null,
+			array( 'id' => 'movepage-newlink' )
+		);
 		$oldText = $ot->getPrefixedText();
 		$newText = $nt->getPrefixedText();
 
