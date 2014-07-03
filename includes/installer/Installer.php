@@ -1531,8 +1531,8 @@ abstract class Installer {
 	/**
 	 * Actually perform the installation.
 	 *
-	 * @param array $startCB A callback array for the beginning of each step
-	 * @param array $endCB A callback array for the end of each step
+	 * @param callable $startCB A callback array for the beginning of each step
+	 * @param callable $endCB A callback array for the end of each step
 	 *
 	 * @return array Array of Status objects
 	 */
@@ -1747,7 +1747,7 @@ abstract class Installer {
 	/**
 	 * Add an installation step following the given step.
 	 *
-	 * @param array $callback A valid installation callback array, in this form:
+	 * @param callable $callback A valid installation callback array, in this form:
 	 *    array( 'name' => 'some-unique-name', 'callback' => array( $obj, 'function' ) );
 	 * @param string $findStep The step to find. Omit to put the step at the beginning
 	 */

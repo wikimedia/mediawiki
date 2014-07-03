@@ -792,7 +792,7 @@ class FSFileOpHandle extends FileBackendStoreOpHandle {
 	/**
 	 * @param FSFileBackend $backend
 	 * @param array $params
-	 * @param callback $call
+	 * @param callable $call
 	 * @param string $cmd
 	 * @param int|null $chmodPath
 	 */

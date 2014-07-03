@@ -48,7 +48,7 @@ class Hooks {
 	 * Attach an event handler to a given hook.
 	 *
 	 * @param string $name Name of hook
-	 * @param mixed $callback Callback function to attach
+	 * @param callable $callback Callback function to attach
 	 *
 	 * @since 1.18
 	 */
