@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (432a76f7d4)
+ * OOjs UI v0.1.0-pre (85cfc2e735)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-02T16:19:00Z
+ * Date: 2014-07-03T02:33:09Z
  */
 ( function ( OO ) {
 
@@ -750,6 +750,9 @@ OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, timeout ) 
 
 	for ( i = 0, numSheets = parentDoc.styleSheets.length; i < numSheets; i++ ) {
 		styleNode = parentDoc.styleSheets[i].ownerNode;
+		if ( styleNode.disabled ) {
+			continue;
+		}
 		if ( styleNode.nodeName.toLowerCase() === 'link' ) {
 			// External stylesheet
 			// Create a node with a unique ID that we're going to monitor to see when the CSS

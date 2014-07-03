@@ -11,5 +11,9 @@
 	"ooui-dialog-action-close": "Aizvērt",
 	"ooui-outline-control-move-down": "Pārvietot vienumu uz leju",
 	"ooui-outline-control-move-up": "Pārvietot vienumu uz augšu",
-	"ooui-toolbar-more": "Vairāk"
+	"ooui-toolbar-more": "Vairāk",
+	"ooui-dialog-confirm-title": "Apstiprināt",
+	"ooui-dialog-confirm-default-prompt": "Vai esat pārliecināts?",
+	"ooui-dialog-confirm-default-ok": "Labi",
+	"ooui-dialog-confirm-default-cancel": "Atcelt"
 }
