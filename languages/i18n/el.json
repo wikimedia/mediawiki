@@ -37,7 +37,8 @@
 			"לערי ריינהארט",
 			"Kolega2357",
 			"아라",
-			"Calak"
+			"Calak",
+			"Auslaender"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -2757,8 +2758,8 @@
 	"watchlistedit-raw-added": "{{PLURAL:$1|1 σελίδα|$1 σελίδες}} προστέθηκαν:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|1 σελίδα|$1 σελίδες}} αφαιρέθηκαν:",
 	"watchlistedit-clear-titles": "Τίτλοι:",
-	"watchlistedit-clear-submit": "Καταργήστε τη λίστα παρακολούθησης (αυτό είναι μόνιμο!)",
-	"watchlistedit-too-many": "Υπάρχουν πάρα πολλές σελίδες για να εμφανίσετε εδώ.",
+	"watchlistedit-clear-submit": "Καθαρίστε τη λίστα παρακολούθησης (αυτό είναι μόνιμο!)",
+	"watchlistedit-too-many": "Υπάρχουν υπερβολικά πολλές σελίδες και δεν μπορούν να εμφανιστούν εδώ.",
 	"watchlisttools-view": "Προβολή σχετικών αλλαγών",
 	"watchlisttools-edit": "Προβολή και επεξεργασία λίστας παρακολούθησης",
 	"watchlisttools-raw": "Επεξεργασία πρωτογενούς λίστας παρακολούθησης",

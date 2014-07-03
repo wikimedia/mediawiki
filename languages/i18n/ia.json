@@ -3076,10 +3076,14 @@
 	"expand_templates_generate_xml": "Monstrar arbore syntactic XML",
 	"expand_templates_generate_rawhtml": "Monstrar HTML brute",
 	"expand_templates_preview": "Previsualisation",
+	"pagelanguage": "Selector de lingua de pagina",
 	"pagelang-name": "Pagina",
 	"pagelang-language": "Lingua",
 	"pagelang-use-default": "Usar lingua predefinite",
 	"pagelang-select-lang": "Selige lingua",
 	"right-pagelang": "Cambiar lingua del pagina",
-	"action-pagelang": "Cambiar lingua del pagina"
+	"action-pagelang": "Cambiar lingua del pagina",
+	"log-name-pagelang": "Registro de cambios de lingua",
+	"log-description-pagelang": "Isto es un registro de cambios de lingua in paginas.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|cambiava}} le lingua del pagina $3 de $4 a $5."
 }
