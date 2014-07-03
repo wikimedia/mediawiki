@@ -1189,9 +1189,9 @@ abstract class ApiBase extends ContextSource {
 	 * @param mixed $value The value being parsed
 	 * @param bool $allowMultiple Can $value contain more than one value
 	 *  separated by '|'?
-	 * @param mixed $allowedValues An array of values to check against. If
+	 * @param array|null $allowedValues An array of values to check against. If
 	 *  null, all values are accepted.
-	 * @return mixed (allowMultiple ? an_array_of_values : a_single_value)
+	 * @return string|array (allowMultiple ? an_array_of_values : a_single_value)
 	 */
 	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues ) {
 		if ( trim( $value ) === '' && $allowMultiple ) {
