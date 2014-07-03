@@ -41,6 +41,11 @@ class Revision implements IDBAccessObject {
 	protected $mParentId;
 	protected $mComment;
 	protected $mText;
+	protected $mTextId;
+
+	/**
+	 * @var stdClass|null
+	 */
 	protected $mTextRow;
 
 	/**
@@ -299,7 +304,7 @@ class Revision implements IDBAccessObject {
 	private static function newFromConds( $conditions, $flags = 0 ) {
 		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
 		$rev = self::loadFromConds( $db, $conditions, $flags );
-		if ( is_null( $rev ) && wfGetLB()->getServerCount() > 1 ) {
+		if ( $rev === null && wfGetLB()->getServerCount() > 1 ) {
 			if ( !( $flags & self::READ_LATEST ) ) {
 				$dbw = wfGetDB( DB_MASTER );
 				$rev = self::loadFromConds( $dbw, $conditions, $flags );
@@ -566,13 +571,13 @@ class Revision implements IDBAccessObject {
 				$this->mTitle = null;
 			}
 
-			if ( !isset( $row->rev_content_model ) || is_null( $row->rev_content_model ) ) {
+			if ( !isset( $row->rev_content_model ) ) {
 				$this->mContentModel = null; # determine on demand if needed
 			} else {
 				$this->mContentModel = strval( $row->rev_content_model );
 			}
 
-			if ( !isset( $row->rev_content_format ) || is_null( $row->rev_content_format ) ) {
+			if ( !isset( $row->rev_content_format ) ) {
 				$this->mContentFormat = null; # determine on demand if needed
 			} else {
 				$this->mContentFormat = strval( $row->rev_content_format );
@@ -652,7 +657,7 @@ class Revision implements IDBAccessObject {
 				$this->mContentHandler = null;
 
 				$this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
-			} elseif ( !is_null( $this->mText ) ) {
+			} elseif ( $this->mText !== null ) {
 				$handler = $this->getContentHandler();
 				$this->mContent = $handler->unserializeContent( $this->mText );
 			}
@@ -674,7 +679,7 @@ class Revision implements IDBAccessObject {
 
 			// If we still have no length, see it we have the text to figure it out
 			if ( !$this->mSize ) {
-				if ( !is_null( $this->mContent ) ) {
+				if ( $this->mContent !== null ) {
 					$this->mSize = $this->mContent->getSize();
 				} else {
 					#NOTE: this should never happen if we have either text or content object!
@@ -684,7 +689,7 @@ class Revision implements IDBAccessObject {
 
 			// Same for sha1
 			if ( $this->mSha1 === null ) {
-				$this->mSha1 = is_null( $this->mText ) ? null : self::base36Sha1( $this->mText );
+				$this->mSha1 = $this->mText === null ? null : self::base36Sha1( $this->mText );
 			}
 
 			// force lazy init
@@ -759,11 +764,11 @@ class Revision implements IDBAccessObject {
 	 * @return Title|null
 	 */
 	public function getTitle() {
-		if ( isset( $this->mTitle ) ) {
+		if ( $this->mTitle !== null ) {
 			return $this->mTitle;
 		}
 		//rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
-		if ( !is_null( $this->mId ) ) {
+		if ( $this->mId !== null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow(
 				array( 'page', 'revision' ),
@@ -776,7 +781,7 @@ class Revision implements IDBAccessObject {
 			}
 		}
 
-		if ( !$this->mTitle && !is_null( $this->mPage ) && $this->mPage > 0 ) {
+		if ( !$this->mTitle && $this->mPage !== null && $this->mPage > 0 ) {
 			$this->mTitle = Title::newFromID( $this->mPage );
 		}
 
@@ -1031,7 +1036,7 @@ class Revision implements IDBAccessObject {
 	 * @return string
 	 */
 	public function getSerializedData() {
-		if ( is_null( $this->mText ) ) {
+		if ( $this->mText === null ) {
 			$this->mText = $this->loadText();
 		}
 
@@ -1048,9 +1053,9 @@ class Revision implements IDBAccessObject {
 	 * @return Content|null The Revision's content, or null on failure.
 	 */
 	protected function getContentInternal() {
-		if ( is_null( $this->mContent ) ) {
+		if ( $this->mContent === null ) {
 			// Revision is immutable. Load on demand:
-			if ( is_null( $this->mText ) ) {
+			if ( $this->mText === null ) {
 				$this->mText = $this->loadText();
 			}
 
@@ -1184,7 +1189,7 @@ class Revision implements IDBAccessObject {
 	 * @return int
 	 */
 	private function getPreviousRevisionId( $db ) {
-		if ( is_null( $this->mPage ) ) {
+		if ( $this->mPage === null ) {
 			return 0;
 		}
 		# Use page_latest if ID is not given
@@ -1355,7 +1360,7 @@ class Revision implements IDBAccessObject {
 		}
 
 		# Record the text (or external storage URL) to the text table
-		if ( !isset( $this->mTextId ) ) {
+		if ( $this->mTextId === null ) {
 			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
 			$dbw->insert( 'text',
 				array(
@@ -1372,7 +1377,7 @@ class Revision implements IDBAccessObject {
 		}
 
 		# Record the edit in revisions
-		$rev_id = isset( $this->mId )
+		$rev_id = $this->mId !== null
 			? $this->mId
 			: $dbw->nextSequenceValue( 'revision_rev_id_seq' );
 		$row = array(
@@ -1386,10 +1391,10 @@ class Revision implements IDBAccessObject {
 			'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 			'rev_deleted'    => $this->mDeleted,
 			'rev_len'        => $this->mSize,
-			'rev_parent_id'  => is_null( $this->mParentId )
+			'rev_parent_id'  => $this->mParentId === null
 				? $this->getPreviousRevisionId( $dbw )
 				: $this->mParentId,
-			'rev_sha1'       => is_null( $this->mSha1 )
+			'rev_sha1'       => $this->mSha1 === null
 				? Revision::base36Sha1( $this->mText )
 				: $this->mSha1,
 		);
@@ -1419,7 +1424,7 @@ class Revision implements IDBAccessObject {
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
 
-		$this->mId = !is_null( $rev_id ) ? $rev_id : $dbw->insertId();
+		$this->mId = $rev_id !== null ? $rev_id : $dbw->insertId();
 
 		wfRunHooks( 'RevisionInsertComplete', array( &$this, $data, $flags ) );
 
@@ -1508,7 +1513,7 @@ class Revision implements IDBAccessObject {
 		}
 
 		// If we kept data for lazy extraction, use it now...
-		if ( isset( $this->mTextRow ) ) {
+		if ( $this->mTextRow !== null ) {
 			$row = $this->mTextRow;
 			$this->mTextRow = null;
 		} else {
