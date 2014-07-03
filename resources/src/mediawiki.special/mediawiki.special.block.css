@@ -5,3 +5,7 @@
 label[for="mw-input-wpConfirm"] {
 	font-weight: bold;
 }
+
+tr.mw-block-hideuser {
+	font-weight: bold;
+}

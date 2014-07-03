@@ -27,11 +27,6 @@ table.mw-allpages-table-form tr {
 	vertical-align: top;
 }
 
-/* Special:Block */
-tr.mw-block-hideuser {
-	font-weight: bold;
-}
-
 /* Special:BlockList */
 table.mw-blocklist span.mw-usertoollinks,
 span.mw-blocklist-actions {
