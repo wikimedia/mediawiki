@@ -102,6 +102,9 @@ production.
   The feature needs to be enabled with $wgPageLanguageUseDB=true and
   permission needs to be set for 'pagelang'.
 * Upgrade Moment.js to v2.7.0.
+* (bug 35045) Redirects to sections will now update the URL in browser's address
+  bar using the HTML5 History API. When [[Dog]] redirects to [[Animals#Dog]],
+  the user will now see "Animals#Dog" in their browser instead of "Dog#Dog".
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
