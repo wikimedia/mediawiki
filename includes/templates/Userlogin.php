@@ -25,7 +25,7 @@
 class UserloginTemplate extends BaseTemplate {
 
 	function execute() {
-		global $wgCookieExpiration;
+		global $wgCookieExpiration, $wgDefaultUserOptions;
 		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
 ?>
 <div class="mw-ui-container">
@@ -136,7 +136,7 @@ class UserloginTemplate extends BaseTemplate {
 				<?php if ( $this->data['canremember'] ) { ?>
 					<label class="mw-ui-checkbox-label">
 						<input name="wpRemember" type="checkbox" value="1" id="wpRemember" tabindex="4"
-							<?php if ( $this->data['remember'] ) {
+							<?php if ( $wgDefaultUserOptions['rememberpassword'] ) {
 								echo 'checked="checked"';
 							} ?>
 						>
