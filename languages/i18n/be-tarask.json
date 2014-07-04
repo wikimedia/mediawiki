@@ -3096,5 +3096,6 @@
 	"expand_templates_preview": "Папярэдні прагляд",
 	"pagelanguage": "Выбар мовы старонкі",
 	"pagelang-name": "Старонка",
-	"pagelang-language": "Мова"
+	"pagelang-language": "Мова",
+	"pagelang-use-default": "Ужываць мову па змоўчаньні"
 }
