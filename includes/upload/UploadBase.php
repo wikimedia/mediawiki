@@ -435,7 +435,7 @@ abstract class UploadBase {
 		}
 
 		$this->mFileProps = FSFile::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
-		$mime = $this->mFileProps['file-mime'];
+		$mime = $this->mFileProps['mime'];
 
 		if ( $wgVerifyMimeType ) {
 			# XXX: Missing extension will be caught by validateName() via getTitle()
