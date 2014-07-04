@@ -436,4 +436,40 @@
 		}
 	} );
 
+	QUnit.test( 'getRelativeText', 5, function ( assert ) {
+		var cases = [
+			{
+				text: 'asd',
+				relativeTo: 123,
+				expectedResult: ':Asd'
+			},
+			{
+				text: 'dfg',
+				relativeTo: 0,
+				expectedResult: 'Dfg'
+			},
+			{
+				text: 'Template:Ghj',
+				relativeTo: 0,
+				expectedResult: 'Template:Ghj'
+			},
+			{
+				text: 'Template:1',
+				relativeTo: 10,
+				expectedResult: '1'
+			},
+			{
+				text: 'User:Hi',
+				relativeTo: 10,
+				expectedResult: 'User:Hi'
+			}
+		], i, thisCase, title;
+
+		for ( i = 0; i < cases.length; i++ ) {
+			thisCase = cases[i];
+
+			title = mw.Title.newFromText( thisCase.text );
+			assert.equal( title.getRelativeText( thisCase.relativeTo ), thisCase.expectedResult );
+		}
+	} );
 }( mediaWiki, jQuery ) );

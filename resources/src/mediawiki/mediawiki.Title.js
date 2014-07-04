@@ -536,6 +536,28 @@
 		},
 
 		/**
+		 * Get the page name relative to a namespace
+		 *
+		 * Example:
+		 *
+		 * - "Foo:Bar" relative to the Foo namespace becomes "Bar".
+		 * - "Bar" relative to any non-main namespace becomes ":Bar".
+		 * - "Foo:Bar" relative to any namespace other than Foo stays "Foo:Bar".
+		 *
+		 * @param {number} namespace The namespace to be relative to
+		 * @return {string}
+		 */
+		getRelativeText: function ( namespace ) {
+			if ( this.getNamespaceId() === namespace ) {
+				return this.getMainText();
+			} else if ( this.getNamespaceId() === NS_MAIN ) {
+				return ':' + this.getPrefixedText();
+			} else {
+				return this.getPrefixedText();
+			}
+		},
+
+		/**
 		 * Get the fragment (if any).
 		 *
 		 * Note that this method (by design) does not include the hash character and
