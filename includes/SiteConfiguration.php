@@ -191,7 +191,7 @@ class SiteConfiguration {
 	 * @param array $params Array of parameters.
 	 * @return mixed The value of the setting requested.
 	 */
-	protected function getSetting( $settingName, $wiki, /*array*/ $params ) {
+	protected function getSetting( $settingName, $wiki, array $params ) {
 		$retval = null;
 		if ( array_key_exists( $settingName, $this->settings ) ) {
 			$thisSetting =& $this->settings[$settingName];
@@ -450,7 +450,7 @@ class SiteConfiguration {
 	 * @param array $wikiTags The tags assigned to the wiki.
 	 * @return array
 	 */
-	protected function mergeParams( $wiki, $suffix, /*array*/ $params, /*array*/ $wikiTags ) {
+	protected function mergeParams( $wiki, $suffix, array $params, array $wikiTags ) {
 		$ret = $this->getWikiParams( $wiki );
 
 		if ( is_null( $ret['suffix'] ) ) {
