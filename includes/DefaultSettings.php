@@ -2566,27 +2566,6 @@ $wgDummyLanguageCodes = array(
 $wgEditEncoding = '';
 
 /**
- * Set this to true to replace Arabic presentation forms with their standard
- * forms in the U+0600-U+06FF block. This only works if $wgLanguageCode is
- * set to "ar".
- *
- * Note that pages with titles containing presentation forms will become
- * inaccessible, run maintenance/cleanupTitles.php to fix this.
- */
-$wgFixArabicUnicode = true;
-
-/**
- * Set this to true to replace ZWJ-based chillu sequences in Malayalam text
- * with their Unicode 5.1 equivalents. This only works if $wgLanguageCode is
- * set to "ml". Note that some clients (even new clients as of 2010) do not
- * support these characters.
- *
- * If you enable this on an existing wiki, run maintenance/cleanupTitles.php to
- * fix any ZWJ sequences in existing page titles.
- */
-$wgFixMalayalamUnicode = true;
-
-/**
  * Set this to always convert certain Unicode sequences to modern ones
  * regardless of the content language. This has a small performance
  * impact.
@@ -2596,7 +2575,7 @@ $wgFixMalayalamUnicode = true;
  *
  * @since 1.17
  */
-$wgAllUnicodeFixes = false;
+$wgAllUnicodeFixes = true;
 
 /**
  * Set this to eg 'ISO-8859-1' to perform character set conversion when
