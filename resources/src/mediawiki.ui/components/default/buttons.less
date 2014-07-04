@@ -200,6 +200,11 @@
 //         .mw-ui-button-with-icon-bgimage("/path/to/ok.svg", "/path/to/ok.png");
 //     }
 //
+// Markup:
+// <button class="mw-ui-button mw-ui-progressive mw-ui-button-with-icon with-icon-ok">.mw-ui-button-with-icon.with-icon-ok</button>
+// <button class="mw-ui-button mw-ui-progressive mw-ui-button-with-icon with-icon-ok" disabled>.mw-ui-button-with-icon.with-icon-ok</button><br />
+// <button class="mw-ui-button mw-ui-progressive mw-ui-big mw-ui-button-with-icon with-icon-ok">.mw-ui-button-with-icon.mw-ui-big.with-icon-ok</button>
+//
 // Styleguide 2.1.7
 
 .mw-ui-button-with-icon {
@@ -226,6 +231,10 @@
 		background-repeat: no-repeat;
 		background-size: 100%;
 	}
+}
+
+.with-icon-ok {
+	.mw-ui-button-with-icon-bgimage("images/kss/ok.svg", "images/kss/ok.png");
 }
 
 a.mw-ui-button {
