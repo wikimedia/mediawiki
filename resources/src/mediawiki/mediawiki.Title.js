@@ -536,6 +536,24 @@
 		},
 
 		/**
+		 * Get the page name relative to a namespace
+		 * Example: "Template:Asd" relative to the template namespace (#10) becomes 'Asd'.
+		 * 'Asd' relative to any non-main namespace stays as 'Asd'.
+		 *
+		 * @param {number} namespace The namespace to be relative to
+		 * @return {string}
+		 */
+		getRelativeText: function ( namespace ) {
+			if ( this.getNamespaceId() === namespace ) {
+				return this.getMainText();
+			} else if ( this.getNamespaceId() === 0 ) {
+				return ':' + this.getPrefixedText();
+			} else {
+				return this.getPrefixedText();
+			}
+		},
+
+		/**
 		 * Get the fragment (if any).
 		 *
 		 * Note that this method (by design) does not include the hash character and
