@@ -95,6 +95,16 @@ class SpecialSearch extends SpecialPage {
 		$search = str_replace( "\n", " ", $request->getText( 'search', $titleParam ) );
 
 		$this->load();
+		if ( !is_null( $request->getVal( 'nsRemember' ) ) ) {
+			$this->saveNamespaces();
+			// Remove the token from the URL to prevent the user from inadvertently
+			// exposing it (e.g. by pasting it into a public wiki page) or undoing
+			// later settings changes (e.g. by reloading the page).
+			$query = $request->getValues();
+			unset( $query['title'], $query['nsRemember'] );
+			$out->redirect( $this->getPageTitle()->getFullURL( $query ) );
+			return;
+		}
 
 		$this->searchEngineType = $request->getVal( 'srbackend' );
 
@@ -209,7 +219,6 @@ class SpecialSearch extends SpecialPage {
 		$search = $this->getSearchEngine();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
-		$this->saveNamespaces();
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm( $term );
 
@@ -510,9 +519,8 @@ class SpecialSearch extends SpecialPage {
 		$request = $this->getRequest();
 
 		if ( $user->isLoggedIn() &&
-			!is_null( $request->getVal( 'nsRemember' ) ) &&
 			$user->matchEditToken(
-				$request->getVal( 'nsToken' ),
+				$request->getVal( 'nsRemember' ),
 				'searchnamespace',
 				$request
 			)
@@ -937,18 +945,17 @@ class SpecialSearch extends SpecialPage {
 		$remember = '';
 		$user = $this->getUser();
 		if ( $user->isLoggedIn() ) {
-			$remember .= Html::hidden(
-				'nsToken',
-				$user->getEditToken(
-					'searchnamespace',
-					$this->getRequest()
-				)
-			) .
-			Xml::checkLabel(
+			$remember .= Xml::checkLabel(
 				wfMessage( 'powersearch-remember' )->text(),
 				'nsRemember',
 				'mw-search-powersearch-remember',
-				false
+				false,
+				// The token goes here rather than in a hidden field so it
+				// is only sent when necessary (not every form submission).
+				array( 'value' => $user->getEditToken(
+					'searchnamespace',
+					$this->getRequest()
+				) )
 			);
 		}
 
