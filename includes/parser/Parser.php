@@ -4597,13 +4597,13 @@ class Parser {
 				if ( $isTemplate ) {
 					# Put a T flag in the section identifier, to indicate to extractSections()
 					# that sections inside <includeonly> should be counted.
-					$editlinkArgs = array( $titleText, "T-$sectionIndex"/*, null */ );
+					$editsectionPage = $titleText;
+					$editsectionSection = "T-$sectionIndex";
+					$editsectionContent = null;
 				} else {
-					$editlinkArgs = array(
-						$this->mTitle->getPrefixedText(),
-						$sectionIndex,
-						$headlineHint
-					);
+					$editsectionPage = $this->mTitle->getPrefixedText();
+					$editsectionSection = $sectionIndex;
+					$editsectionContent = $headlineHint;
 				}
 				// We use a bit of pesudo-xml for editsection markers. The
 				// language converter is run later on. Using a UNIQ style marker
@@ -4616,10 +4616,11 @@ class Parser {
 				// important bits of data, but put the headline hint inside a
 				// content block because the language converter is supposed to
 				// be able to convert that piece of data.
-				$editlink = '<mw:editsection page="' . htmlspecialchars( $editlinkArgs[0] );
-				$editlink .= '" section="' . htmlspecialchars( $editlinkArgs[1] ) . '"';
-				if ( isset( $editlinkArgs[2] ) ) {
-					$editlink .= '>' . $editlinkArgs[2] . '</mw:editsection>';
+				// Gets replaced with html in ParserOutput::getText
+				$editlink = '<mw:editsection page="' . htmlspecialchars( $editsectionPage );
+				$editlink .= '" section="' . htmlspecialchars( $editsectionSection ) . '"';
+				if ( $editsectionContent !== null ) {
+					$editlink .= '>' . $editsectionContent . '</mw:editsection>';
 				} else {
 					$editlink .= '/>';
 				}
