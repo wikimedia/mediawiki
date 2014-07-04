@@ -1295,9 +1295,6 @@ class DatabaseMssql extends DatabaseBase {
 			: array();
 	}
 
-	/**
-	 * @void
-	 */
 	private function populateColumnCaches() {
 		$res = $this->select( 'INFORMATION_SCHEMA.COLUMNS', '*',
 			array(

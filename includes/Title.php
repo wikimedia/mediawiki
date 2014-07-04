@@ -1371,7 +1371,6 @@ class Title {
 	 *
 	 * @param string $name The text
 	 * @return string The prefixed text
-	 * @private
 	 */
 	private function prefix( $name ) {
 		$p = '';

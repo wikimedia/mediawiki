@@ -1302,7 +1302,6 @@ class FormatMetadata extends ContextSource {
 	 * @param int $a Numerator
 	 * @param int $b Denominator
 	 * @return int
-	 * @private
 	 */
 	private function gcd( $a, $b ) {
 		/*

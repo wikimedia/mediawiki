@@ -112,7 +112,6 @@ class SkinTemplate extends Skin {
 	 * Generates array of language links for the current page
 	 *
 	 * @return array
-	 * @public
 	 */
 	public function getLanguages() {
 		global $wgHideInterlanguageLinks;
