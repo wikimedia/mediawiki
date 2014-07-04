@@ -848,25 +848,14 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckMemory() {
-		$limit = ini_get( 'memory_limit' );
-
-		if ( !$limit || $limit == -1 ) {
-			return true;
+		$curlimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
+		$status = wfMemoryLimit( "{$this->minMemorySize}M" );
+		if ( $status->isGood() ) {
+			$this->showMessage( 'config-memory-raised', $curlimit, $status->getValue() );
+			$this->setVar( '_RaiseMemory', true );
+		} else {
+			$this->showStatusMessage( $status );
 		}
-
-		$n = wfShorthandToInteger( $limit );
-
-		if ( $n < $this->minMemorySize * 1024 * 1024 ) {
-			$newLimit = "{$this->minMemorySize}M";
-
-			if ( ini_set( "memory_limit", $newLimit ) === false ) {
-				$this->showMessage( 'config-memory-bad', $limit );
-			} else {
-				$this->showMessage( 'config-memory-raised', $limit, $newLimit );
-				$this->setVar( '_RaiseMemory', true );
-			}
-		}
-
 		return true;
 	}
 

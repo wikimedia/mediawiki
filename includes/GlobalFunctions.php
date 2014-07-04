@@ -3892,30 +3892,48 @@ function wfStripIllegalFilenameChars( $name ) {
 }
 
 /**
- * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit;
+ * If the current PHP memory limit is too low, raise it to $limit.
+ * Alternatively, set $limit to -1 to remove the PHP memory limit.
  *
- * @return int Value the memory limit was set to.
+ * @param int|string $limit The new memory limit to raise to,
+ * default is 50MB.
+ * @return Status
+ * @since 1.24
  */
-function wfMemoryLimit() {
-	global $wgMemoryLimit;
-	$memlimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
-	if ( $memlimit != -1 ) {
-		$conflimit = wfShorthandToInteger( $wgMemoryLimit );
-		if ( $conflimit == -1 ) {
-			wfDebug( "Removing PHP's memory limit\n" );
-			wfSuppressWarnings();
-			ini_set( 'memory_limit', $conflimit );
-			wfRestoreWarnings();
-			return $conflimit;
-		} elseif ( $conflimit > $memlimit ) {
-			wfDebug( "Raising PHP's memory limit to $conflimit bytes\n" );
-			wfSuppressWarnings();
-			ini_set( 'memory_limit', $conflimit );
-			wfRestoreWarnings();
-			return $conflimit;
+function wfMemoryLimit( $limit = "50M" ) {
+	$curlimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
+	if ( is_int( $limit ) ) {
+		$count = 0;
+		while ( $limit > 1024 ) {
+			$limit /= 1024;
+			++$count;
+		}
+		$suffix = '';
+		switch ( $count ) {
+			case 0:
+				$suffix = '';
+				break;
+			case 1:
+				$suffix = 'K';
+				break;
+			case 2:
+				$suffix = 'M';
+				break;
+			default:
+				$suffix = 'G';
+				break;
 		}
 	}
-	return $memlimit;
+	$newlimit = $suffix ? $limit . $suffix : $limit;
+	$status = Status::newGood( $newlimit );
+	if ( $newlimit < 1 || $curlimit < wfShorthandToInteger( $newlimit ) ) {
+		wfSuppressWarnings();
+		if ( ini_set( 'memory_limit', $newlimit ) === false ) {
+			$status->fatal( 'config-memory-bad', $curlimit );
+		}
+		wfRestoreWarnings();
+	}
+	return $status;
 }
 
 /**
