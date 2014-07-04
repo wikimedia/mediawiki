@@ -197,6 +197,11 @@
 //         .mw-ui-button-with-icon-bgimage("/path/to/ok.svg", "/path/to/ok.png");
 //     }
 //
+// Markup:
+// <button class="mw-ui-button mw-ui-progressive with-icon-ok">.with-icon-ok</button>
+// <button class="mw-ui-button mw-ui-progressive with-icon-ok" disabled>.with-icon-ok</button><br />
+// <button class="mw-ui-button mw-ui-progressive mw-ui-big with-icon-ok">.mw-ui-big.with-icon-ok</button>
+//
 // Styleguide 2.1.7
 
 .mw-ui-button-with-icon-bgimage(@icon_svg; @icon_png) {
@@ -220,6 +225,10 @@
 			background-size: 100%;
 		}
 	}
+}
+
+.with-icon-ok {
+	.mw-ui-button-with-icon-bgimage("images/kss/ok.svg", "images/kss/ok.png");
 }
 
 a.mw-ui-button {
