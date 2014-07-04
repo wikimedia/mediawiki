@@ -75,8 +75,27 @@ class ParserOutput extends CacheTime {
 		wfProfileIn( __METHOD__ );
 		$text = $this->mText;
 		if ( $this->mEditSectionTokens ) {
-			$text = preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
-				array( &$this, 'replaceEditSectionLinksCallback' ), $text );
+			$text = preg_replace_callback(
+				ParserOutput::EDITSECTION_REGEX,
+				function ( $m ) {
+					global $wgOut, $wgLang;
+					$editsectionPage = Title::newFromText( htmlspecialchars_decode( $m[1] ) );
+					$editsectionSection = htmlspecialchars_decode( $m[2] );
+					$editsectionContent = isset( $m[4] ) ? $m[3] : null;
+
+					if ( !is_object( $editsectionPage ) ) {
+						throw new MWException( "Bad parser output text." );
+					}
+
+					$skin = $wgOut->getSkin();
+					return call_user_func_array(
+						array( $skin, 'doEditSectionLink' ),
+						array( $editsectionPage, $editsectionSection,
+							$editsectionContent, $wgLang->getCode() )
+					);
+				},
+				$text
+			);
 		} else {
 			$text = preg_replace( ParserOutput::EDITSECTION_REGEX, '', $text );
 		}
@@ -93,29 +112,6 @@ class ParserOutput extends CacheTime {
 		}
 		wfProfileOut( __METHOD__ );
 		return $text;
-	}
-
-	/**
-	 * callback used by getText to replace editsection tokens
-	 * @private
-	 * @param array $m
-	 * @throws MWException
-	 * @return mixed
-	 */
-	public function replaceEditSectionLinksCallback( $m ) {
-		global $wgOut, $wgLang;
-		$args = array(
-			htmlspecialchars_decode( $m[1] ),
-			htmlspecialchars_decode( $m[2] ),
-			isset( $m[4] ) ? $m[3] : null,
-		);
-		$args[0] = Title::newFromText( $args[0] );
-		if ( !is_object( $args[0] ) ) {
-			throw new MWException( "Bad parser output text." );
-		}
-		$args[] = $wgLang->getCode();
-		$skin = $wgOut->getSkin();
-		return call_user_func_array( array( $skin, 'doEditSectionLink' ), $args );
 	}
 
 	public function &getLanguageLinks() {
