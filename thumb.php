@@ -367,7 +367,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 	global $wgMemc, $wgAttemptFailureEpoch;
 
 	$key = wfMemcKey( 'attempt-failures', $wgAttemptFailureEpoch,
-		$file->getRepo()->getName(), md5( $file->getName() ), md5( $thumbName ) );
+		$file->getRepo()->getName(), $file->getSha1(), md5( $thumbName ) );
 
 	// Check if this file keeps failing to render
 	if ( $wgMemc->get( $key ) >= 4 ) {
