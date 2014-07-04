@@ -1949,6 +1949,7 @@ $wgMaxArticleSize = 2048;
 /**
  * The minimum amount of memory that MediaWiki "needs"; MediaWiki will try to
  * raise PHP's memory limit if it's below this amount.
+ * @deprecated since 1.24
  */
 $wgMemoryLimit = "50M";
 
