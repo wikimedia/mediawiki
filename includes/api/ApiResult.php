@@ -58,6 +58,14 @@ class ApiResult extends ApiBase {
 	 */
 	const ADD_ON_TOP = 2;
 
+	/**
+	 * For addValue() and setElement(), do not check size while adding a value
+	 * Don't use this unless you REALLY know what you're doing.
+	 * Values added while the size checking was disabled will never be counted
+	 * @since 1.24
+	 */
+	const NO_SIZE_CHECK = 4;
+
 	private $mData, $mIsRawMode, $mSize, $mCheckingSize;
 
 	private $continueAllModules = array();
@@ -312,17 +320,16 @@ class ApiResult extends ApiBase {
 	 * @param array|string|null $path
 	 * @param string $name
 	 * @param mixed $value
-	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This
-	 *    parameter used to be boolean, and the value of OVERRIDE=1 was specifically
-	 *    chosen so that it would be backwards compatible with the new method
-	 *    signature.
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 *   This parameter used to be boolean, and the value of OVERRIDE=1 was specifically
+	 *   chosen so that it would be backwards compatible with the new method signature.
 	 * @return bool True if $value fits in the result, false if not
 	 *
 	 * @since 1.21 int $flags replaced boolean $override
 	 */
 	public function addValue( $path, $name, $value, $flags = 0 ) {
 		$data = &$this->mData;
-		if ( $this->mCheckingSize ) {
+		if ( $this->mCheckingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
 			$newsize = $this->mSize + self::size( $value );
 			$maxResultSize = $this->getConfig()->get( 'APIMaxResultSize' );
 			if ( $newsize > $maxResultSize ) {
@@ -616,9 +623,7 @@ class ApiResult extends ApiBase {
 			}
 		}
 		if ( $data ) {
-			$this->disableSizeCheck();
-			$this->addValue( null, $key, $data, ApiResult::ADD_ON_TOP );
-			$this->enableSizeCheck();
+			$this->addValue( null, $key, $data, ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
 		}
 	}
 }
