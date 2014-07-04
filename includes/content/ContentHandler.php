@@ -460,7 +460,7 @@ abstract class ContentHandler {
 	 * Apply import transformation (per default, returns $blob unchanged).
 	 * This gives subclasses an opportunity to transform data blobs on import.
 	 *
-	 * @singe 1.24
+	 * @since 1.24
 	 *
 	 * @param string $blob
 	 * @param string|null $format
