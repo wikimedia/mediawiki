@@ -2569,7 +2569,7 @@ class Title {
 			return false;
 		}
 
-		if ( !isset( $this->mTitleProtection ) ) {
+		if ( $this->mTitleProtection === null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select(
 				'protected_titles',
@@ -2722,7 +2722,7 @@ class Title {
 	 * @since 1.23
 	 */
 	public function areCascadeProtectionSourcesLoaded( $getPages = true ) {
-		return $getPages ? isset( $this->mCascadeSources ) : isset( $this->mHasCascadingRestrictions );
+		return $getPages ? $this->mCascadeSources !== null : $this->mHasCascadingRestrictions !== null;
 	}
 
 	/**
@@ -2742,9 +2742,9 @@ class Title {
 		global $wgContLang;
 		$pagerestrictions = array();
 
-		if ( isset( $this->mCascadeSources ) && $getPages ) {
+		if ( $this->mCascadeSources !== null && $getPages ) {
 			return array( $this->mCascadeSources, $this->mCascadingRestrictions );
-		} elseif ( isset( $this->mHasCascadingRestrictions ) && !$getPages ) {
+		} elseif ( $this->mHasCascadingRestrictions !== null && !$getPages ) {
 			return array( $this->mHasCascadingRestrictions, $pagerestrictions );
 		}
 
@@ -3090,7 +3090,7 @@ class Title {
 		# alone to cache the result.  There's no point in having it hanging
 		# around uninitialized in every Title object; therefore we only add it
 		# if needed and don't declare it statically.
-		if ( !isset( $this->mHasSubpages ) ) {
+		if ( $this->mHasSubpages === null ) {
 			$this->mHasSubpages = false;
 			$subpages = $this->getSubpages( 1 );
 			if ( $subpages instanceof TitleArray ) {
@@ -4779,7 +4779,9 @@ class Title {
 	 * @return string Last-touched timestamp
 	 */
 	public function getTouched( $db = null ) {
-		$db = isset( $db ) ? $db : wfGetDB( DB_SLAVE );
+		if ( $db === null ) {
+			$db = wfGetDB( DB_SLAVE );
+		}
 		$touched = $db->selectField( 'page', 'page_touched', $this->pageCond(), __METHOD__ );
 		return $touched;
 	}

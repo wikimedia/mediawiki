@@ -2946,7 +2946,7 @@ class User implements IDBAccessObject {
 			return null;
 		}
 
-		if ( !isset( $this->mEditCount ) ) {
+		if ( $this->mEditCount === null ) {
 			/* Populate the count, if it has not been populated yet */
 			wfProfileIn( __METHOD__ );
 			$dbr = wfGetDB( DB_SLAVE );

@@ -207,14 +207,14 @@ class SiteConfiguration {
 				// Do tag settings
 				foreach ( $params['tags'] as $tag ) {
 					if ( array_key_exists( $tag, $thisSetting ) ) {
-						if ( isset( $retval ) && is_array( $retval ) && is_array( $thisSetting[$tag] ) ) {
+						if ( is_array( $retval ) && is_array( $thisSetting[$tag] ) ) {
 							$retval = self::arrayMerge( $retval, $thisSetting[$tag] );
 						} else {
 							$retval = $thisSetting[$tag];
 						}
 						break 2;
 					} elseif ( array_key_exists( "+$tag", $thisSetting ) && is_array( $thisSetting["+$tag"] ) ) {
-						if ( !isset( $retval ) ) {
+						if ( $retval === null ) {
 							$retval = array();
 						}
 						$retval = self::arrayMerge( $retval, $thisSetting["+$tag"] );
@@ -224,7 +224,7 @@ class SiteConfiguration {
 				$suffix = $params['suffix'];
 				if ( !is_null( $suffix ) ) {
 					if ( array_key_exists( $suffix, $thisSetting ) ) {
-						if ( isset( $retval ) && is_array( $retval ) && is_array( $thisSetting[$suffix] ) ) {
+						if ( is_array( $retval ) && is_array( $thisSetting[$suffix] ) ) {
 							$retval = self::arrayMerge( $retval, $thisSetting[$suffix] );
 						} else {
 							$retval = $thisSetting[$suffix];
@@ -233,7 +233,7 @@ class SiteConfiguration {
 					} elseif ( array_key_exists( "+$suffix", $thisSetting )
 						&& is_array( $thisSetting["+$suffix"] )
 					) {
-						if ( !isset( $retval ) ) {
+						if ( $retval === null ) {
 							$retval = array();
 						}
 						$retval = self::arrayMerge( $retval, $thisSetting["+$suffix"] );

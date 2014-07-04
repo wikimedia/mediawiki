@@ -875,7 +875,7 @@ abstract class Skin extends ContextSource {
 
 		$out = '';
 
-		if ( isset( $wgCopyrightIcon ) && $wgCopyrightIcon ) {
+		if ( $wgCopyrightIcon ) {
 			$out = $wgCopyrightIcon;
 		} elseif ( $wgRightsIcon ) {
 			$icon = htmlspecialchars( $wgRightsIcon );
