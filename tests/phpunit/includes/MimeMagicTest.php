@@ -36,4 +36,13 @@ class MimeMagicTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * Test to make sure that encoder=ffmpeg2theora doesn't trigger
+	 * MEDIATYPE_VIDEO (bug 63584)
+	 */
+	function testOggRecognize() {
+		$oggFile = __DIR__ . '/../data/media/say-test.ogg';
+		$actualType = $this->mimeMagic->getMediaType( $oggFile, 'application/ogg' );
+		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+	}
 }
