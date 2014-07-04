@@ -1028,7 +1028,7 @@
 						} catch ( e ) {
 							// A user-defined callback raised an exception.
 							// Swallow it to protect our state machine!
-							log( 'Exception thrown by job.error', e );
+							log( 'Exception thrown by user callback', e );
 						}
 					}
 				}
