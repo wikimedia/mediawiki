@@ -212,4 +212,20 @@ class XCFHandler extends BitmapHandler {
 	protected static function getScalerType( $dstPath, $checkDstPath = true ) {
 		return "im";
 	}
+
+	/**
+	 * Can we render this file?
+	 *
+	 * Image magick doesn't support indexed xcf files as of current
+	 * writing (as of 6.8.9-3)
+	 */
+	public function canRender( $file ) {
+		wfSuppressWarnings();
+		$xcfMeta = unserialize( $file->getMetadata() );
+		wfRestoreWarnings();
+		if ( isset( $xcfMeta['colorType'] ) && $xcfMeta['colorType'] === 'index-coloured' ) {
+			return false;
+		}
+		return parent::canRender( $file );
+	}
 }
