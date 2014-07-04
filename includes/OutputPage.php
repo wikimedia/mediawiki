@@ -885,10 +885,7 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function getPageTitleActionText() {
-		if ( isset( $this->mPageTitleActionText ) ) {
-			return $this->mPageTitleActionText;
-		}
-		return '';
+		return $this->mPageTitleActionText;
 	}
 
 	/**
