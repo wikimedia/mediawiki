@@ -186,6 +186,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 
 		$count = 0;
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've had enough

@@ -276,7 +276,10 @@ class FakeResultWrapper extends ResultWrapper {
 	function free() {
 	}
 
-	// Callers want to be able to access fields with $this->fieldName
+	/**
+	 * Callers want to be able to access fields with $this->fieldName
+	 * @return false|object
+	 */
 	function fetchObject() {
 		$this->fetchRow();
 		if ( $this->currentRow ) {
@@ -291,6 +294,9 @@ class FakeResultWrapper extends ResultWrapper {
 		$this->currentRow = null;
 	}
 
+	/**
+	 * @return false|object
+	 */
 	function next() {
 		return $this->fetchObject();
 	}

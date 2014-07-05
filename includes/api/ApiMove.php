@@ -48,6 +48,7 @@ class ApiMove extends ApiBase {
 			}
 		}
 
+		// @FIXME $fromTitle might not be defined
 		if ( !$fromTitle->exists() ) {
 			$this->dieUsageMsg( 'notanarticle' );
 		}

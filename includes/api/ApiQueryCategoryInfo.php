@@ -81,6 +81,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 
 		$catids = array_flip( $cattitles );
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			$vals = array();
 			$vals['size'] = intval( $row->cat_pages );

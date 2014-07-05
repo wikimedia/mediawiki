@@ -258,6 +258,7 @@ class ApiQuery extends ApiBase {
 		if ( !$generatorDone ) {
 			// Query modules may optimize data requests through the $this->getPageSet()
 			// object by adding extra fields from the page table.
+			/** @var ApiQueryBase $module */
 			foreach ( $modules as $module ) {
 				$module->requestExtraData( $this->mPageSet );
 			}

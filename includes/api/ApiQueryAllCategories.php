@@ -114,6 +114,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 		$result = $this->getResult();
 		$count = 0;
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are

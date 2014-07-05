@@ -134,6 +134,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		$count = 0;
 		if ( is_null( $resultPageSet ) ) {
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
@@ -164,6 +165,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			}
 		} else {
 			$titles = array();
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that

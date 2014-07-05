@@ -433,6 +433,7 @@ class ApiMain extends ApiBase {
 	 *
 	 * @since 1.23
 	 * @param Exception $e
+	 * @throws Exception
 	 */
 	public static function handleApiBeforeMainException( Exception $e ) {
 		ob_start();

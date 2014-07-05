@@ -69,6 +69,7 @@ class ApiQueryTags extends ApiQueryBase {
 
 		$ok = true;
 
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			if ( !$ok ) {
 				break;

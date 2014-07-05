@@ -185,6 +185,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		//Get gender information
 		if ( MWNamespace::hasGenderDistinction( $params['namespace'] ) ) {
 			$users = array();
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				$users[] = $row->page_title;
 			}
