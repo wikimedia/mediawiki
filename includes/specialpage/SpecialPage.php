@@ -458,10 +458,21 @@ class SpecialPage {
 	 * Derived classes can override this, but usually it is easier to keep the
 	 * default behavior.
 	 *
-	 * @return string
+	 * @note Do not return an instance of the Message class. Special:Specialpages
+	 *  expects a plain ole' String, and will break with a Message object.
+	 *
+	 * @return string Html to output
 	 */
 	function getDescription() {
-		return $this->msg( strtolower( $this->mName ) )->text();
+		$lowerName = strtolower( $this->mName );
+		$msg = $this->msg( $lowerName );
+		if ( !$msg->isBlank() ) {
+			return $msg->text();
+		} else {
+			wfWarn( "Missing special page description message '$lowerName'." );
+			// Degrade gracefully with missing message.
+			return $this->mName;
+		}
 	}
 
 	/**
