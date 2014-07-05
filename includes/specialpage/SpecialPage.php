@@ -439,10 +439,36 @@ class SpecialPage {
 	 * Derived classes can override this, but usually it is easier to keep the
 	 * default behavior.
 	 *
-	 * @return string
+	 * @return string Text as the title of this page. Safe html tags allowed.
 	 */
 	function getDescription() {
-		return $this->msg( strtolower( $this->mName ) )->text();
+		$lowerName = strtolower( $this->mName );
+		$msg = $this->msg( $lowerName );
+		if ( !$msg->isBlank() ) {
+			return $msg->text();
+		} else {
+			wfWarn( "Missing special page description message '$lowerName'." );
+			// Degrade gracefully with missing message.
+			return $this->mName;
+		}
+	}
+
+	/**
+	 * Get an escaped version of getDescription()
+	 *
+	 * Modeled on OutputPage::setPageTitle
+	 *
+	 * @return String Safe html.
+	 */
+	public function getDescriptionHtml() {
+		$desc = $this->getDescription();
+		if ( $desc instanceof Message ) {
+			$desc = $desc->setContext( $this->getContext() )->text();
+		}
+
+		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
+		# but leave "<i>foobar</i>" alone
+		return Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $desc ) );
 	}
 
 	/**
