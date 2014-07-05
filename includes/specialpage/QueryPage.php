@@ -747,7 +747,8 @@ abstract class QueryPage extends SpecialPage {
 
 	function feedTitle() {
 		global $wgLanguageCode, $wgSitename;
-		$desc = $this->getDescription();
+		// This is html escaped later
+		$desc = strip_tags( $this->getDescription() );
 		return "$wgSitename - $desc [$wgLanguageCode]";
 	}
 

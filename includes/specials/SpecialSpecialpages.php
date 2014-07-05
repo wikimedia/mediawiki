@@ -67,7 +67,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 				if ( !isset( $groups[$group] ) ) {
 					$groups[$group] = array();
 				}
-				$groups[$group][$page->getDescription()] = array(
+				$groups[$group][$page->getDescriptionHtml()] = array(
 					$page->getPageTitle(),
 					$page->isRestricted(),
 					$page->isCached()
@@ -129,7 +129,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 					$pageClasses[] = 'mw-specialpagerestricted';
 				}
 
-				$link = Linker::linkKnown( $title, htmlspecialchars( $desc ) );
+				$link = Linker::linkKnown( $title, $desc );
 				$out->addHTML( Html::rawElement(
 						'li',
 						array( 'class' => implode( ' ', $pageClasses ) ),
