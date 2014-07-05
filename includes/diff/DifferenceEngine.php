@@ -314,7 +314,7 @@ class DifferenceEngine extends ContextSource {
 						),
 						$this->msg( 'editundo' )->text()
 					);
-					$revisionTools[] = $undoLink;
+					$revisionTools[] = "<span class=\"mw-diff-undo\">{$undoLink}</span>";
 				}
 			}
 
@@ -1052,8 +1052,8 @@ class DifferenceEngine extends ContextSource {
 
 			$key = $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold';
 			$msg = $this->msg( $key )->escaped();
-			$header .= ' ' . $this->msg( 'parentheses' )->rawParams(
-				Linker::linkKnown( $title, $msg, array(), $editQuery ) )->plain();
+			$header .= ' <span class="mw-diff-edit">' . $this->msg( 'parentheses' )->rawParams(
+				Linker::linkKnown( $title, $msg, array(), $editQuery ) )->plain() . '</span>';
 			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$header = Html::rawElement(
 					'span',
