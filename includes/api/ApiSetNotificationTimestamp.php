@@ -146,6 +146,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 					array( 'wl_user' => $user->getID(), $lb->constructSet( 'wl', $dbw ) ),
 					__METHOD__
 				);
+				/** @var stdClass $row */
 				foreach ( $res as $row ) {
 					$timestamps[$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
 				}

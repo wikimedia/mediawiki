@@ -47,6 +47,11 @@ class ActiveUsersPager extends UsersPager {
 	protected $hideRights = array();
 
 	/**
+	 * @var array
+	 */
+	private $blockStatusByUid;
+
+	/**
 	 * @param IContextSource $context
 	 * @param null $group Unused
 	 * @param string $par Parameter passed to the page
@@ -122,6 +127,7 @@ class ActiveUsersPager extends UsersPager {
 
 	function doBatchLookups() {
 		$uids = array();
+		/** @var stdClass $row */
 		foreach ( $this->mResult as $row ) {
 			$uids[] = $row->user_id;
 		}
@@ -284,7 +290,7 @@ class SpecialActiveUsers extends SpecialPage {
 	}
 
 	/**
-	 * @param intr $period Seconds (do updates no more often than this)
+	 * @param int $period Seconds (do updates no more often than this)
 	 * @return int How many seconds old the cache is
 	 */
 	public static function mergeActiveUsers( $period ) {
@@ -367,6 +373,7 @@ class SpecialActiveUsers extends SpecialPage {
 			)
 		);
 		$names = array();
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			$names[$row->rc_user_text] = $row->lastedittime;
 		}

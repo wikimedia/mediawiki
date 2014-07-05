@@ -166,7 +166,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		if ( $wgContLang->linkPrefixExtension() ) {
 			$linkPrefixCharset = $wgContLang->linkPrefixCharset();
 			$data['linkprefixcharset'] = $linkPrefixCharset;
-			// For backwards compatability
+			// For backwards compatibility
 			$data['linkprefix'] = "/^((?>.*[^$linkPrefixCharset]|))(.+)$/sDu";
 		} else {
 			$data['linkprefixcharset'] = '';
