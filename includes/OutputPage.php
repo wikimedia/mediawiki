@@ -3109,16 +3109,13 @@ $templates
 	/**
 	 * Get an array containing the variables to be set in mw.config in JavaScript.
 	 *
-	 * DO NOT CALL THIS FROM OUTSIDE OF THIS CLASS OR Skin::makeGlobalVariablesScript().
-	 * This is only public until that function is removed. You have been warned.
-	 *
 	 * Do not add things here which can be evaluated in ResourceLoaderStartUpModule
 	 * - in other words, page-independent/site-wide variables (without state).
 	 * You will only be adding bloat to the html page and causing page caches to
 	 * have to be purged on configuration changes.
 	 * @return array
 	 */
-	public function getJSVars() {
+	private function getJSVars() {
 		global $wgContLang;
 
 		$curRevisionId = 0;
