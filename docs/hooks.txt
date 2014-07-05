@@ -1712,8 +1712,8 @@ $refreshLinks: RefreshLinks object
 'MagicWordwgVariableIDs': When defining new magic words IDs.
 $variableIDs: array of strings
 
-'MakeGlobalVariablesScript': Called right before Skin::makeVariablesScript is
-executed. Ideally, this hook should only be used to add variables that depend on
+'MakeGlobalVariablesScript': Called at end of OutputPage::getJSVars.
+Ideally, this hook should only be used to add variables that depend on
 the current page/request; static configuration should be added through
 ResourceLoaderGetConfigVars instead.
 &$vars: variable (or multiple variables) to be added into the output of

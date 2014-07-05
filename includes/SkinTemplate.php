@@ -1097,7 +1097,7 @@ class SkinTemplate extends Skin {
 					/**
 					 * The following actions use messages which, if made particular to
 					 * the any specific skins, would break the Ajax code which makes this
-					 * action happen entirely inline. Skin::makeGlobalVariablesScript
+					 * action happen entirely inline. OutputPage::getJSVars
 					 * defines a set of messages in a javascript object - and these
 					 * messages are assumed to be global for all skins. Without making
 					 * a change to that procedure these messages will have to remain as
