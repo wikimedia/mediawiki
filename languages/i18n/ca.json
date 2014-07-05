@@ -2055,7 +2055,7 @@
 	"move-page-legend": "Reanomena la pàgina",
 	"movepagetext": "Amb el formulari següent reanomenareu una pàgina, movent tot el seu historial al nou nom.\nEl títol anterior es convertirà en una pàgina de redirecció al nou títol.\nPodeu actualitzar automàticament les redireccions que apuntin al títol original.\nSi no ho feu, assegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].\nSerà de la vostra responsabilitat verificar que els enllaços segueixin apuntant cap a on se suposa que ho han de fer.\n\nTingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, tret que sigui una redirecció sense més historial.\nAixò significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.\n\n'''Atenció!'''\nAçò pot ser un canvi dràstic i inesperat en una pàgina que sigui popular; \nassegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
 	"movepagetext-noredirectfixer": "Amb el formulari següent podeu reanomenar una pàgina movent tot el seu historial al nom nou.\nEl títol anterior es convertirà en una pàgina de redirecció al nou títol. \nAssegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].\nÉs responsabilitat vostra assegurar que els enllaços continuen apuntant cap a on se suposa que han d'anar. \n\nTingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, tret que sigui una redirecció i no tingui més historial. \nAixò significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.\n \n'''Atenció!''' \nAixò pot ser un canvi dràstic i inesperat per una pàgina popular; \nassegureu-vos que sabeu el que feu abans de continuar.",
-	"movepagetalktext": "La pàgina de discussió associada també serà traslladada automàticament '''tret que''':\n* Ja existeix una pàgina de discussió no buida amb el nou nom, o\n* Desactiveu la opció de més avall.\n\nEn aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
+	"movepagetalktext": "La pàgina de discussió associada també serà traslladada automàticament '''tret que''':\n* Ja existeixi una pàgina de discussió no buida amb el nou nom, o\n* Desactiveu l'opció de més avall.\n\nEn aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
 	"movearticle": "Reanomena la pàgina",
 	"moveuserpage-warning": "'''Atenció:''' Esteu a punt de moure una pàgina d'usuari. Tingueu en compte que només la pàgina es desplaçarà i que el compte d'usuari ''no'' canviarà de nom.",
 	"movecategorypage-warning": "<strong>Avís:</strong> Esteu a punt de moure una pàgina de categoria. Tingueu en compte que només es moure la pàgina i qualsevol de les pàgines a l'antiga categoria <em>no</em> es recategoritzarà automàticament en la nova.",
@@ -2871,6 +2871,7 @@
 	"version-license": "Llicència del MediaWiki",
 	"version-ext-license": "Llicència",
 	"version-ext-colheader-name": "Extensió",
+	"version-skin-colheader-name": "Aparença",
 	"version-ext-colheader-version": "Versió",
 	"version-ext-colheader-license": "Llicència",
 	"version-ext-colheader-description": "Descripció",
@@ -3102,5 +3103,12 @@
 	"expand_templates_remove_nowiki": "Suprimeix l'etiqueta <nowiki> en el resultat",
 	"expand_templates_generate_xml": "Mostra l'arbre XML",
 	"expand_templates_generate_rawhtml": "Mostra l'HTML sense filtrar",
-	"expand_templates_preview": "Previsualitza"
+	"expand_templates_preview": "Previsualitza",
+	"pagelanguage": "Selector de l'idioma de les pàgines",
+	"pagelang-name": "Pàgina",
+	"pagelang-language": "Idioma",
+	"pagelang-use-default": "Utilitza l'idioma per defecte",
+	"pagelang-select-lang": "Selecciona un idioma",
+	"right-pagelang": "Canvia l'idioma de la pàgina",
+	"action-pagelang": "canvia l'idioma de la pàgina"
 }

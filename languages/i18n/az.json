@@ -994,6 +994,7 @@
 	"recentchanges-label-minor": "Bu kiçik redaktədir",
 	"recentchanges-label-bot": "Bu redaktə bot tərəfindən edilmişdir",
 	"recentchanges-label-unpatrolled": "Bu redaktə hələ nəzərdən keçirilməmişdir",
+	"recentchanges-label-plusminus": "Səhifənin ölçüsü bayt miqdarı ilə təyin edilir",
 	"recentchanges-legend-newpage": "$1 - yeni səhifə",
 	"rcnotefrom": "Aşağıda <strong>$2</strong>-dən bu yana olan dəyişikliklər göstərilib (<strong>$1</strong>-dən çox olmayaraq).",
 	"rclistfrom": "$3 $2 vaxtından başlayaraq yeni dəyişiklikləri göstər",
