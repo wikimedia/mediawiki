@@ -310,11 +310,11 @@ class DifferenceEngine extends ContextSource {
 								'undoafter' => $this->mOldid,
 								'undo' => $this->mNewid
 							) ),
-							'title' => Linker::titleAttrib( 'undo' )
+							'title' => Linker::titleAttrib( 'undo' ),
 						),
 						$this->msg( 'editundo' )->text()
 					);
-					$revisionTools[] = $undoLink;
+					$revisionTools['mw-diff-undo'] = $undoLink;
 				}
 			}
 
@@ -387,8 +387,14 @@ class DifferenceEngine extends ContextSource {
 		wfRunHooks( 'DiffRevisionTools', array( $this->mNewRev, &$revisionTools, $this->mOldRev ) );
 		$formattedRevisionTools = array();
 		// Put each one in parentheses (poor man's button)
-		foreach ( $revisionTools as $tool ) {
-			$formattedRevisionTools[] = $this->msg( 'parentheses' )->rawParams( $tool )->escaped();
+		foreach ( $revisionTools as $key => $tool ) {
+			$toolClass = is_string( $key ) ? $key : 'mw-diff-tool';
+			$element = Html::rawElement(
+				'span',
+				array( 'class' => $toolClass ),
+				$this->msg( 'parentheses' )->rawParams( $tool )->escaped()
+			);
+			$formattedRevisionTools[] = $element;
 		}
 		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) .
 			' ' . implode( ' ', $formattedRevisionTools );
@@ -1052,8 +1058,13 @@ class DifferenceEngine extends ContextSource {
 
 			$key = $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold';
 			$msg = $this->msg( $key )->escaped();
-			$header .= ' ' . $this->msg( 'parentheses' )->rawParams(
-				Linker::linkKnown( $title, $msg, array(), $editQuery ) )->plain();
+			$editLink = $this->msg( 'parentheses' )->rawParams(
+				Linker::linkKnown( $title, $msg, array( ), $editQuery ) )->plain();
+			$header .= ' ' . Html::rawElement(
+				'span',
+				array( 'class' => 'mw-diff-edit' ),
+				$editLink
+			);
 			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$header = Html::rawElement(
 					'span',
