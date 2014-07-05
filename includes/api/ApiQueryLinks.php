@@ -150,6 +150,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			$count = 0;
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
@@ -170,6 +171,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		} else {
 			$titles = array();
 			$count = 0;
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that

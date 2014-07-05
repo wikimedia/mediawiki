@@ -143,6 +143,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$count = 0;
 		$result = $this->getResult();
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are

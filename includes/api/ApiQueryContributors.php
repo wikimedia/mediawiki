@@ -87,6 +87,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', 'rev_page' );
 		$res = $this->select( __METHOD__ );
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			$fit = $result->addValue( array( 'query', 'pages', $row->page ),
 				'anoncontributors', $row->anons

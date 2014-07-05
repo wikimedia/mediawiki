@@ -274,6 +274,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$pageMap = array(); // Maps ns&title to (fake) pageid
 		$count = 0;
 		$newPageID = 0;
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
 				// We've had enough

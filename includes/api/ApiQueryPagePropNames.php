@@ -61,6 +61,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 
 		$result = $this->getResult();
 		$count = 0;
+		/** @var stdClass $row */
 		foreach ( $this->select( __METHOD__ ) as $row ) {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are

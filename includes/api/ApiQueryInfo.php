@@ -468,6 +468,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addWhereFld( 'pr_page', array_keys( $this->titles ) );
 
 			$res = $this->select( __METHOD__ );
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				/** @var $title Title */
 				$title = $this->titles[$row->pr_page];
@@ -629,6 +630,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addFields( array( 'page_title', 'page_namespace', 'page_id' ) );
 		$this->addWhere( $lb->constructSet( 'page', $db ) );
 		$res = $this->select( __METHOD__ );
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			if ( MWNamespace::isTalk( $row->page_namespace ) ) {
 				$this->talkids[MWNamespace::getSubject( $row->page_namespace )][$row->page_title] =
@@ -656,6 +658,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addWhereFld( 'pp_propname', 'displaytitle' );
 		$res = $this->select( __METHOD__ );
 
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			$this->displaytitles[$row->pp_page] = $row->pp_value;
 		}
@@ -691,6 +694,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$res = $this->select( __METHOD__ );
 
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			if ( $this->fld_watched ) {
 				$this->watched[$row->wl_namespace][$row->wl_title] = true;
@@ -736,6 +740,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$res = $this->select( __METHOD__ );
 
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			$this->watchers[$row->wl_namespace][$row->wl_title] = (int)$row->count;
 		}

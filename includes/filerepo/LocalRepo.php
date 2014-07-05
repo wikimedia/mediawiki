@@ -49,7 +49,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * @throws MWException
-	 * @param array $row
+	 * @param stdClass $row
 	 * @return LocalFile
 	 */
 	function newFileFromRow( $row ) {
@@ -91,7 +91,7 @@ class LocalRepo extends FileRepo {
 			$hashPath = $this->getDeletedHashPath( $key );
 			$path = "$root/$hashPath$key";
 			$dbw->begin( __METHOD__ );
-			// Check for usage in deleted/hidden files and pre-emptively
+			// Check for usage in deleted/hidden files and preemptively
 			// lock the key to avoid any future use until we are finished.
 			$deleted = $this->deletedFileHasKey( $key, 'lock' );
 			$hidden = $this->hiddenFileHasKey( $key, 'lock' );
@@ -167,7 +167,7 @@ class LocalRepo extends FileRepo {
 	 * Checks if there is a redirect named as $title
 	 *
 	 * @param Title $title Title of file
-	 * @return bool
+	 * @return bool|Title
 	 */
 	function checkRedirect( Title $title ) {
 		global $wgMemc;
@@ -281,6 +281,7 @@ class LocalRepo extends FileRepo {
 		{
 			global $wgContLang;
 			$info = $repo->getInfo();
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				$file = $repo->newFileFromRow( $row );
 				// There must have been a search for this DB key, but this has to handle the
@@ -383,6 +384,7 @@ class LocalRepo extends FileRepo {
 		);
 
 		$result = array();
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			$result[] = $this->newFileFromRow( $row );
 		}
@@ -415,6 +417,7 @@ class LocalRepo extends FileRepo {
 		);
 
 		$result = array();
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			$file = $this->newFileFromRow( $row );
 			$result[$file->getSha1()][] = $file;
@@ -446,6 +449,7 @@ class LocalRepo extends FileRepo {
 
 		// Build file objects
 		$files = array();
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			$files[] = $this->newFileFromRow( $row );
 		}

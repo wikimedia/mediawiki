@@ -404,6 +404,7 @@ class ApiPageSet extends ApiBase {
 	 */
 	public function getRedirectTitlesAsResult( $result = null ) {
 		$values = array();
+		/** @var Title $titleTo */
 		foreach ( $this->getRedirectTitles() as $titleStrFrom => $titleTo ) {
 			$r = array(
 				'from' => strval( $titleStrFrom ),
@@ -774,6 +775,7 @@ class ApiPageSet extends ApiBase {
 
 		$usernames = array();
 		if ( $res ) {
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				$pageId = intval( $row->page_id );
 
@@ -854,6 +856,7 @@ class ApiPageSet extends ApiBase {
 			// Get pageIDs data from the `page` table
 			$this->profileDBIn();
 			$res = $db->select( $tables, $fields, $where, __METHOD__ );
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				$revid = intval( $row->rev_id );
 				$pageid = intval( $row->rev_page );
@@ -931,9 +934,12 @@ class ApiPageSet extends ApiBase {
 			__METHOD__
 		);
 		$this->profileDBOut();
+		/** @var stdClass $row */
 		foreach ( $res as $row ) {
 			$rdfrom = intval( $row->rd_from );
-			$from = $this->mPendingRedirectIDs[$rdfrom]->getPrefixedText();
+			/** @var Title $rdFromTitle */
+			$rdFromTitle = $this->mPendingRedirectIDs[$rdfrom];
+			$from = $rdFromTitle->getPrefixedText();
 			$to = Title::makeTitle(
 				$row->rd_namespace,
 				$row->rd_title,
@@ -950,6 +956,7 @@ class ApiPageSet extends ApiBase {
 		if ( $this->mPendingRedirectIDs ) {
 			// We found pages that aren't in the redirect table
 			// Add them
+			/** @var Title $title */
 			foreach ( $this->mPendingRedirectIDs as $id => $title ) {
 				$page = WikiPage::factory( $title );
 				$rt = $page->insertRedirect();

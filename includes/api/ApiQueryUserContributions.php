@@ -90,6 +90,7 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		if ( $this->fld_sizediff ) {
 			$revIds = array();
+			/** @var stdClass $row */
 			foreach ( $res as $row ) {
 				if ( $row->rev_parent_id ) {
 					$revIds[] = $row->rev_parent_id;
