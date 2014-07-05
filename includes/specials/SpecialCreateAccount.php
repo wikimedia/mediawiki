@@ -43,7 +43,7 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 	}
 
 	public function isRestricted() {
-		return true;
+		return !User::groupHasPermission( '*', 'createaccount' );
 	}
 
 	public function userCanExecute( User $user ) {
