@@ -1579,6 +1579,7 @@
 	"license-nopreview": "Error message when a certain license does not exist",
 	"upload_source_url": "Used in [[Special:Upload]].\n\nSee also:\n* {{msg-mw|Sourcefilename|label}}\n* {{msg-mw|Sourceurl|label}}\n* {{msg-mw|Upload source file}}\n* {{msg-mw|Upload-maxfilesize}}",
 	"upload_source_file": "Used in [[Special:Upload]].\n\nSee also:\n* {{msg-mw|Sourcefilename|label}}\n* {{msg-mw|Sourceurl|label}}\n* {{msg-mw|Upload source url}}\n* {{msg-mw|Upload-maxfilesize}}",
+	"listfiles-delete": "Text of the delete links next to the entries on [[Special:ListFiles]]",
 	"listfiles-summary": "This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.",
 	"listfiles_search_for": "Input label for the form displayed on [[Special:ListFiles]].",
 	"imgfile": "{{Identical|File}}",
