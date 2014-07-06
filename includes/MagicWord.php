@@ -220,6 +220,7 @@ class MagicWord {
 	);
 
 	static public $mDoubleUnderscoreIDs = array(
+		'usedisplaytitle',
 		'notoc',
 		'nogallery',
 		'forcetoc',
