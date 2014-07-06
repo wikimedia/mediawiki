@@ -460,6 +460,19 @@ class ImageListPager extends TablePager {
 					);
 					$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();
 
+					// Add delete links if allowed
+					// From https://github.com/Wikia/app/pull/3859
+					if ( $filePage->userCan( 'delete', $this->getUser() ) ) {
+						$deleteMsg = $this->msg( 'listfiles-delete' )->escaped();
+
+						$delete = Linker::linkKnown(
+							$filePage, $deleteMsg, array(), array( 'action' => 'delete' )
+						);
+						$delete = $this->msg( 'parentheses' )->rawParams( $delete )->escaped();
+
+						return "$link $download $delete";
+					}
+
 					return "$link $download";
 				} else {
 					return htmlspecialchars( $value );
