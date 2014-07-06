@@ -191,7 +191,8 @@ class Linker {
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
-		$target, $html = null, $customAttribs = array(), $query = array(), $options = array()
+		$target, $html = null, $customAttribs = array(), $query = array(), $options = array(),
+		$useDisplayTitle = false
 	) {
 		wfProfileIn( __METHOD__ );
 		if ( !$target instanceof Title ) {
@@ -246,7 +247,7 @@ class Linker {
 			self::linkAttribs( $target, $customAttribs, $options )
 		);
 		if ( is_null( $html ) ) {
-			$html = self::linkText( $target );
+			$html = self::linkText( $target, $useDisplayTitle );
 		}
 
 		$ret = null;
@@ -379,7 +380,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	private static function linkText( $target ) {
+	private static function linkText( $target, $useDisplayTitle ) {
 		global $wgAlwaysUseDisplayTitle;
 		// We might be passed a non-Title by make*LinkObj().  Fail gracefully.
 		if ( !$target instanceof Title ) {
@@ -391,7 +392,7 @@ class Linker {
 		if ( $target->getPrefixedText() === '' && $target->hasFragment() ) {
 			return htmlspecialchars( $target->getFragment() );
 		}
-		if ( $wgAlwaysUseDisplayTitle ) {
+		if ( $wgAlwaysUseDisplayTitle || $useDisplayTitle ) {
 			// Note, this returns html, that we want to output without escaping.
 			return $target->getDisplayTitle();
 		} else {
@@ -1385,7 +1386,7 @@ class Linker {
 						. '<span dir="auto">' . $auto . $post . '</span>';
 				}
 				return $comment;
-        	},
+			},
 			$comment
 		);
 	}
@@ -1424,7 +1425,11 @@ class Linker {
 
 				# fix up urlencoded title texts (copied from Parser::replaceInternalLinks)
 				if ( strpos( $match[1], '%' ) !== false ) {
-					$match[1] = str_replace( array( '<', '>' ), array( '&lt;', '&gt;' ), rawurldecode( $match[1] ) );
+					$match[1] = str_replace(
+						array( '<', '>' ),
+						array( '&lt;', '&gt;' ),
+						rawurldecode( $match[1] )
+					);
 				}
 
 				# Handle link renaming [[foo|text]] will show link as "text"
