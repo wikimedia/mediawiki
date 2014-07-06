@@ -338,20 +338,12 @@ class ProtectionForm {
 	 * @return string HTML form
 	 */
 	function buildForm() {
-		global $wgUser, $wgLang, $wgOut;
-
-		$mProtectreasonother = Xml::label(
-			wfMessage( 'protectcomment' )->text(),
-			'wpProtectReasonSelection'
-		);
-		$mProtectreason = Xml::label(
-			wfMessage( 'protect-otherreason' )->text(),
-			'mwProtect-reason'
-		);
+		global $wgUser, $wgLang, $wgOut, $wgCascadingRestrictionLevels;
 
 		$out = '';
 		if ( !$this->disabled ) {
 			$wgOut->addModules( 'mediawiki.legacy.protect' );
+			$wgOut->addJsConfigVars( 'wgCascadeableLevels', $wgCascadingRestrictionLevels );
 			$out .= Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->mTitle->getLocalURL( 'action=protect' ),
 				'id' => 'mw-Protect-Form', 'onsubmit' => 'ProtectionForm.enableUnchainedInputs(true)' ) );
@@ -361,6 +353,9 @@ class ProtectionForm {
 			Xml::element( 'legend', null, wfMessage( 'protect-legend' )->text() ) .
 			Xml::openElement( 'table', array( 'id' => 'mwProtectSet' ) ) .
 			Xml::openElement( 'tbody' );
+
+		$scExpiryOptions = wfMessage( 'protect-expiry-options' )->inContentLanguage()->text();
+		$showProtectOptions = $scExpiryOptions !== '-' && !$this->disabled;
 
 		// Not all languages have V_x <-> N_x relation
 		foreach ( $this->mRestrictions as $action => $selected ) {
@@ -372,15 +367,6 @@ class ProtectionForm {
 			Xml::element( 'legend', null, $msg->exists() ? $msg->text() : $action ) .
 			Xml::openElement( 'table', array( 'id' => "mw-protect-table-$action" ) ) .
 				"<tr><td>" . $this->buildSelector( $action, $selected ) . "</td></tr><tr><td>";
-
-			$reasonDropDown = Xml::listDropDown( 'wpProtectReasonSelection',
-				wfMessage( 'protect-dropdown' )->inContentLanguage()->text(),
-				wfMessage( 'protect-otherreason-op' )->inContentLanguage()->text(),
-				$this->mReasonSelection,
-				'mwProtect-reason', 4 );
-			$scExpiryOptions = wfMessage( 'protect-expiry-options' )->inContentLanguage()->text();
-
-			$showProtectOptions = $scExpiryOptions !== '-' && !$this->disabled;
 
 			$mProtectexpiry = Xml::label(
 				wfMessage( 'protectexpiry' )->text(),
@@ -482,6 +468,22 @@ class ProtectionForm {
 
 		# Add manual and custom reason field/selects as well as submit
 		if ( !$this->disabled ) {
+			$mProtectreasonother = Xml::label(
+				wfMessage( 'protectcomment' )->text(),
+				'wpProtectReasonSelection'
+			);
+
+			$mProtectreason = Xml::label(
+				wfMessage( 'protect-otherreason' )->text(),
+				'mwProtect-reason'
+			);
+
+			$reasonDropDown = Xml::listDropDown( 'wpProtectReasonSelection',
+				wfMessage( 'protect-dropdown' )->inContentLanguage()->text(),
+				wfMessage( 'protect-otherreason-op' )->inContentLanguage()->text(),
+				$this->mReasonSelection,
+				'mwProtect-reason', 4 );
+
 			$out .= Xml::openElement( 'table', array( 'id' => 'mw-protect-table3' ) ) .
 				Xml::openElement( 'tbody' );
 			$out .= "
@@ -606,9 +608,6 @@ class ProtectionForm {
 	}
 
 	function buildCleanupScript() {
-		global $wgCascadingRestrictionLevels, $wgOut;
-
-		$cascadeableLevels = $wgCascadingRestrictionLevels;
 		$options = array(
 			'tableId' => 'mwProtectSet',
 			'labelText' => wfMessage( 'protect-unchain-permissions' )->plain(),
@@ -616,8 +615,8 @@ class ProtectionForm {
 			'existingMatch' => count( array_unique( $this->mExistingExpiry ) ) === 1,
 		);
 
-		$wgOut->addJsConfigVars( 'wgCascadeableLevels', $cascadeableLevels );
 		$script = Xml::encodeJsCall( 'ProtectionForm.init', array( $options ) );
+
 		return Html::inlineScript( ResourceLoader::makeLoaderConditionalScript( $script ) );
 	}
 
