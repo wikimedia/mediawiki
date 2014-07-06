@@ -72,6 +72,8 @@ class CategoryViewer extends ContextSource {
 	/** @var array The original query array, to be used in generating paging links. */
 	private $query;
 
+	private $mUseDisplayTitle;
+
 	/**
 	 * @since 1.19 $context is a second, required parameter
 	 * @param Title $title
@@ -107,6 +109,12 @@ class CategoryViewer extends ContextSource {
 
 		$this->showGallery = $wgCategoryMagicGallery && !$this->getOutput()->mNoGallery;
 
+		$wp = new WikiPage( $this->title );
+		$text = $wp->getContent()->getNativeData();
+		$useDisplayTitle = false;
+		if ( MagicWord::get( 'usedisplaytitle' )->match( $text ) ) {
+			$this->mUseDisplayTitle = true;
+		}
 		$this->clearCategoryState();
 		$this->doCategoryQuery();
 		$this->finaliseCategoryState();
@@ -253,7 +261,7 @@ class CategoryViewer extends ContextSource {
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
 
-		$link = Linker::link( $title );
+		$link = Linker::link( $title, null, array(), array(), array(), $this->mUseDisplayTitle );
 		if ( $isRedirect ) {
 			// This seems kind of pointless given 'mw-redirect' class,
 			// but keeping for back-compatibility with user css.

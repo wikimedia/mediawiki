@@ -328,6 +328,7 @@ $magicWords = array(
 	'uc'                      => array( 0,    'UC:' ),
 	'raw'                     => array( 0,    'RAW:' ),
 	'displaytitle'            => array( 1,    'DISPLAYTITLE' ),
+	'usedisplaytitle'         => array( 0,    '__USEDISPLAYTITLE__' ),
 	'rawsuffix'               => array( 1,    'R' ),
 	'nocommafysuffix'         => array( 0,    'NOSEP' ),
 	'newsectionlink'          => array( 1,    '__NEWSECTIONLINK__' ),
