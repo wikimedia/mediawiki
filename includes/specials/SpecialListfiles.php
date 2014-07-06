@@ -460,6 +460,20 @@ class ImageListPager extends TablePager {
 					);
 					$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();
 
+					// Add delete links if allowed
+					// From https://github.com/Wikia/app/pull/3859
+					if ( $this->getUser()->isAllowed( 'delete' ) ) {
+						// convert message to lower case to match existing file link
+						// do it like this so it works for non-english characters, such as accents, etc.
+						$deleteMsg = $this->msg( 'delete' )->escaped();
+						$deleteMsg = mb_strtolower( $deleteMsg, mb_detect_encoding( $deleteMsg ) );
+
+						$delete = Linker::linkKnown( $filePage, $deleteMsg, array( 'title' => false ), array( 'action' => 'delete' ) );
+						$delete = $this->msg( 'parentheses' )->rawParams( $delete )->escaped();
+
+						return "$link $download $delete";
+					}
+
 					return "$link $download";
 				} else {
 					return htmlspecialchars( $value );
