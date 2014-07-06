@@ -3031,10 +3031,12 @@
 	"expand_templates_generate_xml": "Weis d'Struktur vum XML",
 	"expand_templates_generate_rawhtml": "HTML-Format weisen",
 	"expand_templates_preview": "Kucken ouni ofzespäicheren",
+	"pagelanguage": "Eraussiche vun der Sprooch vun der Säit",
 	"pagelang-name": "Säit",
 	"pagelang-language": "Sprooch",
 	"pagelang-use-default": "Standard-Sprooch benotzen",
 	"pagelang-select-lang": "Sprooch eraussichen",
 	"right-pagelang": "Sprooch vun der Säit änneren",
-	"action-pagelang": "d'Sprooch vun der Säit änneren"
+	"action-pagelang": "d'Sprooch vun der Säit änneren",
+	"log-description-pagelang": "Dëst ass a Log mat den Ännerunge vun de Sprooche vun de Säiten."
 }
