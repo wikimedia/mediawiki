@@ -74,17 +74,39 @@ class WantedFilesPage extends WantedQueryPage {
 
 	function getQueryInfo() {
 		return array(
-			'tables' => array( 'imagelinks', 'image' ),
+			'tables' => array(
+				'imagelinks',
+				'page',
+				'redirect',
+				'img1' => 'image',
+				'img2' => 'image',
+			),
 			'fields' => array(
 				'namespace' => NS_FILE,
 				'title' => 'il_to',
 				'value' => 'COUNT(*)'
 			),
-			'conds' => array( 'img_name IS NULL' ),
+			'conds' => array(
+				'img1.img_name' => null,
+				// We also need to exclude file redirects
+				'img2.img_name' => null,
+			 ),
 			'options' => array( 'GROUP BY' => 'il_to' ),
-			'join_conds' => array( 'image' =>
-				array( 'LEFT JOIN',
-					array( 'il_to = img_name' )
+			'join_conds' => array(
+				'img1' => array( 'LEFT JOIN',
+					'il_to = img1.img_name'
+				),
+				'page' => array( 'LEFT JOIN', array(
+					'il_to = page_title',
+					'page_namespace' => NS_FILE,
+				) ),
+				'redirect' => array( 'LEFT JOIN', array(
+					'page_id = rd_from',
+					'rd_namespace' => NS_FILE,
+					'rd_interwiki' => ''
+				) ),
+				'img2' => array( 'LEFT JOIN',
+					'rd_title = img2.img_name'
 				)
 			)
 		);
