@@ -703,6 +703,7 @@ LUA;
 				$count += $released + $pruned + $undelayed;
 				JobQueue::incrStats( 'job-recycle', $this->type, $released, $this->wiki );
 				JobQueue::incrStats( 'job-abandon', $this->type, $abandoned, $this->wiki );
+				JobQueue::incrStats( 'job-undelay', $this->type, $undelayed, $this->wiki );
 			}
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
