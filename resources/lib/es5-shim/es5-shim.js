@@ -674,7 +674,7 @@ defineProperties(ArrayPrototype, {
 // ES5 15.4.4.14
 // http://es5.github.com/#x15.4.4.14
 // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
-var hasFirefox2IndexOfBug = [0, 1].indexOf(1, 2) !== -1;
+var hasFirefox2IndexOfBug = Array.prototype.indexOf && [0, 1].indexOf(1, 2) !== -1;
 defineProperties(ArrayPrototype, {
     indexOf: function indexOf(sought /*, fromIndex */ ) {
         var self = splitString && isString(this) ? this.split('') : toObject(this),
@@ -703,7 +703,7 @@ defineProperties(ArrayPrototype, {
 // ES5 15.4.4.15
 // http://es5.github.com/#x15.4.4.15
 // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/lastIndexOf
-var hasFirefox2LastIndexOfBug = [0, 1].lastIndexOf(0, -3) !== -1;
+var hasFirefox2LastIndexOfBug = Array.prototype.lastIndexOf && [0, 1].lastIndexOf(0, -3) !== -1;
 defineProperties(ArrayPrototype, {
     lastIndexOf: function lastIndexOf(sought /*, fromIndex */) {
         var self = splitString && isString(this) ? this.split('') : toObject(this),
@@ -1082,7 +1082,7 @@ if (!Date.now) {
 // http://es5.github.com/#x15.7.4.5
 var hasToFixedBugs = NumberPrototype.toFixed && (
   (0.00008).toFixed(3) !== '0.000'
-  || (0.9).toFixed(0) === '0'
+  || (0.9).toFixed(0) !== '1'
   || (1.255).toFixed(2) !== '1.25'
   || (1000000000000000128).toFixed(0) !== "1000000000000000128"
 );
