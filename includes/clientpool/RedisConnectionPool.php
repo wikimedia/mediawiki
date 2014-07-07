@@ -101,7 +101,7 @@ class RedisConnectionPool {
 			$options['connectTimeout'] = 1;
 		}
 		if ( !isset( $options['readTimeout'] ) ) {
-			$options['readTimeout'] = 31; // handles up to 30 second blocking commands
+			$options['readTimeout'] = 1;
 		}
 		if ( !isset( $options['persistent'] ) ) {
 			$options['persistent'] = false;
@@ -120,7 +120,7 @@ class RedisConnectionPool {
 	 *                      Optional, default is 1 second.
 	 *   - readTimeout    : The timeout for operation reads, in seconds.
 	 *                      Commands like BLPOP can fail if told to wait longer than this.
-	 *                      Optional, default is 60 seconds.
+	 *                      Optional, default is 1 second.
 	 *   - persistent     : Set this to true to allow connections to persist across
 	 *                      multiple web requests. False by default.
 	 *   - password       : The authentication password, will be sent to Redis in clear text.
@@ -343,6 +343,16 @@ class RedisConnectionPool {
 	}
 
 	/**
+	 * Adjust or reset the connection handle read timeout value
+	 *
+	 * @param Redis $conn
+	 * @param integer $timeout Optional
+	 */
+	public function resetTimeout( Redis $conn, $timeout = null ) {
+		$conn->setOption( Redis::OPT_READ_TIMEOUT, $timeout ?: $this->readTimeout );
+	}
+
+	/**
 	 * Make sure connections are closed for sanity
 	 */
 	function __destruct() {
@@ -401,16 +411,33 @@ class RedisConnRef {
 	public function __call( $name, $arguments ) {
 		$conn = $this->conn; // convenience
 
+		// Work around https://github.com/nicolasff/phpredis/issues/70
+		$lname = strtolower( $name );
+		if ( ( $lname === 'blpop' || $lname == 'brpop' )
+			&& is_array( $arguments[0] ) && isset( $arguments[1] )
+		) {
+			$this->pool->resetTimeout( $conn, $arguments[1] + 1 );
+		} elseif ( $lname === 'brpoplpush' && isset( $arguments[2] ) ) {
+			$this->pool->resetTimeout( $conn, $arguments[2] + 1 );
+		}
+
 		$conn->clearLastError();
-		$res = call_user_func_array( array( $conn, $name ), $arguments );
-		if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
-			$this->pool->reauthenticateConnection( $this->server, $conn );
-			$conn->clearLastError();
+		try {
 			$res = call_user_func_array( array( $conn, $name ), $arguments );
-			wfDebugLog( 'redis', "Used automatic re-authentication for method '$name'." );
+			if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
+				$this->pool->reauthenticateConnection( $this->server, $conn );
+				$conn->clearLastError();
+				$res = call_user_func_array( array( $conn, $name ), $arguments );
+				wfDebugLog( 'redis', "Used automatic re-authentication for method '$name'." );
+			}
+		} catch ( RedisException $e ) {
+			$this->pool->resetTimeout( $conn ); // restore
+			throw $e;
 		}
 
 		$this->lastError = $conn->getLastError() ?: $this->lastError;
+
+		$this->pool->resetTimeout( $conn ); // restore
 
 		return $res;
 	}
