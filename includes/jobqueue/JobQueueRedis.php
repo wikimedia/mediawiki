@@ -313,7 +313,7 @@ LUA;
 				} else {
 					$blob = $this->popAndDeleteBlob( $conn );
 				}
-				if ( $blob === false ) {
+				if ( !is_string( $blob ) ) {
 					break; // no jobs; nothing to do
 				}
 
