@@ -714,7 +714,7 @@ class SpecialSearch extends SpecialPage {
 						$thumb->toHtml( array( 'desc-link' => true ) ) .
 						'</td>' .
 						'<td style="vertical-align: top;">' .
-						"{$link} {$fileMatch}" .
+						"{$link} {$redirect} {$section} {$fileMatch}" .
 						$extract .
 						"<div class='mw-search-result-data'>{$score}{$desc} - {$date}{$related}</div>" .
 						'</td>' .
