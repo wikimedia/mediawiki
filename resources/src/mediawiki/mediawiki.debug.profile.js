@@ -71,7 +71,7 @@
 		 * @return DOMElement
 		 */
 		createSvgElement: document.createElementNS
-			? document.createElementNS.bind( document, 'http://www.w3.org/2000/svg' )
+			? $.proxy( document.createElementNS, document, 'http://www.w3.org/2000/svg' )
 			// throw a error for browsers which does not support document.createElementNS (IE<8)
 			: function () { throw new Error( 'document.createElementNS not supported' ); },
 
