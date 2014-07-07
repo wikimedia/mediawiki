@@ -83,9 +83,9 @@ class StubObject {
 	 * @param object $obj Object to check.
 	 * @return void
 	 */
-	static function unstub( $obj ) {
+	static function unstub( &$obj ) {
 		if ( $obj instanceof StubObject ) {
-			$obj->_unstub( 'unstub', 3 );
+			$obj = $obj->_unstub( 'unstub', 3 );
 		}
 	}
 
@@ -134,6 +134,7 @@ class StubObject {
 	 * @param string $name Name of the method called in this object.
 	 * @param int $level Level to go in the stack trace to get the function
 	 *   who called this function.
+	 * @return The unstubbed version of itself
 	 * @throws MWException
 	 */
 	function _unstub( $name = '_unstub', $level = 2 ) {
@@ -157,6 +158,7 @@ class StubObject {
 			$GLOBALS[$this->global] = $this->_newObject();
 			--$recursionLevel;
 			wfProfileOut( $fname );
+			return $GLOBALS[$this->global];
 		}
 	}
 }
