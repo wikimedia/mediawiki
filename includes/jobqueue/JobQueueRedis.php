@@ -313,7 +313,11 @@ LUA;
 				} else {
 					$blob = $this->popAndDeleteBlob( $conn );
 				}
-				if ( $blob === false ) {
+				if (
+						$blob === false // Zend
+						||
+						$blob === null  // HHVM until https://github.com/facebook/hhvm/pull/3127/ is fixed
+						) {
 					break; // no jobs; nothing to do
 				}
 
