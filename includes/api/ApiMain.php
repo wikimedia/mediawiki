@@ -699,21 +699,20 @@ class ApiMain extends ApiBase {
 		$warnings = isset( $oldResult['warnings'] ) ? $oldResult['warnings'] : null;
 
 		$result->reset();
-		$result->disableSizeCheck();
 		// Re-add the id
 		$requestid = $this->getParameter( 'requestid' );
 		if ( !is_null( $requestid ) ) {
-			$result->addValue( null, 'requestid', $requestid );
+			$result->addValue( null, 'requestid', $requestid, ApiResult::NO_SIZE_CHECK );
 		}
 		if ( $config->get( 'ShowHostnames' ) ) {
 			// servedby is especially useful when debugging errors
-			$result->addValue( null, 'servedby', wfHostName() );
+			$result->addValue( null, 'servedby', wfHostName(), ApiResult::NO_SIZE_CHECK );
 		}
 		if ( $warnings !== null ) {
-			$result->addValue( null, 'warnings', $warnings );
+			$result->addValue( null, 'warnings', $warnings, ApiResult::NO_SIZE_CHECK );
 		}
 
-		$result->addValue( null, 'error', $errMessage );
+		$result->addValue( null, 'error', $errMessage, ApiResult::NO_SIZE_CHECK );
 
 		return $errMessage['code'];
 	}
