@@ -101,6 +101,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			$lang = null;
 		} else {
 			$lang = $data['language'];
+<<<<<<< HEAD
 		}
 
 		$page = $data['pagename'];
@@ -108,6 +109,19 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$this->redirectTitle = $title;
 		$result = PageLanguage::changeLanguage( $title, $lang, $this->getUser() );
 		return $result;
+=======
+		}
+
+		$page = $data['pagename'];
+		$title = Title::newFromText( $page );
+		$result = PageLanguage::changeLanguage( $title, $lang, $this->getUser() );
+
+		if ( $result->isOk() ) {
+			$this->redirectTitle = $title;
+			return true;
+		}
+		return $result->getValue();
+>>>>>>> Backend method for Special:PageLanguage, purge on language change
 	}
 
 	public function onSuccess() {
