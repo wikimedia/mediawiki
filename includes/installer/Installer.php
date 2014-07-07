@@ -38,9 +38,6 @@
  */
 abstract class Installer {
 
-	// This is the absolute minimum PHP version we can support
-	const MINIMUM_PHP_VERSION = '5.3.2';
-
 	/**
 	 * The oldest version of PCRE we can support.
 	 *
@@ -429,25 +426,13 @@ abstract class Installer {
 	 * @return Status
 	 */
 	public function doEnvironmentChecks() {
-		$phpVersion = phpversion();
-		if ( version_compare( $phpVersion, self::MINIMUM_PHP_VERSION, '>=' ) ) {
-			$this->showMessage( 'config-env-php', $phpVersion );
-			$good = true;
-		} else {
-			$this->showMessage( 'config-env-php-toolow', $phpVersion, self::MINIMUM_PHP_VERSION );
-			$good = false;
-		}
-
+		$good = true;
 		// Must go here because an old version of PCRE can prevent other checks from completing
-		if ( $good ) {
-			list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
-			if ( version_compare( $pcreVersion, self::MINIMUM_PCRE_VERSION, '<' ) ) {
-				$this->showError( 'config-pcre-old', self::MINIMUM_PCRE_VERSION, $pcreVersion );
-				$good = false;
-			}
-		}
-
-		if ( $good ) {
+		list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
+		if ( version_compare( $pcreVersion, self::MINIMUM_PCRE_VERSION, '<' ) ) {
+			$this->showError( 'config-pcre-old', self::MINIMUM_PCRE_VERSION, $pcreVersion );
+			$good = false;
+		} else {
 			foreach ( $this->envChecks as $check ) {
 				$status = $this->$check();
 				if ( $status === false ) {
