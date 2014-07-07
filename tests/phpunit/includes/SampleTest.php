@@ -16,6 +16,7 @@ class TestSample extends MediaWikiLangTestCase {
 		$this->setMwGlobals( array(
 			'wgContLang' => Language::factory( 'en' ),
 			'wgLanguageCode' => 'en',
+			'wgCapitalLinks' => true,
 		) );
 	}
 

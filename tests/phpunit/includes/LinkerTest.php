@@ -94,6 +94,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'wgScript' => '/wiki/index.php',
 			'wgArticlePath' => '/wiki/$1',
 			'wgWellFormedXml' => true,
+			'wgCapitalLinks' => true,
 		) );
 
 		if ( $title === false ) {

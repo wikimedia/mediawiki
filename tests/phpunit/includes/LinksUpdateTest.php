@@ -186,6 +186,10 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	 * @covers ParserOutput::addLanguageLink
 	 */
 	public function testUpdate_langlinks() {
+		$this->setMwGlobals( array(
+			'wgCapitalLinks' => true,
+		) );
+
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 

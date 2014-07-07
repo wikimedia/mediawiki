@@ -31,6 +31,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 			),
 			'wgUseTidy' => false,
 			'wgAlwaysUseTidy' => false,
+			'wgCapitalLinks' => true,
 		) );
 
 		// bypass hooks that force custom rendering

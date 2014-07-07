@@ -40,6 +40,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
 			'wgLocalInterwikis' => array( 'localtestiw' ),
+			'wgCapitalLinks' => true,
 
 			// NOTE: this is why global state is evil.
 			// TODO: refactor access to the interwiki codes so it can be injected.

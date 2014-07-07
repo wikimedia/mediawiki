@@ -32,6 +32,10 @@
 class MediaWikiSiteTest extends SiteTest {
 
 	public function testNormalizePageTitle() {
+		$this->setMwGlobals( array(
+			'wgCapitalLinks' => true,
+		) );
+
 		$site = new MediaWikiSite();
 		$site->setGlobalId( 'enwiki' );
 

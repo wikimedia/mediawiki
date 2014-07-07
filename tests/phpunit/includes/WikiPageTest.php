@@ -499,6 +499,10 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::getRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $model, $text, $target ) {
+		$this->setMwGlobals( array(
+			'wgCapitalLinks' => true,
+		) );
+
 		$page = $this->createPage( $title, $text, $model );
 
 		# sanity check, because this test seems to fail for no reason for some people.
