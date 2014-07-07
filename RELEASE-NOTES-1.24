@@ -239,6 +239,7 @@ changes to languages because of Bugzilla reports.
 * Removed WikiPage::isBigDeletion(). (deprecated since 1.19)
 * Removed MWInit class which contained functions related to a now discontinued
   PHP compiler called hphpc. (deprecated since 1.22)
+* ApiResult::enableSizeCheck() and disableSizeCheck() are now obsolete.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

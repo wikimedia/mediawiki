@@ -362,10 +362,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 		// Disable size checking for this because we can't continue
 		// cleanly; size checking would cause more problems than it'd
 		// solve
-		$result->disableSizeCheck();
-		$result->addValue( null, '_feed', $feed );
-		$result->addValue( null, '_feeditems', $feedItems );
-		$result->enableSizeCheck();
+		$result->addValue( null, '_feed', $feed, ApiResult::NO_SIZE_CHECK );
+		$result->addValue( null, '_feeditems', $feedItems, ApiResult::NO_SIZE_CHECK );
 	}
 
 	/**
