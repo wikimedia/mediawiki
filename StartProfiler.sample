@@ -2,13 +2,22 @@
 
 /**
  * To use a profiler, copy this file to StartProfiler.php,
- * and add something like this:
+ * and add either:
  *
- *   $wgProfiler['class'] = 'Profiler';
+ *   // Does not support the debugging toolbar
+ *   // Stores profiling information in the database
+ *   // Requires running maintenance/archives/patch-profiling.sql
+ *   $wgProfiler['class'] = 'ProfilerSimpleDB'
+ *
+ * or:
+ *
+ *   // Supports the debugging toolbar
+ *   // Does not store profiling information in the database
+ *   $wgProfiler['class'] = 'ProfilerStandard';
  *
  * Or for a sampling profiler:
  *   if ( !mt_rand( 0, 100 ) ) {
- *       $wgProfiler['class'] = 'Profiler';
+ *       $wgProfiler['class'] = 'ProfilerSimpleDB';
  *   } else {
  *       $wgProfiler['class'] = 'ProfilerStub';
  *   }
