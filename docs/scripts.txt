@@ -40,7 +40,7 @@ Primary scripts:
 
     To enable the profileinfo.php itself, you'll need to set $wgDBadminuser
     and $wgDBadminpassword in your LocalSettings.php, as well as $wgEnableProfileInfo 
-    See also https://www.mediawiki.org/wiki/How_to_debug#Profiling.
+    See also https://www.mediawiki.org/wiki/Manual:Profiling .
 
   thumb.php
     Script used to resize images if it is configured to be done when the web
