@@ -485,18 +485,16 @@ class ApiQuery extends ApiBase {
 		// Don't check the size of exported stuff
 		// It's not continuable, so it would cause more
 		// problems than it'd solve
-		$result->disableSizeCheck();
 		if ( $this->mParams['exportnowrap'] ) {
 			$result->reset();
 			// Raw formatter will handle this
-			$result->addValue( null, 'text', $exportxml );
-			$result->addValue( null, 'mime', 'text/xml' );
+			$result->addValue( null, 'text', $exportxml, ApiResult::NO_SIZE_CHECK );
+			$result->addValue( null, 'mime', 'text/xml', ApiResult::NO_SIZE_CHECK );
 		} else {
 			$r = array();
 			ApiResult::setContent( $r, $exportxml );
-			$result->addValue( 'query', 'export', $r );
+			$result->addValue( 'query', 'export', $r, ApiResult::NO_SIZE_CHECK );
 		}
-		$result->enableSizeCheck();
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
