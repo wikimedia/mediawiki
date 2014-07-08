@@ -2083,6 +2083,7 @@
 	"unblocked": "[[User:$1|$1]] has been unblocked.",
 	"unblocked-range": "$1 has been unblocked.",
 	"unblocked-id": "Block $1 has been removed.",
+	"unblocked-ip": "[[Special:Contributions/$1|$1]] has been unblocked.",
 	"blocklist": "Blocked users",
 	"ipblocklist": "Blocked users",
 	"ipblocklist-legend": "Find a blocked user",

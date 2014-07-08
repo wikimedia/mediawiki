@@ -63,8 +63,10 @@ class SpecialUnblock extends SpecialPage {
 
 		if ( $form->show() ) {
 			switch ( $this->type ) {
-				case Block::TYPE_USER:
 				case Block::TYPE_IP:
+					$out->addWikiMsg( 'unblocked-ip', wfEscapeWikiText( $this->target ) );
+					break;
+				case Block::TYPE_USER:
 					$out->addWikiMsg( 'unblocked', wfEscapeWikiText( $this->target ) );
 					break;
 				case Block::TYPE_RANGE:
@@ -111,8 +113,14 @@ class SpecialUnblock extends SpecialPage {
 				$fields['Target']['default'] = $target;
 				$fields['Target']['type'] = 'hidden';
 				switch ( $type ) {
-					case Block::TYPE_USER:
 					case Block::TYPE_IP:
+						$fields['Name']['default'] = Linker::linkKnown(
+							SpecialPage::getTitleFor( 'Contributions', $target->getName() ),
+							$target->getName()
+						);
+						$fields['Name']['raw'] = true;
+						break;
+					case Block::TYPE_USER:
 						$fields['Name']['default'] = Linker::link(
 							$target->getUserPage(),
 							$target->getName()
