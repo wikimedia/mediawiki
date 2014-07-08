@@ -32,6 +32,8 @@ class UploadFromChunks extends UploadFromFile {
 	protected $mChunkIndex;
 	protected $mFileKey;
 	protected $mVirtualTempPath;
+	/** @var LocalRepo */
+	private $repo;
 
 	/**
 	 * Setup local pointers to stash, repo and user (similar to UploadFromStash)

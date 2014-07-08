@@ -171,6 +171,7 @@ abstract class UploadBase {
 			return null;
 		}
 
+		/** @var UploadBase $handler */
 		$handler = new $className;
 
 		$handler->initializeFromRequest( $request );
@@ -881,7 +882,7 @@ abstract class UploadBase {
 	/**
 	 * Return the local file and initializes if necessary.
 	 *
-	 * @return LocalFile|null
+	 * @return LocalFile|UploadStashFile|null
 	 */
 	public function getLocalFile() {
 		if ( is_null( $this->mLocalFile ) ) {
@@ -1883,7 +1884,7 @@ abstract class UploadBase {
 	 * Get the current status of a chunked upload (used for polling).
 	 * The status will be read from the *current* user session.
 	 * @param string $statusKey
-	 * @return array|bool
+	 * @return Status[]|bool
 	 */
 	public static function getSessionStatus( $statusKey ) {
 		return isset( $_SESSION[self::SESSION_STATUS_KEY][$statusKey] )

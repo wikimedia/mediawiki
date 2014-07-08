@@ -221,7 +221,7 @@ class RepoGroup {
 	/**
 	 * Interface for FileRepo::checkRedirect()
 	 * @param Title $title
-	 * @return bool
+	 * @return bool|Title
 	 */
 	function checkRedirect( Title $title ) {
 		if ( !$this->reposInitialised ) {
@@ -273,7 +273,7 @@ class RepoGroup {
 	 * Find all instances of files with this key
 	 *
 	 * @param string $hash base 36 SHA-1 hash
-	 * @return array Array of File objects
+	 * @return File[]
 	 */
 	function findBySha1( $hash ) {
 		if ( !$this->reposInitialised ) {
