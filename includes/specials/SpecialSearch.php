@@ -960,10 +960,10 @@ class SpecialSearch extends SpecialPage {
 			Xml::element( 'legend', null, $this->msg( 'powersearch-legend' )->text() ) .
 			Xml::tags( 'h4', null, $this->msg( 'powersearch-ns' )->parse() ) .
 			Html::element( 'div', array( 'id' => 'mw-search-togglebox' ) ) .
-			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
-			implode( Xml::element( 'div', array( 'class' => 'divider' ), '', false ), $showSections ) .
+			Html::element( 'div', array( 'class' => 'divider' ) ) .
+			implode( Html::element( 'div', array( 'class' => 'divider' ) ), $showSections ) .
 			$hidden .
-			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
+			Html::element( 'div', array( 'class' => 'divider' ) ) .
 			$remember .
 			Xml::closeElement( 'fieldset' );
 	}
@@ -1056,7 +1056,7 @@ class SpecialSearch extends SpecialPage {
 		}
 		$out .= Xml::closeElement( 'ul' );
 		$out .= Xml::closeElement( 'div' );
-		$out .= Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
+		$out .= Html::element( 'div', array( 'style' => 'clear:both' ) );
 		$out .= Xml::closeElement( 'div' );
 
 		// Hidden stuff
@@ -1102,7 +1102,7 @@ class SpecialSearch extends SpecialPage {
 				->numParams( $resultsShown )
 				->parse();
 			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ), $top ) .
-				Xml::element( 'div', array( 'style' => 'clear:both' ) );
+				Html::element( 'div', array( 'style' => 'clear:both' ) );
 		}
 
 		return $out . $this->didYouMeanHtml;
