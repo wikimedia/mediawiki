@@ -192,11 +192,11 @@ class Linker {
 	public static function link(
 		$target, $html = null, $customAttribs = array(), $query = array(), $options = array()
 	) {
-		wfProfileIn( __METHOD__ );
 		if ( !$target instanceof Title ) {
-			wfProfileOut( __METHOD__ );
+			wfWarn( __METHOD__ . ': Requires $target to be a Title object.' );
 			return "<!-- ERROR -->$html";
 		}
+		wfProfileIn( __METHOD__ );
 
 		if ( is_string( $query ) ) {
 			// some functions withing core using this still hand over query strings
@@ -380,11 +380,10 @@ class Linker {
 	 * @return string
 	 */
 	private static function linkText( $target ) {
-		// We might be passed a non-Title by make*LinkObj().  Fail gracefully.
 		if ( !$target instanceof Title ) {
+			wfWarn( __METHOD__ . ': Requires $target to be a Title object.' );
 			return '';
 		}
-
 		// If the target is just a fragment, with no title, we return the fragment
 		// text.  Otherwise, we return the title text itself.
 		if ( $target->getPrefixedText() === '' && $target->hasFragment() ) {
@@ -544,7 +543,7 @@ class Linker {
 	 * @since 1.20
 	 * @return string HTML for an image, with links, wrappers, etc.
 	 */
-	public static function makeImageLink( /*Parser*/ $parser, Title $title,
+	public static function makeImageLink( Parser $parser, Title $title,
 		$file, $frameParams = array(), $handlerParams = array(), $time = false,
 		$query = "", $widthOption = null
 	) {
@@ -637,13 +636,7 @@ class Linker {
 			# If a thumbnail width has not been provided, it is set
 			# to the default user option as specified in Language*.php
 			if ( $fp['align'] == '' ) {
-				if ( $parser instanceof Parser ) {
-					$fp['align'] = $parser->getTargetLanguage()->alignEnd();
-				} else {
-					# backwards compatibility, remove with makeImageLink2()
-					global $wgContLang;
-					$fp['align'] = $wgContLang->alignEnd();
-				}
+				$fp['align'] = $parser->getTargetLanguage()->alignEnd();
 			}
 			return $prefix . self::makeThumbLink2( $title, $file, $fp, $hp, $time, $query ) . $postfix;
 		}
@@ -932,10 +925,12 @@ class Linker {
 	public static function makeBrokenImageLinkObj( $title, $label = '',
 		$query = '', $unused1 = '', $unused2 = '', $time = false
 	) {
-		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
 		if ( !$title instanceof Title ) {
+			wfWarn( __METHOD__ . ': Requires $title to be a Title object.' );
 			return "<!-- ERROR -->" . htmlspecialchars( $label );
 		}
+
+		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
 		wfProfileIn( __METHOD__ );
 		if ( $label == '' ) {
 			$label = $title->getPrefixedText();
