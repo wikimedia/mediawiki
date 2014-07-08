@@ -173,7 +173,12 @@ class SqlSearchResultSet extends SearchResultSet {
 	}
 
 	function getTotalHits() {
-		return $this->totalHits;
+		if ( !is_null( $this->totalHits ) {
+			return $this->totalHits;
+		} else {
+			// Special:Search expects a number here.
+			return $this->numRows();
+		}
 	}
 }
 
