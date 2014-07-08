@@ -209,6 +209,32 @@
 		},
 
 		/**
+		 * Unsets one or multiple key/value pairs, removing it from the map.
+		 *
+		 * @since 1.25
+		 * @param {string|Array} selection String key or array of keys to unset values for.
+		 * @return {boolean} This returns true on success, false on failure.
+		 */
+		unset: function ( selection ) {
+			var i;
+
+			if ( $.isArray( selection ) ) {
+				selection = slice.call( selection );
+				for ( i = 0; i < selection.length; i++ ) {
+					delete this.values[selection[i]];
+				}
+				return true;
+			}
+
+			if ( typeof selection === 'string' ) {
+				delete this.values[selection];
+				return true;
+			}
+
+			return false;
+		},
+
+		/**
 		 * Checks if one or multiple keys exist.
 		 *
 		 * @param {Mixed} selection String key or array of keys to check

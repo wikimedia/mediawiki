@@ -55,7 +55,7 @@
 		this.restoreWarnings();
 	} );
 
-	QUnit.test( 'mw.Map', 34, function ( assert ) {
+	QUnit.test( 'mw.Map', 37, function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
 		conf = new mw.Map();
@@ -96,6 +96,10 @@
 		assert.strictEqual( conf.get( funky ), null, 'Map.get ruturns null if selection was invalid (Function)' );
 		assert.strictEqual( conf.get( nummy ), null, 'Map.get ruturns null if selection was invalid (Number)' );
 
+		conf.set( 'unsetA', 'A' );
+		conf.unset( 'unsetA' );
+		assert.strictEqual( conf.get( 'unsetA', true ), true, 'Map.unset supports string argument' );
+
 		conf.set( String( nummy ), 'I used to be a number' );
 
 		assert.strictEqual( conf.exists( 'doesNotExist' ), false, 'Map.exists where property does not exist' );
@@ -120,6 +124,12 @@
 			'foo': 'bar',
 			'notExist': null
 		}, 'Map.get return includes keys that were not found as null values' );
+
+		conf.set( 'unsetB', 'B' );
+		conf.set( 'unsetC', 'C' );
+		conf.unset( ['unsetB', 'unsetC'] );
+		assert.strictEqual( conf.get( 'unsetB', true ), true, 'Map.unset supports array argument' );
+		assert.strictEqual( conf.get( 'unsetC', true ), true, 'Map.unset supports array argument' );
 
 		// Interacting with globals and accessing the values object
 		assert.strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );

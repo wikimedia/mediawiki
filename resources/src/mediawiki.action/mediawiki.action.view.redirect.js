@@ -12,7 +12,7 @@
 		shouldChangeFragment, index;
 
 	// Clear internal mw.config entries, so that no one tries to depend on them
-	mw.config.set( 'wgInternalRedirectTargetUrl', null );
+	mw.config.unset( 'wgInternalRedirectTargetUrl' );
 
 	index = canonical.indexOf( '#' );
 	if ( index !== -1 ) {
