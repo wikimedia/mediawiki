@@ -126,12 +126,8 @@ class DerivativeContext extends ContextSource {
 	 * Set the Title object
 	 *
 	 * @param Title $t
-	 * @throws MWException
 	 */
-	public function setTitle( $t ) {
-		if ( $t !== null && !$t instanceof Title ) {
-			throw new MWException( __METHOD__ . " expects an instance of Title" );
-		}
+	public function setTitle( Title $t ) {
 		$this->title = $t;
 	}
 
