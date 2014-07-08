@@ -893,9 +893,7 @@ class SpecialSearch extends SpecialPage {
 			}
 
 			$rows[$subject] .=
-				Xml::openElement(
-					'td', array( 'style' => 'white-space: nowrap' )
-				) .
+				Xml::openElement( 'td' ) .
 				Xml::checkLabel(
 					$name,
 					"ns{$namespace}",
