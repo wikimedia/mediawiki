@@ -47,6 +47,11 @@ class ActiveUsersPager extends UsersPager {
 	protected $hideRights = array();
 
 	/**
+	 * @var array
+	 */
+	private $blockStatusByUid;
+
+	/**
 	 * @param IContextSource $context
 	 * @param null $group Unused
 	 * @param string $par Parameter passed to the page
