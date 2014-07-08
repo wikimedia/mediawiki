@@ -461,7 +461,7 @@ class ApiResult extends ApiBase {
 	 *
 	 * @since 1.24
 	 * @param string|null $continue The "continue" parameter, if any
-	 * @param array $allModules Contains ApiBase instances that will be executed
+	 * @param ApiBase[] $allModules Contains ApiBase instances that will be executed
 	 * @param array $generatedModules Names of modules that depend on the generator
 	 * @return array Two elements: a boolean indicating if the generator is done,
 	 *   and an array of modules to actually execute.

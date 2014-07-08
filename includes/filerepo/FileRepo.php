@@ -1014,6 +1014,7 @@ class FileRepo {
 			} elseif ( is_array( $triple[2] ) && isset( $triple[2]['headers'] ) ) {
 				$headers = $triple[2]['headers'];
 			}
+			// @fixme: $headers might not be defined
 			$operations[] = array(
 				'op' => FileBackend::isStoragePath( $src ) ? 'copy' : 'store',
 				'src' => $src,
