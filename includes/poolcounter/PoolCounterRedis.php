@@ -154,8 +154,12 @@ class PoolCounterRedis extends PoolCounter {
 		if rSlot ~= 'w' and redis.call('exists',kSlotsNextRelease) == 1 then
 			if 1*redis.call('zScore',kSlotsNextRelease,rSlot) ~= (rSlotTime + rExpiry) then
 				-- Slot lock expired and was released already
-			elseif redis.call('lLen',kSlots) >= (1*rMaxWorkers - 1) then
-				-- Clear list to save space; it will re-init as needed
+			elseif redis.call('lLen',kSlots) >= 1*rMaxWorkers then
+				-- Slots somehow got out of sync; reset the list for sanity
+				redis.call('del',kSlots,kSlotsNextRelease)
+			elseif redis.call('lLen',kSlots) == (1*rMaxWorkers - 1) and redis.call('zCard',kWaiting) == 0 then
+				-- Slot list will be made full; clear it to save space (it re-inits as needed)
+				-- since nothing is waiting on being unblocked by a push to the list
 				redis.call('del',kSlots,kSlotsNextRelease)
 			else
 				-- Add slot back to pool and update the "next release" time
