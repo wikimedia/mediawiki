@@ -197,7 +197,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$hasInterwikiResults = false;
 		if ( $interwiki && $resultPageSet === null && $matches->hasInterwikiResults() ) {
 			$matches = $matches->getInterwikiResults();
-			$iwprefixes = array();
 			$hasInterwikiResults = true;
 
 			// Include number of results if requested
