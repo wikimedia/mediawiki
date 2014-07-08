@@ -909,6 +909,13 @@ class XmlSelect {
 	}
 
 	/**
+	 * @param array $attrs
+	 */
+	public function addAttributes( array $attrs ) {
+		$this->attributes += $attrs;
+	}
+
+	/**
 	 * @param string $name
 	 * @return array|null
 	 */

@@ -28,10 +28,7 @@ class HTMLSelectField extends HTMLFormField {
 		}
 
 		$allowedParams = array( 'tabindex', 'size' );
-		$customParams = $this->getAttributes( $allowedParams );
-		foreach ( $customParams as $name => $value ) {
-			$select->setAttribute( $name, $value );
-		}
+		$select->addAttributes( $this->getAttributes( $allowedParams ) );
 
 		if ( $this->mClass !== '' ) {
 			$select->setAttribute( 'class', $this->mClass );
