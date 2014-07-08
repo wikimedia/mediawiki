@@ -164,7 +164,7 @@ class SearchSqlite extends SearchDatabase {
 	}
 
 	protected function searchInternal( $term, $fulltext ) {
-		global $wgCountTotalSearchHits, $wgContLang;
+		global $wgContLang;
 
 		if ( !$this->fulltextSearchSupported() ) {
 			return null;
@@ -174,14 +174,12 @@ class SearchSqlite extends SearchDatabase {
 		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, $fulltext ) );
 
 		$total = null;
-		if ( $wgCountTotalSearchHits ) {
-			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
-			$row = $totalResult->fetchObject();
-			if ( $row ) {
-				$total = intval( $row->c );
-			}
-			$totalResult->free();
+		$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
+		$row = $totalResult->fetchObject();
+		if ( $row ) {
+			$total = intval( $row->c );
 		}
+		$totalResult->free();
 
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
