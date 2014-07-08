@@ -7,7 +7,8 @@
 			"Mega programmer",
 			"Sasan700",
 			"Умар",
-			"아라"
+			"아라",
+			"Kaganer"
 		]
 	},
 	"tog-underline": "КӀел сиз хьакха хьажорган:",
@@ -2107,7 +2108,7 @@
 	"ago": "$1 хьалха",
 	"just-now": "хӀинца",
 	"hours-ago": "$1 сахьт хьалха",
-	"minutes-ago": "$1 минут хьалха",
+	"minutes-ago": "$1 {{PLURAL:$1|минут}} хьалха",
 	"seconds-ago": "$1 {{PLURAL:$1|секунд}} хьалха",
 	"monday-at": "оршотан дийнахь $1",
 	"tuesday-at": "шинара дийнахь $1",

@@ -2868,7 +2868,7 @@
 	"duplicate-defaultsort": "Aviso: A chave de ordenação padrão \"$2\" sobrepõe-se à anterior chave de ordenação padrão \"$1\".",
 	"version": "Versão",
 	"version-extensions": "Extensões instaladas",
-	"version-skins": "Temas",
+	"version-skins": "Temas instalados",
 	"version-specialpages": "Páginas especiais",
 	"version-parserhooks": "Hooks do analisador (parser)",
 	"version-variables": "Variáveis",
@@ -3113,5 +3113,9 @@
 	"expand_templates_remove_nowiki": "Suprima marcações <nowiki> no resultado",
 	"expand_templates_generate_xml": "Mostrar árvore de análise (parse) do XML",
 	"expand_templates_generate_rawhtml": "Mostrar HTML puro",
-	"expand_templates_preview": "Pré-visualização"
+	"expand_templates_preview": "Pré-visualização",
+	"pagelang-select-lang": "Selecionar idioma",
+	"right-pagelang": "Mudar idioma da página",
+	"action-pagelang": "mudar idioma da página",
+	"log-name-pagelang": "Mudar idioma do log"
 }
