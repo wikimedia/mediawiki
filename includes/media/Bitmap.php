@@ -354,7 +354,17 @@ class BitmapHandler extends ImageHandler {
 				}
 			}
 		} elseif ( $params['mimeType'] == 'image/x-xcf' ) {
-			$animation_post = array( '-layers', 'merge' );
+			// Before merging layers, we need to set the background
+			// to be transparent to preserve alpha, as -layers merge
+			// merges all layers on to a canvas filled with the
+			// background colour. After merging we reset the background
+			// to be white for the default background colour setting
+			// in the PNG image (which is used in old IE)
+			$animation_post = array(
+				'-background', 'transparent',
+				'-layers', 'merge',
+				'-background', 'white',
+			);
 			wfSuppressWarnings();
 			$xcfMeta = unserialize( $image->getMetadata() );
 			wfRestoreWarnings();
