@@ -61,6 +61,7 @@ class ApiPageSet extends ApiBase {
 	private $mSpecialTitles = array();
 	private $mNormalizedTitles = array();
 	private $mInterwikiTitles = array();
+	/** @var Title[] */
 	private $mPendingRedirectIDs = array();
 	private $mConvertedTitles = array();
 	private $mGoodRevIDs = array();
@@ -68,9 +69,7 @@ class ApiPageSet extends ApiBase {
 	private $mFakePageId = -1;
 	private $mCacheMode = 'public';
 	private $mRequestedPageFields = array();
-	/**
-	 * @var int
-	 */
+	/** @var int */
 	private $mDefaultNamespace = NS_MAIN;
 
 	/**
@@ -389,7 +388,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of redirect resolutions - maps a title to its redirect
 	 * target, as an array of output-ready arrays
-	 * @return array
+	 * @return Title[]
 	 */
 	public function getRedirectTitles() {
 		return $this->mRedirectTitles;
@@ -598,7 +597,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Get the list of titles with negative namespace
-	 * @return array Title
+	 * @return Title[]
 	 */
 	public function getSpecialTitles() {
 		return $this->mSpecialTitles;
