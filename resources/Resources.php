@@ -1024,11 +1024,16 @@ return array(
 			'postedit-confirmation-saved',
 		),
 	),
-	'mediawiki.action.view.redirectToFragment' => array(
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.redirectToFragment.js',
+	'mediawiki.action.view.redirect' => array(
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.redirect.js',
 		'dependencies' => array(
 			'jquery.client',
 		),
+		'position' => 'top',
+	),
+	// Deployment hack for compatibility with cached HTML, remove before 1.24 release
+	'mediawiki.action.view.redirectToFragment' => array(
+		'dependencies' => 'mediawiki.action.view.redirect',
 		'position' => 'top',
 	),
 	'mediawiki.action.view.rightClickEdit' => array(
