@@ -172,6 +172,12 @@ class HTMLForm extends ContextSource {
 	protected $mWrapperLegend = false;
 
 	/**
+	 * Salt for the edit token.
+	 * @var string|array
+	 */
+	protected $mTokenSalt = '';
+
+	/**
 	 * If true, sections that contain both fields and subsections will
 	 * render their subsections before their fields.
 	 *
@@ -397,7 +403,7 @@ class HTMLForm extends ContextSource {
 				// Session tokens for logged-out users have no security value.
 				// However, if the user gave one, check it in order to give a nice
 				// "session expired" error instead of "permission denied" or such.
-				$submit = $this->getUser()->matchEditToken( $editToken );
+				$submit = $this->getUser()->matchEditToken( $editToken, $this->mTokenSalt );
 			} else {
 				$submit = true;
 			}
@@ -729,6 +735,21 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Set the salt for the edit token.
+	 *
+	 * Only useful when the method is "post".
+	 *
+	 * @since 1.24
+	 * @param string|array Salt to use
+	 * @return HTMLForm $this for chaining calls
+	 */
+	public function setTokenSalt( $salt ) {
+		$this->mTokenSalt = $salt;
+
+		return $this;
+	}
+
+	/**
 	 * Display the form (sending to the context's OutputPage object), with an
 	 * appropriate error message or stack of messages, and any validation errors, etc.
 	 *
@@ -823,7 +844,7 @@ class HTMLForm extends ContextSource {
 		if ( $this->getMethod() == 'post' ) {
 			$html .= Html::hidden(
 				'wpEditToken',
-				$this->getUser()->getEditToken(),
+				$this->getUser()->getEditToken( $this->mTokenSalt ),
 				array( 'id' => 'wpEditToken' )
 			) . "\n";
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
