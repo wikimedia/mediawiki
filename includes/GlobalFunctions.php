@@ -2823,7 +2823,9 @@ function wfShellExecDisabled() {
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
  *
- * @param string $cmd Command line, properly escaped for shell.
+ * @param string|string[] $cmd if string, a properly shell-escaped command line,
+ *   or an array of unescaped arguments. String keys are also included.
+ *   Example:   [ 'convert', 'label:' => 'some text' ]
  * @param null|mixed &$retval Optional, will receive the program's exit code.
  *   (non-zero is usually failure). If there is an error from
  *   read, select, or proc_open(), this will be set to -1.
@@ -2872,6 +2874,20 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 			$envcmd .= "$k=" . escapeshellarg( $v ) . ' ';
 		}
 	}
+	if ( is_array( $cmd ) )	{
+		// Command line may be given as an array, either assoc or not
+		// for string keys, both "$key $value" are added (both escaped)
+		// for integer keys, only uses the "$value".
+		array_walk( $cmd, function( &$val, $key ) {
+			$val = wfEscapeShellArg( $val );
+			if ( is_string( $key ) ) {
+				$val = wfEscapeShellArg( $key ) . ' ' . $val;
+			}
+		} );
+		// array values now contain all of the escaped arguments, simply glue them together
+		$cmd = implode( ' ', $cmd );
+	}
+
 	$cmd = $envcmd . $cmd;
 
 	$useLogPipe = false;
