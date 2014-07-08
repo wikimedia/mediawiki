@@ -726,11 +726,15 @@ abstract class Installer {
 
 	/**
 	 * Environment check for register_globals.
+	 * Prevent installation if enabled
 	 */
 	protected function envCheckRegisterGlobals() {
 		if ( wfIniGetBool( 'register_globals' ) ) {
-			$this->showMessage( 'config-register-globals' );
+			$this->showMessage( 'config-register-globals-error' );
+			return false;
 		}
+
+		return true;
 	}
 
 	/**
