@@ -133,6 +133,9 @@ production.
   no longer be displayed in the sidebar when $wgInterwikiMagic is true.
 * New special page, MyLanguages, to redirect users to subpages with localised
   versions of a page. (Integrated from Extension:Translate)
+* (bug 35045) Redirects to sections will now update the URL in browser's address
+  bar using the HTML5 History API. When [[Dog]] redirects to [[Animals#Dog]],
+  the user will now see "Animals#Dog" in their browser instead of "Dog#Dog".
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
