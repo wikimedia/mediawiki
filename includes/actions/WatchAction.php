@@ -185,7 +185,7 @@ class WatchAction extends FormAction {
 		if ( $action != 'unwatch' ) {
 			$action = 'watch';
 		}
-		$salt = array( $action, $title->getDBkey() );
+		$salt = array( $action, $title->getPrefixedDBkey() );
 
 		// This token stronger salted and not compatible with ApiWatch
 		// It's title/action specific because index.php is GET and API is POST
