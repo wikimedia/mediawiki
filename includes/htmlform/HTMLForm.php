@@ -154,7 +154,6 @@ class HTMLForm extends ContextSource {
 	protected $mSubmitText;
 	protected $mSubmitTooltip;
 
-	protected $mTitle;
 	protected $mMethod = 'post';
 	protected $mWasSubmitted = false;
 
@@ -202,7 +201,7 @@ class HTMLForm extends ContextSource {
 	 * Build a new HTMLForm from an array of field attributes
 	 *
 	 * @param array $descriptor Array of Field constructs, as described above
-	 * @param IContextSource $context Available since 1.18, will become compulsory in 1.18.
+	 * @param IContextSource $context Available since 1.18, compulsory since 1.24.
 	 *     Obviates the need to call $form->setTitle()
 	 * @param string $messagePrefix A prefix to go in front of default messages
 	 */
@@ -211,14 +210,7 @@ class HTMLForm extends ContextSource {
 	) {
 		if ( $context instanceof IContextSource ) {
 			$this->setContext( $context );
-			$this->mTitle = false; // We don't need them to set a title
 			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( is_null( $context ) && $messagePrefix !== '' ) {
-			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( is_string( $context ) && $messagePrefix === '' ) {
-			// B/C since 1.18
-			// it's actually $messagePrefix
-			$this->mMessagePrefix = $context;
 		}
 
 		// Expand out into a tree.
@@ -371,7 +363,7 @@ class HTMLForm extends ContextSource {
 	 */
 	function prepareForm() {
 		# Check if we have the info we need
-		if ( !$this->mTitle instanceof Title && $this->mTitle !== false ) {
+		if ( !$this->getTitle() ) {
 			throw new MWException( "You must call setTitle() on an HTMLForm" );
 		}
 
@@ -1153,20 +1145,10 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	function setTitle( $t ) {
-		$this->mTitle = $t;
+	function setTitle( Title $t ) {
+		$this->getContext()->setTitle( $t );
 
 		return $this;
-	}
-
-	/**
-	 * Get the title
-	 * @return Title
-	 */
-	function getTitle() {
-		return $this->mTitle === false
-			? $this->getContext()->getTitle()
-			: $this->mTitle;
 	}
 
 	/**
