@@ -86,6 +86,7 @@ class RevertFileAction extends FormAction {
 		$form->setWrapperLegendMsg( 'filerevert-legend' );
 		$form->setSubmitTextMsg( 'filerevert-submit' );
 		$form->addHiddenField( 'oldimage', $this->getRequest()->getText( 'oldimage' ) );
+		$form->setTokenSalt( array( 'revert', $this->getTitle()->getPrefixedDBkey() ) );
 	}
 
 	protected function getFormFields() {
