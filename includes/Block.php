@@ -1368,7 +1368,7 @@ class Block {
 			$this->getId(),
 			$lang->formatExpiry( $this->mExpiry ),
 			(string)$intended,
-			$lang->timeanddate( wfTimestamp( TS_MW, $this->mTimestamp ), true ),
+			$lang->userTimeAndDate( $this->mTimestamp, $context->getUser() ),
 		);
 	}
 }
