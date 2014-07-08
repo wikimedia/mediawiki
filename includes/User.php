@@ -2756,6 +2756,7 @@ class User implements IDBAccessObject {
 
 		if ( in_array( 'all', $resetKinds ) ) {
 			$newOptions = $defaultOptions;
+			wfRunHooks( 'UserResetAllOptions', array( &$newOptions, $this->mOptions ) );
 		} else {
 			if ( $context === null ) {
 				$context = RequestContext::getMain();
