@@ -111,7 +111,8 @@
 			"Mcervera",
 			"Wifidel",
 			"Macofe",
-			"Koavf"
+			"Koavf",
+			"Themasterriot"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1223,7 +1224,7 @@
 	"recentchanges-summary": "Sigue los cambios más recientes de la wiki en esta página.",
 	"recentchanges-noresult": "No hubo cambios durante el período seleccionado que respondan a esos criterios.",
 	"recentchanges-feed-description": "Realiza un seguimiento de los cambios más recientes en el wiki en este canal.",
-	"recentchanges-label-newpage": "Esta edición inició una página",
+	"recentchanges-label-newpage": "Esta edición creó una página",
 	"recentchanges-label-minor": "Esta es una edición menor",
 	"recentchanges-label-bot": "Esta edición fue realizada por un robot",
 	"recentchanges-label-unpatrolled": "Esta edición todavía no se ha patrullado",
