@@ -107,7 +107,7 @@ class ResultWrapper implements Iterator {
 	/** @var int */
 	protected $pos = 0;
 
-	/** @var */
+	/** @var stdClass|array|null */
 	protected $currentRow = null;
 
 	/**
@@ -140,7 +140,7 @@ class ResultWrapper implements Iterator {
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.
 	 *
-	 * @return object
+	 * @return stdClass
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject() {
@@ -182,7 +182,6 @@ class ResultWrapper implements Iterator {
 	 * Note that using these in combination with the non-iterator functions
 	 * above may cause rows to be skipped or repeated.
 	 */
-
 	function rewind() {
 		if ( $this->numRows() ) {
 			$this->db->dataSeek( $this, 0 );
@@ -192,7 +191,7 @@ class ResultWrapper implements Iterator {
 	}
 
 	/**
-	 * @return int
+	 * @return stdClass|array|false
 	 */
 	function current() {
 		if ( is_null( $this->currentRow ) ) {
@@ -210,7 +209,7 @@ class ResultWrapper implements Iterator {
 	}
 
 	/**
-	 * @return int
+	 * @return stdClass
 	 */
 	function next() {
 		$this->pos++;
@@ -255,6 +254,9 @@ class FakeResultWrapper extends ResultWrapper {
 		return count( $this->result );
 	}
 
+	/**
+	 * @return array|bool|stdClass
+	 */
 	function fetchRow() {
 		if ( $this->pos < count( $this->result ) ) {
 			$this->currentRow = $this->result[$this->pos];
@@ -276,7 +278,10 @@ class FakeResultWrapper extends ResultWrapper {
 	function free() {
 	}
 
-	// Callers want to be able to access fields with $this->fieldName
+	/**
+	 * Callers want to be able to access fields with $this->fieldName
+	 * @return false|stdClass
+	 */
 	function fetchObject() {
 		$this->fetchRow();
 		if ( $this->currentRow ) {
@@ -291,6 +296,9 @@ class FakeResultWrapper extends ResultWrapper {
 		$this->currentRow = null;
 	}
 
+	/**
+	 * @return false|stdClass
+	 */
 	function next() {
 		return $this->fetchObject();
 	}
