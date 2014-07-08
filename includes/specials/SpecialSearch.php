@@ -1056,7 +1056,7 @@ class SpecialSearch extends SpecialPage {
 		}
 		$out .= Xml::closeElement( 'ul' );
 		$out .= Xml::closeElement( 'div' );
-		$out .= Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
+		$out .= Html::element( 'div', array( 'style' => 'clear:both' ) );
 		$out .= Xml::closeElement( 'div' );
 
 		// Hidden stuff
@@ -1102,7 +1102,7 @@ class SpecialSearch extends SpecialPage {
 				->numParams( $resultsShown )
 				->parse();
 			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ), $top ) .
-				Xml::element( 'div', array( 'style' => 'clear:both' ) );
+				Html::element( 'div', array( 'style' => 'clear:both' ) );
 		}
 
 		return $out . $this->didYouMeanHtml;
