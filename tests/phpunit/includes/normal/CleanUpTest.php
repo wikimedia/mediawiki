@@ -110,15 +110,20 @@ class CleanUpTest extends MediaWikiTestCase {
 	}
 
 	/** @todo document */
-	public function testAllBytes() {
-		$this->doTestBytes( '', '' );
-		$this->doTestBytes( 'x', '' );
-		$this->doTestBytes( '', 'x' );
-		$this->doTestBytes( 'x', 'x' );
+	public function provideAllBytes() {
+		return array(
+			array( '', '' ),
+			array( 'x', '' ),
+			array( '', 'x' ),
+			array( 'x', 'x' ),
+		);
 	}
 
-	/** @todo document */
-	function doTestBytes( $head, $tail ) {
+	/**
+	 * @dataProvider provideAllBytes
+	 * @todo document
+	 */
+	function testBytes( $head, $tail ) {
 		for ( $i = 0x0; $i < 256; $i++ ) {
 			$char = $head . chr( $i ) . $tail;
 			$clean = UtfNormal::cleanUp( $char );
@@ -149,18 +154,11 @@ class CleanUpTest extends MediaWikiTestCase {
 		}
 	}
 
-	/** @todo document */
-	public function testDoubleBytes() {
-		$this->doTestDoubleBytes( '', '' );
-		$this->doTestDoubleBytes( 'x', '' );
-		$this->doTestDoubleBytes( '', 'x' );
-		$this->doTestDoubleBytes( 'x', 'x' );
-	}
-
 	/**
+	 * @dataProvider provideAllBytes
 	 * @todo document
 	 */
-	function doTestDoubleBytes( $head, $tail ) {
+	function testDoubleBytes( $head, $tail ) {
 		for ( $first = 0xc0; $first < 0x100; $first += 2 ) {
 			for ( $second = 0x80; $second < 0x100; $second += 2 ) {
 				$char = $head . chr( $first ) . chr( $second ) . $tail;
@@ -202,16 +200,11 @@ class CleanUpTest extends MediaWikiTestCase {
 		}
 	}
 
-	/** @todo document */
-	public function testTripleBytes() {
-		$this->doTestTripleBytes( '', '' );
-		$this->doTestTripleBytes( 'x', '' );
-		$this->doTestTripleBytes( '', 'x' );
-		$this->doTestTripleBytes( 'x', 'x' );
-	}
-
-	/** @todo document */
-	function doTestTripleBytes( $head, $tail ) {
+	/**
+	 * @dataProvider provideAllBytes
+	 * @todo document
+	 */
+	function testTripleBytes( $head, $tail ) {
 		for ( $first = 0xc0; $first < 0x100; $first += 2 ) {
 			for ( $second = 0x80; $second < 0x100; $second += 2 ) {
 				#for( $third = 0x80; $third < 0x100; $third++ ) {
