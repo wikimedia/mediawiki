@@ -5279,18 +5279,6 @@ $wgAdvancedSearchHighlighting = false;
 $wgSearchHighlightBoundaries = '[\p{Z}\p{P}\p{C}]';
 
 /**
- * Set to true to have the search engine count total
- * search matches to present in the Special:Search UI.
- * Not supported by every search engine shipped with MW.
- *
- * This could however be slow on larger wikis, and is pretty flaky
- * with the current title vs content split. Recommend avoiding until
- * that's been worked out cleanly; but this may aid in testing the
- * search UI and API to confirm that the result count works.
- */
-$wgCountTotalSearchHits = false;
-
-/**
  * Template for OpenSearch suggestions, defaults to API action=opensearch
  *
  * Sites with heavy load would typically have these point to a custom

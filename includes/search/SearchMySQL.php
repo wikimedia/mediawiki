@@ -174,8 +174,6 @@ class SearchMySQL extends SearchDatabase {
 	}
 
 	protected function searchInternal( $term, $fulltext ) {
-		global $wgCountTotalSearchHits;
-
 		// This seems out of place, why is this called with empty term?
 		if ( trim( $term ) === '' ) {
 			return null;
@@ -189,19 +187,17 @@ class SearchMySQL extends SearchDatabase {
 		);
 
 		$total = null;
-		if ( $wgCountTotalSearchHits ) {
-			$query = $this->getCountQuery( $filteredTerm, $fulltext );
-			$totalResult = $this->db->select(
-				$query['tables'], $query['fields'], $query['conds'],
-				__METHOD__, $query['options'], $query['joins']
-			);
+		$query = $this->getCountQuery( $filteredTerm, $fulltext );
+		$totalResult = $this->db->select(
+			$query['tables'], $query['fields'], $query['conds'],
+			__METHOD__, $query['options'], $query['joins']
+		);
 
-			$row = $totalResult->fetchObject();
-			if ( $row ) {
-				$total = intval( $row->c );
-			}
-			$totalResult->free();
+		$row = $totalResult->fetchObject();
+		if ( $row ) {
+			$total = intval( $row->c );
 		}
+		$totalResult->free();
 
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
