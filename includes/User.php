@@ -2778,6 +2778,8 @@ class User implements IDBAccessObject {
 			}
 		}
 
+		wfRunHooks( 'UserResetAllOptions', array( $this, &$newOptions, $this->mOptions, $resetKinds ) );
+
 		$this->mOptions = $newOptions;
 		$this->mOptionsLoaded = true;
 	}
