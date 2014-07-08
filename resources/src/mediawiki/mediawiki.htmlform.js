@@ -47,7 +47,7 @@
 	 * @return {Array} 2 elements: jQuery of dependent fields, and test function
 	 */
 	function hideIfParse( $el, spec ) {
-		var op, i, l, v, $field, $fields, fields, func, funcs, getVal;
+		var op, i, l, v, $field, $fields, func, funcs, getVal;
 
 		op = spec[0];
 		l = spec.length;
@@ -57,16 +57,15 @@
 			case 'NAND':
 			case 'NOR':
 				funcs = [];
-				fields = [];
+				$fields = $();
 				for ( i = 1; i < l; i++ ) {
 					if ( !$.isArray( spec[i] ) ) {
 						throw new Error( op + ' parameters must be arrays' );
 					}
 					v = hideIfParse( $el, spec[i] );
-					fields.push( v[0] );
+					$fields = $fields.add( v[0] );
 					funcs.push( v[1] );
 				}
-				$fields = $( fields );
 
 				l = funcs.length;
 				switch ( op ) {
