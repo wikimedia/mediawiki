@@ -2823,7 +2823,10 @@ function wfShellExecDisabled() {
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
  *
- * @param string $cmd Command line, properly escaped for shell.
+ * @param string|string[] $cmd if string, a properly shell-escaped command line,
+ *   or an array of unescaped arguments, where  for string keys,
+ *   both "$key $value" are added (both escaped), and for integer keys, only uses escaped "$value".
+ *   Example:   [ 'convert', '-font' => 'font name' ] would produce "'convert' '-font' 'font name'"
  * @param null|mixed &$retval Optional, will receive the program's exit code.
  *   (non-zero is usually failure). If there is an error from
  *   read, select, or proc_open(), this will be set to -1.
@@ -2872,6 +2875,22 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 			$envcmd .= "$k=" . escapeshellarg( $v ) . ' ';
 		}
 	}
+	if ( is_array( $cmd ) ) {
+		// Command line may be given as an array, either assoc or not
+		// for string keys, both "$key $value" are added (both escaped)
+		// for integer keys, only uses the "$value".
+		$cmdVals = array();
+		foreach ( $cmd as $key => $val ) {
+			$val = wfEscapeShellArg( $val );
+			if ( is_string( $key ) ) {
+				$val = wfEscapeShellArg( $key ) . ' ' . $val;
+			}
+			$cmdVals[] = $val;
+		}
+		// array values now contain all of the escaped arguments, simply glue them together
+		$cmd = implode( ' ', $cmdVals );
+	}
+
 	$cmd = $envcmd . $cmd;
 
 	$useLogPipe = false;
