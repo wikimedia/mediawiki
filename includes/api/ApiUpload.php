@@ -28,7 +28,7 @@
  * @ingroup API
  */
 class ApiUpload extends ApiBase {
-	/** @var UploadBase */
+	/** @var UploadBase|UploadFromChunks */
 	protected $mUpload = null;
 
 	protected $mParams;
@@ -210,7 +210,6 @@ class ApiUpload extends ApiBase {
 			}
 		} else {
 			$filekey = $this->mParams['filekey'];
-			/** @var $status Status */
 			$status = $this->mUpload->addChunk(
 				$chunkPath, $chunkSize, $this->mParams['offset'] );
 			if ( !$status->isGood() ) {
@@ -551,6 +550,7 @@ class ApiUpload extends ApiBase {
 
 			if ( isset( $warnings['duplicate'] ) ) {
 				$dupes = array();
+				/** @var File $dupe */
 				foreach ( $warnings['duplicate'] as $dupe ) {
 					$dupes[] = $dupe->getName();
 				}
@@ -561,6 +561,7 @@ class ApiUpload extends ApiBase {
 			if ( isset( $warnings['exists'] ) ) {
 				$warning = $warnings['exists'];
 				unset( $warnings['exists'] );
+				/** @var LocalFile $localFile */
 				$localFile = isset( $warning['normalizedFile'] )
 					? $warning['normalizedFile']
 					: $warning['file'];
