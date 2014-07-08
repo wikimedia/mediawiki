@@ -114,6 +114,9 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	 * https://gerrit.wikimedia.org/r/4841
 	 */
 	public function testSearchTermIsNotExpanded() {
+		$this->setMwGlobals( array(
+			'wgSearchType' => null,
+		) );
 
 		# Initialize [[Special::Search]]
 		$search = new SpecialSearch();
