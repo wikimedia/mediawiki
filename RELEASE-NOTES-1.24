@@ -243,6 +243,9 @@ changes to languages because of Bugzilla reports.
   PHP compiler called hphpc. (deprecated since 1.22)
 * ApiResult::enableSizeCheck() and disableSizeCheck() are now obsolete.
 * Removed ResourceLoaderGetStartupModules hook. (deprecated since 1.23)
+* In Linker.php, link(), linkText() and makeBrokenImageLinkObj() now display
+  warnings if their first parameter is not a Title object. Also makeImageLink()
+  now requires a Parser as its first parameter.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
