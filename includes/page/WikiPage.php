@@ -2651,11 +2651,11 @@ class WikiPage implements Page, IDBAccessObject {
 		foreach ( array_filter( $limit ) as $action => $restrictions ) {
 			# $action is one of $wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' ).
 			# All possible message keys are listed here for easier grepping:
-			# * restriction-create
-			# * restriction-edit
-			# * restriction-move
-			# * restriction-upload
-			$actionText = wfMessage( 'restriction-' . $action )->inContentLanguage()->text();
+			# * protect-restriction-create
+			# * protect-restriction-edit
+			# * protect-restriction-move
+			# * protect-restriction-upload
+			$actionText = wfMessage( "protect-restriction-{$action}" )->inContentLanguage()->text();
 			# $restrictions is one of $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' ),
 			# with '' filtered out. All possible message keys are listed below:
 			# * protect-level-autoconfirmed

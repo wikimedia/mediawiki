@@ -228,8 +228,9 @@ class SpecialProtectedpages extends SpecialPage {
 
 		// First pass to load the log names
 		foreach ( Title::getFilteredRestrictionTypes( true ) as $type ) {
-			// Messages: restriction-edit, restriction-move, restriction-create, restriction-upload
-			$text = $this->msg( "restriction-$type" )->text();
+			// Messages: protect-restriction-edit, protect-restriction-move,
+			// protect-restriction-create, protect-restriction-upload
+			$text = $this->msg( "protect-restriction-$type" )->text();
 			$m[$text] = $type;
 		}
 
