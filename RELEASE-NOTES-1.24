@@ -223,6 +223,7 @@ changes to languages because of Bugzilla reports.
 * Removed Title::updateTitleProtection(). (deprecated since 1.19)
 * Removed Title::escapeCanonicalURL(). (deprecated since 1.19)
 * Removed Title::escapeLocalURL(). (deprecated since 1.19)
+* Removed Title::escapeFullURL(). (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

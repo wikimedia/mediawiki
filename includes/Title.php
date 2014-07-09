@@ -1776,19 +1776,6 @@ class Title {
 	}
 
 	/**
-	 * Get an HTML-escaped version of the URL form, suitable for
-	 * using in a link, including the server name and fragment
-	 *
-	 * @see self::getLocalURL for the arguments.
-	 * @return string The URL
-	 * @deprecated since 1.19
-	 */
-	public function escapeFullURL( $query = '', $query2 = false ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		return htmlspecialchars( $this->getFullURL( $query, $query2 ) );
-	}
-
-	/**
 	 * Get the URL form for an internal link.
 	 * - Used in various Squid-related code, in case we have a different
 	 * internal hostname for the server from the exposed one.
