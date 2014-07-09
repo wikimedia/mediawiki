@@ -1,6 +1,5 @@
-Security reminder: If you have PHP's register_globals option set, you should
-turn it off. Although MediaWiki will work with it enabled, it exposes your
-server to potential security vulnerabilities.
+Security reminder: If you have PHP's register_globals option set, you must
+turn it off. MediaWiki will no longer work with it enabled.
 
 == MediaWiki 1.24 ==
 
@@ -10,6 +9,9 @@ MediaWiki 1.24 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.24 ===
+* MediaWiki will no longer run if register_globals is enabled. It has been
+  deprecated for 5 years now, and was removed in PHP 5.4. For more information
+  about why, see <https://www.mediawiki.org/wiki/register_globals>.
 * The server's canonical hostname is available as $wgServerName, which is
   exposed in both mw.config and ApiQuerySiteInfo.
 * Introduced $wgPagePropsHaveSortkey as a backwards-compatibility switch,

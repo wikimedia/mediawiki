@@ -26,41 +26,12 @@
  * @file
  */
 
-# Protect against register_globals
+# Die if register_globals is enabled (PHP <=5.3)
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {
-	if ( isset( $_REQUEST['GLOBALS'] ) || isset( $_FILES['GLOBALS'] ) ) {
-		die( '<a href="http://www.hardened-php.net/globals-problem">'
-			. '$GLOBALS overwrite vulnerability</a>' );
-	}
-
-	$verboten = array(
-		'GLOBALS',
-		'_SERVER',
-		'HTTP_SERVER_VARS',
-		'_GET',
-		'HTTP_GET_VARS',
-		'_POST',
-		'HTTP_POST_VARS',
-		'_COOKIE',
-		'HTTP_COOKIE_VARS',
-		'_FILES',
-		'HTTP_POST_FILES',
-		'_ENV',
-		'HTTP_ENV_VARS',
-		'_REQUEST',
-		'_SESSION',
-		'HTTP_SESSION_VARS'
-	);
-
-	foreach ( $_REQUEST as $name => $value ) {
-		if ( in_array( $name, $verboten ) ) {
-			header( "HTTP/1.1 500 Internal Server Error" );
-			echo "register_globals security paranoia: trying to overwrite superglobals, aborting.";
-			die( -1 );
-		}
-		unset( $GLOBALS[$name] );
-	}
+	die( 'MediaWiki does not support installations where register_globals is enabled. '
+		. 'Please see <a href="https://www.mediawiki.org/wiki/register_globals">mediawiki.org</a> '
+		. 'for help on how to disable it.' );
 }
 
 # bug 15461: Make IE8 turn off content sniffing. Everybody else should ignore this
