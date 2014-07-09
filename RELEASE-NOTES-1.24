@@ -228,6 +228,9 @@ changes to languages because of Bugzilla reports.
 * Removed Title::escapeCanonicalURL(). (deprecated since 1.19)
 * Removed Title::escapeLocalURL(). (deprecated since 1.19)
 * Removed Title::escapeFullURL(). (deprecated since 1.19)
+* The checkboxes to restore specific revision at Special:Undelete
+  have been removed. The functionality remains in the web API. The
+  Special:MergeHistory tool can be used instead for simpler cases.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
