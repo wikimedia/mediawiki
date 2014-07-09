@@ -435,10 +435,10 @@ class InfoAction extends FormlessAction {
 				}
 			}
 
-			// Messages: restriction-edit, restriction-move, restriction-create,
-			// restriction-upload
+			// Messages: protect-restriction-edit, protect-restriction-move,
+			// protect-restriction-create, protect-restriction-upload
 			$pageInfo['header-restrictions'][] = array(
-				$this->msg( "restriction-$restrictionType" ), $message
+				$this->msg( "protect-restriction-$restrictionType" ), $message
 			);
 		}
 
