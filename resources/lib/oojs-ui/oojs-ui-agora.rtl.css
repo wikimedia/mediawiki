@@ -11,26 +11,26 @@
 .oo-ui-dialog-content .oo-ui-window-closeButton {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
 }
 
 .oo-ui-dialog-content .oo-ui-window-icon {
-  margin-left: 3.35em;
+  margin-right: 3.35em;
 }
 
 .oo-ui-dialog-content .oo-ui-window-body {
   position: absolute;
   top: 3.35em;
-  right: 0;
-  bottom: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   overflow-y: auto;
 }
 
 .oo-ui-dialog-content .oo-ui-window-foot {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   height: 3.35em;
 }
 
@@ -66,7 +66,7 @@
   width: 3.35em;
   height: 3.35em;
   background-size: 2em auto;
-  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
 }
 
 .oo-ui-window-title {
@@ -85,37 +85,37 @@
 }
 
 .oo-ui-optionWidget {
-  padding: 0.8em 1em 0.8em 3.35em;
+  padding: 0.8em 3.35em 0.8em 1em;
   font-weight: bold;
   border-bottom: 1px solid #dddddd;
 }
 
 .oo-ui-optionWidget.oo-ui-indicatedElement .oo-ui-labeledElement-label {
-  padding-right: 1.5em;
+  padding-left: 1.5em;
 }
 
 .oo-ui-optionWidget-level-0 {
-  padding-left: 3.5em;
+  padding-right: 3.5em;
 }
 
 .oo-ui-optionWidget-level-0 .oo-ui-iconedElement-icon {
-  left: 1em;
+  right: 1em;
 }
 
 .oo-ui-optionWidget-level-1 {
-  padding-left: 5em;
+  padding-right: 5em;
 }
 
 .oo-ui-optionWidget-level-1 .oo-ui-iconedElement-icon {
-  left: 2.5em;
+  right: 2.5em;
 }
 
 .oo-ui-optionWidget-level-2 {
-  padding-left: 6.5em;
+  padding-right: 6.5em;
 }
 
 .oo-ui-optionWidget-level-2 .oo-ui-iconedElement-icon {
-  left: 4em;
+  right: 4em;
 }
 
 .oo-ui-buttonOptionWidget {
