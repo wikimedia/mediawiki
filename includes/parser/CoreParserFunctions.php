@@ -365,8 +365,14 @@ class CoreParserFunctions {
 	 * @param string $text Desired title text
 	 * @return string
 	 */
-	static function displaytitle( $parser, $text = '' ) {
+	static function displaytitle( $parser, $text = '', $uarg = '' ) {
 		global $wgRestrictDisplayTitle;
+
+		static $magicWords = null;
+		if ( is_null( $magicWords ) ) {
+			$magicWords = new MagicWordArray( array( 'displaytitle_noerror', 'displaytitle_noreplace' ) );
+		}
+		$arg = $magicWords->matchStartToEnd( $uarg );
 
 		// parse a limited subset of wiki markup (just the single quote items)
 		$text = $parser->doQuotes( $text );
@@ -413,13 +419,25 @@ class CoreParserFunctions {
 		) );
 		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
 
-		if ( !$wgRestrictDisplayTitle ) {
-			$parser->mOutput->setDisplayTitle( $text );
-		} elseif ( $title instanceof Title
+		if ( !$wgRestrictDisplayTitle ||
+			( $title instanceof Title
 			&& !$title->hasFragment()
-			&& $title->equals( $parser->mTitle )
+			&& $title->equals( $parser->mTitle ) )
 		) {
-			$parser->mOutput->setDisplayTitle( $text );
+			$old = $parser->mOutput->getProperty( 'displaytitle' );
+			if ( $old === false || $arg !== 'displaytitle_noreplace' ) {
+				$parser->mOutput->setDisplayTitle( $text );
+			}
+			if ( $old !== false && $old !== $text && !$arg ) {
+				$converter = $parser->getConverterLanguage()->getConverter();
+				return '<span class="error">' .
+					wfMessage( 'duplicate-displaytitle',
+						// Message should be parsed, but these params should only be escaped.
+						$converter->markNoConversion( wfEscapeWikiText( $old ) ),
+						$converter->markNoConversion( wfEscapeWikiText( $text ) )
+					)->inContentLanguage()->text() .
+					'</span>';
+			}
 		}
 
 		return '';
