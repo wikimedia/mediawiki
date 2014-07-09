@@ -249,6 +249,9 @@ changes to languages because of Bugzilla reports.
 * Removed AjaxAddScript which has been obsolete since ResourceLoader and
   is unused by any modern extension.
 * Removed maintenance/nextJobDB.php; no longer in use.
+* The checkboxes to restore specific revision at Special:Undelete
+  have been removed. The functionality remains in the web API. The
+  Special:MergeHistory tool can be used instead for simpler cases.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
