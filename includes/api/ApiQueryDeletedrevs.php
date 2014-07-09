@@ -134,11 +134,17 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		if ( $fld_content ) {
+			// Modern MediaWiki has the content for deleted revs in the 'text'
+			// table using fields old_text and old_flags. But revisions deleted
+			// pre-1.5 store the content in the 'archive' table directly using
+			// fields ar_text and ar_flags, and no corresponding 'text' row. So
+			// we have to LEFT JOIN and fetch all four fields, plus ar_text_id
+			// to be able to tell the difference.
 			$this->addTables( 'text' );
 			$this->addJoinConds(
-				array( 'text' => array( 'INNER JOIN', array( 'ar_text_id=old_id' ) ) )
+				array( 'text' => array( 'LEFT JOIN', array( 'ar_text_id=old_id' ) ) )
 			);
-			$this->addFields( array( 'ar_text', 'ar_text_id', 'old_text', 'old_flags' ) );
+			$this->addFields( array( 'ar_text', 'ar_flags', 'ar_text_id', 'old_text', 'old_flags' ) );
 
 			// This also means stricter restrictions
 			if ( !$user->isAllowedAny( 'undelete', 'deletedtext' ) ) {
@@ -353,7 +359,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$anyHidden = true;
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
-					ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
+					if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
+						// Pre-1.5 ar_text row (if condition from Revision::newFromArchiveRow)
+						ApiResult::setContent( $rev, Revision::getRevisionText( $row, 'ar_' ) );
+					} else {
+						ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
+					}
 				}
 			}
 
