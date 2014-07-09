@@ -831,4 +831,24 @@ abstract class MediaHandler {
 	public function isExpensiveToThumbnail( $file ) {
 		return false;
 	}
+
+	/**
+	 * Returns whether or not this handler supports the chained generation of thumbnails according
+	 * to buckets
+	 * @return boolean
+	 * @since  1.24
+	 */
+	public function supportsBucketing() {
+		return false;
+	}
+
+	/**
+	 * Returns a normalised params array for which parameters have been cleaned up for bucketing
+	 * purposes
+	 * @param array $params
+	 * @return array
+	 */
+	public function sanitizeParamsForBucketing( $params ) {
+		return $params;
+	}
 }
