@@ -136,7 +136,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['generator'] = "MediaWiki {$config->get( 'Version' )}";
 
-		$data['phpversion'] = phpversion();
+		$data['phpversion'] = PHP_VERSION;
 		$data['phpsapi'] = PHP_SAPI;
 		$data['dbtype'] = $config->get( 'DBtype' );
 		$data['dbversion'] = $this->getDB()->getServerVersion();
