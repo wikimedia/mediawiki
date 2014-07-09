@@ -32,6 +32,7 @@ production.
 * $wgCountTotalSearchHits has been removed. If you're concerned about efficiency
   of search, you should use something like CirrusSearch instead of built in
   search.
+* Users in the 'sysop' group have access to Special:MergeHistory by default.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
