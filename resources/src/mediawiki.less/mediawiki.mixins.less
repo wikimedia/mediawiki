@@ -15,6 +15,13 @@
 	background-image: url(@url)!ie;
 }
 
+.background-size(@width: auto, @height: auto) {
+	/* use -webkit prefix for older android browsers eg. nexus 1 */
+	-o-background-size: @width @height;
+	-webkit-background-size: @width @height;
+	background-size: @width @height;
+}
+
 .background-image(@url) when not (embeddable(@url)) {
 	background-image: url(@url);
 }
