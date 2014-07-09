@@ -1417,6 +1417,7 @@
 	"license-nopreview": "(es ist keine Vorschau verfügbar)",
 	"upload_source_url": " (gültige, öffentlich zugängliche URL)",
 	"upload_source_file": " (eine Datei auf deinem Computer)",
+	"listfiles-delete": "löschen",
 	"listfiles-summary": "Diese Spezialseite listet alle hochgeladenen Dateien auf.",
 	"listfiles_search_for": "Suche nach Datei:",
 	"imgfile": "Datei",

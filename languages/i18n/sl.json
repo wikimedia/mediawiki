@@ -1348,6 +1348,7 @@
 	"license-nopreview": "(Predogled ni na voljo)",
 	"upload_source_url": " (veljaven, javnosti dostopen URL)",
 	"upload_source_file": " (datoteka na vašem računalniku)",
+	"listfiles-delete": "izbriši",
 	"listfiles-summary": "Ta posebna stran prikazuje vse naložene datoteke.",
 	"listfiles_search_for": "Išči po imenu datoteke:",
 	"imgfile": "dat.",

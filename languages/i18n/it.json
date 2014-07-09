@@ -1410,6 +1410,7 @@
 	"license-nopreview": "(Anteprima non disponibile)",
 	"upload_source_url": " (una URL corretta e accessibile)",
 	"upload_source_file": " (un file sul proprio computer)",
+	"listfiles-delete": "cancella",
 	"listfiles-summary": "Questa pagina speciale mostra tutti i file caricati.",
 	"listfiles_search_for": "Ricerca immagini per nome:",
 	"imgfile": "file",

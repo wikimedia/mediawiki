@@ -24,7 +24,9 @@
 			"Urhixidur",
 			"Vinie007",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Gertakapllani",
+			"OrvenBregu"
 		]
 	},
 	"tog-underline": "Nënvizo lidhjet:",
@@ -639,9 +641,13 @@
 	"edit-gone-missing": "Faqja nuk mund t freskohet.\nDuket se është grisur.",
 	"edit-conflict": "Konflikt në redaktim.",
 	"edit-no-change": "Redaktimi juaj është anashkaluar pasi që asnjë ndryshim nuk u bë në tekst.",
+	"postedit-confirmation-created": "Faqja eshte krijuar",
+	"postedit-confirmation-restored": "Faqja eshte kthyer",
+	"postedit-confirmation-saved": "Redaktimi juaj eshte ruajtur.",
 	"edit-already-exists": "Faqja nuk mundej të hapet.\nAjo tanimë ekziston.",
 	"defaultmessagetext": "Teksti i porosisë së parazgjedhur",
-	"editwarning-warning": "Lënia e kësaj faqeje mund t'ju shkaktojë humbjen e çdo ndryshimi që keni bërë.\nNëse keni hyrë brenda, ju mund ta hiqni këtë paralajmërim në seksionin \"Redaktimi\" tek preferencat tuaja.",
+	"invalid-content-data": "Të pavlefshme të dhënave e përmbajtjes",
+	"editwarning-warning": "Duke e lënë këtë faqe mund të shkaktojë ju për të humbur të gjitha ndryshimet që keni bërë ju.\nNëse ju jeni regjistruar, ju mund të çaktivizoni këtë paralajmërim në \"{{int:prefs-editing}}\" seksionin e preferencave tuaja.",
 	"content-model-text": "tekst i thejshtë",
 	"expensive-parserfunction-warning": "Kujdes: Kjo faqe ka shumë kërkesa që kërkojnë analizë gramatikore të kushtueshme për sistemin.\n\nDuhet të ketë më pakë se $2, {{PLURAL:$2|kërkesë|kërkesa}}, kurse tani {{PLURAL:$1|është $1 kërkesë|janë $1 kërkesa}}.",
 	"expensive-parserfunction-category": "Faqe me shumë shprehje të kushtueshmë për analizë gramatikore",
@@ -1260,6 +1266,7 @@
 	"license-nopreview": "(Nuk ka parapamje)",
 	"upload_source_url": " (URL e vlefshme, publikisht e përdorshme)",
 	"upload_source_file": " (skeda në kompjuterin tuaj)",
+	"listfiles-delete": "fshije",
 	"listfiles-summary": "Kjo faqe speciale tregon tërë skedat e ngarkuara.\nFillimisht skedat e ngarkuara së fundmi jepen më sipër.\nShtypni kolonat e tjera për të ndryshuar radhitjen.",
 	"listfiles_search_for": "Kërko për emrin e figurës:",
 	"imgfile": "skeda",

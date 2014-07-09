@@ -73,7 +73,6 @@
 	"config-no-db": "找不到合适的数据库驱动！您需要为PHP安装数据库驱动。目前支持以下数据库：$1。如果您是自己编译的PHP，请重新配置他与数据库客户端将其启用，诸如，使用<code>./configure --with-mysqli</code>。如果您从Debian或Ubuntu包安装了PHP，之后您仍需要安装诸如<code>php5-mysql</code>包。",
 	"config-outdated-sqlite": "'''警告'''：您已安装SQLite $1，但是它的版本低于最低要求版本$2。因此您无法选择SQLite。",
 	"config-no-fts3": "'''警告'''：已编译的SQLite不包含[//sqlite.org/fts3.html FTS3模块]，后台搜索功能将不可用。",
-	"config-register-globals": "'''警告：PHP的<code>[http://php.net/register_globals register_globals]</code>选项被启用。请尽量禁用该功能，'''虽然不会影响MediaWiki的运行，但您的服务器会被暴露给潜在的安全漏洞。",
 	"config-magic-quotes-runtime": "'''毁灭性错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]已启用！'''\n此选项会无法预测地破坏输入的数据，请将其禁用，否则您将不能安装或使用MediaWiki。",
 	"config-magic-quotes-sybase": "'''毁灭性错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase]已启用！'''\n此选项会无法预测地破坏输入的数据，请将其禁用，否则您将不能安装或使用MediaWiki。",
 	"config-mbstring": "'''毁灭性错误：[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]已启用！'''\n此选项会导致错误并不可预测地破坏数据，请将其禁用，否则您将不能安装或使用MediaWiki。",

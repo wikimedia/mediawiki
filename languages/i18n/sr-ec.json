@@ -1356,6 +1356,7 @@
 	"license-nopreview": "(преглед није доступан)",
 	"upload_source_url": " (исправна и јавно доступна адреса)",
 	"upload_source_file": "(датотека на вашем рачунару)",
+	"listfiles-delete": "обриши",
 	"listfiles-summary": "Ова посебна страница приказује све послате датотеке.",
 	"listfiles_search_for": "Назив датотеке:",
 	"imgfile": "датотека",

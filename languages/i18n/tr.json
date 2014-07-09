@@ -3110,5 +3110,9 @@
 	"expand_templates_remove_nowiki": "Sonuçlarda <nowiki> etiketlerini bastır",
 	"expand_templates_generate_xml": "XML derleyici ağacını göster",
 	"expand_templates_generate_rawhtml": "Ham HTML göster",
-	"expand_templates_preview": "Önizleme"
+	"expand_templates_preview": "Önizleme",
+	"pagelang-language": "Dil",
+	"pagelang-use-default": "Varsayılan dili kullan",
+	"pagelang-select-lang": "Dil seçin",
+	"right-pagelang": "Sayfa dilini değiştir"
 }

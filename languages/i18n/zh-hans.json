@@ -1416,6 +1416,7 @@
 	"license-nopreview": "（无预览可用）",
 	"upload_source_url": "（有效、可以公开访问的URL）",
 	"upload_source_file": "（您计算机上的一个文件）",
+	"listfiles-delete": "删除",
 	"listfiles-summary": "本特殊页面展示所有上传的文件。",
 	"listfiles_search_for": "按媒体名称搜索：",
 	"imgfile": "文件",

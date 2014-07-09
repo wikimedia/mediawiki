@@ -57,7 +57,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Mar(c)",
-			"Calak"
+			"Calak",
+			"Arg"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -1394,6 +1395,7 @@
 	"license-nopreview": "(Voorvertoning niet beschikbaar)",
 	"upload_source_url": " (een geldige, publiek toegankelijke URL)",
 	"upload_source_file": " (een bestand op uw computer)",
+	"listfiles-delete": "verwijderen",
 	"listfiles-summary": "Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.",
 	"listfiles_search_for": "Zoeken naar bestand:",
 	"imgfile": "bestand",

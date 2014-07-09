@@ -1449,6 +1449,7 @@
 	"license-nopreview": "(Prévisualisation non disponible)",
 	"upload_source_url": " (une URL valide et accessible publiquement)",
 	"upload_source_file": " (un fichier sur votre ordinateur)",
+	"listfiles-delete": "supprimer",
 	"listfiles-summary": "Cette page spéciale permet de lister tous les fichiers importés.",
 	"listfiles_search_for": "Rechercher un nom de média :",
 	"imgfile": "fichier",

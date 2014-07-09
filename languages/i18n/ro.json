@@ -1362,6 +1362,7 @@
 	"license-nopreview": "(Previzualizare indisponibilă)",
 	"upload_source_url": " (un URL valid, accesibil public)",
 	"upload_source_file": " (un fișier de pe computerul dv.)",
+	"listfiles-delete": "șterge",
 	"listfiles-summary": "Această pagină specială listează toate fișierele încărcate.",
 	"listfiles_search_for": "Căutare fișiere după nume:",
 	"imgfile": "fișier",

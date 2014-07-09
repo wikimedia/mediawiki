@@ -1398,6 +1398,7 @@
 	"license-nopreview": "(Antevisão indisponível)",
 	"upload_source_url": " (uma URL válida, publicamente acessível)",
 	"upload_source_file": " (um ficheiro no seu computador)",
+	"listfiles-delete": "eliminar",
 	"listfiles-summary": "Esta página especial mostra todos os ficheiros carregados.",
 	"listfiles_search_for": "Pesquisar por nome de imagem:",
 	"imgfile": "ficheiro",
