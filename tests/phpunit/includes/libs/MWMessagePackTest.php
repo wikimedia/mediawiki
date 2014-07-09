@@ -14,7 +14,7 @@ class MWMessagePackTest extends MediaWikiTestCase {
 	 * serialization function.
 	 */
 	public function provider() {
-		return array(
+		$tests = array(
 			array( 'nil', null, 'c0' ),
 			array( 'bool', true, 'c3' ),
 			array( 'bool', false, 'c2' ),
@@ -25,16 +25,12 @@ class MWMessagePackTest extends MediaWikiTestCase {
 			array( 'uint 8', 128, 'cc80' ),
 			array( 'uint 16', 1000, 'cd03e8' ),
 			array( 'uint 32', 100000, 'ce000186a0' ),
-			array( 'uint 64', 10000000000, 'cf00000002540be400' ),
 			array( 'negative fixnum', -1, 'ff' ),
 			array( 'negative fixnum', -2, 'fe' ),
 			array( 'int 8', -128, 'd080' ),
 			array( 'int 8', -35, 'd0dd' ),
 			array( 'int 16', -1000, 'd1fc18' ),
 			array( 'int 32', -100000, 'd2fffe7960' ),
-			array( 'int 64', -10000000000, 'd3fffffffdabf41c00' ),
-			array( 'int 64', -223372036854775807, 'd3fce66c50e2840001' ),
-			array( 'int 64', -9223372036854775807, 'd38000000000000001' ),
 			array( 'double', 0.1, 'cb3fb999999999999a' ),
 			array( 'double', 1.1, 'cb3ff199999999999a' ),
 			array( 'double', 123.456, 'cb405edd2f1a9fbe77' ),
@@ -56,6 +52,15 @@ class MWMessagePackTest extends MediaWikiTestCase {
 				'82a36f6e6501a374776f02'
 			),
 		);
+
+		if ( PHP_INT_SIZE > 4 ) {
+			$tests[] = array( 'uint 64', 10000000000, 'cf00000002540be400' );
+			$tests[] = array( 'int 64', -10000000000, 'd3fffffffdabf41c00' );
+			$tests[] = array( 'int 64', -223372036854775807, 'd3fce66c50e2840001' );
+			$tests[] = array( 'int 64', -9223372036854775807, 'd38000000000000001' );
+		}
+
+		return $tests;
 	}
 
 	/**
@@ -65,6 +70,6 @@ class MWMessagePackTest extends MediaWikiTestCase {
 	 */
 	public function testPack( $type, $value, $expected ) {
 		$actual = bin2hex( MWMessagePack::pack( $value ) );
-		$this->assertEquals( $actual, $expected, $type );
+		$this->assertEquals( $expected, $actual, $type );
 	}
 }
