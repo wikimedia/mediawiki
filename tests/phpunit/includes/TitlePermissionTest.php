@@ -41,6 +41,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				NS_MEDIAWIKI => 'editinterface',
 			),
 		) );
+		// Without this testUserBlock will use a non-English context on non-English MediaWiki
+		// installations (because of how Title::checkUserBlock is implemented) and fail.
+		RequestContext::resetMain();
 
 		$this->userName = 'Useruser';
 		$this->altUserName = 'Altuseruser';
