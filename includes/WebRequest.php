@@ -25,8 +25,8 @@
 
 /**
  * The WebRequest class encapsulates getting at data passed in the
- * URL or via a POSTed form, handling remove of "magic quotes" slashes,
- * stripping illegal input characters and normalizing Unicode sequences.
+ * URL or via a POSTed form stripping illegal input characters and
+ * normalizing Unicode sequences.
  *
  * Usually this is used via a global singleton, $wgRequest. You should
  * not create a second WebRequest object; make a FauxRequest object if
@@ -57,10 +57,9 @@ class WebRequest {
 	protected $protocol;
 
 	public function __construct() {
-		/// @todo FIXME: This preemptive de-quoting can interfere with other web libraries
-		///        and increases our memory footprint. It would be cleaner to do on
-		///        demand; but currently we have no wrapper for $_SERVER etc.
-		$this->checkMagicQuotes();
+		if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
+			throw new MWException( "MediaWiki does not function when magic quotes are enabled." );
+		}
 
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
@@ -269,51 +268,6 @@ class WebRequest {
 			}
 		}
 		return array();
-	}
-
-	/**
-	 * Recursively strips slashes from the given array;
-	 * used for undoing the evil that is magic_quotes_gpc.
-	 *
-	 * @param array $arr will be modified
-	 * @param bool $topLevel Specifies if the array passed is from the top
-	 * level of the source. In PHP5 magic_quotes only escapes the first level
-	 * of keys that belong to an array.
-	 * @return array The original array
-	 * @see http://www.php.net/manual/en/function.get-magic-quotes-gpc.php#49612
-	 */
-	private function &fix_magic_quotes( &$arr, $topLevel = true ) {
-		$clean = array();
-		foreach ( $arr as $key => $val ) {
-			if ( is_array( $val ) ) {
-				$cleanKey = $topLevel ? stripslashes( $key ) : $key;
-				$clean[$cleanKey] = $this->fix_magic_quotes( $arr[$key], false );
-			} else {
-				$cleanKey = stripslashes( $key );
-				$clean[$cleanKey] = stripslashes( $val );
-			}
-		}
-		$arr = $clean;
-		return $arr;
-	}
-
-	/**
-	 * If magic_quotes_gpc option is on, run the global arrays
-	 * through fix_magic_quotes to strip out the stupid slashes.
-	 * WARNING: This should only be done once! Running a second
-	 * time could damage the values.
-	 */
-	private function checkMagicQuotes() {
-		$mustFixQuotes = function_exists( 'get_magic_quotes_gpc' )
-			&& get_magic_quotes_gpc();
-		if ( $mustFixQuotes ) {
-			$this->fix_magic_quotes( $_COOKIE );
-			$this->fix_magic_quotes( $_ENV );
-			$this->fix_magic_quotes( $_GET );
-			$this->fix_magic_quotes( $_POST );
-			$this->fix_magic_quotes( $_REQUEST );
-			$this->fix_magic_quotes( $_SERVER );
-		}
 	}
 
 	/**
