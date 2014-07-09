@@ -27,6 +27,14 @@
  */
 class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgContLang' => Language::factory( 'en' ),
+		) );
+	}
+
 	/**
 	 * Returns a mock GenderCache that will return "female" always.
 	 *
