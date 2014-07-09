@@ -109,6 +109,7 @@ fieldset#mw-searchoptions table {
 }
 fieldset#mw-searchoptions table td {
 	padding-right: 1em;
+	white-space: nowrap;
 }
 fieldset#mw-searchoptions div.divider {
 	clear: both;
