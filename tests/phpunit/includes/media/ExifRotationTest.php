@@ -32,9 +32,26 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideFiles
 	 */
 	public function testMetadata( $name, $type, $info ) {
-		if ( !BitmapHandler::canRotate() ) {
+		if ( !$this->handler->canRotate() ) {
 			$this->markTestSkipped( "This test needs a rasterizer that can auto-rotate." );
 		}
+		$file = $this->dataFile( $name, $type );
+		$this->assertEquals( $info['width'], $file->getWidth(), "$name: width check" );
+		$this->assertEquals( $info['height'], $file->getHeight(), "$name: height check" );
+	}
+
+	/**
+	 * Same as before, but with auto-rotation set to auto.
+	 *
+	 * This sets scaler to image magick, which we should detect as
+	 * supporting rotation.
+	 * @dataProvider provideFiles
+	 */
+	public function testMetadataAutoRotate( $name, $type, $info ) {
+		$this->setMwGlobals( 'wgEnableAutoRotation', null );
+		$this->setMwGlobals( 'wgUseImageMagick', true );
+		$this->setMwGlobals( 'wgUseImageResize', true );
+
 		$file = $this->dataFile( $name, $type );
 		$this->assertEquals( $info['width'], $file->getWidth(), "$name: width check" );
 		$this->assertEquals( $info['height'], $file->getHeight(), "$name: height check" );
@@ -45,7 +62,7 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideFiles
 	 */
 	public function testRotationRendering( $name, $type, $info, $thumbs ) {
-		if ( !BitmapHandler::canRotate() ) {
+		if ( !$this->handler->canRotate() ) {
 			$this->markTestSkipped( "This test needs a rasterizer that can auto-rotate." );
 		}
 		foreach ( $thumbs as $size => $out ) {
@@ -127,6 +144,19 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 */
 	public function testMetadataNoAutoRotate( $name, $type, $info ) {
 		$this->setMwGlobals( 'wgEnableAutoRotation', false );
+
+		$file = $this->dataFile( $name, $type );
+		$this->assertEquals( $info['width'], $file->getWidth(), "$name: width check" );
+		$this->assertEquals( $info['height'], $file->getHeight(), "$name: height check" );
+	}
+
+	/**
+	 * Same as before, but with auto-rotation set to auto and an image scaler that doesn't support it.
+	 * @dataProvider provideFilesNoAutoRotate
+	 */
+	public function testMetadataAutoRotateUnsupported( $name, $type, $info ) {
+		$this->setMwGlobals( 'wgEnableAutoRotation', null );
+		$this->setMwGlobals( 'wgUseImageResize', false );
 
 		$file = $this->dataFile( $name, $type );
 		$this->assertEquals( $info['width'], $file->getWidth(), "$name: width check" );
