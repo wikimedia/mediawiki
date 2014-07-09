@@ -3423,6 +3423,8 @@ $wgResourceLoaderLESSFunctions = array(
  */
 $wgResourceLoaderLESSImportPaths = array(
 	"$IP/resources/src/mediawiki.less/",
+	// Surface MediaWiki UI so its components can be used by extensions e.g. Flow
+	"$IP/resources/src/mediawiki.ui/",
 );
 
 /**
