@@ -209,7 +209,7 @@ class XCFHandler extends BitmapHandler {
 	 * @param bool $checkDstPath
 	 * @return string
 	 */
-	protected static function getScalerType( $dstPath, $checkDstPath = true ) {
+	protected function getScalerType( $dstPath, $checkDstPath = true ) {
 		return "im";
 	}
 
