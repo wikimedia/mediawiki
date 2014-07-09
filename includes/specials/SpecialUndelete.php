@@ -670,9 +670,8 @@ class SpecialUndelete extends SpecialPage {
 	private	$mTarget;
 	private	$mTimestamp;
 	private	$mRestore;
-	private	$mInvert;
 	private	$mFilename;
-	private $mTargetTimestamp;
+	private $mFileVersions;
 	private	$mAllowed;
 	private	$mCanView;
 	private	$mComment;
@@ -710,7 +709,6 @@ class SpecialUndelete extends SpecialPage {
 		$posted = $request->wasPosted() &&
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		$this->mRestore = $request->getCheck( 'restore' ) && $posted;
-		$this->mInvert = $request->getCheck( 'invert' ) && $posted;
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mDiffOnly = $request->getBool( 'diffonly', $this->getUser()->getOption( 'diffonly' ) );
@@ -732,21 +730,15 @@ class SpecialUndelete extends SpecialPage {
 			$this->mRestore = false;
 		}
 
-		if ( $this->mRestore || $this->mInvert ) {
-			$timestamps = array();
+		if ( $this->mRestore ) {
 			$this->mFileVersions = array();
 			foreach ( $request->getValues() as $key => $val ) {
 				$matches = array();
-				if ( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {
-					array_push( $timestamps, $matches[1] );
-				}
 
 				if ( preg_match( '/^fileid(\d+)$/', $key, $matches ) ) {
 					$this->mFileVersions[] = intval( $matches[1] );
 				}
 			}
-			rsort( $timestamps );
-			$this->mTargetTimestamp = $timestamps;
 		}
 	}
 
@@ -1304,10 +1296,6 @@ class SpecialUndelete extends SpecialPage {
 				Xml::submitButton(
 					$this->msg( 'undeletebtn' )->text(),
 					array( 'name' => 'restore', 'id' => 'mw-undelete-submit' )
-				) . ' ' .
-				Xml::submitButton(
-					$this->msg( 'undeleteinvert' )->text(),
-					array( 'name' => 'invert', 'id' => 'mw-undelete-invert' )
 				) .
 				"</td>
 			</tr>" .
@@ -1365,20 +1353,6 @@ class SpecialUndelete extends SpecialPage {
 
 		$revTextSize = '';
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
-		// Build checkboxen...
-		if ( $this->mAllowed ) {
-			if ( $this->mInvert ) {
-				if ( in_array( $ts, $this->mTargetTimestamp ) ) {
-					$checkBox = Xml::check( "ts$ts" );
-				} else {
-					$checkBox = Xml::check( "ts$ts", true );
-				}
-			} else {
-				$checkBox = Xml::check( "ts$ts" );
-			}
-		} else {
-			$checkBox = '';
-		}
 
 		// Build page & diff links...
 		$user = $this->getUser();
@@ -1436,7 +1410,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$revisionRow = $this->msg( 'undelete-revision-row' )
 			->rawParams(
-				$checkBox,
+				'', // old checkbox; gone
 				$revdlink,
 				$last,
 				$pageLink,
@@ -1622,7 +1596,7 @@ class SpecialUndelete extends SpecialPage {
 		$archive = new PageArchive( $this->mTargetObj );
 		wfRunHooks( 'UndeleteForm::undelete', array( &$archive, $this->mTargetObj ) );
 		$ok = $archive->undelete(
-			$this->mTargetTimestamp,
+			array(),
 			$this->mComment,
 			$this->mFileVersions,
 			$this->mUnsuppress,
