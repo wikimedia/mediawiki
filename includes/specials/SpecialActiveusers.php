@@ -410,7 +410,9 @@ class SpecialActiveUsers extends SpecialPage {
 			}
 			foreach ( array_chunk( $newRows, 500 ) as $rowBatch ) {
 				$dbw->insert( 'querycachetwo', $rowBatch, __METHOD__ );
-				wfWaitForSlaves();
+				if ( !$dbw->trxLevel() ) {
+					wfWaitForSlaves();
+				}
 			}
 		}
 
