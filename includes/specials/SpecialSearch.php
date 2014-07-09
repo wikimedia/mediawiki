@@ -1102,7 +1102,7 @@ class SpecialSearch extends SpecialPage {
 				->numParams( $resultsShown )
 				->parse();
 			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ), $top ) .
-				Xml::element( 'div', array( 'style' => 'clear:both' ) );
+				Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
 		}
 
 		return $out . $this->didYouMeanHtml;
