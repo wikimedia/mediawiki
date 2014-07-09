@@ -2,7 +2,7 @@
  * Show gallery captions when focused. Copied directly from jquery.mw-jump.js.
  * Also Dynamically resize images to justify them.
  */
-( function ( $, mw ) {
+( function ( $ ) {
 	$( function () {
 		var isTouchScreen,
 			gettingFocus,
@@ -93,7 +93,6 @@
 					$imageElm,
 					imageElm,
 					$caption,
-					hookInfo,
 					i,
 					j,
 					avgZoom,
@@ -116,7 +115,6 @@
 						}
 
 						if ( curRow[j].aspect === 0 || !isFinite( curRow[j].aspect ) ) {
-							mw.log( 'Skipping item ' + j + ' due to aspect: ' + curRow[j].aspect );
 							// One of the dimensions are 0. Probably should
 							// not try to resize.
 							combinedPadding += curRow[j].width;
@@ -137,7 +135,6 @@
 						// Also on the off chance there is a bug in this
 						// code, would prevent accidentally expanding to
 						// be 10 billion pixels wide.
-						mw.log( 'mw.page.gallery: Cannot fit row, aspect is ' + preferredHeight / curRowHeight );
 						if ( i === rows.length - 1 ) {
 							// If its the last row, and we can't fit it,
 							// don't make the entire row huge.
@@ -154,19 +151,11 @@
 					}
 					if ( !isFinite( preferredHeight ) ) {
 						// This *definitely* should not happen.
-						mw.log( 'mw.page.gallery: Trying to resize row ' + i + ' to ' + preferredHeight + '?!' );
 						// Skip this row.
 						continue;
 					}
 					if ( preferredHeight < 5 ) {
 						// Well something clearly went wrong...
-						mw.log( {
-							maxWidth: maxWidth,
-							combinedPadding: combinedPadding,
-							combinedAspect: combinedAspect,
-							wantedWidth: wantedWidth
-						} );
-						mw.log( 'mw.page.gallery: [BUG!] Fitting row ' + i + ' to too small a size: ' + preferredHeight );
 						// Skip this row.
 						continue;
 					}
@@ -194,7 +183,6 @@
 
 						if ( newWidth < 60 || !isFinite( newWidth ) ) {
 							// Making something skinnier than this will mess up captions,
-							mw.log( 'mw.page.gallery: Tried to make image ' + newWidth + 'px wide but too narrow.' );
 							if ( newWidth < 1 || !isFinite( newWidth ) ) {
 								$innerDiv.height( preferredHeight );
 								// Don't even try and touch the image size if it could mean
@@ -208,46 +196,17 @@
 							$caption.width( curRow[j].captionWidth + ( newWidth - curRow[j].imgWidth ) );
 						}
 
-						hookInfo = {
-							fullWidth: newWidth + padding,
-							imgWidth: newWidth,
-							imgHeight: preferredHeight,
-							$innerDiv: $innerDiv,
-							$imageDiv: $imageDiv,
-							$outerDiv: $outerDiv,
-							// Whether the hook took action
-							resolved: false
-						};
-
-						/**
-						 * Gallery resize.
-						 *
-						 * If your handler resizes an image, it should also set the resolved
-						 * property to true. Additionally, because this module only exposes this
-						 * logic temporarily, you should load your module in position top to
-						 * ensure it is registered before this runs (FIXME: Don't use mw.hook)
-						 *
-						 * See TimedMediaHandler for an example.
-						 *
-						 * @event mediawiki_page_gallery_resize
-						 * @member mw.hook
-						 * @param {Object} hookInfo
-						 */
-						mw.hook( 'mediawiki.page.gallery.resize' ).fire( hookInfo );
-
-						if ( !hookInfo.resolved ) {
-							if ( imageElm ) {
-								// We don't always have an img, e.g. in the case of an invalid file.
-								imageElm.width = newWidth;
-								imageElm.height = preferredHeight;
-							} else {
-								// Not a file box.
-								$imageDiv.height( preferredHeight );
-							}
+						if ( imageElm ) {
+							// We don't always have an img, e.g. in the case of an invalid file.
+							imageElm.width = newWidth;
+							imageElm.height = preferredHeight;
+						} else {
+							// Not a file box.
+							$imageDiv.height( preferredHeight );
 						}
 					}
 				}
 			}() );
 		} );
 	} );
-}( jQuery, mediaWiki ) );
+}( jQuery ) );
