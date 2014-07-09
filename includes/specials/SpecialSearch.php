@@ -954,7 +954,7 @@ class SpecialSearch extends SpecialPage {
 		return Xml::openElement( 'fieldset', array( 'id' => 'mw-searchoptions' ) ) .
 			Xml::element( 'legend', null, $this->msg( 'powersearch-legend' )->text() ) .
 			Xml::tags( 'h4', null, $this->msg( 'powersearch-ns' )->parse() ) .
-			Html::element( 'div', array( 'id' => 'mw-search-togglebox' ) ) .
+			Xml::element( 'div', array( 'id' => 'mw-search-togglebox' ), '', false ) .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
 			implode( Xml::element( 'div', array( 'class' => 'divider' ), '', false ), $showSections ) .
 			$hidden .
