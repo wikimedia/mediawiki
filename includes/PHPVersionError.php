@@ -32,6 +32,7 @@
  *   - index.php
  *   - load.php
  *   - api.php
+ *   - mw-config/index.php
  *   - cli
  *
  * @note Since we can't rely on anything, the minimum PHP versions and MW current
@@ -50,10 +51,15 @@ function wfPHPVersionError( $type ) {
 		$finalOutput = "You are using PHP version $phpVersion "
 			. "but MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher. ABORTING.\n"
 			. "Check if you have a newer php executable with a different name, such as php5.\n";
-	} elseif ( $type == 'index.php' ) {
+	} elseif ( $type == 'index.php' || $type == 'mw-config/index.php' ) {
 		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
+		if ( $type == 'mw-config/index.php' ) {
+			$dirname = dirname( $pathinfo['dirname'] );
+		} else {
+			$dirname = $pathinfo['dirname'];
+		}
 		$encLogo = htmlspecialchars(
-			str_replace( '//', '/', $pathinfo['dirname'] . '/' ) .
+			str_replace( '//', '/', $dirname . '/' ) .
 			'skins/common/images/mediawiki.png'
 		);
 

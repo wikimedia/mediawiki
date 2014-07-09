@@ -20,6 +20,13 @@
  * @file
  */
 
+// Bail if PHP is too low
+if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.3.2' ) < 0 ) {
+	// We need to use dirname( __FILE__ ) here cause __DIR__ is PHP5.3+
+	require dirname( dirname( __FILE__ ) ) . '/includes/PHPVersionError.php';
+	wfPHPVersionError( 'mw-config/index.php' );
+}
+
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
