@@ -269,4 +269,20 @@ abstract class ImageHandler extends MediaHandler {
 				->numParams( $file->getWidth(), $file->getHeight() )->text();
 		}
 	}
+
+	public function sanitizeParamsForBucketing( $params ) {
+		$params = parent::sanitizeParamsForBucketing( $params );
+
+		// We unset the height parameters in order to let normaliseParams recalculate them
+		// Otherwise there might be a height discrepancy
+		if ( isset( $params['height'] ) ) {
+			unset( $params['height'] );
+		}
+
+		if ( isset( $params['physicalHeight'] ) ) {
+			unset( $params['physicalHeight'] );
+		}
+
+		return $params;
+	}
 }
