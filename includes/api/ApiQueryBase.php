@@ -75,8 +75,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a set of tables to the internal array
-	 * @param mixed $tables Table name or array of table names
-	 * @param mixed $alias Table alias, or null for no alias. Cannot be
+	 * @param string|string[] $tables Table name or array of table names
+	 * @param string|null $alias Table alias, or null for no alias. Cannot be
 	 *  used with multiple tables
 	 */
 	protected function addTables( $tables, $alias = null ) {
