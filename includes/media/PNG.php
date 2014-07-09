@@ -173,4 +173,8 @@ class PNGHandler extends BitmapHandler {
 
 		return $wgLang->commaList( $info );
 	}
+
+	public function supportsBucketing() {
+		return true;
+	}
 }

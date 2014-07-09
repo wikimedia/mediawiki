@@ -158,4 +158,19 @@ class JpegHandler extends ExifBitmapHandler {
 			return parent::rotate( $file, $params );
 		}
 	}
+
+	public function supportsBucketing() {
+		return true;
+	}
+
+	public function sanitizeParamsForBucketing( $params ) {
+		$params = parent::sanitizeParamsForBucketing( $params );
+
+		// Quality needs to be cleared for bucketing. Buckets need to be default quality
+		if ( isset( $params['quality'] ) ) {
+			unset( $params['quality'] );
+		}
+
+		return $params;
+	}
 }
