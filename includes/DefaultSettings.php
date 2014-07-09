@@ -4370,7 +4370,7 @@ $wgGroupPermissions['sysop']['unblockself'] = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
 #$wgGroupPermissions['sysop']['pagelang'] = true;
 #$wgGroupPermissions['sysop']['upload_by_url'] = true;
-#$wgGroupPermissions['sysop']['mergehistory'] = true;
+$wgGroupPermissions['sysop']['mergehistory'] = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
