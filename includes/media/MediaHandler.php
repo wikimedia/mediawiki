@@ -745,10 +745,10 @@ abstract class MediaHandler {
 
 	/**
 	 * True if the handler can rotate the media
-	 * @since 1.21
+	 * @since 1.24 non-static. From 1.21-1.23 was static
 	 * @return bool
 	 */
-	public static function canRotate() {
+	public function canRotate() {
 		return false;
 	}
 

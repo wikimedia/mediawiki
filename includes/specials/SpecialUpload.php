@@ -738,6 +738,18 @@ class SpecialUpload extends SpecialPage {
 	protected function getGroupName() {
 		return 'media';
 	}
+
+	/**
+	 * Should we rotate images in the preview on Special:Upload.
+	 *
+	 * This controls js: mw.config.get( 'wgFileCanRotate' )
+	 *
+	 * @todo What about non-BitmapHandler handled files?
+	 */
+	static public function rotationEnabled() {
+		$bitmapHandler = new BitmapHandler();
+		return $bitmapHandler->autoRotateEnabled();
+	}
 }
 
 /**

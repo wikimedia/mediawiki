@@ -753,6 +753,7 @@ $wgAutoloadLocalClasses = array(
 	'SVGReader' => 'includes/media/SVGMetadataExtractor.php',
 	'ThumbnailImage' => 'includes/media/MediaTransformOutput.php',
 	'TiffHandler' => 'includes/media/Tiff.php',
+	'TransformationalImageHandler' => 'includes/media/TransformationalImageHandler.php',
 	'TransformParameterError' => 'includes/media/MediaTransformOutput.php',
 	'XCFHandler' => 'includes/media/XCF.php',
 	'XMPInfo' => 'includes/media/XMPInfo.php',
