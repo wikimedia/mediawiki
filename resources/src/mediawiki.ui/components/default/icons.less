@@ -1,0 +1,21 @@
+@import "mediawiki.mixins";
+
+// Icons
+//
+// All elements which are decorated with icons should make use of the mw-ui-icon class.
+// Any text label is hidden in the default icon markup.
+// Icons by default are 24px by 24px
+//
+// Markup:
+// <button class="mw-ui-icon">Text invisible</button>
+//
+// Styleguide 4.
+.mw-ui-icon {
+	width: 32px;
+	height: 32px;
+	text-indent: -999px;
+	overflow: hidden;
+	display: block;
+	.background-size( 32px, 32px );
+	background-repeat: no-repeat;
+}
