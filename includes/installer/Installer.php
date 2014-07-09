@@ -119,7 +119,6 @@ abstract class Installer {
 		'envCheckRegisterGlobals',
 		'envCheckBrokenXML',
 		'envCheckMagicQuotes',
-		'envCheckMagicSybase',
 		'envCheckMbstring',
 		'envCheckSafeMode',
 		'envCheckXML',
@@ -762,31 +761,19 @@ abstract class Installer {
 	}
 
 	/**
-	 * Environment check for magic_quotes_runtime.
+	 * Environment check for magic_quotes_(gpc|runtime|sybase).
 	 * @return bool
 	 */
 	protected function envCheckMagicQuotes() {
-		if ( wfIniGetBool( "magic_quotes_runtime" ) ) {
-			$this->showError( 'config-magic-quotes-runtime' );
-
-			return false;
+		$status = true;
+		foreach ( array( 'gpc', 'runtime', 'sybase' ) as $magicJunk ) {
+			if ( wfIniGetBool( "magic_quotes_$magicJunk" ) ) {
+				$this->showError( "config-magic-quotes-$magicJunk" );
+				$status = false;
+			}
 		}
 
-		return true;
-	}
-
-	/**
-	 * Environment check for magic_quotes_sybase.
-	 * @return bool
-	 */
-	protected function envCheckMagicSybase() {
-		if ( wfIniGetBool( 'magic_quotes_sybase' ) ) {
-			$this->showError( 'config-magic-quotes-sybase' );
-
-			return false;
-		}
-
-		return true;
+		return $status;
 	}
 
 	/**

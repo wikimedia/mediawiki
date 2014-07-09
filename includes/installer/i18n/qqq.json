@@ -70,6 +70,7 @@
 	"config-outdated-sqlite": "Used as warning. Parameters:\n* $1 - the version of SQLite that has been installed\n* $2 - minimum version",
 	"config-no-fts3": "A \"[[:wikipedia:Front and back ends|backend]]\" is a system or component that ordinary users don't interact with directly and don't need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are \"system\" or \"service\", or (depending on context and language) even leave it untranslated.",
 	"config-register-globals-error": "Error message in the MediaWiki installer environment checks.",
+	"config-magic-quotes-gpc": "{{Related|Config-fatal}}",
 	"config-magic-quotes-runtime": "{{Related|Config-fatal}}",
 	"config-magic-quotes-sybase": "{{Related|Config-fatal}}",
 	"config-mbstring": "{{Related|Config-fatal}}",
