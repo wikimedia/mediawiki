@@ -2075,48 +2075,36 @@ class Title {
 	) {
 		# Only 'createaccount' can be performed on special pages,
 		# which don't actually exist in the DB.
-		if ( NS_SPECIAL == $this->mNamespace && $action !== 'createaccount' ) {
+		if ( $this->mNamespace === NS_SPECIAL && $action !== 'createaccount' ) {
 			$errors[] = array( 'ns-specialprotected' );
 		}
 
 		# Check $wgNamespaceProtection for restricted namespaces
 		if ( $this->isNamespaceProtected( $user ) ) {
-			$ns = $this->mNamespace == NS_MAIN ?
+			$ns = $this->mNamespace === NS_MAIN ?
 				wfMessage( 'nstab-main' )->text() : $this->getNsText();
-			$errors[] = $this->mNamespace == NS_MEDIAWIKI ?
+			$errors[] = $this->mNamespace === NS_MEDIAWIKI ?
 				array( 'protectedinterface' ) : array( 'namespaceprotected', $ns );
 		}
 
-		return $errors;
-	}
-
-	/**
-	 * Check CSS/JS sub-page permissions
-	 *
-	 * @param string $action The action to check
-	 * @param User $user User to check
-	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
-	 * @param bool $short Short circuit on first error
-	 *
-	 * @return array List of errors
-	 */
-	private function checkCSSandJSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		# Protect css/js subpages of user pages
-		# XXX: this might be better using restrictions
-		# XXX: right 'editusercssjs' is deprecated, for backward compatibility only
-		if ( $action != 'patrol' && !$user->isAllowed( 'editusercssjs' ) ) {
-			if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
-				if ( $this->isCssSubpage() && !$user->isAllowedAny( 'editmyusercss', 'editusercss' ) ) {
-					$errors[] = array( 'mycustomcssprotected' );
-				} elseif ( $this->isJsSubpage() && !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' ) ) {
-					$errors[] = array( 'mycustomjsprotected' );
+		if ( $action !== 'patrol' && MWNamespace::getSubject( $this->mNamespace ) === NS_USER ) {
+			$userpage = self::makeTitleSafe( NS_USER, $user->getName() );
+			$usertalkpage = self::makeTitleSafe( NS_USER_TALK, $user->getName() );
+			if ( $this->isSubpageOf( $userpage ) || $this->isSubpageOf( $usertalkpage ) ) {
+				if ( $this->mContentModel === CONTENT_MODEL_CSS &&
+					!$user->isAllowedAny( 'editmyusercss', 'editusercss' ) ) {
+					$errors[] = 'mycustomcssprotected';
+				} elseif ( $this->mContentModel === CONTENT_MODEL_JAVASCRIPT &&
+					!$user->isAllowedAny( 'editmyuserjs', 'edituserjs' ) ) {
+					$errors[] = 'mycustomjsprotected';
 				}
 			} else {
-				if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
-					$errors[] = array( 'customcssprotected' );
-				} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
-					$errors[] = array( 'customjsprotected' );
+				if ( $this->mContentModel === CONTENT_MODEL_CSS &&
+					!$user->isAllowed( 'editusercss' ) ) {
+					$errors[] = 'customcssprotected';
+				} elseif ( $this->mContentModel === CONTENT_MODEL_JAVASCRIPT &&
+					!$user->isAllowed( 'edituserjs' ) ) {
+					$errors[] = 'customjsprotected';
 				}
 			}
 		}
@@ -2445,7 +2433,6 @@ class Title {
 				'checkQuickPermissions',
 				'checkPermissionHooks',
 				'checkSpecialsAndNSPermissions',
-				'checkCSSandJSPermissions',
 				'checkPageRestrictions',
 				'checkCascadingSourcesRestrictions',
 				'checkActionPermissions',
