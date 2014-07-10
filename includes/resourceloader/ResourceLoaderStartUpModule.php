@@ -51,7 +51,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$wgCookiePrefix, $wgCookieDomain, $wgCookiePath,
 			$wgCookieExpiration, $wgResourceLoaderMaxQueryLength,
 			$wgResourceLoaderStorageEnabled, $wgResourceLoaderStorageVersion,
-			$wgSearchType;
+			$wgSearchType, $wgExtraSignatureNamespaces;
 
 		$mainPage = Title::newMainPage();
 
@@ -96,6 +96,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
 			'wgContentNamespaces' => MWNamespace::getContentNamespaces(),
+			'wgExtraSignatureNamespaces' => $wgExtraSignatureNamespaces,
 			'wgSiteName' => $wgSitename,
 			'wgFileExtensions' => array_values( array_unique( $wgFileExtensions ) ),
 			'wgDBname' => $wgDBname,
