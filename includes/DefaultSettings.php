@@ -6554,26 +6554,7 @@ $wgMaxRedirectLinksRetrieved = 500;
  *     'foo' => false          The action is disabled; show an error message
  * Unsetting core actions will probably cause things to complain loudly.
  */
-$wgActions = array(
-	'credits' => true,
-	'delete' => true,
-	'edit' => true,
-	'history' => true,
-	'info' => true,
-	'markpatrolled' => true,
-	'protect' => true,
-	'purge' => true,
-	'raw' => true,
-	'render' => true,
-	'revert' => true,
-	'revisiondelete' => true,
-	'rollback' => true,
-	'submit' => true,
-	'unprotect' => true,
-	'unwatch' => true,
-	'view' => true,
-	'watch' => true,
-);
+$wgActions = array();
 
 /** @} */ # end actions }
 
