@@ -444,17 +444,6 @@ class Language {
 	}
 
 	/**
-	 * Same as getFallbacksFor for current language.
-	 * @return array|bool
-	 * @deprecated since 1.19
-	 */
-	function getFallbackLanguageCode() {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		return self::getFallbackFor( $this->mCode );
-	}
-
-	/**
 	 * @return array
 	 * @since 1.19
 	 */

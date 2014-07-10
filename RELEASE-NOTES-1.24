@@ -230,6 +230,7 @@ changes to languages because of Bugzilla reports.
 * Removed Title::escapeFullURL(). (deprecated since 1.19)
 * Removed User::isValidEmailAddr(). (deprecated since 1.18)
 * Removed Title::getEscapedText(). (deprecated since 1.19)
+* Removed Language::getFallbackLanguageCode(). (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
