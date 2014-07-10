@@ -52,7 +52,14 @@ class SkinVector extends SkinTemplate {
 				"/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
 		);
 
-		$out->addModules( array( 'skins.vector.js' ) );
+		$out->addModules( ( $GLOBALS['wgIncludeCollapsibleNav'] ? 
+			array( 
+				'skins.vector.js', 
+				'skins.vector.collapsibleNav',
+			)  :
+			array( 
+				'skins.vector.js', 
+			)));
 	}
 
 	/**
