@@ -126,6 +126,11 @@ production.
 * (bug 66440) The MediaWiki web installer will now allow you to choose the skins
   to enable (from the ones included in download tarball) and decide which one
   should be the default.
+* Action::factory() now attempts to automatically detect if a given action is
+  valid before constructing the object. Instead of relying on $wgActions, it now
+  checks if an action has a valid class defined for it suffixed by "Action".
+  However, you can still disable actions by setting them to false in $wgActions
+  or in WikiPage::getActionOverrides()/ContentHandler::getActionOverrides().
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
