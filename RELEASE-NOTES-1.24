@@ -116,6 +116,11 @@ production.
 * Upgrade Sinon.JS to 1.10.3.
 * Added the es5-shim polyfill for older or non-compliant javascript engines.
 * Upgrade jQuery Cookie to v1.2.0.
+* Action::factory() now attempts to automatically detect if a given action is
+  valid before constructing the object. Instead of relying on $wgActions, it now
+  checks if an action has a valid class defined for it suffixed by "Action".
+  However, you can still disable actions by setting them to false in $wgActions
+  or in WikiPage::getActionOverrides()/ContentHandler::getActionOverrides().
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
