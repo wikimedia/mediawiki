@@ -228,6 +228,7 @@ changes to languages because of Bugzilla reports.
 * Removed Title::escapeCanonicalURL(). (deprecated since 1.19)
 * Removed Title::escapeLocalURL(). (deprecated since 1.19)
 * Removed Title::escapeFullURL(). (deprecated since 1.19)
+* Removed User::isValidEmailAddr(). (deprecated since 1.18)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
