@@ -125,8 +125,8 @@ production.
   option and a size specification set will now always ignore the provided
   size and display an unscaled image, as the documentation has always
   claimed it would.
-* (bug 39035) Improved Vector skin performance by removing collapsibleNav,
-  which used to collapse some sidebar elements by default.
+* (bug 39035) Added $wgIncludeCollapsibleNav and set the default to false to 
+  improve the Vector skin performance.
   This removes -list id suffixes like p-lang-list: instead of using things like
   #p-lang-list, you can do #p-lang .body ul.
 * (bug 890) Links in Special:RecentChanges and Special:Watchlist no longer
@@ -286,6 +286,7 @@ changes to languages because of Bugzilla reports.
 * IPBlockForm - Use SpecialBlock directly
 * WatchlistEditor - Use SpecialEditWatchlist directly
 * FormatExif - Use FormatMetadata directly
+* RevertFileAction - Use RevertAction directly
 
 == Compatibility ==
 
