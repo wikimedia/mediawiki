@@ -309,6 +309,9 @@ return array(
 	'jquery.validate' => array(
 		'scripts' => 'resources/lib/jquery/jquery.validate.js',
 	),
+	'additional-methods' => array(
+		'scripts' => 'resources/lib/jquery/additional-methods.js ',
+	),
 	'jquery.xmldom' => array(
 		'scripts' => 'resources/lib/jquery/jquery.xmldom.js',
 	),
