@@ -1155,11 +1155,10 @@ Ruby markup (W3C-style)
 : <ruby>東<rb>京</rb><rp>(</rp><rt>とう</rt><rt>きょう</rt><rp>)</rp></ruby>
 ; Double-sided ruby
 : <ruby><rb>旧</rb><rb>金</rb><rb>山</rb><rt>jiù</rt><rt>jīn</rt><rt>shān</rt><rtc>San Francisco</rtc></ruby>
-
 <ruby>
-<rb>♥</rb><rtc><rt>Heart</rt></rtc><rtc lang=fr><rt>Cœur</rt></rtc>
-<rb>☘</rb><rtc><rt>Shamrock</rt></rtc><rtc lang=fr><rt>Trèfle</rt></rtc>
-<rb>✶</rb><rtc><rt>Star</rt></rtc><rtc lang=fr><rt>Étoile</rt></rtc>
+<rb>♥</rb><rtc><rt>Heart</rt></rtc><rtc lang="fr"><rt>Cœur</rt></rtc>
+<rb>☘</rb><rtc><rt>Shamrock</rt></rtc><rtc lang="fr"><rt>Trèfle</rt></rtc>
+<rb>✶</rb><rtc><rt>Star</rt></rtc><rtc lang="fr"><rt>Étoile</rt></rtc>
 </ruby>
 !! html
 <dl><dt> Mono-ruby for individual base characters</dt>
@@ -2623,41 +2622,28 @@ File:foobar.jpg
 !!end
 
 !! test
-Leading pipes outside of tables
-!! options
-parsoid
-!! wikitext
-| foo
-!! html
-<p>| foo</p>
-!! end
-
-!! test
-Leading pipes outside of tables 2
-!! options
-parsoid
+Table wikitext syntax outside wiki-tables
 !! wikitext
 a
-| foo
-b
-!! html
-<p>a
-| foo
-b</p>
-!! end
-
-!! test
-Leading pipes outside of tables 3
-!! options
-parsoid
-!! wikitext
-a
+! not a table heading
+|- not a table row
+| not a table cell
 | class="foo bar" | baz
 b
+|}
+|-
+c
 !! html
 <p>a
+! not a table heading
+|- not a table row
+| not a table cell
 | class="foo bar" | baz
-b</p>
+b
+|}
+|-
+c
+</p>
 !! end
 
 !!test
@@ -6170,6 +6156,16 @@ Link with multiple ":" in a subpage-supporting namespace (bug 63636)
 !! end
 
 !! test
+Purely hash wikilink
+!! options
+title=[[User:test/123]]
+!! wikitext
+[[#a|b]]
+!! html/parsoid
+<p data-parsoid='{}'><a rel="mw:WikiLink" href="../User:Test/123#a" data-parsoid='{"stx":"piped","a":{"href":"../User:Test/123#a"},"sa":{"href":"#a"}}'>b</a></p>
+!! end
+
+!! test
 1. Interaction of linktrail and template encapsulation
 !! options
 parsoid
@@ -6406,9 +6402,12 @@ Interlanguage link
 !! wikitext
 Blah blah blah
 [[zh:Chinese]]
-!! html
+!! html/php
 <p>Blah blah blah
 </p>
+!! html/parsoid
+<p>Blah blah blah
+<link rel="mw:PageProp/Language" href="//zh.wikipedia.org/wiki/Chinese"/></p>
 !! end
 
 !! test
@@ -6417,9 +6416,13 @@ Double interlanguage link
 Blah blah blah
 [[es:Spanish]]
 [[zh:Chinese]]
-!! html
+!! html/php
 <p>Blah blah blah
 </p>
+!! html/parsoid
+<p>Blah blah blah
+<link rel="mw:PageProp/Language" href="//es.wikipedia.org/wiki/Spanish"/>
+<link rel="mw:PageProp/Language" href="//zh.wikipedia.org/wiki/Chinese"/></p>
 !! end
 
 !! test
@@ -6429,9 +6432,12 @@ language=ln
 !! wikitext
 Blah blah blah
 [[zh:Chinese]]
-!! html
+!! html/php
 <p>Blah blah blah
 </p>
+!! html/parsoid
+<p>Blah blah blah
+<link rel="mw:PageProp/Language" href="//zh.wikipedia.org/wiki/Chinese"/></p>
 !! end
 
 !! test
@@ -6442,19 +6448,26 @@ language=ln
 Blah blah blah
 [[es:Spanish]]
 [[zh:Chinese]]
-!! html
+!! html/php
 <p>Blah blah blah
 </p>
+!! html/parsoid
+<p>Blah blah blah
+<link rel="mw:PageProp/Language" href="//es.wikipedia.org/wiki/Spanish"/>
+<link rel="mw:PageProp/Language" href="//zh.wikipedia.org/wiki/Chinese"/></p>
 !! end
 
 !! test
 "Extra" interlanguage links (bug 32189 / gerrit 111390)
 !! wikitext
 Blah blah blah
-[[mul:Multilingual]]
-!! html
+[[mul:Article]]
+!! html/php
 <p>Blah blah blah
 </p>
+!! html/parsoid
+<p>Blah blah blah
+<link rel="mw:PageProp/Language" title="Multilingual" href="//wikisource.org/wiki/Article"/></p>
 !! end
 
 !! test
@@ -8714,6 +8727,42 @@ Un-closed <includeonly>
 !! html
 !! end
 
+!! test
+Includes and comments at SOL
+!! wikitext
+<!-- comment --><noinclude><!-- comment --></noinclude><!-- comment -->== hu ==
+
+<noinclude>
+some
+</noinclude>* stuff
+* here
+
+<includeonly>can have stuff</includeonly>=== here ===
+
+!! html/php
+<h2><span class="mw-headline" id="hu">hu</span></h2>
+<p>some
+</p>
+<ul><li> stuff</li>
+<li> here</li></ul>
+<h3><span class="mw-headline" id="here">here</span></h3>
+
+!! html/parsoid
+<!-- comment --><meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/><!-- comment --><meta typeof="mw:Includes/NoInclude/End" data-parsoid='{"src":"&lt;/noinclude>"}'/><!-- comment -->
+<h2 data-parsoid='{}'> hu </h2>
+
+<meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/>
+
+<p data-parsoid='{}'>some</p>
+<meta typeof="mw:Includes/NoInclude/End" data-parsoid='{"src":"&lt;/noinclude>"}'/>
+<ul data-parsoid='{}'>
+<li data-parsoid='{}'> stuff</li>
+
+<li data-parsoid='{}'> here</li></ul>
+
+<h3 data-parsoid='{}'> here </h3>
+!! end
+
 # TODO: test with DOM fragment reuse!
 !! test
 Parsoid: DOM fragment reuse
@@ -8883,9 +8932,10 @@ parsoid=wt2html,wt2wt
 |c
 |}
 !!html/parsoid
-<meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>a&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":"&lt;/includeonly>"}'/><span data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>{{{b}}}</span><table about="#mwt1" typeof="mw:Param" data-parsoid='{"a":{" ":null},"sa":{" ":""},"src":"{| {{{b}}}\n|c\n|}"}'>
+<meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>a&lt;/includeonly>"'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":""}'/><table about="#mwt2" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"{{{b}}}","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[31,38,null,null],&amp;quot;src&amp;quot;:&amp;quot;{{{b}}}&amp;quot;}\">{{{b}}}&lt;/span>"},{"html":""}]]}' data-parsoid='{"a":{"{{{b}}}":null},"sa":{"{{{b}}}":""}}'>
 <tbody><tr><td>c</td></tr>
 </tbody></table>
+
 !!end
 
 ###
@@ -11926,15 +11976,19 @@ parsoid
 ### Inter-language links
 ###
 !! test
-Inter-language links
+Interlanguage links
 !! options
 ill
 !! wikitext
 [[es:Alimento]]
 [[fr:Nourriture]]
-[[zh:&#39135;&#21697;]]
-!! html
+[[zh:食品]]
+!! html/php
 es:Alimento fr:Nourriture zh:食品
+!! html/parsoid
+<p><link rel="mw:PageProp/Language" href="//es.wikipedia.org/wiki/Alimento"/>
+<link rel="mw:PageProp/Language" href="//fr.wikipedia.org/wiki/Nourriture"/>
+<link rel="mw:PageProp/Language" href="//zh.wikipedia.org/wiki/食品"/></p>
 !! end
 
 !! test
@@ -11946,8 +12000,13 @@ ill
 [[es:2]]
 [[fr:1]]
 [[fr:2]]
-!! html
+!! html/php
 es:1 fr:1
+!! html/parsoid
+<p><link rel="mw:PageProp/Language" href="//es.wikipedia.org/wiki/1"/>
+<link rel="mw:PageProp/Language" href="//es.wikipedia.org/wiki/2"/>
+<link rel="mw:PageProp/Language" href="//fr.wikipedia.org/wiki/1"/>
+<link rel="mw:PageProp/Language" href="//fr.wikipedia.org/wiki/2"/></p>
 !! end
 
 ###
@@ -18476,12 +18535,12 @@ B <ref group="X" name="b" />
 <ref name="b">foo</ref>
 </references>
 !! html
-<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo bar for a"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>foo bar for a&lt;/ref>"}'><a href="#cite_note-2" data-parsoid="{}">[2]</a></span>
-B <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"group":"X","name":"b"}}' id="cite_ref-b-3-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref name=\"b\" group=\"X\" />"}'><a href="#cite_note-b-3" data-parsoid="{}">[X 1]</a></span></p>
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo bar for a"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>foo bar for a&lt;/ref>"}'><a href="#cite_note-1" data-parsoid="{}">[1]</a></span>
+B <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"group":"X","name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref group=\"X\" name=\"b\" />"}'><a href="#cite_note-b-2" data-parsoid="{}">[X 1]</a></span></p>
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-parsoid='{"src":"&lt;references />"}' data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-b-1" id="cite_note-b-1" data-parsoid="{}"><span rel="mw:referencedBy" data-parsoid="{}">↑</span> foo</li><li about="#cite_note-2" id="cite_note-2" data-parsoid="{}"><span rel="mw:referencedBy" data-parsoid="{}"><a href="#cite_ref-2-0" data-parsoid="{}">↑</a></span> foo bar for a</li></ol>
+<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-parsoid='{"src":"&lt;references />"}' data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy" data-parsoid="{}"><a href="#cite_ref-1-0" data-parsoid="{}">↑</a></span> foo bar for a</li></ol>
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt8" data-parsoid='{"src":"&lt;references group=\"X\">\n&lt;ref name=\"b\">foo&lt;/ref>\n&lt;/references>","group":"X"}' data-mw='{"name":"references","body":{"extsrc":"&lt;ref name=\"b\">foo&lt;/ref>","html":"\n&lt;span about=\"#mwt10\" class=\"reference\" data-mw=&#39;{\"name\":\"ref\",\"body\":{\"html\":\"foo\"},\"attrs\":{\"name\":\"b\"}}&#39; rel=\"dc:references\" typeof=\"mw:Extension/ref\">&lt;a href=\"#cite_note-b-1\">[1]&lt;/a>&lt;/span>\n"},"attrs":{"group":"X"}}'><li about="#cite_note-b-3" id="cite_note-b-3" data-parsoid="{}"><span rel="mw:referencedBy" data-parsoid="{}"><a href="#cite_ref-b-3-0" data-parsoid="{}">↑</a></span> </li></ol>
+<ol class="references" typeof="mw:Extension/references" about="#mwt8" data-parsoid='{"src":"&lt;references group=\"X\">\n&lt;ref name=\"b\">foo&lt;/ref>\n&lt;/references>","group":"X"}' data-mw='{"name":"references","body":{"extsrc":"&lt;ref name=\"b\">foo&lt;/ref>","html":"\n&lt;span about=\"#mwt10\" class=\"reference\" data-mw=&#39;{\"name\":\"ref\",\"body\":{\"html\":\"foo\"},\"attrs\":{\"name\":\"b\"}}&#39; rel=\"dc:references\" typeof=\"mw:Extension/ref\">&lt;a href=\"#cite_note-b-2\">[X 1]&lt;/a>&lt;/span>\n"},"attrs":{"group":"X"}}'><li about="#cite_note-b-2" id="cite_note-b-2" data-parsoid="{}"><span rel="mw:referencedBy" data-parsoid="{}"><a href="#cite_ref-b-2-0" data-parsoid="{}">↑</a></span> foo</li></ol>
 !! end
 
 !! test
@@ -19622,6 +19681,16 @@ parsoid
  <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
 !! end
 
+!! test
+5. Nowiki escaping should account for indent-pres
+!! options
+parsoid=html2wt
+!! html
+<pre>==foo==</pre>
+!! wikitext
+ ==foo==
+!! end
+
 #### --------------- Behavior Switches --------------------
 !! test
 1. Valid behavior switches should be escaped
@@ -20413,6 +20482,17 @@ parsoid=html2wt
 #
 # All these tests are marked Parsoid html2wt and html2html only
 # ----------------------------------------------------------------
+
+!! test
+Serialize interwiki links pointing to the current wiki as plain wiki links (bug 65869)
+!! options
+parsoid=html2wt
+language=es
+!! wikitext
+[[Foo]]
+!! html
+<p><a rel="mw:ExtLink" href="http://es.wikipedia.org/wiki/Foo">Foo</a></p>
+!! end
 
 !! test
 Image: Modifying size of an image (1)
