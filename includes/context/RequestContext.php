@@ -88,7 +88,7 @@ class RequestContext implements IContextSource {
 	 * @return Config
 	 */
 	public function getConfig() {
-		if ( $this->config === null ) {
+		if ( !$this->config ) {
 			// @todo In the future, we could move this to WebStart.php so
 			// the Config object is ready for when initialization happens
 			$this->config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
@@ -112,7 +112,7 @@ class RequestContext implements IContextSource {
 	 * @return WebRequest
 	 */
 	public function getRequest() {
-		if ( $this->request === null ) {
+		if ( !$this->request ) {
 			global $wgRequest; # fallback to $wg till we can improve this
 			$this->request = $wgRequest;
 		}
@@ -141,7 +141,7 @@ class RequestContext implements IContextSource {
 	 * @return Title|null
 	 */
 	public function getTitle() {
-		if ( $this->title === null ) {
+		if ( !$this->title ) {
 			global $wgTitle; # fallback to $wg till we can improve this
 			$this->title = $wgTitle;
 		}
@@ -158,18 +158,14 @@ class RequestContext implements IContextSource {
 	 * @return bool
 	 */
 	public function canUseWikiPage() {
-		if ( $this->wikipage !== null ) {
+		if ( $this->wikipage && $this->wikipage instanceof WikiPage ) {
 			# If there's a WikiPage object set, we can for sure get it
 			return true;
 		}
 		$title = $this->getTitle();
-		if ( $title === null ) {
-			# No Title, no WikiPage
-			return false;
-		} else {
-			# Only namespaces whose pages are stored in the database can have WikiPage
-			return $title->canExist();
-		}
+		// Only pages with legitimate titles can have WikiPages.
+		// That usually means pages in non-virtual namespaces.
+		return $title ? $title->canExist() : false;
 	}
 
 	/**
@@ -199,9 +195,9 @@ class RequestContext implements IContextSource {
 	 * @return WikiPage
 	 */
 	public function getWikiPage() {
-		if ( $this->wikipage === null ) {
+		if ( !$this->wikipage ) {
 			$title = $this->getTitle();
-			if ( $title === null ) {
+			if ( !$title ) {
 				throw new MWException( __METHOD__ . ' called without Title object set' );
 			}
 			$this->wikipage = WikiPage::factory( $title );
@@ -223,7 +219,7 @@ class RequestContext implements IContextSource {
 	 * @return OutputPage
 	 */
 	public function getOutput() {
-		if ( $this->output === null ) {
+		if ( !$this->output ) {
 			$this->output = new OutputPage( $this );
 		}
 
@@ -245,7 +241,7 @@ class RequestContext implements IContextSource {
 	 * @return User
 	 */
 	public function getUser() {
-		if ( $this->user === null ) {
+		if ( !$this->user ) {
 			$this->user = User::newFromSession( $this->getRequest() );
 		}
 
@@ -265,7 +261,7 @@ class RequestContext implements IContextSource {
 		$code = strtolower( $code );
 
 		# Validate $code
-		if ( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
+		if ( !$code || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
 			wfDebug( "Invalid user language code\n" );
 			$code = $wgLanguageCode;
 		}
@@ -308,7 +304,7 @@ class RequestContext implements IContextSource {
 			global $wgLanguageCode;
 			$code = ( $wgLanguageCode ) ? $wgLanguageCode : 'en';
 			$this->lang = Language::factory( $code );
-		} elseif ( $this->lang === null ) {
+		} elseif ( !$this->lang ) {
 			$this->recursion = true;
 
 			global $wgLanguageCode, $wgContLang;
@@ -356,7 +352,7 @@ class RequestContext implements IContextSource {
 	 * @return Skin
 	 */
 	public function getSkin() {
-		if ( $this->skin === null ) {
+		if ( !$this->skin ) {
 			wfProfileIn( __METHOD__ . '-createskin' );
 
 			$skin = null;
@@ -371,7 +367,7 @@ class RequestContext implements IContextSource {
 
 			// If this is still null (the hook didn't run or didn't work)
 			// then go through the normal processing to load a skin
-			if ( $this->skin === null ) {
+			if ( !$this->skin ) {
 				global $wgHiddenPrefs;
 				if ( !in_array( 'skin', $wgHiddenPrefs ) ) {
 					# get the user skin
