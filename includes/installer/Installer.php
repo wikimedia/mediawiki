@@ -108,6 +108,10 @@ abstract class Installer {
 	 * These may output warnings using showMessage(), and/or abort the
 	 * installation process by returning false.
 	 *
+	 * For the WebInstaller these are only called on the Welcome page,
+	 * if these methods have side-effects that should affect later page loads
+	 * (as well as the generated stylesheet), use envPreps instead.
+	 *
 	 * @var array
 	 */
 	protected $envChecks = array(
@@ -128,13 +132,23 @@ abstract class Installer {
 		'envCheckGit',
 		'envCheckServer',
 		'envCheckPath',
-		'envCheckExtension',
 		'envCheckShellLocale',
 		'envCheckUploadsDirectory',
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
 		'envCheckCtype',
 		'envCheckJSON',
+	);
+
+	/**
+	 * A list of environment preparation methods called by doEnvironmentPreps().
+	 *
+	 * @var array
+	 */
+	protected $envPreps = array(
+		'envPrepServer',
+		'envPrepPath',
+		'envPrepExtension',
 	);
 
 	/**
@@ -377,6 +391,8 @@ abstract class Installer {
 			$this->settings[$var] = $GLOBALS[$var];
 		}
 
+		$this->doEnvironmentPreps();
+
 		$this->compiledDBs = array();
 		foreach ( self::getDBTypes() as $type ) {
 			$installer = $this->getDBInstaller( $type );
@@ -437,6 +453,12 @@ abstract class Installer {
 		$this->setVar( '_Environment', $good );
 
 		return $good ? Status::newGood() : Status::newFatal( 'config-env-bad' );
+	}
+
+	public function doEnvironmentPreps() {
+		foreach ( $this->envPreps as $prep ) {
+			$status = $this->$prep();
+		}
 	}
 
 	/**
@@ -953,55 +975,29 @@ abstract class Installer {
 	}
 
 	/**
-	 * Environment check for the server hostname.
+	 * Environment check to inform user which server we've assumed.
+	 *
+	 * @return bool
 	 */
 	protected function envCheckServer() {
 		$server = $this->envGetDefaultServer();
 		if ( $server !== null ) {
 			$this->showMessage( 'config-using-server', $server );
-			$this->setVar( 'wgServer', $server );
 		}
-
 		return true;
 	}
 
 	/**
-	 * Helper function to be called from envCheckServer()
-	 * @return string
-	 */
-	abstract protected function envGetDefaultServer();
-
-	/**
-	 * Environment check for setting $IP and $wgScriptPath.
+	 * Environment check to inform user which paths we've assumed.
+	 *
 	 * @return bool
 	 */
 	protected function envCheckPath() {
-		global $IP;
-		$IP = dirname( dirname( __DIR__ ) );
-		$this->setVar( 'IP', $IP );
-
 		$this->showMessage(
 			'config-using-uri',
 			$this->getVar( 'wgServer' ),
 			$this->getVar( 'wgScriptPath' )
 		);
-
-		return true;
-	}
-
-	/**
-	 * Environment check for setting the preferred PHP file extension.
-	 * @return bool
-	 */
-	protected function envCheckExtension() {
-		// @todo FIXME: Detect this properly
-		if ( defined( 'MW_INSTALL_PHP5_EXT' ) ) {
-			$ext = 'php5';
-		} else {
-			$ext = 'php';
-		}
-		$this->setVar( 'wgScriptExtension', ".$ext" );
-
 		return true;
 	}
 
@@ -1214,6 +1210,44 @@ abstract class Installer {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Environment prep for the server hostname.
+	 */
+	protected function envPrepServer() {
+		$server = $this->envGetDefaultServer();
+		if ( $server !== null ) {
+			$this->setVar( 'wgServer', $server );
+		}
+	}
+
+	/**
+	 * Helper function to be called from envPrepServer()
+	 * @return string
+	 */
+	abstract protected function envGetDefaultServer();
+
+	/**
+	 * Environment prep for setting the preferred PHP file extension.
+	 */
+	protected function envPrepExtension() {
+		// @todo FIXME: Detect this properly
+		if ( defined( 'MW_INSTALL_PHP5_EXT' ) ) {
+			$ext = 'php5';
+		} else {
+			$ext = 'php';
+		}
+		$this->setVar( 'wgScriptExtension', ".$ext" );
+	}
+
+	/**
+	 * Environment prep for setting $IP and $wgScriptPath.
+	 */
+	protected function envPrepPath() {
+		global $IP;
+		$IP = dirname( dirname( __DIR__ ) );
+		$this->setVar( 'IP', $IP );
 	}
 
 	/**
