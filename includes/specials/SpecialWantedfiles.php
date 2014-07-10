@@ -49,16 +49,34 @@ class WantedFilesPage extends WantedQueryPage {
 			$category = false;
 		}
 
+		$noForeign = '';
+		if ( !$this->likelyToHaveFalsePositives() ) {
+			// Additional messages for grep:
+			// wantedfiletext-cat-noforeign, wantedfiletext-nocat
+			$noForeign = '-noforeign';
+		}
+
 		if ( $category ) {
 			return $this
-				->msg( 'wantedfiletext-cat' )
+				->msg( 'wantedfiletext-cat' . $noForeign )
 				->params( $category->getFullText() )
 				->parseAsBlock();
 		} else {
 			return $this
-				->msg( 'wantedfiletext-nocat' )
+				->msg( 'wantedfiletext-nocat' . $noForeign )
 				->parseAsBlock();
 		}
+	}
+
+	/**
+	 * Whether foreign repos are likely to cause false positives
+	 *
+	 * In its own function to allow subclasses to override.
+	 * @see SpecialWantedFilesGUOverride in GlobalUsage extension.
+	 * @since 1.24
+	 */
+	protected function likelyToHaveFalsePositives() {
+		return RepoGroup::singleton()->hasForeignRepos();
 	}
 
 	/**
@@ -66,6 +84,9 @@ class WantedFilesPage extends WantedQueryPage {
 	 * that exist e.g. in a shared repo.  Setting this at least
 	 * keeps them from showing up as redlinks in the output, even
 	 * if it doesn't fix the real problem (bug 6220).
+	 *
+	 * @note could also have existing links here from broken file
+	 * redirects.
 	 * @return bool
 	 */
 	function forceExistenceCheck() {
