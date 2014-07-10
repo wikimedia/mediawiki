@@ -116,6 +116,7 @@ production.
 * Upgrade Sinon.JS to 1.10.3.
 * Added the es5-shim polyfill for older or non-compliant javascript engines.
 * Upgrade jQuery Cookie to v1.2.0.
+* Upgrade jQuery hoverIntent to v1.8.0.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
@@ -286,6 +287,7 @@ changes to languages because of Bugzilla reports.
 * IPBlockForm - Use SpecialBlock directly
 * WatchlistEditor - Use SpecialEditWatchlist directly
 * FormatExif - Use FormatMetadata directly
+* RevertFileAction - Use RevertAction directly
 
 == Compatibility ==
 

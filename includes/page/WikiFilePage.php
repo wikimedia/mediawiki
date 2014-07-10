@@ -40,12 +40,6 @@ class WikiFilePage extends WikiPage {
 		$this->mRepo = null;
 	}
 
-	public function getActionOverrides() {
-		$overrides = parent::getActionOverrides();
-		$overrides['revert'] = 'RevertFileAction';
-		return $overrides;
-	}
-
 	/**
 	 * @param File $file
 	 */
