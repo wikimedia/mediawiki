@@ -1547,18 +1547,6 @@ class Title {
 	}
 
 	/**
-	 * Get the HTML-escaped displayable text form.
-	 * Used for the title field in <a> tags.
-	 *
-	 * @return string The text, including any prefixes
-	 * @deprecated since 1.19
-	 */
-	public function getEscapedText() {
-		wfDeprecated( __METHOD__, '1.19' );
-		return htmlspecialchars( $this->getPrefixedText() );
-	}
-
-	/**
 	 * Get a URL-encoded form of the subpage text
 	 *
 	 * @return string URL-encoded subpage name
