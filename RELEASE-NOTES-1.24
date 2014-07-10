@@ -286,6 +286,7 @@ changes to languages because of Bugzilla reports.
 * IPBlockForm - Use SpecialBlock directly
 * WatchlistEditor - Use SpecialEditWatchlist directly
 * FormatExif - Use FormatMetadata directly
+* RevertFileAction - Use RevertAction directly
 
 == Compatibility ==
 
