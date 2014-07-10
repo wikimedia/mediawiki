@@ -3504,17 +3504,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Check whether the number of revisions of this page surpasses $wgDeleteRevisionsLimit
-	 *
-	 * @deprecated since 1.19; use Title::isBigDeletion() instead.
-	 * @return bool
-	 */
-	public function isBigDeletion() {
-		wfDeprecated( __METHOD__, '1.19' );
-		return $this->mTitle->isBigDeletion();
-	}
-
-	/**
 	 * Get the  approximate revision count of this page.
 	 *
 	 * @deprecated since 1.19; use Title::estimateRevisionCount() instead.
