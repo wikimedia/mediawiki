@@ -398,7 +398,7 @@
     "externaldberror": "There was either an authentication database error or you are not allowed to update your external account.",
     "login": "Log in",
     "nav-login-createaccount": "Log in / create account",
-    "loginprompt": "You must have cookies enabled to log in to {{SITENAME}}.",
+    "loginprompt": "",
     "userlogin": "Log in / create account",
     "userloginnocreate": "Log in",
     "logout": "Log out",
