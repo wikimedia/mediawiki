@@ -110,6 +110,7 @@ production.
 * Upgrade Moment.js to v2.7.0.
 * (bug 67042) Added support for the HTML5 <rtc> tag for East Asian typography.
 * Upgrade Sinon.JS to 1.10.3.
+* Added the es5-shim polyfill for older or non-compliant javascript engines.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
