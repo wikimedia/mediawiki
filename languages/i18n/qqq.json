@@ -559,7 +559,7 @@
 	"externaldberror": "This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.",
 	"login": "{{Doc-special|UserLogin|unlisted=1}}\n{{Identical|Log in}}",
 	"nav-login-createaccount": "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg-mw|login}} is shown.\n{{Identical|Log in / create account}}",
-	"loginprompt": "A small notice in the log in form.",
+	"loginprompt": "{{ignored}}",
 	"userlogin": "Since 1.22 no longer used in core, but may still be used by extensions. DEPRECATED\n\n{{Identical|Log in / create account}}",
 	"userloginnocreate": "Since 1.22 no longer used in core, but may still be used by some extensions. A variant of {{msg-mw|Userlogin}} when the user is not allowed to create a new account. DEPRECATED\n\n{{Identical|Log in}}",
 	"logout": "Used as link text in your personal toolbox (upper right side).\n\nSee also:\n* {{msg-mw|Logout}}\n* {{msg-mw|Accesskey-pt-logout}}\n* {{msg-mw|Tooltip-pt-logout}}\n{{Identical|Log out}}",
