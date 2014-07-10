@@ -3271,6 +3271,14 @@ $wgResourceLoaderMinifierMaxLineLength = 1000;
 $wgIncludeLegacyJavaScript = true;
 
 /**
+ *
+ * Adding an option to enable or disable collasibleNav. 
+ * False by default because it is to save performance.
+ * @since 1.24
+ */
+$wgIncludeCollapsibleNav = false;
+
+/**
  * Whether to include the jQuery Migrate library, which lets legacy JS that
  * requires jQuery 1.8.x to work and breaks with 1.9.x+.
  *
