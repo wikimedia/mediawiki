@@ -24,30 +24,11 @@
  */
 
 /**
- * Dummy class for pages not in NS_FILE
+ * File reversion user interface
  *
  * @ingroup Actions
  */
-class RevertAction extends Action {
-
-	public function getName() {
-		return 'revert';
-	}
-
-	public function show() {
-		$this->getOutput()->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
-	}
-
-	public function execute() {
-	}
-}
-
-/**
- * Class for pages in NS_FILE
- *
- * @ingroup Actions
- */
-class RevertFileAction extends FormAction {
+class RevertAction extends FormAction {
 	/**
 	 * @var OldLocalFile
 	 */
@@ -62,6 +43,9 @@ class RevertFileAction extends FormAction {
 	}
 
 	protected function checkCanExecute( User $user ) {
+		if ( $this->getTitle()->getNamespace() !== NS_FILE ) {
+			throw new ErrorPageError( $this->msg( 'nosuchaction' ), $this->msg( 'nosuchactiontext' ) );
+		}
 		parent::checkCanExecute( $user );
 
 		$oldimage = $this->getRequest()->getText( 'oldimage' );
