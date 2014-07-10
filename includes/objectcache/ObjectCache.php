@@ -119,11 +119,15 @@ class ObjectCache {
 	/**
 	 * Factory function referenced from DefaultSettings.php for CACHE_ACCEL.
 	 *
+	 * This will look for any APC style server-local cache.
+	 * A fallback cache can be specified if none is found.
+	 *
 	 * @param array $params
+	 * @param int|string $fallback Fallback cache, e.g. (CACHE_NONE, "hash") (since 1.24)
 	 * @throws MWException
 	 * @return BagOStuff
 	 */
-	static function newAccelerator( $params ) {
+	static function newAccelerator( $params, $fallback = null ) {
 		if ( function_exists( 'apc_fetch' ) ) {
 			$id = 'apc';
 		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
@@ -131,6 +135,9 @@ class ObjectCache {
 		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			$id = 'wincache';
 		} else {
+			if ( $fallback ) {
+				return self::newFromId( $fallback );
+			}
 			throw new MWException( "CACHE_ACCEL requested but no suitable object " .
 				"cache is present. You may want to install APC." );
 		}

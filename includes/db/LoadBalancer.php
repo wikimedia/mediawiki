@@ -1048,7 +1048,18 @@ class LoadBalancer {
 		$maxLag = -1;
 		$host = '';
 		$maxIndex = 0;
-		if ( $this->getServerCount() > 1 ) { // no replication = no lag
+
+		if ( $this->getServerCount() <= 1 ) { // no replication = no lag
+			return array( $host, $maxLag, $maxIndex );
+		}
+
+		// Try to get the max lag info from the server cache
+		$key = 'loadbalancer:maxlag:cluster:' . $this->mServers[0]['host'];
+		$cache = ObjectCache::newAccelerator( array(), 'hash' );
+		$maxLagInfo = $cache->get( $key ); // (host, lag, index)
+
+		// Fallback to connecting to each slave and getting the lag
+		if ( !$maxLagInfo ) {
 			foreach ( $this->mServers as $i => $conn ) {
 				$conn = false;
 				if ( $wiki === false ) {
@@ -1067,9 +1078,11 @@ class LoadBalancer {
 					$maxIndex = $i;
 				}
 			}
+			$maxLagInfo = array( $host, $maxLag, $maxIndex );
+			$cache->set( $key, $maxLagInfo, 5 );
 		}
 
-		return array( $host, $maxLag, $maxIndex );
+		return $maxLagInfo;
 	}
 
 	/**
