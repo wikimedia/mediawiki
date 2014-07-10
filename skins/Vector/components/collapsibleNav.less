@@ -1,0 +1,91 @@
+/**
+ * LESS Stylesheet for collapsible nav
+ */
+@import "mediawiki.mixins.less";
+
+#mw-panel.collapsible-nav {
+	.portal {
+		background-position: left top;
+		background-repeat: no-repeat;
+		.background-image('images/portal-break.png');
+		padding: 0.25em 0 !important;
+		margin: -11px 9px 10px 11px;
+
+		h3 {
+			font-size: @menu-main-heading-font-size;
+			color: @collapsible-nav-heading-color;
+			font-weight: normal;
+			background-position: left center;
+			background-repeat: no-repeat;
+			.background-image-svg('images/arrow-expanded.svg', 'images/arrow-expanded.png');
+			padding: @collapsible-nav-heading-padding;
+			margin-bottom: 0;
+
+			&:hover {
+				cursor: pointer;
+				text-decoration: none;
+			}
+
+			a {
+				color: @collapsible-nav-heading-color;
+				text-decoration: none;
+			}
+		}
+
+		.body {
+			margin: @collapsible-nav-body-margin;
+			background-image: none !important;
+			padding-top: 0;
+			display: none;
+
+			ul {
+				li {
+					padding: 0.25em 0;
+				}
+			}
+		}
+
+
+		/* First */
+		&.first {
+			background-image: none;
+			margin-top: 0;
+			h3 {
+				display: none;
+			}
+		}
+
+		/* Persistent */
+		&.persistent {
+			.body {
+				display: block;
+				margin-left: 0.5em;
+			}
+
+			h3 {
+				background-image: none !important;
+				padding-left: 0.7em;
+				cursor: default;
+			}
+		}
+
+		/* Collapsed */
+		&.collapsed {
+			h3 {
+				color: @collapsible-nav-heading-collapsed-color;
+				background-position: left center;
+				background-repeat: no-repeat;
+				.background-image-svg('images/arrow-collapsed-ltr.svg', 'images/arrow-collapsed-ltr.png');
+				margin-bottom: 0;
+
+				&:hover {
+					text-decoration: underline;
+				}
+
+				a {
+					color: @collapsible-nav-heading-collapsed-color;
+				}
+			}
+		}
+	}
+}

@@ -62,3 +62,20 @@ $wgResourceModules['skins.vector.js'] = array(
 	'remoteSkinPath' => 'Vector',
 	'localBasePath' => __DIR__,
 );
+
+$wgResourceModules['skins.vector.collapsibleNav'] = array(
+	'scripts' => array(
+		'collapsibleNav.js',
+	),
+	'messages' => array(
+		'vector-collapsiblenav-more',
+	),
+	'dependencies' => array(
+		'jquery.client',
+		'jquery.cookie',
+		'jquery.tabIndex',
+	),
+	'remoteSkinPath' => 'Vector',
+	'localBasePath' => __DIR__,
+	'position' => 'bottom',
+);
