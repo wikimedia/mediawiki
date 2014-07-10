@@ -404,6 +404,7 @@ $specialPageAliases = array(
 	'EditWatchlist'             => array( 'EditWatchlist' ),
 	'Emailuser'                 => array( 'EmailUser' ),
 	'ExpandTemplates'           => array( 'ExpandTemplates' ),
+	'ExpirePassword'            => array( 'ExpirePassword' ),
 	'Export'                    => array( 'Export' ),
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
 	'FileDuplicateSearch'       => array( 'FileDuplicateSearch' ),

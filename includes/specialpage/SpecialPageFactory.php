@@ -100,6 +100,7 @@ class SpecialPageFactory {
 		'Listadmins' => 'SpecialListAdmins',
 		'Listbots' => 'SpecialListBots',
 		'Userrights' => 'UserrightsPage',
+		'ExpirePassword' => 'ExpirePasswordPage',
 		'EditWatchlist' => 'SpecialEditWatchlist',
 
 		// Recent changes and logs
