@@ -195,18 +195,24 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Returns overrides for action handlers.
-	 * Classes listed here will be used instead of the default one when
-	 * (and only when) $wgActions[$action] === true. This allows subclasses
-	 * to override the default behavior.
+	 * Returns overrides for action handlers. Classes listed here
+	 * will be used instead of the default.
 	 *
 	 * @todo Move this UI stuff somewhere else
 	 *
 	 * @return array
 	 */
 	public function getActionOverrides() {
-		$content_handler = $this->getContentHandler();
-		return $content_handler->getActionOverrides();
+		$contenthandler = $this->getContentHandler();
+		$overrides = $contenthandler->getActionOverrides();
+		// Back-compat
+		global $wgActions;
+		foreach ( $wgActions as $action => $bool ) {
+			if ( $bool === false ) {
+				$overrides[$action] = $bool;
+			}
+		}
+		return $overrides;
 	}
 
 	/**

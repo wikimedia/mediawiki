@@ -37,6 +37,32 @@
 abstract class Action {
 
 	/**
+	 * Cached array of actions recognized by MediaWiki core.
+	 * Array keys are action names and array values are associated classes.
+	 * @var array $core
+	 */
+	protected static $core = array(
+		'credits' => 'CreditsAction',
+		'delete' => 'DeleteAction',
+		'edit' => 'EditAction',
+		'history' => 'HistoryAction',
+		'info' => 'InfoAction',
+		'markpatrolled' => 'MarkpatrolledAction',
+		'protect' => 'ProtectAction',
+		'purge' => 'PurgeAction',
+		'raw' => 'RawAction',
+		'render' => 'RenderAction',
+		'revert' => 'RevertAction',
+		'revisiondelete' => 'RevisiondeleteAction',
+		'rollback' => 'RollbackAction',
+		'submit' => 'SubmitAction',
+		'unprotect' => 'UnprotectAction',
+		'unwatch' => 'UnwatchAction',
+		'view' => 'ViewAction',
+		'watch' => 'WatchAction',
+	);
+
+	/**
 	 * Page on which we're performing the action
 	 * @var WikiPage|Article|ImagePage|CategoryPage|Page $page
 	 */
@@ -55,32 +81,6 @@ abstract class Action {
 	protected $fields;
 
 	/**
-	 * Get the Action subclass which should be used to handle this action, false if
-	 * the action is disabled, or null if it's not recognised
-	 * @param string $action
-	 * @param array $overrides
-	 * @return bool|null|string|callable
-	 */
-	final private static function getClass( $action, array $overrides ) {
-		global $wgActions;
-		$action = strtolower( $action );
-
-		if ( !isset( $wgActions[$action] ) ) {
-			return null;
-		}
-
-		if ( $wgActions[$action] === false ) {
-			return false;
-		} elseif ( $wgActions[$action] === true && isset( $overrides[$action] ) ) {
-			return $overrides[$action];
-		} elseif ( $wgActions[$action] === true ) {
-			return ucfirst( $action ) . 'Action';
-		} else {
-			return $wgActions[$action];
-		}
-	}
-
-	/**
 	 * Get an appropriate Action subclass for the given action
 	 * @param string $action
 	 * @param Page $page
@@ -89,18 +89,33 @@ abstract class Action {
 	 *     if it is not recognised
 	 */
 	final public static function factory( $action, Page $page, IContextSource $context = null ) {
-		$classOrCallable = self::getClass( $action, $page->getActionOverrides() );
-
-		if ( is_string( $classOrCallable ) ) {
-			$obj = new $classOrCallable( $page, $context );
-			return $obj;
+		$action = strtolower( $action );
+		$overrides = $page->getActionOverrides();
+		if ( array_key_exists( $action, $overrides ) ) {
+			$override = $overrides[$action];
+			if ( is_callable( $override ) ) {
+				return call_user_func( $override, $page, $context );
+			}
+			if ( class_exists( $override ) && $override instanceof self ) {
+				return new $override( $page, $context );
+			}
+			// Loose comparison: if the action is set to false/null/etc the action is disabled.
+			if ( $override == false ) {
+				return false;
+			}
 		}
 
-		if ( is_callable( $classOrCallable ) ) {
-			return call_user_func_array( $classOrCallable, array( $page, $context ) );
+		if ( array_key_exists( $action, self::$core ) ) {
+			return new self::$core[$action]( $page, $context );
 		}
 
-		return $classOrCallable;
+		// Last try
+		$class = ucfirst( $action ) . 'Action';
+		if ( class_exists( $class ) && $class instanceof self ) {
+			return new $class( $page, $context );
+		}
+
+		return null;
 	}
 
 	/**
@@ -113,33 +128,23 @@ abstract class Action {
 	 * @return string Action name
 	 */
 	final public static function getActionName( IContextSource $context ) {
-		global $wgActions;
-
 		$request = $context->getRequest();
 		$actionName = $request->getVal( 'action', 'view' );
 
-		// Check for disabled actions
-		if ( isset( $wgActions[$actionName] ) && $wgActions[$actionName] === false ) {
-			$actionName = 'nosuchaction';
-		}
-
 		// Workaround for bug #20966: inability of IE to provide an action dependent
 		// on which submit button is clicked.
-		if ( $actionName === 'historysubmit' ) {
-			if ( $request->getBool( 'revisiondelete' ) ) {
-				$actionName = 'revisiondelete';
-			} else {
-				$actionName = 'view';
-			}
-		} elseif ( $actionName == 'editredlink' ) {
-			$actionName = 'edit';
+		switch ( $actionName ) {
+			case 'historysubmit':
+				$actionName = $request->getBool( 'revisiondelete' ) ? 'revisiondelete' : 'view';
+				break;
+			case 'editredlink':
+				$actionName = 'edit';
+				break;
 		}
 
-		// Trying to get a WikiPage for NS_SPECIAL etc. will result
-		// in WikiPage::factory throwing "Invalid or virtual namespace -1 given."
-		// For SpecialPages et al, default to action=view.
+		// For virtual namespaces, default to action=view.
 		if ( !$context->canUseWikiPage() ) {
-			return 'view';
+			$actionName = 'view';
 		}
 
 		$action = Action::factory( $actionName, $context->getWikiPage(), $context );
@@ -157,7 +162,8 @@ abstract class Action {
 	 * @return bool
 	 */
 	final public static function exists( $name ) {
-		return self::getClass( $name, array() ) !== null;
+		// Title and RequestContext are only dummy values
+		return Action::factory( $name, Title::newMainPage(), RequestContext::getMain() ) !== null;
 	}
 
 	/**
