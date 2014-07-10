@@ -1135,8 +1135,9 @@ class WebInstaller extends Installer {
 			$path = $_SERVER['SCRIPT_NAME'];
 		}
 		if ( $path !== false ) {
-			$uri = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
-			$this->setVar( 'wgScriptPath', $uri );
+			$scriptPath = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
+			$this->setVar( 'wgScriptPath', "$scriptPath" );
+
 		} else {
 			$this->showError( 'config-no-uri' );
 
