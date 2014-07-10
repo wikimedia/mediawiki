@@ -42,7 +42,7 @@ function wfPHPVersionError( $type ) {
 	$mwVersion = '1.24';
 	$minimumVersionPHP = '5.3.2';
 
-	$phpVersion = phpversion();
+	$phpVersion = PHP_VERSION;
 	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
 	$message = "MediaWiki $mwVersion requires at least "
 		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion.";

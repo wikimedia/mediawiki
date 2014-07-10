@@ -318,7 +318,7 @@ class DbTestRecorder extends DbTestPreviewer {
 			array(
 				'tr_date' => $this->db->timestamp(),
 				'tr_mw_version' => $this->version,
-				'tr_php_version' => phpversion(),
+				'tr_php_version' => PHP_VERSION,
 				'tr_db_version' => $this->db->getServerVersion(),
 				'tr_uname' => php_uname()
 			),
