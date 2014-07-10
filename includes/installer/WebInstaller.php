@@ -1136,7 +1136,16 @@ class WebInstaller extends Installer {
 		}
 		if ( $path !== false ) {
 			$scriptPath = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
+			$scriptExtension = $this->getVar( 'wgScriptExtension' );
+
 			$this->setVar( 'wgScriptPath', "$scriptPath" );
+			// Update variables set from Setup.php that are derived from wgScriptPath
+			$this->setVar( 'wgScript', "$scriptPath/index$scriptExtension" );
+			$this->setVar( 'wgLoadScript', "$scriptPath/load$scriptExtension" );
+			$this->setVar( 'wgStylePath', "$scriptPath/skins" );
+			$this->setVar( 'wgLocalStylePath', "$scriptPath/skins" );
+			$this->setVar( 'wgExtensionAssetsPath', "$scriptPath/extensions" );
+			$this->setVar( 'wgUploadPath', "$scriptPath/images" );
 
 		} else {
 			$this->showError( 'config-no-uri' );
