@@ -109,6 +109,8 @@ production.
   permission needs to be set for 'pagelang'.
 * Upgrade Moment.js to v2.7.0.
 * (bug 67042) Added support for the HTML5 <rtc> tag for East Asian typography.
+* Add Special:ExpirePassword to allow users with permission "userrights" to expire
+  the password of users manually.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

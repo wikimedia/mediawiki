@@ -951,6 +951,7 @@ $wgAutoloadLocalClasses = array(
 	'EditWatchlistNormalHTMLForm' => 'includes/specials/SpecialEditWatchlist.php',
 	'EmailConfirmation' => 'includes/specials/SpecialConfirmemail.php',
 	'EmailInvalidation' => 'includes/specials/SpecialConfirmemail.php',
+	'ExpirePasswordPage' => 'includes/specials/SpecialExpirePassword.php',
 	'FewestrevisionsPage' => 'includes/specials/SpecialFewestrevisions.php',
 	'FileDuplicateSearchPage' => 'includes/specials/SpecialFileDuplicateSearch.php',
 	'HTMLBlockedUsersItemSelect' => 'includes/specials/SpecialBlockList.php',
