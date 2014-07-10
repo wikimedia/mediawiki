@@ -185,7 +185,36 @@ class SvgHandler extends ImageHandler {
 		}
 
 		$srcPath = $image->getLocalRefPath();
-		$status = $this->rasterize( $srcPath, $dstPath, $physicalWidth, $physicalHeight, $lang );
+		if ( $srcPath === false ) { // Failed to get local copy
+			wfDebugLog( 'thumbnail',
+				sprintf( 'Thumbnail failed on %s: could not get local copy of "%s"',
+					wfHostname(), $image->getName() ) );
+
+			return new MediaTransformError( 'thumbnail_error',
+				$params['width'], $params['height'],
+				wfMessage( 'filemissing' )->text()
+			);
+		}
+
+		// Make a temp dir with a symlink to the local copy in it.
+		// This plays well with rsvg-convert policy for external entities.
+		// https://git.gnome.org/browse/librsvg/commit/?id=f01aded72c38f0e18bc7ff67dee800e380251c8e
+		$tmpDir = wfTempDir() . '/svg_' . wfRandomString( 24 );
+		$lnPath = "$tmpDir/" . basename( $srcPath );
+		$ok = mkdir( $tmpDir, 0771 ) && symlink( $srcPath, $lnPath );
+		$cleaner = new ScopedCallback( function() use ( $tmpDir, $lnPath ) {
+			wfSuppressWarnings();
+			unlink( $lnPath );
+			rmdir( $tmpDir );
+			wfRestoreWarnings();
+		} );
+		if ( !$ok ) {
+			wfDebugLog( 'thumbnail',
+				sprintf( 'Thumbnail failed on %s: could not link %s to %s',
+					wfHostname(), $lnPath, $srcPath ) );
+		}
+
+		$status = $this->rasterize( $lnPath, $dstPath, $physicalWidth, $physicalHeight, $lang );
 		if ( $status === true ) {
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		} else {
