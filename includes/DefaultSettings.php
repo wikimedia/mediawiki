@@ -6530,27 +6530,11 @@ $wgMaxRedirectLinksRetrieved = 500;
  *                             instead of the default class.
  *     'foo' => false          The action is disabled; show an error message
  * Unsetting core actions will probably cause things to complain loudly.
+ * @deprecated since 1.24 Actions are now automatically detected by Action::factory()
+ * if they are subclasses of "Action" or are defined by MediaWiki core. You can still
+ * disable them by setting the action to false either here or in getActionOverrides().
  */
-$wgActions = array(
-	'credits' => true,
-	'delete' => true,
-	'edit' => true,
-	'history' => true,
-	'info' => true,
-	'markpatrolled' => true,
-	'protect' => true,
-	'purge' => true,
-	'raw' => true,
-	'render' => true,
-	'revert' => true,
-	'revisiondelete' => true,
-	'rollback' => true,
-	'submit' => true,
-	'unprotect' => true,
-	'unwatch' => true,
-	'view' => true,
-	'watch' => true,
-);
+$wgActions = array();
 
 /** @} */ # end actions }
 

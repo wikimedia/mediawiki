@@ -120,6 +120,11 @@ production.
   suppressed content but not suppress it ("suppressrevision" right).
 * Added a new hook, "OutputPageScriptsForBottomQueue", to add modules to the
   bottom queue that should be requested in a dedicated <script> request.
+* Action::factory() now attempts to automatically detect if a given action is
+  valid before constructing the object. Instead of relying on $wgActions, it now
+  checks if an action has a valid class defined for it suffixed by "Action".
+  However, you can still disable actions by setting them to false in $wgActions
+  or in WikiPage::getActionOverrides()/ContentHandler::getActionOverrides().
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
