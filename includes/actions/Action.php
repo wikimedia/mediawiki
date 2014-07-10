@@ -37,6 +37,32 @@
 abstract class Action {
 
 	/**
+	 * Cached array of actions recognized by MediaWiki core.
+	 * Array keys are action names and array values are associated classes.
+	 * @var array $core
+	 */
+	protected static $core = array(
+		'credits' => 'CreditsAction',
+		'delete' => 'DeleteAction',
+		'edit' => 'EditAction',
+		'history' => 'HistoryAction',
+		'info' => 'InfoAction',
+		'markpatrolled' => 'MarkpatrolledAction',
+		'protect' => 'ProtectAction',
+		'purge' => 'PurgeAction',
+		'raw' => 'RawAction',
+		'render' => 'RenderAction',
+		'revert' => 'RevertAction',
+		'revisiondelete' => 'RevisiondeleteAction',
+		'rollback' => 'RollbackAction',
+		'submit' => 'SubmitAction',
+		'unprotect' => 'UnprotectAction',
+		'unwatch' => 'UnwatchAction',
+		'view' => 'ViewAction',
+		'watch' => 'WatchAction',
+	);
+
+	/**
 	 * Page on which we're performing the action
 	 * @var WikiPage|Article|ImagePage|CategoryPage|Page $page
 	 */
@@ -55,32 +81,6 @@ abstract class Action {
 	protected $fields;
 
 	/**
-	 * Get the Action subclass which should be used to handle this action, false if
-	 * the action is disabled, or null if it's not recognised
-	 * @param string $action
-	 * @param array $overrides
-	 * @return bool|null|string|callable
-	 */
-	final private static function getClass( $action, array $overrides ) {
-		global $wgActions;
-		$action = strtolower( $action );
-
-		if ( !isset( $wgActions[$action] ) ) {
-			return null;
-		}
-
-		if ( $wgActions[$action] === false ) {
-			return false;
-		} elseif ( $wgActions[$action] === true && isset( $overrides[$action] ) ) {
-			return $overrides[$action];
-		} elseif ( $wgActions[$action] === true ) {
-			return ucfirst( $action ) . 'Action';
-		} else {
-			return $wgActions[$action];
-		}
-	}
-
-	/**
 	 * Get an appropriate Action subclass for the given action
 	 * @param string $action
 	 * @param Page $page
@@ -89,18 +89,44 @@ abstract class Action {
 	 *     if it is not recognised
 	 */
 	final public static function factory( $action, Page $page, IContextSource $context = null ) {
-		$classOrCallable = self::getClass( $action, $page->getActionOverrides() );
-
-		if ( is_string( $classOrCallable ) ) {
-			$obj = new $classOrCallable( $page, $context );
-			return $obj;
+		$action = strtolower( $action );
+		$overrides = $page->getContentHandler()->getActionOverrides();
+		if ( in_array( $action, array_keys( $overrides ), true ) ) {
+			$override = $overrides[$action];
+			if ( is_callable( $override ) ) {
+				return call_user_func( $override, $page, $context );
+			}
+			if ( class_exists( $override ) && $override instanceof self ) {
+				return new $override( $page, $context );
+			}
+			// Loose comparison: if the action is set to false/null/etc the action is disabled.
+			if ( $override == false ) {
+				return false;
+			}
 		}
 
-		if ( is_callable( $classOrCallable ) ) {
-			return call_user_func_array( $classOrCallable, array( $page, $context ) );
+		// Back-compat
+		global $wgActions;
+		if ( in_array( $action, array_keys( $wgActions ), true ) ) {
+			if ( $wgActions[$action] ) {
+				$class = ucfirst( $action ) . 'Action';
+				return new $class( $page, $context );
+			} else {
+				return false;
+			}
 		}
 
-		return $classOrCallable;
+		if ( in_array( $action, array_keys( self::$core ), true ) ) {
+			return new self::$core[$action]( $page, $context );
+		}
+
+		// Last try (to replace the back-compat)
+		// $class = ucfirst( $action ) . 'Action';
+		// if ( class_exists( $class ) && $class instanceof self ) {
+		//     return new $class( $page, $context );
+		// }
+
+		return null;
 	}
 
 	/**
@@ -157,7 +183,9 @@ abstract class Action {
 	 * @return bool
 	 */
 	final public static function exists( $name ) {
-		return self::getClass( $name, array() ) !== null;
+		$name = strtolower( $name );
+		// Title and RequestContext are only dummy values
+		return Action::factory( $name, Title::newMainPage(), RequestContext::getMain() ) !== null;
 	}
 
 	/**
