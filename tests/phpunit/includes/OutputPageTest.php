@@ -175,13 +175,13 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 		);
 	}
 
-
 	/**
 	 * @dataProvider provideMakeResourceLoaderLink
 	 * @covers OutputPage::makeResourceLoaderLink
 	 */
 	public function testMakeResourceLoaderLink( $args, $expectedHtml) {
 		$this->setMwGlobals( array(
+			'wgResourceLoaderDebug' => false,
 			'wgResourceLoaderUseESI' => true,
 			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
 			// Affects whether CDATA is inserted
@@ -195,6 +195,7 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
 		$method->setAccessible( true );
 		$ctx = new RequestContext();
+		$ctx->setLanguage( 'en' );
 		$out = new OutputPage( $ctx );
 		$rl = $out->getResourceLoader();
 		$rl->register( array(
