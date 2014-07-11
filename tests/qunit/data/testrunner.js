@@ -240,6 +240,18 @@
 					// As a convenience feature, automatically restore warnings if they're
 					// still suppressed by the end of the test.
 					restoreWarnings();
+
+					// Check for (and clean up, if possible) incomplete animations/requests/etc.
+					if ( $.timers && $.timers.length !== 0 ) {
+						// Test may need to use fake timers, wait for animations or
+						// call $.fx.stop().
+						throw new Error( 'Unfinished animations: ' + $.timers.length );
+					}
+					if ( $.active !== undefined && $.active !== 0 ) {
+						// Test may need to use fake XHR, wait for requests or
+						// call abort().
+						throw new Error( 'Unfinished AJAX requests: ' + $.active );
+					}
 				}
 			};
 		};
