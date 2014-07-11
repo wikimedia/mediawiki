@@ -513,7 +513,7 @@ class SpecialVersion extends SpecialPage {
 			);
 
 			array_walk( $tags, function ( &$value ) {
-				$value = '&lt;' . htmlentities( $value ) . '&gt;';
+				$value = '&lt;' . htmlspecialchars( $value ) . '&gt;';
 			} );
 			$out .= $this->listToText( $tags );
 		} else {
