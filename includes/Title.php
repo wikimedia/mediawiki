@@ -502,8 +502,11 @@ class Title {
 			return null;
 		}
 
+		# Convert things like &eacute; &#257; or &#x3017; into normalized text.
+		$filteredTitle = Sanitizer::decodeCharReferencesAndNormalize( $title );
+
 		$t = new Title();
-		$t->mDbkeyform = Title::makeName( $ns, $title, $fragment, $interwiki );
+		$t->mDbkeyform = Title::makeName( $ns, $filteredTitle, $fragment, $interwiki );
 		if ( $t->secureAndSplit() ) {
 			return $t;
 		} else {
