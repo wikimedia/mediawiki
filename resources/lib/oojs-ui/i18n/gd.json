@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"GunChleoc"
+		]
+	},
+	"ooui-dialog-action-close": "Dùin",
+	"ooui-outline-control-move-down": "Gluais nì sìos",
+	"ooui-outline-control-move-up": "Gluais nì suas",
+	"ooui-outline-control-remove": "Thoir air falbh an nì",
+	"ooui-toolbar-more": "Barrachd",
+	"ooui-dialog-confirm-title": "Dearbhaich",
+	"ooui-dialog-confirm-default-prompt": "A bheil thu cinnteach?",
+	"ooui-dialog-confirm-default-ok": "Ceart ma-thà",
+	"ooui-dialog-confirm-default-cancel": "Sguir dheth"
+}
