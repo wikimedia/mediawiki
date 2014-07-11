@@ -240,6 +240,7 @@ changes to languages because of Bugzilla reports.
 * Removed MWInit class which contained functions related to a now discontinued
   PHP compiler called hphpc. (deprecated since 1.22)
 * ApiResult::enableSizeCheck() and disableSizeCheck() are now obsolete.
+* Removed ResourceLoaderGetStartupModules hook. (deprecated since 1.23)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
