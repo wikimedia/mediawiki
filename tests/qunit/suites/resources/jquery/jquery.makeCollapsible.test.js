@@ -3,7 +3,7 @@
 
 	QUnit.module( 'jquery.makeCollapsible', QUnit.newMwEnvironment( {
 		setup: function () {
-			this.clock = this.sandbox.useFakeTimers();
+			this.clock = this.sandbox.useFakeTimers( +new Date() );
 		}
 	} ) );
 
