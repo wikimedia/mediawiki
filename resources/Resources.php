@@ -1451,7 +1451,7 @@ return array(
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => array(
 		'styles' => array(
-			'resources/src/mediawiki.ui/components/default/buttons.less',
+			'resources/src/mediawiki.ui/components/buttons.less',
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
