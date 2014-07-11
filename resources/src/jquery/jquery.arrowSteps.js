@@ -35,11 +35,12 @@
 	 * @chainable
 	 */
 	$.fn.arrowSteps = function () {
-		var $steps, width, arrowWidth,
+		var $steps, width, arrowWidth, $stepDiv,
+			$el = this,
 			paddingSide = $( 'body' ).hasClass( 'rtl' ) ? 'padding-left' : 'padding-right';
 
-		this.addClass( 'arrowSteps' );
-		$steps = this.find( 'li' );
+		$el.addClass( 'arrowSteps' );
+		$steps = $el.find( 'li' );
 
 		width = parseInt( 100 / $steps.length, 10 );
 		$steps.css( 'width', width + '%' );
@@ -47,11 +48,16 @@
 		// Every step except the last one has an arrow pointing forward:
 		// at the right hand side in LTR languages, and at the left hand side in RTL.
 		// Also add in the padding for the calculated arrow width.
-		arrowWidth = parseInt( this.outerHeight(), 10 );
-		$steps.filter( ':not(:last-child)' ).addClass( 'arrow' )
-			.find( 'div' ).css( paddingSide, arrowWidth.toString() + 'px' );
+		$stepDiv = $steps.filter( ':not(:last-child)' ).addClass( 'arrow' ).find( 'div' );
 
-		this.data( 'arrowSteps', $steps );
+		// Execute when complete page is fully loaded, including all frames, objects and images
+		$( window ).load( function () {
+			arrowWidth = parseInt( $el.outerHeight(), 10 );
+			$stepDiv.css( paddingSide, arrowWidth.toString() + 'px' );
+		} );
+
+		$el.data( 'arrowSteps', $steps );
+
 		return this;
 	};
 
