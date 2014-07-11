@@ -480,7 +480,7 @@ class Article implements Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar;
+		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar, $wgMaxRedirects;
 
 		wfProfileIn( __METHOD__ );
 
@@ -542,8 +542,31 @@ class Article implements Page {
 				$outputPage->setETag( $parserCache->getETag( $this, $parserOptions ) );
 			}
 
+			# Use the greatest of the page's timestamp or the timestamp of any
+			# redirect in the chain (bug 67849)
+			$timestamp = $this->mPage->getTouched();
+			if ( isset( $this->mRedirectedFrom ) ) {
+				$timestamp = max( $timestamp, $this->mRedirectedFrom->getTouched() );
+
+				# If there can be more than one redirect in the chain, we have
+				# to go through the whole chain too in case an intermediate
+				# redirect was changed.
+				if ( $wgMaxRedirects > 1 ) {
+					$titles = Revision::newFromTitle( $this->mRedirectedFrom, false, Revision::READ_LATEST )
+						->getContent( Revision::FOR_THIS_USER, $user )
+						->getRedirectChain();
+					$thisTitle = $this->getTitle();
+					foreach ( $titles as $title ) {
+						if ( Title::compare( $title, $thisTitle ) === 0 ) {
+							break;
+						}
+						$timestamp = max( $timestamp, $title->getTouched() );
+					}
+				}
+			}
+
 			# Is it client cached?
-			if ( $outputPage->checkLastModified( $this->mPage->getTouched() ) ) {
+			if ( $outputPage->checkLastModified( $timestamp ) ) {
 				wfDebug( __METHOD__ . ": done 304\n" );
 				wfProfileOut( __METHOD__ );
 
