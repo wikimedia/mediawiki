@@ -19,13 +19,13 @@
 			"Trevor Parscal"
 		]
 	},
-	"ooui-dialog-action-close": "Label text for button to exit from dialog.\n\n{{Identical|Close}}",
 	"ooui-outline-control-move-down": "Tool tip for a button that moves items in a list down one place",
 	"ooui-outline-control-move-up": "Tool tip for a button that moves items in a list up one place",
 	"ooui-outline-control-remove": "Tool tip for a button that removes items from a list.\n{{Identical|Remove item}}",
 	"ooui-toolbar-more": "Label for the toolbar group that contains a list of all other available tools.\n{{Identical|More}}",
-	"ooui-dialog-confirm-title": "Title of the generic dialog used to confirm things.\n{{Identical|Confirm}}",
-	"ooui-dialog-confirm-default-prompt": "The default prompt of a confirmation dialog.\n{{Identical|Are you sure?}}",
-	"ooui-dialog-confirm-default-ok": "The default OK button text on a confirmation dialog.\n{{Identical|OK}}",
-	"ooui-dialog-confirm-default-cancel": "The default cancel button text on a confirmation dialog.\n{{Identical|Cancel}}"
+	"ooui-dialog-message-accept": "Default label for the accept button of a message dialog",
+	"ooui-dialog-message-reject": "Default label for the reject button of a message dialog",
+	"ooui-dialog-process-error": "Title for process dialog error description",
+	"ooui-dialog-process-dismiss": "Label for process dialog dismiss error button, visible when describing errors",
+	"ooui-dialog-process-retry": "Label for process dialog retry action button, visible when describing recoverable errors"
 }
