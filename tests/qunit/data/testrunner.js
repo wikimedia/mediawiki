@@ -104,6 +104,23 @@
 				teardown: function () {
 					this.sandbox.verifyAndRestore();
 
+					// Tells jQuery to clearInterval on the interval it uses for
+					// effects.
+					//
+					// This is necessary to ensure the next module calls the
+					// correct setInterval, which may be sinonjs's fake one,
+					// rather than wrongly relying on a stale timerId.
+					//
+					// This is done unconditionally (regardless of whether the
+					// current module uses fake timers).
+					//
+					// This means the effects queue will not progress
+					// unless/until jQuery.fx.start happens to be called again
+					// The test is being torn down, so any further actions in
+					// the effects queue will not affect the test results for
+					// this test.
+					$.fx.stop();
+
 					if ( localEnv.teardown ) {
 						localEnv.teardown.call( this );
 					}
