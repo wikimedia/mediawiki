@@ -1,7 +1,7 @@
 // Form elements and layouts
 
 @import "mediawiki.mixins";
-@import "mediawiki.ui/mixins/utilities";
+@import "mediawiki.ui/variables";
 @import "mediawiki.ui/mixins/forms";
 
 // --------------------------------------------------------------------------
@@ -157,6 +157,11 @@
 	margin: 0 0 15px;
 	padding: 0;
 	width: 100%;
+
+	input {
+		font-size: 1em;
+		line-height: 1.4;
+	}
 }
 
 // Apply mw-ui-input to individual input fields to style them.
@@ -164,6 +169,8 @@
 // form container such as mw-ui-vform
 .mw-ui-input {
 	.agora-field-styling(); // mixins/forms.less
+	font-size: 1em;
+	line-height: 1.4em;
 }
 
 // Apply mw-ui-label to individual elements to style them.
