@@ -48,8 +48,6 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		$this->checkReadOnly();
 		$this->checkPermissions();
 
-		$this->requireLogin( 'confirmemail_needlogin' );
-
 		// This could also let someone check the current email address, so
 		// require both permissions.
 		if ( !$this->getUser()->isAllowed( 'viewmyprivateinfo' ) ) {
@@ -57,6 +55,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		}
 
 		if ( $code === null || $code === '' ) {
+			$this->requireLogin( 'confirmemail_needlogin' );
 			if ( Sanitizer::validateEmail( $this->getUser()->getEmail() ) ) {
 				$this->showRequestForm();
 			} else {
@@ -104,8 +103,8 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			$out->addWikiMsg( 'confirmemail_text' );
 			$form = Html::openElement(
 				'form',
-				array( 'method' => 'post', 'action' => $this->getPageTitle()->getLocalURL() )
-			) . "\n";
+				[ 'method' => 'post', 'action' => $this->getPageTitle()->getLocalURL() ]
+			). "\n";
 			$form .= Html::hidden( 'token', $user->getEditToken() ) . "\n";
 			$form .= Xml::submitButton( $this->msg( 'confirmemail_send' )->text() ) . "\n";
 			$form .= Html::closeElement( 'form' ) . "\n";
