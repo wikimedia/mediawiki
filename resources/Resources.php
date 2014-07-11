@@ -1442,18 +1442,16 @@ return array(
 	/* MediaWiki UI */
 
 	'mediawiki.ui' => array(
-		'skinStyles' => array(
-			'default' => 'resources/src/mediawiki.ui/default.less',
-			'vector' => 'resources/src/mediawiki.ui/vector.less',
+		'styles' => array(
+			'resources/src/mediawiki.ui/default.less',
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => array(
-		'skinStyles' => array(
-			'default' => 'resources/src/mediawiki.ui/components/default/buttons.less',
-			'vector' => 'resources/src/mediawiki.ui/components/vector/buttons.less',
+		'styles' => array(
+			'resources/src/mediawiki.ui/components/default/buttons.less',
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
