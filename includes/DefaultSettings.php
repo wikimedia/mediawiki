@@ -5501,9 +5501,9 @@ $wgSearchForwardUrl = null;
 /**
  * Search form behavior.
  * - true = use Go & Search buttons
- * - false = use Go button & Advanced search link
+ * - false = use Search button & Advanced search link
  */
-$wgUseTwoButtonsSearchForm = true;
+$wgUseTwoButtonsSearchForm = false;
 
 /**
  * Array of namespaces to generate a Google sitemap for when the
