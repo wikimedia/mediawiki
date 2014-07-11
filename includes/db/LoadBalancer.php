@@ -1050,6 +1050,9 @@ class LoadBalancer {
 		$maxIndex = 0;
 		if ( $this->getServerCount() > 1 ) { // no replication = no lag
 			foreach ( $this->mServers as $i => $conn ) {
+				if ( $i == $this->getWriterIndex() ) {
+					continue; // nothing to check
+				}
 				$conn = false;
 				if ( $wiki === false ) {
 					$conn = $this->getAnyOpenConnection( $i );
