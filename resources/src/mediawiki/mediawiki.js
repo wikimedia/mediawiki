@@ -1698,6 +1698,9 @@
 				/**
 				 * Execute a function as soon as one or more required modules are ready.
 				 *
+				 * If the required modules are already loaded, the function will be
+				 * executed immediately and the modules will not be reloaded.
+				 *
 				 * Example of inline dependency on OOjs:
 				 *
 				 *     mw.loader.using( 'oojs', function () {
