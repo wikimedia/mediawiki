@@ -660,4 +660,21 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( false, $title->exists(), 'exists() should rely on link cache unless GAID_FOR_UPDATE is used' );
 		$this->assertEquals( true, $title->exists( Title::GAID_FOR_UPDATE ), 'exists() should re-query database when GAID_FOR_UPDATE is used' );
 	}
+
+	public function provideMakeTitleSafe() {
+		return array(
+			array( NS_MAIN, 'Abc', 'Abc' ),
+			array( NS_MAIN, 'A&c', 'A&c' ),
+			array( NS_MAIN, 'A&amp;c', 'A&c' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideMakeTitleSafe
+	 * @covers Title::makeTitleSafe
+	 */
+	public function testMakeTitleSafe( $ns, $titleText, $dbKey ) {
+		$title = Title::makeTitleSafe( $ns, $titleText );
+		$this->assertEquals( $dbKey, $title->getDBkey() );
+	}
 }

@@ -310,7 +310,10 @@ class Title {
 		}
 
 		# Convert things like &eacute; &#257; or &#x3017; into normalized (bug 14952) text
-		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
+		$filteredText = $text;
+		if ( strpos( $text, '&' ) !== false ) {
+			$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $filteredText );
+		}
 
 		$t = new Title();
 		$t->mDbkeyform = strtr( $filteredText, ' ', '_' );
@@ -531,6 +534,11 @@ class Title {
 	public static function makeTitleSafe( $ns, $title, $fragment = '', $interwiki = '' ) {
 		if ( !MWNamespace::exists( $ns ) ) {
 			return null;
+		}
+
+		# Convert things like &eacute; &#257; or &#x3017; into normalized text.
+		if ( strpos( $title, '&' ) !== false ) {
+			$title = Sanitizer::decodeCharReferencesAndNormalize( $title );
 		}
 
 		$t = new Title();
