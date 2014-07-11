@@ -34,7 +34,8 @@
 			"درفش کاویانی",
 			"محک",
 			"아라",
-			"Mostafadaneshvar"
+			"Mostafadaneshvar",
+			"Pouyana"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -221,7 +222,6 @@
 	"talkpagelinktext": "بحث",
 	"specialpage": "صفحهٔ ویژه",
 	"personaltools": "ابزارهای شخصی",
-	"postcomment": "بخش جدید",
 	"articlepage": "نمایش مقاله",
 	"talk": "بحث",
 	"views": "بازدیدها",
@@ -1374,6 +1374,7 @@
 	"license-nopreview": "(پیش‌نمایش وجود ندارد)",
 	"upload_source_url": "(یک نشانی اینترنتی معتبر و قابل دسترسی برای عموم)",
 	"upload_source_file": "(پرونده‌ای در رایانهٔ شما)",
+	"listfiles-delete": "حذف",
 	"listfiles-summary": "این صفحهٔ ویژه تمام پرونده‌های بارگذاری‌شده را نمایش می‌دهد.",
 	"listfiles_search_for": "جستجو به دنبال نام پرونده چندرسانه‌ای:",
 	"imgfile": "پرونده",
