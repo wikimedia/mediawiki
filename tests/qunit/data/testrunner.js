@@ -241,7 +241,8 @@
 					// still suppressed by the end of the test.
 					restoreWarnings();
 
-					// Check for (and clean up, if possible) incomplete animations/requests/etc.
+					// Check for incomplete animations/requests/etc and throw
+					// error if there are any.
 					if ( $.timers && $.timers.length !== 0 ) {
 						// Test may need to use fake timers, wait for animations or
 						// call $.fx.stop().
