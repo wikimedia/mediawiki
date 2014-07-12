@@ -2922,6 +2922,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|שיחה]])",
 	"unknown_extension_tag": "תגית בלתי ידועה: \"$1\"",
 	"duplicate-defaultsort": "'''אזהרה:''' המיון הרגיל \"$2\" דורס את המיון הרגיל המוקדם ממנו \"$1\".",
+	"duplicate-displaytitle": "<strong>אזהרה:</strong> כותרת התצוגה \"$2\" דורסת את כותרת התצוגה הקודמת \"$1\".",
 	"version": "גרסת התוכנה",
 	"version-extensions": "הרחבות מותקנות",
 	"version-skins": "עיצובים מותקנים",
