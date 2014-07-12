@@ -138,11 +138,6 @@
 					)
 				);
 
-				// undo some damage from dialog css
-				this.$dialog.find( 'a' ).css( {
-					color: '#0645ad'
-				} );
-
 				this.$dialog.dialog( {
 					width: 500,
 					autoOpen: false,
