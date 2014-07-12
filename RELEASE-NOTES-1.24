@@ -448,6 +448,10 @@ changes to languages because of Bugzilla reports.
   called unconditionally.
 * TablePager::getBody() is now 'final' and can't be overridden in subclasses.
 * TablePager::getBody() is deprecated, use getBodyOutput() or getFullOutput().
+* Removed Linker::makeLinkObj(). (deprecated since 1.16)
+* Removed Linker::makeKnownLinkObj(). (deprecated since 1.16)
+* Removed Linker::getExternalLinkAttributes(). (deprecated since 1.18)
+* Removed Linker::makeImageLink2(). (deprecated since 1.20)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

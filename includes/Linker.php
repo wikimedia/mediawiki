@@ -37,21 +37,6 @@ class Linker {
 	const TOOL_LINKS_EMAIL = 2;
 
 	/**
-	 * Get the appropriate HTML attributes to add to the "a" element of an
-	 * external link, as created by [wikisyntax].
-	 *
-	 * @param string $class The contents of the class attribute; if an empty
-	 *   string is passed, which is the default value, defaults to 'external'.
-	 * @return string
-	 * @deprecated since 1.18 Just pass the external class directly to something
-	 *   using Html::expandAttributes.
-	 */
-	static function getExternalLinkAttributes( $class = 'external' ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return self::getLinkAttributesInternal( '', $class );
-	}
-
-	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an interwiki link.
 	 *
 	 * @param string $title The title text for the link, URL-encoded (???) but
@@ -65,7 +50,7 @@ class Linker {
 		global $wgContLang;
 
 		# @todo FIXME: We have a whole bunch of handling here that doesn't happen in
-		# getExternalLinkAttributes, why?
+		# getLinkAttributesInternal, why?
 		$title = urldecode( $title );
 		$title = $wgContLang->checkTitleEncoding( $title );
 		$title = preg_replace( '/[\\x00-\\x1f]/', ' ', $title );
@@ -685,17 +670,6 @@ class Linker {
 			$s = "<div class=\"float{$fp['align']}\">{$s}</div>";
 		}
 		return str_replace( "\n", ' ', $prefix . $s . $postfix );
-	}
-
-	/**
-	 * See makeImageLink()
-	 * When this function is removed, remove if( $parser instanceof Parser ) check there too
-	 * @deprecated since 1.20
-	 */
-	public static function makeImageLink2( Title $title, $file, $frameParams = array(),
-		$handlerParams = array(), $time = false, $query = "", $widthOption = null ) {
-		return self::makeImageLink( null, $title, $file, $frameParams,
-			$handlerParams, $time, $query, $widthOption );
 	}
 
 	/**
@@ -2268,80 +2242,6 @@ class Linker {
 		$html = wfMessage( $msgKey )->escaped();
 		$htmlParentheses = wfMessage( 'parentheses' )->rawParams( $html )->escaped();
 		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), $htmlParentheses );
-	}
-
-	/* Deprecated methods */
-
-	/**
-	 * @deprecated since 1.16 Use link(); warnings since 1.21
-	 *
-	 * Make a link for a title which may or may not be in the database. If you need to
-	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
-	 * call to this will result in a DB query.
-	 *
-	 * @param Title $nt The title object to make the link from, e.g. from Title::newFromText.
-	 * @param string $text Link text
-	 * @param string $query Optional query part
-	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *   be included in the link text. Other characters will be appended after
-	 *   the end of the link.
-	 * @param string $prefix Optional prefix. As trail, only before instead of after.
-	 * @return string
-	 */
-	static function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		wfProfileIn( __METHOD__ );
-		$query = wfCgiToArray( $query );
-		list( $inside, $trail ) = self::splitTrail( $trail );
-		if ( $text === '' ) {
-			$text = self::linkText( $nt );
-		}
-
-		$ret = self::link( $nt, "$prefix$text$inside", array(), $query ) . $trail;
-
-		wfProfileOut( __METHOD__ );
-		return $ret;
-	}
-
-	/**
-	 * @deprecated since 1.16 Use link(); warnings since 1.21
-	 *
-	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because
-	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
-	 * pages.
-	 *
-	 * @param Title $title Title object of target page
-	 * @param string $text Text to replace the title
-	 * @param string $query Link target
-	 * @param string $trail Text after link
-	 * @param string $prefix Text before link text
-	 * @param string $aprops Extra attributes to the a-element
-	 * @param string $style Style to apply - if empty, use getInternalLinkAttributesObj instead
-	 * @return string The a-element
-	 */
-	static function makeKnownLinkObj(
-		$title, $text = '', $query = '', $trail = '', $prefix = '', $aprops = '', $style = ''
-	) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		wfProfileIn( __METHOD__ );
-
-		if ( $text == '' ) {
-			$text = self::linkText( $title );
-		}
-		$attribs = Sanitizer::mergeAttributes(
-			Sanitizer::decodeTagAttributes( $aprops ),
-			Sanitizer::decodeTagAttributes( $style )
-		);
-		$query = wfCgiToArray( $query );
-		list( $inside, $trail ) = self::splitTrail( $trail );
-
-		$ret = self::link( $title, "$prefix$text$inside", $attribs, $query,
-			array( 'known', 'noclasses' ) ) . $trail;
-
-		wfProfileOut( __METHOD__ );
-		return $ret;
 	}
 
 	/**
