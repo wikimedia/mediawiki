@@ -1051,7 +1051,11 @@ class WebInstaller extends Installer {
 		$newValues = array();
 
 		foreach ( $varNames as $name ) {
-			$value = trim( $this->request->getVal( $prefix . $name ) );
+			$value = $this->request->getVal( $prefix . $name );
+			// bug 30524, do not trim passwords
+			if ( stripos( $name, 'password' ) === false ) {
+				$value = trim( $value );
+			}
 			$newValues[$name] = $value;
 
 			if ( $value === null ) {
