@@ -213,32 +213,20 @@ class SpecialAllPages extends IncludableSpecialPage {
 			);
 
 			if ( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-chunk' ) );
+				$out = Xml::openElement( 'ul', array( 'class' => 'mw-allpages-chunk' ) );
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::newFromRow( $s );
 					if ( $t ) {
-						$link = ( $s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
+						$out .= '<li' .
+							( $s->page_is_redirect ? ' class="allpagesredirect"' : '' ) .
+							'>' .
 							Linker::link( $t ) .
-							( $s->page_is_redirect ? '</div>' : '' );
+							"</li>\n";
 					} else {
-						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
-					}
-
-					if ( $n % 3 == 0 ) {
-						$out .= '<tr>';
-					}
-
-					$out .= "<td style=\"width:33%\">$link</td>";
-					$n++;
-					if ( $n % 3 == 0 ) {
-						$out .= "</tr>\n";
+						$out .= '<li>[[' . htmlspecialchars( $s->page_title ) . "]]</li>\n";
 					}
 				}
-
-				if ( ( $n % 3 ) != 0 ) {
-					$out .= "</tr>\n";
-				}
-				$out .= Xml::closeElement( 'table' );
+				$out .= Xml::closeElement( 'ul' );
 			} else {
 				$out = '';
 			}

@@ -16,15 +16,28 @@
 }
 
 /* Special:Allpages */
-table.mw-allpages-table-form, table.mw-allpages-table-chunk {
+table.mw-allpages-table-form {
 	width: 100%;
+}
+table.mw-allpages-table-form tr {
+	vertical-align: top;
 }
 .mw-allpages-nav {
 	text-align: right;
 	margin-bottom: 1em;
 }
-table.mw-allpages-table-form tr {
+
+ul.mw-allpages-chunk {
+	margin: 0;
+	padding: 0;
+}
+ul.mw-allpages-chunk li {
+	border-top: 1px solid #ccc;
+	display: inline-block;
+	margin: 0 1% 0 0;
+	padding: .2em 0;
 	vertical-align: top;
+	width: 31%;
 }
 
 /* Special:BlockList */
