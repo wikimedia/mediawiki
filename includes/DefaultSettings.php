@@ -4699,12 +4699,6 @@ $wgSummarySpamRegex = array();
 $wgEnableDnsBlacklist = false;
 
 /**
- * @deprecated since 1.17 Use $wgEnableDnsBlacklist instead, only kept for
- * backward compatibility.
- */
-$wgEnableSorbs = false;
-
-/**
  * List of DNS blacklists to use, if $wgEnableDnsBlacklist is true.
  *
  * This is an array of either a URL or an array with the URL and a key (should
@@ -4728,12 +4722,6 @@ $wgEnableSorbs = false;
  * @since 1.16
  */
 $wgDnsBlacklistUrls = array( 'http.dnsbl.sorbs.net.' );
-
-/**
- * @deprecated since 1.17 Use $wgDnsBlacklistUrls instead, only kept for
- * backward compatibility.
- */
-$wgSorbsUrl = array();
 
 /**
  * Proxy whitelist, list of addresses that are assumed to be non-proxy despite
