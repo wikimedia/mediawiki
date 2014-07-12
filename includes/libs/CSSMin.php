@@ -163,6 +163,8 @@ class CSSMin {
 	 * Build a CSS 'url()' value for the given URL, quoting parentheses (and other funny characters)
 	 * and escaping quotes as necessary.
 	 *
+	 * See http://www.w3.org/TR/css-syntax-3/#consume-a-url-token
+	 *
 	 * @param string $url URL to process
 	 * @return string 'url()' value, usually just `"url($url)"`, quoted/escaped if necessary
 	 */
