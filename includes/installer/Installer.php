@@ -146,9 +146,9 @@ abstract class Installer {
 	 * @var array
 	 */
 	protected $envPreps = array(
+		'envPrepExtension',
 		'envPrepServer',
 		'envPrepPath',
-		'envPrepExtension',
 	);
 
 	/**
