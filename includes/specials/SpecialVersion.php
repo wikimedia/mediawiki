@@ -525,8 +525,17 @@ class SpecialVersion extends SpecialPage {
 			);
 
 			array_walk( $tags, function ( &$value ) {
-				$value = '&lt;' . htmlspecialchars( $value ) . '&gt;';
+				// Bidirectional isolation improves readability in RTL wikis
+				$value = Html::element(
+					'bdi',
+					// Prevent < and > from slipping to another line
+					array(
+						'style' => 'white-space: nowrap;',
+					),
+					"<$value>"
+				);
 			} );
+
 			$out .= $this->listToText( $tags );
 		} else {
 			$out = '';
