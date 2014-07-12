@@ -1505,8 +1505,7 @@ class User implements IDBAccessObject {
 	 * @return bool True if blacklisted.
 	 */
 	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
-		global $wgEnableSorbs, $wgEnableDnsBlacklist,
-			$wgSorbsUrl, $wgDnsBlacklistUrls, $wgProxyWhitelist;
+		global $wgEnableDnsBlacklist, $wgDnsBlacklistUrls, $wgProxyWhitelist;
 
 		if ( !$wgEnableDnsBlacklist && !$wgEnableSorbs ) {
 			return false;
@@ -1516,8 +1515,7 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		$urls = array_merge( $wgDnsBlacklistUrls, (array)$wgSorbsUrl );
-		return $this->inDnsBlacklist( $ip, $urls );
+		return $this->inDnsBlacklist( $ip, $wgDnsBlacklistUrls );
 	}
 
 	/**
