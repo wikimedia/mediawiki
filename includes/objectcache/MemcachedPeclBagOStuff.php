@@ -269,10 +269,4 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		wfProfileOut( __METHOD__ );
 		return $this->checkResult( false, $result );
 	}
-
-
-	/* NOTE: there is no cas() method here because it is currently not supported
-	 * by the BagOStuff interface and other BagOStuff subclasses, such as
-	 * SqlBagOStuff.
-	 */
 }
