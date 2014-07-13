@@ -17,14 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  *
  * @file
- */
-
-/**
- * @defgroup Actions Action done on pages
+ * @ingroup Actions
  */
 
 /**
  * An action which shows a form and does something based on the input from the form
+ *
+ * @ingroup Actions
  */
 abstract class FormAction extends Action {
 
