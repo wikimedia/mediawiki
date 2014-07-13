@@ -21,11 +21,12 @@
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
 			}
+
 			return this.postWithToken( 'edit', params ).done( ok ).fail( err );
 		},
 
 		/**
-		 * Api helper to grab an edit token.
+		 * API helper to grab an edit token.
 		 *
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
@@ -38,11 +39,12 @@
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
 			}
+
 			return this.getToken( 'edit' ).done( ok ).fail( err );
 		},
 
 		/**
-		 * Create a new section of the page.
+		 * Post a new section to the page.
 		 * @see #postWithEditToken
 		 * @param {mw.Title|String} title Target page
 		 * @param {string} header
@@ -53,17 +55,19 @@
 		 * @return {jQuery.Promise}
 		 */
 		newSection: function ( title, header, message, additionalParams, ok, err ) {
-			// Until we remove 'ok' and 'err' parameters, we have to support code that passes them but not
-			// additionalParams...
+			// Until we remove 'ok' and 'err' parameters, we have to support code that passes them,
+			// but not additionalParams...
 			if ( $.isFunction( additionalParams ) ) {
 				err = ok;
 				ok = additionalParams;
 				additionalParams = undefined;
 			}
+
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
 			}
+
 			return this.postWithEditToken( $.extend( {
 				action: 'edit',
 				section: 'new',
