@@ -4,6 +4,7 @@
 			"Cwlin0416"
 		]
 	},
+	"monobook-desc": "MediaWiki 自 2004 年以來的經典外觀，根據頁面背景的書本黑白照命名",
 	"monobook.css": "/* 此 CSS 會影響使用 Monobook 介面外觀的使用者 */",
 	"monobook.js": "/* 此 JavaScript 會用於使用 Monobook 介面外觀使用者 */"
 }

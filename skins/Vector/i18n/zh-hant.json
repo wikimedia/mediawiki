@@ -7,6 +7,7 @@
 			"Mark85296341"
 		]
 	},
+	"vector-skin-desc": "現代版的 MonoBook，有著較新穎的外觀與許多使用性的改進",
 	"vector.css": "/* 此 CSS 會影響使用 Vector 介面外觀的使用者 */",
 	"vector.js": "/* 此 JavaScript 會用於使用 Vector 介面外觀使用者 */",
 	"vector-action-addsection": "加入主題",
