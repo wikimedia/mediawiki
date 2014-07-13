@@ -43,6 +43,19 @@ abstract class Action {
 	protected $page;
 
 	/**
+	 * The local file for this wiki page, if one exists.
+	 * @var LocalFile|null
+	 */
+	protected $localfile = null;
+
+	/**
+	 * File that exists on a shared repository and occupies this wiki page.
+	 * Only check for existence if repo-sharing is enabled and $localfile is null.
+	 * @var File|bool
+	 */
+	protected $sharedfile = false;
+
+	/**
 	 * IContextSource if specified; otherwise we'll use the Context from the Page
 	 * @var IContextSource $context
 	 */
@@ -258,6 +271,12 @@ abstract class Action {
 
 		$this->page = $page;
 		$this->context = $context;
+		$title = $this->getTitle();
+		$this->localfile = RepoGroup::singleton()->getLocalRepo()->newFile( $title );
+		if ( !$this->localfile || !$this->localfile->exists() ) {
+			$ignoreRedirect = array( 'ignoreRedirect' => true );
+			$this->sharedfile = RepoGroup::singleton()->findFile( $title, $ignoreRedirect );
+		}
 	}
 
 	/**
