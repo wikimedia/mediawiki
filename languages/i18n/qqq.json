@@ -744,6 +744,7 @@
 	"preview": "The title of the Preview page shown after clicking the \"Show preview\" button in the edit page. Since this is a heading, it should probably be translated as a noun and not as a verb.\n\n{{Identical|Preview}}",
 	"showpreview": "The text of the button to preview the page you are editing. See also {{msg-mw|showdiff}} and {{msg-mw|savearticle}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showpreview}}\n* {{msg-mw|Accesskey-preview}}\n* {{msg-mw|Tooltip-preview}}\n{{Identical|Show preview}}",
 	"showdiff": "Button below the edit page. See also {{msg-mw|Showpreview}} and {{msg-mw|Savearticle}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showdiff}}\n* {{msg-mw|Accesskey-diff}}\n* {{msg-mw|Tooltip-diff}}\n{{Identical|Show change}}",
+	"blankarticle": "Notice when a empty page is about to be made.",
 	"anoneditwarning": "Shown when editing a page anonymously.\nSee also:\n* {{msg-mw|Sf autoedit anoneditwarning}}\n* {{msg-mw|Wikibase-anonymouseditwarning-property}}\n* {{msg-mw|Wikibase-anonymouseditwarning-item}}\n* {{msg-mw|Anonpreviewwarning}}",
 	"anonpreviewwarning": "See also:\n* {{msg-mw|Anoneditwarning}}",
 	"missingsummary": "The text \"edit summary\" is in {{msg-mw|Summary}}.\n\nSee also:\n* {{msg-mw|Missingcommentheader}}\n* {{msg-mw|Savearticle}}",
