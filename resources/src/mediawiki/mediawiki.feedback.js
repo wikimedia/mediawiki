@@ -112,13 +112,15 @@
 								$feedbackPageLink.clone()
 							)
 						),
-						$( '<div style="margin-top: 1em;"></div>' ).append(
-							mw.msg( 'feedback-subject' ),
+						$( '<div style="margin-top: 1em;"></div>' )
+						.msg( 'feedback-subject' )
+						.append(
 							$( '<br>' ),
 							$( '<input type="text" class="feedback-subject" name="subject" maxlength="60" style="width: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;"/>' )
 						),
-						$( '<div style="margin-top: 0.4em;"></div>' ).append(
-							mw.msg( 'feedback-message' ),
+						$( '<div style="margin-top: 0.4em;"></div>' )
+						.msg( 'feedback-message' )
+						.append(
 							$( '<br>' ),
 							$( '<textarea name="message" class="feedback-message" rows="5" cols="60"></textarea>' )
 						)
@@ -126,8 +128,9 @@
 					$( '<div class="feedback-mode feedback-bugs"></div>' ).append(
 						$( '<p>' ).msg( 'feedback-bugcheck', $bugsListLink )
 					),
-					$( '<div class="feedback-mode feedback-submitting" style="text-align: center; margin: 3em 0;"></div>' ).append(
-						mw.msg( 'feedback-adding' ),
+					$( '<div class="feedback-mode feedback-submitting" style="text-align: center; margin: 3em 0;"></div>' )
+					.msg( 'feedback-adding' )
+					.append(
 						$( '<br>' ),
 						$( '<span class="feedback-spinner"></span>' )
 					),
@@ -142,7 +145,7 @@
 			this.$dialog.dialog( {
 				width: 500,
 				autoOpen: false,
-				title: mw.msg( this.dialogTitleMessageKey ),
+				title: mw.message( this.dialogTitleMessageKey ).escaped(),
 				modal: true,
 				buttons: fb.buttons
 			} );
@@ -264,25 +267,6 @@
 			var subject, message,
 				fb = this;
 
-			function ok( result ) {
-				if ( result.edit !== undefined ) {
-					if ( result.edit.result === 'Success' ) {
-						fb.displayThanks();
-					} else {
-						// unknown API result
-						fb.displayError( 'feedback-error1' );
-					}
-				} else {
-					// edit failed
-					fb.displayError( 'feedback-error2' );
-				}
-			}
-
-			function err() {
-				// ajax request failed
-				fb.displayError( 'feedback-error3' );
-			}
-
 			// Get the values to submit.
 			subject = this.subjectInput.value;
 
@@ -301,7 +285,24 @@
 				subject,
 				message,
 				{ redirect: true }
-			).done( ok ).fail( err );
+			)
+			.done( function ( result ) {
+				if ( result.edit !== undefined ) {
+					if ( result.edit.result === 'Success' ) {
+						fb.displayThanks();
+					} else {
+						// unknown API result
+						fb.displayError( 'feedback-error1' );
+					}
+				} else {
+					// edit failed
+					fb.displayError( 'feedback-error2' );
+				}
+			} )
+			.fail( function () {
+				// ajax request failed
+				fb.displayError( 'feedback-error3' );
+			} );
 		},
 
 		/**
