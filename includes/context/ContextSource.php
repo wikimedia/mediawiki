@@ -34,9 +34,9 @@ abstract class ContextSource implements IContextSource {
 	private $context;
 
 	/**
-	 * Get the RequestContext object
+	 * Get the base IContextSource object
 	 * @since 1.18
-	 * @return RequestContext
+	 * @return IContextSource
 	 */
 	public function getContext() {
 		if ( $this->context === null ) {
