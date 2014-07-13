@@ -161,6 +161,7 @@ production.
   wrong constraints.
 * (bug 67870) wfShellExec() cuts off stdout at multiples of 8192 bytes.
 * $wgRunJobsAsync now works with private wikis (e.g. read requires login).
+* (bugs 57238, 65206) Blank pages can now be directly created.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of

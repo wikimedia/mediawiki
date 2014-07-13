@@ -821,6 +821,11 @@ abstract class ContentHandler {
 				->inContentLanguage()->text();
 		}
 
+		// New blank article auto-summary
+		if ( $flags && EDIT_NEW && $newContent->getSize() == 0 ) {
+			return wfMessage( 'autosumm-newblank' ) ->inContentLanguage()->text();
+		}
+
 		// If we reach this point, there's no applicable auto-summary for our
 		// case, so our auto-summary is empty.
 		return '';
