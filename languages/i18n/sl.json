@@ -2830,6 +2830,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|pogovor]])",
 	"unknown_extension_tag": "Neznana razširitvena etiketa »$1«",
 	"duplicate-defaultsort": "'''Opozorilo:''' Privzeti ključ razvrščanja »$2« prepiše prejšnji privzeti ključ razvrščanja »$1«.",
+	"duplicate-displaytitle": "<strong>Opozorilo:</strong> Prikazni naslov »$2« prepiše prejšnji prikazni naslov »$1«.",
 	"version": "Različica",
 	"version-extensions": "Nameščene razširitve",
 	"version-skins": "Nameščene kože",

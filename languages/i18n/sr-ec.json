@@ -24,7 +24,8 @@
 			"Милан Јелисавчић",
 			"Михајло Анђелковић",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Подвлачење веза:",
@@ -1403,7 +1404,7 @@
 	"uploadnewversion-linktext": "Пошаљи нову верзију ове датотеке",
 	"shared-repo-from": "из $1",
 	"shared-repo": "заједничко складиште",
-	"shared-repo-name-wikimediacommons": "{{#SWITCH:{{{1|}}}\n|#default=Викимедијина остава\n|dat=Викимедијиној остави\n}}",
+	"shared-repo-name-wikimediacommons": "Викимедијина остава",
 	"filepage.css": "/* CSS који је постављен овде се налази на страницама за опис датотека, као и на страним викијима */",
 	"upload-disallowed-here": "Не можете да замените ову датотеку.",
 	"filerevert": "Врати $1",

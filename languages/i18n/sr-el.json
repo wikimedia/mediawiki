@@ -16,7 +16,8 @@
 			"Жељко Тодоровић",
 			"Михајло Анђелковић",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Podvlačenje veza:",
@@ -203,7 +204,6 @@
 	"talkpagelinktext": "razgovor",
 	"specialpage": "Posebna stranica",
 	"personaltools": "Lične alatke",
-	"postcomment": "Novi odeljak",
 	"articlepage": "Pogledaj stranicu sa sadržajem",
 	"talk": "Razgovor",
 	"views": "Pregledi",
@@ -1390,7 +1390,7 @@
 	"uploadnewversion-linktext": "Pošalji novo izdanje ove datoteke",
 	"shared-repo-from": "iz $1",
 	"shared-repo": "zajedničko skladište",
-	"shared-repo-name-wikimediacommons": "{{#SWITCH:{{{1|}}}\n|#default=Vikimedijina ostava\n|dat=Vikimedijinoj ostavi\n}}",
+	"shared-repo-name-wikimediacommons": "Vikimedijina ostava",
 	"filepage.css": "/* CSS koji je postavljen ovde se nalazi na stranicama za opis datoteka, kao i na stranim vikijima */",
 	"upload-disallowed-here": "Ne možete da zamenite ovu datoteku.",
 	"filerevert": "Vrati $1",
