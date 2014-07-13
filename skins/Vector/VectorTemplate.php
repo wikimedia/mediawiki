@@ -317,13 +317,14 @@ class VectorTemplate extends BaseTemplate {
 		?>'<?php
 		echo Linker::tooltip( 'p-' . $name )
 		?> aria-labelledby='<?php echo Sanitizer::escapeId( "p-$name-label" ) ?>'>
-			<h3<?php
+			<label for="<?php echo Sanitizer::escapeId( "p-$name-checkbox" ); ?>"<?php
 			$this->html( 'userlangattributes' )
 			?> id='<?php
 			echo Sanitizer::escapeId( "p-$name-label" )
 			?>'><?php
 				echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $msg );
-				?></h3>
+				?></label>
+			<input type="checkbox" id="<?php echo Sanitizer::escapeId( "p-$name-checkbox" ) ?>" />
 
 			<div class="body">
 				<?php
