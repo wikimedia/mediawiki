@@ -318,7 +318,7 @@
 			}
 
 			if ( tooltip ) {
-				$link.attr( 'title', tooltip ).updateTooltipAccessKeys();
+				$link.attr( 'title', tooltip );
 			}
 
 			if ( nextnode ) {
@@ -329,17 +329,26 @@
 				} else if ( !nextnode.jquery || ( nextnode.length && nextnode[0].parentNode !== $ul[0] ) ) {
 					// Fallback
 					$ul.append( $item );
+					// Update tooltip for the access key after inserting into DOM
+					// to get a localized access key label (bug 67946).
+					$link.updateTooltipAccessKeys();
 					return $item[0];
 				}
 				if ( nextnode.length === 1 ) {
 					// nextnode is a jQuery object that represents exactly one element
 					nextnode.before( $item );
+					// Update tooltip for the access key after inserting into DOM
+					// to get a localized access key label (bug 67946).
+					$link.updateTooltipAccessKeys();
 					return $item[0];
 				}
 			}
 
 			// Fallback (this is the default behavior)
 			$ul.append( $item );
+			// Update tooltip for the access key after inserting into DOM
+			// to get a localized access key label (bug 67946).
+			$link.updateTooltipAccessKeys();
 			return $item[0];
 
 		},
