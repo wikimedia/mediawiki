@@ -469,14 +469,32 @@ class ApiQuery extends ApiBase {
 				}
 			}
 		}
-
-		$exporter = new WikiExporter( $this->getDB() );
 		// WikiExporter writes to stdout, so catch its
 		// output with an ob
 		ob_start();
-		$exporter->openStream();
-		foreach ( $exportTitles as $title ) {
-			$exporter->pageByTitle( $title );
+
+		if ( isset( $this->mParams['revids'] ) ) {
+			// Get specified revisions
+			$exporter = new WikiExporter( $this->getDB(), WikiExporter::SPECIFIED);
+			$r = array_map( 'intval', $this->mParams['revids'] );
+			foreach ( $r as $revid ) {
+				$rev = Revision::newFromId( $revid );
+				$t = $rev->getTitle();
+				if ( $title->userCan( 'read', $user ) ) {
+					$revids[] = $revid;
+				}	
+			}
+			$exporter->openStream();
+
+			$exporter->pageByRevID( $revids );
+		} else {
+			// Get latest revisions of given titles
+			$exporter = new WikiExporter( $this->getDB());
+			$exporter->openStream();
+			
+			foreach ( $exportTitles as $title ) {
+				$exporter->pageByTitle( $title, $revids );
+			}
 		}
 		$exporter->closeStream();
 		$exportxml = ob_get_contents();
@@ -506,6 +524,10 @@ class ApiQuery extends ApiBase {
 			'list' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'list' )
+			),
+			'revids' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'meta' => array(
 				ApiBase::PARAM_ISMULTI => true,

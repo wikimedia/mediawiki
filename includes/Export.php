@@ -45,6 +45,7 @@ class WikiExporter {
 
 	const FULL = 1;
 	const CURRENT = 2;
+	const SPECIFIED = 3;
 	const STABLE = 4; // extension defined
 	const LOGS = 8;
 	const RANGE = 16;
@@ -165,6 +166,14 @@ class WikiExporter {
 		$this->dumpFrom(
 			'page_namespace=' . $title->getNamespace() .
 			' AND page_title=' . $this->db->addQuotes( $title->getDBkey() ) );
+	}
+
+	/**
+	 * @param Array $revid
+	 */
+	public function pageByRevID( $revid ) {
+			$s = "rev_id IN (" . $this->db->makeList( $revid ) . ") ";
+			$this->dumpFrom( $s );
 	}
 
 	/**
@@ -357,6 +366,11 @@ class WikiExporter {
 				# Dump of revisions within a specified range
 				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page' );
 				$opts['ORDER BY'] = array( 'rev_page ASC', 'rev_id ASC' );
+			} elseif ( $this->history & WikiExporter::SPECIFIED ) {
+				// Dumps from specified revision ids
+				if ( $this->list_authors && $cond != '' ) { // List authors, if so desired
+					$this->do_list_authors( $cond );
+				}
 			} else {
 				# Unknown history specification parameter?
 				wfProfileOut( __METHOD__ );
