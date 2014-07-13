@@ -446,6 +446,28 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
+	 * Prepare a new manual log entry for database insertion and publishing.
+	 *
+	 * @param string $type One of '', 'block', 'protect', 'rights', 'delete',
+	 *  'upload', 'move'
+	 * @param string $subtype
+	 * @param string $reason
+	 * @param array $parameters
+	 *
+	 * @return ManualLogEntry
+	 */
+	public function prepareLogEntry( $type, $subtype, $reason, array $parameters = array() ) {
+		$logEntry = new ManualLogEntry( $type, $subtype );
+		$logEntry->setPerformer( $this->getUser() );
+		$logEntry->setTarget( $this->getTitle() );
+		$logEntry->setComment( $reason );
+		if ( $parameters ) {
+			$logEntry->setParameters( $parameters );
+		}
+		return $logEntry;
+	}
+
+	/**
 	 * Import the resolved user IP, HTTP headers, user ID, and session ID.
 	 * This sets the current session and sets $wgUser and $wgRequest.
 	 * Once the return value falls out of scope, the old context is restored.
