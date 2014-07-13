@@ -254,6 +254,9 @@ class EditPage {
 	/** @var bool */
 	protected $allowBlankSummary = false;
 
+	/** @var bool */
+	protected $blankArticle = false;
+
 	/** @var string */
 	protected $autoSumm = '';
 
@@ -1400,6 +1403,7 @@ class EditPage {
 			case self::AS_TEXTBOX_EMPTY:
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_END:
+			case self::AS_BLANK_ARTICLE:
 				return true;
 
 			case self::AS_HOOK_ERROR:
@@ -1433,10 +1437,6 @@ class EditPage {
 					}
 				}
 				$wgOut->redirect( $this->mTitle->getFullURL( $extraQuery ) . $sectionanchor );
-				return false;
-
-			case self::AS_BLANK_ARTICLE:
-				$wgOut->redirect( $this->getContextTitle()->getFullURL() );
 				return false;
 
 			case self::AS_SPAM_ERROR:
@@ -1747,6 +1747,8 @@ class EditPage {
 			}
 
 			if ( $this->textbox1 === $defaultText ) {
+				$this->blankArticle = true;
+				$status->fatal( 'blankarticle' );
 				$status->setResult( false, self::AS_BLANK_ARTICLE );
 				wfProfileOut( __METHOD__ );
 				return $status;
@@ -2662,6 +2664,10 @@ class EditPage {
 
 			if ( $this->missingSummary && $this->section == 'new' ) {
 				$wgOut->wrapWikiMsg( "<div id='mw-missingcommentheader'>\n$1\n</div>", 'missingcommentheader' );
+			}
+
+			if ( $this->blankArticle ) {
+				$wgOut->wrapWikiMsg( "<div id='mw-blankarticle'>\n$1\n</div>", 'blankarticle' );
 			}
 
 			if ( $this->hookError !== '' ) {
