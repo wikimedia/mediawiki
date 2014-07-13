@@ -286,30 +286,32 @@
 			}
 
 			if ( tooltip ) {
-				$link.attr( 'title', tooltip ).updateTooltipAccessKeys();
+				$link.attr( 'title', tooltip );
 			}
 
-			if ( nextnode ) {
-				if ( nextnode.nodeType || typeof nextnode === 'string' ) {
-					// nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
-					// or nextnode is a CSS selector for jQuery
-					nextnode = $ul.find( nextnode );
-				} else if ( !nextnode.jquery || ( nextnode.length && nextnode[0].parentNode !== $ul[0] ) ) {
-					// Fallback
-					$ul.append( $item );
-					return $item[0];
-				}
-				if ( nextnode.length === 1 ) {
-					// nextnode is a jQuery object that represents exactly one element
-					nextnode.before( $item );
-					return $item[0];
-				}
+			if ( !nextnode ) {
+				nextnode = [];
+			} else if ( nextnode.nodeType || typeof nextnode === 'string' ) {
+				// nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
+				// or nextnode is a CSS selector for jQuery
+				nextnode = $ul.find( nextnode );
+			} else if ( !nextnode.jquery || ( nextnode.length && nextnode[0].parentNode !== $ul[0] ) ) {
+				nextnode = [];
 			}
 
-			// Fallback (this is the default behavior)
-			$ul.append( $item );
+			if ( nextnode.length === 1 ) {
+				// nextnode is a jQuery object that represents exactly one element
+				nextnode.before( $item );
+			} else {
+				// Fallback (this is the default behavior)
+				$ul.append( $item );
+			}
+
+			// Update tooltip for the access key after inserting into DOM
+			// to get a localized access key label (bug 67946).
+			$link.updateTooltipAccessKeys();
+
 			return $item[0];
-
 		},
 
 		/**
