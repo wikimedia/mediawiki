@@ -161,13 +161,10 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// -- create page (or not) -----------------------------------------
 		if ( $text !== null ) {
-			if ( $text === '' ) {
-				// can't create an empty page, so create it with some content
-				$this->doApiRequestWithToken( array(
-					'action' => 'edit',
-					'title' => $name,
-					'text' => '(dummy)', ) );
-			}
+			$this->doApiRequestWithToken( array(
+				'action' => 'edit',
+				'title' => $name,
+				'text' => '(dummy)', ) );
 
 			list( $re ) = $this->doApiRequestWithToken( array(
 				'action' => 'edit',
