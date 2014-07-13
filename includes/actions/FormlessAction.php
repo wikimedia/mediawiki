@@ -17,14 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  *
  * @file
- */
-
-/**
- * @defgroup Actions Action done on pages
+ * @ingroup Actions
  */
 
 /**
  * An action which just does something, without showing a form first.
+ *
+ * @ingroup Actions
  */
 abstract class FormlessAction extends Action {
 
