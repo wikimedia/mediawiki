@@ -43,6 +43,18 @@ abstract class Action {
 	protected $page;
 
 	/**
+	 * The file occupying this wiki page, if one exists.
+	 * @var File|bool|null $file
+	 */
+	protected $file = null;
+
+	/**
+	 * If $file exists, check if it is on a local or shared repository.
+	 * @var bool $isLocalFile
+	 */
+	protected $isLocalFile = false;
+
+	/**
 	 * IContextSource if specified; otherwise we'll use the Context from the Page
 	 * @var IContextSource $context
 	 */
@@ -258,6 +270,12 @@ abstract class Action {
 
 		$this->page = $page;
 		$this->context = $context;
+		if ( $this->getTitle()->getNamespace() === NS_FILE ) {
+			$file = $page->getFile();
+			if ( $file && $file->exists && $file->isLocal && !$file->getRedirected() ) {
+				$this->isLocalFile = true;
+			}
+		}
 	}
 
 	/**
