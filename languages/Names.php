@@ -395,6 +395,7 @@
 	'tw' => 'Twi',			# Twi, (FIXME!)
 	'ty' => 'reo tahiti',	# Tahitian
 	'tyv' => 'тыва дыл',	# Tyvan
+	'tzm' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ',	# Tamazight
 	'udm' => 'удмурт',	# Udmurt
 	'ug' => 'ئۇيغۇرچە / Uyghurche',	# Uyghur (multiple scripts - defaults to Arabic)
 	'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script) (default)
