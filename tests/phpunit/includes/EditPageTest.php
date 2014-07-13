@@ -265,6 +265,19 @@ class EditPageTest extends MediaWikiLangTestCase {
 			null,
 			"expected MediaWiki: page not being created if text equals default message"
 		);
+
+		$this->assertEdit(
+			'EditPageTest_testCreatePage',
+			null,
+			null,
+			array(
+				'wpTextbox1' => "",
+				'wpIgnoreBlankArticle' => 1,
+			),
+			EditPage::AS_SUCCESS_NEW_ARTICLE,
+			"",
+			"expected empty article being created"
+		)->doDeleteArticleReal( 'EditPageTest_testCreatePage' );
 	}
 
 	public function testUpdatePage() {

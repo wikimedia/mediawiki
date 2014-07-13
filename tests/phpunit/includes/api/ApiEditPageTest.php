@@ -159,10 +159,24 @@ class ApiEditPageTest extends ApiTestCase {
 		// assume NS_HELP defaults to wikitext
 		$name = "Help:ApiEditPageTest_testEditAppend_$count";
 
+		// -- create page without content (or not) -------------------------
+		if ( $text !== null ) {
+			if ( $text === '' ) {
+				$this->doApiRequestWithToken( array(
+					'action' => 'edit',
+					'title' => $name,) );
+			}
+
+			list( $re ) = $this->doApiRequestWithToken( array(
+				'action' => 'edit',
+				'title' => $name, ) );
+
+			$this->assertEquals( 'Success', $re['edit']['result'] ); // sanity
+		}
 		// -- create page (or not) -----------------------------------------
 		if ( $text !== null ) {
 			if ( $text === '' ) {
-				// can't create an empty page, so create it with some content
+				// create it with some content
 				$this->doApiRequestWithToken( array(
 					'action' => 'edit',
 					'title' => $name,
