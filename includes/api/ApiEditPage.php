@@ -36,13 +36,6 @@ class ApiEditPage extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		if ( is_null( $params['text'] ) && is_null( $params['appendtext'] ) &&
-			is_null( $params['prependtext'] ) &&
-			$params['undo'] == 0
-		) {
-			$this->dieUsageMsg( 'missingtext' );
-		}
-
 		$pageObj = $this->getTitleOrPageId( $params );
 		$titleObj = $pageObj->getTitle();
 		$apiResult = $this->getResult();
@@ -252,7 +245,8 @@ class ApiEditPage extends ApiBase {
 			'format' => $contentFormat,
 			'model' => $contentHandler->getModelID(),
 			'wpEditToken' => $params['token'],
-			'wpIgnoreBlankSummary' => ''
+			'wpIgnoreBlankSummary' => '',
+			'wpIgnoreBlankArticle' => true
 		);
 
 		if ( !is_null( $params['summary'] ) ) {
