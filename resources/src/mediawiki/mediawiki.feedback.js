@@ -19,9 +19,10 @@
 	 * dialog box. Submitting that dialog box appends its contents to a
 	 * wiki page that you specify, as a new section.
 	 *
-	 * Not compatible with LiquidThreads.
+	 * This feature works with classic MediaWiki pages
+	 * and is not compatible with LiquidThreads or Flow.
 	 *
-	 * Minimal example in how to use it:
+	 * Minimal usage example:
 	 *
 	 *     var feedback = new mw.Feedback();
 	 *     $( '#myButton' ).click( function () { feedback.launch(); } );
@@ -138,17 +139,16 @@
 					)
 				);
 
-				this.$dialog.dialog( {
-					width: 500,
-					autoOpen: false,
-					title: mw.msg( this.dialogTitleMessageKey ),
-					modal: true,
-					buttons: fb.buttons
-				} );
+			this.$dialog.dialog( {
+				width: 500,
+				autoOpen: false,
+				title: mw.msg( this.dialogTitleMessageKey ),
+				modal: true,
+				buttons: fb.buttons
+			} );
 
 			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get( 0 );
 			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get( 0 );
-
 		},
 
 		/**
@@ -179,6 +179,7 @@
 		displayBugs: function () {
 			var fb = this,
 				bugsButtons = {};
+
 			this.display( 'bugs' );
 			bugsButtons[ mw.msg( 'feedback-bugnew' ) ] = function () {
 				window.open( fb.bugsLink, '_blank' );
@@ -197,6 +198,7 @@
 		displayThanks: function () {
 			var fb = this,
 				closeButton = {};
+
 			this.display( 'thanks' );
 			closeButton[ mw.msg( 'feedback-close' ) ] = function () {
 				fb.$dialog.dialog( 'close' );
@@ -215,6 +217,7 @@
 		displayForm: function ( contents ) {
 			var fb = this,
 				formButtons = {};
+
 			this.subjectInput.value = ( contents && contents.subject ) ? contents.subject : '';
 			this.messageInput.value = ( contents && contents.message ) ? contents.message : '';
 
@@ -238,6 +241,7 @@
 		displayError: function ( message ) {
 			var fb = this,
 				closeButton = {};
+
 			this.display( 'error' );
 			this.$dialog.find( '.feedback-error-msg' ).msg( message );
 			closeButton[ mw.msg( 'feedback-close' ) ] = function () {
@@ -292,7 +296,12 @@
 			this.displaySubmitting();
 
 			// Post the message, resolving redirects
-			this.api.newSection( this.title, subject, message, { redirect: true } ).done( ok ).fail( err );
+			this.api.newSection(
+				this.title,
+				subject,
+				message,
+				{ redirect: true }
+			).done( ok ).fail( err );
 		},
 
 		/**
@@ -306,7 +315,5 @@
 			this.$dialog.dialog( 'open' );
 			this.subjectInput.focus();
 		}
-
 	};
-
 }( mediaWiki, jQuery ) );
