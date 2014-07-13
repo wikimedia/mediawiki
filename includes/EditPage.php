@@ -104,7 +104,7 @@ class EditPage {
 	const AS_NO_CREATE_PERMISSION = 223;
 
 	/**
-	 * Status: user tried to create a blank page
+	 * Status: user tried to create a blank page and wpIgnoreBlankArticle == false
 	 */
 	const AS_BLANK_ARTICLE = 224;
 
@@ -253,6 +253,12 @@ class EditPage {
 
 	/** @var bool */
 	protected $allowBlankSummary = false;
+
+	/** @var bool */
+	protected $blankArticle = false;
+
+	/** @var bool */
+	protected $allowBlankArticle = false;
 
 	/** @var string */
 	protected $autoSumm = '';
@@ -860,6 +866,8 @@ class EditPage {
 			}
 
 			$this->autoSumm = $request->getText( 'wpAutoSummary' );
+
+			$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( __METHOD__ . ": Not a posted form.\n" );
@@ -1400,6 +1408,7 @@ class EditPage {
 			case self::AS_TEXTBOX_EMPTY:
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_END:
+			case self::AS_BLANK_ARTICLE:
 				return true;
 
 			case self::AS_HOOK_ERROR:
@@ -1433,10 +1442,6 @@ class EditPage {
 					}
 				}
 				$wgOut->redirect( $this->mTitle->getFullURL( $extraQuery ) . $sectionanchor );
-				return false;
-
-			case self::AS_BLANK_ARTICLE:
-				$wgOut->redirect( $this->getContextTitle()->getFullURL() );
 				return false;
 
 			case self::AS_SPAM_ERROR:
@@ -1746,7 +1751,9 @@ class EditPage {
 				$defaultText = '';
 			}
 
-			if ( $this->textbox1 === $defaultText ) {
+			if ( !$this->allowBlankArticle && $this->textbox1 === $defaultText ) {
+				$this->blankArticle = true;
+				$status->fatal( 'blankarticle' );
 				$status->setResult( false, self::AS_BLANK_ARTICLE );
 				wfProfileOut( __METHOD__ );
 				return $status;
@@ -2536,6 +2543,10 @@ class EditPage {
 			$wgOut->addHTML( EditPage::getEditToolbar() );
 		}
 
+		if ( $this->blankArticle ) {
+			$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankArticle', true ) );
+		}
+
 		if ( $this->isConflict ) {
 			// In an edit conflict bypass the overridable content form method
 			// and fallback to the raw wpTextbox1 since editconflicts can't be
@@ -2662,6 +2673,10 @@ class EditPage {
 
 			if ( $this->missingSummary && $this->section == 'new' ) {
 				$wgOut->wrapWikiMsg( "<div id='mw-missingcommentheader'>\n$1\n</div>", 'missingcommentheader' );
+			}
+
+			if ( $this->blankArticle ) {
+				$wgOut->wrapWikiMsg( "<div id='mw-blankarticle'>\n$1\n</div>", 'blankarticle' );
 			}
 
 			if ( $this->hookError !== '' ) {
