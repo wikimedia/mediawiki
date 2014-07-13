@@ -154,18 +154,14 @@ class RequestContext implements IContextSource {
 	 * @return bool
 	 */
 	public function canUseWikiPage() {
-		if ( $this->wikipage !== null ) {
-			# If there's a WikiPage object set, we can for sure get it
+		if ( $this->wikipage ) {
+			// If there's a WikiPage object set, we can for sure get it
 			return true;
 		}
+		// Only pages with legitimate titles can have WikiPages.
+		// That usually means pages in non-virtual namespaces.
 		$title = $this->getTitle();
-		if ( $title === null ) {
-			# No Title, no WikiPage
-			return false;
-		} else {
-			# Only namespaces whose pages are stored in the database can have WikiPage
-			return $title->canExist();
-		}
+		return $title ? $title->canExist() : false;
 	}
 
 	/**
@@ -261,7 +257,7 @@ class RequestContext implements IContextSource {
 		$code = strtolower( $code );
 
 		# Validate $code
-		if ( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
+		if ( !$code || !Language::isValidCode( $code ) || $code === 'qqq' ) {
 			wfDebug( "Invalid user language code\n" );
 			$code = $wgLanguageCode;
 		}
