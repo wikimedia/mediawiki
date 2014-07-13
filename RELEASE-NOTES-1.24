@@ -141,6 +141,8 @@ production.
 * (bug 65757) MSSQL: Update script drops unnamed constraints to be prepared
   for future updates. Because it's doing so heuristically, it may fail or drop
   wrong constraints.
+* (bugs 57238, 65206) Empty pages are now able to be made without a work-around.
+  A warning has been added when attempting to do such.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
