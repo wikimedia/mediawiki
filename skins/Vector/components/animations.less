@@ -26,3 +26,34 @@ body.vector-animateLayout {
 		.transition(margin-left 250ms);
 	}
 }
+
+.portal input {
+	position: absolute;
+	left: 0;
+	margin-left: 0;
+	opacity: 0;
+	z-index: 2;
+	cursor: pointer;
+	height: 1em;
+	width: 1em;
+	top: 0;
+}
+
+.portal input + .body ul {
+    display: none;
+}
+
+.portal input:checked + .body ul {
+	display: block;
+}
+
+div#mw-panel div.portal label {
+	font-weight: normal;
+	color: #444;
+	padding: 0.25em;
+	padding-top: 0;
+	padding-left: 1.75em;
+	cursor: default;
+	border: none;
+	font-size: 0.75em;
+}
