@@ -48,6 +48,7 @@ class WikiExporter {
 	const STABLE = 4; // extension defined
 	const LOGS = 8;
 	const RANGE = 16;
+	const SPECIFIED = 32;
 
 	const BUFFER = 0;
 	const STREAM = 1;
@@ -165,6 +166,16 @@ class WikiExporter {
 		$this->dumpFrom(
 			'page_namespace=' . $title->getNamespace() .
 			' AND page_title=' . $this->db->addQuotes( $title->getDBkey() ) );
+	}
+
+	/**
+	 * @param Array $revid
+	 */
+	public function revisionsByIds( $revid ) {
+		if ( !count( $revid ) ) {
+			$s = "rev_id IN (" . $this->db->makeList( $revid ) . ") ";
+			$this->dumpFrom( $s );
+		}
 	}
 
 	/**
@@ -351,6 +362,9 @@ class WikiExporter {
 				# Dump of revisions within a specified range
 				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page' );
 				$opts['ORDER BY'] = array( 'rev_page ASC', 'rev_id ASC' );
+			} elseif ( $this->history & WikiExporter::SPECIFIED ) {
+				// Dumps from specified revision ids
+				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page' );
 			} else {
 				# Unknown history specification parameter?
 				throw new MWException( __METHOD__ . " given invalid history dump type." );

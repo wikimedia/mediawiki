@@ -492,25 +492,50 @@ class ApiQuery extends ApiBase {
 	 * @param ApiResult $result Result to output to
 	 */
 	private function doExport( $pageSet, $result ) {
-		$exportTitles = array();
-		$titles = $pageSet->getGoodTitles();
-		if ( count( $titles ) ) {
-			$user = $this->getUser();
-			/** @var $title Title */
-			foreach ( $titles as $title ) {
-				if ( $title->userCan( 'read', $user ) ) {
-					$exportTitles[] = $title;
-				}
-			}
-		}
+		$user = $this->getUser();
 
-		$exporter = new WikiExporter( $this->getDB() );
 		// WikiExporter writes to stdout, so catch its
 		// output with an ob
 		ob_start();
-		$exporter->openStream();
-		foreach ( $exportTitles as $title ) {
-			$exporter->pageByTitle( $title );
+
+		//Get revision ids from the pageSet
+		$params = $this->getPageSet()->extractRequestParams();
+		if ( !empty( $params['revids'] ) ) {
+			// Get specified revisions
+			$exporter = new WikiExporter( $this->getDB(), WikiExporter::SPECIFIED );
+			$revisions = array_map( 'intval', $params['revids'] );
+			foreach ( $revisions as $revid ) {
+				$rev = Revision::newFromId( $revid );
+				if ( $rev !== null ) {
+					$title = $rev->getTitle();
+					if ( $title->userCan( 'read', $user ) ) {
+						$revids[] = $revid;
+					}
+				}
+
+			}
+			$exporter->openStream();
+			if ( !empty( $revids ) ) {
+				$exporter->revisionByIds( $revids );
+			}
+		} else {
+			$exportTitles = array();
+			$titles = $pageSet->getGoodTitles();
+			if ( count( $titles ) ) {
+				/** @var $title Title */
+				foreach ( $titles as $title ) {
+					if ( $title->userCan( 'read', $user ) ) {
+						$exportTitles[] = $title;
+					}
+				}
+			}
+			// Get latest revisions of given titles
+			$exporter = new WikiExporter( $this->getDB() );
+			$exporter->openStream();
+
+			foreach ( $exportTitles as $title ) {
+				$exporter->pageByTitle( $title, $revids );
+			}
 		}
 		$exporter->closeStream();
 		$exportxml = ob_get_contents();
