@@ -155,10 +155,15 @@ abstract class Skin extends ContextSource {
 
 		$skinNames = Skin::getSkinNames();
 
+		// Make keys lowercase for case-insensitive matching.
+		$skinNames = array_change_key_case( $skinNames, CASE_LOWER );
+		$key = strtolower( $key );
+		$default = strtolower( $wgDefaultSkin );
+
 		if ( $key == '' || $key == 'default' ) {
 			// Don't return the default immediately;
 			// in a misconfiguration we need to fall back.
-			$key = $wgDefaultSkin;
+			$key = $default;
 		}
 
 		if ( isset( $skinNames[$key] ) ) {
@@ -168,7 +173,7 @@ abstract class Skin extends ContextSource {
 		// Older versions of the software used a numeric setting
 		// in the user preferences.
 		$fallback = array(
-			0 => $wgDefaultSkin,
+			0 => $default,
 			2 => 'cologneblue'
 		);
 
@@ -178,8 +183,8 @@ abstract class Skin extends ContextSource {
 
 		if ( isset( $skinNames[$key] ) ) {
 			return $key;
-		} elseif ( isset( $skinNames[$wgDefaultSkin] ) ) {
-			return $wgDefaultSkin;
+		} elseif ( isset( $skinNames[$default] ) ) {
+			return $default;
 		} else {
 			return 'vector';
 		}
