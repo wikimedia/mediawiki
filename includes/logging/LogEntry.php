@@ -384,6 +384,29 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	/**
+	 * Constructs a new ManualLogEntry based on context.
+	 *
+	 * @param string $type
+	 * @param string $subtype
+	 * @param IContextSource $context
+	 * @param string $reason
+	 * @param array $parameters
+	 *
+	 * @return ManualLogEntry
+	 */
+	public static function newFromContext( $type, $subtype, IContextSource $context, $reason,
+		array $parameters = array() ) {
+		$logEntry = new self( $type, $subtype );
+		$logEntry->setPerformer( $context->getUser() );
+		$logEntry->setTarget( $context->getTitle() );
+		$logEntry->setComment( $reason );
+		if ( $parameters ) {
+			$logEntry->setParameters( $parameters );
+		}
+		return $logEntry;
+	}
+
+	/**
 	 * Set extra log parameters.
 	 * You can pass params to the log action message
 	 * by prefixing the keys with a number and colon.
