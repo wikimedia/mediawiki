@@ -247,7 +247,7 @@
 	"config-license-gfdl": "Option for the wiki content license in the MediaWiki installer.",
 	"config-license-pd": "{{Identical|Public domain}}",
 	"config-license-cc-choose": "Option for the wiki content license in the MediaWiki installer.",
-	"config-license-help": "Help text in MediaWiki installer for license selection.",
+	"config-license-help": "Help text in MediaWiki installer for license selection.\n\nRefers to {{msg-mw|Config-license-cc-by-sa}}.",
 	"config-email-settings": "{{Identical|E-mail setting}}",
 	"config-enable-email": "Checkbox label in the MediaWiki installer to allow the wiki to send email to its users.",
 	"config-enable-email-help": "Help text in the MediaWiki installer to allow the wiki to send email to its users.",
