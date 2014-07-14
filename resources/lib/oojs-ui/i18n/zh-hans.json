@@ -18,13 +18,13 @@
 			"乌拉跨氪"
 		]
 	},
-	"ooui-dialog-action-close": "关闭",
 	"ooui-outline-control-move-down": "下移项",
 	"ooui-outline-control-move-up": "上移项",
 	"ooui-outline-control-remove": "删除项",
 	"ooui-toolbar-more": "更多",
-	"ooui-dialog-confirm-title": "确认",
-	"ooui-dialog-confirm-default-prompt": "您确定吗？",
-	"ooui-dialog-confirm-default-ok": "好",
-	"ooui-dialog-confirm-default-cancel": "取消"
+	"ooui-dialog-message-accept": "好",
+	"ooui-dialog-message-reject": "取消",
+	"ooui-dialog-process-error": "发生一些错误",
+	"ooui-dialog-process-dismiss": "解除",
+	"ooui-dialog-process-retry": "重试"
 }

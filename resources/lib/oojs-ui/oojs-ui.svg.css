@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (85cfc2e735)
+ * OOjs UI v0.1.0-pre (d2451ac748)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-03T02:33:09Z
+ * Date: 2014-07-14T16:49:51Z
  */
 /* Textures */
 
@@ -30,54 +30,6 @@
 
 .oo-ui-ltr {
   direction: ltr;
-}
-
-.oo-ui-dialog {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1em;
-  line-height: 1em;
-  /* Fix for strange opacity-related rendering issues.
-	   CAUTION: -webkit-backface-visibility: hidden; is EXTREMELY DANGEROUS.
-	   If applied to a VE surface directly, it will break selection of
-	   FocusableNodes, and in the past it's caused transparent PNGs to
-	   render as opaque black images. For some reason applying it to the dialog
-	   wrapper in the main document fixes opacity-related behavior in the iframe
-	   document, but doesn't break the surface inside the iframe. */
-
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-}
-
-.oo-ui-dialog > .oo-ui-window-frame {
-  position: fixed;
-  right: 0;
-  left: 0;
-  min-height: 12em;
-  margin: auto;
-  overflow: hidden;
-}
-
-.oo-ui-dialog > .oo-ui-window-frame .oo-ui-frame {
-  width: 100%;
-  height: 100%;
-}
-
-.oo-ui-dialog-content .oo-ui-window-foot .oo-ui-buttonedElement-framed {
-  float: left;
-}
-
-.oo-ui-dialog-content .oo-ui-window-foot .oo-ui-flaggableElement-primary,
-.oo-ui-dialog-content .oo-ui-window-foot .oo-ui-flaggableElement-constructive,
-.oo-ui-dialog-content .oo-ui-window-foot .oo-ui-flaggableElement-destructive {
-  float: right;
-}
-
-.oo-ui-dialog-content-footless .oo-ui-window-foot {
-  display: none;
 }
 
 .oo-ui-frame {
@@ -156,24 +108,22 @@
   background-repeat: no-repeat;
 }
 
-.oo-ui-window-head {
+.oo-ui-window {
+  line-height: 1em;
+}
+
+.oo-ui-window-frame > .oo-ui-frame {
+  width: 100%;
+  height: 100%;
+}
+
+.oo-ui-window-head,
+.oo-ui-window-foot {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   -webkit-touch-callout: none;
-}
-
-.oo-ui-window-icon {
-  float: left;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-.oo-ui-window-title {
-  float: left;
-  white-space: nowrap;
-  cursor: default;
 }
 
 .oo-ui-window-overlay {
@@ -182,7 +132,39 @@
   left: 0;
 }
 
-.oo-ui-buttonedElement .oo-ui-buttonedElement-button {
+.oo-ui-windowManager-modal > .oo-ui-dialog {
+  position: fixed;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  padding: 1em;
+}
+
+.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup > .oo-ui-window-frame {
+  position: fixed;
+  right: 0;
+  left: 0;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup > .oo-ui-window-frame .oo-ui-frame {
+  width: 100%;
+  height: 100%;
+}
+
+.oo-ui-buttonedElement > .oo-ui-buttonedElement-button {
   display: inline-block;
   vertical-align: middle;
   cursor: pointer;
@@ -193,22 +175,22 @@
   -webkit-touch-callout: none;
 }
 
-.oo-ui-buttonedElement .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
+.oo-ui-buttonedElement > .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
   display: none;
   margin-left: 0;
 }
 
-.oo-ui-buttonedElement .oo-ui-buttonedElement-button > .oo-ui-indicatedElement-indicator {
+.oo-ui-buttonedElement > .oo-ui-buttonedElement-button > .oo-ui-indicatedElement-indicator {
   display: none;
   margin-right: -0.75em;
 }
 
-.oo-ui-buttonedElement.oo-ui-widget-disabled .oo-ui-buttonedElement-button {
+.oo-ui-buttonedElement.oo-ui-widget-disabled > .oo-ui-buttonedElement-button {
   cursor: default;
 }
 
-.oo-ui-buttonedElement.oo-ui-indicatedElement .oo-ui-buttonedElement-button > .oo-ui-indicatedElement-indicator,
-.oo-ui-buttonedElement.oo-ui-iconedElement .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
+.oo-ui-buttonedElement.oo-ui-indicatedElement > .oo-ui-buttonedElement-button > .oo-ui-indicatedElement-indicator,
+.oo-ui-buttonedElement.oo-ui-iconedElement > .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
   display: inline-block;
   vertical-align: middle;
   background-position: center center;
@@ -220,27 +202,27 @@
   display: inline-block;
 }
 
-.oo-ui-buttonedElement-frameless .oo-ui-buttonedElement-button > .oo-ui-labeledElement-label {
+.oo-ui-buttonedElement-frameless > .oo-ui-buttonedElement-button > .oo-ui-labeledElement-label {
   display: inline-block;
   margin-left: 0.25em;
   vertical-align: middle;
 }
 
-.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button {
+.oo-ui-buttonedElement-framed > .oo-ui-buttonedElement-button {
   display: inline-block;
   text-align: center;
   vertical-align: top;
 }
 
-.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button > .oo-ui-labeledElement-label {
+.oo-ui-buttonedElement-framed > .oo-ui-buttonedElement-button > .oo-ui-labeledElement-label {
   display: inline-block;
   line-height: 1.9em;
   vertical-align: middle;
 }
 
-.oo-ui-buttonedElement-framed.oo-ui-widget-disabled .oo-ui-buttonedElement-button,
-.oo-ui-buttonedElement-framed.oo-ui-widget-disabled .oo-ui-buttonedElement-button.oo-ui-buttonedElement-active,
-.oo-ui-buttonedElement-framed.oo-ui-widget-disabled .oo-ui-buttonedElement-button.oo-ui-buttonedElement-pressed {
+.oo-ui-buttonedElement-framed.oo-ui-widget-disabled > .oo-ui-buttonedElement-button,
+.oo-ui-buttonedElement-framed.oo-ui-widget-disabled > .oo-ui-buttonedElement-button.oo-ui-buttonedElement-active,
+.oo-ui-buttonedElement-framed.oo-ui-widget-disabled > .oo-ui-buttonedElement-button.oo-ui-buttonedElement-pressed {
   cursor: default;
 }
 
@@ -336,6 +318,7 @@
 }
 
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-labeledElement-label {
+  display: inline-block;
   padding: 0.5em 0;
 }
 
@@ -383,6 +366,7 @@
 }
 
 .oo-ui-labelWidget {
+  display: inline-block;
   padding: 0.5em 0;
 }
 
@@ -593,7 +577,7 @@
 }
 
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
-.oo-ui-popupTool .oo-ui-popupWidget-tail {
+.oo-ui-popupTool .oo-ui-popupWidget-anchor {
   z-index: 4;
 }
 
@@ -654,8 +638,8 @@
   white-space: nowrap;
 }
 
-.oo-ui-optionWidget .oo-ui-iconedElement-icon,
-.oo-ui-optionWidget .oo-ui-indicatedElement-indicator {
+.oo-ui-decoratedOptionWidget .oo-ui-iconedElement-icon,
+.oo-ui-decoratedOptionWidget .oo-ui-indicatedElement-indicator {
   position: absolute;
   top: 50%;
   width: 2em;
@@ -665,11 +649,11 @@
   background-repeat: no-repeat;
 }
 
-.oo-ui-optionWidget .oo-ui-iconedElement-icon {
+.oo-ui-decoratedOptionWidget .oo-ui-iconedElement-icon {
   left: 0.5em;
 }
 
-.oo-ui-optionWidget .oo-ui-indicatedElement-indicator {
+.oo-ui-decoratedOptionWidget .oo-ui-indicatedElement-indicator {
   right: 0.5em;
 }
 
@@ -687,18 +671,20 @@
 
 .oo-ui-popupWidget-popup {
   position: absolute;
+  z-index: 1;
   overflow: hidden;
 }
 
-.oo-ui-popupWidget-tail {
+.oo-ui-popupWidget-anchor {
+  z-index: 1;
   display: none;
 }
 
-.oo-ui-popupWidget-tailed .oo-ui-popupWidget-popup {
+.oo-ui-popupWidget-anchored .oo-ui-popupWidget-popup {
   margin-top: 7px;
 }
 
-.oo-ui-popupWidget-tailed .oo-ui-popupWidget-tail {
+.oo-ui-popupWidget-anchored .oo-ui-popupWidget-anchor {
   position: absolute;
   display: block;
   background-repeat: no-repeat;
@@ -725,7 +711,12 @@
 }
 
 .oo-ui-popupWidget-body {
+  overflow: hidden;
   clear: both;
+}
+
+.oo-ui-popupWidget-body-padded {
+  padding: 0 1em;
 }
 
 .oo-ui-buttonGroupWidget {

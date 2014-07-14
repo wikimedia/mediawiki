@@ -4,16 +4,16 @@
 			"Euriditi",
 			"Kushtrim",
 			"Elioqoshi",
-			"GretaDoci"
+			"GretaDoci",
+			"Gertakapllani"
 		]
 	},
-	"ooui-dialog-action-close": "Mbylle",
 	"ooui-outline-control-move-down": "Zhvendose artikullin më poshtë",
 	"ooui-outline-control-move-up": "Zhvendose artikullin më lart",
 	"ooui-outline-control-remove": "Hiq artikullin",
 	"ooui-toolbar-more": "Më tepër...",
-	"ooui-dialog-confirm-title": "Konfirmo",
-	"ooui-dialog-confirm-default-prompt": "A jeni i sigurt?",
-	"ooui-dialog-confirm-default-ok": "Në rregull",
-	"ooui-dialog-confirm-default-cancel": "Anullo"
+	"ooui-dialog-message-accept": "Në rregull",
+	"ooui-dialog-message-reject": "Anullo",
+	"ooui-dialog-process-error": "Diçka shkoi keq",
+	"ooui-dialog-process-retry": "Provo përsëri"
 }

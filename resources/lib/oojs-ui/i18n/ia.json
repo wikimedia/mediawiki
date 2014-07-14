@@ -4,13 +4,13 @@
 			"McDutchie"
 		]
 	},
-	"ooui-dialog-action-close": "Clauder",
 	"ooui-outline-control-move-down": "Displaciar elemento in basso",
 	"ooui-outline-control-move-up": "Displaciar elemento in alto",
 	"ooui-outline-control-remove": "Remover elemento",
 	"ooui-toolbar-more": "Plus",
-	"ooui-dialog-confirm-title": "Confirmation",
-	"ooui-dialog-confirm-default-prompt": "Es tu secur?",
-	"ooui-dialog-confirm-default-ok": "OK",
-	"ooui-dialog-confirm-default-cancel": "Cancellar"
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "Cancellar",
+	"ooui-dialog-process-error": "Qualcosa ha vadite mal",
+	"ooui-dialog-process-dismiss": "Clauder",
+	"ooui-dialog-process-retry": "Reprobar"
 }
