@@ -391,9 +391,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * Return the text to be displayed above the changes
 	 *
 	 * @param FormOptions $opts
+	 * @param int $numRows
 	 * @return string XHTML
 	 */
-	public function doHeader( $opts ) {
+	public function doHeader( $opts, $numRows ) {
 		$user = $this->getUser();
 
 		$this->getOutput()->addSubtitle(
