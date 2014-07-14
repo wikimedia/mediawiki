@@ -2047,7 +2047,9 @@ class WikiPage implements Page, IDBAccessObject {
 		wfRunHooks( 'PageContentSaveComplete', $hook_args );
 
 		// Promote user to any groups they meet the criteria for
-		$user->addAutopromoteOnceGroups( 'onEdit' );
+		$dbw->onTransactionIdle( function() use ( $user ) {
+			$user->addAutopromoteOnceGroups( 'onEdit' );
+		} );
 
 		wfProfileOut( __METHOD__ );
 		return $status;
