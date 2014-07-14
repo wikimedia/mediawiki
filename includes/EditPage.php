@@ -1524,6 +1524,37 @@ class EditPage {
 	}
 
 	/**
+	 * Return the summary to be used for a new section.
+	 *
+	 * @param string $sectionanchor Set to the section anchor text
+	 * @return string
+	 */
+	private function newSectionSummary( &$sectionanchor = null ) {
+		global $wgParser;
+
+		if ( $this->sectiontitle !== '' ) {
+			$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
+			// If no edit summary was specified, create one automatically from the section
+			// title and have it link to the new section. Otherwise, respect the summary as
+			// passed.
+			if ( $this->summary === '' ) {
+				$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
+				return wfMessage( 'newsectionsummary' )
+					->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
+			}
+		} elseif ( $this->summary !== '' ) {
+			$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
+			# This is a new section, so create a link to the new section
+			# in the revision summary.
+			$cleanSummary = $wgParser->stripSectionName( $this->summary );
+			return wfMessage( 'newsectionsummary' )
+				->rawParams( $cleanSummary )->inContentLanguage()->text();
+		} else {
+			return $this->summary;
+		}
+	}
+
+	/**
 	 * Attempt submission (no UI)
 	 *
 	 * @param array $result Array to add statuses to, currently with the
@@ -1764,31 +1795,11 @@ class EditPage {
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
-
-					// Jump to the new section
-					$result['sectionanchor'] =
-						$wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
-
-					// If no edit summary was specified, create one automatically from the section
-					// title and have it link to the new section. Otherwise, respect the summary as
-					// passed.
-					if ( $this->summary === '' ) {
-						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-						$this->summary = wfMessage( 'newsectionsummary' )
-							->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
-					}
 				} elseif ( $this->summary !== '' ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->summary );
-
-					// Jump to the new section
-					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
-
-					// Create a link to the new section from the edit summary.
-					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMessage( 'newsectionsummary' )
-						->rawParams( $cleanSummary )->inContentLanguage()->text();
 				}
+				$this->summary = $this->newSectionSummary( $result['sectionanchor'] );
 			}
 
 			$status->value = self::AS_SUCCESS_NEW_ARTICLE;
@@ -1806,7 +1817,8 @@ class EditPage {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
 					if ( $this->mArticle->getUserText() == $wgUser->getName() &&
-						$this->mArticle->getComment() == $this->summary ) {
+						$this->mArticle->getComment() == $this->newSectionSummary()
+					) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when squid resends a request after
 						// a timeout but the first one actually went through.
@@ -1920,24 +1932,7 @@ class EditPage {
 			wfProfileIn( __METHOD__ . '-sectionanchor' );
 			$sectionanchor = '';
 			if ( $this->section == 'new' ) {
-				if ( $this->sectiontitle !== '' ) {
-					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
-					// If no edit summary was specified, create one automatically from the section
-					// title and have it link to the new section. Otherwise, respect the summary as
-					// passed.
-					if ( $this->summary === '' ) {
-						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-						$this->summary = wfMessage( 'newsectionsummary' )
-							->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
-					}
-				} elseif ( $this->summary !== '' ) {
-					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
-					# This is a new section, so create a link to the new section
-					# in the revision summary.
-					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMessage( 'newsectionsummary' )
-						->rawParams( $cleanSummary )->inContentLanguage()->text();
-				}
+				$this->summary = $this->newSectionSummary( $sectionanchor );
 			} elseif ( $this->section != '' ) {
 				# Try to get a section anchor from the section source, redirect
 				# to edited section if header found.
