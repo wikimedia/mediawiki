@@ -166,7 +166,9 @@ abstract class PrefixSearch {
 	protected function specialSearch( $search, $limit ) {
 		global $wgContLang;
 
-		list( $searchKey, $subpageSearch ) = explode( '/', $search, 2 );
+		$searchParts = explode( '/', $search, 2 );
+		$searchKey = $searchParts[0];
+		$subpageSearch = isset( $searchParts[1] ) ? $searchParts[1] : null;
 
 		// Handle subpage search separately.
 		if ( $subpageSearch !== null ) {
