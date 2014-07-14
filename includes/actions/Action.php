@@ -55,6 +55,15 @@ abstract class Action {
 	protected $fields;
 
 	/**
+	 * Return a string representation of this action
+	 *
+	 * @return string Representation of this action
+	 */
+	public function __toString() {
+		return $this->getName();
+	}
+
+	/**
 	 * Get the Action subclass which should be used to handle this action, false if
 	 * the action is disabled, or null if it's not recognised
 	 * @param string $action
