@@ -75,12 +75,12 @@ class DeleteLogFormatter extends LogFormatter {
 				foreach ( $extra as $v ) {
 					$changes[] = $this->msg( $v )->plain();
 				}
-				$changeText = $this->context->getLanguage()->listToText( $changes );
+				$changeText = $this->getLanguage()->listToText( $changes );
 
 				$newParams = array_slice( $params, 0, 3 );
 				$newParams[3] = $changeText;
 				$count = count( explode( ',', $params[$paramStart] ) );
-				$newParams[4] = $this->context->getLanguage()->formatNum( $count );
+				$newParams[4] = $this->getLanguage()->formatNum( $count );
 
 				$this->parsedParametersDeleteLog = $newParams;
 				return $this->parsedParametersDeleteLog;
@@ -106,7 +106,7 @@ class DeleteLogFormatter extends LogFormatter {
 	}
 
 	public function getActionLinks() {
-		$user = $this->context->getUser();
+		$user = $this->getUser();
 		if ( !$user->isAllowed( 'deletedhistory' )
 			|| $this->entry->isDeleted( LogPage::DELETED_ACTION )
 		) {
@@ -183,7 +183,7 @@ class DeleteLogFormatter extends LogFormatter {
 				);
 
 				return $this->msg( 'parentheses' )->rawParams(
-					$this->context->getLanguage()->pipeList( $links ) )->escaped();
+					$this->getLanguage()->pipeList( $links ) )->escaped();
 
 			case 'event': // Hidden log items, give review link
 				$params = $this->extractParameters();

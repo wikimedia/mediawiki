@@ -94,7 +94,7 @@ class RightsLogFormatter extends LogFormatter {
 			}
 		}
 
-		$lang = $this->context->getLanguage();
+		$lang = $this->getLanguage();
 		if ( count( $oldGroups ) ) {
 			$params[3] = $lang->listToText( $oldGroups );
 		} else {

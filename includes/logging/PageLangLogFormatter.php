@@ -31,7 +31,7 @@
 class PageLangLogFormatter extends LogFormatter {
 	protected function getMessageParameters() {
 		// Get the user language for displaying language names
-		$userLang = $this->context->getLanguage()->getCode();
+		$userLang = $this->getLanguage()->getCode();
 		$params = parent::getMessageParameters();
 
 		// Get the language codes from log
