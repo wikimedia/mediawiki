@@ -55,6 +55,9 @@ class CategoryViewer extends ContextSource {
 	protected $nextPage;
 
 	/** @var array */
+	protected $prevPage;
+
+	/** @var array */
 	protected $flip;
 
 	/** @var Title */
@@ -288,6 +291,12 @@ class CategoryViewer extends ContextSource {
 			'subcat' => null,
 			'file' => null,
 		);
+		$this->prevPage = array(
+			'page' => null,
+			'subcat' => null,
+			'file' => null,
+		);
+
 		$this->flip = array( 'page' => false, 'subcat' => false, 'file' => false );
 
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
@@ -343,6 +352,9 @@ class CategoryViewer extends ContextSource {
 					# are additional pages to be had. Stop here...
 					$this->nextPage[$type] = $humanSortkey;
 					break;
+				}
+				if ( $count == $this->limit ) {
+					$this->prevPage[$type] = $humanSortkey;
 				}
 
 				if ( $title->getNamespace() == NS_CATEGORY ) {
@@ -458,7 +470,7 @@ class CategoryViewer extends ContextSource {
 	 */
 	private function getSectionPagingLinks( $type ) {
 		if ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
-			return $this->pagingLinks( $this->nextPage[$type], $this->until[$type], $type );
+			return $this->pagingLinks( $this->prevPage[$type], $this->until[$type], $type );
 		} elseif ( $this->nextPage[$type] !== null
 			|| ( isset( $this->from[$type] ) && $this->from[$type] !== null )
 		) {
