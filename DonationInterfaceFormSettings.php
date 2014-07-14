@@ -504,6 +504,12 @@ $forms_whitelist['error-default'] = array (
 	'special_type' => 'error', //buuuurble
 );
 
+$forms_whitelist['error-noform'] = array (
+	'file' => $form_dirs['default'] . '/error-noform.html',
+	'gateway' => array ( 'globalcollect', 'adyen', 'amazon', 'paypal', 'worldpay' ),
+	'special_type' => 'error',
+);
+
 $forms_whitelist['error-cc'] = array (
 	'file' => $form_dirs['default'] . '/error-cc.html',
 	'gateway' => array ( 'globalcollect', 'adyen', 'worldpay' ),
