@@ -471,7 +471,8 @@ class RequestContext implements IContextSource {
 
 		if ( $params['userId'] ) { // logged-in user
 			$user = User::newFromId( $params['userId'] );
-			if ( !$user ) {
+			$user->load();
+			if ( !$user->getId() ) {
 				throw new MWException( "No user with ID '{$params['userId']}'." );
 			}
 		} elseif ( !IP::isValid( $params['ip'] ) ) {
