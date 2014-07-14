@@ -1191,7 +1191,7 @@
 	"recentchanges-legend-bot": "{{int:recentchanges-label-bot}}",
 	"recentchanges-legend-unpatrolled": "{{int:recentchanges-label-unpatrolled}}",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
-	"rcnotefrom": "Below are the changes since <strong>$2</strong> (up to <strong>$1</strong> shown).",
+	"rcnotefrom": "Below {{PLURAL:$5|is the change|are the changes}} since <strong>$2</strong> (up to <strong>$1</strong> shown).",
 	"rclistfrom": "Show new changes starting from $2, $3",
 	"rcshowhideminor": "$1 minor edits",
 	"rcshowhideminor-show": "Show",
