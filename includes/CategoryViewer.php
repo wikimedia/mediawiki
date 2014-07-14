@@ -55,6 +55,9 @@ class CategoryViewer extends ContextSource {
 	protected $nextPage;
 
 	/** @var array */
+	protected $prevPage;
+
+	/** @var array */
 	protected $flip;
 
 	/** @var Title */
@@ -288,6 +291,12 @@ class CategoryViewer extends ContextSource {
 			'subcat' => null,
 			'file' => null,
 		);
+		$this->prevPage = array(
+			'page' => null,
+			'subcat' => null,
+			'file' => null,
+		);
+
 		$this->flip = array( 'page' => false, 'subcat' => false, 'file' => false );
 
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
@@ -343,6 +352,9 @@ class CategoryViewer extends ContextSource {
 					# are additional pages to be had. Stop here...
 					$this->nextPage[$type] = $humanSortkey;
 					break;
+				}
+				if ( $count == $this->limit ) {
+					$this->prevPage[$type] = $humanSortkey;
 				}
 
 				if ( $title->getNamespace() == NS_CATEGORY ) {
@@ -458,7 +470,17 @@ class CategoryViewer extends ContextSource {
 	 */
 	private function getSectionPagingLinks( $type ) {
 		if ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
-			return $this->pagingLinks( $this->nextPage[$type], $this->until[$type], $type );
+			// The new value for the until parameter should be pointing to the first
+			// result displayed on the page which is the second last result retrieved
+			// from the database.The next link should have a from parameter pointing
+			// to the until parameter of the current page.
+			if ( $this->nextPage[$type] !== null ) {
+				return $this->pagingLinks( $this->prevPage[$type], $this->until[$type], $type );
+			} else {
+				// If the nextPage variable is null, it means that we have reached the first page
+				// and therefore the previous link should be disabled.
+				return $this->pagingLinks( null, $this->until[$type], $type );
+			}
 		} elseif ( $this->nextPage[$type] !== null
 			|| ( isset( $this->from[$type] ) && $this->from[$type] !== null )
 		) {
