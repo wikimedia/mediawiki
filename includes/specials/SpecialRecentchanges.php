@@ -353,8 +353,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * Set the text to be displayed above the changes
 	 *
 	 * @param FormOptions $opts
+	 * @param int $numRows Number of rows in the result to show after this header
 	 */
-	public function doHeader( $opts ) {
+	public function doHeader( $opts, $numRows ) {
 		global $wgScript;
 
 		$this->setTopText( $opts );
@@ -364,7 +365,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$panel = array();
 		$panel[] = self::makeLegend( $this->getContext() );
-		$panel[] = $this->optionsPanel( $defaults, $nondefaults );
+		$panel[] = $this->optionsPanel( $defaults, $nondefaults, $numRows );
 		$panel[] = '<hr />';
 
 		$extraOpts = $this->getExtraOptions( $opts );
@@ -639,9 +640,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 *
 	 * @param array $defaults
 	 * @param array $nondefaults
+	 * @param int $numRows Number of rows in the result to show after this header
 	 * @return string
 	 */
-	function optionsPanel( $defaults, $nondefaults ) {
+	function optionsPanel( $defaults, $nondefaults, $numRows ) {
 		global $wgRCLinkLimits, $wgRCLinkDays;
 
 		$options = $nondefaults + $defaults;
@@ -655,10 +657,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
 		if ( $options['from'] ) {
-			$note .= $this->msg( 'rcnotefrom' )->numParams( $options['limit'] )->params(
-				$lang->userTimeAndDate( $options['from'], $user ),
-				$lang->userDate( $options['from'], $user ),
-				$lang->userTime( $options['from'], $user ) )->parse() . '<br />';
+			$note .= $this->msg( 'rcnotefrom' )
+				->numParams( $options['limit'] )
+				->params(
+					$lang->userTimeAndDate( $options['from'], $user ),
+					$lang->userDate( $options['from'], $user ),
+					$lang->userTime( $options['from'], $user )
+				)
+				->numParams( $numRows )
+				->parse() . '<br />';
 		}
 
 		# Sort data for display and make sure it's unique after we've added user data.
