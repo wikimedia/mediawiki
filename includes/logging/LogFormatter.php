@@ -28,12 +28,23 @@
  * Can be overridden by subclassing and setting
  * $wgLogActionsHandlers['type/subtype'] = 'class'; or
  * $wgLogActionsHandlers['type/*'] = 'class';
+ *
+ * A ContextSource since 1.24
  * @since 1.19
  */
-class LogFormatter {
+class LogFormatter extends ContextSource {
 	// Audience options for viewing usernames, comments, and actions
 	const FOR_PUBLIC = 1;
 	const FOR_THIS_USER = 2;
+
+	/**
+	 * For backwards compatability, subclasses of this might
+	 * have accessed this member directly before it became
+	 * a proper ContextSource.
+	 * @var IContextSource
+	 * @deprecated 1.24
+	 */
+	protected $context;
 
 	// Static->
 
@@ -97,15 +108,24 @@ class LogFormatter {
 
 	protected function __construct( LogEntry $entry ) {
 		$this->entry = $entry;
-		$this->context = RequestContext::getMain();
+		$this->setContext( RequestContext::getMain() );
 	}
 
 	/**
-	 * Replace the default context
+	 * We have to re-implement this here because we still
+	 * need to support subclasses accessing $this->context
+	 *
 	 * @param IContextSource $context
 	 */
 	public function setContext( IContextSource $context ) {
 		$this->context = $context;
+	}
+
+	/**
+	 * @return IContextSource
+	 */
+	public function getContext() {
+		return $this->context;
 	}
 
 	/**
@@ -128,7 +148,7 @@ class LogFormatter {
 	protected function canView( $field ) {
 		if ( $this->audience == self::FOR_THIS_USER ) {
 			return LogEventsList::userCanBitfield(
-				$this->entry->getDeleted(), $field, $this->context->getUser() );
+				$this->entry->getDeleted(), $field, $this->getUser() );
 		} else {
 			return !$this->entry->isDeleted( $field );
 		}
@@ -621,15 +641,6 @@ class LogFormatter {
 		return Html::rawElement( 'span', $attribs, $content );
 	}
 
-	/**
-	 * Shortcut for wfMessage which honors local context.
-	 * @param string $key
-	 * @return Message
-	 */
-	protected function msg( $key ) {
-		return $this->context->msg( $key );
-	}
-
 	protected function makeUserLink( User $user ) {
 		if ( $this->plaintext ) {
 			$element = $user->getName();
@@ -719,7 +730,7 @@ class LegacyLogFormatter extends LogFormatter {
 			$entry->getType(),
 			$entry->getSubtype(),
 			$entry->getTarget(),
-			$this->plaintext ? null : $this->context->getSkin(),
+			$this->plaintext ? null : $this->getSkin(),
 			(array)$entry->getParameters(),
 			!$this->plaintext // whether to filter [[]] links
 		);
@@ -750,7 +761,7 @@ class LegacyLogFormatter extends LogFormatter {
 		if ( ( $type == 'block' || $type == 'suppress' )
 			&& ( $subtype == 'block' || $subtype == 'reblock' )
 		) {
-			if ( !$this->context->getUser()->isAllowed( 'block' ) ) {
+			if ( !$this->getUser()->isAllowed( 'block' ) ) {
 				return '';
 			}
 
@@ -766,7 +777,7 @@ class LegacyLogFormatter extends LogFormatter {
 			);
 
 			return $this->msg( 'parentheses' )->rawParams(
-				$this->context->getLanguage()->pipeList( $links ) )->escaped();
+				$this->getLanguage()->pipeList( $links ) )->escaped();
 		// Show change protection link
 		} elseif ( $type == 'protect'
 			&& ( $subtype == 'protect' || $subtype == 'modify' || $subtype == 'unprotect' )
@@ -781,7 +792,7 @@ class LegacyLogFormatter extends LogFormatter {
 					)
 				)
 			);
-			if ( $this->context->getUser()->isAllowed( 'protect' ) ) {
+			if ( $this->getUser()->isAllowed( 'protect' ) ) {
 				$links[] = Linker::linkKnown(
 					$title,
 					$this->msg( 'protect_change' )->escaped(),
@@ -791,10 +802,10 @@ class LegacyLogFormatter extends LogFormatter {
 			}
 
 			return $this->msg( 'parentheses' )->rawParams(
-				$this->context->getLanguage()->pipeList( $links ) )->escaped();
+				$this->getLanguage()->pipeList( $links ) )->escaped();
 		// Show unmerge link
 		} elseif ( $type == 'merge' && $subtype == 'merge' ) {
-			if ( !$this->context->getUser()->isAllowed( 'mergehistory' ) ) {
+			if ( !$this->getUser()->isAllowed( 'mergehistory' ) ) {
 				return '';
 			}
 
