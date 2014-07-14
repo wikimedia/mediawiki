@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Filipinayzd"
+		]
+	},
+	"config-information": "Impormasyon",
+	"config-page-welcome": "Dagos sa MediaWiki!",
+	"config-page-name": "Ngaran",
+	"config-restart": "Amo, uliton adi",
+	"config-profile-wiki": "Bukas na wiki",
+	"config-profile-private": "Pribadong wiki",
+	"config-logo": "URL ko logo:",
+	"config-cc-again": "Pumili dayday...",
+	"config-install-step-done": "tapus na",
+	"config-help": "tabang"
+}

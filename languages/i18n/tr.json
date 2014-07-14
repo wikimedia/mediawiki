@@ -427,7 +427,6 @@
 	"externaldberror": "Ya doğrulama veritabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.",
 	"login": "Oturum aç",
 	"nav-login-createaccount": "Oturum aç / hesap oluştur",
-	"loginprompt": "{{SITENAME}} sitesinde oturum açabilmek için çerezleri etkinleştirmeniz gerekmektedir.",
 	"userlogin": "Oturum aç / hesap oluştur",
 	"userloginnocreate": "Giriş yap",
 	"logout": "Oturumu kapat",

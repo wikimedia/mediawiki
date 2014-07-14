@@ -409,7 +409,6 @@
 	"externaldberror": "Der er opstået en fejl i en ekstern adgangsdatabase, eller du har ikke rettigheder til at opdatere denne.",
 	"login": "Log på",
 	"nav-login-createaccount": "Opret en konto eller log på",
-	"loginprompt": "Du skal have cookies slået til for at kunne logge på {{SITENAME}}.",
 	"userlogin": "Opret en konto eller log på",
 	"userloginnocreate": "Log på",
 	"logout": "Log af",

@@ -373,7 +373,6 @@
 	"externaldberror": "Igwa gayod sala sa arinman kan patunay sa datos-sarayan o ika dae pinagtugutan na bâgohon an saimong panluwas na panindog.",
 	"login": "Maglaog",
 	"nav-login-createaccount": "Maglaog / magmukna nin panindog",
-	"loginprompt": "Ika kaipong paganahon an mga cookies tanganing makalaog sa {{SITENAME}}.",
 	"userlogin": "Maglaog / magmukna nin panindog",
 	"userloginnocreate": "Maglaog ka",
 	"logout": "Magluwas",

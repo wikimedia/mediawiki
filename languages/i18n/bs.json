@@ -372,7 +372,6 @@
 	"externaldberror": "Došlo je do greške pri vanjskoj autorizaciji baze podataka ili vam nije dopušteno osvježavanje Vašeg vanjskog korisničkog računa.",
 	"login": "Prijavi se",
 	"nav-login-createaccount": "Prijavi se / Registruj se",
-	"loginprompt": "Morate imati kolačiće ('''cookies''') omogućene da biste se prijavili na {{SITENAME}}.",
 	"userlogin": "Prijavi se / Registruj se",
 	"userloginnocreate": "Prijavi se",
 	"logout": "Odjavi me",

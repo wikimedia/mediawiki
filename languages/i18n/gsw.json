@@ -383,7 +383,6 @@
 	"externaldberror": "Entwäder s lit e Fähler bi dr externe Authentifizierung vor, oder Du derfsch Dyy extern Benutzerkonto nid aktualisiere.",
 	"login": "Aamälde",
 	"nav-login-createaccount": "Aamälde / Konto aalege",
-	"loginprompt": "<small>Für di bir {{SITENAME}} aazmälde, muesch Cookies erloube!</small>",
 	"userlogin": "Aamälde/Konto aalege",
 	"userloginnocreate": "Aamälde",
 	"logout": "Abmälde",

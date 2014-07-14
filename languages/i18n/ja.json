@@ -427,7 +427,6 @@
 	"externaldberror": "認証データベースでエラーが発生した、または外部アカウントの更新が許可されていません。",
 	"login": "ログイン",
 	"nav-login-createaccount": "ログインまたはアカウント作成",
-	"loginprompt": "{{SITENAME}}にログインするにはCookieを有効にする必要があります。",
 	"userlogin": "ログインまたはアカウント作成",
 	"userloginnocreate": "ログイン",
 	"logout": "ログアウト",

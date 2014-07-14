@@ -423,7 +423,6 @@
 	"externaldberror": "Antingen inträffade autentiseringsproblem med en extern databas, eller så får du inte uppdatera ditt externa konto.",
 	"login": "Logga in",
 	"nav-login-createaccount": "Logga in / skapa konto",
-	"loginprompt": "Du måste tillåta kakor för att logga in på {{SITENAME}}.",
 	"userlogin": "Logga in / skapa konto",
 	"userloginnocreate": "Logga in",
 	"logout": "Logga ut",

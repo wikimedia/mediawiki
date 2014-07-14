@@ -377,7 +377,6 @@
 	"externaldberror": "O il occurreva un error in le base de datos de authentication, o tu non ha le autorisation de actualisar tu conto externe.",
 	"login": "Aperir session",
 	"nav-login-createaccount": "Aperir session / crear conto",
-	"loginprompt": "Tu debe haber activate le cookies pro poter aperir un session in {{SITENAME}}.",
 	"userlogin": "Aperir session / crear conto",
 	"userloginnocreate": "Aperir session",
 	"logout": "Clauder session",

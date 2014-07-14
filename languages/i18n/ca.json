@@ -407,7 +407,6 @@
 	"externaldberror": "Hi ha hagut una fallida en el servidor d'autenticació externa de la base de dades i no teniu permís per a actualitzar el vostre compte d'accès extern.",
 	"login": "Inici de sessió",
 	"nav-login-createaccount": "Inicia una sessió / crea un compte",
-	"loginprompt": "Heu de tenir les galetes habilitades per a poder iniciar una sessió a {{SITENAME}}.",
 	"userlogin": "Inicia una sessió / crea un compte",
 	"userloginnocreate": "Inici de sessió",
 	"logout": "Finalitza la sessió",

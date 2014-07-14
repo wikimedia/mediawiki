@@ -388,7 +388,6 @@
 	"externaldberror": "A fost fie o eroare de bază de date pentru o autentificare extenă sau nu aveți permisiunea să actualizați contul extern.",
 	"login": "Autentificare",
 	"nav-login-createaccount": "Creare cont / Autentificare",
-	"loginprompt": "Trebuie să ai modulele cookie activate pentru a te autentifica la {{SITENAME}}.",
 	"userlogin": "Creare cont / Autentificare",
 	"userloginnocreate": "Autentificare",
 	"logout": "Închidere sesiune",

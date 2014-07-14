@@ -375,7 +375,6 @@
 	"externaldberror": "Der gung iets fout bie de externe authentisering, of je maggen je gebrukersprofiel niet bewarken.",
 	"login": "Anmelden",
 	"nav-login-createaccount": "Anmelden",
-	"loginprompt": "Je mutten scheumbestaanden (cookies) an hebben staon um an te kunnen melden bie {{SITENAME}}.",
 	"userlogin": "Anmelden / inschrieven",
 	"userloginnocreate": "Anmelden",
 	"logout": "Aofmelden",

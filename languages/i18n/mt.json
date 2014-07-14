@@ -362,7 +362,6 @@
 	"externaldberror": "Kien hemm problema esterna ta' awtentiċitá jew m'għandhekx permess neċċessarju sabiex tagħmel aġġornamenti fuq l-aċċess estern.",
 	"login": "Idħol",
 	"nav-login-createaccount": "Idħol / Oħloq kont",
-	"loginprompt": "Irid ikollok il-cookies mixgħula biex tkun tista' tidħol fuq {{SITENAME}}.",
 	"userlogin": "Idħol jew oħloq kont ġdid",
 	"userloginnocreate": "Idħol",
 	"logout": "Oħroġ",

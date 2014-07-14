@@ -39,7 +39,8 @@
 			"ZeiP",
 			"לערי ריינהארט",
 			"아라",
-			"Syreeni"
+			"Syreeni",
+			"MrTapsa"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -405,7 +406,6 @@
 	"externaldberror": "Tapahtui virhe ulkoisen autentikointitietokannan käytössä tai sinulla ei ole lupaa päivittää tunnustasi.",
 	"login": "Kirjaudu sisään",
 	"nav-login-createaccount": "Kirjaudu sisään tai luo tunnus",
-	"loginprompt": "Sinun täytyy sallia evästeet, jotta voit kirjautua sivustolle {{SITENAME}}.",
 	"userlogin": "Kirjaudu sisään tai luo tunnus",
 	"userloginnocreate": "Kirjaudu sisään",
 	"logout": "Kirjaudu ulos",
@@ -2869,6 +2869,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|keskustelu]])",
 	"unknown_extension_tag": "Tuntematon laajennuskoodi ”$1”.",
 	"duplicate-defaultsort": "'''Varoitus:''' Oletuslajitteluavain ”$2” korvaa aiemman oletuslajitteluavaimen ”$1”.",
+	"duplicate-displaytitle": "<strong>Varoitus:</strong> Näytettävä otsikko \"$2\" päällekirjoittaa edellisen otsikon \"$1\".",
 	"version": "Versio",
 	"version-extensions": "Asennetut laajennukset",
 	"version-skins": "Asennetut ulkoasut",

@@ -391,7 +391,6 @@
 	"externaldberror": "Ose kishte një gabim tek regjistri i identifikimit të jashtëm, ose nuk ju lejohet të përtërini llogarinë tuaje të jashtme.",
 	"login": "Hyni",
 	"nav-login-createaccount": "Hyni ose hapni një llogari",
-	"loginprompt": "Ju duhet të mundësoni lejimin e \"cookies\" për të hyrë brënda në {{SITENAME}}.",
 	"userlogin": "Hyni / hapni llogari",
 	"userloginnocreate": "Hyni",
 	"logout": "Dalje",

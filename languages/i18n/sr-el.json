@@ -383,7 +383,6 @@
 	"externaldberror": "Došlo je do greške pri prepoznavanju baze podataka ili nemate ovlašćenja da ažurirate svoj spoljni nalog.",
 	"login": "Prijavi me",
 	"nav-login-createaccount": "Prijava/registracija",
-	"loginprompt": "Omogućite kolačiće da biste se prijavili na ovaj viki.",
 	"userlogin": "Prijava/registracija",
 	"userloginnocreate": "Prijava",
 	"logout": "Odjava",

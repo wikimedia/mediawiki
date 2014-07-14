@@ -375,7 +375,6 @@
 	"externaldberror": "Pri potrjevanju istovetnosti je prišlo do notranje napake ali pa za osveževanje zunanjega računa nimate dovoljenja.",
 	"login": "Prijava",
 	"nav-login-createaccount": "Prijavite se / registrirajte se",
-	"loginprompt": "Za prijavo v {{GRAMMAR:tožilnik|{{SITENAME}}}} morate imeti omogočene piškotke.",
 	"userlogin": "Prijavite se / registrirajte se",
 	"userloginnocreate": "Prijava",
 	"logout": "Odjava",

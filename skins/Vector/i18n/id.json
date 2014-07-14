@@ -9,6 +9,7 @@
 		]
 	},
 	"skinname-vector": "Vektor",
+	"vector-skin-desc": "Versi modern dari MonoBook dengan tampilan segar dan banyak perbaikan kegunaan",
 	"vector.css": "/* CSS nan ado di siko diterapkan pado kulik Vektor. */",
 	"vector.js": "/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Vector */",
 	"vector-action-addsection": "Bagian baru",

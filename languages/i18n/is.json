@@ -368,7 +368,6 @@
 	"externaldberror": "Uppfærsla mistókst. Annaðhvort varð villa í gagnasafninu eða að þér sé óheimilt að uppfæra aðra aðganga.",
 	"login": "Innskrá",
 	"nav-login-createaccount": "Innskrá / Búa til aðgang",
-	"loginprompt": "Þú verður að leyfa vefkökur til þess að geta skráð þig inn á {{SITENAME}}.",
 	"userlogin": "Innskrá / Búa til aðgang",
 	"userloginnocreate": "Innskrá",
 	"logout": "Útskráning",

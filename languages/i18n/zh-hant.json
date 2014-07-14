@@ -420,7 +420,6 @@
 	"externaldberror": "這可能是由於資料庫驗證錯誤，或是不允許您更新外部帳號。",
 	"login": "登入",
 	"nav-login-createaccount": "登入/建立帳號",
-	"loginprompt": "您必須允許瀏覽器紀錄 Cookie 才能成功登入 {{SITENAME}}。",
 	"userlogin": "登入/建立帳號",
 	"userloginnocreate": "登入",
 	"logout": "登出",

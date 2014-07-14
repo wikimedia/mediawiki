@@ -372,7 +372,6 @@
 	"externaldberror": "Осы арада не шеттік растау дерекқорында қате болды, немесе шеттік тіркелгіңізді жаңалау рұқсаты жоқ.",
 	"login": "Кіру",
 	"nav-login-createaccount": "Кіру / Тіркелу",
-	"loginprompt": "{{SITENAME}} торабына кіруіңіз үшін «cookies» қосылуы керек.",
 	"userlogin": "Кіру / Тіркелу",
 	"userloginnocreate": "Кіру",
 	"logout": "Шығу",

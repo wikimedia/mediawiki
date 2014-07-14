@@ -477,7 +477,6 @@
 	"externaldberror": "Hubo un error de autenticación de la base de datos o bien no tienes autorización para actualizar tu cuenta externa.",
 	"login": "Iniciar sesión",
 	"nav-login-createaccount": "Acceder/crear cuenta",
-	"loginprompt": "Hay que activar las ''cookies'' en el navegador para iniciar sesión en {{SITENAME}}.",
 	"userlogin": "Acceder/crear cuenta",
 	"userloginnocreate": "Acceder",
 	"logout": "Salir",

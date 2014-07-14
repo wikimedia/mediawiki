@@ -383,7 +383,6 @@
 	"externaldberror": "Došlo je do pogreške s vanjskom autorizacijom ili Vam nije dopušteno osvježavanje vanjskog suradničkog računa.",
 	"login": "Prijavi se",
 	"nav-login-createaccount": "Prijavi se",
-	"loginprompt": "Za prijavu na sustav {{SITENAME}} morate u pregledniku uključiti kolačiće (cookies).",
 	"userlogin": "Prijavi se / stvori račun",
 	"userloginnocreate": "Prijavi se",
 	"logout": "Odjavi se",

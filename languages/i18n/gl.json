@@ -379,7 +379,6 @@
 	"externaldberror": "Ou ben se produciu un erro da base de datos na autenticación externa ou ben non se lle permite actualizar a súa conta externa.",
 	"login": "Acceder ao sistema",
 	"nav-login-createaccount": "Rexistro",
-	"loginprompt": "Debe habilitar as cookies para acceder a {{SITENAME}}.",
 	"userlogin": "Rexistro",
 	"userloginnocreate": "Rexistro",
 	"logout": "Saír ao anonimato",

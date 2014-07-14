@@ -411,7 +411,6 @@
 	"externaldberror": "هناك إما خطأ في دخول قاعدة البيانات الخارجية أو أنه غير مسموح لك بتحديث حسابك الخارجي.",
 	"login": "تسجيل الدخول",
 	"nav-login-createaccount": "دخول / إنشاء حساب",
-	"loginprompt": "يجب أن تكون الكوكيز لديك مفعلة لتسجل الدخول إلى {{SITENAME}}.",
 	"userlogin": "دخول / إنشاء حساب",
 	"userloginnocreate": "تسجيل الدخول",
 	"logout": "تسجيل الخروج",
@@ -1373,6 +1372,7 @@
 	"license-nopreview": "(العرض المسبق غير متوفر)",
 	"upload_source_url": "  (مسار صحيح، يمكن الوصول إليه)",
 	"upload_source_file": " (ملف على حاسوبك)",
+	"listfiles-delete": "أحذف",
 	"listfiles-summary": "هذه الصفحة الخاصة تعرض كل الملفات المرفوعة.",
 	"listfiles_search_for": "ابحث عن اسم الميديا:",
 	"imgfile": "ملف",
@@ -3210,5 +3210,6 @@
 	"expand_templates_remove_nowiki": "أخفِ وسوم <nowiki> في الناتج",
 	"expand_templates_generate_xml": "اعرض شجرة XML parse",
 	"expand_templates_generate_rawhtml": "أظهر خام HTML",
-	"expand_templates_preview": "عرض مسبق"
+	"expand_templates_preview": "عرض مسبق",
+	"pagelang-name": "صفحة"
 }

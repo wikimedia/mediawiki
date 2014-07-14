@@ -379,7 +379,6 @@
 	"externaldberror": "Entweder ass e Feeler bei der externer Authentifizéierung geschitt, oder Dir däerft Ären externe Benotzerkont net aktualiséieren.",
 	"login": "Aloggen",
 	"nav-login-createaccount": "Aloggen / Benotzerkont uleeën",
-	"loginprompt": "Fir sech op {{SITENAME}} aloggen ze kënnen, mussen d'Cookien aktivéiert sinn.",
 	"userlogin": "Aloggen / Benotzerkont uleeën",
 	"userloginnocreate": "Umellen",
 	"logout": "Ofmellen",

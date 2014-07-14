@@ -475,7 +475,6 @@
 	"externaldberror": "Une erreur s'est produite avec la base de données d'authentification externe, ou bien vous n'êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.",
 	"login": "Connexion",
 	"nav-login-createaccount": "Créer un compte ou se connecter",
-	"loginprompt": "Vous devez activer les cookies pour vous connecter à {{SITENAME}}.",
 	"userlogin": "Créer un compte ou se connecter",
 	"userloginnocreate": "Connexion",
 	"logout": "Se déconnecter",

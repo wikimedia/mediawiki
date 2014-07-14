@@ -440,7 +440,6 @@
 	"externaldberror": "Entweder liegt ein Fehler bei der externen Authentifizierung vor oder du darfst dein externes Benutzerkonto nicht aktualisieren.",
 	"login": "Anmelden",
 	"nav-login-createaccount": "Anmelden / Benutzerkonto erstellen",
-	"loginprompt": "Zur Anmeldung müssen Cookies aktiviert sein.",
 	"userlogin": "Anmelden / Benutzerkonto anlegen",
 	"userloginnocreate": "Anmelden",
 	"logout": "Abmelden",

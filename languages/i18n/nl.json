@@ -423,7 +423,6 @@
 	"externaldberror": "Er is een fout opgetreden bij het aanmelden bij de database of u hebt geen toestemming uw externe account bij te werken.",
 	"login": "Aanmelden",
 	"nav-login-createaccount": "Aanmelden / registreren",
-	"loginprompt": "U moet cookies ingeschakeld hebben om u te kunnen aanmelden bij {{SITENAME}}.",
 	"userlogin": "Aanmelden / registreren",
 	"userloginnocreate": "Aanmelden",
 	"logout": "Afmelden",

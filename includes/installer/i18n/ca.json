@@ -4,7 +4,8 @@
 			"Pitort",
 			"පසිඳු කාවින්ද",
 			"Kippelboy",
-			"Toniher"
+			"Toniher",
+			"Fitoschido"
 		]
 	},
 	"config-desc": "L'instal·lador del MediaWiki",
@@ -83,11 +84,14 @@
 	"config-type-mysql": "MySQL (o compatible)",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "Paràmetres de MySQL",
+	"config-header-postgres": "Paràmetres del PostgreSQL",
 	"config-header-sqlite": "Paràmetres de l'SQLite",
 	"config-header-oracle": "Paràmetres de l'Oracle",
+	"config-header-mssql": "Paràmetres del Microsoft SQL Server",
 	"config-invalid-db-type": "Tipus de base de dades no vàlid",
 	"config-missing-db-name": "Heu d'introduir un valor per a «{{int:config-db-name}}».",
 	"config-missing-db-host": "Heu d'introduir un valor per a «{{int:config-db-host}}».",
+	"config-missing-db-server-oracle": "Heu d’introduir un valor per a «{{int:config-db-host-oracle}}».",
 	"config-sqlite-readonly": "El fitxer <code>$1</code> no es pot escriure.",
 	"config-sqlite-cant-create-db": "No s'ha pogut crear el fitxer de base de dades <code>$1</code>.",
 	"config-upgrade-done-no-regenerate": "S'ha completat l'actualització.\n\nJa podeu [$1 començar a utilitzar el wiki].",

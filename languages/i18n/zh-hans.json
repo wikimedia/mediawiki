@@ -444,7 +444,6 @@
 	"externaldberror": "验证数据库出错或您被禁止更新您的外部账号。",
 	"login": "登录",
 	"nav-login-createaccount": "登录/创建账户",
-	"loginprompt": "你必须启用Cookie才能登录{{SITENAME}}。",
 	"userlogin": "登录/创建账户",
 	"userloginnocreate": "登录",
 	"logout": "退出",

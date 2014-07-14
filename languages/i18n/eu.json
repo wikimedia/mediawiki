@@ -379,7 +379,6 @@
 	"externaldberror": "Kanpoko datu-base autentifikazio errorea gertatu da edo ez duzu zure kanpo kontua eguneratzeko baimenik.",
 	"login": "Saioa hasi",
 	"nav-login-createaccount": "Saioa hasi / kontua sortu",
-	"loginprompt": "Cookieak gaituta izatea beharrezkoa da {{SITENAME}}(e)n saioa hasteko.",
 	"userlogin": "Saioa hasi / kontua sortu",
 	"userloginnocreate": "Saioa hasi",
 	"logout": "Saioa itxi",
