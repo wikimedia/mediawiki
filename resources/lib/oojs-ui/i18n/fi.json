@@ -16,13 +16,13 @@
 			"VezonThunder"
 		]
 	},
-	"ooui-dialog-action-close": "Sulje",
 	"ooui-outline-control-move-down": "Siirrä kohdetta alaspäin",
 	"ooui-outline-control-move-up": "Siirrä kohdetta ylöspäin",
 	"ooui-outline-control-remove": "Poista kohde",
 	"ooui-toolbar-more": "Lisää",
-	"ooui-dialog-confirm-title": "Vahvista",
-	"ooui-dialog-confirm-default-prompt": "Oletko varma?",
-	"ooui-dialog-confirm-default-ok": "OK",
-	"ooui-dialog-confirm-default-cancel": "Peruuta"
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "Peruuta",
+	"ooui-dialog-process-error": "Jokin meni pieleen",
+	"ooui-dialog-process-dismiss": "Hylkää",
+	"ooui-dialog-process-retry": "Yritä uudelleen"
 }

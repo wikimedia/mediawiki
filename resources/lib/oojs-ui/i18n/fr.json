@@ -25,16 +25,17 @@
 			"Trizek",
 			"Urhixidur",
 			"Verdy p",
-			"Wyz"
+			"Wyz",
+			"SnowedEarth"
 		]
 	},
-	"ooui-dialog-action-close": "Fermer",
 	"ooui-outline-control-move-down": "Faire descendre l’élément",
 	"ooui-outline-control-move-up": "Faire monter l’élément",
 	"ooui-outline-control-remove": "Supprimer l’élément",
 	"ooui-toolbar-more": "Plus",
-	"ooui-dialog-confirm-title": "Confirmer",
-	"ooui-dialog-confirm-default-prompt": "Êtes-vous sûr ?",
-	"ooui-dialog-confirm-default-ok": "OK",
-	"ooui-dialog-confirm-default-cancel": "Annuler"
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "Annuler",
+	"ooui-dialog-process-error": "Quelque chose a mal tourné",
+	"ooui-dialog-process-dismiss": "Rejeter",
+	"ooui-dialog-process-retry": "Réessayez"
 }

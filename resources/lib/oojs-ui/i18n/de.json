@@ -13,13 +13,13 @@
 			"Tomabrafix"
 		]
 	},
-	"ooui-dialog-action-close": "Schließen",
 	"ooui-outline-control-move-down": "Element nach unten verschieben",
 	"ooui-outline-control-move-up": "Element nach oben verschieben",
 	"ooui-outline-control-remove": "Element entfernen",
 	"ooui-toolbar-more": "Mehr",
-	"ooui-dialog-confirm-title": "Bestätigen",
-	"ooui-dialog-confirm-default-prompt": "Bist du sicher?",
-	"ooui-dialog-confirm-default-ok": "Okay",
-	"ooui-dialog-confirm-default-cancel": "Abbrechen"
+	"ooui-dialog-message-accept": "Okay",
+	"ooui-dialog-message-reject": "Abbrechen",
+	"ooui-dialog-process-error": "Etwas ist schief gelaufen",
+	"ooui-dialog-process-dismiss": "Ausblenden",
+	"ooui-dialog-process-retry": "Erneut versuchen"
 }

@@ -18,13 +18,13 @@
 			"Умар"
 		]
 	},
-	"ooui-dialog-action-close": "Закрыть",
 	"ooui-outline-control-move-down": "Переместить элемент вниз",
 	"ooui-outline-control-move-up": "Переместить элемент вверх",
 	"ooui-outline-control-remove": "Удалить пункт",
 	"ooui-toolbar-more": "Ещё",
-	"ooui-dialog-confirm-title": "Подтвердить",
-	"ooui-dialog-confirm-default-prompt": "Вы уверены?",
-	"ooui-dialog-confirm-default-ok": "ОК",
-	"ooui-dialog-confirm-default-cancel": "Отмена"
+	"ooui-dialog-message-accept": "ОК",
+	"ooui-dialog-message-reject": "Отмена",
+	"ooui-dialog-process-error": "Что-то пошло не так",
+	"ooui-dialog-process-dismiss": "Закрыть",
+	"ooui-dialog-process-retry": "Попробовать ещё раз"
 }

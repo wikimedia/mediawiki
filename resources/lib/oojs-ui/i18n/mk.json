@@ -6,13 +6,13 @@
 			"Iwan Novirion"
 		]
 	},
-	"ooui-dialog-action-close": "Затвори",
 	"ooui-outline-control-move-down": "Помести надолу",
 	"ooui-outline-control-move-up": "Помести нагоре",
 	"ooui-outline-control-remove": "Отстрани ставка",
 	"ooui-toolbar-more": "Повеќе",
-	"ooui-dialog-confirm-title": "Потврди",
-	"ooui-dialog-confirm-default-prompt": "Дали сте сигурни?",
-	"ooui-dialog-confirm-default-ok": "ОК",
-	"ooui-dialog-confirm-default-cancel": "Откажи"
+	"ooui-dialog-message-accept": "ОК",
+	"ooui-dialog-message-reject": "Откажи",
+	"ooui-dialog-process-error": "Нешто не е во ред",
+	"ooui-dialog-process-dismiss": "Тргни",
+	"ooui-dialog-process-retry": "Обиди се пак"
 }
