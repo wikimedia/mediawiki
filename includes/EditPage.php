@@ -1094,6 +1094,11 @@ class EditPage {
 									}
 									$this->undidRev = $undo;
 								}
+
+								if ( $wgUser->getOption( 'watchreverts' ) ) {
+									$this->watchthis = true;
+								}
+
 								$this->formtype = 'diff';
 							}
 						}
