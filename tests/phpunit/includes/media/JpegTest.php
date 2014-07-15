@@ -1,5 +1,7 @@
 <?php
+
 /**
+ * @group Media
  * @covers JpegHandler
  */
 class JpegTest extends MediaWikiMediaTestCase {

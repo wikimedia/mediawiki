@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Media
  * @covers SVGMetadataExtractor
  */
 class SVGMetadataExtractorTest extends MediaWikiTestCase {

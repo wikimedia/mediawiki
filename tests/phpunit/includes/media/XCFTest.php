@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @group Media
+ */
 class XCFHandlerTest extends MediaWikiMediaTestCase {
 
 	/** @var XCFHandler */

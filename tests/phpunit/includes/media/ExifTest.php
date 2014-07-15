@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Media
  * @covers Exif
  */
 class ExifTest extends MediaWikiTestCase {

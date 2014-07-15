@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Media
+ */
 class IPTCTest extends MediaWikiTestCase {
 
 	/**

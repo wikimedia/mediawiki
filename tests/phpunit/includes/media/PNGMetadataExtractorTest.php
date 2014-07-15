@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Media
  * @covers PNGMetadataExtractor
  */
 class PNGMetadataExtractorTest extends MediaWikiTestCase {

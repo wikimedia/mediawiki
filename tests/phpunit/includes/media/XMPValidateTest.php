@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @group Media
+ */
 class XMPValidateTest extends MediaWikiTestCase {
 
 	/**

@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @group Media
+ */
 class GIFHandlerTest extends MediaWikiMediaTestCase {
 
 	/** @var GIFHandler */

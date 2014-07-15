@@ -2,6 +2,7 @@
 /**
  * Tests related to auto rotation.
  *
+ * @group Media
  * @group medium
  *
  * @todo covers tags

@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @group Media
+ */
 class PNGHandlerTest extends MediaWikiMediaTestCase {
 
 	/** @var PNGHandler */

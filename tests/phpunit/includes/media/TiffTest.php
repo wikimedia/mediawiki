@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @group Media
+ */
 class TiffTest extends MediaWikiTestCase {
 
 	/** @var TiffHandler */
