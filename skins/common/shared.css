@@ -372,12 +372,16 @@ input#wpSummary {
 	display: none;
 }
 
-/* Convenience links to edit block, delete and protect reasons */
+/**
+ * Convenience links to edit block, delete and protect reasons
+ * and upload licenses
+ */
 p.mw-ipb-conveniencelinks,
 p.mw-protect-editreasons,
 p.mw-filedelete-editreasons,
 p.mw-delete-editreasons,
-p.mw-revdel-editreasons {
+p.mw-revdel-editreasons,
+p.mw-upload-editlicenses {
 	font-size: 90%;
 	text-align: right;
 }

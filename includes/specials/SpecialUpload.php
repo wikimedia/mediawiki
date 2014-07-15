@@ -788,6 +788,18 @@ class UploadForm extends HTMLForm {
 		wfRunHooks( 'UploadFormInitDescriptor', array( &$descriptor ) );
 		parent::__construct( $descriptor, $context, 'upload' );
 
+		# Add a link to edit MediaWik:Licenses
+		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
+			$licensesLink = Linker::link(
+				Title::makeTitle( NS_MEDIAWIKI, 'Licenses' ),
+				$this->msg( 'licenses-edit' )->escaped(),
+				array(),
+				array( 'action' => 'edit' )
+			);
+			$editLicenses = '<p class="mw-upload-editlicenses">' . $licensesLink . '</p>';
+			$this->addFooterText( $editLicenses, 'description' );
+		}
+
 		# Set some form properties
 		$this->setSubmitText( $this->msg( 'uploadbtn' )->text() );
 		$this->setSubmitName( 'wpUpload' );
