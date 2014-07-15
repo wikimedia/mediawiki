@@ -65,6 +65,8 @@ class MssqlUpdater extends DatabaseUpdater {
 	 * @return bool False if patch is skipped.
 	 */
 	protected function updateConstraints( $constraintType, $table, $field ) {
+		global $wgDBname, $wgDBmwschema;
+
 		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
