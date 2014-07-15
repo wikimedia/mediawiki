@@ -136,6 +136,11 @@ class RevertAction extends FormAction {
 			wfExpandUrl( $this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
 				PROTO_CURRENT
 		) );
+
+		if ( $user->getBoolOption( 'watchreverts' ) || $user->isWatched( $this->page->getTitle() ) ) {
+			$this->getUser()->addWatch( $this->page->getTitle() );
+		}
+
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 	}
 
