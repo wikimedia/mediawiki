@@ -650,6 +650,7 @@ class SpecialVersion extends SpecialPage {
 
 		if ( isset( $extension['path'] ) ) {
 			global $IP;
+			$extensionPath = dirname( $extension['path'] );
 			if ( $this->coreId == '' ) {
 				wfDebug( 'Looking up core head id' );
 				$coreHeadSHA1 = self::getGitHeadSha1( $IP );
@@ -668,7 +669,6 @@ class SpecialVersion extends SpecialPage {
 
 			if ( !$vcsVersion ) {
 				wfDebug( "Getting VCS info for extension $extensionName" );
-				$extensionPath = dirname( $extension['path'] );
 				$gitInfo = new GitInfo( $extensionPath );
 				$vcsVersion = $gitInfo->getHeadSHA1();
 				if ( $vcsVersion !== false ) {
