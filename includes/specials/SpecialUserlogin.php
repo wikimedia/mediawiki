@@ -42,6 +42,28 @@ class LoginForm extends SpecialPage {
 	const NEED_TOKEN = 12;
 	const WRONG_TOKEN = 13;
 
+	/**
+	 * Valid error and warning messages
+	 *
+	 * Special:Userlogin can show an error or warning message on the form when
+	 * coming from another page. This is done via the ?error= or ?warning= GET
+	 * parameters.
+	 *
+	 * This array is the list of valid message keys. All other values will be
+	 * ignored.
+	 *
+	 * @since 1.24
+	 * @var string[]
+	 */
+	public static $validErrorMessages = array(
+		'exception-nologin-text',
+		'watchlistanontext',
+		'changeemail-no-info',
+		'resetpass-no-info',
+		'confirmemail_needlogin',
+		'prefsnologintext2',
+	);
+
 	public $mAbortLoginErrorMsg = null;
 
 	protected $mUsername;
@@ -65,6 +87,8 @@ class LoginForm extends SpecialPage {
 	protected $mType;
 	protected $mReason;
 	protected $mRealName;
+	protected $mEntryError = '';
+	protected $mEntryErrorType = 'error';
 
 	private $mTempPasswordUsed;
 	private $mLoaded = false;
@@ -128,6 +152,37 @@ class LoginForm extends SpecialPage {
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
 
+		// Show an error or warning passed on from a previous page
+		$entryError = $this->msg( $request->getVal( 'error', '' ) );
+		$entryWarning = $this->msg( $request->getVal( 'warning', '' ) );
+		// bc: provide login link as a parameter for messages where the translation
+		// was not updated
+		$loginreqlink = Linker::linkKnown(
+			$this->getPageTitle(),
+			$this->msg( 'loginreqlink' )->escaped(),
+			array(),
+			array(
+				'returnto' => $this->mReturnTo,
+				'returntoquery' => $this->mReturnToQuery,
+				'uselang' => $this->mLanguage,
+				'fromhttp' => $this->mFromHTTP ? '1' : '0',
+			)
+		);
+
+		// Only show valid error or warning messages.
+		if ( $entryError->exists()
+			&& in_array( $entryError->getKey(), self::$validErrorMessages )
+		) {
+			$this->mEntryErrorType = 'error';
+			$this->mEntryError = $entryError->rawParams( $loginreqlink )->escaped();
+
+		} elseif ( $entryWarning->exists()
+			&& in_array( $entryWarning->getKey(), self::$validErrorMessages )
+		) {
+			$this->mEntryErrorType = 'warning';
+			$this->mEntryError = $entryWarning->rawParams( $loginreqlink )->escaped();
+		}
+
 		if ( $wgEnableEmail ) {
 			$this->mEmail = $request->getText( 'wpEmail' );
 		} else {
@@ -182,6 +237,14 @@ class LoginForm extends SpecialPage {
 		}
 		$this->setHeaders();
 
+		// In the case where the user is already logged in, do not show the login page.
+		// The use case scenario for this is when a user opens a large number of tabs, is
+		// redirected to the login page on all of them, and then logs in on one, expecting
+		// all the others to work properly.
+		if ( $this->mType !== 'signup' && !$this->mPosted && $this->getUser()->isLoggedIn() ) {
+			$this->successfulLogin();
+		}
+
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
 		global $wgSecureLogin;
 		if ( $this->mRequest->getProtocol() !== 'https' ) {
@@ -191,6 +254,7 @@ class LoginForm extends SpecialPage {
 				'returntoquery' => $this->mReturnToQuery !== '' ?
 					$this->mReturnToQuery : null,
 				'title' => null,
+				( $this->mEntryErrorType === 'error' ? 'error' : 'warning' ) => $this->mEntryError,
 			) + $this->mRequest->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
 			if ( $wgSecureLogin
@@ -232,7 +296,7 @@ class LoginForm extends SpecialPage {
 				return;
 			}
 		}
-		$this->mainLoginForm( '' );
+		$this->mainLoginForm( $this->mEntryError, $this->mEntryErrorType );
 	}
 
 	/**
