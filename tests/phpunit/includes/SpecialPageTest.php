@@ -70,32 +70,23 @@ class SpecialPageTest extends MediaWikiTestCase {
 
 		$this->setExpectedException( 'UserNotLoggedIn', $expected );
 
-		if ( $reason === 'blank' && $title === 'blank' ) {
-			$specialPage->requireLogin();
-		} else {
-			$specialPage->requireLogin( $reason, $title );
-		}
+		// $specialPage->requireLogin( [ $reason [, $title ] ] )
+		call_user_func_array(
+			array( $specialPage, 'requireLogin' ),
+			array_filter( array( $reason, $title ) )
+		);
 	}
 
 	public function requireLoginAnonProvider() {
 		$lang = 'en';
 
-		$msg = wfMessage( 'loginreqlink' )->inLanguage( $lang )->escaped();
-		$loginLink = '<a href="/index.php?title=Special:UserLogin&amp;returnto=Special%3AWatchlist"'
-			. ' title="Special:UserLogin">' . $msg . '</a>';
-
-		$expected1 = wfMessage( 'exception-nologin-text-manual' )
-			->params( $loginLink )->inLanguage( $lang )->text();
-
+		$expected1 = wfMessage( 'exception-nologin-text' )->inLanguage( $lang )->text();
 		$expected2 = wfMessage( 'about' )->inLanguage( $lang )->text();
 
 		return array(
 			array( $expected1, null, null ),
 			array( $expected2, 'about', null ),
-			array( $expected2, wfMessage( 'about' ), null ),
 			array( $expected2, 'about', 'about' ),
-			array( $expected2, 'about', wfMessage( 'about' ) ),
-			array( $expected1, 'blank', 'blank' )
 		);
 	}
 

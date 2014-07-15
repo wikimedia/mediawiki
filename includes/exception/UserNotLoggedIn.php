@@ -62,4 +62,25 @@ class UserNotLoggedIn extends ErrorPageError {
 	) {
 		parent::__construct( $titleMsg, $reasonMsg, $params );
 	}
+
+	/**
+	 * Redirect to Special:Userlogin
+	 */
+	public function report() {
+		$context = RequestContext::getMain();
+
+		$output = $context->getOutput();
+		$query = $context->getRequest()->getValues();
+		// Title will be overridden by returnto
+		unset( $query['title'] );
+		// Redirect to Special:Userlogin
+		$output->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( array(
+			// Return to this page when the user logs in
+			'returnto' => $context->getTitle()->getFullText(),
+			'returntoquery' => wfArrayToCgi( $query ),
+			'warning' => $this->msg,
+		) ) );
+
+		$output->output();
+	}
 }
