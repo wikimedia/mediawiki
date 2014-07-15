@@ -885,6 +885,45 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 		}
 		return $link;
 	}
+
+	public function getApiData( ApiResult $result ) {
+		$file = $this->file;
+		$user = $this->list->getUser();
+		$ret = array(
+			'title' => $this->list->title->getPrefixedText(),
+			'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() ),
+			'width' => $file->getWidth(),
+			'height' => $file->getHeight(),
+			'size' => $file->getSize(),
+		);
+		$ret += $file->isDeleted( Revision::DELETED_USER ) ? array( 'userhidden' => '' ) : array();
+		$ret += $file->isDeleted( Revision::DELETED_COMMENT ) ? array( 'commenthidden' => '' ) : array();
+		$ret += $this->isDeleted() ? array( 'contenthidden' => '' ) : array();
+		if ( $this->canViewContent() ) {
+			$ret += array(
+				'url' => SpecialPage::getTitleFor( 'Revisiondelete' )->getLinkURL(
+					array(
+						'target' => $this->list->title->getPrefixedText(),
+						'file' => $file->getKey(),
+						'token' => $user->getEditToken( $file->getKey() )
+					),
+					false, PROTO_RELATIVE
+				),
+			);
+		}
+		if ( $file->userCan( Revision::DELETED_USER, $user ) ) {
+			$ret += array(
+				'userid' => $file->getUser( 'id' ),
+				'user' => $file->getUser( 'text' ),
+			);
+		}
+		if ( $file->userCan( Revision::DELETED_COMMENT, $user ) ) {
+			$ret += array(
+				'comment' => $file->getRawDescription(),
+			);
+		}
+		return $ret;
+	}
 }
 
 /**
