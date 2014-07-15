@@ -58,6 +58,14 @@ class ApiFileRevert extends ApiBase {
 
 		if ( $status->isGood() ) {
 			$result = array( 'result' => 'Success' );
+			
+			$watch = 'preferences';
+			if ( isset( $params['watchlist'] ) ) {
+				$watch = $params['watchlist'];
+			}
+
+			// Watch pages
+			$this->setWatch( $watch, $info['title'], 'watchreverts' );
 		} else {
 			$result = array(
 				'result' => 'Failure',
@@ -135,6 +143,15 @@ class ApiFileRevert extends ApiBase {
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
+			),
+			'watchlist' => array(
+				ApiBase::PARAM_DFLT => 'preferences',
+				ApiBase::PARAM_TYPE => array(
+					'watch',
+					'unwatch',
+					'preferences',
+					'nochange'
+				),
 			),
 		);
 	}

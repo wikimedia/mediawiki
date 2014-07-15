@@ -97,6 +97,11 @@ class RollbackAction extends FormlessAction {
 		$new = Linker::revUserTools( $target );
 		$this->getOutput()->addHTML( $this->msg( 'rollback-success' )->rawParams( $old, $new )
 			->parseAsBlock() );
+
+		if ( $this->getUser()->getBoolOption( 'watchrollback', true ) ) {
+			$this->User->addWatch( $this->page->getTitle() );
+		}
+
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
 		if ( !$request->getBool( 'hidediff', false ) &&
