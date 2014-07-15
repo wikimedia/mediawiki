@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Media
+ */
 class SvgTest extends MediaWikiMediaTestCase {
 
 	protected function setUp() {

@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @todo covers tags
+ * @group Media
+ * @covers XMPReader
  */
 class XMPTest extends MediaWikiTestCase {
 

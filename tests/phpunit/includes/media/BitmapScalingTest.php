@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Media
+ */
 class BitmapScalingTest extends MediaWikiTestCase {
 
 	protected function setUp() {

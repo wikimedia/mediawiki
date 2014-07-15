@@ -6,6 +6,7 @@
  * but it costs money). The implementation of it currently in MediaWiki is based
  * solely on reading the standard, without any real world test files.
  *
+ * @group Media
  * @covers JpegMetadataExtractor
  */
 class JpegMetadataExtractorTest extends MediaWikiTestCase {

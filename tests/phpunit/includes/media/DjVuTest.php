@@ -1,5 +1,6 @@
 <?php
 /**
+ * @group Media
  * @covers DjVuHandler
  */
 class DjVuTest extends MediaWikiMediaTestCase {
@@ -34,8 +35,8 @@ class DjVuTest extends MediaWikiMediaTestCase {
 	public function testInvalidFile() {
 		$this->assertEquals(
 			'a:1:{s:5:"error";s:25:"Error extracting metadata";}',
-			$this->handler->getMetadata( null, $this->filePath . '/README' ),
-			'Getting Metadata for an inexistent file should returns false'
+			$this->handler->getMetadata( null, $this->filePath . '/some-nonexistent-file' ),
+			'Getting metadata for an inexistent file should return false'
 		);
 	}
 

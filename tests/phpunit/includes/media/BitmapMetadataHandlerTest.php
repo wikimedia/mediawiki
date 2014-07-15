@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @group Media
+ */
 class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 
 	protected function setUp() {

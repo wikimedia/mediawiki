@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @group Media
+ */
 class GIFMetadataExtractorTest extends MediaWikiTestCase {
 
 	protected function setUp() {
