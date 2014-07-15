@@ -243,6 +243,7 @@ changes to languages because of Bugzilla reports.
   PHP compiler called hphpc. (deprecated since 1.22)
 * ApiResult::enableSizeCheck() and disableSizeCheck() are now obsolete.
 * Removed ResourceLoaderGetStartupModules hook. (deprecated since 1.23)
+* Removed Action::execute().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
