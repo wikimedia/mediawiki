@@ -116,6 +116,9 @@ production.
 * Upgrade Sinon.JS to 1.10.3.
 * Added the es5-shim polyfill for older or non-compliant javascript engines.
 * Upgrade jQuery Cookie to v1.2.0.
+* (bug 15484) Users will now be redirected to the login page when they need to
+  log in, rather than being shown a page asking them to log in and having to click
+  another link to actually get to the login page.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
