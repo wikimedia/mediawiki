@@ -133,6 +133,9 @@ production.
   no longer be displayed in the sidebar when $wgInterwikiMagic is true.
 * New special page, MyLanguages, to redirect users to subpages with localised
   versions of a page. (Integrated from Extension:Translate)
+* (bug 15484) Users will now be redirected to the login page when they need to
+  log in, rather than being shown a page asking them to log in and having to click
+  another link to actually get to the login page.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
