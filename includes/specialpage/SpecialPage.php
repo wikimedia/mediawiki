@@ -274,44 +274,20 @@ class SpecialPage {
 	}
 
 	/**
-	 * If the user is not logged in, throws UserNotLoggedIn error.
+	 * If the user is not logged in, throws UserNotLoggedIn error
 	 *
-	 * Default error message includes a link to Special:Userlogin with properly set 'returnto' query
-	 * parameter.
+	 * The user will be redirected to Special:Userlogin with the given message as an error on
+	 * the form.
 	 *
 	 * @since 1.23
-	 * @param string|Message $reasonMsg [optional] Passed on to UserNotLoggedIn constructor. Strings
-	 *     will be used as message keys. If a string is given, the message will also receive a
-	 *     formatted login link (generated using the 'loginreqlink' message) as first parameter. If a
-	 *     Message is given, it will be passed on verbatim.
-	 * @param string|Message $titleMsg [optional] Passed on to UserNotLoggedIn constructor. Strings
-	 *     will be used as message keys.
+	 * @param string $reasonMsg [optional] Message key to be displayed on login page
+	 * @param string $titleMsg [optional] Passed on to UserNotLoggedIn constructor
 	 * @throws UserNotLoggedIn
 	 */
-	public function requireLogin( $reasonMsg = null, $titleMsg = null ) {
+	public function requireLogin(
+		$reasonMsg = 'exception-nologin-text-manual', $titleMsg = 'exception-nologin'
+	) {
 		if ( $this->getUser()->isAnon() ) {
-			// Use default messages if not given or explicit null passed
-			if ( !$reasonMsg ) {
-				$reasonMsg = 'exception-nologin-text-manual';
-			}
-			if ( !$titleMsg ) {
-				$titleMsg = 'exception-nologin';
-			}
-
-			// Convert to Messages with current context
-			if ( is_string( $reasonMsg ) ) {
-				$loginreqlink = Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Userlogin' ),
-					$this->msg( 'loginreqlink' )->escaped(),
-					array(),
-					array( 'returnto' => $this->getPageTitle()->getPrefixedText() )
-				);
-				$reasonMsg = $this->msg( $reasonMsg )->rawParams( $loginreqlink );
-			}
-			if ( is_string( $titleMsg ) ) {
-				$titleMsg = $this->msg( $titleMsg );
-			}
-
 			throw new UserNotLoggedIn( $reasonMsg, $titleMsg );
 		}
 	}

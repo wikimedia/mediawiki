@@ -65,6 +65,8 @@ class LoginForm extends SpecialPage {
 	protected $mType;
 	protected $mReason;
 	protected $mRealName;
+	protected $mEntryError = '';
+	protected $mEntryErrorType = 'error';
 
 	private $mTempPasswordUsed;
 	private $mLoaded = false;
@@ -127,6 +129,17 @@ class LoginForm extends SpecialPage {
 			: $request->getVal( 'wpLoginToken' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
+
+		// Show an error or warning passed on from a previous page
+		$entryError = $this->msg( $request->getVal( 'error', '' ) );
+		$entryWarning = $this->msg( $request->getVal( 'warning', '' ) );
+		if ( $entryError->exists() ) {
+			$this->mEntryErrorType = 'error';
+			$this->mEntryError = $entryError->escaped();
+		} elseif ( $entryWarning->exists() ) {
+			$this->mEntryErrorType = 'warning';
+			$this->mEntryError = $entryWarning->escaped();
+		}
 
 		if ( $wgEnableEmail ) {
 			$this->mEmail = $request->getText( 'wpEmail' );
@@ -191,6 +204,7 @@ class LoginForm extends SpecialPage {
 				'returntoquery' => $this->mReturnToQuery !== '' ?
 					$this->mReturnToQuery : null,
 				'title' => null,
+				( $this->mEntryErrorType === 'error' ? 'error' : 'warning' ) => $this->mEntryError,
 			) + $this->mRequest->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
 			if ( $wgSecureLogin
@@ -232,7 +246,7 @@ class LoginForm extends SpecialPage {
 				return;
 			}
 		}
-		$this->mainLoginForm( '' );
+		$this->mainLoginForm( $this->mEntryError, $this->mEntryErrorType );
 	}
 
 	/**
