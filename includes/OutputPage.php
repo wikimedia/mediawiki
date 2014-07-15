@@ -978,17 +978,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add $str to the subtitle
 	 *
-	 * @deprecated since 1.19; use addSubtitle() instead
-	 * @param string|Message $str String or Message to add to the subtitle
-	 */
-	public function appendSubtitle( $str ) {
-		$this->addSubtitle( $str );
-	}
-
-	/**
-	 * Add $str to the subtitle
-	 *
-	 * @param string|Message $str String or Message to add to the subtitle. String should be safe HTML.
+	 * @param string|Message $str String or Message to add to the subtitle.
+	 * String should be safe HTML.
 	 */
 	public function addSubtitle( $str ) {
 		if ( $str instanceof Message ) {
@@ -2194,14 +2185,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Produce a "user is blocked" page.
-	 * @deprecated since 1.18
-	 */
-	function blockedPage() {
-		throw new UserBlockedError( $this->getUser()->mBlock );
-	}
-
-	/**
 	 * Prepare this object to display an error page; disable caching and
 	 * indexing, clear the current text and redirect, set the page's title
 	 * and optionally an custom HTML title (content of the "<title>" tag).
@@ -2340,25 +2323,6 @@ class OutputPage extends ContextSource {
 
 		$this->addWikiMsg( 'versionrequiredtext', $version );
 		$this->returnToMain();
-	}
-
-	/**
-	 * Display an error page noting that a given permission bit is required.
-	 * @deprecated since 1.18, just throw the exception directly
-	 * @param string $permission Key required
-	 * @throws PermissionsError
-	 */
-	public function permissionRequired( $permission ) {
-		throw new PermissionsError( $permission );
-	}
-
-	/**
-	 * Produce the stock "please login to use the wiki" page
-	 *
-	 * @deprecated since 1.19; throw the exception directly
-	 */
-	public function loginToUse() {
-		throw new PermissionsError( 'read' );
 	}
 
 	/**
@@ -3785,19 +3749,6 @@ $templates
 			$s = str_replace( '$' . ( $n + 1 ), $this->msg( $name, $args )->plain(), $s );
 		}
 		$this->addWikiText( $s );
-	}
-
-	/**
-	 * Include jQuery core. Use this to avoid loading it multiple times
-	 * before we get a usable script loader.
-	 *
-	 * @param array $modules List of jQuery modules which should be loaded
-	 * @return array The list of modules which were not loaded.
-	 * @since 1.16
-	 * @deprecated since 1.17
-	 */
-	public function includeJQuery( array $modules = array() ) {
-		return array();
 	}
 
 	/**

@@ -448,6 +448,11 @@ changes to languages because of Bugzilla reports.
   called unconditionally.
 * TablePager::getBody() is now 'final' and can't be overridden in subclasses.
 * TablePager::getBody() is deprecated, use getBodyOutput() or getFullOutput().
+* Removed OutputPage::includeJQuery(). (deprecated since 1.17)
+* Removed OutputPage::blockedPage() and OutputPage::permissionRequired().
+  (deprecated since 1.18)
+* Removed OutputPage::loginToUse() and OutputPage::appendSubtitle().
+  (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
