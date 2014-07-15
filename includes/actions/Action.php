@@ -360,10 +360,4 @@ abstract class Action {
 	 * @throws ErrorPageError
 	 */
 	abstract public function show();
-
-	/**
-	 * Execute the action in a silent fashion: do not display anything or release any errors.
-	 * @return bool whether execution was successful
-	 */
-	abstract public function execute();
 }

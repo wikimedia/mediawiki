@@ -245,6 +245,7 @@ changes to languages because of Bugzilla reports.
 * Removed ResourceLoaderGetStartupModules hook. (deprecated since 1.23)
 * Removed getFormFields(), onSubmit() and onSuccess() from FormlessAction, as
   these were meant specifically for FormAction instead.
+* Removed Action::execute().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

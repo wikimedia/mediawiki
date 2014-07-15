@@ -121,48 +121,4 @@ abstract class FormAction extends Action {
 			$this->onSuccess();
 		}
 	}
-
-	/**
-	 * @see Action::execute()
-	 *
-	 * @param array|null $data
-	 * @param bool $captureErrors
-	 * @throws ErrorPageError|Exception
-	 * @return bool
-	 */
-	public function execute( array $data = null, $captureErrors = true ) {
-		try {
-			// Set a new context so output doesn't leak.
-			$this->context = clone $this->getContext();
-
-			// This will throw exceptions if there's a problem
-			$this->checkCanExecute( $this->getUser() );
-
-			$fields = array();
-			foreach ( $this->fields as $key => $params ) {
-				if ( isset( $data[$key] ) ) {
-					$fields[$key] = $data[$key];
-				} elseif ( isset( $params['default'] ) ) {
-					$fields[$key] = $params['default'];
-				} else {
-					$fields[$key] = null;
-				}
-			}
-			$status = $this->onSubmit( $fields );
-			if ( $status === true ) {
-				// This might do permanent stuff
-				$this->onSuccess();
-				return true;
-			} else {
-				return false;
-			}
-		}
-		catch ( ErrorPageError $e ) {
-			if ( $captureErrors ) {
-				return false;
-			} else {
-				throw $e;
-			}
-		}
-	}
 }
