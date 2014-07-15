@@ -120,6 +120,8 @@ production.
   suppressed content but not suppress it ("suppressrevision" right).
 * Added a new hook, "OutputPageScriptsForBottomQueue", to add modules to the
   bottom queue that should be requested in a dedicated <script> request.
+* (bug 4488) There are now two preferences to watch pages where the user has reverted
+  or rollbacked an edit by default.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

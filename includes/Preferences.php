@@ -982,7 +982,8 @@ class Preferences {
 		$watchTypes = array(
 			'edit' => 'watchdefault',
 			'move' => 'watchmoves',
-			'delete' => 'watchdeletion'
+			'delete' => 'watchdeletion',
+			'revert' => 'watchreverts'
 		);
 
 		// Kinda hacky
@@ -990,10 +991,15 @@ class Preferences {
 			$watchTypes['read'] = 'watchcreations';
 		}
 
+		if ( $user->isAllowed( 'rollback' ) ) {
+			$watchTypes['rollback'] = 'watchrollback';
+		}
+
 		foreach ( $watchTypes as $action => $pref ) {
 			if ( $user->isAllowed( $action ) ) {
 				// Messages:
-				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations
+				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchreverts,
+				// tog-watchcreations, tog-watchrollback
 				$defaultPreferences[$pref] = array(
 					'type' => 'toggle',
 					'section' => 'watchlist/advancedwatchlist',
