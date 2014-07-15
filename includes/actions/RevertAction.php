@@ -99,7 +99,7 @@ class RevertAction extends FormAction {
 			),
 			'comment' => array(
 				'type' => 'text',
-				'label-message' => 'filerevert-comment',
+				'label' => $this->msg( 'reason' )->text() . $this->msg( 'colon-separator' )->text(),
 				'default' => $this->msg( 'filerevert-defaultcomment', $siteDate, $siteTime
 					)->inContentLanguage()->text()
 			)

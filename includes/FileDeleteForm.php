@@ -244,7 +244,8 @@ class FileDeleteForm {
 			Xml::openElement( 'table', array( 'id' => 'mw-img-deleteconfirm-table' ) ) .
 			"<tr>
 				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'filedelete-comment' )->text(), 'wpDeleteReasonList' ) .
+					Xml::label( wfMessage( 'reason' )->text() .
+						wfMessage( 'colon-separator' )->text(), 'wpDeleteReasonList' ) .
 				"</td>
 				<td class='mw-input'>" .
 					Xml::listDropDown(

@@ -1287,7 +1287,8 @@ class SpecialUndelete extends SpecialPage {
 			</tr>
 			<tr>
 				<td class='mw-label'>" .
-				Xml::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
+				Xml::label( $this->msg( 'reason' )->text() .
+					$this->msg( 'colon-separator' )->text(), 'wpComment' ) .
 				"</td>
 				<td class='mw-input'>" .
 				Xml::input(

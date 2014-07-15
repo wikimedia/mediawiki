@@ -411,7 +411,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Xml::openElement( 'table' ) .
 				"<tr>\n" .
 					'<td class="mw-label">' .
-						Xml::label( $this->msg( 'revdelete-log' )->text(), 'wpRevDeleteReasonList' ) .
+						Xml::label( $this->msg( 'reason' )->text() .
+							$this->msg( 'colon-separator' )->text(), 'wpRevDeleteReasonList' ) .
 					'</td>' .
 					'<td class="mw-input">' .
 						Xml::listDropDown( 'wpRevDeleteReasonList',

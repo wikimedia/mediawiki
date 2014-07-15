@@ -222,7 +222,8 @@ class SpecialMergeHistory extends SpecialPage {
 					Xml::openElement( 'table', array( 'id' => 'mw-mergehistory-table' ) ) .
 					'<tr>
 						<td class="mw-label">' .
-					Xml::label( $this->msg( 'mergehistory-reason' )->text(), 'wpComment' ) .
+					Xml::label( $this->msg( 'reason' )->text() .
+						$this->msg( 'colon-separator' )->text(), 'wpComment' ) .
 					'</td>
 					<td class="mw-input">' .
 					Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment' ) ) .

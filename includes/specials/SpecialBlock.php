@@ -146,7 +146,7 @@ class SpecialBlock extends FormSpecialPage {
 			),
 			'Reason' => array(
 				'type' => 'selectandother',
-				'label-message' => 'ipbreason',
+				'label' => $this->msg( 'reason' )->text() . $this->msg( 'colon-separator' )->text(),
 				'options-message' => 'ipbreason-dropdown',
 			),
 			'CreateAccount' => array(

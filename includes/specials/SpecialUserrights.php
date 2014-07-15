@@ -551,7 +551,8 @@ class UserrightsPage extends SpecialPage {
 			Xml::openElement( 'table', array( 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
+						Xml::label( $this->msg( 'reason' )->text() .
+							$this->msg( 'colon-separator' )->text(), 'wpReason' ) .
 					"</td>
 					<td class='mw-input'>" .
 						Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason', false ),

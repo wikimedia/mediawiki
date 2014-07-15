@@ -341,7 +341,7 @@ class ProtectionForm {
 		global $wgUser, $wgLang, $wgOut;
 
 		$mProtectreasonother = Xml::label(
-			wfMessage( 'protectcomment' )->text(),
+			wfMessage( 'reason' )->text() . wfMessage( 'colon-separator' )->text(),
 			'wpProtectReasonSelection'
 		);
 		$mProtectreason = Xml::label(
