@@ -101,14 +101,9 @@ class SpecialPage {
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"
 	 * @param bool $listed Whether the page is listed in Special:Specialpages
-	 * @param callable|bool $function unused
-	 * @param string $file unused
 	 * @param bool $includable Whether the page can be included in normal pages
 	 */
-	public function __construct(
-		$name = '', $restriction = '', $listed = true,
-		$function = false, $file = '', $includable = false
-	) {
+	public function __construct( $name = '', $restriction = '', $listed = true, $includable = false ) {
 		$this->mName = $name;
 		$this->mRestriction = $restriction;
 		$this->mListed = $listed;
