@@ -67,9 +67,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addTables( 'filearchive' );
 
 		$this->addFields( ArchivedFile::selectFields() );
-		$this->addFields( array( 'fa_name', 'fa_deleted' ) );
+		$this->addFields( array( 'fa_id', 'fa_name', 'fa_timestamp', 'fa_deleted' ) );
 		$this->addFieldsIf( 'fa_sha1', $fld_sha1 );
-		$this->addFieldsIf( 'fa_timestamp', $fld_timestamp );
 		$this->addFieldsIf( array( 'fa_user', 'fa_user_text' ), $fld_user );
 		$this->addFieldsIf( array( 'fa_height', 'fa_width', 'fa_size' ), $fld_dimensions || $fld_size );
 		$this->addFieldsIf( 'fa_description', $fld_description );
@@ -81,18 +80,23 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 1 );
+			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$cont_from = $db->addQuotes( $cont[0] );
-			$this->addWhere( "fa_name $op= $cont_from" );
+			$cont_timestamp = $db->addQuotes( $db->timestamp( $cont[1] ) );
+			$cont_id = (int)$cont[2];
+			$this->dieContinueUsageIf( $cont[2] !== (string)$cont_id );
+			$this->addWhere( "fa_name $op $cont_from OR " .
+				"(fa_name = $cont_from AND " .
+				"(fa_timestamp $op $cont_timestamp OR " .
+				"(fa_timestamp = $cont_timestamp AND " .
+				"fa_id $op= $cont_id )))"
+			);
 		}
 
 		// Image filters
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = ( $params['from'] === null ? null : $this->titlePartToKey( $params['from'], NS_FILE ) );
-		if ( !is_null( $params['continue'] ) ) {
-			$from = $params['continue'];
-		}
 		$to = ( $params['to'] === null ? null : $this->titlePartToKey( $params['to'], NS_FILE ) );
 		$this->addWhereRange( 'fa_name', $dir, $from, $to );
 		if ( isset( $params['prefix'] ) ) {
@@ -137,7 +141,11 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-		$this->addOption( 'ORDER BY', 'fa_name' . $sort );
+		$this->addOption( 'ORDER BY', array(
+			'fa_name' . $sort,
+			'fa_timestamp' . $sort,
+			'fa_id' . $sort,
+		) );
 
 		$res = $this->select( __METHOD__ );
 
@@ -147,11 +155,14 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', $row->fa_name );
+				$this->setContinueEnumParameter(
+					'continue', "$row->fa_name|$row->fa_timestamp|$row->fa_id"
+				);
 				break;
 			}
 
 			$file = array();
+			$file['id'] = $row->fa_id;
 			$file['name'] = $row->fa_name;
 			$title = Title::makeTitle( NS_FILE, $row->fa_name );
 			self::addTitleInfo( $file, $title );
@@ -222,7 +233,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $file );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'continue', $row->fa_name );
+				$this->setContinueEnumParameter(
+					'continue', "$row->fa_name|$row->fa_timestamp|$row->fa_id"
+				);
 				break;
 			}
 		}
