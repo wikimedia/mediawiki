@@ -60,7 +60,7 @@ class ApiUndelete extends ApiBase {
 		$retval = $pa->undelete(
 			( isset( $params['timestamps'] ) ? $params['timestamps'] : array() ),
 			$params['reason'],
-			array(),
+			$params['fileids'],
 			false,
 			$this->getUser()
 		);
@@ -70,7 +70,7 @@ class ApiUndelete extends ApiBase {
 
 		if ( $retval[1] ) {
 			wfRunHooks( 'FileUndeleteComplete',
-				array( $titleObj, array(), $this->getUser(), $params['reason'] ) );
+				array( $titleObj, $params['fileids'], $this->getUser(), $params['reason'] ) );
 		}
 
 		$this->setWatch( $params['watchlist'], $titleObj );
@@ -105,6 +105,10 @@ class ApiUndelete extends ApiBase {
 				ApiBase::PARAM_TYPE => 'timestamp',
 				ApiBase::PARAM_ISMULTI => true,
 			),
+			'fileids' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'watchlist' => array(
 				ApiBase::PARAM_DFLT => 'preferences',
 				ApiBase::PARAM_TYPE => array(
@@ -120,10 +124,19 @@ class ApiUndelete extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'title' => 'Title of the page you want to restore',
-			'token' => 'An undelete token previously retrieved through list=deletedrevs',
+			'token' => array(
+				'An undelete token previously retrieved through list=deletedrevs, or ',
+				'a delete token retrieved through action=tokens.'
+			),
 			'reason' => 'Reason for restoring',
-			'timestamps' => 'Timestamps of the revisions to restore. If not set, all ' .
-				'revisions will be restored.',
+			'timestamps' => array(
+				'Timestamps of the revisions to restore.',
+				'If both timestamps and fileids are empty, all will be restored.',
+			),
+			'fileids' => array(
+				'IDs of the file revisions to restore.',
+				'If both timestamps and fileids are empty, all will be restored.',
+			),
 			'watchlist' => 'Unconditionally add or remove the page from your ' .
 				'watchlist, use preferences or do not change watch',
 		);
@@ -143,7 +156,8 @@ class ApiUndelete extends ApiBase {
 	public function getDescription() {
 		return array(
 			'Restore certain revisions of a deleted page. A list of deleted revisions ',
-			'(including timestamps) can be retrieved through list=deletedrevs.'
+			'(including timestamps) can be retrieved through list=deletedrevs, and a list',
+			'of deleted file ids can be retrieved through list=filearchive.'
 		);
 	}
 
