@@ -3506,17 +3506,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Get the  approximate revision count of this page.
-	 *
-	 * @deprecated since 1.19; use Title::estimateRevisionCount() instead.
-	 * @return int
-	 */
-	public function estimateRevisionCount() {
-		wfDeprecated( __METHOD__, '1.19' );
-		return $this->mTitle->estimateRevisionCount();
-	}
-
-	/**
 	 * Update the article's restriction field, and leave a log entry.
 	 *
 	 * @deprecated since 1.19
