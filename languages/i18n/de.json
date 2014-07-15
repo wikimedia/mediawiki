@@ -1412,6 +1412,7 @@
 	"license": "Lizenz:",
 	"license-header": "Lizenz",
 	"nolicense": "Keine Vorauswahl",
+	"licenses-edit": "Lizenzoptionen bearbeiten",
 	"license-nopreview": "(es ist keine Vorschau verfügbar)",
 	"upload_source_url": " (gültige, öffentlich zugängliche URL)",
 	"upload_source_file": " (eine Datei auf deinem Computer)",

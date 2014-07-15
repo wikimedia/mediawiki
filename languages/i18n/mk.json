@@ -1355,6 +1355,7 @@
 	"license": "Лиценцирање:",
 	"license-header": "Лиценцирање",
 	"nolicense": "Нема",
+	"licenses-edit": "Измени лиценцни можности",
 	"license-nopreview": "(Прегледот не е достапен)",
 	"upload_source_url": " (важечка, јавно достапна URL-адреса)",
 	"upload_source_file": "(податотека на вашиот компјутер)",

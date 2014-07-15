@@ -2027,7 +2027,7 @@
 	"movepage-page-exists": "Stranica $1 već postoji i ne može se zameniti.",
 	"movepage-page-moved": "Stranica $1 je premeštena na $2.",
 	"movepage-page-unmoved": "Stranica $1 ne može da se premesti na $2.",
-	"movepage-max-pages": "Najviše $1 {{PLURAL:$1|stranica je premeštena|stranice su premeštene|stranica je premešteno}}, i više ne može da bude automatski premešteno.",
+	"movepage-max-pages": "Najviše $1 {{PLURAL:$1|stranica je premeštena|stranice su premeštene|stranica je premešteno}} i više ne može da bude automatski premešteno.",
 	"movelogpage": "Dnevnik premeštanja",
 	"movelogpagetext": "Ispod se nalazi spisak premeštanja stranica.",
 	"movesubpage": "{{PLURAL:$1|Podstranica|Podstranice}}",

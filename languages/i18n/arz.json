@@ -8,7 +8,8 @@
 			"Meno25",
 			"Ouda",
 			"Ramsis II",
-			"아라"
+			"아라",
+			"Oldstoneage"
 		]
 	},
 	"tog-underline": "حط خط تحت اللينكات:",
@@ -192,7 +193,6 @@
 	"talkpagelinktext": "مناقشه",
 	"specialpage": "صفحة مخصوصة",
 	"personaltools": "ادوات شخصيه",
-	"postcomment": "قسم جديد",
 	"articlepage": "بين صفحة المحتوى",
 	"talk": "مناقشه",
 	"views": "مناظر",
@@ -341,7 +341,6 @@
 	"externaldberror": "يا إما فى حاجة غلط فى الدخول على قاعدة البيانات الخارجية أو انت مش مسموح لك تعمل تحديث لحسابك الخارجي.",
 	"login": "دخول",
 	"nav-login-createaccount": "تسجيل دخول / فتح حساب",
-	"loginprompt": "لازم تكون الكوكيز عندك مفعله علشان تقدر تدخل ل {{SITENAME}}.",
 	"userlogin": "دخول / فتح حساب",
 	"userloginnocreate": "دخول",
 	"logout": "خروج",
@@ -2215,7 +2214,7 @@
 	"timezone-utc": "يو تى سى",
 	"unknown_extension_tag": "تاج بتاع امتداد مش معروف \"$1\"",
 	"duplicate-defaultsort": "تحزير: زرار الترتيب الاوتوماتيكي\"$2\" بيوقف زرار الترتيب الاوتوماتيكي\"$1\" القديم.",
-	"version": "نسخه",
+	"version": "نسخة",
 	"version-extensions": "الامتدادات المتثبتة",
 	"version-specialpages": "صفحات مخصوصة",
 	"version-parserhooks": "خطاطيف البريزر",

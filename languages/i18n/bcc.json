@@ -8,7 +8,8 @@
 			"Reedy",
 			"ZxxZxxZ",
 			"아라",
-			"RigiMahnoor"
+			"RigiMahnoor",
+			"Oldstoneage"
 		]
 	},
 	"tog-underline": ":لینکانآ خط کش",
@@ -195,7 +196,6 @@
 	"talkpagelinktext": "گپ کن",
 	"specialpage": "حاصین صفحه",
 	"personaltools": "شخصی وسایل",
-	"postcomment": "نوکین بخش",
 	"articlepage": "محتوا صفحه به گند",
 	"talk": "بحث",
 	"views": "چارگان",
@@ -376,7 +376,6 @@
 	"externaldberror": "یک حطا دیتابیس تصدیق هویت دراییگی هست یا شما را اجازت نیست وتی حساب درایی په روچ کنیت.",
 	"login": "ورود",
 	"nav-login-createaccount": "ورود/شرکتن حساب",
-	"loginprompt": "شما بایدن په وارد بیگ ته {{SITENAME}} کوکی فعال کنیت",
 	"userlogin": "ورود/شرکتن حساب",
 	"userloginnocreate": "لاگین",
 	"logout": "در بیگ",
@@ -2387,7 +2386,7 @@
 	"hebrew-calendar-m12-gen": "الول",
 	"unknown_extension_tag": "ناشناس برجسب الحاق  \"$1\"",
 	"duplicate-defaultsort": "هژاری: ترتیب پیش فرض «$2» ترتیب پیش فرض پیشگین «$1» را باطل کنت.",
-	"version": "نسخه",
+	"version": "نسخة",
 	"version-extensions": "نصب بوتگیت الحاق آن",
 	"version-specialpages": "حاصین صفحات",
 	"version-parserhooks": "تجزیه کنوک گیر کت",

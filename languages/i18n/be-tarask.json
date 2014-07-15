@@ -3102,5 +3102,6 @@
 	"pagelang-use-default": "Ужываць мову па змоўчаньні",
 	"pagelang-select-lang": "Абярыце мову",
 	"right-pagelang": "Зьмяніць мову старонкі",
-	"action-pagelang": "зьмену мовы старонкі"
+	"action-pagelang": "зьмену мовы старонкі",
+	"log-name-pagelang": "Журнал зьменаў мовы"
 }

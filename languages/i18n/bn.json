@@ -3094,5 +3094,15 @@
 	"expand_templates_remove_nowiki": "ফলাফলে <nowiki> ট্যাগগুলো বাতিল করো",
 	"expand_templates_generate_xml": "XML পার্স বৃক্ষ দেখাও",
 	"expand_templates_generate_rawhtml": "এইচটিএমএল দেখাও",
-	"expand_templates_preview": "প্রাকদর্শন"
+	"expand_templates_preview": "প্রাকদর্শন",
+	"pagelanguage": "পাতার ভাষা নির্বাচক",
+	"pagelang-name": "পাতা",
+	"pagelang-language": "ভাষা",
+	"pagelang-use-default": "ডিফল্ট ভাষা ব্যবহার করুন",
+	"pagelang-select-lang": "ভাষা নির্বাচন করুন",
+	"right-pagelang": "পাতার ভাষা পরিবর্তন করুন",
+	"action-pagelang": "পাতার ভাষা পরিবর্তন করুন",
+	"log-name-pagelang": "ভাষা পরিবর্তন লগ",
+	"log-description-pagelang": "এটি পাতার ভাষা পরিবর্তনের লগ।",
+	"logentry-pagelang-pagelang": "$1 পাতার ভাষা $3 এর জন্য $4 থেকে $5 এ {{GENDER:$2|পরিবর্তন}} করেছেন।"
 }
