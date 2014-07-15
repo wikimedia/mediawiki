@@ -129,6 +129,8 @@ production.
 * (bug 68085) Links of the form [[localInterwikiPrefix:languageCode:pageTitle]],
   where localInterwikiPrefix is a member of the $wgLocalInterwikis array, will
   no longer be displayed in the sidebar when $wgInterwikiMagic is true.
+* (bug 4488) There are now two preferences to watch pages where the user has reverted
+  or rollbacked an edit by default.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
