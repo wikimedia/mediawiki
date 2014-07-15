@@ -136,7 +136,7 @@ $wgAutoloadLocalClasses = array(
 	'MimeMagic' => 'includes/MimeMagic.php',
 	'MWHookException' => 'includes/Hooks.php',
 	'MWHttpRequest' => 'includes/HttpFunctions.php',
-	'MWNamespace' => 'includes/Namespace.php',
+	'MWNamespace' => 'includes/MWNamespace.php',
 	'OutputPage' => 'includes/OutputPage.php',
 	'Pager' => 'includes/Pager.php',
 	'PasswordError' => 'includes/User.php',
@@ -463,7 +463,7 @@ $wgAutoloadLocalClasses = array(
 	'SQLiteField' => 'includes/db/DatabaseSqlite.php',
 
 	# includes/debug
-	'MWDebug' => 'includes/debug/Debug.php',
+	'MWDebug' => 'includes/debug/MWDebug.php',
 
 	# includes/deferred
 	'DataUpdate' => 'includes/deferred/DataUpdate.php',
@@ -798,8 +798,8 @@ $wgAutoloadLocalClasses = array(
 	'CoreTagHooks' => 'includes/parser/CoreTagHooks.php',
 	'DateFormatter' => 'includes/parser/DateFormatter.php',
 	'LinkHolderArray' => 'includes/parser/LinkHolderArray.php',
-	'MWTidy' => 'includes/parser/Tidy.php',
-	'MWTidyWrapper' => 'includes/parser/Tidy.php',
+	'MWTidy' => 'includes/parser/MWTidy.php',
+	'MWTidyWrapper' => 'includes/parser/MWTidy.php',
 	'PPCustomFrame_DOM' => 'includes/parser/Preprocessor_DOM.php',
 	'PPCustomFrame_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'PPDAccum_Hash' => 'includes/parser/Preprocessor_Hash.php',
