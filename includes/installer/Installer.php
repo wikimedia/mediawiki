@@ -356,10 +356,8 @@ abstract class Installer {
 	 */
 	public function showStatusMessage( Status $status ) {
 		$errors = array_merge( $status->getErrorsArray(), $status->getWarningsArray() );
-		if ( $errors ) {
-			foreach ( $errors as $error ) {
-				call_user_func( 'showMessage', $error );
-			}
+		foreach ( $errors as $error ) {
+			call_user_func_array( array( $this, 'showMessage' ), $error );
 		}
 	}
 
