@@ -497,6 +497,7 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.menu.css',
+			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.menu.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -578,6 +579,7 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.spinner.css',
+			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.spinner.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -602,6 +604,7 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.tooltip.css',
+			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.tooltip.css',
 		),
 		'group' => 'jquery.ui',
 	),
