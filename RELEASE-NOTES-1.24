@@ -140,6 +140,9 @@ production.
   configurations can be changed with $wgPasswordConfig.
 * Skins can now define custom styles for default ResourceLoader modules using
   the $wgResourceModuleSkinStyles global. See the Vector skin for examples.
+* (bug 15484) Users will now be redirected to the login page when they need to
+  log in, rather than being shown a page asking them to log in and having to click
+  another link to actually get to the login page.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
