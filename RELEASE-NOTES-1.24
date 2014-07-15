@@ -140,6 +140,8 @@ production.
   configurations can be changed with $wgPasswordConfig.
 * Skins can now define custom styles for default ResourceLoader modules using
   the $wgResourceModuleSkinStyles global. See the Vector skin for examples.
+* (bug 4488) There is now a preference to watch pages where the user has
+  rollbacked an edit by default.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
