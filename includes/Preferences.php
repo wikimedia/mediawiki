@@ -989,10 +989,15 @@ class Preferences {
 			$watchTypes['read'] = 'watchcreations';
 		}
 
+		if ( $user->isAllowed( 'rollback' ) ) {
+			$watchTypes['rollback'] = 'watchrollback';
+		}
+
 		foreach ( $watchTypes as $action => $pref ) {
 			if ( $user->isAllowed( $action ) ) {
 				// Messages:
 				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations
+				// tog-watchrollback
 				$defaultPreferences[$pref] = array(
 					'type' => 'toggle',
 					'section' => 'watchlist/advancedwatchlist',

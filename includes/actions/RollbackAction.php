@@ -39,6 +39,7 @@ class RollbackAction extends FormlessAction {
 		$details = null;
 
 		$request = $this->getRequest();
+		$user = $this->getUser();
 
 		$result = $this->page->doRollback(
 			$request->getVal( 'from' ),
@@ -97,6 +98,11 @@ class RollbackAction extends FormlessAction {
 		$new = Linker::revUserTools( $target );
 		$this->getOutput()->addHTML( $this->msg( 'rollback-success' )->rawParams( $old, $new )
 			->parseAsBlock() );
+
+		if ( $user->getBoolOption( 'watchrollback' ) ) {
+			$user->addWatch( $this->page->getTitle(), WatchedItem::IGNORE_USER_RIGHTS );
+		}
+
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
 		if ( !$request->getBool( 'hidediff', false ) &&

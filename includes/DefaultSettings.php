@@ -4294,6 +4294,7 @@ $wgDefaultUserOptions = array(
 	'watchlisthideown' => 0,
 	'watchlisthidepatrolled' => 0,
 	'watchmoves' => 0,
+	'watchrollback' => 0,
 	'wllimit' => 250,
 	'useeditwarning' => 1,
 	'prefershttps' => 1,
