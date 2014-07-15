@@ -61,7 +61,13 @@ class ApiRollback extends ApiBase {
 			$this->dieUsageMsg( reset( $retval ) );
 		}
 
-		$this->setWatch( $params['watchlist'], $titleObj );
+		$watch = 'preferences';
+		if ( isset( $params['watchlist'] ) ) {
+			$watch = $params['watchlist'];
+		}
+
+		// Watch pages
+		$this->setWatch( $watch, $titleObj, 'watchrollback' );
 
 		$info = array(
 			'title' => $titleObj->getPrefixedText(),
