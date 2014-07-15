@@ -1102,6 +1102,7 @@ class EditPage {
 									}
 									$this->undidRev = $undo;
 								}
+
 								$this->formtype = 'diff';
 							}
 						}
