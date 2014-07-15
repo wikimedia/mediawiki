@@ -56,11 +56,19 @@ abstract class MediaHandler {
 		if ( !isset( self::$handlers[$class] ) ) {
 			self::$handlers[$class] = new $class;
 			if ( !self::$handlers[$class]->isEnabled() ) {
+				wfDebug( __METHOD__ . ": $class is not enabled\n" );
 				self::$handlers[$class] = false;
 			}
 		}
 
 		return self::$handlers[$class];
+	}
+
+	/**
+	 * Resets all static caches
+	 */
+	public static function resetCache() {
+		self::$handlers = array();
 	}
 
 	/**
