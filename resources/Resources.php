@@ -1495,6 +1495,13 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.ui.icon' => array(
+		'styles' => array(
+			'resources/src/mediawiki.ui/components/icons.less',
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 
 	/* es5-shim */
 	'es5-shim' => array(
