@@ -862,6 +862,9 @@ return array(
 	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.htmlform.js',
+		'dependencies' => array(
+			'jquery.mwExtension',
+		),
 		'messages' => array( 'htmlform-chosen-placeholder' ),
 	),
 	'mediawiki.icon' => array(
