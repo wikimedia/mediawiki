@@ -133,7 +133,7 @@ class SpecialMergeHistory extends SpecialPage {
 		if ( !$this->mTargetObj instanceof Title ) {
 			$errors[] = $this->msg( 'mergehistory-invalid-source' )->parseAsBlock();
 		} elseif ( !$this->mTargetObj->exists() ) {
-			$errors[] = $this->msg( 'mergehistory-no-source', array( 'parse' ),
+			$errors[] = $this->msg( 'mergehistory-no-source',
 				wfEscapeWikiText( $this->mTargetObj->getPrefixedText() )
 			)->parseAsBlock();
 		}
@@ -141,7 +141,7 @@ class SpecialMergeHistory extends SpecialPage {
 		if ( !$this->mDestObj instanceof Title ) {
 			$errors[] = $this->msg( 'mergehistory-invalid-destination' )->parseAsBlock();
 		} elseif ( !$this->mDestObj->exists() ) {
-			$errors[] = $this->msg( 'mergehistory-no-destination', array( 'parse' ),
+			$errors[] = $this->msg( 'mergehistory-no-destination',
 				wfEscapeWikiText( $this->mDestObj->getPrefixedText() )
 			)->parseAsBlock();
 		}
