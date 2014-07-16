@@ -1,0 +1,71 @@
+@import "mediawiki.mixins";
+
+// Icons
+//
+// Markup:
+// <div class="mw-ui-icon mw-ui-icon-ok mw-ui-icon-only">OK</div>
+// <div class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ok">OK</div>
+// <div class="mw-ui-icon mw-ui-icon-after mw-ui-icon-ok">OK</div>
+// <button class="mw-ui-button mw-ui-icon mw-ui-icon-ok mw-ui-icon-only mw-ui-progressive">OK</button>
+// <button class="mw-ui-button mw-ui-icon mw-ui-icon-ok mw-ui-icon-before mw-ui-progressive">OK</button>
+// <button class="mw-ui-button mw-ui-icon mw-ui-icon-ok mw-ui-icon-after mw-ui-progressive">OK</button>
+//
+// Styleguide 4.
+.mw-ui-icon-ok {
+	.mw-ui-icon-bgimage('images/ok.svg', 'images/ok.png');
+}
+
+.mw-ui-icon {
+	@icon_size: 1.4em;
+	@gutter_width: 1em;
+	position: relative;
+	min-height: @icon_size;
+	&.mw-ui-icon-only {
+		text-indent: -999px;
+		overflow: hidden;
+		width: @icon_size + ( 2 * @gutter_width );
+		&:before {
+			left: 0;
+			right: 0;
+			position: absolute;
+		}
+	}
+
+	&:after,
+	&:before {
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		display: inline-block;
+		position: relative;
+		height: @icon_size;
+		content: '';
+	}
+
+	&.mw-ui-icon-before {
+		&:before {
+			width: @icon_size;
+			margin-right: @gutter_width;
+		}
+	}
+
+	&.mw-ui-icon-after {
+		&:after {
+			width: @icon_size;
+			margin-left: @gutter_width;
+		}
+	}
+}
+
+.mw-ui-icon-bgimage(@icon_svg; @icon_png) {
+	&.mw-ui-icon-only,
+	&.mw-ui-icon-before {
+		&:before {
+			.background-image-svg(@icon_svg, @icon_png);
+		}
+	}
+	&.mw-ui-icon-after {
+		&:after {
+			.background-image-svg(@icon_svg, @icon_png);
+		}
+	}
+}
