@@ -27,7 +27,6 @@
  */
 class MediaWiki {
 	/**
-	 * @todo Fold $output, etc, into this
 	 * @var IContextSource
 	 */
 	private $context;
@@ -36,30 +35,6 @@ class MediaWiki {
 	 * @var Config
 	 */
 	private $config;
-
-	/**
-	 * @param null|WebRequest $x
-	 * @return WebRequest
-	 */
-	public function request( WebRequest $x = null ) {
-		$old = $this->context->getRequest();
-		if ( $x ) {
-			$this->context->setRequest( $x );
-		}
-		return $old;
-	}
-
-	/**
-	 * @param null|OutputPage $x
-	 * @return OutputPage
-	 */
-	public function output( OutputPage $x = null ) {
-		$old = $this->context->getOutput();
-		if ( $x ) {
-			$this->context->setOutput( $x );
-		}
-		return $old;
-	}
 
 	/**
 	 * @param IContextSource|null $context
