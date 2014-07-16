@@ -616,6 +616,7 @@
 			 *             'skip': 'return !!window.Example', (or) null
 			 *
 			 *             // Added during implementation
+			 *             'skipped': true,
 			 *             'script': ...,
 			 *             'style': ...,
 			 *             'messages': { 'key': 'value' },
@@ -843,6 +844,7 @@
 					skip = new Function( registry[module].skip );
 					registry[module].skip = null;
 					if ( skip() ) {
+						registry[module].skipped = true;
 						registry[module].dependencies = [];
 						registry[module].state = 'ready';
 						handlePending( module );
