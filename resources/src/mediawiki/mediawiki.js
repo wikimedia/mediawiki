@@ -652,18 +652,14 @@
 			/* Private methods */
 
 			function getMarker() {
-				// Cached ?
-				if ( $marker ) {
-					return $marker;
+				// Cached
+				if ( !$marker ) {
+					$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
+					if ( !$marker.length ) {
+						mw.log( 'No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically' );
+						$marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
+					}
 				}
-
-				$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
-				if ( $marker.length ) {
-					return $marker;
-				}
-				mw.log( 'getMarker> No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically.' );
-				$marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
-
 				return $marker;
 			}
 
