@@ -1163,8 +1163,8 @@ class LCStoreDB implements LCStore {
 	private $readOnly = false;
 
 	public function get( $code, $key ) {
-		if ( $this->writesDone ) {
-			$db = wfGetDB( DB_MASTER );
+		if ( $this->writesDone && $this->dbw ) {
+			$db = $this->dbw;
 		} else {
 			$db = wfGetDB( DB_SLAVE );
 		}
@@ -1184,7 +1184,16 @@ class LCStoreDB implements LCStore {
 			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
 		}
 
-		$this->dbw = wfGetDB( DB_MASTER );
+		// We must keep a separate connection to MySQL in order to avoid breaking
+		// main transactions. However, SQLite deadlocks when using two connections.
+		// @TODO: get this trick to work on PostgreSQL too
+		if ( wfGetDB( DB_MASTER )->getType() == 'mysql' ) {
+			$lb = wfGetLBFactory()->newMainLB();
+			$this->dbw = $lb->getConnection( DB_MASTER );
+			$this->dbw->clearFlag( DBO_TRX ); // auto-commit mode
+		} else {
+			$this->dbw = wfGetDB( DB_MASTER );
+		}
 
 		$this->currentLang = $code;
 		$this->batch = array();
