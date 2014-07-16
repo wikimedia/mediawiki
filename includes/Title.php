@@ -506,6 +506,49 @@ class Title {
 	}
 
 	/**
+	 * Create a new Title from a WebRequest
+	 *
+	 * @param WebRequest $request
+	 */
+	public static function newFromRequest( WebRequest $request ) {
+		$pagename = $request->getVal( 'title' );
+		$curid = $request->getInt( 'curid' );
+		$search = $request->getVal( 'search', '' );
+		if ( $pagename ) {
+			$title = self::newFromText( $pagename );
+			if ( $title ) {
+				if ( $title->getNamespace() === NS_MEDIA ) {
+					$title = self::makeTitleSafe( NS_FILE, $title->getDBkey() );
+				}
+				global $wgContLang;
+				if ( $wgContLang->hasVariants() && $title->getArticleID() === 0 ) {
+					$wgContLang->getConverter()->findVariantLink( $pagename, $title );
+				}
+			}
+		} elseif ( $curid ) {
+			$title = self::newFromID( $curid );
+		} elseif ( $search ) {
+			// Back-compat (bug 8054)
+			$title = SpecialPage::getTitleFor( 'Search' );
+		}
+
+		if ( !( $title && $title->getNamespace() === NS_SPECIAL ) ) {
+			$oldid = $request->getInt( 'oldid' );
+			$oldid = $oldid ?: $request->getInt( 'diff' );
+			if ( $oldid ) {
+				$revision = Revision::newFromId( $oldid );
+				$title = $revision ? $revision->getTitle() : $title;
+			}
+		}
+
+		if ( !$title && ( $request->getVal( 'action', 'view' ) !== 'delete' ) ) {
+			$title = self::newMainPage();
+		}
+
+		return $title;
+	}
+
+	/**
 	 * Create a new Title for the Main Page
 	 *
 	 * @return Title The new object

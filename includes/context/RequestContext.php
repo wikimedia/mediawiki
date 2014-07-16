@@ -138,8 +138,10 @@ class RequestContext implements IContextSource {
 	 */
 	public function getTitle() {
 		if ( $this->title === null ) {
-			global $wgTitle; # fallback to $wg till we can improve this
-			$this->title = $wgTitle;
+			$this->title = Title::newFromRequest( $this->getRequest() );
+			// Back-compat
+			global $wgTitle;
+			$wgTitle = $this->title;
 		}
 
 		return $this->title;
