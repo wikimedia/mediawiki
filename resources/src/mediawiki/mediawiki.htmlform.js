@@ -363,7 +363,8 @@
 			$ul = $( this ).prev( 'ul.mw-htmlform-cloner-ul' );
 
 			html = $ul.data( 'template' ).replace(
-				$ul.data( 'uniqueId' ), 'clone' + ( ++cloneCounter ), 'g'
+				new RegExp( $.escapeRE( $ul.data( 'uniqueId' ) ), 'g' ),
+				'clone' + ( ++cloneCounter )
 			);
 
 			$li = $( '<li>' )
