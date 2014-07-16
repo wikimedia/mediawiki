@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (d2451ac748)
+ * OOjs UI v0.1.0-pre (54a54f1cb6)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-14T16:49:51Z
+ * Date: 2014-07-16T20:25:27Z
  */
 ( function ( OO ) {
 
@@ -2345,7 +2345,7 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 
 	// Properties
 	this.factory = config.factory;
-	this.modal = config.modal === undefined ? true : !!config.modal;
+	this.modal = config.modal === undefined || !!config.modal;
 	this.windows = {};
 	this.opening = null;
 	this.opened = null;
@@ -2909,6 +2909,7 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 	}
 
 	this.$element.toggleClass( 'oo-ui-windowManager-fullscreen', size === 'full' );
+	this.$element.toggleClass( 'oo-ui-windowManager-floating', size !== 'full' );
 	win.setDimensions( sizes[size] );
 
 	return this;
@@ -2931,7 +2932,7 @@ OO.ui.Error = function OoUiElement( message, config ) {
 
 	// Properties
 	this.message = message instanceof jQuery ? message : String( message );
-	this.recoverable = config.recoverable === undefined ? true : !!config.recoverable;
+	this.recoverable = config.recoverable === undefined || !!config.recoverable;
 };
 
 /* Setup */
@@ -5236,7 +5237,7 @@ OO.ui.MessageDialog.prototype.initialize = function () {
 		'$': this.$, 'scrollable': true, 'classes': [ 'oo-ui-messageDialog-container' ]
 	} );
 	this.text = new OO.ui.PanelLayout( {
-		'$': this.$, 'padded': true, 'classes': [ 'oo-ui-messageDialog-text' ]
+		'$': this.$, 'padded': true, 'expanded': false, 'classes': [ 'oo-ui-messageDialog-text' ]
 	} );
 	this.message = new OO.ui.LabelWidget( {
 		'$': this.$, 'classes': [ 'oo-ui-messageDialog-message' ]
@@ -5545,7 +5546,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	this.pages = {};
 	this.ignoreFocus = false;
 	this.stackLayout = new OO.ui.StackLayout( { '$': this.$, 'continuous': !!config.continuous } );
-	this.autoFocus = config.autoFocus === undefined ? true : !!config.autoFocus;
+	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 	this.outlineVisible = false;
 	this.outlined = !!config.outlined;
 	if ( this.outlined ) {
@@ -6325,8 +6326,9 @@ OO.ui.GridLayout.prototype.getPanel = function ( x, y ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {boolean} [scrollable] Allow vertical scrolling
- * @cfg {boolean} [padded] Pad the content from the edges
+ * @cfg {boolean} [scrollable=false] Allow vertical scrolling
+ * @cfg {boolean} [padded=false] Pad the content from the edges
+ * @cfg {boolean} [expanded=true] Expand size to fill the entire parent element
  */
 OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 	// Config initialization
@@ -6343,6 +6345,10 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 
 	if ( config.padded ) {
 		this.$element.addClass( 'oo-ui-panelLayout-padded' );
+	}
+
+	if ( config.expanded === undefined || config.expanded ) {
+		this.$element.addClass( 'oo-ui-panelLayout-expanded' );
 	}
 };
 
@@ -9148,7 +9154,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.autoClose = !!config.autoClose;
 	this.$autoCloseIgnore = config.$autoCloseIgnore;
 	this.transitionTimeout = null;
-	this.anchor = false;
+	this.anchor = null;
 	this.width = config.width !== undefined ? config.width : 320;
 	this.height = config.height !== undefined ? config.height : null;
 	this.align = config.align || 'center';
@@ -9159,7 +9165,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.closeButton.connect( this, { 'click': 'onCloseButtonClick' } );
 
 	// Initialization
-	this.toggleAnchor( config.anchor !== undefined ? !!config.anchor : true );
+	this.toggleAnchor( config.anchor === undefined || config.anchor );
 	this.$body.addClass( 'oo-ui-popupWidget-body' );
 	this.$anchor.addClass( 'oo-ui-popupWidget-anchor' );
 	this.$head
