@@ -27,9 +27,6 @@
  * @ingroup Cache
  */
 class SqlBagOStuff extends BagOStuff {
-	/** @var LoadBalancer */
-	protected $lb;
-
 	protected $serverInfos;
 
 	/** @var array */
@@ -146,14 +143,12 @@ class SqlBagOStuff extends BagOStuff {
 				$db = DatabaseBase::factory( $type, $info );
 				$db->clearFlag( DBO_TRX );
 			} else {
-				/*
-				 * We must keep a separate connection to MySQL in order to avoid deadlocks
-				 * However, SQLite has an opposite behavior. And PostgreSQL needs to know
-				 * if we are in transaction or no
-				 */
+				// We must keep a separate connection to MySQL in order to avoid deadlocks
+				// However, SQLite has an opposite behavior.
+				// @TODO: get this trick to work on PostgreSQL too
 				if ( wfGetDB( DB_MASTER )->getType() == 'mysql' ) {
-					$this->lb = wfGetLBFactory()->newMainLB();
-					$db = $this->lb->getConnection( DB_MASTER );
+					$lb = wfGetLBFactory()->newMainLB();
+					$db = $lb->getConnection( DB_MASTER );
 					$db->clearFlag( DBO_TRX ); // auto-commit mode
 				} else {
 					$db = wfGetDB( DB_MASTER );
