@@ -253,6 +253,7 @@ changes to languages because of Bugzilla reports.
 * Removed maintenance/nextJobDB.php; no longer in use.
 * Removed global function wfViewPrevNext(). (deprecated since 1.19)
 * Removed global function xmlsafe() from Export.php. (moved to OAIRepo extension)
+* Removed Title::userCanRead(). (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
