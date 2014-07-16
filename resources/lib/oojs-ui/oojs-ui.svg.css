@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (d2451ac748)
+ * OOjs UI v0.1.0-pre (e93e7cdc22)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-14T16:49:51Z
+ * Date: 2014-07-16T20:50:04Z
  */
 /* Textures */
 
@@ -112,7 +112,13 @@
   line-height: 1em;
 }
 
-.oo-ui-window-frame > .oo-ui-frame {
+> .oo-ui-window-frame {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+> .oo-ui-window-frame > .oo-ui-frame {
   width: 100%;
   height: 100%;
 }
@@ -162,6 +168,95 @@
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup > .oo-ui-window-frame .oo-ui-frame {
   width: 100%;
   height: 100%;
+}
+
+.oo-ui-windowManager-fullscreen > .oo-ui-dialog > .oo-ui-window-frame {
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.oo-ui-messageDialog-actions-horizontal {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget {
+  display: table-cell;
+  width: 1%;
+}
+
+.oo-ui-messageDialog-actions-vertical {
+  display: block;
+}
+
+.oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oo-ui-messageDialog-actions .oo-ui-actionWidget {
+  position: relative;
+  text-align: center;
+}
+
+.oo-ui-messageDialog-actions .oo-ui-actionWidget .oo-ui-buttonedElement-button {
+  display: block;
+}
+
+.oo-ui-messageDialog-actions .oo-ui-actionWidget .oo-ui-labeledElement-label {
+  position: relative;
+  top: auto;
+  bottom: auto;
+  display: inline;
+  white-space: nowrap;
+}
+
+.oo-ui-processDialog-location {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.oo-ui-processDialog-title {
+  display: inline;
+}
+
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget,
+.oo-ui-processDialog-actions-other .oo-ui-actionWidget {
+  white-space: nowrap;
+}
+
+.oo-ui-processDialog-actions-safe,
+.oo-ui-processDialog-actions-primary {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.oo-ui-processDialog-actions-safe {
+  left: 0;
+}
+
+.oo-ui-processDialog-actions-primary {
+  right: 0;
+}
+
+.oo-ui-processDialog-errors {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: none;
+  padding: 3em 3em 1.5em 3em;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .oo-ui-buttonedElement > .oo-ui-buttonedElement-button {
@@ -322,6 +417,14 @@
   padding: 0.5em 0;
 }
 
+.oo-ui-fieldLayout > .oo-ui-popupButtonWidget > .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
+  margin-top: 0.25em;
+}
+
+.oo-ui-fieldLayout > .oo-ui-popupButtonWidget > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
+  z-index: 1;
+}
+
 .oo-ui-fieldsetLayout {
   position: relative;
   padding: 0;
@@ -370,8 +473,20 @@
   padding: 0.5em 0;
 }
 
+.oo-ui-panelLayout {
+  position: relative;
+}
+
 .oo-ui-panelLayout-scrollable {
   overflow-y: auto;
+}
+
+.oo-ui-panelLayout-expanded {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .oo-ui-stackLayout > .oo-ui-panelLayout {

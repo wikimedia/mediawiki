@@ -14,13 +14,13 @@
 			"Lokal Profil"
 		]
 	},
-	"ooui-dialog-action-close": "Stäng",
 	"ooui-outline-control-move-down": "Flytta ned objekt",
 	"ooui-outline-control-move-up": "Flytta upp objekt",
 	"ooui-outline-control-remove": "Ta bort objekt",
 	"ooui-toolbar-more": "Mer",
-	"ooui-dialog-confirm-title": "Bekräfta",
-	"ooui-dialog-confirm-default-prompt": "Är du säker?",
-	"ooui-dialog-confirm-default-ok": "OK",
-	"ooui-dialog-confirm-default-cancel": "Avbryt"
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "Avbryt",
+	"ooui-dialog-process-error": "Något gick fel",
+	"ooui-dialog-process-dismiss": "Stäng",
+	"ooui-dialog-process-retry": "Försök igen"
 }
