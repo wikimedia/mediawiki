@@ -1453,6 +1453,13 @@ return array(
 	'mediawiki.ui.input' => array(
 		'styles' => array(
 			'resources/src/mediawiki.ui/components/inputs.less',
+			'position' => 'top',
+			'targets' => array( 'desktop', 'mobile' ),
+		),
+	),
+	'mediawiki.ui.icon' => array(
+		'styles' => array(
+			'resources/src/mediawiki.ui/components/icons.less',
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
