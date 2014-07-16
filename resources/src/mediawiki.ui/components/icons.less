@@ -82,7 +82,21 @@
 	position: relative;
 }
 
+.with-icon-ok {
+    //.mw-ui-icon-bgimage("images/kss/ok.svg", "images/kss/ok.png");
+    .mw-ui-icon-before-bgimage("images/kss/ok.svg", "images/kss/ok.png");
+    .mw-ui-icon-after-bgimage("images/kss/ok.svg", "images/kss/ok.png");
+}
 
+// Left, right… left and right
+//
+// Markup:
+// <button class="mw-ui-button mw-ui-progressive mw-ui-icon with-icon-ok">.mw-ui-icon.with-icon-ok</button><br />
+// <button class="mw-ui-button mw-ui-progressive mw-ui-icon-before with-icon-ok">.mw-ui-icon-before.with-icon-ok</button><br />
+// <button class="mw-ui-button mw-ui-progressive mw-ui-icon-after with-icon-ok">.mw-ui-icon-after.with-icon-ok</button><br />
+// <button class="mw-ui-button mw-ui-progressive mw-ui-icon-before mw-ui-icon-after with-icon-ok">.mw-ui-icon-before.mw-ui-icon-after.with-icon-ok</button>
+//
+// Styleguide 5.1.
 .mw-ui-icon,
 .mw-ui-icon-before {
 	.mw-ui-icon-gutter-before;
