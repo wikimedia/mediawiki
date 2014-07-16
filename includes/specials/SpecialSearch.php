@@ -346,6 +346,9 @@ class SpecialSearch extends SpecialPage {
 			// Show the create link ahead
 			$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 			if ( $totalRes > $this->limit || $this->offset ) {
+				if ($this->searchEngineType !== null ) {
+					$this->setExtraParam( 'srbackend', $this->searchEngineType );
+				}
 				$prevnext = $this->getLanguage()->viewPrevNext(
 					$this->getPageTitle(),
 					$this->offset,
