@@ -1,0 +1,109 @@
+@import "mediawiki.mixins";
+
+// Icons
+//
+// A set of mixins to add icons to an element and optionally hide its
+// text.
+//
+// Consider the `.mw-ui-button-ok` class, which adds an OK icon to a
+// button and hides its text:
+//
+//     .mw-ui-button-ok {
+//       .mw-ui-icon(@icon_size: 1.4em, @gutter_width: 1em); /* @hide_text: true */
+//       .mw-ui-icon-bgimage("images/kss/ok.svg", "images/kss/ok.png");
+//     }
+//
+// The `mw-ui-icon` mixin sets up the container for the icon, given
+// its size, and adjusts the padding of the element to add a gutter
+// either side of the icon.
+//
+// The `mw-ui-icon-bgimage` mixin adds the icon to the container.
+// Specifically, it uses the `background-image-svg` mixin to set
+// the background image of the container.
+//
+// Markup:
+// <button class="mw-ui-button mw-ui-button-ok mw-ui-progressive">OK</button>
+//
+// Styleguide 4.
+
+.mw-ui-button-ok {
+
+	// A 1.4em square icon with a 1em wide gutter either side of it.
+	.mw-ui-icon(@icon_size: 1.4em, @gutter_width: 1em);
+
+	.mw-ui-icon-bgimage("images/kss/ok.svg", "images/kss/ok.png");
+}
+
+// Adds the container for the icon to the element, adds a gutter
+// either side of the icon, and optionally hides the element's text.
+//
+// If the text is hidden, then explicitly set the element's width and
+// remove any horizontal padding. Otherwise, add a gutter before the
+// element's text for the icon.
+//
+// @icon_size - The size of the icon. Icons are assumed to be square,
+//   so the width and height of the icon will be set to `@icon_size`.
+// @gutter_width - The width of the icon gutter.
+// @hide_text - Whether or not to hide the text of the element.
+//   True by default.
+.mw-ui-icon(@icon_size; @gutter_width; @hide_text: true) when (@hide_text = true) {
+	.mw-ui-icon-container(@icon_size, @gutter_width);
+
+	position: relative;
+
+	text-indent: -9999px;
+
+	// Let the width property deal with setting up the gutter for the
+	// icon.
+	padding-left: 0;
+	padding-right: 0;
+	*padding-left: inherit; // IE6/7 won't be displaying the icon.
+	*padding-right: inherit;
+
+	width: @icon_size + (2 * @gutter_width);
+}
+
+.mw-ui-icon(@icon_size; @gutter_width; @hide_text: true) when (@hide_text = false) {
+	.mw-ui-icon-container(@icon_size, @gutter_width);
+
+	position: relative;
+
+	padding-left: @icon_size + (2 * @gutter_width);
+	*padding-left: inherit;
+}
+
+// Helper mixin that adds the container for the icon to the element.
+//
+// @icon_size - The size of the icon. See the `mw-ui-icon` mixin.
+// @gutter_width - The width of the icon gutter.
+//
+// Compatible with IE8+
+.mw-ui-icon-container(@icon_size; @gutter_width) {
+
+	// IE8 has partial support for pseudo elements but only when using
+	// the :before syntax.
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		width: @icon_size;
+		height: @icon_size;
+		left: @gutter_width;
+	}
+}
+
+// Adds the icon to the container by setting the container's
+// background image.
+//
+// @icon_svg - The path to the SVG version of the icon.
+// @icon_png - The path to the PNG version of the icon.
+//
+// Inherits the `background-image-svg` mixin's compatibility, except
+// for IE6/7.
+.mw-ui-icon-bgimage(@icon_svg; @icon_png) {
+	&:before {
+		.background-image-svg(@icon_svg, @icon_png);
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+}
