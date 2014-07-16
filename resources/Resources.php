@@ -865,6 +865,7 @@ return array(
 		'dependencies' => array(
 			'jquery.hidpi',
 		),
+		'skipFunction' => 'resources/src/mediawiki.hidpi-skip.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.hlist' => array(
