@@ -1,0 +1,95 @@
+@import "mediawiki.mixins";
+
+// Icons
+//
+// The classes and mixins defined in this module allow you to add an
+// icon to an element without additional markup. The icon can be added
+// to the left or right hand side of the element, or, if you really
+// want, both.
+//
+// It's assumed that the most common position of an icon is to the left
+// of an element and so the `mw-ui-icon` class and the
+// `mw-ui-icon-bgimage` mixin are aliases for `mw-ui-icon-left` and
+// `mw-ui-icon-left-bgimage` respectively.
+//
+// Styleguide 5.
+
+@gutter_width: 1em;
+@half_gutter_width: @gutter_width / 2;
+@icon_width: 1.4em;
+
+.mw-ui-icon-gutter-left {
+    padding-left: @gutter_width + @icon_width;
+    *padding-left: @gutter_width; // IE6/7 don't support pseudo elements.
+}
+
+.mw-ui-icon-gutter-right {
+    padding-right: @gutter_width + @icon_width;
+    *padding-right: @gutter_width; // IE6/7 don't support pseudo elements.
+}
+
+.mw-ui-icon-container-base {
+    & {
+        content: "";
+        display: block;
+        width: @icon_width;
+        height: @icon_width;
+        position: absolute;
+        top: @half_gutter_width;
+    }
+}
+
+.mw-ui-icon-container-left {
+
+    // IE8 has partial support for pseudo elements but only when using
+    // the :before syntax.
+    &:before {
+        .mw-ui-icon-container-base;
+        left: @half_gutter_width;
+    }
+}
+
+.mw-ui-icon-container-right {
+    &:after {
+        .mw-ui-icon-container-base;
+        right: @half_gutter_width;
+    }
+}
+
+.mw-ui-icon,
+.mw-ui-icon-left,
+.mw-ui-icon-right {
+    position: relative;
+}
+
+
+.mw-ui-icon,
+.mw-ui-icon-left {
+    .mw-ui-icon-gutter-left;
+    .mw-ui-icon-container-left;
+}
+
+.mw-ui-icon-right {
+    .mw-ui-icon-gutter-right;
+    .mw-ui-icon-container-right;
+}
+
+.mw-ui-icon-container-bgimage(@position; @icon_svg; @icon_png) {
+    &:@{position} {
+        .background-image-svg(@icon_svg, @icon_png);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+}
+
+.mw-ui-icon-bgimage(@icon_svg; @icon_png) {
+    .mw-ui-icon-left-bgimage(@icon_svg, @icon_png);
+}
+
+.mw-ui-icon-left-bgimage(@icon_svg; @icon_png) {
+    .mw-ui-icon-container-bgimage(before, @icon_svg, @icon_png)
+}
+
+.mw-ui-icon-right-bgimage(@icon_svg; @icon_png) {
+    .mw-ui-icon-container-bgimage(after, @icon_svg, @icon_png)
+}
