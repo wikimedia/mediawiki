@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (d2451ac748)
+ * OOjs UI v0.1.0-pre (97dbb50137)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-14T16:49:51Z
+ * Date: 2014-07-16T22:59:48Z
  */
 ( function ( OO ) {
 
@@ -2345,7 +2345,7 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 
 	// Properties
 	this.factory = config.factory;
-	this.modal = config.modal === undefined ? true : !!config.modal;
+	this.modal = config.modal === undefined || !!config.modal;
 	this.windows = {};
 	this.opening = null;
 	this.opened = null;
@@ -2909,14 +2909,13 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 	}
 
 	this.$element.toggleClass( 'oo-ui-windowManager-fullscreen', size === 'full' );
+	this.$element.toggleClass( 'oo-ui-windowManager-floating', size !== 'full' );
 	win.setDimensions( sizes[size] );
 
 	return this;
 };
 
 /**
- * Process error.
- *
  * @abstract
  * @class
  *
@@ -2931,7 +2930,7 @@ OO.ui.Error = function OoUiElement( message, config ) {
 
 	// Properties
 	this.message = message instanceof jQuery ? message : String( message );
-	this.recoverable = config.recoverable === undefined ? true : !!config.recoverable;
+	this.recoverable = config.recoverable === undefined || !!config.recoverable;
 };
 
 /* Setup */
@@ -3282,6 +3281,9 @@ OO.ui.ToolGroupFactory.static.getDefaultClasses = function () {
 
 /**
  * Element with a button.
+ *
+ * Buttons are used for controls which can be clicked. They can be configured to use tab indexing
+ * and access keys for accessibility purposes.
  *
  * @abstract
  * @class
@@ -3902,6 +3904,11 @@ OO.ui.GroupElement.prototype.clearItems = function () {
 /**
  * Element containing an icon.
  *
+ * Icons are graphics, about the size of normal text. They can be used to aid the user in locating
+ * a control or convey information in a more space efficient way. Icons should rarely be used
+ * without labels; such as in a toolbar where space is at a premium or within a context where the
+ * meaning is very clear to the user.
+ *
  * @abstract
  * @class
  *
@@ -3989,6 +3996,11 @@ OO.ui.IconedElement.prototype.getIcon = function () {
 
 /**
  * Element containing an indicator.
+ *
+ * Indicators are graphics, smaller than normal text. They can be used to describe unique status or
+ * behavior. Indicators should only be used in exceptional cases; such as a button that opens a menu
+ * instead of performing an action directly, or an item in a list which has errors that need to be
+ * resolved.
  *
  * @abstract
  * @class
@@ -4201,7 +4213,7 @@ OO.ui.LabeledElement.prototype.fitLabel = function () {
 };
 
 /**
- * Popuppable element.
+ * Element containing an OO.ui.PopupWidget object.
  *
  * @abstract
  * @class
@@ -4236,6 +4248,9 @@ OO.ui.PopuppableElement.prototype.getPopup = function () {
 
 /**
  * Element with a title.
+ *
+ * Titles are rendered by the browser and are made visible when hovering the element. Titles are
+ * not visible on touch devices.
  *
  * @abstract
  * @class
@@ -4907,9 +4922,9 @@ OO.ui.ToolGroup.prototype.onMouseDown = function ( e ) {
 			this.getElementDocument().addEventListener(
 				'mouseup', this.onCapturedMouseUpHandler, true
 			);
-			return false;
 		}
 	}
+	return false;
 };
 
 /**
@@ -5236,7 +5251,7 @@ OO.ui.MessageDialog.prototype.initialize = function () {
 		'$': this.$, 'scrollable': true, 'classes': [ 'oo-ui-messageDialog-container' ]
 	} );
 	this.text = new OO.ui.PanelLayout( {
-		'$': this.$, 'padded': true, 'classes': [ 'oo-ui-messageDialog-text' ]
+		'$': this.$, 'padded': true, 'expanded': false, 'classes': [ 'oo-ui-messageDialog-text' ]
 	} );
 	this.message = new OO.ui.LabelWidget( {
 		'$': this.$, 'classes': [ 'oo-ui-messageDialog-message' ]
@@ -5545,7 +5560,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	this.pages = {};
 	this.ignoreFocus = false;
 	this.stackLayout = new OO.ui.StackLayout( { '$': this.$, 'continuous': !!config.continuous } );
-	this.autoFocus = config.autoFocus === undefined ? true : !!config.autoFocus;
+	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 	this.outlineVisible = false;
 	this.outlined = !!config.outlined;
 	if ( this.outlined ) {
@@ -5961,8 +5976,10 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
  * @param {OO.ui.Widget} field Field widget
  * @param {Object} [config] Configuration options
  * @cfg {string} [align='left'] Alignment mode, either 'left', 'right', 'top' or 'inline'
+ * @cfg {string} [help] Explanatory text shown as a '?' icon.
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
+	var popupButtonWidget;
 	// Config initialization
 	config = $.extend( { 'align': 'left' }, config );
 
@@ -5970,7 +5987,22 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 	OO.ui.FieldLayout.super.call( this, config );
 
 	// Mixin constructors
+	this.$help = this.$( '<div>' );
 	OO.ui.LabeledElement.call( this, this.$( '<label>' ), config );
+	if ( config.help ) {
+		popupButtonWidget = new OO.ui.PopupButtonWidget( $.extend(
+			{
+				'$': this.$,
+				'frameless': true,
+				'icon': 'info',
+				'title': config.help
+			},
+			config,
+			{ label: null }
+		) );
+		popupButtonWidget.getPopup().$body.append( this.getElementDocument().createTextNode( config.help ) );
+		this.$help = popupButtonWidget.$element;
+	}
 
 	// Properties
 	this.$field = this.$( '<div>' );
@@ -6041,9 +6073,9 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 		}
 		// Reorder elements
 		if ( value === 'inline' ) {
-			this.$element.append( this.$field, this.$label );
+			this.$element.append( this.$field, this.$label, this.$help );
 		} else {
-			this.$element.append( this.$label, this.$field );
+			this.$element.append( this.$help, this.$label, this.$field );
 		}
 		// Set classes
 		if ( this.align ) {
@@ -6105,7 +6137,7 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
 OO.ui.FieldsetLayout.static.tagName = 'div';
 
 /**
- * Form layout.
+ * Layout with an HTML form.
  *
  * @class
  * @extends OO.ui.Layout
@@ -6325,8 +6357,9 @@ OO.ui.GridLayout.prototype.getPanel = function ( x, y ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {boolean} [scrollable] Allow vertical scrolling
- * @cfg {boolean} [padded] Pad the content from the edges
+ * @cfg {boolean} [scrollable=false] Allow vertical scrolling
+ * @cfg {boolean} [padded=false] Pad the content from the edges
+ * @cfg {boolean} [expanded=true] Expand size to fill the entire parent element
  */
 OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 	// Config initialization
@@ -6343,6 +6376,10 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 
 	if ( config.padded ) {
 		this.$element.addClass( 'oo-ui-panelLayout-padded' );
+	}
+
+	if ( config.expanded === undefined || config.expanded ) {
+		this.$element.addClass( 'oo-ui-panelLayout-expanded' );
 	}
 };
 
@@ -6956,9 +6993,7 @@ OO.ui.PopupTool.prototype.onUpdateState = function () {
 };
 
 /**
- * Group widget.
- *
- * Mixin for OO.ui.Widget subclasses.
+ * Mixin for OO.ui.Widget subclasses to provide OO.ui.GroupElement.
  *
  * Use together with OO.ui.ItemWidget to make disabled state inheritable.
  *
@@ -7007,7 +7042,10 @@ OO.ui.GroupWidget.prototype.setDisabled = function ( disabled ) {
 };
 
 /**
- * Item widget.
+ * Mixin for widgets used as items in widgets that inherit OO.ui.GroupWidget.
+ *
+ * Item widgets have a reference to a OO.ui.GroupWidget while they are attached to the group. This
+ * allows bidrectional communication.
  *
  * Use together with OO.ui.GroupWidget to make disabled state inheritable.
  *
@@ -7052,10 +7090,9 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
 };
 
 /**
- * Lookup input widget.
+ * Mixin that adds a menu showing suggested values for a text input.
  *
- * Mixin that adds a menu showing suggested values to a text input. Subclasses must handle `select`
- * and `choose` events on #lookupMenu to make use of selections.
+ * Subclasses must handle `select` and `choose` events on #lookupMenu to make use of selections.
  *
  * @class
  * @abstract
@@ -7289,11 +7326,14 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
 };
 
 /**
- * Creates an OO.ui.OutlineControlsWidget object.
+ * Set of controls for an OO.ui.OutlineWidget.
  *
- * Use together with OO.ui.OutlineWidget.js
+ * Controls include moving items up and down, removing items, and adding different kinds of items.
  *
  * @class
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.GroupElement
+ * @mixins OO.ui.IconedElement
  *
  * @constructor
  * @param {OO.ui.OutlineWidget} outline Outline to control
@@ -7403,9 +7443,7 @@ OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
 };
 
 /**
- * Width with on and off states.
- *
- * Mixin for widgets with a boolean state.
+ * Mixin for widgets with a boolean on/off state.
  *
  * @abstract
  * @class
@@ -7463,7 +7501,7 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
 };
 
 /**
- * Container for multiple related buttons.
+ * Group widget for multiple related buttons.
  *
  * Use together with OO.ui.ButtonWidget.
  *
@@ -7495,7 +7533,7 @@ OO.inheritClass( OO.ui.ButtonGroupWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
 
 /**
- * Button widget.
+ * Generic widget for buttons.
  *
  * @class
  * @extends OO.ui.Widget
@@ -7657,7 +7695,7 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
 };
 
 /**
- * ActionButton widget.
+ * Button widget that executes an action and is managed by an OO.ui.ActionSet.
  *
  * @class
  * @extends OO.ui.ButtonWidget
@@ -7951,6 +7989,8 @@ OO.ui.IconWidget.static.tagName = 'span';
 /**
  * Indicator widget.
  *
+ * See OO.ui.IndicatedElement for more information.
+ *
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.IndicatedElement
@@ -7987,6 +8027,9 @@ OO.ui.IndicatorWidget.static.tagName = 'span';
 /**
  * Inline menu of options.
  *
+ * Inline menus provide a control for accessing a menu and compose a menu within the widget, which
+ * can be accessed using the #getMenu method.
+ *
  * Use with OO.ui.MenuOptionWidget.
  *
  * @class
@@ -8014,7 +8057,7 @@ OO.ui.InlineMenuWidget = function OoUiInlineMenuWidget( config ) {
 	OO.ui.TitledElement.call( this, this.$label, config );
 
 	// Properties
-	this.menu = new OO.ui.MenuWidget( $.extend( { '$': this.$ }, config.menu ) );
+	this.menu = new OO.ui.MenuWidget( $.extend( { '$': this.$, 'widget': this }, config.menu ) );
 	this.$handle = this.$( '<span>' );
 
 	// Events
@@ -8093,7 +8136,7 @@ OO.ui.InlineMenuWidget.prototype.onClick = function ( e ) {
 };
 
 /**
- * Input widget.
+ * Base class for input widgets.
  *
  * @abstract
  * @class
@@ -8300,7 +8343,7 @@ OO.ui.InputWidget.prototype.blur = function () {
 };
 
 /**
- * Checkbox widget.
+ * Checkbox input widget.
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -8368,7 +8411,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
 };
 
 /**
- * Text input widget.
+ * Input widget with a text field.
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -8635,9 +8678,7 @@ OO.ui.LabelWidget.prototype.onClick = function () {
 };
 
 /**
- * Option widget.
- *
- * Use with OO.ui.SelectWidget.
+ * Generic option widget for use with OO.ui.SelectWidget.
  *
  * @class
  * @extends OO.ui.Widget
@@ -8838,7 +8879,7 @@ OO.ui.OptionWidget.prototype.getData = function () {
 };
 
 /**
- * Option with an option icon and indicator.
+ * Option widget with an option icon and indicator.
  *
  * Use together with OO.ui.SelectWidget.
  *
@@ -8924,9 +8965,7 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
 };
 
 /**
- * Menu item widget.
- *
- * Use with OO.ui.MenuWidget.
+ * Item of an OO.ui.MenuWidget.
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -8951,9 +8990,7 @@ OO.ui.MenuItemWidget = function OoUiMenuItemWidget( data, config ) {
 OO.inheritClass( OO.ui.MenuItemWidget, OO.ui.DecoratedOptionWidget );
 
 /**
- * Menu section item widget.
- *
- * Use with OO.ui.MenuWidget.
+ * Section to group one or more items in a OO.ui.MenuWidget.
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -8981,9 +9018,7 @@ OO.ui.MenuSectionItemWidget.static.selectable = false;
 OO.ui.MenuSectionItemWidget.static.highlightable = false;
 
 /**
- * Creates an OO.ui.OutlineItemWidget object.
- *
- * Use with OO.ui.OutlineWidget.
+ * Items for an OO.ui.OutlineWidget.
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -9148,7 +9183,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.autoClose = !!config.autoClose;
 	this.$autoCloseIgnore = config.$autoCloseIgnore;
 	this.transitionTimeout = null;
-	this.anchor = false;
+	this.anchor = null;
 	this.width = config.width !== undefined ? config.width : 320;
 	this.height = config.height !== undefined ? config.height : null;
 	this.align = config.align || 'center';
@@ -9159,7 +9194,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.closeButton.connect( this, { 'click': 'onCloseButtonClick' } );
 
 	// Initialization
-	this.toggleAnchor( config.anchor !== undefined ? !!config.anchor : true );
+	this.toggleAnchor( config.anchor === undefined || config.anchor );
 	this.$body.addClass( 'oo-ui-popupWidget-body' );
 	this.$anchor.addClass( 'oo-ui-popupWidget-anchor' );
 	this.$head
@@ -9381,7 +9416,8 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 /**
  * Search widget.
  *
- * Combines query and results selection widgets.
+ * Search widgets combine a query input, placed above, and a results selection widget, placed below.
+ * Results are cleared and populated each time the query is changed.
  *
  * @class
  * @extends OO.ui.Widget
@@ -9533,7 +9569,10 @@ OO.ui.SearchWidget.prototype.getResults = function () {
 };
 
 /**
- * Selection of options.
+ * Generic selection of options.
+ *
+ * Items can contain any rendering, and are uniquely identified by a has of thier data. Any widget
+ * that provides options, from which the user must choose one, should be built on this class.
  *
  * Use together with OO.ui.OptionWidget.
  *
@@ -10077,7 +10116,10 @@ OO.ui.ButtonSelectWidget = function OoUiButtonSelectWidget( config ) {
 OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
 
 /**
- * Menu widget.
+ * Overlaid menu of options.
+ *
+ * Menus are clipped to the visible viewport. They do not provide a control for opening or closing
+ * the menu.
  *
  * Use together with OO.ui.MenuItemWidget.
  *
@@ -10088,6 +10130,7 @@ OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {OO.ui.InputWidget} [input] Input to bind keyboard handlers to
+ * @cfg {OO.ui.Widget} [widget] Widget to bind mouse handlers to
  * @cfg {boolean} [autoHide=true] Hide the menu when the mouse is pressed outside the menu
  */
 OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
@@ -10106,6 +10149,7 @@ OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	this.newItems = null;
 	this.autoHide = config.autoHide === undefined || !!config.autoHide;
 	this.$input = config.input ? config.input.$input : null;
+	this.$widget = config.widget ? config.widget.$element : null;
 	this.$previousFocus = null;
 	this.isolated = !config.input;
 	this.onKeyDownHandler = OO.ui.bind( this.onKeyDown, this );
@@ -10130,7 +10174,7 @@ OO.mixinClass( OO.ui.MenuWidget, OO.ui.ClippableElement );
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.MenuWidget.prototype.onDocumentMouseDown = function ( e ) {
-	if ( !$.contains( this.$element[0], e.target ) ) {
+	if ( !$.contains( this.$element[0], e.target ) && ( !this.$widget || !$.contains( this.$widget[0], e.target ) ) ) {
 		this.toggle( false );
 	}
 };
@@ -10321,6 +10365,10 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 /**
  * Menu for a text input widget.
  *
+ * This menu is specially designed to be positioned beneeth the text input widget. Even if the input
+ * is in a different frame, the menu's position is automatically calulated and maintained when the
+ * menu is toggled or the window is resized.
+ *
  * @class
  * @extends OO.ui.MenuWidget
  *
@@ -10415,7 +10463,7 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
 };
 
 /**
- * Create an OO.ui.OutlineWidget object.
+ * Structured list of items.
  *
  * Use with OO.ui.OutlineItemWidget.
  *

@@ -8,11 +8,12 @@
 			"Mido",
 			"OsamaK",
 			"زكريا",
-			"مشعل الحربي"
+			"مشعل الحربي",
+			"ترجمان05"
 		]
 	},
-	"ooui-dialog-action-close": "أغلق",
 	"ooui-outline-control-move-down": "انقل العنصر للأسفل",
 	"ooui-outline-control-move-up": "انقل العنصر للأعلى",
-	"ooui-toolbar-more": "مزيد"
+	"ooui-toolbar-more": "مزيد",
+	"ooui-dialog-process-retry": "حاول مرة أخرى"
 }

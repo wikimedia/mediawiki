@@ -15,13 +15,13 @@
 			"Ontsed"
 		]
 	},
-	"ooui-dialog-action-close": "Chiudi",
 	"ooui-outline-control-move-down": "Sposta in basso",
 	"ooui-outline-control-move-up": "Sposta in alto",
 	"ooui-outline-control-remove": "Rimuovi elemento",
 	"ooui-toolbar-more": "Altro",
-	"ooui-dialog-confirm-title": "Conferma",
-	"ooui-dialog-confirm-default-prompt": "Sei sicuro?",
-	"ooui-dialog-confirm-default-ok": "OK",
-	"ooui-dialog-confirm-default-cancel": "Annulla"
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "Annulla",
+	"ooui-dialog-process-error": "Qualcosa è andato storto",
+	"ooui-dialog-process-dismiss": "Nascondi",
+	"ooui-dialog-process-retry": "Riprova"
 }
