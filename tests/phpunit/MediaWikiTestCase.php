@@ -246,6 +246,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 		$this->mwGlobals = array();
 		RequestContext::resetMain();
+		MediaHandler::resetCache();
 
 		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
