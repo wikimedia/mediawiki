@@ -131,8 +131,11 @@ class RunJobs extends Maintenance {
 					$this->runJobsLog( $job->toString() . " t=$timeMs good" );
 				}
 
-				// Back off of certain jobs for a while
+				// Back off of certain jobs for a while (for throttling and for errors)
 				$ttw = $this->getBackoffTimeToWait( $job );
+				if ( $status === false && mt_rand( 0, 49 ) == 0 ) {
+					$ttw = max( $ttw, 30 );
+				}
 				if ( $ttw > 0 ) {
 					$jType = $job->getType();
 					$backoffs[$jType] = isset( $backoffs[$jType] ) ? $backoffs[$jType] : 0;
