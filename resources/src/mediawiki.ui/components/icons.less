@@ -1,0 +1,115 @@
+@import "mediawiki.mixins";
+
+// Icons
+//
+// The classes and mixins defined in this module allow you to add an
+// icon to an element without additional markup. The icon can be added
+// before or after the content of the element, or, if you really want,
+// both.
+//
+// When an icon is added to an element, the element's padding is
+// adjusted so that the content isn't overlapped by the icon. By
+// default, the padding is set to `2.4em`.
+//
+// It's assumed that the most common position of an icon is before the
+// content of an element and so the `mw-ui-icon` class and the
+// `mw-ui-icon-bgimage` mixin are aliases for `mw-ui-icon-before` and
+// `mw-ui-icon-before-bgimage` respectively.
+//
+// As an example, consider the following class:
+//
+//     .with-icon-ok {
+//         .mw-ui-icon-bgimage("/path/to/ok.svg", "/path/to/ok.png");
+//         .mw-ui-icon-before-bgimage("/path/to/ok.svg", "/path/to/ok.png")
+//         .mw-ui-icon-after-bgimage("/path/to/ok.svg", "/path/to/ok.png")
+//     }
+//
+// The `with-icon-ok` class can be used with the `mw-ui-icon` family of
+// classes as follows:
+//
+//     <button class="mw-ui-button mw-ui-icon with-icon-ok">OK</button>
+//     <button class="mw-ui-button mw-ui-icon-before with-icon-ok">OK</button>
+//     <button class="mw-ui-button mw-ui-icon-after with-icon-ok">OK</button>
+//     <button class="mw-ui-button mw-ui-icon-before mw-ui-icon-after with-icon-ok">OK</button>
+//
+// Styleguide 7.
+
+@gutter_width: 1em;
+@half_gutter_width: @gutter_width / 2;
+@icon_width: 1.4em;
+
+.mw-ui-icon-gutter-before {
+	padding-left: @gutter_width + @icon_width;
+	*padding-left: @gutter_width; // IE6/7 don't support pseudo elements.
+}
+
+.mw-ui-icon-gutter-after {
+	padding-right: @gutter_width + @icon_width;
+	*padding-right: @gutter_width; // IE6/7 don't support pseudo elements.
+}
+
+.mw-ui-icon-container-base {
+	& {
+		content: "";
+		display: block;
+		width: @icon_width;
+		height: @icon_width;
+		position: absolute;
+		top: @half_gutter_width;
+	}
+}
+
+.mw-ui-icon-container-before {
+
+	// IE8 has partial support for pseudo elements but only when using
+	// the :before syntax.
+	&:before {
+		.mw-ui-icon-container-base;
+		left: @half_gutter_width;
+	}
+}
+
+.mw-ui-icon-container-after {
+	&:after {
+		.mw-ui-icon-container-base;
+		right: @half_gutter_width;
+	}
+}
+
+.mw-ui-icon,
+.mw-ui-icon-before,
+.mw-ui-icon-after {
+	position: relative;
+}
+
+
+.mw-ui-icon,
+.mw-ui-icon-before {
+	.mw-ui-icon-gutter-before;
+	.mw-ui-icon-container-before;
+}
+
+.mw-ui-icon-after {
+	.mw-ui-icon-gutter-after;
+	.mw-ui-icon-container-after;
+}
+
+.mw-ui-icon-container-bgimage(@position; @icon_svg; @icon_png) {
+	&:@{position} {
+		.background-image-svg(@icon_svg, @icon_png);
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+}
+
+.mw-ui-icon-bgimage(@icon_svg; @icon_png) {
+	.mw-ui-icon-before-bgimage(@icon_svg, @icon_png);
+}
+
+.mw-ui-icon-before-bgimage(@icon_svg; @icon_png) {
+	.mw-ui-icon-container-bgimage(before, @icon_svg, @icon_png)
+}
+
+.mw-ui-icon-after-bgimage(@icon_svg; @icon_png) {
+	.mw-ui-icon-container-bgimage(after, @icon_svg, @icon_png)
+}
