@@ -332,6 +332,9 @@ class Linker {
 
 			if ( $target->isExternal() ) {
 				$classes[] = 'extiw';
+				if ( !$target->isLocal() ) {
+					$classes[] = 'external';
+				}
 			}
 
 			if ( !in_array( 'broken', $options ) ) { # Avoid useless calls to LinkCache (see r50387)
