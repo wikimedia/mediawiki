@@ -607,11 +607,15 @@
 			 * Format:
 			 *     {
 			 *         'moduleName': {
+			 *             // At registry
 			 *             'version': ############## (unix timestamp),
 			 *             'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
 			 *             'group': 'somegroup', (or) null,
 			 *             'source': 'local', 'someforeignwiki', (or) null
 			 *             'state': 'registered', 'loaded', 'loading', 'ready', 'error' or 'missing'
+			 *             'skip': 'return !!window.Example', (or) null
+			 *
+			 *             // Added during implementation
 			 *             'script': ...,
 			 *             'style': ...,
 			 *             'messages': { 'key': 'value' },
