@@ -17,6 +17,7 @@ class ActionTest extends MediaWikiTestCase {
 			'null'     => null,
 			'dummy'    => true,
 			'string'   => 'NamedDummyAction',
+			'declared' => 'NonExistingClassName',
 			'callable' => array( $this, 'dummyActionCallback' ),
 			'object'   => new InstantiatedDummyAction( $this->getPage(), $this->getContext() ),
 		) );
@@ -57,6 +58,13 @@ class ActionTest extends MediaWikiTestCase {
 		$exists = Action::exists( $requestedAction );
 
 		$this->assertEquals( isset( $expected ), $exists );
+	}
+
+	public function testActionExists_doesNotRequireInstantiation() {
+		// The method is not supposed to check if the action can be instantiated.
+		$exists = Action::exists( 'declared' );
+
+		$this->assertTrue( $exists );
 	}
 
 	/**
