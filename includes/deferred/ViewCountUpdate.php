@@ -46,36 +46,47 @@ class ViewCountUpdate implements DeferrableUpdate {
 	public function doUpdate() {
 		global $wgHitcounterUpdateFreq;
 
+		$id = $this->id;
+		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( $wgHitcounterUpdateFreq <= 1 || $dbw->getType() == 'sqlite' ) {
-			$dbw->update(
-				'page', array( 'page_counter = page_counter + 1' ),
-				array( 'page_id' => $this->id ),
-				__METHOD__
-			);
-
+			$dbw->onTransactionIdle( function() use ( $dbw, $id, $method ) {
+				try {
+					$dbw->update( 'page',
+						array( 'page_counter = page_counter + 1' ),
+						array( 'page_id' => $id ),
+						$method
+					);
+				} catch ( DBError $e ) {
+					MWExceptionHandler::logException( $e );
+				}
+			} );
 			return;
 		}
 
-		# Not important enough to warrant an error page in case of failure
-		try {
-			$dbw->insert( 'hitcounter', array( 'hc_id' => $this->id ), __METHOD__ );
-			$checkfreq = intval( $wgHitcounterUpdateFreq / 25 + 1 );
-			if ( rand() % $checkfreq == 0 && $dbw->lastErrno() == 0 ) {
-				$this->collect();
+		$that = $this;
+		$dbw->onTransactionIdle( function() use ( $dbw, $id, $that, $method ) {
+			global $wgHitcounterUpdateFreq;
+
+			try {
+				$dbw->insert( 'hitcounter', array( 'hc_id' => $id ), $method );
+				$checkfreq = intval( $wgHitcounterUpdateFreq / 25 + 1 );
+				if ( rand() % $checkfreq == 0 && $dbw->lastErrno() == 0 ) {
+					$that->collect();
+				}
+			} catch ( DBError $e ) {
+				MWExceptionHandler::logException( $e );
 			}
-		} catch ( DBError $e ) {
-		}
+		} );
 	}
 
-	protected function collect() {
+	public function collect() {
 		global $wgHitcounterUpdateFreq;
 
 		$dbw = wfGetDB( DB_MASTER );
 
 		$rown = $dbw->selectField( 'hitcounter', 'COUNT(*)', array(), __METHOD__ );
-
 		if ( $rown < $wgHitcounterUpdateFreq ) {
 			return;
 		}
@@ -83,14 +94,13 @@ class ViewCountUpdate implements DeferrableUpdate {
 		wfProfileIn( __METHOD__ . '-collect' );
 		$old_user_abort = ignore_user_abort( true );
 
-		$dbw->lockTables( array(), array( 'hitcounter' ), __METHOD__, false );
-
 		$dbType = $dbw->getType();
 		$tabletype = $dbType == 'mysql' ? "ENGINE=HEAP " : '';
 		$hitcounterTable = $dbw->tableName( 'hitcounter' );
 		$acchitsTable = $dbw->tableName( 'acchits' );
 		$pageTable = $dbw->tableName( 'page' );
 
+		$dbw->lockTables( array(), array( 'hitcounter' ), __METHOD__, false );
 		$dbw->query( "CREATE TEMPORARY TABLE $acchitsTable $tabletype AS " .
 			"SELECT hc_id,COUNT(*) AS hc_n FROM $hitcounterTable " .
 			'GROUP BY hc_id', __METHOD__ );
