@@ -4724,8 +4724,8 @@ parsoid=wt2html,wt2wt
 [[wikipedia:Foo|<span>Bar</span>]]
 !! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://en.wikipedia.org/wiki/Foo">[1]</a>
-</p><p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo">Bar</a>
-</p><p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo"><span>Bar</span></a>
+</p><p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw external" title="wikipedia:Foo">Bar</a>
+</p><p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw external" title="wikipedia:Foo"><span>Bar</span></a>
 </p>
 !! html/parsoid
 <p><a rel="mw:ExtLink" class="external autonumber" href="http://en.wikipedia.org/wiki/Foo"></a></p>
@@ -8531,7 +8531,7 @@ parsoid=wt2html,wt2wt,html2html
 !! wikitext
 [[MeatBall:SoftSecurity]]
 !! html/php
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class="extiw" title="meatball:SoftSecurity">MeatBall:SoftSecurity</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class="extiw external" title="meatball:SoftSecurity">MeatBall:SoftSecurity</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" title="meatball:SoftSecurity">MeatBall:SoftSecurity</a></p>
@@ -8544,7 +8544,7 @@ parsoid=wt2html,wt2wt,html2html
 !! wikitext
 [[MeatBall:]]
 !! html/php
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl" class="extiw" title="meatball:">MeatBall:</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl" class="extiw external" title="meatball:">MeatBall:</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?" title="meatball:">MeatBall:</a></p>
@@ -8579,7 +8579,7 @@ Interwiki link with fragment (T4130)
 !! wikitext
 [[MeatBall:SoftSecurity#foo]]
 !! html
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" class="extiw" title="meatball:SoftSecurity">MeatBall:SoftSecurity#foo</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" class="extiw external" title="meatball:SoftSecurity">MeatBall:SoftSecurity#foo</a>
 </p>
 !! end
 
@@ -8594,7 +8594,7 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 !! html/php
 <p><a href="#Is_this_great?">#Is this great?</a>
 <a href="/wiki/Foo#Is_this_great?" title="Foo">Foo#Is this great?</a>
-<a href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" class="extiw" title="meatball:Foo">meatball:Foo#Is this great?</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" class="extiw external" title="meatball:Foo">meatball:Foo#Is this great?</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Main_Page#Is_this_great?" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#Is_this_great?"},"sa":{"href":"#Is this great?"}}'>#Is this great?</a>
@@ -8613,7 +8613,7 @@ wgFragmentMode=[ 'legacy' ]
 !! html/php
 <p><a href="#Is_this_great.3F">#Is this great?</a>
 <a href="/wiki/Foo#Is_this_great.3F" title="Foo">Foo#Is this great?</a>
-<a href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" class="extiw" title="meatball:Foo">meatball:Foo#Is this great?</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" class="extiw external" title="meatball:Foo">meatball:Foo#Is this great?</a>
 </p>
 !! end
 
@@ -8664,9 +8664,9 @@ Interwiki links that cannot be represented in wiki syntax
 [http://de.wikipedia.org/wiki/#foo is just fragment]
 
 !! html/php
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?ok" class="extiw" title="meatball:ok">meatball:ok</a>
-<a href="http://www.usemod.com/cgi-bin/mb.pl?ok#foo" class="extiw" title="meatball:ok">ok with fragment</a>
-<a href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well%3F" class="extiw" title="meatball:ok as well?">ok ending with ? mark</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?ok" class="extiw external" title="meatball:ok">meatball:ok</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?ok#foo" class="extiw external" title="meatball:ok">ok with fragment</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well%3F" class="extiw external" title="meatball:ok as well?">ok ending with ? mark</a>
 <a rel="nofollow" class="external text" href="http://de.wikipedia.org/wiki/Foo?action=history">has query</a>
 <a rel="nofollow" class="external text" href="http://de.wikipedia.org/wiki/#foo">is just fragment</a>
 </p>
@@ -8683,7 +8683,7 @@ Interwiki links: trail
 !! wikitext
 [[wikipedia:Foo|Ba]]r
 !! html/php
-<p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo">Bar</a>
+<p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw external" title="wikipedia:Foo">Bar</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true,"tail":"r"}' title="wikipedia:Foo">Bar</a></p>
@@ -8737,7 +8737,7 @@ parsoid=wt2html,wt2wt,html2html
 !! wikitext
 [[local:meatball:Hello]]
 !! html/php
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?Hello" class="extiw" title="meatball:Hello">local:meatball:Hello</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?Hello" class="extiw external" title="meatball:Hello">local:meatball:Hello</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Hello" title="meatball:Hello">local:meatball:Hello</a></p>
@@ -18507,7 +18507,7 @@ Sanitizer: Avoid unnecessary percent encoded characters in interwiki links
 !! wikitext
 [[meatball:Soft"Security]]
 !! html/php
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?Soft%22Security" class="extiw" title="meatball:Soft&quot;Security">meatball:Soft"Security</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?Soft%22Security" class="extiw external" title="meatball:Soft&quot;Security">meatball:Soft"Security</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink/Interwiki" href='http://www.usemod.com/cgi-bin/mb.pl?Soft"Security' title='meatball:Soft"Security'>meatball:Soft"Security</a></p>
@@ -23303,9 +23303,9 @@ wgLinkHolderBatchSize=0
 [[meatball:2]]
 [[meatball:3]]
 !! html
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?1" class="extiw" title="meatball:1">meatball:1</a>
-<a href="http://www.usemod.com/cgi-bin/mb.pl?2" class="extiw" title="meatball:2">meatball:2</a>
-<a href="http://www.usemod.com/cgi-bin/mb.pl?3" class="extiw" title="meatball:3">meatball:3</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?1" class="extiw external" title="meatball:1">meatball:1</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?2" class="extiw external" title="meatball:2">meatball:2</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?3" class="extiw external" title="meatball:3">meatball:3</a>
 </p>
 !! end
 

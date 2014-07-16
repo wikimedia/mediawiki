@@ -282,9 +282,16 @@ class LinkRenderer {
 		LinkTarget $target, $text = null, array $extraAttribs = [], array $query = []
 	) {
 		$classes = [];
+
 		if ( $target->isExternal() ) {
 			$classes[] = 'extiw';
+
+			// Non-local interwikis are treated as external
+			if ( !$target->isLocal() ) {
+				$classes[] = 'external';
+			}
 		}
+
 		$colour = $this->getLinkClasses( $target );
 		if ( $colour !== '' ) {
 			$classes[] = $colour;
