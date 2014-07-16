@@ -1359,6 +1359,7 @@
 	"license": "Licence:",
 	"license-header": "Licence",
 	"nolicense": "Bez udání licence",
+	"licenses-edit": "Editovat nabídku licencí",
 	"license-nopreview": "(Náhled není dostupný)",
 	"upload_source_url": " (platné, veřejně přístupné URL)",
 	"upload_source_file": " (soubor ve vašem počítači)",

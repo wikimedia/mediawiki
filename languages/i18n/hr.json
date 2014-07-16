@@ -1319,6 +1319,7 @@
 	"listfiles_size": "Veličina (u bajtovima)",
 	"listfiles_description": "Opis",
 	"listfiles_count": "Inačice",
+	"listfiles-show-all": "Uključujući starije inačice slika",
 	"listfiles-latestversion-yes": "Da",
 	"listfiles-latestversion-no": "Ne",
 	"file-anchor-link": "Slika",

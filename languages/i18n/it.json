@@ -1405,6 +1405,7 @@
 	"license": "Licenza:",
 	"license-header": "Licenza",
 	"nolicense": "Nessuna licenza indicata",
+	"licenses-edit": "Modifica opzioni di licenza",
 	"license-nopreview": "(Anteprima non disponibile)",
 	"upload_source_url": " (una URL corretta e accessibile)",
 	"upload_source_file": " (un file sul proprio computer)",

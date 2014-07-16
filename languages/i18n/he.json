@@ -1359,6 +1359,7 @@
 	"license": "רישיון:",
 	"license-header": "רישיון",
 	"nolicense": "אין",
+	"licenses-edit": "עריכת אפשרויות רישיון",
 	"license-nopreview": "(תצוגה מקדימה לא זמינה)",
 	"upload_source_url": "(כתובת URL תקפה ונגישה)",
 	"upload_source_file": "(קובץ במחשב שלך)",

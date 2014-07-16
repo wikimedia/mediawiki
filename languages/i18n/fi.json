@@ -1374,6 +1374,7 @@
 	"license": "Lisenssi",
 	"license-header": "Lisenssi",
 	"nolicense": "Ei lisenssiä",
+	"licenses-edit": "Muokkaa lisenssivaihtoehtoja",
 	"license-nopreview": "(esikatselua ei saatavilla)",
 	"upload_source_url": " (julkinen verkko-osoite)",
 	"upload_source_file": " (tiedosto tietokoneella)",

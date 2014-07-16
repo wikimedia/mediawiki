@@ -1392,6 +1392,7 @@
 	"license": "Licens:",
 	"license-header": "Licensiering",
 	"nolicense": "Ingen angiven",
+	"licenses-edit": "Redigera licensalternativ",
 	"license-nopreview": "(Förhandsvisning är inte tillgänglig)",
 	"upload_source_url": " (en giltig URL som är allmänt åtkomlig)",
 	"upload_source_file": " (en fil på din dator)",

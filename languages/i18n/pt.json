@@ -1393,6 +1393,7 @@
 	"license": "Licença:",
 	"license-header": "Licenciamento",
 	"nolicense": "Nenhuma selecionada",
+	"licenses-edit": "Editar opções de licença",
 	"license-nopreview": "(Antevisão indisponível)",
 	"upload_source_url": " (uma URL válida, publicamente acessível)",
 	"upload_source_file": " (um ficheiro no seu computador)",
