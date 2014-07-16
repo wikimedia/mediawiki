@@ -62,7 +62,21 @@
     position: relative;
 }
 
+.with-icon-ok {
+    //.mw-ui-icon-bgimage("images/kss/ok.svg", "images/kss/ok.png");
+    .mw-ui-icon-left-bgimage("images/kss/ok.svg", "images/kss/ok.png");
+    .mw-ui-icon-right-bgimage("images/kss/ok.svg", "images/kss/ok.png");
+}
 
+// Left, right… left and right
+//
+// Markup:
+// <button class="mw-ui-button mw-ui-progressive mw-ui-icon with-icon-ok">.mw-ui-icon.with-icon-ok</button><br />
+// <button class="mw-ui-button mw-ui-progressive mw-ui-icon-left with-icon-ok">.mw-ui-icon-left.with-icon-ok</button><br />
+// <button class="mw-ui-button mw-ui-progressive mw-ui-icon-right with-icon-ok">.mw-ui-icon-right.with-icon-ok</button><br />
+// <button class="mw-ui-button mw-ui-progressive mw-ui-icon-left mw-ui-icon-right with-icon-ok">.mw-ui-icon-left.mw-ui-icon-right.with-icon-ok</button>
+//
+// Styleguide 5.1.
 .mw-ui-icon,
 .mw-ui-icon-left {
     .mw-ui-icon-gutter-left;
