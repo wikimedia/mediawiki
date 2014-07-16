@@ -457,32 +457,22 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * @dataProvider provideLanguageCodes
 	 * @covers Language::isValidBuiltInCode
 	 */
-	public function testBuiltInCodeValidation( $code, $message = '' ) {
-		$this->assertTrue(
+	public function testBuiltInCodeValidation( $code, $expected, $message = '' ) {
+		$this->assertEquals( $expected,
 			(bool)Language::isValidBuiltInCode( $code ),
 			"validating code $code $message"
 		);
 	}
 
-	/**
-	 * @covers Language::isValidBuiltInCode
-	 */
-	public function testBuiltInCodeValidationRejectUnderscore() {
-		$this->assertFalse(
-			(bool)Language::isValidBuiltInCode( 'be_tarask' ),
-			"reject underscore in language code"
-		);
-	}
-
 	public static function provideLanguageCodes() {
 		return array(
-			array( 'fr', 'Two letters, minor case' ),
-			array( 'EN', 'Two letters, upper case' ),
-			array( 'tyv', 'Three letters' ),
-			array( 'tokipona', 'long language code' ),
-			array( 'be-tarask', 'With dash' ),
-			array( 'Zh-classical', 'Begin with upper case, dash' ),
-			array( 'Be-x-old', 'With extension (two dashes)' ),
+			array( 'fr', true, 'Two letters, minor case' ),
+			array( 'EN', false, 'Two letters, upper case' ),
+			array( 'tyv', true, 'Three letters' ),
+			array( 'tokipona', true, 'long language code' ),
+			array( 'be-tarask', true, 'With dash' ),
+			array( 'be-x-old', true, 'With extension (two dashes)' ),
+			array( 'be_tarask', false, 'Reject underscores' ),
 		);
 	}
 
