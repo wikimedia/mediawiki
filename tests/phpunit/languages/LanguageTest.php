@@ -1589,7 +1589,6 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 'en', true, 'is supported language' ),
 			array( 'fi', true, 'is supported language' ),
 			array( 'bunny', false, 'is not supported language' ),
-			array( 'FI', false, 'is not supported language, input should be in lower case' ),
 		);
 	}
 
