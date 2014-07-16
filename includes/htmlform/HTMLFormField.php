@@ -13,6 +13,7 @@ abstract class HTMLFormField {
 	protected $mLabel; # String label.  Set on construction
 	protected $mID;
 	protected $mClass = '';
+	protected $mHelpClass = false;
 	protected $mDefault;
 	protected $mOptions = false;
 	protected $mOptionsLabelsNotFromMessage = false;
@@ -397,6 +398,10 @@ abstract class HTMLFormField {
 			$this->mClass = $params['cssclass'];
 		}
 
+		if ( isset( $params['csshelpclass'] ) ) {
+			$this->mHelpClass = $params['csshelpclass'];
+		}
+
 		if ( isset( $params['validation-callback'] ) ) {
 			$this->mValidationCallback = $params['validation-callback'];
 		}
@@ -562,7 +567,11 @@ abstract class HTMLFormField {
 			$rowAttributes['class'] = 'mw-htmlform-hide-if';
 		}
 
-		$row = Html::rawElement( 'td', array( 'colspan' => 2, 'class' => 'htmlform-tip' ), $helptext );
+		$tdClasses = array( 'htmlform-tip' );
+		if ( $this->mHelpClass !== false ) {
+			$tdClasses[] = $this->mHelpClass;
+		}
+		$row = Html::rawElement( 'td', array( 'colspan' => 2, 'class' => $tdClasses ), $helptext );
 		$row = Html::rawElement( 'tr', $rowAttributes, $row );
 
 		return $row;
