@@ -1836,17 +1836,6 @@ class Title {
 	}
 
 	/**
-	 * Can $wgUser read this page?
-	 *
-	 * @deprecated since 1.19; use userCan(), quickUserCan() or getUserPermissionsErrors() instead
-	 * @return bool
-	 */
-	public function userCanRead() {
-		wfDeprecated( __METHOD__, '1.19' );
-		return $this->userCan( 'read' );
-	}
-
-	/**
 	 * Can $user perform $action on this page?
 	 * This skips potentially expensive cascading permission checks
 	 * as well as avoids expensive error formatting
