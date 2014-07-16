@@ -42,7 +42,6 @@ $wgAutoloadLocalClasses = array(
 	'Category' => 'includes/Category.php',
 	'Categoryfinder' => 'includes/Categoryfinder.php',
 	'CategoryViewer' => 'includes/CategoryViewer.php',
-	'ChangesFeed' => 'includes/ChangesFeed.php',
 	'ChangeTags' => 'includes/ChangeTags.php',
 	'ChannelFeed' => 'includes/Feed.php',
 	'Collation' => 'includes/Collation.php',
@@ -360,6 +359,7 @@ $wgAutoloadLocalClasses = array(
 	'ResourceFileCache' => 'includes/cache/ResourceFileCache.php',
 
 	# includes/changes
+	'ChangesFeed' => 'includes/changes/ChangesFeed.php',
 	'ChangesList' => 'includes/changes/ChangesList.php',
 	'EnhancedChangesList' => 'includes/changes/EnhancedChangesList.php',
 	'OldChangesList' => 'includes/changes/OldChangesList.php',
