@@ -62,9 +62,10 @@ class JobQueueRedis extends JobQueue {
 
 	/** @var string Server address */
 	protected $server;
-
 	/** @var string Compression method to use */
 	protected $compression;
+	/** @var bool */
+	protected $daemonized;
 
 	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed (7 days)
 
@@ -79,6 +80,9 @@ class JobQueueRedis extends JobQueue {
 	 *                   If a hostname is specified but no port, the standard port number
 	 *                   6379 will be used. Required.
 	 *   - compression : The type of compression to use; one of (none,gzip).
+	 *   - daemonized  : Set to true if the redisJobRunnerService runs in the background.
+	 *                   This will disable job recycling/undelaying from the MediaWiki side
+	 *                   to avoid redundance and out-of-sync configuration.
 	 * @param array $params
 	 */
 	public function __construct( array $params ) {
@@ -87,6 +91,7 @@ class JobQueueRedis extends JobQueue {
 		$this->server = $params['redisServer'];
 		$this->compression = isset( $params['compression'] ) ? $params['compression'] : 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
+		$this->daemonized = !empty( $params['daemonized'] );
 	}
 
 	protected function supportedOrders() {
@@ -716,6 +721,9 @@ LUA;
 	 * @return array
 	 */
 	protected function doGetPeriodicTasks() {
+		if ( $this->daemonized ) {
+			return array(); // managed in the runner loop
+		}
 		$periods = array( 3600 ); // standard cleanup (useful on config change)
 		if ( $this->claimTTL > 0 ) {
 			$periods[] = ceil( $this->claimTTL / 2 ); // avoid bad timing
