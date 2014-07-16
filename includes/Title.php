@@ -977,7 +977,7 @@ class Title {
 		}
 
 		try {
-			$formatter = $this->getTitleFormatter();
+			$formatter = self::getTitleFormatter();
 			return $formatter->getNamespaceName( $this->mNamespace, $this->mDbkeyform );
 		} catch ( InvalidArgumentException $ex )  {
 			wfDebug( __METHOD__ . ': ' . $ex->getMessage() . "\n" );
@@ -3291,7 +3291,7 @@ class Title {
 			// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
 			//        the parsing code with Title, while avoiding massive refactoring.
 			// @todo: get rid of secureAndSplit, refactor parsing code.
-			$parser = $this->getTitleParser();
+			$parser = self::getTitleParser();
 			$parts = $parser->splitTitleString( $dbkey, $this->getDefaultNamespace() );
 		} catch ( MalformedTitleException $ex ) {
 			return false;
