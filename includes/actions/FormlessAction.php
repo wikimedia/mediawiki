@@ -67,6 +67,15 @@ abstract class FormlessAction extends Action {
 		$this->getOutput()->addHTML( $this->onView() );
 	}
 
+	public function setHeaders() {
+		$actionName = $this->getName();
+		$output = $this->getOutput();
+		$output->setRobotPolicy( array( 'index' => 'noindex', 'follow' => 'nofollow' ) );
+		$output->setPageTitle( $this->getTitle() );
+		$output->setSubtitle( $this->msg( "action-{$actionName}-subtitle" )->text() );
+		$output->setArticleRelated( true );
+	}
+
 	/**
 	 * Execute the action silently, not giving any output.  Since these actions don't have
 	 * forms, they probably won't have any data, but some (eg rollback) may do

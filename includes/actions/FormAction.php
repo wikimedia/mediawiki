@@ -123,6 +123,18 @@ abstract class FormAction extends Action {
 	}
 
 	/**
+	 * @see Action::setHeaders()
+	 */
+	public function setHeaders() {
+		$actionName = $this->getName();
+		$output = $this->getOutput();
+		$output->setRobotPolicy( array( 'index' => 'noindex', 'follow' => 'nofollow' ) );
+		$output->setPageTitle( $this->msg( "action-{$actionName}-title", $this->getTitle() )->text() );
+		$output->addBacklinkSubtitle( $this->getTitle() );
+		$output->setArticleRelated( true );
+	}
+
+	/**
 	 * @see Action::execute()
 	 *
 	 * @param array|null $data

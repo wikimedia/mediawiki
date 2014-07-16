@@ -38,18 +38,15 @@ class RevisiondeleteAction extends FormlessAction {
 		return false;
 	}
 
-	public function getDescription() {
-		return '';
-	}
-
 	public function onView() {
 		return '';
 	}
 
 	public function show() {
-		$special = SpecialPageFactory::getPage( 'Revisiondelete' );
+		$specialpagename = ucfirst( $this->getName() );
+		$special = SpecialPageFactory::getPage( $specialpagename );
 		$special->setContext( $this->getContext() );
-		$special->getContext()->setTitle( $special->getPageTitle() );
+		$special->getContext()->setTitle( SpecialPage::getTitleFor( $specialpagename ) );
 		$special->run( '' );
 	}
 }

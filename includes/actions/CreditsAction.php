@@ -32,10 +32,6 @@ class CreditsAction extends FormlessAction {
 		return 'credits';
 	}
 
-	protected function getDescription() {
-		return $this->msg( 'creditspage' )->escaped();
-	}
-
 	/**
 	 * This is largely cadged from PageHistory::history
 	 *

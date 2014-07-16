@@ -52,18 +52,17 @@ class HistoryAction extends FormlessAction {
 		return false;
 	}
 
-	protected function getPageTitle() {
-		return $this->msg( 'history-title', $this->getTitle()->getPrefixedText() )->text();
-	}
-
-	protected function getDescription() {
-		// Creation of a subtitle link pointing to [[Special:Log]]
-		return Linker::linkKnown(
+	public function setHeaders() {
+		$actionName = $this->getName();
+		$output = $this->getOutput();
+		$output->setRobotPolicy( array( 'index' => 'noindex', 'follow' => 'nofollow' ) );
+		$output->setPageTitle( $this->msg( "action-{$actionName}-title", $this->getTitle() )->text() );
+		$output->setSubtitle( Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Log' ),
 			$this->msg( 'viewpagelogs' )->escaped(),
 			array(),
-			array( 'page' => $this->getTitle()->getPrefixedText() )
-		);
+			array( 'page' => $this->getTitle() )
+		) );
 	}
 
 	/**

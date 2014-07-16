@@ -767,15 +767,6 @@ class InfoAction extends FormlessAction {
 	}
 
 	/**
-	 * Returns the name that goes in the "<h1>" page title.
-	 *
-	 * @return string
-	 */
-	protected function getPageTitle() {
-		return $this->msg( 'pageinfo-title', $this->getTitle()->getPrefixedText() )->text();
-	}
-
-	/**
 	 * Get a list of contributors of $article
 	 * @return string Html
 	 */
@@ -839,12 +830,12 @@ class InfoAction extends FormlessAction {
 			: '';
 	}
 
-	/**
-	 * Returns the description that goes below the "<h1>" tag.
-	 *
-	 * @return string
-	 */
-	protected function getDescription() {
-		return '';
+	public function setHeaders() {
+		$actionName = $this->getName();
+		$output = $this->getOutput();
+		$output->setRobotPolicy( array( 'index' => 'noindex', 'follow' => 'nofollow' ) );
+		$output->setPageTitle( $this->msg( "action-{$actionName}-title", $this->getTitle() )->text() );
+		$output->clearSubtitle();
+		$output->setArticleRelated( true );
 	}
 }

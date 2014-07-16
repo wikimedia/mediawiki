@@ -327,31 +327,7 @@ abstract class Action {
 	 * Set output headers for noindexing etc.  This function will not be called through
 	 * the execute() entry point, so only put UI-related stuff in here.
 	 */
-	protected function setHeaders() {
-		$out = $this->getOutput();
-		$out->setRobotPolicy( "noindex,nofollow" );
-		$out->setPageTitle( $this->getPageTitle() );
-		$this->getOutput()->setSubtitle( $this->getDescription() );
-		$out->setArticleRelated( true );
-	}
-
-	/**
-	 * Returns the name that goes in the \<h1\> page title
-	 *
-	 * @return string
-	 */
-	protected function getPageTitle() {
-		return $this->getTitle()->getPrefixedText();
-	}
-
-	/**
-	 * Returns the description that goes below the \<h1\> tag
-	 *
-	 * @return string
-	 */
-	protected function getDescription() {
-		return $this->msg( strtolower( $this->getName() ) )->escaped();
-	}
+	abstract public function setHeaders();
 
 	/**
 	 * The main action entry point.  Do all output for display and send it to the context

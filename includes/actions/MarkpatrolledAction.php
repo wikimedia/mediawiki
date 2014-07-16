@@ -33,10 +33,6 @@ class MarkpatrolledAction extends FormlessAction {
 		return 'markpatrolled';
 	}
 
-	protected function getDescription() {
-		return '';
-	}
-
 	public function onView() {
 		$request = $this->getRequest();
 
@@ -82,5 +78,10 @@ class MarkpatrolledAction extends FormlessAction {
 		$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrolled' ) );
 		$this->getOutput()->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
 		$this->getOutput()->returnToMain( null, $return );
+	}
+
+	public function setHeaders() {
+		parent::setHeaders();
+		$this->getOutput()->clearSubtitle();
 	}
 }

@@ -114,7 +114,8 @@ class RollbackAction extends FormlessAction {
 		}
 	}
 
-	protected function getDescription() {
-		return '';
+	public function setHeaders() {
+		parent::setHeaders();
+		$this->getOutput->clearSubtitle();
 	}
 }

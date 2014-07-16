@@ -35,8 +35,13 @@ class WatchAction extends FormAction {
 		return false;
 	}
 
-	protected function getDescription() {
-		return $this->msg( 'addwatch' )->escaped();
+	public function setHeaders() {
+		$actionName = $this->getName();
+		$output = $this->getOutput();
+		$output->setRobotPolicy( array( 'index' => 'noindex', 'follow' => 'nofollow' ) );
+		$output->setPageTitle( $this->getTitle() );
+		$output->addSubtitle( $this->msg( "action-{$actionName}-subtitle" )->text() );
+		$output->setArticleRelated( true );
 	}
 
 	/**
@@ -86,7 +91,7 @@ class WatchAction extends FormAction {
 				SpecialPage::getTitleFor( 'Userlogin' ),
 				$this->msg( 'loginreqlink' )->escaped(),
 				array(),
-				array( 'returnto' => $this->getPageTitle(), 'returntoquery' => 'action=' . $this->getName() )
+				array( 'returnto' => $this->getTitle(), 'returntoquery' => 'action=' . $this->getName() )
 			);
 			$reasonMsg = $this->msg( 'watchlistanontext' )->rawParams( $loginreqlink );
 			throw new UserNotLoggedIn( $reasonMsg, 'watchnologin' );
@@ -227,10 +232,6 @@ class UnwatchAction extends WatchAction {
 
 	public function getName() {
 		return 'unwatch';
-	}
-
-	protected function getDescription() {
-		return $this->msg( 'removewatch' )->escaped();
 	}
 
 	public function onSubmit( $data ) {

@@ -40,10 +40,6 @@ class PurgeAction extends FormAction {
 		return false;
 	}
 
-	public function getDescription() {
-		return '';
-	}
-
 	/**
 	 * Just get an empty form with a single submit button
 	 * @return array
@@ -54,6 +50,11 @@ class PurgeAction extends FormAction {
 
 	public function onSubmit( $data ) {
 		return $this->page->doPurge();
+	}
+
+	public function setHeaders() {
+		parent::setHeaders();
+		$this->getOutput()->clearSubtitle();
 	}
 
 	/**
