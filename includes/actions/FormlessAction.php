@@ -35,29 +35,6 @@ abstract class FormlessAction extends Action {
 	 */
 	abstract public function onView();
 
-	/**
-	 * We don't want an HTMLForm
-	 * @return bool
-	 */
-	protected function getFormFields() {
-		return false;
-	}
-
-	/**
-	 * @param array $data
-	 * @return bool
-	 */
-	public function onSubmit( $data ) {
-		return false;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function onSuccess() {
-		return false;
-	}
-
 	public function show() {
 		$this->setHeaders();
 
