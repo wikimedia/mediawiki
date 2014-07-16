@@ -1069,11 +1069,7 @@
 						crossDomain: true,
 						cache: true,
 						async: true
-					} ).always( function () {
-						if ( callback  ) {
-							callback();
-						}
-					} );
+					} ).always( callback );
 				} else {
 					/*jshint evil:true */
 					document.write( mw.html.element( 'script', { 'src': src }, '' ) );
