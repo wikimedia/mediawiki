@@ -893,7 +893,7 @@ class SkinTemplate extends Skin {
 		);
 
 		// parameters
-		$action = $request->getVal( 'action', 'view' );
+		$action = Action::getActionName( $this );
 
 		$userCanRead = $title->quickUserCan( 'read', $user );
 
