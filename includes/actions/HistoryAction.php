@@ -879,18 +879,3 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $this->preventClickjacking;
 	}
 }
-
-/**
- * Backwards-compatibility alias
- */
-class HistoryPage extends HistoryAction {
-	// @codingStandardsIgnoreStart Needed "useless" override to make it public.
-	public function __construct( Page $article ) {
-		parent::__construct( $article );
-	}
-	// @codingStandardsIgnoreEnd
-
-	public function history() {
-		$this->onView();
-	}
-}
