@@ -69,11 +69,6 @@ class ParserTest {
 	 */
 	private $djVuSupport;
 
-	/**
-	 * @var string $oldTablePrefix Original table prefix
-	 */
-	private $oldTablePrefix;
-
 	private $maxFuzzTestLength = 300;
 	private $fuzzSeed = 0;
 	private $memoryLimit = 50;
@@ -942,7 +937,6 @@ class ParserTest {
 		}
 
 		$this->databaseSetupDone = true;
-		$this->oldTablePrefix = $wgDBprefix;
 
 		# SqlBagOStuff broke when using temporary tables on r40209 (bug 15892).
 		# It seems to have been fixed since (r55079?), but regressed at some point before r85701.
