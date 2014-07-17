@@ -6,7 +6,7 @@
  */
 ( function ( mw, $ ) {
 	// The name of the page to watch or unwatch
-	var title = mw.config.get( 'wgRelevantPageName', mw.config.get( 'wgPageName' ) );
+	var title = mw.config.get( 'wgRelevantPageName' );
 
 	/**
 	 * Update the link text, link href attribute and (if applicable)
