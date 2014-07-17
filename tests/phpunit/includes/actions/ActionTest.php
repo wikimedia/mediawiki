@@ -19,14 +19,16 @@ class ActionTest extends MediaWikiTestCase {
 
 		$context = $this->getContext();
 		$wgActions = array(
-			'null'     => null,
-			'disabled' => false,
-			'view'     => true,
-			'dummy'    => true,
-			'string'   => 'NamedDummyAction',
-			'declared' => 'NonExistingClassName',
-			'callable' => array( $this, 'dummyActionCallback' ),
-			'object'   => new InstantiatedDummyAction( $context->getWikiPage(), $context ),
+			'null'           => null,
+			'disabled'       => false,
+			'view'           => true,
+			'edit'           => true,
+			'revisiondelete' => true,
+			'dummy'          => true,
+			'string'         => 'NamedDummyAction',
+			'declared'       => 'NonExistingClassName',
+			'callable'       => array( $this, 'dummyActionCallback' ),
+			'object'         => new InstantiatedDummyAction( $context->getWikiPage(), $context ),
 		);
 	}
 
@@ -91,6 +93,31 @@ class ActionTest extends MediaWikiTestCase {
 		$actionName = Action::getActionName( $context );
 
 		$this->assertEquals( isset( $expected ) ? $expected : 'nosuchaction', $actionName );
+	}
+
+	public function testGetActionName_editredlinkWorkaround() {
+		// See https://bugzilla.wikimedia.org/show_bug.cgi?id=20966
+		$context = $this->getContext( 'editredlink' );
+		$actionName = Action::getActionName( $context );
+
+		$this->assertEquals( 'edit', $actionName );
+	}
+
+	public function testGetActionName_historysubmitWorkaround() {
+		// See https://bugzilla.wikimedia.org/show_bug.cgi?id=20966
+		$context = $this->getContext( 'historysubmit' );
+		$actionName = Action::getActionName( $context );
+
+		$this->assertEquals( 'view', $actionName );
+	}
+
+	public function testGetActionName_revisiondeleteWorkaround() {
+		// See https://bugzilla.wikimedia.org/show_bug.cgi?id=20966
+		$context = $this->getContext( 'historysubmit' );
+		$context->getRequest()->setVal( 'revisiondelete', true );
+		$actionName = Action::getActionName( $context );
+
+		$this->assertEquals( 'revisiondelete', $actionName );
 	}
 
 	/**
