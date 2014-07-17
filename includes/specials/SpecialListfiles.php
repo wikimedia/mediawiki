@@ -560,7 +560,9 @@ class ImageListPager extends TablePager {
 		if ( !is_null( $this->mUserName ) ) {
 			# Append the username to the query string
 			foreach ( $queries as &$query ) {
-				$query['user'] = $this->mUserName;
+				if ( $query !== false ) {
+					$query['user'] = $this->mUserName;
+				}
 			}
 		}
 
