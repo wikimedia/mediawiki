@@ -66,7 +66,9 @@ class ApiFormatJson extends ApiFormatBase {
 		$callback = $params['callback'];
 		if ( $callback !== null ) {
 			$callback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback );
-			$this->printText( "$callback($json)" );
+			# Prepend a comment to try to avoid attacks against content
+			# sniffers, such as bug 68187.
+			$this->printText( "/**/$callback($json)" );
 		} else {
 			$this->printText( $json );
 		}

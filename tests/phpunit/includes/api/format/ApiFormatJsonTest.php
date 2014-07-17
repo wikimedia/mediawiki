@@ -14,4 +14,9 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 		$this->assertInternalType( 'array', json_decode( $data, true ) );
 		$this->assertGreaterThan( 0, count( (array)$data ) );
 	}
+
+	public function testJsonpInjection( ) {
+		$data = $this->apiRequest( 'json', array( 'action' => 'query', 'meta' => 'siteinfo', 'callback' => 'myCallback' ) );
+		$this->assertEquals( '/**/myCallback(', substr( $data, 0, 15 ) );
+	}
 }
