@@ -16,6 +16,7 @@ class ActionTest extends MediaWikiTestCase {
 		$context = $this->getContext();
 		$this->setMwGlobals( 'wgActions', array(
 			'null' => null,
+			'disabled' => false,
 			'dummy' => true,
 			'string' => 'NamedDummyAction',
 			'declared' => 'NonExistingClassName',
@@ -96,6 +97,26 @@ class ActionTest extends MediaWikiTestCase {
 		$action = Action::factory( $requestedAction, $context->getWikiPage(), $context );
 
 		$this->assertType( $expected ?: 'null', $action );
+	}
+
+	public function testDisabledAction_exists() {
+		$exists = Action::exists( 'disabled' );
+
+		$this->assertTrue( $exists );
+	}
+
+	public function testDisabledAction_isNotResolved() {
+		$context = $this->getContext( 'disabled' );
+		$actionName = Action::getActionName( $context );
+
+		$this->assertEquals( 'nosuchaction', $actionName );
+	}
+
+	public function testDisabledAction_factoryReturnsFalse() {
+		$context = $this->getContext( 'disabled' );
+		$action = Action::factory( 'disabled', $context->getWikiPage(), $context );
+
+		$this->assertFalse( $action );
 	}
 
 	public function dummyActionCallback() {
