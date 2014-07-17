@@ -13,22 +13,27 @@ class ActionTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		$context = $this->getContext();
 		$this->setMwGlobals( 'wgActions', array(
 			'null'     => null,
 			'dummy'    => true,
 			'string'   => 'NamedDummyAction',
 			'declared' => 'NonExistingClassName',
 			'callable' => array( $this, 'dummyActionCallback' ),
-			'object'   => new InstantiatedDummyAction( $this->getPage(), $this->getContext() ),
+			'object'   => new InstantiatedDummyAction( $context->getWikiPage(), $context ),
 		) );
 	}
 
-	private function getPage() {
-		return WikiPage::factory( Title::makeTitle( 0, 'Title' ) );
-	}
+	private function getContext( $requestedAction = null ) {
+		$request = new FauxRequest( array( 'action' => $requestedAction ) );
 
-	private function getContext() {
-		return new DerivativeContext( RequestContext::getMain() );
+		$page = WikiPage::factory( Title::makeTitle( 0, 'Title' ) );
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setRequest( $request );
+		$context->setWikiPage( $page );
+
+		return $context;
 	}
 
 	public function actionProvider() {
@@ -39,6 +44,7 @@ class ActionTest extends MediaWikiTestCase {
 			array( 'object',   'InstantiatedDummyAction' ),
 
 			// Capitalization is ignored
+			array( 'DUMMY',    'DummyAction' ),
 			array( 'STRING',   'NamedDummyAction' ),
 
 			// Null and non-existing values
@@ -46,6 +52,7 @@ class ActionTest extends MediaWikiTestCase {
 			array( 'undeclared', null ),
 			array( '',           null ),
 			array( null,         null ),
+			array( false,        null ),
 		);
 	}
 
@@ -73,10 +80,7 @@ class ActionTest extends MediaWikiTestCase {
 	 * @param string|null $expected
 	 */
 	public function testGetActionName( $requestedAction, $expected ) {
-		$context = $this->getContext();
-		$context->setWikiPage( $this->getPage() );
-		$context->setRequest( new FauxRequest( array( 'action' => $requestedAction ) ) );
-
+		$context = $this->getContext( $requestedAction );
 		$actionName = Action::getActionName( $context );
 
 		$this->assertEquals( isset( $expected ) ? $expected : 'nosuchaction', $actionName );
@@ -88,13 +92,15 @@ class ActionTest extends MediaWikiTestCase {
 	 * @param string|null $expected
 	 */
 	public function testActionFactory( $requestedAction, $expected ) {
-		$action = Action::factory( $requestedAction, $this->getPage(), $this->getContext() );
+		$context = $this->getContext();
+		$action = Action::factory( $requestedAction, $context->getWikiPage(), $context );
 
 		$this->assertType( isset( $expected ) ? $expected : 'null', $action );
 	}
 
 	public function dummyActionCallback() {
-		return new CalledDummyAction( $this->getPage(), $this->getContext() );
+		$context = $this->getContext();
+		return new CalledDummyAction( $context->getWikiPage(), $context );
 	}
 
 }
