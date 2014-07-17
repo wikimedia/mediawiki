@@ -205,7 +205,6 @@ $wgAutoloadLocalClasses = array(
 	'FormlessAction' => 'includes/actions/FormlessAction.php',
 	'FormAction' => 'includes/actions/FormAction.php',
 	'HistoryAction' => 'includes/actions/HistoryAction.php',
-	'HistoryPage' => 'includes/actions/HistoryAction.php',
 	'HistoryPager' => 'includes/actions/HistoryAction.php',
 	'InfoAction' => 'includes/actions/InfoAction.php',
 	'MarkpatrolledAction' => 'includes/actions/MarkpatrolledAction.php',

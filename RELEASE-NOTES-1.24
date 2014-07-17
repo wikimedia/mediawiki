@@ -294,6 +294,7 @@ changes to languages because of Bugzilla reports.
 * WatchlistEditor - Use SpecialEditWatchlist directly
 * FormatExif - Use FormatMetadata directly
 * RevertFileAction - Use RevertAction directly
+* HistoryPage - Use HistoryAction directly
 
 == Compatibility ==
 
