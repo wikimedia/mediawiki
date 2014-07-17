@@ -118,6 +118,10 @@ abstract class Action {
 		$request = $context->getRequest();
 		$actionName = $request->getVal( 'action', 'view' );
 
+		if ( $actionName === '' ) {
+			$actionName = 'view';
+		}
+
 		// Check for disabled actions
 		if ( isset( $wgActions[$actionName] ) && $wgActions[$actionName] === false ) {
 			$actionName = 'nosuchaction';
