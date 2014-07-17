@@ -248,6 +248,7 @@ changes to languages because of Bugzilla reports.
 * Removed Action::execute().
 * Removed AjaxAddScript which has been obsolete since ResourceLoader and
   is unused by any modern extension.
+* Removed global function wfGetIP(). (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
