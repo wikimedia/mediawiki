@@ -928,7 +928,7 @@ class ParserTest {
 	 * the db will be visible to later tests in the run.
 	 */
 	public function setupDatabase() {
-		global $wgDBprefix;
+		global $wgDBprefix, $wgContLang;
 
 		if ( $this->databaseSetupDone ) {
 			return;
@@ -977,6 +977,7 @@ class ParserTest {
 
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
+		Language::getLocalisationCache()->recache( $wgContLang->getCode() );
 
 		# Clear the message cache
 		MessageCache::singleton()->clear();
