@@ -1539,10 +1539,14 @@ class Title {
 	 * @endcode
 	 *
 	 * @param string $text The subpage name to add to the title
-	 * @return Title Subpage title
+	 * @return Title|null Subpage title or false if the namespace does not have subpages
 	 * @since 1.20
 	 */
 	public function getSubpage( $text ) {
+		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+			return null;
+		}
+
 		return Title::makeTitleSafe( $this->getNamespace(), $this->getText() . '/' . $text );
 	}
 
@@ -4511,6 +4515,7 @@ class Title {
 	public function isSubpageOf( Title $title ) {
 		return $this->getInterwiki() === $title->getInterwiki()
 			&& $this->getNamespace() == $title->getNamespace()
+			&& MWNamespace::hasSubpages( $this->getNamespace() )
 			&& strpos( $this->getDBkey(), $title->getDBkey() . '/' ) === 0;
 	}
 

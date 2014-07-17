@@ -180,7 +180,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"abc [[#section]] def",
 			),
 			array(
-				'abc <a href="/wiki/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a> def',
+				'abc <a href="/wiki/Special:BlankPage/subpage" title="Special:BlankPage/subpage">/subpage</a> def',
 				"abc [[/subpage]] def",
 			),
 		);

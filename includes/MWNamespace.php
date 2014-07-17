@@ -314,7 +314,7 @@ class MWNamespace {
 	 */
 	public static function hasSubpages( $index ) {
 		global $wgNamespacesWithSubpages;
-		return !empty( $wgNamespacesWithSubpages[$index] );
+		return $index === NS_SPECIAL || !empty( $wgNamespacesWithSubpages[$index] );
 	}
 
 	/**
