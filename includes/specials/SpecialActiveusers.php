@@ -295,6 +295,7 @@ class SpecialActiveUsers extends SpecialPage {
 			'qci_timestamp',
 			array( 'qci_type' => 'activeusers' )
 		);
+
 		if ( !wfReadOnly() ) {
 			if ( !$cTime || ( time() - wfTimestamp( TS_UNIX, $cTime ) ) > $period ) {
 				$dbw = wfGetDB( DB_MASTER );
@@ -303,7 +304,7 @@ class SpecialActiveUsers extends SpecialPage {
 				} else {
 					$window = $period * 2;
 				}
-				self::doQueryCacheUpdate( $dbw, $window );
+				$cTime = self::doQueryCacheUpdate( $dbw, $window ) ?: $cTime;
 			}
 		}
 
@@ -326,7 +327,7 @@ class SpecialActiveUsers extends SpecialPage {
 	 *
 	 * @param DatabaseBase $dbw
 	 * @param int $window Maximum time range of new data to scan (in seconds)
-	 * @return bool Success
+	 * @return int|bool UNIX timestamp the cache is now up-to-date as of (false on error)
 	 */
 	protected static function doQueryCacheUpdate( DatabaseBase $dbw, $window ) {
 		global $wgActiveUserDays;
@@ -426,6 +427,6 @@ class SpecialActiveUsers extends SpecialPage {
 
 		$dbw->unlock( $lockKey, __METHOD__ );
 
-		return true;
+		return $eTimestamp;
 	}
 }
