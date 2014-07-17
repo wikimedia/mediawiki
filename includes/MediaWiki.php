@@ -74,7 +74,7 @@ class MediaWiki {
 		$request = $this->context->getRequest();
 		$curid = $request->getInt( 'curid' );
 		$title = $request->getVal( 'title' );
-		$action = $request->getVal( 'action', 'view' );
+		$action = $this->getAction();
 
 		if ( $request->getCheck( 'search' ) ) {
 			// Compatibility with old search URLs which didn't use Special:Search
@@ -242,7 +242,7 @@ class MediaWiki {
 				throw new BadTitleError();
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
-		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
+		} elseif ( $this->getAction() === 'view' && !$request->wasPosted()
 			&& ( $request->getVal( 'title' ) === null
 				|| $title->getPrefixedDBkey() != $request->getVal( 'title' ) )
 			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
@@ -345,7 +345,7 @@ class MediaWiki {
 
 		// Namespace might change when using redirects
 		// Check for redirects ...
-		$action = $request->getVal( 'action', 'view' );
+		$action = $this->getAction();
 		$file = ( $title->getNamespace() == NS_FILE ) ? $article->getFile() : null;
 		if ( ( $action == 'view' || $action == 'render' ) // ... for actions that show content
 			&& !$request->getVal( 'oldid' ) // ... and are not old revisions
@@ -433,7 +433,7 @@ class MediaWiki {
 			return;
 		}
 
-		if ( wfRunHooks( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ) ) ) {
+		if ( wfRunHooks( 'UnknownAction', array( $this->getAction(), $page ) ) ) {
 			$output->setStatusCode( 404 );
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
@@ -508,8 +508,7 @@ class MediaWiki {
 		$request = $this->context->getRequest();
 
 		// Send Ajax requests to the Ajax dispatcher.
-		if ( $wgUseAjax && $request->getVal( 'action', 'view' ) == 'ajax' ) {
-
+		if ( $wgUseAjax && $this->getAction() === 'ajax' ) {
 			// Set a dummy title, because $wgTitle == null might break things
 			$title = Title::makeTitle( NS_MAIN, 'AJAX' );
 			$this->context->setTitle( $title );
