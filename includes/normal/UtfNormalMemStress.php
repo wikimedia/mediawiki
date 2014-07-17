@@ -83,20 +83,14 @@ function benchmarkTest( &$u, $filename, $desc ) {
 	}
 }
 
-function benchTime() {
-	$st = explode( ' ', microtime() );
-
-	return (float)$st[0] + (float)$st[1];
-}
-
 function benchmarkForm( &$u, &$data, $form ) {
-	#$start = benchTime();
+	#$start = microtime( true );
 	for ( $i = 0; $i < BENCH_CYCLES; $i++ ) {
-		$start = benchTime();
+		$start = microtime( true );
 		$out = $u->$form( $data, UtfNormal::$utfCanonicalDecomp );
-		$deltas[] = ( benchTime() - $start );
+		$deltas[] = ( microtime( true ) - $start );
 	}
-	#$delta = (benchTime() - $start) / BENCH_CYCLES;
+	#$delta = (microtime( true ) - $start) / BENCH_CYCLES;
 	sort( $deltas );
 	$delta = $deltas[0]; # Take shortest time
 

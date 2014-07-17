@@ -140,7 +140,7 @@ class ConvertLinks extends Maintenance {
 					$this->logPerformance = false;
 				}
 			}
-			$baseTime = $startTime = $this->getMicroTime();
+			$baseTime = $startTime = microtime( true );
 			# Create a title -> cur_id map
 			$this->output( "Loading IDs from $cur table...\n" );
 			$this->performanceLog( $fh, "Reading $numRows rows from cur table...\n" );
@@ -161,7 +161,7 @@ class ConvertLinks extends Maintenance {
 					if ( ( $curRowsRead % $curReadReportInterval ) == 0 ) {
 						$this->performanceLog(
 							$fh,
-							$curRowsRead . " " . ( $this->getMicroTime() - $baseTime ) . "\n"
+							$curRowsRead . " " . ( microtime( true ) - $baseTime ) . "\n"
 						);
 						$this->output( "\t$curRowsRead rows of $cur table read.\n" );
 					}
@@ -172,7 +172,7 @@ class ConvertLinks extends Maintenance {
 			$this->output( "Finished loading IDs.\n\n" );
 			$this->performanceLog(
 				$fh,
-				"Took " . ( $this->getMicroTime() - $baseTime ) . " seconds to load IDs.\n\n"
+				"Took " . ( microtime( true ) - $baseTime ) . " seconds to load IDs.\n\n"
 			);
 
 			# --------------------------------------------------------------------
@@ -181,7 +181,7 @@ class ConvertLinks extends Maintenance {
 			# convert, and write to the new table.
 			$this->createTempTable();
 			$this->performanceLog( $fh, "Resetting timer.\n\n" );
-			$baseTime = $this->getMicroTime();
+			$baseTime = microtime( true );
 			$this->output( "Processing $numRows rows from $links table...\n" );
 			$this->performanceLog( $fh, "Processing $numRows rows from $links table...\n" );
 			$this->performanceLog( $fh, "rows inserted vs seconds elapsed:\n" );
@@ -226,7 +226,7 @@ class ConvertLinks extends Maintenance {
 						$this->output( " done. Total $totalTuplesInserted tuples inserted.\n" );
 						$this->performanceLog(
 							$fh,
-							$totalTuplesInserted . " " . ( $this->getMicroTime() - $baseTime ) . "\n"
+							$totalTuplesInserted . " " . ( microtime( true ) - $baseTime ) . "\n"
 						);
 					}
 				}
@@ -239,7 +239,7 @@ class ConvertLinks extends Maintenance {
 			);
 			$this->performanceLog(
 				$fh,
-				"Total execution time: " . ( $this->getMicroTime() - $startTime ) . " seconds.\n"
+				"Total execution time: " . ( microtime( true ) - $startTime ) . " seconds.\n"
 			);
 			if ( $this->logPerformance ) {
 				fclose( $fh );
@@ -299,12 +299,6 @@ class ConvertLinks extends Maintenance {
 		if ( $this->logPerformance ) {
 			fwrite( $fh, $text );
 		}
-	}
-
-	private function getMicroTime() { # return time in seconds, with microsecond accuracy
-		list( $usec, $sec ) = explode( " ", microtime() );
-
-		return ( (float)$usec + (float)$sec );
 	}
 }
 
