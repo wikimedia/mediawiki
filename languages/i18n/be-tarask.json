@@ -3104,5 +3104,6 @@
 	"pagelang-select-lang": "Абярыце мову",
 	"right-pagelang": "Зьмяніць мову старонкі",
 	"action-pagelang": "зьмену мовы старонкі",
-	"log-name-pagelang": "Журнал зьменаў мовы"
+	"log-name-pagelang": "Журнал зьменаў мовы",
+	"log-description-pagelang": "Гэта журнал зьменаў мовы старонак."
 }

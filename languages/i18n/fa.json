@@ -1864,7 +1864,7 @@
 	"undeleteviewlink": "نمایش",
 	"undeleteinvert": "وارونه کردن انتخاب",
 	"undeletecomment": "دلیل:",
-	"undeletedrevisions": "$1 نسخه احیا {{PLURAL:$1|شد|شدند}}",
+	"undeletedrevisions": "$1 نسخه احیا {{PLURAL:$1|شد}}",
 	"undeletedrevisions-files": "$1 نسخه و $2 پرونده احیا {{PLURAL:$1|شد|شدند}}.",
 	"undeletedfiles": "$1 پرونده احیا {{PLURAL:$1|شد|شدند}}.",
 	"cannotundelete": "احیا ناموفق بود:\n$1",

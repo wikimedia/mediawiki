@@ -1357,6 +1357,7 @@
 	"license": "Licențiere:",
 	"license-header": "Licențiere",
 	"nolicense": "Nici una selectată",
+	"licenses-edit": "Modifică opțiunile pentru licență",
 	"license-nopreview": "(Previzualizare indisponibilă)",
 	"upload_source_url": " (un URL valid, accesibil public)",
 	"upload_source_file": " (un fișier de pe computerul dv.)",
