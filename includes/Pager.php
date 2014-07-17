@@ -69,7 +69,7 @@ interface Pager {
  *      last page depending on the dir parameter.
  *
  *  Subclassing the pager to implement concrete functionality should be fairly
- *  simple, please see the examples in HistoryPage.php and
+ *  simple, please see the examples in HistoryAction.php and
  *  SpecialBlockList.php. You just need to override formatRow(),
  *  getQueryInfo() and getIndexField(). Don't forget to call the parent
  *  constructor if you override it.
