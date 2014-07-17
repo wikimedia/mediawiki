@@ -13,7 +13,8 @@
 			"Muhammed taha",
 			"رزگار",
 			"아라",
-			"Serwan"
+			"Serwan",
+			"Ebraminio"
 		]
 	},
 	"tog-underline": "ھێڵ ھێنان بەژێر بەستەرەکان:",
@@ -198,7 +199,6 @@
 	"talkpagelinktext": "لێدوان",
 	"specialpage": "په‌ڕه‌ی تایبه‌ت",
 	"personaltools": "ئامڕازە تاکەکەسییەکان",
-	"postcomment": "بەشی نوێ",
 	"articlepage": "پەڕەی ناوەرۆک ببینە",
 	"talk": "وتووێژ",
 	"views": "بینینەکان",
@@ -374,7 +374,6 @@
 	"externaldberror": "یان هەڵەی ڕێگەپێدانی بنکەدراو هەیە یان ڕێگات پێ نادرێت بۆ نوێ کردنی هەژماری دەرەکیت.",
 	"login": "بچۆ ژوورەوە",
 	"nav-login-createaccount": "بچۆ ژوورەوە / ھەژمار دروست بکە",
-	"loginprompt": "بۆ چوونەژوورەوە بۆ {{SITENAME}} دەبێ کوکییەکان چالاک بکەیت.",
 	"userlogin": "بچۆ ژوورەوە / ھەژمار دروست بکە",
 	"userloginnocreate": "بچۆ ژوورەوە",
 	"logout": "بچۆ دەرەوە",
@@ -1625,7 +1624,7 @@
 	"undeleteviewlink": "دیتن",
 	"undeleteinvert": "ھەڵبژاردەکان پێچەوانە بکە",
 	"undeletecomment": "هۆکار:",
-	"undeletedrevisions": "{{PLURAL:$1|1 پێداچوونەوە|$1 پێداچوونەوە}} هێنرایەوە",
+	"undeletedrevisions": "{{PLURAL:$1|$1 پێداچوونەوە}} هێنرایەوە",
 	"undeletedrevisions-files": "{{PLURAL:$1|1 پێداچوونەوە|$1 پێداچوونەوە}} و {{PLURAL:$2|1 پەڕگە|$2 پەڕگە}} هێنرایەوە",
 	"undeletedfiles": "{{PLURAL:$1|1 پەڕگە|$1 پەڕگە}} هێنرایەوه",
 	"cannotundelete": "ھێنانەوە سەرکەوتوو نەبوو:\n$1",
