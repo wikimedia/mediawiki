@@ -21,6 +21,7 @@ class ActionTest extends MediaWikiTestCase {
 		$wgActions = array(
 			'null'     => null,
 			'disabled' => false,
+			'view'     => true,
 			'dummy'    => true,
 			'string'   => 'NamedDummyAction',
 			'declared' => 'NonExistingClassName',
@@ -29,14 +30,16 @@ class ActionTest extends MediaWikiTestCase {
 		);
 	}
 
+	private function getPage() {
+		return WikiPage::factory( Title::makeTitle( 0, 'Title' ) );
+	}
+
 	private function getContext( $requestedAction = null ) {
 		$request = new FauxRequest( array( 'action' => $requestedAction ) );
 
-		$page = WikiPage::factory( Title::makeTitle( 0, 'Title' ) );
-
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setRequest( $request );
-		$context->setWikiPage( $page );
+		$context->setWikiPage( $this->getPage() );
 
 		return $context;
 	}
@@ -56,7 +59,6 @@ class ActionTest extends MediaWikiTestCase {
 			array( 'null',       null ),
 			array( 'undeclared', null ),
 			array( '',           null ),
-			array( null,         null ),
 			array( false,        null ),
 		);
 	}
@@ -103,6 +105,26 @@ class ActionTest extends MediaWikiTestCase {
 		$this->assertType( isset( $expected ) ? $expected : 'null', $action );
 	}
 
+	public function testNull_doesNotExist() {
+		$exists = Action::exists( null );
+
+		$this->assertFalse( $exists );
+	}
+
+	public function testNull_defaultsToView() {
+		$context = $this->getContext( null );
+		$actionName = Action::getActionName( $context );
+
+		$this->assertEquals( 'view', $actionName );
+	}
+
+	public function testNull_canNotBeInstantiated() {
+		$page = $this->getPage();
+		$action = Action::factory( null, $page );
+
+		$this->assertNull( $action );
+	}
+
 	public function testDisabledAction_exists() {
 		$exists = Action::exists( 'disabled' );
 
@@ -117,8 +139,8 @@ class ActionTest extends MediaWikiTestCase {
 	}
 
 	public function testDisabledAction_factoryReturnsFalse() {
-		$context = $this->getContext( 'disabled' );
-		$action = Action::factory( 'disabled', $context->getWikiPage(), $context );
+		$page = $this->getPage();
+		$action = Action::factory( 'disabled', $page );
 
 		$this->assertFalse( $action );
 	}
