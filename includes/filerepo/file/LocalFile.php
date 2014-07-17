@@ -594,6 +594,7 @@ class LocalFile extends File {
 
 		# Don't destroy file info of missing files
 		if ( !$this->fileExists ) {
+			$this->unlock();
 			wfDebug( __METHOD__ . ": file does not exist, aborting\n" );
 			wfProfileOut( __METHOD__ );
 
@@ -604,6 +605,7 @@ class LocalFile extends File {
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
 		if ( wfReadOnly() ) {
+			$this->unlock();
 			wfProfileOut( __METHOD__ );
 
 			return;
@@ -2829,6 +2831,7 @@ class LocalFileMoveBatch {
 		// cleanupTarget() to trigger. It would delete the C files and cause data loss.
 		$statusDb = $this->doDBUpdates();
 		if ( !$statusDb->isGood() ) {
+			$destFile->unlock();
 			$this->file->unlockAndRollback();
 			$statusDb->ok = false;
 
@@ -2846,6 +2849,7 @@ class LocalFileMoveBatch {
 		if ( !$statusMove->isGood() ) {
 			// Delete any files copied over (while the destination is still locked)
 			$this->cleanupTarget( $triplets );
+			$destFile->unlock();
 			$this->file->unlockAndRollback(); // unlocks the destination
 			wfDebugLog( 'imagemove', "Error in moving files: " . $statusMove->getWikiText() );
 			$statusMove->ok = false;
