@@ -2002,10 +2002,12 @@ class Parser {
 			wfProfileOut( __METHOD__ . "-e1" );
 			wfProfileIn( __METHOD__ . "-misc" );
 
+			$origLink = $m[1];
+
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if ( preg_match( '/^(?i:' . $this->mUrlProtocols . ')/', $m[1] ) ) {
+			if ( preg_match( '/^(?i:' . $this->mUrlProtocols . ')/', $origLink ) ) {
 				$s .= $prefix . '[[' . $line;
 				wfProfileOut( __METHOD__ . "-misc" );
 				continue;
@@ -2013,12 +2015,12 @@ class Parser {
 
 			# Make subpage if necessary
 			if ( $useSubpages ) {
-				$link = $this->maybeDoSubpageLink( $m[1], $text );
+				$link = $this->maybeDoSubpageLink( $origLink, $text );
 			} else {
-				$link = $m[1];
+				$link = $origLink;
 			}
 
-			$noforce = ( substr( $m[1], 0, 1 ) !== ':' );
+			$noforce = ( substr( $origLink, 0, 1 ) !== ':' );
 			if ( !$noforce ) {
 				# Strip off leading ':'
 				$link = substr( $link, 1 );
@@ -2097,11 +2099,12 @@ class Parser {
 			if ( $noforce ) {
 				# Interwikis
 				wfProfileIn( __METHOD__ . "-interwiki" );
+				# The final condition here is due to bug 68085
 				if (
 					$iw && $this->mOptions->getInterwikiMagic() && $nottalk && (
 						Language::fetchLanguageName( $iw, null, 'mw' ) ||
 						in_array( $iw, $wgExtraInterlanguageLinkPrefixes )
-					)
+					) && substr_compare( ltrim( $origLink ), $iw, 0, strlen( $iw ), true ) === 0
 				) {
 					# Bug 24502: filter duplicates
 					if ( !isset( $this->mLangLinkLanguages[$iw] ) ) {
