@@ -62,6 +62,9 @@ class ApiFormatJson extends ApiFormatBase {
 		$callback = $params['callback'];
 		if ( !is_null( $callback ) ) {
 			$prefix = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback ) . '(';
+			# Prepend a comment to try to avoid attacks against content
+			# sniffers, such as bug 68187.
+			$prefix = ( "/**/$prefix" );
 			$suffix = ')';
 		}
 		$this->printText(
