@@ -248,6 +248,7 @@ changes to languages because of Bugzilla reports.
 * Removed Action::execute().
 * Removed AjaxAddScript which has been obsolete since ResourceLoader and
   is unused by any modern extension.
+* Removed maintenance/nextJobDB.php; no longer in use.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
