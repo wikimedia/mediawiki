@@ -214,7 +214,6 @@ $wgAutoloadLocalClasses = array(
 	'ProtectAction' => 'includes/actions/ProtectAction.php',
 	'PurgeAction' => 'includes/actions/PurgeAction.php',
 	'RawAction' => 'includes/actions/RawAction.php',
-	'RawPage' => 'includes/actions/RawAction.php',
 	'RenderAction' => 'includes/actions/RenderAction.php',
 	'RevertAction' => 'includes/actions/RevertAction.php',
 	'RevisiondeleteAction' => 'includes/actions/RevisiondeleteAction.php',
