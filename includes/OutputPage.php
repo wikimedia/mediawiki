@@ -2060,7 +2060,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function output() {
 		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType, $wgVaryOnXFP,
-			$wgUseAjax, $wgResponsiveImages;
+			$wgResponsiveImages;
 
 		if ( $this->mDoNothing ) {
 			return;
@@ -2151,10 +2151,6 @@ class OutputPage extends ContextSource {
 				$this->addModules( $group );
 			}
 			MWDebug::addModules( $this );
-			if ( $wgUseAjax ) {
-				// FIXME: deprecate? - not clear why this is useful
-				wfRunHooks( 'AjaxAddScript', array( &$this ) );
-			}
 
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.

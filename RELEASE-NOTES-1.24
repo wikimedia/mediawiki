@@ -246,6 +246,8 @@ changes to languages because of Bugzilla reports.
 * Removed getFormFields(), onSubmit() and onSuccess() from FormlessAction, as
   these were meant specifically for FormAction instead.
 * Removed Action::execute().
+* Removed AjaxAddScript which has been obsolete since ResourceLoader and
+  is unused by any modern extension.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
