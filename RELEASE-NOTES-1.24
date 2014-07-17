@@ -300,6 +300,7 @@ changes to languages because of Bugzilla reports.
 * FormatExif - Use FormatMetadata directly
 * RevertFileAction - Use RevertAction directly
 * HistoryPage - Use HistoryAction directly
+* RawPage - Use RawAction directly
 
 == Compatibility ==
 
