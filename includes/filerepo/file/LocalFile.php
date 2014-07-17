@@ -1268,6 +1268,7 @@ class LocalFile extends File {
 		# Fail now if the file isn't there
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": File " . $this->getRel() . " went missing!\n" );
+			$dbw->rollback( __METHOD__ );
 			wfProfileOut( __METHOD__ );
 
 			return false;
