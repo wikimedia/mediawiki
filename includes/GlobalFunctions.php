@@ -4143,19 +4143,6 @@ function wfCanIPUseHTTPS( $ip ) {
 }
 
 /**
- * Work out the IP address based on various globals
- * For trusted proxies, use the XFF client IP (first of the chain)
- *
- * @deprecated since 1.19; call $wgRequest->getIP() directly.
- * @return string
- */
-function wfGetIP() {
-	wfDeprecated( __METHOD__, '1.19' );
-	global $wgRequest;
-	return $wgRequest->getIP();
-}
-
-/**
  * Checks if an IP is a trusted proxy provider.
  * Useful to tell if X-Forwarded-For data is possibly bogus.
  * Squid cache servers for the site are whitelisted.
