@@ -359,13 +359,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'handheld', $request->getBool( 'handheld' ) );
 		$tpl->setRef( 'loggedin', $this->loggedin );
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
-		/* XXX currently unused, might get useful later
-		$tpl->set( 'editable', ( !$title->isSpecialPage() ) );
-		$tpl->set( 'exists', $title->getArticleID() != 0 );
-		$tpl->set( 'watch', $user->isWatched( $title ) ? 'unwatch' : 'watch' );
-		$tpl->set( 'protect', count( $title->isProtected() ) ? 'unprotect' : 'protect' );
-		$tpl->set( 'helppage', $this->msg( 'helppage' )->text() );
-		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
 		$tpl->set( 'searchtitle', SpecialPage::getTitleFor( 'Search' )->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
