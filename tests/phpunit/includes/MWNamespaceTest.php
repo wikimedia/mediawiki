@@ -345,7 +345,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 		// Special namespaces:
 		$this->assertHasNotSubpages( NS_MEDIA );
-		$this->assertHasNotSubpages( NS_SPECIAL );
+		$this->assertHasSubpages( NS_SPECIAL );
 
 		// Namespaces without subpages
 		$this->assertHasNotSubpages( NS_MAIN );
