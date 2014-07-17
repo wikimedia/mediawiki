@@ -214,7 +214,7 @@ class HistoryAction extends FormlessAction {
 	 *
 	 * @param int $limit The limit number of revisions to get
 	 * @param int $offset
-	 * @param int $direction Either HistoryPage::DIR_PREV or HistoryPage::DIR_NEXT
+	 * @param int $direction Either self::DIR_PREV or self::DIR_NEXT
 	 * @return ResultWrapper
 	 */
 	function fetchRevisions( $limit, $offset, $direction ) {
@@ -225,9 +225,9 @@ class HistoryAction extends FormlessAction {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		if ( $direction == HistoryPage::DIR_PREV ) {
+		if ( $direction === self::DIR_PREV ) {
 			list( $dirs, $oper ) = array( "ASC", ">=" );
-		} else { /* $direction == HistoryPage::DIR_NEXT */
+		} else { /* $direction === self::DIR_NEXT */
 			list( $dirs, $oper ) = array( "DESC", "<=" );
 		}
 
@@ -273,7 +273,7 @@ class HistoryAction extends FormlessAction {
 		$limit = $request->getInt( 'limit', 10 );
 		$limit = min( max( $limit, 1 ), $wgFeedLimit );
 
-		$items = $this->fetchRevisions( $limit, 0, HistoryPage::DIR_NEXT );
+		$items = $this->fetchRevisions( $limit, 0, self::DIR_NEXT );
 
 		// Generate feed elements enclosed between header and footer.
 		$feed->outHeader();
@@ -877,20 +877,5 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	function getPreventClickjacking() {
 		return $this->preventClickjacking;
-	}
-}
-
-/**
- * Backwards-compatibility alias
- */
-class HistoryPage extends HistoryAction {
-	// @codingStandardsIgnoreStart Needed "useless" override to make it public.
-	public function __construct( Page $article ) {
-		parent::__construct( $article );
-	}
-	// @codingStandardsIgnoreEnd
-
-	public function history() {
-		$this->onView();
 	}
 }
