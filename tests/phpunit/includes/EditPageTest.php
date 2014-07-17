@@ -96,6 +96,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$ns = $this->getDefaultWikitextNS();
 			$title = Title::newFromText( $title, $ns );
 		}
+		$this->assertNotNull( $title );
 
 		if ( is_string( $user ) ) {
 			$user = User::newFromName( $user );
@@ -141,7 +142,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$req = new FauxRequest( $edit, true ); // session ??
 
-		$ep = new EditPage( new Article( $title ) );
+		$article = new Article( $title );
+		$article->getContext()->setTitle( $title );
+		$ep = new EditPage( $article );
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
 
