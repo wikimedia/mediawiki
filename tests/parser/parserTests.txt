@@ -6392,6 +6392,44 @@ parsoid
 <p data-parsoid='{}'><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true,"tail":"r"}'>Bar</a></p>
 !! end
 
+!! test
+Local interwiki link
+!! wikitext
+[[local:Template:Foo]]
+!! html
+<p><a href="/wiki/Template:Foo" title="Template:Foo">local:Template:Foo</a>
+</p>
+!! end
+
+!! test
+Local interwiki link: self-link to current page
+!! options
+title=[[Main Page]]
+!! wikitext
+[[local:Main Page]]
+!! html
+<p><strong class="selflink">local:Main Page</strong>
+</p>
+!! end
+
+!! test
+Local interwiki link: prefix only (bug 64167)
+!! wikitext
+[[local:]]
+!! html
+<p><a href="/wiki/Main_Page" title="Main Page">local:</a>
+</p>
+!! end
+
+!! test
+Local interwiki link: with additional interwiki prefix (bug 61357)
+!! wikitext
+[[local:meatball:Hello]]
+!! html
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?Hello" class="extiw" title="meatball:Hello">local:meatball:Hello</a>
+</p>
+!! end
+
 ###
 ### Interlanguage links
 ### Language links (so that searching for '### language' matches..)
@@ -6402,6 +6440,19 @@ Interlanguage link
 !! wikitext
 Blah blah blah
 [[zh:Chinese]]
+!! html/php
+<p>Blah blah blah
+</p>
+!! html/parsoid
+<p>Blah blah blah
+<link rel="mw:PageProp/Language" href="//zh.wikipedia.org/wiki/Chinese"/></p>
+!! end
+
+!! test
+Interlanguage link with spacing
+!! wikitext
+Blah blah blah
+[[   zh  :    Chinese     ]]
 !! html/php
 <p>Blah blah blah
 </p>
@@ -6536,6 +6587,28 @@ parsoid
 [[en:Foo]]
 !! html
 <p><a rel="mw:WikiLink" href="./Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"en:Foo"}}'>Foo</a></p>
+!! end
+
+!! test
+Interlanguage link with preceding local interwiki link (bug 68085)
+!! wikitext
+Blah blah blah
+[[local:es:Spanish]]
+!! html
+<p>Blah blah blah
+<a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">local:es:Spanish</a>
+</p>
+!! end
+
+!! test
+Looks like an interlanguage link, but is actually a local interwiki
+!! wikitext
+Blah blah blah
+[[mi:Template:Foo]]
+!! html
+<p>Blah blah blah
+<a href="/wiki/Template:Foo" title="Template:Foo">mi:Template:Foo</a>
+</p>
 !! end
 
 ###
