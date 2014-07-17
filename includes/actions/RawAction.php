@@ -5,7 +5,7 @@
  * Copyright © 2004 Gabriel Wicke <wicke@wikidev.net>
  * http://wikidev.net/
  *
- * Based on HistoryPage and SpecialExport
+ * Based on HistoryAction and SpecialExport
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
