@@ -849,8 +849,6 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function checkCss( $value ) {
-		global $wgDisallowedCss;
-
 		// Decode character references like &#123;
 		$value = Sanitizer::decodeCharReferences( $value );
 
@@ -939,12 +937,18 @@ class Sanitizer {
 		// Reject problematic keywords and control characters
 		if ( preg_match( '/[\000-\010\013\016-\037\177]/', $value ) ) {
 			return '/* invalid control char */';
-		} else {
-			if ( $wgDisallowedCss ) {
-				if ( preg_match( $wgDisallowedCss, $value ) ) {
-					return '/* insecure input */';
-				}
-			}
+		} elseif ( preg_match(
+			'! expression
+				| filter\s*:
+				| accelerator\s*:
+				| -o-link\s*:
+				| -o-link-source\s*:
+				| -o-replace\s*:
+				| url\s*\(
+				| image\s*\(
+				| image-set\s*\(
+			!ix', $value ) ) {
+			return '/* insecure input */';
 		}
 		return $value;
 	}

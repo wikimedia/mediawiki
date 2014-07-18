@@ -3010,20 +3010,6 @@ $wgUseSiteJs = true;
 $wgUseSiteCss = true;
 
 /**
- * CSS that is disallowed by the sanitizer, as a regular expression.
- */
-$wgDisallowedCss = '! expression
-	| filter\s*:
-	| accelerator\s*:
-	| -o-link\s*:
-	| -o-link-source\s*:
-	| -o-replace\s*:
-	| url\s*\(
-	| image\s*\(
-	| image-set\s*\(
-!ix';
-
-/**
  * Break out of framesets. This can be used to prevent clickjacking attacks,
  * or to prevent external sites from framing your site with ads.
  */
