@@ -15,6 +15,7 @@
 	 * ending in array keys matching the given name (e.g. "baz" matches
 	 * "foo[bar][baz]").
 	 *
+	 * @private
 	 * @param {jQuery} element
 	 * @param {string} name
 	 * @return {jQuery|null}
@@ -42,9 +43,12 @@
 	 * Helper function for hide-if to return a test function and list of
 	 * dependent fields for a hide-if specification.
 	 *
+	 * @private
 	 * @param {jQuery} element
 	 * @param {Array} hide-if spec
-	 * @return {Array} 2 elements: jQuery of dependent fields, and test function
+	 * @return {Array}
+	 * @return {jQuery} return.0 Dependent fields
+	 * @return {Function} return.1 Test function
 	 */
 	function hideIfParse( $el, spec ) {
 		var op, i, l, v, $field, $fields, fields, func, funcs, getVal;
@@ -63,7 +67,7 @@
 						throw new Error( op + ' parameters must be arrays' );
 					}
 					v = hideIfParse( $el, spec[i] );
-					fields.push( v[0] );
+					fields = fields.concat( v[0].toArray() );
 					funcs.push( v[1] );
 				}
 				$fields = $( fields );
