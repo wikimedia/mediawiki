@@ -249,6 +249,7 @@ changes to languages because of Bugzilla reports.
 * Removed AjaxAddScript which has been obsolete since ResourceLoader and
   is unused by any modern extension.
 * Removed maintenance/nextJobDB.php; no longer in use.
+* Removed global function wfViewPrevNext(). (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

@@ -2029,36 +2029,6 @@ function wfShowingResults( $offset, $limit ) {
 }
 
 /**
- * Generate (prev x| next x) (20|50|100...) type links for paging
- *
- * @param string $offset
- * @param int $limit
- * @param string $link
- * @param string $query Optional URL query parameter string
- * @param bool $atend Optional param for specified if this is the last page
- * @return string
- * @deprecated since 1.19; use Language::viewPrevNext() instead
- */
-function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
-	wfDeprecated( __METHOD__, '1.19' );
-
-	global $wgLang;
-
-	$query = wfCgiToArray( $query );
-
-	if ( is_object( $link ) ) {
-		$title = $link;
-	} else {
-		$title = Title::newFromText( $link );
-		if ( is_null( $title ) ) {
-			return false;
-		}
-	}
-
-	return $wgLang->viewPrevNext( $title, $offset, $limit, $query, $atend );
-}
-
-/**
  * @todo document
  * @todo FIXME: We may want to blacklist some broken browsers
  *
