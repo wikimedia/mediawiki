@@ -8,6 +8,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 === Changes since 1.23.1 ===
 
 * (bug 67594) Special:ActiveUsers: Fix to work with PostgreSQL
+* (bug 67870) wfShellExec() cuts off stdout at multiples of 8192 bytes
 
 == MediaWiki 1.23.1 ==
 
