@@ -777,7 +777,7 @@
 	"revdelete-text-text": "Deleted revisions will still appear in the page history, but parts of their content will be inaccessible to the public.",
 	"revdelete-text-file": "Deleted file versions will still appear in the file history, but parts of their content will be inaccessible to the public.",
 	"logdelete-text": "Deleted log events will still appear in the logs, but parts of their content will be inaccessible to the public.",
-	"revdelete-text-others": "Other administrators on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.",
+	"revdelete-text-others": "Other administrators will still be able to access the hidden content and to undelete it, unless additional restrictions are set.",
 	"revdelete-confirm": "Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].",
 	"revdelete-suppress-text": "Suppression should <strong>only</strong> be used for the following cases:\n* potentially libelous information\n* inappropriate personal information\n*: <em>home addresses and telephone numbers, national identification numbers, etc.</em>",
 	"revdelete-legend": "Set visibility restrictions",
