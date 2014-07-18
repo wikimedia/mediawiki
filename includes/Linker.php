@@ -1332,7 +1332,7 @@ class Linker {
 	 */
 	private static function formatAutocomments( $comment, $title = null, $local = false ) {
 		return preg_replace_callback(
-			'!(.*)/\*\s*(.*?)\s*\*/(.*)!',
+			'!(.*?)/\*\s*(.*?)\s*\*/(.*)!',
 			function ( $match ) use ( $title, $local ) {
 				global $wgLang;
 

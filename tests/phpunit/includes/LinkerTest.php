@@ -145,7 +145,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"pre /* autocomment */ post",
 			),
 			array(
-				'/* autocomment */ multiple? <a href="/wiki/Special:BlankPage#autocomment2" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment2: </span> </span>',
+				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span> multiple? /* autocomment2 */ </span>',
 				"/* autocomment */ multiple? /* autocomment2 */ ",
 			),
 			array(
