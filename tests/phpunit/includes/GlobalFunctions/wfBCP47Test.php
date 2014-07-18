@@ -1,5 +1,6 @@
 <?php
 /**
+ * @group GlobalFunctions
  * @covers ::wfBCP47
  */
 class WfBCP47Test extends MediaWikiTestCase {

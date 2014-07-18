@@ -1,5 +1,7 @@
 <?php
-/*
+
+/**
+ * @group GlobalFunctions
  * @covers ::wfTimestamp
  */
 class WfTimestampTest extends MediaWikiTestCase {
