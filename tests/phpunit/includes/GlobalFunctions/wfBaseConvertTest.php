@@ -1,5 +1,6 @@
 <?php
 /**
+ * @group GlobalFunctions
  * @covers ::wfBaseConvert
  */
 class WfBaseConvertTest extends MediaWikiTestCase {

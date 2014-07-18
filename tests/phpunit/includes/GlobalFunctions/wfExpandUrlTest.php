@@ -1,5 +1,6 @@
 <?php
 /**
+ * @group GlobalFunctions
  * @covers ::wfExpandUrl
  */
 class WfExpandUrlTest extends MediaWikiTestCase {

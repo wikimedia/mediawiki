@@ -21,6 +21,7 @@
  */
 
 /**
+ * @group GlobalFunctions
  * @covers ::wfParseUrl
  */
 class WfParseUrlTest extends MediaWikiTestCase {

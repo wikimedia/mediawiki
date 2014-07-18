@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group GlobalFunctions
  * @covers ::wfShorthandToInteger
  */
 class WfShorthandToIntegerTest extends MediaWikiTestCase {

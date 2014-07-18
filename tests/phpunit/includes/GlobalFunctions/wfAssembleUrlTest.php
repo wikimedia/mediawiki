@@ -1,5 +1,6 @@
 <?php
 /**
+ * @group GlobalFunctions
  * @covers ::wfAssembleUrl
  */
 class WfAssembleUrlTest extends MediaWikiTestCase {
