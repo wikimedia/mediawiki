@@ -898,9 +898,9 @@ class MimeMagic {
 	/**
 	 * Internal MIME type detection. Detection is done using an external
 	 * program, if $wgMimeDetectorCommand is set. Otherwise, the fileinfo
-	 * extension and mime_content_type are tried (in this order), if they
-	 * are available. If the detections fails and $ext is not false, the MIME
-	 * type is guessed from the file extension, using guessTypesForExtension.
+	 * extension is tried if it is available. If detection fails and $ext
+	 * is not false, the MIME type is guessed from the file extension,
+	 * using guessTypesForExtension.
 	 *
 	 * If the MIME type is still unknown, getimagesize is used to detect the
 	 * MIME type if the file is an image. If no MIME type can be determined,
@@ -927,18 +927,7 @@ class MimeMagic {
 			$args = wfEscapeShellArg( $file );
 			$m = wfShellExec( "$wgMimeDetectorCommand $args" );
 		} elseif ( function_exists( "finfo_open" ) && function_exists( "finfo_file" ) ) {
-
-			# This required the fileinfo extension by PECL,
-			# see http://pecl.php.net/package/fileinfo
-			# This must be compiled into PHP
-			#
-			# finfo is the official replacement for the deprecated
-			# mime_content_type function, see below.
-			#
-			# If you may need to load the fileinfo extension at runtime, set
-			# $wgLoadFileinfoExtension in LocalSettings.php
-
-			$mime_magic_resource = finfo_open( FILEINFO_MIME ); /* return MIME type ala mimetype extension */
+			$mime_magic_resource = finfo_open( FILEINFO_MIME );
 
 			if ( $mime_magic_resource ) {
 				$m = finfo_file( $mime_magic_resource, $file );
@@ -946,21 +935,6 @@ class MimeMagic {
 			} else {
 				wfDebug( __METHOD__ . ": finfo_open failed on " . FILEINFO_MIME . "!\n" );
 			}
-		} elseif ( function_exists( "mime_content_type" ) ) {
-
-			# NOTE: this function is available since PHP 4.3.0, but only if
-			# PHP was compiled with --with-mime-magic or, before 4.3.2, with
-			# --enable-mime-magic.
-			#
-			# On Windows, you must set mime_magic.magicfile in php.ini to point
-			# to the mime.magic file bundled with PHP; sometimes, this may even
-			# be needed under *nix.
-			#
-			# Also note that this has been DEPRECATED in favor of the fileinfo
-			# extension by PECL, see above.
-			# See http://www.php.net/manual/en/ref.mime-magic.php for details.
-
-			$m = mime_content_type( $file );
 		} else {
 			wfDebug( __METHOD__ . ": no magic mime detector found!\n" );
 		}
