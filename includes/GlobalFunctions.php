@@ -2921,12 +2921,6 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	}
 
 	while ( true ) {
-		$status = proc_get_status( $proc );
-		if ( !$status['running'] ) {
-			break;
-		}
-		$status = false;
-
 		$readyPipes = $pipes;
 
 		// Clear last error
@@ -2978,11 +2972,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		fclose( $pipe );
 	}
 
-	// Use the status previously collected if possible, since proc_get_status()
-	// just calls waitpid() which will not return anything useful the second time.
-	if ( $status === false ) {
-		$status = proc_get_status( $proc );
-	}
+	$status = proc_get_status( $proc );
 
 	if ( $logMsg !== false ) {
 		// Read/select error
