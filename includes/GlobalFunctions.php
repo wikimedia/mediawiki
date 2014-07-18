@@ -2920,19 +2920,26 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		$fds[(int)$pipe] = $fd;
 	}
 
+	$running = true;
+
 	while ( true ) {
 		$status = proc_get_status( $proc );
 		if ( !$status['running'] ) {
-			break;
+			$running = false;
 		}
 		$status = false;
 
 		$readyPipes = $pipes;
 
+		// If the process has terminated, perform a final non-blocking select
+		// (timeout = 0) to get any data still waiting to be read. Otherwise,
+		// block until a stream is ready (timeout = null).
+		$timeout = $running ? NULL : 0;
+
 		// Clear last error
 		// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
 		@trigger_error( '' );
-		if ( @stream_select( $readyPipes, $emptyArray, $emptyArray, null ) === false ) {
+		if ( @stream_select( $readyPipes, $emptyArray, $emptyArray, $timeout ) === false ) {
 			// @codingStandardsIgnoreEnd
 			$error = error_get_last();
 			if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
@@ -2971,6 +2978,10 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 					}
 				}
 			}
+		}
+
+		if ( !$running ) {
+			break;
 		}
 	}
 
