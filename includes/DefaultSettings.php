@@ -1154,7 +1154,7 @@ $wgMimeInfoFile = 'includes/mime.info';
  * Sets an external mime detector program. The command must print only
  * the mime type to standard output.
  * The name of the file to process will be appended to the command given here.
- * If not set or NULL, mime_content_type will be used if available.
+ * If not set or NULL, PHP's fileinfo extension will be used if available.
  *
  * @par Example:
  * @code
