@@ -109,10 +109,16 @@ class ActiveUsersPager extends UsersPager {
 			) . ')';
 		}
 
+		if ( $dbr->implicitGroupby() ) {
+			$options = array( 'GROUP BY' => array( 'qcc_title' ) );
+		} else {
+			$options = array( 'GROUP BY' => array( 'user_name', 'user_id', 'qcc_title' ) );
+		}
+
 		return array(
 			'tables' => array( 'querycachetwo', 'user', 'recentchanges' ),
 			'fields' => array( 'user_name', 'user_id', 'recentedits' => 'COUNT(*)', 'qcc_title' ),
-			'options' => array( 'GROUP BY' => array( 'qcc_title' ) ),
+			'options' => $options,
 			'conds' => $conds
 		);
 	}
