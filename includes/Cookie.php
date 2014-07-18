@@ -22,20 +22,198 @@
  */
 
 class Cookie {
+	/**
+	 * Name of the cookie.
+	 * @var string $name
+	 */
 	protected $name;
-	protected $value;
-	protected $expires;
-	protected $path;
-	protected $domain;
+	/**
+	 * Value of the cookie.
+	 * @var mixed $value
+	 */
+	protected $value = '';
+	/**
+	 * The time that the cookie expires, expressed as a Unix timestamp.
+	 * @var int $expires
+	 */
+	protected $expiry = 0;
+	/**
+	 * The path on the server the cookie is available on.
+	 * @var string $path
+	 */
+	protected $path = '/';
+	/**
+	 * The website domain that the cookie is accessible to.
+	 * @var string $domain
+	 */
+	protected $domain = '';
+	/**
+	 * Whether the cookie is set to only transmit over HTTPS from the client.
+	 * @var bool $secure
+	 */
+	protected $secure = false;
+	/**
+	 * Whether the cookie is made accessible only through HTTP.
+	 * @var bool $httpOnly
+	 */
+	protected $httpOnly = false;
 	protected $isSessionKey = true;
-	// TO IMPLEMENT	 protected $secure
 	// TO IMPLEMENT? protected $maxAge (add onto expires)
 	// TO IMPLEMENT? protected $version
 	// TO IMPLEMENT? protected $comment
 
-	function __construct( $name, $value, $attr ) {
+	/** Constructors **/
+
+	public function __construct( $name, $value, $attr ) {
 		$this->name = $name;
 		$this->set( $value, $attr );
+	}
+
+	/**
+	 * Attempt to load the cookie and its value from a WebRequest
+	 * @param string $name
+	 * @param WebRequest $request
+	 *
+	 * @return Cookie|null
+	 */
+	public static function newFromRequest( $name, WebRequest $request ) {
+		$value = $request->getCookie( $name, null, null );
+		if ( $value ) {
+			return new self( $name, $value, array() );
+		}
+		return null;
+	}
+
+	/** Mutators **/
+
+	/**
+	 * Set the name of the cookie.
+	 * @param string $n
+	 */
+	public function setName( $n ) {
+		$this->name = $n;
+	}
+
+	/**
+	 * Set the value of the cookie.
+	 * @param mixed $v
+	 */
+	public function setValue( $v ) {
+		if ( $v === false || $v === '' ) {
+			wfDebug( "Warning! Setting cookie value to false or empty string may delete the cookie." );
+		}
+		$this->value = $v;
+	}
+
+	/**
+	 * Set the time for when the cookie expires, as a Unix timestamp $e seconds from now.
+	 * @param int|string $e
+	 */
+	public function setExpiry( $e = 0 ) {
+		if ( is_string( $e ) ) {
+			$e = strtotime( $e );
+		}
+		$this->expiry = time() + $e;
+	}
+
+	/**
+	 * Set the time for when the cookie expires, as an absolute date.
+	 * @param int|string $e
+	 */
+	public function setExpiryDate( $e = 0 ) {
+		if ( is_string( $e ) ) {
+			$e = strtotime( $e );
+		}
+		$this->expiry = $e;
+	}
+
+	/**
+	 * Set the path on the server in which the cookie is available.
+	 * Default is '/' (the entire domain).
+	 * @param string $p
+	 */
+	public function setPath( $p = '/' ) {
+		$this->path = $p;
+	}
+
+	/**
+	 * Set the domain on which the cookie is available.
+	 * @param string $d
+	 */
+	public function setDomain( $d = '' ) {
+		if ( self::validateCookieDomain( $d ) ) {
+			$this->domain = $d;
+		}
+	}
+
+	/**
+	 * Set to true to indicate that the cookie should only be transmitted over
+	 * a client's HTTPS connection.
+	 * @param bool $s
+	 */
+	public function setSecure( $s ) {
+		$this->secure = $s;
+	}
+
+	/**
+	 * Set to true to have the cookie restrict it's accessibility to only HTTP(S).
+	 * The cookie cannot be accessed by scripting languages like JavaScript, and
+	 * this has the potential to protect against XSS attacks.
+	 */
+	public function setHttpOnly( $http ) {
+		$this->httpOnly = $http;
+	}
+
+	/**
+	 * Actually send the cookie in the HTTP header.
+	 * @param bool $raw If true, use setrawcookie() instead of setcookie()
+	 *
+	 * @return bool Whether the cookie was sent successfully or not
+	 */
+	public function send( $raw = false ) {
+		if ( !$this->domain ) {
+			throw new MWException( 'You must specify a valid domain.' );
+		}
+		$func = $raw ? 'setrawcookie' : 'setcookie';
+		return call_user_func( $func,
+			$this->name,
+			$this->value,
+			$this->expiry,
+			$this->path,
+			$this->domain,
+			$this->secure,
+			$this->httpOnly
+		);
+	}
+
+	/** Accessors **/
+
+	public function getName() {
+		return $this->name;
+	}
+
+	public function getValue() {
+		return $this->value;
+	}
+
+	public function getExpiry() {
+		return $this->expiry;
+	}
+
+	public function getPath() {
+		return $this->path;
+	}
+
+	public function getDomain() {
+		return $this->domain;
+	}
+
+	public function isSecure() {
+		return $this->secure;
+	}
+
+	public function isHttpOnly() {
+		return $this->httpOnly;
 	}
 
 	/**
@@ -55,7 +233,7 @@ class Cookie {
 
 		if ( isset( $attr['expires'] ) ) {
 			$this->isSessionKey = false;
-			$this->expires = strtotime( $attr['expires'] );
+			$this->expiry = strtotime( $attr['expires'] );
 		}
 
 		if ( isset( $attr['path'] ) ) {
@@ -200,7 +378,7 @@ class Cookie {
 	 * @return bool
 	 */
 	protected function isUnExpired() {
-		return $this->isSessionKey || $this->expires > time();
+		return $this->isSessionKey || $this->expiry > time();
 	}
 }
 
