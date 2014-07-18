@@ -101,8 +101,6 @@ class RunJobs extends Maintenance {
 				++$jobsRun;
 				$this->runJobsLog( $job->toString() . " STARTING" );
 
-				// Set timer to stop the job if too much CPU time is used
-				set_time_limit( $maxTime ? : 0 );
 				// Run the job...
 				wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
 				$t = microtime( true );
@@ -117,8 +115,6 @@ class RunJobs extends Maintenance {
 				}
 				$timeMs = intval( ( microtime( true ) - $t ) * 1000 );
 				wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
-				// Disable the timer
-				set_time_limit( 0 );
 
 				// Mark the job as done on success or when the job cannot be retried
 				if ( $status !== false || !$job->allowRetries() ) {
