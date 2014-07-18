@@ -1687,7 +1687,7 @@
 	"listgrouprights-namespaceprotection-header": "Restrições de namespace",
 	"listgrouprights-namespaceprotection-namespace": "Namespace",
 	"listgrouprights-namespaceprotection-restrictedto": "Direito(s) permitindo edições do usuário",
-	"trackingcategories": "Monitorando categorias",
+	"trackingcategories": "Categorias de rastreamento",
 	"trackingcategories-summary": "Esta página lista categorias de monitoramento que são preenchidas automaticamente pelo software MediaWiki. Seus nomes podem ser alterados através da alteração das mensagens de sistema relevantes no namespace {{ns: 8}}.",
 	"trackingcategories-msg": "Categoria de monitoramento",
 	"trackingcategories-desc": "Critérios de inclusão de categoria",

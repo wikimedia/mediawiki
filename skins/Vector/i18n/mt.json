@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chrisportelli"
+			"Chrisportelli",
+			"Leli Forte"
 		]
 	},
 	"vector-action-addsection": "Żid diskussjoni",
@@ -14,5 +15,6 @@
 	"vector-view-edit": "Editja",
 	"vector-view-history": "Ara l-kronoloġija",
 	"vector-view-view": "Aqra",
-	"vector-view-viewsource": "Ara s-sors"
+	"vector-view-viewsource": "Ara s-sors",
+	"vector-more-actions": "Aktar"
 }

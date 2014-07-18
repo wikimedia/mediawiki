@@ -1347,6 +1347,7 @@
 	"license": "Licenza:",
 	"license-header": "Licenza",
 	"nolicense": "Ningunha seleccionada",
+	"licenses-edit": "Editar as opcións de licenza",
 	"license-nopreview": "(A vista previa non está dispoñible)",
 	"upload_source_url": "  (un URL válido e accesible publicamente)",
 	"upload_source_file": "  (un ficheiro no seu ordenador)",

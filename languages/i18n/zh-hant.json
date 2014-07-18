@@ -1420,7 +1420,7 @@
 	"filehist-dimensions": "尺寸",
 	"filehist-filesize": "檔案大小",
 	"filehist-comment": "註解",
-	"imagelinks": "檔案使用",
+	"imagelinks": "檔案用途",
 	"linkstoimage": "下列 $1 個頁面連結到此檔案：",
 	"linkstoimage-more": "超過$1個頁面連接到這個檔案。\n此處只列出首$1個連接到此檔案的頁面。\n您也可以查看[[Special:WhatLinksHere/$2|完整的清單]]。",
 	"nolinkstoimage": "沒有頁面連接到本檔案。",

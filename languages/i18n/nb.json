@@ -1679,7 +1679,7 @@
 	"mailnologin": "Ingen avsenderadresse",
 	"mailnologintext": "Du må være [[Special:UserLogin|logget inn]] og ha en gyldig e-postadresse satt i [[Special:Preferences|brukerinnstillingene]] for å sende e-post til andre brukere.",
 	"emailuser": "E-post til denne brukeren",
-	"emailuser-title-target": "Send epost til denne {{GENDER:$1|brukeren}}",
+	"emailuser-title-target": "Send e-post til denne {{GENDER:$1|brukeren}}",
 	"emailuser-title-notarget": "E-post til bruker",
 	"emailpage": "E-post til bruker",
 	"emailpagetext": "Du kan bruke skjemaet under for å sende en e-post til denne {{GENDER:$1|brukeren}}.\nE-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil vises i «Fra»-feltet i e-posten, slik at mottakeren kan svare deg direkte.",
