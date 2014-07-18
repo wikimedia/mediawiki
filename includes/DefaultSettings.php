@@ -1224,9 +1224,10 @@ $wgThumbLimits = array(
 $wgThumbnailBuckets = null;
 
 /**
- * When using thumbnail buckets as defined above, this sets the minimum distance with the bucket
- * above the requested size. The distance represents how pany extra pixels of width the bucket needs
- * in order to be used as the reference for a given thumbnail. For example, with the following buckets:
+ * When using thumbnail buckets as defined above, this sets the minimum distance to the bucket
+ * above the requested size. The distance represents how many extra pixels of width the bucket
+ * needs in order to be used as the reference for a given thumbnail. For example, with the
+ * following buckets:
  *
  * $wgThumbnailBuckets = array ( 128, 256, 512 );
  *
