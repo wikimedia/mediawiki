@@ -1,6 +1,9 @@
 <?php
+
 /**
  * The function only need a string parameter and might react to IIS7.0
+ *
+ * @group GlobalFunctions
  * @covers ::wfUrlencode
  */
 class WfUrlencodeTest extends MediaWikiTestCase {

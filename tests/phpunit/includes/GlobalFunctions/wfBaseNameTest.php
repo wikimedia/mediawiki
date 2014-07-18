@@ -1,5 +1,6 @@
 <?php
 /**
+ * @group GlobalFunctions
  * @covers ::wfBaseName
  */
 class WfBaseNameTest extends MediaWikiTestCase {

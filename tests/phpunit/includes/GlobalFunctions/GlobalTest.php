@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group GlobalFunctions
+ */
 class GlobalTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();

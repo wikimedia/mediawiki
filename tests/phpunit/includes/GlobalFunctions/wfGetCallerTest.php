@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group GlobalFunctions
  * @covers ::wfGetCaller
  */
 class WfGetCallerTest extends MediaWikiTestCase {
