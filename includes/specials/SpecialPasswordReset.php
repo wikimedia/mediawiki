@@ -46,6 +46,40 @@ class SpecialPasswordReset extends FormSpecialPage {
 		parent::__construct( 'PasswordReset', 'editmyprivateinfo' );
 	}
 
+	public function execute( $par ) {
+		$this->setHeaders();
+		$this->outputHeader();
+		$request = $this->getRequest();
+		$query = $request->getValues( 'uid', 'pass' );
+		$user = $query['uid'];
+		$pass = $query['pass'];
+
+		if ( $user != false ) {
+			// The user is trying to disable their temporary password.
+			$this->disablePassword( $user, $pass );
+		} else {
+			parent::execute( $par );
+		}
+	}
+
+	public function disablePassword( $gzuser, $gzpass ) {
+		$userarray = explode( '|', $gzuser );
+		$passarray = explode( '|', $gzpass );
+		foreach ( $userarray as $index => $id ) {
+			$user = User::newFromId( $id );
+			if ( $user->checkTemporaryPassword( $passarray[$index] ) ) {
+				$user->setNewpassword( null );
+				$user->saveSettings();
+			} else {
+				// If one password is invalid/expired then so are the rest, since
+				// all of them will expire at the same time.
+				$this->getOutput()->addWikiMsg( 'passwordreset-invalid', count( $userarray ) );
+				return;
+			}
+		}
+		$this->getOutput()->addWikiMsg( 'passwordreset-temporary', count( $userarray ) );
+	}
+
 	public function userCanExecute( User $user ) {
 		return $this->canChangePassword( $user ) === true && parent::userCanExecute( $user );
 	}
@@ -256,14 +290,21 @@ class SpecialPasswordReset extends FormSpecialPage {
 		$userLanguage = $firstUser->getOption( 'language' );
 
 		$passwords = array();
+		$disableuser = array();
+		$disablepass = array();
+
 		foreach ( $users as $user ) {
 			$password = $user->randomPassword();
+			$disableuser[] = $user->getId();
+			$disablepass[] = $password;
 			$user->setNewpassword( $password );
 			$user->saveSettings();
 			$passwords[] = $this->msg( 'passwordreset-emailelement', $user->getName(), $password )
 				->inLanguage( $userLanguage )->text(); // We'll escape the whole thing later
 		}
 		$passwordBlock = implode( "\n\n", $passwords );
+		$gzuser = implode('|', $disableuser );
+		$gzpass = implode('|', $disablepass );
 
 		$this->email = $this->msg( $msg )->inLanguage( $userLanguage );
 		$this->email->params(
@@ -271,13 +312,13 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$passwordBlock,
 			count( $passwords ),
 			'<' . Title::newMainPage()->getCanonicalURL() . '>',
-			round( $this->getConfig()->get( 'NewPasswordExpiry' ) / 86400 )
+			round( $this->getConfig()->get( 'NewPasswordExpiry' ) / 86400 ),
+			'< '.$this->getTitle()->getCanonicalURL('uid='.$gzuser.'&pass='.$gzpass) . ' >'
 		);
 
 		$title = $this->msg( 'passwordreset-emailtitle' );
 
 		$this->result = $firstUser->sendMail( $title->text(), $this->email->text() );
-
 		if ( isset( $data['Capture'] ) && $data['Capture'] ) {
 			// Save the user, will be used if an error occurs when sending the email
 			$this->firstUser = $firstUser;
