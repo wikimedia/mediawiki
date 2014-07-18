@@ -2910,19 +2910,28 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		$fds[(int)$pipe] = $fd;
 	}
 
-	while ( true ) {
-		$status = proc_get_status( $proc );
-		if ( !$status['running'] ) {
-			break;
+	$running = true;
+	$timeout = null;
+	$numReadyPipes = 0;
+
+	while ( $running === true || $numReadyPipes !== 0 ) {
+		if ( $running ) {
+			$status = proc_get_status( $proc );
+			// If the process has terminated, switch to nonblocking selects
+			// for getting any data still waiting to be read.
+			if ( !$status['running'] ) {
+				$running = false;
+				$timeout = 0;
+			}
 		}
-		$status = false;
 
 		$readyPipes = $pipes;
 
 		// Clear last error
 		// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
 		@trigger_error( '' );
-		if ( @stream_select( $readyPipes, $emptyArray, $emptyArray, null ) === false ) {
+		$numReadyPipes = @stream_select( $readyPipes, $emptyArray, $emptyArray, $timeout );
+		if ( $numReadyPipes === false ) {
 			// @codingStandardsIgnoreEnd
 			$error = error_get_last();
 			if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
@@ -2970,7 +2979,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 
 	// Use the status previously collected if possible, since proc_get_status()
 	// just calls waitpid() which will not return anything useful the second time.
-	if ( $status === false ) {
+	if ( $running ) {
 		$status = proc_get_status( $proc );
 	}
 
