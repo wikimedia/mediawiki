@@ -350,10 +350,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Return the text to be displayed above the changes
+	 * Set the text to be displayed above the changes
 	 *
 	 * @param FormOptions $opts
-	 * @return string XHTML
 	 */
 	public function doHeader( $opts ) {
 		global $wgScript;

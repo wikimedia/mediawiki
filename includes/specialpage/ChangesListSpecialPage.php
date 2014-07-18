@@ -348,10 +348,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	abstract public function outputChangesList( $rows, $opts );
 
 	/**
-	 * Return the text to be displayed above the changes
+	 * Set the text to be displayed above the changes
 	 *
 	 * @param FormOptions $opts
-	 * @return string XHTML
 	 */
 	public function doHeader( $opts ) {
 		$this->setTopText( $opts );
