@@ -724,7 +724,7 @@
 	"revdelete-text-text": "Dagiti naikkat a rebision ket agparangto pay laeng iti panid ti pakasaritaan, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.",
 	"revdelete-text-file": "Dagiti naikkat a bersion ti papeles ket agparangto pay laeng iti pakasaritaan ti papeles, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.",
 	"logdelete-text": "Dagiti naikkat a listaan ti pasamak ket agparangto pay laeng kadagiti listaan, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.",
-	"revdelete-text-others": "Dagiti sabali nga administrador iti {{SITENAME}} ket mabalindanto pay laeng a maserrekan ti nailemmeng a linaon ken mabalindanto manen ti mangisubli ti pannakaikkat babaen iti daytoy nga isu met laeng nga interface, malaksid no adda dagiti maipatinayon a maisaad a panangigawid.",
+	"revdelete-text-others": "Dagiti sabali nga administrador ket mabalindanto pay laeng a maserrekan ti nailemmeng a linaon ken mangisubli daytoy, malaksid no adda dagiti maipatinayon a maisaad a panangigawid.",
 	"revdelete-confirm": "Pangngaasi a pasingkedam a kayatmo nga aramiden daytoy, a maawatam dagiti pagbanagan, ket araramidem daytoy a segun iti [[{{MediaWiki:Policy-url}}|ti annuroten]].",
 	"revdelete-suppress-text": "Ti panagdepdep ket usaren '''laeng''' kadagiti sumaganad a kaso;\n* Makapataud ti libelo a pakaammo\n* Di maiparbeng a personal a pakaammo\n* : ''dagiti pagtaengan ken numero ti telepono, dagiti numero ti nailian a pakaipakaammuan, ken dadduma pay.''",
 	"revdelete-legend": "Ikabil dagiti panagiparit ti panagkita",

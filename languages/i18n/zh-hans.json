@@ -800,7 +800,7 @@
 	"revdelete-text-text": "已删除版本仍将在页面历史中显示，但涉及部分的内容将对公众不可见。",
 	"revdelete-text-file": "已删除文件版本仍将在文件历史中显示，但涉及部分的内容将对公众不可见。",
 	"logdelete-text": "已删除日志事件仍将在日志中显示，但涉及部分的内容将对公众不可见。",
-	"revdelete-text-others": "在{{SITENAME}}的其他管理员仍将可以访问隐藏内容，并在一定条件下能够通过相同界面取消删除，除非附加条件被设定。",
+	"revdelete-text-others": "其他管理员仍将可以访问隐藏内容并删除它，除非附加条件被设定。",
 	"revdelete-confirm": "请确认该操作，明白其后果，并确保该操作符合[[{{MediaWiki:Policy-url}}|方针]]。",
 	"revdelete-suppress-text": "阻止应'''仅'''用于以下情况：\n* 潜在的诽谤信息\n* 不合适的个人信息\n*: ''家庭地址、电话号码和社保号码等。''",
 	"revdelete-legend": "设置可见性之限制",

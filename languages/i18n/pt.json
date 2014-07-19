@@ -781,7 +781,7 @@
 	"revdelete-text-text": "Revisões eliminadas ainda aparecerão no histórico da página, mas parte do seu conteúdo estará inacessível para o público.",
 	"revdelete-text-file": "Versões eliminadas do ficheiro ainda aparecerão no histórico da página, mas parte do seu conteúdo estará inacessível para o público.",
 	"logdelete-text": "Os eventos eliminados ainda aparecerão no histórico da página, mas pare de seu conteúdo será inacessível ao público.",
-	"revdelete-text-others": "Outros administradores em {{SITENAME}} podem aceder ao conteúdo oculto e torná-lo visível novamente através desta mesma interface, a menos que sejam definidas restrições adicionais.",
+	"revdelete-text-others": "Outros administradores serão ainda capazes de aceder ao conteúdo oculto e torná-lo visível novamente, a menos que sejam definidas restrições adicionais.",
 	"revdelete-confirm": "Por favor, confirme que pretende executar esta operação, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].",
 	"revdelete-suppress-text": "A supressão '''só''' deverá ser usada nos seguintes casos:\n* Informação potencialmente caluniosa, difamatória ou injuriosa\n* Informação pessoal imprópria\n*: ''endereços de domicílio e números de telefone, números de identificação nacional, etc''",
 	"revdelete-legend": "Definir restrições de visibilidade",
