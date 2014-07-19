@@ -731,7 +731,7 @@
 	"revdelete-text-text": "Izbrisane redakcije bodo še vedno prikazane v zgodovini strani, vendar bodo deli njihovih vsebin nedostopni javnosti.",
 	"revdelete-text-file": "Izbrisane različice datoteke bodo še vedno prikazane v zgodovini datoteke, vendar bodo deli njihovih vsebin nedostopni javnosti.",
 	"logdelete-text": "Izbrisani dnevniški vnosi bodo še vedno prikazani v dnevnikih, vendar bodo deli njihovih vsebin nedostopni javnosti.",
-	"revdelete-text-others": "Drugi administratorji na strani {{SITENAME}} bodo še vedno lahko dostopali do skrite vsebine in jo obnovili z enakim vmesnikom, razen če so nastavljene dodatne omejitve.",
+	"revdelete-text-others": "Drugi administratorji bodo še vedno lahko dostopali do skrite vsebine in jo obnovili, razen če so nastavljene dodatne omejitve.",
 	"revdelete-confirm": "Prosim potrdite da nameravate to storiti, da se zavedate posledic in da to počnete v skladu s [[{{MediaWiki:Policy-url}}|politiko]].",
 	"revdelete-suppress-text": "Zadrževanje naj bi bilo uporabljeno '''le''' v sledečih primerih:\n* Morebitni klevetniški podatki\n* Neprimerni osebni podatki\n*: ''domači naslovi in telefonske številke, narodne številke istovetnosti itn.''",
 	"revdelete-legend": "Nastavi omejitve vidnosti",
