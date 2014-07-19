@@ -949,6 +949,14 @@ class LoadBalancer {
 	}
 
 	/**
+	 * @return bool Whether a master connection is already open
+	 * @since 1.24
+	 */
+	function hasMasterConnection() {
+		return $this->isOpen( $this->getWriterIndex() );
+	}
+
+	/**
 	 * Determine if there are any pending changes that need to be rolled back
 	 * or committed.
 	 * @since 1.23
