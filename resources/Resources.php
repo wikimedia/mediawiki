@@ -1248,6 +1248,7 @@ return array(
 	),
 	'mediawiki.special.pageLanguage' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.pageLanguage.js',
+		'dependencies' => 'ext.uls.mediawiki',
 	),
 	'mediawiki.special.pagesWithProp' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.pagesWithProp.css',

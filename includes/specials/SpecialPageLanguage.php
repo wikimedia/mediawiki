@@ -66,22 +66,31 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'default' => 1
 		);
 
-		// Building a language selector
-		$userLang = $this->getLanguage()->getCode();
-		$languages = Language::fetchLanguageNames( $userLang, 'mwfile' );
-		ksort( $languages );
-		$options = array();
-		foreach ( $languages as $code => $name ) {
-			$options["$code - $name"] = $code;
-		}
+		if ( !defined( 'ULS_VERSION' ) ) {
+			// Building a language selector
+			$userLang = $this->getLanguage()->getCode();
+			$languages = Language::fetchLanguageNames( $userLang, 'mwfile' );
+			ksort( $languages );
+			$options = array();
+			foreach ( $languages as $code => $name ) {
+				$options["$code - $name"] = $code;
+			}
 
-		$page['language'] = array(
-			'id' => 'mw-pl-languageselector',
-			'type' => 'select',
-			'options' => $options,
-			'label-message' => 'pagelang-language',
-			'default' => $wgLanguageCode
-		);
+			$page['language'] = array(
+				'id' => 'mw-pl-languageselector',
+				'type' => 'select',
+				'options' => $options,
+				'label-message' => 'pagelang-language',
+				'default' => $wgLanguageCode
+			);
+		} else {
+			$page['language'] = array(
+				'id' => 'mw-pl-languageselector',
+				'type' => 'text',
+				'label-message' => 'pagelang-language',
+				'default' => $wgLanguageCode
+			);
+		}
 
 		return $page;
 	}
