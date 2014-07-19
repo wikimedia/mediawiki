@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (a1b99bb256)
+ * OOjs UI v0.1.0-pre (5ab041a801)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-17T19:17:19Z
+ * Date: 2014-07-19T22:45:44Z
  */
 ( function ( OO ) {
 
@@ -5455,7 +5455,7 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
 	others = this.actions.getOthers();
 	if ( special.primary ) {
 		this.$primaryActions.append( special.primary.$element );
-		special.primary.toggleFramed( false );
+		special.primary.toggleFramed( true );
 	}
 	if ( others.length ) {
 		for ( i = 0, len = others.length; i < len; i++ ) {
@@ -5466,7 +5466,7 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
 	}
 	if ( special.safe ) {
 		this.$safeActions.append( special.safe.$element );
-		special.safe.toggleFramed( false );
+		special.safe.toggleFramed( true );
 	}
 
 	this.fitLabel();
