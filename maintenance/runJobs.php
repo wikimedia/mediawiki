@@ -86,7 +86,7 @@ class RunJobs extends Maintenance {
 
 		$jobsRun = 0; // counter
 		$flags = JobQueueGroup::USE_CACHE;
-		$lastTime = time(); // time since last slave check
+		$lastTime = microtime( true ); // time since last slave check
 		do {
 			$backoffs = array_filter( $backoffs, $backoffExpireFunc );
 			$blacklist = $noThrottle ? array() : array_keys( $backoffs );
@@ -146,10 +146,10 @@ class RunJobs extends Maintenance {
 				}
 
 				// Don't let any of the main DB slaves get backed up
-				$timePassed = time() - $lastTime;
+				$timePassed = microtime( true ) - $lastTime;
 				if ( $timePassed >= 5 || $timePassed < 0 ) {
-					wfWaitForSlaves();
-					$lastTime = time();
+					wfWaitForSlaves( $lastTime );
+					$lastTime = microtime( true );
 				}
 				// Don't let any queue slaves/backups fall behind
 				if ( $jobsRun > 0 && ( $jobsRun % 100 ) == 0 ) {
