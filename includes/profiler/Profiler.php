@@ -126,7 +126,7 @@ abstract class Profiler {
 			if ( is_array( $wgProfiler ) ) {
 				if ( !isset( $wgProfiler['class'] ) ) {
 					$class = 'ProfilerStub';
-				} elseif ( $wgProfiler['class'] === 'Profiler'  ) {
+				} elseif ( $wgProfiler['class'] === 'Profiler' ) {
 					$class = 'ProfilerStub'; // b/c; don't explode
 				} else {
 					$class = $wgProfiler['class'];

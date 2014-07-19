@@ -244,7 +244,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$talk = $this->msg( 'talkpagelinktext' )->escaped();
 		// Do a batch existence check
 		$batch = new LinkBatch();
-		if (count($titles) >= 100) {
+		if ( count( $titles ) >= 100 ) {
 			$output = wfMessage( 'watchlistedit-too-many' )->parse();
 			return;
 		}

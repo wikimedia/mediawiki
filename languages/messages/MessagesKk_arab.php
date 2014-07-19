@@ -106,8 +106,8 @@ $namespaceAliases = array(
 
 	# Aliases to renamed kk-arab namespaces
 	'مەدياۋيكي'        => NS_MEDIAWIKI,
-	'مەدياۋيكي_تالقىلاۋى'  => NS_MEDIAWIKI_TALK ,
-	'ٷلگٸ'        => NS_TEMPLATE ,
+	'مەدياۋيكي_تالقىلاۋى'  => NS_MEDIAWIKI_TALK,
+	'ٷلگٸ'        => NS_TEMPLATE,
 	'ٷلگٸ_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 	'ٴۇلگٴى'              => NS_TEMPLATE,
 	'ٴۇلگٴى_تالقىلاۋى'    => NS_TEMPLATE_TALK,

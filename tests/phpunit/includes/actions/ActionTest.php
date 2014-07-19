@@ -14,12 +14,12 @@ class ActionTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( 'wgActions', array(
-			'null'     => null,
-			'dummy'    => true,
-			'string'   => 'NamedDummyAction',
+			'null' => null,
+			'dummy' => true,
+			'string' => 'NamedDummyAction',
 			'declared' => 'NonExistingClassName',
 			'callable' => array( $this, 'dummyActionCallback' ),
-			'object'   => new InstantiatedDummyAction( $this->getPage(), $this->getContext() ),
+			'object' => new InstantiatedDummyAction( $this->getPage(), $this->getContext() ),
 		) );
 	}
 
@@ -33,19 +33,19 @@ class ActionTest extends MediaWikiTestCase {
 
 	public function actionProvider() {
 		return array(
-			array( 'dummy',    'DummyAction' ),
-			array( 'string',   'NamedDummyAction' ),
+			array( 'dummy', 'DummyAction' ),
+			array( 'string', 'NamedDummyAction' ),
 			array( 'callable', 'CalledDummyAction' ),
-			array( 'object',   'InstantiatedDummyAction' ),
+			array( 'object', 'InstantiatedDummyAction' ),
 
 			// Capitalization is ignored
-			array( 'STRING',   'NamedDummyAction' ),
+			array( 'STRING', 'NamedDummyAction' ),
 
 			// Null and non-existing values
-			array( 'null',       null ),
+			array( 'null', null ),
 			array( 'undeclared', null ),
-			array( '',           null ),
-			array( null,         null ),
+			array( '', null ),
+			array( null, null ),
 		);
 	}
 

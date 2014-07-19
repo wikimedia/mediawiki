@@ -206,7 +206,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$output = $pager->getBody();
 				if ( !$this->including() ) {
 					$output = '<p>' . $pager->getNavigationBar() . '</p>' .
-						$output.
+						$output .
 						'<p>' . $pager->getNavigationBar() . '</p>';
 				}
 				$out->addHTML( $output );

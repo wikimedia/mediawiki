@@ -78,7 +78,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$wgParser->parse( '<recursivecallparser>baz</recursivecallparser>', $title, $po );
 	}
 
-	public function helperParserFunc( $input, $args, $parser) {
+	public function helperParserFunc( $input, $args, $parser ) {
 		$title = Title::newFromText( 'foo' );
 		$po = new ParserOptions;
 		$parser->parse( $input, $title, $po );

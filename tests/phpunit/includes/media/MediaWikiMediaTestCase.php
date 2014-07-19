@@ -78,7 +78,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 			// Autodetect by file extension for the lazy.
 			$magic = MimeMagic::singleton();
 			$parts = explode( $name, '.' );
-			$type = $magic->guessTypesForExtension( $parts[count( $parts ) - 1]  );
+			$type = $magic->guessTypesForExtension( $parts[count( $parts ) - 1] );
 		}
 		return new UnregisteredLocalFile( false, $this->repo,
 			"mwstore://localtesting/data/$name", $type );

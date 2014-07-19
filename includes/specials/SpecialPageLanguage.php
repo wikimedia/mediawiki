@@ -107,7 +107,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		// Returns the default since the page is not loaded from DB
 		$defLang = $title->getPageLanguage()->getCode();
 
-		$pageId =  $title->getArticleID();
+		$pageId = $title->getArticleID();
 
 		// Check if article exists
 		if ( !$pageId ) {

@@ -293,7 +293,7 @@ class MWCryptHKDF {
 		for ( $counter = 1; $counter <= $rounds; ++$counter ) {
 			$lastK = hash_hmac(
 				$hash,
-				$lastK . $info . chr($counter),
+				$lastK . $info . chr( $counter ),
 				$prk,
 				true
 			);

@@ -502,7 +502,7 @@ class Html {
 
 				// Remove duplicates and create the string
 				$value = implode( ' ', array_unique( $value ) );
-			} else if ( is_array( $value ) ) {
+			} elseif ( is_array( $value ) ) {
 				throw new MWException( "HTML attribute $key can not contain a list of values" );
 			}
 

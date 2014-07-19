@@ -179,7 +179,7 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 	 * @dataProvider provideMakeResourceLoaderLink
 	 * @covers OutputPage::makeResourceLoaderLink
 	 */
-	public function testMakeResourceLoaderLink( $args, $expectedHtml) {
+	public function testMakeResourceLoaderLink( $args, $expectedHtml ) {
 		$this->setMwGlobals( array(
 			'wgResourceLoaderDebug' => false,
 			'wgResourceLoaderUseESI' => true,
@@ -199,19 +199,19 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 		$out = new OutputPage( $ctx );
 		$rl = $out->getResourceLoader();
 		$rl->register( array(
-			'test.foo' => new ResourceLoaderTestModule(array(
+			'test.foo' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.foo( { a: true } );',
 				'styles' => '.mw-test-foo { content: "style"; }',
 			)),
-			'test.bar' => new ResourceLoaderTestModule(array(
+			'test.bar' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.bar( { a: true } );',
 				'styles' => '.mw-test-bar { content: "style"; }',
 			)),
-			'test.baz' => new ResourceLoaderTestModule(array(
+			'test.baz' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.baz( { a: true } );',
 				'styles' => '.mw-test-baz { content: "style"; }',
 			)),
-			'test.quux' => new ResourceLoaderTestModule(array(
+			'test.quux' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',

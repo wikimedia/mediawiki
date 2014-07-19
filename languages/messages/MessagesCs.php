@@ -261,7 +261,7 @@ $magicWords = array(
  * Date formats list for Special:Preferences
  * see $dateFormats for definitions
  */
-$datePreferences =  array(
+$datePreferences = array(
 	'ČSN basic dt',
 	'ČSN padded dt',
 	'ČSN basic td',

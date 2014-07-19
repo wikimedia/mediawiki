@@ -26,7 +26,7 @@ class ImportTest extends MediaWikiLangTestCase {
 	public function testHandlePageContainsRedirect( $xml, $redirectTitle ) {
 		$source = $this->getInputStreamSource( $xml );
 
-		$redirect = NULL;
+		$redirect = null;
 		$callback = function( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) use ( &$redirect ) {
 			if ( array_key_exists( 'redirect', $pageInfo ) ) {
 				$redirect = $pageInfo['redirect'];
@@ -92,7 +92,7 @@ EOF
 </mediawiki>
 EOF
 			,
-				NULL
+				null
 			),
 		);
 	}
