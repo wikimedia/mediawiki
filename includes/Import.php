@@ -45,7 +45,7 @@ class WikiImporter {
 	function __construct( ImportStreamSource $source ) {
 		$this->reader = new XMLReader();
 
-		if ( !in_array(  'uploadsource', stream_get_wrappers() ) ) {
+		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
 			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
 		}
 		$id = UploadSourceAdapter::registerSource( $source );

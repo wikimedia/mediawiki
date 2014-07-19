@@ -215,8 +215,8 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$po->setProperty( "bool", true );
 		$expected[] = array( "bool", true );
 
-		$po->setProperty( "float", 4.0 + 1.0/4.0 );
-		$expected[] = array( "float", 4.0 + 1.0/4.0 );
+		$po->setProperty( "float", 4.0 + 1.0 / 4.0 );
+		$expected[] = array( "float", 4.0 + 1.0 / 4.0 );
 
 		$po->setProperty( "int", -7 );
 		$expected[] = array( "int", -7 );

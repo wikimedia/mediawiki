@@ -8,7 +8,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	public function testRegister() {
 		$factory = new ConfigFactory();
 		$factory->register( 'unittest', 'GlobalVarConfig::newInstance' );
-		$this->assertTrue( True ); // No exception thrown
+		$this->assertTrue( true ); // No exception thrown
 		$this->setExpectedException( 'InvalidArgumentException' );
 		$factory->register( 'invalid', 'Invalid callback' );
 	}
@@ -39,7 +39,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		$factory = new ConfigFactory();
 		$factory->register( 'unittest', function() {
 			return true; // Not a Config object
-		});
+		} );
 		$this->setExpectedException( 'UnexpectedValueException' );
 		$factory->makeConfig( 'unittest' );
 	}

@@ -694,7 +694,7 @@ END;
 			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
 		} else {
 			$this->output( "Purging data from cache table '$table'\n" );
-			$this->db->query("DELETE from $table" );
+			$this->db->query( "DELETE from $table" );
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
 			if ( strlen( $default ) ) {

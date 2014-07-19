@@ -597,7 +597,7 @@ class ApiResult extends ApiBase {
 					$this->getMain()->getRequest()->getValues(),
 					array_flip( $this->generatorParams )
 				);
-			} else if ( $this->generatorContinuationData ) {
+			} elseif ( $this->generatorContinuationData ) {
 				// All the generator-using modules are complete, but the
 				// generator isn't. Continue the generator and restart the
 				// generator-using modules

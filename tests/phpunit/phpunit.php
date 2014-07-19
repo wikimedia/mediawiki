@@ -105,7 +105,7 @@ class PHPUnitMaintClass extends Maintenance {
 			# The below code injects a parameter just like if the user called
 			# Probably fix bug 29226
 			$key = array_search( '--colors', $_SERVER['argv'] );
-			if( $key === false ) {
+			if ( $key === false ) {
 				array_splice( $_SERVER['argv'], 1, 0, '--colors' );
 			}
 		}
@@ -115,7 +115,7 @@ class PHPUnitMaintClass extends Maintenance {
 		# PHPUnit uses stream_resolve_include_path() internally
 		# See bug 32022
 		$key = array_search( '--include-path', $_SERVER['argv'] );
-		if( $key === false ) {
+		if ( $key === false ) {
 			array_splice( $_SERVER['argv'], 1, 0,
 				__DIR__
 				. PATH_SEPARATOR

@@ -120,7 +120,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !strlen( $newValues['_InstallUser'] ) ) {
 			$status->fatal( 'config-db-username-empty' );
 		}
-		if (!strlen( $newValues['_InstallPassword'] ) ) {
+		if ( !strlen( $newValues['_InstallPassword'] ) ) {
 			$status->fatal( 'config-db-password-empty', $newValues['_InstallUser'] );
 		}
 		if ( !$status->isOK() ) {

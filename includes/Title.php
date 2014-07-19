@@ -979,7 +979,7 @@ class Title {
 		try {
 			$formatter = self::getTitleFormatter();
 			return $formatter->getNamespaceName( $this->mNamespace, $this->mDbkeyform );
-		} catch ( InvalidArgumentException $ex )  {
+		} catch ( InvalidArgumentException $ex ) {
 			wfDebug( __METHOD__ . ': ' . $ex->getMessage() . "\n" );
 			return false;
 		}

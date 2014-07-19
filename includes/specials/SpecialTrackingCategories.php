@@ -59,7 +59,7 @@ class SpecialTrackingCategories extends SpecialPage {
 			</tr></thead>"
 		);
 
-		foreach( $wgTrackingCategories as $catMsg ) {
+		foreach ( $wgTrackingCategories as $catMsg ) {
 			/*
 			 * Check if the tracking category varies by namespace
 			 * Otherwise only pages in the current namespace will be displayed

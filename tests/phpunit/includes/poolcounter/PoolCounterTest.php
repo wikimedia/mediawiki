@@ -50,9 +50,8 @@ class PoolCounterTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$hashKeyIntoSlots = new ReflectionMethod($poolCounter, 'hashKeyIntoSlots' );
+		$hashKeyIntoSlots = new ReflectionMethod( $poolCounter, 'hashKeyIntoSlots' );
 		$hashKeyIntoSlots->setAccessible( true );
-
 
 		$keysWithTwoSlots = $keysWithFiveSlots = array();
 		foreach ( range( 1, 100 ) as $i ) {

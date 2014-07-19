@@ -29,7 +29,7 @@ class HTMLSelectField extends HTMLFormField {
 
 		$allowedParams = array( 'tabindex', 'size' );
 		$customParams = $this->getAttributes( $allowedParams );
-		foreach( $customParams as $name => $value ) {
+		foreach ( $customParams as $name => $value ) {
 			$select->setAttribute( $name, $value );
 		}
 

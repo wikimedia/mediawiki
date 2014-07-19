@@ -551,7 +551,7 @@ class VectorTemplate extends BaseTemplate {
 
 						<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 							<?php
-							if ($wgVectorUseSimpleSearch) {
+							if ( $wgVectorUseSimpleSearch ) {
 							?>
 							<div id="simpleSearch">
 								<?php

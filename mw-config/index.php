@@ -44,7 +44,7 @@ function wfInstallerMain() {
 
 	if ( !$installer->startSession() ) {
 
-		if( $installer->request->getVal( "css" ) ) {
+		if ( $installer->request->getVal( "css" ) ) {
 			// Do not display errors on css pages
 			$installer->outputCss();
 			exit;

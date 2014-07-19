@@ -46,10 +46,10 @@ abstract class BagOStuff {
 	protected $lastError = self::ERR_NONE;
 
 	/** Possible values for getLastError() */
-	const ERR_NONE        = 0; // no error
+	const ERR_NONE = 0; // no error
 	const ERR_NO_RESPONSE = 1; // no response
 	const ERR_UNREACHABLE = 2; // can't connect
-	const ERR_UNEXPECTED  = 3; // response gave some error
+	const ERR_UNEXPECTED = 3; // response gave some error
 
 	/**
 	 * @param bool $bool

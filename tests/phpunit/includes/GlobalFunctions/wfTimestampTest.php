@@ -92,7 +92,7 @@ class WfTimestampTest extends MediaWikiTestCase {
 		if ( substr( $output, 0, 1 ) === '/' ) {
 			// Bug 64946: Day of the week calculations for very old
 			// timestamps varies from system to system.
-			$this->assertRegExp(  $output, $timestamp, $message );
+			$this->assertRegExp( $output, $timestamp, $message );
 		} else {
 			$this->assertEquals( $output, $timestamp, $message );
 		}

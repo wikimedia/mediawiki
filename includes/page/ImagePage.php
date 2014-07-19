@@ -363,7 +363,7 @@ class ImagePage extends Article {
 						// it can be denoted as the current size being shown.
 						// Vectorized images are "infinitely" big, so all thumb
 						// sizes are shown.
-						if ( ( ($size[0] <= $width_orig && $size[1] <= $height_orig)
+						if ( ( ( $size[0] <= $width_orig && $size[1] <= $height_orig )
 								|| $this->displayImg->isVectorized() )
 							&& $size[0] != $width && $size[1] != $height
 						) {

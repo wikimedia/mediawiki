@@ -242,7 +242,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['articlepath'] = $config->get( 'ArticlePath' );
 		$data['scriptpath'] = $config->get( 'ScriptPath' );
 		$data['script'] = $config->get( 'Script' );
-		$data['variantarticlepath'] = $config->get( 'VariantArticlePath'  );
+		$data['variantarticlepath'] = $config->get( 'VariantArticlePath' );
 		$data['server'] = $config->get( 'Server' );
 		$data['servername'] = $config->get( 'ServerName' );
 		$data['wikiid'] = wfWikiID();
@@ -420,7 +420,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 
 			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
-			if (substr( $row['iw_url'], 0, 2) == '//') {
+			if ( substr( $row['iw_url'], 0, 2 ) == '//' ) {
 				$val['protorel'] = '';
 			}
 			if ( isset( $row['iw_wikiid'] ) ) {

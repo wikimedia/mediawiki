@@ -165,7 +165,7 @@ class XCFHandler extends BitmapHandler {
 			// Try to be consistent with the names used by PNG files.
 			// Unclear from base media type if it has an alpha layer,
 			// so just assume that it does since it "potentially" could.
-			switch( $header['base_type'] ) {
+			switch ( $header['base_type'] ) {
 			case 0:
 				$metadata['colorType'] = 'truecolour-alpha';
 				break;
