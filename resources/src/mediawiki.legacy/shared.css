@@ -1165,3 +1165,9 @@ sup,
 sub {
 	line-height: 1;
 }
+
+.mw-version-ext-vcs-version {
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: -webkit-isolate;
+	unicode-bidi: isolate;
+}
