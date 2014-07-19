@@ -15,10 +15,9 @@
 	 *
 	 * @private
 	 * @param {string} info One of 'groups' or 'rights'
-	 * @param {Function} [callback]
 	 * @return {jQuery.Promise}
 	 */
-	function getUserInfo( info, callback ) {
+	function getUserInfo( info ) {
 		var api;
 		if ( !deferreds[info] ) {
 
@@ -42,7 +41,7 @@
 
 		}
 
-		return deferreds[info].done( callback ).promise();
+		return deferreds[info].promise();
 	}
 
 	mw.user = user = {
@@ -228,7 +227,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		getGroups: function ( callback ) {
-			return getUserInfo( 'groups', callback );
+			return getUserInfo( 'groups' ).done( callback );
 		},
 
 		/**
@@ -238,7 +237,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		getRights: function ( callback ) {
-			return getUserInfo( 'rights', callback );
+			return getUserInfo( 'rights' ).done( callback );
 		}
 	};
 
