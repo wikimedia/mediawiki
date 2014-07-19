@@ -1552,23 +1552,3 @@ class DumpMultiWriter {
 		return $filenames;
 	}
 }
-
-/**
- * @param string $string
- * @return string
- * @todo FIXME: Only used in OAI extension. Move over there.
- */
-function xmlsafe( $string ) {
-	wfProfileIn( __FUNCTION__ );
-
-	/**
-	 * The page may contain old data which has not been properly normalized.
-	 * Invalid UTF-8 sequences or forbidden control characters will make our
-	 * XML output invalid, so be sure to strip them out.
-	 */
-	$string = UtfNormal::cleanUp( $string );
-
-	$string = htmlspecialchars( $string );
-	wfProfileOut( __FUNCTION__ );
-	return $string;
-}
