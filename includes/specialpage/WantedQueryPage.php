@@ -78,15 +78,9 @@ abstract class WantedQueryPage extends QueryPage {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( $title instanceof Title ) {
 			if ( $this->isCached() || $this->forceExistenceCheck() ) {
-				$pageLink = $title->isKnown()
+				$pageLink = $this->existenceCheck( $title )
 					? '<del>' . Linker::link( $title ) . '</del>'
-					: Linker::link(
-						$title,
-						null,
-						array(),
-						array(),
-						array( 'broken' )
-					);
+					: Linker::link( $title );
 			} else {
 				$pageLink = Linker::link(
 					$title,
@@ -100,6 +94,25 @@ abstract class WantedQueryPage extends QueryPage {
 		} else {
 			return $this->msg( 'wantedpages-badtitle', $result->title )->escaped();
 		}
+	}
+
+	/**
+	 * Does the Title currently exists
+	 *
+	 * This method allows a subclass to override this check
+	 * (For example, wantedfiles, would want to check if the file exists
+	 * not just that a page in the file namespace exists).
+	 *
+	 * This will only control if the link is crossed out. Whether or not the link
+	 * is blue vs red is controlled by if the title exists.
+	 *
+	 * @note This will only be run if the page is cached (ie $wgMiserMode = true)
+	 *   unless forceExistenceCheck() is true.
+	 * @since 1.24
+	 * @return boolean
+	 */
+	protected function existenceCheck( Title $title ) {
+		return $title->isKnown();
 	}
 
 	/**
