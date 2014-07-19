@@ -93,6 +93,18 @@ class WantedFilesPage extends WantedQueryPage {
 		return true;
 	}
 
+	/**
+	 * Does the file exist?
+	 *
+	 * Use wfFindFile so we still think file namespace pages without
+	 * files are missing, but valid file redirects and foreign files are ok.
+	 *
+	 * @return boolean
+	 */
+	protected function existenceCheck( Title $title ) {
+		return (bool) wfFindFile( $title );
+	}
+
 	function getQueryInfo() {
 		return array(
 			'tables' => array(
