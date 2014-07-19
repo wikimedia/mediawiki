@@ -207,7 +207,7 @@ class Preferences {
 	 * @return void
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
+		global $wgAuth, $wgContLang, $wgParser, $wgLanguageCode,
 			$wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
 			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,

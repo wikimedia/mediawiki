@@ -294,8 +294,7 @@ class SkinTemplate extends Skin {
 	 * @return QuickTemplate The template to be executed by outputPage
 	 */
 	protected function prepareQuickTemplate() {
-		global $wgContLang, $wgScript, $wgStylePath,
-			$wgMimeType, $wgJsMimeType, $wgXhtmlNamespaces, $wgHtml5Version,
+		global $wgContLang, $wgScript, $wgStylePath, $wgMimeType, $wgJsMimeType,
 			$wgDisableCounters, $wgSitename, $wgLogo, $wgMaxCredits,
 			$wgShowCreditsIfMax, $wgPageShowWatchingUsers, $wgArticlePath,
 			$wgScriptPath, $wgServer;

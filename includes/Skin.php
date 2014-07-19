@@ -815,7 +815,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function getCopyright( $type = 'detect' ) {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgContLang;
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 
 		if ( $type == 'detect' ) {
 			if ( !$this->isRevisionCurrent()
