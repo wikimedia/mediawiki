@@ -6,13 +6,13 @@
 			"Xuacu"
 		]
 	},
-	"ooui-dialog-action-close": "Zarrar",
 	"ooui-outline-control-move-down": "Mover abaxo l'elementu",
 	"ooui-outline-control-move-up": "Mover arriba l'elementu",
 	"ooui-outline-control-remove": "Desaniciar elementu",
 	"ooui-toolbar-more": "Más",
-	"ooui-dialog-confirm-title": "Confirmar",
-	"ooui-dialog-confirm-default-prompt": "¿Tas seguru?",
-	"ooui-dialog-confirm-default-ok": "Aceutar",
-	"ooui-dialog-confirm-default-cancel": "Encaboxar"
+	"ooui-dialog-message-accept": "Aceutar",
+	"ooui-dialog-message-reject": "Encaboxar",
+	"ooui-dialog-process-error": "Daqué funcionó mal",
+	"ooui-dialog-process-dismiss": "Descartar",
+	"ooui-dialog-process-retry": "Vuelvi a intentalo"
 }
