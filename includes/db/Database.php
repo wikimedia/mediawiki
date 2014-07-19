@@ -600,7 +600,18 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return bool
 	 */
 	public function doneWrites() {
-		return $this->mDoneWrites;
+		return (bool)$this->mDoneWrites;
+	}
+
+	/**
+	 * Returns the last time the connection may have been used for write queries.
+	 * Should return a timestamp if unsure.
+	 *
+	 * @return int|float UNIX timestamp or false
+	 * @since 1.24
+	 */
+	public function lastDoneWrites() {
+		return $this->mDoneWrites ?: false;
 	}
 
 	/**
@@ -1020,10 +1031,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		global $wgUser, $wgDebugDBTransactions;
 
 		$this->mLastQuery = $sql;
-		if ( !$this->mDoneWrites && $this->isWriteQuery( $sql ) ) {
+		if ( $this->isWriteQuery( $sql ) ) {
 			# Set a flag indicating that writes have been done
 			wfDebug( __METHOD__ . ': Writes done: ' . DatabaseBase::generalizeSQL( $sql ) . "\n" );
-			$this->mDoneWrites = true;
+			$this->mDoneWrites = microtime( true );
 		}
 
 		# Add a comment for easy SHOW PROCESSLIST interpretation
