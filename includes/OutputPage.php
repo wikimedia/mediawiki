@@ -2961,7 +2961,7 @@ $templates
 	 * @return string
 	 */
 	function getScriptsForBottomQueue( $inHead ) {
-		global $wgUseSiteJs, $wgAllowUserJs;
+		global $wgAllowUserJs;
 
 		// Scripts and messages "only" requests marked for bottom inclusion
 		// If we're in the <head>, use load() calls rather than <script src="..."> tags
@@ -3524,7 +3524,7 @@ $templates
 	 * @return string
 	 */
 	public function buildCssLinks() {
-		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs, $wgContLang;
+		global $wgAllowUserCss, $wgContLang;
 
 		$this->getSkin()->setupSkinUserCss( $this );
 

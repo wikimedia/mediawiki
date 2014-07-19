@@ -126,7 +126,6 @@ class WebInstallerOutput {
 	public function getCSS() {
 		// Horrible, horrible hack: the installer is currently hardcoded to use the Vector skin, so load
 		// it here. Include instead of require, as this will work without it, it will just look bad.
-		global $wgResourceModules;
 		global $wgStyleDirectory;
 		include_once "$wgStyleDirectory/Vector/Vector.php";
 
