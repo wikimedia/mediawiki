@@ -347,7 +347,7 @@ class Block {
 	/**
 	 * Given a database row from the ipblocks table, initialize
 	 * member variables
-	 * @param ResultWrapper $row A row from the ipblocks table
+	 * @param stdClass $row A row from the ipblocks table
 	 */
 	protected function initFromRow( $row ) {
 		$this->setTarget( $row->ipb_address );
@@ -382,7 +382,7 @@ class Block {
 
 	/**
 	 * Create a new Block object from a database row
-	 * @param ResultWrapper $row Row from the ipblocks table
+	 * @param stdClass $row Row from the ipblocks table
 	 * @return Block
 	 */
 	public static function newFromRow( $row ) {
