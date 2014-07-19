@@ -3815,7 +3815,7 @@ function wfWaitForSlaves( $ifWritesSince = false, $wiki = false, $cluster = fals
 	// bug 27975 - Don't try to wait for slaves if there are none
 	// Prevents permission error when getting master position
 	if ( $lb->getServerCount() > 1 ) {
-		if ( $ifWritesSince && !$lb->isOpen( DB_MASTER ) ) {
+		if ( $ifWritesSince && !$lb->hasMasterConnection() ) {
 			return; // assume no writes done
 		}
 		$dbw = $lb->getConnection( DB_MASTER, array(), $wiki );
