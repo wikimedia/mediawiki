@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Anakmalaysia"
+			"Anakmalaysia",
+			"Pizza1016"
 		]
 	},
 	"skinname-monobook": "MonoBook",
+	"monobook-desc": "Kulit MediaWiki yang klasik sejak tahun 2004, dinamakan selepas foto hitam-dan-putih sebuah buku dalam belakang laman.",
 	"monobook.css": "/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Monobook */"
 }

@@ -109,7 +109,8 @@
 			"Akeron",
 			"Linedwell",
 			"Yona b",
-			"SnowedEarth"
+			"SnowedEarth",
+			"Orikrin1998"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -832,7 +833,7 @@
 	"revdelete-text-text": "Les révisions supprimées continueront à apparaître dans l’historique de la page, mais une partie de leur contenu sera inaccessible au public.",
 	"revdelete-text-file": "Les versions de fichier supprimées continueront à apparaître dans l’historique des fichiers, mais une partie de leur contenu sera indisponible au public.",
 	"logdelete-text": "Les évènements du journal supprimés continueront à apparaître dans les journaux, mais une partie de leur contenu sera indisponible au public.",
-	"revdelete-text-others": "Les autres administrateurs de {{SITENAME}} seront toujours capables d'accéder au contenu caché et peuvent le restaurer à nouveau par cette interface, à moins que des restrictions additionnelles soient définies.",
+	"revdelete-text-others": "Les autres administrateurs seront toujours en mesure d'accéder au contenu caché et le restaurer, à moins que des restrictions supplémentaires soient fixées.",
 	"revdelete-confirm": "Confirmez que vous voulez effectuer cette action, que vous en comprenez les conséquences, et que vous le faites en accord avec [[{{MediaWiki:Policy-url}}|les règles]].",
 	"revdelete-suppress-text": "La suppression ne doit être utilisée '''que''' dans les cas suivants :\n* Informations potentiellement diffamatoires\n* Informations personnelles inappropriées\n*: ''adresse, numéro de téléphone, numéro de sécurité sociale, …''",
 	"revdelete-legend": "Mettre en place des restrictions de visibilité :",

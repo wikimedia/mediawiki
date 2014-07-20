@@ -789,7 +789,7 @@
 	"revdelete-text-text": "Usunięte wersje będą nadal widoczne w historii strony, ale niektóre fragmenty ich treści nie będą dostępne dla wszystkich.",
 	"revdelete-text-file": "Usunięte wersje pliku będą nadal widoczne w historii pliku, ale niektóre fragmenty ich treści nie będą dostępne dla wszystkich.",
 	"logdelete-text": "Usunięte wpisy rejestru nadal będą widoczne w rejestrze, ale niektóre fragmenty ich treści nie będą dostępne dla wszystkich.",
-	"revdelete-text-others": "Pozostali administratorzy {{grammar:genitive|{{SITENAME}}}} nadal będą posiadali dostęp do ukrytej treści i będą w stanie odtworzyć ją ponownie za pomocą tego samego interfejsu, jeśli nie zostaną ustawione dodatkowe ograniczenia.",
+	"revdelete-text-others": "Pozostali administratorzy nadal będą posiadali dostęp do ukrytej treści i będą w stanie odtworzyć ją ponownie za pomocą tego samego interfejsu, jeśli nie zostaną ustawione dodatkowe ograniczenia.",
 	"revdelete-confirm": "Potwierdź, że chcesz to zrobić zgodnie z [[{{MediaWiki:Policy-url}}|zasadami]] i że rozumiesz konsekwencje.",
 	"revdelete-suppress-text": "Ukrywanie powinno być używane '''wyłącznie''' w sytuacji:\n* Informacji, która może być zniesławieniem\n* Ujawnienie danych osobowych\n*: ''adres domowy, numer telefonu, numer PESEL itp''",
 	"revdelete-legend": "Ustaw ograniczenia widoczności",

@@ -92,6 +92,7 @@
 	"config-missing-db-name": "Heu d'introduir un valor per a «{{int:config-db-name}}».",
 	"config-missing-db-host": "Heu d'introduir un valor per a «{{int:config-db-host}}».",
 	"config-missing-db-server-oracle": "Heu d’introduir un valor per a «{{int:config-db-host-oracle}}».",
+	"config-db-sys-user-exists-oracle": "El compte d’usuari «$1» ja existeix. SYSDBA només es pot fer servir per crear comptes nous.",
 	"config-sqlite-readonly": "El fitxer <code>$1</code> no es pot escriure.",
 	"config-sqlite-cant-create-db": "No s'ha pogut crear el fitxer de base de dades <code>$1</code>.",
 	"config-upgrade-done-no-regenerate": "S'ha completat l'actualització.\n\nJa podeu [$1 començar a utilitzar el wiki].",

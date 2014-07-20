@@ -20,7 +20,8 @@
 			"Kuailong",
 			"Zjzengdongyang",
 			"Mywood",
-			"Impersonator 1"
+			"Impersonator 1",
+			"Fengchao"
 		]
 	},
 	"config-desc": "MediaWiki安装程序",
@@ -246,7 +247,7 @@
 	"config-license-gfdl": "GNU自由文档许可证1.3或更高版本",
 	"config-license-pd": "公有领域",
 	"config-license-cc-choose": "选择自定义的知识共享许可证",
-	"config-license-help": "许多公共wiki会以[http://freedomdefined.org/Definition 自由许可证]的方式释放出编者的所有贡献。这有助于构建社区的主人翁意识，并能鼓励长期贡献。对于非公共wiki或公司wiki，这并非必要条件。\n\n如果您希望使用来自维基百科的内容，并希望维基百科能接受复制自您的wiki的内容，您应当选择<strong>知识共享-署名-相同方式共享</strong>。\n\nGNU自由文档许可证是维基百科曾经使用过的许可证，并迄今有效。然而，该许可证难以理解，并会增加重用内容的难度。",
+	"config-license-help": "许多公共wiki将所有用户贡献置于[http://freedomdefined.org/Definition 自由许可证]之下。这有助于构建社区的主人翁意识，并鼓励长期贡献。对于非公共wiki或公司wiki，这并非必要条件。\n\n如果您希望使用来自维基百科的内容，并希望维基百科能接受复制自您的wiki的内容，您应当选择<strong>{{int:config-license-cc-by-sa}}</strong>\n\nGNU自由文档许可证是维基百科曾经使用过的许可证，并迄今有效。然而，该许可证难以理解，并会增加重用内容的难度。",
 	"config-email-settings": "电子邮件设置",
 	"config-enable-email": "启用出站电子邮件",
 	"config-enable-email-help": "如果您希望使用电子邮件功能，请正确配置[http://www.php.net/manual/en/mail.configuration.php PHP的邮件设定]。如果您不需要任何电子邮件功能，请在此处禁用它。",

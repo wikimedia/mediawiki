@@ -1556,7 +1556,7 @@
 	"wantedpages-badtitle": "Ogiltig titel bland resultaten: $1",
 	"wantedfiles": "Önskade filer",
 	"wantedfiletext-cat": "Följande filer används men finns inte. Filer från utländska databaser kan vara listade trots att de inte finns. Sådana falska realiteter kommer att <del>tas bort</del>. Sidor som bäddar in filer som inte finns listas upp på [[:$1]].",
-	"wantedfiletext-cat-noforeign": "Följande filer används men finns inte. Sidor som bäddar in filer som inte finns listas upp i [[:$1]].",
+	"wantedfiletext-cat-noforeign": "Följande filer används men finns inte. Sidor som bäddar in filer som inte finns listas i [[:$1]].",
 	"wantedfiletext-nocat": "Följande filer används men finns inte. Filer från utländska databaser kan vara listade trots att de inte finns. Sådana falska realiteter kommer att <del>tas bort</del>.",
 	"wantedfiletext-nocat-noforeign": "Följande filer används men finns inte.",
 	"wantedtemplates": "Önskade mallar",
