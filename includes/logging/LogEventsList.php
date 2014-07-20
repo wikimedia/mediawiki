@@ -446,7 +446,9 @@ class LogEventsList extends ContextSource {
 			} else {
 				$permissions = array( 'deletedhistory' );
 			}
-			wfDebug( "Checking for " . implode( ', ', $permissions ) . " due to $field match on $bitfield\n" );
+			wfDebug(
+				"Checking for " . implode( ', ', $permissions ) . " due to $field match on $bitfield\n"
+			);
 			return call_user_func_array( array( $user, 'isAllowedAny' ), $permissions );
 		}
 		return true;
