@@ -470,7 +470,6 @@ abstract class QueryPage extends SpecialPage {
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
 	 * @param string $par
-	 * @return int
 	 */
 	function execute( $par ) {
 		global $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
@@ -488,7 +487,7 @@ abstract class QueryPage extends SpecialPage {
 
 		if ( $this->isCached() && !$this->isCacheable() ) {
 			$out->addWikiMsg( 'querypage-disabled' );
-			return 0;
+			return;
 		}
 
 		$out->setSyndicated( $this->isSyndicated() );
@@ -578,8 +577,6 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		$out->addHTML( Xml::closeElement( 'div' ) );
-
-		return min( $this->numRows, $this->limit ); # do not return the one extra row, if exist
 	}
 
 	/**
