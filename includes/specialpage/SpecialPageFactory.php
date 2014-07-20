@@ -114,6 +114,7 @@ class SpecialPageFactory {
 		// Media reports and uploads
 		'Listfiles' => 'SpecialListFiles',
 		'Filepath' => 'SpecialFilepath',
+		'MediaStatistics' => 'MediaStatisticsPage',
 		'MIMEsearch' => 'MIMEsearchPage',
 		'FileDuplicateSearch' => 'FileDuplicateSearchPage',
 		'Upload' => 'SpecialUpload',
