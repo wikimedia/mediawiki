@@ -428,6 +428,7 @@ $specialPageAliases = array(
 	'Log'                       => array( 'Log', 'Logs' ),
 	'Lonelypages'               => array( 'LonelyPages', 'OrphanedPages' ),
 	'Longpages'                 => array( 'LongPages' ),
+	'MediaStatistics'           => array( 'MediaStatistics' ),
 	'MergeHistory'              => array( 'MergeHistory' ),
 	'MIMEsearch'                => array( 'MIMESearch' ),
 	'Mostcategories'            => array( 'MostCategories' ),
