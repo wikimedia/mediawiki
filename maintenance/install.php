@@ -21,15 +21,10 @@
  * @ingroup Maintenance
  */
 
-if ( !function_exists( 'version_compare' ) || ( version_compare( PHP_VERSION, '5.3.2' ) < 0 ) ) {
-	require_once dirname( __FILE__ ) . '/../includes/PHPVersionError.php';
-	wfPHPVersionError( 'cli' );
-}
+require_once dirname( __FILE__ ) . '/Maintenance.php';
 
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
-
-require_once dirname( __DIR__ ) . '/maintenance/Maintenance.php';
 
 /**
  * Maintenance script to install and configure MediaWiki
