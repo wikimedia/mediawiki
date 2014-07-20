@@ -86,6 +86,10 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return $page;
 	}
 
+	protected function postText() {
+		return $this->showLogFragment( $this->par );
+	}
+
 	public function alterForm( HTMLForm $form ) {
 		$form->setDisplayFormat( 'vform' );
 		$form->setWrapperLegend( false );
@@ -177,5 +181,12 @@ class SpecialPageLanguage extends FormSpecialPage {
 	public function onSuccess() {
 		// Success causes a redirect
 		$this->getOutput()->redirect( $this->goToUrl );
+	}
+
+	function showLogFragment( $title ) {
+		$moveLogPage = new LogPage( 'pagelang' );
+		$out1 = Xml::element( 'h2', null, $moveLogPage->getName()->text() );
+		LogEventsList::showLogExtract( $out2, 'pagelang', $title );
+		return $out1 . $out2;
 	}
 }
