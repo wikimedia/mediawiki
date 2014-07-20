@@ -45,6 +45,7 @@ $wgAutoloadLocalClasses = array(
 	'ChannelFeed' => 'includes/Feed.php',
 	'Collation' => 'includes/Collation.php',
 	'CollationCkb' => 'includes/Collation.php',
+	'CollationEt' => 'includes/Collation.php',
 	'ConcatenatedGzipHistoryBlob' => 'includes/HistoryBlob.php',
 	'Cookie' => 'includes/Cookie.php',
 	'CookieJar' => 'includes/Cookie.php',

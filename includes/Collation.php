@@ -49,6 +49,8 @@ abstract class Collation {
 				return new IcuCollation( 'root' );
 			case 'xx-uca-ckb':
 				return new CollationCkb;
+			case 'xx-uca-et':
+				return new CollationEt;
 			default:
 				$match = array();
 				if ( preg_match( '/^uca-([a-z@=-]+)$/', $collationName, $match ) ) {
@@ -253,7 +255,7 @@ class IcuCollation extends Collation {
 		'el' => array(),
 		'eo' => array( "Ĉ", "Ĝ", "Ĥ", "Ĵ", "Ŝ", "Ŭ" ),
 		'es' => array( "Ñ" ),
-		'et' => array( "Š", "Ž", "Õ", "Ä", "Ö", "Ü" ),
+		'et' => array( "Š", "Ž", "Õ", "Ä", "Ö", "Ü", "W" ), // added W for CollationEt (xx-uca-et)
 		'eu' => array( "Ñ" ),
 		'fo' => array( "Á", "Ð", "Í", "Ó", "Ú", "Ý", "Æ", "Ø", "Å" ),
 		'fur' => array( "À", "Á", "Â", "È", "Ì", "Ò", "Ù" ),
@@ -595,5 +597,44 @@ class CollationCkb extends IcuCollation {
 		parent::__construct( 'fa' );
 		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()
 		$this->digitTransformLanguage = Language::factory( 'ckb' );
+	}
+}
+
+/**
+ * Workaround for incorrect collation of Estonian language ('et') in ICU (bug 54168).
+ *
+ * 'W' and 'V' should not be considered the same letter for the purposes of collation in modern
+ * Estonian. We work around this by replacing 'W' and 'w' with 'ᴡ' U+1D21 'LATIN LETTER SMALL
+ * CAPITAL W' for sortkey generation, which is collated like 'W' and is not tailored to have the
+ * same primary weight as 'V' in Estonian.
+ */
+class CollationEt extends IcuCollation {
+	function __construct() {
+		parent::__construct( 'et' );
+	}
+
+	private static function mangle( $string ) {
+		return str_replace(
+			array( 'w', 'W' ),
+			'ᴡ', // U+1D21 'LATIN LETTER SMALL CAPITAL W'
+			$string
+		);
+	}
+
+	private static function unmangle( $string ) {
+		// Casing data is lost…
+		return str_replace(
+			'ᴡ', // U+1D21 'LATIN LETTER SMALL CAPITAL W'
+			'W',
+			$string
+		);
+	}
+
+	function getSortKey( $string ) {
+		return parent::getSortKey( self::mangle( $string ) );
+	}
+
+	function getFirstLetter( $string ) {
+		return self::unmangle( parent::getFirstLetter( self::mangle( $string ) ) );
 	}
 }
