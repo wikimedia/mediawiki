@@ -97,7 +97,6 @@ class VectorTemplate extends BaseTemplate {
 		<div id="content" class="mw-body" role="main">
 			<a id="top"></a>
 
-			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 			<?php
 			if ( $this->data['sitenotice'] ) {
 				?>
