@@ -1669,7 +1669,8 @@ class Revision implements IDBAccessObject {
 			} else {
 				$permissions = array( 'deletedhistory' );
 			}
-			wfDebug( "Checking for " . implode( ', ', $permissions ) . " due to $field match on $bitfield\n" );
+			$permissionlist = implode( ', ', $permissions );
+			wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
 			return call_user_func_array( array( $user, 'isAllowedAny' ), $permissions );
 		} else {
 			return true;
