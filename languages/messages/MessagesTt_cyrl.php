@@ -34,18 +34,18 @@ $datePreferences = false;
 $defaultDateFormat = 'dmy';
 
 $dateFormats = array(
-        'mdy time' => 'H:i',
-        'mdy date' => 'M j, Y',
-        'mdy both' => 'H:i, M j, Y',
-        'dmy time' => 'H:i',
-        'dmy date' => 'j M Y',
-        'dmy both' => 'j M Y, H:i',
-        'ymd time' => 'H:i',
-        'ymd date' => 'Y M j',
-        'ymd both' => 'H:i, Y M j',
-        'ISO 8601 time' => 'xnH:xni:xns',
-        'ISO 8601 date' => 'xnY-xnm-xnd',
-        'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+	'mdy time' => 'H:i',
+	'mdy date' => 'M j, Y',
+	'mdy both' => 'H:i, M j, Y',
+	'dmy time' => 'H:i',
+	'dmy date' => 'j M Y',
+	'dmy both' => 'j M Y, H:i',
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y M j',
+	'ymd both' => 'H:i, Y M j',
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
 $namespaceNames = array(

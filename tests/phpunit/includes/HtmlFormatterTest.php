@@ -40,16 +40,16 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 	}
 
 	public function getHtmlData() {
-		$removeImages = function( HtmlFormatter $f ) {
+		$removeImages = function ( HtmlFormatter $f ) {
 			$f->setRemoveMedia();
 		};
-		$removeTags = function( HtmlFormatter $f ) {
+		$removeTags = function ( HtmlFormatter $f ) {
 			$f->remove( array( 'table', '.foo', '#bar', 'div.baz' ) );
 		};
-		$flattenSomeStuff = function( HtmlFormatter $f ) {
+		$flattenSomeStuff = function ( HtmlFormatter $f ) {
 			$f->flatten( array( 's', 'div' ) );
 		};
-		$flattenEverything = function( HtmlFormatter $f ) {
+		$flattenEverything = function ( HtmlFormatter $f ) {
 			$f->flattenAllTags();
 		};
 		return array(

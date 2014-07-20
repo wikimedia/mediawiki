@@ -72,7 +72,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
 		$genderCache->expects( $this->any() )
 			->method( 'getGenderOf' )
-			->will( $this->returnCallback( function( $userName ) {
+			->will( $this->returnCallback( function ( $userName ) {
 				return preg_match( '/^[^- _]+a( |_|$)/u', $userName ) ? 'female' : 'male';
 			} ) );
 

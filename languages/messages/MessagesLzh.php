@@ -126,9 +126,9 @@ $defaultDateFormat = 'zh';
  * overridden.
  */
 $dateFormats = array(
-        'zh time' => 'H時i分',
-        'zh date' => 'Y年n月j日 （l）',
-        'zh both' => 'Y年n月j日 （D） H時i分',
+	'zh time' => 'H時i分',
+	'zh date' => 'Y年n月j日 （l）',
+	'zh both' => 'Y年n月j日 （D） H時i分',
 );
 
 $digitTransformTable = array(

@@ -35,8 +35,8 @@ $namespaceAliases = array(
 );
 
 $namespaceGenderAliases = array(
-        NS_USER => array( 'male' => 'Wužiwar', 'female' => 'Wužiwarka' ),
-        NS_USER_TALK => array( 'male' => 'Diskusija_z_wužiwarjom', 'female' => 'Diskusija_z_wužiwarku' ),
+	NS_USER => array( 'male' => 'Wužiwar', 'female' => 'Wužiwarka' ),
+	NS_USER_TALK => array( 'male' => 'Diskusija_z_wužiwarjom', 'female' => 'Diskusija_z_wužiwarku' ),
 );
 
 $datePreferences = array(

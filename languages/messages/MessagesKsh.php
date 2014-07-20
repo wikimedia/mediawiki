@@ -206,6 +206,6 @@ $magicWords = array(
 );
 
 $imageFiles = array(
-    'button-italic'   => 'ksh/button_S_italic.png',
+	'button-italic'   => 'ksh/button_S_italic.png',
 );
 

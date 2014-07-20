@@ -151,7 +151,7 @@ if ( !class_exists( 'PHPUnit_TextUI_Command' ) ) {
 if ( version_compare( PHP_VERSION, '5.4.0', '<' )
 	&& version_compare( PHP_VERSION, '5.3.0', '>=' )
 ) {
-	register_shutdown_function( function() {
+	register_shutdown_function( function () {
 		gc_collect_cycles();
 		gc_disable();
 	} );

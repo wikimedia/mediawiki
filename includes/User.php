@@ -2176,7 +2176,7 @@ class User implements IDBAccessObject {
 			$userid = $this->mId;
 			$touched = $this->mTouched;
 			$method = __METHOD__;
-			$dbw->onTransactionIdle( function() use ( $dbw, $userid, $touched, $method ) {
+			$dbw->onTransactionIdle( function () use ( $dbw, $userid, $touched, $method ) {
 				// Prevent contention slams by checking user_touched first
 				$encTouched = $dbw->addQuotes( $dbw->timestamp( $touched ) );
 				$needsPurge = $dbw->selectField( 'user', '1',

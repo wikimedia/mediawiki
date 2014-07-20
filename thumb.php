@@ -376,7 +376,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 
 	$done = false;
 	// Record failures on PHP fatals in addition to caching exceptions
-	register_shutdown_function( function() use ( &$done, $key ) {
+	register_shutdown_function( function () use ( &$done, $key ) {
 		if ( !$done ) { // transform() gave a fatal
 			global $wgMemc;
 			// Randomize TTL to reduce stampedes
@@ -399,17 +399,17 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 	try {
 		$work = new PoolCounterWorkViaCallback( $poolCounterType, sha1( $file->getName() ),
 			array(
-				'doWork' => function() use ( $file, $params ) {
+				'doWork' => function () use ( $file, $params ) {
 					return $file->transform( $params, File::RENDER_NOW );
 				},
-				'getCachedWork' => function() use ( $file, $params, $thumbPath ) {
+				'getCachedWork' => function () use ( $file, $params, $thumbPath ) {
 					// If the worker that finished made this thumbnail then use it.
 					// Otherwise, it probably made a different thumbnail for this file.
 					return $file->getRepo()->fileExists( $thumbPath )
 						? $file->transform( $params, File::RENDER_NOW )
 						: false; // retry once more in exclusive mode
 				},
-				'fallback' => function() {
+				'fallback' => function () {
 					return wfMessage( 'generic-pool-error' )->parse();
 				},
 				'error' => function ( $status ) {

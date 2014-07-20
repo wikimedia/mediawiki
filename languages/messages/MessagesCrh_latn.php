@@ -52,43 +52,43 @@ $namespaceAliases = array(
 );
 
 $datePreferences = array(
-    'default',
-    'mdy',
-    'dmy',
-    'ymd',
-    'yyyy-mm-dd',
-    'ISO 8601',
+	'default',
+	'mdy',
+	'dmy',
+	'ymd',
+	'yyyy-mm-dd',
+	'ISO 8601',
 );
 
 $defaultDateFormat = 'ymd';
 
 $datePreferenceMigrationMap = array(
-    'default',
-    'mdy',
-    'dmy',
-    'ymd'
+	'default',
+	'mdy',
+	'dmy',
+	'ymd'
 );
 
 $dateFormats = array(
-    'mdy time' => 'H:i',
-    'mdy date' => 'F j Y "s."',
-    'mdy both' => 'H:i, F j Y "s."',
+	'mdy time' => 'H:i',
+	'mdy date' => 'F j Y "s."',
+	'mdy both' => 'H:i, F j Y "s."',
 
-    'dmy time' => 'H:i',
-    'dmy date' => 'j F Y "s."',
-    'dmy both' => 'H:i, j F Y "s."',
+	'dmy time' => 'H:i',
+	'dmy date' => 'j F Y "s."',
+	'dmy both' => 'H:i, j F Y "s."',
 
-    'ymd time' => 'H:i',
-    'ymd date' => 'Y "s." xg j',
-    'ymd both' => 'H:i, Y "s." xg j',
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y "s." xg j',
+	'ymd both' => 'H:i, Y "s." xg j',
 
-    'yyyy-mm-dd time' => 'xnH:xni:xns',
-    'yyyy-mm-dd date' => 'xnY-xnm-xnd',
-    'yyyy-mm-dd both' => 'xnH:xni:xns, xnY-xnm-xnd',
+	'yyyy-mm-dd time' => 'xnH:xni:xns',
+	'yyyy-mm-dd date' => 'xnY-xnm-xnd',
+	'yyyy-mm-dd both' => 'xnH:xni:xns, xnY-xnm-xnd',
 
-    'ISO 8601 time' => 'xnH:xni:xns',
-    'ISO 8601 date' => 'xnY.xnm.xnd',
-    'ISO 8601 both' => 'xnY.xnm.xnd"T"xnH:xni:xns',
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY.xnm.xnd',
+	'ISO 8601 both' => 'xnY.xnm.xnd"T"xnH:xni:xns',
 );
 
 $separatorTransformTable = array( ',' => '.', '.' => ',' );

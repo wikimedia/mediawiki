@@ -708,7 +708,7 @@ class CategoryViewer extends ContextSource {
 			// quick due to the small number of entries.
 			$totalcnt = $rescnt;
 			$category = $this->cat;
-			wfGetDB( DB_MASTER )->onTransactionIdle( function() use ( $category ) {
+			wfGetDB( DB_MASTER )->onTransactionIdle( function () use ( $category ) {
 				$category->refreshCounts();
 			} );
 		} else {

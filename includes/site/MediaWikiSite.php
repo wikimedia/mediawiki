@@ -215,7 +215,7 @@ class MediaWikiSite extends Site {
 			// Filter the substructure down to what we actually are using.
 			$collectedHits = array_filter(
 				array_values( $externalData['query'][$listId] ),
-				function( $a ) use ( $fieldId, $pageTitle ) {
+				function ( $a ) use ( $fieldId, $pageTitle ) {
 					return $a[$fieldId] === $pageTitle;
 				}
 			);

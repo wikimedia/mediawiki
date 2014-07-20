@@ -35,8 +35,8 @@ $namespaceAliases = array(
 );
 
 $namespaceGenderAliases = array(
-        NS_USER => array( 'male' => 'Wužywaŕ', 'female' => 'Wužywarka' ),
-        NS_USER_TALK => array( 'male' => 'Diskusija_wužywarja', 'female' => 'Diskusija_wužywarki' ),
+	NS_USER => array( 'male' => 'Wužywaŕ', 'female' => 'Wužywarka' ),
+	NS_USER_TALK => array( 'male' => 'Diskusija_wužywarja', 'female' => 'Diskusija_wužywarki' ),
 );
 
 $specialPageAliases = array(

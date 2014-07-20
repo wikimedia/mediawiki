@@ -553,7 +553,7 @@ class EmailNotification {
 				// Update wl_notificationtimestamp for all watching users except the editor
 				$fname = __METHOD__;
 				$dbw->onTransactionIdle(
-					function() use ( $dbw, $timestamp, $watchers, $title, $fname ) {
+					function () use ( $dbw, $timestamp, $watchers, $title, $fname ) {
 						$dbw->update( 'watchlist',
 							array( /* SET */
 								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )

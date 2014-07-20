@@ -2047,7 +2047,7 @@ class WikiPage implements Page, IDBAccessObject {
 		wfRunHooks( 'PageContentSaveComplete', $hook_args );
 
 		// Promote user to any groups they meet the criteria for
-		$dbw->onTransactionIdle( function() use ( $user ) {
+		$dbw->onTransactionIdle( function () use ( $user ) {
 			$user->addAutopromoteOnceGroups( 'onEdit' );
 		} );
 
@@ -2887,7 +2887,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$logEntry->setComment( $reason );
 		$logid = $logEntry->insert();
 
-		$dbw->onTransactionPreCommitOrIdle( function() use ( $dbw, $logEntry, $logid ) {
+		$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $logEntry, $logid ) {
 			// Bug 56776: avoid deadlocks (especially from FileDeleteForm)
 			$logEntry->publish( $logid );
 		} );
@@ -3347,7 +3347,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Do this at the end of the commit to reduce lock wait timeouts
 		$dbw->onTransactionPreCommitOrIdle(
-			function() use ( $dbw, $that, $method, $added, $deleted ) {
+			function () use ( $dbw, $that, $method, $added, $deleted ) {
 				$ns = $that->getTitle()->getNamespace();
 
 				$addFields = array( 'cat_pages = cat_pages + 1' );

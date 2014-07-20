@@ -44,7 +44,7 @@ class ArrayDiffFormatterTest extends MediaWikiTestCase {
 			$diffOp->expects( $this->any() )
 				->method( 'getClosing' )
 				->with( $this->isType( 'integer' ) )
-				->will( $this->returnCallback( function() {
+				->will( $this->returnCallback( function () {
 					return 'mockLine';
 				} ) );
 		} else {

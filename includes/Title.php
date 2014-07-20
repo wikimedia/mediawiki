@@ -2983,7 +2983,7 @@ class Title {
 
 		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->onTransactionIdle( function() use ( $dbw, $method ) {
+		$dbw->onTransactionIdle( function () use ( $dbw, $method ) {
 			$dbw->delete(
 				'page_restrictions',
 				array( 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
@@ -4667,7 +4667,7 @@ class Title {
 		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
 		$conds = $this->pageCond();
-		$dbw->onTransactionIdle( function() use ( $dbw, $conds, $method ) {
+		$dbw->onTransactionIdle( function () use ( $dbw, $conds, $method ) {
 			$dbw->update(
 				'page',
 				array( 'page_touched' => $dbw->timestamp() ),

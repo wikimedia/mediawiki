@@ -11,10 +11,10 @@
 $fallback = 'fr';
 
 $bookstoreList = array(
-    'Amazon.fr'    => 'http://www.amazon.fr/exec/obidos/ISBN=$1',
-    'alapage.fr'   => 'http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&',
-    'fnac.com'     => 'http://www3.fnac.com/advanced/book.do?isbn=$1',
-    'chapitre.com' => 'http://www.chapitre.com/frame_rec.asp?isbn=$1',
+	'Amazon.fr'    => 'http://www.amazon.fr/exec/obidos/ISBN=$1',
+	'alapage.fr'   => 'http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&',
+	'fnac.com'     => 'http://www3.fnac.com/advanced/book.do?isbn=$1',
+	'chapitre.com' => 'http://www.chapitre.com/frame_rec.asp?isbn=$1',
 );
 
 $namespaceNames = array(

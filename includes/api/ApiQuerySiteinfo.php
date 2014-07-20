@@ -262,8 +262,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['imagelimits'][$k] = array( 'width' => $limit[0], 'height' => $limit[1] );
 		}
 
-                $favicon = $config->get( 'Favicon' );
-                if ( !empty( $favicon ) ) {
+		$favicon = $config->get( 'Favicon' );
+		if ( !empty( $favicon ) ) {
 			// wgFavicon can either be a relative or an absolute path
 			// make sure we always return an absolute path
 			$data['favicon'] = wfExpandUrl( $favicon, PROTO_RELATIVE );
@@ -314,7 +314,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendNamespaceAliases( $property ) {
 		global $wgContLang;
-		$aliases = array_merge( $this->getConfig()->get( 'NamespaceAliases' ), $wgContLang->getNamespaceAliases() );
+		$aliases = array_merge( $this->getConfig()->get( 'NamespaceAliases' ),
+			$wgContLang->getNamespaceAliases() );
 		$namespaces = $wgContLang->getNamespaces();
 		$data = array();
 		foreach ( $aliases as $title => $ns ) {

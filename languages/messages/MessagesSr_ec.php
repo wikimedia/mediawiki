@@ -51,7 +51,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-        # Aliases for Latin script namespaces
+	# Aliases for Latin script namespaces
 	"Medija"                  => NS_MEDIA,
 	"Posebno"                 => NS_SPECIAL,
 	"Razgovor"                => NS_TALK,

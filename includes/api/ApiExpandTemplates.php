@@ -42,8 +42,10 @@ class ApiExpandTemplates extends ApiBase {
 		$this->requireMaxOneParameter( $params, 'prop', 'generatexml' );
 
 		if ( $params['prop'] === null ) {
-			$this->setWarning( 'Because no values have been specified for the prop parameter, a legacy format has been used for the output.'
-				 . ' This format is deprecated, and in the future, a default value will be set for the prop parameter, causing the new format to always be used.' );
+			$this->setWarning( 'Because no values have been specified for the prop parameter, a ' .
+				'legacy format has been used for the output. This format is deprecated, and in ' .
+				'the future, a default value will be set for the prop parameter, causing the new' .
+				'format to always be used.' );
 			$prop = array();
 		} else {
 			$prop = array_flip( $params['prop'] );
@@ -159,9 +161,12 @@ class ApiExpandTemplates extends ApiBase {
 			'prop' => array(
 				'Which pieces of information to get',
 				' wikitext   - The expanded wikitext',
-				' categories - Any categories present in the input that are not represented in the wikitext output',
-				' volatile   - Whether the output is volatile and should not be reused elsewhere within the page',
-				' ttl        - The maximum time after which caches of the result should be invalidated',
+				' categories - Any categories present in the input that are not represented in ' .
+					'the wikitext output',
+				' volatile   - Whether the output is volatile and should not be reused ' .
+					'elsewhere within the page',
+				' ttl        - The maximum time after which caches of the result should be ' .
+					'invalidated',
 				' parsetree  - The XML parse tree of the input',
 				'Note that if no values are selected, the result will contain the wikitext,',
 				'but the output will be in a deprecated format.',
