@@ -374,3 +374,9 @@
 [submodule "extensions/UrlShortener"]
 	path = extensions/UrlShortener
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UrlShortener.git
+[submodule "extensions/Popups"]
+	path = extensions/Popups
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Popups.git
+[submodule "extensions/TextExtracts"]
+	path = extensions/TextExtracts
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TextExtracts.git
