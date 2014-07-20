@@ -38,7 +38,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		}
 
 		$fauxRequest = new FauxRequest( $queryData, false );
-		$this->setMWGlobals( array(
+		$this->setMwGlobals( array(
 			'wgRequest' => $fauxRequest,
 		) );
 
