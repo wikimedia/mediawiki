@@ -355,9 +355,13 @@ class LogEventsList extends ContextSource {
 		// Don't show useless checkbox to people who cannot hide log entries
 		if ( $user->isAllowed( 'deletedhistory' ) ) {
 			$canHide = $user->isAllowed( 'deletelogentry' );
+			$canViewSuppressedOnly = $user->isAllowed( 'viewsuppressed' ) &&
+				!$user->isAllowed( 'suppressrevision' );
+			$entryIsSuppressed = self::isDeleted( $row, LogPage::DELETED_RESTRICTED );
+			$canViewThisSuppressedEntry = $canViewSuppressedOnly && $entryIsSuppressed;
 			if ( $row->log_deleted || $canHide ) {
 				// Show checkboxes instead of links.
-				if ( $canHide && $this->flags & self::USE_REVDEL_CHECKBOXES ) {
+				if ( $canHide && $this->flags & self::USE_REVDEL_CHECKBOXES && !$canViewThisSuppressedEntry ) {
 					// If event was hidden from sysops
 					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
 						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
@@ -380,8 +384,8 @@ class LogEventsList extends ContextSource {
 						);
 						$del = Linker::revDeleteLink(
 							$query,
-							self::isDeleted( $row, LogPage::DELETED_RESTRICTED ),
-							$canHide
+							$entryIsSuppressed,
+							$canHide && !$canViewThisSuppressedEntry
 						);
 					}
 				}
