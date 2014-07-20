@@ -154,7 +154,7 @@ function updateTooltip( element ) {
 			}
 		}
 
-		// Search it as parent, because the form control can also inside the label element itself
+		// Search it as parent, because the form control can also be inside the label element itself
 		$labelParent = $element.parents( 'label' );
 		if ( $labelParent.length === 1 ) {
 			updateTooltipOnElement( element, $labelParent[0] );
