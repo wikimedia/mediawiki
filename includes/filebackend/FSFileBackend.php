@@ -213,7 +213,7 @@ class FSFileBackend extends FileBackendStore {
 				wfEscapeShellArg( $this->cleanPathSlashes( $tempFile->getPath() ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
-			$handler = function( $errors, Status $status, array $params, $cmd ) {
+			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-create', $params['dst'] );
 					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
@@ -252,7 +252,7 @@ class FSFileBackend extends FileBackendStore {
 				wfEscapeShellArg( $this->cleanPathSlashes( $params['src'] ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
-			$handler = function( $errors, Status $status, array $params, $cmd ) {
+			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
@@ -310,7 +310,7 @@ class FSFileBackend extends FileBackendStore {
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
-			$handler = function( $errors, Status $status, array $params, $cmd ) {
+			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
@@ -370,7 +370,7 @@ class FSFileBackend extends FileBackendStore {
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
-			$handler = function( $errors, Status $status, array $params, $cmd ) {
+			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
 					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output
@@ -415,7 +415,7 @@ class FSFileBackend extends FileBackendStore {
 				wfIsWindows() ? 'DEL' : 'unlink',
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) )
 			) );
-			$handler = function( $errors, Status $status, array $params, $cmd ) {
+			$handler = function ( $errors, Status $status, array $params, $cmd ) {
 				if ( $errors !== '' && !( wfIsWindows() && $errors[0] === " " ) ) {
 					$status->fatal( 'backend-fail-delete', $params['src'] );
 					trigger_error( "$cmd\n$errors", E_USER_WARNING ); // command output

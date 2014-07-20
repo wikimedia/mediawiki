@@ -286,7 +286,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideCleanParams() {
-		$cleanCallback = function( $value ) {
+		$cleanCallback = function ( $value ) {
 			return '-' . $value . '-';
 		};
 
@@ -538,7 +538,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 */
 	public function testWakeUpSanitizesCallback() {
 		$status = new Status();
-		$status->cleanCallback = function( $value ) {
+		$status->cleanCallback = function ( $value ) {
 			return '-' . $value . '-';
 		};
 		$status->__wakeup();

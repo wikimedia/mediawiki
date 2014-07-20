@@ -115,7 +115,7 @@ class WebRequestTest extends MediaWikiTestCase {
 			'wgUsePrivateIPs' => $private,
 			'wgHooks' => array(
 				'IsTrustedProxy' => array(
-					function( &$ip, &$trusted ) use ( $xffList ) {
+					function ( &$ip, &$trusted ) use ( $xffList ) {
 						$trusted = $trusted || in_array( $ip, $xffList );
 						return true;
 					}

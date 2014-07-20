@@ -967,7 +967,7 @@ class Block {
 
 		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->onTransactionIdle( function() use ( $dbw, $method ) {
+		$dbw->onTransactionIdle( function () use ( $dbw, $method ) {
 			$dbw->delete( 'ipblocks',
 				array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), $method );
 		} );
@@ -1123,7 +1123,7 @@ class Block {
 
 		// Sort hard blocks before soft ones and secondarily sort blocks
 		// that disable account creation before those that don't.
-		usort( $blocks, function( Block $a, Block $b ) {
+		usort( $blocks, function ( Block $a, Block $b ) {
 			$aWeight = (int)$a->isHardblock() . (int)$a->prevents( 'createaccount' );
 			$bWeight = (int)$b->isHardblock() . (int)$b->prevents( 'createaccount' );
 			return strcmp( $bWeight, $aWeight ); // highest weight first

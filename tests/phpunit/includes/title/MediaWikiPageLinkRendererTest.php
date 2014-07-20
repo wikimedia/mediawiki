@@ -155,7 +155,7 @@ class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 		$formatter->expects( $this->any() )
 			->method( 'getFullText' )
 			->will( $this->returnCallback(
-				function( TitleValue $title ) {
+				function ( TitleValue $title ) {
 					return str_replace( '_', ' ', "$title" );
 				}
 			));

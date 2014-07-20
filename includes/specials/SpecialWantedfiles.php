@@ -111,7 +111,7 @@ class WantedFilesPage extends WantedQueryPage {
 				'img1.img_name' => null,
 				// We also need to exclude file redirects
 				'img2.img_name' => null,
-			 ),
+			),
 			'options' => array( 'GROUP BY' => 'il_to' ),
 			'join_conds' => array(
 				'img1' => array( 'LEFT JOIN',

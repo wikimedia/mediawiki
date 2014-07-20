@@ -1379,7 +1379,7 @@ class Linker {
 						. '<span dir="auto">' . $auto . $post . '</span>';
 				}
 				return $comment;
-        	},
+			},
 			$comment
 		);
 	}
@@ -1418,7 +1418,11 @@ class Linker {
 
 				# fix up urlencoded title texts (copied from Parser::replaceInternalLinks)
 				if ( strpos( $match[1], '%' ) !== false ) {
-					$match[1] = str_replace( array( '<', '>' ), array( '&lt;', '&gt;' ), rawurldecode( $match[1] ) );
+					$match[1] = str_replace(
+						array( '<', '>' ),
+						array( '&lt;', '&gt;' ),
+						rawurldecode( $match[1] )
+					);
 				}
 
 				# Handle link renaming [[foo|text]] will show link as "text"

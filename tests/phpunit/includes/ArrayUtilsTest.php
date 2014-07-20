@@ -24,14 +24,14 @@ class ArrayUtilsTest extends MediaWikiTestCase {
 
 	function provideFindLowerBound() {
 		$self = $this;
-		$indexValueCallback = function( $size ) use ( $self ) {
-			return function( $val ) use ( $self, $size ) {
+		$indexValueCallback = function ( $size ) use ( $self ) {
+			return function ( $val ) use ( $self, $size ) {
 				$self->assertTrue( $val >= 0 );
 				$self->assertTrue( $val < $size );
 				return $val;
 			};
 		};
-		$comparisonCallback = function( $a, $b ) {
+		$comparisonCallback = function ( $a, $b ) {
 			return $a - $b;
 		};
 

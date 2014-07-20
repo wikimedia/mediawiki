@@ -371,7 +371,7 @@ $datePreferenceMigrationMap = array(
  * overridden.
  */
 $dateFormats = array(
-    # Please be cautious not to delete the invisible RLM from the beginning of the strings.
+	# Please be cautious not to delete the invisible RLM from the beginning of the strings.
 	'mdy time' => '‏H:i',
 	'mdy date' => '‏n/j/Y میلادی',
 	'mdy both' => '‏n/j/Y میلادی، ساعت H:i',

@@ -291,7 +291,7 @@ abstract class Job implements IJobSpecification {
 	 * @return string
 	 */
 	public function toString() {
-		$truncFunc = function( $value ) {
+		$truncFunc = function ( $value ) {
 			$value = (string)$value;
 			if ( mb_strlen( $value ) > 1024 ) {
 				$value = "string(" . mb_strlen( $value ) . ")";

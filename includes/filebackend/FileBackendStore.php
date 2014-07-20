@@ -1696,7 +1696,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( !$this->memCache->add( $key, $val, $ttl ) && !empty( $val['latest'] ) ) {
 			$this->memCache->merge(
 				$key,
-				function( BagOStuff $cache, $key, $cValue ) use ( $val ) {
+				function ( BagOStuff $cache, $key, $cValue ) use ( $val ) {
 					return ( is_array( $cValue ) && empty( $cValue['latest'] ) )
 						? $val // update the stat cache with the lastest info
 						: false; // do nothing (cache is salted or some error happened)

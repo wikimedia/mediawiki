@@ -114,7 +114,7 @@ function wfImageAuthMain() {
 	// be under a folder that has the source file name.
 	if ( $zone === 'thumb' || $zone === 'transcoded' ) {
 		$name = wfBaseName( dirname( $path ) );
-		$filename = $repo->getZonePath( $zone ) . substr( $path, strlen( "/".$zone ) );
+		$filename = $repo->getZonePath( $zone ) . substr( $path, strlen( "/" . $zone ) );
 		// Check to see if the file exists
 		if ( !$repo->fileExists( $filename ) ) {
 			wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );

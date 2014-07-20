@@ -105,14 +105,18 @@ class DummyAction extends Action {
 		return get_called_class();
 	}
 
-	public function show() { }
+	public function show() {
+	}
 
-	public function execute() { }
-
+	public function execute() {
+	}
 }
 
-class NamedDummyAction extends DummyAction { }
+class NamedDummyAction extends DummyAction {
+}
 
-class CalledDummyAction extends DummyAction { }
+class CalledDummyAction extends DummyAction {
+}
 
-class InstantiatedDummyAction extends DummyAction { }
+class InstantiatedDummyAction extends DummyAction {
+}

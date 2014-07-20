@@ -37,7 +37,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	 */
 	public function testMakeConfigWithInvalidCallback() {
 		$factory = new ConfigFactory();
-		$factory->register( 'unittest', function() {
+		$factory->register( 'unittest', function () {
 			return true; // Not a Config object
 		} );
 		$this->setExpectedException( 'UnexpectedValueException' );
