@@ -972,6 +972,7 @@ $wgAutoloadLocalClasses = array(
 	'LoginForm' => 'includes/specials/SpecialUserlogin.php',
 	'LonelyPagesPage' => 'includes/specials/SpecialLonelypages.php',
 	'LongPagesPage' => 'includes/specials/SpecialLongpages.php',
+	'MediaStatisticsPage' => 'includes/specials/SpecialMediaStatistics.php',
 	'MergeHistoryPager' => 'includes/specials/SpecialMergeHistory.php',
 	'MIMEsearchPage' => 'includes/specials/SpecialMIMEsearch.php',
 	'MostcategoriesPage' => 'includes/specials/SpecialMostcategories.php',
