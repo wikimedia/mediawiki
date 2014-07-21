@@ -35,16 +35,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * PHP extensions may be included here.
  */
 
-if ( !function_exists( 'iconv' ) ) {
-	/**
-	 * @codeCoverageIgnore
-	 * @return string
-	 */
-	function iconv( $from, $to, $string ) {
-		return Fallback::iconv( $from, $to, $string );
-	}
-}
-
 if ( !function_exists( 'mb_substr' ) ) {
 	/**
 	 * @codeCoverageIgnore

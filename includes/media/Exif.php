@@ -470,8 +470,6 @@ class Exif {
 					$charset = "";
 					break;
 			}
-			// This could possibly check to see if iconv is really installed
-			// or if we're using the compatibility wrapper in globalFunctions.php
 			if ( $charset ) {
 				wfSuppressWarnings();
 				$val = iconv( $charset, 'UTF-8//IGNORE', $val );
