@@ -400,6 +400,7 @@ $wgAutoloadLocalClasses = array(
 	'ContextSource' => 'includes/context/ContextSource.php',
 	'DerivativeContext' => 'includes/context/DerivativeContext.php',
 	'IContextSource' => 'includes/context/IContextSource.php',
+	'MutableContext' => 'includes/context/MutableContext.php',
 	'RequestContext' => 'includes/context/RequestContext.php',
 
 	# includes/dao
