@@ -9,12 +9,12 @@ then
 	exit 1
 fi
 
-TARGET_REPO=$(cd $(dirname $0)/../..; pwd)
+TARGET_REPO=$(cd "$(dirname $0)/../.."; pwd)
 TARGET_DIR=resources/lib/oojs-ui
 UI_REPO=$1
 
 function oojsuihash() {
-	grep "OOjs UI v" $TARGET_REPO/$TARGET_DIR/oojs-ui.js \
+	grep "OOjs UI v" "$TARGET_REPO/$TARGET_DIR/oojs-ui.js" \
 		| head -n 1 \
 		| grep -Eo '\([a-z0-9]+\)' \
 		| sed 's/^(//' \
@@ -22,19 +22,19 @@ function oojsuihash() {
 }
 
 function oojsuitag() {
-	grep "OOjs UI v" $TARGET_REPO/$TARGET_DIR/oojs-ui.js \
+	grep "OOjs UI v" "$TARGET_REPO/$TARGET_DIR/oojs-ui.js" \
 		| head -n 1 \
 		| grep -Eo '\bv[0-9a-z.-]+\b'
 }
 
 function oojsuiversion() {
-	grep "OOjs UI v" $TARGET_REPO/$TARGET_DIR/oojs-ui.js \
+	grep "OOjs UI v" "$TARGET_REPO/$TARGET_DIR/oojs-ui.js" \
 		| head -n 1 \
 		| grep -Eo '\bv[0-9a-z.-]+\b.*$'
 }
 
 # Prepare working tree
-cd $TARGET_REPO &&
+cd "$TARGET_REPO" &&
 git reset $TARGET_DIR && git checkout $TARGET_DIR && git fetch origin &&
 git checkout -B upstream-oojsui origin/master || exit 1
 
@@ -48,10 +48,10 @@ then
 fi
 if [ "$OLDHASH" == "" ]
 then
-	OLDHASH=$(git rev-parse $OLDTAG)
+	OLDHASH=$(git rev-parse "$OLDTAG")
 	if [ $? != 0 ]
 	then
-		echo Could not find OOjs UI version
+		echo "Could not find OOjs UI version"
 		cd -
 		exit 1
 	fi
@@ -72,13 +72,13 @@ NEWCHANGESDISPLAY=$(git log $OLDHASH.. --oneline --no-merges --reverse --color=a
 
 # Copy files
 # - Exclude the default non-svg stylesheet
-rsync --recursive --delete --force --exclude 'oojs-ui.css' --exclude 'oojs-ui*.rtl.css' ./dist/ $TARGET_REPO/$TARGET_DIR || exit 1
+rsync --recursive --delete --force --exclude 'oojs-ui.css' --exclude 'oojs-ui*.rtl.css' ./dist/ "$TARGET_REPO/$TARGET_DIR" || exit 1
 
 # Read the new version
 NEWVERSION=$(oojsuiversion)
 
 # Generate commit
-cd $TARGET_REPO
+cd "$TARGET_REPO"
 COMMITMSG=$(cat <<END
 Update OOjs UI to $NEWVERSION
 
