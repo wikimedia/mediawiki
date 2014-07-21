@@ -1603,7 +1603,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$oldContent = $rev->getContent();
 			}
 
-			if ( ! $oldContent ) {
+			if ( !$oldContent ) {
 				wfDebug( __METHOD__ . ": no page text\n" );
 				wfProfileOut( __METHOD__ );
 				return null;
@@ -2780,7 +2780,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$user = is_null( $user ) ? $wgUser : $user;
-		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error, &$status ) ) ) {
+		if ( !wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error, &$status ) ) ) {
 			if ( $status->isOK() ) {
 				// Hook aborted but didn't set a fatal status
 				$status->fatal( 'delete-hook-aborted' );

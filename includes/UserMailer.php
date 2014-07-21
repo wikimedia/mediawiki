@@ -397,7 +397,7 @@ class UserMailer {
 			if ( self::$mErrorString ) {
 				wfDebug( "Error sending mail: " . self::$mErrorString . "\n" );
 				return Status::newFatal( 'php-mail-error', self::$mErrorString );
-			} elseif ( ! $sent ) {
+			} elseif ( !$sent ) {
 				// mail function only tells if there's an error
 				wfDebug( "Unknown error sending mail\n" );
 				return Status::newFatal( 'php-mail-error-unknown' );
