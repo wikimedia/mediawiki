@@ -25,7 +25,7 @@
 /**
  * Group all the pieces relevant to the context of a request into one instance
  */
-class RequestContext implements IContextSource {
+class RequestContext implements IContextSource, MutableContext {
 	/**
 	 * @var WebRequest
 	 */
