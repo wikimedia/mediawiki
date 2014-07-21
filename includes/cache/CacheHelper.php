@@ -55,7 +55,7 @@ interface ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param {function} $computeFunction
+	 * @param callable $computeFunction
 	 * @param array|mixed $args
 	 * @param string|null $key
 	 *
@@ -255,7 +255,7 @@ class CacheHelper implements ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param {function} $computeFunction
+	 * @param callable $computeFunction
 	 * @param array|mixed $args
 	 * @param string|null $key
 	 *

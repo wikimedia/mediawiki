@@ -110,7 +110,7 @@ abstract class CachedAction extends FormlessAction implements ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param {function} $computeFunction
+	 * @param callable $computeFunction
 	 * @param array|mixed $args
 	 * @param string|null $key
 	 *
@@ -128,7 +128,7 @@ abstract class CachedAction extends FormlessAction implements ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param {function} $computeFunction
+	 * @param callable $computeFunction
 	 * @param array $args
 	 * @param string|null $key
 	 */
