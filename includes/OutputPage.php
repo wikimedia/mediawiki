@@ -3582,7 +3582,7 @@ $templates
 			$group = $module->getGroup();
 			// Modules in groups different than the ones listed on top (see $styles assignment)
 			// will be placed in the "other" group
-			$styles[ isset( $styles[$group] ) ? $group : 'other' ][] = $name;
+			$styles[isset( $styles[$group] ) ? $group : 'other'][] = $name;
 		}
 
 		// We want site, private and user styles to override dynamically added

@@ -733,11 +733,11 @@ class ParserTest {
 
 		if ( preg_match_all( $regex, $instring, $matches, PREG_SET_ORDER ) ) {
 			foreach ( $matches as $bits ) {
-				$key = strtolower( $bits[ 'k' ] );
-				if ( !isset( $bits[ 'v' ] ) ) {
+				$key = strtolower( $bits['k'] );
+				if ( !isset( $bits['v'] ) ) {
 					$opts[$key] = true;
 				} else {
-					preg_match_all( $valueregex, $bits[ 'v' ], $vmatches );
+					preg_match_all( $valueregex, $bits['v'], $vmatches );
 					$opts[$key] = array_map( array( $this, 'cleanupOption' ), $vmatches[0] );
 					if ( count( $opts[$key] ) == 1 ) {
 						$opts[$key] = $opts[$key][0];

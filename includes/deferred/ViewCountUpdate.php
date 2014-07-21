@@ -51,7 +51,7 @@ class ViewCountUpdate implements DeferrableUpdate {
 		if ( $wgHitcounterUpdateFreq <= 1 || $dbw->getType() == 'sqlite' ) {
 			$id = $this->id;
 			$method = __METHOD__;
-			$dbw->onTransactionIdle( function() use ( $dbw, $id, $method ) {
+			$dbw->onTransactionIdle( function () use ( $dbw, $id, $method ) {
 				try {
 					$dbw->update( 'page',
 						array( 'page_counter = page_counter + 1' ),
