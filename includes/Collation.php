@@ -365,7 +365,9 @@ class IcuCollation extends Collation {
 		}
 
 		$cache = wfGetCache( CACHE_ANYTHING );
-		$cacheKey = wfMemcKey( 'first-letters', $this->locale, $this->digitTransformLanguage->getCode() );
+		$cacheKey = wfMemcKey( 'first-letters', $this->locale,
+			$this->digitTransformLanguage->getCode(), self::getICUVersion()
+		);
 		$cacheEntry = $cache->get( $cacheKey );
 
 		if ( $cacheEntry && isset( $cacheEntry['version'] )
