@@ -1023,7 +1023,7 @@ class Preferences {
 	 */
 	static function searchPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		foreach ( MWNamespace::getValidNamespaces() as $n ) {
-			$defaultPreferences[ 'searchNs' . $n ] = array(
+			$defaultPreferences['searchNs' . $n] = array(
 				'type' => 'api',
 			);
 		}

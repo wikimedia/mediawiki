@@ -27,7 +27,7 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 		$hasObject = false;
 		$hasArray = false;
 		foreach ( $trace as $frame ) {
-			if ( ! isset( $frame['args'] ) ) {
+			if ( !isset( $frame['args'] ) ) {
 				continue;
 			}
 			foreach ( $frame['args'] as $arg ) {
@@ -49,7 +49,7 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 		$redacted = MWExceptionHandler::getRedactedTrace( $e );
 
 		foreach ( $redacted as $frame ) {
-			if ( ! isset( $frame['args'] ) ) {
+			if ( !isset( $frame['args'] ) ) {
 				continue;
 			}
 			foreach ( $frame['args'] as $arg ) {
