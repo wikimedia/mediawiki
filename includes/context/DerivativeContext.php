@@ -29,7 +29,7 @@
  * eg: A ContextSource that can inherit from the main RequestContext but have
  *     a different Title instance set on it.
  */
-class DerivativeContext extends ContextSource {
+class DerivativeContext extends ContextSource implements MutableContext {
 	/**
 	 * @var WebRequest
 	 */
