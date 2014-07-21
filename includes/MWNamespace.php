@@ -297,6 +297,18 @@ class MWNamespace {
 	}
 
 	/**
+	 * Might pages in this namespace require the use of the Signature button on
+	 * the edit toolbar?
+	 *
+	 * @param int $index Index to check
+	 * @return bool
+	 */
+	public static function wantSignatures( $index ) {
+		global $wgExtraSignatureNamespaces;
+		return self::isTalk( $index ) || in_array( $index, $wgExtraSignatureNamespaces );
+	}
+
+	/**
 	 * Can pages in a namespace be watched?
 	 *
 	 * @param int $index
