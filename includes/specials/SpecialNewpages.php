@@ -506,9 +506,17 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
+		$db = $this->mDb;
 		$conds = array();
+		$moveConds = array();
+		$extraConds = array();
+
 		$conds['rc_new'] = 1;
 
+		// rc_namespace will correspond to previous namespace
+		// page_namespace will correspond to current namespace
+		$moveConds[] = 'rc_namespace != page_namespace';
+		$moveConds[] = "rc_log_type = 'move'";
 		$namespace = $this->opts->getValue( 'namespace' );
 		$namespace = ( $namespace === 'all' ) ? false : intval( $namespace );
 
@@ -519,35 +527,44 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		if ( $namespace !== false ) {
 			if ( $this->opts->getValue( 'invert' ) ) {
-				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
+				$conds[] = 'rc_namespace != ' . $db->addQuotes( $namespace );
+				$moveConds[] = 'page_namespace !=' . $db->addQuotes( $namespace );
 			} else {
 				$conds['rc_namespace'] = $namespace;
+				$moveConds['page_namespace'] = $namespace;
 			}
 		}
 
+		$conds = $db->makeList( $conds, LIST_AND );
+		$moveConds = $db->makeList( $moveConds, LIST_AND );
+
 		if ( $user ) {
-			$conds['rc_user_text'] = $user->getText();
+			$extraConds['rc_user_text'] = $user->getText();
 			$rcIndexes = 'rc_user_text';
 		} elseif ( User::groupHasPermission( '*', 'createpage' ) &&
 			$this->opts->getValue( 'hideliu' )
 		) {
 			# If anons cannot make new pages, don't "exclude logged in users"!
-			$conds['rc_user'] = 0;
+			$extraConds['rc_user'] = 0;
 		}
 
 		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
 		if ( $this->opts->getValue( 'hidepatrolled' ) && $this->getUser()->useNPPatrol() ) {
-			$conds['rc_patrolled'] = 0;
+			$extraConds['rc_patrolled'] = 0;
 		}
 
 		if ( $this->opts->getValue( 'hidebots' ) ) {
-			$conds['rc_bot'] = 0;
+			$extraConds['rc_bot'] = 0;
 		}
 
 		if ( $this->opts->getValue( 'hideredirs' ) ) {
-			$conds['page_is_redirect'] = 0;
+			$extraConds['page_is_redirect'] = 0;
 		}
 
+		$extraConds = $db->makeList( $extraConds, LIST_AND );
+
+		$conds = $db->makeList( array( $conds, $moveConds ), LIST_OR );
+		$conds = $db->makeList( array( $conds, $extraConds ), LIST_AND );
 		// Allow changes to the New Pages query
 		$tables = array( 'recentchanges', 'page' );
 		$fields = array(
@@ -556,7 +573,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			'length' => 'page_len', 'rev_id' => 'page_latest', 'rc_this_oldid',
 			'page_namespace', 'page_title'
 		);
-		$join_conds = array( 'page' => array( 'INNER JOIN', 'page_id=rc_cur_id' ) );
+		$join_conds = array( 'page' => array( 'INNER JOIN', 'page_title=rc_title' ) );
 
 		wfRunHooks( 'SpecialNewpagesConditions',
 			array( &$this, $this->opts, &$conds, &$tables, &$fields, &$join_conds ) );
