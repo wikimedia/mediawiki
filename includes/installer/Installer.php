@@ -351,17 +351,10 @@ abstract class Installer {
 	abstract public function showError( $msg /*, ... */ );
 
 	/**
-	 * Shows messages to the user through a Status object
+	 * Show a message to the installing user by using a Status object
 	 * @param Status $status
 	 */
-	public function showStatusMessage( Status $status ) {
-		$errors = array_merge( $status->getErrorsArray(), $status->getWarningsArray() );
-		if ( $errors ) {
-			foreach ( $errors as $error ) {
-				call_user_func( 'showMessage', $error );
-			}
-		}
-	}
+	abstract public function showStatusMessage( Status $status );
 
 	/**
 	 * Constructor, always call this from child classes.
