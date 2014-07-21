@@ -207,6 +207,7 @@ class LogPager extends ReverseChronologicalPager {
 		$ns = $title->getNamespace();
 		$db = $this->mDb;
 
+		$doUserRightsLogLike = false;
 		if ( $this->types == array( 'rights' ) ) {
 			global $wgUserrightsInterwikiDelimiter;
 			$parts = explode( $wgUserrightsInterwikiDelimiter, $title->getDBKey() );
