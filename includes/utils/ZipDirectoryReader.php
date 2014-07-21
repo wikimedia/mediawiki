@@ -64,7 +64,7 @@ class ZipDirectoryReader {
 	 *        valid ZIP64 file, and working out what non-ZIP64 readers will make
 	 *        of such a file is not trivial.
 	 *
-	 * @return Status object. The following fatal errors are defined:
+	 * @return Status A Status object. The following fatal errors are defined:
 	 *
 	 *      - zip-file-open-error: The file could not be opened.
 	 *
@@ -181,6 +181,8 @@ class ZipDirectoryReader {
 
 	/**
 	 * Throw an error, and log a debug message
+	 * @param mixed $code
+	 * @param string $debugMessage
 	 */
 	function error( $code, $debugMessage ) {
 		wfDebug( __CLASS__ . ": Fatal error: $debugMessage\n" );
@@ -299,7 +301,7 @@ class ZipDirectoryReader {
 	 * Find the location of the central directory, as would be seen by a
 	 * non-ZIP64 reader.
 	 *
-	 * @return List containing offset, size and end position.
+	 * @return array List containing offset, size and end position.
 	 */
 	function findOldCentralDirectory() {
 		$size = $this->eocdr['CD size'];
@@ -485,6 +487,7 @@ class ZipDirectoryReader {
 
 	/**
 	 * Get the length of the file.
+	 * @return int
 	 */
 	function getFileLength() {
 		if ( $this->fileLength === null ) {
@@ -661,7 +664,7 @@ class ZipDirectoryReader {
 	 * Returns a bit from a given position in an integer value, converted to
 	 * boolean.
 	 *
-	 * @param $value integer
+	 * @param int $value
 	 * @param int $bitIndex The index of the bit, where 0 is the LSB.
 	 * @return bool
 	 */
@@ -671,6 +674,7 @@ class ZipDirectoryReader {
 
 	/**
 	 * Debugging helper function which dumps a string in hexdump -C format.
+	 * @param string $s
 	 */
 	function hexDump( $s ) {
 		$n = strlen( $s );

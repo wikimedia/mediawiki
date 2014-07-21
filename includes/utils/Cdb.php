@@ -34,7 +34,7 @@ abstract class CdbReader {
 	/**
 	 * Open a file and return a subclass instance
 	 *
-	 * @param $fileName string
+	 * @param string $fileName
 	 *
 	 * @return CdbReader
 	 */
@@ -64,7 +64,7 @@ abstract class CdbReader {
 	/**
 	 * Create the object and open the file
 	 *
-	 * @param $fileName string
+	 * @param string $fileName
 	 */
 	abstract public function __construct( $fileName );
 
@@ -76,7 +76,7 @@ abstract class CdbReader {
 	/**
 	 * Get a value with a given key. Only string values are supported.
 	 *
-	 * @param $key string
+	 * @param string $key
 	 */
 	abstract public function get( $key );
 }
@@ -107,7 +107,7 @@ abstract class CdbWriter {
 	 * Open a writer and return a subclass instance.
 	 * The user must have write access to the directory, for temporary file creation.
 	 *
-	 * @param $fileName string
+	 * @param string $fileName
 	 *
 	 * @return CdbWriterDBA|CdbWriterPHP
 	 */
@@ -120,14 +120,14 @@ abstract class CdbWriter {
 	/**
 	 * Create the object and open the file
 	 *
-	 * @param $fileName string
+	 * @param string $fileName
 	 */
 	abstract public function __construct( $fileName );
 
 	/**
 	 * Set a key to a given value. The value will be converted to string.
-	 * @param $key string
-	 * @param $value string
+	 * @param string $key
+	 * @param string $value
 	 */
 	abstract public function set( $key, $value );
 

@@ -101,7 +101,7 @@ class MWCryptHKDF {
 	/**
 	 * @param string $hash Name of hashing algorithm
 	 * @param BagOStuff $cache
-	 * @param string|array $context to mix into HKDF context
+	 * @param string|array $context Context to mix into HKDF context
 	 */
 	public function __construct( $secretKeyMaterial, $algorithm, $cache, $context ) {
 		if ( strlen( $secretKeyMaterial ) < 16 ) {
@@ -133,7 +133,7 @@ class MWCryptHKDF {
 
 	/**
 	 * MW specific salt, cached from last run
-	 * @return string binary string
+	 * @return string Binary string
 	 */
 	protected function getSaltUsingCache() {
 		if ( $this->salt == '' ) {
@@ -189,9 +189,9 @@ class MWCryptHKDF {
 	/**
 	 * Produce $bytes of secure random data. As a side-effect,
 	 * $this->lastK is set to the last hashLen block of key material.
-	 * @param int $bytes number of bytes of data
-	 * @param string $context to mix into CTXinfo
-	 * @return string binary string of length $bytes
+	 * @param int $bytes Number of bytes of data
+	 * @param string $context Context to mix into CTXinfo
+	 * @return string Binary string of length $bytes
 	 */
 	protected function realGenerate( $bytes, $context = '' ) {
 
@@ -237,13 +237,13 @@ class MWCryptHKDF {
 	 * N.B. http://eprint.iacr.org/2010/264.pdf seems to differ from RFC 5869 in that the test
 	 * vectors from RFC 5869 only work if K(0) = '' and K(1) = HMAC(PRK, K(0) || CTXinfo || 1)
 	 *
-	 * @param string $hash the hashing function to use (e.g., sha256)
-	 * @param string $ikm the input keying material
-	 * @param string $salt the salt to add to the ikm, to get the prk
-	 * @param string $info optional context (change the output without affecting
+	 * @param string $hash The hashing function to use (e.g., sha256)
+	 * @param string $ikm The input keying material
+	 * @param string $salt The salt to add to the ikm, to get the prk
+	 * @param string $info Optional context (change the output without affecting
 	 *	the randomness properties of the output)
-	 * @param integer $L number of bytes to return
-	 * @return string cryptographically secure pseudorandom binary string
+	 * @param int $L Number of bytes to return
+	 * @return string Cryptographically secure pseudorandom binary string
 	 */
 	public static function HKDF( $hash, $ikm, $salt, $info, $L ) {
 		$prk = self::HKDFExtract( $hash, $salt, $ikm );
@@ -256,10 +256,10 @@ class MWCryptHKDF {
 	 * Note that the hmac is keyed with XTS (the salt),
 	 * and the SKM (source key material) is the "data".
 	 *
-	 * @param string $hash the hashing function to use (e.g., sha256)
-	 * @param string $ikm the input keying material
-	 * @param string $salt the salt to add to the ikm, to get the prk
-	 * @return string binary string (pseudorandm key) used as input to HKDFExpand
+	 * @param string $hash The hashing function to use (e.g., sha256)
+	 * @param string $ikm The input keying material
+	 * @param string $salt The salt to add to the ikm, to get the prk
+	 * @return string Binary string (pseudorandm key) used as input to HKDFExpand
 	 */
 	private static function HKDFExtract( $hash, $salt, $ikm ) {
 		return hash_hmac( $hash, $ikm, $salt, true );
@@ -268,16 +268,16 @@ class MWCryptHKDF {
 	/**
 	 * Expand the key with the given context
 	 *
-	 * @param $hash Hashing Algorithm
-	 * @param $prk a pseudorandom key of at least HashLen octets
-         * 	(usually, the output from the extract step)
-	 * @param $info optional context and application specific information
-         * 	(can be a zero-length string)
-	 * @param $bytes length of output keying material in bytes
-         * 	(<= 255*HashLen)
-	 * @param &$lastK set by this function to the last block of the expansion.
+	 * @param string $hash Hashing Algorithm
+	 * @param string $prk A pseudorandom key of at least HashLen octets
+	 * 	(usually, the output from the extract step)
+	 * @param string $info Optional context and application specific information
+	 * 	(can be a zero-length string)
+	 * @param int $bytes Length of output keying material in bytes
+	 * 	(<= 255*HashLen)
+	 * @param string &$lastK Set by this function to the last block of the expansion.
 	 *	In MediaWiki, this is used to seed future Extractions.
-	 * @return string cryptographically secure random string $bytes long
+	 * @return string Cryptographically secure random string $bytes long
 	 */
 	private static function HKDFExpand( $hash, $prk, $info, $bytes, &$lastK = '' ) {
 		$hashLen = MWCryptHKDF::$hashLength[$hash];
@@ -306,9 +306,9 @@ class MWCryptHKDF {
 	/**
 	 * Generate cryptographically random data and return it in raw binary form.
 	 *
-	 * @param int $bytes the number of bytes of random data to generate
-	 * @param string $context string to mix into HMAC context
-	 * @return string binary string of length $bytes
+	 * @param int $bytes The number of bytes of random data to generate
+	 * @param string $context String to mix into HMAC context
+	 * @return string Binary string of length $bytes
 	 */
 	public static function generate( $bytes, $context ) {
 		return self::singleton()->realGenerate( $bytes, $context );
@@ -318,9 +318,9 @@ class MWCryptHKDF {
 	 * Generate cryptographically random data and return it in hexadecimal string format.
 	 * See MWCryptRand::realGenerateHex for details of the char-to-byte conversion logic.
 	 *
-	 * @param int $chars the number of hex chars of random data to generate
-	 * @param string $context string to mix into HMAC context
-	 * @return string random hex characters, $chars long
+	 * @param int $chars The number of hex chars of random data to generate
+	 * @param string $context String to mix into HMAC context
+	 * @return string Random hex characters, $chars long
 	 */
 	public static function generateHex( $chars, $context = '' ) {
 		$bytes = ceil( $chars / 2 );

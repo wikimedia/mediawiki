@@ -73,8 +73,8 @@ class IP {
 	 * SIIT IPv4-translated addresses are rejected.
 	 * Note: canonicalize() tries to convert translated addresses to IPv4.
 	 *
-	 * @param string $ip possible IP address
-	 * @return Boolean
+	 * @param string $ip Possible IP address
+	 * @return bool
 	 */
 	public static function isIPAddress( $ip ) {
 		return (bool)preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip );
@@ -84,8 +84,8 @@ class IP {
 	 * Given a string, determine if it as valid IP in IPv6 only.
 	 * Note: Unlike isValid(), this looks for networks too.
 	 *
-	 * @param string $ip possible IP address
-	 * @return Boolean
+	 * @param string $ip Possible IP address
+	 * @return bool
 	 */
 	public static function isIPv6( $ip ) {
 		return (bool)preg_match( '/^' . RE_IPV6_ADD . '(?:\/' . RE_IPV6_PREFIX . ')?$/', $ip );
@@ -95,8 +95,8 @@ class IP {
 	 * Given a string, determine if it as valid IP in IPv4 only.
 	 * Note: Unlike isValid(), this looks for networks too.
 	 *
-	 * @param string $ip possible IP address
-	 * @return Boolean
+	 * @param string $ip Possible IP address
+	 * @return bool
 	 */
 	public static function isIPv4( $ip ) {
 		return (bool)preg_match( '/^' . RE_IP_ADD . '(?:\/' . RE_IP_PREFIX . ')?$/', $ip );
@@ -107,8 +107,8 @@ class IP {
 	 * SIIT IPv4-translated addresses are rejected.
 	 * Note: canonicalize() tries to convert translated addresses to IPv4.
 	 *
-	 * @param $ip String
-	 * @return Boolean: True if it is valid.
+	 * @param string $ip
+	 * @return bool True if it is valid
 	 */
 	public static function isValid( $ip ) {
 		return ( preg_match( '/^' . RE_IP_ADD . '$/', $ip )
@@ -120,8 +120,8 @@ class IP {
 	 * SIIT IPv4-translated addresses are rejected.
 	 * Note: canonicalize() tries to convert translated addresses to IPv4.
 	 *
-	 * @param $ipblock String
-	 * @return Boolean: True if it is valid.
+	 * @param string $ipblock
+	 * @return bool True if it is valid
 	 */
 	public static function isValidBlock( $ipblock ) {
 		return ( preg_match( '/^' . RE_IPV6_BLOCK . '$/', $ipblock )
@@ -134,7 +134,7 @@ class IP {
 	 * IPv4 addresses are just trimmed.
 	 *
 	 * @param string $ip IP address in quad or octet form (CIDR or not).
-	 * @return String
+	 * @return string
 	 */
 	public static function sanitizeIP( $ip ) {
 		$ip = trim( $ip );
@@ -186,7 +186,7 @@ class IP {
 	 * Prettify an IP for display to end users.
 	 * This will make it more compact and lower-case.
 	 *
-	 * @param $ip string
+	 * @param string $ip
 	 * @return string
 	 */
 	public static function prettifyIP( $ip ) {
@@ -286,9 +286,9 @@ class IP {
 	 * brackets like in RFC 2732. If the port matches the default port, omit
 	 * the port specification
 	 *
-	 * @param $host string
-	 * @param $port int
-	 * @param $defaultPort bool|int
+	 * @param string $host
+	 * @param int $port
+	 * @param bool|int $defaultPort
 	 * @return string
 	 */
 	public static function combineHostAndPort( $host, $port, $defaultPort = false ) {
@@ -305,8 +305,8 @@ class IP {
 	/**
 	 * Convert an IPv4 or IPv6 hexadecimal representation back to readable format
 	 *
-	 * @param string $hex number, with "v6-" prefix if it is IPv6
-	 * @return String: quad-dotted (IPv4) or octet notation (IPv6)
+	 * @param string $hex Number, with "v6-" prefix if it is IPv6
+	 * @return string Quad-dotted (IPv4) or octet notation (IPv6)
 	 */
 	public static function formatHex( $hex ) {
 		if ( substr( $hex, 0, 3 ) == 'v6-' ) { // IPv6
@@ -319,8 +319,8 @@ class IP {
 	/**
 	 * Converts a hexadecimal number to an IPv6 address in octet notation
 	 *
-	 * @param $ip_hex String: pure hex (no v6- prefix)
-	 * @return String (of format a:b:c:d:e:f:g:h)
+	 * @param string $ip_hex Pure hex (no v6- prefix)
+	 * @return string (of format a:b:c:d:e:f:g:h)
 	 */
 	public static function hexToOctet( $ip_hex ) {
 		// Pad hex to 32 chars (128 bits)
@@ -339,8 +339,8 @@ class IP {
 	/**
 	 * Converts a hexadecimal number to an IPv4 address in quad-dotted notation
 	 *
-	 * @param $ip_hex String: pure hex
-	 * @return String (of format a.b.c.d)
+	 * @param string $ip_hex Pure hex
+	 * @return string (of format a.b.c.d)
 	 */
 	public static function hexToQuad( $ip_hex ) {
 		// Pad hex to 8 chars (32 bits)
@@ -361,8 +361,8 @@ class IP {
 	 * Determine if an IP address really is an IP address, and if it is public,
 	 * i.e. not RFC 1918 or similar
 	 *
-	 * @param $ip String
-	 * @return Boolean
+	 * @param string $ip
+	 * @return bool
 	 */
 	public static function isPublic( $ip ) {
 		static $privateSet = null;
@@ -388,8 +388,8 @@ class IP {
 	 * function for an IPv6 address will be prefixed with "v6-", a non-
 	 * hexadecimal string which sorts after the IPv4 addresses.
 	 *
-	 * @param string $ip quad dotted/octet IP address.
-	 * @return String|bool false on failure
+	 * @param string $ip Quad dotted/octet IP address.
+	 * @return string|bool False on failure
 	 */
 	public static function toHex( $ip ) {
 		if ( self::isIPv6( $ip ) ) {
@@ -420,8 +420,8 @@ class IP {
 	/**
 	 * Given an IPv6 address in octet notation, returns a pure hex string.
 	 *
-	 * @param string $ip octet ipv6 IP address.
-	 * @return String|bool pure hex (uppercase); false on failure
+	 * @param string $ip Octet ipv6 IP address.
+	 * @return string|bool Pure hex (uppercase); false on failure
 	 */
 	private static function IPv6ToRawHex( $ip ) {
 		$ip = self::sanitizeIP( $ip );
@@ -529,7 +529,7 @@ class IP {
 	 * Convert a network specification in IPv6 CIDR notation to an
 	 * integer network and a number of bits
 	 *
-	 * @param $range
+	 * @param string $range
 	 *
 	 * @return array(string, int)
 	 */
@@ -570,7 +570,7 @@ class IP {
 	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
 	 *     2001:0db8:85a3::7344/96                       Single IP
 	 *
-	 * @param $range
+	 * @param string $range
 	 *
 	 * @return array(string, string)
 	 */
@@ -616,9 +616,9 @@ class IP {
 	/**
 	 * Determine if a given IPv4/IPv6 address is in a given CIDR network
 	 *
-	 * @param string $addr the address to check against the given range.
-	 * @param string $range the range to check the given address against.
-	 * @return Boolean: whether or not the given address is in the given range.
+	 * @param string $addr The address to check against the given range.
+	 * @param string $range The range to check the given address against.
+	 * @return bool Whether or not the given address is in the given range.
 	 */
 	public static function isInRange( $addr, $range ) {
 		$hexIP = self::toHex( $addr );
@@ -635,8 +635,8 @@ class IP {
 	 * This currently only checks a few IPV4-to-IPv6 related cases.  More
 	 * unusual representations may be added later.
 	 *
-	 * @param string $addr something that might be an IP address
-	 * @return String: valid dotted quad IPv4 address or null
+	 * @param string $addr Something that might be an IP address
+	 * @return string Valid dotted quad IPv4 address or null
 	 */
 	public static function canonicalize( $addr ) {
 		// remove zone info (bug 35738)

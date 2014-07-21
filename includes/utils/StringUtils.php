@@ -42,11 +42,11 @@ class StringUtils {
 	 * Beware of this when backporting code to that version of MediaWiki.
 	 *
 	 * @param string $value String to check
-	 * @param boolean $disableMbstring Whether to use the pure PHP
+	 * @param bool $disableMbstring Whether to use the pure PHP
 	 * implementation instead of trying mb_check_encoding. Intended for unit
 	 * testing. Default: false
 	 *
-	 * @return boolean Whether the given $value is a valid UTF-8 encoded string
+	 * @return bool Whether the given $value is a valid UTF-8 encoded string
 	 */
 	static function isUtf8( $value, $disableMbstring = false ) {
 		$value = (string)$value;
@@ -121,10 +121,10 @@ class StringUtils {
 	 * hungry and inflexible. The memory requirements are such that I don't
 	 * recommend using it on anything but guaranteed small chunks of text.
 	 *
-	 * @param $startDelim
-	 * @param $endDelim
-	 * @param $replace
-	 * @param $subject
+	 * @param string $startDelim
+	 * @param string $endDelim
+	 * @param string $replace
+	 * @param string $subject
 	 *
 	 * @return string
 	 */
@@ -157,11 +157,11 @@ class StringUtils {
 	 * start, so e.g. /*\/ is not considered to be both the start and end of a
 	 * comment. /*\/xy/*\/ is considered to be a single comment with contents /xy/.
 	 *
-	 * @param string $startDelim start delimiter
-	 * @param string $endDelim end delimiter
-	 * @param $callback Callback: function to call on each match
-	 * @param $subject String
-	 * @param string $flags regular expression flags
+	 * @param string $startDelim Start delimiter
+	 * @param string $endDelim End delimiter
+	 * @param callable $callback Function to call on each match
+	 * @param string $subject
+	 * @param string $flags Regular expression flags
 	 * @throws MWException
 	 * @return string
 	 */
@@ -245,13 +245,13 @@ class StringUtils {
 	 *
 	 *   preg_replace( "!$startDelim(.*)$endDelim!$flags", $replace, $subject )
 	 *
-	 * @param string $startDelim start delimiter regular expression
-	 * @param string $endDelim end delimiter regular expression
-	 * @param string $replace replacement string. May contain $1, which will be
+	 * @param string $startDelim Start delimiter regular expression
+	 * @param string $endDelim End delimiter regular expression
+	 * @param string $replace Replacement string. May contain $1, which will be
 	 *                 replaced by the text between the delimiters
-	 * @param string $subject to search
-	 * @param string $flags regular expression flags
-	 * @return String: The string with the matches replaced
+	 * @param string $subject String to search
+	 * @param string $flags Regular expression flags
+	 * @return string The string with the matches replaced
 	 */
 	static function delimiterReplace( $startDelim, $endDelim, $replace, $subject, $flags = '' ) {
 		$replacer = new RegexlikeReplacer( $replace );
@@ -361,8 +361,8 @@ class RegexlikeReplacer extends Replacer {
  */
 class DoubleReplacer extends Replacer {
 	/**
-	 * @param $from
-	 * @param $to
+	 * @param mixed $from
+	 * @param mixed $to
 	 * @param int $index
 	 */
 	function __construct( $from, $to, $index = 0 ) {
@@ -387,7 +387,7 @@ class HashtableReplacer extends Replacer {
 	private $table, $index;
 
 	/**
-	 * @param $table
+	 * @param array $table
 	 * @param int $index
 	 */
 	function __construct( $table, $index = 0 ) {
