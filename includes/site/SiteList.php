@@ -352,7 +352,7 @@ class SiteList extends GenericArrayObject {
 }
 
 /**
- * @deprecated
+ * @deprecated since 1.21
  */
 class SiteArray extends SiteList {
 }

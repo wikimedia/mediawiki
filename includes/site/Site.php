@@ -700,7 +700,7 @@ class Site implements Serializable {
 }
 
 /**
- * @deprecated
+ * @deprecated since 1.21
  */
 class SiteObject extends Site {
 }
