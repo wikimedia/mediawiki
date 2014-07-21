@@ -179,11 +179,16 @@ class CliInstaller extends Installer {
 	public function showHelpBox( $msg /*, ... */ ) {
 	}
 
-	/**
-	 * @param Status $status
-	 */
 	public function showStatusMessage( Status $status ) {
-		parent::showStatusMessage( $status );
+		$warnings = array_merge( $status->getWarningsArray(),
+			$status->getErrorsArray() );
+
+		if ( count( $warnings ) !== 0 ) {
+			foreach ( $warnings as $w ) {
+				call_user_func_array( array( $this, 'showMessage' ), $w );
+			}
+		}
+
 		if ( !$status->isOk() ) {
 			echo "\n";
 			exit( 1 );
