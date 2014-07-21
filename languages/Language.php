@@ -3125,7 +3125,7 @@ class Language {
 	 */
 	function getMagic( $mw ) {
 		// Saves a function call
-		if ( ! $this->mMagicHookDone ) {
+		if ( !$this->mMagicHookDone ) {
 			$this->doMagicHook();
 		}
 
@@ -4443,7 +4443,7 @@ class Language {
 		if ( !isset( $format['avoid'] ) ) {
 			$format['avoid'] = false;
 		}
-		if ( !isset( $format['noabbrevs' ] ) ) {
+		if ( !isset( $format['noabbrevs'] ) ) {
 			$format['noabbrevs'] = false;
 		}
 		$secondsMsg = wfMessage(

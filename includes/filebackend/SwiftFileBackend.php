@@ -1521,7 +1521,7 @@ class SwiftFileBackend extends FileBackendStore {
 					'mtime' => $this->convertSwiftDate( $rhdrs['last-modified'], TS_MW ),
 					// Empty objects actually return no content-length header in Ceph
 					'size'  => isset( $rhdrs['content-length'] ) ? (int)$rhdrs['content-length'] : 0,
-					'sha1'  => $rhdrs[ 'x-object-meta-sha1base36'],
+					'sha1'  => $rhdrs['x-object-meta-sha1base36'],
 					// Note: manifiest ETags are not an MD5 of the file
 					'md5'   => ctype_xdigit( $rhdrs['etag'] ) ? $rhdrs['etag'] : null,
 					'xattr' => array( 'metadata' => $metadata, 'headers' => $headers )

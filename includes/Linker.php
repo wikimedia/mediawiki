@@ -937,7 +937,7 @@ class Linker {
 		$query = '', $unused1 = '', $unused2 = '', $time = false
 	) {
 		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
-		if ( ! $title instanceof Title ) {
+		if ( !$title instanceof Title ) {
 			return "<!-- ERROR -->" . htmlspecialchars( $label );
 		}
 		wfProfileIn( __METHOD__ );

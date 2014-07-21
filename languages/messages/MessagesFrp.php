@@ -290,17 +290,17 @@ $magicWords = array(
 $linkTrail = '/^([a-zàâçéèêîœôû·’æäåāăëēïīòöōùü‘]+)(.*)$/sDu';
 
 $dateFormats = array(
-    'mdy time' => 'H:i',
-    'mdy date' => 'F j, Y',
-    'mdy both' => 'F j, Y "a" H:i',
+	'mdy time' => 'H:i',
+	'mdy date' => 'F j, Y',
+	'mdy both' => 'F j, Y "a" H:i',
 
-    'dmy time' => 'H:i',
-    'dmy date' => 'j F Y',
-    'dmy both' => 'j F Y "a" H:i',
+	'dmy time' => 'H:i',
+	'dmy date' => 'j F Y',
+	'dmy both' => 'j F Y "a" H:i',
 
-    'ymd time' => 'H:i',
-    'ymd date' => 'Y F j',
-    'ymd both' => 'Y F j "a" H:i',
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y F j',
+	'ymd both' => 'Y F j "a" H:i',
 );
 
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );

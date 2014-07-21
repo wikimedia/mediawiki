@@ -117,7 +117,7 @@ class SearchHighlighter {
 						}
 						$offset = $endMatches[0][1] + strlen( $endMatches[0][0] );
 					}
-					if ( ! $found ) {
+					if ( !$found ) {
 						// couldn't find appropriate closing tag, skip
 						$this->splitAndAdd( $textExt, $count, substr( $text, $start, strlen( $matches[0][0] ) ) );
 						$start += strlen( $matches[0][0] );
@@ -184,7 +184,7 @@ class SearchHighlighter {
 			$succ = true;
 			// check if first text contains all terms
 			foreach ( $terms as $term ) {
-				if ( ! preg_match( "/$patPre" . $term . "$patPost/ui", $firstText ) ) {
+				if ( !preg_match( "/$patPre" . $term . "$patPost/ui", $firstText ) ) {
 					$succ = false;
 					break;
 				}
@@ -194,7 +194,7 @@ class SearchHighlighter {
 				$offsets[$first] = 0;
 			}
 		}
-		if ( ! $snippets ) {
+		if ( !$snippets ) {
 			// match whole query on text
 			$this->process( $pat1, $textExt, $left, $contextchars, $snippets, $offsets );
 			// match whole query on templates/tables/images
@@ -279,7 +279,7 @@ class SearchHighlighter {
 
 		$processed = array();
 		foreach ( $terms as $term ) {
-			if ( ! isset( $processed[$term] ) ) {
+			if ( !isset( $processed[$term] ) ) {
 				$pat3 = "/$patPre(" . $term . ")$patPost/ui"; // highlight word
 				$extract = preg_replace( $pat3,
 					"\\1<span class='searchmatch'>\\2</span>\\3", $extract );
@@ -528,7 +528,7 @@ class SearchHighlighter {
 			}
 			++$lineno;
 			$m = array();
-			if ( ! preg_match( $pat1, $line, $m ) ) {
+			if ( !preg_match( $pat1, $line, $m ) ) {
 				continue;
 			}
 			--$contextlines;

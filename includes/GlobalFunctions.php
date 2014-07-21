@@ -1883,7 +1883,7 @@ function wfReportTime() {
 	$responseTime = round( ( microtime( true ) - $wgRequestTime ) * 1000 );
 	$reportVars = array( 'wgBackendResponseTime' => $responseTime );
 	if ( $wgShowHostnames ) {
-		$reportVars[ 'wgHostname' ] = wfHostname();
+		$reportVars['wgHostname'] = wfHostname();
 	}
 	return Skin::makeVariablesScript( $reportVars );
 }

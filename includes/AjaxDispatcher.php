@@ -55,7 +55,7 @@ class AjaxDispatcher {
 
 		$this->mode = "";
 
-		if ( ! empty( $_GET["rs"] ) ) {
+		if ( !empty( $_GET["rs"] ) ) {
 			$this->mode = "get";
 		}
 
@@ -66,7 +66,7 @@ class AjaxDispatcher {
 		switch ( $this->mode ) {
 			case 'get':
 				$this->func_name = isset( $_GET["rs"] ) ? $_GET["rs"] : '';
-				if ( ! empty( $_GET["rsargs"] ) ) {
+				if ( !empty( $_GET["rsargs"] ) ) {
 					$this->args = $_GET["rsargs"];
 				} else {
 					$this->args = array();
@@ -74,7 +74,7 @@ class AjaxDispatcher {
 				break;
 			case 'post':
 				$this->func_name = isset( $_POST["rs"] ) ? $_POST["rs"] : '';
-				if ( ! empty( $_POST["rsargs"] ) ) {
+				if ( !empty( $_POST["rsargs"] ) ) {
 					$this->args = $_POST["rsargs"];
 				} else {
 					$this->args = array();
@@ -105,7 +105,7 @@ class AjaxDispatcher {
 
 		wfProfileIn( __METHOD__ );
 
-		if ( ! in_array( $this->func_name, $wgAjaxExportList ) ) {
+		if ( !in_array( $this->func_name, $wgAjaxExportList ) ) {
 			wfDebug( __METHOD__ . ' Bad Request for unknown function ' . $this->func_name . "\n" );
 
 			wfHttpError(

@@ -237,7 +237,7 @@ class HtmlFormatter {
 	private function fixLibXML( $html ) {
 		wfProfileIn( __METHOD__ );
 		static $replacements;
-		if ( ! $replacements ) {
+		if ( !$replacements ) {
 			// We don't include rules like '&#34;' => '&amp;quot;' because entities had already been
 			// normalized by libxml. Using this function with input not sanitized by libxml is UNSAFE!
 			$replacements = new ReplacementArray( array(
