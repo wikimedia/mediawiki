@@ -1213,6 +1213,7 @@
 	"license-nopreview": "(Қарап шығу жетімді емес)",
 	"upload_source_url": "(жарамды, баршаға қатынаулы URL)",
 	"upload_source_file": "(компьютеріңіздегі файл)",
+	"listfiles-delete": "жою",
 	"listfiles-summary": "Бұл арнайы бетте барлық жүктелген файлдар көрсетіледі.",
 	"listfiles_search_for": "Медиа атауын іздеу:",
 	"imgfile": "файл",
