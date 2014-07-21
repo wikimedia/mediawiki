@@ -317,7 +317,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		global $IP;
 
 		if ( !$this->doTable( 'interwiki' ) ) {
-			return true;
+			return;
 		}
 
 		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
@@ -672,7 +672,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doUserUniqueUpdate() {
 		if ( !$this->doTable( 'user' ) ) {
-			return true;
+			return;
 		}
 
 		$duper = new UserDupes( $this->db, array( $this, 'output' ) );
@@ -690,7 +690,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doUserGroupsUpdate() {
 		if ( !$this->doTable( 'user_groups' ) ) {
-			return true;
+			return;
 		}
 
 		if ( $this->db->tableExists( 'user_groups', __METHOD__ ) ) {
@@ -1022,7 +1022,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doUserNewTalkTimestampNotNull() {
 		if ( !$this->doTable( 'user_newtalk' ) ) {
-			return true;
+			return;
 		}
 
 		$info = $this->db->fieldInfo( 'user_newtalk', 'user_last_timestamp' );
