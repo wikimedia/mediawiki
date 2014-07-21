@@ -81,7 +81,7 @@ class MaintenanceFixup extends Maintenance {
 			return;
 		}
 
-		return call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
+		call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
 	}
 
 	/**
