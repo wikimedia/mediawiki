@@ -799,6 +799,7 @@ $wgAutoloadLocalClasses = array(
 	'MultiHttpClient' => __DIR__ . '/includes/libs/MultiHttpClient.php',
 	'MultiWriteBagOStuff' => __DIR__ . '/includes/objectcache/MultiWriteBagOStuff.php',
 	'MutableConfig' => __DIR__ . '/includes/config/MutableConfig.php',
+	'MutableContext' => __DIR__ . '/includes/context/MutableContext.php',
 	'MwSql' => __DIR__ . '/maintenance/sql.php',
 	'MyLocalSettingsGenerator' => __DIR__ . '/mw-config/overrides.php',
 	'MySQLField' => __DIR__ . '/includes/db/DatabaseMysqlBase.php',
