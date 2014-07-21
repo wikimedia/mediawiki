@@ -182,7 +182,7 @@ TEXT;
 	function handleUpload( $revision ) {
 		if ( $this->uploads ) {
 			if ( $this->skippedNamespace( $revision ) ) {
-				return;
+				return false;
 			}
 			$this->uploadCount++;
 			// $this->report();
@@ -196,6 +196,8 @@ TEXT;
 				return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
 			}
 		}
+
+		return false;
 	}
 
 	function handleLogItem( $rev ) {
