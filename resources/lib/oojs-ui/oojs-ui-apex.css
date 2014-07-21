@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (a1b99bb256)
+ * OOjs UI v0.1.0-pre (5ab041a801)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-17T19:17:19Z
+ * Date: 2014-07-19T22:45:44Z
  */
 .oo-ui-dialog-content > .oo-ui-window-head,
 .oo-ui-dialog-content > .oo-ui-window-body,
@@ -284,16 +284,17 @@
   margin-top: -0.125em;
 }
 
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonedElement-framed,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonedElement-framed,
+.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonedElement-framed {
+  margin: 0.75em 0 0.75em 0.75em;
+}
+
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button,
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button {
   padding: 0;
   vertical-align: middle;
-}
-
-.oo-ui-processDialog-actions-safe.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button,
-.oo-ui-processDialog-actions-primary.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button {
-  margin: 0.75em;
 }
 
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget:hover,
@@ -304,6 +305,18 @@
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget:active,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget:active {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonedElement-framed,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonedElement-framed {
+  margin: 0.75em;
+}
+
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button {
+  /* Adjust for border so text aligns with title */
+
+  margin: -1px;
 }
 
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-primary:hover,
@@ -355,14 +368,6 @@
 
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-iconedElement .oo-ui-labeledElement-label {
   padding-right: 2.25em;
-}
-
-.oo-ui-processDialog-actions-other:not(:empty) {
-  padding: 0.75em;
-}
-
-.oo-ui-processDialog-actions-other:not(:empty) .oo-ui-actionWidget {
-  margin: 0 0.75em 0 0;
 }
 
 .oo-ui-processDialog > .oo-ui-window-frame {
