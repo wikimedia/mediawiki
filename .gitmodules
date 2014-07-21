@@ -380,3 +380,6 @@
 [submodule "extensions/TextExtracts"]
 	path = extensions/TextExtracts
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TextExtracts.git
+[submodule "extensions/EventLogging"]
+	path = extensions/EventLogging
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/EventLogging.git
