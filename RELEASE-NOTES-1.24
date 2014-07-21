@@ -126,6 +126,9 @@ production.
 * (bug 66440) The MediaWiki web installer will now allow you to choose the skins
   to enable (from the ones included in download tarball) and decide which one
   should be the default.
+* (bug 68085) Links of the form [[localInterwikiPrefix:languageCode:pageTitle]],
+  where localInterwikiPrefix is a member of the $wgLocalInterwikis array, will
+  no longer be displayed in the sidebar when $wgInterwikiMagic is true.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
@@ -265,7 +268,6 @@ changes to languages because of Bugzilla reports.
 * Removed maintenance script importTextFile.php. Use edit.php script instead.
 * A _from_namespace field has been added to the templatelinks, pagelinks,
   and filelinks tables. Run update.php to apply this change to the schema.
-
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

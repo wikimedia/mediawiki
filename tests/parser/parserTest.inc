@@ -148,7 +148,7 @@ class ParserTest {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
 			$wgExtraNamespaces, $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
-			$wgExtraInterlanguageLinkPrefixes,
+			$wgExtraInterlanguageLinkPrefixes, $wgLocalInterwikis,
 			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
 			$wgArticlePath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
 			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgLockManagers;
@@ -219,11 +219,12 @@ class ParserTest {
 		if ( $wgStyleDirectory === false ) {
 			$wgStyleDirectory = "$IP/skins";
 		}
+
+		self::setupInterwikis();
+		$wgLocalInterwikis = array( 'local', 'mi' );
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
 		array_push( $wgExtraInterlanguageLinkPrefixes, 'mul' );
-
-		self::setupInterwikis();
 	}
 
 	/**
@@ -240,6 +241,11 @@ class ParserTest {
 		# for testing inter-language links
 		Hooks::register( 'InterwikiLoadPrefix', function ( $prefix, &$iwData ) {
 			static $testInterwikis = array(
+				'local' => array(
+					'iw_url' => 'http://doesnt.matter.org/$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 0 ),
 				'wikipedia' => array(
 					'iw_url' => 'http://en.wikipedia.org/wiki/$1',
 					'iw_api' => '',
@@ -272,6 +278,11 @@ class ParserTest {
 					'iw_local' => 1 ),
 				'ru' => array(
 					'iw_url' => 'http://ru.wikipedia.org/wiki/$1',
+					'iw_api' => '',
+					'iw_wikiid' => '',
+					'iw_local' => 1 ),
+				'mi' => array(
+					'iw_url' => 'http://mi.wikipedia.org/wiki/$1',
 					'iw_api' => '',
 					'iw_wikiid' => '',
 					'iw_local' => 1 ),

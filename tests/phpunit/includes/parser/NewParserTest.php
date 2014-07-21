@@ -148,6 +148,7 @@ class NewParserTest extends MediaWikiTestCase {
 		# proper precedence when resolving links. (bug 51680)
 		$tmpGlobals['wgExtraNamespaces'] = array( 100 => 'MemoryAlpha' );
 
+		$tmpGlobals['wgLocalInterwikis'] = array( 'local', 'mi' );
 		# "extra language links"
 		# see https://gerrit.wikimedia.org/r/111390
 		$tmpGlobals['wgExtraInterlanguageLinkPrefixes'] = array( 'mul' );
