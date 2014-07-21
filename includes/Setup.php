@@ -488,7 +488,7 @@ if ( !$wgHTCPRouting && $wgHTCPMulticastAddress ) {
 }
 
 // Back compatibility for $wgRateLimitLog deprecated with 1.23
-if ( $wgRateLimitLog && ! array_key_exists( 'ratelimit', $wgDebugLogGroups ) ) {
+if ( $wgRateLimitLog && !array_key_exists( 'ratelimit', $wgDebugLogGroups ) ) {
 	$wgDebugLogGroups['ratelimit'] = $wgRateLimitLog;
 }
 
