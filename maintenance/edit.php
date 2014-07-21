@@ -54,8 +54,6 @@ class EditCLI extends Maintenance {
 		$noRC = $this->hasOption( 'no-rc' );
 
 		$wgUser = User::newFromName( $userName );
-		$context = RequestContext::getMain();
-		$context->setUser( $wgUser );
 		if ( !$wgUser ) {
 			$this->error( "Invalid username", true );
 		}
@@ -67,7 +65,6 @@ class EditCLI extends Maintenance {
 		if ( !$title ) {
 			$this->error( "Invalid title", true );
 		}
-		$context->setTitle( $title );
 
 		if ( $this->hasOption( 'nocreate' ) && !$title->exists() ) {
 			$this->error( "Page does not exist", true );
