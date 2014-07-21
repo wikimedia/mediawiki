@@ -120,6 +120,9 @@ production.
   suppressed content but not suppress it ("suppressrevision" right).
 * Added a new hook, "OutputPageScriptsForBottomQueue", to add modules to the
   bottom queue that should be requested in a dedicated <script> request.
+* (bug 68085) Links of the form [[localInterwikiPrefix:languageCode:pageTitle]],
+  where localInterwikiPrefix is a member of the $wgLocalInterwikis array, will
+  no longer be displayed in the sidebar when $wgInterwikiMagic is true.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
