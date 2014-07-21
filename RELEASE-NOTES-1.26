@@ -16,6 +16,10 @@ production.
   use the 'rawcontinue' parameter to receive raw query-continue data, but the
   new style is encouraged as it's harder to implement incorrectly.
 * Deprecated API formats dump and wddx have been completely removed.
+* (T7645) The "Signature" button on the edit toolbar is now hidden by default
+  in non-talk namespaces. A new configuration variable,
+  $wgExtraSignatureNamespaces, controls in which subject (non-talk) namespaces
+  the "Signature" button on the edit toolbar will be displayed.
 * $wgResourceLoaderUseESI was deprecated and removed. This was an experimental
   feature that was never enabled by default.
 

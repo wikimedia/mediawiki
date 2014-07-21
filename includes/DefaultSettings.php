@@ -3963,6 +3963,15 @@ $wgTrackingCategories = array();
 $wgContentNamespaces = array( NS_MAIN );
 
 /**
+ * Array of namespaces, in addition to the talk namespaces, where signatures
+ * (~~~~) are likely to be used. This determines whether to display the
+ * Signature button on the edit toolbar, and may also be used by extensions.
+ * For example, "traditional" style wikis, where content and discussion are
+ * intermixed, could place NS_MAIN and NS_PROJECT namespaces in this array.
+ */
+$wgExtraSignatureNamespaces = array();
+
+/**
  * Max number of redirects to follow when resolving redirects.
  * 1 means only the first redirect is followed (default behavior).
  * 0 or less means no redirects are followed.
