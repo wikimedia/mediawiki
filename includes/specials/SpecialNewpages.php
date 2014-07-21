@@ -295,6 +295,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @return string
 	 */
 	public function formatRow( $result ) {
+
+		if( $result->rc_log_type == 'move' ) {
+			$result = $this->filterMoves( $result );
+			if ( $result === false) {
+				//not a cross namespace page move
+				//most probably a page rename
+				return '';
+			}
+		}
 		$title = Title::newFromRow( $result );
 
 		# Revision deletion works on revisions, so we should cast one
@@ -343,13 +352,17 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ),
 			$this->msg( 'parentheses' )->rawParams( $histLink )->escaped() );
 
-		$length = Html::element(
-			'span',
-			array( 'class' => 'mw-newpages-length' ),
-			$this->msg( 'brackets' )->params( $this->msg( 'nbytes' )
-				->numParams( $result->length )->text()
-			)
-		);
+		$length = '';
+		if( $result->length !== null ) {
+			// Length may be null for some page moves due to join conditions
+			$length = Html::element(
+				'span',
+				array( 'class' => 'mw-newpages-length' ),
+				$this->msg( 'brackets' )->params( $this->msg( 'nbytes' )
+					->numParams( $result->length )->text()
+				)
+			);
+		}
 
 		$ulink = Linker::revUserTools( $rev );
 		$comment = Linker::revComment( $rev );
@@ -387,6 +400,52 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} "
 			. "{$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
+	}
+
+	/**
+	 *
+	 * @param object $result Result row
+	 * @return bool|Result row
+	**/
+	public function filterMoves( $result ) {
+
+		$params = unserialize( $result->rc_params );
+		$title = Title::newFromText( $params['4::target'] );
+		if( !$title->isKnown() ) {
+			return false;
+		}
+
+		$invert = $this->opts->getValue( 'invert' );
+		$namespace = $this->opts->getValue( 'namespace' );
+		$namespace = ( $namespace === 'all' ) ? false : intval( $namespace );
+		$srcNs = $result->rc_namespace;
+		$destNs = $title->getNamespace();
+
+		if ( $namespace !== false ) {
+			if ( $invert ) {
+				if ( $srcNs == $destNs ) {
+					return false;
+				}
+				$result->page_namespace = $destNs;
+				$result->page_title = $title->getText();
+				return $result;
+			} else {
+				if ( $destNs != $namespace ) {
+					return false;
+				}
+				$result->page_namespace = $destNs;
+				$result->page_title = $title->getText();
+				return $result;
+			}
+		} else {
+			if ( $srcNs == $destNs ) {
+				return false;
+			}
+			$result->page_namespace = $destNs;
+			$result->page_title = $title->getText();
+			return $result;
+		}
+
 	}
 
 	/**
@@ -506,9 +565,14 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
+		$dbr = $this->mDb;
 		$conds = array();
+		$moveConds = array();
+		$extraConds = array();
+
 		$conds['rc_new'] = 1;
 
+		$moveConds[] = "rc_log_type = 'move'";
 		$namespace = $this->opts->getValue( 'namespace' );
 		$namespace = ( $namespace === 'all' ) ? false : intval( $namespace );
 
@@ -519,44 +583,54 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		if ( $namespace !== false ) {
 			if ( $this->opts->getValue( 'invert' ) ) {
-				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
+				$conds[] = 'rc_namespace != ' . $dbr->addQuotes( $namespace );
+				$moveConds['rc_namespace'] = $namespace;
 			} else {
 				$conds['rc_namespace'] = $namespace;
+				$moveConds[] = 'rc_namespace != ' . $dbr->addQuotes( $namespace );
 			}
 		}
 
 		if ( $user ) {
-			$conds['rc_user_text'] = $user->getText();
+			$extraConds['rc_user_text'] = $user->getText();
 			$rcIndexes = 'rc_user_text';
 		} elseif ( User::groupHasPermission( '*', 'createpage' ) &&
 			$this->opts->getValue( 'hideliu' )
 		) {
 			# If anons cannot make new pages, don't "exclude logged in users"!
-			$conds['rc_user'] = 0;
+			$extraConds['rc_user'] = 0;
 		}
 
 		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
 		if ( $this->opts->getValue( 'hidepatrolled' ) && $this->getUser()->useNPPatrol() ) {
-			$conds['rc_patrolled'] = 0;
+			$extraConds['rc_patrolled'] = 0;
 		}
 
 		if ( $this->opts->getValue( 'hidebots' ) ) {
-			$conds['rc_bot'] = 0;
+			$extraConds['rc_bot'] = 0;
 		}
 
 		if ( $this->opts->getValue( 'hideredirs' ) ) {
 			$conds['page_is_redirect'] = 0;
 		}
 
+		$conds = $dbr->makeList( $conds, LIST_AND );
+		$moveConds = $dbr->makeList( $moveConds, LIST_AND );
+		$extraConds = $dbr->makeList( $extraConds, LIST_AND );
+
+		$conds = $dbr->makeList( array( $conds, $moveConds ), LIST_OR );
+		if ($extraConds != '' ) {
+			$conds = $dbr->makeList( array( $conds, $extraConds ), LIST_AND );
+		}
 		// Allow changes to the New Pages query
 		$tables = array( 'recentchanges', 'page' );
 		$fields = array(
 			'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text',
-			'rc_comment', 'rc_timestamp', 'rc_patrolled', 'rc_id', 'rc_deleted',
-			'length' => 'page_len', 'rev_id' => 'page_latest', 'rc_this_oldid',
-			'page_namespace', 'page_title'
+			'rc_comment', 'rc_log_type', 'rc_timestamp', 'rc_patrolled', 'rc_id',
+			'rc_deleted', 'length' => 'page_len', 'rev_id' => 'page_latest',
+			'rc_this_oldid', 'rc_params', 'page_namespace', 'page_title'
 		);
-		$join_conds = array( 'page' => array( 'INNER JOIN', 'page_id=rc_cur_id' ) );
+		$join_conds = array( 'page' => array( 'LEFT JOIN', 'page_id=rc_cur_id' ) );
 
 		wfRunHooks( 'SpecialNewpagesConditions',
 			array( &$this, $this->opts, &$conds, &$tables, &$fields, &$join_conds ) );
