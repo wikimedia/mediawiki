@@ -366,7 +366,7 @@ class BitmapHandler extends ImageHandler {
 			// background colour. After merging we reset the background
 			// to be white for the default background colour setting
 			// in the PNG image (which is used in old IE)
-			$animation_post = array(
+			$animation_pre = array(
 				'-background', 'transparent',
 				'-layers', 'merge',
 				'-background', 'white',
@@ -382,7 +382,7 @@ class BitmapHandler extends ImageHandler {
 				// bug 66323 - Greyscale images not rendered properly.
 				// So only take the "red" channel.
 				$channelOnly = array( '-channel', 'R', '-separate' );
-				$animation_post = array_merge( $animation_post, $channelOnly );
+				$animation_pre = array_merge( $animation_pre, $channelOnly );
 			}
 		}
 
