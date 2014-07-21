@@ -51,7 +51,7 @@ installations.
 	edit.php
 	Edit a page to change its content
 
-	findhooks.php
+	findHooks.php
 	Find hooks that aren't documented in docs/hooks.txt
 
 	importDump.php
@@ -59,9 +59,6 @@ installations.
 
 	importImages.php
 	Import images into the wiki
-
-	importTextFile.php
-	Import the contents of a text file into a wiki page
 
 	moveBatch.php
 	Move a batch of pages
