@@ -1,5 +1,5 @@
 @import "mediawiki.mixins";
-@import "variables";
+@import "../variables";
 
 /**
  * The following code is highly modified from monobook. It would be nice if the
@@ -14,7 +14,7 @@
 	clear: both;
 	margin: 0 !important;
 	padding: 0 !important;
-	.background-image('images/preferences/break.png');
+	.background-image('../images/preferences/break.png');
 	background-position: bottom left;
 	background-repeat: no-repeat;
 
@@ -28,7 +28,7 @@
 		white-space: nowrap;
 		list-style-type: none;
 		list-style-image: none;
-		.background-image('images/preferences/break.png');
+		.background-image('../images/preferences/break.png');
 		background-position: bottom right;
 		background-repeat: no-repeat;
 
@@ -39,7 +39,7 @@
 
 		&.selected {
 			a {
-				.background-image('images/preferences/fade.png');
+				.background-image('../images/preferences/fade.png');
 				background-position: bottom;
 				background-repeat: repeat-x;
 				color: #333;
