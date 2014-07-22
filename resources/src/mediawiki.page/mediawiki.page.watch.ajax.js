@@ -140,11 +140,20 @@
 
 			api[action]( title )
 				.done( function ( watchResponse ) {
-					var otherAction = action === 'watch' ? 'unwatch' : 'watch';
+					var otherAction = action === 'watch' ? 'unwatch' : 'watch',
+						notify = true;
 
-					mw.notify( $.parseHTML( watchResponse.message ), {
-						tag: 'watch-self'
-					} );
+					mw.hook( 'wikipage.watch.complete' ).fire(
+						$link,
+						action,
+						function() { notify = false; }
+					);
+
+					if ( notify ) {
+						mw.notify( $.parseHTML( watchResponse.message ), {
+							tag: 'watch-self'
+						} );
+					}
 
 					// Set link to opposite
 					updateWatchLink( $link, otherAction );
