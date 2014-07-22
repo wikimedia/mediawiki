@@ -62,3 +62,19 @@ $wgResourceModules['skins.vector.js'] = array(
 	'remoteSkinPath' => 'Vector',
 	'localBasePath' => __DIR__,
 );
+
+// Configuration options
+
+/**
+ * Search form look.
+ *  - true = use an icon search button
+ *  - false = use Go & Search buttons
+ */
+$wgVectorUseSimpleSearch = true;
+
+/**
+ * Watch and unwatch as an icon rather than a link.
+ *  - true = use an icon watch/unwatch button
+ *  - false = use watch/unwatch text link
+ */
+$wgVectorUseIconWatch = true;
