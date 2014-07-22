@@ -82,7 +82,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 *              * wpMinorEdit: mark as minor edit
 	 *              * wpWatchthis: whether to watch the page
 	 * @param int|null $expectedCode The expected result code (EditPage::AS_XXX constants).
-	 *                  Set to null to skip the check. Defaults to EditPage::AS_OK.
+	 *                  Set to null to skip the check.
 	 * @param string|null $expectedText The text expected to be on the page after the edit.
 	 *                  Set to null to skip the check.
 	 * @param string|null $message An optional message to show along with any error message.
@@ -90,7 +90,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @return WikiPage The page that was just edited, useful for getting the edit's rev_id, etc.
 	 */
 	protected function assertEdit( $title, $baseText, $user = null, array $edit,
-		$expectedCode = EditPage::AS_OK, $expectedText = null, $message = null
+		$expectedCode = null, $expectedText = null, $message = null
 	) {
 		if ( is_string( $title ) ) {
 			$ns = $this->getDefaultWikitextNS();

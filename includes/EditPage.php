@@ -67,11 +67,6 @@ class EditPage {
 	const AS_CONTENT_TOO_BIG = 216;
 
 	/**
-	 * Status: User cannot edit? (not used)
-	 */
-	const AS_USER_CANNOT_EDIT = 217;
-
-	/**
 	 * Status: this anonymous user is not allowed to edit this page
 	 */
 	const AS_READ_ONLY_PAGE_ANON = 218;
@@ -128,11 +123,6 @@ class EditPage {
 	 * Status: article is too big (> $wgMaxArticleSize), after merging in the new section
 	 */
 	const AS_MAX_ARTICLE_SIZE_EXCEEDED = 229;
-
-	/**
-	 * not used
-	 */
-	const AS_OK = 230;
 
 	/**
 	 * Status: WikiPage::doEdit() was unsuccessful
