@@ -265,7 +265,8 @@ changes to languages because of Bugzilla reports.
 * Removed maintenance script importTextFile.php. Use edit.php script instead.
 * A _from_namespace field has been added to the templatelinks, pagelinks,
   and filelinks tables. Run update.php to apply this change to the schema.
-
+* Removed functions blockedPage(), noCreatePermission(), readOnlyPage() and
+  userNotLoggedInPage() from EditPage.php. (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
