@@ -197,14 +197,18 @@ pre, code, tt, kbd, samp, .mw-code {
 }
 
 code {
+	color: black;
 	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	padding: 1px 4px;
 }
 
 pre, .mw-code {
-	padding: 1em;
-	border: 1px solid #ddd;
 	color: black;
 	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	padding: 1em;
 }
 
 /* Tables */
