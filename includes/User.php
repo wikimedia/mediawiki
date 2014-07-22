@@ -1120,7 +1120,7 @@ class User implements IDBAccessObject {
 			$token = rtrim( $proposedUser->getToken( false ) ); // correct token
 			// Make comparison in constant time (bug 61346)
 			$passwordCorrect = strlen( $token )
-				&& hash_equals( $token, $request->getCookie( 'Token' ) );
+				&& StringUtils::hashEquals( $token, $request->getCookie( 'Token' ) );
 			$from = 'cookie';
 		} else {
 			// No session or persistent login cookie
