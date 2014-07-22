@@ -151,13 +151,14 @@ class UserMailer {
 	 * array of parameters. It requires PEAR:Mail to do that.
 	 * Otherwise it just uses the standard PHP 'mail' function.
 	 *
-	 * @param MailAddress $to Recipient's email (or an array of them)
+	 * @param MailAddress|MailAddress[] $to Recipient's email (or an array of them)
 	 * @param MailAddress $from Sender's email
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
 	 * @param MailAddress $replyto Optional reply-to email (default: null).
 	 * @param string $contentType Optional custom Content-Type (default: text/plain; charset=UTF-8)
 	 * @throws MWException
+	 * @throws Exception
 	 * @return Status
 	 */
 	public static function send( $to, $from, $subject, $body, $replyto = null,
