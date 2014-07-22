@@ -1497,15 +1497,15 @@ return array(
 			'minerva' => 'resources/lib/oojs-ui/oojs-ui-agora.css',
 		),
 		'messages' => array(
-			'ooui-dialog-action-close',
 			'ooui-outline-control-move-down',
 			'ooui-outline-control-move-up',
 			'ooui-outline-control-remove',
 			'ooui-toolbar-more',
-			'ooui-dialog-confirm-title',
-			'ooui-dialog-confirm-default-prompt',
-			'ooui-dialog-confirm-default-ok',
-			'ooui-dialog-confirm-default-cancel'
+			'ooui-dialog-message-accept',
+			'ooui-dialog-message-reject',
+			'ooui-dialog-process-error',
+			'ooui-dialog-process-dismiss',
+			'ooui-dialog-process-retry',
 		),
 		'dependencies' => array(
 			'es5-shim',
