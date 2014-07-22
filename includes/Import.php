@@ -1503,6 +1503,7 @@ class WikiRevision {
 		$linkCache->clear();
 
 		$page = WikiPage::factory( $this->title );
+		$page->loadPageData( 'fromdbmaster' );
 		if ( !$page->exists() ) {
 			# must create the page...
 			$pageId = $page->insertOn( $dbw );
