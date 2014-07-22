@@ -145,13 +145,15 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Normalize a skin preference value to a form that can be loaded.
-	 * If a skin can't be found, it will fall back to the configured
-	 * default, or the hardcoded default if that's broken.
+	 *
+	 * If a skin can't be found, it will fall back to the configured default ($wgDefaultSkin), or the
+	 * hardcoded default ($wgFallbackSkin) if the default skin is unavailable too.
+	 *
 	 * @param string $key 'monobook', 'vector', etc.
 	 * @return string
 	 */
 	static function normalizeKey( $key ) {
-		global $wgDefaultSkin;
+		global $wgDefaultSkin, $wgFallbackSkin;
 
 		$skinNames = Skin::getSkinNames();
 
@@ -159,6 +161,7 @@ abstract class Skin extends ContextSource {
 		$skinNames = array_change_key_case( $skinNames, CASE_LOWER );
 		$key = strtolower( $key );
 		$default = strtolower( $wgDefaultSkin );
+		$fallback = strtolower( $wgFallbackSkin );
 
 		if ( $key == '' || $key == 'default' ) {
 			// Don't return the default immediately;
@@ -186,7 +189,7 @@ abstract class Skin extends ContextSource {
 		} elseif ( isset( $skinNames[$default] ) ) {
 			return $default;
 		} else {
-			return 'vector';
+			return $fallback;
 		}
 	}
 

@@ -2960,10 +2960,13 @@ $wgValidateAllHtml = false;
 /**
  * Default skin, for new users and anonymous visitors. Registered users may
  * change this to any one of the other available skins in their preferences.
- * This has to be completely lowercase; see the "skins" directory for the list
- * of available skins.
  */
 $wgDefaultSkin = 'vector';
+
+/**
+ * Fallback skin used when the skin defined by $wgDefaultSkin can't be found.
+ */
+$wgFallbackSkin = 'vector';
 
 /**
  * Specify the name of a skin that should not be presented in the list of
