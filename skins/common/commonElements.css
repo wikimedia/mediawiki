@@ -139,7 +139,7 @@ h5 {
 	margin-bottom: .3em;
 }
 
-p {
+p, pre.mw-lines {
 	margin: .4em 0 .5em 0;
 	line-height: 1.5em;
 }
