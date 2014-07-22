@@ -14,7 +14,8 @@
 			"PoLuX124",
 			"Ralgis",
 			"Thehelpfulone",
-			"Gloria sah"
+			"Gloria sah",
+			"Macofe"
 		]
 	},
 	"ooui-outline-control-move-down": "Bajar elemento",
@@ -23,5 +24,7 @@
 	"ooui-toolbar-more": "Más",
 	"ooui-dialog-message-accept": "Aceptar",
 	"ooui-dialog-message-reject": "Cancelar",
+	"ooui-dialog-process-error": "Algo salió mal",
+	"ooui-dialog-process-dismiss": "Descartar",
 	"ooui-dialog-process-retry": "Intentar de nuevo"
 }

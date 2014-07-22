@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (5ab041a801)
+ * OOjs UI v0.1.0-pre (9cd400e3d5)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-19T22:45:44Z
+ * Date: 2014-07-22T21:59:46Z
  */
 ( function ( OO ) {
 
@@ -1920,7 +1920,7 @@ OO.ui.Window.prototype.ready = function ( data ) {
 	var win = this,
 		deferred = $.Deferred();
 
-	this.frame.$content.focus();
+	this.frame.$content[0].focus();
 	this.getReadyProcess( data ).execute().done( function () {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.addClass( 'oo-ui-window-ready' ).width();
@@ -1945,7 +1945,10 @@ OO.ui.Window.prototype.hold = function ( data ) {
 		deferred = $.Deferred();
 
 	this.getHoldProcess( data ).execute().done( function () {
-		win.frame.$content.find( ':focus' ).blur();
+		var $focused = win.frame.$content.find( ':focus' );
+		if ( $focused.length ) {
+			$focused[0].blur();
+		}
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.removeClass( 'oo-ui-window-ready' ).width();
 		win.frame.$content.removeClass( 'oo-ui-window-content-ready' ).width();
@@ -3549,9 +3552,10 @@ OO.ui.ClippableElement.prototype.clip = function () {
 
 	var buffer = 10,
 		cOffset = this.$clippable.offset(),
-		ccOffset = this.$clippableContainer.offset() || { 'top': 0, 'left': 0 },
-		ccHeight = this.$clippableContainer.innerHeight() - buffer,
-		ccWidth = this.$clippableContainer.innerWidth() - buffer,
+		$container = this.$clippableContainer.is( 'body' ) ? this.$clippableWindow : this.$clippableContainer,
+		ccOffset = $container.offset() || { 'top': 0, 'left': 0 },
+		ccHeight = $container.innerHeight() - buffer,
+		ccWidth = $container.innerWidth() - buffer,
 		scrollTop = this.$clippableScroller.scrollTop(),
 		scrollLeft = this.$clippableScroller.scrollLeft(),
 		desiredWidth = ( ccOffset.left + scrollLeft + ccWidth ) - cOffset.left,
@@ -5157,8 +5161,8 @@ OO.ui.MessageDialog.static.title = null;
 OO.ui.MessageDialog.static.message = null;
 
 OO.ui.MessageDialog.static.actions = [
-	{ 'label': OO.ui.deferMsg( 'ooui-dialog-message-accept' ), 'flags': 'primary' },
-	{ 'label': OO.ui.deferMsg( 'ooui-dialog-message-reject' ), 'flags': 'safe' }
+	{ 'action': 'accept', 'label': OO.ui.deferMsg( 'ooui-dialog-message-accept' ), 'flags': 'primary' },
+	{ 'action': 'reject', 'label': OO.ui.deferMsg( 'ooui-dialog-message-reject' ), 'flags': 'safe' }
 ];
 
 /* Methods */
@@ -5657,13 +5661,16 @@ OO.ui.BookletLayout.prototype.onStackLayoutFocus = function ( e ) {
  * @param {OO.ui.PanelLayout|null} page The page panel that is now the current panel
  */
 OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
-	var layout = this;
+	var $input, layout = this;
 	if ( page ) {
 		page.scrollElementIntoView( { 'complete': function () {
 			if ( layout.autoFocus ) {
 				// Set focus to the first input if nothing on the page is focused yet
 				if ( !page.$element.find( ':focus' ).length ) {
-					page.$element.find( ':input:first' ).focus();
+					$input = page.$element.find( ':input:first' );
+					if ( $input.length ) {
+						$input[0].focus();
+					}
 				}
 			}
 		} } );
@@ -5914,6 +5921,7 @@ OO.ui.BookletLayout.prototype.clearPages = function () {
  */
 OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 	var selectedItem,
+		$focused,
 		page = this.pages[name];
 
 	if ( name !== this.currentPageName ) {
@@ -5930,7 +5938,10 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 				// is not needed if the next page has something focusable because once it is focused
 				// this blur happens automatically
 				if ( this.autoFocus && !page.$element.find( ':input' ).length ) {
-					this.pages[this.currentPageName].$element.find( ':focus' ).blur();
+					$focused = this.pages[this.currentPageName].$element.find( ':focus' );
+					if ( $focused.length ) {
+						$focused[0].blur();
+					}
 				}
 			}
 			this.currentPageName = name;
@@ -8283,7 +8294,7 @@ OO.ui.InputWidget.prototype.simulateLabelClick = function () {
 		if ( this.$input.is( ':checkbox,:radio' ) ) {
 			this.$input.click();
 		} else if ( this.$input.is( ':input' ) ) {
-			this.$input.focus();
+			this.$input[0].focus();
 		}
 	}
 };
@@ -8328,7 +8339,7 @@ OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
  * @chainable
  */
 OO.ui.InputWidget.prototype.focus = function () {
-	this.$input.focus();
+	this.$input[0].focus();
 	return this;
 };
 
@@ -8338,7 +8349,7 @@ OO.ui.InputWidget.prototype.focus = function () {
  * @chainable
  */
 OO.ui.InputWidget.prototype.blur = function () {
-	this.$input.blur();
+	this.$input[0].blur();
 	return this;
 };
 
@@ -8449,7 +8460,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 			this.$( '<span>' )
 				.addClass( 'oo-ui-textInputWidget-icon oo-ui-icon-' + config.icon )
 				.mousedown( function () {
-					widget.$input.focus();
+					widget.$input[0].focus();
 					return false;
 				} )
 		);
@@ -8457,6 +8468,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	if ( config.placeholder ) {
 		this.$input.attr( 'placeholder', config.placeholder );
 	}
+	this.$element.attr( 'role', 'textbox' );
 };
 
 /* Setup */
@@ -8712,6 +8724,7 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 	this.$element
 		.data( 'oo-ui-optionWidget', this )
 		.attr( 'rel', config.rel )
+		.attr( 'role', 'option' )
 		.addClass( 'oo-ui-optionWidget' )
 		.append( this.$label );
 	this.$element
@@ -8982,7 +8995,9 @@ OO.ui.MenuItemWidget = function OoUiMenuItemWidget( data, config ) {
 	OO.ui.MenuItemWidget.super.call( this, data, config );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-menuItemWidget' );
+	this.$element
+		.attr( 'role', 'menuitem' )
+		.addClass( 'oo-ui-menuItemWidget' );
 };
 
 /* Setup */
@@ -10158,6 +10173,7 @@ OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	// Initialization
 	this.$element
 		.hide()
+		.attr( 'role', 'menu' )
 		.addClass( 'oo-ui-menuWidget' );
 };
 
@@ -10330,7 +10346,7 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 			// Change focus to enable keyboard navigation
 			if ( this.isolated && this.$input && !this.$input.is( ':focus' ) ) {
 				this.$previousFocus = this.$( ':focus' );
-				this.$input.focus();
+				this.$input[0].focus();
 			}
 			if ( this.newItems && this.newItems.length ) {
 				for ( i = 0, len = this.newItems.length; i < len; i++ ) {
@@ -10349,7 +10365,7 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 		} else {
 			this.unbindKeyDownListener();
 			if ( this.isolated && this.$previousFocus ) {
-				this.$previousFocus.focus();
+				this.$previousFocus[0].focus();
 				this.$previousFocus = null;
 			}
 			this.getElementDocument().removeEventListener(
