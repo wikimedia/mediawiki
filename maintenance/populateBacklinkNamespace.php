@@ -32,6 +32,7 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populate the *_from_namespace fields";
+		$this->setBatchSize( 20 );
 	}
 
 	protected function getUpdateKey() {
