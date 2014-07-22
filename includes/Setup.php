@@ -272,6 +272,10 @@ if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
 }
 
+// Register a hidden "fallback" skin
+$wgValidSkinNames['fallback'] = 'Fallback'; // SkinFallback
+$wgSkipSkins[] = 'fallback';
+
 if ( $wgLocalInterwiki ) {
 	array_unshift( $wgLocalInterwikis, $wgLocalInterwiki );
 }
