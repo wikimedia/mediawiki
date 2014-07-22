@@ -2969,18 +2969,16 @@ $wgDefaultSkin = 'vector';
 $wgFallbackSkin = 'vector';
 
 /**
- * Specify the name of a skin that should not be presented in the list of
- * available skins.  Use for blacklisting a skin which you do not want to
- * remove from the .../skins/ directory
- *
+ * Specify the names of skins that should not be presented in the list of
+ * available skins in user preferences. If you want to remove a skin entirely,
+ * remove it from the skins/ directory and its entry from LocalSettings.php.
+ */
+$wgSkipSkins = array();
+
+/**
  * @deprecated since 1.23; use $wgSkipSkins instead
  */
 $wgSkipSkin = '';
-
-/**
- * Array for more like $wgSkipSkin.
- */
-$wgSkipSkins = array();
 
 /**
  * Allow user Javascript page?
