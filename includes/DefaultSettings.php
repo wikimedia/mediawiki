@@ -2966,7 +2966,7 @@ $wgDefaultSkin = 'vector';
 /**
  * Fallback skin used when the skin defined by $wgDefaultSkin can't be found.
  */
-$wgFallbackSkin = 'vector';
+$wgFallbackSkin = 'fallback';
 
 /**
  * Specify the names of skins that should not be presented in the list of
