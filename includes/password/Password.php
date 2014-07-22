@@ -155,7 +155,7 @@ abstract class Password {
 			$other = $obj;
 		}
 
-		return hash_equals( $this->toString(), $other->toString() );
+		return wfHashEquals( $this->toString(), $other->toString() );
 	}
 
 	/**

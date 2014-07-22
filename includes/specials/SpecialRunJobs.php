@@ -64,7 +64,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		$cSig = self::getQuerySignature( $squery ); // correct signature
 		$rSig = $params['signature']; // provided signature
 
-		$verified = is_string( $rSig ) && hash_equals( $cSig, $rSig );
+		$verified = is_string( $rSig ) && wfHashEquals( $cSig, $rSig );
 		if ( !$verified || $params['sigexpiry'] < time() ) {
 			header( "HTTP/1.0 400 Bad Request" );
 			print 'Invalid or stale signature provided';
