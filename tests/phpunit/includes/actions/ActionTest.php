@@ -115,6 +115,15 @@ class ActionTest extends MediaWikiTestCase {
 		$this->assertEquals( 'revisiondelete', $actionName );
 	}
 
+	public function testGetActionName_whenCanNotUseWikiPage_defaultsToView() {
+		$request = new FauxRequest( array( 'action' => 'edit' ) );
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setRequest( $request );
+		$actionName = Action::getActionName( $context );
+
+		$this->assertEquals( 'view', $actionName );
+	}
+
 	/**
 	 * @dataProvider actionProvider
 	 * @param string $requestedAction
