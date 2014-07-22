@@ -2968,7 +2968,7 @@ $wgDefaultSkin = 'vector';
  *
  * @since 1.24
  */
-$wgFallbackSkin = 'vector';
+$wgFallbackSkin = 'fallback';
 
 /**
  * Specify the names of skins that should not be presented in the list of
