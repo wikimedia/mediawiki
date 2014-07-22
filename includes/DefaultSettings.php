@@ -2960,24 +2960,20 @@ $wgValidateAllHtml = false;
 /**
  * Default skin, for new users and anonymous visitors. Registered users may
  * change this to any one of the other available skins in their preferences.
- * This has to be completely lowercase; see the "skins" directory for the list
- * of available skins.
  */
 $wgDefaultSkin = 'vector';
 
 /**
- * Specify the name of a skin that should not be presented in the list of
- * available skins.  Use for blacklisting a skin which you do not want to
- * remove from the .../skins/ directory
- *
+ * Specify the names of skins that should not be presented in the list of
+ * available skins in user preferences. If you want to remove a skin entirely,
+ * remove it from the skins/ directory and its entry from LocalSettings.php.
+ */
+$wgSkipSkins = array();
+
+/**
  * @deprecated since 1.23; use $wgSkipSkins instead
  */
 $wgSkipSkin = '';
-
-/**
- * Array for more like $wgSkipSkin.
- */
-$wgSkipSkins = array();
 
 /**
  * Allow user Javascript page?
@@ -6049,13 +6045,12 @@ $wgParserOutputHooks = array();
 $wgEnableParserLimitReporting = true;
 
 /**
- * List of valid skin names.
+ * List of valid skin names
+ *
  * The key should be the name in all lower case, the value should be a properly
- * cased name for the skin. This value will be prefixed with "Skin" to create the
- * class name of the skin to load, and if the skin's class cannot be found through
- * the autoloader it will be used to load a .php file by that name in the skins directory.
- * The default skins will be added later, by Skin::getSkinNames(). Use
- * Skin::getSkinNames() as an accessor if you wish to have access to the full list.
+ * cased name for the skin. This value will be prefixed with "Skin" to create
+ * the class name of the skin to load. Use Skin::getSkinNames() as an accessor
+ * if you wish to have access to the full list.
  */
 $wgValidSkinNames = array();
 
