@@ -4306,7 +4306,7 @@ $wgGroupPermissions['*']['editmywatchlist'] = true;
 $wgGroupPermissions['*']['viewmyprivateinfo'] = true;
 $wgGroupPermissions['*']['editmyprivateinfo'] = true;
 $wgGroupPermissions['*']['editmyoptions'] = true;
-#$wgGroupPermissions['*']['patrolmarks'] = false; // let anons see what was patrolled
+$wgGroupPermissions['*']['patrolmarks'] = true; // let anons see what was patrolled
 
 // Implicit group for all logged-in accounts
 $wgGroupPermissions['user']['move'] = true;

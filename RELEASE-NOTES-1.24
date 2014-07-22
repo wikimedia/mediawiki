@@ -40,6 +40,8 @@ production.
   configurations are $wgDeletedDirectory and $wgHashedUploadDirectory.
 * The deprecated $wgUseCommaCount variable has been removed.
 * $wgEnableSorbs and $wgSorbsUrl have been removed.
+* The default setting of $wgGroupPermissions['*']['patrolmarks'] has been
+  changed to true so that anonymous users can see what was patrolled.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
