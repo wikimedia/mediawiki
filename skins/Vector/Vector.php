@@ -65,8 +65,27 @@ $wgResourceModules['skins.vector.js'] = array(
 
 // Apply module customizations
 $wgResourceModuleSkinStyles['vector'] = array(
-	'mediawiki.special' => 'special.less',
-	'mediawiki.special.preferences' => 'special.preferences.less',
+	'jquery.tipsy' => 'skinStyles/jquery.tipsy.less',
+	'jquery.ui.core' => array(
+		'skinStyles/jquery.ui/jquery.ui.core.css',
+		'skinStyles/jquery.ui/jquery.ui.theme.css',
+	),
+	'jquery.ui.accordion' => 'skinStyles/jquery.ui/jquery.ui.accordion.css',
+	'jquery.ui.autocomplete' => 'skinStyles/jquery.ui/jquery.ui.autocomplete.css',
+	'jquery.ui.button' => 'skinStyles/jquery.ui/jquery.ui.button.css',
+	'jquery.ui.datepicker' => 'skinStyles/jquery.ui/jquery.ui.datepicker.css',
+	'jquery.ui.dialog' => 'skinStyles/jquery.ui/jquery.ui.dialog.css',
+	'jquery.ui.menu' => 'skinStyles/jquery.ui/jquery.ui.menu.css',
+	'jquery.ui.progressbar' => 'skinStyles/jquery.ui/jquery.ui.progressbar.css',
+	'jquery.ui.resizable' => 'skinStyles/jquery.ui/jquery.ui.resizable.css',
+	'jquery.ui.selectable' => 'skinStyles/jquery.ui/jquery.ui.selectable.css',
+	'jquery.ui.slider' => 'skinStyles/jquery.ui/jquery.ui.slider.css',
+	'jquery.ui.spinner' => 'skinStyles/jquery.ui/jquery.ui.spinner.css',
+	'jquery.ui.tabs' => 'skinStyles/jquery.ui/jquery.ui.tabs.css',
+	'jquery.ui.tooltip' => 'skinStyles/jquery.ui/jquery.ui.tooltip.css',
+	'mediawiki.notification' => 'skinStyles/mediawiki.notification.less',
+	'mediawiki.special' => 'skinStyles/mediawiki.special.less',
+	'mediawiki.special.preferences' => 'skinStyles/mediawiki.special.preferences.less',
 	'remoteSkinPath' => 'Vector',
 	'localBasePath' => __DIR__,
 );

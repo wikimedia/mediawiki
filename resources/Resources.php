@@ -329,10 +329,6 @@ return array(
 				'resources/lib/jquery.ui/themes/smoothness/jquery.ui.core.css',
 				'resources/lib/jquery.ui/themes/smoothness/jquery.ui.theme.css',
 			),
-			'vector' => array(
-				'resources/src/jquery.ui-themes/vector/jquery.ui.core.css',
-				'resources/src/jquery.ui-themes/vector/jquery.ui.theme.css',
-			),
 		),
 		'group' => 'jquery.ui',
 	),
@@ -344,7 +340,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.accordion.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.accordion.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -358,7 +353,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.autocomplete.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.autocomplete.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -370,7 +364,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.button.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.button.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -379,7 +372,6 @@ return array(
 		'dependencies' => 'jquery.ui.core',
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.datepicker.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.datepicker.css',
 		),
 		'languageScripts' => array(
 			'af' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-af.js',
@@ -465,7 +457,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.dialog.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.dialog.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -497,7 +488,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.menu.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.menu.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -518,7 +508,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.progressbar.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.progressbar.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -531,7 +520,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.resizable.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.resizable.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -544,7 +532,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.selectable.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.selectable.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -557,7 +544,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.slider.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.slider.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -579,7 +565,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.spinner.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.spinner.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -591,7 +576,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.tabs.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.tabs.css',
 		),
 		'group' => 'jquery.ui',
 	),
@@ -604,7 +588,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/jquery.ui/themes/smoothness/jquery.ui.tooltip.css',
-			'vector' => 'resources/src/jquery.ui-themes/vector/jquery.ui.tooltip.css',
 		),
 		'group' => 'jquery.ui',
 	),
