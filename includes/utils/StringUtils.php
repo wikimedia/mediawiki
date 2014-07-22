@@ -314,6 +314,44 @@ class StringUtils {
 			return new ArrayIterator( explode( $separator, $subject ) );
 		}
 	}
+
+	/**
+	 * Securely compare two strings in a timing-safe manner
+	 *
+	 * In an effort at extreme paranoia (although at little cost to performance), this
+	 * function will HMAC both strings with a transient, random nonce, and then perform
+	 * a timing-safe comparison on those hashes.
+	 *
+	 * The HMAC strategy is preferred because PHP internals may or may not guarantee
+	 * the actual algorithm is timing-safe, even if the source code looks that way. HMAC,
+	 * however, is a PRF, and has the same effect: thwarting side-channel timing attacks.
+	 *
+	 * @warning This function is implemented differently than PHP's hash_equals. This is
+	 *  the preferred function. Do not use PHP's hash_equals.
+	 * @since 1.24
+	 * @see http://www.emerose.com/timing-attacks-explained
+	 * @see https://www.isecpartners.com/blog/2011/february/double-hmac-verification.aspx
+	 *
+	 * @param string $knownString The application-derived secret
+	 * @param string $userString Response from the user
+	 *
+	 * @return bool True if equal, false otherwise
+	 */
+	public static function hashEquals( $knownString, $userString ) {
+		// Use a random nonce and a sufficient PRF so the attacker
+		// cannot guess the strings
+		$nonce = MWCryptRand::generate( 16 );
+		$knownString = hash_hmac( 'sha512', $knownString, $nonce, true );
+		$userString = hash_hmac( 'sha512', $userString, $nonce, true );
+
+		// For paranoia, also do a timing-safe comparison on the hashes
+		$result = 0;
+		for ( $i = 0; $i < 64; $i++ ) {
+			$result |= ord( $knownString[$i] ) ^ ord( $userString[$i] );
+		}
+
+		return $result === 0;
+	}
 }
 
 /**
