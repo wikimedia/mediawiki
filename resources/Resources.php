@@ -113,7 +113,6 @@ return array(
 		// skin over-rides common content styling.
 		'skinStyles' => array(
 			'default' => 'resources/src/mediawiki.skinning/content.parsoid.less',
-			'minerva' => array(),
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
@@ -1471,7 +1470,6 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.css',
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-agora.css',
 		),
 		'messages' => array(
 			'ooui-dialog-action-close',
