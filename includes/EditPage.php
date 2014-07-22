@@ -959,29 +959,6 @@ class EditPage {
 	}
 
 	/**
-	 * Fetch initial editing page content.
-	 *
-	 * @param string|bool $def_text
-	 * @return string|bool String on success, $def_text for invalid sections
-	 * @private
-	 * @deprecated since 1.21, get WikiPage::getContent() instead.
-	 */
-	function getContent( $def_text = false ) {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
-
-		if ( $def_text !== null && $def_text !== false && $def_text !== '' ) {
-			$def_content = $this->toEditContent( $def_text );
-		} else {
-			$def_content = false;
-		}
-
-		$content = $this->getContentObject( $def_content );
-
-		// Note: EditPage should only be used with text based content anyway.
-		return $this->toEditText( $content );
-	}
-
-	/**
 	 * @param Content|null $def_content The default value to return
 	 *
 	 * @return Content|null Content on success, $def_content for invalid sections
@@ -1169,20 +1146,6 @@ class EditPage {
 	}
 
 	/**
-	 * Use this method before edit() to preload some text into the edit box
-	 *
-	 * @param string $text
-	 * @deprecated since 1.21, use setPreloadedContent() instead.
-	 */
-	public function setPreloadedText( $text ) {
-		ContentHandler::deprecated( __METHOD__, "1.21" );
-
-		$content = $this->toEditContent( $text );
-
-		$this->setPreloadedContent( $content );
-	}
-
-	/**
 	 * Use this method before edit() to preload some content into the edit box
 	 *
 	 * @param Content $content
@@ -1191,25 +1154,6 @@ class EditPage {
 	 */
 	public function setPreloadedContent( Content $content ) {
 		$this->mPreloadContent = $content;
-	}
-
-	/**
-	 * Get the contents to be preloaded into the box, either set by
-	 * an earlier setPreloadText() or by loading the given page.
-	 *
-	 * @param string $preload Representing the title to preload from.
-	 *
-	 * @return string
-	 *
-	 * @deprecated since 1.21, use getPreloadedContent() instead
-	 */
-	protected function getPreloadedText( $preload ) {
-		ContentHandler::deprecated( __METHOD__, "1.21" );
-
-		$content = $this->getPreloadedContent( $preload );
-		$text = $this->toEditText( $content );
-
-		return $text;
 	}
 
 	/**
@@ -2000,28 +1944,6 @@ class EditPage {
 				$dbw->commit( $fname );
 			} );
 		}
-	}
-
-	/**
-	 * Attempts to merge text content with base and current revisions
-	 *
-	 * @param string $editText
-	 *
-	 * @return bool
-	 * @deprecated since 1.21, use mergeChangesIntoContent() instead
-	 */
-	function mergeChangesInto( &$editText ) {
-		ContentHandler::deprecated( __METHOD__, "1.21" );
-
-		$editContent = $this->toEditContent( $editText );
-
-		$ok = $this->mergeChangesIntoContent( $editContent );
-
-		if ( $ok ) {
-			$editText = $this->toEditText( $editContent );
-			return true;
-		}
-		return false;
 	}
 
 	/**

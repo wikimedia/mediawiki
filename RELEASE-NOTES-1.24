@@ -284,6 +284,8 @@ changes to languages because of Bugzilla reports.
 * Removed File::getPropsFromPath(). (deprecated since 1.19)
 * Removed functions blockedPage(), noCreatePermission(), readOnlyPage() and
   userNotLoggedInPage() from EditPage.php. (deprecated since 1.19)
+* Removed functions getContent(), getPreloadedText(), mergeChangesInto() and
+  setPreloadedText() from EditPage.php. (deprecated since 1.21)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
