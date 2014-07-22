@@ -1238,7 +1238,7 @@ $wgThumbnailBuckets = null;
  * If we want to render a thumbnail of width 220px, the 512px bucket will be used,
  * because 220 + 50 = 270 and the closest bucket bigger than 270px is 512.
  */
-$wgThumbnailMinimumBucketDistance = 0;
+$wgThumbnailMinimumBucketDistance = 50;
 
 /**
  * Default parameters for the "<gallery>" tag
