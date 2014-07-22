@@ -3111,20 +3111,6 @@ $wgFooterIcons = array(
 $wgUseCombinedLoginLink = false;
 
 /**
- * Search form look for Vector skin only.
- *  - true = use an icon search button
- *  - false = use Go & Search buttons
- */
-$wgVectorUseSimpleSearch = true;
-
-/**
- * Watch and unwatch as an icon rather than a link for Vector skin only.
- *  - true = use an icon watch/unwatch button
- *  - false = use watch/unwatch text link
- */
-$wgVectorUseIconWatch = true;
-
-/**
  * Display user edit counts in various prominent places.
  */
 $wgEdititis = false;
