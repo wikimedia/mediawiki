@@ -2964,6 +2964,13 @@ $wgValidateAllHtml = false;
 $wgDefaultSkin = 'vector';
 
 /**
+ * Fallback skin used when the skin defined by $wgDefaultSkin can't be found.
+ *
+ * @since 1.24
+ */
+$wgFallbackSkin = 'vector';
+
+/**
  * Specify the names of skins that should not be presented in the list of
  * available skins in user preferences. If you want to remove a skin entirely,
  * remove it from the skins/ directory and its entry from LocalSettings.php.
