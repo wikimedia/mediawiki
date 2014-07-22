@@ -109,7 +109,7 @@ if ( $wgAPIRequestLog ) {
 	$items[] = $wgRequest->wasPosted() ? 'POST' : 'GET';
 	if ( $processor ) {
 		$module = $processor->getModule();
-		if ( $module->mustBePosted() ) {
+		if ( $module && $module->mustBePosted() ) {
 			$items[] = "action=" . $wgRequest->getVal( 'action' );
 		} else {
 			$items[] = wfArrayToCgi( $wgRequest->getValues() );
