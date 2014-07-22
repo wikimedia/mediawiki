@@ -71,10 +71,8 @@ NEWCHANGES=$(git log $OLDHASH.. --oneline --no-merges --reverse --color=never)
 NEWCHANGESDISPLAY=$(git log $OLDHASH.. --oneline --no-merges --reverse --color=always)
 
 # Copy files
-rsync --recursive --delete --force \
-	# Exclude the default non-svg stylesheet, and those for enviroments without CSSJanus
-	--exclude 'oojs-ui.css' --exclude 'oojs-ui*.rtl.css' \
-	./dist/ "$TARGET_REPO/$TARGET_DIR" || exit 1
+# - Exclude the default non-svg stylesheet
+rsync --recursive --delete --force --exclude 'oojs-ui.css' --exclude 'oojs-ui*.rtl.css' ./dist/ "$TARGET_REPO/$TARGET_DIR" || exit 1
 
 # Read the new version
 NEWVERSION=$(oojsuiversion)
