@@ -287,6 +287,7 @@
 	"config-memcache-badport": "Memcached的端口号应该在$1到$2之间。",
 	"config-extensions": "扩展程序",
 	"config-extensions-help": "已在您的<code>./extensions</code>目录中发现下列扩展。\n\n您可能要对它们进行额外的配置，但您现在可以启用它们。",
+	"config-skins": "皮肤",
 	"config-install-alreadydone": "'''警告：'''您似乎已经安装了MediaWiki，并试图重新安装它。请前往下一个页面。",
 	"config-install-begin": "点击“{{int:config-continue}}”后，您将开始安装MediaWiki。如果您还想对配置作一些修改，请点击“{{int:config-back}}”。",
 	"config-install-step-done": "完成",
