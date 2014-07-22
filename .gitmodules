@@ -469,3 +469,6 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/core/vendor.git
+[submodule "extensions/Petition"]
+	path = extensions/Petition
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Petition.git
