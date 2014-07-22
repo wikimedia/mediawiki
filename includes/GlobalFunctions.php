@@ -95,53 +95,43 @@ if ( !function_exists( 'gzdecode' ) ) {
 	}
 }
 
-// hash_equals function only exists in PHP >= 5.6.0
-if ( !function_exists( 'hash_equals' ) ) {
-	/**
-	 * Check whether a user-provided string is equal to a fixed-length secret without
-	 * revealing bytes of the secret through timing differences.
-	 *
-	 * This timing guarantee -- that a partial match takes the same time as a complete
-	 * mismatch -- is why this function is used in some security-sensitive parts of the code.
-	 * For example, it shouldn't be possible to guess an HMAC signature one byte at a time.
-	 *
-	 * Longer explanation: http://www.emerose.com/timing-attacks-explained
-	 *
-	 * @codeCoverageIgnore
-	 * @param string $known_string Fixed-length secret to compare against
-	 * @param string $user_string User-provided string
-	 * @return bool True if the strings are the same, false otherwise
-	 */
-	function hash_equals( $known_string, $user_string ) {
-		// Strict type checking as in PHP's native implementation
-		if ( !is_string( $known_string ) ) {
-			trigger_error( 'hash_equals(): Expected known_string to be a string, ' .
-				gettype( $known_string ) . ' given', E_USER_WARNING );
+/**
+ * Securely compare two strings in a timing-safe manner
+ *
+ * In an effort at extreme paranoia (although at little cost to performance), this
+ * function will HMAC both strings with a transient, random nonce, and then perform
+ * a timing-safe comparison on those hashes.
+ *
+ * The HMAC strategy is preferred because PHP internals may or may not guarantee
+ * the actual algorithm is timing-safe, even if the source code looks that way. HMAC,
+ * however, is a PRF, and has the same effect: thwarting side-channel timing attacks.
+ *
+ * @warning This function is implemented differently than PHP's hash_equals. This is
+ *  the preferred function. Do not use PHP's hash_equals.
+ * @since 1.24
+ * @see http://www.emerose.com/timing-attacks-explained
+ * @see https://www.isecpartners.com/blog/2011/february/double-hmac-verification.aspx
+ *
+ * @param string $knownString The application-derived secret
+ * @param string $userString Response from the user
+ *
+ * @return bool True if equal, false otherwise
+ */
+function wfHashEquals( $knownString, $userString ) {
+	// Use a random nonce and a sufficient PRF so the attacker
+	// cannot guess the strings
+	$nonce = MWCryptRand::generate( 16 );
+	$knownString = hash_hmac( 'sha512', $knownString, $nonce, true );
+	$userString = hash_hmac( 'sha512', $userString, $nonce, true );
 
-			return false;
-		}
-
-		if ( !is_string( $user_string ) ) {
-			trigger_error( 'hash_equals(): Expected user_string to be a string, ' .
-				gettype( $user_string ) . ' given', E_USER_WARNING );
-
-			return false;
-		}
-
-		// Note that we do one thing PHP doesn't: try to avoid leaking information about
-		// relative lengths of $known_string and $user_string, and of multiple $known_strings.
-		// However, lengths may still inevitably leak through, for example, CPU cache misses.
-		$known_string_len = strlen( $known_string );
-		$user_string_len = strlen( $user_string );
-		$result = $known_string_len ^ $user_string_len;
-		for ( $i = 0; $i < $user_string_len; $i++ ) {
-			$result |= ord( $known_string[$i % $known_string_len] ) ^ ord( $user_string[$i] );
-		}
-
-		return ( $result === 0 );
+	// For paranoia, also do a timing-safe comparison on the hashes
+	$result = 0;
+	for ( $i = 0; $i < 64; $i++ ) {
+		$result |= ord( $knownString[$i] ) ^ ord( $userString[$i] );
 	}
+
+	return $result === 0;
 }
-/// @endcond
 
 /**
  * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
