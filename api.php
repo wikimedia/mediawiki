@@ -108,8 +108,13 @@ if ( $wgAPIRequestLog ) {
 	);
 	$items[] = $wgRequest->wasPosted() ? 'POST' : 'GET';
 	if ( $processor ) {
-		$module = $processor->getModule();
-		if ( $module->mustBePosted() ) {
+		try {
+			$manager = $processor->getModuleManager();
+			$module = $manager->getModule( $wgRequest->getVal( 'action' ), 'action' );
+		} catch ( Exception $ex ) {
+			$module = null;
+		}
+		if ( !$module || $module->mustBePosted() ) {
 			$items[] = "action=" . $wgRequest->getVal( 'action' );
 		} else {
 			$items[] = wfArrayToCgi( $wgRequest->getValues() );
