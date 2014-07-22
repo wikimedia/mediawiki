@@ -41,11 +41,7 @@ header( 'X-Content-Type-Options: nosniff' );
 
 $wgRequestTime = microtime( true );
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
-if ( function_exists ( 'getrusage' ) ) {
-	$wgRUstart = getrusage();
-} else {
-	$wgRUstart = array();
-}
+$wgRUstart = function_exists( 'getrusage' ) ? getrusage() : array();
 unset( $IP );
 
 # Valid web server entry point, enable includes.
@@ -61,11 +57,7 @@ define( 'MEDIAWIKI', true );
 # if we don't have permissions on parent directories.
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
-	if ( realpath( '.' ) ) {
-		$IP = realpath( '.' );
-	} else {
-		$IP = dirname( __DIR__ );
-	}
+	$IP = realpath( '.' ) ?: dirname( __DIR__ );
 }
 
 # Start the autoloader, so that extensions can derive classes from core files
