@@ -1266,11 +1266,8 @@ class OutputPage extends ContextSource {
 		# Add the results to the link cache
 		$lb->addResultToCache( LinkCache::singleton(), $res );
 
-		# Set all the values to 'normal'. This can be done with array_fill_keys in PHP 5.2.0+
-		$categories = array_combine(
-			array_keys( $categories ),
-			array_fill( 0, count( $categories ), 'normal' )
-		);
+		# Set all the values to 'normal'.
+		$categories = array_fill_keys( array_keys( $categories ), 'normal' );
 
 		# Mark hidden categories
 		foreach ( $res as $row ) {
