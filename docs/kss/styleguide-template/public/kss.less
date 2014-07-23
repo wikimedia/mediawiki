@@ -1,24 +1,172 @@
-header {
-	padding: .8em 16px 0;
-}
+body {
+	margin: 0;
+	padding: 0;
+	padding-top: 3px;
+	padding-bottom: 40px;
 
-nav {
-	float: left;
-	width: 200px;
-}
-
-article {
-	margin-left: 250px;
+	// FIXME: Remove when typography module in mediawiki-ui
+	font-family: "Nimbus Sans L", "Liberation Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 .content.kss-no-margin {
 	margin: 0;
 }
 
-// FIXME: Remove when typography module in mediawiki-ui
-body {
-	font-family: "Nimbus Sans L", "Liberation Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+.container {
+	width: 960px;
+	margin: 0 auto;
+	display: -webkit-flex;
+	display: flex;
+
 }
-h1,h2,h3,h4,h5 {
-	font-family: "DejaVu Serif", Georgia, serif;
+
+header {
+	padding: 0;
+	margin: 0;
+	border-bottom: 1px solid #eee;
+
+	#switcher {
+		min-width: 127px;
+
+		a {
+			display: inline-block;
+			padding: 11px 20px;
+
+			img {
+				height: 25px;
+			}
+
+			&:last-child {
+				border-left: 1px solid #eee;
+			}
+		}
+	}
+
+	#search {
+		border: none;
+		width: 642px;
+		font-size: 15px;
+		background: url(search.png);
+		background-repeat: no-repeat;
+		background-position: 10px center;
+		padding-left: 40px;
+	}
+
+	hgroup {
+		min-width: 149px;
+
+		h1 {
+			padding: 16px 28px;
+			font-size: 15px;
+			text-transform: uppercase;
+			margin: 0;
+			width: 92px;
+			border-right: 1px solid #eee;
+		}
+	}
+}
+
+nav {
+	-webkit-flex: initial;
+	flex: initial;
+	min-width: 139px;
+	margin-top: 25px;
+
+	ul {
+		list-style: none;
+		padding: 0;
+
+		li {
+			margin-left: 10px;
+			margin-bottom: 20px;
+
+			a {
+				text-transform: uppercase;
+				color: #aaa;
+				font-size: 12px;
+				font-weight: bold;
+				text-decoration: none;
+
+				&:hover {
+					color: #538DF8;
+				}
+
+				span {
+					display: inline-block;
+					width: 35px;
+				}
+			}
+		}
+	}
+}
+
+article {
+	-webkit-flex: 1;
+	flex: 1;
+	margin-left: 30px;
+
+	h1, h2, h3, h4, h5, h6, p {
+		margin-left: 20px;
+	}
+
+	p {
+		font-size: 13px;
+		line-height: 20px;
+		width: 338px;
+	}
+
+	h1 {
+		font-size: 35px;
+		margin-bottom: 0;
+	}
+
+	h2 {
+		font-size: 25px;
+	}
+
+	.example {
+		display: -webkit-flex;
+		display: flex;
+		flex-wrap: wrap;
+
+		pre {
+			-webkit-flex: initial;
+			flex: initial;
+			background: #f8f8f8;
+			padding: 20px;
+			color: #999;
+			width: 338px;
+			word-wrap: break-word;
+			float: left;
+			margin: 0;
+			margin-right: 22px;
+		}
+
+		blockquote {
+			-webkit-flex: 1;
+			flex: 1;
+			display: block;
+			margin: 0;
+			margin-left: 20px;
+			min-width: 360px;
+		}
+	}
+}
+
+@media (max-width: 960px) {
+	.container {
+		width: 100%;
+	}
+
+	nav {
+		display: none;
+	}
+
+	article {
+		.example {
+			blockquote {
+				margin-top: 20px;
+			}
+		}
+	}
 }
