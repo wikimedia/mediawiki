@@ -3795,7 +3795,12 @@ HTML
 			}
 		}
 
-		$watchLabel = wfMessage( 'watchthis' )->parse();
+		if ( $wgUser->isWatched( $this->mTitle ) ) {
+			$watchLabel = wfMessage( 'watchthis-watched' )->parse();
+		} else {
+			$watchLabel = wfMessage( 'watchthis' )->parse();
+		}
+
 		$checkboxes['watch'] = '';
 		if ( $wgUser->isLoggedIn() ) {
 			$attribs = array(
