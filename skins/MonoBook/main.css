@@ -892,11 +892,6 @@ div.mw-lag-warn-high {
 	font-size: 90%;
 }
 
-/* God-damned hack for the crappy layout */
-.os-suggest {
-	font-size: 127%;
-}
-
 /* Sometimes people don't want personal tools to be lowercase! */
 .no-text-transform {
 	text-transform: none;

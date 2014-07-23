@@ -386,60 +386,6 @@ p.mw-upload-editlicenses {
 	text-align: right;
 }
 
-/**
- * OpenSearch ajax suggestions
- */
-.os-suggest {
-	overflow: auto;
-	overflow-x: hidden;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 0;
-	background-color: white;
-	border-style: solid;
-	border-color: #AAAAAA;
-	border-width: 1px;
-	z-index: 99;
-	font-size: 95%;
-}
-
-table.os-suggest-results {
-	font-size: 95%;
-	cursor: pointer;
-	border: 0;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-.os-suggest-result,
-.os-suggest-result-hl {
-	white-space: nowrap;
-	background-color: white;
-	color: black;
-	padding: 2px;
-}
-
-.os-suggest-result-hl,
-.os-suggest-result-hl-webkit {
-	background-color: #4C59A6;
-	color: white;
-}
-
-.os-suggest-toggle {
-	position: relative;
-	left: 1ex;
-	font-size: 65%;
-}
-
-.os-suggest-toggle-def {
-	position: absolute;
-	top: 0;
-	left: 0;
-	font-size: 65%;
-	visibility: hidden;
-}
-
 /* Page history styling */
 
 /* The auto-generated edit comments */
