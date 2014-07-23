@@ -147,7 +147,7 @@ class MWCryptRand {
 	 * Randomly hash data while mixing in clock drift data for randomness
 	 *
 	 * @param string $data The data to randomly hash.
-	 * @return String The hashed bytes
+	 * @return string The hashed bytes
 	 * @author Tim Starling
 	 */
 	protected function driftHash( $data ) {
@@ -214,7 +214,7 @@ class MWCryptRand {
 	/**
 	 * Decide on the best acceptable hash algorithm we have available for hash()
 	 * @throws MWException
-	 * @return String A hash algorithm
+	 * @return string A hash algorithm
 	 */
 	protected function hashAlgo() {
 		if ( !is_null( $this->algo ) ) {
@@ -259,8 +259,8 @@ class MWCryptRand {
 	 * Generate an acceptably unstable one-way-hash of some text
 	 * making use of the best hash algorithm that we have available.
 	 *
-	 * @param $data string
-	 * @return String A raw hash of the data
+	 * @param string $data
+	 * @return string A raw hash of the data
 	 */
 	protected function hash( $data ) {
 		return hash( $this->hashAlgo(), $data, true );
@@ -270,9 +270,9 @@ class MWCryptRand {
 	 * Generate an acceptably unstable one-way-hmac of some text
 	 * making use of the best hash algorithm that we have available.
 	 *
-	 * @param $data string
-	 * @param $key string
-	 * @return String A raw hash of the data
+	 * @param string $data
+	 * @param string $key
+	 * @return string A raw hash of the data
 	 */
 	protected function hmac( $data, $key ) {
 		return hash_hmac( $this->hashAlgo(), $data, $key, true );
@@ -487,11 +487,11 @@ class MWCryptRand {
 	 * You can use MWCryptRand::wasStrong() if you wish to know if the source used
 	 * was cryptographically strong.
 	 *
-	 * @param int $bytes the number of bytes of random data to generate
+	 * @param int $bytes The number of bytes of random data to generate
 	 * @param bool $forceStrong Pass true if you want generate to prefer cryptographically
 	 *                          strong sources of entropy even if reading from them may steal
 	 *                          more entropy from the system than optimal.
-	 * @return String Raw binary random data
+	 * @return string Raw binary random data
 	 */
 	public static function generate( $bytes, $forceStrong = false ) {
 		return self::singleton()->realGenerate( $bytes, $forceStrong );
@@ -503,11 +503,11 @@ class MWCryptRand {
 	 * You can use MWCryptRand::wasStrong() if you wish to know if the source used
 	 * was cryptographically strong.
 	 *
-	 * @param int $chars the number of hex chars of random data to generate
+	 * @param int $chars The number of hex chars of random data to generate
 	 * @param bool $forceStrong Pass true if you want generate to prefer cryptographically
 	 *                          strong sources of entropy even if reading from them may steal
 	 *                          more entropy from the system than optimal.
-	 * @return String Hexadecimal random data
+	 * @return string Hexadecimal random data
 	 */
 	public static function generateHex( $chars, $forceStrong = false ) {
 		return self::singleton()->realGenerateHex( $chars, $forceStrong );

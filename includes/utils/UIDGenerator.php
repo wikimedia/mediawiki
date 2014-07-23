@@ -37,7 +37,7 @@ class UIDGenerator {
 	protected $lockFile88; // string; local file path
 	protected $lockFile128; // string; local file path
 
-	/** @var Array */
+	/** @var array */
 	protected $fileHandles = array(); // cache file handles
 
 	const QUICK_RAND = 1; // get randomness from fast and insecure sources
@@ -102,7 +102,7 @@ class UIDGenerator {
 	 *
 	 * UID generation is serialized on each server (as the node ID is for the whole machine).
 	 *
-	 * @param $base integer Specifies a base other than 10
+	 * @param int $base Specifies a base other than 10
 	 * @return string Number
 	 * @throws MWException
 	 */
@@ -146,7 +146,7 @@ class UIDGenerator {
 	 *
 	 * UID generation is serialized on each server (as the node ID is for the whole machine).
 	 *
-	 * @param $base integer Specifies a base other than 10
+	 * @param int $base Specifies a base other than 10
 	 * @return string Number
 	 * @throws MWException
 	 */
@@ -185,7 +185,7 @@ class UIDGenerator {
 	/**
 	 * Return an RFC4122 compliant v4 UUID
 	 *
-	 * @param $flags integer Bitfield (supports UIDGenerator::QUICK_RAND)
+	 * @param int $flags Bitfield (supports UIDGenerator::QUICK_RAND)
 	 * @return string
 	 * @throws MWException
 	 */
@@ -211,7 +211,7 @@ class UIDGenerator {
 	/**
 	 * Return an RFC4122 compliant v4 UUID
 	 *
-	 * @param $flags integer Bitfield (supports UIDGenerator::QUICK_RAND)
+	 * @param int $flags Bitfield (supports UIDGenerator::QUICK_RAND)
 	 * @return string 32 hex characters with no hyphens
 	 * @throws MWException
 	 */
@@ -226,8 +226,8 @@ class UIDGenerator {
 	 * If UIDGenerator::QUICK_VOLATILE is used the counter might reset on server restart.
 	 *
 	 * @param string $bucket Arbitrary bucket name (should be ASCII)
-	 * @param integer $bits Bit size (<=48) of resulting numbers before wrap-around
-	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @param int $bits Bit size (<=48) of resulting numbers before wrap-around
+	 * @param int $flags (supports UIDGenerator::QUICK_VOLATILE)
 	 * @return float Integer value as float
 	 * @since 1.23
 	 */
@@ -240,9 +240,9 @@ class UIDGenerator {
 	 *
 	 * @see UIDGenerator::newSequentialPerNodeID()
 	 * @param string $bucket Arbitrary bucket name (should be ASCII)
-	 * @param integer $bits Bit size (16 to 48) of resulting numbers before wrap-around
-	 * @param integer $count Number of IDs to return (1 to 10000)
-	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @param int $bits Bit size (16 to 48) of resulting numbers before wrap-around
+	 * @param int $count Number of IDs to return (1 to 10000)
+	 * @param int $flags (supports UIDGenerator::QUICK_VOLATILE)
 	 * @return array Ordered list of float integer values
 	 * @since 1.23
 	 */
@@ -256,9 +256,9 @@ class UIDGenerator {
 	 *
 	 * @see UIDGenerator::newSequentialPerNodeID()
 	 * @param string $bucket Arbitrary bucket name (should be ASCII)
-	 * @param integer $bits Bit size (16 to 48) of resulting numbers before wrap-around
-	 * @param integer $count Number of IDs to return (1 to 10000)
-	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @param int $bits Bit size (16 to 48) of resulting numbers before wrap-around
+	 * @param int $count Number of IDs to return (1 to 10000)
+	 * @param int $flags (supports UIDGenerator::QUICK_VOLATILE)
 	 * @return array Ordered list of float integer values
 	 */
 	protected function getSequentialPerNodeIDs( $bucket, $bits, $count, $flags ) {
@@ -337,9 +337,9 @@ class UIDGenerator {
 	 * This is useful for making UIDs sequential on a per-node bases.
 	 *
 	 * @param string $lockFile Name of a local lock file
-	 * @param $clockSeqSize integer The number of possible clock sequence values
-	 * @param $counterSize integer The number of possible counter values
-	 * @return Array (result of UIDGenerator::millitime(), counter, clock sequence)
+	 * @param int $clockSeqSize The number of possible clock sequence values
+	 * @param int $counterSize The number of possible counter values
+	 * @return array (result of UIDGenerator::millitime(), counter, clock sequence)
 	 * @throws MWException
 	 */
 	protected function getTimestampAndDelay( $lockFile, $clockSeqSize, $counterSize ) {
@@ -420,7 +420,7 @@ class UIDGenerator {
 	 * timestamp. This returns false if it would have to wait more than 10ms.
 	 *
 	 * @param array $time Result of UIDGenerator::millitime()
-	 * @return Array|bool UIDGenerator::millitime() result or false
+	 * @return array|bool UIDGenerator::millitime() result or false
 	 */
 	protected function timeWaitUntil( array $time ) {
 		do {
@@ -449,7 +449,7 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @return Array (current time in seconds, milliseconds since then)
+	 * @return array (current time in seconds, milliseconds since then)
 	 */
 	protected static function millitime() {
 		list( $msec, $sec ) = explode( ' ', microtime() );

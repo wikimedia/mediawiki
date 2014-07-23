@@ -24,7 +24,7 @@ class MWFunction {
 
 	/**
 	 * @deprecated since 1.22; use call_user_func()
-	 * @param $callback
+	 * @param callable $callback
 	 * @return mixed
 	 */
 	public static function call( $callback ) {
@@ -36,8 +36,8 @@ class MWFunction {
 
 	/**
 	 * @deprecated since 1.22; use call_user_func_array()
-	 * @param $callback
-	 * @param $argsarams
+	 * @param callable $callback
+	 * @param array $argsarams
 	 * @return mixed
 	 */
 	public static function callArray( $callback, $argsarams ) {
@@ -47,8 +47,8 @@ class MWFunction {
 	}
 
 	/**
-	 * @param $class
-	 * @param $args array
+	 * @param string $class
+	 * @param array $args
 	 * @return object
 	 */
 	public static function newObj( $class, $args = array() ) {
