@@ -137,19 +137,22 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	public static function provideMakeResourceLoaderLink() {
+		global $wgDefaultSkin;
+		$defSkin = Skin::normalizeKey( $wgDefaultSkin );
+
 		return array(
 			// Load module script only
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=vector&amp;*"></script>
-'
+				"<script src=\"http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=$defSkin&amp;*\"></script>
+"
 			),
 			// Load module styles only
 			// This also tests the order the modules are put into the url
 			array(
 				array( array( 'test.baz', 'test.foo', 'test.bar' ), ResourceLoaderModule::TYPE_STYLES ),
-				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=vector&amp;*">
-'
+				"<link rel=stylesheet href=\"http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=$defSkin&amp;*\">
+"
 			),
 			// Load private module (combined)
 			array(
@@ -163,14 +166,14 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 			// Load module script with with ESI
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS, true ),
-				'<script><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=vector&amp;*" /></script>
-'
+				"<script><esi:include src=\"http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=$defSkin&amp;*\" /></script>
+"
 			),
 			// Load module styles with with ESI
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_STYLES, true ),
-				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=vector&amp;*" /></style>
-',
+				"<style><esi:include src=\"http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=$defSkin&amp;*\" /></style>
+",
 			),
 		);
 	}
