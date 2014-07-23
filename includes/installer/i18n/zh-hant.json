@@ -10,7 +10,8 @@
 			"아라",
 			"Liuxinyu970226",
 			"Xiaomingyan",
-			"Cwlin0416"
+			"Cwlin0416",
+			"S8321414"
 		]
 	},
 	"config-desc": "MediaWiki 安裝程式",
@@ -277,6 +278,11 @@
 	"config-memcache-badport": "Memcached 埠號應介於 $1 到 $2 之間。",
 	"config-extensions": "擴充套件",
 	"config-extensions-help": "已在您的 <code>./extensions</code> 目錄中發現下列擴充套件。\n\n這些擴充套件可能需要做額外的設定，但您可以現在先開啟功能。",
+	"config-skins": "外觀",
+	"config-skins-use-as-default": "使用這種外觀作為預設",
+	"config-skins-missing": "沒有發現任何外觀；MediaWiki在您安裝一些恰當的外觀前將會使用備用外觀。",
+	"config-skins-must-enable-some": "您必須至少選擇一個外觀以啟用。",
+	"config-skins-must-enable-default": "必須啟用選為預設的外觀。",
 	"config-install-alreadydone": "<strong>警告：</strong>您已經安裝 MediaWiki，並且試圖重新安裝。\n請點繼續前往下一個頁面。",
 	"config-install-begin": "請點選 \"{{int:config-continue}}\" 開始安裝 MediaWiki。\n若您還想要修改設定，請點選 \"{{int:config-back}}\"。",
 	"config-install-step-done": "完成",
