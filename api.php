@@ -104,7 +104,7 @@ if ( $wgAPIRequestLog ) {
 		wfTimestamp( TS_MW ),
 		$endtime - $starttime,
 		$wgRequest->getIP(),
-		$_SERVER['HTTP_USER_AGENT']
+		$wgRequest->getHeader( 'User-agent' )
 	);
 	$items[] = $wgRequest->wasPosted() ? 'POST' : 'GET';
 	if ( $processor ) {
