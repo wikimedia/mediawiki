@@ -70,9 +70,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->checkReadOnly();
 
 		$this->outputHeader();
-
-		$out->addSubtitle( $this->msg( 'watchlistfor2', $this->getUser()->getName() )
-			->rawParams( SpecialEditWatchlist::buildTools( null ) ) );
+		$this->outputSubtitle();
 
 		# B/C: $mode used to be waaay down the parameter list, and the first parameter
 		# was $wgUser
@@ -104,16 +102,34 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			case self::EDIT_NORMAL:
 			default:
-				$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
-				$form = $this->getNormalForm();
-				if ( $form->show() ) {
-					$out->addHTML( $this->successMessage );
-					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
-				} elseif ( $this->toc !== false ) {
-					$out->prependHTML( $this->toc );
-					$out->addModules( 'mediawiki.toc' );
-				}
+			$this->executeViewEditWatchlist();
 				break;
+		}
+	}
+
+	/**
+	 * Renders a subheader on the watchlist page.
+	 */
+	protected function outputSubtitle() {
+		$out = $this->getOutput();
+		$out->addSubtitle( $this->msg( 'watchlistfor2', $this->getUser()->getName() )
+			->rawParams( SpecialEditWatchlist::buildTools( null ) ) );
+	}
+
+	/**
+	 * Executes an edit mode for the watchlist view, from which you can manage your watchlist
+	 *
+	 */
+	protected function executeViewEditWatchlist() {
+		$out = $this->getOutput();
+		$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+		$form = $this->getNormalForm();
+		if ( $form->show() ) {
+			$out->addHTML( $this->successMessage );
+			$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
+		} elseif ( $this->toc !== false ) {
+			$out->prependHTML( $this->toc );
+			$out->addModules( 'mediawiki.toc' );
 		}
 	}
 
@@ -331,7 +347,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 *
 	 * @return array
 	 */
-	private function getWatchlistInfo() {
+	protected function getWatchlistInfo() {
 		$titles = array();
 		$dbr = wfGetDB( DB_MASTER );
 
