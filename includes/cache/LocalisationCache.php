@@ -1186,7 +1186,7 @@ class LCStoreDB implements LCStore {
 
 		// We must keep a separate connection to MySQL in order to avoid breaking
 		// main transactions. However, SQLite deadlocks when using two connections.
-		// @TODO: get this trick to work on PostgreSQL too
+		// @todo get this trick to work on PostgreSQL too
 		if ( wfGetDB( DB_MASTER )->getType() == 'mysql' ) {
 			$lb = wfGetLBFactory()->newMainLB();
 			$this->dbw = $lb->getConnection( DB_MASTER );

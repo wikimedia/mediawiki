@@ -2396,7 +2396,7 @@ class Language {
 			// Timestamps are in different years: use full timestamp
 			// Also do full timestamp for future dates
 			/**
-			 * @FIXME Add better handling of future timestamps.
+			 * @todo FIXME: Add better handling of future timestamps.
 			 */
 			$format = $this->getDateFormatString( 'both', $user->getDatePreference() ?: 'default' );
 			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );

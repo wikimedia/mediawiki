@@ -193,7 +193,7 @@ class UsersPager extends AlphabeticPager {
 		$edits = '';
 		global $wgEdititis;
 		if ( !$this->including && $wgEdititis ) {
-			// @fixme i18n issue: Hardcoded square brackets.
+			// @todo fixme i18n issue: Hardcoded square brackets.
 			$edits = ' [' .
 				$this->msg( 'usereditcount' )->numParams( $row->edits )->escaped() .
 				']';

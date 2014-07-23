@@ -260,7 +260,7 @@ class SpecialChangePassword extends FormSpecialPage {
 			);
 		}
 
-		// @TODO Make these separate messages, since the message is written for both cases
+		// @todo Make these separate messages, since the message is written for both cases
 		if ( !$user->checkTemporaryPassword( $oldpass ) && !$user->checkPassword( $oldpass ) ) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
 			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
