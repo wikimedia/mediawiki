@@ -315,6 +315,7 @@ changes to languages because of Bugzilla reports.
 * RevertFileAction - Use RevertAction directly
 * HistoryPage - Use HistoryAction directly
 * RawPage - Use RawAction directly
+* StubContLang - Use Language::factory() instead
 
 == Compatibility ==
 
