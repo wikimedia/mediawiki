@@ -33,7 +33,7 @@ then
 fi
 
 # Copy file(s)
-rsync --recursive --delete --force ./node_modules/oojs/dist "$REPO_DIR/$TARGET_DIR" || exit 1
+rsync --force ./node_modules/oojs/dist/oojs.jquery.js "$REPO_DIR/$TARGET_DIR" || exit 1
 
 # Clean up temporary area
 rm -rf "$NPM_DIR"

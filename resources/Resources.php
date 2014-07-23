@@ -1473,7 +1473,7 @@ return array(
 	/* OOjs */
 	'oojs' => array(
 		'scripts' => array(
-			'resources/lib/oojs/oojs.js',
+			'resources/lib/oojs/oojs.jquery.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 		'dependencies' => array(
