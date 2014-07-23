@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (9cd400e3d5)
+ * OOjs UI v0.1.0-pre (a7ce4d48d9)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-22T21:59:46Z
+ * Date: 2014-07-23T23:48:16Z
  */
 ( function ( OO ) {
 
@@ -4612,7 +4612,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	// Events
 	this.$element
 		.add( this.$bar ).add( this.$group ).add( this.$actions )
-		.on( 'mousedown', OO.ui.bind( this.onMouseDown, this ) );
+		.on( 'mousedown touchstart', OO.ui.bind( this.onPointerDown, this ) );
 
 	// Initialization
 	this.$group.addClass( 'oo-ui-toolbar-tools' );
@@ -4659,7 +4659,7 @@ OO.ui.Toolbar.prototype.getToolGroupFactory = function () {
  *
  * @param {jQuery.Event} e Mouse down event
  */
-OO.ui.Toolbar.prototype.onMouseDown = function ( e ) {
+OO.ui.Toolbar.prototype.onPointerDown = function ( e ) {
 	var $closestWidgetToEvent = this.$( e.target ).closest( '.oo-ui-widget' ),
 		$closestWidgetToToolbar = this.$element.closest( '.oo-ui-widget' );
 	if ( !$closestWidgetToEvent.length || $closestWidgetToEvent[0] === $closestWidgetToToolbar[0] ) {
@@ -4828,8 +4828,8 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 
 	// Events
 	this.$element.on( {
-		'mousedown': OO.ui.bind( this.onMouseDown, this ),
-		'mouseup': OO.ui.bind( this.onMouseUp, this ),
+		'mousedown touchstart': OO.ui.bind( this.onPointerDown, this ),
+		'mouseup touchend': OO.ui.bind( this.onPointerUp, this ),
 		'mouseover': OO.ui.bind( this.onMouseOver, this ),
 		'mouseout': OO.ui.bind( this.onMouseOut, this )
 	} );
@@ -4918,8 +4918,9 @@ OO.ui.ToolGroup.prototype.updateDisabled = function () {
  *
  * @param {jQuery.Event} e Mouse down event
  */
-OO.ui.ToolGroup.prototype.onMouseDown = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
+OO.ui.ToolGroup.prototype.onPointerDown = function ( e ) {
+	// e.which is 0 for touch events, 1 for left mouse button
+	if ( !this.isDisabled() && e.which <= 1 ) {
 		this.pressed = this.getTargetTool( e );
 		if ( this.pressed ) {
 			this.pressed.setActive( true );
@@ -4938,9 +4939,9 @@ OO.ui.ToolGroup.prototype.onMouseDown = function ( e ) {
  */
 OO.ui.ToolGroup.prototype.onCapturedMouseUp = function ( e ) {
 	this.getElementDocument().removeEventListener( 'mouseup', this.onCapturedMouseUpHandler, true );
-	// onMouseUp may be called a second time, depending on where the mouse is when the button is
+	// onPointerUp may be called a second time, depending on where the mouse is when the button is
 	// released, but since `this.pressed` will no longer be true, the second call will be ignored.
-	this.onMouseUp( e );
+	this.onPointerUp( e );
 };
 
 /**
@@ -4948,10 +4949,11 @@ OO.ui.ToolGroup.prototype.onCapturedMouseUp = function ( e ) {
  *
  * @param {jQuery.Event} e Mouse up event
  */
-OO.ui.ToolGroup.prototype.onMouseUp = function ( e ) {
+OO.ui.ToolGroup.prototype.onPointerUp = function ( e ) {
 	var tool = this.getTargetTool( e );
 
-	if ( !this.isDisabled() && e.which === 1 && this.pressed && this.pressed === tool ) {
+	// e.which is 0 for touch events, 1 for left mouse button
+	if ( !this.isDisabled() && e.which <= 1 && this.pressed && this.pressed === tool ) {
 		this.pressed.onSelect();
 	}
 
@@ -6752,8 +6754,8 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 
 	// Events
 	this.$handle.on( {
-		'mousedown': OO.ui.bind( this.onHandleMouseDown, this ),
-		'mouseup': OO.ui.bind( this.onHandleMouseUp, this )
+		'mousedown touchstart': OO.ui.bind( this.onHandlePointerDown, this ),
+		'mouseup touchend': OO.ui.bind( this.onHandlePointerUp, this )
 	} );
 
 	// Initialization
@@ -6817,11 +6819,12 @@ OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
 /**
  * @inheritdoc
  */
-OO.ui.PopupToolGroup.prototype.onMouseUp = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
+OO.ui.PopupToolGroup.prototype.onPointerUp = function ( e ) {
+	// e.which is 0 for touch events, 1 for left mouse button
+	if ( !this.isDisabled() && e.which <= 1 ) {
 		this.setActive( false );
 	}
-	return OO.ui.PopupToolGroup.super.prototype.onMouseUp.call( this, e );
+	return OO.ui.PopupToolGroup.super.prototype.onPointerUp.call( this, e );
 };
 
 /**
@@ -6829,7 +6832,7 @@ OO.ui.PopupToolGroup.prototype.onMouseUp = function ( e ) {
  *
  * @param {jQuery.Event} e Mouse up event
  */
-OO.ui.PopupToolGroup.prototype.onHandleMouseUp = function () {
+OO.ui.PopupToolGroup.prototype.onHandlePointerUp = function () {
 	return false;
 };
 
@@ -6838,8 +6841,9 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseUp = function () {
  *
  * @param {jQuery.Event} e Mouse down event
  */
-OO.ui.PopupToolGroup.prototype.onHandleMouseDown = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
+OO.ui.PopupToolGroup.prototype.onHandlePointerDown = function ( e ) {
+	// e.which is 0 for touch events, 1 for left mouse button
+	if ( !this.isDisabled() && e.which <= 1 ) {
 		this.setActive( !this.active );
 	}
 	return false;
@@ -8516,6 +8520,17 @@ OO.ui.TextInputWidget.prototype.onEdit = function () {
 
 	// Parent method
 	return OO.ui.TextInputWidget.super.prototype.onEdit.call( this );
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.TextInputWidget.prototype.setValue = function ( value ) {
+	// Parent method
+	OO.ui.TextInputWidget.super.prototype.setValue.call( this, value );
+
+	this.adjustSize();
+	return this;
 };
 
 /**
