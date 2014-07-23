@@ -30,39 +30,33 @@
 abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * @var array Gallery images
-	 * @deprecated since 1.23 (was declared "var") and will be removed in 1.24
 	 */
-	public $mImages;
+	protected $mImages;
 
 	/**
 	 * @var bool Whether to show the filesize in bytes in categories
-	 * @deprecated since 1.23 (was declared "var") and will be removed in 1.24
 	 */
-	public $mShowBytes;
+	protected $mShowBytes;
 
 	/**
 	 * @var bool Whether to show the filename. Default: true
-	 * @deprecated since 1.23 (was declared "var") and will be removed in 1.24
 	 */
-	public $mShowFilename;
+	protected $mShowFilename;
 
 	/**
 	 * @var string Gallery mode. Default: traditional
-	 * @deprecated since 1.23 (was declared "var") and will be removed in 1.24
 	 */
-	public $mMode;
+	protected $mMode;
 
 	/**
 	 * @var bool|string Gallery caption. Default: false
-	 * @deprecated since 1.23 (was declared "var") and will be removed in 1.24
 	 */
-	public $mCaption = false;
+	protected $mCaption = false;
 
 	/**
 	 * @var bool Hide blacklisted images?
-	 * @deprecated since 1.23 (was declared "var") and will be removed in 1.24
 	 */
-	public $mHideBadImages;
+	protected $mHideBadImages;
 
 	/**
 	 * @var Parser Registered parser object for output callbacks
