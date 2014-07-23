@@ -1,16 +1,17 @@
 /*!
- * OOjs v1.0.10
+ * OOjs v1.0.11
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Jul 23 2014 12:55:43 GMT-0700 (PDT)
+ * Date: 2014-07-23T20:15:47Z
  */
 ( function ( global ) {
 
 'use strict';
+
 /*exported toString */
 var
 	/**
@@ -442,9 +443,13 @@ oo.simpleArrayIntersection = function ( a, b ) {
 oo.simpleArrayDifference = function ( a, b ) {
 	return simpleArrayCombine( a, b, false );
 };
+
 /*global $ */
 
 oo.isPlainObject = $.isPlainObject;
+
+/*global hasOwn */
+
 /**
  * @class OO.EventEmitter
  *
@@ -466,8 +471,6 @@ oo.EventEmitter = function OoEventEmitter() {
 /**
  * Add a listener to events of a specific event.
  *
- * If the callback/context are already bound to the event, they will not be bound again.
- *
  * @param {string} event Type of event to listen to
  * @param {Function} callback Function to call when event occurs
  * @param {Array} [args] Arguments to pass to listener, will be prepended to emitted arguments
@@ -476,7 +479,7 @@ oo.EventEmitter = function OoEventEmitter() {
  * @chainable
  */
 oo.EventEmitter.prototype.on = function ( event, callback, args, context ) {
-	var i, bindings, binding;
+	var bindings;
 
 	// Validate callback
 	if ( typeof callback !== 'function' ) {
@@ -486,16 +489,8 @@ oo.EventEmitter.prototype.on = function ( event, callback, args, context ) {
 	if ( arguments.length < 4 ) {
 		context = null;
 	}
-	if ( this.bindings.hasOwnProperty( event ) ) {
-		// Check for duplicate callback and context for this event
+	if ( hasOwn.call( this.bindings, event ) ) {
 		bindings = this.bindings[event];
-		i = bindings.length;
-		while ( i-- ) {
-			binding = bindings[i];
-			if ( bindings.callback === callback && bindings.context === context ) {
-				return this;
-			}
-		}
 	} else {
 		// Auto-initialize bindings list
 		bindings = this.bindings[event] = [];
@@ -539,9 +534,7 @@ oo.EventEmitter.prototype.off = function ( event, callback, context ) {
 
 	if ( arguments.length === 1 ) {
 		// Remove all bindings for event
-		if ( event in this.bindings ) {
-			delete this.bindings[event];
-		}
+		delete this.bindings[event];
 	} else {
 		if ( typeof callback !== 'function' ) {
 			throw new Error( 'Invalid callback. Function expected.' );
@@ -671,7 +664,9 @@ oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
 			bindings = this.bindings[event];
 			i = bindings.length;
 			while ( i-- ) {
-				if ( bindings[i].context === context ) {
+				// bindings[i] may have been removed by the previous step's
+				// this.off so check it still exists
+				if ( bindings[i] && bindings[i].context === context ) {
 					this.off( event, bindings[i].callback, context );
 				}
 			}
@@ -680,6 +675,7 @@ oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
 
 	return this;
 };
+
 /**
  * @class OO.Registry
  * @mixins OO.EventEmitter
@@ -743,6 +739,7 @@ oo.Registry.prototype.register = function ( name, data ) {
 oo.Registry.prototype.lookup = function ( name ) {
 	return this.registry[name];
 };
+
 /**
  * @class OO.Factory
  * @extends OO.Registry
@@ -824,10 +821,12 @@ oo.Factory.prototype.create = function ( name ) {
 	constructor.apply( obj, args );
 	return obj;
 };
+
 /*jshint node:true */
 if ( typeof module !== 'undefined' && module.exports ) {
 	module.exports = oo;
 } else {
 	global.OO = oo;
 }
+
 }( this ) );
