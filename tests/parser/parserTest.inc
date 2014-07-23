@@ -208,7 +208,6 @@ class ParserTest {
 		$messageMemc = wfGetMessageCacheStorage();
 		$parserMemc = wfGetParserCacheStorage();
 
-		// $wgContLang = new StubContLang;
 		$wgUser = new User;
 		$context = new RequestContext;
 		$wgLang = $context->getLanguage();

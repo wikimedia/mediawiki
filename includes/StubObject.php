@@ -164,35 +164,6 @@ class StubObject {
 }
 
 /**
- * Stub object for the content language of this wiki. This object have to be in
- * $wgContLang global.
- *
- * @deprecated since 1.18
- */
-class StubContLang extends StubObject {
-
-	function __construct() {
-		wfDeprecated( __CLASS__, '1.18' );
-		parent::__construct( 'wgContLang' );
-	}
-
-	function __call( $name, $args ) {
-		return $this->_call( $name, $args );
-	}
-
-	/**
-	 * @return Language
-	 */
-	function _newObject() {
-		global $wgLanguageCode;
-		$obj = Language::factory( $wgLanguageCode );
-		$obj->initEncoding();
-		$obj->initContLang();
-		return $obj;
-	}
-}
-
-/**
  * Stub object for the user language. It depends of the user preferences and
  * "uselang" parameter that can be passed to index.php. This object have to be
  * in $wgLang global.

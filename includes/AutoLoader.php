@@ -165,7 +165,6 @@ $wgAutoloadLocalClasses = array(
 	'Status' => 'includes/Status.php',
 	'StreamFile' => 'includes/StreamFile.php',
 	'StringPrefixSearch' => 'includes/PrefixSearch.php',
-	'StubContLang' => 'includes/StubObject.php',
 	'StubObject' => 'includes/StubObject.php',
 	'StubUserLang' => 'includes/StubObject.php',
 	'TablePager' => 'includes/Pager.php',
