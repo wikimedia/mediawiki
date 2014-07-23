@@ -460,7 +460,7 @@ class SiteSQLStore implements SiteStore {
 }
 
 /**
- * @deprecated
+ * @deprecated since 1.21
  */
 class Sites extends SiteSQLStore {
 
@@ -468,7 +468,7 @@ class Sites extends SiteSQLStore {
 	 * Factory for creating new site objects.
 	 *
 	 * @since 1.21
-	 * @deprecated
+	 * @deprecated since 1.21
 	 *
 	 * @param string|bool $globalId
 	 *
@@ -485,7 +485,7 @@ class Sites extends SiteSQLStore {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated since 1.21
 	 * @return SiteStore
 	 */
 	public static function singleton() {
@@ -499,7 +499,7 @@ class Sites extends SiteSQLStore {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated since 1.21
 	 * @param string $group
 	 * @return SiteList
 	 */
