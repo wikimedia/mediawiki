@@ -4250,7 +4250,7 @@ $wgWhitelistRead = false;
  * @par Example:
  * To allow reading any page starting with 'User' regardless of the case:
  * @code
- * $wgWhitelistReadRegexp = array( "@^UsEr.*@i" );
+ * $wgWhitelistReadRegexp = array( "/^UsEr.*/i" );
  * @endcode
  * Will allow both [[User is banned]] and [[User:JohnDoe]]
  *

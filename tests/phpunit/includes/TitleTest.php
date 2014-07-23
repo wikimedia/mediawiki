@@ -385,8 +385,8 @@ class TitleTest extends MediaWikiTestCase {
 			array( '/MiC ChEcK/i', 'mic check', 'read', $ALLOWED ),
 
 			// From DefaultSettings.php:
-			array( "@^UsEr.*@i", 'User is banned', 'read', $ALLOWED ),
-			array( "@^UsEr.*@i", 'User:John Doe', 'read', $ALLOWED ),
+			array( "/^UsEr.*/i", 'User is banned', 'read', $ALLOWED ),
+			array( "/^UsEr.*/i", 'User:John Doe', 'read', $ALLOWED ),
 
 			// With namespaces:
 			array( '/^Special:NewPages$/', 'Special:NewPages', 'read', $ALLOWED ),
