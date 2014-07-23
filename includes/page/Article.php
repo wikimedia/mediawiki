@@ -703,7 +703,9 @@ class Article implements Page {
 					$this->mParserOutput = $poolArticleView->getParserOutput();
 					$outputPage->addParserOutput( $this->mParserOutput );
 					if ( $content->getRedirectTarget() ) {
-						$outputPage->addSubtitle( wfMessage( 'redirectpagesub' )->parse() );
+						$outputPage->addSubtitle(
+							"<span id=\"redirectsub\">" . wfMessage( 'redirectpagesub' )->parse() . "</span>"
+						);
 					}
 
 					# Don't cache a dirty ParserOutput object
