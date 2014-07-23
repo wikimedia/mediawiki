@@ -1385,7 +1385,7 @@ class User implements IDBAccessObject {
 		foreach ( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
 			$defOpt['searchNs' . $nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );
 		}
-		$defOpt['skin'] = $wgDefaultSkin;
+		$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );
 
 		wfRunHooks( 'UserGetDefaultOptions', array( &$defOpt ) );
 
