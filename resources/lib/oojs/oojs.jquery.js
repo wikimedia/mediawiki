@@ -6,7 +6,7 @@
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Jun 18 2014 20:03:40 GMT-0700 (PDT)
+ * Date: Wed Jul 23 2014 12:55:43 GMT-0700 (PDT)
  */
 ( function ( global ) {
 
@@ -442,38 +442,9 @@ oo.simpleArrayIntersection = function ( a, b ) {
 oo.simpleArrayDifference = function ( a, b ) {
 	return simpleArrayCombine( a, b, false );
 };
-/*global hasOwn, toString */
+/*global $ */
 
-/**
- * Assert whether a value is a plain object or not.
- *
- * @param {Mixed} obj
- * @return {boolean}
- */
-oo.isPlainObject = function ( obj ) {
-	/*jshint eqnull:true, eqeqeq:false */
-
-	// Any object or value whose internal [[Class]] property is not "[object Object]"
-	// Support IE8: Explicitly filter out DOM nodes
-	// Support IE8: Explicitly filter out Window object (needs loose comparison)
-	if ( !obj || toString.call( obj ) !== '[object Object]' || obj.nodeType || ( obj != null && obj == obj.window ) ) {
-		return false;
-	}
-
-	// The try/catch suppresses exceptions thrown when attempting to access
-	// the "constructor" property of certain host objects suich as window.location
-	// in Firefox < 20 (https://bugzilla.mozilla.org/814622)
-	try {
-		if ( obj.constructor &&
-				!hasOwn.call( obj.constructor.prototype, 'isPrototypeOf' ) ) {
-			return false;
-		}
-	} catch ( e ) {
-		return false;
-	}
-
-	return true;
-};
+oo.isPlainObject = $.isPlainObject;
 /**
  * @class OO.EventEmitter
  *
