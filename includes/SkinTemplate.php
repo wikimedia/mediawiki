@@ -307,7 +307,8 @@ class SkinTemplate extends Skin {
 		$tpl = $this->setupTemplateForOutput();
 
 		wfProfileIn( __METHOD__ . '-stuff2' );
-		$tpl->set( 'title', $out->getPageTitle() );
+		$pageTitle = $out->getPageTitle();
+		$tpl->set( 'title', $pageTitle );
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
 
@@ -388,9 +389,12 @@ class SkinTemplate extends Skin {
 		// that interface elements are in a different language.
 		$tpl->set( 'userlangattributes', '' );
 		$tpl->set( 'specialpageattributes', '' ); # obsolete
-		// Used by VectorBeta to insert HTML before content but after the
-		// heading for the page title. Defaults to empty string.
-		$tpl->set( 'prebodyhtml', '' );
+		// HTML inserted before content, includes
+		// heading for the page title.
+		$pageLanguage = $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
+		$tpl->set( 'pageLanguage', $pageLanguage );
+		$tpl->set( 'prebodyhtml', '<h1 id="firstHeading" class="firstHeading" lang="' .
+			$pageLanguage . '"><span dir="auto">' . $pageTitle . '</span></h1>' );
 
 		if ( $userLangCode !== $wgContLang->getHtmlCode() || $userLangDir !== $wgContLang->getDir() ) {
 			$escUserlang = htmlspecialchars( $userLangCode );
