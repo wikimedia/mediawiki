@@ -3,7 +3,8 @@
 		"authors": [
 			"CERminator",
 			"DzWiki",
-			"KWiki"
+			"KWiki",
+			"Edinwiki"
 		]
 	},
 	"vector-action-addsection": "Dodaj temu",
@@ -16,5 +17,6 @@
 	"vector-view-edit": "Uredi",
 	"vector-view-history": "Pregled historije",
 	"vector-view-view": "Čitanje",
-	"vector-view-viewsource": "Pogledaj izvor"
+	"vector-view-viewsource": "Pogledaj izvor",
+	"vector-more-actions": "Više"
 }

@@ -11,7 +11,8 @@
 			"Whym",
 			"Yanajin66",
 			"青子守歌",
-			"아라"
+			"아라",
+			"Shield-9"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -270,6 +271,10 @@
 	"config-memcache-badport": "Memcached のポート番号は $1 から $2 の範囲にしてください。",
 	"config-extensions": "拡張機能",
 	"config-extensions-help": "<code>./extensions</code> ディレクトリ内で、上に列挙した拡張機能を検出しました。\n\nこれらの拡張機能には追加の設定が必要な場合がありますが、今すぐ有効化できます。",
+	"config-skins": "外装",
+	"config-skins-use-as-default": "この外装をデフォルトとして使う",
+	"config-skins-must-enable-some": "少なくとも1つの有効化する外装を選択する必要があります。",
+	"config-skins-must-enable-default": "デフォルトとして選択された外装は有効である必要があります。",
 	"config-install-alreadydone": "<strong>警告:</strong> 既にMediaWikiがインストール済みで、再びインストールし直そうとしています。\n次のページへ進んでください。",
 	"config-install-begin": "「{{int:config-continue}}」を押すと、MediaWiki のインストールを開始できます。\n変更したい設定がある場合は、「{{int:config-back}}」を押してください。",
 	"config-install-step-done": "実行",

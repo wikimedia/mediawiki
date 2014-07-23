@@ -277,6 +277,7 @@
 	"config-memcache-badport": "Нумар порту Memcached павінен быць паміж $1 і $2",
 	"config-extensions": "Пашырэньні",
 	"config-extensions-help": "Пашырэньні пададзеныя вышэй, былі знойдзеныя ў Вашай дырэкторыі <code>./extensions</code>.\n\nЯны могуць патрабаваць дадатковых наладаў, але іх можна ўключыць зараз",
+	"config-skins": "Тэмы афармленьня",
 	"config-install-alreadydone": "'''Папярэджаньне:''' здаецца, што Вы ўжо ўсталёўвалі MediaWiki і спрабуеце зрабіць гэтай зноў.\nКалі ласка, перайдзіце на наступную старонку.",
 	"config-install-begin": "Пасьля націску кнопкі «{{int:config-continue}}» пачнецца ўсталяваньне MediaWiki.\nКалі Вы жадаеце што-небудзь зьмяніць, націсьніце кнопку «{{int:config-back}}».",
 	"config-install-step-done": "зроблена",
