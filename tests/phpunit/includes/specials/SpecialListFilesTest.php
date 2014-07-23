@@ -11,7 +11,7 @@
 class SpecialListFilesTest extends MediaWikiTestCase {
 	/**
 	 * @expectedException MWException
-	 * @expectedExceptionMesage invalid_field
+	 * @expectedExceptionMessage invalid_field
 	 * @covers ImageListPager::formatValue
 	 */
 	public function testFormatValuesThrowException() {
