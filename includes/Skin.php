@@ -145,25 +145,28 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Normalize a skin preference value to a form that can be loaded.
-	 * If a skin can't be found, it will fall back to the configured
-	 * default, or the hardcoded default if that's broken.
+	 *
+	 * If a skin can't be found, it will fall back to the configured default ($wgDefaultSkin), or the
+	 * hardcoded default ($wgFallbackSkin) if the default skin is unavailable too.
+	 *
 	 * @param string $key 'monobook', 'vector', etc.
 	 * @return string
 	 */
 	static function normalizeKey( $key ) {
-		global $wgDefaultSkin;
+		global $wgDefaultSkin, $wgFallbackSkin;
 
 		$skinNames = Skin::getSkinNames();
 
 		// Make keys lowercase for case-insensitive matching.
 		$skinNames = array_change_key_case( $skinNames, CASE_LOWER );
 		$key = strtolower( $key );
-		$default = strtolower( $wgDefaultSkin );
+		$defaultSkin = strtolower( $wgDefaultSkin );
+		$fallbackSkin = strtolower( $wgFallbackSkin );
 
 		if ( $key == '' || $key == 'default' ) {
 			// Don't return the default immediately;
 			// in a misconfiguration we need to fall back.
-			$key = $default;
+			$key = $defaultSkin;
 		}
 
 		if ( isset( $skinNames[$key] ) ) {
@@ -173,7 +176,7 @@ abstract class Skin extends ContextSource {
 		// Older versions of the software used a numeric setting
 		// in the user preferences.
 		$fallback = array(
-			0 => $default,
+			0 => $defaultSkin,
 			2 => 'cologneblue'
 		);
 
@@ -183,10 +186,10 @@ abstract class Skin extends ContextSource {
 
 		if ( isset( $skinNames[$key] ) ) {
 			return $key;
-		} elseif ( isset( $skinNames[$default] ) ) {
-			return $default;
+		} elseif ( isset( $skinNames[$defaultSkin] ) ) {
+			return $defaultSkin;
 		} else {
-			return 'vector';
+			return $fallbackSkin;
 		}
 	}
 
@@ -196,7 +199,7 @@ abstract class Skin extends ContextSource {
 	 * @return Skin
 	 */
 	static function &newFromKey( $key ) {
-		global $wgStyleDirectory;
+		global $wgStyleDirectory, $wgFallbackSkin;
 
 		$key = Skin::normalizeKey( $key );
 
@@ -216,7 +219,9 @@ abstract class Skin extends ContextSource {
 				# except by SQL manipulation if a previously valid skin name
 				# is no longer valid.
 				wfDebug( "Skin class does not exist: $className\n" );
-				$className = 'SkinVector';
+
+				$fallback = $skinNames[ Skin::normalizeKey( $wgFallbackSkin ) ];
+				$className = "Skin{$fallback}";
 			}
 		}
 		$skin = new $className( $key );
