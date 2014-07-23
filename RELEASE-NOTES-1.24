@@ -57,6 +57,9 @@ production.
   there is a maintenance script wrapOldPassword.php that can wrap all passwords in
   PBKDF2 (or the hashing algorithm of your choice) if you don't want to wait for your
   users to log in.
+* $wgImportSources can now either be a regular array, or an associative map
+  specifying subprojects on the interwiki map of the target wiki, or a mix of
+  the two. Existing configurations will still work.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
