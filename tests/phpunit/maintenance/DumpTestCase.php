@@ -32,7 +32,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param string $text Revisions text
 	 * @param string $text Revisions summare
 	 *
-	 * @throws MWExcepion
+	 * @throws MWException
 	 */
 	protected function addRevision( Page $page, $text, $summary ) {
 		$status = $page->doEditContent(

@@ -102,7 +102,7 @@ class FetchTextTest extends MediaWikiTestCase {
 	 * @param string $text The revisions text
 	 * @param string $text The revisions summare
 	 *
-	 * @throws MWExcepion
+	 * @throws MWException
 	 */
 	private function addRevision( $page, $text, $summary ) {
 		$status = $page->doEditContent(
