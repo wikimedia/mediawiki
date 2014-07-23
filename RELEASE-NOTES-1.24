@@ -68,6 +68,8 @@ production.
 * $wgCanonicalLanguageLinks has been removed. Per Google recommendations, we
   will not send a rel=canonical pointing to a variant-neutral page, however
   we will send rel=alternate.
+* $wgCopyrightIcon has been removed. Use $wgFooterIcons['copyright']['copyright']
+  or the $wgRightsUrl/$wgRightsIcon/$wgRightsText overrides instead.
 
 === New features in 1.24 ===
 * Added new hook WatchlistEditorBeforeFormRender, allowing subscribers to

@@ -797,26 +797,20 @@ abstract class Skin extends ContextSource {
 	 * @return null|string
 	 */
 	function getCopyrightIcon() {
-		global $wgRightsUrl, $wgRightsText, $wgRightsIcon, $wgCopyrightIcon;
+		global $wgFooterIcons;
 
 		$out = '';
 
-		if ( $wgCopyrightIcon ) {
-			$out = $wgCopyrightIcon;
-		} elseif ( $wgRightsIcon ) {
-			$icon = htmlspecialchars( $wgRightsIcon );
-
-			if ( $wgRightsUrl ) {
-				$url = htmlspecialchars( $wgRightsUrl );
-				$out .= '<a href="' . $url . '">';
-			}
-
-			$text = htmlspecialchars( $wgRightsText );
-			$out .= "<img src=\"$icon\" alt=\"$text\" width=\"88\" height=\"31\" />";
-
-			if ( $wgRightsUrl ) {
-				$out .= '</a>';
-			}
+		if ( isset( $wgFooterIcons['copyright']['copyright'] ) ) {
+			$copyright = $wgFooterIcons['copyright']['copyright'];
+			$out .= Html::rawElement( 'a', array( 'href' => htmlspecialchars( $copyright['url'] ) ),
+				Html::element( 'img', array(
+					'src' => htmlspecialchars( $copyright['src'] ),
+					'alt' => htmlspecialchars( $copyright['alt'] ),
+					'width' => 88,
+					'height' => 31
+				) )
+			);
 		}
 
 		return $out;
