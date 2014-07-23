@@ -3909,6 +3909,9 @@ class Title {
 
 		$dbw = wfGetDB( DB_MASTER );
 
+		$oldpage = WikiPage::factory( $this );
+		$oldcountable = $oldpage->isCountable();
+
 		$newpage = WikiPage::factory( $nt );
 
 		if ( $moveOverRedirect ) {
@@ -3956,7 +3959,8 @@ class Title {
 		wfRunHooks( 'NewRevisionFromEditComplete',
 			array( $newpage, $nullRevision, $nullRevision->getParentId(), $wgUser ) );
 
-		$newpage->doEditUpdates( $nullRevision, $wgUser, array( 'changed' => false ) );
+		$newpage->doEditUpdates( $nullRevision, $wgUser,
+			array( 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ) );
 
 		if ( !$moveOverRedirect ) {
 			WikiPage::onArticleCreate( $nt );
