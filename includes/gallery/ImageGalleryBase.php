@@ -78,9 +78,6 @@ abstract class ImageGalleryBase extends ContextSource {
 	/** @var array */
 	protected $mAttribs = array();
 
-	/** @var bool */
-	static private $modeMapping = false;
-
 	/**
 	 * Get a new image gallery. This is the method other callers
 	 * should use to get a gallery.
@@ -88,25 +85,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string|bool $mode Mode to use. False to use the default
 	 * @throws MWException
 	 */
-	static function factory( $mode = false ) {
+	public static function factory( $mode = false ) {
 		global $wgGalleryOptions, $wgContLang;
-		self::loadModes();
-		if ( !$mode ) {
-			$mode = $wgGalleryOptions['mode'];
-		}
 
-		$mode = $wgContLang->lc( $mode );
-
-		if ( isset( self::$modeMapping[$mode] ) ) {
-			return new self::$modeMapping[$mode]( $mode );
-		} else {
-			throw new MWException( "No gallery class registered for mode $mode" );
-		}
-	}
-
-	private static function loadModes() {
-		if ( self::$modeMapping === false ) {
-			self::$modeMapping = array(
+		static $modeMapping = false;
+		if ( $modeMapping === false ) {
+			$modeMapping = array(
 				'traditional' => 'TraditionalImageGallery',
 				'nolines' => 'NolinesImageGallery',
 				'packed' => 'PackedImageGallery',
@@ -114,7 +98,19 @@ abstract class ImageGalleryBase extends ContextSource {
 				'packed-overlay' => 'PackedOverlayImageGallery',
 			);
 			// Allow extensions to make a new gallery format.
-			wfRunHooks( 'GalleryGetModes', self::$modeMapping );
+			wfRunHooks( 'GalleryGetModes', array( &$modeMapping ) );
+		}
+
+		if ( !$mode ) {
+			$mode = $wgGalleryOptions['mode'];
+		}
+
+		$mode = $wgContLang->lc( $mode );
+
+		if ( isset( $modeMapping[$mode] ) ) {
+			return new $modeMapping[$mode]( $mode );
+		} else {
+			throw new MWException( "No gallery class registered for mode $mode" );
 		}
 	}
 
