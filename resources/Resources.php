@@ -1246,6 +1246,9 @@ return array(
 	'mediawiki.special.changeslist.enhanced' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
+	'mediawiki.special.import' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.import.js',
+	),
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => 'jquery.byteLimit',
