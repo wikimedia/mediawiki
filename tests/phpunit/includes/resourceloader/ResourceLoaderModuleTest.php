@@ -2,6 +2,14 @@
 
 class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgValidSkinNames' => array( 'vector' => 'Vector' ),
+		) );
+	}
+
 	/**
 	 * @covers ResourceLoaderFileModule::getAllSkinStyleFiles
 	 */
