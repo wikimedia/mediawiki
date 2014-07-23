@@ -1287,6 +1287,9 @@ class OutputPage extends ContextSource {
 			foreach ( $categories as $category => $type ) {
 				$origcategory = $category;
 				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+				if ( !$title ) {
+					continue;
+				}
 				$wgContLang->findVariantLink( $category, $title, true );
 				if ( $category != $origcategory ) {
 					if ( array_key_exists( $category, $categories ) ) {
