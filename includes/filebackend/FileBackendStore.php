@@ -69,7 +69,7 @@ abstract class FileBackendStore extends FileBackend {
 		$this->mimeCallback = isset( $config['mimeCallback'] )
 			? $config['mimeCallback']
 			: function ( $storagePath, $content, $fsPath ) {
-				// @TODO: handle the case of extension-less files using the contents
+				// @todo handle the case of extension-less files using the contents
 				return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
 			};
 		$this->memCache = new EmptyBagOStuff(); // disabled by default

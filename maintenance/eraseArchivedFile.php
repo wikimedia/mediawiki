@@ -27,7 +27,7 @@ require_once __DIR__ . '/Maintenance.php';
 /**
  * Maintenance script to delete archived (non-current) files from storage.
  *
- * @TODO: Maybe add some simple logging
+ * @todo Maybe add some simple logging
  *
  * @ingroup Maintenance
  * @since 1.22

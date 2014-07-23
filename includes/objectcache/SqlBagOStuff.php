@@ -145,7 +145,7 @@ class SqlBagOStuff extends BagOStuff {
 			} else {
 				// We must keep a separate connection to MySQL in order to avoid deadlocks
 				// However, SQLite has an opposite behavior.
-				// @TODO: get this trick to work on PostgreSQL too
+				// @todo get this trick to work on PostgreSQL too
 				if ( wfGetDB( DB_MASTER )->getType() == 'mysql' ) {
 					$lb = wfGetLBFactory()->newMainLB();
 					$db = $lb->getConnection( DB_MASTER );

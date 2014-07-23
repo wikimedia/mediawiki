@@ -108,7 +108,7 @@ abstract class DBLockManager extends QuorumLockManager {
 		$this->session = wfRandomString( 31 );
 	}
 
-	// @TODO: change this code to work in one batch
+	// @todo change this code to work in one batch
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = Status::newGood();
 		foreach ( $pathsByType as $type => $paths ) {

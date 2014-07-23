@@ -558,7 +558,7 @@ class MediaWiki {
 					// to fail due to post data being lost, but let's try anyway
 					// and just log the instance.
 					//
-					// @todo @fixme See if we could issue a 307 or 308 here, need
+					// @todo FIXME: See if we could issue a 307 or 308 here, need
 					// to see how clients (automated & browser) behave when we do
 					wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
 				}

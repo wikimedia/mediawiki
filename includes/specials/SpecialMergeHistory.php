@@ -477,7 +477,7 @@ class SpecialMergeHistory extends SpecialPage {
 			array( $destTitle->getPrefixedText(), $timestampLimit ), $this->getUser()
 		);
 
-		# @TODO: message should use redirect=no
+		# @todo message should use redirect=no
 		$this->getOutput()->addWikiMsg( 'mergehistory-success',
 			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText(), $count );
 

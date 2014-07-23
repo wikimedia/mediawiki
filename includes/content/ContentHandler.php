@@ -837,7 +837,7 @@ abstract class ContentHandler {
 	 * @return mixed String containing deletion reason or empty string, or
 	 *    boolean false if no revision occurred
 	 *
-	 * @XXX &$hasHistory is extremely ugly, it's here because
+	 * @todo &$hasHistory is extremely ugly, it's here because
 	 * WikiPage::getAutoDeleteReason() and Article::generateReason()
 	 * have it / want it.
 	 */

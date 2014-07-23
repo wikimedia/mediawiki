@@ -972,7 +972,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		// Sanity: don't show the notice if too many rows must be scanned
-		// @TODO: show some special message for that case
+		// @todo show some special message for that case
 		$nEdits = $this->mNewPage->countRevisionsBetween( $oldRev, $newRev, 1000 );
 		if ( $nEdits > 0 && $nEdits <= 1000 ) {
 			$limit = 100; // use diff-multi-manyusers if too many users
