@@ -59,13 +59,33 @@ class GlobalTest extends MediaWikiTestCase {
 		);
 	}
 
+	/*
+	 * Test cases for random functions could hypothetically fail,
+	 * even though they shouldn't.
+	 */
+
 	/**
 	 * @covers ::wfRandom
 	 */
 	public function testRandom() {
-		# This could hypothetically fail, but it shouldn't ;)
 		$this->assertFalse(
-			wfRandom() == wfRandom() );
+			wfRandom() == wfRandom()
+		);
+	}
+
+	/**
+	 * @covers ::wfRandomString
+	 */
+	public function testRandomString() {
+		$this->assertFalse(
+			wfRandomString() == wfRandomString()
+		);
+		$this->assertEquals(
+			strlen( wfRandomString( 10 ) ), 10
+		);
+		$this->assertTrue(
+			preg_match( '/^[0-9a-f]+$/i', wfRandomString() ) === 1
+		);
 	}
 
 	/**
