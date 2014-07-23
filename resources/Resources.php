@@ -1059,10 +1059,6 @@ return array(
 			'prefs-editing'
 		),
 	),
-	// Alias for backwards compatibility
-	'mediawiki.action.watch.ajax' => array(
-		'dependencies' => 'mediawiki.page.watch.ajax'
-	),
 
 	/* MediaWiki Language */
 
