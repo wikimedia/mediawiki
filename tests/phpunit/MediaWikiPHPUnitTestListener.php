@@ -73,12 +73,11 @@ class MediaWikiPHPUnitTestListener implements PHPUnit_Framework_TestListener {
 
 	/**
 	 * Skipped test.
+	 * Method available since phpunit Release 3.0.0
 	 *
 	 * @param PHPUnit_Framework_Test $test
 	 * @param Exception $e
 	 * @param float $time
-	 *
-	 * @since Method available since Release 3.0.0
 	 */
 	public function addSkippedTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
 		wfDebugLog(
@@ -89,9 +88,9 @@ class MediaWikiPHPUnitTestListener implements PHPUnit_Framework_TestListener {
 
 	/**
 	 * A test suite started.
+	 * Method available since phpunit Release 2.2.0
 	 *
 	 * @param PHPUnit_Framework_TestSuite $suite
-	 * @since Method available since Release 2.2.0
 	 */
 	public function startTestSuite( PHPUnit_Framework_TestSuite $suite ) {
 		wfDebugLog( $this->logChannel, 'START suite ' . $suite->getName() );
@@ -99,9 +98,9 @@ class MediaWikiPHPUnitTestListener implements PHPUnit_Framework_TestListener {
 
 	/**
 	 * A test suite ended.
+	 * Method available since phpunit Release 2.2.0
 	 *
 	 * @param PHPUnit_Framework_TestSuite $suite
-	 * @since Method available since Release 2.2.0
 	 */
 	public function endTestSuite( PHPUnit_Framework_TestSuite $suite ) {
 		wfDebugLog( $this->logChannel, 'END suite ' . $suite->getName() );
