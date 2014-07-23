@@ -213,7 +213,7 @@ class ApiParse extends ApiBase {
 			}
 
 			if ( $this->section !== false ) {
-				$this->content = $this->getSectionContent( $this->content, $titleObj->getText() );
+				$this->content = $this->getSectionContent( $this->content, $titleObj->getPrefixedText() );
 			}
 
 			if ( $params['pst'] || $params['onlypst'] ) {
@@ -450,7 +450,7 @@ class ApiParse extends ApiBase {
 		if ( $this->section !== false && $this->content !== null ) {
 			$this->content = $this->getSectionContent(
 				$this->content,
-				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getText()
+				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getPrefixedText()
 			);
 
 			// Not cached (save or load)
@@ -470,6 +470,10 @@ class ApiParse extends ApiBase {
 		return $pout;
 	}
 
+	/**
+	 * @param Content $content
+	 * @param string $what Identifies the content in error messages, e.g. page title.
+	 */
 	private function getSectionContent( Content $content, $what ) {
 		// Not cached (save or load)
 		$section = $content->getSection( $this->section );
