@@ -29,8 +29,8 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider providerGetThumbSizes
-	 * @param $filename String
-	 * @param $expectedNumberThumbs integer How many thumbnails to show
+	 * @param string $filename
+	 * @param int $expectedNumberThumbs How many thumbnails to show
 	 */
 	function testGetThumbSizes( $filename, $expectedNumberThumbs ) {
 		$iPage = $this->getImagePage( $filename );
