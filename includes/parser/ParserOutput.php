@@ -537,7 +537,7 @@ class ParserOutput extends CacheTime {
 	 *     Wikimedia Commons.
 	 *     This is not actually implemented, yet but would be pretty cool.
 	 *
-	 * @note: Do not use setProperty() to set a property which is only used
+	 * @note Do not use setProperty() to set a property which is only used
 	 * in a context where the ParserOutput object itself is already available,
 	 * for example a normal page view. There is no need to save such a property
 	 * in the database since the text is already parsed. You can just hook

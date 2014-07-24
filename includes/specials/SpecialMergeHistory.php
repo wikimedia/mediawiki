@@ -328,7 +328,7 @@ class SpecialMergeHistory extends SpecialPage {
 	/**
 	 * Actually attempt the history move
 	 *
-	 * @todo: if all versions of page A are moved to B and then a user
+	 * @todo if all versions of page A are moved to B and then a user
 	 * tries to do a reverse-merge via the "unmerge" log link, then page
 	 * A will still be a redirect (as it was after the original merge),
 	 * though it will have the old revisions back from before (as expected).

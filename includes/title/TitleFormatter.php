@@ -48,7 +48,7 @@ interface TitleFormatter {
 	/**
 	 * Returns the title text formatted for display, without namespace of fragment.
 	 *
-	 * @note: Only minimal normalization is applied. Consider using TitleValue::getText() directly.
+	 * @note Only minimal normalization is applied. Consider using TitleValue::getText() directly.
 	 *
 	 * @param TitleValue $title the title to format
 	 *

@@ -25,7 +25,7 @@
 /**
  * A codec for %MediaWiki page titles.
  *
- * @note: Normalization and validation is applied while parsing, not when formatting.
+ * @note Normalization and validation is applied while parsing, not when formatting.
  * It's possible to construct a TitleValue with an invalid title, and use MediaWikiTitleCodec
  * to generate an (invalid) title string from it. TitleValues should be constructed only
  * via parseTitle() or from a (semi)trusted source, such as the database.
@@ -187,10 +187,10 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * namespace prefixes, sets the other forms, and canonicalizes
 	 * everything.
 	 *
-	 * @todo: this method is only exposed as a temporary measure to ease refactoring.
+	 * @todo this method is only exposed as a temporary measure to ease refactoring.
 	 * It was copied with minimal changes from Title::secureAndSplit().
 	 *
-	 * @todo: This method should be split up and an appropriate interface
+	 * @todo This method should be split up and an appropriate interface
 	 * defined for use by the Title class.
 	 *
 	 * @param string $text

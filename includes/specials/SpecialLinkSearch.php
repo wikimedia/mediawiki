@@ -51,7 +51,7 @@ class LinkSearchPage extends QueryPage {
 	 * Initialize or override the PageLinkRenderer LinkSearchPage collaborates with.
 	 * Useful mainly for testing.
 	 *
-	 * @todo: query logic and rendering logic should be split and also injected
+	 * @todo query logic and rendering logic should be split and also injected
 	 *
 	 * @param PageLinkRenderer $linkRenderer
 	 */

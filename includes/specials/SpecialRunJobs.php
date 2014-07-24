@@ -104,7 +104,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 	/**
 	 * Run jobs from the job queue
 	 *
-	 * @note: also called from Wiki.php
+	 * @note also called from Wiki.php
 	 *
 	 * @param int $maxJobs Maximum number of jobs to run
 	 * @return void

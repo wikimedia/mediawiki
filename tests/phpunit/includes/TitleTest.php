@@ -59,7 +59,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * See also mediawiki.Title.test.js
 	 * @covers Title::secureAndSplit
 	 * @todo This method should be split into 2 separate tests each with a provider
-	 * @note: This mainly tests MediaWikiTitleCodec::parseTitle().
+	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
 	 */
 	public function testSecureAndSplit() {
 		$this->setMwGlobals( array(

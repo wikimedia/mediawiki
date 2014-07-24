@@ -524,7 +524,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 * is present in the database (as indicated by $wgPagePropsHaveSortkey).
 	 * The sortkey value is currently determined by getPropertySortKeyValue().
 	 *
-	 * @note: this assumes that $this->mProperties[$prop] is defined.
+	 * @note this assumes that $this->mProperties[$prop] is defined.
 	 *
 	 * @param string $prop The name of the property.
 	 *
@@ -553,8 +553,8 @@ class LinksUpdate extends SqlDataUpdate {
 	 * This will return $value if it is a float or int,
 	 * 1 or resp. 0 if it is a bool, and null otherwise.
 	 *
-	 * @note: In the future, we may allow the sortkey to be specified explicitly
-	 *        in ParserOutput::setProperty.
+	 * @note In the future, we may allow the sortkey to be specified explicitly
+	 *       in ParserOutput::setProperty.
 	 *
 	 * @param mixed $value
 	 *

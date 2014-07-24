@@ -507,10 +507,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @since 1.21
 	 *
-	 * @note: the original table prefix is stored in self::$oldTablePrefix. This is used
+	 * @note the original table prefix is stored in self::$oldTablePrefix. This is used
 	 * by teardownTestDB() to return the wiki to using the original table set.
 	 *
-	 * @note: this method only works when first called. Subsequent calls have no effect,
+	 * @note this method only works when first called. Subsequent calls have no effect,
 	 * even if using different parameters.
 	 *
 	 * @param DatabaseBase $db The database connection

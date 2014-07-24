@@ -858,7 +858,7 @@ class Article implements Page {
 	 * @param string $action The action= GET parameter
 	 * @param ParserOutput|null $pOutput
 	 * @return array The policy that should be set
-	 * @todo: actions other than 'view'
+	 * @todo actions other than 'view'
 	 */
 	public function getRobotPolicy( $action, $pOutput = null ) {
 		global $wgArticleRobotPolicies, $wgNamespaceRobotPolicies, $wgDefaultRobotPolicy;

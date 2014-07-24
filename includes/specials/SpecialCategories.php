@@ -43,7 +43,7 @@ class SpecialCategories extends SpecialPage {
 	 * Initialize or override the PageLinkRenderer SpecialCategories collaborates with.
 	 * Useful mainly for testing.
 	 *
-	 * @todo: the pager should also be injected, and de-coupled from the rendering logic.
+	 * @todo the pager should also be injected, and de-coupled from the rendering logic.
 	 *
 	 * @param PageLinkRenderer $linkRenderer
 	 */

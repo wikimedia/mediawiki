@@ -132,7 +132,7 @@ class TextContent extends AbstractContent {
 	 * Returns attempts to convert this content object to wikitext,
 	 * and then returns the text string. The conversion may be lossy.
 	 *
-	 * @note: this allows any text-based content to be transcluded as if it was wikitext.
+	 * @note this allows any text-based content to be transcluded as if it was wikitext.
 	 *
 	 * @return string|bool The raw text, or false if the conversion failed.
 	 */
@@ -257,7 +257,7 @@ class TextContent extends AbstractContent {
 	 * This default implementation returns an HTML-escaped version
 	 * of the raw text content.
 	 *
-	 * @note: The functionality of this method should really be implemented
+	 * @note The functionality of this method should really be implemented
 	 * in getHtml(), and subclasses should override getHtml() if needed.
 	 * getHighlightHtml() is kept around for backward compatibility with
 	 * extensions that already override it.

@@ -170,7 +170,7 @@ class WikitextContent extends TextContent {
 	/**
 	 * Extract the redirect target and the remaining text on the page.
 	 *
-	 * @note: migrated here from Title::newFromRedirectInternal()
+	 * @note migrated here from Title::newFromRedirectInternal()
 	 *
 	 * @since 1.23
 	 *

@@ -608,7 +608,7 @@ class Title {
 	 * Note that this doesn't pick up many things that could be wrong with titles, but that
 	 * replacing this regex with something valid will make many titles valid.
 	 *
-	 * @todo: move this into MediaWikiTitleCodec
+	 * @todo move this into MediaWikiTitleCodec
 	 *
 	 * @return string Regex string
 	 */
@@ -853,7 +853,7 @@ class Title {
 	/**
 	 * Get a TitleValue object representing this Title.
 	 *
-	 * @note: Not all valid Titles have a corresponding valid TitleValue
+	 * @note Not all valid Titles have a corresponding valid TitleValue
 	 * (e.g. TitleValues cannot represent page-local links that have a
 	 * fragment but no title text).
 	 *

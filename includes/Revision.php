@@ -1569,7 +1569,7 @@ class Revision implements IDBAccessObject {
 	 * operations and other such meta-modifications.
 	 *
 	 * @param DatabaseBase $dbw
-	 * @param int $pageId: ID number of the page to read from
+	 * @param int $pageId ID number of the page to read from
 	 * @param string $summary Revision's summary
 	 * @param bool $minor Whether the revision should be considered as minor
 	 * @param User|null $user User object to use or null for $wgUser

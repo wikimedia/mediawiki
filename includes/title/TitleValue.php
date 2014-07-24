@@ -52,7 +52,7 @@ class TitleValue {
 	/**
 	 * Constructs a TitleValue.
 	 *
-	 * @note: TitleValue expects a valid DB key; typically, a TitleValue is constructed either
+	 * @note TitleValue expects a valid DB key; typically, a TitleValue is constructed either
 	 * from a database entry, or by a TitleParser. We could apply "some" normalization here,
 	 * such as substituting spaces by underscores, but that would encourage the use of
 	 * un-normalized text when constructing TitleValues. For constructing a TitleValue from
@@ -122,8 +122,8 @@ class TitleValue {
 	 *
 	 * This is computed from the DB key by replacing any underscores with spaces.
 	 *
-	 * @note: To get a title string that includes the namespace and/or fragment,
-	 *        use a TitleFormatter.
+	 * @note To get a title string that includes the namespace and/or fragment,
+	 *       use a TitleFormatter.
 	 *
 	 * @return string
 	 */

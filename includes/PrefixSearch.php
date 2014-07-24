@@ -29,7 +29,7 @@
 abstract class PrefixSearch {
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
-	 * @deprecated: Since 1.23, use TitlePrefixSearch or StringPrefixSearch classes
+	 * @deprecated Since 1.23, use TitlePrefixSearch or StringPrefixSearch classes
 	 *
 	 * @param string $search
 	 * @param int $limit
