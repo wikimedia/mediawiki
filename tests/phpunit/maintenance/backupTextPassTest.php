@@ -434,7 +434,7 @@ class TextPassDumperTest extends DumpTestCase {
 	 *   revision id increase further and further, while the text
 	 *   id of the first iteration is reused. The pages and revision
 	 *   of iteration > 1 have no corresponding representation in the database.
-	 * @return string absolute filename of the stub
+	 * @return string Absolute filename of the stub
 	 */
 	private function setUpStub( $fname = null, $iterations = 1 ) {
 		if ( $fname === null ) {

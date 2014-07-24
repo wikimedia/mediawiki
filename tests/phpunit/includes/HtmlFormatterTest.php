@@ -8,7 +8,7 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 	 * @dataProvider getHtmlData
 	 *
 	 * @param string $input
-	 * @param $expectedText
+	 * @param string $expectedText
 	 * @param array $expectedRemoved
 	 * @param callable|bool $callback
 	 */

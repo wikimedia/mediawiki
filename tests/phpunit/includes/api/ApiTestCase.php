@@ -43,10 +43,10 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	/**
 	 * Edits or creates a page/revision
-	 * @param string $pageName page title
-	 * @param string $text content of the page
-	 * @param string $summary optional summary string for the revision
-	 * @param int $defaultNs optional namespace id
+	 * @param string $pageName Page title
+	 * @param string $text Content of the page
+	 * @param string $summary Optional summary string for the revision
+	 * @param int $defaultNs Optional namespace id
 	 * @return array Array as returned by WikiPage::doEditContent()
 	 */
 	protected function editPage( $pageName, $text, $summary = '', $defaultNs = NS_MAIN ) {
@@ -119,10 +119,10 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * requesting a "real" edit token.
 	 *
 	 * @param array $params Key-value API params
-	 * @param array|null $session session array
+	 * @param array|null $session Session array
 	 * @param User|null $user A User object for the context
 	 * @return mixed Result of the API call
-	 * @throws Exception in case wsToken is not set in the session
+	 * @throws Exception In case wsToken is not set in the session
 	 */
 	protected function doApiRequestWithToken( array $params, array $session = null,
 		User $user = null
