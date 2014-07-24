@@ -42,6 +42,10 @@ production.
   configurations are $wgDeletedDirectory and $wgHashedUploadDirectory.
 * The deprecated $wgUseCommaCount variable has been removed.
 * $wgEnableSorbs and $wgSorbsUrl have been removed.
+* $wgFixArabicUnicode and $wgFixMalayalamUnicode have been removed along with
+  the LanguageAr and LanguageMl classes. Rather than having the temporary hacks
+  specific to user language, they have been enabled everywhere with the setting
+  $wgAllUnicodeFixes automatically default to true.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
