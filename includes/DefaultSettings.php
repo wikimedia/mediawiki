@@ -6841,16 +6841,45 @@ $wgDebugAPI = false;
 
 /**
  * API module extensions.
- * Associative array mapping module name to class name.
- * Extension modules may override the core modules.
  *
+ * Associative array mapping module name to modules specs;
+ * Each module spec is an associative array containing at least
+ * the 'class' key for the module's class, and optionally a
+ * 'factory' key for the factory function to use for the module.
+ *
+ * That factory function will be called with two parameters,
+ * the parent module (an instance of ApiBase, usually ApiMain)
+ * and the name the module was registered under. The return
+ * value must be an instance of the class given in the 'class'
+ * field.
+ *
+ * For backward compatibility, the module spec may also be a
+ * simple string containing the module's class name. In that
+ * case, the class' constructor will be called with the parent
+ * module and module name as parameters, as described above.
+ *
+ * Examples for registering API modules:
+ *
+ * @code
+ *  $wgAPIModules['foo'] = 'ApiFoo';
+ *  $wgAPIModules['bar'] = array(
+ *    'class' => 'ApiBar',
+ *    'factory' => function( $main, $name ) { ... }
+ *  );
+ *  $wgAPIModules['xyzzy'] = array(
+ *    'class' => 'ApiXyzzy',
+ *    'factory' => array( 'XyzzyFactory', 'newApiModule' )
+ *  );
+ * @endcode
+ *
+ * Extension modules may override the core modules.
  * See ApiMain::$Modules for a list of the core modules.
  */
 $wgAPIModules = array();
 
 /**
  * API format module extensions.
- * Associative array mapping format module name to class name.
+ * Associative array mapping format module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
  * See ApiMain::$Formats for a list of the core format modules.
@@ -6859,7 +6888,7 @@ $wgAPIFormatModules = array();
 
 /**
  * API Query meta module extensions.
- * Associative array mapping meta module name to class name.
+ * Associative array mapping meta module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
  * See ApiQuery::$QueryMetaModules for a list of the core meta modules.
@@ -6868,7 +6897,7 @@ $wgAPIMetaModules = array();
 
 /**
  * API Query prop module extensions.
- * Associative array mapping properties module name to class name.
+ * Associative array mapping prop module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
  * See ApiQuery::$QueryPropModules for a list of the core prop modules.
@@ -6877,7 +6906,7 @@ $wgAPIPropModules = array();
 
 /**
  * API Query list module extensions.
- * Associative array mapping list module name to class name.
+ * Associative array mapping list module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
  * See ApiQuery::$QueryListModules for a list of the core list modules.
