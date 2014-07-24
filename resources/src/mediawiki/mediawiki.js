@@ -1750,7 +1750,7 @@
 				 *
 				 * @param {string|Array} modules Either the name of a module, array of modules,
 				 *  or a URL of an external script or style
-				 * @param {string} [type='text/javascript'] mime-type to use if calling with a URL of an
+				 * @param {string} [type='text/javascript'] MIME type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
 				 * @param {boolean} [async] Whether to load modules asynchronously.

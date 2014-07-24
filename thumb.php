@@ -24,7 +24,7 @@
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 require __DIR__ . '/includes/WebStart.php';
 
-// Don't use fancy mime detection, just check the file extension for jpg/gif/png
+// Don't use fancy MIME detection, just check the file extension for jpg/gif/png
 $wgTrivialMimeDetection = true;
 
 if ( defined( 'THUMB_HANDLER' ) ) {
@@ -571,7 +571,7 @@ function wfExtractThumbParams( $file, $params ) {
 		return $params; // valid thumbnail URL (via extension or config)
 	}
 
-	// FIXME: Files in the temp zone don't set a mime type, which means
+	// FIXME: Files in the temp zone don't set a MIME type, which means
 	// they don't have a handler. Which means we can't parse the param
 	// string. However, not a big issue as what good is a param string
 	// if you have no handler to make use of the param string and

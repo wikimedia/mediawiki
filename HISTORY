@@ -802,8 +802,8 @@ changes to languages because of Bugzilla reports.
   adding a new topic on a page
 * (bug 41756) Improve treatment of multiple comments on a blank line.
 * (bug 51064) Purge upstream caches when deleting file assets.
-* (bug 39012) File types with a mime that we do not know the extension for
-  can no longer be uploaded as an extension that we do know the mime type
+* (bug 39012) File types with a MIME that we do not know the extension for
+  can no longer be uploaded as an extension that we do know the MIME type
   for.
 * (bug 51742) Add data-sort-value for better sorting of hitcounts Special:Tags
 * (bug 26811) On DB error pages, server hostnames are now hidden when both
@@ -2540,7 +2540,7 @@ Selected changes since MediaWiki 1.17 that may be of interest:
   enabled, but user cannot see rc patrol links.
 * (bug 26548) ForeignAPIRepo (InstantCommons) now works with PDF files
   and other multi-paged file formats.
-* Files with a mime type that does not match the extension are now properly
+* Files with a MIME type that does not match the extension are now properly
   thumbnailed.
 * (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs.
 * (bug 15905) Nostalgia skin could become more usable by including a Talk:
@@ -3328,7 +3328,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 22627) Remove PHP notice when deleting a page only hidden users edited.
 * (bug 21520) Anonymous previews now also gives a warning about not being
   logged in (anonpreviewwarning).
-* (bug 22935) image/x-ms-bmp mime type added for BMP files.
+* (bug 22935) image/x-ms-bmp MIME type added for BMP files.
 * (bug 23024) Special:ListFiles now escapes file names correctly.
 * (bug 22867) "View source" tab is now only displayed if there's source text.
 * (bug 19393) Feeds now format dates in user language rather than content
@@ -3402,7 +3402,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 8689) Long numeric lines no longer kill the parser.
 * (bug 23740) Article::doRedirect() now use $extraQuery parameter correctly if
   the $noRedir parameter is set to true.
-* (bug 23688) Correct mime types for Office 2007 OpenXML documents.
+* (bug 23688) Correct MIME types for Office 2007 OpenXML documents.
 * (bug 23787) Corrected $wgDefaultSkin's comment in DefaultSettings.php.
 * (bug 23797) Xml::input() now allows '0' for the value parameter.
 * (bug 23747) Make sure that on History pages, the RevDel button is not
@@ -3414,7 +3414,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   a fatal error.
 * (bug 23465) Don't ignore the predefined destination filename on
   Special:Upload after following a red link.
-* (bug 23642) Recognize mime types of MS OpenXML documents.
+* (bug 23642) Recognize MIME types of MS OpenXML documents.
 * (bug 22784) Normalise underscores and spaces in autocomments.
 * (bug 19910) Headings of the form ===+\s+ are now displayed as valid headings.
 * (bug 24022) Only check file extensions on the uploadpage when needed.
@@ -5757,7 +5757,7 @@ Other changes in this release:
   previously it was choosen based on $wgParserCacheType
 * $wgExtensionAliasesFiles option to simplify adding aliases to special pages
   provided by extensions, in a similar way to $wgExtensionMessagesFiles
-* Added $wgXMLMimeTypes, an array of XML mimetypes we can check for
+* Added $wgXMLMimeTypes, an array of XML MIME types we can check for
   with MimeMagic.
 * Added $wgDirectoryMode, which allows for setting the default CHMOD value when
   creating new directories.
@@ -10678,7 +10678,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 1739) A new magicword, {{REVISIONID}} give you the article or diff database
   revision id, useful for proper citation.
 * (bug 1998) Updated the Russian translation.
-* (bug 2064) Configurable JavaScript mimetype with $wgJsMimeType
+* (bug 2064) Configurable JavaScript MIME type with $wgJsMimeType
 * (bug 2084) Fixed a regular expression in includes/Title.php that was accepting invalid syntax like #REDIRECT [[foo] in redirects
 * It's now possible to invert the namespace selection at Special:Allpages and Special:Contributions
 * No longer using sorbs.net to check for open proxies by default.
@@ -11771,7 +11771,7 @@ pages for purposes of page relevancy ranking.
 * (bug 1570) Fix php 4.2.x error on conflict merging
 * (bug 1585) Fix page title on post-login redirection page
 * Run UTF-8 validation on old text in Recentchanges RSS diffs
-* (bug 1642) fix a mime type typo in img_auth.php
+* (bug 1642) fix a MIME type typo in img_auth.php
 * Automated interwiki redirects only for local interwikis
 * Respect read-only mode on block removals
 * Trim old illegal characters from syndication feeds

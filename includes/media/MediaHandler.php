@@ -313,15 +313,15 @@ abstract class MediaHandler {
 	function getThumbType( $ext, $mime, $params = null ) {
 		$magic = MimeMagic::singleton();
 		if ( !$ext || $magic->isMatchingExtension( $ext, $mime ) === false ) {
-			// The extension is not valid for this mime type and we do
-			// recognize the mime type
+			// The extension is not valid for this MIME type and we do
+			// recognize the MIME type
 			$extensions = $magic->getExtensionsForType( $mime );
 			if ( $extensions ) {
 				return array( strtok( $extensions, ' ' ), $mime );
 			}
 		}
 
-		// The extension is correct (true) or the mime type is unknown to
+		// The extension is correct (true) or the MIME type is unknown to
 		// MediaWiki (null)
 		return array( $ext, $mime );
 	}

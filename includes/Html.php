@@ -36,7 +36,7 @@
  *
  * There are two important configuration options this class uses:
  *
- * $wgMimeType: If this is set to an xml mimetype then output should be
+ * $wgMimeType: If this is set to an xml MIME type then output should be
  *     valid XHTML5.
  * $wgWellFormedXml: If this is set to true, then all output should be
  *     well-formed XML (quotes on attributes, self-closing tags, etc.).
@@ -814,7 +814,7 @@ class Html {
 		$isXHTML = self::isXmlMimeType( $wgMimeType );
 
 		if ( $isXHTML ) { // XHTML5
-			// XML mimetyped markup should have an xml header.
+			// XML MIME-typed markup should have an xml header.
 			// However a DOCTYPE is not needed.
 			$ret .= "<?xml version=\"1.0\" encoding=\"UTF-8\" ?" . ">\n";
 
@@ -846,16 +846,16 @@ class Html {
 	}
 
 	/**
-	 * Determines if the given mime type is xml.
+	 * Determines if the given MIME type is xml.
 	 *
-	 * @param string $mimetype MimeType
+	 * @param string $mimetype MIME type
 	 * @return bool
 	 */
 	public static function isXmlMimeType( $mimetype ) {
 		# http://www.whatwg.org/html/infrastructure.html#xml-mime-type
 		# * text/xml
 		# * application/xml
-		# * Any mimetype with a subtype ending in +xml (this implicitly includes application/xhtml+xml)
+		# * Any MIME type with a subtype ending in +xml (this implicitly includes application/xhtml+xml)
 		return (bool)preg_match( '!^(text|application)/xml$|^.+/.+\+xml$!', $mimetype );
 	}
 

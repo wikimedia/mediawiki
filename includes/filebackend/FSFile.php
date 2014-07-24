@@ -118,9 +118,9 @@ class FSFile {
 				$ext = self::extensionFromPath( $this->path );
 			}
 
-			# mime type according to file contents
+			# MIME type according to file contents
 			$info['file-mime'] = $this->getMimeType();
-			# logical mime type
+			# logical MIME type
 			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
 
 			list( $info['major_mime'], $info['minor_mime'] ) = File::splitMime( $info['mime'] );

@@ -51,7 +51,7 @@ On files:
 * read a file into a string or  several files into a map of path names to strings
 * download a file or set of files to a temporary file (on a mounted file system)
 * get the SHA1 hash of a file
-* get various properties of a file (stat information, content time, mime information, ...)
+* get various properties of a file (stat information, content time, MIME information, ...)
 
 On directories:
 * get a list of files directly under a directory
