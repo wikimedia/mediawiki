@@ -81,7 +81,7 @@ class UsercreateTemplate extends BaseTemplate {
 				</label>
 				<?php
 				echo Html::input( 'wpName', $this->data['name'], 'text', array(
-					'class' => 'mw-input loginText',
+					'class' => 'mw-ui-input loginText',
 					'id' => 'wpName2',
 					'tabindex' => '1',
 					'size' => '20',
@@ -109,7 +109,7 @@ class UsercreateTemplate extends BaseTemplate {
 				<label for='wpPassword2'><?php $this->msg( 'userlogin-yourpassword' ); ?></label>
 				<?php
 				echo Html::input( 'wpPassword', null, 'password', array(
-					'class' => 'mw-input loginPassword',
+					'class' => 'mw-ui-input loginPassword',
 					'id' => 'wpPassword2',
 					'tabindex' => '3',
 					'size' => '20',
@@ -129,7 +129,7 @@ class UsercreateTemplate extends BaseTemplate {
 			?>
 				<div class="mw-ui-vform-field" id="mw-user-domain-section">
 					<label for="wpDomain"><?php $this->msg( 'yourdomainname' ); ?></label>
-					<div class="mw-input">
+					<div class="mw-ui-input">
 						<?php echo $select->getHTML(); ?>
 					</div>
 				</div>
@@ -139,7 +139,7 @@ class UsercreateTemplate extends BaseTemplate {
 				<label for='wpRetype'><?php $this->msg( 'createacct-yourpasswordagain' ); ?></label>
 				<?php
 				echo Html::input( 'wpRetype', null, 'password', array(
-					'class' => 'mw-input loginPassword',
+					'class' => 'mw-ui-input loginPassword',
 					'id' => 'wpRetype',
 					'tabindex' => '5',
 					'size' => '20',
@@ -161,7 +161,7 @@ class UsercreateTemplate extends BaseTemplate {
 					</label>
 					<?php
 						echo Html::input( 'wpEmail', $this->data['email'], 'email', array(
-							'class' => 'mw-input loginText',
+							'class' => 'mw-ui-input loginText',
 							'id' => 'wpEmail',
 							'tabindex' => '6',
 							'size' => '20',
@@ -176,7 +176,7 @@ class UsercreateTemplate extends BaseTemplate {
 			<?php if ( $this->data['userealname'] ) { ?>
 				<div class="mw-ui-vform-field">
 					<label for='wpRealName'><?php $this->msg( 'createacct-realname' ); ?></label>
-					<input type='text' class='mw-input loginText' name="wpRealName" id="wpRealName"
+					<input type='text' class='mw-ui-input loginText' name="wpRealName" id="wpRealName"
 						tabindex="7"
 						value="<?php $this->text( 'realname' ); ?>" size='20' />
 					<div class="prefsectiontip">
@@ -189,7 +189,7 @@ class UsercreateTemplate extends BaseTemplate {
 				<div class="mw-ui-vform-field">
 					<label for='wpReason'><?php $this->msg( 'createacct-reason' ); ?></label>
 					<?php echo Html::input( 'wpReason', $this->data['reason'], 'text', array(
-						'class' => 'mw-input loginText',
+						'class' => 'mw-ui-input loginText',
 						'id' => 'wpReason',
 						'tabindex' => '8',
 						'size' => '20',
@@ -231,7 +231,7 @@ class UsercreateTemplate extends BaseTemplate {
 							<?php } ?>
 							<input
 								type="<?php echo htmlspecialchars( $inputItem['type'] ); ?>"
-								class="mw-input"
+								class="mw-ui-input"
 								name="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"
 								tabindex="<?php echo $tabIndex++; ?>"
 								value="<?php echo htmlspecialchars( $inputItem['value'] ); ?>"
