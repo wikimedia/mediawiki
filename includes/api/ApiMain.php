@@ -861,7 +861,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Check POST for external response and setup result printer
 	 * @param ApiBase $module An Api module
-	 * @param array $params an array with the request parameters
+	 * @param array $params An array with the request parameters
 	 */
 	protected function setupExternalResponse( $module, $params ) {
 		if ( !$this->getRequest()->wasPosted() && $module->mustBePosted() ) {

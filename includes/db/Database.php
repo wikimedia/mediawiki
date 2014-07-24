@@ -1900,7 +1900,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *   DatabaseBase::tableName().
 	 * @param array $a Array of rows to insert
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @param array $options of options
+	 * @param array $options Array of options
 	 *
 	 * @return bool
 	 */
@@ -2095,11 +2095,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * Build a partial where clause from a 2-d array such as used for LinkBatch.
 	 * The keys on each level may be either integers or strings.
 	 *
-	 * @param array $data organized as 2-d
+	 * @param array $data Organized as 2-d
 	 *    array(baseKeyVal => array(subKeyVal => [ignored], ...), ...)
 	 * @param string $baseKey Field name to match the base-level keys to (eg 'pl_namespace')
 	 * @param string $subKey Field name to match the sub-level keys to (eg 'pl_title')
-	 * @return string|bool string SQL fragment, or false if no items in array.
+	 * @return string|bool SQL fragment, or false if no items in array
 	 */
 	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
 		$conds = array();
@@ -2385,7 +2385,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Gets an array of aliased table names
 	 *
-	 * @param array $tables array( [alias] => table )
+	 * @param array $tables Array( [alias] => table )
 	 * @return string[] See tableNameWithAlias()
 	 */
 	public function tableNamesWithAlias( $tables ) {
@@ -2419,7 +2419,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Gets an array of aliased field names
 	 *
-	 * @param array $fields array( [alias] => field )
+	 * @param array $fields Array( [alias] => field )
 	 * @return string[] See fieldNameWithAlias()
 	 */
 	public function fieldNamesWithAlias( $fields ) {
@@ -2920,9 +2920,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * DELETE query wrapper.
 	 *
 	 * @param array $table Table name
-	 * @param string|array $conds of conditions. See $conds in DatabaseBase::select()
+	 * @param string|array $conds Array of conditions. See $conds in DatabaseBase::select()
 	 *   for the format. Use $conds == "*" to delete all rows
-	 * @param string $fname name of the calling function
+	 * @param string $fname Name of the calling function
 	 * @throws DBUnexpectedError
 	 * @return bool|ResultWrapper
 	 */
@@ -4152,7 +4152,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Encode an expiry time into the DBMS dependent format
 	 *
-	 * @param string $expiry timestamp for expiry, or the 'infinity' string
+	 * @param string $expiry Timestamp for expiry, or the 'infinity' string
 	 * @return string
 	 */
 	public function encodeExpiry( $expiry ) {

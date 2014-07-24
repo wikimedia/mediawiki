@@ -666,7 +666,7 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @return string wikitext of a link to the server software's web site
+	 * @return string Wikitext of a link to the server software's web site
 	 */
 	public function getSoftwareLink() {
 		return "[{{int:version-db-sqlite-url}} SQLite]";

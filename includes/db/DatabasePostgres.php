@@ -1235,7 +1235,7 @@ __INDEXATTR__;
 	 * @see getSearchPath()
 	 * @see setSearchPath()
 	 * @since 1.19
-	 * @return array list of actual schemas for the current sesson
+	 * @return array List of actual schemas for the current sesson
 	 */
 	function getSchemas() {
 		$res = $this->query( "SELECT current_schemas(false)", __METHOD__ );
@@ -1322,7 +1322,7 @@ __INDEXATTR__;
 	 * Return schema name fore core MediaWiki tables
 	 *
 	 * @since 1.19
-	 * @return string core schema name
+	 * @return string Core schema name
 	 */
 	function getCoreSchema() {
 		return $this->mCoreSchema;
@@ -1546,7 +1546,7 @@ SQL;
 	/**
 	 * Various select options
 	 *
-	 * @param array $options an associative array of options to be turned into
+	 * @param array $options An associative array of options to be turned into
 	 *   an SQL query, valid keys are listed in the function.
 	 * @return array
 	 */

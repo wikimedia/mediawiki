@@ -179,7 +179,7 @@ class RecentChange {
 	/**
 	 * Obtain the recent change with a given rc_id value
 	 *
-	 * @param int $rcid rc_id value to retrieve
+	 * @param int $rcid The rc_id value to retrieve
 	 * @return RecentChange
 	 */
 	public static function newFromId( $rcid ) {

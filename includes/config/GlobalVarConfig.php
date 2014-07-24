@@ -80,7 +80,7 @@ class GlobalVarConfig implements Config {
 	 *
 	 * @param string $prefix Prefix to use on the variable
 	 * @param string $name Variable name without prefix
-	 * @param mixed $value value to set
+	 * @param mixed $value Value to set
 	 */
 	protected function setWithPrefix( $prefix, $name, $value ) {
 		$GLOBALS[$prefix . $name] = $value;

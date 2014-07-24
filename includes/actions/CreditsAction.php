@@ -60,7 +60,7 @@ class CreditsAction extends FormlessAction {
 	 *
 	 * @param int $cnt Maximum list of contributors to show
 	 * @param bool $showIfMax Whether to contributors if there more than $cnt
-	 * @return string html
+	 * @return string Html
 	 */
 	public function getCredits( $cnt, $showIfMax = true ) {
 		wfProfileIn( __METHOD__ );
@@ -104,7 +104,7 @@ class CreditsAction extends FormlessAction {
 	 * Get a list of contributors of $article
 	 * @param int $cnt Maximum list of contributors to show
 	 * @param bool $showIfMax Whether to contributors if there more than $cnt
-	 * @return string html
+	 * @return string Html
 	 */
 	protected function getContributors( $cnt, $showIfMax ) {
 		global $wgHiddenPrefs;

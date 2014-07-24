@@ -263,7 +263,7 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	/**
-	 * @param string $cluster external storage cluster, or false for core
+	 * @param string $cluster External storage cluster, or false for core
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */

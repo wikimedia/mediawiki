@@ -107,7 +107,7 @@ interface IORMTable {
 	 * @param string|null $functionName
 	 *
 	 * @return ORMResult The result set
-	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode)
+	 * @throws DBQueryError If the query failed (even if the database was in ignoreErrors mode)
 	 */
 	public function select( $fields = null, array $conditions = array(),
 		array $options = array(), $functionName = null );
@@ -123,7 +123,7 @@ interface IORMTable {
 	 * @param array $options
 	 * @param string|null $functionName
 	 *
-	 * @return array of self
+	 * @return array Array of self
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
 		array $options = array(), $functionName = null );
@@ -139,7 +139,7 @@ interface IORMTable {
 	 * @param null|string $functionName
 	 *
 	 * @return ResultWrapper
-	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode)
+	 * @throws DBQueryError If the query failed (even if the database was in ignoreErrors mode)
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
 		array $options = array(), $functionName = null );
@@ -164,7 +164,7 @@ interface IORMTable {
 	 * @param bool $collapse Set to false to always return each result row as associative array.
 	 * @param string|null $functionName
 	 *
-	 * @return array of array
+	 * @return array Array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(),
 		array $options = array(), $collapse = true, $functionName = null );

@@ -251,7 +251,7 @@ class HistoryAction extends FormlessAction {
 	/**
 	 * Output a subscription feed listing recent edits to this page.
 	 *
-	 * @param string $type feed type
+	 * @param string $type Feed type
 	 */
 	function feed( $type ) {
 		global $wgFeedClasses, $wgFeedLimit;
@@ -303,7 +303,7 @@ class HistoryAction extends FormlessAction {
 	 * Borrows Recent Changes' feed generation functions for formatting;
 	 * includes a diff to the previous revision (if any).
 	 *
-	 * @param stdClass|array $row database row
+	 * @param stdClass|array $row Database row
 	 * @return FeedItem
 	 */
 	function feedItem( $row ) {

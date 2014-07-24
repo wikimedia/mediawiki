@@ -26,10 +26,10 @@ class ApiImageRotate extends ApiBase {
 
 	/**
 	 * Add all items from $values into the result
-	 * @param array $result output
-	 * @param array $values values to add
-	 * @param string $flag the name of the boolean flag to mark this element
-	 * @param string $name if given, name of the value
+	 * @param array $result Output
+	 * @param array $values Values to add
+	 * @param string $flag The name of the boolean flag to mark this element
+	 * @param string $name If given, name of the value
 	 */
 	private static function addValues( array &$result, $values, $flag = null, $name = null ) {
 		foreach ( $values as $val ) {

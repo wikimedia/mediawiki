@@ -47,7 +47,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($pageid, $title, $rc)
 	 * it should return a token or false (permission denied)
-	 * @return array array(tokenname => function)
+	 * @return array Array(tokenname => function)
 	 */
 	protected function getTokenFunctions() {
 		// Don't call the hooks twice
@@ -105,7 +105,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	/**
 	 * Sets internal state to include the desired properties in the output.
-	 * @param array $prop associative array of properties, only keys are used here
+	 * @param array $prop Associative array of properties, only keys are used here
 	 */
 	public function initProperties( $prop ) {
 		$this->fld_comment = isset( $prop['comment'] );

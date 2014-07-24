@@ -743,7 +743,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * UPDATE wrapper. Takes a condition array and a SET array.
 	 *
-	 * @param string $table name of the table to UPDATE. This will be passed through
+	 * @param string $table Name of the table to UPDATE. This will be passed through
 	 *                DatabaseBase::tableName().
 	 *
 	 * @param array $values An array of values to SET. For each array element,
@@ -787,7 +787,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Makes an encoded list of strings from an array
-	 * @param array $a containing the data
+	 * @param array $a Containing the data
 	 * @param int $mode Constant
 	 *      - LIST_COMMA:          comma separated, no field names
 	 *      - LIST_AND:            ANDed WHERE clause (without the WHERE). See
@@ -1177,7 +1177,7 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * @param array $options an associative array of options to be turned into
+	 * @param array $options An associative array of options to be turned into
 	 *   an SQL query, valid keys are listed in the function.
 	 * @return array
 	 */

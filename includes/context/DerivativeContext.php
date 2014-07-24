@@ -296,8 +296,7 @@ class DerivativeContext extends ContextSource {
 	 * it would set only the original context, and not take
 	 * into account any changes.
 	 *
-	 * @param String Message name
-	 * @param Variable number of message arguments
+	 * @param mixed $args,... Arguments to wfMessage
 	 * @return Message
 	 */
 	public function msg() {

@@ -806,8 +806,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * Check to see if a named lock is available. This is non-blocking.
 	 *
-	 * @param string $lockName name of lock to poll
-	 * @param string $method name of method calling us
+	 * @param string $lockName Name of lock to poll
+	 * @param string $method Name of method calling us
 	 * @return bool
 	 * @since 1.20
 	 */
@@ -901,7 +901,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * @param bool $value
-	 * @return mixed null|bool|ResultWrapper
+	 * @return null|bool|ResultWrapper
 	 */
 	public function setBigSelects( $value = true ) {
 		if ( $value === 'default' ) {
@@ -1241,7 +1241,7 @@ class MySQLMasterPos implements DBMasterPos {
 	/** @var string */
 	public $file;
 
-	/** @var int timestamp */
+	/** @var int Timestamp */
 	public $pos;
 
 	function __construct( $file, $pos ) {

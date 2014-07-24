@@ -180,7 +180,7 @@ class ApiQuery extends ApiBase {
 	/**
 	 * Get the array mapping module names to class names
 	 * @deprecated since 1.21, use getModuleManager()'s methods instead
-	 * @return array array(modulename => classname)
+	 * @return array Array(modulename => classname)
 	 */
 	public function getModules() {
 		wfDeprecated( __METHOD__, '1.21' );
@@ -191,7 +191,7 @@ class ApiQuery extends ApiBase {
 	/**
 	 * Get the generators array mapping module names to class names
 	 * @deprecated since 1.21, list of generators is maintained by ApiPageSet
-	 * @return array array(modulename => classname)
+	 * @return array Array(modulename => classname)
 	 */
 	public function getGenerators() {
 		wfDeprecated( __METHOD__, '1.21' );
