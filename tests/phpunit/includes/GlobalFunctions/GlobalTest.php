@@ -218,6 +218,33 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertEquals( $cgi, wfArrayToCgi( wfCgiToArray( $cgi ) ) );
 	}
 
+	public static function provideAppendQuery() {
+		return array(
+			// Empty query
+			array( 'http://foo.bar.org/index.php', '', 'http://foo.bar.org/index.php' ),
+			// Array query
+			array(
+				'http://foo.bar.org/index.php',
+				array( 'foo' => 'bar' ),
+				'http://foo.bar.org/index.php?foo=bar'
+			),
+			// Query string already present
+			array(
+				'http://foo.bar.org/index.php?foz=baz',
+				'foo=bar',
+				'http://foo.bar.org/index.php?foz=baz&foo=bar'
+			)
+		);
+	}
+
+	/**
+	 * @dataProvider provideAppendQuery
+	 * @covers ::wfAppendQuery
+	 */
+	public function testAppendQuery( $url, $query, $oracle ) {
+		$this->assertEquals( wfAppendQuery( $url, $query ), $oracle );
+	}
+
 	/**
 	 * @covers ::mimeTypeMatch
 	 */
