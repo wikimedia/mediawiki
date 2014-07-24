@@ -64,7 +64,7 @@ class Status {
 	/**
 	 * Factory function for fatal errors
 	 *
-	 * @param string|Message $message message name or object
+	 * @param string|Message $message Message name or object
 	 * @return Status
 	 */
 	static function newFatal( $message /*, parameters...*/ ) {

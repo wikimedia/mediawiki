@@ -170,7 +170,7 @@ class SiteStats {
 
 	/**
 	 * Find the number of users in a given user group.
-	 * @param string $group name of group
+	 * @param string $group Name of group
 	 * @return int
 	 */
 	static function numberingroup( $group ) {
@@ -373,7 +373,7 @@ class SiteStatsInit {
 	 * @param DatabaseBase|bool $database
 	 * - Boolean: whether to use the master DB
 	 * - DatabaseBase: database connection to use
-	 * @param array $options of options, may contain the following values
+	 * @param array $options Array of options, may contain the following values
 	 * - views Boolean: when true, do not update the number of page views (default: true)
 	 * - activeUsers Boolean: whether to update the number of active users (default: false)
 	 */

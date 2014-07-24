@@ -162,7 +162,7 @@ class IcuCollation extends Collation {
 	/** @var Collator */
 	private $mainCollator;
 
-	/** @var  */
+	/** @var string */
 	private $locale;
 
 	/** @var Language */

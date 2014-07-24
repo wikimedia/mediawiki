@@ -272,7 +272,7 @@ class Linker {
 	 * Returns the Url used to link to a Title
 	 *
 	 * @param Title $target
-	 * @param array $query query parameters
+	 * @param array $query Query parameters
 	 * @param array $options
 	 * @return string
 	 */

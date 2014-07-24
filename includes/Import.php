@@ -395,8 +395,8 @@ class WikiImporter {
 
 	/**
 	 * Retrieves the contents of the named attribute of the current element.
-	 * @param string $attr the name of the attribute
-	 * @return string the value of the attribute or an empty string if it is not set in the current element.
+	 * @param string $attr The name of the attribute
+	 * @return string The value of the attribute or an empty string if it is not set in the current element.
 	 */
 	public function nodeAttribute( $attr ) {
 		return $this->reader->getAttribute( $attr );

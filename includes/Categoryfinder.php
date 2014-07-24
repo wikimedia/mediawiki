@@ -61,7 +61,7 @@ class Categoryfinder {
 	/** @var array */
 	protected $name2id = array();
 
-	/** @var  "AND" or "OR" */
+	/** @var string "AND" or "OR" */
 	protected $mode;
 
 	/** @var DatabaseBase Read-DB slave */
@@ -96,7 +96,7 @@ class Categoryfinder {
 	/**
 	 * Iterates through the parent tree starting with the seed values,
 	 * then checks the articles if they match the conditions
-	 * @return array of page_ids (those given to seed() that match the conditions)
+	 * @return array Array of page_ids (those given to seed() that match the conditions)
 	 */
 	function run() {
 		$this->dbr = wfGetDB( DB_SLAVE );

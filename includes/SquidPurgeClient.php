@@ -343,7 +343,6 @@ class SquidPurgeClient {
 
 	/**
 	 * @param string $line
-	 * @return
 	 */
 	protected function processStatusLine( $line ) {
 		if ( !preg_match( '!^HTTP/(\d+)\.(\d+) (\d{3}) (.*)$!', $line, $m ) ) {
@@ -397,7 +396,7 @@ class SquidPurgeClient {
 }
 
 class SquidPurgeClientPool {
-	/** @var array of SquidPurgeClient */
+	/** @var array Array of SquidPurgeClient */
 	protected $clients = array();
 
 	/** @var int */

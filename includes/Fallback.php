@@ -152,8 +152,8 @@ class Fallback {
 	 * Fallback implementation of mb_strrpos, hardcoded to UTF-8.
 	 * @param string $haystack
 	 * @param string $needle
-	 * @param string $offset optional start position
-	 * @param string $encoding optional encoding; ignored
+	 * @param string $offset Optional start position
+	 * @param string $encoding Optional encoding; ignored
 	 * @return int
 	 */
 	public static function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {

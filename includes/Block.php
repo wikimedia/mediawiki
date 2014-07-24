@@ -1110,7 +1110,7 @@ class Block {
 	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
 	 *	  local-squid, ...)
 	 * @param array $block Array of blocks
-	 * @return Block|null the "best" block from the list
+	 * @return Block|null The "best" block from the list
 	 */
 	public static function chooseBlock( array $blocks, array $ipChain ) {
 		if ( !count( $blocks ) ) {

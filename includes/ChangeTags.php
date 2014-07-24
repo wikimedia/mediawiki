@@ -63,7 +63,7 @@ class ChangeTags {
 	/**
 	 * Get a short description for a tag
 	 *
-	 * @param string $tag tag
+	 * @param string $tag Tag
 	 *
 	 * @return string Short description of the tag from "mediawiki:tag-$tag" if this message exists,
 	 *   html-escaped version of $tag otherwise
@@ -77,15 +77,15 @@ class ChangeTags {
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
 	 * @param string|array $tags Tags to add to the change
-	 * @param int|null $rc_id rc_id of the change to add the tags to
-	 * @param int|null $rev_id rev_id of the change to add the tags to
-	 * @param int|null $log_id Log_id of the change to add the tags to
-	 * @param string $params params to put in the ct_params field of table 'change_tag'
+	 * @param int|null $rc_id The rc_id of the change to add the tags to
+	 * @param int|null $rev_id The rev_id of the change to add the tags to
+	 * @param int|null $log_id The log_id of the change to add the tags to
+	 * @param string $params Params to put in the ct_params field of table 'change_tag'
 	 *
 	 * @throws MWException
-	 * @return bool false if no changes are made, otherwise true
+	 * @return bool False if no changes are made, otherwise true
 	 *
-	 * @exception MWException when $rc_id, $rev_id and $log_id are all null
+	 * @exception MWException When $rc_id, $rev_id and $log_id are all null
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
 		$log_id = null, $params = null
@@ -236,7 +236,7 @@ class ChangeTags {
 	/**
 	 * Build a text box to select a change tag
 	 *
-	 * @param string $selected tag to select by default
+	 * @param string $selected Tag to select by default
 	 * @param bool $fullForm
 	 *        - if false, then it returns an array of (label, form).
 	 *        - if true, it returns an entire form around the selector.

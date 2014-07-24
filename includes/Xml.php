@@ -233,7 +233,7 @@ class Xml {
 	 * @param string $inLanguage The ISO code of the language to display the select list in (optional)
 	 * @param array $overrideAttrs Override the attributes of the select tag (since 1.20)
 	 * @param Message|null $msg Label message key (since 1.20)
-	 * @return array containing 2 items: label HTML and select list HTML
+	 * @return array Array containing 2 items: label HTML and select list HTML
 	 */
 	public static function languageSelector( $selected, $customisedOnly = true,
 		$inLanguage = null, $overrideAttrs = array(), Message $msg = null

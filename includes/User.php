@@ -357,7 +357,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Load user table data, given mId has already been set.
-	 * @return bool false if the ID does not exist, true otherwise
+	 * @return bool False if the ID does not exist, true otherwise
 	 */
 	public function loadFromId() {
 		global $wgMemc;
@@ -753,7 +753,7 @@ class User implements IDBAccessObject {
 	 * Given unvalidated password input, return error message on failure.
 	 *
 	 * @param string $password Desired password
-	 * @return bool|string|array true on success, string or array of error message on failure
+	 * @return bool|string|array True on success, string or array of error message on failure
 	 */
 	public function getPasswordValidity( $password ) {
 		$result = $this->checkPasswordValidity( $password );
@@ -1139,7 +1139,7 @@ class User implements IDBAccessObject {
 	 * Load user and user_group data from the database.
 	 * $this->mId must be set, this is how the user is identified.
 	 *
-	 * @param integer $flags Supports User::READ_LOCKING
+	 * @param int $flags Supports User::READ_LOCKING
 	 * @return bool True if the user exists, false if the user is anonymous
 	 */
 	public function loadFromDatabase( $flags = 0 ) {
@@ -2034,7 +2034,7 @@ class User implements IDBAccessObject {
 	 * @see getNewtalk()
 	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
 	 * @param string|int $id User's IP address for anonymous users, User ID otherwise
-	 * @param bool $fromMaster true to fetch from the master, false for a slave
+	 * @param bool $fromMaster True to fetch from the master, false for a slave
 	 * @return bool True if the user has new messages
 	 */
 	protected function checkNewtalk( $field, $id, $fromMaster = false ) {
@@ -2224,7 +2224,7 @@ class User implements IDBAccessObject {
 	 * a new password is set, for instance via e-mail.
 	 *
 	 * @param string $str New password to set
-	 * @throws PasswordError on failure
+	 * @throws PasswordError On failure
 	 *
 	 * @return bool
 	 */
@@ -2624,7 +2624,7 @@ class User implements IDBAccessObject {
 	 * @param IContextSource $context
 	 * @param array $options Assoc. array with options keys to check as keys.
 	 *   Defaults to $this->mOptions.
-	 * @return array the key => kind mapping data
+	 * @return array The key => kind mapping data
 	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
 		$this->loadOptions();
@@ -2908,7 +2908,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the user's edit count.
-	 * @return int|null null for anonymous users
+	 * @return int|null Null for anonymous users
 	 */
 	public function getEditCount() {
 		if ( !$this->getId() ) {
@@ -3717,8 +3717,8 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Check to see if the given clear-text password is one of the accepted passwords
-	 * @param string $password user password.
-	 * @return bool True if the given password is correct, otherwise False.
+	 * @param string $password User password
+	 * @return bool True if the given password is correct, otherwise False
 	 */
 	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
@@ -3779,7 +3779,7 @@ class User implements IDBAccessObject {
 	 * Alias for getEditToken.
 	 * @deprecated since 1.19, use getEditToken instead.
 	 *
-	 * @param string|array $salt of Strings Optional function-specific data for hashing
+	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
 	 * @return string The new edit token
 	 */
@@ -3796,7 +3796,7 @@ class User implements IDBAccessObject {
 	 *
 	 * @since 1.19
 	 *
-	 * @param string|array $salt of Strings Optional function-specific data for hashing
+	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
 	 * @return string The new edit token
 	 */
@@ -3857,7 +3857,7 @@ class User implements IDBAccessObject {
 	 *
 	 * @param string $val Input value to compare
 	 * @param string $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request object to use or null to use $wgRequest
+	 * @param WebRequest|null $request Object to use or null to use $wgRequest
 	 * @return bool Whether the token matches
 	 */
 	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null ) {
@@ -4363,7 +4363,7 @@ class User implements IDBAccessObject {
 	 * Returns an array of the groups that a particular group can add/remove.
 	 *
 	 * @param string $group The group to check for whether it can add/remove
-	 * @return array array( 'add' => array( addablegroups ),
+	 * @return array Array( 'add' => array( addablegroups ),
 	 *     'remove' => array( removablegroups ),
 	 *     'add-self' => array( addablegroups to self),
 	 *     'remove-self' => array( removable groups from self) )
@@ -4433,7 +4433,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Returns an array of groups that this user can add and remove
-	 * @return array array( 'add' => array( addablegroups ),
+	 * @return array Array( 'add' => array( addablegroups ),
 	 *  'remove' => array( removablegroups ),
 	 *  'add-self' => array( addablegroups to self),
 	 *  'remove-self' => array( removable groups from self) )

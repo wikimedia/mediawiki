@@ -715,7 +715,7 @@ class Sanitizer {
 	 * - Invalid id attributes are re-encoded
 	 *
 	 * @param array $attribs
-	 * @param array $whitelist list of allowed attribute names
+	 * @param array $whitelist List of allowed attribute names
 	 * @return array
 	 *
 	 * @todo Check for legal values where the DTD limits things.
@@ -1081,7 +1081,7 @@ class Sanitizer {
 	 * @see http://www.whatwg.org/html/elements.html#the-id-attribute
 	 *   HTML5 definition of id attribute
 	 *
-	 * @param string $id id to escape
+	 * @param string $id Id to escape
 	 * @param string|array $options String or array of strings (default is array()):
 	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
 	 *       so don't pay attention if the first character isn't valid at the
@@ -1228,7 +1228,7 @@ class Sanitizer {
 	 * attribs regex matches.
 	 *
 	 * @param array $set
-	 * @throws MWException when tag conditions are not met.
+	 * @throws MWException When tag conditions are not met.
 	 * @return string
 	 */
 	private static function getTagAttributeCallback( $set ) {

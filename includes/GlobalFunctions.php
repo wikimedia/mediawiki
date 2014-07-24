@@ -216,7 +216,7 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  * @deprecated since 1.22; use array_replace()
  *
  * @param array $array1 Initial array to merge.
- * @param array [$array2,...] Variable list of arrays to merge.
+ * @param array $array2,... Variable list of arrays to merge.
  * @return array
  */
 function wfArrayMerge( $array1 /*...*/ ) {
@@ -246,7 +246,7 @@ function wfArrayMerge( $array1 /*...*/ ) {
  *   		array( 'y' )
  *   	)
  *
- * @param array [$array1,...]
+ * @param array $array1,...
  * @return array
  */
 function wfMergeErrorArrays( /*...*/ ) {
@@ -1179,7 +1179,7 @@ function wfDeprecated( $function, $version = false, $component = false, $callerO
  * Send a warning either to the debug log or in a PHP error depending on
  * $wgDevelopmentWarnings. To log warnings in production, use wfLogWarning() instead.
  *
- * @param string $msg message to send
+ * @param string $msg Message to send
  * @param int $callerOffset Number of items to go back in the backtrace to
  *        find the correct caller (1 = function calling wfWarn, ...)
  * @param int $level PHP error level; defaults to E_USER_NOTICE;
@@ -1438,7 +1438,7 @@ function wfGetLangObj( $langcode = false ) {
  * This function replaces all old wfMsg* functions.
  *
  * @param string $key Message key
- * @param mixed [$params,...] Normal message parameters
+ * @param mixed $params,... Normal message parameters
  * @return Message
  *
  * @since 1.17
@@ -1459,7 +1459,7 @@ function wfMessage( $key /*...*/ ) {
  * for the first message which is non-empty. If all messages are empty then an
  * instance of the first message key is returned.
  *
- * @param string|string[] [$keys,...] Message keys
+ * @param string|string[] $keys,... Message keys
  * @return Message
  *
  * @since 1.18
@@ -1479,7 +1479,7 @@ function wfMessageFallback( /*...*/ ) {
  *
  * @deprecated since 1.18
  *
- * @param string $key lookup key for the message, usually
+ * @param string $key Lookup key for the message, usually
  *    defined in languages/Language.php
  *
  * Parameters to the message, which can be used to insert variable text into
@@ -1664,7 +1664,7 @@ function wfMsgReplaceArgs( $message, $args ) {
  * @deprecated since 1.18
  *
  * @param string $key
- * @param string [$args,...] Parameters
+ * @param string $args,... Parameters
  * @return string
  */
 function wfMsgHtml( $key ) {
@@ -1685,7 +1685,7 @@ function wfMsgHtml( $key ) {
  * @deprecated since 1.18
  *
  * @param string $key
- * @param string [$args,...] Parameters
+ * @param string $args,... Parameters
  * @return string
  */
 function wfMsgWikiHtml( $key ) {
@@ -2276,7 +2276,7 @@ function wfClearOutputBuffers() {
  * factors
  *
  * @param string $accept
- * @param string $def default
+ * @param string $def Default
  * @return float[] Associative array of string => float pairs
  */
 function wfAcceptToPrefs( $accept, $def = '*/*' ) {
@@ -2701,7 +2701,7 @@ function wfIniGetBool( $setting ) {
  * Also fixes the locale problems on Linux in PHP 5.2.6+ (bug backported to
  * earlier distro releases of PHP)
  *
- * @param string [$args,...]
+ * @param string $args,...
  * @return string
  */
 function wfEscapeShellArg( /*...*/ ) {
@@ -2785,7 +2785,7 @@ function wfShellExecDisabled() {
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
  *
- * @param string|string[] $cmd if string, a properly shell-escaped command line,
+ * @param string|string[] $cmd If string, a properly shell-escaped command line,
  *   or an array of unescaped arguments, in which case each value will be escaped
  *   Example:   [ 'convert', '-font', 'font name' ] would produce "'convert' '-font' 'font name'"
  * @param null|mixed &$retval Optional, will receive the program's exit code.
@@ -3031,7 +3031,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
  * @param string $cmd Command line, properly escaped for shell.
  * @param null|mixed &$retval Optional, will receive the program's exit code.
  *   (non-zero is usually failure)
- * @param array $environ optional environment variables which should be
+ * @param array $environ Optional environment variables which should be
  *   added to the executed command environment.
  * @param array $limits Optional array with limits(filesize, memory, time, walltime)
  *   this overwrites the global wgMaxShell* limits.
@@ -3479,7 +3479,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 /**
  * Check if there is sufficient entropy in php's built-in session generation
  *
- * @return bool true = there is sufficient entropy
+ * @return bool True = there is sufficient entropy
  */
 function wfCheckEntropy() {
 	return (
@@ -3585,7 +3585,7 @@ function wfGetPrecompiledData( $name ) {
 /**
  * Get a cache key
  *
- * @param string [$args,...]
+ * @param string $args,...
  * @return string
  */
 function wfMemcKey( /*...*/ ) {
@@ -3602,7 +3602,7 @@ function wfMemcKey( /*...*/ ) {
  *
  * @param string $db
  * @param string $prefix
- * @param string [$args,...]
+ * @param string $args,...
  * @return string
  */
 function wfForeignMemcKey( $db, $prefix /*...*/ ) {
@@ -3674,7 +3674,7 @@ function &wfGetDB( $db, $groups = array(), $wiki = false ) {
 /**
  * Get a load balancer object.
  *
- * @param string|bool $wiki wiki ID, or false for the current wiki
+ * @param string|bool $wiki Wiki ID, or false for the current wiki
  * @return LoadBalancer
  */
 function wfGetLB( $wiki = false ) {
@@ -3694,7 +3694,7 @@ function &wfGetLBFactory() {
  * Find a file.
  * Shortcut for RepoGroup::singleton()->findFile()
  *
- * @param string $title or Title object
+ * @param string $title String or Title object
  * @param array $options Associative array of options:
  *     time:           requested time for an archived image, or false for the
  *                     current version. An image object will be returned which was
@@ -3761,7 +3761,7 @@ function wfScript( $script = 'index' ) {
 /**
  * Get the script URL.
  *
- * @return string script URL
+ * @return string Script URL
  */
 function wfGetScriptUrl() {
 	if ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
@@ -4042,7 +4042,7 @@ function wfRunHooks( $event, array $args = array(), $deprecatedVersion = null ) 
  * Also be careful when using this function to read unsigned 32 bit integer
  * because php might make it negative.
  *
- * @throws MWException if $data not long enough, or if unpack fails
+ * @throws MWException If $data not long enough, or if unpack fails
  * @return array Associative array of the extracted data
  */
 function wfUnpack( $format, $data, $length = false ) {
