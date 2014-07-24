@@ -1050,30 +1050,6 @@ class UploadSourceAdapter {
 	}
 }
 
-class XMLReader2 extends XMLReader {
-
-	/**
-	 * @return bool|string
-	 */
-	function nodeContents() {
-		if ( $this->isEmptyElement ) {
-			return "";
-		}
-		$buffer = "";
-		while ( $this->read() ) {
-			switch ( $this->nodeType ) {
-			case XmlReader::TEXT:
-			case XmlReader::SIGNIFICANT_WHITESPACE:
-				$buffer .= $this->value;
-				break;
-			case XmlReader::END_ELEMENT:
-				return $buffer;
-			}
-		}
-		return $this->close();
-	}
-}
-
 /**
  * @todo document (e.g. one-sentence class description).
  * @ingroup SpecialPage
