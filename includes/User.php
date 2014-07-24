@@ -369,7 +369,7 @@ class User implements IDBAccessObject {
 		// Try cache
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 		$data = $wgMemc->get( $key );
-		if ( !is_array( $data ) || $data['mVersion'] < MW_USER_VERSION ) {
+		if ( !is_array( $data ) || $data['mVersion'] != MW_USER_VERSION ) {
 			// Object is expired, load from DB
 			$data = false;
 		}
