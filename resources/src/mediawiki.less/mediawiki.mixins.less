@@ -46,6 +46,7 @@
 
 .background-image-svg(@svg, @fallback) when not (embeddable(@svg)) {
 	background-image: url(@fallback);
+	background-image: -o-linear-gradient(transparent, transparent), url(@svg);
 	background-image: -webkit-linear-gradient(transparent, transparent), url(@svg);
 	background-image: linear-gradient(transparent, transparent), url(@svg);
 }
