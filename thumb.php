@@ -521,7 +521,8 @@ function wfExtractThumbRequestInfo( $thumbRel ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
 
 	$hashDirReg = $subdirReg = '';
-	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
+	$hashLevels = $repo->getHashLevels();
+	for ( $i = 0; $i < $hashLevels; $i++ ) {
 		$subdirReg .= '[0-9a-f]';
 		$hashDirReg .= "$subdirReg/";
 	}
