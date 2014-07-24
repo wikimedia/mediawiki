@@ -11,9 +11,9 @@ class MimeMagicTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider providerImproveTypeFromExtension
-	 * @param $ext String File extension (no leading dot)
-	 * @param $oldMime String Initially detected MIME
-	 * @param $expectedMime String MIME type after taking extension into account
+	 * @param string $ext File extension (no leading dot)
+	 * @param string $oldMime Initially detected MIME
+	 * @param string $expectedMime MIME type after taking extension into account
 	 */
 	function testImproveTypeFromExtension( $ext, $oldMime, $expectedMime ) {
 		$actualMime = $this->mimeMagic->improveTypeFromExtension( $oldMime, $ext );

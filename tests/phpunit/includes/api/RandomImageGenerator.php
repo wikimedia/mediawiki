@@ -365,8 +365,8 @@ class RandomImageGenerator {
 	/**
 	 * Given a matrix and a pair of images, return new position
 	 * @param array $matrix 2x2 rotation matrix
-	 * @param int $x x-coordinate number
-	 * @param int $y y-coordinate number
+	 * @param int $x The x-coordinate number
+	 * @param int $y The y-coordinate number
 	 * @return array Transformed with properties x, y
 	 */
 	private static function matrixMultiply2x2( $matrix, $x, $y ) {
@@ -451,7 +451,7 @@ class RandomImageGenerator {
 	 *
 	 * Will throw exception if the file could not be read or if it had fewer lines than requested.
 	 *
-	 * @param int $number_desired number of lines desired
+	 * @param int $number_desired Number of lines desired
 	 *
 	 * @throws Exception
 	 * @return array Array of exactly n elements, drawn randomly from lines the file

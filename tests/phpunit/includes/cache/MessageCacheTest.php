@@ -59,7 +59,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 * Helper function for addDBData -- adds a simple page to the database
 	 *
 	 * @param string $title Title of page to be created
-	 * @param string $lang  Language and content of the created page
+	 * @param string $lang Language and content of the created page
 	 * @param string|null $content Content of the created page, or null for a generic string
 	 * @param bool $createSubPage Set to false if a root page should be created
 	 */

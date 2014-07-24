@@ -69,8 +69,8 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	 * Utility function: Get a new file object for a file on disk but not actually in db.
 	 *
 	 * File must be in the path returned by getFilePath()
-	 * @param $name String File name
-	 * @param $type String MIME type [optional]
+	 * @param string $name File name
+	 * @param string $type MIME type [optional]
 	 * @return UnregisteredLocalFile
 	 */
 	protected function dataFile( $name, $type = null ) {
