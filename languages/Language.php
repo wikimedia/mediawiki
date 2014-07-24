@@ -2351,7 +2351,7 @@ class Language {
 	 * Get the formatted date and time for the given timestamp and formatted for
 	 * the given user.
 	 *
-	 * @param mixed $ts the time format which needs to be turned into a
+	 * @param mixed $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param User $user User object used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
@@ -3786,8 +3786,8 @@ class Language {
 	 *
 	 * @since 1.23
 	 *
-	 * @param int $count non-localized number
-	 * @param array $forms different plural forms
+	 * @param int $count Non-localized number
+	 * @param array $forms Different plural forms
 	 *
 	 * @return array|string
 	 */
@@ -4024,12 +4024,12 @@ class Language {
 	 * possible that non-existing link in one variant
 	 * actually exists in another variant. this function
 	 * tries to find it. See e.g. LanguageZh.php
+	 * The input parameters may be modified upon return
 	 *
-	 * @param string $link The name of the link
-	 * @param Title $nt The title object of the link
+	 * @param string &$link The name of the link
+	 * @param Title &$nt The title object of the link
 	 * @param bool $ignoreOtherCond To disable other conditions when
 	 *   we need to transclude a template or update a category's link
-	 * @return null the input parameters may be modified upon return
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		$this->mConverter->findVariantLink( $link, $nt, $ignoreOtherCond );
