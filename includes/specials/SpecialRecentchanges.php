@@ -344,6 +344,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				$this->msg( 'recentchanges-noresult' )->parse() .
 				'</div>'
 			);
+			if ( !$this->including() ) {
+				$this->getOutput()->setStatusCode( 404 );
+			}
 		} else {
 			$this->getOutput()->addHTML( $rclistOutput );
 		}

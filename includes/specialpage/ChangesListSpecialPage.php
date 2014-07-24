@@ -54,6 +54,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		if ( $rows === false ) {
 			if ( !$this->including() ) {
 				$this->doHeader( $opts );
+				$this->getOutput()->setStatusCode( 404 );
 			}
 
 			return;
