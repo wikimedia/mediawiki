@@ -133,6 +133,7 @@ production.
   no longer be displayed in the sidebar when $wgInterwikiMagic is true.
 * New special page, MyLanguages, to redirect users to subpages with localised
   versions of a page. (Integrated from Extension:Translate)
+* Upgrade jQuery Validate to 1.9.0. It also adds jquery.validate.additional-methods.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
