@@ -73,7 +73,7 @@ class JobQueueRedis extends JobQueue {
 	protected $key;
 
 	/**
-	 * @params include:
+	 * @param array $params Possible keys:
 	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
 	 *                   Note that the serializer option is ignored as "none" is always used.
 	 *   - redisServer : A hostname/port combination or the absolute path of a UNIX socket.
@@ -83,7 +83,6 @@ class JobQueueRedis extends JobQueue {
 	 *   - daemonized  : Set to true if the redisJobRunnerService runs in the background.
 	 *                   This will disable job recycling/undelaying from the MediaWiki side
 	 *                   to avoid redundance and out-of-sync configuration.
-	 * @param array $params
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( $params );

@@ -64,7 +64,7 @@ class JobQueueFederated extends JobQueue {
 	const CACHE_TTL_LONG = 300; // integer; seconds to cache info that is kept up to date
 
 	/**
-	 * @params include:
+	 * @param array $params Possible keys:
 	 *  - sectionsByWiki      : A map of wiki IDs to section names.
 	 *                          Wikis will default to using the section "default".
 	 *  - partitionsBySection : Map of section names to maps of (partition name => weight).
@@ -80,7 +80,6 @@ class JobQueueFederated extends JobQueue {
 	 *                          different partition queues. This improves availability
 	 *                          during failure, at the cost of added latency and somewhat
 	 *                          less reliable job de-duplication mechanisms.
-	 * @param array $params
 	 * @throws MWException
 	 */
 	protected function __construct( array $params ) {
