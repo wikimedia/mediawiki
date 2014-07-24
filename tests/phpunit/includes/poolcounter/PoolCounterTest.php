@@ -1,7 +1,8 @@
 <?php
 
-// We will use this class with getMockForAbstractClass to create a concrete mock class. That call will die if the
-// contructor is not public, unless we use disableOriginalConstructor(), in which case we could not test the constructor.
+// We will use this class with getMockForAbstractClass to create a concrete mock class.
+// That call will die if the contructor is not public, unless we use disableOriginalConstructor(),
+// in which case we could not test the constructor.
 abstract class PoolCounterAbstractMock extends PoolCounter {
 	public function __construct() {
 		call_user_func_array( 'parent::__construct', func_get_args() );
@@ -19,8 +20,8 @@ class PoolCounterTest extends MediaWikiTestCase {
 
 		$poolCounter = $this->getMockBuilder( 'PoolCounterAbstractMock' )
 			->setConstructorArgs( array( $poolCounterConfig, 'testCounter', 'someKey' ) )
-			// don't mock anything - the proper syntax would be setMethods(null), but due to a PHPUnit bug that
-			// does not work with getMockForAbstractClass()
+			// don't mock anything - the proper syntax would be setMethods(null), but due
+			// to a PHPUnit bug that does not work with getMockForAbstractClass()
 			->setMethods( array( 'idontexist' ) )
 			->getMockForAbstractClass();
 		$this->assertInstanceOf( 'PoolCounter', $poolCounter );
@@ -44,8 +45,8 @@ class PoolCounterTest extends MediaWikiTestCase {
 
 	public function testHashKeyIntoSlots() {
 		$poolCounter = $this->getMockBuilder( 'PoolCounterAbstractMock' )
-			// don't mock anything - the proper syntax would be setMethods(null), but due to a PHPUnit bug that
-			// does not work with getMockForAbstractClass()
+			// don't mock anything - the proper syntax would be setMethods(null), but due
+			// to a PHPUnit bug that does not work with getMockForAbstractClass()
 			->setMethods( array( 'idontexist' ) )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();

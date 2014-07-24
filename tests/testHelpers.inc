@@ -352,7 +352,11 @@ class DbTestRecorder extends DbTestPreviewer {
 class TestFileIterator implements Iterator {
 	private $file;
 	private $fh;
-	private $parserTest; /* An instance of ParserTest (parserTests.php) or MediaWikiParserTest (phpunit) */
+	/**
+	 * @var ParserTest|MediaWikiParserTest An instance of ParserTest (parserTests.php)
+	 *  or MediaWikiParserTest (phpunit)
+	 */
+	private $parserTest;
 	private $index = 0;
 	private $test;
 	private $section = null;
@@ -426,7 +430,9 @@ class TestFileIterator implements Iterator {
 					$this->checkSection( 'text' );
 					$this->checkSection( 'article' );
 
-					$this->parserTest->addArticle( ParserTest::chomp( $this->sectionData['article'] ), $this->sectionData['text'], $this->lineNum );
+					$this->parserTest->addArticle(
+						ParserTest::chomp( $this->sectionData['article'] ),
+						$this->sectionData['text'], $this->lineNum );
 
 					$this->clearSection();
 
@@ -497,8 +503,10 @@ class TestFileIterator implements Iterator {
 					}
 
 					if ( $input == false || $result == false ||
-						( ( preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runDisabled )
-						|| ( preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) && $result != 'html/php' && !$this->parserTest->runParsoid )
+						( ( preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] )
+							&& !$this->parserTest->runDisabled )
+						|| ( preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] )
+							&& $result != 'html/php' && !$this->parserTest->runParsoid )
 						|| !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] ) )
 					) {
 						# disabled test
@@ -530,7 +538,8 @@ class TestFileIterator implements Iterator {
 				}
 
 				if ( isset( $this->sectionData[$this->section] ) ) {
-					throw new MWException( "duplicate section '$this->section' at line {$this->lineNum} of $this->file\n" );
+					throw new MWException( "duplicate section '$this->section' "
+						. "at line {$this->lineNum} of $this->file\n" );
 				}
 
 				$this->sectionData[$this->section] = '';
@@ -640,7 +649,8 @@ class DelayedParserTest {
 	 */
 	public function unleash( &$parserTest ) {
 		if ( !( $parserTest instanceof ParserTest || $parserTest instanceof NewParserTest )	) {
-			throw new MWException( __METHOD__ . " must be passed an instance of ParserTest or NewParserTest classes\n" );
+			throw new MWException( __METHOD__ . " must be passed an instance of ParserTest or "
+				. "NewParserTest classes\n" );
 		}
 
 		# Trigger delayed hooks. Any failure will make us abort

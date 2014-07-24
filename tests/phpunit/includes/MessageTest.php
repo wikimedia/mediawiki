@@ -119,7 +119,8 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testInLanguage() {
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( 'en' )->text() );
-		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( 'ru' )->text() );
+		$this->assertEquals( 'Заглавная страница',
+			wfMessage( 'mainpage' )->inLanguage( 'ru' )->text() );
 
 		// NOTE: make sure internal caching of the message text is reset appropriately
 		$msg = wfMessage( 'mainpage' );

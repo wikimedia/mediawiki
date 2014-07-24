@@ -30,7 +30,8 @@ class MimeMagicTest extends MediaWikiTestCase {
 			array( 'tsv', 'text/plain', 'text/tab-separated-values' ),
 			array( 'json', 'text/plain', 'application/json' ),
 			array( 'foo', 'application/x-opc+zip', 'application/zip' ),
-			array( 'docx', 'application/x-opc+zip', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ),
+			array( 'docx', 'application/x-opc+zip',
+				'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ),
 			array( 'djvu', 'image/x-djvu', 'image/vnd.djvu' ),
 			array( 'wav', 'audio/wav', 'audio/wav' ),
 		);

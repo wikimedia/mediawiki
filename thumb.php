@@ -388,7 +388,8 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 	$errorHtml = false;
 
 	// guard thumbnail rendering with PoolCounter to avoid stampedes
-	// expensive files use a separate PoolCounter config so it is possible to set up a global limit on them
+	// expensive files use a separate PoolCounter config so it is possible
+	// to set up a global limit on them
 	if ( $file->isExpensiveToThumbnail() ) {
 		$poolCounterType = 'FileRenderExpensive';
 	} else {
