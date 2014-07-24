@@ -3994,33 +3994,50 @@ HTML
 	 * Filter an input field through a Unicode de-armoring process if it
 	 * came from an old browser with known broken Unicode editing issues.
 	 *
+	 * Reverse the previously applied transliteration of non-ASCII characters
+	 * back to UTF-8. Used to protect data from corruption by broken web browsers
+	 * as listed in $wgBrowserBlackList.
+	 *
 	 * @param WebRequest $request
 	 * @param string $field
 	 * @return string
 	 */
 	protected function safeUnicodeInput( $request, $field ) {
 		$text = rtrim( $request->getText( $field ) );
-		return $request->getBool( 'safemode' )
-			? $this->unmakeSafe( $text )
-			: $text;
+		if ( $request->getBool( 'safemode' ) ) {
+			$result = "";
+			$len = strlen( $text );
+			for ( $i = 0; $i < $len; $i++ ) {
+				if ( ( substr( $text, $i, 3 ) === "&#x" ) && ( $text[$i + 3] !== '0' ) ) {
+					$i += 3;
+					$hexstring = "";
+					do {
+						$hexstring .= $text[$i];
+						$i++;
+					} while ( ctype_xdigit( $text[$i] ) && ( $i < $len ) );
+
+					// Do some sanity checks. These aren't needed for reversibility,
+					// but should help keep the breakage down if the editor
+					// breaks one of the entities whilst editing.
+					if ( ( substr( $text, $i, 1 ) === ";" ) and ( strlen( $hexstring ) <= 6 ) ) {
+						$result .= codepointToUtf8( hexdec( $hexstring ) );
+					} else {
+						$result .= "&#x" . $hexstring . substr( $text, $i, 1 );
+					}
+				} else {
+					$result .= substr( $text, $i, 1 );
+				}
+			}
+			// reverse the transform that we made for reversibility reasons.
+			return strtr( $result, array( "&#x0" => "&#x" ) );
+		}
+		return $text;
 	}
 
 	/**
 	 * Filter an output field through a Unicode armoring process if it is
 	 * going to an old browser with known broken Unicode editing issues.
 	 *
-	 * @param string $text
-	 * @return string
-	 */
-	protected function safeUnicodeOutput( $text ) {
-		global $wgContLang;
-		$codedText = $wgContLang->recodeForEdit( $text );
-		return $this->checkUnicodeCompliantBrowser()
-			? $codedText
-			: $this->makeSafe( $codedText );
-	}
-
-	/**
 	 * A number of web browsers are known to corrupt non-ASCII characters
 	 * in a UTF-8 text editing environment. To protect against this,
 	 * detected browsers will be served an armored version of the text,
@@ -4029,19 +4046,22 @@ HTML
 	 * Preexisting such character references will have a 0 added to them
 	 * to ensure that round-trips do not alter the original data.
 	 *
-	 * @param string $invalue
+	 * @param string $text
 	 * @return string
 	 */
-	private function makeSafe( $invalue ) {
+	protected function safeUnicodeOutput( $text ) {
+		global $wgContLang;
+		$text = $wgContLang->recodeForEdit( $text );
+		if ( $this->checkUnicodeCompliantBrowser() ) {
+			return $text;
+		}
 		// Armor existing references for reversibility.
-		$invalue = strtr( $invalue, array( "&#x" => "&#x0" ) );
-
+		$value = strtr( $text, array( "&#x" => "&#x0" ) );
 		$bytesleft = 0;
 		$result = "";
 		$working = 0;
-		$valueLength = strlen( $invalue );
-		for ( $i = 0; $i < $valueLength; $i++ ) {
-			$bytevalue = ord( $invalue[$i] );
+		for ( $i = 0; $i < strlen( $value ); $i++ ) {
+			$bytevalue = ord( $value[$i] );
 			if ( $bytevalue <= 0x7F ) { // 0xxx xxxx
 				$result .= chr( $bytevalue );
 				$bytesleft = 0;
@@ -4064,42 +4084,5 @@ HTML
 			}
 		}
 		return $result;
-	}
-
-	/**
-	 * Reverse the previously applied transliteration of non-ASCII characters
-	 * back to UTF-8. Used to protect data from corruption by broken web browsers
-	 * as listed in $wgBrowserBlackList.
-	 *
-	 * @param string $invalue
-	 * @return string
-	 */
-	private function unmakeSafe( $invalue ) {
-		$result = "";
-		$valueLength = strlen( $invalue );
-		for ( $i = 0; $i < $valueLength; $i++ ) {
-			if ( ( substr( $invalue, $i, 3 ) == "&#x" ) && ( $invalue[$i + 3] != '0' ) ) {
-				$i += 3;
-				$hexstring = "";
-				do {
-					$hexstring .= $invalue[$i];
-					$i++;
-				} while ( ctype_xdigit( $invalue[$i] ) && ( $i < strlen( $invalue ) ) );
-
-				// Do some sanity checks. These aren't needed for reversibility,
-				// but should help keep the breakage down if the editor
-				// breaks one of the entities whilst editing.
-				if ( ( substr( $invalue, $i, 1 ) == ";" ) and ( strlen( $hexstring ) <= 6 ) ) {
-					$codepoint = hexdec( $hexstring );
-					$result .= codepointToUtf8( $codepoint );
-				} else {
-					$result .= "&#x" . $hexstring . substr( $invalue, $i, 1 );
-				}
-			} else {
-				$result .= substr( $invalue, $i, 1 );
-			}
-		}
-		// reverse the transform that we made for reversibility reasons.
-		return strtr( $result, array( "&#x0" => "&#x" ) );
 	}
 }
