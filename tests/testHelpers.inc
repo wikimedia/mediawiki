@@ -520,8 +520,8 @@ class TestFileIterator implements Iterator {
 
 					$this->test = array(
 						'test' => ParserTest::chomp( $this->sectionData['test'] ),
-						'input' => ParserTest::chomp( $this->sectionData[ $input ] ),
-						'result' => ParserTest::chomp( $this->sectionData[ $result ] ),
+						'input' => ParserTest::chomp( $this->sectionData[$input] ),
+						'result' => ParserTest::chomp( $this->sectionData[$result] ),
 						'options' => ParserTest::chomp( $this->sectionData['options'] ),
 						'config' => ParserTest::chomp( $this->sectionData['config'] ),
 					);
@@ -579,7 +579,7 @@ class TestFileIterator implements Iterator {
 
 		$data = $this->sectionData;
 		$tokens = array_filter( $tokens, function ( $token ) use ( $data ) {
-			return isset( $data[ $token ] );
+			return isset( $data[$token] );
 		} );
 
 		if ( count( $tokens ) == 0 ) {
@@ -605,7 +605,7 @@ class TestFileIterator implements Iterator {
 		}
 
 		$tokens = array_values( $tokens );
-		return $tokens[ 0 ];
+		return $tokens[0];
 	}
 }
 

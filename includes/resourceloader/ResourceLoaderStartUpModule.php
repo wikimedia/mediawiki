@@ -233,7 +233,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				);
 			}
 
-			$registryData[ $name ] = array(
+			$registryData[$name] = array(
 				'version' => $mtime,
 				'dependencies' => $module->getDependencies(),
 				'group' => $module->getGroup(),

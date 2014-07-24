@@ -1240,7 +1240,7 @@ class Article implements Page {
 
 		$hookResult = wfRunHooks( 'BeforeDisplayNoArticleText', array( $this ) );
 
-		if ( ! $hookResult ) {
+		if ( !$hookResult ) {
 			return;
 		}
 

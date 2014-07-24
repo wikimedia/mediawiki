@@ -72,7 +72,7 @@ class GlobalVarConfig implements Config {
 		if ( !array_key_exists( $var, $GLOBALS ) ) {
 			throw new ConfigException( __METHOD__ . ": undefined variable: '$var'" );
 		}
-		return $GLOBALS[ $var ];
+		return $GLOBALS[$var];
 	}
 
 	/**
@@ -83,6 +83,6 @@ class GlobalVarConfig implements Config {
 	 * @param mixed $value value to set
 	 */
 	protected function setWithPrefix( $prefix, $name, $value ) {
-		$GLOBALS[ $prefix . $name ] = $value;
+		$GLOBALS[$prefix . $name] = $value;
 	}
 }

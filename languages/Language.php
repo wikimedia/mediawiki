@@ -3125,7 +3125,7 @@ class Language {
 	 */
 	function getMagic( $mw ) {
 		// Saves a function call
-		if ( ! $this->mMagicHookDone ) {
+		if ( !$this->mMagicHookDone ) {
 			$this->doMagicHook();
 		}
 
@@ -3795,7 +3795,7 @@ class Language {
 		foreach ( $forms as $index => $form ) {
 			if ( preg_match( '/\d+=/i', $form ) ) {
 				$pos = strpos( $form, '=' );
-				if ( substr( $form, 0, $pos ) === (string) $count ) {
+				if ( substr( $form, 0, $pos ) === (string)$count ) {
 					return substr( $form, $pos + 1 );
 				}
 				unset( $forms[$index] );
@@ -4443,7 +4443,7 @@ class Language {
 		if ( !isset( $format['avoid'] ) ) {
 			$format['avoid'] = false;
 		}
-		if ( !isset( $format['noabbrevs' ] ) ) {
+		if ( !isset( $format['noabbrevs'] ) ) {
 			$format['noabbrevs'] = false;
 		}
 		$secondsMsg = wfMessage(

@@ -327,7 +327,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	public static function provideGetWikiTextAndHtml() {
 		$testCases = array();
 
-		$testCases[ 'GoodStatus' ] = array(
+		$testCases['GoodStatus'] = array(
 			new Status(),
 			"Internal error: Status::getWikiText called for a good result, this is incorrect\n",
 			"<p>Internal error: Status::getWikiText called for a good result, this is incorrect\n</p>",
@@ -335,7 +335,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$status = new Status();
 		$status->ok = false;
-		$testCases[ 'GoodButNoError' ] = array(
+		$testCases['GoodButNoError'] = array(
 			$status,
 			"Internal error: Status::getWikiText: Invalid result object: no error text but not OK\n",
 			"<p>Internal error: Status::getWikiText: Invalid result object: no error text but not OK\n</p>",
@@ -343,7 +343,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$status = new Status();
 		$status->warning( 'fooBar!' );
-		$testCases[ '1StringWarning' ] = array(
+		$testCases['1StringWarning'] = array(
 			$status,
 			"<fooBar!>",
 			"<p>&lt;fooBar!&gt;\n</p>",
@@ -352,7 +352,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status = new Status();
 		$status->warning( 'fooBar!' );
 		$status->warning( 'fooBar2!' );
-		$testCases[ '2StringWarnings' ] = array(
+		$testCases['2StringWarnings'] = array(
 			$status,
 			"* <fooBar!>\n* <fooBar2!>\n",
 			"<ul><li> &lt;fooBar!&gt;</li>\n<li> &lt;fooBar2!&gt;</li></ul>\n",
@@ -360,7 +360,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$status = new Status();
 		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' )  ) );
-		$testCases[ '1MessageWarning' ] = array(
+		$testCases['1MessageWarning'] = array(
 			$status,
 			"<fooBar!>",
 			"<p>&lt;fooBar!&gt;\n</p>",
@@ -369,7 +369,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status = new Status();
 		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' ) ) );
 		$status->warning( new Message( 'fooBar2!' ) );
-		$testCases[ '2MessageWarnings' ] = array(
+		$testCases['2MessageWarnings'] = array(
 			$status,
 			"* <fooBar!>\n* <fooBar2!>\n",
 			"<ul><li> &lt;fooBar!&gt;</li>\n<li> &lt;fooBar2!&gt;</li></ul>\n",
@@ -399,7 +399,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	public static function provideGetMessage() {
 		$testCases = array();
 
-		$testCases[ 'GoodStatus' ] = array(
+		$testCases['GoodStatus'] = array(
 			new Status(),
 			array( "Status::getMessage called for a good result, this is incorrect\n" ),
 			'internalerror_info'
@@ -407,7 +407,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$status = new Status();
 		$status->ok = false;
-		$testCases[ 'GoodButNoError' ] = array(
+		$testCases['GoodButNoError'] = array(
 			$status,
 			array( "Status::getMessage: Invalid result object: no error text but not OK\n" ),
 			'internalerror_info'
@@ -415,7 +415,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$status = new Status();
 		$status->warning( 'fooBar!' );
-		$testCases[ '1StringWarning' ] = array(
+		$testCases['1StringWarning'] = array(
 			$status,
 			array(),
 			'fooBar!'
@@ -437,7 +437,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$status = new Status();
 		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' )  ) );
-		$testCases[ '1MessageWarning' ] = array(
+		$testCases['1MessageWarning'] = array(
 			$status,
 			array( 'foo', 'bar' ),
 			'fooBar!'
@@ -446,7 +446,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status = new Status();
 		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' ) ) );
 		$status->warning( new Message( 'fooBar2!' ) );
-		$testCases[ '2MessageWarnings' ] = array(
+		$testCases['2MessageWarnings'] = array(
 			$status,
 			array( new Message( 'fooBar!', array( 'foo', 'bar' ) ), new Message( 'fooBar2!' ) ),
 			"* \$1\n* \$2"

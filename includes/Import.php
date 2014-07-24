@@ -533,7 +533,7 @@ class WikiImporter {
 	private function handleSiteInfo() {
 		// Site info is useful, but not actually used for dump imports.
 		// Includes a quick short-circuit to save performance.
-		if ( ! $this->mSiteInfoCallback ) {
+		if ( !$this->mSiteInfoCallback ) {
 			$this->reader->next();
 			return true;
 		}

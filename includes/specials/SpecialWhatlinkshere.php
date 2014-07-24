@@ -151,7 +151,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$conds['pagelinks'][] = 'rd_from is NOT NULL';
 		}
 
-		$queryFunc = function( $dbr, $table, $fromCol ) use ( $conds, $target, $limit ) {
+		$queryFunc = function ( $dbr, $table, $fromCol ) use ( $conds, $target, $limit ) {
 			global $wgUseLinkNamespaceDBFields;
 			// Read an extra row as an at-end check
 			$queryLimit = $limit + 1;

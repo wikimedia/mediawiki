@@ -40,7 +40,7 @@ class EnhancedChangesList extends ChangesList {
 			// @todo: deprecate constructing with Skin
 			$context = $obj->getContext();
 		} else {
-			if ( ! $obj instanceof IContextSource ) {
+			if ( !$obj instanceof IContextSource ) {
 				throw new MWException( 'EnhancedChangesList must be constructed with a '
 					. 'context source or skin.' );
 			}

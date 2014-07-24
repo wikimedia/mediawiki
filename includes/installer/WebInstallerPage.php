@@ -1048,7 +1048,7 @@ class WebInstallerOptions extends WebInstallerPage {
 						'rawtext' => $skin,
 						'value' => $this->getVar( "skin-$skin", true ), // all found skins enabled by default
 					) ) .
-					'<div class="config-skins-use-as-default">' . $radioButtons[ strtolower( $skin ) ] . '</div>' .
+					'<div class="config-skins-use-as-default">' . $radioButtons[strtolower( $skin )] . '</div>' .
 					'</div>';
 			}
 		} else {

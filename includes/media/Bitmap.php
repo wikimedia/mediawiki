@@ -329,7 +329,7 @@ class BitmapHandler extends ImageHandler {
 		$animation_post = array();
 		$decoderHint = array();
 		if ( $params['mimeType'] == 'image/jpeg' ) {
-			$qualityVal = isset( $params['quality'] ) ? (string) $params['quality'] : null;
+			$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
 			$quality = array( '-quality', $qualityVal ?: '80' ); // 80%
 			# Sharpening, see bug 6193
 			if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
@@ -458,7 +458,7 @@ class BitmapHandler extends ImageHandler {
 					list( $radius, $sigma ) = explode( 'x', $wgSharpenParameter );
 					$im->sharpenImage( $radius, $sigma );
 				}
-				$qualityVal = isset( $params['quality'] ) ? (string) $params['quality'] : null;
+				$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
 				$im->setCompressionQuality( $qualityVal ?: 80 );
 			} elseif ( $params['mimeType'] == 'image/png' ) {
 				$im->setCompressionQuality( 95 );

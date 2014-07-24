@@ -132,7 +132,7 @@ class AjaxResponse {
 	 * @param string $text
 	 */
 	function addText( $text ) {
-		if ( ! $this->mDisabled && $text ) {
+		if ( !$this->mDisabled && $text ) {
 			$this->mText .= $text;
 		}
 	}
@@ -141,7 +141,7 @@ class AjaxResponse {
 	 * Output text
 	 */
 	function printText() {
-		if ( ! $this->mDisabled ) {
+		if ( !$this->mDisabled ) {
 			print $this->mText;
 		}
 	}

@@ -115,7 +115,7 @@ class ResourcesTest extends MediaWikiTestCase {
 							$media,
 							$file,
 							// XXX: Wrapped in an object to keep it out of PHPUnit output
-							(object) array( 'cssText' => $readStyleFile->invoke( $module, $file, $flip ) ),
+							(object)array( 'cssText' => $readStyleFile->invoke( $module, $file, $flip ) ),
 						);
 					}
 				}

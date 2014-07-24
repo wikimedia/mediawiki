@@ -62,7 +62,7 @@ class DjVuTest extends MediaWikiMediaTestCase {
 		$file = $this->dataFile( 'LoremIpsum.djvu', 'image/x.djvu' );
 		$this->assertEquals(
 			"Lorem ipsum \n1 \n",
-			(string) $this->handler->getPageText( $file, 1 ),
+			(string)$this->handler->getPageText( $file, 1 ),
 			"Text layer of page 1 of file LoremIpsum.djvu should be 'Lorem ipsum \n1 \n'"
 		);
 	}
