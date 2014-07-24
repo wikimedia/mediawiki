@@ -103,9 +103,11 @@ $namespaceAliases = array();
  * Array of gender specific. namespace aliases.
  * Mapping NS_xxx to array of GENDERKEY to alias.
  * Example:
-$namespaceGenderAliases = array(
-	NS_USER => array( 'male' => 'Male_user', 'female' => 'Female_user' ),
-);
+ * @code
+ * $namespaceGenderAliases = array(
+ * 	NS_USER => array( 'male' => 'Male_user', 'female' => 'Female_user' ),
+ * );
+ * @endcode
  */
 $namespaceGenderAliases = array();
 
