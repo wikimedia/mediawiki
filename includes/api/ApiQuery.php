@@ -441,7 +441,7 @@ class ApiQuery extends ApiBase {
 	 * This method is called by the generator base when generator in the smart-continue
 	 * mode tries to set 'query-continue' value. ApiQuery stores those values separately
 	 * until the post-processing when it is known if the generation should continue or repeat.
-	 * @deprecated @since 1.24
+	 * @deprecated since 1.24
 	 * @param ApiQueryGeneratorBase $module Generator module
 	 * @param string $paramName
 	 * @param mixed $paramValue
