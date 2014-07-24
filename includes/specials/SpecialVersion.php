@@ -1116,7 +1116,10 @@ class SpecialVersion extends SpecialPage {
 		if ( is_array( $list ) && count( $list ) == 1 ) {
 			$list = $list[0];
 		}
-		if ( is_object( $list ) ) {
+		if ( $list instanceof Closure ) {
+			// Don't output stuff like "Closure$;1028376090#8$48499d94fe0147f7c633b365be39952b$"
+			return 'Closure';
+		} elseif ( is_object( $list ) ) {
 			$class = wfMessage( 'parentheses' )->params( get_class( $list ) )->escaped();
 
 			return $class;
