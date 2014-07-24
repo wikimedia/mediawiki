@@ -21,18 +21,6 @@
  */
 
 /**
- * Int Number of characters in user_token field.
- * @ingroup Constants
- */
-define( 'USER_TOKEN_LENGTH', 32 );
-
-/**
- * Int Serialized record version.
- * @ingroup Constants
- */
-define( 'MW_USER_VERSION', 10 );
-
-/**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
  * @ingroup Constants
  */
@@ -50,12 +38,20 @@ define( 'EDIT_TOKEN_SUFFIX', '+\\' );
  */
 class User implements IDBAccessObject {
 	/**
-	 * Global constants made accessible as class constants so that autoloader
+	 * @const int Number of characters in user_token field.
+	 */
+	const TOKEN_LENGTH = 32;
+
+	/**
+	 * Global constant made accessible as class constants so that autoloader
 	 * magic can be used.
 	 */
-	const USER_TOKEN_LENGTH = USER_TOKEN_LENGTH;
-	const MW_USER_VERSION = MW_USER_VERSION;
 	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
+
+	/**
+	 * @const int Serialized record version.
+	 */
+	const VERSION = 10;
 
 	/**
 	 * Maximum items in $mWatchedItems
@@ -362,7 +358,7 @@ class User implements IDBAccessObject {
 		// Try cache
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 		$data = $wgMemc->get( $key );
-		if ( !is_array( $data ) || $data['mVersion'] != MW_USER_VERSION ) {
+		if ( !is_array( $data ) || $data['mVersion'] != self::VERSION ) {
 			// Object is expired, load from DB
 			$data = false;
 		}
@@ -403,7 +399,7 @@ class User implements IDBAccessObject {
 		foreach ( self::$mCacheVars as $name ) {
 			$data[$name] = $this->$name;
 		}
-		$data['mVersion'] = MW_USER_VERSION;
+		$data['mVersion'] = self::VERSION;
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 		global $wgMemc;
 		$wgMemc->set( $key, $data );
@@ -2341,7 +2337,7 @@ class User implements IDBAccessObject {
 	public function setToken( $token = false ) {
 		$this->load();
 		if ( !$token ) {
-			$this->mToken = MWCryptRand::generateHex( USER_TOKEN_LENGTH );
+			$this->mToken = MWCryptRand::generateHex( self::TOKEN_LENGTH );
 		} else {
 			$this->mToken = $token;
 		}
@@ -3855,7 +3851,7 @@ class User implements IDBAccessObject {
 		}
 
 		if ( $this->isAnon() ) {
-			return EDIT_TOKEN_SUFFIX;
+			return self::EDIT_TOKEN_SUFFIX;
 		} else {
 			$token = $request->getSessionData( 'wsEditToken' );
 			if ( $token === null ) {
@@ -3865,7 +3861,7 @@ class User implements IDBAccessObject {
 			if ( is_array( $salt ) ) {
 				$salt = implode( '|', $salt );
 			}
-			return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
+			return md5( $token . $salt ) . self::EDIT_TOKEN_SUFFIX;
 		}
 	}
 
