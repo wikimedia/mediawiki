@@ -6,6 +6,7 @@
 		]
 	},
 	"skinname-vector": "וקטור",
+	"vector-skin-desc": "גרסה מודרנית של מונובוק עם מראה רענן והרבה שיפורי שמישות",
 	"vector.css": "/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Vector בלבד */",
 	"vector.js": "/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Vector */",
 	"vector-action-addsection": "הוספת נושא",

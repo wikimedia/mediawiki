@@ -1145,7 +1145,7 @@
 	"action-importupload": "由檔案上傳匯入頁面",
 	"action-patrol": "標示其它人的編輯為已巡查",
 	"action-autopatrol": "標示您的編輯為已巡查",
-	"action-unwatchedpages": "檢視未監視的頁面列表",
+	"action-unwatchedpages": "檢視未監視的頁面清單",
 	"action-mergehistory": "合併此頁面的歷史",
 	"action-userrights": "編輯所有使用者的權限",
 	"action-userrights-interwiki": "編輯在其它 Wiki 上的使用者權限",

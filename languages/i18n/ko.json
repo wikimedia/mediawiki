@@ -708,7 +708,7 @@
 	"currentrev": "최신판",
 	"currentrev-asof": "$1 기준 최신판",
 	"revisionasof": "$1 판",
-	"revision-info": "{{GENDER:$6|$2}} 사용자의 $1 판$1",
+	"revision-info": "{{GENDER:$6|$2}} 사용자의 $1 판$7",
 	"previousrevision": "← 이전 판",
 	"nextrevision": "다음 판 →",
 	"currentrevisionlink": "최신판",
