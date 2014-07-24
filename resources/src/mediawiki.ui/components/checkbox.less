@@ -1,0 +1,62 @@
+@import "mediawiki.mixins";
+
+// Checkbox
+//
+// Styling checkboxes in a way that works cross browser is a tricky problem to solve.
+// In MediaWiki UI we wrap the checkbox in a div element, and use JavaScript to enhance it.
+//
+// Markup:
+//   <div>
+//     <div class="client-js">
+//       <div class='mw-ui-checkbox'>
+//         <input type='checkbox'>
+//       </div>
+//       <div class='mw-ui-checkbox mw-ui-checked'>
+//         <input type='checkbox'>
+//       </div>
+//     The same styles can be achieved in IE < 9 using JavaScript.
+//     They will look and function like normal checkboxes on IE6-8 without JavaScript.
+//     </div>
+//   </div>
+//   <div>
+//     <div class="mw-ui-checkbox"> <input type='checkbox'> </div>
+//     Without JavaScript we use native controls.
+//   </div>
+//
+// Styleguide 5.
+.mw-ui-checkbox {
+	display: inline-block;
+	border-radius: 2px;
+	margin-right: 18px;
+	width: 24px;
+	height: 24px;
+
+	&.mw-ui-checked {
+		.background-image-svg('images/checked.svg', 'images/checked.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		-moz-background-position: -9999px -9999px!important;
+	}
+
+	&:disabled,
+	&.mw-ui-disabled {
+		background-color: lightgrey;
+	}
+}
+
+// With JavaScript
+.client-js {
+	.mw-ui-checkbox {
+		background-color: #fff;
+		cursor: pointer;
+		border: 1px solid grey;
+		input {
+			width: 24px;
+			height: 24px;
+			/* Hide visually, keep accessible */
+			position: absolute;
+			clip: rect(1px 1px 1px 1px);
+			clip: rect(1px,1px,1px,1px);
+		}
+	}
+}
