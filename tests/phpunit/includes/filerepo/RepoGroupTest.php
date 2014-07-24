@@ -17,7 +17,8 @@ class RepoGroupTest extends MediaWikiTestCase {
 		$this->setUpForeignRepo();
 		$fakeCallback = $this->getMock( 'RepoGroupTestHelper' );
 		$fakeCallback->expects( $this->once() )->method( 'callback' );
-		RepoGroup::singleton()->forEachForeignRepo( array( $fakeCallback, 'callback' ), array( array() ) );
+		RepoGroup::singleton()->forEachForeignRepo(
+			array( $fakeCallback, 'callback' ), array( array() ) );
 	}
 
 	function testForEachForeignRepoNone() {
@@ -26,7 +27,8 @@ class RepoGroupTest extends MediaWikiTestCase {
 		FileBackendGroup::destroySingleton();
 		$fakeCallback = $this->getMock( 'RepoGroupTestHelper' );
 		$fakeCallback->expects( $this->never() )->method( 'callback' );
-		RepoGroup::singleton()->forEachForeignRepo( array( $fakeCallback, 'callback' ), array( array() ) );
+		RepoGroup::singleton()->forEachForeignRepo(
+			array( $fakeCallback, 'callback' ), array( array() ) );
 	}
 
 	private function setUpForeignRepo() {

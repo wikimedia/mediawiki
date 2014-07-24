@@ -24,7 +24,8 @@
  * @ingroup Testing
  */
 
-$otions = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled', 'run-parsoid' );
+$otions = array( 'quick', 'color', 'quiet', 'help', 'show-output',
+	'record', 'run-disabled', 'run-parsoid' );
 $optionsWithArgs = array( 'regex', 'filter', 'seed', 'setversion' );
 
 require_once __DIR__ . '/../maintenance/commandLine.inc';

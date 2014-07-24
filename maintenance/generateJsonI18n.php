@@ -80,7 +80,8 @@ class GenerateJsonI18n extends Maintenance {
 			}
 			$this->output( "Searching for supplementary i18n files...\n" );
 			$dir_iterator = new RecursiveDirectoryIterator( dirname( $phpfile ) );
-			$iterator = new RecursiveIteratorIterator( $dir_iterator, RecursiveIteratorIterator::LEAVES_ONLY );
+			$iterator = new RecursiveIteratorIterator(
+				$dir_iterator, RecursiveIteratorIterator::LEAVES_ONLY );
 			foreach ( $iterator as $path => $fileObject ) {
 				if ( fnmatch( "*.i18n.php", $fileObject->getFilename() ) ) {
 					$this->output( "Converting $path.\n" );

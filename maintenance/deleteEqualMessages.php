@@ -30,11 +30,13 @@ require_once __DIR__ . '/Maintenance.php';
 class DeleteEqualMessages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Deletes all pages in the MediaWiki namespace that are equal to the default message";
+		$this->mDescription = "Deletes all pages in the MediaWiki namespace that are equal to '
+			. 'the default message";
 		$this->addOption( 'delete', 'Actually delete the pages (default: dry run)' );
 		$this->addOption( 'delete-talk', 'Don\'t leave orphaned talk pages behind during deletion' );
-		$this->addOption( 'lang-code', 'Check for subpages of this language code (default: root page against content language). ' .
-			'Use value "*" to run for all mwfile language code subpages (including the base pages that override content language).', false, true );
+		$this->addOption( 'lang-code', 'Check for subpages of this language code (default: root '
+			. 'page against content language). Use value "*" to run for all mwfile language code '
+			. 'subpages (including the base pages that override content language).', false, true );
 	}
 
 	/**
@@ -59,7 +61,8 @@ class DeleteEqualMessages extends Maintenance {
 		// Normalise message names for NS_MEDIAWIKI page_title
 		$messageNames = array_map( array( $wgContLang, 'ucfirst' ), $messageNames );
 
-		$statuses = AllMessagesTablePager::getCustomisedStatuses( $messageNames, $langCode, $nonContLang );
+		$statuses = AllMessagesTablePager::getCustomisedStatuses(
+			$messageNames, $langCode, $nonContLang );
 		// getCustomisedStatuses is stripping the sub page from the page titles, add it back
 		$titleSuffix = $nonContLang ? "/$langCode" : '';
 
@@ -134,8 +137,10 @@ class DeleteEqualMessages extends Maintenance {
 			return;
 		}
 
-		$this->output( "\n{$messageInfo['relevantPages']} pages in the MediaWiki namespace override messages." );
-		$this->output( "\n{$messageInfo['equalPages']} pages are equal to the default message (+ {$messageInfo['equalPagesTalks']} talk pages).\n" );
+		$this->output( "\n{$messageInfo['relevantPages']} pages in the MediaWiki namespace ' .
+			'override messages." );
+		$this->output( "\n{$messageInfo['equalPages']} pages are equal to the default message ' .
+			'(+ {$messageInfo['equalPagesTalks']} talk pages).\n" );
 
 		if ( !$doDelete ) {
 			$list = '';
@@ -182,7 +187,8 @@ class DeleteEqualMessages extends Maintenance {
 				$this->output( "\n* [[$title]]" );
 				$page = WikiPage::factory( $title );
 				$error = ''; // Passed by ref
-				$page->doDeleteArticle( 'Orphaned talk page of no longer required message', false, 0, false, $error, $user );
+				$page->doDeleteArticle( 'Orphaned talk page of no longer required message',
+					false, 0, false, $error, $user );
 			}
 		}
 		$this->output( "\n\ndone!\n" );

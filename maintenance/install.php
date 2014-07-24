@@ -34,7 +34,8 @@ require_once dirname( __DIR__ ) . '/maintenance/Maintenance.php';
 /**
  * Maintenance script to install and configure MediaWiki
  *
- * Default values for the options are defined in DefaultSettings.php (see the mapping in CliInstaller.php)
+ * Default values for the options are defined in DefaultSettings.php
+ * (see the mapping in CliInstaller.php)
  * Default for --dbpath (SQLite-specific) is defined in SqliteInstaller::getGlobalDefaults
  *
  * @ingroup Maintenance
@@ -85,9 +86,11 @@ class CommandLineInstaller extends Maintenance {
 			true
 		);
 		$this->addOption( 'confpath', "Path to write LocalSettings.php to ($IP)", false, true );
-		$this->addOption( 'dbschema', 'The schema for the MediaWiki DB in PostgreSQL/Microsoft SQL Server (mediawiki)', false, true );
+		$this->addOption( 'dbschema', 'The schema for the MediaWiki DB in '
+			. 'PostgreSQL/Microsoft SQL Server (mediawiki)', false, true );
 		/*
-		$this->addOption( 'namespace', 'The project namespace (same as the "name" argument)', false, true );
+		$this->addOption( 'namespace', 'The project namespace (same as the "name" argument)',
+			false, true );
 		*/
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 	}
