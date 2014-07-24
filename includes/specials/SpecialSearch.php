@@ -1081,7 +1081,7 @@ class SpecialSearch extends SpecialPage {
 			'id' => $this->profile === 'advanced' ? 'powerSearchText' : 'searchText',
 			'size' => '50',
 			'autofocus',
-			'class' => 'mw-ui-input',
+			'class' => 'mw-ui-input mw-ui-input-inline',
 		) ) . "\n";
 		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
 		$out .= Xml::submitButton(

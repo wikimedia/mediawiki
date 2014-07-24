@@ -41,6 +41,7 @@
 	width: @defaultFormWidth;
 
 	// MW currently doesn't use the type attribute everywhere on inputs.
+	// FIXME: Remove the input rule in favour of mw-ui-input
 	input,
 	select,
 	.mw-ui-button {
@@ -52,6 +53,7 @@
 
 	// We exclude buttons because they'll generally use mw-ui-button.
 	// Otherwise, we'll unintentionally override that.
+	// FIXME: Remove these in favour of mw-ui-input
 	input:not([type=button]):not([type=submit]):not([type=file]) {
 		.agora-field-styling(); // mixins/forms.less
 	}
@@ -158,19 +160,11 @@
 	padding: 0;
 	width: 100%;
 
+	// FIXME: Remove these in favour of mw-ui-input
 	input {
 		font-size: 1em;
 		line-height: 1.4;
 	}
-}
-
-// Apply mw-ui-input to individual input fields to style them.
-// You generally don't need to use this class if <input> is within an Agora
-// form container such as mw-ui-vform
-.mw-ui-input {
-	.agora-field-styling(); // mixins/forms.less
-	font-size: 1em;
-	line-height: 1.4em;
 }
 
 // Apply mw-ui-label to individual elements to style them.
