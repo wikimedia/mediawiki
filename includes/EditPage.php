@@ -57,46 +57,15 @@ class EditPage {
 	const AS_HOOK_ERROR_EXPECTED = 212;
 
 	/**
-	 * Status: User is blocked from editing this page
-	 */
-	const AS_BLOCKED_PAGE_FOR_USER = 215;
-
-	/**
 	 * Status: Content too big (> $wgMaxArticleSize)
 	 */
 	const AS_CONTENT_TOO_BIG = 216;
-
-	/**
-	 * Status: this anonymous user is not allowed to edit this page
-	 */
-	const AS_READ_ONLY_PAGE_ANON = 218;
-
-	/**
-	 * Status: this logged in user is not allowed to edit this page
-	 */
-	const AS_READ_ONLY_PAGE_LOGGED = 219;
-
-	/**
-	 * Status: wiki is in readonly mode (wfReadOnly() == true)
-	 */
-	const AS_READ_ONLY_PAGE = 220;
-
-	/**
-	 * Status: rate limiter for action 'edit' was tripped
-	 */
-	const AS_RATE_LIMITED = 221;
 
 	/**
 	 * Status: article was deleted while editing and param wpRecreate == false or form
 	 * was not posted
 	 */
 	const AS_ARTICLE_WAS_DELETED = 222;
-
-	/**
-	 * Status: user tried to create this page, but is not allowed to do that
-	 * ( Title->userCan('create') == false )
-	 */
-	const AS_NO_CREATE_PERMISSION = 223;
 
 	/**
 	 * Status: user tried to create a blank page
@@ -133,16 +102,6 @@ class EditPage {
 	 * Status: summary contained spam according to one of the regexes in $wgSummarySpamRegex
 	 */
 	const AS_SPAM_ERROR = 232;
-
-	/**
-	 * Status: anonymous user is not allowed to upload (User::isAllowed('upload') == false)
-	 */
-	const AS_IMAGE_REDIRECT_ANON = 233;
-
-	/**
-	 * Status: logged in user is not allowed to upload (User::isAllowed('upload') == false)
-	 */
-	const AS_IMAGE_REDIRECT_LOGGED = 234;
 
 	/**
 	 * Status: can't parse content
@@ -1433,27 +1392,6 @@ class EditPage {
 				$this->spamPageWithContent( $resultDetails['spam'] );
 				return false;
 
-			case self::AS_BLOCKED_PAGE_FOR_USER:
-				throw new UserBlockedError( $wgUser->getBlock() );
-
-			case self::AS_IMAGE_REDIRECT_ANON:
-			case self::AS_IMAGE_REDIRECT_LOGGED:
-				throw new PermissionsError( 'upload' );
-
-			case self::AS_READ_ONLY_PAGE_ANON:
-			case self::AS_READ_ONLY_PAGE_LOGGED:
-				throw new PermissionsError( 'edit' );
-
-			case self::AS_READ_ONLY_PAGE:
-				throw new ReadOnlyError;
-
-			case self::AS_RATE_LIMITED:
-				throw new ThrottledError();
-
-			case self::AS_NO_CREATE_PERMISSION:
-				$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
-				throw new PermissionsError( $permission );
-
 			default:
 				// We don't recognize $status->value. The only way that can happen
 				// is if an extension hook aborted from inside ArticleSave.
@@ -1574,7 +1512,6 @@ class EditPage {
 		$status = Status::newGood();
 
 		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-checks' );
 
 		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
@@ -1620,17 +1557,12 @@ class EditPage {
 		}
 
 		# Check image redirect
-		if ( $this->mTitle->getNamespace() == NS_FILE &&
+		if ( $this->getTitle()->getNamespace() === NS_FILE &&
 			$textbox_content->isRedirect() &&
 			!$wgUser->isAllowed( 'upload' )
 		) {
-				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
-				$status->setResult( false, $code );
-
-				wfProfileOut( __METHOD__ . '-checks' );
 				wfProfileOut( __METHOD__ );
-
-				return $status;
+				throw new PermissionsError( 'upload' );
 		}
 
 		# Check for spam
@@ -1681,14 +1613,12 @@ class EditPage {
 			return $status;
 		}
 
-		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
+		if ( $wgUser->isBlockedFrom( $this->getTitle(), false ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			$wgUser->spreadAnyEditBlock();
 			# Check block state against master, thus 'false'.
-			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
-			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return $status;
+			throw new UserBlockedError( $wgUser->getBlock() );
 		}
 
 		$this->kblength = (int)( strlen( $this->textbox1 ) / 1024 );
@@ -1702,33 +1632,17 @@ class EditPage {
 		}
 
 		if ( !$wgUser->isAllowed( 'edit' ) ) {
-			if ( $wgUser->isAnon() ) {
-				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
-				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
-				return $status;
-			} else {
-				$status->fatal( 'readonlytext' );
-				$status->value = self::AS_READ_ONLY_PAGE_LOGGED;
-				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
-				return $status;
-			}
+			wfProfileOut( __METHOD__ );
+			throw new PermissionsError( 'edit' );
 		}
 
 		if ( wfReadOnly() ) {
-			$status->fatal( 'readonlytext' );
-			$status->value = self::AS_READ_ONLY_PAGE;
-			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return $status;
+			throw new ReadOnlyError();
 		}
 		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
-			$status->fatal( 'actionthrottledtext' );
-			$status->value = self::AS_RATE_LIMITED;
-			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return $status;
+			throw new ThrottledError();
 		}
 
 		# If the article has been deleted while editing, don't save it without
@@ -1749,12 +1663,10 @@ class EditPage {
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->mTitle->userCan( 'create', $wgUser ) ) {
-				$status->fatal( 'nocreatetext' );
-				$status->value = self::AS_NO_CREATE_PERMISSION;
-				wfDebug( __METHOD__ . ": no create permission\n" );
+			if ( !$this->getTitle()->userCan( 'create', $wgUser ) ) {
 				wfProfileOut( __METHOD__ );
-				return $status;
+				$perm = MWNamespace::isTalk( $this->getTitle()->getNamespace() ) ? 'createtalk' : 'createpage';
+				throw new PermissionsError( $perm );
 			}
 
 			// Don't save a new page if it's blank or if it's a MediaWiki:
