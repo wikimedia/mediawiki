@@ -136,7 +136,7 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get the hook documentation, either locally or from MediaWiki.org
-	 * @return array of documented hooks
+	 * @return array Array of documented hooks
 	 */
 	private function getHooksFromDoc( $doc ) {
 		if ( $this->hasOption( 'online' ) ) {
@@ -148,7 +148,7 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get hooks from a local file (for example docs/hooks.txt)
-	 * @param string $doc filename to look in
+	 * @param string $doc Filename to look in
 	 * @return array Array of documented hooks
 	 */
 	private function getHooksFromLocalDoc( $doc ) {
@@ -161,7 +161,7 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get hooks from www.mediawiki.org using the API
-	 * @return array of documented hooks
+	 * @return array Array of documented hooks
 	 */
 	private function getHooksFromOnlineDoc() {
 		// All hooks
@@ -199,7 +199,7 @@ class FindHooks extends Maintenance {
 	/**
 	 * Get hooks from a PHP file
 	 * @param string $file Full filename to the PHP file.
-	 * @return array of hooks found.
+	 * @return array Array of hooks found
 	 */
 	private function getHooksFromFile( $file ) {
 		$content = file_get_contents( $file );

@@ -55,7 +55,7 @@ class Languages {
 	/** @var array Magic words */
 	protected $mMagicWords;
 
-	/** @var  array Special page aliases */
+	/** @var array Special page aliases */
 	protected $mSpecialPageAliases;
 
 	/**

@@ -91,7 +91,7 @@ class FetchTextTest extends MediaWikiTestCase {
 	private $exceptionFromAddDBData;
 
 	/**
-	 * @var FetchText the (mocked) FetchText that is to test
+	 * @var FetchText The (mocked) FetchText that is to test
 	 */
 	private $fetchText;
 

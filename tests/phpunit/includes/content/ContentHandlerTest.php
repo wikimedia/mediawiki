@@ -431,7 +431,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * Returns native represenation of the data. Interpretation depends on the data model used,
 	 * as given by getDataModel().
 	 *
-	 * @return mixed the native representation of the content. Could be a string, a nested array
+	 * @return mixed The native representation of the content. Could be a string, a nested array
 	 *  structure, an object, a binary blob... anything, really.
 	 */
 	public function getNativeData() {
@@ -459,7 +459,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * return $this. That is,  $copy === $original may be true, but only for imutable content
 	 * objects.
 	 *
-	 * @return Content. A copy of this object.
+	 * @return Content A copy of this object
 	 */
 	public function copy() {
 		return $this;
@@ -469,7 +469,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * Returns true if this content is countable as a "real" wiki page, provided
 	 * that it's also in a countable location (e.g. a current revision in the main namespace).
 	 *
-	 * @param bool $hasLinks if it is known whether this content contains links,
+	 * @param bool $hasLinks If it is known whether this content contains links,
 	 * provide this information here, to avoid redundant parsing to find out.
 	 * @return bool
 	 */
@@ -481,7 +481,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * @param Title $title
 	 * @param int $revId Unused.
 	 * @param null|ParserOptions $options
-	 * @param bool $generateHtml whether to generate Html (default: true). If false, the result
+	 * @param bool $generateHtml Whether to generate Html (default: true). If false, the result
 	 *  of calling getText() on the ParserOutput object returned by this method is undefined.
 	 *
 	 * @return ParserOutput

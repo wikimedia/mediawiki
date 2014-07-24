@@ -16,9 +16,9 @@ class SpecialMIMESearchTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider providerMimeFiltering
-	 * @param $par String subpage for special page
-	 * @param $major String Major mime type we expect to look for
-	 * @param $minor String Minor mime type we expect to look for
+	 * @param string $par Subpage for special page
+	 * @param string $major Major mime type we expect to look for
+	 * @param string $minor Minor mime type we expect to look for
 	 */
 	function testMimeFiltering( $par, $major, $minor ) {
 		$this->page->run( $par );

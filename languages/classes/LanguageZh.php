@@ -166,7 +166,7 @@ class LanguageZh extends LanguageZh_hans {
 	 * auto convert to zh-hans and normalize special characters.
 	 *
 	 * @param string $string
-	 * @param string $autoVariant default to 'zh-hans'
+	 * @param string $autoVariant Default to 'zh-hans'
 	 * @return string
 	 */
 	function normalizeForSearch( $string, $autoVariant = 'zh-hans' ) {
