@@ -1281,8 +1281,8 @@ abstract class Installer {
 	 *
 	 * Used only by environment checks.
 	 *
-	 * @param string $path path to search
-	 * @param array $names of executable names
+	 * @param string $path Path to search
+	 * @param array $names Array of executable names
 	 * @param array|bool $versionInfo False or array with two members:
 	 *   0 => Command to run for version check, with $1 for the full executable name
 	 *   1 => String to compare the output with

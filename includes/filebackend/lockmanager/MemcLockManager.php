@@ -49,7 +49,7 @@ class MemcLockManager extends QuorumLockManager {
 	/** @var array (server name => bool) */
 	protected $serversUp = array();
 
-	/** @var string random UUID */
+	/** @var string Random UUID */
 	protected $session = '';
 
 	/**

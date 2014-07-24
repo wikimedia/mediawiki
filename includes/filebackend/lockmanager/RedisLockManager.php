@@ -51,7 +51,7 @@ class RedisLockManager extends QuorumLockManager {
 	/** @var array Map server names to hostname/IP and port numbers */
 	protected $lockServers = array();
 
-	/** @var string random UUID */
+	/** @var string Random UUID */
 	protected $session = '';
 
 	/**

@@ -164,7 +164,7 @@ abstract class WebInstallerPage {
 	/**
 	 * Get the starting tags of a fieldset.
 	 *
-	 * @param string $legend message name
+	 * @param string $legend Message name
 	 *
 	 * @return string
 	 */

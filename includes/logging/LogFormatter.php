@@ -112,7 +112,7 @@ class LogFormatter {
 	 * Set the visibility restrictions for displaying content.
 	 * If set to public, and an item is deleted, then it will be replaced
 	 * with a placeholder even if the context user is allowed to view it.
-	 * @param int $audience self::FOR_THIS_USER or self::FOR_PUBLIC
+	 * @param int $audience Const self::FOR_THIS_USER or self::FOR_PUBLIC
 	 */
 	public function setAudience( $audience ) {
 		$this->audience = ( $audience == self::FOR_THIS_USER )
@@ -163,7 +163,7 @@ class LogFormatter {
 	 * Even uglier hack to maintain backwards compatibilty with IRC bots
 	 * (bug 34508).
 	 * @see getActionText()
-	 * @return string text
+	 * @return string Text
 	 */
 	public function getIRCActionComment() {
 		$actionComment = $this->getIRCActionText();
@@ -184,7 +184,7 @@ class LogFormatter {
 	 * Even uglier hack to maintain backwards compatibilty with IRC bots
 	 * (bug 34508).
 	 * @see getActionText()
-	 * @return string text
+	 * @return string Text
 	 */
 	public function getIRCActionText() {
 		$this->plaintext = true;
@@ -482,8 +482,7 @@ class LogFormatter {
 	 *     * number: Format value as number
 	 * @param string $value The parameter value that should
 	 *                      be formated
-	 * @return string|Message::numParam|Message::rawParam
-	 *         Formated value
+	 * @return string|array Formated value
 	 * @since 1.21
 	 */
 	protected function formatParameterValue( $type, $value ) {
@@ -652,7 +651,7 @@ class LogFormatter {
 	}
 
 	/**
-	 * @return array of titles that should be preloaded with LinkBatch.
+	 * @return array Array of titles that should be preloaded with LinkBatch
 	 */
 	public function getPreloadTitles() {
 		return array();

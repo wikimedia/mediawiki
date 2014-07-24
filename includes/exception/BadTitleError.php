@@ -29,7 +29,7 @@
 class BadTitleError extends ErrorPageError {
 	/**
 	 * @param string|Message $msg A message key (default: 'badtitletext')
-	 * @param array $params parameter to wfMessage()
+	 * @param array $params Parameter to wfMessage()
 	 */
 	public function __construct( $msg = 'badtitletext', $params = array() ) {
 		parent::__construct( 'badtitle', $msg, $params );

@@ -828,7 +828,7 @@ abstract class FSFileBackendList implements Iterator {
 	protected $params = array();
 
 	/**
-	 * @param string $dir file system directory
+	 * @param string $dir File system directory
 	 * @param array $params
 	 */
 	public function __construct( $dir, array $params ) {
@@ -849,7 +849,7 @@ abstract class FSFileBackendList implements Iterator {
 	/**
 	 * Return an appropriate iterator object to wrap
 	 *
-	 * @param string $dir file system directory
+	 * @param string $dir File system directory
 	 * @return Iterator
 	 */
 	protected function initIterator( $dir ) {

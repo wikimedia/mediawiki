@@ -127,7 +127,7 @@ abstract class File {
 	/** @var string Relative path including trailing slash */
 	protected $hashPath;
 
-	/** @var string number of pages of a multipage document, or false for
+	/** @var string Number of pages of a multipage document, or false for
 	 *    documents which aren't multipage documents
 	 */
 	protected $pageCount;
@@ -583,7 +583,7 @@ abstract class File {
 	 *
 	 * Currently used to add a warning to the image description page
 	 *
-	 * @return bool false if the main image is both animated
+	 * @return bool False if the main image is both animated
 	 *   and the thumbnail is not. In all other cases must return
 	 *   true. If image is not renderable whatsoever, should
 	 *   return true.
@@ -1189,7 +1189,7 @@ abstract class File {
 	/**
 	 * Returns the most appropriate source image for the thumbnail, given a target thumbnail size
 	 * @param array $params
-	 * @return array source path and width/height of the source
+	 * @return array Source path and width/height of the source
 	 */
 	public function getThumbnailSource( $params ) {
 		if ( $this->repo
@@ -1606,7 +1606,7 @@ abstract class File {
 	 *
 	 * @param string $zone Name of requested zone
 	 * @param bool|string $suffix If not false, the name of a file in zone
-	 * @return string path
+	 * @return string Path
 	 */
 	function getZoneUrl( $zone, $suffix = false ) {
 		$this->assertRepoDefined();
@@ -1623,7 +1623,7 @@ abstract class File {
 	 * Get the URL of the thumbnail directory, or a particular file if $suffix is specified
 	 *
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
-	 * @return string path
+	 * @return string Path
 	 */
 	function getThumbUrl( $suffix = false ) {
 		return $this->getZoneUrl( 'thumb', $suffix );
@@ -1633,7 +1633,7 @@ abstract class File {
 	 * Get the URL of the transcoded directory, or a particular file if $suffix is specified
 	 *
 	 * @param bool|string $suffix If not false, the name of a media file
-	 * @return string path
+	 * @return string Path
 	 */
 	function getTranscodedUrl( $suffix = false ) {
 		return $this->getZoneUrl( 'transcoded', $suffix );
@@ -1741,7 +1741,7 @@ abstract class File {
 	 * @param int $flags A bitwise combination of:
 	 *   File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
-	 * @return FileRepoStatus object. On success, the value member contains the
+	 * @return FileRepoStatus On success, the value member contains the
 	 *   archive name, or an empty string if it was a new file.
 	 *
 	 * STUB

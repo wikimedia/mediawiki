@@ -148,7 +148,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Main entry point.
 	 *
-	 * @param array[] $session initial session array
+	 * @param array[] $session Initial session array
 	 *
 	 * @return array[] New session array
 	 */

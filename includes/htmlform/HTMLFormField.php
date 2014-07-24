@@ -35,7 +35,7 @@ abstract class HTMLFormField {
 	 * the input object itself.  It should not implement the surrounding
 	 * table cells/rows, or labels/help messages.
 	 *
-	 * @param string $value the value to set the input to; eg a default
+	 * @param string $value The value to set the input to; eg a default
 	 *     text for a text input.
 	 *
 	 * @return string Valid HTML.
@@ -125,7 +125,7 @@ abstract class HTMLFormField {
 	 *
 	 * @param array $alldata
 	 * @param array $params
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function isHiddenRecurse( array $alldata, array $params ) {
 		$origParams = $params;
@@ -250,7 +250,7 @@ abstract class HTMLFormField {
 	 * @param string|array $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
 	 *
-	 * @return bool true to cancel the submission
+	 * @return bool True to cancel the submission
 	 */
 	function cancelSubmit( $value, $alldata ) {
 		return false;
@@ -264,7 +264,7 @@ abstract class HTMLFormField {
 	 * @param string|array $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
 	 *
-	 * @return bool|string true on success, or String error to display, or
+	 * @return bool|string True on success, or String error to display, or
 	 *   false to fail validation without displaying an error.
 	 */
 	function validate( $value, $alldata ) {

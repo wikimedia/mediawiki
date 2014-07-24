@@ -87,7 +87,7 @@ class LogPage {
 	}
 
 	/**
-	 * @return int log_id of the inserted log entry
+	 * @return int The log_id of the inserted log entry
 	 */
 	protected function saveContent() {
 		global $wgLogRestrictions;
@@ -192,7 +192,7 @@ class LogPage {
 	/**
 	 * Get the list of valid log types
 	 *
-	 * @return array of strings
+	 * @return array Array of strings
 	 */
 	public static function validTypes() {
 		global $wgLogTypes;
@@ -234,7 +234,7 @@ class LogPage {
 	 * Get the log header for the given log type
 	 *
 	 * @todo handle missing log types
-	 * @param string $type logtype
+	 * @param string $type Logtype
 	 * @return string Header text of this logtype
 	 * @deprecated since 1.19, warnings in 1.21. Use getDescription()
 	 */
@@ -250,12 +250,12 @@ class LogPage {
 	 * Generate text for a log entry.
 	 * Only LogFormatter should call this function.
 	 *
-	 * @param string $type log type
-	 * @param string $action log action
+	 * @param string $type Log type
+	 * @param string $action Log action
 	 * @param Title|null $title Title object or null
 	 * @param Skin|null $skin Skin object or null. If null, we want to use the wiki
 	 *   content language, since that will go to the IRC feed.
-	 * @param array $params parameters
+	 * @param array $params Parameters
 	 * @param bool $filterWikilinks Whether to filter wiki links
 	 * @return string HTML
 	 */
@@ -440,14 +440,14 @@ class LogPage {
 	/**
 	 * Add a log entry
 	 *
-	 * @param string $action one of '', 'block', 'protect', 'rights', 'delete',
+	 * @param string $action One of '', 'block', 'protect', 'rights', 'delete',
 	 *   'upload', 'move', 'move_redir'
 	 * @param Title $target Title object
-	 * @param string $comment description associated
-	 * @param array $params parameters passed later to wfMessage function
+	 * @param string $comment Description associated
+	 * @param array $params Parameters passed later to wfMessage function
 	 * @param null|int|User $doer The user doing the action. null for $wgUser
 	 *
-	 * @return int log_id of the inserted log entry
+	 * @return int The log_id of the inserted log entry
 	 */
 	public function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
 		global $wgContLang;

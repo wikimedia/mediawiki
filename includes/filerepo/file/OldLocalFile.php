@@ -79,7 +79,7 @@ class OldLocalFile extends LocalFile {
 	 * Create a OldLocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
 	 *
-	 * @param string $sha1 base-36 SHA-1
+	 * @param string $sha1 Base-36 SHA-1
 	 * @param LocalRepo $repo
 	 * @param string|bool $timestamp MW_timestamp (optional)
 	 *
@@ -130,7 +130,7 @@ class OldLocalFile extends LocalFile {
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 * @param string $time Timestamp or null to load by archive name
-	 * @param string $archiveName archive name or null to load by timestamp
+	 * @param string $archiveName Archive name or null to load by timestamp
 	 * @throws MWException
 	 */
 	function __construct( $title, $repo, $time, $archiveName ) {

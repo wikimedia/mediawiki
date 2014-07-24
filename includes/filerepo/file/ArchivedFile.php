@@ -27,7 +27,7 @@
  * @ingroup FileAbstraction
  */
 class ArchivedFile {
-	/** @var int filearchive row ID */
+	/** @var int Filearchive row ID */
 	private $id;
 
 	/** @var string File name */
@@ -42,7 +42,7 @@ class ArchivedFile {
 	/** @var int File size in bytes */
 	private $size;
 
-	/** @var int size in bytes */
+	/** @var int Size in bytes */
 	private $bits;
 
 	/** @var int Width */

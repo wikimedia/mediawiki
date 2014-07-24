@@ -1819,7 +1819,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $storagePath
 	 * @param string|null $content File data
 	 * @param string|null $fsPath File system path
-	 * @return MIME type
+	 * @return string MIME type
 	 */
 	protected function getContentType( $storagePath, $content, $fsPath ) {
 		return call_user_func_array( $this->mimeCallback, func_get_args() );

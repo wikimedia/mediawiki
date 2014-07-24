@@ -132,7 +132,7 @@ abstract class FileJournal {
 	/**
 	 * Get the position ID of the latest journal entry at some point in time
 	 *
-	 * @param int|string $time timestamp
+	 * @param int|string $time Timestamp
 	 * @return int|bool
 	 */
 	final public function getPositionAtTime( $time ) {
@@ -224,7 +224,7 @@ class NullFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::doGetPositionAtTime()
-	 * @param int|string $time timestamp
+	 * @param int|string $time Timestamp
 	 * @return int|bool
 	 */
 	protected function doGetPositionAtTime( $time ) {

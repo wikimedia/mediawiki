@@ -272,7 +272,7 @@ class RepoGroup {
 	/**
 	 * Find all instances of files with this key
 	 *
-	 * @param string $hash base 36 SHA-1 hash
+	 * @param string $hash Base 36 SHA-1 hash
 	 * @return array Array of File objects
 	 */
 	function findBySha1( $hash ) {
@@ -292,7 +292,7 @@ class RepoGroup {
 	/**
 	 * Find all instances of files with this keys
 	 *
-	 * @param array $hashes base 36 SHA-1 hashes
+	 * @param array $hashes Base 36 SHA-1 hashes
 	 * @return array Array of array of File objects
 	 */
 	function findBySha1s( array $hashes ) {
@@ -420,7 +420,7 @@ class RepoGroup {
 	 * Split a virtual URL into repo, zone and rel parts
 	 * @param string $url
 	 * @throws MWException
-	 * @return array containing repo, zone and rel
+	 * @return array Containing repo, zone and rel
 	 */
 	function splitVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
