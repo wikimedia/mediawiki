@@ -726,7 +726,7 @@ class XMPInfo {
 				'mode' => XMPReader::MODE_SEQ,
 				'validate' => 'validateDate',
 			),
-			/* Do not extract dc:format, as we've got better ways to determine mimetype */
+			/* Do not extract dc:format, as we've got better ways to determine MIME type */
 			'identifier' => array(
 				'map_group' => 'deprecated',
 				'map_name' => 'Identifier',

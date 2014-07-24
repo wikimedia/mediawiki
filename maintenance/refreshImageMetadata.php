@@ -70,7 +70,7 @@ class RefreshImageMetadata extends Maintenance {
 
 		$this->addOption(
 			'mime',
-			'(Inefficient!) Only refresh files with this mime type. Can accept wild-card image/*',
+			'(Inefficient!) Only refresh files with this MIME type. Can accept wild-card image/*',
 			false,
 			true
 		);

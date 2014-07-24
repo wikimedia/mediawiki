@@ -758,7 +758,7 @@ $wgFileBlacklist = array(
 	'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl' );
 
 /**
- * Files with these mime types will never be allowed as uploads
+ * Files with these MIME types will never be allowed as uploads
  * if $wgVerifyMimeType is enabled.
  */
 $wgMimeTypeBlacklist = array(
@@ -810,7 +810,7 @@ $wgDisableUploadScriptChecks = false;
 $wgUploadSizeWarning = false;
 
 /**
- * list of trusted media-types and mime types.
+ * list of trusted media-types and MIME types.
  * Use the MEDIATYPE_xxx constants to represent media types.
  * This list is used by File::isSafeFile
  *
@@ -1133,45 +1133,45 @@ $wgAntivirusSetup = array(
 $wgAntivirusRequired = true;
 
 /**
- * Determines if the mime type of uploaded files should be checked
+ * Determines if the MIME type of uploaded files should be checked
  */
 $wgVerifyMimeType = true;
 
 /**
- * Sets the mime type definition file to use by MimeMagic.php.
+ * Sets the MIME type definition file to use by MimeMagic.php.
  * Set to null, to use built-in defaults only.
  * example: $wgMimeTypeFile = '/etc/mime.types';
  */
 $wgMimeTypeFile = 'includes/mime.types';
 
 /**
- * Sets the mime type info file to use by MimeMagic.php.
+ * Sets the MIME type info file to use by MimeMagic.php.
  * Set to null, to use built-in defaults only.
  */
 $wgMimeInfoFile = 'includes/mime.info';
 
 /**
- * Sets an external mime detector program. The command must print only
- * the mime type to standard output.
+ * Sets an external MIME detector program. The command must print only
+ * the MIME type to standard output.
  * The name of the file to process will be appended to the command given here.
  * If not set or NULL, mime_content_type will be used if available.
  *
  * @par Example:
  * @code
- * #$wgMimeDetectorCommand = "file -bi"; # use external mime detector (Linux)
+ * #$wgMimeDetectorCommand = "file -bi"; # use external MIME detector (Linux)
  * @endcode
  */
 $wgMimeDetectorCommand = null;
 
 /**
- * Switch for trivial mime detection. Used by thumb.php to disable all fancy
+ * Switch for trivial MIME detection. Used by thumb.php to disable all fancy
  * things, because only a few types of images are needed and file extensions
  * can be trusted.
  */
 $wgTrivialMimeDetection = false;
 
 /**
- * Additional XML types we can allow via mime-detection.
+ * Additional XML types we can allow via MIME-detection.
  * array = ( 'rootElement' => 'associatedMimeType' )
  */
 $wgXMLMimeTypes = array(
@@ -2926,7 +2926,7 @@ $wgWellFormedXml = true;
  * Normally we wouldn't have to define this in the root "<html>"
  * element, but IE needs it there in some circumstances.
  *
- * This is ignored if $wgMimeType is set to a non-XML mimetype.
+ * This is ignored if $wgMimeType is set to a non-XML MIME type.
  */
 $wgXhtmlNamespaces = array();
 

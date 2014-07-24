@@ -98,7 +98,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	 *
 	 * @param string $fieldName name this would have in the upload form
 	 * @param string $fileName name to title this
-	 * @param string $type mime type
+	 * @param string $type MIME type
 	 * @param string $filePath path where to find file contents
 	 *
 	 * @throws Exception
