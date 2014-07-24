@@ -55,7 +55,7 @@ class ApiMainTest extends ApiTestCase {
 	 * @dataProvider provideAssert
 	 * @param User $user
 	 * @param string $assert
-	 * @param string|bool $error false if no error expected
+	 * @param string|bool $error False if no error expected
 	 */
 	public function testAssert( $user, $assert, $error ) {
 		try {

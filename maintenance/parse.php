@@ -113,7 +113,7 @@ class CLIParser extends Maintenance {
 	 * Default title is 'CLIParser', it can be overriden with the option
 	 * --title <Your:Title>
 	 *
-	 * @return Title object
+	 * @return Title
 	 */
 	protected function getTitle() {
 		$title = $this->getOption( 'title' )

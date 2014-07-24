@@ -115,7 +115,7 @@ abstract class ORMRowTest extends \MediaWikiTestCase {
 
 	/**
 	 * @since 1.20
-	 * @return array of IORMRow
+	 * @return array Array of IORMRow
 	 */
 	public function instanceProvider() {
 		$instances = array();

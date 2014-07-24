@@ -22,8 +22,8 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider providerGetDisplayWidthHeight
-	 * @param $dimensions Array [maxWidth, maxHeight, width, height]
-	 * @param $expected Array [width, height] The width and height we expect to display at
+	 * @param array $dimensions Array [maxWidth, maxHeight, width, height]
+	 * @param array $expected Array [width, height] The width and height we expect to display at
 	 */
 	function testGetDisplayWidthHeight( $dim, $expected ) {
 		$iPage = $this->getImagePage( 'animated.gif' );
@@ -66,8 +66,8 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider providerGetThumbSizes
-	 * @param $filename String
-	 * @param $expectedNumberThumbs integer How many thumbnails to show
+	 * @param string $filename
+	 * @param int $expectedNumberThumbs How many thumbnails to show
 	 */
 	function testGetThumbSizes( $filename, $expectedNumberThumbs ) {
 		$iPage = $this->getImagePage( $filename );
