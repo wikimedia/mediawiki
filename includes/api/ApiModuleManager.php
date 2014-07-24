@@ -60,12 +60,23 @@ class ApiModuleManager extends ContextSource {
 
 	/**
 	 * Add a list of modules to the manager
-	 * @param array $modules A map of ModuleName => ModuleClass
+	 * @param array $modules A map of ModuleName => ModuleSpec; The ModuleSpec
+	 *        is either a string containing the module's class name, or an associative
+	 *        array with at least the key 'class', and optionally the key 'factory'
+	 *        for specifying a factory function.
 	 * @param string $group Which group modules belong to (action,format,...)
 	 */
 	public function addModules( array $modules, $group ) {
-		foreach ( $modules as $name => $class ) {
-			$this->addModule( $name, $group, $class );
+		foreach ( $modules as $name => $module ) {
+			if ( is_array( $module ) ) {
+				$class = $module['class'];
+				$factory = ( isset( $module['factory'] ) ? $module['factory'] : null );
+			} else {
+				$class = $module;
+				$factory = null;
+			}
+
+			$this->addModule( $name, $group, $class, $factory );
 		}
 	}
 
@@ -74,37 +85,61 @@ class ApiModuleManager extends ContextSource {
 	 * classes who wish to add their own modules to their lexicon or override the
 	 * behavior of inherent ones.
 	 *
-	 * @param string $group Name of the module group
 	 * @param string $name The identifier for this module.
+	 * @param string $group Name of the module group
 	 * @param string $class The class where this module is implemented.
+	 * @param callable|null $factory Callback for instantiating the module.
+	 *
+	 * @throws InvalidArgumentException
 	 */
-	public function addModule( $name, $group, $class ) {
+	public function addModule( $name, $group, $class, $factory = null ) {
+		if ( !is_string( $name ) ) {
+			throw new InvalidArgumentException( '$name must be a string' );
+		}
+
+		if ( !is_string( $group ) ) {
+			throw new InvalidArgumentException( '$group must be a string' );
+		}
+
+		if ( !is_string( $class ) ) {
+			throw new InvalidArgumentException( '$class must be a string' );
+		}
+
+		if ( $factory !== null && !is_callable( $factory ) ) {
+			throw new InvalidArgumentException( '$factory must be a callable (or null)' );
+		}
+
 		$this->mGroups[$group] = null;
-		$this->mModules[$name] = array( $group, $class );
+		$this->mModules[$name] = array( $group, $class, $factory );
 	}
 
 	/**
 	 * Get module instance by name, or instantiate it if it does not exist
+	 *
 	 * @param string $moduleName Module name
 	 * @param string $group Optionally validate that the module is in a specific group
 	 * @param bool $ignoreCache If true, force-creates a new instance and does not cache it
-	 * @return mixed The new module instance, or null if failed
+	 *
+	 * @return ApiBase|null The new module instance, or null if failed
 	 */
 	public function getModule( $moduleName, $group = null, $ignoreCache = false ) {
 		if ( !isset( $this->mModules[$moduleName] ) ) {
 			return null;
 		}
-		$grpCls = $this->mModules[$moduleName];
-		if ( $group !== null && $grpCls[0] !== $group ) {
+
+		list( $moduleGroup, $moduleClass, $moduleFactory ) = $this->mModules[$moduleName];
+
+		if ( $group !== null && $moduleGroup !== $group ) {
 			return null;
 		}
+
 		if ( !$ignoreCache && isset( $this->mInstances[$moduleName] ) ) {
 			// already exists
 			return $this->mInstances[$moduleName];
 		} else {
 			// new instance
-			$class = $grpCls[1];
-			$instance = new $class ( $this->mParent, $moduleName );
+			$instance = $this->instantiateModule( $moduleName, $moduleClass, $moduleFactory );
+
 			if ( !$ignoreCache ) {
 				// cache this instance in case it is needed later
 				$this->mInstances[$moduleName] = $instance;
@@ -112,6 +147,32 @@ class ApiModuleManager extends ContextSource {
 
 			return $instance;
 		}
+	}
+
+	/**
+	 * Instantiate the module using the given class or factory function.
+	 *
+	 * @param string $name The identifier for this module.
+	 * @param string $class The class where this module is implemented.
+	 * @param callable|null $factory Callback for instantiating the module.
+	 *
+	 * @throws MWException
+	 * @return ApiBase
+	 */
+	private function instantiateModule( $name, $class, $factory = null ) {
+		if ( $factory !== null ) {
+			// create instance from factory
+			$instance = call_user_func( $factory, $this->mParent, $name );
+
+			if ( ! $instance instanceof $class ) {
+				throw new MWException( "The factory function for module $name did not return an instance of $class!" );
+			}
+		} else {
+			// create instance from class name
+			$instance = new $class ( $this->mParent, $name );
+		}
+
+		return $instance;
 	}
 
 	/**

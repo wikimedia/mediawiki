@@ -6666,16 +6666,22 @@ $wgDebugAPI = false;
 
 /**
  * API module extensions.
- * Associative array mapping module name to class name.
- * Extension modules may override the core modules.
  *
+ * Associative array mapping module name to modules specs;
+ * Each module spec is an associative array containing at least
+ * the 'class' key for the module's class, and optionally a
+ * 'factory' key for the factory function to use for the module.
+ * For backward compatibility, the module spec may also be a
+ * simple string containing the module's class name.
+ *
+ * Extension modules may override the core modules.
  * See ApiMain::$Modules for a list of the core modules.
  */
 $wgAPIModules = array();
 
 /**
  * API format module extensions.
- * Associative array mapping format module name to class name.
+ * Associative array mapping format module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
  * See ApiMain::$Formats for a list of the core format modules.
@@ -6684,7 +6690,7 @@ $wgAPIFormatModules = array();
 
 /**
  * API Query meta module extensions.
- * Associative array mapping meta module name to class name.
+ * Associative array mapping meta module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
  * See ApiQuery::$QueryMetaModules for a list of the core meta modules.
@@ -6693,7 +6699,7 @@ $wgAPIMetaModules = array();
 
 /**
  * API Query prop module extensions.
- * Associative array mapping properties module name to class name.
+ * Associative array mapping prop module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
  * See ApiQuery::$QueryPropModules for a list of the core prop modules.
@@ -6702,7 +6708,7 @@ $wgAPIPropModules = array();
 
 /**
  * API Query list module extensions.
- * Associative array mapping list module name to class name.
+ * Associative array mapping list module name to module specs (see $wgAPIModules).
  * Extension modules may override the core modules.
  *
  * See ApiQuery::$QueryListModules for a list of the core list modules.

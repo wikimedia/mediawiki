@@ -181,6 +181,14 @@ production.
 * (bug 60734) Actions that use ApiPageSet (e.g. purge, watch,
   setnotificationtimestamp) will now include continuation information when
   using a generator.
+* $wgAPIModules (and the related $wgAPIFormatModules, $wgAPIMetaModules,
+  $wgAPIPropModules, and $wgAPIListModules settings) now allow API modules
+  to be specified using a "module spec" array instead of a plain class name.
+  A "module spec" is an associative array containing at least the 'class' key
+  for the module's class, and optionally a 'factory' key for the factory function
+  to use for the module. This is intended for extensions that want control over
+  the instantiation of their API modules, to allow for proper dependency
+  injection.
 
 === Languages updated in 1.24 ===
 
