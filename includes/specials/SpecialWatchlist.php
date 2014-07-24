@@ -109,6 +109,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 
 		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
+		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
+		if ( $this->getRequest()->getVal( 'action' ) == 'submit' ) {
+			//The user has submitted the form, so we dont need the default values
+			return $opts;
+		}
 
 		$opts->add( 'hideminor', $user->getBoolOption( 'watchlisthideminor' ) );
 		$opts->add( 'hidebots', $user->getBoolOption( 'watchlisthidebots' ) );
@@ -116,8 +121,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$opts->add( 'hideliu', $user->getBoolOption( 'watchlisthideliu' ) );
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
 		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
-
-		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
 
 		return $opts;
 	}
@@ -412,7 +415,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		$nondefaults = $opts->getChangedValues();
-		$cutofflinks = $this->cutoffLinks( $opts['days'], $nondefaults ) . "<br />\n";
+		$cutofflinks = $this->msg( 'wlshowlast' ) . $this->cutoffselector( $opts );
 
 		# Spit out some control panel links
 		$filters = array(
@@ -433,13 +436,18 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$links = array();
 		foreach ( $filters as $name => $msg ) {
-			$links[] = $this->showHideLink( $nondefaults, $msg, $name, $opts[$name] );
+			$links[] = $this->showHideCheck( $nondefaults, $msg, $name, $opts[$name] );
 		}
 
 		$hiddenFields = $nondefaults;
+		$hiddenFields['action'] = 'submit';
 		unset( $hiddenFields['namespace'] );
 		unset( $hiddenFields['invert'] );
 		unset( $hiddenFields['associated'] );
+		unset( $hiddenFields['days'] );
+		foreach ( $filters as $key => $value ) {
+			unset( $hiddenFields[$key] );
+		}
 
 		# Create output
 		$form = '';
@@ -447,7 +455,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		# Namespace filter and put the whole form together.
 		$form .= $wlInfo;
 		$form .= $cutofflinks;
-		$form .= $lang->pipeList( $links ) . "\n";
+		$form .= $this->msg( 'hide' ) . ' : ' . implode( ' ', $links ) . "\n";
 		$form .= "<hr />\n<p>";
 		$form .= Html::namespaceSelector(
 			array(
@@ -474,7 +482,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$opts['associated'],
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . '&#160;';
-		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
+		$form .= Xml::submitButton(
+			$this->msg( 'allpagessubmit' )->text(),
+			array( 'class' => 'mw-ui-button mw-ui-progressive' )
+		) . "</p>\n";
 		foreach ( $hiddenFields as $key => $value ) {
 			$form .= Html::hidden( $key, $value ) . "\n";
 		}
@@ -483,6 +494,41 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->getOutput()->addHTML( $form );
 
 		$this->setBottomText( $opts );
+	}
+
+	function cutoffselector( $options ) {
+		$list = array();
+		$selectOptions = '';
+		$hours = array( 1, 2, 6, 12 );
+		$days = array( 1, 3, 7 );
+		foreach ( $hours as $h ) {
+			$name = $this->msg( 'hours', $h );
+			$value = $h / 24;
+			$selected = ( $value == $options['days'] ) ? true : false;
+
+			$selectOptions .= Xml::option( $name, $value, $selected );
+		}
+		foreach ( $days as $d ) {
+			$name = $this->msg( 'days', $d );
+			$value = $d;
+			$selected = ( $value == $options['days'] ) ? true : false;
+
+			$selectOptions .= Xml::option( $name, $value, $selected );
+		}
+
+		//all option
+		$name = $this->msg( 'watchlistall2' );
+		$value = 0;
+		$selected = ( $value == $options['days'] ) ? true : false;
+		$selectOptions .= Xml::option( $name, $value, $selected );
+
+		$attribs = array( "name" => "days", "id" => "days" );
+		return Xml::openElement( 'select', $attribs )
+			. "\n"
+			. $selectOptions
+			. "\n"
+			. Xml::closeElement( 'select' )
+			. "<br />\n";
 	}
 
 	function setTopText( FormOptions $opts ) {
@@ -538,62 +584,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->getOutput()->addHTML( $form );
 	}
 
-	protected function showHideLink( $options, $message, $name, $value ) {
+	protected function showHideCheck( $options, $message, $name, $value ) {
 		$label = $this->msg( $value ? 'show' : 'hide' )->escaped();
 		$options[$name] = 1 - (int)$value;
 
 		return $this->msg( $message )
-			->rawParams( Linker::linkKnown( $this->getPageTitle(), $label, array(), $options ) )
+			->rawParams( Xml::check( $name, (int)$value ) )
 			->escaped();
-	}
-
-	protected function hoursLink( $h, $options = array() ) {
-		$options['days'] = ( $h / 24.0 );
-
-		return Linker::linkKnown(
-			$this->getPageTitle(),
-			$this->getLanguage()->formatNum( $h ),
-			array(),
-			$options
-		);
-	}
-
-	protected function daysLink( $d, $options = array() ) {
-		$options['days'] = $d;
-		$message = $d ? $this->getLanguage()->formatNum( $d )
-			: $this->msg( 'watchlistall2' )->escaped();
-
-		return Linker::linkKnown(
-			$this->getPageTitle(),
-			$message,
-			array(),
-			$options
-		);
-	}
-
-	/**
-	 * Returns html
-	 *
-	 * @param int $days This gets overwritten, so is not used
-	 * @param array $options Query parameters for URL
-	 * @return string
-	 */
-	protected function cutoffLinks( $days, $options = array() ) {
-		$hours = array( 1, 2, 6, 12 );
-		$days = array( 1, 3, 7 );
-		$i = 0;
-		foreach ( $hours as $h ) {
-			$hours[$i++] = $this->hoursLink( $h, $options );
-		}
-		$i = 0;
-		foreach ( $days as $d ) {
-			$days[$i++] = $this->daysLink( $d, $options );
-		}
-
-		return $this->msg( 'wlshowlast' )->rawParams(
-			$this->getLanguage()->pipeList( $hours ),
-			$this->getLanguage()->pipeList( $days ),
-			$this->daysLink( 0, $options ) )->parse();
 	}
 
 	/**

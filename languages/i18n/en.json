@@ -1825,7 +1825,7 @@
 	"wlheader-enotif": "Email notification is enabled.",
 	"wlheader-showupdated": "Pages that have been changed since you last visited them are shown in <strong>bold</strong>.",
 	"wlnote2": "Below are the changes in the last {{PLURAL:$1|hour|<strong>$1</strong> hours}}, as of $2, $3.",
-	"wlshowlast": "Show last $1 hours $2 days $3",
+	"wlshowlast": "Show last: ",
 	"watchlist-options": "Watchlist options",
 	"watching": "Watching...",
 	"unwatching": "Unwatching...",
