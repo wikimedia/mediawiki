@@ -34,11 +34,10 @@ class JobQueueAggregatorMemc extends JobQueueAggregator {
 	protected $cacheTTL; // integer; seconds
 
 	/**
-	 * @params include:
+	 * @param array $params Possible keys:
 	 *   - objectCache : Name of an object cache registered in $wgObjectCaches.
 	 *                   This defaults to the one specified by $wgMainCacheType.
 	 *   - cacheTTL    : Seconds to cache the aggregate data before regenerating.
-	 * @param array $params
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
