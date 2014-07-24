@@ -39,7 +39,7 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return int[] revision ids
+	 * @return int[] Revision ids
 	 */
 	protected function doEdits() {
 		$title = $this->getTitle();

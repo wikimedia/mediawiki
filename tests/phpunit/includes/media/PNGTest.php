@@ -22,7 +22,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @param string $filename basename of the file to check
+	 * @param string $filename Basename of the file to check
 	 * @param bool $expected Expected result.
 	 * @dataProvider provideIsAnimated
 	 * @covers PNGHandler::isAnimatedImage

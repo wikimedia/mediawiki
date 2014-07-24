@@ -276,7 +276,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @return array format is ($len, $ellipsis, $input, $expected)
+	 * @return array Format is ($len, $ellipsis, $input, $expected)
 	 */
 	public static function provideHTMLTruncateData() {
 		return array(

@@ -3,8 +3,8 @@
 class FileTest extends MediaWikiMediaTestCase {
 
 	/**
-	 * @param $filename String
-	 * @param $expected boolean
+	 * @param string $filename
+	 * @param bool $expected
 	 * @dataProvider providerCanAnimate
 	 */
 	function testCanAnimateThumbIfAppropriate( $filename, $expected ) {

@@ -54,7 +54,7 @@ class LanguageConverter {
 	public $mManualLevel;
 
 	/**
-	 * @var string memcached key name
+	 * @var string Memcached key name
 	 */
 	public $mCacheKey;
 
@@ -737,12 +737,12 @@ class LanguageConverter {
 	 * If a language supports multiple variants, it is possible that
 	 * non-existing link in one variant actually exists in another variant.
 	 * This function tries to find it. See e.g. LanguageZh.php
+	 * The input parameters may be modified upon return
 	 *
-	 * @param string $link The name of the link
-	 * @param mixed $nt The title object of the link
+	 * @param string &$link The name of the link
+	 * @param Title &$nt The title object of the link
 	 * @param bool $ignoreOtherCond To disable other conditions when
 	 *   we need to transclude a template or update a category's link
-	 * @return void Null, the input parameters may be modified upon return
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		# If the article has already existed, there is no need to
