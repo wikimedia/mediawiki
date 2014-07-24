@@ -1,0 +1,46 @@
+@import "mediawiki.mixins";
+
+// Checkbox
+//
+// Styling checkboxes in a way that works cross browser is a tricky problem to solve.
+// In MediaWiki UI we wrap a checkbox and label inside mw-ui-checkbox
+// This renders in all browsers except IE6, which we exclude using a [class] selector
+// Ensure to markup the checkbox and label with id and for attributes respectively
+//
+// Markup:
+// <div class="mw-ui-checkbox">
+//   <input type='checkbox' id='kss-example-5'>
+//   <label for='kss-example-5'></label> Standard checkbox
+// </div>
+// <div class="mw-ui-checkbox">
+//   <input type='checkbox' id='kss-example-5-2' disabled>
+//   <label for='kss-example-5-2'></label> Disabled checkbox
+// </div>
+//
+// Styleguide 5.
+.mw-ui-checkbox[class] {
+	input {
+		visibility: hidden;
+
+		&:checked + label {
+			.background-image-svg('images/checked.svg', 'images/checked.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+
+		& + label {
+			display: inline-block;
+			border-radius: 2px;
+			margin-right: 18px;
+			width: 24px;
+			height: 24px;
+			background-color: #fff;
+			cursor: pointer;
+			border: 1px solid grey;
+		}
+
+		&:disabled + label {
+			background-color: lightgrey;
+		}
+	}
+}
