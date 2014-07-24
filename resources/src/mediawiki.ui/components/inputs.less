@@ -1,0 +1,110 @@
+// Inputs
+
+@import "mediawiki.mixins";
+@import "mediawiki.ui/variables";
+@import "mediawiki.ui/mixins";
+
+// Placeholder text styling helper
+.field-placeholder-styling() {
+	font-style: italic;
+	font-weight: normal;
+}
+// Inputs
+//
+// When using an input or textarea apply the mw-ui-input class.
+//
+// Styleguide 1.
+
+// mw-ui-input
+//
+// Style an input using MediaWiki UI.
+// Currently in draft status and subject to change.
+//
+// Markup:
+// <input value="input" class="mw-ui-input" value="input">
+// <textarea class="mw-ui-input">textarea</textarea>
+//
+// Styleguide 1.1.
+.mw-ui-input {
+	// Border css allows styling of input[type="search"] e.g. Special:Search
+	border: 1px solid @colorFieldBorder;
+	.box-sizing(border-box);
+	width: 100%;
+	padding: .3em .3em .3em .6em;
+	display: block;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	// Transition for box-shadow @winter
+	.transition(~"border linear .2s, box-shadow linear .2s");
+
+	// Placeholder text styling must be set individually for each browser @winter
+	&::-webkit-input-placeholder { // webkit
+		.field-placeholder-styling;
+	}
+	&::-moz-placeholder { // FF 4-18
+		.field-placeholder-styling;
+	}
+	&:-moz-placeholder { // FF >= 19
+		.field-placeholder-styling;
+	}
+	&:-ms-input-placeholder { // IE >= 10
+		.field-placeholder-styling;
+	}
+
+	&:focus {
+		box-shadow: inset .45em 0 0 #5088f7;
+		-moz-box-shadow: inset .45em 0 0 #5088f7;
+		-webkit-box-shadow: inset .45em 0 0 #5088f7;
+		border-color: @colorGrayDark;
+		// Remove focus glow on input[type="search"]
+		outline: 0;
+	}
+}
+
+textarea.mw-ui-input {
+	min-height: 8em;
+}
+
+// mw-ui-input-inline
+//
+// Use mw-ui-input-inline in cases where you want a button to line up with the input.
+//
+// Markup:
+// <input value="input" class="mw-ui-input mw-ui-input-inline" value="input">
+// <button class="mw-ui-button mw-ui-constructive">go</button>
+//
+// Styleguide 1.2.
+.mw-ui-input-inline {
+	display: inline-block;
+	width: auto;
+}
+
+// mw-ui-input-large
+//
+// Use mw-ui-input-large in cases where there are multiple inputs on a screen and you
+// want to draw more attention to one instance. For example add topic / reply to post forms.
+// Currently in draft status and subject to change. When used on an input, the text is styled
+// in a large font.
+//
+// Markup:
+// <input value="input" class="mw-ui-input mw-ui-input-large" value="input">
+// <textarea class="mw-ui-input mw-ui-input-large">textarea</textarea>
+//
+// Styleguide 1.3.
+.mw-ui-input-large {
+	// Attach these two inputs together to make them seem like one congruous input
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+textarea.mw-ui-input-large {
+	border-top-width: 0;
+}
+
+input.mw-ui-input-large {
+	font-size: 1.75em;
+	font-weight: bold;
+	line-height: 1.25em;
+}
