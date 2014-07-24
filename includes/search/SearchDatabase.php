@@ -22,11 +22,11 @@
  */
 
 /**
- * Base search engine base class for database-backed searches
+ * Base search engine base class for database-backend searches
  * @ingroup Search
  * @since 1.23
  */
-class SearchDatabase extends SearchEngine {
+abstract class SearchDatabase extends SearchEngine {
 	/**
 	 * @var DatabaseBase Slave database for reading from for results
 	 */
@@ -37,11 +37,7 @@ class SearchDatabase extends SearchEngine {
 	 * @param DatabaseBase $db The database to search from
 	 */
 	public function __construct( DatabaseBase $db = null ) {
-		if ( $db ) {
-			$this->db = $db;
-		} else {
-			$this->db = wfGetDB( DB_SLAVE );
-		}
+		$this->db = $db ?: wfGetDB( DB_SLAVE );
 	}
 
 	/**
