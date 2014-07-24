@@ -91,10 +91,10 @@ class LocalFile extends File {
 	/** @var int Result of the query for the file's history (nextHistoryLine) */
 	private $historyRes;
 
-	/** @var string Major mime type */
+	/** @var string Major MIME type */
 	private $major_mime;
 
-	/** @var string Minor mime type */
+	/** @var string Minor MIME type */
 	private $minor_mime;
 
 	/** @var string Upload timestamp */
@@ -784,7 +784,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Returns the mime type of the file.
+	 * Returns the MIME type of the file.
 	 * @return string
 	 */
 	function getMimeType() {

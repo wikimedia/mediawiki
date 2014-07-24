@@ -1036,7 +1036,7 @@ class lessc {
 					}
 				}
 
-				if(!is_null($mime)) // fallback if the mime type is still unknown
+				if(!is_null($mime)) // fallback if the MIME type is still unknown
 					$url = sprintf('data:%s;base64,%s', $mime, base64_encode(file_get_contents($fullpath)));
 			}
 		}

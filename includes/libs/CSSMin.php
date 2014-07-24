@@ -44,7 +44,7 @@ class CSSMin {
 
 	/* Protected Static Members */
 
-	/** @var array List of common image files extensions and mime-types */
+	/** @var array List of common image files extensions and MIME-types */
 	protected static $mimeTypes = array(
 		'gif' => 'image/gif',
 		'jpe' => 'image/jpeg',
@@ -135,7 +135,7 @@ class CSSMin {
 	 */
 	public static function getMimeType( $file ) {
 		$realpath = realpath( $file );
-		// Try a couple of different ways to get the mime-type of a file, in order of
+		// Try a couple of different ways to get the MIME-type of a file, in order of
 		// preference
 		if (
 			$realpath
@@ -143,14 +143,14 @@ class CSSMin {
 			&& function_exists( 'finfo_open' )
 			&& defined( 'FILEINFO_MIME_TYPE' )
 		) {
-			// As of PHP 5.3, this is how you get the mime-type of a file; it uses the Fileinfo
+			// As of PHP 5.3, this is how you get the MIME-type of a file; it uses the Fileinfo
 			// PECL extension
 			return finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
 		} elseif ( function_exists( 'mime_content_type' ) ) {
-			// Before this was deprecated in PHP 5.3, this was how you got the mime-type of a file
+			// Before this was deprecated in PHP 5.3, this was how you got the MIME-type of a file
 			return mime_content_type( $file );
 		} else {
-			// Worst-case scenario has happened, use the file extension to infer the mime-type
+			// Worst-case scenario has happened, use the file extension to infer the MIME-type
 			$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
 			if ( isset( self::$mimeTypes[$ext] ) ) {
 				return self::$mimeTypes[$ext];

@@ -1,4 +1,4 @@
--- Add indexes to the mime types in image for use on Special:MIMEsearch,
+-- Add indexes to the MIME types in image for use on Special:MIMEsearch,
 -- changes a query like
 --
 -- SELECT img_name FROM image WHERE img_major_mime = "image" AND img_minor_mime = "svg";

@@ -383,7 +383,7 @@ class ArchivedFile {
 	}
 
 	/**
-	 * Returns the mime type of the file.
+	 * Returns the MIME type of the file.
 	 * @return string
 	 */
 	public function getMimeType() {

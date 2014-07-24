@@ -52,7 +52,7 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	/**
-	 * Overriding class returns the mime type that should be sent to the client.
+	 * Overriding class returns the MIME type that should be sent to the client.
 	 * This method is not called if getIsHtml() returns true.
 	 * @return string
 	 */

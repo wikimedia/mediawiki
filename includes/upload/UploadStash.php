@@ -443,7 +443,7 @@ class UploadStash {
 	}
 
 	/**
-	 * Find or guess extension -- ensuring that our extension matches our mime type.
+	 * Find or guess extension -- ensuring that our extension matches our MIME type.
 	 * Since these files are constructed from php tempnames they may not start off
 	 * with an extension.
 	 * XXX this is somewhat redundant with the checks that ApiUpload.php does with incoming
@@ -460,7 +460,7 @@ class UploadStash {
 		if ( $n !== false ) {
 			$extension = $n ? substr( $path, $n + 1 ) : '';
 		} else {
-			// If not, assume that it should be related to the mime type of the original file.
+			// If not, assume that it should be related to the MIME type of the original file.
 			$magic = MimeMagic::singleton();
 			$mimeType = $magic->guessMimeType( $path );
 			$extensions = explode( ' ', MimeMagic::singleton()->getExtensionsForType( $mimeType ) );

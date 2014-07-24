@@ -80,7 +80,7 @@ if ( !$mime ) {
 	}
 }
 if ( $mime ) {
-	# Use custom handling to serve files with a known mime type
+	# Use custom handling to serve files with a known MIME type
 	# This way we can serve things like .svg files that the built-in
 	# PHP webserver doesn't understand.
 	# ;) Nicely enough we just happen to bundle a mime.types file

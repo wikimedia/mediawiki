@@ -377,11 +377,12 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Verify the mime type.
+	 * Verify the MIME type.
 	 *
-	 * @note Only checks that it is not an evil mime. The "does it have
-	 *  correct extension given its mime type?" check is in verifyFile.
-	 * @param string $mime Representing the mime
+	 * @note Only checks that it is not an evil MIME. The "does it have
+	 *  correct extension given its MIME type?" check is in verifyFile.
+	 *  in `verifyFile()` that MIME type and file extension correlate.
+	 * @param string $mime Representing the MIME
 	 * @return mixed True if the file is verified, an array otherwise
 	 */
 	protected function verifyMimeType( $mime ) {
@@ -396,7 +397,7 @@ abstract class UploadBase {
 				return array( 'filetype-badmime', $mime );
 			}
 
-			# Check IE type
+			# Check what Internet Explorer would detect
 			$fp = fopen( $this->mTempPath, 'rb' );
 			$chunk = fread( $fp, 256 );
 			fclose( $fp );
@@ -487,7 +488,7 @@ abstract class UploadBase {
 
 		$this->mFileProps = FSFile::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 
-		# check mime type, if desired
+		# check MIME type, if desired
 		$mime = $this->mFileProps['file-mime'];
 		$status = $this->verifyMimeType( $mime );
 		if ( $status !== true ) {
@@ -995,9 +996,9 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Checks if the mime type of the uploaded file matches the file extension.
+	 * Checks if the MIME type of the uploaded file matches the file extension.
 	 *
-	 * @param string $mime The mime type of the uploaded file
+	 * @param string $mime The MIME type of the uploaded file
 	 * @param string $extension The filename extension that the file is to be served with
 	 * @return bool
 	 */
@@ -1050,7 +1051,7 @@ abstract class UploadBase {
 	 * positives in some situations.
 	 *
 	 * @param string $file Pathname to the temporary upload file
-	 * @param string $mime The mime type of the file
+	 * @param string $mime The MIME type of the file
 	 * @param string $extension The extension of the file
 	 * @return bool True if the file contains something looking like embedded scripts
 	 */

@@ -197,8 +197,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			throw new UploadStashFileNotFoundException( "no local path for scaled item" );
 		}
 
-		// now we should construct a File, so we can get mime and other such info in a standard way
-		// n.b. mimetype may be different from original (ogx original -> jpeg thumb)
+		// now we should construct a File, so we can get MIME and other such info in a standard way
+		// n.b. MIME type may be different from original (ogx original -> jpeg thumb)
 		$thumbFile = new UnregisteredLocalFile( false,
 			$this->stash->repo, $thumbnailImage->getStoragePath(), false );
 		if ( !$thumbFile ) {
@@ -292,7 +292,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Output HTTP response of raw content
 	 * Side effect: writes HTTP response to STDOUT.
 	 * @param string $content Content
-	 * @param string $contentType Mime type
+	 * @param string $contentType MIME type
 	 * @throws SpecialUploadStashTooLargeException
 	 * @return bool
 	 */
@@ -310,7 +310,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Output headers for streaming
 	 * @todo Unsure about encoding as binary; if we received from HTTP perhaps
-	 * we should use that encoding, concatted with semicolon to mimeType as it
+	 * we should use that encoding, concatenated with semicolon to `$contentType` as it
 	 * usually is.
 	 * Side effect: preps PHP to write headers to STDOUT.
 	 * @param string $contentType String suitable for content-type header
