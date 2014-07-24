@@ -61,7 +61,7 @@ class SpecialChangePassword extends FormSpecialPage {
 	/**
 	 * Set a message at the top of the Change Password form
 	 * @since 1.23
-	 * @param Message $msg to parse and add to the form header
+	 * @param Message $msg Message to parse and add to the form header
 	 */
 	public function setChangeMessage( Message $msg ) {
 		$this->mPreTextMessage = $msg;
@@ -230,7 +230,7 @@ class SpecialChangePassword extends FormSpecialPage {
 	}
 
 	/**
-	 * @throws PasswordError when cannot set the new password because requirements not met.
+	 * @throws PasswordError When cannot set the new password because requirements not met.
 	 */
 	protected function attemptReset( $oldpass, $newpass, $retype ) {
 		global $wgPasswordAttemptThrottle;

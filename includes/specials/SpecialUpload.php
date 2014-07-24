@@ -1144,7 +1144,7 @@ class UploadForm extends HTMLForm {
 	/**
 	 * Empty function; submission is handled elsewhere.
 	 *
-	 * @return bool false
+	 * @return bool False
 	 */
 	function trySubmit() {
 		return false;

@@ -217,12 +217,12 @@ class SpecialListGroupRights extends SpecialPage {
 	/**
 	 * Create a user-readable list of permissions from the given array.
 	 *
-	 * @param array $permissions of permission => bool (from $wgGroupPermissions items)
-	 * @param array $revoke of permission => bool (from $wgRevokePermissions items)
-	 * @param array $add of groups this group is allowed to add or true
-	 * @param array $remove of groups this group is allowed to remove or true
-	 * @param array $addSelf of groups this group is allowed to add to self or true
-	 * @param array $removeSelf of group this group is allowed to remove from self or true
+	 * @param array $permissions Array of permission => bool (from $wgGroupPermissions items)
+	 * @param array $revoke Array of permission => bool (from $wgRevokePermissions items)
+	 * @param array $add Array of groups this group is allowed to add or true
+	 * @param array $remove Array of groups this group is allowed to remove or true
+	 * @param array $addSelf Array of groups this group is allowed to add to self or true
+	 * @param array $removeSelf Array of group this group is allowed to remove from self or true
 	 * @return string List of all granted permissions, separated by comma separator
 	 */
 	private function formatPermissions( $permissions, $revoke, $add, $remove, $addSelf, $removeSelf ) {

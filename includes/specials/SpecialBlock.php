@@ -28,7 +28,7 @@
  * @ingroup SpecialPage
  */
 class SpecialBlock extends FormSpecialPage {
-	/** @var User user to be blocked, as passed either by parameter (url?wpTarget=Foo)
+	/** @var User User to be blocked, as passed either by parameter (url?wpTarget=Foo)
 	 * or as subpage (Special:Block/Foo) */
 	protected $target;
 
@@ -454,7 +454,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Determine the target of the block, and the type of target
 	 * @todo Should be in Block.php?
-	 * @param string $par subpage parameter passed to setup, or data value from
+	 * @param string $par Subpage parameter passed to setup, or data value from
 	 *     the HTMLForm
 	 * @param WebRequest $request Optionally try and get data from a request too
 	 * @return array( User|string|null, Block::TYPE_ constant|null )

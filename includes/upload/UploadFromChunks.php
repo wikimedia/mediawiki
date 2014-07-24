@@ -68,7 +68,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * Calls the parent stashFile and updates the uploadsession table to handle "chunks"
 	 *
 	 * @param User|null $user
-	 * @return UploadStashFile stashed file
+	 * @return UploadStashFile Stashed file
 	 */
 	public function stashFile( User $user = null ) {
 		// Stash file is the called on creating a new chunk session:
@@ -201,9 +201,9 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Add a chunk to the temporary directory
 	 *
-	 * @param string $chunkPath path to temporary chunk file
-	 * @param int $chunkSize size of the current chunk
-	 * @param int $offset offset of current chunk ( mutch match database chunk offset )
+	 * @param string $chunkPath Path to temporary chunk file
+	 * @param int $chunkSize Size of the current chunk
+	 * @param int $offset Offset of current chunk ( mutch match database chunk offset )
 	 * @return Status
 	 */
 	public function addChunk( $chunkPath, $chunkSize, $offset ) {

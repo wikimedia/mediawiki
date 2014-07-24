@@ -335,7 +335,7 @@ class SpecialMergeHistory extends SpecialPage {
 	 * The user may have to "undo" the redirect manually to finish the "unmerge".
 	 * Maybe this should delete redirects at the target page of merges?
 	 *
-	 * @return boolean Success
+	 * @return bool Success
 	 */
 	function merge() {
 		# Get the titles directly from the IDs, in case the target page params

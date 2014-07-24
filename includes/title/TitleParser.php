@@ -37,8 +37,8 @@ interface TitleParser {
 	 *
 	 * @note this only parses local page links, interwiki-prefixes etc. are not considered!
 	 *
-	 * @param string $text the text to parse
-	 * @param int $defaultNamespace namespace to assume per default (usually NS_MAIN)
+	 * @param string $text The text to parse
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
 	 *
 	 * @throws MalformedTitleException If the text is not a valid representation of a page title.
 	 * @return TitleValue

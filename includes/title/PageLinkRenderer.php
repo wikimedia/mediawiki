@@ -37,7 +37,7 @@ interface PageLinkRenderer {
 	 * @todo expand this to cover the functionality of Linker::linkUrl
 	 *
 	 * @param TitleValue $page The link's target
-	 * @param array $params any additional URL parameters.
+	 * @param array $params Any additional URL parameters.
 	 *
 	 * @return string
 	 */

@@ -1048,7 +1048,7 @@ class LoginForm extends SpecialPage {
 	/**
 	 * Display a "successful action" page.
 	 *
-	 * @param string $type condition of return to; see `executeReturnTo`
+	 * @param string $type Condition of return to; see `executeReturnTo`
 	 * @param string|Message $title Page's title
 	 * @param string $msgname
 	 * @param string $injected_html

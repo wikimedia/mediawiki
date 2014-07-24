@@ -283,7 +283,7 @@ abstract class UploadBase {
 
 	/**
 	 * Verify whether the upload is sane.
-	 * @return mixed self::OK or else an array with error information
+	 * @return mixed Const self::OK or else an array with error information
 	 */
 	public function verifyUpload() {
 		wfProfileIn( __METHOD__ );
@@ -593,7 +593,7 @@ abstract class UploadBase {
 	 * isAllowed() should be called as well for generic is-user-blocked or
 	 * can-user-upload checking.
 	 *
-	 * @param User $user object to verify the permissions against
+	 * @param User $user User object to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
 	 *   in case the user has proper permissions.
 	 */
@@ -1276,8 +1276,8 @@ abstract class UploadBase {
 
 	/**
 	 * Callback to filter SVG Processing Instructions.
-	 * @param string $target processing instruction name
-	 * @param string $data processing instruction attribute and value
+	 * @param string $target Processing instruction name
+	 * @param string $data Processing instruction attribute and value
 	 * @return bool (true if the filter identified something bad)
 	 */
 	public static function checkSvgPICallback( $target, $data ) {

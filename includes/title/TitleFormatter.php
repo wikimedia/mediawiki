@@ -50,7 +50,7 @@ interface TitleFormatter {
 	 *
 	 * @note Only minimal normalization is applied. Consider using TitleValue::getText() directly.
 	 *
-	 * @param TitleValue $title the title to format
+	 * @param TitleValue $title The title to format
 	 *
 	 * @return string
 	 */
@@ -59,7 +59,7 @@ interface TitleFormatter {
 	/**
 	 * Returns the title formatted for display, including the namespace name.
 	 *
-	 * @param TitleValue $title the title to format
+	 * @param TitleValue $title The title to format
 	 *
 	 * @return string
 	 */
@@ -68,7 +68,7 @@ interface TitleFormatter {
 	/**
 	 * Returns the title formatted for display, with namespace and fragment.
 	 *
-	 * @param TitleValue $title the title to format
+	 * @param TitleValue $title The title to format
 	 *
 	 * @return string
 	 */

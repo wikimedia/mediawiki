@@ -30,7 +30,7 @@
  */
 class SpecialPageLanguage extends FormSpecialPage {
 	/**
-	 * @var $goToUrl URL to go to if language change successful
+	 * @var string URL to go to if language change successful
 	 */
 	private $goToUrl;
 

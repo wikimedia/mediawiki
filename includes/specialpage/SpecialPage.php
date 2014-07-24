@@ -101,8 +101,8 @@ class SpecialPage {
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"
 	 * @param bool $listed Whether the page is listed in Special:Specialpages
-	 * @param callable|bool $function unused
-	 * @param string $file unused
+	 * @param callable|bool $function Unused
+	 * @param string $file Unused
 	 * @param bool $includable Whether the page can be included in normal pages
 	 */
 	public function __construct(
@@ -134,7 +134,7 @@ class SpecialPage {
 	// @todo FIXME: Decide which syntax to use for this, and stick to it
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
-	 * @since r3583 (v1.3)
+	 * @since 1.3 (r3583)
 	 * @return bool
 	 */
 	function isListed() {
@@ -328,7 +328,7 @@ class SpecialPage {
 	 *   - `prefixSearchSubpages( "" )` should return `array( foo", "bar", "baz" )`
 	 *
 	 * @param string $search Prefix to search for
-	 * @param integer $limit Maximum number of results to return
+	 * @param int $limit Maximum number of results to return
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit = 10 ) {

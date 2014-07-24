@@ -217,7 +217,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @return string timestamp
+	 * @return string Timestamp
 	 */
 	function getTimestamp() {
 		if ( $this->mRevision ) {

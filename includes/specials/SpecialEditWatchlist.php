@@ -121,7 +121,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Return an array of subpages beginning with $search that this special page will accept.
 	 *
 	 * @param string $search Prefix to search for
-	 * @param integer $limit Maximum number of results to return
+	 * @param int $limit Maximum number of results to return
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit = 10 ) {
@@ -763,8 +763,8 @@ class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
 	 * form is open (bug 32126), but we know that invalid items will
 	 * be harmless so we can override it here.
 	 *
-	 * @param string $value the value the field was submitted with
-	 * @param array $alldata the data collected from the form
+	 * @param string $value The value the field was submitted with
+	 * @param array $alldata The data collected from the form
 	 * @return bool|string Bool true on success, or String error to display.
 	 */
 	function validate( $value, $alldata ) {

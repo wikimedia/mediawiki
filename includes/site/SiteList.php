@@ -277,7 +277,7 @@ class SiteList extends GenericArrayObject {
 		$group = new self();
 
 		/**
-		 * @var \Site $site
+		 * @var Site $site
 		 */
 		foreach ( $this as $site ) {
 			if ( $site->getGroup() === $groupName ) {

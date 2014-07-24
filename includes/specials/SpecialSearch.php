@@ -406,7 +406,7 @@ class SpecialSearch extends SpecialPage {
 	 * @param Title $title
 	 * @param int $num The number of search results found
 	 * @param null|SearchResultSet $titleMatches Results from title search
-	 * @param null|SearchResultSet $textMatches  Results from text search
+	 * @param null|SearchResultSet $textMatches Results from text search
 	 */
 	protected function showCreateLink( $title, $num, $titleMatches, $textMatches ) {
 		// show direct page/create link if applicable
@@ -798,7 +798,7 @@ class SpecialSearch extends SpecialPage {
 	 * @param SearchResult $result
 	 * @param string $lastInterwiki
 	 * @param string $query
-	 * @param array $customCaptions iw prefix -> caption
+	 * @param array $customCaptions Interwiki prefix -> caption
 	 *
 	 * @return string
 	 */

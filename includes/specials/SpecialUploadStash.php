@@ -57,7 +57,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Execute page -- can output a file directly or show a listing of them.
 	 *
-	 * @param string $subPage subpage, e.g. in
+	 * @param string $subPage Subpage, e.g. in
 	 *   http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
 	 * @return bool Success
 	 */
@@ -75,7 +75,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * If file available in stash, cats it out to the client as a simple HTTP response.
 	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
 	 *
-	 * @param string $key the key of a particular requested file
+	 * @param string $key The key of a particular requested file
 	 * @throws HttpError
 	 * @return bool
 	 */
@@ -227,7 +227,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @param array $params Scaling parameters ( e.g. array( width => '50' ) );
 	 * @param int $flags Scaling flags ( see File:: constants )
 	 * @throws MWException
-	 * @return bool success
+	 * @return bool Success
 	 */
 	private function outputRemoteScaledThumb( $file, $params, $flags ) {
 		// This global probably looks something like

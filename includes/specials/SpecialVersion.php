@@ -307,7 +307,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @return string wgVersion + a link to subversion revision of svn BASE
+	 * @return string Global wgVersion + a link to subversion revision of svn BASE
 	 */
 	private static function getVersionLinkedSvn() {
 		global $IP;
@@ -349,7 +349,7 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * @since 1.22 Returns the HEAD date in addition to the sha1 and link
-	 * @return bool|string wgVersion + HEAD sha1 stripped to the first 7 chars
+	 * @return bool|string Global wgVersion + HEAD sha1 stripped to the first 7 chars
 	 *   with link and date, or false on failure
 	 */
 	private static function getVersionLinkedGit() {
