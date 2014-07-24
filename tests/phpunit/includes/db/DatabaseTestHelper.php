@@ -136,7 +136,7 @@ class DatabaseTestHelper extends DatabaseBase {
 		return false;
 	}
 
-	function indexInfo( $table, $index, $fname = 'Database::indexInfo' ) {
+	function indexInfo( $table, $index, $fname = 'DatabaseBase::indexInfo' ) {
 		return false;
 	}
 
