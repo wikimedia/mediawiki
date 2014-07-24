@@ -27,12 +27,6 @@
 define( 'USER_TOKEN_LENGTH', 32 );
 
 /**
- * Int Serialized record version.
- * @ingroup Constants
- */
-define( 'MW_USER_VERSION', 9 );
-
-/**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
  * @ingroup Constants
  */
@@ -62,8 +56,12 @@ class User implements IDBAccessObject {
 	 * magic can be used.
 	 */
 	const USER_TOKEN_LENGTH = USER_TOKEN_LENGTH;
-	const MW_USER_VERSION = MW_USER_VERSION;
 	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
+
+	/**
+	 * @const int Serialized record version.
+	 */
+	const VERSION = 9;
 
 	/**
 	 * Maximum items in $mWatchedItems
@@ -369,7 +367,7 @@ class User implements IDBAccessObject {
 		// Try cache
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 		$data = $wgMemc->get( $key );
-		if ( !is_array( $data ) || $data['mVersion'] != MW_USER_VERSION ) {
+		if ( !is_array( $data ) || $data['mVersion'] != self::VERSION ) {
 			// Object is expired, load from DB
 			$data = false;
 		}
@@ -410,7 +408,7 @@ class User implements IDBAccessObject {
 		foreach ( self::$mCacheVars as $name ) {
 			$data[$name] = $this->$name;
 		}
-		$data['mVersion'] = MW_USER_VERSION;
+		$data['mVersion'] = self::VERSION;
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 		global $wgMemc;
 		$wgMemc->set( $key, $data );
