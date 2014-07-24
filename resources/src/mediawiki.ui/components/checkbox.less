@@ -1,0 +1,66 @@
+@import "mediawiki.mixins";
+
+// Checkbox
+//
+// Styling checkboxes in a way that works cross browser is a tricky problem to solve.
+// In MediaWiki UI we wrap a checkbox and label inside mw-ui-checkbox
+// The first label is used purely for styling purposes.
+// This renders in all browsers except IE6-8 which do not support the :checked selector
+// IE8 < do not apply these styles due to use of the :not selector
+// Ensure to markup the checkbox and label with id and for attributes respectively
+//
+// Markup:
+// <div class="mw-ui-checkbox">
+//   <input type="checkbox" id="kss-example-5"><label for="kss-example-5">Standard checkbox</label>
+// </div>
+// <div class="mw-ui-checkbox">
+//   <input type="checkbox" id="kss-example-5-2" disabled><label for="kss-example-5-2">Disabled checkbox</label>
+// </div>
+//
+// Styleguide 5.
+.mw-ui-checkbox {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+// We use the not selector to cancel out styling on IE 8 and below
+.mw-ui-checkbox:not(#noop) {
+	* {
+		vertical-align: middle;
+	}
+
+	input[type="checkbox"] {
+		// we hide the input element as instead we will style the label that follows
+		// we use opacity so that VoiceOver software can still identify it
+		opacity: 0;
+
+		// the pseudo before element of the label after the checkbox now is positioned over the checkbox to 'fake it'
+		& + label::before {
+			content: '';
+			display: inline-block;
+			border-radius: 2px;
+			margin-right: 18px;
+			width: 24px;
+			height: 24px;
+			background-color: #fff;
+			cursor: pointer;
+			border: 1px solid grey;
+		}
+
+		&:focus + label::before {
+			// @todo https://trello.com/c/JETLmm7F/7-check-boxes
+		}
+
+		// when the input is checked, style the label that followed as a checked checkbox
+		&:checked + label::before {
+			.background-image-svg('images/checked.svg', 'images/checked.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+
+		// disabled checked boxes have a gray background
+		&:disabled + label::before {
+			background-color: lightgrey;
+		}
+	}
+}
