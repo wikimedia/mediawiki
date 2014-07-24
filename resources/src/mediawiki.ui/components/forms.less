@@ -20,14 +20,14 @@
 // VForm
 //
 // Style a compact vertical stacked form ("VForm") and the elements in divs
-// within it. See button section on guidance of how and when to use mw-ui-constructive.
+// within it. See button and inputs section on guidance of how and when to use them.
 //
 // Markup:
 // <form class="mw-ui-vform">
 //   <div class="mw-ui-vform-field">This is a form example.</div>
 //   <div class="mw-ui-vform-field">
 //     <label>Username </label>
-//     <input value="input">
+//     <input class="mw-ui-input" value="input">
 //   </div>
 //   <div class="mw-ui-vform-field">
 //     <button class="mw-ui-button mw-ui-constructive">Button in vform</button>
@@ -41,19 +41,12 @@
 	width: @defaultFormWidth;
 
 	// MW currently doesn't use the type attribute everywhere on inputs.
-	input,
 	select,
 	.mw-ui-button {
 		display: block;
 		.box-sizing(border-box);
 		margin: 0;
 		width: 100%;
-	}
-
-	// We exclude buttons because they'll generally use mw-ui-button.
-	// Otherwise, we'll unintentionally override that.
-	input:not([type=button]):not([type=submit]):not([type=file]) {
-		.agora-field-styling(); // mixins/forms.less
 	}
 
 	// Give dropdown lists the same spacing as input fields for consistency.
@@ -157,20 +150,6 @@
 	margin: 0 0 15px;
 	padding: 0;
 	width: 100%;
-
-	input {
-		font-size: 1em;
-		line-height: 1.4;
-	}
-}
-
-// Apply mw-ui-input to individual input fields to style them.
-// You generally don't need to use this class if <input> is within an Agora
-// form container such as mw-ui-vform
-.mw-ui-input {
-	.agora-field-styling(); // mixins/forms.less
-	font-size: 1em;
-	line-height: 1.4em;
 }
 
 // Apply mw-ui-label to individual elements to style them.

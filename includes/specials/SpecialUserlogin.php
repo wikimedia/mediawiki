@@ -1214,6 +1214,7 @@ class LoginForm extends SpecialPage {
 		$out->addModuleStyles( array(
 			'mediawiki.ui',
 			'mediawiki.ui.button',
+			'mediawiki.ui.input',
 			'mediawiki.special.userlogin.common.styles'
 		) );
 		$out->addModules( array(

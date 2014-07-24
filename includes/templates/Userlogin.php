@@ -72,7 +72,7 @@ class UserloginTemplate extends BaseTemplate {
 				<?php
 				$extraAttrs = array();
 				echo Html::input( 'wpName', $this->data['name'], 'text', array(
-					'class' => 'loginText',
+					'class' => 'loginText mw-ui-input',
 					'id' => 'wpName1',
 					'tabindex' => '1',
 					'size' => '20',
@@ -102,7 +102,7 @@ class UserloginTemplate extends BaseTemplate {
 				</label>
 				<?php
 				echo Html::input( 'wpPassword', null, 'password', array(
-					'class' => 'loginPassword',
+					'class' => 'loginPassword mw-ui-input',
 					'id' => 'wpPassword1',
 					'tabindex' => '2',
 					'size' => '20',

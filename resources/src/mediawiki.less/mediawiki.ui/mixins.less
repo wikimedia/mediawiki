@@ -1,30 +1,6 @@
 // ----------------------------------------------------------------------------
 // Form styling mixins
 // ----------------------------------------------------------------------------
-
-// Font is not included.
-.agora-field-styling() {
-
-	border: 1px solid @colorFieldBorder;
-
-	&:focus {
-		// Styling focus of native checkboxes etc on Mac is almost impossible.
-		&:not([type=checkbox]):not([type=radio]) {
-			outline: 0; // Removes OS field focus
-		}
-
-		box-shadow: lighten(@colorProgressive, 6%) 0 0 5px;
-
-		border-color: lighten(@colorProgressive, 6%);
-	}
-
-	color: @colorText;
-	padding: 0.35em 0.5em 0.35em 0.5em;
-
-	// Ensure that buttons and inputs are nicely aligned when they have differing heights
-	vertical-align: middle;
-}
-
 .agora-label-styling() {
 	font-size: 0.9em;
 	color: @colorText;
