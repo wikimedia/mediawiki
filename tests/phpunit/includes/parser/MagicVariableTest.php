@@ -171,7 +171,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	 * Main assertion helper for magic variables padding
 	 * @param string $magic Magic variable name
 	 * @param mixed $value Month or day
-	 * @param string $format sprintf format for $value
+	 * @param string $format Sprintf format for $value
 	 */
 	private function assertMagicPadding( $magic, $value, $format ) {
 		# Initialize parser timestamp as year 2010 at 12h34 56s.
