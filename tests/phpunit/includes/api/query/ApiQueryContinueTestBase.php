@@ -37,7 +37,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	 * @param array $params Api parameters
 	 * @param int $expectedCount Max number of iterations
 	 * @param string $id Unit test id
-	 * @param bool $useContinue true to use smart continue
+	 * @param bool $useContinue True to use smart continue
 	 * @return mixed Merged results data array
 	 */
 	protected function checkC( $expected, $params, $expectedCount, $id, $continue = true ) {
@@ -50,7 +50,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	 * @param array $params Api parameters
 	 * @param int $expectedCount Max number of iterations
 	 * @param string $id Unit test id
-	 * @param bool $useContinue true to use smart continue
+	 * @param bool $useContinue True to use smart continue
 	 * @return mixed Merged results data array
 	 * @throws Exception
 	 */

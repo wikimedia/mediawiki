@@ -25,7 +25,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * options['expectedReturn'] - expected return value
 	 * options['message'] - PHPUnit message for assertion
 	 *
-	 * @param array $args key-value array of arguments as shown above
+	 * @param array $args Key-value array of arguments as shown above
 	 */
 	protected function assertTransformCssMediaCase( $args ) {
 		$queryData = array();
