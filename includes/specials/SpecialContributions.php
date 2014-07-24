@@ -255,6 +255,9 @@ class SpecialContributions extends IncludableSpecialPage {
 						wfEscapeWikiText( $userObj->getName() ),
 					)
 				);
+				if ( !$this->including() ) {
+					$this->getOutput()->setStatusCode( 404 );
+				}
 			}
 			$user = htmlspecialchars( $userObj->getName() );
 		} else {

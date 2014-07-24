@@ -208,6 +208,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 					}
 					$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
 					$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
+					$out->setStatusCode( 404 );
 				}
 			}
 
