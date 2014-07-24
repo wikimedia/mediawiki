@@ -316,6 +316,7 @@ changes to languages because of Bugzilla reports.
 * HistoryPage - Use HistoryAction directly
 * RawPage - Use RawAction directly
 * StubContLang - Use Language::factory() instead
+* License/Licenses - Use the "licenses" system message instead
 
 == Compatibility ==
 
