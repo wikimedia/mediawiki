@@ -411,7 +411,7 @@ class EditPage {
 	 *
 	 * @param string $modelId The ID of the content model to test. Use CONTENT_MODEL_XXX constants.
 	 * @return bool
-	 * @throws MWException if $modelId has no known handler
+	 * @throws MWException If $modelId has no known handler
 	 */
 	public function isSupportedContentModel( $modelId ) {
 		return $this->allowNonTextContent ||
@@ -710,7 +710,7 @@ class EditPage {
 	 * Subclasses may override this to replace the default behavior, which is
 	 * to check ContentHandler::supportsSections.
 	 *
-	 * @return bool true if this edit page supports sections, false otherwise.
+	 * @return bool True if this edit page supports sections, false otherwise.
 	 */
 	protected function isSectionEditSupported() {
 		$contentHandler = ContentHandler::getForTitle( $this->mTitle );
@@ -974,7 +974,7 @@ class EditPage {
 	 * Fetch initial editing page content.
 	 *
 	 * @param string|bool $def_text
-	 * @return string|bool string on success, $def_text for invalid sections
+	 * @return string|bool String on success, $def_text for invalid sections
 	 * @private
 	 * @deprecated since 1.21, get WikiPage::getContent() instead.
 	 */
@@ -1209,7 +1209,7 @@ class EditPage {
 	 * Get the contents to be preloaded into the box, either set by
 	 * an earlier setPreloadText() or by loading the given page.
 	 *
-	 * @param string $preload representing the title to preload from.
+	 * @param string $preload Representing the title to preload from.
 	 *
 	 * @return string
 	 *
@@ -1321,7 +1321,7 @@ class EditPage {
 	 * If the variable were set on the server, it would be cached, which is unwanted
 	 * since the post-edit state should only apply to the load right after the save.
 	 *
-	 * @param $statusValue int The status value (to check for new article status)
+	 * @param int $statusValue The status value (to check for new article status)
 	 */
 	protected function setPostEditCookie( $statusValue ) {
 		$revisionId = $this->mArticle->getLatest();
@@ -1343,7 +1343,7 @@ class EditPage {
 	/**
 	 * Attempt submission
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
-	 * @return bool false if output is done, true if the rest of the form should be displayed
+	 * @return bool False if output is done, true if the rest of the form should be displayed
 	 */
 	public function attemptSave() {
 		global $wgUser;
@@ -1363,7 +1363,7 @@ class EditPage {
 	 * @param array|bool $resultDetails
 	 *
 	 * @throws ErrorPageError
-	 * @return bool false, if output is done, true if rest of the form should be displayed
+	 * @return bool False, if output is done, true if rest of the form should be displayed
 	 */
 	private function handleStatus( Status $status, $resultDetails ) {
 		global $wgUser, $wgOut;
@@ -2314,7 +2314,7 @@ class EditPage {
 	 * @param Content|null|bool|string $content
 	 * @return string The editable text form of the content.
 	 *
-	 * @throws MWException if $content is not an instance of TextContent and
+	 * @throws MWException If $content is not an instance of TextContent and
 	 *   $this->allowNonTextContent is not true.
 	 */
 	protected function toEditText( $content ) {
@@ -2346,7 +2346,7 @@ class EditPage {
 	 * @return Content The content object created from $text. If $text was false
 	 *   or null, false resp. null will be  returned instead.
 	 *
-	 * @throws MWException if unserializing the text results in a Content
+	 * @throws MWException If unserializing the text results in a Content
 	 *   object that is not an instance of TextContent and
 	 *   $this->allowNonTextContent is not true.
 	 */
@@ -2590,7 +2590,7 @@ class EditPage {
 	 * Extract the section title from current section text, if any.
 	 *
 	 * @param string $text
-	 * @return string|bool string or false
+	 * @return string|bool String or false
 	 */
 	public static function extractSectionTitle( $text ) {
 		preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches );
@@ -2836,7 +2836,7 @@ class EditPage {
 	}
 
 	/**
-	 * @param bool $isSubjectPreview true if this is the section subject/title
+	 * @param bool $isSubjectPreview True if this is the section subject/title
 	 *   up top, or false if this is the comment summary
 	 *   down below the textarea
 	 * @param string $summary The text of the summary to display
@@ -2867,7 +2867,7 @@ class EditPage {
 	}
 
 	/**
-	 * @param bool $isSubjectPreview true if this is the section subject/title
+	 * @param bool $isSubjectPreview True if this is the section subject/title
 	 *   up top, or false if this is the comment summary
 	 *   down below the textarea
 	 * @param string $summary The text of the summary to display

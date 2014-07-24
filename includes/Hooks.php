@@ -64,10 +64,10 @@ class Hooks {
 	 * Clears hooks registered via Hooks::register(). Does not touch $wgHooks.
 	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
 	 *
-	 * @param string $name the name of the hook to clear.
+	 * @param string $name The name of the hook to clear.
 	 *
 	 * @since 1.21
-	 * @throws MWException if not in testing mode.
+	 * @throws MWException If not in testing mode.
 	 */
 	public static function clear( $name ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
@@ -123,7 +123,7 @@ class Hooks {
 	 * Finally, process the return value and return/throw accordingly.
 	 *
 	 * @param string $event Event name
-	 * @param array $args  Array of parameters passed to hook functions
+	 * @param array $args Array of parameters passed to hook functions
 	 * @param string|null $deprecatedVersion Optionally, mark hook as deprecated with version number
 	 * @return bool True if no handler aborted the hook
 	 *

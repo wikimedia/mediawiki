@@ -1188,7 +1188,7 @@ class AutoLoader {
 	/**
 	 * autoload - take a class name and attempt to load it
 	 *
-	 * @param string $className name of class we're looking for.
+	 * @param string $className Name of class we're looking for.
 	 */
 	static function autoload( $className ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses,

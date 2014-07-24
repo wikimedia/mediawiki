@@ -291,7 +291,7 @@ class Message {
 	 * @since 1.17
 	 *
 	 * @param string|string[] $key Message key or array of keys.
-	 * @param mixed [$param,...] Parameters as strings.
+	 * @param mixed $param,... Parameters as strings.
 	 *
 	 * @return Message
 	 */
@@ -308,7 +308,7 @@ class Message {
 	 *
 	 * @since 1.18
 	 *
-	 * @param string|string[] [$keys,...] Message keys, or first argument as an array of all the
+	 * @param string|string[] $keys,... Message keys, or first argument as an array of all the
 	 * message keys.
 	 *
 	 * @return Message
@@ -332,7 +332,7 @@ class Message {
 	 *
 	 * @since 1.17
 	 *
-	 * @param mixed [$params,...] Parameters as strings, or a single argument that is
+	 * @param mixed $params,... Parameters as strings, or a single argument that is
 	 * an array of strings.
 	 *
 	 * @return Message $this
@@ -355,7 +355,7 @@ class Message {
 	 *
 	 * @since 1.17
 	 *
-	 * @param mixed [$params,...] Raw parameters as strings, or a single argument that is
+	 * @param mixed $params,... Raw parameters as strings, or a single argument that is
 	 * an array of raw parameters.
 	 *
 	 * @return Message $this
@@ -377,7 +377,7 @@ class Message {
 	 *
 	 * @since 1.18
 	 *
-	 * @param mixed [$param,...] Numeric parameters, or a single argument that is
+	 * @param mixed $param,... Numeric parameters, or a single argument that is
 	 * an array of numeric parameters.
 	 *
 	 * @return Message $this
@@ -399,7 +399,7 @@ class Message {
 	 *
 	 * @since 1.22
 	 *
-	 * @param int|int[] [$param,...] Duration parameters, or a single argument that is
+	 * @param int|int[] $param,... Duration parameters, or a single argument that is
 	 * an array of duration parameters.
 	 *
 	 * @return Message $this
@@ -421,7 +421,7 @@ class Message {
 	 *
 	 * @since 1.22
 	 *
-	 * @param string|string[] [$param,...] Expiry parameters, or a single argument that is
+	 * @param string|string[] $param,... Expiry parameters, or a single argument that is
 	 * an array of expiry parameters.
 	 *
 	 * @return Message $this
@@ -443,7 +443,7 @@ class Message {
 	 *
 	 * @since 1.22
 	 *
-	 * @param int|int[] [$param,...] Time period parameters, or a single argument that is
+	 * @param int|int[] $param,... Time period parameters, or a single argument that is
 	 * an array of time period parameters.
 	 *
 	 * @return Message $this
@@ -465,7 +465,7 @@ class Message {
 	 *
 	 * @since 1.22
 	 *
-	 * @param int|int[] [$param,...] Size parameters, or a single argument that is
+	 * @param int|int[] $param,... Size parameters, or a single argument that is
 	 * an array of size parameters.
 	 *
 	 * @return Message $this
@@ -487,7 +487,7 @@ class Message {
 	 *
 	 * @since 1.22
 	 *
-	 * @param int|int[] [$param,...] Bit rate parameters, or a single argument that is
+	 * @param int|int[] $param,... Bit rate parameters, or a single argument that is
 	 * an array of bit rate parameters.
 	 *
 	 * @return Message $this

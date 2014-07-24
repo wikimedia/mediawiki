@@ -95,7 +95,7 @@ class Title {
 	/** @var array Array of groups allowed to edit this article */
 	public $mRestrictions = array();
 
-	/** @var bool  */
+	/** @var bool */
 	protected $mOldRestrictions = false;
 
 	/** @var bool Cascade restrictions on this page to included templates and images? */
@@ -1094,7 +1094,7 @@ class Title {
 	/**
 	 * Returns true if the title is inside one of the specified namespaces.
 	 *
-	 * @param ...$namespaces The namespaces to check for
+	 * @param int $namespaces,... The namespaces to check for
 	 * @return bool
 	 * @since 1.19
 	 */
@@ -1645,7 +1645,7 @@ class Title {
 	 * @see self::getFullURL to always get an absolute URL.
 	 * @see self::newFromText to produce a Title object.
 	 *
-	 * @param string|array $query an optional query string,
+	 * @param string|array $query An optional query string,
 	 *   not used for interwiki links. Can be specified as an associative array as well,
 	 *   e.g., array( 'action' => 'edit' ) (keys and values will be URL-escaped).
 	 *   Some query patterns will trigger various shorturl path replacements.
@@ -1878,11 +1878,11 @@ class Title {
 	 *
 	 * @todo FIXME: This *does not* check throttles (User::pingLimiter()).
 	 *
-	 * @param string $action action that permission needs to be checked for
+	 * @param string $action Action that permission needs to be checked for
 	 * @param User $user User to check
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary
 	 *   queries by skipping checks for cascading protections and user blocks.
-	 * @param array $ignoreErrors of Strings Set this to a list of message keys
+	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 * @return array Array of arguments to wfMessage to explain permissions problems.
 	 */
@@ -1906,7 +1906,7 @@ class Title {
 	/**
 	 * Permissions checks that fail most often, and which are easiest to test.
 	 *
-	 * @param string $action the action to check
+	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
 	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
@@ -2564,7 +2564,7 @@ class Title {
 	/**
 	 * Does the title correspond to a protected article?
 	 *
-	 * @param string $action the action the page is protected from,
+	 * @param string $action The action the page is protected from,
 	 * by default checks all actions.
 	 * @return bool
 	 */

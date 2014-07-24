@@ -991,8 +991,8 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Returns an HTML link for use in the footer
-	 * @param string $desc i18n message key for the link text
-	 * @param string $page i18n message key for the page to link to
+	 * @param string $desc The i18n message key for the link text
+	 * @param string $page The i18n message key for the page to link to
 	 * @return string HTML anchor
 	 */
 	public function footerLink( $desc, $page ) {

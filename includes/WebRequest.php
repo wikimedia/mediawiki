@@ -700,7 +700,7 @@ class WebRequest {
 
 	/**
 	 * Take an arbitrary query and rewrite the present URL to include it
-	 * @param string $query query string fragment; do not include initial '?'
+	 * @param string $query Query string fragment; do not include initial '?'
 	 *
 	 * @return string
 	 */
@@ -772,7 +772,7 @@ class WebRequest {
 	 * Return the path to the temporary file where PHP has stored the upload.
 	 *
 	 * @param string $key
-	 * @return string|null string or null if no such file.
+	 * @return string|null String or null if no such file.
 	 */
 	public function getFileTempname( $key ) {
 		$file = new WebRequestUpload( $this, $key );
@@ -799,7 +799,7 @@ class WebRequest {
 	 * Other than this the name is not verified for being a safe filename.
 	 *
 	 * @param string $key
-	 * @return string|null string or null if no such file.
+	 * @return string|null String or null if no such file.
 	 */
 	public function getFileName( $key ) {
 		$file = new WebRequestUpload( $this, $key );
@@ -868,7 +868,7 @@ class WebRequest {
 
 	/**
 	 * Get a request header, or false if it isn't set
-	 * @param string $name case-insensitive header name
+	 * @param string $name Case-insensitive header name
 	 *
 	 * @return string|bool False on failure
 	 */
@@ -969,7 +969,7 @@ HTML;
 	/**
 	 * Parse the Accept-Language header sent by the client into an array
 	 *
-	 * @return array array( languageCode => q-value ) sorted by q-value in
+	 * @return array Array( languageCode => q-value ) sorted by q-value in
 	 *   descending order then appearing time in the header in ascending order.
 	 * May contain the "language" '*', which applies to languages other than those explicitly listed.
 	 * This is aligned with rfc2616 section 14.4
@@ -1252,7 +1252,7 @@ class FauxRequest extends WebRequest {
 	private $session = array();
 
 	/**
-	 * @param array $data of *non*-urlencoded key => value pairs, the
+	 * @param array $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
 	 * @param bool $wasPosted Whether to treat the data as POST
 	 * @param array|null $session Session array or null

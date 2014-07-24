@@ -952,7 +952,7 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @param int $field one of DELETED_* bitfield constants
+	 * @param int $field One of DELETED_* bitfield constants
 	 *
 	 * @return bool
 	 */

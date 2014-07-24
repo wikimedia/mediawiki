@@ -199,7 +199,7 @@ class License {
 	public $text;
 
 	/**
-	 * @param string $str license name??
+	 * @param string $str License name??
 	 */
 	function __construct( $str ) {
 		list( $text, $template ) = explode( '|', strrev( $str ), 2 );

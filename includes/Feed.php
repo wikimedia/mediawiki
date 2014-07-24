@@ -174,7 +174,7 @@ class FeedItem {
 	/**
 	 * Quickie hack... strip out wikilinks to more legible form from the comment.
 	 *
-	 * @param string $text wikitext
+	 * @param string $text Wikitext
 	 * @return string
 	 */
 	public static function stripComment( $text ) {

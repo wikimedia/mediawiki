@@ -202,7 +202,7 @@ class HistoryBlobStub {
 	/** @var string */
 	public $mHash;
 
-	/** @var  */
+	/** @var string */
 	public $mRef;
 
 	/**
@@ -593,7 +593,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * the bytes backwards and initialised with 0 instead of 1. See bug 34428.
 	 *
 	 * @param string $s
-	 * @return string|bool false if the hash extension is not available
+	 * @return string|bool False if the hash extension is not available
 	 */
 	function xdiffAdler32( $s ) {
 		if ( !function_exists( 'hash' ) ) {

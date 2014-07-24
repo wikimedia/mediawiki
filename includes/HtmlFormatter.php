@@ -130,7 +130,7 @@ class HtmlFormatter {
 	/**
 	 * Removes content we've chosen to remove.  The text of the removed elements can be
 	 * extracted with the getText method.
-	 * @return array of removed DOMElements
+	 * @return array Array of removed DOMElements
 	 */
 	public function filterContent() {
 		wfProfileIn( __METHOD__ );
@@ -209,7 +209,7 @@ class HtmlFormatter {
 	/**
 	 * Removes a list of elelments from DOMDocument
 	 * @param array|DOMNodeList $elements
-	 * @return array of removed elements
+	 * @return array Array of removed elements
 	 */
 	private function removeElements( $elements ) {
 		$list = $elements;

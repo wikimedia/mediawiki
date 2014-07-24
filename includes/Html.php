@@ -114,7 +114,7 @@ class Html {
 	 * shaved off the HTML output as well.
 	 *
 	 * @param string $element The element's name, e.g., 'a'
-	 * @param array $attribs  Associative array of attributes, e.g., array(
+	 * @param array $attribs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
 	 *   further documentation.
 	 * @param string $contents The raw HTML contents of the element: *not*
@@ -414,7 +414,7 @@ class Html {
 	 *   you can omit the key, e.g., array( 'checked' ) instead of
 	 *   array( 'checked' => 'checked' ) or such.
 	 *
-	 * @throws MWException if an attribute that doesn't allow lists is set to an array
+	 * @throws MWException If an attribute that doesn't allow lists is set to an array
 	 * @return string HTML fragment that goes between element name and '>'
 	 *   (starting with a space if at least one attribute is output)
 	 */

@@ -134,7 +134,7 @@ class StubObject {
 	 * @param string $name Name of the method called in this object.
 	 * @param int $level Level to go in the stack trace to get the function
 	 *   who called this function.
-	 * @return The unstubbed version of itself
+	 * @return object The unstubbed version of itself
 	 * @throws MWException
 	 */
 	function _unstub( $name = '_unstub', $level = 2 ) {

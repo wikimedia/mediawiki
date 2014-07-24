@@ -108,7 +108,7 @@ class Preferences {
 	 * @throws MWException
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array defaultPreferences to load values for
+	 * @param array $defaultPreferences Array to load values for
 	 * @return array|null
 	 */
 	static function loadPreferenceValues( $user, $context, &$defaultPreferences ) {

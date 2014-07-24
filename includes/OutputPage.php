@@ -100,7 +100,7 @@ class OutputPage extends ContextSource {
 	protected $mStatusCode;
 
 	/**
-	 * @ var string mLastModified and mEtag are used for sending cache control.
+	 * @var string Variable mLastModified and mEtag are used for sending cache control.
 	 *   The whole caching system should probably be moved into its own class.
 	 */
 	protected $mLastModified = '';
@@ -355,8 +355,8 @@ class OutputPage extends ContextSource {
 	 * Add a new "<meta>" tag
 	 * To add an http-equiv meta tag, precede the name with "http:"
 	 *
-	 * @param string $name tag name
-	 * @param string $val tag value
+	 * @param string $name Tag name
+	 * @param string $val Tag value
 	 */
 	function addMeta( $name, $val ) {
 		array_push( $this->mMetatags, array( $name, $val ) );
@@ -367,7 +367,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * Note: use setCanonicalUrl() for rel=canonical.
 	 *
-	 * @param array $linkarr associative array of attributes.
+	 * @param array $linkarr Associative array of attributes.
 	 */
 	function addLink( $linkarr ) {
 		array_push( $this->mLinktags, $linkarr );
@@ -376,7 +376,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a new \<link\> with "rel" attribute set to "meta"
 	 *
-	 * @param array $linkarr associative array mapping attribute names to their
+	 * @param array $linkarr Associative array mapping attribute names to their
 	 *                 values, both keys and values will be escaped, and the
 	 *                 "rel" attribute will be automatically added
 	 */
@@ -412,7 +412,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add raw HTML to the list of scripts (including \<script\> tag, etc.)
 	 *
-	 * @param string $script raw HTML
+	 * @param string $script Raw HTML
 	 */
 	function addScript( $script ) {
 		$this->mScripts .= $script . "\n";
@@ -421,7 +421,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Register and add a stylesheet from an extension directory.
 	 *
-	 * @param string $url path to sheet.  Provide either a full url (beginning
+	 * @param string $url Path to sheet.  Provide either a full url (beginning
 	 *             with 'http', etc) or a relative path from the document root
 	 *             (beginning with '/').  Otherwise it behaves identically to
 	 *             addStyle() and draws from the /skins folder.
@@ -442,9 +442,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a JavaScript file out of skins/common, or a given relative path.
 	 *
-	 * @param string $file filename in skins/common or complete on-server path
+	 * @param string $file Filename in skins/common or complete on-server path
 	 *              (/foo/bar.js)
-	 * @param string $version style version of the file. Defaults to $wgStyleVersion
+	 * @param string $version Style version of the file. Defaults to $wgStyleVersion
 	 */
 	public function addScriptFile( $file, $version = null ) {
 		global $wgStylePath, $wgStyleVersion;
@@ -484,7 +484,7 @@ class OutputPage extends ContextSource {
 	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
 	 * @param array $modules
-	 * @param string|null $position if not null, only return modules with this position
+	 * @param string|null $position If not null, only return modules with this position
 	 * @param string $type
 	 * @return array
 	 */
@@ -647,8 +647,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add or replace an header item to the output
 	 *
-	 * @param string $name item name
-	 * @param string $value raw HTML
+	 * @param string $name Item name
+	 * @param string $value Raw HTML
 	 */
 	public function addHeadItem( $name, $value ) {
 		$this->mHeadItems[$name] = $value;
@@ -667,7 +667,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the value of the ETag HTTP header, only used if $wgUseETag is true
 	 *
-	 * @param string $tag value of "ETag" header
+	 * @param string $tag Value of "ETag" header
 	 */
 	function setETag( $tag ) {
 		$this->mETag = $tag;
@@ -815,7 +815,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Override the last modified timestamp
 	 *
-	 * @param string $timestamp new timestamp, in a format readable by
+	 * @param string $timestamp New timestamp, in a format readable by
 	 *        wfTimestamp()
 	 */
 	public function setLastModified( $timestamp ) {
@@ -825,7 +825,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the robot policy for the page: <http://www.robotstxt.org/meta.html>
 	 *
-	 * @param string $policy the literal string to output as the contents of
+	 * @param string $policy The literal string to output as the contents of
 	 *   the meta tag.  Will be parsed according to the spec and output in
 	 *   standardized form.
 	 * @return null
@@ -859,7 +859,7 @@ class OutputPage extends ContextSource {
 	 * Set the follow policy for the page, but leave the index policy un-
 	 * touched.
 	 *
-	 * @param string $policy either 'follow' or 'nofollow'.
+	 * @param string $policy Either 'follow' or 'nofollow'.
 	 * @return null
 	 */
 	public function setFollowPolicy( $policy ) {
@@ -873,7 +873,7 @@ class OutputPage extends ContextSource {
 	 * Set the new value of the "action text", this will be added to the
 	 * "HTML title", separated from it with " - ".
 	 *
-	 * @param string $text new value of the "action text"
+	 * @param string $text New value of the "action text"
 	 */
 	public function setPageTitleActionText( $text ) {
 		$this->mPageTitleActionText = $text;
@@ -968,7 +968,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Replace the subtitle with $str
 	 *
-	 * @param string|Message $str new value of the subtitle. String should be safe HTML.
+	 * @param string|Message $str New value of the subtitle. String should be safe HTML.
 	 */
 	public function setSubtitle( $str ) {
 		$this->clearSubtitle();
@@ -979,7 +979,7 @@ class OutputPage extends ContextSource {
 	 * Add $str to the subtitle
 	 *
 	 * @deprecated since 1.19; use addSubtitle() instead
-	 * @param string|Message $str to add to the subtitle
+	 * @param string|Message $str String or Message to add to the subtitle
 	 */
 	public function appendSubtitle( $str ) {
 		$this->addSubtitle( $str );
@@ -988,7 +988,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add $str to the subtitle
 	 *
-	 * @param string|Message $str to add to the subtitle. String should be safe HTML.
+	 * @param string|Message $str String or Message to add to the subtitle. String should be safe HTML.
 	 */
 	public function addSubtitle( $str ) {
 		if ( $str instanceof Message ) {
@@ -1085,7 +1085,7 @@ class OutputPage extends ContextSource {
 	 * for the new version
 	 * @see addFeedLink()
 	 *
-	 * @param bool $show true: add default feeds, false: remove all feeds
+	 * @param bool $show True: add default feeds, false: remove all feeds
 	 */
 	public function setSyndicated( $show = true ) {
 		if ( $show ) {
@@ -1101,7 +1101,7 @@ class OutputPage extends ContextSource {
 	 * for the new version
 	 * @see addFeedLink()
 	 *
-	 * @param string $val query to append to feed links or false to output
+	 * @param string $val Query to append to feed links or false to output
 	 *        default links
 	 */
 	public function setFeedAppendQuery( $val ) {
@@ -1121,7 +1121,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a feed link to the page header
 	 *
-	 * @param string $format feed type, should be a key of $wgFeedClasses
+	 * @param string $format Feed type, should be a key of $wgFeedClasses
 	 * @param string $href URL
 	 */
 	public function addFeedLink( $format, $href ) {
@@ -1142,7 +1142,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Return URLs for each supported syndication format for this page.
-	 * @return array associating format keys with URLs
+	 * @return array Associating format keys with URLs
 	 */
 	public function getSyndicationLinks() {
 		return $this->mFeedLinks;
@@ -1235,7 +1235,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add an array of categories, with names in the keys
 	 *
-	 * @param array $categories mapping category name => sort key
+	 * @param array $categories Mapping category name => sort key
 	 */
 	public function addCategoryLinks( $categories ) {
 		global $wgContLang;
@@ -1306,7 +1306,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Reset the category links (but not the category list) and add $categories
 	 *
-	 * @param array $categories mapping category name => sort key
+	 * @param array $categories Mapping category name => sort key
 	 */
 	public function setCategoryLinks( $categories ) {
 		$this->mCategoryLinks = array();
@@ -1855,7 +1855,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add an HTTP header that will influence on the cache
 	 *
-	 * @param string $header header name
+	 * @param string $header Header name
 	 * @param array|null $option
 	 * @todo FIXME: Document the $option parameter; it appears to be for
 	 *        X-Vary-Options but what format is acceptable?
@@ -2177,7 +2177,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Actually output something with print.
 	 *
-	 * @param string $ins the string to output
+	 * @param string $ins The string to output
 	 * @deprecated since 1.22 Use echo yourself.
 	 */
 	public function out( $ins ) {
@@ -2198,8 +2198,8 @@ class OutputPage extends ContextSource {
 	 * indexing, clear the current text and redirect, set the page's title
 	 * and optionally an custom HTML title (content of the "<title>" tag).
 	 *
-	 * @param string|Message $pageTitle will be passed directly to setPageTitle()
-	 * @param string|Message $htmlTitle will be passed directly to setHTMLTitle();
+	 * @param string|Message $pageTitle Will be passed directly to setPageTitle()
+	 * @param string|Message $htmlTitle Will be passed directly to setHTMLTitle();
 	 *                   optional, if not passed the "<title>" attribute will be
 	 *                   based on $pageTitle
 	 */
@@ -2252,8 +2252,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Output a standard permission error page
 	 *
-	 * @param array $errors error message keys
-	 * @param string $action action that was denied or null if unknown
+	 * @param array $errors Error message keys
+	 * @param string $action Action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( $errors, $action = null ) {
 		// For some action (read, edit, create and upload), display a "login to do this action"
@@ -2337,7 +2337,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Display an error page noting that a given permission bit is required.
 	 * @deprecated since 1.18, just throw the exception directly
-	 * @param string $permission key required
+	 * @param string $permission Key required
 	 * @throws PermissionsError
 	 */
 	public function permissionRequired( $permission ) {
@@ -3228,7 +3228,7 @@ $templates
 	}
 
 	/**
-	 * @return array in format "link name or number => 'link html'".
+	 * @return array Array in format "link name or number => 'link html'".
 	 */
 	public function getHeadLinksArray() {
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
@@ -3485,9 +3485,9 @@ $templates
 	 * Meant primarily for internal use...
 	 *
 	 * @param string $style URL to the file
-	 * @param string $media to specify a media type, 'screen', 'printable', 'handheld' or any.
-	 * @param string $condition for IE conditional comments, specifying an IE version
-	 * @param string $dir set to 'rtl' or 'ltr' for direction-specific sheets
+	 * @param string $media To specify a media type, 'screen', 'printable', 'handheld' or any.
+	 * @param string $condition For IE conditional comments, specifying an IE version
+	 * @param string $dir Set to 'rtl' or 'ltr' for direction-specific sheets
 	 */
 	public function addStyle( $style, $media = '', $condition = '', $dir = '' ) {
 		$options = array();

@@ -401,7 +401,7 @@ class MWTimestamp {
 	 *
 	 * @since 1.22
 	 * @param bool|string $ts Timestamp to set, or false for current time
-	 * @return MWTimestamp the local instance
+	 * @return MWTimestamp The local instance
 	 */
 	public static function getLocalInstance( $ts = false ) {
 		global $wgLocaltimezone;
@@ -415,7 +415,7 @@ class MWTimestamp {
 	 *
 	 * @since 1.22
 	 * @param bool|string $ts Timestamp to set, or false for current time
-	 * @return MWTimestamp the instance
+	 * @return MWTimestamp The instance
 	 */
 	public static function getInstance( $ts = false ) {
 		return new self( $ts );

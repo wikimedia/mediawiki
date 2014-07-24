@@ -27,7 +27,7 @@ class UserArrayFromResult extends UserArray implements Countable {
 	/** @var int */
 	public $key;
 
-	/** @var  */
+	/** @var bool|stdClass */
 	public $current;
 
 	/**

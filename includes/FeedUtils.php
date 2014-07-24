@@ -48,7 +48,7 @@ class FeedUtils {
 	/**
 	 * Check whether feeds can be used and that $type is a valid feed type
 	 *
-	 * @param string $type feed type, as requested by the user
+	 * @param string $type Feed type, as requested by the user
 	 * @return bool
 	 */
 	public static function checkFeedOutput( $type ) {

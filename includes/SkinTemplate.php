@@ -763,7 +763,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * Builds an array with tab definition
 	 *
-	 * @param Title $title page Where the tab links to
+	 * @param Title $title Page Where the tab links to
 	 * @param string|array $message Message key or an array of message keys (will fall back)
 	 * @param bool $selected Display the tab as selected
 	 * @param string $query Query string attached to tab URL
@@ -1197,7 +1197,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * an array of edit links by default used for the tabs
-	 * @param $content_navigation
+	 * @param array $content_navigation
 	 * @return array
 	 */
 	private function buildContentActionUrls( $content_navigation ) {
@@ -1796,9 +1796,9 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * Makes a link, usually used by makeListItem to generate a link for an item
 	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
 	 *
-	 * @param string $key usually a key from the list you are generating this
+	 * @param string $key Usually a key from the list you are generating this
 	 * link from.
-	 * @param array $item contains some of a specific set of keys.
+	 * @param array $item Contains some of a specific set of keys.
 	 *
 	 * The text of the link will be generated either from the contents of the
 	 * "text" key in the $item array, if a "msg" key is present a message by
@@ -1819,7 +1819,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * If you don't want an accesskey, set $item['tooltiponly'] = true;
 	 *
-	 * @param array $options can be used to affect the output of a link.
+	 * @param array $options Can be used to affect the output of a link.
 	 * Possible options are:
 	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
 	 *   a link in. This should be an array of arrays containing a 'tag' and

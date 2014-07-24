@@ -274,7 +274,7 @@ class GitInfo {
 
 	/**
 	 * Get the URL of the remote origin.
-	 * @return string|bool string if a URL is available or false otherwise.
+	 * @return string|bool String if a URL is available or false otherwise.
 	 */
 	protected function getRemoteUrl() {
 		if ( !isset( $this->cache['remoteURL'] ) ) {
