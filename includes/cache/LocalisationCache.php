@@ -536,7 +536,7 @@ class LocalisationCache {
 	/**
 	 * Read a JSON file containing localisation messages.
 	 * @param string $fileName Name of file to read
-	 * @throws MWException if there is a syntax error in the JSON file
+	 * @throws MWException If there is a syntax error in the JSON file
 	 * @return array Array with a 'messages' key, or empty array if the file doesn't exist
 	 */
 	public function readJSONFile( $fileName ) {
@@ -1157,7 +1157,7 @@ class LCStoreDB implements LCStore {
 
 	/** @var DatabaseBase */
 	private $dbw;
-	/** @var Array */
+	/** @var array */
 	private $batch = array();
 
 	private $readOnly = false;

@@ -346,7 +346,7 @@ class RedisConnectionPool {
 	 * Adjust or reset the connection handle read timeout value
 	 *
 	 * @param Redis $conn
-	 * @param integer $timeout Optional
+	 * @param int $timeout Optional
 	 */
 	public function resetTimeout( Redis $conn, $timeout = null ) {
 		$conn->setOption( Redis::OPT_READ_TIMEOUT, $timeout ?: $this->readTimeout );

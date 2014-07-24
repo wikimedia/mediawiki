@@ -98,9 +98,9 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Constructor
-	 * @param IContextSource $context context to use, anything else will be ignored
-	 * @param int $old old ID we want to show and diff with.
-	 * @param string|int $new either revision ID or 'prev' or 'next'. Default: 0.
+	 * @param IContextSource $context Context to use, anything else will be ignored
+	 * @param int $old Old ID we want to show and diff with.
+	 * @param string|int $new Either revision ID or 'prev' or 'next'. Default: 0.
 	 * @param int $rcid Deprecated, no longer used!
 	 * @param bool $refreshCache If set, refreshes the diff cache
 	 * @param bool $unhide If set, allow viewing deleted revs
@@ -823,8 +823,8 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @todo move this to TextDifferenceEngine, make DifferenceEngine abstract. At some point.
 	 *
-	 * @param string $otext old text, must be already segmented
-	 * @param string $ntext new text, must be already segmented
+	 * @param string $otext Old text, must be already segmented
+	 * @param string $ntext New text, must be already segmented
 	 *
 	 * @return bool|string
 	 */

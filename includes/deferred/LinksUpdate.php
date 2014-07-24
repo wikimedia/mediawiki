@@ -31,7 +31,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/** @var int Page ID of the article linked from */
 	public $mId;
 
-	/** @var Title object of the article linked from */
+	/** @var Title Title object of the article linked from */
 	public $mTitle;
 
 	/** @var ParserOutput */
@@ -52,7 +52,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/** @var array Map of category names to sort keys */
 	public $mCategories;
 
-	/** @var array ap of language codes to titles */
+	/** @var array Map of language codes to titles */
 	public $mInterlangs;
 
 	/** @var array Map of arbitrary name to value */

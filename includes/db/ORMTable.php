@@ -220,8 +220,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $options
 	 * @param string|null $functionName
 	 *
-	 * @return array of row objects
-	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode).
+	 * @return array Array of row objects
+	 * @throws DBQueryError If the query failed (even if the database was in ignoreErrors mode).
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
 		array $options = array(), $functionName = null
@@ -247,7 +247,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $options
 	 * @param null|string $functionName
 	 * @return ResultWrapper
-	 * @throws DBQueryError if the query failed (even if the database was in
+	 * @throws DBQueryError If the query failed (even if the database was in
 	 *   ignoreErrors mode).
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
@@ -314,7 +314,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param bool $collapse Set to false to always return each result row as associative array.
 	 * @param string|null $functionName
 	 *
-	 * @return array of array
+	 * @return array Array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(),
 		array $options = array(), $collapse = true, $functionName = null
@@ -648,7 +648,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @see LoadBalancer::reuseConnection
 	 *
-	 * @param DatabaseBase $db the database
+	 * @param DatabaseBase $db
 	 *
 	 * @since 1.20
 	 */

@@ -156,7 +156,7 @@ class FileDependency extends CacheDependency {
 	/**
 	 * Create a file dependency
 	 *
-	 * @param string $filename the name of the file, preferably fully qualified
+	 * @param string $filename The name of the file, preferably fully qualified
 	 * @param null|bool|int $timestamp The unix last modified timestamp, or false if the
 	 *        file does not exist. If omitted, the timestamp will be loaded from
 	 *        the file.

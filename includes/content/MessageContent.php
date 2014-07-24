@@ -126,7 +126,7 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
-	 * @return Content. A copy of this object
+	 * @return Content A copy of this object
 	 *
 	 * @see Content::copy
 	 */

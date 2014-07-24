@@ -699,9 +699,9 @@ class MessageCache {
 	 *   - If boolean and false, create object from the current users language
 	 *   - If boolean and true, create object from the wikis content language
 	 *   - If language object, use it as given
-	 * @param bool $isFullKey specifies whether $key is a two part key "msg/lang".
+	 * @param bool $isFullKey Specifies whether $key is a two part key "msg/lang".
 	 *
-	 * @throws MWException when given an invalid key
+	 * @throws MWException When given an invalid key
 	 * @return string|bool False if the message doesn't exist, otherwise the
 	 *   message (which can be empty)
 	 */

@@ -59,7 +59,7 @@ abstract class LBFactory {
 	 * Returns the LBFactory class to use and the load balancer configuration.
 	 *
 	 * @param array $config (e.g. $wgLBFactoryConf)
-	 * @return string class name
+	 * @return string Class name
 	 */
 	public static function getLBFactoryClass( array $config ) {
 		// For configuration backward compatibility after removing
@@ -142,7 +142,7 @@ abstract class LBFactory {
 	/**
 	 * Get a cached (tracked) load balancer for external storage
 	 *
-	 * @param string $cluster external storage cluster, or false for core
+	 * @param string $cluster External storage cluster, or false for core
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */

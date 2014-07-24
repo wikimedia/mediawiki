@@ -43,7 +43,7 @@ class LoadBalancer {
 	private $mLoadMonitorClass, $mLoadMonitor;
 
 	/**
-	 * @param array $params with keys:
+	 * @param array $params Array with keys:
 	 *   servers           Required. Array of server info structures.
 	 *   loadMonitor       Name of a class used to fetch server lag and load.
 	 * @throws MWException

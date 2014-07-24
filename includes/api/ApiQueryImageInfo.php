@@ -534,7 +534,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * If this is >= TRANSFORM_LIMIT, you should probably stop processing images.
 	 *
-	 * @return int count
+	 * @return int Count
 	 */
 	static function getTransformCount() {
 		return self::$transformCount;

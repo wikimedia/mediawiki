@@ -315,7 +315,7 @@ class WikitextContent extends TextContent {
 	 * @param int $revId Revision to pass to the parser (default: null)
 	 * @param ParserOptions $options (default: null)
 	 * @param bool $generateHtml (default: true)
-	 * @param &$output ParserOutput representing the HTML form of the text,
+	 * @param ParserOutput &$output ParserOutput representing the HTML form of the text,
 	 *           may be manipulated or replaced.
 	 */
 	protected function fillParserOutput( Title $title, $revId,

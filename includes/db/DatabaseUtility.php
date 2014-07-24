@@ -107,7 +107,7 @@ class ResultWrapper implements Iterator {
 	/** @var int */
 	protected $pos = 0;
 
-	/** @var */
+	/** @var object|null */
 	protected $currentRow = null;
 
 	/**

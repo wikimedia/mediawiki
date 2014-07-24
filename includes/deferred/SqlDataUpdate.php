@@ -46,7 +46,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	/**
 	 * Constructor
 	 *
-	 * @param bool $withTransaction whether this update should be wrapped in a
+	 * @param bool $withTransaction Whether this update should be wrapped in a
 	 *   transaction (default: true). A transaction is only started if no
 	 *   transaction is already in progress, see beginTransaction() for details.
 	 */
