@@ -2,7 +2,7 @@
 
 /**
  * @group GlobalFunctions
- *@covers ::wfRemoveDotSegments
+ * @covers ::wfRemoveDotSegments
  */
 class WfRemoveDotSegmentsTest extends MediaWikiTestCase {
 	/**

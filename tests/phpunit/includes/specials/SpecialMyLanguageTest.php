@@ -26,10 +26,10 @@ class SpecialMyLanguageTest extends MediaWikiTestCase {
 	/**
 	 * @covers SpecialMyLanguage::findTitle
 	 * @dataProvider provideFindTitle
-	 * @param $expected
-	 * @param $subpage
-	 * @param $langCode
-	 * @param $userLang
+	 * @param string $expected
+	 * @param string $subpage
+	 * @param string $langCode
+	 * @param string $userLang
 	 */
 	public function testFindTitle( $expected, $subpage, $langCode, $userLang ) {
 		$this->setMwGlobals( 'wgLanguageCode', $langCode );
