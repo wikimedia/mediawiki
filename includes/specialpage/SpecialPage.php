@@ -27,7 +27,6 @@
  * Includes some static functions for handling the special page list deprecated
  * in favor of SpecialPageFactory.
  *
- * @todo Turn this into a real ContextSource
  * @ingroup SpecialPage
  */
 class SpecialPage {
