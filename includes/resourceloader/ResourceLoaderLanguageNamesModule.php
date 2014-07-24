@@ -34,7 +34,7 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	protected function getData( ResourceLoaderContext $context ) {
@@ -45,7 +45,7 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {

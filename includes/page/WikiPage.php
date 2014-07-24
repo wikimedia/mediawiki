@@ -530,7 +530,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Loads page_touched and returns a value indicating if it should be used
-	 * @return bool true if not a redirect
+	 * @return bool True if not a redirect
 	 */
 	public function checkTouched() {
 		if ( !$this->mDataLoaded ) {
@@ -563,7 +563,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Get the page_latest field
-	 * @return int rev_id of current revision
+	 * @return int The rev_id of current revision
 	 */
 	public function getLatest() {
 		if ( !$this->mDataLoaded ) {
@@ -663,7 +663,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Get the content of the current revision. No side-effects...
 	 *
-	 * @param int $audience int One of:
+	 * @param int $audience One of:
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to $wgUser
 	 *   Revision::RAW              get the text regardless of permissions
@@ -743,7 +743,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::RAW              get the text regardless of permissions
 	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
-	 * @return int user ID for the user that made the last article revision
+	 * @return int User ID for the user that made the last article revision
 	 */
 	public function getUser( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
@@ -781,7 +781,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::RAW              get the text regardless of permissions
 	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
-	 * @return string username of the user that made the last article revision
+	 * @return string Username of the user that made the last article revision
 	 */
 	public function getUserText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
@@ -968,7 +968,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Get the Title object or URL this page redirects to
 	 *
-	 * @return bool|Title|string false, Title of in-wiki target, or string with URL
+	 * @return bool|Title|string False, Title of in-wiki target, or string with URL
 	 */
 	public function followRedirect() {
 		return $this->getRedirectURL( $this->getRedirectTarget() );
@@ -979,7 +979,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * objects for same-wiki, non-special redirects and URLs for everything
 	 * else.
 	 * @param Title $rt Redirect target
-	 * @return bool|Title|string false, Title object of local target, or string with URL
+	 * @return bool|Title|string False, Title object of local target, or string with URL
 	 */
 	public function getRedirectURL( $rt ) {
 		if ( !$rt ) {
@@ -1295,7 +1295,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Giving 0 indicates the new page flag should be set on.
 	 * @param bool $lastRevIsRedirect If given, will optimize adding and
 	 *   removing rows in redirect table.
-	 * @return bool true on success, false on failure
+	 * @return bool True on success, false on failure
 	 */
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
 		$lastRevIsRedirect = null
@@ -1357,7 +1357,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   or NULL if this is not a redirect
 	 * @param null|bool $lastRevIsRedirect If given, will optimize adding and
 	 *   removing rows in redirect table.
-	 * @return bool true on success, false on failure
+	 * @return bool True on success, false on failure
 	 * @private
 	 */
 	public function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
@@ -1433,7 +1433,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * must exist and must not be deleted
 	 * @param Revision $undo
 	 * @param Revision $undoafter Must be an earlier revision than $undo
-	 * @return mixed string on success, false on failure
+	 * @return mixed String on success, false on failure
 	 * @since 1.21
 	 * Before we had the Content object, this was done in getUndoText
 	 */
@@ -1448,7 +1448,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * must exist and must not be deleted
 	 * @param Revision $undo
 	 * @param Revision $undoafter Must be an earlier revision than $undo
-	 * @return string|bool string on success, false on failure
+	 * @return string|bool String on success, false on failure
 	 * @deprecated since 1.21: use ContentHandler::getUndoContent() instead.
 	 */
 	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
@@ -1563,7 +1563,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
-	 * @param string $baseRevId integer|null
+	 * @param int|null $baseRevId
 	 *
 	 * @throws MWException
 	 * @return Content New complete article content, or null if error.
@@ -1666,7 +1666,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User $user The user doing the edit
 	 *
 	 * @throws MWException
-	 * @return Status object. Possible errors:
+	 * @return Status Possible errors:
 	 *   edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
 	 *     set the fatal flag of $status
 	 *   edit-gone-missing: In update mode, but the article didn't exist.
@@ -1728,7 +1728,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   database.
 	 *
 	 * @throws MWException
-	 * @return Status object. Possible errors:
+	 * @return Status Possible errors:
 	 *     edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
 	 *       set the fatal flag of $status.
 	 *     edit-gone-missing: In update mode, but the article didn't exist.
@@ -2313,7 +2313,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param Content $content Content submitted
 	 * @param User $user The relevant user
-	 * @param string $comment comment submitted
+	 * @param string $comment Comment submitted
 	 * @param string $serialisation_format Format for storing the content in the database
 	 * @param bool $minor Whereas it's a minor modification
 	 */
@@ -2739,7 +2739,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param bool $commit Defaults to true, triggers transaction end
 	 * @param array &$error Array of errors to append to
 	 * @param User $user The deleting user
-	 * @return bool true if successful
+	 * @return bool True if successful
 	 */
 	public function doDeleteArticle(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
@@ -2904,7 +2904,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Do some database updates after deletion
 	 *
-	 * @param int $id page_id value of the page being deleted
+	 * @param int $id The page_id value of the page being deleted
 	 * @param Content $content Optional page content to be used when determining
 	 *   the required updates. This may be needed because $this->getContent()
 	 *   may already return null when the page proper was deleted.
@@ -2949,7 +2949,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $token Rollback token.
 	 * @param bool $bot If true, mark all reverted edits as bot.
 	 *
-	 * @param array $resultDetails contains result-specific array of additional values
+	 * @param array $resultDetails Array contains result-specific array of additional values
 	 *    'alreadyrolled' : 'current' (rev)
 	 *    success        : 'summary' (str), 'current' (rev), 'target' (rev)
 	 *
@@ -3525,7 +3525,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param int &$cascade Set to false if cascading protection isn't allowed.
 	 * @param array $expiry Per restriction type expiration
 	 * @param User $user The user updating the restrictions
-	 * @return bool true on success
+	 * @return bool True on success
 	 */
 	public function updateRestrictions(
 		$limit = array(), $reason = '', &$cascade = 0, $expiry = array(), User $user = null

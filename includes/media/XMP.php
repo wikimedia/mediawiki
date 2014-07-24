@@ -406,7 +406,7 @@ class XMPReader {
 	 *
 	 * @param XMLParser $parser XMLParser reference to the xml parser
 	 * @param string $data Character data
-	 * @throws MWException on invalid data
+	 * @throws MWException On invalid data
 	 */
 	function char( $parser, $data ) {
 
@@ -726,7 +726,7 @@ class XMPReader {
 	 * this should always be <rdf:Bag>
 	 *
 	 * @param string $elm Namespace . ' ' . tag
-	 * @throws MWException if we have an element that's not <rdf:Bag>
+	 * @throws MWException If we have an element that's not <rdf:Bag>
 	 */
 	private function startElementModeBag( $elm ) {
 		if ( $elm === self::NS_RDF . ' Bag' ) {
@@ -741,7 +741,7 @@ class XMPReader {
 	 * this should always be <rdf:Seq>
 	 *
 	 * @param string $elm Namespace . ' ' . tag
-	 * @throws MWException if we have an element that's not <rdf:Seq>
+	 * @throws MWException If we have an element that's not <rdf:Seq>
 	 */
 	private function startElementModeSeq( $elm ) {
 		if ( $elm === self::NS_RDF . ' Seq' ) {
@@ -768,7 +768,7 @@ class XMPReader {
 	 * we don't care about.
 	 *
 	 * @param string $elm Namespace . ' ' . tag
-	 * @throws MWException if we have an element that's not <rdf:Alt>
+	 * @throws MWException If we have an element that's not <rdf:Alt>
 	 */
 	private function startElementModeLang( $elm ) {
 		if ( $elm === self::NS_RDF . ' Alt' ) {
@@ -963,7 +963,7 @@ class XMPReader {
 	 *
 	 * @param string $elm Namespace . ' ' . tagname
 	 * @param array $attribs Attributes. (needed for BAGSTRUCTS)
-	 * @throws MWException if gets a tag other than <rdf:li>
+	 * @throws MWException If gets a tag other than <rdf:li>
 	 */
 	private function startElementModeLi( $elm, $attribs ) {
 		if ( ( $elm ) !== self::NS_RDF . ' li' ) {

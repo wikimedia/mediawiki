@@ -50,7 +50,7 @@ class ResourceLoader {
 	 */
 	protected $testModuleNames = array();
 
-	/** @var array e.g. array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) ) */
+	/** @var array E.g. array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) ) */
 	protected $sources = array();
 
 	/** @var bool */
@@ -463,7 +463,7 @@ class ResourceLoader {
 	 *
 	 * @since 1.24
 	 * @param string $source
-	 * @throws MWException on an invalid $source name
+	 * @throws MWException On an invalid $source name
 	 * @return string
 	 */
 	public function getLoadScript( $source ) {
@@ -1250,7 +1250,7 @@ class ResourceLoader {
 	 * Build a load.php URL
 	 *
 	 * @since 1.24
-	 * @param string $source name of the ResourceLoader source
+	 * @param string $source Name of the ResourceLoader source
 	 * @param ResourceLoaderContext $context
 	 * @param array $extraQuery
 	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)

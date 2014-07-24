@@ -51,8 +51,8 @@ class JpegHandler extends ExifBitmapHandler {
 	}
 
 	/** Validate and normalize quality value to be between 1 and 100 (inclusive).
-	 * @param int $value quality value, will be converted to integer or 0 if invalid
-	 * @return bool true if the value is valid
+	 * @param int $value Quality value, will be converted to integer or 0 if invalid
+	 * @return bool True if the value is valid
 	 */
 	private static function validateQuality( $value ) {
 		return $value === 'low';

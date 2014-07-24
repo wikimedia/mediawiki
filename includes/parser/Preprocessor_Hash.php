@@ -995,7 +995,7 @@ class PPFrame_Hash implements PPFrame {
 
 	/**
 	 * @throws MWException
-	 * @param string|PPNode$root
+	 * @param string|PPNode $root
 	 * @param int $flags
 	 * @return string
 	 */

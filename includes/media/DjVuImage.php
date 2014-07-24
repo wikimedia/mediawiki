@@ -88,7 +88,7 @@ class DjVuImage {
 		// something that explicitly initializes local variables.
 		extract( unpack( 'a4magic/a4chunk/NchunkLength', $header ) );
 		/** @var string $chunk
-		 *  @var string $chunkLength */
+		 * @var string $chunkLength */
 		echo "$chunk $chunkLength\n";
 		$this->dumpForm( $file, $chunkLength, 1 );
 		fclose( $file );
@@ -107,7 +107,7 @@ class DjVuImage {
 			// something that explicitly initializes local variables.
 			extract( unpack( 'a4chunk/NchunkLength', $chunkHeader ) );
 			/** @var string $chunk
-			 *  @var string $chunkLength */
+			 * @var string $chunkLength */
 			echo str_repeat( ' ', $indent * 4 ) . "$chunk $chunkLength\n";
 
 			if ( $chunk == 'FORM' ) {
@@ -143,9 +143,9 @@ class DjVuImage {
 			extract( unpack( 'a4magic/a4form/NformLength/a4subtype', $header ) );
 
 			/** @var string $magic
-			 *  @var string $subtype
-			 *  @var string $formLength
-			 *  @var string $formType */
+			 * @var string $subtype
+			 * @var string $formLength
+			 * @var string $formType */
 			if ( $magic != 'AT&T' ) {
 				wfDebug( __METHOD__ . ": not a DjVu file\n" );
 			} elseif ( $subtype == 'DJVU' ) {
@@ -173,7 +173,7 @@ class DjVuImage {
 			extract( unpack( 'a4chunk/Nlength', $header ) );
 
 			/** @var string $chunk
-			 *  @var string $length */
+			 * @var string $length */
 			return array( $chunk, $length );
 		}
 	}
@@ -249,12 +249,12 @@ class DjVuImage {
 		# Newer files have rotation info in byte 10, but we don't use it yet.
 
 		/** @var string $width
-		 *  @var string $height
-		 *  @var string $major
-		 *  @var string $minor
-		 *  @var string $resolution
-		 *  @var string $length
-		 *  @var string $gamma */
+		 * @var string $height
+		 * @var string $major
+		 * @var string $minor
+		 * @var string $resolution
+		 * @var string $length
+		 * @var string $gamma */
 		return array(
 			'width' => $width,
 			'height' => $height,

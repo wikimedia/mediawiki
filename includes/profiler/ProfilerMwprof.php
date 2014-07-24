@@ -94,8 +94,8 @@ class ProfilerMwprof extends Profiler {
 	 * Update an entry with timing data.
 	 *
 	 * @param string $name Section name
-	 * @param float $elapsedCpu elapsed CPU time
-	 * @param float $elapsedWall elapsed wall-clock time
+	 * @param float $elapsedCpu Elapsed CPU time
+	 * @param float $elapsedWall Elapsed wall-clock time
 	 */
 	public function updateRunningEntry( $name, $elapsedCpu, $elapsedWall ) {
 		// If this is the first measurement for this entry, store plain values.

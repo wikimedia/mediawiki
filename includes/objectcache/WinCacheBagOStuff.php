@@ -52,7 +52,7 @@ class WinCacheBagOStuff extends BagOStuff {
 	 * Store a value in the WinCache object cache
 	 *
 	 * @param string $key Cache key
-	 * @param mixed $valueObject to store
+	 * @param mixed $valueObject Value to store
 	 * @param int $expire Expiration time
 	 * @return bool
 	 */

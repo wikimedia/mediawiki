@@ -211,7 +211,7 @@ class Parser {
 	var $mLangLinkLanguages;
 
 	/**
-	 * @var boolean Recursive call protection.
+	 * @var bool Recursive call protection.
 	 * This variable should be treated as if it were private.
 	 */
 	public $mInParse = false;
@@ -349,7 +349,7 @@ class Parser {
 	 * Convert wikitext to HTML
 	 * Do not call this function recursively.
 	 *
-	 * @param string $text text we want to parse
+	 * @param string $text Text we want to parse
 	 * @param Title $title
 	 * @param ParserOptions $options
 	 * @param bool $linestart
@@ -798,7 +798,7 @@ class Parser {
 	/**
 	 * Get the ParserOptions object
 	 *
-	 * @return ParserOptions object
+	 * @return ParserOptions
 	 */
 	function getOptions() {
 		return $this->mOptions;
@@ -1434,7 +1434,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 *
-	 * @return string the altered text
+	 * @return string The altered text
 	 */
 	function doAllQuotes( $text ) {
 		wfProfileIn( __METHOD__ );

@@ -100,7 +100,7 @@ class PNGHandler extends BitmapHandler {
 	/**
 	 * We do not support making APNG thumbnails, so always false
 	 * @param File $image
-	 * @return bool false
+	 * @return bool False
 	 */
 	function canAnimateThumbnail( $image ) {
 		return false;

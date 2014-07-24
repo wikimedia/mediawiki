@@ -31,7 +31,7 @@ interface RCFeedEngine {
 	 * @see RecentChange::cleanupForIRC
 	 * @param array $feed The feed, as configured in an associative array
 	 * @param string $line The text to send
-	 * @return bool success
+	 * @return bool Success
 	 */
 	public function send( array $feed, $line );
 }

@@ -25,7 +25,7 @@
 
 /**
  * Begin profiling of a function
- * @param string $functionname name of the function we will profile
+ * @param string $functionname Name of the function we will profile
  */
 function wfProfileIn( $functionname ) {
 	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
@@ -38,7 +38,7 @@ function wfProfileIn( $functionname ) {
 
 /**
  * Stop profiling of a function
- * @param string $functionname name of the function we have profiled
+ * @param string $functionname Name of the function we have profiled
  */
 function wfProfileOut( $functionname = 'missing' ) {
 	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
@@ -196,7 +196,7 @@ abstract class Profiler {
 	/**
 	 * Called by wfProfieOut()
 	 *
-	 * @param  string $functionname
+	 * @param string $functionname
 	 */
 	abstract public function profileOut( $functionname );
 
@@ -326,7 +326,7 @@ abstract class Profiler {
 	/**
 	 * Add an entry in the debug log file
 	 *
-	 * @param string $s to output
+	 * @param string $s String to output
 	 */
 	protected function debug( $s ) {
 		if ( function_exists( 'wfDebug' ) ) {
@@ -338,7 +338,7 @@ abstract class Profiler {
 	 * Add an entry in the debug log group
 	 *
 	 * @param string $group Group to send the message to
-	 * @param string $s to output
+	 * @param string $s String to output
 	 */
 	protected function debugGroup( $group, $s ) {
 		if ( function_exists( 'wfDebugLog' ) ) {
@@ -356,7 +356,7 @@ abstract class Profiler {
  * @since 1.24
  */
 class TransactionProfiler {
-	/** @var float seconds */
+	/** @var float Seconds */
 	protected $mDBLockThreshold = 3.0;
 	/** @var array DB/server name => (active trx count, time, DBs involved) */
 	protected $mDBTrxHoldingLocks = array();

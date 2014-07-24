@@ -72,7 +72,7 @@ class FormatMetadata extends ContextSource {
 	 *
 	 * This is the usual entry point for this class.
 	 *
-	 * @param array $tags the Exif data to format ( as returned by
+	 * @param array $tags The Exif data to format ( as returned by
 	 *   Exif::getFilteredData() or BitmapMetadataHandler )
 	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array
@@ -92,7 +92,7 @@ class FormatMetadata extends ContextSource {
 	 * value which most of the time are plain integers. This function
 	 * formats Exif (and other metadata) values into human readable form.
 	 *
-	 * @param array $tags the Exif data to format ( as returned by
+	 * @param array $tags The Exif data to format ( as returned by
 	 *   Exif::getFilteredData() or BitmapMetadataHandler )
 	 * @return array
 	 * @since 1.23
@@ -1006,7 +1006,7 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Flatten an array, using the user language for any messages.
 	 *
-	 * @param array $vals array of values
+	 * @param array $vals Array of values
 	 * @param string $type Type of array (either lang, ul, ol).
 	 *   lang = language assoc array with keys being the lang code
 	 *   ul = unordered list, ol = ordered list
@@ -1031,7 +1031,7 @@ class FormatMetadata extends ContextSource {
 	 *
 	 * This is public on the basis it might be useful outside of this class.
 	 *
-	 * @param array $vals array of values
+	 * @param array $vals Array of values
 	 * @param string $type Type of array (either lang, ul, ol).
 	 *     lang = language assoc array with keys being the lang code
 	 *     ul = unordered list, ol = ordered list
@@ -1706,7 +1706,7 @@ class FormatMetadata extends ContextSource {
 	 *
 	 * @param File $file File to use
 	 * @param array $extendedMetadata
-	 * @param int $maxCacheTime hook handlers might use this parameter to override cache time
+	 * @param int $maxCacheTime Hook handlers might use this parameter to override cache time
 	 *
 	 * @return array [<property name> => ['value' => <value>]], or [] on error
 	 * @since 1.23
@@ -1741,7 +1741,7 @@ class FormatMetadata extends ContextSource {
 	 * If the value is not a multilang array, it is returned unchanged.
 	 * See mediawiki.org/wiki/Manual:File_metadata_handling#Multi-language_array_format
 	 * @param mixed $value
-	 * @return mixed value in best language, null if there were no languages at all
+	 * @return mixed Value in best language, null if there were no languages at all
 	 * @since 1.23
 	 */
 	protected function resolveMultilangValue( $value ) {

@@ -446,7 +446,7 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param array $params name=>value pairs of parameters
+	 * @param array $params Name=>value pairs of parameters
 	 * @return string Filename to use
 	 */
 	function makeParamString( $params ) {

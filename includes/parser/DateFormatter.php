@@ -122,7 +122,7 @@ class DateFormatter {
 	 *
 	 * @param Language|string|null $lang In which language to format the date
 	 * 		Defaults to the site content language
-	 * @return DateFormatter object
+	 * @return DateFormatter
 	 */
 	public static function &getInstance( $lang = null ) {
 		global $wgMemc, $wgContLang;

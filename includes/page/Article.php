@@ -1268,7 +1268,7 @@ class Article implements Page {
 	 * If the revision requested for view is deleted, check permissions.
 	 * Send either an error message or a warning header to the output.
 	 *
-	 * @return bool true if the view is allowed, false if not.
+	 * @return bool True if the view is allowed, false if not.
 	 */
 	public function showDeletedRevisionHeader() {
 		if ( !$this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
@@ -1818,7 +1818,7 @@ class Article implements Page {
 	 * output to the client that is necessary for this request.
 	 * (that is, it has sent a cached version of the page)
 	 *
-	 * @return bool true if cached version send, false otherwise
+	 * @return bool True if cached version send, false otherwise
 	 */
 	protected function tryFileCache() {
 		static $called = false;
@@ -1894,7 +1894,7 @@ class Article implements Page {
 	 * Override the ParserOptions used to render the primary article wikitext.
 	 *
 	 * @param ParserOptions $options
-	 * @throws MWException if the parser options where already initialized.
+	 * @throws MWException If the parser options where already initialized.
 	 */
 	public function setParserOptions( ParserOptions $options ) {
 		if ( $this->mParserOptions ) {
