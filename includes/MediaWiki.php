@@ -198,7 +198,9 @@ class MediaWiki {
 		// Check user's permissions to read this page.
 		// We have to check here to catch special pages etc.
 		// We will check again in Article::view().
-		$permErrors = $title->getUserPermissionsErrors( 'read', $user );
+		$permErrors = $title->isSpecial( 'RunJobs' )
+			? array() // relies on HMAC key signature alone
+			: $title->getUserPermissionsErrors( 'read', $user );
 		if ( count( $permErrors ) ) {
 			// Bug 32276: allowing the skin to generate output with $wgTitle or
 			// $this->context->title set to the input title would allow anonymous users to
