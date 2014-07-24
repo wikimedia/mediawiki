@@ -6886,12 +6886,12 @@ $wgShellLocale = 'en_US.utf8';
  */
 
 /**
- * Timeout for HTTP requests done internally
+ * Timeout for HTTP requests done internally, in seconds.
  */
 $wgHTTPTimeout = 25;
 
 /**
- * Timeout for Asynchronous (background) HTTP requests
+ * Timeout for Asynchronous (background) HTTP requests, in seconds.
  */
 $wgAsyncHTTPTimeout = 25;
 
