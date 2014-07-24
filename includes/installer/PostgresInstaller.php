@@ -158,7 +158,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	protected function openConnectionWithParams( $user, $password, $dbName, $schema ) {
 		$status = Status::newGood();
 		try {
-			$db = Database::factory( 'postgres', array(
+			$db = DatabaseBase::factory( 'postgres', array(
 				'host' => $this->getVar( 'wgDBserver' ),
 				'user' => $user,
 				'password' => $password,
