@@ -2728,6 +2728,8 @@ $templates
 					&& $only == ResourceLoaderModule::TYPE_SCRIPTS )
 				|| ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_STYLES )
 					&& $only == ResourceLoaderModule::TYPE_STYLES )
+				|| ( $module->getOrigin() > $this->getAllowedModules( ResourceLoaderModule::TYPE_COMBINED )
+					&& $only == ResourceLoaderModule::TYPE_COMBINED )
 				|| ( $this->mTarget && !in_array( $this->mTarget, $module->getTargets() ) )
 			) {
 				continue;
