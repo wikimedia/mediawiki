@@ -1428,6 +1428,7 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => array(
 		'styles' => array(
