@@ -34,7 +34,7 @@ STR;
 
 	/**
 	 * Merges all requests parameter + expected values into one
-	 * @param ... list of arrays, each of which contains exactly two
+	 * @param array $v,... List of arrays, each of which contains exactly two
 	 * @return array
 	 */
 	protected function merge( /*...*/ ) {

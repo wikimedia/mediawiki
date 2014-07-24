@@ -54,7 +54,7 @@ class LanguageConverter {
 	public $mManualLevel;
 
 	/**
-	 * @var string memcached key name
+	 * @var string Memcached key name
 	 */
 	public $mCacheKey;
 

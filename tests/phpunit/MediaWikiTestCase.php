@@ -331,7 +331,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @param array|string $globalKeys Key to the global variable, or an array of keys.
 	 *
-	 * @throws Exception when trying to stash an unset global
+	 * @throws Exception When trying to stash an unset global
 	 * @since 1.23
 	 */
 	protected function stashMwGlobals( $globalKeys ) {
@@ -370,7 +370,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param string $name The name of the global, as in wgFooBar
 	 * @param array $values The array containing the entries to set in that global
 	 *
-	 * @throws MWException if the designated global is not an array.
+	 * @throws MWException If the designated global is not an array.
 	 *
 	 * @since 1.21
 	 */
@@ -516,7 +516,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param DatabaseBase $db The database connection
 	 * @param string $prefix The prefix to use for the new table set (aka schema).
 	 *
-	 * @throws MWException if the database table prefix is already $prefix
+	 * @throws MWException If the database table prefix is already $prefix
 	 */
 	public static function setupTestDB( DatabaseBase $db, $prefix ) {
 		global $wgDBprefix;
