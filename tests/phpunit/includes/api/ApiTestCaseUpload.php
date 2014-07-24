@@ -30,7 +30,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	/**
 	 * Helper function -- remove files and associated articles by Title
 	 *
-	 * @param Title $title title to be removed
+	 * @param Title $title Title to be removed
 	 *
 	 * @return bool
 	 */
@@ -65,7 +65,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	/**
 	 * Helper function -- remove files and associated articles with a particular filename
 	 *
-	 * @param string $fileName filename to be removed
+	 * @param string $fileName Filename to be removed
 	 *
 	 * @return bool
 	 */
@@ -77,7 +77,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	 * Helper function -- given a file on the filesystem, find matching
 	 * content in the db (and associated articles) and remove them.
 	 *
-	 * @param string $filePath path to file on the filesystem
+	 * @param string $filePath Path to file on the filesystem
 	 *
 	 * @return bool
 	 */
@@ -96,10 +96,10 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	 * Fake an upload by dumping the file into temp space, and adding info to $_FILES.
 	 * (This is what PHP would normally do).
 	 *
-	 * @param string $fieldName name this would have in the upload form
-	 * @param string $fileName name to title this
-	 * @param string $type mime type
-	 * @param string $filePath path where to find file contents
+	 * @param string $fieldName Name this would have in the upload form
+	 * @param string $fileName Name to title this
+	 * @param string $type Mime type
+	 * @param string $filePath Path where to find file contents
 	 *
 	 * @throws Exception
 	 * @return bool

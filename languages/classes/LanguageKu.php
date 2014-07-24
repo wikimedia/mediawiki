@@ -160,8 +160,8 @@ class KuConverter extends LanguageConverter {
 	 *     names as they were
 	 *   - do not try to find variants for usernames
 	 *
-	 * @param string $link
-	 * @param Title $nt
+	 * @param string &$link
+	 * @param Title &$nt
 	 * @param bool $ignoreOtherCond
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {

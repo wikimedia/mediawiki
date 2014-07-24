@@ -11,7 +11,7 @@ require_once __DIR__ . "/../../../maintenance/backupPrefetch.inc";
 class BaseDumpTest extends MediaWikiTestCase {
 
 	/**
-	 * @var BaseDump the BaseDump instance used within a test.
+	 * @var BaseDump The BaseDump instance used within a test.
 	 *
 	 * If set, this BaseDump gets automatically closed in tearDown.
 	 */

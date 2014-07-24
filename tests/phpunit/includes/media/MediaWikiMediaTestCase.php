@@ -33,7 +33,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return Array Argument for FSRepo constructor
+	 * @return array Argument for FSRepo constructor
 	 */
 	protected function getRepoOptions() {
 		return array(
@@ -47,7 +47,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	 * The result of this method will set the file path to use,
 	 * as well as the protected member $filePath
 	 *
-	 * @return String path where files are
+	 * @return string Path where files are
 	 */
 	protected function getFilePath() {
 		return __DIR__ . '/../../data/media/';
@@ -59,7 +59,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	 *
 	 * Override this method if your test case creates thumbnails
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function createsThumbnails() {
 		return false;
@@ -69,8 +69,8 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	 * Utility function: Get a new file object for a file on disk but not actually in db.
 	 *
 	 * File must be in the path returned by getFilePath()
-	 * @param $name String File name
-	 * @param $type String MIME type [optional]
+	 * @param string $name File name
+	 * @param string $type MIME type [optional]
 	 * @return UnregisteredLocalFile
 	 */
 	protected function dataFile( $name, $type = null ) {
