@@ -21,12 +21,6 @@
  */
 
 /**
- * Int Number of characters in user_token field.
- * @ingroup Constants
- */
-define( 'USER_TOKEN_LENGTH', 32 );
-
-/**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
  * @ingroup Constants
  */
@@ -52,10 +46,14 @@ class PasswordError extends MWException {
  */
 class User implements IDBAccessObject {
 	/**
-	 * Global constants made accessible as class constants so that autoloader
+	 * @const int Number of characters in user_token field.
+	 */
+	const TOKEN_LENGTH = 32;
+
+	/**
+	 * Global constant made accessible as class constants so that autoloader
 	 * magic can be used.
 	 */
-	const USER_TOKEN_LENGTH = USER_TOKEN_LENGTH;
 	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
 
 	/**
@@ -2301,7 +2299,7 @@ class User implements IDBAccessObject {
 	public function setToken( $token = false ) {
 		$this->load();
 		if ( !$token ) {
-			$this->mToken = MWCryptRand::generateHex( USER_TOKEN_LENGTH );
+			$this->mToken = MWCryptRand::generateHex( self::TOKEN_LENGTH );
 		} else {
 			$this->mToken = $token;
 		}
@@ -3804,7 +3802,7 @@ class User implements IDBAccessObject {
 		}
 
 		if ( $this->isAnon() ) {
-			return EDIT_TOKEN_SUFFIX;
+			return self::EDIT_TOKEN_SUFFIX;
 		} else {
 			$token = $request->getSessionData( 'wsEditToken' );
 			if ( $token === null ) {
@@ -3814,7 +3812,7 @@ class User implements IDBAccessObject {
 			if ( is_array( $salt ) ) {
 				$salt = implode( '|', $salt );
 			}
-			return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
+			return md5( $token . $salt ) . self::EDIT_TOKEN_SUFFIX;
 		}
 	}
 
