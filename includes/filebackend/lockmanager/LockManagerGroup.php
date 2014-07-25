@@ -34,7 +34,7 @@ class LockManagerGroup {
 
 	protected $domain; // string; domain (usually wiki ID)
 
-	/** @var array of (name => ('class' => ..., 'config' => ..., 'instance' => ...)) */
+	/** @var array Array of (name => ('class' => ..., 'config' => ..., 'instance' => ...)) */
 	protected $managers = array();
 
 	/**

@@ -155,8 +155,8 @@ class UploadFromUrlJob extends Job {
 	 * Store a result in the session data. Note that the caller is responsible
 	 * for appropriate session_start and session_write_close calls.
 	 *
-	 * @param string $result the result (Success|Warning|Failure)
-	 * @param string $dataKey the key of the extra data
+	 * @param string $result The result (Success|Warning|Failure)
+	 * @param string $dataKey The key of the extra data
 	 * @param mixed $dataValue The extra data itself
 	 */
 	protected function storeResultInSession( $result, $dataKey, $dataValue ) {

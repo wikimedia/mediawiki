@@ -45,7 +45,7 @@ class Interwiki {
 	 */
 	protected $mWikiID;
 
-	/** @var bool whether the wiki is in this project */
+	/** @var bool Whether the wiki is in this project */
 	protected $mLocal;
 
 	/** @var bool Whether interwiki transclusions are allowed */
@@ -118,7 +118,7 @@ class Interwiki {
 	 * @note More logic is explained in DefaultSettings.
 	 *
 	 * @param string $prefix Interwiki prefix
-	 * @return Interwiki object
+	 * @return Interwiki
 	 */
 	protected static function getInterwikiCached( $prefix ) {
 		$value = self::getInterwikiCacheEntry( $prefix );

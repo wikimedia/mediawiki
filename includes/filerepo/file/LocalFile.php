@@ -49,10 +49,10 @@ class LocalFile extends File {
 	/** @var bool Does the file exist on disk? (loadFromXxx) */
 	protected $fileExists;
 
-	/** @var int image width */
+	/** @var int Image width */
 	protected $width;
 
-	/** @var int image height */
+	/** @var int Image height */
 	protected $height;
 
 	/** @var int Returned by getimagesize (loadFromXxx) */
@@ -166,7 +166,7 @@ class LocalFile extends File {
 	 * Create a LocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
 	 *
-	 * @param string $sha1 base-36 SHA-1
+	 * @param string $sha1 Base-36 SHA-1
 	 * @param LocalRepo $repo
 	 * @param string|bool $timestamp MW_timestamp (optional)
 	 * @return bool|LocalFile
@@ -437,7 +437,7 @@ class LocalFile extends File {
 	/**
 	 * @param DatabaseBase $dbr
 	 * @param string $fname
-	 * @return array|false
+	 * @return array|bool
 	 */
 	private function loadFieldsWithTimestamp( $dbr, $fname ) {
 		$fieldMap = false;
@@ -833,7 +833,7 @@ class LocalFile extends File {
 	/**
 	 * Get all thumbnail names previously generated for this file
 	 * @param string|bool $archiveName Name of an archive file, default false
-	 * @return array first element is the base dir, then files in that base dir.
+	 * @return array First element is the base dir, then files in that base dir.
 	 */
 	function getThumbnails( $archiveName = false ) {
 		if ( $archiveName ) {
@@ -1848,7 +1848,7 @@ class LocalFile extends File {
 	 * Start a transaction and lock the image for update
 	 * Increments a reference counter if the lock is already held
 	 * @throws MWException Throws an error if the lock was not acquired
-	 * @return bool success
+	 * @return bool Success
 	 */
 	function lock() {
 		$dbw = $this->repo->getMasterDB();

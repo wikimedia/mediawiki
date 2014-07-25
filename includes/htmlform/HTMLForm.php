@@ -352,7 +352,7 @@ class HTMLForm extends ContextSource {
 	 * @param array $descriptor Input Descriptor, as described above
 	 *
 	 * @throws MWException
-	 * @return HTMLFormField subclass
+	 * @return HTMLFormField Instance of a subclass of HTMLFormField
 	 */
 	public static function loadInputFromParameters( $fieldname, $descriptor ) {
 		$class = self::getClassFromDescriptor( $fieldname, $descriptor );
@@ -622,7 +622,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Add footer text, inside the form.
 	 *
-	 * @param string $msg complete text of message to display
+	 * @param string $msg Complete text of message to display
 	 * @param string|null $section The section to add the footer text to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
@@ -741,8 +741,8 @@ class HTMLForm extends ContextSource {
 	 * Only useful when the method is "post".
 	 *
 	 * @since 1.24
-	 * @param string|array Salt to use
-	 * @return HTMLForm $this for chaining calls
+	 * @param string|array $salt Salt to use
+	 * @return HTMLForm $this For chaining calls
 	 */
 	public function setTokenSalt( $salt ) {
 		$this->mTokenSalt = $salt;
@@ -760,7 +760,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param bool|string|array|Status $submitResult Output from HTMLForm::trySubmit()
 	 *
-	 * @return Nothing, should be last call
+	 * @return void Nothing, should be last call
 	 */
 	function displayForm( $submitResult ) {
 		$this->getOutput()->addHTML( $this->getHTML( $submitResult ) );
@@ -980,7 +980,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Format a stack of error messages into a single HTML string
 	 *
-	 * @param array $errors of message keys/values
+	 * @param array $errors Array of message keys/values
 	 *
 	 * @return string HTML, a "<ul>" list of errors
 	 */
@@ -1010,7 +1010,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Set the text for the submit button
 	 *
-	 * @param string $t plaintext.
+	 * @param string $t Plaintext
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -1370,7 +1370,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param array $data
 	 *
-	 * @return
+	 * @return array
 	 */
 	function filterDataForSubmit( $data ) {
 		return $data;

@@ -1791,7 +1791,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	 *
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
-	 * @param string $after null
+	 * @param string $after
 	 * @param int $limit
 	 * @param array $params
 	 * @return Traversable|array

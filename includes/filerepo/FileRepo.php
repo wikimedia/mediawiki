@@ -1055,7 +1055,7 @@ class FileRepo {
 	 * Returns a FileRepoStatus object with the file Virtual URL in the value,
 	 * file can later be disposed using FileRepo::freeTemp().
 	 *
-	 * @param string $originalName the base name of the file as specified
+	 * @param string $originalName The base name of the file as specified
 	 *   by the user. The file extension will be maintained.
 	 * @param string $srcPath The current location of the file.
 	 * @return FileRepoStatus Object with the URL in the value.

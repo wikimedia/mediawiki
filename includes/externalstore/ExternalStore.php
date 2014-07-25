@@ -178,7 +178,7 @@ class ExternalStore {
 	 * itself. It also fails-over to the next possible clusters
 	 * as provided in the first parameter.
 	 *
-	 * @param array $tryStores refer to $wgDefaultExternalStore
+	 * @param array $tryStores Refer to $wgDefaultExternalStore
 	 * @param string $data
 	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The URL of the stored data item, or false on error

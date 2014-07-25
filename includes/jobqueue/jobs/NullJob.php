@@ -47,7 +47,7 @@
 class NullJob extends Job {
 	/**
 	 * @param Title $title
-	 * @param array $params job parameters (lives, usleep)
+	 * @param array $params Job parameters (lives, usleep)
 	 */
 	function __construct( $title, $params ) {
 		parent::__construct( 'null', $title, $params );

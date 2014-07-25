@@ -369,7 +369,7 @@ class LocalRepo extends FileRepo {
 	 * Get an array or iterator of file objects for files that have a given
 	 * SHA-1 content hash.
 	 *
-	 * @param string $hash a sha1 hash to look for
+	 * @param string $hash A sha1 hash to look for
 	 * @return array
 	 */
 	function findBySha1( $hash ) {

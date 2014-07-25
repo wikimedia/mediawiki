@@ -279,7 +279,7 @@ abstract class Job implements IJobSpecification {
 
 	/**
 	 * Insert a single job into the queue.
-	 * @return bool true on success
+	 * @return bool True on success
 	 * @deprecated since 1.21
 	 */
 	public function insert() {
