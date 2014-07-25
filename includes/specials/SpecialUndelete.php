@@ -910,7 +910,8 @@ class SpecialUndelete extends SpecialPage {
 			if ( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 				$out->wrapWikiMsg(
 					"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-					'rev-deleted-text-permission'
+				$rev->isDeleted( Revision::DELETED_RESTRICTED ) ?
+					'rev-suppressed-text-permission' : 'rev-deleted-text-permission'
 				);
 
 				return;
@@ -918,7 +919,8 @@ class SpecialUndelete extends SpecialPage {
 
 			$out->wrapWikiMsg(
 				"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				'rev-deleted-text-view'
+				$rev->isDeleted( Revision::DELETED_RESTRICTED ) ?
+					'rev-suppressed-text-view' : 'rev-deleted-text-view'
 			);
 			$out->addHTML( '<br />' );
 			// and we are allowed to see...

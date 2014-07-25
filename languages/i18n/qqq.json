@@ -915,6 +915,7 @@
 	"rev-deleted-event": "See also:\n* {{msg-mw|Rev-deleted-user}}",
 	"rev-deleted-user-contribs": "Part of revision deletion.",
 	"rev-deleted-text-permission": "{{Related|Rev-deleted-text}}",
+	"rev-suppressed-text-permission": "{{Related|Rev-deleted-text}}",
 	"rev-deleted-text-unhide": "Parameters:\n* $1 - a HTML link to the revision\n{{Related|Rev-deleted-text}}",
 	"rev-suppressed-text-unhide": "Parameters:\n* $1 - a HTML link to the revision\n{{Related|Rev-deleted-text}}",
 	"rev-deleted-text-view": "This is an error message which appears if a user tries to view a past revision of a page, where the revision has been hidden from view, although later revisions of the page still exist.",
