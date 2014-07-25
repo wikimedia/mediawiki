@@ -3040,7 +3040,7 @@
 	"version-version": "($1)",
 	"version-no-ext-name": "[без назви]",
 	"version-svn-revision": "(r$2)",
-	"version-license": "Ліцензія MediaWik",
+	"version-license": "Ліцензія MediaWiki",
 	"version-ext-license": "Ліцензія",
 	"version-ext-colheader-name": "Розширення",
 	"version-skin-colheader-name": "Тема оформлення",

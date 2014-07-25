@@ -7,6 +7,9 @@
 		]
 	},
 	"skinname-vector": "Vektor",
+	"vector-skin-desc": "MonoBooki uuem versioon värskema väljanägemise ja mitme kasutajasõbralikuma täiendusega",
+	"vector.css": "/* Siin asuv kaskaadilaadistik puudutab kõiki Vektori-kujunduse kasutajaid. */",
+	"vector.js": "/* Siin asuv JavaScript laaditakse kõigi Vektori-kujunduse kasutajate jaoks. */",
 	"vector-action-addsection": "Lisa teema",
 	"vector-action-delete": "Kustuta",
 	"vector-action-move": "Teisalda",

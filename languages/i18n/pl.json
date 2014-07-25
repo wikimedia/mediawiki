@@ -1088,6 +1088,7 @@
 	"right-browsearchive": "Przeszukiwanie usuniętych stron",
 	"right-undelete": "Odtwarzanie usuniętych stron",
 	"right-suppressrevision": "Podgląd i odtwarzanie wersji ukrytych przed administratorami",
+	"right-viewsuppressed": "Umożliwia zobaczenie wersji ukrytych przed każdym użytkownikiem",
 	"right-suppressionlog": "Podgląd rejestru ukrywania",
 	"right-block": "Blokowanie użytkownikom możliwości edycji",
 	"right-blockemail": "Blokowanie użytkownikom możliwości wysyłania wiadomości",

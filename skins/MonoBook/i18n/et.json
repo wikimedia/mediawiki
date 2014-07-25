@@ -1,3 +1,10 @@
 {
-	"skinname-monobook": "MonoBook"
+	"@metadata": {
+		"authors": [
+			"Pikne"
+		]
+	},
+	"skinname-monobook": "MonoBook",
+	"monobook.css": "/* Siin asuv kaskaadilaadistik puudutab kõiki MonoBooki-kujunduse kasutajaid. */",
+	"monobook.js": "/* Siin asuv JavaScript laaditakse MonoBooki-kujunduse kasutajate jaoks. */"
 }

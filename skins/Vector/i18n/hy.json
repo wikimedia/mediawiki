@@ -3,7 +3,8 @@
 		"authors": [
 			"Teak",
 			"Vadgt",
-			"Xelgen"
+			"Xelgen",
+			"Arman musikyan"
 		]
 	},
 	"skinname-vector": "Սովորական",
@@ -17,5 +18,6 @@
 	"vector-view-edit": "Խմբագրել",
 	"vector-view-history": "Դիտել պատմությունը",
 	"vector-view-view": "Կարդալ",
-	"vector-view-viewsource": "Դիտել ելատեքստը"
+	"vector-view-viewsource": "Դիտել ելատեքստը",
+	"vector-more-actions": "Ավելին"
 }

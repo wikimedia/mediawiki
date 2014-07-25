@@ -643,7 +643,7 @@
 	"protectedpagewarning": "'''Advarsel: Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den.'''\nDet siste loggelementet er oppgitt under som referanse:",
 	"semiprotectedpagewarning": "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den.\nDet siste loggelementet er oppgitt under som referanse:",
 	"cascadeprotectedwarning": "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes på følgende dypbeskyttede {{PLURAL:$1|sider}}:",
-	"titleprotectedwarning": "'''Advarsel: Denne siden har blitt låst slik at [[Special:ListGroupRights|spesielle rettigheter]] kreves for å opprette den.'''\nDet siste loggelementet er oppgitt under som referanse:",
+	"titleprotectedwarning": "'''Advarsel: Denne siden har blitt låst slik at [[Special:ListGroupRights|bestemte rettigheter]] kreves for å opprette den.'''\nTil orientering vises den siste loggoppføringen under:",
 	"templatesused": "{{PLURAL:$1|Mal|Maler}} som brukes på denne siden:",
 	"templatesusedpreview": "{{PLURAL:$1|Mal|Maler}} brukt i denne forhåndsvisningen:",
 	"templatesusedsection": "{{PLURAL:$1|Mal|Maler}} brukt i denne seksjonen:",
