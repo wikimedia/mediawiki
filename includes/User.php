@@ -173,6 +173,7 @@ class User {
 		'userrights-interwiki',
 		'viewmyprivateinfo',
 		'viewmywatchlist',
+		'viewsuppressed',
 		'writeapi',
 	);
 	/**
