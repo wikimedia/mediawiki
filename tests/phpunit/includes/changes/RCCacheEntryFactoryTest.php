@@ -9,6 +9,18 @@
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
+
+	/**
+	 * @var TestRecentChangesHelper
+	 */
+	private $testRecentChangesHelper;
+
+	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
+		parent::__construct( $name, $data, $dataName );
+
+		$this->testRecentChangesHelper = new TestRecentChangesHelper();
+	}
+
 	protected function setUp() {
 		parent::setUp();
 
@@ -36,7 +48,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		);
 		$this->assertEquals( $expected['unpatrolled'], $cacheEntry->unpatrolled, 'unpatrolled' );
 
-		$this->assertUserLinks( 'Mary', $cacheEntry );
+		$this->assertUserLinks( 'TestRecentChangesUser', $cacheEntry );
 		$this->assertTitleLink( 'Xyz', $cacheEntry );
 
 		$this->assertQueryLink( 'cur', $expected['cur'], $cacheEntry->curlink, 'cur link' );
@@ -45,11 +57,13 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function editChangeProvider() {
+		$user = $this->testRecentChangesHelper->getTestUser();
+
 		return array(
 			array(
 				array(
 					'title' => 'Xyz',
-					'user' => 'Mary',
+					'user' => 'TestRecentChangesUser',
 					'diff' => array( 'curid' => 5, 'diff' => 191, 'oldid' => 190 ),
 					'cur' => array( 'curid' => 5, 'diff' => 0, 'oldid' => 191 ),
 					'timestamp' => '21:21',
@@ -58,9 +72,9 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				),
 				$this->getContext(),
 				$this->getMessages(),
-				$this->makeEditRecentChange(
+				$this->testRecentChangesHelper->makeEditRecentChange(
+					$user,
 					'Xyz',
-					$this->getTestUser(),
 					5, // curid
 					191, // thisid
 					190, // lastid
@@ -72,24 +86,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				'edit'
 			)
 		);
-	}
-
-	private function makeEditRecentChange( $title, $user, $curid, $thisid, $lastid,
-		$timestamp, $counter, $watchingUsers
-	) {
-
-		$attribs = array_merge(
-			$this->getDefaultAttributes( $title, $timestamp ),
-			array(
-				'rc_user' => $user->getId(),
-				'rc_user_text' => $user->getName(),
-				'rc_this_oldid' => $thisid,
-				'rc_last_oldid' => $lastid,
-				'rc_cur_id' => $curid
-			)
-		);
-
-		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
 	/**
@@ -110,7 +106,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected['unpatrolled'], $cacheEntry->unpatrolled, 'unpatrolled' );
 
 		$this->assertDeleteLogLink( $cacheEntry );
-		$this->assertUserLinks( 'Mary', $cacheEntry );
+		$this->assertUserLinks( 'TestRecentChangesUser', $cacheEntry );
 
 		$this->assertEquals( 'cur', $cacheEntry->curlink, 'cur link for delete log or rev' );
 		$this->assertEquals( 'diff', $cacheEntry->difflink, 'diff link for delete log or rev' );
@@ -118,20 +114,22 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function deleteChangeProvider() {
+		$user = $this->testRecentChangesHelper->getTestUser();
+
 		return array(
 			array(
 				array(
 					'title' => 'Abc',
-					'user' => 'Mary',
+					'user' => 'TestRecentChangesUser',
 					'timestamp' => '21:21',
 					'numberofWatchingusers' => 0,
 					'unpatrolled' => false
 				),
 				$this->getContext(),
 				$this->getMessages(),
-				$this->makeLogRecentChange(
+				$this->testRecentChangesHelper->makeLogRecentChange(
+					$user,
 					'Abc',
-					$this->getTestUser(),
 					'20131103212153',
 					0, // counter
 					0 // number of watching users
@@ -140,27 +138,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				'delete'
 			)
 		);
-	}
-
-	private function makeLogRecentChange( $title, $user, $timestamp, $counter, $watchingUsers ) {
-		$attribs = array_merge(
-			$this->getDefaultAttributes( $title, $timestamp ),
-			array(
-				'rc_cur_id' => 0,
-				'rc_user' => $user->getId(),
-				'rc_user_text' => $user->getName(),
-				'rc_this_oldid' => 0,
-				'rc_last_oldid' => 0,
-				'rc_old_len' => null,
-				'rc_new_len' => null,
-				'rc_type' => 3,
-				'rc_logid' => 25,
-				'rc_log_type' => 'delete',
-				'rc_log_action' => 'delete'
-			)
-		);
-
-		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
 	/**
@@ -191,11 +168,13 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function revUserDeleteProvider() {
+		$user = $this->testRecentChangesHelper->getTestUser();
+
 		return array(
 			array(
 				array(
 					'title' => 'Zzz',
-					'user' => 'Mary',
+					'user' => 'TestRecentChangesUser',
 					'diff' => '',
 					'cur' => '',
 					'timestamp' => '21:21',
@@ -204,9 +183,9 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				),
 				$this->getContext(),
 				$this->getMessages(),
-				$this->makeDeletedEditRecentChange(
+				$this->testRecentChangesHelper->makeDeletedEditRecentChange(
+					$user,
 					'Zzz',
-					$this->getTestUser(),
 					'20131103212153',
 					191, // thisid
 					190, // lastid
@@ -218,24 +197,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				'deletedrevuser'
 			)
 		);
-	}
-
-	private function makeDeletedEditRecentChange( $title, $user, $timestamp, $curid, $thisid,
-		$lastid, $counter, $watchingUsers
-	) {
-		$attribs = array_merge(
-			$this->getDefaultAttributes( $title, $timestamp ),
-			array(
-				'rc_user' => $user->getId(),
-				'rc_user_text' => $user->getName(),
-				'rc_deleted' => 5,
-				'rc_cur_id' => $curid,
-				'rc_this_oldid' => $thisid,
-				'rc_last_oldid' => $lastid
-			)
-		);
-
-		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
 	private function assertUserLinks( $user, $cacheEntry ) {
@@ -341,50 +302,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	private function makeRecentChange( $attribs, $counter, $watchingUsers ) {
-		$change = new RecentChange();
-		$change->setAttribs( $attribs );
-		$change->counter = $counter;
-		$change->numberofWatchingusers = $watchingUsers;
-
-		return $change;
-	}
-
-	private function getDefaultAttributes( $title, $timestamp ) {
-		return array(
-			'rc_id' => 545,
-			'rc_user' => 0,
-			'rc_user_text' => '127.0.0.1',
-			'rc_ip' => '127.0.0.1',
-			'rc_title' => $title,
-			'rc_namespace' => 0,
-			'rc_timestamp' => $timestamp,
-			'rc_old_len' => 212,
-			'rc_new_len' => 188,
-			'rc_comment' => '',
-			'rc_minor' => 0,
-			'rc_bot' => 0,
-			'rc_type' => 0,
-			'rc_patrolled' => 1,
-			'rc_deleted' => 0,
-			'rc_logid' => 0,
-			'rc_log_type' => null,
-			'rc_log_action' => '',
-			'rc_params' => '',
-			'rc_source' => 'mw.edit'
-		);
-	}
-
-	private function getTestUser() {
-		$user = User::newFromName( 'Mary' );
-
-		if ( !$user->getId() ) {
-			$user->addToDatabase();
-		}
-
-		return $user;
-	}
-
 	private function getMessages() {
 		return array(
 			'cur' => 'cur',
@@ -400,14 +317,10 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	private function getContext() {
+		$context = $this->testRecentChangesHelper->getTestContext();
+
 		$title = Title::newFromText( 'RecentChanges', NS_SPECIAL );
-
-		$context = new RequestContext();
 		$context->setTitle( $title );
-		$context->setLanguage( Language::factory( 'en' ) );
-
-		$user = $this->getTestUser();
-		$context->setUser( $user );
 
 		return $context;
 	}
