@@ -160,6 +160,14 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if ( !$this->typeName || count( $this->ids ) == 0 ) {
 			throw new ErrorPageError( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 		}
+
+		# Allow the list type to adjust the passed target
+		$this->targetObj = RevisionDeleter::suggestTarget(
+			$this->typeName,
+			$this->targetObj,
+			$this->ids
+		);
+
 		$this->typeLabels = self::$UILabels[$this->typeName];
 		$list = $this->getList();
 		$list->reset();
@@ -169,13 +177,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			!$this->getUser()->isAllowed( 'suppressrevision' );
 		$pageIsSuppressed = $bitfield & Revision::DELETED_RESTRICTED;
 		$this->mIsAllowed = $this->mIsAllowed && !( $canViewSuppressedOnly && $pageIsSuppressed );
-
-		# Allow the list type to adjust the passed target
-		$this->targetObj = RevisionDeleter::suggestTarget(
-			$this->typeName,
-			$this->targetObj,
-			$this->ids
-		);
 
 		$this->otherReason = $request->getVal( 'wpReason' );
 		# We need a target page!
