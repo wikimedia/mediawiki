@@ -82,8 +82,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 					0, // counter
 					0 // number of watching users
 				),
-				false,
-				'edit'
+				false
 			)
 		);
 	}
@@ -134,8 +133,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 					0, // counter
 					0 // number of watching users
 				),
-				false,
-				'delete'
+				false
 			)
 		);
 	}
@@ -193,8 +191,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 					0, // counter
 					0 // number of watching users
 				),
-				false,
-				'deletedrevuser'
+				false
 			)
 		);
 	}
