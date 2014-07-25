@@ -319,6 +319,22 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Count number of users watching a page
+	 *
+	 * @param Title $title
+	 * @return the number of users watching that page
+	 */
+	public static function getUsersWatchingPageCount( $dbr, $title ) {
+		return $dbr->selectField( 'watchlist',
+			'COUNT(*)',
+			array(
+				'wl_namespace' => $title->getNamespace(),
+				'wl_title' => $title->getDBkey(),
+			),
+			__METHOD__ );
+	}
+
+	/**
 	 * Build and output the actual changes list.
 	 *
 	 * @param ResultWrapper $rows Database rows
@@ -366,13 +382,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			}
 
 			if ( $wgRCShowWatchingUsers && $user->getOption( 'shownumberswatching' ) ) {
-				$rc->numberofWatchingusers = $dbr->selectField( 'watchlist',
-					'COUNT(*)',
-					array(
-						'wl_namespace' => $obj->rc_namespace,
-						'wl_title' => $obj->rc_title,
-					),
-					__METHOD__ );
+				$rc->numberofWatchingusers = self::getUsersWatchingPageCount( $dbr, $rc->getTitle() );
 			} else {
 				$rc->numberofWatchingusers = 0;
 			}
