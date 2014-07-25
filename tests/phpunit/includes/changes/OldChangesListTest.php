@@ -100,11 +100,30 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function testRecentChangesLine_Flags() {
+		$oldChangesList = $this->getOldChangesList();
+		$recentChange = $this->getNewBotEditChange();
+
+		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
+
+		$this->assertRegExp(
+			"/<abbr class='newpage' title='This edit created a new page'>N<\/abbr>/",
+			$line,
+			'new page flag'
+		);
+
+		$this->assertRegExp(
+			"/<abbr class='botedit' title='This edit was performed by a bot'>b<\/abbr>/",
+			$line,
+			'bot flag'
+		);
+	}
+
 	private function getNewBotEditChange() {
 		$user = $this->getTestUser();
 
 		$recentChange = $this->testRecentChangesHelper->makeNewBotEditRecentChange(
-			$user, 'Abc', '20131103212153', 0, 0
+			$user, 'Abc', '20131103212153', 5, 191, 190, 0, 0
 		);
 
 		return $recentChange;
