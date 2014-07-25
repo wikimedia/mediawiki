@@ -239,7 +239,7 @@ class SpecialRandomInCategory extends SpecialPage {
 	 *
 	 * @param Title $category
 	 * @return array The lowest and highest timestamp
-	 * @throws MWException if category has no entries.
+	 * @throws MWException If category has no entries.
 	 */
 	protected function getMinAndMaxForCat( Title $category ) {
 		$dbr = wfGetDB( DB_SLAVE );

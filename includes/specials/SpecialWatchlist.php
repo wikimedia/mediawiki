@@ -83,7 +83,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * Return an array of subpages beginning with $search that this special page will accept.
 	 *
 	 * @param string $search Prefix to search for
-	 * @param integer $limit Maximum number of results to return
+	 * @param int $limit Maximum number of results to return
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit = 10 ) {

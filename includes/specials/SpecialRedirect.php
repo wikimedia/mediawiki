@@ -66,7 +66,7 @@ class SpecialRedirect extends FormSpecialPage {
 	/**
 	 * Handle Special:Redirect/user/xxxx (by redirecting to User:YYYY)
 	 *
-	 * @return string|null url to redirect to, or null if $mValue is invalid.
+	 * @return string|null Url to redirect to, or null if $mValue is invalid.
 	 */
 	function dispatchUser() {
 		if ( !ctype_digit( $this->mValue ) ) {
@@ -85,7 +85,7 @@ class SpecialRedirect extends FormSpecialPage {
 	/**
 	 * Handle Special:Redirect/file/xxxx
 	 *
-	 * @return string|null url to redirect to, or null if $mValue is not found.
+	 * @return string|null Url to redirect to, or null if $mValue is not found.
 	 */
 	function dispatchFile() {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mValue );
@@ -121,7 +121,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 * Handle Special:Redirect/revision/xxx
 	 * (by redirecting to index.php?oldid=xxx)
 	 *
-	 * @return string|null url to redirect to, or null if $mValue is invalid.
+	 * @return string|null Url to redirect to, or null if $mValue is invalid.
 	 */
 	function dispatchRevision() {
 		$oldid = $this->mValue;
@@ -141,7 +141,7 @@ class SpecialRedirect extends FormSpecialPage {
 	/**
 	 * Handle Special:Redirect/page/xxx (by redirecting to index.php?curid=xxx)
 	 *
-	 * @return string|null url to redirect to, or null if $mValue is invalid.
+	 * @return string|null Url to redirect to, or null if $mValue is invalid.
 	 */
 	function dispatchPage() {
 		$curid = $this->mValue;
@@ -164,7 +164,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 * or do nothing (if $mValue wasn't set) allowing the form to be
 	 * displayed.
 	 *
-	 * @return bool true if a redirect was successfully handled.
+	 * @return bool True if a redirect was successfully handled.
 	 */
 	function dispatch() {
 		// the various namespaces supported by Special:Redirect

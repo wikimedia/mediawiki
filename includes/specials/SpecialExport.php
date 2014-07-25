@@ -302,7 +302,7 @@ class SpecialExport extends SpecialPage {
 	/**
 	 * Do the actual page exporting
 	 *
-	 * @param string $page user input on what page(s) to export
+	 * @param string $page User input on what page(s) to export
 	 * @param int $history One of the WikiExporter history export constants
 	 * @param bool $list_authors Whether to add distinct author list (when
 	 *   not returning full history)
@@ -536,7 +536,7 @@ class SpecialExport extends SpecialPage {
 	 * @param array $inputPages List of titles to look up
 	 * @param array $pageSet Associative array indexed by titles for output
 	 *
-	 * @return array associative array index by titles
+	 * @return array Associative array index by titles
 	 */
 	private function getImages( $inputPages, $pageSet ) {
 		return $this->getLinks(

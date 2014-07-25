@@ -175,7 +175,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/**
 	 * Validate target User
 	 *
-	 * @param string $target target user name
+	 * @param string $target Target user name
 	 * @return User User object on success or a string on error
 	 */
 	public static function getTarget( $target ) {

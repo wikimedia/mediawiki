@@ -295,7 +295,7 @@ class SearchHighlighter {
 	/**
 	 * Split text into lines and add it to extracts array
 	 *
-	 * @param array $extracts index -> $line
+	 * @param array $extracts Index -> $line
 	 * @param int $count
 	 * @param string $text
 	 */

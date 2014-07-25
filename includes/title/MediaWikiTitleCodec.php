@@ -49,8 +49,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	protected $localInterwikis;
 
 	/**
-	 * @param Language $language the language object to use for localizing namespace names.
-	 * @param GenderCache $genderCache the gender cache for generating gendered namespace names
+	 * @param Language $language The language object to use for localizing namespace names.
+	 * @param GenderCache $genderCache The gender cache for generating gendered namespace names
 	 * @param string[]|string $localInterwikis
 	 */
 	public function __construct( Language $language, GenderCache $genderCache,
@@ -67,7 +67,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param int $namespace
 	 * @param string $text
 	 *
-	 * @throws InvalidArgumentException if the namespace is invalid
+	 * @throws InvalidArgumentException If the namespace is invalid
 	 * @return string
 	 */
 	public function getNamespaceName( $namespace, $text ) {
@@ -97,7 +97,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 *        Underscores will be replaced.
 	 * @param string $fragment The fragment name (may be empty).
 	 *
-	 * @throws InvalidArgumentException if the namespace is invalid
+	 * @throws InvalidArgumentException If the namespace is invalid
 	 * @return string
 	 */
 	public function formatTitle( $namespace, $text, $fragment = '' ) {

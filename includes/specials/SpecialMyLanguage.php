@@ -59,7 +59,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	 * it returns Page/fi if it exists, otherwise Page/de if it exists,
 	 * otherwise Page.
 	 *
-	 * @param $par
+	 * @param string $par
 	 * @return Title|null
 	 */
 	public function findTitle( $par ) {
