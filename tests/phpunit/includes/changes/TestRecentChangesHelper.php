@@ -26,7 +26,7 @@ class TestRecentChangesHelper {
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
-	public function makeLogRecentChange( $logType, User $user, $titleText, $timestamp, $counter,
+	public function makeLogRecentChange( $logType, $logAction, User $user, $titleText, $timestamp, $counter,
 		$watchingUsers
 	) {
 		$attribs = array_merge(
@@ -42,7 +42,7 @@ class TestRecentChangesHelper {
 				'rc_type' => 3,
 				'rc_logid' => 25,
 				'rc_log_type' => $logType,
-				'rc_log_action' => $logType,
+				'rc_log_action' => $logAction,
 				'rc_source' => 'mw.log'
 			)
 		);

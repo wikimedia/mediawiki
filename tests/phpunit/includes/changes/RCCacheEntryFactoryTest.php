@@ -124,6 +124,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				$this->getMessages(),
 				$this->testRecentChangesHelper->makeLogRecentChange(
 					'delete',
+					'delete',
 					$this->getTestUser(),
 					'Abc',
 					'20131103212153',
