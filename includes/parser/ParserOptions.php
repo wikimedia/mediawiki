@@ -22,7 +22,7 @@
  */
 
 /**
- * \brief Set options of the Parser
+ * @brief Set options of the Parser
  *
  * All member variables are supposed to be private in theory, although in
  * practise this is not the case.

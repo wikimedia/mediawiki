@@ -331,7 +331,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get loader script.
 	 *
-	 * @return string|false JavaScript code to be added to startup module
+	 * @return string|bool JavaScript code to be added to startup module
 	 */
 	public function getLoaderScript() {
 		if ( count( $this->loaderScripts ) === 0 ) {
@@ -804,7 +804,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param bool $flip
 	 *
 	 * @return string CSS data in script file
-	 * @throws MWException if the file doesn't exist
+	 * @throws MWException If the file doesn't exist
 	 */
 	protected function readStyleFile( $path, $flip ) {
 		$localPath = $this->getLocalPath( $path );

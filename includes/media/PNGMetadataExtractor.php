@@ -413,7 +413,7 @@ class PNGMetadataExtractor {
 	 *
 	 * @param resource $fh The file handle
 	 * @param int $size Size in bytes.
-	 * @throws Exception if too big.
+	 * @throws Exception If too big
 	 * @return string The chunk.
 	 */
 	private static function read( $fh, $size ) {

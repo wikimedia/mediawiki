@@ -251,7 +251,7 @@ abstract class BagOStuff {
 	 * Batch insertion
 	 * @param array $data $key => $value assoc array
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @return bool success
+	 * @return bool Success
 	 * @since 1.24
 	 */
 	public function setMulti( array $data, $exptime = 0 ) {
@@ -330,9 +330,9 @@ abstract class BagOStuff {
 	 * This will create the key with value $init and TTL $ttl if not present
 	 *
 	 * @param string $key
-	 * @param integer $ttl
-	 * @param integer $value
-	 * @param integer $init
+	 * @param int $ttl
+	 * @param int $value
+	 * @param int $init
 	 * @return bool
 	 * @since 1.24
 	 */

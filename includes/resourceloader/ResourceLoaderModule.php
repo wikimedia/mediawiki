@@ -188,7 +188,7 @@ abstract class ResourceLoaderModule {
 	 * load the files directly. See also getScriptURLsForDebug()
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array array( mediaType => array( URL1, URL2, ... ), ... )
+	 * @return array Array( mediaType => array( URL1, URL2, ... ), ... )
 	 */
 	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
 		$resourceLoader = $context->getResourceLoader();
@@ -548,7 +548,7 @@ abstract class ResourceLoaderModule {
 		return false;
 	}
 
-	/** @var JSParser lazy-initialized; use self::javaScriptParser() */
+	/** @var JSParser Lazy-initialized; use self::javaScriptParser() */
 	private static $jsParser;
 	private static $parseCacheVersion = 1;
 

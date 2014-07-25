@@ -91,7 +91,7 @@ class RevisionDeleter {
 	 * Checks for a change in the bitfield for a certain option and updates the
 	 * provided array accordingly.
 	 *
-	 * @param string $desc description to add to the array if the option was
+	 * @param string $desc Description to add to the array if the option was
 	 * enabled / disabled.
 	 * @param int $field The bitmask describing the single option.
 	 * @param int $diff The xor of the old and new bitfields.

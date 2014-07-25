@@ -265,7 +265,7 @@ class LinkHolderArray {
 	/**
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 *
-	 * @param $text
+	 * @param string $text
 	 * @return array Array of link CSS classes, indexed by PDBK.
 	 */
 	function replace( &$text ) {

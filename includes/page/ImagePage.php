@@ -1061,12 +1061,12 @@ EOT
 	 *  of the dimensions are bigger than the max, or if the
 	 *  image is vectorized.
 	 *
-	 * @param $maxWidth integer Max width to display at
-	 * @param $maxHeight integer Max height to display at
-	 * @param $width integer Actual width of the image
-	 * @param $height integer Actual height of the image
+	 * @param int $maxWidth Max width to display at
+	 * @param int $maxHeight Max height to display at
+	 * @param int $width Actual width of the image
+	 * @param int $height Actual height of the image
 	 * @throws MWException
-	 * @return Array (width, height)
+	 * @return array Array (width, height)
 	 */
 	protected function getDisplayWidthHeight( $maxWidth, $maxHeight, $width, $height ) {
 		if ( !$maxWidth || !$maxHeight ) {
@@ -1100,9 +1100,9 @@ EOT
 	 * Get alternative thumbnail sizes.
 	 *
 	 * @note This will only list several alternatives if thumbnails are rendered on 404
-	 * @param $origWidth Actual width of image
-	 * @param $origHeight Actual height of image
-	 * @return Array An array of [width, height] pairs.
+	 * @param int $origWidth Actual width of image
+	 * @param int $origHeight Actual height of image
+	 * @return array An array of [width, height] pairs.
 	 */
 	protected function getThumbSizes( $origWidth, $origHeight ) {
 		global $wgImageLimits;

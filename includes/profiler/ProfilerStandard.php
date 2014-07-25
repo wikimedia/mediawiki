@@ -299,7 +299,7 @@ class ProfilerStandard extends Profiler {
 	/**
 	 * Recursive function the format the current profiling array into a tree
 	 *
-	 * @param array $stack profiling array
+	 * @param array $stack Profiling array
 	 * @return array
 	 */
 	protected function remapCallTree( array $stack ) {

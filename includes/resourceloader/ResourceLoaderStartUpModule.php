@@ -168,7 +168,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * This way we can reasonably reduce the amout of module registration
 	 * data send to the client.
 	 *
-	 * @param Array &$registryData Modules keyed by name with properties:
+	 * @param array &$registryData Modules keyed by name with properties:
 	 *  - string 'version'
 	 *  - array 'dependencies'
 	 *  - string|null 'group'

@@ -396,7 +396,7 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * @param Title $title Title object, must be an interwiki link
-	 * @throws MWException if given invalid input
+	 * @throws MWException If given invalid input
 	 */
 	function addInterwikiLink( $title ) {
 		if ( !$title->isExternal() ) {
@@ -478,7 +478,7 @@ class ParserOutput extends CacheTime {
 	 * -- this is assumed to have been validated
 	 * (check equal normalisation, etc.)
 	 *
-	 * @param string $text desired title text
+	 * @param string $text Desired title text
 	 */
 	public function setDisplayTitle( $text ) {
 		$this->setTitleText( $text );
@@ -576,7 +576,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * @param string $name The property name to look up.
 	 *
-	 * @return mixed|false The value previously set using setProperty(). False if null or no value
+	 * @return mixed|bool The value previously set using setProperty(). False if null or no value
 	 * was set for the given property name.
 	 *
 	 * @note You need to use getProperties() to check for boolean and null properties.

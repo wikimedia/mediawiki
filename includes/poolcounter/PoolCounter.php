@@ -132,7 +132,7 @@ abstract class PoolCounter {
 	 * Lets another one grab the lock, and returns the workers
 	 * waiting on acquireForAnyone()
 	 *
-	 * @return Status value is one of Released/NotLocked/Error
+	 * @return Status Value is one of Released/NotLocked/Error
 	 */
 	abstract public function release();
 
@@ -143,7 +143,7 @@ abstract class PoolCounter {
 	 * the same key can acquire a lock.
 	 *
 	 * @param string $key PoolCounter instance key (any string)
-	 * @param int $slots the number of slots (max allowed value is 65536)
+	 * @param int $slots The number of slots (max allowed value is 65536)
 	 * @return int
 	 */
 	protected function hashKeyIntoSlots( $key, $slots ) {

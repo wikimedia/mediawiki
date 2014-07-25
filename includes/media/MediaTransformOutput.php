@@ -32,7 +32,7 @@ abstract class MediaTransformOutput {
 	 */
 	public $responsiveUrls = array();
 
-	/** @var File object */
+	/** @var File */
 	protected $file;
 
 	/** @var int Image width */
@@ -71,7 +71,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @return File file
+	 * @return File
 	 */
 	public function getFile() {
 		return $this->file;

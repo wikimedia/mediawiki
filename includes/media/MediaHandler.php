@@ -124,7 +124,7 @@ abstract class MediaHandler {
 	 *  first page.
 	 *
 	 * @param File $image The image object, or false if there isn't one
-	 * @param string $path the filename
+	 * @param string $path The filename
 	 * @return array Follow the format of PHP getimagesize() internal function.
 	 *   See http://www.php.net/getimagesize. MediaWiki will only ever use the
 	 *   first two array keys (the width and height), and the 'bits' associative
@@ -308,7 +308,7 @@ abstract class MediaHandler {
 	 * @param string $ext Extension of original file
 	 * @param string $mime MIME type of original file
 	 * @param array $params Handler specific rendering parameters
-	 * @return array thumbnail extension and MIME type
+	 * @return array Thumbnail extension and MIME type
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {
 		$magic = MimeMagic::singleton();
@@ -689,7 +689,7 @@ abstract class MediaHandler {
 	 * relevant errors.
 	 *
 	 * @param string $fileName The local path to the file.
-	 * @return Status object
+	 * @return Status
 	 */
 	function verifyUpload( $fileName ) {
 		return Status::newGood();
@@ -843,8 +843,8 @@ abstract class MediaHandler {
 	/**
 	 * Returns whether or not this handler supports the chained generation of thumbnails according
 	 * to buckets
-	 * @return boolean
-	 * @since  1.24
+	 * @return bool
+	 * @since 1.24
 	 */
 	public function supportsBucketing() {
 		return false;

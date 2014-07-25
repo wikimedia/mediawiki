@@ -26,7 +26,7 @@
  * @todo document
  */
 class ParserCache {
-	/** @var MWMemcached  */
+	/** @var MWMemcached */
 	private $mMemc;
 	/**
 	 * Get an instance of this object
