@@ -61,6 +61,9 @@ $wgAutoloadClasses += array(
 	'UserWrapper' => "$testDir/phpunit/includes/api/UserWrapper.php",
 	'RandomImageGenerator' => "$testDir/phpunit/includes/api/RandomImageGenerator.php",
 
+	# tests/phpunit/includes/changes
+	'TestRecentChangesHelper' => "$testDir/phpunit/includes/changes/TestRecentChangesHelper.php",
+
 	# tests/phpunit/includes/content
 	'DummyContentHandlerForTesting' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
 	'DummyContentForTesting' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
