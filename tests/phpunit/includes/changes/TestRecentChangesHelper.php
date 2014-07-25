@@ -26,7 +26,7 @@ class TestRecentChangesHelper {
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
-	public function makeLogRecentChange( User $user, $titleText, $timestamp, $counter,
+	public function makeLogRecentChange( $logType, User $user, $titleText, $timestamp, $counter,
 		$watchingUsers
 	) {
 		$attribs = array_merge(
@@ -41,8 +41,9 @@ class TestRecentChangesHelper {
 				'rc_new_len' => null,
 				'rc_type' => 3,
 				'rc_logid' => 25,
-				'rc_log_type' => 'delete',
-				'rc_log_action' => 'delete'
+				'rc_log_type' => $logType,
+				'rc_log_action' => $logType,
+				'rc_source' => 'mw.log'
 			)
 		);
 
@@ -61,6 +62,27 @@ class TestRecentChangesHelper {
 				'rc_cur_id' => $curid,
 				'rc_this_oldid' => $thisid,
 				'rc_last_oldid' => $lastid
+			)
+		);
+
+		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
+	}
+
+	public function makeNewBotEditRecentChange( User $user, $titleText, $curid, $thisid, $lastid,
+		$timestamp, $counter, $watchingUsers
+	) {
+
+		$attribs = array_merge(
+			$this->getDefaultAttributes( $titleText, $timestamp ),
+			array(
+				'rc_user' => $user->getId(),
+				'rc_user_text' => $user->getName(),
+				'rc_this_oldid' => $thisid,
+				'rc_last_oldid' => $lastid,
+				'rc_cur_id' => $curid,
+				'rc_type' => 1,
+				'rc_bot' => 1,
+				'rc_source' => 'mw.new'
 			)
 		);
 
@@ -101,21 +123,10 @@ class TestRecentChangesHelper {
 		);
 	}
 
-	public function getTestUser() {
-		$user = User::newFromName( 'TestRecentChangesUser' );
-
-		if ( !$user->getId() ) {
-			$user->addToDatabase();
-		}
-
-		return $user;
-	}
-
-	public function getTestContext() {
+	public function getTestContext( User $user ) {
 		$context = new RequestContext();
 		$context->setLanguage( Language::factory( 'en' ) );
 
-		$user = $this->getTestUser();
 		$context->setUser( $user );
 
 		return $context;
