@@ -73,6 +73,7 @@ $wgAutoloadLocalClasses = array(
 	'FeedItem' => 'includes/Feed.php',
 	'FeedUtils' => 'includes/FeedUtils.php',
 	'FileDeleteForm' => 'includes/FileDeleteForm.php',
+	'ForeignTitle' => 'includes/Import.php',
 	'ForkController' => 'includes/ForkController.php',
 	'FormOptions' => 'includes/FormOptions.php',
 	'GitInfo' => 'includes/GitInfo.php',
