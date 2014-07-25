@@ -57,8 +57,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function editChangeProvider() {
-		$user = $this->testRecentChangesHelper->getTestUser();
-
 		return array(
 			array(
 				array(
@@ -73,7 +71,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				$this->getContext(),
 				$this->getMessages(),
 				$this->testRecentChangesHelper->makeEditRecentChange(
-					$user,
+					$this->getTestUser(),
 					'Xyz',
 					5, // curid
 					191, // thisid
@@ -113,8 +111,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function deleteChangeProvider() {
-		$user = $this->testRecentChangesHelper->getTestUser();
-
 		return array(
 			array(
 				array(
@@ -127,7 +123,8 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				$this->getContext(),
 				$this->getMessages(),
 				$this->testRecentChangesHelper->makeLogRecentChange(
-					$user,
+					'delete',
+					$this->getTestUser(),
 					'Abc',
 					'20131103212153',
 					0, // counter
@@ -166,8 +163,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function revUserDeleteProvider() {
-		$user = $this->testRecentChangesHelper->getTestUser();
-
 		return array(
 			array(
 				array(
@@ -182,7 +177,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				$this->getContext(),
 				$this->getMessages(),
 				$this->testRecentChangesHelper->makeDeletedEditRecentChange(
-					$user,
+					$this->getTestUser(),
 					'Zzz',
 					'20131103212153',
 					191, // thisid
@@ -313,8 +308,19 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	private function getTestUser() {
+		$user = User::newFromName( 'TestRecentChangesUser' );
+
+		if ( !$user->getId() ) {
+			$user->addToDatabase();
+		}
+
+		return $user;
+	}
+
 	private function getContext() {
-		$context = $this->testRecentChangesHelper->getTestContext();
+		$user = $this->getTestUser();
+		$context = $this->testRecentChangesHelper->getTestContext( $user );
 
 		$title = Title::newFromText( 'RecentChanges', NS_SPECIAL );
 		$context->setTitle( $title );
