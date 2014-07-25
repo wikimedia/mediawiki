@@ -494,7 +494,7 @@ class VectorTemplate extends BaseTemplate {
 					?>" aria-labelledby="p-cactions-label">
 						<h3 id="p-cactions-label"><span><?php
 							$this->msg( 'vector-more-actions' )
-						?></span><a href="#"></a></h3>
+						?></span><div></div></h3>
 
 						<div class="menu">
 							<ul<?php $this->html( 'userlangattributes' ) ?>>
