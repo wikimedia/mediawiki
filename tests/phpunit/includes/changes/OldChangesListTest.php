@@ -68,7 +68,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 
 	public function testRecentChangesLine_LogTitle() {
 		$oldChangesList = $this->getOldChangesList();
-		$recentChange = $this->getLogChange( 'delete' );
+		$recentChange = $this->getLogChange( 'delete', 'delete' );
 
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
 
@@ -110,11 +110,11 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		return $recentChange;
 	}
 
-	private function getLogChange( $logType ) {
+	private function getLogChange( $logType, $logAction ) {
 		$user = $this->getTestUser();
 
 		$recentChange = $this->testRecentChangesHelper->makeLogRecentChange(
-			$logType, $user, 'Abc', '20131103212153', 0, 0
+			$logType, $logAction, $user, 'Abc', '20131103212153', 0, 0
 		);
 
 		return $recentChange;
