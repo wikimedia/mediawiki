@@ -63,7 +63,7 @@
 		vertical-align: middle;
 	}
 
-	label {
+	> label {
 		display: block;
 		.box-sizing(border-box);
 		.agora-label-styling();
@@ -73,7 +73,6 @@
 	}
 
 	// Override input styling just for checkboxes and radio inputs.
-	input[type="checkbox"],
 	input[type="radio"] {
 		display: inline;
 		.box-sizing(content-box);
@@ -180,11 +179,11 @@
 	.agora-label-styling(); // mixins/forms.less
 }
 
-// Nesting an input checkbox or radio button inside a label with this class
+// Nesting an input  inside a label with this class
 // improves alignment, e.g.
-//	<label class="mw-ui-checkbox-label">
-//		<input type="checkbox">The label text
+//	<label class="mw-ui-radio-label">
+//		<input type="radio">The label text
 //	</label>
-.mw-ui-checkbox-label, .mw-ui-radio-label {
+.mw-ui-radio-label {
 	.agora-inline-label-styling();
 }

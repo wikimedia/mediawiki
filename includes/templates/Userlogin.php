@@ -135,14 +135,13 @@ class UserloginTemplate extends BaseTemplate {
 
 			<div class="mw-ui-vform-field">
 				<?php if ( $this->data['canremember'] ) { ?>
-					<label class="mw-ui-checkbox-label">
+					<div class="mw-ui-checkbox">
 						<input name="wpRemember" type="checkbox" value="1" id="wpRemember" tabindex="4"
 							<?php if ( $this->data['remember'] ) {
 								echo 'checked="checked"';
 							} ?>
-						>
-						<?php echo $this->getMsg( 'userlogin-remembermypassword' )->numParams( $expirationDays )->escaped(); ?>
-					</label>
+						><label for="wpRemember"></label>
+					</div><?php echo $this->getMsg( 'userlogin-remembermypassword' )->numParams( $expirationDays )->escaped(); ?>
 				<?php } ?>
 			</div>
 

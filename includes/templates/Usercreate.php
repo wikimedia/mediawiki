@@ -94,14 +94,13 @@ class UsercreateTemplate extends BaseTemplate {
 
 			<div class="mw-ui-vform-field">
 				<?php if ( $this->data['createemail'] ) { ?>
-					<label class="mw-ui-checkbox-label">
+					<div class="mw-ui-checkbox">
 						<input name="wpCreateaccountMail" type="checkbox" value="1" id="wpCreateaccountMail" tabindex="2"
 							<?php if ( $this->data['createemailset'] ) {
 								echo 'checked="checked"';
 							} ?>
-						>
-						<?php $this->msg( 'createaccountmail' ); ?>
-					</label>
+						><label for="wpCreateaccountMail"></label>
+					</div><?php $this->msg( 'createaccountmail' ); ?>
 				<?php } ?>
 			</div>
 
@@ -207,7 +206,7 @@ class UsercreateTemplate extends BaseTemplate {
 						// If it's a checkbox, output the whole thing (assume it has a msg).
 						if ( $inputItem['type'] == 'checkbox' ) {
 						?>
-							<label class="mw-ui-checkbox-label">
+							<div class="mw-ui-checkbox">
 								<input
 									name="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"
 									id="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"
@@ -216,9 +215,8 @@ class UsercreateTemplate extends BaseTemplate {
 									<?php if ( !empty( $inputItem['value'] ) ) {
 										echo 'checked="checked"';
 									} ?>
-								>
-								<?php $this->msgHtml( $inputItem['msg'] ); ?>
-							</label>
+								><label for="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"></label>
+							</div><?php $this->msgHtml( $inputItem['msg'] ); ?>
 						<?php
 						} else {
 							// Not a checkbox.
