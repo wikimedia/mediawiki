@@ -18,7 +18,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 		$this->mOptions = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		$name = isset( $wgParserConf['preprocessorClass'] )
 			? $wgParserConf['preprocessorClass']
-			: 'Preprocessor_DOM';
+			: 'PreprocessorDOM';
 
 		$this->mPreprocessor = new $name( $this );
 	}
@@ -151,7 +151,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideCases
-	 * @covers Preprocessor_DOM::preprocessToXml
+	 * @covers PreprocessorDOM::preprocessToXml
 	 */
 	public function testPreprocessorOutput( $wikiText, $expectedXml ) {
 		$this->assertEquals( $this->normalizeXml( $expectedXml ), $this->preprocessToXml( $wikiText ) );
@@ -174,7 +174,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideFiles
-	 * @covers Preprocessor_DOM::preprocessToXml
+	 * @covers PreprocessorDOM::preprocessToXml
 	 */
 	public function testPreprocessorOutputFiles( $filename ) {
 		$folder = __DIR__ . "/../../../parser/preprocess";
@@ -239,7 +239,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideHeadings
-	 * @covers Preprocessor_DOM::preprocessToXml
+	 * @covers PreprocessorDOM::preprocessToXml
 	 */
 	public function testHeadings( $wikiText, $expectedXml ) {
 		$this->assertEquals( $this->normalizeXml( $expectedXml ), $this->preprocessToXml( $wikiText ) );
