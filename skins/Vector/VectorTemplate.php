@@ -422,7 +422,7 @@ class VectorTemplate extends BaseTemplate {
 						?>
 						<h3 id="p-variants-label"><span
 							style="display: block;" <?php /* Temporary WMF deployment hack, to be removed before 1.24 release */ ?>
-							><?php echo htmlspecialchars( $variantLabel ) ?></span><a href="#"></a></h3>
+							><?php echo htmlspecialchars( $variantLabel ) ?></span><a></a></h3>
 
 						<div class="menu">
 							<ul>
@@ -494,7 +494,7 @@ class VectorTemplate extends BaseTemplate {
 					?>" aria-labelledby="p-cactions-label">
 						<h3 id="p-cactions-label"><span><?php
 							$this->msg( 'vector-more-actions' )
-						?></span><a href="#"></a></h3>
+						?></span><a></a></h3>
 
 						<div class="menu">
 							<ul<?php $this->html( 'userlangattributes' ) ?>>
