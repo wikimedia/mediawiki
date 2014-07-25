@@ -3,6 +3,10 @@
 /**
  * @covers OldChangesList
  *
+ * @todo add tests to cover article link, timestamp, character difference,
+ *       log entry, user tool links, direction marks, tags, rollback,
+ *       watching users, and date header.
+ *
  * @group Database
  *
  * @licence GNU GPL v2+
