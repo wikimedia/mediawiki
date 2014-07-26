@@ -447,6 +447,8 @@ class Names {
 		'war' => 'Winaray', # Waray-Waray
 		'wo' => 'Wolof', # Wolof
 		'wuu' => '吴语', # Wu Chinese
+		'wuu-hans' => "吴语（简体）\xE2\x80\x8E", # Wuu (Simplified Han)
+		'wuu-hant' => "吳語（正體）\xE2\x80\x8E", # Wuu (Traditional Han)
 		'xal' => 'хальмг', # Kalmyk-Oirat
 		'xh' => 'isiXhosa', # Xhosan
 		'xmf' => 'მარგალური', # Mingrelian
