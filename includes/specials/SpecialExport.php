@@ -33,7 +33,7 @@ class SpecialExport extends SpecialPage {
 	private $images;
 
 	public function __construct() {
-		parent::__construct( 'Export' );
+		parent::__construct( 'Export', 'export' );
 	}
 
 	public function execute( $par ) {
@@ -43,6 +43,11 @@ class SpecialExport extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+
+		$user = $this->getUser();
+		if ( !$user->isAllowed( 'export' ) ) {
+			throw new PermissionsError( 'export' );
+		}
 
 		// Set some variables
 		$this->curonly = true;

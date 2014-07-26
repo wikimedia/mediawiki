@@ -134,6 +134,7 @@ class User implements IDBAccessObject {
 		'editusercssjs', #deprecated
 		'editusercss',
 		'edituserjs',
+		'export',
 		'hideuser',
 		'import',
 		'importupload',
