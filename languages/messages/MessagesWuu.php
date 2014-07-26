@@ -16,7 +16,7 @@
  * @author 十弌
  */
 
-$fallback = 'zh-hans, zh, zh-hant';
+$fallback = 'wuu-hans, wuu-hant, zh-hans, zh, zh-hant';
 
 $datePreferences = [
 	'default',

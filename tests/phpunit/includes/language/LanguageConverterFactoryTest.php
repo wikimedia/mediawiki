@@ -261,10 +261,10 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'th', 'ti', 'tk', 'tl', 'tly-latn', 'tn', 'to', 'tpi', 'tr', 'tru', 'ts', 'tt',
 			'tt-cyrl', 'tt-latn', 'tum', 'tw', 'ty', 'tyv', 'tzm', 'udm', 'ug', 'ug-arab',
 			'ug-latn', 'uk', 'ur', 'uz-cyrl', 'uz-latn', 've', 'vec', 'vep', 'vi', 'vls',
-			'vmf', 'vo', 'vot', 'vro', 'wa', 'war', 'wo', 'wuu', 'xal', 'xh', 'xmf', 'xsy',
-			'yi', 'yo', 'yue', 'za', 'zea', 'zgh', 'zh-classical', 'zh-cn', 'zh-hans',
-			'zh-hant', 'zh-hk', 'zh-min-nan', 'zh-mo', 'zh-my', 'zh-sg', 'zh-tw',
-			'zh-yue', 'zu',
+			'vmf', 'vo', 'vot', 'vro', 'wa', 'war', 'wo', 'wuu-hans', 'wuu-hant', 'xal',
+			'xh', 'xmf', 'xsy', 'yi', 'yo', 'yue', 'za', 'zea', 'zgh', 'zh-classical',
+			'zh-cn', 'zh-hans', 'zh-hant', 'zh-hk', 'zh-min-nan', 'zh-mo', 'zh-my',
+			'zh-sg', 'zh-tw', 'zh-yue', 'zu',
 		];
 		foreach ( $trivialWithNothingElseCodes as $code ) {
 			# $langCode, $mainVariantCode, $type, $variants, $variantFallbacks, $variantNames, $flags, $manualLevel
@@ -453,6 +453,20 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 				'uz' => 'bidirectional',
 				'uz-latn' => 'bidirectional',
 				'uz-cyrl' => 'bidirectional',
+			]
+		];
+
+		yield 'wuu' => [
+			'wuu', 'wuu', 'WuuConverter',
+			[ 'wuu', 'wuu-hans', 'wuu-hant' ],
+			[
+				'wuu' => [ 'wuu-hans', 'wuu-hant' ],
+				'wuu-hans' => [ 'wuu' ],
+				'wuu-hant' => [ 'wuu' ],
+			], [], [], [
+				'wuu' => 'disable',
+				'wuu-hans' => 'bidirectional',
+				'wuu-hant' => 'bidirectional'
 			]
 		];
 
