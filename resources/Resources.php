@@ -894,8 +894,13 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.htmlform.js',
 		'dependencies' => array(
 			'jquery.mwExtension',
+			'jquery.byteLimit',
 		),
-		'messages' => array( 'htmlform-chosen-placeholder' ),
+		'messages' => array(
+			'htmlform-chosen-placeholder',
+			// @todo Load this message in content language
+			'colon-separator',
+		),
 	),
 	'mediawiki.icon' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.icon.less',
