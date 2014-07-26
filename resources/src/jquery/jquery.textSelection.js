@@ -63,6 +63,12 @@
 				return this.val();
 			},
 			/**
+			 * Set the contents of the textarea, replacing anything that was there before
+			 */
+			setContents: function ( content ) {
+				this.val( content );
+			},
+			/**
 			 * Get the currently selected text in this textarea. Will focus the textarea
 			 * in some browsers (IE/Opera)
 			 */

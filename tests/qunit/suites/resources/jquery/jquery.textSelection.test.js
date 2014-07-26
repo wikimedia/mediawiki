@@ -43,11 +43,7 @@
 
 			$( '#qunit-fixture' ).append( $textarea );
 
-			// This method is actually missing atm...
-			//$textarea.textSelection( 'setContents', opt.before.text);
-
-			// Won't work with the WikiEditor iframe?
-			$textarea.val( opt.before.text );
+			$textarea.textSelection( 'setContents', opt.before.text );
 
 			start = opt.before.start;
 			end = opt.before.end;
