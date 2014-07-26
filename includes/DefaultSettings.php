@@ -4401,6 +4401,9 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 // For private suppression log access
 #$wgGroupPermissions['suppress']['suppressionlog'] = true;
 
+// Permission to export
+$wgGroupPermissions['*']['export'] = true;
+
 /**
  * The developer group is deprecated, but can be activated if need be
  * to use the 'lockdb' and 'unlockdb' special pages. Those require
