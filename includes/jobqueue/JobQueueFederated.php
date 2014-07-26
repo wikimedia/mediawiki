@@ -317,13 +317,6 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doPop() {
-		$key = $this->getCacheKey( 'empty' );
-
-		$isEmpty = $this->cache->get( $key );
-		if ( $isEmpty === 'true' ) {
-			return false;
-		}
-
 		$partitionsTry = $this->partitionRing->getLiveLocationWeights(); // (partition => weight)
 
 		$failed = 0;
@@ -352,6 +345,7 @@ class JobQueueFederated extends JobQueue {
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
 
+		$key = $this->getCacheKey( 'empty' );
 		$this->cache->set( $key, 'true', JobQueueDB::CACHE_TTL_LONG );
 
 		return false;
