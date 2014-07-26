@@ -551,6 +551,7 @@
 	"preview": "Previsualisation",
 	"showpreview": "Monstrar previsualisation",
 	"showdiff": "Detaliar modificationes",
+	"blankarticle": "<strong>Advertimento:</strong> Le pagina que tu vole crear es vacue.\nSi tu clicca de novo sur \"{{int:savearticle}}\", le pagina essera create sin contento.",
 	"anoneditwarning": "'''Attention:''' Tu non ha aperite un session.\nTu adresse IP essera registrate in le historia de modificationes de iste pagina.",
 	"anonpreviewwarning": "''Tu non ha aperite un session. Salveguardar registrara tu adresse IP in le historia de modificationes de iste pagina.''",
 	"missingsummary": "'''Rememoration:''' Tu non ha specificate un summario del modification.\nSi tu clicca super \"{{int:savearticle}}\" de novo, le modification essera publicate sin summario.",

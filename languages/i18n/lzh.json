@@ -11,7 +11,8 @@
 			"Super Wang",
 			"Xiaomingyan",
 			"Yanteng3",
-			"아라"
+			"아라",
+			"LNDDYL"
 		]
 	},
 	"tog-underline": "鏈墊線：",
@@ -194,7 +195,6 @@
 	"talkpagelinktext": "議",
 	"specialpage": "特查",
 	"personaltools": "家私",
-	"postcomment": "評",
 	"articlepage": "閱內文",
 	"talk": "議",
 	"views": "覽",
@@ -351,7 +351,6 @@
 	"externaldberror": "認庫之錯或禁更爾之外簿。",
 	"login": "登簿",
 	"nav-login-createaccount": "登簿、增簿",
-	"loginprompt": "登簿{{SITENAME}}須cookies，請准之。",
 	"userlogin": "登簿、增簿",
 	"userloginnocreate": "登簿",
 	"logout": "去簿",
@@ -762,6 +761,7 @@
 	"prefs-watchlist-token": "哨幣：",
 	"prefs-misc": "雜",
 	"prefs-resetpass": "更符節",
+	"prefs-changeemail": "更郵址",
 	"prefs-email": "傳書",
 	"prefs-rendering": "觀",
 	"saveprefs": "儲",
@@ -1535,6 +1535,7 @@
 	"cannotundelete": "無以還檔；或復矣。",
 	"undeletedpage": "'''$1還矣'''\n近刪新還，見[[Special:Log/delete|刪還誌]]。",
 	"undelete-header": "欲覽近刪，見[[Special:Log/delete|誌刪]]。",
+	"undelete-search-title": "尋刪頁",
 	"undelete-search-box": "尋刪",
 	"undelete-search-prefix": "見頁始如",
 	"undelete-search-submit": "尋",
@@ -2043,11 +2044,11 @@
 	"duplicate-defaultsort": "警：預之排鍵「$2」蓋前之排鍵「$1」。",
 	"version": "版",
 	"version-extensions": "裝展",
+	"version-skins": "皮",
 	"version-specialpages": "奇頁",
 	"version-parserhooks": "語鈎",
 	"version-variables": "變數",
 	"version-antispam": "垃圾之防",
-	"version-skins": "皮",
 	"version-other": "他",
 	"version-mediahandlers": "媒處",
 	"version-hooks": "鈎",
@@ -2111,5 +2112,6 @@
 	"sqlite-no-fts": "$1 不含全文之尋",
 	"revdelete-restricted": "應限至有秩",
 	"revdelete-unrestricted": "除限自有秩",
-	"rightsnone": "（凡）"
+	"rightsnone": "（凡）",
+	"searchsuggest-search": "尋"
 }

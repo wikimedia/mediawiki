@@ -2865,6 +2865,7 @@
 	"autosumm-replace": "UWAGA! Zastąpienie treści hasła bardzo krótkim tekstem: „$1”",
 	"autoredircomment": "Przekierowanie do [[$1]]",
 	"autosumm-new": "Utworzono nową stronę \"$1\"",
+	"autosumm-newblank": "Utworzono pustą stronę",
 	"size-bytes": "$1&nbsp;B",
 	"size-kilobytes": "$1&nbsp;KB",
 	"size-megabytes": "$1&nbsp;MB",

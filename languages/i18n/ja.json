@@ -1186,7 +1186,7 @@
 	"recentchanges-legend-heading": "'''凡例:'''",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|新しいページ一覧]]も参照)",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
-	"rcnotefrom": "以下は<strong>$2</strong>以降の更新です (最大 <strong>$1</strong> 件)。",
+	"rcnotefrom": "以下は<strong>$3 $4</strong>以降の{{PLURAL:$5|更新です}} (最大 <strong>$1</strong> 件)。",
 	"rclistfrom": "$3の$2以降の更新を表示する",
 	"rcshowhideminor": "細部の編集を$1",
 	"rcshowhideminor-show": "表示",
