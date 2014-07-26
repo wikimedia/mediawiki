@@ -862,7 +862,12 @@ return array(
 	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.htmlform.js',
-		'messages' => array( 'htmlform-chosen-placeholder' ),
+		'dependencies' => 'jquery.byteLimit',
+		'messages' => array(
+			'htmlform-chosen-placeholder',
+			// @todo Load this message in content language
+			'colon-separator',
+		),
 	),
 	'mediawiki.icon' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.icon.less',
