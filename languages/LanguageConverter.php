@@ -44,6 +44,7 @@ class LanguageConverter {
 		'sr',
 		'tg',
 		'uz',
+		'wuu',
 		'zh',
 	];
 
