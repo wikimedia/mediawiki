@@ -17,5 +17,5 @@
  * @author 十弌
  */
 
-$fallback = 'wuu-hant, zh-hant, zh-hans';
+$fallback = 'zh-hant';
 
