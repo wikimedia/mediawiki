@@ -69,7 +69,7 @@ class WikiExporter {
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		return "0.8";
+		return "0.9";
 	}
 
 	/**
@@ -532,6 +532,7 @@ class XmlDumpWriter {
 	function siteInfo() {
 		$info = array(
 			$this->sitename(),
+			$this->dbname(),
 			$this->homelink(),
 			$this->generator(),
 			$this->caseSetting(),
@@ -547,6 +548,14 @@ class XmlDumpWriter {
 	function sitename() {
 		global $wgSitename;
 		return Xml::element( 'sitename', array(), $wgSitename );
+	}
+
+	/**
+	 * @return string
+	 */
+	function dbname() {
+		global $wgDBname;
+		return Xml::element( 'dbname', array(), $wgDBname );
 	}
 
 	/**
