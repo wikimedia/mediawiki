@@ -75,17 +75,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 			$options["$code - $name"] = $code;
 		}
 
-		$page['languageSelector'] = array(
+		$page['language'] = array(
 			'id' => 'mw-pl-languageselector',
 			'type' => 'select',
 			'options' => $options,
 			'label-message' => 'pagelang-language',
-			'default' => $wgLanguageCode
-		);
-
-		$page['language'] = array(
-			'id' => 'mw-pl-languagevalue',
-			'type' => 'hidden',
 			'default' => $wgLanguageCode
 		);
 
