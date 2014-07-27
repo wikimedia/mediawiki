@@ -313,6 +313,23 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 
 	/*
+	 * Test if we become a "Created blank page" summary from getAutoSummary if no Content added to
+	 * page.
+	 */
+	public function testGetAutosummary() {
+		$content = new DummyContentHandlerForTesting( CONTENT_MODEL_WIKITEXT );
+		$title = Title::newFromText( 'Help:Test' );
+		// Create a new content object with no content
+		$newContent = ContentHandler::makeContent( '', $title, null, null, CONTENT_MODEL_WIKITEXT );
+		// first check, if we become a blank page created summary with the right bitmask
+		$autoSummary = $content->getAutosummary( null, $newContent, 97 );
+		$this->assertEquals( $autoSummary, 'Created blank page' );
+		// now check, what we become with another bitmask
+		$autoSummary = $content->getAutosummary( null, $newContent, 92 );
+		$this->assertEquals( $autoSummary, '' );
+	}
+
+	/*
 	public function testSupportsSections() {
 		$this->markTestIncomplete( "not yet implemented" );
 	}
