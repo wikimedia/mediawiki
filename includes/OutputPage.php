@@ -892,7 +892,7 @@ class OutputPage extends ContextSource {
 	 * "HTML title" means the contents of "<title>".
 	 * It is stored as plain, unescaped text and will be run through htmlspecialchars in the skin file.
 	 *
-	 * @param string $name
+	 * @param string|Message $name
 	 */
 	public function setHTMLTitle( $name ) {
 		if ( $name instanceof Message ) {
