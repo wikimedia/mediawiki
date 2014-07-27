@@ -1,0 +1,929 @@
+php phpunit.php --configuration /var/www/devwiki/tests/phpunit/suite.xml  --exclude-group Broken,ParserFuzz,Destructive,Stub
+PHPUnit 3.7.35 by Sebastian Bergmann.
+
+You have installed PHPUnit via PEAR. This installation method is no longer
+supported and http://pear.phpunit.de/ will be shut down no later than
+December, 31 2014.
+
+Please read http://phpunit.de/manual/current/en/installation.html and
+learn how to use PHPUnit from a PHAR or install it via Composer.
+
+Configuration read from /var/www/devwiki/tests/phpunit/suite.xml
+
+.............................................................   61 / 8870 (  0%)
+..........[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m..............  122 / 8870 (  1%)
+.............................................................  183 / 8870 (  2%)
+.............................................................  244 / 8870 (  2%)
+.............................................................  305 / 8870 (  3%)
+.............................................................  366 / 8870 (  4%)
+.............................................................  427 / 8870 (  4%)
+.............................................................  488 / 8870 (  5%)
+.............................................................  549 / 8870 (  6%)
+.............................................................  610 / 8870 (  6%)
+.............................................................  671 / 8870 (  7%)
+.............................................................  732 / 8870 (  8%)
+.............................................................  793 / 8870 (  8%)
+.............................................................  854 / 8870 (  9%)
+.............................................................  915 / 8870 ( 10%)
+.............................................................  976 / 8870 ( 11%)
+............................................................. 1037 / 8870 ( 11%)
+............................................................. 1098 / 8870 ( 12%)
+............................................................. 1159 / 8870 ( 13%)
+............................................................. 1220 / 8870 ( 13%)
+............................................................. 1281 / 8870 ( 14%)
+.......[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m................................................ 1342 / 8870 ( 15%)
+............................................................. 1403 / 8870 ( 15%)
+............................................................. 1464 / 8870 ( 16%)
+............................................................. 1525 / 8870 ( 17%)
+............................................................. 1586 / 8870 ( 17%)
+............................................................. 1647 / 8870 ( 18%)
+............................................................. 1708 / 8870 ( 19%)
+............................................................. 1769 / 8870 ( 19%)
+............................................................. 1830 / 8870 ( 20%)
+............................................................. 1891 / 8870 ( 21%)
+............................................................. 1952 / 8870 ( 22%)
+............................................................. 2013 / 8870 ( 22%)
+............................................................. 2074 / 8870 ( 23%)
+............................................................. 2135 / 8870 ( 24%)
+............................................................. 2196 / 8870 ( 24%)
+............................................................. 2257 / 8870 ( 25%)
+............................................................. 2318 / 8870 ( 26%)
+............................................................. 2379 / 8870 ( 26%)
+............................................................. 2440 / 8870 ( 27%)
+............................................................. 2501 / 8870 ( 28%)
+............................................................. 2562 / 8870 ( 28%)
+............................................................. 2623 / 8870 ( 29%)
+............................................................. 2684 / 8870 ( 30%)
+............................................................. 2745 / 8870 ( 30%)
+..[41;37mF[0m.......................................................... 2806 / 8870 ( 31%)
+[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m............................................. 2867 / 8870 ( 32%)
+............................................................. 2928 / 8870 ( 33%)
+............................................................. 2989 / 8870 ( 33%)
+............................................................. 3050 / 8870 ( 34%)
+............................................................. 3111 / 8870 ( 35%)
+............................................................. 3172 / 8870 ( 35%)
+............................................................. 3233 / 8870 ( 36%)
+............................................................. 3294 / 8870 ( 37%)
+............................................................. 3355 / 8870 ( 37%)
+............................................................. 3416 / 8870 ( 38%)
+............................................................. 3477 / 8870 ( 39%)
+............................................................. 3538 / 8870 ( 39%)
+.............................................[41;37mF[0m......[41;37mF[0m[41;37mF[0m[41;37mF[0m...... 3599 / 8870 ( 40%)
+.......................................................[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m 3660 / 8870 ( 41%)
+.......................................................[41;37mF[0m..... 3721 / 8870 ( 41%)
+............................................................. 3782 / 8870 ( 42%)
+............................................................. 3843 / 8870 ( 43%)
+............................................................. 3904 / 8870 ( 44%)
+............................................................. 3965 / 8870 ( 44%)
+............................................................. 4026 / 8870 ( 45%)
+............................................................. 4087 / 8870 ( 46%)
+............................................................. 4148 / 8870 ( 46%)
+............................................................. 4209 / 8870 ( 47%)
+............................................................. 4270 / 8870 ( 48%)
+............................................................. 4331 / 8870 ( 48%)
+............................................................. 4392 / 8870 ( 49%)
+............................................................. 4453 / 8870 ( 50%)
+............................................................. 4514 / 8870 ( 50%)
+............................................................. 4575 / 8870 ( 51%)
+............................................................. 4636 / 8870 ( 52%)
+............................................................. 4697 / 8870 ( 52%)
+............................................................. 4758 / 8870 ( 53%)
+............................................................. 4819 / 8870 ( 54%)
+............................................................. 4880 / 8870 ( 55%)
+............................................................. 4941 / 8870 ( 55%)
+............................................................. 5002 / 8870 ( 56%)
+........[36;1mS[0m.................................................... 5063 / 8870 ( 57%)
+............................................................. 5124 / 8870 ( 57%)
+............................................................. 5185 / 8870 ( 58%)
+............................................................. 5246 / 8870 ( 59%)
+............................................................. 5307 / 8870 ( 59%)
+............................................................. 5368 / 8870 ( 60%)
+........................[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m............................... 5429 / 8870 ( 61%)
+............................................................. 5490 / 8870 ( 61%)
+............................................................. 5551 / 8870 ( 62%)
+............................................................. 5612 / 8870 ( 63%)
+...............................[36;1mS[0m...........[31;1mE[0m................. 5673 / 8870 ( 63%)
+............................................................. 5734 / 8870 ( 64%)
+............................................................. 5795 / 8870 ( 65%)
+............................................................. 5856 / 8870 ( 66%)
+............................................................. 5917 / 8870 ( 66%)
+............................................................. 5978 / 8870 ( 67%)
+............................................................. 6039 / 8870 ( 68%)
+............................................................. 6100 / 8870 ( 68%)
+............................................................. 6161 / 8870 ( 69%)
+............................................................. 6222 / 8870 ( 70%)
+............................................................. 6283 / 8870 ( 70%)
+............................................................. 6344 / 8870 ( 71%)
+............................................................. 6405 / 8870 ( 72%)
+............................................................. 6466 / 8870 ( 72%)
+............................................................. 6527 / 8870 ( 73%)
+............................................................. 6588 / 8870 ( 74%)
+............................................................. 6649 / 8870 ( 74%)
+............................................................. 6710 / 8870 ( 75%)
+............................................................. 6771 / 8870 ( 76%)
+............................................................. 6832 / 8870 ( 77%)
+............................................................. 6893 / 8870 ( 77%)
+............................................................. 6954 / 8870 ( 78%)
+............................................................. 7015 / 8870 ( 79%)
+..............[36;1mS[0m.............................................. 7076 / 8870 ( 79%)
+............................................................. 7137 / 8870 ( 80%)
+............................................................. 7198 / 8870 ( 81%)
+............................................................. 7259 / 8870 ( 81%)
+............................................................. 7320 / 8870 ( 82%)
+............................................................. 7381 / 8870 ( 83%)
+............................................................. 7442 / 8870 ( 83%)
+............................................................. 7503 / 8870 ( 84%)
+............................................................. 7564 / 8870 ( 85%)
+............................................................. 7625 / 8870 ( 85%)
+............................................................. 7686 / 8870 ( 86%)
+............................................................. 7747 / 8870 ( 87%)
+................................................[41;37mF[0m............ 7808 / 8870 ( 88%)
+............................................................. 7869 / 8870 ( 88%)
+............................................................. 7930 / 8870 ( 89%)
+............................................................. 7991 / 8870 ( 90%)
+............................................................. 8052 / 8870 ( 90%)
+............................................................. 8113 / 8870 ( 91%)
+............................................................. 8174 / 8870 ( 92%)
+............................................................. 8235 / 8870 ( 92%)
+............................................................. 8296 / 8870 ( 93%)
+............................................................. 8357 / 8870 ( 94%)
+............................................................. 8418 / 8870 ( 94%)
+............................................................. 8479 / 8870 ( 95%)
+............................................................. 8540 / 8870 ( 96%)
+............................................................. 8601 / 8870 ( 96%)
+............................................................. 8662 / 8870 ( 97%)
+..................................[31;1mE[0m[31;1mE[0m...[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m............... 8723 / 8870 ( 98%)
+.............................................
+
+Time: 7.42 minutes, Memory: 285.50Mb
+
+There were 3 errors:
+
+1) SpecialRecentchangesTest::testRcNsFilter
+LocalFile::unlock: No transaction to commit, something got out of sync! [Called from DatabaseBase::commit in /var/www/devwiki/includes/db/Database.php at line 3490]
+
+/var/www/devwiki/includes/debug/Debug.php:303
+/var/www/devwiki/includes/debug/Debug.php:157
+/var/www/devwiki/includes/GlobalFunctions.php:1199
+/var/www/devwiki/includes/db/Database.php:3490
+/var/www/devwiki/includes/filerepo/file/LocalFile.php:1887
+/var/www/devwiki/includes/filerepo/file/LocalFile.php:1957
+/var/www/devwiki/includes/db/Database.php:3559
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:211
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+2) ApiRevThankTest::testValidRequest
+UsageException: Echo is not installed on this wiki
+
+/var/www/devwiki/includes/api/ApiBase.php:1372
+/var/www/devwiki/extensions/Thanks/ApiThank.php:11
+/var/www/devwiki/extensions/Thanks/ApiRevThank.php:10
+/var/www/devwiki/includes/api/ApiMain.php:908
+/var/www/devwiki/includes/api/ApiMain.php:332
+/var/www/devwiki/tests/phpunit/includes/api/ApiTestCase.php:99
+/var/www/devwiki/tests/phpunit/includes/api/ApiTestCase.php:142
+/var/www/devwiki/extensions/Thanks/tests/ApiRevThankIntegrationTest.php:35
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+3) ApiRevThankTest::testValidRequestWithSource
+UsageException: Echo is not installed on this wiki
+
+/var/www/devwiki/includes/api/ApiBase.php:1372
+/var/www/devwiki/extensions/Thanks/ApiThank.php:11
+/var/www/devwiki/extensions/Thanks/ApiRevThank.php:10
+/var/www/devwiki/includes/api/ApiMain.php:908
+/var/www/devwiki/includes/api/ApiMain.php:332
+/var/www/devwiki/tests/phpunit/includes/api/ApiTestCase.php:99
+/var/www/devwiki/tests/phpunit/includes/api/ApiTestCase.php:142
+/var/www/devwiki/extensions/Thanks/tests/ApiRevThankIntegrationTest.php:44
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+--
+
+
+There were 7 failures:
+
+1) DatabaseMysqlBaseTest::testAddIdentifierQuotes with data set #13 ('`￿`', '')
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-Binary String: 0x6001efbfbf60
++Binary String: 0x600160
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseMysqlBaseTest.php:105
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+2) MWMessagePackTest::testPack with data set #10 ('uint 64', 10000000000, 'cf00000002540be400')
+uint 64
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'cb4202a05f20000000'
++'cf00000002540be400'
+
+/var/www/devwiki/tests/phpunit/includes/libs/MWMessagePackTest.php:68
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+3) MWMessagePackTest::testPack with data set #17 ('int 64', -10000000000, 'd3fffffffdabf41c00')
+int 64
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'cbc202a05f20000000'
++'d3fffffffdabf41c00'
+
+/var/www/devwiki/tests/phpunit/includes/libs/MWMessagePackTest.php:68
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+4) MWMessagePackTest::testPack with data set #18 ('int 64', -2.2337203685478E+17, 'd3fce66c50e2840001')
+int 64
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'cbc388cc9d78ebe000'
++'d3fce66c50e2840001'
+
+/var/www/devwiki/tests/phpunit/includes/libs/MWMessagePackTest.php:68
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+5) MWMessagePackTest::testPack with data set #19 ('int 64', -9.2233720368548E+18, 'd38000000000000001')
+int 64
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'cbc3e0000000000000'
++'d38000000000000001'
+
+/var/www/devwiki/tests/phpunit/includes/libs/MWMessagePackTest.php:68
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+6) IPTCTest::testIPTCParseForcedUTFButInvalid
+Failed asserting that two arrays are equal.
+--- Expected
++++ Actual
+@@ @@
+ Array (
+-    0 => 'ø'
++    0 => ''
+ )
+
+/var/www/devwiki/tests/phpunit/includes/media/IPTCTest.php:47
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+7) AutoLoaderTest::testAutoLoadConfig
+Failed asserting that two arrays are equal.
+--- Expected
++++ Actual
+@@ @@
+     'VectorTemplate' => '/var/www/devwiki/skins/Vector...te.php'
++    'IDeviceProperties' => '/var/www/devwiki/extensions/M...on.php'
++    'IDeviceDetector' => '/var/www/devwiki/extensions/M...on.php'
++    'DeviceProperties' => '/var/www/devwiki/extensions/M...on.php'
++    'PredefinedDeviceProperties' => '/var/www/devwiki/extensions/M...on.php'
+ )
+
+/var/www/devwiki/tests/phpunit/structure/AutoLoaderTest.php:40
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+There were 81 skipped tests:
+
+1) CollationTest::testIsPrefix with data set #0 ('en', 'A', 'AA')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+2) CollationTest::testIsPrefix with data set #1 ('en', 'A', 'AAA')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+3) CollationTest::testIsPrefix with data set #2 ('en', 'Д', 'ДЂ')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+4) CollationTest::testIsPrefix with data set #3 ('en', 'Д', 'ДA')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+5) CollationTest::testIsPrefix with data set #4 ('fi', 'Z', 'Ʒ')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+6) CollationTest::testIsPrefix with data set #5 ('sv', 't', 'Þ')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+7) CollationTest::testIsPrefix with data set #6 ('en', 'ꦲ', 'ꦲꦤ')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+8) CollationTest::testIsPrefix with data set #7 ('en', 'ꦲ', 'ꦲД')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+9) CollationTest::testIsPrefix with data set #8 ('en', 'A', 'Aꦲ')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+10) CollationTest::testNotIsPrefix with data set #0 ('en', 'A', 'B')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+11) CollationTest::testNotIsPrefix with data set #1 ('en', 'AC', 'ABC')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+12) CollationTest::testNotIsPrefix with data set #2 ('en', 'Z', 'Ʒ')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+13) CollationTest::testNotIsPrefix with data set #3 ('en', 'A', 'ꦲ')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+14) CollationTest::testGetFirstLetter with data set #0 ('uppercase', 'Abc', 'A')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+15) CollationTest::testGetFirstLetter with data set #1 ('uppercase', 'abc', 'A')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+16) CollationTest::testGetFirstLetter with data set #2 ('identity', 'abc', 'a')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+17) CollationTest::testGetFirstLetter with data set #3 ('uca-en', 'abc', 'A')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+18) CollationTest::testGetFirstLetter with data set #4 ('uca-en', ' ', ' ')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+19) CollationTest::testGetFirstLetter with data set #5 ('uca-en', 'Êveryone', 'E')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+20) CollationTest::testGetFirstLetter with data set #6 ('uca-vi', 'Êveryone', 'Ê')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+21) CollationTest::testGetFirstLetter with data set #7 ('uca-sv', 'The', 'T')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+22) CollationTest::testGetFirstLetter with data set #8 ('uca-sv', 'Å', 'Å')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+23) CollationTest::testGetFirstLetter with data set #9 ('uca-hu', 'dzsdo', 'Dzs')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+24) CollationTest::testGetFirstLetter with data set #10 ('uca-hu', 'dzdso', 'Dz')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+25) CollationTest::testGetFirstLetter with data set #11 ('uca-hu', 'CSD', 'Cs')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+26) CollationTest::testGetFirstLetter with data set #12 ('uca-root', 'CSD', 'C')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+27) CollationTest::testGetFirstLetter with data set #13 ('uca-fi', 'Ǥ', 'G')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+28) CollationTest::testGetFirstLetter with data set #14 ('uca-fi', 'Ŧ', 'T')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+29) CollationTest::testGetFirstLetter with data set #15 ('uca-fi', 'Ʒ', 'Z')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+30) CollationTest::testGetFirstLetter with data set #16 ('uca-fi', 'Ŋ', 'N')
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+31) CollationTest::testMediaWikiTestCaseParentSetupCalled
+PHP extension 'intl' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/CollationTest.php:13
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+32) DiffHistoryBlobTest::testXdiffAdler32 with data set #0 ('', 'Empty string')
+PHP extension 'xdiff' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/DiffHistoryBlobTest.php:9
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+33) DiffHistoryBlobTest::testXdiffAdler32 with data set #1 ('' . "\0" . '', 'Null')
+PHP extension 'xdiff' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/DiffHistoryBlobTest.php:9
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+34) DiffHistoryBlobTest::testXdiffAdler32 with data set #2 ('' . "\0" . '' . "\0" . '' . "\0" . '', 'Several nulls')
+PHP extension 'xdiff' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/DiffHistoryBlobTest.php:9
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+35) DiffHistoryBlobTest::testXdiffAdler32 with data set #3 ('Hello', 'An ASCII string')
+PHP extension 'xdiff' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/DiffHistoryBlobTest.php:9
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+36) DiffHistoryBlobTest::testXdiffAdler32 with data set #4 ('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 'A string larger than xdiff\'s NMAX (5552)')
+PHP extension 'xdiff' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/DiffHistoryBlobTest.php:9
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+37) DiffHistoryBlobTest::testMediaWikiTestCaseParentSetupCalled
+PHP extension 'xdiff' is not loaded, skipping.
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1024
+/var/www/devwiki/tests/phpunit/includes/DiffHistoryBlobTest.php:9
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+38) HtmlFormatterTest::testTransform with data set #0 ('<img src="/foo/bar.jpg" alt="Blah"/>', '', array('<img src="/foo/bar.jpg" alt="Blah">'), Closure)
+Tidy extension not installed
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1094
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1073
+/var/www/devwiki/tests/phpunit/includes/HtmlFormatterTest.php:31
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+39) HtmlFormatterTest::testTransform with data set #1 ('<table><tr><td>foo</td></tr></table><div class="foo">foo</div><div class="foo quux">foo</div><span id="bar">bar</span>
+<strong class="foo" id="bar">foobar</strong><div class="notfoo">test</div><div class="baz"/>
+<span class="baz">baz</span>', '<div class="notfoo">test</div>
+<span class="baz">baz</span>', array('<table><tr><td>foo</td></tr></table>', '<div class="foo">foo</div>', '<div class="foo quux">foo</div>', '<span id="bar">bar</span>', '<strong class="foo" id="bar">foobar</strong>', '<div class="baz"/>'), Closure)
+Tidy extension not installed
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1094
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1073
+/var/www/devwiki/tests/phpunit/includes/HtmlFormatterTest.php:31
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+40) HtmlFormatterTest::testTransform with data set #2 ('<div><s>foo</s> <span>bar</span></div>', 'foo <span>bar</span>', array(), Closure)
+Tidy extension not installed
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1094
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1073
+/var/www/devwiki/tests/phpunit/includes/HtmlFormatterTest.php:31
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+41) HtmlFormatterTest::testTransform with data set #3 ('<div style="foo">bar<sup>2</sup></div>', 'bar2', array(), Closure)
+Tidy extension not installed
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1094
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1073
+/var/www/devwiki/tests/phpunit/includes/HtmlFormatterTest.php:31
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+42) HtmlFormatterTest::testTransform with data set #4 ('<span title="&quot; \' &amp;">&lt;Тест!&gt;</span> &amp;&lt;&#38;&#0038;&#x26;&#x026;', '<span title="&quot; \' &amp;">&lt;Тест!&gt;</span> &amp;&lt;&amp;&amp;&amp;&amp;', array(), Closure)
+Tidy extension not installed
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1094
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1073
+/var/www/devwiki/tests/phpunit/includes/HtmlFormatterTest.php:31
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+43) HtmlFormatterTest::testTransform with data set #5 ('Foo<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup> <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>', 'Foo<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup> <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>')
+Tidy extension not installed
+
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1094
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:1073
+/var/www/devwiki/tests/phpunit/includes/HtmlFormatterTest.php:31
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+44) DatabaseSqliteTest::testAddQuotes with data set #0 ('', '\'\'')
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+45) DatabaseSqliteTest::testAddQuotes with data set #1 ('foo bar', '\'foo bar\'')
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+46) DatabaseSqliteTest::testAddQuotes with data set #2 ('foo\'bar', '\'foo\'\'bar\'')
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+47) DatabaseSqliteTest::testAddQuotes with data set #3 ('x' . "\0" . 'y', 'x\'780079\'')
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+48) DatabaseSqliteTest::testAddQuotes with data set #4 (Blob, 'x\'68656c6c6f\'')
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+49) DatabaseSqliteTest::testReplaceVars
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+50) DatabaseSqliteTest::testTableName
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+51) DatabaseSqliteTest::testDuplicateTableStructure
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+52) DatabaseSqliteTest::testDuplicateTableStructureVirtual
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+53) DatabaseSqliteTest::testDeleteJoin
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+54) DatabaseSqliteTest::testEntireSchema
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+55) DatabaseSqliteTest::testUpgrades
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+56) DatabaseSqliteTest::testInsertIdType
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+57) DatabaseSqliteTest::testCaseInsensitiveLike
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+58) DatabaseSqliteTest::testNumFields
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+59) DatabaseSqliteTest::testMediaWikiTestCaseParentSetupCalled
+No SQLite support detected
+
+/var/www/devwiki/tests/phpunit/includes/db/DatabaseSqliteTest.php:37
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+60) DjVuTest::testGetImageSize
+This test needs the installation of the ddjvu, djvutoxml and djvudump tools
+
+/var/www/devwiki/tests/phpunit/includes/media/DjVuTest.php:20
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+61) DjVuTest::testInvalidFile
+This test needs the installation of the ddjvu, djvutoxml and djvudump tools
+
+/var/www/devwiki/tests/phpunit/includes/media/DjVuTest.php:20
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+62) DjVuTest::testPageCount
+This test needs the installation of the ddjvu, djvutoxml and djvudump tools
+
+/var/www/devwiki/tests/phpunit/includes/media/DjVuTest.php:20
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+63) DjVuTest::testGetPageDimensions
+This test needs the installation of the ddjvu, djvutoxml and djvudump tools
+
+/var/www/devwiki/tests/phpunit/includes/media/DjVuTest.php:20
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+64) DjVuTest::testGetPageText
+This test needs the installation of the ddjvu, djvutoxml and djvudump tools
+
+/var/www/devwiki/tests/phpunit/includes/media/DjVuTest.php:20
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+65) DjVuTest::testMediaWikiTestCaseParentSetupCalled
+This test needs the installation of the ddjvu, djvutoxml and djvudump tools
+
+/var/www/devwiki/tests/phpunit/includes/media/DjVuTest.php:20
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+66) ParserTests::testParserTest with data set #903 ('Image with page parameter', '[[File:LoremIpsum.djvu|page=2]]', '<p><a href="/index.php?title=File:LoremIpsum.djvu&amp;page=2" class="image"><img alt="LoremIpsum.djvu" src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg" width="2480" height="3508" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg 1.5x, http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg 2x" /></a>
+</p>', 'djvu', '')
+SKIPPED: djvu binaries do not exist or are not executable.
+
+/var/www/devwiki/tests/phpunit/includes/parser/NewParserTest.php:710
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+67) TidyTest::testTidyWrapping with data set #0 ('<mw:editsection page="foo" section="bar">foo</mw:editsection>', '<mw:editsection page="foo" section="bar">foo</mw:editsection>', '<mw:editsection> should survive tidy')
+Tidy not found
+
+/var/www/devwiki/tests/phpunit/includes/parser/TidyTest.php:12
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+68) TidyTest::testTidyWrapping with data set #1 ('<editsection page="foo" section="bar">foo</editsection>', '<editsection page="foo" section="bar">foo</editsection>', '<editsection> should survive tidy')
+Tidy not found
+
+/var/www/devwiki/tests/phpunit/includes/parser/TidyTest.php:12
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+69) TidyTest::testTidyWrapping with data set #2 ('<mw:toc>foo</mw:toc>', '<mw:toc>foo</mw:toc>', '<mw:toc> should survive tidy')
+Tidy not found
+
+/var/www/devwiki/tests/phpunit/includes/parser/TidyTest.php:12
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+70) TidyTest::testTidyWrapping with data set #3 ('<link foo="bar" />
+foo', '<link foo="bar"/>foo', '<link> should survive tidy')
+Tidy not found
+
+/var/www/devwiki/tests/phpunit/includes/parser/TidyTest.php:12
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+71) TidyTest::testTidyWrapping with data set #4 ('<meta foo="bar" />
+foo', '<meta foo="bar"/>foo', '<meta> should survive tidy')
+Tidy not found
+
+/var/www/devwiki/tests/phpunit/includes/parser/TidyTest.php:12
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+72) TidyTest::testMediaWikiTestCaseParentSetupCalled
+Tidy not found
+
+/var/www/devwiki/tests/phpunit/includes/parser/TidyTest.php:12
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+73) QueryAllSpecialPagesTest::testQuerypageSqlQuery
+SQL query for page BrokenRedirects can not be tested on MySQL backend (it reopens a temporary table)
+
+/var/www/devwiki/tests/phpunit/includes/specials/QueryAllSpecialPagesTest.php:60
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+74) LanguageTest::testKnownCldrLanguageTag
+The LanguageNames class is not available. The CLDR extension is probably not installed.
+
+/var/www/devwiki/tests/phpunit/languages/LanguageTest.php:515
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+75) ApiFlowThankTest::testRequestWithoutToken
+Flow is not installed
+
+/var/www/devwiki/extensions/Thanks/tests/ApiFlowThankIntegrationTest.php:33
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+76) ApiFlowThankTest::testInvalidRequest
+Flow is not installed
+
+/var/www/devwiki/extensions/Thanks/tests/ApiFlowThankIntegrationTest.php:33
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+77) ApiFlowThankTest::testValidRequest
+Flow is not installed
+
+/var/www/devwiki/extensions/Thanks/tests/ApiFlowThankIntegrationTest.php:33
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+78) ApiFlowThankTest::testRequestWithInvalidId
+Flow is not installed
+
+/var/www/devwiki/extensions/Thanks/tests/ApiFlowThankIntegrationTest.php:33
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+79) ApiFlowThankTest::testRequestWithOwnId
+Flow is not installed
+
+/var/www/devwiki/extensions/Thanks/tests/ApiFlowThankIntegrationTest.php:33
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+80) ApiFlowThankTest::testApiTestGroup
+Flow is not installed
+
+/var/www/devwiki/extensions/Thanks/tests/ApiFlowThankIntegrationTest.php:33
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+81) ApiFlowThankTest::testMediaWikiTestCaseParentSetupCalled
+Flow is not installed
+
+/var/www/devwiki/extensions/Thanks/tests/ApiFlowThankIntegrationTest.php:33
+/var/www/devwiki/tests/phpunit/MediaWikiTestCase.php:133
+/var/www/devwiki/tests/phpunit/MediaWikiPHPUnitCommand.php:42
+
+[37;41m[2KFAILURES!
+[0m[37;41m[2KTests: 8768, Assertions: 473269, Failures: 7, Errors: 3, Skipped: 81.
+[0m[2K
