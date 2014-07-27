@@ -104,10 +104,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			$this->mergeResult( $result, $data );
 			$count++;
 			if ( empty( $continue ) ) {
-				// $this->assertEquals( $expectedCount, $count, "$id finished early" );
-				if ( $expectedCount > $count ) {
-					print "***** $id Finished early in $count turns. $expectedCount was expected\n";
-				}
+				$this->assertEquals( $expectedCount, $count, "$id finished early" );
 
 				return $result;
 			} elseif ( !$useContinue ) {
