@@ -1405,6 +1405,7 @@
 	"nowatchlist": "無哨",
 	"watchlistanontext": "$1以治哨",
 	"watchnologin": "未登簿",
+	"addwatch": "增至哨站",
 	"addedwatchtext": "\"[[:$1]]\"哨派矣。後有易、議者可見於[[Special:Watchlist|哨站]]，且'''粗體'''列於[[Special:RecentChanges|近易]]。",
 	"removedwatchtext": "\"[[:$1]]\"[[Special:Watchlist|哨]]撤矣。",
 	"watch": "派哨",

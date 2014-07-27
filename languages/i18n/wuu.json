@@ -14,7 +14,8 @@
 			"Mywood",
 			"Cwek",
 			"Duolaimi",
-			"Impersonator 1"
+			"Impersonator 1",
+			"LNDDYL"
 		]
 	},
 	"tog-underline": "鏈接下橫線：",
@@ -363,7 +364,6 @@
 	"externaldberror": "迭个作兴是由于验证数据库错误或者侬拨禁止更新侬个外部账号。",
 	"login": "登进去",
 	"nav-login-createaccount": "登进去 / 建账号",
-	"loginprompt": "必须用缓存（cookies）好登进{{SITENAME}}。",
 	"userlogin": "登进去 / 建账号",
 	"userloginnocreate": "登录",
 	"logout": "登出",
@@ -973,7 +973,7 @@
 	"filedelete-maintenance-title": "文件刪弗爻",
 	"download": "下载",
 	"listredirects": "重定向列表",
-	"unusedtemplateswlh": "別樣鏈接",
+	"unusedtemplateswlh": "其他鏈接",
 	"randompage": "随便望望",
 	"randomincategory": "分類裏個隨便一頁",
 	"randomincategory-selectcategory-submit": "去",

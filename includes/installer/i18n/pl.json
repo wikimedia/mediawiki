@@ -16,7 +16,8 @@
 			"Pan Cube",
 			"WTM",
 			"Alan ffm",
-			"Matik7"
+			"Matik7",
+			"Pio387"
 		]
 	},
 	"config-desc": "Instalator MediaWiki",
@@ -79,7 +80,7 @@
 	"config-memory-raised": "PHP <code>memory_limit</code> było ustawione na $1, zostanie zwiększone do $2.",
 	"config-memory-bad": "'''Uwaga:''' PHP <code>memory_limit</code> jest ustawione na $1.\nTo jest prawdopodobnie zbyt mało.\nInstalacja może się nie udać!",
 	"config-ctype": "''' Krytyczny ''': PHP musi być skompilowany z obsługą [http://www.php.net/manual/en/ctype.installation.php rozszerzenia Ctype].",
-	"config-iconv": "<strong>Błąd krytyczny:</strong> PHP musi być skomilowane z obsługą [http://www.php.net/manual/en/iconv.installation.php rozszerzenia iconv].",
+	"config-iconv": "<strong>Błąd krytyczny:</strong> PHP musi być skompilowane z obsługą [http://www.php.net/manual/en/iconv.installation.php rozszerzenia iconv].",
 	"config-json": "'''Błąd krytyczny:''' PHP skompilowano bez obsługa JSON.\nPrzed zainstalowaniem oprogramowania MediaWiki musisz zainstalować rozszerzenie PHP JSON albo rozszerzenie [http://pecl.php.net/package/jsonc PECL jsonc].\n* Rozszerzenie PHP jest zawarte w Red Hat Enterprise Linux (CentOS) 5 i 6, jednak musi zostać włączone w <code>/etc/php.ini</code> or <code>/etc/php.d/json.ini</code>.\n* Niektóre dystrybucje Linuksa, wydane po maju 2013, nie używają rozszerzenia PHP, lecz rozszerzenie PECL, jako <code>php5-json</code> lub <code>php-pecl-jsonc</code>.",
 	"config-xcache": "[Http://trac.lighttpd.net/xcache/ XCache] jest zainstalowany",
 	"config-apc": "[Http://www.php.net/apc APC] jest zainstalowany",

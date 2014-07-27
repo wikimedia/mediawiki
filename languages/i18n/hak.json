@@ -10,7 +10,9 @@
 			"Urhixidur",
 			"Xiaomingyan",
 			"아라",
-			"Mywood"
+			"Mywood",
+			"Impersonator 1",
+			"LNDDYL"
 		]
 	},
 	"tog-underline": "鏈接加底線：",
@@ -194,7 +196,6 @@
 	"talkpagelinktext": "交流",
 	"specialpage": "特殊頁面",
 	"personaltools": "私人工具",
-	"postcomment": "新段落",
 	"articlepage": "查看內容頁面",
 	"talk": "討論",
 	"views": "查看數",
@@ -370,7 +371,6 @@
 	"externaldberror": "邇可能係由於驗證數據庫差錯或者汝分系統禁止更新汝嘅外部賬號。",
 	"login": "登入",
 	"nav-login-createaccount": "登入/建立新帳號",
-	"loginprompt": "汝必須啟用Cookies正做得成功登入{{SITENAME}}。",
 	"userlogin": "登入/建立新帳號",
 	"userloginnocreate": "登入",
 	"logout": "登出",

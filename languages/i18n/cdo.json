@@ -6,7 +6,9 @@
 			"Yejianfei",
 			"Hakka",
 			"아라",
-			"Mywood"
+			"Mywood",
+			"Impersonator 1",
+			"LNDDYL"
 		]
 	},
 	"tog-underline": "下劃綫鏈接",
@@ -182,7 +184,6 @@
 	"talkpagelinktext": "討論",
 	"specialpage": "特殊頁",
 	"personaltools": "個人其家私",
-	"postcomment": "新其蜀段",
 	"articlepage": "覷蜀覷內容頁面",
 	"talk": "討論",
 	"views": "覷蜀覷",
@@ -337,7 +338,6 @@
 	"externaldberror": "可能是驗證數據庫鄭咯，或者是汝𣍐使升級汝其外部賬戶。",
 	"login": "躒底",
 	"nav-login-createaccount": "躒底/開賬戶",
-	"loginprompt": "汝著清除cookies才會底{{SITENAME}}。",
 	"userlogin": "躒底/開賬戶",
 	"userloginnocreate": "躒底",
 	"logout": "躒出",

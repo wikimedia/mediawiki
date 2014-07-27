@@ -1155,7 +1155,7 @@
 	"recentchanges-label-minor": "Dette er en mindre endring",
 	"recentchanges-label-bot": "Denne redigeringen ble gjort av en bot",
 	"recentchanges-label-unpatrolled": "Denne redigeringen har ikke blitt patruljert ennå",
-	"recentchanges-label-plusminus": "Sidestørrelsen kan endres med dette antallet bytes",
+	"recentchanges-label-plusminus": "Sidestørrelsen er endra med dette antallet byte",
 	"recentchanges-legend-heading": "'''Tegnforklaring:'''",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (se også [[Special:NewPages|liste av nye sider]])",
 	"recentchanges-legend-plusminus": "«(±123)»",
