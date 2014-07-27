@@ -1025,11 +1025,13 @@ class HTMLForm extends ContextSource {
 	 * @since 1.19
 	 *
 	 * @param string $msg Message key
+	 * @param mixed $args,... Message params (since 1.24)
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	public function setSubmitTextMsg( $msg ) {
-		$this->setSubmitText( $this->msg( $msg )->text() );
+	public function setSubmitTextMsg( $msg /*, ... */ ) {
+		$args = array_slice( func_get_args(), 1 );
+		$this->setSubmitText( $this->msg( $msg, $args )->text() );
 
 		return $this;
 	}
@@ -1144,11 +1146,13 @@ class HTMLForm extends ContextSource {
 	 * @since 1.19
 	 *
 	 * @param string $msg Message key
+	 * @param mixed $args,... Message params (since 1.24)
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	public function setWrapperLegendMsg( $msg ) {
-		$this->setWrapperLegend( $this->msg( $msg )->text() );
+	public function setWrapperLegendMsg( $msg /*, ... */ ) {
+		$args = array_slice( func_get_args(), 1 );
+		$this->setWrapperLegend( $this->msg( $msg, $args )->text() );
 
 		return $this;
 	}
