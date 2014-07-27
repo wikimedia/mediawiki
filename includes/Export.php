@@ -507,8 +507,17 @@ class XmlDumpWriter {
 		return Xml::element( 'mediawiki', array(
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
+			/*
+			 * When a new version of the schema is created, it needs staging on mediawiki.org.
+			 * This requires a change in the operations/mediawiki-config git repo.
+			 *
+			 * Create a changeset like https://gerrit.wikimedia.org/r/#/c/149643/ in which
+			 * you copy in the new xsd file.
+			 *
+			 * After it is reviewed, merged and deployed (sync-docroot), the index.html needs purging.
+			 * echo "http://www.mediawiki.org/xml/index.html" | mwscript purgeList.php --wiki=aawiki
+			 */
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
-				#TODO: how do we get a new version up there?
 				"http://www.mediawiki.org/xml/export-$ver.xsd",
 			'version'            => $ver,
 			'xml:lang'           => $wgLanguageCode ),
