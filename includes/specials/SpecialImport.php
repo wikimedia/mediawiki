@@ -30,6 +30,7 @@
  * @ingroup SpecialPage
  */
 class SpecialImport extends SpecialPage {
+	private $sourceName = false;
 	private $interwiki = false;
 	private $subproject;
 	private $fullInterwikiPrefix;
@@ -98,7 +99,7 @@ class SpecialImport extends SpecialPage {
 		$isUpload = false;
 		$request = $this->getRequest();
 		$this->namespace = $request->getIntOrNull( 'namespace' );
-		$sourceName = $request->getVal( "source" );
+		$this->sourceName = $request->getVal( "source" );
 
 		$this->logcomment = $request->getText( 'log-comment' );
 		$this->pageLinkDepth = $this->getConfig()->get( 'ExportMaxLinkDepth' ) == 0
@@ -109,14 +110,14 @@ class SpecialImport extends SpecialPage {
 		$user = $this->getUser();
 		if ( !$user->matchEditToken( $request->getVal( 'editToken' ) ) ) {
 			$source = Status::newFatal( 'import-token-mismatch' );
-		} elseif ( $sourceName == 'upload' ) {
+		} elseif ( $this->sourceName == 'upload' ) {
 			$isUpload = true;
 			if ( $user->isAllowed( 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
 				throw new PermissionsError( 'importupload' );
 			}
-		} elseif ( $sourceName == "interwiki" ) {
+		} elseif ( $this->sourceName == "interwiki" ) {
 			if ( !$user->isAllowed( 'import' ) ) {
 				throw new PermissionsError( 'import' );
 			}
@@ -250,7 +251,8 @@ class SpecialImport extends SpecialPage {
 					Xml::label( $this->msg( 'import-comment' )->text(), 'mw-import-comment' ) .
 					"</td>
 					<td class='mw-input'>" .
-					Xml::input( 'log-comment', 50, '',
+					Xml::input( 'log-comment', 50, 
+						( $this->sourceName == 'upload' ? $this->logcomment : '' ),
 						array( 'id' => 'mw-import-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
@@ -430,7 +432,8 @@ class SpecialImport extends SpecialPage {
 					Xml::label( $this->msg( 'import-comment' )->text(), 'mw-interwiki-comment' ) .
 					"</td>
 					<td class='mw-input'>" .
-					Xml::input( 'log-comment', 50, '',
+					Xml::input( 'log-comment', 50,
+						( $this->sourceName == 'interwiki' ? $this->logcomment : '' ),
 						array( 'id' => 'mw-interwiki-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
