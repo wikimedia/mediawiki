@@ -579,12 +579,16 @@ class Preferences {
 		## Skin #####################################
 		global $wgAllowUserCss, $wgAllowUserJs;
 
-		$defaultPreferences['skin'] = array(
-			'type' => 'radio',
-			'options' => self::generateSkinOptions( $user, $context ),
-			'label' => '&#160;',
-			'section' => 'rendering/skin',
-		);
+		// Skin selector, if there is at least one valid skin
+		$skinOptions = self::generateSkinOptions( $user, $context );
+		if ( $skinOptions ) {
+			$defaultPreferences['skin'] = array(
+				'type' => 'radio',
+				'options' => $skinOptions,
+				'label' => '&#160;',
+				'section' => 'rendering/skin',
+			);
+		}
 
 		# Create links to user CSS/JS pages for all skins
 		# This code is basically copied from generateSkinOptions().  It'd
@@ -1059,12 +1063,14 @@ class Preferences {
 		}
 		asort( $validSkinNames );
 
+		$foundDefault = false;
 		foreach ( $validSkinNames as $skinkey => $sn ) {
 			$linkTools = array();
 
 			# Mark the default skin
 			if ( $skinkey == $wgDefaultSkin ) {
 				$linkTools[] = $context->msg( 'default' )->escaped();
+				$foundDefault = true;
 			}
 
 			# Create preview link
@@ -1087,6 +1093,12 @@ class Preferences {
 				$context->getLanguage()->pipeList( $linkTools )
 			)->text();
 			$ret[$display] = $skinkey;
+		}
+
+		if ( !$foundDefault ) {
+			// If the default skin is not available, things are going to break horribly because the
+			// default value for skin selector will not be a valid value. Let's just not show it then.
+			return array();
 		}
 
 		return $ret;
