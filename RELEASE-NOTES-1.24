@@ -51,6 +51,12 @@ production.
 * $wgHTCPMulticastAddress, $wgHTCPMulticastRouting and $wgHTCPPort were removed.
 * $wgRC2UDPAddress, $wgRC2UDPInterwikiPrefix, $wgRC2UDPOmitBots, $wgRC2UDPPort
   and $wgRC2UDPPrefix have been removed.
+* The default password type for MediaWiki has been changed from MD5 to PBKDF2.
+  Password hashes will automatically be updated as users log in. If necessary, the
+  old MD5 hashing can be restored by changing $wgPasswordDefault to 'B'. In addition,
+  there is a maintenance script wrapOldPassword.php that can wrap all passwords in
+  PBKDF2 (or the hashing algorithm of your choice) if you don't want to wait for your
+  users to log in.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate

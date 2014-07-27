@@ -4098,7 +4098,7 @@ $wgInvalidPasswordReset = true;
  *
  * @since 1.24
  */
-$wgPasswordDefault = 'B';
+$wgPasswordDefault = 'pbkdf2';
 
 /**
  * Configuration for built-in password types. Maps the password type
