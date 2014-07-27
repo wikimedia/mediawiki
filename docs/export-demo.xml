@@ -1,15 +1,18 @@
-<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.8/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.8/ http://www.mediawiki.org/xml/export-0.8.xsd" version="0.8" xml:lang="en">
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.9/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.9/ http://www.mediawiki.org/xml/export-0.9.xsd" version="0.9" xml:lang="en">
   
   <!-- Optional global configuration info -->
   <siteinfo>
     <!-- Site name, as set in $wgSitename -->
     <sitename>DemoWiki</sitename>
+
+    <!-- Database name, as set in $wgDBname -->
+    <dbname>demowiki</dbname>
     
     <!-- Forgot where you got this set? -->
     <base>http://example.com/wiki/Main_Page</base>
     
     <!-- Source software version -->
-    <generator>MediaWiki 1.20</generator>
+    <generator>MediaWiki 1.24</generator>
     
     <!-- Title case sensitivity options of the wiki this data came from -->
     <!-- May be 'first-letter', 'case-sensitive', or 'case-insensitive' -->
