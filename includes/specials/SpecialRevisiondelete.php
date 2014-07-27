@@ -405,68 +405,64 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->addUsageText();
 
 		// Normal sysops can always see what they did, but can't always change it
-		if ( !$userAllowed ) {
+		if ( !$userAllowed || !$this->mIsAllowed ) {
 			return;
 		}
 
 		// Show form if the user can submit
-		if ( $this->mIsAllowed ) {
-			$out = Xml::openElement( 'form', array( 'method' => 'post',
-					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ),
-					'id' => 'mw-revdel-form-revisions' ) ) .
-				Xml::fieldset( $this->msg( 'revdelete-legend' )->text() ) .
-				$this->buildCheckBoxes() .
-				Xml::openElement( 'table' ) .
-				"<tr>\n" .
-					'<td class="mw-label">' .
-						Xml::label( $this->msg( 'revdelete-log' )->text(), 'wpRevDeleteReasonList' ) .
-					'</td>' .
-					'<td class="mw-input">' .
-						Xml::listDropDown( 'wpRevDeleteReasonList',
-							$this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->text(),
-							$this->msg( 'revdelete-reasonotherlist' )->inContentLanguage()->text(),
-							$this->getRequest()->getText( 'wpRevDeleteReasonList', 'other' ), 'wpReasonDropDown'
-						) .
-					'</td>' .
-				"</tr><tr>\n" .
-					'<td class="mw-label">' .
-						Xml::label( $this->msg( 'revdelete-otherreason' )->text(), 'wpReason' ) .
-					'</td>' .
-					'<td class="mw-input">' .
-						Xml::input(
-							'wpReason',
-							60,
-							$this->otherReason,
-							array( 'id' => 'wpReason', 'maxlength' => 100 )
-						) .
-					'</td>' .
-				"</tr><tr>\n" .
-					'<td></td>' .
-					'<td class="mw-submit">' .
-						Xml::submitButton( $this->msg( 'revdelete-submit', $numRevisions )->text(),
-							array( 'name' => 'wpSubmit' ) ) .
-					'</td>' .
-				"</tr>\n" .
-				Xml::closeElement( 'table' ) .
-				Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
-				Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
-				Html::hidden( 'type', $this->typeName ) .
-				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
-				Xml::closeElement( 'fieldset' ) . "\n" .
-				Xml::closeElement( 'form' ) . "\n";
-			// Show link to edit the dropdown reasons
-			if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
-				$title = Title::makeTitle( NS_MEDIAWIKI, 'Revdelete-reason-dropdown' );
-				$link = Linker::link(
-					$title,
-					$this->msg( 'revdelete-edit-reasonlist' )->escaped(),
-					array(),
-					array( 'action' => 'edit' )
-				);
-				$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
-			}
-		} else {
-			$out = '';
+		$out = Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ),
+				'id' => 'mw-revdel-form-revisions' ) ) .
+			Xml::fieldset( $this->msg( 'revdelete-legend' )->text() ) .
+			$this->buildCheckBoxes() .
+			Xml::openElement( 'table' ) .
+			"<tr>\n" .
+				'<td class="mw-label">' .
+					Xml::label( $this->msg( 'revdelete-log' )->text(), 'wpRevDeleteReasonList' ) .
+				'</td>' .
+				'<td class="mw-input">' .
+					Xml::listDropDown( 'wpRevDeleteReasonList',
+						$this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->text(),
+						$this->msg( 'revdelete-reasonotherlist' )->inContentLanguage()->text(),
+						$this->getRequest()->getText( 'wpRevDeleteReasonList', 'other' ), 'wpReasonDropDown'
+					) .
+				'</td>' .
+			"</tr><tr>\n" .
+				'<td class="mw-label">' .
+					Xml::label( $this->msg( 'revdelete-otherreason' )->text(), 'wpReason' ) .
+				'</td>' .
+				'<td class="mw-input">' .
+					Xml::input(
+						'wpReason',
+						60,
+						$this->otherReason,
+						array( 'id' => 'wpReason', 'maxlength' => 100 )
+					) .
+				'</td>' .
+			"</tr><tr>\n" .
+				'<td></td>' .
+				'<td class="mw-submit">' .
+					Xml::submitButton( $this->msg( 'revdelete-submit', $numRevisions )->text(),
+						array( 'name' => 'wpSubmit' ) ) .
+				'</td>' .
+			"</tr>\n" .
+			Xml::closeElement( 'table' ) .
+			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
+			Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
+			Html::hidden( 'type', $this->typeName ) .
+			Html::hidden( 'ids', implode( ',', $this->ids ) ) .
+			Xml::closeElement( 'fieldset' ) . "\n" .
+			Xml::closeElement( 'form' ) . "\n";
+		// Show link to edit the dropdown reasons
+		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
+			$title = Title::makeTitle( NS_MEDIAWIKI, 'Revdelete-reason-dropdown' );
+			$link = Linker::link(
+				$title,
+				$this->msg( 'revdelete-edit-reasonlist' )->escaped(),
+				array(),
+				array( 'action' => 'edit' )
+			);
+			$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
 		}
 		$this->getOutput()->addHTML( $out );
 	}
