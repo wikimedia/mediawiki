@@ -1024,12 +1024,15 @@ class HTMLForm extends ContextSource {
 	 * Set the text for the submit button to a message
 	 * @since 1.19
 	 *
-	 * @param string $msg Message key
+	 * @param string|Message $msg Message key or Message object
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setSubmitTextMsg( $msg ) {
-		$this->setSubmitText( $this->msg( $msg )->text() );
+		if ( !$msg instanceof Message ) {
+			$msg = $this->msg( $msg );
+		}
+		$this->setSubmitText( $msg->text() );
 
 		return $this;
 	}
@@ -1143,12 +1146,15 @@ class HTMLForm extends ContextSource {
 	 * this message as its "<legend>" element.
 	 * @since 1.19
 	 *
-	 * @param string $msg Message key
+	 * @param string|Message $msg Message key or Message object
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setWrapperLegendMsg( $msg ) {
-		$this->setWrapperLegend( $this->msg( $msg )->text() );
+		if ( !$msg instanceof Message ) {
+			$msg = $this->msg( $msg );
+		}
+		$this->setWrapperLegend( $msg->text() );
 
 		return $this;
 	}
