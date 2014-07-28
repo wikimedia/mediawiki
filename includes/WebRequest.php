@@ -39,12 +39,6 @@ class WebRequest {
 	protected $data, $headers = array();
 
 	/**
-	 * Lazy-init response object
-	 * @var WebResponse
-	 */
-	private $response;
-
-	/**
 	 * Cached client IP address
 	 * @var string
 	 */
@@ -824,11 +818,11 @@ class WebRequest {
 	 */
 	public function response() {
 		/* Lazy initialization of response object for this request */
-		if ( !is_object( $this->response ) ) {
-			$class = ( $this instanceof FauxRequest ) ? 'FauxResponse' : 'WebResponse';
-			$this->response = new $class();
+		static $response = null;
+		if ( $response === null ) {
+			$response = new WebResponse();
 		}
-		return $this->response;
+		return $response;
 	}
 
 	/**
@@ -1250,6 +1244,10 @@ class WebRequestUpload {
 class FauxRequest extends WebRequest {
 	private $wasPosted = false;
 	private $session = array();
+	/**
+	 * @var FauxResponse
+	 */
+	public $response;
 
 	/**
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
@@ -1319,6 +1317,17 @@ class FauxRequest extends WebRequest {
 	 */
 	public function wasPosted() {
 		return $this->wasPosted;
+	}
+
+	/**
+	 * @return FauxResponse
+	 */
+	public function response() {
+		/* Lazy initialization of FauxResponse object for this request */
+		if ( $this->response === null ) {
+			$this->response = new FauxResponse();
+		}
+		return $this->response;
 	}
 
 	public function getCookie( $key, $prefix = null, $default = null ) {
