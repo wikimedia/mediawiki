@@ -7,13 +7,13 @@
 			"Yerpo"
 		]
 	},
-	"ooui-dialog-action-close": "Zapri",
 	"ooui-outline-control-move-down": "Prestavi predmet nižje",
 	"ooui-outline-control-move-up": "Prestavi predmet višje",
 	"ooui-outline-control-remove": "Odstrani vnos",
 	"ooui-toolbar-more": "Več",
-	"ooui-dialog-confirm-title": "Potrdi",
-	"ooui-dialog-confirm-default-prompt": "Ste prepričani?",
-	"ooui-dialog-confirm-default-ok": "V redu",
-	"ooui-dialog-confirm-default-cancel": "Prekliči"
+	"ooui-dialog-message-accept": "V redu",
+	"ooui-dialog-message-reject": "Prekliči",
+	"ooui-dialog-process-error": "Nekaj je šlo narobe",
+	"ooui-dialog-process-dismiss": "Skrij",
+	"ooui-dialog-process-retry": "Poskusi znova"
 }
