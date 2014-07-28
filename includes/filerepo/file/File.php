@@ -2092,25 +2092,6 @@ abstract class File {
 	}
 
 	/**
-	 * Get a SHA-1 hash of a file in the local filesystem, in base-36 lower case
-	 * encoding, zero padded to 31 digits.
-	 *
-	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
-	 * fairly neatly.
-	 *
-	 * @param string $path
-	 * @return bool|string False on failure
-	 * @deprecated since 1.19
-	 */
-	static function sha1Base36( $path ) {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		$fsFile = new FSFile( $path );
-
-		return $fsFile->getSha1Base36();
-	}
-
-	/**
 	 * @return array HTTP header name/value map to use for HEAD/GET request responses
 	 */
 	function getStreamHeaders() {
