@@ -389,6 +389,7 @@
 	"gotaccountlink": "Anmelden",
 	"userlogin-resetlink": "Bi'j de anmeldgegevens kwiet?",
 	"userlogin-resetpassword-link": "Joew wachtwoord vergeten?",
+	"userlogin-helplink2": "Hulpe bie t anmelden",
 	"userlogin-loggedin": "Je bin al an-emeld as {{GENDER:$1|$1}}.\nGebruuk t onderstaonde formulier um an te melden as n aandere gebruker.",
 	"userlogin-createanother": "n Aandere gebrukerskonto anmaken",
 	"createacct-emailrequired": "Netpostadres",

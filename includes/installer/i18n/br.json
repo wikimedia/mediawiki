@@ -236,6 +236,8 @@
 	"config-extensions": "Astennoù",
 	"config-extensions-help": "N'eo ket bet detektet an astennoù rollet a-us en ho kavlec'h <code>./astennoù</code>.\n\nMarteze e vo ezhomm kefluniañ pelloc'h met gallout a rit o gweredekaat bremañ.",
 	"config-skins": "Gwiskadurioù",
+	"config-skins-use-as-default": "Implijout ar gwiskadur-mañ dre ziouer",
+	"config-skins-must-enable-default": "Ar gwiskadur dre ziouer dibabet a rank bezañ gweredekaet.",
 	"config-install-alreadydone": "'''Diwallit''': Staliet hoc'h eus MediaWiki dija war a seblant hag emaoc'h o klask e staliañ c'hoazh.\nKit d'ar bajenn war-lerc'h, mar plij.",
 	"config-install-begin": "Pa vo bet pouezet ganeoc'h war \"{{int:config-continue}}\"  e krogo staliadur MediaWiki.\nPouezit war \"{{int:config-back}}\" mar fell deoc'h cheñch tra pe dra.",
 	"config-install-step-done": "graet",

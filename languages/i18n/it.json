@@ -2881,6 +2881,7 @@
 	"autosumm-replace": "Pagina sostituita con '$1'",
 	"autoredircomment": "Redirect alla pagina [[$1]]",
 	"autosumm-new": "Creata pagina con \"$1\"",
+	"autosumm-newblank": "Creata pagina vuota",
 	"size-bytes": "$1 byte",
 	"lag-warn-normal": "Le modifiche apportate {{PLURAL:$1|nell'ultimo secondo|negli ultimi $1 secondi}} potrebbero non apparire in questa lista.",
 	"lag-warn-high": "A causa di un eccessivo ritardo nell'aggiornamento del server di database, le modifiche apportate {{PLURAL:$1|nell'ultimo secondo|negli ultimi $1 secondi}} potrebbero non apparire in questa lista.",

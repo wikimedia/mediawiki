@@ -2825,6 +2825,7 @@
 	"autosumm-replace": "Obsah stránky nahrazen textem „$1“",
 	"autoredircomment": "Přesměrování na [[$1]]",
 	"autosumm-new": "Založena nová stránka s textem „$1“",
+	"autosumm-newblank": "Založena prázdná stránka",
 	"size-kilobytes": "$1 KB",
 	"lag-warn-normal": "Změny za {{PLURAL:$1|poslední sekundu|poslední $1 sekundy|posledních $1 sekund}} nemusí být v tomto seznamu zobrazeny.",
 	"lag-warn-high": "Protože je databázový server právě mimořádně vytížen, nemusí být změny za {{PLURAL:$1|poslední sekundu|poslední $1 sekundy|posledních $1 sekund}} v tomto seznamu zobrazeny.",

@@ -58,7 +58,8 @@
 			"아라",
 			"Mar(c)",
 			"Calak",
-			"Arg"
+			"Arg",
+			"NCoppens"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -75,7 +76,7 @@
 	"tog-watchdefault": "Pagina’s en bestanden die ik bewerk automatisch volgen",
 	"tog-watchmoves": "Pagina’s en bestanden die ik hernoem automatisch volgen",
 	"tog-watchdeletion": "Pagina’s en bestanden die ik verwijder automatisch volgen",
-	"tog-minordefault": "Mijn bewerkingen als ‘klein’ markeren",
+	"tog-minordefault": "Mijn bewerkingen standaard als ‘klein’ markeren",
 	"tog-previewontop": "Voorvertoning boven bewerkingsveld weergeven",
 	"tog-previewonfirst": "Voorvertoning bij eerste bewerking weergeven",
 	"tog-enotifwatchlistpages": "Mij e-mailen bij bewerkingen van pagina’s of bestanden op mijn volglijst",
@@ -830,6 +831,7 @@
 	"mergehistory-empty": "Er zijn geen versies die samengevoegd kunnen worden.",
 	"mergehistory-success": "$3 {{PLURAL:$3|versie|versies}} van [[:$1]] zijn succesvol samengevoegd naar [[:$2]].",
 	"mergehistory-fail": "Kan geen geschiedenis samenvoegen, controleer opnieuw de pagina- en tijdinstellingen.",
+	"mergehistory-fail-toobig": "Niet in staat om geschiedenis samen te voegen omdat meer dan de limiet van $1 {{PLURAL:$1|revisie zou|revisies zouden}} worden verplaatst.",
 	"mergehistory-no-source": "De bronpagina $1 bestaat niet.",
 	"mergehistory-no-destination": "De bestemmingspagina $1 bestaat niet.",
 	"mergehistory-invalid-source": "De bronpagina moet een geldige paginanaam zijn.",
@@ -2899,6 +2901,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|overleg]])",
 	"unknown_extension_tag": "Onbekende tag \"$1\"",
 	"duplicate-defaultsort": "'''Waarschuwing:''' de standaardsortering \"$2\" krijgt voorrang voor de sortering \"$1\".",
+	"duplicate-displaytitle": "<strong>Waarschuwing:</strong>Titelweergave \"$2\" overschrijft eerdere titelweergave \"$1\".",
 	"version": "Versie",
 	"version-extensions": "Geïnstalleerde uitbreidingen",
 	"version-skins": "Geïnstalleerde vormgevingen",
@@ -3153,7 +3156,14 @@
 	"expand_templates_generate_xml": "XML-parserboom bekijken",
 	"expand_templates_generate_rawhtml": "Ruwe HTML weergeven",
 	"expand_templates_preview": "Voorvertoning",
+	"pagelanguage": "Taal pagina kiezen",
 	"pagelang-name": "Pagina",
 	"pagelang-language": "Taal",
-	"pagelang-select-lang": "Taal selecteren"
+	"pagelang-use-default": "Gebruik standaard taal",
+	"pagelang-select-lang": "Taal selecteren",
+	"right-pagelang": "Taal van de pagina wijzigen",
+	"action-pagelang": "Taal van de pagina wijzigen",
+	"log-name-pagelang": "Logboek van taalwijzigingen",
+	"log-description-pagelang": "Dit is een logboek van wijzigingen van de taal van pagina's.",
+	"logentry-pagelang-pagelang": "$1 wijzigde de taal van de pagina '$3' van $4 naar $5."
 }
