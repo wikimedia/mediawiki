@@ -2073,25 +2073,6 @@ abstract class File {
 	}
 
 	/**
-	 * Get an associative array containing information about a file in the local filesystem.
-	 *
-	 * @param string $path Absolute local filesystem path
-	 * @param string|bool $ext The file extension, or true to extract it from
-	 *   the filename. Set it to false to ignore the extension.
-	 *
-	 * @return array
-	 * @deprecated since 1.19
-	 */
-	static function getPropsFromPath( $path, $ext = true ) {
-		wfDebug( __METHOD__ . ": Getting file info for $path\n" );
-		wfDeprecated( __METHOD__, '1.19' );
-
-		$fsFile = new FSFile( $path );
-
-		return $fsFile->getProps();
-	}
-
-	/**
 	 * Get a SHA-1 hash of a file in the local filesystem, in base-36 lower case
 	 * encoding, zero padded to 31 digits.
 	 *
