@@ -172,6 +172,11 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=vector&amp;*" /></style>
 ',
 			),
+			array(
+				array( array( 'test.user.foo', 'test.user.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
+				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.user.bar&amp;skin=vector&amp;version=19700101T000001Z&amp;*"></script><script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.user.foo&amp;skin=vector&amp;version=19700101T000001Z&amp;*"></script>
+',
+			)
 		);
 	}
 
@@ -216,6 +221,16 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',
+			)),
+			'test.user.foo' => new ResourceLoaderTestModule( array(
+					'script' => 'mw.test.user.foo( { a: true } );',
+					'styles' => '.mw-test-baz { content: "style"; }',
+					'group' => 'user',
+			)),
+			'test.user.bar' => new ResourceLoaderTestModule( array(
+					'script' => 'mw.test.user.bar( { a: true } );',
+					'styles' => '.mw-test-baz { content: "style"; }',
+					'group' => 'user',
 			)),
 		) );
 		$links = $method->invokeArgs( $out, $args );

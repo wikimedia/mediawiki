@@ -2668,6 +2668,66 @@ $templates
 	}
 
 	/**
+	 * @param array $modules Array of module names
+	 * @param string $source ResourceLoader source name
+	 * @param array $query Output from ResourceLoader::makeLoaderQuery
+	 * @param string $only ResourceLoaderModule TYPE_ class constant
+	 * @param bool $useESI Whether to use ESI-loading, caller should check global
+	 * @param bool $loadCall Whether to load with an asynchronous mw.loader.load() call
+	 * @param array $extraQuery
+	 * @return array An array with 'link' for the HTML output, and 'loading' for a
+	 *   ist of module names that should have their state marked as loading
+	 */
+	protected function getHTMLForModules( array $modules, $source, array $query,
+		$only, $useESI, $loadCall, array $extraQuery
+	) {
+		$query['modules'] = ResourceLoader::makePackedModulesString( $modules );
+		$moduleContext = new ResourceLoaderContext(
+			$this->getResourceLoader(),
+			new FauxRequest( $query )
+		);
+		$url = $this->getResourceLoader()->createLoaderURL(
+			$source,
+			$moduleContext,
+			$extraQuery
+		);
+
+		$loading = array();
+		if ( $useESI ) {
+			$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
+			if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
+				$link = Html::inlineStyle( $esi );
+			} else {
+				$link = Html::inlineScript( $esi );
+			}
+		} else {
+			// Automatically select style/script elements
+			if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
+				$link = Html::linkedStyle( $url );
+			} elseif ( $loadCall ) {
+				$link = Html::inlineScript(
+					ResourceLoader::makeLoaderConditionalScript(
+						Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
+					)
+				);
+			} else {
+				$link = Html::linkedScript( $url );
+
+				// For modules requested directly in the html via <link> or <script>,
+				// tell mw.loader they are being loading to prevent duplicate requests.
+				// Don't output state=loading for the startup module..
+				$loading = array_diff( $modules, array( 'startup' ) );
+			}
+		}
+
+		return array(
+			'link' => $link,
+			'loading' => $loading,
+		);
+
+	}
+
+	/**
 	 * @todo Document
 	 * @param array|string $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
@@ -2811,38 +2871,32 @@ $templates
 					$query['version'] = wfTimestamp( TS_ISO_8601_BASIC, $timestamp );
 				}
 
-				$query['modules'] = ResourceLoader::makePackedModulesString( array_keys( $grpModules ) );
-				$moduleContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
-				$url = $resourceLoader->createLoaderURL( $source, $moduleContext, $extraQuery );
-
-				if ( $useESI && $wgResourceLoaderUseESI ) {
-					$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
-					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
-						$link = Html::inlineStyle( $esi );
-					} else {
-						$link = Html::inlineScript( $esi );
-					}
+				// The 'user' group is special and each module should be loaded
+				// in its own request. (bug 68712)
+				if ( $group === 'user' ) {
+					$subGroups = array_map( function ( $modName ) {
+						return array( $modName );
+					}, array_keys( $grpModules ) );
 				} else {
-					// Automatically select style/script elements
-					if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
-						$link = Html::linkedStyle( $url );
-					} elseif ( $loadCall ) {
-						$link = Html::inlineScript(
-							ResourceLoader::makeLoaderConditionalScript(
-								Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
-							)
-						);
-					} else {
-						$link = Html::linkedScript( $url );
+					// Other groups just get one request.
+					$subGroups = array( array_keys( $grpModules ) );
+				}
 
-						// For modules requested directly in the html via <link> or <script>,
-						// tell mw.loader they are being loading to prevent duplicate requests.
-						foreach ( $grpModules as $key => $module ) {
-							// Don't output state=loading for the startup module..
-							if ( $key !== 'startup' ) {
-								$links['states'][$key] = 'loading';
-							}
-						}
+				$link = '';
+				foreach ( $subGroups as $modNames ) {
+					$moduleOutput = $this->getHTMLForModules(
+						$modNames,
+						$source,
+						$query,
+						$only,
+						$useESI && $wgResourceLoaderUseESI,
+						$loadCall,
+						$extraQuery
+					);
+
+					$link .= $moduleOutput['link'];
+					foreach( $moduleOutput['loading'] as $moduleName ) {
+						$links['states'][$moduleName] = 'loading';
 					}
 				}
 
