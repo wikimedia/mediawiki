@@ -662,9 +662,9 @@ class MediaWiki {
 		}
 
 		if ( !$wgRunJobsAsync ) {
-			// If running jobs asynchronously has been disabled, run the job here
-			// while the user waits
-			SpecialRunJobs::executeJobs( $n );
+			// Fall back to running the job here while the user waits
+			$runner = new JobRunner();
+			$runner->run( array( 'maxJobs'  => $n ) );
 			return;
 		}
 
@@ -697,7 +697,8 @@ class MediaWiki {
 		if ( !$sock ) {
 			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
 			// Fall back to running the job here while the user waits
-			SpecialRunJobs::executeJobs( $n );
+			$runner = new JobRunner();
+			$runner->run( array( 'maxJobs'  => $n ) );
 			return;
 		}
 
