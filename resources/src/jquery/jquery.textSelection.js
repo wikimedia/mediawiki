@@ -24,8 +24,9 @@
 
 	$.fn.textSelection = function ( command, options ) {
 		var fn,
+			alternateFn,
 			context,
-			hasWikiEditorSurface, // The alt edit surface needs to implement the WikiEditor API
+			hasWikiEditor,
 			needSave,
 			retval;
 
@@ -507,6 +508,8 @@
 			}
 		};
 
+		alternateFn = $( this ).data( 'jquery.textSelection' );
+
 		// Apply defaults
 		switch ( command ) {
 			//case 'getContents': // no params
@@ -550,19 +553,30 @@
 					force: false // Force a scroll even if the caret position is already visible
 				}, options );
 				break;
+			case 'register':
+				if ( alternateFn ) {
+					throw new Error( 'Another textSelection API was already registered' );
+				}
+				$( this ).data( 'jquery.textSelection', options );
+				// No need to update alternateFn as this command only stores the options.
+				// A command that uses it will set it again.
+				return;
+			case 'unregister':
+				$( this ).removeData( 'jquery.textSelection' );
+				return;
 		}
 
 		context = $( this ).data( 'wikiEditor-context' );
-		hasWikiEditorSurface = ( context !== undefined && context.$iframe !== undefined );
+		hasWikiEditor = ( context !== undefined && context.$iframe !== undefined );
 
 		// IE selection restore voodoo
 		needSave = false;
-		if ( hasWikiEditorSurface && context.savedSelection !== null ) {
+		if ( hasWikiEditor && context.savedSelection !== null ) {
 			context.fn.restoreSelection();
 			needSave = true;
 		}
-		retval = ( hasWikiEditorSurface && context.fn[command] !== undefined ? context.fn : fn )[command].call( this, options );
-		if ( hasWikiEditorSurface && needSave ) {
+		retval = ( alternateFn && alternateFn[command] || fn[command] ).call( this, options );
+		if ( hasWikiEditor && needSave ) {
 			context.fn.saveSelection();
 		}
 
