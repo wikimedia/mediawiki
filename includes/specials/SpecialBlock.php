@@ -600,7 +600,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool|string
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
-		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit;
+		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit, $wgContLang;
 
 		$performer = $context->getUser();
 
@@ -687,7 +687,8 @@ class SpecialBlock extends FormSpecialPage {
 		$block = new Block();
 		$block->setTarget( $target );
 		$block->setBlocker( $performer );
-		$block->mReason = $data['Reason'][0];
+		# Truncate reason for whole multibyte characters
+		$block->mReason = $wgContLang->truncate( $data['Reason'][0], 255 );
 		$block->mExpiry = self::parseExpiryInput( $data['Expiry'] );
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
 		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
