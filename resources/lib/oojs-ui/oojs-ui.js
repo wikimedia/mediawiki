@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (a7ce4d48d9)
+ * OOjs UI v0.1.0-pre (e9cf571db2)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-23T23:48:16Z
+ * Date: 2014-07-28T21:48:00Z
  */
 ( function ( OO ) {
 
@@ -26,22 +26,22 @@ OO.ui.bind = $.proxy;
  * @property {Object}
  */
 OO.ui.Keys = {
-	'UNDEFINED': 0,
-	'BACKSPACE': 8,
-	'DELETE': 46,
-	'LEFT': 37,
-	'RIGHT': 39,
-	'UP': 38,
-	'DOWN': 40,
-	'ENTER': 13,
-	'END': 35,
-	'HOME': 36,
-	'TAB': 9,
-	'PAGEUP': 33,
-	'PAGEDOWN': 34,
-	'ESCAPE': 27,
-	'SHIFT': 16,
-	'SPACE': 32
+	UNDEFINED: 0,
+	BACKSPACE: 8,
+	DELETE: 46,
+	LEFT: 37,
+	RIGHT: 39,
+	UP: 38,
+	DOWN: 40,
+	ENTER: 13,
+	END: 35,
+	HOME: 36,
+	TAB: 9,
+	PAGEUP: 33,
+	PAGEDOWN: 34,
+	ESCAPE: 27,
+	SHIFT: 16,
+	SPACE: 32
 };
 
 /**
@@ -208,9 +208,9 @@ OO.ui.ActionSet = function OoUiActionSet( config ) {
 	// Properties
 	this.list = [];
 	this.categories = {
-		'actions': 'getAction',
-		'flags': 'getFlags',
-		'modes': 'getModes'
+		actions: 'getAction',
+		flags: 'getFlags',
+		modes: 'getModes'
 	};
 	this.categorized = {};
 	this.special = {};
@@ -469,9 +469,9 @@ OO.ui.ActionSet.prototype.add = function ( actions ) {
 	for ( i = 0, len = actions.length; i < len; i++ ) {
 		action = actions[i];
 		action.connect( this, {
-			'click': [ 'emit', 'click', action ],
-			'resize': [ 'emit', 'resize', action ],
-			'toggle': [ 'onActionChange' ]
+			click: [ 'emit', 'click', action ],
+			resize: [ 'emit', 'resize', action ],
+			toggle: [ 'onActionChange' ]
 		} );
 		this.list.push( action );
 	}
@@ -746,7 +746,7 @@ OO.ui.Element.getFrameOffset = function ( from, to, offset ) {
 		to = window;
 	}
 	if ( !offset ) {
-		offset = { 'top': 0, 'left': 0 };
+		offset = { top: 0, left: 0 };
 	}
 	if ( from.parent === from ) {
 		return offset;
@@ -784,7 +784,7 @@ OO.ui.Element.getFrameOffset = function ( from, to, offset ) {
 OO.ui.Element.getRelativePosition = function ( $from, $to ) {
 	var from = $from.offset(),
 		to = $to.offset();
-	return { 'top': Math.round( from.top - to.top ), 'left': Math.round( from.left - to.left ) };
+	return { top: Math.round( from.top - to.top ), left: Math.round( from.left - to.left ) };
 };
 
 /**
@@ -807,10 +807,10 @@ OO.ui.Element.getBorders = function ( el ) {
 		right = parseFloat( style ? style.borderRightWidth : $el.css( 'borderRightWidth' ) ) || 0;
 
 	return {
-		'top': Math.round( top ),
-		'left': Math.round( left ),
-		'bottom': Math.round( bottom ),
-		'right': Math.round( right )
+		top: Math.round( top ),
+		left: Math.round( left ),
+		bottom: Math.round( bottom ),
+		right: Math.round( right )
 	};
 };
 
@@ -829,32 +829,32 @@ OO.ui.Element.getDimensions = function ( el ) {
 	if ( win === el || el === doc.documentElement ) {
 		$win = $( win );
 		return {
-			'borders': { 'top': 0, 'left': 0, 'bottom': 0, 'right': 0 },
-			'scroll': {
-				'top': $win.scrollTop(),
-				'left': $win.scrollLeft()
+			borders: { top: 0, left: 0, bottom: 0, right: 0 },
+			scroll: {
+				top: $win.scrollTop(),
+				left: $win.scrollLeft()
 			},
-			'scrollbar': { 'right': 0, 'bottom': 0 },
-			'rect': {
-				'top': 0,
-				'left': 0,
-				'bottom': $win.innerHeight(),
-				'right': $win.innerWidth()
+			scrollbar: { right: 0, bottom: 0 },
+			rect: {
+				top: 0,
+				left: 0,
+				bottom: $win.innerHeight(),
+				right: $win.innerWidth()
 			}
 		};
 	} else {
 		$el = $( el );
 		return {
-			'borders': this.getBorders( el ),
-			'scroll': {
-				'top': $el.scrollTop(),
-				'left': $el.scrollLeft()
+			borders: this.getBorders( el ),
+			scroll: {
+				top: $el.scrollTop(),
+				left: $el.scrollLeft()
 			},
-			'scrollbar': {
-				'right': $el.innerWidth() - el.clientWidth,
-				'bottom': $el.innerHeight() - el.clientHeight
+			scrollbar: {
+				right: $el.innerWidth() - el.clientWidth,
+				bottom: $el.innerHeight() - el.clientHeight
 			},
-			'rect': el.getBoundingClientRect()
+			rect: el.getBoundingClientRect()
 		};
 	}
 };
@@ -922,18 +922,18 @@ OO.ui.Element.scrollIntoView = function ( el, config ) {
 	if ( $sc.is( 'body' ) ) {
 		// If the scrollable container is the <body> this is easy
 		rel = {
-			'top': eld.rect.top,
-			'bottom': $win.innerHeight() - eld.rect.bottom,
-			'left': eld.rect.left,
-			'right': $win.innerWidth() - eld.rect.right
+			top: eld.rect.top,
+			bottom: $win.innerHeight() - eld.rect.bottom,
+			left: eld.rect.left,
+			right: $win.innerWidth() - eld.rect.right
 		};
 	} else {
 		// Otherwise, we have to subtract el's coordinates from sc's coordinates
 		rel = {
-			'top': eld.rect.top - ( scd.rect.top + scd.borders.top ),
-			'bottom': scd.rect.bottom - scd.borders.bottom - scd.scrollbar.bottom - eld.rect.bottom,
-			'left': eld.rect.left - ( scd.rect.left + scd.borders.left ),
-			'right': scd.rect.right - scd.borders.right - scd.scrollbar.right - eld.rect.right
+			top: eld.rect.top - ( scd.rect.top + scd.borders.top ),
+			bottom: scd.rect.bottom - scd.borders.bottom - scd.scrollbar.bottom - eld.rect.bottom,
+			left: eld.rect.left - ( scd.rect.left + scd.borders.left ),
+			right: scd.rect.right - scd.borders.right - scd.scrollbar.right - eld.rect.right
 		};
 	}
 
@@ -1118,7 +1118,7 @@ OO.ui.Frame = function OoUiFrame( config ) {
 	// Initialize
 	this.$element
 		.addClass( 'oo-ui-frame' )
-		.attr( { 'frameborder': 0, 'scrolling': 'no' } );
+		.attr( { frameborder: 0, scrolling: 'no' } );
 
 };
 
@@ -1324,7 +1324,7 @@ OO.ui.Frame.prototype.load = function () {
  * @chainable
  */
 OO.ui.Frame.prototype.setSize = function ( width, height ) {
-	this.$element.css( { 'width': width, 'height': height } );
+	this.$element.css( { width: width, height: height } );
 	return this;
 };
 
@@ -1372,7 +1372,7 @@ OO.mixinClass( OO.ui.Layout, OO.EventEmitter );
  */
 OO.ui.Widget = function OoUiWidget( config ) {
 	// Initialize config
-	config = $.extend( { 'disabled': false }, config );
+	config = $.extend( { disabled: false }, config );
 
 	// Parent constructor
 	OO.ui.Widget.super.call( this, config );
@@ -1546,7 +1546,7 @@ OO.ui.Window = function OoUiWindow( manager, config ) {
 	this.opened = null;
 	this.timing = null;
 	this.size = config.size || this.constructor.static.size;
-	this.frame = new OO.ui.Frame( { '$': this.$ } );
+	this.frame = new OO.ui.Frame( { $: this.$ } );
 	this.$frame = this.$( '<div>' );
 	this.$ = function () {
 		throw new Error( 'this.$() cannot be used until the frame has been initialized.' );
@@ -1800,14 +1800,14 @@ OO.ui.Window.prototype.setSize = function ( size ) {
 OO.ui.Window.prototype.setDimensions = function ( dim ) {
 	// Apply width before height so height is not based on wrapping content using the wrong width
 	this.$frame.css( {
-		'width': dim.width || '',
-		'min-width': dim.minWidth || '',
-		'max-width': dim.maxWidth || ''
+		width: dim.width || '',
+		minWidth: dim.minWidth || '',
+		maxWidth: dim.maxWidth || ''
 	} );
 	this.$frame.css( {
-		'height': ( dim.height !== undefined ? dim.height : this.getContentHeight() ) || '',
-		'min-height': dim.minHeight || '',
-		'max-height': dim.maxHeight || ''
+		height: ( dim.height !== undefined ? dim.height : this.getContentHeight() ) || '',
+		minHeight: dim.minHeight || '',
+		maxHeight: dim.maxHeight || ''
 	} );
 	return this;
 };
@@ -2024,9 +2024,9 @@ OO.ui.Dialog = function OoUiDialog( manager, config ) {
 
 	// Events
 	this.actions.connect( this, {
-		'click': 'onActionClick',
-		'resize': 'onActionResize',
-		'change': 'onActionsChange'
+		click: 'onActionClick',
+		resize: 'onActionResize',
+		change: 'onActionsChange'
 	} );
 
 	// Initialization
@@ -2188,7 +2188,7 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 			);
 			for ( i = 0, len = actions.length; i < len; i++ ) {
 				items.push(
-					new OO.ui.ActionWidget( $.extend( { '$': this.$ }, actions[i] ) )
+					new OO.ui.ActionWidget( $.extend( { $: this.$ }, actions[i] ) )
 				);
 			}
 			this.actions.add( items );
@@ -2215,7 +2215,7 @@ OO.ui.Dialog.prototype.initialize = function () {
 	OO.ui.Dialog.super.prototype.initialize.call( this );
 
 	// Properties
-	this.title = new OO.ui.LabelWidget( { '$': this.$ } );
+	this.title = new OO.ui.LabelWidget( { $: this.$ } );
 
 	// Events
 	if ( this.constructor.static.escapable ) {
@@ -2321,7 +2321,7 @@ OO.ui.Dialog.prototype.popPending = function () {
  *
  * - {@link #closeWindow} or {@link OO.ui.Window#close} methods are used to start closing
  * - `opened` promise is resolved with `closing` promise
- * - {@link #event-opening} is emitted with `closing` promise
+ * - {@link #event-closing} is emitted with `closing` promise
  * - {@link #getHoldDelay} is called the returned value is used to time a pause in execution
  * - {@link OO.ui.Window#getHoldProcess} method is called on the window and its result executed
  * - `hold` progress notification is emitted from opening promise
@@ -2416,19 +2416,19 @@ OO.mixinClass( OO.ui.WindowManager, OO.EventEmitter );
  * @property {Object}
  */
 OO.ui.WindowManager.static.sizes = {
-	'small': {
-		'width': 300
+	small: {
+		width: 300
 	},
-	'medium': {
-		'width': 500
+	medium: {
+		width: 500
 	},
-	'large': {
-		'width': 700
+	large: {
+		width: 700
 	},
-	'full': {
+	full: {
 		// These can be non-numeric because they are never used in calculations
-		'width': '100%',
-		'height': '100%'
+		width: '100%',
+		height: '100%'
 	}
 };
 
@@ -2606,7 +2606,7 @@ OO.ui.WindowManager.prototype.getWindow = function ( name ) {
 					'Cannot auto-instantiate window: symbolic name is unrecognized by the factory'
 				) );
 			} else {
-				win = this.factory.create( name, this, { '$': this.$ } );
+				win = this.factory.create( name, this, { $: this.$ } );
 				this.addWindows( [ win ] ).then(
 					OO.ui.bind( deferred.resolve, deferred, win ),
 					deferred.reject
@@ -2679,11 +2679,11 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 			if ( manager.modal ) {
 				manager.$( manager.getElementDocument() ).on( {
 					// Prevent scrolling by keys in top-level window
-					'keydown': manager.onDocumentKeyDownHandler
+					keydown: manager.onDocumentKeyDownHandler
 				} );
 				manager.$( manager.getElementWindow() ).on( {
 					// Prevent scrolling by wheel in top-level window
-					'mousewheel': manager.onWindowMouseWheelHandler,
+					mousewheel: manager.onWindowMouseWheelHandler,
 					// Start listening for top-level window dimension changes
 					'orientationchange resize': manager.onWindowResizeHandler
 				} );
@@ -2699,10 +2699,10 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 			manager.updateWindowSize( win );
 			setTimeout( function () {
 				win.setup( data ).then( function () {
-					manager.opening.notify( { 'state': 'setup' } );
+					manager.opening.notify( { state: 'setup' } );
 					setTimeout( function () {
 						win.ready( data ).then( function () {
-							manager.opening.notify( { 'state': 'ready' } );
+							manager.opening.notify( { state: 'ready' } );
 							manager.opening = null;
 							manager.opened = $.Deferred();
 							opening.resolve( manager.opened.promise(), data );
@@ -2769,18 +2769,18 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 			opened.resolve( closing.promise(), data );
 			setTimeout( function () {
 				win.hold( data ).then( function () {
-					closing.notify( { 'state': 'hold' } );
+					closing.notify( { state: 'hold' } );
 					setTimeout( function () {
 						win.teardown( data ).then( function () {
-							closing.notify( { 'state': 'teardown' } );
+							closing.notify( { state: 'teardown' } );
 							if ( manager.modal ) {
 								manager.$( manager.getElementDocument() ).off( {
 									// Allow scrolling by keys in top-level window
-									'keydown': manager.onDocumentKeyDownHandler
+									keydown: manager.onDocumentKeyDownHandler
 								} );
 								manager.$( manager.getElementWindow() ).off( {
 									// Allow scrolling by wheel in top-level window
-									'mousewheel': manager.onWindowMouseWheelHandler,
+									mousewheel: manager.onWindowMouseWheelHandler,
 									// Stop listening for top-level window dimension changes
 									'orientationchange resize': manager.onWindowResizeHandler
 								} );
@@ -3091,16 +3091,16 @@ OO.ui.Process.prototype.execute = function () {
 OO.ui.Process.prototype.createStep = function ( step, context ) {
 	if ( typeof step === 'number' || $.isFunction( step.promise ) ) {
 		return {
-			'callback': function () {
+			callback: function () {
 				return step;
 			},
-			'context': null
+			context: null
 		};
 	}
 	if ( $.isFunction( step ) ) {
 		return {
-			'callback': step,
-			'context': context
+			callback: step,
+			context: context
 		};
 	}
 	throw new Error( 'Cannot create process step: number, promise or function expected' );
@@ -3176,8 +3176,8 @@ OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, dem
  *
  * Tools can be specified in the following ways:
  *
- * - A specific tool: `{ 'name': 'tool-name' }` or `'tool-name'`
- * - All tools in a group: `{ 'group': 'group-name' }`
+ * - A specific tool: `{ name: 'tool-name' }` or `'tool-name'`
+ * - All tools in a group: `{ group: 'group-name' }`
  * - All tools: `'*'`
  *
  * @private
@@ -3210,7 +3210,7 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
 			item = collection[i];
 			// Allow plain strings as shorthand for named tools
 			if ( typeof item === 'string' ) {
-				item = { 'name': item };
+				item = { name: item };
 			}
 			if ( OO.isPlainObject( item ) ) {
 				if ( item.group ) {
@@ -3553,7 +3553,7 @@ OO.ui.ClippableElement.prototype.clip = function () {
 	var buffer = 10,
 		cOffset = this.$clippable.offset(),
 		$container = this.$clippableContainer.is( 'body' ) ? this.$clippableWindow : this.$clippableContainer,
-		ccOffset = $container.offset() || { 'top': 0, 'left': 0 },
+		ccOffset = $container.offset() || { top: 0, left: 0 },
 		ccHeight = $container.innerHeight() - buffer,
 		ccWidth = $container.innerWidth() - buffer,
 		scrollTop = this.$clippableScroller.scrollTop(),
@@ -3566,18 +3566,18 @@ OO.ui.ClippableElement.prototype.clip = function () {
 		clipHeight = desiredHeight < naturalHeight;
 
 	if ( clipWidth ) {
-		this.$clippable.css( { 'overflow-x': 'auto', 'width': desiredWidth } );
+		this.$clippable.css( { overflowX: 'auto', width: desiredWidth } );
 	} else {
 		this.$clippable.css( 'width', this.idealWidth || '' );
 		this.$clippable.width(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
-		this.$clippable.css( 'overflow-x', '' );
+		this.$clippable.css( 'overflowX', '' );
 	}
 	if ( clipHeight ) {
-		this.$clippable.css( { 'overflow-y': 'auto', 'height': desiredHeight } );
+		this.$clippable.css( { overflowY: 'auto', height: desiredHeight } );
 	} else {
 		this.$clippable.css( 'height', this.idealHeight || '' );
 		this.$clippable.height(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
-		this.$clippable.css( 'overflow-y', '' );
+		this.$clippable.css( 'overflowY', '' );
 	}
 
 	this.clipped = clipWidth || clipHeight;
@@ -3951,7 +3951,7 @@ OO.initClass( OO.ui.IconedElement );
  * additional icon names keyed by language code.
  *
  * Example of i18n icon definition:
- *     { 'default': 'bold-a', 'en': 'bold-b', 'de': 'bold-f' }
+ *     { default: 'bold-a', en: 'bold-b', de: 'bold-f' }
  *
  * @static
  * @inheritable
@@ -4027,7 +4027,7 @@ OO.ui.IndicatedElement = function OoUiIndicatedElement( $indicator, config ) {
 	// Initialization
 	this.$indicator.addClass( 'oo-ui-indicatedElement-indicator' );
 	this.setIndicator( config.indicator || this.constructor.static.indicator );
-	this.setIndicatorTitle( config.indicatorTitle  || this.constructor.static.indicatorTitle );
+	this.setIndicatorTitle( config.indicatorTitle || this.constructor.static.indicatorTitle );
 };
 
 /* Setup */
@@ -4211,7 +4211,7 @@ OO.ui.LabeledElement.prototype.getLabel = function () {
  */
 OO.ui.LabeledElement.prototype.fitLabel = function () {
 	if ( this.$label.autoEllipsis && this.autoFitLabel ) {
-		this.$label.autoEllipsis( { 'hasSpan': false, 'tooltip': true } );
+		this.$label.autoEllipsis( { hasSpan: false, tooltip: true } );
 	}
 	return this;
 };
@@ -4233,9 +4233,9 @@ OO.ui.PopuppableElement = function OoUiPopuppableElement( config ) {
 
 	// Properties
 	this.popup = new OO.ui.PopupWidget( $.extend(
-		{ 'autoClose': true },
+		{ autoClose: true },
 		config.popup,
-		{ '$': this.$, '$autoCloseIgnore': this.$element }
+		{ $: this.$, $autoCloseIgnore: this.$element }
 	) );
 };
 
@@ -4352,7 +4352,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.title = null;
 
 	// Events
-	this.toolbar.connect( this, { 'updateState': 'onUpdateState' } );
+	this.toolbar.connect( this, { updateState: 'onUpdateState' } );
 
 	// Initialization
 	this.$title.addClass( 'oo-ui-tool-title' );
@@ -4680,8 +4680,8 @@ OO.ui.Toolbar.prototype.initialize = function () {
  *
  * Tools can be specified in the following ways:
  *
- * - A specific tool: `{ 'name': 'tool-name' }` or `'tool-name'`
- * - All tools in a group: `{ 'group': 'group-name' }`
+ * - A specific tool: `{ name: 'tool-name' }` or `'tool-name'`
+ * - All tools in a group: `{ group: 'group-name' }`
  * - All tools: `'*'` - Using this will make the group a list with a "More" label by default
  *
  * @param {Object.<string,Array>} groups List of tool group configurations
@@ -4713,7 +4713,7 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 		// Check type has been registered
 		type = this.getToolGroupFactory().lookup( group.type ) ? group.type : defaultType;
 		items.push(
-			this.getToolGroupFactory().create( type, this, $.extend( { '$': this.$ }, group ) )
+			this.getToolGroupFactory().create( type, this, $.extend( { $: this.$ }, group ) )
 		);
 	}
 	this.addItems( items );
@@ -4788,8 +4788,8 @@ OO.ui.Toolbar.prototype.getToolAccelerator = function () {
  *
  * Tools can be specified in the following ways:
  *
- * - A specific tool: `{ 'name': 'tool-name' }` or `'tool-name'`
- * - All tools in a group: `{ 'group': 'group-name' }`
+ * - A specific tool: `{ name: 'tool-name' }` or `'tool-name'`
+ * - All tools in a group: `{ group: 'group-name' }`
  * - All tools: `'*'`
  *
  * @abstract
@@ -4830,12 +4830,12 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	this.$element.on( {
 		'mousedown touchstart': OO.ui.bind( this.onPointerDown, this ),
 		'mouseup touchend': OO.ui.bind( this.onPointerUp, this ),
-		'mouseover': OO.ui.bind( this.onMouseOver, this ),
-		'mouseout': OO.ui.bind( this.onMouseOut, this )
+		mouseover: OO.ui.bind( this.onMouseOver, this ),
+		mouseout: OO.ui.bind( this.onMouseOut, this )
 	} );
-	this.toolbar.getToolFactory().connect( this, { 'register': 'onToolFactoryRegister' } );
-	this.aggregate( { 'disable': 'itemDisable' } );
-	this.connect( this, { 'itemDisable': 'updateDisabled' } );
+	this.toolbar.getToolFactory().connect( this, { register: 'onToolFactoryRegister' } );
+	this.aggregate( { disable: 'itemDisable' } );
+	this.connect( this, { itemDisable: 'updateDisabled' } );
 
 	// Initialization
 	this.$group.addClass( 'oo-ui-toolGroup-tools' );
@@ -5163,8 +5163,8 @@ OO.ui.MessageDialog.static.title = null;
 OO.ui.MessageDialog.static.message = null;
 
 OO.ui.MessageDialog.static.actions = [
-	{ 'action': 'accept', 'label': OO.ui.deferMsg( 'ooui-dialog-message-accept' ), 'flags': 'primary' },
-	{ 'action': 'reject', 'label': OO.ui.deferMsg( 'ooui-dialog-message-reject' ), 'flags': 'safe' }
+	{ action: 'accept', label: OO.ui.deferMsg( 'ooui-dialog-message-accept' ), flags: 'primary' },
+	{ action: 'reject', label: OO.ui.deferMsg( 'ooui-dialog-message-reject' ), flags: 'safe' }
 ];
 
 /* Methods */
@@ -5202,7 +5202,7 @@ OO.ui.MessageDialog.prototype.toggleVerticalActionLayout = function ( value ) {
 OO.ui.MessageDialog.prototype.getActionProcess = function ( action ) {
 	if ( action ) {
 		return new OO.ui.Process( function () {
-			this.close( { 'action': action } );
+			this.close( { action: action } );
 		}, this );
 	}
 	return OO.ui.MessageDialog.super.prototype.getActionProcess.call( this, action );
@@ -5254,13 +5254,13 @@ OO.ui.MessageDialog.prototype.initialize = function () {
 	// Properties
 	this.$actions = this.$( '<div>' );
 	this.container = new OO.ui.PanelLayout( {
-		'$': this.$, 'scrollable': true, 'classes': [ 'oo-ui-messageDialog-container' ]
+		$: this.$, scrollable: true, classes: [ 'oo-ui-messageDialog-container' ]
 	} );
 	this.text = new OO.ui.PanelLayout( {
-		'$': this.$, 'padded': true, 'expanded': false, 'classes': [ 'oo-ui-messageDialog-text' ]
+		$: this.$, padded: true, expanded: false, classes: [ 'oo-ui-messageDialog-text' ]
 	} );
 	this.message = new OO.ui.LabelWidget( {
-		'$': this.$, 'classes': [ 'oo-ui-messageDialog-message' ]
+		$: this.$, classes: [ 'oo-ui-messageDialog-message' ]
 	} );
 
 	// Initialization
@@ -5410,19 +5410,19 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 	this.$primaryActions = this.$( '<div>' );
 	this.$otherActions = this.$( '<div>' );
 	this.dismissButton = new OO.ui.ButtonWidget( {
-		'$': this.$,
-		'label': OO.ui.msg( 'ooui-dialog-process-dismiss' )
+		$: this.$,
+		label: OO.ui.msg( 'ooui-dialog-process-dismiss' )
 	} );
 	this.retryButton = new OO.ui.ButtonWidget( {
-		'$': this.$,
-		'label': OO.ui.msg( 'ooui-dialog-process-retry' )
+		$: this.$,
+		label: OO.ui.msg( 'ooui-dialog-process-retry' )
 	} );
 	this.$errors = this.$( '<div>' );
 	this.$errorsTitle = this.$( '<div>' );
 
 	// Events
-	this.dismissButton.connect( this, { 'click': 'onDismissErrorButtonClick' } );
-	this.retryButton.connect( this, { 'click': 'onRetryButtonClick' } );
+	this.dismissButton.connect( this, { click: 'onDismissErrorButtonClick' } );
+	this.retryButton.connect( this, { click: 'onRetryButtonClick' } );
 
 	// Initialization
 	this.title.$element.addClass( 'oo-ui-processDialog-title' );
@@ -5497,7 +5497,7 @@ OO.ui.ProcessDialog.prototype.fitLabel = function () {
 		this.$safeActions.is( ':visible' ) ? this.$safeActions.width() : 0,
 		this.$primaryActions.is( ':visible' ) ? this.$primaryActions.width() : 0
 	);
-	this.$location.css( { 'padding-left': width, 'padding-right': width } );
+	this.$location.css( { paddingLeft: width, paddingRight: width } );
 
 	return this;
 };
@@ -5565,31 +5565,31 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	this.currentPageName = null;
 	this.pages = {};
 	this.ignoreFocus = false;
-	this.stackLayout = new OO.ui.StackLayout( { '$': this.$, 'continuous': !!config.continuous } );
+	this.stackLayout = new OO.ui.StackLayout( { $: this.$, continuous: !!config.continuous } );
 	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 	this.outlineVisible = false;
 	this.outlined = !!config.outlined;
 	if ( this.outlined ) {
 		this.editable = !!config.editable;
 		this.outlineControlsWidget = null;
-		this.outlineWidget = new OO.ui.OutlineWidget( { '$': this.$ } );
-		this.outlinePanel = new OO.ui.PanelLayout( { '$': this.$, 'scrollable': true } );
+		this.outlineWidget = new OO.ui.OutlineWidget( { $: this.$ } );
+		this.outlinePanel = new OO.ui.PanelLayout( { $: this.$, scrollable: true } );
 		this.gridLayout = new OO.ui.GridLayout(
 			[ this.outlinePanel, this.stackLayout ],
-			{ '$': this.$, 'widths': [ 1, 2 ] }
+			{ $: this.$, widths: [ 1, 2 ] }
 		);
 		this.outlineVisible = true;
 		if ( this.editable ) {
 			this.outlineControlsWidget = new OO.ui.OutlineControlsWidget(
-				this.outlineWidget, { '$': this.$ }
+				this.outlineWidget, { $: this.$ }
 			);
 		}
 	}
 
 	// Events
-	this.stackLayout.connect( this, { 'set': 'onStackLayoutSet' } );
+	this.stackLayout.connect( this, { set: 'onStackLayoutSet' } );
 	if ( this.outlined ) {
-		this.outlineWidget.connect( this, { 'select': 'onOutlineWidgetSelect' } );
+		this.outlineWidget.connect( this, { select: 'onOutlineWidgetSelect' } );
 	}
 	if ( this.autoFocus ) {
 		// Event 'focus' does not bubble, but 'focusin' does
@@ -5665,7 +5665,7 @@ OO.ui.BookletLayout.prototype.onStackLayoutFocus = function ( e ) {
 OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
 	var $input, layout = this;
 	if ( page ) {
-		page.scrollElementIntoView( { 'complete': function () {
+		page.scrollElementIntoView( { complete: function () {
 			if ( layout.autoFocus ) {
 				// Set focus to the first input if nothing on the page is focused yet
 				if ( !page.$element.find( ':focus' ).length ) {
@@ -5845,7 +5845,7 @@ OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
 		name = page.getName();
 		this.pages[page.getName()] = page;
 		if ( this.outlined ) {
-			item = new OO.ui.OutlineItemWidget( name, page, { '$': this.$ } );
+			item = new OO.ui.OutlineItemWidget( name, page, { $: this.$ } );
 			page.setOutlineItem( item );
 			items.push( item );
 		}
@@ -5976,13 +5976,13 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
  * @mixins OO.ui.LabeledElement
  *
  * Available label alignment modes include:
- *  - 'left': Label is before the field and aligned away from it, best for when the user will be
+ *  - left: Label is before the field and aligned away from it, best for when the user will be
  *    scanning for a specific label in a form with many fields
- *  - 'right': Label is before the field and aligned toward it, best for forms the user is very
+ *  - right: Label is before the field and aligned toward it, best for forms the user is very
  *    familiar with and will tab through field checking quickly to verify which field they are in
- *  - 'top': Label is before the field and above it, best for when the use will need to fill out all
+ *  - top: Label is before the field and above it, best for when the use will need to fill out all
  *    fields from top to bottom in a form with few fields
- *  - 'inline': Label is after the field and aligned toward it, best for small boolean fields like
+ *  - inline: Label is after the field and aligned toward it, best for small boolean fields like
  *    checkboxes or radio buttons
  *
  * @constructor
@@ -5994,7 +5994,7 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
 OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 	var popupButtonWidget;
 	// Config initialization
-	config = $.extend( { 'align': 'left' }, config );
+	config = $.extend( { align: 'left' }, config );
 
 	// Parent constructor
 	OO.ui.FieldLayout.super.call( this, config );
@@ -6005,10 +6005,10 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 	if ( config.help ) {
 		popupButtonWidget = new OO.ui.PopupButtonWidget( $.extend(
 			{
-				'$': this.$,
-				'frameless': true,
-				'icon': 'info',
-				'title': config.help
+				$: this.$,
+				frameless: true,
+				icon: 'info',
+				title: config.help
 			},
 			config,
 			{ label: null }
@@ -6026,7 +6026,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 	if ( this.field instanceof OO.ui.InputWidget ) {
 		this.$label.on( 'click', OO.ui.bind( this.onLabelClick, this ) );
 	}
-	this.field.connect( this, { 'disable': 'onFieldDisable' } );
+	this.field.connect( this, { disable: 'onFieldDisable' } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-fieldLayout' );
@@ -6326,11 +6326,11 @@ OO.ui.GridLayout.prototype.update = function () {
 			panel = this.panels[i];
 			width = this.widths[x];
 			dimensions = {
-				'width': Math.round( width * 100 ) + '%',
-				'height': Math.round( height * 100 ) + '%',
-				'top': Math.round( top * 100 ) + '%',
+				width: Math.round( width * 100 ) + '%',
+				height: Math.round( height * 100 ) + '%',
+				top: Math.round( top * 100 ) + '%',
 				// HACK: Work around IE bug by setting visibility: hidden; if width or height is zero
-				'visibility': width === 0 || height === 0 ? 'hidden' : ''
+				visibility: width === 0 || height === 0 ? 'hidden' : ''
 			};
 			// If RTL, reverse:
 			if ( OO.ui.Element.getDir( this.$.context ) === 'rtl' ) {
@@ -6413,7 +6413,7 @@ OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
  */
 OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
 	// Configuration initialization
-	config = $.extend( { 'scrollable': true }, config );
+	config = $.extend( { scrollable: true }, config );
 
 	// Parent constructor
 	OO.ui.PageLayout.super.call( this, config );
@@ -6529,7 +6529,7 @@ OO.ui.PageLayout.prototype.setActive = function ( active ) {
  */
 OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	// Config initialization
-	config = $.extend( { 'scrollable': true }, config );
+	config = $.extend( { scrollable: true }, config );
 
 	// Parent constructor
 	OO.ui.StackLayout.super.call( this, config );
@@ -6624,7 +6624,7 @@ OO.ui.StackLayout.prototype.removeItems = function ( items ) {
 	// Mixin method
 	OO.ui.GroupElement.prototype.removeItems.call( this, items );
 
-	if ( $.inArray( this.currentItem, items  ) !== -1 ) {
+	if ( $.inArray( this.currentItem, items ) !== -1 ) {
 		if ( this.items.length ) {
 			this.setItem( this.items[0] );
 		} else {
@@ -6916,7 +6916,7 @@ OO.ui.MenuToolGroup = function OoUiMenuToolGroup( toolbar, config ) {
 	OO.ui.MenuToolGroup.super.call( this, toolbar, config );
 
 	// Events
-	this.toolbar.connect( this, { 'updateState': 'onUpdateState' } );
+	this.toolbar.connect( this, { updateState: 'onUpdateState' } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-menuToolGroup' );
@@ -7125,9 +7125,9 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	this.lookupInput = input;
 	this.$overlay = config.$overlay || this.$( 'body,.oo-ui-window-overlay' ).last();
 	this.lookupMenu = new OO.ui.TextInputMenuWidget( this, {
-		'$': OO.ui.Element.getJQuery( this.$overlay ),
-		'input': this.lookupInput,
-		'$container': config.$container
+		$: OO.ui.Element.getJQuery( this.$overlay ),
+		input: this.lookupInput,
+		$container: config.$container
 	} );
 	this.lookupCache = {};
 	this.lookupQuery = null;
@@ -7138,11 +7138,11 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	this.$overlay.append( this.lookupMenu.$element );
 
 	this.lookupInput.$input.on( {
-		'focus': OO.ui.bind( this.onLookupInputFocus, this ),
-		'blur': OO.ui.bind( this.onLookupInputBlur, this ),
-		'mousedown': OO.ui.bind( this.onLookupInputMouseDown, this )
+		focus: OO.ui.bind( this.onLookupInputFocus, this ),
+		blur: OO.ui.bind( this.onLookupInputBlur, this ),
+		mousedown: OO.ui.bind( this.onLookupInputMouseDown, this )
 	} );
-	this.lookupInput.connect( this, { 'change': 'onLookupInputChange' } );
+	this.lookupInput.connect( this, { change: 'onLookupInputChange' } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-lookupWidget' );
@@ -7356,7 +7356,7 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
  */
 OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, config ) {
 	// Configuration initialization
-	config = $.extend( { 'icon': 'add-item' }, config );
+	config = $.extend( { icon: 'add-item' }, config );
 
 	// Parent constructor
 	OO.ui.OutlineControlsWidget.super.call( this, config );
@@ -7369,33 +7369,33 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 	this.outline = outline;
 	this.$movers = this.$( '<div>' );
 	this.upButton = new OO.ui.ButtonWidget( {
-		'$': this.$,
-		'framed': false,
-		'icon': 'collapse',
-		'title': OO.ui.msg( 'ooui-outline-control-move-up' )
+		$: this.$,
+		framed: false,
+		icon: 'collapse',
+		title: OO.ui.msg( 'ooui-outline-control-move-up' )
 	} );
 	this.downButton = new OO.ui.ButtonWidget( {
-		'$': this.$,
-		'framed': false,
-		'icon': 'expand',
-		'title': OO.ui.msg( 'ooui-outline-control-move-down' )
+		$: this.$,
+		framed: false,
+		icon: 'expand',
+		title: OO.ui.msg( 'ooui-outline-control-move-down' )
 	} );
 	this.removeButton = new OO.ui.ButtonWidget( {
-		'$': this.$,
-		'framed': false,
-		'icon': 'remove',
-		'title': OO.ui.msg( 'ooui-outline-control-remove' )
+		$: this.$,
+		framed: false,
+		icon: 'remove',
+		title: OO.ui.msg( 'ooui-outline-control-remove' )
 	} );
 
 	// Events
 	outline.connect( this, {
-		'select': 'onOutlineChange',
-		'add': 'onOutlineChange',
-		'remove': 'onOutlineChange'
+		select: 'onOutlineChange',
+		add: 'onOutlineChange',
+		remove: 'onOutlineChange'
 	} );
-	this.upButton.connect( this, { 'click': [ 'emit', 'move', -1 ] } );
-	this.downButton.connect( this, { 'click': [ 'emit', 'move', 1 ] } );
-	this.removeButton.connect( this, { 'click': [ 'emit', 'remove' ] } );
+	this.upButton.connect( this, { click: [ 'emit', 'move', -1 ] } );
+	this.downButton.connect( this, { click: [ 'emit', 'move', 1 ] } );
+	this.removeButton.connect( this, { click: [ 'emit', 'remove' ] } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-outlineControlsWidget' );
@@ -7566,7 +7566,7 @@ OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
  */
 OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	// Configuration initialization
-	config = $.extend( { 'target': '_blank' }, config );
+	config = $.extend( { target: '_blank' }, config );
 
 	// Parent constructor
 	OO.ui.ButtonWidget.super.call( this, config );
@@ -7586,8 +7586,8 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 
 	// Events
 	this.$button.on( {
-		'click': OO.ui.bind( this.onClick, this ),
-		'keypress': OO.ui.bind( this.onKeyPress, this )
+		click: OO.ui.bind( this.onClick, this ),
+		keypress: OO.ui.bind( this.onKeyPress, this )
 	} );
 
 	// Initialization
@@ -7722,7 +7722,7 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
  */
 OO.ui.ActionWidget = function OoUiActionWidget( config ) {
 	// Config intialization
-	config = $.extend( { 'framed': false }, config );
+	config = $.extend( { framed: false }, config );
 
 	// Parent constructor
 	OO.ui.ActionWidget.super.call( this, config );
@@ -8060,7 +8060,7 @@ OO.ui.IndicatorWidget.static.tagName = 'span';
  */
 OO.ui.InlineMenuWidget = function OoUiInlineMenuWidget( config ) {
 	// Configuration initialization
-	config = $.extend( { 'indicator': 'down' }, config );
+	config = $.extend( { indicator: 'down' }, config );
 
 	// Parent constructor
 	OO.ui.InlineMenuWidget.super.call( this, config );
@@ -8072,12 +8072,12 @@ OO.ui.InlineMenuWidget = function OoUiInlineMenuWidget( config ) {
 	OO.ui.TitledElement.call( this, this.$label, config );
 
 	// Properties
-	this.menu = new OO.ui.MenuWidget( $.extend( { '$': this.$, 'widget': this }, config.menu ) );
+	this.menu = new OO.ui.MenuWidget( $.extend( { $: this.$, widget: this }, config.menu ) );
 	this.$handle = this.$( '<span>' );
 
 	// Events
-	this.$element.on( { 'click': OO.ui.bind( this.onClick, this ) } );
-	this.menu.connect( this, { 'select': 'onMenuSelect' } );
+	this.$element.on( { click: OO.ui.bind( this.onClick, this ) } );
+	this.menu.connect( this, { select: 'onMenuSelect' } );
 
 	// Initialization
 	this.$handle
@@ -8166,7 +8166,7 @@ OO.ui.InlineMenuWidget.prototype.onClick = function ( e ) {
  */
 OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	// Config intialization
-	config = $.extend( { 'readOnly': false }, config );
+	config = $.extend( { readOnly: false }, config );
 
 	// Parent constructor
 	OO.ui.InputWidget.super.call( this, config );
@@ -8441,7 +8441,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	var widget = this;
-	config = $.extend( { 'maxRows': 10 }, config );
+	config = $.extend( { maxRows: 10 }, config );
 
 	// Parent constructor
 	OO.ui.TextInputWidget.super.call( this, config );
@@ -8546,7 +8546,7 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
 	if ( this.multiline && this.autosize ) {
 		$clone = this.$input.clone()
 			.val( this.$input.val() )
-			.css( { 'height': 0 } )
+			.css( { height: 0 } )
 			.insertAfter( this.$input );
 		// Set inline height property to 0 to measure scroll height
 		scrollHeight = $clone[0].scrollHeight;
@@ -9004,7 +9004,7 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
  */
 OO.ui.MenuItemWidget = function OoUiMenuItemWidget( data, config ) {
 	// Configuration initialization
-	config = $.extend( { 'icon': 'check' }, config );
+	config = $.extend( { icon: 'check' }, config );
 
 	// Parent constructor
 	OO.ui.MenuItemWidget.super.call( this, data, config );
@@ -9217,11 +9217,11 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.width = config.width !== undefined ? config.width : 320;
 	this.height = config.height !== undefined ? config.height : null;
 	this.align = config.align || 'center';
-	this.closeButton = new OO.ui.ButtonWidget( { '$': this.$, 'framed': false, 'icon': 'close' } );
+	this.closeButton = new OO.ui.ButtonWidget( { $: this.$, framed: false, icon: 'close' } );
 	this.onMouseDownHandler = OO.ui.bind( this.onMouseDown, this );
 
 	// Events
-	this.closeButton.connect( this, { 'click': 'onCloseButtonClick' } );
+	this.closeButton.connect( this, { click: 'onCloseButtonClick' } );
 
 	// Initialization
 	this.toggleAnchor( config.anchor === undefined || config.anchor );
@@ -9396,7 +9396,7 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 		containerLeft = Math.round( this.$container.offset().left ),
 		containerWidth = this.$container.innerWidth(),
 		containerRight = containerLeft + containerWidth,
-		popupOffset = this.width * ( { 'left': 0, 'center': -0.5, 'right': -1 } )[this.align],
+		popupOffset = this.width * ( { left: 0, center: -0.5, right: -1 } )[this.align],
 		anchorWidth = this.$anchor.width(),
 		popupLeft = popupOffset - padding,
 		popupRight = popupOffset + padding + this.width + padding,
@@ -9425,9 +9425,9 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 
 	// Position body relative to anchor and resize
 	this.$popup.css( {
-		'left': popupOffset,
-		'width': this.width,
-		'height': this.height !== null ? this.height : 'auto'
+		left: popupOffset,
+		width: this.width,
+		height: this.height !== null ? this.height : 'auto'
 	} );
 
 	if ( transition ) {
@@ -9466,23 +9466,23 @@ OO.ui.SearchWidget = function OoUiSearchWidget( config ) {
 
 	// Properties
 	this.query = new OO.ui.TextInputWidget( {
-		'$': this.$,
-		'icon': 'search',
-		'placeholder': config.placeholder,
-		'value': config.value
+		$: this.$,
+		icon: 'search',
+		placeholder: config.placeholder,
+		value: config.value
 	} );
-	this.results = new OO.ui.SelectWidget( { '$': this.$ } );
+	this.results = new OO.ui.SelectWidget( { $: this.$ } );
 	this.$query = this.$( '<div>' );
 	this.$results = this.$( '<div>' );
 
 	// Events
 	this.query.connect( this, {
-		'change': 'onQueryChange',
-		'enter': 'onQueryEnter'
+		change: 'onQueryChange',
+		enter: 'onQueryEnter'
 	} );
 	this.results.connect( this, {
-		'highlight': 'onResultsHighlight',
-		'select': 'onResultsSelect'
+		highlight: 'onResultsHighlight',
+		select: 'onResultsSelect'
 	} );
 	this.query.$input.on( 'keydown', OO.ui.bind( this.onQueryKeydown, this ) );
 
@@ -9633,9 +9633,9 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 
 	// Events
 	this.$element.on( {
-		'mousedown': OO.ui.bind( this.onMouseDown, this ),
-		'mouseover': OO.ui.bind( this.onMouseOver, this ),
-		'mouseleave': OO.ui.bind( this.onMouseLeave, this )
+		mousedown: OO.ui.bind( this.onMouseDown, this ),
+		mouseover: OO.ui.bind( this.onMouseOver, this ),
+		mouseleave: OO.ui.bind( this.onMouseLeave, this )
 	} );
 
 	// Initialization
