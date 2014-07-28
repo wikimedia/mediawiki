@@ -553,7 +553,7 @@
 		}
 
 		context = $( this ).data( 'wikiEditor-context' );
-		hasWikiEditorSurface = ( context !== undefined );
+		hasWikiEditorSurface = ( context !== undefined && context.$iframe !== undefined );
 
 		// IE selection restore voodoo
 		needSave = false;
