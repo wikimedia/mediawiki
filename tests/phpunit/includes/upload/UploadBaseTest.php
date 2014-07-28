@@ -140,8 +140,8 @@ class UploadBaseTest extends MediaWikiTestCase {
 			// html5sec SVG vectors
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>',
-				true,
-				true,
+				true, /* SVG is well formed */
+				true, /* Evil SVG detected */
 				'Script tag in svg (http://html5sec.org/#47)'
 			],
 			[
@@ -393,6 +393,19 @@ class UploadBaseTest extends MediaWikiTestCase {
 				false,
 				'SVG with local urls, including filter: in style'
 			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><g filter="url( \'#foo\' )"></g></svg>',
+				true,
+				false,
+				'SVG with local filter (T69044)'
+			],
+			[
+				'<svg xmlns="http://www.w3.org/2000/svg"><g filter="url( http://example.com/#foo )"></g></svg>',
+				true,
+				true,
+				'SVG with non-local filter (T69044)'
+			],
+
 		];
 		// @codingStandardsIgnoreEnd
 	}
