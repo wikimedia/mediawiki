@@ -135,31 +135,6 @@ class Xml {
 	}
 
 	/**
-	 * Build a drop-down box for selecting a namespace
-	 *
-	 * @param string $selected Namespace which should be pre-selected
-	 * @param string|null $all Value of an item denoting all namespaces, or null to omit
-	 * @param string $element_name Value of the "name" attribute of the select tag
-	 * @param string $label Optional label to add to the field
-	 * @return string
-	 * @deprecated since 1.19
-	 */
-	public static function namespaceSelector( $selected = '', $all = null,
-		$element_name = 'namespace', $label = null
-	) {
-		wfDeprecated( __METHOD__, '1.19' );
-		return Html::namespaceSelector( array(
-			'selected' => $selected,
-			'all' => $all,
-			'label' => $label,
-		), array(
-			'name' => $element_name,
-			'id' => 'namespace',
-			'class' => 'namespaceselector',
-		) );
-	}
-
-	/**
 	 * Create a date selector
 	 *
 	 * @param string $selected The month which should be selected, default ''.
