@@ -1740,9 +1740,10 @@ abstract class UploadBase {
 			}
 
 			# image filters can pull in url, which could be svg that executes scripts
+			# Only allow url( "#foo" ). Do not allow url( http://example.com )
 			if ( $strippedElement == 'image'
 				&& $stripped == 'filter'
-				&& preg_match( '!url\s*\(!sim', $value )
+				&& preg_match( '!url\s*\(\s*["\']?[^#]!sim', $value )
 			) {
 				wfDebug( __METHOD__ . ": Found image filter with url: "
 					. "\"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
