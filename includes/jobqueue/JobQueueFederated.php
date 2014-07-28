@@ -281,7 +281,7 @@ class JobQueueFederated extends JobQueue {
 			}
 			if ( $ok ) {
 				$key = $this->getCacheKey( 'empty' );
-				$this->cache->set( $key, 'false', JobQueueDB::CACHE_TTL_LONG );
+				$this->cache->set( $key, 'false', self::CACHE_TTL_LONG );
 			} else {
 				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) { // blacklist
 					throw new JobQueueError( "Could not insert job(s), no partitions available." );
@@ -303,7 +303,7 @@ class JobQueueFederated extends JobQueue {
 			}
 			if ( $ok ) {
 				$key = $this->getCacheKey( 'empty' );
-				$this->cache->set( $key, 'false', JobQueueDB::CACHE_TTL_LONG );
+				$this->cache->set( $key, 'false', self::CACHE_TTL_LONG );
 			} else {
 				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) { // blacklist
 					throw new JobQueueError( "Could not insert job(s), no partitions available." );
@@ -345,7 +345,7 @@ class JobQueueFederated extends JobQueue {
 		$this->throwErrorIfAllPartitionsDown( $failed );
 
 		$key = $this->getCacheKey( 'empty' );
-		$this->cache->set( $key, 'true', JobQueueDB::CACHE_TTL_LONG );
+		$this->cache->set( $key, 'true', self::CACHE_TTL_LONG );
 
 		return false;
 	}
