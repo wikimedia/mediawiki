@@ -37,6 +37,7 @@ class RunJobs extends Maintenance {
 		$this->addOption( 'type', 'Type of job to run', false, true );
 		$this->addOption( 'procs', 'Number of processes to use', false, true );
 		$this->addOption( 'nothrottle', 'Ignore job throttling configuration', false, false );
+		$this->addOption( 'result', 'Set to JSON to print only a JSON response', false, false );
 	}
 
 	public function memoryLimit() {
@@ -65,14 +66,21 @@ class RunJobs extends Maintenance {
 			}
 		}
 
+		$json = ( $this->getOption( 'result' ) === 'json' );
+
 		$runner = new JobRunner();
-		$runner->setDebugHandler( array( $this, 'debugInternal' ) );
-		$runner->run( array(
+		if ( !$json ) {
+			$runner->setDebugHandler( array( $this, 'debugInternal' ) );
+		}
+		$response = $runner->run( array(
 			'type'     => $this->getOption( 'type', false ),
 			'maxJobs'  => $this->getOption( 'maxjobs', false ),
 			'maxTime'  => $this->getOption( 'maxtime', false ),
 			'throttle' => $this->hasOption( 'nothrottle' ) ? false : true,
 		) );
+		if ( $json ) {
+			$this->output( FormatJson::encode( $response, true ) );
+		}
 	}
 
 	/**
