@@ -1500,6 +1500,7 @@ return array(
 	'es5-shim' => array(
 		'scripts' => array(
 			'resources/lib/es5-shim/es5-shim.js',
+			'resources/src/polyfill-object-create.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 		'skipFunction' => 'resources/src/es5-skip.js',
