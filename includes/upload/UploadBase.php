@@ -379,8 +379,8 @@ abstract class UploadBase {
 	/**
 	 * Verify the mime type.
 	 *
-	 * @note Only checks that it is not an evil mime. The does it have
-	 *  correct extension given its mime type check is in verifyFile.
+	 * @note Only checks that it is not an evil mime. The "does it have
+	 *  correct extension given its mime type?" check is in verifyFile.
 	 * @param string $mime Representing the mime
 	 * @return mixed True if the file is verified, an array otherwise
 	 */
