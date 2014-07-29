@@ -284,6 +284,10 @@ changes to languages because of Bugzilla reports.
   and filelinks tables. Run update.php to apply this change to the schema.
 * Removed File::sha1Base36(). (deprecated since 1.19)
 * Removed File::getPropsFromPath(). (deprecated since 1.19)
+* Removed OutputPage::showFatalError(), OutputPage::showUnexpectedValueError(),
+  OutputPage::showFileCopyError(), OutputPage::showFileRenameError() and
+  OutputPage::showFileNotFoundError(). Added a deprecation warning to prevent
+  uses of OutputPage::showFileDeleteError().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
