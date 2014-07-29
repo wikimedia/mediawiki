@@ -38,7 +38,9 @@ class MediaWiki {
 	 */
 	public function request( WebRequest $x = null ) {
 		$old = $this->context->getRequest();
-		$this->context->setRequest( $x );
+		if ( $x ) {
+			$this->context->setRequest( $x );
+		}
 		return $old;
 	}
 
@@ -48,7 +50,9 @@ class MediaWiki {
 	 */
 	public function output( OutputPage $x = null ) {
 		$old = $this->context->getOutput();
-		$this->context->setOutput( $x );
+		if ( $x ) {
+			$this->context->setOutput( $x );
+		}
 		return $old;
 	}
 
