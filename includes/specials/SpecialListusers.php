@@ -194,10 +194,8 @@ class UsersPager extends AlphabeticPager {
 
 		$edits = '';
 		if ( !$this->including && $this->getConfig()->get( 'Edititis' ) ) {
-			// @todo fixme i18n issue: Hardcoded square brackets.
-			$edits = ' [' .
-				$this->msg( 'usereditcount' )->numParams( $row->edits )->escaped() .
-				']';
+			$count = $this->msg( 'usereditcount' )->numParams( $row->edits )->escaped();
+			$edits = $this->msg( 'word-separator' )->escaped() . $this->msg( 'brackets', $count )->escaped();
 		}
 
 		$created = '';
