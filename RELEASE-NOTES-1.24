@@ -448,6 +448,9 @@ changes to languages because of Bugzilla reports.
   called unconditionally.
 * TablePager::getBody() is now 'final' and can't be overridden in subclasses.
 * TablePager::getBody() is deprecated, use getBodyOutput() or getFullOutput().
+* Removed showFatalError(), showUnexpectedValueError(), showFileCopyError(),
+  showFileRenameError() and showFileNotFoundError() in OutputPage.php. Added
+  deprecation warning to OutputPage::showFileDeleteError().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

@@ -320,8 +320,6 @@
 	"readonly_lag": "The database has been automatically locked while the slave database servers catch up to the master",
 	"internalerror": "Internal error",
 	"internalerror_info": "Internal error: $1",
-	"filecopyerror": "Could not copy file \"$1\" to \"$2\".",
-	"filerenameerror": "Could not rename file \"$1\" to \"$2\".",
 	"filedeleteerror": "Could not delete file \"$1\".",
 	"directorycreateerror": "Could not create directory \"$1\".",
 	"filenotfound": "Could not find file \"$1\".",

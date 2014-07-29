@@ -482,8 +482,6 @@
 	"readonly_lag": "Error message displayed when the database is locked.",
 	"internalerror": "{{Identical|Internal error}}",
 	"internalerror_info": "Parameters:\n* $1 - error message",
-	"filecopyerror": "Parameters:\n* $1 - source file name\n* $2 - destination file name",
-	"filerenameerror": "Parameters:\n* $1 - old file name\n* $2 - new file name",
 	"filedeleteerror": "Parameters:\n* $1 - file name",
 	"directorycreateerror": "Parameters:\n* $1 - directory name",
 	"filenotfound": "Parameters:\n* $1 - file name",

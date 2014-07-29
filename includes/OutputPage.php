@@ -2506,30 +2506,14 @@ $templates
 		}
 	}
 
-	public function showFatalError( $message ) {
-		$this->prepareErrorPage( $this->msg( 'internalerror' ) );
-
-		$this->addHTML( $message );
-	}
-
-	public function showUnexpectedValueError( $name, $val ) {
-		$this->showFatalError( $this->msg( 'unexpected', $name, $val )->text() );
-	}
-
-	public function showFileCopyError( $old, $new ) {
-		$this->showFatalError( $this->msg( 'filecopyerror', $old, $new )->text() );
-	}
-
-	public function showFileRenameError( $old, $new ) {
-		$this->showFatalError( $this->msg( 'filerenameerror', $old, $new )->text() );
-	}
-
+	/**
+	 * Error message shown on file deletion failure.
+	 * @param string $name
+	 * @deprecated since 1.24 Throw the ErrorPageError exception class directly.
+	 */
 	public function showFileDeleteError( $name ) {
-		$this->showFatalError( $this->msg( 'filedeleteerror', $name )->text() );
-	}
-
-	public function showFileNotFoundError( $name ) {
-		$this->showFatalError( $this->msg( 'filenotfound', $name )->text() );
+		wfDeprecated( __METHOD__, '1.24' );
+		throw new ErrorPageError( 'internalerror', $this->msg( 'filedeleteerror', (array)$name ) );
 	}
 
 	/**
