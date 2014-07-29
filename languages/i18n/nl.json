@@ -1763,7 +1763,7 @@
     "watchmethod-list": "controleer pagina's op volglijst op wijzigingen",
     "watchlistcontains": "Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op uw volglijst.",
     "iteminvalidname": "Probleem met object '$1', ongeldige naam…",
-    "wlnote2": "Hieronder staan de veranderingen in {{PLURAL:$1|het|de}} laatste {{PLURAL:$1|uur|<strong> $1 </strong>uren}}, sinds $2, $3.",
+    "wlnote": "Hieronder {{PLURAL:$1|staat de laaste wijziging|staan de laatste $1 wijzigingen}} in {{PLURAL:$2|het laatste uur|de laatste $2 uur}} per $3 om $4.",
     "wlshowlast": "Laatste $1 uur, $2 dagen bekijken ($3)",
     "watchlist-options": "Opties voor volglijst",
     "watching": "Bezig met plaatsen op volglijst…",

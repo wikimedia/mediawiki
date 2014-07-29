@@ -1755,7 +1755,7 @@
     "watchmethod-list": "檢查最近編輯的被監視頁面",
     "watchlistcontains": "您的監視列表包含$1個頁面。",
     "iteminvalidname": "頁面 '$1' 錯誤，無效命名...",
-    "wlnote2": "以下是新近<strong>$1</strong>小時的更改，截至$2 $3。",
+    "wlnote": "截至$3 $4，以下是最近'''$2'''小時內的最後'''$1'''次修改。",
     "wlshowlast": "顯示最近$1小時；$2天；$3的修改。",
     "watchlist-options": "監視列表選項",
     "watching": "正在監視...",

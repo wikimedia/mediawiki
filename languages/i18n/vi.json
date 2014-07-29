@@ -1732,7 +1732,6 @@
     "watchmethod-list": "Dưới đây hiện danh sách các trang theo dõi.",
     "watchlistcontains": "Danh sách theo dõi của bạn có $1 {{PLURAL:$1|trang|trang}}.",
     "iteminvalidname": "Tên trang “$1” không hợp lệ…",
-    "wlnote2": "Bên dưới có các thay đổi vào <strong>$1</strong> giờ qua, vào lúc $3 $2.",
     "wlshowlast": "Hiển thị $1 giờ $2 ngày gần đây $3",
     "watchlist-options": "Tùy chọn về danh sách theo dõi",
     "watching": "Đang theo dõi…",

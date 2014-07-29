@@ -1719,7 +1719,7 @@
     "watchmethod-list": "comprobando as páxinas vixiadas na procura de edicións recentes",
     "watchlistcontains": "A súa lista de vixilancia ten $1 {{PLURAL:$1|páxina|páxinas}}.",
     "iteminvalidname": "Hai un problema co elemento \"$1\", nome non válido...",
-    "wlnote2": "A continuación están as modificacións feitas {{PLURAL:$1|na última hora|nas últimas <strong>$1</strong> horas}}, ata o $2 ás $3.",
+    "wlnote": "A continuación {{PLURAL:$1|está a última modificación|están as últimas '''$1''' modificacións}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}} ata o $3 ás $4.",
     "wlshowlast": "Mostrar as últimas $1 horas, os últimos $2 días ou $3",
     "watchlist-options": "Opcións de vixilancia",
     "watching": "Vixiando...",

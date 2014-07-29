@@ -1758,7 +1758,7 @@
     "watchmethod-list": "verificando páginas vigiadas para edições recentes",
     "watchlistcontains": "Sua lista de páginas vigiadas contém $1 {{PLURAL:$1|página|páginas}}.",
     "iteminvalidname": "Problema com item '$1', nome inválido...",
-    "wlnote2": "A seguir estão as mudanças nas últimas {{PLURAL:$1|hora|<strong>$1</strong> horas}}, a partir de $2, $3.",
+    "wlnote": "A seguir {{PLURAL:$1|está a última alteração ocorrida|estão as últimas '''$1''' alterações ocorridas}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}} a partir de $3, $4.",
     "wlshowlast": "Ver últimas $1 horas $2 dias $3",
     "watchlist-options": "Opções da lista de páginas vigiadas",
     "watching": "Vigiando...",

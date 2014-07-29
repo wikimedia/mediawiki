@@ -1695,7 +1695,6 @@
     "watchmethod-list": "yn chwilio'r tudalennau ar y rhestr wylio am ddiwygiadau diweddar",
     "watchlistcontains": "{{PLURAL:$1|Nid oes dim tudalennau|Mae $1 dudalen|Mae $1 dudalen|Mae $1 tudalen|Mae $1 thudalen|Mae $1 o dudalennau}} ar eich rhestr wylio.",
     "iteminvalidname": "Problem gyda'r eitem '$1', enw annilys...",
-    "wlnote2": "Isod, fe welwch y newidiadau yn ystod {{PLURAL:$1|yr awr|yr awr|y ddwyawr ddiwethaf|teirawr diwethaf|<strong>$1</strong> awr diwethaf}}, hyd at $2, $3.",
     "wlshowlast": "Dangoser newidiadau'r $1 awr ddiwethaf neu'r $2 {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf neu'r $3 newidiadau.",
     "watchlist-options": "Dewisiadau ar gyfer y rhestr wylio",
     "watching": "Wrthi'n ychwanegu...",

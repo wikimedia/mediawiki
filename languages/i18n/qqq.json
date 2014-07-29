@@ -1999,7 +1999,7 @@
     "watchmethod-list": "See also:\n* {{msg-mw|Watchmethod-recent}}",
     "watchlistcontains": "Parameters:\n* $1 - number of pages in your watchlist\nSee also:\n* {{msg-mw|Watchlist-details}}",
     "iteminvalidname": "Parameters:\n* $1 - item name",
-    "wlnote2": "Used on [[Special:Watchlist]] when a maximum number of hours or days is specified.\n\nParameters:\n* $1 - the number of hours for which the changes are shown\n* $2 - a date alone\n* $3 - a time alone\nSee also:\n* {{msg-mw|Wlnote}}",
+    "wlnote": "Used on [[Special:Watchlist]] when a maximum number of hours or days is specified.\n\nParameters:\n* $1 - the number of changes shown\n* $2 - the number of hours for which the changes are shown\n* $3 - a date alone\n* $4 - a time alone",
     "wlshowlast": "Appears on [[Special:Watchlist]]. Parameters:\n* $1 - a choice of different numbers of hours (\"1 | 2 | 6 | 12\")\n* $2 - a choice of different numbers of days (\"1 | 3 | 7\")\n* $3 - {{msg-mw|watchlistall2}}\nClicking on your choice changes the list of changes you see (without changing the default in my preferences).",
     "watchlist-options": "Legend of the fieldset of [[Special:Watchlist]]\n\nSee also:\n* {{msg-mw|Watchlist-details|watchlist header}}\n* {{msg-mw|Wlheader-enotif|watchlist header}}\n* {{msg-mw|enotif reset|Submit button text}}",
     "watching": "Text displayed when clicked on the watch tab: {{msg-mw|Watch}}. It means the wiki is adding that page to your watchlist.",

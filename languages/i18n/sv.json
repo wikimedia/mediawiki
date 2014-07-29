@@ -1765,7 +1765,7 @@
     "watchmethod-list": "letar efter nyligen gjorda ändringar bland bevakade sidor",
     "watchlistcontains": "Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.",
     "iteminvalidname": "Problem med ''$1'', ogiltigt namn...",
-    "wlnote2": "Nedan finns ändringarna från {{PLURAL:$1|den senaste timmen|de senaste <strong>$1</strong> timmarna}}, med början den $2 kl. $3.",
+    "wlnote": "Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste '''$1''' ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste '''$2''' timmarna}} från den $3 kl. $4.",
     "wlshowlast": "Visa senaste $1 timmarna $2 dygnen $3",
     "watchlist-options": "Alternativ för bevakningslistan",
     "watching": "Bevakar...",

@@ -1722,7 +1722,7 @@
     "watchmethod-list": "menyemak suntingan terkini pada laman-laman yang dipantau",
     "watchlistcontains": "Terdapat $1 laman dalam senarai pantau anda.",
     "iteminvalidname": "Terdapat masalah dengan item '$1', nama tidak sah...",
-    "wlnote2": "Yang berikut adalah perubahan dalam {{PLURAL:$1|sejam|<strong>$1</strong> jam}} yang lepas, setakat $2, $3.",
+    "wlnote": "Berikut ialah {{PLURAL:$1|perubahan|'''$1''' perubahan}} yang terkini dalam {{PLURAL:$2|sejam|'''$2''' jam}} yang lalu, tepat pada $3, $4.",
     "wlshowlast": "Tunjukkan $1 jam / $2 hari yang lalu / $3.",
     "watchlist-options": "Pilihan senarai pantau",
     "watching": "Memantau...",

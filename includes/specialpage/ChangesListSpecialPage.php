@@ -53,7 +53,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts = $this->getOptions();
 		if ( $rows === false ) {
 			if ( !$this->including() ) {
-				$this->doHeader( $opts );
+				$this->doHeader( $opts, 0 );
 			}
 
 			return;
@@ -326,7 +326,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function webOutput( $rows, $opts ) {
 		if ( !$this->including() ) {
 			$this->outputFeedLinks();
-			$this->doHeader( $opts );
+			$this->doHeader( $opts, $rows->numRows() );
 		}
 
 		$this->outputChangesList( $rows, $opts );
@@ -348,12 +348,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	abstract public function outputChangesList( $rows, $opts );
 
 	/**
-	 * Return the text to be displayed above the changes
+	 * Set the text to be displayed above the changes
 	 *
 	 * @param FormOptions $opts
-	 * @return string XHTML
+	 * @param int $numRows Number of rows in the result to show after this header
 	 */
-	public function doHeader( $opts ) {
+	public function doHeader( $opts, $numRows ) {
 		$this->setTopText( $opts );
 
 		// @todo Lots of stuff should be done here.

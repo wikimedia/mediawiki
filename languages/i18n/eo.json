@@ -1683,7 +1683,7 @@
     "watchmethod-list": "traserĉas priatentitajn",
     "watchlistcontains": "Via atentaro enhavas $1 {{PLURAL:$1|paĝon|paĝojn}}.",
     "iteminvalidname": "Ia eraro pri \"$1\", nevalida titolo...",
-    "wlnote2": "Malsupre estas la ŝanĝoj en la {{PLURAL:$1|lasta horo|lastaj <strong>$1</strong> horoj}}, ekde $2, $3.",
+    "wlnote": "Jen la {{PLURAL:$1|lasta redakto|lastaj <strong>$1</strong> redaktoj}} dum la {{PLURAL:$2|lasta horo|lastaj <strong>$2</strong> horoj}}, ekde $3, $4.",
     "wlshowlast": "Montri el lastaj $1 horoj $2 tagoj $3",
     "watchlist-options": "Opcioj por atentaro",
     "watching": "Aldonante al la atentaro...",

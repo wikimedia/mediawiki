@@ -1744,7 +1744,7 @@
     "watchmethod-list": "izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor",
     "watchlistcontains": "İzleme listenizde $1 tane {{PLURAL:$1|sayfa|sayfa}} var.",
     "iteminvalidname": "'$1' öğesi ile sorun, geçersiz isim...",
-    "wlnote2": "Aşağıdakiler, son {{PLURAL:$1|bir saat|<strong>$1</strong> saat}} içindeki değişikliklerdir, $2, $3 tarihi itibariyle.",
+    "wlnote": "$3 saat $4 itibariyle son {{PLURAL:$2|bir saatte|'''$2''' saatte}} yapılan {{PLURAL:$1|son değişiklik|son '''$1''' değişiklik}} aşağıdadır.",
     "wlshowlast": "Son $1 saati $2 günü göster $3",
     "watchlist-options": "İzleme listesi seçenekleri",
     "watching": "İzleniyor...",

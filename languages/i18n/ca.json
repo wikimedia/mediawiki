@@ -1742,7 +1742,7 @@
     "watchmethod-list": "s'està comprovant si hi ha edicions recents en les pàgines vigilades",
     "watchlistcontains": "La vostra llista de seguiment conté {{PLURAL:$1|una única pàgina|$1 pàgines}}.",
     "iteminvalidname": "Hi ha un problema amb l'element '$1': el nom no és vàlid...",
-    "wlnote2": "A continuació es presenten els canvis durant {{PLURAL:$1|l'última hora|les últimes <strong>$1</strong> hores}}, a partir de $2, $3.",
+    "wlnote": "A sota hi ha {{PLURAL:$1|el darrer canvi|els darrers '''$1''' canvis}} en {{PLURAL:$2|la darrera hora|les  '''$2''' darreres hores}}, a $4 del $3.",
     "wlshowlast": "<small>- Mostra les darreres $1 hores, els darrers $2 dies o $3</small>",
     "watchlist-options": "Opcions de la llista de seguiment",
     "watching": "S'està vigilant...",
