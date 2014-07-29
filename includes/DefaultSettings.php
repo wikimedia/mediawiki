@@ -4134,7 +4134,7 @@ $wgMinimalPasswordLength = 1;
  */
 $wgInvalidPasswordReset = true;
 
-/*
+/**
  * Default password type to use when hashing user passwords
  *
  * @since 1.24

@@ -24,7 +24,7 @@
  * A Bcrypt-hashed password
  *
  * This is a computationally complex password hash for use in modern applications.
- * The number of rounds can be configured by $wgPasswordCost.
+ * The number of rounds can be configured by $wgPasswordConfig['bcrypt']['cost'].
  *
  * @since 1.24
  */
