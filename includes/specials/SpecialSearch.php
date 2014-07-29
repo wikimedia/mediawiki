@@ -424,8 +424,10 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
+		$linkClass = 'createlink';
 		if ( $title->isKnown() ) {
 			$messageName = 'searchmenu-exists';
+			$linkClass = 'exists';
 		} elseif ( $title->quickUserCan( 'create', $this->getUser() ) ) {
 			$messageName = 'searchmenu-new';
 		} else {
@@ -440,7 +442,7 @@ class SpecialSearch extends SpecialPage {
 
 		// Extensions using the hook might still return an empty $messageName
 		if ( $messageName ) {
-			$this->getOutput()->wrapWikiMsg( "<p class=\"mw-search-createlink\">\n$1</p>", $params );
+			$this->getOutput()->wrapWikiMsg( "<p class=\"mw-search-$linkClass\">\n$1</p>", $params );
 		} else {
 			// preserve the paragraph for margins etc...
 			$this->getOutput()->addHtml( '<p></p>' );
