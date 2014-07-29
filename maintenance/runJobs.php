@@ -37,7 +37,7 @@ class RunJobs extends Maintenance {
 		$this->addOption( 'type', 'Type of job to run', false, true );
 		$this->addOption( 'procs', 'Number of processes to use', false, true );
 		$this->addOption( 'nothrottle', 'Ignore job throttling configuration', false, false );
-		$this->addOption( 'result', 'Set to JSON to print only a JSON response', false, false );
+		$this->addOption( 'result', 'Set to JSON to print only a JSON response', false, true );
 	}
 
 	public function memoryLimit() {
