@@ -1745,7 +1745,7 @@
 	"watchlist-details": "{{PLURAL:$1|$1 página|$1 páginas}} na sua lista de páginas vigiadas, excluindo as páginas de discussão.",
 	"wlheader-enotif": "A notificação por email encontra-se ativada.",
 	"wlheader-showupdated": "Páginas modificadas desde a sua última visita são mostradas em '''negrito'''",
-	"wlnote2": "A seguir estão as mudanças nas últimas {{PLURAL:$1|hora|<strong>$1</strong> horas}}, a partir de $2, $3.",
+	"wlnote": "A seguir {{PLURAL:$1|está a última alteração ocorrida|estão as últimas '''$1''' alterações ocorridas}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}} a partir de $3, $4.",
 	"wlshowlast": "Ver últimas $1 horas $2 dias $3",
 	"watchlist-options": "Opções da lista de páginas vigiadas",
 	"watching": "Vigiando...",

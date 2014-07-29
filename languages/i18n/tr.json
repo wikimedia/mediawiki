@@ -1720,7 +1720,7 @@
 	"watchlist-details": "Tartışma sayfaları hariç {{PLURAL:$1|$1 sayfa|$1 sayfa}} izleme listenizdedir.",
 	"wlheader-enotif": "E-posta bildirimi etkin.",
 	"wlheader-showupdated": "Sayfaları son ziyaretinizden beri değişen sayfalar '''kalın''' gösterilmiştir.",
-	"wlnote2": "Aşağıdakiler, son {{PLURAL:$1|bir saat|<strong>$1</strong> saat}} içindeki değişikliklerdir, $2, $3 tarihi itibariyle.",
+	"wlnote": "$3 saat $4 itibariyle son {{PLURAL:$2|bir saatte|'''$2''' saatte}} yapılan {{PLURAL:$1|son değişiklik|son '''$1''' değişiklik}} aşağıdadır.",
 	"wlshowlast": "Son $1 saati $2 günü göster $3",
 	"watchlist-options": "İzleme listesi seçenekleri",
 	"watching": "İzleniyor...",

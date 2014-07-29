@@ -1706,7 +1706,7 @@
 	"watchlist-details": "{{PLURAL:$1|$1 paĝo|$1 paĝoj}} en via atentaro, ne aparte kalkulante diskutpaĝojn.",
 	"wlheader-enotif": "Retpoŝta sciigo estas ŝalta.",
 	"wlheader-showupdated": "Paĝoj montriĝis per '''dikaj literoj''' kiuj estis ŝanĝitaj ekde vi laste vizitis.",
-	"wlnote2": "Malsupre estas la ŝanĝoj en la {{PLURAL:$1|lasta horo|lastaj <strong>$1</strong> horoj}}, ekde $2, $3.",
+	"wlnote": "Jen la {{PLURAL:$1|lasta redakto|lastaj <strong>$1</strong> redaktoj}} dum la {{PLURAL:$2|lasta horo|lastaj <strong>$2</strong> horoj}}, ekde $3, $4.",
 	"wlshowlast": "Montri el lastaj $1 horoj $2 tagoj $3",
 	"watchlist-options": "Opcioj por atentaro",
 	"watching": "Aldonante al la atentaro...",

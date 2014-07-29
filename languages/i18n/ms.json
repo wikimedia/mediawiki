@@ -1702,7 +1702,7 @@
 	"watchlist-details": "$1 laman dipantau ,tidak termasuk laman perbincangan.",
 	"wlheader-enotif": "Pemberitahuan melalui e-mel dibolehkan.",
 	"wlheader-showupdated": "Laman-laman yang telah diubah sejak kunjungan terakhir anda dipaparkan dalam '''teks tebal'''.",
-	"wlnote2": "Yang berikut adalah perubahan dalam {{PLURAL:$1|sejam|<strong>$1</strong> jam}} yang lepas, setakat $2, $3.",
+	"wlnote": "Berikut ialah {{PLURAL:$1|perubahan|'''$1''' perubahan}} yang terkini dalam {{PLURAL:$2|sejam|'''$2''' jam}} yang lalu, tepat pada $3, $4.",
 	"wlshowlast": "Tunjukkan $1 jam / $2 hari yang lalu / $3.",
 	"watchlist-options": "Pilihan senarai pantau",
 	"watching": "Memantau...",

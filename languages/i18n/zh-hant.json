@@ -1746,7 +1746,7 @@
 	"watchlist-details": "您的監視清單上共有 $1 個頁面 (不包含對話頁面)。",
 	"wlheader-enotif": "已開啟電子郵件通知功能。",
 	"wlheader-showupdated": "在您最後一次檢視過後修改的頁面會以 <strong>粗體</strong> 顯示。",
-	"wlnote2": "以下為截至 $2 $3 最近 <strong>$1</strong> 小時的變更。",
+	"wlnote": "截至$3 $4，以下是最近'''$2'''小時內的最後'''$1'''次修改。",
 	"wlshowlast": "顯示最近 $1 小時，$2 天，$3 的修改",
 	"watchlist-options": "監視清單選項",
 	"watching": "正在監視...",

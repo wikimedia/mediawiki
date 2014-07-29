@@ -1691,7 +1691,7 @@
 	"watchlist-details": "{{PLURAL:$1|$1 a panid|$1 a pampanid}} iti listaan ti bambantayam, a saan a naisina a mairaman dagiti panid ti tungtungan.",
 	"wlheader-enotif": "Napakabaelan ti panangipakaammo ti esurat.",
 	"wlheader-showupdated": "Dagiti panid a nasukatanen manipud ti kinaudi a panagsarungkarmo ket naipakita iti <strong>napuskol</strong>.",
-	"wlnote2": "Dita baba ket dagiti binalbaliwan {{PLURAL:$1|iti napalabas nga oras|kadagiti napalabas a <strong>$1</strong> nga oras}}, manipud idi $2, $3.",
+	"wlnote": "Adda dita baba {{PLURAL:$1|ti kaudian a panagsukat|dagiti kaudian a '''$1''' a panagsukat}} iti napalabas a {{PLURAL:$2|nga oras|'''$2''' nga or-oras}}, manipud idi $3, $4.",
 	"wlshowlast": "Ipakita dagiti naudi a $1 nga or-oras $2 nga al-aldaw $3",
 	"watchlist-options": "Dagiti pagpilian ti listaan a bambantayan",
 	"watching": "Bambantayan...",

@@ -1692,7 +1692,7 @@
 	"watchlist-details": "Jälgimisloendis on {{PLURAL:$1|üks lehekülg|$1 lehekülge}}. Arutelulehekülgi pole eraldi välja toodud.",
 	"wlheader-enotif": "E-posti teel teavitamine on lubatud.",
 	"wlheader-showupdated": "Leheküljed, mida on muudetud peale sinu viimast külastust, on '''rasvases kirjas'''.",
-	"wlnote2": "Allpool on viimase {{PLURAL:$1|tunni|<strong>$1</strong> tunni}} jooksul tehtud muudatused seisuga $2, $3.",
+	"wlnote": "Allpool on {{PLURAL:$1|viimane muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|tunni|'''$2''' tunni}} jooksul seisuga $3, $4.",
 	"wlshowlast": "Näita viimast $1 tundi $2 päeva. $3",
 	"watchlist-options": "Jälgimisloendi seaded",
 	"watching": "Jälgimine...",
