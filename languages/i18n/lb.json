@@ -1682,7 +1682,7 @@
 	"watchlist-details": "{{PLURAL:$1|1 Säit|$1 Säiten}} sinn op ärer Iwwerwaachungsklëscht, d'Diskussiounssäiten net matgezielt.",
 	"wlheader-enotif": "E-Mail-Notifikatioun ass ageschalt.",
 	"wlheader-showupdated": "Säiten déi zanter Ärer leschter Visite geännert goufen, si '''fett''' geschriwwen",
-	"wlnote2": "Hei sinn déi lescht Ännerunge aus {{PLURAL:$1|der leschter Stonn|de leschte(n) <strong>$1</strong> Stonnen}}, Stand: $2 ëm $3 Auer.“",
+	"wlnote": "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerunge}} vun {{PLURAL:$2|der leschter Stonn|de leschte(n) '''$2''' Stonnen}}, Stand: $3 ëm $4 Auer.",
 	"wlshowlast": "D'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg) weisen.",
 	"watchlist-options": "Optioune vun der Iwwerwaachungslëscht",
 	"watching": "Iwwerwaachen …",

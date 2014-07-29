@@ -1375,6 +1375,7 @@
 	"watchlist-details": "İzləmə siyahınızda, müzakirə səhifələrini çıxmaq şərtilə, {{PLURAL:$1|$1 səhifə|$1 səhifə}} var.",
 	"wlheader-enotif": " E-məktubla bildiriş aktivdir.",
 	"wlheader-showupdated": "Son ziyarətinizdən sonra edilən dəyişikliklər '''qalın şriftlərlə''' göstərilmişdir.",
+	"wlnote": "Aşağıdakı {{PLURAL:$1|'''$1''' dəyişiklik|'''$1''' dəyişiklik}} son {{PLURAL:$2|saatda|'''$2''' saatda}} edilmişdir.",
 	"wlshowlast": "Bunları göstər: son $1 saatı $2 günü $3",
 	"watchlist-options": "İzləmə siyahısının nizamlamaları",
 	"watching": "İzlənilir...",

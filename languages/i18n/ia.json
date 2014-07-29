@@ -1704,7 +1704,7 @@
 	"watchlist-details": "{{PLURAL:$1|$1 pagina|$1 paginas}} in tu observatorio. Le paginas de discussion non es contate separatemente.",
 	"wlheader-enotif": "Le notification via e-mail es active.",
 	"wlheader-showupdated": "Le paginas que ha essite modificate post tu ultime visita se monstra in litteras '''grasse'''.",
-	"wlnote2": "Ecce le cambiamentos in le ultime {{PLURAL:$1|hora|<strong>$1</strong> horas}}, a partir del $2 a $3.",
+	"wlnote": "Ecce le ultime {{PLURAL:$1|modification|'''$1''' modificationes}} durante le ultime {{PLURAL:$2|hora|'''$2''' horas}}, a partir del $3 a $4.",
 	"wlshowlast": "Revelar ultime $1 horas $2 dies $3",
 	"watchlist-options": "Optiones del observatorio",
 	"watching": "Observation in curso...",

@@ -1655,7 +1655,7 @@
 	"watchlist-details": "{{PLURAL:$1|$1 page|$1 pages}} oan yer watchleet, no coontin tauk pages seperatlie.",
 	"wlheader-enotif": "Wab-mail annooncemant is enabled.",
 	"wlheader-showupdated": "Pages that hae been chynged sin ye last veesitit thaim ar shawn in '''baud'''.",
-	"wlnote2": "Ablo ar the chynges in the hainmaist {{PLURAL:$1|hoor|<strong>$1</strong> hours}}, aes o $3, $2.",
+	"wlnote": "Ablo {{PLURAL:$1|is the laist chynge|ae the laist '''$1''' chynges}} in the laist {{PLURAL:$2|hoor|'''$2''' hoors}}, aes o $3, $4.",
 	"wlshowlast": "Shaw hainmaist $1 hoors $2 days $3",
 	"watchlist-options": "Watchleet opties",
 	"watching": "Watchin...",

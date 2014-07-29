@@ -1761,7 +1761,7 @@
 	"watchlist-details": "Lista obserwowanych przez Ciebie stron zawiera {{PLURAL:$1|$1 pozycję|$1 pozycje|$1 pozycji}}, nie licząc oddzielnie stron dyskusji.",
 	"wlheader-enotif": "Wysyłanie powiadomień na adres e‐mail jest włączone.",
 	"wlheader-showupdated": "'''Wytłuszczone''' zostały strony, które zostały zmodyfikowane od Twojej ostatniej wizyty na nich.",
-	"wlnote2": "Poniżej pokazano zmiany wykonane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich <strong>$1</strong> godzin}}, licząc od $2, $3.",
+	"wlnote": "Poniżej pokazano {{PLURAL:$1|zmianę wykonaną|'''$1''' zmiany wykonane|'''$1''' zmian wykonanych}} w ciągu {{PLURAL:$2|ostatniej godziny|ostatnich '''$2''' godzin}}, licząc od $4 dnia $3.",
 	"wlshowlast": "Pokaż ostatnie $1 godzin, $2 dni ($3)",
 	"watchlist-options": "Opcje obserwowanych",
 	"watching": "Dodaję do obserwowanych...",

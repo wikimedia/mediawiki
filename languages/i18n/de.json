@@ -1773,7 +1773,7 @@
 	"watchlist-details": "Du beobachtest {{PLURAL:$1|eine Seite|$1 Seiten}}, ohne dass Diskussionsseiten getrennt gezählt werden.",
 	"wlheader-enotif": "Der E-Mail-Benachrichtigungsdienst ist aktiviert.",
 	"wlheader-showupdated": "Seiten mit noch nicht gesehenen Änderungen werden '''fett''' dargestellt.",
-	"wlnote2": "Es folgen die Änderungen der letzten {{PLURAL:$1|Stunde|<strong>$1</strong> Stunden}}. Stand: $2, $3.",
+	"wlnote": "Es {{PLURAL:$1|folgt die letzte Änderung|folgen die letzten <strong>$1</strong> Änderungen}} der letzten {{PLURAL:$2|Stunde|<strong>$2</strong> Stunden}}. Stand: $3, $4 Uhr.",
 	"wlshowlast": "Zeige die Änderungen der letzten $1 Stunden, $2 Tage oder $3.",
 	"watchlist-options": "Anzeigeoptionen",
 	"watching": "Beobachten …",
