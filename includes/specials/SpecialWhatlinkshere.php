@@ -163,14 +163,17 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			if ( $wgUseLinkNamespaceDBFields ) { // migration check
 				$on['rd_namespace'] = $target->getNamespace();
 			}
-			// Inner LIMIT is 2X in case of stale backlinks with no page
+			// Inner LIMIT is 2X in case of stale backlinks with wrong namespaces
 			$subQuery = $dbr->selectSqlText(
-				array( $table, 'redirect' ),
+				array( $table, 'page', 'redirect' ),
 				array( $fromCol, 'rd_from' ),
 				$conds[$table],
 				__CLASS__ . '::showIndirectLinks',
 				array( 'ORDER BY' => $fromCol, 'LIMIT' => 2 * $queryLimit ),
-				array( 'redirect' => array( 'LEFT JOIN', $on ) )
+				array(
+					'page' => array( 'INNER JOIN', "$fromCol = page_id" ),
+					'redirect' => array( 'LEFT JOIN', $on )
+				)
 			);
 			return $dbr->select(
 				array( 'page', 'temp_backlink_range' => "($subQuery)" ),
