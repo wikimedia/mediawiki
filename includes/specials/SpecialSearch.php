@@ -1093,7 +1093,7 @@ class SpecialSearch extends SpecialPage {
 		) . "\n";
 
 		// Results-info
-		if ( $totalNum > 0 ) {
+		if ( $totalNum > 0 && $this->offset < $totalNum ) {
 			$top = $this->msg( 'showingresultsheader' )
 				->numParams( $this->offset + 1, $this->offset + $resultsShown, $totalNum )
 				->params( wfEscapeWikiText( $term ) )
