@@ -13,13 +13,13 @@
 @captchaContainerWidth: 290px;
 @defaultFormWidth: @captchaContainerWidth;
 
-// Forms
+// VForm
 //
 // Styleguide 3.
 
 // VForm
 //
-// Style a compact vertical stacked form ("VForm") and the elements in divs
+// Style a fixed width compact vertical stacked form ("VForm") and the elements in divs
 // within it. See button and inputs section on guidance of how and when to use them.
 //
 // Markup:
@@ -28,6 +28,10 @@
 //   <div class="mw-ui-vform-field">
 //     <label>Username </label>
 //     <input class="mw-ui-input" value="input">
+//     <input type="checkbox"><label class="mw-ui-label">label</label>
+//     <select class="mw-ui-input" value="input">
+//       <option>foo</option>
+//     </select>
 //   </div>
 //   <div class="mw-ui-vform-field">
 //     <button class="mw-ui-button mw-ui-constructive">Button in vform</button>
@@ -41,6 +45,7 @@
 	width: @defaultFormWidth;
 
 	// MW currently doesn't use the type attribute everywhere on inputs.
+	label,
 	select,
 	.mw-ui-button {
 		display: block;
@@ -49,19 +54,9 @@
 		width: 100%;
 	}
 
-	// Give dropdown lists the same spacing as input fields for consistency.
-	// Values taken from .agora-field-styling() in mixins/form.less
-	select {
-		padding: 0.35em 0.5em 0.35em 0.5em;
-		vertical-align: middle;
-	}
-
 	label {
-		display: block;
-		.box-sizing(border-box);
-		.agora-label-styling();
 		width: auto;
-		margin: 0 0 0.2em;
+		margin-bottom: .2em;
 		padding: 0;
 	}
 
@@ -74,7 +69,7 @@
 	}
 
 
-	// Styles for information boxes
+	// VForm errors and warning boxes
 	//
 	// Regular HTMLForm uses .error class, some special pages like
 	// SpecialUserlogin (login and create account) use .errorbox.
@@ -92,18 +87,11 @@
 	//     <input type="text" value="input" class="mw-ui-input">
 	//   </div>
 	//   <div class="mw-ui-vform-field">
-	//     <select>
-	//       <option value="1">Option 1</option>
-	//       <option value="2">Option 2</option>
-	//     </select>
-	//     <span class="error">The value you specified is not a valid option.</span>
-	//   </div>
-	//   <div class="mw-ui-vform-field">
-	//     <button class="mw-ui-button">Button in vform</button>
+	//     <button class="mw-ui-button mw-ui-constructive">Button in vform</button>
 	//   </div>
 	// </form>
 	//
-	// Styleguide 3.1.
+	// Styleguide 3.2.
 	.error,
 	.errorbox,
 	.warningbox,
@@ -152,18 +140,57 @@
 	width: 100%;
 }
 
-// Apply mw-ui-label to individual elements to style them.
-// You generally don't need to use this class if <label> is within an Agora
-// form container such as mw-ui-vform
+// Labels
+//
+// Styleguide 4.
+
+// Labels (block)
+//
+// Apply mw-ui-label to individual elements to style them. All text inside
+// a label should be normal font weight.
+//
+// Markup:
+// <label class="mw-ui-label">Label for input:</label>
+// <input class="mw-ui-input">
+//
+// Styleguide 4.1.
 .mw-ui-label {
-	.agora-label-styling(); // mixins/forms.less
+	font-size: 0.9em;
+	color: @colorText;
+
+	* {
+		font-weight: normal;
+	}
 }
 
-// Nesting an input checkbox or radio button inside a label with this class
-// improves alignment, e.g.
-//	<label class="mw-ui-checkbox-label">
-//		<input type="checkbox">The label text
-//	</label>
-.mw-ui-checkbox-label, .mw-ui-radio-label {
-	.agora-inline-label-styling();
+// Inline labels
+//
+// Labels for checkboxes and radio buttons should be inline.
+//
+// Markup:
+// <div>
+//   <input type="checkbox"><label class="mw-ui-checkbox-label">checkbox label text</label>
+// </div>
+// <div>
+//   <input type="radio"><label class="mw-ui-radio-label">radio label text</label>
+// </div>
+//
+// Styleguide 4.2.
+.mw-ui-checkbox-label,
+.mw-ui-radio-label {
+	margin-bottom: 0.5em;
+	cursor: pointer;
+	vertical-align: bottom;
+	line-height: normal;
+	font-weight: normal;
+
+	& > input[type="checkbox"],
+	& > input[type="radio"] {
+		width: auto;
+		height: auto;
+		margin: 0 0.1em 0 0;
+		padding: 0;
+		border: 1px solid @colorFieldBorder;
+		cursor: pointer;
+	}
 }
