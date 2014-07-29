@@ -168,10 +168,12 @@ class ApiFeedWatchlist extends ApiBase {
 		$title = Title::newFromText( $titleStr );
 		if ( isset( $info['revid'] ) ) {
 			$titleUrl = $title->getFullURL( array( 'diff' => $info['revid'] ) );
+			$rev = Revision::newFromId( (int)$info['revid'] );
+			$completeText = $this->feedItemDesc( $rev );
 		} else {
 			$titleUrl = $title->getFullURL();
+			$completeText = '';
 		}
-		$comment = isset( $info['comment'] ) ? $info['comment'] : null;
 
 		// Create an anchor to section.
 		// The anchor won't work for sections that have dupes on page
@@ -190,9 +192,31 @@ class ApiFeedWatchlist extends ApiBase {
 		$timestamp = $info['timestamp'];
 		$user = $info['user'];
 
-		$completeText = "$comment ($user)";
-
 		return new FeedItem( $titleStr, $completeText, $titleUrl, $timestamp, $user );
+	}
+
+	/**
+	 * @param Revision $revision
+	 * @return string
+	 */
+	protected function feedItemDesc( $revision ) {
+		if ( $revision ) {
+			$msg = wfMessage( 'colon-separator' )->inContentLanguage()->text();
+
+			$html = FeedUtils::formatDiffRow(
+				$revision->getTitle(),
+				$revision->getTitle()->getPreviousRevisionID( $revision->getId() ),
+				$revision->getId(),
+				$revision->getTimestamp(),
+				$revision->getComment()
+			);
+
+			return '<p>' . htmlspecialchars( $revision->getUserText() ) . $msg .
+				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
+				"</p>\n<hr />\n<div>" . $html . "</div>";
+		}
+
+		return '';
 	}
 
 	private function getWatchlistModule() {
