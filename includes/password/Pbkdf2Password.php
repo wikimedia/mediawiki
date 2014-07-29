@@ -51,8 +51,8 @@ class Pbkdf2Password extends ParameterizedPassword {
 				$this->params['algo'],
 				$password,
 				base64_decode( $this->args[0] ),
-				$this->params['rounds'],
-				$this->params['length'],
+				(int)$this->params['rounds'],
+				(int)$this->params['length'],
 				true
 			);
 		} else {
