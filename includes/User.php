@@ -39,14 +39,6 @@ define( 'MW_USER_VERSION', 10 );
 define( 'EDIT_TOKEN_SUFFIX', '+\\' );
 
 /**
- * Thrown by User::setPassword() on error.
- * @ingroup Exception
- */
-class PasswordError extends MWException {
-	// NOP
-}
-
-/**
  * The User object encapsulates all of the user-specific settings (user_id,
  * name, rights, password, email address, options, last login time). Client
  * classes use the getXXX() functions to access these fields. These functions
