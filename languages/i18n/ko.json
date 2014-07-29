@@ -1728,7 +1728,7 @@
     "watchmethod-list": "최근 편집을 확인하고자 주시된 문서 확인",
     "watchlistcontains": "{{PLURAL:$1|문서 $1개}}를 주시하고 있습니다.",
     "iteminvalidname": "'$1' 항목에 문제가 발생했습니다. 이름이 잘못되었습니다...",
-    "wlnote2": "아래는 $2, $3 기준으로 지난 {{PLURAL:$1|한 시간|<strong>$1</strong>시간}} 동안의 바뀜입니다.",
+    "wlnote": "다음은 최근 {{PLURAL:$2|'''$2'''시간}} 동안 {{PLURAL:$1|바뀐 문서 '''$1'''개 입니다}}. ($3 $4 기준)",
     "wlshowlast": "최근 $1시간 $2일 또는 $3 동안에 바뀐 문서 보기",
     "watchlist-options": "주시문서 목록 설정",
     "watching": "주시 추가 중…",

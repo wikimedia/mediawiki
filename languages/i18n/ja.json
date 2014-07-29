@@ -1762,7 +1762,7 @@
     "watchmethod-list": "ウォッチされているページ内の最近の更新を確認中",
     "watchlistcontains": "ウォッチリストには {{PLURAL:$1|$1 ページ}}が登録されています。",
     "iteminvalidname": "項目「$1」には問題があります。名前が無効です...",
-    "wlnote2": "以下は $2 $3 までの {{PLURAL:$1|<strong>$1</strong> 時間}}でなされた変更です。",
+    "wlnote": "$3 $4 までの{{PLURAL:$2|<strong>$2</strong>時間}}になされた{{PLURAL:$1|<strong>$1</strong>件の変更}}は以下の通りです。",
     "wlshowlast": "次の期間で表示: $1時間、$2日間、$3",
     "watchlist-options": "ウォッチリストのオプション",
     "watching": "ウォッチリストに追加中...",

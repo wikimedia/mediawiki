@@ -1704,7 +1704,7 @@
     "watchmethod-list": "cerca modificationes recente in paginas sub observation",
     "watchlistcontains": "Tu observatorio contine $1 {{PLURAL:$1|pagina|paginas}}.",
     "iteminvalidname": "Problema con entrata '$1', nomine invalide...",
-    "wlnote2": "Ecce le cambiamentos in le ultime {{PLURAL:$1|hora|<strong>$1</strong> horas}}, a partir del $2 a $3.",
+    "wlnote": "Ecce le ultime {{PLURAL:$1|modification|'''$1''' modificationes}} durante le ultime {{PLURAL:$2|hora|'''$2''' horas}}, a partir del $3 a $4.",
     "wlshowlast": "Revelar ultime $1 horas $2 dies $3",
     "watchlist-options": "Optiones del observatorio",
     "watching": "Observation in curso...",

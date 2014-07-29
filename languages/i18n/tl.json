@@ -1641,7 +1641,6 @@
     "watchmethod-list": "sinusuri ang binabantayang mga pahina para sa mga kamakailan lamang na mga pagbabago",
     "watchlistcontains": "Naglalaman ng $1 {{PLURAL:$1|pahina|mga pahina}} ang iyong talaan ng mga binabantayan.",
     "iteminvalidname": "May suliranin ang bagay na '$1', hindi tanggap na pangalan...",
-    "wlnote2": "Nasa ibaba ang mga pagbabago sa nakaraang {{PLURAL:$1|oras|<strong>$1",
     "wlshowlast": "Ipakita ang huling $1 mga oras $2 mga araw $3",
     "watchlist-options": "Mga pagpipilian para sa talaan ng mga binabantayan",
     "watching": "Isinasama sa mga binabantayan...",

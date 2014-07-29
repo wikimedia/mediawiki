@@ -1782,7 +1782,7 @@
     "watchmethod-list": "查看监视页中的最新修改",
     "watchlistcontains": "您的监视列表包含$1个页面。",
     "iteminvalidname": "页面'$1'错误，无效命名...",
-    "wlnote2": "下面是最近{{PLURAL:$1|<strong>$1</strong>小时}}的更改，截至$2 $3。",
+    "wlnote": "下面是{{PLURAL:$2|过去'''$2'''小时}}的{{PLURAL:$1|最后'''$1'''个更改}}，截至$3 $4。",
     "wlshowlast": "显示过去$1小时$2天$3",
     "watchlist-options": "监视列表选项",
     "watching": "正在监视...",

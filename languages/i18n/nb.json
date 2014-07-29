@@ -1741,7 +1741,7 @@
     "watchmethod-list": "sjekker siste endringer for sider i overvåkningslisten",
     "watchlistcontains": "Overvåkningslisten inneholder $1 {{PLURAL:$1|side|sider}}.",
     "iteminvalidname": "Problem med «$1», ugyldig navn&nbsp;…",
-    "wlnote2": "Nedenfor er endringene {{PLURAL:$1|den siste timen|de siste <strong>$1</strong> timene}}, per $2 $3.",
+    "wlnote": "Nedenfor er {{PLURAL:$1|den siste endringen|de siste '''$1''' endringene}} {{PLURAL:$2|den siste timen|de siste '''$2''' timene}}, fra den $3, kl. $4",
     "wlshowlast": "Vis siste $1 timer $2 dager $3",
     "watchlist-options": "Alternativ for overvåkningslisten",
     "watching": "Overvåker…",

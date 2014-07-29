@@ -1682,7 +1682,7 @@
     "watchmethod-list": "checking watched pages fer recent eedits",
     "watchlistcontains": "Yer watchleet contains $1 {{PLURAL:$1|page|pages}}.",
     "iteminvalidname": "Proablem wi eetem '$1', onvalit name...",
-    "wlnote2": "Ablo ar the chynges in the hainmaist {{PLURAL:$1|hoor|<strong>$1</strong> hours}}, aes o $3, $2.",
+    "wlnote": "Ablo {{PLURAL:$1|is the laist chynge|ae the laist '''$1''' chynges}} in the laist {{PLURAL:$2|hoor|'''$2''' hoors}}, aes o $3, $4.",
     "wlshowlast": "Shaw lest $1 hours $2 days $3",
     "watchlist-options": "Watchleet options",
     "watching": "Watchin...",

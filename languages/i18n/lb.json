@@ -1693,7 +1693,7 @@
     "watchmethod-list": "Iwwerwaachte Säite ginn op rezent Ännerungen iwwerpréift",
     "watchlistcontains": "Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.",
     "iteminvalidname": "Problem mam Element '$1', ongëltegen Numm ...",
-    "wlnote2": "Hei sinn déi lescht Ännerunge aus {{PLURAL:$1|der leschter Stonn|de leschte(n) <strong>$1</strong> Stonnen}}, Stand: $2 ëm $3 Auer.“",
+    "wlnote": "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerunge}} vun {{PLURAL:$2|der leschter Stonn|de leschte(n) '''$2''' Stonnen}}, Stand: $3 ëm $4 Auer.",
     "wlshowlast": "D'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg) weisen.",
     "watchlist-options": "Optioune vun der Iwwerwaachungslëscht",
     "watching": "Iwwerwaachen …",

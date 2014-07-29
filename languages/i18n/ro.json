@@ -1727,7 +1727,7 @@
     "watchmethod-list": "căutarea paginilor urmărite pentru schimbări recente",
     "watchlistcontains": "Lista de pagini urmărite conține $1 {{PLURAL:$1|element|elemente|de elemente}}.",
     "iteminvalidname": "E o problemă cu elementul '$1', numele este invalid...",
-    "wlnote2": "Mai jos se află schimbările din {{PLURAL:$1|ultima oră|ultimele <strong>$1</strong> ore|ultimele <strong>$1</strong> de ore}}, așa cum era situația la $2, $3.",
+    "wlnote": "Mai jos se află {{PLURAL:$1|ultima schimbare|ultimele <strong>$1</strong> schimbări|ultimele <strong>$1</strong> de schimbări}} din {{PLURAL:$2|ultima oră|ultimele <strong>$2</strong> ore|ultimele <strong>$2</strong> de ore}}, așa cum era situația la $3, $4.",
     "wlshowlast": "Arată ultimele $1 ore $2 zile $3",
     "watchlist-options": "Opțiuni listă de pagini urmărite",
     "watching": "Se urmărește...",

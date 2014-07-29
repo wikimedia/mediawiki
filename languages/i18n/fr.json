@@ -1816,7 +1816,7 @@
     "watchmethod-list": "vérification des pages suivies pour y trouver des modifications récentes",
     "watchlistcontains": "Votre liste de suivi référence $1 page{{PLURAL:$1||s}}.",
     "iteminvalidname": "Problème avec l'élément « $1 » : le nom est invalide.",
-    "wlnote2": "Ci-dessous les modifications dans {{PLURAL:$1|la dernière heure|les <strong>$1</strong> dernières heures}}, à partir de $2, $3.",
+    "wlnote": "Ci-dessous {{PLURAL:$1|figure la dernière modification effectuée|figurent les '''$1''' dernières modifications effectuées}} durant {{PLURAL:$2|la dernière heure|les '''$2''' dernières heures}}, depuis $3, $4.",
     "wlshowlast": "Montrer les dernières $1 heures, les derniers $2 jours ou bien $3",
     "watchlist-options": "Options de la liste de suivi",
     "watching": "Suivi…",

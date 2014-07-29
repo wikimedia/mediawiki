@@ -1734,7 +1734,7 @@
     "watchmethod-list": "hledají se nejnovější editace sledovaných stránek",
     "watchlistcontains": "Na vašem seznamu sledovaných stránek {{PLURAL:$1|je $1 položka|jsou $1 položky|je $1 položek}}.",
     "iteminvalidname": "Problém s položkou „$1“, neplatný název…",
-    "wlnote2": "Níže jsou změny za {{PLURAL:$1|poslední hodinu|poslední <strong>$1</strong> hodiny|posledních <strong>$1</strong> hodin}} do $3, $2.",
+    "wlnote": "Níže {{PLURAL:$1|je poslední změna|jsou poslední '''$1''' změny|je posledních '''$1''' změn}} za {{PLURAL:$2|poslední hodinu|poslední '''$2''' hodiny|posledních '''$2''' hodin}} do $4, $3.",
     "wlshowlast": "Ukázat posledních $1 hodin $2 dnů $3",
     "watchlist-options": "Možnosti sledovaných stránek",
     "watching": "Přidávám na seznam sledovaných stránek…",

@@ -1787,7 +1787,7 @@
     "watchmethod-list": "Überprüfen der Beobachtungsliste nach letzten Bearbeitungen",
     "watchlistcontains": "Deine Beobachtungsliste enthält $1 {{PLURAL:$1|Seite|Seiten}}.",
     "iteminvalidname": "Problem mit dem Eintrag „$1“, ungültiger Name.",
-    "wlnote2": "Es folgen die Änderungen der letzten {{PLURAL:$1|Stunde|<strong>$1</strong> Stunden}}. Stand: $2, $3.",
+    "wlnote": "Es {{PLURAL:$1|folgt die letzte Änderung|folgen die letzten <strong>$1</strong> Änderungen}} der letzten {{PLURAL:$2|Stunde|<strong>$2</strong> Stunden}}. Stand: $3, $4 Uhr.",
     "wlshowlast": "Zeige die Änderungen der letzten $1 Stunden, $2 Tage oder $3.",
     "watchlist-options": "Anzeigeoptionen",
     "watching": "Beobachten …",

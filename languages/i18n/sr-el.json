@@ -1665,7 +1665,7 @@
     "watchmethod-list": "proverava se da li ima skorašnjih izmena u nadgledanim stranicama",
     "watchlistcontains": "Vaš spisak nadgledanja sadrži $1 {{PLURAL:$1|stranicu|stranice|stranica}}.",
     "iteminvalidname": "Problem sa stavkom „$1“. Neispravan naziv.",
-    "wlnote2": "Ispod su prikazane izmene u {{PLURAL:$1|poslednjih jedan sat|poslednjih <strong>$1</strong> sata}} zaključno sa $2, $3.",
+    "wlnote": "Ispod {{PLURAL:$1|je poslednja izmena|su poslednje '''$1''' izmene|je poslednjih '''$1''' izmena}} u {{PLURAL:$2|prethodnom satu|prethodna '''$2''' sata|prethodnih '''$2''' sati}}, zaključno sa $3, $4.",
     "wlshowlast": "Prikaži poslednjih $1 sati, $2 dana, $3",
     "watchlist-options": "Postavke spiska nadgledanja",
     "watching": "Nadgledanje…",

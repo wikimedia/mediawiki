@@ -1711,7 +1711,6 @@
     "watchmethod-list": "Pśepytanje wobglědowanych bokow za aktualnymi změnami",
     "watchlistcontains": "Twója wobglědowańka wopśimujo $1 {{PLURAL:$1|bok|boka|boki|bokow}}.",
     "iteminvalidname": "Problem ze zapisom „$1“, njepłaśece mě.",
-    "wlnote2": "Slěduju změny {{PLURAL:$1|zachadneje góźiny|zachadneju <strong>$1</strong> góźinowu|zachadnych <strong>$1</strong> góźinow}} Staw: $2, $3.",
     "wlshowlast": "Pokaž změny slědnych $1 góźinow, $2 dnjow abo $3 (w slědnych 30 dnjach).",
     "watchlist-options": "Opcije wobglědowańki",
     "watching": "Wobglědowaś …",

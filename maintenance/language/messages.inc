@@ -2052,7 +2052,7 @@ $wgMessageStructure = array(
 		'watchmethod-list',
 		'watchlistcontains',
 		'iteminvalidname',
-		'wlnote2',
+		'wlnote',
 		'wlshowlast',
 		'watchlist-options',
 	),

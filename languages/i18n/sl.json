@@ -1716,7 +1716,7 @@
     "watchmethod-list": "med spremljanimi stranmi iščem nedavna urejanja",
     "watchlistcontains": "Spremljate $1 {{PLURAL:$1|stran|strani}}.",
     "iteminvalidname": "Težava z izbiro »$1«, neveljavno ime ...",
-    "wlnote2": "Spodaj so navedene spremembe v {{PLURAL:$1|zadnji uri|zadnjih <strong>$1</strong> urah}}, od $2, $3.",
+    "wlnote": "{{PLURAL:$1|Navedena je zadnja|Navedeni sta zadnji|Navedene so zadnje|Navedenih je zadnjih}} '''$1''' {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb}} v {{PLURAL:$2|zadnji '''$2''' uri|zadnjih '''$2''' urah}}, od $3, $4.",
     "wlshowlast": "Prikaži zadnjih $1 ur; $2 dni; $3;",
     "watchlist-options": "Možnosti spiska nadzorov",
     "watching": "Nadziranje ...",

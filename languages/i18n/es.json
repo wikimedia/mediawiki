@@ -1805,7 +1805,7 @@
     "watchmethod-list": "revisando las páginas vigiladas en busca de cambios recientes",
     "watchlistcontains": "Tu lista de seguimiento posee $1 {{PLURAL:$1|página|páginas}}.",
     "iteminvalidname": "Problema con el artículo '$1', nombre inválido...",
-    "wlnote2": "A continuación se muestran los cambios de  {{PLURAL:$1|la última hora|las últimas <strong>$1</strong> horas}}, a partir del $2, $3.",
+    "wlnote": "A continuación {{PLURAL:$1|se muestra el último cambio|se muestran los últimos '''$1''' cambios}} en {{PLURAL:$2|la última hora|las últimas '''$2''' horas}} a fecha de $4 $3.",
     "wlshowlast": "Ver los cambios de las últimas $1 horas, $2 días  $3",
     "watchlist-options": "Opciones de la lista de seguimiento",
     "watching": "Vigilando...",

@@ -1689,7 +1689,7 @@
     "watchmethod-list": "kitkitaen dagiti bambantayan a panid kadagiti kinaudi nga inurnos",
     "watchlistcontains": "Ti listaan ti bambantayam ket aglaon ti $1 {{PLURAL:$1|a panid|a pampanid}}.",
     "iteminvalidname": "Parikut iti banag '$1', imbalido a nagan...",
-    "wlnote2": "Dita baba ket dagiti binalbaliwan {{PLURAL:$1|iti napalabas nga oras|kadagiti napalabas a <strong>$1</strong> nga oras}}, manipud idi $2, $3.",
+    "wlnote": "Adda dita baba {{PLURAL:$1|ti kaudian a panagsukat|dagiti kaudian a '''$1''' a panagsukat}} iti napalabas a {{PLURAL:$2|nga oras|'''$2''' nga or-oras}}, manipud idi $3, $4.",
     "wlshowlast": "Ipakita dagiti naudi a $1 nga or-oras $2 nga al-aldaw $3",
     "watchlist-options": "Dagiti pagpilian ti listaan a bambantayan",
     "watching": "Bambantayan...",
