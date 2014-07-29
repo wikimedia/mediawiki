@@ -21,7 +21,7 @@
  */
 
 /**
- * @since 1.23
+ * @since 1.24
  */
 abstract class MediaWikiPasswordTestCase extends MediaWikiTestCase {
 	/**

@@ -29,7 +29,7 @@ final class PasswordFactory {
 	/**
 	 * The default PasswordHash type
 	 *
-*@var string
+	 * @var string
 	 * @see PasswordFactory::setDefaultType
 	 */
 	private $default = '';

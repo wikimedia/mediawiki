@@ -4614,10 +4614,10 @@ class User implements IDBAccessObject {
 	 * @param bool|string $salt Optional salt, may be random or the user ID.
 	 *  If unspecified or false, will generate one automatically
 	 * @return string Password hash
-	 * @deprecated since 1.23, use Password class
+	 * @deprecated since 1.24, use Password class
 	 */
 	public static function crypt( $password, $salt = false ) {
-		wfDeprecated( __METHOD__, '1.23' );
+		wfDeprecated( __METHOD__, '1.24' );
 		$hash = self::getPasswordFactory()->newFromPlaintext( $password );
 		return $hash->toString();
 	}
@@ -4631,10 +4631,10 @@ class User implements IDBAccessObject {
 	 * @param string|bool $userId User ID for old-style password salt
 	 *
 	 * @return bool
-	 * @deprecated since 1.23, use Password class
+	 * @deprecated since 1.24, use Password class
 	 */
 	public static function comparePasswords( $hash, $password, $userId = false ) {
-		wfDeprecated( __METHOD__, '1.23' );
+		wfDeprecated( __METHOD__, '1.24' );
 
 		// Check for *really* old password hashes that don't even have a type
 		// The old hash format was just an md5 hex hash, with no type information
