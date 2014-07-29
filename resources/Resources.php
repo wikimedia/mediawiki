@@ -1027,6 +1027,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.util',
 			'mediawiki.page.startup',
+			'user.options',
 		),
 	),
 	'mediawiki.action.view.metadata' => array(

@@ -4,9 +4,12 @@
 ( function ( mw, $ ) {
 	$( function () {
 		mw.util.$content.dblclick( function ( e ) {
-			e.preventDefault();
-			// Trigger native HTMLElement click instead of opening URL (bug 43052)
-			$( '#ca-edit a' ).get( 0 ).click();
+			// Recheck preference so extensions can do a hack to disable this code.
+			if ( parseInt( mw.user.options.get( 'editondblclick' ), 10 ) ) {
+				e.preventDefault();
+				// Trigger native HTMLElement click instead of opening URL (bug 43052)
+				$( '#ca-edit a' ).get( 0 ).click();
+			}
 		} );
 	} );
 }( mediaWiki, jQuery ) );
