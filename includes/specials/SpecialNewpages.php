@@ -294,6 +294,19 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	/**
+	 * @param stdClass $row Result row from recent changes
+	 * @return Revision|bool
+	 */
+	protected function revisionFromRcResult( stdClass $result ) {
+		return new Revision( [
+			'comment' => $result->rc_comment,
+			'deleted' => $result->rc_deleted,
+			'user_text' => $result->rc_user_text,
+			'user' => $result->rc_user,
+		] );
+	}
+
+	/**
 	 * Format a row, providing the timestamp, links to the page/history,
 	 * size, user links, and a comment
 	 *
@@ -303,14 +316,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 	public function formatRow( $result ) {
 		$title = Title::newFromRow( $result );
 
-		# Revision deletion works on revisions, so we should cast one
-		$row = [
-			'comment' => $result->rc_comment,
-			'deleted' => $result->rc_deleted,
-			'user_text' => $result->rc_user_text,
-			'user' => $result->rc_user,
-		];
-		$rev = new Revision( $row );
+		// Revision deletion works on revisions,
+		// so cast our recent change row to a revision row.
+		$rev = $this->revisionFromRcResult( $result );
 		$rev->setTitle( $title );
 
 		$classes = [];
@@ -477,7 +485,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItemDesc( $row ) {
-		$revision = Revision::newFromId( $row->rev_id );
+		$revision = $this->revisionFromRcResult( $row );
 		if ( $revision ) {
 			// XXX: include content model/type in feed item?
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) .
