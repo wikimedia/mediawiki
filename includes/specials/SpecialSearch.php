@@ -82,7 +82,8 @@ class SpecialSearch extends SpecialPage {
 		$out = $this->getOutput();
 		$out->allowClickjacking();
 		$out->addModuleStyles( array(
-			'mediawiki.special', 'mediawiki.special.search', 'mediawiki.ui', 'mediawiki.ui.button'
+			'mediawiki.special', 'mediawiki.special.search', 'mediawiki.ui', 'mediawiki.ui.button',
+			'mediawiki.ui.input',
 		) );
 
 		// Strip underscores from title parameter; most of the time we'll want
@@ -1081,7 +1082,7 @@ class SpecialSearch extends SpecialPage {
 			'id' => $this->profile === 'advanced' ? 'powerSearchText' : 'searchText',
 			'size' => '50',
 			'autofocus',
-			'class' => 'mw-ui-input',
+			'class' => 'mw-ui-input mw-ui-input-inline',
 		) ) . "\n";
 		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
 		$out .= Xml::submitButton(
