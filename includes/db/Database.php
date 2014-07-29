@@ -3288,7 +3288,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	protected function runOnTransactionIdleCallbacks() {
 		$autoTrx = $this->getFlag( DBO_TRX ); // automatic begin() enabled?
 
-		$e = null; // last exception
+		$e = $ePrior = null; // last exception
 		do { // callbacks may add callbacks :)
 			$callbacks = $this->mTrxIdleCallbacks;
 			$this->mTrxIdleCallbacks = array(); // recursion guard
@@ -3299,6 +3299,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 					call_user_func( $phpCallback );
 					$this->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
 				} catch ( Exception $e ) {
+					if ( $ePrior ) {
+						MWExceptionHandler::logException( $ePrior );
+					}
+					$ePrior = $e;
 				}
 			}
 		} while ( count( $this->mTrxIdleCallbacks ) );
@@ -3314,7 +3318,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @since 1.22
 	 */
 	protected function runOnTransactionPreCommitCallbacks() {
-		$e = null; // last exception
+		$e = $ePrior = null; // last exception
 		do { // callbacks may add callbacks :)
 			$callbacks = $this->mTrxPreCommitCallbacks;
 			$this->mTrxPreCommitCallbacks = array(); // recursion guard
@@ -3323,6 +3327,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 					list( $phpCallback ) = $callback;
 					call_user_func( $phpCallback );
 				} catch ( Exception $e ) {
+					if ( $ePrior ) {
+						MWExceptionHandler::logException( $ePrior );
+					}
+					$ePrior = $e;
 				}
 			}
 		} while ( count( $this->mTrxPreCommitCallbacks ) );
