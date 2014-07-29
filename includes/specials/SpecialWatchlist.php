@@ -407,7 +407,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$wlInfo = '';
 		if ( $opts['days'] > 0 ) {
 			$timestamp = wfTimestampNow();
-			$wlInfo = $this->msg( 'wlnote2' )->numParams( round( $opts['days'] * 24 ) )->params(
+			$wlInfo = $this->msg( 'wlnote' )->numParams( $numRows, round( $opts['days'] * 24 ) )->params(
 				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user )
 			)->parse() . "<br />\n";
 		}

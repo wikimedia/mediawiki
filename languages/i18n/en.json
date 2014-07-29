@@ -1826,7 +1826,7 @@
 	"watchlist-details": "{{PLURAL:$1|$1 page|$1 pages}} on your watchlist, not separately counting talk pages.",
 	"wlheader-enotif": "Email notification is enabled.",
 	"wlheader-showupdated": "Pages that have been changed since you last visited them are shown in <strong>bold</strong>.",
-	"wlnote2": "Below are the changes in the last {{PLURAL:$1|hour|<strong>$1</strong> hours}}, as of $2, $3.",
+	"wlnote": "Below {{PLURAL:$1|is the last change|are the last <strong>$1</strong> changes}} in the last {{PLURAL:$2|hour|<strong>$2</strong> hours}}, as of $3, $4.",
 	"wlshowlast": "Show last $1 hours $2 days $3",
 	"watchlist-options": "Watchlist options",
 	"watching": "Watching...",
