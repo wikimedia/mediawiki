@@ -477,7 +477,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItemDesc( $row ) {
-		$revision = Revision::newFromId( $row->rev_id );
+		$revision = Revision::newFromId( $row->rc_this_oldid );
 		if ( $revision ) {
 			// XXX: include content model/type in feed item?
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) .
