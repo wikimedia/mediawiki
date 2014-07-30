@@ -86,11 +86,19 @@ class SkinTemplate extends Skin {
 	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
-		$out->addModuleStyles( array(
+		global $wgUseMediaWikiUI;
+
+		$styles = array(
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
 			'mediawiki.ui.button'
-		) );
+		);
+		if ( $wgUseMediaWikiUI ) {
+			$styles = array_merge( $styles, array(
+				'mediawiki.ui.checkbox', 'mediawiki.ui.input',
+			) );
+		}
+		$out->addModuleStyles( $styles );
 	}
 
 	/**
