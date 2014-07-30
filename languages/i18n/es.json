@@ -112,7 +112,8 @@
 			"Wifidel",
 			"Macofe",
 			"Koavf",
-			"Themasterriot"
+			"Themasterriot",
+			"AVIADOR"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -810,6 +811,7 @@
 	"rev-deleted-event": "(entrada borrada)",
 	"rev-deleted-user-contribs": "[nombre de usuario o dirección IP eliminada - edición ocultada de la lista de contribuciones]",
 	"rev-deleted-text-permission": "Esta revisión de la página ha sido '''borrada'''.\nPuede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+	"rev-suppressed-text-permission": "Esta revisión de la página se <strong>suprimió</strong>.\nLos detalles se pueden ver en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresión].",
 	"rev-deleted-text-unhide": "Esta revisión de la página ha sido '''borrada'''.\nPuede haber más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].\nComo administrador todavía puedes [$1 ver esta revisión] si así lo deseas.",
 	"rev-suppressed-text-unhide": "Esta revisión de la página ha sido '''suprimida'''.\nPuede haber más detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].\nComo administrador podrá seguir [$1 viendo esta revisión] si desea continuar.",
 	"rev-deleted-text-view": "Esta revisión de la página ha sido '''borrada'''.\nAún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
@@ -1133,6 +1135,7 @@
 	"right-browsearchive": "Buscar páginas borradas",
 	"right-undelete": "Restaurar una página",
 	"right-suppressrevision": "Ver, ocultar y mostrar revisiones específicas de páginas de cualquier usuario",
+	"right-viewsuppressed": "Ver revisiones ocultas de cualquier usuario",
 	"right-suppressionlog": "Ver registros privados",
 	"right-block": "Bloquear a otros usuarios para que no editen",
 	"right-blockemail": "Bloquear a un usuario para que no pueda mandar correos electrónicos",
@@ -1447,8 +1450,8 @@
 	"nolicense": "Ninguna seleccionada",
 	"licenses-edit": "Editar las opciones de licencia",
 	"license-nopreview": "(Previsualización no disponible)",
-	"upload_source_url": " (una URL válida y accesible públicamente)",
-	"upload_source_file": "(un archivo en tu computadora)",
+	"upload_source_url": "(un archivo elegido de una URL válida y accesible públicamente)",
+	"upload_source_file": "(un archivo elegido de tu computadora)",
 	"listfiles-delete": "borrar",
 	"listfiles-summary": "Esta página especial muestra todos los archivos subidos.\nCuando el usuario la filtra, solo se muestran los archivos cargados por el usuario en su versión más reciente.",
 	"listfiles_search_for": "Buscar por nombre de imagen:",

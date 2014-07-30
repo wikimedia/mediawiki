@@ -1150,6 +1150,7 @@
 	"license-nopreview": "(Priekšskatījums nav pieejams)",
 	"upload_source_url": "(derīgs, publiski pieejams URL)",
 	"upload_source_file": "(fails datorā)",
+	"listfiles-delete": "dzēst",
 	"listfiles-summary": "Šajā īpašajā lapā ir redzami visi augšupielādētie faili.",
 	"listfiles_search_for": "Meklēt failu pēc vārda:",
 	"imgfile": "fails",
