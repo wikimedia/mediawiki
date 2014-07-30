@@ -466,7 +466,6 @@ $wgAutoloadLocalClasses = array(
 	'SiteStatsUpdate' => 'includes/deferred/SiteStatsUpdate.php',
 	'SqlDataUpdate' => 'includes/deferred/SqlDataUpdate.php',
 	'SquidUpdate' => 'includes/deferred/SquidUpdate.php',
-	'ViewCountUpdate' => 'includes/deferred/ViewCountUpdate.php',
 
 	# includes/diff
 	'DiffEngine' => 'includes/diff/DairikiDiff.php',
@@ -994,7 +993,6 @@ $wgAutoloadLocalClasses = array(
 	'NewFilesPager' => 'includes/specials/SpecialNewimages.php',
 	'NewPagesPager' => 'includes/specials/SpecialNewpages.php',
 	'PageArchive' => 'includes/specials/SpecialUndelete.php',
-	'PopularPagesPage' => 'includes/specials/SpecialPopularpages.php',
 	'ProtectedPagesPager' => 'includes/specials/SpecialProtectedpages.php',
 	'ProtectedTitlesPager' => 'includes/specials/SpecialProtectedtitles.php',
 	'RandomPage' => 'includes/specials/SpecialRandompage.php',

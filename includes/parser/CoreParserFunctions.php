@@ -44,7 +44,7 @@ class CoreParserFunctions {
 			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural',
 			'numberofpages', 'numberofusers', 'numberofactiveusers',
 			'numberofarticles', 'numberoffiles', 'numberofadmins',
-			'numberingroup', 'numberofedits', 'numberofviews', 'language',
+			'numberingroup', 'numberofedits', 'language',
 			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
 			'pagesincategory', 'pagesize', 'protectionlevel',
 			'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
@@ -488,10 +488,6 @@ class CoreParserFunctions {
 	}
 	public static function numberofedits( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::edits(), $raw );
-	}
-	public static function numberofviews( $parser, $raw = null ) {
-		global $wgDisableCounters;
-		return !$wgDisableCounters ? self::formatRaw( SiteStats::views(), $raw ) : '';
 	}
 	public static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );

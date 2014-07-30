@@ -4,7 +4,6 @@ CREATE TABLE page (
   page_namespace     SMALLINT       NOT NULL,
   page_title         TEXT           NOT NULL,
   page_restrictions  TEXT,
-  page_counter       BIGINT         NOT NULL  DEFAULT 0,
   page_is_redirect   SMALLINT       NOT NULL  DEFAULT 0,
   page_is_new        SMALLINT       NOT NULL  DEFAULT 0,
   page_random        NUMERIC(15,14) NOT NULL  DEFAULT RANDOM(),

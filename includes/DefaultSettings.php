@@ -4066,15 +4066,6 @@ $wgTranscludeCacheExpiry = 3600;
 $wgArticleCountMethod = 'link';
 
 /**
- * wgHitcounterUpdateFreq sets how often page counters should be updated, higher
- * values are easier on the database. A value of 1 causes the counters to be
- * updated on every hit, any higher value n cause them to update *on average*
- * every n hits. Should be set to either 1 or something largish, eg 1000, for
- * maximum efficiency.
- */
-$wgHitcounterUpdateFreq = 1;
-
-/**
  * How many days user must be idle before he is considered inactive. Will affect
  * the number shown on Special:Statistics, Special:ActiveUsers, and the
  * {{NUMBEROFACTIVEUSERS}} magic word in wikitext.
@@ -5333,12 +5324,6 @@ $wgAggregateStatsID = false;
  * @since 1.22
  */
 $wgStatsFormatString = "stats/%s - %s 1 1 1 1 %s\n";
-
-/**
- * Whereas to count the number of time an article is viewed.
- * Does not work if pages are cached (for example with squid).
- */
-$wgDisableCounters = false;
 
 /**
  * InfoAction retrieves a list of transclusion links (both to and from).
