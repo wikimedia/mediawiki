@@ -92,7 +92,7 @@ class HistoryAction extends FormlessAction {
 	 * Print the history page for an article.
 	 */
 	function onView() {
-		global $wgScript, $wgUseFileCache;
+		global $wgScript, $wgUseFileCache, $wgUseMediaWikiUI;
 
 		$out = $this->getOutput();
 		$request = $this->getRequest();
@@ -119,6 +119,9 @@ class HistoryAction extends FormlessAction {
 		// Setup page variables.
 		$out->setFeedAppendQuery( 'action=history' );
 		$out->addModules( 'mediawiki.action.history' );
+		if ( $wgUseMediaWikiUI ) {
+			$out->addModuleStyles( 'mediawiki.ui.input' );
+		}
 
 		// Handle atom/RSS feeds.
 		$feedType = $request->getVal( 'feed' );
@@ -168,6 +171,11 @@ class HistoryAction extends FormlessAction {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$checkDeleted = Xml::checkLabel( $this->msg( 'history-show-deleted' )->text(),
 				'deleted', 'mw-show-deleted-only', $request->getBool( 'deleted' ) ) . "\n";
+			if ( $wgUseMediaWikiUI ) {
+				$checkDeleted = Html::openElement( 'div', array( 'mw-ui-checkbox' ) ) .
+					$checkDeleted .
+					Html::closeElement( 'div' );
+			}
 		} else {
 			$checkDeleted = '';
 		}
@@ -462,7 +470,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	function getStartBody() {
-		global $wgScript;
+		global $wgScript, $wgUseMediaWikiUI;
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
@@ -475,8 +483,12 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		// Button container stored in $this->buttons for re-use in getEndBody()
 		$this->buttons = '<div>';
+		$className = 'historysubmit mw-history-compareselectedversions-button';
+		if ( $wgUseMediaWikiUI ) {
+			$className .= ' mw-ui-button mw-ui-constructive';
+		}
 		$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
-			array( 'class' => 'historysubmit mw-history-compareselectedversions-button' )
+			array( 'class' => $className )
 				+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' )
 		) . "\n";
 

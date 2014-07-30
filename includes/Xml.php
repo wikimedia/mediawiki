@@ -169,7 +169,7 @@ class Xml {
 	 * @return string Html string containing the month selector
 	 */
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
-		global $wgLang;
+		global $wgLang, $wgUseMediaWikiUI;
 		$options = array();
 		if ( is_null( $selected ) ) {
 			$selected = '';
@@ -184,10 +184,15 @@ class Xml {
 		for ( $i = 1; $i < 13; $i++ ) {
 			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
 		}
+		$className = 'mw-month-selector';
+		if ( $wgUseMediaWikiUI ) {
+			$className .= ' mw-ui-input';
+		}
+
 		return self::openElement( 'select', array(
 			'id' => $id,
 			'name' => 'month',
-			'class' => 'mw-month-selector'
+			'class' => $className
 		) )
 			. implode( "\n", $options )
 			. self::closeElement( 'select' );
@@ -199,6 +204,8 @@ class Xml {
 	 * @return string Formatted HTML
 	 */
 	public static function dateMenu( $year, $month ) {
+		global $wgUseMediaWikiUI;
+
 		# Offset overrides year/month selection
 		if ( $month && $month !== -1 ) {
 			$encMonth = intval( $month );
@@ -218,7 +225,12 @@ class Xml {
 		} else {
 			$encYear = '';
 		}
-		$inputAttribs = array( 'id' => 'year', 'maxlength' => 4, 'size' => 7 );
+		$inputAttribs = array( 'id' => 'year', 'maxlength' => 4 );
+		if ( $wgUseMediaWikiUI ) {
+			$inputAttribs['class'] = 'mw-ui-input';
+		} else {
+			$inputAttribs['size'] = 7;
+		}
 		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' ' .
 			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' ' .
 			self::label( wfMessage( 'month' )->text(), 'month' ) . ' ' .
@@ -485,7 +497,12 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function submitButton( $value, $attribs = array() ) {
-		return Html::element( 'input', array( 'type' => 'submit', 'value' => $value ) + $attribs );
+		global $wgUseMediaWikiUI;
+		$attrs = array( 'type' => 'submit', 'value' => $value ) + $attribs;
+		if ( $wgUseMediaWikiUI ) {
+			$attrs['class'] = 'mw-ui-button mw-ui-constructive';
+		}
+		return Html::element( 'input', $attrs );
 	}
 
 	/**
