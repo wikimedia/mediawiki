@@ -105,9 +105,10 @@ class HistoryAction extends FormlessAction {
 		wfProfileIn( __METHOD__ );
 
 		$this->preCacheMessages();
+		$config = $this->context->getConfig();
 
 		# Fill in the file cache if not set already
-		$useFileCache = $this->context->getConfig()->get( 'UseFileCache' );
+		$useFileCache = $config->get( 'UseFileCache' );
 		if ( $useFileCache && HTMLFileCache::useFileCache( $this->getContext() ) ) {
 			$cache = HTMLFileCache::newFromTitle( $this->getTitle(), 'history' );
 			if ( !$cache->isCacheGood( /* Assume up to date */ ) ) {
@@ -118,6 +119,13 @@ class HistoryAction extends FormlessAction {
 		// Setup page variables.
 		$out->setFeedAppendQuery( 'action=history' );
 		$out->addModules( 'mediawiki.action.history' );
+		if ( $config->get( 'UseMediaWikiUIEverywhere' ) ) {
+			$out = $this->getOutput();
+			$out->addModuleStyles( array(
+				'mediawiki.ui.input',
+				'mediawiki.ui.checkbox',
+			) );
+		}
 
 		// Handle atom/RSS feeds.
 		$feedType = $request->getVal( 'feed' );
@@ -464,6 +472,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	function getStartBody() {
+		global $wgUseMediaWikiUIEverywhere;
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
@@ -476,8 +485,12 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		// Button container stored in $this->buttons for re-use in getEndBody()
 		$this->buttons = '<div>';
+		$className = 'historysubmit mw-history-compareselectedversions-button';
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$className .= ' mw-ui-button mw-ui-constructive';
+		}
 		$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
-			array( 'class' => 'historysubmit mw-history-compareselectedversions-button' )
+			array( 'class' => $className )
 				+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' )
 		) . "\n";
 

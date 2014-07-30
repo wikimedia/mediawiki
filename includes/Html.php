@@ -102,6 +102,35 @@ class Html {
 	);
 
 	/**
+	 * Modifies a set of attributes meant for text input elements
+	 * and apply a set of default attributes.
+	 * Removes size attribute when $wgUseMediaWikiUIEverywhere enabled.
+	 * @param array $attrs An attribute array.
+	 * @return array $attrs A modified attribute array
+	 */
+	public static function getTextInputAttributes( $attrs ) {
+		global $wgUseMediaWikiUIEverywhere;
+		if ( !$attrs ) {
+			$attrs = array();
+		}
+		if ( isset( $attrs['class'] ) ) {
+			if ( is_array( $attrs['class'] ) ) {
+				$attrs['class'][] = 'mw-ui-input';
+			} else {
+				$attrs['class'] .= ' mw-ui-input';
+			}
+		} else {
+			$attrs['class'] = 'mw-ui-input';
+		}
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			// Note that size can effect the desired width rendering of mw-ui-input elements
+			// so it is removed. Left intact when mediawiki ui not enabled.
+			unset( $attrs['size'] );
+		}
+		return $attrs;
+	}
+
+	/**
 	 * Returns an HTML element in a string.  The major advantage here over
 	 * manually typing out the HTML is that it will escape all attribute
 	 * values.  If you're hardcoding all the attributes, or there are none, you
@@ -632,7 +661,9 @@ class Html {
 		$attribs['type'] = $type;
 		$attribs['value'] = $value;
 		$attribs['name'] = $name;
-
+		if ( in_array( $type, array( 'text', 'search', 'email', 'password', 'number' ) ) ) {
+			$attribs = Html::getTextInputAttributes( $attribs );
+		}
 		return self::element( 'input', $attribs );
 	}
 
@@ -731,7 +762,7 @@ class Html {
 		} else {
 			$spacedValue = $value;
 		}
-		return self::element( 'textarea', $attribs, $spacedValue );
+		return self::element( 'textarea', Html::getTextInputAttributes( $attribs ), $spacedValue );
 	}
 
 	/**

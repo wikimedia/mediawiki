@@ -26,9 +26,7 @@ class HTMLCheckField extends HTMLFormField {
 				),
 				Xml::check( $this->mName, $value, $attr ) . $this->mLabel );
 		} else {
-			return Xml::check( $this->mName, $value, $attr )
-			. '&#160;'
-			. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+			return Xml::checkLabel( $this->mLabel, $this->mName, $this->mID, $value, $attr );
 		}
 	}
 

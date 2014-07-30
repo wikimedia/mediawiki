@@ -317,7 +317,8 @@ class Xml {
 			$attributes['value'] = $value;
 		}
 
-		return self::element( 'input', $attributes + $attribs );
+		return self::element( 'input',
+			Html::getTextInputAttributes( $attributes + $attribs ) );
 	}
 
 	/**
@@ -453,9 +454,16 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function checkLabel( $label, $name, $id, $checked = false, $attribs = array() ) {
-		return self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
+		global $wgUseMediaWikiUIEverywhere;
+		$chkLabel = self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
 			'&#160;' .
 			self::label( $label, $id, $attribs );
+
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$chkLabel = self::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
+				$chkLabel . self::closeElement( 'div' );
+		}
+		return $chkLabel;
 	}
 
 	/**
@@ -480,12 +488,26 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML submit button
+	 * When $wgUseMediaWikiUIEverywhere is true it will default to a constructive button
 	 * @param string $value Label text for the button
 	 * @param array $attribs Optional custom attributes
 	 * @return string HTML
 	 */
 	public static function submitButton( $value, $attribs = array() ) {
-		return Html::element( 'input', array( 'type' => 'submit', 'value' => $value ) + $attribs );
+		global $wgUseMediaWikiUIEverywhere;
+		$baseAttrs = array(
+			'type' => 'submit',
+			'value' => $value,
+		);
+		// Done conditionally for time being as it is possible
+		// some submit forms
+		// might need to be mw-ui-destructive (e.g. delete a page)
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$baseAttrs['class'] = 'mw-ui-button mw-ui-constructive';
+		}
+		// Any custom attributes will take precendence of anything in baseAttrs e.g. override the class
+		$attribs = $attribs + $baseAttrs;
+		return Html::element( 'input', $attribs );
 	}
 
 	/**
@@ -617,12 +639,14 @@ class Xml {
 	 */
 	public static function textarea( $name, $content, $cols = 40, $rows = 5, $attribs = array() ) {
 		return self::element( 'textarea',
-					array(
-						'name' => $name,
-						'id' => $name,
-						'cols' => $cols,
-						'rows' => $rows
-					) + $attribs,
+					Html::getTextInputAttributes(
+						array(
+							'name' => $name,
+							'id' => $name,
+							'cols' => $cols,
+							'rows' => $rows
+						) + $attribs
+					),
 					$content, false );
 	}
 
