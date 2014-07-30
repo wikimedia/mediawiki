@@ -444,7 +444,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'page_namespace' => 0,
 				'page_title' => ' ',
 				'page_restrictions' => null,
-				'page_counter' => 0,
 				'page_is_redirect' => 0,
 				'page_is_new' => 0,
 				'page_random' => 0,

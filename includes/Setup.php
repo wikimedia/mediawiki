@@ -479,6 +479,9 @@ if ( $wgTmpDirectory === false ) {
 	wfProfileOut( $fname . '-tempDir' );
 }
 
+// We don't use counters anymore
+$wgDisableCounters = true;
+
 wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
 
