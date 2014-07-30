@@ -1,0 +1,77 @@
+@import "mediawiki.mixins";
+@import "mediawiki.ui/variables";
+@import "mediawiki.ui/mixins";
+
+// Helpers
+.mw-ui-anchor( @mainColor ) {
+	// Make all context classes take the main color in IE6
+	.select-ie6-only& {
+		&:link, &:visited, &:hover, &:focus, &:active {
+			color: @mainColor;
+		}
+	}
+
+	// Hover state
+	&:hover {
+		color: lighten( @mainColor, @colorLightenPercentage );
+	}
+	// Focus and active states
+	&:focus, &:active {
+		color: darken( @mainColor, @colorDarkenPercentage );
+		outline: none; // outline fix
+	}
+
+	color: @mainColor;
+
+	// Quiet mode is gray at first
+	&.mw-ui-quiet {
+		.mw-ui-anchor-quiet( @mainColor );
+	}
+}
+
+.mw-ui-anchor-quiet( @mainColor ) {
+	color: @colorTextLight;
+	text-decoration: none;
+
+	&:hover {
+		color: @mainColor;
+	}
+	&:focus, &:active {
+		color: darken( @mainColor, @colorDarkenPercentage );
+	}
+}
+
+/*
+Text & Anchors
+
+Allows you to give text a context as to the type of action it is indicating.
+
+Styleguide 6.
+*/
+
+/*
+Guidelines
+
+This context should only applied on elements without special behavior (DIV, SPAN, etc.), including A elements. These classes cannot be applied for styling purposes on other elements (such as form elements), except when used in combination with .mw-ui-button to alter a button context.
+
+Markup:
+<a href=# class="mw-ui-progressive {$modifiers}">Progressive</a>
+<a href=# class="mw-ui-constructive {$modifiers}">Constructive</a>
+<a href=# class="mw-ui-destructive {$modifiers}">Destructive</a>
+
+.mw-ui-quiet - Quiet until interaction.
+
+Styleguide 6.1.
+*/
+.mw-ui-progressive {
+	.mw-ui-anchor( @colorProgressive );
+}
+.mw-ui-constructive {
+	.mw-ui-anchor( @colorConstructive );
+}
+.mw-ui-destructive {
+	.mw-ui-anchor( @colorDestructive );
+}
+.mw-ui-quiet {
+	.mw-ui-anchor-quiet( @colorTextLight );
+}
