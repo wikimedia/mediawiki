@@ -333,6 +333,12 @@ class SpecialPage {
 		$out->setArticleRelated( false );
 		$out->setRobotPolicy( $this->getRobotPolicy() );
 		$out->setPageTitle( $this->getDescription() );
+		if ( $this->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+			$out->addModuleStyles( array(
+				'mediawiki.ui.input',
+				'mediawiki.ui.checkbox',
+			) );
+		}
 	}
 
 	/**

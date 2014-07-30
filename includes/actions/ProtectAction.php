@@ -41,6 +41,14 @@ class ProtectAction extends FormlessAction {
 	}
 
 	public function show() {
+		global $wgUseMediaWikiUIEverywhere;
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$out = $this->getOutput();
+			$out->addModuleStyles( array(
+				'mediawiki.ui.input',
+				'mediawiki.ui.checkbox',
+			) );
+		}
 
 		$this->page->protect();
 	}
