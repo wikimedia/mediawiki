@@ -1425,6 +1425,14 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	// Lightweight module for anchor styles
+	'mediawiki.ui.anchor' => array(
+		'styles' => array(
+			'resources/src/mediawiki.ui/components/anchors.less',
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => array(
 		'styles' => array(
