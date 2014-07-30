@@ -715,7 +715,7 @@ class HtmlTest extends MediaWikiTestCase {
 			'Input wrapper with type and value.'
 		);
 		$this->assertEquals(
-			'<input name=testname>',
+			'<input name=testname  class=mw-ui-input>',
 			Html::input( 'testname' ),
 			'Input wrapper with all default values.'
 		);
