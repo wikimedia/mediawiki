@@ -16,11 +16,10 @@ Styleguide 1.
 /*
 Buttons
 
-All buttons start with mw-ui-button class, modified by other classes.
-It can be any element.  Due to a lack of a CSS reset, the exact styling of
-the button depends on what type of element is used.
-There are two kinds of buttons, the default is a "Call to Action" with an obvious border
-and there is a quiet kind without a border.
+Buttons begin with a single mw-ui-button class, and then can be adjusted using context and modifier classes.
+Buttons are explicitly restricted to BUTTON, INPUT, and A tags. To use these in any other context, you'll have to use
+the .mw-ui-button-mixin() mixin in your own LESS file on your own selector, but this is not recommended and goes against
+the Style Guide.
 
 Styleguide 2.
 */
