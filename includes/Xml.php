@@ -317,7 +317,8 @@ class Xml {
 			$attributes['value'] = $value;
 		}
 
-		return self::element( 'input', $attributes + $attribs );
+		return self::element( 'input',
+			self::getTextInputAttributes( $attributes + $attribs ) );
 	}
 
 	/**
@@ -404,6 +405,35 @@ class Xml {
 	}
 
 	/**
+	 * Modifies a set of attributes meant for text input elements
+	 * and apply a set of default attributes.
+	 * Removes size attribute when $wgUseMediaWikiUIEverywhere enabled.
+	 * @param array $attrs An attribute array.
+	 * @return array $attrs A modified attribute array
+	 */
+	public static function getTextInputAttributes( $attrs ) {
+		global $wgUseMediaWikiUIEverywhere;
+		if ( !$attrs ) {
+			$attrs = array();
+		}
+		if ( isset( $attrs['class'] ) ) {
+			if ( is_array( $attrs['class'] ) ) {
+				$attrs['class'][] = 'mw-ui-input';
+			} else {
+				$attrs['class'] .= ' mw-ui-input';
+			}
+		} else {
+			$attrs['class'] = 'mw-ui-input';
+		}
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			// Note that size can effect the desired width rendering of mw-ui-input elements
+			// so it is removed. Left intact when mediawiki ui not enabled.
+			unset( $attrs['size'] );
+		}
+		return $attrs;
+	}
+
+	/**
 	 * Convenience function to build an HTML text input field with a label
 	 * @param string $label Text of the label
 	 * @param string $name Value of the name attribute
@@ -453,9 +483,16 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function checkLabel( $label, $name, $id, $checked = false, $attribs = array() ) {
-		return self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
+		global $wgUseMediaWikiUIEverywhere;
+		$chkLabel = self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
 			'&#160;' .
 			self::label( $label, $id, $attribs );
+
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$chkLabel = self::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
+				$chkLabel . self::closeElement( 'div' );
+		}
+		return $chkLabel;
 	}
 
 	/**
@@ -485,7 +522,19 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function submitButton( $value, $attribs = array() ) {
-		return Html::element( 'input', array( 'type' => 'submit', 'value' => $value ) + $attribs );
+		global $wgUseMediaWikiUIEverywhere;
+		$attrs = array(
+			'type' => 'submit',
+			'value' => $value,
+		);
+		// Done conditionally for time being as it is possible
+		// some submit forms
+		// might need to be mw-ui-destructive (e.g. delete a page)
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$attrs['class'] = 'mw-ui-button mw-ui-constructive';
+		}
+		$attrs += $attribs;
+		return Html::element( 'input', $attrs );
 	}
 
 	/**
@@ -617,12 +666,14 @@ class Xml {
 	 */
 	public static function textarea( $name, $content, $cols = 40, $rows = 5, $attribs = array() ) {
 		return self::element( 'textarea',
-					array(
-						'name' => $name,
-						'id' => $name,
-						'cols' => $cols,
-						'rows' => $rows
-					) + $attribs,
+					self::getTextInputAttributes(
+						array(
+							'name' => $name,
+							'id' => $name,
+							'cols' => $cols,
+							'rows' => $rows
+						) + $attribs
+					),
 					$content, false );
 	}
 
