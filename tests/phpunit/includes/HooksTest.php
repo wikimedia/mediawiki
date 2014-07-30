@@ -144,17 +144,6 @@ class HooksTest extends MediaWikiTestCase {
 		Hooks::run( 'MediaWikiHooksTest001', array( &$foo ) );
 		$this->assertSame( 'original', $foo, 'Hooks continued processing after a false return.' );
 	}
-
-	/**
-	 * @expectedException FatalError
-	 * @covers Hooks::run
-	 */
-	public function testFatalError() {
-		Hooks::register( 'MediaWikiHooksTest001', function () {
-			return 'test';
-		} );
-		Hooks::run( 'MediaWikiHooksTest001', array() );
-	}
 }
 
 function NothingFunction( &$foo, &$bar ) {

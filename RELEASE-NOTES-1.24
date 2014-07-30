@@ -286,6 +286,8 @@ changes to languages because of Bugzilla reports.
   userNotLoggedInPage() from EditPage.php. (deprecated since 1.19)
 * Removed functions getContent(), getPreloadedText(), mergeChangesInto() and
   setPreloadedText() from EditPage.php. (deprecated since 1.21)
+* The FatalError exception class has been deprecated. Throw catchable exceptions
+  with MWException or trigger PHP fatal errors with the trigger_error function.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

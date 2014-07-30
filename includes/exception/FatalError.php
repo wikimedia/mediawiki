@@ -24,8 +24,18 @@
  *
  * @since 1.7
  * @ingroup Exception
+ * @deprecated since 1.24
  */
 class FatalError extends MWException {
+
+	/**
+	 * @param string $message
+	 * @deprecated since 1.24 Use trigger_error for actual fatal errors
+	 */
+	public function __construct( $message ) {
+		wfDeprecated( __CLASS__, '1.24' );
+		parent::__construct( $message );
+	}
 
 	/**
 	 * @return string

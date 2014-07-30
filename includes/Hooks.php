@@ -131,7 +131,6 @@ class Hooks {
 	 *   processing to continue. Not returning a value (or explicitly
 	 *   returning null) is equivalent to returning true.
 	 * @throws MWException
-	 * @throws FatalError
 	 */
 	public static function run( $event, array $args = array(), $deprecatedVersion = null ) {
 		wfProfileIn( 'hook: ' . $event );
@@ -216,7 +215,7 @@ class Hooks {
 			// Process the return value.
 			if ( is_string( $retval ) ) {
 				// String returned means error.
-				throw new FatalError( $retval );
+				trigger_error( $retval, E_USER_ERROR );
 			} elseif ( $badhookmsg !== null ) {
 				// Exception was thrown from Hooks::hookErrorHandler.
 				throw new MWException(
