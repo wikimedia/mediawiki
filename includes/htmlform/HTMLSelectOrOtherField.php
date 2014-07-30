@@ -19,6 +19,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	}
 
 	function getInputHTML( $value ) {
+		global $wgUseMediaWikiUIEverywhere;
 		$valInSelect = false;
 
 		if ( $value !== false ) {
@@ -33,7 +34,11 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		$select = new XmlSelect( $this->mName, $this->mID, $selected );
 		$select->addOptions( $this->getOptions() );
 
-		$select->setAttribute( 'class', 'mw-htmlform-select-or-other' );
+		$className = 'mw-htmlform-select-or-other';
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$className .= ' mw-ui-input';
+		}
+		$select->setAttribute( 'class', $className );
 
 		$tbAttribs = array( 'id' => $this->mID . '-other', 'size' => $this->getSize() );
 

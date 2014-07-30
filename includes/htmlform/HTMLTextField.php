@@ -58,8 +58,9 @@ class HTMLTextField extends HTMLFormField {
 					$attribs['type'] = $this->mParams['type'];
 					break;
 			}
+		} else {
+			$type = 'text';
 		}
-
-		return Html::element( 'input', $attribs );
+		return Html::input( $this->mName, $value, $type, $attribs );
 	}
 }
