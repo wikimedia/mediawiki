@@ -35,6 +35,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	function formatOptions( $options, $value ) {
+		global $wgUseMediaWikiUI;
 		$html = '';
 
 		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
@@ -52,11 +53,21 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 					in_array( $info, $value, true ),
 					$attribs + $thisAttribs
 				);
-				$checkbox .= '&#160;' . call_user_func( $elementFunc,
-					'label',
-					array( 'for' => "{$this->mID}-$info" ),
-					$label
-				);
+				$forId = "{$this->mID}-$info";
+				if ( $wgUseMediaWikiUI ) {
+					$checkbox = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) )
+						. $checkbox
+						. Html::rawElement( 'label', array( 'for' => $forId ) )
+						. '&#160;'
+						. Html::rawElement( 'label', array( 'for' => $forId ), $label )
+						. Html::closeElement( 'div' );
+				} else {
+					$checkbox .= '&#160;' . call_user_func( $elementFunc,
+						'label',
+						array( 'for' => $forId ),
+						$label
+					);
+				}
 
 				$html .= ' ' . Html::rawElement(
 					'div',

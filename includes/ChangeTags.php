@@ -265,7 +265,7 @@ class ChangeTags {
 				'tagfilter',
 				20,
 				$selected,
-				array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' )
+				Xml::getTextInputAttributes( array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' ) )
 			)
 		);
 
