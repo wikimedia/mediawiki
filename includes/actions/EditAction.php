@@ -41,6 +41,14 @@ class EditAction extends FormlessAction {
 	}
 
 	public function show() {
+		global $wgUseMediaWikiUIEverywhere;
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$out = $this->getOutput();
+			$out->addModuleStyles( array(
+				'mediawiki.ui.input',
+				'mediawiki.ui.checkbox',
+			) );
+		}
 		$page = $this->page;
 		$user = $this->getUser();
 
