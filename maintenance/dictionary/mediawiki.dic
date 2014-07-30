@@ -1799,7 +1799,6 @@ historysubmit
 historywarning
 hit
 hitcount
-hitcounter
 hits
 hmac
 hmtl
@@ -2878,7 +2877,6 @@ numberofedits
 numberoffiles
 numberofpages
 numberofusers
-numberofviews
 numberofwatchingusers
 numedits
 numentries
