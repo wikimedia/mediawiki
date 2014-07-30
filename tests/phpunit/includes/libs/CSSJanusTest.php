@@ -221,6 +221,11 @@ class CSSJanusTest extends MediaWikiTestCase {
 				// Don't mangle zeroes
 				'.foo { text-shadow: orange 0 2px; }'
 			),
+			array(
+				// Make sure floats are not considered zero
+				'.foo { box-shadow: inset .5em 0 0 white; }',
+				'.foo { box-shadow: inset -.5em 0 0 white; }',
+			),
 
 			// Direction
 			// Note: This differs from the Python implementation,
