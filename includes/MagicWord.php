@@ -172,7 +172,6 @@ class MagicWord {
 		'directionmark',
 		'contentlanguage',
 		'numberofadmins',
-		'numberofviews',
 		'cascadingsources',
 	);
 
@@ -215,7 +214,6 @@ class MagicWord {
 		'localtimestamp' => 3600,
 		'pagesinnamespace' => 3600,
 		'numberofadmins' => 3600,
-		'numberofviews' => 3600,
 		'numberingroup' => 3600,
 	);
 
