@@ -60,7 +60,6 @@ abstract class QueryPage extends SpecialPage {
 	 * @return array
 	 */
 	public static function getPages() {
-		global $wgDisableCounters;
 		static $qp = null;
 
 		if ( $qp === null ) {
@@ -102,10 +101,6 @@ abstract class QueryPage extends SpecialPage {
 				array( 'WithoutInterwikiPage', 'Withoutinterwiki' ),
 			);
 			wfRunHooks( 'wgQueryPages', array( &$qp ) );
-
-			if ( !$wgDisableCounters ) {
-				$qp[] = array( 'PopularPagesPage', 'Popularpages' );
-			}
 		}
 
 		return $qp;

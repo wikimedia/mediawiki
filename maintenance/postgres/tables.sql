@@ -81,7 +81,6 @@ CREATE TABLE page (
   page_namespace     SMALLINT       NOT NULL,
   page_title         TEXT           NOT NULL,
   page_restrictions  TEXT,
-  page_counter       BIGINT         NOT NULL  DEFAULT 0,
   page_is_redirect   SMALLINT       NOT NULL  DEFAULT 0,
   page_is_new        SMALLINT       NOT NULL  DEFAULT 0,
   page_random        NUMERIC(15,14) NOT NULL  DEFAULT RANDOM(),
@@ -262,7 +261,6 @@ CREATE INDEX langlinks_lang_title    ON langlinks (ll_lang,ll_title);
 
 CREATE TABLE site_stats (
   ss_row_id         INTEGER  NOT NULL  UNIQUE,
-  ss_total_views    INTEGER            DEFAULT 0,
   ss_total_edits    INTEGER            DEFAULT 0,
   ss_good_articles  INTEGER            DEFAULT 0,
   ss_total_pages    INTEGER            DEFAULT -1,
@@ -270,10 +268,6 @@ CREATE TABLE site_stats (
   ss_active_users   INTEGER            DEFAULT -1,
   ss_admins         INTEGER            DEFAULT -1,
   ss_images         INTEGER            DEFAULT 0
-);
-
-CREATE TABLE hitcounter (
-  hc_id  BIGINT  NOT NULL
 );
 
 
