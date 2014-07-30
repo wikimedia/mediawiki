@@ -1,4 +1,4 @@
--- field is deprecated and no longer updated as of 1.5
+-- field is deprecated and no longer updated as of 1.25
 CREATE TABLE /*_*/site_stats_tmp (
   ss_row_id int unsigned NOT NULL,
   ss_total_edits bigint unsigned default 0,
@@ -10,9 +10,9 @@ CREATE TABLE /*_*/site_stats_tmp (
 ) /*$wgDBTableOptions*/;
 
 INSERT INTO /*_*/site_stats_tmp
-	SELECT ss_row_id, ss_total_edits, ss_good_articles,
-		ss_total_pages, ss_users, ss_active_users, ss_images
-		FROM /*_*/site_stats;
+  SELECT ss_row_id, ss_total_edits, ss_good_articles, ss_total_pages,
+    ss_users, ss_active_users, ss_images
+  FROM /*_*/site_stats;
 
 DROP TABLE /*_*/site_stats;
 

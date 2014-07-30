@@ -674,7 +674,6 @@ abstract class Installer {
 			'site_stats',
 			array(
 				'ss_row_id' => 1,
-				'ss_total_views' => 0,
 				'ss_total_edits' => 0,
 				'ss_good_articles' => 0,
 				'ss_total_pages' => 0,
