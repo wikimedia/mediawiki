@@ -7,7 +7,15 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 
 === Changes since 1.23.1 ===
 
-* (bug 67594) Special:ActiveUsers: Fix to work with PostgreSQL
+* (bug 68187) SECURITY: Prepend jsonp callback with comment.
+* (bug 66608) SECURITY: Fix for XSS issue in bug 66608: Generate the URL used
+  for loading a new page in Javascript,instead of relying on the URL in the link
+  that has been clicked.
+* (bug 65778) SECURITY: Copy prevent-clickjacking between OutputPage and 
+  ParserOutput.
+* (bug 68313) Preferences: Turn stubthreshold back into a combo box.
+* (bug 65214) Fix initSiteStats.php maintenance script.
+* (bug 67594) Special:ActiveUsers: Fix to work with PostgreSQL.
 
 == MediaWiki 1.23.1 ==
 
