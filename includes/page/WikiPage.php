@@ -278,7 +278,6 @@ class WikiPage implements Page, IDBAccessObject {
 			'page_namespace',
 			'page_title',
 			'page_restrictions',
-			'page_counter',
 			'page_is_redirect',
 			'page_is_new',
 			'page_random',
