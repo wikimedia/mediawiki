@@ -332,15 +332,29 @@ class ProtectionForm {
 		return true;
 	}
 
+	public static function getBaseInputAttributes() {
+		global $wgUseMediaWikiUI;
+		if ( $wgUseMediaWikiUI ) {
+			return array(
+				'class' => 'mw-ui-input',
+			);
+		} else {
+			return array();
+		}
+	}
+
 	/**
 	 * Build the input form
 	 *
 	 * @return string HTML form
 	 */
 	function buildForm() {
-		global $wgUser, $wgLang, $wgOut, $wgCascadingRestrictionLevels;
+		global $wgUser, $wgLang, $wgOut, $wgCascadingRestrictionLevels,
+			$wgUseMediaWikiUI;
 
 		$out = '';
+		$baseAttrs = self::getBaseInputAttributes();
+
 		if ( !$this->disabled ) {
 			$wgOut->addModules( 'mediawiki.legacy.protect' );
 			$wgOut->addJsConfigVars( 'wgCascadeableLevels', $wgCascadingRestrictionLevels );
@@ -417,7 +431,7 @@ class ProtectionForm {
 						</td>
 						<td class='mw-input'>" .
 							Xml::tags( 'select',
-								array(
+								$baseAttrs + array(
 									'id' => "mwProtectExpirySelection-$action",
 									'name' => "wpProtectExpirySelection-$action",
 									'onchange' => "ProtectionForm.updateExpiryList(this)",
@@ -430,12 +444,13 @@ class ProtectionForm {
 			$attribs = array( 'id' => "mwProtect-$action-expires",
 				'onkeyup' => 'ProtectionForm.updateExpiry(this)',
 				'onchange' => 'ProtectionForm.updateExpiry(this)' ) + $this->disabledAttrib;
+
 			$out .= "<table><tr>
 					<td class='mw-label'>" .
 						$mProtectother .
 					'</td>
 					<td class="mw-input">' .
-						Xml::input( "mwProtect-expiry-$action", 50, $this->mExpiry[$action], $attribs ) .
+						Xml::input( "mwProtect-expiry-$action", 50, $this->mExpiry[$action], $baseAttrs + $attribs ) .
 					'</td>
 				</tr></table>';
 			$out .= "</td></tr>" .
@@ -501,7 +516,7 @@ class ProtectionForm {
 					</td>
 					<td class='mw-input'>" .
 						Xml::input( 'mwProtect-reason', 60, $this->mReason, array( 'type' => 'text',
-							'id' => 'mwProtect-reason', 'maxlength' => 180 ) ) .
+							'id' => 'mwProtect-reason', 'maxlength' => 180 ) + $baseAttrs ) .
 							// Limited maxlength as the database trims at 255 bytes and other texts
 							// chosen by dropdown menus on this page are also included in this database field.
 							// The byte limit of 180 bytes is enforced in javascript
@@ -573,7 +588,7 @@ class ProtectionForm {
 		);
 
 		$id = 'mwProtect-level-' . $action;
-		$attribs = array(
+		$attribs =  self::getBaseInputAttributes() + array(
 			'id' => $id,
 			'name' => $id,
 			'size' => count( $levels ),

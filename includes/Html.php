@@ -651,7 +651,7 @@ class Html {
 		$attribs['value'] = $value;
 		$attribs['name'] = $name;
 
-		return self::element( 'input', $attribs );
+		return self::element( 'input', Xml::getInputAttributes( $attribs ) );
 	}
 
 	/**
@@ -847,7 +847,7 @@ class Html {
 		}
 
 		// Wrap options in a <select>
-		$ret .= Html::openElement( 'select', $selectAttribs )
+		$ret .= Html::openElement( 'select', Xml::getInputAttributes( $selectAttribs ) )
 			. "\n"
 			. implode( "\n", $optionsHtml )
 			. "\n"
