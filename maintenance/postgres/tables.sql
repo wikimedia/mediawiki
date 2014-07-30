@@ -262,7 +262,6 @@ CREATE INDEX langlinks_lang_title    ON langlinks (ll_lang,ll_title);
 
 CREATE TABLE site_stats (
   ss_row_id         INTEGER  NOT NULL  UNIQUE,
-  ss_total_views    INTEGER            DEFAULT 0,
   ss_total_edits    INTEGER            DEFAULT 0,
   ss_good_articles  INTEGER            DEFAULT 0,
   ss_total_pages    INTEGER            DEFAULT -1,
@@ -270,10 +269,6 @@ CREATE TABLE site_stats (
   ss_active_users   INTEGER            DEFAULT -1,
   ss_admins         INTEGER            DEFAULT -1,
   ss_images         INTEGER            DEFAULT 0
-);
-
-CREATE TABLE hitcounter (
-  hc_id  BIGINT  NOT NULL
 );
 
 

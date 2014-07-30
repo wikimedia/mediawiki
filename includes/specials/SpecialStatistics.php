@@ -28,7 +28,7 @@
  * @ingroup SpecialPage
  */
 class SpecialStatistics extends SpecialPage {
-	private $views, $edits, $good, $images, $total, $users,
+	private $edits, $good, $images, $total, $users,
 		$activeUsers = 0;
 
 	public function __construct() {
@@ -38,13 +38,11 @@ class SpecialStatistics extends SpecialPage {
 	public function execute( $par ) {
 		global $wgMemc;
 
-		$disableCounters = $this->getConfig()->get( 'DisableCounters' );
 		$miserMode = $this->getConfig()->get( 'MiserMode' );
 
 		$this->setHeaders();
 		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
-		$this->views = SiteStats::views();
 		$this->edits = SiteStats::edits();
 		$this->good = SiteStats::articles();
 		$this->images = SiteStats::images();
@@ -52,12 +50,6 @@ class SpecialStatistics extends SpecialPage {
 		$this->users = SiteStats::users();
 		$this->activeUsers = SiteStats::activeUsers();
 		$this->hook = '';
-
-		# Staticic - views
-		$viewsStats = '';
-		if ( !$disableCounters ) {
-			$viewsStats = $this->getViewsStats();
-		}
 
 		# Set active user count
 		if ( !$miserMode ) {
@@ -83,12 +75,6 @@ class SpecialStatistics extends SpecialPage {
 
 		# Statistic - usergroups
 		$text .= $this->getGroupStats();
-		$text .= $viewsStats;
-
-		# Statistic - popular pages
-		if ( !$disableCounters && !$miserMode ) {
-			$text .= $this->getMostViewedPages();
-		}
 
 		# Statistic - other
 		$extraStats = array();
@@ -232,63 +218,6 @@ class SpecialStatistics extends SpecialPage {
 			$text .= $this->formatRow( $grouppage . ' ' . $grouplink,
 				$this->getLanguage()->formatNum( $countUsers ),
 				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero ) );
-		}
-
-		return $text;
-	}
-
-	private function getViewsStats() {
-		return Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-views' )->parse() ) .
-			Xml::closeElement( 'tr' ) .
-				$this->formatRow( $this->msg( 'statistics-views-total' )->parse(),
-					$this->getLanguage()->formatNum( $this->views ),
-						array( 'class' => 'mw-statistics-views-total' ), 'statistics-views-total-desc' ) .
-				$this->formatRow( $this->msg( 'statistics-views-peredit' )->parse(),
-					$this->getLanguage()->formatNum( sprintf( '%.2f', $this->edits ?
-						$this->views / $this->edits : 0 ) ),
-						array( 'class' => 'mw-statistics-views-peredit' ) );
-	}
-
-	private function getMostViewedPages() {
-		$text = '';
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			'page',
-			array(
-				'page_namespace',
-				'page_title',
-				'page_counter',
-			),
-			array(
-				'page_is_redirect' => 0,
-				'page_counter > 0',
-			),
-			__METHOD__,
-			array(
-				'ORDER BY' => 'page_counter DESC',
-				'LIMIT' => 10,
-			)
-		);
-
-		if ( $res->numRows() > 0 ) {
-			$text .= Xml::openElement( 'tr' );
-			$text .= Xml::tags(
-				'th',
-				array( 'colspan' => '2' ),
-				$this->msg( 'statistics-mostpopular' )->parse()
-			);
-			$text .= Xml::closeElement( 'tr' );
-
-			foreach ( $res as $row ) {
-				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-
-				if ( $title instanceof Title ) {
-					$text .= $this->formatRow( Linker::link( $title ),
-						$this->getLanguage()->formatNum( $row->page_counter ) );
-				}
-			}
-			$res->free();
 		}
 
 		return $text;
