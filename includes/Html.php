@@ -650,7 +650,9 @@ class Html {
 		$attribs['type'] = $type;
 		$attribs['value'] = $value;
 		$attribs['name'] = $name;
-
+		if ( in_array( $type, array( 'text', 'search', 'email', 'password', 'number' ) ) ) {
+			$attribs = Xml::getTextInputAttributes( $attribs );
+		}
 		return self::element( 'input', $attribs );
 	}
 
@@ -749,7 +751,7 @@ class Html {
 		} else {
 			$spacedValue = $value;
 		}
-		return self::element( 'textarea', $attribs, $spacedValue );
+		return self::element( 'textarea', Xml::getTextInputAttributes( $attribs ), $spacedValue );
 	}
 
 	/**
