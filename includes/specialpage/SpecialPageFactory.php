@@ -182,16 +182,12 @@ class SpecialPageFactory {
 	 */
 	static function getList() {
 		global $wgSpecialPages;
-		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
+		global $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
 		global $wgPageLanguageUseDB;
 
 		if ( !is_object( self::$list ) ) {
 			wfProfileIn( __METHOD__ );
-
-			if ( !$wgDisableCounters ) {
-				self::$list['Popularpages'] = 'PopularPagesPage';
-			}
 
 			if ( !$wgDisableInternalSearch ) {
 				self::$list['Search'] = 'SpecialSearch';
