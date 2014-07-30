@@ -249,12 +249,16 @@ class ChangeTags {
 	public static function buildTagFilterSelector( $selected = '',
 		$fullForm = false, Title $title = null
 	) {
-		global $wgUseTagFilter;
+		global $wgUseTagFilter, $wgUseMediaWikiUI;
 
 		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
 			return $fullForm ? '' : array();
 		}
 
+		$className = 'mw-tagfilter-input';
+		if ( $wgUseMediaWikiUI ) {
+			$className .= ' mw-ui-input';
+		}
 		$data = array(
 			Html::rawElement(
 				'label',
@@ -265,7 +269,7 @@ class ChangeTags {
 				'tagfilter',
 				20,
 				$selected,
-				array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' )
+				array( 'class' => $className, 'id' => 'tagfilter' )
 			)
 		);
 
