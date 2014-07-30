@@ -43,7 +43,7 @@
 					'<label for="wpCaptchaWord">' + mw.message( 'createacct-captcha' ).escaped() + '</label>',
 					'<div class="mw-createacct-captcha-container">',
 						'<div class="mw-createacct-captcha-and-reload" />',
-						'<input id="wpCaptchaWord" name="wpCaptchaWord" type="text" placeholder="' +
+						'<input id="wpCaptchaWord" class="mw-ui-input" name="wpCaptchaWord" type="text" placeholder="' +
 							mw.message( 'createacct-imgcaptcha-ph' ).escaped() +
 							'" tabindex="' + tabIndex + '" autocapitalize="off" autocorrect="off">',
 							helpHtml,
