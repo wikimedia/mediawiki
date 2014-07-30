@@ -314,13 +314,6 @@ class InfoAction extends FormlessAction {
 			$this->msg( 'pageinfo-robot-policy' ), $this->msg( "pageinfo-robot-${policy['index']}" )
 		);
 
-		if ( isset( $pageCounts['views'] ) ) {
-			// Number of views
-			$pageInfo['header-basic'][] = array(
-				$this->msg( 'pageinfo-views' ), $lang->formatNum( $pageCounts['views'] )
-			);
-		}
-
 		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
 		if (
 			$user->isAllowed( 'unwatchedpages' ) ||
@@ -643,17 +636,6 @@ class InfoAction extends FormlessAction {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$result = array();
-
-		if ( !$config->get( 'DisableCounters' ) ) {
-			// Number of views
-			$views = (int)$dbr->selectField(
-				'page',
-				'page_counter',
-				array( 'page_id' => $id ),
-				__METHOD__
-			);
-			$result['views'] = $views;
-		}
 
 		// Number of page watchers
 		$watchers = (int)$dbr->selectField(
