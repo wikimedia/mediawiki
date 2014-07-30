@@ -241,9 +241,6 @@ CREATE TABLE /*_*/page (
   -- can move or edit the page.
   page_restrictions tinyblob NOT NULL,
 
-  -- Number of times this page has been viewed.
-  page_counter bigint unsigned NOT NULL default 0,
-
   -- 1 indicates the article is a redirect.
   page_is_redirect tinyint unsigned NOT NULL default 0,
 
@@ -697,9 +694,6 @@ CREATE TABLE /*_*/site_stats (
   -- The single row should contain 1 here.
   ss_row_id int unsigned NOT NULL,
 
-  -- Total number of page views, if hit counters are enabled.
-  ss_total_views bigint unsigned default 0,
-
   -- Total number of edits performed.
   ss_total_edits bigint unsigned default 0,
 
@@ -725,19 +719,6 @@ CREATE TABLE /*_*/site_stats (
 
 -- Pointless index to assuage developer superstitions
 CREATE UNIQUE INDEX /*i*/ss_row_id ON /*_*/site_stats (ss_row_id);
-
-
---
--- Stores an ID for every time any article is visited;
--- depending on $wgHitcounterUpdateFreq, it is
--- periodically cleared and the page_counter column
--- in the page table updated for all the articles
--- that have been visited.)
---
-CREATE TABLE /*_*/hitcounter (
-  hc_id int unsigned NOT NULL
-) ENGINE=MEMORY MAX_ROWS=25000;
-
 
 --
 -- The internet is full of jerks, alas. Sometimes it's handy
