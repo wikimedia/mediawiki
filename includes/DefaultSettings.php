@@ -2886,6 +2886,21 @@ $wgHtml5 = true;
 $wgHtml5Version = null;
 
 /**
+ * Allows HTMLForms to be rendered as tables.
+ * Table based layouts cause various issues when designing for mobile.
+ * This forces them to always render as div elements.
+ * Currently enabled by mobile.
+ */
+$wgHTMLFormAllowTableFormat = true;
+
+/**
+ * Applies MediaWiki UI wherever it can be supported.
+ * Temporary variable that should be removed when mediawiki ui support is more widespread.
+ * Currently enabled by mobile.
+ */
+$wgUseMediaWikiUI = false;
+
+/**
  * Enabled RDFa attributes for use in wikitext.
  * NOTE: Interaction with HTML5 is somewhat underspecified.
  */

@@ -6,13 +6,19 @@ class HTMLTextField extends HTMLFormField {
 	}
 
 	function getInputHTML( $value ) {
+		global $wgUseMediaWikiUI;
+
 		$attribs = array(
 				'id' => $this->mID,
 				'name' => $this->mName,
-				'size' => $this->getSize(),
 				'value' => $value,
 			) + $this->getTooltipAndAccessKey();
 
+		if ( $wgUseMediaWikiUI ) {
+			$this->mClass .= ' mw-ui-input';
+		} else {
+			$attribs['size'] = $this->getSize();
+		}
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
 		}
