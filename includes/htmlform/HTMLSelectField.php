@@ -21,10 +21,15 @@ class HTMLSelectField extends HTMLFormField {
 	}
 
 	function getInputHTML( $value ) {
+		global $wgUseMediaWikiUIEverywhere;
+
 		$select = new XmlSelect( $this->mName, $this->mID, strval( $value ) );
 
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
+		}
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$select->setAttribute( 'class', 'mw-ui-input' );
 		}
 
 		$allowedParams = array( 'tabindex', 'size' );

@@ -5,6 +5,7 @@
  */
 class HTMLCheckField extends HTMLFormField {
 	function getInputHTML( $value ) {
+
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;
 		}
@@ -26,9 +27,7 @@ class HTMLCheckField extends HTMLFormField {
 				),
 				Xml::check( $this->mName, $value, $attr ) . $this->mLabel );
 		} else {
-			return Xml::check( $this->mName, $value, $attr )
-			. '&#160;'
-			. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+			return Html::checkLabel( $this->mLabel, $this->mName, $this->mID, $value, $attr );
 		}
 	}
 

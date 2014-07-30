@@ -354,10 +354,17 @@ class SpecialPage {
 	 * Sets headers - this should be called from the execute() method of all derived classes!
 	 */
 	function setHeaders() {
+		global $wgUseMediaWikiUIEverywhere;
 		$out = $this->getOutput();
 		$out->setArticleRelated( false );
 		$out->setRobotPolicy( $this->getRobotPolicy() );
 		$out->setPageTitle( $this->getDescription() );
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$out->addModuleStyles( array(
+				'mediawiki.ui.input',
+				'mediawiki.ui.checkbox',
+			) );
+		}
 	}
 
 	/**
