@@ -13,12 +13,18 @@ class HTMLTextAreaField extends HTMLFormField {
 	}
 
 	function getInputHTML( $value ) {
+		global $wgUseMediaWikiUI;
+
 		$attribs = array(
 				'id' => $this->mID,
 				'name' => $this->mName,
 				'cols' => $this->getCols(),
 				'rows' => $this->getRows(),
 			) + $this->getTooltipAndAccessKey();
+
+		if ( $wgUseMediaWikiUI ) {
+			$this->mClass = 'mw-ui-input';
+		}
 
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
