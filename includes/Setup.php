@@ -517,6 +517,10 @@ if ( $wgTmpDirectory === false ) {
 	wfProfileOut( $fname . '-tempDir' );
 }
 
+// We don't use counters anymore. Left here for extensions still
+// expecting this to exist. Should be removed sometime 1.26 or later.
+$wgDisableCounters = true;
+
 wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
 
