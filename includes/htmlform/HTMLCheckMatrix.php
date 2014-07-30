@@ -80,6 +80,8 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 * @return string
 	 */
 	function getInputHTML( $value ) {
+		global $wgUseMediaWikiUI;
+
 		$html = '';
 		$tableContents = '';
 		$rows = $this->mParams['rows'];
@@ -113,8 +115,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 			foreach ( $columns as $columnTag ) {
 				$thisTag = "$columnTag-$rowTag";
 				// Construct the checkbox
+				$thisId = "{$this->mID}-$thisTag";
 				$thisAttribs = array(
-					'id' => "{$this->mID}-$thisTag",
+					'id' => $thisId,
 					'value' => $thisTag,
 				);
 				$checked = in_array( $thisTag, (array)$value, true );
@@ -125,10 +128,17 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 					$checked = true;
 					$thisAttribs['disabled'] = 1;
 				}
+				$chkBox = Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs );
+				if ( $wgUseMediaWikiUI ) {
+					$chkBox = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
+						$chkBox .
+						Html::element( 'label', array( 'for' => $thisId ) ) .
+						Html::closeElement( 'div' );
+				}
 				$rowContents .= Html::rawElement(
 					'td',
 					array(),
-					Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs )
+					$chkBox
 				);
 			}
 			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );

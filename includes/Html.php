@@ -650,7 +650,9 @@ class Html {
 		$attribs['type'] = $type;
 		$attribs['value'] = $value;
 		$attribs['name'] = $name;
-
+		if ( in_array( $type, array( 'text', 'search' ) ) ) {
+			$attribs = Xml::getTextInputAttributes( $attribs );
+		}
 		return self::element( 'input', $attribs );
 	}
 
@@ -847,7 +849,7 @@ class Html {
 		}
 
 		// Wrap options in a <select>
-		$ret .= Html::openElement( 'select', $selectAttribs )
+		$ret .= Html::openElement( 'select', Xml::getTextInputAttributes( $selectAttribs ) )
 			. "\n"
 			. implode( "\n", $optionsHtml )
 			. "\n"

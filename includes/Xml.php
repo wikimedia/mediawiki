@@ -39,6 +39,9 @@ class Xml {
 	public static function element( $element, $attribs = null, $contents = '',
 		$allowShortTag = true
 	) {
+		if ( $element === 'textarea' ) {
+			$attribs = Xml::getTextInputAttributes( $attribs );
+		}
 		$out = '<' . $element;
 		if ( !is_null( $attribs ) ) {
 			$out .= self::expandAttributes( $attribs );
@@ -131,6 +134,9 @@ class Xml {
 	 * @return string
 	 */
 	public static function tags( $element, $attribs = null, $contents ) {
+		if ( $element === 'select' ) {
+			$attribs = self::getTextInputAttributes( $attribs );
+		}
 		return self::openElement( $element, $attribs ) . $contents . "</$element>";
 	}
 
@@ -169,7 +175,7 @@ class Xml {
 	 * @return string Html string containing the month selector
 	 */
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
-		global $wgLang;
+		global $wgLang, $wgUseMediaWikiUI;
 		$options = array();
 		if ( is_null( $selected ) ) {
 			$selected = '';
@@ -184,10 +190,15 @@ class Xml {
 		for ( $i = 1; $i < 13; $i++ ) {
 			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
 		}
+		$className = 'mw-month-selector';
+		if ( $wgUseMediaWikiUI ) {
+			$className .= ' mw-ui-input';
+		}
+
 		return self::openElement( 'select', array(
 			'id' => $id,
 			'name' => 'month',
-			'class' => 'mw-month-selector'
+			'class' => $className
 		) )
 			. implode( "\n", $options )
 			. self::closeElement( 'select' );
@@ -199,6 +210,8 @@ class Xml {
 	 * @return string Formatted HTML
 	 */
 	public static function dateMenu( $year, $month ) {
+		global $wgUseMediaWikiUI;
+
 		# Offset overrides year/month selection
 		if ( $month && $month !== -1 ) {
 			$encMonth = intval( $month );
@@ -218,7 +231,12 @@ class Xml {
 		} else {
 			$encYear = '';
 		}
-		$inputAttribs = array( 'id' => 'year', 'maxlength' => 4, 'size' => 7 );
+		$inputAttribs = array( 'id' => 'year', 'maxlength' => 4 );
+		if ( $wgUseMediaWikiUI ) {
+			$inputAttribs['class'] = 'mw-ui-input';
+		} else {
+			$inputAttribs['size'] = 7;
+		}
 		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' ' .
 			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' ' .
 			self::label( wfMessage( 'month' )->text(), 'month' ) . ' ' .
@@ -317,7 +335,8 @@ class Xml {
 			$attributes['value'] = $value;
 		}
 
-		return self::element( 'input', $attributes + $attribs );
+		return self::element( 'input',
+			self::getTextInputAttributes( $attributes + $attribs ) );
 	}
 
 	/**
@@ -404,6 +423,29 @@ class Xml {
 	}
 
 	/**
+	 * Modifies a set of attributes meant for text inputs and
+	 * apply a set of default attributes.
+	 * Applies MediaWiki UI when enables
+	 * @param array $attrs An attribute array.
+	 * @return array $attrs A modified attribute array
+	 */
+	public static function getTextInputAttributes( $attrs ) {
+		global $wgUseMediaWikiUI;
+		if ( !$attrs ) {
+			$attrs = array();
+		}
+		if ( $wgUseMediaWikiUI ) {
+			if ( isset( $attrs['class'] ) ) {
+				$attrs['class'] .= ' mw-ui-input';
+			} else {
+				$attrs['class'] = 'mw-ui-input';
+			}
+			unset( $attrs['size'] );
+		}
+		return $attrs;
+	}
+
+	/**
 	 * Convenience function to build an HTML text input field with a label
 	 * @param string $label Text of the label
 	 * @param string $name Value of the name attribute
@@ -453,9 +495,16 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function checkLabel( $label, $name, $id, $checked = false, $attribs = array() ) {
-		return self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
+		global $wgUseMediaWikiUI;
+		$chkLabel = self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
 			'&#160;' .
 			self::label( $label, $id, $attribs );
+
+		if ( $wgUseMediaWikiUI ) {
+			$chkLabel = self::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
+				$chkLabel . self::closeElement( 'div' );
+		}
+		return $chkLabel;
 	}
 
 	/**
@@ -485,7 +534,12 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function submitButton( $value, $attribs = array() ) {
-		return Html::element( 'input', array( 'type' => 'submit', 'value' => $value ) + $attribs );
+		global $wgUseMediaWikiUI;
+		$attrs = array( 'type' => 'submit', 'value' => $value ) + $attribs;
+		if ( $wgUseMediaWikiUI ) {
+			$attrs['class'] = 'mw-ui-button mw-ui-constructive';
+		}
+		return Html::element( 'input', $attrs );
 	}
 
 	/**
@@ -571,7 +625,7 @@ class Xml {
 			$attribs['tabindex'] = $tabindex;
 		}
 
-		return Xml::openElement( 'select', $attribs )
+		return Xml::openElement( 'select', self::getTextInputAttributes( $attribs ) )
 			. "\n"
 			. $options
 			. "\n"

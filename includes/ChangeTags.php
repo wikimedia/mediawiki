@@ -255,6 +255,7 @@ class ChangeTags {
 			return $fullForm ? '' : array();
 		}
 
+		$className = 'mw-tagfilter-input';
 		$data = array(
 			Html::rawElement(
 				'label',
@@ -265,7 +266,7 @@ class ChangeTags {
 				'tagfilter',
 				20,
 				$selected,
-				array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' )
+				Xml::getTextInputAttributes( array( 'class' => $className, 'id' => 'tagfilter' ) )
 			)
 		);
 
