@@ -3,6 +3,20 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.22.9 ==
+
+This is a security and maintenance release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.8 ===
+
+* (bug 68187) SECURITY: Prepend jsonp callback with comment.
+* (bug 66608) SECURITY: Fix for XSS issue in bug 66608: Generate the URL used
+  for loading a new page in Javascript,instead of relying on the URL in the link
+  that has been clicked.
+* (bug 65778) SECURITY: Copy prevent-clickjacking between OutputPage and
+  ParserOutput.
+* (bug 59147) The img_metadata field was not being decoded from bytea into text.
+
 == MediaWiki 1.22.8 ==
 
 This is a security and maintenance release of the MediaWiki 1.22 branch.
