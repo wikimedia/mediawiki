@@ -47,6 +47,8 @@ production.
 * $wgCompiledFiles has been removed.
 * $wgSortSpecialPages was removed, the listing on Special:SpecialPages is
   now always sorted.
+* $wgHitcounterUpdateFreq and $wgDisableCounters were removed since page view
+  counting was removed
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
@@ -312,6 +314,11 @@ changes to languages because of Bugzilla reports.
   JavaScript is no longer executed in this browser. The IEFixes script, which
   existed purely to provide support for MSIE versions below 7 and which was
   conditionally loaded for those browsers, was also removed.
+* BREAKING CHANGE: page view counting has been removed
+* Removed magic word/parser function {{numberofviews}}, page view counts are
+  no longer tracked
+* Removed SiteStats::views() and SiteStatsInit::views(), page view counts are
+  no longer tracked
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
@@ -360,6 +367,8 @@ changes to languages because of Bugzilla reports.
 * RawPage - Use RawAction directly
 * StubContLang - Use Language::factory() instead
 * XMLReader2 - Use XMLReader directly
+* ViewCountUpdate - page view counts are no longer tracked
+* PopularPagesPage - page view counts are no longer tracked
 
 == Compatibility ==
 

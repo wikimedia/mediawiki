@@ -37,7 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'ipblocks', 'ipb_expiry', 'patch-ipb_expiry.sql' ),
 			array( 'doInterwikiUpdate' ),
 			array( 'doIndexUpdate' ),
-			array( 'addTable', 'hitcounter', 'patch-hitcounter.sql' ),
 			array( 'addField', 'recentchanges', 'rc_type', 'patch-rc_type.sql' ),
 			array( 'addIndex', 'recentchanges', 'new_name_timestamp', 'patch-rc-newindex.sql' ),
 
@@ -259,6 +258,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'pagelinks', 'pl_from_namespace', 'patch-pl_from_namespace.sql' ),
 			array( 'addField', 'templatelinks', 'tl_from_namespace', 'patch-tl_from_namespace.sql' ),
 			array( 'addField', 'imagelinks', 'il_from_namespace', 'patch-il_from_namespace.sql' ),
+			array( 'dropTable', 'hitcounter' ),
+			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
+			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
 		);
 	}
 
@@ -509,7 +511,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			page_namespace int NOT NULL,
 			page_title varchar(255) binary NOT NULL,
 			page_restrictions tinyblob NOT NULL,
-			page_counter bigint(20) unsigned NOT NULL default '0',
 			page_is_redirect tinyint(1) unsigned NOT NULL default '0',
 			page_is_new tinyint(1) unsigned NOT NULL default '0',
 			page_random real unsigned NOT NULL,
@@ -591,9 +592,9 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "......Setting up page table.\n" );
 		$this->db->query(
 			"INSERT INTO $page (page_id, page_namespace, page_title,
-				page_restrictions, page_counter, page_is_redirect, page_is_new, page_random,
+				page_restrictions, page_is_redirect, page_is_new, page_random,
 				page_touched, page_latest, page_len)
-			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter,
+			SELECT cur_id, cur_namespace, cur_title, cur_restrictions,
 				cur_is_redirect, cur_is_new, cur_random, cur_touched, rev_id, LENGTH(cur_text)
 			FROM $cur,$revision
 			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}",
