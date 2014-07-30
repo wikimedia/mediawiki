@@ -34,6 +34,7 @@
 	width: 100%;
 	padding: .3em .3em .3em .6em;
 	display: block;
+	vertical-align: middle;
 	// Override user agent stylesheet properties. Instead use parent element.
 	color: inherit;
 	font-family: inherit;
@@ -97,8 +98,14 @@ textarea.mw-ui-input {
 .mw-ui-input-large {
 	margin-top: 0;
 	margin-bottom: 0;
+
+	// When two large inputs are together, we make them flush by hiding one of the borders
 	& + .mw-ui-input-large {
-		border-top-width: 0;
+		margin-top: -1px;
+	}
+	// When focusing, make the input relative to raise it above any attached inputs to unhide its borders
+	&:focus {
+		position: relative;
 	}
 }
 
