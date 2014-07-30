@@ -2886,6 +2886,21 @@ $wgHtml5 = true;
 $wgHtml5Version = null;
 
 /**
+ * Temporary variable that allows HTMLForms to be rendered as tables.
+ * Table based layouts cause various issues when designing for mobile.
+ * This global allows skins or extensions a means to force non-table based rendering.
+ * Setting to false forces form components to always render as div elements.
+ */
+$wgHTMLFormAllowTableFormat = true;
+
+/**
+ * Temporary variable that applies MediaWiki UI wherever it can be supported.
+ * Temporary variable that should be removed when mediawiki ui is more
+ * stable and change has been communicated.
+ */
+$wgUseMediaWikiUIEverywhere = false;
+
+/**
  * Enabled RDFa attributes for use in wikitext.
  * NOTE: Interaction with HTML5 is somewhat underspecified.
  */

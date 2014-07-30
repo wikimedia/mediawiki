@@ -3184,7 +3184,7 @@ HTML
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {
-		global $wgOut;
+		global $wgOut, $wgUseMediaWikiUIEverywhere;
 		$wgOut->addHTML( "<div class='editOptions'>\n" );
 
 		if ( $this->section != 'new' ) {
@@ -3212,8 +3212,14 @@ HTML
 
 		$message = wfMessage( 'edithelppage' )->inContentLanguage()->text();
 		$edithelpurl = Skin::makeInternalOrExternalUrl( $message );
-		$edithelp = '<a target="helpwindow" href="' . $edithelpurl . '">' .
-			wfMessage( 'edithelp' )->escaped() . '</a> ' .
+		$attrs = array(
+			'target' => 'helpwindow',
+			'href' => $edithelpurl,
+		);
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$attrs['class'] = 'mw-ui-button mw-ui-quiet';
+		}
+		$edithelp = Html::element( 'a', $attrs, wfMessage( 'edithelp' )->text() ) .
 			wfMessage( 'newwindow' )->parse();
 
 		$wgOut->addHTML( "	<span class='cancelLink'>{$cancel}</span>\n" );
@@ -3255,15 +3261,20 @@ HTML
 	 * @return string
 	 */
 	public function getCancelLink() {
+		global $wgUseMediaWikiUIEverywhere;
 		$cancelParams = array();
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
+		}
+		$attrs = array( 'id' => 'mw-editform-cancel' );
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$attrs['class'] = 'mw-ui-button mw-ui-quiet';
 		}
 
 		return Linker::linkKnown(
 			$this->getContextTitle(),
 			wfMessage( 'cancel' )->parse(),
-			array( 'id' => 'mw-editform-cancel' ),
+			$attrs,
 			$cancelParams
 		);
 	}
@@ -3692,7 +3703,7 @@ HTML
 	 * @return array
 	 */
 	public function getCheckboxes( &$tabindex, $checked ) {
-		global $wgUser;
+		global $wgUser, $wgUseMediaWikiUIEverywhere;
 
 		$checkboxes = array();
 
@@ -3706,11 +3717,18 @@ HTML
 					'accesskey' => wfMessage( 'accesskey-minoredit' )->text(),
 					'id' => 'wpMinoredit',
 				);
-				$checkboxes['minor'] =
-					Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
-					"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" .
-					Xml::expandAttributes( array( 'title' => Linker::titleAttrib( 'minoredit', 'withaccess' ) ) ) .
-					">{$minorLabel}</label>";
+				if ( $wgUseMediaWikiUIEverywhere ) {
+					$attribs['title'] = Sanitizer::encodeAttribute(
+						Linker::titleAttrib( 'minoredit', 'withaccess' )
+					);
+					$checkboxes['minor'] =
+						Xml::checkLabel( $minorLabel, 'wpMinoredit', 'wpMinoredit', $checked['minor'], $attribs );
+				} else {
+					$checkboxes['minor'] = Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
+						"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" .
+						Xml::expandAttributes( array( 'title' => Linker::titleAttrib( 'minoredit', 'withaccess' ) ) ) .
+						">{$minorLabel}</label>";
+				}
 			}
 		}
 
@@ -3722,11 +3740,18 @@ HTML
 				'accesskey' => wfMessage( 'accesskey-watch' )->text(),
 				'id' => 'wpWatchthis',
 			);
-			$checkboxes['watch'] =
+			$watchThisHtml =
 				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
 				"&#160;<label for='wpWatchthis' id='mw-editpage-watch'" .
 				Xml::expandAttributes( array( 'title' => Linker::titleAttrib( 'watch', 'withaccess' ) ) ) .
 				">{$watchLabel}</label>";
+			if ( $wgUseMediaWikiUIEverywhere ) {
+				$checkboxes['watch'] = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
+					$watchThisHtml .
+					Html::closeElement( 'div' );
+			} else {
+				$checkboxes['watch'] = $watchThisHtml;
+			}
 		}
 		wfRunHooks( 'EditPageBeforeEditChecks', array( &$this, &$checkboxes, &$tabindex ) );
 		return $checkboxes;
@@ -3741,6 +3766,8 @@ HTML
 	 * @return array
 	 */
 	public function getEditButtons( &$tabindex ) {
+		global $wgUseMediaWikiUIEverywhere;
+
 		$buttons = array();
 
 		$attribs = array(
@@ -3750,6 +3777,9 @@ HTML
 			'tabindex' => ++$tabindex,
 			'value' => wfMessage( 'savearticle' )->text(),
 		) + Linker::tooltipAndAccesskeyAttribs( 'save' );
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$attribs['class'] = 'mw-ui-button mw-ui-constructive';
+		}
 		$buttons['save'] = Xml::element( 'input', $attribs, '' );
 
 		++$tabindex; // use the same for preview and live preview
@@ -3760,6 +3790,9 @@ HTML
 			'tabindex' => $tabindex,
 			'value' => wfMessage( 'showpreview' )->text(),
 		) + Linker::tooltipAndAccesskeyAttribs( 'preview' );
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$attribs['class'] = 'mw-ui-button mw-ui-progressive';
+		}
 		$buttons['preview'] = Xml::element( 'input', $attribs, '' );
 		$buttons['live'] = '';
 
@@ -3770,6 +3803,9 @@ HTML
 			'tabindex' => ++$tabindex,
 			'value' => wfMessage( 'showdiff' )->text(),
 		) + Linker::tooltipAndAccesskeyAttribs( 'diff' );
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$attribs['class'] = 'mw-ui-button mw-ui-progressive';
+		}
 		$buttons['diff'] = Xml::element( 'input', $attribs, '' );
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
