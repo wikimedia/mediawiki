@@ -301,7 +301,7 @@ class CSSJanus {
 		// (We can't just negate the value with unary minus due to the units.)
 		$flipSign = function ( $cssValue ) {
 			// Don't mangle zeroes
-			if ( intval( $cssValue ) === 0 ) {
+			if ( floatval( $cssValue ) === 0 ) {
 				return $cssValue;
 			} elseif ( $cssValue[0] === '-' ) {
 				return substr( $cssValue, 1 );
