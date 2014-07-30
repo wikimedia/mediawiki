@@ -164,7 +164,6 @@ CREATE INDEX /*i*/ll_lang_title ON /*_*/langlinks_tmp (ll_lang, ll_title);
 
 CREATE TABLE /*_*/site_stats_tmp (
   ss_row_id int unsigned NOT NULL,
-  ss_total_views bigint unsigned default 0,
   ss_total_edits bigint unsigned default 0,
   ss_good_articles bigint unsigned default 0,
   ss_total_pages bigint default '-1',
