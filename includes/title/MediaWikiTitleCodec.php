@@ -206,6 +206,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		# Initialisation
 		$parts = array(
 			'interwiki' => '',
+			'local_interwiki' => false,
 			'fragment' => '',
 			'namespace' => $defaultNamespace,
 			'dbkey' => $dbkey,
@@ -282,6 +283,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 								$mainPage = Title::newMainPage();
 								return array(
 									'interwiki' => $mainPage->getInterwiki(),
+									'local_interwiki' => true,
 									'fragment' => $mainPage->getFragment(),
 									'namespace' => $mainPage->getNamespace(),
 									'dbkey' => $mainPage->getDBkey(),
@@ -289,6 +291,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 								);
 							}
 							$parts['interwiki'] = '';
+							# local interwikis should behave like initial-colon links
+							$parts['local_interwiki'] = true;
 
 							# Do another namespace split...
 							continue 2;
