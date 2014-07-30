@@ -4,7 +4,10 @@
  * A checkbox field
  */
 class HTMLCheckField extends HTMLFormField {
+
 	function getInputHTML( $value ) {
+		global $wgUseMediaWikiUI;
+
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;
 		}
@@ -26,9 +29,19 @@ class HTMLCheckField extends HTMLFormField {
 				),
 				Xml::check( $this->mName, $value, $attr ) . $this->mLabel );
 		} else {
-			return Xml::check( $this->mName, $value, $attr )
-			. '&#160;'
-			. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+
+			if ( $wgUseMediaWikiUI ) {
+				return Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) )
+					. Xml::check( $this->mName, $value, $attr )
+					. Html::rawElement( 'label', array( 'for' => $this->mID ) )
+					. '&#160;'
+					. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel )
+					. Html::closeElement( 'div' );
+			} else {
+				return Xml::check( $this->mName, $value, $attr )
+					. '&#160;'
+					. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+			}
 		}
 	}
 
