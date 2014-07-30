@@ -51,6 +51,9 @@ class JobRunner {
 	 *   - elapsed  : the total time spent running tasks in ms
 	 *   - reached  : the reason the script finished, one of (none-ready, job-limit, time-limit)
 	 *
+	 * This method outputs status information only if a debug handler was set.
+	 * Any exceptions are caught and logged, but are not reported as output.
+	 *
 	 * @param array $options
 	 * @return array Summary response that can easily be JSON serialized
 	 */
@@ -110,7 +113,7 @@ class JobRunner {
 					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 					$status = false;
 					$error = get_class( $e ) . ': ' . $e->getMessage();
-					$e->report(); // write error to STDERR and the log
+					MWExceptionHandler::logException( $e );
 				}
 				$timeMs = intval( ( microtime( true ) - $t ) * 1000 );
 				wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
