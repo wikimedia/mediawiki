@@ -34,12 +34,19 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	function getInputHTML( $value ) {
+		global $wgUseMediaWikiUI;
 		$select = parent::getInputHTML( $value[1] );
 
 		$textAttribs = array(
 			'id' => $this->mID . '-other',
-			'size' => $this->getSize(),
 		);
+
+		if ( $wgUseMediaWikiUI ) {
+			$this->mClass .= ' mw-ui-input';
+		} else {
+			// only set size on non-mediawiki ui elements, width is controlled in css
+			$textAttribs['size'] = $this->getSize();
+		}
 
 		if ( $this->mClass !== '' ) {
 			$textAttribs['class'] = $this->mClass;
