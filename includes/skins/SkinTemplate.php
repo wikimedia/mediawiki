@@ -260,7 +260,7 @@ class SkinTemplate extends Skin {
 	 */
 	protected function prepareQuickTemplate() {
 		global $wgContLang, $wgScript, $wgStylePath, $wgMimeType, $wgJsMimeType,
-			$wgDisableCounters, $wgSitename, $wgLogo, $wgMaxCredits,
+			$wgSitename, $wgLogo, $wgMaxCredits,
 			$wgShowCreditsIfMax, $wgArticlePath,
 			$wgScriptPath, $wgServer;
 
@@ -379,13 +379,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'numberofwatchingusers', false );
 		if ( $out->isArticle() && $title->exists() ) {
 			if ( $this->isRevisionCurrent() ) {
-				if ( !$wgDisableCounters ) {
-					$viewcount = $this->getWikiPage()->getCount();
-					if ( $viewcount ) {
-						$tpl->set( 'viewcount', $this->msg( 'viewcount' )->numParams( $viewcount )->parse() );
-					}
-				}
-
 				if ( $wgMaxCredits != 0 ) {
 					$tpl->set( 'credits', Action::factory( 'credits', $this->getWikiPage(),
 						$this->getContext() )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );

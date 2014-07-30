@@ -64,9 +64,6 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 		$pageSet->requestField( 'page_is_new' );
 		$config = $this->getConfig();
-		if ( !$config->get( 'DisableCounters' ) ) {
-			$pageSet->requestField( 'page_counter' );
-		}
 		$pageSet->requestField( 'page_touched' );
 		$pageSet->requestField( 'page_latest' );
 		$pageSet->requestField( 'page_len' );
@@ -328,9 +325,6 @@ class ApiQueryInfo extends ApiQueryBase {
 			: array();
 		$this->pageIsNew = $pageSet->getCustomField( 'page_is_new' );
 
-		if ( !$this->getConfig()->get( 'DisableCounters' ) ) {
-			$this->pageCounter = $pageSet->getCustomField( 'page_counter' );
-		}
 		$this->pageTouched = $pageSet->getCustomField( 'page_touched' );
 		$this->pageLatest = $pageSet->getCustomField( 'page_latest' );
 		$this->pageLength = $pageSet->getCustomField( 'page_len' );
@@ -392,9 +386,6 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $titleExists ) {
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = intval( $this->pageLatest[$pageid] );
-			$pageInfo['counter'] = $this->getConfig()->get( 'DisableCounters' )
-				? ''
-				: intval( $this->pageCounter[$pageid] );
 			$pageInfo['length'] = intval( $this->pageLength[$pageid] );
 
 			if ( isset( $this->pageIsRedir[$pageid] ) && $this->pageIsRedir[$pageid] ) {

@@ -44,7 +44,6 @@ class ShowSiteStats extends Maintenance {
 
 	public function execute() {
 		$fields = array(
-			'ss_total_views' => 'Total views',
 			'ss_total_edits' => 'Total edits',
 			'ss_good_articles' => 'Number of articles',
 			'ss_total_pages' => 'Total pages',

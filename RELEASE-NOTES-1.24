@@ -70,9 +70,14 @@ production.
 * $wgCanonicalLanguageLinks has been removed. Per Google recommendations, we
   will not send a rel=canonical pointing to a variant-neutral page, however
   we will send rel=alternate.
+<<<<<<< HEAD
 * $wgResourceLoaderLESSFunctions has been deprecated and will be removed in the future.
 * $wgGoToEdit has been removed. Use the SpecialSearchNogomatch hook for similar
   functionality.
+=======
+* $wgHitcounterUpdateFreq was removed and $wgDisableCounters is hardcoded true since
+  page view counting was removed.
+>>>>>>> Remove hitcounters and associated code
 
 === New features in 1.24 ===
 * Added new hook WatchlistEditorBeforeFormRender, allowing subscribers to
@@ -505,6 +510,13 @@ changes to languages because of Bugzilla reports.
 * Removed maintenance/purgeOldText.inc and the PurgeRedundantText() function
   it contained (superseded by Maintenance::purgeRedundantText() in 1.16).
   The purgeOldText.php maintenance script has been retained.
+* Removed WikiPage::estimateRevisionCount. (deprecated since 1.19)
+* BREAKING CHANGE: page view counting has been removed
+* Removed magic word/parser function {{numberofviews}}, page view counts are
+  no longer tracked
+* Removed SiteStatsInit::views() and deprecated SiteStats::views() since
+  page view counts are no longer tracked
+* Special:PopularPages was removed since page view counts are no longer tracked
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
@@ -553,6 +565,7 @@ changes to languages because of Bugzilla reports.
 * RawPage - Use RawAction directly
 * StubContLang - Use Language::factory() instead
 * XMLReader2 - Use XMLReader directly
+<<<<<<< HEAD
 * ResourceLoaderLESSFunctions - No longer in use, not intended for public usage
 
 ==== Removed files ====
@@ -685,6 +698,10 @@ of files that are no longer available follows.
 * skins/common/images/icons/fileicon-txt.png
 * skins/common/images/icons/fileicon.png
 * skins/common/images/ksh/button_S_italic.png
+=======
+* ViewCountUpdate - page view counts are no longer tracked
+* PopularPagesPage - page view counts are no longer tracked
+>>>>>>> Remove hitcounters and associated code
 
 == Compatibility ==
 
