@@ -72,7 +72,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			$pos = strrpos( $par, '/' );
 			$basepage = substr( $par, 0, $pos );
 			$code = substr( $par, $pos + 1 );
-			if ( Language::isKnownLanguageTag( $code ) ) {
+			if ( strlen( $code ) && Language::isKnownLanguageTag( $code ) ) {
 				$base = Title::newFromText( $basepage );
 			}
 		}
