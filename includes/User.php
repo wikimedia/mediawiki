@@ -3813,6 +3813,7 @@ class User implements IDBAccessObject {
 		global $wgNewPasswordExpiry;
 
 		$this->load();
+		$this->loadPasswords();
 		if ( $this->mNewpassword->equals( $plaintext ) ) {
 			if ( is_null( $this->mNewpassTime ) ) {
 				return true;
