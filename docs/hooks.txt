@@ -1871,14 +1871,6 @@ $categories: associative array, keys are category names, values are category
 $links: array, intended to hold the result. Must be an associative array with
   category types as keys and arrays of HTML links as values.
 
-'OutputPageScriptsForBottomQueue': Allows adding modules to the bottom queue
-that should be requested in a dedicated <script> request. In most cases you'll
-want to use OutputPage::addModules instead (from another hook) which allows
-ResourceLoader to better combine requests and allows the module load requests
-to be cached better. Typically you'd only use this for user-specific modules.
-$out: OutputPage instance
-&$modules: Array of modules names to add to the bottom queue
-
 'PageContentInsertComplete': After a new article is created.
 $wikiPage: WikiPage created
 $user: User creating the article
