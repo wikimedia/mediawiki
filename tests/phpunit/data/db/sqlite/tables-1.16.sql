@@ -46,7 +46,6 @@ CREATE TABLE /*_*/page (
   page_namespace int NOT NULL,
   page_title varchar(255) binary NOT NULL,
   page_restrictions tinyblob NOT NULL,
-  page_counter bigint unsigned NOT NULL default 0,
   page_is_redirect tinyint unsigned NOT NULL default 0,
   page_is_new tinyint unsigned NOT NULL default 0,
   page_random real unsigned NOT NULL,
@@ -155,7 +154,6 @@ CREATE UNIQUE INDEX /*i*/ll_from ON /*_*/langlinks (ll_from, ll_lang);
 CREATE INDEX /*i*/ll_lang ON /*_*/langlinks (ll_lang, ll_title);
 CREATE TABLE /*_*/site_stats (
   ss_row_id int unsigned NOT NULL,
-  ss_total_views bigint unsigned default 0,
   ss_total_edits bigint unsigned default 0,
   ss_good_articles bigint unsigned default 0,
   ss_total_pages bigint default '-1',
@@ -165,9 +163,6 @@ CREATE TABLE /*_*/site_stats (
   ss_images int default 0
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/ss_row_id ON /*_*/site_stats (ss_row_id);
-CREATE TABLE /*_*/hitcounter (
-  hc_id int unsigned NOT NULL
-) ENGINE=HEAP MAX_ROWS=25000;
 CREATE TABLE /*_*/ipblocks (
   ipb_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   ipb_address tinyblob NOT NULL,

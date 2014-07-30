@@ -489,8 +489,7 @@ class CoreParserFunctions {
 		return self::formatRaw( SiteStats::edits(), $raw );
 	}
 	static function numberofviews( $parser, $raw = null ) {
-		global $wgDisableCounters;
-		return !$wgDisableCounters ? self::formatRaw( SiteStats::views(), $raw ) : '';
+		return '';
 	}
 	static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );

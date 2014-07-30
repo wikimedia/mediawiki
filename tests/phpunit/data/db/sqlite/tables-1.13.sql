@@ -114,17 +114,12 @@ CREATE TABLE /*$wgDBprefix*/langlinks (
 
 CREATE TABLE /*$wgDBprefix*/site_stats (
   ss_row_id INTEGER ,
-  ss_total_views bigint default '0',
   ss_total_edits bigint default '0',
   ss_good_articles bigint default '0',
   ss_total_pages bigint default '-1',
   ss_users bigint default '-1',
   ss_admins INTEGER default '-1',
   ss_images INTEGER default '0') /*$wgDBTableOptions*/;
-
-CREATE TABLE /*$wgDBprefix*/hitcounter (
-  hc_id INTEGER
-);
 
 CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_id INTEGER  PRIMARY KEY AUTOINCREMENT,
