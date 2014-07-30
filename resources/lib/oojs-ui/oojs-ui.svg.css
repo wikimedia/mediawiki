@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (e9cf571db2)
+ * OOjs UI v0.1.0-pre (3d8475c0b3)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-28T21:48:00Z
+ * Date: 2014-07-30T19:38:45Z
  */
 /* Textures */
 
@@ -37,10 +37,9 @@
   margin: 0;
 }
 
-.oo-ui-frame-body {
+.oo-ui-frame-content {
   padding: 0;
   margin: 0;
-  background: none;
 }
 
 .oo-ui-frame-content:focus {
@@ -53,10 +52,6 @@
 
 .oo-ui-toolbar-bar {
   line-height: 1em;
-}
-
-.oo-ui-toolbar-bottom .oo-ui-toolbar-bar {
-  position: absolute;
 }
 
 .oo-ui-toolbar-actions {
@@ -430,10 +425,6 @@
   margin-top: 2em;
 }
 
-.oo-ui-fieldsetLayout-labeled {
-  margin-top: -0.75em;
-}
-
 .oo-ui-fieldsetLayout > .oo-ui-labeledElement-label {
   padding: 0.25em 0;
   margin-bottom: 0.5em;
@@ -474,6 +465,7 @@
 
 .oo-ui-panelLayout-scrollable {
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .oo-ui-panelLayout-expanded {
