@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (e9cf571db2)
+ * OOjs UI v0.1.0-pre (3d8475c0b3)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-28T21:48:00Z
+ * Date: 2014-07-30T19:38:45Z
  */
 ( function ( OO ) {
 
@@ -1292,10 +1292,13 @@ OO.ui.Frame.prototype.load = function () {
 
 	// Initialize contents
 	doc.open();
+	// The following classes can be used here:
+	// oo-ui-ltr
+	// oo-ui-rtl
 	doc.write(
 		'<!doctype html>' +
 		'<html>' +
-			'<body class="oo-ui-frame-content oo-ui-' + this.dir + '" style="direction:' + this.dir + ';" dir="' + this.dir + '">' +
+			'<body class="oo-ui-frame-content oo-ui-' + this.dir + '" dir="' + this.dir + '">' +
 			'</body>' +
 		'</html>'
 	);
@@ -6095,6 +6098,11 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 			this.$element.removeClass( 'oo-ui-fieldLayout-align-' + this.align );
 		}
 		this.align = value;
+		// The following classes can be used here:
+		// oo-ui-fieldLayout-align-left
+		// oo-ui-fieldLayout-align-right
+		// oo-ui-fieldLayout-align-top
+		// oo-ui-fieldLayout-align-inline
 		this.$element.addClass( 'oo-ui-fieldLayout-align-' + this.align );
 	}
 

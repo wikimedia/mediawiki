@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (e9cf571db2)
+ * OOjs UI v0.1.0-pre (3d8475c0b3)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-28T21:48:00Z
+ * Date: 2014-07-30T19:38:45Z
  */
 .oo-ui-dialog-content > .oo-ui-window-head,
 .oo-ui-dialog-content > .oo-ui-window-body,
@@ -203,15 +203,18 @@
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget .oo-ui-buttonedElement-button {
   min-width: 1.85em;
   min-height: 1.85em;
-  padding-top: 0.75em;
-  padding-bottom: 0.75em;
+  padding: 0.35em 0.75em;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
 }
 
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget .oo-ui-labeledElement-label,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget .oo-ui-labeledElement-label,
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget .oo-ui-labeledElement-label {
   padding: 0 1em;
+  font-weight: bold;
   line-height: 1.85em;
+  color: #777777;
 }
 
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget .oo-ui-iconedElement-icon,
@@ -221,81 +224,39 @@
   margin-top: -0.125em;
 }
 
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonedElement-framed,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonedElement-framed,
-.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonedElement-framed {
-  margin: 0.75em 0 0.75em 0.75em;
-  border: solid 1px #ccc;
-  border-radius: 0.25em;
-}
-
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button,
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button {
-  padding: 0;
   vertical-align: middle;
 }
 
-.oo-ui-processDialog-actions-safe.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button,
-.oo-ui-processDialog-actions-primary.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button {
-  margin: 0.75em;
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-destructive .oo-ui-buttonedElement-button,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-destructive .oo-ui-buttonedElement-button,
+.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-flaggableElement-destructive .oo-ui-buttonedElement-button {
+  border: 1px solid transparent;
 }
 
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-destructive .oo-ui-labeledElement-label,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-destructive .oo-ui-labeledElement-label,
+.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-flaggableElement-destructive .oo-ui-labeledElement-label {
+  color: #d11d13;
 }
 
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget:active {
-  background-color: rgba(0, 0, 0, 0.1);
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget .oo-ui-buttonedElement-button,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget .oo-ui-buttonedElement-button {
+  padding: 0.75em 0.35em;
+  border: none;
+  border-radius: 0;
 }
 
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonedElement-framed,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonedElement-framed {
-  margin: 0.75em;
-}
-
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button {
-  /* Adjust for border so text aligns with title */
-
-  margin: -1px;
-}
-
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-primary:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-primary:hover {
-  background-color: rgba(8, 126, 204, 0.05);
-}
-
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-primary:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-primary:active {
-  background-color: rgba(8, 126, 204, 0.1);
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-primary .oo-ui-buttonedElement-button,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-primary .oo-ui-buttonedElement-button {
+  background-color: #347bff;
 }
 
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-primary .oo-ui-labeledElement-label,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-primary .oo-ui-labeledElement-label {
-  font-weight: bold;
-}
-
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-constructive:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-constructive:hover {
-  background-color: rgba(118, 171, 54, 0.05);
-}
-
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-constructive:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-constructive:active {
-  background-color: rgba(118, 171, 54, 0.1);
-}
-
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-destructive:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-destructive:hover {
-  background-color: rgba(212, 83, 83, 0.05);
-}
-
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggableElement-destructive:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggableElement-destructive:active {
-  background-color: rgba(212, 83, 83, 0.1);
+  color: #ffffff;
 }
 
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-iconedElement .oo-ui-iconedElement-icon {
@@ -312,6 +273,11 @@
 
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-iconedElement .oo-ui-labeledElement-label {
   padding-right: 2.25em;
+}
+
+.oo-ui-processDialog-actions-other {
+  position: absolute;
+  bottom: 1em;
 }
 
 .oo-ui-processDialog > .oo-ui-window-frame {
@@ -352,6 +318,10 @@
 
 .oo-ui-bookletLayout-stackLayout .oo-ui-panelLayout {
   padding: 0 0 1em;
+}
+
+.oo-ui-panelLayout {
+  padding: 1em 3.35em;
 }
 
 .oo-ui-optionWidget {
@@ -399,6 +369,10 @@
 .oo-ui-menuItemWidget.oo-ui-optionWidget-selected {
   color: #ffffff;
   background: #347bff;
+}
+
+.oo-ui-menuItemWidget .oo-ui-iconedElement-icon {
+  background-size: 24px auto;
 }
 
 .oo-ui-menuSectionItemWidget {
