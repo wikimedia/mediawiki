@@ -69,7 +69,6 @@ CREATE TABLE &mw_prefix.page (
   page_namespace     NUMBER       DEFAULT 0 NOT NULL,
   page_title         VARCHAR2(255)           NOT NULL,
   page_restrictions  VARCHAR2(255),
-  page_counter       NUMBER         DEFAULT 0 NOT NULL,
   page_is_redirect   CHAR(1)           DEFAULT '0' NOT NULL,
   page_is_new        CHAR(1)           DEFAULT '0' NOT NULL,
   page_random        NUMBER(15,14) NOT NULL,
@@ -247,7 +246,6 @@ CREATE UNIQUE INDEX &mw_prefix.iwlinks_ui02 ON &mw_prefix.iwlinks (iwl_prefix, i
 
 CREATE TABLE &mw_prefix.site_stats (
   ss_row_id         NUMBER  NOT NULL ,
-  ss_total_views    NUMBER            DEFAULT 0,
   ss_total_edits    NUMBER            DEFAULT 0,
   ss_good_articles  NUMBER            DEFAULT 0,
   ss_total_pages    NUMBER            DEFAULT -1,
@@ -256,10 +254,6 @@ CREATE TABLE &mw_prefix.site_stats (
   ss_images         NUMBER            DEFAULT 0
 );
 CREATE UNIQUE INDEX &mw_prefix.site_stats_u01 ON &mw_prefix.site_stats (ss_row_id);
-
-CREATE TABLE &mw_prefix.hitcounter (
-  hc_id  NUMBER  NOT NULL
-);
 
 CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE &mw_prefix.ipblocks (

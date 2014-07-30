@@ -23,9 +23,6 @@
  */
 class SiteStatsUpdate implements DeferrableUpdate {
 	/** @var int */
-	protected $views = 0;
-
-	/** @var int */
 	protected $edits = 0;
 
 	/** @var int */
@@ -42,7 +39,6 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 	// @todo deprecate this constructor
 	function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
-		$this->views = $views;
 		$this->edits = $edits;
 		$this->articles = $good;
 		$this->pages = $pages;
@@ -100,7 +96,6 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			}
 			$pd = $this->getPendingDeltas();
 			// Piggy-back the async deltas onto those of this stats update....
-			$this->views += ( $pd['ss_total_views']['+'] - $pd['ss_total_views']['-'] );
 			$this->edits += ( $pd['ss_total_edits']['+'] - $pd['ss_total_edits']['-'] );
 			$this->articles += ( $pd['ss_good_articles']['+'] - $pd['ss_good_articles']['-'] );
 			$this->pages += ( $pd['ss_total_pages']['+'] - $pd['ss_total_pages']['-'] );
@@ -110,7 +105,6 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 		// Build up an SQL query of deltas and apply them...
 		$updates = '';
-		$this->appendUpdate( $updates, 'ss_total_views', $this->views );
 		$this->appendUpdate( $updates, 'ss_total_edits', $this->edits );
 		$this->appendUpdate( $updates, 'ss_good_articles', $this->articles );
 		$this->appendUpdate( $updates, 'ss_total_pages', $this->pages );
@@ -160,7 +154,6 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	}
 
 	protected function doUpdatePendingDeltas() {
-		$this->adjustPending( 'ss_total_views', $this->views );
 		$this->adjustPending( 'ss_total_edits', $this->edits );
 		$this->adjustPending( 'ss_good_articles', $this->articles );
 		$this->adjustPending( 'ss_total_pages', $this->pages );
@@ -226,7 +219,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		global $wgMemc;
 
 		$pending = array();
-		foreach ( array( 'ss_total_views', 'ss_total_edits',
+		foreach ( array( 'ss_total_edits',
 			'ss_good_articles', 'ss_total_pages', 'ss_users', 'ss_images' ) as $type
 		) {
 			// Get pending increments and pending decrements

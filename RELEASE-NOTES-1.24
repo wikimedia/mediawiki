@@ -60,6 +60,8 @@ production.
   specifying subprojects on the interwiki map of the target wiki, or a mix of
   the two. Existing configurations will still work.
 * Users must be able to edit through a page's protection to be able to delete it.
+* $wgHitcounterUpdateFreq and $wgDisableCounters were removed since page view
+  counting was removed
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
@@ -342,6 +344,11 @@ changes to languages because of Bugzilla reports.
 * Removed EnhancedChangesList::arrow(), sideArrow(), downArrow(), spacerArrow().
 * Removed Xml::namespaceSelector(). (deprecated since 1.19)
 * Removed WikiPage::estimateRevisionCount. (deprecated since 1.19)
+* BREAKING CHANGE: page view counting has been removed
+* Removed magic word/parser function {{numberofviews}}, page view counts are
+  no longer tracked
+* Removed SiteStats::views() and SiteStatsInit::views(), page view counts are
+  no longer tracked
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
@@ -390,6 +397,8 @@ changes to languages because of Bugzilla reports.
 * RawPage - Use RawAction directly
 * StubContLang - Use Language::factory() instead
 * XMLReader2 - Use XMLReader directly
+* ViewCountUpdate - page view counts are no longer tracked
+* PopularPagesPage - page view counts are no longer tracked
 
 == Compatibility ==
 

@@ -240,7 +240,6 @@ $magicWords = array(
 	'numberofusers'           => array( 1, 'NUMBEROFUSERS' ),
 	'numberofactiveusers'     => array( 1, 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'           => array( 1, 'NUMBEROFEDITS' ),
-	'numberofviews'           => array( 1, 'NUMBEROFVIEWS' ),
 	'pagename'                => array( 1, 'PAGENAME' ),
 	'pagenamee'               => array( 1, 'PAGENAMEE' ),
 	'namespace'               => array( 1, 'NAMESPACE' ),
