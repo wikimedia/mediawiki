@@ -102,6 +102,9 @@ class OracleUpdater extends DatabaseUpdater {
 
 			// 1.24
 			array( 'addField', 'page', 'page_lang', 'patch-page-page_lang.sql' ),
+			array( 'dropTable', 'hitcounter' ),
+			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
+			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
@@ -172,7 +175,6 @@ class OracleUpdater extends DatabaseUpdater {
 			'page_id' => 0,
 			'page_namespace' => 0,
 			'page_title' => ' ',
-			'page_counter' => 0,
 			'page_is_redirect' => 0,
 			'page_is_new' => 0,
 			'page_random' => 0,
