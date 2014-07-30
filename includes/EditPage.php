@@ -640,26 +640,6 @@ class EditPage {
 	}
 
 	/**
-	 * Show a read-only error
-	 * Parameters are the same as OutputPage:readOnlyPage()
-	 * Redirect to the article page if redlink=1
-	 * @deprecated since 1.19; use displayPermissionsError() instead
-	 */
-	function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		global $wgRequest, $wgOut;
-		if ( $wgRequest->getBool( 'redlink' ) ) {
-			// The edit page was reached via a red link.
-			// Redirect to the article page and let them click the edit tab if
-			// they really want a permission error.
-			$wgOut->redirect( $this->mTitle->getFullURL() );
-		} else {
-			$wgOut->readOnlyPage( $source, $protected, $reasons, $action );
-		}
-	}
-
-	/**
 	 * Should we show a preview when the edit form is first shown?
 	 *
 	 * @return bool
@@ -3902,40 +3882,6 @@ HTML
 				#.	Xml::element( 'category', null, $categories )
 			);
 		echo $s;
-	}
-
-	/**
-	 * Call the stock "user is blocked" page
-	 *
-	 * @deprecated since 1.19; throw an exception directly instead
-	 */
-	function blockedPage() {
-		wfDeprecated( __METHOD__, '1.19' );
-		global $wgUser;
-
-		throw new UserBlockedError( $wgUser->getBlock() );
-	}
-
-	/**
-	 * Produce the stock "please login to edit pages" page
-	 *
-	 * @deprecated since 1.19; throw an exception directly instead
-	 */
-	function userNotLoggedInPage() {
-		wfDeprecated( __METHOD__, '1.19' );
-		throw new PermissionsError( 'edit' );
-	}
-
-	/**
-	 * Show an error page saying to the user that he has insufficient permissions
-	 * to create a new page
-	 *
-	 * @deprecated since 1.19; throw an exception directly instead
-	 */
-	function noCreatePermission() {
-		wfDeprecated( __METHOD__, '1.19' );
-		$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
-		throw new PermissionsError( $permission );
 	}
 
 	/**

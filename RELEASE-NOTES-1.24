@@ -282,6 +282,8 @@ changes to languages because of Bugzilla reports.
   and filelinks tables. Run update.php to apply this change to the schema.
 * Removed File::sha1Base36(). (deprecated since 1.19)
 * Removed File::getPropsFromPath(). (deprecated since 1.19)
+* Removed functions blockedPage(), noCreatePermission(), readOnlyPage() and
+  userNotLoggedInPage() from EditPage.php. (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
