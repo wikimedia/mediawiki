@@ -2896,7 +2896,7 @@ $templates
 
 		// Startup - this will immediately load jquery and mediawiki modules
 		$links = array();
-		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS, /* $useESI =  */ true );
+		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
 
 		// Load config before anything else
 		$links[] = Html::inlineScript(
@@ -3017,14 +3017,6 @@ $templates
 		$links[] = $this->makeResourceLoaderLink( 'user.groups', ResourceLoaderModule::TYPE_COMBINED,
 			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 		);
-
-		$modules = array();
-		wfRunHooks( 'OutputPageScriptsForBottomQueue', array( $this, &$modules ) );
-		if ( $modules ) {
-			$links[] = $this->makeResourceLoaderLink( $modules, ResourceLoaderModule::TYPE_COMBINED,
-				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
-			);
-		}
 
 		return self::getHtmlFromLoaderLinks( $links );
 	}
