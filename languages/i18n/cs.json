@@ -1719,7 +1719,7 @@
 	"watchlist-details": "Na vašem seznamu sledovaných stránek {{PLURAL:$1|je $1 stránka|jsou $1 stránky|je $1 stránek}}, nepočítaje v to diskusní stránky.",
 	"wlheader-enotif": "Upozorňování e-mailem je zapnuto.",
 	"wlheader-showupdated": "Stránky, které se změnily od vaší poslední návštěvy, jsou zobrazeny '''tučně'''.",
-	"wlnote": "Níže {{PLURAL:$1|je poslední změna|jsou poslední '''$1''' změny|je posledních '''$1''' změn}} za {{PLURAL:$2|poslední hodinu|poslední '''$2''' hodiny|posledních '''$2''' hodin}} do $4, $3.",
+	"wlnote": "Níže {{PLURAL:$1|je poslední změna|jsou poslední <strong>$1</strong> změny|je posledních <strong>$1</strong> změn}} za {{PLURAL:$2|poslední hodinu|poslední <strong>$2</strong> hodiny|posledních <strong>$2</strong> hodin}} do $4, $3.",
 	"wlshowlast": "Ukázat posledních $1 hodin $2 dnů $3",
 	"watchlist-options": "Možnosti sledovaných stránek",
 	"watching": "Přidávám na seznam sledovaných stránek…",
