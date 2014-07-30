@@ -68,6 +68,8 @@ production.
 * $wgCanonicalLanguageLinks has been removed. Per Google recommendations, we
   will not send a rel=canonical pointing to a variant-neutral page, however
   we will send rel=alternate.
+* $wgHitcounterUpdateFreq was removed and $wgDisableCounters is hardcoded true since
+  page view counting was removed.
 
 === New features in 1.24 ===
 * Added new hook WatchlistEditorBeforeFormRender, allowing subscribers to
@@ -459,6 +461,13 @@ changes to languages because of Bugzilla reports.
 * Some extensions had their ResourceLoader modules depend on the "mediawiki"
   and "jquery" modules. In the past, this behavior was undefined, now it will
   throw an error.
+* Removed WikiPage::estimateRevisionCount. (deprecated since 1.19)
+* BREAKING CHANGE: page view counting has been removed
+* Removed magic word/parser function {{numberofviews}}, page view counts are
+  no longer tracked
+* Removed SiteStatsInit::views() and deprecated SiteStats::views() since
+  page view counts are no longer tracked
+* Special:PopularPages was removed since page view counts are no longer tracked
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
@@ -507,6 +516,8 @@ changes to languages because of Bugzilla reports.
 * RawPage - Use RawAction directly
 * StubContLang - Use Language::factory() instead
 * XMLReader2 - Use XMLReader directly
+* ViewCountUpdate - page view counts are no longer tracked
+* PopularPagesPage - page view counts are no longer tracked
 
 == Compatibility ==
 
