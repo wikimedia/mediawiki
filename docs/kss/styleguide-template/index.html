@@ -19,7 +19,7 @@
 	</header>
 
 	<div class="container">
-		<nav class="content">
+		<nav>
 			<ul>
 				<li><a href="index.html"><span>0.0</span> Overview</a></li>
 				{{#eachRoot}}
@@ -28,12 +28,12 @@
 			</ul>
 		</nav>
 
-		<article>
+		<div class="content">
 			{{#if overview}}
 				{{html overview}}
 			{{else}}
 				{{#eachSection rootNumber}}
-				<section>
+				<div>
 					{{#whenDepth 1}}
 						<h1>{{ reference }}.0 {{ header }}</h1>
 					{{else}}
@@ -60,10 +60,10 @@
 								{{html description}}
 							{{/if}}
 					{{/ifAny}}
-				</section>
+				</div>
 				{{/eachSection}}
 			{{/if}}
-		</article>
+		</div>
 	</div>
 </div></body>
 </html>
