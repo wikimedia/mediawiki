@@ -161,22 +161,6 @@ class RecentChange {
 	}
 
 	/**
-	 * No uses left in Gerrit on 2013-11-19.
-	 * @deprecated since 1.22
-	 * @param mixed $row
-	 * @return RecentChange
-	 */
-	public static function newFromCurRow( $row ) {
-		wfDeprecated( __METHOD__, '1.22' );
-		$rc = new RecentChange;
-		$rc->loadFromCurRow( $row );
-		$rc->notificationtimestamp = false;
-		$rc->numberofWatchingusers = false;
-
-		return $rc;
-	}
-
-	/**
 	 * Obtain the recent change with a given rc_id value
 	 *
 	 * @param int $rcid The rc_id value to retrieve
@@ -351,38 +335,6 @@ class RecentChange {
 	}
 
 	/**
-	 * @deprecated since 1.22, use notifyRCFeeds instead.
-	 */
-	public function notifyRC2UDP() {
-		wfDeprecated( __METHOD__, '1.22' );
-		$this->notifyRCFeeds();
-	}
-
-	/**
-	 * Send some text to UDP.
-	 * @deprecated since 1.22
-	 */
-	public static function sendToUDP( $line, $address = '', $prefix = '', $port = '' ) {
-		global $wgRC2UDPAddress, $wgRC2UDPInterwikiPrefix, $wgRC2UDPPort, $wgRC2UDPPrefix;
-
-		wfDeprecated( __METHOD__, '1.22' );
-
-		# Assume default for standard RC case
-		$address = $address ? $address : $wgRC2UDPAddress;
-		$prefix = $prefix ? $prefix : $wgRC2UDPPrefix;
-		$port = $port ? $port : $wgRC2UDPPort;
-
-		$engine = new UDPRCFeedEngine();
-		$feed = array(
-			'uri' => "udp://$address:$port/$prefix",
-			'formatter' => 'IRCColourfulRCFeedFormatter',
-			'add_interwiki_prefix' => $wgRC2UDPInterwikiPrefix,
-		);
-
-		$engine->send( $feed, $line );
-	}
-
-	/**
 	 * Notify all the feeds about the change.
 	 * @param array $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
@@ -450,15 +402,6 @@ class RecentChange {
 		}
 
 		return new $wgRCEngines[$scheme];
-	}
-
-	/**
-	 * @deprecated since 1.22, moved to IRCColourfulRCFeedFormatter
-	 */
-	public static function cleanupForIRC( $text ) {
-		wfDeprecated( __METHOD__, '1.22' );
-
-		return IRCColourfulRCFeedFormatter::cleanupForIRC( $text );
 	}
 
 	/**
@@ -791,42 +734,6 @@ class RecentChange {
 		$this->mAttribs = get_object_vars( $row );
 		$this->mAttribs['rc_timestamp'] = wfTimestamp( TS_MW, $this->mAttribs['rc_timestamp'] );
 		$this->mAttribs['rc_deleted'] = $row->rc_deleted; // MUST be set
-	}
-
-	/**
-	 * Makes a pseudo-RC entry from a cur row
-	 *
-	 * @deprecated since 1.22
-	 * @param mixed $row
-	 */
-	public function loadFromCurRow( $row ) {
-		wfDeprecated( __METHOD__, '1.22' );
-		$this->mAttribs = array(
-			'rc_timestamp' => wfTimestamp( TS_MW, $row->rev_timestamp ),
-			'rc_user' => $row->rev_user,
-			'rc_user_text' => $row->rev_user_text,
-			'rc_namespace' => $row->page_namespace,
-			'rc_title' => $row->page_title,
-			'rc_comment' => $row->rev_comment,
-			'rc_minor' => $row->rev_minor_edit ? 1 : 0,
-			'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
-			'rc_source' => $row->page_is_new ? self::SRC_NEW : self::SRC_EDIT,
-			'rc_cur_id' => $row->page_id,
-			'rc_this_oldid' => $row->rev_id,
-			'rc_last_oldid' => isset( $row->rc_last_oldid ) ? $row->rc_last_oldid : 0,
-			'rc_bot' => 0,
-			'rc_ip' => '',
-			'rc_id' => $row->rc_id,
-			'rc_patrolled' => $row->rc_patrolled,
-			'rc_new' => $row->page_is_new, # obsolete
-			'rc_old_len' => $row->rc_old_len,
-			'rc_new_len' => $row->rc_new_len,
-			'rc_params' => isset( $row->rc_params ) ? $row->rc_params : '',
-			'rc_log_type' => isset( $row->rc_log_type ) ? $row->rc_log_type : null,
-			'rc_log_action' => isset( $row->rc_log_action ) ? $row->rc_log_action : null,
-			'rc_logid' => isset( $row->rc_logid ) ? $row->rc_logid : 0,
-			'rc_deleted' => $row->rc_deleted // MUST be set
-		);
 	}
 
 	/**
