@@ -264,6 +264,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				} else {
 					$targetKey = '4::target';
 					$noredirKey = '5::noredir';
+					$nullrevidKey = 'nullrevid';
+					$redirrevidKey = 'redirrevid';
+					$movedpageidKey = 'movedpageid';
 				}
 
 				if ( isset( $params[$targetKey] ) ) {
@@ -276,6 +279,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				}
 				if ( isset( $params[$noredirKey] ) && $params[$noredirKey] ) {
 					$vals[$type]['suppressedredirect'] = '';
+				}
+				if ( isset( $params[$nullrevidKey] ) ) {
+					$vals[$type]['nullrevid'] = $params[$nullrevidKey];
+				}
+				if ( isset( $params[$redirrevidKey] ) ) {
+					$vals[$type]['redirrevid'] = $params[$redirrevidKey];
+				}
+				if ( isset( $params[$movedpageidKey] ) ) {
+					$vals[$type]['movedpageid'] = $params[$movedpageidKey];
 				}
 				$params = null;
 				break;

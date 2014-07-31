@@ -195,6 +195,13 @@ production.
 * (bug 60734) Actions that use ApiPageSet (e.g. purge, watch,
   setnotificationtimestamp) will now include continuation information when
   using a generator.
+* (bug 68930) ApiQueryLogEvents now provides movedpageid, which is the page ID
+  of the page that was moved, if loginfo is requested.
+* (bug 68950) ApiQueryLogEvents now provides nullrevid, which is the revision
+  ID of the null revision created during a page move, if loginfo is requested.
+* (bug 68950) ApiQueryLogEvents now provides redirrevid, which is the revision
+  ID of the redirect revision created during some page moves, if loginfo is
+  requested.
 
 === Languages updated in 1.24 ===
 
