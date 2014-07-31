@@ -45,6 +45,8 @@ production.
 * The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
   using them must be updated to use the Password Hashing API.
 * $wgCompiledFiles has been removed.
+* $wgRC2UDPAddress, $wgRC2UDPInterwikiPrefix, $wgRC2UDPOmitBots, $wgRC2UDPPort
+  and $wgRC2UDPPrefix have been removed.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
@@ -291,6 +293,8 @@ changes to languages because of Bugzilla reports.
   setPreloadedText() from EditPage.php. (deprecated since 1.21)
 * Removed global functions wfArrayLookup(), wfArrayMerge(), wfDebugDieBacktrace()
   and wfTime(). (deprecated since 1.22)
+* Removed cleanupForIRC(), loadFromCurRow(), newFromCurRow(), notifyRC2UDP()
+  and sendToUDP() from RecentChange.php. (deprecated since 1.22)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
