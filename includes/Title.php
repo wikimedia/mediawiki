@@ -3887,14 +3887,18 @@ class Title {
 			$redirectContent = null;
 		}
 
+		$oldid = $this->getArticleID();
+
 		$logEntry = new ManualLogEntry( 'move', $logType );
 		$logEntry->setPerformer( $wgUser );
 		$logEntry->setTarget( $this );
 		$logEntry->setComment( $reason );
-		$logEntry->setParameters( array(
+		$logParams = array(
 			'4::target' => $nt->getPrefixedText(),
 			'5::noredir' => $redirectContent ? '0': '1',
-		) );
+			'6::pageid' => $oldid
+		);
+		$logEntry->setParameters( $logParams );
 
 		$formatter = LogFormatter::newFromEntry( $logEntry );
 		$formatter->setContext( RequestContext::newExtraneousContext( $this ) );
@@ -3904,8 +3908,6 @@ class Title {
 		}
 		# Truncate for whole multibyte characters.
 		$comment = $wgContLang->truncate( $comment, 255 );
-
-		$oldid = $this->getArticleID();
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -3930,7 +3932,10 @@ class Title {
 			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
 		}
 
-		$nullRevision->insertOn( $dbw );
+		$nullRevId = $nullRevision->insertOn( $dbw );
+
+		$logParams['7::nullrevid'] = $nullRevId;
+		$logEntry->setParameters( $logParams );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
