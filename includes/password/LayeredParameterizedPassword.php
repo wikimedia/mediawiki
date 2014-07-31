@@ -54,33 +54,7 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 	}
 
 	public function crypt( $password ) {
-		$lastHash = $password;
-		foreach ( $this->config['types'] as $i => $type ) {
-			// Construct pseudo-hash based on params and arguments
-			/** @var ParameterizedPassword $passObj */
-			$passObj = $this->factory->newFromType( $type );
-
-			$params = '';
-			$args = '';
-			if ( $this->params[$i] !== '' ) {
-				$params = $this->params[$i] . $passObj->getDelimiter();
-			}
-			if ( isset( $this->args[$i] ) && $this->args[$i] !== '' ) {
-				$args = $this->args[$i] . $passObj->getDelimiter();
-			}
-			$existingHash = ":$type:" . $params . $args . $this->hash;
-
-			// Hash the last hash with the next type in the layer
-			$passObj = $this->factory->newFromCiphertext( $existingHash );
-			$passObj->crypt( $lastHash );
-
-			// Move over the params and args
-			$this->params[$i] = implode( $passObj->getDelimiter(), $passObj->params );
-			$this->args[$i] = implode( $passObj->getDelimiter(), $passObj->args );
-			$lastHash = $passObj->hash;
-		}
-
-		$this->hash = $lastHash;
+		$this->doCrypt( $password );
 	}
 
 	/**
@@ -103,13 +77,22 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 		// Gather info from the existing hash
 		$this->params[0] = implode( $passObj->getDelimiter(), $passObj->params );
 		$this->args[0] = implode( $passObj->getDelimiter(), $passObj->args );
-		$lastHash = $passObj->hash;
 
-		// Layer the remaining types
+		$this->doCrypt( $passObj->hash, true );
+	}
+
+	/**
+	 * Actually perform the hashing
+	 *
+	 * @param string $password Given string to hash
+	 * @param bool $skipfirst Whether to skip the first layer of encryption
+	 */
+	private function doCrypt( $password, $skipfirst = false ) {
+		$lastHash = $password;
 		foreach ( $this->config['types'] as $i => $type ) {
-			if ( $i == 0 ) {
+			if ( $skipfirst && $i === 0 ) {
 				continue;
-			};
+			}
 
 			// Construct pseudo-hash based on params and arguments
 			/** @var ParameterizedPassword $passObj */
