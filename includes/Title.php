@@ -3887,6 +3887,8 @@ class Title {
 			$redirectContent = null;
 		}
 
+		$oldid = $this->getArticleID();
+
 		$logEntry = new ManualLogEntry( 'move', $logType );
 		$logEntry->setPerformer( $wgUser );
 		$logEntry->setTarget( $this );
@@ -3894,6 +3896,7 @@ class Title {
 		$logEntry->setParameters( array(
 			'4::target' => $nt->getPrefixedText(),
 			'5::noredir' => $redirectContent ? '0': '1',
+			'6::pageid' => $oldid
 		) );
 
 		$formatter = LogFormatter::newFromEntry( $logEntry );
@@ -3904,8 +3907,6 @@ class Title {
 		}
 		# Truncate for whole multibyte characters.
 		$comment = $wgContLang->truncate( $comment, 255 );
-
-		$oldid = $this->getArticleID();
 
 		$dbw = wfGetDB( DB_MASTER );
 
