@@ -1,0 +1,8 @@
+Verified+2: jenkins-bot
+Code-Review+2: Siebrand <siebrand@kitano.nl>
+Code-Review+1: Bartosz Dziewoński <matma.rex@gmail.com>
+Submitted-by: jenkins-bot
+Submitted-at: Thu, 31 Jul 2014 09:30:26 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/150390
+Project: mediawiki/core
+Branch: refs/heads/REL1_23
