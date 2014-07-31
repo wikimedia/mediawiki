@@ -2448,42 +2448,6 @@ $wgSquidPurgeUseHostHeader = true;
 $wgHTCPRouting = array();
 
 /**
- * @deprecated since 1.22, please use $wgHTCPRouting instead.
- *
- * Whenever this is set and $wgHTCPRouting evaluates to false, $wgHTCPRouting
- * will be set to this value.
- * This is merely for back compatibility.
- *
- * @since 1.20
- */
-$wgHTCPMulticastRouting = null;
-
-/**
- * HTCP multicast address. Set this to a multicast IP address to enable HTCP.
- *
- * Note that MediaWiki uses the old non-RFC compliant HTCP format, which was
- * present in the earliest Squid implementations of the protocol.
- *
- * This setting is DEPRECATED in favor of $wgHTCPRouting , and kept for
- * backwards compatibility only. If $wgHTCPRouting is set, this setting is
- * ignored. If $wgHTCPRouting is not set and this setting is, it is used to
- * populate $wgHTCPRouting.
- *
- * @deprecated since 1.20 in favor of $wgHTCPMulticastRouting and since 1.22 in
- * favor of $wgHTCPRouting.
- */
-$wgHTCPMulticastAddress = false;
-
-/**
- * HTCP multicast port.
- * @deprecated since 1.20 in favor of $wgHTCPMulticastRouting and since 1.22 in
- * favor of $wgHTCPRouting.
- *
- * @see $wgHTCPMulticastAddress
- */
-$wgHTCPPort = 4827;
-
-/**
  * HTCP multicast TTL.
  * @see $wgHTCPRouting
  */

@@ -48,6 +48,7 @@ production.
 * $wgSortSpecialPages was removed, the listing on Special:SpecialPages is
   now always sorted.
 * Users must be able to edit a page to be able to delete it.
+* $wgHTCPMulticastAddress, $wgHTCPMulticastRouting and $wgHTCPPort were removed.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
