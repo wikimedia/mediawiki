@@ -103,38 +103,13 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 		// Gather info from the existing hash
 		$this->params[0] = implode( $passObj->getDelimiter(), $passObj->params );
 		$this->args[0] = implode( $passObj->getDelimiter(), $passObj->args );
-		$lastHash = $passObj->hash;
 
-		// Layer the remaining types
-		foreach ( $this->config['types'] as $i => $type ) {
-			if ( $i == 0 ) {
-				continue;
-			};
-
-			// Construct pseudo-hash based on params and arguments
-			/** @var ParameterizedPassword $passObj */
-			$passObj = $this->factory->newFromType( $type );
-
-			$params = '';
-			$args = '';
-			if ( $this->params[$i] !== '' ) {
-				$params = $this->params[$i] . $passObj->getDelimiter();
-			}
-			if ( isset( $this->args[$i] ) && $this->args[$i] !== '' ) {
-				$args = $this->args[$i] . $passObj->getDelimiter();
-			}
-			$existingHash = ":$type:" . $params . $args . $this->hash;
-
-			// Hash the last hash with the next type in the layer
-			$passObj = $this->factory->newFromCiphertext( $existingHash );
-			$passObj->crypt( $lastHash );
-
-			// Move over the params and args
-			$this->params[$i] = implode( $passObj->getDelimiter(), $passObj->params );
-			$this->args[$i] = implode( $passObj->getDelimiter(), $passObj->args );
-			$lastHash = $passObj->hash;
-		}
-
-		$this->hash = $lastHash;
+		$tempconfig = array_shift( $this->config['types'] );
+		$tempparam = array_shift( $this->params );
+		$temparg = array_shift( $this->args );
+		$this->crypt( $passObj->hash );
+		array_unshift( $this->config['types'], $tempconfig );
+		array_unshift( $this->params, $tempparam );
+		array_unshift( $this->args, $temparg );
 	}
 }
