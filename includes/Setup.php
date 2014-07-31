@@ -169,7 +169,6 @@ $wgLockManagers[] = array(
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
 if ( !$wgLocalFileRepo ) {
-	$deletedHashLevel = $wgHashedUploadDirectory ? 3 : 0;
 	$wgLocalFileRepo = array(
 		'class' => 'LocalRepo',
 		'name' => 'local',
@@ -181,7 +180,7 @@ if ( !$wgLocalFileRepo ) {
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
 		'deletedDir' => $wgDeletedDirectory,
-		'deletedHashLevels' => $deletedHashLevel
+		'deletedHashLevels' => $wgHashedUploadDirectory ? 3 : 0
 	);
 }
 /**
