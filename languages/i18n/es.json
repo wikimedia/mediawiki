@@ -2264,7 +2264,7 @@
 	"import-upload": "Subir datos XML",
 	"import-token-mismatch": "Pérdida de datos de sesión. Por favor, inténtalo de nuevo.",
 	"import-invalid-interwiki": "No se puede importar de la wiki especificada.",
-	"import-error-edit": "No se importó la página $1 porque no tienes permisos para editarla.",
+	"import-error-edit": "No se importó la página «$1» porque no tienes permisos para editarla.",
 	"import-error-create": "No se importó la página «$1» porque no tienes permisos para crearla.",
 	"import-error-interwiki": "No se importó la página «$1» porque su nombre está reservado para los enlaces externos (interwiki).",
 	"import-error-special": "No se importó la página «$1» porque pertenece a un espacio de nombres especial que no admite páginas.",

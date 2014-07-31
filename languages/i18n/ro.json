@@ -40,6 +40,7 @@
 	"tog-watchdefault": "Adaugă paginile și fișierele pe care le modific la lista mea de urmărire",
 	"tog-watchmoves": "Adaugă paginile și fișierele pe care le redenumesc la lista mea de urmărire",
 	"tog-watchdeletion": "Adaugă paginile și fișierele pe care le șterg la lista mea de urmărire",
+	"tog-watchrollback": "Adaugă în lista mea de pagini urmărite acele pagini asupra cărora am efectuat o revenire",
 	"tog-minordefault": "Marchează din oficiu toate modificările ca fiind minore",
 	"tog-previewontop": "Arată previzualizarea deasupra căsuței de modificare",
 	"tog-previewonfirst": "Arată previzualizarea la prima modificare",

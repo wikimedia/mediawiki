@@ -1177,7 +1177,7 @@
 	"recentchanges-label-unpatrolled": "Deze bewerking is nog niet gecontroleerd",
 	"recentchanges-label-plusminus": "Deze paginagrootte is met dit aantal bytes gewijzigd",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zie ook de [[Special:NewPages|Lijst met nieuwe pagina's]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zie ook de [[Special:NewPages|lijst met nieuwe pagina's]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Wijzigingen sinds <strong>$3 om $4</strong> (maximaal <strong>$1</strong> {{PLURAL:$1|wijziging|wijzigingen}}).",
 	"rclistfrom": "Wijzigingen bekijken vanaf $3 $2",

@@ -91,6 +91,7 @@
 	"tog-watchdefault": "Selbst geänderte Seiten und Dateien automatisch beobachten",
 	"tog-watchmoves": "Selbst verschobene Seiten und Dateien automatisch beobachten",
 	"tog-watchdeletion": "Selbst gelöschte Seiten und Dateien automatisch beobachten",
+	"tog-watchrollback": "Seiten der Beobachtungsliste hinzufügen, bei denen ich eine Zurücksetzung durchgeführt habe.",
 	"tog-minordefault": "Eigene Änderungen standardmäßig als geringfügig markieren",
 	"tog-previewontop": "Vorschau oberhalb des Bearbeitungsfensters anzeigen",
 	"tog-previewonfirst": "Beim ersten Bearbeiten immer die Vorschau anzeigen",

@@ -42,6 +42,7 @@
 	"tog-watchdefault": "Přidávat mnou editované stránky a soubory ke sledovaným",
 	"tog-watchmoves": "Přidávat mnou přesouvané stránky a soubory mezi sledované",
 	"tog-watchdeletion": "Přidávat stránky a soubory, které smažu, mezi sledované",
+	"tog-watchrollback": "Přidávat stránky, které jsem {{GENDER:|vrátil|vrátila}} zpět, ke sledovaným",
 	"tog-minordefault": "Označovat editace implicitně jako malé",
 	"tog-previewontop": "Zobrazovat náhled před editačním oknem (ne za ním)",
 	"tog-previewonfirst": "Zobrazit při první editaci náhled",
