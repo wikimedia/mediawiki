@@ -1238,11 +1238,14 @@ class User implements IDBAccessObject {
 				$this->mPassword = $passwordFactory->newFromCiphertext( null );
 			}
 
-			try {
-				$this->mNewpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
-			} catch ( PasswordError $e ) {
-				wfDebug( 'Invalid password hash found in database.' );
-				$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
+			// don't override a new password set for this user (e.g. Special:PasswordReset)
+			if ( $this->mNewpassword === null ) {
+				try {
+					$this->mNewpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
+				} catch ( PasswordError $e ) {
+					wfDebug( 'Invalid password hash found in database.' );
+					$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
+				}
 			}
 
 			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
