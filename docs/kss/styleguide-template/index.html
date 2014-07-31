@@ -33,7 +33,7 @@
 				{{html overview}}
 			{{else}}
 				{{#eachSection rootNumber}}
-				<section>
+				<div>
 					{{#whenDepth 1}}
 						<h1>{{ reference }}.0 {{ header }}</h1>
 					{{else}}
@@ -60,7 +60,7 @@
 								{{html description}}
 							{{/if}}
 					{{/ifAny}}
-				</section>
+				</div>
 				{{/eachSection}}
 			{{/if}}
 		</article>
