@@ -5718,48 +5718,6 @@ $wgRCLinkLimits = array( 50, 100, 250, 500 );
 $wgRCLinkDays = array( 1, 3, 7, 14, 30 );
 
 /**
- * Send recent changes updates via UDP. The updates will be formatted for IRC.
- * Set this to the IP address of the receiver.
- *
- * @deprecated since 1.22, use $wgRCFeeds
- */
-$wgRC2UDPAddress = false;
-
-/**
- * Port number for RC updates
- *
- * @deprecated since 1.22, use $wgRCFeeds
- */
-$wgRC2UDPPort = false;
-
-/**
- * Prefix to prepend to each UDP packet.
- * This can be used to identify the wiki. A script is available called
- * mxircecho.py which listens on a UDP port, and uses a prefix ending in a
- * tab to identify the IRC channel to send the log line to.
- *
- * @deprecated since 1.22, use $wgRCFeeds
- */
-$wgRC2UDPPrefix = '';
-
-/**
- * If this is set to true, the first entry in the $wgLocalInterwikis array (or
- * the value of $wgLocalInterwiki, if set) will be prepended to links in the IRC
- * feed. If this is set to a string, that string will be used as the prefix.
- *
- * @deprecated since 1.22, use $wgRCFeeds
- */
-$wgRC2UDPInterwikiPrefix = false;
-
-/**
- * Set to true to omit "bot" edits (by users with the bot permission) from the
- * UDP feed.
- *
- * @deprecated since 1.22, use $wgRCFeeds
- */
-$wgRC2UDPOmitBots = false;
-
-/**
  * Destinations to which notifications about recent changes
  * should be sent.
  *
@@ -5785,9 +5743,6 @@ $wgRC2UDPOmitBots = false;
  *
  *  The JSON-specific options are:
  *   * 'channel' -- if set, the 'channel' parameter is also set in JSON values.
- *
- *  To ensure backwards-compatibility, whenever $wgRC2UDPAddress is set, a
- *  'default' feed will be created reusing the deprecated $wgRC2UDP* variables.
  *
  * @example $wgRCFeeds['example'] = array(
  *		'formatter' => 'JSONRCFeedFormatter',

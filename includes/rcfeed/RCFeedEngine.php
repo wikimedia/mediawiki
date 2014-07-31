@@ -28,7 +28,7 @@ interface RCFeedEngine {
 	/**
 	 * Sends some text to the specified live feed.
 	 *
-	 * @see RecentChange::cleanupForIRC
+	 * @see IRCColourfulRCFeedFormatter::cleanupForIRC
 	 * @param array $feed The feed, as configured in an associative array
 	 * @param string $line The text to send
 	 * @return bool Success
