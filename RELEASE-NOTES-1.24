@@ -288,6 +288,8 @@ changes to languages because of Bugzilla reports.
   userNotLoggedInPage() from EditPage.php. (deprecated since 1.19)
 * Removed functions getContent(), getPreloadedText(), mergeChangesInto() and
   setPreloadedText() from EditPage.php. (deprecated since 1.21)
+* Removed global functions wfArrayLookup(), wfArrayMerge(), wfDebugDieBacktrace()
+  and wfTime(). (deprecated since 1.22)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

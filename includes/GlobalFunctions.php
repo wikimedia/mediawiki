@@ -177,21 +177,6 @@ function wfArrayDiff2_cmp( $a, $b ) {
 }
 
 /**
- * Array lookup
- * Returns an array where the values in array $b are replaced by the
- * values in array $a with the corresponding keys
- *
- * @deprecated since 1.22; use array_intersect_key()
- * @param array $a
- * @param array $b
- * @return array
- */
-function wfArrayLookup( $a, $b ) {
-	wfDeprecated( __FUNCTION__, '1.22' );
-	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
-}
-
-/**
  * Appends to second array if $value differs from that in $default
  *
  * @param string|int $key
@@ -207,27 +192,6 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
 	if ( $default[$key] !== $value ) {
 		$changed[$key] = $value;
 	}
-}
-
-/**
- * Backwards array plus for people who haven't bothered to read the PHP manual
- * XXX: will not darn your socks for you.
- *
- * @deprecated since 1.22; use array_replace()
- *
- * @param array $array1 Initial array to merge.
- * @param array $array2,... Variable list of arrays to merge.
- * @return array
- */
-function wfArrayMerge( $array1 /*...*/ ) {
-	wfDeprecated( __FUNCTION__, '1.22' );
-	$args = func_get_args();
-	$args = array_reverse( $args, true );
-	$out = array();
-	foreach ( $args as $arg ) {
-		$out += $arg;
-	}
-	return $out;
 }
 
 /**
@@ -1808,19 +1772,6 @@ function wfEmptyMsg( $key ) {
 }
 
 /**
- * Throw a debugging exception. This function previously once exited the process,
- * but now throws an exception instead, with similar results.
- *
- * @deprecated since 1.22; just throw an MWException yourself
- * @param string $msg Message shown when dying.
- * @throws MWException
- */
-function wfDebugDieBacktrace( $msg = '' ) {
-	wfDeprecated( __FUNCTION__, '1.22' );
-	throw new MWException( $msg );
-}
-
-/**
  * Fetch server name for use in error reporting etc.
  * Use real server name if available, so we know which machine
  * in a server farm generated the current page.
@@ -2114,16 +2065,6 @@ function wfEscapeWikiText( $text ) {
 	$text = substr( strtr( "\n$text", $repl ), 1 );
 	$text = preg_replace( $repl2, '$1&#58;', $text );
 	return $text;
-}
-
-/**
- * Get the current unix timestamp with microseconds.  Useful for profiling
- * @deprecated since 1.22; call microtime() directly
- * @return float
- */
-function wfTime() {
-	wfDeprecated( __FUNCTION__, '1.22' );
-	return microtime( true );
 }
 
 /**
