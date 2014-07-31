@@ -470,23 +470,6 @@ if ( $wgTmpDirectory === false ) {
 	wfProfileOut( $fname . '-tempDir' );
 }
 
-// $wgHTCPMulticastRouting got renamed to $wgHTCPRouting in MediaWiki 1.22
-// ensure back compatibility.
-if ( !$wgHTCPRouting && $wgHTCPMulticastRouting ) {
-	$wgHTCPRouting = $wgHTCPMulticastRouting;
-}
-
-// Initialize $wgHTCPRouting from backwards-compatible settings that
-// comes from pre 1.20 version.
-if ( !$wgHTCPRouting && $wgHTCPMulticastAddress ) {
-	$wgHTCPRouting = array(
-		'' => array(
-			'host' => $wgHTCPMulticastAddress,
-			'port' => $wgHTCPPort,
-		)
-	);
-}
-
 // Back compatibility for $wgRateLimitLog deprecated with 1.23
 if ( $wgRateLimitLog && !array_key_exists( 'ratelimit', $wgDebugLogGroups ) ) {
 	$wgDebugLogGroups['ratelimit'] = $wgRateLimitLog;
