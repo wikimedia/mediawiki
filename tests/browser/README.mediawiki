@@ -13,11 +13,11 @@ Install:
 
 Ruby 1.9.3 or higher is required
 Firefox browser is required
-
-cd /tests/browser
-gem update --system
-gem install bundler
-bundle install
+::
+ cd /tests/browser
+ gem update --system
+ gem install bundler
+ bundle install
 
 Run the tests:
 
