@@ -467,6 +467,9 @@ class HTMLForm extends ContextSource {
 			if ( !empty( $field->mParams['nodata'] ) ) {
 				continue;
 			}
+			if ( $field->isHidden( $this->mFieldData ) ) {
+				continue;
+			}
 			if ( $field->validate(
 					$this->mFieldData[$fieldname],
 					$this->mFieldData )

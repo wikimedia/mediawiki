@@ -113,7 +113,7 @@ abstract class HTMLFormField {
 				}
 				$data = $data[$key];
 			}
-			$testValue = $data;
+			$testValue = (string)$data;
 			break;
 		}
 
