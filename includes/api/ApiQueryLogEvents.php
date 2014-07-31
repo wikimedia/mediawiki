@@ -403,7 +403,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					$vals['user'] = $row->user_name === null ? $row->log_user_text : $row->user_name;
 				}
 				if ( $this->fld_userid ) {
-					$vals['userid'] = $row->log_user;
+					$vals['userid'] = intval( $row->log_user );
 				}
 
 				if ( !$row->log_user ) {
