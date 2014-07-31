@@ -47,6 +47,7 @@ production.
 * $wgCompiledFiles has been removed.
 * $wgSortSpecialPages was removed, the listing on Special:SpecialPages is
   now always sorted.
+* $wgHTCPMulticastAddress, $wgHTCPMulticastRouting and $wgHTCPPort were removed.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
