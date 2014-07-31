@@ -7261,12 +7261,6 @@ $wgSiteTypes = array(
 );
 
 /**
- * Formerly a list of files for HipHop compilation
- * @deprecated since 1.22
- */
-$wgCompiledFiles = array();
-
-/**
  * Whether the page_props table has a pp_sortkey column. Set to false in case
  * the respective database schema change was not applied.
  * @since 1.23
