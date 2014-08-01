@@ -61,7 +61,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 
 		$squery = $params;
 		unset( $squery['signature'] );
-		$cSig = self::getQuerySignature( $squery ); // correct signature
+		$cSig = self::getQuerySignature( $squery, $this->getConfig() ); // correct signature
 		$rSig = $params['signature']; // provided signature
 
 		$verified = is_string( $rSig ) && hash_equals( $cSig, $rSig );
@@ -102,12 +102,11 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 
 	/**
 	 * @param array $query
+	 * @param Config $config
 	 * @return string
 	 */
-	public static function getQuerySignature( array $query ) {
-		global $wgSecretKey;
-
+	public static function getQuerySignature( array $query, Config $config ) {
 		ksort( $query ); // stable order
-		return hash_hmac( 'sha1', wfArrayToCgi( $query ), $wgSecretKey );
+		return hash_hmac( 'sha1', wfArrayToCgi( $query ), $config->get( 'SecretKey' ) );
 	}
 }
