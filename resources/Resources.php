@@ -1344,6 +1344,7 @@ return array(
 			'mediawiki.libs.jpegmeta',
 			'mediawiki.Title',
 			'mediawiki.util',
+			'mediawiki.confirmCloseWindow',
 		),
 	),
 	'mediawiki.special.userlogin.common.styles' => array(
