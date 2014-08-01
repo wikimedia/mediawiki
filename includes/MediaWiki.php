@@ -682,7 +682,8 @@ class MediaWiki {
 
 		$query = array( 'title' => 'Special:RunJobs',
 			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 );
-		$query['signature'] = SpecialRunJobs::getQuerySignature( $query );
+		$query['signature'] = SpecialRunJobs::getQuerySignature(
+			$query, $this->config->get( 'SecretKey' ) );
 
 		$errno = $errstr = null;
 		$info = wfParseUrl( $this->config->get( 'Server' ) );
