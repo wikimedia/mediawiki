@@ -3,10 +3,10 @@
 // Checkbox
 //
 // Styling checkboxes in a way that works cross browser is a tricky problem to solve.
-// In MediaWiki UI we wrap a checkbox and label inside mw-ui-checkbox
-// This renders in all browsers except IE6-8 which do not support the :checked selector
-// these are kept backwards compatible using the :not(#noop) selector
-// Ensure to markup the checkbox and label with id and for attributes respectively
+// In MediaWiki UI put a checkbox and label inside a mw-ui-checkbox div.
+// This renders in all browsers except IE6-8 which do not support the :checked selector;
+// these are kept backwards-compatible using the :not(#noop) selector.
+// You should give the checkbox and label matching "id" and "for" attributes, respectively.
 //
 // Markup:
 // <div class="mw-ui-checkbox">
