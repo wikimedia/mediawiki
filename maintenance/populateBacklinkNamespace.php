@@ -32,6 +32,7 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populate the *_from_namespace fields";
+		$this->addOption( 'lastUpdatedId', "Highest page_id with updated links", false, true );
 	}
 
 	protected function getUpdateKey() {
@@ -49,7 +50,10 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 
 		$this->output( "Updating *_from_namespace fields in links tables.\n" );
 
-		$start = $db->selectField( 'page', 'MIN(page_id)', false, __METHOD__ );
+		$start = $this->getOption( 'lastUpdatedId' );
+		if ( !$start ) {
+			$start = $db->selectField( 'page', 'MIN(page_id)', false, __METHOD__ );
+		}
 		if ( !$start ) {
 			$this->output( "Nothing to do." );
 			return false;
