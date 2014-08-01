@@ -320,4 +320,30 @@
 		}
 	} );
 
+	$( function () {
+		// Prevent losing work
+		var allowCloseWindow,
+			$uploadForm = $( '#mw-upload-form' );
+
+		if ( !mw.user.options.get( 'useeditwarning' ) ) {
+			// If the user doesn't want edit warnings, don't set things up.
+			return;
+		}
+
+		$uploadForm.data( 'origtext', $uploadForm.serialize() );
+
+		allowCloseWindow = mw.confirmCloseWindow( {
+			test: function () {
+				return $( '#wpUploadFile' ).get( 0 ).files.length !== 0 ||
+					$uploadForm.data( 'origtext' ) !== $uploadForm.serialize();
+			},
+
+			message: mw.msg( 'editwarning-warning' ),
+			namespace: 'uploadwarning'
+		} );
+
+		$uploadForm.submit( function () {
+			allowCloseWindow();
+		} );
+	} );
 }( mediaWiki, jQuery ) );
