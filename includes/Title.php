@@ -1643,6 +1643,8 @@ class Title {
 	 * $wgServer is prepended to make an absolute URL.
 	 *
 	 * @see self::getFullURL to always get an absolute URL.
+	 * @see self::getLinkURL to always get a URL that's the simplest URL that will be
+	 *  valid to link, locally, to the current Title.
 	 * @see self::newFromText to produce a Title object.
 	 *
 	 * @param string|array $query An optional query string,
