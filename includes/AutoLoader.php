@@ -1086,6 +1086,8 @@ $wgAutoloadLocalClasses = array(
 	'UsercreateTemplate' => 'includes/templates/Usercreate.php',
 
 	# includes/title
+	'ForeignTitleDumpParser' => 'includes/title/ForeignTitleDumpParser.php',
+	'ForeignTitleValue' => 'includes/title/ForeignTitleValue.php',
 	'PageLinkRenderer' => 'includes/title/PageLinkRenderer.php',
 	'TitleFormatter' => 'includes/title/TitleFormatter.php',
 	'TitleParser' => 'includes/title/TitleParser.php',

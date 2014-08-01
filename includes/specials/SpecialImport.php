@@ -453,13 +453,14 @@ class ImportReporter extends ContextSource {
 
 	/**
 	 * @param Title $title
-	 * @param Title $origTitle
+	 * @param ForeignTitleValue $foreignTitleValue
 	 * @param int $revisionCount
 	 * @param int $successCount
 	 * @param array $pageInfo
 	 * @return void
 	 */
-	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
+	function reportPage( $title, $foreignTitleValue, $revisionCount,
+			$successCount, $pageInfo ) {
 		$args = func_get_args();
 		call_user_func_array( $this->mOriginalPageOutCallback, $args );
 
@@ -488,7 +489,7 @@ class ImportReporter extends ContextSource {
 				$log->addEntry( 'upload', $title, $detail, array(), $this->getUser() );
 			} else {
 				$interwiki = '[[:' . $this->mInterwiki . ':' .
-					$origTitle->getPrefixedText() . ']]';
+					$foreignTitleValue->getFullText() . ']]';
 				$detail = $this->msg( 'import-logentry-interwiki-detail' )->numParams(
 					$successCount )->params( $interwiki )->inContentLanguage()->text();
 				if ( $this->reason ) {
