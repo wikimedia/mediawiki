@@ -348,29 +348,29 @@ class ApiQuery extends ApiBase {
 		$pageSet = $this->getPageSet();
 		$result = $this->getResult();
 
-		// We don't check for a full result set here because we can't be adding
-		// more than 380K. The maximum revision size is in the megabyte range,
-		// and the maximum result size must be even higher than that.
+		// We can't really handle max-result-size failure here, but we need to
+		// check anyway in case someone set the limit stupidly low.
+		$fit = true;
 
 		$values = $pageSet->getNormalizedTitlesAsResult( $result );
 		if ( $values ) {
-			$result->addValue( 'query', 'normalized', $values );
+			$fit = $fit && $result->addValue( 'query', 'normalized', $values );
 		}
 		$values = $pageSet->getConvertedTitlesAsResult( $result );
 		if ( $values ) {
-			$result->addValue( 'query', 'converted', $values );
+			$fit = $fit && $result->addValue( 'query', 'converted', $values );
 		}
 		$values = $pageSet->getInterwikiTitlesAsResult( $result, $this->mParams['iwurl'] );
 		if ( $values ) {
-			$result->addValue( 'query', 'interwiki', $values );
+			$fit = $fit && $result->addValue( 'query', 'interwiki', $values );
 		}
 		$values = $pageSet->getRedirectTitlesAsResult( $result );
 		if ( $values ) {
-			$result->addValue( 'query', 'redirects', $values );
+			$fit = $fit && $result->addValue( 'query', 'redirects', $values );
 		}
 		$values = $pageSet->getMissingRevisionIDsAsResult( $result );
 		if ( $values ) {
-			$result->addValue( 'query', 'badrevids', $values );
+			$fit = $fit && $result->addValue( 'query', 'badrevids', $values );
 		}
 
 		// Page elements
@@ -426,12 +426,21 @@ class ApiQuery extends ApiBase {
 				// json treats all map keys as strings - converting to match
 				$pageIDs = array_map( 'strval', $pageIDs );
 				$result->setIndexedTagName( $pageIDs, 'id' );
-				$result->addValue( 'query', 'pageids', $pageIDs );
+				$fit = $fit && $result->addValue( 'query', 'pageids', $pageIDs );
 			}
 
 			$result->setIndexedTagName( $pages, 'page' );
-			$result->addValue( 'query', 'pages', $pages );
+			$fit = $fit && $result->addValue( 'query', 'pages', $pages );
 		}
+
+		if ( !$fit ) {
+			$this->dieUsage(
+				'The value of $wgAPIMaxResultSize on this wiki is ' .
+					'too small to hold basic result information',
+				'badconfig'
+			);
+		}
+
 		if ( $this->mParams['export'] ) {
 			$this->doExport( $pageSet, $result );
 		}
