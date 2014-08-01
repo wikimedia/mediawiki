@@ -270,4 +270,54 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 		$actualHtml = preg_replace( '#/\*[^*]+\*/#', '', $links['html'] );
 		$this->assertEquals( $expectedHtml, $actualHtml );
 	}
+
+	/**
+	 * @dataProvider provideBug69026
+	 * @param $langCode
+	 * @param $url
+	 * @param $expectedCanonicalUrl
+	 */
+	public function testBug69026( $langCode, $url, $expectedCanonicalUrl ) {
+		$this->setMwGlobals(
+			array(
+				'wgContLang' => Language::factory( $langCode ),
+				'wgServer' => 'http://localhost',
+				'wgCanonicalServer' => 'http://localhost',
+				'wgEnableCanonicalServerLink' => true,
+			)
+		);
+		$req = new FauxRequest();
+		$req->setRequestURL( $url );
+		$context = new DerivativeContext( new RequestContext() );
+		$context->setRequest( $req );
+		$context->setUser( new User() );
+		$context->setTitle( Title::newFromText( 'Test' ) );
+		$out = new OutputPage( $context );
+		$items = $out->getHeadLinksArray();
+		foreach ( $items as $item ) {
+			if ( strpos( '<link rel="canonical"', $item ) === 0 ) {
+				break;
+			}
+		}
+		$this->assertEquals( Html::element( 'link', array(
+				'rel' => 'canonical',
+				'href' => $expectedCanonicalUrl
+			) ),
+			$item
+		);
+	}
+
+	public function provideBug69026() {
+		return array(
+			array( 'en', '/wiki/Foo', 'http://localhost/wiki/Foo' ),
+			array( 'ru', '/wiki/%D0%EE%F1%F2_%F7%E5%EB%EE%E2%E5%EA%E0',
+				'http://localhost/wiki/%D0%A0%D0%BE%D1%81%D1%82_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0' ),
+			array( 'ru', '/wiki/%D0%EE%F1%F2_%F7%E5%EB%EE%E2%E5%EA%E0?test=%D0%EE%F1%F2_%F7%E5%EB%EE%E2%E5%EA%E0',
+				   'http://localhost/wiki/%D0%A0%D0%BE%D1%81%D1%82_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0?test=%D0%A0%D0%BE%D1%81%D1%82_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0' ),
+			array( 'en', '/wiki/C/C%2B%2B', 'http://localhost/wiki/C/C%2B%2B' ),
+			array( 'en', '/wiki/C/C++', 'http://localhost/wiki/C/C%2B%2B' ),
+			array( 'ru', '/wiki/C/C%2B%2B', 'http://localhost/wiki/C/C%2B%2B' ),
+			array( 'ru', '/wiki/C/C++', 'http://localhost/wiki/C/C%2B%2B' ),
+		);
+	}
 }

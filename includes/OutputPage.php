@@ -3242,7 +3242,7 @@ $templates
 	 * @return array Array in format "link name or number => 'link html'".
 	 */
 	public function getHeadLinksArray() {
-		global $wgVersion;
+		global $wgVersion, $wgContLang;
 
 		$tags = array();
 		$config = $this->getConfig();
@@ -3447,6 +3447,24 @@ $templates
 			} else {
 				$reqUrl = $this->getRequest()->getRequestURL();
 				$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
+				// Convert the URL from fallback encoding
+				$parts = wfParseUrl( $canonicalUrl );
+				$pathParts = explode( '/', $parts['path'] );
+				$fixed = array();
+				foreach ( $pathParts as $part ) {
+					$fixed[] = rawurlencode( $wgContLang->checkTitleEncoding( rawurldecode( $part ) ) );
+				}
+				$parts['path'] = implode( '/', $fixed );
+				if ( isset( $parts['query'] ) ) {
+					$query = wfCgiToArray( $parts['query'] );
+					$newQuery = array();
+					foreach ( $query as $key => $value ) {
+						$newQuery[$wgContLang->checkTitleEncoding( $key )] =
+							$wgContLang->checkTitleEncoding( $value );
+					}
+					$parts['query'] = wfArrayToCgi( $newQuery );
+				}
+				$canonicalUrl = wfAssembleUrl( $parts );
 			}
 		}
 		if ( $canonicalUrl !== false ) {
