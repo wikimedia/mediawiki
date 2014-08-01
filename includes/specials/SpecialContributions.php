@@ -396,8 +396,6 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @return string HTML fragment
 	 */
 	protected function getForm() {
-		global $wgScript;
-
 		$this->opts['title'] = $this->getPageTitle()->getPrefixedText();
 		if ( !isset( $this->opts['target'] ) ) {
 			$this->opts['target'] = '';
@@ -449,7 +447,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'form',
 			array(
 				'method' => 'get',
-				'action' => $wgScript,
+				'action' => $this->getConfig()->get( 'Script' ),
 				'class' => 'mw-contributions-form'
 			)
 		);

@@ -77,8 +77,6 @@ class SpecialChangePassword extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		global $wgCookieExpiration;
-
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
@@ -131,10 +129,11 @@ class SpecialChangePassword extends FormSpecialPage {
 		}
 
 		if ( !$user->isLoggedIn() ) {
+			$cookieExpiration = $this->getConfig()->get( 'CookieExpiration' );
 			$fields['Remember'] = array(
 				'type' => 'check',
 				'label' => $this->msg( 'remembermypassword' )
-						->numParams( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )
+						->numParams( ceil( $cookieExpiration / ( 3600 * 24 ) ) )
 						->text(),
 				'default' => $request->getVal( 'wpRemember' ),
 			);
@@ -233,8 +232,6 @@ class SpecialChangePassword extends FormSpecialPage {
 	 * @throws PasswordError When cannot set the new password because requirements not met.
 	 */
 	protected function attemptReset( $oldpass, $newpass, $retype ) {
-		global $wgPasswordAttemptThrottle;
-
 		$isSelf = ( $this->mUserName === $this->getUser()->getName() );
 		if ( $isSelf ) {
 			$user = $this->getUser();
@@ -254,8 +251,9 @@ class SpecialChangePassword extends FormSpecialPage {
 		$throttleCount = LoginForm::incLoginThrottle( $this->mUserName );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
+			$passwordAttemptThrottle = $this->getConfig()->get( 'PasswordAttemptThrottle' );
 			throw new PasswordError( $this->msg( 'changepassword-throttled' )
-				->params( $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
+				->params( $lang->formatDuration( $passwordAttemptThrottle['seconds'] ) )
 				->text()
 			);
 		}

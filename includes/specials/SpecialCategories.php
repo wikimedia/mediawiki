@@ -180,11 +180,9 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 	public function getStartForm( $from ) {
-		global $wgScript;
-
 		return Xml::tags(
 			'form',
-			array( 'method' => 'get', 'action' => $wgScript ),
+			array( 'method' => 'get', 'action' => $this->getConfig()->get( 'Script' ) ),
 			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 				Xml::fieldset(
 					$this->msg( 'categories' )->text(),
