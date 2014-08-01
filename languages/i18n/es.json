@@ -130,6 +130,7 @@
 	"tog-watchdefault": "Añadir las páginas y archivos que edite a mi lista de seguimiento",
 	"tog-watchmoves": "Añadir las páginas y archivos que mueva a mi lista de seguimiento",
 	"tog-watchdeletion": "Añadir las páginas y archivos que borre a mi lista de seguimiento",
+	"tog-watchrollback": "Añadir las páginas donde realicé una reversión a mi lista de seguimento",
 	"tog-minordefault": "Marcar todas las ediciones como menores de manera predeterminada",
 	"tog-previewontop": "Mostrar previsualización antes del cuadro de edición",
 	"tog-previewonfirst": "Mostrar previsualización en la primera edición",

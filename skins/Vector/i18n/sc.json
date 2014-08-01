@@ -3,7 +3,8 @@
 		"authors": [
 			"Andria",
 			"Marzedu",
-			"Via maxima"
+			"Via maxima",
+			"Uharteko"
 		]
 	},
 	"vector-action-addsection": "Giunghe cuntierra",
@@ -12,9 +13,9 @@
 	"vector-action-protect": "Ampara",
 	"vector-action-undelete": "Recùpera",
 	"vector-view-create": "Crea",
-	"vector-view-edit": "Acontza",
+	"vector-view-edit": "Càmbia",
 	"vector-view-history": "Càstia istòria",
 	"vector-view-view": "Leghe",
-	"vector-view-viewsource": "Càstia mitza",
+	"vector-view-viewsource": "Càstia testu codificadu",
 	"vector-more-actions": "Prus"
 }

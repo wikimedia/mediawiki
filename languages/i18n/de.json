@@ -925,7 +925,7 @@
 	"preferences": "Einstellungen",
 	"mypreferences": "Einstellungen",
 	"prefs-edits": "Anzahl der Bearbeitungen:",
-	"prefsnologintext2": "Du musst dich $1, um Benutzereinstellungen festzulegen.",
+	"prefsnologintext2": "$1, um deine Benutzereinstellungen festzulegen.",
 	"prefs-skin": "Benutzeroberfläche",
 	"skin-preview": "Vorschau",
 	"datedefault": "Standard",

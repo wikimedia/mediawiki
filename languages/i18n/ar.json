@@ -2974,10 +2974,12 @@
 	"version-hook-name": "اسم الخطاف",
 	"version-hook-subscribedby": "يستخدم بواسطة",
 	"version-version": "(نسخة $1)",
+	"version-no-ext-name": "[لا اسم]",
 	"version-svn-revision": "ن$1",
 	"version-license": "ترخيص ميدياويكي",
 	"version-ext-license": "ترخيص",
 	"version-ext-colheader-name": "امتداد",
+	"version-skin-colheader-name": "واجهة",
 	"version-ext-colheader-version": "نسخة",
 	"version-ext-colheader-license": "ترخيص",
 	"version-ext-colheader-description": "وصف",
@@ -3212,5 +3214,12 @@
 	"expand_templates_generate_xml": "اعرض شجرة XML parse",
 	"expand_templates_generate_rawhtml": "أظهر خام HTML",
 	"expand_templates_preview": "عرض مسبق",
-	"pagelang-name": "صفحة"
+	"pagelanguage": "اختيار لغة الصفحة",
+	"pagelang-name": "صفحة",
+	"pagelang-language": "اللغة",
+	"pagelang-use-default": "استخدام اللغة الافتراضية",
+	"pagelang-select-lang": "اختر اللغة",
+	"right-pagelang": "تغيير لغة الصفحة",
+	"action-pagelang": "تغيير لغة الصفحة",
+	"log-name-pagelang": "تغيير سجل الصفحة"
 }
