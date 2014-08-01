@@ -485,6 +485,7 @@ class SpecialUpload extends SpecialPage {
 	 * @param string $copyStatus
 	 * @param string $source
 	 * @return string
+	 * @todo Use Config obj instead of globals
 	 */
 	public static function getInitialPageText( $comment = '', $license = '',
 		$copyStatus = '', $source = ''
@@ -568,8 +569,6 @@ class SpecialUpload extends SpecialPage {
 	 * @throws MWException
 	 */
 	protected function processVerificationError( $details ) {
-		global $wgFileExtensions;
-
 		switch ( $details['status'] ) {
 
 			/** Statuses that only require name changing **/
@@ -604,7 +603,7 @@ class SpecialUpload extends SpecialPage {
 				} else {
 					$msg->params( $details['finalExt'] );
 				}
-				$extensions = array_unique( $wgFileExtensions );
+				$extensions = array_unique( $this->getConfig()->get( 'FileExtensions' ) );
 				$msg->params( $this->getLanguage()->commaList( $extensions ),
 					count( $extensions ) );
 
@@ -822,8 +821,6 @@ class UploadForm extends HTMLForm {
 	 * @return array Descriptor array
 	 */
 	protected function getSourceSection() {
-		global $wgCopyUploadsFromSpecialUpload;
-
 		if ( $this->mSessionKey ) {
 			return array(
 				'SessionKey' => array(
@@ -839,7 +836,7 @@ class UploadForm extends HTMLForm {
 
 		$canUploadByUrl = UploadFromUrl::isEnabled()
 			&& ( UploadFromUrl::isAllowed( $this->getUser() ) === true )
-			&& $wgCopyUploadsFromSpecialUpload;
+			&& $this->getConfig()->get( 'CopyUploadsFromSpecialUpload' );
 		$radio = $canUploadByUrl;
 		$selectedSourceType = strtolower( $this->getRequest()->getText( 'wpSourceType', 'File' ) );
 
@@ -918,17 +915,18 @@ class UploadForm extends HTMLForm {
 	protected function getExtensionsMessage() {
 		# Print a list of allowed file extensions, if so configured.  We ignore
 		# MIME type here, it's incomprehensible to most people and too long.
-		global $wgCheckFileExtensions, $wgStrictFileExtensions,
-			$wgFileExtensions, $wgFileBlacklist;
+		$config = $this->getConfig();
 
-		if ( $wgCheckFileExtensions ) {
-			if ( $wgStrictFileExtensions ) {
+		if ( $config->get( 'CheckFileExtensions' ) ) {
+			if ( $config->get( 'StrictFileExtensions' ) ) {
 				# Everything not permitted is banned
 				$extensionsList =
 					'<div id="mw-upload-permitted">' .
 					$this->msg(
 						'upload-permitted',
-						$this->getContext()->getLanguage()->commaList( array_unique( $wgFileExtensions ) )
+						$this->getContext()->getLanguage()->commaList(
+							array_unique( $config->get( 'FileExtensions' ) )
+						)
 					)->parseAsBlock() .
 					"</div>\n";
 			} else {
@@ -937,13 +935,17 @@ class UploadForm extends HTMLForm {
 					'<div id="mw-upload-preferred">' .
 						$this->msg(
 							'upload-preferred',
-							$this->getContext()->getLanguage()->commaList( array_unique( $wgFileExtensions ) )
+							$this->getContext()->getLanguage()->commaList(
+								array_unique( $config->get( 'FileExtensions' ) )
+							)
 						)->parseAsBlock() .
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
 						$this->msg(
 							'upload-prohibited',
-							$this->getContext()->getLanguage()->commaList( array_unique( $wgFileBlacklist ) )
+							$this->getContext()->getLanguage()->commaList(
+								array_unique( $config->get( 'FileBlacklist' ) )
+							)
 						)->parseAsBlock() .
 					"</div>\n";
 			}
@@ -962,6 +964,7 @@ class UploadForm extends HTMLForm {
 	 * @return array Descriptor array
 	 */
 	protected function getDescriptionSection() {
+		$config = $this->getConfig();
 		if ( $this->mSessionKey ) {
 			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 			try {
@@ -1034,8 +1037,7 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
-		global $wgUseCopyrightUpload;
-		if ( $wgUseCopyrightUpload ) {
+		if ( $config->get( 'UseCopyrightUpload' ) ) {
 			$descriptor['UploadCopyStatus'] = array(
 				'type' => 'text',
 				'section' => 'description',
@@ -1110,11 +1112,11 @@ class UploadForm extends HTMLForm {
 	 * Add upload JS to the OutputPage
 	 */
 	protected function addUploadJS() {
-		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview,
-			$wgEnableAPI, $wgStrictFileExtensions;
+		$config = $this->getConfig();
 
-		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
-		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview && $wgEnableAPI;
+		$useAjaxDestCheck = $config->get( 'UseAjax' ) && $config->get( 'AjaxUploadDestCheck' );
+		$useAjaxLicensePreview = $config->get( 'UseAjax' ) &&
+			$config->get( 'AjaxLicensePreview' ) && $config->get( 'EnableAPI' );
 		$this->mMaxUploadSize['*'] = UploadBase::getMaxUploadSize();
 
 		$scriptVars = array(
@@ -1125,7 +1127,7 @@ class UploadForm extends HTMLForm {
 				// the wpDestFile textbox
 				$this->mDestFile === '',
 			'wgUploadSourceIds' => $this->mSourceIds,
-			'wgStrictFileExtensions' => $wgStrictFileExtensions,
+			'wgStrictFileExtensions' => $config->get( 'StrictFileExtensions' ),
 			'wgCapitalizeUploads' => MWNamespace::isCapitalized( NS_FILE ),
 			'wgMaxUploadSize' => $this->mMaxUploadSize,
 		);
