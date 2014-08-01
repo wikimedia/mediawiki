@@ -129,9 +129,12 @@ production.
 * (bug 66440) The MediaWiki web installer will now allow you to choose the skins
   to enable (from the ones included in download tarball) and decide which one
   should be the default.
-* (bug 68085) Links of the form [[localInterwikiPrefix:languageCode:pageTitle]],
+* (bug 68085, 68802) Links like [[localInterwikiPrefix:languageCode:pageTitle]],
   where localInterwikiPrefix is a member of the $wgLocalInterwikis array, will
-  no longer be displayed in the sidebar when $wgInterwikiMagic is true.
+  no longer be displayed in the sidebar when $wgInterwikiMagic is true. In a
+  similar way, links like [[localInterwikiPrefix:File:Image.png]] and
+  [[localInterwikiPrefix:Category:Hello]] will now render as regular links, and
+  will not include the file or add the page to the category.
 * New special page, MyLanguages, to redirect users to subpages with localised
   versions of a page. (Integrated from Extension:Translate)
 * MediaWiki now supports multiple password types, including bcrypt and PBKDF2.
