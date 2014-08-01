@@ -5,54 +5,34 @@
 	'use strict';
 
 	$( function () {
-		var savedWindowOnBeforeUnload,
-			$wpTextbox1 = $( '#wpTextbox1' ),
-			$wpSummary = $( '#wpSummary' );
+		var allowCloseWindow;
+
 		// Check if EditWarning is enabled and if we need it
-		if ( $wpTextbox1.length === 0 ) {
+		if ( !mw.user.options.get( 'useeditwarning' ) ) {
 			return true;
 		}
-		// Get the original values of some form elements
-		$wpTextbox1.add( $wpSummary ).each( function () {
-			$( this ).data( 'origtext', $( this ).val() );
+
+		// Save the original value of the text fields
+		$( '#wpTextbox1, #wpSummary' ).each( function ( index, element ) {
+			var $element = $( element );
+			$element.data( 'origtext', $element.textSelection( 'getContents' ) );
 		} );
-		$( window )
-			.on( 'beforeunload.editwarning', function () {
-				var retval;
 
-				// Check if the current values of some form elements are the same as
-				// the original values
-				if (
-					mw.config.get( 'wgAction' ) === 'submit' ||
-						$wpTextbox1.data( 'origtext' ) !== $wpTextbox1.textSelection( 'getContents' ) ||
-						$wpSummary.data( 'origtext' ) !== $wpSummary.textSelection( 'getContents' )
-				) {
-					// Return our message
-					retval = mw.msg( 'editwarning-warning' );
-				}
+		allowCloseWindow = mw.confirmCloseWindow( {
+			test: function () {
+				// We use .textSelection, because editors might not have updated the form yet.
+				return mw.config.get( 'wgAction' ) === 'submit' ||
+					$('#wpTextbox1').data( 'origtext' ) !== $('#wpTextbox1').textSelection( 'getContents' ) ||
+					$('#wpSummary').data( 'origtext' ) !== $('#wpSummary').textSelection( 'getContents' );
+			},
 
-				// Unset the onbeforeunload handler so we don't break page caching in Firefox
-				savedWindowOnBeforeUnload = window.onbeforeunload;
-				window.onbeforeunload = null;
-				if ( retval !== undefined ) {
-					// ...but if the user chooses not to leave the page, we need to rebind it
-					setTimeout( function () {
-						window.onbeforeunload = savedWindowOnBeforeUnload;
-					}, 1 );
-					return retval;
-				}
-			} )
-			.on( 'pageshow.editwarning', function () {
-				// Re-add onbeforeunload handler
-				if ( !window.onbeforeunload ) {
-					window.onbeforeunload = savedWindowOnBeforeUnload;
-				}
-			} );
+			message: mw.msg( 'editwarning-warning' ),
+			namespace: 'editwarning'
+		} );
 
 		// Add form submission handler
 		$( '#editform' ).submit( function () {
-			// Unbind our handlers
-			$( window ).off( '.editwarning' );
+			allowCloseWindow();
 		} );
 	} );
 
