@@ -11,7 +11,7 @@
 }
 // Inputs
 //
-// When using an input or textarea apply the mw-ui-input class.
+// Apply the mw-ui-input class to input and textarea fields.
 //
 // Styleguide 1.
 
@@ -22,8 +22,8 @@
 // When focused a progressive highlight appears to the left of the field.
 //
 // Markup:
-// <input value="input" class="mw-ui-input" value="input">
-// <textarea class="mw-ui-input">textarea</textarea>
+// <input class="mw-ui-input" placeholder="Enter your name">
+// <textarea class="mw-ui-input">Text here</textarea>
 //
 // Styleguide 1.1.
 .mw-ui-input {
@@ -72,7 +72,7 @@ textarea.mw-ui-input {
 // Use mw-ui-input-inline with mw-ui-input in cases where you want a button to line up with the input.
 //
 // Markup:
-// <input value="input" class="mw-ui-input mw-ui-input-inline" value="input">
+// <input class="mw-ui-input mw-ui-input-inline">
 // <button class="mw-ui-button mw-ui-constructive">go</button>
 //
 // Styleguide 1.2.
@@ -84,14 +84,14 @@ textarea.mw-ui-input {
 // mw-ui-input-large
 //
 // Use mw-ui-input-large with mw-ui-input in cases where there are multiple inputs on a screen and you
-// want to draw more attention to one instance. For example add topic / reply to post forms.
-// Currently in draft status and subject to change. When used on an input, the text is styled
-// in a large font. When used alongside another mw-ui-input large they are pushed together to seem like
-// one contiguous input.
+// want to draw attention to one instance. For example, replying with a subject line and more text.
+// Currently in draft status and subject to change. When used on an input field, the text is styled
+// in a large font. When used alongside another mw-ui-input large they are pushed together to form one
+// contiguous block.
 //
 // Markup:
-// <input value="input" class="mw-ui-input mw-ui-input-large" value="input">
-// <textarea class="mw-ui-input mw-ui-input-large">textarea</textarea>
+// <input value="input" class="mw-ui-input mw-ui-input-large" value="input" placeholder="Enter subject">
+// <textarea class="mw-ui-input mw-ui-input-large" placeholder="Provide additional details"></textarea>
 //
 // Styleguide 1.3.
 .mw-ui-input-large {
