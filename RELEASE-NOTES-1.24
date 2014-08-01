@@ -305,6 +305,8 @@ changes to languages because of Bugzilla reports.
   JavaScript is no longer executed in this browser. The IEFixes script, which
   existed purely to provide support for MSIE versions below 7 and which was
   conditionally loaded for those browsers, was also removed.
+* SpecialUpload::getInitialPageText() is deprecated now, use non-static
+  SpecialUpload::getInitialPageTextInternal().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
