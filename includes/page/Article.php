@@ -1657,11 +1657,12 @@ class Article implements Page {
 	public function confirmDelete( $reason ) {
 		wfDebug( "Article::confirmDelete\n" );
 
+		$title = $this->getTitle();
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
-		$outputPage->addBacklinkSubtitle( $this->getTitle() );
+		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $title->getPrefixedText() ) );
+		$outputPage->addBacklinkSubtitle( $title );
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
-		$backlinkCache = $this->getTitle()->getBacklinkCache();
+		$backlinkCache = $title->getBacklinkCache();
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'deleting-backlinks-warning' );
@@ -1683,10 +1684,10 @@ class Article implements Page {
 		} else {
 			$suppress = '';
 		}
-		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $this->getTitle() );
+		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $title );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
-			'action' => $this->getTitle()->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
+			'action' => $title->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
 			Xml::tags( 'legend', null, wfMessage( 'delete-legend' )->escaped() ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
@@ -1745,7 +1746,7 @@ class Article implements Page {
 			Xml::closeElement( 'fieldset' ) .
 			Html::hidden(
 				'wpEditToken',
-				$user->getEditToken( array( 'delete', $this->getTitle()->getPrefixedText() ) )
+				$user->getEditToken( array( 'delete', $title->getPrefixedText() ) )
 			) .
 			Xml::closeElement( 'form' );
 
@@ -1764,9 +1765,7 @@ class Article implements Page {
 
 		$deleteLogPage = new LogPage( 'delete' );
 		$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
-		LogEventsList::showLogExtract( $outputPage, 'delete',
-			$this->getTitle()
-		);
+		LogEventsList::showLogExtract( $outputPage, 'delete', $title );
 	}
 
 	/**
