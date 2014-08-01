@@ -369,7 +369,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param array $linkarr Associative array of attributes.
 	 */
-	function addLink( $linkarr ) {
+	function addLink( array $linkarr ) {
 		array_push( $this->mLinktags, $linkarr );
 	}
 
@@ -380,7 +380,7 @@ class OutputPage extends ContextSource {
 	 *                 values, both keys and values will be escaped, and the
 	 *                 "rel" attribute will be automatically added
 	 */
-	function addMetadataLink( $linkarr ) {
+	function addMetadataLink( array $linkarr ) {
 		$linkarr['rel'] = $this->getMetadataAttribute();
 		$this->addLink( $linkarr );
 	}
@@ -488,7 +488,7 @@ class OutputPage extends ContextSource {
 	 * @param string $type
 	 * @return array
 	 */
-	protected function filterModules( $modules, $position = null,
+	protected function filterModules( array $modules, $position = null,
 		$type = ResourceLoaderModule::TYPE_COMBINED
 	) {
 		$resourceLoader = $this->getResourceLoader();
@@ -1209,7 +1209,7 @@ class OutputPage extends ContextSource {
 	 * @param array $newLinkArray Associative array mapping language code to the page
 	 *                      name
 	 */
-	public function addLanguageLinks( $newLinkArray ) {
+	public function addLanguageLinks( array $newLinkArray ) {
 		$this->mLanguageLinks += $newLinkArray;
 	}
 
@@ -1219,7 +1219,7 @@ class OutputPage extends ContextSource {
 	 * @param array $newLinkArray Associative array mapping language code to the page
 	 *                      name
 	 */
-	public function setLanguageLinks( $newLinkArray ) {
+	public function setLanguageLinks( array $newLinkArray ) {
 		$this->mLanguageLinks = $newLinkArray;
 	}
 
@@ -1237,7 +1237,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param array $categories Mapping category name => sort key
 	 */
-	public function addCategoryLinks( $categories ) {
+	public function addCategoryLinks( array $categories ) {
 		global $wgContLang;
 
 		if ( !is_array( $categories ) || count( $categories ) == 0 ) {
@@ -1303,7 +1303,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param array $categories Mapping category name => sort key
 	 */
-	public function setCategoryLinks( $categories ) {
+	public function setCategoryLinks( array $categories ) {
 		$this->mCategoryLinks = array();
 		$this->addCategoryLinks( $categories );
 	}
@@ -1401,7 +1401,7 @@ class OutputPage extends ContextSource {
 	 * @param array $attribs
 	 * @param string $contents
 	 */
-	public function addElement( $element, $attribs = array(), $contents = '' ) {
+	public function addElement( $element, array $attribs = array(), $contents = '' ) {
 		$this->addHTML( Html::element( $element, $attribs, $contents ) );
 	}
 
@@ -2262,7 +2262,7 @@ class OutputPage extends ContextSource {
 	 * @param array $errors Error message keys
 	 * @param string $action Action that was denied or null if unknown
 	 */
-	public function showPermissionsErrorPage( $errors, $action = null ) {
+	public function showPermissionsErrorPage( array $errors, $action = null ) {
 		// For some action (read, edit, create and upload), display a "login to do this action"
 		// error if all of the following conditions are met:
 		// 1. the user is not logged in
@@ -2367,7 +2367,7 @@ class OutputPage extends ContextSource {
 	 * @param string $action Action that was denied or null if unknown
 	 * @return string The wikitext error-messages, formatted into a list.
 	 */
-	public function formatPermissionsErrorMessage( $errors, $action = null ) {
+	public function formatPermissionsErrorMessage( array $errors, $action = null ) {
 		if ( $action == null ) {
 			$text = $this->msg( 'permissionserrorstext', count( $errors ) )->plain() . "\n\n";
 		} else {
@@ -2420,7 +2420,7 @@ class OutputPage extends ContextSource {
 	 * @throws ReadOnlyError
 	 */
 	public function readOnlyPage( $source = null, $protected = false,
-		$reasons = array(), $action = null
+		array $reasons = array(), $action = null
 	) {
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
@@ -2539,7 +2539,7 @@ $templates
 	 * @param string $text Text of the link (input is not escaped)
 	 * @param array $options Options array to pass to Linker
 	 */
-	public function addReturnTo( $title, $query = array(), $text = null, $options = array() ) {
+	public function addReturnTo( $title, array $query = array(), $text = null, $options = array() ) {
 		$link = $this->msg( 'returnto' )->rawParams(
 			Linker::link( $title, $text, array(), $query, $options ) )->escaped();
 		$this->addHTML( "<p id=\"mw-returnto\">{$link}</p>\n" );
@@ -2873,7 +2873,7 @@ $templates
 	 * @param array $links
 	 * @return string HTML
 	 */
-	protected static function getHtmlFromLoaderLinks( Array $links ) {
+	protected static function getHtmlFromLoaderLinks( array $links ) {
 		$html = '';
 		$states = array();
 		foreach ( $links as $link ) {
@@ -3642,7 +3642,7 @@ $templates
 	 * @param array $options Option, can contain 'condition', 'dir', 'media' keys
 	 * @return string HTML fragment
 	 */
-	protected function styleLink( $style, $options ) {
+	protected function styleLink( $style, array $options ) {
 		if ( isset( $options['dir'] ) ) {
 			if ( $this->getLanguage()->getDir() != $options['dir'] ) {
 				return '';
@@ -3803,7 +3803,7 @@ $templates
 	 * @since 1.16
 	 * @deprecated since 1.17
 	 */
-	public function includeJQuery( $modules = array() ) {
+	public function includeJQuery( array $modules = array() ) {
 		return array();
 	}
 
