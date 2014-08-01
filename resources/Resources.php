@@ -798,6 +798,11 @@ return array(
 			'user.tokens',
 		),
 	),
+	'mediawiki.confirmCloseWindow' => array(
+		'scripts' => array(
+			'resources/src/mediawiki/mediawiki.confirmCloseWindow.js',
+		),
+	),
 	'mediawiki.debug' => array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.debug.js',
@@ -1035,7 +1040,8 @@ return array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.editWarning.js',
 		'dependencies' => array(
 			'jquery.textSelection',
-			'mediawiki.jqueryMsg'
+			'mediawiki.jqueryMsg',
+			'mediawiki.confirmCloseWindow',
 		),
 		'messages' => array(
 			'editwarning-warning',
