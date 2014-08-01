@@ -1210,7 +1210,8 @@ class LocalFile extends File {
 			$user = $wgUser;
 		}
 
-		$pageText = SpecialUpload::getInitialPageText( $desc, $license, $copyStatus, $source );
+		$specialUpload = new SpecialUpload;
+		$pageText = $specialUpload->getInitialPageTextInternal( $desc, $license, $copyStatus, $source );
 
 		if ( !$this->recordUpload2( $oldver, $desc, $pageText, false, $timestamp, $user ) ) {
 			return false;
