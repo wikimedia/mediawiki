@@ -1312,6 +1312,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.libs.jpegmeta',
 			'mediawiki.util',
+			'mediawiki.confirmCloseWindow',
 		),
 	),
 	'mediawiki.special.userlogin.common.styles' => array(
