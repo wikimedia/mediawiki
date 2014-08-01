@@ -3211,7 +3211,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param DBMasterPos $pos
 	 * @param int $timeout The maximum number of seconds to wait for
 	 *   synchronisation
-	 * @return int Zzero if the slave was past that position already,
+	 * @return int Zero if the slave was past that position already,
 	 *   greater than zero if we waited for some period of time, less than
 	 *   zero if we timed out.
 	 */

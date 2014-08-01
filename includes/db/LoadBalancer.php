@@ -331,17 +331,23 @@ class LoadBalancer {
 	/**
 	 * Set the master wait position and wait for ALL slaves to catch up to it
 	 * @param DBMasterPos $pos
+	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
+	 * @return bool Success (able to connect and no timeouts reached)
 	 */
-	public function waitForAll( $pos ) {
+	public function waitForAll( $pos, $timeout = null ) {
 		wfProfileIn( __METHOD__ );
 		$this->mWaitForPos = $pos;
 		$serverCount = count( $this->mServers );
+
+		$ok = true;
 		for ( $i = 1; $i < $serverCount; $i++ ) {
 			if ( $this->mLoads[$i] > 0 ) {
-				$this->doWait( $i, true );
+				$ok = $this->doWait( $i, true, $timeout ) && $ok;
 			}
 		}
 		wfProfileOut( __METHOD__ );
+
+		return $ok;
 	}
 
 	/**
@@ -363,11 +369,12 @@ class LoadBalancer {
 
 	/**
 	 * Wait for a given slave to catch up to the master pos stored in $this
-	 * @param int $index
-	 * @param bool $open
+	 * @param int $index Server index
+	 * @param bool $open Check the server even if a new connection has to be made
+	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool
 	 */
-	protected function doWait( $index, $open = false ) {
+	protected function doWait( $index, $open = false, $timeout = null ) {
 		# Find a connection to wait on
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
@@ -386,7 +393,8 @@ class LoadBalancer {
 		}
 
 		wfDebug( __METHOD__ . ": Waiting for slave #$index to catch up...\n" );
-		$result = $conn->masterPosWait( $this->mWaitForPos, $this->mWaitTimeout );
+		$timeout = $timeout ?: $this->mWaitTimeout;
+		$result = $conn->masterPosWait( $this->mWaitForPos, $timeout );
 
 		if ( $result == -1 || is_null( $result ) ) {
 			# Timed out waiting for slave, use master instead

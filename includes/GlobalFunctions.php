@@ -3811,6 +3811,7 @@ function wfGetNull() {
  * @param float|null $ifWritesSince Only wait if writes were done since this UNIX timestamp
  * @param string|bool $wiki Wiki identifier accepted by wfGetLB
  * @param string|bool $cluster Cluster name accepted by LBFactory. Default: false.
+ * @return bool Success (able to connect and no timeouts reached)
  */
 function wfWaitForSlaves( $ifWritesSince = false, $wiki = false, $cluster = false ) {
 	// B/C: first argument used to be "max seconds of lag"; ignore such values
@@ -3826,19 +3827,21 @@ function wfWaitForSlaves( $ifWritesSince = false, $wiki = false, $cluster = fals
 	// Prevents permission error when getting master position
 	if ( $lb->getServerCount() > 1 ) {
 		if ( $ifWritesSince && !$lb->hasMasterConnection() ) {
-			return; // assume no writes done
+			return true; // assume no writes done
 		}
 		$dbw = $lb->getConnection( DB_MASTER, array(), $wiki );
 		if ( $ifWritesSince && $dbw->lastDoneWrites() < $ifWritesSince ) {
-			return; // no writes since the last wait
+			return true; // no writes since the last wait
 		}
 		$pos = $dbw->getMasterPos();
 		// The DBMS may not support getMasterPos() or the whole
 		// load balancer might be fake (e.g. $wgAllDBsAreLocalhost).
 		if ( $pos !== false ) {
-			$lb->waitForAll( $pos );
+			return $lb->waitForAll( $pos, PHP_SAPI === 'cli' ? 86400 : null );
 		}
 	}
+
+	return true;
 }
 
 /**
