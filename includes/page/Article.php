@@ -1656,15 +1656,25 @@ class Article implements Page {
 	 */
 	public function confirmDelete( $reason ) {
 		wfDebug( "Article::confirmDelete\n" );
+		$title = $this->getTitle();
 
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
-		$outputPage->addBacklinkSubtitle( $this->getTitle() );
+		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $title->getPrefixedText() ) );
+		$outputPage->addBacklinkSubtitle( $title );
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
-		$backlinkCache = $this->getTitle()->getBacklinkCache();
+
+		$backlinkCache = $title->getBacklinkCache();
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'deleting-backlinks-warning' );
+		}
+
+		if ( $title->hasSubpages() ) {
+			$subpages = $title->getSubpages();
+			$count = $subpages->count();
+
+			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
+				array( 'deleting-subpages-warning', $count ) );
 		}
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
