@@ -320,4 +320,39 @@
 		}
 	} );
 
+	$( function () {
+		// Prevent losing work
+		var allowCloseWindow,
+			$wpDescription = $( '#wpUploadDescription' ),
+			$wpDest = $( '#wpDestFile' ),
+			$wpFile = $( '#wpUploadFile' ),
+			$wpLicense = $( '#wpLicense' );
+
+		$wpDescription.add(
+			$wpDest, $wpLicense
+		).each( function () {
+			$( this ) .data( 'origtext', $( this ).val );
+		} );
+
+		allowCloseWindow = mw.confirmCloseWindow( {
+			test: function () {
+				return mw.user.options.get( 'useeditwarning' ) && (
+					$wpDescription.data( 'origtext' ) !== $wpDescription.textSelection( 'getContents' ) ||
+					$wpDest.data( 'origtext' ) !== $wpDest.textSelection( 'getContents' ) ||
+					$wpLicense.data( 'origtext' ) !== $wpLicense.val() ||
+					$wpFile.get( 0 ).files.length !== 0
+				);
+			},
+
+			message: function () {
+				return mw.msg( 'editwarning-warning' );
+			},
+
+			namespace: 'uploadwarning'
+		} );
+
+		$( '#mw-upload-form' ).submit( function () {
+			allowCloseWindow();
+		} );
+	} );
 }( mediaWiki, jQuery ) );
