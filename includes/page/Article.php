@@ -1658,10 +1658,19 @@ class Article implements Page {
 		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $title->getPrefixedText() ) );
 		$outputPage->addBacklinkSubtitle( $title );
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
+
 		$backlinkCache = $title->getBacklinkCache();
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'deleting-backlinks-warning' );
+		}
+
+		$subpageQueryLimit = 51;
+		$subpages = $title->getSubpages( $subpageQueryLimit );
+		$subpageCount = count( $subpages );
+		if ( $subpageCount > 0 ) {
+			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
+				array( 'deleting-subpages-warning', Message::numParam( $subpageCount ) ) );
 		}
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
