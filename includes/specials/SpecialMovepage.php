@@ -674,7 +674,10 @@ class MovePageForm extends UnlistedSpecialPage {
 				$oldSubpage->getDBkey()
 			);
 
-			if ( $oldSubpage->isTalkPage() ) {
+			if ( $oldSubpage->isSubpage() && ( $ot->getNamespace() + $nt->getNamespace() ) & 1 ) {
+				// Moving a subpage from a subject namespace to a talk namespace or vice-versa
+				$newNs = $nt->getNamespace();
+			} elseif ( $oldSubpage->isTalkPage() ) {
 				$newNs = $nt->getTalkPage()->getNamespace();
 			} else {
 				$newNs = $nt->getSubjectPage()->getNamespace();
