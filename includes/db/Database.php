@@ -1490,6 +1490,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param array $options Query options
 	 * @param array $join_conds Join conditions
 	 *
+	 *
 	 * @param string|array $table
 	 *
 	 * May be either an array of table names, or a single string holding a table
