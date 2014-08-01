@@ -3236,7 +3236,7 @@ $templates
 			$wgSitename, $wgVersion,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
 			$wgDisableLangConversion, $wgCanonicalLanguageLinks,
-			$wgRightsPage, $wgRightsUrl;
+			$wgRightsPage, $wgRightsUrl, $wgContLang;
 
 		$tags = array();
 
@@ -3442,6 +3442,21 @@ $templates
 			} else {
 				$reqUrl = $this->getRequest()->getRequestURL();
 				$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
+				// Convert the URL from fallback encoding
+				$parts = wfParseUrl( $canonicalUrl );
+				$path = urldecode( $parts['path'] );
+				$path = wfUrlencode( $wgContLang->checkTitleEncoding( $path ) );
+				$parts['path'] = $path;
+				if ( isset( $parts['query'] ) ) {
+					$query = wfCgiToArray( $parts['query'] );
+					$newQuery = array();
+					foreach ( $query as $key => $value ) {
+						$newQuery[$wgContLang->checkTitleEncoding( $key )] =
+							$wgContLang->checkTitleEncoding( $value );
+					}
+					$parts['query'] = wfArrayToCgi( $newQuery );
+				}
+				$canonicalUrl = wfAssembleUrl( $parts );
 			}
 		}
 		if ( $canonicalUrl !== false ) {
