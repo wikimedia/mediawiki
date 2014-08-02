@@ -99,6 +99,97 @@ class WikiExporter {
 	}
 
 	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param string $var
+	 * @return mixed
+	 */
+	public function &__get( $var ) {
+
+		if ( array_key_exists( $var, get_object_vars( $this ) ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			return $this->$var;
+
+		} elseif ( !property_exists( $this, $var ) && is_callable( 'parent::__get' ) ) {
+			return parent::__get( $var );
+
+		} else {
+			$backtrace = debug_backtrace( 0 );
+			$btIndex = 0;
+
+			while ( $backtrace[ $btIndex + 1 ][ 'function' ] === '__get' ) {
+				$btIndex++;
+			}
+
+			trigger_error( "Undefined property: {$backtrace[ $btIndex ]['class']}::$$var accessed from {$backtrace[ $btIndex ]['file']}, line {$backtrace[ $btIndex ]['line']}" );
+
+			$ret = null;
+			return $ret;
+		}
+	}
+
+	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param string $var
+	 * @param mixed  $value
+	 */
+	public function __set( $var, $value ) {
+		if ( property_exists( $this, $var ) || !is_callable( 'parent::__set' ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			$this->$var = $value;
+
+		} else {
+			parent::__set( $var, $value );
+		}
+	}
+
+	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param mixed $var
+	 * @return bool
+	 */
+	public function __isset( $var ) {
+		$classMembers = get_object_vars( $this );
+
+		if ( array_key_exists( $var, $classMembers ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			return $classMembers[$var] !== null;
+
+		} elseif ( property_exists( $this, $var ) || !is_callable( 'parent::__isset' ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			return false;
+
+		} else {
+			return parent::__isset( $var );
+		}
+	}
+
+	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param mixed $var
+	 */
+	public function __unset( $var ) {
+		if ( property_exists( $this, $var ) || !is_callable( 'parent::__unset' ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			unset( $this->$var );
+
+		} else {
+			parent::__unset( $var );
+		}
+	}
+
+	/**
 	 * Set the DumpOutput or DumpFilter object which will receive
 	 * various row objects and XML output for filtering. Filters
 	 * can be chained or used as callbacks.
@@ -1444,6 +1535,97 @@ class DumpLatestFilter extends DumpFilter {
 	protected $rev;
 
 	protected $revString;
+
+	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param string $var
+	 * @return mixed
+	 */
+	public function &__get( $var ) {
+
+		if ( array_key_exists( $var, get_object_vars( $this ) ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			return $this->$var;
+
+		} elseif ( !property_exists( $this, $var ) && is_callable( 'parent::__get' ) ) {
+			return parent::__get( $var );
+
+		} else {
+			$backtrace = debug_backtrace( 0 );
+			$btIndex = 0;
+
+			while ( $backtrace[ $btIndex + 1 ][ 'function' ] === '__get' ) {
+				$btIndex++;
+			}
+
+			trigger_error( "Undefined property: {$backtrace[ $btIndex ]['class']}::$$var accessed from {$backtrace[ $btIndex ]['file']}, line {$backtrace[ $btIndex ]['line']}" );
+
+			$ret = null;
+			return $ret;
+		}
+	}
+
+	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param string $var
+	 * @param mixed  $value
+	 */
+	public function __set( $var, $value ) {
+		if ( property_exists( $this, $var ) || !is_callable( 'parent::__set' ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			$this->$var = $value;
+
+		} else {
+			parent::__set( $var, $value );
+		}
+	}
+
+	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param mixed $var
+	 * @return bool
+	 */
+	public function __isset( $var ) {
+		$classMembers = get_object_vars( $this );
+
+		if ( array_key_exists( $var, $classMembers ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			return $classMembers[$var] !== null;
+
+		} elseif ( property_exists( $this, $var ) || !is_callable( 'parent::__isset' ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			return false;
+
+		} else {
+			return parent::__isset( $var );
+		}
+	}
+
+	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param mixed $var
+	 */
+	public function __unset( $var ) {
+		if ( property_exists( $this, $var ) || !is_callable( 'parent::__unset' ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24' );
+			unset( $this->$var );
+
+		} else {
+			parent::__unset( $var );
+		}
+	}
 
 	/**
 	 * @param object $page
