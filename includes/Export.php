@@ -99,6 +99,41 @@ class WikiExporter {
 	}
 
 	/**
+	 * @todo: Accessing formerly public variables of this class is deprecated as of MW 1.24. Remove this method in 1.26 or so.
+	 * @param $var
+	 * @return mixed
+	 */
+	public function __get ( $var ) {
+		if ( array_key_exists( $var, get_object_vars( $this ) ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24');
+			return $this->$var;
+		} elseif ( get_parent_class( __CLASS__ ) && method_exists(get_parent_class( __CLASS__ ), '__get')) {
+			return parent::__get( $var );
+		} else {
+			trigger_error('Undefined property: ' . get_called_class() . "::$$var" );
+			return null;
+		}
+	}
+
+	/**
+	 * @todo: Accessing formerly public variables of this class is deprecated as of MW 1.24. Remove this method in 1.26 or so.
+	 *
+	 * @param $var
+	 * @param $value
+	 * @return mixed
+	 */
+	public function __set ( $var, $value ) {
+		if ( array_key_exists( $var, get_object_vars( $this ) ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24');
+			$this->$var = $value;
+		} elseif ( get_parent_class( __CLASS__ ) && method_exists(get_parent_class( __CLASS__ ), '__set')) {
+			parent::__set( $var, $value );
+		} else {
+			$this->$var = $value;
+		}
+	}
+
+	/**
 	 * Set the DumpOutput or DumpFilter object which will receive
 	 * various row objects and XML output for filtering. Filters
 	 * can be chained or used as callbacks.
@@ -1444,6 +1479,41 @@ class DumpLatestFilter extends DumpFilter {
 	protected $rev;
 
 	protected $revString;
+
+	/**
+	 * @todo: Accessing formerly public variables of this class is deprecated as of MW 1.24. Remove this method in 1.26 or so.
+	 * @param $var
+	 * @return mixed
+	 */
+	public function __get ( $var ) {
+		if ( array_key_exists( $var, get_object_vars( $this ) ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24');
+			return $this->$var;
+		} elseif ( get_parent_class( __CLASS__ ) && method_exists( get_parent_class( __CLASS__ ), '__get')) {
+			return parent::__get( $var );
+		} else {
+			trigger_error('Undefined property: ' . get_called_class() . "::$$var" );
+			return null;
+		}
+	}
+
+	/**
+	 * @todo: Accessing formerly public variables of this class is deprecated as of MW 1.24. Remove this method in 1.26 or so.
+	 *
+	 * @param $var
+	 * @param $value
+	 * @return mixed
+	 */
+	public function __set ( $var, $value ) {
+		if ( array_key_exists( $var, get_object_vars( $this ) ) ) {
+			wfDeprecated( __CLASS__ . "::$var", '1.24');
+			$this->$var = $value;
+		} elseif ( get_parent_class( __CLASS__ ) && method_exists( get_parent_class( __CLASS__ ), '__set')) {
+			parent::__set( $var, $value );
+		} else {
+			$this->$var = $value;
+		}
+	}
 
 	/**
 	 * @param object $page
