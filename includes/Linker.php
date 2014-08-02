@@ -2151,7 +2151,7 @@ class Linker {
 		return $tooltip;
 	}
 
-	private static $accesskeycache;
+	public static $accesskeycache;
 
 	/**
 	 * Given the id of an interface element, constructs the appropriate

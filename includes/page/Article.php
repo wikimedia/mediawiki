@@ -53,25 +53,25 @@ class Article implements Page {
 	 * @var Content Content of the revision we are working on
 	 * @since 1.21
 	 */
-	protected $mContentObject;
+	public $mContentObject;
 
 	/** @var bool Is the content ($mContent) already loaded? */
-	protected $mContentLoaded = false;
+	public $mContentLoaded = false;
 
 	/** @var int|null The oldid of the article that is to be shown, 0 for the current revision */
-	protected $mOldId;
+	public $mOldId;
 
 	/** @var Title Title from which we were redirected here */
-	protected $mRedirectedFrom = null;
+	public $mRedirectedFrom = null;
 
 	/** @var string|bool URL to redirect to or false if none */
-	protected $mRedirectUrl = false;
+	public $mRedirectUrl = false;
 
 	/** @var int Revision ID of revision we are working on */
-	protected $mRevIdFetched = 0;
+	public $mRevIdFetched = 0;
 
 	/** @var Revision Revision we are working on */
-	protected $mRevision = null;
+	public $mRevision = null;
 
 	/** @var ParserOutput */
 	public $mParserOutput;

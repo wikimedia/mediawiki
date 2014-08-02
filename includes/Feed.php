@@ -37,19 +37,19 @@
  */
 class FeedItem {
 	/** @var Title */
-	protected $title;
+	public $title;
 
-	protected $description;
+	public $description;
 
-	protected $url;
+	public $url;
 
-	protected $date;
+	public $date;
 
-	protected $author;
+	public $author;
 
-	protected $uniqueId;
+	public $uniqueId;
 
-	protected $comments;
+	public $comments;
 
 	public $rssIsPermalink = false;
 
