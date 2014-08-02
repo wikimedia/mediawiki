@@ -1949,14 +1949,25 @@ class Article implements Page {
 	 * raw WikiPage fields for backwards compatibility.
 	 *
 	 * @param string $fname Field name
+	 * @return mixed
 	 */
 	public function __get( $fname ) {
-		if ( property_exists( $this->mPage, $fname ) ) {
+
+		// @todo: Accessing formerly public variables of this class is deprecated as of MW 1.24.
+		if ( array_key_exists( $fname, get_object_vars( $this ) ) ) {
+			wfDeprecated( __CLASS__ . "::$fname", '1.24');
+			return $this->$fname;
+		} elseif ( property_exists( $this->mPage, $fname ) ) {
 			#wfWarn( "Access to raw $fname field " . __CLASS__ );
 			return $this->mPage->$fname;
+		} elseif ( get_parent_class( __CLASS__ ) && method_exists( get_parent_class( __CLASS__ ), '__get')) {
+			return parent::__get( $fname );
+		} else {
+			trigger_error( 'Inaccessible property via __get(): ' . $fname, E_USER_NOTICE );
+			return null;
 		}
-		trigger_error( 'Inaccessible property via __get(): ' . $fname, E_USER_NOTICE );
 	}
+
 
 	/**
 	 * Use PHP's magic __set handler to handle setting of
@@ -1966,14 +1977,21 @@ class Article implements Page {
 	 * @param mixed $fvalue New value
 	 */
 	public function __set( $fname, $fvalue ) {
-		if ( property_exists( $this->mPage, $fname ) ) {
+
+		// @todo: Accessing formerly public variables of this class is deprecated as of MW 1.24.
+		if ( array_key_exists( $fname, get_object_vars( $this ) ) ) {
+			wfDeprecated( __CLASS__ . "::$fname", '1.24');
+			$this->$fname = $fvalue;
+		} elseif ( property_exists( $this->mPage, $fname ) ) {
 			#wfWarn( "Access to raw $fname field of " . __CLASS__ );
 			$this->mPage->$fname = $fvalue;
 		// Note: extensions may want to toss on new fields
 		} elseif ( !in_array( $fname, array( 'mContext', 'mPage' ) ) ) {
 			$this->mPage->$fname = $fvalue;
+		} elseif ( get_parent_class( __CLASS__ ) && method_exists( get_parent_class( __CLASS__ ), '__set')) {
+			parent::__set( $fname, $fvalue );
 		} else {
-			trigger_error( 'Inaccessible property via __set(): ' . $fname, E_USER_NOTICE );
+			$this->$var = $fname;
 		}
 	}
 
