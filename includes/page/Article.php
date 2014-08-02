@@ -1948,32 +1948,102 @@ class Article implements Page {
 	 * Use PHP's magic __get handler to handle accessing of
 	 * raw WikiPage fields for backwards compatibility.
 	 *
+	 * @todo: Fix this method in 1.26 or so, so it does not return private class members of Article anymore
+	 *        Accessing the formerly public variables in the Article class is deprecated since MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
 	 * @param string $fname Field name
+	 * @return mixed
 	 */
-	public function __get( $fname ) {
-		if ( property_exists( $this->mPage, $fname ) ) {
+	public function &__get( $fname ) {
+
+		if ( array_key_exists( $fname, get_object_vars( $this ) ) ) {
+			wfDeprecated( __CLASS__ . "::$fname", '1.24' );
+			return $this->$fname;
+		} elseif ( isset( $this->mPage->$fname ) ) {
 			#wfWarn( "Access to raw $fname field " . __CLASS__ );
 			return $this->mPage->$fname;
+		} else {
+			$backtrace = debug_backtrace( 0 );
+			$btIndex = 0;
+
+			while ( $backtrace[ $btIndex + 1 ][ 'function' ] === '__get' ) {
+				$btIndex++;
+			}
+
+			trigger_error( "Undefined property: {$backtrace[ $btIndex ]['class']}::$$fname accessed from {$backtrace[ $btIndex ]['file']}, line {$backtrace[ $btIndex ]['line']}" );
+
+			$ret = null;
+			return $ret;
 		}
-		trigger_error( 'Inaccessible property via __get(): ' . $fname, E_USER_NOTICE );
 	}
 
 	/**
 	 * Use PHP's magic __set handler to handle setting of
 	 * raw WikiPage fields for backwards compatibility.
 	 *
+	 * @todo: Fix this method in 1.26 or so, so it does not set private class members of Article anymore
+	 *        Accessing the formerly public variables in the Article class is deprecated since MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
 	 * @param string $fname Field name
 	 * @param mixed $fvalue New value
 	 */
 	public function __set( $fname, $fvalue ) {
+
 		if ( property_exists( $this->mPage, $fname ) ) {
 			#wfWarn( "Access to raw $fname field of " . __CLASS__ );
 			$this->mPage->$fname = $fvalue;
-		// Note: extensions may want to toss on new fields
-		} elseif ( !in_array( $fname, array( 'mContext', 'mPage' ) ) ) {
-			$this->mPage->$fname = $fvalue;
-		} else {
+
+		} elseif ( in_array( $fname, array( 'mContext', 'mPage' ) ) ) {
 			trigger_error( 'Inaccessible property via __set(): ' . $fname, E_USER_NOTICE );
+
+		} elseif ( property_exists( $this, $fname ) ) {
+			// @todo: Remove this branch in 1.26 or so
+			//        Accessing formerly public variables of this class is deprecated as of MW 1.24.
+			wfDeprecated( __CLASS__ . "::$fname", '1.24');
+			$this->$fname = $fvalue;
+
+		} else {
+			// Note: extensions may want to toss on new fields
+			$this->mPage->$fname = $fvalue;
+		}
+	}
+
+	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param mixed $fname
+	 * @return bool
+	 */
+	public function __isset( $fname ) {
+		$classMembers = get_object_vars( $this );
+
+		if ( array_key_exists( $fname, $classMembers ) ) {
+			wfDeprecated( __CLASS__ . "::$fname", '1.24' );
+			return $classMembers[$fname] !== null;
+
+		} else {
+			return isset( $this->mPage->$fname );
+		}
+	}
+
+	/**
+	 * @todo: Remove this method in 1.26 or so
+	 *        Accessing the formerly public variables is deprecated as of MW 1.24.
+	 * @see   https://bugzilla.wikimedia.org/show_bug.cgi?id=69939
+	 *
+	 * @param mixed $fname
+	 */
+	public function __unset( $fname ) {
+		if ( property_exists( $this, $fname ) ) {
+			wfDeprecated( __CLASS__ . "::$fname", '1.24' );
+			unset( $this->$fname );
+
+		} else {
+			unset( $this->mPage->$fname );
 		}
 	}
 
