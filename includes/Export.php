@@ -41,7 +41,7 @@ class WikiExporter {
 	public $dumpUploadFileContents = false;
 
 	/** @var string */
-	protected $author_list = "";
+	public $author_list = "";
 
 	const FULL = 1;
 	const CURRENT = 2;
@@ -56,13 +56,13 @@ class WikiExporter {
 	const STUB = 1;
 
 	/** @var int */
-	protected $buffer;
+	public $buffer;
 
 	/** @var int */
-	protected $text;
+	public $text;
 
 	/** @var DumpOutput */
-	protected $sink;
+	public $sink;
 
 	/**
 	 * Returns the export schema version.
@@ -1370,10 +1370,10 @@ class DumpNotalkFilter extends DumpFilter {
  */
 class DumpNamespaceFilter extends DumpFilter {
 	/** @var bool */
-	protected $invert = false;
+	public $invert = false;
 
 	/** @var array */
-	protected $namespaces = array();
+	public $namespaces = array();
 
 	/**
 	 * @param DumpOutput $sink
@@ -1437,13 +1437,13 @@ class DumpNamespaceFilter extends DumpFilter {
  * @ingroup Dump
  */
 class DumpLatestFilter extends DumpFilter {
-	protected $page;
+	public $page;
 
-	protected $pageString;
+	public $pageString;
 
-	protected $rev;
+	public $rev;
 
-	protected $revString;
+	public $revString;
 
 	/**
 	 * @param object $page
