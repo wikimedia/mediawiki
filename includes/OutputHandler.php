@@ -129,7 +129,8 @@ function wfGzipHandler( $s ) {
 	$headers = headers_list();
 	$foundVary = false;
 	foreach ( $headers as $header ) {
-		if ( substr( $header, 0, 5 ) == 'Vary:' ) {
+		$headerName = strtolower( substr( $header, 0, 5 ) );
+		if ( $headerName == 'vary:' ) {
 			$foundVary = true;
 			break;
 		}
