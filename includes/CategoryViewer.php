@@ -25,10 +25,10 @@ class CategoryViewer extends ContextSource {
 	public $limit;
 
 	/** @var array */
-	protected $from;
+	public $from;
 
 	/** @var array */
-	protected $until;
+	public $until;
 
 	/** @var string[] */
 	public $articles;
@@ -37,37 +37,37 @@ class CategoryViewer extends ContextSource {
 	public $articles_start_char;
 
 	/** @var array */
-	protected $children;
+	public $children;
 
 	/** @var array */
-	protected $children_start_char;
+	public $children_start_char;
 
 	/** @var bool */
-	protected $showGallery;
+	public $showGallery;
 
 	/** @var array */
-	protected $imgsNoGallery_start_char;
+	public $imgsNoGallery_start_char;
 
 	/** @var array */
-	protected $imgsNoGallery;
+	public $imgsNoGallery;
 
 	/** @var array */
-	protected $nextPage;
+	public $nextPage;
 
 	/** @var array */
 	protected $prevPage;
 
 	/** @var array */
-	protected $flip;
+	public $flip;
 
 	/** @var Title */
-	protected $title;
+	public $title;
 
 	/** @var Collation */
-	protected $collation;
+	public $collation;
 
 	/** @var ImageGallery */
-	protected $gallery;
+	public $gallery;
 
 	/** @var Category Category object for this page. */
 	private $cat;

@@ -36,20 +36,42 @@
  * @ingroup Feed
  */
 class FeedItem {
-	/** @var Title */
-	protected $title;
+	/**
+	 * @var Title
+	 * @deprecated since 1.24. Use getTitle() instead.
+	 * @todo change visibility to protected
+	 */
+	public $title;
 
-	protected $description;
+	/** @deprecated since 1.24. Use getDescription() instead.
+	 * @todo change visibility to protected
+	 */
+	public $description;
 
-	protected $url;
+	/** @deprecated since 1.24. Use getUrl() instead.
+	 * @todo change visibility to protected
+	 */
+	public $url;
 
-	protected $date;
+	/** @deprecated since 1.24. Use getDate() instead.
+	 * @todo change visibility to protected
+	 */
+	public $date;
 
-	protected $author;
+	/** @deprecated since 1.24. Use getAuthor() instead.
+	 * @todo change visibility to protected
+	 */
+	public $author;
 
-	protected $uniqueId;
+	/** @deprecated since 1.24. Use getUniqId() instead.
+	 * @todo change visibility to protected
+	 */
+	public $uniqueId;
 
-	protected $comments;
+	/** @deprecated since 1.24. Use getComments() instead.
+	 * @todo change visibility to protected
+	 */
+	public $comments;
 
 	public $rssIsPermalink = false;
 
