@@ -2816,6 +2816,15 @@ class WikiPage implements Page, IDBAccessObject {
 			$bitfield = 'rev_deleted';
 		}
 
+		// Get revision IDs for log_params
+		$params = array();
+		$res = $dbw->select( 'revision', array( 'rev_id' ), array( 'rev_page' => $id ) );
+		$revCount = 1;
+		foreach ( $res as $row ) {
+			$params["rev$revCount"] = intval( $row->rev_id );
+			$revCount++;
+		}
+
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
 		// is left intact to avoid breaking block-compression or
@@ -2885,6 +2894,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $logTitle );
 		$logEntry->setComment( $reason );
+		$logEntry->setParameters( $params );
 		$logid = $logEntry->insert();
 
 		$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $logEntry, $logid ) {
