@@ -2151,7 +2151,9 @@ class Linker {
 		return $tooltip;
 	}
 
-	private static $accesskeycache;
+	/** @deprecated since 1.24. Use Linker::accesskey() instead.
+	 * @todo change visibility to private */
+	public static $accesskeycache;
 
 	/**
 	 * Given the id of an interface element, constructs the appropriate

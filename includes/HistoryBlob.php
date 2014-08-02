@@ -351,10 +351,10 @@ class HistoryBlobCurStub {
  */
 class DiffHistoryBlob implements HistoryBlob {
 	/** @var array Uncompressed item cache */
-	protected $mItems = array();
+	public $mItems = array();
 
 	/** @var int Total uncompressed size */
-	protected $mSize = 0;
+	public $mSize = 0;
 
 	/**
 	 * @var array Array of diffs. If a diff D from A to B is notated D = B - A,
@@ -364,20 +364,20 @@ class DiffHistoryBlob implements HistoryBlob {
 	 *    diff[i] = {
 	 *              { item[map[i]] - Z                where i = 0
 	 */
-	protected $mDiffs;
+	public $mDiffs;
 
 	/** @var array The diff map, see above */
-	protected $mDiffMap;
+	public $mDiffMap;
 
 	/** @var int The key for getText()
 	 */
-	protected $mDefaultKey;
+	public $mDefaultKey;
 
 	/** @var string Compressed storage */
 	public $mCompressed;
 
 	/** @var bool True if the object is locked against further writes */
-	protected $mFrozen = false;
+	public $mFrozen = false;
 
 	/**
 	 * @var int The maximum uncompressed size before the object becomes sad
