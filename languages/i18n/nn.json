@@ -1512,7 +1512,7 @@
 	"deletedcontributions-title": "Sletta brukarbidrag",
 	"sp-deletedcontributions-contribs": "bidrag",
 	"linksearch": "Søk i eksterne lenkjer",
-	"linksearch-pat": "Søkemønster:",
+	"linksearch-pat": "Søkjemønster:",
 	"linksearch-ns": "Namnerom:",
 	"linksearch-ok": "Søk",
 	"linksearch-text": "Jokerteikn som «*.wikipedia.org» kan nyttast.\nDet er påkravt med eit toppnivådomene, til dømes «*.org».<br />\n{{PLURAL:$2|Stødd protokoll|Stødde protokollar}}: <code>$1</code> (nyttar http:// som standard om ingen protokoll er oppgjeven)",

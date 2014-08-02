@@ -320,7 +320,7 @@
 	"badtitle": "Madi a titulo",
 	"badtitletext": "Ti kiniddaw idi a titulo ti panid ket imbalido, blanko, wenno maysa a saan a husto a naisilpo a silpo ti pagsasao wenno interwiki a titulo.\nMabalin nga aglaon ti a maysa wenno ad-adu a karakter a saan a mausar kadagiti titulo.",
 	"perfcached": "Ti sumaganad a datos ket naidulin ken mabalin a saan a napabaro. Ti kaadu {{PLURAL:$1|iti maysa a nagbanagan|dagiti $1 a nagbanagan}} ket magun-od idiay nagidulinan.",
-	"perfcachedts": "Ti sumaganad a datos ket naidulin, ken naudi a napabaro idi $1. Ti kaadu {{PLURAL:$4|iti maysa a nagbanagan|kadagiti $4 nagbanagan}} ket magun-od iti pagidulinan.",
+	"perfcachedts": "Ti sumaganad a datos ket naidulin, ken naudi a napabaro idi $1. Ti kaadu {{PLURAL:$4|iti maysa a nagbanagan|kadagiti $4 a nagbanagan}} ket magun-od iti pagidulinan.",
 	"querypage-no-updates": "Dagiti panangpabaro iti daytoy a panid ket agdama a nabaldado. \nSaan a mapasadiwa ita dagiti datos ditoy.",
 	"viewsource": "Kitaen ti taudan",
 	"viewsource-title": "Kitaen ti taudan para iti $1",

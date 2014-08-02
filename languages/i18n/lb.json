@@ -32,6 +32,7 @@
 	"tog-watchdefault": "Säiten a Fichieren déi ech änneren op meng Iwwerwaachungslëscht derbäisetzen",
 	"tog-watchmoves": "Säiten a Fichieren déi ech réckelen automatesch op meng Iwwerwaachungslëscht derbäisetzen",
 	"tog-watchdeletion": "Säiten a Fichieren déi ech läschen op meng Iwwerwaachungslëscht derbäisetzen",
+	"tog-watchrollback": "Säiten déi ech zréckgesat hunn op meng Iwwerwaachungslëscht derbäisetzen",
 	"tog-minordefault": "All Ännerungen automatesch als 'Kleng Ännerungen' markéieren.",
 	"tog-previewontop": "Déi ''nach-net gespäichert Versioun'' iwwer der Ännerungsfënster weisen",
 	"tog-previewonfirst": "Beim éischten Änneren déi  ''nach net gespäichert Versioun'' weisen.",

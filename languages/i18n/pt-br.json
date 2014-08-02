@@ -1185,7 +1185,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (veja também a [[Special:NewPages|lista de páginas novas]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Abaixo estão mostradas as alterações desde <strong>$2</strong> (até <strong>$1</strong>).",
-	"rclistfrom": "Mostrar as novas alterações a partir das $3 $2",
+	"rclistfrom": "Mostrar as novas alterações a partir das $2 de $3",
 	"rcshowhideminor": "$1 edições menores",
 	"rcshowhideminor-show": "Exibir",
 	"rcshowhideminor-hide": "Ocultar",
