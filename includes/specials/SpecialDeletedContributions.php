@@ -286,8 +286,6 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @param string $par (optional) user name of the user for which to show the contributions
 	 */
 	function execute( $par ) {
-		global $wgQueryPageDefaultLimit;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -317,7 +315,7 @@ class DeletedContributionsPage extends SpecialPage {
 			return;
 		}
 
-		$options['limit'] = $request->getInt( 'limit', $wgQueryPageDefaultLimit );
+		$options['limit'] = $request->getInt( 'limit', $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
 		$options['target'] = $target;
 
 		$userObj = User::newFromName( $target, false );
@@ -507,8 +505,6 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @return string
 	 */
 	function getForm( $options ) {
-		global $wgScript;
-
 		$options['title'] = $this->getPageTitle()->getPrefixedText();
 		if ( !isset( $options['target'] ) ) {
 			$options['target'] = '';
@@ -528,7 +524,7 @@ class DeletedContributionsPage extends SpecialPage {
 			$options['target'] = '';
 		}
 
-		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) );
 
 		foreach ( $options as $name => $value ) {
 			if ( in_array( $name, array( 'namespace', 'target', 'contribs' ) ) ) {
