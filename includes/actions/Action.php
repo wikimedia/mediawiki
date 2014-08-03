@@ -331,7 +331,7 @@ abstract class Action {
 		$out = $this->getOutput();
 		$out->setRobotPolicy( "noindex,nofollow" );
 		$out->setPageTitle( $this->getPageTitle() );
-		$this->getOutput()->setSubtitle( $this->getDescription() );
+		$out->setSubtitle( $this->getDescription() );
 		$out->setArticleRelated( true );
 	}
 
@@ -347,7 +347,7 @@ abstract class Action {
 	/**
 	 * Returns the description that goes below the \<h1\> tag
 	 *
-	 * @return string
+	 * @return string|Message
 	 */
 	protected function getDescription() {
 		return $this->msg( strtolower( $this->getName() ) )->escaped();
