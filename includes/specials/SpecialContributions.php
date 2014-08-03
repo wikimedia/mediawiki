@@ -798,10 +798,31 @@ class ContribsPager extends ReverseChronologicalPager {
 				' != ' . Revision::SUPPRESSED_USER;
 		}
 
+		$fields = array(
+			'page_namespace', 'page_title', 'page_is_new', 'page_latest',
+			'page_is_redirect', 'page_len'
+		);
+
 		# Don't include orphaned revisions
 		$join_cond['page'] = Revision::pageJoinCond();
 		# Get the current user name for accounts
 		$join_cond['user'] = Revision::userJoinCond();
+
+		if ( $user->useRCPatrol() || $user->useNPPatrol() ) {
+			// XXX Should this also exclude user looking at own contribs?
+			$tables[] = 'recentchanges';
+			$fields[] = 'rc_patrolled';
+			$patrolJoinConds = array(
+				'rc_user_text = rev_user_text',
+				'rc_timestamp = rev_timestamp',
+				'rc_this_oldid = rev_id'
+			);
+			if ( !$user->useRCPatrol() ) {
+				// new pages only
+				$patrolJoinConds[] = 'rev_parent_id = 0';
+			}
+			$join_cond['recentchanges'] = array( 'LEFT OUTER JOIN', $patrolJoinConds );
+		}
 
 		$options = array();
 		if ( $index ) {
@@ -813,8 +834,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			'fields' => array_merge(
 				Revision::selectFields(),
 				Revision::selectUserFields(),
-				array( 'page_namespace', 'page_title', 'page_is_new',
-					'page_latest', 'page_is_redirect', 'page_len' )
+				$fields
 			),
 			'conds' => $conds,
 			'options' => $options,
@@ -1075,6 +1095,12 @@ class ContribsPager extends ReverseChronologicalPager {
 				$userlink = '';
 			}
 
+			if ( isset( $row->rc_patrolled ) && $row->rc_patrolled === '0' ) {
+				$pflag = ChangesList::flag( 'unpatrolled' );
+			} else {
+				$pflag = '';
+			}
+
 			if ( $rev->getParentId() === 0 ) {
 				$nflag = ChangesList::flag( 'newpage' );
 			} else {
@@ -1095,7 +1121,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$diffHistLinks = $this->msg( 'parentheses' )
 				->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )
 				->escaped();
-			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} ";
+			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$pflag}{$nflag}{$mflag} ";
 			$ret .= "{$link}{$userlink} {$comment} {$topmarktext}";
 
 			# Denote if username is redacted for this edit
