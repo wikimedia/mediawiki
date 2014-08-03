@@ -40,7 +40,11 @@ class ApiEmailUser extends ApiBase {
 		}
 
 		// Check permissions and errors
-		$error = SpecialEmailUser::getPermissionsError( $this->getUser(), $params['token'] );
+		$error = SpecialEmailUser::getPermissionsError(
+			$this->getUser(),
+			$params['token'],
+			$this->getConfig()
+		);
 		if ( $error ) {
 			$this->dieUsageMsg( array( $error ) );
 		}
