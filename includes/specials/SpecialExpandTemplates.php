@@ -52,7 +52,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	 * Show the special page
 	 */
 	function execute( $subpage ) {
-		global $wgParser, $wgUseTidy, $wgAlwaysUseTidy;
+		global $wgParser;
 
 		$this->setHeaders();
 
@@ -112,7 +112,8 @@ class SpecialExpandTemplates extends SpecialPage {
 				);
 			}
 
-			if ( ( $wgUseTidy && $options->getTidy() ) || $wgAlwaysUseTidy ) {
+			$config = $this->getConfig();
+			if ( ( $config->get( 'UseTidy' ) && $options->getTidy() ) || $config->get( 'AlwaysUseTidy' ) ) {
 				$tmp = MWTidy::tidy( $tmp );
 			}
 
