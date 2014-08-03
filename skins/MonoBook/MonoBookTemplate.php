@@ -44,7 +44,7 @@ class MonoBookTemplate extends BaseTemplate {
 		$this->html( 'headelement' );
 		?><div id="globalWrapper">
 		<div id="column-content">
-			<div id="content" class="mw-body-primary" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				<?php
 				if ( $this->data['sitenotice'] ) {
@@ -61,7 +61,7 @@ class MonoBookTemplate extends BaseTemplate {
 				$this->text( 'pageLanguage' );
 				?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
 
-				<div id="bodyContent" class="mw-body">
+				<div id="bodyContent" class="mw-body-content">
 					<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
 					<div id="contentSub"<?php
 					$this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' )
