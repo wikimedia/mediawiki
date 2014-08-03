@@ -192,7 +192,10 @@
 			}
 
 			bitDiv( 'phpversion' )
-				.append( $( '<a href="//www.php.net/"></a>' ).text( 'PHP' ) )
+				.append( $( this.data.phpEngine === 'HHVM'
+					? '<a href="http://hhvm.com/">HHVM</a>'
+					: '<a href="https://php.net/">PHP</a>'
+				) )
 				.append( ': ' + this.data.phpVersion );
 
 			bitDiv( 'time' )
