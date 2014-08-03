@@ -282,7 +282,6 @@ abstract class Action {
 	 *
 	 * @param User $user The user to check, or null to use the context user
 	 * @throws UserBlockedError|ReadOnlyError|PermissionsError
-	 * @return bool True on success
 	 */
 	protected function checkCanExecute( User $user ) {
 		$right = $this->getRestriction();
@@ -304,7 +303,6 @@ abstract class Action {
 		if ( $this->requiresWrite() && wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
-		return true;
 	}
 
 	/**

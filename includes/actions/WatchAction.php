@@ -85,7 +85,7 @@ class WatchAction extends FormAction {
 			throw new UserNotLoggedIn( 'watchlistanontext', 'watchnologin' );
 		}
 
-		return parent::checkCanExecute( $user );
+		parent::checkCanExecute( $user );
 	}
 
 	/**
