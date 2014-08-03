@@ -191,8 +191,7 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		$edits = '';
-		global $wgEdititis;
-		if ( !$this->including && $wgEdititis ) {
+		if ( !$this->including && $this->getConfig()->get( 'Edititis' ) ) {
 			// @todo fixme i18n issue: Hardcoded square brackets.
 			$edits = ' [' .
 				$this->msg( 'usereditcount' )->numParams( $row->edits )->escaped() .
@@ -232,14 +231,12 @@ class UsersPager extends AlphabeticPager {
 	 * @return string
 	 */
 	function getPageHeader() {
-		global $wgScript;
-
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
 		# Form tag
 		$out = Xml::openElement(
 			'form',
-			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' )
+			array( 'method' => 'get', 'action' => wfScript(), 'id' => 'mw-listusers-form' )
 		) .
 			Xml::fieldset( $this->msg( 'listusers' )->text() ) .
 			Html::hidden( 'title', $self );
