@@ -113,6 +113,13 @@ class DeleteLogFormatter extends LogFormatter {
 			return '';
 		}
 
+		$message = '';
+		if ( wfRunHooks( 'GetActionLinks', array( $this->entry->getSubtype(),
+			$this->entry->getTarget(), $this->entry->getTimestamp(),
+			$user, &$message ) ) === false ) {
+			return $message;
+		}
+
 		switch ( $this->entry->getSubtype() ) {
 			case 'delete': // Show undelete link
 				if ( $user->isAllowed( 'undelete' ) ) {

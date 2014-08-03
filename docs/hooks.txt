@@ -1219,6 +1219,15 @@ $modeArray: An associative array mapping mode names to classes that implement
  that mode. It is expected all registered classes are a subclass of
  ImageGalleryBase.
 
+'GetActionLinks': Get links that appear next to log entries of deletion events
+ in Special:Logs/delete. If the hook returns false, then $message will be
+ returned as the action link.
+$subtype: The subtype of the log entry (e.g. 'revision' for revision delete)
+$target: The Title that the log entry concerns
+$timestamp: The timestamp of the log entry
+$user: The user who executed the log entry
+&$message: The message to return as the action link if the hook returns false
+
 'GetAutoPromoteGroups': When determining which autopromote groups a user is
 entitled to be in.
 &$user: user to promote.
