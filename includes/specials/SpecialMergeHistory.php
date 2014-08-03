@@ -159,14 +159,12 @@ class SpecialMergeHistory extends SpecialPage {
 	}
 
 	function showMergeForm() {
-		global $wgScript;
-
 		$this->getOutput()->addWikiMsg( 'mergehistory-header' );
 
 		$this->getOutput()->addHTML(
 			Xml::openElement( 'form', array(
 				'method' => 'get',
-				'action' => $wgScript ) ) .
+				'action' => wfScript() ) ) .
 				'<fieldset>' .
 				Xml::element( 'legend', array(),
 					$this->msg( 'mergehistory-box' )->text() ) .

@@ -105,8 +105,6 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	function execute( $par ) {
-		global $wgScript;
-
 		$mime = $par ? $par : $this->getRequest()->getText( 'mime' );
 		$mime = trim( $mime );
 
@@ -115,7 +113,7 @@ class MIMEsearchPage extends QueryPage {
 		$this->getOutput()->addHTML(
 			Xml::openElement(
 				'form',
-				array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => $wgScript )
+				array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => wfScript() )
 			) .
 				Xml::openElement( 'fieldset' ) .
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
