@@ -43,4 +43,22 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		$this->setExpectedException( 'UnexpectedValueException' );
 		$factory->makeConfig( 'unittest' );
 	}
+
+	/**
+	 * @backupStaticAttributes enabled
+	 * @covers ConfigFactory::getDefaultInstance
+	 */
+	public function testGetDefaultInstance() {
+		// Set $wgConfigRegistry, and check the default
+		// instance read from it
+		$this->setMwGlobals( 'wgConfigRegistry', array(
+			'conf1' => 'GlobalVarConfig::newInstance',
+			'conf2' => 'GlobalVarConfig::newInstance',
+		) );
+		$factory = ConfigFactory::getDefaultInstance();
+		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'conf1' ) );
+		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'conf2' ) );
+		$this->setExpectedException( 'ConfigException' );
+		$factory->makeConfig( 'conf3' );
+	}
 }
