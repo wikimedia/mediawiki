@@ -2207,13 +2207,6 @@ Log in
 </td><td>
 {{int:Login}}
 </td></tr><tr><td>
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginend&action=edit loginend]<br>
-[[MediaWiki_talk:Loginend|Talk]]
-</td><td>
-&amp;nbsp;
-</td><td>
-{{int:Loginend}}
-</td></tr><tr><td>
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginerror&action=edit loginerror]<br>
 [[MediaWiki_talk:Loginerror|Talk]]
 </td><td>
