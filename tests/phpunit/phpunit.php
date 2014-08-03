@@ -25,13 +25,14 @@ class PHPUnitMaintClass extends Maintenance {
 		'use-normal-tables' => false,
 		'reuse-db' => false,
 		'wiki' => false,
+		'phpunit-phar' => false,
 	);
 
 	public function __construct() {
 		parent::__construct();
 		$this->addOption(
 			'with-phpunitdir',
-			'Directory to include PHPUnit from, for example when using a git '
+			'PHAR file with PHPUnit or Directory to include PHPUnit from, for example when using a git '
 				. 'fetchout from upstream. Path will be prepended to PHP `include_path`.',
 			false, # not required
 			true # need arg
@@ -103,14 +104,20 @@ class PHPUnitMaintClass extends Maintenance {
 		}
 
 		# --with-phpunitdir let us override the default PHPUnit version
-		# Can use with either or phpunit.phar in the directory or the
+		# Can use with a PHAR of phpunit, phpunit.phar in the directory or the
 		# full PHPUnit code base.
 		if ( $this->hasOption( 'with-phpunitdir' ) ) {
 			$phpunitDir = $this->getOption( 'with-phpunitdir' );
 
-			# prepends provided PHPUnit directory or phar
-			$this->output( "Will attempt loading PHPUnit from `$phpunitDir`\n" );
-			set_include_path( $phpunitDir . PATH_SEPARATOR . get_include_path() );
+			if ( false !== Phar::isValidPharFilename($phpunitDir) ) {
+				# argument is a phar file
+				$this->output( "Will attempt loading as PHPUnit PHAR: `$phpunitDir`\n" );
+				PHPUnitMaintClass::$additionalOptions['phpunit-phar'] = $phpunitDir;
+			} else {
+				# prepends provided PHPUnit directory
+				$this->output( "Will attempt loading PHPUnit from directory: `$phpunitDir`\n" );
+				set_include_path( $phpunitDir . PATH_SEPARATOR . get_include_path() );
+			}
 
 			# Cleanup $args array so the option and its value do not
 			# pollute PHPUnit
@@ -118,6 +125,14 @@ class PHPUnitMaintClass extends Maintenance {
 			unset( $_SERVER['argv'][$key] ); // the option
 			unset( $_SERVER['argv'][$key + 1] ); // its value
 			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
+		}
+		if ( false === PHPUnitMaintClass::$additionalOptions['phpunit-phar'] ) {
+		        $pharFile = stream_resolve_include_path( 'phpunit.phar' );
+			if ( false !== $pharFile && false !== Phar::isValidPharFilename( $pharFile ) ) {
+				# fallback to find a file named phpunit.phar in the include path
+				PHPUnitMaintClass::$additionalOptions['phpunit-phar'] = $pharFile;
+				$this->output( "Will attempt loading as PHPUnit PHAR: `$pharFile`\n" );
+			}
 		}
 
 		if ( !wfIsWindows() ) {
@@ -198,10 +213,9 @@ class PHPUnitMaintClass extends Maintenance {
 $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
 
-$pharFile = stream_resolve_include_path( 'phpunit.phar' );
-$isValidPhar = Phar::isValidPharFilename( $pharFile );
+$pharFile = PHPUnitMaintClass::$additionalOptions['phpunit-phar'];
 
-if ( !$isValidPhar && !class_exists( 'PHPUnit_Runner_Version' ) ) {
+if ( false === $pharFile && !class_exists( 'PHPUnit_Runner_Version' ) ) {
 	// try loading phpunit via PEAR
 	require_once 'PHPUnit/Runner/Version.php';
 }
@@ -216,7 +230,7 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' )
 	} );
 }
 
-if ( $isValidPhar ) {
+if ( false !== $pharFile ) {
 	require $pharFile;
 } else {
 	if ( PHPUnit_Runner_Version::id() !== '@package_version@'
