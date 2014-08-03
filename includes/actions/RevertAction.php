@@ -144,8 +144,6 @@ class RevertAction extends FormAction {
 	}
 
 	protected function getDescription() {
-		$this->getOutput()->addBacklinkSubtitle( $this->getTitle() );
-
-		return '';
+		return OutputPage::buildBacklinkSubtitle( $this->getTitle() );
 	}
 }
