@@ -1002,17 +1002,29 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Build message object for a subtitle containing a backlink to a page
+	 *
+	 * @param Title $title Title to link to
+	 * @param array $query Array of additional parameters to include in the link
+	 * @return Message
+	 * @since 1.25
+	 */
+	public static function buildBacklinkSubtitle( Title $title, $query = array() ) {
+		if ( $title->isRedirect() ) {
+			$query['redirect'] = 'no';
+		}
+		return wfMessage( 'backlinksubtitle' )
+			->rawParams( Linker::link( $title, null, array(), $query ) );
+	}
+
+	/**
 	 * Add a subtitle containing a backlink to a page
 	 *
 	 * @param Title $title Title to link to
 	 * @param array $query Array of additional parameters to include in the link
 	 */
 	public function addBacklinkSubtitle( Title $title, $query = array() ) {
-		if ( $title->isRedirect() ) {
-			$query['redirect'] = 'no';
-		}
-		$this->addSubtitle( $this->msg( 'backlinksubtitle' )
-			->rawParams( Linker::link( $title, null, array(), $query ) ) );
+		$this->addSubtitle( self::buildBacklinkSubtitle( $title, $query ) );
 	}
 
 	/**
