@@ -271,6 +271,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			}
 			# Logs themselves don't have histories or archived revisions
 			$this->getOutput()->addSubtitle( $this->getLanguage()->pipeList( $links ) );
+			$this->getOutput()->addBacklinkSubtitle( $this->targetObj );
 		}
 	}
 
