@@ -41,16 +41,20 @@ class ConfigFactory {
 	 */
 	protected $configs = array();
 
+	/**
+	 * @var ConfigFactory
+	 */
+	private static $self;
+
 	public static function getDefaultInstance() {
-		static $self = null;
-		if ( !$self ) {
-			$self = new self;
+		if ( !self::$self ) {
+			self::$self = new self;
 			global $wgConfigRegistry;
 			foreach ( $wgConfigRegistry as $name => $callback ) {
-				$self->register( $name, $callback );
+				self::$self->register( $name, $callback );
 			}
 		}
-		return $self;
+		return self::$self;
 	}
 
 	/**
