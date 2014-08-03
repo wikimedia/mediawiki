@@ -38,10 +38,6 @@ class SpecialListGroupRights extends SpecialPage {
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		global $wgImplicitGroups;
-		global $wgGroupPermissions, $wgRevokePermissions, $wgAddGroups, $wgRemoveGroups;
-		global $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -58,19 +54,26 @@ class SpecialListGroupRights extends SpecialPage {
 				'</tr>'
 		);
 
+		$config = $this->getConfig();
+		$groupPermissions = $config->get( 'GroupPermissions' );
+		$revokePermissions = $config->get( 'RevokePermissions' );
+		$addGroups = $config->get( 'AddGroups' );
+		$removeGroups = $config->get( 'RemoveGroups' );
+		$groupsAddToSelf = $config->get( 'GroupsAddToSelf' );
+		$groupsRemoveFromSelf = $config->get( 'GroupsRemoveFromSelf' );
 		$allGroups = array_unique( array_merge(
-			array_keys( $wgGroupPermissions ),
-			array_keys( $wgRevokePermissions ),
-			array_keys( $wgAddGroups ),
-			array_keys( $wgRemoveGroups ),
-			array_keys( $wgGroupsAddToSelf ),
-			array_keys( $wgGroupsRemoveFromSelf )
+			array_keys( $groupPermissions ),
+			array_keys( $revokePermissions ),
+			array_keys( $addGroups ),
+			array_keys( $removeGroups ),
+			array_keys( $groupsAddToSelf ),
+			array_keys( $groupsRemoveFromSelf )
 		) );
 		asort( $allGroups );
 
 		foreach ( $allGroups as $group ) {
-			$permissions = isset( $wgGroupPermissions[$group] )
-				? $wgGroupPermissions[$group]
+			$permissions = isset( $groupPermissions[$group] )
+				? $groupPermissions[$group]
 				: array();
 			$groupname = ( $group == '*' ) // Replace * with a more descriptive groupname
 				? 'all'
@@ -100,7 +103,7 @@ class SpecialListGroupRights extends SpecialPage {
 					SpecialPage::getTitleFor( 'Listusers' ),
 					$this->msg( 'listgrouprights-members' )->escaped()
 				);
-			} elseif ( !in_array( $group, $wgImplicitGroups ) ) {
+			} elseif ( !in_array( $group, $config->get( 'ImplicitGroups' ) ) ) {
 				$grouplink = '<br />' . Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Listusers' ),
 					$this->msg( 'listgrouprights-members' )->escaped(),
@@ -112,12 +115,12 @@ class SpecialListGroupRights extends SpecialPage {
 				$grouplink = '';
 			}
 
-			$revoke = isset( $wgRevokePermissions[$group] ) ? $wgRevokePermissions[$group] : array();
-			$addgroups = isset( $wgAddGroups[$group] ) ? $wgAddGroups[$group] : array();
-			$removegroups = isset( $wgRemoveGroups[$group] ) ? $wgRemoveGroups[$group] : array();
-			$addgroupsSelf = isset( $wgGroupsAddToSelf[$group] ) ? $wgGroupsAddToSelf[$group] : array();
-			$removegroupsSelf = isset( $wgGroupsRemoveFromSelf[$group] )
-				? $wgGroupsRemoveFromSelf[$group]
+			$revoke = isset( $revokePermissions[$group] ) ? $revokePermissions[$group] : array();
+			$addgroups = isset( $addGroups[$group] ) ? $addGroups[$group] : array();
+			$removegroups = isset( $removeGroups[$group] ) ? $removeGroups[$group] : array();
+			$addgroupsSelf = isset( $groupsAddToSelf[$group] ) ? $groupsAddToSelf[$group] : array();
+			$removegroupsSelf = isset( $groupsRemoveFromSelf[$group] )
+				? $groupsRemoveFromSelf[$group]
 				: array();
 
 			$id = $group == '*' ? false : Sanitizer::escapeId( $group );
@@ -135,10 +138,11 @@ class SpecialListGroupRights extends SpecialPage {
 	}
 
 	private function outputNamespaceProtectionInfo() {
-		global $wgNamespaceProtection, $wgParser, $wgContLang;
+		global $wgParser, $wgContLang;
 		$out = $this->getOutput();
+		$namespaceProtection = $this->getConfig()->get( 'NamespaceProtection' );
 
-		if ( count( $wgNamespaceProtection ) == 0 ) {
+		if ( count( $namespaceProtection ) == 0 ) {
 			return;
 		}
 
@@ -161,8 +165,8 @@ class SpecialListGroupRights extends SpecialPage {
 			)
 		);
 
-		ksort( $wgNamespaceProtection );
-		foreach ( $wgNamespaceProtection as $namespace => $rights ) {
+		ksort( $namespaceProtection );
+		foreach ( $namespaceProtection as $namespace => $rights ) {
 			if ( !in_array( $namespace, MWNamespace::getValidNamespaces() ) ) {
 				continue;
 			}
