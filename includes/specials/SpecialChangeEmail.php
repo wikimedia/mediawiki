@@ -136,7 +136,6 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	protected function showForm() {
-		global $wgRequirePasswordforEmailChange;
 		$user = $this->getUser();
 
 		$oldEmailText = $user->getEmail()
@@ -160,7 +159,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			array( 'wpOldEmail', 'changeemail-oldemail', 'text', $oldEmailText ),
 			array( 'wpNewEmail', 'changeemail-newemail', 'email', $this->mNewEmail ),
 		);
-		if ( $wgRequirePasswordforEmailChange ) {
+		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' ) ) {
 			$items[] = array( 'wpPassword', 'changeemail-password', 'password', $this->mPassword );
 		}
 
@@ -221,7 +220,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 * @return bool|string True or string on success, false on failure
 	 */
 	protected function attemptChange( User $user, $pass, $newaddr ) {
-		global $wgAuth, $wgPasswordAttemptThrottle;
+		global $wgAuth;
 
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			$this->error( 'invalidemailaddress' );
@@ -232,16 +231,16 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
+			$throttleInfo = $this->getConfig()->get( 'PasswordAttemptThrottle' );
 			$this->error( array(
 				'changeemail-throttled',
-				$lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] )
+				$lang->formatDuration( $throttleInfo['seconds'] )
 			) );
 
 			return false;
 		}
 
-		global $wgRequirePasswordforEmailChange;
-		if ( $wgRequirePasswordforEmailChange
+		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' )
 			&& !$user->checkTemporaryPassword( $pass )
 			&& !$user->checkPassword( $pass )
 		) {
