@@ -797,6 +797,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$this->getSkin()->setRelevantTitle( $this->mTargetObj );
+		$out->addBacklinkSubtitle( $this->mTargetObj );
 
 		if ( $this->mTimestamp !== '' ) {
 			$this->showRevision( $this->mTimestamp );
