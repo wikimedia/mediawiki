@@ -43,6 +43,7 @@ class SpecialExport extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$config = $this->getConfig();
 
 		// Set some variables
 		$this->curonly = true;
@@ -74,7 +75,7 @@ class SpecialExport extends SpecialPage {
 					}
 				}
 			}
-		} elseif ( $request->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
+		} elseif ( $request->getCheck( 'addns' ) && $config->get( 'ExportFromNamespaces' ) ) {
 			$page = $request->getText( 'pages' );
 			$nsindex = $request->getText( 'nsindex', '' );
 
@@ -87,7 +88,7 @@ class SpecialExport extends SpecialPage {
 					$page .= "\n" . implode( "\n", $nspages );
 				}
 			}
-		} elseif ( $request->getCheck( 'exportall' ) && $wgExportAllowAll ) {
+		} elseif ( $request->getCheck( 'exportall' ) && $config->get( 'ExportAllowAll' ) ) {
 			$this->doExport = true;
 			$exportall = true;
 
@@ -108,19 +109,20 @@ class SpecialExport extends SpecialPage {
 				$offset = null;
 			}
 
+			$maxHistory = $config->get( 'ExportMaxHistory' );
 			$limit = $request->getInt( 'limit' );
 			$dir = $request->getVal( 'dir' );
 			$history = array(
 				'dir' => 'asc',
 				'offset' => false,
-				'limit' => $wgExportMaxHistory,
+				'limit' => $maxHistory,
 			);
 			$historyCheck = $request->getCheck( 'history' );
 
 			if ( $this->curonly ) {
 				$history = WikiExporter::CURRENT;
 			} elseif ( !$historyCheck ) {
-				if ( $limit > 0 && ( $wgExportMaxHistory == 0 || $limit < $wgExportMaxHistory ) ) {
+				if ( $limit > 0 && ( $maxHistory == 0 || $limit < $maxHistory ) ) {
 					$history['limit'] = $limit;
 				}
 
@@ -152,13 +154,13 @@ class SpecialExport extends SpecialPage {
 			}
 		}
 
-		if ( !$wgExportAllowHistory ) {
+		if ( !$config->get( 'ExportAllowHistory' ) ) {
 			// Override
 			$history = WikiExporter::CURRENT;
 		}
 
 		$list_authors = $request->getCheck( 'listauthors' );
-		if ( !$this->curonly || !$wgExportAllowListContributors ) {
+		if ( !$this->curonly || !$config->get( 'ExportAllowListContributors' ) ) {
 			$list_authors = false;
 		}
 
@@ -172,7 +174,7 @@ class SpecialExport extends SpecialPage {
 
 			if ( $request->getCheck( 'wpDownload' ) ) {
 				// Provide a sane filename suggestion
-				$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.xml' );
+				$filename = urlencode( $config->get( 'Sitename' ) . '-' . wfTimestampNow() . '.xml' );
 				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
 			}
 
@@ -197,7 +199,7 @@ class SpecialExport extends SpecialPage {
 			array( 'name' => 'addcat' )
 		) . '<br />';
 
-		if ( $wgExportFromNamespaces ) {
+		if ( $config->get( 'ExportFromNamespaces' ) ) {
 			$form .= Html::namespaceSelector(
 				array(
 					'selected' => $nsindex,
@@ -214,7 +216,7 @@ class SpecialExport extends SpecialPage {
 			) . '<br />';
 		}
 
-		if ( $wgExportAllowAll ) {
+		if ( $config->get( 'ExportAllowAll' ) ) {
 			$form .= Xml::checkLabel(
 				$this->msg( 'exportall' )->text(),
 				'exportall',
@@ -231,7 +233,7 @@ class SpecialExport extends SpecialPage {
 		);
 		$form .= '<br />';
 
-		if ( $wgExportAllowHistory ) {
+		if ( $config->get( 'ExportAllowHistory' ) ) {
 			$form .= Xml::checkLabel(
 				$this->msg( 'exportcuronly' )->text(),
 				'curonly',
@@ -249,7 +251,7 @@ class SpecialExport extends SpecialPage {
 			$request->wasPosted() ? $request->getCheck( 'templates' ) : false
 		) . '<br />';
 
-		if ( $wgExportMaxLinkDepth || $this->userCanOverrideExportDepth() ) {
+		if ( $config->get( 'ExportMaxLinkDepth' ) || $this->userCanOverrideExportDepth() ) {
 			$form .= Xml::inputLabel(
 				$this->msg( 'export-pagelinks' )->text(),
 				'pagelink-depth',
@@ -274,7 +276,7 @@ class SpecialExport extends SpecialPage {
 			$request->wasPosted() ? $request->getCheck( 'wpDownload' ) : true
 		) . '<br />';
 
-		if ( $wgExportAllowListContributors ) {
+		if ( $config->get( 'ExportAllowListContributors' ) ) {
 			$form .= Xml::checkLabel(
 				$this->msg( 'exportlistauthors' )->text(),
 				'listauthors',
@@ -487,15 +489,14 @@ class SpecialExport extends SpecialPage {
 	 * @return int
 	 */
 	private function validateLinkDepth( $depth ) {
-		global $wgExportMaxLinkDepth;
-
 		if ( $depth < 0 ) {
 			return 0;
 		}
 
 		if ( !$this->userCanOverrideExportDepth() ) {
-			if ( $depth > $wgExportMaxLinkDepth ) {
-				return $wgExportMaxLinkDepth;
+			$maxLinkDepth = $this->getConfig()->get( 'ExportMaxLinkDepth' );
+			if ( $depth > $maxLinkDepth ) {
+				return $maxLinkDepth;
 			}
 		}
 
