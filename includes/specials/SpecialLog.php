@@ -45,8 +45,6 @@ class SpecialLog extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgLogRestrictions;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -77,13 +75,14 @@ class SpecialLog extends SpecialPage {
 		// If the user doesn't have the right permission to view the specific
 		// log type, throw a PermissionsError
 		// If the log type is invalid, just show all public logs
+		$logRestrictions = $this->getConfig()->get( 'LogRestrictions' );
 		$type = $opts->getValue( 'type' );
 		if ( !LogPage::isLogType( $type ) ) {
 			$opts->setValue( 'type', '' );
-		} elseif ( isset( $wgLogRestrictions[$type] )
-			&& !$this->getUser()->isAllowed( $wgLogRestrictions[$type] )
+		} elseif ( isset( $logRestrictions[$type] )
+			&& !$this->getUser()->isAllowed( $logRestrictions[$type] )
 		) {
-			throw new PermissionsError( $wgLogRestrictions[$type] );
+			throw new PermissionsError( $logRestrictions[$type] );
 		}
 
 		# Handle type-specific inputs
@@ -123,21 +122,18 @@ class SpecialLog extends SpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit = 10 ) {
-		global $wgLogTypes;
-		$subpages = $wgLogTypes;
+		$subpages = $this->getConfig()->get( 'LogTypes' );
 		$subpages[] = 'all';
 		sort( $subpages );
 		return self::prefixSearchArray( $search, $limit, $subpages );
 	}
 
 	private function parseParams( FormOptions $opts, $par ) {
-		global $wgLogTypes;
-
 		# Get parameters
 		$parms = explode( '/', ( $par = ( $par !== null ) ? $par : '' ) );
 		$symsForAll = array( '*', 'all' );
 		if ( $parms[0] != '' &&
-			( in_array( $par, $wgLogTypes ) || in_array( $par, $symsForAll ) )
+			( in_array( $par, $this->getConfig()->get( 'LogTypes' ) ) || in_array( $par, $symsForAll ) )
 		) {
 			$opts->setValue( 'type', $par );
 		} elseif ( count( $parms ) == 2 ) {
@@ -211,10 +207,9 @@ class SpecialLog extends SpecialPage {
 		}
 
 		# Show button to hide log entries
-		global $wgScript;
 		$s = Html::openElement(
 			'form',
-			array( 'action' => $wgScript, 'id' => 'mw-log-deleterevision-submit' )
+			array( 'action' => wfScript(), 'id' => 'mw-log-deleterevision-submit' )
 		) . "\n";
 		$s .= Html::hidden( 'title', SpecialPage::getTitleFor( 'Revisiondelete' ) ) . "\n";
 		$s .= Html::hidden( 'target', SpecialPage::getTitleFor( 'Log' ) ) . "\n";
