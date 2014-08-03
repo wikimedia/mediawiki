@@ -1796,7 +1796,7 @@
 	"confirmdeletetext": "Zamierzasz usunąć stronę razem z całą dotyczącą jej historią.\nUpewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].",
 	"actioncomplete": "Operacja wykonana",
 	"actionfailed": "Działanie nie powiodło się",
-	"deletedtext": "Usunięto „$1”.\nZobacz na stronie $2 rejestr ostatnio wykonanych usunięć.",
+	"deletedtext": "Usunięto „$1”.\nZobacz $2, które zostały ostatnio wykonane.",
 	"dellogpage": "Usunięte",
 	"dellogpagetext": "Poniżej znajduje się lista ostatnio wykonanych usunięć.",
 	"deletionlog": "rejestr usunięć",

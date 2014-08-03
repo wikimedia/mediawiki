@@ -67,7 +67,7 @@
 	"tog-numberheadings": "標題自動編號",
 	"tog-showtoolbar": "顯示編輯工具列",
 	"tog-editondblclick": "啟用滑鼠雙擊編輯頁面",
-	"tog-editsectiononrightclick": "啟用滑鼠右鍵點選章節標題編輯",
+	"tog-editsectiononrightclick": "開啟滑鼠右鍵點選章節標題編輯",
 	"tog-watchcreations": "將我建立的頁面和上傳的檔案加入監視清單",
 	"tog-watchdefault": "將我編輯的頁面和檔案新增至監視清單",
 	"tog-watchmoves": "將我移動的頁面和檔案加入監視清單",
@@ -953,7 +953,7 @@
 	"timezoneregion-europe": "歐洲",
 	"timezoneregion-indian": "印度洋",
 	"timezoneregion-pacific": "太平洋",
-	"allowemail": "啟用來自其他使用者的郵件通知功能",
+	"allowemail": "開啟來自其他使用者的郵件通知功能",
 	"prefs-searchoptions": "搜尋",
 	"prefs-namespaces": "命名空間",
 	"default": "預設",
@@ -2034,7 +2034,7 @@
 	"block-log-flags-noautoblock": "停用自動封鎖",
 	"block-log-flags-noemail": "停用電子郵件",
 	"block-log-flags-nousertalk": "無法編輯自己的對話頁面",
-	"block-log-flags-angry-autoblock": "加強自動封鎖已啟用",
+	"block-log-flags-angry-autoblock": "加強自動封鎖已開啟",
 	"block-log-flags-hiddenname": "隱藏使用者名稱",
 	"range_block_disabled": "管理員可建立範圍封鎖的權限以被關閉。",
 	"ipb_expiry_invalid": "無效的終止時間。",
@@ -3159,5 +3159,5 @@
 	"action-pagelang": "更改頁面語言",
 	"log-name-pagelang": "更改語言日誌",
 	"log-description-pagelang": "這是頁面語言更改日誌。",
-	"logentry-pagelang-pagelang": "$1{{GENDER:$2|更改}}$3頁面語言從$4到$5。"
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|已更改}}頁面 $3 的語言從 $4 到 $5。"
 }
