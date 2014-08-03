@@ -2207,13 +2207,6 @@ Log in
 &lt;/td&gt;&lt;td&gt;
 <template lineStart="1"><title>int:Login</title></template>
 &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginend&amp;action=edit loginend]&lt;br&gt;
-[[MediaWiki_talk:Loginend|Talk]]
-&lt;/td&gt;&lt;td&gt;
-&amp;amp;nbsp;
-&lt;/td&gt;&lt;td&gt;
-<template lineStart="1"><title>int:Loginend</title></template>
-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Loginerror&amp;action=edit loginerror]&lt;br&gt;
 [[MediaWiki_talk:Loginerror|Talk]]
 &lt;/td&gt;&lt;td&gt;

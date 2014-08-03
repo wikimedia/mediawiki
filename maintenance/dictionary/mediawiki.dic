@@ -2245,7 +2245,6 @@ logextract
 loggedin
 logid
 login
-loginend
 loginerror
 loginfo
 loginlanguagelinks
@@ -2255,7 +2254,6 @@ loginreqlink
 loginreqpagetext
 loginreqtitle
 logins
-loginstart
 logitem
 loglink
 loglist
