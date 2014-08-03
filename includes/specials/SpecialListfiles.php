@@ -86,8 +86,6 @@ class ImageListPager extends TablePager {
 	function __construct( IContextSource $context, $userName = null, $search = '',
 		$including = false, $showAll = false
 	) {
-		global $wgMiserMode;
-
 		$this->mIncluding = $including;
 		$this->mShowAll = $showAll;
 
@@ -98,7 +96,7 @@ class ImageListPager extends TablePager {
 			}
 		}
 
-		if ( $search !== '' && !$wgMiserMode ) {
+		if ( $search !== '' && !$this->getConfig()->get( 'MiserMode' ) ) {
 			$this->mSearch = $search;
 			$nt = Title::newFromURL( $this->mSearch );
 
@@ -164,7 +162,6 @@ class ImageListPager extends TablePager {
 	 */
 	function getFieldNames() {
 		if ( !$this->mFieldNames ) {
-			global $wgMiserMode;
 			$this->mFieldNames = array(
 				'img_timestamp' => $this->msg( 'listfiles_date' )->text(),
 				'img_name' => $this->msg( 'listfiles_name' )->text(),
@@ -178,7 +175,7 @@ class ImageListPager extends TablePager {
 			// img_description down here, in order so that its still after the username field.
 			$this->mFieldNames['img_description'] = $this->msg( 'listfiles_description' )->text();
 
-			if ( !$wgMiserMode && !$this->mShowAll ) {
+			if ( !$this->getConfig()->get( 'MiserMode' ) && !$this->mShowAll ) {
 				$this->mFieldNames['count'] = $this->msg( 'listfiles_count' )->text();
 			}
 			if ( $this->mShowAll ) {
@@ -190,7 +187,6 @@ class ImageListPager extends TablePager {
 	}
 
 	function isFieldSortable( $field ) {
-		global $wgMiserMode;
 		if ( $this->mIncluding ) {
 			return false;
 		}
@@ -202,14 +198,14 @@ class ImageListPager extends TablePager {
 		 * In particular that means we cannot sort by timestamp when not filtering
 		 * by user and including old images in the results. Which is sad.
 		 */
-		if ( $wgMiserMode && !is_null( $this->mUserName ) ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) && !is_null( $this->mUserName ) ) {
 			// If we're sorting by user, the index only supports sorting by time.
 			if ( $field === 'img_timestamp' ) {
 				return true;
 			} else {
 				return false;
 			}
-		} elseif ( $wgMiserMode && $this->mShowAll /* && mUserName === null */ ) {
+		} elseif ( $this->getConfig()->get( 'MiserMode' ) && $this->mShowAll /* && mUserName === null */ ) {
 			// no oi_timestamp index, so only alphabetical sorting in this case.
 			if ( $field === 'img_name' ) {
 				return true;
@@ -392,8 +388,7 @@ class ImageListPager extends TablePager {
 	}
 
 	function getDefaultSort() {
-		global $wgMiserMode;
-		if ( $this->mShowAll && $wgMiserMode && is_null( $this->mUserName ) ) {
+		if ( $this->mShowAll && $this->getConfig()->get( 'MiserMode' ) && is_null( $this->mUserName ) ) {
 			// Unfortunately no index on oi_timestamp.
 			return 'img_name';
 		} else {
@@ -504,10 +499,9 @@ class ImageListPager extends TablePager {
 	}
 
 	function getForm() {
-		global $wgScript, $wgMiserMode;
 		$inputForm = array();
 		$inputForm['table_pager_limit_label'] = $this->getLimitSelect( array( 'tabindex' => 1 ) );
-		if ( !$wgMiserMode ) {
+		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
 			$inputForm['listfiles_search_for'] = Html::input(
 				'ilsearch',
 				$this->mSearch,
@@ -533,7 +527,7 @@ class ImageListPager extends TablePager {
 		) );
 
 		return Html::openElement( 'form',
-			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' )
+			array( 'method' => 'get', 'action' => wfScript(), 'id' => 'mw-listfiles-form' )
 		) .
 			Xml::fieldset( $this->msg( 'listfiles' )->text() ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
