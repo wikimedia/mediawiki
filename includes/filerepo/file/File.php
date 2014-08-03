@@ -714,7 +714,7 @@ abstract class File {
 	 */
 	function canRender() {
 		if ( !isset( $this->canRender ) ) {
-			$this->canRender = $this->getHandler() && $this->handler->canRender( $this );
+			$this->canRender = $this->getHandler() && $this->handler->canRender( $this ) && $this->exists();
 		}
 
 		return $this->canRender;

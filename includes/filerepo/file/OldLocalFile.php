@@ -404,4 +404,18 @@ class OldLocalFile extends LocalFile {
 
 		return true;
 	}
+
+	/**
+	 * If archive name is an empty string, then file does not "exist"
+	 *
+	 * This is the case for a couple files on Wikimedia servers where
+	 * the old version is "lost".
+	 */
+	public function exists() {
+		$archiveName = $this->getArchiveName();
+		if ( $archiveName === '' || !is_string( $archiveName ) ) {
+			return false;
+		}
+		return parent::exists();
+	}
 }
