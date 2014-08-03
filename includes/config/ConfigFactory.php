@@ -41,16 +41,33 @@ class ConfigFactory {
 	 */
 	protected $configs = array();
 
+	/**
+	 * @var ConfigFactory
+	 */
+	private static $self;
+
 	public static function getDefaultInstance() {
-		static $self = null;
-		if ( !$self ) {
-			$self = new self;
+		if ( !self::$self ) {
+			self::$self = new self;
 			global $wgConfigRegistry;
 			foreach ( $wgConfigRegistry as $name => $callback ) {
-				$self->register( $name, $callback );
+				self::$self->register( $name, $callback );
 			}
 		}
-		return $self;
+		return self::$self;
+	}
+
+	/**
+	 * Destroy the defaul instance
+	 * Should only be called inside unit tests
+	 * @throws MWException
+	 */
+	public static function destroyDefaultInstance() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( __METHOD__ . ' was called outside of unit tests' );
+		}
+
+		self::$self = null;
 	}
 
 	/**
