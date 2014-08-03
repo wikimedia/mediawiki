@@ -46,10 +46,11 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$activeUserDays = $this->getConfig()->get( 'ActiveUserDays' );
 
 		if ( $params['activeusers'] ) {
 			// Update active user cache
-			SpecialActiveUsers::mergeActiveUsers( 600 );
+			SpecialActiveUsers::mergeActiveUsers( 600, $activeUserDays );
 		}
 
 		$db = $this->getDB();
@@ -161,7 +162,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		if ( $params['activeusers'] ) {
-			$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
+			$activeUserSeconds = $activeUserDays * 86400;
 
 			// Filter query to only include users in the active users cache
 			$this->addTables( 'querycachetwo' );
