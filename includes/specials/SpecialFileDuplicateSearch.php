@@ -96,8 +96,6 @@ class FileDuplicateSearchPage extends QueryPage {
 	}
 
 	function execute( $par ) {
-		global $wgScript;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -115,7 +113,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		$out->addHTML(
 			Html::openElement(
 				'form',
-				array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => $wgScript )
+				array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => wfScript() )
 			) . "\n" .
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
 				Html::openElement( 'fieldset' ) . "\n" .
