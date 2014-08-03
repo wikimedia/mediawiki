@@ -44,8 +44,7 @@ class SpecialImport extends SpecialPage {
 	 */
 	public function __construct() {
 		parent::__construct( 'Import', 'import' );
-		global $wgImportTargetNamespace;
-		$this->namespace = $wgImportTargetNamespace;
+		$this->namespace = $this->getConfig()->get( 'ImportTargetNamespace' );
 	}
 
 	/**
@@ -91,15 +90,13 @@ class SpecialImport extends SpecialPage {
 	 * Do the actual import
 	 */
 	private function doImport() {
-		global $wgImportSources, $wgExportMaxLinkDepth;
-
 		$isUpload = false;
 		$request = $this->getRequest();
 		$this->namespace = $request->getIntOrNull( 'namespace' );
 		$sourceName = $request->getVal( "source" );
 
 		$this->logcomment = $request->getText( 'log-comment' );
-		$this->pageLinkDepth = $wgExportMaxLinkDepth == 0
+		$this->pageLinkDepth = $this->getConfig()->get( 'ExportMaxLinkDepth' ) == 0
 			? 0
 			: $request->getIntOrNull( 'pagelink-depth' );
 		$this->rootpage = $request->getText( 'rootpage' );
@@ -119,7 +116,7 @@ class SpecialImport extends SpecialPage {
 				throw new PermissionsError( 'import' );
 			}
 			$this->interwiki = $request->getVal( 'interwiki' );
-			if ( !in_array( $this->interwiki, $wgImportSources ) ) {
+			if ( !in_array( $this->interwiki, $this->getConfig()->get( 'ImportSources' ) ) ) {
 				$source = Status::newFatal( "import-invalid-interwiki" );
 			} else {
 				$this->history = $request->getCheck( 'interwikiHistory' );
@@ -203,11 +200,10 @@ class SpecialImport extends SpecialPage {
 	}
 
 	private function showForm() {
-		global $wgImportSources, $wgExportMaxLinkDepth;
-
 		$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
 		$user = $this->getUser();
 		$out = $this->getOutput();
+		$importSources = $this->getConfig()->get( 'ImportSources' );
 
 		if ( $user->isAllowed( 'importupload' ) ) {
 			$out->addHTML(
@@ -266,15 +262,15 @@ class SpecialImport extends SpecialPage {
 					Xml::closeElement( 'fieldset' )
 			);
 		} else {
-			if ( empty( $wgImportSources ) ) {
+			if ( empty( $importSources ) ) {
 				$out->addWikiMsg( 'importnosources' );
 			}
 		}
 
-		if ( $user->isAllowed( 'import' ) && !empty( $wgImportSources ) ) {
+		if ( $user->isAllowed( 'import' ) && !empty( $importSources ) ) {
 			# Show input field for import depth only if $wgExportMaxLinkDepth > 0
 			$importDepth = '';
-			if ( $wgExportMaxLinkDepth > 0 ) {
+			if ( $this->getConfig()->get( 'ExportMaxLinkDepth' ) > 0 ) {
 				$importDepth = "<tr>
 							<td class='mw-label'>" .
 					$this->msg( 'export-pagelinks' )->parse() .
@@ -311,7 +307,7 @@ class SpecialImport extends SpecialPage {
 					)
 			);
 
-			foreach ( $wgImportSources as $prefix ) {
+			foreach ( $importSources as $prefix ) {
 				$selected = ( $this->interwiki === $prefix ) ? ' selected="selected"' : '';
 				$out->addHTML( Xml::option( $prefix, $prefix, $selected ) );
 			}
