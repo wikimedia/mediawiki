@@ -3,13 +3,13 @@
 /* workaround for various ie float bugs */
 
 /* This bit is needed to make links clickable... WTF */
-div#column-content div#content {
+div#column-content .mw-body {
 	margin-left: 12.2em;
 	margin-top: 3em;
 	height: 1%;
 }
 
-.rtl div#column-content div#content {
+.rtl div#column-content .mw-body {
 	margin-right: 12.2em;
 	margin-left: 0;
 }

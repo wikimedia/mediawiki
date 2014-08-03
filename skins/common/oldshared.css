@@ -534,7 +534,7 @@ html > body.rtl div#article ul {
 }
 
 /* @noflip */
-html > body.rtl div#bodyContent ul#filetoc {
+html > body.rtl .mw-body-content ul#filetoc {
 	display: block;
 }
 
