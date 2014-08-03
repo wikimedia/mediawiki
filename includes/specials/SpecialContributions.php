@@ -785,6 +785,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
+		global $wgRCMaxAge;
 		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
 
 		$user = $this->getUser();
@@ -798,10 +799,43 @@ class ContribsPager extends ReverseChronologicalPager {
 				' != ' . Revision::SUPPRESSED_USER;
 		}
 
+		$fields = array(
+			'page_namespace', 'page_title', 'page_is_new', 'page_latest',
+			'page_is_redirect', 'page_len'
+		);
+
 		# Don't include orphaned revisions
 		$join_cond['page'] = Revision::pageJoinCond();
 		# Get the current user name for accounts
 		$join_cond['user'] = Revision::userJoinCond();
+
+		// Only show patrol marks for people who can patrol pages.
+		// Additionally do not show patrol marks for the current user's contribs
+		// as people cannot patrol themselves.
+		if ( ( $user->useRCPatrol() || $user->useNPPatrol() )
+			&& $user->getName() !== $this->target
+		) {
+			$tables[] = 'recentchanges';
+			$fields[] = 'rc_patrolled';
+
+			// Its possible for a recent changes entry to still be in the
+			// rc table slightly after the cut off, but said revision is
+			// not patrollable 6 hours after cut off even if still in RC table.
+			// As a safety measure against showing "!" that are impossible to
+			// get rid of, we do not display a red "!" if the rc entry is too old.
+			$patrolCutoff = $this->mDb->timestamp( time() - $wgRCMaxAge );
+			$patrolJoinConds = array(
+				'rc_user_text = rev_user_text',
+				'rc_timestamp = rev_timestamp',
+				'rc_this_oldid = rev_id',
+				'rev_timestamp >= ' . $this->mDb->addQuotes( $patrolCutoff ),
+			);
+			if ( !$user->useRCPatrol() ) {
+				// new pages only
+				$patrolJoinConds[] = 'rev_parent_id = 0';
+			}
+			$join_cond['recentchanges'] = array( 'LEFT OUTER JOIN', $patrolJoinConds );
+		}
 
 		$options = array();
 		if ( $index ) {
@@ -813,8 +847,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			'fields' => array_merge(
 				Revision::selectFields(),
 				Revision::selectUserFields(),
-				array( 'page_namespace', 'page_title', 'page_is_new',
-					'page_latest', 'page_is_redirect', 'page_len' )
+				$fields
 			),
 			'conds' => $conds,
 			'options' => $options,
@@ -1075,6 +1108,12 @@ class ContribsPager extends ReverseChronologicalPager {
 				$userlink = '';
 			}
 
+			if ( isset( $row->rc_patrolled ) && $row->rc_patrolled === '0' ) {
+				$pflag = ChangesList::flag( 'unpatrolled' );
+			} else {
+				$pflag = '';
+			}
+
 			if ( $rev->getParentId() === 0 ) {
 				$nflag = ChangesList::flag( 'newpage' );
 			} else {
@@ -1095,7 +1134,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$diffHistLinks = $this->msg( 'parentheses' )
 				->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )
 				->escaped();
-			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} ";
+			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$pflag}{$nflag}{$mflag} ";
 			$ret .= "{$link}{$userlink} {$comment} {$topmarktext}";
 
 			# Denote if username is redacted for this edit
