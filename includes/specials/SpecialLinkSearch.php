@@ -78,8 +78,6 @@ class LinkSearchPage extends QueryPage {
 	}
 
 	function execute( $par ) {
-		global $wgUrlProtocols, $wgMiserMode, $wgScript;
-
 		$this->initServices();
 
 		$this->setHeaders();
@@ -93,7 +91,7 @@ class LinkSearchPage extends QueryPage {
 		$namespace = $request->getIntorNull( 'namespace', null );
 
 		$protocols_list = array();
-		foreach ( $wgUrlProtocols as $prot ) {
+		foreach ( $this->getConfig()->get( 'UrlProtocols' ) as $prot ) {
 			if ( $prot !== '//' ) {
 				$protocols_list[] = $prot;
 			}
@@ -122,7 +120,7 @@ class LinkSearchPage extends QueryPage {
 		);
 		$s = Html::openElement(
 			'form',
-			array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $wgScript )
+			array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => wfScript() )
 		) . "\n" .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
 			Html::openElement( 'fieldset' ) . "\n" .
@@ -139,7 +137,7 @@ class LinkSearchPage extends QueryPage {
 				)
 			) . "\n";
 
-		if ( !$wgMiserMode ) {
+		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
 			$s .= Html::namespaceSelector(
 				array(
 					'selected' => $namespace,
@@ -210,10 +208,9 @@ class LinkSearchPage extends QueryPage {
 	}
 
 	function linkParameters() {
-		global $wgMiserMode;
 		$params = array();
 		$params['target'] = $this->mProt . $this->mQuery;
-		if ( $this->mNs !== null && !$wgMiserMode ) {
+		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
 			$params['namespace'] = $this->mNs;
 		}
 
@@ -221,7 +218,6 @@ class LinkSearchPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
-		global $wgMiserMode;
 		$dbr = wfGetDB( DB_SLAVE );
 		// strip everything past first wildcard, so that
 		// index-based-only lookup would be done
@@ -248,7 +244,7 @@ class LinkSearchPage extends QueryPage {
 			'options' => array( 'USE INDEX' => $clause )
 		);
 
-		if ( $this->mNs !== null && !$wgMiserMode ) {
+		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
 			$retval['conds']['page_namespace'] = $this->mNs;
 		}
 
