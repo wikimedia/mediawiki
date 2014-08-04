@@ -405,6 +405,16 @@ if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }
 
+// Back compatibility for $wgRateLimitLog deprecated with 1.23
+if ( $wgRateLimitLog && !array_key_exists( 'ratelimit', $wgDebugLogGroups ) ) {
+	$wgDebugLogGroups['ratelimit'] = $wgRateLimitLog;
+}
+
+if ( $wgProfileOnly ) {
+	$wgDebugLogGroups['profileoutput'] = $wgDebugLogFile;
+	$wgDebugLogFile = '';
+}
+
 wfProfileOut( $fname . '-defaults' );
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
@@ -467,16 +477,6 @@ if ( $wgTmpDirectory === false ) {
 	wfProfileIn( $fname . '-tempDir' );
 	$wgTmpDirectory = wfTempDir();
 	wfProfileOut( $fname . '-tempDir' );
-}
-
-// Back compatibility for $wgRateLimitLog deprecated with 1.23
-if ( $wgRateLimitLog && !array_key_exists( 'ratelimit', $wgDebugLogGroups ) ) {
-	$wgDebugLogGroups['ratelimit'] = $wgRateLimitLog;
-}
-
-if ( $wgProfileOnly ) {
-	$wgDebugLogGroups['profileoutput'] = $wgDebugLogFile;
-	$wgDebugLogFile = '';
 }
 
 wfProfileOut( $fname . '-defaults2' );
