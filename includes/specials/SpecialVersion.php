@@ -212,7 +212,7 @@ class SpecialVersion extends SpecialPage {
 		$software = array();
 		$software['[https://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
 		$phpKey = wfIsHHVM() ? '[http://hhvm.com/ HHVM]' :
-			'[http://www.php.net/ PHP]';
+			'[https://php.net/ PHP]';
 		$software[$phpKey] = PHP_VERSION . " (" . PHP_SAPI . ")";
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
