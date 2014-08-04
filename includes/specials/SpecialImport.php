@@ -477,7 +477,6 @@ class ImportReporter extends ContextSource {
 					"</li>\n"
 			);
 
-			$log = new LogPage( 'import' );
 			if ( $this->mIsUpload ) {
 				$detail = $this->msg( 'import-logentry-upload-detail' )->numParams(
 					$successCount )->inContentLanguage()->text();
@@ -485,7 +484,7 @@ class ImportReporter extends ContextSource {
 					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text()
 						. $this->reason;
 				}
-				$log->addEntry( 'upload', $title, $detail, array(), $this->getUser() );
+				$action = 'upload';
 			} else {
 				$interwiki = '[[:' . $this->mInterwiki . ':' .
 					$origTitle->getPrefixedText() . ']]';
@@ -495,8 +494,15 @@ class ImportReporter extends ContextSource {
 					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text()
 						. $this->reason;
 				}
-				$log->addEntry( 'interwiki', $title, $detail, array(), $this->getUser() );
+				$action = 'interwiki';
 			}
+
+			$logEntry = new ManualLogEntry( 'import', $action );
+			$logEntry->setTarget( $title );
+			$logEntry->setComment( $detail );
+			$logEntry->setPerformer( $this->getUser() );
+			$logid = $logEntry->insert();
+			$logEntry->publish( $logid );
 
 			$comment = $detail; // quick
 			$dbw = wfGetDB( DB_MASTER );
