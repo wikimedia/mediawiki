@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Marathi (mr)
+// moment.js locale configuration
+// locale : Marathi (mr)
 // author : Harshad Kale : https://github.com/kalehv
 
 (function (factory) {
@@ -36,7 +36,7 @@
         '०': '0'
     };
 
-    return moment.lang('mr', {
+    return moment.defineLocale('mr', {
         months : 'जानेवारी_फेब्रुवारी_मार्च_एप्रिल_मे_जून_जुलै_ऑगस्ट_सप्टेंबर_ऑक्टोबर_नोव्हेंबर_डिसेंबर'.split("_"),
         monthsShort: 'जाने._फेब्रु._मार्च._एप्रि._मे._जून._जुलै._ऑग._सप्टें._ऑक्टो._नोव्हें._डिसें.'.split("_"),
         weekdays : 'रविवार_सोमवार_मंगळवार_बुधवार_गुरूवार_शुक्रवार_शनिवार'.split("_"),

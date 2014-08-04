@@ -678,12 +678,15 @@ return array(
 	'moment' => array(
 		'scripts' => 'resources/lib/moment/moment.js',
 		'languageScripts' => array(
+			'af' => 'resources/lib/moment/lang/af.js',
 			'ar' => 'resources/lib/moment/lang/ar.js',
 			'ar-ma' => 'resources/lib/moment/lang/ar-ma.js',
 			'ar-sa' => 'resources/lib/moment/lang/ar-sa.js',
 			'az' => 'resources/lib/moment/lang/az.js',
+			'be' => 'resources/lib/moment/lang/be.js',
 			'bg' => 'resources/lib/moment/lang/bg.js',
 			'bn' => 'resources/lib/moment/lang/bn.js',
+			'bo' => 'resources/lib/moment/lang/bo.js',
 			'br' => 'resources/lib/moment/lang/br.js',
 			'bs' => 'resources/lib/moment/lang/bs.js',
 			'ca' => 'resources/lib/moment/lang/ca.js',
@@ -724,6 +727,7 @@ return array(
 			'ml' => 'resources/lib/moment/lang/ml.js',
 			'mr' => 'resources/lib/moment/lang/mr.js',
 			'ms-my' => 'resources/lib/moment/lang/ms-my.js',
+			'my' => 'resources/lib/moment/lang/my.js',
 			'nb' => 'resources/lib/moment/lang/nb.js',
 			'ne' => 'resources/lib/moment/lang/ne.js',
 			'nl' => 'resources/lib/moment/lang/nl.js',
