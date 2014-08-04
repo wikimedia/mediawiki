@@ -402,19 +402,6 @@ class LogPage {
 						. Linker::userToolLinks( $id, $title->getText(), false, Linker::TOOL_LINKS_NOBLOCK );
 				}
 				break;
-			case 'merge':
-				$titleLink = Linker::link(
-					$title,
-					$title->getPrefixedText(),
-					array(),
-					array( 'redirect' => 'no' )
-				);
-				$params[0] = Linker::link(
-					Title::newFromText( $params[0] ),
-					htmlspecialchars( $params[0] )
-				);
-				$params[1] = $lang->timeanddate( $params[1] );
-				break;
 			default:
 				if ( $title->isSpecialPage() ) {
 					list( $name, $par ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );

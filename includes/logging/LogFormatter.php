@@ -322,6 +322,12 @@ class LogFormatter {
 						break;
 				}
 				break;
+
+			case 'merge':
+				$text = wfMessage( 'pagemerge-logentry' )
+					->rawParams( $target, $parameters['4::dest'], $parameters['5::mergepoint'] )
+					->inContentLanguage()->escaped();
+				break;
 			// case 'suppress' --private log -- aaron  (so we know who to blame in a few years :-D)
 			// default:
 		}
@@ -791,26 +797,6 @@ class LegacyLogFormatter extends LogFormatter {
 
 			return $this->msg( 'parentheses' )->rawParams(
 				$this->context->getLanguage()->pipeList( $links ) )->escaped();
-		// Show unmerge link
-		} elseif ( $type == 'merge' && $subtype == 'merge' ) {
-			if ( !$this->context->getUser()->isAllowed( 'mergehistory' ) ) {
-				return '';
-			}
-
-			$params = $this->extractParameters();
-			$revert = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'MergeHistory' ),
-				$this->msg( 'revertmerge' )->escaped(),
-				array(),
-				array(
-					'target' => $params[3],
-					'dest' => $title->getPrefixedDBkey(),
-					'mergepoint' => $params[4],
-					'submitted' => 1 // show the revisions immediately
-				)
-			);
-
-			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 		}
 
 		// Do nothing. The implementation is handled by the hook modifiying the
