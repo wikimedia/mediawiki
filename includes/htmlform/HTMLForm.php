@@ -785,7 +785,8 @@ class HTMLForm extends ContextSource {
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
 		if ( $this->isVForm() ) {
 			$this->getOutput()->addModuleStyles( array(
-				'mediawiki.ui',
+				'mediawiki.ui.form',
+				'mediawiki.ui.utilities',
 				'mediawiki.ui.button',
 			) );
 			// @todo Should vertical form set setWrapperLegend( false )
