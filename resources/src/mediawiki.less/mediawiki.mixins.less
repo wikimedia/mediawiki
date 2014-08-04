@@ -77,3 +77,21 @@
 	-webkit-box-shadow: @value; // Safari 3.1-5.0, iOS 3.2-4.3, Android 2.1-3.0
 	box-shadow: @value; // Chrome 10+, Firefox 4+, IE 9+, Safari 5.1+, Opera 11+, iOS 5+, Android 4+
 }
+
+// truncated-text
+//
+// Add the truncated-text mixin to any element where long text is
+// expected, and truncating improves the UX.
+// Can be used with .truncated-text(true) to undo text truncation.
+//
+// Use in Flow, Echo and MobileFrontend extensions.
+.truncated-text(@undo: false) when not (@undo) {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.truncated-text(@undo: false) when (@undo) {
+	white-space: inherit;
+	overflow: inherit;
+	text-overflow: inherit;
+}
