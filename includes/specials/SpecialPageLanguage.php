@@ -43,7 +43,6 @@ class SpecialPageLanguage extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		global $wgLanguageCode;
 		// Get default from the subpage of Special page
 		$defaultName = $this->par;
 
@@ -80,7 +79,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'type' => 'select',
 			'options' => $options,
 			'label-message' => 'pagelang-language',
-			'default' => $wgLanguageCode
+			'default' => $this->getConfig()->get( 'LanguageCode' ),
 		);
 
 		return $page;
