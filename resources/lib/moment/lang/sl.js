@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : slovenian (sl)
+// moment.js locale configuration
+// locale : slovenian (sl)
 // author : Robert Sedovšek : https://github.com/sedovsek
 
 (function (factory) {
@@ -72,7 +72,7 @@
         }
     }
 
-    return moment.lang('sl', {
+    return moment.defineLocale('sl', {
         months : "januar_februar_marec_april_maj_junij_julij_avgust_september_oktober_november_december".split("_"),
         monthsShort : "jan._feb._mar._apr._maj._jun._jul._avg._sep._okt._nov._dec.".split("_"),
         weekdays : "nedelja_ponedeljek_torek_sreda_četrtek_petek_sobota".split("_"),

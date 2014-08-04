@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : slovak (sk)
+// moment.js locale configuration
+// locale : slovak (sk)
 // author : Martin Minka : https://github.com/k2s
 // based on work of petrbela : https://github.com/petrbela
 
@@ -72,7 +72,7 @@
         }
     }
 
-    return moment.lang('sk', {
+    return moment.defineLocale('sk', {
         months : months,
         monthsShort : monthsShort,
         monthsParse : (function (months, monthsShort) {

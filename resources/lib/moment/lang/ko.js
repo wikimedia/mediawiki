@@ -1,7 +1,7 @@
-// moment.js language configuration
-// language : korean (ko)
+// moment.js locale configuration
+// locale : korean (ko)
 //
-// authors 
+// authors
 //
 // - Kyungwook, Park : https://github.com/kyungw00k
 // - Jeeeyul Lee <jeeeyul@gmail.com>
@@ -14,7 +14,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('ko', {
+    return moment.defineLocale('ko', {
         months : "1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월".split("_"),
         monthsShort : "1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월".split("_"),
         weekdays : "일요일_월요일_화요일_수요일_목요일_금요일_토요일".split("_"),
