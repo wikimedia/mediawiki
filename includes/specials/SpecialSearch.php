@@ -82,7 +82,9 @@ class SpecialSearch extends SpecialPage {
 		$out = $this->getOutput();
 		$out->allowClickjacking();
 		$out->addModuleStyles( array(
-			'mediawiki.special', 'mediawiki.special.search', 'mediawiki.ui', 'mediawiki.ui.button',
+			'mediawiki.special',
+			'mediawiki.special.search',
+			'mediawiki.ui.button',
 			'mediawiki.ui.input',
 		) );
 
