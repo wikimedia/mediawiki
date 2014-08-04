@@ -50,7 +50,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		$size = $request->getIntOrNull( 'size' );
 		$NS = $request->getIntOrNull( 'namespace' );
 
-		$pager = new ProtectedTitlesPager( $this, array(), $type, $level, $NS, $sizetype, $size );
+		$pager = new ProtectedTitlesPager( $this->getContext(), array(), $type, $level, $NS, $sizetype, $size );
 
 		$this->getOutput()->addHTML( $this->showOptions( $NS, $type, $level ) );
 
