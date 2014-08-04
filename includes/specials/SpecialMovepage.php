@@ -131,7 +131,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	 *    parameters, like the second argument to OutputPage::wrapWikiMsg().
 	 */
 	function showForm( $err ) {
-		global $wgContLang, $wgFixDoubleRedirects, $wgMaximumMovedPages;
+		global $wgContLang;
 
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
 
@@ -190,7 +190,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				);
 			}
 
-			$out->addWikiMsg( $wgFixDoubleRedirects ?
+			$out->addWikiMsg( $this->getConfig()->get( 'FixDoubleRedirects' ) ?
 				'movepagetext' :
 				'movepagetext-noredirectfixer'
 			);
@@ -221,7 +221,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				|| ( $oldTitleTalkSubpages && $canMoveSubpage ) );
 
 		$dbr = wfGetDB( DB_SLAVE );
-		if ( $wgFixDoubleRedirects ) {
+		if ( $this->getConfig()->get( 'FixDoubleRedirects' ) ) {
 			$hasRedirects = $dbr->selectField( 'redirect', '1',
 				array(
 					'rd_namespace' => $this->oldTitle->getNamespace(),
@@ -419,6 +419,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( $canMoveSubpage ) {
+			$maximumMovedPages = $this->getConfig()->get( 'MaximumMovedPages' );
 			$out->addHTML( "
 				<tr>
 					<td></td>
@@ -435,7 +436,7 @@ class MovePageForm extends UnlistedSpecialPage {
 							( $this->oldTitle->hasSubpages()
 								? 'move-subpages'
 								: 'move-talk-subpages' )
-						)->numParams( $wgMaximumMovedPages )->params( $wgMaximumMovedPages )->parse()
+						)->numParams( $maximumMovedPages )->params( $maximumMovedPages )->parse()
 					) .
 					"</td>
 				</tr>"
@@ -480,8 +481,6 @@ class MovePageForm extends UnlistedSpecialPage {
 	}
 
 	function doSubmit() {
-		global $wgMaximumMovedPages, $wgFixDoubleRedirects;
-
 		$user = $this->getUser();
 
 		if ( $user->pingLimiter( 'move' ) ) {
@@ -557,7 +556,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			return;
 		}
 
-		if ( $wgFixDoubleRedirects && $this->fixRedirects ) {
+		if ( $this->getConfig()->get( 'FixDoubleRedirects' ) && $this->fixRedirects ) {
 			DoubleRedirectJob::fixRedirects( 'move', $ot, $nt );
 		}
 
@@ -713,9 +712,10 @@ class MovePageForm extends UnlistedSpecialPage {
 						->rawParams( $oldLink, $newLink )->escaped();
 					++$count;
 
-					if ( $count >= $wgMaximumMovedPages ) {
+					$maximumMovedPages = $this->getConfig()->get( 'MaximumMovedPages' );
+					if ( $count >= $maximumMovedPages ) {
 						$extraOutput[] = $this->msg( 'movepage-max-pages' )
-							->numParams( $wgMaximumMovedPages )->escaped();
+							->numParams( $maximumMovedPages )->escaped();
 						break;
 					}
 				} else {
