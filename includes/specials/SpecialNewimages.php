@@ -89,7 +89,6 @@ class NewFilesPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		global $wgMiserMode;
 		$conds = $jconds = array();
 		$tables = array( 'image' );
 
@@ -109,7 +108,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			}
 		}
 
-		if ( !$wgMiserMode && $this->like !== null ) {
+		if ( !$this->getConfig()->get( 'MiserMode' ) && $this->like !== null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$likeObj = Title::newFromURL( $this->like );
 			if ( $likeObj instanceof Title ) {
@@ -173,8 +172,6 @@ class NewFilesPager extends ReverseChronologicalPager {
 	}
 
 	function getForm() {
-		global $wgMiserMode;
-
 		$fields = array(
 			'like' => array(
 				'type' => 'text',
@@ -198,7 +195,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			),
 		);
 
-		if ( $wgMiserMode ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			unset( $fields['like'] );
 		}
 
