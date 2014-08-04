@@ -115,7 +115,7 @@ class UsercreateTemplate extends BaseTemplate {
 					'size' => '20',
 					'required',
 					'placeholder' => $this->getMsg( 'createacct-yourpassword-ph' )->text()
-				) + User::passwordChangeInputAttribs() );
+				) );
 				?>
 			</div>
 
@@ -145,7 +145,7 @@ class UsercreateTemplate extends BaseTemplate {
 					'size' => '20',
 					'required',
 					'placeholder' => $this->getMsg( 'createacct-yourpasswordagain-ph' )->text()
-					) + User::passwordChangeInputAttribs() );
+					) );
 				?>
 			</div>
 
