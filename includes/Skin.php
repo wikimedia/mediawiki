@@ -220,7 +220,7 @@ abstract class Skin extends ContextSource {
 				# is no longer valid.
 				wfDebug( "Skin class does not exist: $className\n" );
 
-				$fallback = $skinNames[ Skin::normalizeKey( $wgFallbackSkin ) ];
+				$fallback = $skinNames[Skin::normalizeKey( $wgFallbackSkin )];
 				$className = "Skin{$fallback}";
 			}
 		}

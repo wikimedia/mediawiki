@@ -202,7 +202,7 @@ class SvgHandler extends ImageHandler {
 		$tmpDir = wfTempDir() . '/svg_' . wfRandomString( 24 );
 		$lnPath = "$tmpDir/" . basename( $srcPath );
 		$ok = mkdir( $tmpDir, 0771 ) && symlink( $srcPath, $lnPath );
-		$cleaner = new ScopedCallback( function() use ( $tmpDir, $lnPath ) {
+		$cleaner = new ScopedCallback( function () use ( $tmpDir, $lnPath ) {
 			wfSuppressWarnings();
 			unlink( $lnPath );
 			rmdir( $tmpDir );

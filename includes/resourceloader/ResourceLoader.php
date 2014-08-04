@@ -307,11 +307,11 @@ class ResourceLoader {
 
 					// If $name is preceded with a '+', the defined style files will be added to 'default'
 					// skinStyles, otherwise 'default' will be ignored as it normally would be.
-					if ( isset( $skinStyles[ $name ] ) ) {
-						$paths = (array)$skinStyles[ $name ];
+					if ( isset( $skinStyles[$name] ) ) {
+						$paths = (array)$skinStyles[$name];
 						$styleFiles = array();
-					} else if ( isset( $skinStyles[ '+' . $name ] ) ) {
-						$paths = (array)$skinStyles[ '+' . $name ];
+					} elseif ( isset( $skinStyles['+' . $name] ) ) {
+						$paths = (array)$skinStyles['+' . $name];
 						$styleFiles = isset( $this->moduleInfos[$name]['skinStyles']['default'] ) ?
 							$this->moduleInfos[$name]['skinStyles']['default'] :
 							array();
