@@ -199,8 +199,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function form() {
-		global $wgScript;
-
 		// Consume values
 		$this->opts->consumeValue( 'offset' ); // don't carry offset, DWIW
 		$namespace = $this->opts->consumeValue( 'namespace' );
@@ -224,7 +222,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			list( $tagFilterLabel, $tagFilterSelector ) = $tagFilter;
 		}
 
-		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
+		$form = Xml::openElement( 'form', array( 'action' => wfScript() ) ) .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 			Xml::fieldset( $this->msg( 'newpages' )->text() ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
@@ -405,21 +403,20 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param string $type
 	 */
 	protected function feed( $type ) {
-		global $wgFeed, $wgFeedClasses, $wgFeedLimit;
-
-		if ( !$wgFeed ) {
+		if ( !$this->getConfig()->get( 'Feed' ) ) {
 			$this->getOutput()->addWikiMsg( 'feed-unavailable' );
 
 			return;
 		}
 
-		if ( !isset( $wgFeedClasses[$type] ) ) {
+		$feedClasses = $this->getConfig()->get( 'FeedClasses' );
+		if ( !isset( $feedClasses[$type] ) ) {
 			$this->getOutput()->addWikiMsg( 'feed-invalid' );
 
 			return;
 		}
 
-		$feed = new $wgFeedClasses[$type](
+		$feed = new $feedClasses[$type](
 			$this->feedTitle(),
 			$this->msg( 'tagline' )->text(),
 			$this->getPageTitle()->getFullURL()
@@ -427,7 +424,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$pager = new NewPagesPager( $this, $this->opts );
 		$limit = $this->opts->getValue( 'limit' );
-		$pager->mLimit = min( $limit, $wgFeedLimit );
+		$pager->mLimit = min( $limit, $this->getConfig()->get( 'FeedLimit' ) );
 
 		$feed->outHeader();
 		if ( $pager->getNumRows() > 0 ) {
@@ -439,10 +436,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedTitle() {
-		global $wgLanguageCode, $wgSitename;
 		$desc = $this->getDescription();
+		$code = $this->getConfig()->get( 'LanguageCode' );
+		$sitename = $this->getConfig()->get( 'Sitename' );
 
-		return "$wgSitename - $desc [$wgLanguageCode]";
+		return "$sitename - $desc [$code]";
 	}
 
 	protected function feedItem( $row ) {
