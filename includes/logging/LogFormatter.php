@@ -255,7 +255,7 @@ class LogFormatter {
 				switch ( $entry->getSubtype() ) {
 					case 'protect':
 						$text = wfMessage( 'protectedarticle' )
-							->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
+							->rawParams( $target . ' ' . $parameters['4::description'] )->inContentLanguage()->escaped();
 						break;
 					case 'unprotect':
 						$text = wfMessage( 'unprotectedarticle' )
@@ -263,7 +263,11 @@ class LogFormatter {
 						break;
 					case 'modify':
 						$text = wfMessage( 'modifiedarticleprotection' )
-							->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
+							->rawParams( $target . ' ' . $parameters['4::description'] )->inContentLanguage()->escaped();
+						break;
+					case 'move_prot':
+						$text = wfMessage( 'movedarticleprotection' )
+							->rawParams( $target, $parameters['4::oldtitle'] )->inContentLanguage()->escaped();
 						break;
 				}
 				break;
@@ -773,31 +777,6 @@ class LegacyLogFormatter extends LogFormatter {
 					$this->msg( 'change-blocklink' )->escaped()
 				)
 			);
-
-			return $this->msg( 'parentheses' )->rawParams(
-				$this->context->getLanguage()->pipeList( $links ) )->escaped();
-		// Show change protection link
-		} elseif ( $type == 'protect'
-			&& ( $subtype == 'protect' || $subtype == 'modify' || $subtype == 'unprotect' )
-		) {
-			$links = array(
-				Linker::link( $title,
-					$this->msg( 'hist' )->escaped(),
-					array(),
-					array(
-						'action' => 'history',
-						'offset' => $this->entry->getTimestamp()
-					)
-				)
-			);
-			if ( $this->context->getUser()->isAllowed( 'protect' ) ) {
-				$links[] = Linker::linkKnown(
-					$title,
-					$this->msg( 'protect_change' )->escaped(),
-					array(),
-					array( 'action' => 'protect' )
-				);
-			}
 
 			return $this->msg( 'parentheses' )->rawParams(
 				$this->context->getLanguage()->pipeList( $links ) )->escaped();

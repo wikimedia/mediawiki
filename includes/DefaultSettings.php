@@ -6662,10 +6662,6 @@ $wgLogActions = array(
 	'block/block' => 'blocklogentry',
 	'block/unblock' => 'unblocklogentry',
 	'block/reblock' => 'reblock-logentry',
-	'protect/protect' => 'protectedarticle',
-	'protect/modify' => 'modifiedarticleprotection',
-	'protect/unprotect' => 'unprotectedarticle',
-	'protect/move_prot' => 'movedarticleprotection',
 	'import/upload' => 'import-logentry-upload',
 	'import/interwiki' => 'import-logentry-interwiki',
 	'suppress/block' => 'blocklogentry',
@@ -6699,6 +6695,10 @@ $wgLogActionsHandlers = array(
 	'managetags/delete' => 'LogFormatter',
 	'managetags/activate' => 'LogFormatter',
 	'managetags/deactivate' => 'LogFormatter',
+	'protect/protect' => 'ProtectLogFormatter',
+	'protect/modify' => 'ProtectLogFormatter',
+	'protect/unprotect' => 'ProtectLogFormatter',
+	'protect/move_prot' => 'ProtectLogFormatter',
 );
 
 /**

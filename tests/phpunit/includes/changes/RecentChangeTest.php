@@ -45,6 +45,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * - protect/protect
 	 * - protect/modifyprotect
 	 * - protect/unprotect
+	 * - protect/move_prot
 	 * - upload/upload
 	 * - merge/merge
 	 *
@@ -176,13 +177,13 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 */
 	public function testIrcMsgForLogTypeProtect() {
 		$protectParams = array(
-			'[edit=sysop] (indefinite) ‎[move=sysop] (indefinite)'
+			'4::description' => '[edit=sysop] (indefinite) ‎[move=sysop] (indefinite)'
 		);
 		$sep = $this->context->msg( 'colon-separator' )->text();
 
 		# protect/protect
 		$this->assertIRCComment(
-			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )
+			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams['4::description'] )
 				->plain() . $sep . $this->user_comment,
 			'protect', 'protect',
 			$protectParams,
@@ -199,10 +200,21 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/modify
 		$this->assertIRCComment(
-			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )
+			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams['4::description'] )
 				->plain() . $sep . $this->user_comment,
 			'protect', 'modify',
 			$protectParams,
+			$this->user_comment
+		);
+
+		# protect/move_prot
+		$this->assertIRCComment(
+			$this->context->msg( 'movedarticleprotection', 'SomeTitle', 'OldTitle' )
+				->plain() . $sep . $this->user_comment,
+			'protect', 'move_prot',
+			array(
+				'4::oldtitle' => 'OldTitle'
+			),
 			$this->user_comment
 		);
 	}
