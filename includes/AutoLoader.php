@@ -716,6 +716,7 @@ $wgAutoloadLocalClasses = array(
 	'LogPage' => 'includes/logging/LogPage.php',
 	'LogPager' => 'includes/logging/LogPager.php',
 	'ManualLogEntry' => 'includes/logging/LogEntry.php',
+	'MergeLogFormatter' => 'includes/logging/MergeLogFormatter.php',
 	'MoveLogFormatter' => 'includes/logging/MoveLogFormatter.php',
 	'NewUsersLogFormatter' => 'includes/logging/NewUsersLogFormatter.php',
 	'PageLangLogFormatter' => 'includes/logging/PageLangLogFormatter.php',
