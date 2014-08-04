@@ -46,6 +46,8 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * - protect/modifyprotect
 	 * - protect/unprotect
 	 * - upload/upload
+	 * - import/upload
+	 * - import/interwiki
 	 *
 	 * As well as the following Auto Edit Summaries:
 	 * - blank
@@ -224,6 +226,29 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$this->assertIRCComment(
 			$this->context->msg( 'overwroteimage', 'SomeTitle' )->plain() . $sep . $this->user_comment,
 			'upload', 'overwrite',
+			array(),
+			$this->user_comment
+		);
+	}
+
+	/**
+	 * @covers LogFormatter::getIRCActionText
+	 */
+	public function testIrcMsgForLogTypeImport() {
+		$sep = $this->context->msg( 'colon-separator' )->text();
+
+		# import/upload
+		$this->assertIRCComment(
+			$this->context->msg( 'import-logentry-upload', 'SomeTitle' )->plain() . $sep . $this->user_comment,
+			'import', 'upload',
+			array(),
+			$this->user_comment
+		);
+
+		# import/interwiki
+		$this->assertIRCComment(
+			$this->context->msg( 'import-logentry-interwiki', 'SomeTitle' )->plain() . $sep . $this->user_comment,
+			'import', 'interwiki',
 			array(),
 			$this->user_comment
 		);
