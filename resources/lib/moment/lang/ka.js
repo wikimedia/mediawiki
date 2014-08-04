@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Georgian (ka)
+// moment.js locale configuration
+// locale : Georgian (ka)
 // author : Irakli Janiashvili : https://github.com/irakli-janiashvili
 
 (function (factory) {
@@ -11,7 +11,6 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-
     function monthsCaseReplace(m, format) {
         var months = {
             'nominative': 'იანვარი_თებერვალი_მარტი_აპრილი_მაისი_ივნისი_ივლისი_აგვისტო_სექტემბერი_ოქტომბერი_ნოემბერი_დეკემბერი'.split('_'),
@@ -38,7 +37,7 @@
         return weekdays[nounCase][m.day()];
     }
 
-    return moment.lang('ka', {
+    return moment.defineLocale('ka', {
         months : monthsCaseReplace,
         monthsShort : "იან_თებ_მარ_აპრ_მაი_ივნ_ივლ_აგვ_სექ_ოქტ_ნოე_დეკ".split("_"),
         weekdays : weekdaysCaseReplace,

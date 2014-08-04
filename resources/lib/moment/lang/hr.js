@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : hrvatski (hr)
+// moment.js locale configuration
+// locale : hrvatski (hr)
 // author : Bojan Marković : https://github.com/bmarkovic
 
 // based on (sl) translation by Robert Sedovšek
@@ -13,7 +13,6 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-
     function translate(number, withoutSuffix, key) {
         var result = number + " ";
         switch (key) {
@@ -67,7 +66,7 @@
         }
     }
 
-    return moment.lang('hr', {
+    return moment.defineLocale('hr', {
         months : "sječanj_veljača_ožujak_travanj_svibanj_lipanj_srpanj_kolovoz_rujan_listopad_studeni_prosinac".split("_"),
         monthsShort : "sje._vel._ožu._tra._svi._lip._srp._kol._ruj._lis._stu._pro.".split("_"),
         weekdays : "nedjelja_ponedjeljak_utorak_srijeda_četvrtak_petak_subota".split("_"),

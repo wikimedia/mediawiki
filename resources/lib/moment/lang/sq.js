@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Albanian (sq)
+// moment.js locale configuration
+// locale : Albanian (sq)
 // author : Flakërim Ismani : https://github.com/flakerimi
 // author: Menelion Elensúle: https://github.com/Oire (tests)
 // author : Oerd Cukalla : https://github.com/oerd (fixes)
@@ -13,7 +13,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('sq', {
+    return moment.defineLocale('sq', {
         months : "Janar_Shkurt_Mars_Prill_Maj_Qershor_Korrik_Gusht_Shtator_Tetor_Nëntor_Dhjetor".split("_"),
         monthsShort : "Jan_Shk_Mar_Pri_Maj_Qer_Kor_Gus_Sht_Tet_Nën_Dhj".split("_"),
         weekdays : "E Diel_E Hënë_E Martë_E Mërkurë_E Enjte_E Premte_E Shtunë".split("_"),
