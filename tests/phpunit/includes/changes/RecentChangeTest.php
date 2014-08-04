@@ -230,6 +230,24 @@ class RecentChangeTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers LogFormatter::getIRCActionText
+	 */
+	public function testIrcMsgForLogTypeMerge() {
+		$sep = $this->context->msg( 'colon-separator' )->text();
+
+		# merge/merge
+		$this->assertIRCComment(
+			$this->context->msg( 'pagemerge-logentry', 'SomeTitle', 'Dest', 'timestamp' )->plain() . $sep . $this->user_comment,
+			'merge', 'merge',
+			array(
+				'4::dest' => 'Dest',
+				'5::mergepoint' => 'timestamp',
+			),
+			$this->user_comment
+		);
+	}
+
+	/**
 	 * @todo Emulate these edits somehow and extract
 	 * raw edit summary from RecentChange object
 	 * --
