@@ -1467,6 +1467,8 @@ return array(
 
 	/* MediaWiki UI */
 
+	// @deprecated: Use the componentised modules instead.
+	// @todo: Remove after 1.24 is released.
 	'mediawiki.ui' => array(
 		'skinStyles' => array(
 			'default' => array(
@@ -1476,6 +1478,23 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	// Lightweight module for form styles
+	'mediawiki.ui.form' => array(
+		'styles' => array(
+			'resources/src/mediawiki.ui/components/forms.less',
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	// Lightweight module for utility styles (mostly used for formatting)
+	'mediawiki.ui.utilities' => array(
+		'styles' => array(
+			'resources/src/mediawiki.ui/components/utilities.less',
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	// Lightweight module for checkbox styles
 	'mediawiki.ui.checkbox' => array(
 		'skinStyles' => array(
 			'default' => array(
