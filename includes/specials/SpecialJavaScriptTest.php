@@ -134,16 +134,15 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * Initialize the page for QUnit.
 	 */
 	private function initQUnitTesting() {
-		global $wgJavaScriptTestConfig;
-
 		$out = $this->getOutput();
+		$testConfig = $this->getConfig()->get( 'JavaScriptTestConfig' );
 
 		$out->addModules( 'test.mediawiki.qunit.testrunner' );
 		$qunitTestModules = $out->getResourceLoader()->getTestModuleNames( 'qunit' );
 		$out->addModules( $qunitTestModules );
 
 		$summary = $this->msg( 'javascripttest-qunit-intro' )
-			->params( $wgJavaScriptTestConfig['qunit']['documentation'] )
+			->params( $testConfig['qunit']['documentation'] )
 			->parseAsBlock();
 		$header = $this->msg( 'javascripttest-qunit-heading' )->escaped();
 		$userDir = $this->getLanguage()->getDir();
@@ -169,7 +168,7 @@ HTML;
 		// $wgJavaScriptTestConfig in DefaultSettings.php
 		$out->addJsConfigVars(
 			'QUnitTestSwarmInjectJSPath',
-			$wgJavaScriptTestConfig['qunit']['testswarm-injectjs']
+			$testConfig['qunit']['testswarm-injectjs']
 		);
 	}
 
