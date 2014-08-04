@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : galician (gl)
+// moment.js locale configuration
+// locale : galician (gl)
 // author : Juan G. Hurtado : https://github.com/juanghurtado
 
 (function (factory) {
@@ -11,7 +11,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('gl', {
+    return moment.defineLocale('gl', {
         months : "Xaneiro_Febreiro_Marzo_Abril_Maio_Xuño_Xullo_Agosto_Setembro_Outubro_Novembro_Decembro".split("_"),
         monthsShort : "Xan._Feb._Mar._Abr._Mai._Xuñ._Xul._Ago._Set._Out._Nov._Dec.".split("_"),
         weekdays : "Domingo_Luns_Martes_Mércores_Xoves_Venres_Sábado".split("_"),

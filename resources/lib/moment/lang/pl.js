@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : polish (pl)
+// moment.js locale configuration
+// locale : polish (pl)
 // author : Rafal Hirsz : https://github.com/evoL
 
 (function (factory) {
@@ -36,7 +36,7 @@
         }
     }
 
-    return moment.lang('pl', {
+    return moment.defineLocale('pl', {
         months : function (momentToFormat, format) {
             if (/D MMMM/.test(format)) {
                 return monthsSubjective[momentToFormat.month()];

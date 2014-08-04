@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : german (de)
+// moment.js locale configuration
+// locale : german (de)
 // author : lluchs : https://github.com/lluchs
 // author: Menelion Elensúle: https://github.com/Oire
 
@@ -26,7 +26,7 @@
         return withoutSuffix ? format[key][0] : format[key][1];
     }
 
-    return moment.lang('de', {
+    return moment.defineLocale('de', {
         months : "Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember".split("_"),
         monthsShort : "Jan._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.".split("_"),
         weekdays : "Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag".split("_"),

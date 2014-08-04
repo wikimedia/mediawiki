@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : esperanto (eo)
+// moment.js locale configuration
+// locale : esperanto (eo)
 // author : Colin Dean : https://github.com/colindean
 // komento: Mi estas malcerta se mi korekte traktis akuzativojn en tiu traduko.
 //          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
@@ -13,7 +13,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('eo', {
+    return moment.defineLocale('eo', {
         months : "januaro_februaro_marto_aprilo_majo_junio_julio_aŭgusto_septembro_oktobro_novembro_decembro".split("_"),
         monthsShort : "jan_feb_mar_apr_maj_jun_jul_aŭg_sep_okt_nov_dec".split("_"),
         weekdays : "Dimanĉo_Lundo_Mardo_Merkredo_Ĵaŭdo_Vendredo_Sabato".split("_"),

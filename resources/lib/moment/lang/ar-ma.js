@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Moroccan Arabic (ar-ma)
+// moment.js locale configuration
+// locale : Moroccan Arabic (ar-ma)
 // author : ElFadili Yassine : https://github.com/ElFadiliY
 // author : Abdel Said : https://github.com/abdelsaid
 
@@ -12,7 +12,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('ar-ma', {
+    return moment.defineLocale('ar-ma', {
         months : "يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر".split("_"),
         monthsShort : "يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر".split("_"),
         weekdays : "الأحد_الإتنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت".split("_"),
