@@ -6687,12 +6687,7 @@ $wgLogHeaders = array(
  *
  * Extensions with custom log types may add to this array.
  */
-$wgLogActions = array(
-	'protect/protect' => 'protectedarticle',
-	'protect/modify' => 'modifiedarticleprotection',
-	'protect/unprotect' => 'unprotectedarticle',
-	'protect/move_prot' => 'movedarticleprotection',
-);
+$wgLogActions = array();
 
 /**
  * The same as above, but here values are names of functions,
@@ -6728,6 +6723,10 @@ $wgLogActionsHandlers = array(
 	'suppress/reblock' => 'BlockLogFormatter',
 	'import/upload' => 'LogFormatter',
 	'import/interwiki' => 'LogFormatter',
+	'protect/protect' => 'ProtectLogFormatter',
+	'protect/modify' => 'ProtectLogFormatter',
+	'protect/unprotect' => 'ProtectLogFormatter',
+	'protect/move_prot' => 'ProtectLogFormatter',
 );
 
 /**
