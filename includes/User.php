@@ -2266,6 +2266,8 @@ class User implements IDBAccessObject {
 	public function setPassword( $str ) {
 		global $wgAuth;
 
+		$this->loadPasswords();
+
 		if ( $str !== null ) {
 			if ( !$wgAuth->allowPasswordChange() ) {
 				throw new PasswordError( wfMessage( 'password-change-forbidden' )->text() );
@@ -2352,7 +2354,7 @@ class User implements IDBAccessObject {
 	 * @param bool $throttle If true, reset the throttle timestamp to the present
 	 */
 	public function setNewpassword( $str, $throttle = true ) {
-		$this->load();
+		$this->loadPasswords();
 
 		if ( $str === null ) {
 			$this->mNewpassword = '';
