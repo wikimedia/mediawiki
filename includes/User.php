@@ -181,8 +181,16 @@ class User implements IDBAccessObject {
 
 	public $mRealName;
 
+	/**
+	 * @todo Make this actually private
+	 * @private
+	 */
 	public $mPassword;
 
+	/**
+	 * @todo Make this actually private
+	 * @private
+	 */
 	public $mNewpassword;
 
 	public $mNewpassTime;
@@ -2245,6 +2253,26 @@ class User implements IDBAccessObject {
 	public function getTouched() {
 		$this->load();
 		return $this->mTouched;
+	}
+
+	/**
+	 * @return Password
+	 * @since 1.24
+	 */
+	public function getPassword() {
+		$this->loadPasswords();
+
+		return $this->mPassword;
+	}
+
+	/**
+	 * @return Password
+	 * @since 1.24
+	 */
+	public function getTemporaryPassword() {
+		$this->loadPasswords();
+
+		return $this->mNewpassword;
 	}
 
 	/**
