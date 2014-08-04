@@ -37,10 +37,6 @@ class SpecialExport extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgSitename, $wgExportAllowListContributors, $wgExportFromNamespaces;
-		global $wgExportAllowHistory, $wgExportMaxHistory, $wgExportMaxLinkDepth;
-		global $wgExportAllowAll;
-
 		$this->setHeaders();
 		$this->outputHeader();
 		$config = $this->getConfig();
