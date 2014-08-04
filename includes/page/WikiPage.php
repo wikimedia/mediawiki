@@ -2539,15 +2539,23 @@ class WikiPage implements Page, IDBAccessObject {
 			$params = array();
 		} else {
 			$protectDescriptionLog = $this->protectDescriptionLog( $limit, $expiry );
-			$params = array( $protectDescriptionLog, $cascade ? 'cascade' : '' );
+			$params = array(
+				'4::description' => $protectDescriptionLog,
+				'5::cascade' => $cascade ? 'cascade' : ''
+			);
 		}
 
 		// Update the protection log
-		$log = new LogPage( 'protect' );
-		$logId = $log->addEntry( $logAction, $this->mTitle, $reason, $params, $user );
+		$logEntry = new ManualLogEntry( 'protect', $logAction );
+		$logEntry->setTarget( $this->mTitle );
+		$logEntry->setComment( $reason );
+		$logEntry->setPerformer( $user );
+		$logEntry->setParameters( $params );
 		if ( $logRelationsField !== null && count( $logRelationsValues ) ) {
-			$log->addRelations( $logRelationsField, $logRelationsValues, $logId );
+			$logEntry->setRelations( array( $logRelationsField => $logRelationsValues ) );
 		}
+		$logId = $logEntry->insert();
+		$logEntry->publish( $logId );
 
 		return Status::newGood();
 	}
