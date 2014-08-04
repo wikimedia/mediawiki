@@ -46,6 +46,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * - protect/modifyprotect
 	 * - protect/unprotect
 	 * - upload/upload
+	 * - merge/merge
 	 *
 	 * As well as the following Auto Edit Summaries:
 	 * - blank
@@ -225,6 +226,25 @@ class RecentChangeTest extends MediaWikiTestCase {
 			$this->context->msg( 'overwroteimage', 'SomeTitle' )->plain() . $sep . $this->user_comment,
 			'upload', 'overwrite',
 			array(),
+			$this->user_comment
+		);
+	}
+
+	/**
+	 * @covers LogFormatter::getIRCActionText
+	 */
+	public function testIrcMsgForLogTypeMerge() {
+		$sep = $this->context->msg( 'colon-separator' )->text();
+
+		# merge/merge
+		$this->assertIRCComment(
+			$this->context->msg( 'pagemerge-logentry', 'SomeTitle', 'Dest', 'timestamp' )->plain()
+				. $sep . $this->user_comment,
+			'merge', 'merge',
+			array(
+				'4::dest' => 'Dest',
+				'5::mergepoint' => 'timestamp',
+			),
 			$this->user_comment
 		);
 	}

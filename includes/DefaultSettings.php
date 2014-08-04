@@ -6612,7 +6612,6 @@ $wgLogActions = array(
 	'protect/move_prot' => 'movedarticleprotection',
 	'import/upload' => 'import-logentry-upload',
 	'import/interwiki' => 'import-logentry-interwiki',
-	'merge/merge' => 'pagemerge-logentry',
 	'suppress/block' => 'blocklogentry',
 	'suppress/reblock' => 'reblock-logentry',
 );
@@ -6639,6 +6638,7 @@ $wgLogActionsHandlers = array(
 	'upload/upload' => 'LogFormatter',
 	'upload/overwrite' => 'LogFormatter',
 	'upload/revert' => 'LogFormatter',
+	'merge/merge' => 'MergeLogFormatter',
 );
 
 /**
