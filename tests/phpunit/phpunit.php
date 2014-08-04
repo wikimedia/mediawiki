@@ -148,17 +148,17 @@ class PHPUnitMaintClass extends Maintenance {
 		}
 
 		$key = array_search( '--debug-tests', $_SERVER['argv'] );
-		if( $key !== false && array_search( '--printer', $_SERVER['argv'] ) === false ) {
+		if ( $key !== false && array_search( '--printer', $_SERVER['argv'] ) === false ) {
 			unset( $_SERVER['argv'][$key] );
 			array_splice( $_SERVER['argv'], 1, 0, 'MediaWikiPHPUnitTestListener' );
 			array_splice( $_SERVER['argv'], 1, 0, '--printer' );
 		}
 
-		foreach( self::$additionalOptions as $option => $default ) {
+		foreach ( self::$additionalOptions as $option => $default ) {
 			$key = array_search( '--' . $option, $_SERVER['argv'] );
-			if( $key !== false ) {
+			if ( $key !== false ) {
 				unset( $_SERVER['argv'][$key] );
-				if( $this->mParams[$option]['withArg'] ) {
+				if ( $this->mParams[$option]['withArg'] ) {
 					self::$additionalOptions[$option] = $_SERVER['argv'][$key + 1];
 					unset( $_SERVER['argv'][$key + 1] );
 				} else {
@@ -179,11 +179,11 @@ class PHPUnitMaintClass extends Maintenance {
 	 */
 	private function forceFormatServerArgv() {
 		$argv = array();
-		foreach( $_SERVER['argv'] as $key => $arg ) {
-			if( $key === 0 ) {
+		foreach ( $_SERVER['argv'] as $key => $arg ) {
+			if ( $key === 0 ) {
 				$argv[0] = $arg;
 			} elseif ( strstr( $arg, '=' ) ) {
-				foreach( explode( '=', $arg, 2 ) as $argPart ) {
+				foreach ( explode( '=', $arg, 2 ) as $argPart ) {
 					$argv[] = $argPart;
 				}
 			} else {
@@ -209,12 +209,12 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
 
 $ok = false;
 
-foreach( array(
+foreach ( array(
 	stream_resolve_include_path( 'phpunit.phar' ),
 	'PHPUnit/Runner/Version.php',
 	'PHPUnit/Autoload.php'
 ) as $includePath ) {
-	@include_once( $includePath );
+	@include_once $includePath;
 	if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
 		$ok = true;
 		break;
