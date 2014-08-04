@@ -45,3 +45,25 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+// mw-ui-text-truncated
+//
+// Apply the mw-ui-text-truncated class to any element where long text is
+// expected. Use in Flow, Echo and MobileFrontend extensions.
+//
+// Markup:
+// <div class="mw-ui-text-truncated">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+// Cras magna diam, lacinia quis mi id, commodo convallis justo. Donec eget purus in elit cursus fringilla.
+// Nullam eu nibh id sapien aliquet pellentesque a sed lorem. Pellentesque habitant morbi tristique
+// senectus et netus et malesuada fames ac turpis egestas.
+// Vestibulum a nisl lectus. Aliquam erat volutpat. Vivamus tortor est, adipiscing in egestas eget, mollis ac est.
+// In et quam vestibulum, posuere lorem eu, dignissim ante. Ut felis eros, molestie et metus sed, viverra
+// tempor augue. Suspendisse at faucibus sem, ut elementum nisi. Donec gravida, dui ut porttitor tempus,
+// augue sem feugiat quam, vel consectetur orci ante et arcu. Vivamus est eros, ornare vehicula erat nec,
+// viverra suscipit urna.</div>
+.mw-ui-text-truncated {
+	white-space: nowrap;
+	overflow: hidden;
+	-webkit-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
