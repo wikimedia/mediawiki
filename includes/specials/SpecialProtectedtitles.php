@@ -133,8 +133,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @private
 	 */
 	function showOptions( $namespace, $type = 'edit', $level ) {
-		global $wgScript;
-		$action = htmlspecialchars( $wgScript );
+		$action = htmlspecialchars( wfScript() );
 		$title = $this->getPageTitle();
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 
@@ -175,14 +174,12 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @private
 	 */
 	function getLevelMenu( $pr_level ) {
-		global $wgRestrictionLevels;
-
 		// Temporary array
 		$m = array( $this->msg( 'restriction-level-all' )->text() => 0 );
 		$options = array();
 
 		// First pass to load the log names
-		foreach ( $wgRestrictionLevels as $type ) {
+		foreach ( $this->getConfig()->get( 'RestrictionLevels' ) as $type ) {
 			if ( $type != '' && $type != '*' ) {
 				// Messages: restriction-level-sysop, restriction-level-autoconfirmed
 				$text = $this->msg( "restriction-level-$type" )->text();
