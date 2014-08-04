@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Bengali (bn)
+// moment.js locale configuration
+// locale : Bengali (bn)
 // author : Kaushik Gandhi : https://github.com/kaushikgandhi
 
 (function (factory) {
@@ -36,7 +36,7 @@
         '০': '0'
     };
 
-    return moment.lang('bn', {
+    return moment.defineLocale('bn', {
         months : 'জানুয়ারী_ফেবুয়ারী_মার্চ_এপ্রিল_মে_জুন_জুলাই_অগাস্ট_সেপ্টেম্বর_অক্টোবর_নভেম্বর_ডিসেম্বর'.split("_"),
         monthsShort : 'জানু_ফেব_মার্চ_এপর_মে_জুন_জুল_অগ_সেপ্ট_অক্টো_নভ_ডিসেম্'.split("_"),
         weekdays : 'রবিবার_সোমবার_মঙ্গলবার_বুধবার_বৃহস্পত্তিবার_শুক্রুবার_শনিবার'.split("_"),
@@ -82,7 +82,7 @@
                 return symbolMap[match];
             });
         },
-        //Bengali is a vast language its spoken 
+        //Bengali is a vast language its spoken
         //in different forms in various parts of the world.
         //I have just generalized with most common one used
         meridiem : function (hour, minute, isLower) {
