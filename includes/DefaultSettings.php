@@ -6558,9 +6558,6 @@ $wgLogHeaders = array(
  * Extensions with custom log types may add to this array.
  */
 $wgLogActions = array(
-	'block/block' => 'blocklogentry',
-	'block/unblock' => 'unblocklogentry',
-	'block/reblock' => 'reblock-logentry',
 	'protect/protect' => 'protectedarticle',
 	'protect/modify' => 'modifiedarticleprotection',
 	'protect/unprotect' => 'unprotectedarticle',
@@ -6568,8 +6565,6 @@ $wgLogActions = array(
 	'import/upload' => 'import-logentry-upload',
 	'import/interwiki' => 'import-logentry-interwiki',
 	'merge/merge' => 'pagemerge-logentry',
-	'suppress/block' => 'blocklogentry',
-	'suppress/reblock' => 'reblock-logentry',
 );
 
 /**
@@ -6594,6 +6589,11 @@ $wgLogActionsHandlers = array(
 	'upload/upload' => 'LogFormatter',
 	'upload/overwrite' => 'LogFormatter',
 	'upload/revert' => 'LogFormatter',
+	'block/block' => 'BlockLogFormatter',
+	'block/unblock' => 'BlockLogFormatter',
+	'block/reblock' => 'BlockLogFormatter',
+	'suppress/block' => 'BlockLogFormatter',
+	'suppress/reblock' => 'BlockLogFormatter',
 );
 
 /**
