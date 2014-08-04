@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Persian Language
+// moment.js locale configuration
+// locale : Persian
 // author : Ebrahim Byagowi : https://github.com/ebraminio
 
 (function (factory) {
@@ -35,7 +35,7 @@
         '۰': '0'
     };
 
-    return moment.lang('fa', {
+    return moment.defineLocale('fa', {
         months : 'ژانویه_فوریه_مارس_آوریل_مه_ژوئن_ژوئیه_اوت_سپتامبر_اکتبر_نوامبر_دسامبر'.split('_'),
         monthsShort : 'ژانویه_فوریه_مارس_آوریل_مه_ژوئن_ژوئیه_اوت_سپتامبر_اکتبر_نوامبر_دسامبر'.split('_'),
         weekdays : 'یک\u200cشنبه_دوشنبه_سه\u200cشنبه_چهارشنبه_پنج\u200cشنبه_جمعه_شنبه'.split('_'),

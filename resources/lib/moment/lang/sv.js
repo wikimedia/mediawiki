@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : swedish (sv)
+// moment.js locale configuration
+// locale : swedish (sv)
 // author : Jens Alm : https://github.com/ulmus
 
 (function (factory) {
@@ -11,7 +11,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('sv', {
+    return moment.defineLocale('sv', {
         months : "januari_februari_mars_april_maj_juni_juli_augusti_september_oktober_november_december".split("_"),
         monthsShort : "jan_feb_mar_apr_maj_jun_jul_aug_sep_okt_nov_dec".split("_"),
         weekdays : "söndag_måndag_tisdag_onsdag_torsdag_fredag_lördag".split("_"),
@@ -49,7 +49,7 @@
         },
         ordinal : function (number) {
             var b = number % 10,
-                output = (~~ (number % 100 / 10) === 1) ? 'e' :
+                output = (~~(number % 100 / 10) === 1) ? 'e' :
                 (b === 1) ? 'a' :
                 (b === 2) ? 'a' :
                 (b === 3) ? 'e' : 'e';
