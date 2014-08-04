@@ -63,7 +63,6 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	 * @return Title|null
 	 */
 	public function findTitle( $par ) {
-		global $wgLanguageCode;
 		// base = title without language code suffix
 		// provided = the title as it was given
 		$base = $provided = Title::newFromText( $par );
@@ -83,7 +82,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 
 		$uiCode = $this->getLanguage()->getCode();
 		$proposed = $base->getSubpage( $uiCode );
-		if ( $uiCode !== $wgLanguageCode && $proposed && $proposed->exists() ) {
+		if ( $uiCode !== $this->getConfig()->get( 'LanguageCode' ) && $proposed && $proposed->exists() ) {
 			return $proposed;
 		} elseif ( $provided && $provided->exists() ) {
 			return $provided;
