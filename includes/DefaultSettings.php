@@ -6640,6 +6640,8 @@ $wgLogActionsHandlers = array(
 	'upload/overwrite' => 'LogFormatter',
 	'upload/revert' => 'LogFormatter',
 	'merge/merge' => 'MergeLogFormatter',
+	'import/upload' => 'LogFormatter',
+	'import/interwiki' => 'LogFormatter',
 );
 
 /**
