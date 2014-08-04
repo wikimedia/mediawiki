@@ -4963,26 +4963,4 @@ class User implements IDBAccessObject {
 			'user_editcount',
 		);
 	}
-
-	/**
-	 * Factory function for fatal permission-denied errors
-	 *
-	 * @since 1.22
-	 * @param string $permission User right required
-	 * @return Status
-	 */
-	static function newFatalPermissionDeniedStatus( $permission ) {
-		global $wgLang;
-
-		$groups = array_map(
-			array( 'User', 'makeGroupLinkWiki' ),
-			User::getGroupsWithPermission( $permission )
-		);
-
-		if ( $groups ) {
-			return Status::newFatal( 'badaccess-groups', $wgLang->commaList( $groups ), count( $groups ) );
-		} else {
-			return Status::newFatal( 'badaccess-group0' );
-		}
-	}
 }

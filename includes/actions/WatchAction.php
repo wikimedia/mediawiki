@@ -133,7 +133,7 @@ class WatchAction extends FormAction {
 		if ( $checkRights !== WatchedItem::IGNORE_USER_RIGHTS &&
 			!$user->isAllowed( 'editmywatchlist' )
 		) {
-			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
+			throw new PermissionsError( 'editmywatchlist' );
 		}
 
 		$page = WikiPage::factory( $title );
@@ -157,7 +157,7 @@ class WatchAction extends FormAction {
 	 */
 	public static function doUnwatch( Title $title, User $user ) {
 		if ( !$user->isAllowed( 'editmywatchlist' ) ) {
-			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
+			throw new PermissionsError( 'editmywatchlist' );
 		}
 
 		$page = WikiPage::factory( $title );
