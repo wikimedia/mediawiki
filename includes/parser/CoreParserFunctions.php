@@ -33,7 +33,7 @@ class CoreParserFunctions {
 	static function register( $parser ) {
 		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
 
-		# Syntax for arguments (see self::setFunctionHook):
+		# Syntax for arguments (see Parser::setFunctionHook):
 		#  "name for lookup in localized magic words array",
 		#  function callback,
 		#  optional SFH_NO_HASH to omit the hash from calls (e.g. {{int:...}}
