@@ -3470,6 +3470,8 @@
 	"logentry-block-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiry time of $5 $6",
+	"logentry-import-upload": "$1 {{GENDER:$2|imported}} $3 by file upload",
+	"logentry-import-interwiki": "$1 {{GENDER:$2|transwikied}} $3",
 	"logentry-merge-merge": "$1 {{GENDER:$2|merged}} $3 into $4 (revisions up to $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|moved}} page $3 to $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|moved}} page $3 to $4 without leaving a redirect",
