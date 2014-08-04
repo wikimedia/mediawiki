@@ -1166,15 +1166,50 @@ class ImageHistoryList extends ContextSource {
 	 * @param ImagePage $imagePage
 	 */
 	public function __construct( $imagePage ) {
-		global $wgShowArchiveThumbnails;
+		$this->setup( $imagePage );
+
 		$this->current = $imagePage->getFile();
 		$this->img = $imagePage->getDisplayedFile();
 		$this->title = $imagePage->getTitle();
 		$this->imagePage = $imagePage;
-		$this->showThumb = $wgShowArchiveThumbnails && $this->img->canRender();
+		$this->showThumb = !$this->opts->getValue( 'hidethumb' ) && $this->img->canRender();
 		$this->setContext( $imagePage->getContext() );
 	}
+	
+	/**
+	 * Create a FormOptions object with options as specified by the user
+	 *
+	 * @param array $par
+	 */
+	protected function setup( $par ) {
+		// To be able to add more options
+		$opts = new FormOptions();
+		$this->opts = $opts;
+		$opts->add( 'hidethumb', false );
 
+		// Set values
+		$opts->fetchValuesFromRequest( $this->getRequest() );
+		if ( $par ) {
+			$this->parseParams( $par );
+		}
+
+		// Validate
+		$opts->validateIntBounds( 'limit', 0, 5000 );
+	}
+
+	/**
+	 * Set default state of parameters
+	 * 
+	 * @param array $par
+	 */
+	protected function parseParams( $par ) {
+		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
+		foreach ( $bits as $bit ) {
+			if ( 'hidethumb' === $bit ) {
+				$this->opts->setValue( 'hidethumb', true );
+			}
+		}
+	}
 	/**
 	 * @return ImagePage
 	 */
@@ -1198,6 +1233,9 @@ class ImageHistoryList extends ContextSource {
 			. "\n"
 			. "<div id=\"mw-imagepage-section-filehistory\">\n"
 			. $this->msg( 'filehist-help' )->parseAsBlock()
+			. '<tr><td></td><td class="mw-input">'
+			. $this->filterLinks()
+			. '</td></tr>'
 			. $navLinks . "\n"
 			. Xml::openElement( 'table', array( 'class' => 'wikitable filehistory' ) ) . "\n"
 			. '<tr><td></td>'
@@ -1435,6 +1473,39 @@ class ImageHistoryList extends ContextSource {
 	 */
 	public function getPreventClickjacking() {
 		return $this->preventClickjacking;
+	}
+
+	/**
+	 * Create links to modify the state of filters
+	 *
+	 * @return array
+	 */
+	protected function filterLinks() {
+		// show/hide links
+		$showhide = array( $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() );
+
+		// Option value -> message mapping
+		$filters = array(
+			'hidethumb' => 'filehist-showhidethumb',
+		);
+		foreach ( $this->customFilters as $key => $params ) {
+			$filters[$key] = $params['msg'];
+		}
+
+		$links = array();
+		$changed = $this->opts->getChangedValues();
+		unset( $changed['offset'] ); // Reset offset if query type changes
+
+		$self = $this->getPageTitle();
+		foreach ( $filters as $key => $msg ) {
+			$onoff = 1 - $this->opts->getValue( $key );
+			$link = Linker::link( $self, $showhide[$onoff], array(),
+				array( $key => $onoff ) + $changed
+			);
+			$links[$key] = $this->msg( $msg )->rawParams( $link )->escaped();
+		}
+
+		return $this->getLanguage()->pipeList( $links );
 	}
 }
 
