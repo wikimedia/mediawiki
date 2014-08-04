@@ -1406,7 +1406,7 @@
 	"nolicense": "Nie wybrano",
 	"licenses-edit": "Edytuj opcje licencji",
 	"license-nopreview": "(Podgląd niedostępny)",
-	"upload_source_url": " (poprawny, publicznie dostępny adres URL)",
+	"upload_source_url": "(wybrany plik z prawidłowego, publicznie dostępnego adresu URL)",
 	"upload_source_file": "(wybrany plik na twoim komputerze)",
 	"listfiles-delete": "usuń",
 	"listfiles-summary": "Na tej stronie specjalnej prezentowane są wszystkie przesłane pliki.",
