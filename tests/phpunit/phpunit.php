@@ -198,36 +198,36 @@ class PHPUnitMaintClass extends Maintenance {
 $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
 
-$pharFile = stream_resolve_include_path( 'phpunit.phar' );
-$isValidPhar = Phar::isValidPharFilename( $pharFile );
-
-if ( !$isValidPhar && !class_exists( 'PHPUnit_Runner_Version' ) ) {
-	// try loading phpunit via PEAR
-	require_once 'PHPUnit/Runner/Version.php';
-}
-
 // Prevent segfault when we have lots of unit tests (bug 62623)
-if ( version_compare( PHP_VERSION, '5.4.0', '<' )
-	&& version_compare( PHP_VERSION, '5.3.0', '>=' )
-) {
+if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
 	register_shutdown_function( function () {
 		gc_collect_cycles();
 		gc_disable();
 	} );
 }
 
-if ( $isValidPhar ) {
-	require $pharFile;
-} else {
-	if ( PHPUnit_Runner_Version::id() !== '@package_version@'
-	    && version_compare( PHPUnit_Runner_Version::id(), '3.7.0', '<' )
-	) {
-	    die( 'PHPUnit 3.7.0 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
-	}
 
-	if ( !class_exists( 'PHPUnit_TextUI_Command' ) ) {
-	    require_once 'PHPUnit/Autoload.php';
-	}
+$ok = false;
 
-	PHPUnit_TextUI_Command::main();
+foreach( array(
+	stream_resolve_include_path( 'phpunit.phar' ),
+	'PHPUnit/Runner/Version.php',
+	'PHPUnit/Autoload.php'
+) as $includePath ) {
+	@include_once( $includePath );
+	if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
+		$ok = true;
+		break;
+	}
 }
+
+if ( !$ok ) {
+	die( "Couldn't find a usable PHPUnit.\n" );
+}
+
+$puVersion = PHPUnit_Runner_Version::id();
+if ( $puVersion !== '@package_version@' && version_compare( $puVersion, '3.7.0', '<' ) ) {
+	die( "PHPUnit 3.7.0 or later required; you have {$puVersion}.\n" );
+}
+
+PHPUnit_TextUI_Command::main();
