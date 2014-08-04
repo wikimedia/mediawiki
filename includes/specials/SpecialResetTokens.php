@@ -40,16 +40,15 @@ class SpecialResetTokens extends FormSpecialPage {
 	 * @return array
 	 */
 	protected function getTokensList() {
-		global $wgHiddenPrefs;
-
 		if ( !isset( $this->tokensList ) ) {
 			$tokens = array(
 				array( 'preference' => 'watchlisttoken', 'label-message' => 'resettokens-watchlist-token' ),
 			);
 			wfRunHooks( 'SpecialResetTokensTokens', array( &$tokens ) );
 
-			$tokens = array_filter( $tokens, function ( $tok ) use ( $wgHiddenPrefs ) {
-				return !in_array( $tok['preference'], $wgHiddenPrefs );
+			$hiddenPrefs = $this->getConfig()->get( 'HiddenPrefs' );
+			$tokens = array_filter( $tokens, function ( $tok ) use ( $hiddenPrefs ) {
+				return !in_array( $tok['preference'], $hiddenPrefs );
 			} );
 
 			$this->tokensList = $tokens;
