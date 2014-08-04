@@ -984,7 +984,7 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * @throws MWException
 	 * @param string|int $key
-	 * @param string|PPNode_Hash|DOMDocument $root
+	 * @param string|PPNode $root
 	 * @param int $flags
 	 * @return string
 	 */
@@ -1504,7 +1504,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	/**
 	 * @throws MWException
 	 * @param string|int $key
-	 * @param string|PPNode_Hash|DOMDocument $root
+	 * @param string|PPNode $root
 	 * @param int $flags
 	 * @return string
 	 */
