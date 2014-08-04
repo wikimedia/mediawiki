@@ -1062,11 +1062,6 @@ $wgIgnoreImageErrors = false;
 $wgGenerateThumbnailOnParse = true;
 
 /**
- * Show thumbnails for old images on the image description page
- */
-$wgShowArchiveThumbnails = true;
-
-/**
  * If set to true, images that contain certain the exif orientation tag will
  * be rotated accordingly. If set to null, try to auto-detect whether a scaler
  * is available that can rotate.
