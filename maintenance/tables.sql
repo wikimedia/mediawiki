@@ -736,7 +736,7 @@ CREATE UNIQUE INDEX /*i*/ss_row_id ON /*_*/site_stats (ss_row_id);
 --
 CREATE TABLE /*_*/hitcounter (
   hc_id int unsigned NOT NULL
-) ENGINE=HEAP MAX_ROWS=25000;
+) ENGINE=MEMORY MAX_ROWS=25000;
 
 
 --
