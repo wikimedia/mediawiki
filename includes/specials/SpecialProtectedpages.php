@@ -103,11 +103,9 @@ class SpecialProtectedpages extends SpecialPage {
 	protected function showOptions( $namespace, $type = 'edit', $level, $sizetype,
 		$size, $indefOnly, $cascadeOnly, $noRedirect
 	) {
-		global $wgScript;
-
 		$title = $this->getPageTitle();
 
-		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), $this->msg( 'protectedpages' )->text() ) .
 			Html::hidden( 'title', $title->getPrefixedDBkey() ) . "\n" .
@@ -252,14 +250,12 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @return string Formatted HTML
 	 */
 	protected function getLevelMenu( $pr_level ) {
-		global $wgRestrictionLevels;
-
 		// Temporary array
 		$m = array( $this->msg( 'restriction-level-all' )->text() => 0 );
 		$options = array();
 
 		// First pass to load the log names
-		foreach ( $wgRestrictionLevels as $type ) {
+		foreach ( $this->getConfig()->get( 'RestrictionLevels' ) as $type ) {
 			// Messages used can be 'restriction-level-sysop' and 'restriction-level-autoconfirmed'
 			if ( $type != '' && $type != '*' ) {
 				$text = $this->msg( "restriction-level-$type" )->text();
