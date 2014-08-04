@@ -192,8 +192,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
 	 */
 	public function doMainQuery( $conds, $opts ) {
-		global $wgAllowCategorizedRecentChanges;
-
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
@@ -247,7 +245,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		);
 
 		// Build the final data
-		if ( $wgAllowCategorizedRecentChanges ) {
+		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
 			$this->filterByCategories( $rows, $opts );
 		}
 
@@ -273,14 +271,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return array
 	 */
 	private function getFeedQuery() {
-		global $wgFeedLimit;
 		$query = array_filter( $this->getOptions()->getAllValues(), function ( $value ) {
 			// API handles empty parameters in a different way
 			return $value !== '';
 		} );
 		$query['action'] = 'feedrecentchanges';
-		if ( $query['limit'] > $wgFeedLimit ) {
-			$query['limit'] = $wgFeedLimit;
+		$feedLimit = $this->getConfig()->get( 'FeedLimit' );
+		if ( $query['limit'] > $feedLimit ) {
+			$query['limit'] = $feedLimit;
 		}
 
 		return $query;
@@ -293,11 +291,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param FormOptions $opts
 	 */
 	public function outputChangesList( $rows, $opts ) {
-		global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
-
 		$limit = $opts['limit'];
 
-		$showWatcherCount = $wgRCShowWatchingUsers
+		$showWatcherCount = $this->getConfig()->get( 'RCShowWatchingUsers' )
 			&& $this->getUser()->getOption( 'shownumberswatching' );
 		$watcherCache = array();
 
@@ -315,7 +311,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$rc = RecentChange::newFromRow( $obj );
 			$rc->counter = $counter++;
 			# Check if the page has been updated since the last visit
-			if ( $wgShowUpdatedMarker && !empty( $obj->wl_notificationtimestamp ) ) {
+			if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) && !empty( $obj->wl_notificationtimestamp ) ) {
 				$rc->notificationtimestamp = ( $obj->rc_timestamp >= $obj->wl_notificationtimestamp );
 			} else {
 				$rc->notificationtimestamp = false; // Default
@@ -367,8 +363,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param int $numRows Number of rows in the result to show after this header
 	 */
 	public function doHeader( $opts, $numRows ) {
-		global $wgScript;
-
 		$this->setTopText( $opts );
 
 		$defaults = $opts->getAllValues();
@@ -420,7 +414,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$t = $this->getPageTitle();
 		$out .= Html::hidden( 'title', $t->getPrefixedText() );
-		$form = Xml::tags( 'form', array( 'action' => $wgScript ), $out );
+		$form = Xml::tags( 'form', array( 'action' => wfScript() ), $out );
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
@@ -470,8 +464,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$extraOpts = array();
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
 
-		global $wgAllowCategorizedRecentChanges;
-		if ( $wgAllowCategorizedRecentChanges ) {
+		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
 			$extraOpts['category'] = $this->categoryFilterForm( $opts );
 		}
 
@@ -655,8 +648,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return string
 	 */
 	function optionsPanel( $defaults, $nondefaults, $numRows ) {
-		global $wgRCLinkLimits, $wgRCLinkDays;
-
 		$options = $nondefaults + $defaults;
 
 		$note = '';
@@ -680,12 +671,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		# Sort data for display and make sure it's unique after we've added user data.
-		$linkLimits = $wgRCLinkLimits;
+		$linkLimits = $this->getConfig()->get( 'RCLinkLimits' );
 		$linkLimits[] = $options['limit'];
 		sort( $linkLimits );
 		$linkLimits = array_unique( $linkLimits );
 
-		$linkDays = $wgRCLinkDays;
+		$linkDays = $this->getConfig()->get( 'RCLinkDays' );
 		$linkDays[] = $options['days'];
 		sort( $linkDays );
 		$linkDays = array_unique( $linkDays );
