@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : faroese (fo)
+// moment.js locale configuration
+// locale : faroese (fo)
 // author : Ragnar Johannesen : https://github.com/ragnar123
 
 (function (factory) {
@@ -11,7 +11,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('fo', {
+    return moment.defineLocale('fo', {
         months : "januar_februar_mars_apríl_mai_juni_juli_august_september_oktober_november_desember".split("_"),
         monthsShort : "jan_feb_mar_apr_mai_jun_jul_aug_sep_okt_nov_des".split("_"),
         weekdays : "sunnudagur_mánadagur_týsdagur_mikudagur_hósdagur_fríggjadagur_leygardagur".split("_"),

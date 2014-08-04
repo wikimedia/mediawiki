@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Tagalog/Filipino (tl-ph)
+// moment.js locale configuration
+// locale : Tagalog/Filipino (tl-ph)
 // author : Dan Hagman
 
 (function (factory) {
@@ -11,7 +11,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('tl-ph', {
+    return moment.defineLocale('tl-ph', {
         months : "Enero_Pebrero_Marso_Abril_Mayo_Hunyo_Hulyo_Agosto_Setyembre_Oktubre_Nobyembre_Disyembre".split("_"),
         monthsShort : "Ene_Peb_Mar_Abr_May_Hun_Hul_Ago_Set_Okt_Nob_Dis".split("_"),
         weekdays : "Linggo_Lunes_Martes_Miyerkules_Huwebes_Biyernes_Sabado".split("_"),
