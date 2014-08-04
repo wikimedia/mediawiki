@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : chuvash (cv)
+// moment.js locale configuration
+// locale : chuvash (cv)
 // author : Anatoly Mironov : https://github.com/mirontoli
 
 (function (factory) {
@@ -11,7 +11,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('cv', {
+    return moment.defineLocale('cv', {
         months : "кăрлач_нарăс_пуш_ака_май_çĕртме_утă_çурла_авăн_юпа_чӳк_раштав".split("_"),
         monthsShort : "кăр_нар_пуш_ака_май_çĕр_утă_çур_ав_юпа_чӳк_раш".split("_"),
         weekdays : "вырсарникун_тунтикун_ытларикун_юнкун_кĕçнерникун_эрнекун_шăматкун".split("_"),

@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : russian (ru)
+// moment.js locale configuration
+// locale : russian (ru)
 // author : Viktorminator : https://github.com/Viktorminator
 // Author : Menelion Elensúle : https://github.com/Oire
 
@@ -72,7 +72,7 @@
         return weekdays[nounCase][m.day()];
     }
 
-    return moment.lang('ru', {
+    return moment.defineLocale('ru', {
         months : monthsCaseReplace,
         monthsShort : monthsShortCaseReplace,
         weekdays : weekdaysCaseReplace,
