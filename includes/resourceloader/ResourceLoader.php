@@ -493,7 +493,7 @@ class ResourceLoader {
 	 * Return whether the definition of a module corresponds to a simple ResourceLoaderFileModule.
 	 *
 	 * @param string $name Module name
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function isFileModule( $name ) {
 		if ( !isset( $this->moduleInfos[$name] ) ) {
