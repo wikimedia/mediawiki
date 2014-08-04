@@ -98,8 +98,8 @@ final class PasswordFactory {
 	 * if a null hash is given.
 	 *
 	 * @param string|null $hash Existing hash or null for an invalid password
-	 * @return Password object
-	 * @throws PasswordError if hash is invalid or type is not recognized
+	 * @return Password
+	 * @throws PasswordError If hash is invalid or type is not recognized
 	 */
 	public function newFromCiphertext( $hash ) {
 		if ( $hash === null || $hash === false || $hash === '' ) {
@@ -122,8 +122,8 @@ final class PasswordFactory {
 	 * Make a new default password of the given type.
 	 *
 	 * @param string $type Existing type
-	 * @return Password object
-	 * @throws PasswordError if hash is invalid or type is not recognized
+	 * @return Password
+	 * @throws PasswordError If hash is invalid or type is not recognized
 	 */
 	public function newFromType( $type ) {
 		if ( !isset( $this->types[$type] ) ) {
@@ -143,7 +143,7 @@ final class PasswordFactory {
 	 *
 	 * @param string $password Plaintext password
 	 * @param Password|null $existing Optional existing hash to get options from
-	 * @return Password object
+	 * @return Password
 	 */
 	public function newFromPlaintext( $password, Password $existing = null ) {
 		if ( $existing === null ) {

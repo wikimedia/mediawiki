@@ -799,8 +799,8 @@ class ParserOutput extends CacheTime {
 	 * Get or set the prevent-clickjacking flag
 	 *
 	 * @since 1.24
-	 * @param boolean|null $flag New flag value, or null to leave it unchanged
-	 * @return boolean Old flag value
+	 * @param bool|null $flag New flag value, or null to leave it unchanged
+	 * @return bool Old flag value
 	 */
 	public function preventClickjacking( $flag = null ) {
 		return wfSetVar( $this->mPreventClickjacking, $flag );

@@ -1971,7 +1971,7 @@ class OutputPage extends ContextSource {
 	 * Get the prevent-clickjacking flag
 	 *
 	 * @since 1.24
-	 * @return boolean
+	 * @return bool
 	 */
 	public function getPreventClickjacking() {
 		return $this->mPreventClickjacking;
