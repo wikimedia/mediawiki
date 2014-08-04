@@ -327,6 +327,21 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					$params['img_timestamp'] = wfTimestamp( TS_ISO_8601, $params['img_timestamp'] );
 				}
 				break;
+			case 'protect':
+				// replace the named parameter with numbered for backward compatibility
+				if ( isset( $params['4::description'] ) ) {
+					$params[] = $params['4::description'];
+					unset( $params['4::description'] );
+				}
+				if ( isset( $params['5::cascade'] ) ) {
+					$params[] = $params['5::cascade'];
+					unset( $params['5::cascade'] );
+				}
+				if ( isset( $params['4::oldtitle'] ) ) {
+					$params[] = $params['4::oldtitle'];
+					unset( $params['4::oldtitle'] );
+				}
+				break;
 		}
 		if ( !is_null( $params ) ) {
 			$logParams = array();
