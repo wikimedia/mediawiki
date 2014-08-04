@@ -45,6 +45,8 @@ class SpecialLog extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		global $wgLogRestrictions;
+
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -59,6 +61,7 @@ class SpecialLog extends SpecialPage {
 		$opts->add( 'offset', '' );
 		$opts->add( 'dir', '' );
 		$opts->add( 'offender', '' );
+		$opts->add( 'logid', '' );
 
 		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
@@ -75,14 +78,13 @@ class SpecialLog extends SpecialPage {
 		// If the user doesn't have the right permission to view the specific
 		// log type, throw a PermissionsError
 		// If the log type is invalid, just show all public logs
-		$logRestrictions = $this->getConfig()->get( 'LogRestrictions' );
 		$type = $opts->getValue( 'type' );
 		if ( !LogPage::isLogType( $type ) ) {
 			$opts->setValue( 'type', '' );
-		} elseif ( isset( $logRestrictions[$type] )
-			&& !$this->getUser()->isAllowed( $logRestrictions[$type] )
+		} elseif ( isset( $wgLogRestrictions[$type] )
+			&& !$this->getUser()->isAllowed( $wgLogRestrictions[$type] )
 		) {
-			throw new PermissionsError( $logRestrictions[$type] );
+			throw new PermissionsError( $wgLogRestrictions[$type] );
 		}
 
 		# Handle type-specific inputs
@@ -122,25 +124,32 @@ class SpecialLog extends SpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit = 10 ) {
-		$subpages = $this->getConfig()->get( 'LogTypes' );
+		global $wgLogTypes;
+		$subpages = $wgLogTypes;
 		$subpages[] = 'all';
 		sort( $subpages );
 		return self::prefixSearchArray( $search, $limit, $subpages );
 	}
 
 	private function parseParams( FormOptions $opts, $par ) {
+		global $wgLogTypes;
+
 		# Get parameters
 		$parms = explode( '/', ( $par = ( $par !== null ) ? $par : '' ) );
 		$symsForAll = array( '*', 'all' );
 		if ( $parms[0] != '' &&
-			( in_array( $par, $this->getConfig()->get( 'LogTypes' ) ) || in_array( $par, $symsForAll ) )
+			( in_array( $par, $wgLogTypes ) || in_array( $par, $symsForAll ) )
 		) {
 			$opts->setValue( 'type', $par );
 		} elseif ( count( $parms ) == 2 ) {
 			$opts->setValue( 'type', $parms[0] );
 			$opts->setValue( 'user', $parms[1] );
 		} elseif ( $par != '' ) {
-			$opts->setValue( 'user', $par );
+			if ( is_numeric( $par) ) {
+				$opts->setValue( 'logid', $par );
+			} else {
+				$opts->setValue( 'user', $par );
+			}
 		}
 	}
 
@@ -160,7 +169,8 @@ class SpecialLog extends SpecialPage {
 			$extraConds,
 			$opts->getValue( 'year' ),
 			$opts->getValue( 'month' ),
-			$opts->getValue( 'tagfilter' )
+			$opts->getValue( 'tagfilter' ),
+			$opts->getValue( 'logid' )
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );
@@ -207,9 +217,10 @@ class SpecialLog extends SpecialPage {
 		}
 
 		# Show button to hide log entries
+		global $wgScript;
 		$s = Html::openElement(
 			'form',
-			array( 'action' => wfScript(), 'id' => 'mw-log-deleterevision-submit' )
+			array( 'action' => $wgScript, 'id' => 'mw-log-deleterevision-submit' )
 		) . "\n";
 		$s .= Html::hidden( 'title', SpecialPage::getTitleFor( 'Revisiondelete' ) ) . "\n";
 		$s .= Html::hidden( 'target', SpecialPage::getTitleFor( 'Log' ) ) . "\n";

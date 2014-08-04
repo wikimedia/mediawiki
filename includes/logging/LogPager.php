@@ -59,7 +59,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param string $tagFilter Tag
 	 */
 	public function __construct( $list, $types = array(), $performer = '', $title = '', $pattern = '',
-		$conds = array(), $year = false, $month = false, $tagFilter = '' ) {
+		$conds = array(), $year = false, $month = false, $tagFilter = '', $logId = false ) {
 		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
 
@@ -70,6 +70,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitTitle( $title, $pattern );
 		$this->getDateCond( $year, $month );
 		$this->mTagFilter = $tagFilter;
+		$this->limitLogId( $logId );
 
 		$this->mDb = wfGetDB( DB_SLAVE, 'logpager' );
 	}
@@ -103,6 +104,13 @@ class LogPager extends ReverseChronologicalPager {
 		}
 
 		return $filters;
+	}
+
+	private function limitLogId( $logId ) {
+		if ( !$logId ) {
+			return false;
+		}
+		$this->mConds['log_id'] = $logId;
 	}
 
 	/**
