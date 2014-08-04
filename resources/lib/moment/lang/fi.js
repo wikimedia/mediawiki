@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : finnish (fi)
+// moment.js locale configuration
+// locale : finnish (fi)
 // author : Tarmo Aidantausta : https://github.com/bleadof
 
 (function (factory) {
@@ -12,8 +12,10 @@
     }
 }(function (moment) {
     var numbersPast = 'nolla yksi kaksi kolme neljä viisi kuusi seitsemän kahdeksan yhdeksän'.split(' '),
-        numbersFuture = ['nolla', 'yhden', 'kahden', 'kolmen', 'neljän', 'viiden', 'kuuden',
-                          numbersPast[7], numbersPast[8], numbersPast[9]];
+        numbersFuture = [
+            'nolla', 'yhden', 'kahden', 'kolmen', 'neljän', 'viiden', 'kuuden',
+            numbersPast[7], numbersPast[8], numbersPast[9]
+        ];
 
     function translate(number, withoutSuffix, key, isFuture) {
         var result = "";
@@ -54,7 +56,7 @@
         return number < 10 ? (isFuture ? numbersFuture[number] : numbersPast[number]) : number;
     }
 
-    return moment.lang('fi', {
+    return moment.defineLocale('fi', {
         months : "tammikuu_helmikuu_maaliskuu_huhtikuu_toukokuu_kesäkuu_heinäkuu_elokuu_syyskuu_lokakuu_marraskuu_joulukuu".split("_"),
         monthsShort : "tammi_helmi_maalis_huhti_touko_kesä_heinä_elo_syys_loka_marras_joulu".split("_"),
         weekdays : "sunnuntai_maanantai_tiistai_keskiviikko_torstai_perjantai_lauantai".split("_"),

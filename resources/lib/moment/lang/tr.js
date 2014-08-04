@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : turkish (tr)
+// moment.js locale configuration
+// locale : turkish (tr)
 // authors : Erhan Gundogan : https://github.com/erhangundogan,
 //           Burak Yiğit Kaya: https://github.com/BYK
 
@@ -12,7 +12,6 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-
     var suffixes = {
         1: "'inci",
         5: "'inci",
@@ -39,7 +38,7 @@
         90: "'ıncı"
     };
 
-    return moment.lang('tr', {
+    return moment.defineLocale('tr', {
         months : "Ocak_Şubat_Mart_Nisan_Mayıs_Haziran_Temmuz_Ağustos_Eylül_Ekim_Kasım_Aralık".split("_"),
         monthsShort : "Oca_Şub_Mar_Nis_May_Haz_Tem_Ağu_Eyl_Eki_Kas_Ara".split("_"),
         weekdays : "Pazar_Pazartesi_Salı_Çarşamba_Perşembe_Cuma_Cumartesi".split("_"),

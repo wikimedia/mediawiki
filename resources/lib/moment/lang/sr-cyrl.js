@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Serbian-cyrillic (sr-cyrl)
+// moment.js locale configuration
+// locale : Serbian-cyrillic (sr-cyrl)
 // author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 (function (factory) {
@@ -11,7 +11,6 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-
     var translator = {
         words: { //Different grammatical cases
             m: ['један минут', 'једне минуте'],
@@ -35,7 +34,7 @@
         }
     };
 
-    return moment.lang('sr-cyrl', {
+    return moment.defineLocale('sr-cyrl', {
         months: ['јануар', 'фебруар', 'март', 'април', 'мај', 'јун', 'јул', 'август', 'септембар', 'октобар', 'новембар', 'децембар'],
         monthsShort: ['јан.', 'феб.', 'мар.', 'апр.', 'мај', 'јун', 'јул', 'авг.', 'сеп.', 'окт.', 'нов.', 'дец.'],
         weekdays: ['недеља', 'понедељак', 'уторак', 'среда', 'четвртак', 'петак', 'субота'],
