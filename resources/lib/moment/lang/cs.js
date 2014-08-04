@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : czech (cs)
+// moment.js locale configuration
+// locale : czech (cs)
 // author : petrbela : https://github.com/petrbela
 
 (function (factory) {
@@ -71,7 +71,7 @@
         }
     }
 
-    return moment.lang('cs', {
+    return moment.defineLocale('cs', {
         months : months,
         monthsShort : monthsShort,
         monthsParse : (function (months, monthsShort) {

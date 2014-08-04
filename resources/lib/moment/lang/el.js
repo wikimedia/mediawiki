@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : modern greek (el)
+// moment.js locale configuration
+// locale : modern greek (el)
 // author : Aggelos Karalias : https://github.com/mehiel
 
 (function (factory) {
@@ -11,7 +11,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('el', {
+    return moment.defineLocale('el', {
         monthsNominativeEl : "Ιανουάριος_Φεβρουάριος_Μάρτιος_Απρίλιος_Μάιος_Ιούνιος_Ιούλιος_Αύγουστος_Σεπτέμβριος_Οκτώβριος_Νοέμβριος_Δεκέμβριος".split("_"),
         monthsGenitiveEl : "Ιανουαρίου_Φεβρουαρίου_Μαρτίου_Απριλίου_Μαΐου_Ιουνίου_Ιουλίου_Αυγούστου_Σεπτεμβρίου_Οκτωβρίου_Νοεμβρίου_Δεκεμβρίου".split("_"),
         months : function (momentToFormat, format) {
@@ -44,7 +44,7 @@
             nextDay : '[Αύριο {}] LT',
             nextWeek : 'dddd [{}] LT',
             lastDay : '[Χθες {}] LT',
-            lastWeek : function() {
+            lastWeek : function () {
                 switch (this.day()) {
                     case 6:
                         return '[το προηγούμενο] dddd [{}] LT';

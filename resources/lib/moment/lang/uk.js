@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : ukrainian (uk)
+// moment.js locale configuration
+// locale : ukrainian (uk)
 // author : zemlanin : https://github.com/zemlanin
 // Author : Menelion Elensúle : https://github.com/Oire
 
@@ -71,7 +71,7 @@
         };
     }
 
-    return moment.lang('uk', {
+    return moment.defineLocale('uk', {
         months : monthsCaseReplace,
         monthsShort : "січ_лют_бер_квіт_трав_черв_лип_серп_вер_жовт_лист_груд".split("_"),
         weekdays : weekdaysCaseReplace,

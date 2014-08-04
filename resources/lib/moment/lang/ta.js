@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : tamil (ta)
+// moment.js locale configuration
+// locale : tamil (ta)
 // author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
 
 (function (factory) {
@@ -36,7 +36,7 @@
             '௦': '0'
         }; */
 
-    return moment.lang('ta', {
+    return moment.defineLocale('ta', {
         months : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split("_"),
         monthsShort : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split("_"),
         weekdays : 'ஞாயிற்றுக்கிழமை_திங்கட்கிழமை_செவ்வாய்கிழமை_புதன்கிழமை_வியாழக்கிழமை_வெள்ளிக்கிழமை_சனிக்கிழமை'.split("_"),
@@ -87,20 +87,20 @@
         },
 
 
-// refer http://ta.wikipedia.org/s/1er1      
+        // refer http://ta.wikipedia.org/s/1er1
 
         meridiem : function (hour, minute, isLower) {
             if (hour >= 6 && hour <= 10) {
                 return " காலை";
-            } else   if (hour >= 10 && hour <= 14) {
+            } else if (hour >= 10 && hour <= 14) {
                 return " நண்பகல்";
-            } else    if (hour >= 14 && hour <= 18) {
+            } else if (hour >= 14 && hour <= 18) {
                 return " எற்பாடு";
-            } else   if (hour >= 18 && hour <= 20) {
+            } else if (hour >= 18 && hour <= 20) {
                 return " மாலை";
-            } else  if (hour >= 20 && hour <= 24) {
+            } else if (hour >= 20 && hour <= 24) {
                 return " இரவு";
-            } else  if (hour >= 0 && hour <= 6) {
+            } else if (hour >= 0 && hour <= 6) {
                 return " வைகறை";
             }
         },
