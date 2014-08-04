@@ -363,6 +363,19 @@ class LogFormatter {
 						break;
 				}
 				break;
+
+			case 'import':
+				switch ( $entry->getSubtype() ) {
+					case 'upload':
+						$text = wfMessage( 'import-logentry-upload' )
+							->rawParams( $target )->inContentLanguage()->escaped();
+						break;
+					case 'interwiki':
+						$text = wfMessage( 'import-logentry-interwiki' )
+							->rawParams( $target )->inContentLanguage()->escaped();
+						break;
+				}
+				break;
 			// case 'suppress' --private log -- aaron  (so we know who to blame in a few years :-D)
 			// default:
 		}
