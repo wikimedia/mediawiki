@@ -63,6 +63,7 @@ production.
 * The default thumb size ($wgDefaultUserOptions['thumbsize']) is now 300px, up from
   180px. If you have altered the number of entries in $wgThumbLimits for your wiki, you
   may need to adjust your default user settings to compensate for the index change.
+* $wgShowArchiveThumbnails has been removed.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
@@ -169,6 +170,7 @@ production.
 * (bug 35045) Redirects to sections will now update the URL in browser's address
   bar using the HTML5 History API. When [[Dog]] redirects to [[Animals#Dog]],
   the user will now see "Animals#Dog" in their browser instead of "Dog#Dog".
+* (bug 69053) File thumbnails can be shown or hidden in the file history.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
