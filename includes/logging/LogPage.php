@@ -284,7 +284,6 @@ class LogPage {
 					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $titleLink )
 						->inLanguage( $langObj )->escaped();
 				} else {
-					$details = '';
 					array_unshift( $params, $titleLink );
 
 					// User suppression
@@ -303,27 +302,10 @@ class LogPage {
 
 						$params[2] = isset( $params[2] ) ?
 							self::formatBlockFlags( $params[2], $langObj ) : '';
-					// Page protections
-					} elseif ( $type == 'protect' && count( $params ) == 3 ) {
-						// Restrictions and expiries
-						if ( $skin ) {
-							$details .= $wgLang->getDirMark() . htmlspecialchars( " {$params[1]}" );
-						} else {
-							$details .= " {$params[1]}";
-						}
-
-						// Cascading flag...
-						if ( $params[2] ) {
-							$text = wfMessage( 'protect-summary-cascade' )
-								->inLanguage( $langObj )->text();
-							$details .= ' ';
-							$details .= wfMessage( 'brackets', $text )->inLanguage( $langObj )->text();
-
-						}
 					}
 
 					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $params )
-							->inLanguage( $langObj )->escaped() . $details;
+							->inLanguage( $langObj )->escaped();
 				}
 			}
 		} else {
