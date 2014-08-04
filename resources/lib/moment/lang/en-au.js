@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : australian english (en-au)
+// moment.js locale configuration
+// locale : australian english (en-au)
 
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
@@ -10,7 +10,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('en-au', {
+    return moment.defineLocale('en-au', {
         months : "January_February_March_April_May_June_July_August_September_October_November_December".split("_"),
         monthsShort : "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_"),
         weekdays : "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
@@ -48,7 +48,7 @@
         },
         ordinal : function (number) {
             var b = number % 10,
-                output = (~~ (number % 100 / 10) === 1) ? 'th' :
+                output = (~~(number % 100 / 10) === 1) ? 'th' :
                 (b === 1) ? 'st' :
                 (b === 2) ? 'nd' :
                 (b === 3) ? 'rd' : 'th';

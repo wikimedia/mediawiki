@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : catalan (ca)
+// moment.js locale configuration
+// locale : catalan (ca)
 // author : Juan G. Hurtado : https://github.com/juanghurtado
 
 (function (factory) {
@@ -11,7 +11,7 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-    return moment.lang('ca', {
+    return moment.defineLocale('ca', {
         months : "gener_febrer_març_abril_maig_juny_juliol_agost_setembre_octubre_novembre_desembre".split("_"),
         monthsShort : "gen._febr._mar._abr._mai._jun._jul._ag._set._oct._nov._des.".split("_"),
         weekdays : "diumenge_dilluns_dimarts_dimecres_dijous_divendres_dissabte".split("_"),
