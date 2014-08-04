@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Armenian (hy-am)
+// moment.js locale configuration
+// locale : Armenian (hy-am)
 // author : Armendarabyan : https://github.com/armendarabyan
 
 (function (factory) {
@@ -11,7 +11,6 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-
     function monthsCaseReplace(m, format) {
         var months = {
             'nominative': 'հունվար_փետրվար_մարտ_ապրիլ_մայիս_հունիս_հուլիս_օգոստոս_սեպտեմբեր_հոկտեմբեր_նոյեմբեր_դեկտեմբեր'.split('_'),
@@ -37,7 +36,7 @@
         return weekdays[m.day()];
     }
 
-    return moment.lang('hy-am', {
+    return moment.defineLocale('hy-am', {
         months : monthsCaseReplace,
         monthsShort : monthsShortCaseReplace,
         weekdays : weekdaysCaseReplace,

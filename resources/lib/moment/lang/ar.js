@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Arabic (ar)
+// moment.js locale configuration
+// locale : Arabic (ar)
 // author : Abdel Said : https://github.com/abdelsaid
 // changes in months, weekdays : Ahmed Elkhatib
 
@@ -36,7 +36,7 @@
         '٠': '0'
     };
 
-    return moment.lang('ar', {
+    return moment.defineLocale('ar', {
         months : "يناير/ كانون الثاني_فبراير/ شباط_مارس/ آذار_أبريل/ نيسان_مايو/ أيار_يونيو/ حزيران_يوليو/ تموز_أغسطس/ آب_سبتمبر/ أيلول_أكتوبر/ تشرين الأول_نوفمبر/ تشرين الثاني_ديسمبر/ كانون الأول".split("_"),
         monthsShort : "يناير/ كانون الثاني_فبراير/ شباط_مارس/ آذار_أبريل/ نيسان_مايو/ أيار_يونيو/ حزيران_يوليو/ تموز_أغسطس/ آب_سبتمبر/ أيلول_أكتوبر/ تشرين الأول_نوفمبر/ تشرين الثاني_ديسمبر/ كانون الأول".split("_"),
         weekdays : "الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت".split("_"),

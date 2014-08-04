@@ -1,5 +1,5 @@
-// moment.js language configuration
-// language : Serbian-latin (sr)
+// moment.js locale configuration
+// locale : Serbian-latin (sr)
 // author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 (function (factory) {
@@ -11,7 +11,6 @@
         factory(window.moment); // Browser global
     }
 }(function (moment) {
-
     var translator = {
         words: { //Different grammatical cases
             m: ['jedan minut', 'jedne minute'],
@@ -35,7 +34,7 @@
         }
     };
 
-    return moment.lang('sr', {
+    return moment.defineLocale('sr', {
         months: ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'],
         monthsShort: ['jan.', 'feb.', 'mar.', 'apr.', 'maj', 'jun', 'jul', 'avg.', 'sep.', 'okt.', 'nov.', 'dec.'],
         weekdays: ['nedelja', 'ponedeljak', 'utorak', 'sreda', 'četvrtak', 'petak', 'subota'],
