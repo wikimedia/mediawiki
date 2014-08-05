@@ -1285,8 +1285,6 @@
 	"uploadwarning": "Uploadwaarschuwing",
 	"uploadwarning-text": "Pas de onderstaande bestandsbeschrijving aan en probeer het daarna opnieuw.",
 	"savefile": "Bestand opslaan",
-	"uploadedimage": "heeft \"[[$1]]\" geüpload",
-	"overwroteimage": "heeft een nieuwe versie van \"[[$1]]\" toegevoegd",
 	"uploaddisabled": "Uploaden is uitgeschakeld",
 	"copyuploaddisabled": "Het uploaden van bestanden via een URL is uitgeschakeld.",
 	"uploaddisabledtext": "Het uploaden van bestanden is uitgeschakeld.",

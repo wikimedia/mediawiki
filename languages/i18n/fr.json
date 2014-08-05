@@ -1341,8 +1341,6 @@
 	"uploadwarning": "Attention !",
 	"uploadwarning-text": "Modifiez la description du fichier et essayez de nouveau.",
 	"savefile": "Sauvegarder le fichier",
-	"uploadedimage": "a importé « [[$1]] »",
-	"overwroteimage": "a importé une nouvelle version de « [[$1]] »",
 	"uploaddisabled": "Désolé, l’import de fichiers est désactivé.",
 	"copyuploaddisabled": "Import de fichier par URL désactivé.",
 	"uploaddisabledtext": "L’import de fichiers est désactivé sur ce wiki.",

@@ -1259,8 +1259,6 @@
 	"uploadwarning": "تحذير الرفع",
 	"uploadwarning-text": "من فضلك عدل وصف الملف أدناه وحاول مرة أخرى.",
 	"savefile": "احفظ الملف",
-	"uploadedimage": "رفع \"[[$1]]\"",
-	"overwroteimage": "رفع نسخة جديدة من \"[[$1]]\"",
 	"uploaddisabled": "تم تعطيل الرفع",
 	"copyuploaddisabled": "الرفع من مسار معطل.",
 	"uploaddisabledtext": "رفع الملفات معطل.",

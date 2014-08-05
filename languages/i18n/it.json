@@ -1299,8 +1299,6 @@
 	"uploadwarning": "Avviso di caricamento",
 	"uploadwarning-text": "Per favore modifica qui sotto la descrizione del file e prova di nuovo.",
 	"savefile": "Salva file",
-	"uploadedimage": "ha caricato \"[[$1]]\"",
-	"overwroteimage": "ha caricato una nuova versione di \"[[$1]]\"",
 	"uploaddisabled": "Il caricamento dei file è disabilitato.",
 	"copyuploaddisabled": "Il caricamento tramite URL è disabilitato.",
 	"uploaddisabledtext": "Il caricamento dei file non è attivo.",

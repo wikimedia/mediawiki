@@ -1268,8 +1268,6 @@
 	"uploadwarning": "Opplastingsadvarsel",
 	"uploadwarning-text": "Vennligst endre filbeskrivelsen nedenfor og prøv igjen.",
 	"savefile": "Lagre fil",
-	"uploadedimage": "lastet opp «[[$1]]»",
-	"overwroteimage": "last opp en ny versjon av «[[$1]]»",
 	"uploaddisabled": "Opplastingsfunksjonen er slått av",
 	"copyuploaddisabled": "Opplasting via nettadresse deaktivert.",
 	"uploaddisabledtext": "Opplasting er slått av.",

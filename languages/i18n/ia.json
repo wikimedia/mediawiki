@@ -1239,8 +1239,6 @@
 	"uploadwarning": "Advertimento de incargamento",
 	"uploadwarning-text": "Per favor modifica le description del file ci infra e reproba.",
 	"savefile": "Salveguardar file",
-	"uploadedimage": "incargava \"[[$1]]\"",
-	"overwroteimage": "incargava un nove version de \"[[$1]]\"",
 	"uploaddisabled": "Incargamento de files disactivate",
 	"copyuploaddisabled": "Incargamento per URL disactivate.",
 	"uploaddisabledtext": "Le incargamento de files es disactivate.",

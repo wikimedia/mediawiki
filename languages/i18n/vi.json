@@ -1253,8 +1253,6 @@
 	"uploadwarning": "Cảnh báo!",
 	"uploadwarning-text": "Xin hãy chỉnh sửa miêu tả tập tin ở dưới và thử lại.",
 	"savefile": "Lưu tập tin",
-	"uploadedimage": "đã tải “[[$1]]” lên",
-	"overwroteimage": "đã tải lên một phiên bản mới của “[[$1]]”",
 	"uploaddisabled": "Chức năng tải lên đã bị khóa.",
 	"copyuploaddisabled": "Chức năng tải lên từ địa chỉ URL đã bị tắt.",
 	"uploaddisabledtext": "Chức năng tải tập tin đã bị tắt.",

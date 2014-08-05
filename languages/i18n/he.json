@@ -1253,8 +1253,6 @@
 	"uploadwarning": "אזהרת העלאת קבצים",
 	"uploadwarning-text": "אנא שנו את תיאור הקובץ שלמטה ונסו שוב.",
 	"savefile": "שמירת קובץ",
-	"uploadedimage": "העלה את הקובץ [[$1]]",
-	"overwroteimage": "העלה גרסה חדשה של הקובץ [[$1]]",
 	"uploaddisabled": "העלאת קבצים מבוטלת.",
 	"copyuploaddisabled": "העלאת קבצים מכתובת URL מבוטלת.",
 	"uploaddisabledtext": "אפשרות העלאת הקבצים מבוטלת.",

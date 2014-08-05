@@ -1241,8 +1241,6 @@
 	"uploadwarning": "Üleslaadimise hoiatus",
 	"uploadwarning-text": "Muuda allpool olevat faili kirjeldust ning proovi uuesti.",
 	"savefile": "Salvesta fail",
-	"uploadedimage": "laadis üles faili \"[[$1]]\"",
-	"overwroteimage": "laadis üles faili \"[[$1]]\" uue versiooni",
 	"uploaddisabled": "Üleslaadimine hetkel keelatud",
 	"copyuploaddisabled": "Internetiaadressilt üleslaadimine on keelatud.",
 	"uploaddisabledtext": "Faili üleslaadimine on keelatud.",

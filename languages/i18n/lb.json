@@ -1230,8 +1230,6 @@
 	"uploadwarning": "Opgepasst",
 	"uploadwarning-text": "Ännert d'Beschreiwung hei ënnedrënner w.e.g. a versicht et nach eng Kéier.",
 	"savefile": "Fichier späicheren",
-	"uploadedimage": "huet \"[[$1]]\" eropgelueden",
-	"overwroteimage": "huet eng nei Versioun vun \"[[$1]]\" eropgelueden",
 	"uploaddisabled": "Pardon, d'Eropluede vu Fichieren ass ausgeschalt.",
 	"copyuploaddisabled": "D'Eroplueden iwwer URL ass desaktivéiert.",
 	"uploaddisabledtext": "D'Eropluede vu Fichieren ass ausgeschalt.",

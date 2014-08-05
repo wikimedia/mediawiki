@@ -1237,8 +1237,6 @@
 	"uploadwarning": "Avisu de xubíes de ficheros",
 	"uploadwarning-text": "Por favor, camuda más abaxo la descripción del ficheru y vuelve a tentalo.",
 	"savefile": "Guardar ficheru",
-	"uploadedimage": "xubió \"[[$1]]\"",
-	"overwroteimage": "xubió una versión nueva de \"[[$1]]\"",
 	"uploaddisabled": "Deshabilitaes les xubíes",
 	"copyuploaddisabled": "Xubir por URL ta desactivao.",
 	"uploaddisabledtext": "Les xubíes de ficheros tán desactivaes.",

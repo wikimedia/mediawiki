@@ -1239,8 +1239,6 @@
 	"uploadwarning": "คำเตือนการอัปโหลด",
 	"uploadwarning-text": "กรุณาแก้ไขคำอธิบายไฟล์ด้านล่างนี้ แล้วลองใหม่อีกครั้ง",
 	"savefile": "บันทึกไฟล์",
-	"uploadedimage": "อัปโหลด \"[[$1]]\"",
-	"overwroteimage": "อัปโหลดรุ่นใหม่ของ \"[[$1]]\"",
 	"uploaddisabled": "ปิดใช้งานการอัปโหลด",
 	"copyuploaddisabled": "ปิดใช้งานการอัปโหลดโดยยูอาร์แอล",
 	"uploaddisabledtext": "ปิดใช้งานการอัปโหลดไฟล์",

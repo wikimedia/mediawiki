@@ -1211,8 +1211,6 @@
 	"uploadwarning": "Kemenn diwall en ur ezporzhiañ",
 	"uploadwarning-text": "Cheñchit deskrivadur ar restr a-is ha klaskit en-dro.",
 	"savefile": "Enrollañ ar restr",
-	"uploadedimage": "\"[[$1]]\" enporzhiet",
-	"overwroteimage": "enporzhiet ur stumm nevez eus \"[[$1]]\"",
 	"uploaddisabled": "Ho tigarez, diweredekaet eo bet kas ar restr-mañ.",
 	"copyuploaddisabled": "Diweredekaet eo bet ar pellgargañ dre URL.",
 	"uploaddisabledtext": "Diweredekaet eo an enporzhiañ restroù.",

@@ -1232,8 +1232,6 @@
 	"uploadwarning": "Feltöltési figyelmeztetés",
 	"uploadwarning-text": "Kérlek módosítsd a fájl leírását alább, majd próbáld újra.",
 	"savefile": "Fájl mentése",
-	"uploadedimage": "„[[$1]]” felküldve",
-	"overwroteimage": "feltöltötte a(z) „[[$1]]” fájl új változatát",
 	"uploaddisabled": "Feltöltések kikapcsolva",
 	"copyuploaddisabled": "A feltöltés URL alapján le van tiltva.",
 	"uploaddisabledtext": "A fájlfeltöltés nem engedélyezett.",

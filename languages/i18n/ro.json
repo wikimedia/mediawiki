@@ -1252,8 +1252,6 @@
 	"uploadwarning": "Avertizare la trimiterea fișierului",
 	"uploadwarning-text": "Vă rugăm să modificați descrierea fișierului mai jos și să încercați din nou.",
 	"savefile": "Salvează fișierul",
-	"uploadedimage": "a trimis [[$1]]",
-	"overwroteimage": "încărcat o versiune nouă a fișierului \"[[$1]]\"",
 	"uploaddisabled": "Ne pare rău, trimiterea de imagini este dezactivată.",
 	"copyuploaddisabled": "Trimiterea prin URL este dezactivată.",
 	"uploaddisabledtext": "Încărcările de fișiere sunt dezactivate.",

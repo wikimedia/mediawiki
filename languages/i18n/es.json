@@ -1339,8 +1339,6 @@
 	"uploadwarning": "Advertencia de subida de archivo",
 	"uploadwarning-text": "Por favor, modifique la descripción del archivo abajo indicada e inténtelo de nuevo.",
 	"savefile": "Guardar archivo",
-	"uploadedimage": "subió «[[$1]]»",
-	"overwroteimage": "subió una nueva versión de «[[$1]]»",
 	"uploaddisabled": "Se desactivó la carga de archivos.",
 	"copyuploaddisabled": "Carga por URL deshabilitada.",
 	"uploaddisabledtext": "Se desactivó la carga de archivos.",

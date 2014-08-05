@@ -858,7 +858,6 @@
 	"large-file": "Suasum est ut fasciculi $1 magnitudine non excedant; magnitudo huius fasciculi est $2.",
 	"uploadwarning": "Monitus imponendi",
 	"savefile": "Servare fasciculum",
-	"uploadedimage": "imposuit \"[[$1]]\"",
 	"uploaddisabled": "Fasciculos imponere prohibitum est",
 	"uploaddisabledtext": "Fasciculos imponere prohibitum est.",
 	"uploadvirus": "Fasciculi huic est virus! Singula: $1",

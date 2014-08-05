@@ -1237,8 +1237,6 @@
 	"uploadwarning": "Opozorilo!",
 	"uploadwarning-text": "Prosimo, spremenite opis datoteke spodaj in poskusite ponovno.",
 	"savefile": "Shrani datoteko",
-	"uploadedimage": "je naložil(-a) datoteko »[[$1]]«",
-	"overwroteimage": "je naložil(-a) novo različico datoteke »[[$1]]«",
 	"uploaddisabled": "Nalaganje je onemogočeno",
 	"copyuploaddisabled": "Nalaganje preko URL je onemogočeno",
 	"uploaddisabledtext": "Nalaganje datotek je onemogočeno.",

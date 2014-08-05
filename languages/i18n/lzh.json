@@ -1077,8 +1077,6 @@
 	"uploadwarning": "慎焉！",
 	"uploadwarning-text": "改下檔述再試之。",
 	"savefile": "存之",
-	"uploadedimage": "進獻\"[[$1]]\"",
-	"overwroteimage": "新置「[[$1]]」矣",
 	"uploaddisabled": "進獻已阻",
 	"copyuploaddisabled": "由URL之貢被禁也。",
 	"uploaddisabledtext": "檔之貢被禁也。",

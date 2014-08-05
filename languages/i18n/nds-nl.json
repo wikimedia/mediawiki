@@ -1200,8 +1200,6 @@
 	"uploadwarning": "Waorschuwing",
 	"uploadwarning-text": "Pas de bestaandsbeschrieving hieronder an en probeer t opniej",
 	"savefile": "Bestaand opslaon",
-	"uploadedimage": "Op-estuurd: [[$1]]",
-	"overwroteimage": "Nieje versie van \"[[$1]]\" op-estuurd",
 	"uploaddisabled": "t Opsturen van bestaanden is uutezet.",
 	"copyuploaddisabled": "t Opsturen van bestaanden via n webadres is uutezet.",
 	"uploaddisabledtext": "t Opsturen van bestaanden is uutezet.",

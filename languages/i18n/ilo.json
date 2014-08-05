@@ -1228,8 +1228,6 @@
 	"uploadwarning": "Ballaag ti panagikarga",
 	"uploadwarning-text": "Pangngaasi a baliwam ti deskripsion ti papeles dita baba ken padasen manen.",
 	"savefile": "Idulin ti papeles",
-	"uploadedimage": "naikarga ti \"[[$1]]\"",
-	"overwroteimage": "nagikarga ti baro a bersion ti \"[[$1]]\"",
 	"uploaddisabled": "Nabaldado dagiti panagikarga.",
 	"copyuploaddisabled": "Nabaldado ti panagikarga babaen ti URL.",
 	"uploaddisabledtext": "Nabaldado dagiti panagikarga ti papeles.",

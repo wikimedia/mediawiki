@@ -1295,8 +1295,6 @@
 	"uploadwarning": "Предупреждение",
 	"uploadwarning-text": "Пожалуйста, измените представленное ниже описание файла и попробуйте ещё раз.",
 	"savefile": "Записать файл",
-	"uploadedimage": "загрузил «[[$1]]»",
-	"overwroteimage": "загружена новая версия «[[$1]]»",
 	"uploaddisabled": "Загрузка запрещена",
 	"copyuploaddisabled": "Загрузка по URL отключена.",
 	"uploaddisabledtext": "Загрузка файлов отключена.",

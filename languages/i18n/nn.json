@@ -1178,8 +1178,6 @@
 	"uploadwarning": "Opplastingsåtvaring",
 	"uploadwarning-text": "Ver venleg og endra filskildringa nedanfor og prøv på nytt",
 	"savefile": "Lagre fil",
-	"uploadedimage": "lasta opp «[[$1]]»",
-	"overwroteimage": "lasta opp ein ny versjon av «[[$1]]»",
 	"uploaddisabled": "Beklagar, funksjonen for opplasting er deaktivert på denne nettenaren.",
 	"copyuploaddisabled": "Opplasting gjennom URL er slege av.",
 	"uploaddisabledtext": "Filopplasting er slått av.",

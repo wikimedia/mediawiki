@@ -1241,8 +1241,6 @@
 	"uploadwarning": "Advertencia ao cargar o ficheiro",
 	"uploadwarning-text": "Por favor, modifique a descrición do ficheiro e inténteo de novo.",
 	"savefile": "Gardar o ficheiro",
-	"uploadedimage": "cargou \"[[$1]]\"",
-	"overwroteimage": "enviou unha nova versión de \"[[$1]]\"",
 	"uploaddisabled": "Sentímolo, a subida de ficheiros está desactivada.",
 	"copyuploaddisabled": "A carga mediante URL está desactivada.",
 	"uploaddisabledtext": "A carga de ficheiros está desactivada.",

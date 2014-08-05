@@ -1280,8 +1280,6 @@
 	"uploadwarning": "上傳警告",
 	"uploadwarning-text": "請修改以下的檔案描述並重試。",
 	"savefile": "儲存檔案",
-	"uploadedimage": "已上傳 \"[[$1]]\"",
-	"overwroteimage": "已上傳新版本的 \"[[$1]]\"",
 	"uploaddisabled": "己停用上傳。",
 	"copyuploaddisabled": "己停用使用 URL 上傳。",
 	"uploaddisabledtext": "已停用檔案上傳。",

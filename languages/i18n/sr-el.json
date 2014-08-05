@@ -1230,8 +1230,6 @@
 	"uploadwarning": "Upozorenje pri otpremanju",
 	"uploadwarning-text": "Izmenite opis datoteke i pokušajte ponovo.",
 	"savefile": "Sačuvaj datoteku",
-	"uploadedimage": "je poslao „[[$1]]“",
-	"overwroteimage": "je poslao novu verziju datoteke „[[$1]]“",
 	"uploaddisabled": "Otpremanje je onemogućeno.",
 	"copyuploaddisabled": "Slanje putem URL adrese je onemogućeno.",
 	"uploaddisabledtext": "Otpremanje datoteka je onemogućeno.",

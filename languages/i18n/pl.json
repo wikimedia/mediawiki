@@ -1294,8 +1294,6 @@
 	"uploadwarning": "Ostrzeżenie o przesyłaniu",
 	"uploadwarning-text": "Zmień poniższy opis pliku i spróbuj ponownie.",
 	"savefile": "Zapisz plik",
-	"uploadedimage": "przesłał [[$1]]",
-	"overwroteimage": "przesłano nową wersję pliku „[[$1]]“",
 	"uploaddisabled": "Przesyłanie plików wyłączone",
 	"copyuploaddisabled": "Przesyłanie poprzez podanie adres URL jest wyłączone.",
 	"uploaddisabledtext": "Możliwość przesyłania plików została wyłączona.",

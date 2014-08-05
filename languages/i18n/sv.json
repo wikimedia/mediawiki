@@ -1286,8 +1286,6 @@
 	"uploadwarning": "Uppladdningsvarning",
 	"uploadwarning-text": "Var god och ändra filbeskrivningen nedanför och försök igen.",
 	"savefile": "Spara fil",
-	"uploadedimage": "laddade upp \"[[$1]]\"",
-	"overwroteimage": "laddade upp ny version av \"[[$1]]\"",
 	"uploaddisabled": "Uppladdningsfunktionen är avstängd",
 	"copyuploaddisabled": "Uppladdning med URL avstängt.",
 	"uploaddisabledtext": "Uppladdning av filer är avstängd.",

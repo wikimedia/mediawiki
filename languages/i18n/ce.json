@@ -1162,8 +1162,6 @@
 	"uploadwarning": "Дlахьедар",
 	"uploadwarning-text": "Дехар до, лахара файлах лаьцнарг хийца а дай юху а гӀорта файл чуяккха.",
 	"savefile": "ДӀаязе йе файл",
-	"uploadedimage": "чуяьккхина «[[$1]]»",
-	"overwroteimage": "Чуяьккхина файлан керла верси «[[$1]]»",
 	"uploaddisabled": "Чуяккхар магийна дац",
 	"copyuploaddisabled": "URL тӀера чуяккхар дӀадайина ду.",
 	"uploaddisabledtext": "Файлаш чуяхар дӀадайина ду.",

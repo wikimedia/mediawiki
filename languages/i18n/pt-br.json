@@ -1289,8 +1289,6 @@
 	"uploadwarning": "Aviso de envio",
 	"uploadwarning-text": "Modifique a descrição do arquivo abaixo e tente novamente.",
 	"savefile": "Salvar arquivo",
-	"uploadedimage": "enviou \"[[$1]]\"",
-	"overwroteimage": "enviou uma nova versão de \"[[$1]]\"",
 	"uploaddisabled": "Envio de arquivos desativado.",
 	"copyuploaddisabled": "O upload por URL encontra-se desativado.",
 	"uploaddisabledtext": "O envio de arquivos encontra-se desativado.",

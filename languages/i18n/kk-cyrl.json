@@ -1162,8 +1162,6 @@
 	"file-exists-duplicate": "Бұл файл келесі {{PLURAL:$1|файлдың|файлдарының}} телнұсқасы:",
 	"uploadwarning": "Жүктеу жөнінде құлақтандыру",
 	"savefile": "Файлды сақтау",
-	"uploadedimage": "«[[$1]]» файлын жүктеді",
-	"overwroteimage": "«[[$1]]» деген файлдың жаңа нұсқасын жүктеді",
 	"uploaddisabled": "Жүктеу өшірілген",
 	"copyuploaddisabled": "URL арқылы жүктеу өшірілген.",
 	"uploaddisabledtext": "Файл жүктеу өшірілген.",

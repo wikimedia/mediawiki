@@ -832,8 +832,6 @@
 	"fileexists-forbidden": "Medyayek bi vê navî heye; xêra xwe şonda here û vê medyayê bi navekî din barbike.\n[[File:$1|thumb|center|$1]]",
 	"uploadwarning": "Hişyariya barkirinê",
 	"savefile": "Dosyayê tomar bike",
-	"uploadedimage": "\"[[$1]]\" hate barkirin",
-	"overwroteimage": "versiyonekî nû ya \"[[$1]]\" hate barkirin",
 	"uploaddisabled": "Barkirin hatîye qedexekirin",
 	"uploaddisabledtext": "Barkirinê data'yan  hatiye qedexekirin.",
 	"uploadvirus": "Di vê data'yê da vîrûsek heye! Înformasyon: $1",

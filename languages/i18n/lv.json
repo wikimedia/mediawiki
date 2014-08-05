@@ -1083,8 +1083,6 @@
 	"uploadwarning": "Augšupielādes brīdinājums",
 	"uploadwarning-text": "Lūdzu, pārveido zemāk esošo faila aprakstu un mēģini vēlreiz.",
 	"savefile": "Saglabāt failu",
-	"uploadedimage": "augšupielādēja \"[[$1]]\"",
-	"overwroteimage": "augšupielādēta jauna \"[[$1]]\" versija",
 	"uploaddisabled": "Augšupielāde atslēgta",
 	"copyuploaddisabled": "URL augšupielādes nav atļautas.",
 	"uploaddisabledtext": "Failu augšupielāde ir atslēgta.",

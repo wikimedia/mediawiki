@@ -1054,8 +1054,6 @@
 	"file-deleted-duplicate": "Identyczny plik jak tyn plik ([[:$1]]) zostoł wyćepany. Sprowdź historyja wyćepań tamtygo plika ńim wćepńesz go nazod.",
 	"uploadwarning": "Uostřežyńe uo wćepywańu",
 	"savefile": "Spamjyntej plik",
-	"uploadedimage": "wćepano \"[[$1]]\"",
-	"overwroteimage": "wćepano nowszo wersyjo \"[[$1]]\"",
 	"uploaddisabled": "Wćepywanie sam plikůw je zawarte",
 	"uploaddisabledtext": "Wćepywańe plikůw je zawarte.",
 	"uploadscripted": "Tyn plik zawjyro kod HTML abo skrypt kery može zostać felerńe zinterpretowany bez přyglůndarka internetowo.",

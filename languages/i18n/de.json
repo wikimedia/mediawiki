@@ -1306,8 +1306,6 @@
 	"uploadwarning": "Warnung",
 	"uploadwarning-text": "Bitte ändere unten die Dateibeschreibung und versuche es erneut.",
 	"savefile": "Datei speichern",
-	"uploadedimage": "lud „[[$1]]“ hoch",
-	"overwroteimage": "lud eine neue Version von „[[$1]]“ hoch",
 	"uploaddisabled": "Hochladen deaktiviert",
 	"copyuploaddisabled": "Das Hochladen von URLs ist deaktiviert",
 	"uploaddisabledtext": "Das Hochladen von Dateien ist deaktiviert.",

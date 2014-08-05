@@ -1266,8 +1266,6 @@
 	"uploadwarning": "Avís de càrrega",
 	"uploadwarning-text": "Modifiqueu la descripció de la imatge i torneu a intentar-ho.",
 	"savefile": "Desa el fitxer",
-	"uploadedimage": "ha carregat [[$1]]",
-	"overwroteimage": "ha carregat una nova versió de «[[$1]]»",
 	"uploaddisabled": "S'ha inhabilitat la càrrega",
 	"copyuploaddisabled": "Càrrega per URL deshabilitada.",
 	"uploaddisabledtext": "S'ha inhabilitat la càrrega de fitxers.",

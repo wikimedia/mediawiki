@@ -1230,8 +1230,6 @@
 	"uploadwarning": "Warnung beim Huhlade",
 	"uploadwarning-text": "Donn onge dä Täx övver di Dattei ändere, un versöhg_et norr_ens.",
 	"savefile": "Datei avspeichere",
-	"uploadedimage": "hät huhjelade: „[[$1]]“",
-	"overwroteimage": "hät en neue Version huhjelade vun: „[[$1]]“",
 	"uploaddisabled": "Huhlade jesperrt",
 	"copyuploaddisabled": "Et Huhlaade us URLs es afjeschalldt",
 	"uploaddisabledtext": "Et Huhlade es jesperrt.",

@@ -1276,8 +1276,6 @@
 	"uploadwarning": "Yükleme uyarısı",
 	"uploadwarning-text": "Lütfen aşağıdaki dosya açıklamasını değiştirin ve tekrar deneyin.",
 	"savefile": "Dosyayı kaydet",
-	"uploadedimage": "Yüklenen: \"[[$1]]\"",
-	"overwroteimage": "\"[[$1]]\" resminin yeni sürümü yüklenmiştir",
 	"uploaddisabled": "Geçici olarak şu anda herhangi bir dosya yüklenmez. Biraz sonra bir daha deneyiniz.",
 	"copyuploaddisabled": "URL ile yükleme devre dışı.",
 	"uploaddisabledtext": "Dosya yüklemeleri devredışı bırakılmıştır.",

@@ -1253,8 +1253,6 @@
 	"uploadwarning": "Upozornění k načítání",
 	"uploadwarning-text": "Prosíme, upravte popis souboru níže a zkuste to znovu.",
 	"savefile": "Uložit soubor",
-	"uploadedimage": "načítá „[[$1]]“",
-	"overwroteimage": "načtena nová verze \"[[$1]]\"",
 	"uploaddisabled": "Načítání souborů vypnuto.",
 	"copyuploaddisabled": "Načítání souborů prostřednictvím URL je vypnuto.",
 	"uploaddisabledtext": "Načítání souborů je vypnuto.",
