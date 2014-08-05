@@ -1,8 +1,6 @@
 MEDIAWIKI_LOAD_URL ?= http://localhost/w/load.php
 
-kss: nodecheck
-# FIXME: Use more up-to-date Ruby version
-
+kss: kssnodecheck
 # Generates CSS of mediawiki.ui and mediawiki.ui.button using ResourceLoader, then applies it to the
 # KSS style guide
 	$(eval KSS_RL_TMP := $(shell mktemp /tmp/tmp.XXXXXXXXXX))
@@ -15,5 +13,5 @@ kssopen: kss
 	@command -v xdg-open >/dev/null 2>&1 || { open ${PWD}/static/index.html; exit 0; }
 	@xdg-open ${PWD}/static/index.html
 
-nodecheck:
-	@scripts/nodecheck.sh
+kssnodecheck:
+	@scripts/kss-node-check.sh
