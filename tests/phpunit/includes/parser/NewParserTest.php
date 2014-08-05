@@ -764,7 +764,11 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$this->teardownGlobals();
 
-		$this->assertEquals( $result, $out, $desc );
+		if ( isset( $opts['regex'] ) ) {
+			$this->assertRegExp( $result, $out, $desc . ' (regexp)' );
+		} else {
+			$this->assertEquals( $result, $out, $desc );
+		}
 	}
 
 	/**

@@ -136,6 +136,8 @@ production.
 * MediaWiki now supports multiple password types, including bcrypt and PBKDF2.
   The default type can be changed with $wgPasswordDefault and the type
   configurations can be changed with $wgPasswordConfig.
+* Parser tests can optionally be made to use a regular expression to match
+  output (use keyword 'regex' in the '!! options' section).
 * Skins can now define custom styles for default ResourceLoader modules using
   the $wgResourceModuleSkinStyles global. See the Vector skin for examples.
 
