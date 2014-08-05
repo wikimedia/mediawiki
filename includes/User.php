@@ -2733,7 +2733,7 @@ class User implements IDBAccessObject {
 
 				foreach ( $columns as $column ) {
 					foreach ( $rows as $row ) {
-						$checkmatrixOptions["$prefix-$column-$row"] = true;
+						$checkmatrixOptions["$prefix$column-$row"] = true;
 					}
 				}
 
