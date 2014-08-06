@@ -1160,12 +1160,12 @@
 				'</table>'
 		);
 		$table.tablesorter();
-		assert.equal( 0,
-			$table.find( '#A2' ).prop( 'headerIndex' ),
-			'A2 should be a sort header'
+		assert.equal( $table.find( '#A2' ).prop( 'headerIndex' ),
+			undefined,
+			'A2 should not be a sort header'
 		);
-		assert.equal( 1, // should be 2
-			$table.find( '#C1' ).prop( 'headerIndex' ),
+		assert.equal( $table.find( '#C1' ).prop( 'headerIndex' ),
+			2,
 			'C1 should be a sort header, but will sort the wrong column'
 		);
 	} );
@@ -1197,7 +1197,9 @@
 			'</tbody></table>' );
 
 			$table.tablesorter();
-			assert.equal( 2, $table.find( 'tr:eq(1) th:eq(1)').prop('headerIndex'), 'Incorrect index of sort header' );
+			assert.equal( $table.find( 'tr:eq(1) th:eq(1)').prop('headerIndex'),
+				2,
+				'Incorrect index of sort header' );
 		}
 	);
 
