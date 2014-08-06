@@ -68,8 +68,6 @@ class SpecialRandomInCategory extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgScript;
-
 		$cat = false;
 
 		$categoryStr = $this->getRequest()->getText( 'category', $par );
@@ -100,7 +98,7 @@ class SpecialRandomInCategory extends SpecialPage {
 			$submit = Html::input( '', $submitText, 'submit' );
 
 			$msg = $this->msg( 'randomincategory-selectcategory' );
-			$form = Html::rawElement( 'form', array( 'action' => $wgScript ),
+			$form = Html::rawElement( 'form', array( 'action' => wfScript() ),
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 				$msg->rawParams( $input, $submit )->parse()
 			);
