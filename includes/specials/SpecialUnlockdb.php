@@ -37,11 +37,9 @@ class SpecialUnlockdb extends FormSpecialPage {
 	}
 
 	public function checkExecutePermissions( User $user ) {
-		global $wgReadOnlyFile;
-
 		parent::checkExecutePermissions( $user );
 		# If the lock file isn't writable, we can do sweet bugger all
-		if ( !file_exists( $wgReadOnlyFile ) ) {
+		if ( !file_exists( $this->getConfig()->get( 'ReadOnlyFile' ) ) ) {
 			throw new ErrorPageError( 'lockdb', 'databasenotlocked' );
 		}
 	}
@@ -62,20 +60,19 @@ class SpecialUnlockdb extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		global $wgReadOnlyFile;
-
 		if ( !$data['Confirm'] ) {
 			return Status::newFatal( 'locknoconfirm' );
 		}
 
+		$readOnlyFile = $this->getConfig()->get( 'ReadOnlyFile' );
 		wfSuppressWarnings();
-		$res = unlink( $wgReadOnlyFile );
+		$res = unlink( $readOnlyFile );
 		wfRestoreWarnings();
 
 		if ( $res ) {
 			return Status::newGood();
 		} else {
-			return Status::newFatal( 'filedeleteerror', $wgReadOnlyFile );
+			return Status::newFatal( 'filedeleteerror', $readOnlyFile );
 		}
 	}
 
