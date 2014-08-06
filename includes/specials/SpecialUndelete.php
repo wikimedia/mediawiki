@@ -36,11 +36,19 @@ class PageArchive {
 	/** @var Status */
 	protected $revisionStatus;
 
-	function __construct( $title ) {
+	/** @var Config */
+	protected $config;
+
+	function __construct( $title, Config $config = null ) {
 		if ( is_null( $title ) ) {
 			throw new MWException( __METHOD__ . ' given a null title.' );
 		}
 		$this->title = $title;
+		if ( $config === null ) {
+			wfDebug( __METHOD__ . ' did not have a Config object passed to it' );
+			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		}
+		$this->config = $config;
 	}
 
 	/**
@@ -115,8 +123,6 @@ class PageArchive {
 	 * @return ResultWrapper
 	 */
 	function listRevisions() {
-		global $wgContentHandlerUseDB;
-
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$tables = array( 'archive' );
@@ -126,7 +132,7 @@ class PageArchive {
 			'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
 		);
 
-		if ( $wgContentHandlerUseDB ) {
+		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
@@ -190,8 +196,6 @@ class PageArchive {
 	 * @return Revision|null
 	 */
 	function getRevision( $timestamp ) {
-		global $wgContentHandlerUseDB;
-
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$fields = array(
@@ -209,7 +213,7 @@ class PageArchive {
 			'ar_sha1',
 		);
 
-		if ( $wgContentHandlerUseDB ) {
+		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
@@ -442,8 +446,6 @@ class PageArchive {
 	 * @return Status Status object containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
-		global $wgContentHandlerUseDB;
-
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
@@ -516,7 +518,7 @@ class PageArchive {
 			'ar_sha1'
 		);
 
-		if ( $wgContentHandlerUseDB ) {
+		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
@@ -806,12 +808,10 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	function showSearchForm() {
-		global $wgScript;
-
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'undelete-search-title' ) );
 		$out->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+			Xml::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) .
 				Xml::fieldset( $this->msg( 'undelete-search-box' )->text() ) .
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 				Html::rawElement(
@@ -891,7 +891,7 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 
-		$archive = new PageArchive( $this->mTargetObj );
+		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
 		if ( !wfRunHooks( 'UndeleteForm::showRevision', array( &$archive, $this->mTargetObj ) ) ) {
 			return;
 		}
@@ -1198,7 +1198,7 @@ class SpecialUndelete extends SpecialPage {
 			array( 'undeletepagetitle', wfEscapeWikiText( $this->mTargetObj->getPrefixedText() ) )
 		);
 
-		$archive = new PageArchive( $this->mTargetObj );
+		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
 		wfRunHooks( 'UndeleteForm::showHistory', array( &$archive, $this->mTargetObj ) );
 		/*
 		$text = $archive->getLastRevisionText();
@@ -1610,9 +1610,7 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	function undelete() {
-		global $wgUploadMaintenance;
-
-		if ( $wgUploadMaintenance && $this->mTargetObj->getNamespace() == NS_FILE ) {
+		if ( $this->getConfig()->get( 'UploadMaintenance' ) && $this->mTargetObj->getNamespace() == NS_FILE ) {
 			throw new ErrorPageError( 'undelete-error', 'filedelete-maintenance' );
 		}
 
@@ -1621,7 +1619,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
-		$archive = new PageArchive( $this->mTargetObj );
+		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
 		wfRunHooks( 'UndeleteForm::undelete', array( &$archive, $this->mTargetObj ) );
 		$ok = $archive->undelete(
 			$this->mTargetTimestamp,
