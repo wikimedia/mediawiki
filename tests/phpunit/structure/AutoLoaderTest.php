@@ -6,18 +6,13 @@ class AutoLoaderTest extends MediaWikiTestCase {
 
 		parent::setUp();
 
-		// Fancy dance to trigger a rebuild of AutoLoader::$autoloadLocalClassesLower
 		$this->testLocalClasses = array(
-			'TestAutoloadedLocalClass' => __DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php',
-			'TestAutoloadedCamlClass' => __DIR__ . '/../data/autoloader/TestAutoloadedCamlClass.php',
-			'TestAutoloadedSerializedClass' =>
-				__DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
+			'TestAutoloadedLocalClass' => __DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php'
 		);
 		$this->setMwGlobals(
 			'wgAutoloadLocalClasses',
 			$this->testLocalClasses + $wgAutoloadLocalClasses
 		);
-		AutoLoader::resetAutoloadLocalClassesLower();
 
 		$this->testExtensionClasses = array(
 			'TestAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedClass.php',
@@ -120,16 +115,5 @@ class AutoLoaderTest extends MediaWikiTestCase {
 
 	function testExtensionClass() {
 		$this->assertTrue( class_exists( 'TestAutoloadedClass' ) );
-	}
-
-	function testWrongCaseClass() {
-		$this->assertTrue( class_exists( 'testautoLoadedcamlCLASS' ) );
-	}
-
-	function testWrongCaseSerializedClass() {
-		$dummyCereal = 'O:29:"testautoloadedserializedclass":0:{}';
-		$uncerealized = unserialize( $dummyCereal );
-		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
-			"unserialize() can load classes case-insensitively." );
 	}
 }
