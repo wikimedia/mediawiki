@@ -159,15 +159,13 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @return bool Success
 	 */
 	private function outputThumbFromStash( $file, $params ) {
-		// this global, if it exists, points to a "scaler", as you might find in
+		$flags = 0;
+		// this config option, if it exists, points to a "scaler", as you might find in
 		// the Wikimedia Foundation cluster. See outputRemoteScaledThumb(). This
 		// is part of our horrible NFS-based system, we create a file on a mount
 		// point here, but fetch the scaled file from somewhere else that
 		// happens to share it over NFS.
-		global $wgUploadStashScalerBaseUrl;
-
-		$flags = 0;
-		if ( $wgUploadStashScalerBaseUrl ) {
+		if ( $this->getConfig()->get( 'UploadStashScalerBaseUrl' ) ) {
 			$this->outputRemoteScaledThumb( $file, $params, $flags );
 		} else {
 			$this->outputLocallyScaledThumb( $file, $params, $flags );
@@ -230,11 +228,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @return bool Success
 	 */
 	private function outputRemoteScaledThumb( $file, $params, $flags ) {
-		// This global probably looks something like
+		// This option probably looks something like
 		// 'http://upload.wikimedia.org/wikipedia/test/thumb/temp'. Do not use
 		// trailing slash.
-		global $wgUploadStashScalerBaseUrl;
-		$scalerBaseUrl = $wgUploadStashScalerBaseUrl;
+		$scalerBaseUrl = $this->getConfig()->get( 'UploadStashScalerBaseUrl' );
 
 		if ( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
 			// this is apparently a protocol-relative URL, which makes no sense in this context,
