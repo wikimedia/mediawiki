@@ -54,8 +54,7 @@ class WantedPagesPage extends WantedQueryPage {
 	}
 
 	function getQueryInfo() {
-		global $wgWantedPagesThreshold;
-		$count = $wgWantedPagesThreshold - 1;
+		$count = $this->getConfig()->get( 'WantedPagesThreshold' ) - 1;
 		$query = array(
 			'tables' => array(
 				'pagelinks',
