@@ -24,10 +24,10 @@ function isCompatible( ua ) {
 		ua = navigator.userAgent;
 	}
 
-	// MediaWiki JS or jQuery is known to have issues with:
+	// Browsers with outdated or limited JavaScript engines get the no-JS experience
 	return !(
-		// Internet Explorer < 6
-		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 6 ) ||
+		// Internet Explorer < 7
+		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 7 ) ||
 		// Firefox < 3
 		( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 3 ) ||
 		// BlackBerry < 6
