@@ -41,8 +41,6 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getPageHeader() {
-		global $wgScript;
-
 		# Do not show useless input form if special page is cached
 		if ( $this->isCached() ) {
 			return '';
@@ -51,7 +49,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 		$prefix = $this->prefix;
 		$t = $this->getPageTitle();
 
-		return Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) . "\n" .
+		return Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n" .
 			Html::openElement( 'fieldset' ) . "\n" .
 			Html::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) . "\n" .
 			Html::hidden( 'title', $t->getPrefixedText() ) . "\n" .
