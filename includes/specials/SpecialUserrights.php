@@ -328,9 +328,7 @@ class UserrightsPage extends SpecialPage {
 	 * @return Status
 	 */
 	public function fetchUser( $username ) {
-		global $wgUserrightsInterwikiDelimiter;
-
-		$parts = explode( $wgUserrightsInterwikiDelimiter, $username );
+		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
 			$database = '';
@@ -417,13 +415,12 @@ class UserrightsPage extends SpecialPage {
 	 * Output a form to allow searching for a user
 	 */
 	function switchForm() {
-		global $wgScript;
 		$this->getOutput()->addHTML(
 			Html::openElement(
 				'form',
 				array(
 					'method' => 'get',
-					'action' => $wgScript,
+					'action' => wfScript(),
 					'name' => 'uluser',
 					'id' => 'mw-userrights-form1'
 				)
