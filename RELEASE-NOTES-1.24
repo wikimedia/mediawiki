@@ -293,6 +293,8 @@ changes to languages because of Bugzilla reports.
   setPreloadedText() from EditPage.php. (deprecated since 1.21)
 * Removed global functions wfArrayLookup(), wfArrayMerge(), wfDebugDieBacktrace()
   and wfTime(). (deprecated since 1.22)
+* Microsoft Internet Explorer 6 is now a "grade C" browser, meaning that
+  JavaScript is no longer executed in this browser.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
