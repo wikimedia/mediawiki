@@ -5,7 +5,6 @@
 	var msg,
 		win = window,
 		ua = navigator.userAgent.toLowerCase(),
-		isIE6 = ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( ua ) && parseFloat( RegExp.$1 ) <= 6.0 ),
 		onloadFuncts = [];
 
 /**
@@ -198,9 +197,5 @@ win.importStylesheetURI = function ( url, media ) {
 	document.getElementsByTagName('head')[0].appendChild( l );
 	return l;
 };
-
-if ( isIE6 ) {
-	win.importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
-}
 
 }( mediaWiki, jQuery ) );
