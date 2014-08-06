@@ -2797,9 +2797,7 @@ $templates
 						);
 					} else {
 						$links['html'] .= Html::inlineScript(
-							ResourceLoader::makeLoaderConditionalScript(
-								$resourceLoader->makeModuleResponse( $context, $grpModules )
-							)
+							$resourceLoader->makeModuleResponse( $context, $grpModules )
 						);
 					}
 					$links['html'] .= "\n";

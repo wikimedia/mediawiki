@@ -154,10 +154,8 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Load private module (combined)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
-				'<script>if(window.mw){
-mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n/* cache key: wiki:resourceloader:filter:minify-css:7:fd8ea20b3336b2bfb230c789d430067a */"]},{});
-/* cache key: wiki:resourceloader:filter:minify-js:7:274ccee17be73cd5f4dda5dc2a819188 */
-}</script>
+				'<script>if(window.mw){mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]},{});}
+</script>
 '
 			),
 			// Load module script with with ESI
@@ -186,10 +184,6 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
 			// Affects whether CDATA is inserted
 			'wgWellFormedXml' => false,
-			// Cache key is based on database name, and affects output;
-			// this test should not touch the database anyways.
-			'wgDBname' => 'wiki',
-			'wgDBprefix' => '',
 		) );
 		$class = new ReflectionClass( 'OutputPage' );
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
@@ -219,6 +213,8 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 			)),
 		) );
 		$links = $method->invokeArgs( $out, $args );
-		$this->assertEquals( $expectedHtml, $links['html'] );
+		// Strip comments to avoid variation due to wgDBname in WikiID and cache key
+		$actualHtml = preg_replace( '#/\*[^*]+\*/#', '', $links['html'] );
+		$this->assertEquals( $expectedHtml, $actualHtml );
 	}
 }
