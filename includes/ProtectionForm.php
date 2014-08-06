@@ -577,10 +577,11 @@ class ProtectionForm {
 			'id' => $id,
 			'name' => $id,
 			'size' => count( $levels ),
+			// FIXME: Move this to JavaScript
 			'onchange' => 'ProtectionForm.updateLevels(this)',
 			) + $this->disabledAttrib;
 
-		$out = Xml::openElement( 'select', $attribs );
+		$out = Xml::openElement( 'select', Xml::getTextInputAttributes( $attribs ) );
 		foreach ( $levels as $key ) {
 			$out .= Xml::option( $this->getOptionLabel( $key ), $key, $key == $selected );
 		}

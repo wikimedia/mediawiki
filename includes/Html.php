@@ -849,7 +849,7 @@ class Html {
 		}
 
 		// Wrap options in a <select>
-		$ret .= Html::openElement( 'select', $selectAttribs )
+		$ret .= Html::openElement( 'select', Xml::getTextInputAttributes( $selectAttribs ) )
 			. "\n"
 			. implode( "\n", $optionsHtml )
 			. "\n"

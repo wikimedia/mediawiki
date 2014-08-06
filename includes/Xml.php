@@ -169,7 +169,7 @@ class Xml {
 	 * @return string Html string containing the month selector
 	 */
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
-		global $wgLang;
+		global $wgLang, $wgUseMediaWikiUIEverywhere;
 		$options = array();
 		if ( is_null( $selected ) ) {
 			$selected = '';
@@ -184,11 +184,15 @@ class Xml {
 		for ( $i = 1; $i < 13; $i++ ) {
 			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
 		}
+		$className = 'mw-month-selector';
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$className .= ' mw-ui-input';
+		}
 
 		return self::openElement( 'select', array(
 			'id' => $id,
 			'name' => 'month',
-			'class' => 'mw-month-selector'
+			'class' => $className
 		) )
 			. implode( "\n", $options )
 			. self::closeElement( 'select' );
@@ -406,7 +410,7 @@ class Xml {
 	}
 
 	/**
-	 * Modifies a set of attributes meant for text input elements
+	 * Modifies a set of attributes meant for text inputs or select element
 	 * and apply a set of default attributes.
 	 * Currently applies MediaWiki UI when $wgUseMediaWikiUIEverywhere enabled.
 	 * @param array $attrs An attribute array.
@@ -610,7 +614,7 @@ class Xml {
 			$attribs['tabindex'] = $tabindex;
 		}
 
-		return Xml::openElement( 'select', $attribs )
+		return Xml::openElement( 'select', self::getTextInputAttributes( $attribs ) )
 			. "\n"
 			. $options
 			. "\n"
