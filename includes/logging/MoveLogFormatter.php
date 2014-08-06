@@ -37,8 +37,9 @@ class MoveLogFormatter extends LogFormatter {
 
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
-		$params = $this->getMessageParameters();
+		$params = $this->extractParameters();
 		if ( isset( $params[4] ) && $params[4] === '1' ) {
+			// Messages: logentry-move-move-noredirect, logentry-move-move_redir-noredirect
 			$key .= '-noredirect';
 		}
 
@@ -51,6 +52,10 @@ class MoveLogFormatter extends LogFormatter {
 		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
 		$params[2] = Message::rawParam( $oldname );
 		$params[3] = Message::rawParam( $newname );
+		if ( isset( $params[4] ) ) {
+			// handled in getMessageKey
+			unset( $params[4] );
+		}
 
 		return $params;
 	}
