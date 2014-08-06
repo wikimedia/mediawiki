@@ -8,5 +8,7 @@
  *
  */
 
+$digitTransformTable = Null;
+
 $fallback = 'ar';
 
