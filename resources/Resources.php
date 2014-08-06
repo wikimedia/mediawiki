@@ -128,7 +128,7 @@ return array(
 			array(
 				'resources/lib/jquery/jquery.js'
 			) ),
-		'debugRaw' => false,
+		'raw' => true,
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
@@ -771,7 +771,7 @@ return array(
 	'mediawiki' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.js',
 		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
-		'debugRaw' => false,
+		'raw' => true,
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api' => array(
