@@ -334,6 +334,15 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Base modules required for the the base environment of ResourceLoader
+	 *
+	 * @return array
+	 */
+	public static function getStartupModules() {
+		return array( 'jquery', 'mediawiki' );
+	}
+
+	/**
 	 * Get the load URL of the startup modules.
 	 *
 	 * This is a helper for getScript(), but can also be called standalone, such
@@ -343,8 +352,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
-		// The core modules:
-		$moduleNames = array( 'jquery', 'mediawiki' );
+		$moduleNames = self::getStartupModules();
 
 		// Get the latest version
 		$loader = $context->getResourceLoader();
