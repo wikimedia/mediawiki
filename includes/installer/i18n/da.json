@@ -3,7 +3,8 @@
 		"authors": [
 			"Peter Alberti",
 			"Christian List",
-			"Tjernobyl"
+			"Tjernobyl",
+			"Thomsen"
 		]
 	},
 	"config-page-language": "Sprog",
@@ -14,6 +15,19 @@
 	"config-page-name": "Navn",
 	"config-page-options": "Indstillinger",
 	"config-page-install": "Installer",
+	"config-page-complete": "Færdig",
+	"config-page-restart": "Genstarte installation",
+	"config-page-readme": "Læs mig",
+	"config-page-copying": "Kopiering",
+	"config-page-upgradedoc": "Opgradering",
+	"config-page-existingwiki": "Eksisterende wiki",
+	"config-help-restart": "Vil du rydde alle gemte data, du har indtastet og genstarte installationen?",
+	"config-restart": "Ja, genstarte den",
+	"config-env-php": "PHP  $1  er installeret.",
+	"config-db-type": "Databasetype:",
+	"config-db-host": "Database vært:",
+	"config-db-name": "Databasenavn:",
+	"config-mysql-old": "MySQL $1 eller nyere kræves. Du har $2.",
 	"config-header-mysql": "MySQL-indstillinger",
 	"config-header-postgres": "PostgreSQL-indstillinger",
 	"config-header-sqlite": "SQLite-indstillinger",

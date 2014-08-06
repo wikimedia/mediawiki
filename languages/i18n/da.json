@@ -46,7 +46,8 @@
 			"Søren Løvborg",
 			"Tjernobyl",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Thomsen"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -1253,8 +1254,6 @@
 	"uploadwarning": "Advarsel",
 	"uploadwarning-text": "Vær venlig at ændre filbeskrivelsen nedenfor og prøv igen.",
 	"savefile": "Gem fil",
-	"uploadedimage": "lagde \"[[$1]]\" op",
-	"overwroteimage": "lagde en ny version af \"[[$1]]\" op",
 	"uploaddisabled": "Desværre er funktionen til at lægge filer op afbrudt på denne server.",
 	"copyuploaddisabled": "Upload via URL er slået fra.",
 	"uploaddisabledtext": "Oplægning af filer er deaktiveret.",
@@ -1693,7 +1692,7 @@
 	"watchlist-details": "Du har $1 {{PLURAL:$1|side|sider}} på din overvågningsliste (ekskl. diskussionssider).",
 	"wlheader-enotif": "E-mail-underretning er slået til.",
 	"wlheader-showupdated": "Sider, der er ændret siden dit sidste besøg, er vist med '''fed skrift'''.",
-	"wlnote2": "Nedenfor ses ændringerne i {{PLURAL:$1|den sidste time|de sidste <strong>$1</strong> timer}} op til den $2 kl. $3.",
+	"wlnote": "Nedenfor ses {{PLURAL:$1|den seneste ændring|de seneste '''$1''' ændringer}} i {{PLURAL:$2|den sidste time|de sidste '''$2''' timer}} op til den $3 kl. $4.",
 	"wlshowlast": "Vis de seneste $1 timer $2 dage $3",
 	"watchlist-options": "Indstillinger for overvågningslisten",
 	"watching": "Tilføjer overvågning …",

@@ -77,7 +77,8 @@
 			"아라",
 			"Mywood",
 			"Impersonator 1",
-			"Duolaimi"
+			"Duolaimi",
+			"TianyinLee"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -305,7 +306,7 @@
 	"mainpage": "首页",
 	"mainpage-description": "首页",
 	"policy-url": "Project:方针",
-	"portal": "社区专页",
+	"portal": "社区主页",
 	"portal-url": "Project:社区专页",
 	"privacy": "隐私权政策",
 	"privacypage": "Project:隐私权政策",
@@ -3094,6 +3095,9 @@
 	"logentry-rights-rights": "$1{{GENDER:$2|更改}}$3的用户组自$4至$5",
 	"logentry-rights-rights-legacy": "$1更改$3的用户组",
 	"logentry-rights-autopromote": "$1被自动地{{GENDER:$2|提升}}自$4至$5",
+	"logentry-upload-upload": "$1{{GENDER:$2|上传了}}$3",
+	"logentry-upload-overwrite": "$1{{GENDER:$2|上传了}}$3的新版本",
+	"logentry-upload-revert": "$1{{GENDER:$2|上传了}}$3",
 	"rightsnone": "（无）",
 	"feedback-bugornote": "如果你准备好详细描述一个技术问题，请[$1 报告bug]。或者你可以使用下面的简单表格。你的评论将被添加至页面“[$3 $2]”，附有你的用户名。",
 	"feedback-subject": "主题：",

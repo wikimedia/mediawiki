@@ -1601,7 +1601,7 @@
 	"listgrouprights-addgroup-self-all": "az összes csoportot hozzáadhatja a saját fiókjához",
 	"listgrouprights-removegroup-self-all": "az összes csoporból eltávolíthatja a saját fiókját",
 	"listgrouprights-namespaceprotection-namespace": "Névtér",
-	"trackingcategories-nodesc": "Nincs leírás.",
+	"trackingcategories-nodesc": "Nem található leírás.",
 	"trackingcategories-disabled": "A kategória le van tiltva",
 	"mailnologin": "Nincs feladó",
 	"mailnologintext": "Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].",

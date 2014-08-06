@@ -910,7 +910,6 @@
 	"windows-nonascii-filename": "箇wiki弗支持文件名用特別個字符。",
 	"uploadwarning": "上载警告",
 	"savefile": "保存文件",
-	"uploadedimage": "上传 \"[[$1]]\"",
 	"sourcefilename": "源文件:",
 	"destfilename": "目标文件名:",
 	"watchthisupload": "關注箇文件",

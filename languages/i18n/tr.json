@@ -296,6 +296,7 @@
 	"versionrequiredtext": "Bu sayfayı kullanmak için MediaWiki'nin $1 sürümü gerekmektedir. [[Special:Version|Sürüm sayfasına]] bakınız.",
 	"ok": "Tamam",
 	"pagetitle-view-mainpage": "{{SITENAME}}",
+	"backlinksubtitle": "←$1",
 	"retrievedfrom": "\"$1\" adresinden alındı.",
 	"youhavenewmessages": "$1 {{PLURAL:$3|var}} ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$3|Başka bir kullanıcıdan|$3 kullanıcıdan}} $1 var ($2).",
