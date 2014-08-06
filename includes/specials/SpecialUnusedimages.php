@@ -44,7 +44,6 @@ class UnusedimagesPage extends ImageQueryPage {
 	}
 
 	function getQueryInfo() {
-		global $wgCountCategorizedImagesAsUsed;
 		$retval = array(
 			'tables' => array( 'image', 'imagelinks' ),
 			'fields' => array(
@@ -58,7 +57,7 @@ class UnusedimagesPage extends ImageQueryPage {
 			'join_conds' => array( 'imagelinks' => array( 'LEFT JOIN', 'il_to = img_name' ) )
 		);
 
-		if ( $wgCountCategorizedImagesAsUsed ) {
+		if ( $this->getConfig()->get( 'CountCategorizedImagesAsUsed' ) ) {
 			// Order is significant
 			$retval['tables'] = array( 'image', 'page', 'categorylinks',
 				'imagelinks' );
