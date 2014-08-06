@@ -612,15 +612,18 @@ class SpecialContributions extends IncludableSpecialPage {
 			$deletedOnlyCheck . $checkLabelTopOnly . $checkLabelNewOnly
 		);
 
-		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
+		$dateSelection = Xml::tags( 'td', array( 'colspan' => 2 ),
 			Xml::dateMenu(
 				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
 				$this->opts['month']
-			) . ' ' .
-				Xml::submitButton(
-					$this->msg( 'sp-contributions-submit' )->text(),
-					array( 'class' => 'mw-submit' )
-				)
+			)
+		);
+
+		$submit = Xml::tags( 'td', array( 'colspan' => 2 ),
+			Xml::submitButton(
+				$this->msg( 'sp-contributions-submit' )->text(),
+				array( 'class' => 'mw-submit' )
+			)
 		);
 
 		$form .= Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() );
@@ -629,7 +632,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			Html::rawElement( 'tr', array(), $namespaceSelection ) . "\n" .
 			Html::rawElement( 'tr', array(), $filterSelection ) . "\n" .
 			Html::rawElement( 'tr', array(), $extraOptions ) . "\n" .
-			Html::rawElement( 'tr', array(), $dateSelectionAndSubmit ) . "\n"
+			Html::rawElement( 'tr', array(), $dateSelection ) . "\n" .
+			Html::rawElement( 'tr', array(), $submit ) . "\n"
 		);
 
 		$explain = $this->msg( 'sp-contributions-explain' );
