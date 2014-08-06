@@ -206,6 +206,8 @@ production.
   to use for the module. This is intended for extensions that want control over
   the instantiation of their API modules, to allow for proper dependency
   injection.
+* Simplified continuation will return a "batchcomplete" property in the result
+  when a batch of pages is complete.
 
 === Languages updated in 1.24 ===
 
