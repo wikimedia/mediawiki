@@ -72,6 +72,10 @@ class RevDelLogList extends RevDelList {
 	}
 
 	public function getLogParams( $params ) {
-		return array( implode( ',', $params['ids'] ), "ofield={$params['oldBits']}", "nfield={$params['newBits']}" );
+		return array(
+			'4::ids' => $params['ids'],
+			'5::ofield' => $params['oldBits'],
+			'6::nfield' => $params['newBits'],
+		);
 	}
 }
