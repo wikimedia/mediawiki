@@ -294,7 +294,9 @@ changes to languages because of Bugzilla reports.
 * Removed global functions wfArrayLookup(), wfArrayMerge(), wfDebugDieBacktrace()
   and wfTime(). (deprecated since 1.22)
 * Microsoft Internet Explorer 6 is now a "grade C" browser, meaning that
-  JavaScript is no longer executed in this browser.
+  JavaScript is no longer executed in this browser. The IEFixes script, which
+  existed purely to provide support for MSIE versions below 7 and which was
+  conditionally loaded for those browsers, was also removed.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
