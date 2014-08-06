@@ -47,6 +47,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('s23wiki','http://s23.org/wiki/$1',0),
 ('seattlewireless','http://seattlewireless.net/$1',0),
 ('senseislibrary','http://senseis.xmp.net/?$1',0),
+('shoutwiki','http://www.shoutwiki.com/wiki/$1',0),
 ('sourceforge','http://sourceforge.net/$1',0),
 ('sourcewatch','http://www.sourcewatch.org/index.php?title=$1',0),
 ('squeak','http://wiki.squeak.org/squeak/$1',0),
