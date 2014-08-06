@@ -45,6 +45,8 @@ production.
 * The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
   using them must be updated to use the Password Hashing API.
 * $wgCompiledFiles has been removed.
+* $wgSortSpecialPages was removed, the listing on Special:SpecialPages is
+  now always sorted.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate

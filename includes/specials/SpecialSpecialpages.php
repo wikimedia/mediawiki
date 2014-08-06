@@ -49,8 +49,6 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	}
 
 	private function getPageGroups() {
-		global $wgSortSpecialPages;
-
 		$pages = SpecialPageFactory::getUsablePages( $this->getUser() );
 
 		if ( !count( $pages ) ) {
@@ -76,10 +74,8 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		}
 
 		/** Sort */
-		if ( $wgSortSpecialPages ) {
-			foreach ( $groups as $group => $sortedPages ) {
-				ksort( $groups[$group] );
-			}
+		foreach ( $groups as $group => $sortedPages ) {
+			ksort( $groups[$group] );
 		}
 
 		/** Always move "other" to end */

@@ -6673,11 +6673,6 @@ $wgDisableQueryPageUpdate = false;
 $wgSpecialPageGroups = array();
 
 /**
- * Whether or not to sort special pages in Special:Specialpages
- */
-$wgSortSpecialPages = true;
-
-/**
  * On Special:Unusedimages, consider images "used", if they are put
  * into a category. Default (false) is not to count those as used.
  */
