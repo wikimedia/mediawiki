@@ -262,6 +262,8 @@ production.
   deprecated in favor of cmstarthexsortkey and cmendhexsortkey.
 * (bug 63326) Add blockedtimestamp field to output of blockinfo property for
   the list=allusers and list=users modules.
+* Simplified continuation will return a "batchcomplete" property in the result
+  when a batch of pages is complete.
 
 === Action API internal changes in 1.24 ===
 * Methods for handling continuation are added to ApiResult, so actions other
