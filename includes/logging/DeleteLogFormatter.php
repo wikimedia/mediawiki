@@ -79,8 +79,10 @@ class DeleteLogFormatter extends LogFormatter {
 
 				$newParams = array_slice( $params, 0, 3 );
 				$newParams[3] = $changeText;
-				$count = count( explode( ',', $params[$paramStart] ) );
-				$newParams[4] = $this->context->getLanguage()->formatNum( $count );
+				$ids = is_array( $params[$paramStart] )
+					? $params[$paramStart]
+					: explode( ',', $params[$paramStart] );
+				$newParams[4] = $this->context->getLanguage()->formatNum( count( $ids ) );
 
 				$this->parsedParametersDeleteLog = $newParams;
 				return $this->parsedParametersDeleteLog;
@@ -137,8 +139,10 @@ class DeleteLogFormatter extends LogFormatter {
 
 				// Different revision types use different URL params...
 				$key = $params[3];
-				// This is a CSV of the IDs
-				$ids = explode( ',', $params[4] );
+				// This is a array or CSV of the IDs
+				$ids = is_array( $params[4] )
+					? $params[4]
+					: explode( ',', $params[4] );
 
 				$links = array();
 
