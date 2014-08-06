@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (dd294dc785)
+ * OOjs UI v0.1.0-pre (0e50d2e336)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-30T23:10:53Z
+ * Date: 2014-08-06T12:56:55Z
  */
 ( function ( OO ) {
 
@@ -1114,6 +1114,7 @@ OO.ui.Frame = function OoUiFrame( config ) {
 	// Properties
 	this.loading = null;
 	this.config = config;
+	this.dir = null;
 
 	// Initialize
 	this.$element
@@ -1287,7 +1288,7 @@ OO.ui.Frame.prototype.load = function () {
 	win = this.$element.prop( 'contentWindow' );
 	doc = win.document;
 
-	// Figure out directionality:
+	// Cache directionality
 	this.dir = OO.ui.Element.getDir( this.$element ) || 'ltr';
 
 	// Initialize contents
@@ -1298,7 +1299,7 @@ OO.ui.Frame.prototype.load = function () {
 	doc.write(
 		'<!doctype html>' +
 		'<html>' +
-			'<body class="oo-ui-frame-content oo-ui-' + this.dir + '" dir="' + this.dir + '">' +
+			'<body class="oo-ui-frame-content oo-ui-' + this.getDir() + '" dir="' + this.getDir() + '">' +
 			'</body>' +
 		'</html>'
 	);
@@ -1329,6 +1330,15 @@ OO.ui.Frame.prototype.load = function () {
 OO.ui.Frame.prototype.setSize = function ( width, height ) {
 	this.$element.css( { width: width, height: height } );
 	return this;
+};
+
+/**
+ * Get the directionality of the frame
+ *
+ * @return {string} Directionality, 'ltr' or 'rtl'
+ */
+OO.ui.Frame.prototype.getDir = function () {
+	return this.dir;
 };
 
 /**

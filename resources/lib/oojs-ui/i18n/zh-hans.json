@@ -15,14 +15,15 @@
 			"Xiaomingyan",
 			"Yfdyh000",
 			"Zhangjintao",
-			"乌拉跨氪"
+			"乌拉跨氪",
+			"Great Brightstar"
 		]
 	},
 	"ooui-outline-control-move-down": "下移项",
 	"ooui-outline-control-move-up": "上移项",
 	"ooui-outline-control-remove": "删除项",
 	"ooui-toolbar-more": "更多",
-	"ooui-dialog-message-accept": "好",
+	"ooui-dialog-message-accept": "确定",
 	"ooui-dialog-message-reject": "取消",
 	"ooui-dialog-process-error": "发生一些错误",
 	"ooui-dialog-process-dismiss": "解除",
