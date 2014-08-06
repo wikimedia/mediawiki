@@ -37,9 +37,6 @@ class SpecialTrackingCategories extends SpecialPage {
 	}
 
 	function execute( $par ) {
-		// Global array containing names of tracking categories
-		global $wgTrackingCategories;
-
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->allowClickjacking();
@@ -59,7 +56,7 @@ class SpecialTrackingCategories extends SpecialPage {
 			</tr></thead>"
 		);
 
-		foreach ( $wgTrackingCategories as $catMsg ) {
+		foreach ( $this->getConfig()->get( 'TrackingCategories' ) as $catMsg ) {
 			/*
 			 * Check if the tracking category varies by namespace
 			 * Otherwise only pages in the current namespace will be displayed
