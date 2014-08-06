@@ -17,8 +17,7 @@
 			'Mozilla/5.0 (Macintosh; I; Intel Mac OS X 10_6_7; ru-ru) AppleWebKit/534.31+ (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
 			// Opera 11+
 			'Opera/9.80 (Windows NT 6.1; U; ru) Presto/2.8.131 Version/11.10',
-			// Internet Explorer 6+
-			'Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.1)',
+			// Internet Explorer 7+
 			'Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.0; en-US)',
 			'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; Media Center PC 4.0; SLCC1; .NET CLR 3.0.04320)',
 			'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 7.1; Trident/5.0)',
@@ -40,12 +39,13 @@
 			'Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'
 		],
 		// Supported: Uncompatible, serve basic content
-		gradeB: [
-			// Internet Explorer < 6
+		gradeC: [
+			// Internet Explorer < 7
 			'Mozilla/2.0 (compatible; MSIE 3.03; Windows 3.1)',
 			'Mozilla/4.0 (compatible; MSIE 4.01; Windows 95)',
 			'Mozilla/4.0 (compatible; MSIE 5.0; Windows 98;)',
 			'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)',
+			'Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.1)',
 			// Firefox < 3.6
 			'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.2) Gecko/20060308 Firefox/1.5.0.2',
 			'Mozilla/5.0 (X11; U; Linux i686; nl; rv:1.8.1.1) Gecko/20070311 Firefox/2.0.0.1',
@@ -114,8 +114,8 @@
 		);
 	} );
 
-	QUnit.test( 'isCompatible( Grade B )', testcases.gradeB.length, function ( assert ) {
-		$.each( testcases.gradeB, function ( i, ua ) {
+	QUnit.test( 'isCompatible( Grade C )', testcases.gradeC.length, function ( assert ) {
+		$.each( testcases.gradeC, function ( i, ua ) {
 				assert.strictEqual( isCompatible( ua ), false, ua );
 			}
 		);
