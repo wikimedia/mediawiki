@@ -52,11 +52,9 @@ class ActiveUsersPager extends UsersPager {
 	 * @param string $par Parameter passed to the page
 	 */
 	function __construct( IContextSource $context = null, $group = null, $par = null ) {
-		global $wgActiveUserDays;
-
 		parent::__construct( $context );
 
-		$this->RCMaxAge = $wgActiveUserDays;
+		$this->RCMaxAge = $this->getConfig()->get( 'ActiveUserDays' );
 		$un = $this->getRequest()->getText( 'username', $par );
 		$this->requestedUser = '';
 		if ( $un != '' ) {
@@ -192,13 +190,11 @@ class ActiveUsersPager extends UsersPager {
 	}
 
 	function getPageHeader() {
-		global $wgScript;
-
 		$self = $this->getTitle();
 		$limit = $this->mLimit ? Html::hidden( 'limit', $this->mLimit ) : '';
 
 		# Form tag
-		$out = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$out = Xml::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) );
 		$out .= Xml::fieldset( $this->msg( 'activeusers' )->text() ) . "\n";
 		$out .= Html::hidden( 'title', $self->getPrefixedDBkey() ) . $limit . "\n";
 
@@ -247,17 +243,17 @@ class SpecialActiveUsers extends SpecialPage {
 	 * @param string $par Parameter passed to the page or null
 	 */
 	public function execute( $par ) {
-		global $wgActiveUserDays;
+		$days = $this->getConfig()->get( 'ActiveUserDays' );
 
 		$this->setHeaders();
 		$this->outputHeader();
 
 		$out = $this->getOutput();
 		$out->wrapWikiMsg( "<div class='mw-activeusers-intro'>\n$1\n</div>",
-			array( 'activeusers-intro', $this->getLanguage()->formatNum( $wgActiveUserDays ) ) );
+			array( 'activeusers-intro', $this->getLanguage()->formatNum( $days ) ) );
 
 		// Occasionally merge in new updates
-		$seconds = min( self::mergeActiveUsers( 600 ), $wgActiveUserDays * 86400 );
+		$seconds = min( self::mergeActiveUsers( 600, $days ), $days * 86400 );
 		// Mention the level of staleness
 		$out->addWikiMsg( 'cachedspecial-viewing-cached-ttl',
 			$this->getLanguage()->formatDuration( $seconds ) );
@@ -284,12 +280,11 @@ class SpecialActiveUsers extends SpecialPage {
 	}
 
 	/**
-	 * @param intr $period Seconds (do updates no more often than this)
+	 * @param int $period Seconds (do updates no more often than this)
+	 * @param int $days How many days user must be idle before he is considered inactive
 	 * @return int How many seconds old the cache is
 	 */
-	public static function mergeActiveUsers( $period ) {
-		global $wgActiveUserDays;
-
+	public static function mergeActiveUsers( $period, $days ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$cTime = $dbr->selectField( 'querycache_info',
 			'qci_timestamp',
@@ -300,16 +295,16 @@ class SpecialActiveUsers extends SpecialPage {
 			if ( !$cTime || ( time() - wfTimestamp( TS_UNIX, $cTime ) ) > $period ) {
 				$dbw = wfGetDB( DB_MASTER );
 				if ( $dbw->estimateRowCount( 'recentchanges' ) <= 10000 ) {
-					$window = $wgActiveUserDays * 86400; // small wiki
+					$window = $days * 86400; // small wiki
 				} else {
 					$window = $period * 2;
 				}
-				$cTime = self::doQueryCacheUpdate( $dbw, $window ) ?: $cTime;
+				$cTime = self::doQueryCacheUpdate( $dbw, $days, $window ) ?: $cTime;
 			}
 		}
 
 		return ( time() -
-			( $cTime ? wfTimestamp( TS_UNIX, $cTime ) : $wgActiveUserDays * 86400 ) );
+			( $cTime ? wfTimestamp( TS_UNIX, $cTime ) : $days * 86400 ) );
 	}
 
 	/**
@@ -319,19 +314,18 @@ class SpecialActiveUsers extends SpecialPage {
 	public static function cacheUpdate( DatabaseBase $dbw ) {
 		global $wgActiveUserDays;
 
-		self::doQueryCacheUpdate( $dbw, $wgActiveUserDays * 86400 );
+		self::doQueryCacheUpdate( $dbw, $wgActiveUserDays, $wgActiveUserDays * 86400 );
 	}
 
 	/**
 	 * Update the query cache as needed
 	 *
 	 * @param DatabaseBase $dbw
+	 * @param int $days How many days user must be idle before he is considered inactive
 	 * @param int $window Maximum time range of new data to scan (in seconds)
 	 * @return int|bool UNIX timestamp the cache is now up-to-date as of (false on error)
 	 */
-	protected static function doQueryCacheUpdate( DatabaseBase $dbw, $window ) {
-		global $wgActiveUserDays;
-
+	protected static function doQueryCacheUpdate( DatabaseBase $dbw, $days, $window ) {
 		$lockKey = wfWikiID() . '-activeusers';
 		if ( !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
 			return false; // exclusive update (avoids duplicate entries)
@@ -347,7 +341,7 @@ class SpecialActiveUsers extends SpecialPage {
 		// Pick the date range to fetch from. This is normally from the last
 		// update to till the present time, but has a limited window for sanity.
 		// If the window is limited, multiple runs are need to fully populate it.
-		$sTimestamp = max( $cTimeUnix, $now - $wgActiveUserDays * 86400 );
+		$sTimestamp = max( $cTimeUnix, $now - $days * 86400 );
 		$eTimestamp = min( $sTimestamp + $window, $now );
 
 		// Get all the users active since the last update
@@ -376,7 +370,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$dbw->delete( 'querycachetwo',
 			array(
 				'qcc_type' => 'activeusers',
-				'qcc_value < ' . $dbw->addQuotes( $now - $wgActiveUserDays * 86400 ) // TS_UNIX
+				'qcc_value < ' . $dbw->addQuotes( $now - $days * 86400 ) // TS_UNIX
 			),
 			__METHOD__
 		);
