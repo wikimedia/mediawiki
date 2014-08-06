@@ -186,12 +186,11 @@ class SpecialSearch extends SpecialPage {
 		# No match, generate an edit URL
 		$title = Title::newFromText( $term );
 		if ( !is_null( $title ) ) {
-			global $wgGoToEdit;
 			wfRunHooks( 'SpecialSearchNogomatch', array( &$title ) );
 			wfDebugLog( 'nogomatch', $title->getFullText(), 'private' );
 
 			# If the feature is enabled, go straight to the edit page
-			if ( $wgGoToEdit ) {
+			if ( $this->getConfig()->get( 'GoToEdit' ) ) {
 				$this->getOutput()->redirect( $title->getFullURL( array( 'action' => 'edit' ) ) );
 
 				return;
@@ -204,7 +203,7 @@ class SpecialSearch extends SpecialPage {
 	 * @param string $term
 	 */
 	public function showResults( $term ) {
-		global $wgDisableTextSearch, $wgSearchForwardUrl, $wgContLang, $wgScript;
+		global $wgContLang;
 
 		$profile = new ProfileSection( __METHOD__ );
 		$search = $this->getSearchEngine();
@@ -220,9 +219,10 @@ class SpecialSearch extends SpecialPage {
 
 		$out = $this->getOutput();
 
-		if ( $wgDisableTextSearch ) {
-			if ( $wgSearchForwardUrl ) {
-				$url = str_replace( '$1', urlencode( $term ), $wgSearchForwardUrl );
+		if ( $this->getConfig()->get( 'DisableTextSearch' ) ) {
+			$searchFowardUrl = $this->getConfig()->get( 'SearchForwardUrl' );
+			if ( $searchFowardUrl ) {
+				$url = str_replace( '$1', urlencode( $term ), $searchFowardUrl );
 				$out->redirect( $url );
 			} else {
 				$out->addHTML(
@@ -304,7 +304,7 @@ class SpecialSearch extends SpecialPage {
 				array(
 					'id' => ( $this->profile === 'advanced' ? 'powersearch' : 'search' ),
 					'method' => 'get',
-					'action' => $wgScript
+					'action' => wfScript(),
 				)
 			)
 		);
