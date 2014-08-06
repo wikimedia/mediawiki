@@ -28,6 +28,8 @@ production.
 === Action API changes in 1.25 ===
 * (bug 65403) XML tag highlighting is now only performed for formats
   "xmlfm" and "wddxfm".
+* Simplified continuation will return a "batchcomplete" property in the result
+  when a batch of pages is complete.
 
 === Action API internal changes in 1.25 ===
 
