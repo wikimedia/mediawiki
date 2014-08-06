@@ -1,3 +1,20 @@
+
+.container {
+	width: 100%;
+}
+
+nav {
+	display: none;
+}
+
+article {
+	.example {
+		blockquote {
+			margin-top: 20px;
+		}
+	}
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -13,7 +30,6 @@ body {
 }
 
 .container {
-	width: 960px;
 	margin: 0 auto;
 	display: -webkit-flex;
 	display: flex;
@@ -76,7 +92,6 @@ nav {
 article {
 	-webkit-flex: 1;
 	flex: 1;
-	margin-left: 30px;
 
 	h1, h2, h3, h4, h5, h6, p {
 		margin-left: 20px;
@@ -101,7 +116,6 @@ article {
 			background: #f8f8f8;
 			padding: 20px;
 			color: #999;
-			width: 338px;
 			word-wrap: break-word;
 			// word-wrap in pre not affecting Firefox, so add white-space.
 			white-space: pre-wrap;
@@ -116,25 +130,45 @@ article {
 			display: block;
 			margin: 0;
 			margin-left: 20px;
-			min-width: 360px;
 		}
 	}
 }
 
-@media (max-width: 960px) {
-	.container {
-		width: 100%;
+@media (min-width: 768px) {
+	nav {
+		display: block;
+		width: 100px;
 	}
 
+	@columnWidth: (768px - 100px ) / 2;
+	.example {
+		pre,
+		blockquote {
+			width: @columnWidth;
+		}
+	}
+}
+
+@media (min-width: 980px) {
 	nav {
-		display: none;
+		width: auto;
 	}
 
 	article {
-		.example {
-			blockquote {
-				margin-top: 20px;
-			}
+		margin-left: 30px;
+	}
+
+	.container {
+		width: 980px;
+	}
+
+	.example {
+		pre {
+			width: 338px;
+		}
+		blockquote {
+			width: auto;
+			min-width: 360px;
 		}
 	}
 }
