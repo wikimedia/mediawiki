@@ -42,7 +42,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgQueryPageDefaultLimit;
 		$out = $this->getOutput();
 
 		$this->setHeaders();
@@ -52,7 +51,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$opts->add( 'target', '' );
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
-		$opts->add( 'limit', $wgQueryPageDefaultLimit );
+		$opts->add( 'limit', $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
 		$opts->add( 'from', 0 );
 		$opts->add( 'back', 0 );
 		$opts->add( 'hideredirs', false );
@@ -101,8 +100,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @param int $back Display from this article ID at backwards scrolling (default: 0)
 	 */
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
-		global $wgMaxRedirectLinksRetrieved, $wgUseLinkNamespaceDBFields;
-
 		$out = $this->getOutput();
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -126,9 +123,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			'il_to' => $target->getDBkey(),
 		);
 
+		$useLinkNamespaceDBFields = $this->getConfig()->get( 'UseLinkNamespaceDBFields' );
 		$namespace = $this->opts->getValue( 'namespace' );
 		if ( is_int( $namespace ) ) {
-			if ( $wgUseLinkNamespaceDBFields ) {
+			if ( $useLinkNamespaceDBFields ) {
 				$conds['pagelinks']['pl_from_namespace'] = $namespace;
 				$conds['templatelinks']['tl_from_namespace'] = $namespace;
 				$conds['imagelinks']['il_from_namespace'] = $namespace;
@@ -151,8 +149,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$conds['pagelinks'][] = 'rd_from is NOT NULL';
 		}
 
-		$queryFunc = function ( $dbr, $table, $fromCol ) use ( $conds, $target, $limit ) {
-			global $wgUseLinkNamespaceDBFields;
+		$queryFunc = function ( $dbr, $table, $fromCol ) use ( $conds, $target, $limit, $useLinkNamespaceDBFields ) {
 			// Read an extra row as an at-end check
 			$queryLimit = $limit + 1;
 			$on = array(
@@ -160,7 +157,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				'rd_title' => $target->getDBkey(),
 				'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
 			);
-			if ( $wgUseLinkNamespaceDBFields ) { // migration check
+			if ( $useLinkNamespaceDBFields ) { // migration check
 				$on['rd_namespace'] = $target->getNamespace();
 			}
 			// Inner LIMIT is 2X in case of stale backlinks with wrong namespaces
@@ -278,7 +275,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 			if ( $row->rd_from && $level < 2 ) {
 				$out->addHTML( $this->listItem( $row, $nt, $target, true ) );
-				$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
+				$this->showIndirectLinks( $level + 1, $nt, $this->getConfig()->get( 'MaxRedirectLinksRetrieved' ) );
 				$out->addHTML( Xml::closeElement( 'li' ) );
 			} else {
 				$out->addHTML( $this->listItem( $row, $nt, $target ) );
@@ -415,8 +412,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	}
 
 	function whatlinkshereForm() {
-		global $wgScript;
-
 		// We get nicer value from the title object
 		$this->opts->consumeValue( 'target' );
 		// Reset these for new requests
@@ -426,7 +421,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$namespace = $this->opts->consumeValue( 'namespace' );
 
 		# Build up the form
-		$f = Xml::openElement( 'form', array( 'action' => $wgScript ) );
+		$f = Xml::openElement( 'form', array( 'action' => wfScript() ) );
 
 		# Values that should not be forgotten
 		$f .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
