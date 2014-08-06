@@ -20,8 +20,6 @@
  * @file
  */
 
-define( 'MW_LC_VERSION', 2 );
-
 /**
  * Class for caching the contents of localisation files, Messages*.php
  * and *.i18n.php.
@@ -35,6 +33,8 @@ define( 'MW_LC_VERSION', 2 );
  * as grammatical transformation, is done by the caller.
  */
 class LocalisationCache {
+	const VERSION = 2;
+
 	/** Configuration associative array */
 	private $conf;
 
@@ -913,7 +913,7 @@ class LocalisationCache {
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
 		$deps['wgMessagesDirs'] = new GlobalDependency( 'wgMessagesDirs' );
-		$deps['version'] = new ConstantDependency( 'MW_LC_VERSION' );
+		$deps['version'] = new ConstantDependency( 'LocalisationCache::VERSION' );
 
 		# Add dependencies to the cache entry
 		$allData['deps'] = $deps;
