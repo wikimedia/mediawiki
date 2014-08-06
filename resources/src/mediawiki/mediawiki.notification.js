@@ -440,7 +440,7 @@
 		/**
 		 * Display a notification message to the user.
 		 *
-		 * @param {HTMLElement|jQuery|mw.Message|string} message
+		 * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
 		 * @param {Object} options The options to use for the notification.
 		 *  See #defaults for details.
 		 * @return {mw.Notification} Notification object
