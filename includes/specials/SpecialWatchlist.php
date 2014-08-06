@@ -38,8 +38,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @param string $subpage
 	 */
 	function execute( $subpage ) {
-		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
-
 		// Anons don't get a watchlist
 		$this->requireLogin( 'watchlistanontext' );
 
@@ -66,7 +64,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$opts = $this->getOptions();
 
-		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker )
+		$config = $this->getConfig();
+		if ( ( $config->get( 'EnotifWatchlist' ) || $config->get( 'ShowUpdatedMarker' ) )
 			&& $request->getVal( 'reset' )
 			&& $request->wasPosted()
 		) {
@@ -198,8 +197,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
 	 */
 	public function doMainQuery( $conds, $opts ) {
-		global $wgShowUpdatedMarker;
-
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
@@ -238,7 +235,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			),
 		);
 
-		if ( $wgShowUpdatedMarker ) {
+		if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
 			$fields[] = 'wl_notificationtimestamp';
 		}
 		if ( $limitWatchlist ) {
@@ -332,8 +329,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @param FormOptions $opts
 	 */
 	public function outputChangesList( $rows, $opts ) {
-		global $wgShowUpdatedMarker, $wgRCShowWatchingUsers;
-
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 		$output = $this->getOutput();
@@ -366,13 +361,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$rc = RecentChange::newFromRow( $obj );
 			$rc->counter = $counter++;
 
-			if ( $wgShowUpdatedMarker ) {
+			if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
 				$updated = $obj->wl_notificationtimestamp;
 			} else {
 				$updated = false;
 			}
 
-			if ( $wgRCShowWatchingUsers && $user->getOption( 'shownumberswatching' ) ) {
+			if ( $this->getConfig()->get( 'RCShowWatchingUsers' ) && $user->getOption( 'shownumberswatching' ) ) {
 				$rc->numberofWatchingusers = $dbr->selectField( 'watchlist',
 					'COUNT(*)',
 					array(
@@ -494,14 +489,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	function setTopText( FormOptions $opts ) {
-		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
-
 		$nondefaults = $opts->getChangedValues();
 		$form = "";
 		$user = $this->getUser();
 
 		$dbr = $this->getDB();
 		$numItems = $this->countItems( $dbr );
+		$showUpdatedMarker = $this->getConfig()->get( 'ShowUpdatedMarker' );
 
 		// Show watchlist header
 		$form .= "<p>";
@@ -509,16 +503,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$form .= $this->msg( 'nowatchlist' )->parse() . "\n";
 		} else {
 			$form .= $this->msg( 'watchlist-details' )->numParams( $numItems )->parse() . "\n";
-			if ( $wgEnotifWatchlist && $user->getOption( 'enotifwatchlistpages' ) ) {
+			if ( $this->getConfig()->get( 'EnotifWatchlist' ) && $user->getOption( 'enotifwatchlistpages' ) ) {
 				$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
 			}
-			if ( $wgShowUpdatedMarker ) {
+			if ( $showUpdatedMarker ) {
 				$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
 			}
 		}
 		$form .= "</p>";
 
-		if ( $numItems > 0 && $wgShowUpdatedMarker ) {
+		if ( $numItems > 0 && $showUpdatedMarker ) {
 			$form .= Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
