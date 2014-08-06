@@ -36,7 +36,10 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgMemc, $wgDisableCounters, $wgMiserMode;
+		global $wgMemc;
+
+		$disableCounters = $this->getConfig()->get( 'DisableCounters' );
+		$miserMode = $this->getConfig()->get( 'MiserMode' );
 
 		$this->setHeaders();
 		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
@@ -52,12 +55,12 @@ class SpecialStatistics extends SpecialPage {
 
 		# Staticic - views
 		$viewsStats = '';
-		if ( !$wgDisableCounters ) {
+		if ( !$disableCounters ) {
 			$viewsStats = $this->getViewsStats();
 		}
 
 		# Set active user count
-		if ( !$wgMiserMode ) {
+		if ( !$miserMode ) {
 			$key = wfMemcKey( 'sitestats', 'activeusers-updated' );
 			// Re-calculate the count if the last tally is old...
 			if ( !$wgMemc->get( $key ) ) {
@@ -83,7 +86,7 @@ class SpecialStatistics extends SpecialPage {
 		$text .= $viewsStats;
 
 		# Statistic - popular pages
-		if ( !$wgDisableCounters && !$wgMiserMode ) {
+		if ( !$disableCounters && !$miserMode ) {
 			$text .= $this->getMostViewedPages();
 		}
 
@@ -170,8 +173,6 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getUserStats() {
-		global $wgActiveUserDays;
-
 		return Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-users' )->parse() ) .
 			Xml::closeElement( 'tr' ) .
@@ -187,16 +188,15 @@ class SpecialStatistics extends SpecialPage {
 				$this->getLanguage()->formatNum( $this->activeUsers ),
 				array( 'class' => 'mw-statistics-users-active' ),
 				'statistics-users-active-desc',
-				$this->getLanguage()->formatNum( $wgActiveUserDays )
+				$this->getLanguage()->formatNum( $this->getConfig()->get( 'ActiveUserDays' ) )
 			);
 	}
 
 	private function getGroupStats() {
-		global $wgGroupPermissions, $wgImplicitGroups;
 		$text = '';
-		foreach ( $wgGroupPermissions as $group => $permissions ) {
+		foreach ( $this->getConfig()->get( 'GroupPermissions' ) as $group => $permissions ) {
 			# Skip generic * and implicit groups
-			if ( in_array( $group, $wgImplicitGroups ) || $group == '*' ) {
+			if ( in_array( $group, $this->getConfig()->get( 'ImplicitGroups' ) ) || $group == '*' ) {
 				continue;
 			}
 			$groupname = htmlspecialchars( $group );
