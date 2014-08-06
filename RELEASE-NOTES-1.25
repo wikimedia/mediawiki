@@ -45,6 +45,8 @@ production.
   "uselang=user" may be used to select the language from the current user's
   preferences.
 * Default output format for the API is now jsonfm.
+* Simplified continuation will return a "batchcomplete" property in the result
+  when a batch of pages is complete.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
