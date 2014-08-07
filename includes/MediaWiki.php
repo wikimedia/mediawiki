@@ -33,6 +33,11 @@ class MediaWiki {
 	private $context;
 
 	/**
+	 * @var Config
+	 */
+	private $config;
+
+	/**
 	 * @param null|WebRequest $x
 	 * @return WebRequest
 	 */
@@ -65,6 +70,7 @@ class MediaWiki {
 		}
 
 		$this->context = $context;
+		$this->config = $context->getConfig();
 	}
 
 	/**
@@ -174,7 +180,7 @@ class MediaWiki {
 	 * @return void
 	 */
 	private function performRequest() {
-		global $wgServer, $wgUsePathInfo, $wgTitle;
+		global $wgTitle;
 
 		wfProfileIn( __METHOD__ );
 
@@ -237,7 +243,7 @@ class MediaWiki {
 				$url = $title->getFullURL( $query );
 			}
 			// Check for a redirect loop
-			if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url )
+			if ( !preg_match( '/^' . preg_quote( $this->config->get( 'Server' ), '/' ) . '/', $url )
 				&& $title->isLocal()
 			) {
 				// 301 so google et al report the target as the actual url.
@@ -268,7 +274,7 @@ class MediaWiki {
 					"requested; this sometimes happens when moving a wiki " .
 					"to a new server or changing the server configuration.\n\n";
 
-				if ( $wgUsePathInfo ) {
+				if ( $this->config->get( 'UsePathInfo' ) ) {
 					$message .= "The wiki is trying to interpret the page " .
 						"title from the URL path portion (PATH_INFO), which " .
 						"sometimes fails depending on the web server. Try " .
@@ -323,8 +329,6 @@ class MediaWiki {
 	 * @return mixed An Article, or a string to redirect to another URL
 	 */
 	private function initializeArticle() {
-		global $wgDisableHardRedirects;
-
 		wfProfileIn( __METHOD__ );
 
 		$title = $this->context->getTitle();
@@ -372,7 +376,7 @@ class MediaWiki {
 				// Is the target already set by an extension?
 				$target = $target ? $target : $article->followRedirect();
 				if ( is_string( $target ) ) {
-					if ( !$wgDisableHardRedirects ) {
+					if ( !$this->config->get( 'DisableHardRedirects' ) ) {
 						// we'll need to redirect
 						wfProfileOut( __METHOD__ );
 						return $target;
@@ -406,8 +410,6 @@ class MediaWiki {
 	 * @param Title $requestTitle The original title, before any redirects were applied
 	 */
 	private function performAction( Page $page, Title $requestTitle ) {
-		global $wgUseSquid, $wgSquidMaxage;
-
 		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
@@ -428,10 +430,10 @@ class MediaWiki {
 
 		if ( $action instanceof Action ) {
 			# Let Squid cache things if we can purge them.
-			if ( $wgUseSquid &&
+			if ( $this->config->get( 'UseSquid' ) &&
 				in_array( $request->getFullRequestURL(), $requestTitle->getSquidURLs() )
 			) {
-				$output->setSquidMaxage( $wgSquidMaxage );
+				$output->setSquidMaxage( $this->config->get( 'SquidMaxage' ) );
 			}
 
 			$action->show();
@@ -479,8 +481,6 @@ class MediaWiki {
 	 * @return bool
 	 */
 	private function checkMaxLag() {
-		global $wgShowHostnames;
-
 		wfProfileIn( __METHOD__ );
 		$maxLag = $this->context->getRequest()->getVal( 'maxlag' );
 		if ( !is_null( $maxLag ) ) {
@@ -491,7 +491,7 @@ class MediaWiki {
 				$resp->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				$resp->header( 'X-Database-Lag: ' . intval( $lag ) );
 				$resp->header( 'Content-Type: text/plain' );
-				if ( $wgShowHostnames ) {
+				if ( $this->config->get( 'ShowHostnames' ) ) {
 					echo "Waiting for $host: $lag seconds lagged\n";
 				} else {
 					echo "Waiting for a database server: $lag seconds lagged\n";
@@ -507,14 +507,14 @@ class MediaWiki {
 	}
 
 	private function main() {
-		global $wgUseFileCache, $wgTitle, $wgUseAjax;
+		global $wgTitle;
 
 		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
 
 		// Send Ajax requests to the Ajax dispatcher.
-		if ( $wgUseAjax && $request->getVal( 'action', 'view' ) == 'ajax' ) {
+		if ( $this->config->get( 'UseAjax' ) && $request->getVal( 'action', 'view' ) == 'ajax' ) {
 
 			// Set a dummy title, because $wgTitle == null might break things
 			$title = Title::makeTitle( NS_MAIN, 'AJAX' );
@@ -581,7 +581,7 @@ class MediaWiki {
 			}
 		}
 
-		if ( $wgUseFileCache && $title->getNamespace() >= 0 ) {
+		if ( $this->config->get( 'UseFileCache' ) && $title->getNamespace() >= 0 ) {
 			wfProfileIn( 'main-try-filecache' );
 			if ( HTMLFileCache::useFileCache( $this->context ) ) {
 				// Try low-level file cache hit
@@ -645,9 +645,8 @@ class MediaWiki {
 	 * the socket once it's done.
 	 */
 	protected function triggerJobs() {
-		global $wgJobRunRate, $wgServer, $wgRunJobsAsync;
-
-		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
+		$jobRunRate = $this->config->get( 'JobRunRate' );
+		if ( $jobRunRate <= 0 || wfReadOnly() ) {
 			return;
 		} elseif ( $this->getTitle()->isSpecial( 'RunJobs' ) ) {
 			return; // recursion guard
@@ -655,17 +654,17 @@ class MediaWiki {
 
 		$section = new ProfileSection( __METHOD__ );
 
-		if ( $wgJobRunRate < 1 ) {
+		if ( $jobRunRate < 1 ) {
 			$max = mt_getrandmax();
-			if ( mt_rand( 0, $max ) > $max * $wgJobRunRate ) {
-				return; // the higher $wgJobRunRate, the less likely we return here
+			if ( mt_rand( 0, $max ) > $max * $jobRunRate ) {
+				return; // the higher the job run rate, the less likely we return here
 			}
 			$n = 1;
 		} else {
-			$n = intval( $wgJobRunRate );
+			$n = intval( $jobRunRate );
 		}
 
-		if ( !$wgRunJobsAsync ) {
+		if ( !$this->config->get( 'RunJobsAsync' ) ) {
 			// Fall back to running the job here while the user waits
 			$runner = new JobRunner();
 			$runner->run( array( 'maxJobs'  => $n ) );
@@ -686,7 +685,7 @@ class MediaWiki {
 		$query['signature'] = SpecialRunJobs::getQuerySignature( $query );
 
 		$errno = $errstr = null;
-		$info = wfParseUrl( $wgServer );
+		$info = wfParseUrl( $this->config->get( 'Server' ) );
 		wfSuppressWarnings();
 		$sock = fsockopen(
 			$info['host'],
