@@ -3527,7 +3527,6 @@ HTML
 	/**
 	 * Shows a bulletin board style toolbar for common editing functions.
 	 * It can be disabled in the user preferences.
-	 * The necessary JavaScript code can be found in skins/common/edit.js.
 	 *
 	 * @return string
 	 */
