@@ -475,13 +475,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			return null;
 		}
 
-		global $wgResourceLoaderValidateStaticJS;
 		$localPath = $this->getLocalPath( $this->skipFunction );
 		if ( !file_exists( $localPath ) ) {
 			throw new MWException( __METHOD__ . ": skip function file not found: \"$localPath\"" );
 		}
 		$contents = file_get_contents( $localPath );
-		if ( $wgResourceLoaderValidateStaticJS ) {
+		if ( $this->getConfig()->get( 'ResourceLoaderValidateStaticJS' ) ) {
 			$contents = $this->validateScriptFile( $fileName, $contents );
 		}
 		return $contents;
@@ -792,7 +791,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string Concatenated and remapped JavaScript data from $scripts
 	 */
 	protected function readScriptFiles( array $scripts ) {
-		global $wgResourceLoaderValidateStaticJS;
 		if ( empty( $scripts ) ) {
 			return '';
 		}
@@ -803,7 +801,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				throw new MWException( __METHOD__ . ": script file not found: \"$localPath\"" );
 			}
 			$contents = file_get_contents( $localPath );
-			if ( $wgResourceLoaderValidateStaticJS ) {
+			if ( $this->getConfig()->get( 'ResourceLoaderValidateStaticJS' ) ) {
 				// Static files don't really need to be checked as often; unlike
 				// on-wiki module they shouldn't change unexpectedly without
 				// admin interference.
@@ -911,8 +909,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param string $fileName File name of root LESS file.
 	 * @return string Cache key
 	 */
-	protected static function getLESSCacheKey( $fileName ) {
-		$vars = json_encode( ResourceLoader::getLESSVars() );
+	protected function getLESSCacheKey( $fileName ) {
+		$vars = json_encode( ResourceLoader::getLESSVars( $this->getConfig() ) );
 		$hash = md5( $fileName . $vars );
 		return wfMemcKey( 'resourceloader', 'less', $hash );
 	}
@@ -933,7 +931,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string CSS source
 	 */
 	protected function compileLESSFile( $fileName ) {
-		$key = self::getLESSCacheKey( $fileName );
+		$key = $this->getLESSCacheKey( $fileName );
 		$cache = wfGetCache( CACHE_ANYTHING );
 
 		// The input to lessc. Either an associative array representing the
@@ -944,7 +942,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$source = $fileName;
 		}
 
-		$compiler = ResourceLoader::getLessCompiler();
+		$compiler = ResourceLoader::getLessCompiler( $this->getConfig() );
 		$result = null;
 
 		$result = $compiler->cachedCompile( $source );
