@@ -6189,8 +6189,10 @@ $wgEnableParserLimitReporting = true;
 $wgValidSkinNames = array();
 
 /**
- * Special page list.
- * See the top of SpecialPage.php for documentation.
+ * Special page list. This is an associative array mapping the (canonical) names of
+ * special pages to either a class name to be instantiated, or a callback to use for
+ * creating the special page object. In both cases, the result must be an instance of
+ * SpecialPage.
  */
 $wgSpecialPages = array();
 
