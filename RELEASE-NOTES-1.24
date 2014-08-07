@@ -47,6 +47,8 @@ production.
 * $wgCompiledFiles has been removed.
 * $wgSortSpecialPages was removed, the listing on Special:SpecialPages is
   now always sorted.
+* $wgSpecialPages may now use callback functions as an alternative to plain class names.
+  This allows more control over constructor parameters.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
@@ -305,6 +307,8 @@ changes to languages because of Bugzilla reports.
   JavaScript is no longer executed in this browser. The IEFixes script, which
   existed purely to provide support for MSIE versions below 7 and which was
   conditionally loaded for those browsers, was also removed.
+* Deprecated SpecialPageFactory::getList() in favor of
+  SpecialPageFactory::getNames()
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
