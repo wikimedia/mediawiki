@@ -44,6 +44,15 @@ sup, sub {
 }
 
 /**
+ * Don't display empty <tr> rows.
+ * They seem to be very common in infoboxes.
+ * Verified with visual diffing that this fixes rendering.
+ */
+tr:empty {
+	display: none;
+}
+
+/**
  * Block media items
  */
 figure[typeof*='mw:Image'] {
