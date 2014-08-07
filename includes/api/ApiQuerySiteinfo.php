@@ -344,7 +344,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		global $wgContLang;
 		$data = array();
 		$aliases = $wgContLang->getSpecialPageAliases();
-		foreach ( SpecialPageFactory::getList() as $specialpage => $stuff ) {
+		foreach ( SpecialPageFactory::getNames() as $specialpage ) {
 			if ( isset( $aliases[$specialpage] ) ) {
 				$arr = array( 'realname' => $specialpage, 'aliases' => $aliases[$specialpage] );
 				$this->getResult()->setIndexedTagName( $arr['aliases'], 'alias' );

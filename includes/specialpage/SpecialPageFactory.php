@@ -176,11 +176,43 @@ class SpecialPageFactory {
 	private static $aliases;
 
 	/**
-	 * Get the special page list
-	 *
-	 * @return array
+	 * Reset the internal list of special pages. Useful when changing $wgSpecialPages after
+	 * the internal list has already been initialized, e.g. during testing.
 	 */
-	static function getList() {
+	public static function resetList() {
+		self::$list = null;
+		self::$aliases = null;
+	}
+
+	/**
+	 * Returns a list of canonical special page names.
+	 * May be used to iterate over all registered special pages.
+	 *
+	 * @return string[]
+	 */
+	public static function getNames() {
+		return array_keys( get_object_vars( self::getListObject() ) );
+	}
+
+	/**
+	 * Get the special page list as an object, with each special page represented by a member
+	 * field in the object.
+	 *
+	 * @deprecated since 1.24, use getNames() instead.
+	 * @return object
+	 */
+	public static function getList() {
+		wfDeprecated( __FUNCTION__, '1.24' );
+		return self::getListObject();
+	}
+
+	/**
+	 * Get the special page list as an object, with each special page represented by a member
+	 * field in the object.
+	 *
+	 * @return object
+	 */
+	private static function getListObject() {
 		global $wgSpecialPages;
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
@@ -246,7 +278,7 @@ class SpecialPageFactory {
 			$aliases = $wgContLang->getSpecialPageAliases();
 
 			// Objects are passed by reference by default, need to create a copy
-			$missingPages = clone self::getList();
+			$missingPages = clone self::getListObject();
 
 			self::$aliases = array();
 			// Check for $aliases being an array since Language::getSpecialPageAliases can return null
@@ -335,7 +367,7 @@ class SpecialPageFactory {
 	public static function exists( $name ) {
 		list( $title, /*...*/ ) = self::resolveAlias( $name );
 
-		return property_exists( self::getList(), $title );
+		return property_exists( self::getListObject(), $title );
 	}
 
 	/**
@@ -346,21 +378,37 @@ class SpecialPageFactory {
 	 */
 	public static function getPage( $name ) {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
-		if ( property_exists( self::getList(), $realName ) ) {
-			$rec = self::getList()->$realName;
+		if ( property_exists( self::getListObject(), $realName ) ) {
+			$rec = self::getListObject()->$realName;
+
 			if ( is_string( $rec ) ) {
 				$className = $rec;
-
-				return new $className;
+				$page = new $className;
+			} elseif ( is_callable( $rec ) ) {
+				// Use callback to instantiate the special page
+				$page = call_user_func( $rec );
 			} elseif ( is_array( $rec ) ) {
 				$className = array_shift( $rec );
 				// @deprecated, officially since 1.18, unofficially since forever
 				wfDeprecated( "Array syntax for \$wgSpecialPages is deprecated ($className), " .
 					"define a subclass of SpecialPage instead.", '1.18' );
-				self::getList()->$realName = MWFunction::newObj( $className, $rec );
+				$page = MWFunction::newObj( $className, $rec );
+			} elseif ( $rec instanceof SpecialPage ) {
+				$page = $rec;
+			} else {
+				$page = null;
 			}
 
-			return self::getList()->$realName;
+			if ( $page instanceof SpecialPage ) {
+				self::getListObject()->$realName = $page;
+				return $page;
+			} else {
+				// It's not a classname, nor a callback, nor a legacy constructor array,
+				// nor a special page object. Give up.
+				wfLogWarning( "Cannot instantiate special page $realName: bad spec!" );
+				return null;
+			}
+
 		} else {
 			return null;
 		}
@@ -380,7 +428,7 @@ class SpecialPageFactory {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		foreach ( self::getList() as $name => $rec ) {
+		foreach ( self::getListObject() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page ) { // not null
 				$page->setContext( RequestContext::getMain() );
@@ -402,7 +450,7 @@ class SpecialPageFactory {
 	 */
 	public static function getRegularPages() {
 		$pages = array();
-		foreach ( self::getList() as $name => $rec ) {
+		foreach ( self::getListObject() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page->isListed() && !$page->isRestricted() ) {
 				$pages[$name] = $page;
@@ -425,7 +473,7 @@ class SpecialPageFactory {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		foreach ( self::getList() as $name => $rec ) {
+		foreach ( self::getListObject() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if (
 				$page->isListed()
