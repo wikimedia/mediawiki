@@ -44,6 +44,7 @@ if ( !$maintClass || !class_exists( $maintClass ) ) {
 }
 
 // Get an object to start us off
+/** @var Maintenance $maintenance */
 $maintenance = new $maintClass();
 
 // Basic sanity checks and such
