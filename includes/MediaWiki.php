@@ -641,7 +641,7 @@ class MediaWiki {
 
 		if ( !$this->config->get( 'RunJobsAsync' ) ) {
 			// Fall back to running the job here while the user waits
-			$runner = new JobRunner();
+			$runner = new JobRunner( $this->config );
 			$runner->run( array( 'maxJobs'  => $n ) );
 			return;
 		}
@@ -676,7 +676,7 @@ class MediaWiki {
 		if ( !$sock ) {
 			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
 			// Fall back to running the job here while the user waits
-			$runner = new JobRunner();
+			$runner = new JobRunner( $this->config );
 			$runner->run( array( 'maxJobs'  => $n ) );
 			return;
 		}

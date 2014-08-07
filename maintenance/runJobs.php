@@ -68,7 +68,7 @@ class RunJobs extends Maintenance {
 
 		$json = ( $this->getOption( 'result' ) === 'json' );
 
-		$runner = new JobRunner();
+		$runner = new JobRunner( $this->getConfig() );
 		if ( !$json ) {
 			$runner->setDebugHandler( array( $this, 'debugInternal' ) );
 		}
