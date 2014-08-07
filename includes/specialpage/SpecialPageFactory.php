@@ -176,6 +176,14 @@ class SpecialPageFactory {
 	private static $aliases;
 
 	/**
+	 * Reset the internal list of special pages. Useful when changing $wgSpecialPages after
+	 * the internal list has already been initialized, e.g. during testing.
+	 */
+	public static function resetList() {
+		self::$list = null;
+	}
+
+	/**
 	 * Get the special page list
 	 *
 	 * @return array
@@ -348,19 +356,35 @@ class SpecialPageFactory {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
 		if ( property_exists( self::getList(), $realName ) ) {
 			$rec = self::getList()->$realName;
+
 			if ( is_string( $rec ) ) {
 				$className = $rec;
-
-				return new $className;
+				$page = new $className;
+			} elseif ( is_callable( $rec ) ) {
+				// Use callback to instantiate the special page
+				$page = call_user_func( $rec );
 			} elseif ( is_array( $rec ) ) {
 				$className = array_shift( $rec );
 				// @deprecated, officially since 1.18, unofficially since forever
 				wfDeprecated( "Array syntax for \$wgSpecialPages is deprecated ($className), " .
 					"define a subclass of SpecialPage instead.", '1.18' );
-				self::getList()->$realName = MWFunction::newObj( $className, $rec );
+				$page = MWFunction::newObj( $className, $rec );
+			} elseif ( $rec instanceof SpecialPage ) {
+				$page = $rec;
+			} else {
+				$page = null;
 			}
 
-			return self::getList()->$realName;
+			if ( $page instanceof SpecialPage ) {
+				self::getList()->$realName = $page;
+				return $page;
+			} else {
+				// It's not a classname, nor a callback, nor a legacy constructor array,
+				// nor a special page object. Give up.
+				wfLogWarning( "Cannot instantiate special page $realName: bad spec!" );
+				return null;
+			}
+
 		} else {
 			return null;
 		}

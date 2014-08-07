@@ -47,6 +47,8 @@ production.
 * $wgCompiledFiles has been removed.
 * $wgSortSpecialPages was removed, the listing on Special:SpecialPages is
   now always sorted.
+* $wgSpecialPages may now use callback functions as an alternative to plain class names.
+  This allows more control over constructor parameters.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
