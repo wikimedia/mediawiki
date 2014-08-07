@@ -95,6 +95,9 @@ production.
 * If the user has the 'deletedhistory' right, action=query's revids parameter
   will now recognize deleted revids.
 * prop=revisions may be used as a generator, generating revids.
+* (bug 66776) format=json results will no longer be corrupted when
+  $wgMangleFlashPolicy is in effect. format=php results will cleanly return an
+  error instead of returning invalid serialized data.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
