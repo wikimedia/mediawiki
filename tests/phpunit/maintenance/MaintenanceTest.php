@@ -810,4 +810,21 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2->simulateShutdown();
 		$this->assertOutputPrePostShutdown( "foobar\n\n", false );
 	}
+
+	/**
+	 * @covers Maintenance::getConfig
+	 */
+	public function testGetConfig() {
+		$this->assertInstanceOf( 'Config', $this->m->getConfig() );
+		$this->assertSame( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ), $this->m->getConfig() );
+	}
+
+	/**
+	 * @covers Maintenance::setConfig
+	 */
+	public function testSetConfig() {
+		$conf = $this->getMock( 'Config' );
+		$this->m->setConfig( $conf );
+		$this->assertSame( $conf, $this->m->getConfig() );
+	}
 }
