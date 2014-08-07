@@ -296,8 +296,6 @@
 			colspan,
 			headerCount,
 			longestTR,
-			matrixRowIndex,
-			matrixColumnIndex,
 			exploded,
 			$tableHeaders = $( [] ),
 			$tableRows = $( 'thead:eq(0) > tr', table );
@@ -309,6 +307,9 @@
 			// Loop through all the dom cells of the thead
 			$tableRows.each( function ( rowIndex, row ) {
 				$.each( row.cells, function ( columnIndex, cell ) {
+					var matrixRowIndex,
+						matrixColumnIndex;
+
 					rowspan = Number( cell.rowSpan );
 					colspan = Number( cell.colSpan );
 
