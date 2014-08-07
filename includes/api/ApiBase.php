@@ -593,51 +593,36 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Returns possible properties in the result, grouped by the value of the prop parameter
-	 * that shows them.
+	 * Formerly used to fetch a list of possible properites in the result,
+	 * somehow organized with respect to the prop parameter that causes them to
+	 * be returned. The specific semantics of the return value was never
+	 * specified. Since this was never possible to be accurately updated, it
+	 * has been removed.
 	 *
-	 * Properties that are shown always are in a group with empty string as a key.
-	 * Properties that can be shown by several values of prop are included multiple times.
-	 * If some properties are part of a list and some are on the root object (see ApiQueryQueryPage),
-	 * those on the root object are under the key PROP_ROOT.
-	 * The array can also contain a boolean under the key PROP_LIST,
-	 * indicating whether the result is a list.
-	 *
-	 * Don't call this function directly: use getFinalResultProperties() to
-	 * allow hooks to modify descriptions as needed.
-	 *
-	 * @return array|bool False on no properties
+	 * @deprecated since 1.24
+	 * @return array|bool
 	 */
 	protected function getResultProperties() {
+		wfDeprecated( __METHOD__, '1.24' );
 		return false;
 	}
 
 	/**
-	 * Get final possible result properties, after hooks have had a chance to tweak it as
-	 * needed.
-	 *
-	 * @return array
+	 * @see self::getResultProperties()
+	 * @deprecated since 1.24
+	 * @return array|bool
 	 */
 	public function getFinalResultProperties() {
-		$properties = $this->getResultProperties();
-		wfRunHooks( 'APIGetResultProperties', array( $this, &$properties ) );
-
-		return $properties;
+		wfDeprecated( __METHOD__, '1.24' );
+		return array();
 	}
 
 	/**
-	 * Add token properties to the array used by getResultProperties,
-	 * based on a token functions mapping.
-	 * @param array $props
-	 * @param array $tokenFunctions
+	 * @see self::getResultProperties()
+	 * @deprecated since 1.24
 	 */
 	protected static function addTokenProperties( &$props, $tokenFunctions ) {
-		foreach ( array_keys( $tokenFunctions ) as $token ) {
-			$props[''][$token . 'token'] = array(
-				ApiBase::PROP_TYPE => 'string',
-				ApiBase::PROP_NULLABLE => true
-			);
-		}
+		wfDeprecated( __METHOD__, '1.24' );
 	}
 
 	/**
@@ -706,8 +691,6 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Die if none or more than one of a certain set of parameters is set and not false.
 	 *
-	 * Call getRequireOnlyOneParameterErrorMessages() to get a list of possible errors.
-	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
 	 * @param string $required,... Names of parameters of which exactly one must be set
 	 */
@@ -732,31 +715,17 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Generates the possible errors requireOnlyOneParameter() can die with
-	 *
-	 * @param array $params
+	 * @see self::getPossibleErrors()
+	 * @deprecated since 1.24
 	 * @return array
 	 */
 	public function getRequireOnlyOneParameterErrorMessages( $params ) {
-		$p = $this->getModulePrefix();
-		$params = implode( ", {$p}", $params );
-
-		return array(
-			array(
-				'code' => "{$p}missingparam",
-				'info' => "One of the parameters {$p}{$params} is required"
-			),
-			array(
-				'code' => "{$p}invalidparammix",
-				'info' => "The parameters {$p}{$params} can not be used together"
-			)
-		);
+		wfDeprecated( __METHOD__, '1.24' );
+		return array();
 	}
 
 	/**
 	 * Die if more than one of a certain set of parameters is set and not false.
-	 *
-	 * Call getRequireMaxOneParameterErrorMessages() to get a list of possible errors.
 	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
 	 * @param string $required,... Names of parameters of which at most one must be set
@@ -778,27 +747,17 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Generates the possible error requireMaxOneParameter() can die with
-	 *
-	 * @param array $params
+	 * @see self::getPossibleErrors()
+	 * @deprecated since 1.24
 	 * @return array
 	 */
 	public function getRequireMaxOneParameterErrorMessages( $params ) {
-		$p = $this->getModulePrefix();
-		$params = implode( ", {$p}", $params );
-
-		return array(
-			array(
-				'code' => "{$p}invalidparammix",
-				'info' => "The parameters {$p}{$params} can not be used together"
-			)
-		);
+		wfDeprecated( __METHOD__, '1.24' );
+		return array();
 	}
 
 	/**
 	 * Die if none of a certain set of parameters is set and not false.
-	 *
-	 * Call getRequireAtLeastOneParameterErrorMessages() to get a list of possible errors.
 	 *
 	 * @since 1.23
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
@@ -821,29 +780,18 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Generates the possible errors requireAtLeastOneParameter() can die with
-	 *
-	 * @since 1.23
-	 * @param array $params Array of parameter key names
+	 * @see self::getPossibleErrors()
+	 * @deprecated since 1.24
 	 * @return array
 	 */
 	public function getRequireAtLeastOneParameterErrorMessages( $params ) {
-		$p = $this->getModulePrefix();
-		$params = implode( ", {$p}", $params );
-
-		return array(
-			array(
-				'code' => "{$p}missingparam",
-				'info' => "At least one of the parameters {$p}{$params} is required",
-			),
-		);
+		wfDeprecated( __METHOD__, '1.24' );
+		return array();
 	}
 
 	/**
 	 * Get a WikiPage object from a title or pageid param, if possible.
 	 * Can die, if no param is set or if the title or page id is not valid.
-	 *
-	 * Call getTitleOrPageIdErrorMessage() to get a list of possible errors.
 	 *
 	 * @param array $params
 	 * @param bool|string $load Whether load the object's state from the database:
@@ -882,19 +830,13 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Generates the possible error getTitleOrPageId() can die with
-	 *
+	 * @see self::getPossibleErrors()
+	 * @deprecated since 1.24
 	 * @return array
 	 */
 	public function getTitleOrPageIdErrorMessage() {
-		return array_merge(
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
-			array(
-				array( 'invalidtitle', 'title' ),
-				array( 'nosuchpageid', 'pageid' ),
-				array( 'code' => 'pagecannotexist', 'info' => "Namespace doesn't allow actual pages" ),
-			)
-		);
+		wfDeprecated( __METHOD__, '1.24' );
+		return array();
 	}
 
 	/**
@@ -2105,93 +2047,38 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Returns a list of all possible errors returned by the module
+	 * This formerly attempted to return a list of all possible errors returned
+	 * by the module. However, this was impossible to maintain in many cases
+	 * since errors could come from other areas of MediaWiki and in some cases
+	 * from arbitrary extension hooks. Since a partial list claiming to be
+	 * comprehensive is unlikely to be useful, it was removed.
 	 *
-	 * Don't call this function directly: use getFinalPossibleErrors() to allow
-	 * hooks to modify parameters as needed.
-	 *
-	 * @return array Array in the format of array( key, param1, param2, ... )
-	 *   or array( 'code' => ..., 'info' => ... )
+	 * @deprecated since 1.24
+	 * @return array
 	 */
 	public function getPossibleErrors() {
-		$ret = array();
-
-		$params = $this->getFinalParams();
-		if ( $params ) {
-			foreach ( $params as $paramName => $paramSettings ) {
-				if ( isset( $paramSettings[ApiBase::PARAM_REQUIRED] )
-					&& $paramSettings[ApiBase::PARAM_REQUIRED]
-				) {
-					$ret[] = array( 'missingparam', $paramName );
-				}
-			}
-			if ( array_key_exists( 'continue', $params ) ) {
-				$ret[] = array(
-					'code' => 'badcontinue',
-					'info' => 'Invalid continue param. You should pass the ' .
-						'original value returned by the previous query'
-				);
-			}
-		}
-
-		if ( $this->mustBePosted() ) {
-			$ret[] = array( 'mustbeposted', $this->getModuleName() );
-		}
-
-		if ( $this->isReadMode() ) {
-			$ret[] = array( 'readrequired' );
-		}
-
-		if ( $this->isWriteMode() ) {
-			$ret[] = array( 'writerequired' );
-			$ret[] = array( 'writedisabled' );
-		}
-
-		if ( $this->needsToken() ) {
-			if ( !isset( $params['token'][ApiBase::PARAM_REQUIRED] )
-				|| !$params['token'][ApiBase::PARAM_REQUIRED]
-			) {
-				// Add token as possible missing parameter, if not already done
-				$ret[] = array( 'missingparam', 'token' );
-			}
-			$ret[] = array( 'sessionfailure' );
-		}
-
-		return $ret;
+		wfDeprecated( __METHOD__, '1.24' );
+		return array();
 	}
 
 	/**
-	 * Get final list of possible errors, after hooks have had a chance to
-	 * tweak it as needed.
-	 *
-	 * @return array
-	 * @since 1.22
+	 * @see self::getPossibleErrors()
+	 * @deprecated since 1.24
+	 * @retun array
 	 */
 	public function getFinalPossibleErrors() {
-		$possibleErrors = $this->getPossibleErrors();
-		wfRunHooks( 'APIGetPossibleErrors', array( $this, &$possibleErrors ) );
-
-		return $possibleErrors;
+		wfDeprecated( __METHOD__, '1.24' );
+		return array();
 	}
 
 	/**
-	 * Parses a list of errors into a standardised format
-	 * @param array $errors List of errors. Items can be in the for
-	 *   array( key, param1, param2, ... ) or array( 'code' => ..., 'info' => ... )
-	 * @return array Parsed list of errors with items in the form array( 'code' => ..., 'info' => ... )
+	 * @see self::getPossibleErrors()
+	 * @deprecated since 1.24
+	 * @return array
 	 */
 	public function parseErrors( $errors ) {
-		$ret = array();
-
-		foreach ( $errors as $row ) {
-			if ( isset( $row['code'] ) && isset( $row['info'] ) ) {
-				$ret[] = $row;
-			} else {
-				$ret[] = $this->parseMsg( $row );
-			}
-		}
-
-		return $ret;
+		wfDeprecated( __METHOD__, '1.24' );
+		return array();
 	}
 
 	/**

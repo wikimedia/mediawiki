@@ -804,29 +804,6 @@ class ApiParse extends ApiBase {
 		);
 	}
 
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array(
-				'code' => 'params',
-				'info' => 'The page parameter cannot be used together with the text and title parameters'
-			),
-			array( 'code' => 'missingrev', 'info' => 'There is no revision ID oldid' ),
-			array(
-				'code' => 'permissiondenied',
-				'info' => 'You don\'t have permission to view deleted revisions'
-			),
-			array( 'code' => 'missingtitle', 'info' => 'The page you specified doesn\'t exist' ),
-			array( 'code' => 'nosuchsection', 'info' => 'There is no section sectionnumber in page' ),
-			array( 'nosuchpageid' ),
-			array( 'invalidtitle', 'title' ),
-			array( 'code' => 'parseerror', 'info' => 'Failed to parse the given text.' ),
-			array(
-				'code' => 'notwikitext',
-				'info' => 'The requested operation is only supported on wikitext content.'
-			),
-		) );
-	}
-
 	public function getExamples() {
 		return array(
 			'api.php?action=parse&page=Project:Sandbox' => 'Parse a page',

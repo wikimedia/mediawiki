@@ -505,18 +505,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'ns' => 'namespace',
-				'title' => 'string'
-			),
-			'token' => array(
-				'token' => 'string'
-			)
-		);
-	}
-
 	public function getDescription() {
 		$p = $this->getModulePrefix();
 
@@ -530,29 +518,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'Certain parameters only apply to some modes and are ignored in others.',
 			'For instance, a parameter marked (1) only applies to mode 1 and is ignored in modes 2 and 3.',
 		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array(
-				'code' => 'permissiondenied',
-				'info' => 'You don\'t have permission to view deleted revision information'
-			),
-			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together'
-			),
-			array(
-				'code' => 'permissiondenied',
-				'info' => 'You don\'t have permission to view deleted revision content'
-			),
-			array( 'code' => 'badparams', 'info' => "The 'from' parameter cannot be used in modes 1 or 2" ),
-			array( 'code' => 'badparams', 'info' => "The 'to' parameter cannot be used in modes 1 or 2" ),
-			array(
-				'code' => 'badparams',
-				'info' => "The 'prefix' parameter cannot be used in modes 1 or 2"
-			),
-			array( 'code' => 'badparams', 'info' => "The 'start' parameter cannot be used in mode 3" ),
-			array( 'code' => 'badparams', 'info' => "The 'end' parameter cannot be used in mode 3" ),
-		) );
 	}
 
 	public function getExamples() {

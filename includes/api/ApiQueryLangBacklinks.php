@@ -209,23 +209,6 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'pageid' => 'integer',
-				'ns' => 'namespace',
-				'title' => 'string',
-				'redirect' => 'boolean'
-			),
-			'lllang' => array(
-				'lllang' => 'string'
-			),
-			'lltitle' => array(
-				'lltitle' => 'string'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return array( 'Find all pages that link to the given language link.',
 			'Can be used to find all links with a language code, or',
@@ -233,12 +216,6 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 			'Using neither parameter is effectively "All Language Links".',
 			'Note that this may not consider language links added by extensions.',
 		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingparam', 'lang' ),
-		) );
 	}
 
 	public function getExamples() {

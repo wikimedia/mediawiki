@@ -315,87 +315,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'name' => 'string',
-				'ns' => 'namespace',
-				'title' => 'string',
-				'filehidden' => 'boolean',
-				'commenthidden' => 'boolean',
-				'userhidden' => 'boolean',
-				'suppressed' => 'boolean'
-			),
-			'sha1' => array(
-				'sha1' => 'string'
-			),
-			'timestamp' => array(
-				'timestamp' => 'timestamp'
-			),
-			'user' => array(
-				'userid' => 'integer',
-				'user' => 'string'
-			),
-			'size' => array(
-				'size' => 'integer',
-				'pagecount' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'height' => 'integer',
-				'width' => 'integer'
-			),
-			'dimensions' => array(
-				'size' => 'integer',
-				'pagecount' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'height' => 'integer',
-				'width' => 'integer'
-			),
-			'description' => array(
-				'description' => 'string'
-			),
-			'parseddescription' => array(
-				'description' => 'string',
-				'parseddescription' => 'string'
-			),
-			'metadata' => array(
-				'metadata' => 'string'
-			),
-			'bitdepth' => array(
-				'bitdepth' => 'integer'
-			),
-			'mime' => array(
-				'mime' => 'string'
-			),
-			'mediatype' => array(
-				'mediatype' => 'string'
-			),
-			'archivename' => array(
-				'archivename' => 'string'
-			),
-		);
-	}
-
 	public function getDescription() {
 		return 'Enumerate all deleted files sequentially.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array(
-				'code' => 'permissiondenied',
-				'info' => 'You don\'t have permission to view deleted file information'
-			),
-			array( 'code' => 'hashsearchdisabled', 'info' => 'Search by hash disabled in Miser Mode' ),
-			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA-1 hash provided is not valid' ),
-			array(
-				'code' => 'invalidsha1base36hash',
-				'info' => 'The SHA1Base36 hash provided is not valid'
-			),
-		) );
 	}
 
 	public function getExamples() {

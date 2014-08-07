@@ -176,43 +176,8 @@ class ApiExpandTemplates extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'wikitext' => array(
-				'wikitext' => 'string',
-			),
-			'categories' => array(
-				'categories' => array(
-					ApiBase::PROP_TYPE => 'array',
-					ApiBase::PROP_NULLABLE => true,
-				),
-			),
-			'volatile' => array(
-				'volatile' => array(
-					ApiBase::PROP_TYPE => 'boolean',
-					ApiBase::PROP_NULLABLE => true,
-				),
-			),
-			'ttl' => array(
-				'ttl' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true,
-				),
-			),
-			'parsetree' => array(
-				'parsetree' => 'string',
-			),
-		);
-	}
-
 	public function getDescription() {
 		return 'Expands all templates in wikitext.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'invalidtitle', 'title' ),
-		) );
 	}
 
 	public function getExamples() {

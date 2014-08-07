@@ -210,14 +210,6 @@ class ApiFeedContributions extends ApiBase {
 		return 'Returns a user contributions feed.';
 	}
 
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'feed-unavailable', 'info' => 'Syndication feeds are not available' ),
-			array( 'code' => 'feed-invalid', 'info' => 'Invalid subscription feed type' ),
-			array( 'code' => 'sizediffdisabled', 'info' => 'Size difference is disabled in Miser Mode' ),
-		) );
-	}
-
 	public function getExamples() {
 		return array(
 			'api.php?action=feedcontributions&user=Reedy',

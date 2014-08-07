@@ -1168,21 +1168,4 @@ class ApiPageSet extends ApiBase {
 			),
 		);
 	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array(
-				'code' => 'multisource',
-				'info' => "Cannot use 'pageids' at the same time as 'dataSource'"
-			),
-			array(
-				'code' => 'multisource',
-				'info' => "Cannot use 'revids' at the same time as 'dataSource'"
-			),
-			array(
-				'code' => 'badgenerator',
-				'info' => 'Module $generatorName cannot be used as a generator'
-			),
-		) );
-	}
 }

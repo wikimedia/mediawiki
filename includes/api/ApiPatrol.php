@@ -98,33 +98,8 @@ class ApiPatrol extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'rcid' => 'integer',
-				'ns' => 'namespace',
-				'title' => 'string'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Patrol a page or revision.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge(
-			parent::getPossibleErrors(),
-			parent::getRequireOnlyOneParameterErrorMessages( array( 'rcid', 'revid' ) ),
-			array(
-				array( 'nosuchrcid', 'rcid' ),
-				array( 'nosuchrevid', 'revid' ),
-				array(
-					'code' => 'notpatrollable',
-					'info' => "The revision can't be patrolled as it's too old"
-				)
-			)
-		);
 	}
 
 	public function needsToken() {

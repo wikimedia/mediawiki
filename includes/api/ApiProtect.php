@@ -200,33 +200,8 @@ class ApiProtect extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'title' => 'string',
-				'reason' => 'string',
-				'cascade' => 'boolean'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Change the protection level of a page.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			$this->getTitleOrPageIdErrorMessage(),
-			array(
-				array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ),
-				array( 'create-titleexists' ),
-				array( 'missingtitle-createonly' ),
-				array( 'protect-invalidaction', 'action' ),
-				array( 'protect-invalidlevel', 'level' ),
-				array( 'invalidexpiry', 'expiry' ),
-				array( 'pastexpiry', 'expiry' ),
-			)
-		);
 	}
 
 	public function needsToken() {

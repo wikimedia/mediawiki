@@ -163,46 +163,8 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			ApiBase::PROP_ROOT => array(
-				'name' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => false
-				),
-				'disabled' => array(
-					ApiBase::PROP_TYPE => 'boolean',
-					ApiBase::PROP_NULLABLE => false
-				),
-				'cached' => array(
-					ApiBase::PROP_TYPE => 'boolean',
-					ApiBase::PROP_NULLABLE => false
-				),
-				'cachedtimestamp' => array(
-					ApiBase::PROP_TYPE => 'timestamp',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'' => array(
-				'value' => 'string',
-				'timestamp' => array(
-					ApiBase::PROP_TYPE => 'timestamp',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'ns' => 'namespace',
-				'title' => 'string'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Get a list provided by a QueryPage-based special page.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'specialpage-cantexecute' )
-		) );
 	}
 
 	public function getExamples() {

@@ -234,33 +234,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'ns' => 'namespace',
-				'title' => 'string'
-			),
-			'sortkey' => array(
-				'sortkey' => 'string',
-				'sortkeyprefix' => 'string'
-			),
-			'timestamp' => array(
-				'timestamp' => 'timestamp'
-			),
-			'hidden' => array(
-				'hidden' => 'boolean'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'List all categories the page(s) belong to.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'show' ),
-		) );
 	}
 
 	public function getExamples() {

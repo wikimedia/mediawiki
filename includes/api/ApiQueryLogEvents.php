@@ -566,78 +566,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'ids' => array(
-				'logid' => 'integer',
-				'pageid' => 'integer'
-			),
-			'title' => array(
-				'ns' => 'namespace',
-				'title' => 'string'
-			),
-			'type' => array(
-				'type' => array(
-					ApiBase::PROP_TYPE => $this->getConfig()->get( 'LogTypes' )
-				),
-				'action' => 'string'
-			),
-			'details' => array(
-				'actionhidden' => 'boolean'
-			),
-			'user' => array(
-				'userhidden' => 'boolean',
-				'user' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'anon' => 'boolean'
-			),
-			'userid' => array(
-				'userhidden' => 'boolean',
-				'userid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'anon' => 'boolean'
-			),
-			'timestamp' => array(
-				'timestamp' => 'timestamp'
-			),
-			'comment' => array(
-				'commenthidden' => 'boolean',
-				'comment' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'parsedcomment' => array(
-				'commenthidden' => 'boolean',
-				'parsedcomment' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Get events from logs.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge(
-			parent::getPossibleErrors(),
-			$this->getRequireMaxOneParameterErrorMessages(
-				array( 'title', 'prefix', 'namespace' ) ),
-			array(
-				array( 'code' => 'param_user', 'info' => 'User name $user not found' ),
-				array( 'code' => 'param_title', 'info' => 'Bad title value \'title\'' ),
-				array( 'code' => 'param_prefix', 'info' => 'Bad title value \'prefix\'' ),
-				array( 'code' => 'prefixsearchdisabled',
-					'info' => 'Prefix search disabled in Miser Mode' ),
-			)
-		);
 	}
 
 	public function getExamples() {

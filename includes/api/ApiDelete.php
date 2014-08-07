@@ -229,32 +229,8 @@ class ApiDelete extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'title' => 'string',
-				'reason' => 'string',
-				'logid' => 'integer'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Delete a page.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			$this->getTitleOrPageIdErrorMessage(),
-			array(
-				array( 'notanarticle' ),
-				array( 'hookaborted', 'error' ),
-				array( 'delete-toobig', 'limit' ),
-				array( 'cannotdelete', 'title' ),
-				array( 'invalidoldimage' ),
-				array( 'nodeleteablefile' ),
-			)
-		);
 	}
 
 	public function needsToken() {

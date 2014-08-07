@@ -393,74 +393,8 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	private $propertyFilter = array( 'archivename', 'thumbmime', 'uploadwarning' );
 
-	public function getResultProperties() {
-		return array_merge(
-			array(
-				'' => array(
-					'name' => 'string',
-					'ns' => 'namespace',
-					'title' => 'string'
-				)
-			),
-			ApiQueryImageInfo::getResultPropertiesFiltered( $this->propertyFilter )
-		);
-	}
-
 	public function getDescription() {
 		return 'Enumerate all images sequentially.';
-	}
-
-	public function getPossibleErrors() {
-		$p = $this->getModulePrefix();
-
-		return array_merge( parent::getPossibleErrors(), array(
-			array(
-				'code' => 'params',
-				'info' => 'Use "gaifilterredir=nonredirects" option instead ' .
-					'of "redirects" when using allimages as a generator'
-			),
-			array(
-				'code' => 'badparams',
-				'info' => "Parameter'{$p}start' can only be used with {$p}sort=timestamp"
-			),
-			array(
-				'code' => 'badparams',
-				'info' => "Parameter'{$p}end' can only be used with {$p}sort=timestamp"
-			),
-			array(
-				'code' => 'badparams',
-				'info' => "Parameter'{$p}user' can only be used with {$p}sort=timestamp"
-			),
-			array(
-				'code' => 'badparams',
-				'info' => "Parameter'{$p}filterbots' can only be used with {$p}sort=timestamp"
-			),
-			array(
-				'code' => 'badparams',
-				'info' => "Parameter'{$p}from' can only be used with {$p}sort=name"
-			),
-			array(
-				'code' => 'badparams',
-				'info' => "Parameter'{$p}to' can only be used with {$p}sort=name"
-			),
-			array(
-				'code' => 'badparams',
-				'info' => "Parameter'{$p}prefix' can only be used with {$p}sort=name"
-			),
-			array(
-				'code' => 'badparams',
-				'info' => "Parameters '{$p}user' and '{$p}filterbots' cannot be used together"
-			),
-			array(
-				'code' => 'unsupportedrepo',
-				'info' => 'Local file repository does not support querying all images' ),
-			array( 'code' => 'mimesearchdisabled', 'info' => 'MIME search disabled in Miser Mode' ),
-			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
-			array(
-				'code' => 'invalidsha1base36hash',
-				'info' => 'The SHA1Base36 hash provided is not valid'
-			),
-		) );
 	}
 
 	public function getExamples() {

@@ -265,14 +265,6 @@ class ApiQueryContributors extends ApiQueryBase {
 		);
 	}
 
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireMaxOneParameterErrorMessages(
-				array( 'group', 'excludegroup', 'rights', 'excluderights' )
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Get the list of logged-in contributors and ' .
 			'the count of anonymous contributors to a page.';

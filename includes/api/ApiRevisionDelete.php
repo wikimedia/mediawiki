@@ -220,16 +220,6 @@ class ApiRevisionDelete extends ApiBase {
 		return 'Delete/undelete revisions.';
 	}
 
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			array(
-				array( 'code' => 'needtarget',
-					'info' => 'A target title is required for this RevDel type' ),
-				array( 'code' => 'badparams', 'info' => 'Bad value for some parameter' ),
-			)
-		);
-	}
-
 	public function needsToken() {
 		return true;
 	}

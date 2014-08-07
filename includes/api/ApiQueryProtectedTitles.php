@@ -243,42 +243,6 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'ns' => 'namespace',
-				'title' => 'string'
-			),
-			'timestamp' => array(
-				'timestamp' => 'timestamp'
-			),
-			'user' => array(
-				'user' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'userid' => 'integer'
-			),
-			'userid' => array(
-				'userid' => 'integer'
-			),
-			'comment' => array(
-				'comment' => 'string'
-			),
-			'parsedcomment' => array(
-				'parsedcomment' => 'string'
-			),
-			'expiry' => array(
-				'expiry' => 'timestamp'
-			),
-			'level' => array(
-				'level' => array(
-					ApiBase::PROP_TYPE => array_diff( $this->getConfig()->get( 'RestrictionLevels' ), array( '' ) )
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'List all titles protected from creation.';
 	}

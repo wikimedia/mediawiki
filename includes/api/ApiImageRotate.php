@@ -219,15 +219,6 @@ class ApiImageRotate extends ApiBase {
 		return '';
 	}
 
-	public function getPossibleErrors() {
-		$pageSet = $this->getPageSet();
-
-		return array_merge(
-			parent::getPossibleErrors(),
-			$pageSet->getFinalPossibleErrors()
-		);
-	}
-
 	public function getExamples() {
 		return array(
 			'api.php?action=imagerotate&titles=Example.jpg&rotation=90&token=123ABC',

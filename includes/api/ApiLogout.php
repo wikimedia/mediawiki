@@ -50,10 +50,6 @@ class ApiLogout extends ApiBase {
 		return array();
 	}
 
-	public function getResultProperties() {
-		return array();
-	}
-
 	public function getParamDescription() {
 		return array();
 	}

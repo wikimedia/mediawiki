@@ -498,65 +498,6 @@ class ApiEditPage extends ApiBase {
 		return 'Create and edit pages.';
 	}
 
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			$this->getTitleOrPageIdErrorMessage(),
-			array(
-				array( 'missingtext' ),
-				array( 'createonly-exists' ),
-				array( 'nocreate-missing' ),
-				array( 'nosuchrevid', 'undo' ),
-				array( 'nosuchrevid', 'undoafter' ),
-				array( 'revwrongpage', 'id', 'text' ),
-				array( 'undo-failure' ),
-				array( 'hashcheckfailed' ),
-				array( 'hookaborted' ),
-				array( 'code' => 'parseerror', 'info' => 'Failed to parse the given text.' ),
-				array( 'noimageredirect-anon' ),
-				array( 'noimageredirect-logged' ),
-				array( 'spamdetected', 'spam' ),
-				array( 'summaryrequired' ),
-				array( 'blockedtext' ),
-				array( 'contenttoobig', $this->getConfig()->get( 'MaxArticleSize' ) ),
-				array( 'noedit-anon' ),
-				array( 'noedit' ),
-				array( 'actionthrottledtext' ),
-				array( 'wasdeleted' ),
-				array( 'nocreate-loggedin' ),
-				array( 'blankpage' ),
-				array( 'editconflict' ),
-				array( 'emptynewsection' ),
-				array( 'unknownerror', 'retval' ),
-				array( 'code' => 'nosuchsection', 'info' => 'There is no such section.' ),
-				array(
-					'code' => 'invalidsection',
-					'info' => 'The section parameter must be a valid section id or \'new\''
-				),
-				array(
-					'code' => 'sectionsnotsupported',
-					'info' => 'Sections are not supported for this type of page.'
-				),
-				array(
-					'code' => 'editnotsupported',
-					'info' => 'Editing of this type of page is not supported using the text based edit API.'
-				),
-				array(
-					'code' => 'appendnotsupported',
-					'info' => 'This type of page can not be edited by appending or prepending text.' ),
-				array(
-					'code' => 'redirect-appendonly',
-					'info' => 'You have attempted to edit using the "redirect"-following mode, which must be used in conjuction with section=new, prependtext, or appendtext.',
-				),
-				array(
-					'code' => 'badformat',
-					'info' => 'The requested serialization format can not be applied to the page\'s content model'
-				),
-				array( 'customcssprotected' ),
-				array( 'customjsprotected' ),
-			)
-		);
-	}
-
 	public function getAllowedParams() {
 		return array(
 			'title' => array(
@@ -669,41 +610,6 @@ class ApiEditPage extends ApiBase {
 			'redirect' => 'Automatically resolve redirects',
 			'contentformat' => 'Content serialization format used for the input text',
 			'contentmodel' => 'Content model of the new content',
-		);
-	}
-
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'new' => 'boolean',
-				'result' => array(
-					ApiBase::PROP_TYPE => array(
-						'Success',
-						'Failure'
-					),
-				),
-				'pageid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'title' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'nochange' => 'boolean',
-				'oldrevid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'newrevid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'newtimestamp' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
 		);
 	}
 

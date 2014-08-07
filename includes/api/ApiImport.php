@@ -134,35 +134,12 @@ class ApiImport extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			ApiBase::PROP_LIST => true,
-			'' => array(
-				'ns' => 'namespace',
-				'title' => 'string',
-				'revisions' => 'integer'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return array(
 			'Import a page from another wiki, or an XML file.',
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
 			'sending a file for the "xml" parameter.'
 		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'cantimport' ),
-			array( 'missingparam', 'interwikipage' ),
-			array( 'cantimport-upload' ),
-			array( 'import-unknownerror', 'source' ),
-			array( 'import-unknownerror', 'result' ),
-			array( 'import-rootpage-nosubpage', 'namespace' ),
-			array( 'import-rootpage-invalid' ),
-		) );
 	}
 
 	public function needsToken() {

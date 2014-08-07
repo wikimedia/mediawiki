@@ -555,79 +555,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'userid' => 'integer',
-				'user' => 'string',
-				'userhidden' => 'boolean'
-			),
-			'ids' => array(
-				'pageid' => 'integer',
-				'revid' => 'integer',
-				'parentid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'title' => array(
-				'ns' => 'namespace',
-				'title' => 'string'
-			),
-			'timestamp' => array(
-				'timestamp' => 'timestamp'
-			),
-			'flags' => array(
-				'new' => 'boolean',
-				'minor' => 'boolean',
-				'top' => 'boolean'
-			),
-			'comment' => array(
-				'commenthidden' => 'boolean',
-				'comment' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'parsedcomment' => array(
-				'commenthidden' => 'boolean',
-				'parsedcomment' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'patrolled' => array(
-				'patrolled' => 'boolean'
-			),
-			'size' => array(
-				'size' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'sizediff' => array(
-				'sizediff' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Get all edits by a user.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'param_user', 'info' => 'User parameter may not be empty.' ),
-			array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
-			array( 'show' ),
-			array(
-				'code' => 'permissiondenied',
-				'info' => 'You need the patrol right to request the patrolled flag'
-			),
-		) );
 	}
 
 	public function getExamples() {

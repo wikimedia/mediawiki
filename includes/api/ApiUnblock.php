@@ -107,41 +107,8 @@ class ApiUnblock extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'id' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'user' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'userid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'reason' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Unblock a user.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'unblock-notarget' ),
-			array( 'unblock-idanduser' ),
-			array( 'cantunblock' ),
-			array( 'ipbblocked' ),
-			array( 'ipbnounblockself' ),
-		) );
 	}
 
 	public function needsToken() {

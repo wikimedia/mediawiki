@@ -206,6 +206,10 @@ production.
   to use for the module. This is intended for extensions that want control over
   the instantiation of their API modules, to allow for proper dependency
   injection.
+* Removed 'props' and 'errors' from action=paraminfo, as they have extremely
+  limited use and are generally inaccurate, unmaintained, and impossible to
+  properly maintain. Also removed the corresponding methods from ApiBase and
+  the 'APIGetPossibleErrors' and 'APIGetResultProperties' hooks.
 
 === Languages updated in 1.24 ===
 

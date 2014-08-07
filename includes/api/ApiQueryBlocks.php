@@ -368,84 +368,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'id' => array(
-				'id' => 'integer'
-			),
-			'user' => array(
-				'user' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'userid' => array(
-				'userid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'by' => array(
-				'by' => 'string'
-			),
-			'byid' => array(
-				'byid' => 'integer'
-			),
-			'timestamp' => array(
-				'timestamp' => 'timestamp'
-			),
-			'expiry' => array(
-				'expiry' => 'timestamp'
-			),
-			'reason' => array(
-				'reason' => 'string'
-			),
-			'range' => array(
-				'rangestart' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'rangeend' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'flags' => array(
-				'automatic' => 'boolean',
-				'anononly' => 'boolean',
-				'nocreate' => 'boolean',
-				'autoblock' => 'boolean',
-				'noemail' => 'boolean',
-				'hidden' => 'boolean',
-				'allowusertalk' => 'boolean'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'List all blocked users and IP addresses.';
-	}
-
-	public function getPossibleErrors() {
-		$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
-
-		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireMaxOneParameterErrorMessages( array( 'users', 'ip' ) ),
-			array(
-				array(
-					'code' => 'cidrtoobroad',
-					'info' => "IPv4 CIDR ranges broader than /{$blockCIDRLimit['IPv4']} are not accepted"
-				),
-				array(
-					'code' => 'cidrtoobroad',
-					'info' => "IPv6 CIDR ranges broader than /{$blockCIDRLimit['IPv6']} are not accepted"
-				),
-				array( 'code' => 'param_ip', 'info' => 'IP parameter is not valid' ),
-				array( 'code' => 'param_user', 'info' => 'User parameter may not be empty' ),
-				array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
-				array( 'show' ),
-			)
-		);
 	}
 
 	public function getExamples() {

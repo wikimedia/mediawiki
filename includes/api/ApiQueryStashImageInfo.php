@@ -124,10 +124,6 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		);
 	}
 
-	public function getResultProperties() {
-		return ApiQueryImageInfo::getResultPropertiesFiltered( $this->propertyFilter );
-	}
-
 	public function getDescription() {
 		return 'Returns image information for stashed images.';
 	}
