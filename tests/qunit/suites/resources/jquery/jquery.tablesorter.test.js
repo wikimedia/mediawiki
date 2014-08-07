@@ -1161,11 +1161,32 @@
 		);
 		$table.tablesorter();
 		assert.equal( $table.find( '#A2' ).prop( 'headerIndex' ),
-			0,
+			undefined,
 			'A2 should not be a sort header'
 		);
 		assert.equal( $table.find( '#C1' ).prop( 'headerIndex' ),
-			1,
+			2,
+			'C1 should be a sort header, but will sort the wrong column'
+		);
+	} );
+
+	// bug 53527
+	QUnit.test( 'td cells in thead should not be taken into account for longest row calculation', 2, function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+				'<thead>' +
+				'<tr><th id="A1">A1</th><th>B1</th><td id="C1">C1</td></tr>' +
+				'<tr><th id="A2">A2</th><th>B2</th><th id="C2">C2</th></tr>' +
+				'</thead>' +
+				'</table>'
+		);
+		$table.tablesorter();
+		assert.equal( $table.find( '#C2' ).prop( 'headerIndex' ),
+			2,
+			'C2 should be a sort header'
+		);
+		assert.equal( $table.find( '#C1' ).prop( 'headerIndex' ),
+			undefined,
 			'C1 should be a sort header, but will sort the wrong column'
 		);
 	} );
