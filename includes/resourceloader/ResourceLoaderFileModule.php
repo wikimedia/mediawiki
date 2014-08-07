@@ -305,9 +305,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// but were preserved for backwards-compatibility just in case. Tread lightly.
 
 		$localBasePath = $localBasePath === null ? $IP : $localBasePath;
-		if ( $remoteBasePath !== null ) {
-			$remoteBasePath = $remoteBasePath;
-		} else {
+		if ( $remoteBasePath === null ) {
 			$remoteBasePath = $wgResourceBasePath === null ? $wgScriptPath : $wgResourceBasePath;
 		}
 
