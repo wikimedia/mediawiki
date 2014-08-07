@@ -143,13 +143,6 @@ class SearchResult {
 	}
 
 	/**
-	 * @return float|null If not supported
-	 */
-	function getScore() {
-		return null;
-	}
-
-	/**
 	 * Lazy initialization of article text from DB
 	 */
 	protected function initText() {

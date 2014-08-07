@@ -157,9 +157,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
 				}
-				if ( !is_null( $result->getScore() ) && isset( $prop['score'] ) ) {
-					$vals['score'] = $result->getScore();
-				}
 				if ( isset( $prop['titlesnippet'] ) ) {
 					$vals['titlesnippet'] = $result->getTitleSnippet( $terms );
 				}

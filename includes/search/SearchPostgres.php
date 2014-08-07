@@ -35,14 +35,14 @@ class SearchPostgres extends SearchDatabase {
 	 * latest revision article text (pagecontent.old_text)
 	 *
 	 * @param string $term Raw search term
-	 * @return PostgresSearchResultSet
+	 * @return SqlSearchResultSet
 	 */
 	function searchTitle( $term ) {
 		$q = $this->searchQuery( $term, 'titlevector', 'page_title' );
 		$olderror = error_reporting( E_ERROR );
 		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
 		error_reporting( $olderror );
-		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
 	function searchText( $term ) {
@@ -50,7 +50,7 @@ class SearchPostgres extends SearchDatabase {
 		$olderror = error_reporting( E_ERROR );
 		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
 		error_reporting( $olderror );
-		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
 	/**
@@ -195,32 +195,4 @@ class SearchPostgres extends SearchDatabase {
 		return true;
 	}
 
-} ## end of the SearchPostgres class
-
-/**
- * @ingroup Search
- */
-class PostgresSearchResult extends SearchResult {
-	function __construct( $row ) {
-		parent::__construct( $row );
-		$this->score = $row->score;
-	}
-
-	function getScore() {
-		return $this->score;
-	}
-}
-
-/**
- * @ingroup Search
- */
-class PostgresSearchResultSet extends SqlSearchResultSet {
-	function next() {
-		$row = $this->resultSet->fetchObject();
-		if ( $row === false ) {
-			return false;
-		} else {
-			return new PostgresSearchResult( $row );
-		}
-	}
 }

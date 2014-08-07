@@ -651,16 +651,6 @@ class SpecialSearch extends SpecialPage {
 
 		$lang = $this->getLanguage();
 
-		// format score
-		if ( is_null( $result->getScore() ) ) {
-			// Search engine doesn't report scoring info
-			$score = '';
-		} else {
-			$percent = sprintf( '%2.1f', $result->getScore() * 100 );
-			$score = $this->msg( 'search-result-score' )->numParams( $percent )->text()
-				. ' - ';
-		}
-
 		// format description
 		$byteSize = $result->getByteSize();
 		$wordCount = $result->getWordCount();
@@ -722,7 +712,7 @@ class SpecialSearch extends SpecialPage {
 						'<td style="vertical-align: top;">' .
 						"{$link} {$redirect} {$section} {$fileMatch}" .
 						$extract .
-						"<div class='mw-search-result-data'>{$score}{$desc} - {$date}{$related}</div>" .
+						"<div class='mw-search-result-data'>{$desc} - {$date}{$related}</div>" .
 						'</td>' .
 						'</tr>' .
 						'</table>' .
@@ -733,6 +723,7 @@ class SpecialSearch extends SpecialPage {
 
 		$html = null;
 
+		$score = '';
 		if ( wfRunHooks( 'ShowSearchHit', array(
 			$this, $result, $terms,
 			&$link, &$redirect, &$section, &$extract,
@@ -741,7 +732,7 @@ class SpecialSearch extends SpecialPage {
 		) ) ) {
 			$html = "<li><div class='mw-search-result-heading'>" .
 				"{$link} {$redirect} {$section} {$fileMatch}</div> {$extract}\n" .
-				"<div class='mw-search-result-data'>{$score}{$size} - {$date}{$related}</div>" .
+				"<div class='mw-search-result-data'>{$size} - {$date}{$related}</div>" .
 				"</li>\n";
 		}
 

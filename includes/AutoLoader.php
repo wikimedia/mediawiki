@@ -907,8 +907,6 @@ $wgAutoloadLocalClasses = array(
 	'RevisionDeleteUser' => 'includes/revisiondelete/RevisionDeleteUser.php',
 
 	# includes/search
-	'PostgresSearchResult' => 'includes/search/SearchPostgres.php',
-	'PostgresSearchResultSet' => 'includes/search/SearchPostgres.php',
 	'SearchDatabase' => 'includes/search/SearchDatabase.php',
 	'SearchEngine' => 'includes/search/SearchEngine.php',
 	'SearchEngineDummy' => 'includes/search/SearchEngine.php',
