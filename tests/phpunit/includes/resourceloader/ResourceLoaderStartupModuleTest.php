@@ -332,9 +332,10 @@ mw.loader.addSource( {
 
 		$rl->register( $case['modules'] );
 
+		$module = new ResourceLoaderStartUpModule();
 		$this->assertEquals(
 			ltrim( $case['out'], "\n" ),
-			ResourceLoaderStartUpModule::getModuleRegistrations( $context ),
+			$module->getModuleRegistrations( $context ),
 			$case['msg']
 		);
 	}
@@ -366,6 +367,7 @@ mw.loader.addSource( {
 		$context = self::getResourceLoaderContext();
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
+		$module = new ResourceLoaderStartUpModule();
 		$this->assertEquals(
 'mw.loader.addSource({"local":{"loadScript":"/w/load.php","apiScript":"/w/api.php"}});'
 . 'mw.loader.register(['
@@ -373,7 +375,7 @@ mw.loader.addSource( {
 . '["test.min","1388534400",["test.blank"],null,"local",'
 . '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
 . ']]);',
-			ResourceLoaderStartUpModule::getModuleRegistrations( $context ),
+			$module->getModuleRegistrations( $context ),
 			'Minified output'
 		);
 	}
@@ -385,6 +387,7 @@ mw.loader.addSource( {
 		$context = self::getResourceLoaderContext();
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
+		$module = new ResourceLoaderStartUpModule();
 		$this->assertEquals(
 'mw.loader.addSource( {
     "local": {
@@ -407,7 +410,7 @@ mw.loader.addSource( {
         "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
     ]
 ] );',
-			ResourceLoaderStartUpModule::getModuleRegistrations( $context ),
+			$module->getModuleRegistrations( $context ),
 			'Unminified output'
 		);
 	}

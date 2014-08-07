@@ -136,8 +136,6 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
-		global $wgScriptPath;
-
 		$styles = array();
 		foreach ( $this->getPages( $context ) as $titleText => $options ) {
 			if ( $options['type'] !== 'style' ) {
@@ -155,7 +153,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $this->getFlip( $context ) ) {
 				$style = CSSJanus::transform( $style, true, false );
 			}
-			$style = CSSMin::remap( $style, false, $wgScriptPath, true );
+			$style = CSSMin::remap( $style, false, $this->getConfig()->get( 'ScriptPath' ), true );
 			if ( !isset( $styles[$media] ) ) {
 				$styles[$media] = array();
 			}

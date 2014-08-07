@@ -44,6 +44,9 @@ class ResourceLoader {
 	/** @var array Associative array mapping module name to info associative array */
 	protected $moduleInfos = array();
 
+	/** @var Config $config */
+	private $config;
+
 	/**
 	 * @var array Associative array mapping framework ids to a list of names of test suite modules
 	 *      like array( 'qunit' => array( 'mediawiki.tests.qunit.suites', 'ext.foo.tests', .. ), .. )
@@ -152,7 +155,6 @@ class ResourceLoader {
 	 * @return string Filtered data, or a comment containing an error message
 	 */
 	public function filter( $filter, $data, $cacheReport = true ) {
-		global $wgResourceLoaderMinifierStatementsOnOwnLine, $wgResourceLoaderMinifierMaxLineLength;
 		wfProfileIn( __METHOD__ );
 
 		// For empty/whitespace-only data or for unknown filters, don't perform
@@ -180,8 +182,8 @@ class ResourceLoader {
 			switch ( $filter ) {
 				case 'minify-js':
 					$result = JavaScriptMinifier::minify( $data,
-						$wgResourceLoaderMinifierStatementsOnOwnLine,
-						$wgResourceLoaderMinifierMaxLineLength
+						$this->config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
+						$this->config->get( 'ResourceLoaderMinifierMaxLineLength' )
 					);
 					if ( $cacheReport ) {
 						$result .= "\n/* cache key: $key */";
@@ -215,31 +217,45 @@ class ResourceLoader {
 	/**
 	 * Register core modules and runs registration hooks.
 	 */
-	public function __construct() {
-		global $IP, $wgResourceModules, $wgResourceLoaderSources, $wgLoadScript, $wgEnableJavaScriptTest;
+	public function __construct( Config $config = null ) {
+		global $IP;
 
 		wfProfileIn( __METHOD__ );
+
+		if ( $config === null ) {
+			wfDebug( __METHOD__ . ' was called without providing a Config instance' );
+			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		}
+
+		$this->config = $config;
 
 		// Add 'local' source first
 		$this->addSource(
 			'local',
-			array( 'loadScript' => $wgLoadScript, 'apiScript' => wfScript( 'api' ) )
+			array( 'loadScript' => wfScript( 'load' ), 'apiScript' => wfScript( 'api' ) )
 		);
 
 		// Add other sources
-		$this->addSource( $wgResourceLoaderSources );
+		$this->addSource( $config->get( 'ResourceLoaderSources' ) );
 
 		// Register core modules
 		$this->register( include "$IP/resources/Resources.php" );
 		// Register extension modules
 		wfRunHooks( 'ResourceLoaderRegisterModules', array( &$this ) );
-		$this->register( $wgResourceModules );
+		$this->register( $config->get( 'ResourceModules' ) );
 
-		if ( $wgEnableJavaScriptTest === true ) {
+		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
 			$this->registerTestModules();
 		}
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * @return Config
+	 */
+	public function getConfig() {
+		return $this->config;
 	}
 
 	/**
@@ -298,8 +314,7 @@ class ResourceLoader {
 
 			// Apply custom skin-defined styles to existing modules.
 			if ( $this->isFileModule( $name ) ) {
-				global $wgResourceModuleSkinStyles;
-				foreach ( $wgResourceModuleSkinStyles as $skinName => $skinStyles ) {
+				foreach ( $this->config->get( 'ResourceModuleSkinStyles' ) as $skinName => $skinStyles ) {
 					// If this module already defines skinStyles for this skin, ignore $wgResourceModuleSkinStyles.
 					if ( isset( $this->moduleInfos[$name]['skinStyles'][$skinName] ) ) {
 						continue;
@@ -342,9 +357,9 @@ class ResourceLoader {
 	/**
 	 */
 	public function registerTestModules() {
-		global $IP, $wgEnableJavaScriptTest;
+		global $IP;
 
-		if ( $wgEnableJavaScriptTest !== true ) {
+		if ( $this->config->get( 'EnableJavaScriptTest' ) !== true ) {
 			throw new MWException( 'Attempt to register JavaScript test modules '
 				. 'but <code>$wgEnableJavaScriptTest</code> is false. '
 				. 'Edit your <code>LocalSettings.php</code> to enable it.' );
@@ -537,10 +552,8 @@ class ResourceLoader {
 	 * @param ResourceLoaderContext $context Context in which a response should be formed
 	 */
 	public function respond( ResourceLoaderContext $context ) {
-		global $wgCacheEpoch, $wgUseFileCache;
-
 		// Use file cache if enabled and available...
-		if ( $wgUseFileCache ) {
+		if ( $this->config->get( 'UseFileCache' ) ) {
 			$fileCache = ResourceFileCache::newFromContext( $context );
 			if ( $this->tryRespondFromFileCache( $fileCache, $context ) ) {
 				return; // output handled
@@ -596,7 +609,7 @@ class ResourceLoader {
 
 		// To send Last-Modified and support If-Modified-Since, we need to detect
 		// the last modified time
-		$mtime = wfTimestamp( TS_UNIX, $wgCacheEpoch );
+		$mtime = wfTimestamp( TS_UNIX, $this->config->get( 'CacheEpoch' ) );
 		foreach ( $modules as $module ) {
 			/**
 			 * @var $module ResourceLoaderModule
@@ -664,18 +677,18 @@ class ResourceLoader {
 	 * @return void
 	 */
 	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime, $errors ) {
-		global $wgResourceLoaderMaxage;
+		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// If a version wasn't specified we need a shorter expiry time for updates
 		// to propagate to clients quickly
 		// If there were errors, we also need a shorter expiry time so we can recover quickly
 		if ( is_null( $context->getVersion() ) || $errors ) {
-			$maxage = $wgResourceLoaderMaxage['unversioned']['client'];
-			$smaxage = $wgResourceLoaderMaxage['unversioned']['server'];
+			$maxage = $rlMaxage['unversioned']['client'];
+			$smaxage = $rlMaxage['unversioned']['server'];
 		// If a version was specified we can use a longer expiry time since changing
 		// version numbers causes cache misses
 		} else {
-			$maxage = $wgResourceLoaderMaxage['versioned']['client'];
-			$smaxage = $wgResourceLoaderMaxage['versioned']['server'];
+			$maxage = $rlMaxage['versioned']['client'];
+			$smaxage = $rlMaxage['versioned']['server'];
 		}
 		if ( $context->getOnly() === 'styles' ) {
 			header( 'Content-Type: text/css; charset=utf-8' );
@@ -743,13 +756,13 @@ class ResourceLoader {
 	protected function tryRespondFromFileCache(
 		ResourceFileCache $fileCache, ResourceLoaderContext $context
 	) {
-		global $wgResourceLoaderMaxage;
+		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// Buffer output to catch warnings.
 		ob_start();
 		// Get the maximum age the cache can be
 		$maxage = is_null( $context->getVersion() )
-			? $wgResourceLoaderMaxage['unversioned']['server']
-			: $wgResourceLoaderMaxage['versioned']['server'];
+			? $rlMaxage['unversioned']['server']
+			: $rlMaxage['versioned']['server'];
 		// Minimum timestamp the cache file must have
 		$good = $fileCache->isCacheGood( wfTimestamp( TS_MW, time() - $maxage ) );
 		if ( !$good ) {
@@ -1443,12 +1456,12 @@ class ResourceLoader {
 	/**
 	 * Returns LESS compiler set up for use with MediaWiki
 	 *
+	 * @param Config $config
+	 * @throws MWException
 	 * @since 1.22
 	 * @return lessc
 	 */
-	public static function getLessCompiler() {
-		global $wgResourceLoaderLESSFunctions, $wgResourceLoaderLESSImportPaths;
-
+	public static function getLessCompiler( Config $config ) {
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see bug 47564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
@@ -1458,9 +1471,9 @@ class ResourceLoader {
 
 		$less = new lessc();
 		$less->setPreserveComments( true );
-		$less->setVariables( self::getLESSVars() );
-		$less->setImportDir( $wgResourceLoaderLESSImportPaths );
-		foreach ( $wgResourceLoaderLESSFunctions as $name => $func ) {
+		$less->setVariables( self::getLESSVars( $config ) );
+		$less->setImportDir( $config->get( 'ResourceLoaderLESSImportPaths' ) );
+		foreach ( $config->get( 'ResourceLoaderLESSFunctions' ) as $name => $func ) {
 			$less->registerFunction( $name, $func );
 		}
 		return $less;
@@ -1469,13 +1482,12 @@ class ResourceLoader {
 	/**
 	 * Get global LESS variables.
 	 *
-	 * $since 1.22
+	 * @param Config $config
+	 * @since 1.22
 	 * @return array Map of variable names to string CSS values.
 	 */
-	public static function getLESSVars() {
-		global $wgResourceLoaderLESSVars;
-
-		$lessVars = $wgResourceLoaderLESSVars;
+	public static function getLESSVars( Config $config ) {
+		$lessVars = $config->get( 'ResourceLoaderLESSVars' );
 		// Sort by key to ensure consistent hashing for cache lookups.
 		ksort( $lessVars );
 		return $lessVars;

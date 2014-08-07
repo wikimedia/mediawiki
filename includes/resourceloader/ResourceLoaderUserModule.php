@@ -38,13 +38,16 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 	 * @return array
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
-		global $wgAllowUserJs, $wgAllowUserCss;
 		$username = $context->getUser();
 
 		if ( $username === null ) {
 			return array();
 		}
-		if ( !$wgAllowUserJs && !$wgAllowUserCss ) {
+
+		$allowUserJs = $this->getConfig()->get( 'AllowUserJs' );
+		$allowUserCss = $this->getConfig()->get( 'AllowUserCss' );
+
+		if ( !$allowUserJs && !$allowUserCss ) {
 			return array();
 		}
 
@@ -58,11 +61,11 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 		$userpage = $userpageTitle->getPrefixedDBkey(); // Needed so $excludepages works
 
 		$pages = array();
-		if ( $wgAllowUserJs ) {
+		if ( $allowUserJs ) {
 			$pages["$userpage/common.js"] = array( 'type' => 'script' );
 			$pages["$userpage/" . $context->getSkin() . '.js'] = array( 'type' => 'script' );
 		}
-		if ( $wgAllowUserCss ) {
+		if ( $allowUserCss ) {
 			$pages["$userpage/common.css"] = array( 'type' => 'style' );
 			$pages["$userpage/" . $context->getSkin() . '.css'] = array( 'type' => 'style' );
 		}

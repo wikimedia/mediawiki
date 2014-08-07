@@ -49,8 +49,6 @@ class ResourceLoaderContext {
 	 * @param WebRequest $request
 	 */
 	public function __construct( $resourceLoader, WebRequest $request ) {
-		global $wgDefaultSkin, $wgResourceLoaderDebug;
-
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
 
@@ -61,7 +59,9 @@ class ResourceLoaderContext {
 		// Various parameters
 		$this->skin = $request->getVal( 'skin' );
 		$this->user = $request->getVal( 'user' );
-		$this->debug = $request->getFuzzyBool( 'debug', $wgResourceLoaderDebug );
+		$this->debug = $request->getFuzzyBool(
+			'debug', $resourceLoader->getConfig()->get( 'ResourceLoaderDebug' )
+		);
 		$this->only = $request->getVal( 'only' );
 		$this->version = $request->getVal( 'version' );
 		$this->raw = $request->getFuzzyBool( 'raw' );
@@ -69,7 +69,7 @@ class ResourceLoaderContext {
 		$skinnames = Skin::getSkinNames();
 		// If no skin is specified, or we don't recognize the skin, use the default skin
 		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
-			$this->skin = $wgDefaultSkin;
+			$this->skin = $resourceLoader->getConfig()->get( 'DefaultSkin' );
 		}
 	}
 
