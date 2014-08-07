@@ -44,6 +44,7 @@ if ( !$maintClass || !class_exists( $maintClass ) ) {
 }
 
 // Get an object to start us off
+/** @var Maintenance $maintenance */
 $maintenance = new $maintClass();
 
 // Basic sanity checks and such
@@ -89,6 +90,8 @@ if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
 		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
 	}
 }
+
+$maintenance->setConfig( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
 $maintenance->finalSetup();
 // Some last includes
 require_once "$IP/includes/Setup.php";
