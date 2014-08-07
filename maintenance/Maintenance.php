@@ -114,6 +114,11 @@ abstract class Maintenance {
 	public $fileHandle;
 
 	/**
+	 * @var Config
+	 */
+	protected $config;
+
+	/**
 	 * Default constructor. Children should call this *first* if implementing
 	 * their own constructors
 	 */
@@ -124,6 +129,7 @@ abstract class Maintenance {
 			? getenv( 'MW_INSTALL_PATH' )
 			: realpath( __DIR__ . '/..' );
 
+		$this->config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		$this->addDefaultParams();
 		register_shutdown_function( array( $this, 'outputChanneled' ), false );
 	}
