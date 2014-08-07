@@ -552,7 +552,6 @@ class RevDelFileList extends RevDelList {
 	}
 
 	public function doPostCommitUpdates() {
-		global $wgUseSquid;
 		$file = wfLocalFile( $this->title );
 		$file->purgeCache();
 		$file->purgeDescription();
@@ -562,7 +561,7 @@ class RevDelFileList extends RevDelList {
 			$file->purgeOldThumbnails( $archiveName );
 			$purgeUrls[] = $file->getArchiveUrl( $archiveName );
 		}
-		if ( $wgUseSquid ) {
+		if ( $this->getConfig()->get( 'UseSquid' ) ) {
 			// purge full images from cache
 			SquidUpdate::purge( $purgeUrls );
 		}
