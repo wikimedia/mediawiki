@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": []
-	},
-	"skinname-monobook": "MonoBook",
-	"monobook-desc": "The classic MediaWiki skin since 2004, named after the black-and-white photo of a book in the page background",
-	"monobook.css": "/* CSS placed here will affect users of the MonoBook skin */",
-	"monobook.js": "/* Any JavaScript here will be loaded for users using the MonoBook skin */"
-}
