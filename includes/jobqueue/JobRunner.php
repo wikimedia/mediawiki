@@ -32,6 +32,13 @@ class JobRunner {
 	protected $debug;
 
 	/**
+	 * @param Config $config
+	 */
+	public function __construct( Config $config ) {
+		$this->config = $config;
+	}
+
+	/**
 	 * @param callable $debug Optional debug output handler
 	 */
 	public function setDebugHandler( $debug ) {
@@ -205,15 +212,15 @@ class JobRunner {
 	 * @see $wgJobBackoffThrottling
 	 */
 	private function getBackoffTimeToWait( Job $job ) {
-		global $wgJobBackoffThrottling;
+		$backoffThrottling = $this->config->get( 'JobBackoffThrottling' );
 
-		if ( !isset( $wgJobBackoffThrottling[$job->getType()] ) ||
+		if ( !isset( $backoffThrottling[$job->getType()] ) ||
 			$job instanceof DuplicateJob // no work was done
 		) {
 			return 0; // not throttled
 		}
 
-		$itemsPerSecond = $wgJobBackoffThrottling[$job->getType()];
+		$itemsPerSecond = $backoffThrottling[$job->getType()];
 		if ( $itemsPerSecond <= 0 ) {
 			return 0; // not throttled
 		}
