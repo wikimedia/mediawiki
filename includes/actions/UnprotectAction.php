@@ -1,6 +1,6 @@
 <?php
 /**
- * action=protect handler
+ * action=unprotect handler
  *
  * Copyright © 2012 Timo Tijhof
  *
@@ -24,25 +24,20 @@
  */
 
 /**
- * Handle page protection
+ * Handle page unprotection
  *
- * This is a wrapper that will call Article::protect().
+ * This is a wrapper that will call Article::unprotect().
  *
  * @ingroup Actions
  */
-class ProtectAction extends FormlessAction {
+class UnprotectAction extends ProtectAction {
 
 	public function getName() {
-		return 'protect';
-	}
-
-	public function onView() {
-		return null;
+		return 'unprotect';
 	}
 
 	public function show() {
 
-		$this->page->protect();
+		$this->page->unprotect();
 	}
 }
-
