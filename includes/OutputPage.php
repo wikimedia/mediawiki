@@ -1002,9 +1002,9 @@ class OutputPage extends ContextSource {
 	 * Add a subtitle containing a backlink to a page
 	 *
 	 * @param Title $title Title to link to
+	 * @param array $query Array of additional parameters to include in the link
 	 */
-	public function addBacklinkSubtitle( Title $title ) {
-		$query = array();
+	public function addBacklinkSubtitle( Title $title, $query = array() ) {
 		if ( $title->isRedirect() ) {
 			$query['redirect'] = 'no';
 		}
