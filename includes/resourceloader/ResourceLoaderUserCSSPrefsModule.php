@@ -54,9 +54,9 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
-		global $wgAllowUserCssPrefs, $wgUser;
+		global $wgUser;
 
-		if ( !$wgAllowUserCssPrefs ) {
+		if ( !$this->getConfig()->get( 'AllowUserCssPrefs' ) ) {
 			return array();
 		}
 

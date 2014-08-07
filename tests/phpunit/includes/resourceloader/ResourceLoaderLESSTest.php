@@ -22,7 +22,8 @@ class ResourceLoaderLESSTest extends MediaWikiTestCase {
 
 		$expect = file_get_contents( $cssFile );
 		$content = file_get_contents( $lessFile );
-		$result = ResourceLoader::getLessCompiler()->compile( $content, $lessFile );
+		$result = ResourceLoader::getLessCompiler( RequestContext::getMain()->getConfig() )
+			->compile( $content, $lessFile );
 		$this->assertEquals( $expect, $result );
 	}
 }

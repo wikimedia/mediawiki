@@ -36,22 +36,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	protected function getConfig( $context ) {
+	protected function getConfigSettings( $context ) {
 
 		$hash = $context->getHash();
 		if ( isset( $this->configVars[$hash] ) ) {
 			return $this->configVars[$hash];
 		}
 
-		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension,
-			$wgArticlePath, $wgScriptPath, $wgServer, $wgServerName,
-			$wgContLang, $wgVariantArticlePath, $wgActionPaths, $wgVersion,
-			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname,
-			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
-			$wgCookiePrefix, $wgCookieDomain, $wgCookiePath,
-			$wgCookieExpiration, $wgResourceLoaderMaxQueryLength,
-			$wgResourceLoaderStorageEnabled, $wgResourceLoaderStorageVersion,
-			$wgSearchType;
+		global $wgContLang;
 
 		$mainPage = Title::newMainPage();
 
@@ -69,51 +61,52 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 		}
 
+		$conf = $this->getConfig();
 		// Build list of variables
 		$vars = array(
-			'wgLoadScript' => $wgLoadScript,
+			'wgLoadScript' => wfScript( 'load' ),
 			'debug' => $context->getDebug(),
 			'skin' => $context->getSkin(),
-			'stylepath' => $wgStylePath,
+			'stylepath' => $conf->get( 'StylePath' ),
 			'wgUrlProtocols' => wfUrlProtocols(),
-			'wgArticlePath' => $wgArticlePath,
-			'wgScriptPath' => $wgScriptPath,
-			'wgScriptExtension' => $wgScriptExtension,
-			'wgScript' => $wgScript,
-			'wgSearchType' => $wgSearchType,
-			'wgVariantArticlePath' => $wgVariantArticlePath,
+			'wgArticlePath' => $conf->get( 'ArticlePath' ),
+			'wgScriptPath' => $conf->get( 'ScriptPath' ),
+			'wgScriptExtension' => $conf->get( 'ScriptExtension' ),
+			'wgScript' => wfScript(),
+			'wgSearchType' => $conf->get( 'SearchType' ),
+			'wgVariantArticlePath' => $conf->get( 'VariantArticlePath' ),
 			// Force object to avoid "empty" associative array from
 			// becoming [] instead of {} in JS (bug 34604)
-			'wgActionPaths' => (object)$wgActionPaths,
-			'wgServer' => $wgServer,
-			'wgServerName' => $wgServerName,
+			'wgActionPaths' => (object)$conf->get( 'ActionPaths' ),
+			'wgServer' => $conf->get( 'Server' ),
+			'wgServerName' => $conf->get( 'ServerName' ),
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $wgContLang->getCode(),
-			'wgVersion' => $wgVersion,
-			'wgEnableAPI' => $wgEnableAPI,
-			'wgEnableWriteAPI' => $wgEnableWriteAPI,
+			'wgVersion' => $conf->get( 'Version' ),
+			'wgEnableAPI' => $conf->get( 'EnableAPI' ),
+			'wgEnableWriteAPI' => $conf->get( 'EnableWriteAPI' ),
 			'wgMainPageTitle' => $mainPage->getPrefixedText(),
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
 			'wgContentNamespaces' => MWNamespace::getContentNamespaces(),
-			'wgSiteName' => $wgSitename,
-			'wgFileExtensions' => array_values( array_unique( $wgFileExtensions ) ),
-			'wgDBname' => $wgDBname,
+			'wgSiteName' => $conf->get( 'Sitename' ),
+			'wgFileExtensions' => array_values( array_unique( $conf->get( 'FileExtensions' ) ) ),
+			'wgDBname' => $conf->get( 'DBname' ),
 			// This sucks, it is only needed on Special:Upload, but I could
 			// not find a way to add vars only for a certain module
 			'wgFileCanRotate' => BitmapHandler::canRotate(),
 			'wgAvailableSkins' => Skin::getSkinNames(),
-			'wgExtensionAssetsPath' => $wgExtensionAssetsPath,
+			'wgExtensionAssetsPath' => $conf->get( 'ExtensionAssetsPath' ),
 			// MediaWiki sets cookies to have this prefix by default
-			'wgCookiePrefix' => $wgCookiePrefix,
-			'wgCookieDomain' => $wgCookieDomain,
-			'wgCookiePath' => $wgCookiePath,
-			'wgCookieExpiration' => $wgCookieExpiration,
-			'wgResourceLoaderMaxQueryLength' => $wgResourceLoaderMaxQueryLength,
+			'wgCookiePrefix' => $conf->get( 'CookiePrefix' ),
+			'wgCookieDomain' => $conf->get( 'CookieDomain' ),
+			'wgCookiePath' => $conf->get( 'CookiePath' ),
+			'wgCookieExpiration' => $conf->get( 'CookieExpiration' ),
+			'wgResourceLoaderMaxQueryLength' => $conf->get( 'ResourceLoaderMaxQueryLength' ),
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
-			'wgResourceLoaderStorageVersion' => $wgResourceLoaderStorageVersion,
-			'wgResourceLoaderStorageEnabled' => $wgResourceLoaderStorageEnabled,
+			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
+			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 		);
 
 		wfRunHooks( 'ResourceLoaderGetConfigVars', array( &$vars ) );
@@ -197,8 +190,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code for registering all modules with the client loader
 	 */
-	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
-		global $wgCacheEpoch;
+	public function getModuleRegistrations( ResourceLoaderContext $context ) {
 		wfProfileIn( __METHOD__ );
 
 		$resourceLoader = $context->getResourceLoader();
@@ -218,7 +210,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// getModifiedTime() is supposed to return a UNIX timestamp, but it doesn't always
 			// seem to do that, and custom implementations might forget. Coerce it to TS_UNIX
 			$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
-			$mtime = max( $moduleMtime, wfTimestamp( TS_UNIX, $wgCacheEpoch ) );
+			$mtime = max( $moduleMtime, wfTimestamp( TS_UNIX, $this->getConfig()->get( 'CacheEpoch' ) ) );
 
 			// FIXME: Convert to numbers, wfTimestamp always gives us stings, even for TS_UNIX
 
@@ -373,19 +365,19 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		global $IP, $wgLegacyJavaScriptGlobals;
+		global $IP;
 
 		$out = file_get_contents( "$IP/resources/src/startup.js" );
 		if ( $context->getOnly() === 'scripts' ) {
 
 			// Startup function
-			$configuration = $this->getConfig( $context );
-			$registrations = self::getModuleRegistrations( $context );
+			$configuration = $this->getConfigSettings( $context );
+			$registrations = $this->getModuleRegistrations( $context );
 			// Fix indentation
 			$registrations = str_replace( "\n", "\n\t", trim( $registrations ) );
 			$out .= "var startUp = function () {\n" .
 				"\tmw.config = new " .
-				Xml::encodeJsCall( 'mw.Map', array( $wgLegacyJavaScriptGlobals ) ) . "\n" .
+				Xml::encodeJsCall( 'mw.Map', array( $this->getConfig()->get( 'LegacyJavaScriptGlobals' ) ) ) . "\n" .
 				"\t$registrations\n" .
 				"\t" . Xml::encodeJsCall( 'mw.config.set', array( $configuration ) ) .
 				"};\n";
@@ -412,7 +404,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array|mixed
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		global $IP, $wgCacheEpoch;
+		global $IP;
 
 		$hash = $context->getHash();
 		if ( isset( $this->modifiedTime[$hash] ) ) {
@@ -425,7 +417,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$loader->preloadModuleInfo( $loader->getModuleNames(), $context );
 
 		$time = max(
-			wfTimestamp( TS_UNIX, $wgCacheEpoch ),
+			wfTimestamp( TS_UNIX, $this->getConfig()->get( 'CacheEpoch' ) ),
 			filemtime( "$IP/resources/src/startup.js" ),
 			$this->getHashMtime( $context )
 		);
@@ -455,11 +447,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return string Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
-		global $wgLegacyJavaScriptGlobals;
-
 		$data = array(
-			'vars' => $this->getConfig( $context ),
-			'wgLegacyJavaScriptGlobals' => $wgLegacyJavaScriptGlobals,
+			'vars' => $this->getConfigSettings( $context ),
+			'wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
 		);
 
 		return md5( serialize( $data ) );

@@ -64,6 +64,11 @@ abstract class ResourceLoaderModule {
 	// In-object cache for message blob mtime
 	protected $msgBlobMtime = array();
 
+	/**
+	 * @var Config
+	 */
+	protected $config;
+
 	/* Methods */
 
 	/**
@@ -127,6 +132,27 @@ abstract class ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		// Stub, override expected
 		return '';
+	}
+
+	/**
+	 * @return Config
+	 * @since 1.24
+	 */
+	public function getConfig() {
+		if ( $this->config === null ) {
+			// Ugh, fall back to default
+			$this->config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		}
+
+		return $this->config;
+	}
+
+	/**
+	 * @param Config $config
+	 * @since 1.24
+	 */
+	public function setConfig( Config $config ) {
+		$this->config = $config;
 	}
 
 	/**
@@ -561,8 +587,7 @@ abstract class ResourceLoaderModule {
 	 * @return string JS with the original, or a replacement error
 	 */
 	protected function validateScriptFile( $fileName, $contents ) {
-		global $wgResourceLoaderValidateJS;
-		if ( $wgResourceLoaderValidateJS ) {
+		if ( $this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
 			// Try for cache hit
 			// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
 			$key = wfMemcKey( 'resourceloader', 'jsparse', self::$parseCacheVersion, md5( $contents ) );

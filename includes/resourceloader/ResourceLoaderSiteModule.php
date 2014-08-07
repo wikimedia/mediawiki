@@ -37,14 +37,12 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	 * @return array List of pages
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
-		global $wgUseSiteJs, $wgUseSiteCss;
-
 		$pages = array();
-		if ( $wgUseSiteJs ) {
+		if ( $this->getConfig()->get( 'UseSiteJs' ) ) {
 			$pages['MediaWiki:Common.js'] = array( 'type' => 'script' );
 			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.js'] = array( 'type' => 'script' );
 		}
-		if ( $wgUseSiteCss ) {
+		if ( $this->getConfig()->get( 'UseSiteCss' ) ) {
 			$pages['MediaWiki:Common.css'] = array( 'type' => 'style' );
 			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.css'] = array( 'type' => 'style' );
 
