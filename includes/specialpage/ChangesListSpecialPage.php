@@ -410,12 +410,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return string
 	 */
 	public static function makeLegend( IContextSource $context ) {
-		global $wgRecentChangesFlags;
 		$user = $context->getUser();
 		# The legend showing what the letters and stuff mean
 		$legend = Html::openElement( 'dl' ) . "\n";
 		# Iterates through them and gets the messages for both letter and tooltip
-		$legendItems = $wgRecentChangesFlags;
+		$legendItems = $context->getConfig()->get( 'RecentChangesFlags' );
 		if ( !( $user->useRCPatrol() || $user->useNPPatrol() ) ) {
 			unset( $legendItems['unpatrolled'] );
 		}

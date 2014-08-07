@@ -621,11 +621,9 @@ class SpecialPage {
 	 * @param array $params
 	 */
 	protected function addFeedLinks( $params ) {
-		global $wgFeedClasses;
-
 		$feedTemplate = wfScript( 'api' );
 
-		foreach ( $wgFeedClasses as $format => $class ) {
+		foreach ( $this->getConfig()->get( 'FeedClasses' ) as $format => $class ) {
 			$theseParams = $params + array( 'feedformat' => $format );
 			$url = wfAppendQuery( $feedTemplate, $theseParams );
 			$this->getOutput()->addFeedLink( $format, $url );
@@ -641,8 +639,8 @@ class SpecialPage {
 	 * @since 1.21
 	 */
 	public function getFinalGroupName() {
-		global $wgSpecialPageGroups;
 		$name = $this->getName();
+		$specialPageGroups = $this->getConfig()->get( 'SpecialPageGroups' );
 
 		// Allow overbidding the group from the wiki side
 		$msg = $this->msg( 'specialpages-specialpagegroup-' . strtolower( $name ) )->inContentLanguage();
@@ -655,8 +653,8 @@ class SpecialPage {
 			// Group '-' is used as default to have the chance to determine,
 			// if the special pages overrides this method,
 			// if not overridden, $wgSpecialPageGroups is checked for b/c
-			if ( $group === '-' && isset( $wgSpecialPageGroups[$name] ) ) {
-				$group = $wgSpecialPageGroups[$name];
+			if ( $group === '-' && isset( $specialPageGroups[$name] ) ) {
+				$group = $specialPageGroups[$name];
 			}
 		}
 

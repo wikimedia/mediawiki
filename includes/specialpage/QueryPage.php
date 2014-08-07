@@ -203,8 +203,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return bool
 	 */
 	function isExpensive() {
-		global $wgDisableQueryPages;
-		return $wgDisableQueryPages;
+		return $this->getConfig()->get( 'DisableQueryPages' );
 	}
 
 	/**
@@ -225,9 +224,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return bool
 	 */
 	function isCached() {
-		global $wgMiserMode;
-
-		return $this->isExpensive() && $wgMiserMode;
+		return $this->isExpensive() && $this->getConfig()->get( 'MiserMode' );
 	}
 
 	/**
@@ -472,8 +469,6 @@ abstract class QueryPage extends SpecialPage {
 	 * @param string $par
 	 */
 	function execute( $par ) {
-		global $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
-
 		$user = $this->getUser();
 		if ( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();
@@ -508,7 +503,7 @@ abstract class QueryPage extends SpecialPage {
 				# Fetch the timestamp of this update
 				$ts = $this->getCachedTimestamp();
 				$lang = $this->getLanguage();
-				$maxResults = $lang->formatNum( $wgQueryCacheLimit );
+				$maxResults = $lang->formatNum( $this->getConfig()->get( 'QueryCacheLimit' ) );
 
 				if ( $ts ) {
 					$updated = $lang->userTimeAndDate( $ts, $user );
@@ -523,8 +518,8 @@ abstract class QueryPage extends SpecialPage {
 
 				# If updates on this page have been disabled, let the user know
 				# that the data set won't be refreshed for now
-				if ( is_array( $wgDisableQueryPageUpdate )
-					&& in_array( $this->getName(), $wgDisableQueryPageUpdate )
+				if ( is_array( $this->getConfig()->get( 'DisableQueryPageUpdate' ) )
+					&& in_array( $this->getName(), $this->getConfig()->get( 'DisableQueryPageUpdate' ) )
 				) {
 					$out->wrapWikiMsg(
 						"<div class=\"mw-querypage-no-updates\">\n$1\n</div>",
@@ -671,18 +666,17 @@ abstract class QueryPage extends SpecialPage {
 	 * @return bool
 	 */
 	function doFeed( $class = '', $limit = 50 ) {
-		global $wgFeed, $wgFeedClasses, $wgFeedLimit;
-
-		if ( !$wgFeed ) {
+		if ( !$this->getConfig()->get( 'Feed' ) ) {
 			$this->getOutput()->addWikiMsg( 'feed-unavailable' );
 			return false;
 		}
 
-		$limit = min( $limit, $wgFeedLimit );
+		$limit = min( $limit, $this->getConfig()->get( 'FeedLimit' ) );
 
-		if ( isset( $wgFeedClasses[$class] ) ) {
+		$feedClasses = $this->getConfig()->get( 'FeedClasses' );
+		if ( isset( $feedClasses[$class] ) ) {
 			/** @var RSSFeed|AtomFeed $feed */
-			$feed = new $wgFeedClasses[$class](
+			$feed = new $feedClasses[$class](
 				$this->feedTitle(),
 				$this->feedDesc(),
 				$this->feedUrl() );
@@ -743,9 +737,10 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	function feedTitle() {
-		global $wgLanguageCode, $wgSitename;
 		$desc = $this->getDescription();
-		return "$wgSitename - $desc [$wgLanguageCode]";
+		$code = $this->getConfig()->get( 'LanguageCode' );
+		$sitename = $this->getConfig()->get( 'Sitename' );
+		return "$sitename - $desc [$code]";
 	}
 
 	function feedDesc() {
