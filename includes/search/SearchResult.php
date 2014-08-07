@@ -265,4 +265,46 @@ class SearchResult {
 	function isFileMatch() {
 		return false;
 	}
+
+	/**
+	 * Get additional metadata fields, totally extensible by the engine.
+	 * Exposed to API search query only when asking for 'srprop=metadata'
+	 *
+	 * Recommend using key => string pairs, keep it simple!
+	 *
+	 * @return array
+	 */
+	function getMetadata() {
+		// Old fields that aren't in the default set
+		// Not sure if we want to keep these? But good to demo with.
+		$metadata = array();
+		if ( $this->getTitleSnippet() !== '') {
+			$metadata['titleSnippet'] = $this->getTitleSnippet();
+		}
+		if ( $this->getRedirectTitle() != '' ) {
+			$metadata['redirectTitle'] = $this->getRedirectTitle();
+		}
+		if ( $this->getRedirectSnippet() != '' ) {
+			$metadata['redirectSnippet'] = $this->getRedirectSnippet();
+		}
+		if ( $this->getSectionTitle() !== null ) {
+			$metadata['sectionTitle'] = $this->getSectionTitle()->getFragment();
+		}
+		if ( $this->getSectionSnippet() != '') {
+			$metadata['sectionSnippet'] = $this->getSectionSnippet();
+		}
+		if ( $this->hasRelated() ) {
+			$metadata['sectionSnippet'] = '';
+		}
+
+		// New fields, definitely want these going in here
+		// Probably will kill the old getters/setters
+		if ( $this->isFileMatch() ) {
+			$metadata['isFileMatch'] = '';
+		}
+		if ( $this->getInterwikiNamespaceText() !== '' ) {
+			$metadata['interwikiNamespaceText'] = $this->getInterwikiNamespaceText();
+		}
+		return $metadata;
+	}
 }

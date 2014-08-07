@@ -179,6 +179,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				if ( isset( $prop['hasrelated'] ) && $result->hasRelated() ) {
 					$vals['hasrelated'] = '';
 				}
+				if ( isset( $prop['metadata'] ) && $result->getMetadata() ) {
+					$vals['metadata'] = $result->getMetadata();
+				}
 
 				// Add item to results and see whether it fits
 				$fit = $apiResult->addValue( array( 'query', $this->getModuleName() ),
@@ -294,6 +297,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'sectiontitle',
 					'sectionsnippet',
 					'hasrelated',
+					'metadata',
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
