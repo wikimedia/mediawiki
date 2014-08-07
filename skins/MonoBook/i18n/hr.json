@@ -1,5 +1,0 @@
-{
-	"skinname-monobook": "MonoBook",
-	"monobook.css": "/** Ovdje idu izmjene monobook stylesheeta */",
-	"monobook.js": "/* Ne rabi se više; molimo rabite [[MediaWiki:common.js]] */"
-}
