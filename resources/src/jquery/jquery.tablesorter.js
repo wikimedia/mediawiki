@@ -331,14 +331,14 @@
 			} );
 			// We want to find the row that has the most columns (ignoring colspan)
 			$.each( exploded, function ( index, cellArray ) {
-				headerCount = $.unique( $( cellArray ) ).length;
+				headerCount = $( uniqueElements( cellArray ) ).filter( 'th' ).length;
 				if ( headerCount >= maxSeen ) {
 					maxSeen = headerCount;
 					longestTR = index;
 				}
 			} );
 			// We cannot use $.unique() here because it sorts into dom order, which is undesirable
-			$tableHeaders = $( uniqueElements( exploded[longestTR] ) );
+			$tableHeaders = $( uniqueElements( exploded[longestTR] ) ).filter( 'th' );
 		}
 
 		// as each header can span over multiple columns (using colspan=N),
