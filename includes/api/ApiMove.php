@@ -193,10 +193,6 @@ class ApiMove extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'reason' => '',
 			'movetalk' => false,
 			'movesubpages' => false,
@@ -229,7 +225,6 @@ class ApiMove extends ApiBase {
 			'from' => "Title of the page you want to move. Cannot be used together with {$p}fromid",
 			'fromid' => "Page ID of the page you want to move. Cannot be used together with {$p}from",
 			'to' => 'Title you want to rename the page to',
-			'token' => 'A move token previously retrieved through prop=info',
 			'reason' => 'Reason for the move',
 			'movetalk' => 'Move the talk page, if it exists',
 			'movesubpages' => 'Move subpages, if applicable',
@@ -289,11 +284,7 @@ class ApiMove extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {

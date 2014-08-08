@@ -79,6 +79,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($pageid, $title)
 	 * it should return a token or false (permission denied)
+	 * @deprecated since 1.24
 	 * @return array Array(tokenname => function)
 	 */
 	protected function getTokenFunctions() {
@@ -110,10 +111,16 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	static protected $cachedTokens = array();
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function resetTokenCache() {
 		ApiQueryInfo::$cachedTokens = array();
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getEditToken( $pageid, $title ) {
 		// We could check for $title->userCan('edit') here,
 		// but that's too expensive for this purpose
@@ -131,6 +138,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return ApiQueryInfo::$cachedTokens['edit'];
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getDeleteToken( $pageid, $title ) {
 		global $wgUser;
 		if ( !$wgUser->isAllowed( 'delete' ) ) {
@@ -145,6 +155,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return ApiQueryInfo::$cachedTokens['delete'];
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getProtectToken( $pageid, $title ) {
 		global $wgUser;
 		if ( !$wgUser->isAllowed( 'protect' ) ) {
@@ -159,6 +172,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return ApiQueryInfo::$cachedTokens['protect'];
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getMoveToken( $pageid, $title ) {
 		global $wgUser;
 		if ( !$wgUser->isAllowed( 'move' ) ) {
@@ -173,6 +189,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return ApiQueryInfo::$cachedTokens['move'];
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getBlockToken( $pageid, $title ) {
 		global $wgUser;
 		if ( !$wgUser->isAllowed( 'block' ) ) {
@@ -187,11 +206,17 @@ class ApiQueryInfo extends ApiQueryBase {
 		return ApiQueryInfo::$cachedTokens['block'];
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getUnblockToken( $pageid, $title ) {
 		// Currently, this is exactly the same as the block token
 		return self::getBlockToken( $pageid, $title );
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getEmailToken( $pageid, $title ) {
 		global $wgUser;
 		if ( !$wgUser->canSendEmail() || $wgUser->isBlockedFromEmailUser() ) {
@@ -206,6 +231,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return ApiQueryInfo::$cachedTokens['email'];
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getImportToken( $pageid, $title ) {
 		global $wgUser;
 		if ( !$wgUser->isAllowedAny( 'import', 'importupload' ) ) {
@@ -220,6 +248,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return ApiQueryInfo::$cachedTokens['import'];
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getWatchToken( $pageid, $title ) {
 		global $wgUser;
 		if ( !$wgUser->isLoggedIn() ) {
@@ -234,6 +265,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return ApiQueryInfo::$cachedTokens['watch'];
 	}
 
+	/**
+	 * @deprecated since 1.24
+	 */
 	public static function getOptionsToken( $pageid, $title ) {
 		global $wgUser;
 		if ( !$wgUser->isLoggedIn() ) {
@@ -784,6 +818,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					// need to be added to getCacheMode()
 				) ),
 			'token' => array(
+				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() )

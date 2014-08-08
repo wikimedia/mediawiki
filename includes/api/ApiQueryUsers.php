@@ -58,6 +58,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($user)
 	 * it should return a token or false (permission denied)
+	 * @deprecated since 1.24
 	 * @return array Array of tokenname => function
 	 */
 	protected function getTokenFunctions() {
@@ -80,6 +81,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	/**
+	 * @deprecated since 1.24
 	 * @param User $user
 	 * @return string
 	 */
@@ -317,6 +319,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'token' => array(
+				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
 				ApiBase::PARAM_ISMULTI => true
 			),
