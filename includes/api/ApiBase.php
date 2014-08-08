@@ -2336,4 +2336,20 @@ abstract class ApiBase extends ContextSource {
 		}
 		print "\n</pre>\n";
 	}
+
+	/**
+	 * Write logging information for API features to a debug log, for usage
+	 * analysis.
+	 * @param string $feature Feature being used.
+	 */
+	protected function logFeatureUsage( $feature ) {
+		$request = $this->getRequest();
+		$s = $feature .
+			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
+			' ' . $request->getIP() .
+			' "' . $request->getHeader( 'Referer' ) . '"' .
+			' "' . $request->getHeader( 'User-agent' ) . '"' .
+			"\n";
+		wfDebugLog( 'api-feature-usage', $s, 'private' );
+	}
 }
