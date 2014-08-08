@@ -338,6 +338,18 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	public function getDescription() {
 		return $this->getIsHtml() ? ' (pretty-print in HTML)' : '';
 	}
+
+	/**
+	 * To avoid code duplication with the deprecation of dbg, dump, txt, wddx,
+	 * and yaml, this method is added to do the necessary work. It should be
+	 * removed when those deprecated formats are removed.
+	 */
+	protected function markDeprecated() {
+		$fm = $this->getIsHtml() ? 'fm' : '';
+		$name = $this->getModuleName();
+		$this->logFeatureUsage( "format=$name" );
+		$this->setWarning( "format=$name has been deprecated. Please use format=json$fm instead." );
+	}
 }
 
 /**

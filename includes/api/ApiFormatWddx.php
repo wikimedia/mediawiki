@@ -35,6 +35,8 @@ class ApiFormatWddx extends ApiFormatBase {
 	}
 
 	public function execute() {
+		$this->markDeprecated();
+
 		// Some versions of PHP have a broken wddx_serialize_value, see
 		// PHP bug 45314. Test encoding an affected character (U+00A0)
 		// to avoid this.
@@ -107,6 +109,6 @@ class ApiFormatWddx extends ApiFormatBase {
 	}
 
 	public function getDescription() {
-		return 'Output data in WDDX format' . parent::getDescription();
+		return 'DEPRECATED! Output data in WDDX format' . parent::getDescription();
 	}
 }
