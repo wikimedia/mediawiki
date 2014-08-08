@@ -38,7 +38,16 @@ class RevDelArchivedFileList extends RevDelFileList {
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
 
-		return $db->select( 'filearchive', ArchivedFile::selectFields(), array( 'fa_name' => $this->title->getDBkey(), 'fa_id' => $ids ), __METHOD__, array( 'ORDER BY' => 'fa_id DESC' ) );
+		return $db->select(
+			'filearchive',
+			ArchivedFile::selectFields(),
+			array(
+				'fa_name' => $this->title->getDBkey(),
+				'fa_id' => $ids
+			),
+			__METHOD__,
+			array( 'ORDER BY' => 'fa_id DESC' )
+		);
 	}
 
 	public function newItem( $row ) {

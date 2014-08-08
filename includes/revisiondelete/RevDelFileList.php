@@ -58,7 +58,16 @@ class RevDelFileList extends RevDelList {
 			$archiveNames[] = $timestamp . '!' . $this->title->getDBkey();
 		}
 
-		return $db->select( 'oldimage', OldLocalFile::selectFields(), array( 'oi_name' => $this->title->getDBkey(), 'oi_archive_name' => $archiveNames ), __METHOD__, array( 'ORDER BY' => 'oi_timestamp DESC' ) );
+		return $db->select(
+			'oldimage',
+			OldLocalFile::selectFields(),
+			array(
+				'oi_name' => $this->title->getDBkey(),
+				'oi_archive_name' => $archiveNames
+			),
+			__METHOD__,
+			array( 'ORDER BY' => 'oi_timestamp DESC' )
+		);
 	}
 
 	public function newItem( $row ) {
