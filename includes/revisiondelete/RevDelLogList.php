@@ -40,7 +40,12 @@ class RevDelLogList extends RevDelList {
 	}
 
 	public static function suggestTarget( $target, array $ids ) {
-		$result = wfGetDB( DB_SLAVE )->select( 'logging', 'log_type', array( 'log_id' => $ids ), __METHOD__, array( 'DISTINCT' ) );
+		$result = wfGetDB( DB_SLAVE )->select( 'logging',
+			'log_type',
+			array( 'log_id' => $ids ),
+			__METHOD__,
+			array( 'DISTINCT' )
+		);
 		if ( $result->numRows() == 1 ) {
 			// If there's only one type, the target can be set to include it.
 			return SpecialPage::getTitleFor( 'Log', $result->current()->log_type );
@@ -56,7 +61,24 @@ class RevDelLogList extends RevDelList {
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
 
-		return $db->select( 'logging', array( 'log_id', 'log_type', 'log_action', 'log_timestamp', 'log_user', 'log_user_text', 'log_namespace', 'log_title', 'log_page', 'log_comment', 'log_params', 'log_deleted' ), array( 'log_id' => $ids ), __METHOD__, array( 'ORDER BY' => 'log_id DESC' ) );
+		return $db->select( 'logging', array(
+				'log_id',
+				'log_type',
+				'log_action',
+				'log_timestamp',
+				'log_user',
+				'log_user_text',
+				'log_namespace',
+				'log_title',
+				'log_page',
+				'log_comment',
+				'log_params',
+				'log_deleted'
+			),
+			array( 'log_id' => $ids ),
+			__METHOD__,
+			array( 'ORDER BY' => 'log_id DESC' )
+		);
 	}
 
 	public function newItem( $row ) {
@@ -72,6 +94,10 @@ class RevDelLogList extends RevDelList {
 	}
 
 	public function getLogParams( $params ) {
-		return array( implode( ',', $params['ids'] ), "ofield={$params['oldBits']}", "nfield={$params['newBits']}" );
+		return array(
+			implode( ',', $params['ids'] ),
+			"ofield={$params['oldBits']}",
+			"nfield={$params['newBits']}"
+		);
 	}
 }

@@ -75,7 +75,11 @@ class RevDelFileItem extends RevDelItem {
 				# Newly undeleted
 				$key = $this->file->getStorageKey();
 				$srcRel = $this->file->repo->getDeletedHashPath( $key ) . $key;
-				$this->list->storeBatch[] = array( $this->file->repo->getVirtualUrl( 'deleted' ) . '/' . $srcRel, 'public', $this->file->getRel() );
+				$this->list->storeBatch[] = array(
+					$this->file->repo->getVirtualUrl( 'deleted' ) . '/' . $srcRel,
+					'public',
+					$this->file->getRel()
+				);
 				$this->list->cleanupBatch[] = $key;
 			}
 		} elseif ( $bits & File::DELETED_FILE ) {
@@ -87,9 +91,17 @@ class RevDelFileItem extends RevDelItem {
 
 		# Do the database operations
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update( 'oldimage', array( 'oi_deleted' => $bits ), array( 'oi_name' => $this->row->oi_name, 'oi_timestamp' => $this->row->oi_timestamp, 'oi_deleted' => $this->getBits() ), __METHOD__ );
+		$dbw->update( 'oldimage',
+			array( 'oi_deleted' => $bits ),
+			array(
+				'oi_name' => $this->row->oi_name,
+				'oi_timestamp' => $this->row->oi_timestamp,
+				'oi_deleted' => $this->getBits()
+			),
+			__METHOD__
+		);
 
-		return (bool) $dbw->affectedRows();
+		return (bool)$dbw->affectedRows();
 	}
 
 	public function isDeleted() {
@@ -102,7 +114,8 @@ class RevDelFileItem extends RevDelItem {
 	 * @return string
 	 */
 	protected function getLink() {
-		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate( $this->file->getTimestamp(), $this->list->getUser() ) );
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->file->getTimestamp(), $this->list->getUser() ) );
 
 		if ( !$this->isDeleted() ) {
 			# Regular files...
@@ -113,7 +126,17 @@ class RevDelFileItem extends RevDelItem {
 		if ( !$this->canViewContent() ) {
 			$link = $date;
 		} else {
-			$link = Linker::link( SpecialPage::getTitleFor( 'Revisiondelete' ), $date, array(), array( 'target' => $this->list->title->getPrefixedText(), 'file' => $this->file->getArchiveName(), 'token' => $this->list->getUser()->getEditToken( $this->file->getArchiveName() ) ) );
+			$link = Linker::link(
+				SpecialPage::getTitleFor( 'Revisiondelete' ),
+				$date,
+				array(),
+				array(
+					'target' => $this->list->title->getPrefixedText(),
+					'file' => $this->file->getArchiveName(),
+					'token' => $this->list->getUser()->getEditToken(
+						$this->file->getArchiveName() )
+				)
+			);
 		}
 
 		return '<span class="history-deleted">' . $link . '</span>';
@@ -158,28 +181,55 @@ class RevDelFileItem extends RevDelItem {
 	}
 
 	public function getHTML() {
-		$data = $this->list->msg( 'widthheight' )->numParams( $this->file->getWidth(), $this->file->getHeight() )->text() . ' (' . $this->list->msg( 'nbytes' )->numParams( $this->file->getSize() )->text() . ')';
+		$data =
+			$this->list->msg( 'widthheight' )->numParams(
+				$this->file->getWidth(), $this->file->getHeight() )->text() .
+			' (' . $this->list->msg( 'nbytes' )->numParams( $this->file->getSize() )->text() . ')';
 
-		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' . $data . ' ' . $this->getComment() . '</li>';
+		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' .
+			$data . ' ' . $this->getComment() . '</li>';
 	}
 
 	public function getApiData( ApiResult $result ) {
 		$file = $this->file;
 		$user = $this->list->getUser();
-		$ret = array( 'title' => $this->list->title->getPrefixedText(), 'archivename' => $file->getArchiveName(), 'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() ), 'width' => $file->getWidth(), 'height' => $file->getHeight(), 'size' => $file->getSize(), );
+		$ret = array(
+			'title' => $this->list->title->getPrefixedText(),
+			'archivename' => $file->getArchiveName(),
+			'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() ),
+			'width' => $file->getWidth(),
+			'height' => $file->getHeight(),
+			'size' => $file->getSize(),
+		);
 		$ret += $file->isDeleted( Revision::DELETED_USER ) ? array( 'userhidden' => '' ) : array();
 		$ret += $file->isDeleted( Revision::DELETED_COMMENT ) ? array( 'commenthidden' => '' ) : array();
 		$ret += $this->isDeleted() ? array( 'contenthidden' => '' ) : array();
 		if ( !$this->isDeleted() ) {
-			$ret += array( 'url' => $file->getUrl(), );
+			$ret += array(
+				'url' => $file->getUrl(),
+			);
 		} elseif ( $this->canViewContent() ) {
-			$ret += array( 'url' => SpecialPage::getTitleFor( 'Revisiondelete' )->getLinkURL( array( 'target' => $this->list->title->getPrefixedText(), 'file' => $file->getArchiveName(), 'token' => $user->getEditToken( $file->getArchiveName() ) ), false, PROTO_RELATIVE ), );
+			$ret += array(
+				'url' => SpecialPage::getTitleFor( 'Revisiondelete' )->getLinkURL(
+					array(
+						'target' => $this->list->title->getPrefixedText(),
+						'file' => $file->getArchiveName(),
+						'token' => $user->getEditToken( $file->getArchiveName() )
+					),
+					false, PROTO_RELATIVE
+				),
+			);
 		}
 		if ( $file->userCan( Revision::DELETED_USER, $user ) ) {
-			$ret += array( 'userid' => $file->user, 'user' => $file->user_text, );
+			$ret += array(
+				'userid' => $file->user,
+				'user' => $file->user_text,
+			);
 		}
 		if ( $file->userCan( Revision::DELETED_COMMENT, $user ) ) {
-			$ret += array( 'comment' => $file->description, );
+			$ret += array(
+				'comment' => $file->description,
+			);
 		}
 
 		return $ret;

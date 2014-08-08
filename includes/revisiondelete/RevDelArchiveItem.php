@@ -25,7 +25,8 @@
 class RevDelArchiveItem extends RevDelRevisionItem {
 	public function __construct( $list, $row ) {
 		RevDelItem::__construct( $list, $row );
-		$this->revision = Revision::newFromArchiveRow( $row, array( 'page' => $this->list->title->getArticleID() ) );
+		$this->revision = Revision::newFromArchiveRow( $row,
+			array( 'page' => $this->list->title->getArticleID() ) );
 	}
 
 	public function getIdField() {
@@ -51,20 +52,38 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 
 	public function setBits( $bits ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update( 'archive', array( 'ar_deleted' => $bits ), array( 'ar_namespace' => $this->list->title->getNamespace(), 'ar_title' => $this->list->title->getDBkey(), // use timestamp for index
-				'ar_timestamp' => $this->row->ar_timestamp, 'ar_rev_id' => $this->row->ar_rev_id, 'ar_deleted' => $this->getBits() ), __METHOD__ );
+		$dbw->update( 'archive',
+			array( 'ar_deleted' => $bits ),
+			array(
+				'ar_namespace' => $this->list->title->getNamespace(),
+				'ar_title' => $this->list->title->getDBkey(),
+				// use timestamp for index
+				'ar_timestamp' => $this->row->ar_timestamp,
+				'ar_rev_id' => $this->row->ar_rev_id,
+				'ar_deleted' => $this->getBits()
+			),
+			__METHOD__ );
 
-		return (bool) $dbw->affectedRows();
+		return (bool)$dbw->affectedRows();
 	}
 
 	protected function getRevisionLink() {
-		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate( $this->revision->getTimestamp(), $this->list->getUser() ) );
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() ) );
 
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
 
-		return Linker::link( SpecialPage::getTitleFor( 'Undelete' ), $date, array(), array( 'target' => $this->list->title->getPrefixedText(), 'timestamp' => $this->revision->getTimestamp() ) );
+		return Linker::link(
+			SpecialPage::getTitleFor( 'Undelete' ),
+			$date,
+			array(),
+			array(
+				'target' => $this->list->title->getPrefixedText(),
+				'timestamp' => $this->revision->getTimestamp()
+			)
+		);
 	}
 
 	protected function getDiffLink() {
@@ -72,6 +91,15 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 			return $this->list->msg( 'diff' )->escaped();
 		}
 
-		return Linker::link( SpecialPage::getTitleFor( 'Undelete' ), $this->list->msg( 'diff' )->escaped(), array(), array( 'target' => $this->list->title->getPrefixedText(), 'diff' => 'prev', 'timestamp' => $this->revision->getTimestamp() ) );
+		return Linker::link(
+			SpecialPage::getTitleFor( 'Undelete' ),
+			$this->list->msg( 'diff' )->escaped(),
+			array(),
+			array(
+				'target' => $this->list->title->getPrefixedText(),
+				'diff' => 'prev',
+				'timestamp' => $this->revision->getTimestamp()
+			)
+		);
 	}
 }
