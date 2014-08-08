@@ -233,25 +233,8 @@ class Html {
 	 * @return string A closing tag, if required
 	 */
 	public static function closeElement( $element ) {
-		global $wgWellFormedXml;
-
 		$element = strtolower( $element );
 
-		// Reference:
-		// http://www.whatwg.org/html/syntax.html#optional-tags
-		if ( !$wgWellFormedXml && in_array( $element, array(
-			'html',
-			'head',
-			'body',
-			'li',
-			'dt',
-			'dd',
-			'tr',
-			'td',
-			'th',
-		) ) ) {
-			return '';
-		}
 		return "</$element>";
 	}
 
