@@ -38,10 +38,11 @@ class ApiFormatDbg extends ApiFormatBase {
 	}
 
 	public function execute() {
+		$this->markDeprecated();
 		$this->printText( var_export( $this->getResultData(), true ) );
 	}
 
 	public function getDescription() {
-		return 'Output data in PHP\'s var_export() format' . parent::getDescription();
+		return 'DEPRECATED! Output data in PHP\'s var_export() format' . parent::getDescription();
 	}
 }
