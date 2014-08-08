@@ -105,7 +105,7 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function setupTemplate( $classname, $repository = false, $cache_dir = false ) {
-		return new $classname();
+		return new $classname( $this->getConfig() );
 	}
 
 	/**
@@ -1371,12 +1371,20 @@ class SkinTemplate extends Skin {
  * @ingroup Skins
  */
 abstract class QuickTemplate {
+
+	/** @var Config $config */
+	protected $config;
 	/**
-	 * Constructor
+	 * @var Config $config
 	 */
-	function __construct() {
+	function __construct( Config $config = null ) {
 		$this->data = array();
 		$this->translator = new MediaWikiI18N();
+		if ( $config === null ) {
+			wfDebug( __METHOD__ . ' was called with no Config instance passed to it' );
+			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		}
+		$this->config = $config;
 	}
 
 	/**
