@@ -847,7 +847,6 @@
 	"searchprofile-advanced-tooltip": "Keresés adott névterekben",
 	"search-result-size": "$1 ({{PLURAL:$2|egy|$2}} szó)",
 	"search-result-category-size": "$1 oldal, $2 alkategória, $3 fájl",
-	"search-result-score": "Relevancia: $1%",
 	"search-redirect": "(átirányítva innen: $1)",
 	"search-section": "($1 szakasz)",
 	"search-suggest": "Keresési javaslat: $1",

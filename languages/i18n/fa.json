@@ -292,6 +292,8 @@
 	"hidetoc": "نهفتن",
 	"collapsible-collapse": "نهفتن",
 	"collapsible-expand": "گسترش",
+	"confirmable-yes": "بله",
+	"confirmable-no": "خیر",
 	"thisisdeleted": "نمایش یا احیای $1؟",
 	"viewdeleted": "نمایش $1؟",
 	"restorelink": "{{PLURAL:$1|یک|$1}} ویرایش حذف‌شده",
@@ -862,7 +864,6 @@
 	"searchprofile-advanced-tooltip": "جستجو در فضاهای نام دلخواه",
 	"search-result-size": "$1 ({{PLURAL:$2|یک واژه|$2 واژه}})",
 	"search-result-category-size": "{{PLURAL:$1|یک عضو|$1 عضو}} ({{PLURAL:$2|یک زیررده|$2 زیررده}}، {{PLURAL:$3|یک پرونده|$3 پرونده}})",
-	"search-result-score": "ارتباط: $1٪",
 	"search-redirect": "(تغییرمسیر $1)",
 	"search-section": "(بخش $1)",
 	"search-file-match": "(تشابه محتوی پرونده)",
@@ -3189,5 +3190,7 @@
 	"action-pagelang": "تغییر زبان صفحه",
 	"log-name-pagelang": "تغییر سیاههٔ زبان",
 	"log-description-pagelang": "این سیاههٔ تغییرات صفحهٔ زبان‌ها است.",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2| تغییریافت}} زبان صفحه برای  $3  از  $4  به  $5 ."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2| تغییریافت}} زبان صفحه برای  $3  از  $4  به  $5 .",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (فعال)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''غیر فعال''')"
 }

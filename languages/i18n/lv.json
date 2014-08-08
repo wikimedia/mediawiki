@@ -736,7 +736,6 @@
 	"searchprofile-advanced-tooltip": "Izvēlēties nosaukumvietas, kurās meklēt",
 	"search-result-size": "$1 ({{PLURAL:$2|1 vārds|$2 vārdi}})",
 	"search-result-category-size": "$1 {{PLURAL:$1|apakšelements|apakšelementi}} ($2 {{PLURAL:$2|apakškategorija|apakškategorijas}}, $3 {{PLURAL:$3|fails|faili}})",
-	"search-result-score": "Atbilstība: $1%",
 	"search-redirect": "(pāradresēts no $1)",
 	"search-section": "(sadaļa $1)",
 	"search-file-match": "(atbilst faila saturam)",

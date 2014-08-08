@@ -725,7 +725,6 @@
 	"searchprofile-advanced-tooltip": "自定名集中尋",
 	"search-result-size": "$1 （$2字）",
 	"search-result-category-size": "{{PLURAL:$1|一員|員有$1}}（{{PLURAL:$2|一子類有|子類有$2}}，{{PLURAL:$3|檔有一|檔有$3}}）",
-	"search-result-score": "關：$1%",
 	"search-redirect": "（轉 $1）",
 	"search-section": "（節 $1）",
 	"search-suggest": "爾否解之：$1",

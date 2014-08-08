@@ -295,6 +295,9 @@
 	"hidetoc": "skjul",
 	"collapsible-collapse": "skjul",
 	"collapsible-expand": "vis",
+	"confirmable-confirm": "Er {{GENDER:$1|du}} sikker?",
+	"confirmable-yes": "Ja",
+	"confirmable-no": "Nei",
 	"thisisdeleted": "Se eller gjenopprett $1?",
 	"viewdeleted": "Vis $1?",
 	"restorelink": "{{PLURAL:$1|én slettet revisjon|$1 slettede revisjoner}}",
@@ -863,7 +866,6 @@
 	"searchprofile-advanced-tooltip": "Søk i visse navnerom",
 	"search-result-size": "$1 ({{PLURAL:$2|ett|$2}} ord)",
 	"search-result-category-size": "{{PLURAL:$1|1 medlem|$1 medlemmer}} ({{PLURAL:$2|1 underkategori|$2 underkategorier}}, {{PLURAL:$3|1 fil|$3 filer}})",
-	"search-result-score": "Relevans: $1&nbsp;%",
 	"search-redirect": "(omdirigering $1)",
 	"search-section": "(avsnitt $1)",
 	"search-file-match": "(matcher filinnhold)",
@@ -3044,6 +3046,9 @@
 	"logentry-rights-rights": "$1 {{GENDER:$2|endret}} gruppemedlemskap for $3 fra $4 til $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|endret}} gruppemedlemskap for $3",
 	"logentry-rights-autopromote": "$1 ble automatisk {{GENDER:$2|forfremmet}} fra $4 til $5",
+	"logentry-upload-upload": "$1 {{GENDER:$2|lastet opp}} $3",
+	"logentry-upload-overwrite": "$1 {{GENDER:$2|lastet opp}} en ny versjon av $3",
+	"logentry-upload-revert": "$1 {{GENDER:$2|lastet opp}} $3",
 	"rightsnone": "(ingen)",
 	"feedback-bugornote": "Hvis du er klar til å sende inn en detaljert feilrapport, vennligst [$1 rapporter en feil].\nOm det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. Kommentaren din vil bli lagt til siden \"[$3 $2]\", sammen med brukernavnet ditt og informasjon om hvilken nettleser du bruker.",
 	"feedback-subject": "Emne:",
@@ -3146,5 +3151,8 @@
 	"action-pagelang": "endre sidespråket",
 	"log-name-pagelang": "Endre språklogg",
 	"log-description-pagelang": "Dette er en logg som viser endringer i sidespråk",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|endret}} sidespråk for $3 fra $4 til $5."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|endret}} sidespråk for $3 fra $4 til $5.",
+	"default-skin-not-found": "Ops! Standarddrakten for wikien din (<code>$wgDefaultSkin</code>), <code>$1</code>, er ikke tilgjengelig.\n\nInstallasjonen din inkluderer følgende drakter. Se [https://www.mediawiki.org/wiki/Manual:Skin_configuration Manual: Skin configuration] for informasjon om hvordan du an slå det på og velge en standarddrakt.\n\n$2\n\n; Om du nettopp har installert MediaWiki:\n: Du har trolig installert fra git, eller direkte fra kildekoden med en annen metode. Dette er forventet.\n:* Prøv å installere flere drakter fra [https://www.mediawiki.org/wiki/Category:All_skins mediawiki.orgs draktbase]\n:* Last ned [https://www.mediawiki.org/wiki/Download tarball-installereren], som kommer med flere drakter og utvidelser. Du kan kopiere og lime inn <code>skins/</code>-mappen fra denne.\n: Å gjøre dette skal ikke forstyrre git-mappen din om du er en MediaWiki-utvikler.\n\n; Om du nettopp har oppgradert MediaWiki:\n: MediaWiki 1.24 og nyere slår ikke lenger automatisk på installerte drakter (se [https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery Manual: Skin autodiscovery]). du kan lime inn følgende linjer i <code>LocalSettings.php</code> for å slå på alle installerte drakter:\n\n<pre>$3</pre>\n\n; Om du nettopp har endret <code>LocalSettings.php</code>:\n: Dobbeltsjekk draktnavnene for skrivefeil.",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (slått på)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''slått av''')"
 }

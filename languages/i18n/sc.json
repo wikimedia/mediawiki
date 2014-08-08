@@ -495,7 +495,6 @@
 	"searchprofile-articles-tooltip": "Chirca in $1",
 	"searchprofile-images-tooltip": "Chirca files",
 	"search-result-size": "$1 ({{PLURAL:$2|1 faeddu|$2 faeddos}})",
-	"search-result-score": "Rilevàntzia: $1%",
 	"search-redirect": "(redirect $1)",
 	"search-section": "(setzione $1)",
 	"search-suggest": "Fortzis fias chirchende: $1",

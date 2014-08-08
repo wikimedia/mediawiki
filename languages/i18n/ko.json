@@ -857,7 +857,6 @@
 	"searchprofile-advanced-tooltip": "다음 설정한 이름공간에서 검색",
 	"search-result-size": "$1 ({{PLURAL:$2|1 단어|$2 단어}})",
 	"search-result-category-size": "{{PLURAL:$1|문서 1개|문서 $1개}}, {{PLURAL:$2|하위 분류 1개|하위 분류 $2개}}, {{PLURAL:$3|파일 1개|파일 $3개}}",
-	"search-result-score": "유사도: $1%",
 	"search-redirect": "($1에서 넘어옴)",
 	"search-section": "($1 문단)",
 	"search-file-match": "(내용이 일치하는 파일 있음)",

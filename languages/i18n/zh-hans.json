@@ -335,6 +335,9 @@
 	"hidetoc": "隐藏",
 	"collapsible-collapse": "折叠",
 	"collapsible-expand": "展开",
+	"confirmable-confirm": "{{GENDER:$1|你}}确定么？",
+	"confirmable-yes": "是",
+	"confirmable-no": "否",
 	"thisisdeleted": "查看或还原$1？",
 	"viewdeleted": "查看$1？",
 	"restorelink": "$1个已被删除的编辑",
@@ -903,7 +906,6 @@
 	"searchprofile-advanced-tooltip": "在自定义名字空间中搜索",
 	"search-result-size": "$1（$2个字）",
 	"search-result-category-size": "$1个成员（$2个子分类，$3个文件）",
-	"search-result-score": "相关度：$1%",
 	"search-redirect": "（重定向自“$1”）",
 	"search-section": "（“$1”段落）",
 	"search-file-match": "（匹配文件内容）",
@@ -3200,5 +3202,9 @@
 	"action-pagelang": "更改页面语言",
 	"log-name-pagelang": "更改语言日志",
 	"log-description-pagelang": "这是页面语言更改的日志。",
-	"logentry-pagelang-pagelang": "$1{{GENDER:$2|更改}}$3的页面语言：从$4改为$5。"
+	"logentry-pagelang-pagelang": "$1{{GENDER:$2|更改}}$3的页面语言：从$4改为$5。",
+	"default-skin-not-found": "天哪！您wiki的默认皮肤（<code>$wgDefaultSkin</code>）<code>$1</code>不可用。您的安装版本看起来需要包含以下皮肤。参见MediaWiki官网手册[https://www.mediawiki.org/wiki/Manual:Skin_configuration “皮肤配置”]获取如何启用他们并设置为默认。\n\n$2\n\n; 如果您刚刚安装完了MediaWiki的话：\n: 您可能是从git库安装的，或者使用其他方法直接从源代码安装的。希望如此。\n:* 尝试从[https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org的皮肤存储库]安装一些皮肤。\n:* 下载[https://www.mediawiki.org/wiki/Download 打包安装器]，这会预装一些皮肤和扩展。您可在此处复制粘贴<code>skins/</code>。\n: 做这些事应该不会打扰您的git存储库如果你是MediaWiki开发人员的话。\n\n; 如果您升级了您的MediaWiki的话：\n: MediaWiki 1.24版本起不再自动启用已安装皮肤（参见[https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery 此手册]）。您可复制粘贴以下文本至您wiki的<code>LocalSettings.php</code>以启用安装的皮肤：\n\n<pre>$3</pre>\n\n; 如果您已经修改了<code>LocalSettings.php</code>：\n: 请再次检查皮肤名以确保不存在错误拼写。",
+	"default-skin-not-found-no-skins": "天哪！您wiki的默认皮肤（<code>$wgDefaultSkin</code>）<code>$1</code>不可用。而且您没有安装任何皮肤。\n\n; 如果您刚刚安装完了MediaWiki的话：\n: 您可能是从git库安装的，或者使用其他方法直接从源代码安装的。希望如此。\n:* 尝试从[https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org的皮肤存储库]安装一些皮肤。\n:* 下载[https://www.mediawiki.org/wiki/Download 打包安装器]，这会预装一些皮肤和扩展。您可在此处复制粘贴<code>skins/</code>。\n: 做这些事应该不会打扰您的git存储库如果你是MediaWiki开发人员的话。参见MediaWiki官网手册[https://www.mediawiki.org/wiki/Manual:Skin_configuration “皮肤配置”]获取如何启用他们并设置为默认。",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2（已启用）",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2（'''已禁用'''）"
 }

@@ -838,7 +838,6 @@
 	"searchprofile-advanced-tooltip": "Otsi kohandatud nimeruumidest",
 	"search-result-size": "$1 ({{PLURAL:$2|1 sõna|$2 sõna}})",
 	"search-result-category-size": "{{PLURAL:$1|1 lehekülg|$1 lehekülge}} ({{PLURAL:$2|1 alamkategooria|$2 alamkategooriat}}, {{PLURAL:$3|1 fail|$3 faili}})",
-	"search-result-score": "Vastavus: $1%",
 	"search-redirect": "(ümbersuunamine $1)",
 	"search-section": "(alaosa $1)",
 	"search-file-match": "(vastab faili sisule)",

@@ -835,7 +835,6 @@
 	"searchprofile-advanced-tooltip": "Cercar in spatios de nomines personalisate",
 	"search-result-size": "$1 ({{PLURAL:$2|1 parola|$2 parolas}})",
 	"search-result-category-size": "{{PLURAL:$1|1 membro|$1 membros}} ({{PLURAL:$2|1 subcategoria|$2 subcategorias}}, {{PLURAL:$3|1 file|$3 files}})",
-	"search-result-score": "Relevantia: $1%",
 	"search-redirect": "(redirection ab $1)",
 	"search-section": "(section $1)",
 	"search-file-match": "(corresponde al contento del file)",

@@ -831,7 +831,6 @@
 	"searchprofile-advanced-tooltip": "qe cayê nimeyî bigêre",
 	"search-result-size": "$1 ({{PLURAL:$2|1 çekuyo|$2 çekuyê}})",
 	"search-result-category-size": "{{PLURAL:$1|1 eza|$1 ezayan}} ({{PLURAL:$2|1 kategoriyê bini|$2 kategirayanê binan}}, {{PLURAL:$3|1 dosya|$3 dosyayan}})",
-	"search-result-score": "Eleqa: $1%",
 	"search-redirect": "($1 ra ardış)",
 	"search-section": "(qısmê $1)",
 	"search-file-match": "(zerreyê dosya yewbini gêno)",

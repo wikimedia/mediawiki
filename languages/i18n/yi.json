@@ -832,7 +832,6 @@
 	"searchprofile-advanced-tooltip": "זוכן אין צוגעשטעלטע ָנאָמענטיילן",
 	"search-result-size": "$1 ({{PLURAL:$2|איין ווארט|$2 ווערטער}})",
 	"search-result-category-size": "{{PLURAL:$1|1 מיטגליד|$1 מיטגלידער}} ({{PLURAL:$2|1 אונטער־קאַטעגאריע|$2 אונטער־קאַטעגאריעס}}, {{PLURAL:$3|1 טעקע|$3 טעקעס}})",
-	"search-result-score": "שייכותדיקייט: $1%",
 	"search-redirect": "(ווײַטערפֿירן $1)",
 	"search-section": "(אפטיילונג $1)",
 	"search-file-match": "(פאסט צו טעקע אינהאלט)",

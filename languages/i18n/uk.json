@@ -306,6 +306,9 @@
 	"hidetoc": "сховати",
 	"collapsible-collapse": "згорнути",
 	"collapsible-expand": "розгорнути",
+	"confirmable-confirm": "{{GENDER:$1|Ви}} впевнені?",
+	"confirmable-yes": "Так",
+	"confirmable-no": "Ні",
 	"thisisdeleted": "Переглянути чи відновити $1?",
 	"viewdeleted": "Переглянути $1?",
 	"restorelink": "$1 {{PLURAL:$1|вилучене редагування|вилучені редагування|вилучених редагувань}}",
@@ -878,7 +881,6 @@
 	"searchprofile-advanced-tooltip": "Шукати в заданих просторах назв",
 	"search-result-size": "$1 ($2 {{PLURAL:$2|слово|слова|слів}})",
 	"search-result-category-size": "{{PLURAL:$1|$1 елемент|$1 елементи|$1 елементів}} ({{PLURAL:$2|$2 підкатегорія|$2 підкатегорії|$2 підкатегорій}}, {{PLURAL:$3|$3 файл|$3 файли|$3 файлів}})",
-	"search-result-score": "Відповідність: $1 %",
 	"search-redirect": "(перенаправлення $1)",
 	"search-section": "(розділ $1)",
 	"search-file-match": "(збігається із вмістом файлу)",
@@ -3293,5 +3295,7 @@
 	"action-pagelang": "змінити мову сторінки",
 	"log-name-pagelang": "Журнал змін мови",
 	"log-description-pagelang": "Це журнал змін мови сторінок.",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|змінив|змінила}} мову сторінки для $3 з $4 на $5."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|змінив|змінила}} мову сторінки для $3 з $4 на $5.",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (увімкнено)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''вимкнено''')"
 }

@@ -846,7 +846,6 @@
 	"searchprofile-advanced-tooltip": "Caută în spații de nume personalizate",
 	"search-result-size": "$1 ({{PLURAL:$2|1 cuvânt|$2 cuvinte}})",
 	"search-result-category-size": "$1 {{PLURAL:$1|element|elemente}} ($2 {{PLURAL:$2|categorie|categorii}}, $3 {{PLURAL:$3|fișier|fișiere}})",
-	"search-result-score": "Relevanță: $1%",
 	"search-redirect": "(redirecționare de la $1)",
 	"search-section": "(secțiunea $1)",
 	"search-file-match": "(se regăsește în conținutul fișierului)",

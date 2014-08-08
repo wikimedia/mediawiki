@@ -888,7 +888,6 @@
 	"searchprofile-advanced-tooltip": "Personalizar os espaços nominais onde pesquisar",
 	"search-result-size": "$1 ({{PLURAL:$2|1 palavra|$2 palavras}})",
 	"search-result-category-size": "{{PLURAL:$1|1 membro|$1 membros}} ({{PLURAL:$2|1 subcategoria|$2 subcategorias}}, {{PLURAL:$3|1 arquivo|$3 arquivos}})",
-	"search-result-score": "Relevância: $1%",
 	"search-redirect": "(redirecionamento de $1)",
 	"search-section": "(seção $1)",
 	"search-file-match": "(coincide com o conteúdo do arquivo)",

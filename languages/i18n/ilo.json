@@ -825,7 +825,6 @@
 	"searchprofile-advanced-tooltip": "Agbirukka kadagiti naiduma a nagan ti espasio",
 	"search-result-size": "$1 ({{PLURAL:$2|iti 1 a balikas|kadagiti $2 a balikas}})",
 	"search-result-category-size": "{{PLURAL:$1|1 a kameng| dagiti $1 a kameng}} ({{PLURAL:$2|1 a subkategoria|dagiti $2  a subkategoria}}, {{PLURAL:$3|1 a papeles|dagiti $3 a papeles}})",
-	"search-result-score": "Kaitutopan: $1%",
 	"search-redirect": "(baw-ing ti $1)",
 	"search-section": "(paset $1)",
 	"search-file-match": "(maipada ti linaon a papeles)",

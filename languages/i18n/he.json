@@ -528,7 +528,7 @@
 	"changeemail": "שינוי כתובת דוא\"ל",
 	"changeemail-header": "שינוי כתובת הדואר האלקטרוני בחשבון",
 	"changeemail-text": "מלאו טופס זה כדי לשנות את כתובת הדואר האלקטרוני שלכם. יהיה עליכם למלא סיסמה כדי לאשר את השינוי.",
-	"changeemail-no-info": "עליכם להיכנס לחשבון כדי לגשת לדף זה ישירות.",
+	"changeemail-no-info": "יש להיכנס לחשבון כדי לגשת לדף זה ישירות.",
 	"changeemail-oldemail": "כתובת דוא\"ל נוכחית:",
 	"changeemail-newemail": "כתובת דוא\"ל חדשה:",
 	"changeemail-none": "(אין)",
@@ -852,7 +852,6 @@
 	"searchprofile-advanced-tooltip": "חיפוש במרחבי שם מותאמים אישית",
 	"search-result-size": "$1 ({{PLURAL:$2|מילה אחת|$2 מילים}})",
 	"search-result-category-size": "{{PLURAL:$1|חבר אחד|$1 חברים}} ({{PLURAL:$2|קטגוריית משנה אחת|$2 קטגוריות משנה}}, {{PLURAL:$3|קובץ אחד|$3 קבצים}})",
-	"search-result-score": "רלוונטיוּת: $1%",
 	"search-redirect": "(הפניה $1)",
 	"search-section": "(פסקה $1)",
 	"search-file-match": "(התאמה בתוכן הקובץ)",
@@ -2070,7 +2069,7 @@
 	"movepage-moved-redirect": "נוצרה הפניה.",
 	"movepage-moved-noredirect": "יצירת ההפניה בוטלה.",
 	"articleexists": "קיים כבר דף באותו שם, או שהשם שבחרת אינו תקין.\nנא לבחור שם אחר.",
-	"cantmove-titleprotected": "אינכם יכולים להעביר את הדף לשם זה, כיוון שהשם החדש מוגן מפני יצירה",
+	"cantmove-titleprotected": "אינך מורשה להעביר את הדף לשם זה כיוון שהשם החדש מוגן מפני יצירה",
 	"movetalk": "העברה גם של דף השיחה",
 	"move-subpages": "העברת כל דפי המשנה (עד $1)",
 	"move-talk-subpages": "העברת כל דפי המשנה של דף השיחה (עד $1)",
@@ -3193,5 +3192,9 @@
 	"action-pagelang": "לשנות את שפת הדף",
 	"log-name-pagelang": "יומן שינוי שפה",
 	"log-description-pagelang": "זהו יומן של שינויים בשפות של הדפים.",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|שינה|שינתה}} את שפת הדף $3 מ$4 ל$5."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|שינה|שינתה}} את שפת הדף $3 מ$4 ל$5.",
+	"default-skin-not-found": "אופס! עיצוב ברירת המחדל עבור אתר הוויקי שלכם  (<code>$wgDefaultSkin</code>),&rlm; <code>$1</code>, אינו זמין.\n\nנראה שההתקנה שלכם כוללת את העיצובים הבאים. ראו מידע בדף [https://www.mediawiki.org/wiki/Manual:Skin_configuration \"הגדרת עיצובים\" במדריך] על האפשרות להפעיל אותם ולבחור את עיצוב ברירת המחדל.\n\n$2\n\n; אם כרגע התקנתם את מדיה־ויקי:\n: נראה שזו התקנה מ־git, או ישירות מקוד המקור בשיטה אחרת כלשהי. במקרה הזה, בעיה זו צפויה. נסו להתקין כמה עיצובים מ[https://www.mediawiki.org/wiki/Category:All_skins ספריית העיצובים של mediawiki.org], על־ידי:\n:* הורדת [https://www.mediawiki.org/wiki/Download קובץ ה־tar להתקנה], שכולל מספר עיצובים והרחבות. באפשרותכם להעתיק ולהדביק מתוכו את תיקיית ה‏‏־<code>skins/</code>.\n:* שכפול אחת מה־git repostiroies ב־<code>mediawiki/skins/*</code> בעזרת git לתוך תיקיית ה־<code>skins/</code> בהתקנת מדיה־ויקי שלכם.\n: אם תעשו זאת, זה לא אמור להפריע ל‏‏־git repository שלכם (אם אתם מפתחים של מדיה־ויקי).\n\n; אם כרגע שדרגתם את מדיה־ויקי:\n: מדיה־ויקי 1.24 וגרסאות חדשות יותר כבר לא מפעילות עיצובים מותקנים באופן אוטומטי (ראו [https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery \"גילוי אוטומטי של עיצובים\" במדריך]). תוכלו להעתיק את השורות הבאות לתוך הקובץ <code>LocalSettings.php</code> כדי להפעיל את כל העיצובים המותקנים כעת:\n\n<pre>$3</pre>\n\n; אם כרגע שיניתם את <code>LocalSettings.php</code>:\n: בדקו שנית האם ביצעתם שגיאות הקלדה בשמות העיצובים.",
+	"default-skin-not-found-no-skins": "אופס! עיצוב ברירת המחדל עבור אתר הוויקי שלכם  (<code>$wgDefaultSkin</code>),&rlm; <code>$1</code>, אינו זמין.\n\nאין לכם עיצובים מותקנים.\n\n$2\n\n; אם כרגע התקנתם או שדרגתם את מדיה־ויקי:\n: נראה שזו התקנה מ־git, או ישירות מקוד המקור בשיטה אחרת כלשהי. במקרה הזה, בעיה זו צפויה. מדיה־ויקי 1.24 וגרסאות חדשות יותר אינן כוללות עיצובים ב־git repository הראשי. נסו להתקין כמה עיצובים מ[https://www.mediawiki.org/wiki/Category:All_skins ספריית העיצובים של mediawiki.org], על־ידי:\n:* הורדת [https://www.mediawiki.org/wiki/Download קובץ ה‏‏־tar להתקנה], שכולל מספר עיצובים והרחבות. באפשרותכם להעתיק ולהדביק מתוכו את תיקיית ה‏‏־<code>skins/</code>.\n:* שכפול אחת מה־git repostiroies ב־<code>mediawiki/skins/*</code> בעזרת git לתוך תיקיית ה־<code>skins/</code> בהתקנת מדיה־ויקי שלכם.\n: אם תעשו זאת, זה לא אמור להפריע ל‏‏־git repository שלכם (אם אתם מפתחים של מדיה־ויקי). ראו מידע בדף [https://www.mediawiki.org/wiki/Manual:Skin_configuration \"הגדרת עיצובים\" במדריך] על האפשרות להפעיל עיצובים ולבחור את עיצוב ברירת המחדל.",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (מופעל)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''מבוטל''')"
 }

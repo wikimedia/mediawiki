@@ -265,6 +265,9 @@
 	"hidetoc": "skrij",
 	"collapsible-collapse": "Skrči",
 	"collapsible-expand": "Razširi",
+	"confirmable-confirm": "{{GENDER:$1|Ste}} prepričani?",
+	"confirmable-yes": "Da",
+	"confirmable-no": "Ne",
 	"thisisdeleted": "Prikažem ali vrnem $1?",
 	"viewdeleted": "Prikažem $1?",
 	"restorelink": "$1 {{PLURAL:$1|izbrisano redakcijo|izbrisani redakciji|izbrisane redakcije|izbrisanih redakcij}}",
@@ -833,7 +836,6 @@
 	"searchprofile-advanced-tooltip": "Iskanje v imenskih prostorih po meri",
 	"search-result-size": "$1 ({{PLURAL:$2|1 beseda|2 besedi|$2 besede|$2 besed|$2 besed}})",
 	"search-result-category-size": "$1 {{PLURAL:$1|član|člana|člani|članov}} ($1 {{PLURAL:$2|podkategorija|podkategoriji|podkategorije|podkategorij}}, $1 {{PLURAL:$3|datoteka|datoteki|datoteke|datotek}})",
-	"search-result-score": "Ustreznost: $1%",
 	"search-redirect": "(preusmeritev $1)",
 	"search-section": "(razdelek $1)",
 	"search-file-match": "(ujema se z vsebino datoteke)",
@@ -3100,5 +3102,7 @@
 	"action-pagelang": "spreminjanje jezika strani",
 	"log-name-pagelang": "Dnevnik spreminjanja jezika",
 	"log-description-pagelang": "Dnevnik sprememb jezika strani.",
-	"logentry-pagelang-pagelang": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} jezik strani $3 z jezika $4 na jezik $5."
+	"logentry-pagelang-pagelang": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} jezik strani $3 z jezika $4 na jezik $5.",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (omogočeno)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''onemogočeno''')"
 }

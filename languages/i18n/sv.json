@@ -102,7 +102,7 @@
 	"tog-prefershttps": "Använd alltid en säker anslutning när jag är inloggad",
 	"underline-always": "Alltid",
 	"underline-never": "Aldrig",
-	"underline-default": "Webbläsarens standardinställning",
+	"underline-default": "Webbläsarens eller utseendets standardinställning",
 	"editfont-style": "Typsnitt i redigeringsrutan:",
 	"editfont-default": "Webbläsarens standard",
 	"editfont-monospace": "Fast bredd",
@@ -313,6 +313,9 @@
 	"hidetoc": "göm",
 	"collapsible-collapse": "Dölj",
 	"collapsible-expand": "Visa",
+	"confirmable-confirm": "Är {{GENDER:$1|du}} säker?",
+	"confirmable-yes": "Ja",
+	"confirmable-no": "Nej",
 	"thisisdeleted": "Visa eller återställ $1?",
 	"viewdeleted": "Visa $1?",
 	"restorelink": "{{PLURAL:$1|en raderad version|$1 raderade versioner}}",
@@ -882,7 +885,6 @@
 	"searchprofile-advanced-tooltip": "Sök i vissa namnrymder",
 	"search-result-size": "$1 ({{PLURAL:$2|1 ord|$2 ord}})",
 	"search-result-category-size": "{{PLURAL:$1|1 medlem|$1 medlemmar}} ({{PLURAL:$2|1 underkategori|$2 underkategorier}}, {{PLURAL:$3|1 fil|$3 filer}})",
-	"search-result-score": "Relevans: $1%",
 	"search-redirect": "(omdirigering $1)",
 	"search-section": "(avsnitt $1)",
 	"search-file-match": "(överensstämmer filens innehåll)",
@@ -3157,5 +3159,9 @@
 	"action-pagelang": "ändra sidspråket",
 	"log-name-pagelang": "Språkändringslogg",
 	"log-description-pagelang": "Detta är en logg över ändringar i sidspråken.",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|ändrade}} sidspråket för $3 från $4 till $5."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|ändrade}} sidspråket för $3 från $4 till $5.",
+	"default-skin-not-found": "Ojsan! Standardutseendet för din wiki (<code>$wgDefaultSkin</code>), <code>$1</code>, är inte tillgängligt.\n\nDin installation verkar innehålla följande utseenden. Se [https://www.mediawiki.org/wiki/Manual:Skin_configuration Manualen: Utseendeinställningar] för information om hur dessa aktiveras och hur standard väljs.\n\n$2\n\n; Om du precis installerat MediaWiki:\n: Du installerade troligen från git, eller direkt från källkoden via någon annan metod. Detta är att förvänta.\n:* Försök att installera några utseenden från [https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org:s utseendekatalog].\n:* Ladda ner [https://www.mediawiki.org/wiki/Download tarball-installeraren], som kommer med flera utseenden och tillägg. Du kan klipp-och-klistra in <code>skins/</code>-katalogen från den.\n: Att göra detta borde inte påverka ditt git-centralförvar om du är en MediaWiki-utvecklare.\n\n; Om du precis har uppgraderat MediaWiki:\n: MediaWiki 1.24 och nyare aktiverar ej längre automatiskt utseenden (se [https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery Manual: Automatisk identifiering av utseenden]). Du kan klistra in följande rader i <code>LocalSettings.php</code> för att aktivera alla för närvarande installerade utseenden:\n\n<pre>$3</pre>\n\n; Om du precis har ändrat i <code>LocalSettings.php</code>:\n: Dubbelkolla namnen för utseendena för att identifiera stavfel.",
+	"default-skin-not-found-no-skins": "Ojsan! Standardutseendet för din wiki (<code>$wgDefaultSkin</code>), <code>$1</code>, är inte tillgängligt.\n\nDu har inga installerade utseenden.\n\n; Om du precis installerat MediaWiki:\n: Du installerade troligen från git, eller direkt från källkoden via någon annan metod. Detta är att förvänta.\n:* Försök att installera några utseenden från [https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org:s utseendekatalog].\n:* Ladda ner [https://www.mediawiki.org/wiki/Download tarball-installeraren], som kommer med flera utseenden och tillägg. Du kan klipp-och-klistra in <code>skins/</code>-katalogen från den.\n: Att göra detta borde inte påverka ditt git-centralförvar om du är en MediaWiki-utvecklare. Se [https://www.mediawiki.org/wiki/Manual:Skin_configuration Manualen: Utseendeinställningar] för information om hur utseenden aktiveras och hur standardutseendet väljs.",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (aktiverad)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''inaktiverad''')"
 }

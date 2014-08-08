@@ -792,7 +792,6 @@
 	"searchprofile-advanced-tooltip": "Custom namespaces me khojo",
 	"search-result-size": "$1 ({{PLURAL:$2|1 sabd|$2 sabd}})",
 	"search-result-category-size": " {{PLURAL:$1|1 sadasya|$1 sadasya}} ({{PLURAL:$2|1 chhota vibhag|$2 chhota vibhag}}, {{PLURAL:$3|1 file|$3 files}})",
-	"search-result-score": "Len den: $1%",
 	"search-redirect": "(redirect $1)",
 	"search-section": "(section $1)",
 	"search-suggest": "Ka aap ke matlab rahaa: $1",

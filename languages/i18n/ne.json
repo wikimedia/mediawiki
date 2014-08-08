@@ -779,7 +779,6 @@
 	"searchprofile-advanced-tooltip": "अनुकुल नेमस्पेसमा खोज्ने",
 	"search-result-size": "$1 ({{PLURAL:$2|1 शव्द|$2 शव्दहरु}})",
 	"search-result-category-size": "{{PLURAL:$1|एक सदस्य|$1 सदस्यहरु}} ({{PLURAL:$2|1 उपश्रेणी|$2  उपश्रेणीहरु}}, {{PLURAL:$3|एउटा फाइल|$3 फाइलहरु}})",
-	"search-result-score": "मिल्ने :$1%",
 	"search-redirect": "(जाने $1)",
 	"search-section": "(खण्ड $1)",
 	"search-suggest": "के तपाईको खोजाई : $1 हो?",

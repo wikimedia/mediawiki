@@ -939,7 +939,6 @@
 	"searchprofile-advanced-tooltip": "Buscar en espacios de nombres personalizados",
 	"search-result-size": "$1 ({{PLURAL:$2|1 palabra|$2 palabras}})",
 	"search-result-category-size": "{{PLURAL:$1|1 miembro|$1 miembros}} ({{PLURAL:$2|1 subcategoría|$2 subcategorías}}, {{PLURAL:$3|1 fichero|$3 ficheros}})",
-	"search-result-score": "Relevancia: $1%",
 	"search-redirect": "(redirige desde $1)",
 	"search-section": "(sección $1)",
 	"search-file-match": "(coincide con el contenido del archivo)",
@@ -3214,5 +3213,7 @@
 	"action-pagelang": "cambiar el idioma de la página",
 	"log-name-pagelang": "Registro de cambios en idiomas",
 	"log-description-pagelang": "Este es un registro de los cambios en los idiomas de las páginas.",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|cambió}} el idioma de la página «$3» del $4 al $5."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|cambió}} el idioma de la página «$3» del $4 al $5.",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (activado)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''desactivado''')"
 }

@@ -651,7 +651,6 @@
 	"searchprofile-advanced-tooltip": "Вешендемс кърдань лемботмова",
 	"search-result-size": "$1 ({{PLURAL:$2|1 вал|$2 валхт}})",
 	"search-result-category-size": "{{PLURAL:$1|1 якай|$1 якайхть}} ({{PLURAL:$2|1 субкатегорие|$2 субкатегориет}}, {{PLURAL:$3|1 файла|$3 файлат}})",
-	"search-result-score": "Малавиксши: $1%",
 	"search-redirect": "(шашфтт $1с)",
 	"search-section": "(пялькс $1)",
 	"search-suggest": "Афкукс тонь мяльсот: $1",

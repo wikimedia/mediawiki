@@ -83,6 +83,7 @@
 	"tog-watchdefault": "Dodawaj do obserwowanych strony i pliki, które edytuję",
 	"tog-watchmoves": "Dodawaj do obserwowanych strony i pliki, które przenoszę",
 	"tog-watchdeletion": "Dodawaj do obserwowanych strony i pliki, które usuwam",
+	"tog-watchrollback": "Dodawaj do obserwowanych strony, w których {{GENDER:|wycofałem|wycofałam}} edycję",
 	"tog-minordefault": "Wszystkie edycje domyślnie oznaczaj jako drobne",
 	"tog-previewontop": "Pokazuj podgląd powyżej obszaru edycji",
 	"tog-previewonfirst": "Pokazuj podgląd strony podczas pierwszej edycji",
@@ -893,7 +894,6 @@
 	"searchprofile-advanced-tooltip": "Szukanie w wybranych przestrzeniach nazw",
 	"search-result-size": "$1 ({{PLURAL:$2|1 słowo|$2 słowa|$2 słów}})",
 	"search-result-category-size": "{{PLURAL:$1|1 element|$1 elementy|$1 elementów}} ({{PLURAL:$2|1 kategoria|$2 kategorie|$2 kategorii}}, {{PLURAL:$3|1 plik|$3 pliki|$3 plików}})",
-	"search-result-score": "Trafność: $1%",
 	"search-redirect": "(przekierowanie $1)",
 	"search-section": "(sekcja $1)",
 	"search-file-match": "(odpowiada zawartości pliku)",
@@ -3096,6 +3096,9 @@
 	"logentry-rights-rights": "$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup",
 	"logentry-rights-autopromote": "$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)",
+	"logentry-upload-upload": "$1 {{GENDER:$2|przesłał|przesłała}} $3",
+	"logentry-upload-overwrite": "$1 {{GENDER:$2|przesłał|przesłała}} nową wersję $3",
+	"logentry-upload-revert": "$1 {{GENDER:$2|przesłał|przesłała}} $3",
 	"rightsnone": "brak",
 	"feedback-bugornote": "Jeśli jesteś w stanie szczegółowo opisać problem techniczny, proszę [$1 zgłoś błąd].\nW przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony \"[$3  $2]\", wraz z nazwą użytkownika.",
 	"feedback-subject": "Temat",
@@ -3198,5 +3201,7 @@
 	"action-pagelang": "zmiany języka strony",
 	"log-name-pagelang": "Rejestr zmian języka",
 	"log-description-pagelang": "Rejestr zmian języków przypisanych do poszczególnych stron",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|zmienił|zmieniła}} język strony $3 z „$4” na „$5”."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|zmienił|zmieniła}} język strony $3 z „$4” na „$5”.",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (włączone)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''wyłączone''')"
 }

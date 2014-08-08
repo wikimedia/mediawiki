@@ -3,7 +3,8 @@
 		"authors": [
 			"Bachounda",
 			"Oldstoneage",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "تسطار الوصيلات:",
@@ -466,7 +467,6 @@
 	"upload": "طلع فيشي",
 	"uploadlogpage": "ريجيستر رفع الفيشيات",
 	"filedesc": "ملخص",
-	"uploadedimage": "راه طلع \"[[$1]]\"",
 	"license": "ترخيص:",
 	"license-header": "ترخيص:",
 	"file-anchor-link": "ملف",
@@ -486,7 +486,7 @@
 	"sharedupload-desc-here": "هاذ الملف جاي من $1. يمكن يكون مستعمل من بروجيات وحد أخرين.\nالتوصيف نتاعو في [$2 باجت الصفات] محطوطه هنا لتحت.",
 	"randompage": "باجة على الزهر",
 	"statistics": "إحصاويّات",
-	"nbytes": "$1 اوكتي{{PLURAL:$1||s}}",
+	"nbytes": "{{PLURAL:$1|بايت 1|$1 بايت}}",
 	"nmembers": "$1 اعضاء{{PLURAL:$1||s}}",
 	"prefixindex": "كامل الباجات الباديه ب",
 	"usercreated": "{{GENDER:$3|صنعه|صنعته}} في $1 الساعة $2",

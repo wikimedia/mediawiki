@@ -825,7 +825,6 @@
 	"searchprofile-advanced-tooltip": "Donn en ußjesohte Appachtemangs sööke",
 	"search-result-size": "$1 ({{PLURAL:$2|Eij Woot|$2 Wööter|Keij Woot}})",
 	"search-result-category-size": "{{PLURAL:$1|1 Saach|$1 Saache|0 Saache}} ({{PLURAL:$2|1 Ongerjropp|$2 Ongerjroppe|0 Ongerjroppe}}, {{PLURAL:$3|1 Datei|$3 Dateie|0 Dateie}})",
-	"search-result-score": "Jeweesch: $1%",
 	"search-redirect": "(Ömleitung $1)",
 	"search-section": "(Avschnett $1)",
 	"search-file-match": "(en dä Dattei dren)",

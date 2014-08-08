@@ -715,7 +715,6 @@
 	"searchprofile-advanced-tooltip": "垃拉自定义名字空间里向搜索",
 	"search-result-size": "$1（$2字）",
 	"search-result-category-size": "$1个成员（$2个儿分类，$3个文件）",
-	"search-result-score": "相关度：$1%",
 	"search-redirect": "（转戳到 $1）",
 	"search-section": "（段落 $1）",
 	"search-suggest": "你侬是寻：$1",

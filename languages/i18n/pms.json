@@ -837,7 +837,6 @@
 	"searchprofile-advanced-tooltip": "Sërché ant jë spassi nominaj përsonalisà",
 	"search-result-size": "$1 ({{PLURAL:$2|un|$2}} mòt)",
 	"search-result-category-size": "{{PLURAL:$1|1 mèmber|$1 mèmber}} ({{PLURAL:$2|1 sot-categorìa|$2 sot-categorìe}}, {{PLURAL:$3|1 archivi|$3 archivi}})",
-	"search-result-score": "Arlevansa: $1%",
 	"search-redirect": "(ridiression $1)",
 	"search-section": "(session $1)",
 	"search-file-match": "(a corëspond al contnù d'archivi)",
