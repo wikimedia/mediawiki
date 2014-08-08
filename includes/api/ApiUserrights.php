@@ -35,7 +35,7 @@ class ApiUserrights extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$user = $this->getUrUser();
+		$user = $this->getUrUser( $params );
 
 		$form = new UserrightsPage;
 		$form->setContext( $this->getContext() );
@@ -53,14 +53,14 @@ class ApiUserrights extends ApiBase {
 	}
 
 	/**
+	 * @param array $params
 	 * @return User
 	 */
-	private function getUrUser() {
+	private function getUrUser( array $params ) {
 		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}
 
-		$params = $this->extractRequestParams();
 		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
 
 		$user = isset( $params['user'] ) ? $params['user'] : '#' . $params['userid'];
@@ -101,10 +101,6 @@ class ApiUserrights extends ApiBase {
 				ApiBase::PARAM_TYPE => User::getAllGroups(),
 				ApiBase::PARAM_ISMULTI => true
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'reason' => array(
 				ApiBase::PARAM_DFLT => ''
 			)
@@ -117,7 +113,10 @@ class ApiUserrights extends ApiBase {
 			'userid' => 'User id',
 			'add' => 'Add the user to these groups',
 			'remove' => 'Remove the user from these groups',
-			'token' => 'A userrights token previously retrieved through list=users',
+			'token' => array(
+				/* Standard description automatically prepended */
+				'For compatibility, the token used in the web UI is also accepted.'
+			),
 			'reason' => 'Reason for the change',
 		);
 	}
@@ -127,11 +126,11 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
+		return 'userrights';
 	}
 
-	public function getTokenSalt() {
-		return $this->getUrUser()->getName();
+	protected function getWebUITokenSalt( array $params ) {
+		return $this->getUrUser( $params )->getName();
 	}
 
 	public function getExamples() {

@@ -165,10 +165,6 @@ class ApiWatch extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
 		return 'watch';
 	}
 
@@ -180,10 +176,6 @@ class ApiWatch extends ApiBase {
 			),
 			'unwatch' => false,
 			'uselang' => null,
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'continue' => '',
 		);
 		if ( $flags ) {
@@ -200,7 +192,6 @@ class ApiWatch extends ApiBase {
 			'title' => 'The page to (un)watch. use titles instead',
 			'unwatch' => 'If set the page will be unwatched rather than watched',
 			'uselang' => 'Language to show the message in',
-			'token' => 'A token previously acquired via prop=info',
 			'continue' => 'When more results are available, use this to continue',
 		);
 	}
