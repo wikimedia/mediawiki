@@ -858,9 +858,11 @@ $wgContentHandlers = array(
 	CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler',
 	// dumb version, no syntax highlighting
 	CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler',
+	// simple implementation, for use by extensions, etc.
+	CONTENT_MODEL_JSON => 'JSONContentHandler',
 	// dumb version, no syntax highlighting
 	CONTENT_MODEL_CSS => 'CssContentHandler',
-	// plain text, for use by extensions etc
+	// plain text, for use by extensions, etc.
 	CONTENT_MODEL_TEXT => 'TextContentHandler',
 );
 
