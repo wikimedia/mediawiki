@@ -578,6 +578,14 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalParams( $flags = 0 ) {
 		$params = $this->getAllowedParams( $flags );
+
+		if ( $this->needsToken() ) {
+			$params['token'] = array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true,
+			);
+		}
+
 		wfRunHooks( 'APIGetAllowedParams', array( &$this, &$params, $flags ) );
 
 		return $params;
@@ -591,6 +599,21 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalParamDescription() {
 		$desc = $this->getParamDescription();
+
+		$tokenType = $this->needsToken();
+		if ( $tokenType ) {
+			if ( !isset( $desc['token'] ) ) {
+				$desc['token'] = array();
+			} elseif ( !is_array( $desc['token'] ) ) {
+				// We ignore a plain-string token, because it's probably an
+				// extension that is supplying the string for BC.
+				$desc['token'] = array();
+			}
+			array_unshift( $desc['token'],
+				"A '$tokenType' token retrieved from action=query&meta=tokens"
+			);
+		}
+
 		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ) );
 
 		return $desc;
@@ -1992,29 +2015,82 @@ abstract class ApiBase extends ContextSource {
 	 * @return bool
 	 */
 	public function mustBePosted() {
-		return false;
+		return $this->needsToken() !== false;
 	}
 
 	/**
-	 * Returns whether this module requires a token to execute
-	 * It is used to show possible errors in action=paraminfo
-	 * see bug 25248
-	 * @return bool
+	 * Returns the token type this module requires in order to execute.
+	 *
+	 * Modules are strongly encouraged to use the core 'csrf' type unless they
+	 * have specialized security needs. If the token type is not one of the
+	 * core types, you must use the ApiQueryTokensRegisterTypes hook to
+	 * register it.
+	 *
+	 * Returning a non-falsey value here will cause self::getFinalParams() to
+	 * return a required string 'token' parameter and
+	 * self::getFinalParamDescription() to ensure there is standardized
+	 * documentation for it. Also, self::mustBePosted() must return true when
+	 * tokens are used.
+	 *
+	 * In previous versions of MediaWiki, true was a valid return value.
+	 * Returning true will generate errors indicating that the API module needs
+	 * updating.
+	 *
+	 * @return string|false
 	 */
 	public function needsToken() {
 		return false;
 	}
 
 	/**
-	 * Returns the token salt if there is one,
-	 * '' if the module doesn't require a salt,
-	 * else false if the module doesn't need a token
-	 * You have also to override needsToken()
-	 * Value is passed to User::getEditToken
-	 * @return bool|string|array
+	 * Validate the supplied token.
+	 *
+	 * @since 1.24
+	 * @param string $token Supplied token
+	 * @param array $params All supplied parameters for the module
+	 * @return bool
 	 */
-	public function getTokenSalt() {
+	public final function validateToken( $token, array $params ) {
+		$tokenType = $this->needsToken();
+		$salts = ApiQueryTokens::getTokenTypeSalts();
+		if ( !isset( $salts[$tokenType] ) ) {
+			throw new MWException(
+				"Module '{$this->getModuleName()}' tried to use token type '$tokenType' " .
+					'without registering it'
+			);
+		}
+
+		if ( $this->getUser()->matchEditToken(
+			$token,
+			$salts[$tokenType],
+			$this->getRequest()
+		) ) {
+			return true;
+		}
+
+		$webUiSalt = $this->getWebUITokenSalt( $params );
+		if ( $webUiSalt !== null && $this->getUser()->matchEditToken(
+			$token,
+			$webUiSalt,
+			$this->getRequest()
+		) ) {
+			return true;
+		}
+
 		return false;
+	}
+
+	/**
+	 * Fetch the salt used in the Web UI corresponding to this module.
+	 *
+	 * Only override this if the Web UI uses a token with a non-constant salt.
+	 *
+	 * @since 1.24
+	 * @param array $params All supplied parameters for the module
+	 * @return string|array|null
+	 */
+	protected function getWebUITokenSalt( array $params ) {
+		return null;
 	}
 
 	/**

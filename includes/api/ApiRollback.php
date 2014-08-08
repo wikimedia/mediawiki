@@ -40,9 +40,19 @@ class ApiRollback extends ApiBase {
 	private $mUser = null;
 
 	public function execute() {
+		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		// User and title already validated in call to getTokenSalt from Main
+		// WikiPage::doRollback needs a Web UI token, so get one of those if we
+		// validated based on an API rollback token.
+		$token = $params['token'];
+		if ( $token === $user->getEditToken( 'rollback', $this->getRequest() ) ) {
+			$token = $this->getUser()->getEditToken(
+				$this->getWebUITokenSalt( $params ),
+				$this->getRequest()
+			);
+		}
+
 		$titleObj = $this->getRbTitle( $params );
 		$pageObj = WikiPage::factory( $titleObj );
 		$summary = $params['summary'];
@@ -50,10 +60,10 @@ class ApiRollback extends ApiBase {
 		$retval = $pageObj->doRollback(
 			$this->getRbUser( $params ),
 			$summary,
-			$params['token'],
+			$token,
 			$params['markbot'],
 			$details,
-			$this->getUser()
+			$user
 		);
 
 		if ( $retval ) {
@@ -99,10 +109,6 @@ class ApiRollback extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'summary' => '',
 			'markbot' => false,
 			'watchlist' => array(
@@ -123,10 +129,11 @@ class ApiRollback extends ApiBase {
 		return array(
 			'title' => "Title of the page you want to roll back. Cannot be used together with {$p}pageid",
 			'pageid' => "Page ID of the page you want to roll back. Cannot be used together with {$p}title",
-			'user' => 'Name of the user whose edits are to be rolled back. If ' .
-				'set incorrectly, you\'ll get a badtoken error.',
-			'token' => 'A rollback token previously retrieved through ' .
-				"{$this->getModulePrefix()}prop=revisions",
+			'user' => 'Name of the user whose edits are to be rolled back.',
+			'token' => array(
+				/* Standard description automatically prepended */
+				'For compatibility, the token used in the web UI is also accepted.'
+			),
 			'summary' => 'Custom edit summary. If empty, default summary will be used',
 			'markbot' => 'Mark the reverted edits and the revert as bot edits',
 			'watchlist' => 'Unconditionally add or remove the page from your watchlist, ' .
@@ -142,12 +149,10 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
+		return 'rollback';
 	}
 
-	public function getTokenSalt() {
-		$params = $this->extractRequestParams();
-
+	protected function getWebUITokenSalt( array $params ) {
 		return array(
 			$this->getRbTitle( $params )->getPrefixedText(),
 			$this->getRbUser( $params )

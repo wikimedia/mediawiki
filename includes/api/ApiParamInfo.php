@@ -198,6 +198,10 @@ class ApiParamInfo extends ApiBase {
 				$a['required'] = '';
 			}
 
+			if ( $n === 'token' && $obj->needsToken() ) {
+				$a['tokentype'] = $obj->needsToken();
+			}
+
 			if ( isset( $p[ApiBase::PARAM_DFLT] ) ) {
 				$type = $p[ApiBase::PARAM_TYPE];
 				if ( $type === 'boolean' ) {

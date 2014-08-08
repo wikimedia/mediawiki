@@ -25,11 +25,16 @@
  */
 
 /**
+ * @deprecated since 1.24
  * @ingroup API
  */
 class ApiTokens extends ApiBase {
 
 	public function execute() {
+		$this->setWarning(
+			"action=tokens has been deprecated. Please use action=query&meta=tokens instead."
+		);
+
 		$params = $this->extractRequestParams();
 		$res = array();
 
@@ -88,7 +93,10 @@ class ApiTokens extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Gets tokens for data-modifying actions.';
+		return array(
+			'This module is deprecated in favor of action=query&meta=tokens.',
+			'Gets tokens for data-modifying actions.'
+		);
 	}
 
 	protected function getExamples() {

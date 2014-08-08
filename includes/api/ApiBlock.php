@@ -152,7 +152,6 @@ class ApiBlock extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'token' => null,
 			'expiry' => 'never',
 			'reason' => '',
 			'anononly' => false,
@@ -169,7 +168,6 @@ class ApiBlock extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'user' => 'Username, IP address or IP range you want to block',
-			'token' => 'A block token previously obtained through prop=info',
 			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. ' .
 				'If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
 			'reason' => 'Reason for block',
@@ -192,17 +190,13 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {
 		return array(
-			'api.php?action=block&user=123.5.5.12&expiry=3%20days&reason=First%20strike',
-			'api.php?action=block&user=Vandal&expiry=never&reason=Vandalism&nocreate=&autoblock=&noemail='
+			'api.php?action=block&user=123.5.5.12&expiry=3%20days&reason=First%20strike&token=123ABC',
+			'api.php?action=block&user=Vandal&expiry=never&reason=Vandalism&nocreate=&autoblock=&noemail=&token=123ABC'
 		);
 	}
 

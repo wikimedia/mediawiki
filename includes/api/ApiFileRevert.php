@@ -132,17 +132,12 @@ class ApiFileRevert extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 		);
 	}
 
 	public function getParamDescription() {
 		return array(
 			'filename' => 'Target filename without the File: prefix',
-			'token' => 'Edit token. You can get one of these through prop=info',
 			'comment' => 'Upload comment',
 			'archivename' => 'Archive name of the revision to revert to',
 		);
@@ -155,11 +150,7 @@ class ApiFileRevert extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {

@@ -48,6 +48,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	private $tokenFunctions;
 
+	/** @deprecated since 1.24 */
 	protected function getTokenFunctions() {
 		// tokenname => function
 		// function prototype is func($pageid, $title, $rev)
@@ -72,6 +73,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	/**
+	 * @deprecated since 1.24
 	 * @param int $pageid
 	 * @param Title $title
 	 * @param Revision $rev
@@ -748,6 +750,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'parse' => false,
 			'section' => null,
 			'token' => array(
+				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
 				ApiBase::PARAM_ISMULTI => true
 			),

@@ -513,10 +513,6 @@ class ApiEditPage extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 			),
 			'text' => null,
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'summary' => null,
 			'minor' => false,
 			'notminor' => false,
@@ -575,8 +571,8 @@ class ApiEditPage extends ApiBase {
 			'sectiontitle' => 'The title for a new section',
 			'text' => 'Page content',
 			'token' => array(
-				'Edit token. You can get one of these through prop=info.',
-				"The token should always be sent as the last parameter, or at " .
+				/* Standard description is automatically prepended */
+				'The token should always be sent as the last parameter, or at ' .
 					"least, after the {$p}text parameter"
 			),
 			'summary'
@@ -589,7 +585,8 @@ class ApiEditPage extends ApiBase {
 				'Used to detect edit conflicts; leave unset to ignore conflicts'
 			),
 			'starttimestamp' => array(
-				'Timestamp when you obtained the edit token.',
+				'Timestamp when you began the editing process, e.g. when the current page content ' .
+					'was loaded for editing.',
 				'Used to detect edit conflicts; leave unset to ignore conflicts'
 			),
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',
@@ -616,11 +613,7 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {
