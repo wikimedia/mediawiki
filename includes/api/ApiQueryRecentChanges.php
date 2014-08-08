@@ -47,6 +47,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($pageid, $title, $rc)
 	 * it should return a token or false (permission denied)
+	 * @deprecated since 1.24
 	 * @return array Array(tokenname => function)
 	 */
 	protected function getTokenFunctions() {
@@ -69,6 +70,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	/**
+	 * @deprecated since 1.24
 	 * @param int $pageid
 	 * @param Title $title
 	 * @param RecentChange|null $rc
@@ -657,6 +659,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				)
 			),
 			'token' => array(
+				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
 				ApiBase::PARAM_ISMULTI => true
 			),

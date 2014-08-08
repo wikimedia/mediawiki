@@ -688,10 +688,6 @@ class ApiUpload extends ApiBase {
 				ApiBase::PARAM_DFLT => ''
 			),
 			'text' => null,
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
@@ -735,7 +731,6 @@ class ApiUpload extends ApiBase {
 	public function getParamDescription() {
 		$params = array(
 			'filename' => 'Target filename',
-			'token' => 'Edit token. You can get one of these through prop=info',
 			'comment' => 'Upload comment. Also used as the initial page text for new ' .
 				'files if "text" is not specified',
 			'text' => 'Initial page text for new files',
@@ -771,24 +766,20 @@ class ApiUpload extends ApiBase {
 			' * Have the MediaWiki server fetch a file from a URL, using the "url" parameter',
 			' * Complete an earlier upload that failed due to warnings, using the "filekey" parameter',
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
-			'sending the "file". Also you must get and send an edit token before doing any upload stuff.'
+			'sending the "file".',
 		);
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {
 		return array(
 			'api.php?action=upload&filename=Wiki.png' .
-			'&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png'
+			'&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png&token=123ABC'
 				=> 'Upload from a URL',
-			'api.php?action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1'
+			'api.php?action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1&token=123ABC'
 				=> 'Complete an upload that failed due to warnings',
 		);
 	}

@@ -736,6 +736,11 @@ class ApiMain extends ApiBase {
 			}
 		}
 
+		if ( $this->getParameter( 'curtimestamp' ) ) {
+			$result->addValue( null, 'curtimestamp', wfTimestamp( TS_ISO_8601, time() ),
+				ApiResult::NO_SIZE_CHECK );
+		}
+
 		$params = $this->extractRequestParams();
 
 		$this->mAction = $params['action'];
@@ -759,18 +764,35 @@ class ApiMain extends ApiBase {
 		}
 		$moduleParams = $module->extractRequestParams();
 
-		// Die if token required, but not provided
-		$salt = $module->getTokenSalt();
-		if ( $salt !== false ) {
+		// Check token, if necessary
+		if ( $module->needsToken() === true ) {
+			throw new MWException(
+				"Module '{$module->getModuleName()}' must be updated for the new token handling. " .
+				"See documentation for ApiBase::needsToken for details."
+			);
+		}
+		if ( $module->needsToken() ) {
+			if ( !$module->mustBePosted() ) {
+				throw new MWException(
+					"Module '{$module->getModuleName()}' must require POST to use tokens."
+				);
+			}
+
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			}
 
-			if ( !$this->getUser()->matchEditToken(
-				$moduleParams['token'],
-				$salt,
-				$this->getContext()->getRequest() )
-			) {
+			if ( array_key_exists(
+				$module->encodeParamName( 'token' ),
+				$this->getRequest()->getQueryValues()
+			) ) {
+				$this->dieUsage(
+					"The '{$module->encodeParamName( 'token' )}' parameter must be POSTed",
+					'mustposttoken'
+				);
+			}
+
+			if ( !$module->validateToken( $moduleParams['token'], $moduleParams ) ) {
 				$this->dieUsageMsg( 'sessionfailure' );
 			}
 		}
@@ -1112,6 +1134,7 @@ class ApiMain extends ApiBase {
 			),
 			'requestid' => null,
 			'servedby' => false,
+			'curtimestamp' => false,
 			'origin' => null,
 		);
 	}
@@ -1139,6 +1162,7 @@ class ApiMain extends ApiBase {
 			'requestid' => 'Request ID to distinguish requests. This will just be output back to you',
 			'servedby' => 'Include the hostname that served the request in the ' .
 				'results. Unconditionally shown on error',
+			'curtimestamp' => 'Include the current timestamp in the result.',
 			'origin' => array(
 				'When accessing the API using a cross-domain AJAX request (CORS), set this to the',
 				'originating domain. This must be included in any pre-flight request, and',
