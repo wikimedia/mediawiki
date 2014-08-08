@@ -11,13 +11,12 @@
 	 * @return {jQuery.Promise}
 	 */
 	mw.notify = function ( message, options ) {
-		var d = $.Deferred();
 		// Don't bother loading the whole notification system if we never use it.
-		mw.loader.using( 'mediawiki.notification', function () {
+		return mw.loader.using( 'mediawiki.notification' )
+		.then( function () {
 			// Call notify with the notification the user requested of us.
-			d.resolve( mw.notification.notify( message, options ) );
-		}, d.reject );
-		return d.promise();
+			return mw.notification.notify( message, options );
+		} );
 	};
 
 	/**
