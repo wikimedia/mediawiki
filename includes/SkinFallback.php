@@ -33,19 +33,16 @@ class SkinFallbackTemplate extends BaseTemplate {
 	 * @return array
 	 */
 	private function findInstalledSkins() {
-		global $wgStyleDirectory;
-
+		$styleDirectory = $this->config->get( 'StyleDirectory' ); // @todo we should inject this directly?
 		// Get all subdirectories which might contains skins
-		$possibleSkins = scandir( $wgStyleDirectory );
-		$possibleSkins = array_filter( $possibleSkins, function ( $maybeDir ) {
-			global $wgStyleDirectory;
-			return $maybeDir !== '.' && $maybeDir !== '..' && is_dir( "$wgStyleDirectory/$maybeDir" );
+		$possibleSkins = scandir( $styleDirectory );
+		$possibleSkins = array_filter( $possibleSkins, function ( $maybeDir ) use ( $styleDirectory ) {
+			return $maybeDir !== '.' && $maybeDir !== '..' && is_dir( "$styleDirectory/$maybeDir" );
 		} );
 
 		// Only keep the ones that contain a .php file with the same name inside
-		$possibleSkins = array_filter( $possibleSkins, function ( $skinDir ) {
-			global $wgStyleDirectory;
-			return is_file( "$wgStyleDirectory/$skinDir/$skinDir.php" );
+		$possibleSkins = array_filter( $possibleSkins, function ( $skinDir ) use ( $styleDirectory ) {
+			return is_file( "$styleDirectory/$skinDir/$skinDir.php" );
 		} );
 
 		return $possibleSkins;
@@ -57,10 +54,9 @@ class SkinFallbackTemplate extends BaseTemplate {
 	 * @return string
 	 */
 	private function buildHelpfulInformationMessage() {
-		global $wgDefaultSkin, $wgValidSkinNames;
-
+		$defaultSkin = $this->config->get( 'DefaultSkin' );
 		$installedSkins = $this->findInstalledSkins();
-		$enabledSkins = $wgValidSkinNames;
+		$enabledSkins = $this->config->get( 'ValidSkinNames' );
 		$enabledSkins = array_change_key_case( $enabledSkins, CASE_LOWER );
 
 		if ( $installedSkins ) {
@@ -81,13 +77,13 @@ class SkinFallbackTemplate extends BaseTemplate {
 			}
 
 			return $this->getMsg( 'default-skin-not-found' )->params(
-				$wgDefaultSkin,
+				$defaultSkin,
 				implode( "\n", $skinsInstalledText ),
 				implode( "\n", $skinsInstalledSnippet )
 			)->parseAsBlock();
 		} else {
 			return $this->getMsg( 'default-skin-not-found-no-skins' )->params(
-				$wgDefaultSkin
+				$defaultSkin
 			)->parseAsBlock();
 		}
 	}
