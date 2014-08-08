@@ -8,7 +8,17 @@
  * @author Kunal Mehta <legoktm@gmail.com>
  */
 
+/**
+ * @since 1.24
+ */
 class JSONContentHandler extends TextContentHandler {
+
+	/**
+	 * The class name of objects that should be created
+	 *
+	 * @var string
+	 */
+	protected $contentClass = 'JSONContent';
 
 	public function __construct( $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_JSON ) );
@@ -24,7 +34,7 @@ class JSONContentHandler extends TextContentHandler {
 	 */
 	public function unserializeContent( $text, $format = null ) {
 		$this->checkFormat( $format );
-		return new JSONContent( $text );
+		return new $this->contentClass( $text );
 	}
 
 	/**
@@ -33,7 +43,7 @@ class JSONContentHandler extends TextContentHandler {
 	 * @return JSONContent
 	 */
 	public function makeEmptyContent() {
-		return new JSONContent( '' );
+		return new $this->contentClass( '' );
 	}
 
 	/** JSON is English **/
