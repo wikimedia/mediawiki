@@ -96,10 +96,6 @@ class ApiUndelete extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'reason' => '',
 			'timestamps' => array(
 				ApiBase::PARAM_TYPE => 'timestamp',
@@ -124,10 +120,6 @@ class ApiUndelete extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'title' => 'Title of the page you want to restore',
-			'token' => array(
-				'An undelete token previously retrieved through list=deletedrevs, or ',
-				'a delete token retrieved through action=tokens.'
-			),
 			'reason' => 'Reason for restoring',
 			'timestamps' => array(
 				'Timestamps of the revisions to restore.',
@@ -151,11 +143,7 @@ class ApiUndelete extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {

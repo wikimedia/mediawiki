@@ -184,10 +184,6 @@ class ApiImageRotate extends ApiBase {
 				ApiBase::PARAM_TYPE => array( '90', '180', '270' ),
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'continue' => '',
 		);
 		if ( $flags ) {
@@ -202,7 +198,6 @@ class ApiImageRotate extends ApiBase {
 
 		return $pageSet->getFinalParamDescription() + array(
 			'rotation' => 'Degrees to rotate image clockwise',
-			'token' => 'Edit token. You can get one of these through action=tokens',
 			'continue' => 'When more results are available, use this to continue',
 		);
 	}
@@ -212,11 +207,7 @@ class ApiImageRotate extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {
