@@ -811,6 +811,9 @@ return array(
 			'user.tokens',
 		),
 	),
+	'mediawiki.content.json' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.content.json.css',
+	),
 	'mediawiki.debug' => array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.debug.js',
