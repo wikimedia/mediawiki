@@ -10,6 +10,7 @@
 
 /**
  * Represents the content of a JSON content.
+ * @since 1.24
  */
 class JSONContent extends TextContent {
 
