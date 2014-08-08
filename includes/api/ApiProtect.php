@@ -148,10 +148,6 @@ class ApiProtect extends ApiBase {
 			'pageid' => array(
 				ApiBase::PARAM_TYPE => 'integer',
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'protections' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_REQUIRED => true,
@@ -185,7 +181,6 @@ class ApiProtect extends ApiBase {
 		return array(
 			'title' => "Title of the page you want to (un)protect. Cannot be used together with {$p}pageid",
 			'pageid' => "ID of the page you want to (un)protect. Cannot be used together with {$p}title",
-			'token' => 'A protect token previously retrieved through prop=info',
 			'protections' => 'List of protection levels, formatted action=group (e.g. edit=sysop)',
 			'expiry' => array(
 				'Expiry timestamps. If only one timestamp is ' .
@@ -208,11 +203,7 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {

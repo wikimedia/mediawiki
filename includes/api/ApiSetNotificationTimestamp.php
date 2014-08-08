@@ -202,11 +202,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
@@ -214,7 +210,6 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			'entirewatchlist' => array(
 				ApiBase::PARAM_TYPE => 'boolean'
 			),
-			'token' => null,
 			'timestamp' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
 			),
@@ -239,7 +234,6 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			'timestamp' => 'Timestamp to which to set the notification timestamp',
 			'torevid' => 'Revision to set the notification timestamp to (one page only)',
 			'newerthanrevid' => 'Revision to set the notification timestamp newer than (one page only)',
-			'token' => 'A token previously acquired via prop=info',
 			'continue' => 'When more results are available, use this to continue',
 		);
 	}

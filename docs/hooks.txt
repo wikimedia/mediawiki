@@ -402,36 +402,39 @@ an action=query submodule. Use this to extend core API modules.
 &$module: Module object
 &$resultPageSet: ApiPageSet object
 
-'APIQueryInfoTokens': Use this hook to add custom tokens to prop=info. Every
-token has an action, which will be used in the intoken parameter and in the
-output (actiontoken="..."), and a callback function which should return the
-token, or false if the user isn't allowed to obtain it. The prototype of the
-callback function is func($pageid, $title), where $pageid is the page ID of the
-page the token is requested for and $title is the associated Title object. In
-the hook, just add your callback to the $tokenFunctions array and return true
-(returning false makes no sense).
+'APIQueryInfoTokens': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
+Use this hook to add custom tokens to prop=info. Every token has an action,
+which will be used in the intoken parameter and in the output
+(actiontoken="..."), and a callback function which should return the token, or
+false if the user isn't allowed to obtain it. The prototype of the callback
+function is func($pageid, $title), where $pageid is the page ID of the page the
+token is requested for and $title is the associated Title object. In the hook,
+just add your callback to the $tokenFunctions array and return true (returning
+false makes no sense).
 $tokenFunctions: array(action => callback)
 
-'APIQueryRevisionsTokens': Use this hook to add custom tokens to prop=revisions.
-Every token has an action, which will be used in the rvtoken parameter and in
-the output (actiontoken="..."), and a callback function which should return the
-token, or false if the user isn't allowed to obtain it. The prototype of the
-callback function is func($pageid, $title, $rev), where $pageid is the page ID
-of the page associated to the revision the token is requested for, $title the
+'APIQueryRevisionsTokens': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
+Use this hook to add custom tokens to prop=revisions. Every token has an
+action, which will be used in the rvtoken parameter and in the output
+(actiontoken="..."), and a callback function which should return the token, or
+false if the user isn't allowed to obtain it. The prototype of the callback
+function is func($pageid, $title, $rev), where $pageid is the page ID of the
+page associated to the revision the token is requested for, $title the
 associated Title object and $rev the associated Revision object. In the hook,
 just add your callback to the $tokenFunctions array and return true (returning
 false makes no sense).
 $tokenFunctions: array(action => callback)
 
-'APIQueryRecentChangesTokens': Use this hook to add custom tokens to
-list=recentchanges. Every token has an action, which will be used in the rctoken
-parameter and in the output (actiontoken="..."), and a callback function which
-should return the token, or false if the user isn't allowed to obtain it. The
-prototype of the callback function is func($pageid, $title, $rc), where $pageid
-is the page ID of the page associated to the revision the token is requested
-for, $title the associated Title object and $rc the associated RecentChange
-object. In the hook, just add your callback to the $tokenFunctions array and
-return true (returning false makes no sense).
+'APIQueryRecentChangesTokens': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
+Use this hook to add custom tokens to list=recentchanges. Every token has an
+action, which will be used in the rctoken parameter and in the output
+(actiontoken="..."), and a callback function which should return the token, or
+false if the user isn't allowed to obtain it. The prototype of the callback
+function is func($pageid, $title, $rc), where $pageid is the page ID of the
+page associated to the revision the token is requested for, $title the
+associated Title object and $rc the associated RecentChange object. In the
+hook, just add your callback to the $tokenFunctions array and return true
+(returning false makes no sense).
 $tokenFunctions: array(action => callback)
 
 'APIQuerySiteInfoGeneralInfo': Use this hook to add extra information to the
@@ -443,13 +446,19 @@ $module: the current ApiQuerySiteInfo module
 sites statistics information.
 &$results: array of results, add things here
 
-'APIQueryUsersTokens': Use this hook to add custom token to list=users. Every
-token has an action, which will be used in the ustoken parameter and in the
-output (actiontoken="..."), and a callback function which should return the
-token, or false if the user isn't allowed to obtain it. The prototype of the
-callback function is func($user) where $user is the User object. In the hook,
-just add your callback to the $tokenFunctions array and return true (returning
-false makes no sense).
+'ApiQueryTokensRegisterTypes': Use this hook to add additional token types to
+action=query&meta=tokens. Note that most modules will probably be able to use
+the 'csrf' token instead of creating their own token types.
+&$salts: array( type => salt to pass to User::getEditToken() )
+
+'APIQueryUsersTokens': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
+Use this hook to add custom token to list=users. Every token has an action,
+which will be used in the ustoken parameter and in the output
+(actiontoken="..."), and a callback function which should return the token, or
+false if the user isn't allowed to obtain it. The prototype of the callback
+function is func($user) where $user is the User object. In the hook, just add
+your callback to the $tokenFunctions array and return true (returning false
+makes no sense).
 $tokenFunctions: array(action => callback)
 
 'ApiMain::onException': Called by ApiMain::executeActionWithErrorHandling() when
@@ -463,8 +472,8 @@ key for the array that represents the service data. In this data array, the
 key-value-pair identified by the apiLink key is required.
 &$apis: array of services
 
-'ApiTokensGetTokenTypes': Use this hook to extend action=tokens with new token
-types.
+'ApiTokensGetTokenTypes': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
+Use this hook to extend action=tokens with new token types.
 &$tokenTypes: supported token types in format 'type' => callback function
 used to retrieve this type of tokens.
 

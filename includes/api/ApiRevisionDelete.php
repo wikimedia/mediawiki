@@ -195,10 +195,6 @@ class ApiRevisionDelete extends ApiBase {
 				ApiBase::PARAM_TYPE => array( 'yes', 'no', 'nochange' ),
 				ApiBase::PARAM_DFLT => 'nochange',
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'reason' => null,
 		);
 	}
@@ -211,7 +207,6 @@ class ApiRevisionDelete extends ApiBase {
 			'hide' => 'What to hide for each revision',
 			'show' => 'What to unhide for each revision',
 			'suppress' => 'Whether to suppress data from administrators as well as others',
-			'token' => 'A delete token previously retrieved through action=tokens',
 			'reason' => 'Reason for the deletion/undeletion',
 		);
 	}
@@ -221,11 +216,7 @@ class ApiRevisionDelete extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {

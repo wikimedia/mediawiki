@@ -61,6 +61,13 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$fld_token = isset( $prop['token'] );
 		$fld_tags = isset( $prop['tags'] );
 
+		if ( isset( $prop['token'] ) ) {
+			$p = $this->getModulePrefix();
+			$this->setWarning(
+				"{$p}prop=token has been deprecated. Please use action=query&meta=tokens instead."
+			);
+		}
+
 		// If we're in JSON callback mode, no tokens can be obtained
 		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
 			$fld_token = false;
@@ -493,7 +500,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				' len            - Adds the length (bytes) of the revision',
 				' sha1           - Adds the SHA-1 (base 16) of the revision',
 				' content        - Adds the content of the revision',
-				' token          - Gives the edit token',
+				' token          - DEPRECATED! Gives the edit token',
 				' tags           - Tags for the revision',
 			),
 			'namespace' => 'Only list pages in this namespace (3)',
