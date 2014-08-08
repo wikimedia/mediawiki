@@ -57,6 +57,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('theopedia','http://www.theopedia.com/$1',0),
 ('twiki','http://twiki.org/cgi-bin/view/$1',0),
 ('uea','http://uea.org/vikio/index.php/$1',0),
+('uncyclopedia','http://en.uncyclopedia.co/wiki/$1',0),
 ('unreal','http://wiki.beyondunreal.com/$1',0),
 ('usemod','http://www.usemod.com/cgi-bin/wiki.pl?$1',0),
 ('webseitzwiki','http://webseitz.fluxent.com/wiki/$1',0),
