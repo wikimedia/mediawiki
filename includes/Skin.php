@@ -100,7 +100,17 @@ abstract class Skin extends ContextSource {
 			$skinsInitialised = true;
 			wfProfileOut( __METHOD__ . '-init' );
 		}
-		return $wgValidSkinNames;
+
+		$names = array();
+		foreach ( $wgValidSkinNames as $key => $info ) {
+			if ( is_array( $info ) ) {
+				$names[$key] = $info['class'];
+			} else {
+				$names[$key] = $info;
+			}
+		}
+
+		return $names;
 	}
 
 	/**
