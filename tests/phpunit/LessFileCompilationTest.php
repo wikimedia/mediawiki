@@ -38,7 +38,7 @@ class LessFileCompilationTest extends MediaWikiTestCase {
 			"$thisString must refer to a readable file"
 		);
 
-		$compiler = ResourceLoader::getLessCompiler();
+		$compiler = ResourceLoader::getLessCompiler( RequestContext::getMain()->getConfig() );
 		$this->assertNotNull( $compiler->compileFile( $this->file ) );
 	}
 

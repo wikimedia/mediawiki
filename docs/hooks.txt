@@ -2148,7 +2148,7 @@ $oldSessionID: old session id
 $newSessionID: new session id
 
 'ResourceLoaderGetConfigVars': Called at the end of
-ResourceLoaderStartUpModule::getConfig(). Use this to export static
+ResourceLoaderStartUpModule::getConfigSettings(). Use this to export static
 configuration variables to JavaScript. Things that depend on the current page
 or request state must be added through MakeGlobalVariablesScript instead.
 &$vars: array( variable name => value )
