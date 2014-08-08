@@ -5982,7 +5982,7 @@ $wgRecentChangesFlags = array(
 		'letter' => 'minoreditletter',
 		'title' => 'recentchanges-label-minor',
 		'legend' => 'recentchanges-legend-minor',
-		'class' => 'minoredit',
+		'class' => 'mw-minor-edit',
 	),
 	'bot' => array(
 		'letter' => 'boteditletter',
