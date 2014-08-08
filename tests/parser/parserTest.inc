@@ -813,6 +813,7 @@ class ParserTest {
 				) )
 			),
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
+			'wgUploadNavigationUrl' => false,
 			'wgStylePath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => $lang,

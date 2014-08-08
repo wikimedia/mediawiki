@@ -75,6 +75,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgExtensionAssetsPath'] = '/extensions';
 		$tmpGlobals['wgStylePath'] = '/skins';
 		$tmpGlobals['wgEnableUploads'] = true;
+		$tmpGlobals['wgUploadNavigationUrl'] = false;
 		$tmpGlobals['wgThumbnailScriptPath'] = false;
 		$tmpGlobals['wgLocalFileRepo'] = array(
 			'class' => 'LocalRepo',
