@@ -297,13 +297,12 @@ class RequestContext implements IContextSource {
 			$e = new Exception;
 			wfDebugLog( 'recursion-guard', "Recursion detected:\n" . $e->getTraceAsString() );
 
-			global $wgLanguageCode;
-			$code = ( $wgLanguageCode ) ? $wgLanguageCode : 'en';
+			$code = $this->getConfig()->get( 'LanguageCode' ) ? : 'en';
 			$this->lang = Language::factory( $code );
 		} elseif ( $this->lang === null ) {
 			$this->recursion = true;
 
-			global $wgLanguageCode, $wgContLang;
+			global $wgContLang;
 
 			try {
 				$request = $this->getRequest();
@@ -314,7 +313,7 @@ class RequestContext implements IContextSource {
 
 				wfRunHooks( 'UserGetLanguageObject', array( $user, &$code, $this ) );
 
-				if ( $code === $wgLanguageCode ) {
+				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
 					$this->lang = $wgContLang;
 				} else {
 					$obj = Language::factory( $code );
@@ -364,15 +363,13 @@ class RequestContext implements IContextSource {
 			// If this is still null (the hook didn't run or didn't work)
 			// then go through the normal processing to load a skin
 			if ( $this->skin === null ) {
-				global $wgHiddenPrefs;
-				if ( !in_array( 'skin', $wgHiddenPrefs ) ) {
+				if ( !in_array( 'skin', $this->getConfig()->get( 'HiddenPrefs' ) ) ) {
 					# get the user skin
 					$userSkin = $this->getUser()->getOption( 'skin' );
 					$userSkin = $this->getRequest()->getVal( 'useskin', $userSkin );
 				} else {
 					# if we're not allowing users to override, then use the default
-					global $wgDefaultSkin;
-					$userSkin = $wgDefaultSkin;
+					$userSkin = $this->getConfig()->get( 'DefaultSkin' );
 				}
 
 				$this->skin = Skin::newFromKey( $userSkin );
