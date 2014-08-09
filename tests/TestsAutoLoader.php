@@ -94,6 +94,9 @@ $wgAutoloadClasses += array(
 	'ResourceLoaderImageModuleTest' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
 	'ResourceLoaderImageModuleTestable' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
 
+	# tests/phpunit/includes/specials
+	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
+
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
 
