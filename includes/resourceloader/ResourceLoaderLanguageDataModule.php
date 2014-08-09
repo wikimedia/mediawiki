@@ -43,6 +43,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 			'grammarForms' => $language->getGrammarForms(),
 			'pluralRules' => $language->getPluralRules(),
 			'digitGroupingPattern' => $language->digitGroupingPattern(),
+			'fallbackLanguages' => $language->getFallbackLanguages(),
 		);
 	}
 
