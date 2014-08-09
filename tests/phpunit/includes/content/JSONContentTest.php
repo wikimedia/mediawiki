@@ -106,6 +106,10 @@ class JSONContentTest extends MediaWikiLangTestCase {
 				"\n" .
 				'<tr><th>0</th><td class="value">&quot;bar&quot;</td></tr></tbody></table>'
 			),
+			array(
+				array( '<script>alert("evil!")</script>'),
+				'',
+			),
 		);
 	}
 
