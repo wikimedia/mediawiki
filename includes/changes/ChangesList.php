@@ -438,8 +438,6 @@ class ChangesList extends ContextSource {
 		} else {
 			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
 		}
-
-		return '';
 	}
 
 	/**
