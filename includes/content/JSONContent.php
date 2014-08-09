@@ -55,7 +55,7 @@ class JSONContent extends TextContent {
 	 * @return JSONContent
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		return new self( $this->beautifyJSON() );
+		return new static( $this->beautifyJSON() );
 	}
 
 	/**
