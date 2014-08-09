@@ -452,4 +452,21 @@
 			grammarTest( langCode, test );
 		}
 	} );
+
+	QUnit.test( 'mw.language.getByLanguageWithFallback', 2, function ( assert ) {
+		var translations = {
+			foo: {
+				'cat': 'Cat',
+				'dog': 'Dog'
+			},
+			bar: {
+				'cat': 'Katze',
+				'dog': 'Hund'
+			}
+		};
+		mw.language.setData( 'en', 'fallbackLanguages', ['foo', 'bar'] );
+
+		assert.deepEqual( mw.language.getByLanguageWithFallback( translations ), 'blahblah' );
+	} );
+
 }( mediaWiki, jQuery ) );
