@@ -3,7 +3,7 @@
 /**
  * @group large
  */
-class Pbkdf2PasswordTest extends MediaWikiPasswordTestCase {
+class Pbkdf2PasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return array( 'pbkdf2' => array(
 			'class' => 'Pbkdf2Password',

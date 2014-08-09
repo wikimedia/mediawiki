@@ -1,6 +1,6 @@
 <?php
 
-class LayeredParameterizedPasswordTest extends MediaWikiPasswordTestCase {
+class LayeredParameterizedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return array(
 			'testLargeLayeredTop' => array(

@@ -3,7 +3,7 @@
 /**
  * @group large
  */
-class BcryptPasswordTestCase extends MediaWikiPasswordTestCase {
+class BcryptPasswordTestCase extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return array( 'bcrypt' => array(
 			'class' => 'BcryptPassword',
