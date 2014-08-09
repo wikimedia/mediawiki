@@ -78,6 +78,9 @@ $wgAutoloadClasses += array(
 	'PageORMTableForTesting' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
 
+	# tests/phpunit/includes/specials
+	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
+
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
 
