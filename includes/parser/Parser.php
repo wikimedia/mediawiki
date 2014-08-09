@@ -2096,16 +2096,14 @@ class Parser {
 			}
 
 			# Link not escaped by : , create the various objects
-			if ( $noforce ) {
+			if ( $noforce && !$nt->wasLocalInterwiki() ) {
 				# Interwikis
 				wfProfileIn( __METHOD__ . "-interwiki" );
-				# The final condition here is due to bug 68085
 				if (
 					$iw && $this->mOptions->getInterwikiMagic() && $nottalk && (
 						Language::fetchLanguageName( $iw, null, 'mw' ) ||
 						in_array( $iw, $wgExtraInterlanguageLinkPrefixes )
-					) && substr_compare( $this->getTargetLanguage()->lc( ltrim( $origLink ) ),
-						$iw, 0, strlen( $iw ) ) === 0
+					)
 				) {
 					# Bug 24502: filter duplicates
 					if ( !isset( $this->mLangLinkLanguages[$iw] ) ) {

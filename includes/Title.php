@@ -74,6 +74,9 @@ class Title {
 	/** @var string Interwiki prefix */
 	public $mInterwiki = '';
 
+	/** @var bool Was this Title created from a string with a local interwiki prefix? */
+	private $mLocalInterwiki = false;
+
 	/** @var string Title fragment (i.e. the bit after the #) */
 	public $mFragment = '';
 
@@ -821,6 +824,15 @@ class Title {
 	 */
 	public function getInterwiki() {
 		return $this->mInterwiki;
+	}
+
+	/**
+	 * Was this a local interwiki link?
+	 *
+	 * @return bool
+	 */
+	public function wasLocalInterwiki() {
+		return $this->mLocalInterwiki;
 	}
 
 	/**
@@ -3291,6 +3303,7 @@ class Title {
 		# Fill fields
 		$this->setFragment( '#' . $parts['fragment'] );
 		$this->mInterwiki = $parts['interwiki'];
+		$this->mLocalInterwiki = $parts['local_interwiki'];
 		$this->mNamespace = $parts['namespace'];
 		$this->mUserCaseDBKey = $parts['user_case_dbkey'];
 
