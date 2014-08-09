@@ -352,12 +352,14 @@ class RequestContext implements IContextSource {
 
 			$skin = null;
 			wfRunHooks( 'RequestContextCreateSkin', array( $this, &$skin ) );
+			$fallback = $this->getConfig()->get( 'FallbackSkin' );
+			$factory = SkinFactory::getDefaultInstance();
 
 			// If the hook worked try to set a skin from it
 			if ( $skin instanceof Skin ) {
 				$this->skin = $skin;
 			} elseif ( is_string( $skin ) ) {
-				$this->skin = Skin::newFromKey( $skin );
+				$this->skin = $factory->getSkin( $skin, $fallback );
 			}
 
 			// If this is still null (the hook didn't run or didn't work)
@@ -372,7 +374,7 @@ class RequestContext implements IContextSource {
 					$userSkin = $this->getConfig()->get( 'DefaultSkin' );
 				}
 
-				$this->skin = Skin::newFromKey( $userSkin );
+				$this->skin = $factory->getSkin( $userSkin, $fallback );
 			}
 
 			// After all that set a context on whatever skin got created
