@@ -1067,7 +1067,8 @@ return array(
 	'mediawiki.language' => array(
 		'scripts' => array(
 			'resources/src/mediawiki.language/mediawiki.language.js',
-			'resources/src/mediawiki.language/mediawiki.language.numbers.js'
+			'resources/src/mediawiki.language/mediawiki.language.numbers.js',
+			'resources/src/mediawiki.language/mediawiki.language.fallback.js',
 		),
 		'languageScripts' => array(
 			'bs' => 'resources/src/mediawiki.language/languages/bs.js',
