@@ -35,6 +35,7 @@
 		 *  - `grammarForms`
 		 *  - `pluralRules`
 		 *  - `digitGroupingPattern`
+		 *  - `fallbackLanguages`
 		 *
 		 * @property
 		 */
