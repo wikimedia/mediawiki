@@ -195,7 +195,7 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
 		$method->setAccessible( true );
 		$ctx = new RequestContext();
-		$ctx->setSkin( Skin::newFromKey( 'vector' ) );
+		$ctx->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
 		$out = new OutputPage( $ctx );
 		$rl = $out->getResourceLoader();
