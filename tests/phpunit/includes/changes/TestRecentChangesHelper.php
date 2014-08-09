@@ -19,7 +19,8 @@ class TestRecentChangesHelper {
 				'rc_user_text' => $user->getName(),
 				'rc_this_oldid' => $thisid,
 				'rc_last_oldid' => $lastid,
-				'rc_cur_id' => $curid
+				'rc_cur_id' => $curid,
+				'page_latest' => $thisid,
 			)
 		);
 
