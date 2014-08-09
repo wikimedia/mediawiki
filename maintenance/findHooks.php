@@ -136,7 +136,7 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get the hook documentation, either locally or from MediaWiki.org
-	 * @return array of documented hooks
+	 * @return Array of documented hooks
 	 */
 	private function getHooksFromDoc( $doc ) {
 		if ( $this->hasOption( 'online' ) ) {
@@ -148,8 +148,8 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get hooks from a local file (for example docs/hooks.txt)
-	 * @param string $doc filename to look in
-	 * @return array Array of documented hooks
+	 * @param string $doc Filename to look in
+	 * @return Array of documented hooks
 	 */
 	private function getHooksFromLocalDoc( $doc ) {
 		$m = array();
@@ -161,7 +161,7 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get hooks from www.mediawiki.org using the API
-	 * @return array of documented hooks
+	 * @return Array of documented hooks
 	 */
 	private function getHooksFromOnlineDoc() {
 		// All hooks
@@ -199,7 +199,7 @@ class FindHooks extends Maintenance {
 	/**
 	 * Get hooks from a PHP file
 	 * @param string $file Full filename to the PHP file.
-	 * @return array of hooks found.
+	 * @return Array of hooks found.
 	 */
 	private function getHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
@@ -216,7 +216,7 @@ class FindHooks extends Maintenance {
 	/**
 	 * Get hooks from the source code.
 	 * @param string $path Directory where the include files can be found
-	 * @return array Array of hooks found.
+	 * @return Array of hooks found.
 	 */
 	private function getHooksFromPath( $path ) {
 		$hooks = array();
@@ -236,7 +236,7 @@ class FindHooks extends Maintenance {
 	/**
 	 * Get bad hooks (where the hook name could not be determined) from a PHP file
 	 * @param string $file Full filename to the PHP file.
-	 * @return array Array of bad wfRunHooks() lines
+	 * @return Array of bad wfRunHooks() lines
 	 */
 	private function getBadHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
@@ -254,7 +254,7 @@ class FindHooks extends Maintenance {
 	/**
 	 * Get bad hooks from the source code.
 	 * @param string $path Directory where the include files can be found
-	 * @return array Array of bad wfRunHooks() lines
+	 * @return Array of bad wfRunHooks() lines
 	 */
 	private function getBadHooksFromPath( $path ) {
 		$hooks = array();
