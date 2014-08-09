@@ -47,6 +47,9 @@ class SpecialBlock extends FormSpecialPage {
 	/** @var array */
 	protected $preErrors = array();
 
+	/** @var Config|null $config Saves an instance of Config **/
+	private static $config = null;
+
 	public function __construct() {
 		parent::__construct( 'Block', 'block' );
 	}
@@ -120,8 +123,6 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return array
 	 */
 	protected function getFormFields() {
-		global $wgBlockAllowsUTEdit;
-
 		$user = $this->getUser();
 
 		$suggestedDurations = self::getSuggestedDurations();
@@ -163,7 +164,7 @@ class SpecialBlock extends FormSpecialPage {
 			);
 		}
 
-		if ( $wgBlockAllowsUTEdit ) {
+		if ( $this->getConfig()->get( 'BlockAllowsUTEdit' ) ) {
 			$a['DisableUTEdit'] = array(
 				'type' => 'check',
 				'label-message' => 'ipb-disableusertalk',
@@ -522,6 +523,20 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
+	 * Returns the main config object for static functions from RequestConfig.
+	 * @see SpecialPage::getConfig()
+	 * @todo: FIXME: Upstream to SpecialPage?
+	 * @return Config
+	 */
+	public static function getStaticConfig() {
+		if ( !self::$config ) {
+			// get the main config object from RequestContext
+			self::$config = RequestContext::getMain()->getConfig();
+		}
+		return self::$config;
+	}
+
+	/**
 	 * Validate a block target.
 	 *
 	 * @since 1.21
@@ -530,7 +545,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return Status
 	 */
 	public static function validateTarget( $value, User $user ) {
-		global $wgBlockCIDRLimit;
+		$config = self::getStaticConfig();
+		$blockCIDRLimit = $config->get( 'BlockCIDRLimit' );
 
 		/** @var User $target */
 		list( $target, $type ) = self::getTargetAndType( $value );
@@ -552,8 +568,8 @@ class SpecialBlock extends FormSpecialPage {
 			list( $ip, $range ) = explode( '/', $target, 2 );
 
 			if (
-				( IP::isIPv4( $ip ) && $wgBlockCIDRLimit['IPv4'] == 32 ) ||
-				( IP::isIPv6( $ip ) && $wgBlockCIDRLimit['IPv6'] == 128 )
+				( IP::isIPv4( $ip ) && $blockCIDRLimit['IPv4'] == 32 ) ||
+				( IP::isIPv6( $ip ) && $blockCIDRLimit['IPv6'] == 128 )
 			) {
 				// Range block effectively disabled
 				$status->fatal( 'range_block_disabled' );
@@ -567,12 +583,12 @@ class SpecialBlock extends FormSpecialPage {
 				$status->fatal( 'ip_range_invalid' );
 			}
 
-			if ( IP::isIPv4( $ip ) && $range < $wgBlockCIDRLimit['IPv4'] ) {
-				$status->fatal( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] );
+			if ( IP::isIPv4( $ip ) && $range < $blockCIDRLimit['IPv4'] ) {
+				$status->fatal( 'ip_range_toolarge', $blockCIDRLimit['IPv4'] );
 			}
 
-			if ( IP::isIPv6( $ip ) && $range < $wgBlockCIDRLimit['IPv6'] ) {
-				$status->fatal( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
+			if ( IP::isIPv6( $ip ) && $range < $blockCIDRLimit['IPv6'] ) {
+				$status->fatal( 'ip_range_toolarge', $blockCIDRLimit['IPv6'] );
 			}
 		} elseif ( $type == Block::TYPE_IP ) {
 			# All is well
@@ -600,7 +616,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool|string
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
-		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit, $wgContLang;
+		$config = $context->getConfig();
+		global $wgContLang;
 
 		$performer = $context->getUser();
 
@@ -665,19 +682,20 @@ class SpecialBlock extends FormSpecialPage {
 				return array( 'badaccess-group0' );
 			}
 
+			$hideUserContribLimit = $config->get( 'HideUserContribLimit' );
 			# Recheck params here...
 			if ( $type != Block::TYPE_USER ) {
 				$data['HideUser'] = false; # IP users should not be hidden
 			} elseif ( !in_array( $data['Expiry'], array( 'infinite', 'infinity', 'indefinite' ) ) ) {
 				# Bad expiry.
 				return array( 'ipb_expiry_temp' );
-			} elseif ( $wgHideUserContribLimit !== false
-				&& $user->getEditCount() > $wgHideUserContribLimit
+			} elseif ( $hideUserContribLimit !== false
+				&& $user->getEditCount() > $hideUserContribLimit
 			) {
 				# Typically, the user should have a handful of edits.
 				# Disallow hiding users with many edits for performance.
 				return array( array( 'ipb_hide_invalid',
-					Message::numParam( $wgHideUserContribLimit ) ) );
+					Message::numParam( $hideUserContribLimit ) ) );
 			} elseif ( !$data['Confirm'] ) {
 				return array( 'ipb-confirmhideuser', 'ipb-confirmaction' );
 			}
@@ -691,7 +709,8 @@ class SpecialBlock extends FormSpecialPage {
 		$block->mReason = $wgContLang->truncate( $data['Reason'][0], 255 );
 		$block->mExpiry = self::parseExpiryInput( $data['Expiry'] );
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
-		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
+		$block->prevents( 'editownusertalk', ( !$config->get( 'BlockAllowsUTEdit' ) ||
+			$data['DisableUTEdit'] ) );
 		$block->prevents( 'sendemail', $data['DisableEmail'] );
 		$block->isHardblock( $data['HardBlock'] );
 		$block->isAutoblocking( $data['AutoBlock'] );
@@ -865,9 +884,13 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool
 	 */
 	public static function canBlockEmail( $user ) {
-		global $wgEnableUserEmail, $wgSysopEmailBans;
+		$config = self::getStaticConfig();
 
-		return ( $wgEnableUserEmail && $wgSysopEmailBans && $user->isAllowed( 'blockemail' ) );
+		return (
+			$config->get( 'EnableUserEmail' ) &&
+			$config->get( 'SysopEmailBans' ) &&
+			$user->isAllowed( 'blockemail' )
+		);
 	}
 
 	/**
@@ -913,7 +936,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected static function blockLogFlags( array $data, $type ) {
-		global $wgBlockAllowsUTEdit;
+		$config = self::getStaticConfig();
 		$flags = array();
 
 		# when blocking a user the option 'anononly' is not available/has no effect
@@ -939,7 +962,7 @@ class SpecialBlock extends FormSpecialPage {
 			$flags[] = 'noemail';
 		}
 
-		if ( $wgBlockAllowsUTEdit && $data['DisableUTEdit'] ) {
+		if ( $config->get( 'BlockAllowsUTEdit' ) && $data['DisableUTEdit'] ) {
 			// For grepping: message block-log-flags-nousertalk
 			$flags[] = 'nousertalk';
 		}
