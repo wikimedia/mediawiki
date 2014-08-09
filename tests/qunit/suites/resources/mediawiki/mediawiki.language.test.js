@@ -452,4 +452,30 @@
 			grammarTest( langCode, test );
 		}
 	} );
+	
+	QUnit.test( 'mw.language.getByLanguageWithFallback', 2, function ( assert ) {
+		var translations = {
+			foo: {
+				'cat': 'Cat',
+				'dog': 'Dog'
+			},
+			bar: {
+				'cat': 'Katze',
+				'dog': 'Hund'
+			}
+		};
+		mw.language.setData( 'en', 'fallbackLanguages', ['foo', 'bar'] );
+		
+		
+		assert.deepEqual( mw.language.getByLanguageWithFallback( translations ) )
+		
+		mw.messages.set(  );
+		mw.msg( 'cat' ); // => 'Katze'
+		mw.msg( 'dog' ); // => 'Hund'
+		
+		
+		assert.equal( mw.language.getData( 'en', 'testkey' ), 'testvalue', 'Getter setter test for mw.language' );
+		assert.equal( mw.language.getData( 'en', 'invalidkey' ), undefined, 'Getter setter test for mw.language with invalid key' );
+	} );
+	
 }( mediaWiki, jQuery ) );
