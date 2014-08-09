@@ -4,3 +4,4 @@
 jQuery( function ( $ ) {
 	$( '#wpReason, #wpNewTitleMain' ).byteLimit();
 } );
+
