@@ -773,7 +773,7 @@ class LocalisationCache {
 	 *
 	 * Returns true if any data from the extension array was used, false
 	 * otherwise.
-	 * @param string $codeSequence
+	 * @param array $codeSequence
 	 * @param string $key
 	 * @param mixed $value
 	 * @param mixed $fallbackValue
