@@ -8,7 +8,7 @@
 .mw-json {
 	border-collapse: collapse;
 	border-spacing: 0;
-	font-family: 'Bitstream Vera Sans', 'DejaVu Sans', 'Lucida Sans', 'Lucida Grande', sans-serif;
+	font-family: sans-serif;
 	font-style: normal;
 }
 
@@ -26,7 +26,7 @@
 
 .mw-json .value {
 	background-color: #dcfae3;
-	font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier, monospace;
+	font-family: monospace, monospace;
 	white-space: pre-wrap;
 }
 
