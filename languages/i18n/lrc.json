@@ -258,6 +258,7 @@
 	"hidetoc": "قام كردن",
 	"collapsible-collapse": "جم كردن",
 	"collapsible-expand": "وا كردن",
+	"confirmable-confirm": "{{GENDER:$1|شما}} مطئمنیت?",
 	"confirmable-yes": "هری",
 	"confirmable-no": "نه",
 	"thisisdeleted": "دیئن یا ورگنين $1?",

@@ -876,7 +876,7 @@
 	"powersearch-togglelabel": "اختر:",
 	"powersearch-toggleall": "الكل",
 	"powersearch-togglenone": "لا شيء",
-	"powersearch-remember": "تذكر الاختيار لبحث المستقبل",
+	"powersearch-remember": "تذكر الخيارات للبحث مستقبلا",
 	"search-external": "بحث خارجي",
 	"searchdisabled": "البحث في {{SITENAME}} معطل.\nيمكنك البحث من خلال جوجل في الوقت الحالي.\nلاحظ أن فهارسه لمحتوى {{SITENAME}} ربما تكون غير محدثة.",
 	"search-error": "حدث خطأ ما أثناء البحث: $1",
