@@ -535,6 +535,7 @@ abstract class Installer {
 		// registration out of the global scope and into a real format.
 		// @see https://bugzilla.wikimedia.org/67440
 		global $wgAutoloadClasses;
+		$wgAutoloadClasses = array();
 
 		wfSuppressWarnings();
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );
