@@ -81,6 +81,9 @@ $wgAutoloadClasses += array(
 	# tests/phpunit/includes/passwords
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
 
+	# tests/phpunit/includes/specials
+	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
+
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
 
