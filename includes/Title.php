@@ -2244,6 +2244,12 @@ class Title {
 				$errors[] = array( 'immobile-target-page' );
 			}
 		} elseif ( $action == 'delete' ) {
+			if ( count( $this->getUserPermissionsErrorsInternal( 'edit',
+				$user, $doExpensiveQueries, true ) )
+			) {
+				// If they can't edit, they shouldn't delete.
+				$errors[] = array( 'delete-cantedit' );
+			}
 			if ( $doExpensiveQueries && $wgDeleteRevisionsLimit
 				&& !$this->userCan( 'bigdelete', $user ) && $this->isBigDeletion()
 			) {
