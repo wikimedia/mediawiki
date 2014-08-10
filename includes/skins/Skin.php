@@ -148,17 +148,12 @@ abstract class Skin extends ContextSource {
 	 */
 	static function &newFromKey( $key ) {
 		wfDeprecated( __METHOD__, '1.24' );
-		global $wgFallbackSkin;
 
 		$key = Skin::normalizeKey( $key );
 		$factory = SkinFactory::getDefaultInstance();
-		try {
-			$skin = $factory->makeSkin( $key );
-		} catch ( SkinException $e ) {
-			$skin = $factory->makeSkin( $wgFallbackSkin );
-		}
 
-		return $skin;
+		// normalizeKey() guarantees that a skin with this key will exist.
+		return $factory->makeSkin( $key );
 	}
 
 	/**
