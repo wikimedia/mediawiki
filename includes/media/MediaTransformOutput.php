@@ -352,6 +352,11 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		$query = isset( $options['desc-query'] ) ? $options['desc-query'] : '';
 
+		$attribs = array(
+			'alt' => $alt,
+			'src' => $this->url,
+		);
+
 		if ( !empty( $options['custom-url-link'] ) ) {
 			$linkAttribs = array( 'href' => $options['custom-url-link'] );
 			if ( !empty( $options['title'] ) ) {
@@ -381,12 +386,10 @@ class ThumbnailImage extends MediaTransformOutput {
 			$linkAttribs = array( 'href' => $this->file->getURL() );
 		} else {
 			$linkAttribs = false;
+			if ( !empty( $options['title'] ) ) {
+				$attribs['title'] = $options['title'];
+			}
 		}
-
-		$attribs = array(
-			'alt' => $alt,
-			'src' => $this->url,
-		);
 
 		if ( empty( $options['no-dimensions'] ) ) {
 			$attribs['width'] = $this->width;
