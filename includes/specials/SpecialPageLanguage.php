@@ -77,6 +77,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 
 		$page['language'] = array(
 			'id' => 'mw-pl-languageselector',
+			'cssclass' => 'mw-languageselector',
 			'type' => 'select',
 			'options' => $options,
 			'label-message' => 'pagelang-language',
@@ -89,6 +90,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	public function alterForm( HTMLForm $form ) {
 		$form->setDisplayFormat( 'vform' );
 		$form->setWrapperLegend( false );
+		wfRunHooks( 'LanguageSelector', array( $this->getOutput(), 'mw-languageselector' ) );
 	}
 
 	/**
