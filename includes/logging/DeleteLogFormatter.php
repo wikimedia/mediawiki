@@ -209,4 +209,50 @@ class DeleteLogFormatter extends LogFormatter {
 				return '';
 		}
 	}
+
+	protected function getParametersForApi() {
+		$entry = $this->entry;
+		$params = array();
+
+		$subtype = $this->entry->getSubtype();
+		if ( in_array( $subtype, array( 'event', 'revision' ) ) ) {
+			$rawParams = $entry->getParameters();
+			if ( $subtype === 'event' ) {
+				array_unshift( $rawParams, 'logging' );
+			}
+
+			static $knownTypes = array( 'logging', 'revision', 'oldimage', 'archive', 'filearchive' );
+			if ( in_array( $rawParams[0], $knownTypes ) ) {
+				$old = $this->parseBitField( $rawParams[2] );
+				$new = $this->parseBitField( $rawParams[3] );
+				$params = array(
+					'::type' => $rawParams[0],
+					':array:ids' => explode( ',', $rawParams[1] ),
+					':assoc:old' => array( 'bitmask' => $old ),
+					':assoc:new' => array( 'bitmask' => $new ),
+				);
+
+				static $fields = array(
+					Revision::DELETED_TEXT => 'content',
+					Revision::DELETED_COMMENT => 'comment',
+					Revision::DELETED_USER => 'user',
+					Revision::DELETED_RESTRICTED => 'restricted',
+				);
+				foreach ( $fields as $bit => $key ) {
+					$params[':assoc:old'][$key] = (bool)( $old & $bit );
+					$params[':assoc:new'][$key] = (bool)( $new & $bit );
+				}
+			}
+		}
+
+		return $params;
+	}
+
+	public function formatParametersForApi() {
+		$ret = parent::formatParametersForApi();
+		if ( isset( $ret['ids'] ) ) {
+			ApiResult::setIndexedTagName( $ret['ids'], 'id' );
+		}
+		return $ret;
+	}
 }
