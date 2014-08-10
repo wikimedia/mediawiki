@@ -403,16 +403,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$vals['logid'] = intval( $row->rc_logid );
 				$vals['logtype'] = $row->rc_log_type;
 				$vals['logaction'] = $row->rc_log_action;
-				$logEntry = DatabaseLogEntry::newFromRow( $row );
-				ApiQueryLogEvents::addLogParams(
-					$this->getResult(),
-					$vals,
-					$logEntry->getParameters(),
-					$logEntry->getType(),
-					$logEntry->getSubtype(),
-					$logEntry->getTimestamp(),
-					$logEntry->isLegacy()
-				);
+				$vals['logparams'] = LogFormatter::newFromRow( $row )->formatParametersForApi();
 			}
 		}
 
