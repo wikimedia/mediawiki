@@ -3114,5 +3114,7 @@
 	"action-pagelang": "зьмену мовы старонкі",
 	"log-name-pagelang": "Журнал зьменаў мовы",
 	"log-description-pagelang": "Гэта журнал зьменаў мовы старонак.",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} мову старонкі $3 з $4 на $5."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} мову старонкі $3 з $4 на $5.",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (уключана)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''адключана''')"
 }
