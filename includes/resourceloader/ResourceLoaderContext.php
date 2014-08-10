@@ -48,7 +48,7 @@ class ResourceLoaderContext {
 	 * @param ResourceLoader $resourceLoader
 	 * @param WebRequest $request
 	 */
-	public function __construct( $resourceLoader, WebRequest $request ) {
+	public function __construct( ResourceLoader $resourceLoader, WebRequest $request ) {
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
 
@@ -113,7 +113,7 @@ class ResourceLoaderContext {
 	 * @return ResourceLoaderContext
 	 */
 	public static function newDummyContext() {
-		return new self( null, new FauxRequest( array() ) );
+		return new self( new ResourceLoader, new FauxRequest( array() ) );
 	}
 
 	/**
