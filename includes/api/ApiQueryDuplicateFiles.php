@@ -188,17 +188,6 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'name' => 'string',
-				'user' => 'string',
-				'timestamp' => 'timestamp',
-				'shared' => 'boolean',
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'List all files that are duplicates of the given file(s) based on hash values.';
 	}

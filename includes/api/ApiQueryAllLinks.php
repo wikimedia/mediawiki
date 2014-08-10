@@ -334,32 +334,8 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		return $paramDescription;
 	}
 
-	public function getResultProperties() {
-		return array(
-			'ids' => array(
-				'fromid' => 'integer'
-			),
-			'title' => array(
-				'ns' => 'namespace',
-				'title' => 'string'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return $this->description;
-	}
-
-	public function getPossibleErrors() {
-		$m = $this->getModuleName();
-		$what = $this->descriptionWhat;
-
-		return array_merge( parent::getPossibleErrors(), array(
-			array(
-				'code' => 'params',
-				'info' => "{$m} cannot return corresponding page ids in unique {$what}s mode"
-			),
-		) );
 	}
 
 	public function getExamples() {

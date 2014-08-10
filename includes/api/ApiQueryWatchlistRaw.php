@@ -189,36 +189,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'ns' => 'namespace',
-				'title' => 'string'
-			),
-			'changed' => array(
-				'changed' => array(
-					ApiBase::PROP_TYPE => 'timestamp',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return "Get all pages on the logged in user's watchlist.";
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
-			array( 'show' ),
-			array( 'code' => 'bad_wlowner', 'info' => 'Specified user does not exist' ),
-			array(
-				'code' => 'bad_wltoken',
-				'info' => 'Incorrect watchlist token provided -- ' .
-					'please set a correct token in Special:Preferences'
-			),
-		) );
 	}
 
 	public function getExamples() {

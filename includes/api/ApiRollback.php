@@ -134,36 +134,10 @@ class ApiRollback extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'title' => 'string',
-				'pageid' => 'integer',
-				'summary' => 'string',
-				'revid' => 'integer',
-				'old_revid' => 'integer',
-				'last_revid' => 'integer'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return array(
 			'Undo the last edit to the page. If the last user who edited the page made',
 			'multiple edits in a row, they will all be rolled back.'
-		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge(
-			parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
-			array(
-				array( 'invalidtitle', 'title' ),
-				array( 'notanarticle' ),
-				array( 'nosuchpageid', 'pageid' ),
-				array( 'invaliduser', 'user' ),
-			)
 		);
 	}
 

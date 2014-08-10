@@ -592,19 +592,6 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * @return array
-	 */
-	public function getPossibleErrors() {
-		$errors = parent::getPossibleErrors();
-		$errors = array_merge( $errors, array(
-			array( 'invalidtitle', 'title' ),
-			array( 'invalidtitle', 'key' ),
-		) );
-
-		return $errors;
-	}
-
-	/**
 	 * Check whether the current user has permission to view revision-deleted
 	 * fields.
 	 * @return bool

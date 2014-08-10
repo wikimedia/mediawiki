@@ -191,40 +191,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'lang' => 'string',
-				'url' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'langname' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'autonym' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'*' => 'string'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Returns all interlanguage links from the given page(s).';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireMaxOneParameterErrorMessages(
-				array( 'url', 'prop' )
-			),
-			array(
-				array( 'missingparam', 'lang' ),
-			)
-		);
 	}
 
 	public function getExamples() {

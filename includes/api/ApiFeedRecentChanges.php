@@ -198,13 +198,6 @@ class ApiFeedRecentChanges extends ApiBase {
 		return 'Returns a recent changes feed';
 	}
 
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'feed-unavailable', 'info' => 'Syndication feeds are not available' ),
-			array( 'code' => 'feed-invalid', 'info' => 'Invalid subscription feed type' ),
-		) );
-	}
-
 	public function getExamples() {
 		return array(
 			'api.php?action=feedrecentchanges',

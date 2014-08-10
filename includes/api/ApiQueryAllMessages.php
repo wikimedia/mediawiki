@@ -256,33 +256,6 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		);
 	}
 
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'invalidlang', 'info' => 'Invalid language code for parameter lang' ),
-		) );
-	}
-
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'name' => 'string',
-				'customised' => 'boolean',
-				'missing' => 'boolean',
-				'*' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'default' => array(
-				'defaultmissing' => 'boolean',
-				'default' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Return messages from this site.';
 	}

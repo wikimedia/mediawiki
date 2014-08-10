@@ -520,17 +520,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		) );
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'pageid' => 'integer',
-				'ns' => 'namespace',
-				'title' => 'string',
-				'redirect' => 'boolean'
-			)
-		);
-	}
-
 	public function getDescription() {
 		switch ( $this->getModuleName() ) {
 			case 'backlinks':
@@ -542,18 +531,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			default:
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name.' );
 		}
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			$this->getTitleOrPageIdErrorMessage(),
-			array(
-				array(
-					'code' => 'bad_image_title',
-					'info' => "The title for {$this->getModuleName()} query must be an image"
-				),
-			)
-		);
 	}
 
 	public function getExamples() {

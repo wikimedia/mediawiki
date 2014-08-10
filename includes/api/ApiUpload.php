@@ -760,41 +760,6 @@ class ApiUpload extends ApiBase {
 		return $params;
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'result' => array(
-					ApiBase::PROP_TYPE => array(
-						'Success',
-						'Warning',
-						'Continue',
-						'Queued'
-					),
-				),
-				'filekey' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'sessionkey' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'offset' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'statuskey' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'filename' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return array(
 			'Upload a file, or get the status of pending uploads. Several methods are available:',
@@ -803,32 +768,6 @@ class ApiUpload extends ApiBase {
 			' * Complete an earlier upload that failed due to warnings, using the "filekey" parameter',
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
 			'sending the "file". Also you must get and send an edit token before doing any upload stuff.'
-		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'filekey', 'file', 'url', 'statuskey' ) ),
-			array(
-				array( 'uploaddisabled' ),
-				array( 'invalid-file-key' ),
-				array( 'uploaddisabled' ),
-				array( 'mustbeloggedin', 'upload' ),
-				array( 'badaccess-groups' ),
-				array( 'code' => 'fetchfileerror', 'info' => '' ),
-				array( 'code' => 'nomodule', 'info' => 'No upload module set' ),
-				array( 'code' => 'empty-file', 'info' => 'The file you submitted was empty' ),
-				array( 'code' => 'filetype-missing', 'info' => 'The file is missing an extension' ),
-				array( 'code' => 'filename-tooshort', 'info' => 'The filename is too short' ),
-				array( 'code' => 'overwrite', 'info' => 'Overwriting an existing file is not allowed' ),
-				array( 'code' => 'stashfailed', 'info' => 'Stashing temporary file failed' ),
-				array( 'code' => 'publishfailed', 'info' => 'Publishing of stashed file failed' ),
-				array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
-				array( 'code' => 'asynccopyuploaddisabled', 'info' => 'Asynchronous copy uploads disabled' ),
-				array( 'code' => 'stasherror', 'info' => 'An upload stash error occurred' ),
-				array( 'fileexists-forbidden' ),
-				array( 'fileexists-shared-forbidden' ),
-			)
 		);
 	}
 

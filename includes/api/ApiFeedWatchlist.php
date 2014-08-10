@@ -259,13 +259,6 @@ class ApiFeedWatchlist extends ApiBase {
 		return 'Returns a watchlist feed.';
 	}
 
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'feed-unavailable', 'info' => 'Syndication feeds are not available' ),
-			array( 'code' => 'feed-invalid', 'info' => 'Invalid subscription feed type' ),
-		) );
-	}
-
 	public function getExamples() {
 		return array(
 			'api.php?action=feedwatchlist',

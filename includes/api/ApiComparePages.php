@@ -137,42 +137,11 @@ class ApiComparePages extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'fromtitle' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'fromrevid' => 'integer',
-				'totitle' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'torevid' => 'integer',
-				'*' => 'string'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return array(
 			'Get the difference between 2 pages.',
 			'You must pass a revision number or a page title or a page ID id for each part (1 and 2).'
 		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'inputneeded', 'info' => 'A title or a revision is needed' ),
-			array( 'invalidtitle', 'title' ),
-			array( 'nosuchpageid', 'pageid' ),
-			array(
-				'code' => 'baddiff',
-				'info' => 'The diff cannot be retrieved. Maybe one or both ' .
-					'revisions do not exist or you do not have permission to view them.'
-			),
-		) );
 	}
 
 	public function getExamples() {

@@ -81,16 +81,6 @@ class ApiTokens extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		$props = array(
-			'' => array(),
-		);
-
-		self::addTokenProperties( $props, $this->getTokenTypes() );
-
-		return $props;
-	}
-
 	public function getParamDescription() {
 		return array(
 			'type' => 'Type of token(s) to request'

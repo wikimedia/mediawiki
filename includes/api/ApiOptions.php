@@ -157,18 +157,6 @@ class ApiOptions extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'*' => array(
-					ApiBase::PROP_TYPE => array(
-						'success'
-					)
-				)
-			)
-		);
-	}
-
 	public function getParamDescription() {
 		return array(
 			'token' => 'An options token previously obtained through the action=tokens',
@@ -192,13 +180,6 @@ class ApiOptions extends ApiBase {
 			'or as options with keys prefixed with \'userjs-\' (intended to be used by user',
 			'scripts), can be set.'
 		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'notloggedin', 'info' => 'Anonymous users cannot change preferences' ),
-			array( 'code' => 'nochanges', 'info' => 'No changes were requested' ),
-		) );
 	}
 
 	public function needsToken() {

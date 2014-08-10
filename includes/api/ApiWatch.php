@@ -205,27 +205,8 @@ class ApiWatch extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'title' => 'string',
-				'unwatched' => 'boolean',
-				'watched' => 'boolean',
-				'message' => 'string'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Add or remove pages from/to the current user\'s watchlist.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'notloggedin', 'info' => 'You must be logged-in to have a watchlist' ),
-			array( 'invalidtitle', 'title' ),
-			array( 'hookaborted' ),
-		) );
 	}
 
 	public function getExamples() {

@@ -170,23 +170,6 @@ class ApiQueryTags extends ApiQueryBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'name' => 'string'
-			),
-			'displayname' => array(
-				'displayname' => 'string'
-			),
-			'description' => array(
-				'description' => 'string'
-			),
-			'hitcount' => array(
-				'hitcount' => 'integer'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'List change tags.';
 	}

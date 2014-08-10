@@ -242,50 +242,8 @@ class ApiMove extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'from' => 'string',
-				'to' => 'string',
-				'reason' => 'string',
-				'redirectcreated' => 'boolean',
-				'moveoverredirect' => 'boolean',
-				'talkfrom' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'talkto' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'talkmoveoverredirect' => 'boolean',
-				'talkmove-error-code' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'talkmove-error-info' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Move a page.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'from', 'fromid' ) ),
-			array(
-				array( 'invalidtitle', 'from' ),
-				array( 'nosuchpageid', 'fromid' ),
-				array( 'notanarticle' ),
-				array( 'invalidtitle', 'to' ),
-				array( 'sharedfile-exists' ),
-			)
-		);
 	}
 
 	public function needsToken() {

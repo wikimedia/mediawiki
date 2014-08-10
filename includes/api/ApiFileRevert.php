@@ -148,38 +148,9 @@ class ApiFileRevert extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'result' => array(
-					ApiBase::PROP_TYPE => array(
-						'Success',
-						'Failure'
-					)
-				),
-				'errors' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return array(
 			'Revert a file to an old version.'
-		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(),
-			array(
-				array( 'mustbeloggedin', 'upload' ),
-				array( 'badaccess-groups' ),
-				array( 'invalidtitle', 'title' ),
-				array( 'notanarticle' ),
-				array( 'filerevert-badversion' ),
-			)
 		);
 	}
 

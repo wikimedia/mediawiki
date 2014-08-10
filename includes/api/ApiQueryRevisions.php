@@ -807,70 +807,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		);
 	}
 
-	public function getResultProperties() {
-		$props = array(
-			'' => array(),
-			'ids' => array(
-				'revid' => 'integer',
-				'parentid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'flags' => array(
-				'minor' => 'boolean'
-			),
-			'user' => array(
-				'userhidden' => 'boolean',
-				'user' => 'string',
-				'anon' => 'boolean'
-			),
-			'userid' => array(
-				'userhidden' => 'boolean',
-				'userid' => 'integer',
-				'anon' => 'boolean'
-			),
-			'timestamp' => array(
-				'timestamp' => 'timestamp'
-			),
-			'size' => array(
-				'size' => 'integer'
-			),
-			'sha1' => array(
-				'sha1' => 'string'
-			),
-			'comment' => array(
-				'commenthidden' => 'boolean',
-				'comment' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'parsedcomment' => array(
-				'commenthidden' => 'boolean',
-				'parsedcomment' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'content' => array(
-				'*' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'texthidden' => 'boolean',
-				'textmissing' => 'boolean',
-			),
-			'contentmodel' => array(
-				'contentmodel' => 'string'
-			),
-		);
-
-		self::addTokenProperties( $props, $this->getTokenFunctions() );
-
-		return $props;
-	}
-
 	public function getDescription() {
 		return array(
 			'Get revision information.',
@@ -880,33 +816,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			' 3) Get data about a set of revisions by setting their IDs with revids parameter.',
 			'All parameters marked as (enum) may only be used with a single page (#2).'
 		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'nosuchrevid', 'diffto' ),
-			array(
-				'code' => 'revids',
-				'info' => 'The revids= parameter may not be used with the list options '
-					. '(limit, startid, endid, dirNewer, start, end).'
-			),
-			array(
-				'code' => 'multpages',
-				'info' => 'titles, pageids or a generator was used to supply multiple pages, '
-					. ' but the limit, startid, endid, dirNewer, user, excludeuser, '
-					. 'start and end parameters may only be used on a single page.'
-			),
-			array(
-				'code' => 'diffto',
-				'info' => 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"'
-			),
-			array( 'code' => 'badparams', 'info' => 'start and startid cannot be used together' ),
-			array( 'code' => 'badparams', 'info' => 'end and endid cannot be used together' ),
-			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
-			array( 'code' => 'nosuchsection', 'info' => 'There is no section section in rID' ),
-			array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied '
-				. ' to the page\'s content model' ),
-		) );
 	}
 
 	public function getExamples() {

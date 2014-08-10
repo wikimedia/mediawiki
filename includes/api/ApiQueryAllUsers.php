@@ -421,59 +421,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			'' => array(
-				'userid' => 'integer',
-				'name' => 'string',
-				'recentactions' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'blockinfo' => array(
-				'blockid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'blockedby' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'blockedbyid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'blockedreason' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'blockedexpiry' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'hidden' => 'boolean'
-			),
-			'editcount' => array(
-				'editcount' => 'integer'
-			),
-			'registration' => array(
-				'registration' => 'string'
-			)
-		);
-	}
-
 	public function getDescription() {
 		return 'Enumerate all registered users.';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array(
-				'code' => 'group-excludegroup',
-				'info' => 'group and excludegroup cannot be used together'
-			),
-		) );
 	}
 
 	public function getExamples() {

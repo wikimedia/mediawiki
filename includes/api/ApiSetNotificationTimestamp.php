@@ -244,67 +244,11 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		);
 	}
 
-	public function getResultProperties() {
-		return array(
-			ApiBase::PROP_LIST => true,
-			ApiBase::PROP_ROOT => array(
-				'notificationtimestamp' => array(
-					ApiBase::PROP_TYPE => 'timestamp',
-					ApiBase::PROP_NULLABLE => true
-				)
-			),
-			'' => array(
-				'ns' => array(
-					ApiBase::PROP_TYPE => 'namespace',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'title' => array(
-					ApiBase::PROP_TYPE => 'string',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'pageid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'revid' => array(
-					ApiBase::PROP_TYPE => 'integer',
-					ApiBase::PROP_NULLABLE => true
-				),
-				'invalid' => 'boolean',
-				'missing' => 'boolean',
-				'notwatched' => 'boolean',
-				'notificationtimestamp' => array(
-					ApiBase::PROP_TYPE => 'timestamp',
-					ApiBase::PROP_NULLABLE => true
-				)
-			)
-		);
-	}
-
 	public function getDescription() {
 		return array( 'Update the notification timestamp for watched pages.',
 			'This affects the highlighting of changed pages in the watchlist and history,',
 			'and the sending of email when the "Email me when a page on my watchlist is',
 			'changed" preference is enabled.'
-		);
-	}
-
-	public function getPossibleErrors() {
-		$ps = $this->getPageSet();
-
-		return array_merge(
-			parent::getPossibleErrors(),
-			$ps->getFinalPossibleErrors(),
-			$this->getRequireMaxOneParameterErrorMessages(
-				array( 'timestamp', 'torevid', 'newerthanrevid' ) ),
-			$this->getRequireOnlyOneParameterErrorMessages(
-				array_merge( array( 'entirewatchlist' ), array_keys( $ps->getFinalParams() ) ) ),
-			array(
-				array( 'code' => 'notloggedin', 'info'
-				=> 'Anonymous users cannot use watchlist change notifications' ),
-				array( 'code' => 'multpages', 'info' => 'torevid may only be used with a single page' ),
-				array( 'code' => 'multpages', 'info' => 'newerthanrevid may only be used with a single page' ),
-			)
 		);
 	}
 
