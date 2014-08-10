@@ -447,7 +447,9 @@ class LogFormatter {
 				continue;
 			}
 			list( $index, $type, ) = explode( ':', $key, 3 );
-			$params[$index - 1] = $this->formatParameterValue( $type, $value );
+			if ( ctype_digit( $index ) ) {
+				$params[$index - 1] = $this->formatParameterValue( $type, $value );
+			}
 		}
 
 		/* Message class doesn't like non consecutive numbering.
@@ -702,6 +704,120 @@ class LogFormatter {
 		// protected and a change from protected to public caused
 		// problems with extensions
 		return $this->getMessageParameters();
+	}
+
+	/**
+	 * Get the array of parameters, converted from legacy format if necessary.
+	 * @since 1.25
+	 * @return array
+	 */
+	protected function getParametersForApi() {
+		return $this->entry->getParameters();
+	}
+
+	/**
+	 * Format parameters for API output
+	 *
+	 * The result array should generally map named keys to values. Index and
+	 * type should be omitted, e.g. "4::foo" should be returned as "foo" in the
+	 * output. Values should generally be unformatted.
+	 *
+	 * Renames or removals of keys besides from the legacy numeric format to
+	 * modern named style should be avoided. Any renames should be announced to
+	 * the mediawiki-api-announce mailing list.
+	 *
+	 * @since 1.25
+	 * @return array
+	 */
+	public function formatParametersForApi() {
+		$logParams = array();
+		foreach ( $this->getParametersForApi() as $key => $value ) {
+			$vals = explode( ':', $key, 3 );
+			if ( count( $vals ) !== 3 ) {
+				$logParams[$key] = $value;
+				continue;
+			}
+			$logParams += $this->formatParameterValueForApi( $vals[2], $vals[1], $value );
+		}
+		ApiResult::setIndexedTagName( $logParams, 'param' );
+		ApiResult::setArrayType( $logParams, 'assoc' );
+
+		return $logParams;
+	}
+
+	/**
+	 * Format a single parameter value for API output
+	 *
+	 * @since 1.25
+	 * @param string $name
+	 * @param string $type
+	 * @param string $value
+	 * @return array
+	 */
+	protected function formatParameterValueForApi( $name, $type, $value ) {
+		$type = strtolower( trim( $type ) );
+		switch ( $type ) {
+			case 'bool':
+				$value = (bool)$value;
+				break;
+
+			case 'number':
+				if ( ctype_digit( $value ) ) {
+					$value = (int)$value;
+				} else {
+					$value = (float)$value;
+				}
+				break;
+
+			case 'array':
+			case 'assoc':
+			case 'kvp':
+				if ( is_array( $value ) ) {
+					ApiResult::setArrayType( $value, $type );
+				}
+				break;
+
+			case 'timestamp':
+				$value = wfTimestamp( TS_ISO_8601, $value );
+				break;
+
+			case 'msg':
+			case 'msg-content':
+				$msg = $this->msg( $value );
+				if ( $type === 'msg-content' ) {
+					$msg->inContentLanguage();
+				}
+				$value = array();
+				$value["{$name}_key"] = $msg->getKey();
+				if ( $msg->getParams() ) {
+					$value["{$name}_params"] = $msg->getParams();
+				}
+				$value["{$name}_text"] = $msg->text();
+				return $value;
+
+			case 'title':
+			case 'title-link':
+				$title = Title::newFromText( $value );
+				if ( $title ) {
+					$value = array();
+					ApiQueryBase::addTitleInfo( $value, $title, "{$name}_" );
+				}
+				return $value;
+
+			case 'user':
+			case 'user-link':
+				$user = User::newFromName( $value );
+				if ( $user ) {
+					$value = $user->getName();
+				}
+				break;
+
+			default:
+				// do nothing
+				break;
+		}
+
+		return array( $name => $value );
 	}
 }
 
