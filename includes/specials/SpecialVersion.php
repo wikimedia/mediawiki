@@ -428,7 +428,11 @@ class SpecialVersion extends SpecialPage {
 	function getExtensionCredits() {
 		global $wgExtensionCredits;
 
-		if ( !count( $wgExtensionCredits ) ) {
+		if (
+			count( $wgExtensionCredits ) === 0 ||
+			// Skins are displayed separately, see getSkinCredits()
+			( count( $wgExtensionCredits ) === 1 && isset( $wgExtensionCredits['skin'] ) )
+		) {
 			return '';
 		}
 
@@ -476,6 +480,11 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	function getSkinCredits() {
+		global $wgExtensionCredits;
+		if ( !isset( $wgExtensionCredits['skin'] ) || count( $wgExtensionCredits['skin'] ) === 0 ) {
+			return '';
+		}
+
 		$out = Xml::element(
 				'h2',
 				array( 'id' => 'mw-version-skin' ),
