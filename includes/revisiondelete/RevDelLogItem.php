@@ -124,15 +124,7 @@ class RevDelLogItem extends RevDelItem {
 			: array();
 
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_ACTION, $user ) ) {
-			ApiQueryLogEvents::addLogParams(
-				$result,
-				$ret,
-				$logEntry->getParameters(),
-				$logEntry->getType(),
-				$logEntry->getSubtype(),
-				$logEntry->getTimestamp(),
-				$logEntry->isLegacy()
-			);
+			$ret['params'] = LogFormatter::newFromEntry( $logEntry )->formatParametersForApi();
 		}
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_USER, $user ) ) {
 			$ret += array(
