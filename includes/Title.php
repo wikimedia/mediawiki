@@ -2214,7 +2214,7 @@ class Title {
 	private function checkActionPermissions( $action, $user, $errors,
 		$doExpensiveQueries, $short
 	) {
-		global $wgDeleteRevisionsLimit, $wgLang;
+		global $wgDeleteRevisionsLimit, $wgLang, $wgDeleteWhenNoEditRights;
 
 		if ( $action == 'protect' ) {
 			if ( count( $this->getUserPermissionsErrorsInternal( 'edit',
@@ -2258,8 +2258,9 @@ class Title {
 				$errors[] = array( 'immobile-target-page' );
 			}
 		} elseif ( $action == 'delete' ) {
-			if ( count( $this->getUserPermissionsErrorsInternal( 'edit',
-				$user, $doExpensiveQueries, true ) )
+			if ( $wgDeleteWhenNoEditRights
+				&& count( $this->getUserPermissionsErrorsInternal( 'edit',
+					$user, $doExpensiveQueries, true ) )
 			) {
 				// If they can't edit, they shouldn't delete.
 				$errors[] = array( 'delete-cantedit' );

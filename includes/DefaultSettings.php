@@ -4573,6 +4573,13 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 /** @endcond */
 
 /**
+ * Require Edit permissions in order to delete pages, since the ability
+ * to Delete and Create implies Edit.
+ * @since 1.24
+ */
+$wgDeleteWhenNoEditRights = false;
+
+/**
  * Permission keys revoked from users in each group.
  *
  * This acts the same way as wgGroupPermissions above, except that
