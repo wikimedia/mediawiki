@@ -370,6 +370,9 @@ class ManualLogEntry extends LogEntryBase {
 	/** @var int ID of the log entry */
 	protected $id;
 
+	/** @var bool Whether this is a legacy log entry */
+	protected $legacy = false;
+
 	/**
 	 * Constructor.
 	 *
@@ -456,6 +459,16 @@ class ManualLogEntry extends LogEntryBase {
 	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
+	}
+
+	/**
+	 * Set the 'legacy' flag
+	 *
+	 * @since 1.25
+	 * @param bool $legacy
+	 */
+	public function setLegacy( $legacy = true ) {
+		$this->legacy = $legacy;
 	}
 
 	/**
@@ -614,6 +627,10 @@ class ManualLogEntry extends LogEntryBase {
 
 	public function getParameters() {
 		return $this->parameters;
+	}
+
+	public function isLegacy() {
+		return $this->legacy;
 	}
 
 	/**
