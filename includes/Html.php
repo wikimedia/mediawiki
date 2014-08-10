@@ -225,12 +225,11 @@ class Html {
 	}
 
 	/**
-	 * Returns "</$element>", except if $wgWellFormedXml is off, in which case
-	 * it returns the empty string when that's guaranteed to be safe.
+	 * Returns "</$element>"
 	 *
 	 * @since 1.17
 	 * @param string $element Name of the element, e.g., 'a'
-	 * @return string A closing tag, if required
+	 * @return string A closing tag
 	 */
 	public static function closeElement( $element ) {
 		$element = strtolower( $element );
