@@ -113,6 +113,9 @@ production.
   links of a group of changes in EnhancedChangesList.
 * A full interface for StatsD metric reporting has been added to the context
   interface, reachable via IContextSource::getStats().
+* (T35235) LogFormatter subclasses are now responsible for formatting the
+  parameters for API log event output. Extensions should implement the new
+  getParametersForApi() method in their log formatters.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
@@ -237,6 +240,18 @@ production.
 * Default type param for query list=watchlist and list=recentchanges has
   been changed from all types (e.g. including 'external') to 'edit|new|log'.
 * Added formatversion to format=json, still experimental.
+* (T73020) Log event details are now always under a 'params' subkey for
+  list=logevents, and a 'logparams' subkey for list=watchlist and
+  list=recentchanges.
+* Log event details are changing formatting:
+  * block events now report flags as an array rather than as a comma-separated
+    list.
+  * patrol events now report the 'auto' flag as a boolean (absent/empty string
+    for BC formats) rather than as an integer.
+  * rights events now report the old and new group lists as arrays rather than
+    as comma-separated lists.
+  * merge events use new-style formatting.
+  * delete/event and delete/revision events use new-style formatting.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -283,6 +298,8 @@ production.
 * ApiResult/ApiFormatBase "raw mode" is deprecated.
 * ApiFormatXml now assumes defaults and so on instead of throwing errors when
   metadata isn't set.
+* (T35235) LogFormatter subclasses are now responsible for formatting log event
+  parameters for the API.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
@@ -322,6 +339,7 @@ production.
   * ApiResult::setContinueParam
   * ApiResult::setGeneratorContinueParam
   * ApiQueryImageInfo::getPropertyDescriptions
+  * ApiQueryLogEvents::addLogParams
 * The following classes have been deprecated and may be removed in a future
   release:
   * ApiQueryDeletedrevs

@@ -1,6 +1,6 @@
 <?php
 /**
- * Formatter for new user log entries.
+ * Formatter for upload log entries.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,60 +18,23 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Niklas Laxström
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
- * @since 1.22
+ * @since 1.25
  */
 
 /**
- * This class formats patrol log entries.
+ * This class formats upload log entries.
  *
- * @since 1.19
+ * @since 1.25
  */
-class PatrolLogFormatter extends LogFormatter {
-	protected function getMessageKey() {
-		$key = parent::getMessageKey();
-		$params = $this->getMessageParameters();
-		if ( isset( $params[5] ) && $params[5] ) {
-			$key .= '-auto';
-		}
-
-		return $key;
-	}
-
-	protected function getMessageParameters() {
-		$params = parent::getMessageParameters();
-
-		$target = $this->entry->getTarget();
-		$oldid = $params[3];
-		$revision = $this->context->getLanguage()->formatNum( $oldid, true );
-
-		if ( $this->plaintext ) {
-			$revlink = $revision;
-		} elseif ( $target->exists() ) {
-			$query = array(
-				'oldid' => $oldid,
-				'diff' => 'prev'
-			);
-			$revlink = Linker::link( $target, htmlspecialchars( $revision ), array(), $query );
-		} else {
-			$revlink = htmlspecialchars( $revision );
-		}
-
-		$params[3] = Message::rawParam( $revlink );
-
-		return $params;
-	}
+class UploadLogFormatter extends LogFormatter {
 
 	protected function getParametersForApi() {
 		$entry = $this->entry;
 		$params = $entry->getParameters();
 
 		static $map = array(
-			'4::curid',
-			'5::previd',
-			'6:bool:auto',
-			'6::auto' => '6:bool:auto',
+			'img_timestamp' => ':timestamp:img_timestamp',
 		);
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
@@ -82,4 +45,5 @@ class PatrolLogFormatter extends LogFormatter {
 
 		return $params;
 	}
+
 }
