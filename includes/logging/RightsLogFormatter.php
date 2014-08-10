@@ -110,4 +110,35 @@ class RightsLogFormatter extends LogFormatter {
 
 		return $params;
 	}
+
+	protected function getParametersForApi() {
+		$entry = $this->entry;
+		$params = $entry->getParameters();
+
+		static $map = array(
+			'4:array:oldgroups',
+			'5:array:newgroups',
+			'4::oldgroups' => '4:array:oldgroups',
+			'5::newgroups' => '5:array:newgroups',
+		);
+		foreach ( $map as $index => $key ) {
+			if ( isset( $params[$index] ) ) {
+				$params[$key] = $params[$index];
+				unset( $params[$index] );
+			}
+		}
+
+		return $params;
+	}
+
+	public function formatParametersForApi() {
+		$ret = parent::formatParametersForApi();
+		if ( isset( $ret['oldgroups'] ) ) {
+			ApiResult::setIndexedTagName( $ret['oldgroups'], 'g' );
+		}
+		if ( isset( $ret['newgroups'] ) ) {
+			ApiResult::setIndexedTagName( $ret['newgroups'], 'g' );
+		}
+		return $ret;
+	}
 }
