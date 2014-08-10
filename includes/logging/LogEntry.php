@@ -626,6 +626,10 @@ class ManualLogEntry extends LogEntryBase {
 		return $this->parameters;
 	}
 
+	public function isLegacy() {
+		return $this->legacy;
+	}
+
 	/**
 	 * @return User
 	 */
