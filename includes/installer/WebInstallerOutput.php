@@ -141,7 +141,7 @@ class WebInstallerOutput {
 			'mediawiki.skinning.interface',
 			'skins.vector.styles',
 
-			'mediawiki.legacy.config',
+			'mediawiki.installer.legacy',
 		);
 
 		$css = '';
@@ -265,7 +265,7 @@ class WebInstallerOutput {
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo $this->getCssUrl() . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
-	<?php echo Html::linkedScript( '../skins/common/config.js' ) . "\n"; ?>
+	<?php echo Html::linkedScript( 'config.js' ) . "\n"; ?>
 </head>
 
 <?php echo Html::openElement( 'body', array( 'class' => $this->getDir() ) ) . "\n"; ?>
@@ -290,7 +290,7 @@ class WebInstallerOutput {
 
 <div id="mw-panel">
 	<div class="portal" id="p-logo">
-	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
+	  <a style="background-image: url(images/installer-logo.png);"
 		href="https://www.mediawiki.org/"
 		title="Main Page"></a>
 	</div>
@@ -314,7 +314,7 @@ class WebInstallerOutput {
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo $this->getCssUrl() . "\n"; ?>
 	<?php echo $this->getJQuery(); ?>
-	<?php echo Html::linkedScript( '../skins/common/config.js' ); ?>
+	<?php echo Html::linkedScript( 'config.js' ); ?>
 </head>
 
 <body style="background-image: none">
