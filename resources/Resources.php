@@ -1392,9 +1392,7 @@ return array(
 	/* MediaWiki Legacy */
 
 	'mediawiki.legacy.ajax' => array(
-		'scripts' => 'common/ajax.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'scripts' => 'resources/src/mediawiki.legacy/ajax.js',
 		'dependencies' => array(
 			'mediawiki.util',
 			'mediawiki.legacy.wikibits',
@@ -1402,14 +1400,10 @@ return array(
 		'position' => 'top', // Temporary hack for legacy support
 	),
 	'mediawiki.legacy.commonPrint' => array(
-		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'styles' => array( 'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' ) ),
 	),
 	'mediawiki.legacy.protect' => array(
-		'scripts' => 'common/protect.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'scripts' => 'resources/src/mediawiki.legacy/protect.js',
 		'dependencies' => array(
 			'jquery.byteLimit',
 		),
@@ -1417,19 +1411,13 @@ return array(
 	),
 	'mediawiki.legacy.shared' => array(
 		// Used in the web installer. Test it after modifying this definition!
-		'styles' => array( 'common/shared.css' => array( 'media' => 'screen' ) ),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'styles' => array( 'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' ) ),
 	),
 	'mediawiki.legacy.oldshared' => array(
-		'styles' => array( 'common/oldshared.css' => array( 'media' => 'screen' ) ),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'styles' => array( 'resources/src/mediawiki.legacy/oldshared.css' => array( 'media' => 'screen' ) ),
 	),
 	'mediawiki.legacy.upload' => array(
-		'scripts' => 'common/upload.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'scripts' => 'resources/src/mediawiki.legacy/upload.js',
 		'dependencies' => array(
 			'jquery.spinner',
 			'mediawiki.api',
@@ -1438,9 +1426,7 @@ return array(
 		),
 	),
 	'mediawiki.legacy.wikibits' => array(
-		'scripts' => 'common/wikibits.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
 		'dependencies' => array(
 			'mediawiki.util',
 		),
