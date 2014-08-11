@@ -12,7 +12,8 @@
  * SkinTemplate class for the fallback skin
  */
 class SkinFallback extends SkinTemplate {
-	var $skinname = 'fallback', $template = 'SkinFallbackTemplate';
+	public $skinname = 'fallback';
+	public $template = 'SkinFallbackTemplate';
 
 	/**
 	 * Add CSS via ResourceLoader

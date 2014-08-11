@@ -42,6 +42,7 @@
  * which refers to it should be kept to a minimum.
  */
 class StubObject {
+
 	/** @var null|string */
 	protected $global;
 
@@ -58,7 +59,7 @@ class StubObject {
 	 * @param string $class Name of the class of the real object.
 	 * @param array $params Parameters to pass to constructor of the real object.
 	 */
-	function __construct( $global = null, $class = null, $params = array() ) {
+	public function __construct( $global = null, $class = null, $params = array() ) {
 		$this->global = $global;
 		$this->class = $class;
 		$this->params = $params;
@@ -71,7 +72,7 @@ class StubObject {
 	 * @param object $obj Object to check.
 	 * @return bool True if $obj is not an instance of StubObject class.
 	 */
-	static function isRealObject( $obj ) {
+	public static function isRealObject( $obj ) {
 		return is_object( $obj ) && !$obj instanceof StubObject;
 	}
 
@@ -83,7 +84,7 @@ class StubObject {
 	 * @param object $obj Object to check.
 	 * @return void
 	 */
-	static function unstub( &$obj ) {
+	public static function unstub( &$obj ) {
 		if ( $obj instanceof StubObject ) {
 			$obj = $obj->_unstub( 'unstub', 3 );
 		}
@@ -100,7 +101,7 @@ class StubObject {
 	 * @param array $args Arguments
 	 * @return mixed
 	 */
-	function _call( $name, $args ) {
+	public function _call( $name, $args ) {
 		$this->_unstub( $name, 5 );
 		return call_user_func_array( array( $GLOBALS[$this->global], $name ), $args );
 	}
@@ -109,7 +110,7 @@ class StubObject {
 	 * Create a new object to replace this stub object.
 	 * @return object
 	 */
-	function _newObject() {
+	public function _newObject() {
 		return MWFunction::newObj( $this->class, $this->params );
 	}
 
@@ -121,7 +122,7 @@ class StubObject {
 	 * @param array $args Arguments
 	 * @return mixed
 	 */
-	function __call( $name, $args ) {
+	public function __call( $name, $args ) {
 		return $this->_call( $name, $args );
 	}
 
@@ -137,7 +138,7 @@ class StubObject {
 	 * @return object The unstubbed version of itself
 	 * @throws MWException
 	 */
-	function _unstub( $name = '_unstub', $level = 2 ) {
+	public function _unstub( $name = '_unstub', $level = 2 ) {
 		static $recursionLevel = 0;
 
 		if ( !$GLOBALS[$this->global] instanceof StubObject ) {
@@ -170,18 +171,18 @@ class StubObject {
  */
 class StubUserLang extends StubObject {
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'wgLang' );
 	}
 
-	function __call( $name, $args ) {
+	public function __call( $name, $args ) {
 		return $this->_call( $name, $args );
 	}
 
 	/**
 	 * @return Language
 	 */
-	function _newObject() {
+	public function _newObject() {
 		return RequestContext::getMain()->getLanguage();
 	}
 }
