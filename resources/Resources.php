@@ -1378,6 +1378,15 @@ return array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
 	),
 
+	/* MediaWiki Installer */
+
+	'mediawiki.legacy.config' => array(
+		// Used in the web installer. Test it after modifying this definition!
+		'scripts' => 'mw-config/config.js',
+		'styles' => array( 'mw-config/config.css' ),
+		'dependencies' => 'mediawiki.legacy.wikibits',
+	),
+
 	/* MediaWiki Legacy */
 
 	'mediawiki.legacy.ajax' => array(
@@ -1394,14 +1403,6 @@ return array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
-	'mediawiki.legacy.config' => array(
-		// Used in the web installer. Test it after modifying this definition!
-		'scripts' => 'common/config.js',
-		'styles' => array( 'common/config.css' ),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'common/protect.js',

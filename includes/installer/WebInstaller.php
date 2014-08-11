@@ -667,7 +667,7 @@ class WebInstaller extends Installer {
 	 * Get HTML for an info box with an icon.
 	 *
 	 * @param string $text Wikitext, get this with wfMessage()->plain()
-	 * @param string|bool $icon Icon name, file in skins/common/images. Default: false
+	 * @param string|bool $icon Icon name, file in mw-config/images. Default: false
 	 * @param string|bool $class Additional class name to add to the wrapper div. Default: false.
 	 *
 	 * @return string
@@ -675,8 +675,8 @@ class WebInstaller extends Installer {
 	public function getInfoBox( $text, $icon = false, $class = false ) {
 		$text = $this->parse( $text, true );
 		$icon = ( $icon == false ) ?
-			'../skins/common/images/info-32.png' :
-			'../skins/common/images/' . $icon;
+			'images/info-32.png' :
+			'images/' . $icon;
 		$alt = wfMessage( 'config-information' )->text();
 
 		return Html::infoBox( $text, $icon, $alt, $class, false );
