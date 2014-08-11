@@ -40,7 +40,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 	private function buildHelpfulInformationMessage() {
 		$defaultSkin = $this->config->get( 'DefaultSkin' );
 		$installedSkins = $this->findInstalledSkins();
-		$enabledSkins = $this->config->get( 'ValidSkinNames' );
+		$enabledSkins = SkinFactory::getDefaultInstance()->getSkinNames();
 		$enabledSkins = array_change_key_case( $enabledSkins, CASE_LOWER );
 
 		if ( $installedSkins ) {
