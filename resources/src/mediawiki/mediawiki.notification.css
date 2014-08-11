@@ -12,11 +12,6 @@
 	position: fixed;
 }
 
-* html .mw-notification-area-floating {
-	/* Make it at least 'absolute' in IE6 since 'fixed' is not supported */
-	position: absolute;
-}
-
 .mw-notification {
 	padding: 0.25em 1em;
 	margin-bottom: 0.5em;
