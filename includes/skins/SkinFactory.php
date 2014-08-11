@@ -40,6 +40,13 @@ class SkinFactory {
 	private $displayNames = array();
 
 	/**
+	 * Map of name => class name without "Skin" prefix
+	 * for legacy skins using the autoloader
+	 * @var array
+	 */
+	private $legacySkins = array();
+
+	/**
 	 * @var SkinFactory
 	 */
 	private static $self;
@@ -72,10 +79,9 @@ class SkinFactory {
 	 * @return array
 	 */
 	private function getLegacySkinNames() {
-		global $wgValidSkinNames;
 		static $skinsInitialised = false;
 
-		if ( !$skinsInitialised || !count( $wgValidSkinNames ) ) {
+		if ( !$skinsInitialised || !count( $this->legacySkins ) ) {
 			# Get a list of available skins
 			# Build using the regular expression '^(.*).php$'
 			# Array keys are all lower case, array value keep the case used by filename
@@ -117,7 +123,7 @@ class SkinFactory {
 							"The mechanism will be removed in MediaWiki 1.25 and the skin will no longer be recognized. " .
 							"See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for information how to fix this."
 						);
-						$wgValidSkinNames[strtolower( $aSkin )] = $aSkin;
+						$this->legacySkins[strtolower( $aSkin )] = $aSkin;
 					}
 				}
 				$skinDir->close();
@@ -125,7 +131,7 @@ class SkinFactory {
 			$skinsInitialised = true;
 			wfProfileOut( __METHOD__ . '-init' );
 		}
-		return $wgValidSkinNames;
+		return $this->legacySkins;
 
 	}
 
