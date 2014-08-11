@@ -38,6 +38,18 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers GlobalVarConfig::has
+	 */
+	public function testHas() {
+		$this->maybeStashGlobal( 'wgGlobalVarConfigTestHas' );
+		$GLOBALS['wgGlobalVarConfigTestHas'] = wfRandomString();
+		$this->maybeStashGlobal( 'wgGlobalVarConfigTestNotHas' );
+		$config = new GlobalVarConfig();
+		$this->assertTrue( $config->has( 'GlobalVarConfigTestHas' ) );
+		$this->assertFalse( $config->has( 'GlobalVarConfigTestNotHas' ) );
+	}
+
 	public function provideGet() {
 		$set = array(
 			'wgSomething' => 'default1',
@@ -70,7 +82,7 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 	public function testGet( $name, $prefix, $expected ) {
 		$config = new GlobalVarConfig( $prefix );
 		if ( $expected === false ) {
-			$this->setExpectedException( 'ConfigException', 'GlobalVarConfig::getWithPrefix: undefined variable:' );
+			$this->setExpectedException( 'ConfigException', 'GlobalVarConfig::get: undefined option:' );
 		}
 		$this->assertEquals( $config->get( $name ), $expected );
 	}
