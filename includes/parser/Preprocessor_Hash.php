@@ -26,8 +26,10 @@
  *   * attribute nodes are children
  *   * "<h>" nodes that aren't at the top are replaced with <possible-h>
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class Preprocessor_Hash implements Preprocessor {
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Parser
@@ -759,8 +761,11 @@ class Preprocessor_Hash implements Preprocessor {
 /**
  * Stack class to help Preprocessor::preprocessToObj()
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPDStack_Hash extends PPDStack {
+	// @codingStandardsIgnoreEnd
+
 	public function __construct() {
 		$this->elementClass = 'PPDStackElement_Hash';
 		parent::__construct();
@@ -770,8 +775,11 @@ class PPDStack_Hash extends PPDStack {
 
 /**
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPDStackElement_Hash extends PPDStackElement {
+	// @codingStandardsIgnoreENd
+
 	public function __construct( $data = array() ) {
 		$this->partClass = 'PPDPart_Hash';
 		parent::__construct( $data );
@@ -808,8 +816,11 @@ class PPDStackElement_Hash extends PPDStackElement {
 
 /**
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPDPart_Hash extends PPDPart {
+	// @codingStandardsIgnoreEnd
+
 	public function __construct( $out = '' ) {
 		$accum = new PPDAccum_Hash;
 		if ( $out !== '' ) {
@@ -821,8 +832,11 @@ class PPDPart_Hash extends PPDPart {
 
 /**
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPDAccum_Hash {
+	// @codingStandardsIgnoreEnd
+
 	public $firstNode, $lastNode;
 
 	public function __construct() {
@@ -889,8 +903,10 @@ class PPDAccum_Hash {
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPFrame_Hash implements PPFrame {
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Parser
@@ -1453,8 +1469,11 @@ class PPFrame_Hash implements PPFrame {
 /**
  * Expansion frame with template arguments
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPTemplateFrame_Hash extends PPFrame_Hash {
+	// @codingStandardsIgnoreEnd
+
 	public $numberedArgs, $namedArgs, $parent;
 	public $numberedExpansionCache, $namedExpansionCache;
 
@@ -1633,8 +1652,11 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 /**
  * Expansion frame with custom arguments
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPCustomFrame_Hash extends PPFrame_Hash {
+	// @codingStandardsIgnoreEnd
+
 	public $args;
 
 	public function __construct( $preprocessor, $args ) {
@@ -1683,8 +1705,11 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 
 /**
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPNode_Hash_Tree implements PPNode {
+	// @codingStandardsIgnoreEnd
+
 	public $name, $firstChild, $lastChild, $nextSibling;
 
 	public function __construct( $name ) {
@@ -1905,8 +1930,11 @@ class PPNode_Hash_Tree implements PPNode {
 
 /**
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPNode_Hash_Text implements PPNode {
+	// @codingStandardsIgnoreEnd
+
 	public $value, $nextSibling;
 
 	public function __construct( $value ) {
@@ -1963,8 +1991,11 @@ class PPNode_Hash_Text implements PPNode {
 
 /**
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPNode_Hash_Array implements PPNode {
+	// @codingStandardsIgnoreEnd
+
 	public $value, $nextSibling;
 
 	public function __construct( $value ) {
@@ -2018,8 +2049,11 @@ class PPNode_Hash_Array implements PPNode {
 
 /**
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPNode_Hash_Attr implements PPNode {
+	// @codingStandardsIgnoreEnd
+
 	public $name, $value, $nextSibling;
 
 	public function __construct( $name, $value ) {
