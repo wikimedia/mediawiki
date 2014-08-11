@@ -24,13 +24,13 @@
  */
 class RevDelFileList extends RevDelList {
 	/** @var array */
-	var $storeBatch;
+	public $storeBatch;
 
 	/** @var array */
-	var $deleteBatch;
+	public $deleteBatch;
 
 	/** @var array */
-	var $cleanupBatch;
+	public $cleanupBatch;
 
 	public function getType() {
 		return 'oldimage';

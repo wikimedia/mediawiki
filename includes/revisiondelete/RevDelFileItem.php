@@ -24,7 +24,7 @@
  */
 class RevDelFileItem extends RevDelItem {
 	/** @var File */
-	var $file;
+	public $file;
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
