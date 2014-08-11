@@ -37,6 +37,14 @@ interface Config {
 	public function get( $name );
 
 	/**
+	 * Check whether a configuration option is set for the given name
+	 *
+	 * @param string $name Name of configuration option
+	 * @return bool
+	 */
+	public function has( $name );
+
+	/**
 	 * Set a configuration variable such a "Sitename" to something like "My Wiki"
 	 *
 	 * @param string $name Name of configuration option

@@ -66,7 +66,12 @@ $wgConf = new SiteConfiguration;
  * @since 1.23
  */
 $wgConfigRegistry = array(
-	'main' => 'GlobalVarConfig::newInstance'
+	'main' => 'MultiConfig::newMainInstance',
+	// For things stored in $GLOBALS
+	'globalvarconfig' => 'GlobalVarConfig::newInstance',
+	// @todo Convert DefaultSettings to really be stored inside a Config object,
+	// this is just a hack for MultiConfig
+	'defaultsettings' => 'HashConfig::newInstance',
 );
 
 /**
