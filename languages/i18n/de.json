@@ -74,7 +74,8 @@
 			"Zylbath",
 			"לערי ריינהארט",
 			"✓",
-			"XenonX3"
+			"XenonX3",
+			"Brackenheim"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1821,6 +1822,7 @@
 	"delete-edit-reasonlist": "Löschgründe bearbeiten",
 	"delete-toobig": "Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen solcher Seiten wurde eingeschränkt, um eine versehentliche Überlastung der Server zu verhindern.",
 	"delete-warning-toobig": "Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.",
+	"delete-cantedit": "Du kannst diese Seite nicht löschen, da du nicht über das Recht verfügst, diese Seite zu bearbeiten.",
 	"deleting-backlinks-warning": "'''Warnung:''' Es verweisen noch [[Special:WhatLinksHere/{{FULLPAGENAME}}|andere Seiten]] auf die zu löschende Seite oder diese Seite ist noch woanders eingebunden.",
 	"rollback": "Zurücksetzen der Änderungen",
 	"rollback_short": "Zurücksetzen",

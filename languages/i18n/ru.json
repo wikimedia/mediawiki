@@ -1486,7 +1486,7 @@
 	"mimesearch": "Поиск по MIME",
 	"mimesearch-summary": "Эта страница позволяет фильтровать файлы по их MIME-типу. Формат ввода: типсодержимого/подтип или типсодержимого/*, например <code>image/jpeg</code>.",
 	"mimetype": "MIME-тип:",
-	"download": "загрузить",
+	"download": "скачать",
 	"unwatchedpages": "Страницы, за которыми никто не следит",
 	"listredirects": "Список перенаправлений",
 	"listduplicatedfiles": "Список файлов с дубликатами",

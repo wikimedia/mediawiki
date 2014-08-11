@@ -205,7 +205,7 @@
 	"config-ns-site-name": "O mesmo que o nome da wiki: $1",
 	"config-ns-other": "Outro (especifique)",
 	"config-ns-other-default": "AMinhaWiki",
-	"config-project-namespace-help": "Seguindo o exemplo da Wikipedia, muitas wikis mantêm as páginas das suas normas e políticas, separadas das páginas de conteúdo, num \"'''espaço nominal do projeto'''\".\nTodos os nomes das páginas neste espaço nominal começam com um determinado prefixo, que pode especificar aqui.\nTradicionalmente, este prefixo deriva do nome da wiki, mas não pode conter caracteres de pontuação, como \"#\" ou \":\".",
+	"config-project-namespace-help": "Seguindo o exemplo da Wikipédia, muitas wikis mantêm as páginas das suas normas e políticas, separadas das páginas de conteúdo, num \"'''domínio do projeto'''\".\nTodos os nomes das páginas neste domínio começam com um determinado prefixo, que pode especificar aqui.\nTradicionalmente, este prefixo deriva do nome da wiki, mas não pode conter caracteres de pontuação, como \"#\" ou \":\".",
 	"config-ns-invalid": "O espaço nominal especificado \"<nowiki>$1</nowiki>\" é inválido.\nIntroduza um espaço nominal de projeto diferente.",
 	"config-ns-conflict": "O espaço nominal que especificou, \"<nowiki>$1</nowiki>\", cria um conflito com um dos espaços nominais padrão do MediaWiki.\nEspecifique um espaço nominal do projeto diferente.",
 	"config-admin-box": "Conta de administrador",
