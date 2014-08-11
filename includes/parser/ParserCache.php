@@ -95,7 +95,7 @@ class ParserCache {
 	 * @param ParserOptions $popts
 	 * @return string
 	 */
-	function getETag( $article, $popts ) {
+	public function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article,
 			$popts->optionsHash( ParserOptions::legacyOptions(), $article->getTitle() ) ) .
 				"--" . $article->getTouched() . '"';
