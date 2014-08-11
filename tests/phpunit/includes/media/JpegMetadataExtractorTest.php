@@ -23,7 +23,7 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 	 * We also use this test to test padding bytes don't
 	 * screw stuff up
 	 *
-	 * @param string $file filename
+	 * @param string $file Filename
 	 *
 	 * @dataProvider provideUtf8Comment
 	 */
