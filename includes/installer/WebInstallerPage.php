@@ -187,7 +187,7 @@ abstract class WebInstallerPage {
 	protected function startLiveBox() {
 		$this->addHTML(
 			'<div id="config-spinner" style="display:none;">' .
-			'<img src="../skins/common/images/ajax-loader.gif" /></div>' .
+			'<img src="images/ajax-loader.gif" /></div>' .
 			'<script>jQuery( "#config-spinner" ).show();</script>' .
 			'<div id="config-live-log">' .
 			'<textarea name="LiveLog" rows="10" cols="30" readonly="readonly">'
@@ -1176,7 +1176,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			'config_wgRightsIcon' => '[license_button]',
 		) );
 		$styleUrl = $server . dirname( dirname( $this->parent->getUrl() ) ) .
-			'/skins/common/config-cc.css';
+			'/mw-config/config-cc.css';
 		$iframeUrl = 'http://creativecommons.org/license/?' .
 			wfArrayToCgi( array(
 				'partner' => 'MediaWiki',
