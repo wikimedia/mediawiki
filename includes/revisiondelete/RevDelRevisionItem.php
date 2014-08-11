@@ -24,7 +24,7 @@
  */
 class RevDelRevisionItem extends RevDelItem {
 	/** @var Revision */
-	var $revision;
+	public $revision;
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );

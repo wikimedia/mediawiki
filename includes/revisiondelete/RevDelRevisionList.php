@@ -30,7 +30,7 @@
  */
 class RevDelRevisionList extends RevDelList {
 	/** @var int */
-	var $currentRevId;
+	public $currentRevId;
 
 	public function getType() {
 		return 'revision';
