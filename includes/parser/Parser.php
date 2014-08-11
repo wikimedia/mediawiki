@@ -120,61 +120,61 @@ class Parser {
 	const TOC_END = '</mw:toc>';
 
 	# Persistent:
-	var $mTagHooks = array();
-	var $mTransparentTagHooks = array();
-	var $mFunctionHooks = array();
-	var $mFunctionSynonyms = array( 0 => array(), 1 => array() );
-	var $mFunctionTagHooks = array();
-	var $mStripList = array();
-	var $mDefaultStripList = array();
-	var $mVarCache = array();
-	var $mImageParams = array();
-	var $mImageParamsMagicArray = array();
-	var $mMarkerIndex = 0;
-	var $mFirstCall = true;
+	public $mTagHooks = array();
+	public $mTransparentTagHooks = array();
+	public $mFunctionHooks = array();
+	public $mFunctionSynonyms = array( 0 => array(), 1 => array() );
+	public $mFunctionTagHooks = array();
+	public $mStripList = array();
+	public $mDefaultStripList = array();
+	public $mVarCache = array();
+	public $mImageParams = array();
+	public $mImageParamsMagicArray = array();
+	public $mMarkerIndex = 0;
+	public $mFirstCall = true;
 
 	# Initialised by initialiseVariables()
 
 	/**
 	 * @var MagicWordArray
 	 */
-	var $mVariables;
+	public $mVariables;
 
 	/**
 	 * @var MagicWordArray
 	 */
-	var $mSubstWords;
-	var $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols; # Initialised in constructor
+	public $mSubstWords;
+	public $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols; # Initialised in constructor
 
 	# Cleared with clearState():
 	/**
 	 * @var ParserOutput
 	 */
-	var $mOutput;
-	var $mAutonumber, $mDTopen;
+	public $mOutput;
+	public $mAutonumber, $mDTopen;
 
 	/**
 	 * @var StripState
 	 */
-	var $mStripState;
+	public $mStripState;
 
-	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
+	public $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 	/**
 	 * @var LinkHolderArray
 	 */
-	var $mLinkHolders;
+	public $mLinkHolders;
 
-	var $mLinkID;
-	var $mIncludeSizes, $mPPNodeCount, $mGeneratedPPNodeCount, $mHighestExpansionDepth;
-	var $mDefaultSort;
-	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
-	var $mExpensiveFunctionCount; # number of expensive parser function calls
-	var $mShowToc, $mForceTocPosition;
+	public $mLinkID;
+	public $mIncludeSizes, $mPPNodeCount, $mGeneratedPPNodeCount, $mHighestExpansionDepth;
+	public $mDefaultSort;
+	public $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
+	public $mExpensiveFunctionCount; # number of expensive parser function calls
+	public $mShowToc, $mForceTocPosition;
 
 	/**
 	 * @var User
 	 */
-	var $mUser; # User object; only used when doing pre-save transform
+	public $mUser; # User object; only used when doing pre-save transform
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
@@ -182,33 +182,33 @@ class Parser {
 	/**
 	 * @var ParserOptions
 	 */
-	var $mOptions;
+	public $mOptions;
 
 	/**
 	 * @var Title
 	 */
-	var $mTitle;        # Title context, used for self-link rendering and similar things
-	var $mOutputType;   # Output type, one of the OT_xxx constants
-	var $ot;            # Shortcut alias, see setOutputType()
-	var $mRevisionObject; # The revision object of the specified revision ID
-	var $mRevisionId;   # ID to display in {{REVISIONID}} tags
-	var $mRevisionTimestamp; # The timestamp of the specified revision ID
-	var $mRevisionUser; # User to display in {{REVISIONUSER}} tag
-	var $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
-	var $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
-	var $mInputSize = false; # For {{PAGESIZE}} on current page.
+	public $mTitle;        # Title context, used for self-link rendering and similar things
+	public $mOutputType;   # Output type, one of the OT_xxx constants
+	public $ot;            # Shortcut alias, see setOutputType()
+	public $mRevisionObject; # The revision object of the specified revision ID
+	public $mRevisionId;   # ID to display in {{REVISIONID}} tags
+	public $mRevisionTimestamp; # The timestamp of the specified revision ID
+	public $mRevisionUser; # User to display in {{REVISIONUSER}} tag
+	public $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
+	public $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
+	public $mInputSize = false; # For {{PAGESIZE}} on current page.
 
 	/**
 	 * @var string
 	 */
-	var $mUniqPrefix;
+	public $mUniqPrefix;
 
 	/**
 	 * @var array Array with the language name of each language link (i.e. the
 	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending
 	 * duplicate language links to the ParserOutput.
 	 */
-	var $mLangLinkLanguages;
+	public $mLangLinkLanguages;
 
 	/**
 	 * @var bool Recursive call protection.
@@ -244,7 +244,7 @@ class Parser {
 	/**
 	 * Reduce memory usage to reduce the impact of circular references
 	 */
-	function __destruct() {
+	public function __destruct() {
 		if ( isset( $this->mLinkHolders ) ) {
 			unset( $this->mLinkHolders );
 		}
@@ -256,7 +256,7 @@ class Parser {
 	/**
 	 * Allow extensions to clean up when the parser is cloned
 	 */
-	function __clone() {
+	public function __clone() {
 		$this->mInParse = false;
 		wfRunHooks( 'ParserCloned', array( $this ) );
 	}
@@ -264,7 +264,7 @@ class Parser {
 	/**
 	 * Do various kinds of initialisation on the first call of the parser
 	 */
-	function firstCallInit() {
+	public function firstCallInit() {
 		if ( !$this->mFirstCall ) {
 			return;
 		}
@@ -285,7 +285,7 @@ class Parser {
 	 *
 	 * @private
 	 */
-	function clearState() {
+	public function clearState() {
 		wfProfileIn( __METHOD__ );
 		if ( $this->mFirstCall ) {
 			$this->firstCallInit();
@@ -605,7 +605,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function recursiveTagParse( $text, $frame = false ) {
+	public function recursiveTagParse( $text, $frame = false ) {
 		wfProfileIn( __METHOD__ );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
@@ -625,7 +625,7 @@ class Parser {
 	 * @param bool|PPFrame $frame
 	 * @return mixed|string
 	 */
-	function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null, $frame = false ) {
+	public function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null, $frame = false ) {
 		wfProfileIn( __METHOD__ );
 		$magicScopeVariable = $this->lock();
 		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
@@ -700,7 +700,7 @@ class Parser {
 	 *
 	 * @param User|null $user User object or null (to reset)
 	 */
-	function setUser( $user ) {
+	public function setUser( $user ) {
 		$this->mUser = $user;
 	}
 
@@ -727,7 +727,7 @@ class Parser {
 	 *
 	 * @param Title $t
 	 */
-	function setTitle( $t ) {
+	public function setTitle( $t ) {
 		if ( !$t ) {
 			$t = Title::newFromText( 'NO TITLE' );
 		}
@@ -746,7 +746,7 @@ class Parser {
 	 *
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mTitle;
 	}
 
@@ -756,7 +756,7 @@ class Parser {
 	 * @param Title $x Title object or null to just get the current one
 	 * @return Title
 	 */
-	function Title( $x = null ) {
+	public function Title( $x = null ) {
 		return wfSetVar( $this->mTitle, $x );
 	}
 
@@ -765,7 +765,7 @@ class Parser {
 	 *
 	 * @param int $ot New value
 	 */
-	function setOutputType( $ot ) {
+	public function setOutputType( $ot ) {
 		$this->mOutputType = $ot;
 		# Shortcut alias
 		$this->ot = array(
@@ -782,7 +782,7 @@ class Parser {
 	 * @param int|null $x New value or null to just get the current one
 	 * @return int
 	 */
-	function OutputType( $x = null ) {
+	public function OutputType( $x = null ) {
 		return wfSetVar( $this->mOutputType, $x );
 	}
 
@@ -791,7 +791,7 @@ class Parser {
 	 *
 	 * @return ParserOutput
 	 */
-	function getOutput() {
+	public function getOutput() {
 		return $this->mOutput;
 	}
 
@@ -800,7 +800,7 @@ class Parser {
 	 *
 	 * @return ParserOptions
 	 */
-	function getOptions() {
+	public function getOptions() {
 		return $this->mOptions;
 	}
 
@@ -810,21 +810,21 @@ class Parser {
 	 * @param ParserOptions $x New value or null to just get the current one
 	 * @return ParserOptions Current ParserOptions object
 	 */
-	function Options( $x = null ) {
+	public function Options( $x = null ) {
 		return wfSetVar( $this->mOptions, $x );
 	}
 
 	/**
 	 * @return int
 	 */
-	function nextLinkID() {
+	public function nextLinkID() {
 		return $this->mLinkID++;
 	}
 
 	/**
 	 * @param int $id
 	 */
-	function setLinkID( $id ) {
+	public function setLinkID( $id ) {
 		$this->mLinkID = $id;
 	}
 
@@ -832,7 +832,7 @@ class Parser {
 	 * Get a language object for use in parser functions such as {{FORMATNUM:}}
 	 * @return Language
 	 */
-	function getFunctionLang() {
+	public function getFunctionLang() {
 		return $this->getTargetLanguage();
 	}
 
@@ -863,7 +863,7 @@ class Parser {
 	 * Get the language object for language conversion
 	 * @return Language|null
 	 */
-	function getConverterLanguage() {
+	public function getConverterLanguage() {
 		return $this->getTargetLanguage();
 	}
 
@@ -873,7 +873,7 @@ class Parser {
 	 *
 	 * @return User
 	 */
-	function getUser() {
+	public function getUser() {
 		if ( !is_null( $this->mUser ) ) {
 			return $this->mUser;
 		}
@@ -885,7 +885,7 @@ class Parser {
 	 *
 	 * @return Preprocessor
 	 */
-	function getPreprocessor() {
+	public function getPreprocessor() {
 		if ( !isset( $this->mPreprocessor ) ) {
 			$class = $this->mPreprocessorClass;
 			$this->mPreprocessor = new $class( $this );
@@ -980,7 +980,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	function getStripList() {
+	public function getStripList() {
 		return $this->mStripList;
 	}
 
@@ -993,7 +993,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function insertStripItem( $text ) {
+	public function insertStripItem( $text ) {
 		$rnd = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
 		$this->mMarkerIndex++;
 		$this->mStripState->addGeneral( $rnd, $text );
@@ -1007,7 +1007,7 @@ class Parser {
 	 * @param string $text
 	 * @return string
 	 */
-	function doTableStuff( $text ) {
+	public function doTableStuff( $text ) {
 		wfProfileIn( __METHOD__ );
 
 		$lines = StringUtils::explode( "\n", $text );
@@ -1212,7 +1212,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function internalParse( $text, $isMain = true, $frame = false ) {
+	public function internalParse( $text, $isMain = true, $frame = false ) {
 		wfProfileIn( __METHOD__ );
 
 		$origText = $text;
@@ -1285,7 +1285,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function doMagicLinks( $text ) {
+	public function doMagicLinks( $text ) {
 		wfProfileIn( __METHOD__ );
 		$prots = wfUrlProtocolsWithoutProtRel();
 		$urlChar = self::EXT_LINK_URL_CLASS;
@@ -1310,7 +1310,7 @@ class Parser {
 	 * @param array $m
 	 * @return HTML|string
 	 */
-	function magicLinkCallback( $m ) {
+	public function magicLinkCallback( $m ) {
 		if ( isset( $m[1] ) && $m[1] !== '' ) {
 			# Skip anchor
 			return $m[0];
@@ -1363,7 +1363,7 @@ class Parser {
 	 * @return string HTML
 	 * @private
 	 */
-	function makeFreeExternalLink( $url ) {
+	public function makeFreeExternalLink( $url ) {
 		wfProfileIn( __METHOD__ );
 
 		$trail = '';
@@ -1418,7 +1418,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function doHeadings( $text ) {
+	public function doHeadings( $text ) {
 		wfProfileIn( __METHOD__ );
 		for ( $i = 6; $i >= 1; --$i ) {
 			$h = str_repeat( '=', $i );
@@ -1436,7 +1436,7 @@ class Parser {
 	 *
 	 * @return string The altered text
 	 */
-	function doAllQuotes( $text ) {
+	public function doAllQuotes( $text ) {
 		wfProfileIn( __METHOD__ );
 		$outtext = '';
 		$lines = StringUtils::explode( "\n", $text );
@@ -1645,7 +1645,7 @@ class Parser {
 	 * @throws MWException
 	 * @return string
 	 */
-	function replaceExternalLinks( $text ) {
+	public function replaceExternalLinks( $text ) {
 		wfProfileIn( __METHOD__ );
 
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
@@ -1748,7 +1748,7 @@ class Parser {
 	 *   nofollow if appropriate
 	 * @return array Associative array of HTML attributes
 	 */
-	function getExternalLinkAttribs( $url = false ) {
+	public function getExternalLinkAttribs( $url = false ) {
 		$attribs = array();
 		$attribs['rel'] = self::getExternalLinkRel( $url, $this->mTitle );
 
@@ -1769,7 +1769,7 @@ class Parser {
 	 *       the URL differently; as a workaround, just use the output for
 	 *       statistical records, not for actual linking/output.
 	 */
-	static function replaceUnusualEscapes( $url ) {
+	public static function replaceUnusualEscapes( $url ) {
 		return preg_replace_callback( '/%[0-9A-Fa-f]{2}/',
 			array( __CLASS__, 'replaceUnusualEscapesCallback' ), $url );
 	}
@@ -1862,7 +1862,7 @@ class Parser {
 	 *
 	 * @private
 	 */
-	function replaceInternalLinks( $s ) {
+	public function replaceInternalLinks( $s ) {
 		$this->mLinkHolders->merge( $this->replaceInternalLinks2( $s ) );
 		return $s;
 	}
@@ -1875,7 +1875,7 @@ class Parser {
 	 *
 	 * @private
 	 */
-	function replaceInternalLinks2( &$s ) {
+	public function replaceInternalLinks2( &$s ) {
 		global $wgExtraInterlanguageLinkPrefixes;
 		wfProfileIn( __METHOD__ );
 
@@ -2227,7 +2227,7 @@ class Parser {
 	 * @param string $prefix
 	 * @return string HTML-wikitext mix oh yuck
 	 */
-	function makeKnownLinkHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = '' ) {
+	public function makeKnownLinkHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 
 		if ( is_string( $query ) ) {
@@ -2252,7 +2252,7 @@ class Parser {
 	 * @param string $text More-or-less HTML
 	 * @return string Less-or-more HTML with NOPARSE bits
 	 */
-	function armorLinks( $text ) {
+	public function armorLinks( $text ) {
 		return preg_replace( '/\b((?i)' . $this->mUrlProtocols . ')/',
 			"{$this->mUniqPrefix}NOPARSE$1", $text );
 	}
@@ -2261,7 +2261,7 @@ class Parser {
 	 * Return true if subpage links should be expanded on this page.
 	 * @return bool
 	 */
-	function areSubpagesAllowed() {
+	public function areSubpagesAllowed() {
 		# Some namespaces don't allow subpages
 		return MWNamespace::hasSubpages( $this->mTitle->getNamespace() );
 	}
@@ -2274,7 +2274,7 @@ class Parser {
 	 * @return string The full name of the link
 	 * @private
 	 */
-	function maybeDoSubpageLink( $target, &$text ) {
+	public function maybeDoSubpageLink( $target, &$text ) {
 		return Linker::normalizeSubpageLink( $this->mTitle, $target, $text );
 	}
 
@@ -2284,7 +2284,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function closeParagraph() {
+	public function closeParagraph() {
 		$result = '';
 		if ( $this->mLastSection != '' ) {
 			$result = '</' . $this->mLastSection . ">\n";
@@ -2304,7 +2304,7 @@ class Parser {
 	 *
 	 * @return int
 	 */
-	function getCommon( $st1, $st2 ) {
+	public function getCommon( $st1, $st2 ) {
 		$fl = strlen( $st1 );
 		$shorter = strlen( $st2 );
 		if ( $fl < $shorter ) {
@@ -2328,7 +2328,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function openList( $char ) {
+	public function openList( $char ) {
 		$result = $this->closeParagraph();
 
 		if ( '*' === $char ) {
@@ -2354,7 +2354,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function nextItem( $char ) {
+	public function nextItem( $char ) {
 		if ( '*' === $char || '#' === $char ) {
 			return "</li>\n<li>";
 		} elseif ( ':' === $char || ';' === $char ) {
@@ -2380,7 +2380,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function closeList( $char ) {
+	public function closeList( $char ) {
 		if ( '*' === $char ) {
 			$text = "</li></ul>";
 		} elseif ( '#' === $char ) {
@@ -2407,7 +2407,7 @@ class Parser {
 	 * @private
 	 * @return string The lists rendered as HTML
 	 */
-	function doBlockLevels( $text, $linestart ) {
+	public function doBlockLevels( $text, $linestart ) {
 		wfProfileIn( __METHOD__ );
 
 		# Parsing through the text line by line.  The main thing
@@ -2625,7 +2625,7 @@ class Parser {
 	 * @throws MWException
 	 * @return string The position of the ':', or false if none found
 	 */
-	function findColonNoLinks( $str, &$before, &$after ) {
+	public function findColonNoLinks( $str, &$before, &$after ) {
 		wfProfileIn( __METHOD__ );
 
 		$pos = strpos( $str, ':' );
@@ -2793,7 +2793,7 @@ class Parser {
 	 * @throws MWException
 	 * @return string
 	 */
-	function getVariableValue( $index, $frame = false ) {
+	public function getVariableValue( $index, $frame = false ) {
 		global $wgContLang, $wgSitename, $wgServer, $wgServerName;
 		global $wgArticlePath, $wgScriptPath, $wgStylePath;
 
@@ -3149,7 +3149,7 @@ class Parser {
 	 *
 	 * @private
 	 */
-	function initialiseVariables() {
+	public function initialiseVariables() {
 		wfProfileIn( __METHOD__ );
 		$variableIDs = MagicWord::getVariableIDs();
 		$substIDs = MagicWord::getSubstIDs();
@@ -3181,7 +3181,7 @@ class Parser {
 	 *
 	 * @return PPNode
 	 */
-	function preprocessToDom( $text, $flags = 0 ) {
+	public function preprocessToDom( $text, $flags = 0 ) {
 		$dom = $this->getPreprocessor()->preprocessToObj( $text, $flags );
 		return $dom;
 	}
@@ -3256,7 +3256,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	static function createAssocArgs( $args ) {
+	public static function createAssocArgs( $args ) {
 		$assocArgs = array();
 		$index = 1;
 		foreach ( $args as $arg ) {
@@ -3302,7 +3302,7 @@ class Parser {
 	 * @param string|int|null $max Maximum allowed, when an explicit limit has been
 	 *	 exceeded, provide the values (optional)
 	 */
-	function limitationWarn( $limitationType, $current = '', $max = '' ) {
+	public function limitationWarn( $limitationType, $current = '', $max = '' ) {
 		# does no harm if $current and $max are present but are unnecessary for the message
 		$warning = wfMessage( "$limitationType-warning" )->numParams( $current, $max )
 			->inLanguage( $this->mOptions->getUserLangObj() )->text();
@@ -3762,7 +3762,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	function getTemplateDom( $title ) {
+	public function getTemplateDom( $title ) {
 		$cacheTitle = $title;
 		$titleText = $title->getPrefixedDBkey();
 
@@ -3799,7 +3799,7 @@ class Parser {
 	 * @param Title $title
 	 * @return array ( string or false, Title )
 	 */
-	function fetchTemplateAndTitle( $title ) {
+	public function fetchTemplateAndTitle( $title ) {
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
@@ -3823,7 +3823,7 @@ class Parser {
 	 * @param Title $title
 	 * @return string|bool
 	 */
-	function fetchTemplate( $title ) {
+	public function fetchTemplate( $title ) {
 		$rv = $this->fetchTemplateAndTitle( $title );
 		return $rv[0];
 	}
@@ -3837,7 +3837,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	static function statelessFetchTemplate( $title, $parser = false ) {
+	public static function statelessFetchTemplate( $title, $parser = false ) {
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = array();
@@ -3921,7 +3921,7 @@ class Parser {
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return File|bool
 	 */
-	function fetchFile( $title, $options = array() ) {
+	public function fetchFile( $title, $options = array() ) {
 		$res = $this->fetchFileAndTitle( $title, $options );
 		return $res[0];
 	}
@@ -3933,7 +3933,7 @@ class Parser {
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return array ( File or false, Title of file )
 	 */
-	function fetchFileAndTitle( $title, $options = array() ) {
+	public function fetchFileAndTitle( $title, $options = array() ) {
 		$file = $this->fetchFileNoRegister( $title, $options );
 
 		$time = $file ? $file->getTimestamp() : false;
@@ -3977,7 +3977,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function interwikiTransclude( $title, $action ) {
+	public function interwikiTransclude( $title, $action ) {
 		global $wgEnableScaryTranscluding;
 
 		if ( !$wgEnableScaryTranscluding ) {
@@ -3996,7 +3996,7 @@ class Parser {
 	 * @param string $url
 	 * @return mixed|string
 	 */
-	function fetchScaryTemplateMaybeFromCache( $url ) {
+	public function fetchScaryTemplateMaybeFromCache( $url ) {
 		global $wgTranscludeCacheExpiry;
 		$dbr = wfGetDB( DB_SLAVE );
 		$tsCond = $dbr->timestamp( time() - $wgTranscludeCacheExpiry );
@@ -4036,7 +4036,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	function argSubstitution( $piece, $frame ) {
+	public function argSubstitution( $piece, $frame ) {
 		wfProfileIn( __METHOD__ );
 
 		$error = false;
@@ -4091,7 +4091,7 @@ class Parser {
 	 * @throws MWException
 	 * @return string
 	 */
-	function extensionSubstitution( $params, $frame ) {
+	public function extensionSubstitution( $params, $frame ) {
 		$name = $frame->expand( $params['name'] );
 		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
@@ -4175,7 +4175,7 @@ class Parser {
 	 * @param int $size The size of the text
 	 * @return bool False if this inclusion would take it over the maximum, true otherwise
 	 */
-	function incrementIncludeSize( $type, $size ) {
+	public function incrementIncludeSize( $type, $size ) {
 		if ( $this->mIncludeSizes[$type] + $size > $this->mOptions->getMaxIncludeSize() ) {
 			return false;
 		} else {
@@ -4189,7 +4189,7 @@ class Parser {
 	 *
 	 * @return bool False if the limit has been exceeded
 	 */
-	function incrementExpensiveFunctionCount() {
+	public function incrementExpensiveFunctionCount() {
 		$this->mExpensiveFunctionCount++;
 		return $this->mExpensiveFunctionCount <= $this->mOptions->getExpensiveParserFunctionLimit();
 	}
@@ -4202,7 +4202,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function doDoubleUnderscore( $text ) {
+	public function doDoubleUnderscore( $text ) {
 		wfProfileIn( __METHOD__ );
 
 		# The position of __TOC__ needs to be recorded
@@ -4308,7 +4308,7 @@ class Parser {
 	 * @return mixed|string
 	 * @private
 	 */
-	function formatHeadings( $text, $origText, $isMain = true ) {
+	public function formatHeadings( $text, $origText, $isMain = true ) {
 		global $wgMaxTocLevel, $wgExperimentalHtmlIds;
 
 		# Inhibit editsection links if requested in the page
@@ -4828,7 +4828,7 @@ class Parser {
 	 *    or null to use default value
 	 * @return string
 	 */
-	function getUserSig( &$user, $nickname = false, $fancySig = null ) {
+	public function getUserSig( &$user, $nickname = false, $fancySig = null ) {
 		global $wgMaxSigChars;
 
 		$username = $user->getName();
@@ -4877,7 +4877,7 @@ class Parser {
 	 * @param string $text
 	 * @return string|bool An expanded string, or false if invalid.
 	 */
-	function validateSig( $text ) {
+	public function validateSig( $text ) {
 		return Xml::isWellFormedXmlFragment( $text ) ? $text : false;
 	}
 
@@ -5050,7 +5050,7 @@ class Parser {
 	 * @throws MWException
 	 * @return callable|null The old value of the mTagHooks array associated with the hook
 	 */
-	function setTransparentTagHook( $tag, $callback ) {
+	public function setTransparentTagHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
 			throw new MWException( "Invalid character {$m[0]} in setTransparentHook('$tag', ...) call" );
@@ -5064,7 +5064,7 @@ class Parser {
 	/**
 	 * Remove all tag hooks
 	 */
-	function clearTagHooks() {
+	public function clearTagHooks() {
 		$this->mTagHooks = array();
 		$this->mFunctionTagHooks = array();
 		$this->mStripList = $this->mDefaultStripList;
@@ -5151,7 +5151,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	function getFunctionHooks() {
+	public function getFunctionHooks() {
 		return array_keys( $this->mFunctionHooks );
 	}
 
@@ -5165,7 +5165,7 @@ class Parser {
 	 * @throws MWException
 	 * @return null
 	 */
-	function setFunctionTagHook( $tag, $callback, $flags ) {
+	public function setFunctionTagHook( $tag, $callback, $flags ) {
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
 			throw new MWException( "Invalid character {$m[0]} in setFunctionTagHook('$tag', ...) call" );
@@ -5191,7 +5191,7 @@ class Parser {
 	 *
 	 * @return array Array of link CSS classes, indexed by PDBK.
 	 */
-	function replaceLinkHolders( &$text, $options = 0 ) {
+	public function replaceLinkHolders( &$text, $options = 0 ) {
 		return $this->mLinkHolders->replace( $text );
 	}
 
@@ -5202,7 +5202,7 @@ class Parser {
 	 * @param string $text
 	 * @return string
 	 */
-	function replaceLinkHoldersText( $text ) {
+	public function replaceLinkHoldersText( $text ) {
 		return $this->mLinkHolders->replaceText( $text );
 	}
 
@@ -5219,7 +5219,7 @@ class Parser {
 	 * @param array $params
 	 * @return string HTML
 	 */
-	function renderImageGallery( $text, $params ) {
+	public function renderImageGallery( $text, $params ) {
 		wfProfileIn( __METHOD__ );
 
 		$mode = false;
@@ -5380,7 +5380,7 @@ class Parser {
 	 * @param string $handler
 	 * @return array
 	 */
-	function getImageParams( $handler ) {
+	public function getImageParams( $handler ) {
 		if ( $handler ) {
 			$handlerClass = get_class( $handler );
 		} else {
@@ -5388,14 +5388,14 @@ class Parser {
 		}
 		if ( !isset( $this->mImageParams[$handlerClass] ) ) {
 			# Initialise static lists
-			static $internalParamNames = array(
+			public static $internalParamNames = array(
 				'horizAlign' => array( 'left', 'right', 'center', 'none' ),
 				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
 				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
 					'upright', 'border', 'link', 'alt', 'class' ),
 			);
-			static $internalParamMap;
+			public static $internalParamMap;
 			if ( !$internalParamMap ) {
 				$internalParamMap = array();
 				foreach ( $internalParamNames as $type => $names ) {
@@ -5428,7 +5428,7 @@ class Parser {
 	 * @param LinkHolderArray|bool $holders
 	 * @return string HTML
 	 */
-	function makeImage( $title, $options, $holders = false ) {
+	public function makeImage( $title, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail  make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -5667,7 +5667,7 @@ class Parser {
 	 * Set a flag in the output object indicating that the content is dynamic and
 	 * shouldn't be cached.
 	 */
-	function disableCache() {
+	public function disableCache() {
 		wfDebug( "Parser output marked as uncacheable.\n" );
 		if ( !$this->mOutput ) {
 			throw new MWException( __METHOD__ .
@@ -5685,7 +5685,7 @@ class Parser {
 	 * @param bool|PPFrame $frame
 	 * @return string
 	 */
-	function attributeStripCallback( &$text, $frame = false ) {
+	public function attributeStripCallback( &$text, $frame = false ) {
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		return $text;
@@ -5696,7 +5696,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	function getTags() {
+	public function getTags() {
 		return array_merge(
 			array_keys( $this->mTransparentTagHooks ),
 			array_keys( $this->mTagHooks ),
@@ -5714,7 +5714,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function replaceTransparentTags( $text ) {
+	public function replaceTransparentTags( $text ) {
 		$matches = array();
 		$elements = array_keys( $this->mTransparentTagHooks );
 		$text = self::extractTagsAndParams( $elements, $text, $matches, $this->mUniqPrefix );
@@ -5915,7 +5915,7 @@ class Parser {
 	 *
 	 * @return int|null
 	 */
-	function getRevisionId() {
+	public function getRevisionId() {
 		return $this->mRevisionId;
 	}
 
@@ -5942,7 +5942,7 @@ class Parser {
 	 * the default server-local timestamp
 	 * @return string
 	 */
-	function getRevisionTimestamp() {
+	public function getRevisionTimestamp() {
 		if ( is_null( $this->mRevisionTimestamp ) ) {
 			wfProfileIn( __METHOD__ );
 
@@ -5969,7 +5969,7 @@ class Parser {
 	 *
 	 * @return string User name
 	 */
-	function getRevisionUser() {
+	public function getRevisionUser() {
 		if ( is_null( $this->mRevisionUser ) ) {
 			$revObject = $this->getRevisionObject();
 
@@ -5989,7 +5989,7 @@ class Parser {
 	 *
 	 * @return int|null Revision size
 	 */
-	function getRevisionSize() {
+	public function getRevisionSize() {
 		if ( is_null( $this->mRevisionSize ) ) {
 			$revObject = $this->getRevisionObject();
 
@@ -6117,7 +6117,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function testSrvus( $text, Title $title, ParserOptions $options, $outputType = self::OT_HTML ) {
+	public function testSrvus( $text, Title $title, ParserOptions $options, $outputType = self::OT_HTML ) {
 		$magicScopeVariable = $this->lock();
 		$this->startParse( $title, $options, $outputType, true );
 
@@ -6133,7 +6133,7 @@ class Parser {
 	 * @param ParserOptions $options
 	 * @return string
 	 */
-	function testPst( $text, Title $title, ParserOptions $options ) {
+	public function testPst( $text, Title $title, ParserOptions $options ) {
 		return $this->preSaveTransform( $text, $title, $options->getUser(), $options );
 	}
 
@@ -6143,7 +6143,7 @@ class Parser {
 	 * @param ParserOptions $options
 	 * @return string
 	 */
-	function testPreprocess( $text, Title $title, ParserOptions $options ) {
+	public function testPreprocess( $text, Title $title, ParserOptions $options ) {
 		return $this->testSrvus( $text, $title, $options, self::OT_PREPROCESS );
 	}
 
@@ -6163,7 +6163,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	function markerSkipCallback( $s, $callback ) {
+	public function markerSkipCallback( $s, $callback ) {
 		$i = 0;
 		$out = '';
 		while ( $i < strlen( $s ) ) {
@@ -6193,7 +6193,7 @@ class Parser {
 	 * @param string $text Input string
 	 * @return string
 	 */
-	function killMarkers( $text ) {
+	public function killMarkers( $text ) {
 		return $this->mStripState->killMarkers( $text );
 	}
 
@@ -6213,7 +6213,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	function serializeHalfParsedText( $text ) {
+	public function serializeHalfParsedText( $text ) {
 		wfProfileIn( __METHOD__ );
 		$data = array(
 			'text' => $text,
@@ -6240,7 +6240,7 @@ class Parser {
 	 * @throws MWException
 	 * @return string
 	 */
-	function unserializeHalfParsedText( $data ) {
+	public function unserializeHalfParsedText( $data ) {
 		if ( !isset( $data['version'] ) || $data['version'] != self::HALF_PARSED_VERSION ) {
 			throw new MWException( __METHOD__ . ': invalid version' );
 		}
@@ -6265,7 +6265,7 @@ class Parser {
 	 *
 	 * @return bool
 	 */
-	function isValidHalfParsedText( $data ) {
+	public function isValidHalfParsedText( $data ) {
 		return isset( $data['version'] ) && $data['version'] == self::HALF_PARSED_VERSION;
 	}
 
