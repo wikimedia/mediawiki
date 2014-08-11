@@ -34,7 +34,7 @@ class ParserCache {
 	 * @return ParserCache
 	 */
 	public static function singleton() {
-		static $instance;
+		public static $instance;
 		if ( !isset( $instance ) ) {
 			global $parserMemc;
 			$instance = new ParserCache( $parserMemc );
@@ -95,7 +95,7 @@ class ParserCache {
 	 * @param ParserOptions $popts
 	 * @return string
 	 */
-	function getETag( $article, $popts ) {
+	public function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article,
 			$popts->optionsHash( ParserOptions::legacyOptions(), $article->getTitle() ) ) .
 				"--" . $article->getTouched() . '"';

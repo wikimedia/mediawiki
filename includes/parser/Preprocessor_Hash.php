@@ -28,21 +28,22 @@
  * @ingroup Parser
  */
 class Preprocessor_Hash implements Preprocessor {
+
 	/**
 	 * @var Parser
 	 */
-	var $parser;
+	public $parser;
 
 	const CACHE_VERSION = 1;
 
-	function __construct( $parser ) {
+	public function __construct( $parser ) {
 		$this->parser = $parser;
 	}
 
 	/**
 	 * @return PPFrame_Hash
 	 */
-	function newFrame() {
+	public function newFrame() {
 		return new PPFrame_Hash( $this );
 	}
 
@@ -50,7 +51,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 * @param array $args
 	 * @return PPCustomFrame_Hash
 	 */
-	function newCustomFrame( $args ) {
+	public function newCustomFrame( $args ) {
 		return new PPCustomFrame_Hash( $this, $args );
 	}
 
@@ -58,7 +59,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 * @param array $values
 	 * @return PPNode_Hash_Array
 	 */
-	function newPartNodeArray( $values ) {
+	public function newPartNodeArray( $values ) {
 		$list = array();
 
 		foreach ( $values as $k => $val ) {
@@ -108,7 +109,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 * @throws MWException
 	 * @return PPNode_Hash_Tree
 	 */
-	function preprocessToObj( $text, $flags = 0 ) {
+	public function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
 
 		// Check cache.
@@ -760,7 +761,7 @@ class Preprocessor_Hash implements Preprocessor {
  * @ingroup Parser
  */
 class PPDStack_Hash extends PPDStack {
-	function __construct() {
+	public function __construct() {
 		$this->elementClass = 'PPDStackElement_Hash';
 		parent::__construct();
 		$this->rootAccum = new PPDAccum_Hash;
@@ -771,7 +772,7 @@ class PPDStack_Hash extends PPDStack {
  * @ingroup Parser
  */
 class PPDStackElement_Hash extends PPDStackElement {
-	function __construct( $data = array() ) {
+	public function __construct( $data = array() ) {
 		$this->partClass = 'PPDPart_Hash';
 		parent::__construct( $data );
 	}
@@ -782,7 +783,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 	 * @param int|bool $openingCount
 	 * @return PPDAccum_Hash
 	 */
-	function breakSyntax( $openingCount = false ) {
+	public function breakSyntax( $openingCount = false ) {
 		if ( $this->open == "\n" ) {
 			$accum = $this->parts[0]->out;
 		} else {
@@ -809,7 +810,7 @@ class PPDStackElement_Hash extends PPDStackElement {
  * @ingroup Parser
  */
 class PPDPart_Hash extends PPDPart {
-	function __construct( $out = '' ) {
+	public function __construct( $out = '' ) {
 		$accum = new PPDAccum_Hash;
 		if ( $out !== '' ) {
 			$accum->addLiteral( $out );
@@ -822,9 +823,9 @@ class PPDPart_Hash extends PPDPart {
  * @ingroup Parser
  */
 class PPDAccum_Hash {
-	var $firstNode, $lastNode;
+	public $firstNode, $lastNode;
 
-	function __construct() {
+	public function __construct() {
 		$this->firstNode = $this->lastNode = false;
 	}
 
@@ -832,7 +833,7 @@ class PPDAccum_Hash {
 	 * Append a string literal
 	 * @param string $s
 	 */
-	function addLiteral( $s ) {
+	public function addLiteral( $s ) {
 		if ( $this->lastNode === false ) {
 			$this->firstNode = $this->lastNode = new PPNode_Hash_Text( $s );
 		} elseif ( $this->lastNode instanceof PPNode_Hash_Text ) {
@@ -847,7 +848,7 @@ class PPDAccum_Hash {
 	 * Append a PPNode
 	 * @param PPNode $node
 	 */
-	function addNode( PPNode $node ) {
+	public function addNode( PPNode $node ) {
 		if ( $this->lastNode === false ) {
 			$this->firstNode = $this->lastNode = $node;
 		} else {
@@ -861,7 +862,7 @@ class PPDAccum_Hash {
 	 * @param string $name
 	 * @param string $value
 	 */
-	function addNodeWithText( $name, $value ) {
+	public function addNodeWithText( $name, $value ) {
 		$node = PPNode_Hash_Tree::newWithText( $name, $value );
 		$this->addNode( $node );
 	}
@@ -872,7 +873,7 @@ class PPDAccum_Hash {
 	 * subsequently be modified, especially nextSibling.
 	 * @param PPDAccum_Hash $accum
 	 */
-	function addAccum( $accum ) {
+	public function addAccum( $accum ) {
 		if ( $accum->lastNode === false ) {
 			// nothing to add
 		} elseif ( $this->lastNode === false ) {
@@ -894,30 +895,30 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * @var Parser
 	 */
-	var $parser;
+	public $parser;
 
 	/**
 	 * @var Preprocessor
 	 */
-	var $preprocessor;
+	public $preprocessor;
 
 	/**
 	 * @var Title
 	 */
-	var $title;
-	var $titleCache;
+	public $title;
+	public $titleCache;
 
 	/**
 	 * Hashtable listing templates which are disallowed for expansion in this frame,
 	 * having been encountered previously in parent frames.
 	 */
-	var $loopCheckHash;
+	public $loopCheckHash;
 
 	/**
 	 * Recursion depth of this frame, top = 0
 	 * Note that this is NOT the same as expansion depth in expand()
 	 */
-	var $depth;
+	public $depth;
 
 	private $volatile = false;
 	private $ttl = null;
@@ -931,7 +932,7 @@ class PPFrame_Hash implements PPFrame {
 	 * Construct a new preprocessor frame.
 	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
-	function __construct( $preprocessor ) {
+	public function __construct( $preprocessor ) {
 		$this->preprocessor = $preprocessor;
 		$this->parser = $preprocessor->parser;
 		$this->title = $this->parser->mTitle;
@@ -951,7 +952,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @throws MWException
 	 * @return PPTemplateFrame_Hash
 	 */
-	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
+	public function newChild( $args = false, $title = false, $indexOffset = 0 ) {
 		$namedArgs = array();
 		$numberedArgs = array();
 		if ( $title === false ) {
@@ -988,7 +989,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @param int $flags
 	 * @return string
 	 */
-	function cachedExpand( $key, $root, $flags = 0 ) {
+	public function cachedExpand( $key, $root, $flags = 0 ) {
 		// we don't have a parent, so we don't have a cache
 		return $this->expand( $root, $flags );
 	}
@@ -999,8 +1000,8 @@ class PPFrame_Hash implements PPFrame {
 	 * @param int $flags
 	 * @return string
 	 */
-	function expand( $root, $flags = 0 ) {
-		static $expansionDepth = 0;
+	public function expand( $root, $flags = 0 ) {
+		public static $expansionDepth = 0;
 		if ( is_string( $root ) ) {
 			return $root;
 		}
@@ -1209,7 +1210,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @param int $flags
 	 * @return string
 	 */
-	function implodeWithFlags( $sep, $flags /*, ... */ ) {
+	public function implodeWithFlags( $sep, $flags /*, ... */ ) {
 		$args = array_slice( func_get_args(), 2 );
 
 		$first = true;
@@ -1239,7 +1240,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @param string $sep
 	 * @return string
 	 */
-	function implode( $sep /*, ... */ ) {
+	public function implode( $sep /*, ... */ ) {
 		$args = array_slice( func_get_args(), 1 );
 
 		$first = true;
@@ -1270,7 +1271,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @param string $sep
 	 * @return PPNode_Hash_Array
 	 */
-	function virtualImplode( $sep /*, ... */ ) {
+	public function virtualImplode( $sep /*, ... */ ) {
 		$args = array_slice( func_get_args(), 1 );
 		$out = array();
 		$first = true;
@@ -1302,7 +1303,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @param string $end
 	 * @return PPNode_Hash_Array
 	 */
-	function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
+	public function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
 		$args = array_slice( func_get_args(), 3 );
 		$out = array( $start );
 		$first = true;
@@ -1327,7 +1328,7 @@ class PPFrame_Hash implements PPFrame {
 		return new PPNode_Hash_Array( $out );
 	}
 
-	function __toString() {
+	public function __toString() {
 		return 'frame{}';
 	}
 
@@ -1335,7 +1336,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @param bool $level
 	 * @return array|bool|string
 	 */
-	function getPDBK( $level = false ) {
+	public function getPDBK( $level = false ) {
 		if ( $level === false ) {
 			return $this->title->getPrefixedDBkey();
 		} else {
@@ -1346,21 +1347,21 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * @return array
 	 */
-	function getArguments() {
+	public function getArguments() {
 		return array();
 	}
 
 	/**
 	 * @return array
 	 */
-	function getNumberedArguments() {
+	public function getNumberedArguments() {
 		return array();
 	}
 
 	/**
 	 * @return array
 	 */
-	function getNamedArguments() {
+	public function getNamedArguments() {
 		return array();
 	}
 
@@ -1369,7 +1370,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @return bool
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		return true;
 	}
 
@@ -1377,7 +1378,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @param string $name
 	 * @return bool
 	 */
-	function getArgument( $name ) {
+	public function getArgument( $name ) {
 		return false;
 	}
 
@@ -1388,7 +1389,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @return bool
 	 */
-	function loopCheck( $title ) {
+	public function loopCheck( $title ) {
 		return !isset( $this->loopCheckHash[$title->getPrefixedDBkey()] );
 	}
 
@@ -1397,7 +1398,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @return bool
 	 */
-	function isTemplate() {
+	public function isTemplate() {
 		return false;
 	}
 
@@ -1406,7 +1407,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->title;
 	}
 
@@ -1415,7 +1416,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @param bool $flag
 	 */
-	function setVolatile( $flag = true ) {
+	public function setVolatile( $flag = true ) {
 		$this->volatile = $flag;
 	}
 
@@ -1424,7 +1425,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @return bool
 	 */
-	function isVolatile() {
+	public function isVolatile() {
 		return $this->volatile;
 	}
 
@@ -1433,7 +1434,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @param int $ttl
 	 */
-	function setTTL( $ttl ) {
+	public function setTTL( $ttl ) {
 		if ( $ttl !== null && ( $this->ttl === null || $ttl < $this->ttl ) ) {
 			$this->ttl = $ttl;
 		}
@@ -1444,7 +1445,7 @@ class PPFrame_Hash implements PPFrame {
 	 *
 	 * @return int|null
 	 */
-	function getTTL() {
+	public function getTTL() {
 		return $this->ttl;
 	}
 }
@@ -1454,8 +1455,8 @@ class PPFrame_Hash implements PPFrame {
  * @ingroup Parser
  */
 class PPTemplateFrame_Hash extends PPFrame_Hash {
-	var $numberedArgs, $namedArgs, $parent;
-	var $numberedExpansionCache, $namedExpansionCache;
+	public $numberedArgs, $namedArgs, $parent;
+	public $numberedExpansionCache, $namedExpansionCache;
 
 	/**
 	 * @param Preprocessor $preprocessor
@@ -1464,7 +1465,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 * @param array $namedArgs
 	 * @param bool|Title $title
 	 */
-	function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
+	public function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
 		$namedArgs = array(), $title = false
 	) {
 		parent::__construct( $preprocessor );
@@ -1484,7 +1485,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		$this->numberedExpansionCache = $this->namedExpansionCache = array();
 	}
 
-	function __toString() {
+	public function __toString() {
 		$s = 'tplframe{';
 		$first = true;
 		$args = $this->numberedArgs + $this->namedArgs;
@@ -1508,7 +1509,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 * @param int $flags
 	 * @return string
 	 */
-	function cachedExpand( $key, $root, $flags = 0 ) {
+	public function cachedExpand( $key, $root, $flags = 0 ) {
 		if ( isset( $this->parent->childExpansionCache[$key] ) ) {
 			return $this->parent->childExpansionCache[$key];
 		}
@@ -1524,14 +1525,14 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 *
 	 * @return bool
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		return !count( $this->numberedArgs ) && !count( $this->namedArgs );
 	}
 
 	/**
 	 * @return array
 	 */
-	function getArguments() {
+	public function getArguments() {
 		$arguments = array();
 		foreach ( array_merge(
 				array_keys( $this->numberedArgs ),
@@ -1544,7 +1545,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	/**
 	 * @return array
 	 */
-	function getNumberedArguments() {
+	public function getNumberedArguments() {
 		$arguments = array();
 		foreach ( array_keys( $this->numberedArgs ) as $key ) {
 			$arguments[$key] = $this->getArgument( $key );
@@ -1555,7 +1556,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	/**
 	 * @return array
 	 */
-	function getNamedArguments() {
+	public function getNamedArguments() {
 		$arguments = array();
 		foreach ( array_keys( $this->namedArgs ) as $key ) {
 			$arguments[$key] = $this->getArgument( $key );
@@ -1567,7 +1568,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 * @param int $index
 	 * @return array|bool
 	 */
-	function getNumberedArgument( $index ) {
+	public function getNumberedArgument( $index ) {
 		if ( !isset( $this->numberedArgs[$index] ) ) {
 			return false;
 		}
@@ -1585,7 +1586,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 * @param string $name
 	 * @return bool
 	 */
-	function getNamedArgument( $name ) {
+	public function getNamedArgument( $name ) {
 		if ( !isset( $this->namedArgs[$name] ) ) {
 			return false;
 		}
@@ -1601,7 +1602,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 * @param string $name
 	 * @return array|bool
 	 */
-	function getArgument( $name ) {
+	public function getArgument( $name ) {
 		$text = $this->getNumberedArgument( $name );
 		if ( $text === false ) {
 			$text = $this->getNamedArgument( $name );
@@ -1614,16 +1615,16 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 *
 	 * @return bool
 	 */
-	function isTemplate() {
+	public function isTemplate() {
 		return true;
 	}
 
-	function setVolatile( $flag = true ) {
+	public function setVolatile( $flag = true ) {
 		parent::setVolatile( $flag );
 		$this->parent->setVolatile( $flag );
 	}
 
-	function setTTL( $ttl ) {
+	public function setTTL( $ttl ) {
 		parent::setTTL( $ttl );
 		$this->parent->setTTL( $ttl );
 	}
@@ -1634,14 +1635,14 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
  * @ingroup Parser
  */
 class PPCustomFrame_Hash extends PPFrame_Hash {
-	var $args;
+	public $args;
 
-	function __construct( $preprocessor, $args ) {
+	public function __construct( $preprocessor, $args ) {
 		parent::__construct( $preprocessor );
 		$this->args = $args;
 	}
 
-	function __toString() {
+	public function __toString() {
 		$s = 'cstmframe{';
 		$first = true;
 		foreach ( $this->args as $name => $value ) {
@@ -1660,7 +1661,7 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 	/**
 	 * @return bool
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		return !count( $this->args );
 	}
 
@@ -1668,14 +1669,14 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 	 * @param int $index
 	 * @return bool
 	 */
-	function getArgument( $index ) {
+	public function getArgument( $index ) {
 		if ( !isset( $this->args[$index] ) ) {
 			return false;
 		}
 		return $this->args[$index];
 	}
 
-	function getArguments() {
+	public function getArguments() {
 		return $this->args;
 	}
 }
@@ -1684,14 +1685,14 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
  * @ingroup Parser
  */
 class PPNode_Hash_Tree implements PPNode {
-	var $name, $firstChild, $lastChild, $nextSibling;
+	public $name, $firstChild, $lastChild, $nextSibling;
 
-	function __construct( $name ) {
+	public function __construct( $name ) {
 		$this->name = $name;
 		$this->firstChild = $this->lastChild = $this->nextSibling = false;
 	}
 
-	function __toString() {
+	public function __toString() {
 		$inner = '';
 		$attribs = '';
 		for ( $node = $this->firstChild; $node; $node = $node->nextSibling ) {
@@ -1713,13 +1714,13 @@ class PPNode_Hash_Tree implements PPNode {
 	 * @param string $text
 	 * @return PPNode_Hash_Tree
 	 */
-	static function newWithText( $name, $text ) {
+	public static function newWithText( $name, $text ) {
 		$obj = new self( $name );
 		$obj->addChild( new PPNode_Hash_Text( $text ) );
 		return $obj;
 	}
 
-	function addChild( $node ) {
+	public function addChild( $node ) {
 		if ( $this->lastChild === false ) {
 			$this->firstChild = $this->lastChild = $node;
 		} else {
@@ -1731,7 +1732,7 @@ class PPNode_Hash_Tree implements PPNode {
 	/**
 	 * @return PPNode_Hash_Array
 	 */
-	function getChildren() {
+	public function getChildren() {
 		$children = array();
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
 			$children[] = $child;
@@ -1739,15 +1740,15 @@ class PPNode_Hash_Tree implements PPNode {
 		return new PPNode_Hash_Array( $children );
 	}
 
-	function getFirstChild() {
+	public function getFirstChild() {
 		return $this->firstChild;
 	}
 
-	function getNextSibling() {
+	public function getNextSibling() {
 		return $this->nextSibling;
 	}
 
-	function getChildrenOfType( $name ) {
+	public function getChildrenOfType( $name ) {
 		$children = array();
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
 			if ( isset( $child->name ) && $child->name === $name ) {
@@ -1760,7 +1761,7 @@ class PPNode_Hash_Tree implements PPNode {
 	/**
 	 * @return bool
 	 */
-	function getLength() {
+	public function getLength() {
 		return false;
 	}
 
@@ -1768,14 +1769,14 @@ class PPNode_Hash_Tree implements PPNode {
 	 * @param int $i
 	 * @return bool
 	 */
-	function item( $i ) {
+	public function item( $i ) {
 		return false;
 	}
 
 	/**
 	 * @return string
 	 */
-	function getName() {
+	public function getName() {
 		return $this->name;
 	}
 
@@ -1788,7 +1789,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * @throws MWException
 	 * @return array
 	 */
-	function splitArg() {
+	public function splitArg() {
 		$bits = array();
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
 			if ( !isset( $child->name ) ) {
@@ -1822,7 +1823,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * @throws MWException
 	 * @return array
 	 */
-	function splitExt() {
+	public function splitExt() {
 		$bits = array();
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
 			if ( !isset( $child->name ) ) {
@@ -1850,7 +1851,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * @throws MWException
 	 * @return array
 	 */
-	function splitHeading() {
+	public function splitHeading() {
 		if ( $this->name !== 'h' ) {
 			throw new MWException( 'Invalid h node passed to ' . __METHOD__ );
 		}
@@ -1877,7 +1878,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * @throws MWException
 	 * @return array
 	 */
-	function splitTemplate() {
+	public function splitTemplate() {
 		$parts = array();
 		$bits = array( 'lineStart' => '' );
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
@@ -1906,56 +1907,56 @@ class PPNode_Hash_Tree implements PPNode {
  * @ingroup Parser
  */
 class PPNode_Hash_Text implements PPNode {
-	var $value, $nextSibling;
+	public $value, $nextSibling;
 
-	function __construct( $value ) {
+	public function __construct( $value ) {
 		if ( is_object( $value ) ) {
 			throw new MWException( __CLASS__ . ' given object instead of string' );
 		}
 		$this->value = $value;
 	}
 
-	function __toString() {
+	public function __toString() {
 		return htmlspecialchars( $this->value );
 	}
 
-	function getNextSibling() {
+	public function getNextSibling() {
 		return $this->nextSibling;
 	}
 
-	function getChildren() {
+	public function getChildren() {
 		return false;
 	}
 
-	function getFirstChild() {
+	public function getFirstChild() {
 		return false;
 	}
 
-	function getChildrenOfType( $name ) {
+	public function getChildrenOfType( $name ) {
 		return false;
 	}
 
-	function getLength() {
+	public function getLength() {
 		return false;
 	}
 
-	function item( $i ) {
+	public function item( $i ) {
 		return false;
 	}
 
-	function getName() {
+	public function getName() {
 		return '#text';
 	}
 
-	function splitArg() {
+	public function splitArg() {
 		throw new MWException( __METHOD__ . ': not supported' );
 	}
 
-	function splitExt() {
+	public function splitExt() {
 		throw new MWException( __METHOD__ . ': not supported' );
 	}
 
-	function splitHeading() {
+	public function splitHeading() {
 		throw new MWException( __METHOD__ . ': not supported' );
 	}
 }
@@ -1964,53 +1965,53 @@ class PPNode_Hash_Text implements PPNode {
  * @ingroup Parser
  */
 class PPNode_Hash_Array implements PPNode {
-	var $value, $nextSibling;
+	public $value, $nextSibling;
 
-	function __construct( $value ) {
+	public function __construct( $value ) {
 		$this->value = $value;
 	}
 
-	function __toString() {
+	public function __toString() {
 		return var_export( $this, true );
 	}
 
-	function getLength() {
+	public function getLength() {
 		return count( $this->value );
 	}
 
-	function item( $i ) {
+	public function item( $i ) {
 		return $this->value[$i];
 	}
 
-	function getName() {
+	public function getName() {
 		return '#nodelist';
 	}
 
-	function getNextSibling() {
+	public function getNextSibling() {
 		return $this->nextSibling;
 	}
 
-	function getChildren() {
+	public function getChildren() {
 		return false;
 	}
 
-	function getFirstChild() {
+	public function getFirstChild() {
 		return false;
 	}
 
-	function getChildrenOfType( $name ) {
+	public function getChildrenOfType( $name ) {
 		return false;
 	}
 
-	function splitArg() {
+	public function splitArg() {
 		throw new MWException( __METHOD__ . ': not supported' );
 	}
 
-	function splitExt() {
+	public function splitExt() {
 		throw new MWException( __METHOD__ . ': not supported' );
 	}
 
-	function splitHeading() {
+	public function splitHeading() {
 		throw new MWException( __METHOD__ . ': not supported' );
 	}
 }
@@ -2019,54 +2020,54 @@ class PPNode_Hash_Array implements PPNode {
  * @ingroup Parser
  */
 class PPNode_Hash_Attr implements PPNode {
-	var $name, $value, $nextSibling;
+	public $name, $value, $nextSibling;
 
-	function __construct( $name, $value ) {
+	public function __construct( $name, $value ) {
 		$this->name = $name;
 		$this->value = $value;
 	}
 
-	function __toString() {
+	public function __toString() {
 		return "<@{$this->name}>" . htmlspecialchars( $this->value ) . "</@{$this->name}>";
 	}
 
-	function getName() {
+	public function getName() {
 		return $this->name;
 	}
 
-	function getNextSibling() {
+	public function getNextSibling() {
 		return $this->nextSibling;
 	}
 
-	function getChildren() {
+	public function getChildren() {
 		return false;
 	}
 
-	function getFirstChild() {
+	public function getFirstChild() {
 		return false;
 	}
 
-	function getChildrenOfType( $name ) {
+	public function getChildrenOfType( $name ) {
 		return false;
 	}
 
-	function getLength() {
+	public function getLength() {
 		return false;
 	}
 
-	function item( $i ) {
+	public function item( $i ) {
 		return false;
 	}
 
-	function splitArg() {
+	public function splitArg() {
 		throw new MWException( __METHOD__ . ': not supported' );
 	}
 
-	function splitExt() {
+	public function splitExt() {
 		throw new MWException( __METHOD__ . ': not supported' );
 	}
 
-	function splitHeading() {
+	public function splitHeading() {
 		throw new MWException( __METHOD__ . ': not supported' );
 	}
 }
