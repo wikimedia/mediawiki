@@ -23,8 +23,10 @@
 
 /**
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class Preprocessor_DOM implements Preprocessor {
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Parser
@@ -952,8 +954,10 @@ class PPDPart {
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPFrame_DOM implements PPFrame {
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Preprocessor
@@ -1547,8 +1551,11 @@ class PPFrame_DOM implements PPFrame {
 /**
  * Expansion frame with template arguments
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPTemplateFrame_DOM extends PPFrame_DOM {
+	// @codingStandardsIgnoreEnd
+
 	public $numberedArgs, $namedArgs;
 
 	/**
@@ -1711,8 +1718,11 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 /**
  * Expansion frame with custom arguments
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPCustomFrame_DOM extends PPFrame_DOM {
+	// @codingStandardsIgnoreEnd
+
 	public $args;
 
 	public function __construct( $preprocessor, $args ) {
@@ -1757,8 +1767,10 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 
 /**
  * @ingroup Parser
+ * @codingStandardsIgnoreStart
  */
 class PPNode_DOM implements PPNode {
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var DOMElement
