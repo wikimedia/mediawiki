@@ -2,8 +2,8 @@
  * Show gallery captions when focused. Copied directly from jquery.mw-jump.js.
  * Also Dynamically resize images to justify them.
  */
-( function ( $ ) {
-	$( function () {
+( function ( mw, $ ) {
+	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		var isTouchScreen,
 			gettingFocus,
 			galleries = 'ul.mw-gallery-packed-overlay, ul.mw-gallery-packed-hover, ul.mw-gallery-packed';
@@ -13,13 +13,13 @@
 
 		if ( isTouchScreen ) {
 			// Always show the caption for a touch screen.
-			$( 'ul.mw-gallery-packed-hover' )
+			$content.find( 'ul.mw-gallery-packed-hover' )
 				.addClass( 'mw-gallery-packed-overlay' )
 				.removeClass( 'mw-gallery-packed-hover' );
 		} else {
 			// Note use of just "a", not a.image, since we want this to trigger if a link in
 			// the caption receives focus
-			$( 'ul.mw-gallery-packed-hover li.gallerybox' ).on( 'focus blur', 'a', function ( e ) {
+			$content.find( 'ul.mw-gallery-packed-hover li.gallerybox' ).on( 'focus blur', 'a', function ( e ) {
 				// Confusingly jQuery leaves e.type as focusout for delegated blur events
 				gettingFocus = e.type !== 'blur' && e.type !== 'focusout';
 				$( this ).closest( 'li.gallerybox' ).toggleClass( 'mw-gallery-focused', gettingFocus );
@@ -29,7 +29,7 @@
 		// Now on to justification.
 		// We may still get ragged edges if someone resizes their window. Could bind to
 		// that event, otoh do we really want to constantly be resizing galleries?
-		$( galleries ).each( function () {
+		$content.find( galleries ).each( function () {
 			var lastTop,
 				$img,
 				imgWidth,
@@ -209,4 +209,4 @@
 			}() );
 		} );
 	} );
-}( jQuery ) );
+}( mediaWiki, jQuery ) );
