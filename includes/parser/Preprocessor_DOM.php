@@ -29,13 +29,13 @@ class Preprocessor_DOM implements Preprocessor {
 	/**
 	 * @var Parser
 	 */
-	var $parser;
+	public $parser;
 
-	var $memoryLimit;
+	public $memoryLimit;
 
 	const CACHE_VERSION = 1;
 
-	function __construct( $parser ) {
+	public function __construct( $parser ) {
 		$this->parser = $parser;
 		$mem = ini_get( 'memory_limit' );
 		$this->memoryLimit = false;
@@ -51,7 +51,7 @@ class Preprocessor_DOM implements Preprocessor {
 	/**
 	 * @return PPFrame_DOM
 	 */
-	function newFrame() {
+	public function newFrame() {
 		return new PPFrame_DOM( $this );
 	}
 
@@ -59,7 +59,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 * @param array $args
 	 * @return PPCustomFrame_DOM
 	 */
-	function newCustomFrame( $args ) {
+	public function newCustomFrame( $args ) {
 		return new PPCustomFrame_DOM( $this, $args );
 	}
 
@@ -67,7 +67,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 * @param array $values
 	 * @return PPNode_DOM
 	 */
-	function newPartNodeArray( $values ) {
+	public function newPartNodeArray( $values ) {
 		//NOTE: DOM manipulation is slower than building & parsing XML! (or so Tim sais)
 		$xml = "<list>";
 
@@ -110,7 +110,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 * @throws MWException
 	 * @return bool
 	 */
-	function memCheck() {
+	public function memCheck() {
 		if ( $this->memoryLimit === false ) {
 			return true;
 		}
@@ -146,7 +146,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 * @throws MWException
 	 * @return PPNode_DOM
 	 */
-	function preprocessToObj( $text, $flags = 0 ) {
+	public function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
 		global $wgMemc, $wgPreprocessorCacheThreshold;
 
@@ -224,7 +224,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 * @param int $flags
 	 * @return string
 	 */
-	function preprocessToXml( $text, $flags = 0 ) {
+	public function preprocessToXml( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
 		$rules = array(
 			'{' => array(
@@ -773,18 +773,18 @@ class Preprocessor_DOM implements Preprocessor {
  * @ingroup Parser
  */
 class PPDStack {
-	var $stack, $rootAccum;
+	public $stack, $rootAccum;
 
 	/**
 	 * @var PPDStack
 	 */
-	var $top;
-	var $out;
-	var $elementClass = 'PPDStackElement';
+	public $top;
+	public $out;
+	public $elementClass = 'PPDStackElement';
 
-	static $false = false;
+	public static $false = false;
 
-	function __construct() {
+	public function __construct() {
 		$this->stack = array();
 		$this->top = false;
 		$this->rootAccum = '';
@@ -794,15 +794,15 @@ class PPDStack {
 	/**
 	 * @return int
 	 */
-	function count() {
+	public function count() {
 		return count( $this->stack );
 	}
 
-	function &getAccum() {
+	public function &getAccum() {
 		return $this->accum;
 	}
 
-	function getCurrentPart() {
+	public function getCurrentPart() {
 		if ( $this->top === false ) {
 			return false;
 		} else {
@@ -810,7 +810,7 @@ class PPDStack {
 		}
 	}
 
-	function push( $data ) {
+	public function push( $data ) {
 		if ( $data instanceof $this->elementClass ) {
 			$this->stack[] = $data;
 		} else {
@@ -821,7 +821,7 @@ class PPDStack {
 		$this->accum =& $this->top->getAccum();
 	}
 
-	function pop() {
+	public function pop() {
 		if ( !count( $this->stack ) ) {
 			throw new MWException( __METHOD__ . ': no elements remaining' );
 		}
@@ -837,7 +837,7 @@ class PPDStack {
 		return $temp;
 	}
 
-	function addPart( $s = '' ) {
+	public function addPart( $s = '' ) {
 		$this->top->addPart( $s );
 		$this->accum =& $this->top->getAccum();
 	}
@@ -845,7 +845,7 @@ class PPDStack {
 	/**
 	 * @return array
 	 */
-	function getFlags() {
+	public function getFlags() {
 		if ( !count( $this->stack ) ) {
 			return array(
 				'findEquals' => false,
@@ -862,15 +862,15 @@ class PPDStack {
  * @ingroup Parser
  */
 class PPDStackElement {
-	var	$open,              // Opening character (\n for heading)
+	public $open,              // Opening character (\n for heading)
 		$close,             // Matching closing character
 		$count,             // Number of opening characters found (number of "=" for heading)
 		$parts,             // Array of PPDPart objects describing pipe-separated parts.
 		$lineStart;         // True if the open char appeared at the start of the input line. Not set for headings.
 
-	var $partClass = 'PPDPart';
+	public $partClass = 'PPDPart';
 
-	function __construct( $data = array() ) {
+	public function __construct( $data = array() ) {
 		$class = $this->partClass;
 		$this->parts = array( new $class );
 
@@ -879,23 +879,23 @@ class PPDStackElement {
 		}
 	}
 
-	function &getAccum() {
+	public function &getAccum() {
 		return $this->parts[count( $this->parts ) - 1]->out;
 	}
 
-	function addPart( $s = '' ) {
+	public function addPart( $s = '' ) {
 		$class = $this->partClass;
 		$this->parts[] = new $class( $s );
 	}
 
-	function getCurrentPart() {
+	public function getCurrentPart() {
 		return $this->parts[count( $this->parts ) - 1];
 	}
 
 	/**
 	 * @return array
 	 */
-	function getFlags() {
+	public function getFlags() {
 		$partCount = count( $this->parts );
 		$findPipe = $this->open != "\n" && $this->open != '[';
 		return array(
@@ -911,7 +911,7 @@ class PPDStackElement {
 	 * @param bool|int $openingCount
 	 * @return string
 	 */
-	function breakSyntax( $openingCount = false ) {
+	public function breakSyntax( $openingCount = false ) {
 		if ( $this->open == "\n" ) {
 			$s = $this->parts[0]->out;
 		} else {
@@ -937,14 +937,14 @@ class PPDStackElement {
  * @ingroup Parser
  */
 class PPDPart {
-	var $out; // Output accumulator string
+	public $out; // Output accumulator string
 
 	// Optional member variables:
 	//   eqpos        Position of equals sign in output accumulator
 	//   commentEnd   Past-the-end input pointer for the last comment encountered
 	//   visualEnd    Past-the-end input pointer for the end of the accumulator minus comments
 
-	function __construct( $out = '' ) {
+	public function __construct( $out = '' ) {
 		$this->out = $out;
 	}
 }
@@ -958,30 +958,30 @@ class PPFrame_DOM implements PPFrame {
 	/**
 	 * @var Preprocessor
 	 */
-	var $preprocessor;
+	public $preprocessor;
 
 	/**
 	 * @var Parser
 	 */
-	var $parser;
+	public $parser;
 
 	/**
 	 * @var Title
 	 */
-	var $title;
-	var $titleCache;
+	public $title;
+	public $titleCache;
 
 	/**
 	 * Hashtable listing templates which are disallowed for expansion in this frame,
 	 * having been encountered previously in parent frames.
 	 */
-	var $loopCheckHash;
+	public $loopCheckHash;
 
 	/**
 	 * Recursion depth of this frame, top = 0
 	 * Note that this is NOT the same as expansion depth in expand()
 	 */
-	var $depth;
+	public $depth;
 
 	private $volatile = false;
 	private $ttl = null;
@@ -995,7 +995,7 @@ class PPFrame_DOM implements PPFrame {
 	 * Construct a new preprocessor frame.
 	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
-	function __construct( $preprocessor ) {
+	public function __construct( $preprocessor ) {
 		$this->preprocessor = $preprocessor;
 		$this->parser = $preprocessor->parser;
 		$this->title = $this->parser->mTitle;
@@ -1014,7 +1014,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param int $indexOffset
 	 * @return PPTemplateFrame_DOM
 	 */
-	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
+	public function newChild( $args = false, $title = false, $indexOffset = 0 ) {
 		$namedArgs = array();
 		$numberedArgs = array();
 		if ( $title === false ) {
@@ -1059,7 +1059,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param int $flags
 	 * @return string
 	 */
-	function cachedExpand( $key, $root, $flags = 0 ) {
+	public function cachedExpand( $key, $root, $flags = 0 ) {
 		// we don't have a parent, so we don't have a cache
 		return $this->expand( $root, $flags );
 	}
@@ -1070,7 +1070,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param int $flags
 	 * @return string
 	 */
-	function expand( $root, $flags = 0 ) {
+	public function expand( $root, $flags = 0 ) {
 		static $expansionDepth = 0;
 		if ( is_string( $root ) ) {
 			return $root;
@@ -1313,7 +1313,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param int $flags
 	 * @return string
 	 */
-	function implodeWithFlags( $sep, $flags /*, ... */ ) {
+	public function implodeWithFlags( $sep, $flags /*, ... */ ) {
 		$args = array_slice( func_get_args(), 2 );
 
 		$first = true;
@@ -1344,7 +1344,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param string $sep
 	 * @return string
 	 */
-	function implode( $sep /*, ... */ ) {
+	public function implode( $sep /*, ... */ ) {
 		$args = array_slice( func_get_args(), 1 );
 
 		$first = true;
@@ -1375,7 +1375,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param string $sep
 	 * @return array
 	 */
-	function virtualImplode( $sep /*, ... */ ) {
+	public function virtualImplode( $sep /*, ... */ ) {
 		$args = array_slice( func_get_args(), 1 );
 		$out = array();
 		$first = true;
@@ -1406,7 +1406,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param string $end
 	 * @return array
 	 */
-	function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
+	public function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
 		$args = array_slice( func_get_args(), 3 );
 		$out = array( $start );
 		$first = true;
@@ -1431,11 +1431,11 @@ class PPFrame_DOM implements PPFrame {
 		return $out;
 	}
 
-	function __toString() {
+	public function __toString() {
 		return 'frame{}';
 	}
 
-	function getPDBK( $level = false ) {
+	public function getPDBK( $level = false ) {
 		if ( $level === false ) {
 			return $this->title->getPrefixedDBkey();
 		} else {
@@ -1446,21 +1446,21 @@ class PPFrame_DOM implements PPFrame {
 	/**
 	 * @return array
 	 */
-	function getArguments() {
+	public function getArguments() {
 		return array();
 	}
 
 	/**
 	 * @return array
 	 */
-	function getNumberedArguments() {
+	public function getNumberedArguments() {
 		return array();
 	}
 
 	/**
 	 * @return array
 	 */
-	function getNamedArguments() {
+	public function getNamedArguments() {
 		return array();
 	}
 
@@ -1469,11 +1469,11 @@ class PPFrame_DOM implements PPFrame {
 	 *
 	 * @return bool
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		return true;
 	}
 
-	function getArgument( $name ) {
+	public function getArgument( $name ) {
 		return false;
 	}
 
@@ -1483,7 +1483,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param Title $title
 	 * @return bool
 	 */
-	function loopCheck( $title ) {
+	public function loopCheck( $title ) {
 		return !isset( $this->loopCheckHash[$title->getPrefixedDBkey()] );
 	}
 
@@ -1492,7 +1492,7 @@ class PPFrame_DOM implements PPFrame {
 	 *
 	 * @return bool
 	 */
-	function isTemplate() {
+	public function isTemplate() {
 		return false;
 	}
 
@@ -1501,7 +1501,7 @@ class PPFrame_DOM implements PPFrame {
 	 *
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->title;
 	}
 
@@ -1510,7 +1510,7 @@ class PPFrame_DOM implements PPFrame {
 	 *
 	 * @param bool $flag
 	 */
-	function setVolatile( $flag = true ) {
+	public function setVolatile( $flag = true ) {
 		$this->volatile = $flag;
 	}
 
@@ -1519,7 +1519,7 @@ class PPFrame_DOM implements PPFrame {
 	 *
 	 * @return bool
 	 */
-	function isVolatile() {
+	public function isVolatile() {
 		return $this->volatile;
 	}
 
@@ -1528,7 +1528,7 @@ class PPFrame_DOM implements PPFrame {
 	 *
 	 * @param int $ttl
 	 */
-	function setTTL( $ttl ) {
+	public function setTTL( $ttl ) {
 		if ( $ttl !== null && ( $this->ttl === null || $ttl < $this->ttl ) ) {
 			$this->ttl = $ttl;
 		}
@@ -1539,7 +1539,7 @@ class PPFrame_DOM implements PPFrame {
 	 *
 	 * @return int|null
 	 */
-	function getTTL() {
+	public function getTTL() {
 		return $this->ttl;
 	}
 }
@@ -1549,13 +1549,13 @@ class PPFrame_DOM implements PPFrame {
  * @ingroup Parser
  */
 class PPTemplateFrame_DOM extends PPFrame_DOM {
-	var $numberedArgs, $namedArgs;
+	public $numberedArgs, $namedArgs;
 
 	/**
 	 * @var PPFrame_DOM
 	 */
-	var $parent;
-	var $numberedExpansionCache, $namedExpansionCache;
+	public $parent;
+	public $numberedExpansionCache, $namedExpansionCache;
 
 	/**
 	 * @param Preprocessor $preprocessor
@@ -1564,7 +1564,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 * @param array $namedArgs
 	 * @param bool|Title $title
 	 */
-	function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
+	public function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
 		$namedArgs = array(), $title = false
 	) {
 		parent::__construct( $preprocessor );
@@ -1584,7 +1584,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		$this->numberedExpansionCache = $this->namedExpansionCache = array();
 	}
 
-	function __toString() {
+	public function __toString() {
 		$s = 'tplframe{';
 		$first = true;
 		$args = $this->numberedArgs + $this->namedArgs;
@@ -1608,7 +1608,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 * @param int $flags
 	 * @return string
 	 */
-	function cachedExpand( $key, $root, $flags = 0 ) {
+	public function cachedExpand( $key, $root, $flags = 0 ) {
 		if ( isset( $this->parent->childExpansionCache[$key] ) ) {
 			return $this->parent->childExpansionCache[$key];
 		}
@@ -1624,11 +1624,11 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 *
 	 * @return bool
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		return !count( $this->numberedArgs ) && !count( $this->namedArgs );
 	}
 
-	function getArguments() {
+	public function getArguments() {
 		$arguments = array();
 		foreach ( array_merge(
 				array_keys( $this->numberedArgs ),
@@ -1638,7 +1638,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $arguments;
 	}
 
-	function getNumberedArguments() {
+	public function getNumberedArguments() {
 		$arguments = array();
 		foreach ( array_keys( $this->numberedArgs ) as $key ) {
 			$arguments[$key] = $this->getArgument( $key );
@@ -1646,7 +1646,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $arguments;
 	}
 
-	function getNamedArguments() {
+	public function getNamedArguments() {
 		$arguments = array();
 		foreach ( array_keys( $this->namedArgs ) as $key ) {
 			$arguments[$key] = $this->getArgument( $key );
@@ -1654,7 +1654,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $arguments;
 	}
 
-	function getNumberedArgument( $index ) {
+	public function getNumberedArgument( $index ) {
 		if ( !isset( $this->numberedArgs[$index] ) ) {
 			return false;
 		}
@@ -1668,7 +1668,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $this->numberedExpansionCache[$index];
 	}
 
-	function getNamedArgument( $name ) {
+	public function getNamedArgument( $name ) {
 		if ( !isset( $this->namedArgs[$name] ) ) {
 			return false;
 		}
@@ -1680,7 +1680,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $this->namedExpansionCache[$name];
 	}
 
-	function getArgument( $name ) {
+	public function getArgument( $name ) {
 		$text = $this->getNumberedArgument( $name );
 		if ( $text === false ) {
 			$text = $this->getNamedArgument( $name );
@@ -1693,16 +1693,16 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 *
 	 * @return bool
 	 */
-	function isTemplate() {
+	public function isTemplate() {
 		return true;
 	}
 
-	function setVolatile( $flag = true ) {
+	public function setVolatile( $flag = true ) {
 		parent::setVolatile( $flag );
 		$this->parent->setVolatile( $flag );
 	}
 
-	function setTTL( $ttl ) {
+	public function setTTL( $ttl ) {
 		parent::setTTL( $ttl );
 		$this->parent->setTTL( $ttl );
 	}
@@ -1713,14 +1713,14 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
  * @ingroup Parser
  */
 class PPCustomFrame_DOM extends PPFrame_DOM {
-	var $args;
+	public $args;
 
-	function __construct( $preprocessor, $args ) {
+	public function __construct( $preprocessor, $args ) {
 		parent::__construct( $preprocessor );
 		$this->args = $args;
 	}
 
-	function __toString() {
+	public function __toString() {
 		$s = 'cstmframe{';
 		$first = true;
 		foreach ( $this->args as $name => $value ) {
@@ -1739,18 +1739,18 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 	/**
 	 * @return bool
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		return !count( $this->args );
 	}
 
-	function getArgument( $index ) {
+	public function getArgument( $index ) {
 		if ( !isset( $this->args[$index] ) ) {
 			return false;
 		}
 		return $this->args[$index];
 	}
 
-	function getArguments() {
+	public function getArguments() {
 		return $this->args;
 	}
 }
@@ -1763,24 +1763,24 @@ class PPNode_DOM implements PPNode {
 	/**
 	 * @var DOMElement
 	 */
-	var $node;
-	var $xpath;
+	public $node;
+	public $xpath;
 
-	function __construct( $node, $xpath = false ) {
+	public function __construct( $node, $xpath = false ) {
 		$this->node = $node;
 	}
 
 	/**
 	 * @return DOMXPath
 	 */
-	function getXPath() {
+	public function getXPath() {
 		if ( $this->xpath === null ) {
 			$this->xpath = new DOMXPath( $this->node->ownerDocument );
 		}
 		return $this->xpath;
 	}
 
-	function __toString() {
+	public function __toString() {
 		if ( $this->node instanceof DOMNodeList ) {
 			$s = '';
 			foreach ( $this->node as $node ) {
@@ -1795,21 +1795,21 @@ class PPNode_DOM implements PPNode {
 	/**
 	 * @return bool|PPNode_DOM
 	 */
-	function getChildren() {
+	public function getChildren() {
 		return $this->node->childNodes ? new self( $this->node->childNodes ) : false;
 	}
 
 	/**
 	 * @return bool|PPNode_DOM
 	 */
-	function getFirstChild() {
+	public function getFirstChild() {
 		return $this->node->firstChild ? new self( $this->node->firstChild ) : false;
 	}
 
 	/**
 	 * @return bool|PPNode_DOM
 	 */
-	function getNextSibling() {
+	public function getNextSibling() {
 		return $this->node->nextSibling ? new self( $this->node->nextSibling ) : false;
 	}
 
@@ -1818,14 +1818,14 @@ class PPNode_DOM implements PPNode {
 	 *
 	 * @return bool|PPNode_DOM
 	 */
-	function getChildrenOfType( $type ) {
+	public function getChildrenOfType( $type ) {
 		return new self( $this->getXPath()->query( $type, $this->node ) );
 	}
 
 	/**
 	 * @return int
 	 */
-	function getLength() {
+	public function getLength() {
 		if ( $this->node instanceof DOMNodeList ) {
 			return $this->node->length;
 		} else {
@@ -1837,7 +1837,7 @@ class PPNode_DOM implements PPNode {
 	 * @param int $i
 	 * @return bool|PPNode_DOM
 	 */
-	function item( $i ) {
+	public function item( $i ) {
 		$item = $this->node->item( $i );
 		return $item ? new self( $item ) : false;
 	}
@@ -1845,7 +1845,7 @@ class PPNode_DOM implements PPNode {
 	/**
 	 * @return string
 	 */
-	function getName() {
+	public function getName() {
 		if ( $this->node instanceof DOMNodeList ) {
 			return '#nodelist';
 		} else {
@@ -1862,7 +1862,7 @@ class PPNode_DOM implements PPNode {
 	 * @throws MWException
 	 * @return array
 	 */
-	function splitArg() {
+	public function splitArg() {
 		$xpath = $this->getXPath();
 		$names = $xpath->query( 'name', $this->node );
 		$values = $xpath->query( 'value', $this->node );
@@ -1884,7 +1884,7 @@ class PPNode_DOM implements PPNode {
 	 * @throws MWException
 	 * @return array
 	 */
-	function splitExt() {
+	public function splitExt() {
 		$xpath = $this->getXPath();
 		$names = $xpath->query( 'name', $this->node );
 		$attrs = $xpath->query( 'attr', $this->node );
@@ -1910,7 +1910,7 @@ class PPNode_DOM implements PPNode {
 	 * @throws MWException
 	 * @return array
 	 */
-	function splitHeading() {
+	public function splitHeading() {
 		if ( $this->getName() !== 'h' ) {
 			throw new MWException( 'Invalid h node passed to ' . __METHOD__ );
 		}

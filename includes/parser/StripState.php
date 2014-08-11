@@ -39,7 +39,7 @@ class StripState {
 	/**
 	 * @param string $prefix
 	 */
-	function __construct( $prefix ) {
+	public function __construct( $prefix ) {
 		$this->prefix = $prefix;
 		$this->data = array(
 			'nowiki' => array(),
@@ -54,7 +54,7 @@ class StripState {
 	 * @param string $marker
 	 * @param string $value
 	 */
-	function addNoWiki( $marker, $value ) {
+	public function addNoWiki( $marker, $value ) {
 		$this->addItem( 'nowiki', $marker, $value );
 	}
 
@@ -62,7 +62,7 @@ class StripState {
 	 * @param string $marker
 	 * @param string $value
 	 */
-	function addGeneral( $marker, $value ) {
+	public function addGeneral( $marker, $value ) {
 		$this->addItem( 'general', $marker, $value );
 	}
 
@@ -84,7 +84,7 @@ class StripState {
 	 * @param string $text
 	 * @return mixed
 	 */
-	function unstripGeneral( $text ) {
+	public function unstripGeneral( $text ) {
 		return $this->unstripType( 'general', $text );
 	}
 
@@ -92,7 +92,7 @@ class StripState {
 	 * @param string $text
 	 * @return mixed
 	 */
-	function unstripNoWiki( $text ) {
+	public function unstripNoWiki( $text ) {
 		return $this->unstripType( 'nowiki', $text );
 	}
 
@@ -100,7 +100,7 @@ class StripState {
 	 * @param string $text
 	 * @return mixed
 	 */
-	function unstripBoth( $text ) {
+	public function unstripBoth( $text ) {
 		$text = $this->unstripType( 'general', $text );
 		$text = $this->unstripType( 'nowiki', $text );
 		return $text;
@@ -163,7 +163,7 @@ class StripState {
 	 *
 	 * @return StripState
 	 */
-	function getSubState( $text ) {
+	public function getSubState( $text ) {
 		$subState = new StripState( $this->prefix );
 		$pos = 0;
 		while ( true ) {
@@ -199,7 +199,7 @@ class StripState {
 	 * @param array $texts
 	 * @return array
 	 */
-	function merge( $otherState, $texts ) {
+	public function merge( $otherState, $texts ) {
 		$mergePrefix = Parser::getRandomString();
 
 		foreach ( $otherState->data as $type => $items ) {
@@ -229,7 +229,7 @@ class StripState {
 	 * @param string $text Input string
 	 * @return string
 	 */
-	function killMarkers( $text ) {
+	public function killMarkers( $text ) {
 		return preg_replace( $this->regex, '', $text );
 	}
 }

@@ -26,19 +26,19 @@
  */
 class ParserDiffTest
 {
-	var $parsers, $conf;
-	var $shortOutput = false;
+	public $parsers;
+	public $conf;
+	public $shortOutput = false;
+	public $dtUniqPrefix;
 
-	var $dtUniqPrefix;
-
-	function __construct( $conf ) {
+	public function __construct( $conf ) {
 		if ( !isset( $conf['parsers'] ) ) {
 			throw new MWException( __METHOD__ . ': no parsers specified' );
 		}
 		$this->conf = $conf;
 	}
 
-	function init() {
+	public function init() {
 		if ( !is_null( $this->parsers ) ) {
 			return;
 		}
@@ -64,7 +64,7 @@ class ParserDiffTest
 		}
 	}
 
-	function __call( $name, $args ) {
+	public function __call( $name, $args ) {
 		$this->init();
 		$results = array();
 		$mismatch = false;
@@ -109,7 +109,7 @@ class ParserDiffTest
 		return $lastResult;
 	}
 
-	function formatArray( $array ) {
+	public function formatArray( $array ) {
 		if ( $this->shortOutput ) {
 			foreach ( $array as $key => $value ) {
 				if ( $value instanceof ParserOutput ) {
@@ -120,7 +120,7 @@ class ParserDiffTest
 		return var_export( $array, true );
 	}
 
-	function setFunctionHook( $id, $callback, $flags = 0 ) {
+	public function setFunctionHook( $id, $callback, $flags = 0 ) {
 		$this->init();
 		foreach ( $this->parsers as $parser ) {
 			$parser->setFunctionHook( $id, $callback, $flags );
@@ -131,7 +131,7 @@ class ParserDiffTest
 	 * @param Parser $parser
 	 * @return bool
 	 */
-	function onClearState( &$parser ) {
+	public function onClearState( &$parser ) {
 		// hack marker prefixes to get identical output
 		if ( !isset( $this->dtUniqPrefix ) ) {
 			$this->dtUniqPrefix = $parser->uniqPrefix();
