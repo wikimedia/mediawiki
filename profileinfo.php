@@ -163,15 +163,18 @@ if ( isset( $_REQUEST['expand'] ) ) {
 	}
 }
 
+// @codingStandardsIgnoreStart
 class profile_point {
-	var $name;
-	var $count;
-	var $time;
-	var $children;
+	// @codingStandardsIgnoreEnd
 
-	static $totaltime, $totalmemory, $totalcount;
+	public $name;
+	public $count;
+	public $time;
+	public $children;
 
-	function __construct( $name, $count, $time, $memory ) {
+	public static $totaltime, $totalmemory, $totalcount;
+
+	public function __construct( $name, $count, $time, $memory ) {
 		$this->name = $name;
 		$this->count = $count;
 		$this->time = $time;
@@ -179,11 +182,11 @@ class profile_point {
 		$this->children = array();
 	}
 
-	function add_child( $child ) {
+	public function add_child( $child ) {
 		$this->children[] = $child;
 	}
 
-	function display( $expand, $indent = 0.0 ) {
+	public function display( $expand, $indent = 0.0 ) {
 		usort( $this->children, 'compare_point' );
 
 		$ex = isset( $expand[$this->name()] );
@@ -214,6 +217,7 @@ class profile_point {
 				<?php echo htmlspecialchars( str_replace( ',', ', ', $this->name() ) ) . $extet ?>
 			</div>
 		</th>
+		<?php //@codingStandardsIgnoreStart ?>
 		<td class="mw-profileinfo-timep"><?php echo @wfPercent( $this->time() / self::$totaltime * 100 ); ?></td>
 		<td class="mw-profileinfo-memoryp"><?php echo @wfPercent( $this->memory() / self::$totalmemory * 100 ); ?></td>
 		<td class="mw-profileinfo-count"><?php echo $this->count(); ?></td>
@@ -222,6 +226,7 @@ class profile_point {
 		<td class="mw-profileinfo-mpc"><?php echo round( sprintf( '%.2f', $this->memoryPerCall() / 1024 ), 2 ); ?></td>
 		<td class="mw-profileinfo-tpr"><?php echo @round( sprintf( '%.2f', $this->time() / self::$totalcount ), 2 ); ?></td>
 		<td class="mw-profileinfo-mpr"><?php echo @round( sprintf( '%.2f', $this->memory() / self::$totalcount / 1024 ), 2 ); ?></td>
+		<?php //@codingStandardsIgnoreEnd ?>
 	</tr>
 		<?php
 		if ( $ex ) {
@@ -231,49 +236,61 @@ class profile_point {
 		}
 	}
 
-	function name() {
+	public function name() {
 		return $this->name;
 	}
 
-	function count() {
+	public function count() {
 		return $this->count;
 	}
 
-	function time() {
+	public function time() {
 		return $this->time;
 	}
 
-	function memory() {
+	public function memory() {
 		return $this->memory;
 	}
 
-	function timePerCall() {
+	public function timePerCall() {
+		// @codingStandardsIgnoreStart
 		return @( $this->time / $this->count );
+		// @codingStandardsIgnoreEnd
 	}
 
-	function memoryPerCall() {
+	public function memoryPerCall() {
+		// @codingStandardsIgnoreStart
 		return @( $this->memory / $this->count );
+		// @codingStandardsIgnoreEnd
 	}
 
-	function callsPerRequest() {
+	public function callsPerRequest() {
+		// @codingStandardsIgnoreStart
 		return @( $this->count / self::$totalcount );
+		// @codingStandardsIgnoreEnd
 	}
 
-	function timePerRequest() {
+	public function timePerRequest() {
+		// @codingStandardsIgnoreStart
 		return @( $this->time / self::$totalcount );
+		// @codingStandardsIgnoreEnd
 	}
 
-	function memoryPerRequest() {
+	public function memoryPerRequest() {
+		// @codingStandardsIgnoreStart
 		return @( $this->memory / self::$totalcount );
+		// @codingStandardsIgnoreEnd
 	}
 
-	function fmttime() {
+	public function fmttime() {
 		return sprintf( '%5.02f', $this->time );
 	}
 };
 
 function compare_point( profile_point $a, profile_point $b ) {
+	// @codingStandardsIgnoreStart
 	global $sort;
+	// @codingStandardsIgnoreEnd
 	switch ( $sort ) {
 		case 'name':
 			return strcmp( $a->name(), $b->name() );
@@ -342,7 +359,9 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	profile_point::$totalmemory = 0.0;
 
 	function getEscapedProfileUrl( $_filter = false, $_sort = false, $_expand = false ) {
+		// @codingStandardsIgnoreStart
 		global $filter, $sort, $expand;
+		// @codingStandardsIgnoreEnd
 
 		if ( $_expand === false ) {
 			$_expand = $expand;
