@@ -22,7 +22,7 @@
  * @ingroup Parser
  */
 class ParserOutput extends CacheTime {
-	var $mText,                       # The output text
+	public $mText,                       # The output text
 		$mLanguageLinks,              # List of the full text of language links, in the order they appear
 		$mCategories,                 # Map of category names to sort keys
 		$mTitleText,                  # title text of the chosen language variant
@@ -61,7 +61,7 @@ class ParserOutput extends CacheTime {
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
-	function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
+	public function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = ''
 	) {
 		$this->mText = $text;
@@ -71,7 +71,7 @@ class ParserOutput extends CacheTime {
 		$this->mTitleText = $titletext;
 	}
 
-	function getText() {
+	public function getText() {
 		wfProfileIn( __METHOD__ );
 		$text = $this->mText;
 		if ( $this->mEditSectionTokens ) {
@@ -102,7 +102,7 @@ class ParserOutput extends CacheTime {
 	 * @throws MWException
 	 * @return mixed
 	 */
-	function replaceEditSectionLinksCallback( $m ) {
+	public function replaceEditSectionLinksCallback( $m ) {
 		global $wgOut, $wgLang;
 		$args = array(
 			htmlspecialchars_decode( $m[1] ),
@@ -118,181 +118,181 @@ class ParserOutput extends CacheTime {
 		return call_user_func_array( array( $skin, 'doEditSectionLink' ), $args );
 	}
 
-	function &getLanguageLinks() {
+	public function &getLanguageLinks() {
 		return $this->mLanguageLinks;
 	}
 
-	function getInterwikiLinks() {
+	public function getInterwikiLinks() {
 		return $this->mInterwikiLinks;
 	}
 
-	function getCategoryLinks() {
+	public function getCategoryLinks() {
 		return array_keys( $this->mCategories );
 	}
 
-	function &getCategories() {
+	public function &getCategories() {
 		return $this->mCategories;
 	}
 
-	function getTitleText() {
+	public function getTitleText() {
 		return $this->mTitleText;
 	}
 
-	function getSections() {
+	public function getSections() {
 		return $this->mSections;
 	}
 
-	function getEditSectionTokens() {
+	public function getEditSectionTokens() {
 		return $this->mEditSectionTokens;
 	}
 
-	function &getLinks() {
+	public function &getLinks() {
 		return $this->mLinks;
 	}
 
-	function &getTemplates() {
+	public function &getTemplates() {
 		return $this->mTemplates;
 	}
 
-	function &getTemplateIds() {
+	public function &getTemplateIds() {
 		return $this->mTemplateIds;
 	}
 
-	function &getImages() {
+	public function &getImages() {
 		return $this->mImages;
 	}
 
-	function &getFileSearchOptions() {
+	public function &getFileSearchOptions() {
 		return $this->mFileSearchOptions;
 	}
 
-	function &getExternalLinks() {
+	public function &getExternalLinks() {
 		return $this->mExternalLinks;
 	}
 
-	function getNoGallery() {
+	public function getNoGallery() {
 		return $this->mNoGallery;
 	}
 
-	function getHeadItems() {
+	public function getHeadItems() {
 		return $this->mHeadItems;
 	}
 
-	function getModules() {
+	public function getModules() {
 		return $this->mModules;
 	}
 
-	function getModuleScripts() {
+	public function getModuleScripts() {
 		return $this->mModuleScripts;
 	}
 
-	function getModuleStyles() {
+	public function getModuleStyles() {
 		return $this->mModuleStyles;
 	}
 
-	function getModuleMessages() {
+	public function getModuleMessages() {
 		return $this->mModuleMessages;
 	}
 
 	/** @since 1.23 */
-	function getJsConfigVars() {
+	public function getJsConfigVars() {
 		return $this->mJsConfigVars;
 	}
 
-	function getOutputHooks() {
+	public function getOutputHooks() {
 		return (array)$this->mOutputHooks;
 	}
 
-	function getWarnings() {
+	public function getWarnings() {
 		return array_keys( $this->mWarnings );
 	}
 
-	function getIndexPolicy() {
+	public function getIndexPolicy() {
 		return $this->mIndexPolicy;
 	}
 
-	function getTOCHTML() {
+	public function getTOCHTML() {
 		return $this->mTOCHTML;
 	}
 
-	function getTimestamp() {
+	public function getTimestamp() {
 		return $this->mTimestamp;
 	}
 
-	function getLimitReportData() {
+	public function getLimitReportData() {
 		return $this->mLimitReportData;
 	}
 
-	function getTOCEnabled() {
+	public function getTOCEnabled() {
 		return $this->mTOCEnabled;
 	}
 
-	function setText( $text ) {
+	public function setText( $text ) {
 		return wfSetVar( $this->mText, $text );
 	}
 
-	function setLanguageLinks( $ll ) {
+	public function setLanguageLinks( $ll ) {
 		return wfSetVar( $this->mLanguageLinks, $ll );
 	}
 
-	function setCategoryLinks( $cl ) {
+	public function setCategoryLinks( $cl ) {
 		return wfSetVar( $this->mCategories, $cl );
 	}
 
-	function setTitleText( $t ) {
+	public function setTitleText( $t ) {
 		return wfSetVar( $this->mTitleText, $t );
 	}
 
-	function setSections( $toc ) {
+	public function setSections( $toc ) {
 		return wfSetVar( $this->mSections, $toc );
 	}
 
-	function setEditSectionTokens( $t ) {
+	public function setEditSectionTokens( $t ) {
 		return wfSetVar( $this->mEditSectionTokens, $t );
 	}
 
-	function setIndexPolicy( $policy ) {
+	public function setIndexPolicy( $policy ) {
 		return wfSetVar( $this->mIndexPolicy, $policy );
 	}
 
-	function setTOCHTML( $tochtml ) {
+	public function setTOCHTML( $tochtml ) {
 		return wfSetVar( $this->mTOCHTML, $tochtml );
 	}
 
-	function setTimestamp( $timestamp ) {
+	public function setTimestamp( $timestamp ) {
 		return wfSetVar( $this->mTimestamp, $timestamp );
 	}
 
-	function setTOCEnabled( $flag ) {
+	public function setTOCEnabled( $flag ) {
 		return wfSetVar( $this->mTOCEnabled, $flag );
 	}
 
-	function addCategory( $c, $sort ) {
+	public function addCategory( $c, $sort ) {
 		$this->mCategories[$c] = $sort;
 	}
 
-	function addLanguageLink( $t ) {
+	public function addLanguageLink( $t ) {
 		$this->mLanguageLinks[] = $t;
 	}
 
-	function addWarning( $s ) {
+	public function addWarning( $s ) {
 		$this->mWarnings[$s] = 1;
 	}
 
-	function addOutputHook( $hook, $data = false ) {
+	public function addOutputHook( $hook, $data = false ) {
 		$this->mOutputHooks[] = array( $hook, $data );
 	}
 
-	function setNewSection( $value ) {
+	public function setNewSection( $value ) {
 		$this->mNewSection = (bool)$value;
 	}
-	function hideNewSection( $value ) {
+	public function hideNewSection( $value ) {
 		$this->mHideNewSection = (bool)$value;
 	}
-	function getHideNewSection() {
+	public function getHideNewSection() {
 		return (bool)$this->mHideNewSection;
 	}
-	function getNewSection() {
+	public function getNewSection() {
 		return (bool)$this->mNewSection;
 	}
 
@@ -303,7 +303,7 @@ class ParserOutput extends CacheTime {
 	 * @param string $url The url to check
 	 * @return bool
 	 */
-	static function isLinkInternal( $internal, $url ) {
+	public static function isLinkInternal( $internal, $url ) {
 		return (bool)preg_match( '/^' .
 			# If server is proto relative, check also for http/https links
 			( substr( $internal, 0, 2 ) === '//' ? '(?:https?:)?' : '' ) .
@@ -314,7 +314,7 @@ class ParserOutput extends CacheTime {
 		);
 	}
 
-	function addExternalLink( $url ) {
+	public function addExternalLink( $url ) {
 		# We don't register links pointing to our own server, unless... :-)
 		global $wgServer, $wgRegisterInternalExternals;
 
@@ -333,7 +333,7 @@ class ParserOutput extends CacheTime {
 	 * @param Title $title
 	 * @param int|null $id Optional known page_id so we can skip the lookup
 	 */
-	function addLink( Title $title, $id = null ) {
+	public function addLink( Title $title, $id = null ) {
 		if ( $title->isExternal() ) {
 			// Don't record interwikis in pagelinks
 			$this->addInterwikiLink( $title );
@@ -368,7 +368,7 @@ class ParserOutput extends CacheTime {
 	 * @param string $sha1 Base 36 SHA-1 of file (or false if non-existing)
 	 * @return void
 	 */
-	function addImage( $name, $timestamp = null, $sha1 = null ) {
+	public function addImage( $name, $timestamp = null, $sha1 = null ) {
 		$this->mImages[$name] = 1;
 		if ( $timestamp !== null && $sha1 !== null ) {
 			$this->mFileSearchOptions[$name] = array( 'time' => $timestamp, 'sha1' => $sha1 );
@@ -382,7 +382,7 @@ class ParserOutput extends CacheTime {
 	 * @param int $rev_id
 	 * @return void
 	 */
-	function addTemplate( $title, $page_id, $rev_id ) {
+	public function addTemplate( $title, $page_id, $rev_id ) {
 		$ns = $title->getNamespace();
 		$dbk = $title->getDBkey();
 		if ( !isset( $this->mTemplates[$ns] ) ) {
@@ -399,7 +399,7 @@ class ParserOutput extends CacheTime {
 	 * @param Title $title Title object, must be an interwiki link
 	 * @throws MWException If given invalid input
 	 */
-	function addInterwikiLink( $title ) {
+	public function addInterwikiLink( $title ) {
 		if ( !$title->isExternal() ) {
 			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
 		}
@@ -417,7 +417,7 @@ class ParserOutput extends CacheTime {
 	 * @param string $section
 	 * @param string|bool $tag
 	 */
-	function addHeadItem( $section, $tag = false ) {
+	public function addHeadItem( $section, $tag = false ) {
 		if ( $tag !== false ) {
 			$this->mHeadItems[$tag] = $section;
 		} else {
@@ -748,7 +748,7 @@ class ParserOutput extends CacheTime {
 	 * Resets the parse start timestamps for future calls to getTimeSinceStart()
 	 * @since 1.22
 	 */
-	function resetParseStartTime() {
+	public function resetParseStartTime() {
 		$this->mParseStartTime = self::getTimes();
 	}
 
@@ -763,7 +763,7 @@ class ParserOutput extends CacheTime {
 	 * @param string $clock
 	 * @return float|null
 	 */
-	function getTimeSinceStart( $clock ) {
+	public function getTimeSinceStart( $clock ) {
 		if ( !isset( $this->mParseStartTime[$clock] ) ) {
 			return null;
 		}
@@ -791,7 +791,7 @@ class ParserOutput extends CacheTime {
 	 * @param string $key Message key
 	 * @param mixed $value Appropriate for Message::params()
 	 */
-	function setLimitReportData( $key, $value ) {
+	public function setLimitReportData( $key, $value ) {
 		$this->mLimitReportData[$key] = $value;
 	}
 
@@ -809,7 +809,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Save space for for serialization by removing useless values
 	 */
-	function __sleep() {
+	public function __sleep() {
 		return array_diff(
 			array_keys( get_object_vars( $this ) ),
 			array( 'mSecondaryDataUpdates', 'mParseStartTime' )

@@ -25,26 +25,27 @@
  * @ingroup Parser
  */
 class LinkHolderArray {
-	var $internals = array(), $interwikis = array();
-	var $size = 0;
+	public $internals = array();
+	public $interwikis = array();
+	public $size = 0;
 
 	/**
 	 * @var Parser
 	 */
-	var $parent;
+	public $parent;
 	protected $tempIdOffset;
 
 	/**
 	 * @param Parser $parent
 	 */
-	function __construct( $parent ) {
+	public function __construct( $parent ) {
 		$this->parent = $parent;
 	}
 
 	/**
 	 * Reduce memory usage to reduce the impact of circular references
 	 */
-	function __destruct() {
+	public function __destruct() {
 		foreach ( $this as $name => $value ) {
 			unset( $this->$name );
 		}
@@ -58,7 +59,7 @@ class LinkHolderArray {
 	 * Compact the titles, only serialize the text form.
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		foreach ( $this->internals as &$nsLinks ) {
 			foreach ( $nsLinks as &$entry ) {
 				unset( $entry['title'] );
@@ -78,7 +79,7 @@ class LinkHolderArray {
 	/**
 	 * Recreate the Title objects
 	 */
-	function __wakeup() {
+	public function __wakeup() {
 		foreach ( $this->internals as &$nsLinks ) {
 			foreach ( $nsLinks as &$entry ) {
 				$entry['title'] = Title::newFromText( $entry['pdbk'] );
@@ -97,7 +98,7 @@ class LinkHolderArray {
 	 * Merge another LinkHolderArray into this one
 	 * @param LinkHolderArray $other
 	 */
-	function merge( $other ) {
+	public function merge( $other ) {
 		foreach ( $other->internals as $ns => $entries ) {
 			$this->size += count( $entries );
 			if ( !isset( $this->internals[$ns] ) ) {
@@ -121,7 +122,7 @@ class LinkHolderArray {
 	 * @param array $texts Array of strings
 	 * @return array
 	 */
-	function mergeForeign( $other, $texts ) {
+	public function mergeForeign( $other, $texts ) {
 		$this->tempIdOffset = $idOffset = $this->parent->nextLinkID();
 		$maxId = 0;
 
@@ -165,7 +166,7 @@ class LinkHolderArray {
 	 * @param string $text
 	 * @return LinkHolderArray
 	 */
-	function getSubArray( $text ) {
+	public function getSubArray( $text ) {
 		$sub = new LinkHolderArray( $this->parent );
 
 		# Internal links
@@ -199,7 +200,7 @@ class LinkHolderArray {
 	 * Returns true if the memory requirements of this object are getting large
 	 * @return bool
 	 */
-	function isBig() {
+	public function isBig() {
 		global $wgLinkHolderBatchSize;
 		return $this->size > $wgLinkHolderBatchSize;
 	}
@@ -208,7 +209,7 @@ class LinkHolderArray {
 	 * Clear all stored link holders.
 	 * Make sure you don't have any text left using these link holders, before you call this
 	 */
-	function clear() {
+	public function clear() {
 		$this->internals = array();
 		$this->interwikis = array();
 		$this->size = 0;
@@ -227,7 +228,7 @@ class LinkHolderArray {
 	 * @param string $prefix [optional]
 	 * @return string
 	 */
-	function makeHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = '' ) {
+	public function makeHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = '' ) {
 		wfProfileIn( __METHOD__ );
 		if ( !is_object( $nt ) ) {
 			# Fail gracefully
@@ -268,7 +269,7 @@ class LinkHolderArray {
 	 * @param string $text
 	 * @return array Array of link CSS classes, indexed by PDBK.
 	 */
-	function replace( &$text ) {
+	public function replace( &$text ) {
 		wfProfileIn( __METHOD__ );
 
 		/** @todo FIXME: replaceInternal doesn't return a value */
@@ -630,7 +631,7 @@ class LinkHolderArray {
 	 * @param string $text
 	 * @return string
 	 */
-	function replaceText( $text ) {
+	public function replaceText( $text ) {
 		wfProfileIn( __METHOD__ );
 
 		$text = preg_replace_callback(
@@ -649,7 +650,7 @@ class LinkHolderArray {
 	 * @return string
 	 * @private
 	 */
-	function replaceTextCallback( $matches ) {
+	public function replaceTextCallback( $matches ) {
 		$type = $matches[1];
 		$key = $matches[2];
 		if ( $type == 'LINK' ) {
