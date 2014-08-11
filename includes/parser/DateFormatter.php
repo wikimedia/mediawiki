@@ -27,11 +27,11 @@
  * @ingroup Parser
  */
 class DateFormatter {
-	var $mSource, $mTarget;
-	var $monthNames = '', $rxDM, $rxMD, $rxDMY, $rxYDM, $rxMDY, $rxYMD;
+	public $mSource, $mTarget;
+	public $monthNames = '', $rxDM, $rxMD, $rxDMY, $rxYDM, $rxMDY, $rxYMD;
 
-	var $regexes, $pDays, $pMonths, $pYears;
-	var $rules, $xMonths, $preferences;
+	public $regexes, $pDays, $pMonths, $pYears;
+	public $rules, $xMonths, $preferences;
 
 	protected $lang;
 
@@ -51,7 +51,7 @@ class DateFormatter {
 	/**
 	 * @param Language $lang In which language to format the date
 	 */
-	function __construct( Language $lang ) {
+	public function __construct( Language $lang ) {
 		$this->lang = $lang;
 
 		$this->monthNames = $this->getMonthRegex();
@@ -146,7 +146,7 @@ class DateFormatter {
 	 *
 	 * @return string
 	 */
-	function reformat( $preference, $text, $options = array( 'linked' ) ) {
+	public function reformat( $preference, $text, $options = array( 'linked' ) ) {
 		$linked = in_array( 'linked', $options );
 		$match_whole = in_array( 'match-whole', $options );
 
@@ -196,7 +196,7 @@ class DateFormatter {
 	 * @param array $matches
 	 * @return string
 	 */
-	function replace( $matches ) {
+	public function replace( $matches ) {
 		# Extract information from $matches
 		$linked = true;
 		if ( isset( $this->mLinked ) ) {
@@ -220,7 +220,7 @@ class DateFormatter {
 	 * @param bool $link
 	 * @return string
 	 */
-	function formatDate( $bits, $link = true ) {
+	public function formatDate( $bits, $link = true ) {
 		$format = $this->targets[$this->mTarget];
 
 		if ( !$link ) {
@@ -318,7 +318,7 @@ class DateFormatter {
 	 * @todo document
 	 * @return string
 	 */
-	function getMonthRegex() {
+	public function getMonthRegex() {
 		$names = array();
 		for ( $i = 1; $i <= 12; $i++ ) {
 			$names[] = $this->lang->getMonthName( $i );
@@ -332,7 +332,7 @@ class DateFormatter {
 	 * @param string $monthName Month name
 	 * @return string ISO month name
 	 */
-	function makeIsoMonth( $monthName ) {
+	public function makeIsoMonth( $monthName ) {
 		$n = $this->xMonths[$this->lang->lc( $monthName )];
 		return sprintf( '%02d', $n );
 	}
@@ -342,7 +342,7 @@ class DateFormatter {
 	 * @param string $year Year name
 	 * @return string ISO year name
 	 */
-	function makeIsoYear( $year ) {
+	public function makeIsoYear( $year ) {
 		# Assumes the year is in a nice format, as enforced by the regex
 		if ( substr( $year, -2 ) == 'BC' ) {
 			$num = intval( substr( $year, 0, -3 ) ) - 1;
@@ -360,7 +360,7 @@ class DateFormatter {
 	 * @param string $iso
 	 * @return int|string
 	 */
-	function makeNormalYear( $iso ) {
+	public function makeNormalYear( $iso ) {
 		if ( $iso[0] == '-' ) {
 			$text = ( intval( substr( $iso, 1 ) ) + 1 ) . ' BC';
 		} else {

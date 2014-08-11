@@ -30,14 +30,14 @@ interface Preprocessor {
 	 *
 	 * @param Parser $parser
 	 */
-	function __construct( $parser );
+	public function __construct( $parser );
 
 	/**
 	 * Create a new top-level frame for expansion of a page
 	 *
 	 * @return PPFrame
 	 */
-	function newFrame();
+	public function newFrame();
 
 	/**
 	 * Create a new custom frame for programmatic use of parameter replacement
@@ -47,7 +47,7 @@ interface Preprocessor {
 	 *
 	 * @return PPFrame
 	 */
-	function newCustomFrame( $args );
+	public function newCustomFrame( $args );
 
 	/**
 	 * Create a new custom node for programmatic use of parameter replacement
@@ -55,7 +55,7 @@ interface Preprocessor {
 	 *
 	 * @param array $values
 	 */
-	function newPartNodeArray( $values );
+	public function newPartNodeArray( $values );
 
 	/**
 	 * Preprocess text to a PPNode
@@ -65,7 +65,7 @@ interface Preprocessor {
 	 *
 	 * @return PPNode
 	 */
-	function preprocessToObj( $text, $flags = 0 );
+	public function preprocessToObj( $text, $flags = 0 );
 }
 
 /**
@@ -93,65 +93,65 @@ interface PPFrame {
 	 *
 	 * @return PPFrame
 	 */
-	function newChild( $args = false, $title = false, $indexOffset = 0 );
+	public function newChild( $args = false, $title = false, $indexOffset = 0 );
 
 	/**
 	 * Expand a document tree node, caching the result on its parent with the given key
 	 */
-	function cachedExpand( $key, $root, $flags = 0 );
+	public function cachedExpand( $key, $root, $flags = 0 );
 
 	/**
 	 * Expand a document tree node
 	 */
-	function expand( $root, $flags = 0 );
+	public function expand( $root, $flags = 0 );
 
 	/**
 	 * Implode with flags for expand()
 	 */
-	function implodeWithFlags( $sep, $flags /*, ... */ );
+	public function implodeWithFlags( $sep, $flags /*, ... */ );
 
 	/**
 	 * Implode with no flags specified
 	 */
-	function implode( $sep /*, ... */ );
+	public function implode( $sep /*, ... */ );
 
 	/**
 	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
 	 */
-	function virtualImplode( $sep /*, ... */ );
+	public function virtualImplode( $sep /*, ... */ );
 
 	/**
 	 * Virtual implode with brackets
 	 */
-	function virtualBracketedImplode( $start, $sep, $end /*, ... */ );
+	public function virtualBracketedImplode( $start, $sep, $end /*, ... */ );
 
 	/**
 	 * Returns true if there are no arguments in this frame
 	 *
 	 * @return bool
 	 */
-	function isEmpty();
+	public function isEmpty();
 
 	/**
 	 * Returns all arguments of this frame
 	 */
-	function getArguments();
+	public function getArguments();
 
 	/**
 	 * Returns all numbered arguments of this frame
 	 */
-	function getNumberedArguments();
+	public function getNumberedArguments();
 
 	/**
 	 * Returns all named arguments of this frame
 	 */
-	function getNamedArguments();
+	public function getNamedArguments();
 
 	/**
 	 * Get an argument to this frame by name
 	 */
-	function getArgument( $name );
+	public function getArgument( $name );
 
 	/**
 	 * Returns true if the infinite loop check is OK, false if a loop is detected
@@ -159,12 +159,12 @@ interface PPFrame {
 	 * @param Title $title
 	 * @return bool
 	 */
-	function loopCheck( $title );
+	public function loopCheck( $title );
 
 	/**
 	 * Return true if the frame is a template frame
 	 */
-	function isTemplate();
+	public function isTemplate();
 
 	/**
 	 * Set the "volatile" flag.
@@ -177,7 +177,7 @@ interface PPFrame {
 	 *
 	 * @param bool $flag
 	 */
-	function setVolatile( $flag = true );
+	public function setVolatile( $flag = true );
 
 	/**
 	 * Get the "volatile" flag.
@@ -188,7 +188,7 @@ interface PPFrame {
 	 * @see self::setVolatile()
 	 * @return bool
 	 */
-	function isVolatile();
+	public function isVolatile();
 
 	/**
 	 * Get the TTL of the frame's output.
@@ -202,7 +202,7 @@ interface PPFrame {
 	 *
 	 * @return int|null
 	 */
-	function getTTL();
+	public function getTTL();
 
 	/**
 	 * Set the TTL of the output of this frame and all of its ancestors.
@@ -213,14 +213,14 @@ interface PPFrame {
 	 * @see self::getTTL()
 	 * @param int $ttl
 	 */
-	function setTTL( $ttl );
+	public function setTTL( $ttl );
 
 	/**
 	 * Get a title of frame
 	 *
 	 * @return Title
 	 */
-	function getTitle();
+	public function getTitle();
 }
 
 /**
@@ -241,35 +241,35 @@ interface PPNode {
 	 * Get an array-type node containing the children of this node.
 	 * Returns false if this is not a tree node.
 	 */
-	function getChildren();
+	public function getChildren();
 
 	/**
 	 * Get the first child of a tree node. False if there isn't one.
 	 *
 	 * @return PPNode
 	 */
-	function getFirstChild();
+	public function getFirstChild();
 
 	/**
 	 * Get the next sibling of any node. False if there isn't one
 	 */
-	function getNextSibling();
+	public function getNextSibling();
 
 	/**
 	 * Get all children of this tree node which have a given name.
 	 * Returns an array-type node, or false if this is not a tree node.
 	 */
-	function getChildrenOfType( $type );
+	public function getChildrenOfType( $type );
 
 	/**
 	 * Returns the length of the array, or false if this is not an array-type node
 	 */
-	function getLength();
+	public function getLength();
 
 	/**
 	 * Returns an item of an array-type node
 	 */
-	function item( $i );
+	public function item( $i );
 
 	/**
 	 * Get the name of this node. The following names are defined here:
@@ -283,7 +283,7 @@ interface PPNode {
 	 *
 	 * The subclass may define various other names for tree and leaf nodes.
 	 */
-	function getName();
+	public function getName();
 
 	/**
 	 * Split a "<part>" node into an associative array containing:
@@ -291,16 +291,16 @@ interface PPNode {
 	 *    index         String index
 	 *    value         PPNode value
 	 */
-	function splitArg();
+	public function splitArg();
 
 	/**
 	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 */
-	function splitExt();
+	public function splitExt();
 
 	/**
 	 * Split an "<h>" node
 	 */
-	function splitHeading();
+	public function splitHeading();
 }

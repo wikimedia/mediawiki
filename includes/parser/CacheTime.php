@@ -32,7 +32,7 @@ class CacheTime {
 	 */
 	public $mUsedOptions;
 
-	var	$mVersion = Parser::VERSION,  # Compatibility check
+	public $mVersion = Parser::VERSION,  # Compatibility check
 		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
 		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncachable. Used in ParserCache.
 		$mContainsOldMagic,           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
@@ -41,14 +41,14 @@ class CacheTime {
 	/**
 	 * @return string TS_MW timestamp
 	 */
-	function getCacheTime() {
+	public function getCacheTime() {
 		return wfTimestamp( TS_MW, $this->mCacheTime );
 	}
 
 	/**
 	 * @return bool
 	 */
-	function containsOldMagic() {
+	public function containsOldMagic() {
 		return $this->mContainsOldMagic;
 	}
 
@@ -56,7 +56,7 @@ class CacheTime {
 	 * @param bool $com
 	 * @return bool
 	 */
-	function setContainsOldMagic( $com ) {
+	public function setContainsOldMagic( $com ) {
 		return wfSetVar( $this->mContainsOldMagic, $com );
 	}
 
@@ -66,7 +66,7 @@ class CacheTime {
 	 * @param string $t
 	 * @return string
 	 */
-	function setCacheTime( $t ) {
+	public function setCacheTime( $t ) {
 		return wfSetVar( $this->mCacheTime, $t );
 	}
 
@@ -74,7 +74,7 @@ class CacheTime {
 	 * @since 1.23
 	 * @return int|null Revision id, if any was set
 	 */
-	function getCacheRevisionId() {
+	public function getCacheRevisionId() {
 		return $this->mCacheRevisionId;
 	}
 
@@ -82,7 +82,7 @@ class CacheTime {
 	 * @since 1.23
 	 * @param int $id Revision id
 	 */
-	function setCacheRevisionId( $id ) {
+	public function setCacheRevisionId( $id ) {
 		$this->mCacheRevisionId = $id;
 	}
 
@@ -96,7 +96,7 @@ class CacheTime {
 	 *
 	 * @param int $seconds
 	 */
-	function updateCacheExpiry( $seconds ) {
+	public function updateCacheExpiry( $seconds ) {
 		$seconds = (int)$seconds;
 
 		if ( $this->mCacheExpiry === null || $this->mCacheExpiry > $seconds ) {
@@ -118,7 +118,7 @@ class CacheTime {
 	 * value of $wgParserCacheExpireTime.
 	 * @return int|mixed|null
 	 */
-	function getCacheExpiry() {
+	public function getCacheExpiry() {
 		global $wgParserCacheExpireTime;
 
 		if ( $this->mCacheTime < 0 ) {
@@ -147,7 +147,7 @@ class CacheTime {
 	/**
 	 * @return bool
 	 */
-	function isCacheable() {
+	public function isCacheable() {
 		return $this->getCacheExpiry() > 0;
 	}
 

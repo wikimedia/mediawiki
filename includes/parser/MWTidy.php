@@ -83,7 +83,7 @@ class MWTidyWrapper {
 	 *
 	 * @return string
 	 */
-	function replaceCallback( $m ) {
+	public function replaceCallback( $m ) {
 		$marker = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}" . Parser::MARKER_SUFFIX;
 		$this->mMarkerIndex++;
 		$this->mTokens->setPair( $marker, $m[0] );
