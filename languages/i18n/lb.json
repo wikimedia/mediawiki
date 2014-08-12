@@ -1731,6 +1731,7 @@
 	"delete-edit-reasonlist": "Läschgrënn änneren",
 	"delete-toobig": "Dës Säit huet e laangen Historique, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.\nD'Läsche vu sou Säite gouf limitéiert fir ongewollte Stéierungen op {{SITENAME}} ze verhënneren.",
 	"delete-warning-toobig": "Dës Säit huet eng laang Versiounsgeschicht, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.\nD'Läschen dovu kann zu Stéierungen am Fonctionnement vun {{SITENAME}} féieren;\ndës Aktioun soll mat Virsiicht gemaach ginn.",
+	"delete-cantedit": "Dir däerft dës Säit net läsche well Dir net d'Recht hutt fir se z'änneren.",
 	"deleting-backlinks-warning": "'''Opgepasst:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Aner Säite]] linken op déi Säit déi Dir am Gaang sidd ze läschen oder déi Säit Déi Dir am Gaang sidd ze läschen ass an aner Säiten agebonn.",
 	"rollback": "Ännerungen zrécksetzen",
 	"rollback_short": "Zrécksetzen",

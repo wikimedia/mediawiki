@@ -1857,6 +1857,7 @@
 	"delete-edit-reasonlist": "Modifier les motifs de suppression de page",
 	"delete-toobig": "Cette page possède un historique important de modifications, dépassant $1 version{{PLURAL:$1||s}}.\nLa suppression de telles pages a été restreinte pour prévenir des perturbations accidentelles de {{SITENAME}}.",
 	"delete-warning-toobig": "Cette page possède un historique important de modifications, dépassant $1 version{{PLURAL:$1||s}}.\nLa supprimer peut perturber le fonctionnement de la base de données de {{SITENAME}} ;\nveuiller ne procéder qu'avec prudence.",
+	"delete-cantedit": "Vous ne pouvez pas supprimer cette page car vous n’avez pas le droit de la modifier.",
 	"deleting-backlinks-warning": "'''Attention :''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|D’autres pages]] ont un lien vers ou incorporent la page que vous allez supprimer.",
 	"rollback": "Révoquer les modifications",
 	"rollback_short": "Révoquer",

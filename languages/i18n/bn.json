@@ -274,6 +274,7 @@
 	"hidetoc": "আড়ালে রাখো",
 	"collapsible-collapse": "সংকোচন",
 	"collapsible-expand": "প্রসারণ",
+	"confirmable-confirm": "{{GENDER:$1|আপনি}} কি নিশ্চিত?",
 	"confirmable-yes": "হ্যাঁ",
 	"confirmable-no": "না",
 	"thisisdeleted": "$1 দেখানো বা পুনঃসৃষ্টি করা হোক?",
@@ -3104,5 +3105,7 @@
 	"action-pagelang": "পাতার ভাষা পরিবর্তন করুন",
 	"log-name-pagelang": "ভাষা পরিবর্তন লগ",
 	"log-description-pagelang": "এটি পাতার ভাষা পরিবর্তনের লগ।",
-	"logentry-pagelang-pagelang": "$1 পাতার ভাষা $3 এর জন্য $4 থেকে $5 এ {{GENDER:$2|পরিবর্তন}} করেছেন।"
+	"logentry-pagelang-pagelang": "$1 পাতার ভাষা $3 এর জন্য $4 থেকে $5 এ {{GENDER:$2|পরিবর্তন}} করেছেন।",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (সক্রিয় করা)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''নিষ্ক্রিয় করা''')"
 }

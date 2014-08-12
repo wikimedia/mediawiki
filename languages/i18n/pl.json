@@ -1809,6 +1809,7 @@
 	"delete-edit-reasonlist": "Edytuj listę przyczyn usunięcia",
 	"delete-toobig": "Ta strona ma bardzo długą historię edycji – ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.<br />\nUsuwanie jej zostało ograniczone ze względu na możliwość zakłócenia pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.",
 	"delete-warning-toobig": "Ta strona ma bardzo długą historię edycji – ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.<br />\nBądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.",
+	"delete-cantedit": "Nie możesz usunąć tej strony, ponieważ nie masz uprawnienia do jej edycji.",
 	"deleting-backlinks-warning": "''' Uwaga:''' Do strony, którą masz zamiar usunąć, odwołują się [[Special:WhatLinksHere/{{FULLPAGENAME}}|inne strony]].",
 	"rollback": "Cofnij edycję",
 	"rollback_short": "Cofnij",

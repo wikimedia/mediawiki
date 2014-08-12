@@ -61,7 +61,8 @@
 			"לערי ריינהארט",
 			"555",
 			"아라",
-			"Leon saudanha"
+			"Leon saudanha",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sublinhar ligações:",
@@ -1801,6 +1802,7 @@
 	"delete-edit-reasonlist": "Editar motivos de eliminação",
 	"delete-toobig": "Esta página tem um histórico longo, com mais de $1 {{PLURAL:$1|edição|edições}}.\nA eliminação de páginas como esta foi restringida na {{SITENAME}}, para evitar problemas acidentais.",
 	"delete-warning-toobig": "Esta página tem um histórico de edições longo, com mais de $1 {{PLURAL:$1|edição|edições}}.\nEliminá-la poderá causar problemas na base de dados da {{SITENAME}};\nprossiga com precaução.",
+	"delete-cantedit": "Não é possível eliminar esta página porque não possui os privilégios necessários para a editar.",
 	"deleting-backlinks-warning": "'''Aviso:''' Existem [[Special:WhatLinksHere/{{FULLPAGENAME}}|páginas]] que contêm ligações para a página que está prestes a eliminar ou que a transcluem.",
 	"rollback": "Reverter edições",
 	"rollback_short": "Reverter",
@@ -1942,7 +1944,7 @@
 	"sp-contributions-newonly": "Mostrar só edições que são criações de páginas",
 	"sp-contributions-submit": "Pesquisar",
 	"whatlinkshere": "Páginas afluentes",
-	"whatlinkshere-title": "Páginas que têm ligações para \"$1\"",
+	"whatlinkshere-title": "Páginas com ligações para \"$1\"",
 	"whatlinkshere-page": "Página:",
 	"linkshere": "As seguintes páginas têm ligação a '''[[:$1]]''':",
 	"nolinkshere": "Não existem afluentes para '''[[:$1]]''' com as condições especificadas.",
@@ -2880,7 +2882,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussão]])",
 	"unknown_extension_tag": "\"$1\" é uma marca de extensão desconhecida",
 	"duplicate-defaultsort": "<strong>Aviso:</strong> A chave de ordenação padrão \"$2\" sobrepõe-se à anterior \"$1\".",
-	"duplicate-displaytitle": "<strong> Aviso: </ strong> Exibir título \"$ 2\" substituindo o título anteriormente em exibição \"$ 1\".",
+	"duplicate-displaytitle": "<strong>Aviso:</strong> Exibir título \"$2\" substituindo o título anteriormente em exibição \"$1\".",
 	"version": "Versão",
 	"version-extensions": "Extensões instaladas",
 	"version-skins": "Temas instalados",

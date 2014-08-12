@@ -1796,6 +1796,7 @@
 	"delete-edit-reasonlist": "編輯刪除理由",
 	"delete-toobig": "這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除此類頁面的動作已經被限制，以防止在{{SITENAME}}上的意外擾亂。",
 	"delete-warning-toobig": "這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除它可能會擾亂{{SITENAME}}的資料庫操作；在繼續此動作前請小心。",
+	"delete-cantedit": "您沒有權限編輯此頁面，您無法刪除。",
 	"deleting-backlinks-warning": "<strong>警告：</strong>您正要刪除的頁面有[[Special:WhatLinksHere/{{FULLPAGENAME}}|其他頁面]]連結或引用。",
 	"rollback": "還原編輯",
 	"rollback_short": "還原",

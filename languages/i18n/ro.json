@@ -1764,6 +1764,7 @@
 	"delete-edit-reasonlist": "Modifică motivele ștergerii",
 	"delete-toobig": "Această pagină are un istoric al modificărilor important, cu mai mult de $1 {{PLURAL:$1|versiune|versiuni|de versiuni}}.\nȘtergerea unei astfel de pagini a fost restricționată pentru a preveni apariția unor erori în {{SITENAME}}.",
 	"delete-warning-toobig": "Această pagină are un istoric al modificărilor mult prea mare, cu mai mult de $1 {{PLURAL:$1|versiune|versiuni|de versiuni}}.\nȘtergerea sa poate afecta baza de date a sitului {{SITENAME}};\nacționați cu precauție.",
+	"delete-cantedit": "Nu puteți șterge această pagină, deoarece nu aveți permisiunea de a o modifica.",
 	"deleting-backlinks-warning": "'''Atenție:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Alte pagini]] se leagă sau transclud pagina pe care doriți să o ștergeți.",
 	"rollback": "Editări de revenire",
 	"rollback_short": "Revenire",

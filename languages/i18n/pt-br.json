@@ -1789,6 +1789,7 @@
 	"delete-edit-reasonlist": "Editar motivos de eliminação",
 	"delete-toobig": "Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.\nA eliminação de tais páginas foi restrita, a fim de se evitarem problemas acidentais em {{SITENAME}}.",
 	"delete-warning-toobig": "Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.\nEliminá-la poderá causar problemas na base de dados de {{SITENAME}};\nprossiga com cuidado.",
+	"delete-cantedit": "Você não pode deletar essa paginá por que você não tem permissão de edita-la",
 	"deleting-backlinks-warning": "'''Cuidado:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Outras páginas]] se ligam ou redirecionam para a página que você está prestes a deletar.",
 	"rollback": "Reverter edições",
 	"rollback_short": "Reverter",
