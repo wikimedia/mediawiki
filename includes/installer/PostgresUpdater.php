@@ -418,6 +418,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'pagelinks', 'pl_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'templatelinks', 'tl_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'imagelinks', 'il_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ),
+			// bug 66650
+			array( 'textvectorFix' ),
 		);
 	}
 
@@ -924,5 +926,13 @@ END;
 		if ( $this->db->getServerVersion() >= 8.3 ) {
 			$this->applyPatch( 'patch-tsearch2funcs.sql', false, "Rewriting tsearch2 triggers" );
 		}
+	}
+
+	protected function textvectorFix() {
+		$this->output( "Restoring textvector field\n" );
+		$this->db->query(
+			"UPDATE pagecontent SET textvector=to_tsvector(old_text) " .
+			"WHERE textvector IS NULL AND old_id IN " .
+			"(SELECT  max(rev_text_id) FROM revision GROUP BY rev_page)" );
 	}
 }
