@@ -7,6 +7,6 @@ CREATE TABLE /*_*/profiling (
   pf_memory float NOT NULL default 0,
   pf_name varchar(255) NOT NULL default '',
   pf_server varchar(30) NOT NULL default ''
-) ENGINE=HEAP;
+) ENGINE=MEMORY;
 
 CREATE UNIQUE INDEX /*i*/pf_name_server ON /*_*/profiling (pf_name, pf_server);
