@@ -1411,9 +1411,9 @@ abstract class ApiBase extends ContextSource {
 			'code' => 'cantedit',
 			'info' => "You can't protect this page because you can't edit it"
 		),
-		'delete-cantedit' => array(
+		'deleteprotected' => array(
 			'code' => 'cantedit',
-			'info' => "You can't delete this page because you can't edit it"
+			'info' => "You can't delete this page because it has been protected"
 		),
 		'badaccess-group0' => array(
 			'code' => 'permissiondenied',

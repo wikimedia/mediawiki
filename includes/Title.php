@@ -2258,11 +2258,15 @@ class Title {
 				$errors[] = array( 'immobile-target-page' );
 			}
 		} elseif ( $action == 'delete' ) {
-			if ( count( $this->getUserPermissionsErrorsInternal( 'edit',
-				$user, $doExpensiveQueries, true ) )
-			) {
-				// If they can't edit, they shouldn't delete.
-				$errors[] = array( 'delete-cantedit' );
+			$tempErrors = $this->checkPageRestrictions( 'edit',
+				$user, array(), $doExpensiveQueries, true );
+			if( !$tempErrors ) {
+				$tempErrors = $this->checkCascadingSourcesRestrictions( 'edit',
+					$user, $tempErrors, $doExpensiveQueries, true );
+			}
+			if ( $tempErrors ) {
+				// If protection keeps them from editing, they shouldn't be able to delete.
+				$errors[] = array( 'deleteprotected' );
 			}
 			if ( $doExpensiveQueries && $wgDeleteRevisionsLimit
 				&& !$this->userCan( 'bigdelete', $user ) && $this->isBigDeletion()
