@@ -27,3 +27,8 @@ INSERT INTO /*_*/updatelog (ul_key, ul_value)
 	VALUES( 'user_former_groups-ufg_group-patch-ufg_group-length-increase-255.sql', null );
 INSERT INTO /*_*/updatelog (ul_key, ul_value)
 	VALUES( 'user_properties-up_property-patch-up_property.sql', null );
+
+-- PostgreSQL-specific patches.
+
+INSERT INTO /*_*/updatelog (ul_key, ul_value)
+	VALUES( 'patch-textsearch_bug66650.sql', null );
