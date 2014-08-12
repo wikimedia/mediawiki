@@ -479,7 +479,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		$contents = file_get_contents( $localPath );
 		if ( $this->getConfig()->get( 'ResourceLoaderValidateStaticJS' ) ) {
-			$contents = $this->validateScriptFile( $fileName, $contents );
+			$contents = $this->validateScriptFile( $localPath, $contents );
 		}
 		return $contents;
 	}
