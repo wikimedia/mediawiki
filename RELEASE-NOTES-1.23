@@ -7,6 +7,7 @@ This is a maintenance release of the MediaWiki 1.23 branch.
 
 === Changes since 1.23.2 ===
 
+* (bug 68501) Correctly handle incorrect namespace in cleanupTitles.php
 * (bug 64970) Fix support for blobs on DatabaseOracle::update
 
 == MediaWiki 1.23.2 ==
