@@ -4,6 +4,8 @@ turn it off. MediaWiki will no longer work with it enabled.
 == Changes since 1.24.3 ==
 
 * (T91653) Minimal PSR-3 debug logger to support backports from 1.25+.
+* (bug T68650) Fix indexing of moved pages with PostgreSQL. Requires running 
+  update.php to fix.
 
 == MediaWiki 1.24.3 ==
 
