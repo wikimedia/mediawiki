@@ -7275,7 +7275,7 @@ $wgPageLanguageUseDB = false;
  * @var bool
  * @since 1.24
  */
-$wgUseLinkNamespaceDBFields = false;
+$wgUseLinkNamespaceDBFields = true;
 
 /**
  * For really cool vim folding this needs to be at the end:
