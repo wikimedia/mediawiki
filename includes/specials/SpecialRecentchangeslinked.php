@@ -220,15 +220,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		return $res;
 	}
 
-	protected function runMainQueryHook( &$tables, &$select, &$conds, &$query_options, &$join_conds, $opts ) {
-		return parent::runMainQueryHook( $tables, $select, $conds, $query_options, $join_conds, $opts )
-		&& wfRunHooks(
-			'SpecialRecentChangesQuery',
-			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ),
-			'1.23'
-		);
-	}
-
 	function setTopText( FormOptions $opts ) {
 		$target = $this->getTargetTitle();
 		if ( $target ) {
