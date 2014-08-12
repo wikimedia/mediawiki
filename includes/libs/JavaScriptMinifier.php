@@ -426,9 +426,13 @@ class JavaScriptMinifier {
 			// First, skip over any whitespace and multiline comments, recording whether we
 			// found any newline character
 			$skip = strspn( $s, " \t\n\r\xb\xc", $pos );
+			$licenseComment = false;
 			if( !$skip ) {
 				$ch = $s[$pos];
 				if( $ch === '/' && substr( $s, $pos, 2 ) === '/*' ) {
+					if ( substr( $s, $pos, 3 ) == '/*!' ) {
+						$licenseComment = true;
+					}
 					// Multiline comment. Search for the end token or EOT.
 					$end = strpos( $s, '*/', $pos + 2 );
 					$skip = $end === false ? $length - $pos : $end - $pos + 2;
@@ -439,6 +443,10 @@ class JavaScriptMinifier {
 				// between two tokens, so record it now.
 				if( !$newlineFound && strcspn( $s, "\r\n", $pos, $skip ) !== $skip ) {
 					$newlineFound = true;
+				}
+				if ( $licenseComment ) {
+					// Preserve jQuery-style license comments
+					$out .= substr( $s, $pos, $skip );
 				}
 				$pos += $skip;
 				continue;

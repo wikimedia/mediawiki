@@ -9,6 +9,9 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			array( "\r\t\f \v\n\r", "" ),
 			array( "/* Foo *\n*bar\n*/", "" ),
 
+			// License comments should be preserved
+			array( "/*!foo*//*bar*/", "/*!foo*/" ),
+
 			/**
 			 * Slashes used inside block comments (bug 26931).
 			 * At some point there was a bug that caused this comment to be ended at '* /',
