@@ -1,4 +1,4 @@
-#!/usr/bin/env php
+#!/usr/bin/env mwscript
 <?php
 /**
  * Run all updaters.
