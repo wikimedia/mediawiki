@@ -189,7 +189,7 @@ class RevisionDeleter {
 	 * Suggest a target for the revision deletion
 	 * @since 1.22
 	 * @param string $typeName
-	 * @param Title|null $title User-supplied target
+	 * @param Title|null $target User-supplied target
 	 * @param array $ids
 	 * @return Title|null
 	 */

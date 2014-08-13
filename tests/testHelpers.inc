@@ -570,7 +570,7 @@ class TestFileIterator implements Iterator {
 	 * Throw an exception if it is not set, referencing current section
 	 * and adding the current file name and line number
 	 *
-	 * @param string|array $token Expected token(s) that should have been
+	 * @param string|array $tokens Expected token(s) that should have been
 	 * mentioned before closing this section
 	 * @param bool $fatal True iff an exception should be thrown if
 	 * the section is not found.
@@ -702,7 +702,7 @@ class DelayedParserTest {
 	/**
 	 * Similar to ParserTest object but does not run anything
 	 * Use unleash() to really execute the hook function
-	 * @param string $fnHook
+	 * @param string $hook
 	 */
 	public function requireTransparentHook( $hook ) {
 		$this->transparentHooks[] = $hook;

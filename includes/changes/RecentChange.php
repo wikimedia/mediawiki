@@ -136,7 +136,7 @@ class RecentChange {
 	/**
 	 * Parsing RC_* constants to human-readable test
 	 * @since 1.24
-	 * @param int $rc_type
+	 * @param int $rcType
 	 * @return string $type
 	 */
 	public static function parseFromRCType( $rcType ) {

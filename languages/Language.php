@@ -345,7 +345,7 @@ class Language {
 	/**
 	 * Returns true if a language code is an IETF tag known to MediaWiki.
 	 *
-	 * @param string $code
+	 * @param string $tag
 	 *
 	 * @since 1.21
 	 * @return bool
@@ -3808,8 +3808,8 @@ class Language {
 	 * Checks that convertPlural was given an array and pads it to requested
 	 * amount of forms by copying the last one.
 	 *
-	 * @param int $count How many forms should there be at least
 	 * @param array $forms Array of forms given to convertPlural
+	 * @param int $count How many forms should there be at least
 	 * @return array Padded array of forms or an exception if not an array
 	 */
 	protected function preConvertPlural( /* Array */ $forms, $count ) {

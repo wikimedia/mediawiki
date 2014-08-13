@@ -553,7 +553,7 @@ function wfExtractThumbRequestInfo( $thumbRel ) {
  * file handler.
  *
  * @param File $file File object for file in question
- * @param array $param Array of parameters so far
+ * @param array $params Array of parameters so far
  * @return array Parameters array with more parameters
  */
 function wfExtractThumbParams( $file, $params ) {

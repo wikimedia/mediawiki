@@ -186,8 +186,8 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * @todo Do this for real
-	 * @param int $ns
-	 * @param string $name
+	 * @param int $key
+	 * @param string $prefix
 	 * @param bool $fix
 	 * @param string $suffix
 	 * @return bool
