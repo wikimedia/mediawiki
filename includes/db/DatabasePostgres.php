@@ -1154,7 +1154,7 @@ __INDEXATTR__;
 		return wfTimestamp( TS_POSTGRES, $ts );
 	}
 
-	/*
+	/**
 	 * Posted by cc[plus]php[at]c2se[dot]com on 25-Mar-2009 09:12
 	 * to http://www.php.net/manual/en/ref.pgsql.php
 	 *

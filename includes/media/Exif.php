@@ -586,7 +586,7 @@ class Exif {
 		return 2; // We don't need no bloddy constants!
 	}
 
-	/**#@+
+	/**
 	 * Validates if a tag value is of the type it should be according to the Exif spec
 	 *
 	 * @param mixed $in The input value to check

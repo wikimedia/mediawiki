@@ -220,7 +220,7 @@ class LoginForm extends SpecialPage {
 		}
 	}
 
-	/*
+	/**
 	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
