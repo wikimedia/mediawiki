@@ -240,10 +240,12 @@ changes to languages because of Bugzilla reports.
 * Added pp_sortkey column to page_props table, so pages can be efficiently
   queried and sorted by property value (bug 58032).
   See $wgPagePropsHaveSortkey if you want to postpone the schema change.
-* BREAKING CHANGE: The Modern and Cologne Blue skins were moved out of MediaWiki
-  core to their own respective repositories. See also
-  https://www.mediawiki.org/wiki/Skin:Modern and
-  https://www.mediawiki.org/wiki/Skin:CologneBlue.
+* BREAKING CHANGE: All four built-in MediaWiki skins (Vector, MonoBook, Modern
+  and Cologne Blue) were moved out of MediaWiki core to their own respective
+  repositories. They will be installed with the release tarball, but you must
+  install them separately if installing MediaWiki from source code. A warning
+  message displayed until you do it should guide you through the process. See
+  also <https://www.mediawiki.org/wiki/Manual:Skin_configuration>.
 * BREAKING CHANGE: Skins built for MediaWiki 1.15 and earlier that do not use
   the "headelement" template key are no longer supported. Setting
   $useHeadElement = false; is no longer supported and will not cause old keys
