@@ -101,7 +101,7 @@ pre, .mw-code {
 	min-width: 0 !important;
 }
 
-#content {
+.mw-body {
 	background: white;
 	border: none !important;
 	padding: 0 !important;
@@ -114,7 +114,7 @@ pre, .mw-code {
 	margin: 0 !important;
 }
 
-#column-content #content {
+#column-content .mw-body {
 	padding: 1em;
 	margin: 0 !important;
 }
@@ -171,14 +171,14 @@ a:link, a:visited {
 }
 
 /* Expand URLs for printing */
-#content a.external.text:after,
-#content a.external.autonumber:after {
+.mw-body a.external.text:after,
+.mw-body a.external.autonumber:after {
 	content: " (" attr(href) ")";
 }
 
 /* Expand protocol-relative URLs for printing */
-#content a.external.text[href^='//']:after,
-#content a.external.autonumber[href^='//']:after {
+.mw-body a.external.text[href^='//']:after,
+.mw-body a.external.autonumber[href^='//']:after {
 	content: " (https:" attr(href) ")";
 }
 
