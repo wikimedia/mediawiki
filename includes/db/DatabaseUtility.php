@@ -192,7 +192,7 @@ class ResultWrapper implements Iterator {
 	}
 
 	/**
-	 * @return stdClass|array|false
+	 * @return stdClass|array|bool
 	 */
 	function current() {
 		if ( is_null( $this->currentRow ) ) {
@@ -281,7 +281,7 @@ class FakeResultWrapper extends ResultWrapper {
 
 	/**
 	 * Callers want to be able to access fields with $this->fieldName
-	 * @return false|stdClass
+	 * @return bool|stdClass
 	 */
 	function fetchObject() {
 		$this->fetchRow();
@@ -298,7 +298,7 @@ class FakeResultWrapper extends ResultWrapper {
 	}
 
 	/**
-	 * @return false|stdClass
+	 * @return bool|stdClass
 	 */
 	function next() {
 		return $this->fetchObject();

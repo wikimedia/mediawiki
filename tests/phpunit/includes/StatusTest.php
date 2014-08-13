@@ -320,7 +320,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @return array of arrays with values;
+	 * @return array Array of arrays with values;
 	 *    0 => status object
 	 *    1 => expected string (with no context)
 	 */
@@ -391,7 +391,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @return array of arrays with values;
+	 * @return array Array of arrays with values;
 	 *    0 => status object
 	 *    1 => expected Message parameters (with no context)
 	 *    2 => expected Message key

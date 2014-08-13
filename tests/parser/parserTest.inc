@@ -1395,7 +1395,7 @@ class ParserTest {
 	/**
 	 * Print a skipped message.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function showSkipped() {
 		if ( $this->showProgress ) {
