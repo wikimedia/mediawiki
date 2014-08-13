@@ -7,7 +7,7 @@ class SkinFactoryTest extends MediaWikiTestCase {
 	 */
 	public function testRegister() {
 		$factory = new SkinFactory();
-		$factory->register( 'fallback', 'Fallback', function() {
+		$factory->register( 'fallback', 'Fallback', function () {
 			return new SkinFallback();
 		} );
 		$this->assertTrue( true ); // No exception thrown

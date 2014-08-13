@@ -195,7 +195,7 @@ class ApiModuleManager extends ContextSource {
 			// create instance from factory
 			$instance = call_user_func( $factory, $this->mParent, $name );
 
-			if ( ! $instance instanceof $class ) {
+			if ( !$instance instanceof $class ) {
 				throw new MWException( "The factory function for module $name did not return an instance of $class!" );
 			}
 		} else {
