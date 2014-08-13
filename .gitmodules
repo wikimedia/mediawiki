@@ -472,3 +472,6 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/core/vendor.git
+[submodule "extensions/Graph"]
+	path = extensions/Graph
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Graph.git
