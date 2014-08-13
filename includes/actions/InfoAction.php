@@ -193,13 +193,13 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang, $wgRCMaxAge, $wgMemc, $wgMiserMode,
-			$wgUnwatchedPageThreshold, $wgPageInfoTransclusionLimit, $wgPageLanguageUseDB;
+		global $wgContLang, $wgMemc;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
+		$config = $this->context->getConfig();
 
 		$memcKey = wfMemcKey( 'infoaction',
 			sha1( $title->getPrefixedText() ), $this->page->getLatest() );
@@ -207,7 +207,7 @@ class InfoAction extends FormlessAction {
 		$version = isset( $pageCounts['cacheversion'] ) ? $pageCounts['cacheversion'] : false;
 		if ( $pageCounts === false || $version !== self::CACHE_VERSION ) {
 			// Get page information that would be too "expensive" to retrieve by normal means
-			$pageCounts = self::pageCounts( $title );
+			$pageCounts = $this->pageCounts( $title );
 			$pageCounts['cacheversion'] = self::CACHE_VERSION;
 
 			$wgMemc->set( $memcKey, $pageCounts );
@@ -276,7 +276,7 @@ class InfoAction extends FormlessAction {
 		// Language in which the page content is (supposed to be) written
 		$pageLang = $title->getPageLanguage()->getCode();
 
-		if ( $wgPageLanguageUseDB && $this->getTitle()->userCan( 'pagelang' ) ) {
+		if ( $config->get( 'PageLanguageUseDB' ) && $this->getTitle()->userCan( 'pagelang' ) ) {
 			// Link to Special:PageLanguage with pre-filled page title if user has permissions
 			$titleObj = SpecialPage::getTitleFor( 'PageLanguage', $title->getPrefixedText() );
 			$langDisp = Linker::link(
@@ -321,19 +321,20 @@ class InfoAction extends FormlessAction {
 			);
 		}
 
+		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
 		if (
 			$user->isAllowed( 'unwatchedpages' ) ||
-			( $wgUnwatchedPageThreshold !== false &&
-				$pageCounts['watchers'] >= $wgUnwatchedPageThreshold )
+			( $unwatchedPageThreshold !== false &&
+				$pageCounts['watchers'] >= $unwatchedPageThreshold )
 		) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
 			);
-		} elseif ( $wgUnwatchedPageThreshold !== false ) {
+		} elseif ( $unwatchedPageThreshold !== false ) {
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ),
-				$this->msg( 'pageinfo-few-watchers' )->numParams( $wgUnwatchedPageThreshold )
+				$this->msg( 'pageinfo-few-watchers' )->numParams( $unwatchedPageThreshold )
 			);
 		}
 
@@ -521,7 +522,7 @@ class InfoAction extends FormlessAction {
 
 		// Recent number of edits (within past 30 days)
 		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-recent-edits', $lang->formatDuration( $wgRCMaxAge ) ),
+			$this->msg( 'pageinfo-recent-edits', $lang->formatDuration( $config->get( 'RCMaxAge' ) ) ),
 			$lang->formatNum( $pageCounts['recent_edits'] )
 		);
 
@@ -555,9 +556,9 @@ class InfoAction extends FormlessAction {
 			$pageCounts['transclusion']['from'] > 0 ||
 			$pageCounts['transclusion']['to'] > 0
 		) {
-			$options = array( 'LIMIT' => $wgPageInfoTransclusionLimit );
+			$options = array( 'LIMIT' => $config->get( 'PageInfoTransclusionLimit' ) );
 			$transcludedTemplates = $title->getTemplateLinksFrom( $options );
-			if ( $wgMiserMode ) {
+			if ( $config->get( 'MiserMode' ) ) {
 				$transcludedTargets = array();
 			} else {
 				$transcludedTargets = $title->getTemplateLinksTo( $options );
@@ -602,7 +603,7 @@ class InfoAction extends FormlessAction {
 				);
 			}
 
-			if ( !$wgMiserMode && $pageCounts['transclusion']['to'] > 0 ) {
+			if ( !$config->get( 'MiserMode' ) && $pageCounts['transclusion']['to'] > 0 ) {
 				if ( $pageCounts['transclusion']['to'] > count( $transcludedTargets ) ) {
 					$more = Linker::link(
 						$whatLinksHere,
@@ -635,16 +636,15 @@ class InfoAction extends FormlessAction {
 	 * @param Title $title Title to get counts for
 	 * @return array
 	 */
-	protected static function pageCounts( Title $title ) {
-		global $wgRCMaxAge, $wgDisableCounters, $wgMiserMode;
-
+	protected function pageCounts( Title $title ) {
 		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
+		$config = $this->context->getConfig();
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$result = array();
 
-		if ( !$wgDisableCounters ) {
+		if ( !$config->get( 'DisableCounters' ) ) {
 			// Number of views
 			$views = (int)$dbr->selectField(
 				'page',
@@ -685,8 +685,8 @@ class InfoAction extends FormlessAction {
 		);
 		$result['authors'] = $authors;
 
-		// "Recent" threshold defined by $wgRCMaxAge
-		$threshold = $dbr->timestamp( time() - $wgRCMaxAge );
+		// "Recent" threshold defined by RCMaxAge setting
+		$threshold = $dbr->timestamp( time() - $config->get( 'RCMaxAge' ) );
 
 		// Recent number of edits
 		$edits = (int)$dbr->selectField(
@@ -740,7 +740,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Counts for the number of transclusion links (to/from)
-		if ( $wgMiserMode ) {
+		if ( $config->get( 'MiserMode' ) ) {
 			$result['transclusion']['to'] = 0;
 		} else {
 			$result['transclusion']['to'] = (int)$dbr->selectField(
@@ -780,8 +780,6 @@ class InfoAction extends FormlessAction {
 	 * @return string Html
 	 */
 	protected function getContributors() {
-		global $wgHiddenPrefs;
-
 		$contributors = $this->page->getContributors();
 		$real_names = array();
 		$user_names = array();
@@ -794,9 +792,10 @@ class InfoAction extends FormlessAction {
 				? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
 				: $user->getUserPage();
 
+			$hiddenPrefs = $this->context->getConfig()->get( 'HiddenPrefs' );
 			if ( $user->getID() == 0 ) {
 				$anon_ips[] = Linker::link( $page, htmlspecialchars( $user->getName() ) );
-			} elseif ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() ) {
+			} elseif ( !in_array( 'realname', $hiddenPrefs ) && $user->getRealName() ) {
 				$real_names[] = Linker::link( $page, htmlspecialchars( $user->getRealName() ) );
 			} else {
 				$user_names[] = Linker::link( $page, htmlspecialchars( $user->getName() ) );

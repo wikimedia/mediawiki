@@ -101,14 +101,23 @@ class CreditsAction extends FormlessAction {
 	}
 
 	/**
+	 * Whether we can display the user's real name (not a hidden pref)
+	 *
+	 * @since 1.24
+	 * @return bool
+	 */
+	protected function canShowRealUserName() {
+		$hiddenPrefs = $this->context->getConfig()->get( 'HiddenPrefs' );
+		return !in_array( 'realname', $hiddenPrefs );
+	}
+
+	/**
 	 * Get a list of contributors of $article
 	 * @param int $cnt Maximum list of contributors to show
 	 * @param bool $showIfMax Whether to contributors if there more than $cnt
 	 * @return string Html
 	 */
 	protected function getContributors( $cnt, $showIfMax ) {
-		global $wgHiddenPrefs;
-
 		$contributors = $this->page->getContributors();
 
 		$others_link = false;
@@ -132,7 +141,7 @@ class CreditsAction extends FormlessAction {
 			$cnt--;
 			if ( $user->isLoggedIn() ) {
 				$link = $this->link( $user );
-				if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() ) {
+				if ( $this->canShowRealUserName() && $user->getRealName() ) {
 					$real_names[] = $link;
 				} else {
 					$user_names[] = $link;
@@ -192,8 +201,7 @@ class CreditsAction extends FormlessAction {
 	 * @return string Html
 	 */
 	protected function link( User $user ) {
-		global $wgHiddenPrefs;
-		if ( !in_array( 'realname', $wgHiddenPrefs ) && !$user->isAnon() ) {
+		if ( $this->canShowRealUserName() && !$user->isAnon() ) {
 			$real = $user->getRealName();
 		} else {
 			$real = false;
@@ -216,8 +224,7 @@ class CreditsAction extends FormlessAction {
 		if ( $user->isAnon() ) {
 			return $this->msg( 'anonuser' )->rawParams( $link )->parse();
 		} else {
-			global $wgHiddenPrefs;
-			if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() ) {
+			if ( $this->canShowRealUserName() && $user->getRealName() ) {
 				return $link;
 			} else {
 				return $this->msg( 'siteuser' )->rawParams( $link )->params( $user->getName() )->escaped();
