@@ -179,6 +179,7 @@ production.
 * (bug 15484) Users will now be redirected to the login page when they need to
   log in, rather than being shown a page asking them to log in and having to click
   another link to actually get to the login page.
+<<<<<<< HEAD
 * A JsonContent and JsonContentHandler were added for extensions to extend.
 * (bug 35045) Redirects to sections will now update the URL in browser's address
   bar using the HTML5 History API. When [[Dog]] redirects to [[Animals#Dog]],
@@ -196,6 +197,10 @@ production.
   to multiple Config instances.
 * Update CSSJanus to v1.1.0.
 * Added FormatJson::parse() returning status with result or localized error message
+=======
+* A JSONContent and JSONContentHandler were added for extensions to extend.
+* Upgrade jQuery hoverIntent to v1.8.0.
+>>>>>>> Update jquery.hoverIntent to 1.8.0
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
