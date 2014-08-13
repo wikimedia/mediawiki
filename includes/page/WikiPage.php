@@ -3160,7 +3160,7 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( $from == '' ) { // no public user name
 				$summary = wfMessage( 'revertpage-nouser' );
 			} else {
-				$summary = wfMessage( 'revertpage' );
+				$summary = wfMessage( 'revertpage-user' );
 			}
 		}
 

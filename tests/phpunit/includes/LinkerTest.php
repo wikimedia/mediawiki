@@ -5,7 +5,6 @@ use MediaWiki\MediaWikiServices;
 /**
  * @group Database
  */
-
 class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
@@ -471,6 +470,50 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$this->assertEquals(
 			'',
 			Linker::getLinkColour( $userTitle, 20 )
+		);
+	}
+
+	private function hideUser( $userid ) {
+		$block = new Block();
+		$block->setTarget( User::newFromId( $userid ) );
+		$block->mHideName = true;
+		$block->mExpiry = 'infinite';
+		$this->assertTrue( $block->insert() !== false );
+	}
+
+	/**
+	 * @dataProvider provideFormatUsername
+	 * @covers Linker::formatUsernames
+	 */
+	public function testFormatUsername( $text, $expected, $userToHide ) {
+		if ( $userToHide ) {
+			$this->hideUser( $userToHide );
+		}
+
+		$expected = is_callable( $expected ) ? call_user_func( $expected ) : $expected;
+
+		UserCache::destroySingleton();
+		$comment = Linker::formatComment( $text );
+		$this->assertEquals( $expected, $comment );
+	}
+
+	public static function provideFormatUsername() {
+		return array(
+			array(
+				'{{USERNAME:1}}',
+				function() {return User::newFromId( '1' )->getName(); },
+				false,
+			),
+			array(
+				'{{USERNAME:1}}',
+				'(username removed)',
+				true,
+			),
+			array(
+				'{{USERNAME:INVALID}}',
+				'{{USERNAME:INVALID}}',
+				false,
+			)
 		);
 	}
 }
