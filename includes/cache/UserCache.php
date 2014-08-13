@@ -29,15 +29,27 @@ class UserCache {
 	protected $typesCached = array(); // (uid => cache type => 1)
 
 	/**
+	 * @var UserCache
+	 */
+	private static $instance;
+
+	/**
 	 * @return UserCache
 	 */
 	public static function singleton() {
-		static $instance = null;
-		if ( $instance === null ) {
-			$instance = new self();
+		if ( self::$instance === null ) {
+			self::$instance = new self();
 		}
 
-		return $instance;
+		return self::$instance;
+	}
+
+	public static function destroySingleton() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( __METHOD__ . ' should not be called outside of unit tests' );
+		}
+
+		self::$instance = null;
 	}
 
 	protected function __construct() {
@@ -74,6 +86,15 @@ class UserCache {
 	}
 
 	/**
+	 * @param int $userId
+	 * @return bool
+	 * @since 1.24
+	 */
+	public function isHidden( $userId ) {
+		return $userId > 0 ? $this->getProp( $userId, 'hidden' ): false;
+	}
+
+	/**
 	 * Preloads user names for given list of users.
 	 * @param array $userIds List of user IDs
 	 * @param array $options Option flags; include 'userpage' and 'usertalk'
@@ -102,21 +123,23 @@ class UserCache {
 		// Lookup basic info for users not yet loaded...
 		if ( count( $usersToQuery ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$table = array( 'user' );
+			$table = array( 'user', 'ipblocks' );
 			$conds = array( 'user_id' => $usersToQuery );
-			$fields = array( 'user_name', 'user_real_name', 'user_registration', 'user_id' );
+			$fields = array( 'user_name', 'user_real_name', 'user_registration', 'user_id', 'ipb_deleted' );
+			$join_conds = array( 'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ) );
 
 			$comment = __METHOD__;
 			if ( strval( $caller ) !== '' ) {
 				$comment .= "/$caller";
 			}
 
-			$res = $dbr->select( $table, $fields, $conds, $comment );
+			$res = $dbr->select( $table, $fields, $conds, $comment, array(), $join_conds );
 			foreach ( $res as $row ) { // load each user into cache
 				$userId = (int)$row->user_id;
 				$this->cache[$userId]['name'] = $row->user_name;
 				$this->cache[$userId]['real_name'] = $row->user_real_name;
 				$this->cache[$userId]['registration'] = $row->user_registration;
+				$this->cache[$userId]['hidden'] = $row->ipb_deleted === '1';
 				$usersToCheck[$userId] = $row->user_name;
 			}
 		}

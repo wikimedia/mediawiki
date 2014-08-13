@@ -1311,10 +1311,39 @@ class Linker {
 
 		# Render autocomments and make links:
 		$comment = self::formatAutocomments( $comment, $title, $local );
+		$comment = self::formatUsernames( $comment );
 		$comment = self::formatLinksInComment( $comment, $title, $local );
 
 		wfProfileOut( __METHOD__ );
 		return $comment;
+	}
+
+	/**
+	 * Converts a {{USERNAME:$userid}} to a username if the user
+	 * isn't hidden. See bug 18526 for background.
+	 *
+	 * @param string $comment
+	 * @return string
+	 */
+	private static function formatUsernames( $comment ) {
+		return preg_replace_callback(
+			'/\{\{USERNAME:(\d*?)\}\}/',
+			function ( $match ) {
+				$int = intval( $match[1] );
+				if ( $int === 0 ) {
+					// Invalid user id.
+					return $match[0];
+				}
+
+				$userCache = UserCache::singleton();
+				if ( $userCache->isHidden( $int ) ) {
+					return wfMessage( 'rev-deleted-user' )->text();
+				} else {
+					return $userCache->getUserName( $int, '' );
+				}
+			},
+			$comment
+		);
 	}
 
 	/**
