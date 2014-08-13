@@ -5,9 +5,9 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
-			'wgValidSkinNames' => array( 'vector' => 'Vector' ),
-		) );
+		// The return value of the closure shouldn't matter since this test should
+		// never call it
+		SkinFactory::getDefaultInstance()->register( 'vector', 'Vector', function(){});
 	}
 
 	/**

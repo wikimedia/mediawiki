@@ -263,8 +263,21 @@ if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
 }
 
-// Register a hidden "fallback" skin
-$wgValidSkinNames['fallback'] = 'Fallback'; // SkinFallback
+// Register skins
+// Use a closure to avoid leaking into global state
+call_user_func( function() use ( $wgValidSkinNames ) {
+	$factory = SkinFactory::getDefaultInstance();
+	foreach ( $wgValidSkinNames as $name => $skin ) {
+		$factory->register( $name, $skin, function() use ( $skin ) {
+			$class = "Skin$skin";
+			return new $class;
+		} );
+	}
+	// Register a hidden "fallback" skin
+	$factory->register( 'fallback', 'Fallback', function() {
+		return new SkinFallback;
+	} );
+} );
 $wgSkipSkins[] = 'fallback';
 
 if ( $wgLocalInterwiki ) {
