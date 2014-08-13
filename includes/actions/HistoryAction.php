@@ -92,8 +92,6 @@ class HistoryAction extends FormlessAction {
 	 * Print the history page for an article.
 	 */
 	function onView() {
-		global $wgScript, $wgUseFileCache;
-
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 
@@ -109,7 +107,8 @@ class HistoryAction extends FormlessAction {
 		$this->preCacheMessages();
 
 		# Fill in the file cache if not set already
-		if ( $wgUseFileCache && HTMLFileCache::useFileCache( $this->getContext() ) ) {
+		$useFileCache = $this->context->getConfig()->get( 'UseFileCache' );
+		if ( $useFileCache && HTMLFileCache::useFileCache( $this->getContext() ) ) {
 			$cache = HTMLFileCache::newFromTitle( $this->getTitle(), 'history' );
 			if ( !$cache->isCacheGood( /* Assume up to date */ ) ) {
 				ob_start( array( &$cache, 'saveToFileCache' ) );
@@ -173,7 +172,7 @@ class HistoryAction extends FormlessAction {
 		}
 
 		// Add the general form
-		$action = htmlspecialchars( $wgScript );
+		$action = htmlspecialchars( wfScript() );
 		$out->addHTML(
 			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
 			Xml::fieldset(
@@ -254,14 +253,14 @@ class HistoryAction extends FormlessAction {
 	 * @param string $type Feed type
 	 */
 	function feed( $type ) {
-		global $wgFeedClasses, $wgFeedLimit;
 		if ( !FeedUtils::checkFeedOutput( $type ) ) {
 			return;
 		}
 		$request = $this->getRequest();
 
+		$feedClasses = $this->context->getConfig()->get( 'FeedClasses' );
 		/** @var RSSFeed|AtomFeed $feed */
-		$feed = new $wgFeedClasses[$type](
+		$feed = new $feedClasses[$type](
 			$this->getTitle()->getPrefixedText() . ' - ' .
 			$this->msg( 'history-feed-title' )->inContentLanguage()->text(),
 			$this->msg( 'history-feed-description' )->inContentLanguage()->text(),
@@ -271,7 +270,10 @@ class HistoryAction extends FormlessAction {
 		// Get a limit on number of feed entries. Provide a sane default
 		// of 10 if none is defined (but limit to $wgFeedLimit max)
 		$limit = $request->getInt( 'limit', 10 );
-		$limit = min( max( $limit, 1 ), $wgFeedLimit );
+		$limit = min(
+			max( $limit, 1 ),
+			$this->context->getConfig()->get( 'FeedLimit' )
+		);
 
 		$items = $this->fetchRevisions( $limit, 0, self::DIR_NEXT );
 
@@ -462,13 +464,12 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	function getStartBody() {
-		global $wgScript;
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
 
 		$this->getOutput()->wrapWikiMsg( "<div class='mw-history-legend'>\n$1\n</div>", 'histlegend' );
-		$s = Html::openElement( 'form', array( 'action' => $wgScript,
+		$s = Html::openElement( 'form', array( 'action' => wfScript(),
 			'id' => 'mw-history-compare' ) ) . "\n";
 		$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
 		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
