@@ -453,6 +453,9 @@ changes to languages because of Bugzilla reports.
   of the new redirect page. This is not retroactive.
 * LCStoreAccel was removed. $wgLocalisationCacheConf can no longer be set to 
   use this store class.
+* LCStoreDB removed; please set $wgCacheDirectory instead.
+  If wgLocalisationCacheConf['store'] was set to 'db', then
+  this must be unset or set to another valid store.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

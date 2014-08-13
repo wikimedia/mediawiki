@@ -340,7 +340,6 @@ $wgAutoloadLocalClasses = array(
 	'ICacheHelper' => 'includes/cache/CacheHelper.php',
 	'LCStore' => 'includes/cache/LocalisationCache.php',
 	'LCStoreCDB' => 'includes/cache/LocalisationCache.php',
-	'LCStoreDB' => 'includes/cache/LocalisationCache.php',
 	'LCStoreNull' => 'includes/cache/LocalisationCache.php',
 	'LinkBatch' => 'includes/cache/LinkBatch.php',
 	'LinkCache' => 'includes/cache/LinkCache.php',

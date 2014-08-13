@@ -197,11 +197,8 @@ class LocalisationCache {
 				case 'file':
 					$storeClass = 'LCStoreCDB';
 					break;
-				case 'db':
-					$storeClass = 'LCStoreDB';
-					break;
 				case 'detect':
-					$storeClass = $wgCacheDirectory ? 'LCStoreCDB' : 'LCStoreDB';
+					$storeClass = $wgCacheDirectory ? 'LCStoreCDB' : 'LCStoreNull';
 					break;
 				default:
 					throw new MWException(
@@ -1129,91 +1126,6 @@ interface LCStore {
 	 * @param mixed $value
 	 */
 	function set( $key, $value );
-}
-
-/**
- * LCStore implementation which uses the standard DB functions to store data.
- * This will work on any MediaWiki installation.
- */
-class LCStoreDB implements LCStore {
-	private $currentLang;
-	private $writesDone = false;
-
-	/** @var DatabaseBase */
-	private $dbw;
-	/** @var array */
-	private $batch = array();
-
-	private $readOnly = false;
-
-	public function get( $code, $key ) {
-		if ( $this->writesDone ) {
-			$db = wfGetDB( DB_MASTER );
-		} else {
-			$db = wfGetDB( DB_SLAVE );
-		}
-		$row = $db->selectRow( 'l10n_cache', array( 'lc_value' ),
-			array( 'lc_lang' => $code, 'lc_key' => $key ), __METHOD__ );
-		if ( $row ) {
-			return unserialize( $db->decodeBlob( $row->lc_value ) );
-		} else {
-			return null;
-		}
-	}
-
-	public function startWrite( $code ) {
-		if ( $this->readOnly ) {
-			return;
-		} elseif ( !$code ) {
-			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
-		}
-
-		$this->dbw = wfGetDB( DB_MASTER );
-
-		$this->currentLang = $code;
-		$this->batch = array();
-	}
-
-	public function finishWrite() {
-		if ( $this->readOnly ) {
-			return;
-		} elseif ( is_null( $this->currentLang ) ) {
-			throw new MWException( __CLASS__ . ': must call startWrite() before finishWrite()' );
-		}
-
-		$this->dbw->begin( __METHOD__ );
-		try {
-			$this->dbw->delete( 'l10n_cache',
-				array( 'lc_lang' => $this->currentLang ), __METHOD__ );
-			foreach ( array_chunk( $this->batch, 500 ) as $rows ) {
-				$this->dbw->insert( 'l10n_cache', $rows, __METHOD__ );
-			}
-			$this->writesDone = true;
-		} catch ( DBQueryError $e ) {
-			if ( $this->dbw->wasReadOnlyError() ) {
-				$this->readOnly = true; // just avoid site down time
-			} else {
-				throw $e;
-			}
-		}
-		$this->dbw->commit( __METHOD__ );
-
-		$this->currentLang = null;
-		$this->batch = array();
-	}
-
-	public function set( $key, $value ) {
-		if ( $this->readOnly ) {
-			return;
-		} elseif ( is_null( $this->currentLang ) ) {
-			throw new MWException( __CLASS__ . ': must call startWrite() before set()' );
-		}
-
-		$this->batch[] = array(
-			'lc_lang' => $this->currentLang,
-			'lc_key' => $key,
-			'lc_value' => $this->dbw->encodeBlob( serialize( $value ) ) );
-	}
 }
 
 /**
