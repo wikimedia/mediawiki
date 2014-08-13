@@ -779,7 +779,7 @@
 	"mergehistory-go": "Weis déi Versiounen, déi zesummegeluecht kënne ginn",
 	"mergehistory-submit": "Versioune verschmelzen",
 	"mergehistory-empty": "Et kënne keng Versioune zesummegeluecht ginn.",
-	"mergehistory-success": "{{PLURAL:$3|1 Versioun gouf|$3 Versioune goufe}} vun [[:$1]] op [[:$2]] zesummegeluecht.",
+	"mergehistory-success": "{{PLURAL:$3|1 Versioun gouf|$3 Versioune goufe}} vu(n) [[:$1]] op [[:$2]] zesummegeluecht.",
 	"mergehistory-fail": "Versiounszesummeleeung war net méiglech, kuckt w.e.g. d'Säiten an d'Zäit-Parameter no.",
 	"mergehistory-no-source": "Originalsäit \"$1\" gëtt et net.",
 	"mergehistory-no-destination": "Zilsäit \"$1\" gëtt et net.",

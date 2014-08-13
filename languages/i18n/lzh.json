@@ -12,7 +12,8 @@
 			"Xiaomingyan",
 			"Yanteng3",
 			"아라",
-			"LNDDYL"
+			"LNDDYL",
+			"Jason924tw"
 		]
 	},
 	"tog-underline": "鏈墊線：",
@@ -714,7 +715,7 @@
 	"shown-title": "每頁示 $1",
 	"viewprevnext": "見（$1 {{int:pipe-separator}} $2）（$3）",
 	"searchmenu-exists": "'''在此wiki中有頁為\"[[:$1]]\"。'''",
-	"searchmenu-new": "'''在此wiki上建頁\"[[:$1]]\"！'''",
+	"searchmenu-new": "'''在此共筆上建頁\"[[:$1]]\"！'''",
 	"searchprofile-articles": "容",
 	"searchprofile-images": "媒",
 	"searchprofile-everything": "全",
@@ -1211,7 +1212,7 @@
 	"unusedtemplates": "墨乾",
 	"unusedtemplatestext": "此表閒模，篤刪前惠考支鏈。",
 	"unusedtemplateswlh": "支鏈",
-	"randompage": "風掀",
+	"randompage": "清風翻書",
 	"randompage-nopages": "下列{{PLURAL:$2|名集}}中無頁也：$1",
 	"randomincategory-selectcategory-submit": "往",
 	"randomredirect": "任渡",
@@ -1277,7 +1278,7 @@
 	"mostcategories": "跨船",
 	"mostimages": "名檔",
 	"mostrevisions": "屢審",
-	"prefixindex": "以鏈外查",
+	"prefixindex": "依名索引",
 	"shortpages": "短篇",
 	"longpages": "長言",
 	"deadendpages": "此無路也",
