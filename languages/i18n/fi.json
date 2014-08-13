@@ -1576,7 +1576,7 @@
 	"protectedtitles": "Suojatut sivunimet",
 	"protectedtitles-summary": "Tällä sivulla on lueteltu ne sivut, jotka on tällä hetkellä suojattu uudelleenluonnilta. Nähdäksesi luettelon olemassaolevista suojatuista sivuista katso [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].",
 	"protectedtitlesempty": "Ei suojattuja sivunimiä näillä hakuehdoilla.",
-	"listusers": "Käyttäjälista",
+	"listusers": "Käyttäjien luettelo",
 	"listusers-editsonly": "Näytä vain käyttäjät, joilla on muokkauksia",
 	"listusers-creationsort": "Lajittele tunnuksen luontipäivämäärän mukaan",
 	"listusers-desc": "Lajittele alenevassa järjestyksessä",
