@@ -34,14 +34,16 @@ class SkinFactory {
 	 */
 	private $factoryFunctions = array();
 	/**
-	 * Map of name => human readable name
+	 * Map of name => fallback human-readable name, used when the 'skinname-<skin>' message is not
+	 * available
+	 *
 	 * @var array
 	 */
 	private $displayNames = array();
-
 	/**
-	 * Map of name => class name without "Skin" prefix
-	 * for legacy skins using the autoloader
+	 * Map of name => class name without "Skin" prefix, for legacy skins using the autodiscovery
+	 * mechanism
+	 *
 	 * @var array
 	 */
 	private $legacySkins = array();
@@ -60,11 +62,16 @@ class SkinFactory {
 	}
 
 	/**
-	 * Register a new Skin factory function
-	 * Will override if it's already registered
-	 * @param string $name
-	 * @param string $displayName
-	 * @param callable $callback That takes the skin name as an argument
+	 * Register a new Skin factory function.
+	 *
+	 * Will override if it's already registered.
+	 *
+	 * @param string $name Internal skin name. Should be all-lowercase (but technically doesn't have
+	 *     to be).
+	 * @param string $displayName For backwards-compatibility with old skin loading system. This is
+	 *     the text used as skin's human-readable name when the 'skinname-<skin>' message is not
+   *     available. It should be the same as the skin name provided in $wgExtensionCredits.
+	 * @param callable $callback Callback that takes the skin name as an argument
 	 * @throws InvalidArgumentException If an invalid callback is provided
 	 */
 	public function register( $name, $displayName, $callback ) {
@@ -149,8 +156,7 @@ class SkinFactory {
 	}
 
 	/**
-	 * Get a legacy skin which uses $wgValidSkinNames
-	 * or autoloading
+	 * Get a legacy skin which uses the autodiscovery mechanism.
 	 *
 	 * @param string $name
 	 * @return Skin|bool false if the skin couldn't be constructed
@@ -191,7 +197,7 @@ class SkinFactory {
 	 */
 	public function makeSkin( $name ) {
 		if ( !isset( $this->factoryFunctions[$name] ) ) {
-			// Check the legacy method of skin loading
+			// Check the legacy autodiscovery method of skin loading
 			$legacy = $this->getLegacySkin( $name );
 			if ( $legacy ) {
 				return $legacy;
