@@ -80,8 +80,8 @@ class JSONContent extends TextContent {
 	}
 	/**
 	 * Constructs an HTML representation of a JSON object.
-	 * @param Array $mapping
-	 * @return string HTML.
+	 * @param array $mapping
+	 * @return string HTML
 	 */
 	protected function objectTable( $mapping ) {
 		$rows = array();

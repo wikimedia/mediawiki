@@ -19,7 +19,7 @@ class SkinFallback extends SkinTemplate {
 	/**
 	 * Add CSS via ResourceLoader
 	 *
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	public function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );

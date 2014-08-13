@@ -65,7 +65,7 @@ abstract class PoolCounterWork {
 	/**
 	 * Do something with the error, like showing it to the user.
 	 *
-	 * @param $status
+	 * @param Status $status
 	 *
 	 * @return bool
 	 */

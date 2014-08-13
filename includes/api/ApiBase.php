@@ -2068,7 +2068,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * @see self::getPossibleErrors()
 	 * @deprecated since 1.24
-	 * @retun array
+	 * @return array
 	 */
 	public function getFinalPossibleErrors() {
 		wfDeprecated( __METHOD__, '1.24' );
