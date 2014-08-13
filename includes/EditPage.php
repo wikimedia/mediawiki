@@ -1468,9 +1468,8 @@ class EditPage {
 			$cleanSummary = $wgParser->stripSectionName( $this->summary );
 			return wfMessage( 'newsectionsummary' )
 				->rawParams( $cleanSummary )->inContentLanguage()->text();
-		} else {
-			return $this->summary;
 		}
+		return $this->summary;
 	}
 
 	/**
