@@ -48,10 +48,9 @@ class RawAction extends FormlessAction {
 	}
 
 	function onView() {
-		global $wgSquidMaxage, $wgForcedRawSMaxage;
-
 		$this->getOutput()->disable();
 		$request = $this->getRequest();
+		$config = $this->context->getConfig();
 
 		if ( !$request->checkUrlExtension() ) {
 			return;
@@ -69,7 +68,7 @@ class RawAction extends FormlessAction {
 		if ( $gen == 'css' || $gen == 'js' ) {
 			$this->mGen = $gen;
 			if ( $smaxage === null ) {
-				$smaxage = $wgSquidMaxage;
+				$smaxage = $config->get( 'SquidMaxage' );
 			}
 		} else {
 			$this->mGen = false;
@@ -81,13 +80,13 @@ class RawAction extends FormlessAction {
 		# Note: If using a canonical url for userpage css/js, we send an HTCP purge.
 		if ( $smaxage === null ) {
 			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
-				$smaxage = intval( $wgForcedRawSMaxage );
+				$smaxage = intval( $config->get( 'ForcedRawSMaxage' ) );
 			} else {
 				$smaxage = 0;
 			}
 		}
 
-		$maxage = $request->getInt( 'maxage', $wgSquidMaxage );
+		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
 
 		$response = $request->response();
 
