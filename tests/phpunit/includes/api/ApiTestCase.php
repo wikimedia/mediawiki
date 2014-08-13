@@ -133,7 +133,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			$session = $wgRequest->getSessionArray();
 		}
 
-		if ( $session['wsToken'] ) {
+		if ( isset( $session['wsToken'] ) && $session['wsToken'] ) {
 			// add edit token to fake session
 			$session['wsEditToken'] = $session['wsToken'];
 			// add token to request parameters
@@ -141,7 +141,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 			return $this->doApiRequest( $params, $session, false, $user );
 		} else {
-			throw new Exception( "request data not in right format" );
+			throw new Exception( "Session token not available" );
 		}
 	}
 
