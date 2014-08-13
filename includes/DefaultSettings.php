@@ -2149,10 +2149,9 @@ $wgAdaptiveMessageCache = false;
  * Localisation cache configuration. Associative array with keys:
  * class:       The class to use. May be overridden by extensions.
  *
- * store:       The location to store cache data. May be 'files', 'db' or
- *              'detect'. If set to "files", data will be in CDB files. If set
- *              to "db", data will be stored to the database. If set to
- *              "detect", files will be used if $wgCacheDirectory is set,
+ * store:       The location to store cache data. May be 'files', or
+ *              'detect'. If set to "files", data will be in CDB files.
+ *              If set to "detect", files will be used if $wgCacheDirectory is set,
  *              otherwise the database will be used.
  *
  * storeClass:  The class name for the underlying storage. If set to a class
