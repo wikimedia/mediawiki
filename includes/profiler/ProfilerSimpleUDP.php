@@ -58,7 +58,8 @@ class ProfilerSimpleUDP extends ProfilerStandard {
 				continue;
 			}
 			$pfline = sprintf( $wgUDPProfilerFormatString, $this->getProfileID(), $pfdata['count'],
-				$pfdata['cpu'], $pfdata['cpu_sq'], $pfdata['real'], $pfdata['real_sq'], $entry );
+				$pfdata['cpu'], $pfdata['cpu_sq'], $pfdata['real'], $pfdata['real_sq'], $entry,
+				$pfdata['memory'] );
 			$length = strlen( $pfline );
 			/* printf("<!-- $pfline -->"); */
 			if ( $length + $plength > 1400 ) {
