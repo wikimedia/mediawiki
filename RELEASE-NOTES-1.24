@@ -320,6 +320,7 @@ changes to languages because of Bugzilla reports.
   existed purely to provide support for MSIE versions below 7 and which was
   conditionally loaded for those browsers, was also removed.
 * Action::checkCanExecute() no longer has a return value.
+* LCStoreDB removed; please set $wgCacheDirectory instead.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
