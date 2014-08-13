@@ -550,15 +550,15 @@ wfRunHooks( 'SetupAfterCache' );
 
 wfProfileIn( $fname . '-session' );
 
-// If session.auto_start is there, we can't touch session name
-if ( !wfIniGetBool( 'session.auto_start' ) ) {
-	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
-}
+if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+	// If session.auto_start is there, we can't touch session name
+	if ( !wfIniGetBool( 'session.auto_start' ) ) {
+		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
+	}
 
-if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode &&
-	( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) )
-) {
-	wfSetupSession();
+	if ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) ) {
+		wfSetupSession();
+	}
 }
 
 wfProfileOut( $fname . '-session' );
