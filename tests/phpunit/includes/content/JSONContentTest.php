@@ -27,7 +27,7 @@ class JSONContentTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideDataToEncode
 	 */
 	public function testBeautifyUsesFormatJson( $data ) {
-		$obj = new JSONContent( FormatJson::encode( $data) );
+		$obj = new JSONContent( FormatJson::encode( $data ) );
 		$this->assertEquals( FormatJson::encode( $data, true ), $obj->beautifyJSON() );
 	}
 
@@ -46,7 +46,7 @@ class JSONContentTest extends MediaWikiLangTestCase {
 	 */
 	public function testPreSaveTransform( $data ) {
 		$obj = new JSONContent( FormatJson::encode( $data ) );
-		$newObj = $obj->preSaveTransform( $this->getMockTitle(), $this->getMockUser() , $this->getMockParserOptions() );
+		$newObj = $obj->preSaveTransform( $this->getMockTitle(), $this->getMockUser(), $this->getMockParserOptions() );
 		$this->assertTrue( $newObj->equals( new JSONContent( FormatJson::encode( $data, true ) ) ) );
 	}
 
@@ -112,5 +112,4 @@ class JSONContentTest extends MediaWikiLangTestCase {
 			),
 		);
 	}
-
 }

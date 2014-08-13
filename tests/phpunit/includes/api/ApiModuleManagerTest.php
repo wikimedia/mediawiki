@@ -39,8 +39,8 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 				'logout',
 				'action',
 				'ApiLogout',
-				function( ApiMain $main, $action ) {
-						return new ApiLogout( $main, $action );
+				function ( ApiMain $main, $action ) {
+					return new ApiLogout( $main, $action );
 				},
 			),
 		);
@@ -80,7 +80,7 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 					),
 					'logout' => array(
 						'class' => 'ApiLogout',
-						'factory' => function( ApiMain $main, $action ) {
+						'factory' => function ( ApiMain $main, $action ) {
 							return new ApiLogout( $main, $action );
 						},
 					),
@@ -113,9 +113,9 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 			),
 			'logout' => array(
 				'class' => 'ApiLogout',
-				'factory' => function( ApiMain $main, $action ) {
-						return new ApiLogout( $main, $action );
-					},
+				'factory' => function ( ApiMain $main, $action ) {
+					return new ApiLogout( $main, $action );
+				},
 			),
 		);
 
