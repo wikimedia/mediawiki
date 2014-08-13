@@ -743,7 +743,7 @@ abstract class MediaHandler {
 		// Do nothing
 	}
 
-	/*
+	/**
 	 * True if the handler can rotate the media
 	 * @since 1.21
 	 * @return bool
