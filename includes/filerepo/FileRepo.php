@@ -1346,13 +1346,16 @@ class FileRepo {
 	 * Checks existence of an array of files.
 	 *
 	 * @param array $files Virtual URLs (or storage paths) of files to check
-	 * @return array|bool Either array of files and existence flags, or false
+	 * @return array Map of files and existence flags, or false
 	 */
 	public function fileExistsBatch( array $files ) {
+		$paths = array_map( array( $this, 'resolveToStoragePath' ), $files );
+		$this->backend->preloadFileStat( array( 'srcs' => $paths ) );
+
 		$result = array();
 		foreach ( $files as $key => $file ) {
-			$file = $this->resolveToStoragePath( $file );
-			$result[$key] = $this->backend->fileExists( array( 'src' => $file ) );
+			$path = $this->resolveToStoragePath( $file );
+			$result[$key] = $this->backend->fileExists( array( 'src' => $path ) );
 		}
 
 		return $result;
