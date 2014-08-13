@@ -52,6 +52,13 @@ return array(
 
 	/* MediaWiki base skinning modules */
 
+	'mediawiki.skin' => array(
+		'scripts' => array(
+			'common/skin.js',
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
 	/**
 	 * Common skin styles, grouped into three graded levels.
 	 *
@@ -1180,6 +1187,7 @@ return array(
 	'mediawiki.page.watch.ajax' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.watch.ajax.js',
 		'dependencies' => array(
+			'mediawiki.skin',
 			'mediawiki.api.watch',
 			'mediawiki.notify',
 			'mediawiki.util',
