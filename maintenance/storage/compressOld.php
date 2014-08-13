@@ -14,6 +14,7 @@
  *  -t <type>           set compression type to either:
  *                          gzip: compress revisions independently
  *                          concat: concatenate revisions and compress in chunks (default)
+ *                          decompress: undo gzip compress revisions
  *  -c <chunk-size>     maximum number of revisions in a concat chunk
  *  -b <begin-date>     earliest date to check for uncompressed revisions
  *  -e <end-date>       latest revision date to compress
@@ -111,7 +112,7 @@ class CompressOld extends Maintenance {
 		$extDB = $this->getOption( 'extdb', '' );
 		$endId = $this->getOption( 'endid', false );
 
-		if ( $type != 'concat' && $type != 'gzip' ) {
+		if ( $type != 'concat' && $type != 'gzip'  && $type != 'decompress' ) {
 			$this->error( "Type \"{$type}\" not supported" );
 		}
 
@@ -124,6 +125,9 @@ class CompressOld extends Maintenance {
 		}
 
 		$success = true;
+		if ( $type == 'decompress' ) {
+			$success = $this->decompressPages( $startId, $extDB );
+		} else 
 		if ( $type == 'concat' ) {
 			$success = $this->compressWithConcat( $startId, $chunkSize, $beginDate,
 				$endDate, $extDB, $endId );
@@ -136,6 +140,28 @@ class CompressOld extends Maintenance {
 		}
 	}
 
+	/** @todo document */
+	private function decompressPages( $start = 0, $extdb = '' ) {
+		$chunksize = 50;
+		$this->output( "Starting decompression from old_id $start...\n" );
+		$dbw = wfGetDB( DB_MASTER );
+		do {
+			$res = $dbw->select( 'text', array( 'old_id', 'old_flags', 'old_text' ),
+				"old_flags like '%gzip%'", __METHOD__, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
+			if ( $res->numRows() == 0 ) {
+				break;
+			}
+			$last = $start;
+			foreach ( $res as $row ) {
+				#print "  {$row->old_id} - {$row->old_namespace}:{$row->old_title}\n";
+				$this->decompressPage( $row, $extdb );
+				$last = $row->old_id;
+			}
+			$start = $last + 1; # Deletion may leave long empty stretches
+			$this->output( "$start...\n" );
+		} while ( true );
+	}
+	
 	/** @todo document */
 	private function compressOldPages( $start = 0, $extdb = '' ) {
 		$chunksize = 50;
@@ -197,6 +223,45 @@ class CompressOld extends Maintenance {
 
 		# Update text row
 		$dbw->update( 'text',
+	 * @todo document
+	 * @param $row
+	 * @param $extdb
+	 * @return bool
+	 */
+	private function decompressPage( $row, $extdb ) {
+		if ( false !== strpos( $row->old_flags, 'gzip' ) || false !== strpos( $row->old_flags, 'object' ) ) {
+			#print "Already compressed row {$row->old_id}\n";
+			#return false;
+		}
+		$dbw = wfGetDB( DB_MASTER );
+		$flags = str_replace(",gzip", "", $row->old_flags);
+		$flags = str_replace("gzip", "", $flags);
+		$compress = gzinflate( $row->old_text );
+
+		# Store in external storage if required
+		if ( $extdb !== '' ) {
+			$storeObj = new ExternalStoreDB;
+			$compress = $storeObj->store( $extdb, $compress );
+			if ( $compress === false ) {
+				$this->error( "Unable to store object" );
+				return false;
+			}
+		}
+
+		# Update text row
+		$dbw->update( 'text',
+			array( /* SET */
+				'old_flags' => $flags,
+				'old_text' => $compress
+			), array( /* WHERE */
+				'old_id' => $row->old_id
+			), __METHOD__,
+			array( 'LIMIT' => 1 )
+		);
+		return true;
+	}
+	
+	/**
 			array( /* SET */
 				'old_flags' => $flags,
 				'old_text' => $compress
