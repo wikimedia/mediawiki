@@ -45,9 +45,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 	/**
 	 * @param Page $page
+	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param int $revid ID of the revision being parsed.
 	 * @param bool $useParserCache Whether to use the parser cache.
-	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 *   operation.
 	 * @param Content|string $content Content to parse or null to load it; may
 	 *   also be given as a wikitext string, for BC.

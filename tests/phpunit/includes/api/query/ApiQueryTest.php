@@ -96,7 +96,7 @@ class ApiQueryTest extends ApiTestCase {
 	 * @param string $titlePart
 	 * @param int $namespace
 	 * @param string $expected
-	 * @param string $description
+	 * @param string $expectException
 	 * @dataProvider provideTestTitlePartToKey
 	 */
 	function testTitlePartToKey( $titlePart, $namespace, $expected, $expectException ) {

@@ -1105,11 +1105,11 @@ class Block {
 	 *  - If there are multiple exact or range blocks at the same level, the one chosen
 	 *    is random
 	 *
+	 * @param array $blocks Array of blocks
 	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
 	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
 	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
 	 *	  local-squid, ...)
-	 * @param array $block Array of blocks
 	 * @return Block|null The "best" block from the list
 	 */
 	public static function chooseBlock( array $blocks, array $ipChain ) {

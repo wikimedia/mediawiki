@@ -297,9 +297,9 @@ abstract class DatabaseUpdater {
 	 * @param string $tableName The table name
 	 * @param string $oldIndexName The old index name
 	 * @param string $newIndexName The new index name
+	 * @param string $sqlPath The path to the SQL change path
 	 * @param bool $skipBothIndexExistWarning Whether to warn if both the old
 	 * and the new indexes exist. [facultative; by default, false]
-	 * @param string $sqlPath The path to the SQL change path
 	 */
 	public function renameExtensionIndex( $tableName, $oldIndexName, $newIndexName,
 		$sqlPath, $skipBothIndexExistWarning = false

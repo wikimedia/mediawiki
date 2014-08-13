@@ -17,7 +17,7 @@ class XCFHandlerTest extends MediaWikiMediaTestCase {
 	/**
 	 * @param string $filename
 	 * @param int $expectedWidth Width
-	 * @param int $expectedHeigh Height
+	 * @param int $expectedHeight Height
 	 * @dataProvider provideGetImageSize
 	 * @covers XCFHandler::getImageSize
 	 */

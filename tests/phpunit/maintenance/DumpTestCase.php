@@ -30,7 +30,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 *
 	 * @param Page $page Page to add the revision to
 	 * @param string $text Revisions text
-	 * @param string $text Revisions summare
+	 * @param string $summary Revisions summare
 	 *
 	 * @throws MWException
 	 */
@@ -181,7 +181,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * Asserts that the xml reader is at the final closing tag of an xml file and
 	 * closes the reader.
 	 *
-	 * @param string $tag (optional) the name of the final tag
+	 * @param string $name (optional) the name of the final tag
 	 *   (e.g.: "mediawiki" for </mediawiki>)
 	 */
 	protected function assertDumpEnd( $name = "mediawiki" ) {
@@ -304,9 +304,9 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param string $text_sha1 The base36 SHA-1 of the revision's text
 	 * @param string|bool $text (optional) The revision's string, or false to check for a
 	 *            revision stub
+	 * @param int|bool $parentid (optional) id of the parent revision
 	 * @param string $model The expected content model id (default: CONTENT_MODEL_WIKITEXT)
 	 * @param string $format The expected format model id (default: CONTENT_FORMAT_WIKITEXT)
-	 * @param int|bool $parentid (optional) id of the parent revision
 	 */
 	protected function assertRevision( $id, $summary, $text_id, $text_bytes,
 		$text_sha1, $text = false, $parentid = false,

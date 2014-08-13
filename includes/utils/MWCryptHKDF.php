@@ -257,8 +257,8 @@ class MWCryptHKDF {
 	 * and the SKM (source key material) is the "data".
 	 *
 	 * @param string $hash The hashing function to use (e.g., sha256)
-	 * @param string $ikm The input keying material
 	 * @param string $salt The salt to add to the ikm, to get the prk
+	 * @param string $ikm The input keying material
 	 * @return string Binary string (pseudorandm key) used as input to HKDFExpand
 	 */
 	private static function HKDFExtract( $hash, $salt, $ikm ) {

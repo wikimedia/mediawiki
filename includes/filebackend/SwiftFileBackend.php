@@ -173,7 +173,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * Sanitize and filter the custom headers from a $params array.
 	 * We only allow certain Content- and X-Content- headers.
 	 *
-	 * @param array $headers
+	 * @param array $params
 	 * @return array Sanitized value of 'headers' field in $params
 	 */
 	protected function sanitizeHdrs( array $params ) {

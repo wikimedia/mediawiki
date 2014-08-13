@@ -78,8 +78,8 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param string $key
 	 * @param mixed $casToken
+	 * @param string $key
 	 * @param mixed $value
 	 * @param int $exptime
 	 * @return bool

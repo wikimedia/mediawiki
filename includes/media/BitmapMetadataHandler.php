@@ -97,7 +97,7 @@ class BitmapMetadataHandler {
 	/** Add misc metadata. Warning: atm if the metadata category
 	 * doesn't have a priority, it will be silently discarded.
 	 *
-	 * @param array $meta Array of metadata values
+	 * @param array $metaArray Array of metadata values
 	 * @param string $type Type. defaults to other. if two things have the same type they're merged
 	 */
 	function addMetadata( $metaArray, $type = 'other' ) {

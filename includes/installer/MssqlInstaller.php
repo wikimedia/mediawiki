@@ -702,7 +702,7 @@ class MssqlInstaller extends DatabaseInstaller {
 	/**
 	 * Try to see if a given fulltext catalog exists
 	 * We assume we already have the appropriate database selected
-	 * @param string $schemaName Catalog name to check
+	 * @param string $catalogName Catalog name to check
 	 * @return bool
 	 */
 	private function catalogExists( $catalogName ) {

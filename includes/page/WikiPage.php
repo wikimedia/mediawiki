@@ -2314,8 +2314,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Content $content Content submitted
 	 * @param User $user The relevant user
 	 * @param string $comment Comment submitted
-	 * @param string $serialisation_format Format for storing the content in the database
 	 * @param bool $minor Whereas it's a minor modification
+	 * @param string $serialisation_format Format for storing the content in the database
 	 */
 	public function doQuickEditContent( Content $content, User $user, $comment = '', $minor = false,
 		$serialisation_format = null

@@ -22,7 +22,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider providerGetDisplayWidthHeight
-	 * @param array $dimensions Array [maxWidth, maxHeight, width, height]
+	 * @param array $dim Array [maxWidth, maxHeight, width, height]
 	 * @param array $expected Array [width, height] The width and height we expect to display at
 	 */
 	function testGetDisplayWidthHeight( $dim, $expected ) {

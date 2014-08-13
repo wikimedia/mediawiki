@@ -1498,7 +1498,7 @@ abstract class UploadBase {
 
 	/**
 	 * Divide the element name passed by the xml parser to the callback into URI and prifix.
-	 * @param string $name
+	 * @param string $element
 	 * @return array Containing the namespace URI and prefix
 	 */
 	private static function splitXmlNamespace( $element ) {
