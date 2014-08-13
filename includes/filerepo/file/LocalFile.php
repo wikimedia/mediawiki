@@ -2282,7 +2282,12 @@ class LocalFileDeleteBatch {
 		$this->doDBInserts();
 
 		// Removes non-existent file from the batch, so we don't get errors.
-		$this->deletionBatch = $this->removeNonexistentFiles( $this->deletionBatch );
+		$checkStatus = $this->removeNonexistentFiles( $this->deletionBatch );
+		if ( !$checkStatus->isGood() ) {
+			$this->status->merge( $checkStatus );
+			return $this->status;
+		}
+		$this->deletionBatch = $checkStatus->value;
 
 		// Execute the file deletion batch
 		$status = $this->file->repo->deleteBatch( $this->deletionBatch );
@@ -2314,7 +2319,7 @@ class LocalFileDeleteBatch {
 	/**
 	 * Removes non-existent files from a deletion batch.
 	 * @param array $batch
-	 * @return array
+	 * @return Status
 	 */
 	function removeNonexistentFiles( $batch ) {
 		$files = $newBatch = array();
@@ -2325,6 +2330,10 @@ class LocalFileDeleteBatch {
 		}
 
 		$result = $this->file->repo->fileExistsBatch( $files );
+		if ( in_array( null, $result, true ) ) {
+			return Status::newFatal( 'backend-fail-internal',
+				$this->file->repo->getBackend()->getName() );
+		}
 
 		foreach ( $batch as $batchItem ) {
 			if ( $result[$batchItem[0]] ) {
@@ -2332,7 +2341,7 @@ class LocalFileDeleteBatch {
 			}
 		}
 
-		return $newBatch;
+		return Status::newGood( $newBatch );
 	}
 }
 
@@ -2571,7 +2580,12 @@ class LocalFileRestoreBatch {
 		}
 
 		// Remove missing files from batch, so we don't get errors when undeleting them
-		$storeBatch = $this->removeNonexistentFiles( $storeBatch );
+		$checkStatus = $this->removeNonexistentFiles( $storeBatch );
+		if ( !$checkStatus->isGood() ) {
+			$status->merge( $checkStatus );
+			return $status;
+		}
+		$storeBatch = $checkStatus->value;
 
 		// Run the store batch
 		// Use the OVERWRITE_SAME flag to smooth over a common error
@@ -2631,7 +2645,7 @@ class LocalFileRestoreBatch {
 	/**
 	 * Removes non-existent files from a store batch.
 	 * @param array $triplets
-	 * @return array
+	 * @return Status
 	 */
 	function removeNonexistentFiles( $triplets ) {
 		$files = $filteredTriplets = array();
@@ -2640,6 +2654,10 @@ class LocalFileRestoreBatch {
 		}
 
 		$result = $this->file->repo->fileExistsBatch( $files );
+		if ( in_array( null, $result, true ) ) {
+			return Status::newFatal( 'backend-fail-internal',
+				$this->file->repo->getBackend()->getName() );
+		}
 
 		foreach ( $triplets as $file ) {
 			if ( $result[$file[0]] ) {
@@ -2647,7 +2665,7 @@ class LocalFileRestoreBatch {
 			}
 		}
 
-		return $filteredTriplets;
+		return Status::newGood( $filteredTriplets );
 	}
 
 	/**
@@ -2820,7 +2838,12 @@ class LocalFileMoveBatch {
 		$status = $repo->newGood();
 
 		$triplets = $this->getMoveTriplets();
-		$triplets = $this->removeNonexistentFiles( $triplets );
+		$checkStatus = $this->removeNonexistentFiles( $triplets );
+		if ( !$checkStatus->isGood() ) {
+			$status->merge( $checkStatus );
+			return $status;
+		}
+		$triplets = $checkStatus->value;
 		$destFile = wfLocalFile( $this->target );
 
 		$this->file->lock(); // begin
@@ -2947,7 +2970,7 @@ class LocalFileMoveBatch {
 	/**
 	 * Removes non-existent files from move batch.
 	 * @param array $triplets
-	 * @return array
+	 * @return Status
 	 */
 	function removeNonexistentFiles( $triplets ) {
 		$files = array();
@@ -2957,8 +2980,12 @@ class LocalFileMoveBatch {
 		}
 
 		$result = $this->file->repo->fileExistsBatch( $files );
-		$filteredTriplets = array();
+		if ( in_array( null, $result, true ) ) {
+			return Status::newFatal( 'backend-fail-internal',
+				$this->file->repo->getBackend()->getName() );
+		}
 
+		$filteredTriplets = array();
 		foreach ( $triplets as $file ) {
 			if ( $result[$file[0]] ) {
 				$filteredTriplets[] = $file;
@@ -2967,7 +2994,7 @@ class LocalFileMoveBatch {
 			}
 		}
 
-		return $filteredTriplets;
+		return Status::newGood( $filteredTriplets );
 	}
 
 	/**
