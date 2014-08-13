@@ -268,9 +268,9 @@ if ( $wgSkipSkin ) {
 call_user_func( function() use ( $wgValidSkinNames ) {
 	$factory = SkinFactory::getDefaultInstance();
 	foreach ( $wgValidSkinNames as $name => $skin ) {
-		$factory->register( $name, $skin, function() use ( $skin ) {
+		$factory->register( $name, $skin, function() use ( $name, $skin ) {
 			$class = "Skin$skin";
-			return new $class;
+			return new $class( $name );
 		} );
 	}
 	// Register a hidden "fallback" skin
