@@ -147,7 +147,7 @@ class SkinFactory {
 	 * or autoloading
 	 *
 	 * @param string $name
-	 * @return Skin|bool false if the skin couldn't be constructed
+	 * @return Skin|bool False if the skin couldn't be constructed
 	 */
 	private function getLegacySkin( $name ) {
 		$skinNames = $this->getLegacySkinNames();

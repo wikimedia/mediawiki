@@ -448,7 +448,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * Returns native represenation of the data. Interpretation depends on the data model used,
 	 * as given by getDataModel().
 	 *
-	 * @return mixed the native representation of the content. Could be a string, a nested array
+	 * @return mixed The native representation of the content. Could be a string, a nested array
 	 *  structure, an object, a binary blob... anything, really.
 	 */
 	public function getNativeData() {
@@ -476,7 +476,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * return $this. That is,  $copy === $original may be true, but only for imutable content
 	 * objects.
 	 *
-	 * @return Content. A copy of this object.
+	 * @return Content A copy of this object
 	 */
 	public function copy() {
 		return $this;

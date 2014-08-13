@@ -3992,7 +3992,7 @@ class Language {
 	 * Get the list of variants supported by this language
 	 * see sample implementation in LanguageZh.php
 	 *
-	 * @return array an array of language codes
+	 * @return array An array of language codes
 	 */
 	public function getVariants() {
 		return $this->mConverter->getVariants();
@@ -4284,7 +4284,7 @@ class Language {
 	 *
 	 * @since 1.22
 	 * @param string $code Language code
-	 * @return array array( fallbacks, site fallbacks )
+	 * @return array Array( fallbacks, site fallbacks )
 	 */
 	public static function getFallbacksIncludingSiteLanguage( $code ) {
 		global $wgLanguageCode;
@@ -4339,7 +4339,7 @@ class Language {
 	 *
 	 * @since 1.19
 	 * @param string $code Language code
-	 * @return array of message keys (strings)
+	 * @return array Array of message keys (strings)
 	 */
 	public static function getMessageKeysFor( $code ) {
 		return self::getLocalisationCache()->getSubItemList( $code, 'messages' );

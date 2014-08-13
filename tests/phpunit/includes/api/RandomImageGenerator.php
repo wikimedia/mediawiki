@@ -328,7 +328,7 @@ class RandomImageGenerator {
 	 * This is used when simulating a rotated image capture with Exif orientation
 	 * @param array $spec Returned by getImageSpec
 	 * @param array $matrix 2x2 transformation matrix
-	 * @return array transformed Spec
+	 * @return array Transformed Spec
 	 */
 	private static function rotateImageSpec( &$spec, $matrix ) {
 		$tSpec = array();
@@ -367,7 +367,7 @@ class RandomImageGenerator {
 	 * @param array $matrix 2x2 rotation matrix
 	 * @param int $x The x-coordinate number
 	 * @param int $y The y-coordinate number
-	 * @return Transformed with properties x, y
+	 * @return array Transformed with properties x, y
 	 */
 	private static function matrixMultiply2x2( $matrix, $x, $y ) {
 		return array(
@@ -432,7 +432,7 @@ class RandomImageGenerator {
 	 * array( array( 'foo', 'bar' ), array( 'quux', 'baz' ) );
 	 *
 	 * @param int $number Number of pairs
-	 * @return array two-element arrays
+	 * @return array Two-element arrays
 	 */
 	private function getRandomWordPairs( $number ) {
 		$lines = $this->getRandomLines( $number * 2 );
@@ -454,7 +454,7 @@ class RandomImageGenerator {
 	 * @param int $number_desired Number of lines desired
 	 *
 	 * @throws Exception
-	 * @return Array of exactly n elements, drawn randomly from lines the file
+	 * @return array Array of exactly n elements, drawn randomly from lines the file
 	 */
 	private function getRandomLines( $number_desired ) {
 		$filepath = $this->dictionaryFile;
