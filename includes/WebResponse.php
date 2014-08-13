@@ -51,7 +51,7 @@ class WebResponse {
 	 *     secure: bool, secure attribute ($wgCookieSecure)
 	 *     httpOnly: bool, httpOnly attribute ($wgCookieHttpOnly)
 	 *     raw: bool, if true uses PHP's setrawcookie() instead of setcookie()
-	 *   For backwards compatability, if $options is not an array then it and
+	 *   For backwards compatibility, if $options is not an array then it and
 	 *   the following two parameters will be interpreted as values for
 	 *   'prefix', 'domain', and 'secure'
 	 * @since 1.22 Replaced $prefix, $domain, and $forceSecure with $options
@@ -61,7 +61,7 @@ class WebResponse {
 		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
 
 		if ( !is_array( $options ) ) {
-			// Backwards compatability
+			// Backwards compatibility
 			$options = array( 'prefix' => $options );
 			if ( func_num_args() >= 5 ) {
 				$options['domain'] = func_get_arg( 4 );

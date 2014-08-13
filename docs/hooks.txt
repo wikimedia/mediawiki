@@ -2368,7 +2368,7 @@ $sp: SpecialPage object, for context
 &$fields: Current HTMLForm fields
 
 'SpecialContributionsBeforeMainOutput': Before the form on Special:Contributions
-$id: User id number, only provided for backwards-compatability
+$id: User id number, only provided for backwards-compatibility
 $user: User object representing user contributions are being fetched for
 $sp: SpecialPage instance, providing context
 

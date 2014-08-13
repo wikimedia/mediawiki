@@ -163,7 +163,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		if ( $feedType ) {
-			// Maintain some level of backwards compatability
+			// Maintain some level of backwards compatibility
 			// If people request feeds using the old parameters, redirect to API
 			$feedParams['feedformat'] = $feedType;
 			$url = wfAppendQuery( wfScript( 'api' ), $feedParams );

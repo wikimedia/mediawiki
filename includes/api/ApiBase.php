@@ -1349,7 +1349,7 @@ abstract class ApiBase extends ContextSource {
 			$msg = wfMessage( $code, $errors[0] );
 		}
 		if ( isset( ApiBase::$messageMap[$code] ) ) {
-			// Translate message to code, for backwards compatability
+			// Translate message to code, for backwards compatibility
 			$code = ApiBase::$messageMap[$code]['code'];
 		}
 
