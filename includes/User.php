@@ -1903,7 +1903,6 @@ class User implements IDBAccessObject {
 		$this->getBlockedStatus();
 		if ( !$this->mHideName ) {
 			global $wgAuth;
-			StubObject::unstub( $wgAuth );
 			$authUser = $wgAuth->getUserInstance( $this );
 			$this->mHideName = (bool)$authUser->isHidden();
 		}
