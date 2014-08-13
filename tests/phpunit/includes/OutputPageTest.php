@@ -151,10 +151,17 @@ class OutputPageTest extends MediaWikiTestCase {
 				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback&amp;*">
 '
 			),
+			// Load private module (scripts)
+			array(
+				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
+				'<script>if(window.mw){mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});}
+</script>
+'
+			),
 			// Load private module (combined)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
-				'<script>if(window.mw){mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]},{});}
+				'<script>mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]},{});
 </script>
 '
 			),
