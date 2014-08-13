@@ -1180,6 +1180,7 @@ return array(
 	'mediawiki.page.watch.ajax' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.watch.ajax.js',
 		'dependencies' => array(
+			'mediawiki.skin',
 			'mediawiki.api.watch',
 			'mediawiki.notify',
 			'mediawiki.util',
@@ -1203,6 +1204,12 @@ return array(
 			'mediawiki.util',
 			'jquery.spinner',
 		),
+	),
+
+	/* MediaWiki Skin */
+
+	'mediawiki.skin' => array(
+		'scripts' => 'resources/src/mediawiki.skin/mediawiki.skin.js',
 	),
 
 	/* MediaWiki Special pages */
