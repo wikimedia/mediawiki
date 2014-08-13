@@ -1551,9 +1551,9 @@ class Article implements Page {
 		$user = $this->getContext()->getUser();
 
 		# Check permissions
-		$permission_errors = $title->getUserPermissionsErrors( 'delete', $user );
-		if ( count( $permission_errors ) ) {
-			throw new PermissionsError( 'delete', $permission_errors );
+		$permissionErrors = $title->getUserPermissionsErrors( 'delete', $user );
+		if ( count( $permissionErrors ) ) {
+			throw new PermissionsError( 'delete', $permissionErrors );
 		}
 
 		# Read-only check...
