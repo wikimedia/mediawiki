@@ -1751,6 +1751,7 @@
 	"delete-edit-reasonlist": "Uredi razloge za brisanje",
 	"delete-toobig": "Ta stran ima obsežno zgodovino urejanja, tj. čez $1 {{PLURAL:$1|redakcijo|redakciji|redakcije|redakcij}}.\nIzbris takšnih strani je bil omejen v izogib neželenim motnjam {{GRAMMAR:dative|{{SITENAME}}}}.",
 	"delete-warning-toobig": "Ta stran ima obsežno zgodovino urejanja, tj. čez $1 {{PLURAL:$1|redakcijo|redakciji|redakcije|redakcij}}.\nNjeno brisanje lahko zmoti obratovanje zbirke podatkov {{GRAMMAR:dative|{{SITENAME}}}};\nnadaljujte s previdnostjo.",
+	"delete-cantedit": "Strani ne morete izbrisati, ker je nimate dovoljenja urejati.",
 	"deleting-backlinks-warning": "'''Opozorilo:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Druge strani]] se povezujejo na ali vključujejo stran, ki jo nameravate izbrisati.",
 	"rollback": "Vrni spremembe",
 	"rollback_short": "Vrni",

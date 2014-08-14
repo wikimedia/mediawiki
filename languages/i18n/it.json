@@ -2098,7 +2098,7 @@
 	"movepagetalktext": "La corrispondente pagina di discussione, se esiste, sarà spostata automaticamente insieme alla pagina principale, '''tranne che nei seguenti casi''':\n* lo spostamento della pagina è tra namespace diversi;\n* in corrispondenza del nuovo titolo esiste già una pagina di discussione (non vuota);\n* la casella qui sotto è stata deselezionata.\n\nIn questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manualmente le informazioni contenute nella pagina di discussione.",
 	"movearticle": "Sposta la pagina:",
 	"moveuserpage-warning": "'''Attenzione:''' Si sta per spostare una pagina utente. Nota che verrà spostata solamente la pagina. L'utente ''non'' sarà rinominato.",
-	"movecategorypage-warning": "<strong>Attenzione:</strong> stai per spostare una categoria. Solo la pagina verrà spostata, ma tutte le pagine nella vecchia categoria <em>non</em> saranno inserite nella nuova.",
+	"movecategorypage-warning": "<strong>Attenzione:</strong> si sta per spostare una categoria. Solo questa pagina verrà spostata: tutte le pagine nella vecchia categoria <em>non</em> saranno inserite nella nuova.",
 	"movenologintext": "Lo spostamento delle pagine è consentito solo agli utenti registrati che hanno eseguito l'[[Special:UserLogin|accesso]] al sito.",
 	"movenotallowed": "Non si dispone dei permessi necessari per spostare le pagine.",
 	"movenotallowedfile": "Non si dispone dei permessi necessari per spostare i file.",

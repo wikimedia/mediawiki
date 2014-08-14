@@ -9,7 +9,8 @@
 			"ZxxZxxZ",
 			"아라",
 			"RigiMahnoor",
-			"Oldstoneage"
+			"Oldstoneage",
+			"Baloch Afghanistan"
 		]
 	},
 	"tog-underline": ":لینکانآ خط کش",
@@ -827,7 +828,6 @@
 	"searchprofile-advanced-tooltip": "گردگ ته نام فضایان دل واه",
 	"search-result-size": "$1 ({{PLURAL:$2|1کلمه|$2 کلمات}})",
 	"search-result-category-size": "{{PLURAL:$1|یک عضو|$1 عضو}} ({{PLURAL:$2|یک جهلرده|$2 جهلرده}}، {{PLURAL:$3|یک فایل|$3 فایل}})",
-	"search-result-score": "ربط: $1%",
 	"search-redirect": "(غیر مستقیم $1 )",
 	"search-section": "(بخش $1 )",
 	"search-file-match": "(فایلء محتواء همجندی)",
@@ -1212,8 +1212,6 @@
 	"file-deleted-duplicate": "یک فایلی په داب ای فایل ([[:$1]]) پیسرتر حذف بوتگت. شما بایدن تاریح حذف آ فایلء دگه بچاریت",
 	"uploadwarning": "هوژاری آپلود",
 	"savefile": "ذخیره فایل",
-	"uploadedimage": "اپلود بوت \"[[$1]]\"",
-	"overwroteimage": "یک نوکین نسخه چه \"[[$1]]\" آپلود بیتت",
 	"uploaddisabled": "آپ.د غبر فعال انت",
 	"uploaddisabledtext": "آپلود فایل غیر فعال انت.",
 	"php-uploaddisabledtext": "آپلود کتن فایل ته پی‌اچ‌پی فعال نهنت. تنظیم file_uploads کنترل کنیت.",
@@ -1504,6 +1502,7 @@
 	"watchlist-details": "{{PLURAL:$1|$1 صفحه|$1 صفحات}} چارتگ بیت صفحات گپ حساب نه بیگن",
 	"wlheader-enotif": "اخطار ایمیل فعالنت.",
 	"wlheader-showupdated": "صفحات که عوض بوتگنت چه شمی آهری چارتن '''پررنگ''' پیش دراگ بنت.",
+	"wlnote": "جهلء {{PLURAL:$1|آهرین تغییر هست|آهرین هست'''$1''' تغییرات}} ته آهرین {{PLURAL:$2|ساعت|'''$2''' ساعات}}.",
 	"wlshowlast": "پیش دار آهرین $1  ساعات $2 روچان $3",
 	"watchlist-options": "گزینه یان لیست چارگ",
 	"watching": "چارگ بین",
@@ -1539,6 +1538,7 @@
 	"delete-edit-reasonlist": "اصلاح کن دلایل حذفء",
 	"delete-toobig": "صفحهء یک مزنین تاریح اصلاحی هست گیشتر چه $1 {{PLURAL:$1|بازبینی|بازبینی}}.\nحذف چوشین صفحات په خاظر جلو گر چه ناگهانی اتفاق ته سایت {{SITENAME}} ممنوع بوتت.",
 	"delete-warning-toobig": "ای صفحه  مزنین تاریح اصلاح هست، گیش چه  $1 {{PLURAL:$1|بازبینی|بازبینی}}.\nحذف آی شاید کار دیتابیس  {{SITENAME}} قطع کنت؛\nگون اخطار پیش روت.",
+	"delete-cantedit": "شما نه توانیت ای صپحا پاک کنیت بی خاطیریکه شما اجازه نداریت آیرا ایڈیت کنیت.",
 	"rollback": "پشت ترگ اصلاحات",
 	"rollback_short": "پشتررگ",
 	"rollbacklink": "عقب ترگ",
