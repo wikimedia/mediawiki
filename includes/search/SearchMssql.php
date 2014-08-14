@@ -85,6 +85,8 @@ class SearchMssql extends SearchDatabase {
 	 * Does not do anything for generic search engine
 	 * subclasses may define this though
 	 *
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
 	 * @return string
 	 */
 	function queryRanking( $filteredTerm, $fulltext ) {
@@ -134,6 +136,8 @@ class SearchMssql extends SearchDatabase {
 	}
 
 	/** @todo document
+	 * @param string $filteredText
+	 * @param bool $fulltext
 	 * @return string
 	 */
 	function parseQuery( $filteredText, $fulltext ) {

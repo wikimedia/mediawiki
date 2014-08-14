@@ -72,6 +72,7 @@ class UnwatchedpagesPage extends QueryPage {
 
 	/**
 	 * Add the JS
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		parent::execute( $par );

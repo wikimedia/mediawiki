@@ -303,6 +303,8 @@ class SearchMySQL extends SearchDatabase {
 
 	/**
 	 * @since 1.18 (changed)
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
 	 * @return array
 	 */
 	function getCountQuery( $filteredTerm, $fulltext ) {
@@ -374,6 +376,7 @@ class SearchMySQL extends SearchDatabase {
 	/**
 	 * Converts some characters for MySQL's indexing to grok it correctly,
 	 * and pads short words to overcome limitations.
+	 * @param string $string
 	 * @return mixed|string
 	 */
 	function normalizeText( $string ) {
@@ -422,6 +425,7 @@ class SearchMySQL extends SearchDatabase {
 	 * Armor a case-folded UTF-8 string to get through MySQL's
 	 * fulltext search without being mucked up by funny charset
 	 * settings or anything else of the sort.
+	 * @param array $matches
 	 * @return string
 	 */
 	protected function stripForSearchCallback( $matches ) {

@@ -569,6 +569,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the definition summary for this module.
 	 *
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {

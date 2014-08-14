@@ -218,6 +218,8 @@ class XCFHandler extends BitmapHandler {
 	 *
 	 * Image magick doesn't support indexed xcf files as of current
 	 * writing (as of 6.8.9-3)
+	 * @param File $file
+	 * @return bool
 	 */
 	public function canRender( $file ) {
 		wfSuppressWarnings();

@@ -43,6 +43,7 @@ class SpecialChangePassword extends FormSpecialPage {
 
 	/**
 	 * Main execution point
+	 * @param string|null $par
 	 */
 	function execute( $par ) {
 		$this->getOutput()->disallowUserJs();
@@ -229,6 +230,9 @@ class SpecialChangePassword extends FormSpecialPage {
 	}
 
 	/**
+	 * @param string $oldpass
+	 * @param string $newpass
+	 * @param string $retype
 	 * @throws PasswordError When cannot set the new password because requirements not met.
 	 */
 	protected function attemptReset( $oldpass, $newpass, $retype ) {

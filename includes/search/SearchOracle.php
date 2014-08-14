@@ -125,6 +125,8 @@ class SearchOracle extends SearchDatabase {
 	 * Does not do anything for generic search engine
 	 * subclasses may define this though
 	 *
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
 	 * @return string
 	 */
 	function queryRanking( $filteredTerm, $fulltext ) {
@@ -172,6 +174,8 @@ class SearchOracle extends SearchDatabase {
 	/**
 	 * Parse a user input search string, and return an SQL fragment to be used
 	 * as part of a WHERE clause
+	 * @param string $filteredText
+	 * @param bool $fulltext
 	 * @return string
 	 */
 	function parseQuery( $filteredText, $fulltext ) {

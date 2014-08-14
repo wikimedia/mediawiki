@@ -4740,6 +4740,7 @@ class Language {
 
 	/**
 	 * Find the index number of the plural rule appropriate for the given number
+	 * @param int $number
 	 * @return int The index number of the plural rule
 	 */
 	public function getPluralRuleIndexNumber( $number ) {
@@ -4753,6 +4754,7 @@ class Language {
 	 * For example, if the language is set to Arabic, getPluralType(5) should
 	 * return 'few'.
 	 * @since 1.22
+	 * @param int $number
 	 * @return string The name of the plural rule type, e.g. one, two, few, many
 	 */
 	public function getPluralRuleType( $number ) {

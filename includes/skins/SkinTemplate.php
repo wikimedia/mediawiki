@@ -1375,8 +1375,9 @@ abstract class QuickTemplate {
 
 	/** @var Config $config */
 	protected $config;
+
 	/**
-	 * @var Config $config
+	 * @param Config $config
 	 */
 	function __construct( Config $config = null ) {
 		$this->data = array();

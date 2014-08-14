@@ -622,6 +622,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Report that the submit operation failed
+	 * @param Status $status
 	 */
 	protected function failure( $status ) {
 		// Messages: revdelete-failure, logdelete-failure

@@ -49,6 +49,7 @@ class SpecialImport extends SpecialPage {
 
 	/**
 	 * Execute
+	 * @param string|null $par
 	 */
 	function execute( $par ) {
 		$this->setHeaders();

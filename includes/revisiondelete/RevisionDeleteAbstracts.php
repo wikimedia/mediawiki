@@ -322,6 +322,7 @@ abstract class RevDelItem extends RevisionItemBase {
 	 * Returns true if the item is "current", and the operation to set the given
 	 * bits can't be executed for that reason
 	 * STUB
+	 * @param int $newBits
 	 * @return bool
 	 */
 	public function isHideCurrentOp( $newBits ) {
@@ -341,6 +342,7 @@ abstract class RevDelItem extends RevisionItemBase {
 	 * If the update fails because it did not match, the function should return
 	 * false. This prevents concurrency problems.
 	 *
+	 * @param int $newBits
 	 * @return bool Success
 	 */
 	abstract public function setBits( $newBits );

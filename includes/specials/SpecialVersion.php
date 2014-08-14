@@ -50,6 +50,7 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * main()
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		global $IP, $wgExtensionCredits;

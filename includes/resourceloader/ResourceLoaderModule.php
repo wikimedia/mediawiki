@@ -486,6 +486,7 @@ abstract class ResourceLoaderModule {
 	 *
 	 * @since 1.23
 	 *
+	 * @param ResourceLoaderContext $context
 	 * @return int UNIX timestamp or 0 if no definition summary was provided
 	 *  by getDefinitionSummary()
 	 */
@@ -553,6 +554,7 @@ abstract class ResourceLoaderModule {
 	 *
 	 * @since 1.23
 	 *
+	 * @param ResourceLoaderContext $context
 	 * @return array|null
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
