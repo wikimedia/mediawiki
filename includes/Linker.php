@@ -2197,7 +2197,7 @@ class Linker {
 	 *
 	 * @param User $user
 	 * @param Revision $rev
-	 * @param Revision $title
+	 * @param Title $title
 	 * @return string HTML fragment
 	 */
 	public static function getRevDeleteLink( User $user, Revision $rev, Title $title ) {
