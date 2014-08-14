@@ -25,4 +25,12 @@ class SkinFallback extends SkinTemplate {
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'mediawiki.skinning.interface' );
 	}
+
+	/**
+	 * @param OutputPage $out
+	 */
+	public function initPage( OutputPage $out ) {
+		parent::initPage( $out );
+		$out->enableClientCache( false );
+	}
 }
