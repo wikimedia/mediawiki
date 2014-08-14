@@ -471,4 +471,4 @@
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/Nostalgia.git
 [submodule "vendor"]
 	path = vendor
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/core/vendor.git
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
