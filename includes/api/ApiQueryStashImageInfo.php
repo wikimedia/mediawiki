@@ -47,6 +47,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 		// Alias sessionkey to filekey, but give an existing filekey precedence.
 		if ( !$params['filekey'] && $params['sessionkey'] ) {
+			$this->logFeatureUsage( 'prop=stashimageinfo&siisessionkey' );
 			$params['filekey'] = $params['sessionkey'];
 		}
 

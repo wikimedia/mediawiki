@@ -42,6 +42,7 @@ class ApiExpandTemplates extends ApiBase {
 		$this->requireMaxOneParameter( $params, 'prop', 'generatexml' );
 
 		if ( $params['prop'] === null ) {
+			$this->logFeatureUsage( 'action=expandtemplates&!prop' );
 			$this->setWarning( 'Because no values have been specified for the prop parameter, a ' .
 				'legacy format has been used for the output. This format is deprecated, and in ' .
 				'the future, a default value will be set for the prop parameter, causing the new' .
@@ -70,6 +71,10 @@ class ApiExpandTemplates extends ApiBase {
 		$retval = array();
 
 		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
+			if ( !isset( $prop['parsetree'] ) ) {
+				$this->logFeatureUsage( 'action=expandtemplates&generatexml' );
+			}
+
 			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );
 			$dom = $wgParser->preprocessToDom( $params['text'] );
 			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
