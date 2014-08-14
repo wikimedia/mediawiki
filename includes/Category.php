@@ -291,6 +291,7 @@ class Category {
 
 	/**
 	 * Generic accessor
+	 * @param string $key
 	 * @return bool
 	 */
 	private function getX( $key ) {

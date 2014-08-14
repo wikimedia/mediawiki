@@ -466,6 +466,7 @@ class ApiUpload extends ApiBase {
 
 	/**
 	 * Performs file verification, dies on error.
+	 * @param array $verification
 	 */
 	protected function checkVerification( array $verification ) {
 		// @todo Move them to ApiBase's message map

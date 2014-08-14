@@ -348,6 +348,7 @@ class RSSFeed extends ChannelFeed {
 class AtomFeed extends ChannelFeed {
 	/**
 	 * @todo document
+	 * @param string|int $ts
 	 * @return string
 	 */
 	function formatTime( $ts ) {

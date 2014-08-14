@@ -1448,6 +1448,7 @@ class FileRepo {
 	 * Delete files in the deleted directory if they are not referenced in the filearchive table
 	 *
 	 * STUB
+	 * @param array $storageKeys
 	 */
 	public function cleanupDeletedBatch( array $storageKeys ) {
 		$this->assertWritableRepo();

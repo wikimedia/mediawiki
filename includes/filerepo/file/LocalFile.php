@@ -379,6 +379,7 @@ class LocalFile extends File {
 
 	/**
 	 * Load file metadata from the DB
+	 * @param int $flags
 	 */
 	function loadFromDB( $flags = 0 ) {
 		# Polymorphic function name to distinguish foreign and local fetches
@@ -931,6 +932,7 @@ class LocalFile extends File {
 
 	/**
 	 * Delete cached transformed files for the current version only.
+	 * @param array $options
 	 */
 	function purgeThumbnails( $options = array() ) {
 		global $wgUseSquid;
@@ -2371,6 +2373,7 @@ class LocalFileRestoreBatch {
 
 	/**
 	 * Add a file by ID
+	 * @param int $fa_id
 	 */
 	function addId( $fa_id ) {
 		$this->ids[] = $fa_id;
@@ -2378,6 +2381,7 @@ class LocalFileRestoreBatch {
 
 	/**
 	 * Add a whole lot of files by ID
+	 * @param int[] $ids
 	 */
 	function addIds( $ids ) {
 		$this->ids = array_merge( $this->ids, $ids );
@@ -2973,6 +2977,7 @@ class LocalFileMoveBatch {
 	/**
 	 * Cleanup a partially moved array of triplets by deleting the target
 	 * files. Called if something went wrong half way.
+	 * @param array $triplets
 	 */
 	function cleanupTarget( $triplets ) {
 		// Create dest pairs from the triplets
@@ -2988,6 +2993,7 @@ class LocalFileMoveBatch {
 	/**
 	 * Cleanup a fully moved array of triplets by deleting the source files.
 	 * Called at the end of the move process if everything else went ok.
+	 * @param array $triplets
 	 */
 	function cleanupSource( $triplets ) {
 		// Create source file names from the triplets

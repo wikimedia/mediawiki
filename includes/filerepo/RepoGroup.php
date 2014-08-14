@@ -409,6 +409,7 @@ class RepoGroup {
 
 	/**
 	 * Create a repo class based on an info structure
+	 * @param array $info
 	 */
 	protected function newRepo( $info ) {
 		$class = $info['class'];

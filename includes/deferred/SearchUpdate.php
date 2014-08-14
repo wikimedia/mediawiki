@@ -115,6 +115,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 * Clean text for indexing. Only really suitable for indexing in databases.
 	 * If you're using a real search engine, you'll probably want to override
 	 * this behavior and do something nicer with the original wikitext.
+	 * @param string $text
 	 */
 	public static function updateText( $text ) {
 		global $wgContLang;
@@ -179,6 +180,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 * Get a string representation of a title suitable for
 	 * including in a search index
 	 *
+	 * @param SearchEngine $search
 	 * @return string A stripped-down title string ready for the search index
 	 */
 	private function indexTitle( SearchEngine $search ) {

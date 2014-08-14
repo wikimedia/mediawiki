@@ -339,6 +339,7 @@ class ProfilerStandard extends Profiler {
 
 	/**
 	 * Callback to get a formatted line for the call tree
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getCallTreeLine( $entry ) {
@@ -514,6 +515,7 @@ class ProfilerStandard extends Profiler {
 
 	/**
 	 * Dummy calls to wfProfileIn/wfProfileOut to calculate its overhead
+	 * @param int $profileCount
 	 */
 	protected static function calculateOverhead( $profileCount ) {
 		wfProfileIn( '-overhead-total' );

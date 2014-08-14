@@ -702,6 +702,7 @@ class Linker {
 	 * frame parameters supplied by the Parser.
 	 * @param array $frameParams The frame parameters
 	 * @param string $query An optional query string to add to description page links
+	 * @param Parser|null $parser
 	 * @return array
 	 */
 	private static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {

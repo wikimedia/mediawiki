@@ -1201,6 +1201,9 @@ __INDEXATTR__;
 
 	/**
 	 * Return aggregated value function call
+	 * @param array $valuedata
+	 * @param string $valuename
+	 * @return array
 	 */
 	public function aggregateValue( $valuedata, $valuename = 'value' ) {
 		return $valuedata;

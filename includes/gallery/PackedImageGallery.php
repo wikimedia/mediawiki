@@ -103,6 +103,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 	/**
 	 * Do not support per-row on packed. It really doesn't work
 	 * since the images have varying widths.
+	 * @param int $num
 	 */
 	public function setPerRow( $num ) {
 		return;

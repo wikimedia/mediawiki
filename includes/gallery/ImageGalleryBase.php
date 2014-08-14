@@ -123,6 +123,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * You should not call this directly, but instead use
 	 * ImageGalleryBase::factory().
+	 * @param string $mode
 	 */
 	function __construct( $mode = 'traditional' ) {
 		global $wgGalleryOptions;
@@ -154,6 +155,7 @@ abstract class ImageGalleryBase extends ContextSource {
 
 	/**
 	 * Set bad image flag
+	 * @param bool $flag
 	 */
 	function setHideBadImages( $flag = true ) {
 		$this->mHideBadImages = $flag;
