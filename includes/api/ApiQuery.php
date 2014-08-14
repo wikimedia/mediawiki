@@ -525,6 +525,7 @@ class ApiQuery extends ApiBase {
 			'exportnowrap' => false,
 			'iwurl' => false,
 			'continue' => null,
+			'rawcontinue' => false,
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -607,6 +608,8 @@ class ApiQuery extends ApiBase {
 				'This parameter is recommended for all new development, and ' .
 					'will be made default in the next API version.'
 			),
+			'rawcontinue' => 'Currently ignored. In the future, \'continue=\' will become the ' .
+				'default and this will be needed to receive the raw query-continue data.',
 		);
 	}
 
