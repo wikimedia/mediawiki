@@ -435,6 +435,10 @@ abstract class ApiBase extends ContextSource {
 						$prompt = 'One value: ';
 					}
 
+					if ( $type === 'submodule' ) {
+						$type = $this->getModuleManager()->getNames( $paramName );
+						sort( $type );
+					}
 					if ( is_array( $type ) ) {
 						$choices = array();
 						$nothingPrompt = '';
@@ -997,6 +1001,9 @@ abstract class ApiBase extends ContextSource {
 
 			if ( isset( $value ) && $type == 'namespace' ) {
 				$type = MWNamespace::getValidNamespaces();
+			}
+			if ( isset( $value ) && $type == 'submodule' ) {
+				$type = $this->getModuleManager()->getNames( $paramName );
 			}
 		}
 

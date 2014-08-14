@@ -229,6 +229,9 @@ production.
   properly maintain. Also removed the corresponding methods from ApiBase and
   the 'APIGetPossibleErrors' and 'APIGetResultProperties' hooks.
 * Formats dbg, dump, txt, wddx, and yaml are now deprecated.
+* action=paraminfo now indicates when a parameter is specifying a submodule.
+  Internally, a new param type 'submodule' is available to indicate this which
+  automatically queries the list of submodule names from the ApiModuleManager.
 
 === Languages updated in 1.24 ===
 
