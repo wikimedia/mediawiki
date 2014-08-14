@@ -743,9 +743,9 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Content|string $oldContent The page's previous content.
-	 * @param Content|string $myContent One of the page's conflicting contents.
-	 * @param Content|string $yourContent One of the page's conflicting contents.
+	 * @param Content $oldContent The page's previous content.
+	 * @param Content $myContent One of the page's conflicting contents.
+	 * @param Content $yourContent One of the page's conflicting contents.
 	 *
 	 * @return Content|bool Always false.
 	 */
