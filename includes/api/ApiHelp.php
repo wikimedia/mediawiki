@@ -51,6 +51,7 @@ class ApiHelp extends ApiBase {
 		}
 
 		if ( is_array( $params['querymodules'] ) ) {
+			$this->logFeatureUsage( 'action=help&querymodules' );
 			$queryModules = $params['querymodules'];
 			foreach ( $queryModules as $m ) {
 				$modules[] = 'query+' . $m;
