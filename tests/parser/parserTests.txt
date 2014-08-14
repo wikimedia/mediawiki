@@ -13927,6 +13927,14 @@ Expansion of multi-line templates in attribute values (bug 6255 sanity check 2)
 
 !! end
 
+!! test
+evil <math>-wiki-tags without Extension:Math enabled
+!! wikitext
+<math><img src="some evil external link"><script>some_evil_javascript();</script></math>
+!! html+tidy
+<p>&lt;math&gt;&lt;img src="some evil external link"&gt;&lt;script&gt;some_evil_javascript();&lt;/script&gt;&lt;/math&gt;</p>
+!! end
+
 ###
 ### Parser hooks (see tests/parser/parserTestsParserHook.php for the <tag> extension)
 ###
