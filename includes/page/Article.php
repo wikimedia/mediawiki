@@ -1674,13 +1674,12 @@ class Article implements Page {
 		$user = $this->getContext()->getUser();
 
 		if ( $user->isAllowed( 'suppressrevision' ) ) {
-			$suppress = "<tr id=\"wpDeleteSuppressRow\">
-					<td></td>
-					<td class='mw-input'><strong>" .
+			$suppress = Xml::openElement( 'div', array( 'id' => 'wpDeleteSuppressRow' ) ) .
+				"<strong>" .
 						Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
 							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
-					"</strong></td>
-				</tr>";
+					"</strong>" .
+				Xml::closeElement( 'div' );
 		} else {
 			$suppress = '';
 		}
@@ -1690,59 +1689,44 @@ class Article implements Page {
 			'action' => $title->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
 			Xml::tags( 'legend', null, wfMessage( 'delete-legend' )->escaped() ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
-			"<tr id=\"wpDeleteReasonListRow\">
-				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
-				"</td>
-				<td class='mw-input'>" .
-					Xml::listDropDown(
-						'wpDeleteReasonList',
-						wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text(),
-						wfMessage( 'deletereasonotherlist' )->inContentLanguage()->text(),
-						'',
-						'wpReasonDropDown',
-						1
-					) .
-				"</td>
-			</tr>
-			<tr id=\"wpDeleteReasonRow\">
-				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
-				"</td>
-				<td class='mw-input'>" .
-				Html::input( 'wpReason', $reason, 'text', array(
-					'size' => '60',
-					'maxlength' => '255',
-					'tabindex' => '2',
-					'id' => 'wpReason',
-					'autofocus'
-				) ) .
-				"</td>
-			</tr>";
+			Html::openElement( 'div', array( 'id' => 'mw-deleteconfirm-table' ) ) .
+			Html::openElement( 'div', array( 'id' => 'wpDeleteReasonListRow' ) ) .
+			Xml::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
+			'&nbsp;' .
+			Xml::listDropDown(
+				'wpDeleteReasonList',
+				wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text(),
+				wfMessage( 'deletereasonotherlist' )->inContentLanguage()->text(),
+				'',
+				'wpReasonDropDown',
+				1
+			) .
+			Xml::closeElement( 'div' ) .
+			Xml::openElement( 'div', array( 'id' => 'wpDeleteReasonRow' ) ) .
+			Xml::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
+			'&nbsp;' .
+			Html::input( 'wpReason', $reason, 'text', array(
+				'size' => '60',
+				'maxlength' => '255',
+				'tabindex' => '2',
+				'id' => 'wpReason',
+				'class' => 'mw-ui-input mw-ui-input-inline',
+				'autofocus'
+			) ) .
+			Html::closeElement( 'div' );
 
 		# Disallow watching if user is not logged in
 		if ( $user->isLoggedIn() ) {
-			$form .= "
-			<tr>
-				<td></td>
-				<td class='mw-input'>" .
+			$form .=
 					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
-						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
-				"</td>
-			</tr>";
+						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) );
 		}
 
-		$form .= "
-			$suppress
-			<tr>
-				<td></td>
-				<td class='mw-submit'>" .
+		$form .=
+			$suppress .
 					Xml::submitButton( wfMessage( 'deletepage' )->text(),
 						array( 'name' => 'wpConfirmB', 'id' => 'wpConfirmB', 'tabindex' => '5' ) ) .
-				"</td>
-			</tr>" .
-			Xml::closeElement( 'table' ) .
+			Html::closeElement( 'div' ) .
 			Xml::closeElement( 'fieldset' ) .
 			Html::hidden(
 				'wpEditToken',
