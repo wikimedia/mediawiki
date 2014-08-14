@@ -23,7 +23,7 @@
 	vertical-align: middle;
 }
 
-@checkboxSize: 24px;
+@checkboxSize: 1.6em;
 
 // We use the not selector to cancel out styling on IE 8 and below
 .mw-ui-checkbox:not(#noop) {
@@ -46,6 +46,7 @@
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label {
 			cursor: pointer;
+			margin: 0 .4em 0 .4em;
 
 			&::before {
 						content: '';
@@ -66,6 +67,7 @@
 			+ label {
 				&::before {
 					.background-image-svg('images/checked.svg', 'images/checked.png');
+					.background-size( @checkboxSize, @checkboxSize );
 					background-repeat: no-repeat;
 					background-position: center top;
 				}
