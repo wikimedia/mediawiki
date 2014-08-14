@@ -26,6 +26,24 @@ class TidyTest extends MediaWikiTestCase {
 	}
 
 	public function provideTestWrapping() {
+		$testMathML = <<<'MathML'
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>a</mi>
+      <mo>&InvisibleTimes;</mo>
+      <msup>
+        <mi>x</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>+</mo>
+      <mi>b</mi>
+      <mo>&InvisibleTimes; </mo>
+      <mi>x</mi>
+      <mo>+</mo>
+      <mi>c</mi>
+    </mrow>
+  </math>
+MathML;
 		return array(
 			array(
 				'<mw:editsection page="foo" section="bar">foo</mw:editsection>',
@@ -40,6 +58,7 @@ class TidyTest extends MediaWikiTestCase {
 			array( '<mw:toc>foo</mw:toc>', '<mw:toc>foo</mw:toc>', '<mw:toc> should survive tidy' ),
 			array( "<link foo=\"bar\" />\nfoo", '<link foo="bar"/>foo', '<link> should survive tidy' ),
 			array( "<meta foo=\"bar\" />\nfoo", '<meta foo="bar"/>foo', '<meta> should survive tidy' ),
+			array( $testMathML , $testMathML, '<math> should survive'),
 		);
 	}
 }
