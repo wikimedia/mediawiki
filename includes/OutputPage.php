@@ -311,6 +311,7 @@ class OutputPage extends ContextSource {
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
+	 * @param IContextSource|null $context
 	 */
 	function __construct( IContextSource $context = null ) {
 		if ( $context === null ) {
@@ -388,6 +389,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the URL to be used for the <link rel=canonical>. This should be used
 	 * in preference to addLink(), to avoid duplicate link tags.
+	 * @param string $url
 	 */
 	function setCanonicalUrl( $url ) {
 		$this->mCanonicalUrl = $url;

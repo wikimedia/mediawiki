@@ -340,6 +340,7 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
+	 * @param array $err
 	 * @return string
 	 */
 	private function formatError( $err ) {
@@ -1068,6 +1069,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Begin a transaction, committing any previously open transaction
+	 * @param string $fname
 	 */
 	protected function doBegin( $fname = __METHOD__ ) {
 		sqlsrv_begin_transaction( $this->mConn );
@@ -1076,6 +1078,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * End a transaction
+	 * @param string $fname
 	 */
 	protected function doCommit( $fname = __METHOD__ ) {
 		sqlsrv_commit( $this->mConn );
@@ -1085,6 +1088,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Rollback a transaction.
 	 * No-op on non-transactional databases.
+	 * @param string $fname
 	 */
 	protected function doRollback( $fname = __METHOD__ ) {
 		sqlsrv_rollback( $this->mConn );

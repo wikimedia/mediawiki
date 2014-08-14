@@ -16,6 +16,8 @@ class HTMLEditTools extends HTMLFormField {
 	}
 
 	/**
+	 * @param string $value
+	 * @return string
 	 * @since 1.20
 	 */
 	public function getDiv( $value ) {
@@ -25,6 +27,8 @@ class HTMLEditTools extends HTMLFormField {
 	}
 
 	/**
+	 * @param string $value
+	 * @return string
 	 * @since 1.20
 	 */
 	public function getRaw( $value ) {

@@ -1068,6 +1068,8 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * @param string $term
+	 * @param int $resultsShown
+	 * @param int $totalNum
 	 * @return string
 	 */
 	protected function shortDialog( $term, $resultsShown, $totalNum ) {

@@ -1287,6 +1287,7 @@ abstract class File {
 	 * Hook into transform() to allow migration of thumbnail files
 	 * STUB
 	 * Overridden by LocalFile
+	 * @param string $thumbName
 	 */
 	function migrateThumbFile( $thumbName ) {
 	}

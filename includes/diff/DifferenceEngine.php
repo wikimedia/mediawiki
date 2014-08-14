@@ -1140,6 +1140,8 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Use specified text instead of loading from the database
+	 * @param Content $oldContent
+	 * @param Content $newContent
 	 * @since 1.21
 	 */
 	public function setContent( Content $oldContent, Content $newContent ) {
@@ -1153,6 +1155,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Set the language in which the diff text is written
 	 * (Defaults to page content language).
+	 * @param Language|string $lang
 	 * @since 1.19
 	 */
 	public function setTextLanguage( $lang ) {

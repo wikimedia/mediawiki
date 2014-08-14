@@ -375,6 +375,7 @@ class FormOptions implements ArrayAccess {
 	/* @{ */
 	/**
 	 * Whether the option exists.
+	 * @param string $name
 	 * @return bool
 	 */
 	public function offsetExists( $name ) {
@@ -383,6 +384,7 @@ class FormOptions implements ArrayAccess {
 
 	/**
 	 * Retrieve an option value.
+	 * @param string $name
 	 * @return mixed
 	 */
 	public function offsetGet( $name ) {
@@ -391,6 +393,8 @@ class FormOptions implements ArrayAccess {
 
 	/**
 	 * Set an option to given value.
+	 * @param string $name
+	 * @param mixed $value
 	 */
 	public function offsetSet( $name, $value ) {
 		$this->setValue( $name, $value );
@@ -398,6 +402,7 @@ class FormOptions implements ArrayAccess {
 
 	/**
 	 * Delete the option.
+	 * @param string $name
 	 */
 	public function offsetUnset( $name ) {
 		$this->delete( $name );

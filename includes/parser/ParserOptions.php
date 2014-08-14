@@ -517,6 +517,7 @@ class ParserOptions {
 
 	/**
 	 * Extra key that should be present in the parser cache key.
+	 * @param string $key
 	 */
 	public function addExtraKey( $key ) {
 		$this->mExtraKey .= '!' . $key;

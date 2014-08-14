@@ -874,6 +874,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	/**
 	 * This is called if a write operation is possible from the generated HTML
+	 * @param bool $enable
 	 */
 	function preventClickjacking( $enable = true ) {
 		$this->preventClickjacking = $enable;

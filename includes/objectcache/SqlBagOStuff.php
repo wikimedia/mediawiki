@@ -521,6 +521,7 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * @param DatabaseBase $db
 	 * @param string $exptime
 	 * @return bool
 	 */

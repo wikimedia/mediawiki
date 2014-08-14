@@ -342,6 +342,7 @@ class RedisBagOStuff extends BagOStuff {
 
 	/**
 	 * Get a Redis object with a connection suitable for fetching the specified key
+	 * @param string $key
 	 * @return array (server, RedisConnRef) or (false, false)
 	 */
 	protected function getConnection( $key ) {

@@ -502,6 +502,7 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * Fairly generic flag setter thingy.
+	 * @param string $flag
 	 */
 	public function setFlag( $flag ) {
 		$this->mFlags[$flag] = true;

@@ -252,6 +252,7 @@ class MWException extends Exception {
 	/**
 	 * Send a header, if we haven't already sent them. We shouldn't,
 	 * but sometimes we might in a weird case like Export
+	 * @param string $header
 	 */
 	private static function header( $header ) {
 		if ( !headers_sent() ) {

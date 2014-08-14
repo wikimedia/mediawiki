@@ -46,12 +46,30 @@ class JSONContentHandler extends TextContentHandler {
 		return new $this->contentClass( '' );
 	}
 
-	/** JSON is English **/
+	/**
+	 * Returns the english language, because JSON is english, and should be handled as such.
+	 *
+	 * @param Title $title
+	 * @param Content|null $content
+	 *
+	 * @return Language Return of wfGetLangObj( 'en' )
+	 *
+	 * @see ContentHandler::getPageLanguage()
+	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}
 
-	/** JSON is English **/
+	/**
+	 * Returns the english language, because JSON is english, and should be handled as such.
+	 *
+	 * @param Title $title
+	 * @param Content|null $content
+	 *
+	 * @return Language Return of wfGetLangObj( 'en' )
+	 *
+	 * @see ContentHandler::getPageLanguage()
+	 */
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}

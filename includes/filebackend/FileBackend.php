@@ -218,7 +218,7 @@ abstract class FileBackend {
 	/**
 	 * Check if the backend medium supports a field of extra features
 	 *
-	 * @return int Bitfield of FileBackend::ATTR_* flags
+	 * @param int $bitfield Bitfield of FileBackend::ATTR_* flags
 	 * @return bool
 	 * @since 1.23
 	 */
