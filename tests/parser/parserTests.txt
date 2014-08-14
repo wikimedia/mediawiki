@@ -21708,6 +21708,15 @@ parsoid=html2wt
 <link rel="mw:PageProp/redirect" href="Bar" data-parsoid='{"src":"#REDIRECT ","a":{"href":"./Foo"},"sa":{"href":"Foo"}}'>
 !! end
 
+!! test
+evil <math>-wiki-tags without Extension:Math enabled
+!! wikitext
+<math><img src="some evil external link"><script>some_evil_javascript();</script></math>
+!! html
+<p>&lt;math&gt;&lt;img src="some evil external link"&gt;&lt;script&gt;some_evil_javascript();&lt;/script&gt;&lt;/math&gt;
+</p>
+!! end
+
 # -----------------------------------------------------------------
 # End of section for Parsoid-only html2wt tests for serialization
 # of new content
