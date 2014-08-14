@@ -379,12 +379,13 @@ class RequestContext implements IContextSource {
 					$userSkin = $this->getConfig()->get( 'DefaultSkin' );
 				}
 
-				try {
-					$this->skin = $factory->makeSkin( $userSkin );
-				} catch ( SkinException $e ) {
-					$this->skin = $factory->makeSkin( $fallback );
-				}
+				// Normalize the key in case the user is passing gibberish
+				// or has old preferences (bug 69566).
+				$normalized = Skin::normalizeKey( $userSkin );
 
+				// Skin::normalizeKey will also validate it, so
+				// this won't throw an exception
+				$this->skin = $factory->makeSkin( $normalized );
 			}
 
 			// After all that set a context on whatever skin got created
