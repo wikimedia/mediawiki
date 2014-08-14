@@ -220,6 +220,8 @@ production.
   limited use and are generally inaccurate, unmaintained, and impossible to
   properly maintain. Also removed the corresponding methods from ApiBase and
   the 'APIGetPossibleErrors' and 'APIGetResultProperties' hooks.
+* action=paraminfo suports generalized submodules (modules=query+value),
+  querymodules and formatmodules obsolete
 
 === Languages updated in 1.24 ===
 
