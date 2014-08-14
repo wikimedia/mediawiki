@@ -246,6 +246,8 @@ production.
   of fetching tokens are deprecated. The value needed for meta=tokens's 'type'
   parameter for each module is documented in the action=help output and is
   returned from action=paraminfo.
+* action=paraminfo supports generalized submodules (modules=query+value),
+  querymodules and formatmodules are deprecated
 
 === Action API internal changes in 1.24 ===
 * Methods for handling continuation are added to ApiResult, so actions other

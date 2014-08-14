@@ -44,11 +44,93 @@ class ApiParamInfo extends ApiBase {
 		$params = $this->extractRequestParams();
 		$resultObj = $this->getResult();
 
+		if ( is_array( $params['modules'] ) ) {
+			$modules = $params['modules'];
+		} else {
+			$modules = array();
+		}
+
+		if ( is_array( $params['querymodules'] ) ) {
+			$this->logFeatureUsage( 'action=paraminfo&querymodules' );
+			$queryModules = $params['querymodules'];
+			foreach ( $queryModules as $m ) {
+				$modules[] = 'query+' . $m;
+			}
+		} else {
+			$queryModules = array();
+		}
+
+		if ( is_array( $params['formatmodules'] ) ) {
+			$this->logFeatureUsage( 'action=paraminfo&formatmodules' );
+			$formatModules = $params['formatmodules'];
+			foreach ( $formatModules as $m ) {
+				$modules[] = $m;
+			}
+		} else {
+			$formatModules = array();
+		}
+
 		$res = array();
 
-		$this->addModulesInfo( $params, 'modules', $res, $resultObj );
+		foreach ( $modules as $m ) {
+			// sub-modules could be given in the form of "name[+name[+name...]]"
+			$subNames = explode( '+', $m );
+			if ( count( $subNames ) === 1 ) {
+				// In case the '+' was typed into URL, it resolves as a space
+				$subNames = explode( ' ', $m );
+			}
 
-		$this->addModulesInfo( $params, 'querymodules', $res, $resultObj );
+			$module = $this->getMain();
+			$subNamesCount = count( $subNames );
+			for ( $i = 0; $i < $subNamesCount; $i++ ) {
+				$subs = $module->getModuleManager();
+				if ( $subs === null ) {
+					$module = null;
+				} else {
+					$module = $subs->getModule( $subNames[$i] );
+				}
+
+				if ( $module === null ) {
+					// Note this can't be a renamed querymodules or
+					// formatmodules submodule, as invalid values there were
+					// rejected during parameter validation.
+					$name = implode( '+', array_slice( $subNames, 0, $i + 1 ) );
+					$res['modules'][] = array( 'name' => $name, 'missing' => '' );
+					break;
+				} else {
+					$type = $subs->getModuleGroup( $subNames[$i] );
+				}
+			}
+
+			if ( $module !== null ) {
+				$key = 'modules';
+				$isBCQuery = false;
+
+				// Back compat
+				if ( $subNamesCount === 1 && in_array( $subNames[0], $formatModules ) ) {
+					$key = 'formatmodules';
+				}
+				if ( $subNamesCount === 2 && $subNames[0] === 'query' &&
+					in_array( $subNames[1], $queryModules )
+				) {
+					$isBCQuery = true;
+					$key = 'querymodules';
+				}
+
+				$item = $this->getClassInfo( $module );
+				$item['name'] = $m;
+				$item['type'] = $type;
+				if ( $isBCQuery ) {
+					$item['name'] = $subNames[1];
+					$item['querytype'] = $type;
+				}
+				$res[$key][] = $item;
+			}
+		}
+
+		foreach ( $res as $key => $stuff ) {
+			$resultObj->setIndexedTagName( $res[$key], 'module' );
+		}
 
 		if ( $params['mainmodule'] ) {
 			$res['mainmodule'] = $this->getClassInfo( $this->getMain() );
@@ -59,43 +141,7 @@ class ApiParamInfo extends ApiBase {
 			$res['pagesetmodule'] = $this->getClassInfo( $pageSet );
 		}
 
-		$this->addModulesInfo( $params, 'formatmodules', $res, $resultObj );
-
 		$resultObj->addValue( null, $this->getModuleName(), $res );
-	}
-
-	/**
-	 * If the type is requested in parameters, adds a section to res with module info.
-	 * @param array $params User parameters array
-	 * @param string $type Parameter name
-	 * @param array $res Store results in this array
-	 * @param ApiResult $resultObj Results object to set indexed tag.
-	 */
-	private function addModulesInfo( $params, $type, &$res, $resultObj ) {
-		if ( !is_array( $params[$type] ) ) {
-			return;
-		}
-		$isQuery = ( $type === 'querymodules' );
-		if ( $isQuery ) {
-			$mgr = $this->queryObj->getModuleManager();
-		} else {
-			$mgr = $this->getMain()->getModuleManager();
-		}
-		$res[$type] = array();
-		foreach ( $params[$type] as $mod ) {
-			if ( !$mgr->isDefined( $mod ) ) {
-				$res[$type][] = array( 'name' => $mod, 'missing' => '' );
-				continue;
-			}
-			$obj = $mgr->getModule( $mod );
-			$item = $this->getClassInfo( $obj );
-			$item['name'] = $mod;
-			if ( $isQuery ) {
-				$item['querytype'] = $mgr->getModuleGroup( $mod );
-			}
-			$res[$type][] = $item;
-		}
-		$resultObj->setIndexedTagName( $res[$type], 'module' );
 	}
 
 	/**
@@ -262,8 +308,7 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$modules = $this->getMain()->getModuleManager()->getNames( 'action' );
-		sort( $modules );
+		// back compat
 		$querymodules = $this->queryObj->getModuleManager()->getNames();
 		sort( $querymodules );
 		$formatmodules = $this->getMain()->getModuleManager()->getNames( 'format' );
@@ -272,15 +317,16 @@ class ApiParamInfo extends ApiBase {
 		return array(
 			'modules' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $modules,
 			),
 			'querymodules' => array(
+				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => $querymodules,
 			),
 			'mainmodule' => false,
 			'pagesetmodule' => false,
 			'formatmodules' => array(
+				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => $formatmodules,
 			)
@@ -289,7 +335,7 @@ class ApiParamInfo extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'modules' => 'List of module names (value of the action= parameter)',
+			'modules' => 'List of module names. Can specify submodules with a \'+\'',
 			'querymodules' => 'List of query module names (value of prop=, meta= or list= parameter)',
 			'mainmodule' => 'Get information about the main (top-level) module as well',
 			'pagesetmodule' => 'Get information about the pageset module ' .
@@ -304,7 +350,7 @@ class ApiParamInfo extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=paraminfo&modules=parse&querymodules=allpages|siteinfo'
+			'api.php?action=paraminfo&modules=parse|phpfm|query+allpages|query+siteinfo'
 		);
 	}
 
