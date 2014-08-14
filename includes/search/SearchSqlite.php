@@ -38,6 +38,8 @@ class SearchSqlite extends SearchDatabase {
 	 * Parse the user's query and transform it into an SQL fragment which will
 	 * become part of a WHERE clause
 	 *
+	 * @param string $filteredText
+	 * @param bool $fulltext
 	 * @return string
 	 */
 	function parseQuery( $filteredText, $fulltext ) {

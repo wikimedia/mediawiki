@@ -35,6 +35,7 @@ class SpecialListGroupRights extends SpecialPage {
 
 	/**
 	 * Show the special page
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		global $wgImplicitGroups;

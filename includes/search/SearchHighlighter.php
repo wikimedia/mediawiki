@@ -447,6 +447,7 @@ class SearchHighlighter {
 	/**
 	 * Basic wikitext removal
 	 * @protected
+	 * @param string $text
 	 * @return mixed
 	 */
 	function removeWiki( $text ) {

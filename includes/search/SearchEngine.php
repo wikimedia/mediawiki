@@ -120,6 +120,8 @@ class SearchEngine {
 	 * Transform search term in cases when parts of the query came as different
 	 * GET params (when supported), e.g. for prefix queries:
 	 * search=test&prefix=Main_Page/Archive -> test prefix:Main Page/Archive
+	 * @param string $term
+	 * @return string
 	 */
 	function transformSearchTerm( $term ) {
 		return $term;
@@ -152,6 +154,7 @@ class SearchEngine {
 
 	/**
 	 * Really find the title match.
+	 * @param string $searchterm
 	 * @return null|Title
 	 */
 	private static function getNearMatchInternal( $searchterm ) {

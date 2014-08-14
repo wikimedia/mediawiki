@@ -107,6 +107,7 @@ class SvgHandler extends ImageHandler {
 	/**
 	 * What language to render file in if none selected.
 	 *
+	 * @param File $file
 	 * @return string Language code.
 	 */
 	public function getDefaultRenderLanguage( File $file ) {
@@ -115,6 +116,8 @@ class SvgHandler extends ImageHandler {
 
 	/**
 	 * We do not support making animated svg thumbnails
+	 * @param File $file
+	 * @return bool
 	 */
 	function canAnimateThumbnail( $file ) {
 		return false;

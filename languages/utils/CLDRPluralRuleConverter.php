@@ -102,6 +102,7 @@ class CLDRPluralRuleConverter {
 
 	/**
 	 * Private constructor.
+	 * @param string $rule
 	 */
 	protected function __construct( $rule ) {
 		$this->rule = $rule;
@@ -313,6 +314,7 @@ class CLDRPluralRuleConverter {
 
 	/**
 	 * Throw an error
+	 * @param string $message
 	 */
 	protected function error( $message ) {
 		throw new CLDRPluralRuleError( $message );

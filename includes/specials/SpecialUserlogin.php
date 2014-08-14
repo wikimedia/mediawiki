@@ -1237,6 +1237,8 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
+	 * @param string $msg
+	 * @param string $msgtype
 	 * @private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
@@ -1523,6 +1525,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
+	 * @param string $type
 	 * @private
 	 */
 	function cookieRedirectCheck( $type ) {
@@ -1538,6 +1541,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
+	 * @param string $type
 	 * @private
 	 */
 	function onCookieRedirectCheck( $type ) {

@@ -216,6 +216,7 @@ class ResourceLoader {
 
 	/**
 	 * Register core modules and runs registration hooks.
+	 * @param Config|null $config
 	 */
 	public function __construct( Config $config = null ) {
 		global $IP;

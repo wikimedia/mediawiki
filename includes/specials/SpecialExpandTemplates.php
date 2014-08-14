@@ -50,6 +50,7 @@ class SpecialExpandTemplates extends SpecialPage {
 
 	/**
 	 * Show the special page
+	 * @param string|null $subpage
 	 */
 	function execute( $subpage ) {
 		global $wgParser;
