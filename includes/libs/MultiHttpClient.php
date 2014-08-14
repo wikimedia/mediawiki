@@ -116,7 +116,7 @@ class MultiHttpClient {
 	 * This is true for the request headers and the response headers. Integer-indexed
 	 * method/URL entries will also be changed to use the corresponding string keys.
 	 *
-	 * @param array $req Map of HTTP request arrays
+	 * @param array $reqs Map of HTTP request arrays
 	 * @param array $opts
 	 *   - connTimeout     : connection timeout per request
 	 *   - reqTimeout      : post-connection timeout per request
