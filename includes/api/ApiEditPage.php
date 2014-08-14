@@ -309,8 +309,10 @@ class ApiEditPage extends ApiBase {
 
 		// Deprecated parameters
 		if ( $params['watch'] ) {
+			$this->logFeatureUsage( 'action=edit&watch' );
 			$watch = true;
 		} elseif ( $params['unwatch'] ) {
+			$this->logFeatureUsage( 'action=edif&unwatch' );
 			$watch = false;
 		}
 

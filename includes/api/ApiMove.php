@@ -134,8 +134,10 @@ class ApiMove extends ApiBase {
 			$watch = $params['watchlist'];
 		} elseif ( $params['watch'] ) {
 			$watch = 'watch';
+			$this->logFeatureUsage( 'action=move&watch' );
 		} elseif ( $params['unwatch'] ) {
 			$watch = 'unwatch';
+			$this->logFeatureUsage( 'action=move&unwatch' );
 		}
 
 		// Watch pages

@@ -50,6 +50,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		// Handle deprecated param
 		$this->requireMaxOneParameter( $params, 'url', 'prop' );
 		if ( $params['url'] ) {
+			$this->logFeatureUsage( 'prop=langlinks&llurl' );
 			$prop = array( 'url' => 1 );
 		}
 
