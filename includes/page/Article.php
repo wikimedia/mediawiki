@@ -1684,75 +1684,67 @@ class Article implements Page {
 		$user = $this->getContext()->getUser();
 
 		if ( $user->isAllowed( 'suppressrevision' ) ) {
-			$suppress = "<tr id=\"wpDeleteSuppressRow\">
-					<td></td>
-					<td class='mw-input'><strong>" .
+			$suppress = Html::openElement( 'div', array( 'id' => 'wpDeleteSuppressRow' ) ) .
+				"<strong>" .
 						Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
 							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
-					"</strong></td>
-				</tr>";
+					"</strong>" .
+				Html::closeElement( 'div' );
 		} else {
 			$suppress = '';
 		}
 		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $title );
 
-		$form = Xml::openElement( 'form', array( 'method' => 'post',
+		$form = Html::openElement( 'form', array( 'method' => 'post',
 			'action' => $title->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
-			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
-			Xml::tags( 'legend', null, wfMessage( 'delete-legend' )->escaped() ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
-			"<tr id=\"wpDeleteReasonListRow\">
-				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
-				"</td>
-				<td class='mw-input'>" .
-					Xml::listDropDown(
-						'wpDeleteReasonList',
-						wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text(),
-						wfMessage( 'deletereasonotherlist' )->inContentLanguage()->text(),
-						'',
-						'wpReasonDropDown',
-						1
-					) .
-				"</td>
-			</tr>
-			<tr id=\"wpDeleteReasonRow\">
-				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
-				"</td>
-				<td class='mw-input'>" .
-				Html::input( 'wpReason', $reason, 'text', array(
-					'size' => '60',
-					'maxlength' => '255',
-					'tabindex' => '2',
-					'id' => 'wpReason',
-					'autofocus'
-				) ) .
-				"</td>
-			</tr>";
+			Html::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
+			Html::element( 'legend', null, wfMessage( 'delete-legend' ) ) .
+			Html::openElement( 'div', array( 'id' => 'mw-deleteconfirm-table' ) ) .
+			Html::openElement( 'div', array( 'id' => 'wpDeleteReasonListRow' ) ) .
+			Html::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
+			'&nbsp;' .
+			Xml::listDropDown(
+				'wpDeleteReasonList',
+				wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text(),
+				wfMessage( 'deletereasonotherlist' )->inContentLanguage()->text(),
+				'',
+				'wpReasonDropDown',
+				1
+			) .
+			Html::closeElement( 'div' ) .
+			Html::openElement( 'div', array( 'id' => 'wpDeleteReasonRow' ) ) .
+			Html::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
+			'&nbsp;' .
+			Html::input( 'wpReason', $reason, 'text', array(
+				'size' => '60',
+				'maxlength' => '255',
+				'tabindex' => '2',
+				'id' => 'wpReason',
+				'class' => 'mw-ui-input mw-ui-input-inline',
+				'autofocus'
+			) ) .
+			Html::closeElement( 'div' );
 
 		# Disallow watching if user is not logged in
 		if ( $user->isLoggedIn() ) {
-			$form .= "
-			<tr>
-				<td></td>
-				<td class='mw-input'>" .
+			$form .=
 					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
-						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
-				"</td>
-			</tr>";
+						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) );
 		}
 
-		$form .= "
-			$suppress
-			<tr>
-				<td></td>
-				<td class='mw-submit'>" .
+		$form .=
+				Html::openElement( 'div' ) .
+				$suppress .
 					Xml::submitButton( wfMessage( 'deletepage' )->text(),
-						array( 'name' => 'wpConfirmB', 'id' => 'wpConfirmB', 'tabindex' => '5' ) ) .
-				"</td>
-			</tr>" .
-			Xml::closeElement( 'table' ) .
+						array(
+							'name' => 'wpConfirmB',
+							'id' => 'wpConfirmB',
+							'tabindex' => '5',
+							'class' => 'mw-ui-button mw-ui-destructive',
+						)
+					) .
+				Html::closeElement( 'div' ) .
+			Html::closeElement( 'div' ) .
 			Xml::closeElement( 'fieldset' ) .
 			Html::hidden(
 				'wpEditToken',
