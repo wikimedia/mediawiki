@@ -1,4 +1,8 @@
 <?php
+/**
+* @group Database
+*/
+
 class SpecialMIMESearchTest extends MediaWikiTestCase {
 
 	/** @var MIMESearchPage */

@@ -7,6 +7,7 @@
  * @author Thiemo Mättig
  *
  * @group Action
+ * @group Database
  */
 class ActionTest extends MediaWikiTestCase {
 
