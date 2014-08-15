@@ -224,6 +224,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$target = $this->getTargetTitle();
 		if ( $target ) {
 			$this->getOutput()->addBacklinkSubtitle( $target );
+			$this->getSkin()->setRelevantTitle( $target );
 		}
 	}
 
