@@ -604,6 +604,10 @@ abstract class ApiQueryBase extends ApiBase {
 			'viewsuppressed'
 		);
 	}
+
+	public function getParentModule() {
+		return $this->getQuery();
+	}
 }
 
 /**

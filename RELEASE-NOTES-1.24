@@ -229,6 +229,7 @@ production.
   properly maintain. Also removed the corresponding methods from ApiBase and
   the 'APIGetPossibleErrors' and 'APIGetResultProperties' hooks.
 * Formats dbg, dump, txt, wddx, and yaml are now deprecated.
+* api.php's default help output now has links to action=help for each module.
 
 === Languages updated in 1.24 ===
 
@@ -333,6 +334,9 @@ changes to languages because of Bugzilla reports.
 * Action::checkCanExecute() no longer has a return value.
 * Removed cleanupForIRC(), loadFromCurRow(), newFromCurRow(), notifyRC2UDP()
   and sendToUDP() from RecentChange.php. (deprecated since 1.22)
+* Added ApiBase:getParentModule to make it possible to construct a full path string
+  for submodules, in order to implement ApiBase:makeHelpLink. Submodules should use
+  this to return their parent module instances.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
