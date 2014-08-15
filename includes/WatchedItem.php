@@ -270,43 +270,59 @@ class WatchedItem {
 	}
 
 	/**
+	 * @param WatchedItem[] $items
+	 * @return bool
+	 */
+	static public function batchAddWatch( array $items ) {
+		$section = new ProfileSection( __METHOD__ );
+
+		if ( wfReadOnly() ) {
+			return false;
+		}
+
+		$rows = array();
+		foreach ( $items as $item ) {
+			// Only loggedin user can have a watchlist
+			if ( $item->mUser->isAnon() || !$item->isAllowed( 'editmywatchlist' ) ) {
+				continue;
+			}
+			$rows[] = array(
+				'wl_user' => $item->getUserId(),
+				'wl_namespace' => MWNamespace::getSubject( $item->getTitleNs() ),
+				'wl_title' => $item->getTitleDBkey(),
+				'wl_notificationtimestamp' => null,
+			);
+			// Every single watched page needs now to be listed in watchlist;
+			// namespace:page and namespace_talk:page need separate entries:
+			$rows[] = array(
+				'wl_user' => $item->getUserId(),
+				'wl_namespace' => MWNamespace::getTalk( $item->getTitleNs() ),
+				'wl_title' => $item->getTitleDBkey(),
+				'wl_notificationtimestamp' => null
+			);
+			$item->watched = true;
+		}
+
+		if ( !$rows ) {
+			return false;
+		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		foreach( array_chunk( $rows, 100 ) as $toInsert ) {
+			// Use INSERT IGNORE to avoid overwriting the notification timestamp
+			// if there's already an entry for this page
+			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
+		}
+
+		return true;
+	}
+
+	/**
 	 * Given a title and user (assumes the object is setup), add the watch to the database.
 	 * @return bool
 	 */
 	public function addWatch() {
-		wfProfileIn( __METHOD__ );
-
-		// Only loggedin user can have a watchlist
-		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-
-		// Use INSERT IGNORE to avoid overwriting the notification timestamp
-		// if there's already an entry for this page
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->insert( 'watchlist',
-			array(
-				'wl_user' => $this->getUserId(),
-				'wl_namespace' => MWNamespace::getSubject( $this->getTitleNs() ),
-				'wl_title' => $this->getTitleDBkey(),
-				'wl_notificationtimestamp' => null
-			), __METHOD__, 'IGNORE' );
-
-		// Every single watched page needs now to be listed in watchlist;
-		// namespace:page and namespace_talk:page need separate entries:
-		$dbw->insert( 'watchlist',
-			array(
-				'wl_user' => $this->getUserId(),
-				'wl_namespace' => MWNamespace::getTalk( $this->getTitleNs() ),
-				'wl_title' => $this->getTitleDBkey(),
-				'wl_notificationtimestamp' => null
-			), __METHOD__, 'IGNORE' );
-
-		$this->watched = true;
-
-		wfProfileOut( __METHOD__ );
-		return true;
+		return self::batchAddWatch( array( $this ) );
 	}
 
 	/**
