@@ -136,7 +136,11 @@ class CompressOld extends Maintenance {
 		}
 	}
 
-	/** @todo document */
+	/**
+	 * @todo document
+	 * @param int $start
+	 * @param string $extdb
+	 */
 	private function compressOldPages( $start = 0, $extdb = '' ) {
 		$chunksize = 50;
 		$this->output( "Starting from old_id $start...\n" );

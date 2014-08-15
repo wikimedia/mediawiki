@@ -164,6 +164,7 @@ class PurgeChangedPages extends Maintenance {
 	 *
 	 * @param ResultWrapper $res Query result sorted by $column (ascending)
 	 * @param string $column
+	 * @param int $limit
 	 * @return array (array of rows, string column value)
 	 */
 	protected function pageableSortedRows( ResultWrapper $res, $column, $limit ) {

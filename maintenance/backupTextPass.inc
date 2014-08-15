@@ -343,6 +343,7 @@ class TextPassDumper extends BackupDumper {
 
 	/**
 	 * @throws MWException Failure to parse XML input
+	 * @param string $input
 	 * @return bool
 	 */
 	function readDump( $input ) {

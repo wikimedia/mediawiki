@@ -40,7 +40,11 @@ class UserOptions {
 
 	private $mMode, $mReady;
 
-	/** Constructor. Will show usage and exit if script options are not correct */
+	/**
+	 * Constructor. Will show usage and exit if script options are not correct
+	 * @param array $opts
+	 * @param array $args
+	 */
 	function __construct( $opts, $args ) {
 		if ( !$this->checkOpts( $opts, $args ) ) {
 			UserOptions::showUsageAndExit();

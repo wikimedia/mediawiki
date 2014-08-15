@@ -88,6 +88,7 @@ if ( !function_exists( 'mb_strrpos' ) ) {
 if ( !function_exists( 'gzdecode' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @param string $data
 	 * @return string
 	 */
 	function gzdecode( $data ) {

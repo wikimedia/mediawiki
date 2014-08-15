@@ -52,6 +52,8 @@ STR;
 	/**
 	 * Check that the parameter is a valid two element array,
 	 * with the first element being API request and the second - expected result
+	 * @param array $v
+	 * @return array
 	 */
 	private function validateRequestExpectedPair( $v ) {
 		$this->assertType( 'array', $v, self::PARAM_ASSERT );
@@ -66,6 +68,8 @@ STR;
 
 	/**
 	 * Recursively merges the expected values in the $item into the $all
+	 * @param array &$all
+	 * @param array $item
 	 */
 	private function mergeExpected( &$all, $item ) {
 		foreach ( $item as $k => $v ) {

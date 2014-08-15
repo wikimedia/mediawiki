@@ -41,6 +41,7 @@ class DeleteEqualMessages extends Maintenance {
 
 	/**
 	 * @param string|bool $langCode See --lang-code option.
+	 * @param array &$messageInfo
 	 */
 	protected function fetchMessageInfo( $langCode, array &$messageInfo ) {
 		global $wgContLang;

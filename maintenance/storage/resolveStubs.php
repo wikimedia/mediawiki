@@ -65,6 +65,9 @@ function resolveStubs() {
 
 /**
  * Resolve a history stub
+ * @param int $id
+ * @param string $stubText
+ * @param string $flags
  */
 function resolveStub( $id, $stubText, $flags ) {
 	$fname = 'resolveStub';
