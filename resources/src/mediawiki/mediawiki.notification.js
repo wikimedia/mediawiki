@@ -6,6 +6,7 @@
 		$area,
 		// Number of open notification boxes at any time
 		openNotificationCount = 0,
+		updateAreaMode,
 		isPageReady = false,
 		preReadyNotifQueue = [];
 
@@ -98,7 +99,14 @@
 			autohideCount,
 			notif;
 
-		$area.show();
+		if ( openNotificationCount === 0 ) {
+			$area.show();
+			$( window ).on( {
+				scroll: updateAreaMode,
+				blur: notification.pause,
+				focus: notification.resume
+			} );
+		}
 
 		if ( this.isOpen ) {
 			return;
@@ -330,6 +338,11 @@
 					// It's okay to do this before getting rid of the placeholder, as it's invisible as well.
 					if ( openNotificationCount === 0 ) {
 						$area.hide();
+						$( window ).off( {
+							scroll: updateAreaMode,
+							blur: notification.pause,
+							focus: notification.resume
+						} );
 					}
 					if ( options.placeholder ) {
 						// Use a fast slide up animation after closing to make it look like the notifications
@@ -393,14 +406,12 @@
 		mw.util.$content.prepend( $area );
 		offset = $area.offset();
 
-		function updateAreaMode() {
+		updateAreaMode = function () {
 			var isFloating = $window.scrollTop() > offset.top;
 			$area
 				.toggleClass( 'mw-notification-area-floating', isFloating )
 				.toggleClass( 'mw-notification-area-layout', !isFloating );
-		}
-
-		$window.on( 'scroll', updateAreaMode );
+		};
 
 		// Initial mode
 		updateAreaMode();
