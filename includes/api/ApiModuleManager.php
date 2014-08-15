@@ -242,6 +242,21 @@ class ApiModuleManager extends ContextSource {
 	}
 
 	/**
+	 * Returns the class name of the given module
+	 *
+	 * @param string $module Module name
+	 * @return string|bool class name or false if the module does not exist
+	 * @since 1.24
+	 */
+	public function getClassName( $module ) {
+		if ( isset( $this->mModules[$module] ) ) {
+			return $this->mModules[$module][1];
+		}
+
+		return false;
+	}
+
+	/**
 	 * Returns true if the specific module is defined at all or in a specific group.
 	 * @param string $moduleName Module name
 	 * @param string $group Group name to check against, or null to check all groups,
