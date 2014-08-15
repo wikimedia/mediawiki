@@ -6,6 +6,7 @@
  * Copyright © 2013, Siebrand Mazeland
  * Copyright © 2013, Wikimedia Foundation Inc.
  *
+ * @group Database
  */
 
 class ImageListPagerTest extends MediaWikiTestCase {
