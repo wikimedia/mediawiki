@@ -3235,7 +3235,7 @@ $templates
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
 			$wgSitename, $wgVersion,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
-			$wgDisableLangConversion, $wgCanonicalLanguageLinks,
+			$wgDisableLangConversion,
 			$wgRightsPage, $wgRightsUrl;
 
 		$tags = array();
@@ -3347,25 +3347,23 @@ $templates
 		}
 
 		# Language variants
-		if ( !$wgDisableLangConversion && $wgCanonicalLanguageLinks ) {
+		if ( !$wgDisableLangConversion ) {
 			$lang = $this->getTitle()->getPageLanguage();
 			if ( $lang->hasVariants() ) {
-
-				$urlvar = $lang->getURLVariant();
-
-				if ( !$urlvar ) {
-					$variants = $lang->getVariants();
-					foreach ( $variants as $_v ) {
-						$tags["variant-$_v"] = Html::element( 'link', array(
-							'rel' => 'alternate',
-							'hreflang' => wfBCP47( $_v ),
-							'href' => $this->getTitle()->getLocalURL( array( 'variant' => $_v ) ) )
-						);
-					}
-				} else {
-					$canonicalUrl = $this->getTitle()->getLocalURL();
+				$variants = $lang->getVariants();
+				foreach ( $variants as $_v ) {
+					$tags["variant-$_v"] = Html::element( 'link', array(
+						'rel' => 'alternate',
+						'hreflang' => wfBCP47( $_v ),
+						'href' => $this->getTitle()->getLocalURL( array( 'variant' => $_v ) ) )
+					);
 				}
 			}
+			# x-default link per https://support.google.com/webmasters/answer/189077?hl=en
+			$tags["variant-x-default"] = Html::element( 'link', array(
+				'rel' => 'alternate',
+				'hreflang' => 'x-default',
+				'href' => $this->getTitle()->getLocalURL() ) );
 		}
 
 		# Copyright
