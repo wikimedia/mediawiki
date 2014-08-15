@@ -289,6 +289,8 @@ class RecompressTracked {
 
 	/**
 	 * Dispatch a command to a specified slave
+	 * @param int $slaveId
+	 * @param array|string $args
 	 */
 	function dispatchToSlave( $slaveId, $args ) {
 		$args = (array)$args;
@@ -352,6 +354,9 @@ class RecompressTracked {
 
 	/**
 	 * Display a progress report
+	 * @param string $label
+	 * @param int $current
+	 * @param int $end
 	 */
 	function report( $label, $current, $end ) {
 		$this->numBatches++;
@@ -707,6 +712,8 @@ class CgzCopyTransaction {
 
 	/**
 	 * Create a transaction from a RecompressTracked object
+	 * @param RecompressTracked $parent
+	 * @param string $blobClass
 	 */
 	function __construct( $parent, $blobClass ) {
 		$this->blobClass = $blobClass;

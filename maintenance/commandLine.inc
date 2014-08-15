@@ -43,6 +43,7 @@ class CommandLineInc extends Maintenance {
 
 	/**
 	 * No help, it would just be misleading since it misses custom options
+	 * @param bool $force
 	 */
 	protected function maybeHelp( $force = false ) {
 		if ( !$force ) {

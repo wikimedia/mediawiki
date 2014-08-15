@@ -35,6 +35,13 @@ class MockImageHandler {
 	 * a thumbnail at all. That is merely returning a ThumbnailImage that
 	 * will be consumed by the unit test.  There is no need to create a real
 	 * thumbnail on the filesystem.
+	 * @param ImageHandler $that
+	 * @param File $image
+	 * @param string $dstPath
+	 * @param string $dstUrl
+	 * @param array $params
+	 * @param int $flags
+	 * @return ThumbnailImage
 	 */
 	static function doFakeTransform( $that, $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		# Example of what we receive:

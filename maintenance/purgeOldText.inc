@@ -23,6 +23,9 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+/**
+ * @param bool $delete
+ */
 function PurgeRedundantText( $delete = false ) {
 
 	# Data should come off the master, wrapped in a transaction

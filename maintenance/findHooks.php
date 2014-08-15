@@ -136,6 +136,7 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get the hook documentation, either locally or from MediaWiki.org
+	 * @param string $doc
 	 * @return Array of documented hooks
 	 */
 	private function getHooksFromDoc( $doc ) {

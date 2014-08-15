@@ -18,7 +18,8 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	 * @param array $userOptions User options to test with. For example:
 	 *   array('searchNs5' => 1 );. Null to use default options.
 	 * @param string $expectedProfile An expected search profile name
-	 * @param array $expectedNs Expected namespaces
+	 * @param array $expectedNS Expected namespaces
+	 * @param string $message
 	 */
 	public function testProfileAndNamespaceLoading( $requested, $userOptions,
 		$expectedProfile, $expectedNS, $message = 'Profile name and namespaces mismatches!'
@@ -96,6 +97,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	/**
 	 * Helper to create a new User object with given options
 	 * User remains anonymous though
+	 * @param array|null $opt
 	 */
 	function newUserWithSearchNS( $opt = null ) {
 		$u = User::newFromId( 0 );

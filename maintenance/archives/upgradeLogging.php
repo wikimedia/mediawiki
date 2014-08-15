@@ -125,6 +125,8 @@ EOT;
 
 	/**
 	 * Copy all rows from $srcTable to $dstTable
+	 * @param string $srcTable
+	 * @param string $dstTable
 	 */
 	function sync( $srcTable, $dstTable ) {
 		$batchSize = 1000;

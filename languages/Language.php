@@ -1026,6 +1026,11 @@ class Language {
 
 	/**
 	 * Pass through result from $dateTimeObj->format()
+	 * @param DateTime &$dateTimeObj
+	 * @param string $ts
+	 * @param DateTimeZone $zone
+	 * @param string $code
+	 * @return string
 	 */
 	private static function dateTimeObjFormat( &$dateTimeObj, $ts, $zone, $code ) {
 		if ( !$dateTimeObj ) {

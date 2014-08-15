@@ -280,6 +280,7 @@ class SyncFileBackend extends Maintenance {
 	 * Substitute the backend name of storage paths with that of a given one
 	 *
 	 * @param array|string $paths List of paths or single string path
+	 * @param FileBackend $backend
 	 * @return array|string
 	 */
 	protected function replaceNamePaths( $paths, FileBackend $backend ) {
