@@ -2700,11 +2700,6 @@ $wgDisableLangConversion = false;
 $wgDisableTitleConversion = false;
 
 /**
- * Whether to enable canonical language links in meta data.
- */
-$wgCanonicalLanguageLinks = true;
-
-/**
  * Default variant code, if false, the default will be the language code
  */
 $wgDefaultLanguageVariant = false;
