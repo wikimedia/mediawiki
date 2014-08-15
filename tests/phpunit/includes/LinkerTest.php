@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @group Database
+ */
+
 class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
