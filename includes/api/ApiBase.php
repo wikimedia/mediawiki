@@ -306,6 +306,9 @@ abstract class ApiBase extends ContextSource {
 				$msg .= "Parameters:\n$paramsMsg";
 			}
 
+			$helpLink = $this->indentExampleText( $this->makeHelpLink() );
+			$msg .= "Help:\n$helpLink\n";
+
 			$examples = $this->getExamples();
 			if ( $examples ) {
 				if ( !is_array( $examples ) ) {
@@ -1280,6 +1283,14 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Makes a link to the ?action=help call for this module.
+	 * @return string
+	 */
+	public function makeHelpLink() {
+		return 'api.php?action=help&modules=' . $this->getModulePathString();
+	}
+
+	/**
 	 * Truncate an array to a certain length.
 	 * @param array $arr Array to truncate
 	 * @param int $limit Maximum length
@@ -2241,5 +2252,29 @@ abstract class ApiBase extends ContextSource {
 			' "' . $request->getHeader( 'Referer' ) . '"' .
 			' "' . $request->getHeader( 'User-agent' ) . '"';
 		wfDebugLog( 'api-feature-usage', $s, 'private' );
+	}
+
+	/**
+	 * Get the parent module for this module.
+	 * @return ApiQueryBase|null Null if this is not a submodule.
+	 */
+	public function getParentModule() {
+		return null;
+	}
+
+	/**
+	 * Get the full module path string for this module.
+	 * Should be of form "module+submodule+subsubmodule".
+	 * @return string
+	 */
+	public function getModulePathString() {
+		$pathString = $this->getModuleName();
+		$parent = $this->getParentModule();
+
+		if ( $parent === null ) {
+			return $pathString;
+		} else {
+			return $parent->getModulePathString() . '+' . $pathString;
+		}
 	}
 }
