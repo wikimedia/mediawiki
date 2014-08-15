@@ -235,6 +235,7 @@ production.
 * action=paraminfo now indicates when a parameter is specifying a submodule.
   Internally, a new param type 'submodule' is available to indicate this which
   automatically queries the list of submodule names from the ApiModuleManager.
+* api.php's default help output now has links to action=help for each module.
 
 === Languages updated in 1.24 ===
 
@@ -342,6 +343,9 @@ changes to languages because of Bugzilla reports.
 * Removed EnhancedChangesList::arrow(), sideArrow(), downArrow(), spacerArrow().
 * Removed Xml::namespaceSelector(). (deprecated since 1.19)
 * Removed WikiPage::estimateRevisionCount. (deprecated since 1.19)
+* Added ApiBase:getParentModule to make it possible to construct a full path string
+  for submodules, in order to implement ApiBase:makeHelpLink. Submodules should use
+  this to return their parent module instances.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
