@@ -3708,6 +3708,7 @@ $wgCapitalLinkOverrides = array();
  * See Language.php for a list of namespaces.
  */
 $wgNamespacesWithSubpages = array(
+	NS_SPECIAL => true,
 	NS_TALK => true,
 	NS_USER => true,
 	NS_USER_TALK => true,
