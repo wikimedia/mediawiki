@@ -1752,7 +1752,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * Estimate rows in dataset.
+	 * Estimate the number of rows in dataset
 	 *
 	 * MySQL allows you to estimate the number of rows that would be returned
 	 * by a SELECT query, using EXPLAIN SELECT. The estimate is provided using
@@ -1771,11 +1771,41 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param array $options Options for select
 	 * @return int Row count
 	 */
-	public function estimateRowCount( $table, $vars = '*', $conds = '',
-		$fname = __METHOD__, $options = array()
+	public function estimateRowCount(
+		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array()
 	) {
 		$rows = 0;
 		$res = $this->select( $table, array( 'rowcount' => 'COUNT(*)' ), $conds, $fname, $options );
+
+		if ( $res ) {
+			$row = $this->fetchRow( $res );
+			$rows = ( isset( $row['rowcount'] ) ) ? $row['rowcount'] : 0;
+		}
+
+		return $rows;
+	}
+
+	/**
+	 * Get the number of rows in dataset
+	 *
+	 * This is useful when trying to do COUNT(*) but with a LIMIT for performance.
+	 *
+	 * Takes the same arguments as DatabaseBase::select().
+	 *
+	 * @param string $table Table name
+	 * @param string $vars Unused
+	 * @param array|string $conds Filters on the table
+	 * @param string $fname Function name for profiling
+	 * @param array $options Options for select
+	 * @return int Row count
+	 * @since 1.24
+	 */
+	public function selectRowCount(
+		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array()
+	) {
+		$rows = 0;
+		$sql = $this->selectSQLText( $table, '1', $conds, $fname, $options );
+		$res = $this->query( "SELECT COUNT(*) AS rowcount FROM ($sql) tmp_count" );
 
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
