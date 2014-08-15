@@ -122,7 +122,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param string $moduleName
 	 * @return array
 	 */
-	protected static function getImplicitDependencies( Array $registryData, $moduleName ) {
+	protected static function getImplicitDependencies( array $registryData, $moduleName ) {
 		static $dependencyCache = array();
 
 		// The list of implicit dependencies won't be altered, so we can
@@ -168,7 +168,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *  - string 'source'
 	 *  - string|false 'loader'
 	 */
-	public static function compileUnresolvedDependencies( Array &$registryData ) {
+	public static function compileUnresolvedDependencies( array &$registryData ) {
 		foreach ( $registryData as $name => &$data ) {
 			if ( $data['loader'] !== false ) {
 				continue;
