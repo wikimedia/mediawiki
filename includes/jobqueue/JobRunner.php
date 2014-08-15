@@ -54,7 +54,11 @@ class JobRunner {
 	 * This method outputs status information only if a debug handler was set.
 	 * Any exceptions are caught and logged, but are not reported as output.
 	 *
-	 * @param array $options
+	 * @param array $options Map of parameters:
+	 *    - type     : the job type (or false for the default types)
+	 *    - maxJobs  : maximum number of jobs to run
+	 *    - maxTime  : maximum time in seconds before stopping
+	 *    - throttle : whether to respect job backoff configuration
 	 * @return array Summary response that can easily be JSON serialized
 	 */
 	public function run( array $options ) {
