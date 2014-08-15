@@ -504,6 +504,7 @@ class TitleTest extends MediaWikiTestCase {
 	public static function provideBaseTitleCases() {
 		return array(
 			# Title, expected base, optional message
+			# FIXME: This should depend on the existence of the parent pages
 			array( 'User:John_Doe/subOne/subTwo', 'John Doe/subOne' ),
 			array( 'User:Foo/Bar/Baz', 'Foo/Bar' ),
 		);

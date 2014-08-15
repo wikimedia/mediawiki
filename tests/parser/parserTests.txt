@@ -8047,24 +8047,41 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! end
 
 !! test
-Magic Word: {{SUBPAGENAME}}
+Magic Word: {{SUBPAGENAME}} on a page which is not a subpage but contains a bar
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
 !! wikitext
 {{SUBPAGENAME}}
 !! html
-<p>sub ö
+<p>Ævar Arnfjörð Bjarmason/sub ö
+</p>
+!! end
+
+!! article
+Help:Foo1/Bar1
+!! text
+Content
+!! endarticle
+
+!! test
+Magic Word: {{SUBPAGENAME}} on missing page which is the first part of an existing page
+!! options
+title=[[Help:Foo1]] subpage
+!! wikitext
+{{SUBPAGENAME}}
+!! html
+<p>Foo1
 </p>
 !! end
 
 !! test
-Magic Word: {{SUBPAGENAMEE}}
+Magic Word: {{SUBPAGENAMEE}} on a page which is not a subpage but contains a bar
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
 !! wikitext
 {{SUBPAGENAMEE}}
 !! html
-<p>sub_%C3%B6
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason/sub_%C3%B6
 </p>
 !! end
 
@@ -8091,24 +8108,241 @@ title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
 !! end
 
 !! test
-Magic Word: {{BASEPAGENAME}}
+Magic Word: {{BASEPAGENAME}} on a page which is not a subpage but contains a bar
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
 !! wikitext
 {{BASEPAGENAME}}
 !! html
-<p>Ævar Arnfjörð Bjarmason
+<p>Ævar Arnfjörð Bjarmason/sub
 </p>
 !! end
 
 !! test
-Magic Word: {{BASEPAGENAMEE}}
+Magic Word: {{BASEPAGENAME}} on missing page which is the first part of an existing page
+!! options
+title=[[Help:Foo1]] subpage
+!! wikitext
+{{BASEPAGENAME}}
+!! html
+<p>Foo1
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAMEE}} on a page which is not a subpage but contains a bar
 !! options
 title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
 !! wikitext
 {{BASEPAGENAMEE}}
 !! html
-<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason/sub
+</p>
+!! end
+
+!! article
+Help:Foo2
+!! text
+Content
+!! endarticle
+
+!! article
+Help:Foo2/Bar2
+!! text
+Content
+!! endarticle
+
+!! article
+Help:Foo2/Bar2/Bash2/Blah2
+!! text
+Content
+!! endarticle
+
+!! test
+Magic Word: {{BASEPAGENAME}} on a page which is the first part of another page
+!! options
+title=[[Help:Foo2]] subpage
+!! wikitext
+{{BASEPAGENAME}}
+!! html
+<p>Foo2
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}} on a page which is the first part of another page
+!! options
+title=[[Help:Foo2]] subpage
+!! wikitext
+{{SUBPAGENAME}}
+!! html
+<p>Foo2
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAME}} on a subpage which contais a subpage with bar
+!! options
+title=[[Help:Foo2/Bar2]] subpage
+!! wikitext
+{{BASEPAGENAME}}
+!! html
+<p>Foo2
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}} on a subpage which contais a subpage with bar
+!! options
+title=[[Help:Foo2/Bar2]] subpage
+!! wikitext
+{{SUBPAGENAME}}
+!! html
+<p>Bar2
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAME}} on missing subpage which is part of another page
+!! options
+title=[[Help:Foo2/Bar2/Bash2]] subpage
+!! wikitext
+{{BASEPAGENAME}}
+!! html
+<p>Foo2/Bar2
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}} on missing subpage which is part of another page
+!! options
+title=[[Help:Foo2/Bar2/Bash2]] subpage
+!! wikitext
+{{SUBPAGENAME}}
+!! html
+<p>Bash2
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAME}} on sub-subpage containing a bar
+!! options
+title=[[Help:Foo2/Bar2/Bash2/Blah2]] subpage
+!! wikitext
+{{BASEPAGENAME}}
+!! html
+<p>Foo2/Bar2
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}} on sub-subpage containing a bar
+!! options
+title=[[Help:Foo2/Bar2/Bash2/Blah2]] subpage
+!! wikitext
+{{SUBPAGENAME}}
+!! html
+<p>Bash2/Blah2
+</p>
+!! end
+
+!! article
+Help:Foo3/Bar3/Bash3
+!! text
+Content
+!! endarticle
+
+!! article
+Help:Foo3/Bar3/Bash3/Blah3
+!! text
+Content
+!! endarticle
+
+!! test
+Magic Word: {{BASEPAGENAME}} on a page which is the first part of a page with two bars
+!! options
+title=[[Help:Foo3]] subpage
+!! wikitext
+{{BASEPAGENAME}}
+!! html
+<p>Foo3
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}} on a page which is the first part of a page with two bars
+!! options
+title=[[Help:Foo3]] subpage
+!! wikitext
+{{SUBPAGENAME}}
+!! html
+<p>Foo3
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAME}} on a page (with a bar) which part of another page
+!! options
+title=[[Help:Foo3/Bar3]] subpage
+!! wikitext
+{{BASEPAGENAME}}
+!! html
+<p>Foo3/Bar3
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}} on a page (with a bar) which part of another page
+!! options
+title=[[Help:Foo3/Bar3]] subpage
+!! wikitext
+{{SUBPAGENAME}}
+!! html
+<p>Foo3/Bar3
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAME}} on a page (with bars) which has a subpage
+!! options
+title=[[Help:Foo3/Bar3/Bash3]] subpage
+!! wikitext
+{{BASEPAGENAME}}
+!! html
+<p>Foo3/Bar3/Bash3
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}} on a page (with bars) which has a subpage
+!! options
+title=[[Help:Foo3/Bar3/Bash3]] subpage
+!! wikitext
+{{SUBPAGENAME}}
+!! html
+<p>Foo3/Bar3/Bash3
+</p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAME}} on subpage of a page with bars
+!! options
+title=[[Help:Foo3/Bar3/Bash3/Blah3]] subpage
+!! wikitext
+{{BASEPAGENAME}}
+!! html
+<p>Foo3/Bar3/Bash3
+</p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}} on subpage of a page with bars
+!! options
+title=[[Help:Foo3/Bar3/Bash3/Blah3]] subpage
+!! wikitext
+{{SUBPAGENAME}}
+!! html
+<p>Blah3
 </p>
 !! end
 

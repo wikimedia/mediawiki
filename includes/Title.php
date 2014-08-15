@@ -1483,27 +1483,51 @@ class Title {
 	}
 
 	/**
-	 * Get the base page name without a namespace, i.e. the part before the subpage name
+	 * Get the name of the lowest-level parent page which exists and returns
+	 * the real subpage or basepage
+	 *
+	 * @param string|null $type Type of test, one of 'subpage' or 'basepage'
+	 * @return string Base page name or Sub page name
+	 */
+	public function getExisting( $type = null ) {
+		$defaultPage = $this->getText();
+		// FIXME: Tests fail if I add this agina. Why?
+		// if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+		// 	return $defaultPage;
+		// }
+		$bits = explode( '/', $defaultPage, 25 );
+		if ( count( $bits ) <= 0 ) {
+			return $defaultPage;
+		}
+		for ( $i = count( $bits ) - 1; $i >= 1; $i-- ) {
+			$base = implode( '/', array_slice( $bits, 0, $i ) );
+			if ( Title::newFromText( $this->prefix( $base ) )->exists() ) {
+				switch( $type ) {
+				case 'subpage' :
+					return implode( '/', array_slice( $bits, $i ) );
+				case 'basepage':
+					return $base;
+				default:
+					return $defaultPage;
+				}
+			}
+		}
+		return $defaultPage;
+	}
+
+	/**
+	 * Get the base page name, i.e. the leftmost parts before the /
 	 *
 	 * @par Example:
 	 * @code
 	 * Title::newFromText('User:Foo/Bar/Baz')->getBaseText();
-	 * # returns: 'Foo/Bar'
+	 * # returns: 'Foo/Bar', if it exists
 	 * @endcode
 	 *
 	 * @return string Base name
 	 */
 	public function getBaseText() {
-		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
-			return $this->getText();
-		}
-
-		$parts = explode( '/', $this->getText() );
-		# Don't discard the real title if there's no subpage involved
-		if ( count( $parts ) > 1 ) {
-			unset( $parts[count( $parts ) - 1] );
-		}
-		return implode( '/', $parts );
+		return $this->getExisting( 'basepage' );
 	}
 
 	/**
@@ -1528,17 +1552,13 @@ class Title {
 	 * @par Example:
 	 * @code
 	 * Title::newFromText('User:Foo/Bar/Baz')->getSubpageText();
-	 * # returns: "Baz"
+	 * # returns: 'Baz' if 'User:Foo/Bar' exists
 	 * @endcode
 	 *
 	 * @return string Subpage name
 	 */
 	public function getSubpageText() {
-		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
-			return $this->mTextform;
-		}
-		$parts = explode( '/', $this->mTextform );
-		return $parts[count( $parts ) - 1];
+		return $this->getExisting( 'subpage' );
 	}
 
 	/**
