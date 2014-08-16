@@ -724,7 +724,7 @@ class SpecialVersion extends SpecialPage {
 			if ( $vcsDate ) {
 				$vcsTimeString = Html::element( 'span',
 					array( 'class' => 'mw-version-ext-vcs-timestamp' ),
-					$this->getLanguage()->timeanddate( $vcsDate )
+					$this->getLanguage()->timeanddate( $vcsDate, true )
 				);
 				$versionString .= " {$vcsTimeString}";
 			}
