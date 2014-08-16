@@ -51,8 +51,8 @@ interface ITestRecorder {
 }
 
 class TestRecorder implements ITestRecorder {
-	var $parent;
-	var $term;
+	public $parent;
+	public $term;
 
 	function __construct( $parent ) {
 		$this->parent = $parent;
@@ -295,7 +295,7 @@ class DbTestPreviewer extends TestRecorder {
 }
 
 class DbTestRecorder extends DbTestPreviewer {
-	var $version;
+	public $version;
 
 	/**
 	 * Set up result recording; insert a record for the run with the date

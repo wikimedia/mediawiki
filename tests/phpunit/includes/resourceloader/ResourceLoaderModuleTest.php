@@ -7,7 +7,12 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 
 		// The return value of the closure shouldn't matter since this test should
 		// never call it
-		SkinFactory::getDefaultInstance()->register( 'fakeskin', 'FakeSkin', function(){});
+		SkinFactory::getDefaultInstance()->register(
+			'fakeskin',
+			'FakeSkin',
+			function(){
+			}
+		);
 	}
 
 	/**
