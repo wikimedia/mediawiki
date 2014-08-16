@@ -238,7 +238,6 @@ class MWTimestamp {
 	 * @since 1.22
 	 *
 	 * @param User $user User to take preferences from
-	 * @param[out] MWTimestamp $ts Timestamp to adjust
 	 * @return DateInterval Offset that was applied to the timestamp
 	 */
 	public function offsetForUser( User $user ) {
