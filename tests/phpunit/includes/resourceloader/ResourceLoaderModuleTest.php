@@ -7,7 +7,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 
 		// The return value of the closure shouldn't matter since this test should
 		// never call it
-		SkinFactory::getDefaultInstance()->register( 'vector', 'Vector', function(){});
+		SkinFactory::getDefaultInstance()->register( 'fakeskin', 'FakeSkin', function(){});
 	}
 
 	/**
@@ -29,7 +29,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			),
 			'skinStyles' => array(
 				'default' => 'quux-fallback.less',
-				'vector' => array(
+				'fakeskin' => array(
 					'baz-vector.css',
 					'quux-vector.less',
 				),
