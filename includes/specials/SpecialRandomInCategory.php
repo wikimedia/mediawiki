@@ -46,7 +46,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialRandomInCategory extends SpecialPage {
+class SpecialRandomInCategory extends FormSpecialPage {
 	protected $extra = array(); // Extra SQL statements
 	protected $category = false; // Title object of category
 	protected $maxOffset = 30; // Max amount to fudge randomness by.
@@ -67,10 +67,35 @@ class SpecialRandomInCategory extends SpecialPage {
 		$this->minTimestamp = null;
 	}
 
-	public function execute( $par ) {
+	protected function getFormFields() {
+		$form = array(
+			'category' => array(
+				'type' => 'text',
+				'label-message' => 'randomincategory-selectcategory',
+				'required' => true,
+			)
+		);
+
+		return $form;
+	}
+
+	public function requiresWrite() {
+		return false;
+	}
+
+	public function requiresUnblock() {
+		return false;
+	}
+
+	protected function setParameter( $par ) {
+		// if subpage present, fake form submission
+		$this->onSubmit( array( 'category' => $par ) );
+	}
+
+	public function onSubmit( array $data ) {
 		$cat = false;
 
-		$categoryStr = $this->getRequest()->getText( 'category', $par );
+		$categoryStr = $data['category'];
 
 		if ( $categoryStr ) {
 			$cat = Title::newFromText( $categoryStr, NS_CATEGORY );
@@ -86,41 +111,25 @@ class SpecialRandomInCategory extends SpecialPage {
 		}
 
 		if ( !$this->category && $categoryStr ) {
-			$this->setHeaders();
-			$this->getOutput()->addWikiMsg( 'randomincategory-invalidcategory',
+			$msg = wfMessage( 'randomincategory-invalidcategory',
 				wfEscapeWikiText( $categoryStr ) );
 
-			return;
+			return Status::newFatal( $msg );
+
 		} elseif ( !$this->category ) {
-			$this->setHeaders();
-			$input = Html::input( 'category' );
-			$submitText = $this->msg( 'randomincategory-selectcategory-submit' )->text();
-			$submit = Html::input( '', $submitText, 'submit' );
-
-			$msg = $this->msg( 'randomincategory-selectcategory' );
-			$form = Html::rawElement( 'form', array( 'action' => wfScript() ),
-				Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-				$msg->rawParams( $input, $submit )->parse()
-			);
-			$this->getOutput()->addHtml( $form );
-
-			return;
+			return; // no data sent
 		}
 
 		$title = $this->getRandomTitle();
 
 		if ( is_null( $title ) ) {
-			$this->setHeaders();
-			$this->getOutput()->addWikiMsg( 'randomincategory-nopages',
+			$msg = wfMessage( 'randomincategory-nopages',
 				$this->category->getText() );
 
-			return;
+			return Status::newFatal( $msg );
 		}
 
-		$query = $this->getRequest()->getValues();
-		unset( $query['title'] );
-		unset( $query['category'] );
-		$this->getOutput()->redirect( $title->getFullURL( $query ) );
+		$this->getOutput()->redirect( $title->getFullURL() );
 	}
 
 	/**
