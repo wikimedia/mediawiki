@@ -41,8 +41,7 @@ class DeleteAction extends FormlessAction {
 	}
 
 	public function show() {
-		global $wgUseMediaWikiUIEverywhere;
-		if ( $wgUseMediaWikiUIEverywhere ) {
+		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$out = $this->getOutput();
 			$out->addModuleStyles( array(
 				'mediawiki.ui.input',
