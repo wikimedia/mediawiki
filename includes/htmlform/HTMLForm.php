@@ -300,7 +300,12 @@ class HTMLForm extends ContextSource {
 	 * @return string
 	 */
 	public function getDisplayFormat() {
-		return $this->displayFormat;
+		global $wgHTMLFormAllowTableFormat;
+		$format = $this->displayFormat;
+		if ( !$wgHTMLFormAllowTableFormat && $format === 'table' ) {
+			$format = 'div';
+		}
+		return $format;
 	}
 
 	/**
@@ -869,6 +874,7 @@ class HTMLForm extends ContextSource {
 	 * @return string HTML.
 	 */
 	function getButtons() {
+		global $wgUseMediaWikiUIEverywhere;
 		$buttons = '';
 
 		if ( $this->mShowSubmit ) {
@@ -888,15 +894,17 @@ class HTMLForm extends ContextSource {
 
 			$attribs['class'] = array( 'mw-htmlform-submit' );
 
+			if ( $this->isVForm() || $wgUseMediaWikiUIEverywhere ) {
+				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-constructive' );
+			}
+
 			if ( $this->isVForm() ) {
 				// mw-ui-block is necessary because the buttons aren't necessarily in an
 				// immediate child div of the vform.
 				// @todo Let client specify if the primary submit button is progressive or destructive
 				array_push(
 					$attribs['class'],
-					'mw-ui-button',
 					'mw-ui-big',
-					'mw-ui-constructive',
 					'mw-ui-block'
 				);
 			}
@@ -927,6 +935,14 @@ class HTMLForm extends ContextSource {
 
 			if ( isset( $button['id'] ) ) {
 				$attrs['id'] = $button['id'];
+			}
+
+			if ( $wgUseMediaWikiUIEverywhere ) {
+				if ( isset( $attrs['class' ] ) ) {
+					$attrs['class'] .= ' mw-ui-button';
+				} else {
+					$attrs['class'] = 'mw-ui-button';
+				}
 			}
 
 			$buttons .= Html::element( 'input', $attrs ) . "\n";
@@ -1244,6 +1260,9 @@ class HTMLForm extends ContextSource {
 				break;
 			case 'vform':
 				// Close enough to a div.
+				$getFieldHtmlMethod = 'getDiv';
+				break;
+			case 'div':
 				$getFieldHtmlMethod = 'getDiv';
 				break;
 			default:

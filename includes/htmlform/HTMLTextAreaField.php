@@ -15,7 +15,6 @@ class HTMLTextAreaField extends HTMLFormField {
 	function getInputHTML( $value ) {
 		$attribs = array(
 				'id' => $this->mID,
-				'name' => $this->mName,
 				'cols' => $this->getCols(),
 				'rows' => $this->getRows(),
 			) + $this->getTooltipAndAccessKey();
@@ -34,7 +33,6 @@ class HTMLTextAreaField extends HTMLFormField {
 		);
 
 		$attribs += $this->getAttributes( $allowedParams );
-
-		return Html::element( 'textarea', $attribs, $value );
+		return Html::textarea( $this->mName, $value, $attribs );
 	}
 }
