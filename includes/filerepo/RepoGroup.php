@@ -183,10 +183,6 @@ class RepoGroup {
 	 *       The search title uses the input titles; the other is the final post-redirect title.
 	 *       All titles are returned as string DB keys and the inner array is associative.
 	 * @return array Map of (file name => File objects) for matches
-	 *
-	 * @param array $inputItems
-	 * @param int $flags
-	 * @return array
 	 */
 	function findFiles( array $inputItems, $flags = 0 ) {
 		if ( !$this->reposInitialised ) {
