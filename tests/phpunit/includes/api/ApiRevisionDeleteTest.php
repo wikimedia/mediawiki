@@ -10,7 +10,7 @@
 class ApiRevisionDeleteTest extends ApiTestCase {
 
 	static $page = 'Help:ApiRevDel_test';
-	var $revs = array();
+	public $revs = array();
 
 	protected function setUp() {
 		// Needs to be before setup since this gets cached
