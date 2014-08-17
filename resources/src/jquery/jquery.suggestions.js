@@ -225,7 +225,7 @@ $.suggestions = {
 								} else {
 									regionWidth = $region.outerWidth();
 									docWidth = $( document ).width();
-									if ( ( regionWidth / docWidth  ) > 0.85 ) {
+									if ( regionWidth > ( 0.85 * docWidth ) ) {
 										// If the input size takes up more than 85% of the document horizontally
 										// expand the suggestions to the writing direction's native end.
 										expandFrom = 'start';
@@ -233,7 +233,7 @@ $.suggestions = {
 										// Calculate the center points of the input and document
 										regionCenter = $region.offset().left + regionWidth / 2;
 										docCenter = docWidth / 2;
-										if ( Math.abs( regionCenter - docCenter ) / docCenter < 0.10 ) {
+										if ( Math.abs( regionCenter - docCenter ) < ( 0.10 * docCenter ) ) {
 											// If the input's center is within 10% of the document center
 											// use the writing direction's native end.
 											expandFrom = 'start';
