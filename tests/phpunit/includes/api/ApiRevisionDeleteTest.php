@@ -9,7 +9,7 @@
  */
 class ApiRevisionDeleteTest extends ApiTestCase {
 
-	static $page = 'Help:ApiRevDel_test';
+	public static $page = 'Help:ApiRevDel_test';
 	public $revs = array();
 
 	protected function setUp() {

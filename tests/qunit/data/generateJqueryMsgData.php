@@ -65,7 +65,7 @@ require __DIR__ . '/../../../maintenance/Maintenance.php';
 
 class GenerateJqueryMsgData extends Maintenance {
 
-	static $keyToTestArgs = array(
+	public static $keyToTestArgs = array(
 		'undelete_short' => array(
 			array( 0 ),
 			array( 1 ),
