@@ -946,6 +946,7 @@ return array(
 	),
 	'mediawiki.Uri' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.Uri.js',
+		'dependencies' => 'mediawiki.util',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.user' => array(
@@ -1361,7 +1362,8 @@ return array(
 			'mediawiki.api',
 			'mediawiki.api.watch',
 			'mediawiki.notify',
-			'mediawiki.Title'
+			'mediawiki.Title',
+			'mediawiki.util',
 		),
 	),
 	'mediawiki.special.javaScriptTest' => array(
