@@ -1,6 +1,6 @@
 <?php
 /**
- * Test class for SpecialListFiles class.
+ * Test class for ImageListPagerTest class.
  *
  * Copyright © 2013, Antoine Musso
  * Copyright © 2013, Siebrand Mazeland
@@ -8,7 +8,7 @@
  *
  */
 
-class SpecialListFilesTest extends MediaWikiTestCase {
+class ImageListPagerTest extends MediaWikiTestCase {
 	/**
 	 * @expectedException MWException
 	 * @expectedExceptionMessage invalid_field
