@@ -1382,9 +1382,9 @@ return array(
 
 	'mediawiki.installer.legacy' => array(
 		// Used in the web installer. Test it after modifying this definition!
+		// These files are not actually loaded via ResourceLoader, so dependencies etc. won't work.
 		'scripts' => 'mw-config/config.js',
 		'styles' => array( 'mw-config/config.css' ),
-		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 
 	'mediawiki.legacy.ajax' => array(
