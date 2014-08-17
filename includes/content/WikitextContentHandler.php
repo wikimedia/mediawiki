@@ -34,19 +34,8 @@ class WikitextContentHandler extends TextContentHandler {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_WIKITEXT ) );
 	}
 
-	public function unserializeContent( $text, $format = null ) {
-		$this->checkFormat( $format );
-
-		return new WikitextContent( $text );
-	}
-
-	/**
-	 * @return Content A new WikitextContent object with empty text.
-	 *
-	 * @see ContentHandler::makeEmptyContent
-	 */
-	public function makeEmptyContent() {
-		return new WikitextContent( '' );
+	protected function getContentClass() {
+		return 'WikitextContent';
 	}
 
 	/**
@@ -79,7 +68,8 @@ class WikitextContentHandler extends TextContentHandler {
 			$redirectText .= "\n" . $text;
 		}
 
-		return new WikitextContent( $redirectText );
+		$class = $this->getContentClass();
+		return new $class( $redirectText );
 	}
 
 	/**

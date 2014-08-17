@@ -57,7 +57,7 @@ class JavaScriptContent extends TextContent {
 		$text = $this->getNativeData();
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
 
-		return new JavaScriptContent( $pst );
+		return new static( $pst );
 	}
 
 	/**
