@@ -1109,4 +1109,24 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$this->assertEmpty( $errors, implode( "\n", $errors ) );
 	}
+
+	/**
+	 * Note: we are overriding this method to remove the deprecated error
+	 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=69505
+	 * @see https://github.com/sebastianbergmann/phpunit/issues/1292
+	 *
+	 * @param array $matcher
+	 * @param string $actual
+	 * @param string $message
+	 * @param bool $isHtml
+	 */
+	public static function assertTag($matcher, $actual, $message = '', $isHtml = true) {
+		//trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+
+		$dom     = PHPUnit_Util_XML::load($actual, $isHtml);
+		$tags    = PHPUnit_Util_XML::findNodes($dom, $matcher, $isHtml);
+		$matched = count($tags) > 0 && $tags[0] instanceof DOMNode;
+
+		self::assertTrue($matched, $message);
+	}
 }
