@@ -131,6 +131,9 @@ $dateFormats = array(
 	'ymd both' => 'H:i, Y M j.',
 );
 
+// Remove German aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Allmessages'               => array( 'Systemnarichten' ),
 	'Allpages'                  => array( 'Alle Sieden' ),
