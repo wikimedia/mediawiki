@@ -444,7 +444,11 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ) ),
 			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ) )
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) )
 		);
 
 		$this->setTitle( NS_USER, $this->userName . '/test.css' );
@@ -453,6 +457,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			array( array( 'badaccess-group0' ) ),
 			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) )
 		);
 
@@ -462,7 +470,11 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
-			array( array( 'badaccess-group0' ) )
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) )
 		);
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.css' );
@@ -471,6 +483,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) )
 		);
 
@@ -480,45 +496,114 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			array( array( 'badaccess-group0' ) ),
 			array( array( 'badaccess-group0' ) ),
 			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ) )
+		);
+
+		$this->setTitle( NS_MEDIAWIKI, 'Common.js' );
+		$this->runCSSandJSPermissions(
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitejsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitejsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitejsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitejsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitejsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitejsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitejsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'sitejsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ) )
+		);
+
+		$this->setTitle( NS_MEDIAWIKI, 'Common.css' );
+		$this->runCSSandJSPermissions(
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitecssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitecssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitecssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitecssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitecssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitecssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ),
+				array( 'sitecssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ) ),
+			array( array( 'badaccess-group0' ), array( 'sitecssprotected', 'bogus' ) )
+		);
+
+		$this->setTitle( NS_MEDIAWIKI, 'tempo' );
+		$this->runCSSandJSPermissions(
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'protectedinterface', 'bogus' ) ),
+			array( array( 'badaccess-group0' ) ),
 			array( array( 'badaccess-group0' ) )
 		);
 	}
 
-	protected function runCSSandJSPermissions( $result0, $result1, $result2, $result3, $result4 ) {
+	protected function runCSSandJSPermissions( $result0, $result1, $result2, $result3, $result4,
+		$result5, $result6, $result7, $result8
+	) {
 		$this->setUserPerm( '' );
 		$this->assertEquals( $result0,
 			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+				$this->user ), 'No user rights set' );
 
 		$this->setUserPerm( 'editmyusercss' );
 		$this->assertEquals( $result1,
 			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+				$this->user ), 'editmyusercss right set' );
 
 		$this->setUserPerm( 'editmyuserjs' );
 		$this->assertEquals( $result2,
 			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+				$this->user ), 'editmyuserjs right set' );
 
 		$this->setUserPerm( 'editusercss' );
 		$this->assertEquals( $result3,
 			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+				$this->user ), 'editusercss right set' );
 
 		$this->setUserPerm( 'edituserjs' );
 		$this->assertEquals( $result4,
 			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+				$this->user ), 'edituserjs right set' );
 
 		$this->setUserPerm( 'editusercssjs' );
-		$this->assertEquals( array( array( 'badaccess-group0' ) ),
+		$this->assertEquals( $result5,
 			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+				$this->user ), 'editusercssjs right set' );
 
 		$this->setUserPerm( array( 'edituserjs', 'editusercss' ) );
-		$this->assertEquals( array( array( 'badaccess-group0' ) ),
+		$this->assertEquals( $result6,
 			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+				$this->user ), 'edituserjs and editusercss rights set' );
+
+		$this->setUserPerm( array( 'editinterface', 'editsitecss' ) );
+		$this->assertEquals( $result7,
+			$this->title->getUserPermissionsErrors( 'bogus',
+				$this->user ), 'editinterface and editsitecss rights set' );
+
+		$this->setUserPerm( array( 'editinterface', 'editsitejs' ) );
+		$this->assertEquals( $result8,
+			$this->title->getUserPermissionsErrors( 'bogus',
+				$this->user ), 'editinterface and editsitejs rights set' );
 	}
 
 	/**

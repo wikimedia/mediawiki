@@ -68,6 +68,8 @@ production.
 * $wgCanonicalLanguageLinks has been removed. Per Google recommendations, we
   will not send a rel=canonical pointing to a variant-neutral page, however
   we will send rel=alternate.
+* New rights 'editsitejs' and 'editsitecss' restrict edit of site wide css and js,
+  e.g. MediaWiki:Common.js. They have been added by default to the sysop user group.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
