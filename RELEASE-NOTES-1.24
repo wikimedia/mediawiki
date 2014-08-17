@@ -60,6 +60,8 @@ production.
   specifying subprojects on the interwiki map of the target wiki, or a mix of
   the two. Existing configurations will still work.
 * Users must be able to edit through a page's protection to be able to delete it.
+* New rights 'editsitejs' and 'editsitecss' restrict edit of site wide css and js,
+  e.g. MediaWiki:Common.js. They have been added by default to the sysop user group.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
