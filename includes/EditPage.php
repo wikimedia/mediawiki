@@ -2105,8 +2105,17 @@ class EditPage {
 		$namespace = $this->mTitle->getNamespace();
 
 		if ( $namespace == NS_MEDIAWIKI ) {
-			# Show a warning if editing an interface message
-			$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
+			# Show a warning if editing an site css or js page
+			if ( $this->mTitle->isCssOrJsPage() ) { // Runs a hook
+				if ( $this->mTitle->hasContentModel( CONTENT_MODEL_CSS ) ) {
+					$wgOut->wrapWikiMsg( "<div class='mw-editingsitecss'>\n$1\n</div>", 'editingsitecss' );
+				} elseif ( $this->mTitle->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) {
+					$wgOut->wrapWikiMsg( "<div class='mw-editingsitejs'>\n$1\n</div>", 'editingsitejs' );
+				}
+			} else {
+				# Show a warning if editing an interface message
+				$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
+			}
 		} elseif ( $namespace == NS_FILE ) {
 			# Show a hint to shared repo
 			$file = wfFindFile( $this->mTitle );

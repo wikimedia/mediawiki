@@ -2098,21 +2098,31 @@ class Title {
 	 * @return array List of errors
 	 */
 	private function checkCSSandJSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		# Protect css/js subpages of user pages
-		# XXX: this might be better using restrictions
-		# XXX: right 'editusercssjs' is deprecated, for backward compatibility only
-		if ( $action != 'patrol' && !$user->isAllowed( 'editusercssjs' ) ) {
-			if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
-				if ( $this->isCssSubpage() && !$user->isAllowedAny( 'editmyusercss', 'editusercss' ) ) {
-					$errors[] = array( 'mycustomcssprotected', $action );
-				} elseif ( $this->isJsSubpage() && !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' ) ) {
-					$errors[] = array( 'mycustomjsprotected', $action );
+		if ( $action != 'patrol' ) {
+			# Protect css/js subpages of user pages
+			# XXX: this might be better using restrictions
+			# XXX: right 'editusercssjs' is deprecated, for backward compatibility only
+			if ( !$user->isAllowed( 'editusercssjs' ) ) {
+				if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
+					if ( $this->isCssSubpage() && !$user->isAllowedAny( 'editmyusercss', 'editusercss' ) ) {
+						$errors[] = array( 'mycustomcssprotected', $action );
+					} elseif ( $this->isJsSubpage() && !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' ) ) {
+						$errors[] = array( 'mycustomjsprotected', $action );
+					}
+				} else {
+					if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
+						$errors[] = array( 'customcssprotected', $action );
+					} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
+						$errors[] = array( 'customjsprotected', $action );
+					}
 				}
-			} else {
-				if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
-					$errors[] = array( 'customcssprotected', $action );
-				} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
-					$errors[] = array( 'customjsprotected', $action );
+			}
+			// Protect site css/js - maybe also protected by namespace protection: editinterface
+			if ( $this->isCssOrJsPage() ) { // Runs a hook
+				if ( $this->hasContentModel( CONTENT_MODEL_CSS ) && !$user->isAllowed( 'editsitecss' ) ) {
+					$errors[] = array( 'sitecssprotected', $action );
+				} elseif ( $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) && !$user->isAllowed( 'editsitejs' ) ) {
+					$errors[] = array( 'sitejsprotected', $action );
 				}
 			}
 		}
