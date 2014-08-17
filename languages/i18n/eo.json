@@ -37,7 +37,8 @@
 			"Yekrats",
 			"Александр Сигачёв",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Substreki ligilojn",
@@ -289,6 +290,8 @@
 	"hidetoc": "kaŝi",
 	"collapsible-collapse": "kaŝi",
 	"collapsible-expand": "Montri",
+	"confirmable-yes": "Jes",
+	"confirmable-no": "Ne",
 	"thisisdeleted": "Vidi aŭ restarigi $1?",
 	"viewdeleted": "Ĉu rigardi $1?",
 	"restorelink": "{{PLURAL:$1|unu forigitan version|$1 forigitajn versiojn}}",
@@ -851,7 +854,6 @@
 	"searchprofile-advanced-tooltip": "Serĉi en specialaj nomspacoj",
 	"search-result-size": "$1 ({{PLURAL:$2|1 vorto|$2 vortoj}})",
 	"search-result-category-size": "{{PLURAL:$1|1 membro|$1 membroj}} ({{PLURAL:$2|1 subkategorio|$2 subkategorioj}}, {{PLURAL:$3|1 dosiero|$3 dosieroj}})",
-	"search-result-score": "Trafeco: $1%",
 	"search-redirect": "(alidirektilo $1)",
 	"search-section": "(sekcio $1)",
 	"search-suggest": "Ĉu vi intenciis: $1",
@@ -1252,8 +1254,6 @@
 	"uploadwarning": "Alŝuta averto",
 	"uploadwarning-text": "Bonvolu ŝanĝi la dosieran priskribon kaj reprovi.",
 	"savefile": "Konservi dosieron",
-	"uploadedimage": "alŝutis \"[[$1]]\"",
-	"overwroteimage": "alŝutis novan version de \"[[$1]]\"",
 	"uploaddisabled": "Alŝutado estas malŝaltita",
 	"copyuploaddisabled": "Alŝuto de URL malfunkciigita.",
 	"uploaddisabledtext": "Alŝutado de dosieroj estas malebligita.",

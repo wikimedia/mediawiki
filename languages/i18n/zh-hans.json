@@ -78,7 +78,8 @@
 			"Mywood",
 			"Impersonator 1",
 			"Duolaimi",
-			"TianyinLee"
+			"TianyinLee",
+			"NigelSoft"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -95,7 +96,7 @@
 	"tog-watchdefault": "添加我编辑的页面和文件至我的监视列表",
 	"tog-watchmoves": "添加我移动的页面和文件至我的监视列表",
 	"tog-watchdeletion": "添加我删除的页面和文件至我的监视列表",
-	"tog-watchrollback": "当我对我的监视列表执行回退时加入页面",
+	"tog-watchrollback": "添加我回退过的页面至我的监视列表",
 	"tog-minordefault": "默认标记所有编辑为小编辑",
 	"tog-previewontop": "将预览显示在编辑框上方",
 	"tog-previewonfirst": "首次编辑时显示预览",
@@ -1894,7 +1895,7 @@
 	"restriction-level-all": "任何级别",
 	"undelete": "查看被删除页面",
 	"undeletepage": "查看和还原被删除的页面",
-	"undeletepagetitle": "'''以下包含[[:$1]]的已删除之版本'''。",
+	"undeletepagetitle": "'''以下包含[[:$1|$1]]的已删除之版本'''。",
 	"viewdeletedpage": "查看被删页面",
 	"undeletepagetext": "以下{{PLURAL:$1|页面|$1个页面}}已被删除，但依然在归档中并可以被恢复。归档可能会被定时清理。",
 	"undelete-fieldset-title": "还原版本",

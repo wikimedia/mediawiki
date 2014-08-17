@@ -264,6 +264,9 @@
 	"hidetoc": "پناه کن",
 	"collapsible-collapse": "چیر داتن",
 	"collapsible-expand": "تچک کتن",
+	"confirmable-confirm": "آیا {{GENDER:$1|شما}} مطمعین ویت?",
+	"confirmable-yes": "هان",
+	"confirmable-no": "نه",
 	"thisisdeleted": "به گند یا پچ ترین $1?",
 	"viewdeleted": "به گند $1?",
 	"restorelink": "{{PLURAL:$1|یک حذف اصلاح|$1 حذف اصلاح}}",
@@ -2466,5 +2469,7 @@
 	"expand_templates_ok": "هوبنت",
 	"expand_templates_remove_comments": "بزور نظرات",
 	"expand_templates_generate_xml": "پیش دار درچک تجزیه XMLء",
-	"expand_templates_preview": "بازبین"
+	"expand_templates_preview": "بازبین",
+	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (پعال)",
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''غیر پعال''')"
 }

@@ -334,7 +334,7 @@
 	"sort-descending": "Ordenar por ordem descendente",
 	"sort-ascending": "Ordenar por ordem ascendente",
 	"nstab-main": "Página",
-	"nstab-user": "Página d{{GENDER:{{#titleparts:{{PAGENAME}}|1|1}}|o utilizador|a utilizadora|e utilizador(a)}}",
+	"nstab-user": "Página d{{GENDER:{{BASEPAGENAME}}|o utilizador|a utilizadora|e utilizador(a)}}",
 	"nstab-media": "Multimédia",
 	"nstab-special": "Página especial",
 	"nstab-project": "Página de projeto",
