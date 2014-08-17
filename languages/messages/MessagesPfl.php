@@ -58,3 +58,6 @@ $namespaceAliases = array(
 	'Kadegorie_Dischbediere' => NS_CATEGORY_TALK,
 );
 
+// Remove German aliases
+$namespaceGenderAliases = array();
+

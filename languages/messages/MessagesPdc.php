@@ -50,6 +50,9 @@ $namespaceAliases = array(
 	'Kategorie_Diskussion' => NS_CATEGORY_TALK,
 );
 
+// Remove German aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Listadmins'                => array( 'Verwalter', 'Administratoren' ),
 	'Listbots'                  => array( 'Waddefresser', 'Bots' ),

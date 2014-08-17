@@ -59,3 +59,6 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Bäoobôchdungslisdâ' ),
 );
 
+// Remove German aliases
+$namespaceGenderAliases = array();
+

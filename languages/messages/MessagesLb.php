@@ -48,6 +48,9 @@ $namespaceAliases = array(
 	'Bild_Diskussioun' => NS_FILE_TALK,
 );
 
+// Remove German aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktiv_Benotzer' ),
 	'Allmessages'               => array( 'All_Systemmessagen' ),

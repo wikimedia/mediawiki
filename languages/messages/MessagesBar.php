@@ -45,3 +45,6 @@ $namespaceAliases = array(
 	'Kategorie_Diskussion' => NS_CATEGORY_TALK,
 );
 
+// Remove German aliases
+$namespaceGenderAliases = array();
+
