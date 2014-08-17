@@ -1261,7 +1261,7 @@ abstract class File {
 	/**
 	 * Creates a temp FS file with the same extension and the thumbnail
 	 * @param string $thumbPath Thumbnail path
-	 * @returns TempFSFile
+	 * @return TempFSFile
 	 */
 	protected function makeTransformTmpFile( $thumbPath ) {
 		$thumbExt = FileBackend::extensionFromPath( $thumbPath );
