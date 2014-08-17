@@ -57,6 +57,8 @@ production.
   there is a maintenance script wrapOldPassword.php that can wrap all passwords in
   PBKDF2 (or the hashing algorithm of your choice) if you don't want to wait for your
   users to log in.
+* New rights 'editsitejs' and 'editsitecss' restrict edit of site wide css and js,
+  e.g. MediaWiki:Common.js. They have been added by default to the sysop user group.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
