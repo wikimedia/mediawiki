@@ -1,4 +1,13 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Aalam"
+		]
+	},
+	"config-information": "ਜਾਣਕਾਰੀ",
+	"config-your-language": "ਤੁਹਾਡੀ ਭਾਸ਼ਾ:",
+	"config-back": "← ਪਿੱਛੇ",
+	"config-continue": "ਜਾਰੀ ਰੱਖੋ →",
+	"config-page-language": "ਭਾਸ਼ਾ",
 	"mainpagetext": "'''ਮੀਡਿਆਵਿਕਿ ਠੀਕ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੋ ਗਿਆ ਹੈ।'''"
 }

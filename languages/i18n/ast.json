@@ -1751,6 +1751,7 @@
 	"delete-edit-reasonlist": "Editar los motivos d'esborráu",
 	"delete-toobig": "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.\nRestrinxóse l'esborráu d'estes páxines pa evitar perturbaciones accidentales de {{SITENAME}}.",
 	"delete-warning-toobig": "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.\nEsborralu pue perturbar les operaciones de la base de datos de {{SITENAME}};\nobra con precaución.",
+	"delete-cantedit": "Nun pues desaniciar esta páxina porque nun tienes permisu pa editala.",
 	"deleting-backlinks-warning": "'''Avisu:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Otres páxines]] enllacen a, o trescluyen de, la páxina que ta a piques de desaniciar.",
 	"rollback": "Revertir ediciones",
 	"rollback_short": "Revertir",

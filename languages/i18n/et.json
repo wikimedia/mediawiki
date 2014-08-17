@@ -21,7 +21,8 @@
 			"Silvar",
 			"Võrok",
 			"WikedKentaur",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"Boxmein"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -1737,6 +1738,7 @@
 	"delete-edit-reasonlist": "Redigeeri kustutamise põhjuseid",
 	"delete-toobig": "See lehekülg on pika redigeerimisajalooga – üle {{PLURAL:$1|ühe muudatuse|$1 muudatuse}}.\nSelle kustutamine on keelatud, et ära hoida ekslikku {{GRAMMAR:genitive|{{SITENAME}}}} töö häirimist.",
 	"delete-warning-toobig": "See lehekülg on pika redigeerimislooga – üle {{PLURAL:$1|ühe muudatuse|$1 muudatuse}}.\nEttevaatust, selle kustutamine võib esile kutsuda häireid {{GRAMMAR:genitive|{{SITENAME}}}} andmebaasi töös.",
+	"delete-cantedit": "Seda lehte ei saa kustutada, kuna teil pole õigust seda redigeerida.",
 	"deleting-backlinks-warning": "'''Hoiatus:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Teised leheküljed]] viitavad leheküljele, mida oled kustutamas, või see lehekülg on kasutuses mallina.",
 	"rollback": "Tühista muudatused",
 	"rollback_short": "Tühista",
@@ -1897,7 +1899,7 @@
 	"autoblockid": "Automaatblokeering #$1",
 	"block": "Kasutaja blokeerimine",
 	"unblock": "Kasutaja blokeeringu eemaldamine",
-	"blockip": "Kasutaja blokeerimine",
+	"blockip": "Blokeeri {{GENDER:$1|kasutaja}}",
 	"blockip-legend": "Kasutaja blokeerimine",
 	"blockiptext": "See vorm on kindla IP-aadressi või kasutajanime kirjutamisõiguste blokeerimiseks.\nSeda tohib teha ainult vandalismi vältimiseks ja kooskõlas [[{{MediaWiki:Policy-url}}|{{GRAMMAR:genitive|{{SITENAME}}}} sisekorraga]].\nTäida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.",
 	"ipaddressorusername": "IP-aadress või kasutajanimi:",
