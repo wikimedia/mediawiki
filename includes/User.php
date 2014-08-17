@@ -120,6 +120,8 @@ class User implements IDBAccessObject {
 		'editmyuserjs',
 		'editmywatchlist',
 		'editsemiprotected',
+		'editsitecss',
+		'editsitejs',
 		'editusercssjs', #deprecated
 		'editusercss',
 		'edituserjs',
