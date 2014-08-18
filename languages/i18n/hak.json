@@ -838,7 +838,6 @@
 	"fileexists-shared-forbidden": "在共享文件庫中既存在同名文件。\n係話汝仍然想愛上載其嘅話，請返回並用一隻新名來上傳邇隻文件。[[File:$1|thumb|center|$1]]",
 	"uploadwarning": "上傳警告",
 	"savefile": "保存文件",
-	"uploadedimage": "已上傳“[[$1]]”",
 	"uploaddisabled": "上傳己停用。",
 	"uploaddisabledtext": "Tóng-on song-chhòn chhai chhṳ́ miong-chham put hí-khó yung.",
 	"php-uploaddisabledtext": "PHP文件上傳已經停用。請檢查file_uploads設定。",

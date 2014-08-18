@@ -849,7 +849,6 @@
 	"searchprofile-advanced-tooltip": "Tìm trong không gian tên tùy chọn",
 	"search-result-size": "$1 ({{PLURAL:$2|1 từ|$2 từ}})",
 	"search-result-category-size": "$1 trang thành viên ($2 thể loại con, $3 tập tin)",
-	"search-result-score": "Độ phù hợp: $1%",
 	"search-redirect": "(đổi hướng $1)",
 	"search-section": "(đề mục $1)",
 	"search-file-match": "(khớp nội dung tập tin)",

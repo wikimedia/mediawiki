@@ -589,7 +589,6 @@
 	"searchprofile-articles-tooltip": "Di $1 da lêbigere",
 	"searchprofile-images-tooltip": "Li pelan bigere",
 	"search-result-size": "$1 ({{PLURAL:$2|peyvek|$2 peyv}})",
-	"search-result-score": "Lêhatin: $1%",
 	"search-redirect": "(beralîkirin $1)",
 	"search-section": "(beş $1)",
 	"search-suggest": "Gelo mebesta te ev bû: $1",

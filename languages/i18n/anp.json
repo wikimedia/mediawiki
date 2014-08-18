@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Angpradesh",
-			"Vinitutpal"
+			"Vinitutpal",
+			"아라"
 		]
 	},
 	"tog-underline": " कड़ी अधोरेखित करना:",
@@ -15,7 +16,6 @@
 	"tog-showtoolbar": "एडिट टूलबार दर्शाबॊ (जावास्क्रीप्ट)",
 	"tog-editondblclick": "दू-बार क्लीक करी कॆ पन्ना संपादित करॊ (जावास्क्रीप्ट)",
 	"tog-editsectiononrightclick": "विभाग शीर्षक पर दायाँ क्लीक करीकॆ संपादन करै के अनुमती दॆ (जावास्क्रीप्ट)",
-	"tog-rememberpassword": "इ कंप्यूटर पर हमरॊ लॉग-इन सूचना याद रखॊ (अधिकतम $1 {{PLURAL:$1|दिन|दिन}} लेली)",
 	"tog-watchcreations": "हमरॊ तैयार करलॊ पन्ना हमरॊ ध्यानसूचीमॆं रखियै",
 	"tog-watchdefault": "हमरॊ संपादित करलॊ पन्ना हमरॊ ध्यानसूचीमॆं रखियै",
 	"tog-watchmoves": "हमरॊ हटैलॊ पन्ना हमरॊ ध्यानसूचीमॆं रखियै",
@@ -232,7 +232,6 @@
 	"search-interwiki-more": "(आरू)",
 	"powersearch-legend": "उन्नत खोज",
 	"powersearch-ns": "नामस्थानॊ मॆ खोजॊ:",
-	"powersearch-redir": "अनुप्रेषितॊ के सूची दर्शाबॊ.",
 	"preferences": "वरीयता",
 	"mypreferences": "हमरॊ वरीयता",
 	"group-sysop": "प्रचालक",
@@ -244,7 +243,7 @@
 	"recentchanges": "हाल मॆं होलॊ बदलाव",
 	"recentchanges-legend": "हाल केरॊ परिवर्तन संबंधी विकल्प",
 	"recentchanges-feed-description": "इ फ़ीड मॆ होय वाला विकि पर हाल मॆ होलॊ बदलाव देखियै.",
-	"rclistfrom": "$1 सॆं नया बदलाव देखलाबॊ",
+	"rclistfrom": "$3 $2 सॆं नया बदलाव देखलाबॊ",
 	"rcshowhideminor": "छोटॊ बदलाव $1",
 	"rcshowhidebots": "बोट सीनी $1",
 	"rcshowhideliu": "लॉग्ड इन सदस्यॊ के बदलाव $1",
@@ -267,7 +266,6 @@
 	"recentchangeslinked-to": "ऐकरॊ बदला मॆं देलॊ पन्ना सीनी सॆं जुडलॊ पन्ना सीनी के बदलाव दिखलाबॊ",
 	"upload": "फाईल अपलोड",
 	"uploadlogpage": "अपलोड सूची",
-	"uploadedimage": "\"[[$1]]\" कॆ अपलोड करलॊ गेलै",
 	"filehist": "फाइल के इतिहास",
 	"filehist-help": "संचिका पुरानॊ समय में कैन्हॊ दिखै रहै इ जानै लेली वांछित दिनांक/समय पर चटका लगाबॊ.",
 	"filehist-current": "मौजूदा",
@@ -295,7 +293,6 @@
 	"booksources-go": "जा",
 	"log": "लॉग सूची",
 	"allpages": "सब्भे पन्ना",
-	"alphaindexline": "$1 सॆ $2 तलक",
 	"prevpage": "पिछला पन्ना ($1)",
 	"allpagesfrom": "देलॊ गेलॊ अक्षर सॆं आरंभ होयवाला लेख दर्शाबॊ:",
 	"allpagesto": "ऐना समाप्त होय वाला पन्ना दिखाबॊ:",
