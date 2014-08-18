@@ -771,7 +771,6 @@ class Linker {
 	public static function makeThumbLink2( Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = ""
 	) {
-		global $wgStylePath, $wgContLang;
 		$exists = $file && $file->exists();
 
 		# Shortcuts
@@ -876,16 +875,11 @@ class Linker {
 				$zoomIcon = "";
 			} else {
 				$zoomIcon = Html::rawElement( 'div', array( 'class' => 'magnify' ),
-					Html::rawElement( 'a', array(
+					Html::element( 'a', array(
 						'href' => $url,
 						'class' => 'internal',
 						'title' => wfMessage( 'thumbnail-more' )->text() ),
-						Html::element( 'img', array(
-							'src' => $wgStylePath . '/common/images/magnify-clip'
-								. ( $wgContLang->isRTL() ? '-rtl' : '' ) . '.png',
-							'width' => 15,
-							'height' => 11,
-							'alt' => "" ) ) ) );
+						wfMessage( 'thumbnail-more' )->text() ) );
 			}
 		}
 		$s .= '  <div class="thumbcaption">' . $zoomIcon . $fp['caption'] . "</div></div></div>";
