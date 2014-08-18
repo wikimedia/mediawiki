@@ -5527,7 +5527,7 @@ class Parser {
 								$paramName = 'no-link';
 								$value = true;
 								$validated = true;
-							} elseif ( preg_match( "/^(?i)$prots/", $value ) ) {
+							} elseif ( preg_match( "/^((?i)$prots)/", $value ) ) {
 								if ( preg_match( "/^((?i)$prots)$chars+$/u", $value, $m ) ) {
 									$paramName = 'link-url';
 									$this->mOutput->addExternalLink( $value );
