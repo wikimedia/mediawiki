@@ -144,12 +144,14 @@ html .thumbcaption {
 	border: none;
 	line-height: 1.4em;
 	padding: 3px !important;
+	text-align: left;
 	font-size: 94%;
 }
 
 div.magnify {
 	border: none !important;
 	background: none !important;
+	float: right;
 	margin-left: 3px;
 }
 
