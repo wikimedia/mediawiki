@@ -571,6 +571,6 @@ class ArchivedFile {
 	public function userCan( $field, User $user = null ) {
 		$this->load();
 
-		return Revision::userCanBitfield( $this->deleted, $field, $user );
+		return Revision::userCanBitfield( $this->deleted, $field, $user, $this->getTitle() );
 	}
 }

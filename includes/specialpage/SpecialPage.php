@@ -39,7 +39,7 @@ class SpecialPage {
 
 	// Minimum user level required to access this page, or "" for anyone.
 	// Also used to categorise the pages in Special:Specialpages
-	private $mRestriction;
+	protected $mRestriction;
 
 	// Listed in Special:Specialpages?
 	private $mListed;
