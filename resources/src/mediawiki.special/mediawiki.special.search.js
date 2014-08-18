@@ -48,6 +48,11 @@
 			} );
 		} ).trigger( 'change' );
 
+		// When saving settings, use the proper request method (POST instead of GET).
+		$( '#mw-search-powersearch-remember' ).change( function () {
+			this.form.method = this.checked ? 'post' : 'get';
+		} ).trigger( 'change' );
+
 	} );
 
 }( mediaWiki, jQuery ) );
