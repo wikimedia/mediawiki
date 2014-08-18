@@ -313,11 +313,13 @@ input#wpSummary {
 /* @noflip */
 .mw-content-ltr .magnify {
 	float: right;
+	margin-left: 3px;
 }
 
 /* @noflip */
 .mw-content-rtl .magnify {
 	float: left;
+	margin-right: 3px;
 }
 
 /**
