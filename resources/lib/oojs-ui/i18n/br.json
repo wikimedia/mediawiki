@@ -6,9 +6,13 @@
 			"Y-M D"
 		]
 	},
-	"ooui-dialog-action-close": "Serriñ",
 	"ooui-outline-control-move-down": "Lakaat an elfenn da ziskenn",
 	"ooui-outline-control-move-up": "Lakaat an elfenn da bignat",
 	"ooui-outline-control-remove": "Tennañ an elfenn",
-	"ooui-toolbar-more": "Muioc'h"
+	"ooui-toolbar-more": "Muioc'h",
+	"ooui-dialog-message-accept": "Mat eo",
+	"ooui-dialog-message-reject": "Nullañ",
+	"ooui-dialog-process-error": "Un dra bennak a-dreuz a zo bet",
+	"ooui-dialog-process-dismiss": "Disteurel",
+	"ooui-dialog-process-retry": "Klask en-dro"
 }

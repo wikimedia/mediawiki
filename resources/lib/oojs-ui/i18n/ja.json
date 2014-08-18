@@ -4,16 +4,17 @@
 			"Fryed-peach",
 			"Miya",
 			"Penn Station",
-			"Shirayuki"
+			"Shirayuki",
+			"Takot"
 		]
 	},
-	"ooui-dialog-action-close": "閉じる",
 	"ooui-outline-control-move-down": "項目を下に移動させる",
 	"ooui-outline-control-move-up": "項目を上に移動させる",
 	"ooui-outline-control-remove": "項目を除去",
 	"ooui-toolbar-more": "その他",
-	"ooui-dialog-confirm-title": "確認",
-	"ooui-dialog-confirm-default-prompt": "本当によろしいですか?",
-	"ooui-dialog-confirm-default-ok": "OK",
-	"ooui-dialog-confirm-default-cancel": "キャンセル"
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "キャンセル",
+	"ooui-dialog-process-error": "エラーが発生しました…",
+	"ooui-dialog-process-dismiss": "閉じる",
+	"ooui-dialog-process-retry": "もう一度お試しください"
 }
