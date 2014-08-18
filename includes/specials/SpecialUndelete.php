@@ -720,10 +720,10 @@ class SpecialUndelete extends SpecialPage {
 		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $user->isAllowed( 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
 
-		if ( $user->isAllowed( 'undelete' ) && !$user->isBlocked() ) {
+		if ( $this->isAllowed( 'undelete' ) && !$user->isBlocked() ) {
 			$this->mAllowed = true; // user can restore
 			$this->mCanView = true; // user can view content
-		} elseif ( $user->isAllowed( 'deletedtext' ) ) {
+		} elseif ( $this->isAllowed( 'deletedtext' ) ) {
 			$this->mAllowed = false; // user cannot restore
 			$this->mCanView = true; // user can view content
 			$this->mRestore = false;
@@ -752,14 +752,35 @@ class SpecialUndelete extends SpecialPage {
 		}
 	}
 
+	/**
+	 * Checks whether a user is allowed the permission for the
+	 * specific title if one is set.
+	 *
+	 * @param string $permission
+	 * @param User $user
+	 * @return bool
+	 */
+	private function isAllowed( $permission, User $user = null ) {
+		$user = $user ? : $this->getUser();
+		if ( $this->mTargetObj !== null ) {
+			return $this->mTargetObj->userCan( $permission, $user );
+		} else {
+			return $user->isAllowed( $permission );
+		}
+	}
+
+	function userCanExecute( User $user ) {
+		return $this->isAllowed( $this->mRestriction, $user );
+	}
+
 	function execute( $par ) {
-		$this->checkPermissions();
 		$user = $this->getUser();
 
 		$this->setHeaders();
 		$this->outputHeader();
 
 		$this->loadRequest( $par );
+		$this->checkPermissions(); // Needs to be after mTargetObj is set
 
 		$out = $this->getOutput();
 
@@ -1458,12 +1479,14 @@ class SpecialUndelete extends SpecialPage {
 		$ts = wfTimestamp( TS_MW, $row->fa_timestamp );
 		$user = $this->getUser();
 
-		if ( $this->mAllowed && $row->fa_storage_key ) {
-			$checkBox = Xml::check( 'fileid' . $row->fa_id );
+		$checkBox = '';
+		if ( $this->mCanView && $row->fa_storage_key ) {
+			if ( $this->mAllowed ) {
+				$checkBox = Xml::check( 'fileid' . $row->fa_id );
+			}
 			$key = urlencode( $row->fa_storage_key );
 			$pageLink = $this->getFileLink( $file, $this->getPageTitle(), $ts, $key );
 		} else {
-			$checkBox = '';
 			$pageLink = $this->getLanguage()->userTimeAndDate( $ts, $user );
 		}
 		$userLink = $this->getFileUser( $file );
@@ -1475,8 +1498,8 @@ class SpecialUndelete extends SpecialPage {
 		$comment = $this->getFileComment( $file );
 
 		// Add show/hide deletion links if available
-		$canHide = $user->isAllowed( 'deleterevision' );
-		if ( $canHide || ( $file->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) ) {
+		$canHide = $this->isAllowed( 'deleterevision' );
+		if ( $canHide || ( $file->getVisibility() && $this->isAllowed( 'deletedhistory' ) ) ) {
 			if ( !$file->userCan( File::DELETED_RESTRICTED, $user ) ) {
 				// Revision was hidden from sysops
 				$revdlink = Linker::revDeleteLinkDisabled( $canHide );
