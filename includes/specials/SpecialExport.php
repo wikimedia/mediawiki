@@ -364,8 +364,9 @@ class SpecialExport extends SpecialPage {
 			$buffer = WikiExporter::STREAM;
 
 			// This might take a while... :D
+			$maxTime = $this->getConfig()->get( 'ExportMaxTime' );
 			wfSuppressWarnings();
-			set_time_limit( 0 );
+			set_time_limit( $maxTime );
 			wfRestoreWarnings();
 		}
 
