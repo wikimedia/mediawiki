@@ -36,7 +36,8 @@
 			"아라",
 			"Mostafadaneshvar",
 			"Pouyana",
-			"Oldstoneage"
+			"Oldstoneage",
+			"Omid.koli"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -694,7 +695,7 @@
 	"language-converter-depth-warning": "محدودیت عمق مبدل زبانی رد شد ($1)",
 	"node-count-exceeded-category": "صفحه‌هایی که از حداکثر تعداد گره تجاوز کرده‌اند",
 	"node-count-exceeded-category-desc": "رده برای صفحاتی که در آنها شمارنده فراتر رفته است.",
-	"node-count-exceeded-warning": "صفحه از حداکثر تعداد گره تجاوز کرد",
+	"node-count-exceeded-warning": "صفحه از حداکثر تعداد گره، فراتر است",
 	"expansion-depth-exceeded-category": "صفحه‌هایی که از حداکثر عمق بسط دادن تجاوز کرده‌اند",
 	"expansion-depth-exceeded-category-desc": "رده برای صفحاتی که در آنها عمق گسترش فراتر رفته است.",
 	"expansion-depth-exceeded-warning": "صفحه حداکثر عمق بسط دادن تجاوز کرد",
@@ -1675,8 +1676,8 @@
 	"noindex-category-desc": "این صفحه توسط ربات‌ها فهرست‌نشده‌است به این دلیل که واژه جادویی <code><nowiki>__NOINDEX__</nowiki></code> در آن یا در فضای که پرچم مجاز است دارد.",
 	"index-category-desc": "این صفحه <code><nowiki>__INDEX__</nowiki></code> درونش دارد (و در فضای نامی است که پرچم مجاز است)، و به این دلیل توسط ربات مجاز است که به‌صورت عادی نباید می‌شد.",
 	"post-expand-template-inclusion-category-desc": "پس از گسترش همهٔ الگوها، حجم صفحه بزرگتر از <code>$wgMaxArticleSize</code> است بنابراین بعضی از الگو گسترش نیافته‌اند.",
-	"post-expand-template-argument-category-desc": "پس از گسترش یک آرگومان الگو (چیزی بین آکولادهای سه‌تایی، مانند <code>{{{Foo}}}</code>) صفحه بزرگتر از <code>$wgMaxArticleSize</code> می‌شود.",
-	"expensive-parserfunction-category-desc": "توابع هزینه‌بر گران (مانند <code>#ifexist</code>) زیادی در صفجه شامل شده‌است. [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit] را ببینید.",
+	"post-expand-template-argument-category-desc": "پس از گسترش یک آرگومان الگو (چیزی بین آکولادهای سه‌تایی، مانند <code>{{{Foo}}}</code>) صفحه بزرگ‌تر از <code>$wgMaxArticleSize</code> می‌شود.",
+	"expensive-parserfunction-category-desc": "توابع هزینه‌بر گران (مانند <code>#ifexist</code>) زیادی در صفجه استفاده شده‌ است. [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit] را ببینید.",
 	"broken-file-category-desc": "رده افزود می‌شود اگر صفحه شامل یک پیوند شکسته باشد (یا یک پبوند به پروندهٔ توکاری است که وجود ندارد)",
 	"hidden-category-category-desc": "این یک ردهٔ <code><nowiki>__HIDDENCAT__</nowiki></code> درونش است که از نمایشش در جعبهٔ پیوندهای رده به‌صورت پیش‌فرض جلوگیری می‌کند.",
 	"trackingcategories-nodesc": "توضیحی وجود ندارد.",
@@ -1779,6 +1780,7 @@
 	"delete-edit-reasonlist": "ویرایش دلایل حذف",
 	"delete-toobig": "این صفحه تاریخچهٔ ویرایشی بزرگی دارد، که شامل بیش از $1 {{PLURAL:$1|نسخه|نسخه}} است.\nبه منظور جلوگیری از اختلال ناخواسته در {{SITENAME}} حذف این گونه صفحه‌ها محدود شده‌است.",
 	"delete-warning-toobig": "این صفحه تاریخچهٔ ویرایشی بزرگی دارد، که شامل بیش از $1 {{PLURAL:$1|نسخه|نسخه}} است.\nحذف آن ممکن است که عملکرد پایگاه دادهٔ {{SITENAME}} را مختل کند;\nبا احتیاط ادامه دهید.",
+	"delete-cantedit": "چون شما مجوز ویرایش این صفحه ندارید، نمی‌توانید حذفش کنید.",
 	"deleting-backlinks-warning": "''' هشدار:''' پیوند [[Special:WhatLinksHere/{{FULLPAGENAME}}|صفحات دیگر]] یا تراگنجایش صفحهٔ شما برای حذف.",
 	"rollback": "واگردانی ویرایش‌ها",
 	"rollback_short": "واگردانی",
