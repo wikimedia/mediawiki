@@ -174,11 +174,6 @@ div.magnify a {
 	user-select: none;
 }
 
-/* Temporary WMF deployment hack, to be removed before 1.24 release */
-div.magnify img {
-	display: none;
-}
-
 img.thumbborder {
 	border: 1px solid #dddddd;
 }
