@@ -1654,9 +1654,13 @@ class Revision implements IDBAccessObject {
 	 *                               self::DELETED_COMMENT = File::DELETED_COMMENT,
 	 *                               self::DELETED_USER = File::DELETED_USER
 	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @param Title|null $title A Title object to check for per-page restrictions on,
+	 *                          instead of just plain userrights
 	 * @return bool
 	 */
-	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
+	public static function userCanBitfield( $bitfield, $field, User $user = null ,
+		Title $title = null
+	) {
 		if ( $bitfield & $field ) { // aspect is deleted
 			if ( $user === null ) {
 				global $wgUser;
@@ -1670,8 +1674,19 @@ class Revision implements IDBAccessObject {
 				$permissions = array( 'deletedhistory' );
 			}
 			$permissionlist = implode( ', ', $permissions );
-			wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
-			return call_user_func_array( array( $user, 'isAllowedAny' ), $permissions );
+			if ( $title !== null ) {
+				wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
+				return call_user_func_array( array( $user, 'isAllowedAny' ), $permissions );
+			} else {
+				$text = $title->getPrefixedText();
+				wfDebug( "Checking for $permissionlist on $text due to $field match on $bitfield\n" );
+				foreach( $permissions as $perm ) {
+					if ( $title->userCan( $perm, $user ) ) {
+						return true;
+					}
+				}
+				return false;
+			}
 		} else {
 			return true;
 		}
