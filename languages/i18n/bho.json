@@ -658,7 +658,6 @@
 	"searchprofile-everything-tooltip": "सभन सामग्री में खोजीं (वार्ता पन्ना सहित)",
 	"searchprofile-advanced-tooltip": "विशेष नामस्थान में खोजीं",
 	"search-result-size": "$1 ({{PLURAL:$2|1 शब्द|$2 शब्द}})",
-	"search-result-score": "प्रासंगिकता: $1%",
 	"search-redirect": "(पुन: निर्देशण $1)",
 	"search-section": "(खंड $1)",
 	"search-suggest": "का राउर मतलब बा: $1",

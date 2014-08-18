@@ -410,8 +410,6 @@
 	"filename": "Feilnaame",
 	"badfilename": "Daer Feilnaame iss gennert warre nooch „$1“.",
 	"savefile": "Feil beilege",
-	"uploadedimage": "hot „[[$1]]“ uffglaade",
-	"overwroteimage": "hot e neie Version vun „[[$1]]“ uffglaade",
 	"uploaddisabled": "Ufflaade verbodde",
 	"uploaddisabledtext": "Es Ufflaade vun Feils iss verbodde.",
 	"watchthisupload": "Watsch des Blatt",

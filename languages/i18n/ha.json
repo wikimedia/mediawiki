@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mladanali"
+			"Mladanali",
+			"아라"
 		]
 	},
 	"tog-underline": "A shaya zaruruwa",
@@ -14,7 +15,6 @@
 	"tog-showtoolbar": "A nuna sandar kayan aiki ta gyarawa (ana buƙatar JavaScript)",
 	"tog-editondblclick": "A gyara shafuna da dabar-kiliki (ana buƙatar JavaScript)",
 	"tog-editsectiononrightclick": "A lamunta gyara shashe da kilikin dama a kan kanun shashe (ana buƙatar JavaScript)",
-	"tog-rememberpassword": "A adana bayanan loginkina a wannan kwamfyuta (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"tog-watchcreations": "A daɗa shafunan da na ƙirƙira a cikin jerina na kan ido",
 	"tog-watchdefault": "A daɗa shafunan da na gyara a cikin jerina na kan ido",
 	"tog-watchmoves": "A daɗa shafunan da na gusar a cikin jerina na kan ido",
@@ -112,10 +112,6 @@
 	"navigation": "Shawagi",
 	"qbfind": "Nemo",
 	"qbedit": "Gyarawa",
-	"vector-action-delete": "Soke",
-	"vector-action-move": "Gusarwa",
-	"vector-action-protect": "A kare",
-	"vector-view-create": "Ƙirƙira",
 	"errorpagetitle": "Tangarɗa",
 	"returnto": "Koma $1",
 	"tagline": "Daga {{SITENAME}}",
@@ -274,7 +270,6 @@
 	"searchall": "duka",
 	"powersearch-legend": "Sahihin nema",
 	"powersearch-ns": "Binciki sararen sunaye:",
-	"powersearch-redir": "Nuna turawa gaba",
 	"powersearch-toggleall": "Duka",
 	"preferences": "Saituttuka",
 	"mypreferences": "Saituttukana",
@@ -289,7 +284,7 @@
 	"recentchanges": "Sauye-sauyen baya-bayan nan",
 	"recentchanges-legend": "Zaɓi na sauye-sauyen baya-bayan nan",
 	"recentchanges-feed-description": "Bi sawun sauye-sauyen ƙarshe na wikin da ke cikin wannan kwarare",
-	"rclistfrom": "Nuna sabbin sauye-sauye tun daga $1",
+	"rclistfrom": "Nuna sabbin sauye-sauye tun daga $3 $2",
 	"rcshowhideminor": "$1 ƙananen sauye-sauye",
 	"rcshowhidebots": "Rabuwat $1",
 	"rcshowhideliu": "$1 Ma'aikata logaggi",
@@ -314,7 +309,6 @@
 	"uploadlogpage": "Rajistan girke fayiloli",
 	"filedesc": "Taƙaici",
 	"fileuploadsummary": "Taƙaici:",
-	"uploadedimage": "an girke \"[[$1]]\"",
 	"filehist": "Tarihin fayil",
 	"filehist-help": "ku Latsa rana/lokaci ku ga fayil yadda yake a wannan lokaci",
 	"filehist-deleteone": "soke",
@@ -349,7 +343,6 @@
 	"booksources-go": "Mu je",
 	"log": "Rajistoci ayyuka",
 	"allpages": "Duka shafuna",
-	"alphaindexline": "$1 zuwa $2",
 	"prevpage": "Shafi na baya ($1)",
 	"allpagesfrom": "Nuna shafuna farawa daga:",
 	"allpagesto": "Nuna shafuna har:",

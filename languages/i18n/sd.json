@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aursani"
+			"Aursani",
+			"아라"
 		]
 	},
 	"tog-showtoolbar": "سنوارپ اوزار دٻي ڏيکاريو (جاوا اسڪرپٽ)",
@@ -89,13 +90,6 @@
 	"qbmyoptions": "منهنجا صفحا",
 	"faq": "ڪپوس",
 	"faqpage": "Project:ڪپوس",
-	"vector-action-delete": "ڊاھيو",
-	"vector-action-move": "چوريو",
-	"vector-action-protect": "تحفظيو",
-	"vector-action-unprotect": "اڻتحفظيو",
-	"vector-view-create": "سرجيو",
-	"vector-view-edit": "سنواريو",
-	"vector-view-viewsource": "ڪوڊ ڏسو",
 	"errorpagetitle": "چُڪَ",
 	"returnto": "$1 ڏانهن وَرو.",
 	"tagline": "{{SITENAME}} طرفان",
@@ -125,7 +119,6 @@
 	"talkpagelinktext": "بحث",
 	"specialpage": "خاص صفحو",
 	"personaltools": "ذاتي اوزار",
-	"postcomment": "تاثرات درج ڪريو",
 	"articlepage": "مسودو ڏسو",
 	"talk": "بحث",
 	"views": "ڏيٺون",
@@ -212,7 +205,6 @@
 	"remembermypassword": "هن ڳڻپيوڪر تي مون کي ياد رکو (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"login": "لاگ اِن",
 	"nav-login-createaccount": "لاگ اِن ٿيو / کاتو کوليو",
-	"loginprompt": "{{SITENAME}} ۾ لاگ اِن ٿيڻ لاءِ ڪوڪيز جي قبوليت لازمي آهي.",
 	"userlogin": "لاگ اِن ٿيو / کاتو کوليو",
 	"logout": "لاگ آئوٽ",
 	"userlogout": "لاگ آئوٽ",
@@ -305,7 +297,6 @@
 	"prevn": "پويان {{PLURAL:$1|$1}}",
 	"nextn": "اڳيان {{PLURAL:$1|$1}}",
 	"viewprevnext": "ڏسو ($1 {{int:pipe-separator}} $2) ($3)",
-	"powersearch-redir": "چورڻن جي فهرست ڏيکاريو",
 	"preferences": "ترجيحات",
 	"mypreferences": "منهنجون ترجيحات",
 	"skin-preview": "پيش نگاهه",
@@ -324,7 +315,7 @@
 	"recentchanges": "تازيون تبديليون",
 	"recentchanges-feed-description": "ۡهن روان رسد ۾ آيل تازيون تبديليون لهو",
 	"rcnotefrom": "هيٺ '''$2''' کان ٿيندڙ تبديليون پيش ڪجن ٿيون ('''$1''' تائين ڏيکارجن ٿيون).",
-	"rclistfrom": "$1 کان شروع ٿيندڙ نيون تبديليون",
+	"rclistfrom": "$3 $2 کان شروع ٿيندڙ نيون تبديليون",
 	"rcshowhideminor": "$1 معمولي ترميمون",
 	"rcshowhidebots": "$1 بوٽس",
 	"rcshowhideliu": "$1 لاگ اِن ٿيل يوزرس",
@@ -346,7 +337,6 @@
 	"upload": "فائيل چاڙهيو",
 	"uploadbtn": "فائيل چاڙهيو",
 	"uploadlogpage": "چاڙهه لاگ",
-	"uploadedimage": "\"[[$1]]\" چاڙهيو ويو",
 	"listfiles": "فائيل فهرست",
 	"file-anchor-link": "فائيل",
 	"filehist": "فائيل جي سوانح",
@@ -408,7 +398,6 @@
 	"log": "لاگس",
 	"all-logs-page": "سڀئي لاگس",
 	"allpages": "سڀ صفحا",
-	"alphaindexline": "$1 کان $2",
 	"nextpage": "اڳيون صفحو ($1)",
 	"prevpage": "پويون صفحو ($1)",
 	"allpagesfrom": "ھتان شروع ٿيندڙ صفحا نمايو",

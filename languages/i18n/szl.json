@@ -747,7 +747,6 @@
 	"searchprofile-advanced-tooltip": "Sznupańy we uobranych raumach mjan",
 	"search-result-size": "$1 ({{PLURAL:$2|1 słowo|$2 słowa|$2 słůw}})",
 	"search-result-category-size": "{{PLURAL:$1|1 element|$1 elementy|$1 elementów}} ({{PLURAL:$2|1 kategoryjo|$2 kategoryje|$2 kategoryje}}, {{PLURAL:$3|1 uobrozek|$3 uobrozki|$3 uobrozkow}})",
-	"search-result-score": "Akuratność: $1%",
 	"search-redirect": "(půnkńyńćy $1)",
 	"search-section": "(tajla $1)",
 	"search-suggest": "Myśloł żeś: $1 ?",

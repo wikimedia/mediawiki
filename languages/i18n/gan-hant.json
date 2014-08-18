@@ -716,8 +716,6 @@
 	"fileexists-shared-forbidden": "到共用檔案庫裡度有嘞同名嗰檔案；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[File:$1|thumb|center|$1]]",
 	"uploadwarning": "上傳警告",
 	"savefile": "保存檔案",
-	"uploadedimage": "上傳正哩\"[[$1]]\"",
-	"overwroteimage": "上傳正哩\"[[$1]]\"嗰新版本",
 	"uploaddisabled": "上傳伓正",
 	"uploaddisabledtext": "上傳伓正文件到{{SITENAME}}。",
 	"uploadscripted": "箇隻檔案包到可能會誤導網絡瀏覽器錯誤解釋嗰 HTML 或腳本代碼。",

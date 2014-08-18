@@ -1705,7 +1705,7 @@
 	"noindex-category-desc": "Ta strona nie jest indeksowana przez roboty, ponieważ ma wpisane magiczne słowo <code><nowiki>__NOINDEX__</nowiki></code> i znajduje się w przestrzeni nazw, w której ta flaga jest dozwolona.",
 	"index-category-desc": "Na stronie znajduje się magiczne słowo <code><nowiki>__INDEX__</nowiki></code> (i strona znajduje się w przestrzeni nazw, w której jest ono dozwolone), więc jest indeksowana przez wyszukiwarki nawet wtedy, gdy normalnie by się to nie działo.",
 	"post-expand-template-inclusion-category-desc": "Rozmiar tej strony jest większy niż <code>$wgMaxArticleSize</code> po rozszerzeniu wszystkich szablonów, więc część szablonów nie jest rozszerzonych.",
-	"post-expand-template-argument-category-desc": "Po rozwinięciu argumentu szablonu (coś w potrójnych nawiasach, np. <code>{{{Foo}}}</code>) długość strony przekracza <code>$wgMaxArticleSize</code>.",
+	"post-expand-template-argument-category-desc": "Długość strony przekracza <code>$wgMaxArticleSize</code> po rozwinięciu argumentu szablonu (coś w potrójnych nawiasach, np. <code>{{{Foo}}}</code>).",
 	"expensive-parserfunction-category-desc": "Na stronie używanych jest zbyt wiele wymagających funkcji parsera (takich jak <code>#ifexist</code>). Więcej informacji na stronie [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
 	"broken-file-category-desc": "Strona zawiera nieprawidłowe odwołania do plików (odwołania do nieistniejących plików).",
 	"hidden-category-category-desc": "To jest kategoria z <code><nowiki>__HIDDENCAT__</nowiki></code>, co zapobiega wyświetlaniu jej w sekcji z kategoriami na stronie.",
