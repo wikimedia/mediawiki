@@ -170,7 +170,7 @@ class RepoGroup {
 	/**
 	 * Search repositories for many files at once.
 	 *
-	 * @param array $items An array of titles, or an array of findFile() options with
+	 * @param array $inputItems An array of titles, or an array of findFile() options with
 	 *    the "title" option giving the title. Example:
 	 *
 	 *     $findItem = array( 'title' => $title, 'private' => true );
@@ -183,10 +183,6 @@ class RepoGroup {
 	 *       The search title uses the input titles; the other is the final post-redirect title.
 	 *       All titles are returned as string DB keys and the inner array is associative.
 	 * @return array Map of (file name => File objects) for matches
-	 *
-	 * @param array $inputItems
-	 * @param int $flags
-	 * @return array
 	 */
 	function findFiles( array $inputItems, $flags = 0 ) {
 		if ( !$this->reposInitialised ) {
