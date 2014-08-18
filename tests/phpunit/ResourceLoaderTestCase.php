@@ -1,10 +1,10 @@
 <?php
 
 abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
-	protected static function getResourceLoaderContext() {
+	protected static function getResourceLoaderContext( $lang = 'en' ) {
 		$resourceLoader = new ResourceLoader();
 		$request = new FauxRequest( array(
-				'lang' => 'en',
+				'lang' => $lang,
 				'modules' => 'startup',
 				'only' => 'scripts',
 				'skin' => 'vector',
