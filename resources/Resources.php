@@ -1459,6 +1459,8 @@ return array(
 		'styles' => array(
 			'resources/src/mediawiki.ui/components/checkbox.less',
 		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	// Lightweight module for anchor styles
 	'mediawiki.ui.anchor' => array(
