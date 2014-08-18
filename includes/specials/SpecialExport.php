@@ -365,7 +365,7 @@ class SpecialExport extends SpecialPage {
 
 			// This might take a while... :D
 			wfSuppressWarnings();
-			set_time_limit( 0 );
+			set_time_limit( $this->getConfig()->get( 'ExportMaxTime' ) );
 			wfRestoreWarnings();
 		}
 
