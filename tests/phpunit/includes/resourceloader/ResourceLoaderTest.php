@@ -91,6 +91,36 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * What happens when you mix @embed and @noflip?
+	 * This really is an integration test, but oh well.
+	 */
+	public function testMixedCssAnnotations(  ) {
+		$basePath = __DIR__ . '/../../data/css';
+		$testModule = new ResourceLoaderFileModule( array(
+			'localBasePath' => $basePath,
+			'styles' => array( 'test.css' ),
+		) );
+		$expectedModule = new ResourceLoaderFileModule( array(
+			'localBasePath' => $basePath,
+			'styles' => array( 'expected.css' ),
+		) );
+
+		$contextLtr = self::getResourceLoaderContext( 'en' );
+		$contextRtl = self::getResourceLoaderContext( 'he' );
+
+		$this->assertEquals(
+			$expectedModule->getStyles( $contextLtr ),
+			str_replace( '/*@noflip*/ ', '', $testModule->getStyles( $contextLtr ) ),
+			"/*@noflip*/ with /*@embed*/ gives correct results in LTR mode"
+		);
+		$this->assertEquals(
+			$expectedModule->getStyles( $contextLtr ),
+			str_replace( '/*@noflip*/ ', '', $testModule->getStyles( $contextRtl ) ),
+			"/*@noflip*/ with /*@embed*/ gives correct results in RTL mode"
+		);
+	}
+
+	/**
 	 * @dataProvider providePackedModules
 	 * @covers ResourceLoader::makePackedModulesString
 	 */
