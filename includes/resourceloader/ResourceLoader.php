@@ -550,6 +550,22 @@ class ResourceLoader {
 	}
 
 	/**
+	 * Get the URL to the api.php endpoint for the given
+	 * ResourceLoader source
+	 *
+	 * @since 1.24
+	 * @param string $source
+	 * @throws MWException On an invalid $source name
+	 * @return string
+	 */
+	public function getAPIScript( $source ) {
+		if ( !isset( $this->sources[$source] ) ) {
+			throw new MWException( "The $source source was never registered in ResourceLoader." );
+		}
+		return $this->sources[$source]['apiScript'];
+	}
+
+	/**
 	 * Output a response to a load request, including the content-type header.
 	 *
 	 * @param ResourceLoaderContext $context Context in which a response should be formed

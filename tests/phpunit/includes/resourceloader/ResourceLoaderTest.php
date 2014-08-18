@@ -146,19 +146,28 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @covers ResourceLoader::getLoadScript
+	 * @covers ResourceLoader::getAPIScript
 	 */
-	public function testGetLoadScript() {
+	public function testGetLoadAndAPIScript() {
 		$this->setMwGlobals( 'wgResourceLoaderSources', array() );
 		$rl = new ResourceLoader();
 		$sources = self::fakeSources();
 		$rl->addSource( $sources );
 		foreach ( array( 'examplewiki', 'example2wiki' ) as $name ) {
 			$this->assertEquals( $rl->getLoadScript( $name ), $sources[$name]['loadScript'] );
+			$this->assertEquals( $rl->getAPIScript( $name ), $sources[$name]['apiScript'] );
 		}
 
 		try {
 			$rl->getLoadScript( 'thiswasneverreigstered' );
 			$this->assertTrue( false, 'ResourceLoader::getLoadScript should have thrown an exception' );
+		} catch ( MWException $e ) {
+			$this->assertTrue( true );
+		}
+
+		try {
+			$rl->getAPIScript( 'thiswasneverreigstered' );
+			$this->assertTrue( false, 'ResourceLoader::getAPIScript should have thrown an exception' );
 		} catch ( MWException $e ) {
 			$this->assertTrue( true );
 		}
