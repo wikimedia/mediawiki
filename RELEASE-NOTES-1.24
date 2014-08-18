@@ -333,6 +333,7 @@ changes to languages because of Bugzilla reports.
 * Action::checkCanExecute() no longer has a return value.
 * Removed cleanupForIRC(), loadFromCurRow(), newFromCurRow(), notifyRC2UDP()
   and sendToUDP() from RecentChange.php. (deprecated since 1.22)
+* Removed EnhancedChangesList::arrow(), sideArrow(), downArrow(), spacerArrow().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

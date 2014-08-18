@@ -475,50 +475,6 @@ class EnhancedChangesList extends ChangesList {
 	}
 
 	/**
-	 * Generate HTML for an arrow or placeholder graphic
-	 * @param string $dir One of '', 'd', 'l', 'r'
-	 * @param string $alt
-	 * @param string $title
-	 * @return string HTML "<img>" tag
-	 */
-	protected function arrow( $dir, $alt = '', $title = '' ) {
-		global $wgStylePath;
-		$encUrl = htmlspecialchars( $wgStylePath . '/common/images/Arr_' . $dir . '.png' );
-		$encAlt = htmlspecialchars( $alt );
-		$encTitle = htmlspecialchars( $title );
-
-		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" alt=\"$encAlt\" title=\"$encTitle\" />";
-	}
-
-	/**
-	 * Generate HTML for a right- or left-facing arrow,
-	 * depending on language direction.
-	 * @return string HTML "<img>" tag
-	 */
-	protected function sideArrow() {
-		$dir = $this->getLanguage()->isRTL() ? 'l' : 'r';
-
-		return $this->arrow( $dir, '+', $this->msg( 'rc-enhanced-expand' )->text() );
-	}
-
-	/**
-	 * Generate HTML for a down-facing arrow
-	 * depending on language direction.
-	 * @return string HTML "<img>" tag
-	 */
-	protected function downArrow() {
-		return $this->arrow( 'd', '-', $this->msg( 'rc-enhanced-hide' )->text() );
-	}
-
-	/**
-	 * Generate HTML for a spacer image
-	 * @return string HTML "<img>" tag
-	 */
-	protected function spacerArrow() {
-		return $this->arrow( '', codepointToUtf8( 0xa0 ) ); // non-breaking space
-	}
-
-	/**
 	 * Enhanced RC ungrouped line.
 	 *
 	 * @param RecentChange|RCCacheEntry $rcObj
