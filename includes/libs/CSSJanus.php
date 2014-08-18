@@ -179,6 +179,15 @@ class CSSJanus {
 		$css = $noFlipClass->detokenize( $css );
 		$css = $noFlipSingle->detokenize( $css );
 
+		// Remove remaining /* @noflip */ annotations, they won't be needed anymore
+		// and can interfere with other code (bug 69698).
+		$patt = self::$patterns['noflip_annotation'];
+		$css = preg_replace( "/($patt)\\s*/i", '', $css );
+		
+		if ( strstr( $css, '@noflip' ) ) {
+			echo $css; exit();
+		}
+
 		return $css;
 	}
 
