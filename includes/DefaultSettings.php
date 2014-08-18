@@ -6054,6 +6054,15 @@ $wgExportAllowHistory = true;
 $wgExportMaxHistory = 0;
 
 /**
+ * Max amount of server time in seconds that will be used when
+ * trying to export pages, if 0 will allow an unlimited amount
+ * of time. Does not affect export requests via the API.
+ *
+ * @since 1.24
+ */
+$wgExportMaxTime = 0;
+
+/**
  * Return distinct author list (when not returning full history)
  */
 $wgExportAllowListContributors = false;
