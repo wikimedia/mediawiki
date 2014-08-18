@@ -406,63 +406,72 @@ class CSSJanusTest extends MediaWikiTestCase {
 			array(
 				// before selector (single)
 				'/* @noflip */ div { float: left; }'
+				'div { float: left; }'
 			),
 			array(
 				// before selector (multiple)
 				'/* @noflip */ div, .notme { float: left; }'
+				'div, .notme { float: left; }'
 			),
 			array(
 				// inside selector
 				'div, /* @noflip */ .foo { float: left; }'
+				'div, .foo { float: left; }'
 			),
 			array(
 				// after selector
 				'div, .notme /* @noflip */ { float: left; }'
+				'div, .notme { float: left; }'
 			),
 			array(
 				// before multiple rules
 				'/* @noflip */ div { float: left; } .foo { float: left; }',
-				'/* @noflip */ div { float: left; } .foo { float: right; }'
+				'div { float: left; } .foo { float: right; }'
 			),
 			array(
 				// support parentheses in selector
 				'/* @noflip */ .test:not(:first) { margin-right: -0.25em; margin-left: 0.25em; }',
-				'/* @noflip */ .test:not(:first) { margin-right: -0.25em; margin-left: 0.25em; }'
+				'.test:not(:first) { margin-right: -0.25em; margin-left: 0.25em; }'
 			),
 			array(
 				// after multiple rules
 				'.foo { float: left; } /* @noflip */ div { float: left; }',
-				'.foo { float: right; } /* @noflip */ div { float: left; }'
+				'.foo { float: right; } div { float: left; }'
 			),
 			array(
 				// before multiple properties
 				'div { /* @noflip */ float: left; text-align: left; }',
-				'div { /* @noflip */ float: left; text-align: right; }'
+				'div { float: left; text-align: right; }'
 			),
 			array(
 				// after multiple properties
 				'div { float: left; /* @noflip */ text-align: left; }',
-				'div { float: right; /* @noflip */ text-align: left; }'
+				'div { float: right; text-align: left; }'
 			),
 			array(
 				// before a *= attribute selector with multiple properties
 				'/* @noflip */ div.foo[bar*=baz] { float:left; clear: left; }'
+				'div.foo[bar*=baz] { float:left; clear: left; }'
 			),
 			array(
 				// before a ^= attribute selector with multiple properties
 				'/* @noflip */ div.foo[bar^=baz] { float:left; clear: left; }'
+				'div.foo[bar^=baz] { float:left; clear: left; }'
 			),
 			array(
 				// before a ~= attribute selector with multiple properties
 				'/* @noflip */ div.foo[bar~=baz] { float:left; clear: left; }'
+				'div.foo[bar~=baz] { float:left; clear: left; }'
 			),
 			array(
 				// before a = attribute selector with multiple properties
 				'/* @noflip */ div.foo[bar=baz] { float:left; clear: left; }'
+				'div.foo[bar=baz] { float:left; clear: left; }'
 			),
 			array(
 				// before a quoted attribute selector with multiple properties
 				'/* @noflip */ div.foo[bar=\'baz{quux\'] { float:left; clear: left; }'
+				'div.foo[bar=\'baz{quux\'] { float:left; clear: left; }'
 			),
 
 			// Guard against css3 stuff

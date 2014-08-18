@@ -4,8 +4,7 @@
 
 /*@noflip*/ .selector { background-image: /*@embed*/ url(simple-ltr.gif); }
 
-/* Doesn't work! */
-/*.selector { /*@noflip* / /*@embed* / background-image: url(simple-ltr.gif); }*/
+.selector { /*@noflip*/ /*@embed*/ background-image: url(simple-ltr.gif); }
 
 .selector { /*@embed*/ /*@noflip*/ background-image: url(simple-ltr.gif); }
 
