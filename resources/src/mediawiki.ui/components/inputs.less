@@ -62,6 +62,13 @@
 		// Remove focus glow on input[type="search"]
 		outline: 0;
 	}
+
+	// Remove red outline from inputs which have required field and invalid content.
+	// This is a Firefox only issue
+	// See https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
+	&:invalid {
+		box-shadow: none;
+	}
 }
 
 textarea.mw-ui-input {
