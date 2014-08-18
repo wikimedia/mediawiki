@@ -155,10 +155,28 @@ div.magnify {
 	margin-left: 3px;
 }
 
-div.magnify a,
-div.magnify img {
+div.magnify a {
 	display: block;
-	border: none;
+	/* Hide the text… */
+	text-indent: 15px;
+	white-space: nowrap;
+	overflow: hidden;
+	/* …and replace it with the image */
+	width: 15px;
+	height: 11px;
+	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
+	/* @embed */
+	background: url(images/magnify-clip-ltr.png) center center no-repeat;
+	/* Don't annoy people who copy-paste everything too much */
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Temporary WMF deployment hack, to be removed before 1.24 release */
+div.magnify img {
+	display: none;
 }
 
 img.thumbborder {
@@ -180,6 +198,12 @@ img.thumbborder {
 }
 
 /* @noflip */
+.mw-content-ltr div.magnify a {
+	/* @embed */
+	background-image: url(images/magnify-clip-ltr.png);
+}
+
+/* @noflip */
 .mw-content-rtl .thumbcaption {
 	text-align: right;
 }
@@ -189,6 +213,12 @@ img.thumbborder {
 	float: left;
 	margin-left: 0;
 	margin-right: 3px;
+}
+
+/* @noflip */
+.mw-content-rtl div.magnify a {
+	/* @embed */
+	background-image: url(images/magnify-clip-rtl.png);
 }
 
 /* @noflip */
