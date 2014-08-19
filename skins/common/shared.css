@@ -298,11 +298,19 @@ input#wpSummary {
 }
 
 /**
- * Image captions
+ * Image captions.
+ *
+ * This is only meant to provide the most basic of styles, visual settings shouldn't be added here.
  */
+
 /* @noflip */
 .mw-content-ltr .thumbcaption {
 	text-align: left;
+}
+
+/* @noflip */
+.mw-content-ltr .magnify {
+	float: right;
 }
 
 /* @noflip */
@@ -311,15 +319,8 @@ input#wpSummary {
 }
 
 /* @noflip */
-.mw-content-ltr .magnify {
-	float: right;
-	margin-left: 3px;
-}
-
-/* @noflip */
 .mw-content-rtl .magnify {
 	float: left;
-	margin-right: 3px;
 }
 
 /**

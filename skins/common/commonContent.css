@@ -129,7 +129,7 @@ div.thumb {
 
 div.thumbinner {
 	border: 1px solid #ccc;
-	padding: 3px !important;
+	padding: 3px;
 	background-color: #f9f9f9;
 	font-size: 94%;
 	text-align: center;
@@ -143,32 +143,60 @@ html .thumbimage {
 html .thumbcaption {
 	border: none;
 	line-height: 1.4em;
-	padding: 3px !important;
-	text-align: left;
+	padding: 3px;
 	font-size: 94%;
+	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
+	text-align: left;
 }
 
 div.magnify {
-	border: none !important;
-	background: none !important;
+	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
 	float: right;
 	margin-left: 3px;
 }
 
-div.magnify a, div.magnify img {
+div.magnify a,
+div.magnify img {
 	display: block;
-	border: none !important;
-	background: none !important;
-}
-
-/* @noflip */div.tright {
-	margin: .5em 0 1.3em 1.4em;
-}
-
-/* @noflip */div.tleft {
-	margin: .5em 1.4em 1.3em 0;
+	border: none;
 }
 
 img.thumbborder {
 	border: 1px solid #dddddd;
+}
+
+/* Directionality-specific styles for thumbnails - their positioning depends on content language */
+
+/* @noflip */
+.mw-content-ltr .thumbcaption {
+	text-align: left;
+}
+
+/* @noflip */
+.mw-content-ltr .magnify {
+	float: right;
+	margin-left: 3px;
+	margin-right: 0;
+}
+
+/* @noflip */
+.mw-content-rtl .thumbcaption {
+	text-align: right;
+}
+
+/* @noflip */
+.mw-content-rtl .magnify {
+	float: left;
+	margin-left: 0;
+	margin-right: 3px;
+}
+
+/* @noflip */
+div.tright {
+	margin: .5em 0 1.3em 1.4em;
+}
+
+/* @noflip */
+div.tleft {
+	margin: .5em 1.4em 1.3em 0;
 }
