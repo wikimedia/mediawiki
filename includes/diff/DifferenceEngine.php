@@ -335,6 +335,7 @@ class DifferenceEngine extends ContextSource {
 			} else {
 				$oldminor = '';
 			}
+			wfRunHooks( 'ShowDiffPageOldMinor', array( $this->mNewRev, &$oldminor ) );
 
 			$ldel = $this->revisionDeleteLink( $this->mOldRev );
 			$oldRevisionHeader = $this->getRevisionHeader( $this->mOldRev, 'complete' );
@@ -379,6 +380,7 @@ class DifferenceEngine extends ContextSource {
 		} else {
 			$newminor = '';
 		}
+		wfRunHooks( 'ShowDiffPageNewMinor', array( $this->mNewRev, &$newminor ) );
 
 		# Handle RevisionDelete links...
 		$rdel = $this->revisionDeleteLink( $this->mNewRev );
