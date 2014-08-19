@@ -56,6 +56,11 @@ class OldChangesList extends ChangesList {
 		if ( $rc->mAttribs['rc_log_type'] ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $rc->mAttribs['rc_log_type'] );
 			$this->insertLog( $s, $logtitle, $rc->mAttribs['rc_log_type'] );
+			$flags = array();
+			wfRunHooks( 'OldChangesListLogFlags', array( $rc, &$flags ) );
+			if ( $flags ) {
+				$s .= '; ' . $this->recentChangesFlags( $flags, '' );
+			}
 		// Log entries (old format) or log targets, and special pages
 		} elseif ( $rc->mAttribs['rc_namespace'] == NS_SPECIAL ) {
 			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $rc->mAttribs['rc_title'] );
@@ -66,15 +71,14 @@ class OldChangesList extends ChangesList {
 		} else {
 			$this->insertDiffHist( $s, $rc, $unpatrolled );
 			# M, N, b and ! (minor, new, bot and unpatrolled)
-			$s .= $this->recentChangesFlags(
-				array(
-					'newpage' => $rc->mAttribs['rc_type'] == RC_NEW,
-					'minor' => $rc->mAttribs['rc_minor'],
-					'unpatrolled' => $unpatrolled,
-					'bot' => $rc->mAttribs['rc_bot']
-				),
-				''
+			$flags = array(
+				'newpage' => $rc->mAttribs['rc_type'] == RC_NEW,
+				'minor' => $rc->mAttribs['rc_minor'],
+				'unpatrolled' => $unpatrolled,
+				'bot' => $rc->mAttribs['rc_bot']
 			);
+			wfRunHooks( 'OldChangesListRecentChangesFlags', array( $rc, &$flags ) );
+			$s .= $this->recentChangesFlags( $flags, '' );
 			$this->insertArticleLink( $s, $rc, $unpatrolled, $watched );
 		}
 		# Edit/log timestamp

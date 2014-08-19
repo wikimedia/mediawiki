@@ -191,6 +191,7 @@ class EnhancedChangesList extends ChangesList {
 		$namehidden = true;
 		$allLogs = true;
 		$oldid = '';
+		$flags = array();
 		foreach ( $block as $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
 			if ( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
@@ -226,7 +227,8 @@ class EnhancedChangesList extends ChangesList {
 			if ( !$rcObj->mAttribs['rc_minor'] ) {
 				$allMinors = false;
 			}
-
+			wfRunHooks( 'EnhancedChangesListMainlineRecentChangesFlags', array(
+				$rcObj, &$flags ) );
 			$userlinks[$u]++;
 		}
 
@@ -255,12 +257,13 @@ class EnhancedChangesList extends ChangesList {
 		$r .= "<td>$tl</td>";
 
 		# Main line
-		$r .= '<td class="mw-enhanced-rc">' . $this->recentChangesFlags( array(
+		$flags = array_merge( $flags, array(
 			'newpage' => $isnew, # show, when one have this flag
 			'minor' => $allMinors, # show only, when all have this flag
 			'unpatrolled' => $unpatrolled, # show, when one have this flag
 			'bot' => $allBots, # show only, when all have this flag
 		) );
+		$r .= '<td class="mw-enhanced-rc">' . $this->recentChangesFlags( $flags );
 
 		# Timestamp
 		$r .= '&#160;' . $block[0]->timestamp . '&#160;</td><td>';
@@ -398,12 +401,14 @@ class EnhancedChangesList extends ChangesList {
 				? ' class="mw-enhanced-watched"' : '';
 
 			$r .= '<tr' . $trClass . '><td></td><td class="mw-enhanced-rc">';
-			$r .= $this->recentChangesFlags( array(
+			$flags = array(
 				'newpage' => $type == RC_NEW,
 				'minor' => $rcObj->mAttribs['rc_minor'],
 				'unpatrolled' => $rcObj->unpatrolled,
 				'bot' => $rcObj->mAttribs['rc_bot'],
-			) );
+			);
+			wfRunHooks( 'EnhancedChangesListSubentryRecentChangesFlags', array( $rcObj, &$flags ) );
+			$r .= $this->recentChangesFlags( $flags );
 			$r .= '&#160;</td><td class="mw-enhanced-rc-nested"><span class="mw-enhanced-rc-time">';
 
 			$params = $queryParams;
@@ -503,12 +508,14 @@ class EnhancedChangesList extends ChangesList {
 
 		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
 		# Flag and Timestamp
-		$r .= $this->recentChangesFlags( array(
+		$flags = array(
 			'newpage' => $type == RC_NEW,
 			'minor' => $rcObj->mAttribs['rc_minor'],
 			'unpatrolled' => $rcObj->unpatrolled,
 			'bot' => $rcObj->mAttribs['rc_bot'],
-		) );
+		);
+		wfRunHooks( 'EnhancedChangesBlockLineFlags', array( $rcObj, &$flags ) );
+		$r .= $this->recentChangesFlags( $flags );
 		$r .= '&#160;' . $rcObj->timestamp . '&#160;</td><td>';
 		# Article or log link
 		if ( $logType ) {
