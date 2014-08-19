@@ -4611,7 +4611,7 @@ class Language {
 	 * @param Title $title Title object to link
 	 * @param int $offset
 	 * @param int $limit
-	 * @param array|string $query Optional URL query parameter string
+	 * @param array $query Optional URL query parameter string
 	 * @param bool $atend Optional param for specified if this is the last page
 	 * @return string
 	 */
