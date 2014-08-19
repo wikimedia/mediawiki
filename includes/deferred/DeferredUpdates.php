@@ -99,23 +99,35 @@ class DeferredUpdates {
 			$dbw = wfGetDB( DB_MASTER );
 		}
 
-		/** @var DeferrableUpdate $update */
-		foreach ( $updates as $update ) {
-			try {
-				$update->doUpdate();
-
-				if ( $doCommit && $dbw->trxLevel() ) {
-					$dbw->commit( __METHOD__, 'flush' );
-				}
-			} catch ( MWException $e ) {
-				// We don't want exceptions thrown during deferred updates to
-				// be reported to the user since the output is already sent.
-				// Instead we just log them.
-				if ( !$e instanceof ErrorPageError ) {
-					MWExceptionHandler::logException( $e );
+		// Initial update count from self::$updates
+		$updateCount = count( self::$updates );
+		do {
+			/** @var DeferrableUpdate $update */
+			foreach ( $updates as $update ) {
+				try {
+					$update->doUpdate();
+	
+					if ( $doCommit && $dbw->trxLevel() ) {
+						$dbw->commit( __METHOD__, 'flush' );
+					}
+				} catch ( MWException $e ) {
+					// We don't want exceptions thrown during deferred updates to
+					// be reported to the user since the output is already sent.
+					// Instead we just log them.
+					if ( !$e instanceof ErrorPageError ) {
+						MWExceptionHandler::logException( $e );
+					}
 				}
 			}
-		}
+			$updates = array();
+			$newUpdateCount = count( self::$updates );
+
+			// New update is added to self::$updates within deferred update
+			if ( $updateCount < $newUpdateCount ) {
+				$updates = self::$updates = array_slice( self::$updates, $updateCount );
+				$updateCount = count( $updates );
+			}
+		} while ( $updates );
 
 		self::clearPendingUpdates();
 		wfProfileOut( __METHOD__ );
