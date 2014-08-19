@@ -99,22 +99,27 @@ class DeferredUpdates {
 			$dbw = wfGetDB( DB_MASTER );
 		}
 
-		/** @var DeferrableUpdate $update */
-		foreach ( $updates as $update ) {
-			try {
-				$update->doUpdate();
+		while ( $updates ) {
+			self::$updates = array();
 
-				if ( $doCommit && $dbw->trxLevel() ) {
-					$dbw->commit( __METHOD__, 'flush' );
-				}
-			} catch ( MWException $e ) {
-				// We don't want exceptions thrown during deferred updates to
-				// be reported to the user since the output is already sent.
-				// Instead we just log them.
-				if ( !$e instanceof ErrorPageError ) {
-					MWExceptionHandler::logException( $e );
+			/** @var DeferrableUpdate $update */
+			foreach ( $updates as $update ) {
+				try {
+					$update->doUpdate();
+
+					if ( $doCommit && $dbw->trxLevel() ) {
+						$dbw->commit( __METHOD__, 'flush' );
+					}
+				} catch ( MWException $e ) {
+					// We don't want exceptions thrown during deferred updates to
+					// be reported to the user since the output is already sent.
+					// Instead we just log them.
+					if ( !$e instanceof ErrorPageError ) {
+						MWExceptionHandler::logException( $e );
+					}
 				}
 			}
+			$updates = self::$updates;
 		}
 
 		self::clearPendingUpdates();
