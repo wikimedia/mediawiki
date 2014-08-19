@@ -194,7 +194,7 @@ class RecentChange {
 	 * @return array
 	 */
 	public static function selectFields() {
-		return array(
+		$fields = array(
 			'rc_id',
 			'rc_timestamp',
 			'rc_user',
@@ -218,8 +218,10 @@ class RecentChange {
 			'rc_logid',
 			'rc_log_type',
 			'rc_log_action',
-			'rc_params',
+			'rc_params'
 		);
+		wfRunHooks( 'RecentChangesFields', array( &$fields ) );
+		return $fields;
 	}
 
 	# Accessors

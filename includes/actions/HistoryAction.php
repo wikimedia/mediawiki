@@ -648,8 +648,13 @@ class HistoryPager extends ReverseChronologicalPager {
 			Linker::revUserTools( $rev, true ) . "</span>";
 		$s .= $dirmark;
 
+		$space = true;
+		wfRunHooks( 'HistoryLineFlags', array( $row, &$space, &$s ) );
 		if ( $rev->isMinor() ) {
-			$s .= ' ' . ChangesList::flag( 'minor' );
+			if ( $space ) {
+				$s .= ' ';
+			}
+			$s .= ChangesList::flag( 'minor' );
 		}
 
 		# Sometimes rev_len isn't populated

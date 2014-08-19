@@ -42,6 +42,7 @@ class Revision implements IDBAccessObject {
 	protected $mComment;
 	protected $mText;
 	protected $mTextId;
+	protected $mAttribs = array();
 
 	/**
 	 * @var stdClass|null
@@ -82,6 +83,13 @@ class Revision implements IDBAccessObject {
 	const FOR_PUBLIC = 1;
 	const FOR_THIS_USER = 2;
 	const RAW = 3;
+
+	/**
+	 * Returns attributes
+	 */
+	public function getAttributes() {
+		return $this->mAttribs;
+	}
 
 	/**
 	 * Load a page revision from a given revision ID number.
@@ -435,6 +443,8 @@ class Revision implements IDBAccessObject {
 			$fields[] = 'rev_content_model';
 		}
 
+		wfRunHooks( 'RevisionSelectFields', array( &$fields ) );
+
 		return $fields;
 	}
 
@@ -544,6 +554,9 @@ class Revision implements IDBAccessObject {
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
 			$this->mTimestamp = $row->rev_timestamp;
 			$this->mDeleted = intval( $row->rev_deleted );
+			$attribs = $this->mAttribs;
+			wfRunHooks( 'RevisionAttribs', array( $row, &$attribs ) );
+			$this->mAttribs = $attribs;
 
 			if ( !isset( $row->rev_parent_id ) ) {
 				$this->mParentId = null;
