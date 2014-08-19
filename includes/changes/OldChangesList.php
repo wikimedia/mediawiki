@@ -66,15 +66,14 @@ class OldChangesList extends ChangesList {
 		} else {
 			$this->insertDiffHist( $s, $rc, $unpatrolled );
 			# M, N, b and ! (minor, new, bot and unpatrolled)
-			$s .= $this->recentChangesFlags(
-				array(
-					'newpage' => $rc->mAttribs['rc_type'] == RC_NEW,
-					'minor' => $rc->mAttribs['rc_minor'],
-					'unpatrolled' => $unpatrolled,
-					'bot' => $rc->mAttribs['rc_bot']
-				),
-				''
+			$flags = array(
+				'newpage' => $rc->mAttribs['rc_type'] == RC_NEW,
+				'minor' => $rc->mAttribs['rc_minor'],
+				'unpatrolled' => $unpatrolled,
+				'bot' => $rc->mAttribs['rc_bot']
 			);
+			wfRunHooks( 'OldChangesListRecentChangesFlags', array( $rc, &$flags ) );
+			$s .= $this->recentChangesFlags( $flags, '' );
 			$this->insertArticleLink( $s, $rc, $unpatrolled, $watched );
 		}
 		# Edit/log timestamp
