@@ -158,6 +158,9 @@ class Title {
 
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
+
+	/** @var bool Would deleting this page be a big deletion? */
+	private $mIsBigDeletion = null;
 	// @}
 
 	/**
@@ -3271,6 +3274,7 @@ class Title {
 		$this->mEstimateRevisions = null;
 		$this->mPageLanguage = false;
 		$this->mDbPageLanguage = null;
+		$this->mIsBigDeletion = null;
 	}
 
 	/**
@@ -4377,12 +4381,32 @@ class Title {
 			return false;
 		}
 
-		$revCount = $this->estimateRevisionCount();
-		return $revCount > $wgDeleteRevisionsLimit;
+		if ( $this->mIsBigDeletion === null ) {
+			$dbr = wfGetDB( DB_SLAVE );
+
+			$innerQuery = $dbr->selectSQLText(
+				'revision',
+				'1',
+				array( 'rev_page' => $this->getArticleID() ),
+				__METHOD__,
+				array( 'LIMIT' => $wgDeleteRevisionsLimit + 1 )
+			);
+
+			$revCount = $dbr->query(
+				'SELECT COUNT(*) FROM (' . $innerQuery . ') AS innerQuery',
+				__METHOD__
+			);
+			$revCount = $revCount->fetchRow();
+			$revCount = $revCount['COUNT(*)'];
+
+			$this->mIsBigDeletion = $revCount > $wgDeleteRevisionsLimit;
+		}
+
+		return $this->mIsBigDeletion;
 	}
 
 	/**
-	 * Get the  approximate revision count of this page.
+	 * Get the approximate revision count of this page.
 	 *
 	 * @return int
 	 */
