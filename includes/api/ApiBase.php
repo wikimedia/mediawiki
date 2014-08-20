@@ -2242,11 +2242,11 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function logFeatureUsage( $feature ) {
 		$request = $this->getRequest();
-		$s = $feature .
-			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
-			' ' . $request->getIP() .
-			' "' . $request->getHeader( 'Referer' ) . '"' .
-			' "' . $request->getHeader( 'User-agent' ) . '"';
+		$s = '"' . addslashes( $feature ) . '"' .
+			' "' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) . '"' .
+			' "' . $request->getIP() . '"' .
+			' "' . addslashes( $request->getHeader( 'Referer' ) ) . '"' .
+			' "' . addslashes( $request->getHeader( 'User-agent' ) ) . '"';
 		wfDebugLog( 'api-feature-usage', $s, 'private' );
 	}
 }
