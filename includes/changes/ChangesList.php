@@ -460,14 +460,17 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	protected function numberofWatchingusers( $count ) {
-		static $cache = array();
+		static $cache = null;
+		if ( $cache == null ) {
+			$cache = new MapCacheLRU( 50 );
+		}
 		if ( $count > 0 ) {
-			if ( !isset( $cache[$count] ) ) {
-				$cache[$count] = $this->msg( 'number_of_watching_users_RCview' )
-					->numParams( $count )->escaped();
+			if ( !$cache->has( $count ) ) {
+				$cache->set( $count, $this->msg( 'number_of_watching_users_RCview' )
+					->numParams( $count )->escaped() );
 			}
 
-			return $cache[$count];
+			return $cache->get( $count );
 		} else {
 			return '';
 		}
