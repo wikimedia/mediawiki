@@ -47,7 +47,6 @@ production.
 * $wgCompiledFiles has been removed.
 * $wgSortSpecialPages was removed, the listing on Special:SpecialPages is
   now always sorted.
-* Users must be able to edit a page to be able to delete it.
 * $wgHTCPMulticastAddress, $wgHTCPMulticastRouting and $wgHTCPPort were removed.
 * $wgRC2UDPAddress, $wgRC2UDPInterwikiPrefix, $wgRC2UDPOmitBots, $wgRC2UDPPort
   and $wgRC2UDPPrefix have been removed.
@@ -60,6 +59,7 @@ production.
 * $wgImportSources can now either be a regular array, or an associative map
   specifying subprojects on the interwiki map of the target wiki, or a mix of
   the two. Existing configurations will still work.
+* Users must be able to edit through a page's protection to be able to delete it.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
