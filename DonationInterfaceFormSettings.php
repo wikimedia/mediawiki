@@ -61,22 +61,23 @@ $forms_whitelist['bt'] = array(
 /****************
  * Direct Debit *
  ****************/
-$forms_whitelist['dd'] = array(
-	'file' => $form_dirs['gc'] . '/dd/dd.html',
-	'gateway' => 'globalcollect',
-	'countries' => array(
-		'+' => array('AT', 'DE', 'ES', 'NL'),
-	),
-	'payment_methods' => array('dd' => 'ALL')
-);
-
-$forms_whitelist['dd-recurring'] = array_merge(
-	$forms_whitelist['dd'],
-	array(
-		 'file' => $form_dirs['gc'] . '/dd/dd-recurring.html',
-		 'recurring',
-	)
-);
+//commenting out to disable the form, and the whole dd paymentmethod
+//$forms_whitelist['dd'] = array(
+//	'file' => $form_dirs['gc'] . '/dd/dd.html',
+//	'gateway' => 'globalcollect',
+//	'countries' => array(
+//		'+' => array('AT', 'DE', 'ES', 'NL'),
+//	),
+//	'payment_methods' => array('dd' => 'ALL')
+//);
+//
+//$forms_whitelist['dd-recurring'] = array_merge(
+//	$forms_whitelist['dd'],
+//	array(
+//		 'file' => $form_dirs['gc'] . '/dd/dd-recurring.html',
+//		 'recurring',
+//	)
+//);
 
 /*********************
  * Electronic Wallet *
