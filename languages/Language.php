@@ -1026,9 +1026,9 @@ class Language {
 
 	/**
 	 * Pass through result from $dateTimeObj->format()
-	 * @param DateTime &$dateTimeObj
+	 * @param DateTime|bool|null &$dateTimeObj
 	 * @param string $ts
-	 * @param DateTimeZone $zone
+	 * @param DateTimeZone|bool|null $zone
 	 * @param string $code
 	 * @return string
 	 */
