@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0e50d2e336)
+ * OOjs UI v0.1.0-pre (f59a154680)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-06T12:56:55Z
+ * Date: 2014-08-20T00:30:25Z
  */
 ( function ( OO ) {
 
@@ -1193,7 +1193,9 @@ OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, timeout ) 
 				'#' + pollNodeId + ' { font-family: ' + fontFamily + '; }';
 		} else {
 			// Not an external stylesheet, or no polling required; just copy the node over
-			newNode = frameDoc.importNode( styleNode, true );
+			// Can't use importNode here because that breaks in IE
+			newNode = frameDoc.createElement( 'style' );
+			newNode.textContent = styleNode.textContent;
 		}
 		frameDoc.head.appendChild( newNode );
 	}

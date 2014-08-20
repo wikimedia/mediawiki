@@ -14,6 +14,11 @@
 	},
 	"ooui-outline-control-move-down": "انقل العنصر للأسفل",
 	"ooui-outline-control-move-up": "انقل العنصر للأعلى",
+	"ooui-outline-control-remove": "أزل العنصر",
 	"ooui-toolbar-more": "مزيد",
+	"ooui-dialog-message-accept": "موافق",
+	"ooui-dialog-message-reject": "ألغ",
+	"ooui-dialog-process-error": "حدث خطأ",
+	"ooui-dialog-process-dismiss": "أغلق",
 	"ooui-dialog-process-retry": "حاول مرة أخرى"
 }

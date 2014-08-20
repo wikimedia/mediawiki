@@ -6,16 +6,17 @@
 			"Kwj2772",
 			"LFM",
 			"아라",
-			"고기랑"
+			"고기랑",
+			"Ryuch"
 		]
 	},
-	"ooui-dialog-action-close": "닫기",
 	"ooui-outline-control-move-down": "항목을 아래로 옮기기",
 	"ooui-outline-control-move-up": "항목을 위로 옮기기",
 	"ooui-outline-control-remove": "항목 지우기",
 	"ooui-toolbar-more": "더 보기",
-	"ooui-dialog-confirm-title": "확인",
-	"ooui-dialog-confirm-default-prompt": "확실합니까?",
-	"ooui-dialog-confirm-default-ok": "확인",
-	"ooui-dialog-confirm-default-cancel": "취소"
+	"ooui-dialog-message-accept": "확인",
+	"ooui-dialog-message-reject": "취소",
+	"ooui-dialog-process-error": "오류가 발생했습니다.",
+	"ooui-dialog-process-dismiss": "숨기기",
+	"ooui-dialog-process-retry": "다시 시도하세요."
 }

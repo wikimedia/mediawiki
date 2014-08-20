@@ -5,13 +5,15 @@
 			"Event",
 			"Jeblad",
 			"Laaknor",
-			"Njardarlogar"
+			"Njardarlogar",
+			"Jdforrester"
 		]
 	},
 	"ooui-outline-control-move-down": "Flytt ned",
 	"ooui-outline-control-move-up": "Flytt opp",
 	"ooui-outline-control-remove": "Fjern element",
 	"ooui-toolbar-more": "Mer",
+	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Avbryt",
 	"ooui-dialog-process-error": "Noe gikk galt",
 	"ooui-dialog-process-dismiss": "Lukk",

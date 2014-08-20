@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0e50d2e336)
+ * OOjs UI v0.1.0-pre (f59a154680)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-06T12:56:55Z
+ * Date: 2014-08-20T00:30:25Z
  */
 .oo-ui-dialog-content > .oo-ui-window-head,
 .oo-ui-dialog-content > .oo-ui-window-body,
@@ -51,8 +51,8 @@
 }
 
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
-  top: 1em;
-  bottom: 1em;
+  top: 0;
+  bottom: 0;
   background-color: #fff;
   -webkit-transform: translate3d(0, -200%, 0);
      -moz-transform: translate3d(0, -200%, 0);
