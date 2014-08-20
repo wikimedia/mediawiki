@@ -429,7 +429,7 @@
 	"hidetoc": "This is the link used to hide the table of contents\n\n{{Identical|Hide}}",
 	"collapsible-collapse": "{{Doc-actionlink}}\nThis is the link used to collapse a collapsible element. (used as plaintext. No wikitext or html is parsed.)\n\nSee also:\n* {{msg-mw|Collapsible-expand}}\n{{Identical|Collapse}}",
 	"collapsible-expand": "{{Doc-actionlink}}\nThis is the link used to expand a collapsible element (used as plaintext. No wikitext or html is parsed.)\n\nSee also:\n* {{msg-mw|Collapsible-collapse}}\n\nSee the following example:\n{{Identical|Expand}}",
-	"confirmable-confirm": "Question asking the user to confirm a potentially uncancellable action.\n\"Yes\" and \"No\" buttons are displayed beside it.\n\nSee also:\n* {{msg-mw|confirmable-yes}}\n* {{msg-mw|confirmable-no}}",
+	"confirmable-confirm": "Question asking the user to confirm a potentially uncancellable action.\n\"Yes\" and \"No\" buttons are displayed beside it.\n\nSee also:\n* {{msg-mw|confirmable-yes}}\n* {{msg-mw|confirmable-no}}\n{{Identical|Are you sure?}}",
 	"confirmable-yes": "{{Doc-actionlink}}\nText of a button that will confirm triggering of a potentially uncancellable action.\n\nSee also:\n* {{msg-mw|confirmable-confirm}}\n* {{msg-mw|confirmable-no}}\n{{Identical|Yes}}",
 	"confirmable-no": "{{Doc-actionlink}}\nText of a button that will cancel triggering of a potentially uncancellable action.\n\nSee also:\n* {{msg-mw|confirmable-confirm}}\n* {{msg-mw|confirmable-yes}}\n{{Identical|No}}",
 	"thisisdeleted": "Message shown on a deleted page when the user has the undelete right. Parameters:\n* $1 - a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text\nSee also:\n* {{msg-mw|viewdeleted}}",
@@ -1076,7 +1076,7 @@
 	"preferences": "Title of the [[Special:Preferences]] page.\n{{Identical|Preferences}}",
 	"preferences-summary": "{{doc-specialpagesummary|preferences}}",
 	"mypreferences": "Action link label that leads to [[Special:Preferences]]; appears in the top menu (e.g. \"Username Talk Preferences Watchlist Contributions Log out\").\n\nSee also:\n* {{msg-mw|Mypreferences}}\n* {{msg-mw|Accesskey-pt-preferences}}\n* {{msg-mw|Tooltip-pt-preferences}}\n{{Identical|Preferences}}",
-	"prefs-edits": "In user preferences.",
+	"prefs-edits": "In user preferences.\n{{Identical|Number of edits}}",
 	"prefsnologintext2": "Showed on Special:Userlogin when user tries to access their preferences before logging in",
 	"prefs-skin": "Used in user preferences.\n{{Identical|Skin}}",
 	"skin-preview": "{{doc-actionlink}}\nThe link beside each skin name in [[Special:Preferences|your user preferences]], tab \"skin\".\n{{Identical|Preview}}",
@@ -3701,6 +3701,6 @@
 	"logentry-pagelang-pagelang": "{{Logentry}}\nAdditional parameters:\n* $4 - old language code, or \"[def]\" (hard-coded)\n* $5 - new language code, or \"[def]\" (hard-coded)",
 	"default-skin-not-found": "Message shown when the default skin for this MediaWiki installation can not be found.\n\nParameters:\n* $1: skin identifier for the default skin\n* $2: list of installed skins, composed using {{msg-mw|default-skin-not-found-row-enabled}} and {{msg-mw|default-skin-not-found-row-disabled}}\n* $3: code snippet to use to enable installed skins",
 	"default-skin-not-found-no-skins": "Message shown when the default skin for this MediaWiki installation can not be found and the installation has no skins at all.\n\nParameters:\n* $1: name of the default skin",
-	"default-skin-not-found-row-enabled": "One row of the list of installed skins shown as a part of {{msg-mw|default-skin-not-found}}, for an enabled skin.\n\nParameters:\n* $1: skin identifier\n* $2: human-readable skin name",
-	"default-skin-not-found-row-disabled": "One row of the list of installed skins shown as a part of {{msg-mw|default-skin-not-found}}, for a disabled skin.\n\nParameters:\n* $1: skin identifier\n$2: human-readable skin name"
+	"default-skin-not-found-row-enabled": "One row of the list of installed skins shown as a part of the following message (for an enabled skin):\n* {{msg-mw|default-skin-not-found}}\n----\nParameters:\n* $1 - skin identifier\n* $2 - human-readable skin name\nSee also:\n* {{msg-mw|Default-skin-not-found-row-disabled}}",
+	"default-skin-not-found-row-disabled": "One row of the list of installed skins shown as a part of the following message (for a disabled skin):\n* {{msg-mw|default-skin-not-found}}\n----\nParameters:\n* $1 - skin identifier\n* $2 - human-readable skin name\nSee also:\n* {{msg-mw|Default-skin-not-found-row-enabled}}"
 }

@@ -25,7 +25,8 @@
 			"아라",
 			"Arystanbek",
 			"Dağlı95",
-			"Sayginer"
+			"Sayginer",
+			"Şeyx Şamil"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -570,6 +571,7 @@
 	"updated": "(yeniləndi)",
 	"note": "'''Qeyd:'''",
 	"previewnote": "<strong>Unutmayın ki, bu yalnız sınaq göstərişidir.</strong> Dəyişiklikləriniz hal-hazırda qeyd edilməmişdir!",
+	"continue-editing": "Redaktə sahəsinə qayıt",
 	"previewconflict": "Bu sınaq göstərişidir və yaddaşda saxlayacağınız təqdirdə mətnin redaktə səhifəsinin yuxarı hissəsində nəticənin necə olacağını göstərir.",
 	"session_fail_preview": "'''Üzr istəyirik! Sizin redaktəniz saxlanılmadı. Serverdə identifikasiyanızla bağlı problemlər yaranmışdır. Lütfən bir daha təkrar edin. Problem həll olunmazsa hesabınızdan çıxın və yenidən daxil olun.'''",
 	"editing": "Redaktə $1",
@@ -1184,7 +1186,6 @@
 	"unusedtemplates": "İstifadəsiz şablonlar",
 	"unusedtemplateswlh": "digər keçidlər",
 	"randompage": "İxtiyari səhifə",
-	"randomincategory-selectcategory-submit": "Keç",
 	"randomredirect": "İxtiyari istiqamətləndirmə",
 	"randomredirect-nopages": "\"$1\" ad sahəsində heç bir yönləndirmə yoxdur.",
 	"statistics": "Statistika",
@@ -1707,7 +1708,6 @@
 	"thumbnail_image-missing": "Belə görünür ki, $1 faylı yoxdur",
 	"import": "Səhifələri idxal et",
 	"importinterwiki": "Vikilərarası çıxarma",
-	"import-interwiki-source": "Mənbə viki/səhifə:",
 	"import-interwiki-history": "Səhifənin dəyişmə tarixçələrinin hamısını köçür",
 	"import-interwiki-templates": "Bütün şablonlarla birlikdə",
 	"import-interwiki-submit": "İdxal",
