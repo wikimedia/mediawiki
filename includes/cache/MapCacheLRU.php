@@ -57,7 +57,7 @@ class MapCacheLRU {
 	 * @return void
 	 */
 	public function set( $key, $value ) {
-		if ( isset( $this->cache[$key] ) ) {
+		if ( array_key_exists( $key, $this->cache ) ) {
 			$this->ping( $key ); // push to top
 		} elseif ( count( $this->cache ) >= $this->maxCacheKeys ) {
 			reset( $this->cache );
@@ -74,7 +74,7 @@ class MapCacheLRU {
 	 * @return bool
 	 */
 	public function has( $key ) {
-		return isset( $this->cache[$key] );
+		return array_key_exists( $key, $this->cache );
 	}
 
 	/**
@@ -86,7 +86,7 @@ class MapCacheLRU {
 	 * @return mixed
 	 */
 	public function get( $key ) {
-		if ( isset( $this->cache[$key] ) ) {
+		if ( array_key_exists( $key, $this->cache ) ) {
 			$this->ping( $key ); // push to top
 			return $this->cache[$key];
 		} else {
