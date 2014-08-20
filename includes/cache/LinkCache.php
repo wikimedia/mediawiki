@@ -129,7 +129,7 @@ class LinkCache {
 	 * @param int $len Text's length
 	 * @param int $redir Whether the page is a redirect
 	 * @param int $revision Latest revision's ID
-	 * @param int $model Latest revision's content model ID
+	 * @param string $model Latest revision's content model ID
 	 */
 	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null,
 		$revision = 0, $model = 0
@@ -140,7 +140,7 @@ class LinkCache {
 			'length' => (int)$len,
 			'redirect' => (int)$redir,
 			'revision' => (int)$revision,
-			'model' => (int)$model
+			'model' => $model
 		);
 	}
 
