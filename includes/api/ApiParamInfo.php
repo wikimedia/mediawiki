@@ -224,7 +224,13 @@ class ApiParamInfo extends ApiBase {
 			}
 
 			if ( isset( $p[ApiBase::PARAM_TYPE] ) ) {
-				$a['type'] = $p[ApiBase::PARAM_TYPE];
+				if ( $p[ApiBase::PARAM_TYPE] === 'submodule' ) {
+					$a['type'] = $obj->getModuleManager()->getNames( $n );
+					sort( $a['type'] );
+					$a['submodules'] = '';
+				} else {
+					$a['type'] = $p[ApiBase::PARAM_TYPE];
+				}
 				if ( is_array( $a['type'] ) ) {
 					// To prevent sparse arrays from being serialized to JSON as objects
 					$a['type'] = array_values( $a['type'] );

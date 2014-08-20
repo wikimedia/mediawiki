@@ -510,15 +510,15 @@ class ApiQuery extends ApiBase {
 		$result = array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'prop' )
+				ApiBase::PARAM_TYPE => 'submodule',
 			),
 			'list' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'list' )
+				ApiBase::PARAM_TYPE => 'submodule',
 			),
 			'meta' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'meta' )
+				ApiBase::PARAM_TYPE => 'submodule',
 			),
 			'indexpageids' => false,
 			'export' => false,

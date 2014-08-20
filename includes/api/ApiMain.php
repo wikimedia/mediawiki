@@ -1090,11 +1090,11 @@ class ApiMain extends ApiBase {
 		return array(
 			'format' => array(
 				ApiBase::PARAM_DFLT => ApiMain::API_DEFAULT_FORMAT,
-				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'format' )
+				ApiBase::PARAM_TYPE => 'submodule',
 			),
 			'action' => array(
 				ApiBase::PARAM_DFLT => 'help',
-				ApiBase::PARAM_TYPE => $this->mModuleMgr->getNames( 'action' )
+				ApiBase::PARAM_TYPE => 'submodule',
 			),
 			'maxlag' => array(
 				ApiBase::PARAM_TYPE => 'integer'
