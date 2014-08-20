@@ -42,9 +42,17 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		}
 
 		$params = $this->extractRequestParams();
+		$prop = array_flip( (array)$params['prop'] );
 
 		if ( isset( $params['title'] ) && !isset( $params['prefix'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'prefix' ) );
+		}
+
+		// Handle deprecated param
+		$this->requireMaxOneParameter( $params, 'url', 'prop' );
+		if ( $params['url'] ) {
+			$this->logFeatureUsage( 'prop=iwlinks&iwurl' );
+			$prop = array( 'url' => 1 );
 		}
 
 		$this->addFields( array(
@@ -114,7 +122,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			}
 			$entry = array( 'prefix' => $row->iwl_prefix );
 
-			if ( $params['url'] ) {
+			if ( isset( $prop['url'] ) ) {
 				$title = Title::newFromText( "{$row->iwl_prefix}:{$row->iwl_title}" );
 				if ( $title ) {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
@@ -139,7 +147,16 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array(
-			'url' => false,
+			'url' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'prop' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
+					'url',
+				)
+			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -162,7 +179,11 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 	public function getParamDescription() {
 		return array(
-			'url' => 'Whether to get the full URL',
+			'prop' => array(
+				'Which additional properties to get for each interlanguage link',
+				' url      - Adds the full URL',
+			),
+			'url' => "Whether to get the full URL (Cannot be used with {$this->getModulePrefix()}prop)",
 			'limit' => 'How many interwiki links to return',
 			'continue' => 'When more results are available, use this to continue',
 			'prefix' => 'Prefix for the interwiki',

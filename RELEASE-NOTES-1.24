@@ -235,6 +235,8 @@ production.
 * action=paraminfo now indicates when a parameter is specifying a submodule.
   Internally, a new param type 'submodule' is available to indicate this which
   automatically queries the list of submodule names from the ApiModuleManager.
+* The iwurl parameter to prop=iwlinks is deprecated in favor of iwprop=url, for
+  parallelism with prop=langlinks.
 
 === Languages updated in 1.24 ===
 
