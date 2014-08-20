@@ -129,6 +129,9 @@ class ZipDirectoryReader {
 
 	/**
 	 * Private constructor
+	 * @param string $fileName
+	 * @param callable $callback
+	 * @param array $options
 	 */
 	protected function __construct( $fileName, $callback, $options ) {
 		$this->fileName = $fileName;
@@ -359,6 +362,8 @@ class ZipDirectoryReader {
 
 	/**
 	 * Read the central directory at the given location
+	 * @param int $offset
+	 * @param int $size
 	 */
 	function readCentralDirectory( $offset, $size ) {
 		$block = $this->getBlock( $offset, $size );
@@ -450,6 +455,7 @@ class ZipDirectoryReader {
 
 	/**
 	 * Interpret ZIP64 "extra field" data and return an associative array.
+	 * @param string $extraField
 	 * @return array|bool
 	 */
 	function unpackZip64Extra( $extraField ) {
@@ -575,6 +581,7 @@ class ZipDirectoryReader {
 
 	/**
 	 * Get the size of a structure in bytes. See unpack() for the format of $struct.
+	 * @param array $struct
 	 * @return int
 	 */
 	function getStructSize( $struct ) {

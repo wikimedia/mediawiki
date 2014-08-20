@@ -1224,6 +1224,7 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * @param string $sep
 	 * @param int $flags
+	 * @param string|PPNode $args,...
 	 * @return string
 	 */
 	public function implodeWithFlags( $sep, $flags /*, ... */ ) {
@@ -1254,6 +1255,7 @@ class PPFrame_Hash implements PPFrame {
 	 * Implode with no flags specified
 	 * This previously called implodeWithFlags but has now been inlined to reduce stack depth
 	 * @param string $sep
+	 * @param string|PPNode $args,...
 	 * @return string
 	 */
 	public function implode( $sep /*, ... */ ) {
@@ -1285,6 +1287,7 @@ class PPFrame_Hash implements PPFrame {
 	 * with implode()
 	 *
 	 * @param string $sep
+	 * @param string|PPNode $args,...
 	 * @return PPNode_Hash_Array
 	 */
 	public function virtualImplode( $sep /*, ... */ ) {
@@ -1317,6 +1320,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @param string $start
 	 * @param string $sep
 	 * @param string $end
+	 * @param string|PPNode $args,...
 	 * @return PPNode_Hash_Array
 	 */
 	public function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {

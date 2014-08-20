@@ -97,32 +97,54 @@ interface PPFrame {
 
 	/**
 	 * Expand a document tree node, caching the result on its parent with the given key
+	 * @param string|int $key
+	 * @param string|PPNode $root
+	 * @param int $flags
+	 * @return string
 	 */
 	public function cachedExpand( $key, $root, $flags = 0 );
 
 	/**
 	 * Expand a document tree node
+	 * @param string|PPNode $root
+	 * @param int $flags
+	 * @return string
 	 */
 	public function expand( $root, $flags = 0 );
 
 	/**
 	 * Implode with flags for expand()
+	 * @param string $sep
+	 * @param int $flags
+	 * @param string|PPNode $args,...
+	 * @return string
 	 */
 	public function implodeWithFlags( $sep, $flags /*, ... */ );
 
 	/**
 	 * Implode with no flags specified
+	 * @param string $sep
+	 * @param string|PPNode $args,...
+	 * @return string
 	 */
 	public function implode( $sep /*, ... */ );
 
 	/**
 	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
+	 * @param string $sep
+	 * @param string|PPNode $args,...
+	 * @return PPNode
 	 */
 	public function virtualImplode( $sep /*, ... */ );
 
 	/**
 	 * Virtual implode with brackets
+	 * @param string $start
+	 * @param string $sep
+	 * @param string $end
+	 * @param string|PPNode $args,...
+	 * @return PPNode
 	 */
 	public function virtualBracketedImplode( $start, $sep, $end /*, ... */ );
 
@@ -135,21 +157,26 @@ interface PPFrame {
 
 	/**
 	 * Returns all arguments of this frame
+	 * @return array
 	 */
 	public function getArguments();
 
 	/**
 	 * Returns all numbered arguments of this frame
+	 * @return array
 	 */
 	public function getNumberedArguments();
 
 	/**
 	 * Returns all named arguments of this frame
+	 * @return array
 	 */
 	public function getNamedArguments();
 
 	/**
 	 * Get an argument to this frame by name
+	 * @param string $name
+	 * @return bool
 	 */
 	public function getArgument( $name );
 
@@ -163,6 +190,7 @@ interface PPFrame {
 
 	/**
 	 * Return true if the frame is a template frame
+	 * @return bool
 	 */
 	public function isTemplate();
 
@@ -240,6 +268,7 @@ interface PPNode {
 	/**
 	 * Get an array-type node containing the children of this node.
 	 * Returns false if this is not a tree node.
+	 * @return PPNode
 	 */
 	public function getChildren();
 
@@ -252,12 +281,15 @@ interface PPNode {
 
 	/**
 	 * Get the next sibling of any node. False if there isn't one
+	 * @return PPNode
 	 */
 	public function getNextSibling();
 
 	/**
 	 * Get all children of this tree node which have a given name.
 	 * Returns an array-type node, or false if this is not a tree node.
+	 * @param string $type
+	 * @return bool|PPNode
 	 */
 	public function getChildrenOfType( $type );
 
@@ -268,6 +300,8 @@ interface PPNode {
 
 	/**
 	 * Returns an item of an array-type node
+	 * @param int $i
+	 * @return bool|PPNode
 	 */
 	public function item( $i );
 
@@ -282,6 +316,7 @@ interface PPNode {
 	 *    #nodelist     An array-type node
 	 *
 	 * The subclass may define various other names for tree and leaf nodes.
+	 * @return string
 	 */
 	public function getName();
 
@@ -290,17 +325,20 @@ interface PPNode {
 	 *    name          PPNode name
 	 *    index         String index
 	 *    value         PPNode value
+	 * @return array
 	 */
 	public function splitArg();
 
 	/**
 	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
+	 * @return array
 	 */
 	public function splitExt();
 
 	/**
 	 * Split an "<h>" node
+	 * @return array
 	 */
 	public function splitHeading();
 }

@@ -22,6 +22,7 @@ class ImportTest extends MediaWikiLangTestCase {
 	 * @covers WikiImporter::handlePage
 	 * @dataProvider getRedirectXML
 	 * @param string $xml
+	 * @param string|null $redirectTitle
 	 */
 	public function testHandlePageContainsRedirect( $xml, $redirectTitle ) {
 		$source = $this->getInputStreamSource( $xml );

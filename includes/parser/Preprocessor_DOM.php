@@ -1315,6 +1315,7 @@ class PPFrame_DOM implements PPFrame {
 	/**
 	 * @param string $sep
 	 * @param int $flags
+	 * @param string|PPNode_DOM|DOMDocument $args,...
 	 * @return string
 	 */
 	public function implodeWithFlags( $sep, $flags /*, ... */ ) {
@@ -1346,6 +1347,7 @@ class PPFrame_DOM implements PPFrame {
 	 * This previously called implodeWithFlags but has now been inlined to reduce stack depth
 	 *
 	 * @param string $sep
+	 * @param string|PPNode_DOM|DOMDocument $args,...
 	 * @return string
 	 */
 	public function implode( $sep /*, ... */ ) {
@@ -1377,6 +1379,7 @@ class PPFrame_DOM implements PPFrame {
 	 * with implode()
 	 *
 	 * @param string $sep
+	 * @param string|PPNode_DOM|DOMDocument $args,...
 	 * @return array
 	 */
 	public function virtualImplode( $sep /*, ... */ ) {
@@ -1408,6 +1411,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param string $start
 	 * @param string $sep
 	 * @param string $end
+	 * @param string|PPNode_DOM|DOMDocument $args,...
 	 * @return array
 	 */
 	public function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {

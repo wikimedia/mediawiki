@@ -80,6 +80,20 @@ class Block {
 	/**
 	 * @todo FIXME: Don't know what the best format to have for this constructor
 	 *   is, but fourteen optional parameters certainly isn't it.
+	 * @param string $address
+	 * @param int $user
+	 * @param int $by
+	 * @param string $reason
+	 * @param mixed $timestamp
+	 * @param int $auto
+	 * @param string $expiry
+	 * @param int $anonOnly
+	 * @param int $createAccount
+	 * @param int $enableAutoblock
+	 * @param int $hideName
+	 * @param int $blockEmail
+	 * @param int $allowUsertalk
+	 * @param string $byText
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,

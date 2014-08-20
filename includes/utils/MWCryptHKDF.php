@@ -99,7 +99,8 @@ class MWCryptHKDF {
 
 
 	/**
-	 * @param string $hash Name of hashing algorithm
+	 * @param string $secretKeyMaterial
+	 * @param string $algorithm Name of hashing algorithm
 	 * @param BagOStuff $cache
 	 * @param string|array $context Context to mix into HKDF context
 	 */
