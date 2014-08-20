@@ -859,7 +859,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		if ( $this->getStyleSheetLang( $localPath ) === 'less' ) {
-			$style = $this->compileLESSFile( $localPath );
+			$style = $this->compileLessFile( $localPath );
 			$this->hasGeneratedStyles = true;
 		} else {
 			$style = file_get_contents( $localPath );
@@ -908,8 +908,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param string $fileName File name of root LESS file.
 	 * @return string Cache key
 	 */
-	protected function getLESSCacheKey( $fileName ) {
-		$vars = json_encode( ResourceLoader::getLESSVars( $this->getConfig() ) );
+	protected function getLessCacheKey( $fileName ) {
+		$vars = json_encode( ResourceLoader::getLessVars( $this->getConfig() ) );
 		$hash = md5( $fileName . $vars );
 		return wfMemcKey( 'resourceloader', 'less', $hash );
 	}
@@ -929,8 +929,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param string $fileName File path of LESS source
 	 * @return string CSS source
 	 */
-	protected function compileLESSFile( $fileName ) {
-		$key = $this->getLESSCacheKey( $fileName );
+	protected function compileLessFile( $fileName ) {
+		$key = $this->getLessCacheKey( $fileName );
 		$cache = wfGetCache( CACHE_ANYTHING );
 
 		// The input to lessc. Either an associative array representing the

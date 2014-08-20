@@ -1481,7 +1481,7 @@ class ResourceLoader {
 
 		$less = new lessc();
 		$less->setPreserveComments( true );
-		$less->setVariables( self::getLESSVars( $config ) );
+		$less->setVariables( self::getLessVars( $config ) );
 		$less->setImportDir( $config->get( 'ResourceLoaderLESSImportPaths' ) );
 		foreach ( $config->get( 'ResourceLoaderLESSFunctions' ) as $name => $func ) {
 			$less->registerFunction( $name, $func );
@@ -1496,7 +1496,7 @@ class ResourceLoader {
 	 * @since 1.22
 	 * @return array Map of variable names to string CSS values.
 	 */
-	public static function getLESSVars( Config $config ) {
+	public static function getLessVars( Config $config ) {
 		$lessVars = $config->get( 'ResourceLoaderLESSVars' );
 		// Sort by key to ensure consistent hashing for cache lookups.
 		ksort( $lessVars );
