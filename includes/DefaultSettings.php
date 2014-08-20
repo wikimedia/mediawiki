@@ -3446,12 +3446,14 @@ $wgResourceLoaderValidateStaticJS = false;
 $wgResourceLoaderExperimentalAsyncLoading = false;
 
 /**
- * Global LESS variables. An associative array binding variable names to CSS
- * string values.
+ * Global LESS variables. An associative array binding variable names to
+ * LESS code snippets representing their values.
  *
- * Because the hashed contents of this array are used to construct the cache key
- * that ResourceLoader uses to look up LESS compilation results, updating this
- * array can be used to deliberately invalidate the set of cached results.
+ * Adding an item here is equivalent to writing `@variable: value;`
+ * at the beginning of all your .less files, with all the consequences.
+ * In particular, string values must be escaped and quoted.
+ *
+ * Changes to LESS variables do not trigger cache invalidation.
  *
  * @par Example:
  * @code
@@ -3469,10 +3471,7 @@ $wgResourceLoaderLESSVars = array();
  * Custom LESS functions. An associative array mapping function name to PHP
  * callable.
  *
- * Changes to LESS functions do not trigger cache invalidation. If you update
- * the behavior of a LESS function and need to invalidate stale compilation
- * results, you can touch one of values in $wgResourceLoaderLESSVars, as
- * documented above.
+ * Changes to LESS functions do not trigger cache invalidation.
  *
  * @since 1.22
  */
