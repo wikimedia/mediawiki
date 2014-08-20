@@ -3553,11 +3553,6 @@ HTML
 		 * inserted between the two when no selection is highlighted
 		 * and.  The tip text is shown when the user moves the mouse
 		 * over the button.
-		 *
-		 * Also here: accesskeys (key), which are not used yet until
-		 * someone can figure out a way to make them work in
-		 * IE. However, we should make sure these keys are not defined
-		 * on the edit page.
 		 */
 		$toolarray = array(
 			array(
@@ -3567,7 +3562,6 @@ HTML
 				'close'  => '\'\'\'',
 				'sample' => wfMessage( 'bold_sample' )->text(),
 				'tip'    => wfMessage( 'bold_tip' )->text(),
-				'key'    => 'B'
 			),
 			array(
 				'image'  => $wgLang->getImageFile( 'button-italic' ),
@@ -3576,7 +3570,6 @@ HTML
 				'close'  => '\'\'',
 				'sample' => wfMessage( 'italic_sample' )->text(),
 				'tip'    => wfMessage( 'italic_tip' )->text(),
-				'key'    => 'I'
 			),
 			array(
 				'image'  => $wgLang->getImageFile( 'button-link' ),
@@ -3585,7 +3578,6 @@ HTML
 				'close'  => ']]',
 				'sample' => wfMessage( 'link_sample' )->text(),
 				'tip'    => wfMessage( 'link_tip' )->text(),
-				'key'    => 'L'
 			),
 			array(
 				'image'  => $wgLang->getImageFile( 'button-extlink' ),
@@ -3594,7 +3586,6 @@ HTML
 				'close'  => ']',
 				'sample' => wfMessage( 'extlink_sample' )->text(),
 				'tip'    => wfMessage( 'extlink_tip' )->text(),
-				'key'    => 'X'
 			),
 			array(
 				'image'  => $wgLang->getImageFile( 'button-headline' ),
@@ -3603,7 +3594,6 @@ HTML
 				'close'  => " ==\n",
 				'sample' => wfMessage( 'headline_sample' )->text(),
 				'tip'    => wfMessage( 'headline_tip' )->text(),
-				'key'    => 'H'
 			),
 			$imagesAvailable ? array(
 				'image'  => $wgLang->getImageFile( 'button-image' ),
@@ -3612,7 +3602,6 @@ HTML
 				'close'  => ']]',
 				'sample' => wfMessage( 'image_sample' )->text(),
 				'tip'    => wfMessage( 'image_tip' )->text(),
-				'key'    => 'D',
 			) : false,
 			$imagesAvailable ? array(
 				'image'  => $wgLang->getImageFile( 'button-media' ),
@@ -3621,7 +3610,6 @@ HTML
 				'close'  => ']]',
 				'sample' => wfMessage( 'media_sample' )->text(),
 				'tip'    => wfMessage( 'media_tip' )->text(),
-				'key'    => 'M'
 			) : false,
 			array(
 				'image'  => $wgLang->getImageFile( 'button-nowiki' ),
@@ -3630,7 +3618,6 @@ HTML
 				'close'  => "</nowiki>",
 				'sample' => wfMessage( 'nowiki_sample' )->text(),
 				'tip'    => wfMessage( 'nowiki_tip' )->text(),
-				'key'    => 'N'
 			),
 			array(
 				'image'  => $wgLang->getImageFile( 'button-sig' ),
@@ -3639,7 +3626,6 @@ HTML
 				'close'  => '',
 				'sample' => '',
 				'tip'    => wfMessage( 'sig_tip' )->text(),
-				'key'    => 'Y'
 			),
 			array(
 				'image'  => $wgLang->getImageFile( 'button-hr' ),
@@ -3648,7 +3634,6 @@ HTML
 				'close'  => '',
 				'sample' => '',
 				'tip'    => wfMessage( 'hr_tip' )->text(),
-				'key'    => 'R'
 			)
 		);
 
