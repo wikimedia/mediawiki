@@ -2069,7 +2069,6 @@
 	"import": "Lapok importálása",
 	"importinterwiki": "Transwiki importálása",
 	"import-interwiki-text": "Válaszd ki az importálandó wikit és lapcímet.\nA változatok dátumai és a szerkesztők nevei megőrzésre kerülnek.\nValamennyi transwiki importálási művelet az [[Special:Log/import|importálási naplóban]] kerül naplózásra.",
-	"import-interwiki-source": "Forrás wiki/lap:",
 	"import-interwiki-history": "A lap összes előzményváltozatainak másolása",
 	"import-interwiki-templates": "Az összes sablon hozzáadása",
 	"import-interwiki-submit": "Importálás",

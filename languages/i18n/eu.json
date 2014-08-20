@@ -19,7 +19,8 @@
 			"לערי ריינהארט",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"Joxemai"
+			"Joxemai",
+			"Arkaitz Barnetik"
 		]
 	},
 	"tog-underline": "Loturak azpimarratu:",
@@ -1355,8 +1356,6 @@
 	"randomincategory": "Kategoriako ausazko orrialdea",
 	"randomincategory-invalidcategory": "\"$1\" ez da kategoria izen baliagarri bat.",
 	"randomincategory-nopages": "Ez dago orrialderik [[:Category:$1|$1]] kategorian.",
-	"randomincategory-selectcategory": "Lortu kategoria honetako ausazko orrialdea: $1 $2.",
-	"randomincategory-selectcategory-submit": "Joan",
 	"randomredirect": "Ausazko birbideratzea",
 	"randomredirect-nopages": "Ez dago birzuzenketarik \"$1\" izen-tartean.",
 	"statistics": "Estatistikak",
@@ -1983,7 +1982,6 @@
 	"import": "Orrialdeak inportatu",
 	"importinterwiki": "Wikien arteko inportazioa",
 	"import-interwiki-text": "Aukeratu inportatzeko wiki eta orrialde izenburu bat. Berrikuspenen datak eta egileak gorde egingo dira. Inportazio ekintza guzti hauek [[Special:Log/import|inportazio erregistroan]] gordetzen dira.",
-	"import-interwiki-source": "Jatorrizko wiki/orrialdea:",
 	"import-interwiki-history": "Orrialde honen historiako bertsio guztiak kopiatu",
 	"import-interwiki-templates": "Txantiloi guztiak sartu",
 	"import-interwiki-submit": "Inportatu",
@@ -2634,7 +2632,7 @@
 	"confirm-purge-bottom": "Orrialdea purgatzean katxea ezabatzen du eta orrialdearen bertsiorik eguneratuena erakustera behartzen du.",
 	"confirm-watch-button": "Ados",
 	"confirm-unwatch-button": "Ados",
-	"quotation-marks": "«$1»",
+	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "&larr; aurreko orrialdea",
 	"imgmultipagenext": "hurrengo orrialdea &rarr;",
 	"imgmultigo": "Joan!",
