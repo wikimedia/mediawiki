@@ -15,6 +15,8 @@
 	 * @private
 	 */
 	function insertButton( b, speedTip, tagOpen, tagClose, sampleText, imageId ) {
+		var $button;
+
 		// Backwards compatibility
 		if ( typeof b !== 'object' ) {
 			b = {
@@ -26,20 +28,29 @@
 				imageId: imageId
 			};
 		}
-		var $image = $( '<img>' ).attr( {
-			width: 23,
-			height: 22,
-			src: b.imageFile,
-			alt: b.speedTip,
-			title: b.speedTip,
-			id: b.imageId || undefined,
-			'class': 'mw-toolbar-editbutton'
-		} ).click( function () {
+
+		if ( b.imageFile ) {
+			$button = $( '<img>' ).attr( {
+				src: b.imageFile,
+				alt: b.speedTip,
+				title: b.speedTip,
+				id: b.imageId || undefined,
+				'class': 'mw-toolbar-editbutton'
+			} );
+		} else {
+			$button = $( '<div>' ).attr( {
+				title: b.speedTip,
+				id: b.imageId || undefined,
+				'class': 'mw-toolbar-editbutton'
+			} );
+		}
+
+		$button.click( function () {
 			toolbar.insertTags( b.tagOpen, b.tagClose, b.sampleText );
 			return false;
 		} );
 
-		$toolbar.append( $image );
+		$toolbar.append( $button );
 	}
 
 	isReady = false;

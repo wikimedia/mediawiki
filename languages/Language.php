@@ -786,6 +786,14 @@ class Language {
 
 	/**
 	 * @return array
+	 * @since 1.24
+	 */
+	function getImageFiles() {
+		return self::$dataCache->getItem( $this->mCode, 'imageFiles' );
+	}
+
+	/**
+	 * @return array
 	 */
 	function getExtraUserToggles() {
 		return (array)self::$dataCache->getItem( $this->mCode, 'extraUserToggles' );

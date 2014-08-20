@@ -433,9 +433,9 @@ $fallback8bitEncoding = 'windows-1251';
 $linkPrefixExtension = false;
 
 $imageFiles = array(
-	'button-bold'   => 'cyrl/button_bold.png',
-	'button-italic' => 'cyrl/button_italic.png',
-	'button-link'   => 'cyrl/button_link.png',
+	'button-bold'   => 'ru/button_bold.png',
+	'button-italic' => 'ru/button_italic.png',
+	'button-link'   => 'ru/button_link.png',
 );
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu';

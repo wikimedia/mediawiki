@@ -1,0 +1,18 @@
+/*!
+ * Styles for elements of the editing form, loaded only when JavaScript is enabled.
+ */
+
+.mw-toolbar-editbutton {
+	width: 23px;
+	height: 22px;
+	cursor: pointer;
+	vertical-align: middle;
+	/* Cross-browser inline-block */
+	/* Firefox 2 */
+	display: -moz-inline-block;
+	/* Modern browsers */
+	display: inline-block;
+	/* IE7 */
+	zoom: 1;
+	*display: inline;
+}
