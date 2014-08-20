@@ -11,9 +11,13 @@
 			"Tifa93"
 		]
 	},
-	"ooui-dialog-action-close": "Κλείσιμο",
 	"ooui-outline-control-move-down": "Μετακίνηση στοιχείου προς τα κάτω",
 	"ooui-outline-control-move-up": "Μετακίνηση στοιχείου προς τα επάνω",
 	"ooui-outline-control-remove": "Αφαίρεση στοιχείου",
-	"ooui-toolbar-more": "Περισσότερα"
+	"ooui-toolbar-more": "Περισσότερα",
+	"ooui-dialog-message-accept": "ΟΚ",
+	"ooui-dialog-message-reject": "Ακύρωση",
+	"ooui-dialog-process-error": "Κάτι πήγε στραβά",
+	"ooui-dialog-process-dismiss": "Απόρριψη",
+	"ooui-dialog-process-retry": "Δοκιμάστε ξανά"
 }

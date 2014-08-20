@@ -17,13 +17,13 @@
 			"Ата"
 		]
 	},
-	"ooui-dialog-action-close": "Закрити",
 	"ooui-outline-control-move-down": "Перемістити елемент униз",
 	"ooui-outline-control-move-up": "Перемістити елемент вгору",
 	"ooui-outline-control-remove": "Видалити елемент",
 	"ooui-toolbar-more": "Більше",
-	"ooui-dialog-confirm-title": "Підтвердити",
-	"ooui-dialog-confirm-default-prompt": "Ви впевнені?",
-	"ooui-dialog-confirm-default-ok": "Готово",
-	"ooui-dialog-confirm-default-cancel": "Скасувати"
+	"ooui-dialog-message-accept": "Готово",
+	"ooui-dialog-message-reject": "Скасувати",
+	"ooui-dialog-process-error": "Щось пішло не так",
+	"ooui-dialog-process-dismiss": "Приховати",
+	"ooui-dialog-process-retry": "Спробуйте ще раз"
 }
