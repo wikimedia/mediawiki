@@ -6,7 +6,7 @@
  * @see https://github.com/sebastianbergmann/phpunit/blob/master/src/Extensions/PhptTestCase.php
  * @author Sam Smith <samsmith@wikimedia.org>
  */
-class LessFileCompilationTest extends MediaWikiTestCase {
+class LessFileCompilationTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @var string $file
@@ -38,7 +38,8 @@ class LessFileCompilationTest extends MediaWikiTestCase {
 			"$thisString must refer to a readable file"
 		);
 
-		$compiler = ResourceLoader::getLessCompiler( RequestContext::getMain()->getConfig() );
+		$rlContext = static::getResourceLoaderContext();
+		$compiler = $this->module->getLessCompiler( $rlContext );
 		$this->assertNotNull( $compiler->compileFile( $this->file ) );
 	}
 

@@ -512,16 +512,16 @@ $linkPrefixCharset = 'a-zA-Z\\x{80}-\\x{10ffff}';
  * basis if needed.
  */
 $imageFiles = array(
-	'button-bold'     => 'button_bold.png',
-	'button-italic'   => 'button_italic.png',
-	'button-link'     => 'button_link.png',
-	'button-extlink'  => 'button_extlink.png',
-	'button-headline' => 'button_headline.png',
-	'button-image'    => 'button_image.png',
-	'button-media'    => 'button_media.png',
-	'button-nowiki'   => 'button_nowiki.png',
-	'button-sig'      => 'button_sig.png',
-	'button-hr'       => 'button_hr.png',
+	'button-bold'     => 'en/button_bold.png',
+	'button-italic'   => 'en/button_italic.png',
+	'button-link'     => 'en/button_link.png',
+	'button-extlink'  => 'en/button_extlink.png',
+	'button-headline' => 'en/button_headline.png',
+	'button-image'    => 'en/button_image.png',
+	'button-media'    => 'en/button_media.png',
+	'button-nowiki'   => 'en/button_nowiki.png',
+	'button-sig'      => 'en/button_sig.png',
+	'button-hr'       => 'en/button_hr.png',
 );
 
 /**
