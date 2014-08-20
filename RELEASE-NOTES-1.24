@@ -243,6 +243,12 @@ production.
 * action=paraminfo now indicates when a parameter is specifying a submodule.
   Internally, a new param type 'submodule' is available to indicate this which
   automatically queries the list of submodule names from the ApiModuleManager.
+* Added prop=linkshere, prop=fileusage, and prop=transcludedin, which are
+  roughly equivalent to list=backlinks, list=imageusage, and list=embeddedin
+  but can work on a list of titles (including titles from a generator).
+* prop=redirects can now filter returned redirects by namespace.
+* ApiQueryRedirects was deleted; prop=redirects is now implemented by
+  ApiQueryBacklinksProp along with the newly-added prop modules.
 
 === Languages updated in 1.24 ===
 

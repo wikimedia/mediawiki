@@ -47,17 +47,20 @@ class ApiQuery extends ApiBase {
 		'contributors' => 'ApiQueryContributors',
 		'duplicatefiles' => 'ApiQueryDuplicateFiles',
 		'extlinks' => 'ApiQueryExternalLinks',
+		'fileusage' => 'ApiQueryBacklinksprop',
 		'images' => 'ApiQueryImages',
 		'imageinfo' => 'ApiQueryImageInfo',
 		'info' => 'ApiQueryInfo',
 		'links' => 'ApiQueryLinks',
+		'linkshere' => 'ApiQueryBacklinksprop',
 		'iwlinks' => 'ApiQueryIWLinks',
 		'langlinks' => 'ApiQueryLangLinks',
 		'pageprops' => 'ApiQueryPageProps',
-		'redirects' => 'ApiQueryRedirects',
+		'redirects' => 'ApiQueryBacklinksprop',
 		'revisions' => 'ApiQueryRevisions',
 		'stashimageinfo' => 'ApiQueryStashImageInfo',
 		'templates' => 'ApiQueryLinks',
+		'transcludedin' => 'ApiQueryBacklinksprop',
 	);
 
 	/**
