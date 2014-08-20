@@ -113,8 +113,7 @@ class Preferences {
 	 */
 	static function loadPreferenceValues( $user, $context, &$defaultPreferences ) {
 		## Remove preferences that wikis don't want to use
-		global $wgHiddenPrefs;
-		foreach ( $wgHiddenPrefs as $pref ) {
+		foreach ( $context->getConfig()->get( 'HiddenPrefs' ) as $pref ) {
 			if ( isset( $defaultPreferences[$pref] ) ) {
 				unset( $defaultPreferences[$pref] );
 			}
@@ -207,12 +206,9 @@ class Preferences {
 	 * @return void
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgAuth, $wgContLang, $wgParser, $wgLanguageCode,
-			$wgDisableLangConversion, $wgMaxSigChars,
-			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
-			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,
-			$wgSecureLogin;
+		global $wgAuth, $wgContLang, $wgParser;
 
+		$config = $context->getConfig();
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
 
@@ -310,7 +306,7 @@ class Preferences {
 			);
 		}
 		// Only show prefershttps if secure login is turned on
-		if ( $wgSecureLogin && wfCanIPUseHTTPS( $context->getRequest()->getIP() ) ) {
+		if ( $config->get( 'SecureLogin' ) && wfCanIPUseHTTPS( $context->getRequest()->getIP() ) ) {
 			$defaultPreferences['prefershttps'] = array(
 				'type' => 'toggle',
 				'label-message' => 'tog-prefershttps',
@@ -321,8 +317,9 @@ class Preferences {
 
 		// Language
 		$languages = Language::fetchLanguageNames( null, 'mw' );
-		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
-			$languages[$wgLanguageCode] = $wgLanguageCode;
+		$languageCode = $config->get( 'LanguageCode' );
+		if ( !array_key_exists( $languageCode, $languages ) ) {
+			$languages[$languageCode] = $languageCode;
 		}
 		ksort( $languages );
 
@@ -353,7 +350,7 @@ class Preferences {
 		);
 
 		// see if there are multiple language variants to choose from
-		if ( !$wgDisableLangConversion ) {
+		if ( !$config->get( 'DisableLangConversion' ) ) {
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 				if ( $langCode == $wgContLang->getCode() ) {
 					$variants = $wgContLang->getVariants();
@@ -418,7 +415,7 @@ class Preferences {
 		);
 		$defaultPreferences['nickname'] = array(
 			'type' => $wgAuth->allowPropChange( 'nickname' ) ? 'text' : 'info',
-			'maxlength' => $wgMaxSigChars,
+			'maxlength' => $config->get( 'MaxSigChars' ),
 			'label-message' => 'yournick',
 			'validation-callback' => array( 'Preferences', 'validateSignature' ),
 			'section' => 'personal/signature',
@@ -434,13 +431,13 @@ class Preferences {
 
 		## Email stuff
 
-		if ( $wgEnableEmail ) {
+		if ( $config->get( 'EnableEmail' ) ) {
 			if ( $canViewPrivateInfo ) {
-				$helpMessages[] = $wgEmailConfirmToEdit
+				$helpMessages[] = $config->get( 'EmailConfirmToEdit' )
 						? 'prefs-help-email-required'
 						: 'prefs-help-email';
 
-				if ( $wgEnableUserEmail ) {
+				if ( $config->get( 'EnableUserEmail' ) ) {
 					// additional messages when users can send email to each other
 					$helpMessages[] = 'prefs-help-email-others';
 				}
@@ -472,7 +469,7 @@ class Preferences {
 
 			$disableEmailPrefs = false;
 
-			if ( $wgEmailAuthentication ) {
+			if ( $config->get( 'EmailAuthentication' ) ) {
 				$emailauthenticationclass = 'mw-email-not-authenticated';
 				if ( $user->getEmail() ) {
 					if ( $user->getEmailAuthenticationTimestamp() ) {
@@ -517,7 +514,7 @@ class Preferences {
 				}
 			}
 
-			if ( $wgEnableUserEmail && $user->isAllowed( 'sendemail' ) ) {
+			if ( $config->get( 'EnableUserEmail' ) && $user->isAllowed( 'sendemail' ) ) {
 				$defaultPreferences['disablemail'] = array(
 					'type' => 'toggle',
 					'invert' => true,
@@ -533,7 +530,7 @@ class Preferences {
 				);
 			}
 
-			if ( $wgEnotifWatchlist ) {
+			if ( $config->get( 'EnotifWatchlist' ) ) {
 				$defaultPreferences['enotifwatchlistpages'] = array(
 					'type' => 'toggle',
 					'section' => 'personal/email',
@@ -541,7 +538,7 @@ class Preferences {
 					'disabled' => $disableEmailPrefs,
 				);
 			}
-			if ( $wgEnotifUserTalk ) {
+			if ( $config->get( 'EnotifUserTalk' ) ) {
 				$defaultPreferences['enotifusertalkpages'] = array(
 					'type' => 'toggle',
 					'section' => 'personal/email',
@@ -549,7 +546,7 @@ class Preferences {
 					'disabled' => $disableEmailPrefs,
 				);
 			}
-			if ( $wgEnotifUserTalk || $wgEnotifWatchlist ) {
+			if ( $config->get( 'EnotifUserTalk' ) || $config->get( 'EnotifWatchlist' ) ) {
 				$defaultPreferences['enotifminoredits'] = array(
 					'type' => 'toggle',
 					'section' => 'personal/email',
@@ -557,7 +554,7 @@ class Preferences {
 					'disabled' => $disableEmailPrefs,
 				);
 
-				if ( $wgEnotifRevealEditorAddress ) {
+				if ( $config->get( 'EnotifRevealEditorAddress' ) ) {
 					$defaultPreferences['enotifrevealaddr'] = array(
 						'type' => 'toggle',
 						'section' => 'personal/email',
@@ -577,7 +574,6 @@ class Preferences {
 	 */
 	static function skinPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		## Skin #####################################
-		global $wgAllowUserCss, $wgAllowUserJs;
 
 		// Skin selector, if there is at least one valid skin
 		$skinOptions = self::generateSkinOptions( $user, $context );
@@ -590,19 +586,21 @@ class Preferences {
 			);
 		}
 
+		$allowUserCss = $context->getConfig()->get( 'AllowUserCss' );
+		$allowUserJs = $context->getConfig()->get( 'AllowUserJs' );
 		# Create links to user CSS/JS pages for all skins
 		# This code is basically copied from generateSkinOptions().  It'd
 		# be nice to somehow merge this back in there to avoid redundancy.
-		if ( $wgAllowUserCss || $wgAllowUserJs ) {
+		if ( $allowUserCss || $allowUserJs ) {
 			$linkTools = array();
 			$userName = $user->getName();
 
-			if ( $wgAllowUserCss ) {
+			if ( $allowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $userName . '/common.css' );
 				$linkTools[] = Linker::link( $cssPage, $context->msg( 'prefs-custom-css' )->escaped() );
 			}
 
-			if ( $wgAllowUserJs ) {
+			if ( $allowUserJs ) {
 				$jsPage = Title::makeTitleSafe( NS_USER, $userName . '/common.js' );
 				$linkTools[] = Linker::link( $jsPage, $context->msg( 'prefs-custom-js' )->escaped() );
 			}
@@ -730,8 +728,7 @@ class Preferences {
 		);
 
 		## Page Rendering ##############################
-		global $wgAllowUserCssPrefs;
-		if ( $wgAllowUserCssPrefs ) {
+		if ( $context->getConfig()->get( 'AllowUserCssPrefs' ) ) {
 			$defaultPreferences['underline'] = array(
 				'type' => 'select',
 				'options' => array(
@@ -776,8 +773,6 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function editingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgAllowUserCssPrefs;
-
 		## Editing #####################################
 		$defaultPreferences['editsectiononrightclick'] = array(
 			'type' => 'toggle',
@@ -790,7 +785,7 @@ class Preferences {
 			'label-message' => 'tog-editondblclick',
 		);
 
-		if ( $wgAllowUserCssPrefs ) {
+		if ( $context->getConfig()->get( 'AllowUserCssPrefs' ) ) {
 			$defaultPreferences['editfont'] = array(
 				'type' => 'select',
 				'section' => 'editing/editor',
@@ -864,17 +859,16 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function rcPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgRCMaxAge, $wgRCShowWatchingUsers;
-
+		$rcMaxAge = $context->getConfig()->get( 'RCMaxAge' );
 		## RecentChanges #####################################
 		$defaultPreferences['rcdays'] = array(
 			'type' => 'float',
 			'label-message' => 'recentchangesdays',
 			'section' => 'rc/displayrc',
 			'min' => 1,
-			'max' => ceil( $wgRCMaxAge / ( 3600 * 24 ) ),
+			'max' => ceil( $rcMaxAge / ( 3600 * 24 ) ),
 			'help' => $context->msg( 'recentchangesdays-max' )->numParams(
-				ceil( $wgRCMaxAge / ( 3600 * 24 ) ) )->text()
+				ceil( $rcMaxAge / ( 3600 * 24 ) ) )->text()
 		);
 		$defaultPreferences['rclimit'] = array(
 			'type' => 'int',
@@ -906,7 +900,7 @@ class Preferences {
 			);
 		}
 
-		if ( $wgRCShowWatchingUsers ) {
+		if ( $context->getConfig()->get( 'RCShowWatchingUsers' ) ) {
 			$defaultPreferences['shownumberswatching'] = array(
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
@@ -921,9 +915,7 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgUseRCPatrol, $wgEnableAPI, $wgRCMaxAge;
-
-		$watchlistdaysMax = ceil( $wgRCMaxAge / ( 3600 * 24 ) );
+		$watchlistdaysMax = ceil( $context->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
 		## Watchlist #####################################
 		$defaultPreferences['watchlistdays'] = array(
@@ -974,7 +966,7 @@ class Preferences {
 			'label-message' => 'tog-watchlisthideliu',
 		);
 
-		if ( $wgUseRCPatrol ) {
+		if ( $context->getConfig()->get( 'UseRCPatrol' ) ) {
 			$defaultPreferences['watchlisthidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'watchlist/advancedwatchlist',
@@ -1010,7 +1002,7 @@ class Preferences {
 			}
 		}
 
-		if ( $wgEnableAPI ) {
+		if ( $context->getConfig()->get( 'EnableAPI' ) ) {
 			$defaultPreferences['watchlisttoken'] = array(
 				'type' => 'api',
 			);
@@ -1049,7 +1041,6 @@ class Preferences {
 	 * @return array Text/links to display as key; $skinkey as value
 	 */
 	static function generateSkinOptions( $user, IContextSource $context ) {
-		global $wgDefaultSkin, $wgAllowUserCss, $wgAllowUserJs;
 		$ret = array();
 
 		$mptitle = Title::newMainPage();
@@ -1073,7 +1064,7 @@ class Preferences {
 			$linkTools = array();
 
 			# Mark the default skin
-			if ( $skinkey == $wgDefaultSkin ) {
+			if ( $skinkey == $context->getConfig()->get( 'DefaultSkin' ) ) {
 				$linkTools[] = $context->msg( 'default' )->escaped();
 				$foundDefault = true;
 			}
@@ -1083,12 +1074,12 @@ class Preferences {
 			$linkTools[] = "<a target='_blank' href=\"$mplink\">$previewtext</a>";
 
 			# Create links to user CSS/JS pages
-			if ( $wgAllowUserCss ) {
+			if ( $context->getConfig()->get( 'AllowUserCss' ) ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.css' );
 				$linkTools[] = Linker::link( $cssPage, $context->msg( 'prefs-custom-css' )->escaped() );
 			}
 
-			if ( $wgAllowUserJs ) {
+			if ( $context->getConfig()->get( 'AllowUserJs' ) ) {
 				$jsPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.js' );
 				$linkTools[] = Linker::link( $jsPage, $context->msg( 'prefs-custom-js' )->escaped() );
 			}
@@ -1126,9 +1117,10 @@ class Preferences {
 			}
 
 			// KLUGE: site default might not be valid for user language
-			global $wgDefaultUserOptions;
-			if ( !in_array( $wgDefaultUserOptions['date'], $dateopts ) ) {
-				$wgDefaultUserOptions['date'] = 'default';
+			$defaultUserOptions = $context->getConfig()->get( 'DefaultUserOptions' );
+			if ( !in_array( $defaultUserOptions['date'], $dateopts ) ) {
+				$defaultUserOptions['date'] = 'default';
+				$context->getConfig()->set( 'DefaultUserOptions', $defaultUserOptions );
 			}
 
 			$epoch = wfTimestampNow();
@@ -1149,12 +1141,10 @@ class Preferences {
 	 * @return array
 	 */
 	static function getImageSizes( IContextSource $context ) {
-		global $wgImageLimits;
-
 		$ret = array();
 		$pixels = $context->msg( 'unit-pixel' )->text();
 
-		foreach ( $wgImageLimits as $index => $limits ) {
+		foreach ( $context->getConfig()->get( 'ImageLimits' ) as $index => $limits ) {
 			$display = "{$limits[0]}×{$limits[1]}" . $pixels;
 			$ret[$display] = $index;
 		}
@@ -1167,12 +1157,10 @@ class Preferences {
 	 * @return array
 	 */
 	static function getThumbSizes( IContextSource $context ) {
-		global $wgThumbLimits;
-
 		$ret = array();
 		$pixels = $context->msg( 'unit-pixel' )->text();
 
-		foreach ( $wgThumbLimits as $index => $size ) {
+		foreach ( $context->getConfig()->get( 'ThumbLimits' ) as $index => $size ) {
 			$display = $size . $pixels;
 			$ret[$display] = $index;
 		}
@@ -1187,10 +1175,11 @@ class Preferences {
 	 * @return bool|string
 	 */
 	static function validateSignature( $signature, $alldata, $form ) {
-		global $wgParser, $wgMaxSigChars;
-		if ( mb_strlen( $signature ) > $wgMaxSigChars ) {
+		global $wgParser;
+		$maxSigChars = $form->getConfig()->get( 'MaxSigChars' );
+		if ( mb_strlen( $signature ) > $maxSigChars ) {
 			return Xml::element( 'span', array( 'class' => 'error' ),
-				$form->msg( 'badsiglength' )->numParams( $wgMaxSigChars )->text() );
+				$form->msg( 'badsiglength' )->numParams( $maxSigChars )->text() );
 		} elseif ( isset( $alldata['fancysig'] ) &&
 				$alldata['fancysig'] &&
 				$wgParser->validateSig( $signature ) === false
@@ -1272,10 +1261,10 @@ class Preferences {
 	static function getTimezoneOptions( IContextSource $context ) {
 		$opt = array();
 
-		global $wgLocalTZoffset;
+		$localTZoffset = $context->getConfig()->get( 'LocalTZoffset' );
 		$timestamp = MWTimestamp::getLocalInstance();
 		// Check that $wgLocalTZoffset is the same as the local time zone offset
-		if ( $wgLocalTZoffset == $timestamp->format( 'Z' ) / 60 ) {
+		if ( $localTZoffset == $timestamp->format( 'Z' ) / 60 ) {
 			$server_tz_msg = $context->msg(
 				'timezoneuseserverdefault',
 				$timestamp->getTimezone()->getName()
@@ -1283,12 +1272,12 @@ class Preferences {
 		} else {
 			$tzstring = sprintf(
 				'%+03d:%02d',
-				floor( $wgLocalTZoffset / 60 ),
-				abs( $wgLocalTZoffset ) % 60
+				floor( $localTZoffset / 60 ),
+				abs( $localTZoffset ) % 60
 			);
 			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $tzstring )->text();
 		}
-		$opt[$server_tz_msg] = "System|$wgLocalTZoffset";
+		$opt[$server_tz_msg] = "System|$localTZoffset";
 		$opt[$context->msg( 'timezoneuseoffset' )->text()] = 'other';
 		$opt[$context->msg( 'guesstimezone' )->text()] = 'guess';
 
@@ -1388,9 +1377,10 @@ class Preferences {
 	 * @return bool|Status|string
 	 */
 	static function tryFormSubmit( $formData, $form ) {
-		global $wgHiddenPrefs, $wgAuth;
+		global $wgAuth;
 
 		$user = $form->getModifiedUser();
+		$hiddenPrefs = $form->getConfig()->get( 'HiddenPrefs' );
 		$result = true;
 
 		if ( !$user->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
@@ -1407,7 +1397,7 @@ class Preferences {
 
 		// Fortunately, the realname field is MUCH simpler
 		// (not really "private", but still shouldn't be edited without permission)
-		if ( !in_array( 'realname', $wgHiddenPrefs )
+		if ( !in_array( 'realname', $hiddenPrefs )
 			&& $user->isAllowed( 'editmyprivateinfo' )
 			&& array_key_exists( 'realname', $formData )
 		) {
@@ -1423,7 +1413,7 @@ class Preferences {
 			# If users have saved a value for a preference which has subsequently been disabled
 			# via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
 			# is subsequently re-enabled
-			foreach ( $wgHiddenPrefs as $pref ) {
+			foreach ( $hiddenPrefs as $pref ) {
 				# If the user has not set a non-default value here, the default will be returned
 				# and subsequently discarded
 				$formData[$pref] = $user->getOption( $pref, null, true );
