@@ -269,6 +269,10 @@ production.
 * (bug 63326) Add blockedtimestamp field to output of blockinfo property for
   the list=allusers and list=users modules.
 * prop=imageinfo no longer requires iiurlwidth to be set when using iiurlparam.
+* Added prop=linkshere, prop=fileusage, and prop=transcludedin, which are
+  roughly equivalent to list=backlinks, list=imageusage, and list=embeddedin
+  but can work on a list of titles (including titles from a generator).
+* prop=redirects can now filter returned redirects by namespace.
 
 === Action API internal changes in 1.24 ===
 * Methods for handling continuation are added to ApiResult, so actions other
@@ -298,6 +302,8 @@ production.
     ApiTokensGetTokenTypes are deprecated, but are still called to support
     backwards-compatible token access.
 * ApiBase::validateLimit and ApiBase::validateTimestamp are now protected.
+* ApiQueryRedirects was removed; prop=redirects is now implemented by
+  ApiQueryBacklinksProp along with the newly-added prop modules.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getResultProperties
