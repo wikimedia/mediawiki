@@ -421,7 +421,7 @@ interface IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @param array|string $fields
+	 * @param array $fields
 	 *
 	 * @return array
 	 */
