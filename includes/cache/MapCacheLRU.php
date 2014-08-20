@@ -64,7 +64,11 @@ class MapCacheLRU {
 			$evictKey = key( $this->cache );
 			unset( $this->cache[$evictKey] );
 		}
-		$this->cache[$key] = $value;
+		if ( is_object( $value ) ) {
+			$this->cache[$key] = clone $value;
+		} else {
+			$this->cache[$key] = $value;
+		}
 	}
 
 	/**
@@ -88,7 +92,11 @@ class MapCacheLRU {
 	public function get( $key ) {
 		if ( isset( $this->cache[$key] ) ) {
 			$this->ping( $key ); // push to top
-			return $this->cache[$key];
+			if ( is_object( $this->cache[$key] ) ) {
+				return clone $this->cache[$key];
+			} else {
+				return $this->cache[$key];
+			}
 		} else {
 			return null;
 		}
