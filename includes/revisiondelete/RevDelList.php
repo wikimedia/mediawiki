@@ -1,7 +1,5 @@
 <?php
 /**
- * Interface definition for deletable items.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -312,46 +310,4 @@ abstract class RevDelList extends RevisionListBase {
 	 * Get the integer value of the flag used for suppression
 	 */
 	abstract public function getSuppressBit();
-}
-
-/**
- * Abstract base class for deletable items
- */
-abstract class RevDelItem extends RevisionItemBase {
-	/**
-	 * Returns true if the item is "current", and the operation to set the given
-	 * bits can't be executed for that reason
-	 * STUB
-	 * @param int $newBits
-	 * @return bool
-	 */
-	public function isHideCurrentOp( $newBits ) {
-		return false;
-	}
-
-	/**
-	 * Get the current deletion bitfield value
-	 */
-	abstract public function getBits();
-
-	/**
-	 * Set the visibility of the item. This should do any necessary DB queries.
-	 *
-	 * The DB update query should have a condition which forces it to only update
-	 * if the value in the DB matches the value fetched earlier with the SELECT.
-	 * If the update fails because it did not match, the function should return
-	 * false. This prevents concurrency problems.
-	 *
-	 * @param int $newBits
-	 * @return bool Success
-	 */
-	abstract public function setBits( $newBits );
-
-	/**
-	 * Get the return information about the revision for the API
-	 * @since 1.23
-	 * @param ApiResult $result API result object
-	 * @return array Data for the API result
-	 */
-	abstract public function getApiData( ApiResult $result );
 }
