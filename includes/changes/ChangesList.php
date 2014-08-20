@@ -36,6 +36,9 @@ class ChangesList extends ContextSource {
 	protected $rclistOpen;
 	protected $rcMoveIndex;
 
+	/** @var MapCacheLRU */
+	protected $watchingCache;
+
 	/**
 	 * Changeslist constructor
 	 *
@@ -50,6 +53,7 @@ class ChangesList extends ContextSource {
 			$this->skin = $obj;
 		}
 		$this->preCacheMessages();
+		$this->watchingCache = new MapCacheLRU( 50 );
 	}
 
 	/**
@@ -460,14 +464,14 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	protected function numberofWatchingusers( $count ) {
-		static $cache = array();
+		$cache = $this->watchingCache;
 		if ( $count > 0 ) {
-			if ( !isset( $cache[$count] ) ) {
-				$cache[$count] = $this->msg( 'number_of_watching_users_RCview' )
-					->numParams( $count )->escaped();
+			if ( !$cache->has( $count ) ) {
+				$cache->set( $count, $this->msg( 'number_of_watching_users_RCview' )
+					->numParams( $count )->escaped() );
 			}
 
-			return $cache[$count];
+			return $cache->get( $count );
 		} else {
 			return '';
 		}
