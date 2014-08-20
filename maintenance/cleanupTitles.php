@@ -148,6 +148,12 @@ class TitleCleanup extends TableCleanup {
 				$ns = 0;
 			}
 
+			# Namespace which no longer exists. Put the page in the main namespace
+			# since we don't have any idea of the old namespace name. See bug 68501.
+			if ( !MWNamespace::exists( $ns ) ) {
+				$ns = 0;
+			}
+
 			$clean = 'Broken/' . $prior;
 			$verified = Title::makeTitleSafe( $ns, $clean );
 			if ( $verified->exists() ) {
