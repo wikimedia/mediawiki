@@ -15,6 +15,8 @@
 	 * @private
 	 */
 	function insertButton( b, speedTip, tagOpen, tagClose, sampleText, imageId ) {
+		var $button;
+
 		// Backwards compatibility
 		if ( typeof b !== 'object' ) {
 			b = {
@@ -26,15 +28,24 @@
 				imageId: imageId
 			};
 		}
-		var $image = $( '<img>' ).attr( {
-			width: 23,
-			height: 22,
-			src: b.imageFile,
-			alt: b.speedTip,
-			title: b.speedTip,
-			id: b.imageId || undefined,
-			'class': 'mw-toolbar-editbutton'
-		} ).click( function ( e ) {
+
+		if ( b.imageFile ) {
+			$button = $( '<img>' ).attr( {
+				src: b.imageFile,
+				alt: b.speedTip,
+				title: b.speedTip,
+				id: b.imageId || undefined,
+				'class': 'mw-toolbar-editbutton'
+			} );
+		} else {
+			$button = $( '<div>' ).attr( {
+				title: b.speedTip,
+				id: b.imageId || undefined,
+				'class': 'mw-toolbar-editbutton'
+			} );
+		}
+
+		$button.click( function ( e ) {
 			if ( b.onClick !== undefined ) {
 				b.onClick( e );
 			} else {
@@ -44,12 +55,11 @@
 			return false;
 		} );
 
-		$toolbar.append( $image );
+		$toolbar.append( $button );
 	}
 
 	isReady = false;
 	$toolbar = false;
-
 	/**
 	 * @private
 	 * @property {Array}
@@ -71,14 +81,15 @@
 		 * For compatiblity, passing the properties listed below as separate arguments
 		 * (in the listed order) is also supported.
 		 *
-		 * @param {Object} button Object with the following properties:
-		 * @param {string} button.imageFile
+		 * @param {Object} button Object with the following properties.
+		 *  Providing `onClick` or `tagOpen`, `tagClose` and `sampleText` is mutually exclusive.
+		 * @param {string} [button.imageFile]
 		 * @param {string} button.speedTip
+		 * @param {string} button.onClick
 		 * @param {string} button.tagOpen
 		 * @param {string} button.tagClose
 		 * @param {string} button.sampleText
 		 * @param {string} [button.imageId]
-		 * @param {Function} [button.onClick]
 		 */
 		addButton: function () {
 			if ( isReady ) {
@@ -89,10 +100,7 @@
 			}
 		},
 		/**
-		 * Add multiple buttons to the toolbar (see also #addButton).
-		 *
 		 * Example usage:
-		 *
 		 *     addButtons( [ { .. }, { .. }, { .. } ] );
 		 *     addButtons( { .. }, { .. } );
 		 *

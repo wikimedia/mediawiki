@@ -11,7 +11,7 @@ class LessTestSuite extends PHPUnit_Framework_TestSuite {
 
 		foreach ( $resourceLoader->getModuleNames() as $name ) {
 			$module = $resourceLoader->getModule( $name );
-			if ( !$module || !$module instanceof ResourceLoaderFileModule ) {
+			if ( !$module || get_class( $module ) !== 'ResourceLoaderFileModule' ) {
 				continue;
 			}
 

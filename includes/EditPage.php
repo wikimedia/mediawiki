@@ -3555,22 +3555,22 @@ HTML
 	 * @return string
 	 */
 	static function getEditToolbar() {
-		global $wgStylePath, $wgContLang, $wgLang, $wgOut;
+		global $wgContLang, $wgOut;
 		global $wgEnableUploads, $wgForeignFileRepos;
 
 		$imagesAvailable = $wgEnableUploads || count( $wgForeignFileRepos );
 
 		/**
 		 * $toolarray is an array of arrays each of which includes the
-		 * filename of the button image (without path), the opening
-		 * tag, the closing tag, optionally a sample text that is
+		 * opening tag, the closing tag, optionally a sample text that is
 		 * inserted between the two when no selection is highlighted
 		 * and.  The tip text is shown when the user moves the mouse
 		 * over the button.
+		 *
+		 * Images are defined in ResourceLoaderEditToolbarModule.
 		 */
 		$toolarray = array(
 			array(
-				'image'  => $wgLang->getImageFile( 'button-bold' ),
 				'id'     => 'mw-editbutton-bold',
 				'open'   => '\'\'\'',
 				'close'  => '\'\'\'',
@@ -3578,7 +3578,6 @@ HTML
 				'tip'    => wfMessage( 'bold_tip' )->text(),
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-italic' ),
 				'id'     => 'mw-editbutton-italic',
 				'open'   => '\'\'',
 				'close'  => '\'\'',
@@ -3586,7 +3585,6 @@ HTML
 				'tip'    => wfMessage( 'italic_tip' )->text(),
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-link' ),
 				'id'     => 'mw-editbutton-link',
 				'open'   => '[[',
 				'close'  => ']]',
@@ -3594,7 +3592,6 @@ HTML
 				'tip'    => wfMessage( 'link_tip' )->text(),
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-extlink' ),
 				'id'     => 'mw-editbutton-extlink',
 				'open'   => '[',
 				'close'  => ']',
@@ -3602,7 +3599,6 @@ HTML
 				'tip'    => wfMessage( 'extlink_tip' )->text(),
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-headline' ),
 				'id'     => 'mw-editbutton-headline',
 				'open'   => "\n== ",
 				'close'  => " ==\n",
@@ -3610,7 +3606,6 @@ HTML
 				'tip'    => wfMessage( 'headline_tip' )->text(),
 			),
 			$imagesAvailable ? array(
-				'image'  => $wgLang->getImageFile( 'button-image' ),
 				'id'     => 'mw-editbutton-image',
 				'open'   => '[[' . $wgContLang->getNsText( NS_FILE ) . ':',
 				'close'  => ']]',
@@ -3618,7 +3613,6 @@ HTML
 				'tip'    => wfMessage( 'image_tip' )->text(),
 			) : false,
 			$imagesAvailable ? array(
-				'image'  => $wgLang->getImageFile( 'button-media' ),
 				'id'     => 'mw-editbutton-media',
 				'open'   => '[[' . $wgContLang->getNsText( NS_MEDIA ) . ':',
 				'close'  => ']]',
@@ -3626,7 +3620,6 @@ HTML
 				'tip'    => wfMessage( 'media_tip' )->text(),
 			) : false,
 			array(
-				'image'  => $wgLang->getImageFile( 'button-nowiki' ),
 				'id'     => 'mw-editbutton-nowiki',
 				'open'   => "<nowiki>",
 				'close'  => "</nowiki>",
@@ -3634,7 +3627,6 @@ HTML
 				'tip'    => wfMessage( 'nowiki_tip' )->text(),
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-sig' ),
 				'id'     => 'mw-editbutton-signature',
 				'open'   => '--~~~~',
 				'close'  => '',
@@ -3642,7 +3634,6 @@ HTML
 				'tip'    => wfMessage( 'sig_tip' )->text(),
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-hr' ),
 				'id'     => 'mw-editbutton-hr',
 				'open'   => "\n----\n",
 				'close'  => '',
@@ -3658,7 +3649,8 @@ HTML
 			}
 
 			$params = array(
-				$wgStylePath . '/common/images/' . $tool['image'],
+				// Images are defined in ResourceLoaderEditToolbarModule
+				false,
 				// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
 				// Older browsers show a "speedtip" type message only for ALT.
 				// Ideally these should be different, realistically they

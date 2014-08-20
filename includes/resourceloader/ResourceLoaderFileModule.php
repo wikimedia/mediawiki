@@ -385,7 +385,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		$styles = $this->readStyleFiles(
 			$this->getStyleFiles( $context ),
-			$this->getFlip( $context )
+			$this->getFlip( $context ),
+			$context
 		);
 		// Collect referenced files
 		$this->localFileRefs = array_unique( $this->localFileRefs );
@@ -816,14 +817,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param array $styles List of media type/list of file paths pairs, to read, remap and
 	 * concetenate
-	 *
 	 * @param bool $flip
+	 * @param ResourceLoaderContext $context (optional)
 	 *
 	 * @throws MWException
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 */
-	public function readStyleFiles( array $styles, $flip ) {
+	public function readStyleFiles( array $styles, $flip, $context = null ) {
 		if ( empty( $styles ) ) {
 			return array();
 		}
@@ -831,7 +832,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$uniqueFiles = array_unique( $files, SORT_REGULAR );
 			$styleFiles = array();
 			foreach ( $uniqueFiles as $file ) {
-				$styleFiles[] = $this->readStyleFile( $file, $flip );
+				$styleFiles[] = $this->readStyleFile( $file, $flip, $context );
 			}
 			$styles[$media] = implode( "\n", $styleFiles );
 		}
@@ -845,11 +846,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param string $path File path of style file to read
 	 * @param bool $flip
+	 * @param ResourceLoaderContext $context (optional)
 	 *
 	 * @return string CSS data in script file
 	 * @throws MWException If the file doesn't exist
 	 */
-	protected function readStyleFile( $path, $flip ) {
+	protected function readStyleFile( $path, $flip, $context = null ) {
 		$localPath = $this->getLocalPath( $path );
 		$remotePath = $this->getRemotePath( $path );
 		if ( !file_exists( $localPath ) ) {
@@ -859,7 +861,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		if ( $this->getStyleSheetLang( $localPath ) === 'less' ) {
-			$style = $this->compileLessFile( $localPath );
+			$compiler = $this->getLessCompiler( $context );
+			$style = $this->compileLessFile( $localPath, $compiler );
 			$this->hasGeneratedStyles = true;
 		} else {
 			$style = file_get_contents( $localPath );
@@ -908,12 +911,29 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @since 1.22
 	 * @throws Exception If lessc encounters a parse error
 	 * @param string $fileName File path of LESS source
+	 * @param lessc $compiler Compiler to use, if not default
 	 * @return string CSS source
 	 */
-	protected function compileLessFile( $fileName ) {
-		$compiler = ResourceLoader::getLessCompiler( $this->getConfig() );
+	protected function compileLessFile( $fileName, $compiler = null ) {
+		if ( !$compiler ) {
+			$compiler = $this->getLessCompiler();
+		}
 		$result = $compiler->compileFile( $fileName );
 		$this->localFileRefs += array_keys( $compiler->allParsedFiles() );
 		return $result;
+	}
+
+	/**
+	 * Get a LESS compiler instance for this module in given context.
+	 *
+	 * Just calls ResourceLoader::getLessCompiler() by default to get a global compiler.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @throws MWException
+	 * @since 1.24
+	 * @return lessc
+	 */
+	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
+		return ResourceLoader::getLessCompiler( $this->getConfig() );
 	}
 }
