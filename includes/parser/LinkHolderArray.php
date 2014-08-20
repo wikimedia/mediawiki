@@ -290,7 +290,7 @@ class LinkHolderArray {
 		}
 
 		wfProfileIn( __METHOD__ );
-		global $wgContLang;
+		global $wgContLang, $wgContentHandlerUseDB;
 
 		$colours = array();
 		$linkCache = LinkCache::singleton();
@@ -348,10 +348,16 @@ class LinkHolderArray {
 				);
 			}
 
+			$fields = array( 'page_id', 'page_namespace', 'page_title',
+				'page_is_redirect', 'page_len', 'page_latest' );
+
+			if ( $wgContentHandlerUseDB ) {
+				$fields[] = 'page_content_model';
+			}
+
 			$res = $dbr->select(
 				'page',
-				array( 'page_id', 'page_namespace', 'page_title',
-					'page_is_redirect', 'page_len', 'page_latest' ),
+				$fields,
 				$dbr->makeList( $where, LIST_OR ),
 				__METHOD__
 			);
@@ -465,7 +471,7 @@ class LinkHolderArray {
 	 * @param array $colours
 	 */
 	protected function doVariants( &$colours ) {
-		global $wgContLang;
+		global $wgContLang, $wgContentHandlerUseDB;
 		$linkBatch = new LinkBatch();
 		$variantMap = array(); // maps $pdbkey_Variant => $keys (of link holders)
 		$output = $this->parent->getOutput();
@@ -554,9 +560,15 @@ class LinkHolderArray {
 		if ( !$linkBatch->isEmpty() ) {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
+			$fields = array( 'page_id', 'page_namespace', 'page_title',
+				'page_is_redirect', 'page_len', 'page_latest' );
+
+			if ( $wgContentHandlerUseDB ) {
+				$fields[] = 'page_content_model';
+			}
+
 			$varRes = $dbr->select( 'page',
-				array( 'page_id', 'page_namespace', 'page_title',
-					'page_is_redirect', 'page_len', 'page_latest' ),
+				$fields,
 				$linkBatch->constructSet( 'page', $dbr ),
 				__METHOD__
 			);

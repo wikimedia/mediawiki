@@ -944,10 +944,12 @@ class Title {
 	 * Get the page's content model id, see the CONTENT_MODEL_XXX constants.
 	 *
 	 * @throws MWException
+	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return string Content model id
 	 */
-	public function getContentModel() {
-		if ( !$this->mContentModel ) {
+	public function getContentModel( $flags = 0 ) {
+		# Calling getArticleID() loads the field from cache as needed
+		if ( !$this->mContentModel && $this->getArticleID( $flags ) ) {
 			$linkCache = LinkCache::singleton();
 			$this->mContentModel = $linkCache->getGoodLinkFieldObj( $this, 'model' );
 		}
