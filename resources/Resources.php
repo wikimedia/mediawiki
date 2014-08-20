@@ -1051,7 +1051,6 @@ return array(
 			'jquery.client',
 		),
 		'position' => 'top',
-		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
