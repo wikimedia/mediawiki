@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.0.11
+ * OOjs v1.0.12 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-07-23T20:15:47Z
+ * Date: 2014-08-20T22:33:41Z
  */
 ( function ( global ) {
 
@@ -222,8 +222,10 @@ oo.getObjectValues = function ( obj ) {
  * the other. An asymmetrical test may also be performed, which checks only that properties in the
  * first object are present in the second object, but not the inverse.
  *
- * @param {Object} a First object to compare
- * @param {Object} b Second object to compare
+ * If either a or b is null or undefined it will be treated as an empty object.
+ *
+ * @param {Object|undefined} a First object to compare
+ * @param {Object|undefined} b Second object to compare
  * @param {boolean} [asymmetrical] Whether to check only that b contains values from a
  * @return {boolean} If the objects contain the same values as each other
  */
@@ -233,6 +235,9 @@ oo.compare = function ( a, b, asymmetrical ) {
 	if ( a === b ) {
 		return true;
 	}
+
+	a = a || {};
+	b = b || {};
 
 	for ( k in a ) {
 		if ( !hasOwn.call( a, k ) ) {
@@ -261,41 +266,46 @@ oo.compare = function ( a, b, asymmetrical ) {
  * Copies are deep, and will either be an object or an array depending on `source`.
  *
  * @param {Object} source Object to copy
- * @param {Function} [callback] Applied to leaf values before they added to the clone
+ * @param {Function} [leafCallback] Applied to leaf values after they are cloned but before they are added to the clone
+ * @param {Function} [nodeCallback] Applied to all values before they are cloned.  If the nodeCallback returns a value other than undefined, the returned value is used instead of attempting to clone.
  * @return {Object} Copy of source object
  */
-oo.copy = function ( source, callback ) {
-	var key, sourceValue, sourceType, destination;
+oo.copy = function ( source, leafCallback, nodeCallback ) {
+	var key, destination;
 
-	if ( typeof source.clone === 'function' ) {
-		return source.clone();
-	}
-
-	destination = Array.isArray( source ) ? new Array( source.length ) : {};
-
-	for ( key in source ) {
-		sourceValue = source[key];
-		sourceType = typeof sourceValue;
-		if ( Array.isArray( sourceValue ) ) {
-			// Array
-			destination[key] = oo.copy( sourceValue, callback );
-		} else if ( sourceValue && typeof sourceValue.clone === 'function' ) {
-			// Duck type object with custom clone method
-			destination[key] = callback ?
-				callback( sourceValue.clone() ) : sourceValue.clone();
-		} else if ( sourceValue && typeof sourceValue.cloneNode === 'function' ) {
-			// DOM Node
-			destination[key] = callback ?
-				callback( sourceValue.cloneNode( true ) ) : sourceValue.cloneNode( true );
-		} else if ( oo.isPlainObject( sourceValue ) ) {
-			// Plain objects
-			destination[key] = oo.copy( sourceValue, callback );
-		} else {
-			// Non-plain objects (incl. functions) and primitive values
-			destination[key] = callback ? callback( sourceValue ) : sourceValue;
+	if ( nodeCallback ) {
+		// Extensibility: check before attempting to clone source.
+		destination = nodeCallback( source );
+		if ( destination !== undefined ) {
+			return destination;
 		}
 	}
 
+	if ( Array.isArray( source ) ) {
+		// Array (fall through)
+		destination = new Array( source.length );
+	} else if ( source && typeof source.clone === 'function' ) {
+		// Duck type object with custom clone method
+		return leafCallback ? leafCallback( source.clone() ) : source.clone();
+	} else if ( source && typeof source.cloneNode === 'function' ) {
+		// DOM Node
+		return leafCallback ?
+			leafCallback( source.cloneNode( true ) ) :
+			source.cloneNode( true );
+	} else if ( oo.isPlainObject( source ) ) {
+		// Plain objects (fall through)
+		destination = {};
+	} else {
+		// Non-plain objects (incl. functions) and primitive values
+		return leafCallback ? leafCallback( source ) : source;
+	}
+
+	// source is an array or a plain object
+	for ( key in source ) {
+		destination[key] = oo.copy( source[key], leafCallback, nodeCallback );
+	}
+
+	// This is an internal node, so we don't apply the leafCallback.
 	return destination;
 };
 
@@ -466,29 +476,28 @@ oo.EventEmitter = function OoEventEmitter() {
 	this.bindings = {};
 };
 
+oo.initClass( oo.EventEmitter );
+
 /* Methods */
 
 /**
  * Add a listener to events of a specific event.
  *
+ * The listener can be a function or the string name of a method; if the latter, then the
+ * name lookup happens at the time the listener is called.
+ *
  * @param {string} event Type of event to listen to
- * @param {Function} callback Function to call when event occurs
+ * @param {Function|string} method Function or method name to call when event occurs
  * @param {Array} [args] Arguments to pass to listener, will be prepended to emitted arguments
- * @param {Object} [context=null] Object to use as context for callback function or call method on
- * @throws {Error} Listener argument is not a function or method name
+ * @param {Object} [context=null] Context object for function or method call
+ * @throws {Error} Listener argument is not a function or a valid method name
  * @chainable
  */
-oo.EventEmitter.prototype.on = function ( event, callback, args, context ) {
+oo.EventEmitter.prototype.on = function ( event, method, args, context ) {
 	var bindings;
 
-	// Validate callback
-	if ( typeof callback !== 'function' ) {
-		throw new Error( 'Invalid callback. Function or method name expected.' );
-	}
-	// Fallback to null context
-	if ( arguments.length < 4 ) {
-		context = null;
-	}
+	this.constructor.static.validateMethod( method, context );
+
 	if ( hasOwn.call( this.bindings, event ) ) {
 		bindings = this.bindings[event];
 	} else {
@@ -497,9 +506,9 @@ oo.EventEmitter.prototype.on = function ( event, callback, args, context ) {
 	}
 	// Add binding
 	bindings.push( {
-		callback: callback,
+		method: method,
 		args: args,
-		context: context
+		context: ( arguments.length < 4 ) ? null : context
 	} );
 	return this;
 };
@@ -524,41 +533,45 @@ oo.EventEmitter.prototype.once = function ( event, listener ) {
  * Remove a specific listener from a specific event.
  *
  * @param {string} event Type of event to remove listener from
- * @param {Function} [callback] Listener to remove, omit to remove all
- * @param {Object} [context=null] Object used context for callback function or method
+ * @param {Function|string} [method] Listener to remove. Must be in the same form as was passed
+ * to "on". Omit to remove all listeners.
+ * @param {Object} [context=null] Context object function or method call
  * @chainable
- * @throws {Error} Listener argument is not a function
+ * @throws {Error} Listener argument is not a function or a valid method name
  */
-oo.EventEmitter.prototype.off = function ( event, callback, context ) {
+oo.EventEmitter.prototype.off = function ( event, method, context ) {
 	var i, bindings;
 
 	if ( arguments.length === 1 ) {
 		// Remove all bindings for event
 		delete this.bindings[event];
-	} else {
-		if ( typeof callback !== 'function' ) {
-			throw new Error( 'Invalid callback. Function expected.' );
+		return this;
+	}
+
+	this.constructor.static.validateMethod( method, context );
+
+	if ( !( event in this.bindings ) || !this.bindings[event].length ) {
+		// No matching bindings
+		return this;
+	}
+
+	// Default to null context
+	if ( arguments.length < 3 ) {
+		context = null;
+	}
+
+	// Remove matching handlers
+	bindings = this.bindings[event];
+	i = bindings.length;
+	while ( i-- ) {
+		if ( bindings[i].method === method && bindings[i].context === context ) {
+			bindings.splice( i, 1 );
 		}
-		if ( !( event in this.bindings ) || !this.bindings[event].length ) {
-			// No matching bindings
-			return this;
-		}
-		// Fallback to null context
-		if ( arguments.length < 3 ) {
-			context = null;
-		}
-		// Remove matching handlers
-		bindings = this.bindings[event];
-		i = bindings.length;
-		while ( i-- ) {
-			if ( bindings[i].callback === callback && bindings[i].context === context ) {
-				bindings.splice( i, 1 );
-			}
-		}
-		// Cleanup if now empty
-		if ( bindings.length === 0 ) {
-			delete this.bindings[event];
-		}
+	}
+
+	// Cleanup if now empty
+	if ( bindings.length === 0 ) {
+		delete this.bindings[event];
 	}
 	return this;
 };
@@ -574,7 +587,7 @@ oo.EventEmitter.prototype.off = function ( event, callback, context ) {
  * @return {boolean} If event was handled by at least one listener
  */
 oo.EventEmitter.prototype.emit = function ( event ) {
-	var i, len, binding, bindings, args;
+	var i, len, binding, bindings, args, method;
 
 	if ( event in this.bindings ) {
 		// Slicing ensures that we don't get tripped up by event handlers that add/remove bindings
@@ -582,7 +595,13 @@ oo.EventEmitter.prototype.emit = function ( event ) {
 		args = Array.prototype.slice.call( arguments, 1 );
 		for ( i = 0, len = bindings.length; i < len; i++ ) {
 			binding = bindings[i];
-			binding.callback.apply(
+			if ( typeof binding.method === 'string' ) {
+				// Lookup method by name (late binding)
+				method = binding.context[ binding.method ];
+			} else {
+				method = binding.method;
+			}
+			method.apply(
 				binding.context,
 				binding.args ? binding.args.concat( args ) : args
 			);
@@ -603,7 +622,7 @@ oo.EventEmitter.prototype.emit = function ( event ) {
  * @chainable
  */
 oo.EventEmitter.prototype.connect = function ( context, methods ) {
-	var method, callback, args, event;
+	var method, args, event;
 
 	for ( event in methods ) {
 		method = methods[event];
@@ -614,19 +633,8 @@ oo.EventEmitter.prototype.connect = function ( context, methods ) {
 		} else {
 			args = [];
 		}
-		// Allow callback to be a method name
-		if ( typeof method === 'string' ) {
-			// Validate method
-			if ( !context[method] || typeof context[method] !== 'function' ) {
-				throw new Error( 'Method not found: ' + method );
-			}
-			// Resolve to function
-			callback = context[method];
-		} else {
-			callback = method;
-		}
 		// Add binding
-		this.on.apply( this, [ event, callback, args, context ] );
+		this.on( event, method, args, context );
 	}
 	return this;
 };
@@ -636,27 +644,17 @@ oo.EventEmitter.prototype.connect = function ( context, methods ) {
  *
  * @param {Object} context Object to disconnect methods from
  * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} [methods] List of
- * event bindings keyed by event name containing either method names or functions
+ * event bindings keyed by event name. Values can be either method names or functions, but must be
+ * consistent with those used in the corresponding call to "connect".
  * @chainable
  */
 oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
-	var i, method, callback, event, bindings;
+	var i, event, bindings;
 
 	if ( methods ) {
 		// Remove specific connections to the context
 		for ( event in methods ) {
-			method = methods[event];
-			if ( typeof method === 'string' ) {
-				// Validate method
-				if ( !context[method] || typeof context[method] !== 'function' ) {
-					throw new Error( 'Method not found: ' + method );
-				}
-				// Resolve to function
-				callback = context[method];
-			} else {
-				callback = method;
-			}
-			this.off( event, callback, context );
+			this.off( event, methods[event], context );
 		}
 	} else {
 		// Remove all connections to the context
@@ -667,7 +665,7 @@ oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
 				// bindings[i] may have been removed by the previous step's
 				// this.off so check it still exists
 				if ( bindings[i] && bindings[i].context === context ) {
-					this.off( event, bindings[i].callback, context );
+					this.off( event, bindings[i].method, context );
 				}
 			}
 		}
@@ -675,6 +673,42 @@ oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
 
 	return this;
 };
+
+/**
+ * Validate a function or method call in a context
+ *
+ * For a method name, check that it names a function in the context object
+ *
+ * @static
+ * @param {Function|string} method Function or method name
+ * @param {Mixed} context The context of the call
+ * @throws {Error} A method name is given but there is no context
+ * @throws {Error} In the context object, no property exists with the given name
+ * @throws {Error} In the context object, the named property is not a function
+ */
+oo.EventEmitter.static.validateMethod = function ( method, context ) {
+	// Validate method and context
+	if ( typeof method === 'string' ) {
+		// Validate method
+		if ( context === undefined || context === null ) {
+			throw new Error( 'Method name "' + method + '" has no context.' );
+		}
+		if ( !( method in context ) ) {
+			// Technically the method does not need to exist yet: it could be
+			// added before call time. But this probably signals a typo.
+			throw new Error( 'Method not found: "' + method + '"' );
+		}
+		if ( typeof context[method] !== 'function' ) {
+			// Technically the property could be replaced by a function before
+			// call time. But this probably signals a typo.
+			throw new Error( 'Property "' + method + '" is not a function' );
+		}
+	} else if ( typeof method !== 'function' ) {
+		throw new Error( 'Invalid callback. Function or method name expected.' );
+	}
+};
+
+/*global hasOwn */
 
 /**
  * @class OO.Registry
@@ -737,7 +771,9 @@ oo.Registry.prototype.register = function ( name, data ) {
  * @return {Mixed|undefined} Data associated with symbolic name
  */
 oo.Registry.prototype.lookup = function ( name ) {
-	return this.registry[name];
+	if ( hasOwn.call( this.registry, name ) ) {
+		return this.registry[name];
+	}
 };
 
 /**
@@ -802,12 +838,12 @@ oo.Factory.prototype.register = function ( constructor ) {
  * @throws {Error} Unknown object name
  */
 oo.Factory.prototype.create = function ( name ) {
-	var args, obj, constructor;
+	var args, obj,
+		constructor = this.lookup( name );
 
-	if ( !this.registry.hasOwnProperty( name ) ) {
+	if ( !constructor ) {
 		throw new Error( 'No class registered by that name: ' + name );
 	}
-	constructor = this.registry[name];
 
 	// Convert arguments to array and shift the first argument (name) off
 	args = Array.prototype.slice.call( arguments, 1 );
