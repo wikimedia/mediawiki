@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (55b861b167)
+ * OOjs UI v0.1.0-pre (d6008381aa)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-21T16:59:20Z
+ * Date: 2014-08-21T23:45:56Z
  */
 ( function ( OO ) {
 
@@ -2727,21 +2727,8 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 		// Ensure handlers get called after preparingToOpen is set
 		this.preparingToOpen.done( function () {
 			if ( manager.modal ) {
-				manager.$( manager.getElementDocument() ).on( {
-					// Prevent scrolling by keys in top-level window
-					keydown: manager.onDocumentKeyDownHandler
-				} );
-				manager.$( manager.getElementWindow() ).on( {
-					// Prevent scrolling by wheel in top-level window
-					mousewheel: manager.onWindowMouseWheelHandler,
-					// Start listening for top-level window dimension changes
-					'orientationchange resize': manager.onWindowResizeHandler
-				} );
-				// Hide other content from screen readers
-				manager.$ariaHidden = $( 'body' )
-					.children()
-					.not( manager.$element.parentsUntil( 'body' ).last() )
-					.attr( 'aria-hidden', '' );
+				manager.toggleGlobalEvents( true );
+				manager.toggleAriaIsolation( true );
 			}
 			manager.currentWindow = win;
 			manager.opening = opening;
@@ -2828,21 +2815,8 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 						win.teardown( data ).then( function () {
 							closing.notify( { state: 'teardown' } );
 							if ( manager.modal ) {
-								manager.$( manager.getElementDocument() ).off( {
-									// Allow scrolling by keys in top-level window
-									keydown: manager.onDocumentKeyDownHandler
-								} );
-								manager.$( manager.getElementWindow() ).off( {
-									// Allow scrolling by wheel in top-level window
-									mousewheel: manager.onWindowMouseWheelHandler,
-									// Stop listening for top-level window dimension changes
-									'orientationchange resize': manager.onWindowResizeHandler
-								} );
-							}
-							// Restore screen reader visiblity
-							if ( manager.$ariaHidden ) {
-								manager.$ariaHidden.removeAttr( 'aria-hidden' );
-								manager.$ariaHidden = null;
+								manager.toggleGlobalEvents( false );
+								manager.toggleAriaIsolation( false );
 							}
 							manager.closing = null;
 							manager.currentWindow = null;
@@ -2959,6 +2933,84 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 	win.setDimensions( sizes[size] );
 
 	return this;
+};
+
+/**
+ * Bind or unbind global events for scrolling.
+ *
+ * @param {boolean} [on] Bind global events
+ * @chainable
+ */
+OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
+	on = on === undefined ? !!this.globalEvents : !!on;
+
+	if ( on ) {
+		if ( !this.globalEvents ) {
+			this.$( this.getElementDocument() ).on( {
+				// Prevent scrolling by keys in top-level window
+				keydown: this.onDocumentKeyDownHandler
+			} );
+			this.$( this.getElementWindow() ).on( {
+				// Prevent scrolling by wheel in top-level window
+				mousewheel: this.onWindowMouseWheelHandler,
+				// Start listening for top-level window dimension changes
+				'orientationchange resize': this.onWindowResizeHandler
+			} );
+			this.globalEvents = true;
+		}
+	} else if ( this.globalEvents ) {
+		// Unbind global events
+		this.$( this.getElementDocument() ).off( {
+			// Allow scrolling by keys in top-level window
+			keydown: this.onDocumentKeyDownHandler
+		} );
+		this.$( this.getElementWindow() ).off( {
+			// Allow scrolling by wheel in top-level window
+			mousewheel: this.onWindowMouseWheelHandler,
+			// Stop listening for top-level window dimension changes
+			'orientationchange resize': this.onWindowResizeHandler
+		} );
+		this.globalEvents = false;
+	}
+
+	return this;
+};
+
+/**
+ * Toggle screen reader visibility of content other than the window manager.
+ *
+ * @param {boolean} [isolate] Make only the window manager visible to screen readers
+ * @chainable
+ */
+OO.ui.WindowManager.prototype.toggleAriaIsolation = function ( isolate ) {
+	isolate = isolate === undefined ? !this.$ariaHidden : !!isolate;
+
+	if ( isolate ) {
+		if ( !this.$ariaHidden ) {
+			// Hide everything other than the window manager from screen readers
+			this.$ariaHidden = $( 'body' )
+				.children()
+				.not( this.$element.parentsUntil( 'body' ).last() )
+				.attr( 'aria-hidden', '' );
+		}
+	} else if ( this.$ariaHidden ) {
+		// Restore screen reader visiblity
+		this.$ariaHidden.removeAttr( 'aria-hidden' );
+		this.$ariaHidden = null;
+	}
+
+	return this;
+};
+
+/**
+ * Destroy window manager.
+ *
+ * Windows will not be closed, only removed from the DOM.
+ */
+OO.ui.WindowManager.prototype.destroy = function () {
+	this.toggleGlobalEvents( false );
+	this.toggleAriaIsolation( false );
+	this.$element.remove();
 };
 
 /**
