@@ -163,6 +163,24 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			$this->assertTrue( true );
 		}
 	}
+
+	/**
+	 * @covers ResourceLoader::getRawModuleNames
+	 */
+	public function testGetRawModuleNames() {
+		$rl = new ResourceLoader();
+		$rl->register( array(
+			'test.foo' => array(
+				'raw' => true
+			),
+			'test.baz' => array(
+				'dependencies' => 'test.foo',
+			),
+		) );
+
+		$this->assertContains( 'test.foo', $rl->getRawModuleNames() );
+		$this->assertNotContains( 'test.baz', $rl->getRawModuleNames() );
+	}
 }
 
 /* Hooks */

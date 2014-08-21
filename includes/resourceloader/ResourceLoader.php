@@ -41,6 +41,9 @@ class ResourceLoader {
 	/** @var array Module name/ResourceLoaderModule object pairs */
 	protected $modules = array();
 
+	/** @var array Array of module names of raw modules */
+	private $rawModules = array();
+
 	/** @var array Associative array mapping module name to info associative array */
 	protected $moduleInfos = array();
 
@@ -300,9 +303,15 @@ class ResourceLoader {
 				$this->moduleInfos[$name] = array( 'object' => $info );
 				$info->setName( $name );
 				$this->modules[$name] = $info;
+				if ( $info->isRaw() ) {
+					$this->rawModules[] = $info->getName();
+				}
 			} elseif ( is_array( $info ) ) {
 				// New calling convention
 				$this->moduleInfos[$name] = $info;
+				if ( isset( $info['raw'] ) && $info['raw'] === true ) {
+					$this->rawModules[] = $name;
+				}
 			} else {
 				wfProfileOut( __METHOD__ );
 				throw new MWException(
@@ -442,6 +451,16 @@ class ResourceLoader {
 	 */
 	public function getModuleNames() {
 		return array_keys( $this->moduleInfos );
+	}
+
+	/**
+	 * Get a list of modules that are "raw"
+	 *
+	 * @since 1.24
+	 * @return array List of module names
+	 */
+	public function getRawModuleNames() {
+		return $this->rawModules;
 	}
 
 	/**
