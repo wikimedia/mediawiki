@@ -304,8 +304,27 @@ abstract class ResourceLoaderModule {
 	 * To add dependencies dynamically on the client side, use a custom
 	 * loader script, see getLoaderScript()
 	 * @return array List of module names as strings
+	 * @since 1.24
 	 */
-	public function getDependencies() {
+	final public function getFinalDependencies() {
+		$dependencies = $this->getDependencies();
+
+		foreach( array( 'mediawiki', 'jquery' ) as $name ) {
+			if ( in_array( $name, $dependencies ) ) {
+				wfWarn( "{$this->getName()} should not depend upon the \"$name\" module" );
+			}
+		}
+
+		return array_diff( $dependencies, array( 'mediawiki', 'jquery' ) );
+	}
+
+	/**
+	 * Internal function for getFinalDependencies(), shouldn't be called
+	 * directly.
+	 *
+	 * protected since 1.24
+	 */
+	protected function getDependencies() {
 		// Stub, override expected
 		return array();
 	}
