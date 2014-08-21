@@ -622,6 +622,70 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
+	 * Populate this PageSet from a list of Titles that are known to:
+	 * - be normalized AND
+	 * - be already known to LinkCache AND MAY
+	 * - be in an order that needs to be preserved
+	 *
+	 * @param array[Title] $titles Array of Title objects
+	 */
+	public function populateFromKnownTitles( array $titles ) {
+		$this->profileIn();
+
+		$ids = array();
+		$usernames = array();
+		/** @var Title $title */
+		foreach ( $titles as $title ) {
+			$pageId = $title->getArticleID();
+			if ( $pageId ) {
+				$ids[] = $pageId;
+				$this->mGoodTitles[$pageId] = $title;
+				if ( $this->mResolveRedirects && $title->isRedirect() ) {
+					$this->mPendingRedirectIDs[$pageId] = $title;
+				}
+				if ( MWNamespace::hasGenderDistinction( $title->getNamespace() ) ) {
+					$usernames[] = $title;
+				}
+			} else {
+				$pageId = $this->mFakePageId;
+				$this->mFakePageId--;
+				if ( $title->getNamespace() < 0 ) {
+					$this->mSpecialTitles[$pageId] = $title;
+				} elseif ( $title->isExternal() ) {
+					$this->mInterwikiTitles[$pageId] = $title;
+				} else {
+					$this->mMissingTitles[$pageId] = $title;
+				}
+			}
+			$this->mTitles[] = $title;
+			$this->mAllPages[$title->getNamespace()][$title->getDBkey()] = $pageId;
+		}
+
+		if ( $ids && $this->mRequestedPageFields ) {
+			$dbr = $this->getDB();
+			$fields = array_merge( array_keys( $this->mRequestedPageFields ), array( 'page_id' ) );
+			// FIXME: ideally, there should be a way to do this from LinkBatch
+			$res = $dbr->select( 'page',
+				$fields,
+				array( 'page_id' => $ids ),
+				__METHOD__
+			);
+			foreach ( $res as $row ) {
+				foreach ( $this->mRequestedPageFields as $fieldName => &$fieldValues ) {
+					$fieldValues[$row->page_id] = $row->$fieldName;
+				}
+			}
+		}
+		if ( $usernames ) {
+			// Get gender information
+			$genderCache = GenderCache::singleton();
+			$genderCache->doQuery( $usernames, __METHOD__ );
+		}
+
+		$this->profileOut();
+	}
+
+	/**
 	 * Populate this PageSet from a list of page IDs
 	 * @param array $pageIDs Array of page IDs
 	 */
