@@ -303,7 +303,28 @@ abstract class ResourceLoaderModule {
 	 *
 	 * To add dependencies dynamically on the client side, use a custom
 	 * loader script, see getLoaderScript()
+	 *
+	 * Subclasses should override getDependencies
+	 *
+	 * @param ResourceLoaderContext $context
 	 * @return array List of module names as strings
+	 * @since 1.24
+	 */
+	final public function getFinalDependencies( ResourceLoaderContext $context ) {
+		$dependencies = $this->getDependencies();
+		$rawModules = $context->getResourceLoader()->getRawModuleNames();
+		foreach( $rawModules as $name ) {
+			if ( in_array( $name, $dependencies ) ) {
+				wfWarn( "{$this->getName()} should not depend upon the \"$name\" module" );
+			}
+		}
+
+		return array_diff( $dependencies, array( 'mediawiki', 'jquery' ) );
+	}
+
+	/**
+	 * Internal function for getFinalDependencies(), shouldn't be called
+	 * directly. Subclasses should override this
 	 */
 	public function getDependencies() {
 		// Stub, override expected

@@ -45,6 +45,7 @@ class ResourcesTest extends MediaWikiTestCase {
 		$data = self::getAllModules();
 		$illegalDeps = array( 'jquery', 'mediawiki' );
 
+		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			foreach ( $illegalDeps as $illegalDep ) {
 				$this->assertNotContains(
@@ -63,6 +64,7 @@ class ResourcesTest extends MediaWikiTestCase {
 		$data = self::getAllModules();
 		$validDeps = array_keys( $data['modules'] );
 
+		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			foreach ( $module->getDependencies() as $dep ) {
 				$this->assertContains(
@@ -85,6 +87,7 @@ class ResourcesTest extends MediaWikiTestCase {
 		$data = self::getAllModules();
 		$validDeps = array_keys( $data['modules'] );
 
+		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			$moduleTargets = $module->getTargets();
 			foreach ( $module->getDependencies() as $dep ) {
