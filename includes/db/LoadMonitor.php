@@ -74,9 +74,14 @@ class LoadMonitorNull implements LoadMonitor {
 class LoadMonitorMySQL implements LoadMonitor {
 	/** @var LoadBalancer */
 	public $parent;
+	/** @var BagOStuff */
+	protected $cache;
 
 	public function __construct( $parent ) {
+		global $wgMemc;
+
 		$this->parent = $parent;
+		$this->cache = $wgMemc ?: wfGetMainCache();
 	}
 
 	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
@@ -93,14 +98,10 @@ class LoadMonitorMySQL implements LoadMonitor {
 		$expiry = 5;
 		$requestRate = 10;
 
-		global $wgMemc;
-		if ( empty( $wgMemc ) ) {
-			$wgMemc = wfGetMainCache();
-		}
-
+		$cache = $this->cache;
 		$masterName = $this->parent->getServerName( 0 );
 		$memcKey = wfMemcKey( 'lag_times', $masterName );
-		$times = $wgMemc->get( $memcKey );
+		$times = $cache->get( $memcKey );
 		if ( is_array( $times ) ) {
 			# Randomly recache with probability rising over $expiry
 			$elapsed = time() - $times['timestamp'];
@@ -116,10 +117,10 @@ class LoadMonitorMySQL implements LoadMonitor {
 		}
 
 		# Cache key missing or expired
-		if ( $wgMemc->add( "$memcKey:lock", 1, 10 ) ) {
+		if ( $cache->add( "$memcKey:lock", 1, 10 ) ) {
 			# Let this process alone update the cache value
-			$unlocker = new ScopedCallback( function () use ( $wgMemc, $memcKey ) {
-				$wgMemc->delete( $memcKey );
+			$unlocker = new ScopedCallback( function () use ( $cache, $memcKey ) {
+				$cache->delete( $memcKey );
 			} );
 		} elseif ( is_array( $times ) ) {
 			# Could not acquire lock but an old cache exists, so use it
@@ -136,12 +137,17 @@ class LoadMonitorMySQL implements LoadMonitor {
 				$times[$i] = $conn->getLag();
 			} elseif ( false !== ( $conn = $this->parent->openConnection( $i, $wiki ) ) ) {
 				$times[$i] = $conn->getLag();
+				// Close the connection to avoid sleeper connections piling up.
+				// Note that the caller will pick one of these DBs and reconnect,
+				// which is slightly inefficient, but this only matters for the lag
+				// time cache miss cache, which is far less common that cache hits.
+				$this->parent->closeConnection( $conn );
 			}
 		}
 
 		# Add a timestamp key so we know when it was cached
 		$times['timestamp'] = time();
-		$wgMemc->set( $memcKey, $times, $expiry + 10 );
+		$cache->set( $memcKey, $times, $expiry + 10 );
 		unset( $times['timestamp'] ); // hide from caller
 
 		return $times;
