@@ -2394,3 +2394,8 @@
 	}
 
 }( jQuery ) );
+
+mw.loader.state( {
+	"jquery": "ready",
+	"mediawiki": "ready"
+} );
