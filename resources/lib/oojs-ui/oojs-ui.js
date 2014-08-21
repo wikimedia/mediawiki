@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (944c47c5fe)
+ * OOjs UI v0.1.0-pre (55b861b167)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-21T00:23:52Z
+ * Date: 2014-08-21T16:59:20Z
  */
 ( function ( OO ) {
 
@@ -654,18 +654,19 @@ OO.ui.Element.static.tagName = 'div';
  *
  * @static
  * @param {jQuery|HTMLElement|HTMLDocument|Window} context Context to bind the function to
- * @param {OO.ui.Frame} [frame] Frame of the document context
+ * @param {jQuery} [$iframe] HTML iframe element that contains the document, omit if document is
+ *   not in an iframe
  * @return {Function} Bound jQuery function
  */
-OO.ui.Element.getJQuery = function ( context, frame ) {
+OO.ui.Element.getJQuery = function ( context, $iframe ) {
 	function wrapper( selector ) {
 		return $( selector, wrapper.context );
 	}
 
 	wrapper.context = this.getDocument( context );
 
-	if ( frame ) {
-		wrapper.frame = frame;
+	if ( $iframe ) {
+		wrapper.$iframe = $iframe;
 	}
 
 	return wrapper;
@@ -1095,271 +1096,6 @@ OO.ui.Element.prototype.offDOMEvent = function ( event, callback ) {
 }() );
 
 /**
- * Embedded iframe with the same styles as its parent.
- *
- * @class
- * @extends OO.ui.Element
- * @mixins OO.EventEmitter
- *
- * @constructor
- * @param {Object} [config] Configuration options
- */
-OO.ui.Frame = function OoUiFrame( config ) {
-	// Parent constructor
-	OO.ui.Frame.super.call( this, config );
-
-	// Mixin constructors
-	OO.EventEmitter.call( this );
-
-	// Properties
-	this.loading = null;
-	this.config = config;
-	this.dir = null;
-
-	// Initialize
-	this.$element
-		.addClass( 'oo-ui-frame' )
-		.attr( { frameborder: 0, scrolling: 'no' } );
-
-};
-
-/* Setup */
-
-OO.inheritClass( OO.ui.Frame, OO.ui.Element );
-OO.mixinClass( OO.ui.Frame, OO.EventEmitter );
-
-/* Static Properties */
-
-/**
- * @static
- * @inheritdoc
- */
-OO.ui.Frame.static.tagName = 'iframe';
-
-/* Events */
-
-/**
- * @event load
- */
-
-/* Static Methods */
-
-/**
- * Transplant the CSS styles from as parent document to a frame's document.
- *
- * This loops over the style sheets in the parent document, and copies their nodes to the
- * frame's document. It then polls the document to see when all styles have loaded, and once they
- * have, resolves the promise.
- *
- * If the styles still haven't loaded after a long time (5 seconds by default), we give up waiting
- * and resolve the promise anyway. This protects against cases like a display: none; iframe in
- * Firefox, where the styles won't load until the iframe becomes visible.
- *
- * For details of how we arrived at the strategy used in this function, see #load.
- *
- * @static
- * @inheritable
- * @param {HTMLDocument} parentDoc Document to transplant styles from
- * @param {HTMLDocument} frameDoc Document to transplant styles to
- * @param {number} [timeout=5000] How long to wait before giving up (in ms). If 0, never give up.
- * @return {jQuery.Promise} Promise resolved when styles have loaded
- */
-OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, timeout ) {
-	var i, numSheets, styleNode, styleText, newNode, timeoutID, pollNodeId, $pendingPollNodes,
-		$pollNodes = $( [] ),
-		// Fake font-family value
-		fontFamily = 'oo-ui-frame-transplantStyles-loaded',
-		nextIndex = parentDoc.oouiFrameTransplantStylesNextIndex || 0,
-		deferred = $.Deferred();
-
-	for ( i = 0, numSheets = parentDoc.styleSheets.length; i < numSheets; i++ ) {
-		styleNode = parentDoc.styleSheets[i].ownerNode;
-		if ( styleNode.disabled ) {
-			continue;
-		}
-
-		if ( styleNode.nodeName.toLowerCase() === 'link' ) {
-			// External stylesheet; use @import
-			styleText = '@import url(' + styleNode.href + ');';
-		} else {
-			// Internal stylesheet; just copy the text
-			styleText = styleNode.textContent;
-		}
-
-		// Create a node with a unique ID that we're going to monitor to see when the CSS
-		// has loaded
-		if ( styleNode.oouiFrameTransplantStylesId ) {
-			// If we're nesting transplantStyles operations and this node already has
-			// a CSS rule to wait for loading, reuse it
-			pollNodeId = styleNode.oouiFrameTransplantStylesId;
-		} else {
-			// Otherwise, create a new ID
-			pollNodeId = 'oo-ui-frame-transplantStyles-loaded-' + nextIndex;
-			nextIndex++;
-
-			// Add #pollNodeId { font-family: ... } to the end of the stylesheet / after the @import
-			// The font-family rule will only take effect once the @import finishes
-			styleText += '\n' + '#' + pollNodeId + ' { font-family: ' + fontFamily + '; }';
-		}
-
-		// Create a node with id=pollNodeId
-		$pollNodes = $pollNodes.add( $( '<div>', frameDoc )
-			.attr( 'id', pollNodeId )
-			.appendTo( frameDoc.body )
-		);
-
-		// Add our modified CSS as a <style> tag
-		newNode = frameDoc.createElement( 'style' );
-		newNode.textContent = styleText;
-		newNode.oouiFrameTransplantStylesId = pollNodeId;
-		frameDoc.head.appendChild( newNode );
-	}
-	frameDoc.oouiFrameTransplantStylesNextIndex = nextIndex;
-
-	// Poll every 100ms until all external stylesheets have loaded
-	$pendingPollNodes = $pollNodes;
-	timeoutID = setTimeout( function pollExternalStylesheets() {
-		while (
-			$pendingPollNodes.length > 0 &&
-			$pendingPollNodes.eq( 0 ).css( 'font-family' ) === fontFamily
-		) {
-			$pendingPollNodes = $pendingPollNodes.slice( 1 );
-		}
-
-		if ( $pendingPollNodes.length === 0 ) {
-			// We're done!
-			if ( timeoutID !== null ) {
-				timeoutID = null;
-				$pollNodes.remove();
-				deferred.resolve();
-			}
-		} else {
-			timeoutID = setTimeout( pollExternalStylesheets, 100 );
-		}
-	}, 100 );
-	// ...but give up after a while
-	if ( timeout !== 0 ) {
-		setTimeout( function () {
-			if ( timeoutID ) {
-				clearTimeout( timeoutID );
-				timeoutID = null;
-				$pollNodes.remove();
-				deferred.reject();
-			}
-		}, timeout || 5000 );
-	}
-
-	return deferred.promise();
-};
-
-/* Methods */
-
-/**
- * Load the frame contents.
- *
- * Once the iframe's stylesheets are loaded, the `load` event will be emitted and the returned
- * promise will be resolved. Calling while loading will return a promise but not trigger a new
- * loading cycle. Calling after loading is complete will return a promise that's already been
- * resolved.
- *
- * Sounds simple right? Read on...
- *
- * When you create a dynamic iframe using open/write/close, the window.load event for the
- * iframe is triggered when you call close, and there's no further load event to indicate that
- * everything is actually loaded.
- *
- * In Chrome, stylesheets don't show up in document.styleSheets until they have loaded, so we could
- * just poll that array and wait for it to have the right length. However, in Firefox, stylesheets
- * are added to document.styleSheets immediately, and the only way you can determine whether they've
- * loaded is to attempt to access .cssRules and wait for that to stop throwing an exception. But
- * cross-domain stylesheets never allow .cssRules to be accessed even after they have loaded.
- *
- * The workaround is to change all `<link href="...">` tags to `<style>@import url(...)</style>` tags.
- * Because `@import` is blocking, Chrome won't add the stylesheet to document.styleSheets until
- * the `@import` has finished, and Firefox won't allow .cssRules to be accessed until the `@import`
- * has finished. And because the contents of the `<style>` tag are from the same origin, accessing
- * .cssRules is allowed.
- *
- * However, now that we control the styles we're injecting, we might as well do away with
- * browser-specific polling hacks like document.styleSheets and .cssRules, and instead inject
- * `<style>@import url(...); #foo { font-family: someValue; }</style>`, then create `<div id="foo">`
- * and wait for its font-family to change to someValue. Because `@import` is blocking, the font-family
- * rule is not applied until after the `@import` finishes.
- *
- * All this stylesheet injection and polling magic is in #transplantStyles.
- *
- * @return {jQuery.Promise} Promise resolved when loading is complete
- * @fires load
- */
-OO.ui.Frame.prototype.load = function () {
-	var win, doc,
-		frame = this;
-
-	// Return existing promise if already loading or loaded
-	if ( this.loading ) {
-		return this.loading.promise();
-	}
-
-	// Load the frame
-	this.loading = $.Deferred();
-
-	win = this.$element.prop( 'contentWindow' );
-	doc = win.document;
-
-	// Cache directionality
-	this.dir = OO.ui.Element.getDir( this.$element ) || 'ltr';
-
-	// Initialize contents
-	doc.open();
-	// The following classes can be used here:
-	// oo-ui-ltr
-	// oo-ui-rtl
-	doc.write(
-		'<!doctype html>' +
-		'<html>' +
-			'<body class="oo-ui-frame-content oo-ui-' + this.getDir() + '" dir="' + this.getDir() + '">' +
-			'</body>' +
-		'</html>'
-	);
-	doc.close();
-
-	// Properties
-	this.$ = OO.ui.Element.getJQuery( doc, this );
-	this.$content = this.$( '.oo-ui-frame-content' ).attr( 'tabIndex', 0 );
-	this.$document = this.$( doc );
-
-	// Initialization
-	this.constructor.static.transplantStyles( this.getElementDocument(), this.$document[0] )
-		.always( function () {
-			frame.emit( 'load' );
-			frame.loading.resolve();
-		} );
-
-	return this.loading.promise();
-};
-
-/**
- * Set the size of the frame.
- *
- * @param {number} width Frame width in pixels
- * @param {number} height Frame height in pixels
- * @chainable
- */
-OO.ui.Frame.prototype.setSize = function ( width, height ) {
-	this.$element.css( { width: width, height: height } );
-	return this;
-};
-
-/**
- * Get the directionality of the frame
- *
- * @return {string} Directionality, 'ltr' or 'rtl'
- */
-OO.ui.Frame.prototype.getDir = function () {
-	return this.dir;
-};
-
-/**
  * Container for elements.
  *
  * @abstract
@@ -1546,15 +1282,12 @@ OO.ui.Widget.prototype.updateDisabled = function () {
  * If the requested size is not recognized, the window manager will choose a sensible fallback.
  *
  * @constructor
- * @param {OO.ui.WindowManager} manager Manager of window
  * @param {Object} [config] Configuration options
  * @cfg {string} [size] Symbolic name of dialog size, `small`, `medium`, `large` or `full`; omit to
  *   use #static-size
  * @fires initialize
  */
-OO.ui.Window = function OoUiWindow( manager, config ) {
-	var win = this;
-
+OO.ui.Window = function OoUiWindow( config ) {
 	// Configuration initialization
 	config = config || {};
 
@@ -1564,46 +1297,25 @@ OO.ui.Window = function OoUiWindow( manager, config ) {
 	// Mixin constructors
 	OO.EventEmitter.call( this );
 
-	if ( !( manager instanceof OO.ui.WindowManager ) ) {
-		throw new Error( 'Cannot construct window: window must have a manager' );
-	}
-
 	// Properties
-	this.manager = manager;
+	this.manager = null;
 	this.initialized = false;
 	this.visible = false;
 	this.opening = null;
 	this.closing = null;
 	this.opened = null;
 	this.timing = null;
+	this.loading = null;
 	this.size = config.size || this.constructor.static.size;
-	this.frame = new OO.ui.Frame( { $: this.$ } );
 	this.$frame = this.$( '<div>' );
-	this.$ = function () {
-		throw new Error( 'this.$() cannot be used until the frame has been initialized.' );
-	};
 
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-window' )
-		// Hide the window using visibility: hidden; while the iframe is still loading
-		// Can't use display: none; because that prevents the iframe from loading in Firefox
-		.css( 'visibility', 'hidden' )
 		.append( this.$frame );
-	this.$frame
-		.addClass( 'oo-ui-window-frame' )
-		.append( this.frame.$element );
+	this.$frame.addClass( 'oo-ui-window-frame' );
 
-	// Events
-	this.frame.on( 'load', function () {
-		win.initialize();
-		win.initialized = true;
-		// Undo the visibility: hidden; hack and apply display: none;
-		// We can do this safely now that the iframe has initialized
-		// (don't do this from within #initialize because it has to happen
-		// after the all subclasses have been handled as well).
-		win.$element.hide().css( 'visibility', '' );
-	} );
+	// NOTE: Additional intitialization will occur when #setManager is called
 };
 
 /* Setup */
@@ -1631,6 +1343,116 @@ OO.mixinClass( OO.ui.Window, OO.EventEmitter );
  */
 OO.ui.Window.static.size = 'medium';
 
+/* Static Methods */
+
+/**
+ * Transplant the CSS styles from as parent document to a frame's document.
+ *
+ * This loops over the style sheets in the parent document, and copies their nodes to the
+ * frame's document. It then polls the document to see when all styles have loaded, and once they
+ * have, resolves the promise.
+ *
+ * If the styles still haven't loaded after a long time (5 seconds by default), we give up waiting
+ * and resolve the promise anyway. This protects against cases like a display: none; iframe in
+ * Firefox, where the styles won't load until the iframe becomes visible.
+ *
+ * For details of how we arrived at the strategy used in this function, see #load.
+ *
+ * @static
+ * @inheritable
+ * @param {HTMLDocument} parentDoc Document to transplant styles from
+ * @param {HTMLDocument} frameDoc Document to transplant styles to
+ * @param {number} [timeout=5000] How long to wait before giving up (in ms). If 0, never give up.
+ * @return {jQuery.Promise} Promise resolved when styles have loaded
+ */
+OO.ui.Window.static.transplantStyles = function ( parentDoc, frameDoc, timeout ) {
+	var i, numSheets, styleNode, styleText, newNode, timeoutID, pollNodeId, $pendingPollNodes,
+		$pollNodes = $( [] ),
+		// Fake font-family value
+		fontFamily = 'oo-ui-frame-transplantStyles-loaded',
+		nextIndex = parentDoc.oouiFrameTransplantStylesNextIndex || 0,
+		deferred = $.Deferred();
+
+	for ( i = 0, numSheets = parentDoc.styleSheets.length; i < numSheets; i++ ) {
+		styleNode = parentDoc.styleSheets[i].ownerNode;
+		if ( styleNode.disabled ) {
+			continue;
+		}
+
+		if ( styleNode.nodeName.toLowerCase() === 'link' ) {
+			// External stylesheet; use @import
+			styleText = '@import url(' + styleNode.href + ');';
+		} else {
+			// Internal stylesheet; just copy the text
+			styleText = styleNode.textContent;
+		}
+
+		// Create a node with a unique ID that we're going to monitor to see when the CSS
+		// has loaded
+		if ( styleNode.oouiFrameTransplantStylesId ) {
+			// If we're nesting transplantStyles operations and this node already has
+			// a CSS rule to wait for loading, reuse it
+			pollNodeId = styleNode.oouiFrameTransplantStylesId;
+		} else {
+			// Otherwise, create a new ID
+			pollNodeId = 'oo-ui-frame-transplantStyles-loaded-' + nextIndex;
+			nextIndex++;
+
+			// Add #pollNodeId { font-family: ... } to the end of the stylesheet / after the @import
+			// The font-family rule will only take effect once the @import finishes
+			styleText += '\n' + '#' + pollNodeId + ' { font-family: ' + fontFamily + '; }';
+		}
+
+		// Create a node with id=pollNodeId
+		$pollNodes = $pollNodes.add( $( '<div>', frameDoc )
+			.attr( 'id', pollNodeId )
+			.appendTo( frameDoc.body )
+		);
+
+		// Add our modified CSS as a <style> tag
+		newNode = frameDoc.createElement( 'style' );
+		newNode.textContent = styleText;
+		newNode.oouiFrameTransplantStylesId = pollNodeId;
+		frameDoc.head.appendChild( newNode );
+	}
+	frameDoc.oouiFrameTransplantStylesNextIndex = nextIndex;
+
+	// Poll every 100ms until all external stylesheets have loaded
+	$pendingPollNodes = $pollNodes;
+	timeoutID = setTimeout( function pollExternalStylesheets() {
+		while (
+			$pendingPollNodes.length > 0 &&
+			$pendingPollNodes.eq( 0 ).css( 'font-family' ) === fontFamily
+		) {
+			$pendingPollNodes = $pendingPollNodes.slice( 1 );
+		}
+
+		if ( $pendingPollNodes.length === 0 ) {
+			// We're done!
+			if ( timeoutID !== null ) {
+				timeoutID = null;
+				$pollNodes.remove();
+				deferred.resolve();
+			}
+		} else {
+			timeoutID = setTimeout( pollExternalStylesheets, 100 );
+		}
+	}, 100 );
+	// ...but give up after a while
+	if ( timeout !== 0 ) {
+		setTimeout( function () {
+			if ( timeoutID ) {
+				clearTimeout( timeoutID );
+				timeoutID = null;
+				$pollNodes.remove();
+				deferred.reject();
+			}
+		}, timeout || 5000 );
+	}
+
+	return deferred.promise();
+};
+
 /* Methods */
 
 /**
@@ -1649,6 +1471,24 @@ OO.ui.Window.prototype.isInitialized = function () {
  */
 OO.ui.Window.prototype.isVisible = function () {
 	return this.visible;
+};
+
+/**
+ * Check if window is loading.
+ *
+ * @return {boolean} Window is loading
+ */
+OO.ui.Window.prototype.isLoading = function () {
+	return this.loading && this.loading.state() === 'pending';
+};
+
+/**
+ * Check if window is loaded.
+ *
+ * @return {boolean} Window is loaded
+ */
+OO.ui.Window.prototype.isLoaded = function () {
+	return this.loading && this.loading.state() === 'resolved';
 };
 
 /**
@@ -1694,15 +1534,6 @@ OO.ui.Window.prototype.getManager = function () {
 };
 
 /**
- * Get the window frame.
- *
- * @return {OO.ui.Frame} Frame of window
- */
-OO.ui.Window.prototype.getFrame = function () {
-	return this.frame;
-};
-
-/**
  * Get the window size.
  *
  * @return {string} Symbolic size name, e.g. 'small', 'medium', 'large', 'full'
@@ -1719,8 +1550,8 @@ OO.ui.Window.prototype.getSize = function () {
 OO.ui.Window.prototype.getContentHeight = function () {
 	return Math.round(
 		// Add buffer for border
-		( ( this.$frame.outerHeight() - this.$frame.innerHeight() ) * 2 ) +
-		// Height of contents
+		( this.$frame.outerHeight() - this.$frame.innerHeight() ) +
+		// Use combined heights of children
 		( this.$head.outerHeight( true ) + this.getBodyHeight() + this.$foot.outerHeight( true ) )
 	);
 };
@@ -1732,6 +1563,15 @@ OO.ui.Window.prototype.getContentHeight = function () {
  */
 OO.ui.Window.prototype.getBodyHeight = function () {
 	return this.$body[0].scrollHeight;
+};
+
+/**
+ * Get the directionality of the frame
+ *
+ * @return {string} Directionality, 'ltr' or 'rtl'
+ */
+OO.ui.Window.prototype.getDir = function () {
+	return this.dir;
 };
 
 /**
@@ -1803,6 +1643,76 @@ OO.ui.Window.prototype.getTeardownProcess = function () {
 };
 
 /**
+ * Toggle visibility of window.
+ *
+ * If the window is isolated and hasn't fully loaded yet, the visiblity property will be used
+ * instead of display.
+ *
+ * @param {boolean} [show] Make window visible, omit to toggle visibility
+ * @fires visible
+ * @chainable
+ */
+OO.ui.Window.prototype.toggle = function ( show ) {
+	show = show === undefined ? !this.visible : !!show;
+
+	if ( show !== this.isVisible() ) {
+		this.visible = show;
+
+		if ( this.isolated && !this.isLoaded() ) {
+			// Hide the window using visibility instead of display until loading is complete
+			// Can't use display: none; because that prevents the iframe from loading in Firefox
+			this.$element.css( 'visibility', show ? 'visible' : 'hidden' );
+		} else {
+			this.$element.toggle( show ).css( 'visibility', '' );
+		}
+		this.emit( 'toggle', show );
+	}
+
+	return this;
+};
+
+/**
+ * Set the window manager.
+ *
+ * This must be called before initialize. Calling it more than once will cause an error.
+ *
+ * @param {OO.ui.WindowManager} manager Manager for this window
+ * @throws {Error} If called more than once
+ * @chainable
+ */
+OO.ui.Window.prototype.setManager = function ( manager ) {
+	if ( this.manager ) {
+		throw new Error( 'Cannot set window manager, window already has a manager' );
+	}
+
+	// Properties
+	this.manager = manager;
+	this.isolated = manager.shouldIsolate();
+
+	// Initialization
+	if ( this.isolated ) {
+		this.$iframe = this.$( '<iframe>' );
+		this.$iframe.attr( { frameborder: 0, scrolling: 'no' } );
+		this.$frame.append( this.$iframe );
+		this.$ = function () {
+			throw new Error( 'this.$() cannot be used until the frame has been initialized.' );
+		};
+		// WARNING: Do not use this.$ again until #initialize is called
+	} else {
+		this.$content = this.$( '<div>' );
+		this.$document = $( this.getElementDocument() );
+		this.$content.addClass( 'oo-ui-window-content' );
+		this.$frame.append( this.$content );
+	}
+	this.toggle( false );
+
+	// Figure out directionality:
+	this.dir = OO.ui.Element.getDir( this.$iframe || this.$content ) || 'ltr';
+
+	return this;
+};
+
+/**
  * Set the window size.
  *
  * @param {string} size Symbolic size name, e.g. 'small', 'medium', 'large', 'full'
@@ -1851,11 +1761,15 @@ OO.ui.Window.prototype.setDimensions = function ( dim ) {
  *
  * Once this method is called, this.$ can be used to create elements within the frame.
  *
+ * @throws {Error} If not attached to a manager
  * @chainable
  */
 OO.ui.Window.prototype.initialize = function () {
+	if ( !this.manager ) {
+		throw new Error( 'Cannot initialize window, must be attached to a manager' );
+	}
+
 	// Properties
-	this.$ = this.frame.$;
 	this.$head = this.$( '<div>' );
 	this.$body = this.$( '<div>' );
 	this.$foot = this.$( '<div>' );
@@ -1866,9 +1780,7 @@ OO.ui.Window.prototype.initialize = function () {
 	this.$body.addClass( 'oo-ui-window-body' );
 	this.$foot.addClass( 'oo-ui-window-foot' );
 	this.$overlay.addClass( 'oo-ui-window-overlay' );
-	this.frame.$content
-		.addClass( 'oo-ui-window-content' )
-		.append( this.$head, this.$body, this.$foot, this.$overlay );
+	this.$content.append( this.$head, this.$body, this.$foot, this.$overlay );
 
 	return this;
 };
@@ -1901,18 +1813,6 @@ OO.ui.Window.prototype.close = function ( data ) {
 };
 
 /**
- * Load window.
- *
- * This is called by OO.ui.WindowManager durring window adding, and should not be called directly
- * by other systems.
- *
- * @return {jQuery.Promise} Promise resolved when window is loaded
- */
-OO.ui.Window.prototype.load = function () {
-	return this.frame.load();
-};
-
-/**
  * Setup window.
  *
  * This is called by OO.ui.WindowManager durring window opening, and should not be called directly
@@ -1928,10 +1828,9 @@ OO.ui.Window.prototype.setup = function ( data ) {
 	this.$element.show();
 	this.visible = true;
 	this.getSetupProcess( data ).execute().done( function () {
-		win.manager.updateWindowSize( win );
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.addClass( 'oo-ui-window-setup' ).width();
-		win.frame.$content.addClass( 'oo-ui-window-content-setup' ).width();
+		win.$content.addClass( 'oo-ui-window-content-setup' ).width();
 		deferred.resolve();
 	} );
 
@@ -1951,11 +1850,11 @@ OO.ui.Window.prototype.ready = function ( data ) {
 	var win = this,
 		deferred = $.Deferred();
 
-	this.frame.$content[0].focus();
+	this.$content.focus();
 	this.getReadyProcess( data ).execute().done( function () {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.addClass( 'oo-ui-window-ready' ).width();
-		win.frame.$content.addClass( 'oo-ui-window-content-ready' ).width();
+		win.$content.addClass( 'oo-ui-window-content-ready' ).width();
 		deferred.resolve();
 	} );
 
@@ -1976,13 +1875,17 @@ OO.ui.Window.prototype.hold = function ( data ) {
 		deferred = $.Deferred();
 
 	this.getHoldProcess( data ).execute().done( function () {
-		var $focused = win.frame.$content.find( ':focus' );
-		if ( $focused.length ) {
-			$focused[0].blur();
+		// Get the focused element within the window's content
+		var $focus = win.$content.find( OO.ui.Element.getDocument( win.$content ).activeElement );
+
+		// Blur the focused element
+		if ( $focus.length ) {
+			$focus[0].blur();
 		}
+
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.removeClass( 'oo-ui-window-ready' ).width();
-		win.frame.$content.removeClass( 'oo-ui-window-content-ready' ).width();
+		win.$content.removeClass( 'oo-ui-window-content-ready' ).width();
 		deferred.resolve();
 	} );
 
@@ -2005,13 +1908,110 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 	this.getTeardownProcess( data ).execute().done( function () {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.removeClass( 'oo-ui-window-setup' ).width();
-		win.frame.$content.removeClass( 'oo-ui-window-content-setup' ).width();
+		win.$content.removeClass( 'oo-ui-window-content-setup' ).width();
 		win.$element.hide();
 		win.visible = false;
 		deferred.resolve();
 	} );
 
 	return deferred.promise();
+};
+
+/**
+ * Load the frame contents.
+ *
+ * Once the iframe's stylesheets are loaded, the `load` event will be emitted and the returned
+ * promise will be resolved. Calling while loading will return a promise but not trigger a new
+ * loading cycle. Calling after loading is complete will return a promise that's already been
+ * resolved.
+ *
+ * Sounds simple right? Read on...
+ *
+ * When you create a dynamic iframe using open/write/close, the window.load event for the
+ * iframe is triggered when you call close, and there's no further load event to indicate that
+ * everything is actually loaded.
+ *
+ * In Chrome, stylesheets don't show up in document.styleSheets until they have loaded, so we could
+ * just poll that array and wait for it to have the right length. However, in Firefox, stylesheets
+ * are added to document.styleSheets immediately, and the only way you can determine whether they've
+ * loaded is to attempt to access .cssRules and wait for that to stop throwing an exception. But
+ * cross-domain stylesheets never allow .cssRules to be accessed even after they have loaded.
+ *
+ * The workaround is to change all `<link href="...">` tags to `<style>@import url(...)</style>`
+ * tags. Because `@import` is blocking, Chrome won't add the stylesheet to document.styleSheets
+ * until the `@import` has finished, and Firefox won't allow .cssRules to be accessed until the
+ * `@import` has finished. And because the contents of the `<style>` tag are from the same origin,
+ * accessing .cssRules is allowed.
+ *
+ * However, now that we control the styles we're injecting, we might as well do away with
+ * browser-specific polling hacks like document.styleSheets and .cssRules, and instead inject
+ * `<style>@import url(...); #foo { font-family: someValue; }</style>`, then create `<div id="foo">`
+ * and wait for its font-family to change to someValue. Because `@import` is blocking, the
+ * font-family rule is not applied until after the `@import` finishes.
+ *
+ * All this stylesheet injection and polling magic is in #transplantStyles.
+ *
+ * @return {jQuery.Promise} Promise resolved when loading is complete
+ * @fires load
+ */
+OO.ui.Window.prototype.load = function () {
+	var sub, doc, loading,
+		win = this;
+
+	// Non-isolated windows are already "loaded"
+	if ( !this.loading && !this.isolated ) {
+		this.loading = $.Deferred().resolve();
+		this.initialize();
+		// Set initialized state after so sub-classes aren't confused by it being set by calling
+		// their parent initialize method
+		this.initialized = true;
+	}
+
+	// Return existing promise if already loading or loaded
+	if ( this.loading ) {
+		return this.loading.promise();
+	}
+
+	// Load the frame
+	loading = this.loading = $.Deferred();
+	sub = this.$iframe.prop( 'contentWindow' );
+	doc = sub.document;
+
+	// Initialize contents
+	doc.open();
+	doc.write(
+		'<!doctype html>' +
+		'<html>' +
+			'<body class="oo-ui-window-isolated oo-ui-window-content oo-ui-' + this.dir + '"' +
+				' style="direction:' + this.dir + ';" dir="' + this.dir + '">' +
+			'</body>' +
+		'</html>'
+	);
+	doc.close();
+
+	// Properties
+	this.$ = OO.ui.Element.getJQuery( doc, this.$element );
+	this.$content = this.$( '.oo-ui-window-content' ).attr( 'tabIndex', 0 );
+	this.$document = this.$( doc );
+
+	// Initialization
+	this.constructor.static.transplantStyles( this.getElementDocument(), this.$document[0] )
+		.always( function () {
+			// Initialize isolated windows
+			win.initialize();
+			// Set initialized state after so sub-classes aren't confused by it being set by calling
+			// their parent initialize method
+			win.initialized = true;
+			// Undo the visibility: hidden; hack and apply display: none;
+			// We can do this safely now that the iframe has initialized
+			// (don't do this from within #initialize because it has to happen
+			// after the all subclasses have been handled as well).
+			win.toggle( win.isVisible() );
+
+			loading.resolve();
+		} );
+
+	return loading.promise();
 };
 
 /**
@@ -2043,9 +2043,9 @@ OO.ui.Window.prototype.teardown = function ( data ) {
  * @constructor
  * @param {Object} [config] Configuration options
  */
-OO.ui.Dialog = function OoUiDialog( manager, config ) {
+OO.ui.Dialog = function OoUiDialog( config ) {
 	// Parent constructor
-	OO.ui.Dialog.super.call( this, manager, config );
+	OO.ui.Dialog.super.call( this, config );
 
 	// Properties
 	this.actions = new OO.ui.ActionSet();
@@ -2118,7 +2118,7 @@ OO.ui.Dialog.static.escapable = true;
  *
  * @param {jQuery.Event} e Key down event
  */
-OO.ui.Dialog.prototype.onFrameDocumentKeyDown = function ( e ) {
+OO.ui.Dialog.prototype.onDocumentKeyDown = function ( e ) {
 	if ( e.which === OO.ui.Keys.ESCAPE ) {
 		this.close();
 		return false;
@@ -2250,11 +2250,11 @@ OO.ui.Dialog.prototype.initialize = function () {
 
 	// Events
 	if ( this.constructor.static.escapable ) {
-		this.frame.$document.on( 'keydown', OO.ui.bind( this.onFrameDocumentKeyDown, this ) );
+		this.$document.on( 'keydown', OO.ui.bind( this.onDocumentKeyDown, this ) );
 	}
 
 	// Initialization
-	this.frame.$content.addClass( 'oo-ui-dialog-content' );
+	this.$content.addClass( 'oo-ui-dialog-content' );
 };
 
 /**
@@ -2299,7 +2299,7 @@ OO.ui.Dialog.prototype.executeAction = function ( action ) {
  */
 OO.ui.Dialog.prototype.pushPending = function () {
 	if ( this.pending === 0 ) {
-		this.frame.$content.addClass( 'oo-ui-actionDialog-content-pending' );
+		this.$content.addClass( 'oo-ui-actionDialog-content-pending' );
 		this.$head.addClass( 'oo-ui-texture-pending' );
 	}
 	this.pending++;
@@ -2316,7 +2316,7 @@ OO.ui.Dialog.prototype.pushPending = function () {
  */
 OO.ui.Dialog.prototype.popPending = function () {
 	if ( this.pending === 1 ) {
-		this.frame.$content.removeClass( 'oo-ui-actionDialog-content-pending' );
+		this.$content.removeClass( 'oo-ui-actionDialog-content-pending' );
 		this.$head.removeClass( 'oo-ui-texture-pending' );
 	}
 	this.pending = Math.max( 0, this.pending - 1 );
@@ -2364,6 +2364,7 @@ OO.ui.Dialog.prototype.popPending = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {boolean} [isolate] Configure managed windows to isolate their content using inline frames
  * @cfg {OO.Factory} [factory] Window factory to use for automatic instantiation
  * @cfg {boolean} [modal=true] Prevent interaction outside the dialog
  */
@@ -2380,10 +2381,13 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	// Properties
 	this.factory = config.factory;
 	this.modal = config.modal === undefined || !!config.modal;
+	this.isolate = !!config.isolate;
 	this.windows = {};
 	this.opening = null;
 	this.opened = null;
 	this.closing = null;
+	this.preparingToOpen = null;
+	this.preparingToClose = null;
 	this.size = null;
 	this.currentWindow = null;
 	this.$ariaHidden = null;
@@ -2554,6 +2558,17 @@ OO.ui.WindowManager.prototype.isOpened = function ( win ) {
 };
 
 /**
+ * Check if window contents should be isolated.
+ *
+ * Window content isolation is done using inline frames.
+ *
+ * @return {boolean} Window contents should be isolated
+ */
+OO.ui.WindowManager.prototype.shouldIsolate = function () {
+	return this.isolate;
+};
+
+/**
  * Check if a window is being managed.
  *
  * @param {OO.ui.Window} win Window to check
@@ -2621,8 +2636,7 @@ OO.ui.WindowManager.prototype.getTeardownDelay = function () {
  * If window is not yet instantiated, it will be instantiated and added automatically.
  *
  * @param {string} name Symbolic window name
- * @return {jQuery.Promise} Promise resolved when window is ready to be accessed; when resolved the
- *   first argument is an OO.ui.Window; when rejected the first argument is an OO.ui.Error
+ * @return {jQuery.Promise} Promise resolved with matching window, or rejected with an OO.ui.Error
  * @throws {Error} If the symbolic name is unrecognized by the factory
  * @throws {Error} If the symbolic name unrecognized as a managed window
  */
@@ -2638,10 +2652,8 @@ OO.ui.WindowManager.prototype.getWindow = function ( name ) {
 				) );
 			} else {
 				win = this.factory.create( name, this, { $: this.$ } );
-				this.addWindows( [ win ] ).then(
-					OO.ui.bind( deferred.resolve, deferred, win ),
-					deferred.reject
-				);
+				this.addWindows( [ win ] );
+				deferred.resolve( win );
 			}
 		} else {
 			deferred.reject( new OO.ui.Error(
@@ -2690,23 +2702,30 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 		opening.reject( new OO.ui.Error(
 			'Cannot open window: window is not attached to manager'
 		) );
+	} else if ( this.preparingToOpen || this.opening || this.opened ) {
+		opening.reject( new OO.ui.Error(
+			'Cannot open window: another window is opening or open'
+		) );
 	}
 
 	// Window opening
 	if ( opening.state() !== 'rejected' ) {
-		// Begin loading the window if it's not loaded already - may take noticable time and we want
-		// too do this in paralell with any preparatory actions
-		preparing.push( win.load() );
+		// Begin loading the window if it's not loading or loaded already - may take noticable time
+		// and we want to do this in paralell with any other preparatory actions
+		if ( !win.isLoading() && !win.isLoaded() ) {
+			// Finish initializing the window (must be done after manager is attached to DOM)
+			win.setManager( this );
+			preparing.push( win.load() );
+		}
 
-		if ( this.opening || this.opened ) {
-			// If a window is currently opening or opened, close it first
-			preparing.push( this.closeWindow( this.currentWindow ) );
-		} else if ( this.closing ) {
+		if ( this.closing ) {
 			// If a window is currently closing, wait for it to complete
 			preparing.push( this.closing );
 		}
 
-		$.when.apply( $, preparing ).done( function () {
+		this.preparingToOpen = $.when.apply( $, preparing );
+		// Ensure handlers get called after preparingToOpen is set
+		this.preparingToOpen.done( function () {
 			if ( manager.modal ) {
 				manager.$( manager.getElementDocument() ).on( {
 					// Prevent scrolling by keys in top-level window
@@ -2726,13 +2745,15 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 			}
 			manager.currentWindow = win;
 			manager.opening = opening;
+			manager.preparingToOpen = null;
 			manager.emit( 'opening', win, opening, data );
-			manager.updateWindowSize( win );
 			setTimeout( function () {
 				win.setup( data ).then( function () {
+					manager.updateWindowSize( win );
 					manager.opening.notify( { state: 'setup' } );
 					setTimeout( function () {
 						win.ready( data ).then( function () {
+							manager.updateWindowSize( win );
 							manager.opening.notify( { state: 'ready' } );
 							manager.opening = null;
 							manager.opened = $.Deferred();
@@ -2744,7 +2765,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 		} );
 	}
 
-	return opening;
+	return opening.promise();
 };
 
 /**
@@ -2779,7 +2800,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 		closing.reject( new OO.ui.Error(
 			'Cannot close window: window already closed with different data'
 		) );
-	} else if ( this.closing ) {
+	} else if ( this.preparingToClose || this.closing ) {
 		closing.reject( new OO.ui.Error(
 			'Cannot close window: window already closing with different data'
 		) );
@@ -2792,9 +2813,11 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 			preparing.push( this.opening );
 		}
 
-		// Close the window
-		$.when.apply( $, preparing ).done( function () {
+		this.preparingToClose = $.when.apply( $, preparing );
+		// Ensure handlers get called after preparingToClose is set
+		this.preparingToClose.done( function () {
 			manager.closing = closing;
+			manager.preparingToClose = null;
 			manager.emit( 'closing', win, closing, data );
 			manager.opened = null;
 			opened.resolve( closing.promise(), data );
@@ -2831,23 +2854,18 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 		} );
 	}
 
-	return closing;
+	return closing.promise();
 };
 
 /**
  * Add windows.
  *
- * If the window manager is attached to the DOM then windows will be automatically loaded as they
- * are added.
- *
  * @param {Object.<string,OO.ui.Window>|OO.ui.Window[]} windows Windows to add
- * @return {jQuery.Promise} Promise resolved when all windows are added
  * @throws {Error} If one of the windows being added without an explicit symbolic name does not have
  *   a statically configured symbolic name
  */
 OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
-	var i, len, win, name, list,
-		promises = [];
+	var i, len, win, name, list;
 
 	if ( $.isArray( windows ) ) {
 		// Convert to map of windows by looking up symbolic names from static configuration
@@ -2868,13 +2886,7 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
 		win = list[name];
 		this.windows[name] = win;
 		this.$element.append( win.$element );
-
-		if ( this.isElementAttached() ) {
-			promises.push( win.load() );
-		}
 	}
-
-	return $.when.apply( $, promises );
 };
 
 /**
@@ -3382,10 +3394,9 @@ OO.ui.ButtonedElement.prototype.onMouseDown = function ( e ) {
 	// tabIndex should generally be interacted with via the property, but it's not possible to
 	// reliably unset a tabIndex via a property so we use the (lowercase) "tabindex" attribute
 	this.tabIndex = this.$button.attr( 'tabindex' );
-	this.$button
-		// Remove the tab-index while the button is down to prevent the button from stealing focus
-		.removeAttr( 'tabindex' )
-		.addClass( 'oo-ui-buttonedElement-pressed' );
+	// Remove the tab-index while the button is down to prevent the button from stealing focus
+	this.$button.removeAttr( 'tabindex' );
+	this.$element.addClass( 'oo-ui-buttonedElement-pressed' );
 	// Run the mouseup handler no matter where the mouse is when the button is let go, so we can
 	// reliably reapply the tabindex and remove the pressed class
 	this.getElementDocument().addEventListener( 'mouseup', this.onMouseUpHandler, true );
@@ -3404,10 +3415,9 @@ OO.ui.ButtonedElement.prototype.onMouseUp = function ( e ) {
 	if ( this.isDisabled() || e.which !== 1 ) {
 		return false;
 	}
-	this.$button
-		// Restore the tab-index after the button is up to restore the button's accesssibility
-		.attr( 'tabindex', this.tabIndex )
-		.removeClass( 'oo-ui-buttonedElement-pressed' );
+	// Restore the tab-index after the button is up to restore the button's accesssibility
+	this.$button.attr( 'tabindex', this.tabIndex );
+	this.$element.removeClass( 'oo-ui-buttonedElement-pressed' );
 	// Stop listening for mouseup, since we only needed this once
 	this.getElementDocument().removeEventListener( 'mouseup', this.onMouseUpHandler, true );
 };
@@ -3467,7 +3477,7 @@ OO.ui.ButtonedElement.prototype.setAccessKey = function ( accessKey ) {
  * @chainable
  */
 OO.ui.ButtonedElement.prototype.setActive = function ( value ) {
-	this.$button.toggleClass( 'oo-ui-buttonedElement-active', !!value );
+	this.$element.toggleClass( 'oo-ui-buttonedElement-active', !!value );
 	return this;
 };
 
@@ -5157,9 +5167,9 @@ OO.ui.ToolGroup.prototype.destroy = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  */
-OO.ui.MessageDialog = function OoUiMessageDialog( manager, config ) {
+OO.ui.MessageDialog = function OoUiMessageDialog( config ) {
 	// Parent constructor
-	OO.ui.MessageDialog.super.call( this, manager, config );
+	OO.ui.MessageDialog.super.call( this, config );
 
 	// Properties
 	this.verticalActionLayout = null;
@@ -5305,7 +5315,7 @@ OO.ui.MessageDialog.prototype.initialize = function () {
 
 	// Initialization
 	this.title.$element.addClass( 'oo-ui-messageDialog-title' );
-	this.frame.$content.addClass( 'oo-ui-messageDialog-content' );
+	this.$content.addClass( 'oo-ui-messageDialog-content' );
 	this.container.$element.append( this.text.$element );
 	this.text.$element.append( this.title.$element, this.message.$element );
 	this.$body.append( this.container.$element );
@@ -5393,9 +5403,9 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  */
-OO.ui.ProcessDialog = function OoUiProcessDialog( manager, config ) {
+OO.ui.ProcessDialog = function OoUiProcessDialog( config ) {
 	// Parent constructor
-	OO.ui.ProcessDialog.super.call( this, manager, config );
+	OO.ui.ProcessDialog.super.call( this, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-processDialog' );
@@ -5478,7 +5488,7 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 	this.$errors
 		.addClass( 'oo-ui-processDialog-errors' )
 		.append( this.$errorsTitle, this.dismissButton.$element, this.retryButton.$element );
-	this.frame.$content
+	this.$content
 		.addClass( 'oo-ui-processDialog-content' )
 		.append( this.$errors );
 	this.$navigation
@@ -10679,9 +10689,9 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
 	dimensions.top += $container.height();
 
 	// Compensate for frame position if in a differnt frame
-	if ( this.input.$.frame && this.input.$.context !== this.$element[0].ownerDocument ) {
+	if ( this.input.$.$iframe && this.input.$.context !== this.$element[0].ownerDocument ) {
 		frameOffset = OO.ui.Element.getRelativePosition(
-			this.input.$.frame.$element, this.$element.offsetParent()
+			this.input.$.$iframe, this.$element.offsetParent()
 		);
 		dimensions.left += frameOffset.left;
 		dimensions.top += frameOffset.top;
