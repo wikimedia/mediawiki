@@ -1,9 +1,6 @@
 <?php
 
 /**
- * @group Database
- *        ^--- needed for language cache stuff
- *
  * @group Title
  */
 class TitleTest extends MediaWikiTestCase {
@@ -18,19 +15,6 @@ class TitleTest extends MediaWikiTestCase {
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
 		) );
-	}
-
-	public function addDBData() {
-		$this->db->replace( 'interwiki', 'iw_prefix',
-			array(
-				'iw_prefix' => 'externalwiki',
-				'iw_url' => '//example.com/$1',
-				'iw_api' => '//example.com/api.php',
-				'iw_wikiid' => '',
-				'iw_local' => 0,
-				'iw_trans' => 0,
-			)
-		);
 	}
 
 	/**
@@ -640,7 +624,14 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'Special:SomeNonexistentSpecialPage', false ),
 			array( 'MediaWiki:Parentheses', true ),
 			array( 'MediaWiki:Some nonexistent message', false ),
-			array( 'externalwiki:Interwiki link', true ),
 		);
+	}
+
+	/**
+	 * @covers Title::isAlwaysKnown
+	 */
+	public function testIsAlwaysKnownOnInterwiki() {
+		$title = Title::makeTitle( NS_MAIN, 'Interwiki link', '', 'externalwiki' );
+		$this->assertTrue( $title->isAlwaysKnown() );
 	}
 }
