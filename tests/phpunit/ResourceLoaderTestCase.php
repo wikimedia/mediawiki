@@ -47,6 +47,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	protected $styles = '';
 	protected $skipFunction = null;
 	protected $targets = array( 'test' );
+	protected $raw = false;
 
 	public function __construct( $options = array() ) {
 		foreach ( $options as $key => $value ) {
@@ -76,6 +77,10 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 
 	public function getSkipFunction() {
 		return $this->skipFunction;
+	}
+
+	public function isRaw() {
+		return $this->raw;
 	}
 }
 

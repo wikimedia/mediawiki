@@ -129,4 +129,25 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			'Class is significant'
 		);
 	}
+
+	public function testGetFinalDependencies() {
+		$rl = new ResourceLoader();
+		$rl->register( array(
+			'test.raw' => new ResourceLoaderTestModule( array(
+				'raw' => true,
+			) ),
+			'test.foo' => new ResourceLoaderTestModule(),
+			'test.baz' => new ResourceLoaderTestModule( array(
+				'dependencies' => array( 'test.raw', 'test.foo' ),
+			) ),
+		) );
+
+		$module = $rl->getModule( 'test.baz' );
+		$this->assertContains( 'test.raw', $module->getDependencies() );
+		$this->assertContains( 'test.foo', $module->getDependencies() );
+		$context = new ResourceLoaderContext( $rl, new FauxRequest( array() ) );
+		wfSuppressWarnings(); // This will intentionally use wfWarn
+		$this->assertNotContains( 'test.raw', $module->getFinalDependencies( $context ) );
+		wfRestoreWarnings();
+	}
 }
