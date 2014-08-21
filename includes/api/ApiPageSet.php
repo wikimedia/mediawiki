@@ -622,6 +622,81 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
+	 * Populate this PageSet from a list of Titles that are known to:
+	 * - be valid AND
+	 * - be already known to LinkCache AND MAY
+	 * - be in an order that needs to be preserved
+	 *
+	 * @param Title[] $titles Array of Title objects
+	 */
+	public function populateFromKnownTitles( array $titles ) {
+		$this->profileIn();
+
+		$ids = array();
+		$usernames = array();
+		/** @var Title $title */
+		foreach ( $titles as $title ) {
+			$pageId = $title->getArticleID();
+			if ( $pageId ) {
+				$ids[] = $pageId;
+				if ( $this->mResolveRedirects && $title->isRedirect() ) {
+					$this->mPendingRedirectIDs[$pageId] = $title;
+				} else {
+					$this->mGoodTitles[$pageId] = $title;
+				}
+			} else {
+				$pageId = $this->mFakePageId;
+				$this->mFakePageId--;
+				if ( $title->getNamespace() < 0 ) {
+					$this->mSpecialTitles[$pageId] = $title;
+					$pageId = 0;
+				} elseif ( $title->isExternal() ) {
+					$this->mInterwikiTitles[$title->getPrefixedText()] = $title->getInterwiki();
+					$pageId = 0;
+				} else {
+					$this->mMissingTitles[$pageId] = $title;
+				}
+			}
+			if ( MWNamespace::hasGenderDistinction( $title->getNamespace() ) ) {
+				$usernames[] = $title;
+			}
+			// Save if not special page or interwiki title
+			if ( $pageId ) {
+				$this->mTitles[] = $title;
+				$this->mAllPages[$title->getNamespace()][$title->getDBkey()] = $pageId;
+			}
+		}
+
+		if ( $ids && $this->mRequestedPageFields ) {
+			// FIXME: ideally, there should be a way to do this from LinkBatch
+			$dbr = $this->getDB();
+			// Normalize field list
+			$this->getPageTableFields();
+			$fields = array_keys( $this->mRequestedPageFields );
+			$fields[] = 'page_id';
+			$res = $dbr->select( 'page',
+				$fields,
+				array( 'page_id' => $ids ),
+				__METHOD__
+			);
+			foreach ( $res as $row ) {
+				foreach ( $this->mRequestedPageFields as $fieldName => &$fieldValues ) {
+					$fieldValues[$row->page_id] = $row->$fieldName;
+				}
+			}
+		}
+		if ( $usernames ) {
+			// Get gender information
+			$genderCache = GenderCache::singleton();
+			$genderCache->doQuery( $usernames, __METHOD__ );
+		}
+
+		$this->resolvePendingRedirects();
+
+		$this->profileOut();
+	}
+
+	/**
 	 * Populate this PageSet from a list of page IDs
 	 * @param array $pageIDs Array of page IDs
 	 */

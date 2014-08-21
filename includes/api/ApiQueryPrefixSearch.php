@@ -47,7 +47,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		$searcher = new TitlePrefixSearch;
 		$titles = $searcher->searchWithVariants( $search, $limit, $namespaces );
 		if ( $resultPageSet ) {
-			$resultPageSet->populateFromTitles( $titles );
+			$resultPageSet->populateFromKnownTitles( $titles );
 		} else {
 			$result = $this->getResult();
 			foreach ( $titles as $title ) {
