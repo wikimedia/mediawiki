@@ -1240,7 +1240,7 @@ class OutputPage extends ContextSource {
 	 * @param array $categories Mapping category name => sort key
 	 */
 	public function addCategoryLinks( array $categories ) {
-		global $wgContLang;
+		global $wgContLang, $wgContentHandlerUseDB;
 
 		if ( !is_array( $categories ) || count( $categories ) == 0 ) {
 			return;
@@ -1253,9 +1253,15 @@ class OutputPage extends ContextSource {
 
 		# Fetch existence plus the hiddencat property
 		$dbr = wfGetDB( DB_SLAVE );
+		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_len',
+			'page_is_redirect', 'page_latest', 'pp_value' );
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'page_content_model';
+		}
+
 		$res = $dbr->select( array( 'page', 'page_props' ),
-			array( 'page_id', 'page_namespace', 'page_title', 'page_len',
-				'page_is_redirect', 'page_latest', 'pp_value' ),
+			$fields,
 			$lb->constructSet( 'page', $dbr ),
 			__METHOD__,
 			array(),

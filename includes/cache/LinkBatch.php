@@ -180,6 +180,8 @@ class LinkBatch {
 	 * @return bool|ResultWrapper
 	 */
 	public function doQuery() {
+		global $wgContentHandlerUseDB;
+
 		if ( $this->isEmpty() ) {
 			return false;
 		}
@@ -190,6 +192,11 @@ class LinkBatch {
 		$table = 'page';
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_len',
 			'page_is_redirect', 'page_latest' );
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'page_content_model';
+		}
+
 		$conds = $this->constructSet( 'page', $dbr );
 
 		// Do query
