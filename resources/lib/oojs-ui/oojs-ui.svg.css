@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (51f513f9d3)
+ * OOjs UI v0.1.0-pre (944c47c5fe)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-20T00:59:55Z
+ * Date: 2014-08-21T00:23:52Z
  */
 /* Textures */
 
@@ -770,6 +770,11 @@
   opacity: 0;
 }
 
+.oo-ui-comboBoxWidget > .oo-ui-selectWidget {
+  z-index: 1;
+  min-width: 20em;
+}
+
 .oo-ui-popupWidget-popup {
   position: absolute;
   z-index: 1;
@@ -1057,13 +1062,26 @@
   resize: none;
 }
 
-.oo-ui-textInputWidget-icon {
+.oo-ui-textInputWidget > .oo-ui-iconedElement-icon,
+.oo-ui-textInputWidget > .oo-ui-indicatedElement-indicator {
   position: absolute;
   top: 0;
-  left: 0;
   height: 100%;
-  background-position: right center;
+  cursor: pointer;
   background-repeat: no-repeat;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.oo-ui-textInputWidget > .oo-ui-iconedElement-icon {
+  left: 0;
+}
+
+.oo-ui-textInputWidget > .oo-ui-indicatedElement-indicator {
+  right: 0;
 }
 
 .oo-ui-toggleSwitchWidget {

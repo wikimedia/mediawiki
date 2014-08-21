@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (51f513f9d3)
+ * OOjs UI v0.1.0-pre (944c47c5fe)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-20T00:59:55Z
+ * Date: 2014-08-21T00:23:52Z
  */
 .oo-ui-dialog-content > .oo-ui-window-head,
 .oo-ui-dialog-content > .oo-ui-window-body,
@@ -878,6 +878,21 @@
   border-bottom-right-radius: 0.3em;
 }
 
+.oo-ui-comboBoxWidget-handle {
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25em;
+}
+
+.oo-ui-comboBoxWidget-handle:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.oo-ui-comboBoxWidget.oo-ui-widget-disabled .oo-ui-textInputWidget.oo-ui-indicatedElement .oo-ui-indicatedElement-indicator,
+.oo-ui-comboBoxWidget-empty .oo-ui-textInputWidget.oo-ui-indicatedElement .oo-ui-indicatedElement-indicator {
+  cursor: default;
+  opacity: 0.2;
+}
+
 .oo-ui-inlineMenuWidget-handle {
   border: solid 1px rgba(0, 0, 0, 0.1);
   border-radius: 0.25em;
@@ -1041,6 +1056,31 @@
   text-shadow: 0 1px 1px #fff;
   background-color: #f3f3f3;
   border-color: #ddd;
+}
+
+.oo-ui-textInputWidget .oo-ui-iconedElement-icon,
+.oo-ui-textInputWidget .oo-ui-indicatedElement-indicator {
+  opacity: 0.8;
+}
+
+.oo-ui-textInputWidget.oo-ui-iconedElement input,
+.oo-ui-textInputWidget.oo-ui-iconedElement textarea {
+  padding-left: 2em;
+}
+
+.oo-ui-textInputWidget.oo-ui-iconedElement .oo-ui-iconedElement-icon {
+  width: 2em;
+  background-position: right center;
+}
+
+.oo-ui-textInputWidget.oo-ui-indicatedElement input,
+.oo-ui-textInputWidget.oo-ui-indicatedElement textarea {
+  padding-right: 1.5em;
+}
+
+.oo-ui-textInputWidget.oo-ui-indicatedElement .oo-ui-indicatedElement-indicator {
+  width: 1.5em;
+  background-position: left center;
 }
 
 .oo-ui-toggleSwitchWidget {

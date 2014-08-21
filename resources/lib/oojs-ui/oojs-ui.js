@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (51f513f9d3)
+ * OOjs UI v0.1.0-pre (944c47c5fe)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-20T00:59:55Z
+ * Date: 2014-08-21T00:23:52Z
  */
 ( function ( OO ) {
 
@@ -1165,10 +1165,11 @@ OO.ui.Frame.static.tagName = 'iframe';
  * @return {jQuery.Promise} Promise resolved when styles have loaded
  */
 OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, timeout ) {
-	var i, numSheets, styleNode, newNode, timeoutID, pollNodeId, $pendingPollNodes,
+	var i, numSheets, styleNode, styleText, newNode, timeoutID, pollNodeId, $pendingPollNodes,
 		$pollNodes = $( [] ),
 		// Fake font-family value
 		fontFamily = 'oo-ui-frame-transplantStyles-loaded',
+		nextIndex = parentDoc.oouiFrameTransplantStylesNextIndex || 0,
 		deferred = $.Deferred();
 
 	for ( i = 0, numSheets = parentDoc.styleSheets.length; i < numSheets; i++ ) {
@@ -1176,29 +1177,44 @@ OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, timeout ) 
 		if ( styleNode.disabled ) {
 			continue;
 		}
-		if ( styleNode.nodeName.toLowerCase() === 'link' ) {
-			// External stylesheet
-			// Create a node with a unique ID that we're going to monitor to see when the CSS
-			// has loaded
-			pollNodeId = 'oo-ui-frame-transplantStyles-loaded-' + i;
-			$pollNodes = $pollNodes.add( $( '<div>', frameDoc )
-				.attr( 'id', pollNodeId )
-				.appendTo( frameDoc.body )
-			);
 
-			// Add <style>@import url(...); #pollNodeId { font-family: ... }</style>
-			// The font-family rule will only take effect once the @import finishes
-			newNode = frameDoc.createElement( 'style' );
-			newNode.textContent = '@import url(' + styleNode.href + ');\n' +
-				'#' + pollNodeId + ' { font-family: ' + fontFamily + '; }';
+		if ( styleNode.nodeName.toLowerCase() === 'link' ) {
+			// External stylesheet; use @import
+			styleText = '@import url(' + styleNode.href + ');';
 		} else {
-			// Not an external stylesheet, or no polling required; just copy the node over
-			// Can't use importNode here because that breaks in IE
-			newNode = frameDoc.createElement( 'style' );
-			newNode.textContent = styleNode.textContent;
+			// Internal stylesheet; just copy the text
+			styleText = styleNode.textContent;
 		}
+
+		// Create a node with a unique ID that we're going to monitor to see when the CSS
+		// has loaded
+		if ( styleNode.oouiFrameTransplantStylesId ) {
+			// If we're nesting transplantStyles operations and this node already has
+			// a CSS rule to wait for loading, reuse it
+			pollNodeId = styleNode.oouiFrameTransplantStylesId;
+		} else {
+			// Otherwise, create a new ID
+			pollNodeId = 'oo-ui-frame-transplantStyles-loaded-' + nextIndex;
+			nextIndex++;
+
+			// Add #pollNodeId { font-family: ... } to the end of the stylesheet / after the @import
+			// The font-family rule will only take effect once the @import finishes
+			styleText += '\n' + '#' + pollNodeId + ' { font-family: ' + fontFamily + '; }';
+		}
+
+		// Create a node with id=pollNodeId
+		$pollNodes = $pollNodes.add( $( '<div>', frameDoc )
+			.attr( 'id', pollNodeId )
+			.appendTo( frameDoc.body )
+		);
+
+		// Add our modified CSS as a <style> tag
+		newNode = frameDoc.createElement( 'style' );
+		newNode.textContent = styleText;
+		newNode.oouiFrameTransplantStylesId = pollNodeId;
 		frameDoc.head.appendChild( newNode );
 	}
+	frameDoc.oouiFrameTransplantStylesNextIndex = nextIndex;
 
 	// Poll every 100ms until all external stylesheets have loaded
 	$pendingPollNodes = $pollNodes;
@@ -3742,6 +3758,15 @@ OO.ui.GroupElement = function OoUiGroupElement( $group, config ) {
 };
 
 /* Methods */
+
+/**
+ * Check if there are no items.
+ *
+ * @return {boolean} Group is empty
+ */
+OO.ui.GroupElement.prototype.isEmpty = function () {
+	return !this.items.length;
+};
 
 /**
  * Get items.
@@ -8450,45 +8475,43 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  *
  * @class
  * @extends OO.ui.InputWidget
+ * @mixins OO.ui.IconedElement
+ * @mixins OO.ui.IndicatedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string} [placeholder] Placeholder text
- * @cfg {string} [icon] Symbolic name of icon
  * @cfg {boolean} [multiline=false] Allow multiple lines of text
  * @cfg {boolean} [autosize=false] Automatically resize to fit content
  * @cfg {boolean} [maxRows=10] Maximum number of rows to make visible when autosizing
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
-	var widget = this;
-	config = $.extend( { maxRows: 10 }, config );
+	// Configuration initialization
+	config = config || {};
 
 	// Parent constructor
 	OO.ui.TextInputWidget.super.call( this, config );
+
+	// Mixin constructors
+	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
+	OO.ui.IndicatedElement.call( this, this.$( '<span>' ), config );
 
 	// Properties
 	this.pending = 0;
 	this.multiline = !!config.multiline;
 	this.autosize = !!config.autosize;
-	this.maxRows = config.maxRows;
+	this.maxRows = config.maxRows !== undefined ? config.maxRows : 10;
 
 	// Events
 	this.$input.on( 'keypress', OO.ui.bind( this.onKeyPress, this ) );
 	this.$element.on( 'DOMNodeInsertedIntoDocument', OO.ui.bind( this.onElementAttach, this ) );
+	this.$icon.on( 'mousedown', OO.ui.bind( this.onIconMouseDown, this ) );
+	this.$indicator.on( 'mousedown', OO.ui.bind( this.onIndicatorMouseDown, this ) );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-textInputWidget' );
-	if ( config.icon ) {
-		this.$element.addClass( 'oo-ui-textInputWidget-decorated' );
-		this.$element.append(
-			this.$( '<span>' )
-				.addClass( 'oo-ui-textInputWidget-icon oo-ui-icon-' + config.icon )
-				.mousedown( function () {
-					widget.$input[0].focus();
-					return false;
-				} )
-		);
-	}
+	this.$element
+		.addClass( 'oo-ui-textInputWidget' )
+		.append( this.$icon, this.$indicator );
 	if ( config.placeholder ) {
 		this.$input.attr( 'placeholder', config.placeholder );
 	}
@@ -8498,6 +8521,8 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.TextInputWidget, OO.ui.InputWidget );
+OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IconedElement );
+OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IndicatedElement );
 
 /* Events */
 
@@ -8509,7 +8534,47 @@ OO.inheritClass( OO.ui.TextInputWidget, OO.ui.InputWidget );
  * @event enter
  */
 
+/**
+ * User clicks the icon.
+ *
+ * @event icon
+ */
+
+/**
+ * User clicks the indicator.
+ *
+ * @event indicator
+ */
+
 /* Methods */
+
+/**
+ * Handle icon mouse down events.
+ *
+ * @param {jQuery.Event} e Mouse down event
+ * @fires icon
+ */
+OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
+	if ( e.which === 1 ) {
+		this.$input[0].focus();
+		this.emit( 'icon' );
+		return false;
+	}
+};
+
+/**
+ * Handle indicator mouse down events.
+ *
+ * @param {jQuery.Event} e Mouse down event
+ * @fires indicator
+ */
+OO.ui.TextInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
+	if ( e.which === 1 ) {
+		this.$input[0].focus();
+		this.emit( 'indicator' );
+		return false;
+	}
+};
 
 /**
  * Handle key press events.
@@ -8668,6 +8733,128 @@ OO.ui.TextInputWidget.prototype.popPending = function () {
  */
 OO.ui.TextInputWidget.prototype.select = function () {
 	this.$input.select();
+	return this;
+};
+
+/**
+ * Text input with a menu of optional values.
+ *
+ * @class
+ * @extends OO.ui.Widget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {Object} [menu] Configuration options to pass to menu widget
+ * @cfg {Object} [input] Configuration options to pass to input widget
+ */
+OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.ComboBoxWidget.super.call( this, config );
+
+	// Properties
+	this.input = new OO.ui.TextInputWidget( $.extend(
+		{ $: this.$, indicator: 'down', disabled: this.isDisabled() },
+		config.input
+	) );
+	this.menu = new OO.ui.MenuWidget( $.extend(
+		{ $: this.$, widget: this, input: this.input, disabled: this.isDisabled() },
+		config.menu
+	) );
+
+	// Events
+	this.input.connect( this, {
+		change: 'onInputChange',
+		indicator: 'onInputIndicator',
+		enter: 'onInputEnter'
+	} );
+	this.menu.connect( this, {
+		choose: 'onMenuChoose',
+		add: 'onMenuItemsChange',
+		remove: 'onMenuItemsChange'
+	} );
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-comboBoxWidget' ).append(
+		this.input.$element,
+		this.menu.$element
+	);
+	this.onMenuItemsChange();
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.ComboBoxWidget, OO.ui.Widget );
+
+/* Methods */
+
+/**
+ * Handle input change events.
+ *
+ * @param {string} value New value
+ */
+OO.ui.ComboBoxWidget.prototype.onInputChange = function ( value ) {
+	var match = this.menu.getItemFromData( value );
+
+	this.menu.selectItem( match );
+
+	if ( !this.isDisabled() ) {
+		this.menu.toggle( true );
+	}
+};
+
+/**
+ * Handle input indicator events.
+ */
+OO.ui.ComboBoxWidget.prototype.onInputIndicator = function () {
+	if ( !this.isDisabled() ) {
+		this.menu.toggle();
+	}
+};
+
+/**
+ * Handle input enter events.
+ */
+OO.ui.ComboBoxWidget.prototype.onInputEnter = function () {
+	if ( !this.isDisabled() ) {
+		this.menu.toggle( false );
+	}
+};
+
+/**
+ * Handle menu choose events.
+ *
+ * @param {OO.ui.OptionWidget} item Chosen item
+ */
+OO.ui.ComboBoxWidget.prototype.onMenuChoose = function ( item ) {
+	if ( item ) {
+		this.input.setValue( item.getData() );
+	}
+};
+
+/**
+ * Handle menu item change events.
+ */
+OO.ui.ComboBoxWidget.prototype.onMenuItemsChange = function () {
+	this.$element.toggleClass( 'oo-ui-comboBoxWidget-empty', this.menu.isEmpty() );
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ComboBoxWidget.prototype.setDisabled = function ( disabled ) {
+	// Parent method
+	OO.ui.ComboBoxWidget.super.prototype.setDisabled.call( this, disabled );
+
+	if ( this.input ) {
+		this.input.setDisabled( this.isDisabled() );
+	}
+	if ( this.menu ) {
+		this.menu.setDisabled( this.isDisabled() );
+	}
+
 	return this;
 };
 
@@ -10366,7 +10553,7 @@ OO.ui.MenuWidget.prototype.addItems = function ( items, index ) {
  * @inheritdoc
  */
 OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
-	visible = !!visible && !!this.items.length;
+	visible = ( visible === undefined ? !this.visible : !!visible ) && !!this.items.length;
 
 	var i, len,
 		change = visible !== this.isVisible();
