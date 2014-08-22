@@ -1110,7 +1110,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			wfDebug( "Query {$this->mDBname} ($cnt) ($master): $sqlx\n" );
 		}
 
-		$queryId = MWDebug::query( $sql, $fname, $isMaster );
+		$queryId = MWDebug::query( DatabaseBase::generalizeSQL( $sql ), $fname, $isMaster );
 
 		# Avoid fatals if close() was called
 		if ( !$this->isOpen() ) {
