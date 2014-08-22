@@ -101,6 +101,8 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 			$this->assertTrue( $moduleManager->isDefined( $name, $group ), 'isDefined' );
 			$this->assertNotNull( $moduleManager->getModule( $name, $group, true ), 'getModule' );
 		}
+
+		$this->assertTrue( true ); // Don't mark the test as risky if $modules is empty
 	}
 
 	public function getModuleProvider() {
