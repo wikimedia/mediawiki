@@ -1,0 +1,40 @@
+@import "mediawiki.mixins";
+@import "mediawiki.ui/variables";
+@import "mediawiki.ui/mixins";
+
+/*
+Text & Anchors
+
+Allows you to give text a context as to the type of action it is indicating.
+
+Styleguide 6.
+*/
+
+/*
+Text
+
+Context classes may be used on elements with only plain-text content with the mw-ui-text base. When the context classes
+are used on interactive and block-level elements, the appropriate alternative base type classes should also be used. For
+example, mw-ui-anchor with A, or mw-ui-button with buttons.
+
+Markup:
+<span class="mw-ui-text mw-ui-progressive">Progressive</span>
+<span class="mw-ui-text mw-ui-constructive">Constructive</span>
+<span class="mw-ui-text mw-ui-destructive">Destructive</span>
+
+Styleguide 6.1.
+*/
+
+.mw-ui-text {
+	// The selector order is like this on purpose; IE6 ignores the second selector,
+	// so we don't want to accidentally apply this color on all mw-ui-CONTEXT classes
+	.mw-ui-progressive& {
+		color: @colorProgressive;
+	}
+	.mw-ui-constructive& {
+		color: @colorConstructive;
+	}
+	.mw-ui-destructive& {
+		color: @colorDestructive;
+	}
+}

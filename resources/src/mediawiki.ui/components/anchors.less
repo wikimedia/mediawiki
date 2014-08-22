@@ -3,13 +3,8 @@
 @import "mediawiki.ui/mixins";
 
 // Helpers
-.mw-ui-anchor( @mainColor ) {
-	// Make all context classes take the main color in IE6
-	.select-ie6-only& {
-		&:link, &:visited, &:hover, &:focus, &:active {
-			color: @mainColor;
-		}
-	}
+.mixin-mw-ui-anchor-styles( @mainColor ) {
+	color: @mainColor;
 
 	// Hover state
 	&:hover {
@@ -21,15 +16,13 @@
 		outline: none; // outline fix
 	}
 
-	color: @mainColor;
-
 	// Quiet mode is gray at first
 	&.mw-ui-quiet {
-		.mw-ui-anchor-quiet( @mainColor );
+		.mixin-mw-ui-anchor-styles-quiet( @mainColor );
 	}
 }
 
-.mw-ui-anchor-quiet( @mainColor ) {
+.mixin-mw-ui-anchor-styles-quiet( @mainColor ) {
 	color: @colorTextLight;
 	text-decoration: none;
 
@@ -42,36 +35,33 @@
 }
 
 /*
-Text & Anchors
+Anchors
 
-Allows you to give text a context as to the type of action it is indicating.
-
-Styleguide 6.
-*/
-
-/*
-Guidelines
-
-This context should only applied on elements without special behavior (DIV, SPAN, etc.), including A elements. These classes cannot be applied for styling purposes on other elements (such as form elements), except when used in combination with .mw-ui-button to alter a button context.
+The anchor base type can be applied to A elements when a basic context styling needs to be given to a link, without
+having to assign it as a button type. mw-ui-anchor only changes the text color, and should not be used in combination
+with other base classes, such as mw-ui-button.
 
 Markup:
-<a href=# class="mw-ui-progressive {$modifiers}">Progressive</a>
-<a href=# class="mw-ui-constructive {$modifiers}">Constructive</a>
-<a href=# class="mw-ui-destructive {$modifiers}">Destructive</a>
+<a href=# class="mw-ui-anchor mw-ui-progressive {$modifiers}">Progressive</a>
+<a href=# class="mw-ui-anchor mw-ui-constructive {$modifiers}">Constructive</a>
+<a href=# class="mw-ui-anchor mw-ui-destructive {$modifiers}">Destructive</a>
 
 .mw-ui-quiet - Quiet until interaction.
 
-Styleguide 6.1.
+Styleguide 6.2.
 */
-.mw-ui-progressive {
-	.mw-ui-anchor( @colorProgressive );
-}
-.mw-ui-constructive {
-	.mw-ui-anchor( @colorConstructive );
-}
-.mw-ui-destructive {
-	.mw-ui-anchor( @colorDestructive );
-}
-.mw-ui-quiet {
-	.mw-ui-anchor-quiet( @colorTextLight );
+
+// Base definitions for text styling; link styling is in mixin
+.mw-ui-anchor {
+	&.mw-ui-progressive {
+		.mixin-mw-ui-anchor-styles( @colorProgressive );
+	}
+
+	&.mw-ui-constructive {
+		.mixin-mw-ui-anchor-styles( @colorConstructive );
+	}
+
+	&.mw-ui-destructive {
+		.mixin-mw-ui-anchor-styles( @colorDestructive );
+	}
 }
