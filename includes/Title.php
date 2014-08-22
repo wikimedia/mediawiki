@@ -3300,8 +3300,8 @@ class Title {
 			// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
 			//        the parsing code with Title, while avoiding massive refactoring.
 			// @todo: get rid of secureAndSplit, refactor parsing code.
-			$parser = self::getTitleParser();
-			$parts = $parser->splitTitleString( $dbkey, $this->getDefaultNamespace() );
+			$titleParser = self::getTitleParser();
+			$parts = $titleParser->splitTitleString( $dbkey, $this->getDefaultNamespace() );
 		} catch ( MalformedTitleException $ex ) {
 			return false;
 		}
