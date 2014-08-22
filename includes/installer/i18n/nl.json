@@ -12,7 +12,8 @@
 			"JurgenNL",
 			"Southparkfan",
 			"Seb35",
-			"Mar(c)"
+			"Mar(c)",
+			"Sjoerddebruin"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -57,7 +58,6 @@
 	"config-env-good": "De omgeving is gecontroleerd.\nU kunt MediaWiki installeren.",
 	"config-env-bad": "De omgeving is gecontroleerd.\nU kunt MediaWiki niet installeren.",
 	"config-env-php": "PHP $1 is op dit moment geïnstalleerd.",
-	"config-env-php-toolow": "PHP $1 is geïnstalleerd.\nMediaWiki heeft PHP $2 of hoger nodig om correct te kunnen werken.",
 	"config-unicode-using-utf8": "Voor Unicode-normalisatie wordt utf8_normalize.so van Brion Vibber gebruikt.",
 	"config-unicode-using-intl": "Voor Unicode-normalisatie wordt de [http://pecl.php.net/intl PECL-extensie intl] gebruikt.",
 	"config-unicode-pure-php-warning": "'''Waarschuwing''': de [http://pecl.php.net/intl PECL-extensie intl] is niet beschikbaar om de Unicodenormalisatie af te handelen en daarom wordt de langzame PHP-implementatie gebruikt.\nAls u MediaWiki voor een website met veel verkeer installeert, lees u dan in over [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicodenormalisatie].",
@@ -65,7 +65,6 @@
 	"config-no-db": "Het was niet mogelijk een geschikte databasedriver te vinden voor PHP. U moet een databasedriver installeren voor PHP.\nDe volgende databases worden ondersteund: $1.\n\nAls u een gedeelde omgeving gebruikt, vraag dan aan uw hostingprovider een geschikte databasedriver te installeren.\nAls u PHP zelf hebt gecompileerd, wijzig dan uw instellingen zodat een databasedriver wordt geactiveerd, bijvoorbeeld via <code>./configure --with-mysql</code>.\nAls u PHP hebt geïnstalleerd via een Debian- of Ubuntu-package, installeer dan ook de module php5-mysql.",
 	"config-outdated-sqlite": "''' Waarschuwing:''' u gebruikt SQLite $1. SQLite is niet beschikbaar omdat de minimaal vereiste versie $2 is.",
 	"config-no-fts3": "'''Waarschuwing''': SQLite is gecompileerd zonder de module [//sqlite.org/fts3.html FTS3]; zoekfuncties zijn niet beschikbaar.",
-	"config-register-globals": "'''Waarschuwing: de PHP-optie <code>[http://php.net/register_globals register_globals]</code> is ingeschakeld.'''\n'''Schakel deze uit als dat mogelijk is.'''\nMediaWiki kan ermee werken, maar uw server is dan  kwetsbaarder voor eventuele beveiligingslekken.",
 	"config-magic-quotes-runtime": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] is actief!'''\nDeze instelling zorgt voor onvoorspelbare gegevenscorruptie.\nU kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
 	"config-magic-quotes-sybase": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase] is actief!'''\nDeze instelling zorgt voor onvoorspelbare gegevenscorruptie.\nU kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
 	"config-mbstring": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] is actief!'''\nDeze instelling zorgt voor onvoorspelbare gegevenscorruptie.\nU kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
@@ -283,6 +282,8 @@
 	"config-memcache-badport": "Poortnummers voor Memcached moeten tussen $1 en $2 liggen.",
 	"config-extensions": "Uitbreidingen",
 	"config-extensions-help": "De bovenstaande uitbreidingen zijn aangetroffen in de map <code>./extensions</code>.\n\nMogelijk moet u aanvullende instellingen maken, maar u kunt deze uitbreidingen nu inschakelen.",
+	"config-skins": "Vormgevingen",
+	"config-skins-use-as-default": "Als standaard vormgeving instellen",
 	"config-install-alreadydone": "'''Waarschuwing:''' het lijkt alsof u MediaWiki al hebt geïnstalleerd en probeert het programma opnieuw te installeren.\nGa door naar de volgende pagina.",
 	"config-install-begin": "Als u nu op \"{{int:config-continue}}\" klikt, begint de installatie van MediaWiki.\nAls u nog wijzigingen wilt maken, klik dan op \"{{int:config-back}}\".",
 	"config-install-step-done": "afgerond",
