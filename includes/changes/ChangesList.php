@@ -110,9 +110,8 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function recentChangesFlags( $flags, $nothing = '&#160;' ) {
-		global $wgRecentChangesFlags;
 		$f = '';
-		foreach ( array_keys( $wgRecentChangesFlags ) as $flag ) {
+		foreach ( array_keys( $this->getConfig()->get( 'RecentChangesFlags' ) ) as $flag ) {
 			$f .= isset( $flags[$flag] ) && $flags[$flag]
 				? self::flag( $flag )
 				: $nothing;
@@ -188,8 +187,6 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public static function showCharacterDifference( $old, $new, IContextSource $context = null ) {
-		global $wgRCChangedSizeThreshold, $wgMiserMode;
-
 		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}
@@ -199,10 +196,11 @@ class ChangesList extends ContextSource {
 		$szdiff = $new - $old;
 
 		$lang = $context->getLanguage();
+		$config = $context->getConfig();
 		$code = $lang->getCode();
 		static $fastCharDiff = array();
 		if ( !isset( $fastCharDiff[$code] ) ) {
-			$fastCharDiff[$code] = $wgMiserMode || $context->msg( 'rc-change-size' )->plain() === '$1';
+			$fastCharDiff[$code] = $config->get( 'MiserMode' ) || $context->msg( 'rc-change-size' )->plain() === '$1';
 		}
 
 		$formattedSize = $lang->formatNum( $szdiff );
@@ -211,7 +209,7 @@ class ChangesList extends ContextSource {
 			$formattedSize = $context->msg( 'rc-change-size', $formattedSize )->text();
 		}
 
-		if ( abs( $szdiff ) > abs( $wgRCChangedSizeThreshold ) ) {
+		if ( abs( $szdiff ) > abs( $config->get( 'RCChangedSizeThreshold' ) ) ) {
 			$tag = 'strong';
 		} else {
 			$tag = 'span';
