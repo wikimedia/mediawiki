@@ -262,13 +262,13 @@ abstract class ChannelFeed extends FeedItem {
 	 * if someone finds it in a browser.
 	 */
 	protected function outXmlHeader() {
-		global $wgStylePath, $wgStyleVersion;
+		global $wgScriptPath, $wgStyleVersion;
 
 		$this->httpHeaders();
 		echo '<?xml version="1.0"?>' . "\n";
 		echo '<?xml-stylesheet type="text/css" href="' .
 			htmlspecialchars( wfExpandUrl(
-				"$wgStylePath/common/feed.css?$wgStyleVersion",
+				"$wgScriptPath/resources/src/assets/feed.css?$wgStyleVersion",
 				PROTO_CURRENT
 			) ) .
 			'"?' . ">\n";

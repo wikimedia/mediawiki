@@ -2,6 +2,10 @@
 Make RSS and Atom feeds at least semi-legible to folk who accidentally
 load them in a browser...
 
+As of 2014, most modern browsers (for example IE 11 and Firefox 31) ignore
+this stylesheet entirely and provide their own UI for feeds. It doesn't
+hurt to keep it, though.
+
 Compatibility:
 * Mozilla is fine.
 * Safari 1.2: the RSS <link> text isn't shown
