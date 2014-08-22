@@ -31,7 +31,6 @@ class OldChangesList extends ChangesList {
 	 * @return string|bool
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
-		global $wgRCShowChangedSize;
 		wfProfileIn( __METHOD__ );
 
 		# Should patrol-related stuff be shown?
@@ -80,7 +79,7 @@ class OldChangesList extends ChangesList {
 		# Edit/log timestamp
 		$this->insertTimestamp( $s, $rc );
 		# Bytes added or removed
-		if ( $wgRCShowChangedSize ) {
+		if ( $this->getConfig()->get( 'RCShowChangedSize' ) ) {
 			$cd = $this->formatCharacterDifference( $rc );
 			if ( $cd !== '' ) {
 				$s .= $cd . '  <span class="mw-changeslist-separator">. .</span> ';

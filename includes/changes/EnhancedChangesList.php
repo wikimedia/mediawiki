@@ -160,8 +160,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	protected function recentChangesBlockGroup( $block ) {
-		global $wgRCShowChangedSize;
-
 		wfProfileIn( __METHOD__ );
 
 		# Add the namespace and title of the block as part of the class
@@ -191,6 +189,7 @@ class EnhancedChangesList extends ChangesList {
 		$namehidden = true;
 		$allLogs = true;
 		$oldid = '';
+		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
 		foreach ( $block as $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
 			if ( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
@@ -364,7 +363,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 
 		# Character difference (does not apply if only log items)
-		if ( $wgRCShowChangedSize && !$allLogs ) {
+		if ( $RCShowChangedSize && !$allLogs ) {
 			$last = 0;
 			$first = count( $block ) - 1;
 			# Some events (like logs) have an "empty" size, so we need to skip those...
@@ -442,7 +441,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 
 			# Character diff
-			if ( $wgRCShowChangedSize ) {
+			if ( $RCShowChangedSize ) {
 				$cd = $this->formatCharacterDifference( $rcObj );
 				if ( $cd !== '' ) {
 					$r .= $cd . ' <span class="mw-changeslist-separator">. .</span> ';
@@ -481,8 +480,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string A HTML formatted line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
-		global $wgRCShowChangedSize;
-
 		wfProfileIn( __METHOD__ );
 		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
 
@@ -533,7 +530,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 		# Character diff
-		if ( $wgRCShowChangedSize ) {
+		if ( $this->getConfig()->get( 'RCShowChangedSize' ) ) {
 			$cd = $this->formatCharacterDifference( $rcObj );
 			if ( $cd !== '' ) {
 				$r .= $cd . ' <span class="mw-changeslist-separator">. .</span> ';
