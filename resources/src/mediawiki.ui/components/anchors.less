@@ -11,6 +11,8 @@
 		}
 	}
 
+	color: @mainColor;
+
 	// Hover state
 	&:hover {
 		color: lighten( @mainColor, @colorLightenPercentage );
@@ -20,8 +22,6 @@
 		color: darken( @mainColor, @colorDarkenPercentage );
 		outline: none; // outline fix
 	}
-
-	color: @mainColor;
 
 	// Quiet mode is gray at first
 	&.mw-ui-quiet {
@@ -50,28 +50,33 @@ Styleguide 6.
 */
 
 /*
-Guidelines
+Anchors
 
-This context should only applied on elements without special behavior (DIV, SPAN, etc.), including A elements. These classes cannot be applied for styling purposes on other elements (such as form elements), except when used in combination with .mw-ui-button to alter a button context.
+The anchor base type can be applied to A elements when a basic context styling needs to be given to a link, without
+having to assign it as a button type. mw-ui-anchor only changes the text color, and should not be used in combination
+with other base classes, such as mw-ui-button.
 
 Markup:
-<a href=# class="mw-ui-progressive {$modifiers}">Progressive</a>
-<a href=# class="mw-ui-constructive {$modifiers}">Constructive</a>
-<a href=# class="mw-ui-destructive {$modifiers}">Destructive</a>
+<a href=# class="mw-ui-anchor mw-ui-progressive {$modifiers}">Progressive</a>
+<a href=# class="mw-ui-anchor mw-ui-constructive {$modifiers}">Constructive</a>
+<a href=# class="mw-ui-anchor mw-ui-destructive {$modifiers}">Destructive</a>
 
 .mw-ui-quiet - Quiet until interaction.
 
 Styleguide 6.1.
 */
-.mw-ui-progressive {
-	.mw-ui-anchor( @colorProgressive );
-}
-.mw-ui-constructive {
-	.mw-ui-anchor( @colorConstructive );
-}
-.mw-ui-destructive {
-	.mw-ui-anchor( @colorDestructive );
-}
-.mw-ui-quiet {
-	.mw-ui-anchor-quiet( @colorTextLight );
+// When applied with mw-ui-anchor
+.mw-ui-anchor {
+	&.mw-ui-progressive {
+		.mw-ui-anchor( @colorProgressive );
+	}
+	&.mw-ui-constructive {
+		.mw-ui-anchor( @colorConstructive );
+	}
+	&.mw-ui-destructive {
+		.mw-ui-anchor( @colorDestructive );
+	}
+	&.mw-ui-quiet {
+		.mw-ui-anchor-quiet( @colorTextLight );
+	}
 }
