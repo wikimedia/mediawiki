@@ -337,7 +337,7 @@ class MWDebug {
 		}
 
 		self::$query[] = array(
-			'sql' => $sql,
+			'sql' => preg_replace( '/[^(\x20-\x7F)]+/', '?', $sql ),
 			'function' => $function,
 			'master' => (bool)$isMaster,
 			'time' => 0.0,
