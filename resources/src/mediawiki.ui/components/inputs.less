@@ -56,18 +56,19 @@
 		.field-placeholder-styling;
 	}
 
+	// Remove red outline from inputs which have required field and invalid content.
+	// This is a Firefox only issue
+	// See https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
+	// This should be above :focus so focus behaviour takes preference
+	&:invalid {
+		box-shadow: none;
+	}
+
 	&:focus {
 		box-shadow: inset .45em 0 0 #5088f7;
 		border-color: @colorGrayDark;
 		// Remove focus glow on input[type="search"]
 		outline: 0;
-	}
-
-	// Remove red outline from inputs which have required field and invalid content.
-	// This is a Firefox only issue
-	// See https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
-	&:invalid {
-		box-shadow: none;
 	}
 }
 
