@@ -1130,7 +1130,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->mTrxIdleCallbacks = array(); // bug 65263
 			$this->mTrxPreCommitCallbacks = array(); // bug 65263
 			wfDebug( "Connection lost, reconnecting...\n" );
-
+			# Stash the last error values since ping() might clear them
+			$lastError = $this->lastError();
+			$lastErrno = $this->lastErrno();
 			if ( $this->ping() ) {
 				global $wgRequestTime;
 				wfDebug( "Reconnected\n" );
@@ -1145,6 +1147,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				if ( $hadTrx ) {
 					# Leave $ret as false and let an error be reported.
 					# Callers may catch the exception and continue to use the DB.
+					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, $tempIgnore );
 				} else {
 					# Should be safe to silently retry (no trx and thus no callbacks)
 					$ret = $this->doQuery( $commentedSql );
