@@ -393,7 +393,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$prefix = $row['iw_prefix'];
 			$val = array();
 			$val['prefix'] = $prefix;
-			if ( $row['iw_local'] == '1' ) {
+			if ( isset( $row['iw_local'] ) && $row['iw_local'] == '1' ) {
 				$val['local'] = '';
 			}
 			if ( $row['iw_trans'] == '1' ) {
