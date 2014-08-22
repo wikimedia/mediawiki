@@ -2679,7 +2679,7 @@ $templates
 	 */
 	public function getResourceLoader() {
 		if ( is_null( $this->mResourceLoader ) ) {
-			$this->mResourceLoader = new ResourceLoader();
+			$this->mResourceLoader = new ResourceLoader( $this->getConfig() );
 		}
 		return $this->mResourceLoader;
 	}
