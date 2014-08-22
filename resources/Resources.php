@@ -1513,9 +1513,18 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+<<<<<<< HEAD
 	'mediawiki.ui.icon' => array(
 		'styles' => array(
 			'resources/src/mediawiki.ui/components/icons.less',
+=======
+	// Lightweight module for text styles
+	'mediawiki.ui.text' => array(
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/components/text.less',
+			),
+>>>>>>> 7ac0e41... Change mw-ui anchors to require mw-ui-anchor base class, and introduce mw-ui-text base class
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
