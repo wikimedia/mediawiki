@@ -472,7 +472,6 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	function getStartBody() {
-		global $wgUseMediaWikiUIEverywhere;
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
@@ -486,7 +485,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		// Button container stored in $this->buttons for re-use in getEndBody()
 		$this->buttons = '<div>';
 		$className = 'historysubmit mw-history-compareselectedversions-button';
-		if ( $wgUseMediaWikiUIEverywhere ) {
+		if ( $this->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$className .= ' mw-ui-button mw-ui-constructive';
 		}
 		$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
