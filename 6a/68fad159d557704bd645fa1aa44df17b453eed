@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+1: Jforrester <jforrester@wikimedia.org>
+Code-Review+2: Cscott <cananian@wikimedia.org>
+Code-Review+1: Jitse Niesen <jitse@maths.leeds.ac.uk>
+Submitted-by: jenkins-bot
+Submitted-at: Fri, 22 Aug 2014 17:56:04 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/154083
+Project: mediawiki/core
+Branch: refs/heads/master
