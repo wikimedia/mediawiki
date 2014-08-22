@@ -318,6 +318,11 @@ $wgUploadStashScalerBaseUrl = false;
  */
 $wgActionPaths = array();
 
+/**
+ * If true, visitors are required to use HTTPS in order to access the website.
+ */
+$wgForceHTTPS = false;
+
 /**@}*/
 
 /************************************************************************//**
