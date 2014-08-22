@@ -123,10 +123,10 @@ class RequestContext implements IContextSource {
 	/**
 	 * Set the Title object
 	 *
-	 * @param Title $t
+	 * @param Title $title
 	 */
-	public function setTitle( Title $t ) {
-		$this->title = $t;
+	public function setTitle( Title $title ) {
+		$this->title = $title;
 		// Erase the WikiPage so a new one with the new title gets created.
 		$this->wikipage = null;
 	}
