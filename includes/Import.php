@@ -429,53 +429,12 @@ class WikiImporter {
 		return '';
 	}
 
-	# --------------
-
-	/** Left in for debugging */
-	private function dumpElement() {
-		static $lookup = null;
-		if ( !$lookup ) {
-			$xmlReaderConstants = array(
-				"NONE",
-				"ELEMENT",
-				"ATTRIBUTE",
-				"TEXT",
-				"CDATA",
-				"ENTITY_REF",
-				"ENTITY",
-				"PI",
-				"COMMENT",
-				"DOC",
-				"DOC_TYPE",
-				"DOC_FRAGMENT",
-				"NOTATION",
-				"WHITESPACE",
-				"SIGNIFICANT_WHITESPACE",
-				"END_ELEMENT",
-				"END_ENTITY",
-				"XML_DECLARATION",
-			);
-			$lookup = array();
-
-			foreach ( $xmlReaderConstants as $name ) {
-				$lookup[constant( "XmlReader::$name" )] = $name;
-			}
-		}
-
-		print var_dump(
-			$lookup[$this->reader->nodeType],
-			$this->reader->name,
-			$this->reader->value
-		) . "\n\n";
-	}
-
 	/**
 	 * Primary entry point
 	 * @throws MWException
 	 * @return bool
 	 */
 	public function doImport() {
-
 		// Calls to reader->read need to be wrapped in calls to
 		// libxml_disable_entity_loader() to avoid local file
 		// inclusion attacks (bug 46932).
