@@ -86,19 +86,24 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * should use to get a gallery.
 	 *
 	 * @param string|bool $mode Mode to use. False to use the default
+	 * @param IContextSource|null $context
 	 * @throws MWException
 	 */
-	static function factory( $mode = false ) {
-		global $wgGalleryOptions, $wgContLang;
+	static function factory( $mode = false, IContextSource $context = null ) {
+		global $wgContLang;
 		self::loadModes();
+		if ( !$context ) {
+			$context = RequestContext::getMainAndWarn( __METHOD__ );
+		}
 		if ( !$mode ) {
-			$mode = $wgGalleryOptions['mode'];
+			$galleryOpions = $context->getConfig()->get( 'GalleryOptions' );
+			$mode = $galleryOpions['mode'];
 		}
 
 		$mode = $wgContLang->lc( $mode );
 
 		if ( isset( self::$modeMapping[$mode] ) ) {
-			return new self::$modeMapping[$mode]( $mode );
+			return new self::$modeMapping[$mode]( $mode, $context );
 		} else {
 			throw new MWException( "No gallery class registered for mode $mode" );
 		}
@@ -124,18 +129,23 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * You should not call this directly, but instead use
 	 * ImageGalleryBase::factory().
 	 * @param string $mode
+	 * @param IContextSource|null $context
 	 */
-	function __construct( $mode = 'traditional' ) {
-		global $wgGalleryOptions;
+	function __construct( $mode = 'traditional', IContextSource $context = null ) {
+		if ( $context ) {
+			$this->setContext( $context );
+		}
+
+		$galleryOptions = $this->getConfig()->get( 'GalleryOptions' );
 		$this->mImages = array();
-		$this->mShowBytes = $wgGalleryOptions['showBytes'];
+		$this->mShowBytes = $galleryOptions['showBytes'];
 		$this->mShowFilename = true;
 		$this->mParser = false;
 		$this->mHideBadImages = false;
-		$this->mPerRow = $wgGalleryOptions['imagesPerRow'];
-		$this->mWidths = $wgGalleryOptions['imageWidth'];
-		$this->mHeights = $wgGalleryOptions['imageHeight'];
-		$this->mCaptionLength = $wgGalleryOptions['captionLength'];
+		$this->mPerRow = $galleryOptions['imagesPerRow'];
+		$this->mWidths = $galleryOptions['imageWidth'];
+		$this->mHeights = $galleryOptions['imageHeight'];
+		$this->mCaptionLength = $galleryOptions['captionLength'];
 		$this->mMode = $mode;
 	}
 
