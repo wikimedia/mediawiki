@@ -8,7 +8,6 @@
  */
 
 class SpecialSearchTest extends MediaWikiTestCase {
-	private $search;
 
 	/**
 	 * @covers SpecialSearch::load
