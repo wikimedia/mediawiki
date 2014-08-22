@@ -417,7 +417,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Return values for <html> element
-	 * @return array of associative name-to-value elements for <html> element
+	 * @return array Array of associative name-to-value elements for <html> element
 	 */
 	public function getHtmlElementAttributes() {
 		$lang = $this->getLanguage();

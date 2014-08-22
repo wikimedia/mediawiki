@@ -47,7 +47,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param string $text Content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
-	 * @return Array as returned by WikiPage::doEditContent()
+	 * @return array Array as returned by WikiPage::doEditContent()
 	 */
 	protected function editPage( $pageName, $text, $summary = '', $defaultNs = NS_MAIN ) {
 		$title = Title::newFromText( $pageName, $defaultNs );
@@ -121,7 +121,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param array $params Key-value API params
 	 * @param array|null $session Session array
 	 * @param User|null $user A User object for the context
-	 * @return Result of the API call
+	 * @return array Result of the API call
 	 * @throws Exception In case wsToken is not set in the session
 	 */
 	protected function doApiRequestWithToken( array $params, array $session = null,
