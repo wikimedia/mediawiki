@@ -3,33 +3,43 @@
 @import "mediawiki.ui/mixins";
 
 // Helpers
-.mw-ui-anchor( @mainColor ) {
+.mixin-mw-ui-anchor-styles( @mainColor ) {
 	// Make all context classes take the main color in IE6
+	// This takes advantage of IE6's inability to have multiple class selectors
+	// In IE6, IE6 will ignores the dummy class .select-ie6-only
+	// thus in IE6 the rule .select-ie6-only.mw-ui-progressive is recognised as .mw-ui-progressive
+	// to give plain coloring
+	// DO NOT USE the select-ie6-only class in your markup!
 	.select-ie6-only& {
-		&:link, &:visited, &:hover, &:focus, &:active {
+		&:link, &:visited, a&:hover, a&:focus, a&:active {
 			color: @mainColor;
 		}
 	}
 
-	// Hover state
-	&:hover {
-		color: lighten( @mainColor, @colorLightenPercentage );
-	}
-	// Focus and active states
-	&:focus, &:active {
-		color: darken( @mainColor, @colorDarkenPercentage );
-		outline: none; // outline fix
-	}
+	// When applied with mw-ui-anchor, use the link styling enhancements
+	// Note that mw-ui-anchor is purposely applied at the end to avoid IE6 multi-selector conflict
+	// Like above, becomes .mw-ui-progressive.mw-ui-anchor, but doesn't interfere with non-link mw-ui-progressive
+	&.mw-ui-anchor {
+		color: @mainColor;
 
-	color: @mainColor;
+		// Hover state
+		&:hover {
+			color: lighten( @mainColor, @colorLightenPercentage );
+		}
+		// Focus and active states
+		&:focus, &:active {
+			color: darken( @mainColor, @colorDarkenPercentage );
+			outline: none; // outline fix
+		}
 
-	// Quiet mode is gray at first
-	&.mw-ui-quiet {
-		.mw-ui-anchor-quiet( @mainColor );
+		// Quiet mode is gray at first
+		&.mw-ui-quiet {
+			.mixin-mw-ui-anchor-styles-quiet( @mainColor );
+		}
 	}
 }
 
-.mw-ui-anchor-quiet( @mainColor ) {
+.mixin-mw-ui-anchor-styles-quiet( @mainColor ) {
 	color: @colorTextLight;
 	text-decoration: none;
 
@@ -42,36 +52,29 @@
 }
 
 /*
-Text & Anchors
+Anchors
 
-Allows you to give text a context as to the type of action it is indicating.
-
-Styleguide 6.
-*/
-
-/*
-Guidelines
-
-This context should only applied on elements without special behavior (DIV, SPAN, etc.), including A elements. These classes cannot be applied for styling purposes on other elements (such as form elements), except when used in combination with .mw-ui-button to alter a button context.
+The anchor base type can be applied to A elements when a basic context styling needs to be given to a link, without
+having to assign it as a button type. mw-ui-anchor only changes the text color, and should not be used in combination
+with other base classes, such as mw-ui-button.
 
 Markup:
-<a href=# class="mw-ui-progressive {$modifiers}">Progressive</a>
-<a href=# class="mw-ui-constructive {$modifiers}">Constructive</a>
-<a href=# class="mw-ui-destructive {$modifiers}">Destructive</a>
+<a href=# class="mw-ui-anchor mw-ui-progressive {$modifiers}">Progressive</a>
+<a href=# class="mw-ui-anchor mw-ui-constructive {$modifiers}">Constructive</a>
+<a href=# class="mw-ui-anchor mw-ui-destructive {$modifiers}">Destructive</a>
 
 .mw-ui-quiet - Quiet until interaction.
 
-Styleguide 6.1.
+Styleguide 6.2.
 */
+
+// Base definitions for text styling; link styling is in mixin
 .mw-ui-progressive {
-	.mw-ui-anchor( @colorProgressive );
+	.mixin-mw-ui-anchor-styles( @colorProgressive );
 }
 .mw-ui-constructive {
-	.mw-ui-anchor( @colorConstructive );
+	.mixin-mw-ui-anchor-styles( @colorConstructive );
 }
 .mw-ui-destructive {
-	.mw-ui-anchor( @colorDestructive );
-}
-.mw-ui-quiet {
-	.mw-ui-anchor-quiet( @colorTextLight );
+	.mixin-mw-ui-anchor-styles( @colorDestructive );
 }
