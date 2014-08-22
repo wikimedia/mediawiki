@@ -144,7 +144,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$article = new Article( $title );
 		$article->getContext()->setTitle( $title );
-		$ep = new EditPage( $article );
+		$ep = new EditPage( $article, RequestContext::getMain() );
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
 

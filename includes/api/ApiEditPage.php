@@ -340,7 +340,7 @@ class ApiEditPage extends ApiBase {
 		/** @var $articleObject Article */
 		$articleObject = Article::newFromWikiPage( $pageObj, $articleContext );
 
-		$ep = new EditPage( $articleObject );
+		$ep = new EditPage( $articleObject, $articleContext );
 
 		// allow editing of non-textual content.
 		$ep->allowNonTextContent = true;

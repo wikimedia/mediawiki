@@ -52,7 +52,7 @@ class EditAction extends FormlessAction {
 		$user = $this->getUser();
 
 		if ( wfRunHooks( 'CustomEditor', array( $page, $user ) ) ) {
-			$editor = new EditPage( $page );
+			$editor = new EditPage( $page, $this->getContext() );
 			$editor->edit();
 		}
 	}
