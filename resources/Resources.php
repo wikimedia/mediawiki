@@ -1472,10 +1472,10 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-	// Lightweight module for anchor styles
-	'mediawiki.ui.anchor' => array(
+	// Lightweight module for text and anchor styles
+	'mediawiki.ui.text' => array(
 		'styles' => array(
-			'resources/src/mediawiki.ui/components/anchors.less',
+			'resources/src/mediawiki.ui/components/text.less',
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
