@@ -648,6 +648,15 @@ $wgTitle = null;
  */
 $wgDeferredUpdateList = array();
 
+if ( $wgForceHTTPS ) {
+	if ( $wgRequest->getProtocol() === 'http' ) {
+		header( 'Location: ' . wfExpandUrl( $wgRequest->getRequestURL(), 'https://' ), true, 301 );
+	}
+	header( 'Strict-Transport-Security: max-age=31536000' );
+} else {
+	header( 'Strict-Transport-Security: max-age=0' );
+}
+
 wfProfileOut( $fname . '-globals' );
 wfProfileIn( $fname . '-extensions' );
 
