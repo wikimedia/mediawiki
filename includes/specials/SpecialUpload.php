@@ -725,8 +725,7 @@ class SpecialUpload extends SpecialPage {
 			return '';
 		}
 
-		$gallery = ImageGalleryBase::factory();
-		$gallery->setContext( $this->getContext() );
+		$gallery = ImageGalleryBase::factory( false, $this->getContext() );
 		$gallery->setShowBytes( false );
 		foreach ( $dupes as $file ) {
 			$gallery->add( $file->getTitle() );
