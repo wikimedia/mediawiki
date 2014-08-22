@@ -11,21 +11,24 @@
 		}
 	}
 
-	// Hover state
-	&:hover {
-		color: lighten( @mainColor, @colorLightenPercentage );
-	}
-	// Focus and active states
-	&:focus, &:active {
-		color: darken( @mainColor, @colorDarkenPercentage );
-		outline: none; // outline fix
-	}
-
 	color: @mainColor;
 
-	// Quiet mode is gray at first
-	&.mw-ui-quiet {
-		.mw-ui-anchor-quiet( @mainColor );
+	// When applied with mw-ui-anchor
+	&.mw-ui-anchor {
+		// Hover state
+		&:hover {
+			color: lighten( @mainColor, @colorLightenPercentage );
+		}
+		// Focus and active states
+		&:focus, &:active {
+			color: darken( @mainColor, @colorDarkenPercentage );
+			outline: none; // outline fix
+		}
+
+		// Quiet mode is gray at first
+		&.mw-ui-quiet {
+			.mw-ui-anchor-quiet( @mainColor );
+		}
 	}
 }
 
@@ -50,18 +53,35 @@ Styleguide 6.
 */
 
 /*
-Guidelines
+Text
 
-This context should only applied on elements without special behavior (DIV, SPAN, etc.), including A elements. These classes cannot be applied for styling purposes on other elements (such as form elements), except when used in combination with .mw-ui-button to alter a button context.
+Standalone context classes may be used alone on elements with only plain-text content. When the context classes are used
+on interactive and block-level elements, the appropriate base type classes should also be used. For example,
+mw-ui-anchor with A, or mw-ui-button with buttons.
 
 Markup:
-<a href=# class="mw-ui-progressive {$modifiers}">Progressive</a>
-<a href=# class="mw-ui-constructive {$modifiers}">Constructive</a>
-<a href=# class="mw-ui-destructive {$modifiers}">Destructive</a>
+<span class="mw-ui-progressive">Progressive</span>
+<span class="mw-ui-constructive">Constructive</span>
+<span class="mw-ui-destructive">Destructive</span>
+
+Styleguide 6.1.
+*/
+
+/*
+Anchors
+
+The anchor base type can be applied to A elements when a basic context styling needs to be given to a link, without
+having to assign it as a button type. mw-ui-anchor only changes the text color, and should not be used in combination
+with other base classes, such as mw-ui-button.
+
+Markup:
+<a href=# class="mw-ui-anchor mw-ui-progressive {$modifiers}">Progressive</a>
+<a href=# class="mw-ui-anchor mw-ui-constructive {$modifiers}">Constructive</a>
+<a href=# class="mw-ui-anchor mw-ui-destructive {$modifiers}">Destructive</a>
 
 .mw-ui-quiet - Quiet until interaction.
 
-Styleguide 6.1.
+Styleguide 6.2.
 */
 .mw-ui-progressive {
 	.mw-ui-anchor( @colorProgressive );
