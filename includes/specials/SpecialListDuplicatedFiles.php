@@ -51,6 +51,7 @@ class ListDuplicatedFilesPage extends QueryPage {
 	 * However this version should be no more expensive then
 	 * Special:MostLinked, which seems to get handled fine
 	 * with however we are doing cached special pages.
+	 * @return array
 	 */
 	function getQueryInfo() {
 		return array(

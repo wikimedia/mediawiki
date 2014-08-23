@@ -673,6 +673,7 @@ class Html {
 	 * @param string $name Name attribute
 	 * @param bool $checked Whether the checkbox is checked or not
 	 * @param array $attribs Array of additional attributes
+	 * @return string
 	 */
 	public static function check( $name, $checked = false, array $attribs = array() ) {
 		if ( isset( $attribs['value'] ) ) {
@@ -695,6 +696,7 @@ class Html {
 	 * @param string $name Name attribute
 	 * @param bool $checked Whether the checkbox is checked or not
 	 * @param array $attribs Array of additional attributes
+	 * @return string
 	 */
 	public static function radio( $name, $checked = false, array $attribs = array() ) {
 		if ( isset( $attribs['value'] ) ) {
@@ -717,6 +719,7 @@ class Html {
 	 * @param string $label Contents of the label
 	 * @param string $id ID of the element being labeled
 	 * @param array $attribs Additional attributes
+	 * @return string
 	 */
 	public static function label( $label, $id, array $attribs = array() ) {
 		$attribs += array(

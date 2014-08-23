@@ -563,6 +563,7 @@ class Exif {
 
 	/**
 	 * Get $this->mFilteredExifData
+	 * @return array
 	 */
 	function getFilteredData() {
 		return $this->mFilteredExifData;

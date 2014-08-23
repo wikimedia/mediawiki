@@ -3100,6 +3100,7 @@ HTML
 	 * Get the copyright warning
 	 *
 	 * Renamed to getCopyrightWarning(), old name kept around for backwards compatibility
+	 * @return string
 	 */
 	protected function getCopywarn() {
 		return self::getCopyrightWarning( $this->mTitle );

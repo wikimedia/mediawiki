@@ -1331,6 +1331,7 @@ abstract class File {
 	/**
 	 * Get last thumbnailing error.
 	 * Largely obsolete.
+	 * @return string
 	 */
 	function getLastError() {
 		return $this->lastError;

@@ -148,6 +148,7 @@ abstract class CdbWriter {
 
 	/**
 	 * Are we running on Windows?
+	 * @return bool
 	 */
 	protected function isWindows() {
 		return substr( php_uname(), 0, 7 ) == 'Windows';

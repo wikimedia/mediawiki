@@ -99,6 +99,7 @@ class MIMEsearchPage extends QueryPage {
 	 * that this report gives results in a logical order). As an aditional
 	 * note, mysql seems to by default order things by img_name ASC, which
 	 * is what we ideally want, so everything works out fine anyhow.
+	 * @return array
 	 */
 	function getOrderFields() {
 		return array();

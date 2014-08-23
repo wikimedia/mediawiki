@@ -77,6 +77,7 @@ class SpecialResetTokens extends FormSpecialPage {
 	/**
 	 * Display appropriate message if there's nothing to do.
 	 * The submit button is also suppressed in this case (see alterForm()).
+	 * @return array
 	 */
 	protected function getFormFields() {
 		$user = $this->getUser();

@@ -116,6 +116,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 * If you're using a real search engine, you'll probably want to override
 	 * this behavior and do something nicer with the original wikitext.
 	 * @param string $text
+	 * @return string
 	 */
 	public static function updateText( $text ) {
 		global $wgContLang;

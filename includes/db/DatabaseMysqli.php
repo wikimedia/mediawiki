@@ -292,6 +292,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * Give an id for the connection
 	 *
 	 * mysql driver used resource id, but mysqli objects cannot be cast to string.
+	 * @return string
 	 */
 	public function __toString() {
 		if ( $this->mConn instanceof Mysqli ) {

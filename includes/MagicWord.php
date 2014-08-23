@@ -754,6 +754,7 @@ class MagicWordArray {
 
 	/**
 	 * Get a 2-d hashtable for this array
+	 * @return array
 	 */
 	function getHash() {
 		if ( is_null( $this->hash ) ) {
@@ -775,6 +776,7 @@ class MagicWordArray {
 
 	/**
 	 * Get the base regex
+	 * @return array
 	 */
 	function getBaseRegex() {
 		if ( is_null( $this->baseRegex ) ) {
@@ -799,6 +801,7 @@ class MagicWordArray {
 
 	/**
 	 * Get an unanchored regex that does not match parameters
+	 * @return array
 	 */
 	function getRegex() {
 		if ( is_null( $this->regex ) ) {

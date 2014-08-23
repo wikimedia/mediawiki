@@ -473,6 +473,7 @@ class ApiParse extends ApiBase {
 	/**
 	 * @param Content $content
 	 * @param string $what Identifies the content in error messages, e.g. page title.
+	 * @return Content|bool
 	 */
 	private function getSectionContent( Content $content, $what ) {
 		// Not cached (save or load)
