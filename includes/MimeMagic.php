@@ -172,6 +172,9 @@ class MimeMagic {
 	 */
 	private $mExtraInfo = '';
 
+	/** @var Config */
+	private $mConfig;
+
 	/** @var MimeMagic The singleton instance
 	 */
 	private static $instance = null;
@@ -179,30 +182,40 @@ class MimeMagic {
 	/** Initializes the MimeMagic object. This is called by MimeMagic::singleton().
 	 *
 	 * This constructor parses the mime.types and mime.info files and build internal mappings.
+	 *
+	 * @todo Make this constructor private once everything uses the singleton instance
+	 * @param Config $config
 	 */
-	function __construct() {
+	function __construct( Config $config = null ) {
+		if ( !$config ) {
+			wfDebug( __METHOD__ . ' called with no Config instance passed to it' );
+			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		}
+		$this->mConfig = $config;
+
 		/**
 		 *   --- load mime.types ---
 		 */
 
-		global $wgMimeTypeFile, $IP;
+		global $IP;
 
 		# Allow media handling extensions adding MIME-types and MIME-info
 		wfRunHooks( 'MimeMagicInit', array( $this ) );
 
 		$types = MM_WELL_KNOWN_MIME_TYPES;
 
-		if ( $wgMimeTypeFile == 'includes/mime.types' ) {
-			$wgMimeTypeFile = "$IP/$wgMimeTypeFile";
+		$mimeTypeFile = $this->mConfig->get( 'MimeTypeFile' );
+		if ( $mimeTypeFile == 'includes/mime.types' ) {
+			$mimeTypeFile = "$IP/$mimeTypeFile";
 		}
 
-		if ( $wgMimeTypeFile ) {
-			if ( is_file( $wgMimeTypeFile ) and is_readable( $wgMimeTypeFile ) ) {
-				wfDebug( __METHOD__ . ": loading mime types from $wgMimeTypeFile\n" );
+		if ( $mimeTypeFile ) {
+			if ( is_file( $mimeTypeFile ) and is_readable( $mimeTypeFile ) ) {
+				wfDebug( __METHOD__ . ": loading mime types from $mimeTypeFile\n" );
 				$types .= "\n";
-				$types .= file_get_contents( $wgMimeTypeFile );
+				$types .= file_get_contents( $mimeTypeFile );
 			} else {
-				wfDebug( __METHOD__ . ": can't load mime types from $wgMimeTypeFile\n" );
+				wfDebug( __METHOD__ . ": can't load mime types from $mimeTypeFile\n" );
 			}
 		} else {
 			wfDebug( __METHOD__ . ": no mime types file defined, using build-ins only.\n" );
@@ -266,20 +279,20 @@ class MimeMagic {
 		 *   --- load mime.info ---
 		 */
 
-		global $wgMimeInfoFile;
-		if ( $wgMimeInfoFile == 'includes/mime.info' ) {
-			$wgMimeInfoFile = "$IP/$wgMimeInfoFile";
+		$mimeInfoFile = $this->mConfig->get( 'MimeInfoFile' );
+		if ( $mimeInfoFile == 'includes/mime.info' ) {
+			$mimeInfoFile = "$IP/$mimeInfoFile";
 		}
 
 		$info = MM_WELL_KNOWN_MIME_INFO;
 
-		if ( $wgMimeInfoFile ) {
-			if ( is_file( $wgMimeInfoFile ) and is_readable( $wgMimeInfoFile ) ) {
-				wfDebug( __METHOD__ . ": loading mime info from $wgMimeInfoFile\n" );
+		if ( $mimeInfoFile ) {
+			if ( is_file( $mimeInfoFile ) and is_readable( $mimeInfoFile ) ) {
+				wfDebug( __METHOD__ . ": loading mime info from $mimeInfoFile\n" );
 				$info .= "\n";
-				$info .= file_get_contents( $wgMimeInfoFile );
+				$info .= file_get_contents( $mimeInfoFile );
 			} else {
-				wfDebug( __METHOD__ . ": can't load mime info from $wgMimeInfoFile\n" );
+				wfDebug( __METHOD__ . ": can't load mime info from $mimeInfoFile\n" );
 			}
 		} else {
 			wfDebug( __METHOD__ . ": no mime info file defined, using build-ins only.\n" );
@@ -352,7 +365,9 @@ class MimeMagic {
 	 */
 	public static function singleton() {
 		if ( self::$instance === null ) {
-			self::$instance = new MimeMagic;
+			self::$instance = new MimeMagic(
+				ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			);
 		}
 		return self::$instance;
 	}
@@ -711,9 +726,9 @@ class MimeMagic {
 		 */
 		$xml = new XmlTypeCheck( $file );
 		if ( $xml->wellFormed ) {
-			global $wgXMLMimeTypes;
-			if ( isset( $wgXMLMimeTypes[$xml->getRootElement()] ) ) {
-				return $wgXMLMimeTypes[$xml->getRootElement()];
+			$xmlMimeTypes = $this->mConfig->get( 'XMLMimeTypes' );
+			if ( isset( $xmlMimeTypes[$xml->getRootElement()] ) ) {
+				return $xmlMimeTypes[$xml->getRootElement()];
 			} else {
 				return 'application/xml';
 			}
@@ -914,18 +929,17 @@ class MimeMagic {
 	 * @return string The MIME type of $file
 	 */
 	private function detectMimeType( $file, $ext = true ) {
-		global $wgMimeDetectorCommand;
-
 		/** @todo Make $ext default to false. Or better, remove it. */
 		if ( $ext ) {
 			wfDebug( __METHOD__ . ": WARNING: use of the \$ext parameter is deprecated. "
 				. "Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
 		}
 
+		$mimeDetectorCommand = $this->mConfig->get( 'MimeDetectorCommand' );
 		$m = null;
-		if ( $wgMimeDetectorCommand ) {
+		if ( $mimeDetectorCommand ) {
 			$args = wfEscapeShellArg( $file );
-			$m = wfShellExec( "$wgMimeDetectorCommand $args" );
+			$m = wfShellExec( "$mimeDetectorCommand $args" );
 		} elseif ( function_exists( "finfo_open" ) && function_exists( "finfo_file" ) ) {
 			$mime_magic_resource = finfo_open( FILEINFO_MIME );
 
