@@ -184,6 +184,7 @@ class LogPage {
 
 	/**
 	 * Get the comment from the last addEntry() call
+	 * @return string
 	 */
 	public function getComment() {
 		return $this->comment;

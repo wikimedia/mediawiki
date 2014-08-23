@@ -984,6 +984,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Updates the timestamps in the transcache table
+	 * @return bool
 	 */
 	protected function doUpdateTranscacheField() {
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {

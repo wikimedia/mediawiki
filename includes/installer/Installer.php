@@ -736,6 +736,7 @@ abstract class Installer {
 	/**
 	 * Environment check for register_globals.
 	 * Prevent installation if enabled
+	 * @return bool
 	 */
 	protected function envCheckRegisterGlobals() {
 		if ( wfIniGetBool( 'register_globals' ) ) {

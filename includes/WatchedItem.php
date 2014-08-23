@@ -164,6 +164,7 @@ class WatchedItem {
 	/**
 	 * Check permissions
 	 * @param string $what 'viewmywatchlist' or 'editmywatchlist'
+	 * @return bool
 	 */
 	private function isAllowed( $what ) {
 		return !$this->mCheckRights || $this->mUser->isAllowed( $what );

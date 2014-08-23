@@ -4201,6 +4201,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	/**
 	 * @since 1.19
+	 * @return string
 	 */
 	public function __toString() {
 		return (string)$this->mConn;
