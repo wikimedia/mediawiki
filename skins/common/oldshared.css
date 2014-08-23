@@ -487,23 +487,6 @@ table.multipageimage td {
 	background-color: #eeeeff;
 }
 
-.imagelist td,
-.imagelist th {
-	white-space: nowrap;
-}
-
-.imagelist .TablePager_col_links {
-	background-color: #eeeeff;
-}
-
-.imagelist .TablePager_col_img_description {
-	white-space: normal;
-}
-
-.imagelist th.TablePager_sort {
-	background-color: #ccccff;
-}
-
 .templatesUsed {
 	margin-top: 1em;
 }
