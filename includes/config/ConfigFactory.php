@@ -61,6 +61,7 @@ class ConfigFactory {
 	 * Destroy the default instance
 	 * Should only be called inside unit tests
 	 * @throws MWException
+	 * @codeCoverageIgnore
 	 */
 	public static function destroyDefaultInstance() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
