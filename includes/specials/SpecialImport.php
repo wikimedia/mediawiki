@@ -157,7 +157,7 @@ class SpecialImport extends SpecialPage {
 				array( 'importfailed', $source->getWikiText() )
 			);
 		} else {
-			$importer = new WikiImporter( $source->value );
+			$importer = new WikiImporter( $source->value, $this->getConfig() );
 			if ( !is_null( $this->namespace ) ) {
 				$importer->setTargetNamespace( $this->namespace );
 			}
