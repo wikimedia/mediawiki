@@ -31,7 +31,6 @@ $wgAutoloadLocalClasses = array(
 	# Includes
 	'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
 	'AjaxResponse' => 'includes/AjaxResponse.php',
-	'AlphabeticPager' => 'includes/Pager.php',
 	'AtomFeed' => 'includes/Feed.php',
 	'AuthPlugin' => 'includes/AuthPlugin.php',
 	'AuthPluginUser' => 'includes/AuthPlugin.php',
@@ -110,7 +109,6 @@ $wgAutoloadLocalClasses = array(
 	'IdentityCollation' => 'includes/Collation.php',
 	'ImportStreamSource' => 'includes/Import.php',
 	'ImportStringSource' => 'includes/Import.php',
-	'IndexPager' => 'includes/Pager.php',
 	'Interwiki' => 'includes/interwiki/Interwiki.php',
 	'License' => 'includes/Licenses.php',
 	'Licenses' => 'includes/Licenses.php',
@@ -128,7 +126,6 @@ $wgAutoloadLocalClasses = array(
 	'MWHttpRequest' => 'includes/HttpFunctions.php',
 	'MWNamespace' => 'includes/MWNamespace.php',
 	'OutputPage' => 'includes/OutputPage.php',
-	'Pager' => 'includes/Pager.php',
 	'PathRouter' => 'includes/PathRouter.php',
 	'PathRouterPatternReplacer' => 'includes/PathRouter.php',
 	'PhpHttpRequest' => 'includes/HttpFunctions.php',
@@ -143,7 +140,6 @@ $wgAutoloadLocalClasses = array(
 	'PrefixSearch' => 'includes/PrefixSearch.php',
 	'ProtectionForm' => 'includes/ProtectionForm.php',
 	'RawMessage' => 'includes/Message.php',
-	'ReverseChronologicalPager' => 'includes/Pager.php',
 	'RevisionItem' => 'includes/RevisionList.php',
 	'RevisionItemBase' => 'includes/RevisionList.php',
 	'RevisionListBase' => 'includes/RevisionList.php',
@@ -162,7 +158,6 @@ $wgAutoloadLocalClasses = array(
 	'StringPrefixSearch' => 'includes/PrefixSearch.php',
 	'StubObject' => 'includes/StubObject.php',
 	'StubUserLang' => 'includes/StubObject.php',
-	'TablePager' => 'includes/Pager.php',
 	'MWTimestamp' => 'includes/MWTimestamp.php',
 	'TimestampException' => 'includes/TimestampException.php',
 	'Title' => 'includes/Title.php',
@@ -786,6 +781,13 @@ $wgAutoloadLocalClasses = array(
 	'WikiCategoryPage' => 'includes/page/WikiCategoryPage.php',
 	'WikiFilePage' => 'includes/page/WikiFilePage.php',
 	'WikiPage' => 'includes/page/WikiPage.php',
+
+	# includes/pager
+	'AlphabeticPager' => 'includes/pager/AlphabeticPager.php',
+	'IndexPager' => 'includes/pager/IndexPager.php',
+	'Pager' => 'includes/pager/Pager.php',
+	'ReverseChronologicalPager' => 'includes/pager/ReverseChronologicalPager.php',
+	'TablePager' => 'includes/pager/TablePager.php',
 
 	# includes/parser
 	'CacheTime' => 'includes/parser/CacheTime.php',
