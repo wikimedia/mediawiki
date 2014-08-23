@@ -957,8 +957,8 @@ abstract class TablePager extends IndexPager {
 	 * @return string
 	 */
 	function getStartBody() {
-		global $wgStylePath;
 		$sortClass = $this->getSortHeaderClass();
+		$stylePath = $this->getConfig()->get( 'StylePath' );
 
 		$s = '';
 		$fields = $this->getFieldNames();
@@ -985,7 +985,7 @@ abstract class TablePager extends IndexPager {
 						$query['desc'] = '1';
 						$alt = $this->msg( 'ascending_abbrev' )->escaped();
 					}
-					$image = "$wgStylePath/common/images/$image";
+					$image = "$stylePath/common/images/$image";
 					$link = $this->makeLink(
 						Html::element( 'img', array( 'width' => 12, 'height' => 12,
 							'alt' => $alt, 'src' => $image ) ) . htmlspecialchars( $name ), $query );
@@ -1137,13 +1137,11 @@ abstract class TablePager extends IndexPager {
 	 * @return string HTML
 	 */
 	public function getNavigationBar() {
-		global $wgStylePath;
-
 		if ( !$this->isNavigationBarShown() ) {
 			return '';
 		}
 
-		$path = "$wgStylePath/common/images";
+		$path = $this->getConfig()->get( 'StylePath' ) . '/common/images';
 		$labels = array(
 			'first' => 'table_pager_first',
 			'prev' => 'table_pager_prev',
@@ -1262,13 +1260,11 @@ abstract class TablePager extends IndexPager {
 	 * @return string HTML fragment
 	 */
 	function getLimitForm() {
-		global $wgScript;
-
 		return Html::rawElement(
 			'form',
 			array(
 				'method' => 'get',
-				'action' => $wgScript
+				'action' => wfScript()
 			),
 			"\n" . $this->getLimitDropdown()
 		) . "\n";
