@@ -573,7 +573,7 @@ class MessageCache {
 
 		// Update the message in the message blob store
 		global $wgContLang;
-		MessageBlobStore::updateMessage( $wgContLang->lcfirst( $msg ) );
+		MessageBlobStore::singleton()->updateMessage( $wgContLang->lcfirst( $msg ) );
 
 		wfRunHooks( 'MessageCacheReplace', array( $title, $text ) );
 
