@@ -14,8 +14,57 @@
 .TablePager_nav td {
 	padding: 3px;
 	text-align: center;
+	vertical-align: center;
 }
 
 .TablePager_nav a {
 	text-decoration: none;
+}
+
+.TablePager_nav td.TablePager_nav-first .TablePager_nav-disabled {
+	padding-top: 25px;
+	/* @embed */
+	background: url(images/pager-arrow-disabled-fastforward-rtl.png) center top no-repeat;
+}
+
+.TablePager_nav td.TablePager_nav-prev .TablePager_nav-disabled {
+	padding-top: 25px;
+	/* @embed */
+	background: url(images/pager-arrow-disabled-forward-rtl.png) center top no-repeat;
+}
+
+.TablePager_nav td.TablePager_nav-next .TablePager_nav-disabled {
+	padding-top: 25px;
+	/* @embed */
+	background: url(images/pager-arrow-disabled-forward-ltr.png) center top no-repeat;
+}
+
+.TablePager_nav td.TablePager_nav-last .TablePager_nav-disabled {
+	padding-top: 25px;
+	/* @embed */
+	background: url(images/pager-arrow-disabled-fastforward-ltr.png) center top no-repeat;
+}
+
+.TablePager_nav td.TablePager_nav-first .TablePager_nav-enabled {
+	padding-top: 25px;
+	/* @embed */
+	background: url(images/pager-arrow-fastforward-rtl.png) center top no-repeat;
+}
+
+.TablePager_nav td.TablePager_nav-prev .TablePager_nav-enabled {
+	padding-top: 25px;
+	/* @embed */
+	background: url(images/pager-arrow-forward-rtl.png) center top no-repeat;
+}
+
+.TablePager_nav td.TablePager_nav-next .TablePager_nav-enabled {
+	padding-top: 25px;
+	/* @embed */
+	background: url(images/pager-arrow-forward-ltr.png) center top no-repeat;
+}
+
+.TablePager_nav td.TablePager_nav-last .TablePager_nav-enabled {
+	padding-top: 25px;
+	/* @embed */
+	background: url(images/pager-arrow-fastforward-ltr.png) center top no-repeat;
 }
