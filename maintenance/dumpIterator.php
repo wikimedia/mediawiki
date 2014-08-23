@@ -54,7 +54,9 @@ abstract class DumpIterator extends Maintenance {
 		$this->checkOptions();
 
 		if ( $this->hasOption( 'file' ) ) {
-			$revision = new WikiRevision;
+			$revision = new WikiRevision(
+				ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			);
 
 			$revision->setText( file_get_contents( $this->getOption( 'file' ) ) );
 			$revision->setTitle( Title::newFromText(
