@@ -557,15 +557,15 @@ class ImageListPager extends TablePager {
 	}
 
 	function getTableClass() {
-		return 'listfiles ' . parent::getTableClass();
+		return parent::getTableClass() . ' listfiles';
 	}
 
 	function getNavClass() {
-		return 'listfiles_nav ' . parent::getNavClass();
+		return parent::getNavClass() . ' listfiles_nav';
 	}
 
 	function getSortHeaderClass() {
-		return 'listfiles_sort ' . parent::getSortHeaderClass();
+		return parent::getSortHeaderClass() . ' listfiles_sort';
 	}
 
 	function getPagingQueries() {

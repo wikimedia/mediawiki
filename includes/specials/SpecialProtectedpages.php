@@ -558,7 +558,7 @@ class ProtectedPagesPager extends TablePager {
 	}
 
 	public function getTableClass() {
-		return 'TablePager mw-protectedpages';
+		return parent::getTableClass() . ' mw-protectedpages';
 	}
 
 	function getIndexField() {

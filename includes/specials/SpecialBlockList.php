@@ -409,7 +409,7 @@ class BlockListPager extends TablePager {
 	}
 
 	public function getTableClass() {
-		return 'TablePager mw-blocklist';
+		return parent::getTableClass() . ' mw-blocklist';
 	}
 
 	function getIndexField() {

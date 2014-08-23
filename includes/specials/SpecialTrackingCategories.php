@@ -41,7 +41,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		$this->outputHeader();
 		$this->getOutput()->allowClickjacking();
 		$this->getOutput()->addHTML(
-			Html::openElement( 'table', array( 'class' => 'mw-datatable TablePager',
+			Html::openElement( 'table', array( 'class' => 'mw-datatable',
 				'id' => 'mw-trackingcategories-table' ) ) . "\n" .
 			"<thead><tr>
 			<th>" .
