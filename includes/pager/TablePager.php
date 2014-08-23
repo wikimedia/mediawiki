@@ -149,7 +149,6 @@ abstract class TablePager extends IndexPager {
 	 * @return string
 	 */
 	function getStartBody() {
-		global $wgStylePath;
 		$sortClass = $this->getSortHeaderClass();
 
 		$s = '';
@@ -165,23 +164,16 @@ abstract class TablePager extends IndexPager {
 					# This is the sorted column
 					# Prepare a link that goes in the other sort order
 					if ( $this->mDefaultDirection ) {
-						# Descending
-						$image = 'Arr_d.png';
+						$class = 'TablePager_sort-descending';
 						$query['asc'] = '1';
 						$query['desc'] = '';
-						$alt = $this->msg( 'descending_abbrev' )->escaped();
 					} else {
-						# Ascending
-						$image = 'Arr_u.png';
+						$class = 'TablePager_sort-ascending';
 						$query['asc'] = '';
 						$query['desc'] = '1';
-						$alt = $this->msg( 'ascending_abbrev' )->escaped();
 					}
-					$image = "$wgStylePath/common/images/$image";
-					$link = $this->makeLink(
-						Html::element( 'img', array( 'width' => 12, 'height' => 12,
-							'alt' => $alt, 'src' => $image ) ) . htmlspecialchars( $name ), $query );
-					$s .= Html::rawElement( 'th', array( 'class' => $sortClass ), $link ) . "\n";
+					$link = $this->makeLink( htmlspecialchars( $name ), $query );
+					$s .= Html::rawElement( 'th', array( 'class' => "$sortClass $class" ), $link ) . "\n";
 				} else {
 					$s .= Html::rawElement( 'th', array(),
 						$this->makeLink( htmlspecialchars( $name ), $query ) ) . "\n";
