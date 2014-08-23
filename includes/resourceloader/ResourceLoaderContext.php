@@ -113,7 +113,9 @@ class ResourceLoaderContext {
 	 * @return ResourceLoaderContext
 	 */
 	public static function newDummyContext() {
-		return new self( new ResourceLoader, new FauxRequest( array() ) );
+		return new self( new ResourceLoader(
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+		), new FauxRequest( array() ) );
 	}
 
 	/**
