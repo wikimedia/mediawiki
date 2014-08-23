@@ -899,60 +899,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Generate a cache key for a LESS file.
-	 *
-	 * The cache key varies on the file name and the names and values of global
-	 * LESS variables.
-	 *
-	 * @since 1.22
-	 * @param string $fileName File name of root LESS file.
-	 * @return string Cache key
-	 */
-	protected function getLessCacheKey( $fileName ) {
-		$vars = json_encode( ResourceLoader::getLessVars( $this->getConfig() ) );
-		$hash = md5( $fileName . $vars );
-		return wfMemcKey( 'resourceloader', 'less', $hash );
-	}
-
-	/**
 	 * Compile a LESS file into CSS.
 	 *
-	 * If invalid, returns replacement CSS source consisting of the compilation
-	 * error message encoded as a comment. To save work, we cache a result object
-	 * which comprises the compiled CSS and the names & mtimes of the files
-	 * that were processed. lessphp compares the cached & current mtimes and
-	 * recompiles as necessary.
+	 * Keeps track of all used files and adds them to localFileRefs.
 	 *
 	 * @since 1.22
-	 * @throws Exception If Less encounters a parse error
-	 * @throws MWException If Less compilation returns unexpection result
+	 * @throws Exception If lessc encounters a parse error
 	 * @param string $fileName File path of LESS source
 	 * @return string CSS source
 	 */
 	protected function compileLessFile( $fileName ) {
-		$key = $this->getLessCacheKey( $fileName );
-		$cache = wfGetCache( CACHE_ANYTHING );
-
-		// The input to lessc. Either an associative array representing the
-		// cached results of a previous compilation, or the string file name if
-		// no cache result exists.
-		$source = $cache->get( $key );
-		if ( !is_array( $source ) || !isset( $source['root'] ) ) {
-			$source = $fileName;
-		}
-
 		$compiler = ResourceLoader::getLessCompiler( $this->getConfig() );
-		$result = null;
-
-		$result = $compiler->cachedCompile( $source );
-
-		if ( !is_array( $result ) ) {
-			throw new MWException( 'LESS compiler result has type '
-				. gettype( $result ) . '; array expected.' );
-		}
-
-		$this->localFileRefs += array_keys( $result['files'] );
-		$cache->set( $key, $result );
-		return $result['compiled'];
+		$result = $compiler->compileFile( $fileName );
+		$this->localFileRefs += array_keys( $compiler->allParsedFiles() );
+		return $result;
 	}
 }
