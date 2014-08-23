@@ -39,7 +39,9 @@ if ( !$wgRequest->checkUrlExtension() ) {
 }
 
 // Respond to resource loading request
-$resourceLoader = new ResourceLoader();
+$resourceLoader = new ResourceLoader(
+	ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+);
 $resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
 
 wfProfileOut( 'load.php' );
