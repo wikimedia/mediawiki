@@ -35,7 +35,11 @@
 			id: b.imageId || undefined,
 			'class': 'mw-toolbar-editbutton'
 		} ).click( function () {
-			toolbar.insertTags( b.tagOpen, b.tagClose, b.sampleText );
+			if ( $.isFunction( b.onClick ) ) {
+				b.onClick();
+			} else {
+				toolbar.insertTags( b.tagOpen, b.tagClose, b.sampleText );
+			}
 			return false;
 		} );
 
@@ -72,6 +76,7 @@
 		 * @param {string} button.tagClose
 		 * @param {string} button.sampleText
 		 * @param {string} [button.imageId]
+		 * @param {function} [button.onClick]
 		 */
 		addButton: function () {
 			if ( isReady ) {
