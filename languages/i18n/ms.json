@@ -2958,7 +2958,7 @@
 	"tags": "Label perubahan yang sah",
 	"tag-filter": "Tapis [[Special:Tags|label]]:",
 	"tag-filter-submit": "Tapis",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Teg}}]]: $2)",
+	"tag-list-wrapper": "([[Special:Tags|Label]]: $2)",
 	"tags-title": "Label",
 	"tags-intro": "Yang berikut ialah senarai label yang digunakan untuk menanda suntingan, berserta maknanya.",
 	"tags-tag": "Nama label",

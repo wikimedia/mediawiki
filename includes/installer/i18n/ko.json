@@ -275,6 +275,7 @@
 	"config-extensions-help": "위에 나열된 확장 기능이 <code>./extensions</code>에서 발견되었습니다.\n\n추가적인 설정이 필요할 수 있습니다만 지금 활성화시킬 수 있습니다.",
 	"config-skins": "스킨",
 	"config-skins-use-as-default": "이 스킨을 기본값으로 사용",
+	"config-skins-must-enable-some": "적어도 활성화활 스킨 하나를 선택해야 합니다.",
 	"config-skins-must-enable-default": "기본값으로 설정한 스킨은 반드시 활성화해야 합니다.",
 	"config-install-alreadydone": "'''경고:''' 이미 미디어위키를 설치했고 다시 설치하려고 합니다.\n다음 페이지로 진행하세요.",
 	"config-install-begin": "\"{{int:config-continue}}\"을 누르면 미디어위키의 설치를 시작합니다.\n그래도 바꾸는 것을 원한다면 \"{{int:config-back}}\"를 누르세요.",

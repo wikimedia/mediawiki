@@ -1878,6 +1878,8 @@
 	"import": "ھاوردنی پەڕەکان",
 	"importinterwiki": "ھاوردنی ناووویکی",
 	"import-interwiki-text": "بۆ ھاوردن، ویکییەک و سەردێڕێکی پەڕە ھەڵبژێرە.\nڕێکەوتەکانی پێداچوونەوە و ناوی دەستکاریکەرەکان دەپارێزرێت.\nهەموو کردەوەکانی ھاوردنی ناوویکی لە [[Special:Log/import|لۆگی ھاوردن]]دا تۆمار دەکرێت.",
+	"import-interwiki-sourcewiki": "ویکی سەرچاوە:",
+	"import-interwiki-sourcepage": "پەڕەی سەرچاوە:",
 	"import-interwiki-history": "هەموو مێژووی پێداچوونەوەکانی ئەم پەڕەیە کۆپی بکە",
 	"import-interwiki-templates": "ھەموو داڕێژەکان لەخۆبگرێتەوە",
 	"import-interwiki-submit": "هاوردە بکە",
