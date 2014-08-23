@@ -51,6 +51,100 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * Get the formatted result list. Calls getStartBody(), formatRow() and
+	 * getEndBody(), concatenates the results and returns them.
+	 *
+	 * Making this 'final', there's no reason to override it. If anyone is doing
+	 * it now, they're probably breaking the style loading hack, so let's fail
+	 * fast rather than mysteriously render things wrong.
+	 *
+	 * @deprecated since 1.24, use getBodyOutput() or getFullOutput() instead
+	 * @return string
+	 */
+	final public function getBody() {
+		return $this->makeResourceLoaderStylesLink( $this->getModuleStyles() )
+			. parent::getBody();
+	}
+
+	/**
+	 * The good parts of OutputPage::makeResourceLoaderLink().
+	 *
+	 * @since 1.24
+	 * @deprecated since 1.24
+	 * @param string[] $modules
+	 * @return string HTML
+	 */
+	private function makeResourceLoaderStylesLink( $modules ) {
+		$modules = (array)$modules;
+
+		if ( !count( $modules ) ) {
+			return '';
+		}
+
+		if ( count( $modules ) > 1 ) {
+			$modules = array_unique( $modules );
+			sort( $modules );
+		}
+
+		$resourceLoader = $this->getOutput()->getResourceLoader();
+
+		$query = ResourceLoader::makeLoaderQuery(
+			$modules,
+			$this->getLanguage()->getCode(),
+			$this->getSkin()->getSkinName(),
+			null, // user
+			null, // version
+			ResourceLoader::inDebugMode(),
+			ResourceLoaderModule::TYPE_STYLES, // only
+			$this->getOutput()->isPrintable(),
+			$this->getRequest()->getBool( 'handheld' ),
+			array() // extraQuery
+		);
+		$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
+
+		$url = $resourceLoader->createLoaderURL( 'local', $context, array() );
+
+		return Html::linkedStyle( $url );
+	}
+
+	/**
+	 * Get the formatted result list.
+	 *
+	 * Calls getBody() and getModuleStyles() and builds a ParserOutput
+	 * object. (This is a bit hacky but works well.)
+	 *
+	 * @since 1.24
+	 * @return ParserOutput
+	 */
+	public function getBodyOutput() {
+		$body = parent::getBody();
+
+		$pout = new ParserOutput;
+		$pout->setText( $body );
+		$pout->addModuleStyles( $this->getModuleStyles() );
+		return $pout;
+	}
+
+	/**
+	 * Get the formatted result list, with navigation bars.
+	 *
+	 * Calls getBody(), getNavigationBar() and getModuleStyles() and
+	 * builds a ParserOutput object. (This is a bit hacky but works well.)
+	 *
+	 * @since 1.24
+	 * @return ParserOutput
+	 */
+	public function getFullOutput() {
+		$navigation = $this->getNavigationBar();
+		$body = parent::getBody();
+
+		$pout = new ParserOutput;
+		$pout->setText( $navigation . $body . $navigation );
+		$pout->addModuleStyles( $this->getModuleStyles() );
+		return $pout;
+	}
+
+	/**
 	 * @protected
 	 * @return string
 	 */
@@ -99,7 +193,6 @@ abstract class TablePager extends IndexPager {
 
 		$tableClass = $this->getTableClass();
 		$ret = Html::openElement( 'table', array(
-			'style' => 'border:1px;',
 			'class' => "mw-datatable $tableClass" )
 		);
 		$ret .= Html::rawElement( 'thead', array(), Html::rawElement( 'tr', array(), "\n" . $s . "\n" ) );
@@ -281,10 +374,19 @@ abstract class TablePager extends IndexPager {
 		$s .= Html::openElement( 'tr' ) . "\n";
 		$width = 100 / count( $links ) . '%';
 		foreach ( $labels as $type => $label ) {
-			$s .= Html::rawElement( 'td', array( 'style' => "width:$width;" ), $links[$type] ) . "\n";
+			$s .= Html::rawElement( 'td', array( 'style' => "width: $width;" ), $links[$type] ) . "\n";
 		}
 		$s .= Html::closeElement( 'tr' ) . Html::closeElement( 'table' ) . "\n";
 		return $s;
+	}
+
+	/**
+	 * ResourceLoader modules that must be loaded to provide correct styling for this pager
+	 * @since 1.24
+	 * @return string[]
+	 */
+	public function getModuleStyles() {
+		return array( 'mediawiki.pager.tablePager' );
 	}
 
 	/**
