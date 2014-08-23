@@ -289,45 +289,23 @@ abstract class TablePager extends IndexPager {
 	 * @return string HTML
 	 */
 	public function getNavigationBar() {
-		global $wgStylePath;
-
 		if ( !$this->isNavigationBarShown() ) {
 			return '';
 		}
 
-		$path = "$wgStylePath/common/images";
 		$labels = array(
 			'first' => 'table_pager_first',
 			'prev' => 'table_pager_prev',
 			'next' => 'table_pager_next',
 			'last' => 'table_pager_last',
 		);
-		$images = array(
-			'first' => 'arrow_first_25.png',
-			'prev' => 'arrow_left_25.png',
-			'next' => 'arrow_right_25.png',
-			'last' => 'arrow_last_25.png',
-		);
-		$disabledImages = array(
-			'first' => 'arrow_disabled_first_25.png',
-			'prev' => 'arrow_disabled_left_25.png',
-			'next' => 'arrow_disabled_right_25.png',
-			'last' => 'arrow_disabled_last_25.png',
-		);
-		if ( $this->getLanguage()->isRTL() ) {
-			$keys = array_keys( $labels );
-			$images = array_combine( $keys, array_reverse( $images ) );
-			$disabledImages = array_combine( $keys, array_reverse( $disabledImages ) );
-		}
 
 		$linkTexts = array();
 		$disabledTexts = array();
 		foreach ( $labels as $type => $label ) {
 			$msgLabel = $this->msg( $label )->escaped();
-			$linkTexts[$type] = Html::element( 'img', array( 'src' => "$path/{$images[$type]}",
-				'alt' => $msgLabel ) ) . "<br />$msgLabel";
-			$disabledTexts[$type] = Html::element( 'img', array( 'src' => "$path/{$disabledImages[$type]}",
-				'alt' => $msgLabel ) ) . "<br />$msgLabel";
+			$linkTexts[$type] = "<div class='TablePager_nav-enabled'>$msgLabel</div>";
+			$disabledTexts[$type] = "<div class='TablePager_nav-disabled'>$msgLabel</div>";
 		}
 		$links = $this->getPagingLinks( $linkTexts, $disabledTexts );
 
@@ -338,7 +316,9 @@ abstract class TablePager extends IndexPager {
 			// We want every cell to have the same width. We could use table-layout: fixed; in CSS,
 			// but it only works if we specify the width of a cell or the table and we don't want to.
 			// There is no better way. <http://www.w3.org/TR/CSS2/tables.html#fixed-table-layout>
-			$s .= Html::rawElement( 'td', array( 'style' => "width: $width;" ), $links[$type] ) . "\n";
+			$s .= Html::rawElement( 'td',
+				array( 'style' => "width: $width;", 'class' => "TablePager_nav-$type" ),
+				$links[$type] ) . "\n";
 		}
 		$s .= Html::closeElement( 'tr' ) . Html::closeElement( 'table' ) . "\n";
 		return $s;
