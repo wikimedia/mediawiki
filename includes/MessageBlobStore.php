@@ -345,8 +345,7 @@ class MessageBlobStore {
 	 * @return array Array mapping module names to blobs
 	 */
 	private function getFromDB( ResourceLoader $resourceLoader, $modules, $lang ) {
-		global $wgCacheEpoch;
-
+		$config = $resourceLoader->getConfig();
 		$retval = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'msg_resource',
@@ -363,11 +362,11 @@ class MessageBlobStore {
 			}
 
 			// Update the module's blobs if the set of messages changed or if the blob is
-			// older than $wgCacheEpoch
+			// older than the CacheEpoch setting
 			$keys = array_keys( FormatJson::decode( $row->mr_blob, true ) );
 			$values = array_values( array_unique( $module->getMessages() ) );
 			if ( $keys !== $values
-				|| wfTimestamp( TS_MW, $row->mr_timestamp ) <= $wgCacheEpoch
+				|| wfTimestamp( TS_MW, $row->mr_timestamp ) <= $config->get( 'CacheEpoch' )
 			) {
 				$retval[$row->mr_resource] = $this->updateModule( $row->mr_resource, $module, $lang );
 			} else {
