@@ -34,7 +34,7 @@
 	}
 
 	/**
-	 * Efficiently replicate a string `n` times.
+	 * Replicate a string 'n' times.
 	 *
 	 * @private
 	 * @param {string} str The string to replicate
@@ -47,9 +47,8 @@
 		}
 
 		var buf = [];
-		while (num) {
+		while ( num-- ) {
 			buf.push( str );
-			str += str;
 		}
 		return buf.join( '' );
 	}
@@ -142,13 +141,13 @@
 		}
 
 		for ( whole = valueParts[0]; whole; ) {
-			off = whole.length - groupSize;
-
+			off = groupSize ? whole.length - groupSize : 0;
 			pieces.push( ( off > 0 ) ? whole.substr( off ) : whole );
 			whole = ( off > 0 ) ? whole.slice( 0, off ) : '';
 
 			if ( groupSize2 ) {
 				groupSize = groupSize2;
+				groupSize2 = null;
 			}
 		}
 		valueParts[0] = pieces.reverse().join( options.group );
