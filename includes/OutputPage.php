@@ -1617,7 +1617,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.24, use addParserOutputMetadata() instead.
 	 * @param ParserOutput $parserOutput
 	 */
-	public function addParserOutputNoText( &$parserOutput ) {
+	public function addParserOutputNoText( $parserOutput ) {
 		$this->addParserOutputMetadata( $parserOutput );
 	}
 
@@ -1629,7 +1629,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
 	 */
-	public function addParserOutputMetadata( &$parserOutput ) {
+	public function addParserOutputMetadata( $parserOutput ) {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
@@ -1685,7 +1685,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
 	 */
-	public function addParserOutputContent( &$parserOutput ) {
+	public function addParserOutputContent( $parserOutput ) {
 		$this->addParserOutputText( $parserOutput );
 
 		$this->addModules( $parserOutput->getModules() );
@@ -1702,7 +1702,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
 	 */
-	public function addParserOutputText( &$parserOutput ) {
+	public function addParserOutputText( $parserOutput ) {
 		$text = $parserOutput->getText();
 		wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
 		$this->addHTML( $text );
@@ -1713,7 +1713,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param ParserOutput $parserOutput
 	 */
-	function addParserOutput( &$parserOutput ) {
+	function addParserOutput( $parserOutput ) {
 		$this->addParserOutputMetadata( $parserOutput );
 		$parserOutput->setTOCEnabled( $this->mEnableTOC );
 
