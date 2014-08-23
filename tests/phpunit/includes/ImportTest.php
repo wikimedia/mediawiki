@@ -34,7 +34,7 @@ class ImportTest extends MediaWikiLangTestCase {
 			}
 		};
 
-		$importer = new WikiImporter( $source );
+		$importer = new WikiImporter( $source, ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
 		$importer->setPageOutCallback( $callback );
 		$importer->doImport();
 

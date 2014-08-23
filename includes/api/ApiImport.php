@@ -60,7 +60,7 @@ class ApiImport extends ApiBase {
 			$this->dieStatus( $source );
 		}
 
-		$importer = new WikiImporter( $source->value );
+		$importer = new WikiImporter( $source->value, $this->getConfig() );
 		if ( isset( $params['namespace'] ) ) {
 			$importer->setTargetNamespace( $params['namespace'] );
 		}
