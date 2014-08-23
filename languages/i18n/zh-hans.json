@@ -1329,6 +1329,7 @@
 	"watchthisupload": "监视这个文件",
 	"filewasdeleted": "之前已经有一个同名文件被上传后又被删除了。在上传此文件之前您需要检查$1。",
 	"filename-bad-prefix": "您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。",
+	"filename-prefix-blacklist": " #<!-- 请将本行保留为原样 --> <pre>\n# 语法如下：\n#  * 任何以“#”开头到结尾的行为注释\n#  * 任何非空行是根据相机自动分配特定文件名的前缀\nCIMG # 卡西欧\nDSC_ # 尼康\nDSCF # 富士\nDSCN # 尼康\nDUW # 部分手机\nIMG # 一般\nJD # 业纳\nMGP # 宾得\nPICT # 其他\n #</pre> <!-- 请将本行保留为原样 -->",
 	"upload-success-subj": "上传成功",
 	"upload-success-msg": "您在[$2]的上传已经成功，可以在这里找到：[[:{{ns:file}}:$1]]",
 	"upload-failure-subj": "上传问题",

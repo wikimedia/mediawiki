@@ -935,7 +935,7 @@
 	"prefs-files": "Soubory",
 	"prefs-custom-css": "Uživatelské CSS",
 	"prefs-custom-js": "Uživatelský JavaScript",
-	"prefs-common-css-js": "Sdílené CSS/JS pro všechny styly:",
+	"prefs-common-css-js": "Sdílené CSS/JavaScript pro všechny styly:",
 	"prefs-reset-intro": "Pomocí této stránky můžete všechna nastavení vrátit na implicitní hodnoty.\nTuto operaci nelze vrátit zpět.",
 	"prefs-emailconfirm-label": "Ověření e-mailu:",
 	"youremail": "E-mail:",
