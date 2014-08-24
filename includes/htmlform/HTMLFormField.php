@@ -593,6 +593,9 @@ abstract class HTMLFormField {
 		$wrapperAttributes = array(
 			'class' => 'htmlform-tip',
 		);
+		if ( $this->mHelpClass !== false ) {
+			$wrapperAttributes['class'] .= " {$this->mHelpClass}";
+		}
 		if ( $this->mHideIf ) {
 			$wrapperAttributes['data-hide-if'] = FormatJson::encode( $this->mHideIf );
 			$wrapperAttributes['class'] .= ' mw-htmlform-hide-if';
