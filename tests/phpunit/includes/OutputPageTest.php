@@ -177,6 +177,24 @@ class OutputPageTest extends MediaWikiTestCase {
 				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=fallback&amp;*" /></style>
 ',
 			),
+			// Load no modules
+			array(
+				array( array(), ResourceLoaderModule::TYPE_COMBINED ),
+				'',
+			),
+			// noscript group
+			array(
+				array( 'test.noscript', ResourceLoaderModule::TYPE_STYLES ),
+				'<noscript><link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback&amp;*"></noscript>
+'
+			),
+			// Load two modules in separate groups
+			array(
+				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
+				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.group.bar&amp;skin=fallback&amp;*"></script>
+<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.group.foo&amp;skin=fallback&amp;*"></script>
+',
+			),
 		);
 	}
 
@@ -217,6 +235,18 @@ class OutputPageTest extends MediaWikiTestCase {
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',
+			)),
+			'test.noscript' => new ResourceLoaderTestModule( array(
+				'styles' => '.mw-test-noscript { content: "style"; }',
+				'group' => 'noscript',
+			)),
+			'test.group.bar' => new ResourceLoaderTestModule( array(
+					'styles' => '.mw-group-bar { content: "style"; }',
+					'group' => 'bar',
+			)),
+			'test.group.foo' => new ResourceLoaderTestModule( array(
+					'styles' => '.mw-group-foo { content: "style"; }',
+					'group' => 'foo',
 			)),
 		) );
 		$links = $method->invokeArgs( $out, $args );
