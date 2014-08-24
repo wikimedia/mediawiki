@@ -300,9 +300,8 @@ class HTMLForm extends ContextSource {
 	 * @return string
 	 */
 	public function getDisplayFormat() {
-		global $wgHTMLFormAllowTableFormat;
 		$format = $this->displayFormat;
-		if ( !$wgHTMLFormAllowTableFormat && $format === 'table' ) {
+		if ( !$this->getConfig()->get( 'HTMLFormAllowTableFormat' ) && $format === 'table' ) {
 			$format = 'div';
 		}
 		return $format;
@@ -845,8 +844,6 @@ class HTMLForm extends ContextSource {
 	 * @return string HTML.
 	 */
 	function getHiddenFields() {
-		global $wgArticlePath;
-
 		$html = '';
 		if ( $this->getMethod() == 'post' ) {
 			$html .= Html::hidden(
@@ -857,7 +854,8 @@ class HTMLForm extends ContextSource {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
-		if ( strpos( $wgArticlePath, '?' ) !== false && $this->getMethod() == 'get' ) {
+		$articlePath = $this->getConfig()->get( 'ArticlePath' );
+		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() == 'get' ) {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
@@ -874,8 +872,8 @@ class HTMLForm extends ContextSource {
 	 * @return string HTML.
 	 */
 	function getButtons() {
-		global $wgUseMediaWikiUIEverywhere;
 		$buttons = '';
+		$useMediaWikiUIEverywhere = $this->getConfig()->get( 'UseMediaWikiUIEverywhere' );
 
 		if ( $this->mShowSubmit ) {
 			$attribs = array();
@@ -894,7 +892,7 @@ class HTMLForm extends ContextSource {
 
 			$attribs['class'] = array( 'mw-htmlform-submit' );
 
-			if ( $this->isVForm() || $wgUseMediaWikiUIEverywhere ) {
+			if ( $this->isVForm() || $useMediaWikiUIEverywhere ) {
 				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-constructive' );
 			}
 
@@ -937,7 +935,7 @@ class HTMLForm extends ContextSource {
 				$attrs['id'] = $button['id'];
 			}
 
-			if ( $wgUseMediaWikiUIEverywhere ) {
+			if ( $useMediaWikiUIEverywhere ) {
 				if ( isset( $attrs['class' ] ) ) {
 					$attrs['class'] .= ' mw-ui-button';
 				} else {
@@ -1438,20 +1436,19 @@ class HTMLForm extends ContextSource {
 	 * @return string
 	 */
 	public function getAction() {
-		global $wgScript, $wgArticlePath;
-
 		// If an action is alredy provided, return it
 		if ( $this->mAction !== false ) {
 			return $this->mAction;
 		}
 
-		// Check whether we are in GET mode and $wgArticlePath contains a "?"
+		$articlePath = $this->getConfig()->get( 'ArticlePath' );
+		// Check whether we are in GET mode and the ArticlePath contains a "?"
 		// meaning that getLocalURL() would return something like "index.php?title=...".
 		// As browser remove the query string before submitting GET forms,
-		// it means that the title would be lost. In such case use $wgScript instead
+		// it means that the title would be lost. In such case use wfScript() instead
 		// and put title in an hidden field (see getHiddenFields()).
-		if ( strpos( $wgArticlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
-			return $wgScript;
+		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
+			return wfScript();
 		}
 
 		return $this->getTitle()->getLocalURL();

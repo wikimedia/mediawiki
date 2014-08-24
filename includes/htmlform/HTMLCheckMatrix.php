@@ -80,8 +80,6 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 * @return string
 	 */
 	function getInputHTML( $value ) {
-		global $wgUseMediaWikiUIEverywhere;
-
 		$html = '';
 		$tableContents = '';
 		$rows = $this->mParams['rows'];
@@ -129,7 +127,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 					$thisAttribs['disabled'] = 1;
 				}
 				$chkBox = Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs );
-				if ( $wgUseMediaWikiUIEverywhere ) {
+				if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 					$chkBox = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
 						$chkBox .
 						Html::element( 'label', array( 'for' => $thisId ) ) .
