@@ -345,7 +345,6 @@ class CheckSyntax extends Maintenance {
 	 * or pointless ?> closing tags at the end.
 	 *
 	 * @param string $file String Path to a file to check for errors
-	 * @return bool
 	 */
 	private function checkForMistakes( $file ) {
 		foreach ( $this->mNoStyleCheckPaths as $regex ) {

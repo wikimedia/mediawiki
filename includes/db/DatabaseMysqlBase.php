@@ -901,7 +901,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * @param bool $value
-	 * @return null|bool|ResultWrapper
 	 */
 	public function setBigSelects( $value = true ) {
 		if ( $value === 'default' ) {

@@ -1494,9 +1494,6 @@ class WikiRevision {
 		return true;
 	}
 
-	/**
-	 * @return mixed
-	 */
 	function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
 		# @todo FIXME: This will not record autoblocks
