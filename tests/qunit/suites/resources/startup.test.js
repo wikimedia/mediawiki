@@ -1,7 +1,6 @@
 /*global isCompatible: true */
 ( function ( $ ) {
 	var testcases = {
-		// Supported: Compatible
 		gradeA: [
 			// Chrome
 			'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.205 Safari/534.16',
@@ -43,8 +42,7 @@
 			// Android
 			'Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'
 		],
-		// Supported: Uncompatible, serve basic content
-		gradeC: [
+		gradeB: [
 			// Internet Explorer < 7
 			'Mozilla/2.0 (compatible; MSIE 3.03; Windows 3.1)',
 			'Mozilla/4.0 (compatible; MSIE 4.01; Windows 95)',
@@ -128,8 +126,8 @@
 		);
 	} );
 
-	QUnit.test( 'isCompatible( Grade C )', testcases.gradeC.length, function ( assert ) {
-		$.each( testcases.gradeC, function ( i, ua ) {
+	QUnit.test( 'isCompatible( Grade B )', testcases.gradeB.length, function ( assert ) {
+		$.each( testcases.gradeB, function ( i, ua ) {
 				assert.strictEqual( isCompatible( ua ), false, ua );
 			}
 		);
