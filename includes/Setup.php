@@ -595,6 +595,10 @@ if ( !is_object( $wgAuth ) ) {
  */
 $wgTitle = null;
 
+/**
+ * @deprecated 1.24 Use DeferredUpdates::addUpdate instead
+ * @var array
+ */
 $wgDeferredUpdateList = array();
 
 // Disable all other email settings automatically if $wgEnableEmail

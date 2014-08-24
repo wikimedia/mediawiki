@@ -63,6 +63,8 @@ production.
 * The default thumb size ($wgDefaultUserOptions['thumbsize']) is now 300px, up from
   180px. If you have altered the number of entries in $wgThumbLimits for your wiki, you
   may need to adjust your default user settings to compensate for the index change.
+* $wgDeferredUpdateList is now deprecated, you should use DeferredUpdates::addUpdate()
+  instead.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
