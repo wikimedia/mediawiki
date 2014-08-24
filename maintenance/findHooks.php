@@ -99,6 +99,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/revisiondelete/',
 			$IP . '/includes/search/',
 			$IP . '/includes/site/',
+			$IP . '/includes/skins/',
 			$IP . '/includes/specialpage/',
 			$IP . '/includes/specials/',
 			$IP . '/includes/upload/',
@@ -109,9 +110,6 @@ class FindHooks extends Maintenance {
 			$IP . '/tests/',
 			$IP . '/tests/parser/',
 			$IP . '/tests/phpunit/suites/',
-			$IP . '/skins/',
-			$IP . '/skins/MonoBook/',
-			$IP . '/skins/Vector/',
 		);
 
 		foreach ( $pathinc as $dir ) {

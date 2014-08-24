@@ -1773,13 +1773,6 @@ $db: The database object to be queried.
 &$opts: Options for the query.
 &$join_conds: Join conditions for the query.
 
-'MonoBookTemplateToolboxEnd': DEPRECATED. Called by Monobook skin after toolbox
-links have been rendered (useful for adding more). Note: this is only run for
-the Monobook skin. To add items to the toolbox you should use the
-SkinTemplateToolboxEnd hook instead, which works for all "SkinTemplate"-type
-skins.
-$tools: array of tools
-
 'BaseTemplateToolbox': Called by BaseTemplate when building the $toolbox array
 and returning it for the skin to output. You can add items to the toolbox while
 still letting the skin make final decisions on skin-specific markup conventions
