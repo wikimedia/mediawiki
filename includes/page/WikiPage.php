@@ -50,7 +50,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public $mLatest = false;             // !< Integer (false means "not loaded")
 	/**@}}*/
 
-	/** @var stdclass Map of cache fields (text, parser output, ect) for a proposed/new edit */
+	/** @var stdClass Map of cache fields (text, parser output, ect) for a proposed/new edit */
 	public $mPreparedEdit = false;
 
 	/**
@@ -2050,7 +2050,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Prepare text which is about to be saved.
-	 * Returns a stdclass with source, pst and output members
+	 * Returns a stdClass with source, pst and output members
 	 *
 	 * @deprecated since 1.21: use prepareContentForEdit instead.
 	 * @return object
@@ -2063,7 +2063,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Prepare content which is about to be saved.
-	 * Returns a stdclass with source, pst and output members
+	 * Returns a stdClass with source, pst and output members
 	 *
 	 * @param Content $content
 	 * @param int|null $revid

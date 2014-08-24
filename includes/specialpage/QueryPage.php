@@ -81,7 +81,7 @@ abstract class QueryPage extends SpecialPage {
 				array( 'MostimagesPage', 'Mostimages' ),
 				array( 'MostinterwikisPage', 'Mostinterwikis' ),
 				array( 'MostlinkedCategoriesPage', 'Mostlinkedcategories' ),
-				array( 'MostlinkedtemplatesPage', 'Mostlinkedtemplates' ),
+				array( 'MostlinkedTemplatesPage', 'Mostlinkedtemplates' ),
 				array( 'MostlinkedPage', 'Mostlinked' ),
 				array( 'MostrevisionsPage', 'Mostrevisions' ),
 				array( 'FewestrevisionsPage', 'Fewestrevisions' ),
@@ -96,7 +96,7 @@ abstract class QueryPage extends SpecialPage {
 				array( 'WantedFilesPage', 'Wantedfiles' ),
 				array( 'WantedPagesPage', 'Wantedpages' ),
 				array( 'WantedTemplatesPage', 'Wantedtemplates' ),
-				array( 'UnwatchedPagesPage', 'Unwatchedpages' ),
+				array( 'UnwatchedpagesPage', 'Unwatchedpages' ),
 				array( 'UnusedtemplatesPage', 'Unusedtemplates' ),
 				array( 'WithoutInterwikiPage', 'Withoutinterwiki' ),
 			);

@@ -27,10 +27,10 @@ class SpecialBooksourcesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SpecialBooksources::isValidISBN
+	 * @covers SpecialBookSources::isValidISBN
 	 * @dataProvider provideISBNs
 	 */
 	public function testIsValidISBN( $isbn, $isValid ) {
-		$this->assertSame( $isValid, SpecialBooksources::isValidISBN( $isbn ) );
+		$this->assertSame( $isValid, SpecialBookSources::isValidISBN( $isbn ) );
 	}
 }
