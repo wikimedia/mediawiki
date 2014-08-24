@@ -19,7 +19,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	protected $exceptionFromAddDBData = null;
 
 	/**
-	 * Holds the xmlreader used for analyzing an xml dump
+	 * Holds the XMLReader used for analyzing an XML dump
 	 *
 	 * @var XMLReader|null
 	 */

@@ -424,11 +424,11 @@ class WikiImporter {
 		$buffer = "";
 		while ( $this->reader->read() ) {
 			switch ( $this->reader->nodeType ) {
-			case XmlReader::TEXT:
-			case XmlReader::SIGNIFICANT_WHITESPACE:
+			case XMLReader::TEXT:
+			case XMLReader::SIGNIFICANT_WHITESPACE:
 				$buffer .= $this->reader->value;
 				break;
-			case XmlReader::END_ELEMENT:
+			case XMLReader::END_ELEMENT:
 				return $buffer;
 			}
 		}
@@ -466,7 +466,7 @@ class WikiImporter {
 
 			if ( !Hooks::run( 'ImportHandleToplevelXMLTag', array( $this ) ) ) {
 				// Do nothing
-			} elseif ( $tag == 'mediawiki' && $type == XmlReader::END_ELEMENT ) {
+			} elseif ( $tag == 'mediawiki' && $type == XMLReader::END_ELEMENT ) {
 				break;
 			} elseif ( $tag == 'siteinfo' ) {
 				$this->handleSiteInfo();
@@ -516,7 +516,7 @@ class WikiImporter {
 					'logtitle', 'params' );
 
 		while ( $this->reader->read() ) {
-			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
+			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
 					$this->reader->name == 'logitem' ) {
 				break;
 			}
@@ -580,7 +580,7 @@ class WikiImporter {
 		$badTitle = false;
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
-			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
+			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
 					$this->reader->name == 'page' ) {
 				break;
 			}
@@ -645,7 +645,7 @@ class WikiImporter {
 		$skip = false;
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
-			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
+			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
 					$this->reader->name == 'revision' ) {
 				break;
 			}
@@ -737,7 +737,7 @@ class WikiImporter {
 		$skip = false;
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
-			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
+			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
 					$this->reader->name == 'upload' ) {
 				break;
 			}
@@ -835,7 +835,7 @@ class WikiImporter {
 		$info = array();
 
 		while ( $this->reader->read() ) {
-			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
+			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
 					$this->reader->name == 'contributor' ) {
 				break;
 			}

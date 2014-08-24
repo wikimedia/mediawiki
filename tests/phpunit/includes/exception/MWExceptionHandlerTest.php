@@ -15,7 +15,7 @@ class MWExceptionHandlerTest extends MediaWikiTestCase {
 		$refvar = 'value';
 		try {
 			$array = array( 'a', 'b' );
-			$object = new StdClass();
+			$object = new stdClass();
 			self::helperThrowAnException( $array, $object, $refvar );
 		} catch ( Exception $e ) {
 		}

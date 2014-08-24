@@ -138,7 +138,7 @@ class SVGReader {
 		$keepReading = $this->reader->read();
 
 		/* Skip until first element */
-		while ( $keepReading && $this->reader->nodeType != XmlReader::ELEMENT ) {
+		while ( $keepReading && $this->reader->nodeType != XMLReader::ELEMENT ) {
 			$keepReading = $this->reader->read();
 		}
 
@@ -158,7 +158,7 @@ class SVGReader {
 
 			$this->debug( "$tag" );
 
-			if ( $isSVG && $tag == 'svg' && $type == XmlReader::END_ELEMENT
+			if ( $isSVG && $tag == 'svg' && $type == XMLReader::END_ELEMENT
 				&& $this->reader->depth <= $exitDepth
 			) {
 				break;
@@ -166,7 +166,7 @@ class SVGReader {
 				$this->readField( $tag, 'title' );
 			} elseif ( $isSVG && $tag == 'desc' ) {
 				$this->readField( $tag, 'description' );
-			} elseif ( $isSVG && $tag == 'metadata' && $type == XmlReader::ELEMENT ) {
+			} elseif ( $isSVG && $tag == 'metadata' && $type == XMLReader::ELEMENT ) {
 				$this->readXml( $tag, 'metadata' );
 			} elseif ( $isSVG && $tag == 'script' ) {
 				// We normally do not allow scripted svgs.
@@ -199,17 +199,17 @@ class SVGReader {
 	 */
 	private function readField( $name, $metafield = null ) {
 		$this->debug( "Read field $metafield" );
-		if ( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
+		if ( !$metafield || $this->reader->nodeType != XMLReader::ELEMENT ) {
 			return;
 		}
 		$keepReading = $this->reader->read();
 		while ( $keepReading ) {
 			if ( $this->reader->localName == $name
 				&& $this->reader->namespaceURI == self::NS_SVG
-				&& $this->reader->nodeType == XmlReader::END_ELEMENT
+				&& $this->reader->nodeType == XMLReader::END_ELEMENT
 			) {
 				break;
-			} elseif ( $this->reader->nodeType == XmlReader::TEXT ) {
+			} elseif ( $this->reader->nodeType == XMLReader::TEXT ) {
 				$this->metadata[$metafield] = trim( $this->reader->value );
 			}
 			$keepReading = $this->reader->read();
@@ -224,7 +224,7 @@ class SVGReader {
 	 */
 	private function readXml( $metafield = null ) {
 		$this->debug( "Read top level metadata" );
-		if ( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
+		if ( !$metafield || $this->reader->nodeType != XMLReader::ELEMENT ) {
 			return;
 		}
 		// @todo Find and store type of xml snippet. metadata['metadataType'] = "rdf"
@@ -246,7 +246,7 @@ class SVGReader {
 	 */
 	private function animateFilterAndLang( $name ) {
 		$this->debug( "animate filter for tag $name" );
-		if ( $this->reader->nodeType != XmlReader::ELEMENT ) {
+		if ( $this->reader->nodeType != XMLReader::ELEMENT ) {
 			return;
 		}
 		if ( $this->reader->isEmptyElement ) {
@@ -256,11 +256,11 @@ class SVGReader {
 		$keepReading = $this->reader->read();
 		while ( $keepReading ) {
 			if ( $this->reader->localName == $name && $this->reader->depth <= $exitDepth
-				&& $this->reader->nodeType == XmlReader::END_ELEMENT
+				&& $this->reader->nodeType == XMLReader::END_ELEMENT
 			) {
 				break;
 			} elseif ( $this->reader->namespaceURI == self::NS_SVG
-				&& $this->reader->nodeType == XmlReader::ELEMENT
+				&& $this->reader->nodeType == XMLReader::ELEMENT
 			) {
 
 				$sysLang = $this->reader->getAttribute( 'systemLanguage' );
