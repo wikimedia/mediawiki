@@ -53,25 +53,7 @@ $maintenance->setup();
 // to $maintenance->mSelf. Keep that here for b/c
 $self = $maintenance->getName();
 
-# Start the autoloader, so that extensions can derive classes from core files
-require_once "$IP/includes/AutoLoader.php";
-# Stub the profiler
-require_once "$IP/includes/profiler/Profiler.php";
-
-# Start the profiler
-$wgProfiler = array();
-if ( file_exists( "$IP/StartProfiler.php" ) ) {
-	require "$IP/StartProfiler.php";
-}
-
-// Some other requires
-require_once "$IP/includes/Defines.php";
-require_once "$IP/includes/DefaultSettings.php";
-
-# Load composer's autoloader if present
-if ( is_readable( "$IP/vendor/autoload.php" ) ) {
-	require_once "$IP/vendor/autoload.php";
-}
+require_once "$IP/includes/Initialize.php";
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
