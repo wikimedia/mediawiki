@@ -829,6 +829,7 @@ __INDEXATTR__;
 	 * so causes a DB error. This wrapper checks which tables can be locked and adjusts it accordingly.
 	 *
 	 * MySQL uses "ORDER BY NULL" as an optimization hint, but that syntax is illegal in PostgreSQL.
+	 * @see DatabaseBase::selectSQLText
 	 */
 	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = array(), $join_conds = array()
