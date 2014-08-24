@@ -30,6 +30,13 @@ function isCompatible( ua ) {
 		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 7 ) ||
 		// Firefox < 3
 		( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 3 ) ||
+		// Opera < 12
+		( ua.indexOf( 'Opera/' ) !== -1 && ( ua.indexOf( 'Version/' ) === -1 ?
+			// "Opera/x.y"
+			parseFloat( ua.split( 'Opera/' )[1] ) < 10 :
+			// "Opera/9.80 ... Version/x.y"
+			parseFloat( ua.split( 'Version/' )[1] ) < 12
+		) ) ||
 		// BlackBerry < 6
 		ua.match( /BlackBerry[^\/]*\/[1-5]\./ ) ||
 		// Open WebOS < 1.5
