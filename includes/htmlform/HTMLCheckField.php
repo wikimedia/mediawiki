@@ -5,6 +5,8 @@
  */
 class HTMLCheckField extends HTMLFormField {
 	function getInputHTML( $value ) {
+		global $wgUseMediaWikiUIEverywhere;
+
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;
 		}
@@ -26,7 +28,19 @@ class HTMLCheckField extends HTMLFormField {
 				),
 				Xml::check( $this->mName, $value, $attr ) . $this->mLabel );
 		} else {
-			return Xml::checkLabel( $this->mLabel, $this->mName, $this->mID, $value, $attr );
+			$chkLabel = Xml::check( $this->mName, $value, $attr )
+			. '&#160;'
+			. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+
+			if ( $wgUseMediaWikiUIEverywhere ) {
+				$chkLabel = Html::rawElement(
+					'div',
+					array( 'class' => 'mw-ui-checkbox' ),
+					$chkLabel
+				);
+			}
+
+			return $chkLabel;
 		}
 	}
 
