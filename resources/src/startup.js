@@ -7,15 +7,14 @@
 var mediaWikiLoadStart = ( new Date() ).getTime();
 
 /**
- * Returns false when run in a black-listed browser
+ * Returns false for Grade C supported browsers.
  *
- * This function will be deleted after it's used, so do not expand it to be
- * generally useful beyond startup.
+ * This function should only be used by the Startup module, do not expand it to
+ * be generally useful beyond startup.
  *
  * See also:
- * - https://www.mediawiki.org/wiki/Compatibility#Browser
- * - http://jquerymobile.com/gbs/
- * - http://jquery.com/browser-support/
+ * - https://www.mediawiki.org/wiki/Compatibility#Browsers
+ * - https://jquery.com/browser-support/
  */
 
 /*jshint unused: false */

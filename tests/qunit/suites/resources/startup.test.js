@@ -1,7 +1,6 @@
 /*global isCompatible: true */
 ( function ( $ ) {
 	var testcases = {
-		// Supported: Compatible
 		gradeA: [
 			// Chrome
 			'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.205 Safari/534.16',
@@ -43,7 +42,6 @@
 			// Android
 			'Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'
 		],
-		// Supported: Uncompatible, serve basic content
 		gradeC: [
 			// Internet Explorer < 7
 			'Mozilla/2.0 (compatible; MSIE 3.03; Windows 3.1)',
@@ -90,8 +88,7 @@
 			// Google Glass
 			'Mozilla/5.0 (Linux; U; Android 4.0.4; en-us; Glass 1 Build/IMM76L; XE11) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'
 		],
-		// No explicit support for or against these browsers, they're
-		// given a shot at Grade A at their own risk.
+		// No explicit support for or against these browsers, they're given a shot at Grade A.
 		gradeX: [
 			// Firefox 3.6
 			'Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3',
