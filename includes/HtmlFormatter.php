@@ -178,7 +178,7 @@ class HtmlFormatter {
 
 		// CSS Classes
 		$domElemsToRemove = array();
-		$xpath = new DOMXpath( $doc );
+		$xpath = new DOMXPath( $doc );
 		foreach ( $removals['CLASS'] as $classToRemove ) {
 			$elements = $xpath->query( '//*[contains(@class, "' . $classToRemove . '")]' );
 

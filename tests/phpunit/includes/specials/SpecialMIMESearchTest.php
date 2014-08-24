@@ -5,11 +5,11 @@
 
 class SpecialMIMESearchTest extends MediaWikiTestCase {
 
-	/** @var MIMESearchPage */
+	/** @var MIMEsearchPage */
 	private $page;
 
 	function setUp() {
-		$this->page = new MIMESearchPage;
+		$this->page = new MIMEsearchPage;
 		$context = new RequestContext();
 		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'MIMESearch' ) );
 		$context->setRequest( new FauxRequest() );
