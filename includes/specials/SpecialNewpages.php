@@ -117,7 +117,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * Show a form for filtering namespace and username
 	 *
 	 * @param string $par
-	 * @return string
 	 */
 	public function execute( $par ) {
 		$out = $this->getOutput();

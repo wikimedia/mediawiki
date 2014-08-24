@@ -2758,7 +2758,6 @@ class EditPage {
 	 *   up top, or false if this is the comment summary
 	 *   down below the textarea
 	 * @param string $summary The text of the summary to display
-	 * @return string
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
 		global $wgOut, $wgContLang;

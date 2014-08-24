@@ -182,7 +182,6 @@ class MWDebug {
 	 * @param int $callerOffset How far up the callstack is the original
 	 *    caller. 2 = function that called the function that called
 	 *    MWDebug::deprecated() (Added in 1.20).
-	 * @return mixed
 	 */
 	public static function deprecated( $function, $version = false,
 		$component = false, $callerOffset = 2
