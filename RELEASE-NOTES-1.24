@@ -344,10 +344,11 @@ changes to languages because of Bugzilla reports.
   setPreloadedText() from EditPage.php. (deprecated since 1.21)
 * Removed global functions wfArrayLookup(), wfArrayMerge(), wfDebugDieBacktrace()
   and wfTime(). (deprecated since 1.22)
-* Microsoft Internet Explorer 6 is now a "grade C" browser, meaning that
-  JavaScript is no longer executed in this browser. The IEFixes script, which
-  existed purely to provide support for MSIE versions below 7 and which was
-  conditionally loaded for those browsers, was also removed.
+* Browser support for Internet Explorer 6 lowered from Grade A to Grade C,
+  meaning that JavaScript is no longer executed in this browser.
+* Browser support for Opera 11 lowered from Grade A to Grade C.
+* Removed IEFixes module which existed purely to provide support for MSIE versions
+  below 7 (conditionally loaded only for those browsers).
 * Action::checkCanExecute() no longer has a return value.
 * Removed cleanupForIRC(), loadFromCurRow(), newFromCurRow(), notifyRC2UDP()
   and sendToUDP() from RecentChange.php. (deprecated since 1.22)
