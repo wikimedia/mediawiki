@@ -235,7 +235,7 @@ class JobRunner {
 			$content = stream_get_contents( $handle );
 			flock( $handle, LOCK_UN );
 			fclose( $handle );
-			$backoffs = json_decode( $content, true ) ? : array();
+			$backoffs = json_decode( $content, true ) ?: array();
 		}
 
 		return $backoffs;
@@ -253,7 +253,7 @@ class JobRunner {
 		$handle = fopen( $file, 'wb+' );
 		flock( $handle, LOCK_EX );
 		$content = stream_get_contents( $handle );
-		$cBackoffs = json_decode( $content, true ) ? : array();
+		$cBackoffs = json_decode( $content, true ) ?: array();
 		foreach ( $backoffs as $type => $timestamp ) {
 			$cBackoffs[$type] = isset( $cBackoffs[$type] ) ? $cBackoffs[$type] : 0;
 			$cBackoffs[$type] = max( $cBackoffs[$type], $backoffs[$type] );

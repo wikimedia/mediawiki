@@ -39,7 +39,7 @@ class MwSql extends Maintenance {
 	}
 
 	public function execute() {
-		$wiki = $this->getOption( 'wikidb' ) ? : false;
+		$wiki = $this->getOption( 'wikidb' ) ?: false;
 		// Get the appropriate load balancer (for this wiki)
 		if ( $this->hasOption( 'cluster' ) ) {
 			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ), $wiki );

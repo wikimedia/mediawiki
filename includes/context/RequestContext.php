@@ -297,7 +297,7 @@ class RequestContext implements IContextSource {
 			$e = new Exception;
 			wfDebugLog( 'recursion-guard', "Recursion detected:\n" . $e->getTraceAsString() );
 
-			$code = $this->getConfig()->get( 'LanguageCode' ) ? : 'en';
+			$code = $this->getConfig()->get( 'LanguageCode' ) ?: 'en';
 			$this->lang = Language::factory( $code );
 		} elseif ( $this->lang === null ) {
 			$this->recursion = true;
