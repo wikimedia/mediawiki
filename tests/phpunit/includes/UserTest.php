@@ -323,4 +323,35 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
 		$this->assertEquals( 'password-login-forbidden', $user->getPasswordValidity( 'Passpass' ) );
 	}
+
+	/**
+	 * @covers User::getCanonicalName()
+	 * @dataProvider provideGetCanonicalName
+	 */
+	public function testGetCanonicalName( $name, $expectedArray, $msg ) {
+		foreach ( $expectedArray as $validate => $expected ) {
+			$this->assertEquals(
+				User::getCanonicalName( $name, $validate === 'false' ? false : $validate ),
+				$expected,
+				$msg . ' (' . $validate . ')'
+			);
+		}
+	}
+
+	public function provideGetCanonicalName() {
+		return array(
+			array( ' trailing space ', array( 'creatable' => 'Trailing space' ), 'Trailing spaces' ),
+			// @todo FIXME: Maybe the createable name should be 'Talk:Username' or false to reject?
+			array( 'Talk:Username', array( 'creatable' => 'Username', 'usable' => 'Username',
+				'valid' => 'Username', 'false' => 'Talk:Username' ), 'Namespace prefix' ),
+			array( ' name with # hash', array( 'creatable' => false, 'usable' => false ), 'With hash' ),
+			array( 'Multi  spaces', array( 'creatable' => 'Multi spaces',
+				'usable' => 'Multi spaces' ), 'Multi spaces' ),
+			array( 'lowercase', array( 'creatable' => 'Lowercase' ), 'Lowercase' ),
+			array( 'in[]valid', array( 'creatable' => false, 'usable' => false, 'valid' => false,
+				'false' => 'In[]valid' ), 'Invalid' ),
+			array( 'with / slash', array( 'creatable' => false, 'usable' => false, 'valid' => false,
+				'false' => 'With / slash' ), 'With slash' ),
+		);
+	}
 }
