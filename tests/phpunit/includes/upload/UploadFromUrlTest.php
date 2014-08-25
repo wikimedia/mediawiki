@@ -270,6 +270,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * Helper function to perform an async upload, execute the job and fetch
 	 * the status
 	 *
+	 * @param string $token
+	 * @param bool $ignoreWarnings
+	 * @param bool $leaveMessage
 	 * @return array The result of action=upload&statuskey=key
 	 */
 	private function doAsyncUpload( $token, $ignoreWarnings = false, $leaveMessage = false ) {
