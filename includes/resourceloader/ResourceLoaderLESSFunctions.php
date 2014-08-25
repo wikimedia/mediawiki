@@ -34,6 +34,9 @@ class ResourceLoaderLESSFunctions {
 	 *       background-image: url(@url) !ie;
 	 *   }
 	 * @endcode
+	 * @param array $frame
+	 * @param lessc $less
+	 * @return bool
 	 */
 	public static function embeddable( $frame, $less ) {
 		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
@@ -54,6 +57,9 @@ class ResourceLoaderLESSFunctions {
 	 *       background-image: embed('../images/button-bg.png');
 	 *   }
 	 * @endcode
+	 * @param array $frame
+	 * @param lessc $less
+	 * @return string
 	 */
 	public static function embed( $frame, $less ) {
 		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );

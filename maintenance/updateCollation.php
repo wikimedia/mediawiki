@@ -221,6 +221,7 @@ TEXT;
 	 * assuming an ordering of cl_to, cl_type, cl_from
 	 * @param stdClass $row
 	 * @param DatabaseBase $dbw
+	 * @return string
 	 */
 	function getBatchCondition( $row, $dbw ) {
 		$fields = array( 'cl_to', 'cl_type', 'cl_from' );
