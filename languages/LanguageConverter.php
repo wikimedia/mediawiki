@@ -1102,6 +1102,7 @@ class LanguageConverter {
 
 	/**
 	 * Get the cached separator pattern for ConverterRule::parseRules()
+	 * @return string
 	 */
 	function getVarSeparatorPattern() {
 		if ( is_null( $this->mVarSeparatorPattern ) ) {

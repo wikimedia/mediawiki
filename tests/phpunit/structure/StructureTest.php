@@ -58,6 +58,8 @@ class StructureTest extends MediaWikiTestCase {
 
 	/**
 	 * Filter to remove testUnitTestFileNamesEndWithTest false positives.
+	 * @param string $filename
+	 * @return bool
 	 */
 	public function filterSuites( $filename ) {
 		return strpos( $filename, __DIR__ . '/../suites/' ) !== 0;
