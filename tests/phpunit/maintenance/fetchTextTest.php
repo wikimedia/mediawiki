@@ -101,7 +101,7 @@ class FetchTextTest extends MediaWikiTestCase {
 	 * @param WikiPage $page The page to add the revision to
 	 * @param string $text The revisions text
 	 * @param string $summary The revisions summare
-	 *
+	 * @return int
 	 * @throws MWException
 	 */
 	private function addRevision( $page, $text, $summary ) {

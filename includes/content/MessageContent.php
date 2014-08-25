@@ -106,7 +106,7 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
-	 * @param int $maxLength Maximum length of the summary text, defaults to 250.
+	 * @param int $maxlength Maximum length of the summary text, defaults to 250.
 	 *
 	 * @return string The summary text.
 	 *

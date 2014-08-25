@@ -36,16 +36,26 @@
  */
 interface ITestRecorder {
 
-	/** Called at beginning of the parser test run */
+	/**
+	 * Called at beginning of the parser test run
+	 */
 	public function start();
 
-	/** Called after each test */
+	/**
+	 * Called after each test
+	 * @param string $test
+	 * @param bool $result
+	 */
 	public function record( $test, $result );
 
-	/** Called before finishing the test run */
+	/**
+	 * Called before finishing the test run
+	 */
 	public function report();
 
-	/** Called at the end of the parser test run */
+	/**
+	 * Called at the end of the parser test run
+	 */
 	public function end();
 
 }
@@ -107,6 +117,7 @@ class DbTestPreviewer extends TestRecorder {
 
 	/**
 	 * This should be called before the table prefix is changed
+	 * @param TestRecorder $parent
 	 */
 	function __construct( $parent ) {
 		parent::__construct( $parent );
@@ -220,6 +231,9 @@ class DbTestPreviewer extends TestRecorder {
 	 * Returns a string giving information about when a test last had a status change.
 	 * Could help to track down when regressions were introduced, as distinct from tests
 	 * which have never passed (which are more change requests than regressions).
+	 * @param string $testname
+	 * @param string $after
+	 * @return string
 	 */
 	private function getTestStatusInfo( $testname, $after ) {
 		// If we're looking at a test that has just been removed, then say when it first appeared.
@@ -600,6 +614,7 @@ class TestFileIterator implements Iterator {
 	 * mentioned before closing this section
 	 * @param bool $fatal True iff an exception should be thrown if
 	 * the section is not found.
+	 * @return bool|string
 	 */
 	private function checkSection( $tokens, $fatal = true ) {
 		if ( is_null( $this->section ) ) {
@@ -672,6 +687,7 @@ class DelayedParserTest {
 	 * Called whenever we actually want to run the hook.
 	 * Should be the case if we found the parserTest is not disabled
 	 * @param ParserTest|NewParserTest $parserTest
+	 * @return bool
 	 */
 	public function unleash( &$parserTest ) {
 		if ( !( $parserTest instanceof ParserTest || $parserTest instanceof NewParserTest )	) {

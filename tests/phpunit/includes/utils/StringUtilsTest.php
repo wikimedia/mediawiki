@@ -36,6 +36,8 @@ class StringUtilsTest extends MediaWikiTestCase {
 
 	/**
 	 * Print high range characters as an hexadecimal
+	 * @param string $string
+	 * @return string
 	 */
 	function escaped( $string ) {
 		$escaped = '';

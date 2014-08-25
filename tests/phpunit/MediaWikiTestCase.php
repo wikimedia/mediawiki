@@ -603,6 +603,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Used as a compatibility method for phpunit < 3.7.32
 	 * @param string $value
 	 * @param string $msg
+	 * @return bool
 	 */
 	private function assertEmpty2( $value, $msg ) {
 		return $this->assertTrue( $value == '', $msg );

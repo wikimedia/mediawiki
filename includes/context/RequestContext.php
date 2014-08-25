@@ -425,6 +425,7 @@ class RequestContext implements IContextSource {
 	 * Get the RequestContext object associated with the main request
 	 * and gives a warning to the log, to find places, where a context maybe is missing.
 	 *
+	 * @param string $func
 	 * @return RequestContext
 	 * @since 1.24
 	 */

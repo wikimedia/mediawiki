@@ -59,6 +59,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * User input text is passed to rtrim() by edit page. This is a simple
 	 * wrapper around assertEquals() which calls rrtrim() to normalize the
 	 * expected and actual texts.
+	 * @param string $expected
+	 * @param string $actual
+	 * @param string $msg
+	 * @return bool
 	 */
 	protected function assertEditedTextEquals( $expected, $actual, $msg = '' ) {
 		return $this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
