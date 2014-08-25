@@ -354,6 +354,8 @@ changes to languages because of Bugzilla reports.
 * Removed EnhancedChangesList::arrow(), sideArrow(), downArrow(), spacerArrow().
 * Removed Xml::namespaceSelector(). (deprecated since 1.19)
 * Removed WikiPage::estimateRevisionCount. (deprecated since 1.19)
+* TablePager::getBody() is now 'final' and can't be overridden in subclasses.
+* TablePager::getBody() is deprecated, use getBodyOutput() or getFullOutput().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
