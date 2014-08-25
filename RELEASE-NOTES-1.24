@@ -306,7 +306,7 @@ changes to languages because of Bugzilla reports.
   set of hooks has been removed and replaced by a single new hook
   SpecialPageBeforeFormDisplay.
 * (bug 65781) Removed block warning on included {{Special:Contributions}}
-* Removed Skin::makeGlobalVariablesScript. (deprecated since 1.19)
+* Removed Skin::makeGlobalVariablesScript(). (deprecated since 1.19)
 * Removed MWNamespace::isMain(). (deprecated since 1.19)
 * Removed Preferences::loadOldSearchNs(). (deprecated since 1.19)
 * Removed OutputPage::getStatusMessage(). (deprecated since 1.18)
@@ -353,7 +353,7 @@ changes to languages because of Bugzilla reports.
   and sendToUDP() from RecentChange.php. (deprecated since 1.22)
 * Removed EnhancedChangesList::arrow(), sideArrow(), downArrow(), spacerArrow().
 * Removed Xml::namespaceSelector(). (deprecated since 1.19)
-* Removed WikiPage::estimateRevisionCount. (deprecated since 1.19)
+* Removed WikiPage::estimateRevisionCount(). (deprecated since 1.19)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
