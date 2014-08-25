@@ -69,7 +69,9 @@ class UsersPager extends AlphabeticPager {
 		$this->editsOnly = $request->getBool( 'editsOnly' );
 		$this->creationSort = $request->getBool( 'creationSort' );
 		$this->including = $including;
-		$this->mDefaultDirection = $request->getBool( 'desc' );
+		$this->mDefaultDirection = $request->getBool( 'desc' )
+			? IndexPager::DIR_DESCENDING
+			: IndexPager::DIR_ASCENDING;
 
 		$this->requestedUser = '';
 
