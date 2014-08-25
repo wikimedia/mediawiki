@@ -596,7 +596,6 @@ class Block {
 	 *
 	 * @param Block $block
 	 * @param array &$blockIds
-	 * @return array Block IDs of retroactive autoblocks made
 	 */
 	protected static function defaultRetroactiveAutoblock( Block $block, array &$blockIds ) {
 		global $wgPutIPinRC;
