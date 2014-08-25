@@ -938,7 +938,7 @@ class HTMLForm extends ContextSource {
 			}
 
 			if ( $wgUseMediaWikiUIEverywhere ) {
-				if ( isset( $attrs['class' ] ) ) {
+				if ( isset( $attrs['class'] ) ) {
 					$attrs['class'] .= ' mw-ui-button';
 				} else {
 					$attrs['class'] = 'mw-ui-button';

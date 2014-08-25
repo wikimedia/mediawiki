@@ -56,7 +56,9 @@ class SkinFactoryTest extends MediaWikiTestCase {
 	public function testGetSkinNames() {
 		$factory = new SkinFactory();
 		// A fake callback we can use that will never be called
-		$callback = function() {};
+		$callback = function () {
+			// NOP
+		};
 		$factory->register( 'skin1', 'Skin1', $callback );
 		$factory->register( 'skin2', 'Skin2', $callback );
 		$names = $factory->getSkinNames();

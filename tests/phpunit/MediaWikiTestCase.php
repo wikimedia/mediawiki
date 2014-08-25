@@ -1120,13 +1120,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param string $message
 	 * @param bool $isHtml
 	 */
-	public static function assertTag($matcher, $actual, $message = '', $isHtml = true) {
+	public static function assertTag( $matcher, $actual, $message = '', $isHtml = true ) {
 		//trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
-		$dom     = PHPUnit_Util_XML::load($actual, $isHtml);
-		$tags    = PHPUnit_Util_XML::findNodes($dom, $matcher, $isHtml);
-		$matched = count($tags) > 0 && $tags[0] instanceof DOMNode;
+		$dom = PHPUnit_Util_XML::load( $actual, $isHtml );
+		$tags = PHPUnit_Util_XML::findNodes( $dom, $matcher, $isHtml );
+		$matched = count( $tags ) > 0 && $tags[0] instanceof DOMNode;
 
-		self::assertTrue($matched, $message);
+		self::assertTrue( $matched, $message );
 	}
 }

@@ -309,7 +309,7 @@ class WatchedItem {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		foreach( array_chunk( $rows, 100 ) as $toInsert ) {
+		foreach ( array_chunk( $rows, 100 ) as $toInsert ) {
 			// Use INSERT IGNORE to avoid overwriting the notification timestamp
 			// if there's already an entry for this page
 			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );

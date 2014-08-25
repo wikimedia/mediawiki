@@ -58,7 +58,7 @@ MathML;
 			array( '<mw:toc>foo</mw:toc>', '<mw:toc>foo</mw:toc>', '<mw:toc> should survive tidy' ),
 			array( "<link foo=\"bar\" />\nfoo", '<link foo="bar"/>foo', '<link> should survive tidy' ),
 			array( "<meta foo=\"bar\" />\nfoo", '<meta foo="bar"/>foo', '<meta> should survive tidy' ),
-			array( $testMathML , $testMathML, '<math> should survive tidy' ),
+			array( $testMathML, $testMathML, '<math> should survive tidy' ),
 		);
 	}
 }
