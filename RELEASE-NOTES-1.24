@@ -357,6 +357,8 @@ changes to languages because of Bugzilla reports.
 * Removed WikiPage::estimateRevisionCount(). (deprecated since 1.19)
 * MYSQL: Enum item added to "major MIME type" columns.
   Running update.php on MySQL < v5.1 may result in heavy processing.
+* TablePager::getBody() is now 'final' and can't be overridden in subclasses.
+* TablePager::getBody() is deprecated, use getBodyOutput() or getFullOutput().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

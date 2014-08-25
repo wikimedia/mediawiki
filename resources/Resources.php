@@ -914,6 +914,10 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.notify.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.pager.tablePager' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.pager.tablePager.css',
+		'position' => 'top',
+	),
 	'mediawiki.searchSuggest' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.searchSuggest.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.searchSuggest.css',
