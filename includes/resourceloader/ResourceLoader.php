@@ -855,7 +855,7 @@ class ResourceLoader {
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
 			try {
-				$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
+				$blobs = MessageBlobStore::getInstance()->get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				wfDebugLog(

@@ -984,7 +984,7 @@ class LocalisationCache {
 		# HACK: If using a null (i.e. disabled) storage backend, we
 		# can't write to the MessageBlobStore either
 		if ( $purgeBlobs && !$this->store instanceof LCStoreNull ) {
-			MessageBlobStore::clear();
+			MessageBlobStore::getInstance()->clear();
 		}
 
 		wfProfileOut( __METHOD__ );
