@@ -423,7 +423,7 @@ class TestFileIterator implements Iterator {
 		$input = $this->checkSection( array( 'wikitext', 'input' ), false );
 		$result = $this->checkSection( array( 'html/php', 'html/*', 'html', 'result' ), false );
 		// some tests have "with tidy" and "without tidy" variants
-		$tidy = $this->checkSection( array( 'html/php+tidy', 'html+tidy'), false );
+		$tidy = $this->checkSection( array( 'html/php+tidy', 'html+tidy' ), false );
 		if ( $tidy != false ) {
 			if ( $this->nextSubTest == 0 ) {
 				if ( $result != false ) {
@@ -475,9 +475,11 @@ class TestFileIterator implements Iterator {
 
 	function readNextTest() {
 		# Run additional subtests of previous test
-		while ( $this->nextSubTest > 0 )
-			if ( $this->setupCurrentTest() )
+		while ( $this->nextSubTest > 0 ) {
+			if ( $this->setupCurrentTest() ) {
 				return true;
+			}
+		}
 
 		$this->clearSection();
 		# Reset hooks for the delayed test object
@@ -554,8 +556,9 @@ class TestFileIterator implements Iterator {
 				if ( $this->section == 'end' ) {
 					$this->checkSection( 'test' );
 					do {
-						if ( $this->setupCurrentTest() )
+						if ( $this->setupCurrentTest() ) {
 							return true;
+						}
 					} while ( $this->nextSubTest > 0 );
 					# go on to next test (since this was disabled)
 					$this->clearSection();

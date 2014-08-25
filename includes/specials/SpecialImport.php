@@ -327,7 +327,7 @@ class SpecialImport extends SpecialPage {
 			foreach ( $importSources as $key => $value ) {
 				if ( is_int( $key ) ) {
 					$key = $value;
-				} else if ( $value !== $key ) {
+				} elseif ( $value !== $key ) {
 					$needSubprojectField = true;
 				}
 

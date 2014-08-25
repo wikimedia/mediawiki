@@ -1658,7 +1658,7 @@ class Revision implements IDBAccessObject {
 	 *                          instead of just plain userrights
 	 * @return bool
 	 */
-	public static function userCanBitfield( $bitfield, $field, User $user = null ,
+	public static function userCanBitfield( $bitfield, $field, User $user = null,
 		Title $title = null
 	) {
 		if ( $bitfield & $field ) { // aspect is deleted
@@ -1680,7 +1680,7 @@ class Revision implements IDBAccessObject {
 			} else {
 				$text = $title->getPrefixedText();
 				wfDebug( "Checking for $permissionlist on $text due to $field match on $bitfield\n" );
-				foreach( $permissions as $perm ) {
+				foreach ( $permissions as $perm ) {
 					if ( $title->userCan( $perm, $user ) ) {
 						return true;
 					}

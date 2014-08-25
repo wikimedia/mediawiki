@@ -2265,7 +2265,7 @@ class Title {
 		} elseif ( $action == 'delete' ) {
 			$tempErrors = $this->checkPageRestrictions( 'edit',
 				$user, array(), $doExpensiveQueries, true );
-			if( !$tempErrors ) {
+			if ( !$tempErrors ) {
 				$tempErrors = $this->checkCascadingSourcesRestrictions( 'edit',
 					$user, $tempErrors, $doExpensiveQueries, true );
 			}
