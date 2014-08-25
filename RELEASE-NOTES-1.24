@@ -432,6 +432,8 @@ changes to languages because of Bugzilla reports.
   stylesheet. It was ignored by most browsers these days anyway.
 * SpecialSearchNoResults hook has been removed. SpecialSearchResults is now
   called unconditionally.
+* TablePager::getBody() is now 'final' and can't be overridden in subclasses.
+* TablePager::getBody() is deprecated, use getBodyOutput() or getFullOutput().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

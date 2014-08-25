@@ -48,15 +48,13 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$showAll
 		);
 
+		$out = $this->getOutput();
 		if ( $this->including() ) {
-			$html = $pager->getBody();
+			$out->addParserOutputContent( $pager->getBodyOutput() );
 		} else {
-			$form = $pager->getForm();
-			$body = $pager->getBody();
-			$nav = $pager->getNavigationBar();
-			$html = "$form<br />\n$body<br />\n$nav";
+			$out->addHTML( $pager->getForm() );
+			$out->addParserOutputContent( $pager->getFullOutput() );
 		}
-		$this->getOutput()->addHTML( $html );
 	}
 
 	protected function getGroupName() {
