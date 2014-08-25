@@ -67,6 +67,8 @@ production.
   instead.
 
 === New features in 1.24 ===
+* Added new hook WatchlistEditorBeforeFormRender, allowing subscribers to
+  manipulate the list of pages and/or preload lots of data at once.
 * Added new argument &$link in hook WatchlistEditorBuildRemoveLine, allowing the
   link to the title to be changed.
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate

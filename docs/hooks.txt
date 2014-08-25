@@ -2938,6 +2938,11 @@ $page: WikiPage object to be watched
 $user: user that watched
 $page: WikiPage object watched
 
+'WatchlistEditorBeforeFormRender': Before building the Special:EditWatchlist
+form, used to manipulate the list of pages or preload data based on that list.
+&$watchlistInfo: array of watchlisted pages in
+  [namespaceId => ['title1' => 1, 'title2' => 1]] format
+
 'WatchlistEditorBuildRemoveLine': when building remove lines in
 Special:Watchlist/edit.
 &$tools: array of extra links
