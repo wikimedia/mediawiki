@@ -224,7 +224,7 @@ class BlockListPager extends TablePager {
 	function __construct( $page, $conds ) {
 		$this->page = $page;
 		$this->conds = $conds;
-		$this->mDefaultDirection = true;
+		$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
 		parent::__construct( $page->getContext() );
 	}
 
