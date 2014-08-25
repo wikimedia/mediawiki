@@ -1374,7 +1374,6 @@ class LoginForm extends SpecialPage {
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
 		$template->set( 'stickhttps', (int)$this->mStickHTTPS );
 		$template->set( 'loggedin', $user->isLoggedIn() );
-		$template->set( 'loggedinuser', $user->getName() );
 
 		if ( $this->mType == 'signup' ) {
 			if ( !self::getCreateaccountToken() ) {
