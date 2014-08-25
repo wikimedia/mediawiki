@@ -111,43 +111,38 @@ abstract class TablePager extends IndexPager {
 	 * @return string
 	 */
 	function getStartBody() {
-		global $wgStylePath;
 		$sortClass = $this->getSortHeaderClass();
 
 		$s = '';
 		$fields = $this->getFieldNames();
 
-		# Make table header
+		// Make table header
 		foreach ( $fields as $field => $name ) {
 			if ( strval( $name ) == '' ) {
 				$s .= Html::rawElement( 'th', array(), '&#160;' ) . "\n";
 			} elseif ( $this->isFieldSortable( $field ) ) {
 				$query = array( 'sort' => $field, 'limit' => $this->mLimit );
-				if ( $field == $this->mSort ) {
-					# This is the sorted column
-					# Prepare a link that goes in the other sort order
+				$linkType = null;
+				$class = null;
+
+				if ( $this->mSort == $field ) {
+					// The table is sorted by this field already, make a link to sort in the other direction
+					// We don't actually know in which direction other fields will be sorted by default…
 					if ( $this->mDefaultDirection ) {
-						# Descending
-						$image = 'Arr_d.png';
+						$linkType = 'asc';
+						$class = "$sortClass TablePager_sort-descending";
 						$query['asc'] = '1';
 						$query['desc'] = '';
-						$alt = $this->msg( 'descending_abbrev' )->escaped();
 					} else {
-						# Ascending
-						$image = 'Arr_u.png';
+						$linkType = 'desc';
+						$class = "$sortClass TablePager_sort-ascending";
 						$query['asc'] = '';
 						$query['desc'] = '1';
-						$alt = $this->msg( 'ascending_abbrev' )->escaped();
 					}
-					$image = "$wgStylePath/common/images/$image";
-					$link = $this->makeLink(
-						Html::element( 'img', array( 'width' => 12, 'height' => 12,
-							'alt' => $alt, 'src' => $image ) ) . htmlspecialchars( $name ), $query );
-					$s .= Html::rawElement( 'th', array( 'class' => $sortClass ), $link ) . "\n";
-				} else {
-					$s .= Html::rawElement( 'th', array(),
-						$this->makeLink( htmlspecialchars( $name ), $query ) ) . "\n";
 				}
+
+				$link = $this->makeLink( htmlspecialchars( $name ), $query, $linkType );
+				$s .= Html::rawElement( 'th', array( 'class' => $class ), $link ) . "\n";
 			} else {
 				$s .= Html::element( 'th', array(), $name ) . "\n";
 			}

@@ -447,8 +447,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @param string $text Text displayed on the link
 	 * @param array $query Associative array of parameter to be in the query string
-	 * @param string $type Value of the "rel" attribute
-	 *
+	 * @param string $type Link type used to create additional attributes, like "rel", "class" or
+	 *  "title". Valid values (non-exhaustive list): 'first', 'last', 'prev', 'next', 'asc', 'desc'.
 	 * @return string HTML fragment
 	 */
 	function makeLink( $text, array $query = null, $type = null ) {
@@ -458,13 +458,17 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 		$attrs = array();
 		if ( in_array( $type, array( 'prev', 'next' ) ) ) {
-			# HTML5 rel attributes
 			$attrs['rel'] = $type;
+		}
+
+		if ( in_array( $type, array( 'asc', 'desc' ) ) ) {
+			$attrs['title'] = wfMessage( $type == 'asc' ? 'sort-ascending' : 'sort-descending' )->text();
 		}
 
 		if ( $type ) {
 			$attrs['class'] = "mw-{$type}link";
 		}
+
 
 		return Linker::linkKnown(
 			$this->getTitle(),
