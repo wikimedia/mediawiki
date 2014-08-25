@@ -26,7 +26,7 @@
  * @ingroup Pager
  */
 abstract class ReverseChronologicalPager extends IndexPager {
-	public $mDefaultDirection = true;
+	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
 	public $mYear;
 	public $mMonth;
 

@@ -64,6 +64,14 @@
  * @ingroup Pager
  */
 abstract class IndexPager extends ContextSource implements Pager {
+	/**
+	 * Constants for the $mDefaultDirection field.
+	 * 
+	 * These are boolean for historical reasons and should stay boolean for backwards-compatibility.
+	 */
+	const DIR_ASCENDING = false;
+	const DIR_DESCENDING = true;
+
 	public $mRequest;
 	public $mLimitsShown = array( 20, 50, 100, 250, 500 );
 	public $mDefaultLimit = 50;
@@ -87,7 +95,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected $mOrderType;
 	/**
 	 * $mDefaultDirection gives the direction to use when sorting results:
-	 * false for ascending, true for descending.  If $mIsBackwards is set, we
+	 * DIR_ASCENDING or DIR_DESCENDING.  If $mIsBackwards is set, we
 	 * start from the opposite end, but we still sort the page itself according
 	 * to $mDefaultDirection.  E.g., if $mDefaultDirection is false but we're
 	 * going backwards, we'll display the last page of results, but the last
@@ -190,6 +198,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$fname = __METHOD__ . ' (' . get_class( $this ) . ')';
 		wfProfileIn( $fname );
 
+		// @todo This should probably compare to DIR_DESCENDING and DIR_ASCENDING constants
 		$descending = ( $this->mIsBackwards == $this->mDefaultDirection );
 		# Plus an extra row so that we can tell the "next" link should be shown
 		$queryLimit = $this->mLimit + 1;
@@ -709,8 +718,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
-	 * Return the default sorting direction: false for ascending, true for
-	 * descending.  You can also have an associative array of ordertype => dir,
+	 * Return the default sorting direction: DIR_ASCENDING or DIR_DESCENDING.
+	 * You can also have an associative array of ordertype => dir,
 	 * if multiple order types are supported.  In this case getIndexField()
 	 * must return an array, and the keys of that must exactly match the keys
 	 * of this.
@@ -728,6 +737,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return bool
 	 */
 	protected function getDefaultDirections() {
-		return false;
+		return IndexPager::DIR_ASCENDING;
 	}
 }
