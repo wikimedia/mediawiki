@@ -32,9 +32,6 @@ class ResourceLoader {
 	/** @var int */
 	protected static $filterCacheVersion = 7;
 
-	/** @var array */
-	protected static $requiredSourceProperties = array( 'loadScript' );
-
 	/** @var bool */
 	protected static $debugMode = null;
 
@@ -53,7 +50,7 @@ class ResourceLoader {
 	 */
 	protected $testModuleNames = array();
 
-	/** @var array E.g. array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) ) */
+	/** @var array E.g. array( 'source-id' => 'http://.../load.php' ) */
 	protected $sources = array();
 
 	/** @var bool */
@@ -231,10 +228,7 @@ class ResourceLoader {
 		$this->config = $config;
 
 		// Add 'local' source first
-		$this->addSource(
-			'local',
-			array( 'loadScript' => wfScript( 'load' ), 'apiScript' => wfScript( 'api' ) )
-		);
+		$this->addSource( 'local', wfScript( 'load' ) );
 
 		// Add other sources
 		$this->addSource( $config->get( 'ResourceLoaderSources' ) );
@@ -401,14 +395,12 @@ class ResourceLoader {
 	/**
 	 * Add a foreign source of modules.
 	 *
-	 * Source properties:
-	 * 'loadScript': URL (either fully-qualified or protocol-relative) of load.php for this source
-	 *
-	 * @param mixed $id Source ID (string), or array( id1 => props1, id2 => props2, ... )
-	 * @param array $properties Source properties
+	 * @param array|string $id Source ID (string), or array( id1 => loadUrl, id2 => loadUrl, ... )
+	 * @param string|array $loadUrl load.php url (string), or array with loadUrl key for
+	 *  backwards-compatability.
 	 * @throws MWException
 	 */
-	public function addSource( $id, $properties = null ) {
+	public function addSource( $id, $loadUrl = null ) {
 		// Allow multiple sources to be registered in one call
 		if ( is_array( $id ) ) {
 			foreach ( $id as $key => $value ) {
@@ -425,14 +417,18 @@ class ResourceLoader {
 			);
 		}
 
-		// Validate properties
-		foreach ( self::$requiredSourceProperties as $prop ) {
-			if ( !isset( $properties[$prop] ) ) {
-				throw new MWException( "Required property $prop missing from source ID $id" );
+		// Pre 1.24 backwards-compatability
+		if ( is_array( $loadUrl ) ) {
+			if ( !isset( $loadUrl['loadScript'] ) ) {
+				throw new MWException(
+					__METHOD__ . ' was passed an array with no "loadScript" key.'
+				);
 			}
+
+			$loadUrl = $loadUrl['loadScript'];
 		}
 
-		$this->sources[$id] = $properties;
+		$this->sources[$id] = $loadUrl;
 	}
 
 	/**
@@ -527,7 +523,7 @@ class ResourceLoader {
 	/**
 	 * Get the list of sources.
 	 *
-	 * @return array Like array( id => array of properties, .. )
+	 * @return array Like array( id => load.php url, .. )
 	 */
 	public function getSources() {
 		return $this->sources;
@@ -546,7 +542,7 @@ class ResourceLoader {
 		if ( !isset( $this->sources[$source] ) ) {
 			throw new MWException( "The $source source was never registered in ResourceLoader." );
 		}
-		return $this->sources[$source]['loadScript'];
+		return $this->sources[$source];
 	}
 
 	/**
@@ -1228,7 +1224,7 @@ class ResourceLoader {
 	 *   - ResourceLoader::makeLoaderSourcesScript( $id, $properties ):
 	 *       Register a single source
 	 *
-	 *   - ResourceLoader::makeLoaderSourcesScript( array( $id1 => $props1, $id2 => $props2, ... ) );
+	 *   - ResourceLoader::makeLoaderSourcesScript( array( $id1 => $loadUrl, $id2 => $loadUrl, ... ) );
 	 *       Register sources with the given IDs and properties.
 	 *
 	 * @param string $id Source ID
