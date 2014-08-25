@@ -3,7 +3,7 @@
 class DeferredUpdatesTest extends MediaWikiTestCase {
 
 	public function testDoUpdates() {
-		$updates = array (
+		$updates = array(
 			'1' => 'deferred update 1',
 			'2' => 'deferred update 2',
 			'3' => 'deferred update 3',
@@ -18,7 +18,7 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 			function () use ( $updates ) {
 				echo $updates['2'];
 				DeferredUpdates::addCallableUpdate(
-					function() use ( $updates ) {
+					function () use ( $updates ) {
 						echo $updates['2-1'];
 					}
 				);

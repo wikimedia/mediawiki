@@ -754,7 +754,7 @@ class NewParserTest extends MediaWikiTestCase {
 					$this->markTestSkipped( "SKIPPED: tidy extension is not installed.\n" );
 				} else {
 					$out = MWTidy::tidy( $out );
-					$out = preg_replace( '/\s+$/', '', $out);
+					$out = preg_replace( '/\s+$/', '', $out );
 				}
 			}
 

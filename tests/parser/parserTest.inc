@@ -625,7 +625,7 @@ class ParserTest {
 					return $this->showSkipped();
 				}
 				$out = MWTidy::tidy( $out );
-				$out = preg_replace( '/\s+$/', '', $out);
+				$out = preg_replace( '/\s+$/', '', $out );
 			}
 
 			if ( isset( $opts['showtitle'] ) ) {

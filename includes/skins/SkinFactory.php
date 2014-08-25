@@ -70,7 +70,7 @@ class SkinFactory {
 	 *     to be, but doing so would change the case of i18n message keys).
 	 * @param string $displayName For backwards-compatibility with old skin loading system. This is
 	 *     the text used as skin's human-readable name when the 'skinname-<skin>' message is not
-   *     available. It should be the same as the skin name provided in $wgExtensionCredits.
+	 *     available. It should be the same as the skin name provided in $wgExtensionCredits.
 	 * @param callable $callback Callback that takes the skin name as an argument
 	 * @throws InvalidArgumentException If an invalid callback is provided
 	 */

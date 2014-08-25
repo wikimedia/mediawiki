@@ -154,7 +154,7 @@ class MemcachedBagOStuff extends BagOStuff {
 		if ( $expiry > 2592000 && $expiry < 1000000000 ) {
 			$expiry = 2592000;
 		}
-		return (int) $expiry;
+		return (int)$expiry;
 	}
 
 	/**
