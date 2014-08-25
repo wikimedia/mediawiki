@@ -62,8 +62,6 @@ class UploadFromChunks extends UploadFromFile {
 			}
 			$this->stash = new UploadStash( $this->repo, $this->user );
 		}
-
-		return true;
 	}
 
 	/**
