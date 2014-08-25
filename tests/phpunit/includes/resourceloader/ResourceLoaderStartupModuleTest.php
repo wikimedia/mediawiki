@@ -9,10 +9,7 @@ class ResourceLoaderStartupModuleTest extends ResourceLoaderTestCase {
 				'modules' => array(),
 				'out' => '
 mw.loader.addSource( {
-    "local": {
-        "loadScript": "/w/load.php",
-        "apiScript": "/w/api.php"
-    }
+    "local": "/w/load.php"
 } );mw.loader.register( [] );'
 			) ),
 			array( array(
@@ -22,10 +19,7 @@ mw.loader.addSource( {
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": {
-        "loadScript": "/w/load.php",
-        "apiScript": "/w/api.php"
-    }
+    "local": "/w/load.php"
 } );mw.loader.register( [
     [
         "test.blank",
@@ -42,10 +36,7 @@ mw.loader.addSource( {
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": {
-        "loadScript": "/w/load.php",
-        "apiScript": "/w/api.php"
-    }
+    "local": "/w/load.php"
 } );mw.loader.register( [
     [
         "test.blank",
@@ -73,10 +64,7 @@ mw.loader.addSource( {
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": {
-        "loadScript": "/w/load.php",
-        "apiScript": "/w/api.php"
-    }
+    "local": "/w/load.php"
 } );mw.loader.register( [
     [
         "test.blank",
@@ -97,14 +85,8 @@ mw.loader.addSource( {
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": {
-        "loadScript": "/w/load.php",
-        "apiScript": "/w/api.php"
-    },
-    "example": {
-        "loadScript": "http://example.org/w/load.php",
-        "apiScript": "http://example.org/w/api.php"
-    }
+    "local": "/w/load.php",
+    "example": "http://example.org/w/load.php"
 } );mw.loader.register( [
     [
         "test.blank",
@@ -140,10 +122,7 @@ mw.loader.addSource( {
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": {
-        "loadScript": "/w/load.php",
-        "apiScript": "/w/api.php"
-    }
+    "local": "/w/load.php"
 } );mw.loader.register( [
     [
         "test.x.core",
@@ -238,14 +217,8 @@ mw.loader.addSource( {
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": {
-        "loadScript": "/w/load.php",
-        "apiScript": "/w/api.php"
-    },
-    "example": {
-        "loadScript": "http://example.org/w/load.php",
-        "apiScript": "http://example.org/w/api.php"
-    }
+    "local": "/w/load.php",
+    "example": "http://example.org/w/load.php"
 } );mw.loader.register( [
     [
         "test.blank",
@@ -369,7 +342,7 @@ mw.loader.addSource( {
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
 		$this->assertEquals(
-'mw.loader.addSource({"local":{"loadScript":"/w/load.php","apiScript":"/w/api.php"}});'
+'mw.loader.addSource({"local":"/w/load.php"});'
 . 'mw.loader.register(['
 . '["test.blank","1388534400"],'
 . '["test.min","1388534400",["test.blank"],null,"local",'
@@ -390,10 +363,7 @@ mw.loader.addSource( {
 		$module = new ResourceLoaderStartUpModule();
 		$this->assertEquals(
 'mw.loader.addSource( {
-    "local": {
-        "loadScript": "/w/load.php",
-        "apiScript": "/w/api.php"
-    }
+    "local": "/w/load.php"
 } );mw.loader.register( [
     [
         "test.blank",

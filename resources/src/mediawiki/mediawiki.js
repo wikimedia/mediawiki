@@ -628,12 +628,10 @@
 			 */
 			var registry = {},
 				//
-				// Mapping of sources, keyed by source-id, values are objects.
+				// Mapping of sources, keyed by source-id, values are strings.
 				// Format:
 				//	{
-				//		'sourceId': {
-				//			'loadScript': 'http://foo.bar/w/load.php'
-				//		}
+				//		'sourceId': 'http://foo.bar/w/load.php'
 				//	}
 				//
 				sources = {},
@@ -1478,7 +1476,7 @@
 
 					for ( source in splits ) {
 
-						sourceLoadScript = sources[source].loadScript;
+						sourceLoadScript = sources[source];
 
 						for ( group in splits[source] ) {
 
@@ -1552,15 +1550,14 @@
 				 *
 				 * The #work method will use this information to split up requests by source.
 				 *
-				 *     mw.loader.addSource( 'mediawikiwiki', { loadScript: '//www.mediawiki.org/w/load.php' } );
+				 *     mw.loader.addSource( 'mediawikiwiki', '//www.mediawiki.org/w/load.php' );
 				 *
 				 * @param {string} id Short string representing a source wiki, used internally for
 				 *  registered modules to indicate where they should be loaded from (usually lowercase a-z).
-				 * @param {Object} props
-				 * @param {string} props.loadScript Url to the load.php entry point of the source wiki.
+				 * @param {Object|string} loadUrl load.php url, may be an object for backwards-compatability
 				 * @return {boolean}
 				 */
-				addSource: function ( id, props ) {
+				addSource: function ( id, loadUrl ) {
 					var source;
 					// Allow multiple additions
 					if ( typeof id === 'object' ) {
@@ -1574,7 +1571,11 @@
 						throw new Error( 'source already registered: ' + id );
 					}
 
-					sources[id] = props;
+					if ( typeof loadUrl === 'object' ) {
+						loadUrl = loadUrl.loadScript;
+					}
+
+					sources[id] = loadUrl;
 
 					return true;
 				},
