@@ -3086,10 +3086,8 @@ class User implements IDBAccessObject {
 	/**
 	 * Check if user is allowed to access a feature / make an action
 	 *
-	 * @internal param \String $varargs permissions to test
+	 * @param string $permissions,... Permissions to test
 	 * @return bool True if user is allowed to perform *any* of the given actions
-	 *
-	 * @return bool
 	 */
 	public function isAllowedAny( /*...*/ ) {
 		$permissions = func_get_args();
@@ -3103,7 +3101,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 *
-	 * @internal param $varargs string
+	 * @param string $permissions,... Permissions to test
 	 * @return bool True if the user is allowed to perform *all* of the given actions
 	 */
 	public function isAllowedAll( /*...*/ ) {
