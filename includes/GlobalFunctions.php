@@ -38,6 +38,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 if ( !function_exists( 'mb_substr' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @see Fallback::mb_substr
 	 * @return string
 	 */
 	function mb_substr( $str, $start, $count = 'end' ) {
@@ -46,6 +47,7 @@ if ( !function_exists( 'mb_substr' ) ) {
 
 	/**
 	 * @codeCoverageIgnore
+	 * @see Fallback::mb_substr_split_unicode
 	 * @return int
 	 */
 	function mb_substr_split_unicode( $str, $splitPos ) {
@@ -56,6 +58,7 @@ if ( !function_exists( 'mb_substr' ) ) {
 if ( !function_exists( 'mb_strlen' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @see Fallback::mb_strlen
 	 * @return int
 	 */
 	function mb_strlen( $str, $enc = '' ) {
@@ -66,6 +69,7 @@ if ( !function_exists( 'mb_strlen' ) ) {
 if ( !function_exists( 'mb_strpos' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @see Fallback::mb_strpos
 	 * @return int
 	 */
 	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
@@ -76,6 +80,7 @@ if ( !function_exists( 'mb_strpos' ) ) {
 if ( !function_exists( 'mb_strrpos' ) ) {
 	/**
 	 * @codeCoverageIgnore
+	 * @see Fallback::mb_strrpos
 	 * @return int
 	 */
 	function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {

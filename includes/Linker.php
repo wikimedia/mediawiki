@@ -259,6 +259,7 @@ class Linker {
 
 	/**
 	 * Identical to link(), except $options defaults to 'known'.
+	 * @see Linker::link
 	 * @return string
 	 */
 	public static function linkKnown(
