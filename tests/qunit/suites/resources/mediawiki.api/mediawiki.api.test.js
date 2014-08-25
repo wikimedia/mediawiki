@@ -196,6 +196,28 @@
 		);
 	} );
 
+	QUnit.test( 'postWithToken( tokenType, params with assert )', function ( assert ) {
+		QUnit.expect( 2 );
+
+		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } );
+
+		api.postWithToken( 'testsimpletoken', { action: 'example', key: 'foo', assert: 'user' } )
+			.fail( function ( errorCode ) {
+				assert.equal( errorCode, 'assertuserfailed', 'getToken fails assert' );
+			} );
+
+		assert.equal( this.server.requests.length, 1, 'Request for token made' );
+		this.server.respondWith( /assert=user/, function ( request ) {
+			request.respond(
+				200,
+				{ 'Content-Type': 'application/json' },
+				'{ "error": { "code": "assertuserfailed", "message": "Assertion failed" } }'
+			);
+		} );
+
+		this.server.respond();
+	} );
+
 	QUnit.test( 'postWithToken( tokenType, params, ajaxOptions )', function ( assert ) {
 		QUnit.expect( 3 );
 
