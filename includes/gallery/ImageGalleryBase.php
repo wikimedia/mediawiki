@@ -87,6 +87,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param string|bool $mode Mode to use. False to use the default
 	 * @param IContextSource|null $context
+	 * @return ImageGalleryBase
 	 * @throws MWException
 	 */
 	static function factory( $mode = false, IContextSource $context = null ) {

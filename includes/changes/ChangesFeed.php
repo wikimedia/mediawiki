@@ -180,6 +180,7 @@ class ChangesFeed {
 	/**
 	 * Generate the feed items given a row from the database.
 	 * @param object $rows DatabaseBase resource with recentchanges rows
+	 * @return array
 	 */
 	public static function buildItems( $rows ) {
 		wfProfileIn( __METHOD__ );

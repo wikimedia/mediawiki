@@ -328,6 +328,7 @@ class Sanitizer {
 	 * Regular expression to match HTML/XML attribute pairs within a tag.
 	 * Allows some... latitude.
 	 * Used in Sanitizer::fixTagAttributes and Sanitizer::decodeTagAttributes
+	 * @return string
 	 */
 	static function getAttribsRegex() {
 		if ( self::$attribsRegex === null ) {

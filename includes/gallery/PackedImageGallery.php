@@ -95,6 +95,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 	/**
 	 * Add javascript which auto-justifies the rows by manipulating the image sizes.
 	 * Also ensures that the hover version of this degrades gracefully.
+	 * @return array
 	 */
 	protected function getModules() {
 		return array( 'mediawiki.page.gallery' );

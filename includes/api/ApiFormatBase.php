@@ -247,6 +247,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 
 	/**
 	 * Get the contents of the buffer.
+	 * @return string
 	 */
 	public function getBuffer() {
 		return $this->mBuffer;

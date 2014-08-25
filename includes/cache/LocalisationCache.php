@@ -686,6 +686,7 @@ class LocalisationCache {
 	 *
 	 * @param string $code
 	 * @param array $deps
+	 * @return array
 	 */
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
 		global $IP;

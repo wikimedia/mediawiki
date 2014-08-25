@@ -97,6 +97,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	/**
 	 *
 	 * @param array $data
+	 * @return bool
 	 */
 	public function onSubmit( array $data ) {
 		$title = Title::newFromText( $data['pagename'] );

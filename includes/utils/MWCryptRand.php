@@ -61,6 +61,7 @@ class MWCryptRand {
 
 	/**
 	 * Initialize an initial random state based off of whatever we can find
+	 * @return string
 	 */
 	protected function initialRandomState() {
 		// $_SERVER contains a variety of unstable user and system specific information

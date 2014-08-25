@@ -483,6 +483,7 @@ class SearchHighlighter {
 	 * the target is category or image, leave it
 	 *
 	 * @param array $matches
+	 * @return string
 	 */
 	function linkReplace( $matches ) {
 		$colon = strpos( $matches[1], ':' );

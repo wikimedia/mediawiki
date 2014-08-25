@@ -1976,6 +1976,7 @@ class Article implements Page {
 	 * raw WikiPage fields for backwards compatibility.
 	 *
 	 * @param string $fname Field name
+	 * @return mixed
 	 */
 	public function __get( $fname ) {
 		if ( property_exists( $this->mPage, $fname ) ) {
