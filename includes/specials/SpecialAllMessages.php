@@ -68,10 +68,8 @@ class SpecialAllMessages extends SpecialPage {
 
 		$this->langcode = $this->table->lang->getCode();
 
-		$out->addHTML( $this->table->buildForm() .
-			$this->table->getNavigationBar() .
-			$this->table->getBody() .
-			$this->table->getNavigationBar() );
+		$out->addHTML( $this->table->buildForm() );
+		$out->addParserOutputContent( $this->table->getFullOutput() );
 	}
 
 	protected function getGroupName() {
