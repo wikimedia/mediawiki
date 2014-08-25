@@ -257,7 +257,7 @@
 				ajaxOptions = undefined;
 			}
 
-			return api.getToken( tokenType ).then( function ( token ) {
+			return api.getToken( tokenType, params.assert ).then( function ( token ) {
 				params.token = token;
 				return api.post( params, ajaxOptions ).then(
 					// If no error, return to caller as-is
@@ -270,7 +270,7 @@
 								params.token = undefined;
 
 							// Try again, once
-							return api.getToken( tokenType ).then( function ( token ) {
+							return api.getToken( tokenType, params.assert ).then( function ( token ) {
 								params.token = token;
 								return api.post( params, ajaxOptions );
 							} );
@@ -287,18 +287,19 @@
 		 * Get a token for a certain action from the API.
 		 *
 		 * @param {string} type Token type
+		 * @param {string} [assert] Assert that the user is logged in etc. (since 1.24)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string} return.done.token Received token.
 		 * @since 1.22
 		 */
-		getToken: function ( type ) {
+		getToken: function ( type, assert ) {
 			var apiPromise,
 				promiseGroup = promises[ this.defaults.ajax.url ],
 				d = promiseGroup && promiseGroup[ type + 'Token' ];
 
 			if ( !d ) {
-				apiPromise = this.get( { action: 'tokens', type: type } );
+				apiPromise = this.get( { action: 'tokens', type: type, assert: assert } );
 
 				d = apiPromise
 					.then( function ( data ) {
