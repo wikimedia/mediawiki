@@ -620,11 +620,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function buildRemoveLine( $title ) {
 		$link = Linker::link( $title );
 
-		if ( $title->isRedirect() ) {
-			// Linker already makes class mw-redirect, so this is redundant
-			$link = '<span class="watchlistredir">' . $link . '</span>';
-		}
-
 		$tools[] = Linker::link( $title->getTalkPage(), $this->msg( 'talkpagelinktext' )->escaped() );
 
 		if ( $title->exists() ) {
@@ -645,8 +640,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		wfRunHooks(
 			'WatchlistEditorBuildRemoveLine',
-			array( &$tools, $title, $title->isRedirect(), $this->getSkin() )
+			array( &$tools, $title, $title->isRedirect(), $this->getSkin(), &$link )
 		);
+
+		if ( $title->isRedirect() ) {
+			// Linker already makes class mw-redirect, so this is redundant
+			$link = '<span class="watchlistredir">' . $link . '</span>';
+		}
 
 		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ")";
 	}

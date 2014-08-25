@@ -2944,6 +2944,7 @@ Special:Watchlist/edit.
 $title: Title object
 $redirect: whether the page is a redirect
 $skin: Skin object
+&$link: HTML link to title
 
 'WebRequestPathInfoRouter': While building the PathRouter to parse the
 REQUEST_URI.
