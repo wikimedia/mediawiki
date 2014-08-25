@@ -3,8 +3,22 @@
  * in MediaWiki (used e.g. on Special:ListFiles).
  */
 
+@import "mediawiki.mixins";
+
 .TablePager {
 	min-width: 80%;
+}
+
+.TablePager .TablePager_sort-ascending a {
+	padding-left: 15px;
+	background: none left center no-repeat;
+	.background-image-svg('images/arrow-sort-ascending.svg', 'images/arrow-sort-ascending.png');
+}
+
+.TablePager .TablePager_sort-descending a {
+	padding-left: 15px;
+	background: none left center no-repeat;
+	.background-image-svg('images/arrow-sort-descending.svg', 'images/arrow-sort-descending.png');
 }
 
 .TablePager_nav {

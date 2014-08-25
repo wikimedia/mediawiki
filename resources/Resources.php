@@ -921,7 +921,7 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.pager.tablePager' => array(
-		'styles' => 'resources/src/mediawiki/mediawiki.pager.tablePager.css',
+		'styles' => 'resources/src/mediawiki/mediawiki.pager.tablePager.less',
 		'position' => 'top',
 	),
 	'mediawiki.searchSuggest' => array(
