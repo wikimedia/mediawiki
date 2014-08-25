@@ -457,7 +457,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		}
 
 		$attrs = array();
-		if ( in_array( $type, array( 'first', 'prev', 'next', 'last' ) ) ) {
+		if ( in_array( $type, array( 'prev', 'next' ) ) ) {
 			# HTML5 rel attributes
 			$attrs['rel'] = $type;
 		}
