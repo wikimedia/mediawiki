@@ -232,6 +232,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				'source' => $module->getSource(),
 				'loader' => $module->getLoaderScript(),
 				'skip' => $skipFunction,
+				'raw' => $module->isRaw(),
 			);
 		}
 
@@ -256,28 +257,32 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
+			// FIXME: Refactor this
 			if (
 				!count( $data['dependencies'] ) &&
 				$data['group'] === null &&
 				$data['source'] === 'local' &&
-				$data['skip'] === null
+				$data['skip'] === null &&
+				$data['raw'] === false
 			) {
-				// Modules with no dependencies, group, foreign source or skip function;
+				// Modules with no dependencies, group, foreign source or skip function, and not raw;
 				// call mw.loader.register(name, timestamp)
 				$registrations[] = array( $name, $data['version'] );
 			} elseif (
 				$data['group'] === null &&
 				$data['source'] === 'local' &&
-				$data['skip'] === null
+				$data['skip'] === null &&
+				$data['raw'] === false
 			) {
-				// Modules with dependencies but no group, foreign source or skip function;
+				// Modules with dependencies but no group, foreign source or skip function, and not raw;
 				// call mw.loader.register(name, timestamp, dependencies)
 				$registrations[] = array( $name, $data['version'], $data['dependencies'] );
 			} elseif (
 				$data['source'] === 'local' &&
-				$data['skip'] === null
+				$data['skip'] === null &&
+				$data['raw'] === false
 			) {
-				// Modules with a group but no foreign source or skip function;
+				// Modules with a group but no foreign source or skip function, and not raw;
 				// call mw.loader.register(name, timestamp, dependencies, group)
 				$registrations[] = array(
 					$name,
@@ -285,8 +290,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 					$data['dependencies'],
 					$data['group']
 				);
-			} elseif ( $data['skip'] === null ) {
-				// Modules with a foreign source but no skip function;
+			} elseif (
+				$data['skip'] === null &&
+				$data['raw'] === false
+			) {
+				// Modules with a foreign source but no skip function and not raw;
 				// call mw.loader.register(name, timestamp, dependencies, group, source)
 				$registrations[] = array(
 					$name,
@@ -295,8 +303,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 					$data['group'],
 					$data['source']
 				);
-			} else {
-				// Modules with a skip function;
+			} elseif ( $data['raw'] === false ) {
+				// Modules with a skip function and not raw;
 				// call mw.loader.register(name, timestamp, dependencies, group, source, skip)
 				$registrations[] = array(
 					$name,
@@ -305,6 +313,18 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 					$data['group'],
 					$data['source'],
 					$data['skip']
+				);
+			} else {
+				// Raw modules;
+				// call mw.loader.register(name, timestamp, dependencies, group, source, skip, raw)
+				$registrations[] = array(
+					$name,
+					$data['version'],
+					$data['dependencies'],
+					$data['group'],
+					$data['source'],
+					$data['skip'],
+					$data['raw'],
 				);
 			}
 		}

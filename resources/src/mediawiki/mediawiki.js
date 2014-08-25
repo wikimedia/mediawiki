@@ -1590,8 +1590,9 @@
 				 * @param {string} [group=null] Group which the module is in
 				 * @param {string} [source='local'] Name of the source
 				 * @param {string} [skip=null] Script body of the skip function
+				 * @param {boolean} [raw=null] Whether the module is raw
 				 */
-				register: function ( module, version, dependencies, group, source, skip ) {
+				register: function ( module, version, dependencies, group, source, skip, raw ) {
 					var m;
 					// Allow multiple registration
 					if ( typeof module === 'object' ) {
@@ -1613,6 +1614,13 @@
 					if ( registry[module] !== undefined ) {
 						throw new Error( 'module already registered: ' + module );
 					}
+
+					if ( raw ) {
+						// Don't register raw modules in the registry, so
+						// things can't express dependencies upon them
+						return;
+					}
+
 					// List the module as registered
 					registry[module] = {
 						version: version !== undefined ? parseInt( version, 10 ) : 0,
