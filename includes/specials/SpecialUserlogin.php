@@ -527,20 +527,8 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
 
-		// Normalize the name so that silly things don't cause "invalid username"
-		// errors. User::newFromName does some rather strict checking, rejecting
-		// e.g. leading/trailing/multiple spaces. But first we need to reject
-		// usernames that would be treated as titles with a fragment part.
-		if ( strpos( $this->mUsername, '#' ) !== false ) {
-			return Status::newFatal( 'noname' );
-		}
-		$title = Title::makeTitleSafe( NS_USER, $this->mUsername );
-		if ( !is_object( $title ) ) {
-			return Status::newFatal( 'noname' );
-		}
-
 		# Now create a dummy user ($u) and check if it is valid
-		$u = User::newFromName( $title->getText(), 'creatable' );
+		$u = User::newFromName( $this->mUsername, 'creatable' );
 		if ( !is_object( $u ) ) {
 			return Status::newFatal( 'noname' );
 		} elseif ( 0 != $u->idForName() ) {
