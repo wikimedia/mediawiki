@@ -353,6 +353,9 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * Set up the global variables for a consistent environment for each test.
 	 * Ideally this should replace the global configuration entirely.
+	 * @param array $opts
+	 * @param string $config
+	 * @return RequestContext
 	 */
 	protected function setupGlobals( $opts = array(), $config = '' ) {
 		global $wgFileBackends;
@@ -872,6 +875,7 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * Get an input dictionary from a set of parser test files
 	 * @param array $filenames
+	 * @return string
 	 */
 	function getFuzzInput( $filenames ) {
 		$dict = '';
@@ -890,6 +894,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Get a memory usage breakdown
+	 * @return array
 	 */
 	function getMemoryBreakdown() {
 		$memStats = array();
@@ -926,6 +931,7 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * Get a Parser object
 	 * @param Preprocessor $preprocessor
+	 * @return Parser
 	 */
 	function getParser( $preprocessor = null ) {
 		global $wgParserConf;
@@ -986,6 +992,7 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * Remove last character if it is a newline
 	 * @param string $s
+	 * @return string
 	 */
 	public function removeEndingNewline( $s ) {
 		if ( substr( $s, -1 ) === "\n" ) {
@@ -1070,6 +1077,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 * @param string $key Name of option val to retrieve
 	 * @param array $opts Options array to look in
 	 * @param mixed $default Default value returned if not found
+	 * @return mixed
 	 */
 	protected static function getOptionValue( $key, $opts, $default ) {
 		$key = strtolower( $key );

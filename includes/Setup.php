@@ -596,7 +596,7 @@ if ( !is_object( $wgAuth ) ) {
 $wgTitle = null;
 
 /**
- * @deprecated 1.24 Use DeferredUpdates::addUpdate instead
+ * @deprecated since 1.24 Use DeferredUpdates::addUpdate instead
  * @var array
  */
 $wgDeferredUpdateList = array();
