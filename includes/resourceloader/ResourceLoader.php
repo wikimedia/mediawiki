@@ -1181,11 +1181,13 @@ class ResourceLoader {
 	 * Returns JS code which calls mw.loader.register with the given
 	 * parameters. Has three calling conventions:
 	 *
-	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group, $source, $skip ):
-	 *       Register a single module.
+	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version,
+	 *        $dependencies, $group, $source, $skip
+	 *     ):
+	 *        Register a single module.
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( array( $name1, $name2 ) ):
-	 *       Register modules with the given names.
+	 *        Register modules with the given names.
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( array(
 	 *        array( $name1, $version1, $dependencies1, $group1, $source1, $skip1 ),
