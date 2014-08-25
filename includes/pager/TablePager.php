@@ -42,9 +42,9 @@ abstract class TablePager extends IndexPager {
 			$this->mSort = $this->getDefaultSort();
 		}
 		if ( $this->getRequest()->getBool( 'asc' ) ) {
-			$this->mDefaultDirection = false;
+			$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
 		} elseif ( $this->getRequest()->getBool( 'desc' ) ) {
-			$this->mDefaultDirection = true;
+			$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		} /* Else leave it at whatever the class default is */
 
 		parent::__construct();
@@ -127,7 +127,7 @@ abstract class TablePager extends IndexPager {
 				if ( $this->mSort == $field ) {
 					// The table is sorted by this field already, make a link to sort in the other direction
 					// We don't actually know in which direction other fields will be sorted by default…
-					if ( $this->mDefaultDirection ) {
+					if ( $this->mDefaultDirection == IndexPager::DIR_DESCENDING ) {
 						$linkType = 'asc';
 						$class = "$sortClass TablePager_sort-descending";
 						$query['asc'] = '1';
