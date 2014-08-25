@@ -51,6 +51,61 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * Get the formatted result list. Calls getStartBody(), formatRow() and getEndBody(), concatenates
+	 * the results and returns them. Also adds the required styles to our OutputPage object (this
+	 * means that if context wasn't passed to constructor or otherwise set up, you will get a pager
+	 * with missing styles).
+	 *
+	 * Making this 'final', there's no reason to override it. If anyone is doing it now, they're
+	 * probably breaking the style loading hack, so let's fail fast rather than mysteriously render
+	 * things wrong.
+	 *
+	 * @deprecated since 1.24, use getBodyOutput() or getFullOutput() instead
+	 * @return string
+	 */
+	final public function getBody() {
+		$this->getOutput()->addModuleStyles( $this->getModuleStyles() );
+		return parent::getBody();
+	}
+
+	/**
+	 * Get the formatted result list.
+	 *
+	 * Calls getBody() and getModuleStyles() and builds a ParserOutput object. (This is a bit hacky
+	 * but works well.)
+	 *
+	 * @since 1.24
+	 * @return ParserOutput
+	 */
+	public function getBodyOutput() {
+		$body = parent::getBody();
+
+		$pout = new ParserOutput;
+		$pout->setText( $body );
+		$pout->addModuleStyles( $this->getModuleStyles() );
+		return $pout;
+	}
+
+	/**
+	 * Get the formatted result list, with navigation bars.
+	 *
+	 * Calls getBody(), getNavigationBar() and getModuleStyles() and
+	 * builds a ParserOutput object. (This is a bit hacky but works well.)
+	 *
+	 * @since 1.24
+	 * @return ParserOutput
+	 */
+	public function getFullOutput() {
+		$navigation = $this->getNavigationBar();
+		$body = parent::getBody();
+
+		$pout = new ParserOutput;
+		$pout->setText( $navigation . $body . $navigation );
+		$pout->addModuleStyles( $this->getModuleStyles() );
+		return $pout;
+	}
+
+	/**
 	 * @protected
 	 * @return string
 	 */
@@ -99,7 +154,6 @@ abstract class TablePager extends IndexPager {
 
 		$tableClass = $this->getTableClass();
 		$ret = Html::openElement( 'table', array(
-			'style' => 'border:1px;',
 			'class' => "mw-datatable $tableClass" )
 		);
 		$ret .= Html::rawElement( 'thead', array(), Html::rawElement( 'tr', array(), "\n" . $s . "\n" ) );
@@ -281,10 +335,22 @@ abstract class TablePager extends IndexPager {
 		$s .= Html::openElement( 'tr' ) . "\n";
 		$width = 100 / count( $links ) . '%';
 		foreach ( $labels as $type => $label ) {
-			$s .= Html::rawElement( 'td', array( 'style' => "width:$width;" ), $links[$type] ) . "\n";
+			// We want every cell to have the same width. We could use table-layout: fixed; in CSS,
+			// but it only works if we specify the width of a cell or the table and we don't want to.
+			// There is no better way. <http://www.w3.org/TR/CSS2/tables.html#fixed-table-layout>
+			$s .= Html::rawElement( 'td', array( 'style' => "width: $width;" ), $links[$type] ) . "\n";
 		}
 		$s .= Html::closeElement( 'tr' ) . Html::closeElement( 'table' ) . "\n";
 		return $s;
+	}
+
+	/**
+	 * ResourceLoader modules that must be loaded to provide correct styling for this pager
+	 * @since 1.24
+	 * @return string[]
+	 */
+	public function getModuleStyles() {
+		return array( 'mediawiki.pager.tablePager' );
 	}
 
 	/**

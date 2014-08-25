@@ -181,11 +181,7 @@ class SpecialBlockList extends SpecialPage {
 
 		$pager = new BlockListPager( $this, $conds );
 		if ( $pager->getNumRows() ) {
-			$out->addHTML(
-				$pager->getNavigationBar() .
-					$pager->getBody() .
-					$pager->getNavigationBar()
-			);
+			$out->addParserOutputContent( $pager->getFullOutput() );
 		} elseif ( $this->target ) {
 			$out->addWikiMsg( 'ipblocklist-no-results' );
 		} else {

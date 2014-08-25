@@ -79,11 +79,7 @@ class SpecialProtectedpages extends SpecialPage {
 		) );
 
 		if ( $pager->getNumRows() ) {
-			$this->getOutput()->addHTML(
-				$pager->getNavigationBar() .
-					$pager->getBody() .
-					$pager->getNavigationBar()
-			);
+			$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
 		} else {
 			$this->getOutput()->addWikiMsg( 'protectedpagesempty' );
 		}
