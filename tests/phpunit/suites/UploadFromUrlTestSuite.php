@@ -95,6 +95,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 	/**
 	 * Remove the dummy uploads directory
+	 * @param string $dir
 	 */
 	private function teardownUploadDir( $dir ) {
 		if ( $this->keepUploads ) {
