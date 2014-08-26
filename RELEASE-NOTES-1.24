@@ -65,6 +65,10 @@ production.
   may need to adjust your default user settings to compensate for the index change.
 * $wgDeferredUpdateList is now deprecated, you should use DeferredUpdates::addUpdate()
   instead.
+* Edit tokens returned from User::getEditToken may change on every call. Token
+  validity must be checked by passing the user-supplied token to
+  User::matchEditToken rather than by testing for equality with a
+  newly-generated token.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
@@ -171,6 +175,8 @@ production.
 * (bug 35045) Redirects to sections will now update the URL in browser's address
   bar using the HTML5 History API. When [[Dog]] redirects to [[Animals#Dog]],
   the user will now see "Animals#Dog" in their browser instead of "Dog#Dog".
+* Edit tokens may now be time-limited: passing a maximum age to
+  User::matchEditToken will reject any older tokens.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
