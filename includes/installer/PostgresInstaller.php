@@ -262,11 +262,11 @@ class PostgresInstaller extends DatabaseInstaller {
 		$status = Status::newGood();
 		foreach ( $dbs as $db ) {
 			try {
-				$conn = $this->openConnectionWithParams(
+				$conn = new DatabasePostgres(
+					$this->getVar( 'wgDBserver' ),
 					$user,
 					$password,
-					$db,
-					$this->getVar( 'wgDBmwschema' ) );
+					$db );
 			} catch ( DBConnectionError $error ) {
 				$conn = false;
 				$status->fatal( 'config-pg-test-error', $db,
