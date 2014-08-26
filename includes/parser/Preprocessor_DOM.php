@@ -1053,7 +1053,7 @@ class PPFrame_DOM implements PPFrame {
 				}
 			}
 		}
-		return new PPTemplateFrame_DOM( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
+		return new PPTemplateFrame_DOM( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title, $args );
 	}
 
 	/**
@@ -1560,7 +1560,7 @@ class PPFrame_DOM implements PPFrame {
 class PPTemplateFrame_DOM extends PPFrame_DOM {
 	// @codingStandardsIgnoreEnd
 
-	public $numberedArgs, $namedArgs;
+	public $numberedArgs, $namedArgs, $rawArgs;
 
 	/**
 	 * @var PPFrame_DOM
@@ -1576,7 +1576,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 * @param bool|Title $title
 	 */
 	public function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
-		$namedArgs = array(), $title = false
+		$namedArgs = array(), $title = false, $rawArgs = false
 	) {
 		parent::__construct( $preprocessor );
 
@@ -1584,6 +1584,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		$this->numberedArgs = $numberedArgs;
 		$this->namedArgs = $namedArgs;
 		$this->title = $title;
+		$this->rawArgs = $rawArgs;
 		$pdbk = $title ? $title->getPrefixedDBkey() : false;
 		$this->titleCache = $parent->titleCache;
 		$this->titleCache[] = $pdbk;
