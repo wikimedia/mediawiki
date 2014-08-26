@@ -35,11 +35,12 @@
 			id: b.imageId || undefined,
 			'class': 'mw-toolbar-editbutton'
 		} ).click( function ( e ) {
-			if ( $.isFunction( b.onClick ) ) {
+			if ( b.onClick !== undefined ) {
 				b.onClick( e );
 			} else {
 				toolbar.insertTags( b.tagOpen, b.tagClose, b.sampleText );
 			}
+
 			return false;
 		} );
 
@@ -48,6 +49,7 @@
 
 	isReady = false;
 	$toolbar = false;
+
 	/**
 	 * @private
 	 * @property {Array}
@@ -87,7 +89,10 @@
 			}
 		},
 		/**
+		 * Add multiple buttons to the toolbar (see also #addButton).
+		 *
 		 * Example usage:
+		 *
 		 *     addButtons( [ { .. }, { .. }, { .. } ] );
 		 *     addButtons( { .. }, { .. } );
 		 *
