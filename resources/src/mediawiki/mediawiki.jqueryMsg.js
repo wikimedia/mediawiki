@@ -1129,9 +1129,16 @@
 		 * @return {string} selected pluralized form according to current language
 		 */
 		plural: function ( nodes ) {
-			var forms, count;
+			var forms, formIndex, node, count;
 			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
 			forms = nodes.slice( 1 );
+			for ( formIndex = 0; formIndex < forms.length; formIndex++ ) {
+				node = forms[formIndex];
+				if ( node.jquery && node.hasClass( 'mediaWiki_htmlEmitter' )  ) {
+					// This is a nested node, already expanded.
+					forms[formIndex] = forms[formIndex].html();
+				}
+			}
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
 		},
 
