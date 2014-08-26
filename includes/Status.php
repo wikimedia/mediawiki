@@ -453,4 +453,21 @@ class Status {
 	public function getValue() {
 		return $this->value;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function __toString() {
+		$out = array( $this->isOK() ? "OK" : "Error" );
+		if ( count( $this->errors ) ) {
+			$out[] = "collected " . ( count($this->errors) ) . " error on the way";
+		}
+		if ( isset( $this->value ) ) {
+			$out[] = gettype( $this->value ) . " value set";
+			if ( is_object( $this->value ) ) {
+				$out[] = "\"" . get_class( $this->value ) . "\" instance";
+			}
+		}
+		return "(" . implode(", ", $out) . ")";
+	}
 }
