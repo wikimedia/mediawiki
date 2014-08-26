@@ -708,6 +708,7 @@ $wgAutoloadLocalClasses = array(
 	'MWCallableUpdate' => __DIR__ . '/includes/deferred/CallableUpdate.php',
 	'MWContentSerializationException' => __DIR__ . '/includes/content/ContentHandler.php',
 	'MWCryptHKDF' => __DIR__ . '/includes/utils/MWCryptHKDF.php',
+	'MWCryptHash' => __DIR__ . '/includes/utils/MWCryptHash.php',
 	'MWCryptRand' => __DIR__ . '/includes/utils/MWCryptRand.php',
 	'MWDebug' => __DIR__ . '/includes/debug/MWDebug.php',
 	'MWDocGen' => __DIR__ . '/maintenance/mwdocgen.php',
