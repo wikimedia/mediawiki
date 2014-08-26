@@ -205,6 +205,8 @@ production.
   necessary instead of incorrectly returning the default content model.
 
 === Web API changes in 1.24 ===
+* New action ClearHasMsg that can be used to flag all new messages on talk
+  page of user as read.
 * action=parse API now supports prop=modules, which provides the list of
   ResourceLoader modules that should be used to enhance the parsed content.
 * action=query&meta=siteinfo&siprop=interwikimap returns a new "protorel"

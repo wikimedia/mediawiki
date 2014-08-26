@@ -81,6 +81,7 @@ class ApiMain extends ApiBase {
 		'watch' => 'ApiWatch',
 		'patrol' => 'ApiPatrol',
 		'import' => 'ApiImport',
+		'clearhasmsg' => 'ApiClearHasMsg',
 		'userrights' => 'ApiUserrights',
 		'options' => 'ApiOptions',
 		'imagerotate' => 'ApiImageRotate',
