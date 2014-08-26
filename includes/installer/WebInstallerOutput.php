@@ -129,46 +129,50 @@ class WebInstallerOutput {
 		// We need the 'global' statement for $wgResourceModules because the Vector skin adds the
 		// definitions for its RL modules there that we use implicitly below.
 		// @codingStandardsIgnoreStart
+
 		global $wgResourceModules; // This is NOT UNUSED!
 		// @codingStandardsIgnoreEnd
 		global $wgStyleDirectory;
-		include_once "$wgStyleDirectory/Vector/Vector.php";
-
-		$moduleNames = array(
-			// See SkinTemplate::setupSkinUserCss
-			'mediawiki.legacy.shared',
-			// See Vector::setupSkinUserCss
-			'mediawiki.skinning.interface',
-			'skins.vector.styles',
-
-			'mediawiki.legacy.config',
-		);
-
 		$css = '';
 
-		$resourceLoader = new ResourceLoader();
-		$rlContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( array(
-				'debug' => 'true',
-				'lang' => $this->getLanguageCode(),
-				'only' => 'styles',
-				'skin' => 'vector',
-		) ) );
-		foreach ( $moduleNames as $moduleName ) {
-			/** @var ResourceLoaderFileModule $module */
-			$module = $resourceLoader->getModule( $moduleName );
-			// One of the modules will be missing if Vector is unavailable
-			if ( !$module ) {
-				continue;
+		if( file_exists( "$wgStyleDirectory/Vector/Vector.php" )) {
+			include_once "$wgStyleDirectory/Vector/Vector.php";
+
+			$moduleNames = array(
+				// See SkinTemplate::setupSkinUserCss
+				'mediawiki.legacy.shared',
+				// See Vector::setupSkinUserCss
+				'mediawiki.skinning.interface',
+				'skins.vector.styles',
+
+				'mediawiki.legacy.config',
+			);
+
+
+			$resourceLoader = new ResourceLoader();
+			$rlContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( array(
+					'debug' => 'true',
+					'lang' => $this->getLanguageCode(),
+					'only' => 'styles',
+					'skin' => 'vector',
+			) ) );
+			foreach ( $moduleNames as $moduleName ) {
+				/** @var ResourceLoaderFileModule $module */
+				$module = $resourceLoader->getModule( $moduleName );
+				// One of the modules will be missing if Vector is unavailable
+				if ( !$module ) {
+					continue;
+				}
+
+				// Based on: ResourceLoaderFileModule::getStyles (without the DB query)
+				$styles = ResourceLoader::makeCombinedStyles( $module->readStyleFiles(
+					$module->getStyleFiles( $rlContext ),
+					$module->getFlip( $rlContext )
+				) );
+
+				$css .= implode( "\n", $styles );
 			}
-
-			// Based on: ResourceLoaderFileModule::getStyles (without the DB query)
-			$styles = ResourceLoader::makeCombinedStyles( $module->readStyleFiles(
-				$module->getStyleFiles( $rlContext ),
-				$module->getFlip( $rlContext )
-			) );
-
-			$css .= implode( "\n", $styles );
-		}
+		} /* HAVE_VECTOR */
 
 		return $css;
 	}
