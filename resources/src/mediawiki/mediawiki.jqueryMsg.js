@@ -1129,10 +1129,49 @@
 		 * @return {string} selected pluralized form according to current language
 		 */
 		plural: function ( nodes ) {
-			var forms, count;
+			var forms, count, plural, i, temp = [];
 			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
 			forms = nodes.slice( 1 );
-			return forms.length ? this.language.convertPlural( count, forms ) : '';
+
+			if ( forms.length === 0 ) {
+				return '';
+			}
+
+			/*
+			 * this.language.convertPlural will attempt to parse n= prefixes out
+			 * of strings. However, we're dealing with $( '<span>' ) objects
+			 * here, which it won't know what to do with.
+			 * Let's just quickly grab the HTML and stuff that in a temp array
+			 * to feed to convertPlural().
+			 */
+			for ( i = 0; i < forms.length; i++ ) {
+				temp[i] = forms[i].html();
+			}
+			plural = this.language.convertPlural( count, temp );
+
+			/*
+			 * Now that we've found the proper plural form to use, locate it in
+			 * the temp array. The original span object will then be in the
+			 * forms array at the same index.
+			 */
+			i = temp.indexOf( plural );
+			if ( i >= 0 ) {
+				return forms[i];
+			}
+
+			/*
+			 * If we failed to locate the plural form in the temp array, it's
+			 * probably because a n= prefix was specified that is now cut off.
+			 * Since n= prefix was parsed out as a separate text node, we'll
+			 * now have to get rid of it - it's served its purpose!
+			 */
+			i = temp.indexOf( count + '=' + plural );
+			if ( i >= 0 ) {
+				forms[i].contents()[0].remove();
+				return forms[i];
+			}
+
+			return '';
 		},
 
 		/**
