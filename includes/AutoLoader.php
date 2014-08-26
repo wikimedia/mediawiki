@@ -301,6 +301,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
 	'ApiQueryStashImageInfo' => 'includes/api/ApiQueryStashImageInfo.php',
 	'ApiQueryTags' => 'includes/api/ApiQueryTags.php',
+	'ApiQueryTokens' => 'includes/api/ApiQueryTokens.php',
 	'ApiQueryUserInfo' => 'includes/api/ApiQueryUserInfo.php',
 	'ApiQueryUsers' => 'includes/api/ApiQueryUsers.php',
 	'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',

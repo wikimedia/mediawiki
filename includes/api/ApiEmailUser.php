@@ -94,10 +94,6 @@ class ApiEmailUser extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'ccme' => false,
 		);
 	}
@@ -107,7 +103,6 @@ class ApiEmailUser extends ApiBase {
 			'target' => 'User to send email to',
 			'subject' => 'Subject header',
 			'text' => 'Mail body',
-			'token' => 'A token previously acquired via prop=info',
 			'ccme' => 'Send a copy of this mail to me',
 		);
 	}
@@ -117,16 +112,12 @@ class ApiEmailUser extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {
 		return array(
-			'api.php?action=emailuser&target=WikiSysop&text=Content'
+			'api.php?action=emailuser&target=WikiSysop&text=Content&token=123ABC'
 				=> 'Send an email to the User "WikiSysop" with the text "Content"',
 		);
 	}

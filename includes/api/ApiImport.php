@@ -99,10 +99,6 @@ class ApiImport extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'summary' => null,
 			'xml' => array(
 				ApiBase::PARAM_TYPE => 'upload',
@@ -122,7 +118,6 @@ class ApiImport extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'token' => 'Import token obtained through prop=info',
 			'summary' => 'Import summary',
 			'xml' => 'Uploaded XML file',
 			'interwikisource' => 'For interwiki imports: wiki to import from',
@@ -143,11 +138,7 @@ class ApiImport extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {

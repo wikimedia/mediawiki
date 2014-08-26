@@ -188,10 +188,6 @@ class ApiDelete extends ApiBase {
 			'pageid' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
-			),
 			'reason' => null,
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
@@ -220,7 +216,6 @@ class ApiDelete extends ApiBase {
 		return array(
 			'title' => "Title of the page you want to delete. Cannot be used together with {$p}pageid",
 			'pageid' => "Page ID of the page you want to delete. Cannot be used together with {$p}title",
-			'token' => 'A delete token previously retrieved through prop=info',
 			'reason'
 				=> 'Reason for the deletion. If not set, an automatically generated reason will be used',
 			'watch' => 'Add the page to your watchlist',
@@ -236,11 +231,7 @@ class ApiDelete extends ApiBase {
 	}
 
 	public function needsToken() {
-		return true;
-	}
-
-	public function getTokenSalt() {
-		return '';
+		return 'csrf';
 	}
 
 	public function getExamples() {
