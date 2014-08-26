@@ -521,8 +521,8 @@ class MediaWiki {
 			$this->context->setTitle( $title );
 			$wgTitle = $title;
 
-			$dispatcher = new AjaxDispatcher();
-			$dispatcher->performAction();
+			$dispatcher = new AjaxDispatcher( $this->config );
+			$dispatcher->performAction( $this->context->getUser() );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
