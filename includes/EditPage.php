@@ -1893,7 +1893,7 @@ class EditPage {
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
 		$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
-														false, null, $this->contentFormat );
+														false, null, $content->getDefaultFormat() );
 
 		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
