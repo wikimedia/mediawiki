@@ -2050,7 +2050,9 @@ class EditPage {
 	function setHeaders() {
 		global $wgOut, $wgUser;
 
-		$wgOut->addModules( 'mediawiki.action.edit' );
+		if ( $wgUser->getOption( 'showtoolbar', false ) ) {
+			$wgOut->addModules( 'mediawiki.action.edit' );
+		}
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
