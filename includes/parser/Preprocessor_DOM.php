@@ -1033,7 +1033,7 @@ class PPFrame_DOM implements PPFrame {
 				if ( $arg instanceof PPNode ) {
 					$arg = $arg->node;
 				}
-				if ( !$xpath ) {
+				if ( !$xpath || $xpath->document !== $arg->ownerDocument ) {
 					$xpath = new DOMXPath( $arg->ownerDocument );
 				}
 
