@@ -181,7 +181,12 @@ class WebRequest {
 				continue;
 			}
 			$host = $parts[0];
-			if ( $parts[1] === false ) {
+			if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
+				// Bug 70021: Assume that upstream proxy is running on the default
+				// port based on the protocol. We have no reliable way to determine
+				// the actual port in use upstream.
+				$port = $stdPort;
+			} elseif ( $parts[1] === false ) {
 				if ( isset( $_SERVER['SERVER_PORT'] ) ) {
 					$port = $_SERVER['SERVER_PORT'];
 				} // else leave it as $stdPort
