@@ -42,8 +42,8 @@ production.
   configurations are $wgDeletedDirectory and $wgHashedUploadDirectory.
 * The deprecated $wgUseCommaCount variable has been removed.
 * $wgEnableSorbs and $wgSorbsUrl have been removed.
-* The UserCryptPassword and UserComparePassword hooks are no longer called. Any extensions
-  using them must be updated to use the Password Hashing API.
+* The UserCryptPassword and UserComparePassword hooks are no longer called.
+  Any extensions using them must be updated to use the Password Hashing API.
 * $wgCompiledFiles has been removed.
 * $wgSortSpecialPages was removed, the listing on Special:SpecialPages is
   now always sorted.
@@ -65,6 +65,9 @@ production.
   may need to adjust your default user settings to compensate for the index change.
 * $wgDeferredUpdateList is now deprecated, you should use DeferredUpdates::addUpdate()
   instead.
+* $wgCanonicalLanguageLinks has been removed. Per Google recommendations, we
+  will not send a rel=canonical pointing to a variant-neutral page, however
+  we will send rel=alternate.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
