@@ -71,11 +71,18 @@ class AjaxResponse {
 	private $mText;
 
 	/**
-	 * @param string|null $text
+	 * @var Config
 	 */
-	function __construct( $text = null ) {
+	private $mConfig;
+
+	/**
+	 * @param string|null $text
+	 * @param Config|null $config
+	 */
+	function __construct( $text = null, Config $config = null ) {
 		$this->mCacheDuration = null;
 		$this->mVary = null;
+		$this->mConfig = $config ?: ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 
 		$this->mDisabled = false;
 		$this->mText = '';
@@ -150,8 +157,6 @@ class AjaxResponse {
 	 * Construct the header and output it
 	 */
 	function sendHeaders() {
-		global $wgUseSquid, $wgUseESI;
-
 		if ( $this->mResponseCode ) {
 			$n = preg_replace( '/^ *(\d+)/', '\1', $this->mResponseCode );
 			header( "Status: " . $this->mResponseCode, true, (int)$n );
@@ -170,12 +175,12 @@ class AjaxResponse {
 			# and tell the client to always check with the squid. Otherwise,
 			# tell the client to use a cached copy, without a way to purge it.
 
-			if ( $wgUseSquid ) {
+			if ( $this->mConfig->get( 'UseSquid' ) ) {
 				# Expect explicit purge of the proxy cache, but require end user agents
 				# to revalidate against the proxy on each visit.
 				# Surrogate-Control controls our Squid, Cache-Control downstream caches
 
-				if ( $wgUseESI ) {
+				if ( $this->mConfig->get( 'UseESI' ) ) {
 					header( 'Surrogate-Control: max-age=' . $this->mCacheDuration . ', content="ESI/1.0"' );
 					header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
