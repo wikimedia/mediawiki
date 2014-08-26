@@ -313,6 +313,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiTokens' => 'includes/api/ApiTokens.php',
 	'ApiUnblock' => 'includes/api/ApiUnblock.php',
 	'ApiUndelete' => 'includes/api/ApiUndelete.php',
+        'ApiUnflagNewMessage' => 'includes/api/ApiUnflagNewMessage.php',
 	'ApiUpload' => 'includes/api/ApiUpload.php',
 	'ApiUserrights' => 'includes/api/ApiUserrights.php',
 	'ApiWatch' => 'includes/api/ApiWatch.php',
