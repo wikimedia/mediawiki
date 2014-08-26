@@ -2051,6 +2051,9 @@ class EditPage {
 		global $wgOut, $wgUser;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
+		if ( $wgUser->getOption( 'showtoolbar', false ) ) {
+			$wgOut->addModules( 'mediawiki.action.edit.toolbar' );
+		}
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
@@ -3637,7 +3640,7 @@ HTML
 			)
 		);
 
-		$script = 'mw.loader.using("mediawiki.action.edit", function() {';
+		$script = 'mw.loader.using("mediawiki.action.edit.toolbar", function() {';
 		foreach ( $toolarray as $tool ) {
 			if ( !$tool ) {
 				continue;

@@ -982,8 +982,14 @@ return array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.js',
 		'dependencies' => array(
 			'mediawiki.action.edit.styles',
-			'jquery.textSelection',
 			'jquery.byteLimit',
+		),
+		'position' => 'top',
+	),
+	'mediawiki.action.edit.toolbar' => array(
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.toolbar.js',
+		'dependencies' => array(
+			'jquery.textSelection',
 		),
 		'position' => 'top',
 	),
