@@ -2082,6 +2082,8 @@
 	"import": "אימפארטירן בלעטער",
 	"importinterwiki": "אריבערוויקי אימפארט",
 	"import-interwiki-text": "קלויבט אויס א וויקי און אן ארטיקל קעפל צו אימפארטירן.\nדי דאטעס און די נעמען פון די רעדאקטארן וועט ווערן געהיטן.\nאלע צווישנוויקי אימפארט אקציעס ווערן פארשריבן אינעם   [[Special:Log/import|אימפארט לאג]].",
+	"import-interwiki-sourcewiki": "מקור וויקי:",
+	"import-interwiki-sourcepage": "מקור בלאַט:",
 	"import-interwiki-history": "קאפירן אלע היסטאריע ווערסיעס פאר דעם בלאט",
 	"import-interwiki-templates": "איינשילסן אלע מוסטערן",
 	"import-interwiki-submit": "אימפארט",

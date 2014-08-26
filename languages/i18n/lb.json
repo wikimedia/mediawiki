@@ -732,6 +732,7 @@
 	"revdelete-selected-file": "{{PLURAL:$1|Erausgesicht Versioun|Erausgesicht Versioune}} vum Fichier vu(n) [[:$2]]:",
 	"logdelete-selected": "Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:",
 	"revdelete-text-text": "Geläscht Versioune bleiwen am Historique vun der Säit, awer Deeler vun hirem Inhalt sinn net ëffentlech zougänglech.",
+	"revdelete-text-file": "Geläscht Versioune vu Fichiere bleiwen am Historique vum Fichier awer Deeler vun hirem Inhalt sinn net ëffentlech zougänglech.",
 	"revdelete-text-others": "Aner Administrateure kënnen nach ëmmer de verstoppten Inhalt gesinn an en nees restauréieren, ausser wann zousätzlech Limitatiounen agestallt sinn.",
 	"revdelete-confirm": "Confirméiert w.e.g. datt Dir dat maache wëllt, datt Dir d'Konsequenze verstitt an datt Dir dëst an Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
 	"revdelete-suppress-text": "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:\n* Informatiounen déi beleidege kéinten\n* Net ubruechte perséinlechen Informatiounen\n*: ''Adressen, Telefonsnummeren, Sozialversécherungsnummeren asw.''",

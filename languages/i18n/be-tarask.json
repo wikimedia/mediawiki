@@ -2136,6 +2136,8 @@
 	"import": "Імпартаваць старонкі",
 	"importinterwiki": "Імпартаваньне зь іншых вікі",
 	"import-interwiki-text": "Абярыце вікі і назву старонкі для імпартаваньня.\nДаты зьменаў і імёны аўтараў будуць захаваныя.\nУсе дзеяньні імпартаваньня паміж вікі запісваюцца ў [[Special:Log/import|журнал імпартаваньняў]].",
+	"import-interwiki-sourcewiki": "Крынічная вікі:",
+	"import-interwiki-sourcepage": "Крынічная старонка:",
 	"import-interwiki-history": "Капіяваць гісторыю старонкі цалкам",
 	"import-interwiki-templates": "Уключыць усе шаблёны",
 	"import-interwiki-submit": "Імпартаваць",

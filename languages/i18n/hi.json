@@ -711,7 +711,7 @@
 	"node-count-exceeded-category-desc": "यह उन पृष्ठों की श्रेणी है जिनमें नोड-संख्या सीमा पार की गयी है।",
 	"node-count-exceeded-warning": "पृष्ठ ने नोड-संख्या पार की है",
 	"expansion-depth-exceeded-category": "पृष्ठ जिनमें विस्तार गहराई पार की गई है",
-	"expansion-depth-exceeded-category-desc": "यह उन पृष्ठों की श्रेणी है जिनमें विस्तार गहराई पार की गयी है।",
+	"expansion-depth-exceeded-category-desc": "यह पृष्ठ विस्तार गहराई पार करता है।",
 	"expansion-depth-exceeded-warning": "पृष्ठ में विस्तार गहराई पार की गई है",
 	"parser-unstrip-loop-warning": "Unstrip लूप पाया गया",
 	"parser-unstrip-recursion-limit": "Unstrip पुनरावर्तन सीमा पार की गई ($1)",

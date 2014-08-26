@@ -38,7 +38,8 @@
 			"관인생략",
 			"아라",
 			"Keysuck",
-			"Infinity"
+			"Infinity",
+			"Bluemersen"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -55,6 +56,7 @@
 	"tog-watchdefault": "내가 편집하는 문서와 파일을 주시문서 목록에 추가",
 	"tog-watchmoves": "내가 이동하는 문서와 파일을 주시문서 목록에 추가",
 	"tog-watchdeletion": "내가 삭제하는 문서와 파일을 주시문서 목록에 추가",
+	"tog-watchrollback": "내가 되돌리기 기능을 사용한 문서를 주시문서 목록에 추가",
 	"tog-minordefault": "모든 편집에 기본적으로 사소한 편집을 표시",
 	"tog-previewontop": "편집 상자 앞에 미리 보기 보이기",
 	"tog-previewonfirst": "처음 편집할 때 미리 보기 보이기",

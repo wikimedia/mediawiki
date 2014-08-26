@@ -1003,7 +1003,7 @@
 	"rcshowhidebots": "$1 botus",
 	"rcshowhideliu": "$1 reģistrētos lietotājus",
 	"rcshowhideanons": "$1 anonīmos",
-	"rcshowhidepatr": "$1 pārbaudītie labojumi",
+	"rcshowhidepatr": "$1 pārbaudītos labojumus",
 	"rcshowhidemine": "$1 manus",
 	"rclinks": "Parādīt pēdējās $1 izmaiņas pēdējās $2 dienās.<br />$3",
 	"diff": "izmaiņas",
