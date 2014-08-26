@@ -258,29 +258,22 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !in_array( $this->getVar( 'wgDBname' ), $dbs ) ) {
 			array_unshift( $dbs, $this->getVar( 'wgDBname' ) );
 		}
-		$conn = false;
-		$status = Status::newGood();
 		foreach ( $dbs as $db ) {
 			try {
-				$conn = $this->openConnectionWithParams(
+				$status = $this->openConnectionWithParams(
 					$user,
 					$password,
 					$db,
 					$this->getVar( 'wgDBmwschema' ) );
 			} catch ( DBConnectionError $error ) {
-				$conn = false;
 				$status->fatal( 'config-pg-test-error', $db,
 					$error->getMessage() );
 			}
-			if ( $conn !== false ) {
+			if ( $status->isOK() ) {
 				break;
 			}
 		}
-		if ( $conn !== false ) {
-			return Status::newGood( $conn );
-		} else {
-			return $status;
-		}
+		return $status;
 	}
 
 	protected function getInstallUserPermissions() {
