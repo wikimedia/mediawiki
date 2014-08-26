@@ -995,7 +995,7 @@ class PPFrame_Hash implements PPFrame {
 				}
 			}
 		}
-		return new PPTemplateFrame_Hash( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
+		return new PPTemplateFrame_Hash( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title, $args );
 	}
 
 	/**
@@ -1478,7 +1478,7 @@ class PPFrame_Hash implements PPFrame {
 class PPTemplateFrame_Hash extends PPFrame_Hash {
 	// @codingStandardsIgnoreEnd
 
-	public $numberedArgs, $namedArgs, $parent;
+	public $numberedArgs, $namedArgs, $rawArgs, $parent;
 	public $numberedExpansionCache, $namedExpansionCache;
 
 	/**
@@ -1489,7 +1489,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 * @param bool|Title $title
 	 */
 	public function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
-		$namedArgs = array(), $title = false
+		$namedArgs = array(), $title = false, $rawArgs = false
 	) {
 		parent::__construct( $preprocessor );
 
@@ -1497,6 +1497,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		$this->numberedArgs = $numberedArgs;
 		$this->namedArgs = $namedArgs;
 		$this->title = $title;
+		$this->rawArgs = $rawArgs;
 		$pdbk = $title ? $title->getPrefixedDBkey() : false;
 		$this->titleCache = $parent->titleCache;
 		$this->titleCache[] = $pdbk;
