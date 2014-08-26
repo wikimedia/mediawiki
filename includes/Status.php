@@ -453,4 +453,11 @@ class Status {
 	public function getValue() {
 		return $this->value;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->isOK() ? "(OK)" : "(Error)";
+	}
 }
