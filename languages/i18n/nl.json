@@ -1656,7 +1656,7 @@
 	"linksearch-pat": "Zoekpatroon:",
 	"linksearch-ns": "Naamruimte:",
 	"linksearch-ok": "Zoeken",
-	"linksearch-text": "Wildcards zoals \"*.wikipedia.org\" of \"*.org\" zijn toegestaan.\nHeeft tenminste een topleveldomein nodig, zoals bijvoorbeeld \"*.org\".<br />\n{{PLURAL:$2|Ondersteund protocol|Ondersteunde protocollen}}: <code>$1</code> (wordt \"http://\"als er geen protocol wordt opgegeven).",
+	"linksearch-text": "Wildcards zoals \"*.wikipedia.org\" of \"*.org\" zijn toegestaan.\nHeeft tenminste een topleveldomein nodig, zoals bijvoorbeeld \"*.org\".<br />\n{{PLURAL:$2|Ondersteund protocol|Ondersteunde protocollen}}: <code>$1</code> (wordt \"http://\" als er geen protocol wordt opgegeven).",
 	"linksearch-line": "$1 heeft een koppeling in $2",
 	"linksearch-error": "Wildcards zijn alleen toegestaan aan het begin van een hostnaam.",
 	"listusersfrom": "Gebruikers bekijken vanaf:",

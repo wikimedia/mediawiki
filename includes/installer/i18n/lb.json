@@ -100,6 +100,7 @@
 	"config-missing-db-name": "Dir musst e Wäert fir \"{{int:config-db-name}}\" aginn",
 	"config-missing-db-host": "Dir musst e Wäert fir \"{{int:config-db-host}}\" aginn.",
 	"config-missing-db-server-oracle": "Dir musst e Wäert fir \"{{int:config-db-host-oracle}}\" aginn",
+	"config-connection-error": "$1.\n\nKuckt den Numm vum Server, de Benotzernumm an d'Passwuert no a probéiert et nach eng Kéier.",
 	"config-db-sys-user-exists-oracle": "De Benotzerkont \"$1\" gëtt et schonn. SYSDBA kann nëmme benotzt gi fir en neie Benotzerkont opzemaachen.",
 	"config-postgres-old": "PostgreSQL $1 oder eng méi nei Versioun gëtt gebraucht, Dir hutt $2.",
 	"config-mssql-old": "Microsoft SQL Server $1 oder eng méi rezent Versioun gëtt gebraucht. Dir hutt d'Versioun $2.",

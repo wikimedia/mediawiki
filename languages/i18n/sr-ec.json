@@ -428,7 +428,7 @@
 	"createacct-another-submit": "Отвори још један налог",
 	"createacct-benefit-heading": "{{SITENAME}} је направљен од стране људи као што сте ви.",
 	"createacct-benefit-body1": "{{PLURAL:$1|измена}}",
-	"createacct-benefit-body2": "{{PLURAL:$1|страница}}",
+	"createacct-benefit-body2": "{{PLURAL:$1|страница|странице}}",
 	"createacct-benefit-body3": "скорашњих {{PLURAL:$1|доприноса}}",
 	"badretype": "Унете лозинке се не поклапају.",
 	"userexists": "Корисничко име је заузето. Изаберите друго.",
