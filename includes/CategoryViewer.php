@@ -87,12 +87,11 @@ class CategoryViewer extends ContextSource {
 	function __construct( $title, IContextSource $context, $from = array(),
 		$until = array(), $query = array()
 	) {
-		global $wgCategoryPagingLimit;
 		$this->title = $title;
 		$this->setContext( $context );
 		$this->from = $from;
 		$this->until = $until;
-		$this->limit = $wgCategoryPagingLimit;
+		$this->limit = $context->getConfig()->get( 'CategoryPagingLimit' );
 		$this->cat = Category::newFromTitle( $title );
 		$this->query = $query;
 		$this->collation = Collation::singleton();
@@ -105,10 +104,10 @@ class CategoryViewer extends ContextSource {
 	 * @return string HTML output
 	 */
 	public function getHTML() {
-		global $wgCategoryMagicGallery;
 		wfProfileIn( __METHOD__ );
 
-		$this->showGallery = $wgCategoryMagicGallery && !$this->getOutput()->mNoGallery;
+		$this->showGallery = $this->getConfig()->get( 'CategoryMagicGallery' )
+			&& !$this->getOutput()->mNoGallery;
 
 		$this->clearCategoryState();
 		$this->doCategoryQuery();
