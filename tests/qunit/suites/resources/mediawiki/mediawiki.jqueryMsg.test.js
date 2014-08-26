@@ -40,7 +40,8 @@
 			'gender-msg-currentuser': '{{GENDER:|blue|pink|green}}',
 
 			'plural-msg': 'Found $1 {{PLURAL:$1|item|items}}',
-
+			// See https://bugzilla.wikimedia.org/69993
+			'plural-msg-explicit-forms-nested': 'Found {{PLURAL:$1|$1 results|0=no results in {{SITENAME}}|1=$1 result}}',
 			// Assume the grammar form grammar_case_foo is not valid in any language
 			'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
 
@@ -134,10 +135,13 @@
 		);
 	} );
 
-	QUnit.test( 'Plural', 3, function ( assert ) {
+	QUnit.test( 'Plural', 6, function ( assert ) {
 		assert.equal( formatParse( 'plural-msg', 0 ), 'Found 0 items', 'Plural test for english with zero as count' );
 		assert.equal( formatParse( 'plural-msg', 1 ), 'Found 1 item', 'Singular test for english' );
 		assert.equal( formatParse( 'plural-msg', 2 ), 'Found 2 items', 'Plural test for english' );
+		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 6 ), 'Found 6 results', 'Plural message with explicit plural forms' );
+		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 0 ), 'Found no results in ' + mw.config.get( 'wgSiteName' ), 'Plural message with explicit plural forms, with nested {{SITENAME}}' );
+		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 1 ), 'Found 1 result', 'Plural message with explicit plural forms with placeholder nested' );
 	} );
 
 	QUnit.test( 'Gender', 15, function ( assert ) {
