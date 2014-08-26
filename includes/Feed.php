@@ -258,20 +258,11 @@ abstract class ChannelFeed extends FeedItem {
 	}
 
 	/**
-	 * Output the initial XML headers with a stylesheet for legibility
-	 * if someone finds it in a browser.
+	 * Output the initial XML headers.
 	 */
 	protected function outXmlHeader() {
-		global $wgStylePath, $wgStyleVersion;
-
 		$this->httpHeaders();
 		echo '<?xml version="1.0"?>' . "\n";
-		echo '<?xml-stylesheet type="text/css" href="' .
-			htmlspecialchars( wfExpandUrl(
-				"$wgStylePath/common/feed.css?$wgStyleVersion",
-				PROTO_CURRENT
-			) ) .
-			'"?' . ">\n";
 	}
 }
 
