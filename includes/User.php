@@ -3877,6 +3877,33 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Internal implementation for self::getEditToken() and
+	 * self::matchEditToken().
+	 *
+	 * @param string|array $salt
+	 * @param WebRequest $request
+	 * @param string|int $timestamp
+	 * @return string
+	 */
+	private function getEditTokenAtTimestamp( $salt, $request, $timestamp ) {
+		if ( $this->isAnon() ) {
+			return self::EDIT_TOKEN_SUFFIX;
+		} else {
+			$token = $request->getSessionData( 'wsEditToken' );
+			if ( $token === null ) {
+				$token = MWCryptRand::generateHex( 32 );
+				$request->setSessionData( 'wsEditToken', $token );
+			}
+			if ( is_array( $salt ) ) {
+				$salt = implode( '|', $salt );
+			}
+			return hash_hmac( 'md5', $timestamp . $salt, $token, false ) .
+				dechex( $timestamp ) .
+				self::EDIT_TOKEN_SUFFIX;
+		}
+	}
+
+	/**
 	 * Initialize (if necessary) and return a session token value
 	 * which can be used in edit forms to show that the user's
 	 * login credentials aren't being hijacked with a foreign form
@@ -3889,23 +3916,9 @@ class User implements IDBAccessObject {
 	 * @return string The new edit token
 	 */
 	public function getEditToken( $salt = '', $request = null ) {
-		if ( $request == null ) {
-			$request = $this->getRequest();
-		}
-
-		if ( $this->isAnon() ) {
-			return self::EDIT_TOKEN_SUFFIX;
-		} else {
-			$token = $request->getSessionData( 'wsEditToken' );
-			if ( $token === null ) {
-				$token = MWCryptRand::generateHex( 32 );
-				$request->setSessionData( 'wsEditToken', $token );
-			}
-			if ( is_array( $salt ) ) {
-				$salt = implode( '|', $salt );
-			}
-			return md5( $token . $salt ) . self::EDIT_TOKEN_SUFFIX;
-		}
+		return $this->getEditTokenAtTimestamp(
+			$salt, $request ?: $this->getRequest(), wfTimestamp()
+		);
 	}
 
 	/**
@@ -3928,15 +3941,34 @@ class User implements IDBAccessObject {
 	 * @param string $val Input value to compare
 	 * @param string $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use or null to use $wgRequest
+	 * @param int $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
 	 */
-	public function matchEditToken( $val, $salt = '', $request = null ) {
-		$sessionToken = $this->getEditToken( $salt, $request );
+	public function matchEditToken( $val, $salt = '', $request = null, $maxage = null ) {
+		if ( $this->isAnon() ) {
+			return $val === self::EDIT_TOKEN_SUFFIX;
+		}
+
+		$suffixLen = strlen( self::EDIT_TOKEN_SUFFIX );
+		if ( strlen( $val ) <= 32 + $suffixLen ) {
+			return false;
+		}
+
+		$timestamp = hexdec( substr( $val, 32, -$suffixLen ) );
+		if ( $maxage !== null && $timestamp < wfTimestamp() - $maxage ) {
+			// Expired token
+			return false;
+		}
+
+		$sessionToken = $this->getEditTokenAtTimestamp(
+			$salt, $request ?: $this->getRequest(), $timestamp
+		);
+
 		if ( $val != $sessionToken ) {
 			wfDebug( "User::matchEditToken: broken session data\n" );
 		}
 
-		return $val == $sessionToken;
+		return hash_equals( $sessionToken, $val );
 	}
 
 	/**
@@ -3946,11 +3978,12 @@ class User implements IDBAccessObject {
 	 * @param string $val Input value to compare
 	 * @param string $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use or null to use $wgRequest
+	 * @param int $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
 	 */
-	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null ) {
-		$sessionToken = $this->getEditToken( $salt, $request );
-		return substr( $sessionToken, 0, 32 ) == substr( $val, 0, 32 );
+	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null, $maxage = null ) {
+		$val = substr( $val, 0, strspn( $val, '0123456789abcdef' ) ) . self::EDIT_TOKEN_SUFFIX;
+		return $this->matchEditToken( $val, $salt, $request, $maxage );
 	}
 
 	/**

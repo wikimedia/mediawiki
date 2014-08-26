@@ -12,6 +12,10 @@ production.
 * $wgPageShowWatchingUsers was removed.
 * $wgLocalVirtualHosts has been added to replace $wgConf->localVHosts.
 * $wgAntiLockFlags was removed.
+* Edit tokens returned from User::getEditToken may change on every call. Token
+  validity must be checked by passing the user-supplied token to
+  User::matchEditToken rather than by testing for equality with a
+  newly-generated token.
 
 === New features in 1.25 ===
 * (bug 58139) ResourceLoaderFileModule now supports language fallback
@@ -33,6 +37,8 @@ production.
   - Usage instructions: https://www.mediawiki.org/wiki/Help:Page_status_indicators
   - Adjusting custom skins to support indicators:
     https://www.mediawiki.org/wiki/Manual:Skinning#Page_status_indicators
+* Edit tokens may now be time-limited: passing a maximum age to
+  User::matchEditToken will reject any older tokens.
 
 === Bug fixes in 1.25 ===
 * (bug 71003) No additional code will be generated to try to load CSS-embedded
