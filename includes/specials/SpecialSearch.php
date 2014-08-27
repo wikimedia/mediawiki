@@ -367,10 +367,8 @@ class SpecialSearch extends SpecialPage {
 					$this->limit + $this->offset >= $totalRes
 				);
 			}
-			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
-		} else {
-			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
 		}
+		wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
 
 		$out->parserOptions()->setEditSection( false );
 		if ( $titleMatches ) {
