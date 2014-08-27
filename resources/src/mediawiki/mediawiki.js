@@ -1752,9 +1752,29 @@
 						implementations = [];
 						sourceModules = [];
 						batch = $.grep( batch, function ( module ) {
-							var implementation = mw.loader.store.get( module );
+							var sourceURL,
+								implementation = mw.loader.store.get( module );
 							if ( implementation ) {
-								implementations.push( implementation );
+								// Set sourceURL to where this cached code originally came from.
+								// This is used by debug tools in the browser.
+								sourceURL = sources[ registry[ module ].source ] + '?' +
+									// Based on batchRequest() and doRequest()
+									$.param( sortQuery( {
+										skin: mw.config.get( 'skin' ),
+										lang: mw.config.get( 'wgUserLanguage' ),
+										debug: mw.config.get( 'debug' ),
+										modules: module,
+										version: mw.loader.getVersion( module )
+									} ) );
+								// Add server to relative path
+								if ( sourceURL.match( /^\/[^/]/ ) ) {
+									sourceURL = mw.config.get( 'wgServer' ) + sourceURL;
+								}
+								// Add protocol to protocol-relative url
+								if ( sourceURL.indexOf( '//' ) === 0 ) {
+									sourceURL = location.protocol + sourceURL;
+								}
+								implementations.push( implementation + '\n//# sourceURL=' + sourceURL );
 								sourceModules.push( module );
 								return false;
 							}
