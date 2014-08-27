@@ -89,7 +89,7 @@ class ImageListPager extends TablePager {
 		$this->mIncluding = $including;
 		$this->mShowAll = $showAll;
 
-		if ( $userName ) {
+		if ( $userName !== null && $userName !== '' ) {
 			$nt = Title::newFromText( $userName, NS_USER );
 			if ( !is_null( $nt ) ) {
 				$this->mUserName = $nt->getText();
