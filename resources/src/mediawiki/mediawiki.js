@@ -1485,7 +1485,7 @@
 				 */
 				work: function () {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
-						source, concatSource, origBatch, group, g, i, modules, maxVersion, sourceLoadScript,
+						source, concatSource, origBatch, s, group, g, i, modules, maxVersion, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
 						lastDotIndex, prefix, suffix, bytesAdded, async;
 
@@ -1517,15 +1517,31 @@
 						concatSource = [];
 						origBatch = batch;
 						batch = $.grep( batch, function ( module ) {
-							var source = mw.loader.store.get( module );
+							// The fake URL needs to be same-domain as Chrome will suppress error
+							// details otherwise. It also needs to return the module source, so
+							// error logging tools can fetch it. There might be a version mismatch
+							// but that should happen infrequently. That will be fixed when this is
+							// superseded by source maps.
+							var fakeSourceUri,
+								source = mw.loader.store.get( module );
 							if ( source ) {
-								concatSource.push( source );
+								fakeSourceUri = mw.config.get( 'wgServer' )
+									+ mw.config.get( 'wgScriptPath' ) + '/load.php'
+									+ '?modules=' + module
+									+ '&debug=' + mw.config.get( 'debug' )
+									+ '&lang=' + mw.config.get( 'wgUserLanguage' )
+									+ '&skin=' + mw.config.get( 'skin' );
+								concatSource.push( source + '\n//# sourceURL=' + fakeSourceUri );
 								return false;
 							}
 							return true;
 						} );
+
 						try {
-							$.globalEval( concatSource.join( ';' ) );
+							// Evaluate one module at a time in order for sourceURL to work
+							for ( s = 0; s < concatSource.length; s++) {
+								$.globalEval( concatSource[s] );
+							}
 						} catch ( err ) {
 							// Not good, the cached mw.loader.implement calls failed! This should
 							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
@@ -1537,11 +1553,12 @@
 							// something that infected the implement call itself, don't take any
 							// risks and clear everything in this cache.
 							mw.loader.store.clear();
+							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
+
 							// Re-add the ones still pending back to the batch and let the server
 							// repopulate these modules to the cache.
 							// This means that at most one module will be useless (the one that had
 							// the error) instead of all of them.
-							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
 							origBatch = $.grep( origBatch, function ( module ) {
 								return registry[module].state === 'loading';
 							} );
