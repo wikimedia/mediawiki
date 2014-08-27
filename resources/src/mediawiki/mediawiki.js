@@ -1743,9 +1743,28 @@
 						implementations = [];
 						sourceModules = [];
 						batch = $.grep( batch, function ( module ) {
-							var implementation = mw.loader.store.get( module );
+							var fakeSourceUri,
+								implementation = mw.loader.store.get( module );
 							if ( implementation ) {
-								implementations.push( implementation );
+								// Set sourceURL to where this cached code originally came from.
+								// This is used by debug tools in the browser.
+								fakeSourceUri = sources[ registry[ module ].source ] + '?' +
+									// Based on batchRequest() and doRequest()
+									$.param( sortQuery( {
+										skin: mw.config.get( 'skin' ),
+										lang: mw.config.get( 'wgUserLanguage' ),
+										debug: mw.config.get( 'debug' ),
+										modules: module
+									} ) );
+								// Add server to relative path
+								if ( fakeSourceUri.match( /^\/[^/]/ ) ) {
+									fakeSourceUri = mw.config.get( 'wgServer' ) + fakeSourceUri;
+								}
+								// Add protocol to protocol-relative url
+								if ( fakeSourceUri.indexOf( '//' ) === 0 ) {
+									fakeSourceUri = location.protocol + fakeSourceUri;
+								}
+								implementations.push( implementation + fakeSourceUri );
 								sourceModules.push( module );
 								return false;
 							}
