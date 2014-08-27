@@ -548,6 +548,7 @@ class ImageListPager extends TablePager {
 		$form = new HTMLForm( $fields, $this->getContext() );
 
 		$form->setMethod( 'get' );
+		$form->setTitle( $this->getTitle() );
 		$form->setId( 'mw-listfiles-form' );
 		$form->setWrapperLegendMsg( 'listfiles' );
 		$form->setSubmitTextMsg( 'table_pager_limit_submit' );
