@@ -1001,8 +1001,8 @@ class CoreParserFunctions {
 	 */
 	private static function getCachedRevisionObject( $parser, $title = null ) {
 		static $cache = null;
-		if ( !isset( $cache ) ) {
-			$cache = new MapCacheLRU( 100 );
+		if ( $cache == null ) {
+			$cache = new MapCacheLRU( 50 );
 		}
 
 		if ( is_null( $title ) ) {
