@@ -328,6 +328,8 @@
 	"config-install-stats": "Initialisation des statistiques",
 	"config-install-keys": "Génération de la clé secrète",
 	"config-insecure-keys": "'''Avertissement''' : {{PLURAL:$2|Une clé de sécurité générée ($1) pendant l'installation n'est pas complètement sécuritaire. Envisagez de la modifier manuellement.|Des clés de sécurité générées ($1) pendant l'installation ne sont pas complètement sécuritaires. Envisagez de les modifier manuellement.}}",
+	"config-install-updates": "Empêcher l’exécution des mises à jour inutiles",
+	"config-install-updates-failed": "<strong>Erreur :</strong> L’insertion de clés modifiées dans les tables a échoué avec l’erreur suivante : $1",
 	"config-install-sysop": "Création du compte administrateur",
 	"config-install-subscribe-fail": "Impossible de s'abonner à mediawiki-announce : $1",
 	"config-install-subscribe-notpossible": "cURL n’est pas installé et <code>allow_url_fopen</code> n’est pas disponible.",

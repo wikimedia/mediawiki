@@ -1074,7 +1074,7 @@
 	"grouppage-suppress": "{{ns:project}}:Oversighter",
 	"right-read": "Seiten lesen",
 	"right-edit": "Seiten bearbeiten",
-	"right-createpage": "Seiten erstellen (außer Diskussionsseiten)",
+	"right-createpage": "Seiten erstellen (die keine Diskussionsseiten sind)",
 	"right-createtalk": "Diskussionsseiten erstellen",
 	"right-createaccount": "Benutzerkonto erstellen",
 	"right-minoredit": "Bearbeitungen als klein markieren",
