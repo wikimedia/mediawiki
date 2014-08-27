@@ -106,6 +106,7 @@ class ResourcesTest extends MediaWikiTestCase {
 
 	/**
 	 * Get all registered modules from ResouceLoader.
+	 * @return array
 	 */
 	protected static function getAllModules() {
 		global $wgEnableJavaScriptTest;

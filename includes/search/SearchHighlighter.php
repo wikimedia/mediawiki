@@ -560,8 +560,8 @@ class SearchHighlighter {
 	 * Returns the first few lines of the text
 	 *
 	 * @param string $text
-	 * @param int $contextlines max number of returned lines
-	 * @param int $contextchars average number of characters per line
+	 * @param int $contextlines Max number of returned lines
+	 * @param int $contextchars Average number of characters per line
 	 * @return string
 	 */
 	public function highlightNone( $text, $contextlines, $contextchars ) {

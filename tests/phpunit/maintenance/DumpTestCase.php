@@ -31,7 +31,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param Page $page Page to add the revision to
 	 * @param string $text Revisions text
 	 * @param string $summary Revisions summare
-	 *
+	 * @return array
 	 * @throws MWException
 	 */
 	protected function addRevision( Page $page, $text, $summary ) {

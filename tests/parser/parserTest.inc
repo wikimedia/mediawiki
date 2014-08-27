@@ -332,6 +332,7 @@ class ParserTest {
 	 * Remove last character if it is a newline
 	 * @group utility
 	 * @param string $s
+	 * @return string
 	 */
 	public static function chomp( $s ) {
 		if ( substr( $s, -1 ) === "\n" ) {
@@ -416,6 +417,7 @@ class ParserTest {
 	/**
 	 * Get an input dictionary from a set of parser test files
 	 * @param array $filenames
+	 * @return string
 	 */
 	function getFuzzInput( $filenames ) {
 		$dict = '';
@@ -438,6 +440,7 @@ class ParserTest {
 
 	/**
 	 * Get a memory usage breakdown
+	 * @return array
 	 */
 	function getMemoryBreakdown() {
 		$memStats = array();
@@ -663,6 +666,7 @@ class ParserTest {
 	/**
 	 * Refactored in 1.22 to use ParserTestResult
 	 * @param ParserTestResult $testResult
+	 * @return bool
 	 */
 	function showTestResult( ParserTestResult $testResult ) {
 		if ( $testResult->isSuccess() ) {
@@ -679,6 +683,7 @@ class ParserTest {
 	 * @param string $key Name of option val to retrieve
 	 * @param array $opts Options array to look in
 	 * @param mixed $default Default value returned if not found
+	 * @return mixed
 	 */
 	private static function getOptionValue( $key, $opts, $default ) {
 		$key = strtolower( $key );
@@ -782,6 +787,7 @@ class ParserTest {
 	 * Ideally this should replace the global configuration entirely.
 	 * @param string $opts
 	 * @param string $config
+	 * @return RequestContext
 	 */
 	private function setupGlobals( $opts = '', $config = '' ) {
 		global $IP;
@@ -929,6 +935,7 @@ class ParserTest {
 	/**
 	 * List of temporary tables to create, without prefix.
 	 * Some of these probably aren't necessary.
+	 * @return array
 	 */
 	private function listTables() {
 		$tables = array( 'user', 'user_properties', 'user_former_groups', 'page', 'page_restrictions',
