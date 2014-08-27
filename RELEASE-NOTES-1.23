@@ -1,17 +1,20 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
-== MediaWiki 1.23.? ==
+== MediaWiki 1.23.3 ==
 
 This is a maintenance release of the MediaWiki 1.23 branch.
 
 === Changes since 1.23.2 ===
 
-* (bug 68501) Correctly handle incorrect namespace in cleanupTitles.php
-* (bug 64970) Fix support for blobs on DatabaseOracle::update
-* (bug 66574) Display MediaWiki:Loginprompt on the login page
-* (bug 67870) wfShellExec() cuts off stdout at multiples of 8192 bytes
-* (bug 60629) Handle invalid language code gracefully in Language::fetchLanguageNames
+* (bug 68501) Correctly handle incorrect namespace in cleanupTitles.php.
+* (bug 64970) Fix support for blobs on DatabaseOracle::update.
+* (bug 66574) Display MediaWiki:Loginprompt on the login page.
+* (bug 67870) wfShellExec() cuts off stdout at multiples of 8192 bytes.
+* (bug 60629) Handle invalid language code gracefully in 
+  Language::fetchLanguageNames.
+* (bug 62017) Restore the number of rows shown on Special:Watchlist.
+* Check for boolean false result from database query in SqlBagOStuff.
 
 == MediaWiki 1.23.2 ==
 
