@@ -175,7 +175,7 @@ production.
   bar using the HTML5 History API. When [[Dog]] redirects to [[Animals#Dog]],
   the user will now see "Animals#Dog" in their browser instead of "Dog#Dog".
 * API token handling has been rewritten. Any API module using tokens will need
-  to be updated.
+  to be updated. See the entry below under "Action API internal changes".
 * Added HTMLAutoCompleteSelectField.
 
 === Bug fixes in 1.24 ===
@@ -210,20 +210,20 @@ production.
 * (bug 69789) Title::getContentModel() now loads from the database when
   necessary instead of incorrectly returning the default content model.
 
-=== Web API changes in 1.24 ===
+=== Action API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
   ResourceLoader modules that should be used to enhance the parsed content.
 * action=query&meta=siteinfo&siprop=interwikimap returns a new "protorel"
-  field which is true iff protocol-relative urls can be used to access
+  field which is true if protocol-relative urls can be used to access
   a particular interwiki map entry.
-* ApiQueryLogEvents now provides logpage, which is the page ID from the
+* list=logevents now provides logpage, which is the page ID from the
   logging table, if ids are requested and the user has the permissions.
 * action=edit now requires that appendtext, prependtext, or section=new be used
   when using the 'redirect' parameter, to prevent clients accidentally
   overwriting the target page with the content of the redirect.
-* action=logevents will now return an error if both letitle and leprefix are
+* list=logevents will now return an error if both letitle and leprefix are
   specified.
-* action=logevents has a new parameter, lenamespace, to allow filtering by
+* list=logevents has a new parameter, lenamespace, to allow filtering by
   namespace.
 * action=expandtemplates has a new parameter, prop, and a new output format.
   The old format is still used if prop isn't provided, but this is deprecated.
@@ -235,6 +235,21 @@ production.
 * (bug 60734) Actions that use ApiPageSet (e.g. purge, watch,
   setnotificationtimestamp) will now include continuation information when
   using a generator.
+* Removed 'props' and 'errors' from action=paraminfo, as they have extremely
+  limited use and are generally inaccurate, unmaintained, and impossible to
+  properly maintain.
+* Formats dbg, dump, txt, wddx, and yaml are now deprecated.
+* action=paraminfo now indicates when a parameter is specifying a submodule.
+* The iwurl parameter to prop=iwlinks is deprecated in favor of iwprop=url, for
+  parallelism with prop=langlinks.
+* All tokens should be fetched from action=query&meta=tokens; all other methods
+  of fetching tokens are deprecated. The value needed for meta=tokens's 'type'
+  parameter for each module is documented in the action=help output and is
+  returned from action=paraminfo.
+
+=== Action API internal changes in 1.24 ===
+* Methods for handling continuation are added to ApiResult, so actions other
+  than query that use generators can easily support continuation.
 * $wgAPIModules (and the related $wgAPIFormatModules, $wgAPIMetaModules,
   $wgAPIPropModules, and $wgAPIListModules settings) now allow API modules
   to be specified using a "module spec" array instead of a plain class name.
@@ -243,20 +258,61 @@ production.
   to use for the module. This is intended for extensions that want control over
   the instantiation of their API modules, to allow for proper dependency
   injection.
-* Removed 'props' and 'errors' from action=paraminfo, as they have extremely
-  limited use and are generally inaccurate, unmaintained, and impossible to
-  properly maintain. Also removed the corresponding methods from ApiBase and
-  the 'APIGetPossibleErrors' and 'APIGetResultProperties' hooks.
-* Formats dbg, dump, txt, wddx, and yaml are now deprecated.
-* action=paraminfo now indicates when a parameter is specifying a submodule.
-  Internally, a new param type 'submodule' is available to indicate this which
-  automatically queries the list of submodule names from the ApiModuleManager.
-* The iwurl parameter to prop=iwlinks is deprecated in favor of iwprop=url, for
-  parallelism with prop=langlinks.
-* All tokens should be fetched from action=query&meta=tokens; all other methods
-  of fetching tokens are deprecated. The value needed for meta=tokens's 'type'
-  parameter for each module is documented in the action=help output and is
-  returned from action=paraminfo.
+* A new param type 'submodule' is available. Parameters of this type will take
+  the list of valid values from the module's ApiModuleManager for the group
+  corresponding to the parameter name.
+* The 'APIGetPossibleErrors' and 'APIGetResultProperties' hooks are no longer used.
+* API token handling has been rewritten. Any API module using tokens will need
+  to be updated:
+  * ApiBase::needsToken now returns a token type instead of boolean true when a
+    token is needed. Returning true will throw an exception. See documentation
+    of that method for details.
+  * Information for the 'token' parameter is automatically set by ApiBase
+    getFinalParams and getFinalParamDescription.
+  * ApiBase::getTokenSalt has been removed.
+  * The hooks APIQueryInfoTokens, APIQueryRevisionsTokens,
+    APIQueryRecentChangesTokens, APIQueryUsersTokens, and
+    ApiTokensGetTokenTypes are deprecated, but are still called to support
+    backwards-compatible token access.
+* The following methods have been deprecated and may be removed in a future
+  release:
+  * ApiBase::getResultProperties
+  * ApiBase::getFinalResultProperties
+  * ApiBase::addTokenProperties
+  * ApiBase::getRequireOnlyOneParameterErrorMessages
+  * ApiBase::getRequireMaxOneParameterErrorMessages
+  * ApiBase::getRequireAtLeastOneParameterErrorMessages
+  * ApiBase::getTitleOrPageIdErrorMessage
+  * ApiBase::getPossibleErrors
+  * ApiBase::getFinalPossibleErrors
+  * ApiBase::parseErrors
+  * ApiQuery::setGeneratorContinue
+  * ApiQueryInfo::getTokenFunctions
+  * ApiQueryInfo::resetTokenCache
+  * ApiQueryInfo::getEditToken
+  * ApiQueryInfo::getDeleteToken
+  * ApiQueryInfo::getProtectToken
+  * ApiQueryInfo::getMoveToken
+  * ApiQueryInfo::getBlockToken
+  * ApiQueryInfo::getUnblockToken
+  * ApiQueryInfo::getEmailToken
+  * ApiQueryInfo::getImportToken
+  * ApiQueryInfo::getWatchToken
+  * ApiQueryInfo::getOptionsToken
+  * ApiQueryRecentChanges::getTokenFunctions
+  * ApiQueryRecentChanges::getPatrolToken
+  * ApiQueryRevisions::getTokenFunctions
+  * ApiQueryRevisions::getRollbackToken
+  * ApiQueryUsers::getTokenFunctions
+  * ApiQueryUsers::getUserrightsToken
+* The following classes have been deprecated and may be removed in a future
+  release:
+  * ApiFormatDbg
+  * ApiFormatDump
+  * ApiFormatTxt
+  * ApiFormatWddx
+  * ApiFormatYaml
+  * ApiTokens
 
 === Languages updated in 1.24 ===
 

@@ -26,6 +26,7 @@
 
 /**
  * API WDDX output formatter
+ * @deprecated since 1.24
  * @ingroup API
  */
 class ApiFormatWddx extends ApiFormatBase {

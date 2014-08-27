@@ -26,6 +26,7 @@
 
 /**
  * API PHP's var_export() output formatter
+ * @deprecated since 1.24
  * @ingroup API
  */
 class ApiFormatDbg extends ApiFormatBase {

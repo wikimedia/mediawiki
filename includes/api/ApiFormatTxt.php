@@ -26,6 +26,7 @@
 
 /**
  * API Text output formatter
+ * @deprecated since 1.24
  * @ingroup API
  */
 class ApiFormatTxt extends ApiFormatBase {

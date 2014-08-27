@@ -26,6 +26,7 @@
 
 /**
  * API PHP's var_dump() output formatter
+ * @deprecated since 1.24
  * @ingroup API
  */
 class ApiFormatDump extends ApiFormatBase {

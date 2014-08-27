@@ -26,6 +26,7 @@
 
 /**
  * API YAML output formatter
+ * @deprecated since 1.24
  * @ingroup API
  */
 class ApiFormatYaml extends ApiFormatJson {
