@@ -620,10 +620,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function buildRemoveLine( $title ) {
 		$link = Linker::link( $title );
 
-		$tools[] = Linker::link( $title->getTalkPage(), $this->msg( 'talkpagelinktext' )->escaped() );
+		$tools['talk'] = Linker::link( $title->getTalkPage(), $this->msg( 'talkpagelinktext' )->escaped() );
 
 		if ( $title->exists() ) {
-			$tools[] = Linker::linkKnown(
+			$tools['history'] = Linker::linkKnown(
 				$title,
 				$this->msg( 'history_short' )->escaped(),
 				array(),
@@ -632,7 +632,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		if ( $title->getNamespace() == NS_USER && !$title->isSubpage() ) {
-			$tools[] = Linker::linkKnown(
+			$tools['contributions'] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Contributions', $title->getText() ),
 				$this->msg( 'contributions' )->escaped()
 			);
