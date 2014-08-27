@@ -212,9 +212,11 @@ class SpecialVersion extends SpecialPage {
 		// wikimarkup can be used.
 		$software = array();
 		$software['[https://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
-		$phpKey = wfIsHHVM() ? '[http://hhvm.com/ HHVM]' :
-			'[https://php.net/ PHP]';
-		$software[$phpKey] = PHP_VERSION . " (" . PHP_SAPI . ")";
+		if ( wfIsHHVM() ) {
+			$software['[http://hhvm.com/ HHVM]'] = HHVM_VERSION . " (" . PHP_SAPI . ")";
+		} else {
+			$software['[https://php.net/ PHP]'] = PHP_VERSION . " (" . PHP_SAPI . ")";
+		}
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
 		// Allow a hook to add/remove items.

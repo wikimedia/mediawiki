@@ -434,7 +434,11 @@ abstract class Installer {
 	public function doEnvironmentChecks() {
 		// Php version has already been checked by entry scripts
 		// Show message here for information purposes
-		$this->showMessage( 'config-env-php', PHP_VERSION );
+		if ( wfIsHHVM() ) {
+			$this->showMessage( 'config-env-hhvm', HHVM_VERSION );
+		} else {
+			$this->showMessage( 'config-env-php', PHP_VERSION );
+		}
 
 		$good = true;
 		// Must go here because an old version of PCRE can prevent other checks from completing

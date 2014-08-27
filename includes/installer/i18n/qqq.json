@@ -62,6 +62,7 @@
 	"config-env-good": "See also:\n* {{msg-mw|Config-env-bad}}",
 	"config-env-bad": "See also:\n* {{msg-mw|Config-env-good}}",
 	"config-env-php": "Parameters:\n* $1 - the version of PHP that has been installed\nSee also:\n* {{msg-mw|config-env-php-toolow}}",
+	"config-env-hhvm": "Parameters:\n* $1 - the version of HHVM that has been installed",
 	"config-unicode-using-utf8": "Status message in the MediaWiki installer environment checks.",
 	"config-unicode-using-intl": "Status message in the MediaWiki installer environment checks.",
 	"config-unicode-pure-php-warning": "PECL is the name of a group producing standard pieces of software for PHP, and intl is the name of their library handling some aspects of internationalization.",

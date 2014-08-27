@@ -538,7 +538,8 @@ class MWDebug {
 
 		return array(
 			'mwVersion' => $wgVersion,
-			'phpVersion' => PHP_VERSION,
+			'phpEngine' => wfIsHHVM() ? 'HHVM' : 'PHP',
+			'phpVersion' => wfIsHHVM() ? HHVM_VERSION : PHP_VERSION,
 			'gitRevision' => GitInfo::headSHA1(),
 			'gitBranch' => GitInfo::currentBranch(),
 			'gitViewUrl' => GitInfo::headViewUrl(),
