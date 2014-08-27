@@ -117,7 +117,7 @@ class UIDGenerator {
 	}
 
 	/**
-	 * @param array $info (UIDGenerator::millitime(), clock sequence)
+	 * @param array $info (UIDGenerator::millitime(), counter, clock sequence)
 	 * @return string 88 bits
 	 */
 	protected function getTimestampedID88( array $info ) {
