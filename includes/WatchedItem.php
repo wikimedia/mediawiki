@@ -274,7 +274,7 @@ class WatchedItem {
 	 * @param WatchedItem[] $items
 	 * @return bool
 	 */
-	static public function batchAddWatch( array $items ) {
+	public static function batchAddWatch( array $items ) {
 		$section = new ProfileSection( __METHOD__ );
 
 		if ( wfReadOnly() ) {
