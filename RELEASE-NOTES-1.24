@@ -274,6 +274,7 @@ production.
     APIQueryRecentChangesTokens, APIQueryUsersTokens, and
     ApiTokensGetTokenTypes are deprecated, but are still called to support
     backwards-compatible token access.
+* ApiBase::validateLimit and ApiBase::validateTimestamp are now protected.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getResultProperties
@@ -287,6 +288,10 @@ production.
   * ApiBase::getFinalPossibleErrors
   * ApiBase::parseErrors
   * ApiQuery::setGeneratorContinue
+  * ApiQueryBase::checkRowCount
+  * ApiQueryBase::titleToKey
+  * ApiQueryBase::keyToTitle
+  * ApiQueryBase::keyPartToTitle
   * ApiQueryInfo::getTokenFunctions
   * ApiQueryInfo::resetTokenCache
   * ApiQueryInfo::getEditToken
