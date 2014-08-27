@@ -271,7 +271,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ . '-init' );
 		$this->initPage( $out );
 		wfProfileOut( __METHOD__ . '-init' );
-		$tpl = $this->prepareQuickTemplate();
+		$tpl = $this->prepareQuickTemplate( $out );
 		// execute template
 		wfProfileIn( __METHOD__ . '-execute' );
 		$res = $tpl->execute();
