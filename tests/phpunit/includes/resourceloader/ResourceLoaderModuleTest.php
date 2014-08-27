@@ -10,7 +10,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		SkinFactory::getDefaultInstance()->register(
 			'fakeskin',
 			'FakeSkin',
-			function(){
+			function () {
 			}
 		);
 	}
