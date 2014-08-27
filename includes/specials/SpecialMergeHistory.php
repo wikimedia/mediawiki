@@ -496,7 +496,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	/** @var array */
 	public $mConds;
 
-	function __construct( $form, $conds = array(), $source, $dest ) {
+	function __construct( $form, $conds, $source, $dest ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->title = $source;
@@ -550,7 +550,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds['rev_page'] = $this->articleID;
-		$conds[] = "rev_timestamp < {$this->maxTimestamp}";
+		$conds[] = "rev_timestamp < " . $this->mDb->addQuotes( $this->maxTimestamp );
 
 		return array(
 			'tables' => array( 'revision', 'page', 'user' ),
