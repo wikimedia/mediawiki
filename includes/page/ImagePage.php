@@ -267,8 +267,7 @@ class ImagePage extends Article {
 				# @todo FIXME: Why is this using escapeId for a class?!
 				$class = Sanitizer::escapeId( $v['id'] );
 				if ( $type == 'collapsed' ) {
-					// Handled by mediawiki.action.view.metadata module
-					// and skins/common/shared.css.
+					// Handled by mediawiki.action.view.metadata module and shared.css.
 					$class .= ' collapsable';
 				}
 				$r .= "<tr class=\"$class\">\n";

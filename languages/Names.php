@@ -33,7 +33,7 @@
  * Some writing systems require some line-height fixes. This includes
  * most Indic scripts, like Devanagari.
  * If you are adding support for such a language, add it also to
- * the relevant section in skins/common/shared.css.
+ * the relevant section in shared.css.
  *
  * @ingroup Language
  */
