@@ -207,6 +207,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
+			if ( $module->isRaw() ) {
+				// Don't register "raw" modules (like 'jquery' and 'mediawiki') client-side because
+				// depending on them is illegal anyway and would only lead to them being reloaded
+				// causing any state to be lost (like jQuery plugins, mw.config etc.)
+				continue;
+			}
+
 			// getModifiedTime() is supposed to return a UNIX timestamp, but it doesn't always
 			// seem to do that, and custom implementations might forget. Coerce it to TS_UNIX
 			$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
