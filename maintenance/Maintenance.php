@@ -527,11 +527,6 @@ abstract class Maintenance {
 		# But sometimes this doesn't seem to be the case.
 		ini_set( 'max_execution_time', 0 );
 
-		$wgRequestTime = microtime( true );
-
-		# Define us as being in MediaWiki
-		define( 'MEDIAWIKI', true );
-
 		$wgCommandLineMode = true;
 
 		# Turn off output buffering if it's on
