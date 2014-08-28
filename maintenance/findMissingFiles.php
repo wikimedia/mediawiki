@@ -85,14 +85,22 @@ class FindMissingFiles extends Maintenance {
 					array( 'oi_name' => array_keys( $pathsByName ) ),
 					__METHOD__
 				);
+
+				$checkPaths = array();
 				foreach ( $ores as $row ) {
 					if ( !strlen( $row->oi_archive_name ) ) {
 						continue; // broken row
 					}
 					$file = $repo->newFromArchiveName( $row->oi_name, $row->oi_archive_name );
-					$path = $file->getPath();
-					if ( $be->fileExists( array( 'src' => $path ) ) === false ) {
-						$this->output( "$path\n" );
+					$checkPaths[] = $file->getPath();
+				}
+
+				foreach ( array_chunk( $checkPaths, $this->mBatchSize ) as $paths ) {
+					$be->preloadFileStat( array( 'srcs' => $paths ) );
+					foreach ( $paths as $path ) {
+						if ( $be->fileExists( array( 'src' => $path ) ) === false ) {
+							$this->output( "$path\n" );
+						}
 					}
 				}
 			}
