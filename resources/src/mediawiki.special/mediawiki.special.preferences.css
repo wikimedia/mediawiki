@@ -12,7 +12,7 @@
 
 /*
  * Hide, but keep accessible for screen-readers.
- * Like .mw-jump, #jump-to-nav from skins/common/shared.css
+ * Like .mw-jump, #jump-to-nav from shared.css
  */
 .mw-navigation-hint {
 	overflow: hidden;
