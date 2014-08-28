@@ -16,7 +16,7 @@
 	"ooui-toolbar-more": "더 보기",
 	"ooui-dialog-message-accept": "확인",
 	"ooui-dialog-message-reject": "취소",
-	"ooui-dialog-process-error": "오류가 발생했습니다.",
+	"ooui-dialog-process-error": "무언가가 잘못되었습니다",
 	"ooui-dialog-process-dismiss": "숨기기",
-	"ooui-dialog-process-retry": "다시 시도하세요."
+	"ooui-dialog-process-retry": "다시 시도하세요"
 }

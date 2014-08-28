@@ -5,8 +5,11 @@
 			"Muddyb Blast Producer"
 		]
 	},
-	"ooui-dialog-action-close": "Funga",
 	"ooui-outline-control-move-down": "Sogeza kipengee chini",
 	"ooui-outline-control-move-up": "Sogeza kipengee juu",
-	"ooui-toolbar-more": "Zaidi"
+	"ooui-outline-control-remove": "Toa kitu",
+	"ooui-toolbar-more": "Zaidi",
+	"ooui-dialog-message-accept": "Sawa",
+	"ooui-dialog-message-reject": "Batilisha",
+	"ooui-dialog-process-retry": "Jaribu tena"
 }
