@@ -358,7 +358,7 @@ class ResourceLoader {
 	/**
 	 */
 	public function registerTestModules() {
-		global $IP;
+		global $IP, $wgRequest;
 
 		if ( $this->config->get( 'EnableJavaScriptTest' ) !== true ) {
 			throw new MWException( 'Attempt to register JavaScript test modules '
@@ -374,6 +374,12 @@ class ResourceLoader {
 		// Get other test suites (e.g. from extensions)
 		wfRunHooks( 'ResourceLoaderTestModules', array( &$testModules, &$this ) );
 
+		$moduleWhitelist = array_flip( (array) $wgRequest->getArray( 'whitelist' ) );
+
+		if ( !empty( $moduleWhitelist ) ) {
+			$testModules['qunit'] = array_intersect_key( $testModules['qunit'], $moduleWhitelist );
+		}
+
 		// Add the testrunner (which configures QUnit) to the dependencies.
 		// Since it must be ready before any of the test suites are executed.
 		foreach ( $testModules['qunit'] as &$module ) {
@@ -384,8 +390,10 @@ class ResourceLoader {
 			$module['dependencies'][] = 'test.mediawiki.qunit.testrunner';
 		}
 
-		$testModules['qunit'] =
+		if ( empty( $moduleWhitelist ) || isset( $moduleWhitelist['core'] ) ) {
+			$testModules['qunit'] =
 			( include "$IP/tests/qunit/QUnitTestResources.php" ) + $testModules['qunit'];
+		}
 
 		foreach ( $testModules as $id => $names ) {
 			// Register test modules
