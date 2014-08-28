@@ -179,7 +179,7 @@ table.filehistory td.filehistory-selected {
 .filehistory a img,
 #file img:hover {
 	/* @embed */
-	background: white url(images/Checker-16x16.png) repeat;
+	background: white url(images/checker.png) repeat;
 }
 
 /**
@@ -244,7 +244,7 @@ td.mw-label {
 	/* SVG support using a transparent gradient to guarantee cross-browser
 	 * compatibility (browsers able to understand gradient syntax support also SVG).
 	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
-	background-image: url(images/question-small.png);
+	background-image: url(images/question.png);
 	/* @embed */
 	background-image: -webkit-linear-gradient(transparent, transparent), url(images/question.svg);
 	/* @embed */
