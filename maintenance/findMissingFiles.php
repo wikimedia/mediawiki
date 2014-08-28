@@ -27,7 +27,9 @@ class FindMissingFiles extends Maintenance {
 
 		$this->mDescription = 'Find registered files with no corresponding file.';
 		$this->addOption( 'start', 'Starting file name', false, true );
-		$this->setBatchSize( 200 );
+		$this->addOption( 'mtimeafter', 'Only include files changed since this time', false, true );
+		$this->addOption( 'mtimebefore', 'Only includes files changed before this time', false, true );
+		$this->setBatchSize( 300 );
 	}
 
 	function execute() {
@@ -37,12 +39,29 @@ class FindMissingFiles extends Maintenance {
 		$dbr = $repo->getSlaveDB();
 		$be = $repo->getBackend();
 
+		$mtime1 = $dbr->timestampOrNull( $this->getOption( 'mtimeafter', null ) );
+		$mtime2 = $dbr->timestampOrNull( $this->getOption( 'mtimebefore', null ) );
+
+		$tables = array( 'image' );
+		$logJoinOn = array( 'log_namespace' => NS_FILE, 'log_title = img_name' );
+		$logJoinOn['log_type'] = array( 'upload', 'move', 'delete' );
+		if ( $mtime1 ) {
+			$logJoinOn[] = "log_timestamp > {$dbr->addQuotes($mtime1)}";
+		}
+		if ( $mtime2 ) {
+			$logJoinOn[] = "log_timestamp < {$dbr->addQuotes($mtime2)}";
+		}
+		if ( $mtime1 || $mtime2 ) {
+			$tables[] = 'logging';
+		}
+
 		do {
-			$res = $dbr->select( 'image',
-				'img_name',
+			$res = $dbr->select( $tables,
+				array( 'img_name' => 'DISTINCT(img_name)' ),
 				array( "img_name >= " . $dbr->addQuotes( $lastName ) ),
 				__METHOD__,
-				array( 'ORDER BY' => 'img_name', 'LIMIT' => $this->mBatchSize )
+				array( 'ORDER BY' => 'img_name', 'LIMIT' => $this->mBatchSize ),
+				array( 'logging' => array( 'INNER JOIN', $logJoinOn ) )
 			);
 
 			// Check if any of these files are missing...
