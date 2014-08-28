@@ -829,7 +829,7 @@ class User implements IDBAccessObject {
 	 * @param int $ts Optional timestamp to convert, default 0 for the current time
 	 */
 	public function expirePassword( $ts = 0 ) {
-		$this->load();
+		$this->loadPasswords();
 		$timestamp = wfTimestamp( TS_MW, $ts );
 		$this->mPasswordExpires = $timestamp;
 		$this->saveSettings();
