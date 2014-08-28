@@ -863,6 +863,13 @@ $name: name of the special page, e.g. 'Watchlist'
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
 
+'CheckNonexistentUser': Called during login to allow extensions to nicely inform
+a user when their username doesn't exist, for a specific reason, instead of giving
+an error that the account. For example, the account has been renamed or deleted.
+$user: the User object being authenticated against.
+&$msg: the message identifier for abort reason, or an array to pass message key and
+  parameters.
+
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that
