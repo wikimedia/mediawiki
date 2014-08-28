@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Avjoska",
-			"Pikne"
+			"Pikne",
+			"Boxmein"
 		]
 	},
 	"config-information": "Teave",
@@ -26,6 +27,7 @@
 	"config-page-upgradedoc": "Uuendamine",
 	"config-page-existingwiki": "Olemasolev viki",
 	"config-restart": "Jah, tee taaskäivitus",
+	"config-env-hhvm": "HHVM $1 on installitud.",
 	"config-db-name": "Andmebaasi nimi:",
 	"config-db-username": "Andmebaasi kasutajanimi:",
 	"config-db-password": "Andmebaasi parool:",

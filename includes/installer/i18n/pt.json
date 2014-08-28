@@ -59,6 +59,7 @@
 	"config-env-good": "O ambiente foi verificado.\nPode instalar o MediaWiki.",
 	"config-env-bad": "O ambiente foi verificado.\nNão pode instalar o MediaWiki.",
 	"config-env-php": "O PHP $1 está instalado.",
+	"config-env-hhvm": "HHVM $1 está instalado.",
 	"config-unicode-using-utf8": "A usar o utf8_normalize.so, por Brion Vibber, para a normalização Unicode.",
 	"config-unicode-using-intl": "A usar a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.",
 	"config-unicode-pure-php-warning": "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode. Irá recorrer-se à implementação em PHP puro, que é mais lenta.\nSe o seu site tem alto volume de tráfego, devia informar-se um pouco sobre a [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations/pt normalização Unicode].",

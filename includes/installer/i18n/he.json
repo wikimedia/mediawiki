@@ -51,6 +51,7 @@
 	"config-env-good": "הסביבה שלכם נבדקה.\nאפשר להתקין מדיה־ויקי.",
 	"config-env-bad": "הסביבה שלכם נבדקה.\nאי־אפשר להתקין מדיה־ויקי.",
 	"config-env-php": "מותקנת <span dir=\"ltr\">PHP $1</span>.",
+	"config-env-hhvm": "מותקנת <span dir=\"ltr\">HHVM $1</span>.",
 	"config-unicode-using-utf8": "משתמש ב־utf8_normalize.so של בריון ויבר לנרמול יוניקוד.",
 	"config-unicode-using-intl": "משתמש ב[http://pecl.php.net/intl הרחבת intl PECL] לנרמול יוניקוד.",
 	"config-unicode-pure-php-warning": "'''אזהרה''': [http://pecl.php.net/intl הרחבת intl PECL] אינה זמינה לטיפול בנרמול יוניקוד. משתמש ביישום PHP טהור ואטי יותר.\nאם זהו אתר בעל תעבורה גבוהה, כדאי לקרוא את המסמך הבא: [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization].",

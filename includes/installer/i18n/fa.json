@@ -6,7 +6,8 @@
 			"Ebraminio",
 			"Omidh",
 			"Pouyana",
-			"Reza1615"
+			"Reza1615",
+			"Alirezaaa"
 		]
 	},
 	"config-desc": "نصب کنندهٔ ویکی‌مدیا",
@@ -51,6 +52,7 @@
 	"config-env-good": "محیط بررسی شده‌است.\nشما می‌توانید مدیاویکی را نصب کنید.",
 	"config-env-bad": "محیط بررسی شده‌است.\nشما نمی‌توانید مدیاویکی را نصب کنید.",
 	"config-env-php": "پی‌اچ‌پی $1 نصب شده‌است.",
+	"config-env-hhvm": "HHVM $1 نصب شده‌است.",
 	"config-unicode-using-utf8": "برای یونیکد عادی از Brion Vibber's utf8_normalize.so استفاده کنید.",
 	"config-unicode-using-intl": "برای یونیکد عادی از [http://pecl.php.net/intl intl PECL extension] استفاده کنید.",
 	"config-unicode-pure-php-warning": "'''هشدار:''' [http://pecl.php.net/intl intl PECL extension] برای کنترل یونیکد عادی در دسترس نیست،اجرای کاملاً آهسته به تعویق می‌افتد.\nاگر شما یک سایت پر‌ ترافیک را اجرا می‌کنید، باید کمی [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization] را بخوانید.",
@@ -310,6 +312,8 @@
 	"config-install-stats": "شروع آمار",
 	"config-install-keys": "تولید کلیدهای مخفی",
 	"config-insecure-keys": "'''هشدار:''' {{PLURAL:$2|کلید امن|کلیدهای امن}} ($1) در طی نصب  کاملاً ایمن {{PLURAL:$2|نیست|نیستند}}. تغییر دستی {{PLURAL:$2|آن|آنها}} را در نظر بگیرید.",
+	"config-install-updates": "جلوگیری از به روز رسانی‌های غیر ضروری در حال اجرا",
+	"config-install-updates-failed": "<strong>خطا:</strong> قراردادن کلیدهای به روز رسانی به داخل جداول با خطای روبرو مواجه شد: $1",
 	"config-install-sysop": "ایجاد حساب کاربری مدیر",
 	"config-install-subscribe-fail": "قادر تصدیق اعلام مدیاویکی نیست:$1",
 	"config-install-subscribe-notpossible": "سی‌یوآر‌ال نصب نشده‌است و <code>allow_url_fopen</code> در دسترس نیست.",

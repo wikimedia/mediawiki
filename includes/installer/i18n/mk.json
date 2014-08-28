@@ -47,6 +47,7 @@
 	"config-env-good": "Околината е проверена.\nМожете да го воспоставите МедијаВики.",
 	"config-env-bad": "Околината е проверена.\nНе можете да го воспоставите МедијаВики.",
 	"config-env-php": "PHP $1 е воспоставен.",
+	"config-env-hhvm": "HHVM $1 е воспоставен.",
 	"config-unicode-using-utf8": "Со utf8_normalize.so за уникодна нормализација од Брајон Вибер (Brion Vibber).",
 	"config-unicode-using-intl": "Со додатокот [http://pecl.php.net/intl intl PECL] за уникодна нормализација.",
 	"config-unicode-pure-php-warning": "'''Предупредување''': Додатокот [http://pecl.php.net/intl intl PECL] не е достапен за врши уникодна нормализација, враќајќи се на бавна примена на чист PHP.\n\nАко имате високопрометно мрежно место, тогаш ќе треба да прочитате повеќе за [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations уникодната нормализација].",

@@ -60,9 +60,9 @@
 			"NigelSoft"
 		]
 	},
-	"tog-underline": "連結底線：",
+	"tog-underline": "連結顯示底線：",
 	"tog-hideminor": "隱藏最近變更中的小修訂",
-	"tog-hidepatrolled": "隱藏最近更改中巡查過的編輯",
+	"tog-hidepatrolled": "隱藏最近變更中巡查過的編輯",
 	"tog-newpageshidepatrolled": "隱藏新頁面清單中巡查過的頁面",
 	"tog-extendwatchlist": "展開監視清單顯示包含最近以外的所有變更",
 	"tog-usenewrc": "依最近變更與監視清單頁面分類顯示變更",
