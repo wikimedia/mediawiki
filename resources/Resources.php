@@ -1536,7 +1536,7 @@ return array(
 		'skinStyles' => array(
 			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.css',
 			// FIXME As of July 2014, this is to be gone "in a couple of months".
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-agora.css',
+			'minerva' => 'resources/lib/oojs-ui/oojs-ui-minerva.css',
 		),
 		'messages' => array(
 			'ooui-outline-control-move-down',
