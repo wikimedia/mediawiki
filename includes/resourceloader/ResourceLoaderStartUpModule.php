@@ -207,6 +207,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
+			if ( $module->isRaw() ) {
+				// Don't register "raw" modules because things will try to depend
+				// on them, and RL will re-load the raw module, destroying things
+				// like $.* and mw.* in the cases of 'jquery' and 'mediawiki'.
+				continue;
+			}
+
 			// getModifiedTime() is supposed to return a UNIX timestamp, but it doesn't always
 			// seem to do that, and custom implementations might forget. Coerce it to TS_UNIX
 			$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
