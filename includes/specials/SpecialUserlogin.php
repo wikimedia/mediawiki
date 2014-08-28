@@ -41,6 +41,7 @@ class LoginForm extends SpecialPage {
 	const USER_BLOCKED = 11;
 	const NEED_TOKEN = 12;
 	const WRONG_TOKEN = 13;
+	const USER_NONEXISTENT = 14;
 
 	/**
 	 * Valid error and warning messages
@@ -697,6 +698,14 @@ class LoginForm extends SpecialPage {
 		}
 
 		$u = User::newFromName( $this->mUsername );
+
+		// Give extensions a friendly way to indicate the username doesn't
+		// exist, rather than telling the user the account doesn't exist.
+		if ( !wfRunHooks( 'CheckNonexistentUser', array( $u, &$msg ) ) ) {
+			$this->mAbortLoginErrorMsg = $msg;
+			return self::USER_NONEXISTENT;
+		}
+
 		if ( !( $u instanceof User ) || !User::isUsableName( $u->getName() ) ) {
 			return self::ILLEGAL;
 		}
@@ -995,6 +1004,15 @@ class LoginForm extends SpecialPage {
 				$error = $this->mAbortLoginErrorMsg ?: 'login-abort-generic';
 				$this->mainLoginForm( $this->msg( $error,
 						wfEscapeWikiText( $this->mUsername ) )->text() );
+				break;
+			case self::USER_NONEXISTENT:
+				$error = $this->mAbortLoginErrorMsg ?: 'login-usernonexistent-generic';
+				$params = array();
+				if ( is_array( $error ) ) {
+					$error = array_shift( $this->mAbortLoginErrorMsg );
+					$params = $this->mAbortLoginErrorMsg;
+				}
+				$this->mainLoginForm( $this->msg( $error, $params )->text() );
 				break;
 			default:
 				throw new MWException( 'Unhandled case value' );

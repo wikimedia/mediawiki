@@ -484,6 +484,7 @@
 	"createaccount-text": "Someone created an account for your email address on {{SITENAME}} ($4) named \"$2\", with password \"$3\".\nYou should log in and change your password now.\n\nYou may ignore this message, if this account was created in error.",
 	"login-throttled": "You have made too many recent login attempts.\nPlease wait $1 before trying again.",
 	"login-abort-generic": "Your login was unsuccessful - Aborted",
+	"login-usernonexistent-generic": "Your account no longer exist on this wiki.",
 	"loginlanguagelabel": "Language: $1",
 	"loginlanguagelinks": "* {{#language:de}}|de\n* {{#language:en}}|en\n* {{#language:eo}}|eo\n* {{#language:fr}}|fr\n* {{#language:es}}|es\n* {{#language:it}}|it\n* {{#language:nl}}|nl",
 	"suspicious-userlogout": "Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.",
