@@ -179,15 +179,9 @@ class MovePageForm extends UnlistedSpecialPage {
 			$err = array();
 		} else {
 			if ( $this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
-				$out->wrapWikiMsg(
-					"<div class=\"error mw-moveuserpage-warning\">\n$1\n</div>",
-					'moveuserpage-warning'
-				);
+				$out->addWikiMsg( 'move-userpage-warning' );
 			} elseif ( $this->oldTitle->getNamespace() == NS_CATEGORY ) {
-				$out->wrapWikiMsg(
-					"<div class=\"error mw-movecategorypage-warning\">\n$1\n</div>",
-					'movecategorypage-warning'
-				);
+				$out->addWikiMsg( 'move-categorypage-warning' );
 			}
 
 			$out->addWikiMsg( $this->getConfig()->get( 'FixDoubleRedirects' ) ?
