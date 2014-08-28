@@ -1036,6 +1036,7 @@ return array(
 		),
 	),
 	'mediawiki.action.view.metadata' => array(
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.css',
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.js',
 		'messages' => array(
 			'metadata-expand',
