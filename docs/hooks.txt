@@ -863,6 +863,14 @@ $name: name of the special page, e.g. 'Watchlist'
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
 
+'LoginUserMigrated': Called during login to allow extensions the opportunity to
+inform a user that their username doesn't exist for a specific reason, instead
+of letting the login form give the generic error message that the account does
+not exist. For example, when the account has been renamed or deleted.
+$user: the User object being authenticated against.
+&$msg: the message identifier for abort reason, or an array to pass a message
+  key and parameters.
+
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that
