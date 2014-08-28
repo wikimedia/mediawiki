@@ -222,11 +222,10 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideBug31100
+	 * @dataProvider provideSpecialNamesWithAndWithoutParameter
 	 * @covers Title::fixSpecialName
-	 * @todo give this test a real name explaining what is being tested here
 	 */
-	public function testBug31100FixSpecialName( $text, $expectedParam ) {
+	public function testFixSpecialNameRetainsParameter( $text, $expectedParam ) {
 		$title = Title::newFromText( $text );
 		$fixed = $title->fixSpecialName();
 		$stuff = explode( '/', $fixed->getDBkey(), 2 );
@@ -242,7 +241,7 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
-	public static function provideBug31100() {
+	public static function provideSpecialNamesWithAndWithoutParameter() {
 		return array(
 			array( 'Special:Version', null ),
 			array( 'Special:Version/', '' ),
