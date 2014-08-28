@@ -1329,6 +1329,9 @@ class ImageHistoryList extends ContextSource {
 				$url = $lang->userTimeAndDate( $timestamp, $user );
 			}
 			$row .= '<span class="history-deleted">' . $url . '</span>';
+		} elseif ( !$file->exists() ) {
+			$row .= '<span class="mw-file-missing">'
+				. $lang->userTimeAndDate( $timestamp, $user ) . '</span>';
 		} else {
 			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
 			$row .= Xml::element(
