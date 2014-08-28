@@ -1,0 +1,6 @@
+/*!
+ * Hide collapsable rows in a collapsed table.
+ */
+table.collapsed tr.collapsable {
+	display: none;
+}

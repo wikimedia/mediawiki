@@ -4,9 +4,7 @@
  * Add an expand/collapse link and collapse by default if set to
  * (with JS disabled, user will see all items)
  *
- * See also:
- * - ImagePage.php#makeMetadataTable (creates the HTML)
- * - shared.css (hides tr.collapsable inside table.collapsed)
+ * See also ImagePage.php#makeMetadataTable (creates the HTML)
  */
 ( function ( mw, $ ) {
 	$( function () {
