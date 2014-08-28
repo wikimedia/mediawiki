@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (d6008381aa)
+ * OOjs UI v0.1.0-pre (d72addbeae)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-21T23:45:56Z
+ * Date: 2014-08-28T17:36:51Z
  */
 ( function ( OO ) {
 
@@ -1982,8 +1982,9 @@ OO.ui.Window.prototype.load = function () {
 	doc.write(
 		'<!doctype html>' +
 		'<html>' +
-			'<body class="oo-ui-window-isolated oo-ui-window-content oo-ui-' + this.dir + '"' +
+			'<body class="oo-ui-window-isolated oo-ui-' + this.dir + '"' +
 				' style="direction:' + this.dir + ';" dir="' + this.dir + '">' +
+				'<div class="oo-ui-window-content"></div>' +
 			'</body>' +
 		'</html>'
 	);
@@ -4256,7 +4257,7 @@ OO.initClass( OO.ui.LabeledElement );
  *
  * @static
  * @inheritable
- * @property {string|Function|null} Label text; a function that returns a nodes or text; or null for
+ * @property {string|Function|null} Label text; a function that returns nodes or text; or null for
  *  no label
  */
 OO.ui.LabeledElement.static.label = null;
@@ -8959,7 +8960,7 @@ OO.mixinClass( OO.ui.LabelWidget, OO.ui.LabeledElement );
 
 /* Static Properties */
 
-OO.ui.LabelWidget.static.tagName = 'label';
+OO.ui.LabelWidget.static.tagName = 'span';
 
 /* Methods */
 
@@ -9024,8 +9025,6 @@ OO.mixinClass( OO.ui.OptionWidget, OO.ui.LabeledElement );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.FlaggableElement );
 
 /* Static Properties */
-
-OO.ui.OptionWidget.static.tagName = 'li';
 
 OO.ui.OptionWidget.static.selectable = true;
 
@@ -9954,10 +9953,6 @@ OO.mixinClass( OO.ui.SelectWidget, OO.ui.GroupWidget );
  * @event remove
  * @param {OO.ui.OptionWidget[]} items Removed items
  */
-
-/* Static Properties */
-
-OO.ui.SelectWidget.static.tagName = 'ul';
 
 /* Methods */
 
