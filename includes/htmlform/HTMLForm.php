@@ -138,6 +138,7 @@ class HTMLForm extends ContextSource {
 	protected $mFieldTree;
 	protected $mShowReset = false;
 	protected $mShowSubmit = true;
+	protected $mSubmitModifierClass = 'mw-ui-constructive';
 
 	protected $mSubmitCallback;
 	protected $mValidationErrorMessage;
@@ -895,7 +896,7 @@ class HTMLForm extends ContextSource {
 			$attribs['class'] = array( 'mw-htmlform-submit' );
 
 			if ( $this->isVForm() || $wgUseMediaWikiUIEverywhere ) {
-				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-constructive' );
+				array_push( $attribs['class'], 'mw-ui-button', $this->mSubmitModifierClass );
 			}
 
 			if ( $this->isVForm() ) {
@@ -1035,6 +1036,17 @@ class HTMLForm extends ContextSource {
 		$this->mSubmitText = $t;
 
 		return $this;
+	}
+
+	/**
+	 * Identify that the submit button in the form has a destructive action
+	 *
+	 * @param string $t Plaintext
+	 *
+	 * @return HTMLForm $this for chaining calls (since 1.20)
+	 */
+	public function setSubmitDestructive() {
+		$this->mSubmitModifierClass = 'mw-ui-destructive';
 	}
 
 	/**
