@@ -863,6 +863,13 @@ $name: name of the special page, e.g. 'Watchlist'
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
 
+'CheckRenameLogin': Called during login to allow extensions to nicely inform a user
+when their username has been changed, instead of giving an error that the account
+name doesn't exist.
+&$user: the User object being authenticated against. An extension may update this.
+$password: the password being submitted, not yet checked for validity
+&$msg: the message identifier for abort reason
+
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that
