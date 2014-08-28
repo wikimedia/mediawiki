@@ -1,7 +1,12 @@
 <?php
 /**
- * This does the initial set up for a web request, including a few
- * security checks and loading the initializer.
+ * This does the initial set up for a web request.
+ * It does some security checks, starts the profiler and loads the
+ * configuration, and optionally loads Setup.php depending on whether
+ * MW_NO_SETUP is defined.
+ *
+ * Setup.php (if loaded) then sets up GlobalFunctions, the AutoLoader,
+ * and the configuration globals (though not $wgTitle).
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,9 +39,17 @@ if ( ini_get( 'register_globals' ) ) {
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
 
+$wgRequestTime = microtime( true );
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
 $wgRUstart = function_exists( 'getrusage' ) ? getrusage() : array();
 unset( $IP );
+
+# Valid web server entry point, enable includes.
+# Please don't move this line to includes/Defines.php. This line essentially
+# defines a valid entry point. If you put it in includes/Defines.php, then
+# any script that includes it becomes an entry point, thereby defeating
+# its purpose.
+define( 'MEDIAWIKI', true );
 
 # Full path to working directory.
 # Makes it possible to for example to have effective exclude path in apc.
@@ -47,9 +60,30 @@ if ( $IP === false ) {
 	$IP = realpath( '.' ) ?: dirname( __DIR__ );
 }
 
-require_once "$IP/includes/Initialize.php";
+# Start the autoloader, so that extensions can derive classes from core files
+require_once "$IP/includes/AutoLoader.php";
+
+# Load the profiler
+require_once "$IP/includes/profiler/Profiler.php";
+
+# Load up some global defines.
+require_once "$IP/includes/Defines.php";
+
+# Start the profiler
+$wgProfiler = array();
+if ( file_exists( "$IP/StartProfiler.php" ) ) {
+	require "$IP/StartProfiler.php";
+}
 
 wfProfileIn( 'WebStart.php-conf' );
+
+# Load default settings
+require_once "$IP/includes/DefaultSettings.php";
+
+# Load composer's autoloader if present
+if ( is_readable( "$IP/vendor/autoload.php" ) ) {
+	require_once "$IP/vendor/autoload.php";
+}
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
