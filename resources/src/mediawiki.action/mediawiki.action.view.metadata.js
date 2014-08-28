@@ -6,7 +6,7 @@
  *
  * See also:
  * - ImagePage.php#makeMetadataTable (creates the HTML)
- * - skins/common/shared.css (hides tr.collapsable inside table.collapsed)
+ * - shared.css (hides tr.collapsable inside table.collapsed)
  */
 ( function ( mw, $ ) {
 	$( function () {
