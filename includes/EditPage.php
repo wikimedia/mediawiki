@@ -2425,9 +2425,7 @@ class EditPage {
 
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
 
-		if ( $this->contentModel === CONTENT_MODEL_WIKITEXT &&
-			$showToolbar && $wgUser->getOption( 'showtoolbar' ) )
-		{
+		if ( $showToolbar && $this->shouldShowToolbar() && $wgUser->getOption( 'showtoolbar' ) ) {
 			$wgOut->addHTML( EditPage::getEditToolbar() );
 		}
 
@@ -2498,6 +2496,17 @@ class EditPage {
 		}
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Returns if the toolbar should be displayed
+	 *
+	 * @return bool
+	 *
+	 * @since 1.24
+	 */
+	protected function shouldShowToolbar() {
+		return $this->contentModel === CONTENT_MODEL_WIKITEXT;
 	}
 
 	/**
