@@ -692,6 +692,16 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$allowed = Skin::getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
+			$msg = $this->msg( "skinname-{$name}" );
+			$code = $this->getParameter( 'inlanguagecode' );
+			if ( $code && Language::isValidCode( $code ) ) {
+				$msg->inLanguage( $code );
+			} else {
+				$msg->inContentLanguage();
+			}
+			if ( $msg->exists() ) {
+				$displayName = $msg->text();
+			}
 			$skin = array( 'code' => $name );
 			ApiResult::setContent( $skin, $displayName );
 			if ( !isset( $allowed[$name] ) ) {
@@ -845,7 +855,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' restrictions          - Returns information on available restriction (protection) types',
 				' languages             - Returns a list of languages MediaWiki supports' .
 					"(optionally localised by using {$p}inlanguagecode)",
-				' skins                 - Returns a list of all enabled skins',
+				' skins                 - Returns a list of all enabled skins ' .
+					"(optionally localised by using {$p}inlanguagecode, otherwise in content language)",
 				' extensiontags         - Returns a list of parser extension tags',
 				' functionhooks         - Returns a list of parser function hooks',
 				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)',
@@ -857,7 +868,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'showalldb' => 'List all database servers, not just the one lagging the most',
 			'numberingroup' => 'Lists the number of users in user groups',
 			'inlanguagecode' => 'Language code for localised language names ' .
-				'(best effort, use CLDR extension)',
+				'(best effort, use CLDR extension) and skin names',
 		);
 	}
 
