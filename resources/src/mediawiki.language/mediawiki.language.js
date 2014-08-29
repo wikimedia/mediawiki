@@ -144,8 +144,25 @@ $.extend( mw.language, {
 			return grammarForms[form][word] || word;
 		}
 		return word;
-	}
+	},
 
+	/**
+	 * See Language::listToText in the PHP.
+	 * @param {string[]} list
+	 * @return {string}
+	 */
+	listToText: function ( list ) {
+		var text = '', i;
+		for ( i = 0; i < list.length; i++ ) {
+			text += list[i];
+			if ( list.length - 2 === i ) {
+				text += mw.msg( 'and' ) + mw.msg( 'word-separator' );
+			} else if ( list.length - 1 !== i ) {
+				text += mw.msg( 'comma-separator' );
+			}
+		}
+		return text;
+	}
 } );
 
 }( mediaWiki, jQuery ) );
