@@ -434,6 +434,7 @@ changes to languages because of Bugzilla reports.
   called unconditionally.
 
 ==== Renamed classes ====
+* Categoryfinder to CategoryFinder
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
 * CLDRPluralRuleConverter_Fragment to CLDRPluralRuleConverterFragment
 * CLDRPluralRuleConverter_Operator to CLDRPluralRuleConverterOperator
