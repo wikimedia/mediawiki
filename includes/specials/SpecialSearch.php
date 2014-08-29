@@ -1095,10 +1095,8 @@ class SpecialSearch extends SpecialPage {
 
 		// Results-info
 		if ( $totalNum > 0 && $this->offset < $totalNum ) {
-			$top = $this->msg( 'showingresultsheader' )
-				->numParams( $this->offset + 1, $this->offset + $resultsShown, $totalNum )
-				->params( wfEscapeWikiText( $term ) )
-				->numParams( $resultsShown )
+			$top = $this->msg( 'search-results-count' )
+				->numParams( $totalNum )
 				->parse();
 			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ), $top ) .
 				Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
