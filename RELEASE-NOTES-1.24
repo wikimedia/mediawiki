@@ -181,6 +181,8 @@ production.
 * API token handling has been rewritten. Any API module using tokens will need
   to be updated. See the entry below under "Action API internal changes".
 * Added HTMLAutoCompleteSelectField.
+* Added a new hook, "SkinPreloadExistence", to allow extensions to add titles to
+  link existence cache before the page is rendered.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
