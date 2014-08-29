@@ -647,6 +647,7 @@ $wgAutoloadLocalClasses = array(
 	'UploadFromUrlJob' => 'includes/jobqueue/jobs/UploadFromUrlJob.php',
 	'AssembleUploadChunksJob' => 'includes/jobqueue/jobs/AssembleUploadChunksJob.php',
 	'PublishStashedFileJob' => 'includes/jobqueue/jobs/PublishStashedFileJob.php',
+	'ThumbnailRenderJob' => 'includes/jobqueue/jobs/ThumbnailRenderJob.php',
 
 	# includes/jobqueue/utils
 	'BacklinkJobUtils' => 'includes/jobqueue/utils/BacklinkJobUtils.php',

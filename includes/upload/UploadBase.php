@@ -746,11 +746,28 @@ abstract class UploadBase {
 				);
 			}
 			wfRunHooks( 'UploadComplete', array( &$this ) );
+
+			$this->postProcessUpload();
 		}
 
 		wfProfileOut( __METHOD__ );
 
 		return $status;
+	}
+
+	/**
+	 * Perform extra steps after a successful upload.
+	 */
+	public function postProcessUpload() {
+		global $wgUploadThumbnailMap;
+
+		foreach ( $wgUploadThumbnailMap as $size ) {
+			$job = new ThumbnailRenderJob( $this->getLocalFile()->getTitle(), array(
+				'size' => $size,
+			) );
+
+			JobQueueGroup::singleton()->push( $job );
+		}
 	}
 
 	/**
