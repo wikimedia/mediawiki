@@ -110,12 +110,12 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 		$this->assertEquals(
 			$expectedModule->getStyles( $contextLtr ),
-			str_replace( '/*@noflip*/ ', '', $testModule->getStyles( $contextLtr ) ),
+			$testModule->getStyles( $contextLtr ),
 			"/*@noflip*/ with /*@embed*/ gives correct results in LTR mode"
 		);
 		$this->assertEquals(
 			$expectedModule->getStyles( $contextLtr ),
-			str_replace( '/*@noflip*/ ', '', $testModule->getStyles( $contextRtl ) ),
+			$testModule->getStyles( $contextRtl ),
 			"/*@noflip*/ with /*@embed*/ gives correct results in RTL mode"
 		);
 	}

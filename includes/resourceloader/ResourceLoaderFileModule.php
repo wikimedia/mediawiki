@@ -867,6 +867,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		if ( $flip ) {
 			$style = CSSJanus::transform( $style, true, false );
+		} else {
+			$style = CSSJanus::nullTransform( $style );
 		}
 		$localDir = dirname( $localPath );
 		$remoteDir = dirname( $remotePath );

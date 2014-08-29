@@ -3502,6 +3502,8 @@ $templates
 		if ( $flip === 'flip' && $this->getLanguage()->isRTL() ) {
 			# If wanted, and the interface is right-to-left, flip the CSS
 			$style_css = CSSJanus::transform( $style_css, true, false );
+		} else {
+			$style_css = CSSJanus::nullTransform( $style_css );
 		}
 		$this->mInlineStyles .= Html::inlineStyle( $style_css ) . "\n";
 	}
@@ -3552,6 +3554,8 @@ $templates
 			$previewedCSS = $this->getRequest()->getText( 'wpTextbox1' );
 			if ( $this->getLanguage()->getDir() !== $wgContLang->getDir() ) {
 				$previewedCSS = CSSJanus::transform( $previewedCSS, true, false );
+			} else {
+				$previewedCSS = CSSJanus::nullTransform( $previewedCSS );
 			}
 			$otherTags .= Html::inlineStyle( $previewedCSS ) . "\n";
 		} else {
