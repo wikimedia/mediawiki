@@ -576,7 +576,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool True if acceptable, false otherwise
 	 */
 	protected function checkRowCount() {
-		wfDeprecated( __METHOD__, 1.24 );
+		wfDeprecated( __METHOD__, '1.24' );
 		$db = $this->getDB();
 		$this->profileDBIn();
 		$rowcount = $db->estimateRowCount(
@@ -603,7 +603,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Page title with underscores
 	 */
 	public function titleToKey( $title ) {
-		wfDeprecated( __METHOD__, 1.24 );
+		wfDeprecated( __METHOD__, '1.24' );
 		// Don't throw an error if we got an empty string
 		if ( trim( $title ) == '' ) {
 			return '';
@@ -623,7 +623,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Page title with spaces
 	 */
 	public function keyToTitle( $key ) {
-		wfDeprecated( __METHOD__, 1.24 );
+		wfDeprecated( __METHOD__, '1.24' );
 		// Don't throw an error if we got an empty string
 		if ( trim( $key ) == '' ) {
 			return '';
@@ -644,7 +644,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Key part with underscores
 	 */
 	public function keyPartToTitle( $keyPart ) {
-		wfDeprecated( __METHOD__, 1.24 );
+		wfDeprecated( __METHOD__, '1.24' );
 		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, -1 );
 	}
 
