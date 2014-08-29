@@ -1646,6 +1646,7 @@ abstract class FileBackendStore extends FileBackend {
 		$contInfo = array(); // (resolved container name => cache value)
 		// Get all cache entries for these container cache keys...
 		$values = $this->memCache->getMulti( array_keys( $contNames ) );
+		$values = $values ?: array(); // avoid warnings if false
 		foreach ( $values as $cacheKey => $val ) {
 			$contInfo[$contNames[$cacheKey]] = $val;
 		}
@@ -1754,6 +1755,7 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		// Get all cache entries for these container cache keys...
 		$values = $this->memCache->getMulti( array_keys( $pathNames ) );
+		$values = $values ?: array(); // avoid warnings if false
 		foreach ( $values as $cacheKey => $val ) {
 			if ( is_array( $val ) ) {
 				$path = $pathNames[$cacheKey];
