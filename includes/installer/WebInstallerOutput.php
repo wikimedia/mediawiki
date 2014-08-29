@@ -271,7 +271,7 @@ class WebInstallerOutput {
 <?php echo Html::openElement( 'body', array( 'class' => $this->getDir() ) ) . "\n"; ?>
 <div id="mw-page-base"></div>
 <div id="mw-head-base"></div>
-<div id="content">
+<div id="content" class="mw-body">
 <div id="bodyContent">
 
 <h1><?php $this->outputTitle(); ?></h1>
