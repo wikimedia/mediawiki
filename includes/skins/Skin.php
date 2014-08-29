@@ -253,6 +253,8 @@ abstract class Skin extends ContextSource {
 			$titles[] = $this->getTitle()->getTalkPage();
 		}
 
+		wfRunHooks( 'SkinPreloadExistence', array( &$titles, $this ) );
+
 		$lb = new LinkBatch( $titles );
 		$lb->setCaller( __METHOD__ );
 		$lb->execute();
