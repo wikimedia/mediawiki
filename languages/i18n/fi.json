@@ -425,8 +425,6 @@
 	"userlogin-resetlink": "Unohditko salasanasi?",
 	"userlogin-resetpassword-link": "Unohditko salasanasi?",
 	"userlogin-helplink2": "Apua sisäänkirjautumiseen",
-	"userlogin-loggedin": "Olet jo kirjautunut sisään tunnuksella {{GENDER:$1|$1}}.\nKäytä alla olevaa lomaketta kirjautuaksesi sisään toisena käyttäjänä.",
-	"userlogin-createanother": "Luo toinen käyttäjätunnus",
 	"createacct-emailrequired": "Sähköpostiosoite",
 	"createacct-emailoptional": "Sähköpostiosoite (vapaaehtoinen)",
 	"createacct-email-ph": "Anna sähköpostiosoitteesi",

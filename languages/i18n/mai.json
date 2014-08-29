@@ -405,8 +405,6 @@
 	"userlogin-resetlink": "अपन सम्प्रवेश विवरण बिसरि गेलहुँ?",
 	"userlogin-resetpassword-link": "अपन कूटशब्द बिसर गेलौ ?",
 	"userlogin-helplink2": "सम्प्रवेशित करवाकलेल मदत",
-	"userlogin-loggedin": "अहा {{GENDER:$1|$1}} के रूपमे पहिले स सम्प्रवेशित छि।\nकोनो दोसर सदस्यके रुपमे सम्प्रवेशित करवाक लेल देल गेल फारमके प्रयोग करु।",
-	"userlogin-createanother": "दोसर खाता बनाउ",
 	"createacct-emailrequired": "ई-पत्र संकेत",
 	"createacct-emailoptional": "ई-पत्र संकेत (वैकल्पिक)",
 	"createacct-email-ph": "अपन ई-पत्र संकेत सत्यापित करू",

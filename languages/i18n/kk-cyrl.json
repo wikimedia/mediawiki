@@ -390,8 +390,6 @@
 	"userlogin-resetlink": "Қатысушы атын не құпия сөзді ұмыттыңыз ба?",
 	"userlogin-resetpassword-link": "Құпия сөздіңізді ұмыттыңыз ба?",
 	"userlogin-helplink2": "Кіруге көмек",
-	"userlogin-loggedin": "{{GENDER:$1|$1}} ретінде әлдеқашан кіргенсіз.\nТөмендегі пішінді басқа қатысушы кіруі ретінде қолданыңыз.",
-	"userlogin-createanother": "Басқа тіркелгі жасау",
 	"createacct-emailrequired": "Е-пошта мекен-жайы",
 	"createacct-emailoptional": "Е-пошта мекен-жайы (міндетті емес)",
 	"createacct-email-ph": "Е-пошта мекен-жайыңызды енгізіңіз",

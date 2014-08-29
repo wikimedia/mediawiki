@@ -396,8 +396,6 @@
 	"gotaccountlink": "Saioa hasi",
 	"userlogin-resetlink": "Saioa hasteko datuak ahaztu dituzu?",
 	"userlogin-resetpassword-link": "Zure pasahitza ahaztu duzu?",
-	"userlogin-loggedin": "Dagoeneko izena emana zaude {{GENDER:$1|$1}}.\nBeheko formularioa erabil ezazu beste erabiltzaile baten izenean sartzeko.",
-	"userlogin-createanother": "Beste kontu bat sortu",
 	"createacct-emailrequired": "E-posta helbidea",
 	"createacct-emailoptional": "E-posta helbidea (hautazkoa)",
 	"createacct-email-ph": "Sartu zure e-posta helbidea",

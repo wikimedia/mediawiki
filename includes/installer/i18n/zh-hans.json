@@ -66,6 +66,7 @@
 	"config-env-good": "环境检查已经完成。您可以安装MediaWiki。",
 	"config-env-bad": "环境检查已经完成。您不能安装MediaWiki。",
 	"config-env-php": "PHP $1已安装。",
+	"config-env-hhvm": "HHVM $1已安装。",
 	"config-unicode-using-utf8": "使用Brion Vibber的utf8_normalize.so实现Unicode正常化。",
 	"config-unicode-using-intl": "使用[http://pecl.php.net/intl intl PECL扩展程序]标准化Unicode。",
 	"config-unicode-pure-php-warning": "<strong>警告：</strong>因为尚未安装 [http://pecl.php.net/intl intl PECL 扩展]以处理 Unicode 正常化，故只能退而采用运行较慢的纯 PHP 实现的方法。\n如果您运行着一个高流量的站点，请参阅 [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode 正常化]一文。",

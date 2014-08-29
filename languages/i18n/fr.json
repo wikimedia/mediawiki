@@ -496,8 +496,6 @@
 	"userlogin-resetlink": "Vous avez oublié vos détails de connexion ?",
 	"userlogin-resetpassword-link": "Mot de passe oublié ?",
 	"userlogin-helplink2": "Aide à la connexion",
-	"userlogin-loggedin": "Vous êtes déjà connecté{{GENDER:$1||e}} en tant que {{GENDER:$1|$1}}.\nUtilisez le formulaire ci-dessous pour vous connecter avec un autre compte utilisateur.",
-	"userlogin-createanother": "Créer un autre compte",
 	"createacct-emailrequired": "Adresse de courriel",
 	"createacct-emailoptional": "Adresse de courriel (facultative)",
 	"createacct-email-ph": "Entrez votre adresse de courriel",

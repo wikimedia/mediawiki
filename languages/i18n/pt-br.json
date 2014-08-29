@@ -455,8 +455,6 @@
 	"userlogin-resetlink": "Esqueceu-se do seu nome de usuário ou da senha?",
 	"userlogin-resetpassword-link": "Esqueceu sua senha?",
 	"userlogin-helplink2": "Ajuda com o login",
-	"userlogin-loggedin": "Você já está conectado como {{GENDER:$1|$1}}.\nUse o formulário abaixo para iniciar sessão como outro usuário.",
-	"userlogin-createanother": "Crie uma outra conta",
 	"createacct-emailrequired": "Endereço de e-mail",
 	"createacct-emailoptional": "Endereço de e-mail (opcional)",
 	"createacct-email-ph": "Confirme seu endereço de e-mail",

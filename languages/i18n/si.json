@@ -402,8 +402,6 @@
 	"gotaccountlink": "පිවිසෙන්න",
 	"userlogin-resetlink": "ඔබේ පිවිසුම් තොරතුරු අමතකද?",
 	"userlogin-resetpassword-link": "ඔබේ මුරපදය නැති වුනාද?",
-	"userlogin-loggedin": "ඔබ දැනටමත් {{GENDER:$1|}} ලෙස පිවිසී ඇත.\nනව පරිශීලකයෙකු ලෙස ඇතුළු වීමට පහත ආකෘතිය පුරවන්න.",
-	"userlogin-createanother": "තවත් ගිණුමක් ආරම්භ කරන්න",
 	"createacct-emailrequired": "වි-තැපෑල ලිපිනය",
 	"createacct-emailoptional": "වි-තැපෑල ලිපිනය (විකල්ප)",
 	"createacct-email-ph": "ඔබගේ වි-තැපෑල ලිපිනය ඇතුළු කරන්න",

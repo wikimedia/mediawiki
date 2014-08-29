@@ -407,8 +407,6 @@
 	"userlogin-resetlink": "Ați uitat datele de autentificare?",
 	"userlogin-resetpassword-link": "V-ați uitat parola?",
 	"userlogin-helplink2": "Ajutor la autentificare",
-	"userlogin-loggedin": "Sunteți deja {{GENDER:$1|autentificat|autentificată}} ca {{GENDER:$1|$1}}.\nUtilizați formularul de mai jos pentru a vă autentifica cu alt nume de utilizator.",
-	"userlogin-createanother": "Creează un alt cont",
 	"createacct-emailrequired": "Adresă de e-mail",
 	"createacct-emailoptional": "Adresă de e-mail (opțională)",
 	"createacct-email-ph": "Introduceți adresa dumnevoastră de e-mail",

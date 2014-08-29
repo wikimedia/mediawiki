@@ -431,8 +431,6 @@
 	"userlogin-resetlink": "نسيت تفاصيل الدخول؟",
 	"userlogin-resetpassword-link": "نسيت كلمة مرورك؟",
 	"userlogin-helplink2": "المساعدة في الدخول",
-	"userlogin-loggedin": "أنت {{GENDER:$1|مسجل|مسجلة}} الدخول مسبقًا باسم $1. {{GENDER:$1|استخدم|استخدمي}} النموذج بالأسفل لتسجيل الدخول بحساب آخر.",
-	"userlogin-createanother": "إنشاء حساب آخر",
 	"createacct-emailrequired": "عنوان البريد الإلكتروني",
 	"createacct-emailoptional": "البريد الإلكتروني (اختياري)",
 	"createacct-email-ph": "أدخل عنوان بريدك الإلكتروني",

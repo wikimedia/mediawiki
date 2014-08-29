@@ -568,8 +568,6 @@
 	"userlogin-resetpassword-link": "Used as link text in the login form.\n\nThe link points to the local page [[Special:PasswordReset]].\n\nSee example: [[Special:UserLogin]]\n\nuserlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}.\n{{Identical|Forgot your password}}",
 	"helplogin-url": "{{doc-important|Do not translate the namespace name <code>Help</code>.}}\nUsed as name of the page that provides information about logging into the wiki.\n\nUsed as a link target in the message {{msg-mw|Userlogin-helplink}}.",
 	"userlogin-helplink2": "Label for a link to login help.\n\nSee example: [[Special:UserLogin]]\n\nSee also:\n* {{msg-mw|Helplogin-url}}",
-	"userlogin-loggedin": "Used as warning on [[Special:UserLogin]] when the current user is already logged in.\n\nFollowed by the Login form.\n\nSee example: [[Special:UserLogin]].\n\nParameters:\n* $1 - user name (used for display and for gender support)",
-	"userlogin-createanother": "Used as label for the button on [[Special:UserLogin]] shown when the current user is already logged in.\n{{Identical|Create another account}}",
 	"createacct-emailrequired": "Label in create account form for email field when it is required.\n\nSee also:\n* {{msg-mw|Createacct-emailoptional}}\n{{Identical|E-mail address}}",
 	"createacct-emailoptional": "Label in vertical-layout create account form for email field when it is optional.\n\nSee example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n\nSee also:\n* {{msg-mw|Createacct-emailrequired}}",
 	"createacct-email-ph": "Placeholder in vertical-layout create account form for email field.\n\nSee example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]",

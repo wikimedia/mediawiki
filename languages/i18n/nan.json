@@ -382,8 +382,6 @@
 	"userlogin-resetlink": "你敢袂記得你登入的資料？",
 	"userlogin-resetpassword-link": "袂記得你的密碼？",
 	"userlogin-helplink2": "協助你登入",
-	"userlogin-loggedin": "你已經用{{GENDER:$1|$1}}登入，用下跤的表，登入別个名。",
-	"userlogin-createanother": "開另外一个口座",
 	"createacct-emailrequired": "電子批地址",
 	"createacct-emailoptional": "電子批地址（無一定愛寫）",
 	"createacct-email-ph": "拍你的電子批地址",
