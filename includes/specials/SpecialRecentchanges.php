@@ -595,9 +595,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		# Look up
-		$c = new Categoryfinder;
-		$c->seed( $articles, $cats, $opts['categories_any'] ? 'OR' : 'AND' );
-		$match = $c->run();
+		$catFind = new CategoryFinder;
+		$catFind->seed( $articles, $cats, $opts['categories_any'] ? 'OR' : 'AND' );
+		$match = $catFind->run();
 
 		# Filter
 		$newrows = array();
