@@ -692,6 +692,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$allowed = Skin::getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
+			$msg = $this->msg( "skinname-{$name}" );
+			if ( $msg->exists() ) {
+				$displayName = $msg->text();
+			}
 			$skin = array( 'code' => $name );
 			ApiResult::setContent( $skin, $displayName );
 			if ( !isset( $allowed[$name] ) ) {
