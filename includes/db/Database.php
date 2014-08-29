@@ -679,8 +679,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *   - DBO_DEBUG: output some debug info (same as debug())
 	 *   - DBO_NOBUFFER: don't buffer results (inverse of bufferResults())
 	 *   - DBO_TRX: automatically start transactions
-	 *   - DBO_DEFAULT: automatically sets DBO_TRX if not in command line mode
-	 *       and removes it in command line mode
 	 *   - DBO_PERSISTENT: use persistant database connection
 	 * @return bool
 	 */
