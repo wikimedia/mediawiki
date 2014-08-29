@@ -1243,6 +1243,16 @@ $wgThumbnailBuckets = null;
 $wgThumbnailMinimumBucketDistance = 50;
 
 /**
+ * When defined, is an array of thumbnail widths to be rendered at upload time. The idea is to
+ * prerender common thumbnail sizes, in order to avoid the necessity to render them on demand, which
+ * has a performance impact for the first client to view a certain size.
+ *
+ * This obviously means that more disk space is needed per upload upfront.
+ */
+
+$wgUploadThumbnailMap = array();
+
+/**
  * Default parameters for the "<gallery>" tag
  */
 $wgGalleryOptions = array(
@@ -6291,6 +6301,7 @@ $wgJobClasses = array(
 	'uploadFromUrl' => 'UploadFromUrlJob',
 	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
 	'PublishStashedFile' => 'PublishStashedFileJob',
+	'ThumbnailRender' => 'ThumbnailRenderJob',
 	'null' => 'NullJob'
 );
 

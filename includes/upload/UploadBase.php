@@ -725,6 +725,8 @@ abstract class UploadBase {
 	 * @return Status Indicating the whether the upload succeeded.
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
+		global $wgUploadThumbnailMap;
+
 		wfProfileIn( __METHOD__ );
 
 		$status = $this->getLocalFile()->upload(
@@ -746,6 +748,14 @@ abstract class UploadBase {
 				);
 			}
 			wfRunHooks( 'UploadComplete', array( &$this ) );
+
+			foreach ( $wgUploadThumbnailMap as $size ) {
+				$job = new ThumbnailRenderJob( $this->getLocalFile()->getTitle(), array(
+					'size' => $size,
+				) );
+
+				JobQueueGroup::singleton()->push( $job );
+			}
 		}
 
 		wfProfileOut( __METHOD__ );
