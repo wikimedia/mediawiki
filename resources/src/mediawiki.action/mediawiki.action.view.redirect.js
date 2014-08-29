@@ -38,6 +38,11 @@
 		// This will also cause the browser to scroll to given fragment
 		history.replaceState( /*data=*/ history.state, /*title=*/ document.title, /*url=*/ canonical );
 
+		// …except for IE 10 and 11. Prod it with a location.hash change.
+		if ( shouldChangeFragment && profile.name === 'msie' && profile.versionNumber >= 10 ) {
+			location.hash = fragment;
+		}
+
 	} else if ( shouldChangeFragment ) {
 		if ( profile.layout === 'webkit' && profile.layoutVersion < 420 ) {
 			// Released Safari w/ WebKit 418.9.1 messes up horribly
