@@ -42,26 +42,29 @@ class FindMissingFiles extends Maintenance {
 		$mtime1 = $dbr->timestampOrNull( $this->getOption( 'mtimeafter', null ) );
 		$mtime2 = $dbr->timestampOrNull( $this->getOption( 'mtimebefore', null ) );
 
-		$tables = array( 'image' );
-		$logJoinOn = array( 'log_namespace' => NS_FILE, 'log_title = img_name' );
-		$logJoinOn['log_type'] = array( 'upload', 'move', 'delete' );
-		if ( $mtime1 ) {
-			$logJoinOn[] = "log_timestamp > {$dbr->addQuotes($mtime1)}";
-		}
-		if ( $mtime2 ) {
-			$logJoinOn[] = "log_timestamp < {$dbr->addQuotes($mtime2)}";
-		}
+		$joinTables = array( 'image' );
+		$joinConds = array( 'image' => array( 'INNER JOIN', 'img_name = page_title' ) );
 		if ( $mtime1 || $mtime2 ) {
-			$tables[] = 'logging';
+			$joinTables[] = 'logging';
+			$on = array( 'log_page = page_id', 'log_type' => array( 'upload', 'move', 'delete' ) );
+			if ( $mtime1 ) {
+				$on[] = "log_timestamp > {$dbr->addQuotes($mtime1)}";
+			}
+			if ( $mtime2 ) {
+				$on[] = "log_timestamp < {$dbr->addQuotes($mtime2)}";
+			}
+			$joinConds['logging'] = array( 'INNER JOIN', $on );
 		}
 
 		do {
-			$res = $dbr->select( $tables,
-				array( 'img_name' => 'DISTINCT(img_name)' ),
-				array( "img_name >= " . $dbr->addQuotes( $lastName ) ),
+			$res = $dbr->select(
+				array_merge( array( 'page' ), $joinTables ),
+				array( 'img_name' => 'DISTINCT(page_title)' ),
+				array( 'page_namespace' => NS_FILE,
+					"page_title >= " . $dbr->addQuotes( $lastName ) ),
 				__METHOD__,
-				array( 'ORDER BY' => 'img_name', 'LIMIT' => $this->mBatchSize ),
-				array( 'logging' => array( 'INNER JOIN', $logJoinOn ) )
+				array( 'ORDER BY' => 'page_title', 'LIMIT' => $this->mBatchSize ),
+				$joinConds
 			);
 
 			// Check if any of these files are missing...
