@@ -1058,11 +1058,6 @@ return array(
 		),
 		'position' => 'top',
 	),
-	// Deployment hack for compatibility with cached HTML, remove before 1.24 release
-	'mediawiki.action.view.redirectToFragment' => array(
-		'dependencies' => 'mediawiki.action.view.redirect',
-		'position' => 'top',
-	),
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	),
