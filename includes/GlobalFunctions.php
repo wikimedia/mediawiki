@@ -3327,7 +3327,7 @@ function wfRelativePath( $path, $from ) {
  * @param int $destBase Desired base of the output
  * @param int $pad Minimum number of digits in the output (pad with zeroes)
  * @param bool $lowercase Whether to output in lowercase or uppercase
- * @param string $engine Either "gmp", "bcmath", or "php"
+ * @param string $engine Either "c", "gmp", "bcmath", or "php"
  * @return string|bool The output number as a string, or false on error
  */
 function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
@@ -3365,7 +3365,9 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 		'u' => 30, 'v' => 31, 'w' => 32, 'x' => 33, 'y' => 34, 'z' => 35
 	);
 
-	if ( extension_loaded( 'gmp' ) && ( $engine == 'auto' || $engine == 'gmp' ) ) {
+	if ( $engine === 'c' || $engine === 'auto' ) {
+		$result = base_convert( $input, $sourceBase, $destBase );
+	} elseif ( extension_loaded( 'gmp' ) && $engine == 'gmp' ) {
 		$result = gmp_strval( gmp_init( $input, $sourceBase ), $destBase );
 	} elseif ( extension_loaded( 'bcmath' ) && ( $engine == 'auto' || $engine == 'bcmath' ) ) {
 		$decimal = '0';
