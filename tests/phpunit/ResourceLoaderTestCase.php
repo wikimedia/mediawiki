@@ -81,3 +81,10 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 
 class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {
 }
+
+class ResourceLoaderWikiModuleTestModule extends ResourceLoaderWikiModule {
+	// Override expected via PHPUnit mocks and stubs
+	protected function getPages( ResourceLoaderContext $context ) {
+		return array();
+	}
+}

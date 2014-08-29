@@ -36,8 +36,8 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	# Origin is user-supplied code
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 
-	// In-object cache for title mtimes
-	protected $titleMtimes = array();
+	// In-object cache for title info
+	protected $titleInfo = array();
 
 	/* Abstract Protected Methods */
 
@@ -171,8 +171,11 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
-		$mtimes = $this->getTitleMtimes( $context );
-		if ( count( $mtimes ) ) {
+		$titleInfo = $this->getTitleInfo( $context );
+		if ( count( $titleInfo ) ) {
+			$mtimes = array_map( function( $value ) {
+				return $value['timestamp'];
+			}, $titleInfo );
 			$modifiedTime = max( $modifiedTime, max( $mtimes ) );
 		}
 		$modifiedTime = max(
@@ -201,16 +204,35 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return bool
 	 */
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
-		return count( $this->getTitleMtimes( $context ) ) == 0;
+		$titleInfo = $this->getTitleInfo( $context );
+		// Bug 68488: For modules in the "user" group, we should actually
+		// check that the pages are empty (page_len == 0), but for other
+		// groups, just check the pages exist so that we don't end up
+		// caching temporarily-blank pages without the appropriate
+		// <script> or <link> tag.
+		if ( $this->getGroup() !== 'user' ) {
+			return count( $titleInfo ) === 0;
+		}
+
+		foreach ( $titleInfo as $info ) {
+			if ( $info['length'] !== 0 ) {
+				// At least one non-0-lenth page, not empty
+				return false;
+			}
+		}
+
+		// All pages are 0-length, so it's empty
+		return true;
 	}
 
 	/**
 	 * Get the modification times of all titles that would be loaded for
 	 * a given context.
 	 * @param ResourceLoaderContext $context Context object
-	 * @return array( prefixed DB key => UNIX timestamp ), nonexistent titles are dropped
+	 * @return array keyed by page dbkey, with value is an array with 'length' and 'timestamp'
+	 *               keys, where the timestamp is a unix one
 	 */
-	protected function getTitleMtimes( ResourceLoaderContext $context ) {
+	protected function getTitleInfo( ResourceLoaderContext $context ) {
 		$dbr = $this->getDB();
 		if ( !$dbr ) {
 			// We're dealing with a subclass that doesn't have a DB
@@ -218,11 +240,11 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 
 		$hash = $context->getHash();
-		if ( isset( $this->titleMtimes[$hash] ) ) {
-			return $this->titleMtimes[$hash];
+		if ( isset( $this->titleInfo[$hash] ) ) {
+			return $this->titleInfo[$hash];
 		}
 
-		$this->titleMtimes[$hash] = array();
+		$this->titleInfo[$hash] = array();
 		$batch = new LinkBatch;
 		foreach ( $this->getPages( $context ) as $titleText => $options ) {
 			$batch->addObj( Title::newFromText( $titleText ) );
@@ -230,16 +252,18 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		if ( !$batch->isEmpty() ) {
 			$res = $dbr->select( 'page',
-				array( 'page_namespace', 'page_title', 'page_touched' ),
+				array( 'page_namespace', 'page_title', 'page_touched', 'page_len' ),
 				$batch->constructSet( 'page', $dbr ),
 				__METHOD__
 			);
 			foreach ( $res as $row ) {
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$this->titleMtimes[$hash][$title->getPrefixedDBkey()] =
-					wfTimestamp( TS_UNIX, $row->page_touched );
+				$this->titleInfo[$hash][$title->getPrefixedDBkey()] = array(
+					'timestamp' => wfTimestamp( TS_UNIX, $row->page_touched ),
+					'length' => $row->page_len,
+				);
 			}
 		}
-		return $this->titleMtimes[$hash];
+		return $this->titleInfo[$hash];
 	}
 }
