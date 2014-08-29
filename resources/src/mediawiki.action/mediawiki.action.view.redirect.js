@@ -14,11 +14,6 @@
 	// Clear internal mw.config entries, so that no one tries to depend on them
 	mw.config.set( 'wgInternalRedirectTargetUrl', null );
 
-	// Deployment hack for compatibility with cached HTML, remove before 1.24 release
-	if ( !canonical ) {
-		canonical = mw.config.get( 'wgRedirectToFragment' );
-	}
-
 	index = canonical.indexOf( '#' );
 	if ( index !== -1 ) {
 		fragment = canonical.slice( index );
