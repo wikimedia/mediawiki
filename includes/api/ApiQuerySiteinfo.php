@@ -692,6 +692,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$allowed = Skin::getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
+			$msg = $this->msg( "skinname-{$name}" )->inContentLanguage();
+			$code = $this->getParameter( 'inlanguagecode' );
+			if ( $code && Language::isValidCode( $code ) ) {
+				$msg = $msg->inLanguage( $code );
+			}
+			if ( $msg->exists() ) {
+				$displayName = $msg->text();
+			}
 			$skin = array( 'code' => $name );
 			ApiResult::setContent( $skin, $displayName );
 			if ( !isset( $allowed[$name] ) ) {
@@ -857,7 +865,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'showalldb' => 'List all database servers, not just the one lagging the most',
 			'numberingroup' => 'Lists the number of users in user groups',
 			'inlanguagecode' => 'Language code for localised language names ' .
-				'(best effort, use CLDR extension)',
+				'(best effort, use CLDR extension) and skin names',
 		);
 	}
 
