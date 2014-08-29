@@ -536,7 +536,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$files,
 			$this->scripts,
 			$context->getDebug() ? $this->debugScripts : array(),
-			self::tryForKey( $this->languageScripts, $context->getLanguage() ),
+			$this->getLanguageScripts( $context->getLanguage() ),
 			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ),
 			$this->loaderScripts
 		);
@@ -700,7 +700,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected function getScriptFiles( ResourceLoaderContext $context ) {
 		$files = array_merge(
 			$this->scripts,
-			self::tryForKey( $this->languageScripts, $context->getLanguage() ),
+			$this->getLanguageScripts( $context->getLanguage() ),
 			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' )
 		);
 		if ( $context->getDebug() ) {
@@ -708,6 +708,29 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		return array_unique( $files, SORT_REGULAR );
+	}
+
+	/**
+	 * Get the set of language scripts for the given language,
+	 * possibly using a fallback language.
+	 *
+	 * @param string $lang
+	 * @return array
+	 */
+	private function getLanguageScripts( $lang ) {
+		$scripts = self::tryForKey( $this->languageScripts, $lang );
+		if ( $scripts ) {
+			return $scripts;
+		}
+		$fallbacks = Language::getFallbacksFor( $lang );
+		foreach ( $fallbacks as $lang ) {
+			$scripts = self::tryForKey( $this->languageScripts, $lang );
+			if ( $scripts ) {
+				return $scripts;
+			}
+		}
+
+		return array();
 	}
 
 	/**

@@ -11,6 +11,8 @@ production.
 === Configuration changes in 1.25 ===
 
 === New features in 1.25 ===
+* (bug 58139) ResourceLoaderFileModule now supports language fallback
+  for 'languageScripts'.
 
 === Bug fixes in 1.25 ===
 
