@@ -58,7 +58,7 @@ class CssContent extends TextContent {
 		$text = $this->getNativeData();
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
 
-		return new CssContent( $pst );
+		return new static( $pst );
 	}
 
 	/**

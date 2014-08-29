@@ -16,6 +16,8 @@ class JSONContentHandler extends TextContentHandler {
 	/**
 	 * The class name of objects that should be created
 	 *
+	 * @deprecated override getContentClass instead
+	 *
 	 * @var string
 	 */
 	protected $contentClass = 'JSONContent';
@@ -25,25 +27,13 @@ class JSONContentHandler extends TextContentHandler {
 	}
 
 	/**
-	 * Unserializes a JSONContent object.
+	 * Temporary back-compat until extensions
+	 * are updated to override this
 	 *
-	 * @param string $text Serialized form of the content
-	 * @param null|string $format The format used for serialization
-	 *
-	 * @return JSONContent
+	 * @return string
 	 */
-	public function unserializeContent( $text, $format = null ) {
-		$this->checkFormat( $format );
-		return new $this->contentClass( $text );
-	}
-
-	/**
-	 * Creates an empty JSONContent object.
-	 *
-	 * @return JSONContent
-	 */
-	public function makeEmptyContent() {
-		return new $this->contentClass( '' );
+	protected function getContentClass() {
+		return $this->contentClass;
 	}
 
 	/**

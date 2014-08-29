@@ -93,6 +93,19 @@ class TextContentHandler extends ContentHandler {
 	}
 
 	/**
+	 * Returns the name of the associated Content class, to
+	 * be used when creating new objects. Override expected
+	 * by subclasses.
+	 *
+	 * @since 1.24
+	 *
+	 * @return string
+	 */
+	protected function getContentClass() {
+		return 'TextContent';
+	}
+
+	/**
 	 * Unserializes a Content object of the type supported by this ContentHandler.
 	 *
 	 * @since 1.21
@@ -105,7 +118,8 @@ class TextContentHandler extends ContentHandler {
 	public function unserializeContent( $text, $format = null ) {
 		$this->checkFormat( $format );
 
-		return new TextContent( $text );
+		$class = $this->getContentClass();
+		return new $class( $text );
 	}
 
 	/**
@@ -116,7 +130,8 @@ class TextContentHandler extends ContentHandler {
 	 * @return Content A new TextContent object with empty text.
 	 */
 	public function makeEmptyContent() {
-		return new TextContent( '' );
+		$class = $this->getContentClass();
+		return new $class( '' );
 	}
 
 }

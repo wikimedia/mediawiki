@@ -52,7 +52,7 @@ class WikitextContent extends TextContent {
 		if ( $sect === false ) {
 			return false;
 		} else {
-			return new WikitextContent( $sect );
+			return new static( $sect );
 		}
 	}
 
@@ -104,7 +104,7 @@ class WikitextContent extends TextContent {
 			$text = $wgParser->replaceSection( $oldtext, $sectionId, $text );
 		}
 
-		$newContent = new WikitextContent( $text );
+		$newContent = new static( $text );
 
 		wfProfileOut( __METHOD__ );
 
@@ -125,7 +125,7 @@ class WikitextContent extends TextContent {
 		$text .= "\n\n";
 		$text .= $this->getNativeData();
 
-		return new WikitextContent( $text );
+		return new static( $text );
 	}
 
 	/**
@@ -145,7 +145,7 @@ class WikitextContent extends TextContent {
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
 		rtrim( $pst );
 
-		return ( $text === $pst ) ? $this : new WikitextContent( $pst );
+		return ( $text === $pst ) ? $this : new static( $pst );
 	}
 
 	/**
@@ -164,7 +164,7 @@ class WikitextContent extends TextContent {
 		$text = $this->getNativeData();
 		$plt = $wgParser->getPreloadText( $text, $title, $popts, $params );
 
-		return new WikitextContent( $plt );
+		return new static( $plt );
 	}
 
 	/**
@@ -246,7 +246,7 @@ class WikitextContent extends TextContent {
 			'[[' . $target->getFullText() . ']]',
 			$this->getNativeData(), 1 );
 
-		return new WikitextContent( $newText );
+		return new static( $newText );
 	}
 
 	/**
