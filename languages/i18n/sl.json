@@ -394,8 +394,6 @@
 	"userlogin-resetlink": "Ste pozabili svoje prijavne podatke?",
 	"userlogin-resetpassword-link": "Ste pozabili svoje geslo?",
 	"userlogin-helplink2": "Pomoč pri prijavi",
-	"userlogin-loggedin": "Prijavljeni ste že kot {{GENDER:$1|$1}}.\nUporabite spodnji obrazec, da se prijavite kot drug uporabnik.",
-	"userlogin-createanother": "Ustvari drug račun",
 	"createacct-emailrequired": "E-poštni naslov",
 	"createacct-emailoptional": "E-poštni naslov (izbirno)",
 	"createacct-email-ph": "Vnesite svoj e-poštni naslov",

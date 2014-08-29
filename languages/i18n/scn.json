@@ -381,8 +381,6 @@
 	"userlogin-resetlink": "T'ascurdasti li dittagli pâ trasuta?",
 	"userlogin-resetpassword-link": "Reinizzializza la tò password",
 	"userlogin-helplink2": "Aiutu pâ trasuta",
-	"userlogin-loggedin": "Vossia già trasìu comu {{GENDER:$1|$1}}.\nUsassi lu mòdulu ccassutta pi tràsiri comu autru utenti.",
-	"userlogin-createanother": "Crèa n'autru cuntu",
 	"createacct-emailrequired": "Nnirizzu e-mail",
 	"createacct-emailoptional": "Nnirizzu e-mail (facurtativu)",
 	"createacct-email-ph": "Nzirisci lu tò nnirizzu e-mail",

@@ -423,8 +423,6 @@
 	"userlogin-resetlink": "로그인 정보를 잊으셨나요?",
 	"userlogin-resetpassword-link": "비밀번호를 잊으셨나요?",
 	"userlogin-helplink2": "로그인에 대한 도움말",
-	"userlogin-loggedin": "이미 {{GENDER:$1|$1}} 사용자로 로그인되어 있습니다.\n다른 사용자로 로그인하려면 아래의 양식을 사용하세요.",
-	"userlogin-createanother": "다른 계정 만들기",
 	"createacct-emailrequired": "이메일 주소",
 	"createacct-emailoptional": "이메일 주소 (선택 사항)",
 	"createacct-email-ph": "이메일 주소를 입력하세요",

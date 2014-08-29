@@ -402,8 +402,6 @@
 	"userlogin-resetlink": "Zaboravili ste podatke za prijavu?",
 	"userlogin-resetpassword-link": "Zaboravili ste lozinku?",
 	"userlogin-helplink2": "Pomoć pri prijavljivanju",
-	"userlogin-loggedin": "Već ste prijavljeni kao {{GENDER:$1|$1}}.\nKoristite donji obrazac da biste se prijavili kao drugi korisnik.",
-	"userlogin-createanother": "Otvori još jedan nalog",
 	"createacct-emailrequired": "Adresa e-pošte",
 	"createacct-emailoptional": "Adresa e-pošte (opciono)",
 	"createacct-email-ph": "Unesite vašu adresu e-pоšte",

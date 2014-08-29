@@ -454,8 +454,6 @@
 	"userlogin-resetlink": "Забыли данные для входа?",
 	"userlogin-resetpassword-link": "Сбросить ваш пароль?",
 	"userlogin-helplink2": "Помощь по входу",
-	"userlogin-loggedin": "Вы уже вошли как {{GENDER:$1|$1}}.\nИспользуйте форму ниже, чтобы войти под другой учётной записью.",
-	"userlogin-createanother": "Создать другую учётную запись",
 	"createacct-emailrequired": "Адрес электронной почты",
 	"createacct-emailoptional": "Адрес электронной почты (необязательно)",
 	"createacct-email-ph": "Введите свой адрес электронной почты",

@@ -399,8 +399,6 @@
 	"userlogin-resetlink": "Esqueceu os seus datos de rexistro?",
 	"userlogin-resetpassword-link": "Esqueceu o contrasinal?",
 	"userlogin-helplink2": "Axuda co rexistro",
-	"userlogin-loggedin": "Xa accedeu ao sistema como {{GENDER:$1|$1}}.\nUtilice o formulario inferior para acceder como outro usuario.",
-	"userlogin-createanother": "Crear outra conta",
 	"createacct-emailrequired": "Enderezo de correo electrónico",
 	"createacct-emailoptional": "Enderezo de correo electrónico (opcional)",
 	"createacct-email-ph": "Insira o seu enderezo de correo electrónico",

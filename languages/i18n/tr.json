@@ -447,8 +447,6 @@
 	"userlogin-resetlink": "Giriş bilgilerinizi mi unuttunuz?",
 	"userlogin-resetpassword-link": "Parolanızı mı unuttunuz?",
 	"userlogin-helplink2": "Oturum açma konusunda yardım alın",
-	"userlogin-loggedin": "Zaten {{GENDER:$1|$1}} olarak oturum açtınız.\nBaşka bir kullanıcı olarak oturum açmak için aşağıdaki formu kullanın.",
-	"userlogin-createanother": "Başka bir hesap oluşturun",
 	"createacct-emailrequired": "E-posta adresi",
 	"createacct-emailoptional": "E-posta adresi (isteğe bağlı)",
 	"createacct-email-ph": "E-posta adresinizi girin",

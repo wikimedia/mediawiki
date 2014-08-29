@@ -446,8 +446,6 @@
 	"userlogin-resetlink": "Esqueceu-se do seu nome de utilizador ou da palavra-passe?",
 	"userlogin-resetpassword-link": "Esqueceu-se da sua palavra-passe?",
 	"userlogin-helplink2": "Ajuda para iniciar sessão",
-	"userlogin-loggedin": "Já está {{GENDER:$1|autenticado|autenticada|autenticado}} com o nome $1.\nUse o formulário abaixo para iniciar sessão com outro nome.",
-	"userlogin-createanother": "Criar outra conta",
 	"createacct-emailrequired": "Endereço de correio eletrónico",
 	"createacct-emailoptional": "Endereço de correio eletrónico (opcional)",
 	"createacct-email-ph": "Digite o seu endereço de correio eletrónico",

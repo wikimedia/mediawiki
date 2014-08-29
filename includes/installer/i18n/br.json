@@ -50,6 +50,7 @@
 	"config-env-good": "Gwiriet eo bet an endro.\nGallout a rit staliañ MediaWiki.",
 	"config-env-bad": "Gwiriet eo bet an endro.\nNe c'hallit ket staliañ MediaWiki.",
 	"config-env-php": "Staliet eo PHP $1.",
+	"config-env-hhvm": "HHVM $1 zo staliet.",
 	"config-unicode-using-utf8": "Oc'h implijout utf8_normalize.so gant Brion Vibber evit ar reolata Unicode.",
 	"config-unicode-using-intl": "Oc'h implijout [http://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
 	"config-unicode-pure-php-warning": "'''Diwallit''' : N'haller ket kaout an [http://pecl.php.net/intl intl PECL astenn] evit merañ reoladur Unicode, a zistro d'ar stumm gorrek emplementet e-PHP.\nMa lakait da dreiñ ul lec'hienn darempredet-stank e vo mat deoc'h lenn un tammig bihan diwar-benn se war [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalization]. (e saozneg)",

@@ -465,8 +465,6 @@
 	"userlogin-resetlink": "忘记你的登录信息？",
 	"userlogin-resetpassword-link": "忘记密码？",
 	"userlogin-helplink2": "登录帮助",
-	"userlogin-loggedin": "您已经以{{GENDER:$1|$1}}的身份登录。使用下面的表格以其他用户的身份登录。",
-	"userlogin-createanother": "创建另一个账户",
 	"createacct-emailrequired": "电子邮件地址",
 	"createacct-emailoptional": "电子邮件地址（可选）",
 	"createacct-email-ph": "请输入你的电子邮件地址",

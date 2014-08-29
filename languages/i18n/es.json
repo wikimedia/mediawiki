@@ -499,8 +499,6 @@
 	"userlogin-resetlink": "¿Olvidaste tus datos de acceso?",
 	"userlogin-resetpassword-link": "¿Has olvidado tu contraseña?",
 	"userlogin-helplink2": "Ayuda con el acceso",
-	"userlogin-loggedin": "Ya estás conectado como {{GENDER:$1|$1}}.\nUsa el formulario de abajo para iniciar sesión como otro usuario.",
-	"userlogin-createanother": "Crear otra cuenta",
 	"createacct-emailrequired": "Dirección de correo electrónico",
 	"createacct-emailoptional": "Dirección de correo electrónico (opcional)",
 	"createacct-email-ph": "Escribe tu dirección de correo electrónico",

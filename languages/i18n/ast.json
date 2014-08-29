@@ -394,8 +394,6 @@
 	"userlogin-resetlink": "¿Escaeció los datos d'accesu?",
 	"userlogin-resetpassword-link": "¿Escaeció la contraseña?",
 	"userlogin-helplink2": "Ayuda del aniciu de sesión",
-	"userlogin-loggedin": "Yá anició sesión como {{GENDER:$1|$1}}.\nUtilice'l formulariu de más abaxo p'aniciar sesión como otru usuariu.",
-	"userlogin-createanother": "Crear otra cuenta",
 	"createacct-emailrequired": "Direición de corréu electrónicu",
 	"createacct-emailoptional": "Direición de corréu electrónicu (opcional)",
 	"createacct-email-ph": "Escriba la so direición de corréu electrónicu",

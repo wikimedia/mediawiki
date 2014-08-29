@@ -389,8 +389,6 @@
 	"userlogin-resetlink": "T'ét scurdê j elemèint p'r al tó ingrès?",
 	"userlogin-resetpassword-link": "T' ét scurdê la cêva 'd ingrès?",
 	"userlogin-helplink2": "Ajót per l'ingrès",
-	"userlogin-loggedin": "T'ét bèle coleghê {{GENDER:$1|$1}}. \nDrōva al mōdul ché sòta cme un êter utèint.",
-	"userlogin-createanother": "Fà 'n' êtra utèinsa.",
 	"createacct-emailrequired": "Indirés pôsta eletrônica",
 	"createacct-emailoptional": "Indirés pôsta eletrônica (se 's vōl)",
 	"createacct-email-ph": "Scrév al tó indirés ed pôsta eletrônica",

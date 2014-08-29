@@ -382,8 +382,6 @@
 	"gotaccountlink": "Нэвтрэх",
 	"userlogin-resetlink": "Нэвтрэх мэдээллээ мартаа юу?",
 	"userlogin-resetpassword-link": "Нууц үгээ мартсан уу?",
-	"userlogin-loggedin": "Та {{GENDER:$1|$1}} нэрээр нэвтэрсэн байна.\nӨөр нэрээр нэвтрэх бол доорх маягтыг ашиглана уу.",
-	"userlogin-createanother": "Өөр бүртгэл үүсгэх",
 	"createacct-emailrequired": "Цахим шуудангийн хаяг",
 	"createacct-email-ph": "Цахим шуудангийн хаягаа оруулна уу",
 	"createacct-another-email-ph": "Цахим шуудангийн хаяг оруулна уу",

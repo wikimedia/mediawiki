@@ -424,8 +424,6 @@
 	"userlogin-resetlink": "Har du glemt påloggingsdetaljene dine?",
 	"userlogin-resetpassword-link": "Glemt passordet?",
 	"userlogin-helplink2": "Hjelp med innlogging",
-	"userlogin-loggedin": "Du er allerede logget inn som {{GENDER:$1|$1}}.\nBruk skjemaet nedenfor for å logge inn som en annen bruker.",
-	"userlogin-createanother": "Opprett ny konto",
 	"createacct-emailrequired": "E-postadresse",
 	"createacct-emailoptional": "E-postadresse (valgfritt)",
 	"createacct-email-ph": "Skriv inn e-postadressen din",

@@ -456,8 +456,6 @@
 	"userlogin-resetlink": "Hai dimenticato i tuoi dati di accesso?",
 	"userlogin-resetpassword-link": "Hai dimenticato la password?",
 	"userlogin-helplink2": "Aiuto con l'accesso",
-	"userlogin-loggedin": "Sei già connesso come {{GENDER:$1|$1}}.\nUsa il modulo sottostante per accedere come altro utente.",
-	"userlogin-createanother": "Crea un'altra utenza",
 	"createacct-emailrequired": "Indirizzo email",
 	"createacct-emailoptional": "Indirizzo di posta elettronica (opzionale)",
 	"createacct-email-ph": "Inserisci il tuo indirizzo email",

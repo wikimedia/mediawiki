@@ -62,6 +62,7 @@
 	"config-env-good": "Проверка внешней среды была успешно проведена.\nВы можете установить MediaWiki.",
 	"config-env-bad": "Была проведена проверка внешней среды.\nВы не можете установить MediaWiki.",
 	"config-env-php": "Установленная версия PHP: $1.",
+	"config-env-hhvm": "HHVM $1 установлена.",
 	"config-unicode-using-utf8": "Использовать Brion Vibber utf8_normalize.so для нормализации Юникода.",
 	"config-unicode-using-intl": "Будет использовано [http://pecl.php.net/intl расширение «intl» для PECL] для нормализации Юникода.",
 	"config-unicode-pure-php-warning": "'''Внимание!''': [http://pecl.php.net/intl расширение intl из PECL] недоступно для нормализации Юникода, будет использоваться медленная реализация на чистом PHP.\nЕсли ваш сайт работает под высокой нагрузкой, вам следует больше узнать о [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations нормализации Юникода].",

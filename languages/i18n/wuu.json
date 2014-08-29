@@ -379,8 +379,6 @@
 	"gotaccountlink": "登录",
 	"userlogin-resetlink": "忘记登录细节？",
 	"userlogin-resetpassword-link": "转设密码",
-	"userlogin-loggedin": "你侬用{{GENDER:$1|$1}}登进来哉。用下向个表以别样身份登进。",
-	"userlogin-createanother": "建别样账号",
 	"createacct-emailrequired": "电子信地址",
 	"createacct-emailoptional": "电子信地址（填弗填由你）",
 	"createacct-email-ph": "畀你侬个电子信地址打进去",

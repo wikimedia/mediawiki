@@ -403,8 +403,6 @@
 	"userlogin-resetlink": "ลืมรายละเอียดล็อกอินของคุณหรือ",
 	"userlogin-resetpassword-link": "ลืมรหัสผ่านหรือ",
 	"userlogin-helplink2": "วิธีใช้เรื่องการล็อกอิน",
-	"userlogin-loggedin": "คุณล็อกอินในชื่อ {{GENDER:$1|$1}} แล้ว\nใช้แบบด้านล่างเพื่อล็อกอินเป็นอีกผู้ใช้หนึ่ง",
-	"userlogin-createanother": "สร้างอีกบัญชี",
 	"createacct-emailrequired": "ที่อยู่อีเมล",
 	"createacct-emailoptional": "ที่อยู่อีเมล (เลือกไม่ใส่ได้)",
 	"createacct-email-ph": "กรอกที่อยู่อีเมล",

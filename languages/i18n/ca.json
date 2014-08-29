@@ -426,8 +426,6 @@
 	"userlogin-resetlink": "Heu oblidat les vostres dades d'accés?",
 	"userlogin-resetpassword-link": "Has oblidat la teva contrasenya?",
 	"userlogin-helplink2": "Ajuda amb el registre",
-	"userlogin-loggedin": "Heu iniciat una sessió com {{GENDER:$1|$1}}.\nFeu servir el formulari de sota per iniciar la sessió com un altre usuari.",
-	"userlogin-createanother": "Crea un altre compte",
 	"createacct-emailrequired": "Adreça de correu electrònic",
 	"createacct-emailoptional": "Adreça de correu electrònic (opcional)",
 	"createacct-email-ph": "Introduïu la vostra adreça de correu electrònic",

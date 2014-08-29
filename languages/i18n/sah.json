@@ -393,8 +393,6 @@
 	"userlogin-resetlink": "Киирэр тылгын умнубуккун дуо?",
 	"userlogin-resetpassword-link": "Киирии тылгын санаттараҕын дуо?",
 	"userlogin-helplink2": "Киирэргэ көмө",
-	"userlogin-loggedin": "Маннык аатынан киирбиккин {{GENDER:$1|$1}}.\nАтын аатынан киирэргэ аллара көстөр форманы туһан.",
-	"userlogin-createanother": "Атын аатынан бэлиэтэн",
 	"createacct-emailrequired": "Email аадырыс",
 	"createacct-emailoptional": "Email аадырыс (булгуччута суох)",
 	"createacct-email-ph": "Эл аадырыскын суруй",
