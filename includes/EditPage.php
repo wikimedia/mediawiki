@@ -217,8 +217,13 @@ class EditPage {
 	/** @var bool|stdClass */
 	protected $lastDelete;
 
-	/** @var bool */
-	protected $mTokenOk = false;
+	/** @var bool
+	 * This is public because SemanticForms uses it (bug 67522).
+	 * However, please consider using this property publicly
+	 * to be deprecated.
+	 * @protected
+	 */
+	public $mTokenOk = false;
 
 	/** @var bool */
 	protected $mTokenOkExceptSuffix = false;
