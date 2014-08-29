@@ -336,7 +336,7 @@ class SpecialSearch extends SpecialPage {
 			# named it poorly from when this was a table so now we're
 			# stuck with it
 			Xml::openElement( 'div', array( 'id' => 'mw-search-top-table' ) ) .
-			$this->shortDialog( $term, $num, $totalRes ) .
+			$this->shortDialog( $term, $totalRes ) .
 			Xml::closeElement( 'div' ) .
 			$this->formHeader( $term ) .
 			Xml::closeElement( 'form' )
@@ -1073,11 +1073,10 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * @param string $term
-	 * @param int $resultsShown
 	 * @param int $totalNum
 	 * @return string
 	 */
-	protected function shortDialog( $term, $resultsShown, $totalNum ) {
+	protected function shortDialog( $term, $totalNum ) {
 		$out = Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 		$out .= Html::hidden( 'profile', $this->profile ) . "\n";
 		// Term box
@@ -1095,10 +1094,8 @@ class SpecialSearch extends SpecialPage {
 
 		// Results-info
 		if ( $totalNum > 0 && $this->offset < $totalNum ) {
-			$top = $this->msg( 'showingresultsheader' )
-				->numParams( $this->offset + 1, $this->offset + $resultsShown, $totalNum )
-				->params( wfEscapeWikiText( $term ) )
-				->numParams( $resultsShown )
+			$top = $this->msg( 'search-results-count' )
+				->numParams( $totalNum )
 				->parse();
 			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ), $top ) .
 				Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
