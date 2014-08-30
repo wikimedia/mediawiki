@@ -16,8 +16,22 @@ if ( PHP_SAPI != 'cli' ) {
 }
 
 $source = file_get_contents( $argv[1] );
-$regexp = '#\@var\s+([^\s]+)([^/]+)/\s+(var|public|protected|private)\s+(\$[^\s;=]+)#';
-$replac = '${2} */ ${3} ${1} ${4}';
+$regexp = '#'
+	. '\@var'
+	. '\s+'
+	// Type hint
+	. '([^\s]+)'
+	// Any text or line(s) between type hint and '/' closing the comment
+	// (includes the star of "*/")
+	. '([^/]+)'
+	. '/'
+	. '\s+'
+	. '(var|public|protected|private)'
+	. '\s+'
+	// Variable name
+	. '(\$[^\s;=]+)'
+	. '#';
+$replac = '${2}/ ${3} ${1} ${4}';
 $source = preg_replace( $regexp, $replac, $source );
 
 echo $source;
