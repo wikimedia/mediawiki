@@ -843,7 +843,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' fileextensions        - Returns list of file extensions allowed to be uploaded',
 				' rightsinfo            - Returns wiki rights (license) information if available',
 				' restrictions          - Returns information on available restriction (protection) types',
-				' languages             - Returns a list of languages MediaWiki supports' .
+				' languages             - Returns a list of languages MediaWiki supports ' .
 					"(optionally localised by using {$p}inlanguagecode)",
 				' skins                 - Returns a list of all enabled skins',
 				' extensiontags         - Returns a list of parser extension tags',
