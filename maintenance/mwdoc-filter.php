@@ -23,7 +23,17 @@ $regexp = '#'
 	. '([^\s]+)'
 	. '\s+'
 	// Any text or line(s) between type hint and '/' closing the comment
-	// (includes the star of "*/")
+	// (includes the star of "*/"). Descriptions containing a slash
+	// are not supported. Those will have to to be rewritten to have their
+	// description *before* the @var:
+	// /**
+	//  * Description with / in it.
+	//  * @var array
+	//  */
+	// instead of:
+	// /**
+	//  * @var array Description with / in it.
+	//  */
 	. '([^/]+)'
 	. '/'
 	. '\s+'
