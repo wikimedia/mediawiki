@@ -225,7 +225,7 @@
 
 			// Return the Promise
 			return apiDeferred.promise( { abort: xhr.abort } ).fail( function ( code, details ) {
-				if ( code !== 'abort' ) {
+				if ( !( code === 'http' && details && details.textStatus === 'abort' ) ) {
 					mw.log( 'mw.Api error: ', code, details );
 				}
 			} );
