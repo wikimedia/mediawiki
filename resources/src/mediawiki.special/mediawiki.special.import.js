@@ -2,7 +2,7 @@
  * JavaScript for Special:Import
  */
 ( function ( $ ) {
-	function updateImportSubprojectList() {
+	function updateImportSubprojectList( firstTime ) {
 		var $projectField = $( '#mw-import-table-interwiki #interwiki' ),
 			$subprojectField = $projectField.parent().find( '#subproject' ),
 			$selected = $projectField.find( ':selected' ),
@@ -14,7 +14,7 @@
 				option = document.createElement( 'option' );
 				option.appendChild( document.createTextNode( el ) );
 				option.setAttribute( 'value', el );
-				if ( oldValue === el ) {
+				if ( oldValue === el && firstTime !== true ) {
 					option.setAttribute( 'selected', 'selected' );
 				}
 				return option;
@@ -29,7 +29,7 @@
 		var $projectField = $( '#mw-import-table-interwiki #interwiki' );
 		if ( $projectField.length ) {
 			$projectField.change( updateImportSubprojectList );
-			updateImportSubprojectList();
+			updateImportSubprojectList( true );
 		}
 	} );
 }( jQuery ) );
