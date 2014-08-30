@@ -3187,7 +3187,7 @@
 	"expand_templates_intro": "此特殊页面可以递归地展开所给文本中的模板。\n它同时还可展开诸如<nowiki>{{</nowiki>#language:...}}的解析器函数和诸如<nowiki>{{</nowiki>CURRENTDAY}}的变量。\n实际上，几乎所有在双重花括号中的内容都会被展开。",
 	"expand_templates_title": "上下文标题，用于{{FULLPAGENAME}}等：",
 	"expand_templates_input": "输入文本：",
-	"expand_templates_output": "结果：",
+	"expand_templates_output": "结果",
 	"expand_templates_xml_output": "XML输出",
 	"expand_templates_html_output": "原始HTML输出",
 	"expand_templates_ok": "确定",
