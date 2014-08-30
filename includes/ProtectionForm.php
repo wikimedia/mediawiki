@@ -57,16 +57,21 @@ class ProtectionForm {
 	/** @var array Map of action to the expiry time of the existing protection */
 	protected $mExistingExpiry = array();
 
-	function __construct( Page $article ) {
-		global $wgUser;
+	/** @var IContextSource */
+	private $mContext;
+
+	function __construct( Article $article ) {
 		// Set instance variables.
 		$this->mArticle = $article;
 		$this->mTitle = $article->getTitle();
 		$this->mApplicableTypes = $this->mTitle->getRestrictionTypes();
+		$this->mContext = $article->getContext();
 
 		// Check if the form should be disabled.
 		// If it is, the form will be available in read-only to show levels.
-		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors( 'protect', $wgUser );
+		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors(
+			'protect', $this->mContext->getUser()
+		);
 		if ( wfReadOnly() ) {
 			$this->mPermErrors[] = array( 'readonlytext', wfReadOnlyReason() );
 		}
@@ -82,14 +87,15 @@ class ProtectionForm {
 	 * Loads the current state of protection into the object.
 	 */
 	function loadData() {
-		global $wgRequest, $wgUser;
-
-		$levels = MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace(), $wgUser );
+		$levels = MWNamespace::getRestrictionLevels(
+			$this->mTitle->getNamespace(), $this->mContext->getUser()
+		);
 		$this->mCascade = $this->mTitle->areRestrictionsCascading();
 
-		$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
-		$this->mReasonSelection = $wgRequest->getText( 'wpProtectReasonSelection' );
-		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade', $this->mCascade );
+		$request = $this->mContext->getRequest();
+		$this->mReason = $request->getText( 'mwProtect-reason' );
+		$this->mReasonSelection = $request->getText( 'wpProtectReasonSelection' );
+		$this->mCascade = $request->getBool( 'mwProtect-cascade', $this->mCascade );
 
 		foreach ( $this->mApplicableTypes as $action ) {
 			// @todo FIXME: This form currently requires individual selections,
@@ -106,8 +112,8 @@ class ProtectionForm {
 			}
 			$this->mExistingExpiry[$action] = $existingExpiry;
 
-			$requestExpiry = $wgRequest->getText( "mwProtect-expiry-$action" );
-			$requestExpirySelection = $wgRequest->getVal( "wpProtectExpirySelection-$action" );
+			$requestExpiry = $request->getText( "mwProtect-expiry-$action" );
+			$requestExpirySelection = $request->getVal( "wpProtectExpirySelection-$action" );
 
 			if ( $requestExpiry ) {
 				// Custom expiry takes precedence
@@ -128,7 +134,7 @@ class ProtectionForm {
 				$this->mExpirySelection[$action] = 'infinite';
 			}
 
-			$val = $wgRequest->getVal( "mwProtect-level-$action" );
+			$val = $request->getVal( "mwProtect-level-$action" );
 			if ( isset( $val ) && in_array( $val, $levels ) ) {
 				$this->mRestrictions[$action] = $val;
 			}
@@ -170,16 +176,14 @@ class ProtectionForm {
 	 * Main entry point for action=protect and action=unprotect
 	 */
 	function execute() {
-		global $wgRequest, $wgOut;
-
 		if ( MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) === array( '' ) ) {
 			throw new ErrorPageError( 'protect-badnamespace-title', 'protect-badnamespace-text' );
 		}
 
-		if ( $wgRequest->wasPosted() ) {
+		if ( $this->mContext->getRequest()->wasPosted() ) {
 			if ( $this->save() ) {
 				$q = $this->mArticle->isRedirect() ? 'redirect=no' : '';
-				$wgOut->redirect( $this->mTitle->getFullURL( $q ) );
+				$this->mContext->getOutput()->redirect( $this->mTitle->getFullURL( $q ) );
 			}
 		} else {
 			$this->show();
@@ -192,28 +196,27 @@ class ProtectionForm {
 	 * @param string $err Error message or null if there's no error
 	 */
 	function show( $err = null ) {
-		global $wgOut;
-
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->addBacklinkSubtitle( $this->mTitle );
+		$out = $this->mContext->getOutput();
+		$out->setRobotPolicy( 'noindex,nofollow' );
+		$out->addBacklinkSubtitle( $this->mTitle );
 
 		if ( is_array( $err ) ) {
-			$wgOut->wrapWikiMsg( "<p class='error'>\n$1\n</p>\n", $err );
+			$out->wrapWikiMsg( "<p class='error'>\n$1\n</p>\n", $err );
 		} elseif ( is_string( $err ) ) {
-			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
+			$out->addHTML( "<p class='error'>{$err}</p>\n" );
 		}
 
 		if ( $this->mTitle->getRestrictionTypes() === array() ) {
 			// No restriction types available for the current title
 			// this might happen if an extension alters the available types
-			$wgOut->setPageTitle( wfMessage(
+			$out->setPageTitle( wfMessage(
 				'protect-norestrictiontypes-title',
 				$this->mTitle->getPrefixedText()
 			) );
-			$wgOut->addWikiText( wfMessage( 'protect-norestrictiontypes-text' )->text() );
+			$out->addWikiText( wfMessage( 'protect-norestrictiontypes-text' )->text() );
 
 			// Show the log in case protection was possible once
-			$this->showLogExtract( $wgOut );
+			$this->showLogExtract( $out );
 			// return as there isn't anything else we can do
 			return;
 		}
@@ -227,7 +230,7 @@ class ProtectionForm {
 			}
 
 			/** @todo FIXME: i18n issue, should use formatted number. */
-			$wgOut->wrapWikiMsg(
+			$out->wrapWikiMsg(
 				"<div id=\"mw-protect-cascadeon\">\n$1\n" . $titles . "</div>",
 				array( 'protect-cascadeon', count( $cascadeSources ) )
 			);
@@ -236,19 +239,19 @@ class ProtectionForm {
 		# Show an appropriate message if the user isn't allowed or able to change
 		# the protection settings at this time
 		if ( $this->disabled ) {
-			$wgOut->setPageTitle(
+			$out->setPageTitle(
 				wfMessage( 'protect-title-notallowed',
 					$this->mTitle->getPrefixedText() )
 			);
-			$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $this->mPermErrors, 'protect' ) );
+			$out->addWikiText( $out->formatPermissionsErrorMessage( $this->mPermErrors, 'protect' ) );
 		} else {
-			$wgOut->setPageTitle( wfMessage( 'protect-title', $this->mTitle->getPrefixedText() ) );
-			$wgOut->addWikiMsg( 'protect-text',
+			$out->setPageTitle( wfMessage( 'protect-title', $this->mTitle->getPrefixedText() ) );
+			$out->addWikiMsg( 'protect-text',
 				wfEscapeWikiText( $this->mTitle->getPrefixedText() ) );
 		}
 
-		$wgOut->addHTML( $this->buildForm() );
-		$this->showLogExtract( $wgOut );
+		$out->addHTML( $this->buildForm() );
+		$this->showLogExtract( $out );
 	}
 
 	/**
@@ -257,16 +260,17 @@ class ProtectionForm {
 	 * @return bool Success
 	 */
 	function save() {
-		global $wgRequest, $wgUser, $wgOut;
-
 		# Permission check!
 		if ( $this->disabled ) {
 			$this->show();
 			return false;
 		}
 
-		$token = $wgRequest->getVal( 'wpEditToken' );
-		if ( !$wgUser->matchEditToken( $token, array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) ) {
+		$request = $this->mContext->getRequest();
+		$user = $this->mContext->getUser();
+		$out = $this->mContext->getOutput();
+		$token = $request->getVal( 'wpEditToken' );
+		if ( !$user->matchEditToken( $token, array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) ) {
 			$this->show( array( 'sessionfailure' ) );
 			return false;
 		}
@@ -295,18 +299,18 @@ class ProtectionForm {
 			}
 		}
 
-		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
+		$this->mCascade = $request->getBool( 'mwProtect-cascade' );
 
 		$status = $this->mArticle->doUpdateRestrictions(
 			$this->mRestrictions,
 			$expiry,
 			$this->mCascade,
 			$reasonstr,
-			$wgUser
+			$user
 		);
 
 		if ( !$status->isOK() ) {
-			$this->show( $wgOut->parseInline( $status->getWikiText() ) );
+			$this->show( $out->parseInline( $status->getWikiText() ) );
 			return false;
 		}
 
@@ -327,7 +331,7 @@ class ProtectionForm {
 			return false;
 		}
 
-		WatchAction::doWatchOrUnwatch( $wgRequest->getCheck( 'mwProtectWatch' ), $this->mTitle, $wgUser );
+		WatchAction::doWatchOrUnwatch( $request->getCheck( 'mwProtectWatch' ), $this->mTitle, $user );
 
 		return true;
 	}
@@ -338,12 +342,14 @@ class ProtectionForm {
 	 * @return string HTML form
 	 */
 	function buildForm() {
-		global $wgUser, $wgLang, $wgOut, $wgCascadingRestrictionLevels;
-
+		$user = $this->mContext->getUser();
+		$output = $this->mContext->getOutput();
+		$lang = $this->mContext->getLanguage();
+		$cascadingRestrictionLevels = $this->mContext->getConfig()->get( 'CascadingRestrictionLevels' );
 		$out = '';
 		if ( !$this->disabled ) {
-			$wgOut->addModules( 'mediawiki.legacy.protect' );
-			$wgOut->addJsConfigVars( 'wgCascadeableLevels', $wgCascadingRestrictionLevels );
+			$output->addModules( 'mediawiki.legacy.protect' );
+			$output->addJsConfigVars( 'wgCascadeableLevels', $cascadingRestrictionLevels );
 			$out .= Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->mTitle->getLocalURL( 'action=protect' ),
 				'id' => 'mw-Protect-Form', 'onsubmit' => 'ProtectionForm.enableUnchainedInputs(true)' ) );
@@ -379,9 +385,9 @@ class ProtectionForm {
 
 			$expiryFormOptions = '';
 			if ( $this->mExistingExpiry[$action] && $this->mExistingExpiry[$action] != 'infinity' ) {
-				$timestamp = $wgLang->timeanddate( $this->mExistingExpiry[$action], true );
-				$d = $wgLang->date( $this->mExistingExpiry[$action], true );
-				$t = $wgLang->time( $this->mExistingExpiry[$action], true );
+				$timestamp = $lang->timeanddate( $this->mExistingExpiry[$action], true );
+				$d = $lang->date( $this->mExistingExpiry[$action], true );
+				$t = $lang->time( $this->mExistingExpiry[$action], true );
 				$expiryFormOptions .=
 					Xml::option(
 						wfMessage( 'protect-existing-expiry', $timestamp, $d, $t )->text(),
@@ -508,14 +514,14 @@ class ProtectionForm {
 					"</td>
 				</tr>";
 			# Disallow watching is user is not logged in
-			if ( $wgUser->isLoggedIn() ) {
+			if ( $user->isLoggedIn() ) {
 				$out .= "
 				<tr>
 					<td></td>
 					<td class='mw-input'>" .
 						Xml::checkLabel( wfMessage( 'watchthis' )->text(),
 							'mwProtectWatch', 'mwProtectWatch',
-							$wgUser->isWatched( $this->mTitle ) || $wgUser->getOption( 'watchdefault' ) ) .
+							$user->isWatched( $this->mTitle ) || $user->getOption( 'watchdefault' ) ) .
 					"</td>
 				</tr>";
 			}
@@ -533,7 +539,7 @@ class ProtectionForm {
 		}
 		$out .= Xml::closeElement( 'fieldset' );
 
-		if ( $wgUser->isAllowed( 'editinterface' ) ) {
+		if ( $user->isAllowed( 'editinterface' ) ) {
 			$title = Title::makeTitle( NS_MEDIAWIKI, 'Protect-dropdown' );
 			$link = Linker::link(
 				$title,
@@ -547,10 +553,10 @@ class ProtectionForm {
 		if ( !$this->disabled ) {
 			$out .= Html::hidden(
 				'wpEditToken',
-				$wgUser->getEditToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) )
+				$user->getEditToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) )
 			);
 			$out .= Xml::closeElement( 'form' );
-			$wgOut->addScript( $this->buildCleanupScript() );
+			$output->addScript( $this->buildCleanupScript() );
 		}
 
 		return $out;
@@ -564,12 +570,10 @@ class ProtectionForm {
 	 * @return string HTML fragment
 	 */
 	function buildSelector( $action, $selected ) {
-		global $wgUser;
-
 		// If the form is disabled, display all relevant levels. Otherwise,
 		// just show the ones this user can use.
 		$levels = MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace(),
-			$this->disabled ? null : $wgUser
+			$this->disabled ? null : $this->mContext->getUser()
 		);
 
 		$id = 'mwProtect-level-' . $action;
