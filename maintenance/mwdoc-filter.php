@@ -21,6 +21,7 @@ $regexp = '#'
 	. '\s+'
 	// Type hint
 	. '([^\s]+)'
+	. '\s+'
 	// Any text or line(s) between type hint and '/' closing the comment
 	// (includes the star of "*/")
 	. '([^/]+)'
