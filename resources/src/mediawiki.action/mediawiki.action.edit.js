@@ -68,17 +68,20 @@
 		 * by placing buttons in a queue if this method is called before
 		 * the toolbar is created.
 		 *
-		 * For compatiblity, passing the properties listed below as separate arguments
-		 * (in the listed order) is also supported.
+		 * For backwards-compatibility, passing `imageFile`, `speedTip`, `tagOpen`, `tagClose`,
+		 * `sampleText` and `imageId` as separate arguments (in this order) is also supported.
 		 *
-		 * @param {Object} button Object with the following properties:
-		 * @param {string} button.imageFile
-		 * @param {string} button.speedTip
+		 * @param {Object} button Object with the following properties.
+		 *  Providing `onClick` or `tagOpen`, `tagClose` and `sampleText` is mutually exclusive.
+		 * @param {string} button.imageFile Image to use for the button.
+		 * @param {string} button.speedTip Tooltip displayed when user mouses over the button.
+		 * @param {Function} button.onClick Function to be executed when the button is clicked.
 		 * @param {string} button.tagOpen
 		 * @param {string} button.tagClose
-		 * @param {string} button.sampleText
-		 * @param {string} [button.imageId]
-		 * @param {Function} [button.onClick]
+		 * @param {string} button.sampleText Alternative to `onClick`. `tagOpen`, `tagClose` and
+		 *  `sampleText` together provide the markup that should be inserted into page text at
+		 *  current cursor position.
+		 * @param {string} [button.imageId] `id` attribute of the button HTML element.
 		 */
 		addButton: function () {
 			if ( isReady ) {
