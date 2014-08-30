@@ -24,7 +24,8 @@
 			"McDutchie",
 			"Miguel2706",
 			"Macofe",
-			"AVIADOR"
+			"AVIADOR",
+			"FuzzyDice"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -69,6 +70,7 @@
 	"config-env-good": "El entorno ha sido comprobado.\nPuedes instalar MediaWiki.",
 	"config-env-bad": "El entorno ha sido comprobado.\nNo puedes instalar MediaWiki.",
 	"config-env-php": "PHP $1 está instalado.",
+	"config-env-hhvm": "HHVM $1 está instalado.",
 	"config-unicode-using-utf8": "Usando utf8_normalize.so de Brion Vibber para la normalización Unicode.",
 	"config-unicode-using-intl": "Usando la [http://pecl.php.net/intl extensión intl PECL] para la normalización Unicode.",
 	"config-unicode-pure-php-warning": "'''Advertencia''': La [http://pecl.php.net/intl extensión intl] no está disponible para efectuar la normalización Unicode. Utilizando la implementación más lenta en PHP.\nSi tu web tiene mucho tráfico, te recomendamos leer acerca de la [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalización Unicode].",
