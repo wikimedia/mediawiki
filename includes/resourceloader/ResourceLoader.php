@@ -38,22 +38,32 @@ class ResourceLoader {
 	/** @var bool */
 	protected static $debugMode = null;
 
-	/** @var array Module name/ResourceLoaderModule object pairs */
+	/**
+	 * Module name/ResourceLoaderModule object pairs
+	 * @var array
+	 */
 	protected $modules = array();
 
-	/** @var array Associative array mapping module name to info associative array */
+	/**
+	 * Associative array mapping module name to info associative array
+	 * @var array
+	 */
 	protected $moduleInfos = array();
 
 	/** @var Config $config */
 	private $config;
 
 	/**
-	 * @var array Associative array mapping framework ids to a list of names of test suite modules
-	 *      like array( 'qunit' => array( 'mediawiki.tests.qunit.suites', 'ext.foo.tests', .. ), .. )
+	 * Associative array mapping framework ids to a list of names of test suite modules
+	 * like array( 'qunit' => array( 'mediawiki.tests.qunit.suites', 'ext.foo.tests', .. ), .. )
+	 * @var array
 	 */
 	protected $testModuleNames = array();
 
-	/** @var array E.g. array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) ) */
+	/**
+	 * E.g. array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) )
+	 * @var array
+	 */
 	protected $sources = array();
 
 	/** @var bool */
