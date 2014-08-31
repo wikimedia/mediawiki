@@ -1141,6 +1141,34 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Adds help link with an icon to upper right corner.
+	 * @param OutputPage $out
+	 * @param string $to
+	 * @param bool $overrideBaseUrl
+	 * @since 1.25
+	 */
+	public static function addTopHelpLink( OutputPage $out, $to, $overrideBaseUrl = false ) {
+		$out->addModules( 'mediawiki.helplink' );
+		$text = wfMessage( 'helppage-top-gethelp' )->escaped();
+
+		if ( $overrideBaseUrl ) {
+			$helpUrl = $to;
+		} else {
+			$helpUrl = "//www.mediawiki.org/wiki/Special:MyLanguage/$to";
+		}
+		$link = Html::rawElement(
+			'a',
+			array(
+				'href' => $helpUrl,
+				'target' => '_blank',
+				'class' => 'mw-helplink',
+			),
+			"$text" );
+
+		$out->addIndicators( array( 'mw-helplink' => $link ) );
+	}
+
+	/**
 	 * this can be passed the NS number as defined in Language.php
 	 * @param string $name
 	 * @param string $urlaction

@@ -790,6 +790,7 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 
+		Skin::addTopHelpLink( $out, 'Help:Undelete' );
 		if ( $this->mAllowed ) {
 			$out->setPageTitle( $this->msg( 'undeletepage' ) );
 		} else {
