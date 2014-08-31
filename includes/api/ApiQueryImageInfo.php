@@ -391,6 +391,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			if ( $pageCount !== false ) {
 				$vals['pagecount'] = $pageCount;
 			}
+
+			// length as in how many seconds long a video is.
+			$length = $file->getLength();
+			if ( $length ) {
+				// Call it duration, because "length" can be ambiguous.
+				$vals['duration'] = (float) $length;
+			}
 		}
 
 		$pcomment = isset( $prop['parsedcomment'] );
@@ -666,8 +673,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'parsedcomment' =>  ' parsedcomment - Parse the comment on the version',
 			'canonicaltitle' => ' canonicaltitle - Adds the canonical title of the image file',
 			'url' =>            ' url           - Gives URL to the image and the description page',
-			'size' =>           ' size          - Adds the size of the image in bytes ' .
-				'and the height, width and page count (if applicable)',
+			'size' =>           ' size          - Adds the size of the image in bytes, ' .
+				'its height and its width. Page count and duration are added if applicable',
 			'dimensions' =>     ' dimensions    - Alias for size', // B/C with Allimages
 			'sha1' =>           ' sha1          - Adds SHA-1 hash for the image',
 			'mime' =>           ' mime          - Adds MIME type of the image',
