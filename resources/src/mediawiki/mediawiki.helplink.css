@@ -1,0 +1,14 @@
+.mw-helplink {
+	float: right;
+	width: 100%;
+	display: block;
+	margin-top: -10px;
+	margin-bottom: -10px;
+}
+
+.mw-helplink a {
+	/* @embed */
+	background: url(images/help.png) no-repeat scroll left center transparent;
+	padding-left: 20px;
+	float: right;
+}
