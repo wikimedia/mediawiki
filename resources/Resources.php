@@ -883,6 +883,12 @@ return array(
 			'feedback-bugnew',
 		),
 	),
+	'mediawiki.helplink' => array(
+		'styles' => array(
+			'resources/src/mediawiki/mediawiki.helplink.css',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.hidpi' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.hidpi.js',
 		'dependencies' => array(

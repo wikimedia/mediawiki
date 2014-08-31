@@ -129,6 +129,9 @@ class SpecialMergeHistory extends SpecialPage {
 			return;
 		}
 
+		$out = $this->getOutput();
+		$out->addHelpLink( 'Help:Merge history' );
+
 		$errors = array();
 		if ( !$this->mTargetObj instanceof Title ) {
 			$errors[] = $this->msg( 'mergehistory-invalid-source' )->parseAsBlock();
@@ -152,7 +155,7 @@ class SpecialMergeHistory extends SpecialPage {
 
 		if ( count( $errors ) ) {
 			$this->showMergeForm();
-			$this->getOutput()->addHTML( implode( "\n", $errors ) );
+			$out->addHTML( implode( "\n", $errors ) );
 		} else {
 			$this->showHistory();
 		}
