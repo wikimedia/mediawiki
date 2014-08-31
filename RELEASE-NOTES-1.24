@@ -348,6 +348,13 @@ changes to languages because of Bugzilla reports.
   the "headelement" template key are no longer supported. Setting
   $useHeadElement = false; is no longer supported and will not cause old keys
   like "headlinks", "skinnameclass", etc. to be defined.
+* BREAKING CHANGE: The files commonContent.css, commonElements.css and
+  commonInterface.css (in skins/common/) have been removed. Skins may no longer
+  rely on their presence and include them in their style modules. ResourceLoader
+  modules introduced in MediaWiki 1.23 should be loaded instead:
+  - skins/common/commonContent.css   → 'mediawiki.skinning.elements' module
+  - skins/common/commonElements.css  → 'mediawiki.skinning.content' module
+  - skins/common/commonInterface.css → 'mediawiki.skinning.interface' module
 * The deprecated 'SpecialVersionExtensionTypes' hook was removed.
 * (bug 63891) Add 'X-Robots-Tag: noindex' header in action=render pages.
 * SpecialPage no longer supports the syntax for invoking wfSpecial*() functions.
