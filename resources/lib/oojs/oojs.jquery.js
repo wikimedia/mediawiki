@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.0.12 optimised for jQuery
+ * OOjs v1.1.0 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-20T22:33:41Z
+ * Date: 2014-08-31T21:15:46Z
  */
 ( function ( global ) {
 
@@ -37,16 +37,16 @@ oo.initClass = function ( fn ) {
 };
 
 /**
- * Utility for common usage of Object#create for inheriting from one
- * prototype to another.
+ * Inherit from prototype to another using Object#create.
  *
  * Beware: This redefines the prototype, call before setting your prototypes.
+ *
  * Beware: This redefines the prototype, can only be called once on a function.
- *  If called multiple times on the same function, the previous prototype is lost.
- *  This is how prototypal inheritance works, it can only be one straight chain
- *  (just like classical inheritance in PHP for example). If you need to work with
- *  multiple constructors consider storing an instance of the other constructor in a
- *  property instead, or perhaps use a mixin (see OO.mixinClass).
+ * If called multiple times on the same function, the previous prototype is lost.
+ * This is how prototypal inheritance works, it can only be one straight chain
+ * (just like classical inheritance in PHP for example). If you need to work with
+ * multiple constructors consider storing an instance of the other constructor in a
+ * property instead, or perhaps use a mixin (see OO.mixinClass).
  *
  *     function Thing() {}
  *     Thing.prototype.exists = function () {};
@@ -103,13 +103,15 @@ oo.inheritClass = function ( targetFn, originFn ) {
 };
 
 /**
- * Utility to copy over *own* prototype properties of a mixin.
+ * Copy over *own* prototype properties of a mixin.
+ *
  * The 'constructor' (whether implicit or explicit) is not copied over.
  *
  * This does not create inheritance to the origin. If inheritance is needed
  * use oo.inheritClass instead.
  *
  * Beware: This can redefine a prototype property, call before setting your prototypes.
+ *
  * Beware: Don't call before oo.inheritClass.
  *
  *     function Foo() {}
@@ -216,7 +218,7 @@ oo.getObjectValues = function ( obj ) {
 };
 
 /**
- * Recursively compares properties between two objects.
+ * Recursively compare properties between two objects.
  *
  * A false result may be caused by property inequality or by properties in one object missing from
  * the other. An asymmetrical test may also be performed, which checks only that properties in the
@@ -224,8 +226,8 @@ oo.getObjectValues = function ( obj ) {
  *
  * If either a or b is null or undefined it will be treated as an empty object.
  *
- * @param {Object|undefined} a First object to compare
- * @param {Object|undefined} b Second object to compare
+ * @param {Object|undefined|null} a First object to compare
+ * @param {Object|undefined|null} b Second object to compare
  * @param {boolean} [asymmetrical] Whether to check only that b contains values from a
  * @return {boolean} If the objects contain the same values as each other
  */
@@ -330,7 +332,7 @@ oo.getHash = function ( val ) {
 };
 
 /**
- * Helper function for OO.getHash which sorts objects by key.
+ * Sort objects by key (helper function for OO.getHash).
  *
  * This is a callback passed into JSON.stringify.
  *
@@ -460,253 +462,259 @@ oo.isPlainObject = $.isPlainObject;
 
 /*global hasOwn */
 
-/**
- * @class OO.EventEmitter
- *
- * @constructor
- */
-oo.EventEmitter = function OoEventEmitter() {
-	// Properties
+( function () {
 
 	/**
-	 * Storage of bound event handlers by event name.
+	 * @class OO.EventEmitter
 	 *
-	 * @property
+	 * @constructor
 	 */
-	this.bindings = {};
-};
+	oo.EventEmitter = function OoEventEmitter() {
+		// Properties
 
-oo.initClass( oo.EventEmitter );
+		/**
+		 * Storage of bound event handlers by event name.
+		 *
+		 * @property
+		 */
+		this.bindings = {};
+	};
 
-/* Methods */
+	oo.initClass( oo.EventEmitter );
 
-/**
- * Add a listener to events of a specific event.
- *
- * The listener can be a function or the string name of a method; if the latter, then the
- * name lookup happens at the time the listener is called.
- *
- * @param {string} event Type of event to listen to
- * @param {Function|string} method Function or method name to call when event occurs
- * @param {Array} [args] Arguments to pass to listener, will be prepended to emitted arguments
- * @param {Object} [context=null] Context object for function or method call
- * @throws {Error} Listener argument is not a function or a valid method name
- * @chainable
- */
-oo.EventEmitter.prototype.on = function ( event, method, args, context ) {
-	var bindings;
+	/* Private helper functions */
 
-	this.constructor.static.validateMethod( method, context );
-
-	if ( hasOwn.call( this.bindings, event ) ) {
-		bindings = this.bindings[event];
-	} else {
-		// Auto-initialize bindings list
-		bindings = this.bindings[event] = [];
-	}
-	// Add binding
-	bindings.push( {
-		method: method,
-		args: args,
-		context: ( arguments.length < 4 ) ? null : context
-	} );
-	return this;
-};
-
-/**
- * Adds a one-time listener to a specific event.
- *
- * @param {string} event Type of event to listen to
- * @param {Function} listener Listener to call when event occurs
- * @chainable
- */
-oo.EventEmitter.prototype.once = function ( event, listener ) {
-	var eventEmitter = this,
-		listenerWrapper = function () {
-			eventEmitter.off( event, listenerWrapper );
-			listener.apply( eventEmitter, Array.prototype.slice.call( arguments, 0 ) );
-		};
-	return this.on( event, listenerWrapper );
-};
-
-/**
- * Remove a specific listener from a specific event.
- *
- * @param {string} event Type of event to remove listener from
- * @param {Function|string} [method] Listener to remove. Must be in the same form as was passed
- * to "on". Omit to remove all listeners.
- * @param {Object} [context=null] Context object function or method call
- * @chainable
- * @throws {Error} Listener argument is not a function or a valid method name
- */
-oo.EventEmitter.prototype.off = function ( event, method, context ) {
-	var i, bindings;
-
-	if ( arguments.length === 1 ) {
-		// Remove all bindings for event
-		delete this.bindings[event];
-		return this;
-	}
-
-	this.constructor.static.validateMethod( method, context );
-
-	if ( !( event in this.bindings ) || !this.bindings[event].length ) {
-		// No matching bindings
-		return this;
-	}
-
-	// Default to null context
-	if ( arguments.length < 3 ) {
-		context = null;
-	}
-
-	// Remove matching handlers
-	bindings = this.bindings[event];
-	i = bindings.length;
-	while ( i-- ) {
-		if ( bindings[i].method === method && bindings[i].context === context ) {
-			bindings.splice( i, 1 );
-		}
-	}
-
-	// Cleanup if now empty
-	if ( bindings.length === 0 ) {
-		delete this.bindings[event];
-	}
-	return this;
-};
-
-/**
- * Emit an event.
- *
- * TODO: Should this be chainable? What is the usefulness of the boolean
- * return value here?
- *
- * @param {string} event Type of event
- * @param {Mixed} args First in a list of variadic arguments passed to event handler (optional)
- * @return {boolean} If event was handled by at least one listener
- */
-oo.EventEmitter.prototype.emit = function ( event ) {
-	var i, len, binding, bindings, args, method;
-
-	if ( event in this.bindings ) {
-		// Slicing ensures that we don't get tripped up by event handlers that add/remove bindings
-		bindings = this.bindings[event].slice();
-		args = Array.prototype.slice.call( arguments, 1 );
-		for ( i = 0, len = bindings.length; i < len; i++ ) {
-			binding = bindings[i];
-			if ( typeof binding.method === 'string' ) {
-				// Lookup method by name (late binding)
-				method = binding.context[ binding.method ];
-			} else {
-				method = binding.method;
+	/**
+	 * Validate a function or method call in a context
+	 *
+	 * For a method name, check that it names a function in the context object
+	 *
+	 * @private
+	 * @param {Function|string} method Function or method name
+	 * @param {Mixed} context The context of the call
+	 * @throws {Error} A method name is given but there is no context
+	 * @throws {Error} In the context object, no property exists with the given name
+	 * @throws {Error} In the context object, the named property is not a function
+	 */
+	function validateMethod( method, context ) {
+		// Validate method and context
+		if ( typeof method === 'string' ) {
+			// Validate method
+			if ( context === undefined || context === null ) {
+				throw new Error( 'Method name "' + method + '" has no context.' );
 			}
-			method.apply(
-				binding.context,
-				binding.args ? binding.args.concat( args ) : args
-			);
+			if ( !( method in context ) ) {
+				// Technically the method does not need to exist yet: it could be
+				// added before call time. But this probably signals a typo.
+				throw new Error( 'Method not found: "' + method + '"' );
+			}
+			if ( typeof context[method] !== 'function' ) {
+				// Technically the property could be replaced by a function before
+				// call time. But this probably signals a typo.
+				throw new Error( 'Property "' + method + '" is not a function' );
+			}
+		} else if ( typeof method !== 'function' ) {
+			throw new Error( 'Invalid callback. Function or method name expected.' );
 		}
-		return true;
 	}
-	return false;
-};
 
-/**
- * Connect event handlers to an object.
- *
- * @param {Object} context Object to call methods on when events occur
- * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} methods List of
- *  event bindings keyed by event name containing either method names, functions or arrays containing
- *  method name or function followed by a list of arguments to be passed to callback before emitted
- *  arguments
- * @chainable
- */
-oo.EventEmitter.prototype.connect = function ( context, methods ) {
-	var method, args, event;
+	/* Methods */
 
-	for ( event in methods ) {
-		method = methods[event];
-		// Allow providing additional args
-		if ( Array.isArray( method ) ) {
-			args = method.slice( 1 );
-			method = method[0];
+	/**
+	 * Add a listener to events of a specific event.
+	 *
+	 * The listener can be a function or the string name of a method; if the latter, then the
+	 * name lookup happens at the time the listener is called.
+	 *
+	 * @param {string} event Type of event to listen to
+	 * @param {Function|string} method Function or method name to call when event occurs
+	 * @param {Array} [args] Arguments to pass to listener, will be prepended to emitted arguments
+	 * @param {Object} [context=null] Context object for function or method call
+	 * @throws {Error} Listener argument is not a function or a valid method name
+	 * @chainable
+	 */
+	oo.EventEmitter.prototype.on = function ( event, method, args, context ) {
+		var bindings;
+
+		validateMethod( method, context );
+
+		if ( hasOwn.call( this.bindings, event ) ) {
+			bindings = this.bindings[event];
 		} else {
-			args = [];
+			// Auto-initialize bindings list
+			bindings = this.bindings[event] = [];
 		}
 		// Add binding
-		this.on( event, method, args, context );
-	}
-	return this;
-};
+		bindings.push( {
+			method: method,
+			args: args,
+			context: ( arguments.length < 4 ) ? null : context
+		} );
+		return this;
+	};
 
-/**
- * Disconnect event handlers from an object.
- *
- * @param {Object} context Object to disconnect methods from
- * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} [methods] List of
- * event bindings keyed by event name. Values can be either method names or functions, but must be
- * consistent with those used in the corresponding call to "connect".
- * @chainable
- */
-oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
-	var i, event, bindings;
+	/**
+	 * Add a one-time listener to a specific event.
+	 *
+	 * @param {string} event Type of event to listen to
+	 * @param {Function} listener Listener to call when event occurs
+	 * @chainable
+	 */
+	oo.EventEmitter.prototype.once = function ( event, listener ) {
+		var eventEmitter = this,
+			listenerWrapper = function () {
+				eventEmitter.off( event, listenerWrapper );
+				listener.apply( eventEmitter, Array.prototype.slice.call( arguments, 0 ) );
+			};
+		return this.on( event, listenerWrapper );
+	};
 
-	if ( methods ) {
-		// Remove specific connections to the context
-		for ( event in methods ) {
-			this.off( event, methods[event], context );
+	/**
+	 * Remove a specific listener from a specific event.
+	 *
+	 * @param {string} event Type of event to remove listener from
+	 * @param {Function|string} [method] Listener to remove. Must be in the same form as was passed
+	 * to "on". Omit to remove all listeners.
+	 * @param {Object} [context=null] Context object function or method call
+	 * @chainable
+	 * @throws {Error} Listener argument is not a function or a valid method name
+	 */
+	oo.EventEmitter.prototype.off = function ( event, method, context ) {
+		var i, bindings;
+
+		if ( arguments.length === 1 ) {
+			// Remove all bindings for event
+			delete this.bindings[event];
+			return this;
 		}
-	} else {
-		// Remove all connections to the context
-		for ( event in this.bindings ) {
-			bindings = this.bindings[event];
-			i = bindings.length;
-			while ( i-- ) {
-				// bindings[i] may have been removed by the previous step's
-				// this.off so check it still exists
-				if ( bindings[i] && bindings[i].context === context ) {
-					this.off( event, bindings[i].method, context );
+
+		validateMethod( method, context );
+
+		if ( !( event in this.bindings ) || !this.bindings[event].length ) {
+			// No matching bindings
+			return this;
+		}
+
+		// Default to null context
+		if ( arguments.length < 3 ) {
+			context = null;
+		}
+
+		// Remove matching handlers
+		bindings = this.bindings[event];
+		i = bindings.length;
+		while ( i-- ) {
+			if ( bindings[i].method === method && bindings[i].context === context ) {
+				bindings.splice( i, 1 );
+			}
+		}
+
+		// Cleanup if now empty
+		if ( bindings.length === 0 ) {
+			delete this.bindings[event];
+		}
+		return this;
+	};
+
+	/**
+	 * Emit an event.
+	 *
+	 * TODO: Should this be chainable? What is the usefulness of the boolean
+	 * return value here?
+	 *
+	 * @param {string} event Type of event
+	 * @param {Mixed} args First in a list of variadic arguments passed to event handler (optional)
+	 * @return {boolean} If event was handled by at least one listener
+	 */
+	oo.EventEmitter.prototype.emit = function ( event ) {
+		var i, len, binding, bindings, args, method;
+
+		if ( event in this.bindings ) {
+			// Slicing ensures that we don't get tripped up by event handlers that add/remove bindings
+			bindings = this.bindings[event].slice();
+			args = Array.prototype.slice.call( arguments, 1 );
+			for ( i = 0, len = bindings.length; i < len; i++ ) {
+				binding = bindings[i];
+				if ( typeof binding.method === 'string' ) {
+					// Lookup method by name (late binding)
+					method = binding.context[ binding.method ];
+				} else {
+					method = binding.method;
+				}
+				method.apply(
+					binding.context,
+					binding.args ? binding.args.concat( args ) : args
+				);
+			}
+			return true;
+		}
+		return false;
+	};
+
+	/**
+	 * Connect event handlers to an object.
+	 *
+	 * @param {Object} context Object to call methods on when events occur
+	 * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} methods List of
+	 *  event bindings keyed by event name containing either method names, functions or arrays containing
+	 *  method name or function followed by a list of arguments to be passed to callback before emitted
+	 *  arguments
+	 * @chainable
+	 */
+	oo.EventEmitter.prototype.connect = function ( context, methods ) {
+		var method, args, event;
+
+		for ( event in methods ) {
+			method = methods[event];
+			// Allow providing additional args
+			if ( Array.isArray( method ) ) {
+				args = method.slice( 1 );
+				method = method[0];
+			} else {
+				args = [];
+			}
+			// Add binding
+			this.on( event, method, args, context );
+		}
+		return this;
+	};
+
+	/**
+	 * Disconnect event handlers from an object.
+	 *
+	 * @param {Object} context Object to disconnect methods from
+	 * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} [methods] List of
+	 * event bindings keyed by event name. Values can be either method names or functions, but must be
+	 * consistent with those used in the corresponding call to "connect".
+	 * @chainable
+	 */
+	oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
+		var i, event, bindings;
+
+		if ( methods ) {
+			// Remove specific connections to the context
+			for ( event in methods ) {
+				this.off( event, methods[event], context );
+			}
+		} else {
+			// Remove all connections to the context
+			for ( event in this.bindings ) {
+				bindings = this.bindings[event];
+				i = bindings.length;
+				while ( i-- ) {
+					// bindings[i] may have been removed by the previous step's
+					// this.off so check it still exists
+					if ( bindings[i] && bindings[i].context === context ) {
+						this.off( event, bindings[i].method, context );
+					}
 				}
 			}
 		}
-	}
 
-	return this;
-};
+		return this;
+	};
 
-/**
- * Validate a function or method call in a context
- *
- * For a method name, check that it names a function in the context object
- *
- * @static
- * @param {Function|string} method Function or method name
- * @param {Mixed} context The context of the call
- * @throws {Error} A method name is given but there is no context
- * @throws {Error} In the context object, no property exists with the given name
- * @throws {Error} In the context object, the named property is not a function
- */
-oo.EventEmitter.static.validateMethod = function ( method, context ) {
-	// Validate method and context
-	if ( typeof method === 'string' ) {
-		// Validate method
-		if ( context === undefined || context === null ) {
-			throw new Error( 'Method name "' + method + '" has no context.' );
-		}
-		if ( !( method in context ) ) {
-			// Technically the method does not need to exist yet: it could be
-			// added before call time. But this probably signals a typo.
-			throw new Error( 'Method not found: "' + method + '"' );
-		}
-		if ( typeof context[method] !== 'function' ) {
-			// Technically the property could be replaced by a function before
-			// call time. But this probably signals a typo.
-			throw new Error( 'Property "' + method + '" is not a function' );
-		}
-	} else if ( typeof method !== 'function' ) {
-		throw new Error( 'Invalid callback. Function or method name expected.' );
-	}
-};
+}() );
 
 /*global hasOwn */
 
