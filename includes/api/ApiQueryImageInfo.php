@@ -391,6 +391,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			if ( $pageCount !== false ) {
 				$vals['pagecount'] = $pageCount;
 			}
+
+			// length as in how many seconds long a video is.
+			$length = $file->getLength();
+			if ( $length ) {
+				// Call it duration, because "length" can be ambiguous.
+				$vals['duration'] = floatval( $length );
+			}
 		}
 
 		$pcomment = isset( $prop['parsedcomment'] );
