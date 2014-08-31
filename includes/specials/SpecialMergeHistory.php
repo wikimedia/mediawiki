@@ -129,6 +129,8 @@ class SpecialMergeHistory extends SpecialPage {
 			return;
 		}
 
+		Skin::addTopHelpLink( $out, 'Help:Merge history' );
+
 		$errors = array();
 		if ( !$this->mTargetObj instanceof Title ) {
 			$errors[] = $this->msg( 'mergehistory-invalid-source' )->parseAsBlock();

@@ -85,6 +85,7 @@ class UserrightsPage extends SpecialPage {
 			throw new UserBlockedError( $user->getBlock() );
 		}
 
+		Skin::addTopHelpLink( $out, 'Help:Assigning permissions' );
 		$request = $this->getRequest();
 
 		if ( $par !== null ) {
