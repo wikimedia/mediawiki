@@ -83,33 +83,27 @@ return array(
 	 */
 	'mediawiki.skinning.elements' => array(
 		'styles' => array(
-			'commonElements.css' => array( 'media' => 'screen' ),
+			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
 		),
-		'remoteSkinPath' => 'common',
-		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/common',
 	),
 	'mediawiki.skinning.content' => array(
 		'styles' => array(
-			'commonElements.css' => array( 'media' => 'screen' ),
-			'commonContent.css' => array( 'media' => 'screen' ),
+			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
+			'resources/src/mediawiki.skinning/content.css' => array( 'media' => 'screen' ),
 		),
-		'remoteSkinPath' => 'common',
-		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/common',
 	),
 	'mediawiki.skinning.interface' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
-			'commonElements.css' => array( 'media' => 'screen' ),
-			'commonContent.css' => array( 'media' => 'screen' ),
-			'commonInterface.css' => array( 'media' => 'screen' ),
+			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
+			'resources/src/mediawiki.skinning/content.css' => array( 'media' => 'screen' ),
+			'resources/src/mediawiki.skinning/interface.css' => array( 'media' => 'screen' ),
 		),
-		'remoteSkinPath' => 'common',
-		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/common',
 	),
 
 	'mediawiki.skinning.content.parsoid' => array(
 		// Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser
-		// with the commonInterface.css styles; skinStyles should be used if your
+		// with the interface.css styles; skinStyles should be used if your
 		// skin over-rides common content styling.
 		'skinStyles' => array(
 			'default' => 'resources/src/mediawiki.skinning/content.parsoid.less',
