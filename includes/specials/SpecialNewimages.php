@@ -30,6 +30,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
+		Skin::addTopHelpLink( $out, 'Help:New images' );
+
 		$pager = new NewFilesPager( $this->getContext(), $par );
 
 		if ( !$this->including() ) {

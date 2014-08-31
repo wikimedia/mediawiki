@@ -160,6 +160,8 @@ class SpecialUpload extends SpecialPage {
 			throw new ErrorPageError( 'uploaddisabled', 'uploaddisabledtext' );
 		}
 
+		Skin::addTopHelpLink( $out, 'Help:Managing files' );
+
 		# Check permissions
 		$user = $this->getUser();
 		$permissionRequired = UploadBase::isAllowed( $user );

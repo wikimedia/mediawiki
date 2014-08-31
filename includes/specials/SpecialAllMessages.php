@@ -59,6 +59,7 @@ class SpecialAllMessages extends SpecialPage {
 
 		$this->outputHeader( 'allmessagestext' );
 		$out->addModuleStyles( 'mediawiki.special' );
+		Skin::addTopHelpLink( $out, 'Help:System message' );
 
 		$this->table = new AllmessagesTablePager(
 			$this,
