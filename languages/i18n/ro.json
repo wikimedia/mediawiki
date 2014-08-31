@@ -565,7 +565,7 @@
 	"showpreview": "Previzualizare",
 	"showdiff": "Afișare diferențe",
 	"blankarticle": "<strong>Atenție:</strong> Pagina pe care o creați este goală.\nDacă faceți din nou clic pe „{{int:savearticle}}”, pagina va fi creată fără niciun conținut.",
-	"anoneditwarning": "'''Atenție:''' Nu v-ați autentificat. Adresa IP vă va fi înregistrată în istoricul acestei pagini.",
+	"anoneditwarning": "<strong>Atenție:</strong> Nu v-ați autentificat. Adresa dumneavoastră IP va fi vizibilă în mod public dacă efectuați modificări. Dacă vă <strong>[$1 autentificați]</strong> sau vă <strong>[$2 creați un cont]</strong>, modificările dumneavoastră vor fi asociate numelui de utilizator, pe lângă alte beneficii.",
 	"anonpreviewwarning": "''Nu v-ați autentificat. Dacă salvați pagina adresa dumneavoastră IP va fi înregistrată în istoric.''",
 	"missingsummary": "'''Atenție:''' Nu ați completat caseta „descriere modificări”. Dacă apăsați din nou butonul „salvează pagina” modificările vor fi salvate fără descriere.",
 	"missingcommenttext": "Vă rugăm să introduceți un comentariu.",

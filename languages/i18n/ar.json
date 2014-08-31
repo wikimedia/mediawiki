@@ -1892,7 +1892,7 @@
 	"contribsub2": "ل{{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "حساب المستخدم \"$1\" غير مسجل.",
 	"nocontribs": "لم يتم العثور على تغييرات تطابق هذه المحددات.",
-	"uctop": "حالي",
+	"uctop": "(حالية)",
 	"month": "من شهر (وأقدم):",
 	"year": "من سنة (وأقدم):",
 	"sp-contributions-newbies": "اعرض مساهمات الحسابات الجديدة فقط",

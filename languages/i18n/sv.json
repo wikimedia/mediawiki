@@ -442,8 +442,6 @@
 	"userlogin-resetlink": "Har du glömt dina inloggningsuppgifter?",
 	"userlogin-resetpassword-link": "Glömt ditt lösenord?",
 	"userlogin-helplink2": "Hjälp med inloggning",
-	"userlogin-loggedin": "Du är redan inloggad som {{GENDER:$1|$1}}.\nAnvänd formuläret nedan för att logga in som en annan användare.",
-	"userlogin-createanother": "Skapa ett annat konto",
 	"createacct-emailrequired": "E-postadress",
 	"createacct-emailoptional": "E-postadress (valfritt)",
 	"createacct-email-ph": "Bekräfta din e-postadress",

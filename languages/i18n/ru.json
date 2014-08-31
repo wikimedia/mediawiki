@@ -2380,7 +2380,7 @@
 	"pageinfo-hidden-categories": "{{PLURAL:$1|1=Скрытая категория|Скрытых категорий}} ($1)",
 	"pageinfo-templates": "{{PLURAL:$1|1=Шаблон|Шаблонов}} ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|1=Включаемая страница|Включаемых страниц}} ($1)",
-	"pageinfo-toolboxlink": "Сведения о странице",
+	"pageinfo-toolboxlink": "Сведения о странице",
 	"pageinfo-redirectsto": "Перенаправление",
 	"pageinfo-redirectsto-info": "сведения",
 	"pageinfo-contentpage": "Учитывается счётчиком как содержательная страница",
