@@ -38,6 +38,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	protected $mFakeMaster = false;
 
+	/** @var string|null */
+	private $serverVersion = null;
+
 	/**
 	 * @return string
 	 */
@@ -763,9 +766,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return string
 	 */
 	public function getSoftwareLink() {
-		// MariaDB includes its name in its version string (sent when the connection is opened),
-		// and this is how MariaDB's version of the mysql command-line client identifies MariaDB
-		// servers (see the mariadb_connection() function in libmysql/libmysql.c).
+		// MariaDB includes its name in its version string; this is how MariaDB's version of
+		// the mysql command-line client identifies MariaDB servers (see mariadb_connection()
+		// in libmysql/libmysql.c).
 		$version = $this->getServerVersion();
 		if ( strpos( $version, 'MariaDB' ) !== false || strpos( $version, '-maria-' ) !== false ) {
 			return '[{{int:version-db-mariadb-url}} MariaDB]';
@@ -775,6 +778,19 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		// doesn't give the necessary info for source builds, so assume the server is MySQL.
 		// (Even Percona's version of mysql doesn't try to make the distinction.)
 		return '[{{int:version-db-mysql-url}} MySQL]';
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getServerVersion() {
+		// Not using mysql_get_server_info() or similar for consistency: in the handshake,
+		// MariaDB 10 adds the prefix "5.5.5-", and only some newer client libraries strip
+		// it off (see RPL_VERSION_HACK in include/mysql_com.h).
+		if ( $this->serverVersion === null ) {
+			$this->serverVersion = $this->selectField( '', 'VERSION()', '', __METHOD__ );
+		}
+		return $this->serverVersion;
 	}
 
 	/**

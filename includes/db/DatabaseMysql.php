@@ -142,13 +142,6 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		return mysql_select_db( $db, $this->mConn );
 	}
 
-	/**
-	 * @return string
-	 */
-	function getServerVersion() {
-		return mysql_get_server_info( $this->mConn );
-	}
-
 	protected function mysqlFreeResult( $res ) {
 		return mysql_free_result( $res );
 	}
