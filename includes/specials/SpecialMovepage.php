@@ -140,6 +140,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'move-page', $this->oldTitle->getPrefixedText() ) );
 		$out->addModules( 'mediawiki.special.movePage' );
+		Skin::addTopHelpLink( $out, 'Help:Moving a page' );
 
 		$newTitle = $this->newTitle;
 
