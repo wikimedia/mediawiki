@@ -618,7 +618,7 @@
 	"showpreview": "Vorschau zeigen",
 	"showdiff": "Änderungen zeigen",
 	"blankarticle": "<strong>Warnung:</strong> Die Seite, die du erstellst, ist leer.\nWenn du erneut auf „{{int:savearticle}}“ klickst, wird die Seite ohne Inhalt erstellt.",
-	"anoneditwarning": "Du bearbeitest diese Seite unangemeldet. Wenn du sie abspeicherst, wird deine aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
+	"anoneditwarning": "<strong>Warnung:</strong> Du bist nicht angemeldet. Deine IP-Adresse wird öffentlich sichtbar, falls du Bearbeitungen durchführst. Wenn du dich <strong>[$1 anmeldest]</strong> oder <strong>[$2 ein Benutzerkonto erstellst]</strong>, werden deine Bearbeitungen zusammen mit anderen Beiträgen deinem Benutzernamen zugeordnet.",
 	"anonpreviewwarning": "''Du bist nicht angemeldet. Beim Speichern wird deine IP-Adresse in der Versionsgeschichte aufgezeichnet.''",
 	"missingsummary": "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf „{{int:savearticle}}“ klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
 	"missingcommenttext": "Dein Abschnitt enthält keinen Text.",

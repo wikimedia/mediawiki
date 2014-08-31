@@ -654,7 +654,7 @@
 	"showpreview": "Prévisualiser",
 	"showdiff": "Voir les modifications",
 	"blankarticle": "<strong>Attention :</strong> La page que vous créez est vide.\nSi vous cliquez de nouveau sur « {{int:savearticle}} », la page sera créée sans aucun contenu.",
-	"anoneditwarning": "<strong>Attention :</strong> Vous n’êtes pas identifié(e). Votre adresse IP sera enregistrée dans l’historique de cette page.",
+	"anoneditwarning": "<strong>Attention :</strong> Vous n’êtes pas connecté. Votre adresse IP sera visible de tout le monde si vous faites des modifications. Si vous <strong>[$1 vous connectez]</strong> ou <strong>[$2 créez un compte]</strong>, vos modifications seront attribuées à votre nom d’utilisateur, entre autres avantages.",
 	"anonpreviewwarning": "''Vous n’êtes pas identifié(e). Sauvegarder enregistrera votre adresse IP dans l’historique des modifications de la page.''",
 	"missingsummary": "'''Rappel :''' vous n'avez pas encore fourni le résumé de votre modification.\nSi vous cliquez de nouveau sur le bouton « {{int:savearticle}} », la publication sera faite sans nouvel avertissement.",
 	"missingcommenttext": "Veuillez entrer un commentaire ci-dessous.",
