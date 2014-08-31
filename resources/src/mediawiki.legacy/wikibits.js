@@ -144,15 +144,35 @@ mw.log.deprecate( win, 'jsMsg', function ( message ) {
 /**
  * Misc. utilities
  *
- * @deprecated since 1.17 Use mediawiki.util instead
+ * @deprecated since 1.17 Use mediawiki.util or jquery.accessKeyLabel instead
  */
 msg = 'Use mediawiki.util instead.';
-mw.log.deprecate( win, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, msg );
 mw.log.deprecate( win, 'addPortletLink', mw.util.addPortletLink, msg );
 mw.log.deprecate( win, 'appendCSS', mw.util.addCSS, msg );
 msg = 'Use jquery.accessKeyLabel instead.';
 mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
 mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
+mw.log.deprecate( win, 'updateTooltipAccessKeys', function ( $nodes ) {
+	if ( !$nodes ) {
+		if ( document.querySelectorAll ) {
+			// If we're running on a browser where we can do this efficiently,
+			// just find all elements that have accesskeys. We can't use jQuery's
+			// polyfill for the selector since looping over all elements on page
+			// load might be too slow.
+			$nodes = $( document.querySelectorAll( '[accesskey]' ) );
+		} else {
+			// Otherwise go through some elements likely to have accesskeys rather
+			// than looping over all of them. Unfortunately this will not fully
+			// work for custom skins with different HTML structures. Input, label
+			// and button should be rare enough that no optimizations are needed.
+			$nodes = $( '#column-one a, #mw-head a, #mw-panel a, #p-logo a, input, label, button' );
+		}
+	} else if ( !( $nodes instanceof $ ) ) {
+		$nodes = $( $nodes );
+	}
+
+	$nodes.updateTooltipAccessKeys();
+}, msg );
 
 /**
  * Wikipage import methods
