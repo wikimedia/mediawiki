@@ -1379,7 +1379,8 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add an array of indicators, with their identifiers as array keys and HTML contents as values.
+	 * Add an array of indicators, with their identifiers as array
+	 * keys and HTML contents as values.
 	 *
 	 * In case of duplicate keys, existing values are overwritten.
 	 *
@@ -1402,6 +1403,34 @@ class OutputPage extends ContextSource {
 	 */
 	public function getIndicators() {
 		return $this->mIndicators;
+	}
+
+	/**
+	 * Adds help link with an icon via page indicators.
+	 * @param string $to
+	 * @param bool $overrideBaseUrl
+	 * @since 1.25
+	 */
+	public function addHelpLink( $to, $overrideBaseUrl = false ) {
+		$this->addModules( 'mediawiki.helplink' );
+		$text = wfMessage( 'helppage-top-gethelp' )->escaped();
+
+		if ( $overrideBaseUrl ) {
+			$helpUrl = $to;
+		} else {
+			$helpUrl = "//www.mediawiki.org/wiki/Special:MyLanguage/$to";
+		}
+		$link = Html::rawElement(
+			'a',
+			array(
+				'href' => $helpUrl,
+				'target' => '_blank',
+				'class' => 'mw-helplink',
+			),
+			$text
+		);
+
+		$this->setIndicators( array( 'mw-helplink' => $link ) );
 	}
 
 	/**

@@ -127,6 +127,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->showNavigation = !$this->including(); // Maybe changed in setup
 		$this->setup( $par );
 
+		$out->addHelpLink( 'Help:New pages' );
+
 		if ( !$this->including() ) {
 			// Settings
 			$this->form();
