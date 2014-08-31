@@ -270,7 +270,7 @@
 	"config-upload-deleted": "Prompt for the server directory into which deleted files should be moved.",
 	"config-upload-deleted-help": "Explanation for {{msg|config-upload-deleted}}.",
 	"config-logo": "Prompt for a link to the logo to use for the wiki.",
-	"config-logo-help": "",
+	"config-logo-help": "Help string shown to the user explaining the requirements for the wiki's logo.",
 	"config-instantcommons": "Used as label for the checkbox.\n\nThe help message for this checkbox is:\n* {{msg-mw|Config-instantcommons-help}}",
 	"config-instantcommons-help": "Used as help message for the checkbox which is labeled {{msg-mw|config-instantcommons}}.",
 	"config-cc-error": "Prompt to manually enter a license when the tool fails to match.",
