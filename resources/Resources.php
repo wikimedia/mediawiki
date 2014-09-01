@@ -1175,11 +1175,11 @@ return array(
 	'mediawiki.page.ready' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.ready.js',
 		'dependencies' => array(
+			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
 			'jquery.makeCollapsible',
 			'jquery.placeholder',
 			'jquery.mw-jump',
-			'mediawiki.util',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
