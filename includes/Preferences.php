@@ -1542,6 +1542,9 @@ class PreferencesForm extends HTMLForm {
 	 * @return string
 	 */
 	function getButtons() {
+		global $wgUseMediaWikiUIEverywhere;
+		$attrs = $wgUseMediaWikiUIEverywhere ? array( 'class' => 'mw-ui-button mw-ui-quiet' ) : array();
+
 		if ( !$this->getModifiedUser()->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
 			return '';
 		}
@@ -1551,7 +1554,8 @@ class PreferencesForm extends HTMLForm {
 		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
 			$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
 
-			$html .= "\n" . Linker::link( $t, $this->msg( 'restoreprefs' )->escaped() );
+			$html .= "\n" . Linker::link( $t, $this->msg( 'restoreprefs' )->escaped(),
+				$attrs );
 
 			$html = Xml::tags( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
 		}
