@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (43f379c884)
+ * OOjs UI v0.1.0-pre (adfcf92c6a)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-28T21:49:12Z
+ * Date: 2014-09-01T00:30:03Z
  */
 ( function ( OO ) {
 
@@ -1456,6 +1456,18 @@ OO.ui.Window.static.transplantStyles = function ( parentDoc, frameDoc, timeout )
 /* Methods */
 
 /**
+ * Handle mouse down events.
+ *
+ * @param {jQuery.Event} e Mouse down event
+ */
+OO.ui.Window.prototype.onMouseDown = function ( e ) {
+	// Prevent clicking on the click-block from stealing focus
+	if ( e.target === this.$element[0] ) {
+		return false;
+	}
+};
+
+/**
  * Check if window has been initialized.
  *
  * @return {boolean} Window has been initialized
@@ -1774,6 +1786,9 @@ OO.ui.Window.prototype.initialize = function () {
 	this.$body = this.$( '<div>' );
 	this.$foot = this.$( '<div>' );
 	this.$overlay = this.$( '<div>' );
+
+	// Events
+	this.$element.on( 'mousedown', OO.ui.bind( this.onMouseDown, this ) );
 
 	// Initialization
 	this.$head.addClass( 'oo-ui-window-head' );
@@ -2398,9 +2413,6 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	this.afterWindowResizeHandler = OO.ui.bind( this.afterWindowResize, this );
 	this.onWindowMouseWheelHandler = OO.ui.bind( this.onWindowMouseWheel, this );
 	this.onDocumentKeyDownHandler = OO.ui.bind( this.onDocumentKeyDown, this );
-
-	// Events
-	this.$element.on( 'mousedown', false );
 
 	// Initialization
 	this.$element
