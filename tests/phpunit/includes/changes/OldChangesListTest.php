@@ -29,7 +29,8 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( array(
-			'wgArticlePath' => '/wiki/$1'
+			'wgArticlePath' => '/wiki/$1',
+			'wgLang' => Language::factory( 'qqx' )
 		) );
 	}
 
@@ -76,12 +77,9 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
 
-		$message = new Message( 'dellogpage' );
-		$expectedLinkText = $message->inLanguage( 'en' )->text();
-
 		$this->assertRegExp( '/href="\/wiki\/Special:Log\/delete/', $line, 'link has href attribute' );
 		$this->assertRegExp( '/title="Special:Log\/delete/', $line, 'link has title attribute' );
-		$this->assertRegExp( "/$expectedLinkText/", $line, 'link text' );
+		$this->assertRegExp( "/dellogpage/", $line, 'link text' );
 	}
 
 	public function testRecentChangesLine_DiffHistLinks() {
@@ -111,13 +109,13 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
 
 		$this->assertRegExp(
-			"/<abbr class='newpage' title='This edit created a new page'>N<\/abbr>/",
+			"/<abbr class='newpage' title='\(recentchanges-label-newpage\)'>\(newpageletter\)<\/abbr>/",
 			$line,
 			'new page flag'
 		);
 
 		$this->assertRegExp(
-			"/<abbr class='botedit' title='This edit was performed by a bot'>b<\/abbr>/",
+			"/<abbr class='botedit' title='\(recentchanges-label-bot\)'>\(boteditletter\)<\/abbr>/",
 			$line,
 			'bot flag'
 		);
@@ -181,9 +179,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	private function getContext() {
 		$user = $this->getTestUser();
 		$context = $this->testRecentChangesHelper->getTestContext( $user );
-
-		$title = Title::newFromText( 'RecentChanges', NS_SPECIAL );
-		$context->setTitle( $title );
+		$context->setLanguage( Language::factory( 'qqx' ) );
 
 		return $context;
 	}
