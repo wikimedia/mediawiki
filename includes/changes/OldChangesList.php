@@ -21,6 +21,7 @@
  */
 
 class OldChangesList extends ChangesList {
+
 	/**
 	 * Format a line using the old system (aka without any javascript).
 	 *
@@ -33,10 +34,6 @@ class OldChangesList extends ChangesList {
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 		wfProfileIn( __METHOD__ );
 
-		# Should patrol-related stuff be shown?
-		$unpatrolled = $this->showAsUnpatrolled( $rc );
-
-		$s = '';
 		$classes = array();
 		// use mw-line-even/mw-line-odd class only if linenumber is given (feature from bug 14468)
 		if ( $linenumber ) {
@@ -52,20 +49,52 @@ class OldChangesList extends ChangesList {
 		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
 			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 
+		$html = $this->formatChangeLine( $rc, $watched );
+
+		if ( $this->watchlist ) {
+			$classes[] = Sanitizer::escapeClass( 'watchlist-' .
+				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
+		}
+
+		if ( !wfRunHooks( 'OldChangesListRecentChangesLine', array( &$this, &$html, $rc, &$classes ) ) ) {
+			wfProfileOut( __METHOD__ );
+
+			return false;
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		$dateheader = ''; // $html now contains only <li>...</li>, for hooks' convenience.
+		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
+
+		return "$dateheader<li class=\"" . implode( ' ', $classes ) . "\">" . $html . "</li>\n";
+	}
+
+	/**
+	 * @param RecentChange $rc
+	 * @param boolean $watched
+	 *
+	 * @return string
+	 */
+	private function formatChangeLine( RecentChange $rc, $watched ) {
+		$html = '';
+
 		if ( $rc->mAttribs['rc_log_type'] ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $rc->mAttribs['rc_log_type'] );
-			$this->insertLog( $s, $logtitle, $rc->mAttribs['rc_log_type'] );
+			$this->insertLog( $html, $logtitle, $rc->mAttribs['rc_log_type'] );
 		// Log entries (old format) or log targets, and special pages
 		} elseif ( $rc->mAttribs['rc_namespace'] == NS_SPECIAL ) {
-			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $rc->mAttribs['rc_title'] );
+			list( $name, $htmlubpage ) = SpecialPageFactory::resolveAlias( $rc->mAttribs['rc_title'] );
 			if ( $name == 'Log' ) {
-				$this->insertLog( $s, $rc->getTitle(), $subpage );
+				$this->insertLog( $html, $rc->getTitle(), $htmlubpage );
 			}
 		// Regular entries
 		} else {
-			$this->insertDiffHist( $s, $rc, $unpatrolled );
+			$unpatrolled = $this->showAsUnpatrolled( $rc );
+
+			$this->insertDiffHist( $html, $rc, $unpatrolled );
 			# M, N, b and ! (minor, new, bot and unpatrolled)
-			$s .= $this->recentChangesFlags(
+			$html .= $this->recentChangesFlags(
 				array(
 					'newpage' => $rc->mAttribs['rc_type'] == RC_NEW,
 					'minor' => $rc->mAttribs['rc_minor'],
@@ -74,56 +103,40 @@ class OldChangesList extends ChangesList {
 				),
 				''
 			);
-			$this->insertArticleLink( $s, $rc, $unpatrolled, $watched );
+			$this->insertArticleLink( $html, $rc, $unpatrolled, $watched );
 		}
 		# Edit/log timestamp
-		$this->insertTimestamp( $s, $rc );
+		$this->insertTimestamp( $html, $rc );
 		# Bytes added or removed
 		if ( $this->getConfig()->get( 'RCShowChangedSize' ) ) {
 			$cd = $this->formatCharacterDifference( $rc );
 			if ( $cd !== '' ) {
-				$s .= $cd . '  <span class="mw-changeslist-separator">. .</span> ';
+				$html .= $cd . '  <span class="mw-changeslist-separator">. .</span> ';
 			}
 		}
 
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
-			$s .= $this->insertLogEntry( $rc );
+			$html .= $this->insertLogEntry( $rc );
 		} else {
 			# User tool links
-			$this->insertUserRelatedLinks( $s, $rc );
+			$this->insertUserRelatedLinks( $html, $rc );
 			# LTR/RTL direction mark
-			$s .= $this->getLanguage()->getDirMark();
-			$s .= $this->insertComment( $rc );
+			$html .= $this->getLanguage()->getDirMark();
+			$html .= $this->insertComment( $rc );
 		}
 
 		# Tags
-		$this->insertTags( $s, $rc, $classes );
+		$this->insertTags( $html, $rc, $classes );
 		# Rollback
-		$this->insertRollback( $s, $rc );
+		$this->insertRollback( $html, $rc );
 		# For subclasses
-		$this->insertExtra( $s, $rc, $classes );
+		$this->insertExtra( $html, $rc, $classes );
 
 		# How many users watch this page
 		if ( $rc->numberofWatchingusers > 0 ) {
-			$s .= ' ' . $this->numberofWatchingusers( $rc->numberofWatchingusers );
+			$html .= ' ' . $this->numberofWatchingusers( $rc->numberofWatchingusers );
 		}
 
-		if ( $this->watchlist ) {
-			$classes[] = Sanitizer::escapeClass( 'watchlist-' .
-				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
-		}
-
-		if ( !wfRunHooks( 'OldChangesListRecentChangesLine', array( &$this, &$s, $rc, &$classes ) ) ) {
-			wfProfileOut( __METHOD__ );
-
-			return false;
-		}
-
-		wfProfileOut( __METHOD__ );
-
-		$dateheader = ''; // $s now contains only <li>...</li>, for hooks' convenience.
-		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
-
-		return "$dateheader<li class=\"" . implode( ' ', $classes ) . "\">" . $s . "</li>\n";
+		return $html;
 	}
 }
