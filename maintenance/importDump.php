@@ -39,6 +39,7 @@ class BackupReader extends Maintenance {
 	public $uploads = false;
 	public $imageBasePath = false;
 	public $nsFilter = false;
+	public $prefix = false;
 
 	function __construct() {
 		parent::__construct();
@@ -68,6 +69,7 @@ TEXT;
 		$this->addOption( 'namespaces',
 			'Import only the pages from namespaces belonging to the list of ' .
 			'pipe-separated namespace names or namespace indexes', false, true );
+		$this->addOption( 'prefix', 'Prepend a prefix to imported pages', false, true );
 		$this->addOption( 'dry-run', 'Parse dump without actually importing pages' );
 		$this->addOption( 'debug', 'Output extra verbose debug information' );
 		$this->addOption( 'uploads', 'Process file upload data if included (experimental)' );
@@ -96,6 +98,9 @@ TEXT;
 		}
 		if ( $this->hasOption( 'namespaces' ) ) {
 			$this->setNsfilter( explode( '|', $this->getOption( 'namespaces' ) ) );
+		}
+		if ( $this->hasOption( 'prefix' ) ) {
+			$this->prefix = $this->getOption( 'prefix' );
 		}
 
 		if ( $this->hasArg() ) {
@@ -160,6 +165,10 @@ TEXT;
 			$this->progress( "Got bogus revision with null title!" );
 
 			return;
+		}
+		if ( $this->prefix ) {
+			$title = Title::newFromText( $this->prefix . $title->getFullText() );
+			$rev->setTitle( $title );
 		}
 
 		if ( $this->skippedNamespace( $title ) ) {
