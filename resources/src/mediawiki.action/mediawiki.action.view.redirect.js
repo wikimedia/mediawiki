@@ -53,13 +53,11 @@
 		location.hash = fragment;
 	}
 
-	if ( shouldChangeFragment && profile.layout === 'gecko' ) {
-		// Mozilla needs to wait until after load, otherwise the window doesn't
-		// scroll.  See <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
-		// There's no obvious way to detect this programmatically, so we use
-		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
-		// better twice than not at all, so make the fix hit future versions as
-		// well.
+	if ( shouldChangeFragment && profile.layout === 'gecko' && profile.versionNumber < 34 ) {
+		// Firefox < 34 needs to wait until after load, otherwise the window doesn't scroll
+		// (https://bugzilla.mozilla.org/show_bug.cgi?id=516293). There's no way to detect this
+		// programmatically, so we use version-testing. If the ugly version check hits other
+		// Gecko-based browsers, they'll jump twice, but better twice than not at all.
 		$( function () {
 			if ( location.hash === fragment ) {
 				location.hash = fragment;
