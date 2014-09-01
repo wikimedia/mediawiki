@@ -21,7 +21,7 @@
  */
 
 /**
- * The "Categoryfinder" class takes a list of articles, creates an internal
+ * The "CategoryFinder" class takes a list of articles, creates an internal
  * representation of all their parent categories (as well as parents of
  * parents etc.). From this representation, it determines which of these
  * articles are in one or all of a given subset of categories.
@@ -31,7 +31,7 @@
  *     # Determines whether the article with the page_id 12345 is in both
  *     # "Category 1" and "Category 2" or their subcategories, respectively
  *
- *     $cf = new Categoryfinder;
+ *     $cf = new CategoryFinder;
  *     $cf->seed(
  *         array( 12345 ),
  *         array( 'Category 1', 'Category 2' ),
@@ -42,7 +42,7 @@
  * </code>
  *
  */
-class Categoryfinder {
+class CategoryFinder {
 	/** @var int[] The original article IDs passed to the seed function */
 	protected $articles = array();
 
@@ -67,19 +67,16 @@ class Categoryfinder {
 	/** @var DatabaseBase Read-DB slave */
 	protected $dbr;
 
-	function __construct() {
-	}
-
 	/**
 	 * Initializes the instance. Do this prior to calling run().
-	 * @param array $article_ids Array of article IDs
+	 * @param array $articleIds Array of article IDs
 	 * @param array $categories FIXME
 	 * @param string $mode FIXME, default 'AND'.
 	 * @todo FIXME: $categories/$mode
 	 */
-	function seed( $article_ids, $categories, $mode = 'AND' ) {
-		$this->articles = $article_ids;
-		$this->next = $article_ids;
+	public function seed( $articleIds, $categories, $mode = 'AND' ) {
+		$this->articles = $articleIds;
+		$this->next = $articleIds;
 		$this->mode = $mode;
 
 		# Set the list of target categories; convert them to DBKEY form first
@@ -98,10 +95,10 @@ class Categoryfinder {
 	 * then checks the articles if they match the conditions
 	 * @return array Array of page_ids (those given to seed() that match the conditions)
 	 */
-	function run() {
+	public function run() {
 		$this->dbr = wfGetDB( DB_SLAVE );
 		while ( count( $this->next ) > 0 ) {
-			$this->scan_next_layer();
+			$this->scanNextLayer();
 		}
 
 		# Now check if this applies to the individual articles
@@ -124,7 +121,7 @@ class Categoryfinder {
 	 * @param array $path Used to check for recursion loops
 	 * @return bool Does this match the conditions?
 	 */
-	function check( $id, &$conds, $path = array() ) {
+	private function check( $id, &$conds, $path = array() ) {
 		// Check for loops and stop!
 		if ( in_array( $id, $path ) ) {
 			return false;
@@ -179,8 +176,8 @@ class Categoryfinder {
 	/**
 	 * Scans a "parent layer" of the articles/categories in $this->next
 	 */
-	function scan_next_layer() {
-		wfProfileIn( __METHOD__ );
+	private function scanNextLayer() {
+		$profiler = new ProfileSection( __METHOD__ );
 
 		# Find all parents of the article currently in $this->next
 		$layer = array();
@@ -235,7 +232,5 @@ class Categoryfinder {
 		foreach ( $layer as $v ) {
 			$this->deadend[$v] = $v;
 		}
-
-		wfProfileOut( __METHOD__ );
 	}
 }
