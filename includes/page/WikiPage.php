@@ -2768,7 +2768,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
-		global $wgUser, $wgContentHandlerUseDB;
+		global $wgUser, $wgContentHandlerUseDB, $wgContLang;
 
 		wfDebug( __METHOD__ . "\n" );
 
@@ -2815,6 +2815,31 @@ class WikiPage implements Page, IDBAccessObject {
 		} else {
 			$bitfield = 'rev_deleted';
 		}
+
+		// Clone the title, so we have the information we need when we log
+		$logTitle = clone $this->mTitle;
+
+		$logtype = $suppress ? 'suppress' : 'delete';
+
+		$logEntry = new ManualLogEntry( $logtype, 'delete' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( $logTitle );
+		$logEntry->setComment( $reason );
+
+		// Save a null revision in the page's history notifying of the deletion
+		$formatter = LogFormatter::newFromEntry( $logEntry );
+		$formatter->setContext( RequestContext::newExtraneousContext( $this->mTitle ) );
+		$comment = $formatter->getPlainActionText();
+		if ( $reason ) {
+			$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
+		}
+		# Truncate for whole multibyte characters.
+		$comment = $wgContLang->truncate( $comment, 255 );
+		$nullRevision = Revision::newNullRevision( $dbw, $this->getId(), $comment, true, $user );
+		if ( !is_object( $nullRevision ) ) {
+			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
+		}
+		$nullRevision->insertOn( $dbw );
 
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
@@ -2873,18 +2898,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
 		}
 
-		// Clone the title, so we have the information we need when we log
-		$logTitle = clone $this->mTitle;
-
 		$this->doDeleteUpdates( $id, $content );
 
 		// Log the deletion, if the page was suppressed, log it at Oversight instead
-		$logtype = $suppress ? 'suppress' : 'delete';
-
-		$logEntry = new ManualLogEntry( $logtype, 'delete' );
-		$logEntry->setPerformer( $user );
-		$logEntry->setTarget( $logTitle );
-		$logEntry->setComment( $reason );
 		$logid = $logEntry->insert();
 
 		$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $logEntry, $logid ) {

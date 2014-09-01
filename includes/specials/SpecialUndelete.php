@@ -365,6 +365,7 @@ class PageArchive {
 	function undelete( $timestamps, $comment = '', $fileVersions = array(),
 		$unsuppress = false, User $user = null
 	) {
+		global $wgContLang;
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
 		$restoreAll = empty( $timestamps ) && empty( $fileVersions );
@@ -424,6 +425,24 @@ class PageArchive {
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $this->title );
 		$logEntry->setComment( $reason );
+
+		// Save a null revision in the page's history notifying of the undeletion
+		$formatter = LogFormatter::newFromEntry( $logEntry );
+		$formatter->setContext( RequestContext::newExtraneousContext( $this->title ) );
+		$comment = $formatter->getPlainActionText();
+		if ( $reason ) {
+			$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
+		}
+		# Truncate for whole multibyte characters.
+		$comment = $wgContLang->truncate( $comment, 255 );
+		$dbw = wfGetDB( DB_MASTER );
+		$nullRevision = Revision::newNullRevision( $dbw, $this->title->getArticleID(), $comment, true, $user );
+		if ( !is_object( $nullRevision ) ) {
+			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
+		}
+		$nullRevision->insertOn( $dbw );
+		$page = WikiPage::factory( $this->title );
+		$page->updateRevisionOn( $dbw, $nullRevision );
 
 		wfRunHooks( 'ArticleUndeleteLogEntry', array( $this, &$logEntry, $user ) );
 
