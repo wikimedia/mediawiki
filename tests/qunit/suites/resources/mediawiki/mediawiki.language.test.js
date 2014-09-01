@@ -17,6 +17,19 @@
 		assert.equal( mw.language.getData( 'en', 'invalidkey' ), undefined, 'Getter setter test for mw.language with invalid key' );
 	} );
 
+	QUnit.test( 'mw.language.commafy test', 9, function ( assert ) {
+		// Number grouping patterns are as per http://cldr.unicode.org/translation/number-patterns
+		assert.equal( mw.language.commafy( 1234.567, '###0.#####' ), '1234.567', 'Pattern with no digit grouping separator defined' );
+		assert.equal( mw.language.commafy( 123456789.567, '###0.#####' ), '123456789.567', 'Pattern with no digit grouping seperator defined, bigger decimal part' );
+		assert.equal( mw.language.commafy( 0.567, '###0.#####' ), '0.567', 'Decimal part 0' );
+		assert.equal( mw.language.commafy( '.567', '###0.#####' ), '0.567', 'Decimal part missing. replace with zero' );
+		assert.equal( mw.language.commafy( 1234, '##,#0.#####' ), '12,34', 'Pattern with no fractional part' );
+		assert.equal( mw.language.commafy( -1234.567, '###0.#####' ), '-1234.567', 'Negative number' );
+		assert.equal( mw.language.commafy( -1234.567, '#,###.00' ), '-1,234.56', 'Fractional part bigger than pattern.' );
+		assert.equal( mw.language.commafy( 123456789.567, '###,##0.00' ), '123,456,789.56', 'Decimal part as group of 3' );
+		assert.equal( mw.language.commafy( 123456789.567, '###,###,#0.00' ), '1,234,567,89.56', 'Decimal part as group of 3 and last one 2' );
+	} );
+
 	function grammarTest( langCode, test ) {
 		// The test works only if the content language is opt.language
 		// because it requires [lang].js to be loaded.
