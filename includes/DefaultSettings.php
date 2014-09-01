@@ -7084,6 +7084,18 @@ $wgAsyncHTTPTimeout = 25;
 $wgHTTPProxy = false;
 
 /**
+ * Local virtual hosts.
+ *
+ * This lists domains that are configured as virtual hosts on the same machine.
+ * If a request is to be made to a domain listed here, or any subdomain thereof,
+ * then no proxy will be used.
+ * Command-line scripts are not affected by this setting and will always use
+ * proxy if it is configured.
+ * @since 1.25
+ */
+$wgLocalVirtualHosts = array();
+
+/**
  * Timeout for connections done internally (in seconds)
  * Only works for curl
  */

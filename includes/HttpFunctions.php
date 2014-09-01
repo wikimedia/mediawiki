@@ -114,7 +114,7 @@ class Http {
 	 * @return bool
 	 */
 	public static function isLocalURL( $url ) {
-		global $wgCommandLineMode, $wgConf;
+		global $wgCommandLineMode, $wgLocalVirtualHosts, $wgConf;
 
 		if ( $wgCommandLineMode ) {
 			return false;
@@ -126,7 +126,7 @@ class Http {
 			$host = $matches[1];
 			// Split up dotwise
 			$domainParts = explode( '.', $host );
-			// Check if this domain or any superdomain is listed in $wgConf as a local virtual host
+			// Check if this domain or any superdomain is listed as a local virtual host
 			$domainParts = array_reverse( $domainParts );
 
 			$domain = '';
@@ -139,7 +139,9 @@ class Http {
 					$domain = $domainPart . '.' . $domain;
 				}
 
-				if ( $wgConf->isLocalVHost( $domain ) ) {
+				if ( in_array( $domain, $wgLocalVirtualHosts )
+					|| $wgConf->isLocalVHost( $domain )
+				) {
 					return true;
 				}
 			}

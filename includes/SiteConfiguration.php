@@ -133,6 +133,8 @@ class SiteConfiguration {
 
 	/**
 	 * Array of domains that are local and can be handled by the same server
+	 *
+	 * @deprecated since 1.25; use $wgLocalVirtualHosts instead.
 	 */
 	public $localVHosts = array();
 
@@ -565,6 +567,8 @@ class SiteConfiguration {
 
 	/**
 	 * Returns true if the given vhost is handled locally.
+	 *
+	 * @deprecated since 1.25; check if the host is in $wgLocalVirtualHosts instead.
 	 * @param string $vhost
 	 * @return bool
 	 */
