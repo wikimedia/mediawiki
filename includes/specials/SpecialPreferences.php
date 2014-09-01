@@ -73,6 +73,7 @@ class SpecialPreferences extends SpecialPage {
 		$htmlForm = new HTMLForm( array(), $context, 'prefs-restore' );
 
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
+		$htmlForm->setSubmitDestructive();
 		$htmlForm->setSubmitCallback( array( $this, 'submitReset' ) );
 		$htmlForm->suppressReset();
 
