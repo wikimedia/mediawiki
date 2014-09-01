@@ -16,7 +16,6 @@ class PreferencesAppearancePage
   page_url URL.url("Special:Preferences#mw-prefsection-rendering")
 
   checkbox(:auto_number_check, id: "mw-input-wpnumberheadings")
-  checkbox(:collapse_sidebar_vector_check, id: "mw-input-wpvector-collapsiblenav")
   radio_button(:cologne_blue, id: "mw-input-wpskin-cologneblue")
   radio_button(:day_mo_year_radio, id: "mw-input-wpdate-dmy")
   checkbox(:dont_show_aft_check, id: "mw-input-wparticlefeedback-disable")
