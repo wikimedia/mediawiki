@@ -131,6 +131,25 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$this->assertRegExp( '/<li class="[\w\s-]*mw-tag-newbie[\w\s-]*">/', $line );
 	}
 
+	public function testNumberOfWatchingUsers() {
+		$oldChangesList = $this->getOldChangesList();
+
+		$recentChange = $this->getEditChange();
+		$recentChange->numberofWatchingusers = 100;
+
+		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
+		$this->assertRegExp( "/(number_of_watching_users_RCview: 100)/", $line );
+	}
+
+	public function testWatchlistCssClass() {
+		$oldChangesList = $this->getOldChangesList();
+		$oldChangesList->setWatchlistDivs( true );
+
+		$recentChange = $this->getEditChange();
+		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
+		$this->assertRegExp( "/watchlist-0-Cat/", $line );
+	}
+
 	private function getNewBotEditChange() {
 		$user = $this->getTestUser();
 
