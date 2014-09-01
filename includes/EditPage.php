@@ -2430,9 +2430,7 @@ class EditPage {
 
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
 
-		if ( $this->contentModel === CONTENT_MODEL_WIKITEXT &&
-			$showToolbar && $wgUser->getOption( 'showtoolbar' ) )
-		{
+		if ( !$this->isCssJsSubpage && $showToolbar && $wgUser->getOption( 'showtoolbar' ) ) {
 			$wgOut->addHTML( EditPage::getEditToolbar() );
 		}
 
