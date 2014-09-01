@@ -424,7 +424,7 @@
 	"gotaccount": "Ja teniu un compte? $1.",
 	"gotaccountlink": "Inicia una sessió",
 	"userlogin-resetlink": "Heu oblidat les vostres dades d'accés?",
-	"userlogin-resetpassword-link": "Has oblidat la teva contrasenya?",
+	"userlogin-resetpassword-link": "Heu oblidat la contrasenya?",
 	"userlogin-helplink2": "Ajuda amb el registre",
 	"createacct-emailrequired": "Adreça de correu electrònic",
 	"createacct-emailoptional": "Adreça de correu electrònic (opcional)",

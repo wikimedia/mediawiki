@@ -565,7 +565,7 @@
 	"showpreview": "Näita eelvaadet",
 	"showdiff": "Näita muudatusi",
 	"blankarticle": "<strong>Hoiatus:</strong> Lehekülg, mida alustad, on tühi.\nKui klõpsad uuesti \"{{int:savearticle}}\", luuakse lehekülg ilma sisuta.",
-	"anoneditwarning": "'''Hoiatus:''' Sa pole sisse logitud.\nSelle lehe redigeerimislogisse salvestatakse su IP-aadress.",
+	"anoneditwarning": "<strong>Hoiatus:</strong> Sa pole sisse logitud. Sinu IP-aadress on kõigile nähtav, kui muudatusi teed. Kui <strong>[$1 logid sisse]</strong> või <strong>[$2 lood konto]</strong>, siis teiste eeliste seas omistatakse sinu muudatused sulle kasutajanime järgi.",
 	"anonpreviewwarning": "''Sa pole sisse logitud. Selle lehe redigeerimislogisse salvestatakse su IP-aadress.''",
 	"missingsummary": "'''Meeldetuletus:''' Sa ei ole lisanud muudatuse resümeed.\nKui vajutad uuesti salvestamise nupule, salvestatakse muudatus ilma resümeeta.",
 	"missingcommenttext": "Palun sisesta siit allapoole kommentaar.",

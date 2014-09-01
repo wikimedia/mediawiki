@@ -623,7 +623,7 @@
 	"showpreview": "显示预览",
 	"showdiff": "显示更改",
 	"blankarticle": "<strong>警告</strong>：您创建的页面是空白的。如果您再次点击“{{int:savearticle}}”，您将真的创建没有任何内容的页面。",
-	"anoneditwarning": "<strong>警告：</strong>您没有登录。您的IP地址将被记录在该页面的编辑历史中。",
+	"anoneditwarning": "<strong>警告：</strong>您没有登录。您做出任何编辑后您的IP地址会公开可见。如果您<strong>[$1 登陆]</strong>或<strong>[$2 注册]</strong>一个账户，您的编辑将归属于您的用户名，以及有其他好处。",
 	"anonpreviewwarning": "<em>你没有登录。保存会记录你的IP地址于该页面的编辑历史中。</em>",
 	"missingsummary": "'''提示：'''你没有提供编辑摘要。如果你再次点击“{{int:savearticle}}”，你的编辑将不带编辑摘要保存。",
 	"missingcommenttext": "请在下面输入评论。",

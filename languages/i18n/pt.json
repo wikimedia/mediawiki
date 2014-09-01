@@ -604,7 +604,7 @@
 	"showpreview": "Antever resultado",
 	"showdiff": "Mostrar alterações",
 	"blankarticle": "<strong>Aviso:</strong> A página que está prestes a criar está em branco.  \nSe clicar \"{{int:savearticle}}\" outra vez, a página será criada sem qualquer conteúdo.",
-	"anoneditwarning": "'''Aviso''': Não iniciou sessão.\nO seu endereço IP será registado no histórico de edições desta página.",
+	"anoneditwarning": "<strong>Aviso</strong>: Não iniciou sessão. O seu endereço IP será registado no histórico de edições desta página. Se <strong>[$1 iniciar sessão]</strong> ou <strong>[$2 criar uma conta]</strong>, as suas edições serão registadas com o seu nome de utilizador(a), bem como usufruir de outros benefícios.",
 	"anonpreviewwarning": "''Não iniciou sessão. Ao gravar, registará o seu endereço IP no histórico de edições da página.''",
 	"missingsummary": "'''Atenção:''' Não introduziu um resumo da edição.\nSe clicar novamente \"Gravar página\" a sua edição será gravada sem resumo.",
 	"missingcommenttext": "Introduza um comentário abaixo, por favor.",

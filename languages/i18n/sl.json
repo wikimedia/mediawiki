@@ -552,7 +552,7 @@
 	"showpreview": "Prikaži predogled",
 	"showdiff": "Prikaži spremembe",
 	"blankarticle": "<strong>Opozorilo:</strong> Stran, ki jo ustvarjate, je prazna.\nČe ponovno kliknete »{{int:savearticle}}«, bomo stran ustvarili brez kakršne koli vsebine.",
-	"anoneditwarning": "'''Opozorilo''': niste prijavljeni. V zgodovino strani se bo zapisal vaš IP-naslov.",
+	"anoneditwarning": "<strong>Opozorilo:</strong> Niste prijavljeni. Vaš IP-naslov bo javno viden, če naredite kakršno koli urejanje. Če se <strong>[$1 prijavite]</strong> ali <strong>[$2 ustvarite račun]</strong>, bodo vaša urejanja pripisana vašemu uporabniškemu imenu skupaj z drugimi prednostmi.",
 	"anonpreviewwarning": "Niste prijavljeni. Ob spremembi strani se bo vaš IP-naslov zapisal v zgodovini urejanja te strani.",
 	"missingsummary": "'''Opozorilo:''' Niste napisali povzetka urejanja. Ob ponovnem kliku gumba ''Shrani'' se bo vaše urejanje shranilo brez njega.",
 	"missingcommenttext": "Prosimo, vpišite v spodnje polje komentar.",
