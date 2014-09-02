@@ -27,16 +27,6 @@ class JSONContentHandler extends TextContentHandler {
 	}
 
 	/**
-	 * Temporary back-compat until extensions
-	 * are updated to override this
-	 *
-	 * @return string
-	 */
-	protected function getContentClass() {
-		return $this->contentClass;
-	}
-
-	/**
 	 * Returns the english language, because JSON is english, and should be handled as such.
 	 *
 	 * @param Title $title
