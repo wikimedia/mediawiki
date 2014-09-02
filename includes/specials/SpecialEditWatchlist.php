@@ -553,7 +553,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$fields = array();
 		$count = 0;
 
-		foreach ( $this->getWatchlistInfo() as $namespace => $pages ) {
+		// Allow subscribers to manipulate the list of watched pages (or use it
+		// to preload lots of details at once)
+		$watchlistInfo = $this->getWatchlistInfo();
+		wfRunHooks(
+			'WatchlistEditorBeforeFormRender',
+			array( &$watchlistInfo )
+		);
+
+		foreach ( $watchlistInfo as $namespace => $pages ) {
 			$options = array();
 
 			foreach ( array_keys( $pages ) as $dbkey ) {
