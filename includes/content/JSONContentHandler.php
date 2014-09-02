@@ -13,27 +13,15 @@
  */
 class JSONContentHandler extends TextContentHandler {
 
-	/**
-	 * The class name of objects that should be created
-	 *
-	 * @deprecated override getContentClass instead
-	 *
-	 * @var string
-	 */
-	protected $contentClass = 'JSONContent';
-
 	public function __construct( $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_JSON ) );
 	}
 
 	/**
-	 * Temporary back-compat until extensions
-	 * are updated to override this
-	 *
 	 * @return string
 	 */
 	protected function getContentClass() {
-		return $this->contentClass;
+		return 'JSONContent';
 	}
 
 	/**
