@@ -3931,9 +3931,13 @@ class Title {
 			$redirectContent = null;
 		}
 
+		// bug 57084: log_page should be the ID of the *moved* page
+		$oldid = $this->getArticleID();
+		$logTitle = clone $this;
+
 		$logEntry = new ManualLogEntry( 'move', $logType );
 		$logEntry->setPerformer( $wgUser );
-		$logEntry->setTarget( $this );
+		$logEntry->setTarget( $logTitle );
 		$logEntry->setComment( $reason );
 		$logEntry->setParameters( array(
 			'4::target' => $nt->getPrefixedText(),
@@ -3948,8 +3952,6 @@ class Title {
 		}
 		# Truncate for whole multibyte characters.
 		$comment = $wgContLang->truncate( $comment, 255 );
-
-		$oldid = $this->getArticleID();
 
 		$dbw = wfGetDB( DB_MASTER );
 
