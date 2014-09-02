@@ -568,7 +568,7 @@
 	"showpreview": "Ukázat náhled",
 	"showdiff": "Ukázat změny",
 	"blankarticle": "<strong>Upozornění:</strong> Stránka, kterou se chystáte založit, je prázdná. Pokud ještě jednou kliknete na „{{int:savearticle}}“, bude založena zcela bez obsahu.",
-	"anoneditwarning": "'''Varování:''' Nejste přihlášen(a). Vaše IP adresa bude zveřejněna v historii této stránky.",
+	"anoneditwarning": "'''Varování:''' Nejste přihlášen(a). Pokud uložíte jakoukoli editaci, bude vaše IP adresa zveřejněna v historii této stránky. Pokud se <strong>[$1 přihlásíte]</strong> nebo si <strong>[$2 vytvoříte účet]</strong>, budou vaše editace připsány vašemu uživatelskému jménu a získáte i další výhody.",
 	"anonpreviewwarning": "''Nejste přihlášen(a). Uložením zveřejníte svou IP adresu v historii této stránky.''",
 	"missingsummary": "'''Připomenutí:''' Nezadali jste shrnutí editace. Pokud ještě jednou kliknete na Uložit změny, bude vaše editace zapsána bez shrnutí.",
 	"missingcommenttext": "Zadejte komentář",

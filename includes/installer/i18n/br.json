@@ -154,6 +154,7 @@
 	"config-db-web-help": "Diuzañ an anv implijer hag ar ger-tremen a vo implijet gant ar servijer web evit kevreañ ouzh ar servijer diaz roadennoù pa vez ar wiki o vont en-dro war ar pemdez.",
 	"config-db-web-account-same": "Ober gant an hevelep kont hag an hini implijet evit ar staliañ",
 	"config-db-web-create": "Krouiñ ar gont ma n'eus ket anezhi c'hoazh",
+	"config-db-web-no-create-privs": "Ar gont ho peus diferet evit ar staliañ n'he deus ket gwirioù a-walc'h evit krouiñ ur gont.\nRet eo d'ar gont diferet amañ bezañ anezhi dija.",
 	"config-mysql-engine": "Lusker stokañ :",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",

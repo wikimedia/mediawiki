@@ -1764,7 +1764,7 @@
 	"emailuser-title-notarget": "Envoyer un courriel à l'utilisateur",
 	"emailpage": "Envoyer un courriel à l'utilisateur",
 	"emailpagetext": "Vous pouvez utiliser le formulaire ci-dessous pour envoyer un courriel à {{GENDER:$1|cet utilisateur|cette utilisatrice}}.\nL'adresse électronique que vous avez indiquée dans [[Special:Preferences|vos préférences]] apparaîtra dans le champ « Expéditeur » de votre message ; ainsi, le destinataire pourra vous répondre directement.",
-	"defemailsubject": "{{SITENAME}} Courriel de l'utilisateur « $1 »",
+	"defemailsubject": "Courriel de {{SITENAME}} de l'utilisateur « $1 »",
 	"usermaildisabled": "L'envoi de courriels entre utilisateurs est désactivé",
 	"usermaildisabledtext": "Vous ne pouvez pas envoyer de courriels à d'autres utilisateurs sur ce wiki",
 	"noemailtitle": "Aucune adresse de courriel",
