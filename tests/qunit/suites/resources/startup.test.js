@@ -21,8 +21,7 @@
 			'Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36 OPR/15.0.1147.153',
 			'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36 OPR/16.0.1196.62',
 			'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36 OPR/23.0.1522.75',
-			// Internet Explorer 7+
-			'Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.0; en-US)',
+			// Internet Explorer 8+
 			'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; Media Center PC 4.0; SLCC1; .NET CLR 3.0.04320)',
 			'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 7.1; Trident/5.0)',
 			'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)',
@@ -43,12 +42,13 @@
 			'Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17'
 		],
 		gradeC: [
-			// Internet Explorer < 7
+			// Internet Explorer < 8
 			'Mozilla/2.0 (compatible; MSIE 3.03; Windows 3.1)',
 			'Mozilla/4.0 (compatible; MSIE 4.01; Windows 95)',
 			'Mozilla/4.0 (compatible; MSIE 5.0; Windows 98;)',
 			'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)',
 			'Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.1)',
+			'Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.0; en-US)',
 			// Firefox < 3
 			'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.2) Gecko/20060308 Firefox/1.5.0.2',
 			'Mozilla/5.0 (X11; U; Linux i686; nl; rv:1.8.1.1) Gecko/20070311 Firefox/2.0.0.1',
