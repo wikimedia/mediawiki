@@ -245,6 +245,9 @@ return array(
 	'jquery.hoverIntent' => array(
 		'scripts' => 'resources/lib/jquery/jquery.hoverIntent.js',
 	),
+	'jquery.indexeddb' => array(
+		'scripts' => 'resources/lib/jquery/jquery.indexeddb.js',
+	),
 	'jquery.localize' => array(
 		'scripts' => 'resources/src/jquery/jquery.localize.js',
 	),
