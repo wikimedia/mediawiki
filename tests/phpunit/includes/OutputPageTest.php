@@ -151,18 +151,26 @@ class OutputPageTest extends MediaWikiTestCase {
 				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback&amp;*">
 '
 			),
-			// Load private module (scripts)
+			// Load private module (only=scripts)
+			// This is asserted for completion (would get two condition wrappers),
+			// though in practice we'd never embed a module with only=scripts,
+			// that mode is reserved for hardcoded requests. Embedded modules
+			// would always be combined.
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script>if(window.mw){mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});}
-</script>
+				'<script>if(window.mw){
+if(window.mw){mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});}
+
+}</script>
 '
 			),
 			// Load private module (combined)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
-				'<script>mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]},{});
-</script>
+				'<script>if(window.mw){
+mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]},{});
+
+}</script>
 '
 			),
 			// Load module script with with ESI
