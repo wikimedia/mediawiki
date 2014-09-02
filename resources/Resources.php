@@ -243,6 +243,9 @@ return array(
 	'jquery.hoverIntent' => array(
 		'scripts' => 'resources/lib/jquery/jquery.hoverIntent.js',
 	),
+	'jquery.indexeddb' => array(
+		'scripts' => 'resources/lib/jquery/jquery.indexeddb.js',
+	),
 	'jquery.json' => array(
 		// @deprecated since 1.24: Use the 'json' module and global JSON object instead.
 		'scripts' => array(
