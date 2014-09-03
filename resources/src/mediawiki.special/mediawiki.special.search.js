@@ -39,8 +39,8 @@
 				var parts = $( this ).attr( 'href' ).split( 'search=' ),
 					lastpart = '',
 					prefix = 'search=';
-				if ( parts.length > 1 && parts[1].indexOf( '&' ) >= 0 ) {
-					lastpart = parts[1].substring( parts[1].indexOf( '&' ) );
+				if ( parts.length > 1 && parts[1].indexOf( '&' ) !== -1 ) {
+					lastpart = parts[1].slice( parts[1].indexOf( '&' ) );
 				} else {
 					prefix = '&search=';
 				}

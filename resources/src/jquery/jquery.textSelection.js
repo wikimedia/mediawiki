@@ -116,12 +116,12 @@
 						} else {
 							while ( selText.charAt( selText.length - 1 ) === ' ' ) {
 								// Exclude ending space char
-								selText = selText.substring( 0, selText.length - 1 );
+								selText = selText.slice( 0, -1 );
 								post += ' ';
 							}
 							while ( selText.charAt( 0 ) === ' ' ) {
 								// Exclude prepending space char
-								selText = selText.substring( 1, selText.length );
+								selText = selText.slice( 1 );
 								pre = ' ' + pre;
 							}
 						}
@@ -233,8 +233,8 @@
 									post += '\n';
 								}
 							}
-							this.value = this.value.substring( 0, startPos ) + insertText +
-								this.value.substring( endPos, this.value.length );
+							this.value = this.value.slice( 0, startPos ) + insertText +
+								this.value.slice( endPos );
 							// Setting this.value scrolls the textarea to the top, restore the scroll position
 							this.scrollTop = scrollTop;
 							if ( window.opera ) {

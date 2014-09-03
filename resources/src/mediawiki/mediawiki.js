@@ -1510,9 +1510,9 @@
 							for ( i = 0; i < modules.length; i += 1 ) {
 								// Determine how many bytes this module would add to the query string
 								lastDotIndex = modules[i].lastIndexOf( '.' );
-								// Note that these substr() calls work even if lastDotIndex == -1
-								prefix = modules[i].substr( 0, lastDotIndex );
-								suffix = modules[i].substr( lastDotIndex + 1 );
+								// Note that these slice() calls work even if lastDotIndex == -1
+								prefix = modules[i].slice( 0, lastDotIndex );
+								suffix = modules[i].slice( lastDotIndex + 1 );
 								bytesAdded = moduleMap[prefix] !== undefined
 									? suffix.length + 3 // '%2C'.length == 3
 									: modules[i].length + 3; // '%7C'.length == 3
@@ -2096,7 +2096,7 @@
 						}
 
 						for ( key in mw.loader.store.items ) {
-							module = key.substring( 0, key.indexOf( '@' ) );
+							module = key.slice( 0, key.indexOf( '@' ) );
 							if ( mw.loader.store.getModuleKey( module ) !== key ) {
 								mw.loader.store.stats.expired++;
 								delete mw.loader.store.items[key];

@@ -422,7 +422,7 @@
 			 */
 			function makeRegexParser( regex ) {
 				return function () {
-					var matches = input.substr( pos ).match( regex );
+					var matches = input.slice( pos ).match( regex );
 					if ( matches === null ) {
 						return null;
 					}
@@ -724,7 +724,7 @@
 
 				if ( parsedCloseTagResult === null ) {
 					// Closing tag failed.  Return the start tag and contents.
-					return [ 'CONCAT', input.substring( startOpenTagPos, endOpenTagPos ) ]
+					return [ 'CONCAT', input.slice( startOpenTagPos, endOpenTagPos ) ]
 						.concat( parsedHtmlContents );
 				}
 
@@ -748,8 +748,8 @@
 					// parsed HTML link.
 					//
 					// Concatenate everything from the tag, flattening the contents.
-					result = [ 'CONCAT', input.substring( startOpenTagPos, endOpenTagPos ) ]
-						.concat( parsedHtmlContents, input.substring( startCloseTagPos, endCloseTagPos ) );
+					result = [ 'CONCAT', input.slice( startOpenTagPos, endOpenTagPos ) ]
+						.concat( parsedHtmlContents, input.slice( startCloseTagPos, endCloseTagPos ) );
 				}
 
 				return result;

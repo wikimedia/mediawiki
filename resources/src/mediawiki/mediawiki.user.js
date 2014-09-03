@@ -62,7 +62,7 @@
 				seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 			for ( i = 0; i < 32; i++ ) {
 				r = Math.floor( Math.random() * seed.length );
-				id += seed.substring( r, r + 1 );
+				id += seed.charAt( r );
 			}
 			return id;
 		},

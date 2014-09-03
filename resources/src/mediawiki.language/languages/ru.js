@@ -15,41 +15,41 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 	}
 	switch ( form ) {
 		case 'genitive': // родительный падеж
-			if ( word.substr( word.length - 1 ) === 'ь' ) {
-				word = word.substr(0, word.length - 1 ) + 'я';
-			} else if ( word.substr( word.length - 2 ) === 'ия' ) {
-				word = word.substr(0, word.length - 2 ) + 'ии';
-			} else if ( word.substr( word.length - 2 ) === 'ка' ) {
-				word = word.substr(0, word.length - 2 ) + 'ки';
-			} else if ( word.substr( word.length - 2 )  === 'ти' ) {
-				word = word.substr(0, word.length - 2 ) + 'тей';
-			} else if ( word.substr( word.length - 2 ) === 'ды' ) {
-				word = word.substr(0, word.length - 2 ) + 'дов';
-			} else if ( word.substr( word.length - 1 ) === 'д' ) {
-				word = word.substr(0, word.length - 1 ) + 'да';
-			} else if ( word.substr( word.length - 3 ) === 'ные' ) {
-				word = word.substr(0, word.length - 3 ) + 'ных';
-			} else if ( word.substr( word.length - 3 ) === 'ник' ) {
-				word = word.substr(0, word.length - 3 ) + 'ника';
+			if ( word.slice( -1 ) === 'ь' ) {
+				word = word.slice( 0, -1 ) + 'я';
+			} else if ( word.slice( -2 ) === 'ия' ) {
+				word = word.slice( 0, -2 ) + 'ии';
+			} else if ( word.slice( -2 ) === 'ка' ) {
+				word = word.slice( 0, -2 ) + 'ки';
+			} else if ( word.slice( -2 ) === 'ти' ) {
+				word = word.slice( 0, -2 ) + 'тей';
+			} else if ( word.slice( -2 ) === 'ды' ) {
+				word = word.slice( 0, -2 ) + 'дов';
+			} else if ( word.slice( -1 ) === 'д' ) {
+				word = word.slice( 0, -1 ) + 'да';
+			} else if ( word.slice( -3 ) === 'ные' ) {
+				word = word.slice( 0, -3 ) + 'ных';
+			} else if ( word.slice( -3 ) === 'ник' ) {
+				word = word.slice( 0, -3 ) + 'ника';
 			}
 			break;
 		case 'prepositional': // предложный падеж
-			if ( word.substr( word.length - 1 ) === 'ь' ) {
-				word = word.substr(0, word.length - 1 ) + 'е';
-			} else if ( word.substr( word.length - 2 ) === 'ия' ) {
-				word = word.substr(0, word.length - 2 ) + 'ии';
-			} else if ( word.substr( word.length - 2 ) === 'ка' ) {
-				word = word.substr(0, word.length - 2 ) + 'ке';
-			} else if ( word.substr( word.length - 2 )  === 'ти' ) {
-				word = word.substr(0, word.length - 2 ) + 'тях';
-			} else if ( word.substr( word.length - 2 ) === 'ды' ) {
-				word = word.substr(0, word.length - 2 ) + 'дах';
-			} else if ( word.substr( word.length - 1 ) === 'д' ) {
-				word = word.substr(0, word.length - 1 ) + 'де';
-			} else if ( word.substr( word.length - 3 ) === 'ные' ) {
-				word = word.substr(0, word.length - 3 ) + 'ных';
-			} else if ( word.substr( word.length - 3 ) === 'ник' ) {
-				word = word.substr(0, word.length - 3 ) + 'нике';
+			if ( word.slice( -1 ) === 'ь' ) {
+				word = word.slice( 0, -1 ) + 'е';
+			} else if ( word.slice( -2 ) === 'ия' ) {
+				word = word.slice( 0, -2 ) + 'ии';
+			} else if ( word.slice( -2 ) === 'ка' ) {
+				word = word.slice( 0, -2 ) + 'ке';
+			} else if ( word.slice( -2 ) === 'ти' ) {
+				word = word.slice( 0, -2 ) + 'тях';
+			} else if ( word.slice( -2 ) === 'ды' ) {
+				word = word.slice( 0, -2 ) + 'дах';
+			} else if ( word.slice( -1 ) === 'д' ) {
+				word = word.slice( 0, -1 ) + 'де';
+			} else if ( word.slice( -3 ) === 'ные' ) {
+				word = word.slice( 0, -3 ) + 'ных';
+			} else if ( word.slice( -3 ) === 'ник' ) {
+				word = word.slice( 0, -3 ) + 'нике';
 			}
 			break;
 	}

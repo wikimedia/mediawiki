@@ -66,11 +66,11 @@
 
 		inpParts = [
 			// Same start
-			newVal.substring( 0, startMatches ),
+			newVal.slice( 0, startMatches ),
 			// Inserted content
-			newVal.substring( startMatches, newVal.length - endMatches ),
+			newVal.slice( startMatches, newVal.length - endMatches ),
 			// Same end
-			newVal.substring( newVal.length - endMatches )
+			newVal.slice( newVal.length - endMatches )
 		];
 
 		// Chop off characters from the end of the "inserted content" string
