@@ -25,15 +25,21 @@
 
 		$link = $( '<a>', {
 			text: showText,
-			href: '#'
-		} ).click( function () {
-			if ( $table.hasClass( 'collapsed' ) ) {
-				$( this ).text( hideText );
-			} else {
-				$( this ).text( showText );
+			tabindex: 0,
+			role: 'button'
+		} )
+		.on( 'click keypress', function ( e ) {
+			if (
+				e.type === 'click' ||
+				e.type === 'keypress' && e.which === 13
+			) {
+				if ( $table.hasClass( 'collapsed' ) ) {
+					$( this ).text( hideText );
+				} else {
+					$( this ).text( showText );
+				}
+				$table.toggleClass( 'expanded collapsed' );
 			}
-			$table.toggleClass( 'expanded collapsed' );
-			return false;
 		} );
 
 		$col.append( $link );

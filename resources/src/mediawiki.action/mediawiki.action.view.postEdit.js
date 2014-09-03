@@ -34,7 +34,7 @@
 			'<div class="postedit-container">' +
 				'<div class="postedit">' +
 					'<div class="postedit-icon postedit-icon-checkmark postedit-content"></div>' +
-					'<a href="#" class="postedit-close">&times;</a>' +
+					'<a class="postedit-close">&times;</a>' +
 				'</div>' +
 			'</div>'
 		);
