@@ -108,12 +108,12 @@ class ImageListPager extends TablePager {
 
 		if ( !$including ) {
 			if ( $context->getRequest()->getText( 'sort', 'img_date' ) == 'img_date' ) {
-				$this->mDefaultDirection = true;
+				$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
 			} else {
-				$this->mDefaultDirection = false;
+				$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 			}
 		} else {
-			$this->mDefaultDirection = true;
+			$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
 		}
 
 		parent::__construct( $context );
