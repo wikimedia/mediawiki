@@ -342,7 +342,7 @@
 	ProfileData.groupOf = function ( label ) {
 		var pos, prefix = 'Profile section ended by close(): ';
 		if ( label.indexOf( prefix ) === 0 ) {
-			label = label.substring( prefix.length );
+			label = label.slice( prefix.length );
 		}
 
 		pos = [ '::', ':', '-' ].reduce( function ( result, separator ) {
@@ -359,7 +359,7 @@
 		if ( pos === -1 ) {
 			return label;
 		} else {
-			return label.substring( 0, pos );
+			return label.slice( 0, pos );
 		}
 	};
 

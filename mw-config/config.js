@@ -9,7 +9,7 @@
 				.replace( /__+/g, '_' )
 				.replace( /^_+/, '' )
 				.replace( /_+$/, '' );
-			value = value.substr( 0, 1 ).toUpperCase() + value.substr( 1 );
+			value = value.charAt( 0 ).toUpperCase() + value.slice( 1 );
 			$label.text( labelText.replace( '$1', value ) );
 		}
 

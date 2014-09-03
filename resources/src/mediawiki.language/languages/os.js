@@ -19,7 +19,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 	}
 	// Checking if the $word is in plural form
 	if ( word.match( /тæ$/i ) ) {
-		word = word.substring( 0, word.length - 1 );
+		word = word.slice( 0, -1 );
 		endAllative = 'æм';
 	}
 	// Works if word is in singular form.
@@ -30,7 +30,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 	// Checking if word ends on 'у'. 'У' can be either consonant 'W' or vowel 'U' in cyrillic Ossetic.
 	// Examples: {{grammar:genitive|аунеу}} = аунеуы, {{grammar:genitive|лæппу}} = лæппуйы.
 	else if ( word.match( /у$/i ) ) {
-		if ( !word.substring( word.length - 2, word.length - 1 ).match( /[аæеёиоыэюя]$/i ) ) {
+		if ( !word.slice( -2, -1 ).match( /[аæеёиоыэюя]$/i ) ) {
 			jot = 'й';
 		}
 	} else if ( !word.match( /[бвгджзйклмнопрстфхцчшщьъ]$/i ) ) {
