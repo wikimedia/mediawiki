@@ -247,6 +247,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$callback = array( $this, 'encodeKey' );
 		$result = $this->client->getMulti( array_map( $callback, $keys ) );
 		wfProfileOut( __METHOD__ );
+		$result = $result ?: array(); // must be an array
 		return $this->checkResult( false, $result );
 	}
 
