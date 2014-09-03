@@ -1110,6 +1110,11 @@ return array(
 				'mediawiki.cldr',
 			),
 		'targets' => array( 'desktop', 'mobile' ),
+		'messages' => array(
+			'and',
+			'comma-separator',
+			'word-separator'
+		),
 	),
 
 	'mediawiki.cldr' => array(
