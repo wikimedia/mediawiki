@@ -438,10 +438,15 @@ class CoreParserFunctions {
 						$converter->markNoConversion( wfEscapeWikiText( $text ) )
 					)->inContentLanguage()->text() .
 					'</span>';
+			} else {
+				return '';
 			}
+		} else {
+			return '<span class="error">' .
+				wfMessage( 'restricted-displaytitle', $text )->inContentLanguage()->text() .
+				'</span>';
 		}
 
-		return '';
 	}
 
 	/**
