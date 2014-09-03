@@ -1635,6 +1635,12 @@ $code: language code
 &$alldata: The localisation data from core and extensions
 &purgeBlobs: whether to purge/update the message blobs via MessageBlobStore::clear()
 
+'LocalisationCacheRecacheFallback': Called for each language when merging
+fallback data into the cache.
+$cache: The LocalisationCache object
+$code: language code
+&$alldata: The localisation data from core and extensions
+
 'LocalisationChecksBlacklist': When fetching the blacklist of
 localisation checks.
 &$blacklist: array of checks to blacklist. See the bottom of
