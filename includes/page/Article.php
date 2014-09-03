@@ -1190,15 +1190,18 @@ class Article implements Page {
 	 */
 	public function showMissingArticle() {
 		global $wgSend404Code;
+
 		$outputPage = $this->getContext()->getOutput();
 		// Whether the page is a root user page of an existing user (but not a subpage)
 		$validUserPage = false;
 
+		$title = $this->getTitle();
+
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
-		if ( $this->getTitle()->getNamespace() == NS_USER
-			|| $this->getTitle()->getNamespace() == NS_USER_TALK
+		if ( $title->getNamespace() == NS_USER
+			|| $title->getNamespace() == NS_USER_TALK
 		) {
-			$parts = explode( '/', $this->getTitle()->getText() );
+			$parts = explode( '/', $title->getText() );
 			$rootPart = $parts[0];
 			$user = User::newFromName( $rootPart, false /* allow IP users*/ );
 			$ip = User::isIP( $rootPart );
@@ -1222,9 +1225,9 @@ class Article implements Page {
 						)
 					)
 				);
-				$validUserPage = !$this->getTitle()->isSubpage();
+				$validUserPage = !$title->isSubpage();
 			} else {
-				$validUserPage = !$this->getTitle()->isSubpage();
+				$validUserPage = !$title->isSubpage();
 			}
 		}
 
@@ -1236,12 +1239,16 @@ class Article implements Page {
 		wfRunHooks( 'Article::MissingArticleConditions', array( &$conds, $logTypes ) );
 
 		# Show delete and move logs
-		LogEventsList::showLogExtract( $outputPage, $logTypes, $this->getTitle(), '',
-			array( 'lim' => 10,
-				'conds' => $conds,
-				'showIfEmpty' => false,
-				'msgKey' => array( 'moveddeleted-notice' ) )
-		);
+		$member = $title->getNamespace() . ':' . $title->getDBkey();
+		// @todo: move optimization to showLogExtract()?
+		if ( BloomCache::get( 'main' )->check( wfWikiId(), 'TitleHasLogs', $member ) ) {
+			LogEventsList::showLogExtract( $outputPage, $logTypes, $title, '',
+				array( 'lim' => 10,
+					'conds' => $conds,
+					'showIfEmpty' => false,
+					'msgKey' => array( 'moveddeleted-notice' ) )
+			);
+		}
 
 		if ( !$this->mPage->hasViewableContent() && $wgSend404Code && !$validUserPage ) {
 			// If there's no backing content, send a 404 Not Found
@@ -1264,11 +1271,11 @@ class Article implements Page {
 		$oldid = $this->getOldID();
 		if ( $oldid ) {
 			$text = wfMessage( 'missing-revision', $oldid )->plain();
-		} elseif ( $this->getTitle()->getNamespace() === NS_MEDIAWIKI ) {
+		} elseif ( $title->getNamespace() === NS_MEDIAWIKI ) {
 			// Use the default message text
-			$text = $this->getTitle()->getDefaultMessageText();
-		} elseif ( $this->getTitle()->quickUserCan( 'create', $this->getContext()->getUser() )
-			&& $this->getTitle()->quickUserCan( 'edit', $this->getContext()->getUser() )
+			$text = $title->getDefaultMessageText();
+		} elseif ( $title->quickUserCan( 'create', $this->getContext()->getUser() )
+			&& $title->quickUserCan( 'edit', $this->getContext()->getUser() )
 		) {
 			$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
 			$text = wfMessage( $message )->plain();
