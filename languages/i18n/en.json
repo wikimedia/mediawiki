@@ -3224,6 +3224,7 @@
 	"unknown_extension_tag": "Unknown extension tag \"$1\"",
 	"duplicate-defaultsort": "<strong>Warning:</strong> Default sort key \"$2\" overrides earlier default sort key \"$1\".",
 	"duplicate-displaytitle": "<strong>Warning:</strong> Display title \"$2\" overrides earlier display title \"$1\".",
+	"restricted-displaytitle": "<strong>Warning:</strong> Display title \"$1\" ignored since it is not equivalent to the page's actual title.",
 	"version": "Version",
 	"version-summary": "",
 	"version-extensions": "Installed extensions",
