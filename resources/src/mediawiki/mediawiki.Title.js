@@ -132,7 +132,7 @@
 			namespace = NS_MAIN;
 			title = title
 				// Strip colon
-				.substr( 1 )
+				.slice( 1 )
 				// Trim underscores
 				.replace( rUnderscoreTrim, '' );
 		}
@@ -167,14 +167,14 @@
 		} else {
 			fragment = title
 				// Get segment starting after the hash
-				.substr( i + 1 )
+				.slice( i + 1 )
 				// Convert to text
 				// NB: Must not be trimmed ("Example#_foo" is not the same as "Example#foo")
 				.replace( /_/g, ' ' );
 
 			title = title
 				// Strip hash
-				.substr( 0, i )
+				.slice( 0, i )
 				// Trim underscores, again (strips "_" from "bar" in "Foo_bar_#quux")
 				.replace( rUnderscoreTrim, '' );
 		}
@@ -192,8 +192,8 @@
 				title.indexOf( '../' ) === 0 ||
 				title.indexOf( '/./' ) !== -1 ||
 				title.indexOf( '/../' ) !== -1 ||
-				title.substr( title.length - 2 ) === '/.' ||
-				title.substr( title.length - 3 ) === '/..'
+				title.slice( -2 ) === '/.' ||
+				title.slice( -3 ) === '/..'
 			)
 		) {
 			return false;
@@ -229,8 +229,8 @@
 			// Extensions are the non-empty segment after the last dot
 			ext = null;
 		} else {
-			ext = title.substr( i + 1 );
-			title = title.substr( 0, i );
+			ext = title.slice( i + 1 );
+			title = title.slice( 0, i );
 		}
 
 		return {

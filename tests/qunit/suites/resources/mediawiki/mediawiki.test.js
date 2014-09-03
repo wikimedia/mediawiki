@@ -809,7 +809,7 @@
 		// Confirm that mw.loader.load() works with protocol-relative URLs
 		target = target.replace( /https?:/, '' );
 
-		assert.equal( target.substr( 0, 2 ), '//',
+		assert.equal( target.slice( 0, 2 ), '//',
 			'URL must be relative to test relative URLs!'
 		);
 

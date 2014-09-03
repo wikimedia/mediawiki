@@ -187,9 +187,9 @@
 				if ( slash === -1 && backslash === -1 ) {
 					fname = path;
 				} else if ( slash > backslash ) {
-					fname = path.substring( slash + 1 );
+					fname = path.slice( slash + 1 );
 				} else {
-					fname = path.substring( backslash + 1 );
+					fname = path.slice( backslash + 1 );
 				}
 
 				// Clear the filename if it does not have a valid extension.
@@ -203,7 +203,7 @@
 					if (
 						fname.lastIndexOf( '.' ) === -1 ||
 						$.inArray(
-							fname.substr( fname.lastIndexOf( '.' ) + 1 ).toLowerCase(),
+							fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase(),
 							$.map( mw.config.get( 'wgFileExtensions' ), function ( element ) {
 								return element.toLowerCase();
 							} )
@@ -225,7 +225,7 @@
 				fname = fname.replace( / /g, '_' );
 				// Capitalise first letter if needed
 				if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
-					fname = fname.charAt( 0 ).toUpperCase().concat( fname.substring( 1 ) );
+					fname = fname.charAt( 0 ).toUpperCase().concat( fname.slice( 1 ) );
 				}
 
 				// Output result

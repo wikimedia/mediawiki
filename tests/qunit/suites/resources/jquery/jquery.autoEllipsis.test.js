@@ -41,7 +41,7 @@
 		// Add two characters using scary black magic
 		spanText = $span.text();
 		d = findDivergenceIndex( origText, spanText );
-		spanTextNew = spanText.substr( 0, d ) + origText[d] + origText[d] + '...';
+		spanTextNew = spanText.slice( 0, d ) + origText[d] + origText[d] + '...';
 
 		assert.gt( spanTextNew.length, spanText.length, 'Verify that the new span-length is indeed greater' );
 
