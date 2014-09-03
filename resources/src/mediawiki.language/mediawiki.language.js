@@ -59,9 +59,9 @@ $.extend( mw.language, {
 			form = forms[index];
 			if ( /^\d+=/.test( form ) ) {
 				equalsPosition = form.indexOf( '=' );
-				formCount = parseInt( form.substring( 0, equalsPosition ), 10 );
+				formCount = parseInt( form.slice( 0, equalsPosition ), 10 );
 				if ( formCount === count ) {
-					return form.substr( equalsPosition + 1 );
+					return form.slice( equalsPosition + 1 );
 				}
 				forms[index] = undefined;
 			}

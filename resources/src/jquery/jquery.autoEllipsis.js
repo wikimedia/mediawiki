@@ -108,7 +108,7 @@ $.fn.autoEllipsis = function ( options ) {
 					r = trimmableText.length;
 					do {
 						m = Math.ceil( ( l + r ) / 2 );
-						$trimmableText.text( trimmableText.substr( 0, m ) + '...' );
+						$trimmableText.text( trimmableText.slice( 0, m ) + '...' );
 						if ( $trimmableText.width() + pw > w ) {
 							// Text is too long
 							r = m - 1;
@@ -116,7 +116,7 @@ $.fn.autoEllipsis = function ( options ) {
 							l = m;
 						}
 					} while ( l < r );
-					$trimmableText.text( trimmableText.substr( 0, l ) + '...' );
+					$trimmableText.text( trimmableText.slice( 0, l ) + '...' );
 					break;
 				case 'center':
 					// TODO: Use binary search like for 'right'
@@ -124,7 +124,7 @@ $.fn.autoEllipsis = function ( options ) {
 					// Begin with making the end shorter
 					side = 1;
 					while ( $trimmableText.outerWidth() + pw > w && i[0] > 0 ) {
-						$trimmableText.text( trimmableText.substr( 0, i[0] ) + '...' + trimmableText.substr( i[1] ) );
+						$trimmableText.text( trimmableText.slice( 0, i[0] ) + '...' + trimmableText.slice( i[1] ) );
 						// Alternate between trimming the end and begining
 						if ( side === 0 ) {
 							// Make the begining shorter
@@ -141,7 +141,7 @@ $.fn.autoEllipsis = function ( options ) {
 					// TODO: Use binary search like for 'right'
 					r = 0;
 					while ( $trimmableText.outerWidth() + pw > w && r < trimmableText.length ) {
-						$trimmableText.text( '...' + trimmableText.substr( r ) );
+						$trimmableText.text( '...' + trimmableText.slice( r ) );
 						r++;
 					}
 					break;

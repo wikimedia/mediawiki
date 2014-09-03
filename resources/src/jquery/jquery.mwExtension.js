@@ -12,7 +12,7 @@
 					'' : str.toString().replace( /\s+$/, '' );
 		},
 		ucFirst: function ( str ) {
-			return str.charAt( 0 ).toUpperCase() + str.substr( 1 );
+			return str.charAt( 0 ).toUpperCase() + str.slice( 1 );
 		},
 		escapeRE: function ( str ) {
 			return str.replace ( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' );
