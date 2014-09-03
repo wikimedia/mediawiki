@@ -79,63 +79,67 @@ hr {
 }
 
 /* Structural Elements */
+header {
+	border-bottom: 1px solid #aaa;
+	overflow: hidden;
+	color: black;
+	background: none;
+	font-weight: normal;
+	margin: 0;
+	padding-top: .5em;
+	padding-bottom: .17em;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	color: black;
-	background: none;
-	font-weight: normal;
-	margin: 0;
-	overflow: hidden;
-	padding-top: .5em;
-	padding-bottom: .17em;
-	border-bottom: 1px solid #aaa;
+	display: inline;
 }
 
-h1 {
+header.mw-h1 {
 	font-size: 188%;
 }
 
-h2 {
+header.mw-h2 {
 	font-size: 150%;
 }
 
-h3,
-h4,
-h5,
-h6 {
+header.mw-h3,
+header.mw-h4,
+header.mw-h5,
+header.mw-h6 {
 	border-bottom: none;
 	font-weight: bold;
 }
 
-h3 {
+header.mw-h3 {
 	font-size: 132%;
 }
 
-h4 {
+header.mw-h4 {
 	font-size: 116%;
 }
 
-h5 {
+header.mw-h5 {
 	font-size: 108%;
 }
 
-h6 {
+header.mw-h6 {
 	font-size: 100%;
 }
 
 /* Some space under the headers in the content area */
-h1,
-h2 {
+header.mw-h1,
+header.mw-h2 {
 	margin-bottom: .6em;
 }
 
-h3,
-h4,
-h5 {
+header.mw-h3,
+header.mw-h4,
+header.mw-h5 {
 	margin-bottom: .3em;
 }
 
