@@ -51,6 +51,7 @@
 	"config-env-good": "Асяродзьдзе было праверанае.\nВы можаце ўсталёўваць MediaWiki.",
 	"config-env-bad": "Асяродзьдзе было праверанае.\nУсталяваньне MediaWiki немагчымае.",
 	"config-env-php": "Усталяваны PHP $1.",
+	"config-env-hhvm": "HHVM $1 усталяваная.",
 	"config-unicode-using-utf8": "Выкарыстоўваецца бібліятэка Unicode-нармалізацыі Браяна Вібэра",
 	"config-unicode-using-intl": "Выкарыстоўваецца [http://pecl.php.net/intl intl пашырэньне з PECL] для Unicode-нармалізацыі",
 	"config-unicode-pure-php-warning": "'''Папярэджаньне''': [http://pecl.php.net/intl Пашырэньне intl з PECL] — ня слушнае для Unicode-нармалізацыі, цяпер выкарыстоўваецца марудная PHP-рэалізацыя.\nКалі ў Вас сайт з высокай наведваемасьцю, раім пачытаць пра [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode-нармалізацыю].",

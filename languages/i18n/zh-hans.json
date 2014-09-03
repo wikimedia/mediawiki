@@ -191,7 +191,7 @@
 	"october-date": "10月$1日",
 	"november-date": "11月$1日",
 	"december-date": "12月$1日",
-	"pagecategories": "{{PLURAL:$1|个分类}}",
+	"pagecategories": "{{PLURAL:$1|分类|$1个分类}}",
 	"category_header": "分类“$1”中的页面",
 	"subcategories": "子分类",
 	"category-media-header": "分类“$1”中的媒体文件",

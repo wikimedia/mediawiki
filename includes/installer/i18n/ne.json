@@ -4,9 +4,15 @@
 			"Bhawani Gautam",
 			"RajeshPandey",
 			"सरोज कुमार ढकाल",
-			"Ganesh Paudel"
+			"Ganesh Paudel",
+			"बिप्लब आनन्द"
 		]
 	},
+	"config-information": "जानकारी",
+	"config-localsettings-badkey": "तपाइले दिनु भएको कुन्जी गलत छ ।",
+	"config-your-language": "तपाईंको भाषा:",
+	"config-your-language-help": "इन्स्टल गर्दा उपयोग गर्ने भाषा छान्नुहोस् ।",
+	"config-wiki-language": "विकि भाषाहरू",
 	"config-page-name": "नाम",
 	"config-page-options": "विकल्पहरु",
 	"config-page-install": "स्थापना गर्ने",

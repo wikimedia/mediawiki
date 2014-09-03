@@ -600,7 +600,7 @@
 	"showpreview": "Visa förhandsgranskning",
 	"showdiff": "Visa ändringar",
 	"blankarticle": "<strong>Varning:</strong> Sidan du skapar är tom.\nOm du klickar på \"{{int:savearticle}}\" igen kommer sidan skapas utan något innehåll.",
-	"anoneditwarning": "'''Varning:''' Du är inte inloggad.\nDin IP-adress kommer att sparas i historiken för den här sidan.",
+	"anoneditwarning": "<strong>Varning:</strong> Du är inte inloggad. Din IP-adress kommer att vara publikt synlig om du gör några redigeringar. Om du <strong>[$1 loggar in]</strong> eller <strong>[$2 skapar ett konto]</strong> kommer dina redigeringar att tillskrivas ditt användarnamn, tillsammans med andra fördelar.",
 	"anonpreviewwarning": "''Du är inte inloggad. Om du sparar kommer din IP-adress registreras på denna sidas redigeringshistorik.''",
 	"missingsummary": "'''Påminnelse:''' Du har inte skrivit någon redigeringskommentar.\nOm du klickar på \"{{int:savearticle}}\" igen, kommer din redigering att sparas utan en sådan.",
 	"missingcommenttext": "Var god och skriv in en kommentar nedan.",

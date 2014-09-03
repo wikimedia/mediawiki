@@ -3037,6 +3037,7 @@
 	"logentry-rights-rights-legacy": "$1, $3 için grup üyeliğini {{GENDER:$2|değiştirdi}}",
 	"logentry-rights-autopromote": "$1, $4 iken $5 olarak otomatik {{GENDER:$2|terfi edildi}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|yükledi}} $3",
+	"logentry-upload-overwrite": "$1 $3 dosyasının yeni bir sürümünü {{GENDER:$2|yükledi}}",
 	"rightsnone": "(hiçbiri)",
 	"feedback-bugornote": "Eğer teknik bir problemi detaylarıyla açıklamaya hazırsanız lütfen [$1 bir hata raporlayın]. Diğer taraftan, aşağıdaki kolay formu kullanabilirsiniz. Yorumunuz, kullanıcı adınızla beraber \"[$3 $2]\" sayfasına eklenecektir.",
 	"feedback-subject": "Konu:",

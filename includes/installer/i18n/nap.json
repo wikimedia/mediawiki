@@ -4,6 +4,13 @@
 			"C.R."
 		]
 	},
+	"config-desc": "'O prugramma d'istallazione 'e MediaWiki",
+	"config-title": "Installazione 'e MediaWiki $1",
+	"config-information": "Nfurmaziune",
+	"config-localsettings-upgrade": "È stato rilevato nu file <code>LocalSettings.php</code>.\nP'agghiurnà sta installazione, pe' piacere nzertàte 'o valore 'e <code>$wgUpgradeKey</code> dint' 'a cascia ccà abbascio.\n'O putite truvà dint'a <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "È stato scummigliato nu file <code>LocalSettings.php</code>.\nPe l'agghiurnà sta installazione, secutate <code>update.php</code>",
+	"config-localsettings-key": "Chiave d'agghiurnamiento:",
+	"config-localsettings-badkey": "'A chiave c'avete dato nun è curretta.",
 	"config-mssql-install-auth": "Sceglie 'o tipo d'autenticazziona ca s'ausarrà pe cunnettà â database, durante ll'operazziona d'istallazziona. Si piglie \"{{int:config-mssql-windowsauth}}\", 'e credenziale 'e qualunque fosse ll'utenza ca 'o webserver sta pruciessanno sarranno ausate.",
 	"config-mssql-web-auth": "Sceglie 'o tipo d'autenticazziona ca 'o web server pigliarrà pe se cunnettà a 'o server 'e bbase 'e dati, durante ll'operazziona nurmale d&#39;'a wiki.\nSi piglie \"{{int:config-mssql-windowsauth}}\", 'e credenziale 'e qualunque fosse ll'utenza ca 'o webserver sta pruciessanno sarranno ausate."
 }

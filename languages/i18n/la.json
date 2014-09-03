@@ -698,7 +698,7 @@
 	"editinguser": "Modificare potestates usoris '''[[User:$1|$1]]''' $2",
 	"userrights-editusergroup": "Greges usorum recensere",
 	"saveusergroups": "Greges usorum servare",
-	"userrights-groupsmember": "In grege aut in gregibus:",
+	"userrights-groupsmember": "{{PLURAL:$1|In grege|In gregibus}}:",
 	"userrights-reason": "Causa:",
 	"userrights-changeable-col": "Greges quos tibi oportet mutare",
 	"userrights-unchangeable-col": "Greges quos tibi non oportet mutare",

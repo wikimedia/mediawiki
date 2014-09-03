@@ -657,7 +657,7 @@
 	"showpreview": "Mostrar previsualización",
 	"showdiff": "Mostrar los cambios",
 	"blankarticle": "<strong>Aviso:</strong> estás a punto de crear una página vacía.\nSi pulsas en «{{int:savearticle}}» de nuevo, se creará la página sin ningún contenido.",
-	"anoneditwarning": "<strong>Advertencia:</strong> No has iniciado sesión.\nTu dirección IP se almacenará en el historial de edición de esta página.",
+	"anoneditwarning": "<strong>Advertencia:</strong> No has iniciado sesión. Tu dirección IP será visible públicamente si haces cualquier edición. Si <strong>[$1 inicias sesión]</strong> o <strong>[$2 creas una cuenta]</strong>, tus ediciones se atribuirán a tu nombre de usuario, junto con otros beneficios.",
 	"anonpreviewwarning": "<em>No has iniciado sesión. Al guardar los cambios se almacenará tu dirección IP en el historial de edición de esta página.</em>",
 	"missingsummary": "<strong>Recordatorio:</strong> No has escrito un resumen de edición.\nSi haces clic nuevamente en «{{int:savearticle}}» tu edición se grabará sin él.",
 	"missingcommenttext": "Escribe un comentario a continuación.",
