@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (43f379c884)
+ * OOjs UI v0.1.0-pre (36d0c7dc3b)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-28T21:49:12Z
+ * Date: 2014-09-04T00:40:40Z
  */
 ( function ( OO ) {
 
@@ -1456,6 +1456,18 @@ OO.ui.Window.static.transplantStyles = function ( parentDoc, frameDoc, timeout )
 /* Methods */
 
 /**
+ * Handle mouse down events.
+ *
+ * @param {jQuery.Event} e Mouse down event
+ */
+OO.ui.Window.prototype.onMouseDown = function ( e ) {
+	// Prevent clicking on the click-block from stealing focus
+	if ( e.target === this.$element[0] ) {
+		return false;
+	}
+};
+
+/**
  * Check if window has been initialized.
  *
  * @return {boolean} Window has been initialized
@@ -1775,6 +1787,9 @@ OO.ui.Window.prototype.initialize = function () {
 	this.$foot = this.$( '<div>' );
 	this.$overlay = this.$( '<div>' );
 
+	// Events
+	this.$element.on( 'mousedown', OO.ui.bind( this.onMouseDown, this ) );
+
 	// Initialization
 	this.$head.addClass( 'oo-ui-window-head' );
 	this.$body.addClass( 'oo-ui-window-body' );
@@ -2039,7 +2054,6 @@ OO.ui.Window.prototype.load = function () {
  * @abstract
  * @class
  * @extends OO.ui.Window
- * @mixins OO.ui.LabeledElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -2398,9 +2412,6 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	this.afterWindowResizeHandler = OO.ui.bind( this.afterWindowResize, this );
 	this.onWindowMouseWheelHandler = OO.ui.bind( this.onWindowMouseWheel, this );
 	this.onDocumentKeyDownHandler = OO.ui.bind( this.onDocumentKeyDown, this );
-
-	// Events
-	this.$element.on( 'mousedown', false );
 
 	// Initialization
 	this.$element
@@ -2761,7 +2772,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
  *
  * @param {OO.ui.Window|string} win Window object or symbolic name of window to close
  * @param {Object} [data] Window closing data
- * @return {jQuery.Promise} Promise resolved when window is done opening; see {@link #event-closing}
+ * @return {jQuery.Promise} Promise resolved when window is done closing; see {@link #event-closing}
  *   for more details about the `closing` promise
  * @throws {Error} If no window by that name is being managed
  * @fires closing
@@ -3388,39 +3399,36 @@ OO.ui.ToolGroupFactory.static.getDefaultClasses = function () {
  * @class
  *
  * @constructor
- * @param {jQuery} $button Button node, assigned to #$button
  * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$button] Button node, assigned to #$button, omit to use a generated `<a>`
  * @cfg {boolean} [framed=true] Render button with a frame
  * @cfg {number} [tabIndex=0] Button's tab index, use null to have no tabIndex
  * @cfg {string} [accessKey] Button's access key
  */
-OO.ui.ButtonedElement = function OoUiButtonedElement( $button, config ) {
+OO.ui.ButtonElement = function OoUiButtonElement( config ) {
 	// Configuration initialization
 	config = config || {};
 
 	// Properties
-	this.$button = $button;
-	this.tabIndex = null;
+	this.$button = null;
 	this.framed = null;
+	this.tabIndex = null;
+	this.accessKey = null;
 	this.active = false;
 	this.onMouseUpHandler = OO.ui.bind( this.onMouseUp, this );
-
-	// Events
-	this.$button.on( 'mousedown', OO.ui.bind( this.onMouseDown, this ) );
+	this.onMouseDownHandler = OO.ui.bind( this.onMouseDown, this );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-buttonedElement' );
-	this.$button
-		.addClass( 'oo-ui-buttonedElement-button' )
-		.attr( 'role', 'button' );
+	this.$element.addClass( 'oo-ui-buttonElement' );
+	this.toggleFramed( config.framed === undefined || config.framed );
 	this.setTabIndex( config.tabIndex || 0 );
 	this.setAccessKey( config.accessKey );
-	this.toggleFramed( config.framed === undefined || config.framed );
+	this.setButtonElement( config.$button || this.$( '<a>' ) );
 };
 
 /* Setup */
 
-OO.initClass( OO.ui.ButtonedElement );
+OO.initClass( OO.ui.ButtonElement );
 
 /* Static Properties */
 
@@ -3431,25 +3439,43 @@ OO.initClass( OO.ui.ButtonedElement );
  * @inheritable
  * @property {boolean}
  */
-OO.ui.ButtonedElement.static.cancelButtonMouseDownEvents = true;
+OO.ui.ButtonElement.static.cancelButtonMouseDownEvents = true;
 
 /* Methods */
+
+/**
+ * Set the button element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $button Element to use as button
+ */
+OO.ui.ButtonElement.prototype.setButtonElement = function ( $button ) {
+	if ( this.$button ) {
+		this.$button
+			.removeClass( 'oo-ui-buttonElement-button' )
+			.removeAttr( 'role accesskey tabindex' )
+			.off( this.onMouseDownHandler );
+	}
+
+	this.$button = $button
+		.addClass( 'oo-ui-buttonElement-button' )
+		.attr( { role: 'button', accesskey: this.accessKey, tabindex: this.tabIndex } )
+		.on( 'mousedown', this.onMouseDownHandler );
+};
 
 /**
  * Handles mouse down events.
  *
  * @param {jQuery.Event} e Mouse down event
  */
-OO.ui.ButtonedElement.prototype.onMouseDown = function ( e ) {
+OO.ui.ButtonElement.prototype.onMouseDown = function ( e ) {
 	if ( this.isDisabled() || e.which !== 1 ) {
 		return false;
 	}
-	// tabIndex should generally be interacted with via the property, but it's not possible to
-	// reliably unset a tabIndex via a property so we use the (lowercase) "tabindex" attribute
-	this.tabIndex = this.$button.attr( 'tabindex' );
 	// Remove the tab-index while the button is down to prevent the button from stealing focus
 	this.$button.removeAttr( 'tabindex' );
-	this.$element.addClass( 'oo-ui-buttonedElement-pressed' );
+	this.$element.addClass( 'oo-ui-buttonElement-pressed' );
 	// Run the mouseup handler no matter where the mouse is when the button is let go, so we can
 	// reliably reapply the tabindex and remove the pressed class
 	this.getElementDocument().addEventListener( 'mouseup', this.onMouseUpHandler, true );
@@ -3464,13 +3490,13 @@ OO.ui.ButtonedElement.prototype.onMouseDown = function ( e ) {
  *
  * @param {jQuery.Event} e Mouse up event
  */
-OO.ui.ButtonedElement.prototype.onMouseUp = function ( e ) {
+OO.ui.ButtonElement.prototype.onMouseUp = function ( e ) {
 	if ( this.isDisabled() || e.which !== 1 ) {
 		return false;
 	}
 	// Restore the tab-index after the button is up to restore the button's accesssibility
 	this.$button.attr( 'tabindex', this.tabIndex );
-	this.$element.removeClass( 'oo-ui-buttonedElement-pressed' );
+	this.$element.removeClass( 'oo-ui-buttonElement-pressed' );
 	// Stop listening for mouseup, since we only needed this once
 	this.getElementDocument().removeEventListener( 'mouseup', this.onMouseUpHandler, true );
 };
@@ -3481,13 +3507,13 @@ OO.ui.ButtonedElement.prototype.onMouseUp = function ( e ) {
  * @param {boolean} [framed] Make button framed, omit to toggle
  * @chainable
  */
-OO.ui.ButtonedElement.prototype.toggleFramed = function ( framed ) {
+OO.ui.ButtonElement.prototype.toggleFramed = function ( framed ) {
 	framed = framed === undefined ? !this.framed : !!framed;
 	if ( framed !== this.framed ) {
 		this.framed = framed;
 		this.$element
-			.toggleClass( 'oo-ui-buttonedElement-frameless', !framed )
-			.toggleClass( 'oo-ui-buttonedElement-framed', framed );
+			.toggleClass( 'oo-ui-buttonElement-frameless', !framed )
+			.toggleClass( 'oo-ui-buttonElement-framed', framed );
 	}
 
 	return this;
@@ -3499,27 +3525,43 @@ OO.ui.ButtonedElement.prototype.toggleFramed = function ( framed ) {
  * @param {number|null} tabIndex Button's tab index, use null to remove
  * @chainable
  */
-OO.ui.ButtonedElement.prototype.setTabIndex = function ( tabIndex ) {
-	if ( typeof tabIndex === 'number' && tabIndex >= 0 ) {
-		this.$button.attr( 'tabindex', tabIndex );
-	} else {
-		this.$button.removeAttr( 'tabindex' );
+OO.ui.ButtonElement.prototype.setTabIndex = function ( tabIndex ) {
+	tabIndex = typeof tabIndex === 'number' && tabIndex >= 0 ? tabIndex : null;
+
+	if ( this.tabIndex !== tabIndex ) {
+		if ( this.$button ) {
+			if ( tabIndex !== null ) {
+				this.$button.attr( 'tabindex', tabIndex );
+			} else {
+				this.$button.removeAttr( 'tabindex' );
+			}
+		}
+		this.tabIndex = tabIndex;
 	}
+
 	return this;
 };
 
 /**
- * Set access key
+ * Set access key.
  *
  * @param {string} accessKey Button's access key, use empty string to remove
  * @chainable
  */
-OO.ui.ButtonedElement.prototype.setAccessKey = function ( accessKey ) {
-	if ( typeof accessKey === 'string' && accessKey.length ) {
-		this.$button.attr( 'accesskey', accessKey );
-	} else {
-		this.$button.removeAttr( 'accesskey' );
+OO.ui.ButtonElement.prototype.setAccessKey = function ( accessKey ) {
+	accessKey = typeof accessKey === 'string' && accessKey.length ? accessKey : null;
+
+	if ( this.accessKey !== accessKey ) {
+		if ( this.$button ) {
+			if ( accessKey !== null ) {
+				this.$button.attr( 'accesskey', accessKey );
+			} else {
+				this.$button.removeAttr( 'accesskey' );
+			}
+		}
+		this.accessKey = accessKey;
 	}
+
 	return this;
 };
 
@@ -3529,274 +3571,8 @@ OO.ui.ButtonedElement.prototype.setAccessKey = function ( accessKey ) {
  * @param {boolean} [value] Make button active
  * @chainable
  */
-OO.ui.ButtonedElement.prototype.setActive = function ( value ) {
-	this.$element.toggleClass( 'oo-ui-buttonedElement-active', !!value );
-	return this;
-};
-
-/**
- * Element that can be automatically clipped to visible boundaies.
- *
- * @abstract
- * @class
- *
- * @constructor
- * @param {jQuery} $clippable Nodes to clip, assigned to #$clippable
- * @param {Object} [config] Configuration options
- */
-OO.ui.ClippableElement = function OoUiClippableElement( $clippable, config ) {
-	// Configuration initialization
-	config = config || {};
-
-	// Properties
-	this.$clippable = $clippable;
-	this.clipping = false;
-	this.clipped = false;
-	this.$clippableContainer = null;
-	this.$clippableScroller = null;
-	this.$clippableWindow = null;
-	this.idealWidth = null;
-	this.idealHeight = null;
-	this.onClippableContainerScrollHandler = OO.ui.bind( this.clip, this );
-	this.onClippableWindowResizeHandler = OO.ui.bind( this.clip, this );
-
-	// Initialization
-	this.$clippable.addClass( 'oo-ui-clippableElement-clippable' );
-};
-
-/* Methods */
-
-/**
- * Set clipping.
- *
- * @param {boolean} value Enable clipping
- * @chainable
- */
-OO.ui.ClippableElement.prototype.setClipping = function ( value ) {
-	value = !!value;
-
-	if ( this.clipping !== value ) {
-		this.clipping = value;
-		if ( this.clipping ) {
-			this.$clippableContainer = this.$( this.getClosestScrollableElementContainer() );
-			// If the clippable container is the body, we have to listen to scroll events and check
-			// jQuery.scrollTop on the window because of browser inconsistencies
-			this.$clippableScroller = this.$clippableContainer.is( 'body' ) ?
-				this.$( OO.ui.Element.getWindow( this.$clippableContainer ) ) :
-				this.$clippableContainer;
-			this.$clippableScroller.on( 'scroll', this.onClippableContainerScrollHandler );
-			this.$clippableWindow = this.$( this.getElementWindow() )
-				.on( 'resize', this.onClippableWindowResizeHandler );
-			// Initial clip after visible
-			setTimeout( OO.ui.bind( this.clip, this ) );
-		} else {
-			this.$clippableContainer = null;
-			this.$clippableScroller.off( 'scroll', this.onClippableContainerScrollHandler );
-			this.$clippableScroller = null;
-			this.$clippableWindow.off( 'resize', this.onClippableWindowResizeHandler );
-			this.$clippableWindow = null;
-		}
-	}
-
-	return this;
-};
-
-/**
- * Check if the element will be clipped to fit the visible area of the nearest scrollable container.
- *
- * @return {boolean} Element will be clipped to the visible area
- */
-OO.ui.ClippableElement.prototype.isClipping = function () {
-	return this.clipping;
-};
-
-/**
- * Check if the bottom or right of the element is being clipped by the nearest scrollable container.
- *
- * @return {boolean} Part of the element is being clipped
- */
-OO.ui.ClippableElement.prototype.isClipped = function () {
-	return this.clipped;
-};
-
-/**
- * Set the ideal size.
- *
- * @param {number|string} [width] Width as a number of pixels or CSS string with unit suffix
- * @param {number|string} [height] Height as a number of pixels or CSS string with unit suffix
- */
-OO.ui.ClippableElement.prototype.setIdealSize = function ( width, height ) {
-	this.idealWidth = width;
-	this.idealHeight = height;
-};
-
-/**
- * Clip element to visible boundaries and allow scrolling when needed.
- *
- * Element will be clipped the bottom or right of the element is within 10px of the edge of, or
- * overlapped by, the visible area of the nearest scrollable container.
- *
- * @chainable
- */
-OO.ui.ClippableElement.prototype.clip = function () {
-	if ( !this.clipping ) {
-		// this.$clippableContainer and this.$clippableWindow are null, so the below will fail
-		return this;
-	}
-
-	var buffer = 10,
-		cOffset = this.$clippable.offset(),
-		$container = this.$clippableContainer.is( 'body' ) ? this.$clippableWindow : this.$clippableContainer,
-		ccOffset = $container.offset() || { top: 0, left: 0 },
-		ccHeight = $container.innerHeight() - buffer,
-		ccWidth = $container.innerWidth() - buffer,
-		scrollTop = this.$clippableScroller.scrollTop(),
-		scrollLeft = this.$clippableScroller.scrollLeft(),
-		desiredWidth = ( ccOffset.left + scrollLeft + ccWidth ) - cOffset.left,
-		desiredHeight = ( ccOffset.top + scrollTop + ccHeight ) - cOffset.top,
-		naturalWidth = this.$clippable.prop( 'scrollWidth' ),
-		naturalHeight = this.$clippable.prop( 'scrollHeight' ),
-		clipWidth = desiredWidth < naturalWidth,
-		clipHeight = desiredHeight < naturalHeight;
-
-	if ( clipWidth ) {
-		this.$clippable.css( { overflowX: 'auto', width: desiredWidth } );
-	} else {
-		this.$clippable.css( 'width', this.idealWidth || '' );
-		this.$clippable.width(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
-		this.$clippable.css( 'overflowX', '' );
-	}
-	if ( clipHeight ) {
-		this.$clippable.css( { overflowY: 'auto', height: desiredHeight } );
-	} else {
-		this.$clippable.css( 'height', this.idealHeight || '' );
-		this.$clippable.height(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
-		this.$clippable.css( 'overflowY', '' );
-	}
-
-	this.clipped = clipWidth || clipHeight;
-
-	return this;
-};
-
-/**
- * Element with named flags that can be added, removed, listed and checked.
- *
- * A flag, when set, adds a CSS class on the `$element` by combing `oo-ui-flaggableElement-` with
- * the flag name. Flags are primarily useful for styling.
- *
- * @abstract
- * @class
- *
- * @constructor
- * @param {Object} [config] Configuration options
- * @cfg {string[]} [flags=[]] Styling flags, e.g. 'primary', 'destructive' or 'constructive'
- */
-OO.ui.FlaggableElement = function OoUiFlaggableElement( config ) {
-	// Config initialization
-	config = config || {};
-
-	// Properties
-	this.flags = {};
-
-	// Initialization
-	this.setFlags( config.flags );
-};
-
-/* Events */
-
-/**
- * @event flag
- * @param {Object.<string,boolean>} changes Object keyed by flag name containing boolean
- *   added/removed properties
- */
-
-/* Methods */
-
-/**
- * Check if a flag is set.
- *
- * @param {string} flag Name of flag
- * @return {boolean} Has flag
- */
-OO.ui.FlaggableElement.prototype.hasFlag = function ( flag ) {
-	return flag in this.flags;
-};
-
-/**
- * Get the names of all flags set.
- *
- * @return {string[]} flags Flag names
- */
-OO.ui.FlaggableElement.prototype.getFlags = function () {
-	return Object.keys( this.flags );
-};
-
-/**
- * Clear all flags.
- *
- * @chainable
- * @fires flag
- */
-OO.ui.FlaggableElement.prototype.clearFlags = function () {
-	var flag,
-		changes = {},
-		classPrefix = 'oo-ui-flaggableElement-';
-
-	for ( flag in this.flags ) {
-		changes[flag] = false;
-		delete this.flags[flag];
-		this.$element.removeClass( classPrefix + flag );
-	}
-
-	this.emit( 'flag', changes );
-
-	return this;
-};
-
-/**
- * Add one or more flags.
- *
- * @param {string|string[]|Object.<string, boolean>} flags One or more flags to add, or an object
- *  keyed by flag name containing boolean set/remove instructions.
- * @chainable
- * @fires flag
- */
-OO.ui.FlaggableElement.prototype.setFlags = function ( flags ) {
-	var i, len, flag,
-		changes = {},
-		classPrefix = 'oo-ui-flaggableElement-';
-
-	if ( typeof flags === 'string' ) {
-		// Set
-		this.flags[flags] = true;
-		this.$element.addClass( classPrefix + flags );
-	} else if ( $.isArray( flags ) ) {
-		for ( i = 0, len = flags.length; i < len; i++ ) {
-			flag = flags[i];
-			// Set
-			changes[flag] = true;
-			this.flags[flag] = true;
-			this.$element.addClass( classPrefix + flag );
-		}
-	} else if ( OO.isPlainObject( flags ) ) {
-		for ( flag in flags ) {
-			if ( flags[flag] ) {
-				// Set
-				changes[flag] = true;
-				this.flags[flag] = true;
-				this.$element.addClass( classPrefix + flag );
-			} else {
-				// Remove
-				changes[flag] = false;
-				delete this.flags[flag];
-				this.$element.removeClass( classPrefix + flag );
-			}
-		}
-	}
-
-	this.emit( 'flag', changes );
-
+OO.ui.ButtonElement.prototype.setActive = function ( value ) {
+	this.$element.toggleClass( 'oo-ui-buttonElement-active', !!value );
 	return this;
 };
 
@@ -3807,20 +3583,39 @@ OO.ui.FlaggableElement.prototype.setFlags = function ( flags ) {
  * @class
  *
  * @constructor
- * @param {jQuery} $group Container node, assigned to #$group
  * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$group] Container node, assigned to #$group, omit to use a generated `<div>`
  */
-OO.ui.GroupElement = function OoUiGroupElement( $group, config ) {
+OO.ui.GroupElement = function OoUiGroupElement( config ) {
 	// Configuration
 	config = config || {};
 
 	// Properties
-	this.$group = $group;
+	this.$group = null;
 	this.items = [];
 	this.aggregateItemEvents = {};
+
+	// Initialization
+	this.setGroupElement( config.$group || this.$( '<div>' ) );
 };
 
 /* Methods */
+
+/**
+ * Set the group element.
+ *
+ * If an element is already set, items will be moved to the new element.
+ *
+ * @param {jQuery} $group Element to use as group
+ */
+OO.ui.GroupElement.prototype.setGroupElement = function ( $group ) {
+	var i, len;
+
+	this.$group = $group;
+	for ( i = 0, len = this.items.length; i < len; i++ ) {
+		this.$group.append( this.items[i].$element );
+	}
+};
 
 /**
  * Check if there are no items.
@@ -3895,6 +3690,8 @@ OO.ui.GroupElement.prototype.aggregate = function ( events ) {
 
 /**
  * Add items.
+ *
+ * Adding an existing item (by value) will move it.
  *
  * @param {OO.ui.Element[]} items Item
  * @param {number} [index] Index to insert items at
@@ -4020,28 +3817,31 @@ OO.ui.GroupElement.prototype.clearItems = function () {
  * @class
  *
  * @constructor
- * @param {jQuery} $icon Icon node, assigned to #$icon
  * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$icon] Icon node, assigned to #$icon, omit to use a generated `<span>`
  * @cfg {Object|string} [icon=''] Symbolic icon name, or map of icon names keyed by language ID;
  *  use the 'default' key to specify the icon to be used when there is no icon in the user's
  *  language
+ * @cfg {string} [iconTitle] Icon title text or a function that returns text
  */
-OO.ui.IconedElement = function OoUiIconedElement( $icon, config ) {
+OO.ui.IconElement = function OoUiIconElement( config ) {
 	// Config intialization
 	config = config || {};
 
 	// Properties
-	this.$icon = $icon;
+	this.$icon = null;
 	this.icon = null;
+	this.iconTitle = null;
 
 	// Initialization
-	this.$icon.addClass( 'oo-ui-iconedElement-icon' );
 	this.setIcon( config.icon || this.constructor.static.icon );
+	this.setIconTitle( config.iconTitle || this.constructor.static.iconTitle );
+	this.setIconElement( config.$icon || this.$( '<span>' ) );
 };
 
 /* Setup */
 
-OO.initClass( OO.ui.IconedElement );
+OO.initClass( OO.ui.IconElement );
 
 /* Static Properties */
 
@@ -4062,32 +3862,93 @@ OO.initClass( OO.ui.IconedElement );
  *  use the 'default' key to specify the icon to be used when there is no icon in the user's
  *  language
  */
-OO.ui.IconedElement.static.icon = null;
+OO.ui.IconElement.static.icon = null;
+
+/**
+ * Icon title.
+ *
+ * @static
+ * @inheritable
+ * @property {string|Function|null} Icon title text, a function that returns text or null for no
+ *  icon title
+ */
+OO.ui.IconElement.static.iconTitle = null;
 
 /* Methods */
 
 /**
+ * Set the icon element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $icon Element to use as icon
+ */
+OO.ui.IconElement.prototype.setIconElement = function ( $icon ) {
+	if ( this.$icon ) {
+		this.$icon
+			.removeClass( 'oo-ui-iconElement-icon oo-ui-icon-' + this.icon )
+			.removeAttr( 'title' );
+	}
+
+	this.$icon = $icon
+		.addClass( 'oo-ui-iconElement-icon' )
+		.toggleClass( 'oo-ui-icon-' + this.icon, !!this.icon );
+	if ( this.iconTitle !== null ) {
+		this.$icon.attr( 'title', this.iconTitle );
+	}
+};
+
+/**
  * Set icon.
  *
- * @param {Object|string} icon Symbolic icon name, or map of icon names keyed by language ID;
+ * @param {Object|string|null} icon Symbolic icon name, or map of icon names keyed by language ID;
  *  use the 'default' key to specify the icon to be used when there is no icon in the user's
- *  language
+ *  language, use null to remove icon
  * @chainable
  */
-OO.ui.IconedElement.prototype.setIcon = function ( icon ) {
+OO.ui.IconElement.prototype.setIcon = function ( icon ) {
 	icon = OO.isPlainObject( icon ) ? OO.ui.getLocalValue( icon, null, 'default' ) : icon;
+	icon = typeof icon === 'string' && icon.trim().length ? icon.trim() : null;
 
-	if ( this.icon ) {
-		this.$icon.removeClass( 'oo-ui-icon-' + this.icon );
+	if ( this.icon !== icon ) {
+		if ( this.$icon ) {
+			if ( this.icon !== null ) {
+				this.$icon.removeClass( 'oo-ui-icon-' + this.icon );
+			}
+			if ( icon !== null ) {
+				this.$icon.addClass( 'oo-ui-icon-' + icon );
+			}
+		}
+		this.icon = icon;
 	}
-	if ( typeof icon === 'string' ) {
-		icon = icon.trim();
-		if ( icon.length ) {
-			this.$icon.addClass( 'oo-ui-icon-' + icon );
-			this.icon = icon;
+
+	this.$element.toggleClass( 'oo-ui-iconElement', !!this.icon );
+
+	return this;
+};
+
+/**
+ * Set icon title.
+ *
+ * @param {string|Function|null} icon Icon title text, a function that returns text or null
+ *  for no icon title
+ * @chainable
+ */
+OO.ui.IconElement.prototype.setIconTitle = function ( iconTitle ) {
+	iconTitle = typeof iconTitle === 'function' ||
+		( typeof iconTitle === 'string' && iconTitle.length ) ?
+			OO.ui.resolveMsg( iconTitle ) : null;
+
+	if ( this.iconTitle !== iconTitle ) {
+		this.iconTitle = iconTitle;
+		if ( this.$icon ) {
+			if ( this.iconTitle !== null ) {
+				this.$icon.attr( 'title', iconTitle );
+			} else {
+				this.$icon.removeAttr( 'title' );
+			}
 		}
 	}
-	this.$element.toggleClass( 'oo-ui-iconedElement', !!this.icon );
 
 	return this;
 };
@@ -4097,7 +3958,7 @@ OO.ui.IconedElement.prototype.setIcon = function ( icon ) {
  *
  * @return {string} Icon
  */
-OO.ui.IconedElement.prototype.getIcon = function () {
+OO.ui.IconElement.prototype.getIcon = function () {
 	return this.icon;
 };
 
@@ -4113,29 +3974,30 @@ OO.ui.IconedElement.prototype.getIcon = function () {
  * @class
  *
  * @constructor
- * @param {jQuery} $indicator Indicator node, assigned to #$indicator
  * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$indicator] Indicator node, assigned to #$indicator, omit to use a generated
+ *   `<span>`
  * @cfg {string} [indicator] Symbolic indicator name
- * @cfg {string} [indicatorTitle] Indicator title text or a function that return text
+ * @cfg {string} [indicatorTitle] Indicator title text or a function that returns text
  */
-OO.ui.IndicatedElement = function OoUiIndicatedElement( $indicator, config ) {
+OO.ui.IndicatorElement = function OoUiIndicatorElement( config ) {
 	// Config intialization
 	config = config || {};
 
 	// Properties
-	this.$indicator = $indicator;
+	this.$indicator = null;
 	this.indicator = null;
-	this.indicatorLabel = null;
+	this.indicatorTitle = null;
 
 	// Initialization
-	this.$indicator.addClass( 'oo-ui-indicatedElement-indicator' );
 	this.setIndicator( config.indicator || this.constructor.static.indicator );
 	this.setIndicatorTitle( config.indicatorTitle || this.constructor.static.indicatorTitle );
+	this.setIndicatorElement( config.$indicator || this.$( '<span>' ) );
 };
 
 /* Setup */
 
-OO.initClass( OO.ui.IndicatedElement );
+OO.initClass( OO.ui.IndicatorElement );
 
 /* Static Properties */
 
@@ -4146,19 +4008,41 @@ OO.initClass( OO.ui.IndicatedElement );
  * @inheritable
  * @property {string|null} Symbolic indicator name or null for no indicator
  */
-OO.ui.IndicatedElement.static.indicator = null;
+OO.ui.IndicatorElement.static.indicator = null;
 
 /**
  * Indicator title.
  *
  * @static
  * @inheritable
- * @property {string|Function|null} Indicator title text, a function that return text or null for no
+ * @property {string|Function|null} Indicator title text, a function that returns text or null for no
  *  indicator title
  */
-OO.ui.IndicatedElement.static.indicatorTitle = null;
+OO.ui.IndicatorElement.static.indicatorTitle = null;
 
 /* Methods */
+
+/**
+ * Set the indicator element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $indicator Element to use as indicator
+ */
+OO.ui.IndicatorElement.prototype.setIndicatorElement = function ( $indicator ) {
+	if ( this.$indicator ) {
+		this.$indicator
+			.removeClass( 'oo-ui-indicatorElement-indicator oo-ui-indicator-' + this.indicator )
+			.removeAttr( 'title' );
+	}
+
+	this.$indicator = $indicator
+		.addClass( 'oo-ui-indicatorElement-indicator' )
+		.toggleClass( 'oo-ui-indicator-' + this.indicator, !!this.indicator );
+	if ( this.indicatorTitle !== null ) {
+		this.$indicatorTitle.attr( 'title', this.indicatorTitle );
+	}
+};
 
 /**
  * Set indicator.
@@ -4166,37 +4050,47 @@ OO.ui.IndicatedElement.static.indicatorTitle = null;
  * @param {string|null} indicator Symbolic name of indicator to use or null for no indicator
  * @chainable
  */
-OO.ui.IndicatedElement.prototype.setIndicator = function ( indicator ) {
-	if ( this.indicator ) {
-		this.$indicator.removeClass( 'oo-ui-indicator-' + this.indicator );
-		this.indicator = null;
-	}
-	if ( typeof indicator === 'string' ) {
-		indicator = indicator.trim();
-		if ( indicator.length ) {
-			this.$indicator.addClass( 'oo-ui-indicator-' + indicator );
-			this.indicator = indicator;
+OO.ui.IndicatorElement.prototype.setIndicator = function ( indicator ) {
+	indicator = typeof indicator === 'string' && indicator.length ? indicator.trim() : null;
+
+	if ( this.indicator !== indicator ) {
+		if ( this.$indicator ) {
+			if ( this.indicator !== null ) {
+				this.$indicator.removeClass( 'oo-ui-indicator-' + this.indicator );
+			}
+			if ( indicator !== null ) {
+				this.$indicator.addClass( 'oo-ui-indicator-' + indicator );
+			}
 		}
+		this.indicator = indicator;
 	}
-	this.$element.toggleClass( 'oo-ui-indicatedElement', !!this.indicator );
+
+	this.$element.toggleClass( 'oo-ui-indicatorElement', !!this.indicator );
 
 	return this;
 };
 
 /**
- * Set indicator label.
+ * Set indicator title.
  *
- * @param {string|Function|null} indicator Indicator title text, a function that return text or null
- *  for no indicator title
+ * @param {string|Function|null} indicator Indicator title text, a function that returns text or
+ *   null for no indicator title
  * @chainable
  */
-OO.ui.IndicatedElement.prototype.setIndicatorTitle = function ( indicatorTitle ) {
-	this.indicatorTitle = indicatorTitle = OO.ui.resolveMsg( indicatorTitle );
+OO.ui.IndicatorElement.prototype.setIndicatorTitle = function ( indicatorTitle ) {
+	indicatorTitle = typeof indicatorTitle === 'function' ||
+		( typeof indicatorTitle === 'string' && indicatorTitle.length ) ?
+			OO.ui.resolveMsg( indicatorTitle ) : null;
 
-	if ( typeof indicatorTitle === 'string' && indicatorTitle.length ) {
-		this.$indicator.attr( 'title', indicatorTitle );
-	} else {
-		this.$indicator.removeAttr( 'title' );
+	if ( this.indicatorTitle !== indicatorTitle ) {
+		this.indicatorTitle = indicatorTitle;
+		if ( this.$indicator ) {
+			if ( this.indicatorTitle !== null ) {
+				this.$indicator.attr( 'title', indicatorTitle );
+			} else {
+				this.$indicator.removeAttr( 'title' );
+			}
+		}
 	}
 
 	return this;
@@ -4207,7 +4101,7 @@ OO.ui.IndicatedElement.prototype.setIndicatorTitle = function ( indicatorTitle )
  *
  * @return {string} title Symbolic name of indicator
  */
-OO.ui.IndicatedElement.prototype.getIndicator = function () {
+OO.ui.IndicatorElement.prototype.getIndicator = function () {
 	return this.indicator;
 };
 
@@ -4216,7 +4110,7 @@ OO.ui.IndicatedElement.prototype.getIndicator = function () {
  *
  * @return {string} Indicator title text
  */
-OO.ui.IndicatedElement.prototype.getIndicatorTitle = function () {
+OO.ui.IndicatorElement.prototype.getIndicatorTitle = function () {
 	return this.indicatorTitle;
 };
 
@@ -4227,28 +4121,28 @@ OO.ui.IndicatedElement.prototype.getIndicatorTitle = function () {
  * @class
  *
  * @constructor
- * @param {jQuery} $label Label node, assigned to #$label
  * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$label] Label node, assigned to #$label, omit to use a generated `<span>`
  * @cfg {jQuery|string|Function} [label] Label nodes, text or a function that returns nodes or text
  * @cfg {boolean} [autoFitLabel=true] Whether to fit the label or not.
  */
-OO.ui.LabeledElement = function OoUiLabeledElement( $label, config ) {
+OO.ui.LabelElement = function OoUiLabelElement( config ) {
 	// Config intialization
 	config = config || {};
 
 	// Properties
-	this.$label = $label;
+	this.$label = null;
 	this.label = null;
+	this.autoFitLabel = config.autoFitLabel === undefined || !!config.autoFitLabel;
 
 	// Initialization
-	this.$label.addClass( 'oo-ui-labeledElement-label' );
 	this.setLabel( config.label || this.constructor.static.label );
-	this.autoFitLabel = config.autoFitLabel === undefined || !!config.autoFitLabel;
+	this.setLabelElement( config.$label || this.$( '<span>' ) );
 };
 
 /* Setup */
 
-OO.initClass( OO.ui.LabeledElement );
+OO.initClass( OO.ui.LabelElement );
 
 /* Static Properties */
 
@@ -4260,9 +4154,25 @@ OO.initClass( OO.ui.LabeledElement );
  * @property {string|Function|null} Label text; a function that returns nodes or text; or null for
  *  no label
  */
-OO.ui.LabeledElement.static.label = null;
+OO.ui.LabelElement.static.label = null;
 
 /* Methods */
+
+/**
+ * Set the label element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $label Element to use as label
+ */
+OO.ui.LabelElement.prototype.setLabelElement = function ( $label ) {
+	if ( this.$label ) {
+		this.$label.removeClass( 'oo-ui-labelElement-label' ).empty();
+	}
+
+	this.$label = $label.addClass( 'oo-ui-labelElement-label' );
+	this.setLabelContent( this.label );
+};
 
 /**
  * Set the label.
@@ -4270,29 +4180,22 @@ OO.ui.LabeledElement.static.label = null;
  * An empty string will result in the label being hidden. A string containing only whitespace will
  * be converted to a single &nbsp;
  *
- * @param {jQuery|string|Function|null} label Label nodes; text; a function that retuns nodes or
+ * @param {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
  *  text; or null for no label
  * @chainable
  */
-OO.ui.LabeledElement.prototype.setLabel = function ( label ) {
-	var empty = false;
+OO.ui.LabelElement.prototype.setLabel = function ( label ) {
+	label = typeof label === 'function' ? OO.ui.resolveMsg( label ) : label;
+	label = ( typeof label === 'string' && label.length ) || label instanceof jQuery ? label : null;
 
-	this.label = label = OO.ui.resolveMsg( label ) || null;
-	if ( typeof label === 'string' && label.length ) {
-		if ( label.match( /^\s*$/ ) ) {
-			// Convert whitespace only string to a single non-breaking space
-			this.$label.html( '&nbsp;' );
-		} else {
-			this.$label.text( label );
+	if ( this.label !== label ) {
+		if ( this.$label ) {
+			this.setLabelContent( label );
 		}
-	} else if ( label instanceof jQuery ) {
-		this.$label.empty().append( label );
-	} else {
-		this.$label.empty();
-		empty = true;
+		this.label = label;
 	}
-	this.$element.toggleClass( 'oo-ui-labeledElement', !empty );
-	this.$label.css( 'display', empty ? 'none' : '' );
+
+	this.$element.toggleClass( 'oo-ui-labelElement', !!this.label );
 
 	return this;
 };
@@ -4303,7 +4206,7 @@ OO.ui.LabeledElement.prototype.setLabel = function ( label ) {
  * @return {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
  *  text; or null for no label
  */
-OO.ui.LabeledElement.prototype.getLabel = function () {
+OO.ui.LabelElement.prototype.getLabel = function () {
 	return this.label;
 };
 
@@ -4312,11 +4215,37 @@ OO.ui.LabeledElement.prototype.getLabel = function () {
  *
  * @chainable
  */
-OO.ui.LabeledElement.prototype.fitLabel = function () {
-	if ( this.$label.autoEllipsis && this.autoFitLabel ) {
+OO.ui.LabelElement.prototype.fitLabel = function () {
+	if ( this.$label && this.$label.autoEllipsis && this.autoFitLabel ) {
 		this.$label.autoEllipsis( { hasSpan: false, tooltip: true } );
 	}
+
 	return this;
+};
+
+/**
+ * Set the content of the label.
+ *
+ * Do not call this method until after the label element has been set by #setLabelElement.
+ *
+ * @private
+ * @param {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
+ *  text; or null for no label
+ */
+OO.ui.LabelElement.prototype.setLabelContent = function ( label ) {
+	if ( typeof label === 'string' ) {
+		if ( label.match( /^\s*$/ ) ) {
+			// Convert whitespace only string to a single non-breaking space
+			this.$label.html( '&nbsp;' );
+		} else {
+			this.$label.text( label );
+		}
+	} else if ( label instanceof jQuery ) {
+		this.$label.empty().append( label );
+	} else {
+		this.$label.empty();
+	}
+	this.$label.css( 'display', !label ? 'none' : '' );
 };
 
 /**
@@ -4330,7 +4259,7 @@ OO.ui.LabeledElement.prototype.fitLabel = function () {
  * @cfg {Object} [popup] Configuration to pass to popup
  * @cfg {boolean} [autoClose=true] Popup auto-closes when it loses focus
  */
-OO.ui.PopuppableElement = function OoUiPopuppableElement( config ) {
+OO.ui.PopupElement = function OoUiPopupElement( config ) {
 	// Configuration initialization
 	config = config || {};
 
@@ -4349,8 +4278,176 @@ OO.ui.PopuppableElement = function OoUiPopuppableElement( config ) {
  *
  * @return {OO.ui.PopupWidget} Popup widget
  */
-OO.ui.PopuppableElement.prototype.getPopup = function () {
+OO.ui.PopupElement.prototype.getPopup = function () {
 	return this.popup;
+};
+
+/**
+ * Element with named flags that can be added, removed, listed and checked.
+ *
+ * A flag, when set, adds a CSS class on the `$element` by combining `oo-ui-flaggedElement-` with
+ * the flag name. Flags are primarily useful for styling.
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {string[]} [flags=[]] Styling flags, e.g. 'primary', 'destructive' or 'constructive'
+ * @cfg {jQuery} [$flagged] Flagged node, assigned to #$flagged, omit to use #$element
+ */
+OO.ui.FlaggedElement = function OoUiFlaggedElement( config ) {
+	// Config initialization
+	config = config || {};
+
+	// Properties
+	this.flags = {};
+	this.$flagged = null;
+
+	// Initialization
+	this.setFlags( config.flags );
+	this.setFlaggedElement( config.$flagged || this.$element );
+};
+
+/* Events */
+
+/**
+ * @event flag
+ * @param {Object.<string,boolean>} changes Object keyed by flag name containing boolean
+ *   added/removed properties
+ */
+
+/* Methods */
+
+/**
+ * Set the flagged element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $flagged Element to add flags to
+ */
+OO.ui.FlaggedElement.prototype.setFlaggedElement = function ( $flagged ) {
+	var classNames = Object.keys( this.flags ).map( function ( flag ) {
+		return 'oo-ui-flaggedElement-' + flag;
+	} ).join( ' ' );
+
+	if ( this.$flagged ) {
+		this.$flagged.removeClass( classNames );
+	}
+
+	this.$flagged = $flagged.addClass( classNames );
+};
+
+/**
+ * Check if a flag is set.
+ *
+ * @param {string} flag Name of flag
+ * @return {boolean} Has flag
+ */
+OO.ui.FlaggedElement.prototype.hasFlag = function ( flag ) {
+	return flag in this.flags;
+};
+
+/**
+ * Get the names of all flags set.
+ *
+ * @return {string[]} flags Flag names
+ */
+OO.ui.FlaggedElement.prototype.getFlags = function () {
+	return Object.keys( this.flags );
+};
+
+/**
+ * Clear all flags.
+ *
+ * @chainable
+ * @fires flag
+ */
+OO.ui.FlaggedElement.prototype.clearFlags = function () {
+	var flag, className,
+		changes = {},
+		remove = [],
+		classPrefix = 'oo-ui-flaggedElement-';
+
+	for ( flag in this.flags ) {
+		className = classPrefix + flag;
+		changes[flag] = false;
+		delete this.flags[flag];
+		remove.push( className );
+	}
+
+	if ( this.$flagged ) {
+		this.$flagged.removeClass( remove.join( ' ' ) );
+	}
+
+	this.emit( 'flag', changes );
+
+	return this;
+};
+
+/**
+ * Add one or more flags.
+ *
+ * @param {string|string[]|Object.<string, boolean>} flags One or more flags to add, or an object
+ *  keyed by flag name containing boolean set/remove instructions.
+ * @chainable
+ * @fires flag
+ */
+OO.ui.FlaggedElement.prototype.setFlags = function ( flags ) {
+	var i, len, flag, className,
+		changes = {},
+		add = [],
+		remove = [],
+		classPrefix = 'oo-ui-flaggedElement-';
+
+	if ( typeof flags === 'string' ) {
+		className = classPrefix + flags;
+		// Set
+		if ( !this.flags[flags] ) {
+			this.flags[flags] = true;
+			add.push( className );
+		}
+	} else if ( $.isArray( flags ) ) {
+		for ( i = 0, len = flags.length; i < len; i++ ) {
+			flag = flags[i];
+			className = classPrefix + flag;
+			// Set
+			if ( !this.flags[flag] ) {
+				changes[flag] = true;
+				this.flags[flag] = true;
+				add.push( className );
+			}
+		}
+	} else if ( OO.isPlainObject( flags ) ) {
+		for ( flag in flags ) {
+			className = classPrefix + flag;
+			if ( flags[flag] ) {
+				// Set
+				if ( !this.flags[flag] ) {
+					changes[flag] = true;
+					this.flags[flag] = true;
+					add.push( className );
+				}
+			} else {
+				// Remove
+				if ( this.flags[flag] ) {
+					changes[flag] = false;
+					delete this.flags[flag];
+					remove.push( className );
+				}
+			}
+		}
+	}
+
+	if ( this.$flagged ) {
+		this.$flagged
+			.addClass( add.join( ' ' ) )
+			.removeClass( remove.join( ' ' ) );
+	}
+
+	this.emit( 'flag', changes );
+
+	return this;
 };
 
 /**
@@ -4363,20 +4460,21 @@ OO.ui.PopuppableElement.prototype.getPopup = function () {
  * @class
  *
  * @constructor
- * @param {jQuery} $label Titled node, assigned to #$titled
  * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$titled] Titled node, assigned to #$titled, omit to use #$element
  * @cfg {string|Function} [title] Title text or a function that returns text
  */
-OO.ui.TitledElement = function OoUiTitledElement( $titled, config ) {
+OO.ui.TitledElement = function OoUiTitledElement( config ) {
 	// Config intialization
 	config = config || {};
 
 	// Properties
-	this.$titled = $titled;
+	this.$titled = null;
 	this.title = null;
 
 	// Initialization
 	this.setTitle( config.title || this.constructor.static.title );
+	this.setTitledElement( config.$titled || this.$element );
 };
 
 /* Setup */
@@ -4397,18 +4495,41 @@ OO.ui.TitledElement.static.title = null;
 /* Methods */
 
 /**
+ * Set the titled element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $titled Element to set title on
+ */
+OO.ui.TitledElement.prototype.setTitledElement = function ( $titled ) {
+	if ( this.$titled ) {
+		this.$titled.removeAttr( 'title' );
+	}
+
+	this.$titled = $titled;
+	if ( this.title ) {
+		this.$titled.attr( 'title', this.title );
+	}
+};
+
+/**
  * Set title.
  *
  * @param {string|Function|null} title Title text, a function that returns text or null for no title
  * @chainable
  */
 OO.ui.TitledElement.prototype.setTitle = function ( title ) {
-	this.title = title = OO.ui.resolveMsg( title ) || null;
+	title = typeof title === 'string' ? OO.ui.resolveMsg( title ) : null;
 
-	if ( typeof title === 'string' && title.length ) {
-		this.$titled.attr( 'title', title );
-	} else {
-		this.$titled.removeAttr( 'title' );
+	if ( this.title !== title ) {
+		if ( this.$titled ) {
+			if ( title !== null ) {
+				this.$titled.attr( 'title', title );
+			} else {
+				this.$titled.removeAttr( 'title' );
+			}
+		}
+		this.title = title;
 	}
 
 	return this;
@@ -4424,12 +4545,207 @@ OO.ui.TitledElement.prototype.getTitle = function () {
 };
 
 /**
+ * Element that can be automatically clipped to visible boundaries.
+ *
+ * Whenever the element's natural height changes, you have to call
+ * #clip to make sure it's still clipping correctly.
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$clippable] Nodes to clip, assigned to #$clippable, omit to use #$element
+ */
+OO.ui.ClippableElement = function OoUiClippableElement( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Properties
+	this.$clippable = null;
+	this.clipping = false;
+	this.clippedHorizontally = false;
+	this.clippedVertically = false;
+	this.$clippableContainer = null;
+	this.$clippableScroller = null;
+	this.$clippableWindow = null;
+	this.idealWidth = null;
+	this.idealHeight = null;
+	this.onClippableContainerScrollHandler = OO.ui.bind( this.clip, this );
+	this.onClippableWindowResizeHandler = OO.ui.bind( this.clip, this );
+
+	// Initialization
+	this.setClippableElement( config.$clippable || this.$element );
+};
+
+/* Methods */
+
+/**
+ * Set clippable element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $clippable Element to make clippable
+ */
+OO.ui.ClippableElement.prototype.setClippableElement = function ( $clippable ) {
+	if ( this.$clippable ) {
+		this.$clippable.removeClass( 'oo-ui-clippableElement-clippable' );
+		this.$clippable.css( { width: '', height: '' } );
+		this.$clippable.width(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
+		this.$clippable.css( { overflowX: '', overflowY: '' } );
+	}
+
+	this.$clippable = $clippable.addClass( 'oo-ui-clippableElement-clippable' );
+	this.clip();
+};
+
+/**
+ * Toggle clipping.
+ *
+ * Do not turn clipping on until after the element is attached to the DOM and visible.
+ *
+ * @param {boolean} [clipping] Enable clipping, omit to toggle
+ * @chainable
+ */
+OO.ui.ClippableElement.prototype.toggleClipping = function ( clipping ) {
+	clipping = clipping === undefined ? !this.clipping : !!clipping;
+
+	if ( this.clipping !== clipping ) {
+		this.clipping = clipping;
+		if ( clipping ) {
+			this.$clippableContainer = this.$( this.getClosestScrollableElementContainer() );
+			// If the clippable container is the body, we have to listen to scroll events and check
+			// jQuery.scrollTop on the window because of browser inconsistencies
+			this.$clippableScroller = this.$clippableContainer.is( 'body' ) ?
+				this.$( OO.ui.Element.getWindow( this.$clippableContainer ) ) :
+				this.$clippableContainer;
+			this.$clippableScroller.on( 'scroll', this.onClippableContainerScrollHandler );
+			this.$clippableWindow = this.$( this.getElementWindow() )
+				.on( 'resize', this.onClippableWindowResizeHandler );
+			// Initial clip after visible
+			this.clip();
+		} else {
+			this.$clippable.css( { width: '', height: '' } );
+			this.$clippable.width(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
+			this.$clippable.css( { overflowX: '', overflowY: '' } );
+
+			this.$clippableContainer = null;
+			this.$clippableScroller.off( 'scroll', this.onClippableContainerScrollHandler );
+			this.$clippableScroller = null;
+			this.$clippableWindow.off( 'resize', this.onClippableWindowResizeHandler );
+			this.$clippableWindow = null;
+		}
+	}
+
+	return this;
+};
+
+/**
+ * Check if the element will be clipped to fit the visible area of the nearest scrollable container.
+ *
+ * @return {boolean} Element will be clipped to the visible area
+ */
+OO.ui.ClippableElement.prototype.isClipping = function () {
+	return this.clipping;
+};
+
+/**
+ * Check if the bottom or right of the element is being clipped by the nearest scrollable container.
+ *
+ * @return {boolean} Part of the element is being clipped
+ */
+OO.ui.ClippableElement.prototype.isClipped = function () {
+	return this.clippedHorizontally || this.clippedVertically;
+};
+
+/**
+ * Check if the right of the element is being clipped by the nearest scrollable container.
+ *
+ * @return {boolean} Part of the element is being clipped
+ */
+OO.ui.ClippableElement.prototype.isClippedHorizontally = function () {
+	return this.clippedHorizontally;
+};
+
+/**
+ * Check if the bottom of the element is being clipped by the nearest scrollable container.
+ *
+ * @return {boolean} Part of the element is being clipped
+ */
+OO.ui.ClippableElement.prototype.isClippedVertically = function () {
+	return this.clippedVertically;
+};
+
+/**
+ * Set the ideal size.
+ *
+ * @param {number|string} [width] Width as a number of pixels or CSS string with unit suffix
+ * @param {number|string} [height] Height as a number of pixels or CSS string with unit suffix
+ */
+OO.ui.ClippableElement.prototype.setIdealSize = function ( width, height ) {
+	this.idealWidth = width;
+	this.idealHeight = height;
+};
+
+/**
+ * Clip element to visible boundaries and allow scrolling when needed. Call this method when
+ * the element's natural height changes.
+ *
+ * Element will be clipped the bottom or right of the element is within 10px of the edge of, or
+ * overlapped by, the visible area of the nearest scrollable container.
+ *
+ * @chainable
+ */
+OO.ui.ClippableElement.prototype.clip = function () {
+	if ( !this.clipping ) {
+		// this.$clippableContainer and this.$clippableWindow are null, so the below will fail
+		return this;
+	}
+
+	var buffer = 10,
+		cOffset = this.$clippable.offset(),
+		$container = this.$clippableContainer.is( 'body' ) ?
+			this.$clippableWindow : this.$clippableContainer,
+		ccOffset = $container.offset() || { top: 0, left: 0 },
+		ccHeight = $container.innerHeight() - buffer,
+		ccWidth = $container.innerWidth() - buffer,
+		scrollTop = this.$clippableScroller.scrollTop(),
+		scrollLeft = this.$clippableScroller.scrollLeft(),
+		desiredWidth = ( ccOffset.left + scrollLeft + ccWidth ) - cOffset.left,
+		desiredHeight = ( ccOffset.top + scrollTop + ccHeight ) - cOffset.top,
+		naturalWidth = this.$clippable.prop( 'scrollWidth' ),
+		naturalHeight = this.$clippable.prop( 'scrollHeight' ),
+		clipWidth = desiredWidth < naturalWidth,
+		clipHeight = desiredHeight < naturalHeight;
+
+	if ( clipWidth ) {
+		this.$clippable.css( { overflowX: 'auto', width: desiredWidth } );
+	} else {
+		this.$clippable.css( 'width', this.idealWidth || '' );
+		this.$clippable.width(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
+		this.$clippable.css( 'overflowX', '' );
+	}
+	if ( clipHeight ) {
+		this.$clippable.css( { overflowY: 'auto', height: desiredHeight } );
+	} else {
+		this.$clippable.css( 'height', this.idealHeight || '' );
+		this.$clippable.height(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
+		this.$clippable.css( 'overflowY', '' );
+	}
+
+	this.clippedHorizontally = clipWidth;
+	this.clippedVertically = clipHeight;
+
+	return this;
+};
+
+/**
  * Generic toolbar tool.
  *
  * @abstract
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.IconedElement
+ * @mixins OO.ui.IconElement
  *
  * @constructor
  * @param {OO.ui.ToolGroup} toolGroup
@@ -4444,7 +4760,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	OO.ui.Tool.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
+	OO.ui.IconElement.call( this, config );
 
 	// Properties
 	this.toolGroup = toolGroup;
@@ -4477,7 +4793,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.Tool, OO.ui.Widget );
-OO.mixinClass( OO.ui.Tool, OO.ui.IconedElement );
+OO.mixinClass( OO.ui.Tool, OO.ui.IconElement );
 
 /* Events */
 
@@ -4701,7 +5017,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 
 	// Mixin constructors
 	OO.EventEmitter.call( this );
-	OO.ui.GroupElement.call( this, this.$( '<div>' ), config );
+	OO.ui.GroupElement.call( this, config );
 
 	// Properties
 	this.toolFactory = toolFactory;
@@ -4916,7 +5232,7 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	OO.ui.ToolGroup.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.GroupElement.call( this, this.$( '<div>' ), config );
+	OO.ui.GroupElement.call( this, config );
 
 	// Properties
 	this.toolbar = toolbar;
@@ -6076,7 +6392,7 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
  *
  * @class
  * @extends OO.ui.Layout
- * @mixins OO.ui.LabeledElement
+ * @mixins OO.ui.LabelElement
  *
  * Available label alignment modes include:
  *  - left: Label is before the field and aligned away from it, best for when the user will be
@@ -6095,7 +6411,6 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
  * @cfg {string} [help] Explanatory text shown as a '?' icon.
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
-	var popupButtonWidget;
 	// Config initialization
 	config = $.extend( { align: 'left' }, config );
 
@@ -6103,27 +6418,25 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 	OO.ui.FieldLayout.super.call( this, config );
 
 	// Mixin constructors
-	this.$help = this.$( '<div>' );
-	OO.ui.LabeledElement.call( this, this.$( '<label>' ), config );
-	if ( config.help ) {
-		popupButtonWidget = new OO.ui.PopupButtonWidget( $.extend(
-			{
-				$: this.$,
-				frameless: true,
-				icon: 'info',
-				title: config.help
-			},
-			config,
-			{ label: null }
-		) );
-		popupButtonWidget.getPopup().$body.append( this.getElementDocument().createTextNode( config.help ) );
-		this.$help = popupButtonWidget.$element;
-	}
+	OO.ui.LabelElement.call( this, config );
 
 	// Properties
 	this.$field = this.$( '<div>' );
 	this.field = field;
 	this.align = null;
+	if ( config.help ) {
+		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
+			$: this.$,
+			frameless: true,
+			icon: 'info',
+			title: config.help
+		} );
+
+		this.popupButtonWidget.getPopup().$body.append( this.$( '<span>' ).text( config.help ) );
+		this.$help = this.popupButtonWidget.$element;
+	} else {
+		this.$help = this.$( '<div>' );
+	}
 
 	// Events
 	if ( this.field instanceof OO.ui.InputWidget ) {
@@ -6143,7 +6456,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.FieldLayout, OO.ui.Layout );
-OO.mixinClass( OO.ui.FieldLayout, OO.ui.LabeledElement );
+OO.mixinClass( OO.ui.FieldLayout, OO.ui.LabelElement );
 
 /* Methods */
 
@@ -6216,8 +6529,8 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
  *
  * @class
  * @extends OO.ui.Layout
- * @mixins OO.ui.LabeledElement
- * @mixins OO.ui.IconedElement
+ * @mixins OO.ui.LabelElement
+ * @mixins OO.ui.IconElement
  * @mixins OO.ui.GroupElement
  *
  * @constructor
@@ -6233,9 +6546,9 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	OO.ui.FieldsetLayout.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.IconedElement.call( this, this.$( '<div>' ), config );
-	OO.ui.LabeledElement.call( this, this.$( '<div>' ), config );
-	OO.ui.GroupElement.call( this, this.$( '<div>' ), config );
+	OO.ui.IconElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.GroupElement.call( this, config );
 
 	// Initialization
 	this.$element
@@ -6249,8 +6562,8 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.FieldsetLayout, OO.ui.Layout );
-OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.IconedElement );
-OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.LabeledElement );
+OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.IconElement );
+OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
 
 /* Static Properties */
@@ -6643,7 +6956,7 @@ OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	OO.ui.StackLayout.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.GroupElement.call( this, this.$element, config );
+	OO.ui.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
 
 	// Properties
 	this.currentItem = null;
@@ -6829,9 +7142,9 @@ OO.ui.BarToolGroup.static.name = 'bar';
  * @abstract
  * @class
  * @extends OO.ui.ToolGroup
- * @mixins OO.ui.IconedElement
- * @mixins OO.ui.IndicatedElement
- * @mixins OO.ui.LabeledElement
+ * @mixins OO.ui.IconElement
+ * @mixins OO.ui.IndicatorElement
+ * @mixins OO.ui.LabelElement
  * @mixins OO.ui.TitledElement
  * @mixins OO.ui.ClippableElement
  *
@@ -6848,11 +7161,11 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	OO.ui.PopupToolGroup.super.call( this, toolbar, config );
 
 	// Mixin constructors
-	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
-	OO.ui.IndicatedElement.call( this, this.$( '<span>' ), config );
-	OO.ui.LabeledElement.call( this, this.$( '<span>' ), config );
-	OO.ui.TitledElement.call( this, this.$element, config );
-	OO.ui.ClippableElement.call( this, this.$group, config );
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.TitledElement.call( this, config );
+	OO.ui.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
 
 	// Properties
 	this.active = false;
@@ -6888,9 +7201,9 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.PopupToolGroup, OO.ui.ToolGroup );
-OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.IconedElement );
-OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.IndicatedElement );
-OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.LabeledElement );
+OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.IconElement );
+OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.IndicatorElement );
+OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.TitledElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.ClippableElement );
 
@@ -6967,13 +7280,25 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 	if ( this.active !== value ) {
 		this.active = value;
 		if ( value ) {
-			this.setClipping( true );
-			this.$element.addClass( 'oo-ui-popupToolGroup-active' );
 			this.getElementDocument().addEventListener( 'mouseup', this.onBlurHandler, true );
+
+			// Try anchoring the popup to the left first
+			this.$element.addClass( 'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left' );
+			this.toggleClipping( true );
+			if ( this.isClippedHorizontally() ) {
+				// Anchoring to the left caused the popup to clip, so anchor it to the right instead
+				this.toggleClipping( false );
+				this.$element
+					.removeClass( 'oo-ui-popupToolGroup-left' )
+					.addClass( 'oo-ui-popupToolGroup-right' );
+				this.toggleClipping( true );
+			}
 		} else {
-			this.setClipping( false );
-			this.$element.removeClass( 'oo-ui-popupToolGroup-active' );
 			this.getElementDocument().removeEventListener( 'mouseup', this.onBlurHandler, true );
+			this.$element.removeClass(
+				'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left  oo-ui-popupToolGroup-right'
+			);
+			this.toggleClipping( false );
 		}
 	}
 };
@@ -7067,7 +7392,7 @@ OO.ui.MenuToolGroup.prototype.onUpdateState = function () {
  * @abstract
  * @class
  * @extends OO.ui.Tool
- * @mixins OO.ui.PopuppableElement
+ * @mixins OO.ui.PopupElement
  *
  * @constructor
  * @param {OO.ui.Toolbar} toolbar
@@ -7078,7 +7403,7 @@ OO.ui.PopupTool = function OoUiPopupTool( toolbar, config ) {
 	OO.ui.PopupTool.super.call( this, toolbar, config );
 
 	// Mixin constructors
-	OO.ui.PopuppableElement.call( this, config );
+	OO.ui.PopupElement.call( this, config );
 
 	// Initialization
 	this.$element
@@ -7089,7 +7414,7 @@ OO.ui.PopupTool = function OoUiPopupTool( toolbar, config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.PopupTool, OO.ui.Tool );
-OO.mixinClass( OO.ui.PopupTool, OO.ui.PopuppableElement );
+OO.mixinClass( OO.ui.PopupTool, OO.ui.PopupElement );
 
 /* Methods */
 
@@ -7125,12 +7450,11 @@ OO.ui.PopupTool.prototype.onUpdateState = function () {
  * @extends OO.ui.GroupElement
  *
  * @constructor
- * @param {jQuery} $group Container node, assigned to #$group
  * @param {Object} [config] Configuration options
  */
-OO.ui.GroupWidget = function OoUiGroupWidget( $element, config ) {
+OO.ui.GroupWidget = function OoUiGroupWidget( config ) {
 	// Parent constructor
-	OO.ui.GroupWidget.super.call( this, $element, config );
+	OO.ui.GroupWidget.super.call( this, config );
 };
 
 /* Setup */
@@ -7456,7 +7780,7 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.GroupElement
- * @mixins OO.ui.IconedElement
+ * @mixins OO.ui.IconElement
  *
  * @constructor
  * @param {OO.ui.OutlineWidget} outline Outline to control
@@ -7470,8 +7794,8 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 	OO.ui.OutlineControlsWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.GroupElement.call( this, this.$( '<div>' ), config );
-	OO.ui.IconedElement.call( this, this.$( '<div>' ), config );
+	OO.ui.GroupElement.call( this, config );
+	OO.ui.IconElement.call( this, config );
 
 	// Properties
 	this.outline = outline;
@@ -7518,7 +7842,7 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 
 OO.inheritClass( OO.ui.OutlineControlsWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.GroupElement );
-OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.IconedElement );
+OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.IconElement );
 
 /* Events */
 
@@ -7641,7 +7965,7 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 	OO.ui.ButtonGroupWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.GroupElement.call( this, this.$element, config );
+	OO.ui.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonGroupWidget' );
@@ -7660,12 +7984,12 @@ OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
  *
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.ButtonedElement
- * @mixins OO.ui.IconedElement
- * @mixins OO.ui.IndicatedElement
- * @mixins OO.ui.LabeledElement
+ * @mixins OO.ui.ButtonElement
+ * @mixins OO.ui.IconElement
+ * @mixins OO.ui.IndicatorElement
+ * @mixins OO.ui.LabelElement
  * @mixins OO.ui.TitledElement
- * @mixins OO.ui.FlaggableElement
+ * @mixins OO.ui.FlaggedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -7680,12 +8004,12 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	OO.ui.ButtonWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.ButtonedElement.call( this, this.$( '<a>' ), config );
-	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
-	OO.ui.IndicatedElement.call( this, this.$( '<span>' ), config );
-	OO.ui.LabeledElement.call( this, this.$( '<span>' ), config );
-	OO.ui.TitledElement.call( this, this.$button, config );
-	OO.ui.FlaggableElement.call( this, config );
+	OO.ui.ButtonElement.call( this, config );
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.TitledElement.call( this, config, $.extend( {}, config, { $titled: this.$button } ) );
+	OO.ui.FlaggedElement.call( this, config );
 
 	// Properties
 	this.href = null;
@@ -7710,12 +8034,12 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.ButtonWidget, OO.ui.Widget );
-OO.mixinClass( OO.ui.ButtonWidget, OO.ui.ButtonedElement );
-OO.mixinClass( OO.ui.ButtonWidget, OO.ui.IconedElement );
-OO.mixinClass( OO.ui.ButtonWidget, OO.ui.IndicatedElement );
-OO.mixinClass( OO.ui.ButtonWidget, OO.ui.LabeledElement );
+OO.mixinClass( OO.ui.ButtonWidget, OO.ui.ButtonElement );
+OO.mixinClass( OO.ui.ButtonWidget, OO.ui.IconElement );
+OO.mixinClass( OO.ui.ButtonWidget, OO.ui.IndicatorElement );
+OO.mixinClass( OO.ui.ButtonWidget, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.ButtonWidget, OO.ui.TitledElement );
-OO.mixinClass( OO.ui.ButtonWidget, OO.ui.FlaggableElement );
+OO.mixinClass( OO.ui.ButtonWidget, OO.ui.FlaggedElement );
 
 /* Events */
 
@@ -7912,7 +8236,7 @@ OO.ui.ActionWidget.prototype.propagateResize = function () {
  */
 OO.ui.ActionWidget.prototype.setIcon = function () {
 	// Mixin method
-	OO.ui.IconedElement.prototype.setIcon.apply( this, arguments );
+	OO.ui.IconElement.prototype.setIcon.apply( this, arguments );
 	this.propagateResize();
 
 	return this;
@@ -7923,7 +8247,7 @@ OO.ui.ActionWidget.prototype.setIcon = function () {
  */
 OO.ui.ActionWidget.prototype.setLabel = function () {
 	// Mixin method
-	OO.ui.LabeledElement.prototype.setLabel.apply( this, arguments );
+	OO.ui.LabelElement.prototype.setLabel.apply( this, arguments );
 	this.propagateResize();
 
 	return this;
@@ -7934,7 +8258,7 @@ OO.ui.ActionWidget.prototype.setLabel = function () {
  */
 OO.ui.ActionWidget.prototype.setFlags = function () {
 	// Mixin method
-	OO.ui.FlaggableElement.prototype.setFlags.apply( this, arguments );
+	OO.ui.FlaggedElement.prototype.setFlags.apply( this, arguments );
 	this.propagateResize();
 
 	return this;
@@ -7945,7 +8269,7 @@ OO.ui.ActionWidget.prototype.setFlags = function () {
  */
 OO.ui.ActionWidget.prototype.clearFlags = function () {
 	// Mixin method
-	OO.ui.FlaggableElement.prototype.clearFlags.apply( this, arguments );
+	OO.ui.FlaggedElement.prototype.clearFlags.apply( this, arguments );
 	this.propagateResize();
 
 	return this;
@@ -7970,7 +8294,7 @@ OO.ui.ActionWidget.prototype.toggle = function () {
  *
  * @class
  * @extends OO.ui.ButtonWidget
- * @mixins OO.ui.PopuppableElement
+ * @mixins OO.ui.PopupElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -7980,7 +8304,7 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	OO.ui.PopupButtonWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.PopuppableElement.call( this, config );
+	OO.ui.PopupElement.call( this, config );
 
 	// Initialization
 	this.$element
@@ -7991,7 +8315,7 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.PopupButtonWidget, OO.ui.ButtonWidget );
-OO.mixinClass( OO.ui.PopupButtonWidget, OO.ui.PopuppableElement );
+OO.mixinClass( OO.ui.PopupButtonWidget, OO.ui.PopupElement );
 
 /* Methods */
 
@@ -8076,9 +8400,11 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 /**
  * Icon widget.
  *
+ * See OO.ui.IconElement for more information.
+ *
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.IconedElement
+ * @mixins OO.ui.IconElement
  * @mixins OO.ui.TitledElement
  *
  * @constructor
@@ -8092,8 +8418,8 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 	OO.ui.IconWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.IconedElement.call( this, this.$element, config );
-	OO.ui.TitledElement.call( this, this.$element, config );
+	OO.ui.IconElement.call( this, $.extend( {}, config, { $icon: this.$element } ) );
+	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$element } ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-iconWidget' );
@@ -8102,7 +8428,7 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.IconWidget, OO.ui.Widget );
-OO.mixinClass( OO.ui.IconWidget, OO.ui.IconedElement );
+OO.mixinClass( OO.ui.IconWidget, OO.ui.IconElement );
 OO.mixinClass( OO.ui.IconWidget, OO.ui.TitledElement );
 
 /* Static Properties */
@@ -8112,11 +8438,11 @@ OO.ui.IconWidget.static.tagName = 'span';
 /**
  * Indicator widget.
  *
- * See OO.ui.IndicatedElement for more information.
+ * See OO.ui.IndicatorElement for more information.
  *
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.IndicatedElement
+ * @mixins OO.ui.IndicatorElement
  * @mixins OO.ui.TitledElement
  *
  * @constructor
@@ -8130,8 +8456,8 @@ OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
 	OO.ui.IndicatorWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.IndicatedElement.call( this, this.$element, config );
-	OO.ui.TitledElement.call( this, this.$element, config );
+	OO.ui.IndicatorElement.call( this, $.extend( {}, config, { $indicator: this.$element } ) );
+	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$element } ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-indicatorWidget' );
@@ -8140,7 +8466,7 @@ OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.IndicatorWidget, OO.ui.Widget );
-OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.IndicatedElement );
+OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.IndicatorElement );
 OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.TitledElement );
 
 /* Static Properties */
@@ -8157,9 +8483,9 @@ OO.ui.IndicatorWidget.static.tagName = 'span';
  *
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.IconedElement
- * @mixins OO.ui.IndicatedElement
- * @mixins OO.ui.LabeledElement
+ * @mixins OO.ui.IconElement
+ * @mixins OO.ui.IndicatorElement
+ * @mixins OO.ui.LabelElement
  * @mixins OO.ui.TitledElement
  *
  * @constructor
@@ -8174,10 +8500,10 @@ OO.ui.InlineMenuWidget = function OoUiInlineMenuWidget( config ) {
 	OO.ui.InlineMenuWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
-	OO.ui.IndicatedElement.call( this, this.$( '<span>' ), config );
-	OO.ui.LabeledElement.call( this, this.$( '<span>' ), config );
-	OO.ui.TitledElement.call( this, this.$label, config );
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$label } ) );
 
 	// Properties
 	this.menu = new OO.ui.MenuWidget( $.extend( { $: this.$, widget: this }, config.menu ) );
@@ -8199,9 +8525,9 @@ OO.ui.InlineMenuWidget = function OoUiInlineMenuWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.InlineMenuWidget, OO.ui.Widget );
-OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IconedElement );
-OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IndicatedElement );
-OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.LabeledElement );
+OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IconElement );
+OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IndicatorElement );
+OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.TitledElement );
 
 /* Methods */
@@ -8538,8 +8864,8 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  *
  * @class
  * @extends OO.ui.InputWidget
- * @mixins OO.ui.IconedElement
- * @mixins OO.ui.IndicatedElement
+ * @mixins OO.ui.IconElement
+ * @mixins OO.ui.IndicatorElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -8556,8 +8882,8 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	OO.ui.TextInputWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
-	OO.ui.IndicatedElement.call( this, this.$( '<span>' ), config );
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
 
 	// Properties
 	this.pending = 0;
@@ -8584,8 +8910,8 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.TextInputWidget, OO.ui.InputWidget );
-OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IconedElement );
-OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IndicatedElement );
+OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IconElement );
+OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IndicatorElement );
 
 /* Events */
 
@@ -8926,7 +9252,7 @@ OO.ui.ComboBoxWidget.prototype.setDisabled = function ( disabled ) {
  *
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.LabeledElement
+ * @mixins OO.ui.LabelElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -8939,7 +9265,7 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 	OO.ui.LabelWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.LabeledElement.call( this, this.$element, config );
+	OO.ui.LabelElement.call( this, $.extend( {}, config, { $label: this.$element } ) );
 
 	// Properties
 	this.input = config.input;
@@ -8956,7 +9282,7 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.LabelWidget, OO.ui.Widget );
-OO.mixinClass( OO.ui.LabelWidget, OO.ui.LabeledElement );
+OO.mixinClass( OO.ui.LabelWidget, OO.ui.LabelElement );
 
 /* Static Properties */
 
@@ -8979,8 +9305,8 @@ OO.ui.LabelWidget.prototype.onClick = function () {
  *
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.LabeledElement
- * @mixins OO.ui.FlaggableElement
+ * @mixins OO.ui.LabelElement
+ * @mixins OO.ui.FlaggedElement
  *
  * @constructor
  * @param {Mixed} data Option data
@@ -8996,8 +9322,8 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 
 	// Mixin constructors
 	OO.ui.ItemWidget.call( this );
-	OO.ui.LabeledElement.call( this, this.$( '<span>' ), config );
-	OO.ui.FlaggableElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.FlaggedElement.call( this, config );
 
 	// Properties
 	this.data = data;
@@ -9021,8 +9347,8 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 
 OO.inheritClass( OO.ui.OptionWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.ItemWidget );
-OO.mixinClass( OO.ui.OptionWidget, OO.ui.LabeledElement );
-OO.mixinClass( OO.ui.OptionWidget, OO.ui.FlaggableElement );
+OO.mixinClass( OO.ui.OptionWidget, OO.ui.LabelElement );
+OO.mixinClass( OO.ui.OptionWidget, OO.ui.FlaggedElement );
 
 /* Static Properties */
 
@@ -9181,8 +9507,8 @@ OO.ui.OptionWidget.prototype.getData = function () {
  *
  * @class
  * @extends OO.ui.OptionWidget
- * @mixins OO.ui.IconedElement
- * @mixins OO.ui.IndicatedElement
+ * @mixins OO.ui.IconElement
+ * @mixins OO.ui.IndicatorElement
  *
  * @constructor
  * @param {Mixed} data Option data
@@ -9193,8 +9519,8 @@ OO.ui.DecoratedOptionWidget = function OoUiDecoratedOptionWidget( data, config )
 	OO.ui.DecoratedOptionWidget.super.call( this, data, config );
 
 	// Mixin constructors
-	OO.ui.IconedElement.call( this, this.$( '<span>' ), config );
-	OO.ui.IndicatedElement.call( this, this.$( '<span>' ), config );
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
 
 	// Initialization
 	this.$element
@@ -9206,8 +9532,8 @@ OO.ui.DecoratedOptionWidget = function OoUiDecoratedOptionWidget( data, config )
 /* Setup */
 
 OO.inheritClass( OO.ui.DecoratedOptionWidget, OO.ui.OptionWidget );
-OO.mixinClass( OO.ui.OptionWidget, OO.ui.IconedElement );
-OO.mixinClass( OO.ui.OptionWidget, OO.ui.IndicatedElement );
+OO.mixinClass( OO.ui.OptionWidget, OO.ui.IconElement );
+OO.mixinClass( OO.ui.OptionWidget, OO.ui.IndicatorElement );
 
 /**
  * Option widget that looks like a button.
@@ -9216,7 +9542,7 @@ OO.mixinClass( OO.ui.OptionWidget, OO.ui.IndicatedElement );
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
- * @mixins OO.ui.ButtonedElement
+ * @mixins OO.ui.ButtonElement
  *
  * @constructor
  * @param {Mixed} data Option data
@@ -9227,7 +9553,7 @@ OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( data, config ) {
 	OO.ui.ButtonOptionWidget.super.call( this, data, config );
 
 	// Mixin constructors
-	OO.ui.ButtonedElement.call( this, this.$( '<a>' ), config );
+	OO.ui.ButtonElement.call( this, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonOptionWidget' );
@@ -9238,7 +9564,7 @@ OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( data, config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.ButtonOptionWidget, OO.ui.DecoratedOptionWidget );
-OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.ButtonedElement );
+OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.ButtonElement );
 
 /* Static Properties */
 
@@ -9445,7 +9771,7 @@ OO.ui.OutlineItemWidget.prototype.setLevel = function ( level ) {
  *
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.LabeledElement
+ * @mixins OO.ui.LabelElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -9468,14 +9794,14 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	OO.ui.PopupWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.LabeledElement.call( this, this.$( '<div>' ), config );
-	OO.ui.ClippableElement.call( this, this.$( '<div>' ), config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.ClippableElement.call( this, config );
 
 	// Properties
 	this.visible = false;
 	this.$popup = this.$( '<div>' );
 	this.$head = this.$( '<div>' );
-	this.$body = this.$clippable;
+	this.$body = this.$( '<div>' );
 	this.$anchor = this.$( '<div>' );
 	this.$container = config.$container || this.$( 'body' );
 	this.autoClose = !!config.autoClose;
@@ -9515,12 +9841,13 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	if ( config.padded ) {
 		this.$body.addClass( 'oo-ui-popupWidget-body-padded' );
 	}
+	this.setClippableElement( this.$body );
 };
 
 /* Setup */
 
 OO.inheritClass( OO.ui.PopupWidget, OO.ui.Widget );
-OO.mixinClass( OO.ui.PopupWidget, OO.ui.LabeledElement );
+OO.mixinClass( OO.ui.PopupWidget, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.ClippableElement );
 
 /* Events */
@@ -9614,13 +9941,13 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 
 	if ( change ) {
 		if ( show ) {
-			this.setClipping( true );
+			this.toggleClipping( true );
 			if ( this.autoClose ) {
 				this.bindMouseDownListener();
 			}
 			this.updateDimensions();
 		} else {
-			this.setClipping( false );
+			this.toggleClipping( false );
 			if ( this.autoClose ) {
 				this.unbindMouseDownListener();
 			}
@@ -9890,7 +10217,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	OO.ui.SelectWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.GroupWidget.call( this, this.$element, config );
+	OO.ui.GroupWidget.call( this, $.extend( {}, config, { $group: this.$element } ) );
 
 	// Properties
 	this.pressed = false;
@@ -10435,7 +10762,7 @@ OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	OO.ui.MenuWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.ClippableElement.call( this, this.$group, config );
+	OO.ui.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
 
 	// Properties
 	this.flashing = false;
@@ -10574,13 +10901,7 @@ OO.ui.MenuWidget.prototype.chooseItem = function ( item ) {
 };
 
 /**
- * Add items.
- *
- * Adding an existing item (by value) will move it.
- *
- * @param {OO.ui.MenuItemWidget[]} items Items to add
- * @param {number} [index] Index to insert items after
- * @chainable
+ * @inheritdoc
  */
 OO.ui.MenuWidget.prototype.addItems = function ( items, index ) {
 	var i, len, item;
@@ -10596,12 +10917,41 @@ OO.ui.MenuWidget.prototype.addItems = function ( items, index ) {
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
 		if ( this.isVisible() ) {
-			// Defer fitting label until
+			// Defer fitting label until item has been attached
 			item.fitLabel();
 		} else {
 			this.newItems.push( item );
 		}
 	}
+
+	// Reevaluate clipping
+	this.clip();
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MenuWidget.prototype.removeItems = function ( items ) {
+	// Parent method
+	OO.ui.MenuWidget.super.prototype.removeItems.call( this, items );
+
+	// Reevaluate clipping
+	this.clip();
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MenuWidget.prototype.clearItems = function () {
+	// Parent method
+	OO.ui.MenuWidget.super.prototype.clearItems.call( this );
+
+	// Reevaluate clipping
+	this.clip();
 
 	return this;
 };
@@ -10633,7 +10983,7 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 				}
 				this.newItems = null;
 			}
-			this.setClipping( true );
+			this.toggleClipping( true );
 
 			// Auto-hide
 			if ( this.autoHide ) {
@@ -10650,7 +11000,7 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 			this.getElementDocument().removeEventListener(
 				'mousedown', this.onDocumentMouseDownHandler, true
 			);
-			this.setClipping( false );
+			this.toggleClipping( false );
 		}
 	}
 
@@ -10660,7 +11010,7 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 /**
  * Menu for a text input widget.
  *
- * This menu is specially designed to be positioned beneeth the text input widget. Even if the input
+ * This menu is specially designed to be positioned beneath the text input widget. Even if the input
  * is in a different frame, the menu's position is automatically calulated and maintained when the
  * menu is toggled or the window is resized.
  *
