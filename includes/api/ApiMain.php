@@ -1269,8 +1269,10 @@ class ApiMain extends ApiBase {
 				return $cached;
 			}
 		}
-		$retval = $this->reallyMakeHelpMsg();
-		if ( $cacheHelpTimeout > 0 ) {
+		$showInternal = $this->getRequest()->getBool( 'includeinternal' );
+		$retval = $this->reallyMakeHelpMsg( $showInternal );
+		// Don't cache includeinternal page.
+		if ( $cacheHelpTimeout > 0 && !$showInternal ) {
 			$wgMemc->set( $key, $retval, $cacheHelpTimeout );
 		}
 
@@ -1278,9 +1280,10 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
+	 * @param bool $showInternal
 	 * @return mixed|string
 	 */
-	public function reallyMakeHelpMsg() {
+	public function reallyMakeHelpMsg( $showInternal = false ) {
 		$this->setHelp();
 
 		// Use parent to make default message for the main module
@@ -1291,6 +1294,10 @@ class ApiMain extends ApiBase {
 
 		foreach ( $this->mModuleMgr->getNames( 'action' ) as $name ) {
 			$module = $this->mModuleMgr->getModule( $name );
+			if ( $module->isInternalApi() && !$showInternal ) {
+				continue;
+			}
+
 			$msg .= self::makeHelpMsgHeader( $module, 'action' );
 
 			$msg2 = $module->makeHelpMsg();

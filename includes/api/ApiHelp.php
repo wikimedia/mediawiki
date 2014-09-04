@@ -140,6 +140,9 @@ class ApiHelp extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DEPRECATED => true
 			),
+			'includeinternal' => array(
+				ApiBase::PARAM_TYPE => 'boolean'
+			),
 		);
 	}
 
@@ -149,6 +152,7 @@ class ApiHelp extends ApiBase {
 				'Can specify submodules with a \'+\'',
 			'querymodules' => 'Use modules=query+value instead. List of query ' .
 				'module names (value of prop=, meta= or list= parameter)',
+			'includeinternal' => 'Include modules marked as internal',
 		);
 	}
 
