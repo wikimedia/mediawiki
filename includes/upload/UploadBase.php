@@ -1297,7 +1297,8 @@ abstract class UploadBase {
 	 * @param array $attribs
 	 * @return bool
 	 */
-	public function checkSvgScriptCallback( $element, $attribs ) {
+	public function checkSvgScriptCallback( $element, $attribs, $data = null ) {
+
 		list( $namespace, $strippedElement ) = $this->splitXmlNamespace( $element );
 
 		// We specifically don't include:
@@ -1381,6 +1382,14 @@ abstract class UploadBase {
 			return true;
 		}
 
+		# Check <style> css
+		if ( $strippedElement == 'style'
+			&& self::checkCssFragment( Sanitizer::normalizeCss( $data ) )
+		) {
+			wfDebug( __METHOD__ . ": hostile css in style element.\n" );
+			return true;
+		}
+
 		foreach ( $attribs as $attrib => $value ) {
 			$stripped = $this->stripXmlNamespace( $attrib );
 			$value = strtolower( $value );
@@ -1418,6 +1427,18 @@ abstract class UploadBase {
 			# href with embedded (text/xml) svg as target
 			if ( $stripped == 'href' && preg_match( '!data:[^,]*text/xml[^,]*,!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found href to embedded svg "
+					. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
+
+				return true;
+			}
+
+			# Change href with animate from (http://html5sec.org/#137). This doesn't seem
+			# possible without embedding the svg, but filter here in case.
+			if ( $stripped == 'from'
+				&& $strippedElement === 'animate'
+				&& !preg_match( '!^https?://!im', $value )
+			) {
+				wfDebug( __METHOD__ . ": Found animate that might be changing href using from "
 					. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
 
 				return true;
@@ -1463,23 +1484,23 @@ abstract class UploadBase {
 			}
 
 			# use CSS styles to bring in remote code
-			# catch url("http:..., url('http:..., url(http:..., but not url("#..., url('#..., url(#....
-			$tagsList = "font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke";
 			if ( $stripped == 'style'
-				&& preg_match_all(
-					'!((?:' . $tagsList . ')\s*:\s*url\s*\(\s*["\']?\s*[^#]+.*?\))!sim',
-					$value,
-					$matches
-				)
+				&& self::checkCssFragment( Sanitizer::normalizeCss( $value ) )
 			) {
-				foreach ( $matches[1] as $match ) {
-					if ( !preg_match( '!(?:' . $tagsList . ')\s*:\s*url\s*\(\s*(#|\'#|"#)!sim', $match ) ) {
-						wfDebug( __METHOD__ . ": Found svg setting a style with "
-							. "remote url '$attrib'='$value' in uploaded file.\n" );
+				wfDebug( __METHOD__ . ": Found svg setting a style with "
+					. "remote url '$attrib'='$value' in uploaded file.\n" );
+				return true;
+			}
 
-						return true;
-					}
-				}
+			# Several attributes can include css, css character escaping isn't allowed
+			$cssAttrs = array( 'font', 'clip-path', 'fill', 'filter', 'marker',
+				'marker-end', 'marker-mid', 'marker-start', 'mask', 'stroke' );
+			if ( in_array( $stripped, $cssAttrs )
+				&& self::checkCssFragment( $value )
+			) {
+				wfDebug( __METHOD__ . ": Found svg setting a style with "
+					. "remote url '$attrib'='$value' in uploaded file.\n" );
+				return true;
 			}
 
 			# image filters can pull in url, which could be svg that executes scripts
@@ -1495,6 +1516,58 @@ abstract class UploadBase {
 		}
 
 		return false; //No scripts detected
+	}
+
+	/**
+	 * Check a block of CSS or CSS fragment for anything that looks like
+	 * it is bringing in remote code.
+	 * @param string $value a string of CSS
+	 * @param bool $propOnly only check css properties (start regex with :)
+	 * @return bool true if the CSS contains an illegal string, false if otherwise
+	 */
+	private static function checkCssFragment( $value ) {
+
+		# Forbid external stylesheets, for both reliability and to protect viewer's privacy
+		if ( strpos( $value, '@import' ) !== false ) {
+			return true;
+		}
+
+		# We allow @font-face to embed fonts with data: urls, so we snip the string
+		# 'url' out so this case won't match when we check for urls below
+		$pattern = '!(@font-face\s*{[^}]*src:)url(\("data:;base64,)!im';
+		$value = preg_replace( $pattern, '$1$2', $value );
+
+		# Check for remote and executable CSS. Unlike in Sanitizer::checkCss, the CSS
+		# properties filter and accelerator don't seem to be useful for xss in SVG files.
+		# Expression and -o-link don't seem to work either, but filtering them here in case.
+		# Additionally, we catch remote urls like url("http:..., url('http:..., url(http:...,
+		# but not local ones such as url("#..., url('#..., url(#....
+		if ( preg_match( '!expression
+				| -o-link\s*:
+				| -o-link-source\s*:
+				| -o-replace\s*:!imx', $value ) ) {
+			return true;
+		}
+
+		if ( preg_match_all(
+				"!(\s*(url|image|image-set)\s*\(\s*[\"']?\s*[^#]+.*?\))!sim",
+				$value,
+				$matches
+			) !== 0
+		) {
+			# TODO: redo this in one regex. Until then, url("#whatever") matches the first
+			foreach ( $matches[1] as $match ) {
+				if ( !preg_match( "!\s*(url|image|image-set)\s*\(\s*(#|'#|\"#)!im", $match ) ) {
+					return true;
+				}
+			}
+		}
+
+		if ( preg_match( '/[\000-\010\013\016-\037\177]/', $value ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
