@@ -4,13 +4,15 @@
  * @group Database
  */
 class ArticleTablesTest extends MediaWikiLangTestCase {
-
 	/**
+	 * Make sure that bug 14404 doesn't strike again. We don't want
+	 * templatelinks based on the user language when {{int:}} is used, only the
+	 * content language.
+	 *
 	 * @covers Title::getTemplateLinksFrom
 	 * @covers Title::getLinksFrom
-	 * @todo give this test a real name explaining what is being tested here
 	 */
-	public function testbug14404() {
+	public function testTemplatelinksUsesContentLanguage() {
 		$title = Title::newFromText( 'Bug 14404' );
 		$page = WikiPage::factory( $title );
 		$user = new User();
