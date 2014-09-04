@@ -15,7 +15,6 @@
 	clear: both;
 }
 
-/* User Message */
 .usermessage {
 	background-color: #ffce7b;
 	border: 1px solid #ffa500;
@@ -26,7 +25,6 @@
 	vertical-align: middle;
 }
 
-/* Site Notice (includes notices from CentralNotice extension) */
 #siteNotice {
 	position: relative;
 	text-align: center;
@@ -37,9 +35,7 @@
 	margin-bottom: 0.9em;
 }
 
-/* First h1 */
-.firstHeading,
-#firstHeading {
+.firstHeading {
 	margin-bottom: .1em;
 	/* These two rules hack around bug 2013 (fix for more limited bug 11325).
 	 * When bug 2013 is fixed properly, they should be removed. */
@@ -58,7 +54,8 @@
 	margin-bottom: 1.4em;
 }
 
-#contentSub, #contentSub2 {
+#contentSub,
+#contentSub2 {
 	font-size: 84%;
 	line-height: 1.2em;
 	margin: 0 0 1.4em 1em;
