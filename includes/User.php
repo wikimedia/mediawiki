@@ -3788,12 +3788,14 @@ class User implements IDBAccessObject {
 	 */
 	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
+
+		$section = new ProfileSection( __METHOD__ );
+
 		$this->loadPasswords();
 
 		// Certain authentication plugins do NOT want to save
 		// domain passwords in a mysql database, so we should
 		// check this (in case $wgAuth->strict() is false).
-
 		if ( $wgAuth->authenticate( $this->getName(), $password ) ) {
 			return true;
 		} elseif ( $wgAuth->strict() ) {
