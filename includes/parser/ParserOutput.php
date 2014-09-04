@@ -734,7 +734,7 @@ class ParserOutput extends CacheTime {
 			$ret['wall'] = microtime( true );
 		}
 		if ( ( !$clock || $clock === 'cpu' ) && function_exists( 'getrusage' ) ) {
-			$ru = getrusage();
+			$ru = getrusage( defined( 'HHVM_VERSION' ) ? 2 : 0 );
 			$ret['cpu'] = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
 			$ret['cpu'] += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
 		}

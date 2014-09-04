@@ -275,7 +275,7 @@ abstract class Profiler {
 			if ( !function_exists( 'getrusage' ) ) {
 				return 0;
 			}
-			$ru = getrusage();
+			$ru = getrusage( defined( 'HHVM_VERSION' ) ? 2 : 0 );
 			$time = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
 			if ( $metric === 'cpu' ) {
 				# This is the time of system calls, added to the user time

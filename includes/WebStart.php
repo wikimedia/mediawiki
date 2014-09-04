@@ -41,7 +41,7 @@ header( 'X-Content-Type-Options: nosniff' );
 
 $wgRequestTime = microtime( true );
 # getrusage() does not exist on the Microsoft Windows platforms, catching this
-$wgRUstart = function_exists( 'getrusage' ) ? getrusage() : array();
+$wgRUstart = function_exists( 'getrusage' ) ? getrusage( defined( 'HHVM_VERSION' ) ? 2 : 0 ) : array();
 unset( $IP );
 
 # Valid web server entry point, enable includes.
