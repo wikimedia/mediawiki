@@ -101,7 +101,7 @@ class AllMessagesTablePager extends TablePager {
 		$this->mIndexField = 'am_title';
 		$this->mPage = $page;
 		$this->mConds = $conds;
-		$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
+		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		$this->mLimitsShown = array( 20, 50, 100, 250, 500, 5000 );
 
 		global $wgContLang;

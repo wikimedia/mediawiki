@@ -26,7 +26,7 @@
  * @ingroup SpecialPage
  */
 class DeletedContribsPager extends IndexPager {
-	public $mDefaultDirection = IndexPager::DIR_ASCENDING;
+	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
 	public $messages;
 	public $target;
 	public $namespace = '';
