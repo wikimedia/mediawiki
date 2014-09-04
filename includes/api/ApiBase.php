@@ -261,6 +261,16 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Returns whether this API module is considered to be internal or not.
+	 *
+	 * This is used to hide the module's documentation from action=help unless an extra
+	 * "includeinternal" parameter is given.
+	 */
+	public function isInternalApi() {
+		return false;
+	}
+
+	/**
 	 * Fetch the salt used in the Web UI corresponding to this module.
 	 *
 	 * Only override this if the Web UI uses a token with a non-constant salt.
@@ -1852,6 +1862,9 @@ abstract class ApiBase extends ContextSource {
 			}
 			if ( $this->mustBePosted() ) {
 				$msg .= "\nThis module only accepts POST requests";
+			}
+			if ( $this->isInternalApi() ) {
+				$msg .= "\nThis module is intended to be internal. It may change without notice and should be considered unstable";
 			}
 			if ( $this->isReadMode() || $this->isWriteMode() ||
 				$this->mustBePosted()
