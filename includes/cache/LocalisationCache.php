@@ -843,51 +843,19 @@ class LocalisationCache {
 			if ( $coreData['fallbackSequence'][$len - 1] !== 'en' ) {
 				$coreData['fallbackSequence'][] = 'en';
 			}
-
-			# Load the fallback localisation item by item and merge it
-			foreach ( $coreData['fallbackSequence'] as $fbCode ) {
-				# Load the secondary localisation from the source file to
-				# avoid infinite cycles on cyclic fallbacks
-				$fbData = $this->readSourceFilesAndRegisterDeps( $fbCode, $deps );
-				if ( $fbData === false ) {
-					continue;
-				}
-
-				foreach ( self::$allKeys as $key ) {
-					if ( !isset( $fbData[$key] ) ) {
-						continue;
-					}
-
-					if ( is_null( $coreData[$key] ) || $this->isMergeableKey( $key ) ) {
-						$this->mergeItem( $key, $coreData[$key], $fbData[$key] );
-					}
-				}
-			}
 		}
 
 		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
 
-		# Load core messages and the extension localisations.
-		wfProfileIn( __METHOD__ . '-extensions' );
-		$allData = $initialData;
-		foreach ( $wgMessagesDirs as $dirs ) {
-			foreach ( (array)$dirs as $dir ) {
-				foreach ( $codeSequence as $csCode ) {
-					$fileName = "$dir/$csCode.json";
-					$data = $this->readJSONFile( $fileName );
+		wfProfileIn( __METHOD__ . '-fallbacks' );
 
-					foreach ( $data as $key => $item ) {
-						$this->mergeItem( $key, $allData[$key], $item );
-					}
-
-					$deps[] = new FileDependency( $fileName );
-				}
-			}
-		}
-
+		# Load non-JSON localisation data for extensions
+		$extensionData = array_combine(
+			$codeSequence,
+			array_fill( 0, count( $codeSequence ), $initialData ) );
 		foreach ( $wgExtensionMessagesFiles as $extension => $fileName ) {
 			if ( isset( $wgMessagesDirs[$extension] ) ) {
-				# Already loaded the JSON files for this extension; skip the PHP shim
+				# This extension has JSON message data; skip the PHP shim
 				continue;
 			}
 
@@ -895,8 +863,11 @@ class LocalisationCache {
 			$used = false;
 
 			foreach ( $data as $key => $item ) {
-				if ( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
-					$used = true;
+				foreach ( $codeSequence as $csCode ) {
+					if ( isset( $item[$csCode] ) ) {
+						$this->mergeItem( $key, $extensionData[$csCode][$key], $item[$csCode] );
+						$used = true;
+					}
 				}
 			}
 
@@ -905,11 +876,76 @@ class LocalisationCache {
 			}
 		}
 
-		# Merge core data into extension data
-		foreach ( $coreData as $key => $item ) {
-			$this->mergeItem( $key, $allData[$key], $item );
+		# Load the localisation data for each fallback, then merge it into the full array
+		$allData = $initialData;
+		foreach ( $codeSequence as $csCode ) {
+			$csData = $initialData;
+
+			# Load core messages and the extension localisations.
+			foreach ( $wgMessagesDirs as $dirs ) {
+				foreach ( (array)$dirs as $dir ) {
+					$fileName = "$dir/$csCode.json";
+					$data = $this->readJSONFile( $fileName );
+
+					foreach ( $data as $key => $item ) {
+						$this->mergeItem( $key, $csData[$key], $item );
+					}
+
+					$deps[] = new FileDependency( $fileName );
+				}
+			}
+
+			# Merge non-JSON extension data
+			if ( isset( $extensionData[$csCode] ) ) {
+				foreach ( $extensionData[$csCode] as $key => $item ) {
+					$this->mergeItem( $key, $csData[$key], $item );
+				}
+			}
+
+			if ( $csCode === $code ) {
+				# Merge core data into extension data
+				foreach ( $coreData as $key => $item ) {
+					$this->mergeItem( $key, $csData[$key], $item );
+				}
+			} else {
+				# Load the secondary localisation from the source file to
+				# avoid infinite cycles on cyclic fallbacks
+				$fbData = $this->readSourceFilesAndRegisterDeps( $csCode, $deps );
+				if ( $fbData !== false ) {
+					# Only merge the keys that make sense to merge
+					foreach ( self::$allKeys as $key ) {
+						if ( !isset( $fbData[$key] ) ) {
+							continue;
+						}
+
+						if ( is_null( $coreData[$key] ) || $this->isMergeableKey( $key ) ) {
+							$this->mergeItem( $key, $csData[$key], $fbData[$key] );
+						}
+					}
+				}
+			}
+
+			# Allow extensions an opportunity to adjust the data for this
+			# fallback
+			wfRunHooks( 'LocalisationCacheRecacheFallback', array( $this, $csCode, &$csData ) );
+
+			# Merge the data for this fallback into the final array
+			if ( $csCode === $code ) {
+				$allData = $csData;
+			} else {
+				foreach ( self::$allKeys as $key ) {
+					if ( !isset( $csData[$key] ) ) {
+						continue;
+					}
+
+					if ( is_null( $allData[$key] ) || $this->isMergeableKey( $key ) ) {
+						$this->mergeItem( $key, $allData[$key], $csData[$key] );
+					}
+				}
+			}
 		}
-		wfProfileOut( __METHOD__ . '-extensions' );
+
+		wfProfileOut( __METHOD__ . '-fallbacks' );
 
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
