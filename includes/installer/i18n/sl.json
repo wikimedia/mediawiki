@@ -2,16 +2,20 @@
 	"@metadata": {
 		"authors": [
 			"Dbc334",
-			"Eleassar"
+			"Eleassar",
+			"Yerpo"
 		]
 	},
 	"config-desc": "Namestitveni program za MediaWiki",
 	"config-title": "Namestitev MediaWiki $1",
 	"config-information": "Informacije",
+	"config-localsettings-upgrade": "Zaznana je bila datoteka <code>LocalSettings.php</code>.\nZa nadgradnjo te inštalacije prosim vnesite vrednost <code>$wgUpgradeKey</code> v polje za vnos spodaj.\nNašli jo boste v <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Zaznana je bila datoteka <code>LocalSettings.php</code>.\nZa nadgradnjo te namestitve zaženite <code>update.php</code>",
 	"config-localsettings-key": "Nadgraditveni ključ:",
 	"config-localsettings-badkey": "Naveden ključ je napačen.",
 	"config-upgrade-key-missing": "Zaznana je bila obstoječa namestitev MediaWiki.\nZa nadgradnjo te namestitve vstavite naslednjo vrstico na dno vaše <code>LocalSettings.php</code>:\n\n$1",
+	"config-localsettings-incomplete": "Kaže, da je obstoječa datoteka <code>LocalSettings.php</code> nepopolna. Vrednost $1 ni nastavljena. Prosimo, nastavite to vrednost v <code>LocalSettings.php</code> in kliknite \"{{int:Config-continue}}\".",
+	"config-localsettings-connection-error": "Prišlo je do napake pri povezovanju s podatkovno zbirko z nastavitvami, določenimi v <code>LocalSettings.php</code>. Prosimo popravite te nastavitve in poskusite znova.\n\n$1",
 	"config-session-error": "Napaka pri začenjanju seje: $1",
 	"config-session-expired": "Kot kaže, so vaši podatki seje potekli.\nSeje so konfigurirane za dobo $1.\nTo lahko povečate tako, da nastavite <code>session.gc_maxlifetime</code> v php.ini.\nPonovno zaženite postopek namestitve.",
 	"config-no-session": "Vaši podatki seje so bili izgubljeni!\nPreverite vaš php.ini in se prepričajte, da je <code>session.save_path</code> nastavljena na ustrezno mapo.",
@@ -43,7 +47,6 @@
 	"config-env-good": "Okolje je pregledano.\nLahko namestite MediaWiki.",
 	"config-env-bad": "Okolje je pregledano.\nNe morete namestiti MediaWiki.",
 	"config-env-php": "Nameščen je PHP $1.",
-	"config-env-php-toolow": "Nameščen je PHP $1.\nVendar pa MediaWiki zahteva PHP $2 ali višji.",
 	"config-unicode-using-utf8": "Uporaba utf8_normalize.so Briona Vibberja za normalizacijo unikoda.",
 	"config-unicode-using-intl": "Uporaba [http://pecl.php.net/intl razširitve PECL intl] za normalizacijo unikoda.",
 	"config-memory-raised": "PHP-jev <code>memory_limit</code> je $1, dvignjen na $2.",
