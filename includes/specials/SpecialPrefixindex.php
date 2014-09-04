@@ -112,7 +112,12 @@ class SpecialPrefixindex extends SpecialAllPages {
 			Xml::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
 			"</td>
 				<td class='mw-input'>" .
-			Xml::input( 'prefix', 30, str_replace( '_', ' ', $from ), array( 'id' => 'nsfrom' ) ) .
+			Xml::input(
+				'prefix',
+				30,
+				str_replace( '_', ' ', $from ),
+				array( 'id' => 'nsfrom', 'class' => 'mw-ui-input-inline' )
+			) .
 			"</td>
 			</tr>
 			<tr>
@@ -139,7 +144,10 @@ class SpecialPrefixindex extends SpecialAllPages {
 				'stripprefix',
 				$this->stripPrefix
 			) . ' ' .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
+			Xml::submitButton(
+				$this->msg( 'allpagessubmit' )->text(),
+				array( 'class' => 'mw-ui-button mw-ui-constructive' )
+			) .
 			"</td>
 			</tr>";
 		$out .= Xml::closeElement( 'table' );
