@@ -180,107 +180,83 @@ class EditPageTest extends MediaWikiLangTestCase {
 		return $page;
 	}
 
+	public function provideCreatePages() {
+		return array(
+			array( 'expected article being created',
+				'EditPageTest_testCreatePage',
+				null,
+				'Hello World!',
+				EditPage::AS_SUCCESS_NEW_ARTICLE,
+				'Hello World!'
+			),
+			array( 'expected article not being created if empty',
+				'EditPageTest_testCreatePage',
+				null,
+				'',
+				EditPage::AS_BLANK_ARTICLE,
+				null
+			),
+			array( 'expected MediaWiki: page being created',
+				'MediaWiki:January',
+				'UTSysop',
+				'Not January',
+				EditPage::AS_SUCCESS_NEW_ARTICLE,
+				'Not January'
+			),
+			array( 'expected not-registered MediaWiki: page not being created if empty',
+				'MediaWiki:EditPageTest_testCreatePage',
+				'UTSysop',
+				'',
+				EditPage::AS_BLANK_ARTICLE,
+				null
+			),
+			array( 'expected registered MediaWiki: page being created even if empty',
+				'MediaWiki:January',
+				'UTSysop',
+				'',
+				EditPage::AS_SUCCESS_NEW_ARTICLE,
+				''
+			),
+			array( 'expected registered MediaWiki: page whose default content is empty not being created if empty',
+				'MediaWiki:Ipb-default-expiry',
+				'UTSysop',
+				'',
+				EditPage::AS_BLANK_ARTICLE,
+				''
+			),
+			array( 'expected MediaWiki: page not being created if text equals default message',
+				'MediaWiki:January',
+				'UTSysop',
+				'January',
+				EditPage::AS_BLANK_ARTICLE,
+				null
+			),
+			array( 'expected empty article being created',
+				'EditPageTest_testCreatePage',
+				null,
+				'',
+				EditPage::AS_SUCCESS_NEW_ARTICLE,
+				'',
+				true
+			),
+		);
+	}
+
 	/**
-	 * @todo split into a dataprovider and test method
+	 * @dataProvider provideCreatePages
 	 * @covers EditPage
 	 */
-	public function testCreatePage() {
-		$this->assertEdit(
-			'EditPageTest_testCreatePage',
-			null,
-			null,
-			array(
-				'wpTextbox1' => "Hello World!",
-			),
-			EditPage::AS_SUCCESS_NEW_ARTICLE,
-			"Hello World!",
-			"expected article being created"
-		)->doDeleteArticleReal( 'EditPageTest_testCreatePage' );
+	public function testCreatePage( $desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false ) {
+		$edit = array( 'wpTextbox1' => $editText );
+		if ( $ignoreBlank ) {
+			$edit['wpIgnoreBlankArticle'] = 1;
+		}
 
-		$this->assertEdit(
-			'EditPageTest_testCreatePage',
-			null,
-			null,
-			array(
-				'wpTextbox1' => "",
-			),
-			EditPage::AS_BLANK_ARTICLE,
-			null,
-			"expected article not being created if empty"
-		);
+		$page = $this->assertEdit( $pageTitle, null, $user, $edit, $expectedCode, $expectedText, $desc );
 
-		$this->assertEdit(
-			'MediaWiki:January',
-			null,
-			'UTSysop',
-			array(
-				'wpTextbox1' => "Not January",
-			),
-			EditPage::AS_SUCCESS_NEW_ARTICLE,
-			"Not January",
-			"expected MediaWiki: page being created"
-		)->doDeleteArticleReal( 'EditPageTest_testCreatePage' );
-
-		$this->assertEdit(
-			'MediaWiki:EditPageTest_testCreatePage',
-			null,
-			'UTSysop',
-			array(
-				'wpTextbox1' => "",
-			),
-			EditPage::AS_BLANK_ARTICLE,
-			null,
-			"expected not-registered MediaWiki: page not being created if empty"
-		);
-
-		$this->assertEdit(
-			'MediaWiki:January',
-			null,
-			'UTSysop',
-			array(
-				'wpTextbox1' => "",
-			),
-			EditPage::AS_SUCCESS_NEW_ARTICLE,
-			"",
-			"expected registered MediaWiki: page being created even if empty"
-		)->doDeleteArticleReal( 'EditPageTest_testCreatePage' );
-
-		$this->assertEdit(
-			'MediaWiki:Ipb-default-expiry',
-			null,
-			'UTSysop',
-			array(
-				'wpTextbox1' => "",
-			),
-			EditPage::AS_BLANK_ARTICLE,
-			"",
-			"expected registered MediaWiki: page whose default content is empty not being created if empty"
-		);
-
-		$this->assertEdit(
-			'MediaWiki:January',
-			null,
-			'UTSysop',
-			array(
-				'wpTextbox1' => "January",
-			),
-			EditPage::AS_BLANK_ARTICLE,
-			null,
-			"expected MediaWiki: page not being created if text equals default message"
-		);
-
-		$this->assertEdit(
-			'EditPageTest_testCreatePage',
-			null,
-			null,
-			array(
-				'wpTextbox1' => "",
-				'wpIgnoreBlankArticle' => 1,
-			),
-			EditPage::AS_SUCCESS_NEW_ARTICLE,
-			"",
-			"expected empty article being created"
-		)->doDeleteArticleReal( 'EditPageTest_testCreatePage' );
+		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
+			$page->doDeleteArticleReal( $pageTitle );
+		}
 	}
 
 	public function testUpdatePage() {
