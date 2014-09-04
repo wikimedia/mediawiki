@@ -101,7 +101,8 @@ class AllMessagesTablePager extends TablePager {
 		$this->mIndexField = 'am_title';
 		$this->mPage = $page;
 		$this->mConds = $conds;
-		$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
+		// FIXME: Why does this need to be set to DIR_DESCENDING to produce ascending ordering?
+		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		$this->mLimitsShown = array( 20, 50, 100, 250, 500, 5000 );
 
 		global $wgContLang;

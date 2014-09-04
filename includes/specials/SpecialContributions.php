@@ -652,7 +652,7 @@ class SpecialContributions extends IncludableSpecialPage {
  * @ingroup SpecialPage Pager
  */
 class ContribsPager extends ReverseChronologicalPager {
-	public $mDefaultDirection = IndexPager::DIR_ASCENDING;
+	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
 	public $messages;
 	public $target;
 	public $namespace = '';
