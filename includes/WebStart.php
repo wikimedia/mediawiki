@@ -40,8 +40,7 @@ if ( ini_get( 'register_globals' ) ) {
 header( 'X-Content-Type-Options: nosniff' );
 
 $wgRequestTime = microtime( true );
-# getrusage() does not exist on the Microsoft Windows platforms, catching this
-$wgRUstart = function_exists( 'getrusage' ) ? getrusage() : array();
+$wgRUstart = wfGetRusage() ?: array();
 unset( $IP );
 
 # Valid web server entry point, enable includes.

@@ -272,10 +272,10 @@ abstract class Profiler {
 	 */
 	protected function getTime( $metric = 'wall' ) {
 		if ( $metric === 'cpu' || $metric === 'user' ) {
-			if ( !function_exists( 'getrusage' ) ) {
+			$ru = wfGetRusage();
+			if ( !$ru ) {
 				return 0;
 			}
-			$ru = getrusage();
 			$time = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
 			if ( $metric === 'cpu' ) {
 				# This is the time of system calls, added to the user time

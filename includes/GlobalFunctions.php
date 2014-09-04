@@ -4151,3 +4151,16 @@ function wfIsTrustedProxy( $ip ) {
 function wfIsConfiguredProxy( $ip ) {
 	return IP::isConfiguredProxy( $ip );
 }
+
+/**
+ * Get system resource usage of current request context.
+ * Invokes the getrusage(2) system call, requesting RUSAGE_SELF if on PHP5
+ * or RUSAGE_THREAD if on HHVM. Returns false if getrusage is not available
+ * (as is the case on Windows).
+ *
+ * @return array|bool Resource usage data or false if no data available.
+ */
+function wfGetRusage() {
+	$who = defined( 'HHVM_VERSION' ) && version_compare( HHVM_VERSION, '3.4', '>=' ) ? 2 : 0;
+	return function_exists( 'getrusage' ) ? getrusage( $who ) : false;
+}
