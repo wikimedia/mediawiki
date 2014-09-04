@@ -123,6 +123,7 @@ class UploadTest extends MediaWikiTestCase {
 
 		$wgMaxUploadSize = $savedGlobal;  // restore global
 	}
+
 }
 
 class UploadTestHandler extends UploadBase {
@@ -134,6 +135,5 @@ class UploadTestHandler extends UploadBase {
 			$this->getTitle();
 			return $this->mTitleError;
 		}
-
 
 }
