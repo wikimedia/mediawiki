@@ -174,6 +174,9 @@ abstract class PrefixSearch {
 		if ( $subpageSearch !== null ) {
 			// Try matching the full search string as a page name
 			$specialTitle = Title::makeTitleSafe( NS_SPECIAL, $searchKey );
+			if ( !$specialTitle ) {
+				return array();
+			}
 			$special = SpecialPageFactory::getPage( $specialTitle->getText() );
 			if ( $special ) {
 				$subpages = $special->prefixSearchSubpages( $subpageSearch, $limit );
