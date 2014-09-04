@@ -737,10 +737,12 @@ class ParserOutput extends CacheTime {
 		if ( !$clock || $clock === 'wall' ) {
 			$ret['wall'] = microtime( true );
 		}
-		if ( ( !$clock || $clock === 'cpu' ) && function_exists( 'getrusage' ) ) {
-			$ru = getrusage();
-			$ret['cpu'] = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
-			$ret['cpu'] += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
+		if ( !$clock || $clock === 'cpu' ) {
+			$ru = wfGetRusage();
+			if ( $ru ) {
+				$ret['cpu'] = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
+				$ret['cpu'] += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
+			}
 		}
 		return $ret;
 	}
