@@ -1213,7 +1213,7 @@
 	"group-user-member": "{{doc-group|user|member}}\n{{Identical|User}}",
 	"group-autoconfirmed-member": "{{doc-group|autoconfirmed|member}}",
 	"group-bot-member": "{{doc-group|bot|member}}",
-	"group-sysop-member": "{{doc-group|sysop|member}}",
+	"group-sysop-member": "{{doc-group|sysop|member}}\n{{Identical|Administrator}}",
 	"group-bureaucrat-member": "{{doc-group|bureaucrat|member}}",
 	"group-suppress-member": "{{doc-group|suppress|member}}\nThis is a member of the optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].\n\n{{Identical|Oversight}}",
 	"grouppage-user": "{{doc-group|user|page}}\n{{Identical|User}}",

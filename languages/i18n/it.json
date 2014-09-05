@@ -519,6 +519,7 @@
 	"createaccount-text": "Qualcuno ha creato un accesso a {{SITENAME}} ($4) a nome di $2, associato a questo indirizzo di posta elettronica. La password per l'utente \"$2\" è impostata a \"$3\".\nÈ opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.\n\nSe l'accesso è stato creato per errore, si può ignorare questo messaggio.",
 	"login-throttled": "Sono stati effettuati troppi tentativi di accesso in breve tempo.\nAttendi $1 e riprova in seguito.",
 	"login-abort-generic": "Il tuo login non ha avuto successo - Annullato",
+	"login-migrated-generic": "La tua utenza è stata migrata, e il tuo nome utente non esiste più su questo wiki.",
 	"loginlanguagelabel": "Lingua: $1",
 	"suspicious-userlogout": "La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.",
 	"createacct-another-realname-tip": "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",

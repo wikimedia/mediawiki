@@ -267,6 +267,7 @@
 	"config-install-interwiki-list": "Ne c'haller ket kavout ar restr <code>interwiki.list</code>.",
 	"config-install-stats": "O sevel ar stadegoù",
 	"config-install-keys": "Genel an alc'hwezioù kuzh",
+	"config-install-updates": "Mirout da lakaat hizivadennoù diezhomm da vont en-dro",
 	"config-install-sysop": "Krouidigezh kont ar merour",
 	"config-install-subscribe-fail": "N'haller ket koumanantiñ da mediawiki-announce : $1",
 	"config-install-subscribe-notpossible": "cURL n'eo ket staliet ha ne c'haller ket ober gant <code>allow_url_fopen</code>.",

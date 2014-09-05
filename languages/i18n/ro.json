@@ -139,7 +139,7 @@
 	"category_header": "Pagini din categoria „$1”",
 	"subcategories": "Subcategorii",
 	"category-media-header": "Fișiere media din categoria „$1”",
-	"category-empty": "''Această categorie nu conține în acest moment niciun articol sau fișier media.''",
+	"category-empty": "''Această categorie nu conține la moment nici o pagină sau fișier media.''",
 	"hidden-categories": "{{PLURAL:$1|Categorie ascunsă|Categorii ascunse}}",
 	"hidden-category-category": "Categorii ascunse",
 	"category-subcat-count": "{{PLURAL:$2|Această categorie conține doar următoarea subcategorie.|Această categorie conține {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii|următoarele $1 de subcategorii}}, dintr-un total de $2.}}",

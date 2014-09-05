@@ -521,6 +521,7 @@
 	"createaccount-text": "Es wurde für dich ein Benutzerkonto „$2“ auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für „$2“ ist „$3“. Du solltest dich nun anmelden und das Passwort ändern.\n\nFalls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ignorieren.",
 	"login-throttled": "Du hast zu oft versucht, dich anzumelden.\nBitte warte $1, bevor du es erneut probierst.",
 	"login-abort-generic": "Deine Anmeldung war nicht erfolgreich – Abgebrochen",
+	"login-migrated-generic": "Dein Benutzerkonto wurde migriert. Dein Benutzername ist auf diesem Wiki nicht mehr vorhanden.",
 	"loginlanguagelabel": "Sprache: $1",
 	"suspicious-userlogout": "Deine Abmeldeanfrage wurde verweigert, da sie vermutlich von einem defekten Browser oder einem Cache-Proxy gesendet wurde.",
 	"createacct-another-realname-tip": "Der bürgerliche Name ist optional.\nWenn du ihn angibst, wird er für die Zuordnung der Beiträge verwendet.",

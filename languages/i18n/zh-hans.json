@@ -79,7 +79,8 @@
 			"Impersonator 1",
 			"Duolaimi",
 			"TianyinLee",
-			"NigelSoft"
+			"NigelSoft",
+			"Zhuyifei1999"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -526,6 +527,7 @@
 	"createaccount-text": "有人在{{SITENAME}}中利用您的邮箱创建了一个名为 \"$2\" 的新帐户（$4），密码是 \"$3\" 。您应该立即登录并更改密码。\n\n如果该账户创建错误的话，您可以忽略此信息。",
 	"login-throttled": "你最近尝试登录的次数过多。请等待$1后再试。",
 	"login-abort-generic": "登录失败 - 已终止",
+	"login-migrated-generic": "您的账户已被迁移，并且您的用户名在此wiki不再存在。",
 	"loginlanguagelabel": "语言：$1",
 	"suspicious-userlogout": "注销请求被拒绝，因为它似乎是由有设计缺陷的浏览器或缓存代理发出的。",
 	"createacct-another-realname-tip": "真实姓名是选填项目。\n如果你选择提供它，它将会用于贡献署名。",
