@@ -937,20 +937,13 @@ class Html {
 	 * Get HTML for an info box with an icon.
 	 *
 	 * @param string $text Wikitext, get this with wfMessage()->plain()
-	 * @param string $icon Icon name, file in skins/common/images
+	 * @param string $icon Path to icon file (used as 'src' attribute)
 	 * @param string $alt Alternate text for the icon
 	 * @param string $class Additional class name to add to the wrapper div
-	 * @param bool $useStylePath
 	 *
 	 * @return string
 	 */
-	static function infoBox( $text, $icon, $alt, $class = false, $useStylePath = true ) {
-		global $wgStylePath;
-
-		if ( $useStylePath ) {
-			$icon = $wgStylePath . '/common/images/' . $icon;
-		}
-
+	static function infoBox( $text, $icon, $alt, $class = false ) {
 		$s = Html::openElement( 'div', array( 'class' => "mw-infobox $class" ) );
 
 		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ) .
