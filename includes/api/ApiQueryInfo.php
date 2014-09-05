@@ -458,6 +458,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $this->fld_url ) {
 			$pageInfo['fullurl'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 			$pageInfo['editurl'] = wfExpandUrl( $title->getFullURL( 'action=edit' ), PROTO_CURRENT );
+			$pageInfo['canonicalurl'] = wfExpandUrl( $title->getFullURL(), PROTO_CANONICAL );
 		}
 		if ( $this->fld_readable && $title->userCan( 'read', $this->getUser() ) ) {
 			$pageInfo['readable'] = '';
@@ -837,7 +838,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				' watchers              - The number of watchers, if allowed',
 				' notificationtimestamp - The watchlist notification timestamp of each page',
 				' subjectid             - The page ID of the parent page for each talk page',
-				' url                   - Gives a full URL to the page, and also an edit URL',
+				' url                   - Gives a full URL, an edit URL, and the canonical URL for each page',
 				' readable              - Whether the user can read this page',
 				' preload               - Gives the text returned by EditFormPreloadText',
 				' displaytitle          - Gives the way the page title is actually displayed',
