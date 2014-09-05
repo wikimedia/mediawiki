@@ -1462,7 +1462,7 @@ class Article implements Page {
 	 * @param Title|array $target Destination(s) to redirect
 	 * @param bool $appendSubtitle [optional]
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
-	 * @return string Containing HMTL with redirect link
+	 * @return string Containing HTML with redirect link
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		$lang = $this->getTitle()->getPageLanguage();
@@ -1483,7 +1483,7 @@ class Article implements Page {
 	 * @param Language $lang
 	 * @param Title|array $target Destination(s) to redirect
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
-	 * @return string Containing HMTL with redirect link
+	 * @return string Containing HTML with redirect link
 	 */
 	public static function getRedirectHeaderHtml( Language $lang, $target, $forceKnown = false ) {
 		global $wgStylePath;
