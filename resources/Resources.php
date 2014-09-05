@@ -1320,7 +1320,10 @@ return array(
 			'largefileserver',
 		),
 		'dependencies' => array(
+			'jquery.spinner',
+			'mediawiki.api',
 			'mediawiki.libs.jpegmeta',
+			'mediawiki.Title',
 			'mediawiki.util',
 		),
 	),
@@ -1434,15 +1437,6 @@ return array(
 	),
 	'mediawiki.legacy.oldshared' => array(
 		'styles' => array( 'resources/src/mediawiki.legacy/oldshared.css' => array( 'media' => 'screen' ) ),
-	),
-	'mediawiki.legacy.upload' => array(
-		'scripts' => 'resources/src/mediawiki.legacy/upload.js',
-		'dependencies' => array(
-			'jquery.spinner',
-			'mediawiki.api',
-			'mediawiki.Title',
-			'mediawiki.util',
-		),
 	),
 	'mediawiki.legacy.wikibits' => array(
 		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
