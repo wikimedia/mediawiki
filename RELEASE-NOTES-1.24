@@ -450,6 +450,7 @@ changes to languages because of Bugzilla reports.
 * TablePager::getBody() is deprecated, use getBodyOutput() or getFullOutput().
 * log_page for move log entries store the original page ID, rather than that 
   of the new redirect page. This is not retroactive.
+* Html::infoBox() no longer accepts paths relative to skins/common/images/.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
