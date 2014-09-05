@@ -47,6 +47,7 @@ $wgArticlePath = false; # Don't let a "/*" article path clober our action path
 $wgActionPaths = array( "$wgUploadPath/" );
 
 wfImageAuthMain();
+wfProfileOut( 'img_auth.php' );
 wfLogProfilingData();
 // Commit and close up!
 $factory = wfGetLBFactory();
