@@ -450,6 +450,8 @@ changes to languages because of Bugzilla reports.
 * TablePager::getBody() is deprecated, use getBodyOutput() or getFullOutput().
 * log_page for move log entries store the original page ID, rather than that 
   of the new redirect page. This is not retroactive.
+* LCStoreAccel was removed. $wgLocalisationCacheConf can no longer be set to 
+  use this store class.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
