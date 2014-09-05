@@ -827,9 +827,9 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function getPoweredBy() {
-		global $wgStylePath;
+		global $wgScriptPath;
 
-		$url = htmlspecialchars( "$wgStylePath/common/images/poweredby_mediawiki_88x31.png" );
+		$url = htmlspecialchars( "$wgScriptPath/assets/poweredby_mediawiki_88x31.png" );
 		$text = '<a href="//www.mediawiki.org/"><img src="' . $url
 			. '" height="31" width="88" alt="Powered by MediaWiki" /></a>';
 		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $this ) );

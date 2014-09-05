@@ -79,7 +79,7 @@ if ( $wgExtensionAssetsPath === false ) {
 }
 
 if ( $wgLogo === false ) {
-	$wgLogo = "$wgStylePath/common/images/wiki.png";
+	$wgLogo = "$wgScriptPath/assets/wiki.png";
 }
 
 if ( $wgUploadPath === false ) {
@@ -100,6 +100,15 @@ if ( $wgDeletedDirectory === false ) {
 
 if ( $wgGitInfoCacheDirectory === false && $wgCacheDirectory !== false ) {
 	$wgGitInfoCacheDirectory = "{$wgCacheDirectory}/gitinfo";
+}
+
+// Fix path to icon images after they were moved in 1.24
+if ( $wgRightsIcon ) {
+	$wgRightsIcon = str_replace(
+		"{$wgStylePath}/common/images/",
+		"{$wgScriptPath}/assets/licenses/",
+		$wgRightsIcon
+	);
 }
 
 if ( isset( $wgFooterIcons['copyright'] )
@@ -124,7 +133,7 @@ if ( isset( $wgFooterIcons['poweredby'] )
 	&& $wgFooterIcons['poweredby']['mediawiki']['src'] === null
 ) {
 	$wgFooterIcons['poweredby']['mediawiki']['src'] =
-		"$wgStylePath/common/images/poweredby_mediawiki_88x31.png";
+		"$wgScriptPath/assets/poweredby_mediawiki_88x31.png";
 }
 
 /**
