@@ -1,0 +1,53 @@
+/*!
+ * Display neat icons on redirect pages.
+ */
+
+/* Hide, but keep accessible for screen-readers. */
+.redirectTo {
+	overflow: hidden;
+	height: 0;
+	zoom: 1;
+}
+
+/* We need .mw-content-ltr to override more specific rules for ul from elsewhere */
+.mw-content-ltr .redirectText,
+.mw-content-rtl .redirectText {
+	list-style: none none;
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+/* @noflip */
+.mw-content-ltr .redirectText li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	padding-left: 42px;
+	/* @embed */
+	background: url(images/nextredirect-ltr.png) bottom left no-repeat;
+}
+
+/* @noflip */
+.mw-content-ltr .redirectText li:first-child {
+	padding-left: 47px;
+	/* @embed */
+	background: url(images/redirect-ltr.png) bottom left no-repeat;
+}
+
+/* @noflip */
+.mw-content-rtl .redirectText li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	padding-right: 42px;
+	/* @embed */
+	background: url(images/nextredirect-rtl.png) bottom right no-repeat;
+}
+
+/* @noflip */
+.mw-content-rtl .redirectText li:first-child {
+	padding-right: 47px;
+	/* @embed */
+	background: url(images/redirect-rtl.png) bottom right no-repeat;
+}
