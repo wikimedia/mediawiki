@@ -39,13 +39,95 @@ class TitleTest extends MediaWikiTestCase {
 		}
 	}
 
-	/**
-	 * See also mediawiki.Title.test.js
-	 * @covers Title::secureAndSplit
-	 * @todo This method should be split into 2 separate tests each with a provider
-	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
-	 */
-	public function testSecureAndSplit() {
+	public function provideValidSecureAndSplit() {
+		return array(
+			array( 'Sandbox' ),
+			array( 'A "B"' ),
+			array( 'A \'B\'' ),
+			array( '.com' ),
+			array( '~' ),
+			array( '#' ),
+			array( '"' ),
+			array( '\'' ),
+			array( 'Talk:Sandbox' ),
+			array( 'Talk:Foo:Sandbox' ),
+			array( 'File:Example.svg' ),
+			array( 'File_talk:Example.svg' ),
+			array( 'Foo/.../Sandbox' ),
+			array( 'Sandbox/...' ),
+			array( 'A~~' ),
+			array( ':A' ),
+			// Length is 256 total, but only title part matters
+			array( 'Category:' . str_repeat( 'x', 248 ) ),
+			array( str_repeat( 'x', 252 ) ),
+			// interwiki prefix
+			array( 'localtestiw: #anchor' ),
+			array( 'localtestiw:' ),
+			array( 'localtestiw:foo' ),
+			array( 'localtestiw: foo # anchor' ),
+			array( 'localtestiw: Talk: Sandbox # anchor' ),
+			array( 'remotetestiw:' ),
+			array( 'remotetestiw: Talk: # anchor' ),
+			array( 'remotetestiw: #bar' ),
+			array( 'remotetestiw: Talk:' ),
+			array( 'remotetestiw: Talk: Foo' ),
+			array( 'localtestiw:remotetestiw:' ),
+			array( 'localtestiw:remotetestiw:foo' )
+		);
+	}
+
+	public function provideInvalidSecureAndSplit() {
+		return array(
+			array( '' ),
+			array( ':' ),
+			array( '__  __' ),
+			array( '  __  ' ),
+			// Bad characters forbidden regardless of wgLegalTitleChars
+			array( 'A [ B' ),
+			array( 'A ] B' ),
+			array( 'A { B' ),
+			array( 'A } B' ),
+			array( 'A < B' ),
+			array( 'A > B' ),
+			array( 'A | B' ),
+			// URL encoding
+			array( 'A%20B' ),
+			array( 'A%23B' ),
+			array( 'A%2523B' ),
+			// XML/HTML character entity references
+			// Note: Commented out because they are not marked invalid by the PHP test as
+			// Title::newFromText runs Sanitizer::decodeCharReferencesAndNormalize first.
+			//'A &eacute; B',
+			//'A &#233; B',
+			//'A &#x00E9; B',
+			// Subject of NS_TALK does not roundtrip to NS_MAIN
+			array( 'Talk:File:Example.svg' ),
+			// Directory navigation
+			array( '.' ),
+			array( '..' ),
+			array( './Sandbox' ),
+			array( '../Sandbox' ),
+			array( 'Foo/./Sandbox' ),
+			array( 'Foo/../Sandbox' ),
+			array( 'Sandbox/.' ),
+			array( 'Sandbox/..' ),
+			// Tilde
+			array( 'A ~~~ Name' ),
+			array( 'A ~~~~ Signature' ),
+			array( 'A ~~~~~ Timestamp' ),
+			array( str_repeat( 'x', 256 ) ),
+			// Namespace prefix without actual title
+			array( 'Talk:' ),
+			array( 'Talk:#' ),
+			array( 'Category: ' ),
+			array( 'Category: #bar' ),
+			// interwiki prefix
+			array( 'localtestiw: Talk: # anchor' ),
+			array( 'localtestiw: Talk:' )
+		);
+	}
+
+	private function secureAndSplitGlobals() {
 		$this->setMwGlobals( array(
 			'wgLocalInterwikis' => array( 'localtestiw' ),
 			'wgHooks' => array(
@@ -61,95 +143,28 @@ class TitleTest extends MediaWikiTestCase {
 				)
 			)
 		));
-		// Valid
-		foreach ( array(
-			'Sandbox',
-			'A "B"',
-			'A \'B\'',
-			'.com',
-			'~',
-			'#',
-			'"',
-			'\'',
-			'Talk:Sandbox',
-			'Talk:Foo:Sandbox',
-			'File:Example.svg',
-			'File_talk:Example.svg',
-			'Foo/.../Sandbox',
-			'Sandbox/...',
-			'A~~',
-			':A',
-			// Length is 256 total, but only title part matters
-			'Category:' . str_repeat( 'x', 248 ),
-			str_repeat( 'x', 252 ),
-			// interwiki prefix
-			'localtestiw: #anchor',
-			'localtestiw:',
-			'localtestiw:foo',
-			'localtestiw: foo # anchor',
-			'localtestiw: Talk: Sandbox # anchor',
-			'remotetestiw:',
-			'remotetestiw: Talk: # anchor',
-			'remotetestiw: #bar',
-			'remotetestiw: Talk:',
-			'remotetestiw: Talk: Foo',
-			'localtestiw:remotetestiw:',
-			'localtestiw:remotetestiw:foo'
-		) as $text ) {
-			$this->assertInstanceOf( 'Title', Title::newFromText( $text ), "Valid: $text" );
-		}
+	}
 
-		// Invalid
-		foreach ( array(
-			'',
-			':',
-			'__  __',
-			'  __  ',
-			// Bad characters forbidden regardless of wgLegalTitleChars
-			'A [ B',
-			'A ] B',
-			'A { B',
-			'A } B',
-			'A < B',
-			'A > B',
-			'A | B',
-			// URL encoding
-			'A%20B',
-			'A%23B',
-			'A%2523B',
-			// XML/HTML character entity references
-			// Note: Commented out because they are not marked invalid by the PHP test as
-			// Title::newFromText runs Sanitizer::decodeCharReferencesAndNormalize first.
-			//'A &eacute; B',
-			//'A &#233; B',
-			//'A &#x00E9; B',
-			// Subject of NS_TALK does not roundtrip to NS_MAIN
-			'Talk:File:Example.svg',
-			// Directory navigation
-			'.',
-			'..',
-			'./Sandbox',
-			'../Sandbox',
-			'Foo/./Sandbox',
-			'Foo/../Sandbox',
-			'Sandbox/.',
-			'Sandbox/..',
-			// Tilde
-			'A ~~~ Name',
-			'A ~~~~ Signature',
-			'A ~~~~~ Timestamp',
-			str_repeat( 'x', 256 ),
-			// Namespace prefix without actual title
-			'Talk:',
-			'Talk:#',
-			'Category: ',
-			'Category: #bar',
-			// interwiki prefix
-			'localtestiw: Talk: # anchor',
-			'localtestiw: Talk:'
-		) as $text ) {
-			$this->assertNull( Title::newFromText( $text ), "Invalid: $text" );
-		}
+	/**
+	 * See also mediawiki.Title.test.js
+	 * @covers Title::secureAndSplit
+	 * @dataProvider provideValidSecureAndSplit
+	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
+	 */
+	public function testSecureAndSplitValid( $text ) {
+		$this->secureAndSplitGlobals();
+		$this->assertInstanceOf( 'Title', Title::newFromText( $text ), "Valid: $text" );
+	}
+
+	/**
+	 * See also mediawiki.Title.test.js
+	 * @covers Title::secureAndSplit
+	 * @dataProvider provideInvalidSecureAndSplit
+	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
+	 */
+	public function testSecureAndSplitInvalid( $text ) {
+		$this->secureAndSplitGlobals();
+		$this->assertNull( Title::newFromText( $text ), "Invalid: $text" );
 	}
 
 	public static function provideConvertByteClassToUnicodeClass() {
