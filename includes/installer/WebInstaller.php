@@ -679,7 +679,7 @@ class WebInstaller extends Installer {
 			'images/' . $icon;
 		$alt = wfMessage( 'config-information' )->text();
 
-		return Html::infoBox( $text, $icon, $alt, $class, false );
+		return Html::infoBox( $text, $icon, $alt, $class );
 	}
 
 	/**
