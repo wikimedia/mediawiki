@@ -253,7 +253,7 @@ $wgFileCacheDirectory = false;
 
 /**
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
- * Defaults to "{$wgStylePath}/common/images/wiki.png".
+ * Defaults to "$wgScriptPath/assets/wiki.png".
  */
 $wgLogo = false;
 
@@ -3102,7 +3102,7 @@ $wgFooterIcons = array(
 	),
 	"poweredby" => array(
 		"mediawiki" => array(
-			"src" => null, // Defaults to "$wgStylePath/common/images/poweredby_mediawiki_88x31.png"
+			"src" => null, // Defaults to "$wgScriptPath/assets/poweredby_mediawiki_88x31.png"
 			"url" => "//www.mediawiki.org/",
 			"alt" => "Powered by MediaWiki",
 		)
