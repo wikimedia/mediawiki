@@ -37,11 +37,21 @@
 			// only drop events if requested
 			dropThresholdPx = dropThresholdPx || 0;
 
-			if ( !Array.prototype.map || !Array.prototype.reduce || !Array.prototype.filter ) {
-				profile.container = profile.buildRequiresES5();
+			if (
+				!Array.prototype.map ||
+				!Array.prototype.reduce ||
+				!Array.prototype.filter ||
+				!document.createElementNS ||
+				!document.createElementNS.bind
+			) {
+				profile.container = profile.buildRequiresBrowserFeatures();
 			} else if ( data.length === 0 ) {
 				profile.container = profile.buildNoData();
 			} else {
+				// Initialize createSvgElement (now that we know we have
+				// document.createElementNS and bind)
+				this.createSvgElement = document.createElementNS.bind( document, 'http://www.w3.org/2000/svg' );
+
 				// generate a flyout
 				profile.data = new ProfileData( data, profile.width, mergeThresholdPx, dropThresholdPx );
 				// draw it
@@ -52,9 +62,9 @@
 			return profile.container;
 		},
 
-		buildRequiresES5: function () {
+		buildRequiresBrowserFeatures: function () {
 			return $( '<div>' )
-				.text( 'An ES5 compatible javascript engine is required for the profile visualization.' )
+				.text( 'Certain browser features, including parts of ECMAScript 5 and document.createElementNS, are required for the profile visualization.' )
 				.get( 0 );
 		},
 
@@ -66,14 +76,12 @@
 
 		/**
 		 * Creates DOM nodes appropriately namespaced for SVG.
+		 * Initialized in init after checking support
 		 *
 		 * @param string tag to create
 		 * @return DOMElement
 		 */
-		createSvgElement: ( document.createElementNS && Function.prototype.bind )
-			? document.createElementNS.bind( document, 'http://www.w3.org/2000/svg' )
-			// throw a error for browsers which does not support document.createElementNS (IE<8)
-			: function () { throw new Error( 'An ES5 compatible javascript engine is required for the profile visualization.' ); },
+		createSvgElement: null,
 
 		/**
 		 * @param DOMElement|undefined
