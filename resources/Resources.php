@@ -1062,6 +1062,10 @@ return array(
 		'dependencies' => 'mediawiki.action.view.redirect',
 		'position' => 'top',
 	),
+	'mediawiki.action.view.redirectPage' => array(
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.redirectPage.css',
+		'position' => 'top',
+	),
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	),
