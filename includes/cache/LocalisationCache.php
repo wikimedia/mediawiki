@@ -200,9 +200,6 @@ class LocalisationCache {
 				case 'db':
 					$storeClass = 'LCStoreDB';
 					break;
-				case 'accel':
-					$storeClass = 'LCStoreAccel';
-					break;
 				case 'detect':
 					$storeClass = $wgCacheDirectory ? 'LCStoreCDB' : 'LCStoreDB';
 					break;
@@ -404,7 +401,7 @@ class LocalisationCache {
 		$deps = $this->store->get( $code, 'deps' );
 		$keys = $this->store->get( $code, 'list' );
 		$preload = $this->store->get( $code, 'preload' );
-		// Different keys may expire separately, at least in LCStoreAccel
+		// Different keys may expire separately for some stores
 		if ( $deps === null || $keys === null || $preload === null ) {
 			wfDebug( __METHOD__ . "($code): cache missing, need to make one\n" );
 
@@ -1132,56 +1129,6 @@ interface LCStore {
 	 * @param mixed $value
 	 */
 	function set( $key, $value );
-}
-
-/**
- * LCStore implementation which uses PHP accelerator to store data.
- * This will work if one of XCache, WinCache or APC cacher is configured.
- * (See ObjectCache.php)
- */
-class LCStoreAccel implements LCStore {
-	private $currentLang;
-	private $keys;
-
-	public function __construct() {
-		$this->cache = wfGetCache( CACHE_ACCEL );
-	}
-
-	public function get( $code, $key ) {
-		$k = wfMemcKey( 'l10n', $code, 'k', $key );
-		$r = $this->cache->get( $k );
-
-		return $r === false ? null : $r;
-	}
-
-	public function startWrite( $code ) {
-		$k = wfMemcKey( 'l10n', $code, 'l' );
-		$keys = $this->cache->get( $k );
-		if ( $keys ) {
-			foreach ( $keys as $k ) {
-				$this->cache->delete( $k );
-			}
-		}
-		$this->currentLang = $code;
-		$this->keys = array();
-	}
-
-	public function finishWrite() {
-		if ( $this->currentLang ) {
-			$k = wfMemcKey( 'l10n', $this->currentLang, 'l' );
-			$this->cache->set( $k, array_keys( $this->keys ) );
-		}
-		$this->currentLang = null;
-		$this->keys = array();
-	}
-
-	public function set( $key, $value ) {
-		if ( $this->currentLang ) {
-			$k = wfMemcKey( 'l10n', $this->currentLang, 'k', $key );
-			$this->keys[$k] = true;
-			$this->cache->set( $k, $value );
-		}
-	}
 }
 
 /**
