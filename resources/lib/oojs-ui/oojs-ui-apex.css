@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (36d0c7dc3b)
+ * OOjs UI v0.1.0-pre (8ad150e4e7)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-04T00:40:40Z
+ * Date: 2014-09-05T21:30:32Z
  */
 /*
  * Blank theme mixins.
@@ -1549,7 +1549,8 @@
   left: 0;
 }
 .oo-ui-window-isolated {
-  background: transparent;
+  background-color: transparent;
+  background-image: none;
   font-family: sans-serif;
   font-size: 0.8em;
 }

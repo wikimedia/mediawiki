@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (36d0c7dc3b)
+ * OOjs UI v0.1.0-pre (8ad150e4e7)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-04T00:40:40Z
+ * Date: 2014-09-05T21:30:32Z
  */
 ( function ( OO ) {
 
@@ -1384,7 +1384,8 @@ OO.ui.Window.static.transplantStyles = function ( parentDoc, frameDoc, timeout )
 			styleText = '@import url(' + styleNode.href + ');';
 		} else {
 			// Internal stylesheet; just copy the text
-			styleText = styleNode.textContent;
+			// For IE10 we need to fall back to .cssText
+			styleText = styleNode.textContent || parentDoc.styleSheets[i].cssText;
 		}
 
 		// Create a node with a unique ID that we're going to monitor to see when the CSS
