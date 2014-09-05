@@ -386,7 +386,8 @@
 			// on links from hiding a notification.
 			.on( 'click', 'a', function ( e ) {
 				e.stopPropagation();
-			} );
+			} )
+			.hide();
 
 		// Prepend the notification area to the content area and save it's object.
 		mw.util.$content.prepend( $area );
