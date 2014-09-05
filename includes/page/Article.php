@@ -1531,9 +1531,11 @@ class Article implements Page {
 			}
 		}
 
+		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->text();
+
 		$imageUrl = $wgStylePath . '/common/images/redirect' . $imageDir . '.png';
 		return '<div class="redirectMsg">' .
-			Html::element( 'img', array( 'src' => $imageUrl, 'alt' => '#REDIRECT' ) ) .
+			Html::element( 'img', array( 'src' => $imageUrl, 'alt' => $redirectToText ) ) .
 			'<span class="redirectText">' . $link . '</span></div>';
 	}
 
