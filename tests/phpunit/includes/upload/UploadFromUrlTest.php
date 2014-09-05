@@ -110,7 +110,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->user->addGroup( 'sysop' );
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
-			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
+			'url' => 'http://upload.wikimedia.org/wikipedia/mediawiki/b/bc/Wiki.png',
 			'asyncdownload' => 1,
 			'filename' => 'UploadFromUrlTest.png',
 			'token' => $token,
@@ -182,7 +182,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',
-			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
+			'url' => 'http://upload.wikimedia.org/wikipedia/mediawiki/b/bc/Wiki.png',
 			'ignorewarnings' => true,
 			'token' => $token,
 		), $data );
@@ -213,7 +213,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->doApiRequest( array(
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',
-			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
+			'url' => 'http://upload.wikimedia.org/wikipedia/mediawiki/b/bc/Wiki.png',
 			'asyncdownload' => 1,
 			'token' => $token,
 			'leavemessage' => 1,
@@ -234,7 +234,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			$this->doApiRequest( array(
 				'action' => 'upload',
 				'filename' => 'UploadFromUrlTest.png',
-				'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
+				'url' => 'http://upload.wikimedia.org/wikipedia/mediawiki/b/bc/Wiki.png',
 				'asyncdownload' => 1,
 				'token' => $token,
 				'leavemessage' => 1,
@@ -279,7 +279,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$params = array(
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',
-			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
+			'url' => 'http://upload.wikimedia.org/wikipedia/mediawiki/b/bc/Wiki.png',
 			'asyncdownload' => 1,
 			'token' => $token,
 		);
