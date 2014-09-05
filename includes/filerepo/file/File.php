@@ -1312,16 +1312,16 @@ abstract class File {
 	 * @return ThumbnailImage
 	 */
 	function iconThumb() {
-		global $wgStylePath, $wgStyleDirectory;
+		global $wgScriptPath, $IP;
+		$assetsPath = "$wgScriptPath/assets/file-type-icons/";
+		$assetsDirectory = "$IP/assets/file-type-icons/";
 
 		$try = array( 'fileicon-' . $this->getExtension() . '.png', 'fileicon.png' );
 		foreach ( $try as $icon ) {
-			$path = '/common/images/icons/' . $icon;
-			$filepath = $wgStyleDirectory . $path;
-			if ( file_exists( $filepath ) ) { // always FS
+			if ( file_exists( $assetsDirectory . $icon ) ) { // always FS
 				$params = array( 'width' => 120, 'height' => 120 );
 
-				return new ThumbnailImage( $this, $wgStylePath . $path, false, $params );
+				return new ThumbnailImage( $this, $assetsPath . $icon, false, $params );
 			}
 		}
 
