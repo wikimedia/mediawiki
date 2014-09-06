@@ -34,12 +34,15 @@
  * For more information, please refer to <http://unlicense.org/>
  */
 
+/* global ActiveXObject: false */
+/* jshint browser: true */
+
 (function() {
     'use strict';
 
     var
     /* jStorage version */
-        JSTORAGE_VERSION = '0.4.10',
+        JSTORAGE_VERSION = '0.4.12',
 
         /* detect a dollar object or create one if not found */
         $ = window.jQuery || window.$ || (window.$ = {}),
@@ -58,7 +61,7 @@
         };
 
     // Break if no JSON support was found
-    if (!('parse' in JSON) || !('stringify' in JSON)) {
+    if (typeof JSON.parse !== 'function' || typeof JSON.stringify !== 'function') {
         throw new Error('No JSON support found, include //cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js to page');
     }
 
@@ -536,14 +539,19 @@
             return;
         }
         var pubelm,
-            _pubsubCurrent = _pubsub_last;
+            _pubsubCurrent = _pubsub_last,
+            needFired = [];
 
         for (i = len = _storage.__jstorage_meta.PubSub.length - 1; i >= 0; i--) {
             pubelm = _storage.__jstorage_meta.PubSub[i];
             if (pubelm[0] > _pubsub_last) {
                 _pubsubCurrent = pubelm[0];
-                _fireSubscribers(pubelm[1], pubelm[2]);
+                needFired.unshift(pubelm);
             }
+        }
+
+        for (i = needFired.length - 1; i >= 0; i--) {
+            _fireSubscribers(needFired[i][1], needFired[i][2]);
         }
 
         _pubsub_last = _pubsubCurrent;
@@ -653,8 +661,10 @@
         switch (l) {
             case 3:
                 h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
+                /* falls through */
             case 2:
                 h ^= (str.charCodeAt(i + 1) & 0xff) << 8;
+                /* falls through */
             case 1:
                 h ^= (str.charCodeAt(i) & 0xff);
                 h = (((h & 0xffff) * 0x5bd1e995) + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16));
