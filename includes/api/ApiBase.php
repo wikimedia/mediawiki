@@ -841,7 +841,9 @@ abstract class ApiBase extends ContextSource {
 
 			// Set a warning if a deprecated parameter has been passed
 			if ( $deprecated && $value !== false ) {
-				$this->setWarning( "The $encParamName parameter has been deprecated." );
+				// TODO only an example; I know I have to change this line
+				// because it will affect all deprecated params.
+				$this->addDeprecation( "The $encParamName parameter has been deprecated.", '1.25' );
 			}
 		} elseif ( $required ) {
 			$this->dieUsageMsg( array( 'missingparam', $paramName ) );
@@ -1115,9 +1117,23 @@ abstract class ApiBase extends ContextSource {
 	 * section to notice any changes in API. Multiple calls to this
 	 * function will result in the warning messages being separated by
 	 * newlines
+	 *
+	 * @deprecated prefer addWarning( $warning ); instead
 	 * @param string $warning Warning message
 	 */
 	public function setWarning( $warning ) {
+		$this-addWarning( $warning );
+	}
+
+	/**
+	 * Add warning section for this module. Users should monitor this
+	 * section to notice any changes in API. Multiple calls to this
+	 * function will result in the warning messages being separated by
+	 * newlines
+	 *
+	 * @param string $warning Warning message
+	 */
+	public function addWarning( $warning ) {
 		$result = $this->getResult();
 		$data = $result->getData();
 		$moduleName = $this->getModuleName();
@@ -1140,6 +1156,22 @@ abstract class ApiBase extends ContextSource {
 		ApiResult::setContent( $msg, $warning );
 		$result->addValue( 'warnings', $moduleName,
 			$msg, ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
+	}
+	/**
+	 * Adds a deprecation warning, with more detail informations
+	 * how to handle this.
+	 *
+	 * @param string $warning Warning message
+	 * @param string $willBeChangedWithVersion future version, that will be affected by this deprecation
+	 */
+	public function addDeprecation( $warning, $willBeChangedWithVersion, $urlToDetails = "") {
+		if ( $urlToDetails != "" ) {
+			$urlDetails = " @SeeAlso: " . $urlToDetails;
+		} else {
+			$urlDetails = "";
+		}
+
+		$this->addWarning( $warning . " (will be removed with " . $willBeChangedWithVersion . $urlDetails . ")" );
 	}
 
 	/**
