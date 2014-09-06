@@ -2097,22 +2097,31 @@ class EditPage {
 	 * Show all applicable editing introductions
 	 */
 	protected function showIntro() {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgUseSiteJs, $wgUseSiteCss;
 		if ( $this->suppressIntro ) {
 			return;
 		}
 
 		$namespace = $this->mTitle->getNamespace();
+		$title = $this->mTitle;
 
 		if ( $namespace == NS_MEDIAWIKI ) {
-			# Show a warning if editing an interface message
-			$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
-			# If this is a default message (but not css or js),
-			# show a hint that it is translatable on translatewiki.net
-			if ( !$this->mTitle->hasContentModel( CONTENT_MODEL_CSS )
-				&& !$this->mTitle->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
-			) {
-				$defaultMessageText = $this->mTitle->getDefaultMessageText();
+			# Show a warning if editing an site css or js page
+			if ( $title->isCssOrJsPage() ) { // Runs a hook
+				if ( $title->hasContentModel( CONTENT_MODEL_CSS ) && $wgUseSiteCss ) {
+					$wgOut->wrapWikiMsg( "<div class='mw-editingsitecss'>\n$1\n</div>",
+						'editingsitecss' );
+				} elseif ( $title->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) && $wgUseSiteJs ) {
+					$wgOut->wrapWikiMsg( "<div class='mw-editingsitejs'>\n$1\n</div>",
+						'editingsitejs' );
+				}
+			} else {
+				# Show a warning if editing an interface message
+				$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>",
+					'editinginterface' );
+				# If this is a default message,
+				# show a hint that it is translatable on translatewiki.net
+				$defaultMessageText = $title->getDefaultMessageText();
 				if ( $defaultMessageText !== false ) {
 					$wgOut->wrapWikiMsg( "<div class='mw-translateinterface'>\n$1\n</div>",
 						'translateinterface' );
