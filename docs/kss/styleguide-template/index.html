@@ -23,7 +23,23 @@
 			<ul>
 				<li><a href="index.html"><span>0.0</span> Overview</a></li>
 				{{#eachRoot}}
-					<li><a href="section-{{reference}}.html"><span>{{reference}}.0</span> {{header}}</a></li>
+					<li>
+						<a href="section-{{ reference }}.html">
+							<span>{{ reference }}.0</span> {{ header }}
+						</a>
+						<ul>
+						{{#eachSection reference}}
+							{{#whenDepth  2}}
+								<li>
+									<a href="#section-{{ reference }}">
+										<span>{{ reference }}</span>
+										{{ header }}
+									</a>
+								</li>
+							{{/whenDepth}}
+						{{/eachSection}}
+						</ul>
+					</li>
 				{{/eachRoot}}
 			</ul>
 		</nav>
@@ -38,6 +54,7 @@
 						<h1>{{ reference }}.0 {{ header }}</h1>
 					{{else}}
 						{{#whenDepth 2}}
+						<a name="section-{{ reference }}"></a>
 						<h2>{{ reference }} {{ header }}</h2>
 						{{/whenDepth}}
 						{{#whenDepth 3}}
