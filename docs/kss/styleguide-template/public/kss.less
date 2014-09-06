@@ -60,6 +60,7 @@ nav {
 	flex: initial;
 	min-width: 139px;
 	margin-top: 25px;
+	position: fixed;
 
 	ul {
 		list-style: none;
@@ -76,7 +77,8 @@ nav {
 				font-weight: bold;
 				text-decoration: none;
 
-				&:hover {
+				&:hover,
+				&.active {
 					color: #538DF8;
 				}
 
@@ -166,7 +168,7 @@ nav {
 	}
 
 	#content {
-		margin-left: 30px;
+		margin-left: 185px;
 	}
 
 	.container {
