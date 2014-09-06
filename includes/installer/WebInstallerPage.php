@@ -796,6 +796,9 @@ class WebInstallerName extends WebInstallerPage {
 			) ) .
 			$this->parent->getTextBox( array(
 				'var' => '_AdminEmail',
+				'attribs' => array(
+					'dir' => 'ltr',
+				),
 				'label' => 'config-admin-email',
 				'help' => $this->parent->getHelpBox( 'config-admin-email-help' )
 			) ) .
