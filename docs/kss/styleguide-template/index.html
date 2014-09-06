@@ -27,7 +27,8 @@
 						<a href="section-{{ reference }}.html">
 							<span>{{ reference }}.0</span> {{ header }}
 						</a>
-						<ul>
+
+						<ul class="subsection" id="subsection-{{reference}}">
 						{{#eachSection reference}}
 							{{#whenDepth  2}}
 								<li>
@@ -44,7 +45,7 @@
 			</ul>
 		</nav>
 
-		<div class="content">
+		<div id="content" class="section-{{rootNumber}}">
 			{{#if overview}}
 				{{html overview}}
 			{{else}}
@@ -82,5 +83,9 @@
 			{{/if}}
 		</div>
 	</div>
-</div></body>
+</div>
+
+<script src="public/kss.js"></script>
+
+</body>
 </html>
