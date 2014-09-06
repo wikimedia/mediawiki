@@ -486,7 +486,7 @@ html > body.rtl div#article ul {
 }
 
 /* @noflip */
-html > body.rtl .mw-body ul#filetoc {
+html > body.rtl .mw-body-content ul#filetoc {
 	display: block;
 }
 
