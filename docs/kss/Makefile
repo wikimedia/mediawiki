@@ -4,7 +4,9 @@ kss: kssnodecheck
 # Generates CSS of mediawiki.ui and mediawiki.ui.button using ResourceLoader, then applies it to the
 # KSS style guide
 	$(eval KSS_RL_TMP := $(shell mktemp /tmp/tmp.XXXXXXXXXX))
-	@curl -sG "${MEDIAWIKI_LOAD_URL}?modules=mediawiki.ui.anchor|mediawiki.ui.checkbox|mediawiki.ui.input|mediawiki.legacy.shared|mediawiki.legacy.commonPrint|mediawiki.ui|mediawiki.ui.button&only=styles" > $(KSS_RL_TMP)
+# Keep module names in strict alphabetical order, so CSS loads in the same order as ResourceLoader's addModuleStyles does; this can affect rendering.
+# See OutputPage::makeResourceLoaderLink.
+	@curl -sG "${MEDIAWIKI_LOAD_URL}?modules=mediawiki.legacy.commonPrint|mediawiki.legacy.shared|mediawiki.ui|mediawiki.ui.anchor|mediawiki.ui.button|mediawiki.ui.checkbox|mediawiki.ui.input&only=styles" > $(KSS_RL_TMP)
 	@node_modules/.bin/kss-node ../../resources/src/mediawiki.ui static/ --css $(KSS_RL_TMP) -t styleguide-template
 	@rm $(KSS_RL_TMP)
 
