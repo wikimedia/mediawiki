@@ -123,6 +123,17 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function testRecentChangesLine_Tags() {
+		$recentChange = $this->getEditChange();
+		$recentChange->mAttribs['ts_tags'] = 'vandalism,newbie';
+
+		$oldChangesList = $this->getOldChangesList();
+		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
+
+		$this->assertRegExp( '/<li class="[\w\s-]*mw-tag-vandalism[\w\s-]*">/', $line );
+		$this->assertRegExp( '/<li class="[\w\s-]*mw-tag-newbie[\w\s-]*">/', $line );
+	}
+
 	private function getNewBotEditChange() {
 		$user = $this->getTestUser();
 
