@@ -38,29 +38,29 @@ a.new:visited, #p-personal a.new:visited {
 }
 
 /* Interwiki Styling */
-.mw-body a.extiw,
-.mw-body a.extiw:active {
+.mw-body-content a.extiw,
+.mw-body-content a.extiw:active {
 	color: #36b;
 }
 
-.mw-body a.extiw:visited {
+.mw-body-content a.extiw:visited {
 	color: #636;
 }
 
-.mw-body a.extiw:active {
+.mw-body-content a.extiw:active {
 	color: #b63;
 }
 
 /* External links */
-.mw-body a.external {
+.mw-body-content a.external {
 	color: #36b;
 }
 
-.mw-body a.external:visited {
+.mw-body-content a.external:visited {
 	color: #636; /* bug 3112 */
 }
 
-.mw-body a.external:active {
+.mw-body-content a.external:active {
 	color: #b63;
 }
 
