@@ -146,7 +146,7 @@ production.
   Special:PageLanguage. All pages are set to wiki language by default.
   The feature needs to be enabled with $wgPageLanguageUseDB=true and
   permission needs to be set for 'pagelang'.
-* Upgrade Moment.js to v2.8.1.
+* Upgrade Moment.js to v2.8.3.
 * (bug 67042) Added support for the HTML5 <rtc> tag for East Asian typography.
 * Upgrade Sinon.JS to 1.10.3.
 * Added the es5-shim polyfill for older or non-compliant javascript engines.
