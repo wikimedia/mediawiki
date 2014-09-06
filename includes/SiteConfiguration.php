@@ -532,7 +532,7 @@ class SiteConfiguration {
 			if ( isset( $this->cfgCache[$wiki] ) ) {
 				$res = array_intersect_key( $this->cfgCache[$wiki], array_flip( $settings ) );
 				if ( count( $res ) == count( $settings ) ) {
-					return $res; // cache hit
+					return $multi ? $res : current( $res ); // cache hit
 				}
 			} elseif ( !in_array( $wiki, $this->wikis ) ) {
 				throw new MWException( "No such wiki '$wiki'." );
