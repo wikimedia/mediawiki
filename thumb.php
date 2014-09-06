@@ -49,9 +49,7 @@ $factory->shutdown();
  * @return void
  */
 function wfThumbHandleRequest() {
-	$params = get_magic_quotes_gpc()
-		? array_map( 'stripslashes', $_GET )
-		: $_GET;
+	$params = $_GET;
 
 	wfStreamThumb( $params ); // stream the thumbnail
 }

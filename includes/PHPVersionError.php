@@ -40,7 +40,7 @@
  */
 function wfPHPVersionError( $type ) {
 	$mwVersion = '1.24';
-	$minimumVersionPHP = '5.3.2';
+	$minimumVersionPHP = '5.4.0';
 
 	$phpVersion = PHP_VERSION;
 	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
@@ -101,7 +101,7 @@ function wfPHPVersionError( $type ) {
 		</p>
 		<p>
 			Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
-			PHP versions less than 5.3.0 are no longer supported by the PHP Group and will not receive
+			PHP versions less than 5.4.0 are no longer supported by the PHP Group and will not receive
 			security or bugfix updates.
 		</p>
 		<p>

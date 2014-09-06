@@ -57,10 +57,6 @@ class WebRequest {
 	protected $protocol;
 
 	public function __construct() {
-		if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
-			throw new MWException( "MediaWiki does not function when magic quotes are enabled." );
-		}
-
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
 		$this->data = $_POST + $_GET;
