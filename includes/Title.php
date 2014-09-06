@@ -3748,7 +3748,7 @@ class Title {
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
-		global $wgUser;
+		global $wgUser, $wgCategoryCollation;
 		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if ( is_array( $err ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
@@ -3787,12 +3787,21 @@ class Title {
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
 		// cl_timestamp, which may disturb time-based lists on some sites.
+		// @todo This block should be killed, it's duplicating code
+		// from LinksUpdate::getCategoryInsertions() and friends.
 		$prefixes = $dbw->select(
 			'categorylinks',
 			array( 'cl_sortkey_prefix', 'cl_to' ),
 			array( 'cl_from' => $pageid ),
 			__METHOD__
 		);
+		if ( $nt->getNamespace() == NS_CATEGORY ) {
+			$type = 'subcat';
+		} elseif ( $nt->getNamespace() == NS_FILE ) {
+			$type = 'file';
+		} else {
+			$type = 'page';
+		}
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
@@ -3800,6 +3809,8 @@ class Title {
 				array(
 					'cl_sortkey' => Collation::singleton()->getSortKey(
 						$nt->getCategorySortkey( $prefix ) ),
+					'cl_collation' => $wgCategoryCollation,
+					'cl_type' => $type,
 					'cl_timestamp=cl_timestamp' ),
 				array(
 					'cl_from' => $pageid,
