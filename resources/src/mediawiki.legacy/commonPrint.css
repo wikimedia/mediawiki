@@ -171,14 +171,14 @@ a:link, a:visited {
 }
 
 /* Expand URLs for printing */
-.mw-body a.external.text:after,
-.mw-body a.external.autonumber:after {
+.mw-body-content a.external.text:after,
+.mw-body-content a.external.autonumber:after {
 	content: " (" attr(href) ")";
 }
 
 /* Expand protocol-relative URLs for printing */
-.mw-body a.external.text[href^='//']:after,
-.mw-body a.external.autonumber[href^='//']:after {
+.mw-body-content a.external.text[href^='//']:after,
+.mw-body-content a.external.autonumber[href^='//']:after {
 	content: " (https:" attr(href) ")";
 }
 
