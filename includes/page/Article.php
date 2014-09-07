@@ -1466,10 +1466,11 @@ class Article implements Page {
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		$lang = $this->getTitle()->getPageLanguage();
+		$out = $this->getContext()->getOutput();
 		if ( $appendSubtitle ) {
-			$out = $this->getContext()->getOutput();
 			$out->addSubtitle( wfMessage( 'redirectpagesub' )->parse() );
 		}
+		$out->addModuleStyles( 'mediawiki.action.view.redirectPage' );
 		return static::getRedirectHeaderHtml( $lang, $target, $forceKnown );
 	}
 
@@ -1486,57 +1487,30 @@ class Article implements Page {
 	 * @return string Containing HTML with redirect link
 	 */
 	public static function getRedirectHeaderHtml( Language $lang, $target, $forceKnown = false ) {
-		global $wgStylePath;
-
 		if ( !is_array( $target ) ) {
 			$target = array( $target );
 		}
 
-		$imageDir = $lang->getDir();
-
-		// the loop prepends the arrow image before the link, so the first case needs to be outside
-
-		/** @var $title Title */
-		$title = array_shift( $target );
-
-		if ( $forceKnown ) {
-			$link = Linker::linkKnown( $title, htmlspecialchars( $title->getFullText() ) );
-		} else {
-			$link = Linker::link( $title, htmlspecialchars( $title->getFullText() ) );
-		}
-
-		$nextRedirect = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
-		$alt = $lang->isRTL() ? '←' : '→';
-
-		// Automatically append redirect=no to each link, since most of them are
-		// redirect pages themselves.
-		/** @var Title $rt */
-		foreach ( $target as $rt ) {
-			$link .= Html::element( 'img', array( 'src' => $nextRedirect, 'alt' => $alt ) );
-			if ( $forceKnown ) {
-				$link .= Linker::linkKnown(
-					$rt,
-					htmlspecialchars( $rt->getFullText(),
-					array(),
-					array( 'redirect' => 'no' )
-				)
-				);
-			} else {
-				$link .= Linker::link(
-					$rt,
-					htmlspecialchars( $rt->getFullText() ),
-					array(),
-					array( 'redirect' => 'no' )
-				);
-			}
+		$html = '<ul class="redirectText">';
+		/** @var Title $title */
+		foreach ( $target as $title ) {
+			$html .= '<li>' . Linker::link(
+				$title,
+				htmlspecialchars( $title->getFullText() ),
+				array(),
+				// Automatically append redirect=no to each link, since most of them are
+				// redirect pages themselves.
+				array( 'redirect' => 'no' ),
+				( $forceKnown ? array( 'known', 'noclasses' ) : array() )
+			) . '</li>';
 		}
 
 		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->text();
 
-		$imageUrl = $wgStylePath . '/common/images/redirect' . $imageDir . '.png';
 		return '<div class="redirectMsg">' .
-			Html::element( 'img', array( 'src' => $imageUrl, 'alt' => $redirectToText ) ) .
-			'<span class="redirectText">' . $link . '</span></div>';
+			'<p>' . $redirectToText . '</p>' .
+			$html .
+			'</div>';
 	}
 
 	/**
