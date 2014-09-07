@@ -72,7 +72,7 @@ if ( !function_exists( 'session_name' ) ) {
 		</style>
 	</head>
 	<body>
-		<img src="<?php echo htmlspecialchars( $path ) ?>skins/common/images/mediawiki.png" alt='The MediaWiki logo' />
+		<img src="<?php echo htmlspecialchars( $path ) ?>assets/mediawiki.png" alt='The MediaWiki logo' />
 
 		<h1>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></h1>
 		<div class='error'>

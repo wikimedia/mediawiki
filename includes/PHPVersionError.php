@@ -60,7 +60,7 @@ function wfPHPVersionError( $type ) {
 		}
 		$encLogo = htmlspecialchars(
 			str_replace( '//', '/', $dirname . '/' ) .
-			'skins/common/images/mediawiki.png'
+			'assets/mediawiki.png'
 		);
 
 		header( "$protocol 500 MediaWiki configuration Error" );
