@@ -3877,6 +3877,12 @@ $wgMaxPPExpandDepth = 40;
 
 /**
  * URL schemes that should be recognized as valid by wfParseUrl().
+ *
+ * WARNING: Do not add 'file:' to this or internal file links will be broken.
+ * Instead, if you want to support file links, add 'file://'. The same applies
+ * to any other protocols with the same name as a namespace. See bug #44011 for
+ * more information.
+ *
  * @see wfParseUrl
  */
 $wgUrlProtocols = array(
