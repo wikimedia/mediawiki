@@ -333,6 +333,8 @@
 	"config-install-stats": "Iniciando las estadísticas",
 	"config-install-keys": "Generando claves secretas",
 	"config-insecure-keys": "''' Atención:'' '  {{PLURAL:$2|Una clave de seguridad generada|Las claves de seguridad generadas}} ($1) durante la instalación no  {{PLURAL:$2|es totalmente segura|son totalmente seguras}}. Considere {{PLURAL:$2| cambiarla|cambiarlas}} manualmente.",
+	"config-install-updates": "Evitar ejecutar actualizaciones innecesarias",
+	"config-install-updates-failed": "<strong>Error:</strong> falló la inserción de claves de actualización en las tablas con el siguiente error: $1",
 	"config-install-sysop": "Creando la cuenta de usuario del administrador",
 	"config-install-subscribe-fail": "No se ha podido suscribir a mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL no está instalado y <code>allow_url_fopen</code> no está disponible.",

@@ -455,6 +455,7 @@
 	"createaccount-text": "Nekdo je ustvaril račun $2 na {{GRAMMAR:dajalnik|{{SITENAME}}}} ($4). Geslo za »$2« je »$3«. Priporočljivo je, da se prijavite in spremenite svoje geslo sedaj.\n\nTo sporočilo lahko prezrete, če je bil račun ustvarjen pomotoma.",
 	"login-throttled": "Nedavno ste izvedli preveč poskusov prijave.\nProsimo, počakajte $1, preden poskusite znova.",
 	"login-abort-generic": "Vaša prijava ni bila uspešna – Prekinjeno",
+	"login-migrated-generic": "Vaš račun smo preselili in vaše uporabniško ime na tem wikiju ne obstaja več.",
 	"loginlanguagelabel": "Jezik: $1",
 	"suspicious-userlogout": "Vaša zahteva za odjavo je bila zavrnjena, saj kaže, da je bila poslana iz pokvarjenega brskalnika ali proxyja s predpomnilnikom.",
 	"createacct-another-realname-tip": "Pravo ime ni obvezno.\nČe se ga odločite navesti, bo uporabljeno za priznavanje uporabnikovega dela.",

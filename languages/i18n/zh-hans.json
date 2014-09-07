@@ -197,7 +197,7 @@
 	"subcategories": "子分类",
 	"category-media-header": "分类“$1”中的媒体文件",
 	"category-empty": "<em>本分类目前没有包含页面或媒体文件。</em>",
-	"hidden-categories": "{{PLURAL:$1|个隐藏分类}}",
+	"hidden-categories": "{{PLURAL:$1|隐藏分类}}",
 	"hidden-category-category": "隐藏分类",
 	"category-subcat-count": "{{PLURAL:$2|本分类只有以下子分类。|本分类有以下$1个子分类，共有$2个子分类。}}",
 	"category-subcat-count-limited": "本分类有以下{{PLURAL:$1|子分类|$1个子分类}}。",

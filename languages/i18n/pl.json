@@ -513,6 +513,7 @@
 	"createaccount-text": "Ktoś utworzył w {{GRAMMAR:MS.lp|{{SITENAME}}}} ($4), podając Twój adres e‐mail, konto „$2”. Aktualnym hasłem jest „$3”.\nZaloguj się teraz i je zmień.\n\nMożesz zignorować tę wiadomość, jeśli konto zostało utworzone przez pomyłkę.",
 	"login-throttled": "Zbyt wiele razy próbowałeś zalogować się na to konto.\nOdczekaj $1 zanim ponowisz próbę.",
 	"login-abort-generic": "Logowanie nieudane – przerwano",
+	"login-migrated-generic": "Twoje konto zostało poddane migracji i twoja nazwa użytkownika już nie istnieje na tej wiki.",
 	"loginlanguagelabel": "Język: $1",
 	"suspicious-userlogout": "Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.",
 	"createacct-another-realname-tip": "Wpisanie imienia i nazwiska nie jest obowiązkowe.\nJeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.",

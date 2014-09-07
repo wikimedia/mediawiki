@@ -278,6 +278,7 @@
 	"otherlanguages": "In anderen Sprachen",
 	"redirectedfrom": "(Weitergeleitet von $1)",
 	"redirectpagesub": "Weiterleitung",
+	"redirectto": "Weiterleitung nach:",
 	"lastmodifiedat": "Diese Seite wurde zuletzt am $1 um $2 Uhr geändert.",
 	"viewcount": "Diese Seite wurde bisher {{PLURAL:$1|einmal|$1 mal}} abgerufen.",
 	"protectedpage": "Geschützte Seite",
