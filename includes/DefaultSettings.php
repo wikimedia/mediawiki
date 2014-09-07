@@ -3291,10 +3291,7 @@ $wgResourceModuleSkinStyles = array();
  *
  * @par Example:
  * @code
- *   $wgResourceLoaderSources['foo'] = array(
- *       'loadScript' => 'http://example.org/w/load.php',
- *       'apiScript' => 'http://example.org/w/api.php'
- *   );
+ *   $wgResourceLoaderSources['foo'] = 'http://example.org/w/load.php';
  * @endcode
  */
 $wgResourceLoaderSources = array();

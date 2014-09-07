@@ -32,9 +32,7 @@
 
 	mw.loader.addSource(
 		'testloader',
-		{
-			loadScript: QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php' )
-		}
+		QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php' )
 	);
 
 	QUnit.test( 'Initial check', 8, function ( assert ) {

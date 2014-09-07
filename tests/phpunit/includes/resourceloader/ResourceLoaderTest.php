@@ -161,6 +161,43 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		);
 	}
 
+	public static function provideAddSource() {
+		return array(
+			array( 'examplewiki', '//example.org/w/load.php', 'examplewiki' ),
+			array( 'example2wiki', array( 'loadScript' => '//example.com/w/load.php' ), 'example2wiki' ),
+			array(
+				array( 'foowiki' => '//foo.org/w/load.php', 'bazwiki' => '//baz.org/w/load.php' ),
+				null,
+				array( 'foowiki', 'bazwiki' )
+			),
+			array(
+				array( 'foowiki' => '//foo.org/w/load.php' ),
+				null,
+				false,
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideAddSource
+	 * @covers ResourceLoader::addSource
+	 */
+	public function testAddSource( $name, $info, $expected ) {
+		$rl = new ResourceLoader;
+		if ( $expected === false ) {
+			$this->setExpectedException( 'MWException', 'ResourceLoader duplicate source addition error' );
+			$rl->addSource( $name, $info );
+		}
+		$rl->addSource( $name, $info );
+		if ( is_array( $expected ) ) {
+			foreach ( $expected as $source ) {
+				$this->assertArrayHasKey( $source, $rl->getSources() );
+			}
+		} else {
+			$this->assertArrayHasKey( $expected, $rl->getSources() );
+		}
+	}
+
 	public static function fakeSources() {
 		return array(
 			'examplewiki' => array(
