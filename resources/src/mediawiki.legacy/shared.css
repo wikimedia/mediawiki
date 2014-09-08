@@ -33,6 +33,10 @@
 	direction: rtl;
 }
 
+.mw-userlink {
+	unicode-bidi: embed;
+}
+
 /* User-Agent styles for new HTML5 elements */
 mark {
 	background-color: yellow;
