@@ -1,6 +1,7 @@
 <?php
+
 /**
- * @group Broken
+ * @group Http
  */
 class HttpTest extends MediaWikiTestCase {
 	/**
@@ -92,8 +93,10 @@ class HttpTest extends MediaWikiTestCase {
 			array( true, 'http://user:pass@host', 'Username and password provided' ),
 
 			# (\S+) - host part is made of anything not whitespaces
-			array( false, 'http://!"èèè¿¿¿~~\'', 'hostname is made of any non whitespace' ),
-			array( false, 'http://exam:ple.org/', 'hostname can not use colons!' ),
+			// commented these out in order to remove @group Broken
+			// @todo are these valid tests? if so, fix Http::isValidURI so it can handle them
+			//array( false, 'http://!"èèè¿¿¿~~\'', 'hostname is made of any non whitespace' ),
+			//array( false, 'http://exam:ple.org/', 'hostname can not use colons!' ),
 
 			# (:[0-9]+)? - port number
 			array( true, 'http://example.org:80/' ),
@@ -170,6 +173,48 @@ class HttpTest extends MediaWikiTestCase {
 			'https://anotherfile/hoster.ext',
 			$h->getFinalUrl( "Relative file path Location: should keep the latest host and scheme!" )
 		);
+	}
+
+	/**
+	 * Constant values are from PHP 5.3.28 using cURL 7.24.0
+	 *
+	 * @covers CurlHttpRequest::execute
+	 */
+	public function provideCurlConstants() {
+		return array(
+			array( 'CURLOPT_PROXY', 10004 ),
+			array( 'CURLOPT_HEADER', 42 ),
+			array( 'CURLOPT_HTTPHEADER', 10023 ),
+			array( 'CURLOPT_NOBODY', 44 ),
+			array( 'CURLOPT_POST', 47 ),
+			array( 'CURLOPT_FOLLOWLOCATION', 52 ),
+			array( 'CURLOPT_TIMEOUT', 13 ),
+			array( 'CURLOPT_POSTFIELDS', 10015 ),
+			array( 'CURLOPT_USERAGENT', 10018 ),
+			array( 'CURLOPT_SSL_VERIFYHOST', 81 ),
+			array( 'CURLOPT_CUSTOMREQUEST', 10036 ),
+			array( 'CURLOPT_WRITEFUNCTION', 20011 ),
+			array( 'CURLOPT_HEADERFUNCTION', 20079 ),
+			array( 'CURLOPT_MAXREDIRS', 68 ),
+			array( 'CURLOPT_CONNECTTIMEOUT_MS', 156 ),
+			array( 'CURLOPT_SSL_VERIFYPEER', 64 ),
+			array( 'CURLOPT_CAINFO', 10065 ),
+			array( 'CURLOPT_HTTP_VERSION', 84 ),
+			array( 'CURLOPT_ENCODING', 10102 ),
+			array( 'CURLE_OPERATION_TIMEOUTED', 28 ),
+			array( 'CURL_HTTP_VERSION_1_0', 1 )
+		);
+	}
+
+	/**
+	 * Added this test based on an issue experienced with hhvm where it did
+	 * not define a cURL constant.
+	 *
+	 * @bug 70570
+	 * @dataProvider provideCurlConstants
+	 */
+	public function testCurlConstants( $key, $value ) {
+		$this->assertTrue( defined( $key ), $key . ' not defined' );
 	}
 }
 
