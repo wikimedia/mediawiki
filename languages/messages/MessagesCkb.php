@@ -173,3 +173,4 @@ $dateFormats = array(
 	'hijri both' => '‏H:i، xmjی xmFی xmY',
 );
 
+$linkTrail = "/^([ئابپتجچحخدرڕزژسشعغفڤقکگلڵمنوۆهھەیێ‌]+)(.*)$/sDu";
