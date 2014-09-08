@@ -115,6 +115,14 @@ class CategoryFinder {
 	}
 
 	/**
+	 * Get the parents. Only really useful if run() has been called already
+	 * @return array
+	 */
+	public function getParents() {
+		return $this->parents;
+	}
+
+	/**
 	 * This functions recurses through the parent representation, trying to match the conditions
 	 * @param int $id The article/category to check
 	 * @param array $conds The array of categories to match
