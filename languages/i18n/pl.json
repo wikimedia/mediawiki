@@ -269,6 +269,7 @@
 	"otherlanguages": "W innych językach",
 	"redirectedfrom": "(Przekierowano z $1)",
 	"redirectpagesub": "Strona przekierowująca",
+	"redirectto": "Przekierowanie do:",
 	"lastmodifiedat": "Tę stronę ostatnio zmodyfikowano o $2, $1.",
 	"viewcount": "Tę stronę obejrzano {{PLURAL:$1|tylko raz|$1 razy}}.",
 	"protectedpage": "Strona zabezpieczona",

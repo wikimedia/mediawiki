@@ -226,6 +226,7 @@
 	"otherlanguages": "În alte limbi",
 	"redirectedfrom": "(Redirecționat de la $1)",
 	"redirectpagesub": "Pagină de redirecționare",
+	"redirectto": "Redirecționare către:",
 	"lastmodifiedat": "Ultima modificare efectuată la $2, $1.",
 	"viewcount": "Pagina a fost vizitată {{PLURAL:$1|o dată|de $1 ori|de $1 de ori}}.",
 	"protectedpage": "Pagină protejată",

@@ -228,6 +228,7 @@
 	"otherlanguages": "V jiných jazycích",
 	"redirectedfrom": "(Přesměrováno z $1)",
 	"redirectpagesub": "Přesměrování",
+	"redirectto": "Přesměrování na:",
 	"lastmodifiedat": "Stránka byla naposledy editována $1 v $2.",
 	"viewcount": "Stránka byla zobrazena {{PLURAL:$1|jedenkrát|$1krát|$1krát}}.",
 	"protectedpage": "Zamčená stránka",
