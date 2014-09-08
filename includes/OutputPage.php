@@ -2769,7 +2769,10 @@ $templates
 				);
 				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 
-				// Extract modules that know they're empty
+
+				// Extract modules that know they're empty and see if we have one or more
+				// raw modules
+				$isRaw = false;
 				foreach ( $grpModules as $key => $module ) {
 					// Inline empty modules: since they're empty, just mark them as 'ready' (bug 46857)
 					// If we're only getting the styles, we don't need to do anything for empty modules.
@@ -2779,6 +2782,8 @@ $templates
 							$links['states'][$key] = 'ready';
 						}
 					}
+
+					$isRaw |= $module->isRaw();
 				}
 
 				// If there are no non-empty modules, skip this group
@@ -2845,6 +2850,17 @@ $templates
 						);
 					} else {
 						$link = Html::linkedScript( $url );
+						if ( $context->getOnly() === 'scripts' && !$context->getRaw() && !$isRaw ) {
+							// Wrap only=script requests in a conditional as browsers not supported
+							// by the startup module would unconditionally execute this module.
+							// Otherwise users will get "ReferenceError: mw is undefined" or
+							// "jQuery is undefined" from e.g. a "site" module.
+							$link = Html::inlineScript(
+								ResourceLoader::makeLoaderConditionalScript(
+									Xml::encodeJsCall( 'document.write', array( $link ) )
+								)
+							);
+						}
 
 						// For modules requested directly in the html via <link> or <script>,
 						// tell mw.loader they are being loading to prevent duplicate requests.
