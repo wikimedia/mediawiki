@@ -156,7 +156,7 @@ class TitleCleanup extends TableCleanup {
 
 			$clean = 'Broken/' . $prior;
 			$verified = Title::makeTitleSafe( $ns, $clean );
-			if ( $verified->exists() ) {
+			if ( !$verified || $verified->exists() ) {
 				$blah = "Broken/id:" . $row->page_id;
 				$this->output( "Couldn't legalize; form '$clean' exists; using '$blah'\n" );
 				$verified = Title::makeTitleSafe( $ns, $blah );
