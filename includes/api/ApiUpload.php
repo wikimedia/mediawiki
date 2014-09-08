@@ -241,6 +241,7 @@ class ApiUpload extends ApiBase {
 					)
 				) );
 				$result['result'] = 'Poll';
+				$result['stage'] = 'queued';
 			} else {
 				$status = $this->mUpload->concatenateChunks();
 				if ( !$status->isGood() ) {
@@ -631,6 +632,7 @@ class ApiUpload extends ApiBase {
 				)
 			) );
 			$result['result'] = 'Poll';
+			$result['stage'] = 'queued';
 		} else {
 			/** @var $status Status */
 			$status = $this->mUpload->performUpload( $this->mParams['comment'],
