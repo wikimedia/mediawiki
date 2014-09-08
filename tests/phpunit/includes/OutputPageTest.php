@@ -141,7 +141,15 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Load module script only
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=fallback&amp;*"></script>
+				'<script>if(window.mw){
+document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only=scripts\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script>
+'
+			),
+			array(
+				// Don't condition wrap raw modules (like the startup module)
+				array( 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ),
+				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback&amp;*"></script>
 '
 			),
 			// Load module styles only
@@ -152,14 +160,10 @@ class OutputPageTest extends MediaWikiTestCase {
 '
 			),
 			// Load private module (only=scripts)
-			// This is asserted for completion (would get two condition wrappers),
-			// though in practice we'd never embed a module with only=scripts,
-			// that mode is reserved for hardcoded requests. Embedded modules
-			// would always be combined.
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
 				'<script>if(window.mw){
-if(window.mw){mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});}
+mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});
 
 }</script>
 '
@@ -244,17 +248,21 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',
 			)),
+			'test.raw' => new ResourceLoaderTestModule( array(
+				'script' => 'mw.test.baz( { token: 123 } );',
+				'isRaw' => true,
+			)),
 			'test.noscript' => new ResourceLoaderTestModule( array(
 				'styles' => '.mw-test-noscript { content: "style"; }',
 				'group' => 'noscript',
 			)),
 			'test.group.bar' => new ResourceLoaderTestModule( array(
-					'styles' => '.mw-group-bar { content: "style"; }',
-					'group' => 'bar',
+				'styles' => '.mw-group-bar { content: "style"; }',
+				'group' => 'bar',
 			)),
 			'test.group.foo' => new ResourceLoaderTestModule( array(
-					'styles' => '.mw-group-foo { content: "style"; }',
-					'group' => 'foo',
+				'styles' => '.mw-group-foo { content: "style"; }',
+				'group' => 'foo',
 			)),
 		) );
 		$links = $method->invokeArgs( $out, $args );
