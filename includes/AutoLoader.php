@@ -219,6 +219,7 @@ $wgAutoloadLocalClasses = array(
 	# includes/api
 	'ApiBase' => 'includes/api/ApiBase.php',
 	'ApiBlock' => 'includes/api/ApiBlock.php',
+	'ApiClearHasMsg' => 'includes/api/ApiClearHasMsg.php',
 	'ApiComparePages' => 'includes/api/ApiComparePages.php',
 	'ApiCreateAccount' => 'includes/api/ApiCreateAccount.php',
 	'ApiDelete' => 'includes/api/ApiDelete.php',
