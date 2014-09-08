@@ -162,6 +162,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$this->assertEquals( "DROP INDEX foo -- dropping index",
 			$this->replaceVars( "DROP INDEX /*i*/foo ON /*_*/bar -- dropping index" )
 		);
+		$this->assertEquals( "INSERT OR IGNORE INTO foo VALUES ('bar')",
+			$this->replaceVars( "INSERT OR IGNORE INTO foo VALUES ('bar')" )
+		);
 	}
 
 	/**
