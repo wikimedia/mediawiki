@@ -2513,6 +2513,7 @@
 	"logentry-newusers-byemail": "ھەژماری بەکارھێنەریی $3 لە لایەن $1 {{GENDER:$2|دروست کرا}} و تێپەڕوشە بە ئیمەیل نێردرا",
 	"logentry-newusers-autocreate": "ھەژماری بەکارھێنەریی $1 بە شێوەی خۆگەڕ {{GENDER:$2|دروست کرا}}",
 	"logentry-rights-rights": "$1 ئەندامێتیی $3ی لە $4 بۆ $5 {{GENDER:$2|گۆڕی}}",
+	"logentry-upload-upload": "$1 $3ی {{GENDER:$2|بار کرد}}",
 	"rightsnone": "(ھیچ)",
 	"feedback-subject": "بابەت:",
 	"feedback-message": "پەیام:",
