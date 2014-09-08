@@ -20,7 +20,7 @@
 -- table prefix if any when running these scripts.
 --
 
-INSERT INTO /*_*/updatelog
+INSERT IGNORE INTO /*_*/updatelog
 	SELECT 'filearchive-fa_major_mime-patch-fa_major_mime-chemical.sql' AS ul_key, null as ul_value
 	UNION SELECT 'image-img_major_mime-patch-img_major_mime-chemical.sql', null
 	UNION SELECT 'oldimage-oi_major_mime-patch-oi_major_mime-chemical.sql', null
