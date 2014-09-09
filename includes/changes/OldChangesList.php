@@ -49,7 +49,7 @@ class OldChangesList extends ChangesList {
 		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
 			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 
-		$html = $this->formatChangeLine( $rc, $watched );
+		$html = $this->formatChangeLine( $rc, $classes, $watched );
 
 		if ( $this->watchlist ) {
 			$classes[] = Sanitizer::escapeClass( 'watchlist-' .
@@ -72,11 +72,12 @@ class OldChangesList extends ChangesList {
 
 	/**
 	 * @param RecentChange $rc
+	 * @param string[] &$classes
 	 * @param boolean $watched
 	 *
 	 * @return string
 	 */
-	private function formatChangeLine( RecentChange $rc, $watched ) {
+	private function formatChangeLine( RecentChange $rc, array &$classes, $watched ) {
 		$html = '';
 
 		if ( $rc->mAttribs['rc_log_type'] ) {
