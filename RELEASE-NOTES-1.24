@@ -455,6 +455,7 @@ changes to languages because of Bugzilla reports.
 * LCStoreAccel was removed. $wgLocalisationCacheConf can no longer be set to
   use this store class.
 * Html::infoBox() no longer accepts paths relative to skins/common/images/.
+* Deprecated defunct Skin::getCommonStylePath().
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
