@@ -286,27 +286,27 @@ abstract class Installer {
 	public $licenses = array(
 		'cc-by' => array(
 			'url' => 'http://creativecommons.org/licenses/by/3.0/',
-			'icon' => '{$wgStylePath}/common/images/cc-by.png',
+			'icon' => '{$wgScriptPath}/assets/licenses/cc-by.png',
 		),
 		'cc-by-sa' => array(
 			'url' => 'http://creativecommons.org/licenses/by-sa/3.0/',
-			'icon' => '{$wgStylePath}/common/images/cc-by-sa.png',
+			'icon' => '{$wgScriptPath}/assets/licenses/cc-by-sa.png',
 		),
 		'cc-by-nc-sa' => array(
 			'url' => 'http://creativecommons.org/licenses/by-nc-sa/3.0/',
-			'icon' => '{$wgStylePath}/common/images/cc-by-nc-sa.png',
+			'icon' => '{$wgScriptPath}/assets/licenses/cc-by-nc-sa.png',
 		),
 		'cc-0' => array(
 			'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
-			'icon' => '{$wgStylePath}/common/images/cc-0.png',
+			'icon' => '{$wgScriptPath}/assets/licenses/cc-0.png',
 		),
 		'pd' => array(
 			'url' => '',
-			'icon' => '{$wgStylePath}/common/images/public-domain.png',
+			'icon' => '{$wgScriptPath}/assets/licenses/public-domain.png',
 		),
 		'gfdl' => array(
 			'url' => 'http://www.gnu.org/copyleft/fdl.html',
-			'icon' => '{$wgStylePath}/common/images/gnu-fdl.png',
+			'icon' => '{$wgScriptPath}/assets/licenses/gnu-fdl.png',
 		),
 		'none' => array(
 			'url' => '',
