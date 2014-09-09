@@ -137,7 +137,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"/* [[linkie?]] */",
 			),
 			array(
-				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span> post</span>',
+				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span></span> post',
 				"/* autocomment */ post",
 			),
 			array(
@@ -145,11 +145,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 				"pre /* autocomment */",
 			),
 			array(
-				'pre <a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span> post</span>',
+				'pre <a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span></span> post',
 				"pre /* autocomment */ post",
 			),
 			array(
-				'/* autocomment */ multiple? <a href="/wiki/Special:BlankPage#autocomment2" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment2: </span> </span>',
+				'<a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span></span> multiple? <a href="/wiki/Special:BlankPage#autocomment2" title="Special:BlankPage">→</a>‎<span dir="auto"><span class="autocomment">autocomment2: </span></span> ',
 				"/* autocomment */ multiple? /* autocomment2 */ ",
 			),
 			array(

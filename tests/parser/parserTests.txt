@@ -18287,7 +18287,7 @@ comment title=[[Main Page]]
 !! wikitext
 /* External links */ removed bogus entries
 !! html
-<a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+<a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span></span> removed bogus entries
 !!end
 
 !! test
@@ -18297,7 +18297,7 @@ comment title=[[Main Page]]
 !! wikitext
 pre-comment text /* External links */ removed bogus entries
 !! html
-pre-comment text <a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+pre-comment text <a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span></span> removed bogus entries
 !!end
 
 !! test
@@ -18307,7 +18307,7 @@ comment local title=[[Main Page]]
 !! wikitext
 /* External links */ removed bogus entries
 !! html
-<a href="#External_links">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+<a href="#External_links">→</a>‎<span dir="auto"><span class="autocomment">External links: </span></span> removed bogus entries
 !!end
 
 !! test

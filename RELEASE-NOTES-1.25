@@ -112,6 +112,8 @@ production.
 ** Title::moveTo() was deprecated. Use the MovePage class instead.
 ** Title::isValidMoveOperation() broken down into MovePage::isValidMove()
    and MovePage::checkPermissions().
+* (bug 16530) Multiple autocomments are now formatted in an edit summary.
+* (bug 68361) Autocomments containing "/*" are parsed correctly.
 
 === Action API changes in 1.25 ===
 * (T67403) XML tag highlighting is now only performed for formats
@@ -276,6 +278,8 @@ changes to languages because of Bugzilla reports.
    However, this difference is unlikely to arise in practice.
 * (T67278) RFC, PMID, and ISBN "magic links" must be surrounded by non-word
   characters on both sides.
+* The FormatAutocomments hook will now receive $pre and $post as booleans,
+  rather than as strings that must be prepended or appended to $comment.
 
 == Compatibility ==
 
