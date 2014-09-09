@@ -2332,6 +2332,7 @@ which the actual html is constructed.
   modified: href, text, title, class, lang, hreflang. Each of them is a string.
 $languageLinkTitle: Title object belonging to the external language link
 $title: Title object of the page the link belongs to
+$outputPage: The OutputPage object the links are build from
 
 To alter the structured navigation links in SkinTemplates, there are three
 hooks called in different spots:
