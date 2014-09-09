@@ -39,7 +39,7 @@ header( 'Content-Type: text/html; charset=utf-8' );
 	<meta charset="UTF-8">
 	<title>Profiling data</title>
 	<style>
-		/* noc.wikimedia.org/base.css */
+		/* noc.wikimedia.org/base.css (dead link) */
 
 		* {
 			margin: 0;
