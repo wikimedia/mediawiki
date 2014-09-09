@@ -58,6 +58,57 @@ class EmailNotification {
 	protected $editor;
 
 	/**
+	 * @param User $editor The editor that triggered the update.  Their notification
+	 *  timestamp will not be updated(they have already seen it)
+	 * @param Title $title The title to update timestamps for
+	 * @param string $timestamp Set the upate timestamp to this value
+	 * @return int[]
+	 */
+	static public function updateWatchlistTimestamp( User $editor, Title $title, $timestamp ) {
+		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
+
+		if ( !$wgEnotifWatchlist && !$wgShowUpdatedMarker ) {
+			return array();
+		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		$res = $dbw->select( array( 'watchlist' ),
+			array( 'wl_user' ),
+			array(
+				'wl_user != ' . intval( $editor->getID() ),
+				'wl_namespace' => $title->getNamespace(),
+				'wl_title' => $title->getDBkey(),
+				'wl_notificationtimestamp IS NULL',
+			), __METHOD__
+		);
+
+		$watchers = array();
+		foreach ( $res as $row ) {
+			$watchers[] = intval( $row->wl_user );
+		}
+
+		if ( $watchers ) {
+			// Update wl_notificationtimestamp for all watching users except the editor
+			$fname = __METHOD__;
+			$dbw->onTransactionIdle(
+				function () use ( $dbw, $timestamp, $watchers, $title, $fname ) {
+					$dbw->update( 'watchlist',
+						array( /* SET */
+							'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
+						), array( /* WHERE */
+							'wl_user' => $watchers,
+							'wl_namespace' => $title->getNamespace(),
+							'wl_title' => $title->getDBkey(),
+						), $fname
+					);
+				}
+			);
+		}
+
+		return $watchers;
+	}
+
+	/**
 	 * Send emails corresponding to the user $editor editing the page $title.
 	 * Also updates wl_notificationtimestamp.
 	 *
@@ -74,47 +125,15 @@ class EmailNotification {
 	public function notifyOnPageChange( $editor, $title, $timestamp, $summary,
 		$minorEdit, $oldid = false, $pageStatus = 'changed'
 	) {
-		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker, $wgEnotifMinorEdits,
+		global $wgEnotifUseJobQ, $wgEnotifMinorEdits,
 		       $wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
 
 		if ( $title->getNamespace() < 0 ) {
 			return;
 		}
 
-		// Build a list of users to notify
-		$watchers = array();
-		if ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$res = $dbw->select( array( 'watchlist' ),
-				array( 'wl_user' ),
-				array(
-					'wl_user != ' . intval( $editor->getID() ),
-					'wl_namespace' => $title->getNamespace(),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp IS NULL',
-				), __METHOD__
-			);
-			foreach ( $res as $row ) {
-				$watchers[] = intval( $row->wl_user );
-			}
-			if ( $watchers ) {
-				// Update wl_notificationtimestamp for all watching users except the editor
-				$fname = __METHOD__;
-				$dbw->onTransactionIdle(
-					function () use ( $dbw, $timestamp, $watchers, $title, $fname ) {
-						$dbw->update( 'watchlist',
-							array( /* SET */
-								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-							), array( /* WHERE */
-								'wl_user' => $watchers,
-								'wl_namespace' => $title->getNamespace(),
-								'wl_title' => $title->getDBkey(),
-							), $fname
-						);
-					}
-				);
-			}
-		}
+		// update wl_notificationtimestamp for watchers
+		$watchers = self::updateWatchlistTimestamp( $editor, $title, $timestamp );
 
 		$sendEmail = true;
 		// If nobody is watching the page, and there are no users notified on all changes
