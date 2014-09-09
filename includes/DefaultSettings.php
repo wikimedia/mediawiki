@@ -253,7 +253,7 @@ $wgFileCacheDirectory = false;
 
 /**
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
- * Defaults to "{$wgStylePath}/common/images/wiki.png".
+ * Defaults to "$wgScriptPath/assets/wiki.png".
  */
 $wgLogo = false;
 

@@ -79,7 +79,7 @@ if ( $wgExtensionAssetsPath === false ) {
 }
 
 if ( $wgLogo === false ) {
-	$wgLogo = "$wgStylePath/common/images/wiki.png";
+	$wgLogo = "$wgScriptPath/assets/wiki.png";
 }
 
 if ( $wgUploadPath === false ) {
