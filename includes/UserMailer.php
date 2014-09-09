@@ -512,6 +512,53 @@ class EmailNotification {
 	 */
 	protected $editor;
 
+	static public function getWatchers( DatabaseBase $dbw, User $editor, Title $title ) {
+		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
+
+		if ( !$wgEnotifWatchlist && !$wgShowUpdatedMarker ) {
+			return array();
+		}
+
+		$res = $dbw->select( array( 'watchlist' ),
+			array( 'wl_user' ),
+			array(
+				'wl_user != ' . intval( $editor->getID() ),
+				'wl_namespace' => $title->getNamespace(),
+				'wl_title' => $title->getDBkey(),
+				'wl_notificationtimestamp IS NULL',
+			), __METHOD__
+		);
+
+		$watchers = array();
+		foreach ( $res as $row ) {
+			$watchers[] = intval( $row->wl_user );
+		}
+
+		return $watchers;
+	}
+
+	static public function updateWatchlist( DatabaseBase $dbw, $timestamp, array $watchers, Title $title ) {
+		if ( !$watchers ) {
+			return;
+		}
+
+		// Update wl_notificationtimestamp for all watching users except the editor
+		$fname = __METHOD__;
+		$dbw->onTransactionIdle(
+			function () use ( $dbw, $timestamp, $watchers, $title, $fname ) {
+				$dbw->update( 'watchlist',
+					array( /* SET */
+						'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
+					), array( /* WHERE */
+						'wl_user' => $watchers,
+						'wl_namespace' => $title->getNamespace(),
+						'wl_title' => $title->getDBkey(),
+					), $fname
+				);
+			}
+		);
+	}
+
 	/**
 	 * Send emails corresponding to the user $editor editing the page $title.
 	 * Also updates wl_notificationtimestamp.
@@ -529,47 +576,18 @@ class EmailNotification {
 	public function notifyOnPageChange( $editor, $title, $timestamp, $summary,
 		$minorEdit, $oldid = false, $pageStatus = 'changed'
 	) {
-		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker, $wgEnotifMinorEdits,
+		global $wgEnotifUseJobQ, $wgEnotifMinorEdits,
 			$wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
 
 		if ( $title->getNamespace() < 0 ) {
 			return;
 		}
 
+		$dbw = wfGetDB( DB_MASTER );
 		// Build a list of users to notify
-		$watchers = array();
-		if ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$res = $dbw->select( array( 'watchlist' ),
-				array( 'wl_user' ),
-				array(
-					'wl_user != ' . intval( $editor->getID() ),
-					'wl_namespace' => $title->getNamespace(),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp IS NULL',
-				), __METHOD__
-			);
-			foreach ( $res as $row ) {
-				$watchers[] = intval( $row->wl_user );
-			}
-			if ( $watchers ) {
-				// Update wl_notificationtimestamp for all watching users except the editor
-				$fname = __METHOD__;
-				$dbw->onTransactionIdle(
-					function () use ( $dbw, $timestamp, $watchers, $title, $fname ) {
-						$dbw->update( 'watchlist',
-							array( /* SET */
-								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-							), array( /* WHERE */
-								'wl_user' => $watchers,
-								'wl_namespace' => $title->getNamespace(),
-								'wl_title' => $title->getDBkey(),
-							), $fname
-						);
-					}
-				);
-			}
-		}
+		$watchers = $this->getWatchers( $dbw, $editor, $title );
+		// update wl_notificationtimestamp for those users
+		$this->updateWatchlist( $dbw, $timestamp, $watchers, $title );
 
 		$sendEmail = true;
 		// If nobody is watching the page, and there are no users notified on all changes
