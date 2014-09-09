@@ -351,7 +351,7 @@ abstract class Action {
 		$out = $this->getOutput();
 		$out->setRobotPolicy( "noindex,nofollow" );
 		$out->setPageTitle( $this->getPageTitle() );
-		$this->getOutput()->setSubtitle( $this->getDescription() );
+		$out->setSubtitle( $this->getDescription() );
 		$out->setArticleRelated( true );
 	}
 
