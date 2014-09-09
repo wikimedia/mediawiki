@@ -3142,7 +3142,7 @@ class Language {
 		}
 
 		if ( !is_array( $rawEntry ) ) {
-			error_log( "\"$rawEntry\" is not a valid magic word for \"$mw->mId\"" );
+			wfWarn( "\"$rawEntry\" is not a valid magic word for \"$mw->mId\"" );
 		} else {
 			$mw->mCaseSensitive = $rawEntry[0];
 			$mw->mSynonyms = array_slice( $rawEntry, 1 );
