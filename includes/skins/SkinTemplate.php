@@ -200,7 +200,7 @@ class SkinTemplate extends Skin {
 				);
 				wfRunHooks(
 					'SkinTemplateGetLanguageLink',
-					array( &$languageLink, $languageLinkTitle, $this->getTitle() )
+					array( &$languageLink, $languageLinkTitle, $this->getTitle(), $this->getOutput() )
 				);
 				$languageLinks[] = $languageLink;
 			}
