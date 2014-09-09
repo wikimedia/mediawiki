@@ -429,3 +429,7 @@ a.sortheader {
 	padding-left: .2em;
 	border-left: none;
 }
+
+.printfooter {
+	padding: 1em 0 1em 0;
+}
