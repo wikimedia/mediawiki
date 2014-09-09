@@ -1671,6 +1671,10 @@ abstract class ApiBase extends ContextSource {
 			'code' => 'undofailure',
 			'info' => 'Undo failed due to conflicting intermediate edits'
 		),
+		'content-not-allowed-here' => array(
+			'code' => 'contentnotallowedhere',
+			'info' => 'Content model "$1" is not allowed at title "$2"'
+		),
 
 		// Messages from WikiPage::doEit()
 		'edit-hook-aborted' => array(
