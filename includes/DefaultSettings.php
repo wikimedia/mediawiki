@@ -4309,6 +4309,7 @@ $wgDefaultUserOptions = array(
 	'wllimit' => 250,
 	'useeditwarning' => 1,
 	'prefershttps' => 1,
+	'localdrafts' => 1,
 );
 
 /**
