@@ -67,6 +67,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$searchInfo = array_flip( $params['info'] );
 		$prop = array_flip( $params['prop'] );
 
+		// Deprecated parameters
+		if ( isset( $prop['hasrelated'] ) ) {
+			$this->logFeatureUsage( 'action=search&srprop=hasrelated' );
+		}
+		if ( isset( $prop['score'] ) ) {
+			$this->logFeatureUsage( 'action=search&srprop=score' );
+		}
+
 		// Create search engine instance and set options
 		$search = isset( $params['backend'] ) && $params['backend'] != self::BACKEND_NULL_PARAM ?
 			SearchEngine::create( $params['backend'] ) : SearchEngine::create();
@@ -329,14 +337,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				' size             - Adds the size of the page in bytes',
 				' wordcount        - Adds the word count of the page',
 				' timestamp        - Adds the timestamp of when the page was last edited',
-				' score            - Adds the score (if any) from the search engine',
+				' score            - DEPRECATED and IGNORED',
 				' snippet          - Adds a parsed snippet of the page',
 				' titlesnippet     - Adds a parsed snippet of the page title',
 				' redirectsnippet  - Adds a parsed snippet of the redirect title',
 				' redirecttitle    - Adds the title of the matching redirect',
 				' sectionsnippet   - Adds a parsed snippet of the matching section title',
 				' sectiontitle     - Adds the title of the matching section',
-				' hasrelated       - Indicates whether a related search is available',
+				' hasrelated       - DEPRECATED and IGNORED',
 			),
 			'offset' => 'Use this value to continue paging (return by query)',
 			'limit' => 'How many total pages to return',
