@@ -176,9 +176,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 						$vals['sectionsnippet'] = $result->getSectionSnippet();
 					}
 				}
-				if ( isset( $prop['hasrelated'] ) && $result->hasRelated() ) {
-					$vals['hasrelated'] = '';
-				}
 
 				// Add item to results and see whether it fits
 				$fit = $apiResult->addValue( array( 'query', $this->getModuleName() ),
