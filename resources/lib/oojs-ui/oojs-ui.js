@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (1c5e409ab1)
+ * OOjs UI v0.1.0-pre (f9c217dfa4)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-09T01:20:39Z
+ * Date: 2014-09-10T17:25:40Z
  */
 ( function ( OO ) {
 
@@ -9943,11 +9943,11 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 
 	if ( change ) {
 		if ( show ) {
-			this.toggleClipping( true );
 			if ( this.autoClose ) {
 				this.bindMouseDownListener();
 			}
 			this.updateDimensions();
+			this.toggleClipping( true );
 		} else {
 			this.toggleClipping( false );
 			if ( this.autoClose ) {
