@@ -68,6 +68,8 @@ production.
 * $wgCanonicalLanguageLinks has been removed. Per Google recommendations, we
   will not send a rel=canonical pointing to a variant-neutral page, however
   we will send rel=alternate.
+* $wgGoToEdit has been removed. Use the SpecialSearchNogomatch hook for similar
+  functionality.
 
 === New features in 1.24 ===
 * Added new hook WatchlistEditorBeforeFormRender, allowing subscribers to

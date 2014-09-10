@@ -197,14 +197,6 @@ class SpecialSearch extends SpecialPage {
 		$title = Title::newFromText( $term );
 		if ( !is_null( $title ) ) {
 			wfRunHooks( 'SpecialSearchNogomatch', array( &$title ) );
-			wfDebugLog( 'nogomatch', $title->getFullText(), 'private' );
-
-			# If the feature is enabled, go straight to the edit page
-			if ( $this->getConfig()->get( 'GoToEdit' ) ) {
-				$this->getOutput()->redirect( $title->getFullURL( array( 'action' => 'edit' ) ) );
-
-				return;
-			}
 		}
 		$this->showResults( $term );
 	}
