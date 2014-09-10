@@ -25,8 +25,8 @@ function isCompatible( ua ) {
 
 	// Browsers with outdated or limited JavaScript engines get the no-JS experience
 	return !(
-		// Internet Explorer < 7
-		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 7 ) ||
+		// Internet Explorer < 8
+		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 8 ) ||
 		// Firefox < 3
 		( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 3 ) ||
 		// Opera < 12
