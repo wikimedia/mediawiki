@@ -26,7 +26,8 @@
 			"Valasek",
 			"Wizzard",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Matthew Greg"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -3024,5 +3025,6 @@
 	"pagelang-language": "Jazyk",
 	"pagelang-use-default": "Použiť predvolený jazyk",
 	"pagelang-select-lang": "Vybrať jazyk",
-	"right-pagelang": "Zmeniť jazyk stránky"
+	"right-pagelang": "Zmeniť jazyk stránky",
+	"default-skin-not-found": "Uups! Základná tapeta pre Vašu wiki, popísanú v <code dir=\"ltr\">$wgDefaultSkin</code> ako <code>$1</code>, nie je dostupná. \n\nVaša inštalácia pravdepodobne obsahuje nasledovné tapety. Pozri [https://www.mediawiki.org/wiki/Manual:Skin_configuration Manual: Skin configuration] pre viac informácii o ich aktivácii a zvoľte základnú.\n\n$2\n\n; Ak ste MediaWiki len teraz nainštalovali\n; Zrejme ste to nainštalovali z gitu alebo priamo zo zdrojového kódu inou metódou. Je to očakávané. Skúste nainštalovať nejaké tapety z [https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org's skin directory];\n:*Stiahnutím [https://www.mediawiki.org/wiki/Download tarball installer], ktorý ponúka viacero tapiet a rozšírení. Skopírovať a nalepiť možno priamo z <code>skins/</code>.\n:*Klonovanie jednej zo <code>mediawiki/skins/*</code> schránok cez git do <code dir=\"ltr\">skins/</code> priečinku Vašej Media Wiki inštalácie.\n: S existujúcou git schránkou, ak ste vývojár MediaWiki, by nemal byť konflikt.\n\n: Ak ste upgradeovali MediaWiki\n: MediaWiki 1.24 a novšie už tapety automaticky neaktivujú. (see [https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery Manual: Skin autodiscovery]). Nasledovný kód môžete skopírovať do <code>LocalSettings.php</code> pre aktivovanie všetkých dostupných tapiet.\n\n<pre dir=\"ltr\">$3</pre>\n\n; Ak ste upravili <code>LocalSettings.php</code>:\n: Skontrolujte chyby."
 }

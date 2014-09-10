@@ -35,7 +35,8 @@
 			"Xbspiro",
 			"아라",
 			"Csega",
-			"ViDam"
+			"ViDam",
+			"Adam78"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -571,7 +572,7 @@
 	"showpreview": "Előnézet megtekintése",
 	"showdiff": "Változtatások megtekintése",
 	"blankarticle": "<strong>Figyelem:</strong> A létrehozandó szócikk üres.\nHa ismét a \"{{int:savearticle}}\" gombra kattintasz, a szócikket tartalom nélkül fogod létrehozni.",
-	"anoneditwarning": "'''Figyelem:''' Nem vagy bejelentkezve, ha szerkesztesz, az IP-címed látható lesz a laptörténetben.",
+	"anoneditwarning": "'''Figyelem:''' Nem vagy bejelentkezve. Ha szerkesztesz, az IP-címed látható lesz a laptörténetben.",
 	"anonpreviewwarning": "''Nem vagy bejelentkezve. A mentéskor az IP-címed rögzítve lesz a laptörténetben.''",
 	"missingsummary": "'''Emlékeztető:''' Nem adtál meg szerkesztési összefoglalót. Ha összefoglaló nélkül akarod elküldeni a szöveget, kattints újra a mentésre.",
 	"missingcommenttext": "Kérjük, írj összefoglalót a szerkesztésedhez.",

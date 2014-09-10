@@ -1789,6 +1789,7 @@
 	"sp-contributions-search": "Søk etter bidrag",
 	"sp-contributions-username": "IP-adresse eller brukarnamn:",
 	"sp-contributions-toponly": "Vis berre endringar som er gjeldande versjonar",
+	"sp-contributions-newonly": "Berre vis endringar som oppretta ei side",
 	"sp-contributions-submit": "Søk",
 	"whatlinkshere": "Lenkjer hit",
 	"whatlinkshere-title": "Sider som har lenkje til «$1»",

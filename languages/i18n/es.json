@@ -318,6 +318,7 @@
 	"otherlanguages": "Otros idiomas",
 	"redirectedfrom": "(Redirigido desde «$1»)",
 	"redirectpagesub": "Página de redirección",
+	"redirectto": "Redirigir a:",
 	"lastmodifiedat": "Esta página fue modificada por última vez el $1 a las $2.",
 	"viewcount": "Esta página se ha visitado {{PLURAL:$1|una vez|$1 veces}}.",
 	"protectedpage": "Página protegida",

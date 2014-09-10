@@ -268,6 +268,7 @@
 	"accountcreatedtext": "«$1» деп ажыглакчының бүрүткел бижиини бүдүрген.",
 	"login-abort-generic": "Системаже таптыг эвес кирип тур силер",
 	"loginlanguagelabel": "Дыл: $1",
+	"pt-userlogout": "Үнер",
 	"php-mail-error-unknown": "PHP-ниң mail() ажыл-чорудулгазында билбес алдаг бар.",
 	"changepassword": "Чажыт сөстү өскертири",
 	"resetpass_text": "<!-- Маңаа сөзүглелди немерелээри -->",
