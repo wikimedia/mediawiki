@@ -53,9 +53,11 @@ class GlobalVarConfig implements Config {
 	}
 
 	/**
-	 * @see Config::set
+	 * @see MutableConfig::set
+	 * @deprecated since 1.24
 	 */
 	public function set( $name, $value ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		$this->setWithPrefix( $this->prefix, $name, $value );
 	}
 
@@ -66,6 +68,7 @@ class GlobalVarConfig implements Config {
 	 * @param string $name Variable name without prefix
 	 * @throws ConfigException
 	 * @return mixed
+	 * @deprecated since 1.24
 	 */
 	protected function getWithPrefix( $prefix, $name ) {
 		$var = $prefix . $name;
