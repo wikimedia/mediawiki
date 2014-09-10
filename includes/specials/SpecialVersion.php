@@ -53,12 +53,12 @@ class SpecialVersion extends SpecialPage {
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		global $IP, $wgExtensionCredits;
-
+		global $IP;
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
 		$out->allowClickjacking();
+		$config = $this->getConfig();
 
 		// Explode the sub page information into useful bits
 		$parts = explode( '/', (string)$par );
@@ -66,7 +66,7 @@ class SpecialVersion extends SpecialPage {
 		if ( isset( $parts[1] ) ) {
 			$extName = str_replace( '_', ' ', $parts[1] );
 			// Find it!
-			foreach ( $wgExtensionCredits as $group => $extensions ) {
+			foreach ( $config->get( 'ExtensionCredits' ) as $group => $extensions ) {
 				foreach ( $extensions as $ext ) {
 					if ( isset( $ext['name'] ) && ( $ext['name'] === $extName ) ) {
 						$extNode = &$ext;
@@ -126,7 +126,7 @@ class SpecialVersion extends SpecialPage {
 				$out->addModules( 'mediawiki.special.version' );
 				$out->addWikiText(
 					$this->getMediaWikiCredits() .
-					$this->softwareInformation() .
+					$this->softwareInformation( $config->get( 'Version' ) ) .
 					$this->getEntryPointInfo()
 				);
 				$out->addHtml(
@@ -204,14 +204,14 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	public static function softwareInformation() {
+	public static function softwareInformation( $version ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
 		// be loaded here, so feel free to use wfMessage in the 'name'. Raw HTML or
 		// wikimarkup can be used.
 		$software = array();
-		$software['[https://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
+		$software['[https://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked( $version );
 		if ( wfIsHHVM() ) {
 			$software['[http://hhvm.com/ HHVM]'] = HHVM_VERSION . " (" . PHP_SAPI . ")";
 		} else {
@@ -246,28 +246,31 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Return a string of the MediaWiki version with SVN revision if available.
 	 *
+	 * @todo FIXME: Pass wgVersion when all dependencies can easily access Config object (e.g. Parser, WikiStatsOutputs)
 	 * @param string $flags
 	 * @return mixed
 	 */
 	public static function getVersion( $flags = '' ) {
-		global $wgVersion, $IP;
+		global $IP;
 		wfProfileIn( __METHOD__ );
 
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		$version = $config->get( 'Version' );
 		$gitInfo = self::getGitHeadSha1( $IP );
 		$svnInfo = self::getSvnInfo( $IP );
 		if ( !$svnInfo && !$gitInfo ) {
-			$version = $wgVersion;
+			$version = $version;
 		} elseif ( $gitInfo && $flags === 'nodb' ) {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
-			$version = "$wgVersion ($shortSha1)";
+			$version = "$version ($shortSha1)";
 		} elseif ( $gitInfo ) {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
 			$shortSha1 = wfMessage( 'parentheses' )->params( $shortSha1 )->escaped();
-			$version = "$wgVersion $shortSha1";
+			$version = "$version $shortSha1";
 		} elseif ( $flags === 'nodb' ) {
-			$version = "$wgVersion (r{$svnInfo['checkout-rev']})";
+			$version = "$version (r{$svnInfo['checkout-rev']})";
 		} else {
-			$version = $wgVersion . ' ' .
+			$version = $version . ' ' .
 				wfMessage(
 					'version-svn-revision',
 					isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
@@ -288,19 +291,18 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return mixed
 	 */
-	public static function getVersionLinked() {
-		global $wgVersion;
+	public static function getVersionLinked( $version ) {
 		wfProfileIn( __METHOD__ );
 
-		$gitVersion = self::getVersionLinkedGit();
+		$gitVersion = self::getVersionLinkedGit( $version );
 		if ( $gitVersion ) {
 			$v = $gitVersion;
 		} else {
-			$svnVersion = self::getVersionLinkedSvn();
+			$svnVersion = self::getVersionLinkedSvn( $version );
 			if ( $svnVersion ) {
 				$v = $svnVersion;
 			} else {
-				$v = $wgVersion; // fallback
+				$v = $version; // fallback
 			}
 		}
 
@@ -310,11 +312,11 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
+	 * @param $mwVersion string Value of wgVersion
 	 * @return string Global wgVersion + a link to subversion revision of svn BASE
 	 */
-	private static function getVersionLinkedSvn() {
+	private static function getVersionLinkedSvn( $mwVersion ) {
 		global $IP;
-
 		$info = self::getSvnInfo( $IP );
 		if ( !isset( $info['checkout-rev'] ) ) {
 			return false;
@@ -332,30 +334,31 @@ class SpecialVersion extends SpecialPage {
 			$version = $linkText;
 		}
 
-		return self::getwgVersionLinked() . " $version";
+		return self::getwgVersionLinked( $mwVersion ) . " $version";
 	}
 
 	/**
+	 * @param $version string
 	 * @return string
 	 */
-	private static function getwgVersionLinked() {
-		global $wgVersion;
+	private static function getwgVersionLinked( $version ) {
 		$versionUrl = "";
-		if ( wfRunHooks( 'SpecialVersionVersionUrl', array( $wgVersion, &$versionUrl ) ) ) {
+		if ( wfRunHooks( 'SpecialVersionVersionUrl', array( $version, &$versionUrl ) ) ) {
 			$versionParts = array();
-			preg_match( "/^(\d+\.\d+)/", $wgVersion, $versionParts );
+			preg_match( "/^(\d+\.\d+)/", $version, $versionParts );
 			$versionUrl = "https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]}";
 		}
 
-		return "[$versionUrl $wgVersion]";
+		return "[$versionUrl $version]";
 	}
 
 	/**
 	 * @since 1.22 Returns the HEAD date in addition to the sha1 and link
+	 * @param $version string Value of wgVersion
 	 * @return bool|string Global wgVersion + HEAD sha1 stripped to the first 7 chars
 	 *   with link and date, or false on failure
 	 */
-	private static function getVersionLinkedGit() {
+	private static function getVersionLinkedGit( $version ) {
 		global $IP, $wgLang;
 
 		$gitInfo = new GitInfo( $IP );
@@ -376,7 +379,7 @@ class SpecialVersion extends SpecialPage {
 			$shortSHA1 .= Html::element( 'br' ) . $wgLang->timeanddate( $gitHeadCommitDate, true );
 		}
 
-		return self::getwgVersionLinked() . " $shortSHA1";
+		return self::getwgVersionLinked( $version ) . " $shortSHA1";
 	}
 
 	/**
@@ -429,12 +432,12 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	public function getExtensionCredits() {
-		global $wgExtensionCredits;
+		$extensionCredits = $this->getConfig()->get( 'ExtensionCredits' );
 
 		if (
-			count( $wgExtensionCredits ) === 0 ||
+			count( $extensionCredits ) === 0 ||
 			// Skins are displayed separately, see getSkinCredits()
-			( count( $wgExtensionCredits ) === 1 && isset( $wgExtensionCredits['skin'] ) )
+			( count( $extensionCredits ) === 1 && isset( $extensionCredits['skin'] ) )
 		) {
 			return '';
 		}
@@ -449,14 +452,14 @@ class SpecialVersion extends SpecialPage {
 			Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ) );
 
 		// Make sure the 'other' type is set to an array.
-		if ( !array_key_exists( 'other', $wgExtensionCredits ) ) {
-			$wgExtensionCredits['other'] = array();
+		if ( !array_key_exists( 'other', $extensionCredits ) ) {
+			$extensionCredits['other'] = array();
 		}
 
 		// Find all extensions that do not have a valid type and give them the type 'other'.
-		foreach ( $wgExtensionCredits as $type => $extensions ) {
+		foreach ( $extensionCredits as $type => $extensions ) {
 			if ( !array_key_exists( $type, $extensionTypes ) ) {
-				$wgExtensionCredits['other'] = array_merge( $wgExtensionCredits['other'], $extensions );
+				$extensionCredits['other'] = array_merge( $extensionCredits['other'], $extensions );
 			}
 		}
 
@@ -483,8 +486,8 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	public function getSkinCredits() {
-		global $wgExtensionCredits;
-		if ( !isset( $wgExtensionCredits['skin'] ) || count( $wgExtensionCredits['skin'] ) === 0 ) {
+		$extensionCredits = $this->getConfig()->get( 'ExtensionCredits' );
+		if ( !isset( $extensionCredits['skin'] ) || count( $extensionCredits['skin'] ) === 0 ) {
 			return '';
 		}
 
@@ -570,16 +573,16 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	protected function getExtensionCategory( $type, $message ) {
-		global $wgExtensionCredits;
+		$extensionCredits = $this->getConfig()->get( 'ExtensionCredits' );
 
 		$out = '';
 
-		if ( array_key_exists( $type, $wgExtensionCredits ) && count( $wgExtensionCredits[$type] ) > 0 ) {
+		if ( array_key_exists( $type, $extensionCredits ) && count( $extensionCredits[$type] ) > 0 ) {
 			$out .= $this->openExtType( $message, 'credits-' . $type );
 
-			usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
+			usort( $extensionCredits[$type], array( $this, 'compare' ) );
 
-			foreach ( $wgExtensionCredits[$type] as $extension ) {
+			foreach ( $extensionCredits[$type] as $extension ) {
 				$out .= $this->getCreditsForExtension( $extension );
 			}
 		}
@@ -810,10 +813,10 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	private function getWgHooks() {
-		global $wgSpecialVersionShowHooks, $wgHooks;
+		$config = $this->getConfig();
 
-		if ( $wgSpecialVersionShowHooks && count( $wgHooks ) ) {
-			$myWgHooks = $wgHooks;
+		if ( $config->get( 'SpecialVersionShowHooks' ) && count( $config->get( 'Hooks' ) ) ) {
+			$myWgHooks = $config->get( 'Hooks' );
 			ksort( $myWgHooks );
 
 			$ret = array();
@@ -1181,10 +1184,11 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	public function getEntryPointInfo() {
-		global $wgArticlePath, $wgScriptPath;
-		$scriptPath = $wgScriptPath ? $wgScriptPath : "/";
+		$config = $this->getConfig();
+		$scriptPath = $config->get( 'ScriptPath' );
+		$scriptPath = $scriptPath ? $scriptPath : "/";
 		$entryPoints = array(
-			'version-entrypoints-articlepath' => $wgArticlePath,
+			'version-entrypoints-articlepath' => $config->get( 'ArticlePath' ),
 			'version-entrypoints-scriptpath' => $scriptPath,
 			'version-entrypoints-index-php' => wfScript( 'index' ),
 			'version-entrypoints-api-php' => wfScript( 'api' ),
