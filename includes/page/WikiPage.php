@@ -2876,8 +2876,6 @@ class WikiPage implements Page, IDBAccessObject {
 		// Clone the title, so we have the information we need when we log
 		$logTitle = clone $this->mTitle;
 
-		$this->doDeleteUpdates( $id, $content );
-
 		// Log the deletion, if the page was suppressed, log it at Oversight instead
 		$logtype = $suppress ? 'suppress' : 'delete';
 
@@ -2895,6 +2893,8 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $commit ) {
 			$dbw->commit( __METHOD__ );
 		}
+
+		$this->doDeleteUpdates( $id, $content );
 
 		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id, $content, $logEntry ) );
 		$status->value = $logid;
