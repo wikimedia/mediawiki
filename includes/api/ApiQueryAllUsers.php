@@ -156,7 +156,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			$this->addTables( 'user_groups', 'ug2' );
 			$this->addJoinConds( array( 'ug2' => array( 'LEFT JOIN', 'ug2.ug_user=user_id' ) ) );
-			$this->addFields( 'ug2.ug_group ug_group2' );
+			$this->addFields( array( 'ug_group2' => 'ug2.ug_group' ) );
 		} else {
 			$sqlLimit = $limit + 1;
 		}
