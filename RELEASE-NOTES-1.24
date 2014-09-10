@@ -456,6 +456,9 @@ changes to languages because of Bugzilla reports.
   use this store class.
 * Html::infoBox() no longer accepts paths relative to skins/common/images/.
 * Deprecated defunct Skin::getCommonStylePath().
+* Some extensions had their ResourceLoader modules depend on the "mediawiki"
+  and "jquery" modules. In the past, this behavior was undefined, now it will
+  throw an error.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
