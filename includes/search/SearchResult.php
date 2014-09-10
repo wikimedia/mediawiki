@@ -243,13 +243,6 @@ class SearchResult {
 	}
 
 	/**
-	 * @return bool If hit has related articles
-	 */
-	function hasRelated() {
-		return false;
-	}
-
-	/**
 	 * @return string Interwiki prefix of the title (return iw even if title is broken)
 	 */
 	function getInterwikiPrefix() {
