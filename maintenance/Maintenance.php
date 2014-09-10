@@ -114,6 +114,13 @@ abstract class Maintenance {
 	public $fileHandle;
 
 	/**
+	 * Accessible via getConfig()
+	 *
+	 * @var Config
+	 */
+	private $config;
+
+	/**
 	 * Default constructor. Children should call this *first* if implementing
 	 * their own constructors
 	 */
@@ -455,6 +462,26 @@ abstract class Maintenance {
 		# Save additional script dependant options to display
 		# them separately in help
 		$this->mDependantParameters = array_diff_key( $this->mParams, $this->mGenericParameters );
+	}
+
+	/**
+	 * @since 1.24
+	 * @return Config
+	 */
+	public function getConfig() {
+		if ( $this->config === null ) {
+			$this->config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		}
+
+		return $this->config;
+	}
+
+	/**
+	 * @since 1.24
+	 * @param Config $config
+	 */
+	public function setConfig( Config $config ) {
+		$this->config = $config;
 	}
 
 	/**
