@@ -223,9 +223,6 @@ class SpecialPageFactory {
 			// This hook can be used to remove undesired built-in special pages
 			wfRunHooks( 'SpecialPage_initList', array( &self::$list ) );
 
-			// Cast to object: func()[$key] doesn't work, but func()->$key does
-			settype( self::$list, 'object' );
-
 			wfProfileOut( __METHOD__ );
 		}
 
@@ -245,8 +242,7 @@ class SpecialPageFactory {
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
 
-			// Objects are passed by reference by default, need to create a copy
-			$missingPages = clone self::getList();
+			$missingPages = self::getList();
 
 			self::$aliases = array();
 			// Check for $aliases being an array since Language::getSpecialPageAliases can return null
@@ -335,7 +331,8 @@ class SpecialPageFactory {
 	public static function exists( $name ) {
 		list( $title, /*...*/ ) = self::resolveAlias( $name );
 
-		return property_exists( self::getList(), $title );
+		$specialPageList = self::getList();
+		return isset( $specialPageList[$title] );
 	}
 
 	/**
@@ -346,8 +343,9 @@ class SpecialPageFactory {
 	 */
 	public static function getPage( $name ) {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
-		if ( property_exists( self::getList(), $realName ) ) {
-			$rec = self::getList()->$realName;
+		$specialPageList = self::getList();
+		if ( isset( $specialPageList[$realName] ) ) {
+			$rec = $specialPageList[$realName];
 			if ( is_string( $rec ) ) {
 				$className = $rec;
 
@@ -357,10 +355,10 @@ class SpecialPageFactory {
 				// @deprecated, officially since 1.18, unofficially since forever
 				wfDeprecated( "Array syntax for \$wgSpecialPages is deprecated ($className), " .
 					"define a subclass of SpecialPage instead.", '1.18' );
-				self::getList()->$realName = MWFunction::newObj( $className, $rec );
+				$specialPageList[$realName] = MWFunction::newObj( $className, $rec );
 			}
 
-			return self::getList()->$realName;
+			return $specialPageList[$realName];
 		} else {
 			return null;
 		}
