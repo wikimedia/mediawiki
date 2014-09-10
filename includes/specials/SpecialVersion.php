@@ -204,7 +204,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	static function softwareInformation() {
+	public static function softwareInformation() {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
@@ -428,7 +428,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string Wikitext
 	 */
-	function getExtensionCredits() {
+	public function getExtensionCredits() {
 		global $wgExtensionCredits;
 
 		if (
@@ -482,7 +482,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string Wikitext
 	 */
-	function getSkinCredits() {
+	public function getSkinCredits() {
 		global $wgExtensionCredits;
 		if ( !isset( $wgExtensionCredits['skin'] ) || count( $wgExtensionCredits['skin'] ) === 0 ) {
 			return '';
@@ -593,7 +593,7 @@ class SpecialVersion extends SpecialPage {
 	 * @param array $b
 	 * @return int
 	 */
-	function compare( $a, $b ) {
+	public function compare( $a, $b ) {
 		if ( $a['name'] === $b['name'] ) {
 			return 0;
 		} else {
@@ -620,7 +620,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string Raw HTML
 	 */
-	function getCreditsForExtension( array $extension ) {
+	public function getCreditsForExtension( array $extension ) {
 		$out = $this->getOutput();
 
 		// We must obtain the information for all the bits and pieces!
@@ -905,7 +905,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string HTML fragment
 	 */
-	function listAuthors( $authors, $extName, $extDir ) {
+	public function listAuthors( $authors, $extName, $extDir ) {
 		$hasOthers = false;
 
 		$list = array();
@@ -1008,7 +1008,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	function listToText( $list, $sort = true ) {
+	public function listToText( $list, $sort = true ) {
 		if ( !count( $list ) ) {
 			return '';
 		}
