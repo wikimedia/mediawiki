@@ -3271,7 +3271,6 @@
 	"version-db-postgres-url": "http://www.postgresql.org/",
 	"version-db-oracle-url": "http://www.oracle.com/database/",
 	"version-db-sqlite-url": "https://www.sqlite.org/",
-	"version-db-mssql-url": "https://www.microsoft.com/sql/",
 	"version-entrypoints": "Entry point URLs",
 	"version-entrypoints-header-entrypoint": "Entry point",
 	"version-entrypoints-header-url": "URL",

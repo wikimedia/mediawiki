@@ -530,7 +530,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 		$defaultType = $this->getVar( 'wgDBtype' );
 
 		// Messages: config-dbsupport-mysql, config-dbsupport-postgres, config-dbsupport-oracle,
-		// config-dbsupport-sqlite, config-dbsupport-mssql
+		// config-dbsupport-sqlite
 		$dbSupport = '';
 		foreach ( Installer::getDBTypes() as $type ) {
 			$dbSupport .= wfMessage( "config-dbsupport-$type" )->plain() . "\n";
