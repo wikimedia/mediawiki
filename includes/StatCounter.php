@@ -39,7 +39,11 @@ class StatCounter {
 	/** @var array */
 	protected $deltas = array(); // (key => count)
 
-	protected function __construct() {
+	/** @var Config */
+	protected $config;
+
+	protected function __construct( Config $config ) {
+		$this->config = $config;
 	}
 
 	/**
@@ -48,7 +52,9 @@ class StatCounter {
 	public static function singleton() {
 		static $instance = null;
 		if ( !$instance ) {
-			$instance = new self();
+			$instance = new self(
+				ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			);
 		}
 		return $instance;
 	}
@@ -74,12 +80,11 @@ class StatCounter {
 	 * @return void
 	 */
 	public function flush() {
-		global $wgStatsMethod;
-
+		$statsMethod = $this->config->get( 'StatsMethod' );
 		$deltas = array_filter( $this->deltas ); // remove 0 valued entries
-		if ( $wgStatsMethod === 'udp' ) {
+		if ( $statsMethod === 'udp' ) {
 			$this->sendDeltasUDP( $deltas );
-		} elseif ( $wgStatsMethod === 'cache' ) {
+		} elseif ( $statsMethod === 'cache' ) {
 			$this->sendDeltasMemc( $deltas );
 		} else {
 			// disabled
@@ -92,14 +97,12 @@ class StatCounter {
 	 * @return void
 	 */
 	protected function sendDeltasUDP( array $deltas ) {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID,
-			$wgStatsFormatString;
-
-		$id = strlen( $wgAggregateStatsID ) ? $wgAggregateStatsID : wfWikiID();
+		$aggregateStatsID = $this->config->get( 'AggregateStatsID' );
+		$id = strlen( $aggregateStatsID ) ? $aggregateStatsID : wfWikiID();
 
 		$lines = array();
 		foreach ( $deltas as $key => $count ) {
-			$lines[] = sprintf( $wgStatsFormatString, $id, $count, $key );
+			$lines[] = sprintf( $this->config->get( 'StatsFormatString' ), $id, $count, $key );
 		}
 
 		if ( count( $lines ) ) {
@@ -126,8 +129,8 @@ class StatCounter {
 					$packet,
 					strlen( $packet ),
 					0,
-					$wgUDPProfilerHost,
-					$wgUDPProfilerPort
+					$this->config->get( 'UDPProfilerHost' ),
+					$this->config->get( 'UDPProfilerPort' )
 				);
 				wfRestoreWarnings();
 			}
