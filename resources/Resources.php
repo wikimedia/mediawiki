@@ -1022,19 +1022,25 @@ return array(
 			'mediawiki.toolbar',
 			'jquery.textSelection',
 			'jquery.byteLimit',
-			'mediawiki.notification',
-			'jquery.throttle-debounce',
 		),
 		'position' => 'top',
+	),
+	'mediawiki.action.edit.styles' => array(
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.styles.css',
+		'position' => 'top',
+	),
+	'mediawiki.action.edit.drafts' => array(
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.drafts.js',
+		'dependencies' => array(
+			'mediawiki.notification',
+			'jquery.throttle-debounce',
+			'jquery.indexeddb',
+		),
 		'messages' => array(
 			'textarea-draft-found',
 			'textarea-use-draft',
 			'textarea-use-current-version',
 		),
-	),
-	'mediawiki.action.edit.styles' => array(
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.styles.css',
-		'position' => 'top',
 	),
 	'mediawiki.action.edit.collapsibleFooter' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.js',

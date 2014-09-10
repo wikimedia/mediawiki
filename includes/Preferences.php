@@ -830,6 +830,11 @@ class Preferences {
 			'section' => 'editing/editor',
 			'label-message' => 'tog-useeditwarning',
 		);
+		$defaultPreferences['localdrafts'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/editor',
+			'label-message' => 'tog-localdrafts',
+		);
 		$defaultPreferences['showtoolbar'] = array(
 			'type' => 'toggle',
 			'section' => 'editing/editor',

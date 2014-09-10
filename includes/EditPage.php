@@ -2066,6 +2066,10 @@ class EditPage {
 			$wgOut->addModules( 'mediawiki.action.edit.editWarning' );
 		}
 
+		if ( $wgUser->getOption( 'localdrafts', false ) ) {
+			$wgOut->addModules( 'mediawiki.action.edit.drafts' );
+		}
+
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		# Enabled article-related sidebar, toplinks, etc.
