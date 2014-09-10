@@ -42,6 +42,7 @@
 	"tog-norollbackdiff": "Omit diff after performing a rollback",
 	"tog-useeditwarning": "Warn me when I leave an edit page with unsaved changes",
 	"tog-prefershttps": "Always use a secure connection when logged in",
+	"tog-localdrafts": "Back-up unsaved changes using drafts on your computer",
 	"underline-always": "Always",
 	"underline-never": "Never",
 	"underline-default": "Skin or browser default",
