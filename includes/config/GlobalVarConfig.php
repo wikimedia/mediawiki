@@ -25,7 +25,7 @@
  *
  * @since 1.23
  */
-class GlobalVarConfig implements Config {
+class GlobalVarConfig implements Config, MutableConfig {
 
 	/**
 	 * Prefix to use for configuration variables
@@ -53,7 +53,7 @@ class GlobalVarConfig implements Config {
 	}
 
 	/**
-	 * @see Config::set
+	 * @see MutableConfig::set
 	 */
 	public function set( $name, $value ) {
 		$this->setWithPrefix( $this->prefix, $name, $value );
