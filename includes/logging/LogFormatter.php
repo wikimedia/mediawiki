@@ -805,7 +805,8 @@ class LegacyLogFormatter extends LogFormatter {
 				array(
 					'target' => $params[3],
 					'dest' => $title->getPrefixedDBkey(),
-					'mergepoint' => $params[4]
+					'mergepoint' => $params[4],
+					'submitted' => 1 // show the revisions immediately
 				)
 			);
 
