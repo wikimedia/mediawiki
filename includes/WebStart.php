@@ -40,8 +40,6 @@ if ( ini_get( 'register_globals' ) ) {
 header( 'X-Content-Type-Options: nosniff' );
 
 $wgRequestTime = microtime( true );
-# getrusage() does not exist on the Microsoft Windows platforms, catching this
-$wgRUstart = function_exists( 'getrusage' ) ? getrusage() : array();
 unset( $IP );
 
 # Valid web server entry point, enable includes.
@@ -60,11 +58,12 @@ if ( $IP === false ) {
 	$IP = realpath( '.' ) ?: dirname( __DIR__ );
 }
 
-# Start the autoloader, so that extensions can derive classes from core files
-require_once "$IP/includes/AutoLoader.php";
-
 # Load the profiler
 require_once "$IP/includes/profiler/Profiler.php";
+$wgRUstart = wfGetRusage() ?: array();
+
+# Start the autoloader, so that extensions can derive classes from core files
+require_once "$IP/includes/AutoLoader.php";
 
 # Load up some global defines.
 require_once "$IP/includes/Defines.php";
