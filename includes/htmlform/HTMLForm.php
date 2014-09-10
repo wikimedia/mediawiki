@@ -936,11 +936,14 @@ class HTMLForm extends ContextSource {
 				$attrs['id'] = $button['id'];
 			}
 
-			if ( $useMediaWikiUIEverywhere ) {
+			if ( $this->isVForm() || $useMediaWikiUIEverywhere ) {
 				if ( isset( $attrs['class'] ) ) {
 					$attrs['class'] .= ' mw-ui-button';
 				} else {
 					$attrs['class'] = 'mw-ui-button';
+				}
+				if ( $this->isVForm() ) {
+					$attrs['class'] .= ' mw-ui-big mw-ui-block';
 				}
 			}
 
