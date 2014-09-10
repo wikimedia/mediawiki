@@ -235,10 +235,10 @@ class SpecialPageFactory {
 	 * aliases; the first in the array is the canonical alias.  All registered special
 	 * pages are guaranteed to have a property entry, and for that property array to
 	 * contain at least one entry (English fallbacks will be added if necessary).
-	 * @return object
+	 * @return array
 	 */
 	static function getAliasList() {
-		if ( !is_object( self::$aliases ) ) {
+		if ( is_null( self::$aliases ) ) {
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
 
@@ -257,9 +257,6 @@ class SpecialPageFactory {
 			foreach ( $missingPages as $name => $stuff ) {
 				self::$aliases[$wgContLang->caseFold( $name )] = $name;
 			}
-
-			// Cast to object: func()[$key] doesn't work, but func()->$key does
-			self::$aliases = (object)self::$aliases;
 		}
 
 		return self::$aliases;
@@ -279,8 +276,9 @@ class SpecialPageFactory {
 
 		$caseFoldedAlias = $wgContLang->caseFold( $bits[0] );
 		$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
-		if ( isset( self::getAliasList()->$caseFoldedAlias ) ) {
-			$name = self::getAliasList()->$caseFoldedAlias;
+		$aliases = self::getAliasList();
+		if ( isset( $aliases[$caseFoldedAlias] ) ) {
+			$name = $aliases[$caseFoldedAlias];
 		} else {
 			return array( null, null );
 		}
