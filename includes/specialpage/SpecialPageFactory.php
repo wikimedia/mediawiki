@@ -260,14 +260,14 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Initialise and return the list of special page aliases.  Returns an object with
-	 * properties which can be accessed $obj->pagename - each property name is an
-	 * alias, with the value being the canonical name of the special page. All
-	 * registered special pages are guaranteed to map to themselves.
-	 * @return object
+	 * Initialise and return the list of special page aliases. Returns a keyed array
+	 * with each value properties which can be accessed $obj->pagename - each property
+	 * name is an alias, with the value being the canonical name of the special page.
+	 * All registered special pages are guaranteed to map to themselves.
+	 * @return array
 	 */
-	private static function getAliasListObject() {
-		if ( !is_object( self::$aliases ) ) {
+	private static function getAliasList() {
+		if ( is_null( self::$aliases ) ) {
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
 			$pageList = self::getPageList();
@@ -310,9 +310,6 @@ class SpecialPageFactory {
 					}
 				}
 			}
-
-			// Cast to object: func()[$key] doesn't work, but func()->$key does
-			self::$aliases = (object)self::$aliases;
 		}
 
 		return self::$aliases;
@@ -332,8 +329,9 @@ class SpecialPageFactory {
 
 		$caseFoldedAlias = $wgContLang->caseFold( $bits[0] );
 		$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
-		if ( isset( self::getAliasListObject()->$caseFoldedAlias ) ) {
-			$name = self::getAliasListObject()->$caseFoldedAlias;
+		$aliases = self::getAliasList();
+		if ( isset( $aliases[$caseFoldedAlias] ) ) {
+			$name = $aliases[$caseFoldedAlias];
 		} else {
 			return array( null, null );
 		}
@@ -609,7 +607,7 @@ class SpecialPageFactory {
 	public static function getLocalNameFor( $name, $subpage = false ) {
 		global $wgContLang;
 		$aliases = $wgContLang->getSpecialPageAliases();
-		$aliasList = self::getAliasListObject();
+		$aliasList = self::getAliasList();
 
 		// Find the first alias that maps back to $name
 		if ( isset( $aliases[$name] ) ) {
@@ -617,8 +615,8 @@ class SpecialPageFactory {
 			foreach ( $aliases[$name] as $alias ) {
 				$caseFoldedAlias = $wgContLang->caseFold( $alias );
 				$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
-				if ( isset( $aliasList->$caseFoldedAlias ) &&
-					$aliasList->$caseFoldedAlias === $name
+				if ( isset( $aliasList[$caseFoldedAlias] ) &&
+					$aliasList[$caseFoldedAlias] === $name
 				) {
 					$name = $alias;
 					$found = true;
