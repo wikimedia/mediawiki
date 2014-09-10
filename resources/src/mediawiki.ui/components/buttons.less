@@ -8,6 +8,7 @@ Buttons
 <h3>Guidelines:</h3>
 
 - .mw-ui-button can **only** be used on **A, INPUT, and BUTTON tags**. There is support for some input types, but this doesn't work in older browsers.
+- .mw-ui-progressive, .mw-ui-regressive, .mw-ui-constructive, and .mw-ui-destructive can be applied alone on A, but can be applied in tandem with .mw-ui-button. *The class order is important:* **base type** (mw-ui-button) must come **first**, **mode** (mw-ui-quiet, mw-ui-sleeper) **second**, **visual type** (mw-ui-thin) **third**, and **context** (mw-ui-progressive) comes **last**.
 - .mw-ui-progressive, .mw-ui-constructive, and .mw-ui-destructive can be applied alone on A (see Styleguide 4.0), but can be applied in tandem with .mw-ui-button. *The class order is important:* **base type** (mw-ui-button) must come **first**, **mode** (mw-ui-quiet, mw-ui-sleeper) **second**, and **context** (mw-ui-progressive) comes **last**.
 - A .mw-ui-quiet button may **never** be the first or only button in a form.
 - Semantically, the **first button in a form should always be the affirmative action** (eg. Submit). This is for accessibility purposes. Where it appears visually is not as important.
@@ -27,6 +28,7 @@ Markup:
 
 .mw-ui-quiet - Quiet: A button that doesn't look like a button.
 .mw-ui-sleeper - Sleeper: A button which always looks like a button, but uncolored until interaction.
+.mw-ui-thin - Thin: A smaller button (less padding) which also inherits font weight.
 .mw-ui-inline - Inline: An even smaller button (zero padding) which also inherits font weight.
 .mw-ui-big - Big: 1.3x font-size.
 
@@ -45,7 +47,8 @@ Styleguide 2.
 	.mixin-mw-ui-button-disabled-state() {
 		&[disabled],
 		&[disabled]:hover,
-		&[disabled]:focus {
+		&[disabled]:focus,
+		&.mw-ui-thin[disabled]:hover {
 			background: @colorGrayLight;
 			color: @colorWhite;
 			text-shadow: none;
@@ -69,6 +72,10 @@ Styleguide 2.
 		&:hover {
 			// Shadow under outer, 3D raising inner, edge shading inner
 			.box-shadow( ~"0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -4px 0 0 @{borderColor}, inset 0 -1px 1px 0 rgba(0, 0, 0, .05)" );
+		}
+		&.mw-ui-thin:hover {
+			// Shadow under outer, 3D raising inner, edge shading inner
+			.box-shadow( ~"0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -3px 0 0 @{borderColor}, inset 0 -1px 1px 0 rgba(0, 0, 0, .05)" );
 		}
 
 		&:focus {
@@ -193,6 +200,10 @@ Styleguide 2.
 			// Fake border around, shadow under outer, 3D raising inner, edge shading inner
 			.box-shadow( ~"inset 0 0 0 1px @{colorGrayLighter}, 0 1px 0 0 rgba(0, 0, 0, .15), inset0 -3px 0 0 @{colorGrayLighter}, inset 0 -1px 1px 0 rgba(0, 0, 0, .05)" );
 		}
+		&.mw-ui-thin:hover {
+			// Fake border around, shadow under outer, 3D raising inner, edge shading inner
+			.box-shadow( ~"inset 0 0 0 1px @{colorGrayLighter}, 0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -2px 0 0 @{colorGrayLighter}, inset 0 -1px 1px 0 rgba(0, 0, 0, .05)" );
+		}
 	}
 }
 
@@ -240,7 +251,14 @@ Styleguide 2.
 	 * Button modes (continued in .mw-ui-button-context())
 	 */
 
-	// Thin mode (no padding)
+	// Thin mode (reduced visual weight)
+	&.mw-ui-thin {
+		padding: .25em .5em;
+		font-weight: inherit;
+		vertical-align: inherit;
+	}
+
+	// Inline mode (no padding)
 	&.mw-ui-inline {
 		padding: 0;
 		font-weight: inherit;
