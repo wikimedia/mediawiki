@@ -873,6 +873,9 @@ class DatabaseSqlite extends DatabaseBase {
 		} elseif ( preg_match( '/^\s*DROP INDEX/i', $s ) ) {
 			// DROP INDEX is database-wide, not table-specific, so no ON <table> clause.
 			$s = preg_replace( '/\sON\s+[^\s]*/i', '', $s );
+		} elseif ( preg_match( '/^\s*INSERT IGNORE\b/i', $s ) ) {
+			// INSERT IGNORE --> INSERT OR IGNORE
+			$s = preg_replace( '/^\s*INSERT IGNORE\b/i', 'INSERT OR IGNORE', $s );
 		}
 
 		return $s;
