@@ -21,18 +21,18 @@
  */
 
 /**
- * Interface for configuration instances
+ * Interface for mutable configuration instances
  *
- * @since 1.23
+ * @since 1.24
  */
-interface Config {
+interface MutableConfig {
 
 	/**
-	 * Get a configuration variable such as "Sitename" or "UploadMaintenance."
+	 * Set a configuration variable such a "Sitename" to something like "My Wiki"
 	 *
 	 * @param string $name Name of configuration option
-	 * @return mixed Value configured
+	 * @param mixed $value Value to set
 	 * @throws ConfigException
 	 */
-	public function get( $name );
+	public function set( $name, $value );
 }

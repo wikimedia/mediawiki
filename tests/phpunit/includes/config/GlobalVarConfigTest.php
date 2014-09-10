@@ -97,6 +97,7 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 	 * @covers GlobalVarConfig::setWithPrefix
 	 */
 	public function testSet( $name, $prefix, $var ) {
+		$this->hideDeprecated( 'GlobalVarConfig::set' );
 		$this->maybeStashGlobal( $var );
 		$config = new GlobalVarConfig( $prefix );
 		$random = wfRandomString();
