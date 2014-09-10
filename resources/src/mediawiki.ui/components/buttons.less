@@ -264,6 +264,33 @@ Styleguide 3.2.
 }
 
 /*
+Button spacer
+
+Used to place elements around buttons, while retaining a button's padding.
+
+Markup:
+<button class="mw-ui-button mw-ui-quiet">A</button>
+<span class="mw-ui-buttonspacer">B</span>
+<button class="mw-ui-button mw-ui-quiet">C</button>
+
+Styleguide 2.2.1.
+*/
+.mw-ui-buttonspacer {
+	display: inline-block;
+	.box-sizing(border-box);
+
+	// IE6/IE7 hack
+	*display: inline;
+	zoom: 1;
+
+	padding: .5em 1em;
+	vertical-align: middle;
+
+	font-size: 1em;
+	line-height: inherit;
+}
+
+/*
 Button groups
 
 Group of buttons.
