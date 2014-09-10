@@ -388,11 +388,11 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 		# Check that there are not too many revisions to move
 		$limit = 5000; // avoid too much slave lag
-		$count = $dbw->select( 'revision', '1',
+		$count = $dbw->selectRowCount( 'revision', '1',
 			array( 'rev_page' => $this->mTargetID, $timewhere ),
 			__METHOD__,
 			array( 'LIMIT' => $limit + 1 )
-		)->numRows();
+		);
 		if ( $count > $limit ) {
 			$this->getOutput()->addWikiMsg( 'mergehistory-fail-toobig' );
 
