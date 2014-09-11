@@ -91,6 +91,7 @@ image/png png apng
 image/svg+xml svg
 image/tiff tiff tif
 image/vnd.djvu djvu djv
+image/vnd.microsoft.icon
 image/vnd.wap.wbmp wbmp
 image/webp webp
 image/x-cmu-raster ras
