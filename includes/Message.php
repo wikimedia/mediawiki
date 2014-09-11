@@ -994,6 +994,7 @@ class Message {
 	 * @return string Wikitext parsed into HTML.
 	 */
 	protected function parseText( $string ) {
+		global $wgOut;
 		$out = MessageCache::singleton()->parse(
 			$string,
 			$this->title,
@@ -1001,7 +1002,10 @@ class Message {
 			$this->interface,
 			$this->language
 		);
-
+		if ( $out instanceof ParserOutput ) {
+			// Add metadata of the message
+			$wgOut->addParserOutputMetadata( $out );
+		}
 		return $out instanceof ParserOutput ? $out->getText() : $out;
 	}
 
