@@ -788,7 +788,7 @@ class ApiMain extends ApiBase {
 				$this->getRequest()->getQueryValues()
 			) ) {
 				$this->dieUsage(
-					"The '{$module->encodeParamName( 'token' )}' parameter must be POSTed",
+					"The '{$module->encodeParamName( 'token' )}' parameter was found in the query string, but must be in the POST body",
 					'mustposttoken'
 				);
 			}
