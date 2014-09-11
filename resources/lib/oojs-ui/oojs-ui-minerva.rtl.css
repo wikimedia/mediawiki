@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (bd008e8aed)
+ * OOjs UI v0.1.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-11T23:10:10Z
+ * Date: 2014-09-11T19:39:50Z
  */
 /*
  * Blank theme mixins.
@@ -76,10 +76,10 @@
   cursor: default;
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  margin-left: 0;
+  margin-right: 0;
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
-  margin-right: -0.75em;
+  margin-left: -0.75em;
 }
 .oo-ui-buttonElement.oo-ui-indicatorElement .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator,
 .oo-ui-buttonElement.oo-ui-iconElement .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
@@ -88,7 +88,7 @@
   background-size: 2em auto;
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-  margin-left: 0.25em;
+  margin-right: 0.25em;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   line-height: 1.9em;
@@ -116,16 +116,16 @@
 .oo-ui-bookletLayout-outlinePanel-editable .oo-ui-outlineWidget {
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   bottom: 3em;
   overflow-y: auto;
 }
 .oo-ui-bookletLayout-outlinePanel .oo-ui-outlineControlsWidget {
   position: absolute;
   bottom: 0;
-  left: 0;
   right: 0;
+  left: 0;
 }
 .oo-ui-bookletLayout-stackLayout .oo-ui-panelLayout {
   padding: 0 0 1em;
@@ -144,15 +144,15 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-labelElement-label,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labelElement-label {
   display: block;
-  float: left;
+  float: right;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-field,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-field {
   display: block;
-  float: left;
+  float: right;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labelElement-label {
-  text-align: right;
+  text-align: left;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-labelElement-label {
   display: inline-block;
@@ -174,7 +174,7 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-labelElement-label,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labelElement-label {
   padding-top: 0.5em;
-  margin-right: 5%;
+  margin-left: 5%;
   width: 35%;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-field,
@@ -218,11 +218,11 @@
   padding: 0.25em 0;
 }
 .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-labelElement-label {
-  padding-left: 1.75em;
+  padding-right: 1.75em;
   line-height: 1.33em;
 }
 .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-iconElement-icon {
-  left: 0;
+  right: 0;
   top: 0.25em;
   width: 2em;
   height: 2em;
@@ -230,8 +230,8 @@
 .oo-ui-gridLayout {
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   bottom: 0;
 }
 .oo-ui-panelLayout {
@@ -244,8 +244,8 @@
 .oo-ui-panelLayout-expanded {
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   bottom: 0;
 }
 .oo-ui-stackLayout > .oo-ui-panelLayout {
@@ -260,7 +260,7 @@
   z-index: 4;
 }
 .oo-ui-popupTool .oo-ui-popupWidget {
-  margin-left: 1.25em;
+  margin-right: 1.25em;
   font-size: 0.8em;
 }
 .oo-ui-toolGroup {
@@ -342,10 +342,10 @@
   display: block;
 }
 .oo-ui-popupToolGroup-left > .oo-ui-toolGroup-tools {
-  left: 0;
+  right: 0;
 }
 .oo-ui-popupToolGroup-right > .oo-ui-toolGroup-tools {
-  right: 0;
+  left: 0;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
   display: inline-block;
@@ -368,10 +368,10 @@
   height: 2em;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
-  right: 0;
+  left: 0;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
-  left: 0.25em;
+  right: 0.25em;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
   line-height: 2.6em;
@@ -385,10 +385,10 @@
   font-weight: bold;
 }
 .oo-ui-popupToolGroup.oo-ui-iconElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
-  margin-left: 3em;
+  margin-right: 3em;
 }
 .oo-ui-popupToolGroup.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
-  margin-right: 2.25em;
+  margin-left: 2.25em;
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
   top: 2.3em;
@@ -399,7 +399,7 @@
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
   height: 2em;
   width: 2em;
-  margin-right: 0.25em;
+  margin-left: 0.25em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
   line-height: 2em;
@@ -424,7 +424,7 @@
   padding: 0.25em;
 }
 .oo-ui-listToolGroup .oo-ui-tool-link {
-  padding-right: 0.5em;
+  padding-left: 0.5em;
 }
 .oo-ui-menuToolGroup .oo-ui-tool {
   display: block;
@@ -450,7 +450,7 @@
   padding: 0.25em 0 0.25em 0;
 }
 .oo-ui-menuToolGroup .oo-ui-tool-link {
-  padding: 0 1em 0 0.25em;
+  padding: 0 0.25em 0 1em;
 }
 .oo-ui-toolbar {
   clear: both;
@@ -459,7 +459,7 @@
   line-height: 1em;
 }
 .oo-ui-toolbar-actions {
-  float: right;
+  float: left;
 }
 .oo-ui-toolbar-tools {
   display: inline;
@@ -481,7 +481,7 @@
   user-select: all;
 }
 .oo-ui-toolbar-shadow {
-  background-position: left top;
+  background-position: right top;
   background-repeat: repeat-x;
   position: absolute;
   width: 100%;
@@ -503,7 +503,7 @@
   position: relative;
   display: block;
   cursor: pointer;
-  padding: 0.8em 1em 0.8em 3.35em;
+  padding: 0.8em 3.35em 0.8em 1em;
   border: none;
   font-weight: bold;
 }
@@ -520,25 +520,25 @@
   line-height: 1.5em;
 }
 .oo-ui-optionWidget.oo-ui-indicatorElement .oo-ui-labelElement-label {
-  padding-right: 1.5em;
+  padding-left: 1.5em;
 }
 .oo-ui-optionWidget-level-0 {
-  padding-left: 3.5em;
+  padding-right: 3.5em;
 }
 .oo-ui-optionWidget-level-0 .oo-ui-iconElement-icon {
-  left: 1em;
+  right: 1em;
 }
 .oo-ui-optionWidget-level-1 {
-  padding-left: 5em;
+  padding-right: 5em;
 }
 .oo-ui-optionWidget-level-1 .oo-ui-iconElement-icon {
-  left: 2.5em;
+  right: 2.5em;
 }
 .oo-ui-optionWidget-level-2 {
-  padding-left: 6.5em;
+  padding-right: 6.5em;
 }
 .oo-ui-optionWidget-level-2 .oo-ui-iconElement-icon {
-  left: 4em;
+  right: 4em;
 }
 .oo-ui-decoratedOptionWidget .oo-ui-iconElement-icon,
 .oo-ui-decoratedOptionWidget .oo-ui-indicatorElement-indicator {
@@ -554,10 +554,10 @@
   margin-top: -1em;
 }
 .oo-ui-decoratedOptionWidget .oo-ui-iconElement-icon {
-  left: 0.5em;
+  right: 0.5em;
 }
 .oo-ui-decoratedOptionWidget .oo-ui-indicatorElement-indicator {
-  right: 0.5em;
+  left: 0.5em;
 }
 .oo-ui-buttonSelectWidget {
   display: inline-block;
@@ -625,16 +625,16 @@
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed .oo-ui-buttonElement-button {
   border-radius: 0;
   margin-bottom: -1px;
-  margin-left: -1px;
+  margin-right: -1px;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:first-child .oo-ui-buttonElement-button {
-  border-bottom-left-radius: 0.3em;
-  border-top-left-radius: 0.3em;
-  margin-left: 0;
-}
-.oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:last-child .oo-ui-buttonElement-button {
   border-bottom-right-radius: 0.3em;
   border-top-right-radius: 0.3em;
+  margin-right: 0;
+}
+.oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:last-child .oo-ui-buttonElement-button {
+  border-bottom-left-radius: 0.3em;
+  border-top-left-radius: 0.3em;
 }
 .oo-ui-toggleSwitchWidget {
   position: relative;
@@ -667,8 +667,8 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
   left: 0;
+  right: 0;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -680,15 +680,15 @@
 }
 .oo-ui-toggleSwitchWidget-grip {
   top: 0.25em;
-  left: 0.25em;
+  right: 0.25em;
   width: 1.5em;
   height: 1.5em;
   margin-top: -1px;
-  -webkit-transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
-  -moz-transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
-  -ms-transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
-  -o-transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
-  transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
+  -webkit-transition: right 200ms ease-in-out, margin-right 200ms ease-in-out;
+  -moz-transition: right 200ms ease-in-out, margin-right 200ms ease-in-out;
+  -ms-transition: right 200ms ease-in-out, margin-right 200ms ease-in-out;
+  -o-transition: right 200ms ease-in-out, margin-right 200ms ease-in-out;
+  transition: right 200ms ease-in-out, margin-right 200ms ease-in-out;
 }
 .oo-ui-toggleSwitchWidget .oo-ui-toggleSwitchWidget-glow {
   -webkit-transition: opacity 200ms ease-in-out;
@@ -698,12 +698,12 @@
   transition: opacity 200ms ease-in-out;
 }
 .oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
-  left: 2.25em;
-  margin-left: -2px;
+  right: 2.25em;
+  margin-right: -2px;
 }
 .oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-grip {
-  left: 0.25em;
-  margin-left: 0;
+  right: 0.25em;
+  margin-right: 0;
 }
 .oo-ui-popupWidget-popup {
   position: absolute;
@@ -727,10 +727,10 @@
   user-select: none;
 }
 .oo-ui-popupWidget-head .oo-ui-buttonWidget {
-  float: right;
+  float: left;
 }
 .oo-ui-popupWidget-head .oo-ui-labelElement-label {
-  float: left;
+  float: right;
   cursor: default;
 }
 .oo-ui-popupWidget-body {
@@ -757,7 +757,7 @@
 }
 .oo-ui-popupButtonWidget .oo-ui-popupWidget {
   position: absolute;
-  left: 1em;
+  right: 1em;
   cursor: auto;
 }
 .oo-ui-lookupInputWidget-menu {
@@ -792,10 +792,10 @@
   user-select: none;
 }
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon {
-  left: 0;
+  right: 0;
 }
 .oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator {
-  right: 0;
+  left: 0;
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
@@ -880,20 +880,20 @@
   height: 2.5em;
 }
 .oo-ui-inlineMenuWidget-handle .oo-ui-indicatorElement-indicator {
-  right: 0;
+  left: 0;
 }
 .oo-ui-inlineMenuWidget-handle .oo-ui-iconElement-icon {
-  left: 0.25em;
+  right: 0.25em;
 }
 .oo-ui-inlineMenuWidget-handle .oo-ui-labelElement-label {
   line-height: 2.5em;
   margin: 0 0.5em;
 }
 .oo-ui-inlineMenuWidget.oo-ui-iconElement .oo-ui-inlineMenuWidget-handle .oo-ui-labelElement-label {
-  margin-left: 3em;
+  margin-right: 3em;
 }
 .oo-ui-inlineMenuWidget.oo-ui-indicatorElement .oo-ui-inlineMenuWidget-handle .oo-ui-labelElement-label {
-  margin-right: 2em;
+  margin-left: 2em;
 }
 .oo-ui-outlineItemWidget {
   position: relative;
@@ -910,27 +910,27 @@
 }
 .oo-ui-outlineControlsWidget-items,
 .oo-ui-outlineControlsWidget-movers {
-  float: left;
+  float: right;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-outlineControlsWidget > .oo-ui-iconElement-icon {
-  float: left;
-  background-position: right center;
+  float: right;
+  background-position: left center;
   background-repeat: no-repeat;
 }
 .oo-ui-outlineControlsWidget-items {
-  float: left;
+  float: right;
 }
 .oo-ui-outlineControlsWidget-items .oo-ui-buttonWidget {
-  float: left;
+  float: right;
 }
 .oo-ui-outlineControlsWidget-movers {
-  float: right;
+  float: left;
 }
 .oo-ui-outlineControlsWidget-movers .oo-ui-buttonWidget {
-  float: right;
+  float: left;
 }
 .oo-ui-outlineControlsWidget-items,
 .oo-ui-outlineControlsWidget-movers {
@@ -941,10 +941,10 @@
 .oo-ui-outlineControlsWidget > .oo-ui-iconElement-icon {
   width: 1.5em;
   height: 2em;
-  margin: 0.5em 0 0.5em 0.5em;
+  margin: 0.5em 0.5em 0.5em 0;
 }
 .oo-ui-outlineControlsWidget-items {
-  margin-left: 0;
+  margin-right: 0;
 }
 .oo-ui-comboBoxWidget > .oo-ui-selectWidget {
   z-index: 1;
@@ -955,8 +955,8 @@
 .oo-ui-searchWidget-query {
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
 }
 .oo-ui-searchWidget-query .oo-ui-textInputWidget {
   width: 100%;
@@ -964,8 +964,8 @@
 .oo-ui-searchWidget-results {
   position: absolute;
   bottom: 0;
-  left: 0;
   right: 0;
+  left: 0;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -1015,14 +1015,14 @@
 .oo-ui-window-overlay {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
 }
 .oo-ui-dialog-content > .oo-ui-window-head,
 .oo-ui-dialog-content > .oo-ui-window-body,
 .oo-ui-dialog-content > .oo-ui-window-foot {
   position: absolute;
-  left: 0;
   right: 0;
+  left: 0;
   overflow: hidden;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1094,13 +1094,13 @@
 .oo-ui-messageDialog-message-verbose {
   font-size: 1.1em;
   line-height: 1.5em;
-  text-align: left;
+  text-align: right;
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget {
-  border-right: solid 1px #e5e5e5;
+  border-left: solid 1px #e5e5e5;
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget:last-child {
-  border-right-width: 0;
+  border-left-width: 0;
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget {
   border-bottom: solid 1px #e5e5e5;
@@ -1161,17 +1161,17 @@
   bottom: 0;
 }
 .oo-ui-processDialog-actions-safe {
-  left: 0;
+  right: 0;
 }
 .oo-ui-processDialog-actions-primary {
-  right: 0;
+  left: 0;
 }
 .oo-ui-processDialog-errors {
   display: none;
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   bottom: 0;
   z-index: 2;
   overflow-x: hidden;
@@ -1256,16 +1256,16 @@
   color: #ffffff;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
-  left: 0.5em;
-}
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-labelElement-label {
-  padding-left: 2.25em;
-}
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
   right: 0.5em;
 }
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-labelElement-label {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-labelElement-label {
   padding-right: 2.25em;
+}
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
+  left: 0.5em;
+}
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-iconElement .oo-ui-labelElement-label {
+  padding-left: 2.25em;
 }
 .oo-ui-processDialog-actions-other {
   position: absolute;
@@ -1288,7 +1288,7 @@
   margin-bottom: 2em;
 }
 .oo-ui-processDialog-error {
-  text-align: left;
+  text-align: right;
   margin: 1em;
   padding: 1em;
   border: solid 1px #ff9e9e;
@@ -1305,15 +1305,15 @@
   width: auto;
   height: auto;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   padding: 1em;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup > .oo-ui-window-frame {
   position: fixed;
-  right: 0;
   left: 0;
+  right: 0;
   margin: auto;
   overflow: hidden;
   max-width: 100%;

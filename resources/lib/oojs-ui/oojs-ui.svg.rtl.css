@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (bd008e8aed)
+ * OOjs UI v0.1.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-11T23:10:10Z
+ * Date: 2014-09-11T19:39:50Z
  */
 /*
  * Blank theme mixins.
@@ -57,16 +57,16 @@
   background-image: /* @embed */ url(images/icons/menu.svg);
 }
 .oo-ui-icon-next {
-  background-image: /* @embed */ url(images/icons/move-ltr.svg);
+  background-image: /* @embed */ url(images/icons/move-rtl.svg);
 }
 .oo-ui-icon-picture {
   background-image: /* @embed */ url(images/icons/picture.svg);
 }
 .oo-ui-icon-previous {
-  background-image: /* @embed */ url(images/icons/move-rtl.svg);
+  background-image: /* @embed */ url(images/icons/move-ltr.svg);
 }
 .oo-ui-icon-redo {
-  background-image: /* @embed */ url(images/icons/arched-arrow-ltr.svg);
+  background-image: /* @embed */ url(images/icons/arched-arrow-rtl.svg);
 }
 .oo-ui-icon-remove {
   background-image: /* @embed */ url(images/icons/remove.svg);
@@ -81,7 +81,7 @@
   background-image: /* @embed */ url(images/icons/tag.svg);
 }
 .oo-ui-icon-undo {
-  background-image: /* @embed */ url(images/icons/arched-arrow-rtl.svg);
+  background-image: /* @embed */ url(images/icons/arched-arrow-ltr.svg);
 }
 .oo-ui-icon-window {
   background-image: /* @embed */ url(images/icons/window.svg);
@@ -93,10 +93,10 @@
   background-image: /* @embed */ url(images/indicators/arrow-down.svg);
 }
 .oo-ui-indicator-next {
-  background-image: /* @embed */ url(images/indicators/arrow-ltr.svg);
+  background-image: /* @embed */ url(images/indicators/arrow-rtl.svg);
 }
 .oo-ui-indicator-previous {
-  background-image: /* @embed */ url(images/indicators/arrow-rtl.svg);
+  background-image: /* @embed */ url(images/indicators/arrow-ltr.svg);
 }
 .oo-ui-indicator-required {
   background-image: /* @embed */ url(images/indicators/required.svg);
