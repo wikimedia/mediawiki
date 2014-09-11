@@ -1613,6 +1613,9 @@ return array(
 	'mediawiki.special.import' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.import.js',
 	),
+	'mediawiki.special.listGroupRights' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.listGroupRights.css',
+	),
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => array(
