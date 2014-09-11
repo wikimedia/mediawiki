@@ -1436,10 +1436,14 @@ return array(
 	),
 	'mediawiki.legacy.shared' => array(
 		// Used in the web installer. Test it after modifying this definition!
-		'styles' => array( 'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' ) ),
+		'styles' => array(
+			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' )
+		),
 	),
 	'mediawiki.legacy.oldshared' => array(
-		'styles' => array( 'resources/src/mediawiki.legacy/oldshared.css' => array( 'media' => 'screen' ) ),
+		'styles' => array(
+			'resources/src/mediawiki.legacy/oldshared.css' => array( 'media' => 'screen' )
+		),
 	),
 	'mediawiki.legacy.wikibits' => array(
 		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
