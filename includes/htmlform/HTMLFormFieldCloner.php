@@ -80,7 +80,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * specified key.
 	 *
 	 * @param string $key Array key under which these fields should be named
-	 * @return HTMLFormFields[]
+	 * @return HTMLFormField[]
 	 */
 	protected function createFieldsForKey( $key ) {
 		$fields = array();
@@ -303,6 +303,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				'cssclass' => 'mw-htmlform-cloner-delete-button',
 				'default' => $this->msg( $label )->text(),
 			) );
+			$field->mParent = $this->mParent;
 			$v = $field->getDefault();
 
 			if ( $displayFormat === 'table' ) {
@@ -373,6 +374,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			'cssclass' => 'mw-htmlform-cloner-create-button',
 			'default' => $this->msg( $label )->text(),
 		) );
+		$field->mParent = $this->mParent;
 		$html .= $field->getInputHTML( $field->getDefault() );
 
 		return $html;
