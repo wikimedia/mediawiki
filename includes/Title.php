@@ -4098,12 +4098,11 @@ class Title {
 			'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
 		);
 		if ( $max !== null ) {
-			$res = $dbr->select( 'revision', '1',
+			return $dbr->selectRowCount( 'revision', '1',
 				$conds,
 				__METHOD__,
 				array( 'LIMIT' => $max + 1 ) // extra to detect truncation
 			);
-			return $res->numRows();
 		} else {
 			return (int)$dbr->selectField( 'revision', 'count(*)', $conds, __METHOD__ );
 		}

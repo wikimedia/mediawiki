@@ -167,9 +167,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( isset( $this->prop['unreadcount'] ) ) {
 			$dbr = $this->getQuery()->getNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
 
-			$sql = $dbr->selectSQLText(
+			$count = $dbr->selectRowCount(
 				'watchlist',
-				array( 'dummy' => 1 ),
+				'1',
 				array(
 					'wl_user' => $user->getId(),
 					'wl_notificationtimestamp IS NOT NULL',
@@ -177,7 +177,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				__METHOD__,
 				array( 'LIMIT' => self::WL_UNREAD_LIMIT )
 			);
-			$count = $dbr->selectField( array( 'c' => "($sql)" ), 'COUNT(*)' );
 
 			if ( $count >= self::WL_UNREAD_LIMIT ) {
 				$vals['unreadcount'] = self::WL_UNREAD_LIMIT . '+';
