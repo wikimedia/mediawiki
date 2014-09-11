@@ -20,8 +20,25 @@
  * @file
  * @ingroup Profiler
  * @defgroup Profiler Profiler
- * This file is only included if profiling is enabled
  */
+
+/**
+ * Get system resource usage of current request context.
+ * Invokes the getrusage(2) system call, requesting RUSAGE_SELF if on PHP5
+ * or RUSAGE_THREAD if on HHVM. Returns false if getrusage is not available.
+ *
+ * @since 1.24
+ * @return array|bool Resource usage data or false if no data available.
+ */
+function wfGetRusage() {
+	if ( !function_exists( 'getrusage' ) ) {
+		return false;
+	} elseif ( defined ( 'HHVM_VERSION' ) ) {
+		return getrusage( 2 /* RUSAGE_THREAD */ );
+	} else {
+		return getrusage( 0 /* RUSAGE_SELF */ );
+	}
+}
 
 /**
  * Begin profiling of a function
@@ -272,10 +289,10 @@ abstract class Profiler {
 	 */
 	protected function getTime( $metric = 'wall' ) {
 		if ( $metric === 'cpu' || $metric === 'user' ) {
-			if ( !function_exists( 'getrusage' ) ) {
+			$ru = wfGetRusage();
+			if ( !$ru ) {
 				return 0;
 			}
-			$ru = getrusage();
 			$time = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
 			if ( $metric === 'cpu' ) {
 				# This is the time of system calls, added to the user time
