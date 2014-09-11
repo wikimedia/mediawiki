@@ -1425,7 +1425,9 @@ return array(
 		'position' => 'top',
 	),
 	'mediawiki.legacy.commonPrint' => array(
-		'styles' => array( 'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' ) ),
+		'styles' => array(
+			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' )
+		),
 	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'resources/src/mediawiki.legacy/protect.js',
@@ -1436,10 +1438,14 @@ return array(
 	),
 	'mediawiki.legacy.shared' => array(
 		// Used in the web installer. Test it after modifying this definition!
-		'styles' => array( 'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' ) ),
+		'styles' => array(
+			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' )
+		),
 	),
 	'mediawiki.legacy.oldshared' => array(
-		'styles' => array( 'resources/src/mediawiki.legacy/oldshared.css' => array( 'media' => 'screen' ) ),
+		'styles' => array(
+			'resources/src/mediawiki.legacy/oldshared.css' => array( 'media' => 'screen' )
+		),
 	),
 	'mediawiki.legacy.wikibits' => array(
 		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
