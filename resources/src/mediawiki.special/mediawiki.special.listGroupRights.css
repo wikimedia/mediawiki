@@ -1,0 +1,20 @@
+/*!
+ * Styling for Special:ListGroupRights
+ */
+
+/*
+ * Make sure that the right name in parentheses appears correctly
+ * in RTL wikis even if the description of the right ends in LTR characters
+ */
+.mw-listgrouprights-table li span code:last-child {
+	direction: ltr;
+
+	/*
+	 * Ideally this should be unicode-bidi: embed,
+	 * but this is the only way to get consistent behavior on current
+	 * versions of Firefox and Chrome.
+	 */
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: -webkit-isolate;
+	unicode-bidi: isolate;
+}

@@ -43,6 +43,7 @@ class SpecialListGroupRights extends SpecialPage {
 
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModules( 'mediawiki.special.listGroupRights' );
 
 		$out->wrapWikiMsg( "<div class=\"mw-listgrouprights-key\">\n$1\n</div>", 'listgrouprights-key' );
 

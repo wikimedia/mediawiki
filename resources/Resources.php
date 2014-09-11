@@ -1805,6 +1805,9 @@ return [
 	'mediawiki.special.import' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.import.js',
 	],
+	'mediawiki.special.listGroupRights' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.listGroupRights.css',
+	],
 	'mediawiki.special.movePage' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => [
