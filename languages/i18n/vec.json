@@ -788,7 +788,6 @@
 	"searchrelated": "ligà",
 	"searchall": "tuti",
 	"showingresults": "Qua de soto vien mostrà al massimo {{PLURAL:$1|'''1''' risultato|'''$1''' risultati}} a partir dal nùmaro '''$2'''.",
-	"showingresultsheader": "{{PLURAL:$5|Risultato '''$1''' de '''$3'''|Risultati '''$1 - $2''' de '''$3'''}} par '''$4'''",
 	"search-nonefound": "La riserca no la gà catà gnente.",
 	"powersearch-legend": "Riserca avansà",
 	"powersearch-ns": "Serca ne i namespace:",

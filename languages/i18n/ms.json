@@ -860,7 +860,6 @@
 	"searchall": "semua",
 	"showingresults": "Yang berikut ialah '''$1''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
 	"showingresultsinrange": "Yang berikut adalah {{PLURAL:$1|<strong>satu</strong> hasil|sebanyak <strong>$1</strong> hasil}} dalam julat #<strong>$2</strong> hingga #<strong>$3</strong>.",
-	"showingresultsheader": "{{PLURAL:$5|Keputusan '''$1''' daripada '''$3'''|Keputusan '''$1 - $2''' daripada '''$3'''}} untuk '''$4'''",
 	"search-nonefound": "Tiada hasil yang sepadan dengan pertanyaan.",
 	"powersearch-legend": "Carian lanjutan",
 	"powersearch-ns": "Cari dalam ruang nama:",

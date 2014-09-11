@@ -424,7 +424,6 @@
 	"search-interwiki-more": "(артык)",
 	"searchrelated": "холбаалыг",
 	"searchall": "шупту",
-	"showingresultsheader": "«'''$4'''» дилээниниң {{PLURAL:$5|1='''$3''' одуругдан '''$1''' түңнели|'''$3''' одуругдан '''$1—$2''' түңнелдери}}",
 	"search-nonefound": "Айыткан негелдениң түңнели чок",
 	"powersearch-ns": "Аттар делгемнеринден дилээри:",
 	"powersearch-toggleall": "Шупту",

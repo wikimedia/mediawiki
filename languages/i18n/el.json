@@ -867,7 +867,6 @@
 	"searchall": "όλα",
 	"showingresults": "Παρακάτω {{PLURAL:$1|εμφανίζεται μέχρι <strong>1</strong> αποτέλεσμα|εμφανίζονται μέχρι <strong>$1</strong> αποτελέσματα}} ξεκινώντας από το Νο <strong>$2</strong>.",
 	"showingresultsinrange": "Παρακάτω {{PLURAL:$1|εμφανίζεται μέχρι <strong>1</strong> αποτέλεσμα|εμφανίζονται μέχρι <strong>$1</strong> αποτελέσματα}} σε εύρος από το Νο <strong>$2</strong> μέχρι το Νο <strong>$3</strong>.",
-	"showingresultsheader": "{{PLURAL:$5|Αποτέλεσμα '''$1''' από '''$3'''|Αποτελέσματα '''$1 - $2''' από '''$3'''}} για '''$4'''",
 	"search-nonefound": "Δεν υπάρχουν αποτελέσματα που να ικανοποιούν το ερώτημα.",
 	"powersearch-legend": "Αναλυτική αναζήτηση",
 	"powersearch-ns": "Αναζήτηση στις περιοχές ονομάτων:",

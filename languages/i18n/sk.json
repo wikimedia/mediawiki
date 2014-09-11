@@ -839,7 +839,6 @@
 	"searchrelated": "súvisiace",
 	"searchall": "všetko",
 	"showingresults": "Nižšie {{PLURAL:$1|je zobrazený jeden výsledok|sú zobrazené '''1''' výsledky|je zobrazených '''$1''' výsledkov}}, počnúc od  #<b>$2</b>.",
-	"showingresultsheader": "{{PLURAL:$5|Výsledok '''$1''' z '''$3'''|Výsledky '''$1 - $2''' z '''$3'''}} pre '''$4'''",
 	"search-nonefound": "Vyhľadávanie nenašlo žiadne výsledky.",
 	"powersearch-legend": "Pokročilé hľadanie",
 	"powersearch-ns": "Hľadať v menných priestoroch:",

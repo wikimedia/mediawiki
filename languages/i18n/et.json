@@ -860,7 +860,6 @@
 	"searchall": "kõik",
 	"showingresults": "Allpool näidatakse '''{{PLURAL:$1|ühte|$1}}''' tulemust alates '''$2'''. tulemusest.",
 	"showingresultsinrange": "Allpool näidatakse {{PLURAL:$1|<strong>üht</strong>|<strong>$1</strong>}} tulemust vahemikus <strong>$2</strong>–<strong>$3</strong>.",
-	"showingresultsheader": "{{PLURAL:$5|'''$1''' '''$3'''-st vastest|Vasted '''$1–$2''' '''$3'''-st}} päringule '''$4'''",
 	"search-nonefound": "Päringule ei leitud vasteid.",
 	"powersearch-legend": "Täpsem otsing",
 	"powersearch-ns": "Otsing nimeruumidest:",
