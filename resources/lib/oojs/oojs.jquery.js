@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.1.0 optimised for jQuery
+ * OOjs v1.1.1 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-08-31T21:15:46Z
+ * Date: 2014-09-11T00:40:09Z
  */
 ( function ( global ) {
 
@@ -253,7 +253,10 @@ oo.compare = function ( a, b, asymmetrical ) {
 		aType = typeof aValue;
 		bType = typeof bValue;
 		if ( aType !== bType ||
-			( ( aType === 'string' || aType === 'number' ) && aValue !== bValue ) ||
+			(
+				( aType === 'string' || aType === 'number' || aType === 'boolean' ) &&
+				aValue !== bValue
+			) ||
 			( aValue === Object( aValue ) && !oo.compare( aValue, bValue, asymmetrical ) ) ) {
 			return false;
 		}
