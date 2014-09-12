@@ -1,0 +1,113 @@
+/* Search */
+#p-search {
+	/* @noflip */
+	float: left;
+	margin-right: 0.5em;
+	margin-left: 0.5em;
+
+	h3 {
+		display: none;
+	}
+
+	form,
+	input {
+		margin: 0;
+		margin-top: 0.4em;
+	}
+}
+
+div#simpleSearch {
+	display: block;
+	width: 14em;
+	height: 1.4em;
+	margin-top: 0.65em;
+	position: relative;
+	min-height: 1px; /* Gotta trigger hasLayout for IE7 */
+	border: solid 1px #aaa;
+	color: black;
+	background-color: white;
+	.background-image('images/search-fade.png');
+	background-position: top left;
+	background-repeat: repeat-x;
+
+	// Styles for both the search input and the button
+	input {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background-color: transparent;
+		color: black;
+	}
+
+	// The search input
+	#searchInput {
+		top: 0;
+		left: 0;
+		width: 90%;
+		padding: 0.2em 0 0.2em 0.2em;
+		font-size: 13px;
+		direction: ltr;
+
+		&:focus {
+			outline: none;
+		}
+
+		// These rules MAY NOT be merged because of how CSS requires browsers
+		// to parse unrecognized selectors!
+		// Note these rules ensure that placeholder text can be distinguished from
+		// standard text. In browsers which make this distinction clear these rules
+		// are not necessary.
+		// For inputs that use jquery.placeholder.js e.g. IE9-
+		&.placeholder {
+			color: #999;
+		}
+		// Distinguish placeholder text in IE10+
+		&:-ms-input-placeholder {
+			color: #999;
+		}
+		// Distinguish placeholder text in Firefox 18-
+		&:-moz-placeholder {
+			color: #999;
+		}
+
+		// Undo the styles Webkit browsers apply to type=search fields,
+		// we provide our own
+		-webkit-appearance: textfield;
+
+		&::-webkit-search-decoration,
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-results-button,
+		&::-webkit-search-results-decoration {
+			-webkit-appearance: textfield;
+		}
+	}
+
+	// The buttons. They are displayed in the same position, and if both are
+	// present the fulltext search one obscures the 'Go' one.
+	#searchButton,
+	#mw-searchButton {
+		top: 0;
+		right: 0;
+		width: 10%;
+		height: 100%;
+		cursor: pointer;
+		/* Hide button text and replace it with the image. */
+		/* This would be 100% if not for Firefox shenanigans (bug 60900). */
+		text-indent: 200%;
+		/* Needed to make IE6 respect the text-indent. */
+		line-height: 1;
+		/* Opera 12 on RTL flips the text in a funny way without this. */
+		/* @noflip */
+		direction: ltr;
+		white-space: nowrap;
+		overflow: hidden;
+		.background-image-svg('images/search-ltr.svg', 'images/search-ltr.png');
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+
+	#mw-searchButton {
+		z-index: 1;
+	}
+}

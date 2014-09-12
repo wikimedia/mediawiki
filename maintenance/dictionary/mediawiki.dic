@@ -90,7 +90,6 @@ Edit
 Editor
 Education
 Egrave
-Ehcache
 Elig
 Email
 Empty
@@ -479,7 +478,6 @@ andconvert
 andtitle
 anon
 anoneditwarning
-anonlogin
 anonnotice
 anononly
 anonpreviewwarning
@@ -1197,7 +1195,6 @@ disabled
 disabledtranscode
 disablemail
 disablepp
-disablesuggest
 disclaimerpage
 diskussion
 displayname
@@ -1314,7 +1311,6 @@ editusercssjs
 edituserjs
 edoe
 egrave
-ehcache
 ei
 eich
 eiinvalidparammix
@@ -2530,9 +2526,7 @@ newheader
 newid
 newimages
 newlen
-newmessagesdifflink
 newmessagesdifflinkplural
-newmessageslink
 newmessageslinkplural
 newname
 newnames
@@ -3126,8 +3120,7 @@ prefixindex
 prefixsearchdisabled
 prefs
 prefsection
-prefsnologin
-prefsnologintext
+prefsnologintext2
 prefsubmit
 preload
 preloads
@@ -3377,7 +3370,6 @@ relname
 relnamespace
 remarticle
 remembermypassword
-rememberpassword
 removablegroups
 removal
 remove

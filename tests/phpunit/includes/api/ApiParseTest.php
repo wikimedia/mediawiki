@@ -4,6 +4,8 @@
  * @group API
  * @group Database
  * @group medium
+ *
+ * @covers ApiParse
  */
 class ApiParseTest extends ApiTestCase {
 

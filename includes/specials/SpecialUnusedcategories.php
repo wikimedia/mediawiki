@@ -25,13 +25,12 @@
  * @ingroup SpecialPage
  */
 class UnusedCategoriesPage extends QueryPage {
+	function __construct( $name = 'Unusedcategories' ) {
+		parent::__construct( $name );
+	}
 
 	function isExpensive() {
 		return true;
-	}
-
-	function __construct( $name = 'Unusedcategories' ) {
-		parent::__construct( $name );
 	}
 
 	function getPageHeader() {
@@ -41,14 +40,17 @@ class UnusedCategoriesPage extends QueryPage {
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'page', 'categorylinks' ),
-			'fields' => array( 'namespace' => 'page_namespace',
-					'title' => 'page_title',
-					'value' => 'page_title' ),
-			'conds' => array( 'cl_from IS NULL',
-					'page_namespace' => NS_CATEGORY,
-					'page_is_redirect' => 0 ),
-			'join_conds' => array( 'categorylinks' => array(
-					'LEFT JOIN', 'cl_to = page_title' ) )
+			'fields' => array(
+				'namespace' => 'page_namespace',
+				'title' => 'page_title',
+				'value' => 'page_title'
+			),
+			'conds' => array(
+				'cl_from IS NULL',
+				'page_namespace' => NS_CATEGORY,
+				'page_is_redirect' => 0
+			),
+			'join_conds' => array( 'categorylinks' => array( 'LEFT JOIN', 'cl_to = page_title' ) )
 		);
 	}
 
@@ -67,6 +69,7 @@ class UnusedCategoriesPage extends QueryPage {
 	 */
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
+
 		return Linker::link( $title, htmlspecialchars( $title->getText() ) );
 	}
 

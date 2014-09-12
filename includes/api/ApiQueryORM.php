@@ -104,7 +104,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	protected function getParams() {
 		return array_filter(
 			$this->extractRequestParams(),
-			function( $prop ) {
+			function ( $prop ) {
 				return isset( $prop );
 			}
 		);
@@ -260,5 +260,4 @@ abstract class ApiQueryORM extends ApiQueryBase {
 
 		return array_merge( $this->getTable()->getFieldDescriptions(), $descriptions );
 	}
-
 }

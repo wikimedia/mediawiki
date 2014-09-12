@@ -1,0 +1,19 @@
+/* General-purpose icons via CSS. Classes here should be named "mw-icon-*". */
+
+@import "mediawiki.mixins";
+
+/* For the collapsed and expanded arrows, we also provide selectors to make it
+ * easy to use them with jquery.makeCollapsible. */
+.mw-icon-arrow-collapsed,
+.mw-collapsible-arrow.mw-collapsible-toggle-collapsed {
+	.background-image-svg('images/arrow-collapsed-ltr.svg', 'images/arrow-collapsed-ltr.png');
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+.mw-icon-arrow-expanded,
+.mw-collapsible-arrow.mw-collapsible-toggle-expanded {
+	.background-image-svg('images/arrow-expanded.svg', 'images/arrow-expanded.png');
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}

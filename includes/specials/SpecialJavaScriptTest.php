@@ -68,7 +68,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 				$this->msg( "javascripttest-$framework-name" )->plain()
 			) );
 			$out->setSubtitle( $this->msg( 'javascripttest-backlink' )
-				->rawParams( Linker::linkKnown( $this->getTitle() ) ) );
+				->rawParams( Linker::linkKnown( $this->getPageTitle() ) ) );
 			$this->{self::$frameworks[$framework]}();
 		} else {
 			// Framework not found, display error
@@ -97,7 +97,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 				'li',
 				array(),
 				Linker::link(
-					$this->getTitle( $framework ),
+					$this->getPageTitle( $framework ),
 					// Message: javascripttest-qunit-name
 					$this->msg( "javascripttest-$framework-name" )->escaped()
 				)
@@ -139,7 +139,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		$out = $this->getOutput();
 
-		$out->addModules( 'mediawiki.tests.qunit.testrunner' );
+		$out->addModules( 'test.mediawiki.qunit.testrunner' );
 		$qunitTestModules = $out->getResourceLoader()->getTestModuleNames( 'qunit' );
 		$out->addModules( $qunitTestModules );
 

@@ -58,6 +58,7 @@ class ApiFormatRaw extends ApiFormatBase {
 		$data = $this->getResultData();
 		if ( isset( $data['error'] ) ) {
 			$this->mErrorFallback->execute();
+
 			return;
 		}
 

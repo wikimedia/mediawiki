@@ -34,9 +34,11 @@
 class ScopedLock {
 	/** @var LockManager */
 	protected $manager;
+
 	/** @var Status */
 	protected $status;
-	/** @var Array Map of lock types to resource paths */
+
+	/** @var array Map of lock types to resource paths */
 	protected $pathsByType;
 
 	/**
@@ -55,14 +57,13 @@ class ScopedLock {
 	 * Any locks are released once this object goes out of scope.
 	 * The status object is updated with any errors or warnings.
 	 *
-	 * $type can be "mixed" and $paths can be a map of types to paths (since 1.22).
-	 * Otherwise $type should be an integer and $paths should be a list of paths.
-	 *
 	 * @param LockManager $manager
 	 * @param array $paths List of storage paths or map of lock types to path lists
-	 * @param integer|string $type LockManager::LOCK_* constant or "mixed"
+	 * @param int|string $type LockManager::LOCK_* constant or "mixed" and $paths
+	 *   can be a map of types to paths (since 1.22). Otherwise $type should be an
+	 *   integer and $paths should be a list of paths.
 	 * @param Status $status
-	 * @param integer $timeout Timeout in seconds (0 means non-blocking) (since 1.22)
+	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.22)
 	 * @return ScopedLock|null Returns null on failure
 	 */
 	public static function factory(
@@ -74,6 +75,7 @@ class ScopedLock {
 		if ( $lockStatus->isOK() ) {
 			return new self( $manager, $pathsByType, $status );
 		}
+
 		return null;
 	}
 
@@ -83,7 +85,6 @@ class ScopedLock {
 	 * This is the same as setting the lock object to null.
 	 *
 	 * @param ScopedLock $lock
-	 * @return void
 	 * @since 1.21
 	 */
 	public static function release( ScopedLock &$lock = null ) {

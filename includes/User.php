@@ -30,7 +30,7 @@ define( 'USER_TOKEN_LENGTH', 32 );
  * Int Serialized record version.
  * @ingroup Constants
  */
-define( 'MW_USER_VERSION', 8 );
+define( 'MW_USER_VERSION', 9 );
 
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
@@ -90,6 +90,7 @@ class User {
 		'mEmailAuthenticated',
 		'mEmailToken',
 		'mEmailTokenExpires',
+		'mPasswordExpires',
 		'mRegistration',
 		'mEditCount',
 		// user_groups table
@@ -185,6 +186,8 @@ class User {
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
 		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mEditCount,
 		$mGroups, $mOptionOverrides;
+
+	protected $mPasswordExpires;
 	//@}
 
 	/**
@@ -254,14 +257,14 @@ class User {
 	 * @see newFromSession()
 	 * @see newFromRow()
 	 */
-	function __construct() {
+	public function __construct() {
 		$this->clearInstanceCache( 'defaults' );
 	}
 
 	/**
 	 * @return string
 	 */
-	function __toString() {
+	public function __toString() {
 		return $this->getName();
 	}
 
@@ -465,7 +468,7 @@ class User {
 	 * user_name and user_real_name are not provided because the whole row
 	 * will be loaded once more from the database when accessing them.
 	 *
-	 * @param array $row A row from the user table
+	 * @param stdClass $row A row from the user table
 	 * @param array $data Further data to load into the object (see User::loadFromRow for valid keys)
 	 * @return User
 	 */
@@ -694,6 +697,7 @@ class User {
 		return $this->getPasswordValidity( $password ) === true;
 	}
 
+
 	/**
 	 * Given unvalidated password input, return error message on failure.
 	 *
@@ -701,6 +705,33 @@ class User {
 	 * @return mixed: true on success, string or array of error message on failure
 	 */
 	public function getPasswordValidity( $password ) {
+		$result = $this->checkPasswordValidity( $password );
+		if ( $result->isGood() ) {
+			return true;
+		} else {
+			$messages = array();
+			foreach ( $result->getErrorsByType( 'error' ) as $error ) {
+				$messages[] = $error['message'];
+			}
+			foreach ( $result->getErrorsByType( 'warning' ) as $warning ) {
+				$messages[] = $warning['message'];
+			}
+			if ( count( $messages ) === 1 ) {
+				return $messages[0];
+			}
+			return $messages;
+		}
+	}
+
+	/**
+	 * Check if this is a valid password for this user. Status will be good if
+	 * the password is valid, or have an array of error messages if not.
+	 *
+	 * @param string $password Desired password
+	 * @return Status
+	 * @since 1.23
+	 */
+	public function checkPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 
 		static $blockedLogins = array(
@@ -708,31 +739,105 @@ class User {
 			'Apitestsysop' => 'testpass', 'Apitestuser' => 'testpass' # r75605
 		);
 
+		$status = Status::newGood();
+
 		$result = false; //init $result to false for the internal checks
 
 		if ( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) ) {
-			return $result;
+			$status->error( $result );
+			return $status;
 		}
 
 		if ( $result === false ) {
 			if ( strlen( $password ) < $wgMinimalPasswordLength ) {
-				return 'passwordtooshort';
+				$status->error( 'passwordtooshort', $wgMinimalPasswordLength );
+				return $status;
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
-				return 'password-name-match';
+				$status->error( 'password-name-match' );
+				return $status;
 			} elseif ( isset( $blockedLogins[$this->getName()] ) && $password == $blockedLogins[$this->getName()] ) {
-				return 'password-login-forbidden';
+				$status->error( 'password-login-forbidden' );
+				return $status;
 			} else {
-				//it seems weird returning true here, but this is because of the
+				//it seems weird returning a Good status here, but this is because of the
 				//initialization of $result to false above. If the hook is never run or it
 				//doesn't modify $result, then we will likely get down into this if with
 				//a valid password.
-				return true;
+				return $status;
 			}
 		} elseif ( $result === true ) {
-			return true;
+			return $status;
 		} else {
-			return $result; //the isValidPassword hook set a string $result and returned true
+			$status->error( $result );
+			return $status; //the isValidPassword hook set a string $result and returned true
 		}
+	}
+
+	/**
+	 * Expire a user's password
+	 * @since 1.23
+	 * @param $ts Mixed: optional timestamp to convert, default 0 for the current time
+	 */
+	public function expirePassword( $ts = 0 ) {
+		$this->load();
+		$timestamp = wfTimestamp( TS_MW, $ts );
+		$this->mPasswordExpires = $timestamp;
+		$this->saveSettings();
+	}
+
+	/**
+	 * Clear the password expiration for a user
+	 * @since 1.23
+	 * @param bool $load ensure user object is loaded first
+	 */
+	public function resetPasswordExpiration( $load = true ) {
+		global $wgPasswordExpirationDays;
+		if ( $load ) {
+			$this->load();
+		}
+		$newExpire = null;
+		if ( $wgPasswordExpirationDays ) {
+			$newExpire = wfTimestamp(
+				TS_MW,
+				time() + ( $wgPasswordExpirationDays * 24 * 3600 )
+			);
+		}
+		// Give extensions a chance to force an expiration
+		wfRunHooks( 'ResetPasswordExpiration', array( $this, &$newExpire ) );
+		$this->mPasswordExpires = $newExpire;
+	}
+
+	/**
+	 * Check if the user's password is expired.
+	 * TODO: Put this and password length into a PasswordPolicy object
+	 * @since 1.23
+	 * @return string|bool The expiration type, or false if not expired
+	 * 	hard: A password change is required to login
+	 *	soft: Allow login, but encourage password change
+	 *	false: Password is not expired
+	 */
+	public function getPasswordExpired() {
+		global $wgPasswordExpireGrace;
+		$expired = false;
+		$now = wfTimestamp();
+		$expiration = $this->getPasswordExpireDate();
+		$expUnix = wfTimestamp( TS_UNIX, $expiration );
+		if ( $expiration !== null && $expUnix < $now ) {
+			$expired = ( $expUnix + $wgPasswordExpireGrace < $now ) ? 'hard' : 'soft';
+		}
+		return $expired;
+	}
+
+	/**
+	 * Get this user's password expiration date. Since this may be using
+	 * the cached User object, we assume that whatever mechanism is setting
+	 * the expiration date is also expiring the User cache.
+	 * @since 1.23
+	 * @return string|false the datestamp of the expiration, or null if not set
+	 */
+	public function getPasswordExpireDate() {
+		$this->load();
+		return $this->mPasswordExpires;
 	}
 
 	/**
@@ -890,6 +995,8 @@ class User {
 		$this->mEmailAuthenticated = null;
 		$this->mEmailToken = '';
 		$this->mEmailTokenExpires = null;
+		$this->mPasswordExpires = null;
+		$this->resetPasswordExpiration( false );
 		$this->mRegistration = wfTimestamp( TS_MW );
 		$this->mGroups = array();
 
@@ -1016,7 +1123,7 @@ class User {
 		} else {
 			$result = 0;
 			for ( $i = 0; $i < strlen( $answer ); $i++ ) {
-				$result |= ord( $answer{$i} ) ^ ord( $test{$i} );
+				$result |= ord( $answer[$i] ) ^ ord( $test[$i] );
 			}
 			$passwordCorrect = ( $result == 0 );
 		}
@@ -1061,7 +1168,7 @@ class User {
 	/**
 	 * Initialize this object from a row from the user table.
 	 *
-	 * @param array $row Row from the user table to load.
+	 * @param stdClass $row Row from the user table to load.
 	 * @param array $data Further user data to load into the object
 	 *
 	 *	user_groups		Array with groups out of the user_groups table
@@ -1106,9 +1213,6 @@ class User {
 			$this->mNewpassword = $row->user_newpassword;
 			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
 			$this->mEmail = $row->user_email;
-			if ( isset( $row->user_options ) ) {
-				$this->decodeOptions( $row->user_options );
-			}
 			$this->mTouched = wfTimestamp( TS_MW, $row->user_touched );
 			$this->mToken = $row->user_token;
 			if ( $this->mToken == '' ) {
@@ -1117,6 +1221,7 @@ class User {
 			$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $row->user_email_authenticated );
 			$this->mEmailToken = $row->user_email_token;
 			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
+			$this->mPasswordExpires = wfTimestampOrNull( TS_MW, $row->user_password_expires );
 			$this->mRegistration = wfTimestampOrNull( TS_MW, $row->user_registration );
 		} else {
 			$all = false;
@@ -1327,8 +1432,8 @@ class User {
 
 		// Proxy blocking
 		if ( !$block instanceof Block && $ip !== null && !$this->isAllowed( 'proxyunbannable' )
-			&& !in_array( $ip, $wgProxyWhitelist ) )
-		{
+			&& !in_array( $ip, $wgProxyWhitelist )
+		) {
 			// Local list
 			if ( self::isLocallyBlockedProxy( $ip ) ) {
 				$block = new Block;
@@ -1438,11 +1543,11 @@ class User {
 				$ipList = gethostbynamel( $host );
 
 				if ( $ipList ) {
-					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
+					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $base!" );
 					$found = true;
 					break;
 				} else {
-					wfDebugLog( 'dnsblacklist', "Requested $host, not found in $base.\n" );
+					wfDebugLog( 'dnsblacklist', "Requested $host, not found in $base." );
 				}
 			}
 		}
@@ -1529,7 +1634,7 @@ class User {
 			return false;
 		}
 
-		global $wgMemc, $wgRateLimitLog;
+		global $wgMemc;
 		wfProfileIn( __METHOD__ );
 
 		$limits = $wgRateLimits[$action];
@@ -1592,12 +1697,7 @@ class User {
 			// Already pinged?
 			if ( $count ) {
 				if ( $count >= $max ) {
-					wfDebug( __METHOD__ . ": tripped! $key at $count $summary\n" );
-					if ( $wgRateLimitLog ) {
-						wfSuppressWarnings();
-						file_put_contents( $wgRateLimitLog, wfTimestamp( TS_MW ) . ' ' . wfWikiID() . ': ' . $this->getName() . " tripped $key at $count $summary\n", FILE_APPEND );
-						wfRestoreWarnings();
-					}
+					wfDebugLog( 'ratelimit', $this->getName() . " tripped! $key at $count $summary" );
 					$triggered = true;
 				} else {
 					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );
@@ -1645,15 +1745,15 @@ class User {
 	 * @param bool $bFromSlave whether to check the slave database instead of the master
 	 * @return bool
 	 */
-	function isBlockedFrom( $title, $bFromSlave = false ) {
+	public function isBlockedFrom( $title, $bFromSlave = false ) {
 		global $wgBlockAllowsUTEdit;
 		wfProfileIn( __METHOD__ );
 
 		$blocked = $this->isBlocked( $bFromSlave );
 		$allowUsertalk = ( $wgBlockAllowsUTEdit ? $this->mAllowUsertalk : false );
 		// If a user's name is suppressed, they cannot make edits anywhere
-		if ( !$this->mHideName && $allowUsertalk && $title->getText() === $this->getName() &&
-		  $title->getNamespace() == NS_USER_TALK ) {
+		if ( !$this->mHideName && $allowUsertalk && $title->getText() === $this->getName()
+			&& $title->getNamespace() == NS_USER_TALK ) {
 			$blocked = false;
 			wfDebug( __METHOD__ . ": self-talk page, ignoring any blocks\n" );
 		}
@@ -2193,14 +2293,21 @@ class User {
 	/**
 	 * Set the password for a password reminder or new account email
 	 *
-	 * @param string $str New password to set
+	 * @param $str New password to set or null to set an invalid
+	 *  password hash meaning that the user will not be able to use it
 	 * @param bool $throttle If true, reset the throttle timestamp to the present
 	 */
 	public function setNewpassword( $str, $throttle = true ) {
 		$this->load();
-		$this->mNewpassword = self::crypt( $str );
-		if ( $throttle ) {
-			$this->mNewpassTime = wfTimestampNow();
+
+		if ( $str === null ) {
+			$this->mNewpassword = '';
+			$this->mNewpassTime = null;
+		} else {
+			$this->mNewpassword = self::crypt( $str );
+			if ( $throttle ) {
+				$this->mNewpassTime = wfTimestampNow();
+			}
 		}
 	}
 
@@ -2463,6 +2570,8 @@ class User {
 	 * - 'registered-checkmatrix' - as above, using the 'checkmatrix' type.
 	 * - 'userjs' - preferences with names starting with 'userjs-', intended to
 	 *              be used by user scripts.
+	 * - 'special' - "preferences" that are not accessible via User::getOptions
+	 *               or User::setOptions.
 	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
 	 *              These are usually legacy options, removed in newer versions.
 	 *
@@ -2479,6 +2588,7 @@ class User {
 			'registered-multiselect',
 			'registered-checkmatrix',
 			'userjs',
+			'special',
 			'unused'
 		);
 	}
@@ -2502,6 +2612,13 @@ class User {
 
 		$prefs = Preferences::getPreferences( $this, $context );
 		$mapping = array();
+
+		// Pull out the "special" options, so they don't get converted as
+		// multiselect or checkmatrix.
+		$specialOptions = array_fill_keys( Preferences::getSaveBlacklist(), true );
+		foreach ( $specialOptions as $name => $value ) {
+			unset( $prefs[$name] );
+		}
 
 		// Multiselect and checkmatrix options are stored in the database with
 		// one key per option, each having a boolean value. Extract those keys.
@@ -2545,6 +2662,8 @@ class User {
 				$mapping[$key] = 'registered-multiselect';
 			} elseif ( isset( $checkmatrixOptions[$key] ) ) {
 				$mapping[$key] = 'registered-checkmatrix';
+			} elseif ( isset( $specialOptions[$key] ) ) {
+				$mapping[$key] = 'special';
 			} elseif ( substr( $key, 0, 7 ) === 'userjs-' ) {
 				$mapping[$key] = 'userjs';
 			} else {
@@ -3041,8 +3160,9 @@ class User {
 	 * the next change of the page if it's watched etc.
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 * @param $title Title of the article to look at
+	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
-	public function clearNotification( &$title ) {
+	public function clearNotification( &$title, $oldid = 0 ) {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 
 		// Do nothing if the database is locked to writes
@@ -3055,12 +3175,25 @@ class User {
 			return;
 		}
 
-		if ( $title->getNamespace() == NS_USER_TALK &&
-			$title->getText() == $this->getName() ) {
-			if ( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this ) ) ) {
+		// If we're working on user's talk page, we should update the talk page message indicator
+		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
+			if ( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this, $oldid ) ) ) {
 				return;
 			}
-			$this->setNewtalk( false );
+
+			$nextid = $oldid ? $title->getNextRevisionID( $oldid ) : null;
+
+			if ( !$oldid || !$nextid ) {
+				// If we're looking at the latest revision, we should definitely clear it
+				$this->setNewtalk( false );
+			} else {
+				// Otherwise we should update its revision, if it's present
+				if ( $this->getNewtalk() ) {
+					// Naturally the other one won't clear by itself
+					$this->setNewtalk( false );
+					$this->setNewtalk( true, Revision::newFromId( $nextid ) );
+				}
+			}
 		}
 
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
@@ -3077,13 +3210,11 @@ class User {
 		// and when it does have to be executed, it can be on a slave
 		// If this is the user's newtalk page, we always update the timestamp
 		$force = '';
-		if ( $title->getNamespace() == NS_USER_TALK &&
-			$title->getText() == $this->getName() )
-		{
+		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
 			$force = 'force';
 		}
 
-		$this->getWatchedItem( $title )->resetNotificationTimestamp( $force );
+		$this->getWatchedItem( $title )->resetNotificationTimestamp( $force, $oldid );
 	}
 
 	/**
@@ -3111,42 +3242,12 @@ class User {
 		if ( $id != 0 ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
-				array( /* SET */
-					'wl_notificationtimestamp' => null
-				), array( /* WHERE */
-					'wl_user' => $id
-				), __METHOD__
+				array( /* SET */ 'wl_notificationtimestamp' => null ),
+				array( /* WHERE */ 'wl_user' => $id ),
+				__METHOD__
 			);
-		# 	We also need to clear here the "you have new message" notification for the own user_talk page
-		#	This is cleared one page view later in Article::viewUpdates();
-		}
-	}
-
-	/**
-	 * Set this user's options from an encoded string
-	 * @param string $str Encoded options to import
-	 *
-	 * @deprecated in 1.19 due to removal of user_options from the user table
-	 */
-	private function decodeOptions( $str ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		if ( !$str ) {
-			return;
-		}
-
-		$this->mOptionsLoaded = true;
-		$this->mOptionOverrides = array();
-
-		// If an option is not set in $str, use the default value
-		$this->mOptions = self::getDefaultOptions();
-
-		$a = explode( "\n", $str );
-		foreach ( $a as $s ) {
-			$m = array();
-			if ( preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
-				$this->mOptions[$m[1]] = $m[2];
-				$this->mOptionOverrides[$m[1]] = $m[2];
-			}
+			// We also need to clear here the "you have new message" notification for the own user_talk page;
+			// it's cleared one page view later in WikiPage::doViewUpdates().
 		}
 	}
 
@@ -3187,8 +3288,9 @@ class User {
 	 * @param $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
 	 * @param bool $secure Whether to force secure/insecure cookies or use default
+	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
 	 */
-	public function setCookies( $request = null, $secure = null ) {
+	public function setCookies( $request = null, $secure = null, $rememberMe = false ) {
 		if ( $request === null ) {
 			$request = $this->getRequest();
 		}
@@ -3214,7 +3316,7 @@ class User {
 			'UserID' => $this->mId,
 			'UserName' => $this->getName(),
 		);
-		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
+		if ( $rememberMe ) {
 			$cookies['Token'] = $this->mToken;
 		} else {
 			$cookies['Token'] = false;
@@ -3241,14 +3343,10 @@ class User {
 		 * standard time setting, based on if rememberme was set.
 		 */
 		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
-			$time = null;
-			if ( ( 1 == $this->getOption( 'rememberpassword' ) ) ) {
-				$time = 0; // set to $wgCookieExpiration
-			}
 			$this->setCookie(
 				'forceHTTPS',
 				'true',
-				$time,
+				$rememberMe ? 0 : null,
 				false,
 				array( 'prefix' => '' ) // no prefix
 			);
@@ -3315,6 +3413,7 @@ class User {
 				'user_token' => strval( $this->mToken ),
 				'user_email_token' => $this->mEmailToken,
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
+				'user_password_expires' => $dbw->timestampOrNull( $this->mPasswordExpires ),
 			), array( /* WHERE */
 				'user_id' => $this->mId
 			), __METHOD__
@@ -3515,56 +3614,6 @@ class User {
 	}
 
 	/**
-	 * Generate a string which will be different for any combination of
-	 * user options which would produce different parser output.
-	 * This will be used as part of the hash key for the parser cache,
-	 * so users with the same options can share the same cached data
-	 * safely.
-	 *
-	 * Extensions which require it should install 'PageRenderingHash' hook,
-	 * which will give them a chance to modify this key based on their own
-	 * settings.
-	 *
-	 * @deprecated since 1.17 use the ParserOptions object to get the relevant options
-	 * @return string Page rendering hash
-	 */
-	public function getPageRenderingHash() {
-		wfDeprecated( __METHOD__, '1.17' );
-
-		global $wgRenderHashAppend, $wgLang, $wgContLang;
-		if ( $this->mHash ) {
-			return $this->mHash;
-		}
-
-		// stubthreshold is only included below for completeness,
-		// since it disables the parser cache, its value will always
-		// be 0 when this function is called by parsercache.
-
-		$confstr = $this->getOption( 'math' );
-		$confstr .= '!' . $this->getStubThreshold();
-		$confstr .= '!' . ( $this->getOption( 'numberheadings' ) ? '1' : '' );
-		$confstr .= '!' . $wgLang->getCode();
-		$confstr .= '!' . $this->getOption( 'thumbsize' );
-		// add in language specific options, if any
-		$extra = $wgContLang->getExtraHashOptions();
-		$confstr .= $extra;
-
-		// Since the skin could be overloading link(), it should be
-		// included here but in practice, none of our skins do that.
-
-		$confstr .= $wgRenderHashAppend;
-
-		// Give a chance for extensions to modify the hash, if they have
-		// extra options or other effects on the parser cache.
-		wfRunHooks( 'PageRenderingHash', array( &$confstr ) );
-
-		// Make it a valid memcached key fragment
-		$confstr = str_replace( ' ', '_', $confstr );
-		$this->mHash = $confstr;
-		return $confstr;
-	}
-
-	/**
 	 * Get whether the user is explicitly blocked from account creation.
 	 * @return bool|Block
 	 */
@@ -3598,7 +3647,7 @@ class User {
 	 * Get whether the user is allowed to create an account.
 	 * @return bool
 	 */
-	function isAllowedToCreateAccount() {
+	public function isAllowedToCreateAccount() {
 		return $this->isAllowed( 'createaccount' ) && !$this->isBlockedFromCreateAccount();
 	}
 
@@ -3639,14 +3688,9 @@ class User {
 		global $wgAuth, $wgLegacyEncoding;
 		$this->load();
 
-		// Even though we stop people from creating passwords that
-		// are shorter than this, doesn't mean people wont be able
-		// to. Certain authentication plugins do NOT want to save
+		// Certain authentication plugins do NOT want to save
 		// domain passwords in a mysql database, so we should
 		// check this (in case $wgAuth->strict() is false).
-		if ( !$this->isValidPassword( $password ) ) {
-			return false;
-		}
 
 		if ( $wgAuth->authenticate( $this->getName(), $password ) ) {
 			return true;
@@ -3663,9 +3707,9 @@ class User {
 			// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 			// Check for this with iconv
 			$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-			if ( $cp1252Password != $password &&
-				self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) )
-			{
+			if ( $cp1252Password != $password
+				&& self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId )
+			) {
 				return true;
 			}
 		}
@@ -3830,8 +3874,9 @@ class User {
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
 		if ( is_null( $from ) ) {
-			global $wgPasswordSender, $wgPasswordSenderName;
-			$sender = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
+			global $wgPasswordSender;
+			$sender = new MailAddress( $wgPasswordSender,
+				wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		} else {
 			$sender = new MailAddress( $from );
 		}
@@ -3925,7 +3970,7 @@ class User {
 	 * @note Call saveSettings() after calling this function to commit the change.
 	 * @return bool Returns true
 	 */
-	function invalidateEmail() {
+	public function invalidateEmail() {
 		$this->load();
 		$this->mEmailToken = null;
 		$this->mEmailTokenExpires = null;
@@ -3938,7 +3983,7 @@ class User {
 	 * Set the e-mail authentication timestamp.
 	 * @param string $timestamp TS_MW timestamp
 	 */
-	function setEmailAuthenticationTimestamp( $timestamp ) {
+	public function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();
 		$this->mEmailAuthenticated = $timestamp;
 		wfRunHooks( 'UserSetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
@@ -4687,28 +4732,37 @@ class User {
 			// Don't bother storing default values
 			$defaultOption = self::getDefaultOption( $key );
 			if ( ( is_null( $defaultOption ) &&
-					!( $value === false || is_null( $value ) ) ) ||
-					$value != $defaultOption ) {
+				!( $value === false || is_null( $value ) ) ) ||
+				$value != $defaultOption
+			) {
 				$insert_rows[] = array(
-						'up_user' => $userId,
-						'up_property' => $key,
-						'up_value' => $value,
-					);
+					'up_user' => $userId,
+					'up_property' => $key,
+					'up_value' => $value,
+				);
 			}
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$hasRows = $dbw->selectField( 'user_properties', '1',
-			array( 'up_user' => $userId ), __METHOD__ );
-
-		if ( $hasRows ) {
-			// Only do this delete if there is something there. A very large portion of
-			// calls to this function are for setting 'rememberpassword' for new accounts.
-			// Doing this delete for new accounts with no rows in the table rougly causes
-			// gap locks on [max user ID,+infinity) which causes high contention since many
-			// updates will pile up on each other since they are for higher (newer) user IDs.
-			$dbw->delete( 'user_properties', array( 'up_user' => $userId ), __METHOD__ );
+		// Find and delete any prior preference rows...
+		$res = $dbw->select( 'user_properties',
+			array( 'up_property' ), array( 'up_user' => $userId ), __METHOD__ );
+		$priorKeys = array();
+		foreach ( $res as $row ) {
+			$priorKeys[] = $row->up_property;
 		}
+		if ( count( $priorKeys ) ) {
+			// Do the DELETE by PRIMARY KEY for prior rows.
+			// In the past a very large portion of calls to this function are for setting
+			// 'rememberpassword' for new accounts (a preference that has since been removed).
+			// Doing a blanket per-user DELETE for new accounts with no rows in the table
+			// caused gap locks on [max user ID,+infinity) which caused high contention since
+			// updates would pile up on each other as they are for higher (newer) user IDs.
+			// It might not be necessary these days, but it shouldn't hurt either.
+			$dbw->delete( 'user_properties',
+				array( 'up_user' => $userId, 'up_property' => $priorKeys ), __METHOD__ );
+		}
+		// Insert the new preference rows
 		$dbw->insert( 'user_properties', $insert_rows, __METHOD__, array( 'IGNORE' ) );
 	}
 
@@ -4789,6 +4843,7 @@ class User {
 			'user_email_authenticated',
 			'user_email_token',
 			'user_email_token_expires',
+			'user_password_expires',
 			'user_registration',
 			'user_editcount',
 		);

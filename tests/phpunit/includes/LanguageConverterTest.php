@@ -1,7 +1,9 @@
 <?php
 
 class LanguageConverterTest extends MediaWikiLangTestCase {
+	/** @var LanguageToTest */
 	protected $lang = null;
+	/** @var TestConverter */
 	protected $lc = null;
 
 	protected function setUp() {
@@ -30,10 +32,17 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		parent::tearDown();
 	}
 
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 */
 	public function testGetPreferredVariantDefaults() {
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getHeaderVariant
+	 */
 	public function testGetPreferredVariantHeaders() {
 		global $wgRequest;
 		$wgRequest->setHeader( 'Accept-Language', 'tg-latn' );
@@ -41,6 +50,10 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getHeaderVariant
+	 */
 	public function testGetPreferredVariantHeaderWeight() {
 		global $wgRequest;
 		$wgRequest->setHeader( 'Accept-Language', 'tg;q=1' );
@@ -48,6 +61,10 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getHeaderVariant
+	 */
 	public function testGetPreferredVariantHeaderWeight2() {
 		global $wgRequest;
 		$wgRequest->setHeader( 'Accept-Language', 'tg-latn;q=1' );
@@ -55,6 +72,10 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getHeaderVariant
+	 */
 	public function testGetPreferredVariantHeaderMulti() {
 		global $wgRequest;
 		$wgRequest->setHeader( 'Accept-Language', 'en, tg-latn;q=1' );
@@ -62,6 +83,9 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 */
 	public function testGetPreferredVariantUserOption() {
 		global $wgUser;
 
@@ -75,6 +99,10 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getUserVariant
+	 */
 	public function testGetPreferredVariantUserOptionForForeignLanguage() {
 		global $wgContLang, $wgUser;
 
@@ -89,6 +117,11 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getUserVariant
+	 * @covers LanguageConverter::getURLVariant
+	 */
 	public function testGetPreferredVariantHeaderUserVsUrl() {
 		global $wgContLang, $wgRequest, $wgUser;
 
@@ -103,7 +136,9 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
-
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 */
 	public function testGetPreferredVariantDefaultLanguageVariant() {
 		global $wgDefaultLanguageVariant;
 
@@ -111,6 +146,10 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getURLVariant
+	 */
 	public function testGetPreferredVariantDefaultLanguageVsUrlVariant() {
 		global $wgDefaultLanguageVariant, $wgRequest, $wgContLang;
 

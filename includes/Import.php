@@ -3,7 +3,7 @@
  * MediaWiki page data importer.
  *
  * Copyright © 2003,2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -252,6 +252,16 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importRevision( $revision ) {
+		if ( !$revision->getContent()->getContentHandler()->canBeUsedOn( $revision->getTitle() ) ) {
+			$this->notice( 'import-error-bad-location',
+				$revision->getTitle()->getPrefixedText(),
+				$revision->getID(),
+				$revision->getModel(),
+				$revision->getFormat() );
+
+			return false;
+		}
+
 		try {
 			$dbw = wfGetDB( DB_MASTER );
 			return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
@@ -262,6 +272,8 @@ class WikiImporter {
 				$revision->getModel(),
 				$revision->getFormat() );
 		}
+
+		return false;
 	}
 
 	/**
@@ -1717,7 +1729,7 @@ class ImportStreamSource {
 			return Status::newFatal( 'import-noarticle' );
 		}
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
-		if ( is_null( $link ) || $link->getInterwiki() == '' ) {
+		if ( is_null( $link ) || !$link->isExternal() ) {
 			return Status::newFatal( 'importbadinterwiki' );
 		} else {
 			$params = array();

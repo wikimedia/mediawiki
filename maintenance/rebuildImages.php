@@ -8,7 +8,7 @@
  *              add them only.
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -205,9 +205,16 @@ class ImageBuilder extends Maintenance {
 		}
 		if ( !$this->dryrun ) {
 			$file = wfLocalFile( $filename );
-			if ( !$file->recordUpload( '', '(recovered file, missing upload log entry)', '', '', '',
-				false, $timestamp ) )
-			{
+			if ( !$file->recordUpload(
+					'',
+					'(recovered file, missing upload log entry)',
+					'',
+					'',
+					'',
+					false,
+					$timestamp
+				)
+			) {
 				$this->output( "Error uploading file $fullpath\n" );
 				return;
 			}

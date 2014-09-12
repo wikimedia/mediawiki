@@ -279,6 +279,30 @@ class RevDel_RevisionItem extends RevDel_Item {
 		}
 		return "<li>$difflink $revlink $userlink $comment</li>";
 	}
+
+	public function getApiData( ApiResult $result ) {
+		$rev = $this->revision;
+		$user = $this->list->getUser();
+		$ret = array(
+			'id' => $rev->getId(),
+			'timestamp' => wfTimestamp( TS_ISO_8601, $rev->getTimestamp() ),
+		);
+		$ret += $rev->isDeleted( Revision::DELETED_USER ) ? array( 'userhidden' => '' ) : array();
+		$ret += $rev->isDeleted( Revision::DELETED_COMMENT ) ? array( 'commenthidden' => '' ) : array();
+		$ret += $rev->isDeleted( Revision::DELETED_TEXT ) ? array( 'texthidden' => '' ) : array();
+		if ( $rev->userCan( Revision::DELETED_USER, $user ) ) {
+			$ret += array(
+				'userid' => $rev->getUser( Revision::FOR_THIS_USER ),
+				'user' => $rev->getUserText( Revision::FOR_THIS_USER ),
+			);
+		}
+		if ( $rev->userCan( Revision::DELETED_COMMENT, $user ) ) {
+			$ret += array(
+				'comment' => $rev->getComment( Revision::FOR_THIS_USER ),
+			);
+		}
+		return $ret;
+	}
 }
 
 /**
@@ -663,14 +687,16 @@ class RevDel_FileItem extends RevDel_Item {
 		}
 		return '<span class="history-deleted">' . $link . '</span>';
 	}
+
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
 	 * @return string HTML
 	 */
 	protected function getUserTools() {
 		if ( $this->file->userCan( Revision::DELETED_USER, $this->list->getUser() ) ) {
-			$link = Linker::userLink( $this->file->user, $this->file->user_text ) .
-				Linker::userToolLinks( $this->file->user, $this->file->user_text );
+			$uid = $this->file->getUser( 'id' );
+			$name = $this->file->getUser( 'text' );
+			$link = Linker::userLink( $uid, $name ) . Linker::userToolLinks( $uid, $name );
 		} else {
 			$link = $this->list->msg( 'rev-deleted-user' )->escaped();
 		}
@@ -688,7 +714,7 @@ class RevDel_FileItem extends RevDel_Item {
 	 */
 	protected function getComment() {
 		if ( $this->file->userCan( File::DELETED_COMMENT, $this->list->getUser() ) ) {
-			$block = Linker::commentBlock( $this->file->description );
+			$block = Linker::commentBlock( $this->file->getDescription() );
 		} else {
 			$block = ' ' . $this->list->msg( 'rev-deleted-comment' )->escaped();
 		}
@@ -706,6 +732,50 @@ class RevDel_FileItem extends RevDel_Item {
 
 		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' .
 			$data . ' ' . $this->getComment() . '</li>';
+	}
+
+	public function getApiData( ApiResult $result ) {
+		$file = $this->file;
+		$user = $this->list->getUser();
+		$ret = array(
+			'title' => $this->list->title->getPrefixedText(),
+			'archivename' => $file->getArchiveName(),
+			'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() ),
+			'width' => $file->getWidth(),
+			'height' => $file->getHeight(),
+			'size' => $file->getSize(),
+		);
+		$ret += $file->isDeleted( Revision::DELETED_USER ) ? array( 'userhidden' => '' ) : array();
+		$ret += $file->isDeleted( Revision::DELETED_COMMENT ) ? array( 'commenthidden' => '' ) : array();
+		$ret += $this->isDeleted() ? array( 'contenthidden' => '' ) : array();
+		if ( !$this->isDeleted() ) {
+			$ret += array(
+				'url' => $file->getUrl(),
+			);
+		} elseif ( $this->canViewContent() ) {
+			$ret += array(
+				'url' => SpecialPage::getTitleFor( 'Revisiondelete' )->getLinkURL(
+					array(
+						'target' => $this->list->title->getPrefixedText(),
+						'file' => $file->getArchiveName(),
+						'token' => $user->getEditToken( $file->getArchiveName() )
+					),
+					false, PROTO_RELATIVE
+				),
+			);
+		}
+		if ( $file->userCan( Revision::DELETED_USER, $user ) ) {
+			$ret += array(
+				'userid' => $file->user,
+				'user' => $file->user_text,
+			);
+		}
+		if ( $file->userCan( Revision::DELETED_COMMENT, $user ) ) {
+			$ret += array(
+				'comment' => $file->description,
+			);
+		}
+		return $ret;
 	}
 }
 
@@ -960,5 +1030,42 @@ class RevDel_LogItem extends RevDel_Item {
 		}
 
 		return "<li>$loglink $date $action $comment</li>";
+	}
+
+	public function getApiData( ApiResult $result ) {
+		$logEntry = DatabaseLogEntry::newFromRow( $this->row );
+		$user = $this->list->getUser();
+		$ret = array(
+			'id' => $logEntry->getId(),
+			'type' => $logEntry->getType(),
+			'action' => $logEntry->getSubtype(),
+		);
+		$ret += $logEntry->isDeleted( LogPage::DELETED_USER ) ? array( 'userhidden' => '' ) : array();
+		$ret += $logEntry->isDeleted( LogPage::DELETED_COMMENT ) ? array( 'commenthidden' => '' ) : array();
+		$ret += $logEntry->isDeleted( LogPage::DELETED_ACTION ) ? array( 'actionhidden' => '' ) : array();
+
+		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_ACTION, $user ) ) {
+			ApiQueryLogEvents::addLogParams(
+				$result,
+				$ret,
+				$logEntry->getParameters(),
+				$logEntry->getType(),
+				$logEntry->getSubtype(),
+				$logEntry->getTimestamp(),
+				$logEntry->isLegacy()
+			);
+		}
+		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_USER, $user ) ) {
+			$ret += array(
+				'userid' => $this->row->log_user,
+				'user' => $this->row->log_user_text,
+			);
+		}
+		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_COMMENT, $user ) ) {
+			$ret += array(
+				'comment' => $this->row->log_comment,
+			);
+		}
+		return $ret;
 	}
 }

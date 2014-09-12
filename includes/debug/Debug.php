@@ -31,7 +31,6 @@
  * @since 1.19
  */
 class MWDebug {
-
 	/**
 	 * Log lines
 	 *
@@ -135,7 +134,7 @@ class MWDebug {
 	 * @since 1.19
 	 * @param $msg string
 	 * @param $callerOffset int
-	 * @param $level int A PHP error level. See sendWarning()
+	 * @param $level int A PHP error level. See sendMessage()
 	 * @param $log string: 'production' will always trigger a php error, 'auto'
 	 *        will trigger an error if $wgDevelopmentWarnings is true, and 'debug'
 	 *        will only write to the debug log(s).
@@ -155,7 +154,7 @@ class MWDebug {
 
 		$callerDescription = self::getCallerDescription( $callerOffset );
 
-		self::sendWarning( $msg, $callerDescription, $level );
+		self::sendMessage( $msg, $callerDescription, 'warning', $level );
 
 		if ( self::$enabled ) {
 			self::$log[] = array(
@@ -185,7 +184,9 @@ class MWDebug {
 	 *    MWDebug::deprecated() (Added in 1.20).
 	 * @return mixed
 	 */
-	public static function deprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
+	public static function deprecated( $function, $version = false,
+		$component = false, $callerOffset = 2
+	) {
 		$callerDescription = self::getCallerDescription( $callerOffset );
 		$callerFunc = $callerDescription['func'];
 
@@ -227,7 +228,12 @@ class MWDebug {
 
 		if ( $sendToLog ) {
 			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
-			self::sendWarning( $msg, $callerDescription, $wgDevelopmentWarnings ? E_USER_DEPRECATED : false );
+			self::sendMessage(
+				$msg,
+				$callerDescription,
+				'deprecated',
+				$wgDevelopmentWarnings ? E_USER_DEPRECATED : false
+			);
 		}
 
 		if ( self::$enabled ) {
@@ -282,21 +288,22 @@ class MWDebug {
 	}
 
 	/**
-	 * Send a warning to the debug log and optionally also trigger a PHP
+	 * Send a message to the debug log and optionally also trigger a PHP
 	 * error, depending on the $level argument.
 	 *
 	 * @param $msg string Message to send
 	 * @param $caller array caller description get from getCallerDescription()
+	 * @param $group string log group on which to send the message
 	 * @param $level int|bool error level to use; set to false to not trigger an error
 	 */
-	private static function sendWarning( $msg, $caller, $level ) {
+	private static function sendMessage( $msg, $caller, $group, $level ) {
 		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
 
 		if ( $level !== false ) {
 			trigger_error( $msg, $level );
 		}
 
-		wfDebug( "$msg\n" );
+		wfDebugLog( $group, $msg, 'log' );
 	}
 
 	/**
@@ -445,10 +452,15 @@ class MWDebug {
 				$display = "\xc2\xa0";
 			}
 
-			if ( !$ident && $diff < 0 && substr( $display, 0, 9 ) != 'Entering ' && substr( $display, 0, 8 ) != 'Exiting ' ) {
+			if ( !$ident
+				&& $diff < 0
+				&& substr( $display, 0, 9 ) != 'Entering '
+				&& substr( $display, 0, 8 ) != 'Exiting '
+			) {
 				$ident = $curIdent;
 				$diff = 0;
-				$display = '<span style="background:yellow;">' . nl2br( htmlspecialchars( $display ) ) . '</span>';
+				$display = '<span style="background:yellow;">' .
+					nl2br( htmlspecialchars( $display ) ) . '</span>';
 			} else {
 				$display = nl2br( htmlspecialchars( $display ) );
 			}
@@ -460,7 +472,7 @@ class MWDebug {
 			} else {
 				$ret .= str_repeat( "<ul><li>\n", $diff );
 			}
-			$ret .= "<tt>$display</tt>\n";
+			$ret .= "<code>$display</code>\n";
 
 			$curIdent = $ident;
 		}
@@ -517,6 +529,13 @@ class MWDebug {
 
 		global $wgVersion, $wgRequestTime;
 		$request = $context->getRequest();
+
+		// HHVM's reported memory usage from memory_get_peak_usage()
+		// is not useful when passing false, but we continue passing
+		// false for consistency of historical data in zend.
+		// see: https://github.com/facebook/hhvm/issues/2257#issuecomment-39362246
+		$realMemoryUsage = wfIsHHVM();
+
 		return array(
 			'mwVersion' => $wgVersion,
 			'phpVersion' => PHP_VERSION,
@@ -533,9 +552,10 @@ class MWDebug {
 				'headers' => $request->getAllHeaders(),
 				'params' => $request->getValues(),
 			),
-			'memory' => $context->getLanguage()->formatSize( memory_get_usage() ),
-			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
+			'memory' => $context->getLanguage()->formatSize( memory_get_usage( $realMemoryUsage ) ),
+			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage( $realMemoryUsage ) ),
 			'includes' => self::getFilesIncluded( $context ),
+			'profile' => Profiler::instance()->getRawData(),
 		);
 	}
 }

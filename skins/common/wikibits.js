@@ -18,7 +18,14 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 	}
 }
 
-win.redirectToFragment = function ( fragment ) {
+/**
+ * Legacy function to scroll to an id while viewing the page over a redirect.
+ * Superseeded by module 'mediawiki.action.view.redirectToFragment' in version 1.23.
+ * Kepted because cache can contain still inline script calls to this function.
+ * Should be removed in version 1.24.
+ * @deprecated since 1.23 Use mediawiki.action.view.redirectToFragment instead
+ */
+mw.log.deprecate( win, 'redirectToFragment', function ( fragment ) {
 	var webKitVersion,
 		match = navigator.userAgent.match( /AppleWebKit\/(\d+)/ );
 	if ( match ) {
@@ -46,16 +53,15 @@ win.redirectToFragment = function ( fragment ) {
 			} );
 		}
 	}
-};
+}, 'Use the module mediawiki.action.view.redirectToFragment instead.' );
 
 /**
  * User-agent sniffing.
- * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.17 Use jquery.client instead
  */
 
-msg = 'Use feature detection or module jquery.client instead';
+msg = 'Use feature detection or module jquery.client instead.';
 
 mw.log.deprecate( win, 'clientPC', ua, msg );
 
@@ -82,11 +88,9 @@ mw.log.deprecate( win, 'ie6_bugs', false, msg );
 /**
  * DOM utilities for handling of events, text nodes and selecting elements
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use jQuery instead
  */
-msg = 'Use jQuery instead';
+msg = 'Use jQuery instead.';
 
 // Ignored dummy values
 mw.log.deprecate( win, 'doneOnloadHook', undefined, msg );
@@ -135,11 +139,9 @@ $( win ).on( 'load', function () {
 /**
  * Toggle checkboxes with shift selection
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use jquery.checkboxShiftClick instead
  */
-msg = 'Use jquery.checkboxShiftClick instead';
+msg = 'Use jquery.checkboxShiftClick instead.';
 mw.log.deprecate( win, 'checkboxes', [], msg );
 mw.log.deprecate( win, 'lastCheckbox', null, msg );
 mw.log.deprecate( win, 'setupCheckboxShiftClick', $.noop, msg );
@@ -149,51 +151,41 @@ mw.log.deprecate( win, 'checkboxClickHandler', $.noop, msg );
 /**
  * Add a button to the default editor toolbar
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use mw.toolbar instead
  */
-mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead' );
-mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead' );
+mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead.' );
+mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead.' );
 
 /**
  * Spinner creation, injection and removal
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.18 Use jquery.spinner instead
  */
-mw.log.deprecate( win, 'injectSpinner', $.noop, 'Use jquery.spinner instead' );
-mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead' );
+mw.log.deprecate( win, 'injectSpinner', $.noop, 'Use jquery.spinner instead.' );
+mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead.' );
 
 /**
  * Escape utilities
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.18 Use mw.html instead
  */
-mw.log.deprecate( win, 'escapeQuotes', $.noop,'Use mw.html instead' );
-mw.log.deprecate( win, 'escapeQuotesHTML', $.noop,'Use mw.html instead' );
+mw.log.deprecate( win, 'escapeQuotes', $.noop, 'Use mw.html instead.' );
+mw.log.deprecate( win, 'escapeQuotesHTML', $.noop, 'Use mw.html instead.' );
 
 /**
  * Display a message to the user
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use mediawiki.notify instead
  * @param {string|HTMLElement} message To be put inside the message box
  */
-mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead' );
+mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead.' );
 
 /**
  * Misc. utilities
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use mediawiki.util instead
  */
-msg = 'Use mediawiki.util instead';
+msg = 'Use mediawiki.util instead.';
 mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
 mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
 mw.log.deprecate( win, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, msg );
@@ -226,11 +218,14 @@ win.importScriptURI = function ( url ) {
 	return s;
 };
 
-win.importStylesheet = function( page ) {
-	return win.importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
+win.importStylesheet = function ( page ) {
+	var uri = mw.config.get( 'wgScript' ) + '?title=' +
+		mw.util.wikiUrlencode( page ) +
+		'&action=raw&ctype=text/css';
+	return win.importStylesheetURI( uri );
 };
 
-win.importStylesheetURI = function( url, media ) {
+win.importStylesheetURI = function ( url, media ) {
 	var l = document.createElement( 'link' );
 	l.rel = 'stylesheet';
 	l.href = url;

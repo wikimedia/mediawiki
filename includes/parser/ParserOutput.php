@@ -41,6 +41,7 @@ class ParserOutput extends CacheTime {
 		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
 		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
 		$mModuleMessages = array(),   # Modules of which only the messages will be loaded by the resource loader
+		$mJsConfigVars = array(),     # JavaScript config variable for mw.config combined with this page
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
 		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections = array(),         # Table of contents
@@ -60,8 +61,8 @@ class ParserOutput extends CacheTime {
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
 	function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
-		$containsOldMagic = false, $titletext = '' )
-	{
+		$containsOldMagic = false, $titletext = ''
+	) {
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
@@ -84,7 +85,7 @@ class ParserOutput extends CacheTime {
 			$text = str_replace( array( Parser::TOC_START, Parser::TOC_END ), '', $text );
 		} else {
 			$text = preg_replace(
-				'#'. preg_quote( Parser::TOC_START ) . '.*?' . preg_quote( Parser::TOC_END ) . '#s',
+				'#' . preg_quote( Parser::TOC_START ) . '.*?' . preg_quote( Parser::TOC_END ) . '#s',
 				'',
 				$text
 			);
@@ -135,6 +136,8 @@ class ParserOutput extends CacheTime {
 	function getModuleScripts()          { return $this->mModuleScripts; }
 	function getModuleStyles()           { return $this->mModuleStyles; }
 	function getModuleMessages()         { return $this->mModuleMessages; }
+	/** @since 1.23 */
+	function getJsConfigVars()           { return $this->mJsConfigVars; }
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
 	function getIndexPolicy()            { return $this->mIndexPolicy; }
@@ -280,10 +283,10 @@ class ParserOutput extends CacheTime {
 	 * @throws MWException if given invalid input
 	 */
 	function addInterwikiLink( $title ) {
-		$prefix = $title->getInterwiki();
-		if ( $prefix == '' ) {
+		if ( !$title->isExternal() ) {
 			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
 		}
+		$prefix = $title->getInterwiki();
 		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
 			$this->mInterwikiLinks[$prefix] = array();
 		}
@@ -320,6 +323,24 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Add one or more variables to be set in mw.config in JavaScript.
+	 *
+	 * @param $keys {String|Array} Key or array of key/value pairs.
+	 * @param $value {Mixed} [optional] Value of the configuration variable.
+	 * @since 1.23
+	 */
+	public function addJsConfigVars( $keys, $value = null ) {
+		if ( is_array( $keys ) ) {
+			foreach ( $keys as $key => $value ) {
+				$this->mJsConfigVars[$key] = $value;
+			}
+			return;
+		}
+
+		$this->mJsConfigVars[$keys] = $value;
+	}
+
+	/**
 	 * Copy items from the OutputPage object into this one
 	 *
 	 * @param $out OutputPage object
@@ -329,6 +350,7 @@ class ParserOutput extends CacheTime {
 		$this->addModuleScripts( $out->getModuleScripts() );
 		$this->addModuleStyles( $out->getModuleStyles() );
 		$this->addModuleMessages( $out->getModuleMessages() );
+		$this->addJsConfigVars( $out->getJsConfigVars() );
 
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
 		$this->mPreventClickjacking = $this->mPreventClickjacking || $out->getPreventClickjacking();
@@ -398,7 +420,7 @@ class ParserOutput extends CacheTime {
 	 * @note: Do not use setProperty() to set a property which is only used
 	 * in a context where the ParserOutput object itself is already available,
 	 * for example a normal page view. There is no need to save such a property
-	 * in the database since it the text is already parsed. You can just hook
+	 * in the database since the text is already parsed. You can just hook
 	 * OutputPageParserOutput and get your data out of the ParserOutput object.
 	 *
 	 * If you are writing an extension where you want to set a property in the
@@ -455,16 +477,23 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Callback passed by the Parser to the ParserOptions to keep track of which options are used.
-	 * @access private
+	 * Tags a parser option for use in the cache key for this parser output.
+	 * Registered as a watcher at ParserOptions::registerWatcher() by Parser::clearState().
+	 *
+	 * @see ParserCache::getKey
+	 * @see ParserCache::save
+	 * @see ParserOptions::addExtraKey
+	 * @see ParserOptions::optionsHash
 	 */
-	function recordOption( $option ) {
+	public function recordOption( $option ) {
 		$this->mAccessedOptions[$option] = true;
 	}
 
 	/**
-	 * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
-	 * store any secondary information extracted from the page's content.
+	 * Adds an update job to the output. Any update jobs added to the output will
+	 * eventually be executed in order to store any secondary information extracted
+	 * from the page's content. This is triggered by calling getSecondaryDataUpdates()
+	 * and is used for forward links updates on edit and backlink updates by jobs.
 	 *
 	 * @since 1.20
 	 *
@@ -641,5 +670,15 @@ class ParserOutput extends CacheTime {
 	 */
 	public function preventClickjacking( $flag = null ) {
 		return wfSetVar( $this->mPreventClickjacking, $flag );
+	}
+
+	/**
+	 * Save space for for serialization by removing useless values
+	 */
+	function __sleep() {
+		return array_diff(
+			array_keys( get_object_vars( $this ) ),
+			array( 'mSecondaryDataUpdates', 'mParseStartTime' )
+		);
 	}
 }

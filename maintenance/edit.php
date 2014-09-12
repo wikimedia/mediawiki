@@ -38,11 +38,13 @@ class EditCLI extends Maintenance {
 		$this->addOption( 'bot', 'Bot edit', false, false, 'b' );
 		$this->addOption( 'autosummary', 'Enable autosummary', false, false, 'a' );
 		$this->addOption( 'no-rc', 'Do not show the change in recent changes', false, false, 'r' );
+		$this->addOption( 'nocreate', 'Don\'t create new pages', false, false );
+		$this->addOption( 'createonly', 'Only create new pages', false, false );
 		$this->addArg( 'title', 'Title of article to edit' );
 	}
 
 	public function execute() {
-		global $wgUser, $wgTitle;
+		global $wgUser;
 
 		$userName = $this->getOption( 'user', 'Maintenance script' );
 		$summary = $this->getOption( 'summary', '' );
@@ -61,17 +63,23 @@ class EditCLI extends Maintenance {
 			$wgUser->addToDatabase();
 		}
 
-		$wgTitle = Title::newFromText( $this->getArg() );
-		if ( !$wgTitle ) {
+		$title = Title::newFromText( $this->getArg() );
+		if ( !$title ) {
 			$this->error( "Invalid title", true );
 		}
-		$context->setTitle( $wgTitle );
+		$context->setTitle( $title );
 
-		$page = WikiPage::factory( $wgTitle );
+		if ( $this->hasOption( 'nocreate' ) && !$title->exists() ) {
+			$this->error( "Page does not exist", true );
+		} elseif ( $this->hasOption( 'createonly' ) && $title->exists() ) {
+			$this->error( "Page already exists", true );
+		}
+
+		$page = WikiPage::factory( $title );
 
 		# Read the text
 		$text = $this->getStdin( Maintenance::STDIN_ALL );
-		$content = ContentHandler::makeContent( $text, $wgTitle );
+		$content = ContentHandler::makeContent( $text, $title );
 
 		# Do the edit
 		$this->output( "Saving... " );

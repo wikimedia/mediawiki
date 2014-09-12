@@ -7,9 +7,6 @@
  * @ingroup Language
  * @file
  *
- * @author Philip <philip.npc@gmail.com>
- * @author Symane
- * @author Vipuser
  */
 
 $fallback = 'gan-hant, zh-hant, zh-hans';
@@ -36,10 +33,3 @@ $namespaceAliases = array(
 	'$1_談詑' => NS_PROJECT_TALK,
 );
 
-$messages = array(
-# Variants for Gan language
-'variantname-gan-hans' => '简体',
-'variantname-gan-hant' => '繁體',
-'variantname-gan'      => '贛語原文',
-
-);

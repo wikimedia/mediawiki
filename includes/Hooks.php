@@ -124,6 +124,7 @@ class Hooks {
 	 *
 	 * @param string $event Event name
 	 * @param array $args  Array of parameters passed to hook functions
+	 * @param string|null $deprecatedVersion Optionally, mark hook as deprecated with version number
 	 * @return bool True if no handler aborted the hook
 	 *
 	 * @since 1.22 A hook function is not required to return a value for
@@ -132,7 +133,7 @@ class Hooks {
 	 * @throws MWException
 	 * @throws FatalError
 	 */
-	public static function run( $event, array $args = array() ) {
+	public static function run( $event, array $args = array(), $deprecatedVersion = null ) {
 		wfProfileIn( 'hook: ' . $event );
 		foreach ( self::getHandlers( $event ) as $hook ) {
 			// Turn non-array values into an array. (Can't use casting because of objects.)
@@ -195,10 +196,19 @@ class Hooks {
 			// Profile first in case the Profiler causes errors.
 			wfProfileIn( $func );
 			set_error_handler( 'Hooks::hookErrorHandler' );
+
+			// mark hook as deprecated, if deprecation version is specified
+			if ( $deprecatedVersion !== null ) {
+				wfDeprecated( "$event hook (used in $func)", $deprecatedVersion );
+			}
+
 			try {
 				$retval = call_user_func_array( $callback, $hook_args );
 			} catch ( MWHookException $e ) {
 				$badhookmsg = $e->getMessage();
+			} catch ( Exception $e ) {
+				restore_error_handler();
+				throw $e;
 			}
 			restore_error_handler();
 			wfProfileOut( $func );

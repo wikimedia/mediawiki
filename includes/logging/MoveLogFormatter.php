@@ -31,6 +31,7 @@
 class MoveLogFormatter extends LogFormatter {
 	public function getPreloadTitles() {
 		$params = $this->extractParameters();
+
 		return array( Title::newFromText( $params[3] ) );
 	}
 
@@ -40,6 +41,7 @@ class MoveLogFormatter extends LogFormatter {
 		if ( isset( $params[4] ) && $params[4] === '1' ) {
 			$key .= '-noredirect';
 		}
+
 		return $key;
 	}
 
@@ -49,14 +51,15 @@ class MoveLogFormatter extends LogFormatter {
 		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
 		$params[2] = Message::rawParam( $oldname );
 		$params[3] = Message::rawParam( $newname );
+
 		return $params;
 	}
 
 	public function getActionLinks() {
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
 			|| $this->entry->getSubtype() !== 'move'
-			|| !$this->context->getUser()->isAllowed( 'move' ) )
-		{
+			|| !$this->context->getUser()->isAllowed( 'move' )
+		) {
 			return '';
 		}
 
@@ -77,6 +80,7 @@ class MoveLogFormatter extends LogFormatter {
 				'wpMovetalk' => 0
 			)
 		);
+
 		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 	}
 }

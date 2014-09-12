@@ -64,6 +64,16 @@ abstract class Skin extends ContextSource {
 
 					if ( preg_match( '/^([^.]*)\.php$/', $file, $matches ) ) {
 						$aSkin = $matches[1];
+
+						// We're still loading core skins via the autodiscovery mechanism... :(
+						if ( !in_array( $aSkin, array( 'CologneBlue', 'Modern', 'MonoBook', 'Vector' ) ) ) {
+							wfLogWarning(
+								"A skin using autodiscovery mechanism, $aSkin, was found in your skins/ directory. " .
+								"The mechanism will be removed in MediaWiki 1.25 and the skin will no longer be recognized. " .
+								"See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for information how to fix this."
+							);
+						}
+
 						$wgValidSkinNames[strtolower( $aSkin )] = $aSkin;
 					}
 				}
@@ -92,9 +102,10 @@ abstract class Skin extends ContextSource {
 	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
 	 * Useful for Special:Preferences and other places where you
 	 * only want to show skins users _can_ use.
-	 * @return array of strings
+	 * @return string[]
+	 * @since 1.23
 	 */
-	public static function getUsableSkins() {
+	public static function getAllowedSkins() {
 		global $wgSkipSkins;
 
 		$allowedSkins = self::getSkinNames();
@@ -104,6 +115,15 @@ abstract class Skin extends ContextSource {
 		}
 
 		return $allowedSkins;
+	}
+
+	/**
+	 * @deprecated since 1.23, use getAllowedSkins
+	 * @return string[]
+	 */
+	public static function getUsableSkins() {
+		wfDeprecated( __METHOD__, '1.23' );
+		return self::getAllowedSkins();
 	}
 
 	/**
@@ -182,7 +202,9 @@ abstract class Skin extends ContextSource {
 		return $skin;
 	}
 
-	/** @return string skin name */
+	/**
+	 * @return string skin name
+	 */
 	public function getSkinName() {
 		return $this->skinname;
 	}
@@ -243,9 +265,7 @@ abstract class Skin extends ContextSource {
 					$modules['watch'][] = 'mediawiki.page.watch.ajax';
 				}
 
-				if ( !$user->getOption( 'disablesuggest', false ) ) {
-					$modules['search'][] = 'mediawiki.searchSuggest';
-				}
+				$modules['search'][] = 'mediawiki.searchSuggest';
 			}
 		}
 
@@ -453,6 +473,19 @@ abstract class Skin extends ContextSource {
 		$name = Sanitizer::escapeClass( 'page-' . $title->getPrefixedText() );
 
 		return "$numeric $type $name";
+	}
+
+	/*
+	 * Return values for <html> element
+	 * @return array of associative name-to-value elements for <html> element
+	 */
+	public function getHtmlElementAttributes() {
+		$lang = $this->getLanguage();
+		return array(
+			'lang' => $lang->getHtmlCode(),
+			'dir' => $lang->getDir(),
+			'class' => 'client-nojs',
+		);
 	}
 
 	/**
@@ -947,9 +980,10 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @param $desc
-	 * @param $page
-	 * @return string
+	 * Returns an HTML link for use in the footer
+	 * @param string $desc i18n message key for the link text
+	 * @param string $page i18n message key for the page to link to
+	 * @return string HTML anchor
 	 */
 	public function footerLink( $desc, $page ) {
 		// if the link description has been set to "-" in the default language,
@@ -1236,6 +1270,7 @@ abstract class Skin extends ContextSource {
 		wfProfileOut( __METHOD__ );
 		return $bar;
 	}
+
 	/**
 	 * Add content from a sidebar system message
 	 * Currently only used for MediaWiki:Sidebar (but may be used by Extensions)
@@ -1379,61 +1414,58 @@ abstract class Skin extends ContextSource {
 
 		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
 			$uTalkTitle = $user->getTalkPage();
-
-			if ( !$uTalkTitle->equals( $out->getTitle() ) ) {
-				$lastSeenRev = isset( $newtalks[0]['rev'] ) ? $newtalks[0]['rev'] : null;
-				$nofAuthors = 0;
-				if ( $lastSeenRev !== null ) {
-					$plural = true; // Default if we have a last seen revision: if unknown, use plural
-					$latestRev = Revision::newFromTitle( $uTalkTitle, false, Revision::READ_NORMAL );
-					if ( $latestRev !== null ) {
-						// Singular if only 1 unseen revision, plural if several unseen revisions.
-						$plural = $latestRev->getParentId() !== $lastSeenRev->getId();
-						$nofAuthors = $uTalkTitle->countAuthorsBetween(
-							$lastSeenRev, $latestRev, 10, 'include_new' );
-					}
-				} else {
-					// Singular if no revision -> diff link will show latest change only in any case
-					$plural = false;
+			$lastSeenRev = isset( $newtalks[0]['rev'] ) ? $newtalks[0]['rev'] : null;
+			$nofAuthors = 0;
+			if ( $lastSeenRev !== null ) {
+				$plural = true; // Default if we have a last seen revision: if unknown, use plural
+				$latestRev = Revision::newFromTitle( $uTalkTitle, false, Revision::READ_NORMAL );
+				if ( $latestRev !== null ) {
+					// Singular if only 1 unseen revision, plural if several unseen revisions.
+					$plural = $latestRev->getParentId() !== $lastSeenRev->getId();
+					$nofAuthors = $uTalkTitle->countAuthorsBetween(
+						$lastSeenRev, $latestRev, 10, 'include_new' );
 				}
-				$plural = $plural ? 2 : 1;
-				// 2 signifies "more than one revision". We don't know how many, and even if we did,
-				// the number of revisions or authors is not necessarily the same as the number of
-				// "messages".
-				$newMessagesLink = Linker::linkKnown(
-					$uTalkTitle,
-					$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
-					array(),
-					array( 'redirect' => 'no' )
-				);
-
-				$newMessagesDiffLink = Linker::linkKnown(
-					$uTalkTitle,
-					$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->escaped(),
-					array(),
-					$lastSeenRev !== null
-						? array( 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' )
-						: array( 'diff' => 'cur' )
-				);
-
-				if ( $nofAuthors >= 1 && $nofAuthors <= 10 ) {
-					$newMessagesAlert = $this->msg(
-						'youhavenewmessagesfromusers',
-						$newMessagesLink,
-						$newMessagesDiffLink
-					)->numParams( $nofAuthors );
-				} else {
-					// $nofAuthors === 11 signifies "11 or more" ("more than 10")
-					$newMessagesAlert = $this->msg(
-						$nofAuthors > 10 ? 'youhavenewmessagesmanyusers' : 'youhavenewmessages',
-						$newMessagesLink,
-						$newMessagesDiffLink
-					);
-				}
-				$newMessagesAlert = $newMessagesAlert->text();
-				# Disable Squid cache
-				$out->setSquidMaxage( 0 );
+			} else {
+				// Singular if no revision -> diff link will show latest change only in any case
+				$plural = false;
 			}
+			$plural = $plural ? 999 : 1;
+			// 999 signifies "more than one revision". We don't know how many, and even if we did,
+			// the number of revisions or authors is not necessarily the same as the number of
+			// "messages".
+			$newMessagesLink = Linker::linkKnown(
+				$uTalkTitle,
+				$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
+				array(),
+				array( 'redirect' => 'no' )
+			);
+
+			$newMessagesDiffLink = Linker::linkKnown(
+				$uTalkTitle,
+				$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->escaped(),
+				array(),
+				$lastSeenRev !== null
+					? array( 'oldid' => $lastSeenRev->getId(), 'diff' => 'cur' )
+					: array( 'diff' => 'cur' )
+			);
+
+			if ( $nofAuthors >= 1 && $nofAuthors <= 10 ) {
+				$newMessagesAlert = $this->msg(
+					'youhavenewmessagesfromusers',
+					$newMessagesLink,
+					$newMessagesDiffLink
+				)->numParams( $nofAuthors, $plural );
+			} else {
+				// $nofAuthors === 11 signifies "11 or more" ("more than 10")
+				$newMessagesAlert = $this->msg(
+					$nofAuthors > 10 ? 'youhavenewmessagesmanyusers' : 'youhavenewmessages',
+					$newMessagesLink,
+					$newMessagesDiffLink
+				)->numParams( $plural );
+			}
+			$newMessagesAlert = $newMessagesAlert->text();
+			# Disable Squid cache
+			$out->setSquidMaxage( 0 );
 		} elseif ( count( $newtalks ) ) {
 			$sep = $this->msg( 'newtalkseparator' )->escaped();
 			$msgs = array();
@@ -1561,14 +1593,14 @@ abstract class Skin extends ContextSource {
 	 * Create a section edit link.  This supersedes editSectionLink() and
 	 * editSectionLinkForOther().
 	 *
-	 * @param $nt      Title  The title being linked to (may not be the same as
-	 *   $wgTitle, if the section is included from a template)
+	 * @param $nt Title  The title being linked to (may not be the same as
+	 *   the current page, if the section is included from a template)
 	 * @param string $section The designation of the section being pointed to,
 	 *   to be included in the link, like "&section=$section"
 	 * @param string $tooltip The tooltip to use for the link: will be escaped
 	 *   and wrapped in the 'editsectionhint' message
-	 * @param $lang    string Language code
-	 * @return         string HTML to use for edit link
+	 * @param $lang string Language code
+	 * @return string HTML to use for edit link
 	 */
 	public function doEditSectionLink( Title $nt, $section, $tooltip = null, $lang = false ) {
 		// HTML generated here should probably have userlangattributes

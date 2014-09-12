@@ -28,7 +28,6 @@
  */
 class LanguageBs extends Language {
 
-
 	/**
 	 * Convert from the nominative form of a noun to some other case
 	 * Invoked with {{GRAMMAR:case|word}}

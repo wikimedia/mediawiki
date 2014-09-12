@@ -117,7 +117,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param $params Array: key-value API params
 	 * @param $session Array|null: session array
 	 * @param $user User|null A User object for the context
-	 * @return result of the API call
+	 * @return mixed result of the API call
 	 * @throws Exception in case wsToken is not set in the session
 	 */
 	protected function doApiRequestWithToken( array $params, array $session = null, User $user = null ) {
@@ -186,68 +186,5 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$this->assertThat( $groups, $constraint,
 			'ApiTestCase::setUp can be slow, tests must be "medium" or "large"'
 		);
-	}
-}
-
-class UserWrapper {
-	public $userName;
-	public $password;
-	public $user;
-
-	public function __construct( $userName, $password, $group = '' ) {
-		$this->userName = $userName;
-		$this->password = $password;
-
-		$this->user = User::newFromName( $this->userName );
-		if ( !$this->user->getID() ) {
-			$this->user = User::createNew( $this->userName, array(
-				"email" => "test@example.com",
-				"real_name" => "Test User" ) );
-		}
-		$this->user->setPassword( $this->password );
-
-		if ( $group !== '' ) {
-			$this->user->addGroup( $group );
-		}
-		$this->user->saveSettings();
-	}
-}
-
-class MockApi extends ApiBase {
-	public function execute() {
-	}
-
-	public function getVersion() {
-	}
-
-	public function __construct() {
-	}
-
-	public function getAllowedParams() {
-		return array(
-			'filename' => null,
-			'enablechunks' => false,
-			'sessionkey' => null,
-		);
-	}
-}
-
-class ApiTestContext extends RequestContext {
-
-	/**
-	 * Returns a DerivativeContext with the request variables in place
-	 *
-	 * @param $request WebRequest request object including parameters and session
-	 * @param $user User or null
-	 * @return DerivativeContext
-	 */
-	public function newTestContext( WebRequest $request, User $user = null ) {
-		$context = new DerivativeContext( $this );
-		$context->setRequest( $request );
-		if ( $user !== null ) {
-			$context->setUser( $user );
-		}
-
-		return $context;
 	}
 }

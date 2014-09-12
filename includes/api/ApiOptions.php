@@ -31,7 +31,6 @@
  * @ingroup API
  */
 class ApiOptions extends ApiBase {
-
 	/**
 	 * Changes preferences of the current user.
 	 */
@@ -98,6 +97,9 @@ class ApiOptions extends ApiBase {
 					} else {
 						$validation = true;
 					}
+					break;
+				case 'special':
+					$validation = "cannot be set by this module";
 					break;
 				case 'unused':
 				default:
@@ -172,17 +174,23 @@ class ApiOptions extends ApiBase {
 			'token' => 'An options token previously obtained through the action=tokens',
 			'reset' => 'Resets preferences to the site defaults',
 			'resetkinds' => 'List of types of options to reset when the "reset" option is set',
-			'change' => 'List of changes, formatted name=value (e.g. skin=vector), value cannot contain pipe characters. If no value is given (not even an equals sign), e.g., optionname|otheroption|..., the option will be reset to its default value',
+			'change' => array( 'List of changes, formatted name=value (e.g. skin=vector), ' .
+				'value cannot contain pipe characters. If no value is given (not ',
+				'even an equals sign), e.g., optionname|otheroption|..., the ' .
+				'option will be reset to its default value'
+			),
 			'optionname' => 'A name of a option which should have an optionvalue set',
-			'optionvalue' => 'A value of the option specified by the optionname, can contain pipe characters',
+			'optionvalue' => 'A value of the option specified by the optionname, ' .
+				'can contain pipe characters',
 		);
 	}
 
 	public function getDescription() {
 		return array(
-			'Change preferences of the current user',
+			'Change preferences of the current user.',
 			'Only options which are registered in core or in one of installed extensions,',
-			'or as options with keys prefixed with \'userjs-\' (intended to be used by user scripts), can be set.'
+			'or as options with keys prefixed with \'userjs-\' (intended to be used by user',
+			'scripts), can be set.'
 		);
 	}
 
@@ -209,7 +217,8 @@ class ApiOptions extends ApiBase {
 		return array(
 			'api.php?action=options&reset=&token=123ABC',
 			'api.php?action=options&change=skin=vector|hideminor=1&token=123ABC',
-			'api.php?action=options&reset=&change=skin=monobook&optionname=nickname&optionvalue=[[User:Beau|Beau]]%20([[User_talk:Beau|talk]])&token=123ABC',
+			'api.php?action=options&reset=&change=skin=monobook&optionname=nickname&' .
+				'optionvalue=[[User:Beau|Beau]]%20([[User_talk:Beau|talk]])&token=123ABC',
 		);
 	}
 }

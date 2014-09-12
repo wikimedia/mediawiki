@@ -34,7 +34,7 @@
  * @since 1.19
  */
 class FSLockManager extends LockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
@@ -43,16 +43,14 @@ class FSLockManager extends LockManager {
 
 	protected $lockDir; // global dir for all servers
 
-	/** @var Array Map of (locked key => lock file handle) */
+	/** @var array Map of (locked key => lock file handle) */
 	protected $handles = array();
 
 	/**
 	 * Construct a new instance from configuration.
 	 *
-	 * $config includes:
+	 * @param array $config Includes:
 	 *   - lockDirectory : Directory containing the lock files
-	 *
-	 * @param array $config
 	 */
 	function __construct( array $config ) {
 		parent::__construct( $config );
@@ -62,8 +60,8 @@ class FSLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doLock()
-	 * @param $paths array
-	 * @param $type int
+	 * @param array $paths
+	 * @param int $type
 	 * @return Status
 	 */
 	protected function doLock( array $paths, $type ) {
@@ -77,6 +75,7 @@ class FSLockManager extends LockManager {
 			} else {
 				// Abort and unlock everything
 				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
+
 				return $status;
 			}
 		}
@@ -86,8 +85,8 @@ class FSLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doUnlock()
-	 * @param $paths array
-	 * @param $type int
+	 * @param array $paths
+	 * @param int $type
 	 * @return Status
 	 */
 	protected function doUnlock( array $paths, $type ) {
@@ -103,8 +102,8 @@ class FSLockManager extends LockManager {
 	/**
 	 * Lock a single resource key
 	 *
-	 * @param $path string
-	 * @param $type integer
+	 * @param string $path
+	 * @param int $type
 	 * @return Status
 	 */
 	protected function doSingleLock( $path, $type ) {
@@ -148,8 +147,8 @@ class FSLockManager extends LockManager {
 	/**
 	 * Unlock a single resource key
 	 *
-	 * @param $path string
-	 * @param $type integer
+	 * @param string $path
+	 * @param int $type
 	 * @return Status
 	 */
 	protected function doSingleUnlock( $path, $type ) {
@@ -191,8 +190,8 @@ class FSLockManager extends LockManager {
 	}
 
 	/**
-	 * @param $path string
-	 * @param $handlesToClose array
+	 * @param string $path
+	 * @param array $handlesToClose
 	 * @return Status
 	 */
 	private function closeLockHandles( $path, array $handlesToClose ) {
@@ -205,11 +204,12 @@ class FSLockManager extends LockManager {
 				$status->warning( 'lockmanager-fail-closelock', $path );
 			}
 		}
+
 		return $status;
 	}
 
 	/**
-	 * @param $path string
+	 * @param string $path
 	 * @return Status
 	 */
 	private function pruneKeyLockFiles( $path ) {
@@ -221,12 +221,13 @@ class FSLockManager extends LockManager {
 			}
 			unset( $this->handles[$path] );
 		}
+
 		return $status;
 	}
 
 	/**
 	 * Get the path to the lock file for a key
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	protected function getLockPath( $path ) {

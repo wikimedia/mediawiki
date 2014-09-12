@@ -1,0 +1,21 @@
+{
+    "@metadata": {
+        "authors": [
+            "Cainamarques",
+            "Fúlvio",
+            "GoEThe",
+            "Hamilton Abreu",
+            "Helder.wiki",
+            "Jaideraf",
+            "Jdforrester",
+            "Luckas",
+            "Vitorvicentevalente",
+            "SandroHc"
+        ]
+    },
+    "ooui-dialog-action-close": "Fechar",
+    "ooui-outline-control-move-down": "Mover item para baixo",
+    "ooui-outline-control-move-up": "Mover item para cima",
+    "ooui-outline-control-remove": "Remover elemento",
+    "ooui-toolbar-more": "Mais"
+}

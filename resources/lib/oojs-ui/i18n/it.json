@@ -1,0 +1,22 @@
+{
+    "@metadata": {
+        "authors": [
+            "Beta16",
+            "Darth Kule",
+            "Doc.mari",
+            "Eleonora negri",
+            "Elitre",
+            "F. Cosoleto",
+            "FRacco",
+            "Gianfranco",
+            "Minerva Titani",
+            "Raoli",
+            "Una giornata uggiosa '94"
+        ]
+    },
+    "ooui-dialog-action-close": "Chiudi",
+    "ooui-outline-control-move-down": "Sposta in basso",
+    "ooui-outline-control-move-up": "Sposta in alto",
+    "ooui-outline-control-remove": "Rimuovi elemento",
+    "ooui-toolbar-more": "Altro"
+}

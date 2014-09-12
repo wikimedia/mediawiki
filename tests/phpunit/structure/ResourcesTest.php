@@ -26,26 +26,112 @@ class ResourcesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * This ask the ResouceLoader for all registered files from modules
-	 * created by ResourceLoaderFileModule (or one of its descendants).
-	 *
+	 * @dataProvider provideMediaStylesheets
+	 */
+	public function testStyleMedia( $moduleName, $media, $filename, $css ) {
+		$cssText = CSSMin::minify( $css->cssText );
+
+		$this->assertTrue( strpos( $cssText, '@media' ) === false, 'Stylesheets should not both specify "media" and contain @media' );
+	}
+
+	public function testDependencies() {
+		$data = self::getAllModules();
+		$illegalDeps = array( 'jquery', 'mediawiki' );
+
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			foreach ( $illegalDeps as $illegalDep ) {
+				$this->assertNotContains(
+					$illegalDep,
+					$module->getDependencies(),
+					"Module '$moduleName' must not depend on '$illegalDep'"
+				);
+			}
+		}
+	}
+
+	/**
+	 * Get all registered modules from ResouceLoader.
+	 */
+	protected static function getAllModules() {
+		global $wgEnableJavaScriptTest;
+
+		// Test existance of test suite files as well
+		// (can't use setUp or setMwGlobals because providers are static)
+		$org_wgEnableJavaScriptTest = $wgEnableJavaScriptTest;
+		$wgEnableJavaScriptTest = true;
+
+		// Initialize ResourceLoader
+		$rl = new ResourceLoader();
+
+		$modules = array();
+
+		foreach ( $rl->getModuleNames() as $moduleName ) {
+			$modules[$moduleName] = $rl->getModule( $moduleName );
+		}
+
+		// Restore settings
+		$wgEnableJavaScriptTest = $org_wgEnableJavaScriptTest;
+
+		return array(
+			'modules' => $modules,
+			'resourceloader' => $rl,
+			'context' => new ResourceLoaderContext( $rl, new FauxRequest() )
+		);
+	}
+
+	/**
+	 * Get all stylesheet files from modules that are an instance of
+	 * ResourceLoaderFileModule (or one of its subclasses).
+	 */
+	public static function provideMediaStylesheets() {
+		$data = self::getAllModules();
+		$cases = array();
+
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			if ( !$module instanceof ResourceLoaderFileModule ) {
+				continue;
+			}
+
+			$reflectedModule = new ReflectionObject( $module );
+
+			$getStyleFiles = $reflectedModule->getMethod( 'getStyleFiles' );
+			$getStyleFiles->setAccessible( true );
+
+			$readStyleFile = $reflectedModule->getMethod( 'readStyleFile' );
+			$readStyleFile->setAccessible( true );
+
+			$styleFiles = $getStyleFiles->invoke( $module, $data['context'] );
+
+			$flip = $module->getFlip( $data['context'] );
+
+			foreach ( $styleFiles as $media => $files ) {
+				if ( $media && $media !== 'all' ) {
+					foreach ( $files as $file ) {
+						$cases[] = array(
+							$moduleName,
+							$media,
+							$file,
+							// XXX: Wrapped in an object to keep it out of PHPUnit output
+							(object) array( 'cssText' => $readStyleFile->invoke( $module, $file, $flip ) ),
+						);
+					}
+				}
+			}
+		}
+
+		return $cases;
+	}
+
+	/**
+	 * Get all resource files from modules that are an instance of
+	 * ResourceLoaderFileModule (or one of its subclasses).
 	 *
 	 * Since the raw data is stored in protected properties, we have to
 	 * overrride this through ReflectionObject methods.
 	 */
 	public static function provideResourceFiles() {
-		global $wgEnableJavaScriptTest;
-
-		// Test existance of test suite files as well
-		// (can't use setUp or setMwGlobals because providers are static)
-		$live_wgEnableJavaScriptTest = $wgEnableJavaScriptTest;
-		$wgEnableJavaScriptTest = true;
-
-		// Array with arguments for the test function
+		$data = self::getAllModules();
 		$cases = array();
-
-		// Initialize ResourceLoader
-		$rl = new ResourceLoader();
 
 		// See also ResourceLoaderFileModule::__construct
 		$filePathProps = array(
@@ -65,8 +151,7 @@ class ResourcesTest extends MediaWikiTestCase {
 			),
 		);
 
-		foreach ( $rl->getModuleNames() as $moduleName ) {
-			$module = $rl->getModule( $moduleName );
+		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( !$module instanceof ResourceLoaderFileModule ) {
 				continue;
 			}
@@ -117,14 +202,11 @@ class ResourcesTest extends MediaWikiTestCase {
 			foreach ( $files as $file ) {
 				$cases[] = array(
 					$method->invoke( $module, $file ),
-					$module->getName(),
+					$moduleName,
 					$file,
 				);
 			}
 		}
-
-		// Restore settings
-		$wgEnableJavaScriptTest = $live_wgEnableJavaScriptTest;
 
 		return $cases;
 	}

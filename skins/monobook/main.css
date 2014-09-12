@@ -250,6 +250,12 @@ table.rimage {
 	border: 1px solid #aaa;
 	padding: 0 .8em .3em .5em;
 }
+/* allows .pBody styles to wrap around content added via BaseTemplateAfterPortlet hook */
+.pBody:after {
+	content: '';
+	clear: both;
+	display: block;
+}
 .portlet ul {
 	line-height: 1.5em;
 	font-size: 95%;
@@ -636,37 +642,6 @@ td.htmlform-tip {
 	margin-top: 2em;
 }
 
-div#userloginForm,
-div#userlogin {
-	margin: 0 3em 1em 0;
-	border: 1px solid #aaa;
-	clear: both;
-	padding: 1.5em 2em;
-	background-color: #f9f9f9;
-	float: left;
-}
-
-div#userloginForm table,
-div#userlogin table {
-	background-color: #f9f9f9;
-}
-
-div#userloginForm h2,
-div#userlogin h2 {
-	padding-top: 0;
-}
-
-div#userlogin .captcha,
-div#userloginForm .captcha {
-	border: 1px solid #bbb;
-	padding: 1.5em 2em;
-	background-color: white;
-}
-
-#loginend, #signupend {
-	clear: both;
-}
-
 #userloginprompt, #languagelinks {
 	font-size: 85%;
 }
@@ -677,67 +652,21 @@ div#userloginForm .captcha {
 	padding-top: 2em;
 }
 
-#userlogin .loginText, #userlogin .loginPassword {
-	width: 12em;
-}
-
 #userloginlink a, #wpLoginattempt, #wpCreateaccount {
 	font-weight: bold;
 }
 
-/*
-** IE/Mac fixes, hope to find a validating way to move this
-** to a separate stylesheet. This would work but doesn't validate:
-** @import("IEMacFixes.css");
-*/
-/* tabs: border on the a, not the div */
-* > html #p-cactions li {
-	border: none;
-}
-* > html #p-cactions li a {
-	border: 1px solid #aaa;
-	border-bottom: none;
-}
-* > html #p-cactions li.selected a {
-	border-color: #fabd23;
-}
-/* footer icons need a fixed width */
-* > html #f-poweredbyico,
-* > html #f-copyrightico {
-	width: 88px;
-}
-* > html #bodyContent,
-* > html #bodyContent pre {
-	overflow-x: auto;
-	width: 100%;
-	padding-bottom: 25px;
-}
-
-/* more IE fixes */
-/* float/negative margin brokenness */
-* html div#footer {
-	margin-top: 0;
-}
-* html div#column-content {
-	display: inline;
-	margin-bottom: 0;
-}
+/**
+ * This was originally added by Gabriel Wicke in r3681 (committed on 25 May 2004)
+ * with the commit message "tweaks to page history".
+ * Unlike the other IE/Mac fixes that used to be present here, this seems to get
+ * applied on more modern browsers, so let's keep it here until someone has the
+ * time to properly test it out.
+ */
 #pagehistory li.selected {
 	position: relative;
 }
 
-/* Mac IE 5.0 fix; floated content turns invisible */
-* > html div#column-content {
-	float: none;
-}
-* > html div#column-one {
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-* > html div#footer {
-	margin-left: 13.2em;
-}
 .redirectText {
 	font-size: 150%;
 	margin: 5px;

@@ -37,14 +37,7 @@ class SpecialPreferences extends SpecialPage {
 		$out = $this->getOutput();
 		$out->disallowUserJs(); # Prevent hijacked user scripts from sniffing passwords etc.
 
-		$user = $this->getUser();
-		if ( $user->isAnon() ) {
-			throw new ErrorPageError(
-				'prefsnologin',
-				'prefsnologintext',
-				array( $this->getTitle()->getPrefixedDBkey() )
-			);
-		}
+		$this->requireLogin( 'prefsnologintext2' );
 		$this->checkReadOnly();
 
 		if ( $par == 'reset' ) {
@@ -62,7 +55,7 @@ class SpecialPreferences extends SpecialPage {
 			);
 		}
 
-		$htmlForm = Preferences::getFormObject( $user, $this->getContext() );
+		$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
 
 		$htmlForm->show();
@@ -76,7 +69,7 @@ class SpecialPreferences extends SpecialPage {
 		$this->getOutput()->addWikiMsg( 'prefs-reset-intro' );
 
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle( 'reset' ) ); // Reset subpage
+		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
 		$htmlForm = new HTMLForm( array(), $context, 'prefs-restore' );
 
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
@@ -95,7 +88,7 @@ class SpecialPreferences extends SpecialPage {
 		$user->resetOptions( 'all', $this->getContext() );
 		$user->saveSettings();
 
-		$url = $this->getTitle()->getFullURL( 'success' );
+		$url = $this->getPageTitle()->getFullURL( 'success' );
 
 		$this->getOutput()->redirect( $url );
 

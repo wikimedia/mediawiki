@@ -23,19 +23,28 @@
  */
 
 class FauxResponseTest extends MediaWikiTestCase {
-	var $response;
+	/** @var FauxResponse */
+	protected $response;
 
 	protected function setUp() {
 		parent::setUp();
 		$this->response = new FauxResponse;
 	}
 
+	/**
+	 * @covers FauxResponse::getcookie
+	 * @covers FauxResponse::setcookie
+	 */
 	public function testCookie() {
 		$this->assertEquals( null, $this->response->getcookie( 'key' ), 'Non-existing cookie' );
 		$this->response->setcookie( 'key', 'val' );
 		$this->assertEquals( 'val', $this->response->getcookie( 'key' ), 'Existing cookie' );
 	}
 
+	/**
+	 * @covers FauxResponse::getheader
+	 * @covers FauxResponse::header
+	 */
 	public function testHeader() {
 		$this->assertEquals( null, $this->response->getheader( 'Location' ), 'Non-existing header' );
 
@@ -52,6 +61,9 @@ class FauxResponseTest extends MediaWikiTestCase {
 		$this->assertEquals( 'http://localhost/', $this->response->getheader( 'LOCATION' ), 'Get header case insensitive' );
 	}
 
+	/**
+	 * @covers FauxResponse::getStatusCode
+	 */
 	public function testResponseCode() {
 		$this->response->header( 'HTTP/1.1 200' );
 		$this->assertEquals( 200, $this->response->getStatusCode(), 'Header with no message' );

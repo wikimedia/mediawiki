@@ -326,15 +326,15 @@ class Preprocessor_Hash implements Preprocessor {
 						// the overall start. That's not how Sanitizer::removeHTMLcomments() did it, but
 						// it's a possible beneficial b/c break.
 						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n"
-							&& substr( $text, $wsEnd + 1, 1 ) == "\n" )
-						{
+							&& substr( $text, $wsEnd + 1, 1 ) == "\n"
+						) {
 							// Remove leading whitespace from the end of the accumulator
 							// Sanity check first though
 							$wsLength = $i - $wsStart;
 							if ( $wsLength > 0
 								&& $accum->lastNode instanceof PPNode_Hash_Text
-								&& strspn( $accum->lastNode->value, " \t", -$wsLength ) === $wsLength )
-							{
+								&& strspn( $accum->lastNode->value, " \t", -$wsLength ) === $wsLength
+							) {
 								$accum->lastNode->value = substr( $accum->lastNode->value, 0, -$wsLength );
 							}
 
@@ -404,8 +404,8 @@ class Preprocessor_Hash implements Preprocessor {
 					$attrEnd = $tagEndPos;
 					// Find closing tag
 					if ( preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
-							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 ) )
-					{
+							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 )
+					) {
 						$inner = substr( $text, $tagEndPos + 1, $matches[0][1] - $tagEndPos - 1 );
 						$i = $matches[0][1] + strlen( $matches[0][0] );
 						$close = $matches[0][0];
@@ -440,9 +440,7 @@ class Preprocessor_Hash implements Preprocessor {
 					$extNode->addChild( PPNode_Hash_Tree::newWithText( 'close', $close ) );
 				}
 				$accum->addNode( $extNode );
-			}
-
-			elseif ( $found == 'line-start' ) {
+			} elseif ( $found == 'line-start' ) {
 				// Is this the start of a heading?
 				// Line break belongs before the heading element in any case
 				if ( $fakeLineStart ) {
@@ -1062,17 +1060,15 @@ class PPFrame_Hash implements PPFrame {
 					# Remove it in HTML, pre+remove and STRIP_COMMENTS modes
 					if ( $this->parser->ot['html']
 						|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() )
-						|| ( $flags & PPFrame::STRIP_COMMENTS ) )
-					{
+						|| ( $flags & PPFrame::STRIP_COMMENTS )
+					) {
 						$out .= '';
-					}
-					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
-					# Not in RECOVER_COMMENTS mode (extractSections) though
-					elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+					} elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+						# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
+						# Not in RECOVER_COMMENTS mode (extractSections) though
 						$out .= $this->parser->insertStripItem( $contextNode->firstChild->value );
-					}
-					# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
-					else {
+					} else {
+						# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
 						$out .= $contextNode->firstChild->value;
 					}
 				} elseif ( $contextNode->name == 'ignore' ) {
@@ -1389,6 +1385,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		$s .= '}';
 		return $s;
 	}
+
 	/**
 	 * Returns true if there are no arguments in this frame
 	 *
@@ -1622,7 +1619,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * @param  $i
+	 * @param $i
 	 * @return bool
 	 */
 	function item( $i ) {
@@ -1654,8 +1651,8 @@ class PPNode_Hash_Tree implements PPNode {
 			if ( $child->name === 'name' ) {
 				$bits['name'] = $child;
 				if ( $child->firstChild instanceof PPNode_Hash_Attr
-					&& $child->firstChild->name === 'index' )
-				{
+					&& $child->firstChild->name === 'index'
+				) {
 					$bits['index'] = $child->firstChild->value;
 				}
 			} elseif ( $child->name === 'value' ) {

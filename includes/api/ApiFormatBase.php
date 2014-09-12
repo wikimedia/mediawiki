@@ -30,7 +30,6 @@
  * @ingroup API
  */
 abstract class ApiFormatBase extends ApiBase {
-
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp, $mCleared;
 	private $mBufferResult = false, $mBuffer, $mDisabled = false;
 
@@ -43,9 +42,9 @@ abstract class ApiFormatBase extends ApiBase {
 	public function __construct( $main, $format ) {
 		parent::__construct( $main, $format );
 
-		$this->mIsHtml = ( substr( $format, - 2, 2 ) === 'fm' ); // ends with 'fm'
+		$this->mIsHtml = ( substr( $format, -2, 2 ) === 'fm' ); // ends with 'fm'
 		if ( $this->mIsHtml ) {
-			$this->mFormat = substr( $format, 0, - 2 ); // remove ending 'fm'
+			$this->mFormat = substr( $format, 0, -2 ); // remove ending 'fm'
 		} else {
 			$this->mFormat = $format;
 		}
@@ -122,6 +121,16 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	/**
+	 * Whether this formatter can handle printing API errors. If this returns
+	 * false, then on API errors the default printer will be instantiated.
+	 * @since 1.23
+	 * @return bool
+	 */
+	public function canPrintErrors() {
+		return true;
+	}
+
+	/**
 	 * Initialize the printer function and prepare the output headers, etc.
 	 * This method must be the first outputting method during execution.
 	 * A human-targeted notice about available formats is printed for the HTML-based output,
@@ -156,17 +165,20 @@ abstract class ApiFormatBase extends ApiBase {
 <!DOCTYPE HTML>
 <html>
 <head>
-<?php if ( $this->mUnescapeAmps ) {
+<?php
+			if ( $this->mUnescapeAmps ) {
 ?>	<title>MediaWiki API</title>
-<?php } else {
+<?php
+			} else {
 ?>	<title>MediaWiki API Result</title>
-<?php } ?>
+<?php
+			}
+?>
 </head>
 <body>
 <?php
-
-
 			if ( !$isHelpScreen ) {
+// @codingStandardsIgnoreStart Exclude long line from CodeSniffer checks
 ?>
 <br />
 <small>
@@ -179,15 +191,14 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 </small>
 <pre style='white-space: pre-wrap;'>
 <?php
-
-
-			} else { // don't wrap the contents of the <pre> for help screens
-			          // because these are actually formatted to rely on
-			          // the monospaced font for layout purposes
+// @codingStandardsIgnoreEnd
+			// don't wrap the contents of the <pre> for help screens
+			// because these are actually formatted to rely on
+			// the monospaced font for layout purposes
+			} else {
 ?>
 <pre>
 <?php
-
 			}
 		}
 	}
@@ -206,8 +217,6 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 </body>
 </html>
 <?php
-
-
 		}
 	}
 
@@ -276,8 +285,8 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 		// identify requests to api.php
 		$text = preg_replace( '#^(\s*)(api\.php\?[^ <\n\t]+)$#m', '\1<a href="\2">\2</a>', $text );
 		if ( $this->mHelp ) {
-			// make strings inside * bold
-			$text = preg_replace( "#\\*[^<>\n]+\\*#", '<b>\\0</b>', $text );
+			// make lines inside * bold
+			$text = preg_replace( '#^(\s*)(\*[^<>\n]+\*)(\s*)$#m', '$1<b>$2</b>$3', $text );
 		}
 
 		// Armor links (bug 61362)
@@ -291,7 +300,17 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 		// identify URLs
 		$protos = wfUrlProtocolsWithoutProtRel();
 		// This regex hacks around bug 13218 (&quot; included in the URL)
-		$text = preg_replace( "#(((?i)$protos).*?)(&quot;)?([ \\'\"<>\n]|&lt;|&gt;|&quot;)#", '<a href="\\1">\\1</a>\\3\\4', $text );
+		$text = preg_replace(
+			"#(((?i)$protos).*?)(&quot;)?([ \\'\"<>\n]|&lt;|&gt;|&quot;)#",
+			'<a href="\\1">\\1</a>\\3\\4',
+			$text
+		);
+
+		// Unarmor links
+		$text = preg_replace_callback( '#<([0-9a-f]{40})>#', function ( $matches ) use ( &$masked ) {
+			$sha = $matches[1];
+			return isset( $masked[$sha] ) ? $masked[$sha] : $matches[0];
+		}, $text );
 
 		// Unarmor links
 		$text = preg_replace_callback( '#<([0-9a-f]{40})>#', function ( $matches ) use ( &$masked ) {
@@ -375,9 +394,18 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	}
 
 	/**
+	 * ChannelFeed doesn't give us a method to print errors in a friendly
+	 * manner, so just punt errors to the default printer.
+	 * @return false
+	 */
+	public function canPrintErrors() {
+		return false;
+	}
+
+	/**
 	 * This class expects the result data to be in a custom format set by self::setResult()
-	 * $result['_feed']		- an instance of one of the $wgFeedClasses classes
-	 * $result['_feeditems']	- an array of FeedItem instances
+	 * $result['_feed'] - an instance of one of the $wgFeedClasses classes
+	 * $result['_feeditems'] - an array of FeedItem instances
 	 */
 	public function execute() {
 		$data = $this->getResultData();

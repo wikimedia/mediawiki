@@ -131,8 +131,10 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function addFieldsIf( $value, $condition ) {
 		if ( $condition ) {
 			$this->addFields( $value );
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -168,8 +170,10 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function addWhereIf( $value, $condition ) {
 		if ( $condition ) {
 			$this->addWhere( $value );
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -215,7 +219,9 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( $sort ) {
 			$order = $field . ( $isDirNewer ? '' : ' DESC' );
 			// Append ORDER BY
-			$optionOrderBy = isset( $this->options['ORDER BY'] ) ? (array)$this->options['ORDER BY'] : array();
+			$optionOrderBy = isset( $this->options['ORDER BY'] )
+				? (array)$this->options['ORDER BY']
+				: array();
 			$optionOrderBy[] = $order;
 			$this->addOption( 'ORDER BY', $optionOrderBy );
 		}
@@ -256,16 +262,37 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $method Function the query should be attributed to.
 	 *  You should usually use __METHOD__ here
 	 * @param array $extraQuery Query data to add but not store in the object
-	 *  Format is array( 'tables' => ..., 'fields' => ..., 'where' => ..., 'options' => ..., 'join_conds' => ... )
+	 *  Format is array(
+	 *    'tables' => ...,
+	 *    'fields' => ...,
+	 *    'where' => ...,
+	 *    'options' => ...,
+	 *    'join_conds' => ...
+	 *  )
 	 * @return ResultWrapper
 	 */
 	protected function select( $method, $extraQuery = array() ) {
 
-		$tables = array_merge( $this->tables, isset( $extraQuery['tables'] ) ? (array)$extraQuery['tables'] : array() );
-		$fields = array_merge( $this->fields, isset( $extraQuery['fields'] ) ? (array)$extraQuery['fields'] : array() );
-		$where = array_merge( $this->where, isset( $extraQuery['where'] ) ? (array)$extraQuery['where'] : array() );
-		$options = array_merge( $this->options, isset( $extraQuery['options'] ) ? (array)$extraQuery['options'] : array() );
-		$join_conds = array_merge( $this->join_conds, isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : array() );
+		$tables = array_merge(
+			$this->tables,
+			isset( $extraQuery['tables'] ) ? (array)$extraQuery['tables'] : array()
+		);
+		$fields = array_merge(
+			$this->fields,
+			isset( $extraQuery['fields'] ) ? (array)$extraQuery['fields'] : array()
+		);
+		$where = array_merge(
+			$this->where,
+			isset( $extraQuery['where'] ) ? (array)$extraQuery['where'] : array()
+		);
+		$options = array_merge(
+			$this->options,
+			isset( $extraQuery['options'] ) ? (array)$extraQuery['options'] : array()
+		);
+		$join_conds = array_merge(
+			$this->join_conds,
+			isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : array()
+		);
 
 		// getDB has its own profileDBIn/Out calls
 		$db = $this->getDB();
@@ -285,13 +312,20 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function checkRowCount() {
 		$db = $this->getDB();
 		$this->profileDBIn();
-		$rowcount = $db->estimateRowCount( $this->tables, $this->fields, $this->where, __METHOD__, $this->options );
+		$rowcount = $db->estimateRowCount(
+			$this->tables,
+			$this->fields,
+			$this->where,
+			__METHOD__,
+			$this->options
+		);
 		$this->profileDBOut();
 
 		global $wgAPIMaxDBRows;
 		if ( $rowcount > $wgAPIMaxDBRows ) {
 			return false;
 		}
+
 		return true;
 	}
 
@@ -332,6 +366,7 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function addPageSubItems( $pageId, $data ) {
 		$result = $this->getResult();
 		$result->setIndexedTagName( $data, $this->getModulePrefix() );
+
 		return $result->addValue( array( 'query', 'pages', intval( $pageId ) ),
 			$this->getModuleName(),
 			$data );
@@ -356,7 +391,8 @@ abstract class ApiQueryBase extends ApiBase {
 			return false;
 		}
 		$result->setIndexedTagName_internal( array( 'query', 'pages', $pageId,
-				$this->getModuleName() ), $elemname );
+			$this->getModuleName() ), $elemname );
+
 		return true;
 	}
 
@@ -382,6 +418,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( is_null( $this->mDb ) ) {
 			$this->mDb = $this->getQuery()->getDB();
 		}
+
 		return $this->mDb;
 	}
 
@@ -419,6 +456,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( !$t ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 		}
+
 		return $t->getPrefixedDBkey();
 	}
 
@@ -437,16 +475,34 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( !$t ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $key ) );
 		}
+
 		return $t->getPrefixedText();
 	}
 
 	/**
-	 * An alternative to titleToKey() that doesn't trim trailing spaces
+	 * An alternative to titleToKey() that doesn't trim trailing spaces, and
+	 * does not mangle the input if starts with something that looks like a
+	 * namespace. It is advisable to pass the namespace parameter in order to
+	 * handle per-namespace capitalization settings.
 	 * @param string $titlePart Title part with spaces
+	 * @param $defaultNamespace int Namespace to assume
 	 * @return string Title part with underscores
 	 */
-	public function titlePartToKey( $titlePart ) {
-		return substr( $this->titleToKey( $titlePart . 'x' ), 0, - 1 );
+	public function titlePartToKey( $titlePart, $defaultNamespace = NS_MAIN ) {
+		$t = Title::makeTitleSafe( $defaultNamespace, $titlePart . 'x' );
+		if ( !$t ) {
+			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+		}
+		if ( $defaultNamespace != $t->getNamespace() || $t->isExternal() ) {
+			// This can happen in two cases. First, if you call titlePartToKey with a title part
+			// that looks like a namespace, but with $defaultNamespace = NS_MAIN. It would be very
+			// difficult to handle such a case. Such cases cannot exist and are therefore treated
+			// as invalid user input. The second case is when somebody specifies a title interwiki
+			// prefix.
+			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+		}
+
+		return substr( $t->getDbKey(), 0, -1 );
 	}
 
 	/**
@@ -455,7 +511,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Key part with underscores
 	 */
 	public function keyPartToTitle( $keyPart ) {
-		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, - 1 );
+		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, -1 );
 	}
 
 	/**
@@ -467,10 +523,10 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function getDirectionDescription( $p = '', $extraDirText = '' ) {
 		return array(
-				"In which direction to enumerate{$extraDirText}",
-				" newer          - List oldest first. Note: {$p}start has to be before {$p}end.",
-				" older          - List newest first (default). Note: {$p}start has to be later than {$p}end.",
-			);
+			"In which direction to enumerate{$extraDirText}",
+			" newer          - List oldest first. Note: {$p}start has to be before {$p}end.",
+			" older          - List newest first (default). Note: {$p}start has to be later than {$p}end.",
+		);
 	}
 
 	/**
@@ -491,6 +547,7 @@ abstract class ApiQueryBase extends ApiBase {
 			}
 
 			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
+
 			return 'el_index ' . $db->buildLike( $likeQuery );
 		} elseif ( !is_null( $protocol ) ) {
 			return 'el_index ' . $db->buildLike( "$protocol", $db->anyString() );
@@ -507,24 +564,20 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return void
 	 */
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
-		$userCanViewHiddenUsers = $this->getUser()->isAllowed( 'hideuser' );
+		$this->addTables( 'ipblocks' );
+		$this->addJoinConds( array(
+			'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
+		) );
 
-		if ( $showBlockInfo || !$userCanViewHiddenUsers ) {
-			$this->addTables( 'ipblocks' );
-			$this->addJoinConds( array(
-				'ipblocks' => array( 'LEFT JOIN', 'ipb_user=user_id' ),
-			) );
+		$this->addFields( 'ipb_deleted' );
 
-			$this->addFields( 'ipb_deleted' );
+		if ( $showBlockInfo ) {
+			$this->addFields( array( 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_reason', 'ipb_expiry' ) );
+		}
 
-			if ( $showBlockInfo ) {
-				$this->addFields( array( 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_reason', 'ipb_expiry' ) );
-			}
-
-			// Don't show hidden names
-			if ( !$userCanViewHiddenUsers ) {
-				$this->addWhere( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
-			}
+		// Don't show hidden names
+		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
+			$this->addWhere( 'ipb_deleted = 0 OR ipb_deleted IS NULL' );
 		}
 	}
 
@@ -553,7 +606,17 @@ abstract class ApiQueryBase extends ApiBase {
 			array( 'invalidtitle', 'title' ),
 			array( 'invalidtitle', 'key' ),
 		) );
+
 		return $errors;
+	}
+
+	/**
+	 * Check whether the current user has permission to view revision-deleted
+	 * fields.
+	 * @return bool
+	 */
+	public function userCanSeeRevDel() {
+		return $this->getUser()->isAllowedAny( 'deletedhistory', 'deletedtext', 'suppressrevision' );
 	}
 }
 
@@ -587,6 +650,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 		if ( $this->mGeneratorPageSet !== null ) {
 			return $this->mGeneratorPageSet;
 		}
+
 		return parent::getPageSet();
 	}
 
