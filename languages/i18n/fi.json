@@ -1718,7 +1718,7 @@
 	"mywatchlist": "Tarkkailulista",
 	"watchlistfor2": "Käyttäjälle $1 $2",
 	"nowatchlist": "Tarkkailulistallasi ei ole sivuja.",
-	"watchlistanontext": "Sinun täytyy kirjautua sisään, jos haluat muokata kohteita omalla tarkkailulistallasi.",
+	"watchlistanontext": "Sinun täytyy kirjautua sisään, jos haluat nähdä oman tarkkailulistasi.",
 	"watchnologin": "Et ole kirjautunut sisään",
 	"addwatch": "Lisää tarkkailulistalle",
 	"addedwatchtext": "Sivu '''[[:$1]]''' on lisätty [[Special:Watchlist|tarkkailulistallesi]].\nTulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan täällä.",

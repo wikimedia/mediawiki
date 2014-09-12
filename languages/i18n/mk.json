@@ -859,6 +859,7 @@
 	"searchall": "сè",
 	"showingresults": "Подолу {{PLURAL:$1|е прикажан '''1''' резултат|се прикажани '''$1''' резултати}} почнувајќи од бр. '''$2'''.",
 	"showingresultsinrange": "Долу {{PLURAL:$1|е прикажан до <strong>еден</strong> резултат|се прикажани до <strong>$1</strong> резултати}} во опсег од <strong>$2</strong> до <strong>$3</strong>.",
+	"search-showingresults": "{{PLURAL:$4|Резултат <strong>$1</strong> од <strong>$3</strong>|Резултати <strong>$1 - $2</strong> од <strong>$3</strong>}}",
 	"search-nonefound": "Нема резултати што одговараат на бараното.",
 	"powersearch-legend": "Напредно пребарување",
 	"powersearch-ns": "Пребарај во следниве именски простори:",

@@ -1947,7 +1947,7 @@
 	"ipb-unblock-addr": "Dësbloché $1",
 	"ipb-unblock": "Dësbloché n'utent ò n'adrëssa IP",
 	"ipb-blocklist": "Vardé ij blocagi ativ",
-	"ipb-blocklist-contribs": "Contribussion për $1",
+	"ipb-blocklist-contribs": "Contribussion për {{GENDER:$1|$1}}",
 	"unblockip": "Dësbloché n'utent",
 	"unblockiptext": "Che a deuvra ël formolari ambelessì-sota për deje andré ël drit dë scritura a n'adrëssa IP o në stranòm che a l'era stàit blocà.",
 	"ipusubmit": "Gavé ës blocagi",
