@@ -69,10 +69,7 @@ class SearchOracle extends SearchDatabase {
 			return new SqlSearchResultSet( false, '' );
 		}
 
-		$resultSet = $this->db->resultObject(
-			$this->db->query( $this->getQuery( $this->filter( $term ), true ) )
-		);
-
+		$resultSet = $this->db->query( $this->getQuery( $this->filter( $term ), true ) );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
@@ -87,10 +84,7 @@ class SearchOracle extends SearchDatabase {
 			return new SqlSearchResultSet( false, '' );
 		}
 
-		$resultSet = $this->db->resultObject(
-			$this->db->query( $this->getQuery( $this->filter( $term ), false ) )
-		);
-
+		$resultSet = $this->db->query( $this->getQuery( $this->filter( $term ), false ) );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 

@@ -99,7 +99,7 @@ class PageArchive {
 	 * @return bool|ResultWrapper
 	 */
 	protected static function listPages( $dbr, $condition ) {
-		return $dbr->resultObject( $dbr->select(
+		return $dbr->select(
 			array( 'archive' ),
 			array(
 				'ar_namespace',
@@ -113,7 +113,7 @@ class PageArchive {
 				'ORDER BY' => array( 'ar_namespace', 'ar_title' ),
 				'LIMIT' => 100,
 			)
-		) );
+		);
 	}
 
 	/**
@@ -152,15 +152,13 @@ class PageArchive {
 			$options
 		);
 
-		$res = $dbr->select( $tables,
+		return $dbr->select( $tables,
 			$fields,
 			$conds,
 			__METHOD__,
 			$options,
 			$join_conds
 		);
-
-		return $dbr->resultObject( $res );
 	}
 
 	/**
@@ -177,15 +175,13 @@ class PageArchive {
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
+		return $dbr->select(
 			'filearchive',
 			ArchivedFile::selectFields(),
 			array( 'fa_name' => $this->title->getDBkey() ),
 			__METHOD__,
 			array( 'ORDER BY' => 'fa_timestamp DESC' )
 		);
-
-		return $dbr->resultObject( $res );
 	}
 
 	/**
@@ -532,9 +528,8 @@ class PageArchive {
 			__METHOD__,
 			/* options */ array( 'ORDER BY' => 'ar_timestamp' )
 		);
-		$ret = $dbw->resultObject( $result );
-		$rev_count = $dbw->numRows( $result );
 
+		$rev_count = $result->numRows();
 		if ( !$rev_count ) {
 			wfDebug( __METHOD__ . ": no revisions to restore\n" );
 
@@ -544,10 +539,10 @@ class PageArchive {
 			return $status;
 		}
 
-		$ret->seek( $rev_count - 1 ); // move to last
-		$row = $ret->fetchObject(); // get newest archived rev
+		$result->seek( $rev_count - 1 ); // move to last
+		$row = $result->fetchObject(); // get newest archived rev
 		$oldPageId = (int)$row->ar_page_id; // pass this to ArticleUndelete hook
-		$ret->seek( 0 ); // move back
+		$result->seek( 0 ); // move back
 
 		// grab the content to check consistency with global state before restoring the page.
 		$revision = Revision::newFromArchiveRow( $row,
@@ -589,7 +584,7 @@ class PageArchive {
 		$revision = null;
 		$restored = 0;
 
-		foreach ( $ret as $row ) {
+		foreach ( $result as $row ) {
 			// Check for key dupes due to shitty archive integrity.
 			if ( $row->ar_rev_id ) {
 				$exists = $dbw->selectField( 'revision', '1',

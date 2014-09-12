@@ -267,7 +267,7 @@ class WikiExporter {
 			if ( $this->buffer == WikiExporter::STREAM ) {
 				$prev = $this->db->bufferResults( false );
 			}
-			$wrapper = null; // Assuring $wrapper is not undefined, if exception occurs early
+			$result = null; // Assuring $result is not undefined, if exception occurs early
 			try {
 				$result = $this->db->select( array( 'logging', 'user' ),
 					array( "{$logging}.*", 'user_name' ), // grab the user name
@@ -275,8 +275,7 @@ class WikiExporter {
 					__METHOD__,
 					array( 'ORDER BY' => 'log_id', 'USE INDEX' => array( 'logging' => 'PRIMARY' ) )
 				);
-				$wrapper = $this->db->resultObject( $result );
-				$this->outputLogStream( $wrapper );
+				$this->outputLogStream( $result );
 				if ( $this->buffer == WikiExporter::STREAM ) {
 					$this->db->bufferResults( $prev );
 				}
@@ -286,8 +285,8 @@ class WikiExporter {
 
 				// Freeing result
 				try {
-					if ( $wrapper ) {
-						$wrapper->free();
+					if ( $result ) {
+						$result->free();
 					}
 				} catch ( Exception $e2 ) {
 					// Already in panic mode -> ignoring $e2 as $e has
@@ -377,16 +376,15 @@ class WikiExporter {
 				$prev = $this->db->bufferResults( false );
 			}
 
-			$wrapper = null; // Assuring $wrapper is not undefined, if exception occurs early
+			$result = null; // Assuring $result is not undefined, if exception occurs early
 			try {
 				wfRunHooks( 'ModifyExportQuery',
 						array( $this->db, &$tables, &$cond, &$opts, &$join ) );
 
 				# Do the query!
 				$result = $this->db->select( $tables, '*', $cond, __METHOD__, $opts, $join );
-				$wrapper = $this->db->resultObject( $result );
 				# Output dump results
-				$this->outputPageStream( $wrapper );
+				$this->outputPageStream( $result );
 
 				if ( $this->buffer == WikiExporter::STREAM ) {
 					$this->db->bufferResults( $prev );
@@ -397,8 +395,8 @@ class WikiExporter {
 
 				// Freeing result
 				try {
-					if ( $wrapper ) {
-						$wrapper->free();
+					if ( $result ) {
+						$result->free();
 					}
 				} catch ( Exception $e2 ) {
 					// Already in panic mode -> ignoring $e2 as $e has
@@ -467,7 +465,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param array $resultset
+	 * @param ResultWrapper $resultset
 	 */
 	protected function outputLogStream( $resultset ) {
 		foreach ( $resultset as $row ) {
