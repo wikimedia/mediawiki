@@ -62,35 +62,6 @@ class SearchResult {
 	}
 
 	/**
-	 * Return a new SearchResult and initializes it with a row.
-	 *
-	 * @param object $row
-	 * @return SearchResult
-	 */
-	public static function newFromRow( $row ) {
-		$result = new self();
-		$result->initFromRow( $row );
-		return $result;
-	}
-
-	public function __construct( $row = null ) {
-		if ( !is_null( $row ) ) {
-			// Backwards compatibility with pre-1.17 callers
-			$this->initFromRow( $row );
-		}
-	}
-
-	/**
-	 * Initialize from a database row. Makes a Title and passes that to
-	 * initFromTitle.
-	 *
-	 * @param object $row
-	 */
-	protected function initFromRow( $row ) {
-		$this->initFromTitle( Title::makeTitle( $row->page_namespace, $row->page_title ) );
-	}
-
-	/**
 	 * Initialize from a Title and if possible initializes a corresponding
 	 * Revision and File.
 	 *
