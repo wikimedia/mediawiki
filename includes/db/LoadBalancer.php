@@ -28,19 +28,38 @@
  * @ingroup Database
  */
 class LoadBalancer {
-	private $mServers, $mConns, $mLoads, $mGroupLoads;
+	/** @var array Map of (server index => server config array) */
+	private $mServers;
+	/** @var array Map of (local/foreignUsed/foreignFree => server index => DatabaseBase array) */
+	private $mConns;
+	/** @var array Map of (server index => weight) */
+	private $mLoads;
+	/** @var array Map of (group => server index => weight) */
+	private $mGroupLoads;
+	/** @var bool Whether to disregard slave lag as a factor in slave selection */
+	private $mAllowLagged;
+	/** @var integer Seconds to spend waiting on slave lag to resolve */
+	private $mWaitTimeout;
+
+	/** @var array LBFactory information */
+	private $mParentInfo;
+	/** @var string The LoadMonitor subclass name */
+	private $mLoadMonitorClass;
+	/** @var LoadMonitor */
+	private $mLoadMonitor;
 
 	/** @var bool|DatabaseBase Database connection that caused a problem */
 	private $mErrorConnection;
-	private $mReadIndex, $mAllowLagged;
-
+	/** @var integer The generic (not query grouped) slave index (of $mServers) */
+	private $mReadIndex;
 	/** @var bool|DBMasterPos False if not set */
 	private $mWaitForPos;
-
-	private $mWaitTimeout;
-	private $mLaggedSlaveMode, $mLastError = 'Unknown error';
-	private $mParentInfo, $mLagTimes;
-	private $mLoadMonitorClass, $mLoadMonitor;
+	/** @var bool Whether the generic reader fell back to a lagged slave */
+	private $mLaggedSlaveMode;
+	/** @var string The last DB selection or connection error */
+	private $mLastError = 'Unknown error';
+	/** @var array Process cache of LoadMonitor::getLagTimes() */
+	private $mLagTimes;
 
 	/**
 	 * @param array $params Array with keys:
