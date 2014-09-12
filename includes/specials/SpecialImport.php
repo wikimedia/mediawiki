@@ -156,10 +156,22 @@ class SpecialImport extends SpecialPage {
 				array( 'importfailed', $source->getWikiText() )
 			);
 		} else {
-			$importer = new WikiImporter( $source->value );
+			try {
+				$importer = new WikiImporter( $source->value );
+			} catch( MWException $e )  {
+				$out->wrapWikiMsg(
+					"<p class=\"error\">\n$1\n</p>",
+					array( 'importfailed', $e->getMessage() )
+				);
+
+				$out->addHTML( '<hr />' );
+				return;
+			}
+
 			if ( !is_null( $this->namespace ) ) {
 				$importer->setTargetNamespace( $this->namespace );
 			}
+
 			if ( !is_null( $this->rootpage ) ) {
 				$statusRootPage = $importer->setTargetRootPage( $this->rootpage );
 				if ( !$statusRootPage->isGood() ) {

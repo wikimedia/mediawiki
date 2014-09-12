@@ -32,27 +32,39 @@
  */
 class WikiImporter {
 	private $reader = null;
-	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
-	private $mSiteInfoCallback, $mTargetNamespace, $mTargetRootPage, $mPageOutCallback;
-	private $mNoticeCallback, $mDebug;
-	private $mImportUploads, $mImageBasePath;
+	private $mLogItemCallback;
+	private $mUploadCallback;
+	private $mRevisionCallback;
+	private $mPageCallback;
+	private $mSiteInfoCallback;
+	private $mTargetNamespace;
+	private $mTargetRootPage;
+	private $mPageOutCallback;
+	private $mNoticeCallback;
+	private $mDebug;
+	private $mImportUploads;
+	private $mImageBasePath;
 	private $mNoUpdates = false;
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
-	 * @param ImportStreamSource $source
+	 * @param string|ImportStreamSource $source
 	 */
-	function __construct( ImportStreamSource $source ) {
+	function __construct( $source ) {
 		$this->reader = new XMLReader();
 
-		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
-			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
-		}
-		$id = UploadSourceAdapter::registerSource( $source );
-		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
-			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
+		/**
+		 * @todo
+		 * this is an intermittent fix that solves an issue when a file is imported
+		 * when using hhvm vs zend php. the main issue lies in the implementation
+		 * of UploadSourceAdapter in conjunction with ImportStreamSource
+		 *
+		 * @see bug 70658, bug 66023
+		 */
+		if ( $source instanceof ImportStreamSource ) {
+			$this->openAsStream( $source );
 		} else {
-			$this->reader->open( "uploadsource://$id" );
+			$this->openAsFile( $source );
 		}
 
 		// Default callbacks
@@ -104,7 +116,9 @@ class WikiImporter {
 	}
 
 	/**
-	 * Set 'no updates' mode. In this mode, the link tables will not be updated by the importer
+	 * Set 'no updates' mode. In this mode, the link tables will
+	 * not be updated by the importer
+	 *
 	 * @param bool $noupdates
 	 */
 	function setNoUpdates( $noupdates ) {
@@ -318,7 +332,9 @@ class WikiImporter {
 	 * @param array $pageInfo
 	 * @return bool
 	 */
-	public function finishImportPage( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) {
+	public function finishImportPage(
+		$title, $origTitle, $revCount, $sRevCount, $pageInfo
+	) {
 		$args = func_get_args();
 		return wfRunHooks( 'AfterImportPage', $args );
 	}
@@ -358,7 +374,9 @@ class WikiImporter {
 	 * @param int $sucCount Number of revisions for which callback returned true
 	 * @param array $pageInfo Associative array of page information
 	 */
-	private function pageOutCallback( $title, $origTitle, $revCount, $sucCount, $pageInfo ) {
+	private function pageOutCallback(
+		$title, $origTitle, $revCount, $sucCount, $pageInfo
+	) {
 		if ( isset( $this->mPageOutCallback ) ) {
 			$args = func_get_args();
 			call_user_func_array( $this->mPageOutCallback, $args );
@@ -395,8 +413,13 @@ class WikiImporter {
 
 	/**
 	 * Retrieves the contents of the named attribute of the current element.
-	 * @param string $attr The name of the attribute
-	 * @return string The value of the attribute or an empty string if it is not set in the current element.
+	 *
+	 * @param string $attr
+	 * The name of the attribute
+	 *
+	 * @return string
+	 * The value of the attribute or an empty string if it is not set
+	 * in the current element.
 	 */
 	public function nodeAttribute( $attr ) {
 		return $this->reader->getAttribute( $attr );
@@ -496,7 +519,9 @@ class WikiImporter {
 			$this->reader->next();
 			return true;
 		}
-		throw new MWException( "SiteInfo tag is not yet handled, do not set mSiteInfoCallback" );
+		throw new MWException(
+			"SiteInfo tag is not yet handled, do not set mSiteInfoCallback"
+		);
 	}
 
 	private function handleLogItem() {
@@ -592,7 +617,8 @@ class WikiImporter {
 				//     <title>Page</title>
 				//     <redirect title="NewTitle"/>
 				//     ...
-				// Because the redirect tag is built differently, we need special handling for that case.
+				// Because the redirect tag is built differently,
+				// we need special handling for that case.
 				if ( $tag == 'redirect' ) {
 					$pageInfo[$tag] = $this->nodeAttribute( 'title' );
 				} else {
@@ -632,7 +658,9 @@ class WikiImporter {
 		$this->debug( "Enter revision handler" );
 		$revisionInfo = array();
 
-		$normalFields = array( 'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text' );
+		$normalFields = array(
+			'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text'
+		);
 
 		$skip = false;
 
@@ -853,8 +881,9 @@ class WikiImporter {
 		$origTitle = Title::newFromText( $workTitle );
 
 		if ( !is_null( $this->mTargetNamespace ) && !is_null( $origTitle ) ) {
-			# makeTitleSafe, because $origTitle can have a interwiki (different setting of interwiki map)
-			# and than dbKey can begin with a lowercase char
+			// makeTitleSafe, because $origTitle can have a interwiki
+			// (different setting of interwiki map)
+			// and than dbKey can begin with a lowercase char
 			$title = Title::makeTitleSafe( $this->mTargetNamespace,
 				$origTitle->getDBkey() );
 		} else {
@@ -878,7 +907,11 @@ class WikiImporter {
 			# Do not import if the importing wiki user cannot edit this page
 			$this->notice( 'import-error-edit', $title->getPrefixedText() );
 			return false;
-		} elseif ( !$title->exists() && !$title->userCan( 'create' ) && !$wgCommandLineMode ) {
+		} elseif (
+			!$title->exists() &&
+			!$title->userCan( 'create' ) &&
+			!$wgCommandLineMode
+		) {
 			# Do not import if the importing wiki user cannot create this page
 			$this->notice( 'import-error-create', $title->getPrefixedText() );
 			return false;
@@ -886,9 +919,40 @@ class WikiImporter {
 
 		return array( $title, $origTitle );
 	}
+
+	private function openAsFile( $source ) {
+		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
+			$this->reader->open( $source, null, LIBXML_PARSEHUGE );
+		} else {
+			$this->reader->open( $source );
+		}
+	}
+
+	/**
+	 * @param ImportStreamSource $source
+	 */
+	private function openAsStream( ImportStreamSource $source ) {
+		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
+			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
+		}
+
+		$id = UploadSourceAdapter::registerSource( $source );
+
+		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
+			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
+		} else {
+			$this->reader->open( "uploadsource://$id" );
+		}
+	}
 }
 
-/** This is a horrible hack used to keep source compatibility */
+/**
+ * @todo
+ * This is a horrible hack used to allow all sources sent to the __construct
+ * method to exist as php stream resources, however it doesn’t work properly
+ * in hhvm; not because there is an issue with hhvm, but that there is an
+ * implementation issue with this class in conjunction with ImportStreamSource
+ */
 class UploadSourceAdapter {
 	/** @var array */
 	public static $sourceRegistrations = array();
@@ -1028,7 +1092,8 @@ class WikiRevision {
 
 	/**
 	 * @var int
-	 * @todo Can't find any uses. Public, because that's suspicious. Get clarity. */
+	 * @todo Can't find any uses. Public, because that's suspicious. Get clarity.
+	 */
 	public $user = 0;
 
 	/** @var string */
@@ -1300,7 +1365,9 @@ class WikiRevision {
 	function getContent() {
 		if ( is_null( $this->content ) ) {
 			$handler = $this->getContentHandler();
-			$this->content = $handler->unserializeContent( $this->text, $this->getFormat() );
+			$this->content = $handler->unserializeContent(
+				$this->text, $this->getFormat()
+			);
 		}
 
 		return $this->content;
@@ -1457,8 +1524,10 @@ class WikiRevision {
 			);
 			if ( $prior ) {
 				// @todo FIXME: This could fail slightly for multiple matches :P
-				wfDebug( __METHOD__ . ": skipping existing revision for [[" .
-					$this->title->getPrefixedText() . "]], timestamp " . $this->timestamp . "\n" );
+				wfDebug(
+					__METHOD__ . ": skipping existing revision for [[" .
+					$this->title->getPrefixedText() . "]],
+					timestamp " . $this->timestamp . "\n" );
 				return false;
 			}
 			$oldcountable = $page->isCountable();
@@ -1498,10 +1567,15 @@ class WikiRevision {
 		$dbw = wfGetDB( DB_MASTER );
 		# @todo FIXME: This will not record autoblocks
 		if ( !$this->getTitle() ) {
-			wfDebug( __METHOD__ . ": skipping invalid {$this->type}/{$this->action} log time, timestamp " .
-				$this->timestamp . "\n" );
+			wfDebug(
+				__METHOD__ .
+				": skipping invalid {$this->type}/{$this->action} log time, timestamp " .
+				$this->timestamp . "\n"
+			);
+
 			return;
 		}
+
 		# Check if it exists already
 		// @todo FIXME: Use original log ID (better for backups)
 		$prior = $dbw->selectField( 'logging', '1',
@@ -1517,9 +1591,11 @@ class WikiRevision {
 		);
 		// @todo FIXME: This could fail slightly for multiple matches :P
 		if ( $prior ) {
-			wfDebug( __METHOD__
-				. ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp "
-				. $this->timestamp . "\n" );
+			wfDebug(
+				__METHOD__ .
+				": skipping existing item for Log:{$this->type}/{$this->action}, timestamp " .
+				$this->timestamp . "\n"
+			);
 			return;
 		}
 		$log_id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
@@ -1695,13 +1771,7 @@ class ImportStreamSource {
 	 * @return Status
 	 */
 	static function newFromFile( $filename ) {
-		wfSuppressWarnings();
-		$file = fopen( $filename, 'rt' );
-		wfRestoreWarnings();
-		if ( !$file ) {
-			return Status::newFatal( "importcantopen" );
-		}
-		return Status::newGood( new ImportStreamSource( $file ) );
+		return Status::newGood( $filename );
 	}
 
 	/**
