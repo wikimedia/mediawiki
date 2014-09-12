@@ -40,7 +40,7 @@ class SearchPostgres extends SearchDatabase {
 	function searchTitle( $term ) {
 		$q = $this->searchQuery( $term, 'titlevector', 'page_title' );
 		$olderror = error_reporting( E_ERROR );
-		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
+		$resultSet = $this->db->query( $q, 'SearchPostgres', true );
 		error_reporting( $olderror );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
@@ -48,7 +48,7 @@ class SearchPostgres extends SearchDatabase {
 	function searchText( $term ) {
 		$q = $this->searchQuery( $term, 'textvector', 'old_text' );
 		$olderror = error_reporting( E_ERROR );
-		$resultSet = $this->db->resultObject( $this->db->query( $q, 'SearchPostgres', true ) );
+		$resultSet = $this->db->query( $q, 'SearchPostgres', true );
 		error_reporting( $olderror );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}

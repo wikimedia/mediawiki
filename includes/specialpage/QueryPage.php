@@ -406,7 +406,7 @@ abstract class QueryPage extends SpecialPage {
 			$res = $dbr->query( $sql, $fname );
 		}
 
-		return $dbr->resultObject( $res );
+		return $res;
 	}
 
 	/**
