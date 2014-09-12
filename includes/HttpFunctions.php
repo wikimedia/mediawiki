@@ -793,15 +793,17 @@ class CurlHttpRequest extends MWHttpRequest {
 	 * @return bool
 	 */
 	public function canFollowRedirects() {
-		if ( strval( ini_get( 'open_basedir' ) ) !== '' || wfIniGetBool( 'safe_mode' ) ) {
-			wfDebug( "Cannot follow redirects in safe mode\n" );
-			return false;
-		}
-
 		$curlVersionInfo = curl_version();
 		if ( $curlVersionInfo['version_number'] < 0x071304 ) {
 			wfDebug( "Cannot follow redirects with libcurl < 7.19.4 due to CVE-2009-0037\n" );
 			return false;
+		}
+
+		if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
+			if ( strval( ini_get( 'open_basedir' ) ) !== '' || wfIniGetBool( 'safe_mode' ) ) {
+				wfDebug( "Cannot follow redirects in safe mode\n" );
+				return false;
+			}
 		}
 
 		return true;
