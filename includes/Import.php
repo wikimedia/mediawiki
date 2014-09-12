@@ -44,16 +44,7 @@ class WikiImporter {
 	 */
 	function __construct( ImportStreamSource $source ) {
 		$this->reader = new XMLReader();
-
-		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
-			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
-		}
-		$id = UploadSourceAdapter::registerSource( $source );
-		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
-			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
-		} else {
-			$this->reader->open( "uploadsource://$id" );
-		}
+		$this->openSource( $source );
 
 		// Default callbacks
 		$this->setRevisionCallback( array( $this, "importRevision" ) );
@@ -885,6 +876,57 @@ class WikiImporter {
 		}
 
 		return array( $title, $origTitle );
+	}
+
+	/**
+	 * @param ImportStreamSource $source
+	 * @throws MWException
+	 * @return bool
+	 */
+	private function openSource( ImportStreamSource $source ) {
+		$result = true;
+
+		$this->checkRegisteredStreams();
+		$id = UploadSourceAdapter::registerSource( $source );
+
+		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
+			$result = $this->reader->open(
+				"uploadsource://$id",
+				null,
+				LIBXML_PARSEHUGE
+			);
+		} else {
+			$result = $this->reader->open( "uploadsource://$id" );
+		}
+
+		if ( !$result ) {
+			throw new MWException( wfMessage( 'no-filesource' )->parse() );
+		}
+
+		return $result;
+	}
+
+	/**
+	 * @throws MWException
+	 * @return bool
+	 */
+	private function checkRegisteredStreams() {
+		$result = true;
+
+		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
+			$result = stream_wrapper_register(
+				'uploadsource',
+				'UploadSourceAdapter'
+			);
+		}
+
+		if ( !$result ) {
+			throw new MWException(
+				wfMessage( 'could-not-register-streamsource' )->parse()
+			);
+		}
+
+		return $result;
 	}
 }
 
