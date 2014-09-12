@@ -673,26 +673,6 @@ class SpecialSearch extends SpecialPage {
 
 		$date = $lang->userTimeAndDate( $timestamp, $this->getUser() );
 
-		// link to related articles if supported
-		$related = '';
-		if ( $result->hasRelated() ) {
-			$stParams = array_merge(
-				$this->powerSearchOptions(),
-				array(
-					'search' => $this->msg( 'searchrelated' )->inContentLanguage()->text() .
-						':' . $title->getPrefixedText(),
-					'fulltext' => $this->msg( 'search' )->text()
-				)
-			);
-
-			$related = ' -- ' . Linker::linkKnown(
-				$this->getPageTitle(),
-				$this->msg( 'search-relatedarticle' )->text(),
-				array(),
-				$stParams
-			);
-		}
-
 		$fileMatch = '';
 		// Include a thumbnail for media files...
 		if ( $title->getNamespace() == NS_FILE ) {
@@ -718,7 +698,7 @@ class SpecialSearch extends SpecialPage {
 						'<td style="vertical-align: top;">' .
 						"{$link} {$redirect} {$section} {$fileMatch}" .
 						$extract .
-						"<div class='mw-search-result-data'>{$desc} - {$date}{$related}</div>" .
+						"<div class='mw-search-result-data'>{$desc} - {$date}</div>" .
 						'</td>' .
 						'</tr>' .
 						'</table>' .
@@ -738,7 +718,7 @@ class SpecialSearch extends SpecialPage {
 		) ) ) {
 			$html = "<li><div class='mw-search-result-heading'>" .
 				"{$link} {$redirect} {$section} {$fileMatch}</div> {$extract}\n" .
-				"<div class='mw-search-result-data'>{$size} - {$date}{$related}</div>" .
+				"<div class='mw-search-result-data'>{$size} - {$date}</div>" .
 				"</li>\n";
 		}
 
