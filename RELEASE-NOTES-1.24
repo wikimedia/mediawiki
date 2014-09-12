@@ -461,6 +461,9 @@ changes to languages because of Bugzilla reports.
 * Some extensions had their ResourceLoader modules depend on the "mediawiki"
   and "jquery" modules. In the past, this behavior was undefined, now it will
   throw an error.
+* Removed maintenance/purgeOldText.inc and the PurgeRedundantText() function
+  it contained (superseded by Maintenance::purgeRedundantText() in 1.16).
+  The purgeOldText.php maintenance script has been retained.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
