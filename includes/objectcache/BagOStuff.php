@@ -278,21 +278,6 @@ abstract class BagOStuff {
 	}
 
 	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool Success
-	 * @deprecated since 1.23
-	 */
-	public function replace( $key, $value, $exptime = 0 ) {
-		wfDeprecated( __METHOD__, '1.23' );
-		if ( $this->get( $key ) !== false ) {
-			return $this->set( $key, $value, $exptime );
-		}
-		return false; // key not already set
-	}
-
-	/**
 	 * Increase stored value of $key by $value while preserving its TTL
 	 * @param string $key Key to increase
 	 * @param int $value Value to add to $key (Default 1)
