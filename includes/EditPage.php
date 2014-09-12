@@ -185,7 +185,7 @@ class EditPage {
 	private $mContextTitle = null;
 
 	/** @var string */
-	protected $action = 'submit';
+	public $action = 'submit';
 
 	/** @var bool */
 	public $isConflict = false;
@@ -200,13 +200,13 @@ class EditPage {
 	public $isJsSubpage = false;
 
 	/** @var bool */
-	protected $isWrongCaseCssJsPage = false;
+	public $isWrongCaseCssJsPage = false;
 
 	/** @var bool New page or new section */
-	protected $isNew = false;
+	public $isNew = false;
 
 	/** @var bool */
-	protected $deletedSinceEdit;
+	public $deletedSinceEdit;
 
 	/** @var string */
 	public $formtype;
@@ -215,39 +215,34 @@ class EditPage {
 	public $firsttime;
 
 	/** @var bool|stdClass */
-	protected $lastDelete;
+	public $lastDelete;
 
-	/** @var bool
-	 * This is public because SemanticForms uses it (bug 67522).
-	 * However, please consider using this property publicly
-	 * to be deprecated.
-	 * @protected
-	 */
+	/** @var bool */
 	public $mTokenOk = false;
 
 	/** @var bool */
-	protected $mTokenOkExceptSuffix = false;
+	public $mTokenOkExceptSuffix = false;
 
 	/** @var bool */
-	protected $mTriedSave = false;
+	public $mTriedSave = false;
 
 	/** @var bool */
-	protected $incompleteForm = false;
+	public $incompleteForm = false;
 
 	/** @var bool */
-	protected $tooBig = false;
+	public $tooBig = false;
 
 	/** @var bool */
-	protected $kblength = false;
+	public $kblength = false;
 
 	/** @var bool */
-	protected $missingComment = false;
+	public $missingComment = false;
 
 	/** @var bool */
-	protected $missingSummary = false;
+	public $missingSummary = false;
 
 	/** @var bool */
-	protected $allowBlankSummary = false;
+	public $allowBlankSummary = false;
 
 	/** @var bool */
 	protected $blankArticle = false;
@@ -256,19 +251,19 @@ class EditPage {
 	protected $allowBlankArticle = false;
 
 	/** @var string */
-	protected $autoSumm = '';
+	public $autoSumm = '';
 
 	/** @var string */
 	public $hookError = '';
 
 	/** @var ParserOutput */
-	protected $mParserOutput;
+	public $mParserOutput;
 
 	/** @var bool Has a summary been preset using GET parameter &summary= ? */
-	protected $hasPresetSummary = false;
+	public $hasPresetSummary = false;
 
 	/** @var bool */
-	protected $mBaseRevision = false;
+	public $mBaseRevision = false;
 
 	/** @var bool */
 	public $mShowSummaryField = true;
@@ -282,16 +277,16 @@ class EditPage {
 	public $preview = false;
 
 	/** @var bool */
-	protected $diff = false;
+	public $diff = false;
 
 	/** @var bool */
 	public $minoredit = false;
 
 	/** @var bool */
-	protected $watchthis = false;
+	public $watchthis = false;
 
 	/** @var bool */
-	protected $recreate = false;
+	public $recreate = false;
 
 	/** @var string */
 	public $textbox1 = '';
@@ -303,7 +298,7 @@ class EditPage {
 	public $summary = '';
 
 	/** @var bool */
-	protected $nosummary = false;
+	public $nosummary = false;
 
 	/** @var string */
 	public $edittime = '';
@@ -315,13 +310,13 @@ class EditPage {
 	public $sectiontitle = '';
 
 	/** @var string */
-	protected $starttime = '';
+	public $starttime = '';
 
 	/** @var int */
 	public $oldid = 0;
 
 	/** @var string */
-	protected $editintro = '';
+	public $editintro = '';
 
 	/** @var null */
 	public $scrolltop = null;

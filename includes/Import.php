@@ -891,7 +891,7 @@ class WikiImporter {
 /** This is a horrible hack used to keep source compatibility */
 class UploadSourceAdapter {
 	/** @var array */
-	private static $sourceRegistrations = array();
+	public static $sourceRegistrations = array();
 
 	/** @var string */
 	private $mSource;
@@ -1015,13 +1015,13 @@ class UploadSourceAdapter {
  */
 class WikiRevision {
 	/** @todo Unused? */
-	private $importer = null;
+	public $importer = null;
 
 	/** @var Title */
 	public $title = null;
 
 	/** @var int */
-	private $id = 0;
+	public $id = 0;
 
 	/** @var string */
 	public $timestamp = "20010115000000";
@@ -1035,10 +1035,10 @@ class WikiRevision {
 	public $user_text = "";
 
 	/** @var string */
-	protected $model = null;
+	public $model = null;
 
 	/** @var string */
-	protected $format = null;
+	public $format = null;
 
 	/** @var string */
 	public $text = "";
@@ -1047,7 +1047,7 @@ class WikiRevision {
 	protected $size;
 
 	/** @var Content */
-	protected $content = null;
+	public $content = null;
 
 	/** @var ContentHandler */
 	protected $contentHandler = null;
@@ -1056,31 +1056,31 @@ class WikiRevision {
 	public $comment = "";
 
 	/** @var bool */
-	protected $minor = false;
+	public $minor = false;
 
 	/** @var string */
-	protected $type = "";
+	public $type = "";
 
 	/** @var string */
-	protected $action = "";
+	public $action = "";
 
 	/** @var string */
-	protected $params = "";
+	public $params = "";
 
 	/** @var string */
-	protected $fileSrc = '';
+	public $fileSrc = '';
 
 	/** @var bool|string */
-	protected $sha1base36 = false;
+	public $sha1base36 = false;
 
 	/**
 	 * @var bool
 	 * @todo Unused?
 	 */
-	private $isTemp = false;
+	public $isTemp = false;
 
 	/** @var string */
-	protected $archiveName = '';
+	public $archiveName = '';
 
 	protected $filename;
 
@@ -1088,7 +1088,7 @@ class WikiRevision {
 	protected $src;
 
 	/** @todo Unused? */
-	private $fileIsTemp;
+	public $fileIsTemp;
 
 	/** @var bool */
 	private $mNoUpdates = false;
