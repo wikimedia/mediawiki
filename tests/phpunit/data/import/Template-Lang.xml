@@ -1,0 +1,2304 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.9/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.9/ http://www.mediawiki.org/xml/export-0.9.xsd" version="0.9" xml:lang="en">
+  <siteinfo>
+    <sitename>Wikimedia Commons</sitename>
+    <dbname>commonswiki</dbname>
+    <base>http://commons.wikimedia.org/wiki/Main_Page</base>
+    <generator>MediaWiki 1.24wmf20</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">Commons</namespace>
+      <namespace key="5" case="first-letter">Commons talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+      <namespace key="100" case="first-letter">Creator</namespace>
+      <namespace key="101" case="first-letter">Creator talk</namespace>
+      <namespace key="102" case="first-letter">TimedText</namespace>
+      <namespace key="103" case="first-letter">TimedText talk</namespace>
+      <namespace key="104" case="first-letter">Sequence</namespace>
+      <namespace key="105" case="first-letter">Sequence talk</namespace>
+      <namespace key="106" case="first-letter">Institution</namespace>
+      <namespace key="107" case="first-letter">Institution talk</namespace>
+      <namespace key="460" case="case-sensitive">Campaign</namespace>
+      <namespace key="461" case="case-sensitive">Campaign talk</namespace>
+      <namespace key="490" case="first-letter">GWToolset</namespace>
+      <namespace key="491" case="first-letter">GWToolset talk</namespace>
+      <namespace key="828" case="first-letter">Module</namespace>
+      <namespace key="829" case="first-letter">Module talk</namespace>
+      <namespace key="1198" case="first-letter">Translations</namespace>
+      <namespace key="1199" case="first-letter">Translations talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Template:Lang</title>
+    <ns>10</ns>
+    <id>611438</id>
+    <revision>
+      <id>20059528</id>
+      <parentid>4254015</parentid>
+      <timestamp>2009-04-08T19:32:14Z</timestamp>
+      <contributor>
+        <username>Slomox</username>
+        <id>770</id>
+      </contributor>
+      <comment>doc</comment>
+      <text xml:space="preserve" bytes="169">&lt;span lang=&quot;{{{1}}}&quot; xml:lang=&quot;{{{1}}}&quot; class=&quot;description {{{1}}}&quot;&gt;{{{2}}}&lt;/span&gt;&lt;noinclude&gt;
+{{Documentation}}
+
+[[Category:Internationalization templates]]
+&lt;/noinclude&gt;</text>
+      <sha1>lcq8redrgcrjfbueyz33b1u0kfis6fc</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Autotranslate</title>
+    <ns>10</ns>
+    <id>26352155</id>
+    <revision>
+      <id>110510384</id>
+      <parentid>110509138</parentid>
+      <timestamp>2013-11-25T10:04:44Z</timestamp>
+      <contributor>
+        <username>Zolo</username>
+        <id>165717</id>
+      </contributor>
+      <comment>Lua version (second try)</comment>
+      <text xml:space="preserve" bytes="445">&lt;includeonly&gt;{{#invoke: fallback|autotranslate|base = {{{base|}}}|lang={{{lang|}}}
+|1={{{1|}}} |2={{{2|}}} |3={{{3|}}} |4={{{4|}}} |5={{{5|}}}|6={{{6|}}} |7={{{7|}}} |8={{{8|}}} |9={{{9|}}} |10={{{10|}}} |11={{{11|}}} |12={{{12|}}} |13={{{13|}}} |14={{{14|}}} |15={{{15|}}} }}&lt;!--  
+--&gt;{{#ifeq: {{FULLPAGENAME}} |Template:{{{base|}}} |[[Category:Autotranslated templates|{{PAGENAME}}]]}}&lt;/includeonly&gt;&lt;noinclude&gt;
+
+{{Documentation}}
+
+&lt;/noinclude&gt;</text>
+      <sha1>21wel7tymi34ekpq37ssx1h9cibp8q8</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Clickable button</title>
+    <ns>10</ns>
+    <id>21198470</id>
+    <revision>
+      <id>108784804</id>
+      <parentid>104289678</parentid>
+      <timestamp>2013-11-03T19:47:25Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>adding id attribute</comment>
+      <text xml:space="preserve" bytes="1659">&lt;onlyinclude&gt;{{#if:{{{3|{{{external|}}}}}}
+  | &lt;span class=&quot;plainlinks&quot; {{#if:{{{id|}}}|id=&quot;{{{id}}}&quot;}}&gt;[{{{1|{{{target|//parameter_target_is_empty.de}}}}}} &lt;span class=&quot;submit ui-button ui-widget ui-state-default ui-corner-all {{Clickable button/iconclass
+    |{{{4|{{{iconPrimary|}}}}}}
+    |{{{5|{{{iconSecondary|}}}}}}
+    |{{{2|{{{text|&lt;noinclude&gt;x&lt;/noinclude&gt;}}}}}}
+  }} {{{class|}}}&quot; role=&quot;button&quot; aria-disabled=&quot;false&quot;&gt;&lt;!-- // --&gt;{{#if:{{{4|{{{iconPrimary|}}}}}}
+  |&lt;span class=&quot;ui-button-icon-primary ui-icon {{{4|{{{iconPrimary}}}}}}&quot;&gt;&amp;nbsp;&lt;/span&gt;
+  }}&lt;span class=&quot;ui-button-text&quot;&gt;{{{2|{{{text|Parameter '''text''' is empty}}}}}}&lt;/span&gt;{{#if:{{{5|{{{iconSecondary|}}}}}}
+  |&lt;span class=&quot;ui-button-icon-secondary ui-icon {{{5|{{{iconSecondary|}}}}}}&quot;&gt;&amp;nbsp;&lt;/span&gt;
+  }}&lt;/span&gt;]&lt;/span&gt;&lt;!--
+  --&gt;
+  | [[{{{1|{{{target|Parameter target is empty!}}}}}}|&lt;span class=&quot;submit ui-button ui-widget ui-state-default ui-corner-all {{Clickable button/iconclass
+    |{{{4|{{{iconPrimary|}}}}}}
+    |{{{5|{{{iconSecondary|}}}}}}
+    |{{{2|{{{text|&lt;noinclude&gt;x&lt;/noinclude&gt;}}}}}}
+  }} {{{class|}}}&quot; role=&quot;button&quot; aria-disabled=&quot;false&quot; {{#if:{{{id|}}}|id=&quot;{{{id}}}&quot;}}&gt;&lt;!-- // --&gt;{{#if:{{{4|{{{iconPrimary|}}}}}}
+  |&lt;span class=&quot;ui-button-icon-primary ui-icon {{{4|{{{iconPrimary}}}}}}&quot;&gt;&amp;nbsp;&lt;/span&gt;
+  }}&lt;span class=&quot;ui-button-text&quot;&gt;{{{2|{{{text|Parameter '''text''' is empty}}}}}}&lt;/span&gt;{{#if:{{{5|{{{iconSecondary|}}}}}}
+  |&lt;span class=&quot;ui-button-icon-secondary ui-icon {{{5|{{{iconSecondary|}}}}}}&quot;&gt;&amp;nbsp;&lt;/span&gt;
+  }}&lt;/span&gt;]]
+}}&lt;!--
+
+
+--&gt;
+&lt;/onlyinclude&gt;
+{{documentation}}
+&lt;!-- Add categories and interwikis to Template:Clickable button/doc subpage, not here! --&gt;</text>
+      <sha1>oks1a1gfj5msi0z8twkxsmxspvck9e3</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Clickable button/iconclass</title>
+    <ns>10</ns>
+    <id>21350463</id>
+    <revision>
+      <id>104289093</id>
+      <parentid>100753857</parentid>
+      <timestamp>2013-09-14T10:25:00Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>evaluating text arg</comment>
+      <text xml:space="preserve" bytes="916">{{#if:{{{3|}}}
+|&lt;!-- a text was specified
+--&gt;{{#if:{{{1|}}}
+    |&lt;!-- a primary icon was specified --&gt;{{#if:{{{2|}}}
+      |&lt;!-- a secondary icon was specified --&gt; ui-button-text-icons
+      |&lt;!-- no secondary icon was specified --&gt; ui-button-text-icon-primary
+    }}
+    |&lt;!-- no primary icon specified --&gt; {{#if:{{{2|}}}
+      |&lt;!-- a secondary icon was specified --&gt; ui-button-text-icon-secondary
+      |&lt;!-- no secondary icon was specified --&gt; ui-button-text-only
+    }}
+  }}
+|&lt;!-- no text was specified
+--&gt;{{#if:{{{1|}}}
+    |&lt;!-- a primary icon was specified --&gt;{{#if:{{{2|}}}
+      |&lt;!-- a secondary icon was specified --&gt; ui-button-icons-only
+      |&lt;!-- no secondary icon was specified --&gt; ui-button-icon-only
+    }}
+    |&lt;!-- no primary icon specified --&gt; {{#if:{{{2|}}}
+      |&lt;!-- a secondary icon was specified --&gt; ui-button-icon-only
+      |&lt;!-- no secondary icon was specified --&gt; error
+    }}
+  }}
+}}</text>
+      <sha1>lhcosganbcjza7n61x8xc8wjmog8aka</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Dir</title>
+    <ns>10</ns>
+    <id>4508797</id>
+    <revision>
+      <id>128818834</id>
+      <parentid>70109361</parentid>
+      <timestamp>2014-07-12T19:29:48Z</timestamp>
+      <contributor>
+        <username>Magog the Ogre</username>
+        <id>338609</id>
+      </contributor>
+      <comment>azb =&gt; ltr</comment>
+      <text xml:space="preserve" bytes="341">&lt;noinclude&gt;{{heavily used template}}&lt;/noinclude&gt;{{#switch:{{{1}}}|ar|arc|arz|azb|bcc|ckb|bqi|dv|fa|fa-af|glk|ha|he|kk-arab|kk-cn|ks|ku-arab|mzn|pnb|prd|ps|sd|ug|ur|ydd|yi={{{2|rtl}}}|{{{3|ltr}}}}}&lt;noinclude&gt;
+{{documentation}}
+
+[[Category:Internationalization templates|{{PAGENAME}}]]
+[[Category:Function templates|{{PAGENAME}}]]
+&lt;/noinclude&gt;</text>
+      <sha1>c0ugjc7hl2gm7ap70ez8zb82al733zx</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Documentation</title>
+    <ns>10</ns>
+    <id>26353596</id>
+    <revision>
+      <id>103501631</id>
+      <parentid>97113597</parentid>
+      <timestamp>2013-09-05T10:51:58Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>adding fallback right here</comment>
+      <text xml:space="preserve" bytes="135">{{Documentation/{{Fallback|Documentation|{{{lang|{{int:Lang}} }}} }}
+ |1={{{1|{{SUBJECTPAGENAME}}/doc}}}
+ |2={{{heading|{{{2|}}} }}}
+}}</text>
+      <sha1>ekc75yal4ioqjvwezqzi11jk55um2wf</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Documentation/en</title>
+    <ns>10</ns>
+    <id>6324044</id>
+    <revision>
+      <id>35925506</id>
+      <parentid>33737050</parentid>
+      <timestamp>2010-02-28T04:41:59Z</timestamp>
+      <contributor>
+        <username>Rocket000</username>
+        <id>41662</id>
+      </contributor>
+      <minor/>
+      <comment>remove link to en.wp specific instructions</comment>
+      <text xml:space="preserve" bytes="320">{{Documentation/layout
+|1={{{1|}}}
+|heading={{{2|}}}
+|text=This documentation is [[w:Wikipedia:Transclusion|transcluded]] from [[{{#if: {{{1|}}} | {{{1}}} | {{FULLPAGENAME}}/doc }}]].
+|edit=edit
+|history=history
+|view=view
+|documentation=Documentation
+|lang=en
+}}&lt;noinclude&gt;
+{{translated tag|documentation}}
+&lt;/noinclude&gt;</text>
+      <sha1>8k9sndfbisia99hnpq7vl9sygtiqv5b</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Documentation/layout</title>
+    <ns>10</ns>
+    <id>6324034</id>
+    <revision>
+      <id>103501902</id>
+      <parentid>101922279</parentid>
+      <timestamp>2013-09-05T10:57:58Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>simplifying (|1={{{1|{{SUBJECTPAGENAME}}/doc}}}) on [[Template:Documentation]].</comment>
+      <text xml:space="preserve" bytes="1294">&lt;div class=&quot;template-documentation mw-content-{{dir|{{int:lang}}}}&quot; style=&quot;margin-top:1em; clear: both; border: 2px dotted #666666; padding: 0.6em; background-color: #ECFCF4;&quot; dir=&quot;{{dir|{{int:lang}}}}&quot;&gt;{{#ifeq:{{{heading|}}} | false | | &lt;div style=&quot;padding-bottom:3px; border-bottom:1px solid #aaa; margin-bottom:1ex;&quot;&gt;&lt;span style=&quot;font-size:150%&quot;&gt;{{#if: {{{heading|}}} | {{{heading}}} |[[File:Template-info.png|50px|link=|alt=Documentation icon]] {{{documentation|Documentation}}} }}&lt;/span&gt;&lt;span class=&quot;mw-editsection plainlinks&quot; id=&quot;doc_editlinks&quot;&gt;{{int:editsection-brackets|[{{fullurl:{{{1}}}}} {{{view|{{int:vector-view-view}}}}}]}} {{int:editsection-brackets|[{{fullurl:{{{1}}}|action=edit{{#ifexist: {{{1}}} ||&amp;preload=Template:Documentation/preload}}}} {{{edit|{{int:vector-view-edit}}}}}]}} {{int:editsection-brackets|[{{fullurl:{{{1}}}|action=history}} {{{history|{{int:vector-view-history}}}}}]}} {{int:editsection-brackets|[{{fullurl:{{{1}}}|action=purge}} {{{purge|{{int:Code-rev-purge-link}}}}}]}}&lt;/span&gt;&lt;/div&gt;}}
+''&lt;small&gt;{{{text|text parameter not translated in [[Template:Documentation]]}}}&lt;/small&gt;''
+
+{{{{{1}}}}}&lt;div style=&quot;clear:both;&quot; /&gt;&lt;/div&gt;{{#ifeq:{{SUBPAGENAME}}|sandbox|[[Category:Sandbox templates]]}}&lt;noinclude&gt;
+
+[[Category:Layout templates|{{PAGENAME}}]]
+&lt;/noinclude&gt;</text>
+      <sha1>t3tr8di8e9el7tvqssx8viaqvimn026</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Documentation subpage</title>
+    <ns>10</ns>
+    <id>26352739</id>
+    <revision>
+      <id>97170544</id>
+      <parentid>97170311</parentid>
+      <timestamp>2013-05-28T17:03:47Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>Revert to revision 93821718 dated 2013-04-02 09:38:38 by Jean-Frédéric using [[:en:Wikipedia:Tools/Navigation_popups|popups]]</comment>
+      <text xml:space="preserve" bytes="433">&lt;includeonly&gt;&lt;!--
+--&gt;{{#ifeq:{{SUBPAGENAME}}|{{#ifeq:{{{1|}}}|override|{{SUBPAGENAME}}|doc}}|&lt;/includeonly&gt;&lt;!-- show on doc pages only
+  --&gt;{{Documentation subpage/{{Fallback|Documentation subpage}}}}&lt;!--
+  --&gt;{{{category|[[Category:Template documentation|&lt;noinclude&gt; &lt;/noinclude&gt;&lt;includeonly&gt;{{PAGENAME}}&lt;/includeonly&gt;]]}}}&lt;!--
+--&gt;&lt;includeonly&gt;}}&lt;/includeonly&gt;&lt;!--  show on doc pages only
+--&gt;&lt;noinclude&gt;{{documentation}}&lt;/noinclude&gt;</text>
+      <sha1>3la76qqtzzogu7tiyb09exrq7n7759b</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Fallback</title>
+    <ns>10</ns>
+    <id>26352080</id>
+    <revision>
+      <id>97113337</id>
+      <parentid>21668251</parentid>
+      <timestamp>2013-05-27T20:13:41Z</timestamp>
+      <contributor>
+        <username>Steinsplitter</username>
+        <id>2055977</id>
+      </contributor>
+      <minor/>
+      <comment>Protected Template:Fallback: Widely used template ([Edit=Allow only administrators] (indefinite) [Move=Allow only administrators] (indefinite))</comment>
+      <text xml:space="preserve" bytes="515">{{#ifexist: Template:{{{1|}}}/{{#if: {{{2|}}} |{{{2}}}|{{int:Lang}}}} | {{#if: {{{2|}}} |{{{2}}}|{{int:Lang}}}} | {{#ifexist: Template:{{{1|}}}/{{GetFallback|{{#if: {{{2|}}} |{{{2}}}|{{int:Lang}}}}}} | {{GetFallback|{{#if: {{{2|}}} |{{{2}}}|{{int:Lang}}}}}} | {{#ifexist: Template:{{{1|}}}/{{GetFallback2|{{#if: {{{2|}}} |{{{2}}}|{{int:Lang}}}}}} | {{GetFallback2|{{#if: {{{2|}}} |{{{2}}}|{{int:Lang}}}}}} | {{CONTENTLANGUAGE}} }} }} }}&lt;noinclude&gt;
+
+{{documentation}}
+[[Category:Localisation templates]]
+&lt;/noinclude&gt;</text>
+      <sha1>ck6a3j3cj5cvp8fc2o72o2f1zgop2qg</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Lang/doc</title>
+    <ns>10</ns>
+    <id>6447142</id>
+    <revision>
+      <id>131001715</id>
+      <parentid>64107559</parentid>
+      <timestamp>2014-08-08T01:04:52Z</timestamp>
+      <contributor>
+        <username>Hyacinth</username>
+        <id>4516</id>
+      </contributor>
+      <comment>|seealso={{tl|Language}}</comment>
+      <text xml:space="preserve" bytes="626">{{TemplateBox
+|1=1
+|1d=language code
+|1stat=required
+|2=2
+|2d=text
+|name=Lang
+|desc=This template is for example called from [[Template:Autotranslate|autotranslatable]] templates and is used to apply the &quot;lang&quot; and &quot;xml:lang&quot; attributes to the span tag containing the text. It also adds CSS classes, that for example allow CSS highlighting text that is in a specific language. For a list of language codes to use for parameter 1 see [[:en:List of ISO 639-1 codes]].
+|namespace=all
+|usergroup=all
+|usage-notes=
+|type=
+|example=
+|i18n-method=-
+|i18n-desc=
+|seealso={{tl|Language}}
+|setscats=
+|lines=one
+|shorthand=
+|relieson=
+}}</text>
+      <sha1>ng9akijgnz2n1dgv99v3x9adlrp0n3d</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:TemplateBox</title>
+    <ns>10</ns>
+    <id>5837731</id>
+    <revision>
+      <id>122995596</id>
+      <parentid>121984275</parentid>
+      <timestamp>2014-05-03T10:05:02Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>dot for current page as i18n subpage</comment>
+      <text xml:space="preserve" bytes="2262">&lt;includeonly&gt;{{#invoke:Languages|autolang
+  |base=TemplateBox/i18n
+  |useargs=both
+  |templateData={{#invoke:TemplateBox|templatedata}}
+  |JSONFM={{#invoke:TemplateBox|templatedata|formatting=pretty}}
+  |paramTable={{#invoke:TemplateBox|paramtable}}
+  |usageSample={{#invoke:TemplateBox|usagesample}}
+  |argCount={{#invoke:TemplateBox|argcount}}
+  |desc={{#invoke:TemplateBox|description}}
+  |templateDataInfo={{TemplateDataInfo/toggler}}
+  |i18n-subpage={{#ifeq: {{{i18n-subpage|}}} | . | Template:{{{name|{{BASEPAGENAME}}}}} | Template:{{{name|{{BASEPAGENAME}}}}}/{{{i18n-subpage|i18n}}} }}
+  |usergroup={{lc:{{{usergroup|}}}}}
+  |name={{{name|{{BASEPAGENAME}}}}}}}&lt;!--
+
+  -----------------------------------------------------------
+  -----------------------------------------------------------
+  -- Auto-categorization by internationalisation approach. --
+  -----------------------------------------------------------
+  -----------------------------------------------------------
+
+--&gt;{{#ifeq:{{SUBPAGENAME}}|doc
+|&lt;!-- don't categorize documentation subpages--&gt;
+|{{#ifeq:{{NAMESPACE}}|Template
+|{{#switch:{{{i18n-method|}}}
+  |autotranslate       = [[Category:Templates using Autotranslate for internationalisation]]
+  |switch              = [[Category:Templates using LangSwitch for internationalisation]]
+  |custommediawiki-msg = [[Category:Templates using local MediaWiki messages for internationalisation]]
+  |mediawiki-msg       = [[Category:Templates using MediaWiki messages from translatewiki.net for internationalisation]]
+  |ext.translate       = [[Category:Templates using the Translate extension for internationalisation]]
+  |-                   = [[Category:Templates not requiring internationalization]]
+  |#default            = [[Category:Templates using an unknown approach for internationalisation]]
+}}|&lt;!-- Don't categorise Creator templates --&gt;}}}}&lt;!--
+
+  -----------------------------------------------------------
+  -----------------------------------------------------------
+  END: Auto-categorization by internationalisation approach.
+  -----------------------------------------------------------
+  -----------------------------------------------------------
+
+--&gt;&lt;/includeonly&gt;__NOEDITSECTION__&lt;noinclude&gt;
+{{documentation}}
+
+&lt;/noinclude&gt;</text>
+      <sha1>1vtccr9494764bf107kaa2mspt68dtx</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:TemplateBox/i18n/en</title>
+    <ns>10</ns>
+    <id>26761767</id>
+    <revision>
+      <id>128227749</id>
+      <parentid>128227719</parentid>
+      <timestamp>2014-07-05T19:14:19Z</timestamp>
+      <contributor>
+        <username>FuzzyBot</username>
+        <id>2899747</id>
+      </contributor>
+      <comment>Importing a new version from external source</comment>
+      <text xml:space="preserve" bytes="7315">&lt;languages/&gt;
+
+&lt;onlyinclude&gt;{{TemplateBox/layout
+|name={{{name|}}}|desc={{{desc|}}}|namespace={{{namespace|}}}|usergroup={{{usergroup|}}}|placement={{{placement|}}}|usage-notes={{{usage-notes|}}}|type={{{type|}}}|example={{{example|}}}|example-value={{{example-value|}}}|i18n-method={{{i18n-method|}}}|i18n-subpage={{{i18n-subpage|}}}|i18n-desc={{{i18n-desc|}}}|seealso={{{seealso|}}}|setscats={{{setscats|}}}|lines={{{lines|}}}|shorthand={{{shorthand|}}}|relieson={{{relieson|}}}|docsub-override={{{docsub-override|}}}|docsub-page={{{docsub-page|}}}|mustbesubst={{{mustbesubst|}}}|templateData={{{templateData|}}}|JSONFM={{{JSONFM|}}}|useTemplateData={{{useTemplateData|}}}|paramTable={{{paramTable|}}}|templateDataInfo={{{templateDataInfo|}}}|usageSample={{{usageSample|}}}|argCount={{{argCount|}}}
+|msg-setscats=The template automatically sets the following categories:
+|msg-nodesc=No description yet available.
+|msg-languagedependant=&lt;nowiki/&gt;&lt;small&gt;&lt;!-- Remove this comment and insert the translation of &quot;This part of the documentation is only available in a limited number of languages.&quot; --&gt;&lt;/small&gt;
+|msg-usage=Usage
+|msg-example=Example
+|msg-example-renders-as=renders as:
+|msg-shorthand=Or use the shorthand &lt;nowiki/&gt;&lt;!--
+             Some translations removed from translation (T8-T18)
+             If you want to re-install them (because there is something wrong with the MediaWiki-messages
+             that are used and provided by TemplateData, here they are:
+             https://commons.wikimedia.org/w/index.php?title=Template:TemplateBox/i18n&amp;oldid=102987719
+--&gt;
+|msg-param-none=The template takes no parameters.
+|msg-moreinfo=Additional information
+|msg-localization=Localization
+|msg-localization-instruct-switch=To add your language to the list of languages supported by this template, please edit the template and add a row to the &quot;{{Tlf|LangSwitch| }}&quot; construct. It takes the form &quot;&lt;tt&gt;{{!}}xx= Your translation &lt;/tt&gt;&quot; (&lt;tt&gt;xx&lt;/tt&gt; being the code of your language)
+|msg-localization-instruct-autotranslate=This template is localized through {{tl|Autotranslate}}. {{#ifexist: Template:{{#if:{{{name|}}}|{{{name}}}|{{PAGENAME}}}}/layout | The layout of the template can be found under [[Template:{{#if:{{{name|}}}|{{{name}}}|{{PAGENAME}}}}/layout]].}}
+
+To add your language to the list of languages supported by this template, please copy the code of [[Template:{{{name|{{PAGENAME}}}}}/en]] (or any other language version you prefer to translate) and replace the text strings in there (the form below can be used to create a translation, the English version is preloaded in the edit box). Please change the parameter &lt;tt&gt;lang&lt;/tt&gt; from &lt;tt&gt;en&lt;/tt&gt; (or whatever language you are translating) to the [[:en:ISO 639-1|language code]] of your language.
+|msg-localization-instruct-none=This template is not intended to be localized.
+|msg-localization-instruct-custommediawiki-msg=This template is localized by utilizing custom MediaWiki namespace messages.
+|msg-localization-instruct-mediawiki-msg=This template is localized by utilizing MediaWiki namespace messages. These can be [[translatewiki:{{#if:{{{i18n-mediawiki-msg|}}}|MediaWiki:{{{i18n-mediawiki-msg|}}}|Special:Translate/ext-wikimediamessages}}|translated at translatewiki.net]] ([[:translatewiki:Special:Translations/MediaWiki:{{#if:{{{i18n-mediawiki-msg|}}}|{{{i18n-mediawiki-msg|}}}|Wm-license-{{lc:{{BASEPAGENAME}}}}-text}}|current translations]]).
+|msg-localization-ext-translate=This template makes use of {{tl|Autotranslate}} and [[:mw:Special:MyLanguage/Help:Extension:Translate|the translate extension]].
+|msg-localization-instruct-ext-translate=Translate this template now!
+|msg-localization-instruct-ext-translate-admin=Administrate translations.
+|msg-seealso={{int:Seealso}}
+|msg-relieson=Relies on:
+|msg-intendedusergroups=The template is intended to be used by the following user groups:
+|msg-intendedusergroups-all=[[Commons:Users|all users]]
+|msg-intendedusergroups-bot=[[{{int:Grouppage-bot}}|{{int:Group-bot}}]]
+|msg-intendedusergroups-admin=[[{{int:Grouppage-sysop}}|{{int:Group-sysop}}]]
+|msg-intendedusergroups-bureaucrat=[[{{int:Grouppage-bureaucrat}}|{{int:Group-bureaucrat}}]]
+|msg-intendedusergroups-checkuser=[[{{int:Grouppage-checkuser}}|{{int:Group-checkuser}}]]
+|msg-intendedusergroups-imagereviewer=[[{{int:Grouppage-Image-reviewer}}|{{int:Group-Image-reviewer}}]]
+|msg-intendedusergroups-otrsmember=[[{{int:Grouppage-OTRS-member}}|{{int:Group-OTRS-member}}]]
+|msg-intendedusergroups-autoconfirmed=[[{{int:Grouppage-autoconfirmed}}|{{int:Group-autoconfirmed}}]]
+|msg-intendedusergroups-autopatrolled=[[{{int:Grouppage-autopatrolled}}|{{int:Group-autopatrolled}}]]
+|msg-intendedusergroups-filemover=[[{{int:Grouppage-filemover}}|{{int:Group-filemover}}]]
+|msg-intendedusergroups-oversight=[[{{int:Grouppage-oversight}}|{{int:Group-oversight}}]]
+|msg-intendedusergroups-patroller=[[{{int:Grouppage-patroller}}|{{int:Group-patroller}}]]
+|msg-intendedusergroups-rollbacker=[[{{int:Grouppage-rollbacker}}|{{int:Group-rollbacker}}]]
+|msg-intendedusergroups-upwizcampeditors=[[{{int:Grouppage-upwizcampeditors}}|{{int:Group-upwizcampeditors}}]]
+|msg-intendedusergroups-translationadmin=[[{{int:Grouppage-translationadmin}}|{{int:Group-translationadmin}}]]
+|msg-intendedusergroups-steward=[[{{int:Grouppage-steward}}|{{int:Group-steward}}]]
+|msg-intendedusergroups-unspecified=no user group specified
+|msg-intendednamespaces=The template is intended to be used in the following namespaces:
+|msg-intendednamespaces-unknown=unknown
+|msg-intendednamespaces-all=all namespaces
+|msg-intendednamespaces-talks=all talk namespaces
+|msg-intendednamespaces-contents=all content namespaces
+|msg-intendednamespaces-0=the main or gallery namespace (unprefixed)
+|msg-intendednamespaces-1=the Talk namespace for the main namespace
+|msg-intendednamespaces-2=the User namespace
+|msg-intendednamespaces-3=the User talk namespace
+|msg-intendednamespaces-4=the Commons namespace
+|msg-intendednamespaces-5=the Commons talk namespace
+|msg-intendednamespaces-6=the File namespace
+|msg-intendednamespaces-7=the File talk namespace
+|msg-intendednamespaces-8=the MediaWiki namespace
+|msg-intendednamespaces-9=the MediaWiki talk namespace
+|msg-intendednamespaces-10=the Template namespace
+|msg-intendednamespaces-11=the Template talk namespace
+|msg-intendednamespaces-12=the Help namespace
+|msg-intendednamespaces-13=the Help talk namespace
+|msg-intendednamespaces-14=the Category namespace
+|msg-intendednamespaces-15=the Category talk namespace
+|msg-intendednamespaces-16=the Creator namespace
+|msg-intendednamespaces-17=the Creator talk namespace
+|msg-intendednamespaces-18=the Special namespace
+|msg-intendednamespaces-default=no namespace specified
+|msg-placement=Placement:
+|msg-placement-top=At the top of the page
+|msg-placement-bottom=At the bottom of the page
+|msg-placement-licence=In the &quot;{{int:wm-license-information-permission}}&quot; parameter of the {{tl|Information}} template (or the respective parameter of similar templates) or in the &quot;{{int:license-header}}&quot; section
+|msg-placement-source=In the &quot;{{int:wm-license-information-source}}&quot; parameter of the {{tl|Information}} template (or the respective parameter of similar templates) or just below this template
+|lang={{int:lang}}
+}}&lt;/onlyinclude&gt;
+
+{{translated tag|documentation}}</text>
+      <sha1>3d4gv5egi49daqndoskez3eaw8zcxes</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:TemplateBox/layout</title>
+    <ns>10</ns>
+    <id>5837857</id>
+    <revision>
+      <id>111259133</id>
+      <parentid>109993479</parentid>
+      <timestamp>2013-12-05T10:44:10Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <comment>users found it annoying that they were not able to copy parts of the template doc</comment>
+      <text xml:space="preserve" bytes="8247">&lt;nowiki/&gt; __NOEDITSECTION__
+{{#ifeq:{{{useTemplateData|}}}|export
+|== {{{msg-export|Export code}}} ==
+{{#tag:pre|{{msgnw:Template:{{{name|}}}}}
+&lt;nowiki&gt;&lt;noinclude&gt;&lt;templatedata&gt;&lt;/nowiki&gt;
+{{{JSONFM}}}
+&lt;nowiki&gt;&lt;/templatedata&gt;
+&lt;/noinclude&gt;&lt;/nowiki&gt;
+}}
+|{{Documentation subpage|{{#if: {{{docsub-override|}}} | override | }}|page={{{docsub-page|}}}}}
+{{#if: {{{desc|}}} | {{{msg-languagedependant|}}}
+&lt;div style=&quot;font-size: 1.2em; font-weight: bolder; padding: 0.2em; text-shadow: 1px 1px 1px rgb(255, 255, 255);&quot;&gt;
+{{{desc}}}
+&lt;/div&gt; | {{{msg-nodesc|}}} }}{{#if: {{{setscats|}}} |&lt;nowiki/&gt;
+
+{{{msg-setscats}}}
+{{{setscats|}}}
+}}
+== {{{msg-usage|}}} ==
+{{#ifeq:{{#titleparts:{{FULLPAGENAME}}|1|-1}}|doc||{{#if:{{{mustbesubst|}}}|{{Must be substituted|page=Template:{{{name|}}}}}}}}}
+
+&lt;div style=&quot;background:rgba(255,255,255,0.9); font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif&quot;&gt;
+{{{usageSample|}}}
+&lt;/div&gt;{{#if: {{{shorthand|}}} |&lt;nowiki/&gt;
+
+{{{msg-shorthand|}}}&lt;tt&gt;{{#ifexist: Template:{{{shorthand|}}} | &lt;nowiki&gt;{{&lt;/nowiki&gt;{{{shorthand}}}{{#ifeq:{{{argCount|}}}|0|&lt;!-- nothing --&gt;| {{!}}{{{msg-shorthand-params-possible|… parameters as described …}}}}}&lt;nowiki&gt;}}&lt;/nowiki&gt; | {{{shorthand|}}}}}&lt;/tt&gt;
+}}{{#if: {{{usage-notes|}}} |&lt;nowiki/&gt;
+
+{{{msg-languagedependant|}}}
+&lt;div style=&quot;background:rgba(255,255,255,0.5); padding: 0.2em;&quot;&gt;
+{{{usage-notes}}}
+&lt;/div&gt;
+}}{{#if: {{{paramTable|}}} |&lt;nowiki/&gt;
+=== {{int:templatedata-doc-params}} ===
+{{#ifeq:{{{useTemplateData|}}}|only||{{{paramTable}}}}}
+|&lt;nowiki/&gt;
+
+{{{msg-param-none|}}} }}
+{{#if:{{{useTemplateData|}}}
+  |{{#ifeq:{{{useTemplateData|}}}|only||{{Collapse top|[[:mw:Special:MyLanguage/Extension:TemplateData|{{{msg-templatedata|Template data}}}]]}}}}
+{{{templateDataInfo}}}
+{{#tag: templatedata
+ | {{{templateData|}}}
+}}
+{{#ifeq:{{{useTemplateData|}}}|only||{{Collapse bottom}}}}
+}}
+=== {{{msg-moreinfo|}}} ===
+{{{msg-intendednamespaces|}}}
+{{#switch: {{{namespace|}}}
+|={{{msg-intendednamespaces-default|}}}
+|all={{{msg-intendednamespaces-all|}}}
+|talks={{{msg-intendednamespaces-talks|}}}
+|contents={{{msg-intendednamespaces-contents|}}}
+|0|Main|Gallery|main|gallery={{{msg-intendednamespaces-0|}}}
+|1|Talk|talk={{{msg-intendednamespaces-1|}}}
+|2|User|user={{{msg-intendednamespaces-2|}}}
+|3|User talk|user talk={{{msg-intendednamespaces-3|}}}
+|4|Commons|commons={{{msg-intendednamespaces-4|}}}
+|5|Commons talk|commons talk={{{msg-intendednamespaces-5|}}}
+|6|File|file={{{msg-intendednamespaces-6|}}}
+|7|File talk|file talk={{{msg-intendednamespaces-7|}}}
+|8|MediaWiki|mediaWiki={{{msg-intendednamespaces-8|}}}
+|9|MediaWiki talk|mediaWiki talk={{{msg-intendednamespaces-9|}}}
+|10|Template|template={{{msg-intendednamespaces-10|}}}
+|11|Template talk|template talk={{{msg-intendednamespaces-11|}}}
+|12|Help|help={{{msg-intendednamespaces-12|}}}
+|13|Help talk|help talk={{{msg-intendednamespaces-13|}}}
+|14|Category|category={{{msg-intendednamespaces-14|}}}
+|15|Category talk|category talk={{{msg-intendednamespaces-15|}}}
+|16|Creator|creator={{{msg-intendednamespaces-16|}}}
+|17|Creator talk|creator talk={{{msg-intendednamespaces-17|}}}
+|18|Special|special={{{msg-intendednamespaces-18|}}}
+|#default={{{msg-intendednamespaces-unknown|}}}
+}}
+
+{{{msg-intendedusergroups|}}}&lt;!-- usergroup is always lower case transformation on [[Template:TemplateBox]] --&gt;
+{{#switch: {{{usergroup|}}}
+|all={{{msg-intendedusergroups-all|}}}
+|bot={{{msg-intendedusergroups-bot|}}}
+|administrator|admin|sysop={{{msg-intendedusergroups-admin|}}}
+|bureaucrat|crat={{{msg-intendedusergroups-bureaucrat|}}}
+|checkuser={{{msg-intendedusergroups-checkuser|}}}
+|licensereviewer|imagereviewer|image-reviewer|license-reviewer={{{msg-intendedusergroups-imagereviewer|[[{{int:Grouppage-Image-reviewer}}|{{int:Group-Image-reviewer}}]]}}}
+|otrs|otrs-agent|otrs-member={{{msg-intendedusergroups-otrsmember|[[{{int:Grouppage-OTRS-member}}|{{int:Group-OTRS-member}}]]}}}
+|autoconfirmed={{{msg-intendedusergroups-autoconfirmed|[[{{int:Grouppage-autoconfirmed}}|{{int:Group-autoconfirmed}}]]}}}
+|autopatrolled={{{msg-intendedusergroups-autopatrolled|[[{{int:Grouppage-autopatrolled}}|{{int:Group-autopatrolled}}]]}}}
+|filemover={{{msg-intendedusergroups-filemover|[[{{int:Grouppage-filemover}}|{{int:Group-filemover}}]]}}}
+|oversight={{{msg-intendedusergroups-oversight|[[{{int:Grouppage-oversight}}|{{int:Group-oversight}}]]}}}
+|patroller={{{msg-intendedusergroups-patroller|[[{{int:Grouppage-patroller}}|{{int:Group-patroller}}]]}}}
+|rollbacker={{{msg-intendedusergroups-rollbacker|[[{{int:Grouppage-rollbacker}}|{{int:Group-rollbacker}}]]}}}
+|steward={{{msg-intendedusergroups-steward|[[{{int:Grouppage-steward}}|{{int:Group-steward}}]]}}}
+|upwizcampeditors={{{msg-intendedusergroups-upwizcampeditors|[[{{int:Grouppage-upwizcampeditors}}|{{int:Group-upwizcampeditors}}]]}}}
+|translationadmin|translateadmin={{{msg-intendedusergroups-translationadmin|[[{{int:Grouppage-translationadmin}}|{{int:Group-translationadmin}}]]}}}
+|#default={{{msg-intendedusergroups-unspecified|}}}
+}}{{#if: {{{placement|}}} |&lt;nowiki/&gt;
+
+{{{msg-placement|}}}
+{{#switch: {{{placement|}}}
+|top={{{msg-placement-top|}}}
+|bottom={{{msg-placement-bottom|}}}
+|license|licence={{{msg-placement-licence|}}}
+|source={{{msg-placement-source|}}}
+|#default={{{msg-languagedependant|}}}
+&lt;div style=&quot;background:rgba(255,255,255,0.5); padding: 0.2em;&quot;&gt;
+{{{placement}}}
+&lt;/div&gt;
+}}
+}}{{#if: {{{relieson|}}} |&lt;nowiki/&gt;
+
+{{{msg-relieson|}}}&lt;br /&gt;
+{{{relieson|}}}
+}}{{#if: {{{example|}}} |&lt;nowiki/&gt;
+== {{{msg-example|}}} ==
+
+ &lt;nowiki&gt;{{&lt;/nowiki&gt;{{#if: {{{name|}}} | {{{name}}} | {{PAGENAME}} }}{{!}}{{{example}}}&lt;nowiki&gt;}}&lt;/nowiki&gt;
+
+{{{msg-example-renders-as|}}}
+&lt;div style=&quot;border: 1px solid black; background-color: #ffffff; width: 90%; padding: 1.5em;&quot;&gt;
+{{#if:{{{example-value|}}}|{{{example-value}}}|{{{{#if: {{{name|}}} | {{{name}}} | {{PAGENAME}} }}|{{{example|}}}|category=}}}}
+&lt;/div&gt;
+}}{{#if: {{{example2|}}} |&lt;nowiki/&gt;
+== {{{msg-example|}}} ==
+
+ &lt;nowiki&gt;{{&lt;/nowiki&gt;{{#if: {{{name|}}} | {{{name}}} | {{PAGENAME}} }}{{!}}{{{example2}}}&lt;nowiki&gt;}}&lt;/nowiki&gt;
+
+{{{msg-example-renders-as|}}}
+&lt;div style=&quot;border: 1px solid black; background-color: #ffffff; width: 90%; padding: 1.5em;&quot;&gt;
+{{{{#if: {{{name|}}} | {{{name}}} | {{PAGENAME}} }}|{{{example2|}}}|category=}}
+&lt;/div&gt;
+}}{{#if: {{{seealso|}}} |&lt;nowiki/&gt;
+== {{{msg-seealso|}}} ==
+{{{msg-languagedependant|}}}
+&lt;div style=&quot;background:rgba(255,255,255,0.5); padding: 0.2em;&quot;&gt;
+{{{seealso}}}
+&lt;/div&gt;
+}}{{#switch: {{{i18n-method|}}}
+|-=&lt;nowiki/&gt;
+== {{{msg-localization|}}} ==
+
+{{{msg-localization-instruct-none|}}}
+|autotranslate=&lt;nowiki/&gt;
+== {{{msg-localization|}}} ==
+
+{{lang links|suppressaddlink=true}}
+
+{{{msg-localization-instruct-autotranslate|}}}
+
+{{#tag:inputbox|
+type=create
+preload=Template:{{#if: {{{name|}}} | {{{name}}} | {{PAGENAME}} }}/en
+default=Template:{{#if: {{{name|}}} | {{{name|}}} | {{PAGENAME}} }}/{{#ifexist: Template:{{#if: {{{name|}}} | {{{name}}} | {{PAGENAME}} }}/{{int:Lang}} | LANGCODE | {{int:Lang}} }}
+}}
+
+|ext.translate=&lt;nowiki/&gt;
+== {{{msg-localization|}}} ==
+
+{{lang links|suppressaddlink=true|1={{{i18n-subpage}}}}}
+
+{{{msg-localization-ext-translate|}}}
+
+&lt;div style=&quot;text-align:center&quot;&gt;{{Clickable button|target={{TranslateLink|{{{i18n-subpage}}}}}|text=[[File:Icono de traducción.svg|48px|link=]]'''{{{msg-localization-instruct-ext-translate}}}'''|class=ui-button-blue ui-button-large|external=true}}&lt;/div&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;{{Clickable button|target={{fullurl:{{{i18n-subpage}}}|action=edit}}|text='''{{{msg-localization-instruct-ext-translate-admin}}}'''|class=ui-button-red ui-button-large|iconPrimary=ui-icon-wrench|external=true}}&lt;/div&gt;
+
+|switch=&lt;nowiki/&gt;
+== {{{msg-localization|}}} ==
+
+{{{msg-localization-instruct-switch|}}}
+|mediawiki-msg=&lt;nowiki/&gt;
+== {{{msg-localization|}}} ==
+
+{{{msg-localization-instruct-mediawiki-msg|}}}
+|custommediawiki-msg=&lt;nowiki/&gt;
+== {{{msg-localization|}}} ==
+
+{{{msg-localization-instruct-custommediawiki-msg|}}}
+|#default=
+}}{{#if: {{{i18n-desc|}}} |&lt;nowiki/&gt;
+
+{{{msg-languagedependant|}}}
+&lt;div style=&quot;background:rgba(255,255,255,0.5); padding: 0.2em;&quot;&gt;
+{{{i18n-desc}}}
+&lt;/div&gt;
+}}}}&lt;noinclude&gt;
+
+[[Category:Layout templates|{{PAGENAME}}]]
+&lt;/noinclude&gt;</text>
+      <sha1>hoh7mia9kn85q8b60q0sl9gnzvnjhc2</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:TemplateDataInfo/i18n/en</title>
+    <ns>10</ns>
+    <id>27740293</id>
+    <revision>
+      <id>133182211</id>
+      <parentid>133182199</parentid>
+      <timestamp>2014-08-30T16:03:58Z</timestamp>
+      <contributor>
+        <username>FuzzyBot</username>
+        <id>2899747</id>
+      </contributor>
+      <comment>Importing a new version from external source</comment>
+      <text xml:space="preserve" bytes="1671">&lt;languages/&gt;
+
+&lt;onlyinclude&gt;{{TemplateDataInfo/layout
+|title=TemplateData
+|text=[[:mw:Special:MyLanguage/Extension:TemplateData|TemplateData]] is a way to store information about template parameters (the description of those and of the whole template) for both humans and machines. It is used by [[:mw:Special:MyLanguage/:VisualEditor|VisualEditor]] and possibly other tools like [[Special:MyLanguage/Commons:Upload Wizard|Upload Wizard]].
+----
+&lt;u&gt;Existing template documentation&lt;/u&gt;&lt;br/&gt;
+At Wikimedia Commons, it is recommended to use {{tl|TemplateBox}} with either &lt;code&gt;&lt;nowiki&gt;useTemplateData=1&lt;/nowiki&gt;&lt;/code&gt; or &lt;code&gt;&lt;nowiki&gt;useTemplateData=only&lt;/nowiki&gt;&lt;/code&gt; on the &lt;code&gt;&lt;nowiki&gt;/doc&lt;/nowiki&gt;&lt;/code&gt; subpage and transcluding it with {{tl|Documentation}} into the template. &lt;code&gt;&lt;nowiki&gt;&lt;nowiki&gt;&lt;/nowiki&gt;&lt;/code&gt;-tags can be wrapped around the the arguments, if required, to avoid templates being expanded.&lt;br/&gt;
+
+&lt;u&gt;Newly created template documentation and imports&lt;/u&gt;&lt;br/&gt;
+Another option, especially for imported templates, or for users with JSON experience, is placing raw &lt;nowiki&gt;&lt;templatedata&gt;&lt;/nowiki&gt;-tags into the Wikitext or the template as described in various Wikipediae.
+
+&lt;u&gt;Discussion&lt;/u&gt;&lt;br/&gt;
+[[Commons:Requests for comment/How Commons should deal with TemplateData|There is an ongoing discussion about that matter. Feel invited to comment if you are experienced in either way, your time permits and if you like to share your opinion or to make a suggestion.]]
+|help=Wikipedia's help about TemplateData
+|helppage=:en:Wikipedia:VisualEditor/TemplateData/Tutorial
+|info=Commons-specific information
+|lang=en
+}}&lt;/onlyinclude&gt;
+
+{{translated tag|header}}</text>
+      <sha1>nazxey9rfup93mohpew2i8p683zegqi</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:TemplateDataInfo/layout</title>
+    <ns>10</ns>
+    <id>27740177</id>
+    <revision>
+      <id>103230265</id>
+      <parentid>102098148</parentid>
+      <timestamp>2013-09-02T08:56:33Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>amending</comment>
+      <text xml:space="preserve" bytes="598">&lt;onlyinclude&gt;&lt;div class=&quot;ui-state-highlight commons-template-TemplateDataInfo&quot; style=&quot;padding:0 .5em;&quot;&gt;
+&lt;div style=&quot;font-size: 120%; float:{{dir|{{int:lang}}|left|right}}; font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif&quot;&gt;&lt;nowiki&gt;&lt;templatedata&gt;JSON&lt;/templatedata&gt;&lt;/nowiki&gt; ./. {{tl|TemplateBox}}&lt;/div&gt;
+;{{{title}}}
+{{{text}}}
+----
+[[{{{helppage|:en:Wikipedia:VisualEditor/TemplateData/Tutorial}}}|{{{help}}}]] • [[Special:MyLanguage/Commons:TemplateData|Commons-specific information]]
+&lt;/div&gt;&lt;/onlyinclude&gt;</text>
+      <sha1>31dw5ulamoacawdolypuu3ordz5cewb</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:TemplateDataInfo/toggler</title>
+    <ns>10</ns>
+    <id>28276687</id>
+    <revision>
+      <id>104290402</id>
+      <parentid>104290206</parentid>
+      <timestamp>2013-09-14T10:45:02Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>Protected Template:TemplateDataInfo/toggler: [[Commons:Protection policy|Widely used template]]: used in [[Template:TemplateBox]] ([Edit=Allow only administrators] (indefinite) [Move=Allow only administrators] (indefinite))</comment>
+      <text xml:space="preserve" bytes="354">&lt;onlyinclude&gt;&lt;div class=&quot;mw-collapsible mw-collapsed&quot;&gt;
+&lt;div class=&quot;mw-collapsible-toggle&quot; style=&quot;cursor:pointer&quot; title=&quot;Information about TemplateData&quot;&gt;{{Clickable button|iconPrimary=ui-icon-help|target={{FULLPAGENAME}}}}&lt;/div&gt;
+&lt;div class=&quot;mw-collapsible-content&quot;&gt;{{autotranslate|base=TemplateDataInfo/i18n}}&lt;/div&gt;
+&lt;/div&gt;&lt;/onlyinclude&gt;
+
+{{documentation}}</text>
+      <sha1>f9ojjn34kez6kzq611a3ei3m0uh40v8</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Template:Tl</title>
+    <ns>10</ns>
+    <id>27412850</id>
+    <revision>
+      <id>100722249</id>
+      <parentid>100579077</parentid>
+      <timestamp>2013-07-26T20:11:35Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>from [[Template:User Sarang/Sandbox]] // per request on my talk page // diff=100714618&amp;oldid=100579197</comment>
+      <text xml:space="preserve" bytes="434">{{#switch:{{{incl}}}|1=&amp;#123;|2=|&amp;#123;&amp;#123;}}[[:{{#if:{{{3|{{{lang|}}}}}}|{{{3|{{{lang}}}}}}:}}{{ns:10}}:{{#if:{{{1|}}}|{{{1}}}|Tl}}|{{#switch:{{{incl}}}|1=&amp;#123;|2=&amp;#123;&amp;#123;}}{{#if:{{{code|}}}|&lt;code&gt;}}{{#if:{{{2|}}}|{{{2}}}|{{#if:{{{1|}}}|{{{1}}}|Tl}}}}{{{parm|}}}{{#if:{{{code|}}}|&lt;/code&gt;}}{{#switch:{{{incl}}}|1=&amp;#125;|2=&amp;#125;&amp;#125;}}]]{{#switch:{{{incl}}}|1=&amp;#125;|2=|&amp;#125;&amp;#125;}}&lt;noinclude&gt;
+{{documentation}}
+&lt;/noinclude&gt;</text>
+      <sha1>kuwht3k13d09doyg7cgc93r3r2fo24z</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Module:Fallback</title>
+    <ns>828</ns>
+    <id>29733575</id>
+    <revision>
+      <id>125613303</id>
+      <parentid>125611691</parentid>
+      <timestamp>2014-06-02T18:55:31Z</timestamp>
+      <contributor>
+        <username>Jarekt</username>
+        <id>164349</id>
+      </contributor>
+      <comment>autotranslate: allow passing non-numeric arguments, if call made through {{#invoke}} (try #3: this time with support of pages outside of template namespace)</comment>
+      <text xml:space="preserve" bytes="5095">local p = {}
+
+local langlist = require('Module:Fallbacklist')
+
+function p.fblist(lang) -- list the full fallback chain from a language to en
+	local fbtable = p.fallbackloop{ lang:lower() }
+	table.insert(fbtable, 'default')
+	table.insert(fbtable, 'en')
+	return fbtable
+end
+
+function _inArray(x, t)
+	for i, v in ipairs(t) do
+		if v == x then return i end
+	end
+	return -1
+end
+
+function p.fallbackloop(fbtable)  --list of fallback languages in string format (more convenient than tables)
+	local changes = false
+	for i, j in ipairs(fbtable) do
+		local seq = langlist[j]
+		if seq then
+			for k, l in ipairs(seq) do
+				if _inArray(l, fbtable) == -1 then
+					table.insert(fbtable, l)
+					changes = true
+				end
+			end
+		end
+	end
+	if changes then
+		return p.fallbackloop(fbtable)
+	end
+	return fbtable
+end
+
+function p._langSwitch(args, lang) -- args: table of translations
+	-- Return error if there is not default and no english version
+	if not args.en and not args.default and args.nocat ~= '1' then
+		return '&lt;strong class=&quot;error&quot;&gt;LangSwitch Error: no default&lt;/strong&gt;[[Category:LangSwitch template without default version]]' 
+	end
+	-- get language (either stated one or user's default language)
+	if not lang then
+		return '&lt;strong class=&quot;error&quot;&gt;LangSwitch Error: no lang&lt;/strong&gt;' -- must become proper error
+	end
+	-- get the list of accpetable language (lang + those in lang's fallback chain) and check their content
+	local parselist = p.fblist(lang)
+	for i, k in ipairs(parselist) do 
+		if args[k] == '~' then return '' end
+		if args[k] and args[k] ~= '' then return args[k] end
+	end
+end
+
+function p.langSwitch(frame) -- version to be used from wikitext
+	args = frame.args
+	-- if no expected args provided than check parent template/module args
+	if args.en==nil and args.default==nil and args.nocat==nil then
+		args = mw.getCurrentFrame():getParent().args 
+	end
+	if args.lang and args.lang ~= '' then
+		lang = args.lang
+		args.lang = nil
+	else -- get user's chosen language 
+		lang = frame:preprocess( &quot;{{int:lang}}&quot; )
+	end
+	return p._langSwitch(args, lang)
+end
+
+function p.fallbackpage(base, lang, formatting)
+	local languages = p.fblist(lang) 
+	for i, lng in ipairs(languages) do
+		if mw.title.new(base .. '/' .. lng).exists then
+			if formatting == 'table' then
+				return {base .. '/' .. lng, lng} -- returns name of the page + name of the language
+			else
+				return base .. '/' .. lng -- returns only the page
+			end
+		end
+	end
+end
+
+function p.autotranslate(frame) -- logic for [[template:Autotranslate]]
+	local args = frame.args
+	if not args.lang or args.lang == '' then
+		args.lang = frame:preprocess( &quot;{{int:lang}}&quot; )           -- get user's chosen language 
+	end
+ 
+	-- find base page
+	local base = args.base
+	if not base or base == '' then
+		return '&lt;strong class=&quot;error&quot;&gt;Base page not provided for autotranslate&lt;/strong&gt;' 
+	end
+	if string.sub(base,2,9) ~= 'emplate:' then
+		base = 'Template:' .. base   -- base provided without 'Template:' part 
+	end
+ 
+	-- find base template language subpage
+	local page = p.fallbackpage(base, args.lang) -- 
+	if (not page and base ~= args.base) then 
+		-- try the original args.base string. This case is only needed if base is not in template namespace 
+		page = p.fallbackpage(args.base, args.lang) 
+	end
+	if not page then
+		return string.format('&lt;strong class=&quot;error&quot;&gt;no fallback page found for autotranslate (base=[[%s]], lang=%s)&lt;/strong&gt;', args.base, args.lang)
+	end
+ 
+        -- repack args in a standard table
+	newargs = {}
+	for field, value in pairs(args) do
+		if field ~= 'base' then
+			newargs[field] = value;
+		end
+	end
+ 
+	-- Transclude {{page |....}} with template arguments the same as the ones passed to {{autotranslate}} template.
+        return frame:expandTemplate{ title = page, args = newargs }
+end
+
+function p.translatelua(frame)
+	local lang = frame.args.lang
+	local page = require('Module:' .. mw.text.trim(frame.args[1])) -- page should only contain a simple of translations
+	if not lang or mw.text.trim(lang) == '' then
+		lang = frame:preprocess( &quot;{{int:lang}}&quot; )
+	end
+	if frame.args[2] then
+		page = page[mw.text.trim(frame.args[2])]
+	end
+	return p._langSwitch(page, lang)
+end
+
+function p.runTests()
+	local toFallbackTest = require('Module:Fallback/tests/fallbacks')
+	local result = true
+
+	mw.log('Testing fallback chains')
+	for i, t in ipairs(toFallbackTest) do
+		local fbtbl = table.concat(p.fblist(t.initial), ', ')
+		local expected = table.concat(t.expected, ', ')
+		local ret = (fbtbl == expected)
+		mw.log(i, ret and 'passed' or 'FAILED', t.initial, (not ret) and ('FAILED\nis &gt;&gt;' .. fbtbl .. '&lt;&lt;\nbut should be &gt;&gt;' .. expected .. '&lt;&lt;\n') or '')
+		result = result and ret
+	end
+	
+	return result
+end
+
+function p.showTemplateArguments(frame)
+-- list all input arguments of the template that calls &quot;{{#invoke:Fallback|showTemplateArguments}}&quot;
+	local str = ''
+	for name, value in pairs( mw.getCurrentFrame():getParent().args ) do
+		if str=='' then
+			str = string.format('%s=%s', name, value)          -- argument #1
+		else
+			str = string.format('%s, %s=%s', str, name, value) -- the rest
+		end
+	end
+	return str
+end
+
+return p</text>
+      <sha1>5axdehna0wz2pp3u335pz05s6vo6av7</sha1>
+      <model>Scribunto</model>
+      <format>text/plain</format>
+    </revision>
+  </page>
+  <page>
+    <title>Module:Fallbacklist</title>
+    <ns>828</ns>
+    <id>29773345</id>
+    <revision>
+      <id>113908612</id>
+      <parentid>110522231</parentid>
+      <timestamp>2014-01-13T18:43:39Z</timestamp>
+      <contributor>
+        <username>Ahonc</username>
+        <id>26615</id>
+      </contributor>
+      <minor/>
+      <comment>+be</comment>
+      <text xml:space="preserve" bytes="10363">return {
+
+ -- crh (Crimean Tatar) cluster: crh-cyrl , crh-latn -&gt; crh (Crimean Tatar)
+ ['crh']        = {'crh-latn'},
+ ['crh-cyrl']   = {'crh'}, 
+ ['crh-latn']   = {'crh'},
+ 
+ -- de (German) cluster:
+ ['als']        = {'gsw', 'de'},    -- Alemannisch
+ ['bar']        = {'de'},           -- Bavarian
+ ['de-at']      = {'de'},           -- Austrian German
+ ['de-ch']      = {'de'},           -- Swiss High German
+ ['de-formal']  = {'de'},           -- German (formal address)
+ ['dsb']        = {'de'},           -- Lower Sorbian
+ ['frr']        = {'de'},           -- Northern Frisian
+ ['hsb']        = {'de'},           -- Upper Sorbian
+ ['ksh']        = {'de'},           -- Colognian
+ ['lb']         = {'de'},           -- Luxembourgish
+ ['nds']        = {'nds-nl', 'de'}, -- Low German
+ ['nds-nl']     = {'nds', 'nl'},    -- Low Saxon (Netherlands)
+ ['pdc']        = {'de'},           -- Deitsch
+ ['pdt']        = {'nds', 'de'},    -- Plautdietsch
+ ['pfl']        = {'de'},           -- Pälzisch
+ ['sli']        = {'de'},           -- Lower Silesian
+ ['stq']        = {'de'},           -- Seeltersk
+ ['vmf']        = {'de'},           -- Upper Franconian
+ 
+ -- es (Spanish) cluster
+ ['an']         = {'es'},       -- Aragonese
+ ['arn']        = {'es'},       -- Mapuche
+ ['ay']         = {'es'},       -- Aymara
+ ['cbk-zam']    = {'es'},       -- Chavacano de Zamboanga
+ ['gn']         = {'es'},       -- Guarani
+ ['lad']        = {'es'},       -- Ladino
+ ['nah']        = {'es'},       -- Nahuatl
+ ['qu']         = {'es'},       -- Quechua
+ ['qug']        = {'qu', 'es'}, -- Runa shimi
+ 
+ -- et (Estonian) cluster
+ ['liv']         = {'et'},  -- Līvõ kēļ
+ ['vep']         = {'et'},  -- Veps
+ ['vro']         = {'et'},  -- Võro
+ ['fio-vro']     = {'vro'}, -- Võro
+
+ -- fa (Persian) cluster
+ ['bcc']        = {'fa'},  -- Southern Balochi
+ ['bqi']        = {'fa'},  -- Bakhtiari
+ ['ckb']        = {'fa'},  -- Sorani
+ ['glk']        = {'fa'},  -- Gilaki
+ ['mzn']        = {'fa'},  -- Mazandarani
+ 
+ -- fi (Finnish) cluster:
+ ['fit']        = {'fi'}, -- meänkieli
+ ['vot']        = {'fi'}, -- Votic
+ 
+ -- fr (French) cluster:
+ ['bm']         = {'fr'}, -- Bambara
+ ['br']         = {'fr'}, -- Breton
+ ['co']         = {'fr'}, -- Corsican
+ ['ff']         = {'fr'}, -- Fulah
+ ['frc']        = {'fr'}, -- Cajun French
+ ['frp']        = {'fr'}, -- Franco-Provençal
+ ['ht']         = {'fr'}, -- Haitian
+ ['ln']         = {'fr'}, -- Lingala
+ ['mg']         = {'fr'}, -- Malagasy
+ ['pcd']        = {'fr'}, -- Picard
+ ['sg']         = {'fr'}, -- Sango
+ ['ty']         = {'fr'}, -- Tahitian
+ ['wa']         = {'fr'}, -- Walloon
+ ['wo']         = {'fr'}, -- Wolof
+
+ -- hi (Hindi) cluster
+ ['anp']         = {'hi'}, -- Angika
+ ['may']         = {'hi'}, -- Maithili
+ ['sa']          = {'hi'}, -- Sanskrit
+
+ -- hif (Fiji Hindi) cluster: hif-deva , hif-latn -&gt; hif (Fiji Hindi)
+ ['hif']        = {'hif-latn'},
+ ['hif-deva']   = {'hif'}, 
+ ['hif-latn']   = {'hif'}, 
+ 
+ -- id (Indonesian) cluster
+ ['min']        = {'id'},       -- Minangkabau
+ ['ace']        = {'id'},       -- Achinese
+ ['bug']        = {'id'},       -- Buginese
+ ['bjn']        = {'id'},       -- Banjar
+ ['jv']         = {'id'},       -- Javanese
+ ['su']         = {'id'},       -- Sundanese
+ ['map-bms']    = {'jv', 'id'}, -- Basa Banyumasan
+ 
+ -- ike (Eastern Canadian Inuktitut) cluster: ike-cans , ike-latn -&gt; ike (Eastern Canadian Inuktitut)
+ ['ike-cans']   = {'ik'}, 
+ ['ike-latn']   = {'ik'}, 
+ 
+ -- it (Italian) cluster
+ ['egl']        = {'it'}, -- Emiliàn
+ ['eml']        = {'it'}, -- Emiliano-Romagnolo
+ ['fur']        = {'it'}, -- Friulian
+ ['lij']        = {'it'}, -- Ligure
+ ['lmo']        = {'it'}, -- lumbaart
+ ['nap']        = {'it'}, -- Neapolitan
+ ['pms']        = {'it'}, -- Piedmontese
+ ['rgn']        = {'it'}, -- Romagnol
+ ['scn']        = {'it'}, -- Sicilian
+ ['vec']        = {'it'}, -- vèneto
+ 
+ -- kk (Kazakh) cluster:
+ -- kk-arab , kk-cyrl , kk-latn , kk-cn , kk-kz , kk-tr -&gt; kk (Kazakh)
+ ['kk']         = {'kk-cyrl'},                  -- Kazakh
+ ['kk-arab']    = {'kk-cyrl', 'kk'},            -- Kazakh (Arabic script)
+ ['kk-cn']      = {'kk-arab', 'kk-cyrl', 'kk'}, -- Kazakh (China)
+ ['kk-cyrl']    = {'kk'},                       -- Kazakh (Cyrillic script)
+ ['kk-kz']      = {'kk', 'kk-cyrl'},            -- Kazakh (Kazakhstan)
+ ['kk-latn']    = {'kk'},                       -- Kazakh (Latin script)
+ ['kk-tr']      = {'kk-latn', 'kk'},            -- Kazakh (Turkey)
+ ['kaa']        = {'kk-latn', 'kk-cyrl'},       -- Kara-Kalpak
+ 
+ -- ku (Kurdish) cluster: ku-latn , ku-arab -&gt; ku (Kurdish)
+ ['ku']         = {'ku-latn'},
+ ['ku-arab']    = {'ckb', 'ku'},  -- كوردي (عەرەبی)
+ ['ku-latn']    = {'ku'}, 
+ 
+ -- nl (Dutch) cluster
+ ['af']         = {'nl'}, -- Afrikaans
+ ['fy']         = {'nl'}, -- Western Frisian
+ ['li']         = {'nl'}, -- Liechtenstein
+ ['nl-informal']= {'nl'}, -- Nederlands (informeel)
+ ['vls']        = {'nl'}, -- Vlaams
+ ['zea']        = {'nl'}, -- Zeeuws
+ 
+ --pl (Polish) cluster
+ ['csb']        = {'pl'}, -- Kashubian
+ ['szl']        = {'pl'}, -- Silesian
+ 
+ -- pt (Portuguese) cluster
+ ['gl']           = {'pt'},            -- Galician
+ ['mwl']          = {'pt'},            -- Mirandese
+ ['pt-br']        = {'pt'},            -- Brazilian Portuguese
+ 
+ -- ro (Romanian) cluster
+ ['mo']           = {'ro'},       -- Moldavian
+ ['rmy']          = {'ro'},       -- Romani
+ 
+ -- ru (Russian) cluster
+ ['ab']           = {'ru'},            -- Abkhazian
+ ['av']           = {'ru'},            -- Avaric
+ ['ba']           = {'ru'},            -- Bashkir
+ ['be-tarask']    = {'ru'},            -- Belorussian
+ ['ce']           = {'ru'},            -- Chechen
+ ['crh-cyrl']     = {'ru'},            -- Crimean Tatar (Cyrillic script)
+ ['cv']           = {'ru'},            -- Chuvash
+ ['inh']          = {'ru'},            -- Ingush
+ ['koi']          = {'ru'},            -- Komi-Permyak
+ ['krc']          = {'ru'},            -- Karachay-Balkar
+ ['kv']           = {'ru'},            -- Komi
+ ['lbe']          = {'ru'},            -- лакку
+ ['lez']          = {'ru'},            -- Lezghian
+ ['mhr']          = {'ru'},            -- Eastern Mari
+ ['mrj']          = {'ru'},            -- Hill Mari
+ ['myv']          = {'ru'},            -- Erzya
+ ['os']           = {'ru'},            -- Ossetic
+ ['rue']          = {'uk', 'ru'},      -- Rusyn
+ ['sah']          = {'ru'},            -- Sakha
+ ['tt']           = {'tt-cyrl', 'ru'}, -- Tatar
+ ['tt-cyrl']      = {'ru'},            -- Tatar (Cyrillic script)
+ ['udm']          = {'ru'},            -- Udmurt
+ ['uk']           = {'ru'},            -- Ukrainian
+ ['xal']          = {'ru'},            -- Kalmyk
+ 
+ -- ruq (Megleno Romanian) cluster: ruq-cyrl , ruq-grek , ruq-latn -&gt; ruq (Megleno Romanian)
+ ['ruq']        = {'ruq-latn'},   -- Megleno-Romanian
+ ['ruq-cyrl']   = {'ruq', 'mk'}, 
+ ['ruq-grek']   = {'ruq'}, 
+ ['rug-latn']   = {'ro', 'ruq'},  -- Megleno-Romanian (Latin script)
+ 
+ -- sr (Serbian) cluster: sr-ec , sr-el -&gt; sr (Serbian)
+ ['sr']         = {'sr-ec'},
+ ['sr-ec']      = {'sr'}, 
+ ['sr-el']      = {'sr'}, 
+  
+ -- tg (Tajik) cluster: tg-cyrl , tg-latn -&gt; tg (Tajik)
+ ['tg']         = {'tg-cyrl'},
+ ['tg-cyrl']    = {'tg'}, 
+ ['tg-latn']    = {'tg'}, 
+ 
+ -- tr (Turkish) cluster
+ ['gag']        = {'tr'}, -- Gagauz
+ ['kiu']        = {'tr'}, -- Kirmanjki
+ ['lzz']        = {'tr'}, -- Lazuri
+ 
+ -- tt (Tatar) cluster: tt-cyrl , tt-latn -&gt; tt (Tatar)
+ ['tt-cyrl']    = {'tt'}, 
+ ['tt-latn']    = {'tt'}, 
+
+ -- zh (Chinese) cluster
+ ['gan']          = {'gan-hant', 'zh-hant'},  -- Gan 
+ ['gan-hans']     = {'zh-hans'},              -- Simplified Gan script
+ ['gan-hant']     = {'zh-hant'},              -- Traditional Gan script
+ ['ii']           = {'zh-cn'},                -- Sichuan Yi
+ ['wuu']          = {'zh-hans'},              -- Wu
+ ['za']           = {'zh-hans'},              -- Zhuang
+ ['zh-hans']      = {'zh-cn', 'zh'},          -- Simplified Chinese
+ ['zh-hant']      = {'zh'},                   -- Traditional Chinese
+ ['zh']           = {'zh-hans'},          
+ ['zh-cn']        = {'zh-hans'},              -- Chinese (China)
+ ['zh-hk']        = {'zh-hant'},              -- Chinese (Hong Kong)
+ ['zh-mo']        = {'zh-hk', 'zh-hant'},     -- 中文（澳門）
+ ['zh-my']        = {'zh-sg', 'zh-hans'},     -- 中文（马来西亚）‎
+ ['zh-sg']        = {'zh-hans'},              -- Chinese (Singapore)
+ ['zh-tw']        = {'zh-hant'},              -- Chinese (Taiwan)
+ ['zh-classical'] = {'lzh'},                  -- Literary Chinese
+ ['zh-min-nan']   = {'nan'},                  -- Chinese (Min Nan) -&gt; Min Nan Chinese
+ ['zh-yue']       = {'yue'},                  -- ? Cantonese -&gt; Cantonese
+ 
+ ------------------------
+ --------- misc ---------
+ ------------------------
+ ['arz']        = {'ar'},            -- Egyptian Arabic -&gt; Arabic
+ ['be-x-old']   = {'be-tarask'},     -- be-x-old -&gt; be-tarask (wrong to correct Taraškievica form of Belarusian orthography)
+ ['bh']         = {'bho'},           -- Bihari -&gt; Bhojpuri
+ ['bpy']        = {'bn'},            -- Bishnupria Manipuri -&gt; Bengali
+ 
+ -- da
+ ['jut']        = {'da'},            -- Jutish -&gt; Danish
+ ['kl']         = {'da'},            -- Kalaallisut -&gt; Danish
+ 
+ ['en-gb']      = {'en'}, 
+ ['yi']         = {'he'},            -- Yiddish -&gt; Hebrew
+ ['iu']         = {'ike-cans'},      -- Inuktitut -&gt; Eastern Canadian (Aboriginal syllabics)
+ ['xmf']        = {'ka'},            -- Mingrelian -&gt; Georgian
+ ['kbd']        = {'kbd-cyrl'},      -- Kabardian -&gt; Адыгэбзэ
+ ['tcy']        = {'kn'},            -- Tulu -&gt; Kannada
+ ['ko-kp']      = {'ko'},            -- 한국어 (조선) -&gt; Korean
+ ['ks']         = {'ks-arab'},       -- Kashmiri -&gt; Kashmiri (Arabic script)
+ 
+ -- lt
+ ['bat-smg']    = {'sgs', 'lt'},     -- Samogitian -&gt; Lithuanian
+ ['sgs']    =     {'lt'},            -- Samogitian -&gt; Lithuanian
+
+ ['ltg']        = {'lv'},            -- Latvian -&gt; Latgalian
+ ['dtp']        = {'ms'},            -- Central Dusun -&gt; Malay
+ ['no']         = {'nb'},            -- Norwegian (bokmål) -&gt; Norwegian Bokmål
+ ['roa-rup']    = {'rup'},           -- ? Aromanian -&gt; Aromanian
+ ['aln']        = {'sq'},            -- Gheg Albanian -&gt; Albanian
+ ['ug']         = {'ug-arab'},       -- Uyghur -&gt; Uyghur (Arabic script)
+ ['khw']        = {'ur'},            -- Khowar -&gt; Urdu
+}</text>
+      <sha1>sc752jogobg53zdzbw7pq4t9d2fci38</sha1>
+      <model>Scribunto</model>
+      <format>text/plain</format>
+    </revision>
+  </page>
+  <page>
+    <title>Module:Languages</title>
+    <ns>828</ns>
+    <id>25826606</id>
+    <revision>
+      <id>116098570</id>
+      <parentid>116092930</parentid>
+      <timestamp>2014-02-10T15:35:41Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>[[:gerrit:110983]] - remove usage of [[Module:Link]]</comment>
+      <text xml:space="preserve" bytes="13340">--[=[
+Not globally exposed. Internal function only.
+
+language_subpages( frame, transform, options )
+Parameters
+    frame:     The frame that was passed to the method invoked. The first argument or the page argument will be respected.
+    transform: A transform function. Example: function( basepagename, subpagename, code, langname ) end
+    options:   An object with options. Example: { abort= { on=function() end, time=0.8 }  }
+        Following options are available:
+        abort: Aborts iterating over the subpages if one of the conditions is met. If the process is aborted, nil is returned!
+            on: Function to be called if an abort-condition was met.
+            cycles: The maximum number of subpages to run over.
+            time: Maximum time to spend running over the subpages.
+        
+]=]
+function language_subpages( frame, transform, options )
+    local args, pargs, options = frame.args, ( frame:getParent() or {} ).args or {}, options or {};
+    local title = args.page or args[1] or pargs.page or pargs[1] or &quot;&quot;;
+    local abort = options.abort or {};
+    local at, clock = type( abort.on ), os.clock();
+    local ac = function()
+        if  at == 'function' or ( at == 'table' and getmetatable(abort.on).__call ) then
+            abort.on();
+        end
+    end
+    local tt = type( transform );
+    local page = require( 'Module:Page' );
+    
+    title = page.clean(title);
+    
+    if tt == 'function' or ( tt == 'table' and getmetatable(transform).__call ) then
+        local fetch, pages, langcode, langname = mw.language.fetchLanguageName, {};
+        for pg in page.subpages( title, { ignoreNS=true } ) do
+            if abort.cycles then
+                abort.cycles = abort.cycles - 1
+                if 0 == abort.cycles then return ac()  end
+            end
+            if abort.time then
+                if (os.clock() - clock) &gt; abort.time then return ac()  end
+            end
+            if mw.ustring.len( pg ) &lt;= 12 then
+                langcode = string.lower( pg );
+                langname = fetch( langcode );
+                if langname ~= '' then
+                    table.insert( pages, transform( title, pg, langcode, langname ) );
+                end
+            end
+        end
+        return pages;
+    end
+    return {};
+end
+
+function cloneArgs(frame)
+    local args, pargs = {}, {}
+    for k,v in pairs( frame.args ) do args[k] = v end
+    if frame:getParent() then
+        for k,v in pairs( frame:getParent().args ) do pargs[k] = v end
+    end
+    return args, pargs;
+end
+
+
+
+local p = {};
+
+--[=[
+Usage:
+{{#invoke:languages|internal|Template:Adjective}}
+]=]
+function p.internal(frame)
+    pages = language_subpages( frame, function( title, page, code, name )
+        return mw.ustring.format( '&lt;span lang=&quot;%s&quot; xml:lang=&quot;%s&quot; class=&quot;language lang-%s&quot;&gt;&lt;bdi&gt;[[%s/%s|%s]]&lt;/bdi&gt;&lt;/span&gt;',
+            code, code, code, title, page, name
+        );
+    end);
+    return table.concat( pages, '&amp;nbsp;·&amp;nbsp;' );
+end
+
+--[=[
+Usage:
+{{#invoke:languages|external|Template:Adjective}}
+]=]
+function p.external(frame)
+    pages = language_subpages( frame, function( title, page, code, name )
+        return mw.ustring.format( '&lt;span lang=&quot;%s&quot; xml:lang=&quot;%s&quot; class=&quot;language lang-%s&quot;&gt;&lt;bdi&gt;[%s/%s %s]&lt;/bdi&gt;&lt;/span&gt;',
+            code, code, code, tostring( mw.uri.fullUrl( title ) ), page:gsub( ' ', '_' ), name
+        );
+    end);
+    return table.concat( pages, '&amp;nbsp;| ' );
+end
+
+--[=[ 
+forEachLanguage
+ 
+This function iterates over all language codes known to MediaWiki based on a maintained list
+replacing patterns in a pattern-string for each language
+ 
+Usage:
+{{#invoke:Languages|forEachLanguage
+  |pattern=patternstring
+  |before=string to insert before iteration
+  |after=string added after iteration
+  |sep=separator string between iterations
+  |inLang=langcode used for $lnTrP and $lnTrUC1
+}}
+ 
+Parameters
+    pattern: A pattern string which is processed for each language and which is concatenated at the end and returned as one string
+    before: A string that is inserted before the concatenated result
+    after: A string that is inserted after the concatenated result
+    sep: A string that is inserted between each line created from the pattern while iterating (like ProcessedPattern_sep_ProcessedPattern_sep_ProcessedPattern)
+    inLang: Langcode to use for $lnTrP and $lnTrUC1
+    
+Patterns:
+    $lc - language code such as en or de
+    $lnP - language name in own language
+    $lnUC1 - language name in own language, first letter upper case
+    $lnTrP - language name translated to the language requested by language code passed to inLang
+    $lnTrUC1 - language name translated to the language requested by language code passed to inLang, first letter upper case
+ 
+Example
+   {{#invoke:Languages|forEachLanguage|pattern=&lt;span lang=&quot;$lc&quot; xml:lang=&quot;$lc&quot; class=&quot;language lang-$lc&quot;&gt;[[Page/$lc|$lnP]]&lt;/span&gt;}}
+]=]
+
+-- =p.forEachLanguage({ args= { pattern = &quot;$lc - $lnTrP\n&quot;, inLang = &quot;en&quot; } })
+function p.forEachLanguage(frame)
+    local l = require( &quot;Module:Languages/List&quot; )
+    
+    local ret = {}
+    local lang    = mw.language
+    local contentLangInstance = mw.language.getContentLanguage()
+    local langInstance = contentLangInstance --Quota hit here otherwise
+    local fetch   = lang.fetchLanguageName
+    local line
+    local pattern = frame.args.pattern   or frame.args[1] or &quot;&quot;
+    local before  = frame.args.before    or frame.args[2] or &quot;&quot;
+    local after   = frame.args.after     or frame.args[3] or &quot;&quot;
+    local sep     = frame.args.sep       or frame.args.separator or frame.args[4] or &quot;&quot;
+    local inLang  = frame.args.inLang    or frame.args[5] or nil
+    local langName
+    local langNameUCFirst
+    local langNameTranslated
+    local langNameTranslatedUCFirst
+    
+    local langNameUCFirstReq = not not pattern:find( &quot;$lnUC1&quot;, 1, true )
+    local langNameReq = not not pattern:find( &quot;$lnP&quot;, 1, true ) or langNameUCFirstReq
+    local langNameTranslatedUCFirstReq = not not pattern:find( &quot;$lnTrUC1&quot;, 1, true )
+    local langNameTranslatedReq = not not pattern:find( &quot;$lnTrP&quot;, 1, true ) or langNameTranslatedUCFirstReq
+    
+    for k, v in pairs( l.list ) do
+         line = pattern:gsub( &quot;$lc&quot;, v )
+        
+        if langNameReq then
+            langName = fetch( v )
+            line = line:gsub( &quot;$lnP&quot;, langName )
+        end
+        if langNameUCFirstReq then
+            --langInstance = mw.getLanguage( v ) --Quota hit here
+            langNameUCFirst = langInstance:ucfirst( langName )
+            line = line:gsub( &quot;$lnUC1&quot;, langNameUCFirst )
+        end
+        if langNameTranslatedReq and inLang then
+            langNameTranslated = fetch( v, inLang )
+            line = line:gsub( &quot;$lnTrP&quot;, langNameTranslated )
+        end
+        if langNameTranslatedUCFirstReq and inLang then
+            --if not langInstance then langInstance = mw.getLanguage( v ) end --Quota hit here
+            langNameTranslatedUCFirst = langInstance:ucfirst( langNameTranslated )
+            line = line:gsub( &quot;$lnTrUC1&quot;, langNameTranslatedUCFirst )
+            --langInstance = nil
+        end
+       
+        -- Don't know why ret:insert( line ) throws  &gt;&gt;attempt to call method 'insert' (a nil value)&lt;&lt;
+        table.insert(ret, line)
+    end
+    return before .. table.concat( ret, sep ) .. after
+end
+
+--[=[
+ Provide logic for [[Template:Lle]] (Language Links external, to be substituted)
+]=]
+function p.lle(frame)
+    local ret
+    local pattern = &quot;{{&lt;includeonly/&gt;subst:#ifexist:{{{1}}}/$lc|[{{fullurl:{{{1}}}/$lc}} $lnUC1]&amp;nbsp;{{&lt;includeonly/&gt;subst:!}} &lt;!--\n--&gt;}}&quot;
+    ret = p.forEachLanguage({ args= { pattern = pattern } })
+    ret = frame:preprocess(ret)
+    return ret
+end
+
+--[=[
+ Provide logic for [[Template:Ll]] (Language Links, to be substituted)
+]=]
+function p.ll(frame)
+    local ret
+    local pattern = &quot;{{&lt;includeonly/&gt;subst:#ifexist:{{{1}}}/$lc|[[{{{1}}}/$lc{{&lt;includeonly/&gt;subst:!}}$lnUC1]]&amp;nbsp;{{&lt;includeonly/&gt;subst:!}} &lt;!--\n--&gt;}}&quot;
+    ret = p.forEachLanguage({ args= { pattern = pattern } })
+    ret = frame:preprocess(ret)
+    return ret
+end
+
+
+--------------------------------------------------------
+--- Different approaches for [[Template:Lang links]] ---
+--------------------------------------------------------
+
+--[=[
+ Provide logic for [[Template:Lang links]]
+ Using a cute Hybrid-Method:
+    First check the subpages which is quite fast; if there are too many fall back to checking for each language page individually
+]=]
+
+-- =p.langLinksNonExpensive({ args= { page='Commons:Picture of the Year/2010' }, getParent=function() end })
+-- =p.langLinksNonExpensive({ args= { page='Main Page' }, getParent=function() end })
+-- =p.langLinksNonExpensive({ args= { page='Template:No_source_since' }, getParent=function() end })
+-- =p.langLinksNonExpensive({ args= { page='MediaWiki:Gadget-HotCat' }, getParent=function() end })
+function p.langLinksNonExpensive(frame)
+    local args, pargs = frame.args, ( frame:getParent() or {} ).args or {};
+    local title = args.page or args[1] or pargs.page or pargs[1] or &quot;&quot;;
+    local contentLangInstance = mw.language.getContentLanguage();
+    local pages2
+    local options = { abort= { time=3.5, on=function() 
+            pages2 = p.forEachLanguage({ args= { pattern = '{{#ifexist:' .. title .. '/$lc|[[' .. title .. '/$lc|$lnUC1]]&amp;nbsp;&amp;#124;&amp;#32;}}' } })
+        end } }
+    local pages = language_subpages( frame, function( basepagename, subpagename, code, langname )
+        return mw.ustring.format( '&lt;span lang=&quot;%s&quot; xml:lang=&quot;%s&quot; class=&quot;language lang-%s&quot; style=&quot;white-space:nowrap&quot;&gt;&lt;bdi&gt;[[%s/%s|%s]]&lt;/bdi&gt;&lt;/span&gt;&amp;nbsp;| ',
+            code, code, code, basepagename, subpagename, contentLangInstance:ucfirst( langname ) )
+    end, options );
+    return pages2 and frame:preprocess(pages2) or table.concat(  pages, '' );
+end
+
+---------------------------------------------------------
+----------------- [[Template:Autolang]] -----------------
+---------------------------------------------------------
+--[[
+  Works like {{autotranslate}} just allowing an unlimited number of arguments, even named arguments.
+  It's doing Magic! No arguments should be passed to {{#invoke:}}
+]]
+
+function p.autolang(frame)
+    local args, pargs = cloneArgs( frame )
+    if nil == args.useargs then
+        if not args.base then args = pargs end
+    elseif 'both' == args.useargs then
+        for k,v in pairs(args) do pargs[k] = v end
+        args = pargs
+    elseif 'parent' == args.useargs then
+        args = pargs
+        if pargs.base and not args.base then
+            args.base = pargs.base
+        end
+    end
+    local base = args.base
+    local userlang = frame:preprocess( '{{int:lang}}' )
+    local tl, tlns = 'Template:', 10
+    local tlb, fallback1, currenttemplate
+    local fallback, contentlang = mw.text.split( userlang, '-', true )[1], mw.language.getContentLanguage():getCode()
+    
+    local createReturn = function(title) 
+        local ret
+        local tlargs = {}
+         -- When LUA is invoked, templates are already expanded. This must be respected.
+        return frame:expandTemplate{ title = title, args = args }
+    end
+    
+    if not base then
+        return (&quot;'autolang' in [[Module:Languages]] was called but the 'base' parameter could not be found.&quot; .. 
+            &quot;The base parameter specifies the template that's subpages will be sought for a suitable translation.&quot;)
+    end
+    tlb = tl .. base .. '/'
+    
+    currenttemplate = tlb .. userlang
+    if mw.title.new( currenttemplate, tlns ).exists then
+        return createReturn(currenttemplate)
+    end
+    
+    fallback1 = frame:preprocess( '{{Fallback|1=' .. base .. '|2=' .. userlang .. '}}' )
+    if fallback1 ~= contentlang then
+        return createReturn(tlb .. fallback1)
+    end
+    
+    currenttemplate = tlb .. fallback
+    if mw.title.new( currenttemplate, tlns ).exists then
+        return createReturn(currenttemplate)
+    end
+    
+    currenttemplate = tlb .. contentlang
+    if mw.title.new( currenttemplate, tlns ).exists then
+        return createReturn(currenttemplate)
+    end
+    return createReturn(tl .. base)
+end
+
+--[=[
+Usage:
+{{#invoke:languages|isKnownLanguageTag|gsw}} -&gt; 1
+{{#invoke:languages|isKnownLanguageTag|doesNotExist}} -&gt;
+]=]
+function p.isKnownLanguageTag(frame)
+	return mw.language.isKnownLanguageTag( frame.args[1] or frame.args.tag or frame.args.code or '' ) and '1' or ''
+end
+
+function p.file_languages(frame)
+    local M_link = require( 'Module:Link' )
+    local contentLangInstance = mw.language.getContentLanguage()
+    local pattern = frame.args.pattern or '%s (%s)'
+    local original = frame.args.original or mw.title.getCurrentTitle().text
+    local ext_start, _ = string.find( original, '\.%w+$' )
+    local file_ext = string.sub( original, ext_start )
+    original = string.sub( original, 0, ext_start-1 )
+    return frame:preprocess('&lt;gallery&gt;\n'..(table.concat(M_link.forEachLink( p.forEachLanguage( { args= { pattern = '[[$lc]]' } } ), 
+        function(linkInfo)
+            local filename = mw.ustring.format( pattern, original, linkInfo.text ) .. file_ext
+            if mw.title.new( filename, 6 ).exists then
+                return mw.ustring.format( '%s|%s', filename, contentLangInstance:ucfirst( mw.language.fetchLanguageName( linkInfo.text ) ) )
+            else
+                return nil
+            end
+        end
+    ), '\n'))..'\n&lt;/gallery&gt;')
+end
+
+return p;</text>
+      <sha1>isydfc6ay6wzmykxgd23fnwnlys5dst</sha1>
+      <model>Scribunto</model>
+      <format>text/plain</format>
+    </revision>
+  </page>
+  <page>
+    <title>Module:TemplateBox</title>
+    <ns>828</ns>
+    <id>27159292</id>
+    <revision>
+      <id>116093305</id>
+      <parentid>109999647</parentid>
+      <timestamp>2014-02-10T14:21:23Z</timestamp>
+      <contributor>
+        <username>Rillke</username>
+        <id>1178694</id>
+      </contributor>
+      <minor/>
+      <comment>[[:gerrit:110983]]</comment>
+      <text xml:space="preserve" bytes="21061">--[[
+    @exports
+        usagesample( frame )
+        argcount( frame )
+        args2table( args, onGetKey, forCustom )
+        paramtable( frame )
+        description( frame )
+        templatedata( frame )
+]]
+
+local p = {}
+
+-- Helper function, not exposed
+function tobool(st)
+    if type( st ) == 'string' then
+        return st == 'true'
+    else
+        return not not st
+    end
+end
+
+
+-- Required to determine in which languages the interface texts without langcode are
+local contentLangcode = mw.language.getContentLanguage():getCode()
+-- Forward declaration
+local msg, langIsInit, userLang
+local messagePrefix = &quot;templatedata-doc-&quot;
+local i18n = {}
+i18n['params'] = &quot;Template parameters&quot;
+i18n['param-name'] = &quot;Parameter&quot;
+i18n['param-desc'] = &quot;Description&quot;
+i18n['param-type'] = &quot;Type&quot;
+i18n['param-default'] = &quot;Default&quot;
+i18n['param-status'] = &quot;Status&quot;
+i18n['param-status-optional'] = &quot;optional&quot;
+i18n['param-status-required'] = &quot;required&quot;
+i18n['param-status-deprecated'] = &quot;deprecated&quot;
+i18n['param-default-empty'] = &quot;empty&quot;
+
+function initLangModule()
+    if langIsInit then
+        return
+    end
+
+    --! From [[:de:Modul:Expr]]; by [[:de:User:PerfektesChaos]]; 
+    --! Derivative work: Rillke
+    userLang = mw.getCurrentFrame():preprocess( '{{int:lang}}' )
+
+    msg = function( key )
+        -- Retrieve localized message string in content language
+        -- Precondition:
+        --     key  -- string; message ID
+        -- Postcondition:
+        --     Return some message string
+        -- Uses:
+        --     &gt;  messagePrefix
+        --     &gt;  i18n
+        --     &gt;  userLang
+        --     mw.message.new()
+        local m = mw.message.new( messagePrefix .. key )
+        local r = false
+        if m:isBlank() then
+            r = i18n[ key ]
+        else
+            m:inLanguage( userLang )
+            r = m:plain()
+        end
+        if not r then
+            r = '((('.. key .. ')))'
+        end
+        return r
+    end -- msg()
+    
+    langIsInit = true
+end
+
+-- A &quot;hash&quot; / table of everything TemplateData takes
+-- to ease maintenance.
+
+-- The type is automatically determined if t is omitted.
+-- If the type does not match or can't be converted, an error will be thrown!
+-- Available types (LUA-Types with exceptions): 
+--      InterfaceText, boolean, number, selection, table, string
+-- selection*: - requires a selection-string of pipe-separated possibilities to be supplied
+-- InterfaceText*: A free-form string (no wikitext) in the content-language of the wiki, or, 
+-- an object containing those strings keyed by language code.
+local paraminfoTemplate = {
+    description = {
+        default = '',
+        t = 'InterfaceText',
+        alias = 'desc'
+    }
+}
+local paraminfoTLParams = {
+    label = {
+        default = '',
+        t = 'InterfaceText'
+    },
+    required = {
+        default = false,
+        extract = function(pargs, number, paramVal)
+            local req = (pargs[number .. 'stat'] == 'required')
+            return tobool( paramVal or req )
+        end
+    },
+    description = {
+        default = '',
+        t = 'InterfaceText',
+        alias = 'd'
+    },
+    deprecated = {
+        default = false,
+        extract = function(pargs, number, paramVal)
+            local depr = (pargs[number .. 'stat'] == 'deprecated')
+            return tobool( paramVal or depr )
+        end
+    },
+    aliases = {
+        default = '',
+        t = 'table',
+        extract = function(pargs, number, paramVal)
+            local key = number .. 'aliases'
+            local tdkey = key .. '-td'
+            local aliases = pargs[tdkey] or pargs[key]
+            if aliases then
+                aliases = mw.text.split( aliases, '/', true )
+            end
+            return aliases
+        end
+    },
+    default = {
+        default = '',
+        t = 'string',
+        alias = 'def'
+    },
+    type = {
+        default = 'unknown',
+        t = 'selection',
+        selection = 'unknown|number|string|string/wiki-user-name|string/wiki-page-name|string/line'
+    },
+    inherits = {
+        default = nil,
+        t = 'string'
+    }
+    -- sets will be treated differently because we can only have a plain structure in wikitext
+}
+local tableLayout = {
+    {
+        col = 'param-name',
+        width = '15%',
+        extract = function(item, renderCell, monolingual)
+            local alias, param = '', item.key
+            local aliasTT = '&lt;tt style=&quot;color:#777; border:1px solid #6A6A6A&quot;&gt;'
+
+            param = '&lt;code&gt;' .. param .. '&lt;/code&gt;'
+            if item.aliases then
+                alias = aliasTT .. table.concat(item.aliases, '&lt;/tt&gt;&lt;br /&gt;' .. aliasTT) .. '&lt;/tt&gt;'
+                param = table.concat({param, '&lt;br /&gt;&lt;div&gt;', alias, '&lt;/div&gt;'})
+            end
+            renderCell(param, colspan)
+        end
+    },  {
+        col = 'param-desc',
+        cols = 2,
+        width = '65%',
+        extract = function(item, renderCell, monolingual)
+            local label = item.label or ''
+            label = monolingual(label)
+            local labelLen = #label
+            local colspan = 2 - labelLen
+        
+            if labelLen &gt; 0 then
+                renderCell(label)
+            end
+        
+            renderCell(monolingual(item.description), colspan)
+        end
+    },  {
+        col = 'param-default',
+        width = '10%',
+        extract = function(item, renderCell, monolingual)
+            local def = monolingual(item.default) or ''
+            if #def == 0 then
+                def = '&lt;span class=&quot;mw-templatedata-doc-muted&quot; style=&quot;color:#777; font-variant:small-caps&quot;&gt;' .. msg('param-default-empty') .. '&lt;/span&gt;'
+            end
+            renderCell(def)
+        end
+    },  {
+        col = 'param-status',
+        width = '10%',
+        extract = function(item, renderCell, monolingual)
+            local stat = msg('param-status-optional')
+            if item.required then
+                stat = '&lt;b&gt;' .. msg('param-status-required') .. '&lt;/b&gt;'
+            elseif item.deprecated then
+                stat = msg('param-status-deprecated')
+            end
+            renderCell(stat)
+        end
+    }
+}
+
+-- Initialize param info
+-- Avoids having to add redundant information to the preceding tables
+function init( which )
+    local setDefault = function(v)
+        if v.t == nil and v.default ~= nil then
+            v.t = type( v.default )
+        end
+        if v.selection then
+            v.selection = '|' .. v.selection .. '|'
+        end
+    end
+    for a, v in pairs( which ) do
+        setDefault(v)
+    end
+end
+function initParamTables()
+    init( paraminfoTemplate )
+    init( paraminfoTLParams )
+end
+
+------------------------------------------------------
+-------------------- USAGE PART ----------------------
+------------------------------------------------------
+function p.argcount( frame )
+    local pargs = ( frame:getParent() or {} ).args or {}
+    local ac = 0
+    for i, arg in pairs( pargs ) do
+        if ('number' == type(i)) then
+            ac = ac + 1
+        end
+    end
+    return ac
+end
+
+function p.usagesample( frame )
+    local pargs = ( frame:getParent() or {} ).args or {}
+    local multiline = (pargs.lines == 'multi' or pargs.print == 'multi' or pargs.print == 'infobox')
+    local align = pargs.print == 'infobox'
+    if not pargs.lines and not pargs.print and pargs.type == 'infobox' then
+        multiline = true
+        align = true
+    end
+    local sepStart = ' |'
+    local sepEnd = multiline  and '\n' or ''
+    local sep = sepEnd
+    local subst = #(pargs.mustbesubst or '') &gt; 0 and 'subst:' or ''
+    local beforeEqual = multiline  and ' ' or ''
+    local equal = beforeEqual .. '= '
+    local templateTitle = pargs.name or ''
+    local args, argName, result = {}
+    local maxArgLen, eachArg = 0
+    sep = sep .. sepStart
+    
+    local comapareLegacyVal = function(val)
+        return val == 'optional-' or val == 'deprecated'
+    end
+    local shouldShow = function(i)
+        if comapareLegacyVal(pargs[i .. 'stat']) or
+            comapareLegacyVal(pargs[i .. 'stat-td']) or
+            pargs[i .. 'deprecated'] == true then 
+                return false
+            end
+        return true
+    end
+    
+    eachArg = function(cb)
+        for i, arg in pairs( pargs ) do
+            if ('number' == type(i)) then
+                argName = mw.text.trim( arg or '' )
+                if #argName == 0 then
+                    argName = tostring(i)
+                end
+                
+                if shouldShow(i) then
+                    cb(argName)
+                end
+            end
+        end
+    end
+    
+    if align then
+        eachArg(function( arg )
+            local argL = #arg
+            maxArgLen = argL &gt; maxArgLen and argL or maxArgLen
+        end)
+    end
+    
+    eachArg(function( arg )
+        local space = ''
+        if align then
+            space = ('&amp;nbsp;'):rep(maxArgLen - #arg)
+        end
+        table.insert( args, argName .. space .. equal )
+    end)
+    
+    if #args == 0 then
+        sep = ''
+        sepEnd = ''
+        sepStart = ''
+    end
+    if #templateTitle == 0 then
+        templateTitle = mw.title.getCurrentTitle().text
+    end
+    result = table.concat( args, sep )
+    result = table.concat({ mw.text.nowiki('{{'), subst, templateTitle, sep, result, sepEnd, '}}' })
+    if multiline then
+        -- Preserve whitespace in front of new lines
+        result = frame:callParserFunction{ name = '#tag', args = { 'poem', result } }
+    end
+    return result
+end
+
+------------------------------------------------------
+------------------- GENERAL PART ---------------------
+------------------------------------------------------
+function p.args2table(args, onGetKey, consumer)
+    initParamTables()
+    
+    local sets, asParamArray, laxtype, processParams, processDesc
+    if 'paramtable' == consumer then
+        asParamArray = true
+        processParams = true
+        laxtype = true
+    elseif 'templatedata' == consumer then
+        sets = true
+        processParams = true
+        processDesc = true
+        unstrip = true
+    elseif 'description' == consumer then
+        processDesc = true
+        laxtype = true
+    end
+    -- All kind of strange stuff with the arguments is done, so play safe and make a copy
+    local pargs = mw.clone( args )
+    -- Array-like table containing all parameter-numbers that were passed
+    local templateArgs = {}
+    -- Arguments that are localized (i.e. the user passed  1desc-en=English description of parameter one)
+    local i18nTemplateArgs = {}
+    -- Ensure that tables end up as array/object (esp. when they are empty)
+    local tdata = {description=&quot;&quot;, params={}, sets={}}
+    local isArray  = { __tostring = function() return &quot;JSON array&quot;  end }    isArray.__index  = isArray
+    setmetatable(tdata.sets, isArray)
+    onGetKey = onGetKey or function( prefix, alias, param )
+        local key, key2, tdkey, tdkey2
+        key = prefix .. (alias or param)
+        key2 = prefix .. param
+        tdkey = key .. '-td'
+        tdkey2 = key2 .. '-td'
+        return tdkey, tdkey2, key, key2
+    end
+    
+    local extractData = function( pi, number )
+        local prefix = number or ''
+        local ppv, paramVal
+        local key1, key2, key3, key4
+        local paramKey, paramTable, processKey
+        if number then
+            paramKey = mw.text.trim( pargs[number] )
+            if '' == paramKey then
+                paramKey = tostring( number )
+            end
+            
+            paramTable = {}
+            if asParamArray then
+                paramTable.key = paramKey
+                table.insert(tdata.params, paramTable)
+            else
+                tdata.params[paramKey] = paramTable
+            end
+        end
+        for p, info in pairs( pi ) do
+            key1, key2, key3, key4 = onGetKey(prefix, info.alias, p)
+            paramVal = nil
+            
+            processKey = function(key)
+                if paramVal ~= nil then return end
+                local plain, multilingual = pargs[key], i18nTemplateArgs[key]
+                paramVal = multilingual or plain
+            end
+            processKey( key1 )
+            processKey( key2 )
+            processKey( key3 )
+            processKey( key4 )
+            
+            -- Ensure presence of entry in content language
+            ppv = pargs[key1] or pargs[key2] or pargs[key3] or pargs[key4] or info.default
+            if 'table' == type( paramVal ) then
+                if (nil == paramVal[contentLangcode]) then
+                    paramVal[contentLangcode] = ppv
+                end
+            else
+                paramVal = ppv
+            end
+
+            if 'function' == type( info.extract ) then
+                if 'string' == type( paramVal ) then
+                    paramVal = mw.text.trim( paramVal )
+                    if '' == paramVal then
+                        paramVal = nil
+                    end
+                end
+                paramVal = info.extract( pargs, number, paramVal )
+            end
+            
+            local insertValue = function()
+                if number then
+                    paramTable[p] = paramVal
+                else
+                    tdata[p] = paramVal
+                end
+            end
+            
+            if info.selection then
+                if info.selection:find( paramVal, 1, true ) then
+                    insertValue()
+                end
+            elseif 'InterfaceText' == info.t then
+                if ({ table=1, string=1 })[type( paramVal )] then
+                    insertValue()
+                end
+            else
+                local paramType = type( paramVal )
+                if 'string' == info.t and 'string' == paramType then
+                    paramVal = mw.text.trim( paramVal )
+                    if '' ~= paramVal then
+                        insertValue()
+                    end
+                elseif 'boolean' == info.t then
+                    paramVal = tobool(paramVal)
+                    insertValue()
+                elseif 'number' == info.t then
+                    paramVal = tonumber(paramVal)
+                    insertValue()
+                elseif paramType == info.t then
+                    insertValue()
+                elseif paramType == 'nil' then
+                    -- Do nothing
+                elseif not laxtype and 'string' == info.t and 'table' == paramType then
+                    -- Convert multilingual object into content language string
+                    paramVal = paramVal[contentLangcode]
+                    insertValue()
+                else
+                    if laxtype then
+                        insertValue()
+                    else
+                        error( p .. ': Is of type ' ..  paramType .. ' but should be of type ' .. (info.t or 'unknown'), 1 )
+                    end
+                end
+            end
+        end
+        -- Now, treat sets
+        if sets then
+            key1 = prefix .. 'set-td'
+            key2 = prefix .. 'set'
+            paramVal = pargs[key1] or pargs[key2]
+            if paramVal then
+                local found = false
+                for i, s in ipairs( tdata.sets ) do
+                    if s.label == paramVal then
+                        table.insert( s.params, p )
+                        found = true
+                    end
+                end
+                if not found then
+                    table.insert( tdata.sets, {
+                        label = paramVal, 
+                        params = { p }
+                    } )
+                end
+            end
+        end
+    end
+    
+    -- First, analyse the structure of the provided arguments
+    for a, v in pairs( pargs ) do
+        if unstrip then
+            v = mw.text.unstrip( v )
+            pargs[a] = v
+        end
+        if type( a ) == 'number' then
+            table.insert( templateArgs, a )
+        else
+            local argSplit = mw.text.split( a, '-', true )
+            local argUnitl = {}
+            local argAfter = {}
+            local isTDArg = false
+            local containsTD = a:find( '-td', 1, true )
+            for i, part in ipairs( argSplit ) do
+                if isTDArg or (containsTD == nil and i &gt; 1) then
+                    -- This is likely a language version
+                    table.insert( argAfter, part )
+                else
+                    table.insert( argUnitl, part )
+                end
+                if part == 'td' then
+                    isTDArg = true
+                end
+            end
+            if #argAfter &gt; 0 then
+                argUnitl = table.concat( argUnitl, '-' )
+                argAfter = table.concat( argAfter, '-' )
+                i18nTemplateArgs[argUnitl] = i18nTemplateArgs[argUnitl] or {}
+                i18nTemplateArgs[argUnitl][argAfter] = v
+            end
+        end
+    end
+    -- Then, start building the actual template
+    if processDesc then
+        extractData( paraminfoTemplate )
+    end
+    if processParams then
+        for i, number in pairs( templateArgs ) do
+            extractData( paraminfoTLParams, number )
+        end
+    end
+    return tdata, #templateArgs
+end
+
+
+
+------------------------------------------------------
+------------ CUSTOM PARAMETER TABLE PART -------------
+------------------------------------------------------
+
+-- A custom key-pref-function
+local customOnGetKey = function( prefix, alias, param )
+    local key, key2, tdkey, tdkey2
+    key = prefix .. (alias or param)
+    key2 = prefix .. param
+    tdkey = key .. '-td'
+    tdkey2 = key2 .. '-td'
+    return key2, key, tdkey2, tdkey
+end
+local toUserLanguage = function(input, frame)
+    if type(input) == 'table' then
+        input = frame:expandTemplate{ title = 'LangSwitch', args = input }
+    end
+    return input
+end
+
+function p.description(frame)
+    local pargs = ( frame:getParent() or {} ).args or {}
+    local tdata, paramLen
+    local monolingual = function(input)
+        return toUserLanguage(input, frame)
+    end
+    tdata, paramLen = p.args2table(pargs, customOnGetKey, 'description')
+    return monolingual(tdata.description)
+end
+
+
+function p.paramtable(frame)
+    local pargs = ( frame:getParent() or {} ).args or {}
+    local tdata, paramLen
+    
+    if 'only' == pargs.useTemplateData then
+        return 'param table - output suppressed'
+    end
+    
+    -- Initialize the language-related stuff
+    initLangModule()
+    local monolingual = function(input)
+        return toUserLanguage(input, frame)
+    end
+
+    tdata, paramLen = p.args2table(pargs, customOnGetKey, 'paramtable')
+    
+    
+    if 0 == paramLen then
+        return ''
+    end
+    
+    local row, rows = '', {}
+    local renderCell = function(wikitext, colspan)
+        local colspan, oTd = colspan or 1, '&lt;td&gt;'
+        if colspan &gt; 1 then
+            oTd = '&lt;td colspan=&quot;' .. colspan .. '&quot;&gt;'
+        end
+        row = table.concat({ row, oTd, wikitext, '&lt;/td&gt;' })
+    end
+    
+    -- Create the header
+    for i, field in ipairs( tableLayout ) do
+        local style = ' style=&quot;width:' .. field.width .. '&quot;'
+        local colspan = ''
+        if field.cols then
+            colspan = ' colspan=&quot;' .. field.cols .. '&quot;'
+        end
+        local th = '&lt;th' .. style .. colspan .. '&gt;'
+
+        row = row .. th .. msg(field.col) .. '&lt;/th&gt;'
+    end
+    table.insert(rows, row)
+    
+    -- Now transform the Lua-table into an HTML-table
+    for i, item in ipairs( tdata.params ) do
+        row = ''
+        for i2, field in ipairs( tableLayout ) do
+            field.extract(item, renderCell, monolingual)
+        end
+        table.insert(rows, row)
+    end
+    return '&lt;table class=&quot;wikitable templatebox-table&quot;&gt;&lt;tr&gt;' .. table.concat(rows, '&lt;/tr&gt;&lt;tr&gt;') .. '&lt;/tr&gt;&lt;/table&gt;'
+end
+
+
+------------------------------------------------------
+----------------- TEMPLATEDATA PART ------------------
+------------------------------------------------------
+
+-- A real parser/transformer would look differently but it would likely be much more complex
+-- The TemplateData-portion for [[Template:TemplateBox]]
+function p.templatedata(frame)
+    local tdata
+    local args = frame.args or {}
+    local formatting = args.formatting
+    local pargs = ( frame:getParent() or {} ).args or {}
+    local useTemplateData = pargs.useTemplateData
+
+    if  (formatting == 'pretty' and useTemplateData ~= 'export') or
+        (not useTemplateData) or
+        (useTemplateData == 'export' and formatting ~= 'pretty') then
+            local warning = &quot;Warning: Module:TemplateBox - templatedata invoked but not requested by user (setting useTemplateData=1).&quot;
+            mw.log(warning)
+            tdata = '{&quot;description&quot;:&quot;' .. warning .. '&quot;,&quot;params&quot;:{},&quot;sets&quot;:[]}'
+            return tdata
+    end
+    
+    -- Load the JSON-Module which will convert LUA tables into valid JSON
+    local JSON = require('Module:JSON')
+    JSON.strictTypes = true
+    -- Obtain the object containing info
+    tdata = p.args2table(pargs, nil, 'templatedata')
+    -- And finally return the result
+    if formatting == 'pretty' then
+        return JSON:encode_pretty(tdata)
+    else
+        return JSON:encode(tdata)
+    end
+end
+
+return p</text>
+      <sha1>qcncvuc9o8bjuxrmszom2q1wc4x7fpg</sha1>
+      <model>Scribunto</model>
+      <format>text/plain</format>
+    </revision>
+  </page>
+</mediawiki>

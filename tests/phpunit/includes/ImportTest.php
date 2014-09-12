@@ -3,9 +3,10 @@
 /**
  * Test class for Import methods.
  *
- * @group Database
+ * @group Import
  *
  * @author Sebastian Brückner < sebastian.brueckner@student.hpi.uni-potsdam.de >
+ * @author dan-nl
  */
 class ImportTest extends MediaWikiLangTestCase {
 
@@ -39,6 +40,46 @@ class ImportTest extends MediaWikiLangTestCase {
 		$importer->doImport();
 
 		$this->assertEquals( $redirectTitle, $redirect );
+	}
+
+	public function testUploadTemplateFromFile() {
+		$source = __DIR__ . '/../data/import/Template-Lang.xml';
+		$actual_titles = array();
+
+		$expected_titles = array(
+			'Template:Lang',
+			'Template:Autotranslate',
+			'Template:Clickable button',
+			'Template:Clickable button/iconclass',
+			'Template:Dir',
+			'Template:Documentation',
+			'Template:Documentation/en',
+			'Template:Documentation/layout',
+			'Template:Documentation subpage',
+			'Template:Fallback',
+			'Template:Lang/doc',
+			'Template:TemplateBox',
+			'Template:TemplateBox/i18n/en',
+			'Template:TemplateBox/layout',
+			'Template:TemplateDataInfo/i18n/en',
+			'Template:TemplateDataInfo/layout',
+			'Template:TemplateDataInfo/toggler',
+			'Template:Tl',
+			'Module:Fallback',
+			'Module:Fallbacklist',
+			'Module:Languages',
+			'Module:TemplateBox'
+		);
+
+		$callback = function ( $title ) use( &$actual_titles ) {
+			$actual_titles[] = $title->getPrefixedText();
+		};
+
+		$importer = new WikiImporter( $source );
+		$importer->setPageOutCallback( $callback );
+		$importer->doImport();
+
+		$this->assertArrayEquals( $expected_titles, $actual_titles );
 	}
 
 	public function getRedirectXML() {
