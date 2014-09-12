@@ -302,7 +302,33 @@ if ( !$wgCookiePrefix ) {
 }
 $wgCookiePrefix = strtr( $wgCookiePrefix, '=,; +."\'\\[', '__________' );
 
-$wgUseEnotif = $wgEnotifUserTalk || $wgEnotifWatchlist;
+if ( $wgEnableEmail ) {
+	$wgUseEnotif = $wgEnotifUserTalk || $wgEnotifWatchlist;
+} else {
+	// Disable all other email settings automatically if $wgEnableEmail
+	// is set to false. - bug 63678
+	$wgAllowHTMLEmail = false;
+	$wgEmailAuthentication = false; // do not require auth if you're not sending email anyway
+	$wgEnableUserEmail = false;
+	$wgEnotifFromEditor = false;
+	$wgEnotifImpersonal = false;
+	$wgEnotifMaxRecips = 0;
+	$wgEnotifMinorEdits = false;
+	$wgEnotifRevealEditorAddress = false;
+	$wgEnotifUseJobQ = false;
+	$wgEnotifUseRealName = false;
+	$wgEnotifUserTalk = false;
+	$wgEnotifWatchlist = false;
+	unset( $wgGroupPermissions['user']['sendemail'] );
+	$wgUseEnotif = false;
+	$wgUserEmailUseReplyTo = false;
+	$wgUsersNotifiedOnAllChanges = array();
+}
+
+// Doesn't make sense to have if disabled.
+if ( !$wgEnotifMinorEdits ) {
+	$wgHiddenPrefs[] = 'enotifminoredits';
+}
 
 if ( $wgMetaNamespace === false ) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
@@ -353,11 +379,6 @@ $wgContLanguageCode = $wgLanguageCode;
 if ( $wgUseFileCache || $wgUseSquid ) {
 	$wgShowIPinHeader = false;
 	$wgDebugToolbar = false;
-}
-
-// Doesn't make sense to have if disabled.
-if ( !$wgEnotifMinorEdits ) {
-	$wgHiddenPrefs[] = 'enotifminoredits';
 }
 
 // We always output HTML5 since 1.22, overriding these is no longer supported
@@ -600,26 +621,6 @@ $wgTitle = null;
  * @var array
  */
 $wgDeferredUpdateList = array();
-
-// Disable all other email settings automatically if $wgEnableEmail
-// is set to false. - bug 63678
-if ( !$wgEnableEmail ) {
-	$wgAllowHTMLEmail = false;
-	$wgEmailAuthentication = false; // do not require auth if you're not sending email anyway
-	$wgEnableUserEmail = false;
-	$wgEnotifFromEditor = false;
-	$wgEnotifImpersonal = false;
-	$wgEnotifMaxRecips = 0;
-	$wgEnotifMinorEdits = false;
-	$wgEnotifRevealEditorAddress = false;
-	$wgEnotifUseJobQ = false;
-	$wgEnotifUseRealName = false;
-	$wgEnotifUserTalk = false;
-	$wgEnotifWatchlist = false;
-	unset( $wgGroupPermissions['user']['sendemail'] );
-	$wgUserEmailUseReplyTo = false;
-	$wgUsersNotifiedOnAllChanges = array();
-}
 
 wfProfileOut( $fname . '-globals' );
 wfProfileIn( $fname . '-extensions' );
