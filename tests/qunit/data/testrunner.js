@@ -1,11 +1,10 @@
-/*global CompletenessTest */
+/*global CompletenessTest, sinon */
 /*jshint evil: true */
-( function ( $, mw, QUnit, undefined ) {
+( function ( $, mw, QUnit ) {
 	'use strict';
 
 	var mwTestIgnore, mwTester,
 		addons,
-		envExecCount,
 		ELEMENT_NODE = 1,
 		TEXT_NODE = 3;
 
@@ -64,6 +63,55 @@
 		tooltip: 'Run the completeness test'
 	} );
 
+	/**
+	 * SinonJS
+	 *
+	 * Glue code for nicer integration with QUnit setup/teardown
+	 * Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
+	 * Fixes:
+	 * - Work properly with asynchronous QUnit by using module setup/teardown
+	 *   instead of synchronously wrapping QUnit.test.
+	 */
+	sinon.assert.fail = function ( msg ) {
+		QUnit.assert.ok( false, msg );
+	};
+	sinon.assert.pass = function ( msg ) {
+		QUnit.assert.ok( true, msg );
+	};
+	sinon.config = {
+		injectIntoThis: true,
+		injectInto: null,
+		properties: ['spy', 'stub', 'mock', 'sandbox'],
+		// Don't fake timers by default
+		useFakeTimers: false,
+		useFakeServer: false
+	};
+	( function () {
+		var orgModule = QUnit.module;
+
+		QUnit.module = function ( name, localEnv ) {
+			localEnv = localEnv || {};
+			orgModule( name, {
+				setup: function () {
+					var config = sinon.getConfig( sinon.config );
+					config.injectInto = this;
+					sinon.sandbox.create( config );
+
+					if ( localEnv.setup ) {
+						localEnv.setup.call( this );
+					}
+				},
+				teardown: function () {
+					this.sandbox.verifyAndRestore();
+
+					if ( localEnv.teardown ) {
+						localEnv.teardown.call( this );
+					}
+				}
+			} );
+		};
+	}() );
+
 	// Initiate when enabled
 	if ( QUnit.urlParams.completenesstest ) {
 
@@ -109,20 +157,38 @@
 	 * </code>
 	 */
 	QUnit.newMwEnvironment = ( function () {
-		var log, liveConfig, liveMessages;
+		var warn, log, liveConfig, liveMessages;
 
 		liveConfig = mw.config.values;
 		liveMessages = mw.messages.values;
 
+		function suppressWarnings() {
+			warn = mw.log.warn;
+			mw.log.warn = $.noop;
+		}
+
+		function restoreWarnings() {
+			if ( warn !== undefined ) {
+				mw.log.warn = warn;
+				warn = undefined;
+			}
+		}
+
 		function freshConfigCopy( custom ) {
+			var copy;
 			// Tests should mock all factors that directly influence the tested code.
-			// For backwards compatibility though we set mw.config to a copy of the live config
-			// and extend it with the (optionally) given custom settings for this test
-			// (instead of starting blank with only the given custmo settings).
-			// This is a shallow copy, so we don't end up with settings taking an array value
-			// extended with the custom settings - setting a config property means you override it,
-			// not extend it.
-			return $.extend( {}, liveConfig, custom );
+			// For backwards compatibility though we set mw.config to a fresh copy of the live
+			// config. This way any modifications made to mw.config during the test will not
+			// affect other tests, nor the global scope outside the test runner.
+			// This is a shallow copy, since overriding an array or object value via "custom"
+			// should replace it. Setting a config property means you override it, not extend it.
+			// NOTE: It is important that we suppress warnings because extend() will also access
+			// deprecated properties and trigger deprecation warnings from mw.log#deprecate.
+			suppressWarnings();
+			copy = $.extend( {}, liveConfig, custom );
+			restoreWarnings();
+
+			return copy;
 		}
 
 		function freshMessagesCopy( custom ) {
@@ -149,19 +215,25 @@
 					// Greetings, mock environment!
 					mw.config.values = freshConfigCopy( localEnv.config );
 					mw.messages.values = freshMessagesCopy( localEnv.messages );
+					this.suppressWarnings = suppressWarnings;
+					this.restoreWarnings = restoreWarnings;
 
-					localEnv.setup();
+					localEnv.setup.call( this );
 				},
 
 				teardown: function () {
 					log( 'MwEnvironment> TEARDOWN for "' + QUnit.config.current.module
 						+ ': ' + QUnit.config.current.testName + '"' );
 
-					localEnv.teardown();
+					localEnv.teardown.call( this );
 
 					// Farewell, mock environment!
 					mw.config.values = liveConfig;
 					mw.messages.values = liveMessages;
+
+					// As a convenience feature, automatically restore warnings if they're
+					// still suppressed by the end of the test.
+					restoreWarnings();
 				}
 			};
 		};
@@ -314,14 +386,12 @@
 	 * Small test suite to confirm proper functionality of the utilities and
 	 * initializations defined above in this file.
 	 */
-	envExecCount = 0;
-	QUnit.module( 'mediawiki.tests.qunit.testrunner', QUnit.newMwEnvironment( {
+	QUnit.module( 'test.mediawiki.qunit.testrunner', QUnit.newMwEnvironment( {
 		setup: function () {
-			envExecCount += 1;
 			this.mwHtmlLive = mw.html;
 			mw.html = {
 				escape: function () {
-					return 'mocked-' + envExecCount;
+					return 'mocked';
 				}
 			};
 		},
@@ -337,7 +407,7 @@
 	} ) );
 
 	QUnit.test( 'Setup', 3, function ( assert ) {
-		assert.equal( mw.html.escape( 'foo' ), 'mocked-1', 'extra setup() callback was ran.' );
+		assert.equal( mw.html.escape( 'foo' ), 'mocked', 'setup() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object applied' );
 		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object applied' );
 
@@ -345,8 +415,7 @@
 		mw.messages.set( 'testMsg', 'Bar.' );
 	} );
 
-	QUnit.test( 'Teardown', 3, function ( assert ) {
-		assert.equal( mw.html.escape( 'foo' ), 'mocked-2', 'extra setup() callback was re-ran.' );
+	QUnit.test( 'Teardown', 2, function ( assert ) {
 		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object restored and re-applied after test()' );
 		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
 	} );
@@ -420,10 +489,10 @@
 
 	} );
 
-	QUnit.module( 'mediawiki.tests.qunit.testrunner-after', QUnit.newMwEnvironment() );
+	QUnit.module( 'test.mediawiki.qunit.testrunner-after', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Teardown', 3, function ( assert ) {
-		assert.equal( mw.html.escape( '<' ), '&lt;', 'extra teardown() callback was ran.' );
+		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
 		assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
 	} );

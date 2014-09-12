@@ -1,0 +1,33 @@
+// This is a separate file because importing the mixin causes
+// the keyframes blocks to be included in the output, regardless
+// of whether .rotation is used.
+@import "mediawiki.mixins.animation";
+
+.rotate-frames () {
+	from {
+		.transform-rotate(0deg);
+	}
+	to {
+		.transform-rotate(360deg);
+	}
+}
+
+@-webkit-keyframes rotate {
+	.rotate-frames;
+}
+
+@-moz-keyframes rotate {
+	.rotate-frames;
+}
+
+@-o-keyframes rotate {
+	.rotate-frames;
+}
+
+@keyframes rotate {
+	.rotate-frames;
+}
+
+.rotation( @time ) {
+	.animation(rotate, @time, infinite, linear);
+}

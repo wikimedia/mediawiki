@@ -112,6 +112,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 		// from a FormSpecialPage class.
 		$form->setWrapperLegend( false );
 
+		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
+
 		$i = 0;
 		if ( isset( $wgPasswordResetRoutes['username'] ) && $wgPasswordResetRoutes['username'] ) {
 			$i++;
@@ -276,7 +278,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		$title = $this->msg( 'passwordreset-emailtitle' );
 
-		$this->result = $firstUser->sendMail( $title->escaped(), $this->email->text() );
+		$this->result = $firstUser->sendMail( $title->text(), $this->email->text() );
 
 		if ( isset( $data['Capture'] ) && $data['Capture'] ) {
 			// Save the user, will be used if an error occurs when sending the email

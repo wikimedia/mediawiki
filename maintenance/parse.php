@@ -123,9 +123,9 @@ class CLIParser extends Maintenance {
 	 */
 	protected function parse( $wikitext ) {
 		return $this->parser->parse(
-			$wikitext
-			, $this->getTitle()
-			, new ParserOptions()
+			$wikitext,
+			$this->getTitle(),
+			new ParserOptions()
 		);
 	}
 }

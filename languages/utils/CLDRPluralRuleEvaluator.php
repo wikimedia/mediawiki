@@ -5,7 +5,7 @@
  * UTS #35 Revision 33
  * http://www.unicode.org/reports/tr35/tr35-33/tr35-numbers.html#Language_Plural_Rules
  *
- * @author Niklas Laxstrom, Tim Starling
+ * @author Niklas Laxström, Tim Starling
  *
  * @copyright Copyright © 2010-2012, Niklas Laxström
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0
@@ -36,8 +36,8 @@ class CLDRPluralRuleEvaluator {
 	 * Evaluate a number against a set of plural rules. If a rule passes,
 	 * return the index of plural rule.
 	 *
-	 * @param int The number to be evaluated against the rules
-	 * @param array The associative array of plural rules in pluralform => rule format.
+	 * @param int $number The number to be evaluated against the rules
+	 * @param array $rules The associative array of plural rules in pluralform => rule format.
 	 * @return int The index of the plural form which passed the evaluation
 	 */
 	public static function evaluate( $number, array $rules ) {
@@ -49,8 +49,8 @@ class CLDRPluralRuleEvaluator {
 	 * Convert a set of rules to a compiled form which is optimised for
 	 * fast evaluation. The result will be an array of strings, and may be cached.
 	 *
-	 * @param $rules The rules to compile
-	 * @return An array of compile rules.
+	 * @param array $rules The rules to compile
+	 * @return array An array of compile rules.
 	 */
 	public static function compile( array $rules ) {
 		// We can't use array_map() for this because it generates a warning if
@@ -65,16 +65,27 @@ class CLDRPluralRuleEvaluator {
 	 * Evaluate a compiled set of rules returned by compile(). Do not allow
 	 * the user to edit the compiled form, or else PHP errors may result.
 	 *
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 	 * @param string The number to be evaluated against the rules, in English, or it
 	 *   may be a type convertible to string.
 	 * @param array The associative array of plural rules in pluralform => rule format.
+=======
+	 * @param string $number The number to be evaluated against the rules, in English, or it
+	 *   may be a type convertible to string.
+	 * @param array $rules The associative array of plural rules in pluralform => rule format.
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 	 * @return int The index of the plural form which passed the evaluation
 	 */
 	public static function evaluateCompiled( $number, array $rules ) {
 		// Calculate the values of the operand symbols
 		$number = strval( $number );
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 		if ( !preg_match( '/^ -? ( ([0-9]+) (?: \. ([0-9]+) )? )$/x', $number,  $m ) ) {
 			wfDebug( __METHOD__.': invalid number input, returning "other"' );
+=======
+		if ( !preg_match( '/^ -? ( ([0-9]+) (?: \. ([0-9]+) )? )$/x', $number, $m ) ) {
+			wfDebug( __METHOD__ . ": invalid number input, returning 'other'\n" );
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 			return count( $rules );
 		}
 		if ( !isset( $m[3] ) ) {
@@ -131,11 +142,11 @@ class CLDRPluralRuleEvaluator {
 	/**
 	 * Do a single operation
 	 *
-	 * @param $token string The token string
-	 * @param $left The left operand. If it is an object, its state may be destroyed.
-	 * @param $right The right operand
+	 * @param string $token The token string
+	 * @param mixed $left The left operand. If it is an object, its state may be destroyed.
+	 * @param mixed $right The right operand
 	 * @throws CLDRPluralRuleError
-	 * @return mixed
+	 * @return mixed The operation result
 	 */
 	private static function doOperation( $token, $left, $right ) {
 		if ( in_array( $token, array( 'in', 'not-in', 'within', 'not-within' ) ) ) {
@@ -178,6 +189,7 @@ class CLDRPluralRuleEvaluator {
 			default:
 				throw new CLDRPluralRuleError( "Invalid RPN token" );
 		}
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 	}
 }
 
@@ -690,5 +702,7 @@ class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment 
 class CLDRPluralRuleError extends MWException {
 	function __construct( $message ) {
 		parent::__construct( 'CLDR plural rule error: ' . $message );
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 	}
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 <?php
 /**
  * XML syntax and type checker.
@@ -211,3 +212,5 @@ class XmlTypeCheck {
 		}
 	}
 }
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)

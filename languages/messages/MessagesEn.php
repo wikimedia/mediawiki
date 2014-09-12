@@ -363,6 +363,7 @@ $magicWords = array(
 	'numberingroup'           => array( 1,    'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'          => array( 1,    '__STATICREDIRECT__' ),
 	'protectionlevel'         => array( 1,    'PROTECTIONLEVEL' ),
+	'cascadingsources'        => array( 1,    'CASCADINGSOURCES' ),
 	'formatdate'              => array( 0,    'formatdate', 'dateformat' ),
 	'url_path'                => array( 0,    'PATH' ),
 	'url_wiki'                => array( 0,    'WIKI' ),
@@ -403,9 +404,11 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'CreateAccount' ),
 	'Deadendpages'              => array( 'DeadendPages' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
+	'Diff'                      => array( 'Diff' ),
 	'DoubleRedirects'           => array( 'DoubleRedirects' ),
 	'EditWatchlist'             => array( 'EditWatchlist' ),
 	'Emailuser'                 => array( 'EmailUser' ),
+	'ExpandTemplates'           => array( 'ExpandTemplates' ),
 	'Export'                    => array( 'Export' ),
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
 	'FileDuplicateSearch'       => array( 'FileDuplicateSearch' ),
@@ -420,6 +423,7 @@ $specialPageAliases = array(
 	'Listfiles'                 => array( 'ListFiles', 'FileList', 'ImageList' ),
 	'Listgrouprights'           => array( 'ListGroupRights', 'UserGroupRights' ),
 	'Listredirects'             => array( 'ListRedirects' ),
+	'ListDuplicatedFiles'       => array( 'ListDuplicatedFiles', 'ListFileDuplicates' ),
 	'Listusers'                 => array( 'ListUsers', 'UserList' ),
 	'Lockdb'                    => array( 'LockDB' ),
 	'Log'                       => array( 'Log', 'Logs' ),
@@ -457,11 +461,13 @@ $specialPageAliases = array(
 	'Redirect'                  => array( 'Redirect' ),
 	'ResetTokens'               => array( 'ResetTokens' ),
 	'Revisiondelete'            => array( 'RevisionDelete' ),
+	'RunJobs'                   => array( 'RunJobs' ),
 	'Search'                    => array( 'Search' ),
 	'Shortpages'                => array( 'ShortPages' ),
 	'Specialpages'              => array( 'SpecialPages' ),
 	'Statistics'                => array( 'Statistics' ),
 	'Tags'                      => array( 'Tags' ),
+	'TrackingCategories'        => array( 'TrackingCategories' ),
 	'Unblock'                   => array( 'Unblock' ),
 	'Uncategorizedcategories'   => array( 'UncategorizedCategories' ),
 	'Uncategorizedimages'       => array( 'UncategorizedFiles', 'UncategorizedImages' ),
@@ -495,6 +501,12 @@ $specialPageAliases = array(
 $linkTrail = '/^([a-z]+)(.*)$/sD';
 
 /**
+ * Regular expression charset matching the "link prefix", e.g. "foo" in
+ * foo[[bar]]. UTF-8 characters may be used.
+ */
+$linkPrefixCharset = 'a-zA-Z\\x{80}-\\x{10ffff}';
+
+/**
  * List of filenames for some ui images that can be overridden per language
  * basis if needed.
 */
@@ -506,7 +518,6 @@ $imageFiles = array(
 	'button-headline' => 'button_headline.png',
 	'button-image'    => 'button_image.png',
 	'button-media'    => 'button_media.png',
-	'button-math'     => 'button_math.png',
 	'button-nowiki'   => 'button_nowiki.png',
 	'button-sig'      => 'button_sig.png',
 	'button-hr'       => 'button_hr.png',
@@ -623,6 +634,7 @@ $preloadedMessages = array(
 	'whatlinkshere',
 );
 
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 # -------------------------------------------------------------------
 # Default messages
 # -------------------------------------------------------------------
@@ -5150,3 +5162,5 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'limitreport-expensivefunctioncount-value' => '$1/$2', # only translate this message to other languages if you have to change it
 
 );
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)

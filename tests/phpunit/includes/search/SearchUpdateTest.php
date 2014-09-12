@@ -26,10 +26,13 @@ class SearchUpdateTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgSearchType', 'MockSearch' );
 	}
 
-	function updateText( $text ) {
+	public function updateText( $text ) {
 		return trim( SearchUpdate::updateText( $text ) );
 	}
 
+	/**
+	 * @covers SearchUpdate::updateText
+	 */
 	public function testUpdateText() {
 		$this->assertEquals(
 			'test',
@@ -62,6 +65,10 @@ EOT
 		);
 	}
 
+	/**
+	 * @covers SearchUpdate::updateText
+	 * @todo give this test a real name explaining what is being tested here
+	 */
 	public function testBug32712() {
 		$text = "text „http://example.com“ text";
 		$result = $this->updateText( $text );

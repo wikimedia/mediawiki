@@ -1,0 +1,46 @@
+@import "mediawiki.mixins.rotation"
+
+/* Watch/Unwatch Icon Styling */
+#ca-unwatch.icon a,
+#ca-watch.icon a {
+	margin: 0;
+	padding: 0;
+	display: block;
+	width: 26px;
+	/* This hides the text but shows the background image */
+	padding-top: 3.1em;
+	margin-top: 0;
+	/* Only applied in IE6 */
+	margin-top: -0.8em !ie;
+	height: 0;
+	overflow: hidden;
+	background-position: 5px 60%;
+}
+#ca-unwatch.icon a {
+	.background-image-svg('images/unwatch-icon.svg', 'images/unwatch-icon.png');
+}
+#ca-watch.icon a {
+	.background-image-svg('images/watch-icon.svg', 'images/watch-icon.png');
+}
+#ca-unwatch.icon a:hover,
+#ca-unwatch.icon a:focus {
+	.background-image-svg('images/unwatch-icon-hl.svg', 'images/unwatch-icon-hl.png');
+}
+#ca-watch.icon a:hover,
+#ca-watch.icon a:focus {
+	.background-image-svg('images/watch-icon-hl.svg', 'images/watch-icon-hl.png');
+}
+#ca-unwatch.icon a.loading,
+#ca-watch.icon a.loading {
+	.background-image-svg('images/watch-icon-loading.svg', 'images/watch-icon-loading.png');
+	.rotation(700ms);
+	/* Suppress the hilarious rotating focus outline on Firefox */
+	outline: none;
+	background-position: 50% 60%;
+	-webkit-transform-origin: 50% 57%;
+	transform-origin: 50% 57%;
+}
+#ca-unwatch.icon a span,
+#ca-watch.icon a span {
+	display: none;
+}

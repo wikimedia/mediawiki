@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 /**
 * Experimental advanced wikitext parser-emitter.
 * See: http://www.mediawiki.org/wiki/Extension:UploadWizard/MessageParser for docs
@@ -1146,3 +1147,5 @@
 	};
 
 }( mediaWiki, jQuery ) );
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)

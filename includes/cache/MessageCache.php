@@ -110,6 +110,7 @@ class MessageCache {
 				$wgMsgCacheExpiry
 			);
 		}
+
 		return self::$instance;
 	}
 
@@ -123,7 +124,7 @@ class MessageCache {
 	}
 
 	/**
-	 * @param ObjectCache $memCached A cache instance. If none, fall back to CACHE_NONE.
+	 * @param BagOStuff $memCached A cache instance. If none, fall back to CACHE_NONE.
 	 * @param bool $useDB
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
 	 */
@@ -147,6 +148,7 @@ class MessageCache {
 			$this->mParserOptions = new ParserOptions;
 			$this->mParserOptions->setEditSection( false );
 		}
+
 		return $this->mParserOptions;
 	}
 
@@ -179,9 +181,11 @@ class MessageCache {
 				$serialized .= fread( $file, 100000 );
 			}
 			fclose( $file );
+
 			return unserialize( $serialized );
 		} else {
 			fclose( $file );
+
 			return false; // Wrong hash
 		}
 	}
@@ -201,6 +205,7 @@ class MessageCache {
 
 		if ( !$file ) {
 			wfDebug( "Unable to open local cache file for writing\n" );
+
 			return;
 		}
 
@@ -253,6 +258,7 @@ class MessageCache {
 				wfDebug( __METHOD__ . ": disabled\n" );
 				$shownDisabled = true;
 			}
+
 			return true;
 		}
 
@@ -415,6 +421,7 @@ class MessageCache {
 		$info = implode( ', ', $where );
 		wfDebug( __METHOD__ . ": Loading $code... $info\n" );
 		wfProfileOut( __METHOD__ );
+
 		return $success;
 	}
 
@@ -502,6 +509,7 @@ class MessageCache {
 		$cache['VERSION'] = MSG_CACHE_VERSION;
 		$cache['EXPIRY'] = wfTimestamp( TS_MW, time() + $this->mExpiry );
 		wfProfileOut( __METHOD__ );
+
 		return $cache;
 	}
 
@@ -517,6 +525,7 @@ class MessageCache {
 
 		if ( $this->mDisable ) {
 			wfProfileOut( __METHOD__ );
+
 			return;
 		}
 
@@ -584,6 +593,7 @@ class MessageCache {
 		if ( wfTimestampNow() >= $cache['EXPIRY'] ) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -617,6 +627,7 @@ class MessageCache {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $success;
 	}
 
@@ -689,7 +700,8 @@ class MessageCache {
 	 *                   "msg/lang".
 	 *
 	 * @throws MWException when given an invalid key
-	 * @return string|bool False if the message doesn't exist, otherwise the message (which can be empty)
+	 * @return string|bool False if the message doesn't exist, otherwise the
+	 *   message (which can be empty)
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLang;
@@ -716,17 +728,28 @@ class MessageCache {
 
 		// Normalise title-case input (with some inlining)
 		$lckey = strtr( $key, ' ', '_' );
-		if ( ord( $key ) < 128 ) {
+		if ( ord( $lckey ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
-			$uckey = ucfirst( $lckey );
 		} else {
 			$lckey = $wgContLang->lcfirst( $lckey );
+		}
+
+		wfRunHooks( 'MessageCache::get', array( &$lckey ) );
+
+		if ( ord( $lckey ) < 128 ) {
+			$uckey = ucfirst( $lckey );
+		} else {
 			$uckey = $wgContLang->ucfirst( $lckey );
 		}
 
 		// Loop through each language in the fallback list until we find something useful
 		$lang = wfGetLangObj( $langcode );
-		$message = $this->getMessageFromFallbackChain( $lang, $lckey, $uckey, !$this->mDisable && $useDB );
+		$message = $this->getMessageFromFallbackChain(
+			$lang,
+			$lckey,
+			$uckey,
+			!$this->mDisable && $useDB
+		);
 
 		// If we still have no message, maybe the key was in fact a full key so try that
 		if ( $message === false ) {
@@ -804,7 +827,8 @@ class MessageCache {
 			return $message;
 		}
 
-		list( $fallbackChain, $siteFallbackChain ) = Language::getFallbacksIncludingSiteLanguage( $langcode );
+		list( $fallbackChain, $siteFallbackChain ) =
+			Language::getFallbacksIncludingSiteLanguage( $langcode );
 
 		// Next try checking the database for all of the fallback languages of the requested language.
 		if ( $useDB ) {
@@ -897,11 +921,13 @@ class MessageCache {
 		if ( $entry ) {
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				$this->mCache[$code][$title] = $entry;
+
 				// The message exists, so make sure a string
 				// is returned.
 				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				$this->mCache[$code][$title] = '!NONEXISTENT';
+
 				return false;
 			} else {
 				# Corrupt/obsolete entry, delete it
@@ -983,6 +1009,7 @@ class MessageCache {
 			$this->mInParser = false;
 			$popts->setUserLang( $userlang );
 		}
+
 		return $message;
 	}
 
@@ -1003,6 +1030,7 @@ class MessageCache {
 				$this->mParser = clone $wgParser;
 			}
 		}
+
 		return $this->mParser;
 	}
 
@@ -1043,6 +1071,7 @@ class MessageCache {
 		$this->mInParser = false;
 
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -1085,6 +1114,7 @@ class MessageCache {
 		}
 
 		$message = implode( '/', $pieces );
+
 		return array( $message, $lang );
 	}
 
@@ -1109,6 +1139,7 @@ class MessageCache {
 		unset( $cache['EXPIRY'] );
 		// Remove any !NONEXISTENT keys
 		$cache = array_diff( $cache, array( '!NONEXISTENT' ) );
+
 		// Keys may appear with a capital first letter. lcfirst them.
 		return array_map( array( $wgContLang, 'lcfirst' ), array_keys( $cache ) );
 	}

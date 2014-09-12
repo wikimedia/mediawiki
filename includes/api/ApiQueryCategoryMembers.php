@@ -101,6 +101,22 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$dir,
 				$params['start'],
 				$params['end'] );
+			// Include in ORDER BY for uniqueness
+			$this->addWhereRange( 'cl_from', $dir, null, null );
+
+			if ( !is_null( $params['continue'] ) ) {
+				$cont = explode( '|', $params['continue'] );
+				$this->dieContinueUsageIf( count( $cont ) != 2 );
+				$op = ( $dir === 'newer' ? '>' : '<' );
+				$db = $this->getDB();
+				$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+				$continueFrom = (int)$cont[1];
+				$this->dieContinueUsageIf( $continueFrom != $cont[1] );
+				$this->addWhere( "cl_timestamp $op $continueTimestamp OR " .
+					"(cl_timestamp = $continueTimestamp AND " .
+					"cl_from $op= $continueFrom)"
+				);
+			}
 
 			$this->addOption( 'USE INDEX', 'cl_timestamp' );
 		} else {
@@ -180,11 +196,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$result = $this->getResult();
 		$count = 0;
 		foreach ( $rows as $row ) {
-			if ( ++ $count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				// TODO: Security issue - if the user has no right to view next title, it will still be shown
+			if ( ++$count > $limit ) {
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
+				// @todo Security issue - if the user has no right to view next
+				// title, it will still be shown
 				if ( $params['sort'] == 'timestamp' ) {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
+					$this->setContinueEnumParameter( 'continue', "$row->cl_timestamp|$row->cl_from" );
 				} else {
 					$sortkey = bin2hex( $row->cl_sortkey );
 					$this->setContinueEnumParameter( 'continue',
@@ -224,10 +242,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-						null, $vals );
+					null, $vals );
 				if ( !$fit ) {
 					if ( $params['sort'] == 'timestamp' ) {
-						$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->cl_timestamp ) );
+						$this->setContinueEnumParameter( 'continue', "$row->cl_timestamp|$row->cl_from" );
 					} else {
 						$sortkey = bin2hex( $row->cl_sortkey );
 						$this->setContinueEnumParameter( 'continue',
@@ -324,14 +342,16 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		global $wgMiserMode;
 		$p = $this->getModulePrefix();
 		$desc = array(
-			'title' => "Which category to enumerate (required). Must include Category: prefix. Cannot be used together with {$p}pageid",
+			'title' => "Which category to enumerate (required). Must include " .
+				"'Category:' prefix. Cannot be used together with {$p}pageid",
 			'pageid' => "Page ID of the category to enumerate. Cannot be used together with {$p}title",
 			'prop' => array(
 				'What pieces of information to include',
 				' ids           - Adds the page ID',
 				' title         - Adds the title and namespace ID of the page',
 				' sortkey       - Adds the sortkey used for sorting in the category (hexadecimal string)',
-				' sortkeyprefix - Adds the sortkey prefix used for sorting in the category (human-readable part of the sortkey)',
+				' sortkeyprefix - Adds the sortkey prefix used for sorting in the ' .
+					'category (human-readable part of the sortkey)',
 				' type          - Adds the type that the page has been categorised as (page, subcat or file)',
 				' timestamp     - Adds the timestamp of when the page was included',
 			),
@@ -341,10 +361,15 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'dir' => 'In which direction to sort',
 			'start' => "Timestamp to start listing from. Can only be used with {$p}sort=timestamp",
 			'end' => "Timestamp to end listing at. Can only be used with {$p}sort=timestamp",
-			'startsortkey' => "Sortkey to start listing from. Must be given in binary format. Can only be used with {$p}sort=sortkey",
-			'endsortkey' => "Sortkey to end listing at. Must be given in binary format. Can only be used with {$p}sort=sortkey",
-			'startsortkeyprefix' => "Sortkey prefix to start listing from. Can only be used with {$p}sort=sortkey. Overrides {$p}startsortkey",
-			'endsortkeyprefix' => "Sortkey prefix to end listing BEFORE (not at, if this value occurs it will not be included!). Can only be used with {$p}sort=sortkey. Overrides {$p}endsortkey",
+			'startsortkey' => "Sortkey to start listing from. Must be given in " .
+				"binary format. Can only be used with {$p}sort=sortkey",
+			'endsortkey' => "Sortkey to end listing at. Must be given in binary " .
+				"format. Can only be used with {$p}sort=sortkey",
+			'startsortkeyprefix' => "Sortkey prefix to start listing from. Can " .
+				"only be used with {$p}sort=sortkey. Overrides {$p}startsortkey",
+			'endsortkeyprefix' => "Sortkey prefix to end listing BEFORE (not at, " .
+				"if this value occurs it will not be included!). Can only be used with " .
+				"{$p}sort=sortkey. Overrides {$p}endsortkey",
 			'continue' => 'For large categories, give the value returned from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
@@ -357,6 +382,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				"Note that you can use {$p}type=subcat or {$p}type=file instead of {$p}namespace=14 or 6.",
 			);
 		}
+
 		return $desc;
 	}
 
@@ -391,7 +417,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all pages in a given category';
+		return 'List all pages in a given category.';
 	}
 
 	public function getPossibleErrors() {
@@ -405,8 +431,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&list=categorymembers&cmtitle=Category:Physics' => 'Get first 10 pages in [[Category:Physics]]',
-			'api.php?action=query&generator=categorymembers&gcmtitle=Category:Physics&prop=info' => 'Get page info about first 10 pages in [[Category:Physics]]',
+			'api.php?action=query&list=categorymembers&cmtitle=Category:Physics'
+				=> 'Get first 10 pages in [[Category:Physics]]',
+			'api.php?action=query&generator=categorymembers&gcmtitle=Category:Physics&prop=info'
+				=> 'Get page info about first 10 pages in [[Category:Physics]]',
 		);
 	}
 

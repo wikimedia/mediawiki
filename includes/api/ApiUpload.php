@@ -28,10 +28,7 @@
  * @ingroup API
  */
 class ApiUpload extends ApiBase {
-
-	/**
-	 * @var UploadBase
-	 */
+	/** @var UploadBase */
 	protected $mUpload = null;
 
 	protected $mParams;
@@ -95,7 +92,7 @@ class ApiUpload extends ApiBase {
 		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
 			// defer verification to background process
 		} else {
-			wfDebug( __METHOD__ . 'about to verify' );
+			wfDebug( __METHOD__ . " about to verify\n" );
 			$this->verifyUpload();
 		}
 
@@ -141,6 +138,7 @@ class ApiUpload extends ApiBase {
 			// Stash the file and get stash result
 			return $this->getStashResult( $warnings );
 		}
+
 		// This is the most common case -- a normal upload with no warnings
 		// performUpload will return a formatted properly for the API with status
 		return $this->performUpload( $warnings );
@@ -165,6 +163,7 @@ class ApiUpload extends ApiBase {
 		} catch ( MWException $e ) {
 			$this->dieUsage( $e->getMessage(), 'stashfailed' );
 		}
+
 		return $result;
 	}
 
@@ -185,6 +184,7 @@ class ApiUpload extends ApiBase {
 		} catch ( MWException $e ) {
 			$result['warnings']['stashfailed'] = $e->getMessage();
 		}
+
 		return $result;
 	}
 
@@ -217,6 +217,7 @@ class ApiUpload extends ApiBase {
 				$chunkPath, $chunkSize, $this->mParams['offset'] );
 			if ( !$status->isGood() ) {
 				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+
 				return array();
 			}
 		}
@@ -252,6 +253,7 @@ class ApiUpload extends ApiBase {
 				$status = $this->mUpload->concatenateChunks();
 				if ( !$status->isGood() ) {
 					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+
 					return array();
 				}
 
@@ -265,6 +267,7 @@ class ApiUpload extends ApiBase {
 		}
 		$result['filekey'] = $filekey;
 		$result['offset'] = $this->mParams['offset'] + $chunkSize;
+
 		return $result;
 	}
 
@@ -287,6 +290,7 @@ class ApiUpload extends ApiBase {
 			wfDebug( __METHOD__ . ' ' . $message . "\n" );
 			throw new MWException( $message );
 		}
+
 		return $fileKey;
 	}
 
@@ -341,6 +345,7 @@ class ApiUpload extends ApiBase {
 			}
 			unset( $progress['status'] ); // remove Status object
 			$this->getResult()->addValue( null, $this->getModuleName(), $progress );
+
 			return false;
 		}
 
@@ -357,6 +362,7 @@ class ApiUpload extends ApiBase {
 				$sessionData['sessionkey'] = $this->mParams['statuskey'];
 			}
 			$this->getResult()->addValue( null, $this->getModuleName(), $sessionData );
+
 			return false;
 		}
 
@@ -449,9 +455,9 @@ class ApiUpload extends ApiBase {
 		if ( $permission !== true ) {
 			if ( !$user->isLoggedIn() ) {
 				$this->dieUsageMsg( array( 'mustbeloggedin', 'upload' ) );
-			} else {
-				$this->dieUsageMsg( 'badaccess-groups' );
 			}
+
+			$this->dieUsageMsg( 'badaccess-groups' );
 		}
 	}
 
@@ -481,7 +487,7 @@ class ApiUpload extends ApiBase {
 				break;
 			case UploadBase::ILLEGAL_FILENAME:
 				$this->dieRecoverableError( 'illegal-filename', 'filename',
-						array( 'filename' => $verification['filtered'] ) );
+					array( 'filename' => $verification['filtered'] ) );
 				break;
 			case UploadBase::FILENAME_TOO_LONG:
 				$this->dieRecoverableError( 'filename-toolong', 'filename' );
@@ -521,15 +527,15 @@ class ApiUpload extends ApiBase {
 			case UploadBase::VERIFICATION_ERROR:
 				$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );
 				$this->dieUsage( 'This file did not pass file verification', 'verification-error',
-						0, array( 'details' => $verification['details'] ) );
+					0, array( 'details' => $verification['details'] ) );
 				break;
 			case UploadBase::HOOK_ABORTED:
 				$this->dieUsage( "The modification you tried to make was aborted by an extension hook",
-						'hookaborted', 0, array( 'error' => $verification['error'] ) );
+					'hookaborted', 0, array( 'error' => $verification['error'] ) );
 				break;
 			default:
 				$this->dieUsage( 'An unknown error occurred', 'unknown-error',
-						0, array( 'code' => $verification['status'] ) );
+					0, array( 'code' => $verification['status'] ) );
 				break;
 		}
 	}
@@ -565,10 +571,13 @@ class ApiUpload extends ApiBase {
 			if ( isset( $warnings['exists'] ) ) {
 				$warning = $warnings['exists'];
 				unset( $warnings['exists'] );
-				$localFile = isset( $warning['normalizedFile'] ) ? $warning['normalizedFile'] : $warning['file'];
+				$localFile = isset( $warning['normalizedFile'] )
+					? $warning['normalizedFile']
+					: $warning['file'];
 				$warnings[$warning['warning']] = $localFile->getName();
 			}
 		}
+
 		return $warnings;
 	}
 
@@ -587,7 +596,19 @@ class ApiUpload extends ApiBase {
 
 		/** @var $file File */
 		$file = $this->mUpload->getLocalFile();
-		$watch = $this->getWatchlistValue( $this->mParams['watchlist'], $file->getTitle() );
+
+		// For preferences mode, we want to watch if 'watchdefault' is set or
+		// if the *file* doesn't exist and 'watchcreations' is set. But
+		// getWatchlistValue()'s automatic handling checks if the *title*
+		// exists or not, so we need to check both prefs manually.
+		$watch = $this->getWatchlistValue(
+			$this->mParams['watchlist'], $file->getTitle(), 'watchdefault'
+		);
+		if ( !$watch && $this->mParams['watchlist'] == 'preferences' && !$file->exists() ) {
+			$watch = $this->getWatchlistValue(
+				$this->mParams['watchlist'], $file->getTitle(), 'watchcreations'
+			);
+		}
 
 		// Deprecated parameters
 		if ( $this->mParams['watch'] ) {
@@ -637,11 +658,10 @@ class ApiUpload extends ApiBase {
 						'result' => 'Queued',
 						'statuskey' => $error[0][1],
 					);
-				} else {
-					$this->getResult()->setIndexedTagName( $error, 'error' );
-
-					$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 				}
+
+				$this->getResult()->setIndexedTagName( $error, 'error' );
+				$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 			}
 			$result['result'] = 'Success';
 		}
@@ -729,16 +749,19 @@ class ApiUpload extends ApiBase {
 		$params = array(
 			'filename' => 'Target filename',
 			'token' => 'Edit token. You can get one of these through prop=info',
-			'comment' => 'Upload comment. Also used as the initial page text for new files if "text" is not specified',
+			'comment' => 'Upload comment. Also used as the initial page text for new ' .
+				'files if "text" is not specified',
 			'text' => 'Initial page text for new files',
 			'watch' => 'Watch the page',
-			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
+			'watchlist' => 'Unconditionally add or remove the page from your watchlist, ' .
+				'use preferences or do not change watch',
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
 			'url' => 'URL to fetch the file from',
 			'filekey' => 'Key that identifies a previous upload that was stashed temporarily.',
 			'sessionkey' => 'Same as filekey, maintained for backward compatibility.',
-			'stash' => 'If set, the server will not add the file to the repository and stash it temporarily.',
+			'stash' => 'If set, the server will not add the file to the repository ' .
+				'and stash it temporarily.',
 
 			'chunk' => 'Chunk contents',
 			'offset' => 'Offset of chunk in bytes',
@@ -752,7 +775,6 @@ class ApiUpload extends ApiBase {
 		);
 
 		return $params;
-
 	}
 
 	public function getResultProperties() {
@@ -797,7 +819,7 @@ class ApiUpload extends ApiBase {
 			' * Have the MediaWiki server fetch a file from a URL, using the "url" parameter',
 			' * Complete an earlier upload that failed due to warnings, using the "filekey" parameter',
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
-			'sending the "file". Also you must get and send an edit token before doing any upload stuff'
+			'sending the "file". Also you must get and send an edit token before doing any upload stuff.'
 		);
 	}
 
@@ -837,7 +859,8 @@ class ApiUpload extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png'
+			'api.php?action=upload&filename=Wiki.png' .
+			'&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png'
 				=> 'Upload from a URL',
 			'api.php?action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1'
 				=> 'Complete an upload that failed due to warnings',

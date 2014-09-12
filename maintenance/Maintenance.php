@@ -115,13 +115,6 @@ abstract class Maintenance {
 	public $fileHandle;
 
 	/**
-	 * List of all the core maintenance scripts. This is added
-	 * to scripts added by extensions in $wgMaintenanceScripts
-	 * and returned by getMaintenanceScripts()
-	 */
-	protected static $mCoreScripts = null;
-
-	/**
 	 * Default constructor. Children should call this *first* if implementing
 	 * their own constructors
 	 */
@@ -787,7 +780,6 @@ abstract class Maintenance {
 			$this->output( "\n" );
 		}
 
-
 		// Script specific parameters not defined on construction by
 		// Maintenance::addDefaultParams()
 		$scriptSpecificParams = array_diff_key(
@@ -1006,52 +998,6 @@ abstract class Maintenance {
 	 */
 	protected function getDir() {
 		return __DIR__;
-	}
-
-	/**
-	 * Get the list of available maintenance scripts. Note
-	 * that if you call this _before_ calling doMaintenance
-	 * you won't have any extensions in it yet
-	 * @return Array
-	 */
-	public static function getMaintenanceScripts() {
-		global $wgMaintenanceScripts;
-		return $wgMaintenanceScripts + self::getCoreScripts();
-	}
-
-	/**
-	 * Return all of the core maintenance scripts
-	 * @return array
-	 */
-	protected static function getCoreScripts() {
-		if ( !self::$mCoreScripts ) {
-			$paths = array(
-				__DIR__,
-				__DIR__ . '/language',
-				__DIR__ . '/storage',
-			);
-			self::$mCoreScripts = array();
-			foreach ( $paths as $p ) {
-				$handle = opendir( $p );
-				while ( ( $file = readdir( $handle ) ) !== false ) {
-					if ( $file == 'Maintenance.php' ) {
-						continue;
-					}
-					$file = $p . '/' . $file;
-					if ( is_dir( $file ) || !strpos( $file, '.php' ) ||
-						( strpos( file_get_contents( $file ), '$maintClass' ) === false ) ) {
-						continue;
-					}
-					require $file;
-					$vars = get_defined_vars();
-					if ( array_key_exists( 'maintClass', $vars ) ) {
-						self::$mCoreScripts[$vars['maintClass']] = $file;
-					}
-				}
-				closedir( $handle );
-			}
-		}
-		return self::$mCoreScripts;
 	}
 
 	/**
@@ -1274,9 +1220,9 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 		$db = $this->getDB( DB_MASTER );
 		$key = $this->getUpdateKey();
 
-		if ( !$this->hasOption( 'force' ) &&
-			$db->selectRow( 'updatelog', '1', array( 'ul_key' => $key ), __METHOD__ ) )
-		{
+		if ( !$this->hasOption( 'force' )
+			&& $db->selectRow( 'updatelog', '1', array( 'ul_key' => $key ), __METHOD__ )
+		) {
 			$this->output( "..." . $this->updateSkippedMessage() . "\n" );
 			return true;
 		}
@@ -1285,9 +1231,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return false;
 		}
 
-		if (
-			$db->insert( 'updatelog', array( 'ul_key' => $key ), __METHOD__, 'IGNORE' ) )
-		{
+		if ( $db->insert( 'updatelog', array( 'ul_key' => $key ), __METHOD__, 'IGNORE' ) ) {
 			return true;
 		} else {
 			$this->output( $this->updatelogFailedMessage() . "\n" );

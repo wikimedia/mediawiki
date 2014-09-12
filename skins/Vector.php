@@ -67,8 +67,8 @@ class SkinVector extends SkinTemplate {
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 
-		$styles = array( 'skins.vector' );
-		wfRunHooks( 'SkinVectorStyleModules', array( &$this, &$styles ) );
+		$styles = array( 'mediawiki.skinning.interface', 'skins.vector.styles' );
+		wfRunHooks( 'SkinVectorStyleModules', array( $this, &$styles ) );
 		$out->addModuleStyles( $styles );
 	}
 
@@ -167,6 +167,7 @@ class VectorTemplate extends BaseTemplate {
 				$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
 				$this->text( 'pageLanguage' );
 			?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
+			<?php $this->html( 'prebodyhtml' ) ?>
 			<div id="bodyContent">
 				<?php if ( $this->data['isarticle'] ) { ?>
 				<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
@@ -274,7 +275,7 @@ class VectorTemplate extends BaseTemplate {
 					$this->renderPortal( 'tb', $this->getToolbox(), 'toolbox', 'SkinTemplateToolboxEnd' );
 					break;
 				case 'LANGUAGES':
-					if ( $this->data['language_urls'] ) {
+					if ( $this->data['language_urls'] !== false ) {
 						$this->renderPortal( 'lang', $this->data['language_urls'], 'otherlanguages' );
 					}
 					break;
@@ -316,9 +317,12 @@ class VectorTemplate extends BaseTemplate {
 		</ul>
 <?php
 		} else { ?>
-		<?php echo $content; /* Allow raw HTML block to be defined by extensions */ ?>
-<?php
-		} ?>
+		<?php
+			echo $content; /* Allow raw HTML block to be defined by extensions */
+		}
+
+		$this->renderAfterPortlet( $name );
+		?>
 	</div>
 </div>
 <?php
@@ -428,22 +432,25 @@ class VectorTemplate extends BaseTemplate {
 <div id="p-search" role="search">
 	<h3<?php $this->html( 'userlangattributes' ) ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h3>
 	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
-		<?php if ( $wgVectorUseSimpleSearch && $this->getSkin()->getUser()->getOption( 'vector-simplesearch' ) ) { ?>
-		<div id="simpleSearch">
-			<?php if ( $this->data['rtl'] ) { ?>
-			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-rtl.png' ), 'width' => '12', 'height' => '13' ) ); ?>
-			<?php } ?>
-			<?php echo $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'text' ) ); ?>
-			<?php if ( !$this->data['rtl'] ) { ?>
-			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-ltr.png' ), 'width' => '12', 'height' => '13' ) ); ?>
-			<?php } ?>
+		<?php if ( $wgVectorUseSimpleSearch ) { ?>
+			<div id="simpleSearch">
 		<?php } else { ?>
-		<div>
-			<?php echo $this->makeSearchInput( array( 'id' => 'searchInput' ) ); ?>
-			<?php echo $this->makeSearchButton( 'go', array( 'id' => 'searchGoButton', 'class' => 'searchButton' ) ); ?>
-			<?php echo $this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton' ) ); ?>
+			<div>
 		<?php } ?>
-			<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
+			<?php
+			echo $this->makeSearchInput( array( 'id' => 'searchInput' ) );
+			echo Html::hidden( 'title', $this->get( 'searchtitle' ) );
+			// We construct two buttons (for 'go' and 'fulltext' search modes), but only one will be
+			// visible and actionable at a time (they are overlaid on top of each other in CSS).
+			// * Browsers will use the 'fulltext' one by default (as it's the first in tree-order), which
+			//   is desirable when they are unable to show search suggestions (either due to being broken
+			//   or having JavaScript turned off).
+			// * The mediawiki.searchSuggest module, after doing tests for the broken browsers, removes
+			//   the 'fulltext' button and handles 'fulltext' search itself; this will reveal the 'go'
+			//   button and cause it to be used.
+			echo $this->makeSearchButton( 'fulltext', array( 'id' => 'mw-searchButton', 'class' => 'searchButton mw-fallbackSearchButton' ) );
+			echo $this->makeSearchButton( 'go', array( 'id' => 'searchButton', 'class' => 'searchButton' ) );
+			?>
 		</div>
 	</form>
 </div>

@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Avjoska",
+            "Pikne"
+        ]
+    },
+    "ooui-dialog-action-close": "Sule",
+    "ooui-outline-control-move-down": "Liiguta üksust allapoole",
+    "ooui-outline-control-move-up": "Liiguta üksust ülespoole",
+    "ooui-outline-control-remove": "Eemalda üksus",
+    "ooui-toolbar-more": "Veel"
+}

@@ -78,7 +78,11 @@ usage evenly), make its entry a subarray:
 == PHP client for memcached ==
 
 MediaWiki uses a fork of Ryan T. Dean's pure-PHP memcached client.
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 The newer PECL module is supported.
+=======
+It also supports the PECL PHP extension for memcached.
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 
 MediaWiki uses three object for object caching:
 * $wgMemc, controlled by $wgMainCacheType
@@ -91,7 +95,7 @@ database. If the cache daemon can't be contacted, it should also
 disable itself fairly smoothly.
 
 By default, $wgMemc is used but when it is $parserMemc or $messageMemc
-this is mentionned below.
+this is mentioned below.
 
 == Keys used ==
 

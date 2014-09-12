@@ -108,17 +108,6 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value int
-	 * @param $exptime
-	 * @return Mixed
-	 */
-	public function replace( $key, $value, $exptime = 0 ) {
-		return $this->client->replace( $this->encodeKey( $key ), $value,
-			$this->fixExpiry( $exptime ) );
-	}
-
-	/**
 	 * Get the underlying client object. This is provided for debugging
 	 * purposes.
 	 */
@@ -179,9 +168,6 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * Send a debug message to the log
 	 */
 	protected function debugLog( $text ) {
-		if ( substr( $text, -1 ) !== "\n" ) {
-			$text .= "\n";
-		}
 		wfDebugLog( 'memcached', $text );
 	}
 }

@@ -157,15 +157,12 @@ dd {
 	margin-bottom: .1em;
 }
 
+/* IE 6 and 7 lack support for quotes aroud the <q> element ('::before' and '::after'
+   pseudoelements, 'quotes' property). Let's italicize it instead (using the star hack). */
 q {
-	font-family: Times, "Times New Roman", serif;
-	font-style: italic;
+	*font-style: italic;
 }
-/* Disabled for now
-blockquote {
-	font-family: Times, "Times New Roman", serif;
-	font-style: italic;
-}*/
+
 pre, code, tt, kbd, samp, .mw-code {
 	/*
 	 * Some browsers will render the monospace text too small, namely Firefox, Chrome and Safari.
@@ -210,6 +207,10 @@ form {
 textarea {
 	width: 100%;
 	padding: .1em;
+	display: block;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 select {
 	vertical-align: top;

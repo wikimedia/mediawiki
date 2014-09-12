@@ -179,7 +179,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @param string $text
 	 * @param string $title
 	 * @param string $model
-	 * @param null $format
+	 * @param string $format
 	 *
 	 * @return Revision
 	 */
@@ -325,7 +325,6 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedText, $rev->getRawText( $audience ) );
 	}
 
-
 	public function dataGetSize() {
 		return array(
 			array( "hello world.", CONTENT_MODEL_WIKITEXT, 12 ),
@@ -427,7 +426,6 @@ class RevisionTest extends MediaWikiTestCase {
 		$content2->setText( "bla bla" );
 		$this->assertEquals( "bar", $content->getText() ); // clones should be independent
 	}
-
 
 	/**
 	 * Tests whether $rev->getContent() returns the same object repeatedly if appropriate.

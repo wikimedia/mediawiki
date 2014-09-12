@@ -2,7 +2,7 @@
 define mw_prefix='{$wgDBprefix}';
 
 
-CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
+CREATE SEQUENCE user_user_id_seq;
 CREATE TABLE &mw_prefix.mwuser ( -- replace reserved word 'user'
   user_id                   NUMBER  NOT NULL,
   user_name                 VARCHAR2(255)     NOT NULL,
@@ -18,7 +18,8 @@ CREATE TABLE &mw_prefix.mwuser ( -- replace reserved word 'user'
   user_options              CLOB,
   user_touched              TIMESTAMP(6) WITH TIME ZONE,
   user_registration         TIMESTAMP(6) WITH TIME ZONE,
-  user_editcount            NUMBER
+  user_editcount            NUMBER,
+  user_password_expires     TIMESTAMP(6) WITH TIME ZONE
 );
 ALTER TABLE &mw_prefix.mwuser ADD CONSTRAINT &mw_prefix.mwuser_pk PRIMARY KEY (user_id);
 CREATE UNIQUE INDEX &mw_prefix.mwuser_u01 ON &mw_prefix.mwuser (user_name);
@@ -27,7 +28,8 @@ CREATE INDEX &mw_prefix.mwuser_i02 ON &mw_prefix.mwuser (user_email, user_name);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.mwuser
-  VALUES (user_user_id_seq.nextval,'Anonymous',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL, '', current_timestamp, current_timestamp, 0);
+  (user_id, user_name, user_options, user_touched, user_registration, user_editcount)
+  VALUES (0,'Anonymous','', current_timestamp, current_timestamp,0);
 
 CREATE TABLE &mw_prefix.user_groups (
   ug_user   NUMBER      DEFAULT 0 NOT NULL,
@@ -72,6 +74,7 @@ CREATE TABLE &mw_prefix.page (
   page_is_new        CHAR(1)           DEFAULT '0' NOT NULL,
   page_random        NUMBER(15,14) NOT NULL,
   page_touched       TIMESTAMP(6) WITH TIME ZONE,
+  page_links_updated TIMESTAMP(6) WITH TIME ZONE,
   page_latest        NUMBER        DEFAULT 0 NOT NULL, -- FK?
   page_len           NUMBER        DEFAULT 0 NOT NULL,
   page_content_model VARCHAR2(32)
@@ -84,7 +87,7 @@ CREATE INDEX &mw_prefix.page_i03 ON &mw_prefix.page (page_is_redirect, page_name
 
 -- Create a dummy page to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.page
-  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, 0, 0, NULL);
+  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, NULL, 0, 0, NULL);
 
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.page_set_random BEFORE INSERT ON &mw_prefix.page
@@ -402,7 +405,7 @@ CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE &mw_prefix.recentchanges (
   rc_id              NUMBER      NOT NULL,
   rc_timestamp       TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
-  rc_cur_time        TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
+  rc_cur_time        TIMESTAMP(6) WITH TIME ZONE,
   rc_user            NUMBER          DEFAULT 0 NOT NULL,
   rc_user_text       VARCHAR2(255)         NOT NULL,
   rc_namespace       NUMBER     DEFAULT 0 NOT NULL,
@@ -415,6 +418,7 @@ CREATE TABLE &mw_prefix.recentchanges (
   rc_this_oldid      NUMBER      DEFAULT 0 NOT NULL,
   rc_last_oldid      NUMBER      DEFAULT 0 NOT NULL,
   rc_type            CHAR(1)         DEFAULT '0' NOT NULL,
+  rc_source					 VARCHAR2(16),
   rc_patrolled       CHAR(1)         DEFAULT '0' NOT NULL,
   rc_ip              VARCHAR2(15),
   rc_old_len         NUMBER,
@@ -509,6 +513,8 @@ CREATE INDEX &mw_prefix.logging_i02 ON &mw_prefix.logging (log_user, log_timesta
 CREATE INDEX &mw_prefix.logging_i03 ON &mw_prefix.logging (log_namespace, log_title, log_timestamp);
 CREATE INDEX &mw_prefix.logging_i04 ON &mw_prefix.logging (log_timestamp);
 CREATE INDEX &mw_prefix.logging_i05 ON &mw_prefix.logging (log_type, log_action, log_timestamp);
+CREATE INDEX &mw_prefix.logging_i06 ON &mw_prefix.logging (log_user_text, log_type, log_timestamp);
+CREATE INDEX &mw_prefix.logging_i07 ON &mw_prefix.logging (log_user_text, log_timestamp);
 
 CREATE TABLE &mw_prefix.log_search (
   ls_field VARCHAR2(32) NOT NULL,
@@ -663,7 +669,7 @@ CREATE TABLE &mw_prefix.msg_resource (
   mr_lang varchar2(32) NOT NULL,
   mr_blob BLOB NOT NULL,
   mr_timestamp TIMESTAMP(6) WITH TIME ZONE NOT NULL
-) ;
+);
 CREATE UNIQUE INDEX &mw_prefix.msg_resource_u01 ON &mw_prefix.msg_resource (mr_resource, mr_lang);
 
 CREATE TABLE &mw_prefix.msg_resource_links (

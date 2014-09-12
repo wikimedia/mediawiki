@@ -34,10 +34,9 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * Construct a new instance from configuration.
-	 * $config includes:
-	 *     'wiki' : wiki name to use for LoadBalancer
 	 *
-	 * @param $config Array
+	 * @param array $config Includes:
+	 *     'wiki' : wiki name to use for LoadBalancer
 	 */
 	protected function __construct( array $config ) {
 		parent::__construct( $config );
@@ -47,6 +46,8 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::logChangeBatch()
+	 * @param array $entries
+	 * @param string $batchId
 	 * @return Status
 	 */
 	protected function doLogChangeBatch( array $entries, $batchId ) {
@@ -56,6 +57,7 @@ class DBFileJournal extends FileJournal {
 			$dbw = $this->getMasterDB();
 		} catch ( DBError $e ) {
 			$status->fatal( 'filejournal-fail-dbconnect', $this->backend );
+
 			return $status;
 		}
 
@@ -80,6 +82,7 @@ class DBFileJournal extends FileJournal {
 			}
 		} catch ( DBError $e ) {
 			$status->fatal( 'filejournal-fail-dbquery', $this->backend );
+
 			return $status;
 		}
 
@@ -88,7 +91,7 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::doGetCurrentPosition()
-	 * @return integer|false
+	 * @return bool|mixed The value from the field, or false on failure.
 	 */
 	protected function doGetCurrentPosition() {
 		$dbw = $this->getMasterDB();
@@ -101,13 +104,14 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::doGetPositionAtTime()
-	 * @param $time integer|string timestamp
-	 * @return integer|false
+	 * @param int|string $time Timestamp
+	 * @return bool|mixed The value from the field, or false on failure.
 	 */
 	protected function doGetPositionAtTime( $time ) {
 		$dbw = $this->getMasterDB();
 
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $time ) );
+
 		return $dbw->selectField( 'filejournal', 'fj_id',
 			array( 'fj_backend' => $this->backend, "fj_timestamp <= $encTimestamp" ),
 			__METHOD__,
@@ -117,8 +121,9 @@ class DBFileJournal extends FileJournal {
 
 	/**
 	 * @see FileJournal::doGetChangeEntries()
-	 * @return Array
-	 * @throws DBError
+	 * @param int $start
+	 * @param int $limit
+	 * @return array
 	 */
 	protected function doGetChangeEntries( $start, $limit ) {
 		$dbw = $this->getMasterDB();
@@ -179,6 +184,7 @@ class DBFileJournal extends FileJournal {
 			$this->dbw = $lb->getConnection( DB_MASTER, array(), $this->wiki );
 			$this->dbw->clearFlag( DBO_TRX );
 		}
+
 		return $this->dbw;
 	}
 }

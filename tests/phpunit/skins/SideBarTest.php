@@ -100,7 +100,11 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * @covers SkinTemplate::addToSidebarPlain
 	 */
 	public function testExternalUrlsRequireADescription() {
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 	$this->setMwGlobals( array(
+=======
+		$this->setMwGlobals( array(
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 			'wgNoFollowLinks' => true,
 			'wgNoFollowDomainExceptions' => array(),
 			'wgNoFollowNsExceptions' => array(),
@@ -158,7 +162,6 @@ class SideBarTest extends MediaWikiLangTestCase {
 '
 		);
 	}
-
 
 	#### Attributes for external links ##########################
 	private function getAttribs() {

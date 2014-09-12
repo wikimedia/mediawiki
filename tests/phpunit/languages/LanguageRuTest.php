@@ -22,7 +22,11 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testExplicitPlural() {
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 		$forms = array( 'one','many', 'other', '12=dozen' );
+=======
+		$forms = array( 'one', 'many', 'other', '12=dozen' );
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 		$this->assertEquals( 'dozen', $this->getLang()->convertPlural( 12, $forms ) );
 		$forms = array( 'one', 'many', '100=hundred', 'other', '12=dozen' );
 		$this->assertEquals( 'hundred', $this->getLang()->convertPlural( 100, $forms ) );

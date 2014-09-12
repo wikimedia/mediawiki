@@ -30,7 +30,6 @@
  */
 
 class ORMResult implements ORMIterator {
-
 	/**
 	 * @var ResultWrapper
 	 */
@@ -119,5 +118,4 @@ class ORMResult implements ORMIterator {
 	public function valid() {
 		return $this->current !== false;
 	}
-
 }

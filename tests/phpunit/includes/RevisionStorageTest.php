@@ -56,7 +56,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		}
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		parent::tearDown();
@@ -170,7 +170,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertRevEquals( $orig, $rev );
 	}
 
-
 	/**
 	 * @covers Revision::newFromArchiveRow
 	 */
@@ -207,10 +206,12 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testFetchRevision() {
 		$page = $this->createPage( 'RevisionStorageTest_testFetchRevision', 'one', CONTENT_MODEL_WIKITEXT );
-		$id1 = $page->getRevision()->getId();
+
+		// Hidden process cache assertion below
+		$page->getRevision()->getId();
 
 		$page->doEditContent( new WikitextContent( 'two' ), 'second rev' );
-		$id2 = $page->getRevision()->getId();
+		$id = $page->getRevision()->getId();
 
 		$res = Revision::fetchRevision( $page->getTitle() );
 
@@ -220,9 +221,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			$rows[$row->rev_id] = $row;
 		}
 
-		$row = $res->fetchObject();
 		$this->assertEquals( 1, count( $rows ), 'expected exactly one revision' );
-		$this->assertArrayHasKey( $id2, $rows, 'missing revision with id ' . $id2 );
+		$this->assertArrayHasKey( $id, $rows, 'missing revision with id ' . $id );
 	}
 
 	/**
@@ -296,17 +296,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( 'hello hello.', $rev->getContent()->getNativeData() );
-	}
-
-	/**
-	 * @covers Revision::revText
-	 */
-	public function testRevText() {
-		$this->hideDeprecated( 'Revision::revText' );
-		$orig = $this->makeRevision( array( 'text' => 'hello hello rev.' ) );
-		$rev = Revision::newFromId( $orig->getId() );
-
-		$this->assertEquals( 'hello hello rev.', $rev->revText() );
 	}
 
 	/**
@@ -475,6 +464,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		// create revisions -----------------------------
 		$page = WikiPage::factory( Title::newFromText(
 			'RevisionStorageTest_testUserWasLastToEdit', $ns ) );
+		$page->insertOn( $dbw );
 
 		# zero
 		$revisions[0] = new Revision( array(

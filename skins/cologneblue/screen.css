@@ -56,9 +56,6 @@ p, pre, .mw-code, td, th, li, dd, dt {
 textarea {
 	overflow: auto;
 	width: 100%;
-}
-
-#editform textarea {
 	display: block;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -134,6 +131,11 @@ textarea {
 	margin: 0;
 	padding: 0;
 	line-height: inherit;
+}
+
+div.after-portlet {
+	display: inline;
+	padding-left: .5em;
 }
 
 h1 {

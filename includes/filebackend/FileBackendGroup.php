@@ -29,15 +29,14 @@
  * @since 1.19
  */
 class FileBackendGroup {
-	/**
-	 * @var FileBackendGroup
-	 */
+	/** @var FileBackendGroup */
 	protected static $instance = null;
 
-	/** @var Array (name => ('class' => string, 'config' => array, 'instance' => object)) */
+	/** @var array (name => ('class' => string, 'config' => array, 'instance' => object)) */
 	protected $backends = array();
 
-	protected function __construct() {}
+	protected function __construct() {
+	}
 
 	/**
 	 * @return FileBackendGroup
@@ -47,13 +46,12 @@ class FileBackendGroup {
 			self::$instance = new self();
 			self::$instance->initFromGlobals();
 		}
+
 		return self::$instance;
 	}
 
 	/**
 	 * Destroy the singleton instance
-	 *
-	 * @return void
 	 */
 	public static function destroySingleton() {
 		self::$instance = null;
@@ -61,8 +59,6 @@ class FileBackendGroup {
 
 	/**
 	 * Register file backends from the global variables
-	 *
-	 * @return void
 	 */
 	protected function initFromGlobals() {
 		global $wgLocalFileRepo, $wgForeignFileRepos, $wgFileBackends;
@@ -116,20 +112,19 @@ class FileBackendGroup {
 	/**
 	 * Register an array of file backend configurations
 	 *
-	 * @param Array $configs
-	 * @return void
-	 * @throws MWException
+	 * @param array $configs
+	 * @throws FileBackendException
 	 */
 	protected function register( array $configs ) {
 		foreach ( $configs as $config ) {
 			if ( !isset( $config['name'] ) ) {
-				throw new MWException( "Cannot register a backend with no name." );
+				throw new FileBackendException( "Cannot register a backend with no name." );
 			}
 			$name = $config['name'];
 			if ( isset( $this->backends[$name] ) ) {
-				throw new MWException( "Backend with name `{$name}` already registered." );
+				throw new FileBackendException( "Backend with name `{$name}` already registered." );
 			} elseif ( !isset( $config['class'] ) ) {
-				throw new MWException( "Cannot register backend `{$name}` with no class." );
+				throw new FileBackendException( "Backend with name `{$name}` has no class." );
 			}
 			$class = $config['class'];
 
@@ -147,18 +142,27 @@ class FileBackendGroup {
 	 *
 	 * @param string $name
 	 * @return FileBackend
-	 * @throws MWException
+	 * @throws FileBackendException
 	 */
 	public function get( $name ) {
 		if ( !isset( $this->backends[$name] ) ) {
-			throw new MWException( "No backend defined with the name `$name`." );
+			throw new FileBackendException( "No backend defined with the name `$name`." );
 		}
 		// Lazy-load the actual backend instance
 		if ( !isset( $this->backends[$name]['instance'] ) ) {
 			$class = $this->backends[$name]['class'];
 			$config = $this->backends[$name]['config'];
+			$config['wikiId'] = isset( $config['wikiId'] )
+				? $config['wikiId']
+				: wfWikiID(); // e.g. "my_wiki-en_"
+			$config['lockManager'] =
+				LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
+			$config['fileJournal'] = isset( $config['fileJournal'] )
+				? FileJournal::factory( $config['fileJournal'], $name )
+				: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $name );
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
+
 		return $this->backends[$name]['instance'];
 	}
 
@@ -166,14 +170,15 @@ class FileBackendGroup {
 	 * Get the config array for a backend object with a given name
 	 *
 	 * @param string $name
-	 * @return Array
-	 * @throws MWException
+	 * @return array
+	 * @throws FileBackendException
 	 */
 	public function config( $name ) {
 		if ( !isset( $this->backends[$name] ) ) {
-			throw new MWException( "No backend defined with the name `$name`." );
+			throw new FileBackendException( "No backend defined with the name `$name`." );
 		}
 		$class = $this->backends[$name]['class'];
+
 		return array( 'class' => $class ) + $this->backends[$name]['config'];
 	}
 
@@ -188,6 +193,7 @@ class FileBackendGroup {
 		if ( $backend !== null && isset( $this->backends[$backend] ) ) {
 			return $this->get( $backend );
 		}
+
 		return null;
 	}
 }

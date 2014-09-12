@@ -1,0 +1,20 @@
+{
+    "@metadata": {
+        "authors": [
+            "AlimanRuna"
+        ]
+    },
+    "config-desc": "MediaWiki tiyachiq",
+    "config-title": "MediaWiki $1 tiyachiy",
+    "config-information": "Willay",
+    "config-your-language": "Rimayniyki:",
+    "config-wiki-language": "Wiki rimay:",
+    "config-back": "← Ñawpaqman",
+    "config-extensions": "Mast'ariykuna",
+    "config-install-step-done": "rurasqañam",
+    "config-install-step-failed": "manam aypasqachu",
+    "config-help": "yanapay",
+    "config-nofile": "\"$1\" sutiyuq willañiqiqa manam tarisqachu. Qullusqachu?",
+    "mainpagetext": "'''MediaWiki nisqa llamp'u kaqqa aypaylla takyachisqañam.'''",
+    "mainpagedocfooter": "Wiki llamp'u kaqmanta willasunaykipaqqa [//meta.wikimedia.org/wiki/Help:Contents Ruraqpaq yanapana] ''(User's Guide)'' sutiyuq p'anqata qhaway.\n\n== Qallarichkaspa ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Kunphigurasyun churanamanta sutisuyu]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki nisqamanta pasaq tapuykuna]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki kachaykuy e-chaski sutisuyu]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources MediaWiki nisqata qampa rimaykiman t'ikray]"
+}

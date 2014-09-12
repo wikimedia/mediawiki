@@ -37,9 +37,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-			$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
-			$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
-			$fld_tags = false, $fld_sha1 = false, $token = array();
+		$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
+		$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
+		$fld_tags = false, $fld_sha1 = false, $token = array();
 
 	private $tokenFunctions;
 
@@ -64,14 +64,15 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' )
 		);
 		wfRunHooks( 'APIQueryRecentChangesTokens', array( &$this->tokenFunctions ) );
+
 		return $this->tokenFunctions;
 	}
 
 	/**
-	 * @param  $pageid
-	 * @param  $title
+	 * @param $pageid
+	 * @param $title
 	 * @param $rc RecentChange (optional)
-	 * @return bool|String
+	 * @return bool|string
 	 */
 	public static function getPatrolToken( $pageid, $title, $rc = null ) {
 		global $wgUser;
@@ -80,27 +81,26 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( $rc ) {
 			if ( ( $wgUser->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
-				( $wgUser->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW ) )
-			{
+				( $wgUser->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW )
+			) {
 				$validTokenUser = true;
 			}
-		} else {
-			if ( $wgUser->useRCPatrol() || $wgUser->useNPPatrol() ) {
-				$validTokenUser = true;
-			}
+		} elseif ( $wgUser->useRCPatrol() || $wgUser->useNPPatrol() ) {
+			$validTokenUser = true;
 		}
 
 		if ( $validTokenUser ) {
 			// The patrol token is always the same, let's exploit that
 			static $cachedPatrolToken = null;
+
 			if ( is_null( $cachedPatrolToken ) ) {
 				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
 			}
+
 			return $cachedPatrolToken;
-		} else {
-			return false;
 		}
 
+		return false;
 	}
 
 	/**
@@ -145,7 +145,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Build our basic query. Namely, something along the lines of:
 		 * SELECT * FROM recentchanges WHERE rc_timestamp > $start
 		 * 		AND rc_timestamp < $end AND rc_namespace = $namespace
-		 * 		AND rc_deleted = 0
 		 */
 		$this->addTables( 'recentchanges' );
 		$index = array( 'recentchanges' => 'rc_timestamp' ); // May change
@@ -153,15 +152,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 2 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the ' .
-								'original value returned by the previous query', '_badcontinue' );
-			}
-
-			$timestamp = $this->getDB()->addQuotes( wfTimestamp( TS_MW, $cont[0] ) );
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$db = $this->getDB();
+			$timestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
 			$id = intval( $cont[1] );
+			$this->dieContinueUsageIf( $id != $cont[1] );
 			$op = $params['dir'] === 'older' ? '<' : '>';
-
 			$this->addWhere(
 				"rc_timestamp $op $timestamp OR " .
 				"(rc_timestamp = $timestamp AND " .
@@ -176,7 +172,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		) );
 
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
-		$this->addWhereFld( 'rc_deleted', 0 );
 
 		if ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'rc_type', $this->parseRCType( $params['type'] ) );
@@ -187,18 +182,26 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			/* Check for conflicting parameters. */
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
-					|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
-					|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
-					|| ( isset( $show['redirect'] ) && isset( $show['!redirect'] ) )
-					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+				|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
+				|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
+				|| ( isset( $show['redirect'] ) && isset( $show['!redirect'] ) )
+				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+				|| ( isset( $show['patrolled'] ) && isset( $show['unpatrolled'] ) )
+				|| ( isset( $show['!patrolled'] ) && isset( $show['unpatrolled'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
 
 			// Check permissions
-			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
+			if ( isset( $show['patrolled'] )
+				|| isset( $show['!patrolled'] )
+				|| isset( $show['unpatrolled'] )
+			) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
+					$this->dieUsage(
+						'You need the patrol right to request the patrolled flag',
+						'permissiondenied'
+					);
 				}
 			}
 
@@ -213,8 +216,21 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
 			$this->addWhereIf( 'page_is_redirect = 1', isset( $show['redirect'] ) );
 
+			if ( isset( $show['unpatrolled'] ) ) {
+				// See ChangesList:isUnpatrolled
+				if ( $user->useRCPatrol() ) {
+					$this->addWhere( 'rc_patrolled = 0' );
+				} elseif ( $user->useNPPatrol() ) {
+					$this->addWhere( 'rc_patrolled = 0' );
+					$this->addWhereFld( 'rc_type', RC_NEW );
+				}
+			}
+
 			// Don't throw log entries out the window here
-			$this->addWhereIf( 'page_is_redirect = 0 OR page_is_redirect IS NULL', isset( $show['!redirect'] ) );
+			$this->addWhereIf(
+				'page_is_redirect = 0 OR page_is_redirect IS NULL',
+				isset( $show['!redirect'] )
+			);
 		}
 
 		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
@@ -235,6 +251,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Add the fields we're concerned with to our query. */
 		$this->addFields( array(
+			'rc_id',
 			'rc_timestamp',
 			'rc_namespace',
 			'rc_title',
@@ -252,20 +269,26 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->initProperties( $prop );
 
 			if ( $this->fld_patrolled && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
+				$this->dieUsage(
+					'You need the patrol right to request the patrolled flag',
+					'permissiondenied'
+				);
 			}
 
-			$this->addFields( 'rc_id' );
 			/* Add fields to our query if they are specified as a needed parameter. */
 			$this->addFieldsIf( array( 'rc_this_oldid', 'rc_last_oldid' ), $this->fld_ids );
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
-			$this->addFieldsIf( 'rc_user', $this->fld_user );
-			$this->addFieldsIf( 'rc_user_text', $this->fld_user || $this->fld_userid );
+			$this->addFieldsIf( 'rc_user', $this->fld_user || $this->fld_userid );
+			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
 			$this->addFieldsIf( array( 'rc_minor', 'rc_type', 'rc_bot' ), $this->fld_flags );
 			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
-			$this->addFieldsIf( array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ), $this->fld_loginfo );
-			$showRedirects = $this->fld_redirect || isset( $show['redirect'] ) || isset( $show['!redirect'] );
+			$this->addFieldsIf(
+				array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ),
+				$this->fld_loginfo
+			);
+			$showRedirects = $this->fld_redirect || isset( $show['redirect'] )
+				|| isset( $show['!redirect'] );
 		}
 
 		if ( $this->fld_tags ) {
@@ -276,13 +299,15 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_sha1 ) {
 			$this->addTables( 'revision' );
-			$this->addJoinConds( array( 'revision' => array( 'LEFT JOIN', array( 'rc_this_oldid=rev_id' ) ) ) );
+			$this->addJoinConds( array( 'revision' => array( 'LEFT JOIN',
+				array( 'rc_this_oldid=rev_id' ) ) ) );
 			$this->addFields( array( 'rev_sha1', 'rev_deleted' ) );
 		}
 
 		if ( $params['toponly'] || $showRedirects ) {
 			$this->addTables( 'page' );
-			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN', array( 'rc_namespace=page_namespace', 'rc_title=page_title' ) ) ) );
+			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN',
+				array( 'rc_namespace=page_namespace', 'rc_title=page_title' ) ) ) );
 			$this->addFields( 'page_is_redirect' );
 
 			if ( $params['toponly'] ) {
@@ -294,7 +319,36 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rc_id=ct_rc_id' ) ) ) );
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
-			$index['change_tag'] = 'change_tag_tag_id';
+		}
+
+		// Paranoia: avoid brute force searches (bug 17342)
+		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
+			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+				$bitmask = Revision::DELETED_USER;
+			} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+				$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+			} else {
+				$bitmask = 0;
+			}
+			if ( $bitmask ) {
+				$this->addWhere( $this->getDB()->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" );
+			}
+		}
+		if ( $this->getRequest()->getCheck( 'namespace' ) ) {
+			// LogPage::DELETED_ACTION hides the affected page, too.
+			if ( !$user->isAllowed( 'deletedhistory' ) ) {
+				$bitmask = LogPage::DELETED_ACTION;
+			} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+				$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
+			} else {
+				$bitmask = 0;
+			}
+			if ( $bitmask ) {
+				$this->addWhere( $this->getDB()->makeList( array(
+					'rc_type != ' . RC_LOG,
+					$this->getDB()->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
+				), LIST_OR ) );
+			}
 		}
 
 		$this->token = $params['token'];
@@ -311,9 +365,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Iterate through the rows, adding data extracted from them to our query result. */
 		foreach ( $res as $row ) {
-			if ( ++ $count > $params['limit'] ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id );
+			if ( ++$count > $params['limit'] ) {
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
+				$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 				break;
 			}
 
@@ -327,7 +382,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id );
+					$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 					break;
 				}
 			} else {
@@ -353,6 +408,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	public function extractRowInfo( $row ) {
 		/* Determine the title of the page that has been changed. */
 		$title = Title::makeTitle( $row->rc_namespace, $row->rc_title );
+		$user = $this->getUser();
 
 		/* Our output data. */
 		$vals = array();
@@ -383,32 +439,50 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$vals['type'] = $type;
 		}
 
+		$anyHidden = false;
+
 		/* Create a new entry in the result for the title. */
-		if ( $this->fld_title ) {
-			ApiQueryBase::addTitleInfo( $vals, $title );
+		if ( $this->fld_title || $this->fld_ids ) {
+			if ( $type === RC_LOG && ( $row->rc_deleted & LogPage::DELETED_ACTION ) ) {
+				$vals['actionhidden'] = '';
+				$anyHidden = true;
+			}
+			if ( $type !== RC_LOG ||
+				LogEventsList::userCanBitfield( $row->rc_deleted, LogPage::DELETED_ACTION, $user )
+			) {
+				if ( $this->fld_title ) {
+					ApiQueryBase::addTitleInfo( $vals, $title );
+				}
+				if ( $this->fld_ids ) {
+					$vals['pageid'] = intval( $row->rc_cur_id );
+					$vals['revid'] = intval( $row->rc_this_oldid );
+					$vals['old_revid'] = intval( $row->rc_last_oldid );
+				}
+			}
 		}
 
-		/* Add ids, such as rcid, pageid, revid, and oldid to the change's info. */
 		if ( $this->fld_ids ) {
 			$vals['rcid'] = intval( $row->rc_id );
-			$vals['pageid'] = intval( $row->rc_cur_id );
-			$vals['revid'] = intval( $row->rc_this_oldid );
-			$vals['old_revid'] = intval( $row->rc_last_oldid );
 		}
 
-		/* Add user data and 'anon' flag, if use is anonymous. */
+		/* Add user data and 'anon' flag, if user is anonymous. */
 		if ( $this->fld_user || $this->fld_userid ) {
-
-			if ( $this->fld_user ) {
-				$vals['user'] = $row->rc_user_text;
+			if ( $row->rc_deleted & Revision::DELETED_USER ) {
+				$vals['userhidden'] = '';
+				$anyHidden = true;
 			}
+			if ( Revision::userCanBitfield( $row->rc_deleted, Revision::DELETED_USER, $user ) ) {
+				if ( $this->fld_user ) {
+					$vals['user'] = $row->rc_user_text;
+				}
 
-			if ( $this->fld_userid ) {
-				$vals['userid'] = $row->rc_user;
-			}
+				if ( $this->fld_userid ) {
+					$vals['userid'] = $row->rc_user;
+				}
 
-			if ( !$row->rc_user ) {
-				$vals['anon'] = '';
+				if ( !$row->rc_user ) {
+					$vals['anon'] = '';
+				}
 			}
 		}
 
@@ -437,12 +511,20 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		/* Add edit summary / log summary. */
-		if ( $this->fld_comment && isset( $row->rc_comment ) ) {
-			$vals['comment'] = $row->rc_comment;
-		}
+		if ( $this->fld_comment || $this->fld_parsedcomment ) {
+			if ( $row->rc_deleted & Revision::DELETED_COMMENT ) {
+				$vals['commenthidden'] = '';
+				$anyHidden = true;
+			}
+			if ( Revision::userCanBitfield( $row->rc_deleted, Revision::DELETED_COMMENT, $user ) ) {
+				if ( $this->fld_comment && isset( $row->rc_comment ) ) {
+					$vals['comment'] = $row->rc_comment;
+				}
 
-		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
-			$vals['parsedcomment'] = Linker::formatComment( $row->rc_comment, $title );
+				if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
+					$vals['parsedcomment'] = Linker::formatComment( $row->rc_comment, $title );
+				}
+			}
 		}
 
 		if ( $this->fld_redirect ) {
@@ -456,19 +538,29 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$vals['patrolled'] = '';
 		}
 
+		if ( $this->fld_patrolled && ChangesList::isUnpatrolled( $row, $user ) ) {
+			$vals['unpatrolled'] = '';
+		}
+
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
-			$vals['logid'] = intval( $row->rc_logid );
-			$vals['logtype'] = $row->rc_log_type;
-			$vals['logaction'] = $row->rc_log_action;
-			$logEntry = DatabaseLogEntry::newFromRow( (array)$row );
-			ApiQueryLogEvents::addLogParams(
-				$this->getResult(),
-				$vals,
-				$logEntry->getParameters(),
-				$logEntry->getType(),
-				$logEntry->getSubtype(),
-				$logEntry->getTimestamp()
-			);
+			if ( $row->rc_deleted & LogPage::DELETED_ACTION ) {
+				$vals['actionhidden'] = '';
+				$anyHidden = true;
+			}
+			if ( LogEventsList::userCanBitfield( $row->rc_deleted, LogPage::DELETED_ACTION, $user ) ) {
+				$vals['logid'] = intval( $row->rc_logid );
+				$vals['logtype'] = $row->rc_log_type;
+				$vals['logaction'] = $row->rc_log_action;
+				$logEntry = DatabaseLogEntry::newFromRow( (array)$row );
+				ApiQueryLogEvents::addLogParams(
+					$this->getResult(),
+					$vals,
+					$logEntry->getParameters(),
+					$logEntry->getType(),
+					$logEntry->getSubtype(),
+					$logEntry->getTimestamp()
+				);
+			}
 		}
 
 		if ( $this->fld_tags ) {
@@ -482,15 +574,16 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_sha1 && $row->rev_sha1 !== null ) {
-			// The RevDel check should currently never pass due to the
-			// rc_deleted = 0 condition in the WHERE clause, but in case that
-			// ever changes we check it here too.
 			if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
 				$vals['sha1hidden'] = '';
-			} elseif ( $row->rev_sha1 !== '' ) {
-				$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
-			} else {
-				$vals['sha1'] = '';
+				$anyHidden = true;
+			}
+			if ( Revision::userCanBitfield( $row->rev_deleted, Revision::DELETED_TEXT, $user ) ) {
+				if ( $row->rev_sha1 !== '' ) {
+					$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
+				} else {
+					$vals['sha1'] = '';
+				}
 			}
 		}
 
@@ -507,6 +600,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
+		if ( $anyHidden && ( $row->rc_deleted & Revision::DELETED_RESTRICTED ) ) {
+			$vals['suppressed'] = '';
+		}
+
 		return $vals;
 	}
 
@@ -516,8 +613,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			foreach ( $type as $t ) {
 				$retval[] = $this->parseRCType( $t );
 			}
+
 			return $retval;
 		}
+
 		switch ( $type ) {
 			case 'edit':
 				return RC_EDIT;
@@ -527,6 +626,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				return RC_LOG;
 			case 'external':
 				return RC_EXTERNAL;
+			default:
+				ApiBase::dieDebug( __METHOD__, "Unknown type '$type'" );
 		}
 	}
 
@@ -541,10 +642,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( isset( $params['token'] ) ) {
 			return 'private';
 		}
+		if ( $this->userCanSeeRevDel() ) {
+			return 'private';
+		}
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		}
+
 		return 'public';
 	}
 
@@ -610,7 +715,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'redirect',
 					'!redirect',
 					'patrolled',
-					'!patrolled'
+					'!patrolled',
+					'unpatrolled'
 				)
 			),
 			'limit' => array(
@@ -636,6 +742,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to end enumerating',
@@ -655,7 +762,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				' ids            - Adds the page ID, recent changes ID and the new and old revision ID',
 				' sizes          - Adds the new and old page length in bytes',
 				' redirect       - Tags edit if page is a redirect',
-				' patrolled      - Tags edits that have been patrolled',
+				' patrolled      - Tags patrollable edits as being patrolled or unpatrolled',
 				' loginfo        - Adds log information (logid, logtype, etc) to log entries',
 				' tags           - Lists tags for the entry',
 				' sha1           - Adds the content checksum for entries associated with a revision',
@@ -741,7 +848,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				'redirect' => 'boolean'
 			),
 			'patrolled' => array(
-				'patrolled' => 'boolean'
+				'patrolled' => 'boolean',
+				'unpatrolled' => 'boolean'
 			),
 			'loginfo' => array(
 				'logid' => array(
@@ -775,13 +883,16 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate recent changes';
+		return 'Enumerate recent changes.';
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'show' ),
-			array( 'code' => 'permissiondenied', 'info' => 'You need the patrol right to request the patrolled flag' ),
+			array(
+				'code' => 'permissiondenied',
+				'info' => 'You need the patrol right to request the patrolled flag'
+			),
 			array( 'code' => 'user-excludeuser', 'info' => 'user and excludeuser cannot be used together' ),
 		) );
 	}

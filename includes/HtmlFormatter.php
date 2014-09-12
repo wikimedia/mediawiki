@@ -34,7 +34,7 @@ class HtmlFormatter {
 	/**
 	 * Constructor
 	 *
-	 * @param string $html: Text to process
+	 * @param string $html Text to process
 	 */
 	public function __construct( $html ) {
 		$this->html = $html;
@@ -51,15 +51,15 @@ class HtmlFormatter {
 
 	/**
 	 * Override this in descendant class to modify HTML after it has been converted from DOM tree
-	 * @param string $html: HTML to process
-	 * @return string: Processed HTML
+	 * @param string $html HTML to process
+	 * @return string Processed HTML
 	 */
 	protected function onHtmlReady( $html ) {
 		return $html;
 	}
 
 	/**
-	 * @return DOMDocument: DOM to manipulate
+	 * @return DOMDocument DOM to manipulate
 	 */
 	public function getDoc() {
 		if ( !$this->doc ) {
@@ -101,7 +101,7 @@ class HtmlFormatter {
 	 *   .<class>
 	 *   #<id>
 	 *
-	 * @param Array|string $selectors: Selector(s) of stuff to remove
+	 * @param array|string $selectors Selector(s) of stuff to remove
 	 */
 	public function remove( $selectors ) {
 		$this->itemsToRemove = array_merge( $this->itemsToRemove, (array)$selectors );
@@ -114,7 +114,7 @@ class HtmlFormatter {
 	 * Note this interface may fail in surprising unexpected ways due to usage of regexes,
 	 * so should not be relied on for HTML markup security measures.
 	 *
-	 * @param Array|string $elements: Name(s) of tag(s) to flatten
+	 * @param array|string $elements Name(s) of tag(s) to flatten
 	 */
 	public function flatten( $elements ) {
 		$this->elementsToFlatten = array_merge( $this->elementsToFlatten, (array)$elements );
@@ -247,8 +247,8 @@ class HtmlFormatter {
 	/**
 	 * Performs final transformations and returns resulting HTML
 	 *
-	 * @param DOMElement|string|null $element: ID of element to get HTML from or false to get it from the whole tree
-	 * @return string: Processed HTML
+	 * @param DOMElement|string|null $element ID of element to get HTML from or false to get it from the whole tree
+	 * @return string Processed HTML
 	 */
 	public function getText( $element = null ) {
 		wfProfileIn( __METHOD__ );
@@ -294,10 +294,10 @@ class HtmlFormatter {
 	}
 
 	/**
-	 * @param $selector: CSS selector to parse
-	 * @param $type
-	 * @param $rawName
-	 * @return bool: Whether the selector was successfully recognised
+	 * @param string $selector CSS selector to parse
+	 * @param string $type
+	 * @param string $rawName
+	 * @return bool Whether the selector was successfully recognised
 	 */
 	protected function parseSelector( $selector, &$type, &$rawName ) {
 		if ( strpos( $selector, '.' ) === 0 ) {
@@ -306,14 +306,10 @@ class HtmlFormatter {
 		} elseif ( strpos( $selector, '#' ) === 0 ) {
 			$type = 'ID';
 			$rawName = substr( $selector, 1 );
-		} elseif ( strpos( $selector, '.' ) !== 0 &&
-			strpos( $selector, '.' ) !== false )
-		{
+		} elseif ( strpos( $selector, '.' ) !== 0 && strpos( $selector, '.' ) !== false ) {
 			$type = 'TAG_CLASS';
 			$rawName = $selector;
-		} elseif ( strpos( $selector, '[' ) === false
-			&& strpos( $selector, ']' ) === false )
-		{
+		} elseif ( strpos( $selector, '[' ) === false && strpos( $selector, ']' ) === false ) {
 			$type = 'TAG';
 			$rawName = $selector;
 		} else {

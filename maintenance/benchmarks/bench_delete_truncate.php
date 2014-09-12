@@ -70,7 +70,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param  $dbw DatabaseBase
+	 * @param $dbw DatabaseBase
 	 * @return void
 	 */
 	private function insertData( $dbw ) {
@@ -83,7 +83,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param  $dbw DatabaseBase
+	 * @param $dbw DatabaseBase
 	 * @return void
 	 */
 	private function delete( $dbw ) {
@@ -91,7 +91,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param  $dbw DatabaseBase
+	 * @param $dbw DatabaseBase
 	 * @return void
 	 */
 	private function truncate( $dbw ) {

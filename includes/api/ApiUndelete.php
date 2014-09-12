@@ -122,8 +122,10 @@ class ApiUndelete extends ApiBase {
 			'title' => 'Title of the page you want to restore',
 			'token' => 'An undelete token previously retrieved through list=deletedrevs',
 			'reason' => 'Reason for restoring',
-			'timestamps' => 'Timestamps of the revisions to restore. If not set, all revisions will be restored.',
-			'watchlist' => 'Unconditionally add or remove the page from your watchlist, use preferences or do not change watch',
+			'timestamps' => 'Timestamps of the revisions to restore. If not set, all ' .
+				'revisions will be restored.',
+			'watchlist' => 'Unconditionally add or remove the page from your ' .
+				'watchlist, use preferences or do not change watch',
 		);
 	}
 
@@ -140,8 +142,8 @@ class ApiUndelete extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Restore certain revisions of a deleted page. A list of deleted revisions (including timestamps) can be',
-			'retrieved through list=deletedrevs'
+			'Restore certain revisions of a deleted page. A list of deleted revisions ',
+			'(including timestamps) can be retrieved through list=deletedrevs.'
 		);
 	}
 

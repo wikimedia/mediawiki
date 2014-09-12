@@ -243,7 +243,10 @@ abstract class DatabaseInstaller {
 		if ( $status->isOK() ) {
 			$status->value->setSchemaVars( $this->getSchemaVars() );
 		} else {
-			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
+			$msg = __METHOD__ . ': unexpected error while establishing'
+				. ' a database connection with message: '
+				. $status->getMessage()->plain();
+			throw new MWException( $msg );
 		}
 	}
 
@@ -257,7 +260,7 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
 		}
-		LBFactory::setInstance( new LBFactory_Single( array(
+		LBFactory::setInstance( new LBFactorySingle( array(
 			'connection' => $status->value ) ) );
 	}
 
@@ -438,6 +441,10 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get a labelled checkbox to configure a local boolean variable.
 	 *
+	 * @param string $var
+	 * @param string $label
+	 * @param array $attribs Optional.
+	 * @param string $helpData Optional.
 	 * @return string
 	 */
 	public function getCheckBox( $var, $label, $attribs = array(), $helpData = "" ) {
@@ -544,8 +551,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a standard web-user fieldset
-	 * @param string $noCreateMsg Message to display instead of the creation checkbox.
-	 *   Set this to false to show a creation checkbox.
+	 * @param string|bool $noCreateMsg Message to display instead of the creation checkbox.
+	 *   Set this to false to show a creation checkbox (default).
 	 *
 	 * @return String
 	 */

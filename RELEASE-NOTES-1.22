@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 = MediaWiki release notes =
 
 Security reminder: MediaWiki does not require PHP's register_globals. If you
@@ -780,3 +781,5 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 
 There's usually someone online in #mediawiki on irc.freenode.net.
 
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)

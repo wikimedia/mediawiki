@@ -4,10 +4,18 @@
  * @group API
  * @group Database
  * @group medium
+ *
+ * @covers ApiOptions
  */
 class ApiOptionsTest extends MediaWikiLangTestCase {
 
-	private $mTested, $mUserMock, $mContext, $mSession;
+	/** @var PHPUnit_Framework_MockObject_MockObject */
+	private $mUserMock;
+	/** @var ApiOptions */
+	private $mTested;
+	private $mSession;
+	/** @var DerivativeContext */
+	private $mContext;
 
 	private $mOldGetPreferencesHooks = false;
 
@@ -91,6 +99,12 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		return true;
 	}
 
+	/**
+	 * @param IContextSource $context
+	 * @param array|null $options
+	 *
+	 * @return array
+	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
 		// Match with above.
 		$kinds = array(
@@ -102,6 +116,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'testmultiselect-opt2' => 'registered-multiselect',
 			'testmultiselect-opt3' => 'registered-multiselect',
 			'testmultiselect-opt4' => 'registered-multiselect',
+			'special' => 'special',
 		);
 
 		if ( $options === null ) {
@@ -373,6 +388,29 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$response = $this->executeQuery( $request );
 
 		$this->assertEquals( self::$Success, $response );
+	}
+
+	public function testSpecialOption() {
+		$this->mUserMock->expects( $this->never() )
+			->method( 'resetOptions' );
+
+		$this->mUserMock->expects( $this->never() )
+			->method( 'saveSettings' );
+
+		$request = $this->getSampleRequest( array(
+			'change' => 'special=1'
+		) );
+
+		$response = $this->executeQuery( $request );
+
+		$this->assertEquals( array(
+			'options' => 'success',
+			'warnings' => array(
+				'options' => array(
+					'*' => "Validation error for 'special': cannot be set by this module"
+				)
+			)
+		), $response );
 	}
 
 	public function testUnknownOption() {

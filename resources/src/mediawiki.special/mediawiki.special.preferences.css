@@ -1,0 +1,21 @@
+/** Reuses colors from mediawiki.special.changeemail.css */
+.mw-email-not-authenticated .mw-input,
+.mw-email-none .mw-input{
+	border: 1px solid #FF8080;
+	background-color: #FFC0C0;
+	color: black;
+}
+/** Authenticated email field has its own class too. Unstyled by default */
+/*
+.mw-email-authenticated .mw-input { }
+*/
+
+/**
+ * Hide, but keep accessible for screen-readers.
+ * Like .mw-jump, #jump-to-nav from skins/common/shared.css
+ */
+.mw-navigation-hint {
+	overflow: hidden;
+	height: 0;
+	zoom: 1;
+}

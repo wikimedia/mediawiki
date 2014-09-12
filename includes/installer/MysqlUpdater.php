@@ -28,9 +28,10 @@
  * @since 1.17
  */
 class MysqlUpdater extends DatabaseUpdater {
-
 	protected function getCoreUpdateList() {
 		return array(
+			array( 'disableContentHandlerUseDB' ),
+
 			// 1.2
 			array( 'addField', 'ipblocks', 'ipb_id', 'patch-ipblocks.sql' ),
 			array( 'addField', 'ipblocks', 'ipb_expiry', 'patch-ipb_expiry.sql' ),
@@ -38,6 +39,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'doIndexUpdate' ),
 			array( 'addTable', 'hitcounter', 'patch-hitcounter.sql' ),
 			array( 'addField', 'recentchanges', 'rc_type', 'patch-rc_type.sql' ),
+			array( 'addIndex', 'recentchanges', 'new_name_timestamp', 'patch-rc-newindex.sql' ),
 
 			// 1.3
 			array( 'addField', 'user', 'user_real_name', 'patch-user-realname.sql' ),
@@ -218,6 +220,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ),
 			array( 'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ),
 			array( 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ),
+			array( 'enableContentHandlerUseDB' ),
 			array( 'dropField', 'site_stats', 'ss_admins', 'patch-drop-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
 			array( 'addTable', 'sites', 'patch-sites.sql' ),
@@ -239,6 +242,14 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-iwlinks-from-title-index.sql' ),
 			array( 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ),
 			array( 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ),
+
+			// 1.23
+			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
+			array( 'addIndex', 'logging', 'log_user_text_type_time',
+				'patch-logging_user_text_type_time_index.sql' ),
+			array( 'addIndex', 'logging', 'log_user_text_time', 'patch-logging_user_text_time_index.sql' ),
+			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
+			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
 		);
 	}
 
@@ -246,15 +257,17 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * 1.4 betas were missing the 'binary' marker from logging.log_title,
 	 * which causes a collation mismatch error on joins in MySQL 4.1.
 	 *
-	 * @param string $table table name
-	 * @param string $field field name to check
-	 * @param string $patchFile path to the patch to correct the field
+	 * @param string $table Table name
+	 * @param string $field Field name to check
+	 * @param string $patchFile Path to the patch to correct the field
+	 * @return bool
 	 */
 	protected function checkBin( $table, $field, $patchFile ) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
 
+		/** @var MySQLField $fieldInfo */
 		$fieldInfo = $this->db->fieldInfo( $table, $field );
 		if ( $fieldInfo->isBinary() ) {
 			$this->output( "...$table table has correct $field encoding.\n" );
@@ -266,10 +279,10 @@ class MysqlUpdater extends DatabaseUpdater {
 	/**
 	 * Check whether an index contain a field
 	 *
-	 * @param string $table table name
-	 * @param string $index index name to check
-	 * @param string $field field that should be in the index
-	 * @return Boolean
+	 * @param string $table Table name
+	 * @param string $index Index name to check
+	 * @param string $field Field that should be in the index
+	 * @return bool
 	 */
 	protected function indexHasField( $table, $index, $field ) {
 		if ( !$this->doTable( $table ) ) {
@@ -381,6 +394,16 @@ class MysqlUpdater extends DatabaseUpdater {
 				'wl_title' => 'wl_title',
 				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
 			), array( 'NOT (wl_namespace & 1)' ), __METHOD__, 'IGNORE' );
+		$this->output( "done.\n" );
+
+		$this->output( "Adding missing watchlist subject page rows... " );
+		$this->db->insertSelect( 'watchlist', 'watchlist',
+			array(
+				'wl_user' => 'wl_user',
+				'wl_namespace' => 'wl_namespace & ~1',
+				'wl_title' => 'wl_title',
+				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
+			), array( 'wl_namespace & 1' ), __METHOD__, 'IGNORE' );
 		$this->output( "done.\n" );
 	}
 

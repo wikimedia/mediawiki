@@ -1,5 +1,25 @@
 <?php
+
 class AutoLoaderTest extends MediaWikiTestCase {
+	protected function setUp() {
+		global $wgAutoloadLocalClasses, $wgAutoloadClasses;
+
+		parent::setUp();
+
+		// Fancy dance to trigger a rebuild of AutoLoader::$autoloadLocalClassesLower
+		$this->testLocalClasses = array(
+			'TestAutoloadedLocalClass' => __DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php',
+			'TestAutoloadedCamlClass' => __DIR__ . '/../data/autoloader/TestAutoloadedCamlClass.php',
+			'TestAutoloadedSerializedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
+		);
+		$this->setMwGlobals( 'wgAutoloadLocalClasses', $this->testLocalClasses + $wgAutoloadLocalClasses );
+		AutoLoader::resetAutoloadLocalClassesLower();
+
+		$this->testExtensionClasses = array(
+			'TestAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedClass.php',
+		);
+		$this->setMwGlobals( 'wgAutoloadClasses', $this->testExtensionClasses + $wgAutoloadClasses );
+	}
 
 	/**
 	 * Assert that there were no classes loaded that are not registered with the AutoLoader.
@@ -18,7 +38,6 @@ class AutoLoaderTest extends MediaWikiTestCase {
 
 	protected static function checkAutoLoadConf() {
 		global $wgAutoloadLocalClasses, $wgAutoloadClasses, $IP;
-		$supportsParsekit = function_exists( 'parsekit_compile_file' );
 
 		// wgAutoloadLocalClasses has precedence, just like in includes/AutoLoader.php
 		$expected = $wgAutoloadLocalClasses + $wgAutoloadClasses;
@@ -34,17 +53,44 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			} else {
 				$filePath = $file;
 			}
-			if ( $supportsParsekit ) {
-				$parseInfo = parsekit_compile_file( "$filePath" );
-				$classes = array_keys( $parseInfo['class_table'] );
-			} else {
-				$contents = file_get_contents( "$filePath" );
-				$m = array();
-				preg_match_all( '/\n\s*(?:final)?\s*(?:abstract)?\s*(?:class|interface)\s+([a-zA-Z0-9_]+)/', $contents, $m, PREG_PATTERN_ORDER );
-				$classes = $m[1];
+
+			$contents = file_get_contents( $filePath );
+
+			// We could use token_get_all() here, but this is faster
+			$matches = array();
+			preg_match_all( '/
+				^ [\t ]* (?:
+					(?:final\s+)? (?:abstract\s+)? (?:class|interface) \s+
+					(?P<class> [a-zA-Z0-9_]+)
+				|
+					class_alias \s* \( \s*
+						([\'"]) (?P<original> [^\'"]+) \g{-2} \s* , \s*
+						([\'"]) (?P<alias> [^\'"]+ ) \g{-2} \s*
+					\) \s* ;
+				)
+			/imx', $contents, $matches, PREG_SET_ORDER );
+
+			$classesInFile = array();
+			$aliasesInFile = array();
+
+			foreach ( $matches as $match ) {
+				if ( !empty( $match['class'] ) ) {
+					$actual[$match['class']] = $file;
+					$classesInFile[$match['class']] = true;
+				} else {
+					$aliasesInFile[$match['alias']] = $match['original'];
+				}
 			}
-			foreach ( $classes as $class ) {
-				$actual[$class] = $file;
+
+			// Only accept aliases for classes in the same file, because for correct
+			// behavior, all aliases for a class must be set up when the class is loaded
+			// (see <https://bugs.php.net/bug.php?id=61422>).
+			foreach ( $aliasesInFile as $alias => $class ) {
+				if ( isset( $classesInFile[$class] ) ) {
+					$actual[$alias] = $file;
+				} else {
+					$actual[$alias] = "[original class not in $file]";
+				}
 			}
 		}
 
@@ -52,5 +98,24 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			'expected' => $expected,
 			'actual' => $actual,
 		);
+	}
+
+	function testCoreClass() {
+		$this->assertTrue( class_exists( 'TestAutoloadedLocalClass' ) );
+	}
+
+	function testExtensionClass() {
+		$this->assertTrue( class_exists( 'TestAutoloadedClass' ) );
+	}
+
+	function testWrongCaseClass() {
+		$this->assertTrue( class_exists( 'testautoLoadedcamlCLASS' ) );
+	}
+
+	function testWrongCaseSerializedClass() {
+		$dummyCereal = 'O:29:"testautoloadedserializedclass":0:{}';
+		$uncerealized = unserialize( $dummyCereal );
+		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
+			"unserialize() can load classes case-insensitively." );
 	}
 }

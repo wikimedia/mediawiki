@@ -3,7 +3,7 @@
  * Authentication plugin interface
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,6 @@
  * someone logs in who can be authenticated externally.
  */
 class AuthPlugin {
-
 	/**
 	 * @var string
 	 */
@@ -46,7 +45,7 @@ class AuthPlugin {
 	 * you might need to munge it (for instance, for lowercase initial
 	 * letters).
 	 *
-	 * @param string $username username.
+	 * @param string $username Username.
 	 * @return bool
 	 */
 	public function userExists( $username ) {
@@ -60,8 +59,8 @@ class AuthPlugin {
 	 * you might need to munge it (for instance, for lowercase initial
 	 * letters).
 	 *
-	 * @param string $username username.
-	 * @param string $password user password.
+	 * @param string $username Username.
+	 * @param string $password User password.
 	 * @return bool
 	 */
 	public function authenticate( $username, $password ) {
@@ -72,7 +71,7 @@ class AuthPlugin {
 	/**
 	 * Modify options in the login template.
 	 *
-	 * @param $template UserLoginTemplate object.
+	 * @param UserLoginTemplate $template
 	 * @param string $type 'signup' or 'login'. Added in 1.16.
 	 */
 	public function modifyUITemplate( &$template, &$type ) {
@@ -83,7 +82,7 @@ class AuthPlugin {
 	/**
 	 * Set the domain this plugin is supposed to use when authenticating.
 	 *
-	 * @param string $domain authentication domain.
+	 * @param string $domain Authentication domain.
 	 */
 	public function setDomain( $domain ) {
 		$this->domain = $domain;
@@ -105,7 +104,7 @@ class AuthPlugin {
 	/**
 	 * Check to see if the specific domain is a valid domain.
 	 *
-	 * @param string $domain authentication domain.
+	 * @param string $domain Authentication domain.
 	 * @return bool
 	 */
 	public function validDomain( $domain ) {
@@ -121,7 +120,7 @@ class AuthPlugin {
 	 * The User object is passed by reference so it can be modified; don't
 	 * forget the & on your function declaration.
 	 *
-	 * @param $user User object
+	 * @param User $user
 	 * @return bool
 	 */
 	public function updateUser( &$user ) {
@@ -140,7 +139,7 @@ class AuthPlugin {
 	 *
 	 * This is just a question, and shouldn't perform any actions.
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function autoCreate() {
 		return false;
@@ -151,9 +150,9 @@ class AuthPlugin {
 	 * and use the same keys. 'Realname' 'Emailaddress' and 'Nickname'
 	 * all reference this.
 	 *
-	 * @param $prop string
+	 * @param string $prop
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function allowPropChange( $prop = '' ) {
 		if ( $prop == 'realname' && is_callable( array( $this, 'allowRealNameChange' ) ) ) {
@@ -193,8 +192,8 @@ class AuthPlugin {
 	 *
 	 * Return true if successful.
 	 *
-	 * @param $user User object.
-	 * @param string $password password.
+	 * @param User $user
+	 * @param string $password Password.
 	 * @return bool
 	 */
 	public function setPassword( $user, $password ) {
@@ -216,10 +215,10 @@ class AuthPlugin {
 	 * Update user groups in the external authentication database.
 	 * Return true if successful.
 	 *
-	 * @param $user User object.
-	 * @param $addgroups Groups to add.
-	 * @param $delgroups Groups to remove.
-	 * @return Boolean
+	 * @param User $user
+	 * @param array $addgroups Groups to add.
+	 * @param array $delgroups Groups to remove.
+	 * @return bool
 	 */
 	public function updateExternalDBGroups( $user, $addgroups, $delgroups = array() ) {
 		return true;
@@ -228,7 +227,7 @@ class AuthPlugin {
 	/**
 	 * Check to see if external accounts can be created.
 	 * Return true if external accounts can be created.
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function canCreateAccounts() {
 		return false;
@@ -238,11 +237,11 @@ class AuthPlugin {
 	 * Add a user to the external authentication database.
 	 * Return true if successful.
 	 *
-	 * @param $user User: only the name should be assumed valid at this point
-	 * @param $password String
-	 * @param $email String
-	 * @param $realname String
-	 * @return Boolean
+	 * @param User $user Only the name should be assumed valid at this point
+	 * @param string $password
+	 * @param string $email
+	 * @param string $realname
+	 * @return bool
 	 */
 	public function addUser( $user, $password, $email = '', $realname = '' ) {
 		return true;
@@ -254,7 +253,7 @@ class AuthPlugin {
 	 *
 	 * This is just a question, and shouldn't perform any actions.
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function strict() {
 		return false;
@@ -264,8 +263,8 @@ class AuthPlugin {
 	 * Check if a user should authenticate locally if the global authentication fails.
 	 * If either this or strict() returns true, local authentication is not used.
 	 *
-	 * @param string $username username.
-	 * @return Boolean
+	 * @param string $username Username.
+	 * @return bool
 	 */
 	public function strictUserAuth( $username ) {
 		return false;
@@ -279,8 +278,8 @@ class AuthPlugin {
 	 * The User object is passed by reference so it can be modified; don't
 	 * forget the & on your function declaration.
 	 *
-	 * @param $user User object.
-	 * @param $autocreate Boolean: True if user is being autocreated on login
+	 * @param User $user
+	 * @param bool $autocreate True if user is being autocreated on login
 	 */
 	public function initUser( &$user, $autocreate = false ) {
 		# Override this to do something.
@@ -289,7 +288,7 @@ class AuthPlugin {
 	/**
 	 * If you want to munge the case of an account name before the final
 	 * check, now is your chance.
-	 * @param $username string
+	 * @param string $username
 	 * @return string
 	 */
 	public function getCanonicalName( $username ) {
@@ -299,7 +298,7 @@ class AuthPlugin {
 	/**
 	 * Get an instance of a User object
 	 *
-	 * @param $user User
+	 * @param User $user
 	 *
 	 * @return AuthPluginUser
 	 */

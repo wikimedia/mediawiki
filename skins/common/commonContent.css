@@ -149,30 +149,3 @@ div.magnify a, div.magnify img {
 img.thumbborder {
 	border: 1px solid #dddddd;
 }
-
-/**
- * Edit forms
- */
-#editform textarea {
-	display: block;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-/**
- * Basic styles for the user login and create account forms
- */
-#userlogin, #userloginForm {
-	border: solid 1px #cccccc;
-	padding: 1.2em;
-	margin: 0.5em;
-}
-
-#loginend {
-	margin: 0.5em;
-}
-
-#loginend table {
-	width: 100%;
-}

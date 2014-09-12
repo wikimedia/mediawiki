@@ -1,0 +1,72 @@
+/**
+ * Common LESS mixin library for MediaWiki
+ *
+ * By default the folder containing this file is included in $wgResourceLoaderLESSImportPaths,
+ * which makes this file importable by all less files via '@import "mediawiki.mixins";'.
+ *
+ * The mixins included below are considered a public interface for MediaWiki extensions.
+ * The signatures of parametrized mixins should be kept as stable as possible.
+ *
+ * See <http://lesscss.org/#-mixins> for more information about how to write mixins.
+ */
+
+.background-image(@url) when (embeddable(@url)) {
+	background-image: embed(@url);
+	background-image: url(@url)!ie;
+}
+
+.background-image(@url) when not (embeddable(@url)) {
+	background-image: url(@url);
+}
+
+.vertical-gradient(@startColor: gray, @endColor: white, @startPos: 0, @endPos: 100%) {
+	background-color: @endColor;
+	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Firefox 3.6+
+	background-image: -webkit-gradient( linear, left top, left bottom, color-stop( @startPos, @startColor ), color-stop( @endPos, @endColor ) ); // Safari 4+, Chrome 2+
+	background-image: -webkit-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Safari 5.1+, Chrome 10+
+	background-image: linear-gradient( @startColor @startPos, @endColor @endPos ); // Standard
+}
+
+/*
+ * SVG support using a transparent gradient to guarantee cross-browser
+ * compatibility (browsers able to understand gradient syntax support also SVG).
+ * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
+ *
+ * We use gzip compression, which means that it is okay to embed twice.
+ *
+ * We do not embed the fallback image on the assumption that the gain for old browsers
+ * is not worth the harm done to modern ones.
+ */
+.background-image-svg(@svg, @fallback) when (embeddable(@svg)) {
+	background-image: url(@fallback);
+	/* We don't need the !ie hack because this old IE uses the fallback already */
+	background-image: -webkit-linear-gradient(transparent, transparent), embed(@svg);
+	background-image: linear-gradient(transparent, transparent), embed(@svg);
+}
+
+.background-image-svg(@svg, @fallback) when not (embeddable(@svg)) {
+	background-image: url(@fallback);
+	background-image: -webkit-linear-gradient(transparent, transparent), url(@svg);
+	background-image: linear-gradient(transparent, transparent), url(@svg);
+}
+
+/* Caution: Does not support localisable images */
+.list-style-image(@url) when (embeddable(@url)) {
+	list-style-image: embed(@url);
+	list-style-image: url(@url)!ie;
+}
+
+.list-style-image(@url) when not (embeddable(@url)) {
+	list-style-image: url(@url);
+}
+
+.transition(@string) {
+	-webkit-transition: @string;
+	transition: @string;
+}
+
+.box-sizing(@value) {
+	-moz-box-sizing: @value;
+	-webkit-box-sizing: @value;
+	box-sizing: @value;
+}

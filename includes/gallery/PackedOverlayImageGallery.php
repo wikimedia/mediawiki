@@ -22,12 +22,13 @@
  */
 
 class PackedOverlayImageGallery extends PackedImageGallery {
-
 	/**
 	 * Add the wrapper html around the thumb's caption
 	 *
-	 * @param String $galleryText The caption
-	 * @param MediaTransformOutput|boolean $thumb The thumb this caption is for or false for bad image.
+	 * @param string $galleryText The caption
+	 * @param MediaTransformOutput|bool $thumb The thumb this caption is for
+	 *   or false for bad image.
+	 * @return string
 	 */
 	protected function wrapGalleryText( $galleryText, $thumb ) {
 
@@ -37,17 +38,19 @@ class PackedOverlayImageGallery extends PackedImageGallery {
 			return '';
 		}
 
-		# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
-		# in version 4.8.6 generated crackpot html in its absence, see:
-		# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
+		# ATTENTION: The newline after <div class="gallerytext"> is needed to
+		# accommodate htmltidy which in version 4.8.6 generated crackpot HTML
+		# in its absence, see: http://bugzilla.wikimedia.org/show_bug.cgi?id=1765
+		# -Ævar
 
 		$thumbWidth = $this->getGBWidth( $thumb ) - $this->getThumbPadding() - $this->getGBPadding();
 		$captionWidth = ceil( $thumbWidth - 20 );
 
 		$outerWrapper = '<div class="gallerytextwrapper" style="width: ' . $captionWidth . 'px">';
+
 		return "\n\t\t\t" . $outerWrapper . '<div class="gallerytext">' . "\n"
-					. $galleryText
-					. "\n\t\t\t</div>";
+			. $galleryText
+			. "\n\t\t\t</div>";
 	}
 }
 
@@ -57,4 +60,5 @@ class PackedOverlayImageGallery extends PackedImageGallery {
  * falls back to PackedHoverGallery. Degrades gracefully for
  * screen readers.
  */
-class PackedHoverImageGallery extends PackedOverlayImageGallery { }
+class PackedHoverImageGallery extends PackedOverlayImageGallery {
+}
