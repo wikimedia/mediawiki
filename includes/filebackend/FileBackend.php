@@ -135,19 +135,12 @@ abstract class FileBackend {
 	 */
 	public function __construct( array $config ) {
 		$this->name = $config['name'];
-		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
-			throw new FileBackendException( "Backend name `{$this->name}` is invalid." );
-		}
-		if ( !isset( $config['wikiId'] ) ) {
-			$config['wikiId'] = wfWikiID();
-			wfDeprecated( __METHOD__ . ' called without "wikiID".', '1.23' );
-		}
-		if ( isset( $config['lockManager'] ) && !is_object( $config['lockManager'] ) ) {
-			$config['lockManager'] =
-				LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
-			wfDeprecated( __METHOD__ . ' called with non-object "lockManager".', '1.23' );
-		}
 		$this->wikiId = $config['wikiId']; // e.g. "my_wiki-en_"
+		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
+			throw new FileBackendException( "Backend name '{$this->name}' is invalid." );
+		} elseif ( !is_string( $this->wikiId ) ) {
+			throw new FileBackendException( "Backend wiki ID not provided for '{$this->name}'." );
+		}
 		$this->lockManager = isset( $config['lockManager'] )
 			? $config['lockManager']
 			: new NullLockManager( array() );
