@@ -161,7 +161,9 @@ class SqlSearchResultSet extends SearchResultSet {
 			return false;
 		}
 
-		return SearchResult::newFromRow( $row );
+		return SearchResult::newFromTitle(
+			Title::makeTitle( $row->page_namespace, $row->page_title )
+		);
 	}
 
 	function free() {
