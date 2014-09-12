@@ -40,19 +40,23 @@ class WikiImporter {
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
-	 * @param ImportStreamSource $source
+	 * @param string|ImportStreamSource $source
 	 */
-	function __construct( ImportStreamSource $source ) {
+	function __construct( $source ) {
 		$this->reader = new XMLReader();
 
-		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
-			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
-		}
-		$id = UploadSourceAdapter::registerSource( $source );
-		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
-			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
+		/**
+		 * @todo
+		 * this is an intermittent fix that solves an issue when a file is imported
+		 * when using hhvm vs zend php. the main issue lies in the implementation
+		 * of UploadSourceAdapter in conjunction with ImportStreamSource
+		 *
+		 * @see bug 70658, bug 66023
+		 */
+		if ( $source instanceof ImportStreamSource ) {
+			$this->openAsStream( $source );
 		} else {
-			$this->reader->open( "uploadsource://$id" );
+			$this->openAsFile( $source );
 		}
 
 		// Default callbacks
@@ -886,9 +890,43 @@ class WikiImporter {
 
 		return array( $title, $origTitle );
 	}
+
+	/**
+	 * @param string $source
+	 */
+	private function openAsFile( $source ) {
+		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
+			$this->reader->open( $source, null, LIBXML_PARSEHUGE );
+		} else {
+			$this->reader->open( $source );
+		}
+	}
+
+	/**
+	 * @param ImportStreamSource $source
+	 */
+	private function openAsStream( ImportStreamSource $source ) {
+		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
+			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
+		}
+
+		$id = UploadSourceAdapter::registerSource( $source );
+
+		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
+			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
+		} else {
+			$this->reader->open( "uploadsource://$id" );
+		}
+	}
 }
 
-/** This is a horrible hack used to keep source compatibility */
+/**
+ * @todo
+ * This is a horrible hack used to allow all sources sent to the __construct
+ * method to exist as php stream resources, however it doesn’t work properly
+ * in hhvm; not because there is an issue with hhvm, but that there is an
+ * implementation issue with this class in conjunction with ImportStreamSource
+ */
 class UploadSourceAdapter {
 	/** @var array */
 	public static $sourceRegistrations = array();
@@ -1695,13 +1733,7 @@ class ImportStreamSource {
 	 * @return Status
 	 */
 	static function newFromFile( $filename ) {
-		wfSuppressWarnings();
-		$file = fopen( $filename, 'rt' );
-		wfRestoreWarnings();
-		if ( !$file ) {
-			return Status::newFatal( "importcantopen" );
-		}
-		return Status::newGood( new ImportStreamSource( $file ) );
+		return Status::newGood( $filename );
 	}
 
 	/**
