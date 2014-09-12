@@ -117,16 +117,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
-	public function replace( $key, $value, $exptime = 0 ) {
-		return $this->doWrite( 'replace', $key, $value, $exptime );
-	}
-
-	/**
-	 * @param string $key
 	 * @param int $value
 	 * @return bool|null
 	 */
