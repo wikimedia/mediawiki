@@ -25,7 +25,6 @@
  */
 
 require_once __DIR__ . '/Maintenance.php';
-require_once __DIR__ . '/deleteArchivedFiles.inc';
 
 /**
  * Maintenance script to delete archived (non-current) files from the database.
@@ -40,18 +39,82 @@ class DeleteArchivedFiles extends Maintenance {
 		$this->addOption( 'force', 'Force deletion of rows from filearchive' );
 	}
 
-	public function handleOutput( $str ) {
-		return $this->output( $str );
-	}
-
 	public function execute() {
 		if ( !$this->hasOption( 'delete' ) ) {
 			$this->output( "Use --delete to actually confirm this script\n" );
-
 			return;
 		}
-		$force = $this->hasOption( 'force' );
-		DeleteArchivedFilesImplementation::doDelete( $this, $force );
+
+		# Data should come off the master, wrapped in a transaction
+		$dbw = $this->getDB( DB_MASTER );
+		$dbw->begin( __METHOD__ );
+		$repo = RepoGroup::singleton()->getLocalRepo();
+
+		# Get "active" revisions from the filearchive table
+		$this->output( "Searching for and deleting archived files...\n" );
+		$res = $dbw->select(
+			'filearchive',
+			array( 'fa_id', 'fa_storage_group', 'fa_storage_key', 'fa_sha1' ),
+			'',
+			__METHOD__
+		);
+
+		$count = 0;
+		foreach ( $res as $row ) {
+			$key = $row->fa_storage_key;
+			if ( !strlen( $key ) ) {
+				$this->output( "Entry with ID {$row->fa_id} has empty key, skipping\n" );
+				continue;
+			}
+
+			$group = $row->fa_storage_group;
+			$id = $row->fa_id;
+			$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
+			if ( isset( $row->fa_sha1 ) ) {
+				$sha1 = $row->fa_sha1;
+			} else {
+				// old row, populate from key
+				$sha1 = LocalRepo::getHashFromKey( $key );
+			}
+
+			// Check if the file is used anywhere...
+			$inuse = $dbw->selectField(
+				'oldimage',
+				'1',
+				array(
+					'oi_sha1' => $sha1,
+					$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE
+				),
+				__METHOD__,
+				array( 'FOR UPDATE' )
+			);
+
+			$needForce = true;
+			if ( !$repo->fileExists( $path ) ) {
+				$this->output( "Notice - file '$key' not found in group '$group'\n" );
+			} elseif ( $inuse ) {
+				$this->output( "Notice - file '$key' is still in use\n" );
+			} elseif ( !$repo->quickPurge( $path ) ) {
+				$this->output( "Unable to remove file $path, skipping\n" );
+				continue; // don't delete even with --force
+			} else {
+				$needForce = false;
+			}
+
+			if ( $needForce ) {
+				if ( $this->hasOption( 'force' ) ) {
+					$this->output( "Got --force, deleting DB entry\n" );
+				} else {
+					continue;
+				}
+			}
+
+			$count++;
+			$dbw->delete( 'filearchive', array( 'fa_id' => $id ), __METHOD__ );
+		}
+
+		$dbw->commit( __METHOD__ );
+		$this->output( "Done! [$count file(s)]\n" );
 	}
 }
 
