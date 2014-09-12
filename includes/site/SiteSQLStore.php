@@ -314,11 +314,7 @@ class SiteSQLStore implements SiteStore {
 
 		$dbw = $this->sitesTable->getWriteDbConnection();
 
-		$trx = $dbw->trxLevel();
-
-		if ( $trx == 0 ) {
-			$dbw->begin( __METHOD__ );
-		}
+		$dbw->startAtomic( __METHOD__ );
 
 		$success = true;
 
@@ -360,9 +356,7 @@ class SiteSQLStore implements SiteStore {
 			);
 		}
 
-		if ( $trx == 0 ) {
-			$dbw->commit( __METHOD__ );
-		}
+		$dbw->endAtomic( __METHOD__ );
 
 		// purge cache
 		$this->reset();
