@@ -96,9 +96,6 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		if ( !$id ) {
 			throw new MWException( __METHOD__ . ': no insert ID' );
 		}
-		if ( $dbw->getFlag( DBO_TRX ) ) {
-			$dbw->commit( __METHOD__ );
-		}
 
 		return "DB://$cluster/$id";
 	}
@@ -134,7 +131,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			wfDebug( "writable external store\n" );
 		}
 
-		return $lb->getConnection( DB_SLAVE, array(), $wiki );
+		$db = $lb->getConnection( DB_SLAVE, array(), $wiki );
+		$db->clearFlag( DBO_TRX ); // sanity
+
+		return $db;
 	}
 
 	/**
@@ -147,7 +147,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb = $this->getLoadBalancer( $cluster );
 
-		return $lb->getConnection( DB_MASTER, array(), $wiki );
+		$db = $lb->getConnection( DB_MASTER, array(), $wiki );
+		$db->clearFlag( DBO_TRX ); // sanity
+
+		return $db;
 	}
 
 	/**
@@ -282,6 +285,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		}
 	}
 
+	/**
+	 * @param string $url
+	 * @return array
+	 */
 	protected function parseURL( $url ) {
 		$path = explode( '/', $url );
 
