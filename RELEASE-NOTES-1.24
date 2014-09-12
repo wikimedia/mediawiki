@@ -461,6 +461,7 @@ changes to languages because of Bugzilla reports.
 * Some extensions had their ResourceLoader modules depend on the "mediawiki"
   and "jquery" modules. In the past, this behavior was undefined, now it will
   throw an error.
+* Removed BagOStuff::replace(). (deprecated since 1.23)
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
