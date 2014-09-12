@@ -33,7 +33,13 @@
  * @ingroup Actions
  */
 class RawAction extends FormlessAction {
-	private $mGen;
+	/**
+	 * @var bool Does the request include a gen=css|javascript parameter
+	 * @deprecated This used to be a string for "css" or "javascript" but
+	 * it is no longer used. Setting this parameter results in empty content
+	 * being served
+	 */
+	private $gen = false;
 
 	public function getName() {
 		return 'raw';
@@ -66,12 +72,10 @@ class RawAction extends FormlessAction {
 		$smaxage = $request->getIntOrNull( 'smaxage' );
 
 		if ( $gen == 'css' || $gen == 'js' ) {
-			$this->mGen = $gen;
+			$this->gen = true;
 			if ( $smaxage === null ) {
 				$smaxage = $config->get( 'SquidMaxage' );
 			}
-		} else {
-			$this->mGen = false;
 		}
 
 		$contentType = $this->getContentType();
@@ -130,7 +134,7 @@ class RawAction extends FormlessAction {
 		global $wgParser;
 
 		# No longer used
-		if ( $this->mGen ) {
+		if ( $this->gen ) {
 			return '';
 		}
 
