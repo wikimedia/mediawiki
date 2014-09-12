@@ -55,6 +55,7 @@ class ParserOutput extends CacheTime {
 		private $mExtensionData = array(); # extra data used by extensions
 		private $mLimitReportData = array(); # Parser limit report data
 		private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
+		private $mPreventClickjacking = false; # Whether to emit X-Frame-Options: DENY
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -330,6 +331,7 @@ class ParserOutput extends CacheTime {
 		$this->addModuleMessages( $out->getModuleMessages() );
 
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
+		$this->mPreventClickjacking = $this->mPreventClickjacking || $out->getPreventClickjacking();
 	}
 
 	/**
@@ -628,5 +630,16 @@ class ParserOutput extends CacheTime {
 	 */
 	function setLimitReportData( $key, $value ) {
 		$this->mLimitReportData[$key] = $value;
+	}
+
+	/**
+	 * Get or set the prevent-clickjacking flag
+	 *
+	 * @since 1.24
+	 * @param boolean|null $flag New flag value, or null to leave it unchanged
+	 * @return boolean Old flag value
+	 */
+	public function preventClickjacking( $flag = null ) {
+		return wfSetVar( $this->mPreventClickjacking, $flag );
 	}
 }

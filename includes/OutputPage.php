@@ -1574,6 +1574,8 @@ class OutputPage extends ContextSource {
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addModuleMessages( $parserOutput->getModuleMessages() );
+		$this->mPreventClickjacking = $this->mPreventClickjacking
+			|| $parserOutput->preventClickjacking();
 
 		// Template versioning...
 		foreach ( (array)$parserOutput->getTemplateIds() as $ns => $dbks ) {
@@ -1871,6 +1873,16 @@ class OutputPage extends ContextSource {
 	 */
 	public function allowClickjacking() {
 		$this->mPreventClickjacking = false;
+	}
+
+	/**
+	 * Get the prevent-clickjacking flag
+	 *
+	 * @since 1.24
+	 * @return boolean
+	 */
+	public function getPreventClickjacking() {
+		return $this->mPreventClickjacking;
 	}
 
 	/**
