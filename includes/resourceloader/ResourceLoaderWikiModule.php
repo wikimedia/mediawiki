@@ -96,14 +96,14 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return null;
 		}
 
-		$model = $content->getModel();
-
-		if ( $model !== CONTENT_MODEL_CSS && $model !== CONTENT_MODEL_JAVASCRIPT ) {
-			wfDebugLog( 'resourceloader', __METHOD__ . ': bad content model $model for JS/CSS page!' );
+		if ( $content->isSupportedFormat( CONTENT_FORMAT_JAVASCRIPT ) ) {
+			return $content->serialize( CONTENT_FORMAT_JAVASCRIPT );
+		} elseif ( $content->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
+			return $content->serialize( CONTENT_FORMAT_CSS );
+		} else {
+			wfDebugLog( 'resourceloader', __METHOD__ . ": bad content model {$content->getModel()} for JS/CSS page!" );
 			return null;
 		}
-
-		return $content->getNativeData(); //NOTE: this is safe, we know it's JS or CSS
 	}
 
 	/* Methods */
