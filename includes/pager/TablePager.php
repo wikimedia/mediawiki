@@ -402,13 +402,11 @@ abstract class TablePager extends IndexPager {
 	 * @return string HTML fragment
 	 */
 	function getLimitForm() {
-		global $wgScript;
-
 		return Html::rawElement(
 			'form',
 			array(
 				'method' => 'get',
-				'action' => $wgScript
+				'action' => wfScript(),
 			),
 			"\n" . $this->getLimitDropdown()
 		) . "\n";
