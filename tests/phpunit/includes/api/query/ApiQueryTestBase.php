@@ -95,6 +95,9 @@ STR;
 		if ( !array_key_exists( 'action', $req ) ) {
 			$req['action'] = 'query';
 		}
+		if ( !array_key_exists( 'continue', $req ) ) {
+			$req['rawcontinue'] = '1';
+		}
 		foreach ( $req as &$val ) {
 			if ( is_array( $val ) ) {
 				$val = implode( '|', array_unique( $val ) );
