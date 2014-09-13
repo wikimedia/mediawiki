@@ -35,6 +35,7 @@ class HooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideHooks
+	 * @covers ::wfRunHooks
 	 */
 	public function testOldStyleHooks( $msg, array $hook, $expectedFoo, $expectedBar ) {
 		global $wgHooks;
@@ -49,6 +50,8 @@ class HooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideHooks
+	 * @covers Hooks::register
+	 * @covers Hooks::run
 	 */
 	public function testNewStyleHooks( $msg, $hook, $expectedFoo, $expectedBar ) {
 		$foo = $bar = 'original';
@@ -60,6 +63,12 @@ class HooksTest extends MediaWikiTestCase {
 		$this->assertSame( $expectedBar, $bar, $msg );
 	}
 
+	/**
+	 * @covers Hooks::isRegistered
+	 * @covers Hooks::register
+	 * @covers Hooks::getHandlers
+	 * @covers Hooks::run
+	 */
 	public function testNewStyleHookInteraction() {
 		global $wgHooks;
 
@@ -82,12 +91,16 @@ class HooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException MWException
+	 * @covers Hooks::run
 	 */
 	public function testUncallableFunction() {
 		Hooks::register( 'MediaWikiHooksTest001', 'ThisFunctionDoesntExist' );
 		Hooks::run( 'MediaWikiHooksTest001', array() );
 	}
 
+	/**
+	 * @covers Hooks::run
+	 */
 	public function testFalseReturn() {
 		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
 			return false;
@@ -104,6 +117,7 @@ class HooksTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException FatalError
+	 * @covers Hooks::run
 	 */
 	public function testFatalError() {
 		Hooks::register( 'MediaWikiHooksTest001', function () {

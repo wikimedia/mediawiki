@@ -58,15 +58,23 @@ class UsercreateTemplate extends BaseTemplate {
 			<section class="mw-form-header">
 				<?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
 			</section>
+			<!-- This element is used by the mediawiki.special.userlogin.signup.js module. -->
+			<div
+				id="mw-createacct-status-area"
+				<?php if ( $this->data['message'] ) { ?>
+					class="<?php echo $this->data['messagetype']; ?>box"
+				<?php } else { ?>
+					style="display: none;"
+				<?php } ?>
+			>
 			<?php if ( $this->data['message'] ) { ?>
-				<div class="<?php $this->text( 'messagetype' ); ?>box">
 					<?php if ( $this->data['messagetype'] == 'error' ) { ?>
 						<strong><?php $this->msg( 'createacct-error' ); ?></strong>
 						<br />
 					<?php } ?>
 					<?php $this->html( 'message' ); ?>
-				</div>
 			<?php } ?>
+			</div>
 
 			<div>
 				<label for='wpName2'>
@@ -116,17 +124,16 @@ class UsercreateTemplate extends BaseTemplate {
 
 			<?php
 			if ( $this->data['usedomain'] ) {
-				$doms = "";
+				$select = new XmlSelect( 'wpDomain', false, $this->data['domain'] );
+				$select->setAttribute( 'tabindex', 4 );
 				foreach ( $this->data['domainnames'] as $dom ) {
-					$doms .= "<option>" . htmlspecialchars( $dom ) . "</option>";
+					$select->addOption( $dom );
 				}
 			?>
 				<div id="mw-user-domain-section">
 					<label for="wpDomain"><?php $this->msg( 'yourdomainname' ); ?></label>
 					<div class="mw-input">
-						<select name="wpDomain" value="<?php $this->text( 'domain' ); ?>" tabindex="4">
-							<?php echo $doms ?>
-						</select>
+						<?php echo $select->getHTML(); ?>
 					</div>
 				</div>
 			<?php } ?>
@@ -213,7 +220,7 @@ class UsercreateTemplate extends BaseTemplate {
 										echo 'checked="checked"';
 									} ?>
 								>
-								<?php $this->msg( $inputItem['msg'] ); ?>
+								<?php $this->msgHtml( $inputItem['msg'] ); ?>
 							</label>
 						<?php
 						} else {
@@ -255,7 +262,7 @@ class UsercreateTemplate extends BaseTemplate {
 					$this->getMsg( $this->data['loggedin'] ? 'createacct-another-submit' : 'createacct-submit' ),
 					'submit',
 					array(
-						'class' => "mw-ui-button mw-ui-big mw-ui-block mw-ui-primary",
+						'class' => "mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive",
 						'id' => 'wpCreateaccount',
 						'tabindex' => $tabIndex++
 					)

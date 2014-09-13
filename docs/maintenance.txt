@@ -54,4 +54,4 @@ require_once RUN_MAINTENANCE_IF_MAIN;
 That's it. In the execute() method, you have access to all of the normal
 MediaWiki functions, so you can get a DB connection, use the cache, etc.
 For full docs on the Maintenance class, see the auto-generated docs at
-http://svn.wikimedia.org/doc/classMaintenance.html
+https://doc.wikimedia.org/mediawiki-core/master/php/html/classMaintenance.html

@@ -403,3 +403,25 @@ class SpecialListUsers extends IncludableSpecialPage {
 		return 'users';
 	}
 }
+
+/**
+ * Redirect page: Special:ListAdmins --> Special:ListUsers/sysop.
+ *
+ * @ingroup SpecialPage
+ */
+class SpecialListAdmins extends SpecialRedirectToSpecial {
+	function __construct() {
+		parent::__construct( 'Listadmins', 'Listusers', 'sysop' );
+	}
+}
+
+/**
+ * Redirect page: Special:ListBots --> Special:ListUsers/bot.
+ *
+ * @ingroup SpecialPage
+ */
+class SpecialListBots extends SpecialRedirectToSpecial {
+	function __construct() {
+		parent::__construct( 'Listbots', 'Listusers', 'bot' );
+	}
+}

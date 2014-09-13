@@ -2,7 +2,7 @@
 /**
  * Image authorisation script
  *
- * To use this, see http://www.mediawiki.org/wiki/Manual:Image_Authorization
+ * To use this, see https://www.mediawiki.org/wiki/Manual:Image_Authorization
  *
  * - Set $wgUploadDirectory to a non-public directory (not web accessible)
  * - Set $wgUploadPath to point to this file
@@ -50,9 +50,13 @@ $wgActionPaths = array( "$wgUploadPath/" );
 
 wfImageAuthMain();
 wfLogProfilingData();
+// Commit and close up!
+$factory = wfGetLBFactory();
+$factory->commitMasterChanges();
+$factory->shutdown();
 
 function wfImageAuthMain() {
-	global $wgImgAuthPublicTest, $wgRequest;
+	global $wgImgAuthPublicTest, $wgImgAuthUrlPathMap, $wgRequest;
 
 	// See if this is a public Wiki (no protections).
 	if ( $wgImgAuthPublicTest
@@ -77,12 +81,35 @@ function wfImageAuthMain() {
 
 	// Check for bug 28235: QUERY_STRING overriding the correct extension
 	$whitelist = array();
-	$dotPos = strrpos( $path, '.' );
-	if ( $dotPos !== false ) {
-		$whitelist[] = substr( $path, $dotPos + 1 );
+	$extension = FileBackend::extensionFromPath( $path );
+	if ( $extension != '' ) {
+		$whitelist[] = $extension;
 	}
 	if ( !$wgRequest->checkUrlExtension( $whitelist ) ) {
 		return;
+	}
+
+	// Various extensions may have their own backends that need access.
+	// Check if there is a special backend and storage base path for this file.
+	foreach ( $wgImgAuthUrlPathMap as $prefix => $storageDir ) {
+		$prefix = rtrim( $prefix, '/' ) . '/'; // implicit trailing slash
+		if ( strpos( $path, $prefix ) === 0 ) {
+			$be = FileBackendGroup::singleton()->backendFromPath( $storageDir );
+			$filename = $storageDir . substr( $path, strlen( $prefix ) ); // strip prefix
+			// Check basic user authorization
+			if ( !RequestContext::getMain()->getUser()->isAllowed( 'read' ) ) {
+				wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $path );
+				return;
+			}
+			if ( $be->fileExists( array( 'src' => $filename ) ) ) {
+				wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
+				$be->streamFile( array( 'src' => $filename ),
+					array( 'Cache-Control: private', 'Vary: Cookie' ) );
+			} else {
+				wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $path );
+			}
+			return;
+		}
 	}
 
 	// Get the local file repository
@@ -127,6 +154,10 @@ function wfImageAuthMain() {
 		return;
 	}
 
+	if ( $wgRequest->getCheck( 'download' ) ) {
+		header( 'Content-Disposition: attachment' );
+	}
+
 	// Stream the requested file
 	wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
 	$repo->streamFile( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
@@ -145,6 +176,7 @@ function wfForbidden( $msg1, $msg2 ) {
 	$args = func_get_args();
 	array_shift( $args );
 	array_shift( $args );
+	$args = ( isset( $args[0] ) && is_array( $args[0] ) ) ? $args[0] : $args;
 
 	$msgHdr = wfMessage( $msg1 )->escaped();
 	$detailMsgKey = $wgImgAuthDetails ? $msg2 : 'badaccess-group0';

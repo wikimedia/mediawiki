@@ -25,8 +25,12 @@
  */
 class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 
-	/* Protected Methods */
+	/* Protected Members */
+
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
+	protected $targets = array( 'desktop', 'mobile' );
+
+	/* Protected Methods */
 
 	/**
 	 * @param $context ResourceLoaderContext
@@ -55,7 +59,7 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 
 		$pages = array();
 		foreach ( $user->getEffectiveGroups() as $group ) {
-			if ( in_array( $group, array( '*', 'user' ) ) ) {
+			if ( $group == '*' ) {
 				continue;
 			}
 			if ( $wgUseSiteJs ) {

@@ -449,8 +449,8 @@ class Html {
 			// numbers to be entered in 'type="number"' fields, allow
 			// the special case 'step="any"'.
 
-			if ( in_array( $key, array( 'max', 'min', 'pattern', 'required' ) ) ||
-				 $key === 'step' && $value !== 'any' ) {
+			if ( in_array( $key, array( 'max', 'min', 'pattern', 'required' ) )
+				|| $key === 'step' && $value !== 'any' ) {
 				continue;
 			}
 
@@ -635,10 +635,10 @@ class Html {
 	 * Convenience function to produce an "<input>" element.  This supports the
 	 * new HTML5 input types and attributes.
 	 *
-	 * @param $name    string name attribute
-	 * @param $value   mixed  value attribute
-	 * @param $type    string type attribute
-	 * @param array $attribs  Associative array of miscellaneous extra
+	 * @param string $name Name attribute
+	 * @param array $value Value attribute
+	 * @param string $type Type attribute
+	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
@@ -653,9 +653,9 @@ class Html {
 	/**
 	 * Convenience function to produce an input element with type=hidden
 	 *
-	 * @param $name    string name attribute
-	 * @param $value   string value attribute
-	 * @param array $attribs  Associative array of miscellaneous extra
+	 * @param string $name Name attribute
+	 * @param string $value Value attribute
+	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
@@ -664,14 +664,14 @@ class Html {
 	}
 
 	/**
-	 * Convenience function to produce an "<input>" element.
+	 * Convenience function to produce a <textarea> element.
 	 *
 	 * This supports leaving out the cols= and rows= which Xml requires and are
 	 * required by HTML4/XHTML but not required by HTML5.
 	 *
-	 * @param $name    string name attribute
-	 * @param $value   string value attribute
-	 * @param array $attribs  Associative array of miscellaneous extra
+	 * @param string $name Name attribute
+	 * @param string $value Value attribute
+	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
@@ -689,10 +689,11 @@ class Html {
 		}
 		return self::element( 'textarea', $attribs, $spacedValue );
 	}
+
 	/**
 	 * Build a drop-down box for selecting a namespace
 	 *
-	 * @param $params array:
+	 * @param array $params Params to set.
 	 * - selected: [optional] Id of namespace which should be pre-selected
 	 * - all: [optional] Value of item for "all namespaces". If null or unset, no "<option>" is generated to select all namespaces
 	 * - label: text for label to add before the field
@@ -793,9 +794,9 @@ class Html {
 	 * Constructs the opening html-tag with necessary doctypes depending on
 	 * global variables.
 	 *
-	 * @param array $attribs  Associative array of miscellaneous extra
+	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element() of html tag.
-	 * @return string  Raw HTML
+	 * @return string Raw HTML
 	 */
 	public static function htmlHeader( $attribs = array() ) {
 		$ret = '';
@@ -839,8 +840,8 @@ class Html {
 	/**
 	 * Determines if the given mime type is xml.
 	 *
-	 * @param $mimetype    string MimeType
-	 * @return Boolean
+	 * @param string $mimetype MimeType
+	 * @return bool
 	 */
 	public static function isXmlMimeType( $mimetype ) {
 		# http://www.whatwg.org/html/infrastructure.html#xml-mime-type

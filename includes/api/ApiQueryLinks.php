@@ -43,7 +43,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->prefix = 'pl';
 				$this->description = 'link';
 				$this->titlesParam = 'titles';
-				$this->titlesParamDescription = 'Only list links to these titles. Useful for checking whether a certain page links to a certain title.';
+				$this->titlesParamDescription = 'Only list links to these titles. Useful ' .
+					'for checking whether a certain page links to a certain title.';
 				$this->helpUrl = 'https://www.mediawiki.org/wiki/API:Properties#links_.2F_pl';
 				break;
 			case self::TEMPLATES:
@@ -51,7 +52,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->prefix = 'tl';
 				$this->description = 'template';
 				$this->titlesParam = 'templates';
-				$this->titlesParamDescription = 'Only list these templates. Useful for checking whether a certain page uses a certain template.';
+				$this->titlesParamDescription = 'Only list these templates. Useful ' .
+					'for checking whether a certain page uses a certain template.';
 				$this->helpUrl = 'https://www.mediawiki.org/wiki/API:Properties#templates_.2F_tl';
 				break;
 			default:
@@ -74,8 +76,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
-	 * @return
+	 * @param ApiPageSet $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
@@ -212,6 +213,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$desc = $this->description;
+
 		return array(
 			'namespace' => "Show {$desc}s in this namespace(s) only",
 			'limit' => "How many {$desc}s to return",
@@ -231,16 +233,19 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return "Returns all {$this->description}s from the given page(s)";
+		return "Returns all {$this->description}s from the given page(s).";
 	}
 
 	public function getExamples() {
 		$desc = $this->description;
 		$name = $this->getModuleName();
+
 		return array(
 			"api.php?action=query&prop={$name}&titles=Main%20Page" => "Get {$desc}s from the [[Main Page]]",
-			"api.php?action=query&generator={$name}&titles=Main%20Page&prop=info" => "Get information about the {$desc} pages in the [[Main Page]]",
-			"api.php?action=query&prop={$name}&titles=Main%20Page&{$this->prefix}namespace=2|10" => "Get {$desc}s from the Main Page in the User and Template namespaces",
+			"api.php?action=query&generator={$name}&titles=Main%20Page&prop=info"
+				=> "Get information about the {$desc} pages in the [[Main Page]]",
+			"api.php?action=query&prop={$name}&titles=Main%20Page&{$this->prefix}namespace=2|10"
+				=> "Get {$desc}s from the Main Page in the User and Template namespaces",
 		);
 	}
 

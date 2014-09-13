@@ -36,7 +36,6 @@
  * headaches, which may be fatal.
  */
 class EditPage {
-
 	/**
 	 * Status: Article successfully updated
 	 */
@@ -319,6 +318,18 @@ class EditPage {
 		}
 	}
 
+	/**
+	 * Returns if the given content model is editable.
+	 *
+	 * @param string $modelId The ID of the content model to test. Use CONTENT_MODEL_XXX constants.
+	 * @return bool
+	 * @throws MWException if $modelId has no known handler
+	 */
+	public function isSupportedContentModel( $modelId ) {
+		return $this->allowNonTextContent ||
+			ContentHandler::getForModelID( $modelId ) instanceof TextContentHandler;
+	}
+
 	function submit() {
 		$this->edit();
 	}
@@ -457,9 +468,9 @@ class EditPage {
 		# Ignore some permissions errors when a user is just previewing/viewing diffs
 		$remove = array();
 		foreach ( $permErrors as $error ) {
-			if ( ( $this->preview || $this->diff ) &&
-				( $error[0] == 'blockedtext' || $error[0] == 'autoblockedtext' ) )
-			{
+			if ( ( $this->preview || $this->diff )
+				&& ( $error[0] == 'blockedtext' || $error[0] == 'autoblockedtext' )
+			) {
 				$remove[] = $error;
 			}
 		}
@@ -567,10 +578,10 @@ class EditPage {
 		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
 			// Standard preference behavior
 			return true;
-		} elseif ( !$this->mTitle->exists() &&
-			isset( $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] ) &&
-			$wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] )
-		{
+		} elseif ( !$this->mTitle->exists()
+			&& isset( $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] )
+			&& $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()]
+		) {
 			// Categories are special
 			return true;
 		} else {
@@ -613,6 +624,7 @@ class EditPage {
 	/**
 	 * This function collects the form data and uses it to populate various member variables.
 	 * @param $request WebRequest
+	 * @throws ErrorPageError
 	 */
 	function importFormData( &$request ) {
 		global $wgContLang, $wgUser;
@@ -728,9 +740,9 @@ class EditPage {
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 
 			# Don't force edit summaries when a user is editing their own user or talk page
-			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK ) &&
-				$this->mTitle->getText() == $wgUser->getName() )
-			{
+			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK )
+				&& $this->mTitle->getText() == $wgUser->getName()
+			) {
 				$this->allowBlankSummary = true;
 			} else {
 				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' ) || !$wgUser->getOption( 'forceeditsummary' );
@@ -759,8 +771,7 @@ class EditPage {
 				$this->sectiontitle = $request->getVal( 'preloadtitle' );
 				// Once wpSummary isn't being use for setting section titles, we should delete this.
 				$this->summary = $request->getVal( 'preloadtitle' );
-			}
-			elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
+			} elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
 				$this->summary = $request->getText( 'summary' );
 				if ( $this->summary !== '' ) {
 					$this->hasPresetSummary = true;
@@ -777,12 +788,17 @@ class EditPage {
 		$this->bot = $request->getBool( 'bot', true );
 		$this->nosummary = $request->getBool( 'nosummary' );
 
-		$content_handler = ContentHandler::getForTitle( $this->mTitle );
-		$this->contentModel = $request->getText( 'model', $content_handler->getModelID() ); #may be overridden by revision
-		$this->contentFormat = $request->getText( 'format', $content_handler->getDefaultFormat() ); #may be overridden by revision
+		$this->contentModel = $request->getText( 'model', $this->contentModel ); #may be overridden by revision
+		$this->contentFormat = $request->getText( 'format', $this->contentFormat ); #may be overridden by revision
 
+		if ( !ContentHandler::getForModelID( $this->contentModel )->isSupportedFormat( $this->contentFormat ) ) {
+			throw new ErrorPageError(
+				'editpage-notsupportedcontentformat-title',
+				'editpage-notsupportedcontentformat-text',
+				array( $this->contentFormat, ContentHandler::getLocalizedName( $this->contentModel ) )
+			);
+		}
 		#TODO: check if the desired model is allowed in this namespace, and if a transition from the page's current model to the new model is allowed
-		#TODO: check if the desired content model supports the given content format!
 
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro',
@@ -874,7 +890,7 @@ class EditPage {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -894,14 +910,15 @@ class EditPage {
 				$preload = $wgRequest->getVal( 'preload',
 					// Custom preload text for new sections
 					$this->section === 'new' ? 'MediaWiki:addsection-preload' : '' );
+				$params = $wgRequest->getArray( 'preloadparams', array() );
 
-				$content = $this->getPreloadedContent( $preload );
+				$content = $this->getPreloadedContent( $preload, $params );
 			}
 		// For existing pages, get text based on "undo" or section parameters.
 		} else {
 			if ( $this->section != '' ) {
 				// Get section edit text (returns $def_text for invalid sections)
-				$orig = $this->getOriginalContent();
+				$orig = $this->getOriginalContent( $wgUser );
 				$content = $orig ? $orig->getSection( $this->section ) : null;
 
 				if ( !$content ) {
@@ -912,10 +929,6 @@ class EditPage {
 				$undo = $wgRequest->getInt( 'undo' );
 
 				if ( $undo > 0 && $undoafter > 0 ) {
-					if ( $undo < $undoafter ) {
-						# If they got undoafter and undo round the wrong way, switch them
-						list( $undo, $undoafter ) = array( $undoafter, $undo );
-					}
 
 					$undorev = Revision::newFromId( $undo );
 					$oldrev = Revision::newFromId( $undoafter );
@@ -924,8 +937,6 @@ class EditPage {
 					# the revisions exist and they were not deleted.
 					# Otherwise, $content will be left as-is.
 					if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
-						$undorev->getPage() == $oldrev->getPage() &&
-						$undorev->getPage() == $this->mTitle->getArticleID() &&
 						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
 						!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
 
@@ -935,34 +946,45 @@ class EditPage {
 							# Warn the user that something went wrong
 							$undoMsg = 'failure';
 						} else {
-							# Inform the user of our success and set an automatic edit summary
-							$undoMsg = 'success';
+							$oldContent = $this->mArticle->getPage()->getContent( Revision::RAW );
+							$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
+							$newContent = $content->preSaveTransform( $this->mTitle, $wgUser, $popts );
 
-							# If we just undid one rev, use an autosummary
-							$firstrev = $oldrev->getNext();
-							if ( $firstrev && $firstrev->getId() == $undo ) {
-								$userText = $undorev->getUserText();
-								if ( $userText === '' ) {
-									$undoSummary = wfMessage(
-										'undo-summary-username-hidden',
-										$undo
-									)->inContentLanguage()->text();
-								} else {
-									$undoSummary = wfMessage(
-										'undo-summary',
-										$undo,
-										$userText
-									)->inContentLanguage()->text();
+							if ( $newContent->equals( $oldContent ) ) {
+								# Tell the user that the undo results in no change,
+								# i.e. the revisions were already undone.
+								$undoMsg = 'nochange';
+								$content = false;
+							} else {
+								# Inform the user of our success and set an automatic edit summary
+								$undoMsg = 'success';
+
+								# If we just undid one rev, use an autosummary
+								$firstrev = $oldrev->getNext();
+								if ( $firstrev && $firstrev->getId() == $undo ) {
+									$userText = $undorev->getUserText();
+									if ( $userText === '' ) {
+										$undoSummary = wfMessage(
+											'undo-summary-username-hidden',
+											$undo
+										)->inContentLanguage()->text();
+									} else {
+										$undoSummary = wfMessage(
+											'undo-summary',
+											$undo,
+											$userText
+										)->inContentLanguage()->text();
+									}
+									if ( $this->summary === '' ) {
+										$this->summary = $undoSummary;
+									} else {
+										$this->summary = $undoSummary . wfMessage( 'colon-separator' )
+											->inContentLanguage()->text() . $this->summary;
+									}
+									$this->undidRev = $undo;
 								}
-								if ( $this->summary === '' ) {
-									$this->summary = $undoSummary;
-								} else {
-									$this->summary = $undoSummary . wfMessage( 'colon-separator' )
-										->inContentLanguage()->text() . $this->summary;
-								}
-								$this->undidRev = $undo;
+								$this->formtype = 'diff';
 							}
-							$this->formtype = 'diff';
 						}
 					} else {
 						// Failed basic sanity checks.
@@ -971,14 +993,14 @@ class EditPage {
 						$undoMsg = 'norev';
 					}
 
-					// Messages: undo-success, undo-failure, undo-norev
+					// Messages: undo-success, undo-failure, undo-norev, undo-nochange
 					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 					$this->editFormPageTop .= $wgOut->parse( "<div class=\"{$class}\">" .
 						wfMessage( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );
 				}
 
 				if ( $content === false ) {
-					$content = $this->getOriginalContent();
+					$content = $this->getOriginalContent( $wgUser );
 				}
 			}
 		}
@@ -999,9 +1021,10 @@ class EditPage {
 	 * 'missing-revision' message.
 	 *
 	 * @since 1.19
+	 * @param User $user The user to get the revision for
 	 * @return Content|null
 	 */
-	private function getOriginalContent() {
+	private function getOriginalContent( User $user ) {
 		if ( $this->section == 'new' ) {
 			return $this->getCurrentContent();
 		}
@@ -1014,7 +1037,7 @@ class EditPage {
 
 			return $handler->makeEmptyContent();
 		}
-		$content = $revision->getContent();
+		$content = $revision->getContent( Revision::FOR_THIS_USER, $user );
 		return $content;
 	}
 
@@ -1095,12 +1118,13 @@ class EditPage {
 	 * an earlier setPreloadText() or by loading the given page.
 	 *
 	 * @param string $preload representing the title to preload from.
+	 * @param Array $params Parameters to use (interface-message style) in the preloaded text
 	 *
 	 * @return Content
 	 *
 	 * @since 1.21
 	 */
-	protected function getPreloadedContent( $preload ) {
+	protected function getPreloadedContent( $preload, $params = array() ) {
 		global $wgUser;
 
 		if ( !empty( $this->mPreloadContent ) ) {
@@ -1154,7 +1178,7 @@ class EditPage {
 			$content = $converted;
 		}
 
-		return $content->preloadTransform( $title, $parserOptions );
+		return $content->preloadTransform( $title, $parserOptions, $params );
 	}
 
 	/**
@@ -1204,13 +1228,29 @@ class EditPage {
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return bool false if output is done, true if the rest of the form should be displayed
 	 */
-	function attemptSave() {
-		global $wgUser, $wgOut;
+	public function attemptSave() {
+		global $wgUser;
 
 		$resultDetails = false;
 		# Allow bots to exempt some edits from bot flagging
 		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
+
+		return $this->handleStatus( $status, $resultDetails );
+	}
+
+	/**
+	 * Handle status, such as after attempt save
+	 *
+	 * @param Status $status
+	 * @param array|bool $resultDetails
+	 *
+	 * @throws ErrorPageError
+	 * return bool false, if output is done, true if rest of the form should be displayed
+	 */
+	private function handleStatus( Status $status, $resultDetails ) {
+		global $wgUser, $wgOut;
+
 		// FIXME: once the interface for internalAttemptSave() is made nicer, this should use the message in $status
 		if ( $status->value == self::AS_SUCCESS_UPDATE || $status->value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
@@ -1304,8 +1344,8 @@ class EditPage {
 	 * Run hooks that can filter edits just before they get saved.
 	 *
 	 * @param Content $content the Content to filter.
-	 * @param Status  $status for reporting the outcome to the caller
-	 * @param User    $user the user performing the edit
+	 * @param Status $status For reporting the outcome to the caller
+	 * @param User $user The user performing the edit
 	 *
 	 * @return bool
 	 */
@@ -1697,7 +1737,7 @@ class EditPage {
 					return $status;
 				}
 			} elseif ( !$this->allowBlankSummary
-				&& !$content->equals( $this->getOriginalContent() )
+				&& !$content->equals( $this->getOriginalContent( $wgUser ) )
 				&& !$content->isRedirect()
 				&& md5( $this->summary ) == $this->autoSumm
 			) {
@@ -1776,9 +1816,9 @@ class EditPage {
 			// Show the edit conflict page for certain recognized errors from doEdit(),
 			// but don't show it for errors from extension hooks
 			$errors = $doEditStatus->getErrorsArray();
-			if ( in_array( $errors[0][0], array( 'edit-gone-missing', 'edit-conflict',
-				'edit-already-exists' ) ) )
-			{
+			if ( in_array( $errors[0][0],
+					array( 'edit-gone-missing', 'edit-conflict', 'edit-already-exists' ) )
+			) {
 				$this->isConflict = true;
 				// Destroys data doEdit() put in $status->value but who cares
 				$doEditStatus->value = self::AS_END;
@@ -1897,12 +1937,10 @@ class EditPage {
 	function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
-			$baseRevision = Revision::loadFromTimestamp(
+			$this->mBaseRevision = Revision::loadFromTimestamp(
 				$db, $this->mTitle, $this->edittime );
-			return $this->mBaseRevision = $baseRevision;
-		} else {
-			return $this->mBaseRevision;
 		}
+		return $this->mBaseRevision;
 	}
 
 	/**
@@ -1960,9 +1998,6 @@ class EditPage {
 		if ( $wgUser->getOption( 'useeditwarning', false ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.editWarning' );
 		}
-
-		// Bug #19334: textarea jumps when editing articles in IE8
-		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
@@ -2129,9 +2164,9 @@ class EditPage {
 			return $content;
 		}
 
-		if ( !$this->allowNonTextContent && !( $content instanceof TextContent ) ) {
-			throw new MWException( "This content model can not be edited as text: "
-								. ContentHandler::getLocalizedName( $content->getModel() ) );
+		if ( !$this->isSupportedContentModel( $content->getModel() ) ) {
+			throw new MWException( 'This content model is not supported: '
+				. ContentHandler::getLocalizedName( $content->getModel() ) );
 		}
 
 		return $content->serialize( $this->contentFormat );
@@ -2159,8 +2194,8 @@ class EditPage {
 		$content = ContentHandler::makeContent( $text, $this->getTitle(),
 			$this->contentModel, $this->contentFormat );
 
-		if ( !$this->allowNonTextContent && !( $content instanceof TextContent ) ) {
-			throw new MWException( "This content model can not be edited as text: "
+		if ( !$this->isSupportedContentModel( $content->getModel() ) ) {
+			throw new MWException( 'This content model is not supported: '
 				. ContentHandler::getLocalizedName( $content->getModel() ) );
 		}
 
@@ -2477,7 +2512,9 @@ class EditPage {
 			}
 		}
 
-		if ( $this->mTitle->getNamespace() != NS_MEDIAWIKI && $this->mTitle->isProtected( 'edit' ) ) {
+		if ( $this->mTitle->isProtected( 'edit' ) &&
+			MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) !== array( '' )
+		) {
 			# Is the title semi-protected?
 			if ( $this->mTitle->isSemiProtected() ) {
 				$noticeMsg = 'semiprotectedpagewarning';
@@ -2569,11 +2606,11 @@ class EditPage {
 	}
 
 	/**
-	 * @param $isSubjectPreview Boolean: true if this is the section subject/title
-	 *                          up top, or false if this is the comment summary
-	 *                          down below the textarea
+	 * @param bool $isSubjectPreview true if this is the section subject/title
+	 *   up top, or false if this is the comment summary
+	 *   down below the textarea
 	 * @param string $summary The text of the summary to display
-	 * @return String
+	 * @return string
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
 		global $wgOut, $wgContLang;
@@ -2595,11 +2632,11 @@ class EditPage {
 	}
 
 	/**
-	 * @param $isSubjectPreview Boolean: true if this is the section subject/title
-	 *                          up top, or false if this is the comment summary
-	 *                          down below the textarea
+	 * @param bool $isSubjectPreview true if this is the section subject/title
+	 *   up top, or false if this is the comment summary
+	 *   down below the textarea
 	 * @param string $summary the text of the summary to display
-	 * @return String
+	 * @return string
 	 */
 	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
 		// avoid spaces in preview, gets always trimmed on save
@@ -2679,7 +2716,9 @@ HTML
 			$attribs = array( 'style' => 'display:none;' );
 		} else {
 			$classes = array(); // Textarea CSS
-			if ( $this->mTitle->getNamespace() != NS_MEDIAWIKI && $this->mTitle->isProtected( 'edit' ) ) {
+			if ( $this->mTitle->isProtected( 'edit' ) &&
+				MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) !== array( '' )
+			) {
 				# Is the title semi-protected?
 				if ( $this->mTitle->isSemiProtected() ) {
 					$classes[] = 'mw-textarea-sprotected';
@@ -2954,7 +2993,7 @@ HTML
 
 		foreach ( $output->getLimitReportData() as $key => $value ) {
 			if ( wfRunHooks( 'ParserLimitReportFormat',
-				array( $key, $value, &$limitReport, true, true )
+				array( $key, &$value, &$limitReport, true, true )
 			) ) {
 				$keyMsg = wfMessage( $key );
 				$valueMsg = wfMessage( array( "$key-value-html", "$key-value" ) );
@@ -3172,6 +3211,10 @@ HTML
 				return $previewHTML;
 			}
 
+			# provide a anchor link to the editform
+			$continueEditing = '<span class="mw-continue-editing">' .
+				'[[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' .
+				wfMessage( 'continue-editing' )->text() . ']]</span>';
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
 					$note = wfMessage( 'token_suffix_mismatch' )->plain();
@@ -3182,8 +3225,7 @@ HTML
 			} elseif ( $this->incompleteForm ) {
 				$note = wfMessage( 'edit_form_incomplete' )->plain();
 			} else {
-				$note = wfMessage( 'previewnote' )->plain() .
-					' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMessage( 'continue-editing' )->text() . ']]';
+				$note = wfMessage( 'previewnote' )->plain() . ' ' . $continueEditing;
 			}
 
 			$parserOptions = $this->mArticle->makeParserOptions( $this->mArticle->getContext() );
@@ -3212,7 +3254,9 @@ HTML
 				# Used messages to make sure grep find them:
 				# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
 				if ( $level && $format ) {
-					$note = "<div id='mw-{$level}{$format}preview'>" . wfMessage( "{$level}{$format}preview" )->text() . "</div>";
+					$note = "<div id='mw-{$level}{$format}preview'>" .
+						wfMessage( "{$level}{$format}preview" )->text() .
+						' ' . $continueEditing . "</div>";
 				}
 			}
 
@@ -3301,7 +3345,7 @@ HTML
 	 */
 	static function getEditToolbar() {
 		global $wgStylePath, $wgContLang, $wgLang, $wgOut;
-		global $wgUseTeX, $wgEnableUploads, $wgForeignFileRepos;
+		global $wgEnableUploads, $wgForeignFileRepos;
 
 		$imagesAvailable = $wgEnableUploads || count( $wgForeignFileRepos );
 
@@ -3382,15 +3426,6 @@ HTML
 				'tip'    => wfMessage( 'media_tip' )->text(),
 				'key'    => 'M'
 			) : false,
-			$wgUseTeX ? array(
-				'image'  => $wgLang->getImageFile( 'button-math' ),
-				'id'     => 'mw-editbutton-math',
-				'open'   => "<math>",
-				'close'  => "</math>",
-				'sample' => wfMessage( 'math_sample' )->text(),
-				'tip'    => wfMessage( 'math_tip' )->text(),
-				'key'    => 'C'
-			) : false,
 			array(
 				'image'  => $wgLang->getImageFile( 'button-nowiki' ),
 				'id'     => 'mw-editbutton-nowiki',
@@ -3427,16 +3462,16 @@ HTML
 			}
 
 			$params = array(
-				$image = $wgStylePath . '/common/images/' . $tool['image'],
+				$wgStylePath . '/common/images/' . $tool['image'],
 				// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
 				// Older browsers show a "speedtip" type message only for ALT.
 				// Ideally these should be different, realistically they
 				// probably don't need to be.
-				$tip = $tool['tip'],
-				$open = $tool['open'],
-				$close = $tool['close'],
-				$sample = $tool['sample'],
-				$cssId = $tool['id'],
+				$tool['tip'],
+				$tool['open'],
+				$tool['close'],
+				$tool['sample'],
+				$tool['id'],
 			);
 
 			$script .= Xml::encodeJsCall( 'mw.toolbar.addButton', $params );
@@ -3640,29 +3675,6 @@ HTML
 	}
 
 	/**
-	 * Produce the stock "your edit contains spam" page
-	 *
-	 * @param string|bool $match Text which triggered one or more filters
-	 * @deprecated since 1.17 Use method spamPageWithContent() instead
-	 */
-	static function spamPage( $match = false ) {
-		wfDeprecated( __METHOD__, '1.17' );
-
-		global $wgOut, $wgTitle;
-
-		$wgOut->prepareErrorPage( wfMessage( 'spamprotectiontitle' ) );
-
-		$wgOut->addHTML( '<div id="spamprotected">' );
-		$wgOut->addWikiMsg( 'spamprotectiontext' );
-		if ( $match ) {
-			$wgOut->addWikiMsg( 'spamprotectionmatch', wfEscapeWikiText( $match ) );
-		}
-		$wgOut->addHTML( '</div>' );
-
-		$wgOut->returnToMain( false, $wgTitle );
-	}
-
-	/**
 	 * Show "your edit contains spam" page with your diff and text
 	 *
 	 * @param $match string|Array|bool Text (or array of texts) which triggered one or more filters
@@ -3693,24 +3705,12 @@ HTML
 	}
 
 	/**
-	 * Format an anchor fragment as it would appear for a given section name
-	 * @param $text String
-	 * @return String
-	 * @private
-	 */
-	function sectionAnchor( $text ) {
-		global $wgParser;
-		return $wgParser->guessSectionNameFromWikiText( $text );
-	}
-
-	/**
 	 * Check if the browser is on a blacklist of user-agents known to
 	 * mangle UTF-8 data on form submission. Returns true if Unicode
 	 * should make it through, false if it's known to be a problem.
 	 * @return bool
-	 * @private
 	 */
-	function checkUnicodeCompliantBrowser() {
+	private function checkUnicodeCompliantBrowser() {
 		global $wgBrowserBlackList, $wgRequest;
 
 		$currentbrowser = $wgRequest->getHeader( 'User-Agent' );
@@ -3731,27 +3731,14 @@ HTML
 	 * Filter an input field through a Unicode de-armoring process if it
 	 * came from an old browser with known broken Unicode editing issues.
 	 *
-	 * @param $request WebRequest
-	 * @param $field String
-	 * @return String
-	 * @private
-	 */
-	function safeUnicodeInput( $request, $field ) {
-		$text = rtrim( $request->getText( $field ) );
-		return $request->getBool( 'safemode' )
-			? $this->unmakesafe( $text )
-			: $text;
-	}
-
-	/**
-	 * @param $request WebRequest
-	 * @param $text string
+	 * @param WebRequest $request
+	 * @param string $field
 	 * @return string
 	 */
-	function safeUnicodeText( $request, $text ) {
-		$text = rtrim( $text );
+	protected function safeUnicodeInput( $request, $field ) {
+		$text = rtrim( $request->getText( $field ) );
 		return $request->getBool( 'safemode' )
-			? $this->unmakesafe( $text )
+			? $this->unmakeSafe( $text )
 			: $text;
 	}
 
@@ -3759,16 +3746,15 @@ HTML
 	 * Filter an output field through a Unicode armoring process if it is
 	 * going to an old browser with known broken Unicode editing issues.
 	 *
-	 * @param $text String
-	 * @return String
-	 * @private
+	 * @param string $text
+	 * @return string
 	 */
-	function safeUnicodeOutput( $text ) {
+	protected function safeUnicodeOutput( $text ) {
 		global $wgContLang;
 		$codedText = $wgContLang->recodeForEdit( $text );
 		return $this->checkUnicodeCompliantBrowser()
 			? $codedText
-			: $this->makesafe( $codedText );
+			: $this->makeSafe( $codedText );
 	}
 
 	/**
@@ -3780,11 +3766,10 @@ HTML
 	 * Preexisting such character references will have a 0 added to them
 	 * to ensure that round-trips do not alter the original data.
 	 *
-	 * @param $invalue String
-	 * @return String
-	 * @private
+	 * @param string $invalue
+	 * @return string
 	 */
-	function makesafe( $invalue ) {
+	private function makeSafe( $invalue ) {
 		// Armor existing references for reversibility.
 		$invalue = strtr( $invalue, array( "&#x" => "&#x0" ) );
 
@@ -3822,13 +3807,13 @@ HTML
 	 * back to UTF-8. Used to protect data from corruption by broken web browsers
 	 * as listed in $wgBrowserBlackList.
 	 *
-	 * @param $invalue String
-	 * @return String
-	 * @private
+	 * @param string $invalue
+	 * @return string
 	 */
-	function unmakesafe( $invalue ) {
+	private function unmakeSafe( $invalue ) {
 		$result = "";
-		for ( $i = 0; $i < strlen( $invalue ); $i++ ) {
+		$valueLength = strlen( $invalue );
+		for ( $i = 0; $i < $valueLength; $i++ ) {
 			if ( ( substr( $invalue, $i, 3 ) == "&#x" ) && ( $invalue[$i + 3] != '0' ) ) {
 				$i += 3;
 				$hexstring = "";

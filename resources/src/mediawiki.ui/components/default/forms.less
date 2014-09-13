@@ -1,0 +1,166 @@
+// Form elements and layouts
+
+@import "mediawiki.mixins";
+@import "../../mixins/utilities";
+@import "../../mixins/forms";
+
+// --------------------------------------------------------------------------
+// Layouts
+// --------------------------------------------------------------------------
+
+// The FancyCaptcha image CAPTCHA used on WMF wikis drives the width of the
+// 'VForm' design, the form can't be narrower than this.
+@captchaContainerWidth: 290px;
+@defaultFormWidth: @captchaContainerWidth;
+
+// Forms
+//
+// Styleguide 3.
+
+// VForm
+//
+// Style a compact vertical stacked form ("VForm") and the elements in divs
+// within it. See button section on guidance of how and when to use mw-ui-constructive.
+//
+// Markup:
+// <form class="mw-ui-vform">
+//   <div class="mw-ui-vform-div">This is a form example.</div>
+//   <div>
+//     <label>Username </label>
+//     <input value="input">
+//   </div>
+//   <div>
+//     <button class="mw-ui-button mw-ui-constructive">Button in vform</button>
+//   </div>
+// </form>
+//
+// Styleguide 3.1.
+.mw-ui-vform {
+	.box-sizing(border-box);
+
+	width: @defaultFormWidth;
+
+	// Immediate divs in a vform are block and spaced-out.
+	// XXX: We shouldn't depend on the tag name here...
+	& > div {
+		display: block;
+		margin: 0 0 15px 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	// MW currently doesn't use the type attribute everywhere on inputs.
+	input,
+	.mw-ui-button {
+		display: block;
+		.box-sizing(border-box);
+		margin: 0;
+		width: 100%;
+	}
+
+	// We exclude these because they'll generally use mw-ui-button.
+	// Otherwise, we'll unintentionally override that.
+	input:not([type=button]):not([type=submit]):not([type=file]), {
+		.agora-field-styling(); // mixins/forms.less
+	}
+
+	label {
+		display: block;
+		.box-sizing(border-box);
+		.agora-label-styling();
+		width: auto;
+		margin: 0 0 0.2em;
+		padding: 0;
+	}
+
+	// Override input styling just for checkboxes and radio inputs.
+	input[type="checkbox"],
+	input[type="radio"] {
+		display: inline;
+		.box-sizing(content-box);
+		width: auto;
+	}
+
+
+	// Styles for information boxes
+	//
+	// Regular HTMLForm uses .error class, some special pages like
+	// SpecialUserlogin (login and create account) use .errorbox.
+	//
+	// Markup:
+	// <form class="mw-ui-vform">
+	//   <div class="errorbox">An error occurred</div>
+	//   <div class="warningbox">A warning to be noted</div>
+	//   <div class="successbox">Action successful!</div>
+	//   <div class="error">A different kind of error</div>
+	//   <div>
+	//     <input type="text" value="input" class="mw-ui-input">
+	//   <div>
+	//   </div>
+	//     <button class="mw-ui-button">Button in vform</button>
+	//   </div>
+	// </form>
+	//
+	// Styleguide 3.1.
+	.error {
+		.box-sizing(border-box);
+		font-size: 0.9em;
+		margin: 0 0 1em;
+		padding: 0.5em;
+		color: #cc0000;
+		border: 1px solid #fac5c5;
+		background-color: #fae3e3;
+		text-shadow: 0 1px #fae3e3;
+		word-wrap: break-word;
+	}
+
+	.errorbox,
+	.warningbox,
+	.successbox {
+		.box-sizing(border-box);
+		font-size: 0.9em;
+		margin: 0 0 1em 0;
+		padding: 0.5em;
+		word-wrap: break-word;
+	}
+
+}
+
+// --------------------------------------------------------------------------
+// Elements
+// --------------------------------------------------------------------------
+
+// Apply this to individual elements to style them.
+// You generally don't need to use this class on divs within an Agora
+// form container such as mw-ui-vform
+// XXX DRY: This repeats earlier styling, use an @include agora-div-styling ?
+// XXX: What is this even for?
+.mw-ui-vform-div {
+	display: block;
+	margin: 0 0 15px;
+	padding: 0;
+	width: 100%;
+}
+
+// Apply mw-ui-input to individual input fields to style them.
+// You generally don't need to use this class if <input> is within an Agora
+// form container such as mw-ui-vform
+.mw-ui-input {
+	.agora-field-styling(); // mixins/forms.less
+}
+
+// Apply mw-ui-label to individual elements to style them.
+// You generally don't need to use this class if <label> is within an Agora
+// form container such as mw-ui-vform
+.mw-ui-label {
+	.agora-label-styling(); // mixins/forms.less
+}
+
+// Nesting an input checkbox or radio button inside a label with this class
+// improves alignment, e.g.
+//	<label class="mw-ui-checkbox-label">
+//		<input type="checkbox">The label text
+//	</label>
+.mw-ui-checkbox-label, .mw-ui-radio-label {
+	.agora-inline-label-styling();
+}

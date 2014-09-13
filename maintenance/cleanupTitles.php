@@ -7,7 +7,7 @@
  *   --fix  Actually clean up titles; otherwise just checks for them
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -145,6 +145,12 @@ class TitleCleanup extends TableCleanup {
 			# Old cleanupTitles could move articles there. See bug 23147.
 			$ns = $row->page_namespace;
 			if ( $ns < 0 ) {
+				$ns = 0;
+			}
+
+			# Namespace which no longer exists. Put the page in the main namespace
+			# since we don't have any idea of the old namespace name. See bug 68501.
+			if ( !MWNamespace::exists( $ns ) ) {
 				$ns = 0;
 			}
 

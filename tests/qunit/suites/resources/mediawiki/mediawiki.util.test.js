@@ -91,11 +91,11 @@
 		tocHtml = '<div id="toc" class="toc">' +
 			'<div id="toctitle">' +
 			'<h2>Contents</h2>' +
-			'<span class="toctoggle">&nbsp;[<a href="#" class="internal" id="togglelink">Hide</a>&nbsp;]</span>' +
 			'</div>' +
 			'<ul><li></li></ul>' +
 			'</div>';
 		$( tocHtml ).appendTo( '#qunit-fixture' );
+		mw.hook( 'wikipage.content' ).fire( $( '#qunit-fixture' ) );
 		$toggleLink = $( '#togglelink' );
 
 		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is appended to the page.' );

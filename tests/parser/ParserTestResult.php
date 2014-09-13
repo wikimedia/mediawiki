@@ -35,7 +35,10 @@ class ParserTestResult {
 		$this->description = $description;
 	}
 
-	/** Whether the test passed */
+	/**
+	 * Whether the test passed
+	 * @return bool
+	 */
 	public function isSuccess() {
 		return $this->expected === $this->actual;
 	}

@@ -132,16 +132,21 @@ class ApiFeedWatchlist extends ApiBase {
 			$feedTitle = $wgSitename . ' - ' . $msg . ' [' . $wgLanguageCode . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
-			$feed = new $wgFeedClasses[$params['feedformat']] ( $feedTitle, htmlspecialchars( $msg ), $feedUrl );
+			$feed = new $wgFeedClasses[$params['feedformat']] (
+				$feedTitle,
+				htmlspecialchars( $msg ),
+				$feedUrl
+			);
 
 			ApiFormatFeedWrapper::setResult( $this->getResult(), $feed, $feedItems );
-
 		} catch ( Exception $e ) {
-
 			// Error results should not be cached
 			$this->getMain()->setCacheMaxAge( 0 );
 
-			$feedTitle = $wgSitename . ' - Error - ' . wfMessage( 'watchlist' )->inContentLanguage()->text() . ' [' . $wgLanguageCode . ']';
+			// @todo FIXME: Localise  brackets
+			$feedTitle = $wgSitename . ' - Error - ' .
+				wfMessage( 'watchlist' )->inContentLanguage()->text() .
+				' [' . $wgLanguageCode . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feedFormat = isset( $params['feedformat'] ) ? $params['feedformat'] : 'rss';
@@ -179,8 +184,11 @@ class ApiFeedWatchlist extends ApiBase {
 		// The anchor won't work for sections that have dupes on page
 		// as there's no way to strip that info from ApiWatchlist (apparently?).
 		// RegExp in the line below is equal to Linker::formatAutocomments().
-		if ( $this->linkToSections && $comment !== null && preg_match( '!(.*)/\*\s*(.*?)\s*\*/(.*)!', $comment, $matches ) ) {
+		if ( $this->linkToSections && $comment !== null &&
+			preg_match( '!(.*)/\*\s*(.*?)\s*\*/(.*)!', $comment, $matches )
+		) {
 			global $wgParser;
+
 			$sectionTitle = $wgParser->stripSectionName( $matches[2] );
 			$sectionTitle = Sanitizer::normalizeSectionNameWhitespace( $sectionTitle );
 			$titleUrl .= Title::newFromText( '#' . $sectionTitle )->getFragmentForURL();
@@ -199,6 +207,7 @@ class ApiFeedWatchlist extends ApiBase {
 			$this->watchlistModule = $this->getMain()->getModuleManager()->getModule( 'query' )
 				->getModuleManager()->getModule( 'watchlist' );
 		}
+
 		return $this->watchlistModule;
 	}
 
@@ -235,11 +244,13 @@ class ApiFeedWatchlist extends ApiBase {
 			$ret['wltype'] = null;
 			$ret['wlexcludeuser'] = null;
 		}
+
 		return $ret;
 	}
 
 	public function getParamDescription() {
 		$wldescr = $this->getWatchlistModule()->getParamDescription();
+
 		return array(
 			'feedformat' => 'The format of the feed',
 			'hours' => 'List pages modified within this many hours from now',
@@ -255,7 +266,7 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Returns a watchlist feed';
+		return 'Returns a watchlist feed.';
 	}
 
 	public function getPossibleErrors() {

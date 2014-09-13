@@ -3,7 +3,7 @@
  * Implements Special:Import
  *
  * Copyright © 2003,2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,11 +64,11 @@ class SpecialImport extends SpecialPage {
 		# @todo FIXME: Title::checkSpecialsAndNSPermissions() has a very wierd expectation of what
 		# getUserPermissionsErrors() might actually be used for, hence the 'ns-specialprotected'
 		$errors = wfMergeErrorArrays(
-			$this->getTitle()->getUserPermissionsErrors(
+			$this->getPageTitle()->getUserPermissionsErrors(
 				'import', $user, true,
 				array( 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' )
 			),
-			$this->getTitle()->getUserPermissionsErrors(
+			$this->getPageTitle()->getUserPermissionsErrors(
 				'importupload', $user, true,
 				array( 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' )
 			)
@@ -203,7 +203,7 @@ class SpecialImport extends SpecialPage {
 	private function showForm() {
 		global $wgImportSources, $wgExportMaxLinkDepth;
 
-		$action = $this->getTitle()->getLocalURL( array( 'action' => 'submit' ) );
+		$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
@@ -411,7 +411,6 @@ class ImportReporter extends ContextSource {
 	private $mOriginalPageOutCallback = null;
 	private $mLogItemCount = 0;
 
-
 	/**
 	 * @param WikiImporter $importer
 	 * @param $upload
@@ -449,8 +448,8 @@ class ImportReporter extends ContextSource {
 	 * @param Title $title
 	 * @param Title $origTitle
 	 * @param int $revisionCount
-	 * @param  $successCount
-	 * @param  $pageInfo
+	 * @param $successCount
+	 * @param $pageInfo
 	 * @return void
 	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {

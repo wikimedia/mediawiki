@@ -4,6 +4,8 @@
  * @group API
  * @group Database
  * @group medium
+ *
+ * @covers ApiBlock
  */
 class ApiBlockTest extends ApiTestCase {
 	protected function setUp() {
@@ -11,7 +13,7 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	function getTokens() {
+	protected function getTokens() {
 		return $this->getTokenList( self::$users['sysop'] );
 	}
 
@@ -63,33 +65,19 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	/**
-	 * Attempting to block without a token should give a UsageException with
-	 * error message:
-	 *   "The token parameter must be set"
-	 *
-	 * @dataProvider provideBlockUnblockAction
 	 * @expectedException UsageException
+	 * @expectedExceptionMessage The token parameter must be set
 	 */
-	public function testBlockingActionWithNoToken( $action ) {
+	public function testBlockingActionWithNoToken( ) {
 		$this->doApiRequest(
 			array(
-				'action' => $action,
+				'action' => 'block',
 				'user' => 'UTApiBlockee',
 				'reason' => 'Some reason',
 			),
 			null,
 			false,
 			self::$users['sysop']->user
-		);
-	}
-
-	/**
-	 * Just provide the 'block' and 'unblock' action to test both API calls
-	 */
-	public static function provideBlockUnblockAction() {
-		return array(
-			array( 'block' ),
-			array( 'unblock' ),
 		);
 	}
 }

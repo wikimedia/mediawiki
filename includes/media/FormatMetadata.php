@@ -43,8 +43,48 @@
  * is already a large number of messages using the 'exif' prefix.
  *
  * @ingroup Media
+ * @since 1.23 the class extends ContextSource and various formerly-public
+ *   internal methods are private
  */
-class FormatMetadata {
+class FormatMetadata extends ContextSource {
+	/**
+	 * Only output a single language for multi-language fields
+	 * @var bool
+	 * @since 1.23
+	 */
+	protected $singleLang = false;
+
+	/**
+	 * Trigger only outputting single language for multilanguage fields
+	 *
+	 * @param bool $val
+	 * @since 1.23
+	 */
+	public function setSingleLanguage( $val ) {
+		$this->singleLang = $val;
+	}
+
+	/**
+	 * Numbers given by Exif user agents are often magical, that is they
+	 * should be replaced by a detailed explanation depending on their
+	 * value which most of the time are plain integers. This function
+	 * formats Exif (and other metadata) values into human readable form.
+	 *
+	 * This is the usual entry point for this class.
+	 *
+	 * @param array $tags the Exif data to format ( as returned by
+	 *   Exif::getFilteredData() or BitmapMetadataHandler )
+	 * @param bool|IContextSource $context Context to use (optional)
+	 * @return array
+	 */
+	public static function getFormattedData( $tags, $context = false ) {
+		$obj = new FormatMetadata;
+		if ( $context ) {
+			$obj->setContext( $context );
+		}
+
+		return $obj->makeFormattedData( $tags );
+	}
 
 	/**
 	 * Numbers given by Exif user agents are often magical, that is they
@@ -53,12 +93,11 @@ class FormatMetadata {
 	 * formats Exif (and other metadata) values into human readable form.
 	 *
 	 * @param array $tags the Exif data to format ( as returned by
-	 *                    Exif::getFilteredData() or BitmapMetadataHandler )
+	 *   Exif::getFilteredData() or BitmapMetadataHandler )
 	 * @return array
+	 * @since 1.23
 	 */
-	public static function getFormattedData( $tags ) {
-		global $wgLang;
-
+	public function makeFormattedData( $tags ) {
 		$resolutionunit = !isset( $tags['ResolutionUnit'] ) || $tags['ResolutionUnit'] == 2 ? 2 : 3;
 		unset( $tags['ResolutionUnit'] );
 
@@ -67,7 +106,7 @@ class FormatMetadata {
 			// This seems ugly to wrap non-array's in an array just to unwrap again,
 			// especially when most of the time it is not an array
 			if ( !is_array( $tags[$tag] ) ) {
-				$vals = Array( $vals );
+				$vals = array( $vals );
 			}
 
 			// _type is a special value to say what array type
@@ -107,7 +146,7 @@ class FormatMetadata {
 					$time = wfTimestamp( TS_MW, '1971:01:01 ' . $tags[$tag] );
 					// the 1971:01:01 is just a placeholder, and not shown to user.
 					if ( $time && intval( $time ) > 0 ) {
-						$tags[$tag] = $wgLang->time( $time );
+						$tags[$tag] = $this->getLanguage()->time( $time );
 					}
 				} catch ( TimestampException $e ) {
 					// This shouldn't happen, but we've seen bad formats
@@ -121,709 +160,869 @@ class FormatMetadata {
 			// instead of the other props which are single
 			// valued (mostly) so handle as a special case.
 			if ( $tag === 'Contact' ) {
-				$vals = self::collapseContactInfo( $vals );
+				$vals = $this->collapseContactInfo( $vals );
 				continue;
 			}
 
 			foreach ( $vals as &$val ) {
 
 				switch ( $tag ) {
-				case 'Compression':
-					switch ( $val ) {
-					case 1: case 2: case 3: case 4:
-					case 5: case 6: case 7: case 8:
-					case 32773: case 32946: case 34712:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'PhotometricInterpretation':
-					switch ( $val ) {
-					case 2: case 6:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'Orientation':
-					switch ( $val ) {
-					case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'PlanarConfiguration':
-					switch ( $val ) {
-					case 1: case 2:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				// TODO: YCbCrSubSampling
-				case 'YCbCrPositioning':
-					switch ( $val ) {
-					case 1:
-					case 2:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'XResolution':
-				case 'YResolution':
-					switch ( $resolutionunit ) {
-						case 2:
-							$val = self::msg( 'XYResolution', 'i', self::formatNum( $val ) );
-							break;
-						case 3:
-							$val = self::msg( 'XYResolution', 'c', self::formatNum( $val ) );
-							break;
-						default:
-							/* If not recognized, display as is. */
-							break;
-					}
-					break;
-
-				// TODO: YCbCrCoefficients  #p27 (see annex E)
-				case 'ExifVersion': case 'FlashpixVersion':
-					$val = "$val" / 100;
-					break;
-
-				case 'ColorSpace':
-					switch ( $val ) {
-					case 1: case 65535:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'ComponentsConfiguration':
-					switch ( $val ) {
-					case 0: case 1: case 2: case 3: case 4: case 5: case 6:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'DateTime':
-				case 'DateTimeOriginal':
-				case 'DateTimeDigitized':
-				case 'DateTimeReleased':
-				case 'DateTimeExpires':
-				case 'GPSDateStamp':
-				case 'dc-date':
-				case 'DateTimeMetadata':
-					if ( $val == '0000:00:00 00:00:00' || $val == '    :  :     :  :  ' ) {
-						$val = wfMessage( 'exif-unknowndate' )->text();
-					} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d):(?:\d\d)$/D', $val ) ) {
-						// Full date.
-						$time = wfTimestamp( TS_MW, $val );
-						if ( $time && intval( $time ) > 0 ) {
-							$val = $wgLang->timeanddate( $time );
+					case 'Compression':
+						switch ( $val ) {
+							case 1:
+							case 2:
+							case 3:
+							case 4:
+							case 5:
+							case 6:
+							case 7:
+							case 8:
+							case 32773:
+							case 32946:
+							case 34712:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
 						}
-					} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d)$/D', $val ) ) {
-						// No second field. Still format the same
-						// since timeanddate doesn't include seconds anyways,
-						// but second still available in api
-						$time = wfTimestamp( TS_MW, $val . ':00' );
-						if ( $time && intval( $time ) > 0 ) {
-							$val = $wgLang->timeanddate( $time );
+						break;
+
+					case 'PhotometricInterpretation':
+						switch ( $val ) {
+							case 2:
+							case 6:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
 						}
-					} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d)$/D', $val ) ) {
-						// If only the date but not the time is filled in.
-						$time = wfTimestamp( TS_MW, substr( $val, 0, 4 )
-							. substr( $val, 5, 2 )
-							. substr( $val, 8, 2 )
-							. '000000' );
-						if ( $time && intval( $time ) > 0 ) {
-							$val = $wgLang->date( $time );
+						break;
+
+					case 'Orientation':
+						switch ( $val ) {
+							case 1:
+							case 2:
+							case 3:
+							case 4:
+							case 5:
+							case 6:
+							case 7:
+							case 8:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
 						}
-					}
-					// else it will just output $val without formatting it.
-					break;
+						break;
 
-				case 'ExposureProgram':
-					switch ( $val ) {
-					case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
-						$val = self::msg( $tag, $val );
+					case 'PlanarConfiguration':
+						switch ( $val ) {
+							case 1:
+							case 2:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
 						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
 
-				case 'SubjectDistance':
-					$val = self::msg( $tag, '', self::formatNum( $val ) );
-					break;
+					// TODO: YCbCrSubSampling
+					case 'YCbCrPositioning':
+						switch ( $val ) {
+							case 1:
+							case 2:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
 
-				case 'MeteringMode':
-					switch ( $val ) {
-					case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 255:
-						$val = self::msg( $tag, $val );
+					case 'XResolution':
+					case 'YResolution':
+						switch ( $resolutionunit ) {
+							case 2:
+								$val = $this->exifMsg( 'XYResolution', 'i', $this->formatNum( $val ) );
+								break;
+							case 3:
+								$val = $this->exifMsg( 'XYResolution', 'c', $this->formatNum( $val ) );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
 						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
 
-				case 'LightSource':
-					switch ( $val ) {
-					case 0: case 1: case 2: case 3: case 4: case 9: case 10: case 11:
-					case 12: case 13: case 14: case 15: case 17: case 18: case 19: case 20:
-					case 21: case 22: case 23: case 24: case 255:
-						$val = self::msg( $tag, $val );
+					// TODO: YCbCrCoefficients  #p27 (see annex E)
+					case 'ExifVersion':
+					case 'FlashpixVersion':
+						$val = "$val" / 100;
 						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
 
-				case 'Flash':
-					$flashDecode = array(
-						'fired' => $val & bindec( '00000001' ),
-						'return' => ( $val & bindec( '00000110' ) ) >> 1,
-						'mode' => ( $val & bindec( '00011000' ) ) >> 3,
-						'function' => ( $val & bindec( '00100000' ) ) >> 5,
-						'redeye' => ( $val & bindec( '01000000' ) ) >> 6,
+					case 'ColorSpace':
+						switch ( $val ) {
+							case 1:
+							case 65535:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'ComponentsConfiguration':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+							case 3:
+							case 4:
+							case 5:
+							case 6:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'DateTime':
+					case 'DateTimeOriginal':
+					case 'DateTimeDigitized':
+					case 'DateTimeReleased':
+					case 'DateTimeExpires':
+					case 'GPSDateStamp':
+					case 'dc-date':
+					case 'DateTimeMetadata':
+						if ( $val == '0000:00:00 00:00:00' || $val == '    :  :     :  :  ' ) {
+							$val = $this->msg( 'exif-unknowndate' )->text();
+						} elseif ( preg_match(
+							'/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d):(?:\d\d)$/D',
+							$val
+						) ) {
+							// Full date.
+							$time = wfTimestamp( TS_MW, $val );
+							if ( $time && intval( $time ) > 0 ) {
+								$val = $this->getLanguage()->timeanddate( $time );
+							}
+						} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d)$/D', $val ) ) {
+							// No second field. Still format the same
+							// since timeanddate doesn't include seconds anyways,
+							// but second still available in api
+							$time = wfTimestamp( TS_MW, $val . ':00' );
+							if ( $time && intval( $time ) > 0 ) {
+								$val = $this->getLanguage()->timeanddate( $time );
+							}
+						} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d)$/D', $val ) ) {
+							// If only the date but not the time is filled in.
+							$time = wfTimestamp( TS_MW, substr( $val, 0, 4 )
+								. substr( $val, 5, 2 )
+								. substr( $val, 8, 2 )
+								. '000000' );
+							if ( $time && intval( $time ) > 0 ) {
+								$val = $this->getLanguage()->date( $time );
+							}
+						}
+						// else it will just output $val without formatting it.
+						break;
+
+					case 'ExposureProgram':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+							case 3:
+							case 4:
+							case 5:
+							case 6:
+							case 7:
+							case 8:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'SubjectDistance':
+						$val = $this->exifMsg( $tag, '', $this->formatNum( $val ) );
+						break;
+
+					case 'MeteringMode':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+							case 3:
+							case 4:
+							case 5:
+							case 6:
+							case 7:
+							case 255:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'LightSource':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+							case 3:
+							case 4:
+							case 9:
+							case 10:
+							case 11:
+							case 12:
+							case 13:
+							case 14:
+							case 15:
+							case 17:
+							case 18:
+							case 19:
+							case 20:
+							case 21:
+							case 22:
+							case 23:
+							case 24:
+							case 255:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'Flash':
+						$flashDecode = array(
+							'fired' => $val & bindec( '00000001' ),
+							'return' => ( $val & bindec( '00000110' ) ) >> 1,
+							'mode' => ( $val & bindec( '00011000' ) ) >> 3,
+							'function' => ( $val & bindec( '00100000' ) ) >> 5,
+							'redeye' => ( $val & bindec( '01000000' ) ) >> 6,
 //						'reserved' => ($val & bindec( '10000000' )) >> 7,
-					);
-					$flashMsgs = array();
-					# We do not need to handle unknown values since all are used.
-					foreach ( $flashDecode as $subTag => $subValue ) {
-						# We do not need any message for zeroed values.
-						if ( $subTag != 'fired' && $subValue == 0 ) {
-							continue;
-						}
-						$fullTag = $tag . '-' . $subTag;
-						$flashMsgs[] = self::msg( $fullTag, $subValue );
-					}
-					$val = $wgLang->commaList( $flashMsgs );
-					break;
-
-				case 'FocalPlaneResolutionUnit':
-					switch ( $val ) {
-					case 2:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'SensingMethod':
-					switch ( $val ) {
-					case 1: case 2: case 3: case 4: case 5: case 7: case 8:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'FileSource':
-					switch ( $val ) {
-					case 3:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'SceneType':
-					switch ( $val ) {
-					case 1:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'CustomRendered':
-					switch ( $val ) {
-					case 0: case 1:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'ExposureMode':
-					switch ( $val ) {
-					case 0: case 1: case 2:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'WhiteBalance':
-					switch ( $val ) {
-					case 0: case 1:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'SceneCaptureType':
-					switch ( $val ) {
-					case 0: case 1: case 2: case 3:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'GainControl':
-					switch ( $val ) {
-					case 0: case 1: case 2: case 3: case 4:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'Contrast':
-					switch ( $val ) {
-					case 0: case 1: case 2:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'Saturation':
-					switch ( $val ) {
-					case 0: case 1: case 2:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'Sharpness':
-					switch ( $val ) {
-					case 0: case 1: case 2:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'SubjectDistanceRange':
-					switch ( $val ) {
-					case 0: case 1: case 2: case 3:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				//The GPS...Ref values are kept for compatibility, probably won't be reached.
-				case 'GPSLatitudeRef':
-				case 'GPSDestLatitudeRef':
-					switch ( $val ) {
-					case 'N': case 'S':
-						$val = self::msg( 'GPSLatitude', $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'GPSLongitudeRef':
-				case 'GPSDestLongitudeRef':
-					switch ( $val ) {
-					case 'E': case 'W':
-						$val = self::msg( 'GPSLongitude', $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'GPSAltitude':
-					if ( $val < 0 ) {
-						$val = self::msg( 'GPSAltitude', 'below-sealevel', self::formatNum( -$val, 3 ) );
-					} else {
-						$val = self::msg( 'GPSAltitude', 'above-sealevel', self::formatNum( $val, 3 ) );
-					}
-					break;
-
-				case 'GPSStatus':
-					switch ( $val ) {
-					case 'A': case 'V':
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'GPSMeasureMode':
-					switch ( $val ) {
-					case 2: case 3:
-						$val = self::msg( $tag, $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'GPSTrackRef':
-				case 'GPSImgDirectionRef':
-				case 'GPSDestBearingRef':
-					switch ( $val ) {
-					case 'T': case 'M':
-						$val = self::msg( 'GPSDirection', $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'GPSLatitude':
-				case 'GPSDestLatitude':
-					$val = self::formatCoords( $val, 'latitude' );
-					break;
-				case 'GPSLongitude':
-				case 'GPSDestLongitude':
-					$val = self::formatCoords( $val, 'longitude' );
-					break;
-
-				case 'GPSSpeedRef':
-					switch ( $val ) {
-					case 'K': case 'M': case 'N':
-						$val = self::msg( 'GPSSpeed', $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'GPSDestDistanceRef':
-					switch ( $val ) {
-					case 'K': case 'M': case 'N':
-						$val = self::msg( 'GPSDestDistance', $val );
-						break;
-					default:
-						/* If not recognized, display as is. */
-						break;
-					}
-					break;
-
-				case 'GPSDOP':
-					// See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
-					if ( $val <= 2 ) {
-						$val = self::msg( $tag, 'excellent', self::formatNum( $val ) );
-					} elseif ( $val <= 5 ) {
-						$val = self::msg( $tag, 'good', self::formatNum( $val ) );
-					} elseif ( $val <= 10 ) {
-						$val = self::msg( $tag, 'moderate', self::formatNum( $val ) );
-					} elseif ( $val <= 20 ) {
-						$val = self::msg( $tag, 'fair', self::formatNum( $val ) );
-					} else {
-						$val = self::msg( $tag, 'poor', self::formatNum( $val ) );
-					}
-					break;
-
-				// This is not in the Exif standard, just a special
-				// case for our purposes which enables wikis to wikify
-				// the make, model and software name to link to their articles.
-				case 'Make':
-				case 'Model':
-					$val = self::msg( $tag, '', $val );
-					break;
-
-				case 'Software':
-					if ( is_array( $val ) ) {
-						//if its a software, version array.
-						$val = wfMessage( 'exif-software-version-value', $val[0], $val[1] )->text();
-					} else {
-						$val = self::msg( $tag, '', $val );
-					}
-					break;
-
-				case 'ExposureTime':
-					// Show the pretty fraction as well as decimal version
-					$val = wfMessage( 'exif-exposuretime-format',
-						self::formatFraction( $val ), self::formatNum( $val ) )->text();
-					break;
-				case 'ISOSpeedRatings':
-					// If its = 65535 that means its at the
-					// limit of the size of Exif::short and
-					// is really higher.
-					if ( $val == '65535' ) {
-						$val = self::msg( $tag, 'overflow' );
-					} else {
-						$val = self::formatNum( $val );
-					}
-					break;
-				case 'FNumber':
-					$val = wfMessage( 'exif-fnumber-format',
-						self::formatNum( $val ) )->text();
-					break;
-
-				case 'FocalLength': case 'FocalLengthIn35mmFilm':
-					$val = wfMessage( 'exif-focallength-format',
-						self::formatNum( $val ) )->text();
-					break;
-
-				case 'MaxApertureValue':
-					if ( strpos( $val, '/' ) !== false ) {
-						// need to expand this earlier to calculate fNumber
-						list( $n, $d ) = explode( '/', $val );
-						if ( is_numeric( $n ) && is_numeric( $d ) ) {
-							$val = $n / $d;
-						}
-					}
-					if ( is_numeric( $val ) ) {
-						$fNumber = pow( 2, $val / 2 );
-						if ( $fNumber !== false ) {
-							$val = wfMessage( 'exif-maxaperturevalue-value',
-								self::formatNum( $val ),
-								self::formatNum( $fNumber, 2 )
-							)->text();
-						}
-					}
-					break;
-
-				case 'iimCategory':
-					switch ( strtolower( $val ) ) {
-						// See pg 29 of IPTC photo
-						// metadata standard.
-						case 'ace': case 'clj':
-						case 'dis': case 'fin':
-						case 'edu': case 'evn':
-						case 'hth': case 'hum':
-						case 'lab': case 'lif':
-						case 'pol': case 'rel':
-						case 'sci': case 'soi':
-						case 'spo': case 'war':
-						case 'wea':
-							$val = self::msg(
-								'iimcategory',
-								$val
-							);
-					}
-					break;
-				case 'SubjectNewsCode':
-					// Essentially like iimCategory.
-					// 8 (numeric) digit hierarchical
-					// classification. We decode the
-					// first 2 digits, which provide
-					// a broad category.
-					$val = self::convertNewsCode( $val );
-					break;
-				case 'Urgency':
-					// 1-8 with 1 being highest, 5 normal
-					// 0 is reserved, and 9 is 'user-defined'.
-					$urgency = '';
-					if ( $val == 0 || $val == 9 ) {
-						$urgency = 'other';
-					} elseif ( $val < 5 && $val > 1 ) {
-						$urgency = 'high';
-					} elseif ( $val == 5 ) {
-						$urgency = 'normal';
-					} elseif ( $val <= 8 && $val > 5 ) {
-						$urgency = 'low';
-					}
-
-					if ( $urgency !== '' ) {
-						$val = self::msg( 'urgency',
-							$urgency, $val
 						);
-					}
-					break;
-
-				// Things that have a unit of pixels.
-				case 'OriginalImageHeight':
-				case 'OriginalImageWidth':
-				case 'PixelXDimension':
-				case 'PixelYDimension':
-				case 'ImageWidth':
-				case 'ImageLength':
-					$val = self::formatNum( $val ) . ' ' . wfMessage( 'unit-pixel' )->text();
-					break;
-
-				// Do not transform fields with pure text.
-				// For some languages the formatNum()
-				// conversion results to wrong output like
-				// foo,bar@example,com or foo٫bar@example٫com.
-				// Also some 'numeric' things like Scene codes
-				// are included here as we really don't want
-				// commas inserted.
-				case 'ImageDescription':
-				case 'Artist':
-				case 'Copyright':
-				case 'RelatedSoundFile':
-				case 'ImageUniqueID':
-				case 'SpectralSensitivity':
-				case 'GPSSatellites':
-				case 'GPSVersionID':
-				case 'GPSMapDatum':
-				case 'Keywords':
-				case 'WorldRegionDest':
-				case 'CountryDest':
-				case 'CountryCodeDest':
-				case 'ProvinceOrStateDest':
-				case 'CityDest':
-				case 'SublocationDest':
-				case 'WorldRegionCreated':
-				case 'CountryCreated':
-				case 'CountryCodeCreated':
-				case 'ProvinceOrStateCreated':
-				case 'CityCreated':
-				case 'SublocationCreated':
-				case 'ObjectName':
-				case 'SpecialInstructions':
-				case 'Headline':
-				case 'Credit':
-				case 'Source':
-				case 'EditStatus':
-				case 'FixtureIdentifier':
-				case 'LocationDest':
-				case 'LocationDestCode':
-				case 'Writer':
-				case 'JPEGFileComment':
-				case 'iimSupplementalCategory':
-				case 'OriginalTransmissionRef':
-				case 'Identifier':
-				case 'dc-contributor':
-				case 'dc-coverage':
-				case 'dc-publisher':
-				case 'dc-relation':
-				case 'dc-rights':
-				case 'dc-source':
-				case 'dc-type':
-				case 'Lens':
-				case 'SerialNumber':
-				case 'CameraOwnerName':
-				case 'Label':
-				case 'Nickname':
-				case 'RightsCertificate':
-				case 'CopyrightOwner':
-				case 'UsageTerms':
-				case 'WebStatement':
-				case 'OriginalDocumentID':
-				case 'LicenseUrl':
-				case 'MorePermissionsUrl':
-				case 'AttributionUrl':
-				case 'PreferredAttributionName':
-				case 'PNGFileComment':
-				case 'Disclaimer':
-				case 'ContentWarning':
-				case 'GIFFileComment':
-				case 'SceneCode':
-				case 'IntellectualGenre':
-				case 'Event':
-				case 'OrginisationInImage':
-				case 'PersonInImage':
-
-					$val = htmlspecialchars( $val );
-					break;
-
-				case 'ObjectCycle':
-					switch ( $val ) {
-					case 'a': case 'p': case 'b':
-						$val = self::msg( $tag, $val );
+						$flashMsgs = array();
+						# We do not need to handle unknown values since all are used.
+						foreach ( $flashDecode as $subTag => $subValue ) {
+							# We do not need any message for zeroed values.
+							if ( $subTag != 'fired' && $subValue == 0 ) {
+								continue;
+							}
+							$fullTag = $tag . '-' . $subTag;
+							$flashMsgs[] = $this->exifMsg( $fullTag, $subValue );
+						}
+						$val = $this->getLanguage()->commaList( $flashMsgs );
 						break;
+
+					case 'FocalPlaneResolutionUnit':
+						switch ( $val ) {
+							case 2:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'SensingMethod':
+						switch ( $val ) {
+							case 1:
+							case 2:
+							case 3:
+							case 4:
+							case 5:
+							case 7:
+							case 8:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'FileSource':
+						switch ( $val ) {
+							case 3:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'SceneType':
+						switch ( $val ) {
+							case 1:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'CustomRendered':
+						switch ( $val ) {
+							case 0:
+							case 1:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'ExposureMode':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'WhiteBalance':
+						switch ( $val ) {
+							case 0:
+							case 1:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'SceneCaptureType':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+							case 3:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'GainControl':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+							case 3:
+							case 4:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'Contrast':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'Saturation':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'Sharpness':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'SubjectDistanceRange':
+						switch ( $val ) {
+							case 0:
+							case 1:
+							case 2:
+							case 3:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					//The GPS...Ref values are kept for compatibility, probably won't be reached.
+					case 'GPSLatitudeRef':
+					case 'GPSDestLatitudeRef':
+						switch ( $val ) {
+							case 'N':
+							case 'S':
+								$val = $this->exifMsg( 'GPSLatitude', $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'GPSLongitudeRef':
+					case 'GPSDestLongitudeRef':
+						switch ( $val ) {
+							case 'E':
+							case 'W':
+								$val = $this->exifMsg( 'GPSLongitude', $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'GPSAltitude':
+						if ( $val < 0 ) {
+							$val = $this->exifMsg( 'GPSAltitude', 'below-sealevel', $this->formatNum( -$val, 3 ) );
+						} else {
+							$val = $this->exifMsg( 'GPSAltitude', 'above-sealevel', $this->formatNum( $val, 3 ) );
+						}
+						break;
+
+					case 'GPSStatus':
+						switch ( $val ) {
+							case 'A':
+							case 'V':
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'GPSMeasureMode':
+						switch ( $val ) {
+							case 2:
+							case 3:
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'GPSTrackRef':
+					case 'GPSImgDirectionRef':
+					case 'GPSDestBearingRef':
+						switch ( $val ) {
+							case 'T':
+							case 'M':
+								$val = $this->exifMsg( 'GPSDirection', $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'GPSLatitude':
+					case 'GPSDestLatitude':
+						$val = $this->formatCoords( $val, 'latitude' );
+						break;
+					case 'GPSLongitude':
+					case 'GPSDestLongitude':
+						$val = $this->formatCoords( $val, 'longitude' );
+						break;
+
+					case 'GPSSpeedRef':
+						switch ( $val ) {
+							case 'K':
+							case 'M':
+							case 'N':
+								$val = $this->exifMsg( 'GPSSpeed', $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'GPSDestDistanceRef':
+						switch ( $val ) {
+							case 'K':
+							case 'M':
+							case 'N':
+								$val = $this->exifMsg( 'GPSDestDistance', $val );
+								break;
+							default:
+								/* If not recognized, display as is. */
+								break;
+						}
+						break;
+
+					case 'GPSDOP':
+						// See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+						if ( $val <= 2 ) {
+							$val = $this->exifMsg( $tag, 'excellent', $this->formatNum( $val ) );
+						} elseif ( $val <= 5 ) {
+							$val = $this->exifMsg( $tag, 'good', $this->formatNum( $val ) );
+						} elseif ( $val <= 10 ) {
+							$val = $this->exifMsg( $tag, 'moderate', $this->formatNum( $val ) );
+						} elseif ( $val <= 20 ) {
+							$val = $this->exifMsg( $tag, 'fair', $this->formatNum( $val ) );
+						} else {
+							$val = $this->exifMsg( $tag, 'poor', $this->formatNum( $val ) );
+						}
+						break;
+
+					// This is not in the Exif standard, just a special
+					// case for our purposes which enables wikis to wikify
+					// the make, model and software name to link to their articles.
+					case 'Make':
+					case 'Model':
+						$val = $this->exifMsg( $tag, '', $val );
+						break;
+
+					case 'Software':
+						if ( is_array( $val ) ) {
+							//if its a software, version array.
+							$val = $this->msg( 'exif-software-version-value', $val[0], $val[1] )->text();
+						} else {
+							$val = $this->exifMsg( $tag, '', $val );
+						}
+						break;
+
+					case 'ExposureTime':
+						// Show the pretty fraction as well as decimal version
+						$val = $this->msg( 'exif-exposuretime-format',
+							$this->formatFraction( $val ), $this->formatNum( $val ) )->text();
+						break;
+					case 'ISOSpeedRatings':
+						// If its = 65535 that means its at the
+						// limit of the size of Exif::short and
+						// is really higher.
+						if ( $val == '65535' ) {
+							$val = $this->exifMsg( $tag, 'overflow' );
+						} else {
+							$val = $this->formatNum( $val );
+						}
+						break;
+					case 'FNumber':
+						$val = $this->msg( 'exif-fnumber-format',
+							$this->formatNum( $val ) )->text();
+						break;
+
+					case 'FocalLength':
+					case 'FocalLengthIn35mmFilm':
+						$val = $this->msg( 'exif-focallength-format',
+							$this->formatNum( $val ) )->text();
+						break;
+
+					case 'MaxApertureValue':
+						if ( strpos( $val, '/' ) !== false ) {
+							// need to expand this earlier to calculate fNumber
+							list( $n, $d ) = explode( '/', $val );
+							if ( is_numeric( $n ) && is_numeric( $d ) ) {
+								$val = $n / $d;
+							}
+						}
+						if ( is_numeric( $val ) ) {
+							$fNumber = pow( 2, $val / 2 );
+							if ( $fNumber !== false ) {
+								$val = $this->msg( 'exif-maxaperturevalue-value',
+									$this->formatNum( $val ),
+									$this->formatNum( $fNumber, 2 )
+								)->text();
+							}
+						}
+						break;
+
+					case 'iimCategory':
+						switch ( strtolower( $val ) ) {
+							// See pg 29 of IPTC photo
+							// metadata standard.
+							case 'ace':
+							case 'clj':
+							case 'dis':
+							case 'fin':
+							case 'edu':
+							case 'evn':
+							case 'hth':
+							case 'hum':
+							case 'lab':
+							case 'lif':
+							case 'pol':
+							case 'rel':
+							case 'sci':
+							case 'soi':
+							case 'spo':
+							case 'war':
+							case 'wea':
+								$val = $this->exifMsg(
+									'iimcategory',
+									$val
+								);
+						}
+						break;
+					case 'SubjectNewsCode':
+						// Essentially like iimCategory.
+						// 8 (numeric) digit hierarchical
+						// classification. We decode the
+						// first 2 digits, which provide
+						// a broad category.
+						$val = $this->convertNewsCode( $val );
+						break;
+					case 'Urgency':
+						// 1-8 with 1 being highest, 5 normal
+						// 0 is reserved, and 9 is 'user-defined'.
+						$urgency = '';
+						if ( $val == 0 || $val == 9 ) {
+							$urgency = 'other';
+						} elseif ( $val < 5 && $val > 1 ) {
+							$urgency = 'high';
+						} elseif ( $val == 5 ) {
+							$urgency = 'normal';
+						} elseif ( $val <= 8 && $val > 5 ) {
+							$urgency = 'low';
+						}
+
+						if ( $urgency !== '' ) {
+							$val = $this->exifMsg( 'urgency',
+								$urgency, $val
+							);
+						}
+						break;
+
+					// Things that have a unit of pixels.
+					case 'OriginalImageHeight':
+					case 'OriginalImageWidth':
+					case 'PixelXDimension':
+					case 'PixelYDimension':
+					case 'ImageWidth':
+					case 'ImageLength':
+						$val = $this->formatNum( $val ) . ' ' . $this->msg( 'unit-pixel' )->text();
+						break;
+
+					// Do not transform fields with pure text.
+					// For some languages the formatNum()
+					// conversion results to wrong output like
+					// foo,bar@example,com or foo٫bar@example٫com.
+					// Also some 'numeric' things like Scene codes
+					// are included here as we really don't want
+					// commas inserted.
+					case 'ImageDescription':
+					case 'Artist':
+					case 'Copyright':
+					case 'RelatedSoundFile':
+					case 'ImageUniqueID':
+					case 'SpectralSensitivity':
+					case 'GPSSatellites':
+					case 'GPSVersionID':
+					case 'GPSMapDatum':
+					case 'Keywords':
+					case 'WorldRegionDest':
+					case 'CountryDest':
+					case 'CountryCodeDest':
+					case 'ProvinceOrStateDest':
+					case 'CityDest':
+					case 'SublocationDest':
+					case 'WorldRegionCreated':
+					case 'CountryCreated':
+					case 'CountryCodeCreated':
+					case 'ProvinceOrStateCreated':
+					case 'CityCreated':
+					case 'SublocationCreated':
+					case 'ObjectName':
+					case 'SpecialInstructions':
+					case 'Headline':
+					case 'Credit':
+					case 'Source':
+					case 'EditStatus':
+					case 'FixtureIdentifier':
+					case 'LocationDest':
+					case 'LocationDestCode':
+					case 'Writer':
+					case 'JPEGFileComment':
+					case 'iimSupplementalCategory':
+					case 'OriginalTransmissionRef':
+					case 'Identifier':
+					case 'dc-contributor':
+					case 'dc-coverage':
+					case 'dc-publisher':
+					case 'dc-relation':
+					case 'dc-rights':
+					case 'dc-source':
+					case 'dc-type':
+					case 'Lens':
+					case 'SerialNumber':
+					case 'CameraOwnerName':
+					case 'Label':
+					case 'Nickname':
+					case 'RightsCertificate':
+					case 'CopyrightOwner':
+					case 'UsageTerms':
+					case 'WebStatement':
+					case 'OriginalDocumentID':
+					case 'LicenseUrl':
+					case 'MorePermissionsUrl':
+					case 'AttributionUrl':
+					case 'PreferredAttributionName':
+					case 'PNGFileComment':
+					case 'Disclaimer':
+					case 'ContentWarning':
+					case 'GIFFileComment':
+					case 'SceneCode':
+					case 'IntellectualGenre':
+					case 'Event':
+					case 'OrginisationInImage':
+					case 'PersonInImage':
+
+						$val = htmlspecialchars( $val );
+						break;
+
+					case 'ObjectCycle':
+						switch ( $val ) {
+							case 'a':
+							case 'p':
+							case 'b':
+								$val = $this->exifMsg( $tag, $val );
+								break;
+							default:
+								$val = htmlspecialchars( $val );
+								break;
+						}
+						break;
+					case 'Copyrighted':
+						switch ( $val ) {
+							case 'True':
+							case 'False':
+								$val = $this->exifMsg( $tag, $val );
+								break;
+						}
+						break;
+					case 'Rating':
+						if ( $val == '-1' ) {
+							$val = $this->exifMsg( $tag, 'rejected' );
+						} else {
+							$val = $this->formatNum( $val );
+						}
+						break;
+
+					case 'LanguageCode':
+						$lang = Language::fetchLanguageName( strtolower( $val ), $this->getLanguage()->getCode() );
+						if ( $lang ) {
+							$val = htmlspecialchars( $lang );
+						} else {
+							$val = htmlspecialchars( $val );
+						}
+						break;
+
 					default:
-						$val = htmlspecialchars( $val );
+						$val = $this->formatNum( $val );
 						break;
-					}
-					break;
-				case 'Copyrighted':
-					switch ( $val ) {
-					case 'True': case 'False':
-						$val = self::msg( $tag, $val );
-						break;
-					}
-					break;
-				case 'Rating':
-					if ( $val == '-1' ) {
-						$val = self::msg( $tag, 'rejected' );
-					} else {
-						$val = self::formatNum( $val );
-					}
-					break;
-
-				case 'LanguageCode':
-					$lang = Language::fetchLanguageName( strtolower( $val ), $wgLang->getCode() );
-					if ( $lang ) {
-						$val = htmlspecialchars( $lang );
-					} else {
-						$val = htmlspecialchars( $val );
-					}
-					break;
-
-				default:
-					$val = self::formatNum( $val );
-					break;
 				}
 			}
 			// End formatting values, start flattening arrays.
-			$vals = self::flattenArray( $vals, $type );
-
+			$vals = $this->flattenArrayReal( $vals, $type );
 		}
+
 		return $tags;
+	}
+
+	/**
+	 * Flatten an array, using the content language for any messages.
+	 *
+	 * @param array $vals Array of values
+	 * @param string $type Type of array (either lang, ul, ol).
+	 *   lang = language assoc array with keys being the lang code
+	 *   ul = unordered list, ol = ordered list
+	 *   type can also come from the '_type' member of $vals.
+	 * @param bool $noHtml If to avoid returning anything resembling HTML.
+	 *   (Ugly hack for backwards compatibility with old MediaWiki).
+	 * @param bool|IContextSource $context
+	 * @return String single value (in wiki-syntax).
+	 * @since 1.23
+	 */
+	public static function flattenArrayContentLang( $vals, $type = 'ul',
+		$noHtml = false, $context = false
+	) {
+		global $wgContLang;
+		$obj = new FormatMetadata;
+		if ( $context ) {
+			$obj->setContext( $context );
+		}
+		$context = new DerivativeContext( $obj->getContext() );
+		$context->setLanguage( $wgContLang );
+		$obj->setContext( $context );
+
+		return $obj->flattenArrayReal( $vals, $type, $noHtml );
+	}
+
+	/**
+	 * Flatten an array, using the user language for any messages.
+	 *
+	 * @param array $vals array of values
+	 * @param string $type Type of array (either lang, ul, ol).
+	 *   lang = language assoc array with keys being the lang code
+	 *   ul = unordered list, ol = ordered list
+	 *   type can also come from the '_type' member of $vals.
+	 * @param bool $noHtml If to avoid returning anything resembling HTML.
+	 *   (Ugly hack for backwards compatibility with old MediaWiki).
+	 * @param bool|IContextSource $context
+	 * @return string Single value (in wiki-syntax).
+	 */
+	public static function flattenArray( $vals, $type = 'ul', $noHtml = false, $context = false ) {
+		$obj = new FormatMetadata;
+		if ( $context ) {
+			$obj->setContext( $context );
+		}
+
+		return $obj->flattenArrayReal( $vals, $type, $noHtml );
 	}
 
 	/**
@@ -834,14 +1033,19 @@ class FormatMetadata {
 	 *
 	 * @param array $vals array of values
 	 * @param string $type Type of array (either lang, ul, ol).
-	 * lang = language assoc array with keys being the lang code
-	 * ul = unordered list, ol = ordered list
-	 * type can also come from the '_type' member of $vals.
-	 * @param $noHtml Boolean If to avoid returning anything resembling
-	 * html. (Ugly hack for backwards compatibility with old mediawiki).
+	 *     lang = language assoc array with keys being the lang code
+	 *     ul = unordered list, ol = ordered list
+	 *     type can also come from the '_type' member of $vals.
+	 * @param $noHtml Boolean If to avoid returning anything resembling HTML.
+	 *   (Ugly hack for backwards compatibility with old mediawiki).
 	 * @return String single value (in wiki-syntax).
+	 * @since 1.23
 	 */
-	public static function flattenArray( $vals, $type = 'ul', $noHtml = false ) {
+	public function flattenArrayReal( $vals, $type = 'ul', $noHtml = false ) {
+		if ( !is_array( $vals ) ) {
+			return $vals; // do nothing if not an array;
+		}
+
 		if ( isset( $vals['_type'] ) ) {
 			$type = $vals['_type'];
 			unset( $vals['_type'] );
@@ -849,90 +1053,103 @@ class FormatMetadata {
 
 		if ( !is_array( $vals ) ) {
 			return $vals; // do nothing if not an array;
-		}
-		elseif ( count( $vals ) === 1 && $type !== 'lang' ) {
+		} elseif ( count( $vals ) === 1 && $type !== 'lang' ) {
 			return $vals[0];
-		}
-		elseif ( count( $vals ) === 0 ) {
+		} elseif ( count( $vals ) === 0 ) {
 			wfDebug( __METHOD__ . " metadata array with 0 elements!\n" );
+
 			return ""; // paranoia. This should never happen
-		}
-		/* @todo FIXME: This should hide some of the list entries if there are
-		 * say more than four. Especially if a field is translated into 20
-		 * languages, we don't want to show them all by default
-		 */
-		else {
-			global $wgContLang;
+		} else {
+			/* @todo FIXME: This should hide some of the list entries if there are
+			 * say more than four. Especially if a field is translated into 20
+			 * languages, we don't want to show them all by default
+			 */
 			switch ( $type ) {
-			case 'lang':
-				// Display default, followed by ContLang,
-				// followed by the rest in no particular
-				// order.
+				case 'lang':
+					// Display default, followed by ContLang,
+					// followed by the rest in no particular
+					// order.
 
-				// Todo: hide some items if really long list.
+					// Todo: hide some items if really long list.
 
-				$content = '';
+					$content = '';
 
-				$cLang = $wgContLang->getCode();
-				$defaultItem = false;
-				$defaultLang = false;
+					$priorityLanguages = $this->getPriorityLanguages();
+					$defaultItem = false;
+					$defaultLang = false;
 
-				// If default is set, save it for later,
-				// as we don't know if it's equal to
-				// one of the lang codes. (In xmp
-				// you specify the language for a
-				// default property by having both
-				// a default prop, and one in the language
-				// that are identical)
-				if ( isset( $vals['x-default'] ) ) {
-					$defaultItem = $vals['x-default'];
-					unset( $vals['x-default'] );
-				}
-				// Do contentLanguage.
-				if ( isset( $vals[$cLang] ) ) {
-					$isDefault = false;
-					if ( $vals[$cLang] === $defaultItem ) {
-						$defaultItem = false;
-						$isDefault = true;
+					// If default is set, save it for later,
+					// as we don't know if it's equal to
+					// one of the lang codes. (In xmp
+					// you specify the language for a
+					// default property by having both
+					// a default prop, and one in the language
+					// that are identical)
+					if ( isset( $vals['x-default'] ) ) {
+						$defaultItem = $vals['x-default'];
+						unset( $vals['x-default'] );
 					}
-					$content .= self::langItem(
-						$vals[$cLang], $cLang,
-						$isDefault, $noHtml );
+					foreach ( $priorityLanguages as $pLang ) {
+						if ( isset( $vals[$pLang] ) ) {
+							$isDefault = false;
+							if ( $vals[$pLang] === $defaultItem ) {
+								$defaultItem = false;
+								$isDefault = true;
+							}
+							$content .= $this->langItem(
+								$vals[$pLang], $pLang,
+								$isDefault, $noHtml );
 
-					unset( $vals[$cLang] );
-				}
+							unset( $vals[$pLang] );
 
-				// Now do the rest.
-				foreach ( $vals as $lang => $item ) {
-					if ( $item === $defaultItem ) {
-						$defaultLang = $lang;
-						continue;
+							if ( $this->singleLang ) {
+								return Html::rawElement( 'span',
+									array( 'lang' => $pLang ), $vals[$pLang] );
+							}
+						}
 					}
-					$content .= self::langItem( $item,
-						$lang, false, $noHtml );
-				}
-				if ( $defaultItem !== false ) {
-					$content = self::langItem( $defaultItem,
-						$defaultLang, true, $noHtml ) .
-						$content;
-				}
-				if ( $noHtml ) {
-					return $content;
-				}
-				return '<ul class="metadata-langlist">' .
+
+					// Now do the rest.
+					foreach ( $vals as $lang => $item ) {
+						if ( $item === $defaultItem ) {
+							$defaultLang = $lang;
+							continue;
+						}
+						$content .= $this->langItem( $item,
+							$lang, false, $noHtml );
+						if ( $this->singleLang ) {
+							return Html::rawElement( 'span',
+								array( 'lang' => $lang ), $item );
+						}
+					}
+					if ( $defaultItem !== false ) {
+						$content = $this->langItem( $defaultItem,
+								$defaultLang, true, $noHtml ) .
+							$content;
+						if ( $this->singleLang ) {
+							return $defaultItem;
+						}
+					}
+					if ( $noHtml ) {
+						return $content;
+					}
+
+					return '<ul class="metadata-langlist">' .
 					$content .
 					'</ul>';
-			case 'ol':
-				if ( $noHtml ) {
-					return "\n#" . implode( "\n#", $vals );
-				}
-				return "<ol><li>" . implode( "</li>\n<li>", $vals ) . '</li></ol>';
-			case 'ul':
-			default:
-				if ( $noHtml ) {
-					return "\n*" . implode( "\n*", $vals );
-				}
-				return "<ul><li>" . implode( "</li>\n<li>", $vals ) . '</li></ul>';
+				case 'ol':
+					if ( $noHtml ) {
+						return "\n#" . implode( "\n#", $vals );
+					}
+
+					return "<ol><li>" . implode( "</li>\n<li>", $vals ) . '</li></ol>';
+				case 'ul':
+				default:
+					if ( $noHtml ) {
+						return "\n*" . implode( "\n*", $vals );
+					}
+
+					return "<ul><li>" . implode( "</li>\n<li>", $vals ) . '</li></ul>';
 			}
 		}
 	}
@@ -941,13 +1158,13 @@ class FormatMetadata {
 	 *
 	 * @param string $value value (this is not escaped)
 	 * @param string $lang lang code of item or false
-	 * @param $default Boolean if it is default value.
-	 * @param $noHtml Boolean If to avoid html (for back-compat)
+	 * @param bool $default If it is default value.
+	 * @param bool $noHtml If to avoid html (for back-compat)
 	 * @throws MWException
-	 * @return string language item (Note: despite how this looks,
-	 * this is treated as wikitext not html).
+	 * @return string Language item (Note: despite how this looks, this is
+	 *   treated as wikitext, not as HTML).
 	 */
-	private static function langItem( $value, $lang, $default = false, $noHtml = false ) {
+	private function langItem( $value, $lang, $default = false, $noHtml = false ) {
 		if ( $lang === false && $default === false ) {
 			throw new MWException( '$lang and $default cannot both '
 				. 'be false.' );
@@ -961,13 +1178,13 @@ class FormatMetadata {
 		}
 
 		if ( $lang === false ) {
+			$msg = $this->msg( 'metadata-langitem-default', $wrappedValue );
 			if ( $noHtml ) {
-				return wfMessage( 'metadata-langitem-default',
-					$wrappedValue )->text() . "\n\n";
+				return $msg->text() . "\n\n";
 			} /* else */
+
 			return '<li class="mw-metadata-lang-default">'
-				. wfMessage( 'metadata-langitem-default',
-					$wrappedValue )->text()
+				. $msg->text()
 				. "</li>\n";
 		}
 
@@ -984,9 +1201,9 @@ class FormatMetadata {
 		}
 		// else we have a language specified
 
+		$msg = $this->msg( 'metadata-langitem', $wrappedValue, $langName, $lang );
 		if ( $noHtml ) {
-			return '*' . wfMessage( 'metadata-langitem',
-				$wrappedValue, $langName, $lang )->text();
+			return '*' . $msg->text();
 		} /* else: */
 
 		$item = '<li class="mw-metadata-lang-code-'
@@ -995,49 +1212,48 @@ class FormatMetadata {
 			$item .= ' mw-metadata-lang-default';
 		}
 		$item .= '" lang="' . $lang . '">';
-		$item .= wfMessage( 'metadata-langitem',
-			$wrappedValue, $langName, $lang )->text();
+		$item .= $msg->text();
 		$item .= "</li>\n";
+
 		return $item;
 	}
 
 	/**
 	 * Convenience function for getFormattedData()
 	 *
-	 * @private
-	 *
-	 * @param string $tag the tag name to pass on
-	 * @param string $val the value of the tag
-	 * @param string $arg an argument to pass ($1)
-	 * @param string $arg2 a 2nd argument to pass ($2)
-	 * @return string A wfMessage of "exif-$tag-$val" in lower case
+	 * @param string $tag The tag name to pass on
+	 * @param string $val The value of the tag
+	 * @param string $arg An argument to pass ($1)
+	 * @param string $arg2 A 2nd argument to pass ($2)
+	 * @return string The text content of "exif-$tag-$val" message in lower case
 	 */
-	static function msg( $tag, $val, $arg = null, $arg2 = null ) {
+	private function exifMsg( $tag, $val, $arg = null, $arg2 = null ) {
 		global $wgContLang;
 
 		if ( $val === '' ) {
 			$val = 'value';
 		}
-		return wfMessage( $wgContLang->lc( "exif-$tag-$val" ), $arg, $arg2 )->text();
+
+		return $this->msg( $wgContLang->lc( "exif-$tag-$val" ), $arg, $arg2 )->text();
 	}
 
 	/**
 	 * Format a number, convert numbers from fractions into floating point
 	 * numbers, joins arrays of numbers with commas.
 	 *
-	 * @param $num Mixed: the value to format
-	 * @param $round float|int|bool digits to round to or false.
+	 * @param mixed $num The value to format
+	 * @param float|int|bool $round Digits to round to or false.
 	 * @return mixed A floating point number or whatever we were fed
 	 */
-	static function formatNum( $num, $round = false ) {
-		global $wgLang;
+	private function formatNum( $num, $round = false ) {
 		$m = array();
 		if ( is_array( $num ) ) {
 			$out = array();
 			foreach ( $num as $number ) {
-				$out[] = self::formatNum( $number );
+				$out[] = $this->formatNum( $number );
 			}
-			return $wgLang->commaList( $out );
+
+			return $this->getLanguage()->commaList( $out );
 		}
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
 			if ( $m[2] != 0 ) {
@@ -1049,46 +1265,46 @@ class FormatMetadata {
 				$newNum = $num;
 			}
 
-			return $wgLang->formatNum( $newNum );
+			return $this->getLanguage()->formatNum( $newNum );
 		} else {
 			if ( is_numeric( $num ) && $round !== false ) {
 				$num = round( $num, $round );
 			}
-			return $wgLang->formatNum( $num );
+
+			return $this->getLanguage()->formatNum( $num );
 		}
 	}
 
 	/**
 	 * Format a rational number, reducing fractions
 	 *
-	 * @private
-	 *
-	 * @param $num Mixed: the value to format
+	 * @param mixed $num The value to format
 	 * @return mixed A floating point number or whatever we were fed
 	 */
-	static function formatFraction( $num ) {
+	private function formatFraction( $num ) {
 		$m = array();
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
 			$numerator = intval( $m[1] );
 			$denominator = intval( $m[2] );
-			$gcd = self::gcd( abs( $numerator ), $denominator );
+			$gcd = $this->gcd( abs( $numerator ), $denominator );
 			if ( $gcd != 0 ) {
 				// 0 shouldn't happen! ;)
-				return self::formatNum( $numerator / $gcd ) . '/' . self::formatNum( $denominator / $gcd );
+				return $this->formatNum( $numerator / $gcd ) . '/' . $this->formatNum( $denominator / $gcd );
 			}
 		}
-		return self::formatNum( $num );
+
+		return $this->formatNum( $num );
 	}
 
 	/**
 	 * Calculate the greatest common divisor of two integers.
 	 *
-	 * @param $a Integer: Numerator
-	 * @param $b Integer: Denominator
+	 * @param int $a Numerator
+	 * @param int $b Denominator
 	 * @return int
 	 * @private
 	 */
-	static function gcd( $a, $b ) {
+	private function gcd( $a, $b ) {
 		/*
 			// http://en.wikipedia.org/wiki/Euclidean_algorithm
 			// Recursive form would be:
@@ -1104,6 +1320,7 @@ class FormatMetadata {
 			$a = $b;
 			$b = $remainder;
 		}
+
 		return $a;
 	}
 
@@ -1119,7 +1336,7 @@ class FormatMetadata {
 	 * @param string $val The 8 digit news code.
 	 * @return string The human readable form
 	 */
-	private static function convertNewsCode( $val ) {
+	private function convertNewsCode( $val ) {
 		if ( !preg_match( '/^\d{8}$/D', $val ) ) {
 			// Not a valid news code.
 			return $val;
@@ -1179,9 +1396,10 @@ class FormatMetadata {
 				break;
 		}
 		if ( $cat !== '' ) {
-			$catMsg = self::msg( 'iimcategory', $cat );
-			$val = self::msg( 'subjectnewscode', '', $val, $catMsg );
+			$catMsg = $this->exifMsg( 'iimcategory', $cat );
+			$val = $this->exifMsg( 'subjectnewscode', '', $val, $catMsg );
 		}
+
 		return $val;
 	}
 
@@ -1189,11 +1407,11 @@ class FormatMetadata {
 	 * Format a coordinate value, convert numbers from floating point
 	 * into degree minute second representation.
 	 *
-	 * @param int $coord degrees, minutes and seconds
-	 * @param string $type latitude or longitude (for if its a NWS or E)
+	 * @param int $coord Degrees, minutes and seconds
+	 * @param string $type Latitude or longitude (for if its a NWS or E)
 	 * @return mixed A floating point number or whatever we were fed
 	 */
-	static function formatCoords( $coord, $type ) {
+	private function formatCoords( $coord, $type ) {
 		$ref = '';
 		if ( $coord < 0 ) {
 			$nCoord = -$coord;
@@ -1215,28 +1433,28 @@ class FormatMetadata {
 		$min = floor( ( $nCoord - $deg ) * 60.0 );
 		$sec = round( ( ( $nCoord - $deg ) - $min / 60 ) * 3600, 2 );
 
-		$deg = self::formatNum( $deg );
-		$min = self::formatNum( $min );
-		$sec = self::formatNum( $sec );
+		$deg = $this->formatNum( $deg );
+		$min = $this->formatNum( $min );
+		$sec = $this->formatNum( $sec );
 
-		return wfMessage( 'exif-coordinate-format', $deg, $min, $sec, $ref, $coord )->text();
+		return $this->msg( 'exif-coordinate-format', $deg, $min, $sec, $ref, $coord )->text();
 	}
 
 	/**
 	 * Format the contact info field into a single value.
 	 *
-	 * @param array $vals array with fields of the ContactInfo
-	 *    struct defined in the IPTC4XMP spec. Or potentially
-	 *    an array with one element that is a free form text
-	 *    value from the older iptc iim 1:118 prop.
-	 *
 	 * This function might be called from
 	 * JpegHandler::convertMetadataVersion which is why it is
 	 * public.
 	 *
-	 * @return String of html-ish looking wikitext
+	 * @param array $vals Array with fields of the ContactInfo
+	 *    struct defined in the IPTC4XMP spec. Or potentially
+	 *    an array with one element that is a free form text
+	 *    value from the older iptc iim 1:118 prop.
+	 * @return string HTML-ish looking wikitext
+	 * @since 1.23 no longer static
 	 */
-	public static function collapseContactInfo( $vals ) {
+	public function collapseContactInfo( $vals ) {
 		if ( !( isset( $vals['CiAdrExtadr'] )
 			|| isset( $vals['CiAdrCity'] )
 			|| isset( $vals['CiAdrCtry'] )
@@ -1258,7 +1476,8 @@ class FormatMetadata {
 			foreach ( $vals as &$val ) {
 				$val = htmlspecialchars( $val );
 			}
-			return self::flattenArray( $vals );
+
+			return $this->flattenArrayReal( $vals );
 		} else {
 			// We have a real ContactInfo field.
 			// Its unclear if all these fields have to be
@@ -1308,10 +1527,10 @@ class FormatMetadata {
 							$emails[] = $finalEmail;
 						} else {
 							$emails[] = '[mailto:'
-							. $finalEmail
-							. ' <span class="email">'
-							. $finalEmail
-							. '</span>]';
+								. $finalEmail
+								. ' <span class="email">'
+								. $finalEmail
+								. '</span>]';
 						}
 					}
 				}
@@ -1340,10 +1559,316 @@ class FormatMetadata {
 					. htmlspecialchars( $vals['CiUrlWork'] )
 					. '</span>';
 			}
-			return wfMessage( 'exif-contact-value', $email, $url,
+
+			return $this->msg( 'exif-contact-value', $email, $url,
 				$street, $city, $region, $postal, $country,
 				$tel )->text();
 		}
+	}
+
+	/**
+	 * Get a list of fields that are visible by default.
+	 *
+	 * @return array
+	 * @since 1.23
+	 */
+	public static function getVisibleFields() {
+		$fields = array();
+		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
+		foreach ( $lines as $line ) {
+			$matches = array();
+			if ( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
+				$fields[] = $matches[1];
+			}
+		}
+		$fields = array_map( 'strtolower', $fields );
+
+		return $fields;
+	}
+
+	/**
+	 * Get an array of extended metadata. (See the imageinfo API for format.)
+	 *
+	 * @param File $file File to use
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 * @since 1.23
+	 */
+	public function fetchExtendedMetadata( File $file ) {
+		global $wgMemc;
+
+		wfProfileIn( __METHOD__ );
+
+		// If revision deleted, exit immediately
+		if ( $file->isDeleted( File::DELETED_FILE ) ) {
+			wfProfileOut( __METHOD__ );
+
+			return array();
+		}
+
+		$cacheKey = wfMemcKey(
+			'getExtendedMetadata',
+			$this->getLanguage()->getCode(),
+			(int)$this->singleLang,
+			$file->getSha1()
+		);
+
+		$cachedValue = $wgMemc->get( $cacheKey );
+		if (
+			$cachedValue
+			&& wfRunHooks( 'ValidateExtendedMetadataCache', array( $cachedValue['timestamp'], $file ) )
+		) {
+			$extendedMetadata = $cachedValue['data'];
+		} else {
+			$maxCacheTime = ( $file instanceof ForeignAPIFile ) ? 60 * 60 * 12 : 60 * 60 * 24 * 30;
+			$fileMetadata = $this->getExtendedMetadataFromFile( $file );
+			$extendedMetadata = $this->getExtendedMetadataFromHook( $file, $fileMetadata, $maxCacheTime );
+			if ( $this->singleLang ) {
+				$this->resolveMultilangMetadata( $extendedMetadata );
+			}
+			// Make sure the metadata won't break the API when an XML format is used.
+			// This is an API-specific function so it would be cleaner to call it from
+			// outside fetchExtendedMetadata, but this way we don't need to redo the
+			// computation on a cache hit.
+			$this->sanitizeArrayForXml( $extendedMetadata );
+			$valueToCache = array( 'data' => $extendedMetadata, 'timestamp' => wfTimestampNow() );
+			$wgMemc->set( $cacheKey, $valueToCache, $maxCacheTime );
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		return $extendedMetadata;
+	}
+
+	/**
+	 * Get file-based metadata in standardized format.
+	 *
+	 * Note that for a remote file, this might return metadata supplied by extensions.
+	 *
+	 * @param File $file File to use
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 * @since 1.23
+	 */
+	protected function getExtendedMetadataFromFile( File $file ) {
+		// If this is a remote file accessed via an API request, we already
+		// have remote metadata so we just ignore any local one
+		if ( $file instanceof ForeignAPIFile ) {
+			// In case of error we pretend no metadata - this will get cached.
+			// Might or might not be a good idea.
+			return $file->getExtendedMetadata() ?: array();
+		}
+
+		wfProfileIn( __METHOD__ );
+
+		$uploadDate = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
+
+		$fileMetadata = array(
+			// This is modification time, which is close to "upload" time.
+			'DateTime' => array(
+				'value' => $uploadDate,
+				'source' => 'mediawiki-metadata',
+			),
+		);
+
+		$title = $file->getTitle();
+		if ( $title ) {
+			$text = $title->getText();
+			$pos = strrpos( $text, '.' );
+
+			if ( $pos ) {
+				$name = substr( $text, 0, $pos );
+			} else {
+				$name = $text;
+			}
+
+			$fileMetadata['ObjectName'] = array(
+				'value' => $name,
+				'source' => 'mediawiki-metadata',
+			);
+		}
+
+		$common = $file->getCommonMetaArray();
+
+		if ( $common !== false ) {
+			foreach ( $common as $key => $value ) {
+				$fileMetadata[$key] = array(
+					'value' => $value,
+					'source' => 'file-metadata',
+				);
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		return $fileMetadata;
+	}
+
+	/**
+	 * Get additional metadata from hooks in standardized format.
+	 *
+	 * @param File $file File to use
+	 * @param array $extendedMetadata
+	 * @param int $maxCacheTime hook handlers might use this parameter to override cache time
+	 *
+	 * @return array [<property name> => ['value' => <value>]], or [] on error
+	 * @since 1.23
+	 */
+	protected function getExtendedMetadataFromHook( File $file, array $extendedMetadata,
+		&$maxCacheTime
+	) {
+		wfProfileIn( __METHOD__ );
+
+		wfRunHooks( 'GetExtendedMetadata', array(
+			&$extendedMetadata,
+			$file,
+			$this->getContext(),
+			$this->singleLang,
+			&$maxCacheTime
+		) );
+
+		$visible = array_flip( self::getVisibleFields() );
+		foreach ( $extendedMetadata as $key => $value ) {
+			if ( !isset( $visible[strtolower( $key )] ) ) {
+				$extendedMetadata[$key]['hidden'] = '';
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		return $extendedMetadata;
+	}
+
+	/**
+	 * Turns an XMP-style multilang array into a single value.
+	 * If the value is not a multilang array, it is returned unchanged.
+	 * See mediawiki.org/wiki/Manual:File_metadata_handling#Multi-language_array_format
+	 * @param mixed $value
+	 * @return mixed value in best language, null if there were no languages at all
+	 * @since 1.23
+	 */
+	protected function resolveMultilangValue( $value ) {
+		if (
+			!is_array( $value )
+			|| !isset( $value['_type'] )
+			|| $value['_type'] != 'lang'
+		) {
+			return $value; // do nothing if not a multilang array
+		}
+
+		// choose the language best matching user or site settings
+		$priorityLanguages = $this->getPriorityLanguages();
+		foreach ( $priorityLanguages as $lang ) {
+			if ( isset( $value[$lang] ) ) {
+				return $value[$lang];
+			}
+		}
+
+		// otherwise go with the default language, if set
+		if ( isset( $value['x-default'] ) ) {
+			return $value['x-default'];
+		}
+
+		// otherwise just return any one language
+		unset( $value['_type'] );
+		if ( !empty( $value ) ) {
+			return reset( $value );
+		}
+
+		// this should not happen; signal error
+		return null;
+	}
+
+	/**
+	 * Takes an array returned by the getExtendedMetadata* functions,
+	 * and resolves multi-language values in it.
+	 * @param array $metadata
+	 * @since 1.23
+	 */
+	protected function resolveMultilangMetadata( &$metadata ) {
+		if ( !is_array( $metadata ) ) {
+			return;
+		}
+		foreach ( $metadata as &$field ) {
+			if ( isset( $field['value'] ) ) {
+				$field['value'] = $this->resolveMultilangValue( $field['value'] );
+			}
+		}
+	}
+
+	/**
+	 * Makes sure the given array is a valid API response fragment
+	 * (can be transformed into XML)
+	 * @param array $arr
+	 */
+	protected function sanitizeArrayForXml( &$arr ) {
+		if ( !is_array( $arr ) ) {
+			return;
+		}
+
+		$counter = 1;
+		foreach ( $arr as $key => &$value ) {
+			$sanitizedKey = $this->sanitizeKeyForXml( $key );
+			if ( $sanitizedKey !== $key ) {
+				if ( isset( $arr[$sanitizedKey] ) ) {
+					// Make the sanitized keys hopefully unique.
+					// To make it definitely unique would be too much effort, given that
+					// sanitizing is only needed for misformatted metadata anyway, but
+					// this at least covers the case when $arr is numeric.
+					$sanitizedKey .= $counter;
+					++$counter;
+				}
+				$arr[$sanitizedKey] = $arr[$key];
+				unset( $arr[$key] );
+			}
+			if ( is_array( $value ) ) {
+				$this->sanitizeArrayForXml( $value );
+			}
+		}
+	}
+
+	/**
+	 * Turns a string into a valid XML identifier.
+	 * Used to ensure that keys of an associative array in the
+	 * API response do not break the XML formatter.
+	 * @param string $key
+	 * @return string
+	 * @since 1.23
+	 */
+	protected function sanitizeKeyForXml( $key ) {
+		// drop all characters which are not valid in an XML tag name
+		// a bunch of non-ASCII letters would be valid but probably won't
+		// be used so we take the easy way
+		$key = preg_replace( '/[^a-zA-z0-9_:.-]/', '', $key );
+		// drop characters which are invalid at the first position
+		$key = preg_replace( '/^[\d-.]+/', '', $key );
+
+		if ( $key == '' ) {
+			$key = '_';
+		}
+
+		// special case for an internal keyword
+		if ( $key == '_element' ) {
+			$key = 'element';
+		}
+
+		return $key;
+	}
+
+	/**
+	 * Returns a list of languages (first is best) to use when formatting multilang fields,
+	 * based on user and site preferences.
+	 * @return array
+	 * @since 1.23
+	 */
+	protected function getPriorityLanguages() {
+		$priorityLanguages =
+			Language::getFallbacksIncludingSiteLanguage( $this->getLanguage()->getCode() );
+		$priorityLanguages = array_merge(
+			(array)$this->getLanguage()->getCode(),
+			$priorityLanguages[0],
+			$priorityLanguages[1]
+		);
+
+		return $priorityLanguages;
 	}
 }
 
@@ -1354,12 +1879,13 @@ class FormatMetadata {
  *
  */
 class FormatExif {
-	var $meta;
+	/** @var array */
+	private $meta;
 
 	/**
-	 * @param $meta array
+	 * @param array $meta
 	 */
-	function FormatExif( $meta ) {
+	function __construct( $meta ) {
 		wfDeprecated( __METHOD__, '1.18' );
 		$this->meta = $meta;
 	}

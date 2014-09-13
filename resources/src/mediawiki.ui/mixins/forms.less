@@ -1,0 +1,54 @@
+@import "../settings/colors";
+
+// Font is not included.
+// For Vector, that should be layered on top with vector-type
+.agora-field-styling() {
+
+	border: 1px solid @colorGrayLight;
+
+	&:focus {
+		// Styling focus of native checkboxes etc on Mac is almost impossible.
+		&:not([type=checkbox]):not([type=radio]) {
+			outline: 0; // Removes OS field focus
+		}
+
+		box-shadow: @colorProgressiveShadow 0 0 5px;
+
+		border-color: @colorProgressiveShadow;
+	}
+
+	color: @colorText;
+	padding: 0.35em 0.5em 0.35em 0.5em;
+
+	// Ensure that buttons and inputs are nicely aligned when they have differing heights
+	vertical-align: middle;
+}
+
+.agora-label-styling() {
+	//font-weight: bold;
+	font-size: 0.9em;
+	color: darken(@colorGrayLight, 50%);
+
+	* {
+		font-weight: normal;
+	}
+}
+
+.agora-inline-label-styling() {
+	margin-bottom: 0.5em;
+	cursor: pointer;
+	vertical-align: bottom;
+	line-height: normal;
+
+	font-weight: normal;
+
+	& > input[type="checkbox"],
+	& > input[type="radio"] {
+		width: auto;
+		height: auto;
+		margin: 0 0.1em 0 0;
+		padding: 0;
+		border: 1px solid @colorGrayLight;
+		cursor: pointer;
+	}
+}

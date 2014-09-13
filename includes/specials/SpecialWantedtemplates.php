@@ -32,7 +32,6 @@
  * @ingroup SpecialPage
  */
 class WantedTemplatesPage extends WantedQueryPage {
-
 	function __construct( $name = 'Wantedtemplates' ) {
 		parent::__construct( $name );
 	}
@@ -40,16 +39,19 @@ class WantedTemplatesPage extends WantedQueryPage {
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'templatelinks', 'page' ),
-			'fields' => array( 'namespace' => 'tl_namespace',
-					'title' => 'tl_title',
-					'value' => 'COUNT(*)' ),
-			'conds' => array( 'page_title IS NULL',
-					'tl_namespace' => NS_TEMPLATE ),
-			'options' => array(
-				'GROUP BY' => array( 'tl_namespace', 'tl_title' ) ),
+			'fields' => array(
+				'namespace' => 'tl_namespace',
+				'title' => 'tl_title',
+				'value' => 'COUNT(*)'
+			),
+			'conds' => array(
+				'page_title IS NULL',
+				'tl_namespace' => NS_TEMPLATE
+			),
+			'options' => array( 'GROUP BY' => array( 'tl_namespace', 'tl_title' ) ),
 			'join_conds' => array( 'page' => array( 'LEFT JOIN',
-					array( 'page_namespace = tl_namespace',
-						'page_title = tl_title' ) ) )
+				array( 'page_namespace = tl_namespace',
+					'page_title = tl_title' ) ) )
 		);
 	}
 

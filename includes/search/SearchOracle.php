@@ -3,7 +3,7 @@
  * Oracle search engine
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
  * Search engine hook base class for Oracle (ConText).
  * @ingroup Search
  */
-class SearchOracle extends SearchEngine {
+class SearchOracle extends SearchDatabase {
 
 	private $reservedWords = array(
 		'ABOUT' => 1,
@@ -60,14 +60,6 @@ class SearchOracle extends SearchEngine {
 	);
 
 	/**
-	 * Creates an instance of this class
-	 * @param $db DatabasePostgres: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
-
-	/**
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param string $term raw search term
@@ -95,18 +87,6 @@ class SearchOracle extends SearchEngine {
 
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
 		return new MySQLSearchResultSet( $resultSet, $this->searchTerms );
-	}
-
-	/**
-	 * Return a partial WHERE clause to exclude redirects, if so set
-	 * @return String
-	 */
-	function queryRedirect() {
-		if ( $this->showRedirects ) {
-			return '';
-		} else {
-			return 'AND page_is_redirect=0';
-		}
 	}
 
 	/**
@@ -155,7 +135,6 @@ class SearchOracle extends SearchEngine {
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryLimit( $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
-			$this->queryRedirect() . ' ' .
 			$this->queryNamespaces() . ' ' .
 			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' );
 	}
@@ -238,6 +217,7 @@ class SearchOracle extends SearchEngine {
 		$t = preg_replace( '/([-&|])/', '\\\\$1', $t );
 		return $t;
 	}
+
 	/**
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.

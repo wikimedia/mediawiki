@@ -40,6 +40,9 @@
  */
 require_once __DIR__ . "/ORMRowTest.php";
 
+/**
+ * @covers TestORMRow
+ */
 class TestORMRowTest extends ORMRowTest {
 
 	/**

@@ -48,19 +48,19 @@ class RedisConnectionPool {
 	protected $password;
 	/** @var bool Whether connections persist */
 	protected $persistent;
-	/** @var integer Serializer to use (Redis::SERIALIZER_*) */
+	/** @var int Serializer to use (Redis::SERIALIZER_*) */
 	protected $serializer;
 	/** @} */
 
-	/** @var integer Current idle pool size */
+	/** @var int Current idle pool size */
 	protected $idlePoolSize = 0;
 
-	/** @var Array (server name => ((connection info array),...) */
+	/** @var array (server name => ((connection info array),...) */
 	protected $connections = array();
-	/** @var Array (server name => UNIX timestamp) */
+	/** @var array (server name => UNIX timestamp) */
 	protected $downServers = array();
 
-	/** @var Array (pool ID => RedisConnectionPool) */
+	/** @var array (pool ID => RedisConnectionPool) */
 	protected static $instances = array();
 
 	/** integer; seconds to cache servers as "down". */
@@ -68,6 +68,7 @@ class RedisConnectionPool {
 
 	/**
 	 * @param array $options
+	 * @throws MWException
 	 */
 	protected function __construct( array $options ) {
 		if ( !class_exists( 'Redis' ) ) {
@@ -89,8 +90,8 @@ class RedisConnectionPool {
 	}
 
 	/**
-	 * @param $options Array
-	 * @return Array
+	 * @param array $options
+	 * @return array
 	 */
 	protected static function applyDefaultConfig( array $options ) {
 		if ( !isset( $options['connectTimeout'] ) ) {
@@ -102,11 +103,12 @@ class RedisConnectionPool {
 		if ( !isset( $options['password'] ) ) {
 			$options['password'] = null;
 		}
+
 		return $options;
 	}
 
 	/**
-	 * @param $options Array
+	 * @param array $options
 	 * $options include:
 	 *   - connectTimeout : The timeout for new connections, in seconds.
 	 *                      Optional, default is 1 second.
@@ -125,8 +127,9 @@ class RedisConnectionPool {
 		// Initialize the object at the hash as needed...
 		if ( !isset( self::$instances[$id] ) ) {
 			self::$instances[$id] = new self( $options );
-			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id." );
+			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id.\n" );
 		}
+
 		return self::$instances[$id];
 	}
 
@@ -150,7 +153,8 @@ class RedisConnectionPool {
 			} else {
 				// Server is dead
 				wfDebug( "server $server is marked down for another " .
-					( $this->downServers[$server] - $now ) . " seconds, can't get connection" );
+					( $this->downServers[$server] - $now ) . " seconds, can't get connection\n" );
+
 				return false;
 			}
 		}
@@ -161,6 +165,7 @@ class RedisConnectionPool {
 				if ( $connection['free'] ) {
 					$connection['free'] = false;
 					--$this->idlePoolSize;
+
 					return new RedisConnRef( $this, $server, $connection['conn'] );
 				}
 			}
@@ -195,6 +200,7 @@ class RedisConnectionPool {
 				wfDebugLog( 'redis', "Could not connect to server $server" );
 				// Mark server down for some time to avoid further timeouts
 				$this->downServers[$server] = time() + self::SERVER_DOWN_TTL;
+
 				return false;
 			}
 			if ( $this->password !== null ) {
@@ -204,13 +210,15 @@ class RedisConnectionPool {
 			}
 		} catch ( RedisException $e ) {
 			$this->downServers[$server] = time() + self::SERVER_DOWN_TTL;
-			wfDebugLog( 'redis', "Redis exception: " . $e->getMessage() . "\n" );
+			wfDebugLog( 'redis', "Redis exception connecting to $server: " . $e->getMessage() );
+
 			return false;
 		}
 
 		if ( $conn ) {
 			$conn->setOption( Redis::OPT_SERIALIZER, $this->serializer );
 			$this->connections[$server][] = array( 'conn' => $conn, 'free' => false );
+
 			return new RedisConnRef( $this, $server, $conn );
 		} else {
 			return false;
@@ -220,9 +228,9 @@ class RedisConnectionPool {
 	/**
 	 * Mark a connection to a server as free to return to the pool
 	 *
-	 * @param $server string
-	 * @param $conn Redis
-	 * @return boolean
+	 * @param string $server
+	 * @param Redis $conn
+	 * @return bool
 	 */
 	public function freeConnection( $server, Redis $conn ) {
 		$found = false;
@@ -242,15 +250,13 @@ class RedisConnectionPool {
 
 	/**
 	 * Close any extra idle connections if there are more than the limit
-	 *
-	 * @return void
 	 */
 	protected function closeExcessIdleConections() {
 		if ( $this->idlePoolSize <= count( $this->connections ) ) {
 			return; // nothing to do (no more connections than servers)
 		}
 
-		foreach ( $this->connections as $server => &$serverConnections ) {
+		foreach ( $this->connections as &$serverConnections ) {
 			foreach ( $serverConnections as $key => &$connection ) {
 				if ( $connection['free'] ) {
 					unset( $serverConnections[$key] );
@@ -268,12 +274,26 @@ class RedisConnectionPool {
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 *
-	 * @param $server string
-	 * @param $cref RedisConnRef
-	 * @param $e RedisException
-	 * @return void
+	 * @param string $server
+	 * @param RedisConnRef $cref
+	 * @param RedisException $e
+	 * @deprecated 1.23
 	 */
 	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
+		return $this->handleError( $cref, $e );
+	}
+
+	/**
+	 * The redis extension throws an exception in response to various read, write
+	 * and protocol errors. Sometimes it also closes the connection, sometimes
+	 * not. The safest response for us is to explicitly destroy the connection
+	 * object and let it be reopened during the next request.
+	 *
+	 * @param RedisConnRef $cref
+	 * @param RedisException $e
+	 */
+	public function handleError( RedisConnRef $cref, RedisException $e ) {
+		$server = $cref->getServer();
 		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() . "\n" );
 		foreach ( $this->connections[$server] as $key => $connection ) {
 			if ( $cref->isConnIdentical( $connection['conn'] ) ) {
@@ -283,10 +303,51 @@ class RedisConnectionPool {
 			}
 		}
 	}
+
+	/**
+	 * Re-send an AUTH request to the redis server (useful after disconnects).
+	 *
+	 * This works around an upstream bug in phpredis. phpredis hides disconnects by transparently
+	 * reconnecting, but it neglects to re-authenticate the new connection. To the user of the
+	 * phpredis client API this manifests as a seemingly random tendency of connections to lose
+	 * their authentication status.
+	 *
+	 * This method is for internal use only.
+	 *
+	 * @see https://github.com/nicolasff/phpredis/issues/403
+	 *
+	 * @param string $server
+	 * @param Redis $conn
+	 * @return bool Success
+	 */
+	public function reauthenticateConnection( $server, Redis $conn ) {
+		if ( $this->password !== null ) {
+			if ( !$conn->auth( $this->password ) ) {
+				wfDebugLog( 'redis', "Authentication error connecting to $server" );
+
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Make sure connections are closed for sanity
+	 */
+	function __destruct() {
+		foreach ( $this->connections as $server => &$serverConnections ) {
+			foreach ( $serverConnections as $key => &$connection ) {
+				$connection['conn']->close();
+			}
+		}
+	}
 }
 
 /**
  * Helper class to handle automatically marking connectons as reusable (via RAII pattern)
+ *
+ * This class simply wraps the Redis class and can be used the same way
  *
  * @ingroup Redis
  * @since 1.21
@@ -298,11 +359,12 @@ class RedisConnRef {
 	protected $conn;
 
 	protected $server; // string
+	protected $lastError; // string
 
 	/**
-	 * @param $pool RedisConnectionPool
-	 * @param $server string
-	 * @param $conn Redis
+	 * @param RedisConnectionPool $pool
+	 * @param string $server
+	 * @param Redis $conn
 	 */
 	public function __construct( RedisConnectionPool $pool, $server, Redis $conn ) {
 		$this->pool = $pool;
@@ -310,24 +372,64 @@ class RedisConnRef {
 		$this->conn = $conn;
 	}
 
+	/**
+	 * @return string
+	 * @since 1.23
+	 */
+	public function getServer() {
+		return $this->server;
+	}
+
+	public function getLastError() {
+		return $this->lastError;
+	}
+
+	public function clearLastError() {
+		$this->lastError = null;
+	}
+
 	public function __call( $name, $arguments ) {
-		return call_user_func_array( array( $this->conn, $name ), $arguments );
+		$conn = $this->conn; // convenience
+
+		$conn->clearLastError();
+		$res = call_user_func_array( array( $conn, $name ), $arguments );
+		if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
+			$this->pool->reauthenticateConnection( $this->server, $conn );
+			$conn->clearLastError();
+			$res = call_user_func_array( array( $conn, $name ), $arguments );
+			wfDebugLog( 'redis', "Used automatic re-authentication for method '$name'." );
+		}
+
+		$this->lastError = $conn->getLastError() ?: $this->lastError;
+
+		return $res;
 	}
 
 	/**
 	 * @param string $script
 	 * @param array $params
-	 * @param integer $numKeys
+	 * @param int $numKeys
 	 * @return mixed
 	 * @throws RedisException
 	 */
 	public function luaEval( $script, array $params, $numKeys ) {
 		$sha1 = sha1( $script ); // 40 char hex
 		$conn = $this->conn; // convenience
+		$server = $this->server; // convenience
 
 		// Try to run the server-side cached copy of the script
 		$conn->clearLastError();
 		$res = $conn->evalSha( $sha1, $params, $numKeys );
+		// If we got a permission error reply that means that (a) we are not in
+		// multi()/pipeline() and (b) some connection problem likely occurred. If
+		// the password the client gave was just wrong, an exception should have
+		// been thrown back in getConnection() previously.
+		if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
+			$this->pool->reauthenticateConnection( $server, $conn );
+			$conn->clearLastError();
+			$res = $conn->eval( $script, $params, $numKeys );
+			wfDebugLog( 'redis', "Used automatic re-authentication for Lua script $sha1." );
+		}
 		// If the script is not in cache, use eval() to retry and cache it
 		if ( preg_match( '/^NOSCRIPT/', $conn->getLastError() ) ) {
 			$conn->clearLastError();
@@ -336,14 +438,16 @@ class RedisConnRef {
 		}
 
 		if ( $conn->getLastError() ) { // script bug?
-			wfDebugLog( 'redis', "Lua script error: " . $conn->getLastError() );
+			wfDebugLog( 'redis', "Lua script error on server $server: " . $conn->getLastError() );
 		}
+
+		$this->lastError = $conn->getLastError() ?: $this->lastError;
 
 		return $res;
 	}
 
 	/**
-	 * @param RedisConnRef $conn
+	 * @param Redis $conn
 	 * @return bool
 	 */
 	public function isConnIdentical( Redis $conn ) {

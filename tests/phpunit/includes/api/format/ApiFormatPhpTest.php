@@ -4,11 +4,11 @@
  * @group API
  * @group Database
  * @group medium
+ * @covers ApiFormatPhp
  */
 class ApiFormatPhpTest extends ApiFormatTestBase {
 
-	public function testValidPhpSyntax() {
-
+	public function testValidSyntax( ) {
 		$data = $this->apiRequest( 'php', array( 'action' => 'query', 'meta' => 'siteinfo' ) );
 
 		$this->assertInternalType( 'array', unserialize( $data ) );

@@ -7,5 +7,5 @@ $result = array( 'xmp-exif' =>
 		'GPSLatitude' => 88.51805555,
 		'GPSLongitude' => -21.12356945,
 		'GPSVersionID' => '2.2.0.0'
-        )
+	)
 );

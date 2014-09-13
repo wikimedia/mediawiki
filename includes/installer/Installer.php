@@ -102,6 +102,7 @@ abstract class Installer {
 		'mysql',
 		'postgres',
 		'oracle',
+		'mssql',
 		'sqlite',
 	);
 
@@ -116,11 +117,9 @@ abstract class Installer {
 		'envCheckDB',
 		'envCheckRegisterGlobals',
 		'envCheckBrokenXML',
-		'envCheckPHP531',
 		'envCheckMagicQuotes',
 		'envCheckMagicSybase',
 		'envCheckMbstring',
-		'envCheckZE1',
 		'envCheckSafeMode',
 		'envCheckXML',
 		'envCheckPCRE',
@@ -171,7 +170,6 @@ abstract class Installer {
 		'wgMetaNamespace',
 		'wgDeletedDirectory',
 		'wgEnableUploads',
-		'wgLogo',
 		'wgShellLocale',
 		'wgSecretKey',
 		'wgUseInstantCommons',
@@ -212,6 +210,10 @@ abstract class Installer {
 		'_MemCachedServers' => '',
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
+
+		// $wgLogo is probably wrong (bug 48084); set something that will work.
+		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
+		'wgLogo' => '$wgStylePath/common/images/wiki.png',
 	);
 
 	/**
@@ -347,15 +349,14 @@ abstract class Installer {
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
-		global $wgExtensionMessagesFiles, $wgUser;
+		global $wgMessagesDirs, $wgUser;
 
 		// Disable the i18n cache and LoadBalancer
 		Language::getLocalisationCache()->disableBackend();
 		LBFactory::disableBackend();
 
-		// Load the installer's i18n file.
-		$wgExtensionMessagesFiles['MediawikiInstaller'] =
-			__DIR__ . '/Installer.i18n.php';
+		// Load the installer's i18n.
+		$wgMessagesDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
@@ -507,8 +508,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Determine if LocalSettings.php exists. If it does, return its variables,
-	 * merged with those from AdminSettings.php, as an array.
+	 * Determine if LocalSettings.php exists. If it does, return its variables.
 	 *
 	 * @return Array
 	 */
@@ -526,9 +526,6 @@ abstract class Installer {
 
 		require "$IP/includes/DefaultSettings.php";
 		require "$IP/LocalSettings.php";
-		if ( file_exists( "$IP/AdminSettings.php" ) ) {
-			require "$IP/AdminSettings.php";
-		}
 
 		return get_defined_vars();
 	}
@@ -647,15 +644,19 @@ abstract class Installer {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$status->value->insert( 'site_stats', array(
-			'ss_row_id' => 1,
-			'ss_total_views' => 0,
-			'ss_total_edits' => 0,
-			'ss_good_articles' => 0,
-			'ss_total_pages' => 0,
-			'ss_users' => 0,
-			'ss_images' => 0 ),
-			__METHOD__, 'IGNORE' );
+		$status->value->insert(
+			'site_stats',
+			array(
+				'ss_row_id' => 1,
+				'ss_total_views' => 0,
+				'ss_total_edits' => 0,
+				'ss_good_articles' => 0,
+				'ss_total_pages' => 0,
+				'ss_users' => 0,
+				'ss_images' => 0
+			),
+			__METHOD__, 'IGNORE'
+		);
 
 		return Status::newGood();
 	}
@@ -735,23 +736,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Test PHP (probably 5.3.1, but it could regress again) to make sure that
-	 * reference parameters to __call() are not converted to null
-	 * @return bool
-	 */
-	protected function envCheckPHP531() {
-		$test = new PhpRefCallBugTester;
-		$test->execute();
-		if ( !$test->ok ) {
-			$this->showError( 'config-using531', phpversion() );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Environment check for magic_quotes_runtime.
 	 * @return bool
 	 */
@@ -786,20 +770,6 @@ abstract class Installer {
 	protected function envCheckMbstring() {
 		if ( wfIniGetBool( 'mbstring.func_overload' ) ) {
 			$this->showError( 'config-mbstring' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Environment check for zend.ze1_compatibility_mode.
-	 * @return bool
-	 */
-	protected function envCheckZE1() {
-		if ( wfIniGetBool( 'zend.ze1_compatibility_mode' ) ) {
-			$this->showError( 'config-ze1' );
 
 			return false;
 		}
@@ -1164,11 +1134,11 @@ abstract class Installer {
 			return chr( 0xC0 | $c >> 6 ) . chr( 0x80 | $c & 0x3F );
 		} elseif ( $c <= 0xFFFF ) {
 			return chr( 0xE0 | $c >> 12 ) . chr( 0x80 | $c >> 6 & 0x3F )
-				. chr( 0x80 | $c & 0x3F );
+			. chr( 0x80 | $c & 0x3F );
 		} elseif ( $c <= 0x10FFFF ) {
 			return chr( 0xF0 | $c >> 18 ) . chr( 0x80 | $c >> 12 & 0x3F )
-				. chr( 0x80 | $c >> 6 & 0x3F )
-				. chr( 0x80 | $c & 0x3F );
+			. chr( 0x80 | $c >> 6 & 0x3F )
+			. chr( 0x80 | $c & 0x3F );
 		} else {
 			return false;
 		}
@@ -1313,8 +1283,13 @@ abstract class Installer {
 	/**
 	 * Same as locateExecutable(), but checks in getPossibleBinPaths() by default
 	 * @see locateExecutable()
-	 * @param $names
-	 * @param $versionInfo bool
+	 * @param array $names Array of possible names.
+	 * @param array|bool $versionInfo Default: false or array with two members:
+	 *         0 => Command to run for version check, with $1 for the full executable name
+	 *         1 => String to compare the output with
+	 *
+	 * If $versionInfo is not false, only executables with a version
+	 * matching $versionInfo[1] will be returned.
 	 * @return bool|string
 	 */
 	public static function locateExecutableInDefaultPaths( $names, $versionInfo = false ) {
@@ -1779,7 +1754,7 @@ abstract class Installer {
 		$GLOBALS['wgMaxShellMemory'] = 0;
 
 		// Don't bother embedding images into generated CSS, which is not cached
-		$GLOBALS['wgResourceLoaderLESSFunctions']['embeddable'] = function( $frame, $less ) {
+		$GLOBALS['wgResourceLoaderLESSFunctions']['embeddable'] = function ( $frame, $less ) {
 			return $less->toBool( false );
 		};
 	}

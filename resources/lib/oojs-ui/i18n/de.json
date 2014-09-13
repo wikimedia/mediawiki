@@ -1,0 +1,21 @@
+{
+    "@metadata": {
+        "authors": [
+            "APPER",
+            "G.Hagedorn",
+            "Inkowik",
+            "Jcornelius",
+            "Jdforrester",
+            "Kghbln",
+            "Metalhead64",
+            "Murma174",
+            "Se4598",
+            "Tomabrafix"
+        ]
+    },
+    "ooui-dialog-action-close": "Schließen",
+    "ooui-outline-control-move-down": "Element nach unten verschieben",
+    "ooui-outline-control-move-up": "Element nach oben verschieben",
+    "ooui-outline-control-remove": "Element entfernen",
+    "ooui-toolbar-more": "Mehr"
+}

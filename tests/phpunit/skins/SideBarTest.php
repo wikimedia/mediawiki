@@ -100,7 +100,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * @covers SkinTemplate::addToSidebarPlain
 	 */
 	public function testExternalUrlsRequireADescription() {
-	$this->setMwGlobals( array(
+		$this->setMwGlobals( array(
 			'wgNoFollowLinks' => true,
 			'wgNoFollowDomainExceptions' => array(),
 			'wgNoFollowNsExceptions' => array(),
@@ -158,7 +158,6 @@ class SideBarTest extends MediaWikiLangTestCase {
 '
 		);
 	}
-
 
 	#### Attributes for external links ##########################
 	private function getAttribs() {

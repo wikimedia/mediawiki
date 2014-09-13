@@ -30,7 +30,6 @@
  * @ingroup API
  */
 class ApiHelp extends ApiBase {
-
 	/**
 	 * Module for displaying help
 	 */
@@ -68,19 +67,22 @@ class ApiHelp extends ApiBase {
 				// In case the '+' was typed into URL, it resolves as a space
 				$subNames = explode( ' ', $m );
 			}
+
 			$module = $this->getMain();
-			for ( $i = 0; $i < count( $subNames ); $i++ ) {
+			$subNamesCount = count( $subNames );
+			for ( $i = 0; $i < $subNamesCount; $i++ ) {
 				$subs = $module->getModuleManager();
 				if ( $subs === null ) {
 					$module = null;
 				} else {
 					$module = $subs->getModule( $subNames[$i] );
 				}
+
 				if ( $module === null ) {
 					if ( count( $subNames ) === 2
-							&& $i === 1
-							&& $subNames[0] === 'query'
-							&& in_array( $subNames[1], $queryModules )
+						&& $i === 1
+						&& $subNames[0] === 'query'
+						&& in_array( $subNames[1], $queryModules )
 					) {
 						// Legacy: This is one of the renamed 'querymodule=...' parameters,
 						// do not use '+' notation in the output, use submodule's name instead.
@@ -94,6 +96,7 @@ class ApiHelp extends ApiBase {
 					$type = $subs->getModuleGroup( $subNames[$i] );
 				}
 			}
+
 			if ( $module !== null ) {
 				$r[] = $this->buildModuleHelp( $module, $type );
 			}
@@ -104,8 +107,8 @@ class ApiHelp extends ApiBase {
 	}
 
 	/**
-	 * @param  $module ApiBase
-	 * @param  $type String What type of request is this? e.g. action, query, list, prop, meta, format
+	 * @param $module ApiBase
+	 * @param $type String What type of request is this? e.g. action, query, list, prop, meta, format
 	 * @return string
 	 */
 	private function buildModuleHelp( $module, $type ) {
@@ -141,21 +144,25 @@ class ApiHelp extends ApiBase {
 
 	public function getParamDescription() {
 		return array(
-			'modules' => 'List of module names (value of the action= parameter). Can specify submodules with a \'+\'',
-			'querymodules' => 'Use modules=query+value instead. List of query module names (value of prop=, meta= or list= parameter)',
+			'modules' => 'List of module names (value of the action= parameter). ' .
+				'Can specify submodules with a \'+\'',
+			'querymodules' => 'Use modules=query+value instead. List of query ' .
+				'module names (value of prop=, meta= or list= parameter)',
 		);
 	}
 
 	public function getDescription() {
-		return 'Display this help screen. Or the help screen for the specified module';
+		return 'Display this help screen. Or the help screen for the specified module.';
 	}
 
 	public function getExamples() {
 		return array(
 			'api.php?action=help' => 'Whole help page',
 			'api.php?action=help&modules=protect' => 'Module (action) help page',
-			'api.php?action=help&modules=query+categorymembers' => 'Help for the query/categorymembers module',
-			'api.php?action=help&modules=login|query+info' => 'Help for the login and query/info modules',
+			'api.php?action=help&modules=query+categorymembers'
+				=> 'Help for the query/categorymembers module',
+			'api.php?action=help&modules=login|query+info'
+				=> 'Help for the login and query/info modules',
 		);
 	}
 

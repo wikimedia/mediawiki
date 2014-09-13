@@ -1,0 +1,10 @@
+{
+    "@metadata": {
+        "authors": [
+            "OC Ripper"
+        ]
+    },
+    "ooui-dialog-action-close": "Zatvori",
+    "ooui-outline-control-move-down": "Pomakni stavku dolje",
+    "ooui-outline-control-move-up": "Pomakni stavku gore"
+}

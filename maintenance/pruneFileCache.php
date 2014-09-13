@@ -95,8 +95,8 @@ class PruneFileCache extends Maintenance {
 					// Sanity check the file extension against known cache types
 					if ( $mts < $this->minSurviveTimestamp
 						&& preg_match( '/\.(?:html|cache)(?:\.gz)?$/', $file )
-						&& unlink( $path ) )
-					{
+						&& unlink( $path )
+					) {
 						$daysOld = round( ( $tsNow - $mts ) / 86400, 2 );
 						$this->output( "Deleted `$path` [days=$daysOld]\n" );
 					}

@@ -1,0 +1,14 @@
+{
+    "@metadata": {
+        "authors": [
+            "Milicevic01",
+            "Nikola Smolenski",
+            "Милан Јелисавчић"
+        ]
+    },
+    "ooui-dialog-action-close": "Затвори",
+    "ooui-outline-control-move-down": "Премести ставку на доле",
+    "ooui-outline-control-move-up": "Премести ставку на горе",
+    "ooui-outline-control-remove": "Уклони ставку",
+    "ooui-toolbar-more": "Више"
+}

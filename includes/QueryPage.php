@@ -22,57 +22,6 @@
  */
 
 /**
- * List of query page classes and their associated special pages,
- * for periodic updates.
- *
- * DO NOT CHANGE THIS LIST without testing that
- * maintenance/updateSpecialPages.php still works.
- */
-global $wgQueryPages; // not redundant
-$wgQueryPages = array(
-//         QueryPage subclass           Special page name         Limit (false for none, none for the default)
-// ----------------------------------------------------------------------------
-	array( 'AncientPagesPage',              'Ancientpages'                  ),
-	array( 'BrokenRedirectsPage',           'BrokenRedirects'               ),
-	array( 'DeadendPagesPage',              'Deadendpages'                  ),
-	array( 'DoubleRedirectsPage',           'DoubleRedirects'               ),
-	array( 'FileDuplicateSearchPage',       'FileDuplicateSearch'           ),
-	array( 'LinkSearchPage',                'LinkSearch'                    ),
-	array( 'ListredirectsPage',             'Listredirects'                 ),
-	array( 'LonelyPagesPage',               'Lonelypages'                   ),
-	array( 'LongPagesPage',                 'Longpages'                     ),
-	array( 'MIMEsearchPage',                'MIMEsearch'                    ),
-	array( 'MostcategoriesPage',            'Mostcategories'                ),
-	array( 'MostimagesPage',                'Mostimages'                    ),
-	array( 'MostinterwikisPage',            'Mostinterwikis'                ),
-	array( 'MostlinkedCategoriesPage',      'Mostlinkedcategories'          ),
-	array( 'MostlinkedtemplatesPage',       'Mostlinkedtemplates'           ),
-	array( 'MostlinkedPage',                'Mostlinked'                    ),
-	array( 'MostrevisionsPage',             'Mostrevisions'                 ),
-	array( 'FewestrevisionsPage',           'Fewestrevisions'               ),
-	array( 'ShortPagesPage',                'Shortpages'                    ),
-	array( 'UncategorizedCategoriesPage',   'Uncategorizedcategories'       ),
-	array( 'UncategorizedPagesPage',        'Uncategorizedpages'            ),
-	array( 'UncategorizedImagesPage',       'Uncategorizedimages'           ),
-	array( 'UncategorizedTemplatesPage',    'Uncategorizedtemplates'        ),
-	array( 'UnusedCategoriesPage',          'Unusedcategories'              ),
-	array( 'UnusedimagesPage',              'Unusedimages'                  ),
-	array( 'WantedCategoriesPage',          'Wantedcategories'              ),
-	array( 'WantedFilesPage',               'Wantedfiles'                   ),
-	array( 'WantedPagesPage',               'Wantedpages'                   ),
-	array( 'WantedTemplatesPage',           'Wantedtemplates'               ),
-	array( 'UnwatchedPagesPage',            'Unwatchedpages'                ),
-	array( 'UnusedtemplatesPage',           'Unusedtemplates'               ),
-	array( 'WithoutInterwikiPage',          'Withoutinterwiki'              ),
-);
-wfRunHooks( 'wgQueryPages', array( &$wgQueryPages ) );
-
-global $wgDisableCounters;
-if ( !$wgDisableCounters ) {
-	$wgQueryPages[] = array( 'PopularPagesPage', 'Popularpages' );
-}
-
-/**
  * This is a class for doing query pages; since they're almost all the same,
  * we factor out some of the functionality into a superclass, and let
  * subclasses derive from it.
@@ -107,6 +56,65 @@ abstract class QueryPage extends SpecialPage {
 	 * Wheter to show prev/next links
 	 */
 	protected $shownavigation = true;
+
+	/**
+	 * Get a list of query page classes and their associated special pages,
+	 * for periodic updates.
+	 *
+	 * DO NOT CHANGE THIS LIST without testing that
+	 * maintenance/updateSpecialPages.php still works.
+	 * @return array
+	 */
+	public static function getPages() {
+		global $wgDisableCounters;
+		static $qp = null;
+
+		if ( $qp === null ) {
+			// QueryPage subclass, Special page name
+			$qp = array(
+				array( 'AncientPagesPage', 'Ancientpages' ),
+				array( 'BrokenRedirectsPage', 'BrokenRedirects' ),
+				array( 'DeadendPagesPage', 'Deadendpages' ),
+				array( 'DoubleRedirectsPage', 'DoubleRedirects' ),
+				array( 'FileDuplicateSearchPage', 'FileDuplicateSearch' ),
+				array( 'ListDuplicatedFilesPage', 'ListDuplicatedFiles'),
+				array( 'LinkSearchPage', 'LinkSearch' ),
+				array( 'ListredirectsPage', 'Listredirects' ),
+				array( 'LonelyPagesPage', 'Lonelypages' ),
+				array( 'LongPagesPage', 'Longpages' ),
+				array( 'MIMEsearchPage', 'MIMEsearch' ),
+				array( 'MostcategoriesPage', 'Mostcategories' ),
+				array( 'MostimagesPage', 'Mostimages' ),
+				array( 'MostinterwikisPage', 'Mostinterwikis' ),
+				array( 'MostlinkedCategoriesPage', 'Mostlinkedcategories' ),
+				array( 'MostlinkedtemplatesPage', 'Mostlinkedtemplates' ),
+				array( 'MostlinkedPage', 'Mostlinked' ),
+				array( 'MostrevisionsPage', 'Mostrevisions' ),
+				array( 'FewestrevisionsPage', 'Fewestrevisions' ),
+				array( 'ShortPagesPage', 'Shortpages' ),
+				array( 'UncategorizedCategoriesPage', 'Uncategorizedcategories' ),
+				array( 'UncategorizedPagesPage', 'Uncategorizedpages' ),
+				array( 'UncategorizedImagesPage', 'Uncategorizedimages' ),
+				array( 'UncategorizedTemplatesPage', 'Uncategorizedtemplates' ),
+				array( 'UnusedCategoriesPage', 'Unusedcategories' ),
+				array( 'UnusedimagesPage', 'Unusedimages' ),
+				array( 'WantedCategoriesPage', 'Wantedcategories' ),
+				array( 'WantedFilesPage', 'Wantedfiles' ),
+				array( 'WantedPagesPage', 'Wantedpages' ),
+				array( 'WantedTemplatesPage', 'Wantedtemplates' ),
+				array( 'UnwatchedPagesPage', 'Unwatchedpages' ),
+				array( 'UnusedtemplatesPage', 'Unusedtemplates' ),
+				array( 'WithoutInterwikiPage', 'Withoutinterwiki' ),
+			);
+			wfRunHooks( 'wgQueryPages', array( &$qp ) );
+
+			if ( !$wgDisableCounters ) {
+				$qp[] = array( 'PopularPagesPage', 'Popularpages' );
+			}
+		}
+
+		return $qp;
+	}
 
 	/**
 	 * A mutator for $this->listoutput;
@@ -155,7 +163,8 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	function getSQL() {
 		/* Implement getQueryInfo() instead */
-		throw new MWException( "Bug in a QueryPage: doesn't implement getQueryInfo() nor getQuery() properly" );
+		throw new MWException( "Bug in a QueryPage: doesn't implement getQueryInfo() nor "
+			. "getQuery() properly" );
 	}
 
 	/**
@@ -294,14 +303,11 @@ abstract class QueryPage extends SpecialPage {
 
 		$fname = get_class( $this ) . '::recache';
 		$dbw = wfGetDB( DB_MASTER );
-		$dbr = wfGetDB( DB_SLAVE, array( $this->getName(), __METHOD__, 'vslow' ) );
-		if ( !$dbw || !$dbr ) {
+		if ( !$dbw ) {
 			return false;
 		}
 
 		try {
-			# Clear out any old cached data
-			$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 			# Do query
 			$res = $this->reallyDoQuery( $limit, false );
 			$num = false;
@@ -309,7 +315,7 @@ abstract class QueryPage extends SpecialPage {
 				$num = $res->numRows();
 				# Fetch results
 				$vals = array();
-				while ( $res && $row = $dbr->fetchObject( $res ) ) {
+				foreach ( $res as $row ) {
 					if ( isset( $row->value ) ) {
 						if ( $this->usesTimestamps() ) {
 							$value = wfTimestamp( TS_UNIX,
@@ -327,6 +333,9 @@ abstract class QueryPage extends SpecialPage {
 							'qc_value' => $value );
 				}
 
+				$dbw->begin( __METHOD__ );
+				# Clear out any old cached data
+				$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 				# Save results into the querycache table on the master
 				if ( count( $vals ) ) {
 					$dbw->insert( 'querycache', $vals, __METHOD__ );
@@ -336,6 +345,7 @@ abstract class QueryPage extends SpecialPage {
 				$dbw->insert( 'querycache_info',
 					array( 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ),
 					$fname );
+				$dbw->commit( __METHOD__ );
 			}
 		} catch ( DBError $e ) {
 			if ( !$ignoreErrors ) {
@@ -348,6 +358,13 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
+	 * Get a DB connection to be used for slow recache queries
+	 */
+	function getRecacheDB() {
+		return wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
+	}
+
+	/**
 	 * Run the query and return the result
 	 * @param int|bool $limit Numerical limit or false for no limit
 	 * @param int|bool $offset Numerical offset or false for no offset
@@ -356,7 +373,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	function reallyDoQuery( $limit, $offset = false ) {
 		$fname = get_class( $this ) . "::reallyDoQuery";
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getRecacheDB();
 		$query = $this->getQueryInfo();
 		$order = $this->getOrderFields();
 
@@ -402,7 +419,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Somewhat deprecated, you probably want to be using execute()
 	 * @param int|bool $offset
-	 * @oaram int|bool $limit
+	 * @param int|bool $limit
 	 * @return ResultWrapper
 	 */
 	function doQuery( $offset = false, $limit = false ) {
@@ -457,7 +474,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
-	 * @para $par
+	 * @param string $par
 	 * @return int
 	 */
 	function execute( $par ) {
@@ -512,8 +529,13 @@ abstract class QueryPage extends SpecialPage {
 
 				# If updates on this page have been disabled, let the user know
 				# that the data set won't be refreshed for now
-				if ( is_array( $wgDisableQueryPageUpdate ) && in_array( $this->getName(), $wgDisableQueryPageUpdate ) ) {
-					$out->wrapWikiMsg( "<div class=\"mw-querypage-no-updates\">\n$1\n</div>", 'querypage-no-updates' );
+				if ( is_array( $wgDisableQueryPageUpdate )
+					&& in_array( $this->getName(), $wgDisableQueryPageUpdate )
+				) {
+					$out->wrapWikiMsg(
+						"<div class=\"mw-querypage-no-updates\">\n$1\n</div>",
+						'querypage-no-updates'
+					);
 				}
 			}
 		}
@@ -529,11 +551,11 @@ abstract class QueryPage extends SpecialPage {
 		if ( $this->shownavigation ) {
 			$out->addHTML( $this->getPageHeader() );
 			if ( $this->numRows > 0 ) {
-				$out->addHTML( $this->msg( 'showingresults' )->numParams(
+				$out->addHTML( $this->msg( 'showingresultsinrange' )->numParams(
 					min( $this->numRows, $this->limit ), # do not show the one extra row, if exist
-					$this->offset + 1 )->parseAsBlock() );
+					$this->offset + 1, ( min( $this->numRows, $this->limit ) + $this->offset ) )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
-				$paging = $this->getLanguage()->viewPrevNext( $this->getTitle( $par ), $this->offset,
+				$paging = $this->getLanguage()->viewPrevNext( $this->getPageTitle( $par ), $this->offset,
 					$this->limit, $this->linkParameters(), ( $this->numRows <= $this->limit ) );
 				$out->addHTML( '<p>' . $paging . '</p>' );
 			} else {
@@ -735,7 +757,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	function feedUrl() {
-		return $this->getTitle()->getFullURL();
+		return $this->getPageTitle()->getFullURL();
 	}
 }
 

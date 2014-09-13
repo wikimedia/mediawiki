@@ -1,0 +1,32 @@
+{
+    "@metadata": {
+        "authors": [
+            "פוילישער",
+            "පසිඳු කාවින්ද"
+        ]
+    },
+    "config-desc": "דער אינסטאלירער פאר מעדיעוויקי",
+    "config-title": "מעדיעוויקי $1 אינסטאלירונג",
+    "config-information": "אינפֿארמאציע",
+    "config-wiki-language": "ווקי שפראך:",
+    "config-back": "→ צוריק",
+    "config-continue": "פֿארזעצן ←",
+    "config-page-language": "שפראַך",
+    "config-page-name": "נאָמען",
+    "config-page-options": "ברירות",
+    "config-db-type": "דאטנבאזע טיפ:",
+    "config-db-name": "דאטנבאזע נאָמען:",
+    "config-project-namespace": "פראיעקט נאָמענטייל:",
+    "config-ns-generic": "פראיעקט",
+    "config-admin-name": "אײַער נאָמען:",
+    "config-admin-password": "פאַסווארט:",
+    "config-admin-password-mismatch": "די צוויי פאסוועטרט איר האט איינגעגעבן שטימען נישט.",
+    "config-admin-email": "בליצפּאָסט אַדרעס:",
+    "config-install-tables": "שאפן טאבעלעס",
+    "config-install-tables-exist": "'''ווארענונג''': זעט אויס אז די מעדיעוויקי טאבעלעס עקזיסטירן שוין.\nאיבערהיפן שאפֿן.",
+    "config-download-localsettings": "אראפלאדן <code>LocalSettings.php</code>",
+    "config-help": "הילף",
+    "config-nofile": "מ'האט נישט געקענט טרעפן די טעקע \"$1\". צי האט מען זי אויסגעמעקט?",
+    "mainpagetext": "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
+    "mainpagedocfooter": "גיט זיך אן עצה מיט [//meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.\n\n== נוצליכע וועבלינקען פֿאַר אנהייבערס ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings רשימה פון קאנפֿיגוראציעס]\n* [//www.mediawiki.org/wiki/Manual:FAQ אפֿט געפֿרעגטע שאלות]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מעדיעוויקי באפֿרײַאונג פאסטליסטע]* [//www.mediawiki.org/wiki/Localisation#Translation_resources איבערזעצן מעדיעוויקי אין אײַער שפראך]"
+}

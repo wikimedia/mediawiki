@@ -1,0 +1,16 @@
+{
+    "@metadata": {
+        "authors": [
+            "Kusavica"
+        ]
+    },
+    "config-your-language": "Váš jazyk:",
+    "config-wiki-language": "Wiki jazyk:",
+    "config-back": "← Späť",
+    "config-continue": "Pokračovať →",
+    "config-page-language": "Jazyk",
+    "config-download-localsettings": "Stiahnuť <code>LocalSettings.php</code>",
+    "config-nofile": "Súbor \"$1\" sa nenašiel. Bol zmazaný?",
+    "mainpagetext": "'''Softvér MediaWiki bol úspešne nainštalovaný.'''",
+    "mainpagedocfooter": "Informácie ako používať wiki softvér nájdete v [//meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].\n\n== Začíname ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Zoznam konfiguračných nastavení]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list nových verzií MediaWiki]"
+}
