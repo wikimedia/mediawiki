@@ -397,7 +397,7 @@ class ResourceLoader {
 	 *
 	 * @param array|string $id Source ID (string), or array( id1 => loadUrl, id2 => loadUrl, ... )
 	 * @param string|array $loadUrl load.php url (string), or array with loadUrl key for
-	 *  backwards-compatability.
+	 *  backwards-compatibility.
 	 * @throws MWException
 	 */
 	public function addSource( $id, $loadUrl = null ) {
@@ -417,7 +417,7 @@ class ResourceLoader {
 			);
 		}
 
-		// Pre 1.24 backwards-compatability
+		// Pre 1.24 backwards-compatibility
 		if ( is_array( $loadUrl ) ) {
 			if ( !isset( $loadUrl['loadScript'] ) ) {
 				throw new MWException(

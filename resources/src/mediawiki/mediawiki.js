@@ -1556,7 +1556,7 @@
 				 *
 				 * @param {string} id Short string representing a source wiki, used internally for
 				 *  registered modules to indicate where they should be loaded from (usually lowercase a-z).
-				 * @param {Object|string} loadUrl load.php url, may be an object for backwards-compatability
+				 * @param {Object|string} loadUrl load.php url, may be an object for backwards-compatibility
 				 * @return {boolean}
 				 */
 				addSource: function ( id, loadUrl ) {
