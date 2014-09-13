@@ -31,12 +31,14 @@
  */
 class MailAddress {
 	/**
-	 * @param string|User $address String with an email address, or a User object
+	 * @param string $address String with an email address, or a User object
 	 * @param string $name Human-readable name if a string address is given
 	 * @param string $realName Human-readable real name if a string address is given
 	 */
 	function __construct( $address, $name = null, $realName = null ) {
 		if ( is_object( $address ) && $address instanceof User ) {
+			// Old calling format, now deprecated
+			wfDeprecated( __METHOD__ . ' with a User object' , '1.24' );
 			$this->address = $address->getEmail();
 			$this->name = $address->getName();
 			$this->realName = $address->getRealName();
@@ -45,6 +47,17 @@ class MailAddress {
 			$this->name = strval( $name );
 			$this->realName = strval( $realName );
 		}
+	}
+
+	/**
+	 * Create a new MailAddress object for the given user
+	 *
+	 * @since 1.24
+	 * @param User $user
+	 * @return MailAddress
+	 */
+	public static function newFromUser( User $user ) {
+		return new MailAddress( $user->getEmail(), $user->getName(), $user->getRealName() );
 	}
 
 	/**

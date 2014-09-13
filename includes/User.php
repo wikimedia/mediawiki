@@ -3992,10 +3992,10 @@ class User implements IDBAccessObject {
 			$sender = new MailAddress( $wgPasswordSender,
 				wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		} else {
-			$sender = new MailAddress( $from );
+			$sender = MailAddress::newFromUser( $from );
 		}
 
-		$to = new MailAddress( $this );
+		$to = MailAddress::newFromUser( $this );
 		return UserMailer::send( $to, $sender, $subject, $body, $replyto );
 	}
 
