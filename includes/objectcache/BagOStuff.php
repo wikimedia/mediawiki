@@ -3,7 +3,7 @@
  * Classes to cache objects in PHP accelerators, SQL database or DBA files
  *
  * Copyright © 2003-2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,6 +42,14 @@
  */
 abstract class BagOStuff {
 	private $debugMode = false;
+
+	protected $lastError = self::ERR_NONE;
+
+	/** Possible values for getLastError() */
+	const ERR_NONE        = 0; // no error
+	const ERR_NO_RESPONSE = 1; // no response
+	const ERR_UNREACHABLE = 2; // can't connect
+	const ERR_UNEXPECTED  = 3; // response gave some error
 
 	/**
 	 * @param $bool bool
@@ -142,7 +150,7 @@ abstract class BagOStuff {
 	 * @return bool success
 	 */
 	protected function mergeViaLock( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
-		if ( !$this->lock( $key, 60 ) ) {
+		if ( !$this->lock( $key, 6 ) ) {
 			return false;
 		}
 
@@ -168,10 +176,13 @@ abstract class BagOStuff {
 	 * @param $timeout integer [optional]
 	 * @return bool success
 	 */
-	public function lock( $key, $timeout = 60 ) {
+	public function lock( $key, $timeout = 6 ) {
+		$this->clearLastError();
 		$timestamp = microtime( true ); // starting UNIX timestamp
 		if ( $this->add( "{$key}:lock", 1, $timeout ) ) {
 			return true;
+		} elseif ( $this->getLastError() ) {
+			return false;
 		}
 
 		$uRTT = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
@@ -186,7 +197,11 @@ abstract class BagOStuff {
 				$sleep *= 2;
 			}
 			usleep( $sleep ); // back off
+			$this->clearLastError();
 			$locked = $this->add( "{$key}:lock", 1, $timeout );
+			if ( $this->getLastError() ) {
+				return false;
+			}
 		} while ( !$locked );
 
 		return $locked;
@@ -250,8 +265,10 @@ abstract class BagOStuff {
 	 * @param $value mixed
 	 * @param $exptime int
 	 * @return bool success
+	 * @deprecated 1.23
 	 */
 	public function replace( $key, $value, $exptime = 0 ) {
+		wfDeprecated( __METHOD__, '1.23' );
 		if ( $this->get( $key ) !== false ) {
 			return $this->set( $key, $value, $exptime );
 		}
@@ -288,6 +305,32 @@ abstract class BagOStuff {
 	 */
 	public function decr( $key, $value = 1 ) {
 		return $this->incr( $key, - $value );
+	}
+
+	/**
+	 * Get the "last error" registered; clearLastError() should be called manually
+	 * @return integer ERR_* constant for the "last error" registry
+	 * @since 1.23
+	 */
+	public function getLastError() {
+		return $this->lastError;
+	}
+
+	/**
+	 * Clear the "last error" registry
+	 * @since 1.23
+	 */
+	public function clearLastError() {
+		$this->lastError = self::ERR_NONE;
+	}
+
+	/**
+	 * Set the "last error" registry
+	 * @param $err integer ERR_* constant
+	 * @since 1.23
+	 */
+	protected function setLastError( $err ) {
+		$this->lastError = $err;
 	}
 
 	/**

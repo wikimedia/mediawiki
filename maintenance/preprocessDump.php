@@ -4,7 +4,7 @@
  * It may be useful for getting preprocessor statistics or filling the
  * preprocessor cache.
  *
- * Copyright © 2011 Platonides - http://www.mediawiki.org/
+ * Copyright © 2011 Platonides - https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

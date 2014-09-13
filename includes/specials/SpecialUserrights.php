@@ -55,6 +55,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $user->getId() == 0 ) {
 			return false;
 		}
+
 		return !empty( $available['add'] )
 			|| !empty( $available['remove'] )
 			|| ( ( $this->isself || !$checkIfSelf ) &&
@@ -66,7 +67,7 @@ class UserrightsPage extends SpecialPage {
 	 * Manage forms to be shown according to posted data.
 	 * Depending on the submit button used, call a form or a save function.
 	 *
-	 * @param $par Mixed: string if any subpage provided, else null
+	 * @param string|null $par String if any subpage provided, else null
 	 * @throws UserBlockedError|PermissionsError
 	 */
 	public function execute( $par ) {
@@ -118,6 +119,7 @@ class UserrightsPage extends SpecialPage {
 				$out = $this->getOutput();
 				$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", 'userrights-removed-self' );
 				$out->returnToMain();
+
 				return;
 			}
 
@@ -148,12 +150,18 @@ class UserrightsPage extends SpecialPage {
 			$status = $this->fetchUser( $this->mTarget );
 			if ( !$status->isOK() ) {
 				$this->getOutput()->addWikiText( $status->getWikiText() );
+
 				return;
 			}
 
 			$targetUser = $status->value;
+			if ( $targetUser instanceof User ) { // UserRightsProxy doesn't have this method (bug 61252)
+				$targetUser->clearInstanceCache(); // bug 38989
+			}
 
-			if ( $request->getVal( 'conflictcheck-originalgroups' ) !== implode( ',', $targetUser->getGroups() ) ) {
+			if ( $request->getVal( 'conflictcheck-originalgroups' )
+				!== implode( ',', $targetUser->getGroups() )
+			) {
 				$out->addWikiMsg( 'userrights-conflict' );
 			} else {
 				$this->saveUserGroups(
@@ -163,6 +171,7 @@ class UserrightsPage extends SpecialPage {
 				);
 
 				$out->redirect( $this->getSuccessURL() );
+
 				return;
 			}
 		}
@@ -174,7 +183,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	function getSuccessURL() {
-		return $this->getTitle( $this->mTarget )->getFullURL( array( 'success' => 1 ) );
+		return $this->getPageTitle( $this->mTarget )->getFullURL( array( 'success' => 1 ) );
 	}
 
 	/**
@@ -209,11 +218,11 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Save user groups changes in the database.
 	 *
-	 * @param $user User object
-	 * @param array $add of groups to add
-	 * @param array $remove of groups to remove
-	 * @param string $reason reason for group change
-	 * @return Array: Tuple of added, then removed groups
+	 * @param User $user
+	 * @param array $add Array of groups to add
+	 * @param array $remove Array of groups to remove
+	 * @param string $reason Reason for group change
+	 * @return array Tuple of added, then removed groups
 	 */
 	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
 		global $wgAuth;
@@ -256,13 +265,14 @@ class UserrightsPage extends SpecialPage {
 		// update groups in external authentication database
 		$wgAuth->updateExternalDBGroups( $user, $add, $remove );
 
-		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
-		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
+		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) . "\n" );
+		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );
 		wfRunHooks( 'UserRights', array( &$user, $add, $remove ) );
 
 		if ( $newGroups != $oldGroups ) {
 			$this->addLogEntry( $user, $oldGroups, $newGroups, $reason );
 		}
+
 		return array( $add, $remove );
 	}
 
@@ -290,6 +300,7 @@ class UserrightsPage extends SpecialPage {
 		$status = $this->fetchUser( $username );
 		if ( !$status->isOK() ) {
 			$this->getOutput()->addWikiText( $status->getWikiText() );
+
 			return;
 		} else {
 			$user = $status->value;
@@ -404,10 +415,25 @@ class UserrightsPage extends SpecialPage {
 	function switchForm() {
 		global $wgScript;
 		$this->getOutput()->addHTML(
-			Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser', 'id' => 'mw-userrights-form1' ) ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+			Html::openElement(
+				'form',
+				array(
+					'method' => 'get',
+					'action' => $wgScript,
+					'name' => 'uluser',
+					'id' => 'mw-userrights-form1'
+				)
+			) .
+			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 			Xml::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
-			Xml::inputLabel( $this->msg( 'userrights-user-editname' )->text(), 'user', 'username', 30, str_replace( '_', ' ', $this->mTarget ), array( 'autofocus' => true ) ) . ' ' .
+			Xml::inputLabel(
+				$this->msg( 'userrights-user-editname' )->text(),
+				'user',
+				'username',
+				30,
+				str_replace( '_', ' ', $this->mTarget ),
+				array( 'autofocus' => true )
+			) . ' ' .
 			Xml::submitButton( $this->msg( 'editusergroup' )->text() ) .
 			Html::closeElement( 'fieldset' ) .
 			Html::closeElement( 'form' ) . "\n"
@@ -419,8 +445,8 @@ class UserrightsPage extends SpecialPage {
 	 * form will be able to manipulate based on the current user's system
 	 * permissions.
 	 *
-	 * @param array $groups list of groups the given user is in
-	 * @return Array:  Tuple of addable, then removable groups
+	 * @param array $groups List of groups the given user is in
+	 * @return array Tuple of addable, then removable groups
 	 */
 	protected function splitGroups( $groups ) {
 		list( $addable, $removable, $addself, $removeself ) = array_values( $this->changeableGroups() );
@@ -440,8 +466,8 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Show the form to edit group memberships.
 	 *
-	 * @param $user      User or UserRightsProxy you're editing
-	 * @param $groups    Array:  Array of groups the user is in
+	 * @param User|UserRightsProxy $user User or UserRightsProxy you're editing
+	 * @param array $groups Array of groups the user is in
 	 */
 	protected function showEditUserGroupsForm( $user, $groups ) {
 		$list = array();
@@ -476,27 +502,45 @@ class UserrightsPage extends SpecialPage {
 			$grouplist = $this->msg( 'userrights-groupsmember', $count, $user->getName() )->parse();
 			$grouplist = '<p>' . $grouplist . ' ' . $displayedList . "</p>\n";
 		}
+
 		$count = count( $autoList );
 		if ( $count > 0 ) {
-			$autogrouplistintro = $this->msg( 'userrights-groupsmember-auto', $count, $user->getName() )->parse();
+			$autogrouplistintro = $this->msg( 'userrights-groupsmember-auto', $count, $user->getName() )
+				->parse();
 			$grouplist .= '<p>' . $autogrouplistintro . ' ' . $displayedAutolist . "</p>\n";
 		}
 
 		$userToolLinks = Linker::userToolLinks(
-				$user->getId(),
-				$user->getName(),
-				false, /* default for redContribsWhenNoEdits */
-				Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
+			$user->getId(),
+			$user->getName(),
+			false, /* default for redContribsWhenNoEdits */
+			Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
 		);
 
 		$this->getOutput()->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
+			Xml::openElement(
+				'form',
+				array(
+					'method' => 'post',
+					'action' => $this->getPageTitle()->getLocalURL(),
+					'name' => 'editGroup',
+					'id' => 'mw-userrights-form2'
+				)
+			) .
 			Html::hidden( 'user', $this->mTarget ) .
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) ) .
-			Html::hidden( 'conflictcheck-originalgroups', implode( ',', $user->getGroups() ) ) . // Conflict detection
+			Html::hidden(
+				'conflictcheck-originalgroups',
+				implode( ',', $user->getGroups() )
+			) . // Conflict detection
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), $this->msg( 'userrights-editusergroup', $user->getName() )->text() ) .
-			$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )->rawParams( $userToolLinks )->parse() .
+			Xml::element(
+				'legend',
+				array(),
+				$this->msg( 'userrights-editusergroup', $user->getName() )->text()
+			) .
+			$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )
+				->rawParams( $userToolLinks )->parse() .
 			$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
 			$grouplist .
 			Xml::tags( 'p', null, $this->groupCheckboxes( $groups, $user ) ) .
@@ -514,7 +558,9 @@ class UserrightsPage extends SpecialPage {
 					<td></td>
 					<td class='mw-submit'>" .
 						Xml::submitButton( $this->msg( 'saveusergroups' )->text(),
-							array( 'name' => 'saveusergroups' ) + Linker::tooltipAndAccesskeyAttribs( 'userrights-set' ) ) .
+							array( 'name' => 'saveusergroups' ) +
+								Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
+						) .
 					"</td>
 				</tr>" .
 			Xml::closeElement( 'table' ) . "\n" .
@@ -599,8 +645,13 @@ class UserrightsPage extends SpecialPage {
 				continue;
 			}
 			// Messages: userrights-changeable-col, userrights-unchangeable-col
-			$ret .= Xml::element( 'th', null, $this->msg( 'userrights-' . $name . '-col', count( $column ) )->text() );
+			$ret .= Xml::element(
+				'th',
+				null,
+				$this->msg( 'userrights-' . $name . '-col', count( $column ) )->text()
+			);
 		}
+
 		$ret .= "</tr>\n<tr>\n";
 		foreach ( $columns as $column ) {
 			if ( $column === array() ) {
@@ -631,13 +682,17 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * @param  $group String: the name of the group to check
+	 * @param string $group The name of the group to check
 	 * @return bool Can we remove the group?
 	 */
 	private function canRemove( $group ) {
 		// $this->changeableGroups()['remove'] doesn't work, of course. Thanks, PHP.
 		$groups = $this->changeableGroups();
-		return in_array( $group, $groups['remove'] ) || ( $this->isself && in_array( $group, $groups['remove-self'] ) );
+
+		return in_array(
+			$group,
+			$groups['remove'] ) || ( $this->isself && in_array( $group, $groups['remove-self'] )
+		);
 	}
 
 	/**
@@ -646,13 +701,22 @@ class UserrightsPage extends SpecialPage {
 	 */
 	private function canAdd( $group ) {
 		$groups = $this->changeableGroups();
-		return in_array( $group, $groups['add'] ) || ( $this->isself && in_array( $group, $groups['add-self'] ) );
+
+		return in_array(
+			$group,
+			$groups['add'] ) || ( $this->isself && in_array( $group, $groups['add-self'] )
+		);
 	}
 
 	/**
 	 * Returns $this->getUser()->changeableGroups()
 	 *
-	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ), 'add-self' => array( addablegroups to self ), 'remove-self' => array( removable groups from self ) )
+	 * @return array array(
+	 *   'add' => array( addablegroups ),
+	 *   'remove' => array( removablegroups ),
+	 *   'add-self' => array( addablegroups to self ),
+	 *   'remove-self' => array( removable groups from self )
+	 *  )
 	 */
 	function changeableGroups() {
 		return $this->getUser()->changeableGroups();

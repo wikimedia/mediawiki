@@ -160,8 +160,8 @@ class LinkHolderArray {
 		$pos = 0;
 		while ( $pos < strlen( $text ) ) {
 			if ( !preg_match( '/<!--LINK (\d+):(\d+)-->/',
-				$text, $m, PREG_OFFSET_CAPTURE, $pos ) )
-			{
+				$text, $m, PREG_OFFSET_CAPTURE, $pos )
+			) {
 				break;
 			}
 			$ns = $m[1][0];
@@ -251,9 +251,8 @@ class LinkHolderArray {
 	}
 
 	/**
-	 * @todo FIXME: Update documentation. makeLinkObj() is deprecated.
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
-	 * Placeholders created in Skin::makeLinkObj()
+	 *
 	 * @return array of link CSS classes, indexed by PDBK.
 	 */
 	function replace( &$text ) {
@@ -504,7 +503,7 @@ class LinkHolderArray {
 				// Self-link checking for mixed/different variant titles. At this point, we
 				// already know the exact title does not exist, so the link cannot be to a
 				// variant of the current title that exists as a separate page.
-				if ( $variantTitle->equals( $parentTitle ) && $title->getFragment() === '' ) {
+				if ( $variantTitle->equals( $parentTitle ) && !$title->hasFragment() ) {
 					$this->internals[$ns][$index]['selflink'] = true;
 					continue 2;
 				}

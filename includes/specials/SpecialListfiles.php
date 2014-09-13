@@ -33,6 +33,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		if ( $this->including() ) {
 			$userName = $par;
 			$search = '';
+			$showAll = false;
 		} else {
 			$userName = $this->getRequest()->getText( 'user', $par );
 			$search = $this->getRequest()->getText( 'ilsearch', '' );
@@ -128,7 +129,7 @@ class ImageListPager extends TablePager {
 		$conds = array();
 
 		if ( !is_null( $this->mUserName ) ) {
-			$conds[ $prefix . '_user_text' ] = $this->mUserName;
+			$conds[$prefix . '_user_text'] = $this->mUserName;
 		}
 
 		if ( $this->mSearch !== '' ) {
@@ -214,6 +215,7 @@ class ImageListPager extends TablePager {
 		// for two different tables, without reimplementing
 		// the pager class.
 		$qi = $this->getQueryInfoReal( $this->mTableName );
+
 		return $qi;
 	}
 
@@ -240,7 +242,7 @@ class ImageListPager extends TablePager {
 				}
 				$field = $prefix . substr( $field, 3 ) . ' AS ' . $field;
 			}
-			$fields[array_search('top', $fields)] = "'no' AS top";
+			$fields[array_search( 'top', $fields )] = "'no' AS top";
 		} else {
 			if ( $this->mShowAll ) {
 				$fields[array_search( 'top', $fields )] = "'yes' AS top";
@@ -337,7 +339,7 @@ class ImageListPager extends TablePager {
 		$topRes2 = $res2->next();
 		$resultArray = array();
 		for ( $i = 0; $i < $limit && $topRes1 && $topRes2; $i++ ) {
-			if ( strcmp( $topRes1->{ $this->mIndexField }, $topRes2->{ $this->mIndexField } ) > 0 ) {
+			if ( strcmp( $topRes1->{$this->mIndexField}, $topRes2->{$this->mIndexField} ) > 0 ) {
 				if ( !$ascending ) {
 					$resultArray[] = $topRes1;
 					$topRes1 = $res1->next();
@@ -363,6 +365,7 @@ class ImageListPager extends TablePager {
 			$resultArray[] = $topRes2;
 			$topRes2 = $res2->next();
 		}
+
 		return new FakeResultWrapper( $resultArray );
 	}
 
@@ -386,6 +389,20 @@ class ImageListPager extends TablePager {
 		UserCache::singleton()->doQuery( $userIds, array( 'userpage' ), __METHOD__ );
 	}
 
+	/**
+	 * @param string $field
+	 * @param string $value
+	 * @return Message|string|int The return type depends on the value of $field:
+	 *   - thumb: string
+	 *   - img_timestamp: string
+	 *   - img_name: string
+	 *   - img_user_text: string
+	 *   - img_size: string
+	 *   - img_description: string
+	 *   - count: int
+	 *   - top: Message
+	 * @throws MWException
+	 */
 	function formatValue( $field, $value ) {
 		switch ( $field ) {
 			case 'thumb':
@@ -394,6 +411,7 @@ class ImageListPager extends TablePager {
 				// If statement for paranoia
 				if ( $file ) {
 					$thumb = $file->transform( array( 'width' => 180, 'height' => 360 ) );
+
 					return $thumb->toHtml( array( 'desc-link' => true ) );
 				} else {
 					return htmlspecialchars( $value );
@@ -445,6 +463,8 @@ class ImageListPager extends TablePager {
 			case 'top':
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
 				return $this->msg( 'listfiles-latestversion-' . $value );
+			default:
+				throw new MWException( "Unknown field '$field'" );
 		}
 	}
 
@@ -476,6 +496,7 @@ class ImageListPager extends TablePager {
 			'checked' => $this->mShowAll,
 			'tabindex' => 4,
 		) );
+
 		return Html::openElement( 'form',
 			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' )
 		) .

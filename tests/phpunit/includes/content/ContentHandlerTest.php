@@ -10,7 +10,7 @@
  */
 class ContentHandlerTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
 		global $wgContLang;
 		parent::setUp();
 
@@ -38,7 +38,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$wgContLang->resetNamespaces();
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		global $wgContLang;
 
 		// Reset namespace cache
@@ -315,22 +315,24 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	}
 
 	/**
-	 * Serializes Content object of the type supported by this ContentHandler.
+	 * @see ContentHandler::serializeContent
 	 *
-	 * @param Content $content the Content object to serialize
-	 * @param null $format the desired serialization format
-	 * @return String serialized form of the content
+	 * @param Content $content
+	 * @param string $format
+	 *
+	 * @return string
 	 */
 	public function serializeContent( Content $content, $format = null ) {
 		return $content->serialize();
 	}
 
 	/**
-	 * Unserializes a Content object of the type supported by this ContentHandler.
+	 * @see ContentHandler::unserializeContent
 	 *
-	 * @param $blob String serialized form of the content
-	 * @param null $format the format used for serialization
-	 * @return Content the Content object created by deserializing $blob
+	 * @param string $blob
+	 * @param string $format Unused.
+	 *
+	 * @return Content
 	 */
 	public function unserializeContent( $blob, $format = null ) {
 		$d = unserialize( $blob );
@@ -437,7 +439,7 @@ class DummyContentForTesting extends AbstractContent {
 
 	/**
 	 * @param Title $title
-	 * @param null $revId
+	 * @param int $revId Unused.
 	 * @param null|ParserOptions $options
 	 * @param boolean $generateHtml whether to generate Html (default: true). If false,
 	 *  the result of calling getText() on the ParserOutput object returned by

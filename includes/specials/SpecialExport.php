@@ -185,7 +185,7 @@ class SpecialExport extends SpecialPage {
 		$out->addWikiMsg( 'exporttext' );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
-			'action' => $this->getTitle()->getLocalURL( 'action=submit' ) ) );
+			'action' => $this->getPageTitle()->getLocalURL( 'action=submit' ) ) );
 		$form .= Xml::inputLabel(
 			$this->msg( 'export-addcattext' )->text(),
 			'catname',
@@ -315,7 +315,7 @@ class SpecialExport extends SpecialPage {
 			foreach ( explode( "\n", $page ) as $pageName ) {
 				$pageName = trim( $pageName );
 				$title = Title::newFromText( $pageName );
-				if ( $title && $title->getInterwiki() == '' && $title->getText() !== '' ) {
+				if ( $title && !$title->isExternal() && $title->getText() !== '' ) {
 					// Only record each page once!
 					$pageSet[$title->getPrefixedText()] = true;
 				}

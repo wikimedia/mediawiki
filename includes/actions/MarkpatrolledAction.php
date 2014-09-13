@@ -70,6 +70,7 @@ class MarkpatrolledAction extends FormlessAction {
 			$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrollederror' ) );
 			$this->getOutput()->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
 			$this->getOutput()->returnToMain( null, $return );
+
 			return;
 		}
 

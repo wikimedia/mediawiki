@@ -33,6 +33,7 @@
  * @since 1.17
  */
 class WebInstallerOutput {
+
 	/**
 	 * The WebInstaller object this WebInstallerOutput is used by.
 	 *
@@ -52,6 +53,9 @@ class WebInstallerOutput {
 	 */
 	private $headerDone = false;
 
+	/**
+	 * @var string
+	 */
 	public $redirectTarget;
 
 	/**
@@ -69,27 +73,39 @@ class WebInstallerOutput {
 	private $useShortHeader = false;
 
 	/**
-	 * Constructor.
-	 *
-	 * @param $parent WebInstaller
+	 * @param WebInstaller $parent
 	 */
 	public function __construct( WebInstaller $parent ) {
 		$this->parent = $parent;
 	}
 
+	/**
+	 * @param string $html
+	 */
 	public function addHTML( $html ) {
 		$this->contents .= $html;
 		$this->flush();
 	}
 
+	/**
+	 * @param string $text
+	 */
 	public function addWikiText( $text ) {
 		$this->addHTML( $this->parent->parse( $text ) );
 	}
 
+	/**
+	 * @param string $html
+	 */
 	public function addHTMLNoFlush( $html ) {
 		$this->contents .= $html;
 	}
 
+	/**
+	 * @param string $url
+	 *
+	 * @throws MWException
+	 */
 	public function redirect( $url ) {
 		if ( $this->headerDone ) {
 			throw new MWException( __METHOD__ . ' called after sending headers' );
@@ -110,6 +126,7 @@ class WebInstallerOutput {
 	 *   and not properly handling such details as media types in module definitions.
 	 *
 	 * @param string $dir 'ltr' or 'rtl'
+	 *
 	 * @return String
 	 */
 	public function getCSS( $dir ) {
@@ -117,16 +134,27 @@ class WebInstallerOutput {
 		// and loaded as one file.
 		$moduleNames = array(
 			'mediawiki.legacy.shared',
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 			'skins.vector',
+=======
+			'mediawiki.skinning.interface',
+			'skins.vector.styles',
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 			'mediawiki.legacy.config',
 		);
 
 		$prepend = '';
 		$css = '';
 
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 		$cssFileNames = array();
 		$resourceLoader = new ResourceLoader();
 		foreach ( $moduleNames as $moduleName ) {
+=======
+		$resourceLoader = new ResourceLoader();
+		foreach ( $moduleNames as $moduleName ) {
+			/** @var ResourceLoaderFileModule $module */
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 			$module = $resourceLoader->getModule( $moduleName );
 			$cssFileNames = $module->getAllStyleFiles();
 
@@ -138,6 +166,7 @@ class WebInstallerOutput {
 				}
 
 				if ( !is_readable( $cssFileName ) ) {
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 					$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName. Please check file permissions." );
 					continue;
 				}
@@ -171,6 +200,41 @@ class WebInstallerOutput {
 						$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName." );
 					}
 
+=======
+					$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName. " .
+						"Please check file permissions." );
+					continue;
+				}
+
+				try {
+
+					if ( preg_match( '/\.less$/', $cssFileName ) ) {
+						// Run the LESS compiler for *.less files (bug 55589)
+						$compiler = ResourceLoader::getLessCompiler();
+						$cssFileContents = $compiler->compileFile( $cssFileName );
+					} else {
+						// Regular CSS file
+						$cssFileContents = file_get_contents( $cssFileName );
+					}
+
+					if ( $cssFileContents ) {
+						// Rewrite URLs, though don't bother embedding images. While static image
+						// files may be cached, CSS returned by this function is definitely not.
+						$cssDirName = dirname( $cssFileName );
+						$css .= CSSMin::remap(
+							/* source */ $cssFileContents,
+							/* local */ $cssDirName,
+							/* remote */ '..' . str_replace(
+								array( $GLOBALS['IP'], DIRECTORY_SEPARATOR ),
+								array( '', '/' ),
+								$cssDirName
+							),
+							/* embedData */ false
+						);
+					} else {
+						$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName." );
+					}
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 				} catch ( Exception $e ) {
 					$prepend .= ResourceLoader::formatException( $e );
 				}
@@ -191,6 +255,7 @@ class WebInstallerOutput {
 
 	/**
 	 * "<link>" to index.php?css=foobar for the "<head>"
+	 *
 	 * @return String
 	 */
 	private function getCssUrl() {
@@ -235,7 +300,7 @@ class WebInstallerOutput {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getHeadAttribs() {
 		return array(
@@ -246,6 +311,7 @@ class WebInstallerOutput {
 
 	/**
 	 * Get whether the header has been output
+	 *
 	 * @return bool
 	 */
 	public function headerDone() {
@@ -294,20 +360,18 @@ class WebInstallerOutput {
 
 	public function outputFooter() {
 		if ( $this->useShortHeader ) {
-?>
-</body></html>
-<?php
+			echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
+
 			return;
 		}
 ?>
 
 </div></div>
 
-
 <div id="mw-panel">
 	<div class="portal" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
-		href="http://www.mediawiki.org/"
+		href="https://www.mediawiki.org/"
 		title="Main Page"></a>
 	</div>
 	<div class="portal"><div class="body">
@@ -317,9 +381,8 @@ class WebInstallerOutput {
 	</div></div>
 </div>
 
-</body>
-</html>
 <?php
+		echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
 	}
 
 	public function outputShortHeader() {
@@ -343,7 +406,11 @@ class WebInstallerOutput {
 		echo wfMessage( 'config-title', $wgVersion )->escaped();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getJQuery() {
-		return Html::linkedScript( "../resources/jquery/jquery.js" );
+		return Html::linkedScript( "../resources/lib/jquery/jquery.js" );
 	}
+
 }

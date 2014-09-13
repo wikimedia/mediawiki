@@ -194,7 +194,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$changed = $this->opts->getChangedValues();
 		unset( $changed['offset'] ); // Reset offset if query type changes
 
-		$self = $this->getTitle();
+		$self = $this->getPageTitle();
 		foreach ( $filters as $key => $msg ) {
 			$onoff = 1 - $this->opts->getValue( $key );
 			$link = Linker::link( $self, $showhide[$onoff], array(),
@@ -233,7 +233,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 
 		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
+			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 			Xml::fieldset( $this->msg( 'newpages' )->text() ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 			'<tr>
@@ -430,7 +430,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
 			$this->msg( 'tagline' )->text(),
-			$this->getTitle()->getFullURL()
+			$this->getPageTitle()->getFullURL()
 		);
 
 		$pager = new NewPagesPager( $this, $this->opts );
@@ -524,15 +524,14 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
+		$rcIndexes = array();
+
 		if ( $namespace !== false ) {
 			if ( $this->opts->getValue( 'invert' ) ) {
 				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
 			} else {
 				$conds['rc_namespace'] = $namespace;
 			}
-			$rcIndexes = array( 'new_name_timestamp' );
-		} else {
-			$rcIndexes = array( 'rc_timestamp' );
 		}
 
 		# $wgEnableNewpagesUserFilter - temp WMF hack
@@ -572,11 +571,17 @@ class NewPagesPager extends ReverseChronologicalPager {
 		wfRunHooks( 'SpecialNewpagesConditions',
 			array( &$this, $this->opts, &$conds, &$tables, &$fields, &$join_conds ) );
 
+		$options = array();
+
+		if ( $rcIndexes ) {
+			$options = array( 'USE INDEX' => array( 'recentchanges' => $rcIndexes ) );
+		}
+
 		$info = array(
 			'tables' => $tables,
 			'fields' => $fields,
 			'conds' => $conds,
-			'options' => array( 'USE INDEX' => array( 'recentchanges' => $rcIndexes ) ),
+			'options' => $options,
 			'join_conds' => $join_conds
 		);
 

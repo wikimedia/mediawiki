@@ -6,7 +6,9 @@
  */
 class BlockTest extends MediaWikiLangTestCase {
 
-	private $block, $madeAt;
+	/** @var Block */
+	private $block;
+	private $madeAt;
 
 	/* variable used to save up the blockID we insert in this test suite */
 	private $blockId;
@@ -66,11 +68,17 @@ class BlockTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function testInitializerFunctionsReturnCorrectBlock() {
-		// $this->dumpBlocks();
-
+	/**
+	 * @covers Block::newFromTarget
+	 */
+	public function testINewFromTargetReturnsCorrectBlock() {
 		$this->assertTrue( $this->block->equals( Block::newFromTarget( 'UTBlockee' ) ), "newFromTarget() returns the same block as the one that was made" );
+	}
 
+	/**
+	 * @covers Block::newFromID
+	 */
+	public function testINewFromIDReturnsCorrectBlock() {
 		$this->assertTrue( $this->block->equals( Block::newFromID( $this->blockId ) ), "newFromID() returns the same block as the one that was made" );
 	}
 
@@ -84,32 +92,12 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * This is the method previously used to load block info in CheckUser etc
-	 * passing an empty value (empty string, null, etc) as the ip parameter bypasses IP lookup checks.
-	 *
-	 * This stopped working with r84475 and friends: regression being fixed for bug 29116.
-	 *
-	 * @dataProvider provideBug29116Data
-	 */
-	public function testBug29116LoadWithEmptyIp( $vagueTarget ) {
-		$this->hideDeprecated( 'Block::load' );
-
-		$uid = User::idFromName( 'UTBlockee' );
-		$this->assertTrue( ( $uid > 0 ), 'Must be able to look up the target user during tests' );
-
-		$block = new Block();
-		$ok = $block->load( $vagueTarget, $uid );
-		$this->assertTrue( $ok, "Block->load() with empty IP and user ID '$uid' should return a block" );
-
-		$this->assertTrue( $this->block->equals( $block ), "Block->load() returns the same block as the one that was made when given empty ip param " . var_export( $vagueTarget, true ) );
-	}
-
-	/**
 	 * CheckUser since being changed to use Block::newFromTarget started failing
 	 * because the new function didn't accept empty strings like Block::load()
 	 * had. Regression bug 29116.
 	 *
 	 * @dataProvider provideBug29116Data
+	 * @covers Block::newFromTarget
 	 */
 	public function testBug29116NewFromTargetWithEmptyIp( $vagueTarget ) {
 		$block = Block::newFromTarget( 'UTBlockee', $vagueTarget );
@@ -124,6 +112,9 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @covers Block::prevents
+	 */
 	public function testBlockedUserCanNotCreateAccount() {
 		$username = 'BlockedUserToCreateAccountWith';
 		$u = User::newFromName( $username );
@@ -184,6 +175,9 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @covers Block::insert
+	 */
 	public function testCrappyCrossWikiBlocks() {
 		// Delete the last round's block if it's still there
 		$oldBlock = Block::newFromTarget( 'UserOnForeignWiki' );
@@ -343,6 +337,8 @@ class BlockTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider providerXff
+	 * @covers Block::getBlocksForIPList
+	 * @covers Block::chooseBlock
 	 */
 	public function testBlocksOnXff( $xff, $exCount, $exResult ) {
 		$list = array_map( 'trim', explode( ',', $xff ) );

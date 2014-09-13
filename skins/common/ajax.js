@@ -5,7 +5,7 @@
  * http://www.modernmethod.com/sajax/
  */
 
-/*jshint camelcase:false, onevar:false */
+/*jshint camelcase:false */
 /*global alert */
 ( function ( mw ) {
 
@@ -89,9 +89,7 @@ function createXhr() {
  * with id = showFoo
  */
 function doAjaxRequest( func_name, args, target ) {
-	var i, x;
-	var uri;
-	var post_data;
+	var i, x, uri, post_data;
 	uri = mw.util.wikiScript() + '?action=ajax';
 	if ( window.sajax_request_type === 'GET' ) {
 		if ( uri.indexOf( '?' ) === -1 ) {
@@ -146,7 +144,7 @@ function doAjaxRequest( func_name, args, target ) {
 		} else if ( typeof target === 'object' ) {
 			if ( target.tagName === 'INPUT' ) {
 				if ( x.status === 200 ) {
-					target.value= x.responseText;
+					target.value = x.responseText;
 				}
 				//else alert( 'Error: ' + x.status + ' ' + x.statusText + ' (' + x.responseText + ')' );
 			} else {
@@ -173,8 +171,9 @@ function doAjaxRequest( func_name, args, target ) {
  * @return {boolean} Whether the browser supports AJAX
  */
 function wfSupportsAjax() {
-	var request = createXhr();
-	var supportsAjax = request ? true : false;
+	var request = createXhr(),
+		supportsAjax = request ? true : false;
+
 	request = undefined;
 	return supportsAjax;
 }

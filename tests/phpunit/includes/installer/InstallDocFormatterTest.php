@@ -48,13 +48,13 @@ class InstallDocFormatterTest extends MediaWikiTestCase {
 
 			# Transform '$wgFooBar' links
 			array(
-				'<span class="config-plainlink">[http://www.mediawiki.org/wiki/Manual:$wgFooBar $wgFooBar]</span>',
+				'<span class="config-plainlink">[https://www.mediawiki.org/wiki/Manual:$wgFooBar $wgFooBar]</span>',
 				'$wgFooBar', 'Testing basic $wgFooBar' ),
 			array(
-				'<span class="config-plainlink">[http://www.mediawiki.org/wiki/Manual:$wgFooBar45 $wgFooBar45]</span>',
+				'<span class="config-plainlink">[https://www.mediawiki.org/wiki/Manual:$wgFooBar45 $wgFooBar45]</span>',
 				'$wgFooBar45', 'Testing $wgFooBar45 (with numbers)' ),
 			array(
-				'<span class="config-plainlink">[http://www.mediawiki.org/wiki/Manual:$wgFoo_Bar $wgFoo_Bar]</span>',
+				'<span class="config-plainlink">[https://www.mediawiki.org/wiki/Manual:$wgFoo_Bar $wgFoo_Bar]</span>',
 				'$wgFoo_Bar', 'Testing $wgFoo_Bar (with underscore)' ),
 
 			# Icky variables that shouldn't link

@@ -1,0 +1,43 @@
+{
+    "@metadata": {
+        "authors": [
+            "Xuacu"
+        ]
+    },
+    "config-desc": "L'instalador pa MediaWiki",
+    "config-title": "Instalación de MediaWiki $1",
+    "config-information": "Información",
+    "config-localsettings-upgrade": "Detectose un ficheru <code>LocalSettings.php</code>.\nP'anovar esta instalación, escriba'l valor de\n<code>$wgUpgradeKey</code> nel cuadru d'abaxo.\nAlcontraralu en <code>LocalSettings.php</code>.",
+    "config-localsettings-cli-upgrade": "Deteutose un ficheru <code>LocalSettings.php</code>.\nP'anovar esta instalación, execute <code>update.php</code>",
+    "config-localsettings-key": "Clave d'anovamientu:",
+    "config-localsettings-badkey": "La clave que dio ye incorreuta.",
+    "config-upgrade-key-missing": "Deteutose una instalación esistente de MediaWiki.\nP'anovar esta instalación, ponga la llinia siguiente al final del ficheru <code>LocalSettings.php</code>:\n\n$1",
+    "config-localsettings-incomplete": "Paez que'l ficheru <code>LocalSettings.php</code> esistente ta incompletu.\nLa variable $1 nun ta definida.\nCamude'l ficheru <code>LocalSettings.php</code> pa qu'esta variable quede definida y calque \"{{int:Config-continue}}\".",
+    "config-localsettings-connection-error": "Alcontrose un error al conectar cola base de datos usando la configuración especificada en <code>LocalSettings.php</code> o <code>AdminSettings.php</code>. Corrixa esta configuración y vuelva a intentalo.\n\n$1",
+    "config-your-language": "La so llingua:",
+    "config-your-language-help": "Seleicione la llingua a emplegar nel procesu d'instalación.",
+    "config-wiki-language": "Llingua de la wiki:",
+    "config-wiki-language-help": "Seleicione la llingua que s'usará preferentemente na wiki.",
+    "config-back": "← Atrás",
+    "config-continue": "Siguir →",
+    "config-page-language": "Llingua",
+    "config-page-welcome": "¡Bienveníu a MediaWiki!",
+    "config-page-dbconnect": "Conectar cola base de datos",
+    "config-page-upgrade": "Anovar instalación esistente",
+    "config-page-dbsettings": "Configuración de la base de datos",
+    "config-page-name": "Nome",
+    "config-page-options": "Opciones",
+    "config-page-install": "Instalar",
+    "config-page-complete": "¡Completo!",
+    "config-page-restart": "Reaniciar la instalación",
+    "config-page-readme": "Llei-me",
+    "config-page-releasenotes": "Notes de la versión",
+    "config-page-copying": "Copiar",
+    "config-page-upgradedoc": "Anovando",
+    "config-page-existingwiki": "Wiki esistente",
+    "config-download-localsettings": "Descargar <code>LocalSettings.php</code>",
+    "config-help": "Ayuda",
+    "config-nofile": "Nun pudo atopase'l ficheru \"$1\". ¿Desaniciose?",
+    "mainpagetext": "'''MediaWiki instalóse correchamente.'''",
+    "mainpagedocfooter": "Visita la [//meta.wikimedia.org/wiki/Help:Contents Guía del usuariu] pa saber cómo usar esti software wiki.\n\n== Empecipiando ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Llista de les opciones de configuración]\n* [//www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de les ediciones de MediaWiki]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Llocaliza MediaWiki na to llingua]"
+}

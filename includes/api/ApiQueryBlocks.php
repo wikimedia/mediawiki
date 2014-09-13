@@ -43,6 +43,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	public function execute() {
 		global $wgContLang;
 
+		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'users', 'ip' );
 
@@ -61,9 +62,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$result = $this->getResult();
 
 		$this->addTables( 'ipblocks' );
-		$this->addFields( 'ipb_auto' );
+		$this->addFields( array( 'ipb_auto', 'ipb_id' ) );
 
-		$this->addFieldsIf( 'ipb_id', $fld_id );
 		$this->addFieldsIf( array( 'ipb_address', 'ipb_user' ), $fld_user || $fld_userid );
 		$this->addFieldsIf( 'ipb_by_text', $fld_by );
 		$this->addFieldsIf( 'ipb_by', $fld_byid );
@@ -72,13 +72,31 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->addFieldsIf( 'ipb_reason', $fld_reason );
 		$this->addFieldsIf( array( 'ipb_range_start', 'ipb_range_end' ), $fld_range );
 		$this->addFieldsIf( array( 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock',
-									'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk' ),
-							$fld_flags );
+			'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk' ),
+			$fld_flags );
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-		$this->addTimestampWhereRange( 'ipb_timestamp', $params['dir'], $params['start'], $params['end'] );
+		$this->addTimestampWhereRange(
+			'ipb_timestamp',
+			$params['dir'],
+			$params['start'],
+			$params['end']
+		);
+		// Include in ORDER BY for uniqueness
+		$this->addWhereRange( 'ipb_id', $params['dir'], null, null );
 
-		$db = $this->getDB();
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$op = ( $params['dir'] == 'newer' ? '>' : '<' );
+			$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+			$continueId = (int)$cont[1];
+			$this->dieContinueUsageIf( $continueId != $cont[1] );
+			$this->addWhere( "ipb_timestamp $op $continueTimestamp OR " .
+				"(ipb_timestamp = $continueTimestamp AND " .
+				"ipb_id $op= $continueId)"
+			);
+		}
 
 		if ( isset( $params['ids'] ) ) {
 			$this->addWhereFld( 'ipb_id', $params['ids'] );
@@ -107,7 +125,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 			# Check range validity, if it's a CIDR
 			list( $ip, $range ) = IP::parseCIDR( $params['ip'] );
 			if ( $ip !== false && $range !== false && $range < $cidrLimit ) {
-				$this->dieUsage( "$type CIDR ranges broader than /$cidrLimit are not accepted", 'cidrtoobroad' );
+				$this->dieUsage(
+					"$type CIDR ranges broader than /$cidrLimit are not accepted",
+					'cidrtoobroad'
+				);
 			}
 
 			# Let IP::parseRange handle calculating $upper, instead of duplicating the logic here.
@@ -134,9 +155,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 			/* Check for conflicting parameters. */
 			if ( ( isset( $show['account'] ) && isset( $show['!account'] ) )
-					|| ( isset( $show['ip'] ) && isset( $show['!ip'] ) )
-					|| ( isset( $show['range'] ) && isset( $show['!range'] ) )
-					|| ( isset( $show['temp'] ) && isset( $show['!temp'] ) )
+				|| ( isset( $show['ip'] ) && isset( $show['!ip'] ) )
+				|| ( isset( $show['range'] ) && isset( $show['!range'] ) )
+				|| ( isset( $show['temp'] ) && isset( $show['!temp'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
@@ -145,8 +166,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereIf( 'ipb_user != 0', isset( $show['account'] ) );
 			$this->addWhereIf( 'ipb_user != 0 OR ipb_range_end > ipb_range_start', isset( $show['!ip'] ) );
 			$this->addWhereIf( 'ipb_user = 0 AND ipb_range_end = ipb_range_start', isset( $show['ip'] ) );
-			$this->addWhereIf( 'ipb_expiry = ' . $db->addQuotes( $db->getInfinity() ), isset( $show['!temp'] ) );
-			$this->addWhereIf( 'ipb_expiry != ' . $db->addQuotes( $db->getInfinity() ), isset( $show['temp'] ) );
+			$this->addWhereIf( 'ipb_expiry = ' .
+				$db->addQuotes( $db->getInfinity() ), isset( $show['!temp'] ) );
+			$this->addWhereIf( 'ipb_expiry != ' .
+				$db->addQuotes( $db->getInfinity() ), isset( $show['temp'] ) );
 			$this->addWhereIf( 'ipb_range_end = ipb_range_start', isset( $show['!range'] ) );
 			$this->addWhereIf( 'ipb_range_end > ipb_range_start', isset( $show['range'] ) );
 		}
@@ -166,7 +189,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've had enough
-				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ipb_timestamp ) );
+				$this->setContinueEnumParameter( 'continue', "$row->ipb_timestamp|$row->ipb_id" );
 				break;
 			}
 			$block = array();
@@ -224,7 +247,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $block );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ipb_timestamp ) );
+				$this->setContinueEnumParameter( 'continue', "$row->ipb_timestamp|$row->ipb_id" );
 				break;
 			}
 		}
@@ -303,12 +326,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 				),
 				ApiBase::PARAM_ISMULTI => true
 			),
+			'continue' => null,
 		);
 	}
 
 	public function getParamDescription() {
 		global $wgBlockCIDRLimit;
 		$p = $this->getModulePrefix();
+
 		return array(
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to stop enumerating at',
@@ -339,6 +364,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				'Show only items that meet this criteria.',
 				"For example, to see only indefinite blocks on IPs, set {$p}show=ip|!temp"
 			),
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 
@@ -397,13 +423,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'List all blocked users and IP addresses';
+		return 'List all blocked users and IP addresses.';
 	}
 
 	public function getPossibleErrors() {
 		global $wgBlockCIDRLimit;
+
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'users', 'ip' ) ),
+			$this->getRequireMaxOneParameterErrorMessages( array( 'users', 'ip' ) ),
 			array(
 				array(
 					'code' => 'cidrtoobroad',

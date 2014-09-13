@@ -185,8 +185,8 @@ class StreamFile {
 				return 'unknown/unknown';
 			}
 			if ( $wgCheckFileExtensions && $wgStrictFileExtensions
-				&& !UploadBase::checkFileExtensionList( $extList, $wgFileExtensions ) )
-			{
+				&& !UploadBase::checkFileExtensionList( $extList, $wgFileExtensions )
+			) {
 				return 'unknown/unknown';
 			}
 			if ( $wgVerifyMimeType && in_array( strtolower( $type ), $wgMimeTypeBlacklist ) ) {

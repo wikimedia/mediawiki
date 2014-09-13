@@ -57,7 +57,6 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 		}
 	}
 
-
 	/**
 	 * @covers Revision::getContentFormat
 	 */

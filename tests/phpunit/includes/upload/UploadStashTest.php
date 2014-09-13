@@ -1,12 +1,20 @@
 <?php
+
 /**
  * @group Database
+ *
+ * @covers UploadStash
  */
 class UploadStashTest extends MediaWikiTestCase {
 	/**
 	 * @var Array of UploadStashTestUser
 	 */
 	public static $users;
+
+	/**
+	 * @var string
+	 */
+	private $bug29408File;
 
 	protected function setUp() {
 		parent::setUp();
@@ -43,6 +51,9 @@ class UploadStashTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
+	/**
+	 * @todo give this test a real name explaining what is being tested here
+	 */
 	public function testBug29408() {
 		$this->setMwGlobals( 'wgUser', self::$users['uploader']->user );
 
@@ -57,20 +68,40 @@ class UploadStashTest extends MediaWikiTestCase {
 		$stash->removeFile( $file->getFileKey() );
 	}
 
-	public function testValidRequest() {
-		$request = new FauxRequest( array( 'wpFileKey' => 'foo' ) );
-		$this->assertFalse( UploadFromStash::isValidRequest( $request ), 'Check failure on bad wpFileKey' );
-
-		$request = new FauxRequest( array( 'wpSessionKey' => 'foo' ) );
-		$this->assertFalse( UploadFromStash::isValidRequest( $request ), 'Check failure on bad wpSessionKey' );
-
-		$request = new FauxRequest( array( 'wpFileKey' => 'testkey-test.test' ) );
-		$this->assertTrue( UploadFromStash::isValidRequest( $request ), 'Check good wpFileKey' );
-
-		$request = new FauxRequest( array( 'wpFileKey' => 'testkey-test.test' ) );
-		$this->assertTrue( UploadFromStash::isValidRequest( $request ), 'Check good wpSessionKey' );
-
-		$request = new FauxRequest( array( 'wpFileKey' => 'testkey-test.test', 'wpSessionKey' => 'foo' ) );
-		$this->assertTrue( UploadFromStash::isValidRequest( $request ), 'Check key precedence' );
+	public function provideInvalidRequests() {
+		return array(
+			'Check failure on bad wpFileKey' =>
+				array( new FauxRequest( array( 'wpFileKey' => 'foo' ) ) ),
+			'Check failure on bad wpSessionKey' =>
+				array( new FauxRequest( array( 'wpSessionKey' => 'foo' ) ) ),
+		);
 	}
+
+	/**
+	 * @dataProvider provideInvalidRequests
+	 */
+	public function testValidRequestWithInvalidRequests( $request ) {
+		$this->assertFalse( UploadFromStash::isValidRequest( $request ) );
+	}
+
+	public function provideValidRequests() {
+		return array(
+			'Check good wpFileKey' =>
+				array( new FauxRequest( array( 'wpFileKey' => 'testkey-test.test' ) ) ),
+			'Check good wpSessionKey' =>
+				array( new FauxRequest( array( 'wpFileKey' => 'testkey-test.test' ) ) ),
+			'Check key precedence' =>
+				array( new FauxRequest( array(
+					'wpFileKey' => 'testkey-test.test',
+					'wpSessionKey' => 'foo'
+				) ) ),
+		);
+	}
+	/**
+	 * @dataProvider provideValidRequests
+	 */
+	public function testValidRequestWithValidRequests( $request ) {
+		$this->assertTrue( UploadFromStash::isValidRequest( $request ) );
+	}
+
 }

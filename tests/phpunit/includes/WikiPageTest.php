@@ -576,7 +576,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		);
 	}
 
-
 	/**
 	 * @dataProvider provideIsCountable
 	 * @covers WikiPage::isCountable
@@ -594,8 +593,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		}
 
 		$page = $this->createPage( $title, $text, $model );
-		$hasLinks = wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
-			array( 'pl_from' => $page->getId() ), __METHOD__ );
 
 		$editInfo = $page->prepareContentForEdit( $page->getContent() );
 
@@ -677,7 +674,6 @@ just a test
 == foo ==
 more stuff
 ";
-
 
 	public function dataReplaceSection() {
 		//NOTE: assume the Help namespace to contain wikitext
@@ -888,6 +884,49 @@ more stuff
 		$this->assertEquals( "one", $page->getContent()->getNativeData() );
 	}
 
+	/**
+	 * @covers WikiPage::doRollback
+	 */
+	public function testDoRollbackFailureSameContent() {
+		$admin = new User();
+		$admin->setName( "Admin" );
+		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
+
+		$text = "one";
+		$page = $this->newPage( "WikiPageTest_testDoRollback" );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			"section one", EDIT_NEW, false, $admin );
+		$rev1 = $page->getRevision();
+
+		$user1 = new User();
+		$user1->setName( "127.0.1.11" );
+		$user1->addGroup( "sysop" ); #XXX: make the test user a sysop...
+		$text .= "\n\ntwo";
+		$page = new WikiPage( $page->getTitle() );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			"adding section two", 0, false, $user1 );
+
+		# now, do a the rollback from the same user was doing the edit before
+		$resultDetails = array();
+		$token = $user1->getEditToken( array( $page->getTitle()->getPrefixedText(), $user1->getName() ), null );
+		$errors = $page->doRollback( $user1->getName(), "testing revert same user", $token, false, $resultDetails, $admin );
+
+		$this->assertEquals( array(), $errors, "Rollback failed same user" );
+
+		# now, try the rollback
+		$resultDetails = array();
+		$token = $admin->getEditToken( array( $page->getTitle()->getPrefixedText(), $user1->getName() ), null );
+		$errors = $page->doRollback( $user1->getName(), "testing revert", $token, false, $resultDetails, $admin );
+
+		$this->assertEquals( array( array( 'alreadyrolled', 'WikiPageTest testDoRollback',
+			'127.0.1.11', 'Admin' ) ), $errors, "Rollback not failed" );
+
+		$page = new WikiPage( $page->getTitle() );
+		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),
+			"rollback did not revert to the correct revision" );
+		$this->assertEquals( "one", $page->getContent()->getNativeData() );
+	}
+
 	public static function provideGetAutosummary() {
 		return array(
 			array(
@@ -1070,5 +1109,22 @@ more stuff
 		$text = $page->preSaveTransform( $text, $user );
 
 		$this->assertEquals( $expected, $text );
+	}
+
+	/**
+	 * @covers WikiPage::factory
+	 */
+	public function testWikiPageFactory() {
+		$title = Title::makeTitle( NS_FILE, 'Someimage.png' );
+		$page = WikiPage::factory( $title );
+		$this->assertEquals( 'WikiFilePage', get_class( $page ) );
+
+		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
+		$page = WikiPage::factory( $title );
+		$this->assertEquals( 'WikiCategoryPage', get_class( $page ) );
+
+		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
+		$page = WikiPage::factory( $title );
+		$this->assertEquals( 'WikiPage', get_class( $page ) );
 	}
 }

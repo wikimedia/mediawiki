@@ -193,7 +193,7 @@ class SiteSQLStore implements SiteStore {
 	 *
 	 * @since 1.22
 	 *
-	 * @param Site
+	 * @param Site $site
 	 *
 	 * @return ORMRow
 	 */

@@ -35,6 +35,7 @@ class PatrolLogFormatter extends LogFormatter {
 		if ( isset( $params[5] ) && $params[5] ) {
 			$key .= '-auto';
 		}
+
 		return $key;
 	}
 
@@ -58,6 +59,7 @@ class PatrolLogFormatter extends LogFormatter {
 		}
 
 		$params[3] = Message::rawParam( $revlink );
+
 		return $params;
 	}
 }

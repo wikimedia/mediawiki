@@ -62,6 +62,20 @@ class UpdateMediaWiki extends Maintenance {
 
 		list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
 		if ( version_compare( $pcreVersion, $minimumPcreVersion, '<' ) ) {
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
+			$this->error(
+				"PCRE $minimumPcreVersion or later is required.\n" .
+				"Your PHP binary is linked with PCRE $pcreVersion.\n\n" .
+				"More information:\n" .
+				"https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE\n\n" .
+				"ABORTING.\n",
+				true );
+		}
+
+		$test = new PhpXmlBugTester();
+		if ( !$test->ok ) {
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 			$this->error(
 				"PCRE $minimumPcreVersion or later is required.\n" .
 				"Your PHP binary is linked with PCRE $pcreVersion.\n\n" .
@@ -74,28 +88,16 @@ class UpdateMediaWiki extends Maintenance {
 		$test = new PhpXmlBugTester();
 		if ( !$test->ok ) {
 			$this->error(
-				"Your system has a combination of PHP and libxml2 versions which is buggy\n" .
+				"Your system has a combination of PHP and libxml2 versions that is buggy\n" .
 				"and can cause hidden data corruption in MediaWiki and other web apps.\n" .
-				"Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later!\n" .
-				"ABORTING (see http://bugs.php.net/bug.php?id=45996).\n",
-				true );
-		}
-
-		$test = new PhpRefCallBugTester;
-		$test->execute();
-		if ( !$test->ok ) {
-			$ver = phpversion();
-			$this->error(
-				"PHP $ver is not compatible with MediaWiki due to a bug involving\n" .
-				"reference parameters to __call. Upgrade to PHP 5.3.2 or higher, or \n" .
-				"downgrade to PHP 5.3.0 to fix this.\n" .
-				"ABORTING (see http://bugs.php.net/bug.php?id=50394 for details)\n",
+				"Upgrade to libxml2 2.7.3 or later.\n" .
+				"ABORTING (see https://bugs.php.net/bug.php?id=45996).\n",
 				true );
 		}
 	}
 
 	function execute() {
-		global $wgVersion, $wgTitle, $wgLang, $wgAllowSchemaUpdates;
+		global $wgVersion, $wgLang, $wgAllowSchemaUpdates;
 
 		if ( !$wgAllowSchemaUpdates && !( $this->hasOption( 'force' ) || $this->hasOption( 'schema' ) || $this->hasOption( 'noschema' ) ) ) {
 			$this->error( "Do not run update.php on this wiki. If you're seeing this you should\n"
@@ -118,7 +120,8 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		$wgLang = Language::factory( 'en' );
-		$wgTitle = Title::newFromText( "MediaWiki database updater" );
+
+		define( 'MW_UPDATER', true );
 
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
 
@@ -145,6 +148,8 @@ class UpdateMediaWiki extends Maintenance {
 			$this->output( "Abort with control-c in the next five seconds (skip this countdown with --quick) ... " );
 			wfCountDown( 5 );
 		}
+
+		$time1 = new MWTimestamp();
 
 		$shared = $this->hasOption( 'doshared' );
 
@@ -178,8 +183,10 @@ class UpdateMediaWiki extends Maintenance {
 		if ( !$this->hasOption( 'nopurge' ) ) {
 			$updater->purgeCache();
 		}
+		$time2 = new MWTimestamp();
 
-		$this->output( "\nDone.\n" );
+		$timeDiff = $time2->diff( $time1 );
+		$this->output( "\nDone in " . $timeDiff->format( "%i:%S" ) . ".\n" );
 	}
 
 	function afterFinalSetup() {
@@ -190,7 +197,7 @@ class UpdateMediaWiki extends Maintenance {
 		# cache from $wgExtensionFunctions (bug 20471)
 		$wgLocalisationCacheConf = array(
 			'class' => 'LocalisationCache',
-			'storeClass' => 'LCStore_Null',
+			'storeClass' => 'LCStoreNull',
 			'storeDirectory' => false,
 			'manualRecache' => false,
 		);

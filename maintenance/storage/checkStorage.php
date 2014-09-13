@@ -34,7 +34,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	$cs->check( $fix, $xml );
 }
 
-
 // ----------------------------------------------------------------------------------
 
 /**
@@ -330,7 +329,6 @@ class CheckStorage {
 			printf( "%-30s %10d %5.2f%%\n", $className, $count, $count / $total * 100 );
 		}
 	}
-
 
 	function error( $type, $msg, $ids ) {
 		if ( is_array( $ids ) && count( $ids ) == 1 ) {

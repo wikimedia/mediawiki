@@ -204,13 +204,16 @@ class UploadFromUrl extends UploadBase {
 		}
 		return Status::newGood();
 	}
+
 	/**
 	 * Create a new temporary file in the URL subdirectory of wfTempDir().
 	 *
 	 * @return string Path to the file
 	 */
 	protected function makeTemporaryFile() {
-		return tempnam( wfTempDir(), 'URL' );
+		$tmpFile = TempFSFile::factory( 'URL' );
+		$tmpFile->bind( $this );
+		return $tmpFile->getPath();
 	}
 
 	/**

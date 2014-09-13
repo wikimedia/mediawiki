@@ -3,7 +3,7 @@
  * MySQL search engine
  *
  * Copyright (C) 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,17 +28,9 @@
  * Search engine hook for MySQL 4+
  * @ingroup Search
  */
-class SearchMySQL extends SearchEngine {
+class SearchMySQL extends SearchDatabase {
 	var $strictMatching = true;
 	static $mMinSearchLength;
-
-	/**
-	 * Creates an instance of this class
-	 * @param $db DatabaseMysql: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
 
 	/**
 	 * Parse the user's query and transform it into an SQL fragment which will
@@ -226,9 +218,7 @@ class SearchMySQL extends SearchEngine {
 	 */
 	protected function queryFeatures( &$query ) {
 		foreach ( $this->features as $feature => $value ) {
-			if ( $feature === 'list-redirects' && !$value ) {
-				$query['conds']['page_is_redirect'] = 0;
-			} elseif ( $feature === 'title-suffix-filter' && $value ) {
+			if ( $feature === 'title-suffix-filter' && $value ) {
 				$query['conds'][] = 'page_title' . $this->db->buildLike( $this->db->anyString(), $value );
 			}
 		}

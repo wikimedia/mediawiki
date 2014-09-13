@@ -78,7 +78,9 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	public $mMaxSize = 10000000;
 	public $mMaxCount = 100;
 
-	/** Constructor */
+	/**
+	 * Constructor
+	 */
 	public function __construct() {
 		if ( !function_exists( 'gzdeflate' ) ) {
 			throw new MWException( "Need zlib support to read or write this kind of history object (ConcatenatedGzipHistoryBlob)\n" );
@@ -290,7 +292,7 @@ class HistoryBlobStub {
  * of megabytes of data during the conversion downtime.
  *
  * Serialized HistoryBlobCurStub objects will be inserted into the text table
- * on conversion if $wgFastSchemaUpgrades is set to true.
+ * on conversion if $wgLegacySchemaConversion is set to true.
  */
 class HistoryBlobCurStub {
 	var $mCurId;

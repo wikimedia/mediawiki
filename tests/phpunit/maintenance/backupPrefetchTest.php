@@ -6,6 +6,7 @@ require_once __DIR__ . "/../../../maintenance/backupPrefetch.inc";
  * Tests for BaseDump
  *
  * @group Dump
+ * @covers BaseDump
  */
 class BaseDumpTest extends MediaWikiTestCase {
 
@@ -135,7 +136,6 @@ class BaseDumpTest extends MediaWikiTestCase {
 
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text1", 2, 2 );
 	}
-
 
 	/**
 	 * Constructs a temporary file that can be used for prefetching
