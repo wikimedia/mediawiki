@@ -27,9 +27,8 @@
  * @ingroup Media
  */
 abstract class ImageHandler extends MediaHandler {
-
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return bool
 	 */
 	function canRender( $file ) {
@@ -60,6 +59,7 @@ abstract class ImageHandler extends MediaHandler {
 		} else {
 			throw new MWException( 'No width specified to ' . __METHOD__ );
 		}
+
 		# Removed for ProofreadPage
 		#$width = intval( $width );
 		return "{$width}px";
@@ -79,8 +79,8 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $params
+	 * @param File $image
+	 * @param array $params
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {
@@ -141,20 +141,22 @@ abstract class ImageHandler extends MediaHandler {
 		}
 
 		if ( !$this->validateThumbParams( $params['physicalWidth'],
-				$params['physicalHeight'], $srcWidth, $srcHeight, $mimeType ) ) {
+			$params['physicalHeight'], $srcWidth, $srcHeight, $mimeType )
+		) {
 			return false;
 		}
+
 		return true;
 	}
 
 	/**
 	 * Validate thumbnail parameters and fill in the correct height
 	 *
-	 * @param $width Integer: specified width (input/output)
-	 * @param $height Integer: height (output only)
-	 * @param $srcWidth Integer: width of the source image
-	 * @param $srcHeight Integer: height of the source image
-	 * @param $mimeType
+	 * @param int $width Specified width (input/output)
+	 * @param int $height Height (output only)
+	 * @param int $srcWidth Width of the source image
+	 * @param int $srcHeight Height of the source image
+	 * @param string $mimeType Unused
 	 * @return bool False to indicate that an error should be returned to the user.
 	 */
 	function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
@@ -163,10 +165,12 @@ abstract class ImageHandler extends MediaHandler {
 		# Sanity check $width
 		if ( $width <= 0 ) {
 			wfDebug( __METHOD__ . ": Invalid destination width: $width\n" );
+
 			return false;
 		}
 		if ( $srcWidth <= 0 ) {
 			wfDebug( __METHOD__ . ": Invalid source width: $srcWidth\n" );
+
 			return false;
 		}
 
@@ -175,14 +179,15 @@ abstract class ImageHandler extends MediaHandler {
 			# Force height to be at least 1 pixel
 			$height = 1;
 		}
+
 		return true;
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $script
-	 * @param  $params
-	 * @return bool|ThumbnailImage
+	 * @param File $image
+	 * @param string $script
+	 * @param array $params
+	 * @return bool|MediaTransformOutput
 	 */
 	function getScriptedTransform( $image, $script, $params ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {
@@ -199,8 +204,10 @@ abstract class ImageHandler extends MediaHandler {
 		wfSuppressWarnings();
 		$gis = getimagesize( $path );
 		wfRestoreWarnings();
+
 		return $gis;
 	}
+
 	/**
 	 * Function that returns the number of pixels to be thumbnailed.
 	 * Intended for animated GIFs to multiply by the number of frames.
@@ -214,21 +221,21 @@ abstract class ImageHandler extends MediaHandler {
 		return $image->getWidth() * $image->getHeight();
 	}
 
-
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	function getShortDesc( $file ) {
 		global $wgLang;
 		$nbytes = htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
-		$widthheight = wfMessage( 'widthheight' )->numParams( $file->getWidth(), $file->getHeight() )->escaped();
+		$widthheight = wfMessage( 'widthheight' )
+			->numParams( $file->getWidth(), $file->getHeight() )->escaped();
 
 		return "$widthheight ($nbytes)";
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	function getLongDesc( $file ) {
@@ -238,25 +245,28 @@ abstract class ImageHandler extends MediaHandler {
 		if ( $pages === false || $pages <= 1 ) {
 			$msg = wfMessage( 'file-info-size' )->numParams( $file->getWidth(),
 				$file->getHeight() )->params( $size,
-				$file->getMimeType() )->parse();
+					$file->getMimeType() )->parse();
 		} else {
 			$msg = wfMessage( 'file-info-size-pages' )->numParams( $file->getWidth(),
 				$file->getHeight() )->params( $size,
-				$file->getMimeType() )->numParams( $pages )->parse();
+					$file->getMimeType() )->numParams( $pages )->parse();
 		}
+
 		return $msg;
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	function getDimensionsString( $file ) {
 		$pages = $file->pageCount();
 		if ( $pages > 1 ) {
-			return wfMessage( 'widthheightpage' )->numParams( $file->getWidth(), $file->getHeight(), $pages )->text();
+			return wfMessage( 'widthheightpage' )
+				->numParams( $file->getWidth(), $file->getHeight(), $pages )->text();
 		} else {
-			return wfMessage( 'widthheight' )->numParams( $file->getWidth(), $file->getHeight() )->text();
+			return wfMessage( 'widthheight' )
+				->numParams( $file->getWidth(), $file->getHeight() )->text();
 		}
 	}
 }

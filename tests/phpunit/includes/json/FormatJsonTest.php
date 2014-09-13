@@ -1,8 +1,26 @@
 <?php
 
+/**
+ * @covers FormatJson
+ */
 class FormatJsonTest extends MediaWikiTestCase {
 
-	public function testEncoderPrettyPrinting() {
+	public static function provideEncoderPrettyPrinting() {
+		return array(
+			// Four spaces
+			array( true, '    ' ),
+			array( '    ', '    ' ),
+			// Two spaces
+			array( '  ', '  ' ),
+			// One tab
+			array( "\t", "\t" ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideEncoderPrettyPrinting
+	 */
+	public function testEncoderPrettyPrinting( $pretty, $expectedIndent ) {
 		$obj = array(
 			'emptyObject' => new stdClass,
 			'emptyArray' => array(),
@@ -19,8 +37,9 @@ class FormatJsonTest extends MediaWikiTestCase {
 			),
 		);
 
-		// 4 space indent, no trailing whitespace, no trailing linefeed
+		// No trailing whitespace, no trailing linefeed
 		$json = '{
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
     "emptyObject": {},
     "emptyArray": [],
     "string": "foobar\\\\",
@@ -32,10 +51,28 @@ class FormatJsonTest extends MediaWikiTestCase {
         "\"7\":[\"8\",{\"9\":\"10\"}]",
         "{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}"
     ]
+=======
+	"emptyObject": {},
+	"emptyArray": [],
+	"string": "foobar\\\\",
+	"filledArray": [
+		[
+			123,
+			456
+		],
+		"\"7\":[\"8\",{\"9\":\"10\"}]",
+		"{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}"
+	]
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 }';
 
 		$json = str_replace( "\r", '', $json ); // Windows compat
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 		$this->assertSame( $json, FormatJson::encode( $obj, true ) );
+=======
+		$json = str_replace( "\t", $expectedIndent, $json );
+		$this->assertSame( $json, FormatJson::encode( $obj, $pretty ) );
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 	}
 
 	public static function provideEncodeDefault() {

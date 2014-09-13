@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 /**
  * Base library for MediaWiki.
  *
@@ -1936,3 +1937,5 @@ if ( jQuery.isFunction( window.startUp ) ) {
 	window.startUp();
 	window.startUp = undefined;
 }
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)

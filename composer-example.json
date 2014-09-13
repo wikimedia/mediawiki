@@ -3,9 +3,25 @@
 		"php": ">=5.3.2"
 	},
 	"suggest": {
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 		"ext-fileinfo": "*",
 		"ext-mbstring": "*",
 		"ext-wikidiff2": "*",
 		"ext-apc": "*"
+=======
+		"ext-fileinfo": "More accurate file type detection for uploaded files",
+		"ext-mbstring": "Faster unicode handling",
+		"ext-wikidiff2": "Faster diff generation",
+		"ext-apc": "Speed up MediaWiki with opcode caching (before PHP 5.5)"
+	},
+	"autoload": {
+		"psr-0": {
+			"ComposerHookHandler": "includes/composer"
+		}
+	},
+	"scripts": {
+		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
+		"pre-install-cmd": "ComposerHookHandler::onPreInstall"
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 	}
 }

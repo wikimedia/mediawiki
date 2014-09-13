@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 /* This is CLDRPluralRuleParser v1.1, ported to MediaWiki ResourceLoader */
 
 /**
@@ -473,3 +474,5 @@ function pluralRuleParser(rule, number) {
 mw.libs.pluralRuleParser = pluralRuleParser;
 
 } )( mediaWiki );
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)

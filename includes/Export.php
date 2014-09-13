@@ -3,7 +3,7 @@
  * Base classes for dumps and export
  *
  * Copyright © 2003, 2005, 2006 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,15 +73,14 @@ class WikiExporter {
 	 * make additional queries to pull source data while the
 	 * main query is still running.
 	 *
-	 * @param $db DatabaseBase
-	 * @param $history Mixed: one of WikiExporter::FULL, WikiExporter::CURRENT,
-	 *                 WikiExporter::RANGE or WikiExporter::STABLE,
-	 *                 or an associative array:
-	 *                   offset: non-inclusive offset at which to start the query
-	 *                   limit: maximum number of rows to return
-	 *                   dir: "asc" or "desc" timestamp order
-	 * @param int $buffer one of WikiExporter::BUFFER or WikiExporter::STREAM
-	 * @param int $text one of WikiExporter::TEXT or WikiExporter::STUB
+	 * @param DatabaseBase $db
+	 * @param int|array $history One of WikiExporter::FULL, WikiExporter::CURRENT,
+	 *   WikiExporter::RANGE or WikiExporter::STABLE, or an associative array:
+	 *   - offset: non-inclusive offset at which to start the query
+	 *   - limit: maximum number of rows to return
+	 *   - dir: "asc" or "desc" timestamp order
+	 * @param int $buffer One of WikiExporter::BUFFER or WikiExporter::STREAM
+	 * @param int $text One of WikiExporter::TEXT or WikiExporter::STUB
 	 */
 	function __construct( $db, $history = WikiExporter::CURRENT,
 			$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
@@ -127,8 +126,8 @@ class WikiExporter {
 	 * Dumps a series of page and revision records for those pages
 	 * in the database falling within the page_id range given.
 	 * @param int $start inclusive lower limit (this id is included)
-	 * @param $end   Int: Exclusive upper limit (this id is not included)
-	 *                   If 0, no upper limit.
+	 * @param int $end Exclusive upper limit (this id is not included)
+	 *   If 0, no upper limit.
 	 */
 	public function pagesByRange( $start, $end ) {
 		$condition = 'page_id >= ' . intval( $start );
@@ -142,8 +141,8 @@ class WikiExporter {
 	 * Dumps a series of page and revision records for those pages
 	 * in the database with revisions falling within the rev_id range given.
 	 * @param int $start inclusive lower limit (this id is included)
-	 * @param $end   Int: Exclusive upper limit (this id is not included)
-	 *                   If 0, no upper limit.
+	 * @param int $end Exclusive upper limit (this id is not included)
+	 *   If 0, no upper limit.
 	 */
 	public function revsByRange( $start, $end ) {
 		$condition = 'rev_id >= ' . intval( $start );
@@ -503,7 +502,8 @@ class XmlDumpWriter {
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
-			                        "http://www.mediawiki.org/xml/export-$ver.xsd", #TODO: how do we get a new version up there?
+				#TODO: how do we get a new version up there?
+				"http://www.mediawiki.org/xml/export-$ver.xsd",
 			'version'            => $ver,
 			'xml:lang'           => $wgLanguageCode ),
 			null ) .
@@ -593,9 +593,8 @@ class XmlDumpWriter {
 	 *
 	 * @param $row object
 	 * @return string
-	 * @access private
 	 */
-	function openPage( $row ) {
+	public function openPage( $row ) {
 		$out = "  <page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$out .= '    ' . Xml::elementClean( 'title', array(), self::canonicalTitle( $title ) ) . "\n";
@@ -604,8 +603,10 @@ class XmlDumpWriter {
 		if ( $row->page_is_redirect ) {
 			$page = WikiPage::factory( $title );
 			$redirect = $page->getRedirectTarget();
-			if ( $redirect instanceOf Title && $redirect->isValidRedirectTarget() ) {
-				$out .= '    ' . Xml::element( 'redirect', array( 'title' => self::canonicalTitle( $redirect ) ) ) . "\n";
+			if ( $redirect instanceof Title && $redirect->isValidRedirectTarget() ) {
+				$out .= '    ';
+				$out .= Xml::element( 'redirect', array( 'title' => self::canonicalTitle( $redirect ) ) );
+				$out .= "\n";
 			}
 		}
 
@@ -679,7 +680,10 @@ class XmlDumpWriter {
 				"" ) . "\n";
 		}
 
-		if ( isset( $row->rev_sha1 ) && $row->rev_sha1 && !( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
+		if ( isset( $row->rev_sha1 )
+			&& $row->rev_sha1
+			&& !( $row->rev_deleted & Revision::DELETED_TEXT )
+		) {
 			$out .= "      " . Xml::element( 'sha1', null, strval( $row->rev_sha1 ) ) . "\n";
 		} else {
 			$out .= "      <sha1/>\n";
@@ -812,7 +816,7 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @param $dumpContents bool
 	 * @return string
 	 */
@@ -827,7 +831,7 @@ class XmlDumpWriter {
 			$be = $file->getRepo()->getBackend();
 			# Dump file as base64
 			# Uses only XML-safe characters, so does not need escaping
-			# @TODO: too bad this loads the contents into memory (script might swap)
+			# @todo Too bad this loads the contents into memory (script might swap)
 			$contents = '      <contents encoding="base64">' .
 				chunk_split( base64_encode(
 					$be->getFileContents( array( 'src' => $file->getPath() ) ) ) ) .
@@ -865,7 +869,7 @@ class XmlDumpWriter {
 	 * @since 1.18
 	 */
 	public static function canonicalTitle( Title $title ) {
-		if ( $title->getInterwiki() ) {
+		if ( $title->isExternal() ) {
 			return $title->getPrefixedText();
 		}
 
@@ -955,7 +959,8 @@ class DumpOutput {
 	 * Use this for the last piece of a file written out
 	 * at specified checkpoints (e.g. every n hours).
 	 * @param $newname mixed File name. May be a string or an array with one element
-	 * @param bool $open If true, a new file with the old filename will be opened again for writing (default: false)
+	 * @param bool $open If true, a new file with the old filename will be opened
+	 *   again for writing (default: false)
 	 */
 	function closeAndRename( $newname, $open = false ) {
 	}

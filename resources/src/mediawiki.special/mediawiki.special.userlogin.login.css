@@ -1,0 +1,24 @@
+/* The login form invites users to create an account */
+#mw-createaccount-cta {
+	width: 20em;
+	height: 10em;
+	/* @embed */
+	background: url(images/glyph-people-large.png) no-repeat 50%;
+	margin: 0 auto;
+	padding-top: 4em;
+}
+
+#mw-createaccount-cta,
+#mw-createaccount-another {
+	font-size: 0.9em;
+	font-weight: normal;
+	text-align: center;
+}
+
+#mw-createaccount-join {
+	margin-left: 0.75em;
+	/* Separate from background image */
+	box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+	width: auto;
+	display: inline-block;
+}

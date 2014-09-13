@@ -80,13 +80,16 @@ abstract class RevDel_List extends RevisionListBase {
 	 * transactions are done here.
 	 *
 	 * @param array $params Associative array of parameters. Members are:
-	 *     value:       The integer value to set the visibility to
-	 *     comment:     The log comment.
+	 *     value:         The integer value to set the visibility to
+	 *     comment:       The log comment.
+	 *     perItemStatus: Set if you want per-item status reports
 	 * @return Status
+	 * @since 1.23 Added 'perItemStatus' param
 	 */
 	public function setVisibility( $params ) {
 		$bitPars = $params['value'];
 		$comment = $params['comment'];
+		$perItemStatus = isset( $params['perItemStatus'] ) ? $params['perItemStatus'] : false;
 
 		$this->res = false;
 		$dbw = wfGetDB( DB_MASTER );
@@ -98,16 +101,27 @@ abstract class RevDel_List extends RevisionListBase {
 		$idsForLog = array();
 		$authorIds = $authorIPs = array();
 
+		if ( $perItemStatus ) {
+			$status->itemStatuses = array();
+		}
+
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			$item = $this->current();
 			unset( $missing[$item->getId()] );
+
+			if ( $perItemStatus ) {
+				$itemStatus = Status::newGood();
+				$status->itemStatuses[$item->getId()] = $itemStatus;
+			} else {
+				$itemStatus = $status;
+			}
 
 			$oldBits = $item->getBits();
 			// Build the actual new rev_deleted bitfield
 			$newBits = RevisionDeleter::extractBitfield( $bitPars, $oldBits );
 
 			if ( $oldBits == $newBits ) {
-				$status->warning( 'revdelete-no-change', $item->formatDate(), $item->formatTime() );
+				$itemStatus->warning( 'revdelete-no-change', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			} elseif ( $oldBits == 0 && $newBits != 0 ) {
@@ -120,7 +134,7 @@ abstract class RevDel_List extends RevisionListBase {
 
 			if ( $item->isHideCurrentOp( $newBits ) ) {
 				// Cannot hide current version text
-				$status->error( 'revdelete-hide-current', $item->formatDate(), $item->formatTime() );
+				$itemStatus->error( 'revdelete-hide-current', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			}
@@ -128,13 +142,13 @@ abstract class RevDel_List extends RevisionListBase {
 				// Cannot access this revision
 				$msg = ( $opType == 'show' ) ?
 					'revdelete-show-no-access' : 'revdelete-modify-no-access';
-				$status->error( $msg, $item->formatDate(), $item->formatTime() );
+				$itemStatus->error( $msg, $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			}
 			// Cannot just "hide from Sysops" without hiding any fields
 			if ( $newBits == Revision::DELETED_RESTRICTED ) {
-				$status->warning( 'revdelete-only-restricted', $item->formatDate(), $item->formatTime() );
+				$itemStatus->warning( 'revdelete-only-restricted', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			}
@@ -151,19 +165,22 @@ abstract class RevDel_List extends RevisionListBase {
 					$authorIPs[] = $item->getAuthorName();
 				}
 			} else {
-				$status->error( 'revdelete-concurrent-change', $item->formatDate(), $item->formatTime() );
+				$itemStatus->error( 'revdelete-concurrent-change', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 			}
 		}
 
 		// Handle missing revisions
 		foreach ( $missing as $id => $unused ) {
-			$status->error( 'revdelete-modify-missing', $id );
+			if ( $perItemStatus ) {
+				$status->itemStatuses[$id] = Status::newFatal( 'revdelete-modify-missing', $id );
+			} else {
+				$status->error( 'revdelete-modify-missing', $id );
+			}
 			$status->failCount++;
 		}
 
 		if ( $status->successCount == 0 ) {
-			$status->ok = false;
 			$dbw->rollback( __METHOD__ );
 			return $status;
 		}
@@ -325,4 +342,12 @@ abstract class RevDel_Item extends RevisionItemBase {
 	 * @return boolean success
 	 */
 	abstract public function setBits( $newBits );
+
+	/**
+	 * Get the return information about the revision for the API
+	 * @since 1.23
+	 * @param ApiResult $result API result object
+	 * @return array Data for the API result
+	 */
+	abstract public function getApiData( ApiResult $result );
 }

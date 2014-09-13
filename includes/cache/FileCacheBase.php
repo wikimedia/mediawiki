@@ -51,6 +51,7 @@ abstract class FileCacheBase {
 	 */
 	final protected function baseCacheDirectory() {
 		global $wgFileCacheDirectory;
+
 		return $wgFileCacheDirectory;
 	}
 
@@ -91,6 +92,7 @@ abstract class FileCacheBase {
 		if ( $this->mCached === null ) {
 			$this->mCached = file_exists( $this->cachePath() );
 		}
+
 		return $this->mCached;
 	}
 
@@ -100,6 +102,7 @@ abstract class FileCacheBase {
 	 */
 	public function cacheTimestamp() {
 		$timestamp = filemtime( $this->cachePath() );
+
 		return ( $timestamp !== false )
 			? wfTimestamp( TS_MW, $timestamp )
 			: false;
@@ -120,7 +123,8 @@ abstract class FileCacheBase {
 
 		$cachetime = $this->cacheTimestamp();
 		$good = ( $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime );
-		wfDebug( __METHOD__ . ": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good\n" );
+		wfDebug( __METHOD__ .
+			": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good\n" );
 
 		return $good;
 	}
@@ -140,6 +144,7 @@ abstract class FileCacheBase {
 	public function fetchText() {
 		if ( $this->useGzip() ) {
 			$fh = gzopen( $this->cachePath(), 'rb' );
+
 			return stream_get_contents( $fh );
 		} else {
 			return file_get_contents( $this->cachePath() );
@@ -148,6 +153,7 @@ abstract class FileCacheBase {
 
 	/**
 	 * Save and compress text to the cache
+	 * @param string $text
 	 * @return string compressed text
 	 */
 	public function saveText( $text ) {
@@ -165,10 +171,12 @@ abstract class FileCacheBase {
 		if ( !file_put_contents( $this->cachePath(), $text, LOCK_EX ) ) {
 			wfDebug( __METHOD__ . "() failed saving " . $this->cachePath() . "\n" );
 			$this->mCached = null;
+
 			return false;
 		}
 
 		$this->mCached = true;
+
 		return $text;
 	}
 
@@ -262,6 +270,7 @@ abstract class FileCacheBase {
 	 */
 	public function getMissesRecent() {
 		global $wgMemc;
+
 		return self::MISS_FACTOR * $wgMemc->get( $this->cacheMissKey() );
 	}
 

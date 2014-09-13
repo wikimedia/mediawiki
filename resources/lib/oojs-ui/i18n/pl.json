@@ -1,0 +1,24 @@
+{
+    "@metadata": {
+        "authors": [
+            "Babanwalia",
+            "Chrumps",
+            "Matma Rex",
+            "Mikołka",
+            "Nasir8891",
+            "Odie2",
+            "Rzuwig",
+            "Tar Lócesilion",
+            "Ty221",
+            "WTM",
+            "Woytecr",
+            "Wpedzich",
+            "Jacenty359"
+        ]
+    },
+    "ooui-dialog-action-close": "Zamknij",
+    "ooui-outline-control-move-down": "Przenieś niżej",
+    "ooui-outline-control-move-up": "Przenieś wyżej",
+    "ooui-outline-control-remove": "Usuń element",
+    "ooui-toolbar-more": "Więcej"
+}

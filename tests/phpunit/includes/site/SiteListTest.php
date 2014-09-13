@@ -80,16 +80,14 @@ class SiteListTest extends MediaWikiTestCase {
 	 * @covers SiteList::getSite
 	 */
 	public function testGetSiteByGlobalId( SiteList $sites ) {
-		if ( $sites->isEmpty() ) {
-			$this->assertTrue( true );
-		} else {
-			/**
-			 * @var Site $site
-			 */
-			foreach ( $sites as $site ) {
-				$this->assertEquals( $site, $sites->getSite( $site->getGlobalId() ) );
-			}
+		/**
+		 * @var Site $site
+		 */
+		foreach ( $sites as $site ) {
+			$this->assertEquals( $site, $sites->getSite( $site->getGlobalId() ) );
 		}
+
+		$this->assertTrue( true );
 	}
 
 	/**
@@ -104,6 +102,25 @@ class SiteListTest extends MediaWikiTestCase {
 		foreach ( $sites as $site ) {
 			if ( is_integer( $site->getInternalId() ) ) {
 				$this->assertEquals( $site, $sites->getSiteByInternalId( $site->getInternalId() ) );
+			}
+		}
+
+		$this->assertTrue( true );
+	}
+
+	/**
+	 * @dataProvider siteListProvider
+	 * @param SiteList $sites
+	 * @covers SiteList::getSiteByNavigationId
+	 */
+	public function testGetSiteByNavigationId( $sites ) {
+		/**
+		 * @var Site $site
+		 */
+		foreach ( $sites as $site ) {
+			$ids = $site->getNavigationIds();
+			foreach ( $ids as $navId ) {
+				$this->assertEquals( $site, $sites->getSiteByNavigationId( $navId ) );
 			}
 		}
 
@@ -145,6 +162,25 @@ class SiteListTest extends MediaWikiTestCase {
 		}
 
 		$this->assertFalse( $sites->hasInternalId( -1 ) );
+	}
+
+	/**
+	 * @dataProvider siteListProvider
+	 * @param SiteList $sites
+	 * @covers SiteList::hasNavigationId
+	 */
+	public function testHasNavigationId( $sites ) {
+		/**
+		 * @var Site $site
+		 */
+		foreach ( $sites as $site ) {
+			$ids = $site->getNavigationIds();
+			foreach ( $ids as $navId ) {
+				$this->assertTrue( $sites->hasNavigationId( $navId ) );
+			}
+		}
+
+		$this->assertFalse( $sites->hasNavigationId( 'non-existing-navigation-id' ) );
 	}
 
 	/**
@@ -192,6 +228,13 @@ class SiteListTest extends MediaWikiTestCase {
 		 */
 		foreach ( $list as $site ) {
 			$this->assertTrue( $copy->hasInternalId( $site->getInternalId() ) );
+
+			foreach ( $site->getNavigationIds() as $navId ) {
+				$this->assertTrue(
+					$copy->hasNavigationId( $navId ),
+					'unserialized data expects nav id ' . $navId . ' for site ' . $site->getGlobalId()
+				);
+			}
 		}
 	}
 }

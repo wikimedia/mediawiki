@@ -4,6 +4,9 @@
  * @file
  */
 
+/**
+ * @covers CLDRPluralRuleEvaluator
+ */
 class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider validTestCases
@@ -23,7 +26,7 @@ class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 
 	function validTestCases() {
 		$tests = array(
-			# expected, number, rule, comment
+			# expected, rule, number, comment
 			array( 0, 'n is 1', 1, 'integer number and is' ),
 			array( 0, 'n is 1', "1", 'string integer number and is' ),
 			array( 0, 'n is 1', 1.0, 'float number and is' ),

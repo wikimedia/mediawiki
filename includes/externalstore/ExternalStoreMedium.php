@@ -61,9 +61,10 @@ abstract class ExternalStoreMedium {
 			// Dont return when false to allow for simpler implementations.
 			// errored urls are handled in ExternalStore::batchFetchFromURLs
 			if ( $data !== false ) {
-				$retval[$urls] = $data;
+				$retval[$url] = $data;
 			}
 		}
+
 		return $retval;
 	}
 

@@ -80,8 +80,10 @@ class ResourceFileCache extends FileCacheBase {
 			} elseif ( $query === 'debug' && $val === 'false' ) {
 				continue;
 			}
+
 			return false;
 		}
+
 		return true; // cacheable
 	}
 
@@ -104,6 +106,7 @@ class ResourceFileCache extends FileCacheBase {
 				$this->getMissesRecent() >= self::MISS_THRESHOLD // many misses
 			);
 		}
+
 		return $this->mCacheWorthy;
 	}
 }

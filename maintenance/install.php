@@ -70,10 +70,9 @@ class CommandLineInstaller extends Maintenance {
 	}
 
 	function execute() {
-		global $IP, $wgTitle;
+		global $IP;
 		$siteName = isset( $this->mArgs[0] ) ? $this->mArgs[0] : "Don't care"; // Will not be set if used with --env-checks
 		$adminName = isset( $this->mArgs[1] ) ? $this->mArgs[1] : null;
-		$wgTitle = Title::newFromText( 'Installer script' );
 
 		$dbpassfile = $this->getOption( 'dbpassfile', false );
 		if ( $dbpassfile !== false ) {

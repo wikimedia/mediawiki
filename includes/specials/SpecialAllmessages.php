@@ -345,6 +345,17 @@ class AllmessagesTablePager extends TablePager {
 			case 'am_title' :
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
 				$talk = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
+				$translation = Linker::makeExternalLink(
+					'https://translatewiki.net/w/i.php?' . wfArrayToCgi( array(
+						'title' => 'Special:SearchTranslations',
+						'group' => 'mediawiki',
+						'grouppath' => 'mediawiki',
+						'query' => 'language:' . $this->getLanguage()->getCode() . '^25 ' .
+							'messageid:"MediaWiki:' . $value . '"^10 "' .
+							$this->msg( $value )->inLanguage( 'en' )->plain() . '"'
+					) ),
+					$this->msg( 'allmessages-filter-translate' )->text()
+				);
 
 				if ( $this->mCurrentRow->am_customised ) {
 					$title = Linker::linkKnown( $title, $this->getLanguage()->lcfirst( $value ) );
@@ -369,7 +380,10 @@ class AllmessagesTablePager extends TablePager {
 					);
 				}
 
-				return $title . ' ' . $this->msg( 'parentheses' )->rawParams( $talk )->escaped();
+				return $title . ' '
+				. $this->msg( 'parentheses' )->rawParams( $talk )->escaped()
+				. ' '
+				. $this->msg( 'parentheses' )->rawParams( $translation )->escaped();
 
 			case 'am_default' :
 			case 'am_actual' :

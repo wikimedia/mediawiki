@@ -18,6 +18,7 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 	}
 }
 
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 win.redirectToFragment = function ( fragment ) {
 	var webKitVersion,
 		match = navigator.userAgent.match( /AppleWebKit\/(\d+)/ );
@@ -47,15 +48,56 @@ win.redirectToFragment = function ( fragment ) {
 		}
 	}
 };
+=======
+/**
+ * Legacy function to scroll to an id while viewing the page over a redirect.
+ * Superseeded by module 'mediawiki.action.view.redirectToFragment' in version 1.23.
+ * Kepted because cache can contain still inline script calls to this function.
+ * Should be removed in version 1.24.
+ * @deprecated since 1.23 Use mediawiki.action.view.redirectToFragment instead
+ */
+mw.log.deprecate( win, 'redirectToFragment', function ( fragment ) {
+	var webKitVersion,
+		match = navigator.userAgent.match( /AppleWebKit\/(\d+)/ );
+	if ( match ) {
+		webKitVersion = parseInt( match[1], 10 );
+		if ( webKitVersion < 420 ) {
+			// Released Safari w/ WebKit 418.9.1 messes up horribly
+			// Nightlies of 420+ are ok
+			return;
+		}
+	}
+	if ( !win.location.hash ) {
+		win.location.hash = fragment;
+
+		// Mozilla needs to wait until after load, otherwise the window doesn't
+		// scroll.  See <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
+		// There's no obvious way to detect this programmatically, so we use
+		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
+		// better twice than not at all, so make the fix hit future versions as
+		// well.
+		if ( isGecko ) {
+			$( function () {
+				if ( win.location.hash === fragment ) {
+					win.location.hash = fragment;
+				}
+			} );
+		}
+	}
+}, 'Use the module mediawiki.action.view.redirectToFragment instead.' );
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 
 /**
  * User-agent sniffing.
- * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.17 Use jquery.client instead
  */
 
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 msg = 'Use feature detection or module jquery.client instead';
+=======
+msg = 'Use feature detection or module jquery.client instead.';
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 
 mw.log.deprecate( win, 'clientPC', ua, msg );
 
@@ -82,11 +124,17 @@ mw.log.deprecate( win, 'ie6_bugs', false, msg );
 /**
  * DOM utilities for handling of events, text nodes and selecting elements
  *
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
  * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.17 Use jQuery instead
  */
 msg = 'Use jQuery instead';
+=======
+ * @deprecated since 1.17 Use jQuery instead
+ */
+msg = 'Use jQuery instead.';
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 
 // Ignored dummy values
 mw.log.deprecate( win, 'doneOnloadHook', undefined, msg );
@@ -135,6 +183,7 @@ $( win ).on( 'load', function () {
 /**
  * Toggle checkboxes with shift selection
  *
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
  * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.17 Use jquery.checkboxShiftClick instead
@@ -194,6 +243,55 @@ mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead
  * @deprecated since 1.17 Use mediawiki.util instead
  */
 msg = 'Use mediawiki.util instead';
+=======
+ * @deprecated since 1.17 Use jquery.checkboxShiftClick instead
+ */
+msg = 'Use jquery.checkboxShiftClick instead.';
+mw.log.deprecate( win, 'checkboxes', [], msg );
+mw.log.deprecate( win, 'lastCheckbox', null, msg );
+mw.log.deprecate( win, 'setupCheckboxShiftClick', $.noop, msg );
+mw.log.deprecate( win, 'addCheckboxClickHandlers', $.noop, msg );
+mw.log.deprecate( win, 'checkboxClickHandler', $.noop, msg );
+
+/**
+ * Add a button to the default editor toolbar
+ *
+ * @deprecated since 1.17 Use mw.toolbar instead
+ */
+mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead.' );
+mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead.' );
+
+/**
+ * Spinner creation, injection and removal
+ *
+ * @deprecated since 1.18 Use jquery.spinner instead
+ */
+mw.log.deprecate( win, 'injectSpinner', $.noop, 'Use jquery.spinner instead.' );
+mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead.' );
+
+/**
+ * Escape utilities
+ *
+ * @deprecated since 1.18 Use mw.html instead
+ */
+mw.log.deprecate( win, 'escapeQuotes', $.noop, 'Use mw.html instead.' );
+mw.log.deprecate( win, 'escapeQuotesHTML', $.noop, 'Use mw.html instead.' );
+
+/**
+ * Display a message to the user
+ *
+ * @deprecated since 1.17 Use mediawiki.notify instead
+ * @param {string|HTMLElement} message To be put inside the message box
+ */
+mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead.' );
+
+/**
+ * Misc. utilities
+ *
+ * @deprecated since 1.17 Use mediawiki.util instead
+ */
+msg = 'Use mediawiki.util instead.';
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
 mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
 mw.log.deprecate( win, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, msg );
@@ -226,11 +324,23 @@ win.importScriptURI = function ( url ) {
 	return s;
 };
 
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 win.importStylesheet = function( page ) {
 	return win.importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
+=======
+win.importStylesheet = function ( page ) {
+	var uri = mw.config.get( 'wgScript' ) + '?title=' +
+		mw.util.wikiUrlencode( page ) +
+		'&action=raw&ctype=text/css';
+	return win.importStylesheetURI( uri );
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 };
 
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 win.importStylesheetURI = function( url, media ) {
+=======
+win.importStylesheetURI = function ( url, media ) {
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
 	var l = document.createElement( 'link' );
 	l.rel = 'stylesheet';
 	l.href = url;

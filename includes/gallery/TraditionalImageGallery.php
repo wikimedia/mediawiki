@@ -21,8 +21,6 @@
  */
 
 class TraditionalImageGallery extends ImageGalleryBase {
-
-
 	/**
 	 * Return a HTML representation of the image gallery
 	 *
@@ -38,8 +36,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + $this->getAllPadding() );
 			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : '';
-			# _width is ignored by any sane browser. IE6 doesn't know max-width so it uses _width instead
-			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" . $oldStyle;
+			# _width is ignored by any sane browser. IE6 doesn't know max-width
+			# so it uses _width instead
+			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" .
+				$oldStyle;
 		}
 
 		$attribs = Sanitizer::mergeAttributes(
@@ -60,6 +60,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		$lang = $this->getRenderLang();
 		# Output each image...
 		foreach ( $this->mImages as $pair ) {
+			/** @var Title $nt */
 			$nt = $pair[0];
 			$text = $pair[1]; # "text" means "caption" here
 			$alt = $pair[2];
@@ -90,28 +91,31 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 			if ( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
-				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
+					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
 
 				if ( $this->mParser instanceof Parser ) {
 					$this->mParser->addTrackingCategory( 'broken-file-category' );
 				}
-			} elseif ( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
+			} elseif ( $this->mHideBadImages
+				&& wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() )
+			) {
 				# The image is blacklisted, just show it as a text link.
-				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
-					Linker::link(
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' .
+					( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
+					Linker::linkKnown(
 						$nt,
-						htmlspecialchars( $nt->getText() ),
-						array(),
-						array(),
-						array( 'known', 'noclasses' )
+						htmlspecialchars( $nt->getText() )
 					) .
 					'</div>';
 			} elseif ( !( $thumb = $img->transform( $transformOptions ) ) ) {
 				# Error generating thumbnail.
-				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' . ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
+				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
+					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
+				/** @var MediaTransformOutput $thumb */
 				$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
 
 				$imageParameters = array(
@@ -120,7 +124,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					'alt' => $alt,
 					'custom-url-link' => $link
 				);
-				# In the absence of both alt text and caption, fall back on providing screen readers with the filename as alt text
+
+				// In the absence of both alt text and caption, fall back on
+				// providing screen readers with the filename as alt text
 				if ( $alt == '' && $text == '' ) {
 					$imageParameters['alt'] = $nt->getText();
 				}
@@ -128,22 +134,27 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				$this->adjustImageParameters( $thumb, $imageParameters );
 
 				# Set both fixed width and min-height.
-				$thumbhtml = "\n\t\t\t" .
-					'<div class="thumb" style="width: ' . $this->getThumbDivWidth( $thumb->getWidth() ) . 'px;">'
-					# Auto-margin centering for block-level elements. Needed now that we have video
-					# handlers since they may emit block-level elements as opposed to simple <img> tags.
-					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
+				$thumbhtml = "\n\t\t\t"
+					. '<div class="thumb" style="width: '
+					. $this->getThumbDivWidth( $thumb->getWidth() ) . 'px;">'
+					# Auto-margin centering for block-level elements. Needed
+					# now that we have video handlers since they may emit block-
+					# level elements as opposed to simple <img> tags. ref
+					# http://css-discuss.incutio.com/?page=CenteringBlockElement
 					. '<div style="margin:' . $vpad . 'px auto;">'
 					. $thumb->toHtml( $imageParameters ) . '</div></div>';
 
 				// Call parser transform hook
-				if ( $this->mParser && $img->getHandler() ) {
-					$img->getHandler()->parserTransformHook( $this->mParser, $img );
+				/** @var MediaHandler $handler */
+				$handler = $img->getHandler();
+				if ( $this->mParser && $handler ) {
+					$handler->parserTransformHook( $this->mParser, $img );
 				}
 			}
 
-			//TODO
-			// $linkTarget = Title::newFromText( $wgContLang->getNsText( MWNamespace::getUser() ) . ":{$ut}" );
+			// @todo Code is incomplete.
+			// $linkTarget = Title::newFromText( $wgContLang->getNsText( MWNamespace::getUser() ) .
+			// ":{$ut}" );
 			// $ul = Linker::link( $linkTarget, $ut );
 
 			if ( $this->mShowBytes ) {
@@ -158,48 +169,46 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			}
 
 			$textlink = $this->mShowFilename ?
-				Linker::link(
+				Linker::linkKnown(
 					$nt,
-					htmlspecialchars( $lang->truncate( $nt->getText(), $this->mCaptionLength ) ),
-					array(),
-					array(),
-					array( 'known', 'noclasses' )
+					htmlspecialchars( $lang->truncate( $nt->getText(), $this->mCaptionLength ) )
 				) . "<br />\n" :
 				'';
-
 
 			$galleryText = $textlink . $text . $fileSize;
 			$galleryText = $this->wrapGalleryText( $galleryText, $thumb );
 
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existence
-			$output .=
-				"\n\t\t" . '<li class="gallerybox" style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
-					. '<div style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
-					. $thumbhtml
-					. $galleryText
-					. "\n\t\t</div></li>";
+			$output .= "\n\t\t" . '<li class="gallerybox" style="width: '
+				. $this->getGBWidth( $thumb ) . 'px">'
+				. '<div style="width: ' . $this->getGBWidth( $thumb ) . 'px">'
+				. $thumbhtml
+				. $galleryText
+				. "\n\t\t</div></li>";
 		}
 		$output .= "\n</ul>";
 
 		return $output;
 	}
 
-
 	/**
 	 * Add the wrapper html around the thumb's caption
 	 *
-	 * @param String $galleryText The caption
-	 * @param MediaTransformOutput|boolean $thumb The thumb this caption is for or false for bad image.
+	 * @param string $galleryText The caption
+	 * @param MediaTransformOutput|bool $thumb The thumb this caption is for
+	 *   or false for bad image.
+	 * @return string
 	 */
 	protected function wrapGalleryText( $galleryText, $thumb ) {
-		# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
-		# in version 4.8.6 generated crackpot html in its absence, see:
-		# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
+		# ATTENTION: The newline after <div class="gallerytext"> is needed to
+		# accommodate htmltidy which in version 4.8.6 generated crackpot html in
+		# its absence, see: http://bugzilla.wikimedia.org/show_bug.cgi?id=1765
+		# -Ævar
 
 		return "\n\t\t\t" . '<div class="gallerytext">' . "\n"
-					. $galleryText
-					. "\n\t\t\t</div>";
+			. $galleryText
+			. "\n\t\t\t</div>";
 	}
 
 	/**
@@ -213,7 +222,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	}
 
 	/**
-	 *
 	 * @note GB stands for gallerybox (as in the <li class="gallerybox"> element)
 	 *
 	 * @return int
@@ -236,7 +244,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	/**
 	 * Get total padding.
 	 *
-	 * @return int How many pixels of whitespace surround the thumbnail.
+	 * @return int Number of pixels of whitespace surrounding the thumbnail.
 	 */
 	protected function getAllPadding() {
 		return $this->getThumbPadding() + $this->getGBPadding() + $this->getGBBorders();
@@ -249,7 +257,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 *
 	 * @param int $boxHeight How high we want the box to be.
 	 * @param int $thumbHeight How high the thumbnail is.
-	 * @return int How many vertical padding to add on each side.
+	 * @return int Vertical padding to add on each side.
 	 */
 	protected function getVPad( $boxHeight, $thumbHeight ) {
 		return ( $this->getThumbPadding() + $boxHeight - $thumbHeight ) / 2;
@@ -259,6 +267,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * Get the transform parameters for a thumbnail.
 	 *
 	 * @param File $img The file in question. May be false for invalid image
+	 * @return array
 	 */
 	protected function getThumbParams( $img ) {
 		return array(
@@ -285,8 +294,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * plus padding on gallerybox.
 	 *
 	 * @note Important: parameter will be false if no thumb used.
-	 * @param Mixed $thumb MediaTransformObject object or false.
-	 * @return int width of gallerybox element
+	 * @param MediaTransformOutput|bool $thumb MediaTransformObject object or false.
+	 * @return int Width of gallerybox element
 	 */
 	protected function getGBWidth( $thumb ) {
 		return $this->mWidths + $this->getThumbPadding() + $this->getGBPadding();
@@ -297,7 +306,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 *
 	 * Primarily intended for subclasses.
 	 *
-	 * @return Array modules to include
+	 * @return array Modules to include
 	 */
 	protected function getModules() {
 		return array();
@@ -308,9 +317,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 *
 	 * Used by a subclass to insert extra high resolution images.
 	 * @param MediaTransformOutput $thumb The thumbnail
-	 * @param Array $imageParameters Array of options
+	 * @param array $imageParameters Array of options
 	 */
-	protected function adjustImageParameters( $thumb, &$imageParameters ) { }
+	protected function adjustImageParameters( $thumb, &$imageParameters ) {
+	}
 }
 
 /**

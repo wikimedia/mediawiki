@@ -115,6 +115,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		if ( !$fit ) {
 			$this->setContinueEnumParameter( 'continue', $page );
 		}
+
 		return $fit;
 	}
 
@@ -134,12 +135,13 @@ class ApiQueryPageProps extends ApiQueryBase {
 	public function getParamDescription() {
 		return array(
 			'continue' => 'When more results are available, use this to continue',
-			'prop' => 'Only list these props. Useful for checking whether a certain page uses a certain page prop',
+			'prop' => 'Only list these props. Useful for checking whether a ' .
+				'certain page uses a certain page prop',
 		);
 	}
 
 	public function getDescription() {
-		return 'Get various properties defined in the page content';
+		return 'Get various properties defined in the page content.';
 	}
 
 	public function getExamples() {

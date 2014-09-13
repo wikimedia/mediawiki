@@ -4,9 +4,9 @@
  *
  * @group Database
  * @group Dump
+ * @covers BackupDumper
  */
 class BackupDumperLoggerTest extends DumpTestCase {
-
 
 	// We'll add several log entries and users for this test. The following
 	// variables hold the corresponding ids.
@@ -83,7 +83,6 @@ class BackupDumperLoggerTest extends DumpTestCase {
 			$this->exceptionFromAddDBData = $e;
 		}
 	}
-
 
 	/**
 	 * asserts that the xml reader is at the beginning of a log entry and skips over

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Rk_kaul (on ks.wikipedia.org)
+ * @author VibhasKS
  */
 
 $namespaceNames = array(
@@ -42,10 +43,3 @@ $digitTransformTable = array(
 	'9' => '९', # &#x096f;
 );
 
-$messages = array(
-'help' => 'मदद',
-
-# Recent changes
-'recentchanges' => 'नवि तबदीली',
-
-);

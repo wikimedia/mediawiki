@@ -64,7 +64,7 @@ class HashBagOStuff extends BagOStuff {
 			return false;
 		}
 
-		$casToken = $this->bag[$key][0];
+		$casToken = serialize( $this->bag[$key][0] );
 
 		return $this->bag[$key][0];
 	}
@@ -88,7 +88,7 @@ class HashBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	function cas( $casToken, $key, $value, $exptime = 0 ) {
-		if ( $this->get( $key ) === $casToken ) {
+		if ( serialize( $this->get( $key ) ) === $casToken ) {
 			return $this->set( $key, $value, $exptime );
 		}
 

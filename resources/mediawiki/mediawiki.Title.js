@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 /*!
  * @author Neil Kandalgaonkar, 2010
  * @author Timo Tijhof, 2011-2013
@@ -585,3 +586,5 @@
 	mw.Title = Title;
 
 }( mediaWiki, jQuery ) );
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)

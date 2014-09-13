@@ -97,7 +97,7 @@ class SpecialBlockList extends SpecialPage {
 			),
 		);
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = new HTMLForm( $fields, $context );
 		$form->setMethod( 'get' );
 		$form->setWrapperLegendMsg( 'ipblocklist-legend' );
@@ -230,7 +230,7 @@ class BlockListPager extends TablePager {
 	function getFieldNames() {
 		static $headers = null;
 
-		if ( $headers == array() ) {
+		if ( $headers === null ) {
 			$headers = array(
 				'ipb_timestamp' => 'blocklist-timestamp',
 				'ipb_target' => 'blocklist-target',
@@ -455,8 +455,6 @@ class BlockListPager extends TablePager {
 
 /**
  * Items per page dropdown. Essentially a crap workaround for bug 32603.
- *
- * @todo Do not release 1.19 with this.
  */
 class HTMLBlockedUsersItemSelect extends HTMLSelectField {
 	/**

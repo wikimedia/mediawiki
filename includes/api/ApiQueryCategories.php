@@ -98,8 +98,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) ) {
 			$this->dieUsageMsg( 'show' );
 		}
-		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) )
-		{
+		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) ) {
 			$this->addOption( 'STRAIGHT_JOIN' );
 			$this->addTables( array( 'page', 'page_props' ) );
 			$this->addFieldsIf( 'pp_propname', isset( $prop['hidden'] ) );
@@ -126,9 +125,9 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			$this->addOption( 'ORDER BY', 'cl_to' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', array(
-						'cl_from' . $sort,
-						'cl_to' . $sort
-			));
+				'cl_from' . $sort,
+				'cl_to' . $sort
+			) );
 		}
 
 		$res = $this->select( __METHOD__ );
@@ -221,14 +220,16 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		return array(
 			'prop' => array(
 				'Which additional properties to get for each category',
-				' sortkey    - Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category',
+				' sortkey    - Adds the sortkey (hexadecimal string) and sortkey prefix',
+				'              (human-readable part) for the category',
 				' timestamp  - Adds timestamp of when the category was added',
 				' hidden     - Tags categories that are hidden with __HIDDENCAT__',
 			),
 			'limit' => 'How many categories to return',
 			'show' => 'Which kind of categories to show',
 			'continue' => 'When more results are available, use this to continue',
-			'categories' => 'Only list these categories. Useful for checking whether a certain page is in a certain category',
+			'categories' => 'Only list these categories. Useful for checking ' .
+				'whether a certain page is in a certain category',
 			'dir' => 'The direction in which to list',
 		);
 	}
@@ -253,7 +254,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all categories the page(s) belong to';
+		return 'List all categories the page(s) belong to.';
 	}
 
 	public function getPossibleErrors() {
@@ -264,8 +265,10 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=categories&titles=Albert%20Einstein' => 'Get a list of categories [[Albert Einstein]] belongs to',
-			'api.php?action=query&generator=categories&titles=Albert%20Einstein&prop=info' => 'Get information about all categories used in the [[Albert Einstein]]',
+			'api.php?action=query&prop=categories&titles=Albert%20Einstein'
+				=> 'Get a list of categories [[Albert Einstein]] belongs to',
+			'api.php?action=query&generator=categories&titles=Albert%20Einstein&prop=info'
+				=> 'Get information about all categories used in the [[Albert Einstein]]',
 		);
 	}
 

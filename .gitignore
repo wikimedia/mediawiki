@@ -47,6 +47,9 @@ node_modules/
 /composer.lock
 /composer.json
 
+# MediaWiki UI documentation
+/docs/kss/static
+
 # Operating systems
 ## Mac OS X
 .DS_Store
@@ -62,3 +65,5 @@ Thumbs.db
 /favicon.ico
 /static*
 /tags
+/.htaccess
+/.htpasswd

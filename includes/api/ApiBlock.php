@@ -55,8 +55,11 @@ class ApiBlock extends ApiBase {
 		}
 
 		$target = User::newFromName( $params['user'] );
-		// Bug 38633 - if the target is a user (not an IP address), but it doesn't exist or is unusable, error.
-		if ( $target instanceof User && ( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) ) ) {
+		// Bug 38633 - if the target is a user (not an IP address), but it
+		// doesn't exist or is unusable, error.
+		if ( $target instanceof User &&
+			( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
+		) {
 			$this->dieUsageMsg( array( 'nosuchuser', $params['user'] ) );
 		}
 
@@ -167,14 +170,18 @@ class ApiBlock extends ApiBase {
 		return array(
 			'user' => 'Username, IP address or IP range you want to block',
 			'token' => 'A block token previously obtained through prop=info',
-			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
+			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. ' .
+				'If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
 			'reason' => 'Reason for block',
 			'anononly' => 'Block anonymous users only (i.e. disable anonymous edits for this IP)',
 			'nocreate' => 'Prevent account creation',
-			'autoblock' => 'Automatically block the last used IP address, and any subsequent IP addresses they try to login from',
-			'noemail' => 'Prevent user from sending email through the wiki. (Requires the "blockemail" right.)',
+			'autoblock' => 'Automatically block the last used IP address, and ' .
+				'any subsequent IP addresses they try to login from',
+			'noemail'
+				=> 'Prevent user from sending email through the wiki. (Requires the "blockemail" right.)',
 			'hidename' => 'Hide the username from the block log. (Requires the "hideuser" right.)',
-			'allowusertalk' => 'Allow the user to edit their own talk page (depends on $wgBlockAllowsUTEdit)',
+			'allowusertalk'
+				=> 'Allow the user to edit their own talk page (depends on $wgBlockAllowsUTEdit)',
 			'reblock' => 'If the user is already blocked, overwrite the existing block',
 			'watchuser' => 'Watch the user/IP\'s user and talk pages',
 		);
@@ -215,7 +222,7 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Block a user';
+		return 'Block a user.';
 	}
 
 	public function getPossibleErrors() {

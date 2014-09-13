@@ -5,7 +5,7 @@
  * We implement below the simple task of searching inside a dump.
  *
  * Copyright © 2011 Platonides
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -97,7 +97,7 @@ abstract class DumpIterator extends Maintenance {
 		if ( $this->getDbType() == Maintenance::DB_NONE ) {
 			global $wgUseDatabaseMessages, $wgLocalisationCacheConf, $wgHooks;
 			$wgUseDatabaseMessages = false;
-			$wgLocalisationCacheConf['storeClass'] = 'LCStore_Null';
+			$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
 			$wgHooks['InterwikiLoadPrefix'][] = 'DumpIterator::disableInterwikis';
 		}
 	}

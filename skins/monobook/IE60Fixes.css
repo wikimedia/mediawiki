@@ -36,6 +36,16 @@ div#footer {
 	border-right: 1px solid #fabd23;
 }
 
+/* float/negative margin brokenness */
+* html div#footer {
+	margin-top: 0;
+}
+
+* html div#column-content {
+	display: inline;
+	margin-bottom: 0;
+}
+
 /* the tabs */
 
 #p-cactions {

@@ -1,0 +1,18 @@
+{
+    "@metadata": {
+        "authors": [
+            "BRUTE",
+            "David1010",
+            "Gleki",
+            "ITshnik",
+            "MIKHEIL",
+            "NoiX180",
+            "Pras",
+            "Tokoko"
+        ]
+    },
+    "ooui-dialog-action-close": "დახურვა",
+    "ooui-outline-control-move-down": "ელემენტის ქვემოთ გადატანა",
+    "ooui-outline-control-move-up": "ელემენტის ზემოთ გადატანა",
+    "ooui-toolbar-more": "მეტი"
+}

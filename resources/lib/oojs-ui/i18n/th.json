@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "Supasate",
+            "Taweetham"
+        ]
+    },
+    "ooui-dialog-action-close": "ปิด",
+    "ooui-outline-control-move-down": "เลื่อนรายการลง",
+    "ooui-outline-control-move-up": "ย้ายรายการขึ้น"
+}

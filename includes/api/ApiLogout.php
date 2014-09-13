@@ -59,7 +59,7 @@ class ApiLogout extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Log out and clear session data';
+		return 'Log out and clear session data.';
 	}
 
 	public function getExamples() {

@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 /**
  * Change multi-page image navigation so that the current page display can be changed
  * without a page reload. Currently, the only image formats that can be multi-page images are
@@ -58,3 +59,5 @@
 		}
 	} );
 }( mediaWiki, jQuery ) );
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)

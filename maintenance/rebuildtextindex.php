@@ -50,8 +50,6 @@ class RebuildTextIndex extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle;
-
 		// Shouldn't be needed for Postgres
 		$this->db = wfGetDB( DB_MASTER );
 		if ( $this->db->getType() == 'postgres' ) {
@@ -67,8 +65,6 @@ class RebuildTextIndex extends Maintenance {
 				$this->error( "Your database schema is not configured for full-text search support. Run update.php.\n", true );
 			}
 		}
-
-		$wgTitle = Title::newFromText( "Rebuild text index script" );
 
 		if ( $this->db->getType() == 'mysql' ) {
 			$this->dropMysqlTextIndex();

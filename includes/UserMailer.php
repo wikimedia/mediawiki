@@ -120,6 +120,8 @@ class UserMailer {
 	static function arrayToHeaderString( $headers, $endl = "\n" ) {
 		$strings = array();
 		foreach ( $headers as $name => $value ) {
+			// Prevent header injection by stripping newlines from value
+			$value = self::sanitizeHeaderValue( $value );
 			$strings[] = "$name: $value";
 		}
 		return implode( $endl, $strings );
@@ -260,8 +262,7 @@ class UserMailer {
 				wfDebug( "PEAR Mail_Mime package is not installed. Falling back to text email.\n" );
 				// remove the html body for text email fall back
 				$body = $body['text'];
-			}
-			else {
+			} else {
 				require_once 'Mail/mime.php';
 				if ( wfIsWindows() ) {
 					$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
@@ -274,7 +275,7 @@ class UserMailer {
 				$headers = $mime->headers( $headers );
 			}
 		}
-		if ( !isset( $mime ) ) {
+		if ( $mime === null ) {
 			// sending text only, either deliberately or as a fallback
 			if ( wfIsWindows() ) {
 				$body = str_replace( "\n", "\r\n", $body );
@@ -352,14 +353,19 @@ class UserMailer {
 			ini_set( 'html_errors', '0' );
 			set_error_handler( 'UserMailer::errorHandler' );
 
-			$safeMode = wfIniGetBool( 'safe_mode' );
+			try {
+				$safeMode = wfIniGetBool( 'safe_mode' );
 
-			foreach ( $to as $recip ) {
-				if ( $safeMode ) {
-					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
-				} else {
-					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
+				foreach ( $to as $recip ) {
+					if ( $safeMode ) {
+						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
+					} else {
+						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
+					}
 				}
+			} catch ( Exception $e ) {
+				restore_error_handler();
+				throw $e;
 			}
 
 			restore_error_handler();
@@ -389,12 +395,24 @@ class UserMailer {
 	}
 
 	/**
+	 * Strips bad characters from a header value to prevent PHP mail header injection attacks
+	 * @param string $val String to be santizied
+	 * @return string
+	 */
+	public static function sanitizeHeaderValue( $val ) {
+		return strtr( $val, array( "\r" => '', "\n" => '' ) );
+	}
+
+	/**
 	 * Converts a string into a valid RFC 822 "phrase", such as is used for the sender name
 	 * @param $phrase string
 	 * @return string
 	 */
 	public static function rfc822Phrase( $phrase ) {
-		$phrase = strtr( $phrase, array( "\r" => '', "\n" => '', '"' => '' ) );
+		// Remove line breaks
+		$phrase = self::sanitizeHeaderValue( $phrase );
+		// Remove quotes
+		$phrase = str_replace( '"', '', $phrase );
 		return '"' . $phrase . '"';
 	}
 
@@ -625,12 +643,14 @@ class EmailNotification {
 				// Send updates to watchers other than the current editor
 				$userArray = UserArray::newFromIDs( $watchers );
 				foreach ( $userArray as $watchingUser ) {
-					if ( $watchingUser->getOption( 'enotifwatchlistpages' ) &&
-						( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) ) &&
-						$watchingUser->isEmailConfirmed() &&
-						$watchingUser->getID() != $userTalkId )
-					{
-						$this->compose( $watchingUser );
+					if ( $watchingUser->getOption( 'enotifwatchlistpages' )
+						&& ( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) )
+						&& $watchingUser->isEmailConfirmed()
+						&& $watchingUser->getID() != $userTalkId
+					) {
+						if ( wfRunHooks( 'SendWatchlistEmailNotification', array( $watchingUser, $title, $this ) ) ) {
+							$this->compose( $watchingUser );
+						}
 					}
 				}
 			}
@@ -667,9 +687,9 @@ class EmailNotification {
 				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
 			} elseif ( $targetUser->getId() == $editor->getId() ) {
 				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
-			} elseif ( $targetUser->getOption( 'enotifusertalkpages' ) &&
-				( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) ) )
-			{
+			} elseif ( $targetUser->getOption( 'enotifusertalkpages' )
+				&& ( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) )
+			) {
 				if ( !$targetUser->isEmailConfirmed() ) {
 					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
 				} elseif ( !wfRunHooks( 'AbortTalkPageEmailNotification', array( $targetUser, $title ) ) ) {
@@ -689,7 +709,7 @@ class EmailNotification {
 	 * Generate the generic "this page has been changed" e-mail text.
 	 */
 	private function composeCommonMailtext() {
-		global $wgPasswordSender, $wgPasswordSenderName, $wgNoReplyAddress;
+		global $wgPasswordSender, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
 		global $wgEnotifImpersonal, $wgEnotifUseRealName;
 
@@ -718,13 +738,13 @@ class EmailNotification {
 					->inContentLanguage()->text();
 			}
 			$keys['$OLDID'] = $this->oldid;
-			// @deprecated Remove in MediaWiki 1.23.
+			// Deprecated since MediaWiki 1.21, not used by default. Kept for backwards-compatibility.
 			$keys['$CHANGEDORCREATED'] = wfMessage( 'changed' )->inContentLanguage()->text();
 		} else {
 			# clear $OLDID placeholder in the message template
 			$keys['$OLDID'] = '';
 			$keys['$NEWPAGE'] = '';
-			// @deprecated Remove in MediaWiki 1.23.
+			// Deprecated since MediaWiki 1.21, not used by default. Kept for backwards-compatibility.
 			$keys['$CHANGEDORCREATED'] = wfMessage( 'created' )->inContentLanguage()->text();
 		}
 
@@ -775,11 +795,12 @@ class EmailNotification {
 		# Reveal the page editor's address as REPLY-TO address only if
 		# the user has not opted-out and the option is enabled at the
 		# global configuration level.
-		$adminAddress = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
+		$adminAddress = new MailAddress( $wgPasswordSender,
+			wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		if ( $wgEnotifRevealEditorAddress
 			&& ( $this->editor->getEmail() != '' )
-			&& $this->editor->getOption( 'enotifrevealaddr' ) )
-		{
+			&& $this->editor->getOption( 'enotifrevealaddr' )
+		) {
 			$editorAddress = new MailAddress( $this->editor );
 			if ( $wgEnotifFromEditor ) {
 				$this->from = $editorAddress;

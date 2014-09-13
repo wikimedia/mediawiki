@@ -24,13 +24,14 @@
 			} );
 		} );
 
-		// if we haven't already bound our resize hanlder, bind it now
+		// if we haven't already bound our resize handler, bind it now
 		if ( !$.collapsibleTabs.boundEvent ) {
-			$( window )
-				.delayedBind( 500, 'resize', function () {
-					$.collapsibleTabs.handleResize();
-				} );
+			$( window ).on( 'resize', $.debounce( 500, function () {
+				$.collapsibleTabs.handleResize();
+			} ) );
+			$.collapsibleTabs.boundEvent = true;
 		}
+
 		// call our resize handler to setup the page
 		$.collapsibleTabs.handleResize();
 		return this;
@@ -72,8 +73,10 @@
 			collapsible: 'li.collapsible',
 			shifting: false,
 			expandCondition: function ( eleWidth ) {
-				// If there's at least eleWidth pixels free space, expand.
-				return calculateTabDistance() >= eleWidth;
+				// If there are at least eleWidth + 1 pixels of free space, expand.
+				// We add 1 because .width() will truncate fractional values
+				// but .offset() will not.
+				return calculateTabDistance() >= (eleWidth + 1);
 			},
 			collapseCondition: function () {
 				// If there's an overlap, collapse.
@@ -82,7 +85,7 @@
 		},
 		addData: function ( $collapsible ) {
 			var $settings = $collapsible.parent().data( 'collapsibleTabsSettings' );
-			if ( $settings !== null ) {
+			if ( $settings ) {
 				$collapsible.data( 'collapsibleTabsSettings', {
 					expandedContainer: $settings.expandedContainer,
 					collapsedContainer: $settings.collapsedContainer,
@@ -93,15 +96,12 @@
 		},
 		getSettings: function ( $collapsible ) {
 			var $settings = $collapsible.data( 'collapsibleTabsSettings' );
-			if ( $settings === undefined ) {
+			if ( !$settings ) {
 				$.collapsibleTabs.addData( $collapsible );
 				$settings = $collapsible.data( 'collapsibleTabsSettings' );
 			}
 			return $settings;
 		},
-		/**
-		 * @param {jQuery.Event} e
-		 */
 		handleResize: function () {
 			$.collapsibleTabs.instances.each( function () {
 				var $el = $( this ),
@@ -132,21 +132,21 @@
 			} );
 		},
 		moveToCollapsed: function ( ele ) {
-			var data, expContainerSettings, target,
+			var outerData, expContainerSettings, target,
 				$moving = $( ele );
 
-			data = $.collapsibleTabs.getSettings( $moving );
-			if ( !data ) {
+			outerData = $.collapsibleTabs.getSettings( $moving );
+			if ( !outerData ) {
 				return;
 			}
-			expContainerSettings = $.collapsibleTabs.getSettings( $( data.expandedContainer ) );
+			expContainerSettings = $.collapsibleTabs.getSettings( $( outerData.expandedContainer ) );
 			if ( !expContainerSettings ) {
 				return;
 			}
 			expContainerSettings.shifting = true;
 
 			// Remove the element from where it's at and put it in the dropdown menu
-			target = data.collapsedContainer;
+			target = outerData.collapsedContainer;
 			$moving.css( 'position', 'relative' )
 				.css( ( rtl ? 'left' : 'right' ), 0 )
 				.animate( { width: '1px' }, 'normal', function () {
@@ -154,9 +154,7 @@
 					$( this ).hide();
 					// add the placeholder
 					$( '<span class="placeholder" style="display: none;"></span>' ).insertAfter( this );
-					// XXX: 'data' is undefined here, should the 'data' from the outer scope have
-					// a different name?
-					$( this ).detach().prependTo( target ).data( 'collapsibleTabsSettings', data );
+					$( this ).detach().prependTo( target ).data( 'collapsibleTabsSettings', outerData );
 					$( this ).attr( 'style', 'display: list-item;' );
 					data = $.collapsibleTabs.getSettings( $( ele ) );
 					if ( data ) {

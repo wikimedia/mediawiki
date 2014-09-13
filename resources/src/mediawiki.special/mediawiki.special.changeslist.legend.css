@@ -1,0 +1,29 @@
+/**
+ * Styling for changes list legend
+ */
+
+.mw-changeslist-legend {
+	float: right;
+	margin-left: 1em;
+	margin-bottom: 0.5em;
+	clear: right;
+	font-size: 85%;
+	line-height: 1.2em;
+	padding: 0.5em;
+	border: 1px solid #ddd;
+}
+
+.mw-changeslist-legend dl {
+	/* Parent element defines sufficient padding */
+	margin-bottom: 0;
+}
+
+.mw-changeslist-legend dt {
+	float: left;
+	margin-right: 0.5em;
+}
+
+.mw-changeslist-legend dd {
+	margin-left: 1.5em;
+	line-height: 1.3em;
+}

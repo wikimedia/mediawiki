@@ -158,7 +158,8 @@ class GenerateCollationData extends Maintenance {
 		// people like to use that as a fake no header symbol.
 		$category = substr( $data['gc'], 0, 1 );
 		if ( strpos( 'LNPS', $category ) === false
-			&& $data['cp'] !== '0020' ) {
+			&& $data['cp'] !== '0020'
+		) {
 			return;
 		}
 		$cp = hexdec( $data['cp'] );
@@ -178,8 +179,8 @@ class GenerateCollationData extends Maintenance {
 		// Calculate implicit weight per UTS #10 v6.0.0, sec 7.1.3
 		if ( $data['UIdeo'] === 'Y' ) {
 			if ( $data['block'] == 'CJK Unified Ideographs'
-				|| $data['block'] == 'CJK Compatibility Ideographs' )
-			{
+				|| $data['block'] == 'CJK Compatibility Ideographs'
+			) {
 				$base = 0xFB40;
 			} else {
 				$base = 0xFB80;
@@ -248,8 +249,8 @@ class GenerateCollationData extends Maintenance {
 			}
 			$this->weights[$cp] = $primary;
 			if ( $tertiary === '.0008'
-				|| $tertiary === '.000E' )
-			{
+				|| $tertiary === '.000E'
+			) {
 				$goodTertiaryChars[$cp] = true;
 			}
 		}
@@ -325,7 +326,7 @@ class GenerateCollationData extends Maintenance {
 			$char = codepointToUtf8( $cp );
 			$headerChars[] = $char;
 			if ( $primaryCollator->compare( $char, $prevChar ) <= 0 ) {
-				$numOutOfOrder ++;
+				$numOutOfOrder++;
 				/*
 				printf( "Out of order: U+%05X > U+%05X\n",
 					utf8ToCodepoint( $prevChar ),
@@ -390,6 +391,7 @@ class UcdXmlReader {
 		}
 		while ( $this->xml->name !== 'ucd' && $this->xml->read() );
 		$this->xml->read();
+
 		return $this->xml;
 	}
 
@@ -403,6 +405,7 @@ class UcdXmlReader {
 		while ( $this->xml->moveToNextAttribute() ) {
 			$attrs[$this->xml->name] = $this->xml->value;
 		}
+
 		return $attrs;
 	}
 
@@ -460,9 +463,9 @@ class UcdXmlReader {
 			}
 		}
 		$xml->close();
+
 		return $this->blocks;
 	}
-
 }
 
 $maintClass = 'GenerateCollationData';

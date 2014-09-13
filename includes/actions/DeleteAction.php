@@ -43,7 +43,5 @@ class DeleteAction extends FormlessAction {
 	public function show() {
 
 		$this->page->delete();
-
 	}
-
 }

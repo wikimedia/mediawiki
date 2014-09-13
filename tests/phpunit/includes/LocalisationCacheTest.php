@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers LocalisationCache
+ */
 class LocalisationCacheTest extends MediaWikiTestCase {
 	public function testPuralRulesFallback() {
 		$cache = Language::getLocalisationCache();

@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (304fd6 Merge remote-tracking branch 'origin/REL1_22' into fundraisi)
 /**
  * Animate watch/unwatch links to use asynchronous API requests to
  * watch pages, rather than navigating to a different URI.
@@ -176,3 +177,5 @@
 	} );
 
 }( mediaWiki, jQuery ) );
+=======
+>>>>>>> BRANCH (f3d821 Updated release notes and version number to MediaWiki 1.23.3)
