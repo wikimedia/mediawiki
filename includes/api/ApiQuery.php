@@ -247,6 +247,16 @@ class ApiQuery extends ApiBase {
 	public function execute() {
 		$this->mParams = $this->extractRequestParams();
 
+		if ( $this->mParams['continue'] === null && !$this->mParams['rawcontinue'] ) {
+			$this->logFeatureUsage( 'action=query&!rawcontinue&!continue' );
+			$this->setWarning(
+				'Formatting of continuation data will be changing soon. ' .
+				'To continue using the current formatting, use the \'rawcontinue\' parameter. ' .
+				'To begin using the new format, pass an empty string for \'continue\' ' .
+				'in the initial query.'
+			);
+		}
+
 		// Instantiate requested modules
 		$allModules = array();
 		$this->instantiateModules( $allModules, 'prop' );
