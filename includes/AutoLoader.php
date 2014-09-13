@@ -68,7 +68,6 @@ $wgAutoloadLocalClasses = array(
 	'DumpOutput' => 'includes/Export.php',
 	'DumpPipeOutput' => 'includes/Export.php',
 	'EditPage' => 'includes/EditPage.php',
-	'EmailNotification' => 'includes/UserMailer.php',
 	'EmptyBloomCache' => 'includes/cache/bloom/BloomCache.php',
 	'Fallback' => 'includes/Fallback.php',
 	'FauxRequest' => 'includes/WebRequest.php',
@@ -122,7 +121,6 @@ $wgAutoloadLocalClasses = array(
 	'LinkFilter' => 'includes/LinkFilter.php',
 	'MagicWord' => 'includes/MagicWord.php',
 	'MagicWordArray' => 'includes/MagicWord.php',
-	'MailAddress' => 'includes/UserMailer.php',
 	'MediaWiki' => 'includes/MediaWiki.php',
 	'MediaWikiVersionFetcher' => 'includes/MediaWikiVersionFetcher.php',
 	'Message' => 'includes/Message.php',
@@ -175,7 +173,6 @@ $wgAutoloadLocalClasses = array(
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',
 	'UserArrayFromResult' => 'includes/UserArrayFromResult.php',
-	'UserMailer' => 'includes/UserMailer.php',
 	'UserRightsProxy' => 'includes/UserRightsProxy.php',
 	'WatchedItem' => 'includes/WatchedItem.php',
 	'WebRequest' => 'includes/WebRequest.php',
@@ -723,6 +720,11 @@ $wgAutoloadLocalClasses = array(
 	'PackedImageGallery' => 'includes/gallery/PackedImageGallery.php',
 	'PackedHoverImageGallery' => 'includes/gallery/PackedOverlayImageGallery.php',
 	'PackedOverlayImageGallery' => 'includes/gallery/PackedOverlayImageGallery.php',
+
+	# includes/mail
+	'EmailNotification' => 'includes/mail/EmailNotification.php',
+	'MailAddress' => 'includes/mail/MailAddress.php',
+	'UserMailer' => 'includes/mail/UserMailer.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
