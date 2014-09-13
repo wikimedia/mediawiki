@@ -19,17 +19,6 @@
 	background-image: url(@url);
 }
 
-/* Caution: Does not support localisable images */
-
-.list-style-image(@url) when (embeddable(@url)) {
-	list-style-image: embed(@url);
-	list-style-image: url(@url)!ie;
-}
-
-.list-style-image(@url) when not (embeddable(@url)) {
-	list-style-image: url(@url);
-}
-
 .vertical-gradient(@startColor: gray, @endColor: white, @startPos: 0, @endPos: 100%) {
 	background-color: @endColor;
 	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Firefox 3.6+
@@ -61,29 +50,14 @@
 	background-image: linear-gradient(transparent, transparent), url(@svg);
 }
 
-/*
- * Caution: Does not support localisable images
- *
- * SVG support using a transparent gradient to guarantee cross-browser
- * compatibility (browsers able to understand gradient syntax support also SVG).
- * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
- *
- * We use gzip compression, which means that it is okay to embed twice.
- *
- * We do not embed the fallback image on the assumption that the gain for old browsers
- * is not worth the harm done to modern ones.
- */
-.list-style-image-svg(@svg, @fallback) when (embeddable(@svg)) {
-	list-style-image: url(@fallback);
-	/* We don't need the !ie hack because this old IE uses the fallback already */
-	list-style-image: -webkit-linear-gradient(transparent, transparent), embed(@svg);
-	list-style-image: linear-gradient(transparent, transparent), embed(@svg);
+/* Caution: Does not support localisable images */
+.list-style-image(@url) when (embeddable(@url)) {
+	list-style-image: embed(@url);
+	list-style-image: url(@url)!ie;
 }
 
-.list-style-image-svg(@svg, @fallback) when not (embeddable(@svg)) {
-	list-style-image: url(@fallback);
-	list-style-image: -webkit-linear-gradient(transparent, transparent), url(@svg);
-	list-style-image: linear-gradient(transparent, transparent), url(@svg);
+.list-style-image(@url) when not (embeddable(@url)) {
+	list-style-image: url(@url);
 }
 
 .transition(@value) {
