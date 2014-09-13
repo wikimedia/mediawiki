@@ -310,8 +310,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return $context->msg( $target . 'text' )->parseAsBlock();
 		}
 
-		$to = new MailAddress( $target );
-		$from = new MailAddress( $context->getUser() );
+		$to = MailAddress::newFromUser( $target );
+		$from = MailAddress::newFromUser( $context->getUser() );
 		$subject = $data['Subject'];
 		$text = $data['Text'];
 

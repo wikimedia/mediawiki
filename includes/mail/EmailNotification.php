@@ -389,7 +389,7 @@ class EmailNotification {
 			&& ( $this->editor->getEmail() != '' )
 			&& $this->editor->getOption( 'enotifrevealaddr' )
 		) {
-			$editorAddress = new MailAddress( $this->editor );
+			$editorAddress = MailAddress::newFromUser( $this->editor );
 			if ( $wgEnotifFromEditor ) {
 				$this->from = $editorAddress;
 			} else {
@@ -417,7 +417,7 @@ class EmailNotification {
 		}
 
 		if ( $wgEnotifImpersonal ) {
-			$this->mailTargets[] = new MailAddress( $user );
+			$this->mailTargets[] = MailAddress::newFromUser( $user );
 		} else {
 			$this->sendPersonalised( $user );
 		}
@@ -448,7 +448,7 @@ class EmailNotification {
 		//   Note: The to parameter cannot be an address in the form of
 		//   "Something <someone@example.com>". The mail command will not parse
 		//   this properly while talking with the MTA.
-		$to = new MailAddress( $watchingUser );
+		$to = MailAddress::newFromUser( $watchingUser );
 
 		# $PAGEEDITDATE is the time and date of the page change
 		# expressed in terms of individual local time of the notification

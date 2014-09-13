@@ -3,6 +3,31 @@
 class MailAddressTest extends MediaWikiTestCase {
 
 	/**
+	 * @covers MailAddress::__construct
+	 */
+	public function testConstructor() {
+		$ma = new MailAddress( 'foo@bar.baz', 'UserName', 'Real name' );
+		$this->assertInstanceOf( 'MailAddress', $ma );
+	}
+
+	/**
+	 * @covers MailAddress::newFromUser
+	 */
+	public function testNewFromUser() {
+		$user = $this->getMock( 'User' );
+		$user->expects( $this->any() )->method( 'getName' )->will( $this->returnValue( 'UserName' ) );
+		$user->expects( $this->any() )->method( 'getEmail' )->will( $this->returnValue( 'foo@bar.baz' ) );
+		$user->expects( $this->any() )->method( 'getRealName' )->will( $this->returnValue( 'Real name' ) );
+
+		$ma = MailAddress::newFromUser( $user );
+		$this->assertInstanceOf( 'MailAddress', $ma );
+		$this->setMwGlobals( 'wgEnotifUseRealName', true );
+		$this->assertEquals( 'Real name <foo@bar.baz>', $ma->toString() );
+		$this->setMwGlobals( 'wgEnotifUseRealName', false );
+		$this->assertEquals( 'UserName <foo@bar.baz>', $ma->toString() );
+	}
+
+	/**
 	 * @covers MailAddress::toString
 	 * @dataProvider provideToString
 	 */
