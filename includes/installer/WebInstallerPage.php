@@ -1037,7 +1037,7 @@ class WebInstallerOptions extends WebInstallerPage {
 				'var' => 'wgDefaultSkin',
 				'itemLabels' => array_fill_keys( $skinNames, 'config-skins-use-as-default' ),
 				'values' => $skinNames,
-				'value' => $this->getVar( 'wgDefaultSkin', $this->getDefaultSkin( $skinNames ) ),
+				'value' => $this->getVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) ),
 			) );
 
 			foreach ( $skins as $skin ) {
@@ -1255,22 +1255,6 @@ class WebInstallerOptions extends WebInstallerPage {
 	}
 
 	/**
-	 * Returns a default value to be used for $wgDefaultSkin: the preferred skin, if available among
-	 * the installed skins, or any other one otherwise.
-	 *
-	 * @param string[] $skinNames Names of installed skins.
-	 * @return string
-	 */
-	public function getDefaultSkin( array $skinNames ) {
-		$defaultSkin = $GLOBALS['wgDefaultSkin'];
-		if ( in_array( $defaultSkin, $skinNames ) ) {
-			return $defaultSkin;
-		} else {
-			return $skinNames[0];
-		}
-	}
-
-	/**
 	 * If the user skips this installer page, we still need to set up the default skins, but ignore
 	 * everything else.
 	 *
@@ -1282,7 +1266,7 @@ class WebInstallerOptions extends WebInstallerPage {
 
 		if ( $skins ) {
 			$skinNames = array_map( 'strtolower', $skins );
-			$this->parent->setVar( 'wgDefaultSkin', $this->getDefaultSkin( $skinNames ) );
+			$this->parent->setVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) );
 		}
 
 		return true;
