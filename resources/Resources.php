@@ -1434,7 +1434,7 @@ return array(
 		'dependencies' => array(
 			'jquery.byteLimit',
 		),
-		'position' => 'top',
+		'messages' => array( 'protect-unchain-permissions' )
 	),
 	'mediawiki.legacy.shared' => array(
 		// Used in the web installer. Test it after modifying this definition!

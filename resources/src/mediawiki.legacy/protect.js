@@ -1,116 +1,82 @@
 ( function ( mw, $ ) {
 
 var ProtectionForm = window.ProtectionForm = {
-	existingMatch: false,
-
 	/**
 	 * Set up the protection chaining interface (i.e. "unlock move permissions" checkbox)
 	 * on the protection form
-	 *
-	 * @param opts Object : parameters with members:
-	 *     tableId              Identifier of the table containing UI bits
-	 *     labelText            Text to use for the checkbox label
-	 *     numTypes             The number of protection types
-	 *     existingMatch        True if all the existing expiry times match
 	 */
-	init: function ( opts ) {
-		var box, boxbody, row, cell, check, label;
+	init: function () {
+		var $cell = $( '<td>' ), $row = $( '<tr>' ).append( $cell );
 
-		if ( !( document.createTextNode && document.getElementById && document.getElementsByTagName ) ) {
+		if ( !$( '#mwProtectSet' ).length ) {
 			return false;
 		}
 
-		box = document.getElementById( opts.tableId );
-		if ( !box ) {
-			return false;
+		if ( mw.config.get( 'wgCascadeableLevels' ) !== undefined ) {
+			$( 'form#mw-Protect-Form' ).submit( this.toggleUnchainedInputs.bind( ProtectionForm, true ) );
 		}
+		this.getExpirySelectors().each( function () {
+			$( this ).change( ProtectionForm.updateExpiryList.bind( ProtectionForm, this ) );
+		} );
+		this.getExpiryInputs().each( function () {
+			$( this ).on( 'keyup change', ProtectionForm.updateExpiry.bind( ProtectionForm, this ) );
+		} );
+		this.getLevelSelectors().each( function () {
+			$( this ).change( ProtectionForm.updateLevels.bind( ProtectionForm, this ) );
+		} );
 
-		boxbody = box.getElementsByTagName( 'tbody' )[0];
-		row = document.createElement( 'tr' );
-		boxbody.insertBefore( row, boxbody.firstChild.nextSibling );
+		$( '#mwProtectSet > tbody > tr:first' ).after( $row );
 
-		this.existingMatch = opts.existingMatch;
-
-		cell = document.createElement( 'td' );
-		row.appendChild( cell );
 		// If there is only one protection type, there is nothing to chain
-		if ( opts.numTypes > 1 ) {
-			check = document.createElement( 'input' );
-			check.id = 'mwProtectUnchained';
-			check.type = 'checkbox';
-			$( check ).click( function () {
-				ProtectionForm.onChainClick();
-			} );
+		if ( $( '[id ^= mw-protect-table-]' ).length > 1 ) {
+			$cell.append(
+				$( '<input>' )
+					.attr( { id: 'mwProtectUnchained', type: 'checkbox' } )
+					.click( this.onChainClick.bind( this ) )
+					.prop( 'checked', !this.areAllTypesMatching() ),
+				document.createTextNode( ' ' ),
+				$( '<label>' )
+					.attr( 'for', 'mwProtectUnchained' )
+					.text( mw.msg( 'protect-unchain-permissions' ) )
+			);
 
-			label = document.createElement( 'label' );
-			label.htmlFor = 'mwProtectUnchained';
-			label.appendChild( document.createTextNode( opts.labelText ) );
-
-			cell.appendChild( check );
-			cell.appendChild( document.createTextNode( ' ' ) );
-			cell.appendChild( label );
-
-			check.checked = !this.areAllTypesMatching();
-			this.enableUnchainedInputs( check.checked );
+			this.toggleUnchainedInputs( !this.areAllTypesMatching() );
 		}
 
 		$( '#mwProtect-reason' ).byteLimit( 180 );
 
 		this.updateCascadeCheckbox();
-
-		return true;
 	},
 
 	/**
 	 * Sets the disabled attribute on the cascade checkbox depending on the current selected levels
 	 */
 	updateCascadeCheckbox: function () {
-		var i, lists, items, selected;
-
-		// For non-existent titles, there is no cascade option
-		if ( !document.getElementById( 'mwProtect-cascade' ) ) {
-			return;
-		}
-		lists = this.getLevelSelectors();
-		for ( i = 0; i < lists.length; i++ ) {
-			if ( lists[i].selectedIndex > -1 ) {
-				items = lists[i].getElementsByTagName( 'option' );
-				selected = items[ lists[i].selectedIndex ].value;
-				if ( !this.isCascadeableLevel( selected ) ) {
-					document.getElementById( 'mwProtect-cascade' ).checked = false;
-					document.getElementById( 'mwProtect-cascade' ).disabled = true;
-					return;
-				}
+		this.getLevelSelectors().each( function () {
+			if ( !ProtectionForm.isCascadeableLevel( $( this ).val() ) ) {
+				$( '#mwProtect-cascade' ).prop( { checked: false, disabled: true } );
+				return false;
+			} else {
+				$( '#mwProtect-cascade' ).prop( 'disabled', false );
 			}
-		}
-		document.getElementById( 'mwProtect-cascade' ).disabled = false;
+		} );
 	},
 
 	/**
 	 * Checks if a cerain protection level is cascadeable.
-	 * @param level {String}
-	 * @return {Boolean}
+	 *
+	 * @param {string} level
+	 * @return {boolean}
 	 */
-	isCascadeableLevel: function (  level ) {
-		var cascadeLevels, len, i;
-
-		cascadeLevels = mw.config.get( 'wgCascadeableLevels' );
-		// cascadeLevels isn't defined on all pages
-		if ( cascadeLevels ) {
-			for ( i = 0, len = cascadeLevels.length; i < len; i += 1 ) {
-				if ( cascadeLevels[i] === level ) {
-					return true;
-				}
-			}
-		}
-		return false;
+	isCascadeableLevel: function ( level ) {
+		return $.inArray( level, mw.config.get( 'wgCascadeableLevels' ) ) !== -1;
 	},
 
 	/**
 	 * When protection levels are locked together, update the rest
 	 * when one action's level changes
 	 *
-	 * @param source Element Level selector that changed
+	 * @param {Element} source Level selector that changed
 	 */
 	updateLevels: function ( source ) {
 		if ( !this.isUnchained() ) {
@@ -123,28 +89,21 @@ var ProtectionForm = window.ProtectionForm = {
 	 * When protection levels are locked together, update the
 	 * expiries when one changes
 	 *
-	 * @param source Element expiry input that changed
+	 * @param {Element} source expiry input that changed
 	 */
 
 	updateExpiry: function ( source ) {
-		var expiry, listId, list;
-
 		if ( !this.isUnchained() ) {
-			expiry = source.value;
-			this.forEachExpiryInput( function ( element ) {
-				element.value = expiry;
+			this.getExpiryInputs().each( function () {
+				this.value = source.value;
 			} );
 		}
-		listId = source.id.replace( /^mwProtect-(\w+)-expires$/, 'mwProtectExpirySelection-$1' );
-		list = document.getElementById( listId );
-		if ( list && list.value !== 'othertime' ) {
-			if ( this.isUnchained() ) {
-				list.value = 'othertime';
-			} else {
-				this.forEachExpirySelector( function ( element ) {
-					element.value = 'othertime';
-				} );
-			}
+		if ( this.isUnchained() ) {
+			$( '#' + source.id.replace( /^mwProtect-(\w+)-expires$/, 'mwProtectExpirySelection-$1' ) ).val( 'othertime' );
+		} else {
+			this.getExpirySelectors().each( function () {
+				this.value = 'othertime';
+			} );
 		}
 	},
 
@@ -152,17 +111,15 @@ var ProtectionForm = window.ProtectionForm = {
 	 * When protection levels are locked together, update the
 	 * expiry lists when one changes and clear the custom inputs
 	 *
-	 * @param source Element expiry selector that changed
+	 * @param {Element} source Expiry selector that changed
 	 */
 	updateExpiryList: function ( source ) {
-		var expiry;
 		if ( !this.isUnchained() ) {
-			expiry = source.value;
-			this.forEachExpirySelector( function ( element ) {
-				element.value = expiry;
+			this.getExpirySelectors().each( function () {
+				this.value = source.value;
 			} );
-			this.forEachExpiryInput( function ( element ) {
-				element.value = '';
+			this.getExpiryInputs().each( function () {
+				this.value = '';
 			} );
 		}
 	},
@@ -172,44 +129,35 @@ var ProtectionForm = window.ProtectionForm = {
 	 * when the user changes the "unlock move permissions" checkbox
 	 */
 	onChainClick: function () {
-		if ( this.isUnchained() ) {
-			this.enableUnchainedInputs( true );
-		} else {
+		this.toggleUnchainedInputs( this.isUnchained() );
+		if ( !this.isUnchained() ) {
 			this.setAllSelectors( this.getMaxLevel() );
-			this.enableUnchainedInputs( false );
 		}
 		this.updateCascadeCheckbox();
 	},
 
 	/**
 	 * Returns true if the named attribute in all objects in the given array are matching
+	 *
+	 * @param {Object[]} objects
+	 * @param {string} attrName
+	 * @return {boolean}
 	 */
 	matchAttribute: function ( objects, attrName ) {
-		var i, element, value;
-
-		// Check levels
-		value = null;
-		for ( i = 0; i < objects.length; i++ ) {
-			element = objects[i];
-			if ( value === null ) {
-				value = element[attrName];
-			} else {
-				if ( value !== element[attrName] ) {
-					return false;
-				}
-			}
-		}
-		return true;
+		return $.map( objects, function ( object ) {
+			return object[attrName];
+		} ).filter( function ( item, index, a ) {
+			return index === a.indexOf( item );
+		} ).length === 1;
 	},
 
 	/**
 	 * Are all actions protected at the same level, with the same expiry time?
 	 *
-	 * @return boolean
+	 * @return {boolean}
 	 */
 	areAllTypesMatching: function () {
-		return this.existingMatch
-			&& this.matchAttribute( this.getLevelSelectors(), 'selectedIndex' )
+		return this.matchAttribute( this.getLevelSelectors(), 'selectedIndex' )
 			&& this.matchAttribute( this.getExpirySelectors(), 'selectedIndex' )
 			&& this.matchAttribute( this.getExpiryInputs(), 'value' );
 	},
@@ -217,7 +165,7 @@ var ProtectionForm = window.ProtectionForm = {
 	/**
 	 * Is protection chaining off?
 	 *
-	 * @return bool
+	 * @return {boolean}
 	 */
 	isUnchained: function () {
 		var element = document.getElementById( 'mwProtectUnchained' );
@@ -228,160 +176,65 @@ var ProtectionForm = window.ProtectionForm = {
 
 	/**
 	 * Find the highest protection level in any selector
+	 * @return {number}
 	 */
 	getMaxLevel: function () {
-		var maxIndex = -1;
-		this.forEachLevelSelector( function ( element ) {
-			if ( element.selectedIndex > maxIndex ) {
-				maxIndex = element.selectedIndex;
-			}
-		} );
-		return maxIndex;
+		return Math.max.apply( Math, this.getLevelSelectors().map( function () {
+			return this.selectedIndex;
+		} ) );
 	},
 
 	/**
 	 * Protect all actions at the specified level
 	 *
-	 * @param index int Protection level
+	 * @param {number} index Protection level
 	 */
 	setAllSelectors: function ( index ) {
-		this.forEachLevelSelector( function ( element ) {
-			if ( element.selectedIndex !== index ) {
-				element.selectedIndex = index;
-			}
+		this.getLevelSelectors().each( function () {
+			this.selectedIndex = index;
 		} );
-	},
-
-	/**
-	 * Apply a callback to each protection selector
-	 *
-	 * @param func callable Callback function
-	 */
-	forEachLevelSelector: function ( func ) {
-		var i, selectors;
-
-		selectors = this.getLevelSelectors();
-		for ( i = 0; i < selectors.length; i++ ) {
-			func( selectors[i] );
-		}
 	},
 
 	/**
 	 * Get a list of all protection selectors on the page
 	 *
-	 * @return Array
+	 * @return {jQuery}
 	 */
 	getLevelSelectors: function () {
-		var i, ours, all, element;
-
-		all = document.getElementsByTagName( 'select' );
-		ours = [];
-		for ( i = 0; i < all.length; i++ ) {
-			element = all[i];
-			if ( element.id.match( /^mwProtect-level-/ ) ) {
-				ours[ours.length] = element;
-			}
-		}
-		return ours;
-	},
-
-	/**
-	 * Apply a callback to each expiry input
-	 *
-	 * @param func callable Callback function
-	 */
-	forEachExpiryInput: function ( func ) {
-		var i, inputs;
-
-		inputs = this.getExpiryInputs();
-		for ( i = 0; i < inputs.length; i++ ) {
-			func( inputs[i] );
-		}
+		return $( 'select[id ^= mwProtect-level-]' );
 	},
 
 	/**
 	 * Get a list of all expiry inputs on the page
 	 *
-	 * @return Array
+	 * @return {jQuery}
 	 */
 	getExpiryInputs: function () {
-		var i, all, element, ours;
-
-		all = document.getElementsByTagName( 'input' );
-		ours = [];
-		for ( i = 0; i < all.length; i++ ) {
-			element = all[i];
-			if ( element.name.match( /^mwProtect-expiry-/ ) ) {
-				ours[ours.length] = element;
-			}
-		}
-		return ours;
-	},
-
-	/**
-	 * Apply a callback to each expiry selector list
-	 * @param func callable Callback function
-	 */
-	forEachExpirySelector: function ( func ) {
-		var i, inputs;
-
-		inputs = this.getExpirySelectors();
-		for ( i = 0; i < inputs.length; i++ ) {
-			func( inputs[i] );
-		}
+		return $( 'input[id ^= mwProtect-][id $= -expires]' );
 	},
 
 	/**
 	 * Get a list of all expiry selector lists on the page
 	 *
-	 * @return Array
+	 * @return {jQuery}
 	 */
 	getExpirySelectors: function () {
-		var i, all, ours, element;
-
-		all = document.getElementsByTagName( 'select' );
-		ours = [];
-		for ( i = 0; i < all.length; i++ ) {
-			element = all[i];
-			if ( element.id.match( /^mwProtectExpirySelection-/ ) ) {
-				ours[ours.length] = element;
-			}
-		}
-		return ours;
+		return $( 'select[id ^= mwProtectExpirySelection-]' );
 	},
 
 	/**
 	 * Enable/disable protection selectors and expiry inputs
 	 *
-	 * @param val boolean Enable?
+	 * @param {boolean} val Enable?
 	 */
-	enableUnchainedInputs: function ( val ) {
-		var first = true;
-
-		this.forEachLevelSelector( function ( element ) {
-			if ( first ) {
-				first = false;
-			} else {
-				element.disabled = !val;
-			}
-		} );
-		first = true;
-		this.forEachExpiryInput( function ( element ) {
-			if ( first ) {
-				first = false;
-			} else {
-				element.disabled = !val;
-			}
-		} );
-		first = true;
-		this.forEachExpirySelector( function ( element ) {
-			if ( first ) {
-				first = false;
-			} else {
-				element.disabled = !val;
-			}
-		} );
+	toggleUnchainedInputs: function ( val ) {
+		var setDisabled = function () { this.disabled = !val; };
+		this.getLevelSelectors().slice( 1 ).each( setDisabled );
+		this.getExpiryInputs().slice( 1 ).each( setDisabled );
+		this.getExpirySelectors().slice( 1 ).each( setDisabled );
 	}
 };
+
+$( ProtectionForm.init.bind( ProtectionForm ) );
 
 }( mediaWiki, jQuery ) );

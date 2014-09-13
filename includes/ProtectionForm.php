@@ -352,7 +352,7 @@ class ProtectionForm {
 			$output->addJsConfigVars( 'wgCascadeableLevels', $cascadingRestrictionLevels );
 			$out .= Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->mTitle->getLocalURL( 'action=protect' ),
-				'id' => 'mw-Protect-Form', 'onsubmit' => 'ProtectionForm.enableUnchainedInputs(true)' ) );
+				'id' => 'mw-Protect-Form' ) );
 		}
 
 		$out .= Xml::openElement( 'fieldset' ) .
@@ -426,16 +426,13 @@ class ProtectionForm {
 								array(
 									'id' => "mwProtectExpirySelection-$action",
 									'name' => "wpProtectExpirySelection-$action",
-									'onchange' => "ProtectionForm.updateExpiryList(this)",
 									'tabindex' => '2' ) + $this->disabledAttrib,
 								$expiryFormOptions ) .
 						"</td>
 					</tr></table>";
 			}
 			# Add custom expiry field
-			$attribs = array( 'id' => "mwProtect-$action-expires",
-				'onkeyup' => 'ProtectionForm.updateExpiry(this)',
-				'onchange' => 'ProtectionForm.updateExpiry(this)' ) + $this->disabledAttrib;
+			$attribs = array( 'id' => "mwProtect-$action-expires" ) + $this->disabledAttrib;
 			$out .= "<table><tr>
 					<td class='mw-label'>" .
 						$mProtectother .
@@ -556,7 +553,6 @@ class ProtectionForm {
 				$user->getEditToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) )
 			);
 			$out .= Xml::closeElement( 'form' );
-			$output->addScript( $this->buildCleanupScript() );
 		}
 
 		return $out;
@@ -581,8 +577,7 @@ class ProtectionForm {
 			'id' => $id,
 			'name' => $id,
 			'size' => count( $levels ),
-			'onchange' => 'ProtectionForm.updateLevels(this)',
-			) + $this->disabledAttrib;
+		) + $this->disabledAttrib;
 
 		$out = Xml::openElement( 'select', $attribs );
 		foreach ( $levels as $key ) {
@@ -609,19 +604,6 @@ class ProtectionForm {
 			}
 			return wfMessage( 'protect-fallback', $permission )->text();
 		}
-	}
-
-	function buildCleanupScript() {
-		$options = array(
-			'tableId' => 'mwProtectSet',
-			'labelText' => wfMessage( 'protect-unchain-permissions' )->plain(),
-			'numTypes' => count( $this->mApplicableTypes ),
-			'existingMatch' => count( array_unique( $this->mExistingExpiry ) ) === 1,
-		);
-
-		$script = Xml::encodeJsCall( 'ProtectionForm.init', array( $options ) );
-
-		return Html::inlineScript( ResourceLoader::makeLoaderConditionalScript( $script ) );
 	}
 
 	/**
