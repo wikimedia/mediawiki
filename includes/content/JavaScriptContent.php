@@ -34,9 +34,10 @@ class JavaScriptContent extends TextContent {
 
 	/**
 	 * @param string $text JavaScript code.
+	 * @param string $modelId the content model name
 	 */
-	public function __construct( $text ) {
-		parent::__construct( $text, CONTENT_MODEL_JAVASCRIPT );
+	public function __construct( $text, $modelId = CONTENT_MODEL_JAVASCRIPT ) {
+		parent::__construct( $text, $modelId );
 	}
 
 	/**

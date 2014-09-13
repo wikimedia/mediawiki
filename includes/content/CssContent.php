@@ -34,9 +34,10 @@ class CssContent extends TextContent {
 
 	/**
 	 * @param string $text CSS code.
+	 * @param string $modelId the content content model
 	 */
-	public function __construct( $text ) {
-		parent::__construct( $text, CONTENT_MODEL_CSS );
+	public function __construct( $text, $modelId = CONTENT_MODEL_CSS ) {
+		parent::__construct( $text, $modelId );
 	}
 
 	/**
