@@ -107,6 +107,15 @@ class CliInstaller extends Installer {
 		if ( isset( $option['pass'] ) ) {
 			$this->setVar( '_AdminPassword', $option['pass'] );
 		}
+
+		// Set up the default skins
+		$skins = $this->findExtensions( 'skins' );
+		$this->setVar( '_Skins', $skins );
+
+		if ( $skins ) {
+			$skinNames = array_map( 'strtolower', $skins );
+			$this->setVar( 'wgDefaultSkin', $this->getDefaultSkin( $skinNames ) );
+		}
 	}
 
 	/**
