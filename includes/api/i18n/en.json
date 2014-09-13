@@ -355,8 +355,7 @@
 	"apihelp-query-param-export": "Export the current revisions of all given or generated pages.",
 	"apihelp-query-param-exportnowrap": "Return the export XML without wrapping it in an XML result (same format as [[Special:Export]]). Can only be used with $1export.",
 	"apihelp-query-param-iwurl": "Whether to get the full URL if the title is an interwiki link.",
-	"apihelp-query-param-continue": "When present, formats query-continue as key-value pairs that should simply be merged into the original request. This parameter must be set to an empty string in the initial query.\n\nThis parameter is recommended for all new development, and will be made default in the next API version.",
-	"apihelp-query-param-rawcontinue": "Currently ignored. In the future, <var>$1continue</var> will become the default and this will be needed to receive the raw <samp>query-continue</samp> data.",
+	"apihelp-query-param-rawcontinue": "Return raw <samp>query-continue</samp> data for continuation.",
 	"apihelp-query-example-revisions": "Fetch [[Special:ApiHelp/query+siteinfo|site info]] and [[Special:ApiHelp/query+revisions|revisions]] of <kbd>Main Page</kbd>.",
 	"apihelp-query-example-allpages": "Fetch revisions of pages beginning with <kbd>API/</kbd>.",
 
