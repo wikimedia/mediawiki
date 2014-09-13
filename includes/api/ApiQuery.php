@@ -244,16 +244,6 @@ class ApiQuery extends ApiBase {
 	public function execute() {
 		$this->mParams = $this->extractRequestParams();
 
-		if ( $this->mParams['continue'] === null && !$this->mParams['rawcontinue'] ) {
-			$this->logFeatureUsage( 'action=query&!rawcontinue&!continue' );
-			$this->setWarning(
-				'Formatting of continuation data will be changing soon. ' .
-				'To continue using the current formatting, use the \'rawcontinue\' parameter. ' .
-				'To begin using the new format, pass an empty string for \'continue\' ' .
-				'in the initial query.'
-			);
-		}
-
 		// Instantiate requested modules
 		$allModules = array();
 		$this->instantiateModules( $allModules, 'prop' );
@@ -299,7 +289,7 @@ class ApiQuery extends ApiBase {
 
 		// Write the continuation data into the result
 		$this->getResult()->endContinuation(
-			$this->mParams['continue'] === null ? 'raw' : 'standard'
+			$this->mParams['rawcontinue'] ? 'raw' : 'standard'
 		);
 	}
 
@@ -470,7 +460,7 @@ class ApiQuery extends ApiBase {
 	public function setGeneratorContinue( $module, $paramName, $paramValue ) {
 		wfDeprecated( __METHOD__, '1.24' );
 		$this->getResult()->setGeneratorContinueParam( $module, $paramName, $paramValue );
-		return $this->getParameter( 'continue' ) !== null;
+		return !$this->getParameter( 'rawcontinue' );
 	}
 
 	/**
@@ -612,15 +602,8 @@ class ApiQuery extends ApiBase {
 			'exportnowrap' => 'Return the export XML without wrapping it in an ' .
 				'XML result (same format as Special:Export). Can only be used with export',
 			'iwurl' => 'Whether to get the full URL if the title is an interwiki link',
-			'continue' => array(
-				'When present, formats query-continue as key-value pairs that ' .
-					'should simply be merged into the original request.',
-				'This parameter must be set to an empty string in the initial query.',
-				'This parameter is recommended for all new development, and ' .
-					'will be made default in the next API version.'
-			),
-			'rawcontinue' => 'Currently ignored. In the future, \'continue=\' will become the ' .
-				'default and this will be needed to receive the raw query-continue data.',
+			'continue' => 'When more results are available, use this to continue',
+			'rawcontinue' => 'Return raw query-continue data for continuation',
 		);
 	}
 
@@ -637,8 +620,8 @@ class ApiQuery extends ApiBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=query&prop=revisions&meta=siteinfo&' .
-				'titles=Main%20Page&rvprop=user|comment&continue=',
-			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions&continue=',
+				'titles=Main%20Page&rvprop=user|comment',
+			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions',
 		);
 	}
 
