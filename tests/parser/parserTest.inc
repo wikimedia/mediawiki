@@ -5,7 +5,7 @@
  * at the same time.
  *
  * Copyright © 2004, 2010 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -170,7 +170,7 @@ class ParserTest {
 			'transformVia404' => false,
 			'backend' => new FSFileBackend( array(
 				'name' => 'local-backend',
-				'lockManager' => 'fsLockManager',
+				'wikiId' => wfWikiId(),
 				'containerPaths' => array(
 					'local-public' => wfTempDir() . '/test-repo/public',
 					'local-thumb' => wfTempDir() . '/test-repo/thumb',
@@ -387,7 +387,7 @@ class ParserTest {
 
 		foreach ( $filenames as $filename ) {
 			$contents = file_get_contents( $filename );
-			preg_match_all( '/!!\s*input\n(.*?)\n!!\s*result/s', $contents, $matches );
+			preg_match_all( '/!!\s*(input|wikitext)\n(.*?)\n!!\s*(result|html|html\/\*|html\/php)/s', $contents, $matches );
 
 			foreach ( $matches[1] as $match ) {
 				$dict .= $match . "\n";
@@ -642,48 +642,65 @@ class ParserTest {
 		// foo="bar baz"
 		// foo=[[bar baz]]
 		// foo=bar,"baz quux"
-		$regex = '/\b
-			([\w-]+)						# Key
-			\b
-			(?:\s*
-				=						# First sub-value
-				\s*
-				(
-					"
-						[^"]*			# Quoted val
-					"
+		// foo={...json...}
+		$defs = '(?(DEFINE)
+			(?<qstr>					# Quoted string
+				"
+				(?:[^\\\\"] | \\\\.)*
+				"
+			)
+			(?<json>
+				\{		# Open bracket
+				(?:
+					[^"{}] |				# Not a quoted string or object, or
+					(?&qstr) |				# A quoted string, or
+					(?&json)				# A json object (recursively)
+				)*
+				\}		# Close bracket
+			)
+            (?<value>
+				(?:
+					(?&qstr)			# Quoted val
 				|
 					\[\[
 						[^]]*			# Link target
 					\]\]
 				|
 					[\w-]+				# Plain word
+				|
+					(?&json)			# JSON object
 				)
-				(?:\s*
-					,					# Sub-vals 1..N
-					\s*
-					(
-						"[^"]*"			# Quoted val
-					|
-						\[\[[^]]*\]\]	# Link target
-					|
-						[\w-]+			# Plain word
-					)
-				)*
+			)
+		)';
+		$regex = '/' . $defs . '\b
+			(?<k>[\w-]+)				# Key
+			\b
+			(?:\s*
+				=						# First sub-value
+				\s*
+				(?<v>
+					(?&value)
+					(?:\s*
+						,				# Sub-vals 1..N
+						\s*
+						(?&value)
+					)*
+				)
 			)?
 			/x';
+		$valueregex = '/' . $defs . '(?&value)/x';
 
 		if ( preg_match_all( $regex, $instring, $matches, PREG_SET_ORDER ) ) {
 			foreach ( $matches as $bits ) {
-				array_shift( $bits );
-				$key = strtolower( array_shift( $bits ) );
-				if ( count( $bits ) == 0 ) {
+				$key = strtolower( $bits[ 'k' ] );
+				if ( !isset( $bits[ 'v' ] ) ) {
 					$opts[$key] = true;
-				} elseif ( count( $bits ) == 1 ) {
-					$opts[$key] = $this->cleanupOption( array_shift( $bits ) );
 				} else {
-					// Array!
-					$opts[$key] = array_map( array( $this, 'cleanupOption' ), $bits );
+					preg_match_all( $valueregex, $bits[ 'v' ], $vmatches );
+					$opts[$key] = array_map( array( $this, 'cleanupOption' ), $vmatches[0] );
+					if ( count( $opts[$key] ) == 1 ) {
+						$opts[$key] = $opts[$key][0];
+					}
 				}
 			}
 		}
@@ -692,11 +709,15 @@ class ParserTest {
 
 	private function cleanupOption( $opt ) {
 		if ( substr( $opt, 0, 1 ) == '"' ) {
-			return substr( $opt, 1, -1 );
+			return stripcslashes( substr( $opt, 1, -1 ) );
 		}
 
 		if ( substr( $opt, 0, 2 ) == '[[' ) {
 			return substr( $opt, 2, -2 );
+		}
+
+		if ( substr( $opt, 0, 1 ) == '{' ) {
+			return FormatJson::decode( $opt, true );
 		}
 		return $opt;
 	}
@@ -738,7 +759,7 @@ class ParserTest {
 				'transformVia404' => false,
 				'backend' => new FSFileBackend( array(
 					'name' => 'local-backend',
-					'lockManager' => 'fsLockManager',
+					'wikiId' => wfWikiId(),
 					'containerPaths' => array(
 						'local-public' => $this->uploadDir,
 						'local-thumb' => $this->uploadDir . '/thumb',
@@ -766,6 +787,7 @@ class ParserTest {
 			'wgSVGConverters' => array( 'null' => 'echo "1">$output' ),
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
+			'wgThumbLimits' => array( self::getOptionValue( 'thumbsize', $opts, 180 ) ),
 			'wgUseTidy' => false,
 			'wgDefaultLanguageVariant' => $variant,
 			'wgVariantArticlePath' => false,
@@ -820,8 +842,10 @@ class ParserTest {
 		$context = new RequestContext();
 		$GLOBALS['wgLang'] = $context->getLanguage();
 		$GLOBALS['wgOut'] = $context->getOutput();
+		$GLOBALS['wgUser'] = $context->getUser();
 
-		$GLOBALS['wgUser'] = new User();
+		// We (re)set $wgThumbLimits to a single-element array above.
+		$context->getUser()->setOption( 'thumbsize', 0 );
 
 		global $wgHooks;
 
@@ -1053,10 +1077,10 @@ class ParserTest {
 		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
 		wfMkdirParents( $dir . '/f/ff', null, __METHOD__ );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/f/ff/Foobar.svg" );
 		file_put_contents( "$dir/f/ff/Foobar.svg",
 			'<?xml version="1.0" encoding="utf-8"?>' .
-			'<svg xmlns="http://www.w3.org/2000/svg" />' );
+			'<svg xmlns="http://www.w3.org/2000/svg"' .
+			' version="1.1" width="240" height="180"/>' );
 		return $dir;
 	}
 
@@ -1087,19 +1111,36 @@ class ParserTest {
 		self::deleteFiles(
 			array(
 				"$dir/3/3a/Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/1000px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/100px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/1280px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/137px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/1500px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/177px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/206px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/265px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/274px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/30px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/353px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/40px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/75px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/960px-Foobar.jpg",
 
 				"$dir/e/ea/Thumb.png",
@@ -1108,10 +1149,13 @@ class ParserTest {
 
 				"$dir/f/ff/Foobar.svg",
 				"$dir/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png",
 				"$dir/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/3000px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/4000px-Foobar.svg.png",
 				"$dir/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png",
+				"$dir/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png",
 				"$dir/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png",
 
 				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
@@ -1122,8 +1166,6 @@ class ParserTest {
 			array(
 				"$dir/3/3a",
 				"$dir/3",
-				"$dir/thumb/6/65",
-				"$dir/thumb/6",
 				"$dir/thumb/3/3a/Foobar.jpg",
 				"$dir/thumb/3/3a",
 				"$dir/thumb/3",

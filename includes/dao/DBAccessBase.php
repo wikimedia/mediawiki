@@ -2,7 +2,7 @@
 
 /**
  * Base class for objects that allow access to other wiki's databases using
- * the foreign database access mechanism implemented by LBFactory_multi.
+ * the foreign database access mechanism implemented by LBFactoryMulti.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,9 +28,8 @@
  * @author Daniel Kinzler
  */
 abstract class DBAccessBase implements IDBAccessObject {
-
 	/**
-	 * @var String|bool $wiki The target wiki's name. This must be an ID
+	 * @var string|bool $wiki The target wiki's name. This must be an ID
 	 * that LBFactory can understand.
 	 */
 	protected $wiki = false;
@@ -58,6 +57,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 */
 	protected function getConnection( $id, $groups = array() ) {
 		$loadBalancer = wfGetLB( $this->wiki );
+
 		return $loadBalancer->getConnection( $id, $groups, $this->wiki );
 	}
 
@@ -68,7 +68,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @param DatabaseBase  $db the database connection to release.
+	 * @param DatabaseBase $db The database connection to release.
 	 */
 	protected function releaseConnection( DatabaseBase $db ) {
 		if ( $this->wiki !== false ) {

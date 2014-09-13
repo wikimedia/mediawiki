@@ -138,8 +138,9 @@ class WikiDiff3 {
 			 */
 			$max = min( $this->m, $this->n );
 			for ( $forwardBound = 0; $forwardBound < $max
-					&& $this->from[$forwardBound] === $this->to[$forwardBound];
-					++$forwardBound ) {
+				&& $this->from[$forwardBound] === $this->to[$forwardBound];
+				++$forwardBound
+			) {
 				$this->removed[$forwardBound] = $this->added[$forwardBound] = false;
 			}
 
@@ -147,7 +148,8 @@ class WikiDiff3 {
 			$backBoundL2 = $this->n - 1;
 
 			while ( $backBoundL1 >= $forwardBound && $backBoundL2 >= $forwardBound
-					&& $this->from[$backBoundL1] === $this->to[$backBoundL2] ) {
+				&& $this->from[$backBoundL1] === $this->to[$backBoundL2]
+			) {
 				$this->removed[$backBoundL1--] = $this->added[$backBoundL2--] = false;
 			}
 
@@ -156,8 +158,14 @@ class WikiDiff3 {
 			$snake = array( 0, 0, 0 );
 
 			$this->length = $forwardBound + $this->m - $backBoundL1 - 1
-				+ $this->lcs_rec( $forwardBound, $backBoundL1,
-				$forwardBound, $backBoundL2, $V, $snake );
+				+ $this->lcs_rec(
+					$forwardBound,
+					$backBoundL1,
+					$forwardBound,
+					$backBoundL2,
+					$V,
+					$snake
+			);
 		}
 
 		$this->m = $m;
@@ -189,8 +197,9 @@ class WikiDiff3 {
 		while ( $xi < $this->m || $yi < $this->n ) {
 			// Matching "snake".
 			while ( $xi < $this->m && $yi < $this->n
-					&& !$this->removed[$xi]
-					&& !$this->added[$yi] ) {
+				&& !$this->removed[$xi]
+				&& !$this->added[$yi]
+			) {
 				++$xi;
 				++$yi;
 			}
@@ -206,10 +215,10 @@ class WikiDiff3 {
 			}
 
 			if ( $xi > $xstart || $yi > $ystart ) {
-				$ranges[] = new RangeDifference( $xstart, $xi,
-								$ystart, $yi );
+				$ranges[] = new RangeDifference( $xstart, $xi, $ystart, $yi );
 			}
 		}
+
 		return $ranges;
 	}
 
@@ -220,7 +229,7 @@ class WikiDiff3 {
 		}
 
 		$d = $this->find_middle_snake( $bottoml1, $topl1, $bottoml2,
-							$topl2, $V, $snake );
+			$topl2, $V, $snake );
 
 		// need to store these so we don't lose them when they're
 		// overwritten by the recursion
@@ -236,9 +245,9 @@ class WikiDiff3 {
 		if ( $d > 1 ) {
 			return $len
 			+ $this->lcs_rec( $bottoml1, $startx - 1, $bottoml2,
-							$starty - 1, $V, $snake )
+				$starty - 1, $V, $snake )
 			+ $this->lcs_rec( $startx + $len, $topl1, $starty + $len,
-							$topl2, $V, $snake );
+				$topl2, $V, $snake );
 		} elseif ( $d == 1 ) {
 			/*
 			 * In this case the sequences differ by exactly 1 line. We have
@@ -250,8 +259,10 @@ class WikiDiff3 {
 				$this->removed[$bottoml1 + $i] =
 					$this->added[$bottoml2 + $i] = false;
 			}
+
 			return $max + $len;
 		}
+
 		return $len;
 	}
 
@@ -263,8 +274,8 @@ class WikiDiff3 {
 		$snake0 = &$snake[0];
 		$snake1 = &$snake[1];
 		$snake2 = &$snake[2];
-		$bottoml1_min_1 = $bottoml1 -1;
-		$bottoml2_min_1 = $bottoml2 -1;
+		$bottoml1_min_1 = $bottoml1 - 1;
+		$bottoml2_min_1 = $bottoml2 - 1;
 		$N = $topl1 - $bottoml1_min_1;
 		$M = $topl2 - $bottoml2_min_1;
 		$delta = $N - $M;
@@ -307,7 +318,8 @@ class WikiDiff3 {
 				// compute forward furthest reaching paths
 				for ( $k = $start_diag; $k <= $end_diag; $k += 2 ) {
 					if ( $k == -$d || ( $k < $d
-							&& $V0[$limit_min_1 + $k] < $V0[$limit_plus_1 + $k] ) ) {
+							&& $V0[$limit_min_1 + $k] < $V0[$limit_plus_1 + $k] )
+					) {
 						$x = $V0[$limit_plus_1 + $k];
 					} else {
 						$x = $V0[$limit_min_1 + $k] + 1;
@@ -320,12 +332,13 @@ class WikiDiff3 {
 						++$absx;
 						++$absy;
 					}
-					$x = $absx -$bottoml1;
+					$x = $absx - $bottoml1;
 
-					$snake2 = $absx -$snake0;
+					$snake2 = $absx - $snake0;
 					$V0[$limit + $k] = $x;
 					if ( $k >= $delta - $d + 1 && $k <= $delta + $d - 1
-							&& $x >= $V1[$limit + $k - $delta] ) {
+						&& $x >= $V1[$limit + $k - $delta]
+					) {
 						return 2 * $d - 1;
 					}
 
@@ -345,7 +358,8 @@ class WikiDiff3 {
 				// compute backward furthest reaching paths
 				for ( $k = $start_diag; $k <= $end_diag; $k += 2 ) {
 					if ( $k == $d
-					|| ( $k != -$d && $V1[$limit_min_1 + $k] < $V1[$limit_plus_1 + $k] ) ) {
+						|| ( $k != -$d && $V1[$limit_min_1 + $k] < $V1[$limit_plus_1 + $k] )
+					) {
 						$x = $V1[$limit_min_1 + $k];
 					} else {
 						$x = $V1[$limit_plus_1 + $k] - 1;
@@ -355,7 +369,8 @@ class WikiDiff3 {
 
 					$snake2 = 0;
 					while ( $x > 0 && $y > 0
-					&& $from[$x + $bottoml1_min_1] === $to[$y + $bottoml2_min_1] ) {
+						&& $from[$x + $bottoml1_min_1] === $to[$y + $bottoml2_min_1]
+					) {
 						--$x;
 						--$y;
 						++$snake2;
@@ -380,7 +395,8 @@ class WikiDiff3 {
 				// compute forward furthest reaching paths
 				for ( $k = $start_diag; $k <= $end_diag; $k += 2 ) {
 					if ( $k == -$d
-					|| ( $k < $d && $V0[$limit_min_1 + $k] < $V0[$limit_plus_1 + $k] ) ) {
+						|| ( $k < $d && $V0[$limit_min_1 + $k] < $V0[$limit_plus_1 + $k] )
+					) {
 						$x = $V0[$limit_plus_1 + $k];
 					} else {
 						$x = $V0[$limit_min_1 + $k] + 1;
@@ -393,14 +409,14 @@ class WikiDiff3 {
 						++$absx;
 						++$absy;
 					}
-					$x = $absx -$bottoml1;
-					$snake2 = $absx -$snake0;
+					$x = $absx - $bottoml1;
+					$snake2 = $absx - $snake0;
 					$V0[$limit + $k] = $x;
 
 					// check to see if we can cut down the diagonal range
 					if ( $x >= $N && $end_forward > $k - 1 ) {
 						$end_forward = $k - 1;
-					} elseif ( $absy -$bottoml2 >= $M ) {
+					} elseif ( $absy - $bottoml2 >= $M ) {
 						$start_forward = $k + 1;
 						$value_to_add_forward = 0;
 					}
@@ -413,7 +429,8 @@ class WikiDiff3 {
 				// compute backward furthest reaching paths
 				for ( $k = $start_diag; $k <= $end_diag; $k += 2 ) {
 					if ( $k == $d
-					|| ( $k != -$d && $V1[$limit_min_1 + $k] < $V1[$limit_plus_1 + $k] ) ) {
+						|| ( $k != -$d && $V1[$limit_min_1 + $k] < $V1[$limit_plus_1 + $k] )
+					) {
 						$x = $V1[$limit_min_1 + $k];
 					} else {
 						$x = $V1[$limit_plus_1 + $k] - 1;
@@ -423,7 +440,8 @@ class WikiDiff3 {
 
 					$snake2 = 0;
 					while ( $x > 0 && $y > 0
-							&& $from[$x + $bottoml1_min_1] === $to[$y + $bottoml2_min_1] ) {
+						&& $from[$x + $bottoml1_min_1] === $to[$y + $bottoml2_min_1]
+					) {
 						--$x;
 						--$y;
 						++$snake2;
@@ -431,9 +449,11 @@ class WikiDiff3 {
 					$V1[$limit + $k] = $x;
 
 					if ( $k >= -$delta - $d && $k <= $d - $delta
-							&& $x <= $V0[$limit + $k + $delta] ) {
+						&& $x <= $V0[$limit + $k + $delta]
+					) {
 						$snake0 = $bottoml1 + $x;
 						$snake1 = $bottoml2 + $y;
+
 						return 2 * $d;
 					}
 
@@ -460,6 +480,7 @@ class WikiDiff3 {
 		$snake2 = 0;
 		wfDebug( "Computing the LCS is too expensive. Using a heuristic.\n" );
 		$this->heuristicUsed = true;
+
 		return 5; /*
 		* HACK: since we didn't really finish the LCS computation
 		* we don't really know the length of the SES. We don't do
@@ -554,8 +575,9 @@ class WikiDiff3 {
 	public function getLcsLength() {
 		if ( $this->heuristicUsed && !$this->lcsLengthCorrectedForHeuristic ) {
 			$this->lcsLengthCorrectedForHeuristic = true;
-			$this->length = $this->m -array_sum( $this->added );
+			$this->length = $this->m - array_sum( $this->added );
 		}
+
 		return $this->length;
 	}
 
@@ -569,12 +591,22 @@ class WikiDiff3 {
  */
 class RangeDifference {
 
+	/** @var int */
 	public $leftstart;
+
+	/** @var int */
 	public $leftend;
+
+	/** @var int */
 	public $leftlength;
 
+	/** @var int */
 	public $rightstart;
+
+	/** @var int */
 	public $rightend;
+
+	/** @var int */
 	public $rightlength;
 
 	function __construct( $leftstart, $leftend, $rightstart, $rightend ) {
@@ -585,4 +617,5 @@ class RangeDifference {
 		$this->rightend = $rightend;
 		$this->rightlength = $rightend - $rightstart;
 	}
+
 }

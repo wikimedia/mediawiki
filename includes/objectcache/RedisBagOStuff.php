@@ -55,7 +55,7 @@ class RedisBagOStuff extends BagOStuff {
 	 *     flap, for example if it is in swap death.
 	 */
 	function __construct( $params ) {
-		$redisConf = array( 'serializer' => 'php' );
+		$redisConf = array( 'serializer' => 'none' ); // manage that in this class
 		foreach ( array( 'connectTimeout', 'persistent', 'password' ) as $opt ) {
 			if ( isset( $params[$opt] ) ) {
 				$redisConf[$opt] = $params[$opt];
@@ -72,96 +72,88 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function get( $key, &$casToken = null ) {
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
+
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		try {
-			$result = $conn->get( $key );
+			$value = $conn->get( $key );
+			$casToken = $value;
+			$result = $this->unserialize( $value );
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
-		$casToken = $result;
+
 		$this->logRequest( 'get', $key, $server, $result );
-		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
 	public function set( $key, $value, $expiry = 0 ) {
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
+
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		$expiry = $this->convertToRelative( $expiry );
 		try {
-			if ( !$expiry ) {
-				// No expiry, that is very different from zero expiry in Redis
-				$result = $conn->set( $key, $value );
+			if ( $expiry ) {
+				$result = $conn->setex( $key, $expiry, $this->serialize( $value ) );
 			} else {
-				$result = $conn->setex( $key, $expiry, $value );
+				// No expiry, that is very different from zero expiry in Redis
+				$result = $conn->set( $key, $this->serialize( $value ) );
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'set', $key, $server, $result );
-		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
 	public function cas( $casToken, $key, $value, $expiry = 0 ) {
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
+
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		$expiry = $this->convertToRelative( $expiry );
 		try {
 			$conn->watch( $key );
 
-			if ( $this->get( $key ) !== $casToken ) {
-				wfProfileOut( __METHOD__ );
+			if ( $this->serialize( $this->get( $key ) ) !== $casToken ) {
+				$conn->unwatch();
 				return false;
 			}
 
+			// multi()/exec() will fail atomically if the key changed since watch()
 			$conn->multi();
-
-			if ( !$expiry ) {
-				// No expiry, that is very different from zero expiry in Redis
-				$conn->set( $key, $value );
+			if ( $expiry ) {
+				$conn->setex( $key, $expiry, $this->serialize( $value ) );
 			} else {
-				$conn->setex( $key, $expiry, $value );
+				// No expiry, that is very different from zero expiry in Redis
+				$conn->set( $key, $this->serialize( $value ) );
 			}
-
-			/*
-			 * multi()/exec() (transactional mode) allows multiple values to
-			 * be set/get at once and will return an array of results, in
-			 * the order they were set/get. In this case, we only set 1
-			 * value, which should (in case of success) result in true.
-			 */
 			$result = ( $conn->exec() == array( true ) );
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
 		$this->logRequest( 'cas', $key, $server, $result );
-		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
 	public function delete( $key, $time = 0 ) {
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
+
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		try {
@@ -170,15 +162,16 @@ class RedisBagOStuff extends BagOStuff {
 			$result = true;
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
+
 		$this->logRequest( 'delete', $key, $server, $result );
-		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
 	public function getMulti( array $keys ) {
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
+
 		$batches = array();
 		$conns = array();
 		foreach ( $keys as $key ) {
@@ -204,73 +197,91 @@ class RedisBagOStuff extends BagOStuff {
 				}
 				foreach ( $batchResult as $i => $value ) {
 					if ( $value !== false ) {
-						$result[$batchKeys[$i]] = $value;
+						$result[$batchKeys[$i]] = $this->unserialize( $value );
 					}
 				}
 			} catch ( RedisException $e ) {
-				$this->handleException( $server, $conn, $e );
+				$this->handleException( $conn, $e );
 			}
 		}
 
 		$this->debug( "getMulti for " . count( $keys ) . " keys " .
 			"returned " . count( $result ) . " results" );
-		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
 	public function add( $key, $value, $expiry = 0 ) {
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
+
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		$expiry = $this->convertToRelative( $expiry );
 		try {
-			$result = $conn->setnx( $key, $value );
-			if ( $result && $expiry ) {
+			if ( $expiry ) {
+				$conn->multi();
+				$conn->setnx( $key, $this->serialize( $value ) );
 				$conn->expire( $key, $expiry );
+				$result = ( $conn->exec() == array( true, true ) );
+			} else {
+				$result = $conn->setnx( $key, $this->serialize( $value ) );
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
+
 		$this->logRequest( 'add', $key, $server, $result );
-		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
 	/**
-	 * Non-atomic implementation of replace(). Could perhaps be done atomically
-	 * with WATCH or scripting, but this function is rarely used.
+	 * Non-atomic implementation of incr().
+	 *
+	 * Probably all callers actually want incr() to atomically initialise
+	 * values to zero if they don't exist, as provided by the Redis INCR
+	 * command. But we are constrained by the memcached-like interface to
+	 * return null in that case. Once the key exists, further increments are
+	 * atomic.
 	 */
-	public function replace( $key, $value, $expiry = 0 ) {
-		wfProfileIn( __METHOD__ );
+	public function incr( $key, $value = 1 ) {
+		$section = new ProfileSection( __METHOD__ );
+
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		if ( !$conn->exists( $key ) ) {
-			wfProfileOut( __METHOD__ );
-			return false;
+			return null;
 		}
-
-		$expiry = $this->convertToRelative( $expiry );
 		try {
-			if ( !$expiry ) {
-				$result = $conn->set( $key, $value );
-			} else {
-				$result = $conn->setex( $key, $expiry, $value );
-			}
+			$result = $this->unserialize( $conn->incrBy( $key, $value ) );
 		} catch ( RedisException $e ) {
 			$result = false;
-			$this->handleException( $server, $conn, $e );
+			$this->handleException( $conn, $e );
 		}
 
-		$this->logRequest( 'replace', $key, $server, $result );
-		wfProfileOut( __METHOD__ );
+		$this->logRequest( 'incr', $key, $server, $result );
 		return $result;
+	}
+
+	/**
+	 * @param mixed $data
+	 * @return string
+	 */
+	protected function serialize( $data ) {
+		// Ignore digit strings and ints so INCR/DECR work
+		return ( is_int( $data ) || ctype_digit( $data ) ) ? $data : serialize( $data );
+	}
+
+	/**
+	 * @param string $data
+	 * @return mixed
+	 */
+	protected function unserialize( $data ) {
+		// Ignore digit strings and ints so INCR/DECR work
+		return ( is_int( $data ) || ctype_digit( $data ) ) ? $data : unserialize( $data );
 	}
 
 	/**
@@ -294,6 +305,7 @@ class RedisBagOStuff extends BagOStuff {
 				return array( $server, $conn );
 			}
 		}
+		$this->setLastError( BagOStuff::ERR_UNREACHABLE );
 		return array( false, false );
 	}
 
@@ -301,7 +313,7 @@ class RedisBagOStuff extends BagOStuff {
 	 * Log a fatal error
 	 */
 	protected function logError( $msg ) {
-		wfDebugLog( 'redis', "Redis error: $msg\n" );
+		wfDebugLog( 'redis', "Redis error: $msg" );
 	}
 
 	/**
@@ -310,8 +322,9 @@ class RedisBagOStuff extends BagOStuff {
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 */
-	protected function handleException( $server, RedisConnRef $conn, $e ) {
-		$this->redisPool->handleException( $server, $conn, $e );
+	protected function handleException( RedisConnRef $conn, $e ) {
+		$this->setLastError( BagOStuff::ERR_UNEXPECTED );
+		$this->redisPool->handleError( $conn, $e );
 	}
 
 	/**

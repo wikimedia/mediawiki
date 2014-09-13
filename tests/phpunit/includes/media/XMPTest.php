@@ -7,9 +7,7 @@ class XMPTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		if ( !extension_loaded( 'xml' ) ) {
-			$this->markTestSkipped( 'Requires libxml to do XMP parsing' );
-		}
+		$this->checkPHPExtension( 'exif' ); # Requires libxml to do XMP parsing
 	}
 
 	/**
@@ -21,6 +19,8 @@ class XMPTest extends MediaWikiTestCase {
 	 *
 	 * @throws Exception
 	 * @dataProvider provideXMPParse
+	 *
+	 * @covers XMPReader::parse
 	 */
 	public function testXMPParse( $xmp, $expected, $info ) {
 		if ( !is_string( $xmp ) || !is_array( $expected ) ) {
@@ -79,6 +79,8 @@ class XMPTest extends MediaWikiTestCase {
 	 *
 	 * @todo This is based on what the standard says. Need to find a real
 	 * world example file to double check the support for this is right.
+	 *
+	 * @covers XMPReader::parseExtended
 	 */
 	public function testExtendedXMP() {
 		$xmpPath = __DIR__ . '/../../data/xmp/';
@@ -109,6 +111,8 @@ class XMPTest extends MediaWikiTestCase {
 	/**
 	 * This test has an extended XMP block with a wrong guid (md5sum)
 	 * and thus should only return the StandardXMP, not the ExtendedXMP.
+	 *
+	 * @covers XMPReader::parseExtended
 	 */
 	public function testExtendedXMPWithWrongGUID() {
 		$xmpPath = __DIR__ . '/../../data/xmp/';
@@ -138,6 +142,8 @@ class XMPTest extends MediaWikiTestCase {
 	/**
 	 * Have a high offset to simulate a missing packet,
 	 * which should cause it to ignore the ExtendedXMP packet.
+	 *
+	 * @covers XMPReader::parseExtended
 	 */
 	public function testExtendedXMPMissingPacket() {
 		$xmpPath = __DIR__ . '/../../data/xmp/';

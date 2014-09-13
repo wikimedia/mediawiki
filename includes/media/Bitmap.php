@@ -28,7 +28,7 @@
  */
 class BitmapHandler extends ImageHandler {
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @param array $params Transform parameters. Entries with the keys 'width'
 	 * and 'height' are the respective screen width and height, while the keys
 	 * 'physicalWidth' and 'physicalHeight' indicate the thumbnail dimensions.
@@ -57,13 +57,18 @@ class BitmapHandler extends ImageHandler {
 
 		# Check if the file is smaller than the maximum image area for thumbnailing
 		$checkImageAreaHookResult = null;
-		wfRunHooks( 'BitmapHandlerCheckImageArea', array( $image, &$params, &$checkImageAreaHookResult ) );
+		wfRunHooks(
+			'BitmapHandlerCheckImageArea',
+			array( $image, &$params, &$checkImageAreaHookResult )
+		);
+
 		if ( is_null( $checkImageAreaHookResult ) ) {
 			global $wgMaxImageArea;
 
-			if ( $srcWidth * $srcHeight > $wgMaxImageArea &&
-					!( $image->getMimeType() == 'image/jpeg' &&
-						self::getScalerType( false, false ) == 'im' ) ) {
+			if ( $srcWidth * $srcHeight > $wgMaxImageArea
+				&& !( $image->getMimeType() == 'image/jpeg'
+					&& self::getScalerType( false, false ) == 'im' )
+			) {
 				# Only ImageMagick can efficiently downsize jpg images without loading
 				# the entire file in memory
 				return false;
@@ -96,14 +101,15 @@ class BitmapHandler extends ImageHandler {
 			$width = $params['physicalWidth'];
 			$height = $params['physicalHeight'];
 		}
+
 		return array( $width, $height );
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $dstPath
-	 * @param  $dstUrl
-	 * @param  $params
+	 * @param File $image
+	 * @param string $dstPath
+	 * @param string $dstUrl
+	 * @param array $params
 	 * @param int $flags
 	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
@@ -121,8 +127,9 @@ class BitmapHandler extends ImageHandler {
 			'clientWidth' => $params['width'],
 			'clientHeight' => $params['height'],
 			# Comment as will be added to the Exif of the thumbnail
-			'comment' => isset( $params['descriptionUrl'] ) ?
-				"File source: {$params['descriptionUrl']}" : '',
+			'comment' => isset( $params['descriptionUrl'] )
+				? "File source: {$params['descriptionUrl']}"
+				: '',
 			# Properties of the original image
 			'srcWidth' => $image->getWidth(),
 			'srcHeight' => $image->getHeight(),
@@ -134,14 +141,17 @@ class BitmapHandler extends ImageHandler {
 		# Determine scaler type
 		$scaler = self::getScalerType( $dstPath );
 
-		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} thumbnail at $dstPath using scaler $scaler\n" );
+		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} " .
+			"thumbnail at $dstPath using scaler $scaler\n" );
 
 		if ( !$image->mustRender() &&
-				$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
-				&& $scalerParams['physicalHeight'] == $scalerParams['srcHeight'] ) {
+			$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
+			&& $scalerParams['physicalHeight'] == $scalerParams['srcHeight']
+		) {
 
 			# normaliseParams (or the user) wants us to return the unscaled image
 			wfDebug( __METHOD__ . ": returning unscaled image\n" );
+
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
 
@@ -157,17 +167,30 @@ class BitmapHandler extends ImageHandler {
 				'width' => $scalerParams['clientWidth'],
 				'height' => $scalerParams['clientHeight']
 			);
+
 			return new ThumbnailImage( $image, $dstUrl, false, $params );
 		}
 
 		# Try to make a target path for the thumbnail
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
-			wfDebug( __METHOD__ . ": Unable to create thumbnail destination directory, falling back to client scaling\n" );
+			wfDebug( __METHOD__ . ": Unable to create thumbnail destination " .
+				"directory, falling back to client scaling\n" );
+
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
 
 		# Transform functions and binaries need a FS source file
 		$scalerParams['srcPath'] = $image->getLocalRefPath();
+		if ( $scalerParams['srcPath'] === false ) { // Failed to get local copy
+			wfDebugLog( 'thumbnail',
+				sprintf( 'Thumbnail failed on %s: could not get local copy of "%s"',
+					wfHostname(), $image->getName() ) );
+
+			return new MediaTransformError( 'thumbnail_error',
+				$scalerParams['clientWidth'], $scalerParams['clientHeight'],
+				wfMessage( 'filemissing' )->text()
+			);
+		}
 
 		# Try a hook
 		$mto = null;
@@ -180,6 +203,7 @@ class BitmapHandler extends ImageHandler {
 		switch ( $scaler ) {
 			case 'hookaborted':
 				# Handled by the hook above
+				/** @var MediaTransformOutput $mto */
 				$err = $mto->isError() ? $mto : false;
 				break;
 			case 'im':
@@ -205,7 +229,9 @@ class BitmapHandler extends ImageHandler {
 		} elseif ( $removed ) {
 			# Thumbnail was zero-byte and had to be removed
 			return new MediaTransformError( 'thumbnail_error',
-				$scalerParams['clientWidth'], $scalerParams['clientHeight'] );
+				$scalerParams['clientWidth'], $scalerParams['clientHeight'],
+				wfMessage( 'unknown-error' )->text()
+			);
 		} elseif ( $mto ) {
 			return $mto;
 		} else {
@@ -213,6 +239,7 @@ class BitmapHandler extends ImageHandler {
 				'width' => $scalerParams['clientWidth'],
 				'height' => $scalerParams['clientHeight']
 			);
+
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 	}
@@ -221,7 +248,9 @@ class BitmapHandler extends ImageHandler {
 	 * Returns which scaler type should be used. Creates parent directories
 	 * for $dstPath and returns 'client' on error
 	 *
-	 * @return string client,im,custom,gd
+	 * @param string $dstPath
+	 * @param bool $checkDstPath
+	 * @return string One of client, im, custom, gd, imext
 	 */
 	protected static function getScalerType( $dstPath, $checkDstPath = true ) {
 		global $wgUseImageResize, $wgUseImageMagick, $wgCustomConvertCommand;
@@ -242,6 +271,7 @@ class BitmapHandler extends ImageHandler {
 		} else {
 			$scaler = 'client';
 		}
+
 		return $scaler;
 	}
 
@@ -249,32 +279,32 @@ class BitmapHandler extends ImageHandler {
 	 * Get a ThumbnailImage that respresents an image that will be scaled
 	 * client side
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $scalerParams Array with scaler params
 	 * @return ThumbnailImage
 	 *
-	 * @todo fixme: no rotation support
+	 * @todo FIXME: No rotation support
 	 */
 	protected function getClientScalingThumbnailImage( $image, $scalerParams ) {
 		$params = array(
 			'width' => $scalerParams['clientWidth'],
 			'height' => $scalerParams['clientHeight']
 		);
+
 		return new ThumbnailImage( $image, $image->getURL(), null, $params );
 	}
 
 	/**
 	 * Transform an image using ImageMagick
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformImageMagick( $image, $params ) {
 		# use ImageMagick
-		global $wgSharpenReductionThreshold, $wgSharpenParameter,
-			$wgMaxAnimatedGifArea,
+		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
 			$wgImageMagickTempDir, $wgImageMagickConvertCommand;
 
 		$quality = array();
@@ -287,15 +317,15 @@ class BitmapHandler extends ImageHandler {
 			$quality = array( '-quality', '80' ); // 80%
 			# Sharpening, see bug 6193
 			if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
-					/ ( $params['srcWidth'] + $params['srcHeight'] )
-					< $wgSharpenReductionThreshold ) {
+				/ ( $params['srcWidth'] + $params['srcHeight'] )
+				< $wgSharpenReductionThreshold
+			) {
 				$sharpen = array( '-sharpen', $wgSharpenParameter );
 			}
 			if ( version_compare( $this->getMagickVersion(), "6.5.6" ) >= 0 ) {
 				// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
 				$decoderHint = array( '-define', "jpeg:size={$params['physicalDimensions']}" );
 			}
-
 		} elseif ( $params['mimeType'] == 'image/png' ) {
 			$quality = array( '-quality', '95' ); // zlib 9, adaptive filtering
 
@@ -304,7 +334,6 @@ class BitmapHandler extends ImageHandler {
 				// Extract initial frame only; we're so big it'll
 				// be a total drag. :P
 				$scene = 0;
-
 			} elseif ( $this->isAnimatedImage( $image ) ) {
 				// Coalesce is needed to scale animated GIFs properly (bug 1017).
 				$animation_pre = array( '-coalesce' );
@@ -358,7 +387,8 @@ class BitmapHandler extends ImageHandler {
 
 		if ( $retval !== 0 ) {
 			$this->logErrorForExternalProcess( $retval, $err, $cmd );
-			return $this->getMediaTransformError( $params, $err );
+
+			return $this->getMediaTransformError( $params, "$err\nError code: $retval" );
 		}
 
 		return false; # No error
@@ -367,7 +397,7 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Transform an image using the Imagick PHP extension
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
@@ -382,8 +412,9 @@ class BitmapHandler extends ImageHandler {
 			if ( $params['mimeType'] == 'image/jpeg' ) {
 				// Sharpening, see bug 6193
 				if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
-						/ ( $params['srcWidth'] + $params['srcHeight'] )
-						< $wgSharpenReductionThreshold ) {
+					/ ( $params['srcWidth'] + $params['srcHeight'] )
+					< $wgSharpenReductionThreshold
+				) {
 					// Hack, since $wgSharpenParamater is written specifically for the command line convert
 					list( $radius, $sigma ) = explode( 'x', $wgSharpenParameter );
 					$im->sharpenImage( $radius, $sigma );
@@ -432,19 +463,17 @@ class BitmapHandler extends ImageHandler {
 				return $this->getMediaTransformError( $params,
 					"Unable to write thumbnail to {$params['dstPath']}" );
 			}
-
 		} catch ( ImagickException $e ) {
 			return $this->getMediaTransformError( $params, $e->getMessage() );
 		}
 
 		return false;
-
 	}
 
 	/**
 	 * Transform an image using a custom command
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
@@ -468,23 +497,13 @@ class BitmapHandler extends ImageHandler {
 
 		if ( $retval !== 0 ) {
 			$this->logErrorForExternalProcess( $retval, $err, $cmd );
+
 			return $this->getMediaTransformError( $params, $err );
 		}
+
 		return false; # No error
 	}
 
-	/**
-	 * Log an error that occurred in an external process
-	 *
-	 * @param $retval int
-	 * @param $err int
-	 * @param $cmd string
-	 */
-	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
-		wfDebugLog( 'thumbnail',
-			sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-					wfHostname(), $retval, trim( $err ), $cmd ) );
-	}
 	/**
 	 * Get a MediaTransformError with error 'thumbnail_error'
 	 *
@@ -494,13 +513,13 @@ class BitmapHandler extends ImageHandler {
 	 */
 	public function getMediaTransformError( $params, $errMsg ) {
 		return new MediaTransformError( 'thumbnail_error', $params['clientWidth'],
-					$params['clientHeight'], $errMsg );
+			$params['clientHeight'], $errMsg );
 	}
 
 	/**
 	 * Transform an image using the built in GD library
 	 *
-	 * @param $image File File associated with this thumbnail
+	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
@@ -512,16 +531,18 @@ class BitmapHandler extends ImageHandler {
 		# input routine for this.
 
 		$typemap = array(
-			'image/gif'          => array( 'imagecreatefromgif',  'palette',   'imagegif'  ),
-			'image/jpeg'         => array( 'imagecreatefromjpeg', 'truecolor', array( __CLASS__, 'imageJpegWrapper' ) ),
-			'image/png'          => array( 'imagecreatefrompng',  'bits',      'imagepng'  ),
-			'image/vnd.wap.wbmp' => array( 'imagecreatefromwbmp', 'palette',   'imagewbmp'  ),
-			'image/xbm'          => array( 'imagecreatefromxbm',  'palette',   'imagexbm'  ),
+			'image/gif' => array( 'imagecreatefromgif', 'palette', 'imagegif' ),
+			'image/jpeg' => array( 'imagecreatefromjpeg', 'truecolor',
+				array( __CLASS__, 'imageJpegWrapper' ) ),
+			'image/png' => array( 'imagecreatefrompng', 'bits', 'imagepng' ),
+			'image/vnd.wap.wbmp' => array( 'imagecreatefromwbmp', 'palette', 'imagewbmp' ),
+			'image/xbm' => array( 'imagecreatefromxbm', 'palette', 'imagexbm' ),
 		);
 		if ( !isset( $typemap[$params['mimeType']] ) ) {
 			$err = 'Image type not supported';
 			wfDebug( "$err\n" );
 			$errMsg = wfMessage( 'thumbnail_image-type' )->text();
+
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
 		list( $loader, $colorStyle, $saveType ) = $typemap[$params['mimeType']];
@@ -530,6 +551,7 @@ class BitmapHandler extends ImageHandler {
 			$err = "Incomplete GD library configuration: missing function $loader";
 			wfDebug( "$err\n" );
 			$errMsg = wfMessage( 'thumbnail_gd-library', $loader )->text();
+
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
 
@@ -537,6 +559,7 @@ class BitmapHandler extends ImageHandler {
 			$err = "File seems to be missing: {$params['srcPath']}";
 			wfDebug( "$err\n" );
 			$errMsg = wfMessage( 'thumbnail_image-missing', $params['srcPath'] )->text();
+
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
 
@@ -584,7 +607,8 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Escape a string for ImageMagick's property input (e.g. -set -comment)
 	 * See InterpretImageProperties() in magick/property.c
-	 * @return mixed|string
+	 * @param string $s
+	 * @return string
 	 */
 	function escapeMagickProperty( $s ) {
 		// Double the backslashes
@@ -595,6 +619,7 @@ class BitmapHandler extends ImageHandler {
 		if ( strlen( $s ) > 0 && ( $s[0] === '-' || $s[0] === '@' ) ) {
 			$s = '\\' . $s;
 		}
+
 		return $s;
 	}
 
@@ -631,10 +656,13 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Escape a string for ImageMagick's output filename. See
 	 * InterpretImageFilename() in magick/image.c.
+	 * @param string $path The file path
+	 * @param bool|string $scene The scene specification, or false if there is none
 	 * @return string
 	 */
 	function escapeMagickOutput( $path, $scene = false ) {
 		$path = str_replace( '%', '%%', $path );
+
 		return $this->escapeMagickPath( $path, $scene );
 	}
 
@@ -668,6 +696,7 @@ class BitmapHandler extends ImageHandler {
 		} else {
 			$path .= "[$scene]";
 		}
+
 		return $path;
 	}
 
@@ -675,7 +704,7 @@ class BitmapHandler extends ImageHandler {
 	 * Retrieve the version of the installed ImageMagick
 	 * You can use PHPs version_compare() to use this value
 	 * Value is cached for one hour.
-	 * @return String representing the IM version.
+	 * @return string Representing the IM version.
 	 */
 	protected function getMagickVersion() {
 		global $wgMemc;
@@ -690,11 +719,14 @@ class BitmapHandler extends ImageHandler {
 			$x = preg_match( '/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches );
 			if ( $x != 1 ) {
 				wfDebug( __METHOD__ . ": ImageMagick version check failed\n" );
+
 				return null;
 			}
 			$wgMemc->set( "imagemagick-version", $matches[1], 3600 );
+
 			return $matches[1];
 		}
+
 		return $cache;
 	}
 
@@ -702,7 +734,6 @@ class BitmapHandler extends ImageHandler {
 		imageinterlace( $dst_image );
 		imagejpeg( $dst_image, $thumbPath, 95 );
 	}
-
 
 	/**
 	 * Returns whether the current scaler supports rotation (im and gd do)
@@ -729,9 +760,24 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $file File
+	 * @see $wgEnableAutoRotation
+	 * @return bool Whether auto rotation is enabled
+	 */
+	public static function autoRotateEnabled() {
+		global $wgEnableAutoRotation;
+
+		if ( $wgEnableAutoRotation === null ) {
+			// Only enable auto-rotation when the bitmap handler can rotate
+			$wgEnableAutoRotation = BitmapHandler::canRotate();
+		}
+
+		return $wgEnableAutoRotation;
+	}
+
+	/**
+	 * @param File $file
 	 * @param array $params Rotate parameters.
-	 *	'rotation' clockwise rotation in degrees, allowed are multiples of 90
+	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
 	 * @return bool
 	 */
@@ -751,12 +797,14 @@ class BitmapHandler extends ImageHandler {
 				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 				wfProfileIn( 'convert' );
 				$retval = 0;
-				$err = wfShellExecWithStderr( $cmd, $retval, $env );
+				$err = wfShellExecWithStderr( $cmd, $retval );
 				wfProfileOut( 'convert' );
 				if ( $retval !== 0 ) {
 					$this->logErrorForExternalProcess( $retval, $err, $cmd );
+
 					return new MediaTransformError( 'thumbnail_error', 0, 0, $err );
 				}
+
 				return false;
 			case 'imext':
 				$im = new Imagick();
@@ -770,6 +818,7 @@ class BitmapHandler extends ImageHandler {
 					return new MediaTransformError( 'thumbnail_error', 0, 0,
 						"Unable to write image to {$params['dstPath']}" );
 				}
+
 				return false;
 			default:
 				return new MediaTransformError( 'thumbnail_error', 0, 0,
@@ -781,7 +830,7 @@ class BitmapHandler extends ImageHandler {
 	 * Rerurns whether the file needs to be rendered. Returns true if the
 	 * file requires rotation and we are able to rotate it.
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return bool
 	 */
 	public function mustRender( $file ) {

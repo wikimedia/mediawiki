@@ -102,7 +102,7 @@ class CSSJanus {
 		$patterns['possibly_negative_quantity'] = "((?:-?{$patterns['quantity']})|(?:inherit|auto))";
 		$patterns['color'] = "(#?{$patterns['nmchar']}+|(?:rgba?|hsla?)\([ \d.,%-]+\))";
 		$patterns['url_chars'] = "(?:{$patterns['url_special_chars']}|{$patterns['nonAscii']}|{$patterns['escape']})*";
-		$patterns['lookahead_not_open_brace'] = "(?!({$patterns['nmchar']}|\r?\n|\s|#|\:|\.|\,|\+|>|\(|\))*?{)";
+		$patterns['lookahead_not_open_brace'] = "(?!({$patterns['nmchar']}|\r?\n|\s|#|\:|\.|\,|\+|>|\(|\)|\[|\]|=|\*=|~=|\^=|'[^']*'])*?{)";
 		$patterns['lookahead_not_closing_paren'] = "(?!{$patterns['url_chars']}?{$patterns['valid_after_uri_chars']}\))";
 		$patterns['lookahead_for_closing_paren'] = "(?={$patterns['url_chars']}?{$patterns['valid_after_uri_chars']}\))";
 		$patterns['noflip_single'] = "/({$patterns['noflip_annotation']}{$patterns['lookahead_not_open_brace']}[^;}]+;?)/i";

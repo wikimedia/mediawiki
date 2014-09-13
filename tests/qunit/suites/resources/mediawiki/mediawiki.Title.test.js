@@ -1,3 +1,4 @@
+/*jshint -W024 */
 ( function ( mw, $ ) {
 	// mw.Title relies on these three config vars
 	// Restore them after each test run
@@ -25,32 +26,31 @@
 			100: 'Penguins'
 		},
 		wgNamespaceIds: {
-			/*jshint camelcase: false */
-			media: -2,
-			special: -1,
+			'media': -2,
+			'special': -1,
 			'': 0,
-			talk: 1,
-			user: 2,
-			user_talk: 3,
-			wikipedia: 4,
-			wikipedia_talk: 5,
-			file: 6,
-			file_talk: 7,
-			mediawiki: 8,
-			mediawiki_talk: 9,
-			template: 10,
-			template_talk: 11,
-			help: 12,
-			help_talk: 13,
-			category: 14,
-			category_talk: 15,
-			image: 6,
-			image_talk: 7,
-			project: 4,
-			project_talk: 5,
-			/* testing custom / alias */
-			penguins: 100,
-			antarctic_waterfowl: 100
+			'talk': 1,
+			'user': 2,
+			'user_talk': 3,
+			'wikipedia': 4,
+			'wikipedia_talk': 5,
+			'file': 6,
+			'file_talk': 7,
+			'mediawiki': 8,
+			'mediawiki_talk': 9,
+			'template': 10,
+			'template_talk': 11,
+			'help': 12,
+			'help_talk': 13,
+			'category': 14,
+			'category_talk': 15,
+			'image': 6,
+			'image_talk': 7,
+			'project': 4,
+			'project_talk': 5,
+			// Testing custom namespaces and aliases
+			'penguins': 100,
+			'antarctic_waterfowl': 100
 		},
 		wgCaseSensitiveNamespaces: []
 	},
@@ -80,6 +80,7 @@
 		],
 		invalid: [
 			'',
+			':',
 			'__  __',
 			'  __  ',
 			// Bad characters forbidden regardless of wgLegalTitleChars
@@ -120,7 +121,6 @@
 			// purposes it is part of the title
 			repeat( 'x', 252 ) + '.json',
 			// Namespace prefix without actual title
-			// ':', // bug 54044
 			'Talk:',
 			'Category: ',
 			'Category: #bar'
@@ -317,27 +317,41 @@
 
 	} );
 
-	QUnit.test( 'getUrl', 2, function ( assert ) {
+	QUnit.test( 'getUrl', 3, function ( assert ) {
 		var title;
 
 		// Config
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 
 		title = new mw.Title( 'Foobar' );
-		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionally, getUrl uses mw.util.getUrl' );
+		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionality, getUrl uses mw.util.getUrl' );
+		assert.equal( title.getUrl({ action: 'edit' }), '/wiki/Foobar?action=edit', 'Basic functionality, \'params\' parameter' );
 
 		title = new mw.Title( 'John Doe', 3 );
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 	} );
 
-	QUnit.test( 'newFromImg', 28, function ( assert ) {
+	QUnit.test( 'newFromImg', 40, function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
+				{
+					url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg',
+					typeOfUrl: 'Hashed thumb with shortened path',
+					nameText: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V)',
+					prefixedText: 'File:Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg'
+				},
 				{
 					url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
 					typeOfUrl: 'Normal hashed directory thumbnail',
 					nameText: 'Anticlockwise heliotrope\'s',
 					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
+				},
+
+				{
+					url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Normal hashed directory thumbnail with complex thumbnail parameters',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
 				},
 
 				{
@@ -364,6 +378,13 @@
 				{
 					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
 					typeOfUrl: 'Commons unhashed thumbnail',
+					nameText: 'Wikipedia-logo-v2',
+					prefixedText: 'File:Wikipedia-logo-v2.svg'
+				},
+
+				{
+					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons unhashed thumbnail with complex thumbnail parameters',
 					nameText: 'Wikipedia-logo-v2',
 					prefixedText: 'File:Wikipedia-logo-v2.svg'
 				},

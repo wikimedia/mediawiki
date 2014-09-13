@@ -77,7 +77,8 @@ class RawAction extends FormlessAction {
 
 		$contentType = $this->getContentType();
 
-		# Force caching for CSS and JS raw content, default: 5 minutes
+		# Force caching for CSS and JS raw content, default: 5 minutes.
+		# Note: If using a canonical url for userpage css/js, we send an HTCP purge.
 		if ( $smaxage === null ) {
 			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
 				$smaxage = intval( $wgForcedRawSMaxage );
@@ -99,7 +100,9 @@ class RawAction extends FormlessAction {
 		$privateCache = $privateCache ?: $this->getUser()->isLoggedIn();
 		# allow the client to cache this for 24 hours
 		$mode = $privateCache ? 'private' : 'public';
-		$response->header( 'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage );
+		$response->header(
+			'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage
+		);
 
 		$text = $this->getRawText();
 
@@ -122,7 +125,7 @@ class RawAction extends FormlessAction {
 	 * Get the text that should be returned, or false if the page or revision
 	 * was not found.
 	 *
-	 * @return String|Bool
+	 * @return string|bool
 	 */
 	public function getRawText() {
 		global $wgParser;
@@ -138,8 +141,9 @@ class RawAction extends FormlessAction {
 
 		// If it's a MediaWiki message we can just hit the message cache
 		if ( $request->getBool( 'usemsgcache' ) && $title->getNamespace() == NS_MEDIAWIKI ) {
-			// The first "true" is to use the database, the second is to use the content langue
-			// and the last one is to specify the message key already contains the language in it ("/de", etc.)
+			// The first "true" is to use the database, the second is to use
+			// the content langue and the last one is to specify the message
+			// key already contains the language in it ("/de", etc.).
 			$text = MessageCache::singleton()->get( $title->getDBkey(), true, true, true );
 			// If the message doesn't exist, return a blank
 			if ( $text === false ) {
@@ -161,7 +165,7 @@ class RawAction extends FormlessAction {
 				} elseif ( !$content instanceof TextContent ) {
 					// non-text content
 					wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
-										. $content->getModel() . "` which is not supported via this interface." );
+						. $content->getModel() . "` which is not supported via this interface." );
 					die();
 				} else {
 					// want a section?
@@ -181,7 +185,11 @@ class RawAction extends FormlessAction {
 		}
 
 		if ( $text !== false && $text !== '' && $request->getVal( 'templates' ) === 'expand' ) {
-			$text = $wgParser->preprocess( $text, $title, ParserOptions::newFromContext( $this->getContext() ) );
+			$text = $wgParser->preprocess(
+				$text,
+				$title,
+				ParserOptions::newFromContext( $this->getContext() )
+			);
 		}
 
 		return $text;
@@ -190,7 +198,7 @@ class RawAction extends FormlessAction {
 	/**
 	 * Get the ID of the revision that should used to get the text.
 	 *
-	 * @return Integer
+	 * @return int
 	 */
 	public function getOldId() {
 		$oldid = $this->getRequest()->getInt( 'oldid' );
@@ -215,13 +223,14 @@ class RawAction extends FormlessAction {
 				$oldid = 0;
 				break;
 		}
+
 		return $oldid;
 	}
 
 	/**
 	 * Get the content type to use for the response
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getContentType() {
 		$ctype = $this->getRequest()->getVal( 'ctype' );
@@ -276,6 +285,7 @@ class RawPage extends RawAction {
 		if ( $this->mOldId !== null ) {
 			return $this->mOldId;
 		}
+
 		return parent::getOldId();
 	}
 }

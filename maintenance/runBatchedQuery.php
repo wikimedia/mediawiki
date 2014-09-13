@@ -60,6 +60,5 @@ class BatchedQueryRunner extends Maintenance {
 	}
 }
 
-
 $maintClass = "BatchedQueryRunner";
 require_once RUN_MAINTENANCE_IF_MAIN;

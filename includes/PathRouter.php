@@ -27,7 +27,7 @@
  *
  * $router->add( "/wiki/$1" );
  *   - Matches /wiki/Foo style urls and extracts the title
- * $router->add( array( 'edit' => "/edit/$1" ), array( 'action' => '$key' ) );
+ * $router->add( array( 'edit' => "/edit/$key" ), array( 'action' => '$key' ) );
  *   - Matches /edit/Foo style urls and sets action=edit
  * $router->add( '/$2/$1',
  *   array( 'variant' => '$2' ),

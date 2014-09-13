@@ -1,0 +1,17 @@
+{
+    "@metadata": {
+        "authors": [
+            "පසිඳු කාවින්ද"
+        ]
+    },
+    "config-information": "Thông tin",
+    "config-page-language": "Ngôn ngữ",
+    "config-page-name": "Tên",
+    "config-page-options": "Tùy chọn",
+    "config-ns-generic": "Dự án",
+    "config-admin-password": "Mật khẩu:",
+    "config-admin-email": "Địa chỉ thư điện tử:",
+    "config-help": "Trợ giúp",
+    "mainpagetext": "'''MediaWiki đã được cài đặt thành công.'''",
+    "mainpagedocfooter": "Xin đọc [//meta.wikimedia.org/wiki/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.\n\n== Để bắt đầu ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Danh sách các thiết lập cấu hình]\n* [//www.mediawiki.org/wiki/Manual:FAQ Các câu hỏi thường gặp MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Danh sách gửi thư về việc phát hành MediaWiki]"
+}

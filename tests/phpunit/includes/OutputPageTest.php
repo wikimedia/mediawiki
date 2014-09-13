@@ -6,6 +6,8 @@
  *
  * @group Output
  *
+ * @todo factor tests in this class into providers and test methods
+ *
  */
 class OutputPageTest extends MediaWikiTestCase {
 	const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
@@ -46,6 +48,7 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * Tests print requests
+	 * @covers OutputPage::transformCssMedia
 	 */
 	public function testPrintRequests() {
 		$this->assertTransformCssMediaCase( array(
@@ -79,6 +82,7 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * Tests screen requests, without either query parameter set
+	 * @covers OutputPage::transformCssMedia
 	 */
 	public function testScreenRequests() {
 		$this->assertTransformCssMediaCase( array(
@@ -114,6 +118,7 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * Tests handheld behavior
+	 * @covers OutputPage::transformCssMedia
 	 */
 	public function testHandheld() {
 		$this->assertTransformCssMediaCase( array(

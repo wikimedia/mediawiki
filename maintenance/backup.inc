@@ -3,7 +3,7 @@
  * Base classes for database dumpers
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -276,7 +276,7 @@ class BackupDumper {
 		}
 
 		$this->lb = wfGetLBFactory()->newMainLB();
-		$db = $this->lb->getConnection( DB_SLAVE, 'backup' );
+		$db = $this->lb->getConnection( DB_SLAVE, 'dump' );
 
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.

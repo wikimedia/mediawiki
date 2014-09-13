@@ -97,6 +97,7 @@ class ApiModuleManager extends ContextSource {
 				// cache this instance in case it is needed later
 				$this->mInstances[$moduleName] = $instance;
 			}
+
 			return $instance;
 		}
 	}
@@ -116,6 +117,7 @@ class ApiModuleManager extends ContextSource {
 				$result[] = $name;
 			}
 		}
+
 		return $result;
 	}
 
@@ -131,6 +133,7 @@ class ApiModuleManager extends ContextSource {
 				$result[$name] = $grpCls[1];
 			}
 		}
+
 		return $result;
 	}
 
@@ -143,9 +146,9 @@ class ApiModuleManager extends ContextSource {
 	public function isDefined( $moduleName, $group = null ) {
 		if ( isset( $this->mModules[$moduleName] ) ) {
 			return $group === null || $this->mModules[$moduleName][0] === $group;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -156,9 +159,9 @@ class ApiModuleManager extends ContextSource {
 	public function getModuleGroup( $moduleName ) {
 		if ( isset( $this->mModules[$moduleName] ) ) {
 			return $this->mModules[$moduleName][0];
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
 	/**

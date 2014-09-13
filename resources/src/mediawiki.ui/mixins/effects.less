@@ -1,0 +1,91 @@
+@import "../settings/colors";
+// ----------------------------------------------------------------------------
+// Button styling
+// ----------------------------------------------------------------------------
+
+.button-colors(@bgColor) {
+	background: @bgColor;
+
+	&:hover,
+	&:focus {
+		// The inner bottom bevel should match the active background color.
+		box-shadow: 0 1px rgba(0, 0, 0, 10%), inset 0 -3px rgba(0, 0, 0, 20%);
+		border-bottom-color: mix(#000, @bgColor, 20%);
+		outline: none;
+		// remove outline in Firefox
+		&::-moz-focus-inner {
+			border-color: transparent;
+		}
+	}
+
+	&:active,
+	&.mw-ui-checked {
+		// lessphp doesn't implement shade (https://github.com/leafo/lessphp/issues/528);
+		// it passes it through, then ResourceLoader drops it.
+		// background: shade(@bgColor, 20%);
+		background: mix(#000, @bgColor, 20%);
+		box-shadow: none;
+	}
+}
+
+.button-colors(@bgColor) when (lightness(@bgColor) >= 70%) {
+	color: @colorGrayDark;
+	border: 1px solid @colorGrayLight;
+
+	&:disabled {
+		color: @colorGrayLight;
+
+		// make sure disabled buttons don't have hover and active states
+		&:hover,
+		&:active {
+			background: @bgColor;
+			box-shadow: none;
+		}
+	}
+}
+
+.button-colors(@bgColor) when (lightness(@bgColor) < 70%) {
+	color: @colorWhite;
+	// border of the same color as background so that light background and
+	// dark background buttons are the same height (only top and bottom to
+	// make box shadow on hover cover the corners too)
+	border: 1px solid @bgColor;
+	border-left: none;
+	border-right: none;
+
+	&:disabled {
+		background: @colorGrayLight;
+		border-color: @colorGrayLight;
+
+		// make sure disabled buttons don't have hover and active states
+		&:hover,
+		&:active,
+		&.mw-ui-checked {
+			box-shadow: none;
+		}
+	}
+}
+
+.button-colors-quiet(@textColor) {
+	// Quiet buttons all start gray, and reveal
+	// constructive/progressive/destructive color on hover and active.
+	color: @colorGrayDark;
+
+	&:hover,
+	&:focus {
+		// lessphp doesn't implement tint, see above
+		// color: tint(@textColor, 20%);
+		color: mix(#fff, @textColor, 20%);
+	}
+
+	&:active,
+	&.mw-ui-checked {
+		// lessphp doesn't implement shade, see above
+		// color: shade(@textColor, 20%);
+		color: mix(#000, @textColor, 20%);
+	}
+
+	&:disabled {
+		color: @colorGrayLight;
+	}
+}

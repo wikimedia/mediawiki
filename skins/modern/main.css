@@ -155,8 +155,7 @@ div.mw_clear {
 textarea {
 	width: 100%;
 	padding: .1em;
-}
-#editform textarea {
+	display: block;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -303,7 +302,7 @@ hr {
 }
 
 #contentSub {
-	color: #888;
+	color: #545454;
 	font-size: small;
 	padding-left: 2em;
 }

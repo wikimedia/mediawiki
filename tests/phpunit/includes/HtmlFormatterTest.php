@@ -6,6 +6,7 @@
 class HtmlFormatterTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider getHtmlData
+	 * @covers HtmlFormatter::getText
 	 */
 	public function testTransform( $input, $expected, $callback = false ) {
 		$input = self::normalize( $input );
@@ -15,6 +16,8 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 		}
 		$formatter->filterContent();
 		$html = $formatter->getText();
+
+		$this->assertValidHtmlSnippet( $html );
 		$this->assertEquals( self::normalize( $expected ), self::normalize( $html ) );
 	}
 

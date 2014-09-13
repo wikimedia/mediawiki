@@ -1,0 +1,32 @@
+{
+    "@metadata": {
+        "authors": [
+            "Dani",
+            "Glanthor Reviol"
+        ]
+    },
+    "config-localsettings-upgrade": "'''Figyelmeztetés''': már létezik a <code>LocalSettings.php</code> fájl.\nA szoftver frissíthető.\nAdja meg a <code>$wgUpgradeKey</code>-ben található kulcsot a beviteli mezőben",
+    "config-session-expired": "Úgy tűnik, hogy a munkamenetadatok lejártak.\nA munkamenetek élettartama a következőre van beállítva: $1.\nAz érték növelhető a php.ini <code>session.gc_maxlifetime</code> beállításának módosításával.\nIndítsa újra a telepítési folyamatot.",
+    "config-no-session": "Elvesztek a munkamenetadatok!\nEllenőrizze, hogy a php.ini-ben a <code>session.save_path</code> beállítás a megfelelő könyvtárra mutat-e.",
+    "config-your-language-help": "Válassza ki a telepítési folyamat során használandó nyelvet.",
+    "config-wiki-language-help": "Az a nyelv, amin a wiki tartalmának legnagyobb része íródik.",
+    "config-page-welcome": "Üdvözli a MediaWiki!",
+    "config-help-restart": "Szeretné törölni az eddig megadott összes adatot és újraindítani a telepítési folyamatot?",
+    "config-welcome": "=== Környezet ellenőrzése ===\nAlapvető ellenőrzés, ami megmondja, hogy a környezet alkalmas-e a MediaWiki számára.\nHa probléma merülne fel a telepítés során, meg kell adnia mások számára az alább megjelenő információkat.",
+    "config-unicode-pure-php-warning": "'''Figyelmeztetés''': Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz.\nHa nagy látogatottságú oldalt üzemeltet, itt találhat információkat [//www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
+    "config-register-globals": "'''Figyelmeztetés: A PHP <code>[http://php.net/register_globals register_globals]</code> beállítása engedélyezve van.'''\n'''Tiltsa le, ha van rá lehetősége.'''\nA MediaWiki működőképes a beállítás használata mellett, de a szerver biztonsági kockázatnak lesz kitéve.",
+    "config-imagemagick": "Az ImageMagick megtalálható a rendszeren: <code>$1</code>.\nA bélyegképek készítése engedélyezve lesz, ha engedélyezi a feltöltéseket.",
+    "config-db-name-help": "Válassza ki a wikije azonosítására használt nevet.\nNem tartalmazhat szóközt vagy kötőjelet.\n\nHa megosztott webtárhelyet használ, a szolgáltatója vagy egy konkrét adatbázisnevet ad önnek használatra, vagy létrehozhat egyet a vezérlőpulton keresztül.",
+    "config-db-install-help": "Adja meg a felhasználónevet és jelszót, amivel a telepítő csatlakozhat az adatbázishoz.",
+    "config-db-wiki-help": "Adja meg azt a felhasználónevet és jelszót, amivel a wiki fog csatlakozni az adatbázishoz működés közben.\nHa a fiók nem létezik és a telepítést végző fiók rendelkezik megfelelő jogosultsággal, egy új fiók készül a megadott a névvel, azon minimális jogosultságkörrel, ami a wiki működéséhez szükséges.",
+    "config-charset-help": "'''Figyelmezetés:''' Ha a '''visszafelé kompatibilis UTF-8''' beállítást használja MySQL 4.1 vagy újabb verziók esetén, és utána a <code>mysqldump</code> programmal készít róla biztonsági másolatot, az tönkreteheti az összes nem ASCII-karaktert, visszafordíthatatlanul károsítva a másolatokban tárolt adatokat!\n\n'''Bináris''' módban a MediaWiki az UTF-8-ban kódolt szöveget bináris mezőkben tárolja az adatbázisban.\nEz sokkal hatékonyabb a MySQL UTF-8-módjától, és lehetővé teszi, hogy a teljes Unicode-karakterkészletet használja.\n'''UTF-8-módban''' MySQL tudja, hogy milyen karakterkészlettel van kódolva az adat, megfelelően van megjelenítve és konvertálva, de\nnem használhatja a [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane] feletti karaktereket.",
+    "config-db-schema-help": "A fenti sémák általában megfelelőek.\nCsak akkor módosítson rajta, ha szükség van rá.",
+    "config-sqlite-parent-unwritable-nogroup": "Nem lehet létrehozni az adatok tárolásához szükséges <code><nowiki>$1</nowiki></code> könyvtárat, mert a webszerver nem írhat a szülőkönyvtárba (<code><nowiki>$2</nowiki></code>).\n\nA telepítő nem tudta megállapíteni, hogy melyik felhasználói fiókon fut a webszerver.\nA folytatáshoz tegye írhatóvá ezen fiók (és más fiókok!) számára a következő könyvtárat: <code><nowiki>$3</nowiki></code>.\nUnix/Linux rendszereken tedd a következőt:\n\n<pre>cd $2\nmkdir $3\nchmod a+w $3</pre>",
+    "config-ns-other": "Más (adja meg)",
+    "config-admin-name-blank": "Adja meg az adminisztrátor felhasználónevét!",
+    "config-admin-name-invalid": "A megadott felhasználónév (<nowiki>$1</nowiki>) érvénytelen.\nAdjon meg egy másik felhasználónevet.",
+    "config-admin-password-blank": "Adja meg az adminisztrátori fiók jelszavát!",
+    "config-instantcommons-help": "Az [//www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [//commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.\nA használatához a MediaWikinek internethozzáférésre van szüksége.\n\nA funkcióról és hogy hogyan állítható be más wikik esetén [//mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhat további információkat.",
+    "config-install-done": "'''Gratulálunk!'''\nSikeresen telepítette a MediaWikit.\n\nA telepítő készített egy <code>LocalSettings.php</code> fájlt.\nEz tartalmazza az összes beállítást.\n\n[$1 Le kell töltenie], és el kell helyeznie a MediaWiki telepítési könyvtárába (az a könyvtár, ahol az index.php van).\n'''Megjegyzés''': Ha ezt most nem teszi meg, és kilép, a generált fájl nem lesz elérhető a későbbiekben.\n\nHa ezzel készen van, '''[$2 beléphet a wikibe]'''.",
+    "mainpagedocfooter": "Ha segítségre van szüksége a wikiszoftver használatához, akkor keresse fel a [//meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.\n\n== Alapok (angol nyelven) ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Beállítások listája]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki GyIK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]"
+}

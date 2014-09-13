@@ -30,6 +30,8 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
+	protected $targets = array( 'desktop', 'mobile' );
+
 	/* Methods */
 
 	/**

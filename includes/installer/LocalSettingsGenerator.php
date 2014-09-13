@@ -137,21 +137,14 @@ class LocalSettingsGenerator {
 		$localSettings = $this->getDefaultText();
 
 		if ( count( $this->extensions ) ) {
-			$extensions = $this->installer->findExtensions();
 			$localSettings .= "
 # Enabled Extensions. Most extensions are enabled by including the base extension file here
 # but check specific extension documentation for more details
 # The following extensions were automatically enabled:\n";
 
-			$ip = $this->installer->getVar( 'IP' );
-			foreach ( $this->extensions as $ext) {
-				$path = str_replace( $ip, '', $extensions[$ext]['path'] );
-				$prefix = '';
-				if ( $path !== $extensions[$ext]['path'] ) {
-					$prefix = '$IP';
-				}
-				$path = $prefix . self::escapePhpString( $path );
-				$localSettings .= "require_once \"$path\";\n";
+			foreach ( $this->extensions as $extName ) {
+				$encExtName = self::escapePhpString( $extName );
+				$localSettings .= "require_once \"\$IP/extensions/$encExtName/$encExtName.php\";\n";
 			}
 		}
 
@@ -217,6 +210,7 @@ class LocalSettingsGenerator {
 		}
 
 		$groupRights = '';
+		$noFollow = '';
 		if ( $this->groupPermissions ) {
 			$groupRights .= "# The following permissions were set based on your choice in the installer\n";
 			foreach ( $this->groupPermissions as $group => $rightArr ) {
@@ -227,12 +221,26 @@ class LocalSettingsGenerator {
 						wfBoolToStr( $perm ) . ";\n";
 				}
 			}
+			if ( ( isset( $this->groupPermissions['*']['edit'] ) &&
+					$this->groupPermissions['*']['edit'] === false )
+				&& ( isset( $this->groupPermissions['*']['createaccount'] ) &&
+					$this->groupPermissions['*']['createaccount'] === false )
+				&& ( isset( $this->groupPermissions['*']['read'] ) &&
+					$this->groupPermissions['*']['read'] !== false )
+			) {
+				$noFollow = "\n# Set \$wgNoFollowLinks to true if you open up your wiki to editing by\n"
+					. "# the general public and wish to apply nofollow to external links as a\n"
+					. "# deterrent to spammers. Nofollow is not a comprehensive anti-spam solution\n"
+					. "# and open wikis will generally require other anti-spam measures; for more\n"
+					. "# information, see https://www.mediawiki.org/wiki/Manual:Combating_spam\n"
+					. "\$wgNoFollowLinks = false;";
+			}
 		}
 
-		$wgServerSetting = "";
+		$serverSetting = "";
 		if ( array_key_exists( 'wgServer', $this->values ) && $this->values['wgServer'] !== null ) {
-			$wgServerSetting = "\n## The protocol and server name to use in fully-qualified URLs\n";
-			$wgServerSetting .= "\$wgServer = \"{$this->values['wgServer']}\";\n";
+			$serverSetting = "\n## The protocol and server name to use in fully-qualified URLs\n";
+			$serverSetting .= "\$wgServer = \"{$this->values['wgServer']}\";\n";
 		}
 
 		switch ( $this->values['wgMainCacheType'] ) {
@@ -259,7 +267,7 @@ class LocalSettingsGenerator {
 # file, not there.
 #
 # Further documentation for configuration settings may be found at:
-# http://www.mediawiki.org/wiki/Manual:Configuration_settings
+# https://www.mediawiki.org/wiki/Manual:Configuration_settings
 
 # Protect against web entry
 if ( !defined( 'MEDIAWIKI' ) ) {
@@ -275,16 +283,16 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## defaults for all runtime URL paths are based off of this.
 ## For more information on customizing the URLs
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
-## http://www.mediawiki.org/wiki/Manual:Short_URL
+## https://www.mediawiki.org/wiki/Manual:Short_URL
 \$wgScriptPath = \"{$this->values['wgScriptPath']}\";
 \$wgScriptExtension = \"{$this->values['wgScriptExtension']}\";
-${wgServerSetting}
+${serverSetting}
 ## The relative URL path to the skins directory
 \$wgStylePath = \"\$wgScriptPath/skins\";
 
 ## The relative URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
-\$wgLogo             = \"{$this->values['wgLogo']}\";
+\$wgLogo = \"{$this->values['wgLogo']}\";
 
 ## UPO means: this is also a user preference option
 
@@ -360,6 +368,6 @@ ${wgServerSetting}
 # Path to the GNU diff3 utility. Used for conflict resolution.
 \$wgDiff3 = \"{$this->values['wgDiff3']}\";
 
-{$groupRights}";
+{$groupRights}{$noFollow}";
 	}
 }

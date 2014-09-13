@@ -419,7 +419,7 @@ class TestFileIterator implements Iterator {
 			$this->lineNum++;
 			$matches = array();
 
-			if ( preg_match( '/^!!\s*(\w+)/', $line, $matches ) ) {
+			if ( preg_match( '/^!!\s*(\S+)/', $line, $matches ) ) {
 				$this->section = strtolower( $matches[1] );
 
 				if ( $this->section == 'endarticle' ) {
@@ -467,8 +467,10 @@ class TestFileIterator implements Iterator {
 
 				if ( $this->section == 'end' ) {
 					$this->checkSection( 'test' );
-					$this->checkSection( 'input' );
-					$this->checkSection( 'result' );
+					// "input" and "result" are old section names allowed
+					// for backwards-compatibility.
+					$input = $this->checkSection( array( 'wikitext', 'input' ), false );
+					$result = $this->checkSection( array( 'html/php', 'html/*', 'html', 'result' ), false );
 
 					if ( !isset( $this->sectionData['options'] ) ) {
 						$this->sectionData['options'] = '';
@@ -478,8 +480,9 @@ class TestFileIterator implements Iterator {
 						$this->sectionData['config'] = '';
 					}
 
-					if ( ( ( preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runDisabled )
-						|| ( preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runParsoid )
+					if ( $input == false || $result == false ||
+						( ( preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runDisabled )
+						|| ( preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) && $result != 'html/php' && !$this->parserTest->runParsoid )
 						|| !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] ) )
 					) {
 						# disabled test
@@ -501,8 +504,8 @@ class TestFileIterator implements Iterator {
 
 					$this->test = array(
 						'test' => ParserTest::chomp( $this->sectionData['test'] ),
-						'input' => ParserTest::chomp( $this->sectionData['input'] ),
-						'result' => ParserTest::chomp( $this->sectionData['result'] ),
+						'input' => ParserTest::chomp( $this->sectionData[ $input ] ),
+						'result' => ParserTest::chomp( $this->sectionData[ $result ] ),
 						'options' => ParserTest::chomp( $this->sectionData['options'] ),
 						'config' => ParserTest::chomp( $this->sectionData['config'] ),
 					);
@@ -527,7 +530,6 @@ class TestFileIterator implements Iterator {
 		return false;
 	}
 
-
 	/**
 	 * Clear section name and its data
 	 */
@@ -539,27 +541,55 @@ class TestFileIterator implements Iterator {
 
 	/**
 	 * Verify the current section data has some value for the given token
-	 * name (first parameter).
+	 * name(s) (first parameter).
 	 * Throw an exception if it is not set, referencing current section
 	 * and adding the current file name and line number
 	 *
-	 * @param $token String: expected token that should have been mentionned before closing this section
+	 * @param $token String|Array: expected token(s) that should have been
+	 * mentioned before closing this section
+	 * @param $fatal Boolean: true iff an exception should be thrown if
+	 * the section is not found.
 	 */
-	private function checkSection( $token ) {
+	private function checkSection( $tokens, $fatal = true ) {
 		if ( is_null( $this->section ) ) {
 			throw new MWException( __METHOD__ . " can not verify a null section!\n" );
 		}
+		if ( !is_array( $tokens ) ) {
+			$tokens = array( $tokens );
+		}
+		if ( count( $tokens ) == 0 ) {
+			throw new MWException( __METHOD__ . " can not verify zero sections!\n" );
+		}
 
-		if ( !isset( $this->sectionData[$token] ) ) {
+		$data = $this->sectionData;
+		$tokens = array_filter( $tokens, function ( $token ) use ( $data ) {
+			return isset( $data[ $token ] );
+		} );
+
+		if ( count( $tokens ) == 0 ) {
+			if ( !$fatal ) {
+				return false;
+			}
 			throw new MWException( sprintf(
 				"'%s' without '%s' at line %s of %s\n",
 				$this->section,
-				$token,
+				implode( ',', $tokens ),
 				$this->lineNum,
 				$this->file
 			) );
 		}
-		return true;
+		if ( count( $tokens ) > 1 ) {
+			throw new MWException( sprintf(
+				"'%s' with unexpected tokens '%s' at line %s of %s\n",
+				$this->section,
+				implode( ',', $tokens ),
+				$this->lineNum,
+				$this->file
+			) );
+		}
+
+		$tokens = array_values( $tokens );
+		return $tokens[ 0 ];
 	}
 }
 

@@ -35,7 +35,6 @@ class LinkCache {
 	private $mGoodLinkFields = array();
 	private $mBadLinks = array();
 	private $mForUpdate = false;
-	private $useDatabase = true;
 
 	/**
 	 * @var LinkCache
@@ -52,6 +51,7 @@ class LinkCache {
 			return self::$instance;
 		}
 		self::$instance = new LinkCache;
+
 		return self::$instance;
 	}
 
@@ -78,6 +78,7 @@ class LinkCache {
 	/**
 	 * General accessor to get/set whether SELECT FOR UPDATE should be used
 	 *
+	 * @param $update
 	 * @return bool
 	 */
 	public function forUpdate( $update = null ) {
@@ -123,21 +124,24 @@ class LinkCache {
 	/**
 	 * Add a link for the title to the link cache
 	 *
-	 * @param $id Integer: page's ID
-	 * @param $title Title object
-	 * @param $len Integer: text's length
-	 * @param $redir Integer: whether the page is a redirect
-	 * @param $revision Integer: latest revision's ID
-	 * @param $model Integer: latest revision's content model ID
+	 * @param int $id Page's ID
+	 * @param Title $title
+	 * @param int $len Text's length
+	 * @param int $redir Whether the page is a redirect
+	 * @param int $revision Latest revision's ID
+	 * @param int $model Latest revision's content model ID
 	 */
-	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null, $revision = false, $model = false ) {
+	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null,
+		$revision = 0, $model = 0
+	) {
 		$dbkey = $title->getPrefixedDBkey();
-		$this->mGoodLinks[$dbkey] = intval( $id );
+		$this->mGoodLinks[$dbkey] = (int)$id;
 		$this->mGoodLinkFields[$dbkey] = array(
-			'length' => intval( $len ),
-			'redirect' => intval( $redir ),
-			'revision' => intval( $revision ),
-			'model' => intval( $model ) );
+			'length' => (int)$len,
+			'redirect' => (int)$redir,
+			'revision' => (int)$revision,
+			'model' => (int)$model
+		);
 	}
 
 	/**
@@ -206,19 +210,6 @@ class LinkCache {
 	}
 
 	/**
-	 * Enable or disable database use.
-	 * @since 1.22
-	 * @param $value Boolean
-	 * @return Boolean
-	 */
-	public function useDatabase( $value = null ) {
-		if ( $value !== null ) {
-			$this->useDatabase = (bool)$value;
-		}
-		return $this->useDatabase;
-	}
-
-	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *
 	 * @param $nt Title object to add
@@ -232,20 +223,19 @@ class LinkCache {
 		$key = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
 			wfProfileOut( __METHOD__ );
+
 			return 0;
 		}
 		$id = $this->getGoodLinkID( $key );
 		if ( $id != 0 ) {
 			wfProfileOut( __METHOD__ );
+
 			return $id;
 		}
 
 		if ( $key === '' ) {
 			wfProfileOut( __METHOD__ );
-			return 0;
-		}
 
-		if( !$this->useDatabase ) {
 			return 0;
 		}
 
@@ -280,6 +270,7 @@ class LinkCache {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $id;
 	}
 

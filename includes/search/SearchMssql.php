@@ -25,16 +25,7 @@
  * Search engine hook base class for Mssql (ConText).
  * @ingroup Search
  */
-class SearchMssql extends SearchEngine {
-
-	/**
-	 * Creates an instance of this class
-	 * @param $db DatabaseMssql: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
-
+class SearchMssql extends SearchDatabase {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
@@ -57,20 +48,6 @@ class SearchMssql extends SearchEngine {
 	function searchTitle( $term ) {
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
 		return new MssqlSearchResultSet( $resultSet, $this->searchTerms );
-	}
-
-	/**
-	 * Return a partial WHERE clause to exclude redirects, if so set
-	 *
-	 * @return String
-	 * @private
-	 */
-	function queryRedirect() {
-		if ( $this->showRedirects ) {
-			return '';
-		} else {
-			return 'AND page_is_redirect=0';
-		}
 	}
 
 	/**
@@ -118,7 +95,6 @@ class SearchMssql extends SearchEngine {
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryLimit( $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
-			$this->queryRedirect() . ' ' .
 			$this->queryNamespaces() . ' ' .
 			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' );
 	}
