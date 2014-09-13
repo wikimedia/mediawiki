@@ -476,8 +476,9 @@ class SpecialMergeHistory extends SpecialPage {
 		);
 
 		# @todo message should use redirect=no
-		$this->getOutput()->addWikiMsg( 'mergehistory-success',
-			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText(), $count );
+		$this->getOutput()->addWikiText( $this->msg( 'mergehistory-success',
+			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText() )->numParams(
+			$count )->text() );
 
 		wfRunHooks( 'ArticleMergeComplete', array( $targetTitle, $destTitle ) );
 
