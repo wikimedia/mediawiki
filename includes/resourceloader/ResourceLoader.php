@@ -1002,15 +1002,6 @@ class ResourceLoader {
 			if ( count( $states ) ) {
 				$out .= self::makeLoaderStateScript( $states );
 			}
-
-			if ( $context->getOnly() === 'scripts' ) {
-				// In only=script requests for modules that are not raw (e.g. not the startup module)
-				// ensure the execution is conditional to avoid situations where browsers with an
-				// unsupported environment do unconditionally execute a module's scripts. Otherwise users
-				// will get things like "ReferenceError: mw is undefined" or "jQuery is undefined" from
-				// legacy scripts loaded with only=scripts (such as the 'site' module).
-				$out = self::makeLoaderConditionalScript( $out );
-			}
 		} else {
 			if ( count( $states ) ) {
 				$exceptions .= self::makeComment(
