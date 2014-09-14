@@ -346,7 +346,7 @@
 	"createacct-yourpasswordagain": "Тасдиқи гузарвожа",
 	"createacct-yourpasswordagain-ph": "Гузарвожаро бори дигар ворид кунед",
 	"remembermypassword": "Вуруди манро дар ин мурургар дар хотир нигоҳ дор (то ҳадди аксар $1 {{PLURAL:$1|рӯз|рӯз}})",
-	"userlogin-remembermypassword": "Вурудшударо манро нигоҳ дор",
+	"userlogin-remembermypassword": "Вурудшуда манро нигоҳ дор",
 	"userlogin-signwithsecure": "Истифодаи пайвастшавии амн",
 	"yourdomainname": "Домейни Шумо",
 	"password-change-forbidden": "Шумо гузарвожаро дар ин вики тағийр дода наметавонед.",

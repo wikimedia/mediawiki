@@ -1581,7 +1581,7 @@
 	"rollbacklinkcount-morethan": "$1-нан аса {{PLURAL:$1|өңдемені|өңдемелерді}} шегіндіру",
 	"rollbackfailed": "Шегіндіру орындалмады",
 	"cantrollback": "Өңдеме қайтарылмады;\nсоңғы үлескері тек осы беттің бастаушысы болды.",
-	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|талқылауы]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) істеген [[:$1]] соңғы өңдемесі шегіндірілмеді;\nбасқа біреу бұл бетті әлдеқашан өңдеген немесе шегіндірген.\n\nБетті [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) соңғы рет өңдеген.",
+	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|талқылауы]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) істеген [[:$1]] бетіндегі соңғы өңдемесі шегіндірілмеді, себебі басқа біреу бұл бетті әлдеқашан өңдеген немесе шегіндірген.\n\nБетті [[User:$3|$3]] ([[User talk:$3|талқылауы]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) соңғы рет өңдеген.",
 	"editcomment": "Болған өңдеме түйіндемесі: «''$1''».",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|т]]) өңдемелерінен [[User:$1|$1]] соңғы нұсқасына қайтарды",
 	"revertpage-nouser": "Жасырылған қатысушы өңдемелерінен {{GENDER:$1|[[User:$1|$1]]}} соңғы нұсқасына қайтарды",

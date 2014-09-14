@@ -1963,6 +1963,7 @@
 	"unblocked": "[[User:$1|$1]] беше деблокиран",
 	"unblocked-range": "корисникот $1 е одблокиран",
 	"unblocked-id": "Блокирањето $1 беше отстрането",
+	"unblocked-ip": "[[Special:Contributions/$1|$1]] е одблокирана.",
 	"blocklist": "Блокирани корисници",
 	"ipblocklist": "Блокирани корисници",
 	"ipblocklist-legend": "Најди блокиран корисник",

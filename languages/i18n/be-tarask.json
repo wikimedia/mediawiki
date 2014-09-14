@@ -1950,6 +1950,7 @@
 	"unblocked": "[[User:$1|$1]] быў разблякаваны.",
 	"unblocked-range": "$1 быў разблякаваны",
 	"unblocked-id": "Блякаваньне $1 зьнятае",
+	"unblocked-ip": "[[Special:Contributions/$1|$1]] быў разблякаваны.",
 	"blocklist": "Заблякаваныя ўдзельнікі",
 	"ipblocklist": "Заблякаваныя ўдзельнікі",
 	"ipblocklist-legend": "Пошук заблякаванага ўдзельніка",
