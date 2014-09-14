@@ -90,16 +90,40 @@ function getAccessKeyPrefix( ua ) {
  * @return {string} Access key label
  */
 function getAccessKeyLabel( element ) {
+	var accessKeyLabel, dom;
+
 	// abort early if no access key
 	if ( !element.accessKey ) {
 		return '';
 	}
+	if ( useTestPrefix ) {
+		return 'test-' + element.accessKey;
+	}
+
 	// use accessKeyLabel if possible
 	// http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#dom-accesskeylabel
-	if ( !useTestPrefix && element.accessKeyLabel ) {
-		return element.accessKeyLabel;
+	accessKeyLabel = element.accessKeyLabel;
+	if ( typeof accessKeyLabel === 'string' ) {
+		// Bug 67946: Firefox generates an empty string as access key label
+		// when not inserted into DOM
+		if ( accessKeyLabel !== '' ) {
+			return accessKeyLabel;
+		}
+		// Check if element is in DOM
+		dom = element.ownerDocument;
+		if ( !dom.contains( element ) ) {
+			// element is not in DOM. Append it, read accessKeyLabel and remove it again.
+			dom.body.appendChild( element );
+			accessKeyLabel = element.accessKeyLabel;
+			dom.body.removeChild( element );
+			// Check again
+			if ( accessKeyLabel !== '' ) {
+				return accessKeyLabel;
+			}
+		}
+		// Continue without accessKeyLabel as fallback
 	}
-	return ( useTestPrefix ? 'test-' : getAccessKeyPrefix() ) + element.accessKey;
+	return getAccessKeyPrefix() + element.accessKey;
 }
 
 /**
