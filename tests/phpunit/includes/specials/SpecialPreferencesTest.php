@@ -9,6 +9,7 @@
 
 /**
  * @covers SpecialPreferences
+ * @group Database
  */
 class SpecialPreferencesTest extends MediaWikiTestCase {
 

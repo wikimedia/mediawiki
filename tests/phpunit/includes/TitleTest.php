@@ -2,6 +2,7 @@
 
 /**
  * @group Title
+ * @group Database
  */
 class TitleTest extends MediaWikiTestCase {
 	protected function setUp() {

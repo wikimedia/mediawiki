@@ -145,6 +145,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	/**
 	 * @dataProvider providerGetModifiedTime
 	 * @covers ResourceLoaderFileModule::getModifiedTime
+	 * @group Database
 	 */
 	public function testGetModifiedTime( $module, $expected ) {
 		$rl = new ResourceLoaderFileModule( $module );

@@ -31,7 +31,6 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  * @author Daniel Kinzler
  */
-
 class ORMTableTest extends MediaWikiTestCase {
 
 	/**

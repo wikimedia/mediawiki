@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class MovePageTest extends MediaWikiTestCase {
 
 	/**
