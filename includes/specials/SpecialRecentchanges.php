@@ -732,7 +732,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 			$link = $this->makeOptionsLink( $linkMessage->text(),
 				array( $key => 1 - $options[$key] ), $nondefaults );
-			$links[] = $this->msg( $msg )->rawParams( $link )->escaped();
+			$links[] = "<span class=\"$msg rcshowhideoption\">" . $this->msg( $msg )->rawParams( $link )->escaped() . '</span>';
 		}
 
 		// show from this onward link
@@ -740,13 +740,16 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$now = $lang->userTimeAndDate( $timestamp, $user );
 		$timenow = $lang->userTime( $timestamp, $user );
 		$datenow = $lang->userDate( $timestamp, $user );
-		$rclinks = $this->msg( 'rclinks' )->rawParams( $cl, $dl, $lang->pipeList( $links ) )
-			->parse();
-		$rclistfrom = $this->makeOptionsLink(
+		$pipedLinks = '<span class="rcshowhide">' . $lang->pipeList( $links ) . '</span>';
+
+		$rclinks = '<span class="rclinks">' . $this->msg( 'rclinks' )->rawParams( $cl, $dl, $pipedLinks )
+			->parse() . '</span>';
+
+		$rclistfrom = '<span class="rclistfrom">' . $this->makeOptionsLink(
 			$this->msg( 'rclistfrom' )->rawParams( $now, $timenow, $datenow )->parse(),
 			array( 'from' => $timestamp ),
 			$nondefaults
-		);
+		) . '</span>';
 
 		return "{$note}$rclinks<br />$rclistfrom";
 	}
