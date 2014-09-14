@@ -71,10 +71,13 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 */
 	public function getRedirectQuery() {
 		$params = array();
+		$request = $this->getRequest();
 
 		foreach ( $this->mAllowedRedirectParams as $arg ) {
-			if ( $this->getRequest()->getVal( $arg, null ) !== null ) {
-				$params[$arg] = $this->getRequest()->getVal( $arg );
+			if ( $request->getVal( $arg, null ) !== null ) {
+				$params[$arg] = $request->getVal( $arg );
+			} elseif ( $request->getArray( $arg, null ) !== null ) {
+				$params[$arg] = $request->getArray( $arg );
 			}
 		}
 
@@ -188,7 +191,7 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 			'action',
 			'redirect', 'rdfrom',
 			# Options for preloaded edits
-			'preload', 'editintro', 'preloadtitle', 'summary', 'nosummary',
+			'preload', 'preloadparams', 'editintro', 'preloadtitle', 'summary', 'nosummary',
 			# Options for overriding user settings
 			'preview', 'minor', 'watchthis',
 			# Options for history/diffs
