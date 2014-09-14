@@ -139,4 +139,24 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 			),
 		);
 	}
+
+	/**
+	 * @param $filename string
+	 * @param $expectedLength float
+	 * @dataProvider provideGetLength
+	 */
+	public function testGetLength( $filename, $expectedLength ) {
+		$file = $this->dataFile( $filename, 'image/gif' );
+		$actualLength = $file->getLength();
+		$this->assertEquals( $expectedLength, $actualLength, '', 0.00001 );
+	}
+
+	public function provideGetLength() {
+		return array(
+			array( 'animated.gif', 2.4 ),
+			array( 'animated-xmp.gif', 2.4 ),
+			array( 'nonanimated', 0.0 ),
+			array( 'Bishzilla_blink.gif', 1.4 ),
+		);
+	}
 }
