@@ -175,9 +175,29 @@ class PNGHandler extends BitmapHandler {
 		return $wgLang->commaList( $info );
 	}
 
+	/**
+	 * Return the duration of an APNG file.
+	 *
+	 * Shown in the &query=imageinfo&iiprop=size api query.
+	 *
+	 * @param $file File
+	 * @return float The duration of the file.
+	 */
+	public function getLength( $file ) {
+		$serMeta = $file->getMetadata();
+		MediaWiki\suppressWarnings();
+		$metadata = unserialize( $serMeta );
+		MediaWiki\restoreWarnings();
+
+		if ( !$metadata || !isset( $metadata['duration'] ) || !$metadata['duration'] ) {
+			return 0.0;
+		} else {
+			return (float)$metadata['duration'];
+		}
+	}
+
 	// PNGs should be easy to support, but it will need some sharpening applied
 	// and another user test to check if the perceived quality change is noticeable
-
 	public function supportsBucketing() {
 		return false;
 	}
