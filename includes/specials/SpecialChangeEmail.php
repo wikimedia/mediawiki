@@ -111,7 +111,9 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$form->setTableId( 'mw-changeemail-table' );
 		$form->setWrapperLegendMsg( 'changeemail-header' );
 		$form->setSubmitTextMsg( 'changeemail-submit' );
-		$form->addButton( 'wpCancel',  $this->msg( 'changeemail-cancel' )->text() );
+		$form->addButton( 'wpCancel', $this->msg( 'changeemail-cancel' )->text(),
+			null, array( 'formnovalidate')
+		);
 		$form->addHiddenField( 'returnto', $this->getRequest()->getVal( 'returnto' ) );
 	}
 
