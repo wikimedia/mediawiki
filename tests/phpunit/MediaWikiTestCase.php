@@ -88,6 +88,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->backupStaticAttributes = false;
 	}
 
+	public function __destruct() {
+		// If self::setUp() was called, but not self::tearDown(), throw a PHP notice
+		if ( isset( $this->called['setUp'] ) && !isset( $this->called['tearDown'] ) ) {
+			wfWarn( get_called_class() . "::tearDown() must call parent::tearDown()" );
+		}
+	}
+
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
@@ -192,7 +199,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		wfProfileIn( __METHOD__ );
 		parent::setUp();
-		$this->called['setUp'] = 1;
+		$this->called['setUp'] = true;
 
 		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
@@ -221,6 +228,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function tearDown() {
 		wfProfileIn( __METHOD__ );
 
+		$this->called['tearDown'] = true;
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {
 			if ( is_file( $fileName ) || ( is_link( $fileName ) ) ) {
