@@ -23,9 +23,6 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->cache->delete( wfMemcKey( 'test' ) );
 	}
 
-	protected function tearDown() {
-	}
-
 	public function testMerge() {
 		$key = wfMemcKey( 'test' );
 
