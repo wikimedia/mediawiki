@@ -186,4 +186,24 @@ class GIFHandler extends BitmapHandler {
 
 		return $wgLang->commaList( $info );
 	}
+
+	/**
+	 * Return the duration of the GIF file.
+	 *
+	 * Shown in the &query=imageinfo&iiprop=size api query.
+	 *
+	 * @param $file File
+	 * @return float The duration of the file.
+	 */
+	public function getLength( $file ) {
+		wfSuppressWarnings();
+		$metadata = unserialize( $file->getMetadata() );
+		wfRestoreWarnings();
+
+		if ( !$metadata || !isset( $metadata['duration'] ) || !$metadata['duration'] ) {
+			return 0.0;
+		} else {
+			return (float) $metadata['duration'];
+		}
+	}
 }
