@@ -820,6 +820,10 @@ return array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.login.js',
 		'dependencies' => 'mediawiki.api',
 	),
+	'mediawiki.api.options' => array(
+		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.options.js',
+		'dependencies' => 'mediawiki.api',
+	),
 	'mediawiki.api.parse' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.parse.js',
 		'dependencies' => 'mediawiki.api',
