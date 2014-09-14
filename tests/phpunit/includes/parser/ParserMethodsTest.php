@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	public static function providePreSaveTransform() {

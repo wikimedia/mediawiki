@@ -49,8 +49,9 @@ class MagicVariableTest extends MediaWikiTestCase {
 		# Needs a title to do magic word stuff
 		$title = Title::newFromText( 'Tests' );
 		# Else it needs a db connection just to check if it's a redirect
-		# (when deciding the page language).
+		# or get the content model (when deciding the page language).
 		$title->mRedirect = false;
+		$title->mContentModel = ContentHandler::getDefaultModelFor( $title );
 
 		$this->testParser->setTitle( $title );
 	}

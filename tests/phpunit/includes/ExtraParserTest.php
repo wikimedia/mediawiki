@@ -2,6 +2,7 @@
 
 /**
  * Parser-related tests that don't suit for parserTests.txt
+ * @group Database
  */
 class ExtraParserTest extends MediaWikiTestCase {
 

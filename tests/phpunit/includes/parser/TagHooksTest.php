@@ -2,6 +2,7 @@
 
 /**
  * @group Parser
+ * @group Database
  */
 class TagHookTest extends MediaWikiTestCase {
 	public static function provideValidNames() {
