@@ -22,26 +22,14 @@
  */
 
 /**
- * Content handler for CSS pages.
- *
- * @since 1.21
+ * Content handler for code content such as css, js, json, etc
+ * @since 1.24
  * @ingroup Content
  */
-class CssContentHandler extends TextContentHandler {
+abstract class CodeContentHandler extends TextContentHandler {
 
 	/**
-	 * @param string $modelId
-	 */
-	public function __construct( $modelId = CONTENT_MODEL_CSS ) {
-		parent::__construct( $modelId, array( CONTENT_FORMAT_CSS ) );
-	}
-
-	protected function getContentClass() {
-		return 'CssContent';
-	}
-
-	/**
-	 * Returns the english language, because CSS is english, and should be handled as such.
+	 * Returns the english language, because code is english, and should be handled as such.
 	 *
 	 * @param Title $title
 	 * @param Content $content
@@ -55,7 +43,7 @@ class CssContentHandler extends TextContentHandler {
 	}
 
 	/**
-	 * Returns the english language, because CSS is english, and should be handled as such.
+	 * Returns the english language, because code is english, and should be handled as such.
 	 *
 	 * @param Title $title
 	 * @param Content $content
@@ -67,5 +55,53 @@ class CssContentHandler extends TextContentHandler {
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}
+}
 
+/**
+ * Content handler for CSS pages.
+ * @since 1.21
+ * @ingroup Content
+ */
+class CssContentHandler extends CodeContentHandler {
+
+	public function __construct( $modelId = CONTENT_MODEL_CSS ) {
+		parent::__construct( $modelId, array( CONTENT_FORMAT_CSS ) );
+	}
+
+	protected function getContentClass() {
+		return 'CssContent';
+	}
+}
+
+/**
+ * Content handler for JavaScript pages.
+ * @since 1.21
+ * @ingroup Content
+ * @todo make ScriptContentHandler base class, do highlighting stuff there?
+ */
+class JavaScriptContentHandler extends CodeContentHandler {
+
+	public function __construct( $modelId = CONTENT_MODEL_JAVASCRIPT ) {
+		parent::__construct( $modelId, array( CONTENT_FORMAT_JAVASCRIPT ) );
+	}
+
+	protected function getContentClass() {
+		return 'JavaScriptContent';
+	}
+}
+
+/**
+ * Content handler for json pages.
+ * @since 1.24
+ * @ingroup Content
+ */
+class JSONContentHandler extends CodeContentHandler {
+
+	public function __construct( $modelId = CONTENT_MODEL_JSON ) {
+		parent::__construct( $modelId, array( CONTENT_FORMAT_JSON ) );
+	}
+
+	protected function getContentClass() {
+		return 'JSONContent';
+	}
 }
