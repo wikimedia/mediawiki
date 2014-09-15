@@ -81,9 +81,15 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return null|string
 	 */
 	protected function getContent( $title ) {
-		if ( !$title->isCssJsSubpage() && !$title->isCssOrJsPage() ) {
+		$handler = ContentHandler::getForTitle( $title );
+		if ( $handler->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
+			$format = CONTENT_FORMAT_CSS;
+		} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_JAVASCRIPT ) ) {
+			$format = CONTENT_FORMAT_JAVASCRIPT;
+		} else {
 			return null;
 		}
+
 		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
 		if ( !$revision ) {
 			return null;
@@ -96,14 +102,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return null;
 		}
 
-		if ( $content->isSupportedFormat( CONTENT_FORMAT_JAVASCRIPT ) ) {
-			return $content->serialize( CONTENT_FORMAT_JAVASCRIPT );
-		} elseif ( $content->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
-			return $content->serialize( CONTENT_FORMAT_CSS );
-		} else {
-			wfDebugLog( 'resourceloader', __METHOD__ . ": bad content model {$content->getModel()} for JS/CSS page!" );
-			return null;
-		}
+		return $content->serialize( $format );
 	}
 
 	/* Methods */
