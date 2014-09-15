@@ -27,7 +27,7 @@
  * @ingroup Content
  * @todo make ScriptContentHandler base class, do highlighting stuff there?
  */
-class JavaScriptContentHandler extends TextContentHandler {
+class JavaScriptContentHandler extends CodeContentHandler {
 
 	/**
 	 * @param string $modelId
@@ -39,33 +39,4 @@ class JavaScriptContentHandler extends TextContentHandler {
 	protected function getContentClass() {
 		return 'JavaScriptContent';
 	}
-
-	/**
-	 * Returns the english language, because JS is english, and should be handled as such.
-	 *
-	 * @param Title $title
-	 * @param Content $content
-	 *
-	 * @return Language Return of wfGetLangObj( 'en' )
-	 *
-	 * @see ContentHandler::getPageLanguage()
-	 */
-	public function getPageLanguage( Title $title, Content $content = null ) {
-		return wfGetLangObj( 'en' );
-	}
-
-	/**
-	 * Returns the english language, because JS is english, and should be handled as such.
-	 *
-	 * @param Title $title
-	 * @param Content $content
-	 *
-	 * @return Language Return of wfGetLangObj( 'en' )
-	 *
-	 * @see ContentHandler::getPageViewLanguage()
-	 */
-	public function getPageViewLanguage( Title $title, Content $content = null ) {
-		return wfGetLangObj( 'en' );
-	}
-
 }

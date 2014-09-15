@@ -29,7 +29,7 @@
  * Wrapper allowing us to handle a system message as a Content object.
  * Note that this is generally *not* used to represent content from the
  * MediaWiki namespace, and that there is no MessageContentHandler.
- * MessageContent is just intended as glue for wrapping a message programatically.
+ * MessageContent is just intended as glue for wrapping a message programmatically.
  *
  * @ingroup Content
  */

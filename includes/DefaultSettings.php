@@ -859,7 +859,7 @@ $wgContentHandlers = array(
 	// dumb version, no syntax highlighting
 	CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler',
 	// simple implementation, for use by extensions, etc.
-	CONTENT_MODEL_JSON => 'JSONContentHandler',
+	CONTENT_MODEL_JSON => 'JsonContentHandler',
 	// dumb version, no syntax highlighting
 	CONTENT_MODEL_CSS => 'CssContentHandler',
 	// plain text, for use by extensions, etc.

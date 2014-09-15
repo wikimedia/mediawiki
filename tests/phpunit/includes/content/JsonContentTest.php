@@ -2,15 +2,15 @@
 
 /**
  * @author Adam Shorland
- * @covers JSONContent
+ * @covers JsonContent
  */
-class JSONContentTest extends MediaWikiLangTestCase {
+class JsonContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideValidConstruction
 	 */
 	public function testValidConstruct( $text, $modelId, $isValid, $expected ) {
-		$obj = new JSONContent( $text, $modelId );
+		$obj = new JsonContent( $text, $modelId );
 		$this->assertEquals( $isValid, $obj->isValid() );
 		$this->assertEquals( $expected, $obj->getJsonData() );
 	}
@@ -27,7 +27,7 @@ class JSONContentTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideDataToEncode
 	 */
 	public function testBeautifyUsesFormatJson( $data ) {
-		$obj = new JSONContent( FormatJson::encode( $data ) );
+		$obj = new JsonContent( FormatJson::encode( $data ) );
 		$this->assertEquals( FormatJson::encode( $data, true ), $obj->beautifyJSON() );
 	}
 
@@ -45,9 +45,9 @@ class JSONContentTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideDataToEncode
 	 */
 	public function testPreSaveTransform( $data ) {
-		$obj = new JSONContent( FormatJson::encode( $data ) );
+		$obj = new JsonContent( FormatJson::encode( $data ) );
 		$newObj = $obj->preSaveTransform( $this->getMockTitle(), $this->getMockUser(), $this->getMockParserOptions() );
-		$this->assertTrue( $newObj->equals( new JSONContent( FormatJson::encode( $data, true ) ) ) );
+		$this->assertTrue( $newObj->equals( new JsonContent( FormatJson::encode( $data, true ) ) ) );
 	}
 
 	private function getMockTitle() {
@@ -71,7 +71,7 @@ class JSONContentTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideDataAndParserText
 	 */
 	public function testFillParserOutput( $data, $expected ) {
-		$obj = new JSONContent( FormatJson::encode( $data ) );
+		$obj = new JsonContent( FormatJson::encode( $data ) );
 		$parserOutput = $obj->getParserOutput( $this->getMockTitle(), null, null, true );
 		$this->assertInstanceOf( 'ParserOutput', $parserOutput );
 //		var_dump( $parserOutput->getText(), "\n" );
