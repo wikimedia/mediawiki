@@ -251,45 +251,54 @@ class SpecialListGroupRights extends SpecialPage {
 		sort( $r );
 
 		$lang = $this->getLanguage();
+		$allGroups = User::getAllGroups();
 
 		if ( $add === true ) {
 			$r[] = $this->msg( 'listgrouprights-addgroup-all' )->escaped();
-		} elseif ( is_array( $add ) && count( $add ) ) {
-			$add = array_values( array_unique( $add ) );
-			$r[] = $this->msg( 'listgrouprights-addgroup',
-				$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $add ) ),
-				count( $add )
-			)->parse();
+		} elseif ( is_array( $add ) ) {
+			$add = array_intersect( array_values( array_unique( $add ) ), $allGroups );
+			if ( count( $add ) ) {
+				$r[] = $this->msg( 'listgrouprights-addgroup',
+					$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $add ) ),
+					count( $add )
+				)->parse();
+			}
 		}
 
 		if ( $remove === true ) {
 			$r[] = $this->msg( 'listgrouprights-removegroup-all' )->escaped();
-		} elseif ( is_array( $remove ) && count( $remove ) ) {
-			$remove = array_values( array_unique( $remove ) );
-			$r[] = $this->msg( 'listgrouprights-removegroup',
-				$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $remove ) ),
-				count( $remove )
-			)->parse();
+		} elseif ( is_array( $remove ) ) {
+			$remove = array_intersect( array_values( array_unique( $remove ) ), $allGroups );
+			if ( count( $remove ) ) {
+				$r[] = $this->msg( 'listgrouprights-removegroup',
+					$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $remove ) ),
+					count( $remove )
+				)->parse();
+			}
 		}
 
 		if ( $addSelf === true ) {
 			$r[] = $this->msg( 'listgrouprights-addgroup-self-all' )->escaped();
-		} elseif ( is_array( $addSelf ) && count( $addSelf ) ) {
-			$addSelf = array_values( array_unique( $addSelf ) );
-			$r[] = $this->msg( 'listgrouprights-addgroup-self',
-				$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $addSelf ) ),
-				count( $addSelf )
-			)->parse();
+		} elseif ( is_array( $addSelf ) ) {
+			$addSelf = array_intersect( array_values( array_unique( $addSelf ) ), $allGroups );
+			if ( count( $addSelf ) ) {
+				$r[] = $this->msg( 'listgrouprights-addgroup-self',
+					$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $addSelf ) ),
+					count( $addSelf )
+				)->parse();
+			}
 		}
 
 		if ( $removeSelf === true ) {
 			$r[] = $this->msg( 'listgrouprights-removegroup-self-all' )->parse();
-		} elseif ( is_array( $removeSelf ) && count( $removeSelf ) ) {
-			$removeSelf = array_values( array_unique( $removeSelf ) );
-			$r[] = $this->msg( 'listgrouprights-removegroup-self',
-				$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $removeSelf ) ),
-				count( $removeSelf )
-			)->parse();
+		} elseif ( is_array( $removeSelf ) ) {
+			$removeSelf = array_intersect( array_values( array_unique( $removeSelf ) ), $allGroups );
+			if ( count( $removeSelf ) ) {
+				$r[] = $this->msg( 'listgrouprights-removegroup-self',
+					$lang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $removeSelf ) ),
+					count( $removeSelf )
+				)->parse();
+			}
 		}
 
 		if ( empty( $r ) ) {

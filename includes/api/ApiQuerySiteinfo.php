@@ -525,10 +525,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'remove-self' => $config->get( 'GroupsRemoveFromSelf' )
 			);
 
+			$allGroups = User::getAllGroups();
 			foreach ( $groupArr as $type => $rights ) {
 				if ( isset( $rights[$group] ) ) {
-					$arr[$type] = $rights[$group];
-					$result->setIndexedTagName( $arr[$type], 'group' );
+					$groups = array_intersect( $rights[$group], $allGroups );
+					if ( $groups ) {
+						$arr[$type] = $groups;
+						$result->setIndexedTagName( $arr[$type], 'group' );
+					}
 				}
 			}
 
