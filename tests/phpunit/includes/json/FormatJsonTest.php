@@ -123,6 +123,71 @@ class FormatJsonTest extends MediaWikiTestCase {
 		);
 	}
 
+	public static function provideParse() {
+		return array(
+			array( null ),
+			array( true ),
+			array( false ),
+			array( 0 ),
+			array( 1 ),
+			array( 1.2 ),
+			array( '' ),
+			array( 'str' ),
+			array( array( 0, 1, 2 ) ),
+			array( array( 'a' => 'b' ) ),
+			array( array( 'a' => 'b' ) ),
+			array( array( 'a' => 'b', 'x' => array( 'c' => 'd' ) ) ),
+		);
+	}
+
+	/**
+	 * Recursively convert arrays into stdClass
+	 * @param array|string|bool|int|float|null $value
+	 * @return stdClass|string|bool|int|float|null
+	 */
+	public static function toObject( $value ) {
+		return !is_array( $value ) ? $value : (object) array_map( __METHOD__, $value );
+	}
+
+	/**
+	 * @dataProvider provideParse
+	 * @param mixed $value
+	 */
+	public function testParse( $value ) {
+		$expected = self::toObject( $value );
+		$opt = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP;
+		$json = json_encode( $expected, $opt );
+		$this->assertJson( $json );
+
+		$st = FormatJson::parse( $json );
+		$this->assertType( 'Status', $st );
+		$this->assertTrue( $st->isGood() );
+		$this->assertEquals( $expected, $st->getValue() );
+
+		$st = FormatJson::parse( $json, FormatJson::FORCE_ASSOC );
+		$this->assertType( 'Status', $st );
+		$this->assertTrue( $st->isGood() );
+		$this->assertEquals( $value, $st->getValue() );
+	}
+
+	public static function provideParseErrors() {
+		return array(
+			array( 'aaa', 'json-error-syntax' ),
+			array( '{"j": 1 ] }', 'json-error-syntax' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideParseErrors
+	 * @param mixed $value
+	 */
+	public function testParseErrors( $value, $error ) {
+		$st = FormatJson::parse( $value );
+		$this->assertType( 'Status', $st );
+		$this->assertFalse( $st->isOK() );
+		$this->assertTrue( $st->hasMessage( wfMessage( $error ) ), "Missing error '$error'");
+	}
+
 	/**
 	 * Generate a set of test cases for a particular combination of encoder options.
 	 *
