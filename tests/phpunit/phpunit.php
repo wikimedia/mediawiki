@@ -210,11 +210,14 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
 $ok = false;
 
 foreach ( array(
-	stream_resolve_include_path( 'phpunit.phar' ),
+	'phpunit.phar',
 	'PHPUnit/Runner/Version.php',
 	'PHPUnit/Autoload.php'
 ) as $includePath ) {
-	@include_once $includePath;
+	$includePath = stream_resolve_include_path( $includePath );
+	if( $includePath !== false ) {
+		require $includePath;
+	}
 	if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
 		$ok = true;
 		break;
