@@ -399,7 +399,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( isset( $row['iw_local'] ) && $row['iw_local'] == '1' ) {
 				$val['local'] = '';
 			}
-			if ( $row['iw_trans'] == '1' ) {
+			if ( isset( $row['iw_trans'] ) && $row['iw_trans'] == '1' ) {
 				$val['trans'] = '';
 			}
 
