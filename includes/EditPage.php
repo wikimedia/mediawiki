@@ -3226,6 +3226,7 @@ HTML
 			$attrs['class'] = 'mw-ui-button mw-ui-quiet';
 		}
 		$edithelp = Html::element( 'a', $attrs, wfMessage( 'edithelp' )->text() ) .
+			wfMessage( 'word-separator' )->escaped() .
 			wfMessage( 'newwindow' )->parse();
 
 		$wgOut->addHTML( "	<span class='cancelLink'>{$cancel}</span>\n" );
