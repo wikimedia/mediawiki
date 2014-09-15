@@ -69,6 +69,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				$vals['blockedby'] = $block->getByName();
 				$vals['blockedbyid'] = $block->getBy();
 				$vals['blockreason'] = $user->blockedFor();
+				$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
+				$vals['blockexpiry'] = $block->getExpiry() === 'infinity'
+					? 'infinite'
+					: wfTimestamp( TS_ISO_8601, $block->getExpiry() );
 			}
 		}
 
