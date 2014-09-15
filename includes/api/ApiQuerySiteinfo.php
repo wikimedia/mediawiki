@@ -501,6 +501,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data = array();
 		$result = $this->getResult();
+		$allGroups = User::getAllGroups();
 		foreach ( $config->get( 'GroupPermissions' ) as $group => $permissions ) {
 			$arr = array(
 				'name' => $group,
@@ -527,8 +528,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 			foreach ( $groupArr as $type => $rights ) {
 				if ( isset( $rights[$group] ) ) {
-					$arr[$type] = $rights[$group];
-					$result->setIndexedTagName( $arr[$type], 'group' );
+					$groups = array_intersect( $rights[$group], $allGroups );
+					if ( $groups ) {
+						$arr[$type] = $groups;
+						$result->setIndexedTagName( $arr[$type], 'group' );
+					}
 				}
 			}
 
