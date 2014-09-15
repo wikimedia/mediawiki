@@ -35,21 +35,29 @@ class HTMLFileCache extends FileCacheBase {
 	 * @param string $action
 	 * @throws MWException
 	 * @return HTMLFileCache
+	 *
+	 * @deprecated Since 1.24, instantiate this class directly
 	 */
 	public static function newFromTitle( $title, $action ) {
-		$cache = new self();
+		return new self( $title, $action );
+	}
 
+	/**
+	 * @param Title|string $title Title object or prefixed DB key string
+	 * @param string $action
+	 * @throws MWException
+	 */
+	public function __construct( $title, $action ) {
 		$allowedTypes = self::cacheablePageActions();
 		if ( !in_array( $action, $allowedTypes ) ) {
-			throw new MWException( "Invalid filecache type given." );
+			throw new MWException( 'Invalid file cache type given.' );
 		}
-		$cache->mKey = ( $title instanceof Title )
+		$this->mKey = ( $title instanceof Title )
 			? $title->getPrefixedDBkey()
 			: (string)$title;
-		$cache->mType = (string)$action;
-		$cache->mExt = 'html';
-
-		return $cache;
+		wfRunHooks( 'HTMLFileCache::key', array( &$this->mKey, $title, $action ) );
+		$this->mType = (string)$action;
+		$this->mExt = 'html';
 	}
 
 	/**
@@ -211,7 +219,7 @@ class HTMLFileCache extends FileCacheBase {
 		}
 
 		foreach ( self::cacheablePageActions() as $type ) {
-			$fc = self::newFromTitle( $title, $type );
+			$fc = new self( $title, $type );
 			$fc->clearCache();
 		}
 

@@ -1841,7 +1841,7 @@ class Article implements Page {
 
 		$called = true;
 		if ( $this->isFileCacheable() ) {
-			$cache = HTMLFileCache::newFromTitle( $this->getTitle(), 'view' );
+			$cache = new HTMLFileCache( $this->getTitle(), 'view' );
 			if ( $cache->isCacheGood( $this->mPage->getTouched() ) ) {
 				wfDebug( "Article::tryFileCache(): about to load file\n" );
 				$cache->loadFromFileCache( $this->getContext() );
