@@ -12,7 +12,7 @@
  * Represents the content of a JSON content.
  * @since 1.24
  */
-class JSONContent extends TextContent {
+class JsonContent extends TextContent {
 
 	public function __construct( $text, $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $text, $modelId );
@@ -52,7 +52,7 @@ class JSONContent extends TextContent {
 	 * @param Title $title Title
 	 * @param User $user User
 	 * @param ParserOptions $popts
-	 * @return JSONContent
+	 * @return JsonContent
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		return new static( $this->beautifyJSON() );

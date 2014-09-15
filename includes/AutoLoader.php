@@ -375,20 +375,21 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/content
 	'AbstractContent' => 'includes/content/AbstractContent.php',
-	'ContentHandler' => 'includes/content/ContentHandler.php',
+	'CodeContentHandler' => 'includes/content/CodeContentHandler.php',
 	'Content' => 'includes/content/Content.php',
-	'CssContentHandler' => 'includes/content/CssContentHandler.php',
+	'ContentHandler' => 'includes/content/ContentHandler.php',
 	'CssContent' => 'includes/content/CssContent.php',
-	'JavaScriptContentHandler' => 'includes/content/JavaScriptContentHandler.php',
+	'CssContentHandler' => 'includes/content/CssContentHandler.php',
 	'JavaScriptContent' => 'includes/content/JavaScriptContent.php',
-	'JSONContentHandler' => 'includes/content/JSONContentHandler.php',
-	'JSONContent' => 'includes/content/JSONContent.php',
+	'JavaScriptContentHandler' => 'includes/content/JavaScriptContentHandler.php',
+	'JsonContent' => 'includes/content/JsonContent.php',
+	'JsonContentHandler' => 'includes/content/JsonContentHandler.php',
 	'MessageContent' => 'includes/content/MessageContent.php',
 	'MWContentSerializationException' => 'includes/content/ContentHandler.php',
-	'TextContentHandler' => 'includes/content/TextContentHandler.php',
 	'TextContent' => 'includes/content/TextContent.php',
-	'WikitextContentHandler' => 'includes/content/WikitextContentHandler.php',
+	'TextContentHandler' => 'includes/content/TextContentHandler.php',
 	'WikitextContent' => 'includes/content/WikitextContent.php',
+	'WikitextContentHandler' => 'includes/content/WikitextContentHandler.php',
 
 	# includes/context
 	'ContextSource' => 'includes/context/ContextSource.php',
