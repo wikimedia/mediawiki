@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (073f37e258)
+ * OOjs UI v0.1.0-pre (49b64bdba7)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-15T15:00:24Z
+ * Date: 2014-09-15T22:18:37Z
  */
 /*
  * Blank theme mixins.
@@ -1089,6 +1089,9 @@
   left: 0.25em;
   margin-left: 0;
 }
+.oo-ui-actionWidget.oo-ui-pendingElement-pending {
+  background-image: /* @embed */ url(images/textures/pending.gif);
+}
 .oo-ui-popupWidget-popup {
   position: absolute;
   overflow: hidden;
@@ -1182,6 +1185,10 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.oo-ui-textInputWidget.oo-ui-pendingElement-pending input,
+.oo-ui-textInputWidget.oo-ui-pendingElement-pending textarea {
+  background-image: /* @embed */ url(images/textures/pending.gif);
+}
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator {
   position: absolute;
@@ -1234,8 +1241,8 @@
   color: #777;
   text-shadow: 0 1px 1px #fff;
 }
-.oo-ui-textInputWidget-pending input,
-.oo-ui-textInputWidget-pending textarea {
+.oo-ui-textInputWidget.oo-ui-pendingElement-pending input,
+.oo-ui-textInputWidget.oo-ui-pendingElement-pending textarea {
   background-color: transparent;
 }
 .oo-ui-textInputWidget.oo-ui-widget-disabled input,
@@ -1575,6 +1582,9 @@
   z-index: 1;
   top: 0;
 }
+.oo-ui-dialog-content > .oo-ui-window-head.oo-ui-pendingElement-pending {
+  background-image: /* @embed */ url(images/textures/pending.gif);
+}
 .oo-ui-dialog-content > .oo-ui-window-body {
   z-index: 2;
   top: 0;
@@ -1876,7 +1886,7 @@
   padding: 1em;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup > .oo-ui-window-frame {
-  position: fixed;
+  position: absolute;
   right: 0;
   left: 0;
   margin: auto;
