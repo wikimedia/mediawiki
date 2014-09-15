@@ -3939,10 +3939,11 @@ class Title {
 		$logEntry->setPerformer( $wgUser );
 		$logEntry->setTarget( $logTitle );
 		$logEntry->setComment( $reason );
-		$logEntry->setParameters( array(
+		$logParams = array(
 			'4::target' => $nt->getPrefixedText(),
 			'5::noredir' => $redirectContent ? '0': '1',
-		) );
+		);
+		$logEntry->setParameters( $logParams );
 
 		$formatter = LogFormatter::newFromEntry( $logEntry );
 		$formatter->setContext( RequestContext::newExtraneousContext( $this ) );
@@ -4029,10 +4030,12 @@ class Title {
 					array( $redirectArticle, $redirectRevision, false, $wgUser ) );
 
 				$redirectArticle->doEditUpdates( $redirectRevision, $wgUser, array( 'created' => true ) );
+				$logParams['redirpageid'] = $newid;
 			}
 		}
 
 		# Log the move
+		$logEntry->setParameters( $logParams );
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
 	}
