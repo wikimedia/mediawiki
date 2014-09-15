@@ -55,6 +55,15 @@ class FormatJson {
 	const ALL_OK = 3;
 
 	/**
+	 * If set, treat json objects '{...}' as associative arrays. Without this option,
+	 * json objects will be converted to stdClass.
+	 * The value is set to 1 to be backward compatible with 'true' that was used before.
+	 *
+	 * @since 1.24
+	 */
+	const FORCE_ASSOC = 1;
+
+	/**
 	 * Regex that matches whitespace inside empty arrays and objects.
 	 *
 	 * This doesn't affect regular strings inside the JSON because those can't
@@ -125,6 +134,44 @@ class FormatJson {
 	 */
 	public static function decode( $value, $assoc = false ) {
 		return json_decode( $value, $assoc );
+	}
+
+	/**
+	 * Decodes a JSON string.
+	 *
+	 * @param string $value The JSON string being decoded
+	 * @param int $options A bit field that allows FORCE_ASSOC, TRY_FIXING, WRAP_RESULT
+	 * For backward compatibility, FORCE_ASSOC is set to 1 to match the legacy 'true'
+	 * @return Status If good, the value is available in $result->getValue()
+	 */
+	public static function parse( $value, $options = 0 ) {
+		$assoc = ( $options & self::FORCE_ASSOC ) !== 0;
+		$result = json_decode( $value, $assoc );
+		$code = json_last_error();
+
+		switch ( $code ) {
+			case JSON_ERROR_NONE:
+				return Status::newGood( $result );
+			default:
+				return Status::newFatal( wfMessage( 'json-error-unknown' )->numParam( $code ) );
+			case JSON_ERROR_DEPTH:
+				$msg = 'json-error-depth'; break;
+			case JSON_ERROR_STATE_MISMATCH:
+				$msg = 'json-error-state-mismatch'; break;
+			case JSON_ERROR_CTRL_CHAR:
+				$msg = 'json-error-ctrl-char'; break;
+			case JSON_ERROR_SYNTAX:
+				$msg = 'json-error-syntax'; break;
+			case JSON_ERROR_UTF8:
+				$msg = 'json-error-utf8'; break;
+			case JSON_ERROR_RECURSION:
+				$msg = 'json-error-recursion'; break;
+			case JSON_ERROR_INF_OR_NAN:
+				$msg = 'json-error-inf-or-nan'; break;
+			case JSON_ERROR_UNSUPPORTED_TYPE:
+				$msg = 'json-error-unsupported-type'; break;
+		}
+		return Status::newFatal( $msg );
 	}
 
 	/**
