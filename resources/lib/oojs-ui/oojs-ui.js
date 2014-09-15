@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (073f37e258)
+ * OOjs UI v0.1.0-pre (49b64bdba7)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-15T15:00:24Z
+ * Date: 2014-09-15T22:18:37Z
  */
 ( function ( OO ) {
 
@@ -187,6 +187,88 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
 	};
 
 } )();
+
+/**
+ * Element that can be marked as pending.
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.PendingElement = function OoUiPendingElement( config ) {
+	// Config initialisation
+	config = config || {};
+
+	// Properties
+	this.pending = 0;
+	this.$pending = null;
+
+	// Initialisation
+	this.setPendingElement( config.$pending || this.$element );
+};
+
+/* Setup */
+
+OO.initClass( OO.ui.PendingElement );
+
+/* Methods */
+
+/**
+ * Set the pending element (and clean up any existing one).
+ *
+ * @param {jQuery} $pending The element to set to pending.
+ */
+OO.ui.PendingElement.prototype.setPendingElement = function ( $pending ) {
+	if ( this.$pending ) {
+		this.$pending.removeClass( 'oo-ui-pendingElement-pending' );
+	}
+
+	this.$pending = $pending;
+	if ( this.pending > 0 ) {
+		this.$pending.addClass( 'oo-ui-pendingElement-pending' );
+	}
+};
+
+/**
+ * Check if input is pending.
+ *
+ * @return {boolean}
+ */
+OO.ui.PendingElement.prototype.isPending = function () {
+	return !!this.pending;
+};
+
+/**
+ * Increase the pending stack.
+ *
+ * @chainable
+ */
+OO.ui.PendingElement.prototype.pushPending = function () {
+	if ( this.pending === 0 ) {
+		this.$pending.addClass( 'oo-ui-pendingElement-pending' );
+	}
+	this.pending++;
+
+	return this;
+};
+
+/**
+ * Reduce the pending stack.
+ *
+ * Clamped at zero.
+ *
+ * @chainable
+ */
+OO.ui.PendingElement.prototype.popPending = function () {
+	if ( this.pending === 1 ) {
+		this.$pending.removeClass( 'oo-ui-pendingElement-pending' );
+	}
+	this.pending = Math.max( 0, this.pending - 1 );
+
+	return this;
+};
 
 /**
  * List of actions.
@@ -2056,6 +2138,7 @@ OO.ui.Window.prototype.load = function () {
  * @abstract
  * @class
  * @extends OO.ui.Window
+ * @mixins OO.ui.PendingElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -2064,11 +2147,13 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 	// Parent constructor
 	OO.ui.Dialog.super.call( this, config );
 
+	// Mixin constructors
+	OO.ui.PendingElement.call( this );
+
 	// Properties
 	this.actions = new OO.ui.ActionSet();
 	this.attachedActions = [];
 	this.currentAction = null;
-	this.pending = 0;
 
 	// Events
 	this.actions.connect( this, {
@@ -2086,6 +2171,7 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.Dialog, OO.ui.Window );
+OO.mixinClass( OO.ui.Dialog, OO.ui.PendingElement );
 
 /* Static Properties */
 
@@ -2171,15 +2257,6 @@ OO.ui.Dialog.prototype.onActionsChange = function () {
 	if ( !this.isClosing() ) {
 		this.attachActions();
 	}
-};
-
-/**
- * Check if input is pending.
- *
- * @return {boolean}
- */
-OO.ui.Dialog.prototype.isPending = function () {
-	return !!this.pending;
 };
 
 /**
@@ -2272,6 +2349,7 @@ OO.ui.Dialog.prototype.initialize = function () {
 
 	// Initialization
 	this.$content.addClass( 'oo-ui-dialog-content' );
+	this.setPendingElement( this.$head );
 };
 
 /**
@@ -2307,38 +2385,6 @@ OO.ui.Dialog.prototype.executeAction = function ( action ) {
 	this.pushPending();
 	return this.getActionProcess( action ).execute()
 		.always( OO.ui.bind( this.popPending, this ) );
-};
-
-/**
- * Increase the pending stack.
- *
- * @chainable
- */
-OO.ui.Dialog.prototype.pushPending = function () {
-	if ( this.pending === 0 ) {
-		this.$content.addClass( 'oo-ui-actionDialog-content-pending' );
-		this.$head.addClass( 'oo-ui-texture-pending' );
-	}
-	this.pending++;
-
-	return this;
-};
-
-/**
- * Reduce the pending stack.
- *
- * Clamped at zero.
- *
- * @chainable
- */
-OO.ui.Dialog.prototype.popPending = function () {
-	if ( this.pending === 1 ) {
-		this.$content.removeClass( 'oo-ui-actionDialog-content-pending' );
-		this.$head.removeClass( 'oo-ui-texture-pending' );
-	}
-	this.pending = Math.max( 0, this.pending - 1 );
-
-	return this;
 };
 
 /**
@@ -8152,6 +8198,7 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
  *
  * @class
  * @extends OO.ui.ButtonWidget
+ * @mixins OO.ui.PendingElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -8164,6 +8211,9 @@ OO.ui.ActionWidget = function OoUiActionWidget( config ) {
 
 	// Parent constructor
 	OO.ui.ActionWidget.super.call( this, config );
+
+	// Mixin constructors
+	OO.ui.PendingElement.call( this, config );
 
 	// Properties
 	this.action = config.action || '';
@@ -8178,6 +8228,7 @@ OO.ui.ActionWidget = function OoUiActionWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.ActionWidget, OO.ui.ButtonWidget );
+OO.mixinClass( OO.ui.ActionWidget, OO.ui.PendingElement );
 
 /* Events */
 
@@ -8872,6 +8923,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  * @extends OO.ui.InputWidget
  * @mixins OO.ui.IconElement
  * @mixins OO.ui.IndicatorElement
+ * @mixins OO.ui.PendingElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -8890,9 +8942,9 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Mixin constructors
 	OO.ui.IconElement.call( this, config );
 	OO.ui.IndicatorElement.call( this, config );
+	OO.ui.PendingElement.call( this, config );
 
 	// Properties
-	this.pending = 0;
 	this.multiline = !!config.multiline;
 	this.autosize = !!config.autosize;
 	this.maxRows = config.maxRows !== undefined ? config.maxRows : 10;
@@ -8918,6 +8970,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 OO.inheritClass( OO.ui.TextInputWidget, OO.ui.InputWidget );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IconElement );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IndicatorElement );
+OO.mixinClass( OO.ui.TextInputWidget, OO.ui.PendingElement );
 
 /* Events */
 
@@ -9078,47 +9131,6 @@ OO.ui.TextInputWidget.prototype.isMultiline = function () {
  */
 OO.ui.TextInputWidget.prototype.isAutosizing = function () {
 	return !!this.autosize;
-};
-
-/**
- * Check if input is pending.
- *
- * @return {boolean}
- */
-OO.ui.TextInputWidget.prototype.isPending = function () {
-	return !!this.pending;
-};
-
-/**
- * Increase the pending stack.
- *
- * @chainable
- */
-OO.ui.TextInputWidget.prototype.pushPending = function () {
-	if ( this.pending === 0 ) {
-		this.$element.addClass( 'oo-ui-textInputWidget-pending' );
-		this.$input.addClass( 'oo-ui-texture-pending' );
-	}
-	this.pending++;
-
-	return this;
-};
-
-/**
- * Reduce the pending stack.
- *
- * Clamped at zero.
- *
- * @chainable
- */
-OO.ui.TextInputWidget.prototype.popPending = function () {
-	if ( this.pending === 1 ) {
-		this.$element.removeClass( 'oo-ui-textInputWidget-pending' );
-		this.$input.removeClass( 'oo-ui-texture-pending' );
-	}
-	this.pending = Math.max( 0, this.pending - 1 );
-
-	return this;
 };
 
 /**
