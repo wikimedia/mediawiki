@@ -194,6 +194,52 @@ class MovePage {
 	}
 
 	/**
+	 * Get the Content object to use for the newly created redirect, if the model
+	 * supports them.
+	 *
+	 * @return Content|null
+	 */
+	private function getRedirectContent() {
+		$content = null;
+		if ( $this->oldTitle->inNamespace( NS_CATEGORY ) ) {
+			$message = wfMessage( 'category-move-redirect-override' )->inContentLanguage();
+			if ( !$message->isDisabled() ) {
+				$content = new WikitextContent(
+					$message->params( $this->newTitle->getPrefixedText() )->plain()
+				);
+			}
+		}
+
+		if ( $content === null ) {
+			// ContentHandler::makeRedirectContent returns null if the content model doesn't
+			// support redirects.
+			$content = ContentHandler::getForTitle( $this->oldTitle )->makeRedirectContent(
+				$this->newTitle, wfMessage( 'move-redirect-text' )->inContentLanguage()->plain()
+			);
+		}
+
+		return $content;
+	}
+
+	/**
+	 * @param DatabaseBase $dbw An open connection to the master database
+	 * @param Title $newTitle
+	 * @param WikiPage $newPage
+	 */
+	private function deleteOldRedirect( DatabaseBase $dbw, Title $newTitle, WikiPage $newPage ) {
+		$newId = $newTitle->getArticleID();
+		$newContent = $newPage->getContent();
+
+		# Delete the old redirect. We don't save it to history since
+		# by definition if we've got here it's rather uninteresting.
+		# We have to remove it so that the next step doesn't trigger
+		# a conflict on the unique namespace+title index...
+		$dbw->delete( 'page', array( 'page_id' => $newId ), __METHOD__ );
+
+		$newPage->doDeleteUpdates( $newId, $newContent );
+	}
+
+	/**
 	 * Move page to a title which is either a redirect to the
 	 * source page or nonexistent
 	 *
@@ -217,19 +263,7 @@ class MovePage {
 		}
 
 		if ( $createRedirect ) {
-			if ( $this->oldTitle->getNamespace() == NS_CATEGORY
-				&& !wfMessage( 'category-move-redirect-override' )->inContentLanguage()->isDisabled()
-			) {
-				$redirectContent = new WikitextContent(
-					wfMessage( 'category-move-redirect-override' )
-						->params( $nt->getPrefixedText() )->inContentLanguage()->plain() );
-			} else {
-				$contentHandler = ContentHandler::getForTitle( $this->oldTitle );
-				$redirectContent = $contentHandler->makeRedirectContent( $nt,
-					wfMessage( 'move-redirect-text' )->inContentLanguage()->plain() );
-			}
-
-			// NOTE: If this page's content model does not support redirects, $redirectContent will be null.
+			$redirectContent = $this->getRedirectContent();
 		} else {
 			$redirectContent = null;
 		}
@@ -261,16 +295,7 @@ class MovePage {
 		$newpage = WikiPage::factory( $nt );
 
 		if ( $moveOverRedirect ) {
-			$newid = $nt->getArticleID();
-			$newcontent = $newpage->getContent();
-
-			# Delete the old redirect. We don't save it to history since
-			# by definition if we've got here it's rather uninteresting.
-			# We have to remove it so that the next step doesn't trigger
-			# a conflict on the unique namespace+title index...
-			$dbw->delete( 'page', array( 'page_id' => $newid ), __METHOD__ );
-
-			$newpage->doDeleteUpdates( $newid, $newcontent );
+			$this->deleteOldRedirect( $dbw, $nt, $newpage );
 		}
 
 		# Save a null revision in the page's history notifying of the move
