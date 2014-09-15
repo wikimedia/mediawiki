@@ -2014,6 +2014,7 @@
 	"unblocked": "L'utente [[User:$1|$1]] è stato sbloccato",
 	"unblocked-range": "$1 è stato sbloccato",
 	"unblocked-id": "Il blocco $1 è stato rimosso",
+	"unblocked-ip": "[[Special:Contributions/$1|$1]] è stato sbloccato.",
 	"blocklist": "Utenti bloccati",
 	"ipblocklist": "Utenti bloccati",
 	"ipblocklist-legend": "Cerca un utente bloccato",

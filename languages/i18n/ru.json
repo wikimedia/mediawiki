@@ -2010,6 +2010,7 @@
 	"unblocked": "[[User:$1|$1]] {{GENDER:$1|разблокирован|разблокирована}}",
 	"unblocked-range": "$1 был разблокирован",
 	"unblocked-id": "Блокировка $1 была снята",
+	"unblocked-ip": "[[Special:Contributions/$1|$1]] был разблокирован.",
 	"blocklist": "Заблокированные участники",
 	"ipblocklist": "Заблокированные участники",
 	"ipblocklist-legend": "Поиск заблокированного участника",

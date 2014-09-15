@@ -1998,6 +1998,7 @@
 	"unblocked": "Blockeringen av [[User:$1|$1]] har hävts",
 	"unblocked-range": "$1 har avblockerats",
 	"unblocked-id": "Blockeringen $1 har hävts",
+	"unblocked-ip": "[[Special:Contributions/$1|$1]] har avblockerats.",
 	"blocklist": "Blockerade användare",
 	"ipblocklist": "Blockerade användare",
 	"ipblocklist-legend": "Sök efter en blockerad användare",

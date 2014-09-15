@@ -963,6 +963,7 @@
 	"saveusergroups": "Sêlva gróp utèint",
 	"userrights-groupsmember": "Al fà pêrt {{PLURAL:$1|al gróp|ai gróp}}:",
 	"userrights-groupsmember-auto": "Al fà pêrt ed sicûr a:",
+	"userrights-reason": "Mutîv:",
 	"group": "Gróp:",
 	"group-user": "Utèint",
 	"group-autoconfirmed": "Utèint cunvalidê da per ló",

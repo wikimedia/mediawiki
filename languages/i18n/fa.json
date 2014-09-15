@@ -3093,7 +3093,7 @@
 	"logentry-rights-rights-legacy": "$1 گروه عضویت $3 را {{GENDER:$2|تغییر داد}}",
 	"logentry-rights-autopromote": "$1 به طور خودکار از $4 به $5 {{GENDER:$2|ارتقاء داد}}",
 	"logentry-upload-upload": "$1 $3 را {{GENDER:$2|بارگذاری کرد}}",
-	"logentry-upload-overwrite": "$1 یک نسخهٔ تازه {{GENDER:$2|بارگذاری‌کرد}} $3",
+	"logentry-upload-overwrite": "$1 نسخهٔ تازه‌ای از $3 را {{GENDER:$2|بارگذاری کرد}}",
 	"logentry-upload-revert": "$1 {{GENDER:$2|بارگذاری کرد}} $3",
 	"rightsnone": "(هیچ)",
 	"feedback-bugornote": "اگر آماده‌اید تا مشکلی فنی را با جزئیاتش شرح دهید لطفاً [$1 یک ایراد گزارش دهید]. در غیر این صورت می‌توانید از فرم سادهٔ زیر استفاده کنید. نظر شما به همراه نام کاربری و مرورگرتان به صفحهٔ «[$3 $2]» افزوده خواهد شد.",
