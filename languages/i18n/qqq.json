@@ -3721,5 +3721,15 @@
 	"mediastatistics-header-office": "Header on [[Special:MediaStatistics]] for file types that are in the Office category. This includes PDFs, OpenDocument files, Microsoft Word files, etc.",
 	"mediastatistics-header-text": "Header on [[Special:MediaStatistics]] for file types that are in the text category. This includes simple text formats, including plain text formats, json, csv, and xml. Source code of compiled programming languages may be included here in the future, but isn't currently.",
 	"mediastatistics-header-executable": "Header on [[Special:MediaStatistics]] for file types that are in the executable category. This includes things like source files for interpreted programming language (Shell scripts, javascript, etc).",
-	"mediastatistics-header-archive": "Header on [[Special:MediaStatistics]] for file types that are in the archive category. Includes things like tar, zip, gzip etc."
+	"mediastatistics-header-archive": "Header on [[Special:MediaStatistics]] for file types that are in the archive category. Includes things like tar, zip, gzip etc.",
+	"default-skin-not-found-row-disabled": "One row of the list of installed skins shown as a part of the following message (for a disabled skin):\n* {{msg-mw|default-skin-not-found}}\n----\nParameters:\n* $1 - skin identifier\n* $2 - human-readable skin name\nSee also:\n* {{msg-mw|Default-skin-not-found-row-enabled}}",
+	"json-error-unknown": "User error message when there’s an unknown error.\n{{Identical|Unknown error}}. This error is shown if we received an unexpected value from PHP. See http://php.net/manual/en/function.json-last-error.php\n\nParameters:\n* $1 - integer error code",
+	"json-error-depth": "User error message when the maximum stack depth is exceeded.\nSee http://php.net/manual/en/function.json-last-error.php",
+	"json-error-state-mismatch": "User error message when underflow or the modes mismatch.\n\n'''Underflow''': A data-processing error arising when the absolute value of a computed quantity is smaller than the limits of precision of the computing device, retaining at least one significant digit.\nSee http://php.net/manual/en/function.json-last-error.php",
+	"json-error-ctrl-char": "User error message when an unexpected control character has been found.\nSee http://php.net/manual/en/function.json-last-error.php",
+	"json-error-syntax": "User error message when there is a syntax error; a malformed JSON.\nSee http://php.net/manual/en/function.json-last-error.php",
+	"json-error-utf8": "User error message when there are malformed UTF-8 characters, possibly incorrectly encoded.\nSee http://php.net/manual/en/function.json-last-error.php",
+	"json-error-recursion": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php",
+	"json-error-inf-or-nan": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php",
+	"json-error-unsupported-type": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php"
 }
