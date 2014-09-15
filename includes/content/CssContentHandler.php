@@ -27,7 +27,7 @@
  * @since 1.21
  * @ingroup Content
  */
-class CssContentHandler extends TextContentHandler {
+class CssContentHandler extends CodeContentHandler {
 
 	/**
 	 * @param string $modelId
@@ -39,33 +39,4 @@ class CssContentHandler extends TextContentHandler {
 	protected function getContentClass() {
 		return 'CssContent';
 	}
-
-	/**
-	 * Returns the english language, because CSS is english, and should be handled as such.
-	 *
-	 * @param Title $title
-	 * @param Content $content
-	 *
-	 * @return Language Return of wfGetLangObj( 'en' )
-	 *
-	 * @see ContentHandler::getPageLanguage()
-	 */
-	public function getPageLanguage( Title $title, Content $content = null ) {
-		return wfGetLangObj( 'en' );
-	}
-
-	/**
-	 * Returns the english language, because CSS is english, and should be handled as such.
-	 *
-	 * @param Title $title
-	 * @param Content $content
-	 *
-	 * @return Language Return of wfGetLangObj( 'en' )
-	 *
-	 * @see ContentHandler::getPageViewLanguage()
-	 */
-	public function getPageViewLanguage( Title $title, Content $content = null ) {
-		return wfGetLangObj( 'en' );
-	}
-
 }
