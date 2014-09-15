@@ -3561,5 +3561,14 @@
 	"mediastatistics-header-office": "Office",
 	"mediastatistics-header-text": "Textual",
 	"mediastatistics-header-executable": "Executables",
-	"mediastatistics-header-archive": "Compressed formats"
+	"mediastatistics-header-archive": "Compressed formats",
+	"json-error-unknown": "There was a problem with the JSON. Error: $1",
+	"json-error-depth": "The maximum stack depth has been exceeded",
+	"json-error-state-mismatch": "Invalid or malformed JSON",
+	"json-error-ctrl-char": "Control character error, possibly incorrectly encoded",
+	"json-error-syntax": "Syntax error",
+	"json-error-utf8": "Malformed UTF-8 characters, possibly incorrectly encoded",
+	"json-error-recursion": "One or more recursive references in the value to be encoded",
+	"json-error-inf-or-nan": "One or more NAN or INF values in the value to be encoded",
+	"json-error-unsupported-type": "A value of a type that cannot be encoded was given"
 }
