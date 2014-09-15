@@ -2590,6 +2590,10 @@ database result.
 &$titleArray: set this to an object to override the default object returned
 $res: database result used to create the object
 
+'TitleExists': Called when determining whether a page exists at a given title.
+$title: The title being tested.
+&$exists: Whether the title exists.
+
 'TitleQuickPermissions': Called from Title::checkQuickPermissions to add to
 or override the quick permissions check.
 $title: The Title object being accessed

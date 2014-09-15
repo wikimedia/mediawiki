@@ -4608,7 +4608,9 @@ class Title {
 	 * @return bool
 	 */
 	public function exists() {
-		return $this->getArticleID() != 0;
+		$exists = $this->getArticleID() != 0;
+		wfRunHooks( 'TitleExists', array( $this, &$exists ) );
+		return $exists;
 	}
 
 	/**
