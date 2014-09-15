@@ -55,6 +55,29 @@ class FormatJson {
 	const ALL_OK = 3;
 
 	/**
+	 * If set, treat json objects '{...}' as associative arrays. Without this option,
+	 * json objects will be converted to stdClass.
+	 *
+	 * @since 1.24
+	 */
+	const FORCE_ASSOC = 1;
+
+	/**
+	 * If set, attempts to fix invalid json.
+	 *
+	 * @since 1.24
+	 */
+	const TRY_FIXING = 2;
+
+	/**
+	 * If set, decode() will wrap decoding result in an array on success, and return null on failure.
+	 * This way a '  null  ', which is a valid JSON value, will be returned as array(null).
+	 *
+	 * @since 1.24
+	 */
+	const WRAP_RESULT = 4;
+
+	/**
 	 * Regex that matches whitespace inside empty arrays and objects.
 	 *
 	 * This doesn't affect regular strings inside the JSON because those can't
@@ -117,14 +140,39 @@ class FormatJson {
 	 * Decodes a JSON string.
 	 *
 	 * @param string $value The JSON string being decoded
-	 * @param bool $assoc When true, returned objects will be converted into associative arrays.
+	 * @param int $options A bit field that allows FORCE_ASSOC, TRY_FIXING, WRAP_RESULT
+	 * For backward compatibility, FORCE_ASSOC is set to 1 to match the legacy 'true'
 	 *
 	 * @return mixed The value encoded in JSON in appropriate PHP type.
 	 * `null` is returned if the JSON cannot be decoded or if the encoded data is deeper than
 	 * the recursion limit.
 	 */
-	public static function decode( $value, $assoc = false ) {
-		return json_decode( $value, $assoc );
+	public static function decode( $value, $options = 0 ) {
+		$options = (int)$options;
+		$assoc = ( $options & self::FORCE_ASSOC ) !== 0;
+		$result = json_decode( $value, $assoc );
+
+		if ( $result === null && ( $options & self::TRY_FIXING ) !== 0 ) {
+			// The most common error is the trailing comma in a list. Attempt to remove it.
+			// We have to do it only once, as otherwise there could be an edge case like
+			// ',\n}' being part of a multi-line string value, in which case we should fail
+			// TODO: Apparently multi-line string values are not allowed in json,
+			// TODO: as they must be on a single line with the "\n",
+			// TODO: so we should be ok replacing more than one trailing commas in the blob.
+			$count = 0;
+			$value2 = preg_replace( '/,[ \t]*([\r\n]*[ \t]*[\]}])/', '$1', $value, 1, $count );
+			if ( $count > 0 ) {
+				$result = json_decode( $value2, $assoc );
+			}
+		}
+		if ( ( $options & self::WRAP_RESULT ) !== 0 ) {
+			// 'null' is a valid json code
+			if ( $result !== null || preg_match( '/\s*null\s*/', $value ) ) {
+				$result = array( $result );
+			}
+		}
+
+		return $result;
 	}
 
 	/**
