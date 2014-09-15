@@ -560,7 +560,7 @@ class MediaWiki {
 			wfProfileIn( 'main-try-filecache' );
 			if ( HTMLFileCache::useFileCache( $this->context ) ) {
 				// Try low-level file cache hit
-				$cache = HTMLFileCache::newFromTitle( $title, $action );
+				$cache = new HTMLFileCache( $title, $action );
 				if ( $cache->isCacheGood( /* Assume up to date */ ) ) {
 					// Check incoming headers to see if client has this cached
 					$timestamp = $cache->cacheTimestamp();
