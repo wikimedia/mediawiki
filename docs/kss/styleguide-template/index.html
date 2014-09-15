@@ -10,6 +10,7 @@
 
 	<link rel="stylesheet" href="public/kss.css">
 	<link rel="stylesheet" href="public/style.css">
+	<link rel="stylesheet" href="public/prism.css">
 </head>
 <body><div id="kss-wrapper">
 	<header id="kss-header">
@@ -64,7 +65,7 @@
 					{{#ifAny markup modifiers}}
 							<div>{{html description}}</div>
 							<div class="example">
-								<pre class="prettyprint lang-html">{{markup}}</pre>
+								<pre><code class="language-markup">{{markup}}</code></pre>
 								<blockquote>{{modifierMarkup}}</blockquote>
 							</div>
 							{{#eachModifier}}
@@ -82,5 +83,9 @@
 			{{/if}}
 		</div>
 	</div>
-</div></body>
+</div>
+
+<script src="public/prism.js"></script>
+
+</body>
 </html>
