@@ -120,7 +120,11 @@ class HTMLFileCache extends FileCacheBase {
 		$clang = $wgContLang->getCode();
 
 		// Check that there are no other sources of variation
-		return !$user->getId() && !$user->getNewtalk() && $ulang == $clang;
+		if ( $user->getId() || $user->getNewtalk() || $ulang != $clang ) {
+			return false;
+		}
+		// Allow extensions to disable caching
+		return wfRunHooks( 'HTMLFileCache::useFileCache', array( $context ) );
 	}
 
 	/**
