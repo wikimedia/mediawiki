@@ -3765,7 +3765,12 @@ class Title {
 		wfRunHooks( 'TitleMove', array( $this, $nt, $wgUser ) );
 
 		$mp = new MovePage( $this, $nt );
-		return $mp->move( $wgUser, $reason, $createRedirect );
+		$status = $mp->move( $wgUser, $reason, $createRedirect );
+		if ( $status->isOK() ) {
+			return true;
+		} else {
+			return $status->getErrorsArray();
+		}
 	}
 
 	/**

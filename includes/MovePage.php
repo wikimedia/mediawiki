@@ -46,7 +46,7 @@ class MovePage {
 	 * @param User $user
 	 * @param string $reason
 	 * @param bool $createRedirect
-	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
+	 * @return Status
 	 */
 	public function move( User $user, $reason, $createRedirect ) {
 		global $wgCategoryCollation;
@@ -59,7 +59,7 @@ class MovePage {
 			if ( $file->exists() ) {
 				$status = $file->move( $this->newTitle );
 				if ( !$status->isOk() ) {
-					return $status->getErrorsArray();
+					return $status;
 				}
 			}
 			// Clear RepoGroup process cache
@@ -189,7 +189,7 @@ class MovePage {
 		$dbw->commit( __METHOD__ );
 
 		wfRunHooks( 'TitleMoveComplete', array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason ) );
-		return true;
+		return Status::newGood();
 
 	}
 
