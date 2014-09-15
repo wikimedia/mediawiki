@@ -274,6 +274,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 						$vals[$type] = $vals2;
 					}
 				}
+				if ( isset( $params['redirpageid'] ) ) {
+					$vals[$type]['redirpageid'] = $params['redirpageid'];
+				}
 				if ( isset( $params[$noredirKey] ) && $params[$noredirKey] ) {
 					$vals[$type]['suppressedredirect'] = '';
 				}

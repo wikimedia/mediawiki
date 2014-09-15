@@ -256,6 +256,8 @@ production.
 * New action ClearHasMsg that can be used to clear HasMsg flag.
 * The cmstartsortkey and cmendsortkey parameters to list=categorymembers are
   deprecated in favor of cmstarthexsortkey and cmendhexsortkey.
+* (bug 68930) list=logevents now provides redirpageid, which is the page ID for
+  the redirect created by a page move event.
 
 === Action API internal changes in 1.24 ===
 * Methods for handling continuation are added to ApiResult, so actions other
