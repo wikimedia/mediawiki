@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (bd008e8aed)
+ * OOjs UI v0.1.0-pre (073f37e258)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-11T23:10:10Z
+ * Date: 2014-09-15T15:00:24Z
  */
 ( function ( OO ) {
 
@@ -6429,15 +6429,19 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 	if ( config.help ) {
 		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
 			$: this.$,
+			classes: [ 'oo-ui-fieldLayout-help' ],
 			framed: false,
-			icon: 'info',
-			title: config.help
+			icon: 'info'
 		} );
 
-		this.popupButtonWidget.getPopup().$body.append( this.$( '<span>' ).text( config.help ) );
+		this.popupButtonWidget.getPopup().$body.append(
+			this.$( '<div>' )
+				.text( config.help )
+				.addClass( 'oo-ui-fieldLayout-help-content' )
+		);
 		this.$help = this.popupButtonWidget.$element;
 	} else {
-		this.$help = this.$( '<div>' );
+		this.$help = this.$( [] );
 	}
 
 	// Events
