@@ -1892,8 +1892,14 @@ class EditPage {
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-		$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
-														false, null, $this->contentFormat );
+		$doEditStatus = $this->mArticle->doEditContent(
+			$content,
+			$this->summary,
+			$flags,
+			false,
+			null,
+			$content->getDefaultFormat()
+		);
 
 		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
