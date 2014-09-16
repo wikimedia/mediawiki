@@ -16,7 +16,6 @@ abstract class ApiFormatTestBase extends ApiTestCase {
 		$module = $data[3];
 
 		$printer = $module->createPrinterByName( $format );
-		$printer->setUnescapeAmps( false );
 
 		$printer->initPrinter( false );
 

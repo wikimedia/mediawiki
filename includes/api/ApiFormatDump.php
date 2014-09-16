@@ -48,6 +48,10 @@ class ApiFormatDump extends ApiFormatBase {
 	}
 
 	public function getDescription() {
-		return 'DEPRECATED! Output data in PHP\'s var_dump() format' . parent::getDescription();
+		return 'Output data in PHP\'s var_dump() format' . parent::getDescription();
+	}
+
+	public function isDeprecated() {
+		return true;
 	}
 }
