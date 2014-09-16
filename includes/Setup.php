@@ -286,8 +286,13 @@ call_user_func( function () use ( $wgValidSkinNames ) {
 	$factory->register( 'fallback', 'Fallback', function () {
 		return new SkinFallback;
 	} );
+	// Register a hidden skin for bare content output
+	$factory->register( 'bare', 'Bare', function () {
+		return new SkinBare;
+	} );
 } );
 $wgSkipSkins[] = 'fallback';
+$wgSkipSkins[] = 'bare';
 
 if ( $wgLocalInterwiki ) {
 	array_unshift( $wgLocalInterwikis, $wgLocalInterwiki );
