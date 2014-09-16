@@ -375,6 +375,7 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/content
 	'AbstractContent' => 'includes/content/AbstractContent.php',
+	'CodeContent' => 'includes/content/CodeContent.php',
 	'CodeContentHandler' => 'includes/content/CodeContentHandler.php',
 	'Content' => 'includes/content/Content.php',
 	'ContentHandler' => 'includes/content/ContentHandler.php',
