@@ -20,7 +20,7 @@ class PrefixUniquenessTest extends MediaWikiTestCase {
 			$class = get_class( $module );
 
 			$prefix = $module->getModulePrefix();
-			if ( isset( $prefixes[$prefix] ) ) {
+			if ( $prefix !== '' && isset( $prefixes[$prefix] ) ) {
 				$this->fail( "Module prefix '{$prefix}' is shared between {$class} and {$prefixes[$prefix]}" );
 			}
 			$prefixes[$module->getModulePrefix()] = $class;

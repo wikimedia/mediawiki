@@ -17,8 +17,52 @@ production.
 === Action API changes in 1.25 ===
 * (bug 65403) XML tag highlighting is now only performed for formats
   "xmlfm" and "wddxfm".
+* action=paraminfo supports generalized submodules (modules=query+value),
+  querymodules and formatmodules are deprecated
+* action=paraminfo no longer outputs descriptions and other help text by
+  default. If needed, it may be requested using the new 'helpformat' parameter.
+* action=help has been completely rewritten, and outputs help in HTML
+  rather than plain text.
+* Hitting api.php without specifying an action now displays only the help for
+  the main module, with links to submodule help.
+* API help is no longer displayed on errors.
+* Internationalized messages returned by the API will be in the wiki's content
+  language by default. 'uselang' is now a recognized API parameter;
+  "uselang=user" may be used to select the language from the current user's
+  preferences.
 
 === Action API internal changes in 1.25 ===
+* ApiHelp has been rewritten to support i18n and paginated HTML output.
+  Most existing modules should continue working without changes, but should do
+  the following:
+  * Add an i18n message "apihelp-{$moduleName}-description" to replace getDescription().
+  * Add i18n messages "apihelp-{$moduleName}-param-{$param}" for each parameter
+    to replace getParamDescription(). If necessary, the settings array returned
+    by getParams() can use the new ApiBase::PARAM_HELP_MSG key to override the
+    message.
+  * Implement getExamplesMessages() to replace getExamples().
+* Modules with submodules (like action=query) must have their submodules
+  override ApiBase::getParent() to return the correct parent object.
+* The 'APIGetDescription' and 'APIGetParamDescription' hooks are deprecated,
+  and will have no effect for modules using i18n messages. Use
+  'APIGetDescriptionMessages' and 'APIGetParamDescriptionMessages' instead.
+* Api formatters will no longer be asked to display the help screen on errors.
+* ApiMain::getCredits() was removed. The credits are available in the
+  'api-credits' i18n message.
+* The following methods have been deprecated and may be removed in a future
+  release:
+  * ApiBase::getDescription
+  * ApiBase::getParamDescription
+  * ApiBase::getExamples
+  * ApiBase::makeHelpMsg
+  * ApiBase::makeHelpArrayToString
+  * ApiBase::makeHelpMsgParameters
+  * ApiFormatBase::setUnescapeAmps
+  * ApiFormatBase::getWantsHelp
+  * ApiFormatBase::setHelp
+  * ApiMain::setHelp
+  * ApiMain::reallyMakeHelpMsg
+  * ApiMain::makeHelpMsgHeader
 
 === Languages updated in 1.25 ===
 
