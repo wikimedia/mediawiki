@@ -1,0 +1,86 @@
+.apihelp-header {
+	clear: both;
+	margin-bottom: 0.1em;
+}
+
+div.apihelp-linktrail {
+	font-size: smaller;
+}
+
+.apihelp-block {
+	margin-top: 0.5em;
+}
+
+.apihelp-block-head {
+	font-weight: bold;
+}
+
+.apihelp-flags {
+	font-size: smaller;
+	float: right;
+	border: 1px solid black;
+	padding: 0.25em;
+	width: 20em;
+}
+
+.apihelp-deprecated, .apihelp-flag-deprecated,
+.apihelp-flag-internal strong {
+	font-weight: bold;
+	color: red;
+}
+
+.apihelp-empty {
+	color: #888;
+}
+
+.apihelp-help-urls ul {
+	list-style-image: none;
+	list-style-type: none;
+	margin-left: 0;
+}
+
+.apihelp-parameters dl,
+.apihelp-examples dl,
+.apihelp-permissions dl {
+	margin-left: 2em;
+}
+
+.apihelp-parameters dt {
+	float: left;
+	clear: left;
+	min-width: 10em;
+	white-space: nowrap;
+	line-height: 1.5em;
+}
+
+.apihelp-parameters dt:after {
+	content: ':\A0'
+}
+
+.apihelp-parameters dd {
+	margin: 0 0 0.5em 10em;
+	line-height: 1.5em;
+}
+
+.apihelp-parameters dd p:first-child {
+	margin-top: 0;
+}
+
+.apihelp-parameters dd.info {
+	margin-left: 12em;
+	text-indent: -2em;
+}
+
+.apihelp-examples dt {
+	font-weight: normal;
+}
+
+.api-main-links {
+	text-align: center;
+}
+.api-main-links ul:before {
+	content: '[';
+}
+.api-main-links ul:after {
+	content: ']';
+}

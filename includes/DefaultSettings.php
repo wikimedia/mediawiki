@@ -6146,6 +6146,7 @@ $wgExtensionMessagesFiles = array();
  */
 $wgMessagesDirs = array(
 	'core' => "$IP/languages/i18n",
+	'api' => "$IP/includes/api/i18n",
 	'oojs-ui' => "$IP/resources/lib/oojs-ui/i18n",
 );
 

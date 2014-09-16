@@ -41,6 +41,10 @@ class ApiFormatYaml extends ApiFormatJson {
 	}
 
 	public function getDescription() {
-		return 'DEPRECATED! Output data in YAML format' . ApiFormatBase::getDescription();
+		return 'Output data in YAML format' . ApiFormatBase::getDescription();
+	}
+
+	public function isDeprecated() {
+		return true;
 	}
 }
