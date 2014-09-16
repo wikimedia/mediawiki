@@ -94,7 +94,7 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 	 * @param ResourceLoaderContext $context
 	 * @return lessc
 	 */
-	protected function getLessCompiler( ResourceLoaderContext $context ) {
+	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
 		$compiler = parent::getLessCompiler();
 		$compiler->setVariables( $this->getLessVars( $context ) );
 		return $compiler;
