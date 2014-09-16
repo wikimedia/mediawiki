@@ -862,6 +862,8 @@ $wgContentHandlers = array(
 	CONTENT_MODEL_JSON => 'JsonContentHandler',
 	// dumb version, no syntax highlighting
 	CONTENT_MODEL_CSS => 'CssContentHandler',
+	// dumb version, no syntax highlighting
+	CONTENT_MODEL_CSV => 'CsvContentHandler',
 	// plain text, for use by extensions, etc.
 	CONTENT_MODEL_TEXT => 'TextContentHandler',
 );

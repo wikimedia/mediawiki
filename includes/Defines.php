@@ -280,6 +280,7 @@ define( 'PROTO_INTERNAL', 2 );
 define( 'CONTENT_MODEL_WIKITEXT', 'wikitext' );
 define( 'CONTENT_MODEL_JAVASCRIPT', 'javascript' );
 define( 'CONTENT_MODEL_CSS', 'css' );
+define( 'CONTENT_MODEL_CSV', 'csv' );
 define( 'CONTENT_MODEL_TEXT', 'text' );
 define( 'CONTENT_MODEL_JSON', 'json' );
 /**@}*/
@@ -297,6 +298,8 @@ define( 'CONTENT_FORMAT_WIKITEXT', 'text/x-wiki' );
 define( 'CONTENT_FORMAT_JAVASCRIPT', 'text/javascript' );
 // for css pages
 define( 'CONTENT_FORMAT_CSS', 'text/css' );
+// for csv pages
+define( 'CONTENT_FORMAT_CSV', 'text/csv' );
 // for future use, e.g. with some plain-html messages.
 define( 'CONTENT_FORMAT_TEXT', 'text/plain' );
 // for future use, e.g. with some plain-html messages.
