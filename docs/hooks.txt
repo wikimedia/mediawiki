@@ -1550,6 +1550,10 @@ $title: The page's Title.
   Currently unused, but planned to provide support for marking individual
   language links in the UI, e.g. for featured articles.
 
+'LanguageSelector': Hook to change the language selector available on a page.
+$out: The output page.
+$cssClassName: CSS class name of the language selector.
+
 'LinkBegin': Used when generating internal and interwiki links in
 Linker::link(), before processing starts.  Return false to skip default
 processing and return $ret. See documentation for Linker::link() for details on
