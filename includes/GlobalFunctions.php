@@ -1407,7 +1407,7 @@ function wfGetLangObj( $langcode = false ) {
  *
  * This function replaces all old wfMsg* functions.
  *
- * @param string $key Message key
+ * @param string|string[] $key Message key, or array of keys
  * @param mixed $params,... Normal message parameters
  * @return Message
  *
