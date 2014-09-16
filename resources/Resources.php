@@ -778,6 +778,10 @@ return array(
 		'raw' => true,
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.apihelp' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.apihelp.css',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.api' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.js',
 		'dependencies' => 'mediawiki.util',

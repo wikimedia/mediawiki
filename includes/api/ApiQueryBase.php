@@ -91,6 +91,13 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
+	 * @see ApiBase::getParent()
+	 */
+	public function getParent() {
+		return $this->getQuery();
+	}
+
+	/**
 	 * Get the Query database connection (read-only)
 	 * @return DatabaseBase
 	 */
@@ -709,6 +716,17 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 		} else {
 			parent::setContinueEnumParameter( $paramName, $paramValue );
 		}
+	}
+
+	/**
+	 * @see ApiBase::getHelpFlags()
+	 *
+	 * Corresponding messages: api-help-flag-generator
+	 */
+	protected function getHelpFlags() {
+		$flags = parent::getHelpFlags();
+		$flags[] = 'generator';
+		return $flags;
 	}
 
 	/**
