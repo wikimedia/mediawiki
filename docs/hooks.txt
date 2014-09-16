@@ -384,14 +384,28 @@ $text : the new text of the article (has yet to be saved)
 &$params: Array of parameters
 $flags: int zero or OR-ed flags like ApiBase::GET_VALUES_FOR_HELP
 
-'APIGetDescription': Use this hook to modify a module's description.
+'APIGetDescription': DEPRECATED! Use APIGetDescriptionMessages instead.
+Use this hook to modify a module's description.
 &$module: ApiBase Module object
-&$desc: Array of descriptions
+&$desc: String description, or array of description strings
 
-'APIGetParamDescription': Use this hook to modify a module's parameter
-descriptions.
+'APIGetDescriptionMessages': Use this hook to modify a module's help message.
+$module: ApiBase Module object
+&$msg: Array of Message objects
+
+'APIGetParamDescription': DEPRECATED! Use APIGetParamDescriptionMessages instead.
+Use this hook to modify a module's parameter descriptions.
 &$module: ApiBase Module object
 &$desc: Array of parameter descriptions
+
+'APIGetParamDescriptionMessages': Use this hook to modify a module's parameter descriptions.
+$module: ApiBase Module object
+&$msg: Array of arrays of Message objects
+
+'APIHelpModifyOutput': Use this hook to modify an API module's help output.
+$module: ApiBase Module object
+&$help: Array of HTML strings to be joined for the output.
+$options: Array Options passed to ApiHelp::getHelp
 
 'APIQueryAfterExecute': After calling the execute() method of an
 action=query submodule. Use this to extend core API modules.
