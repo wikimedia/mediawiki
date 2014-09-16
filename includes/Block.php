@@ -885,7 +885,7 @@ class Block {
 	/**
 	 * Get/set a flag determining whether the master is used for reads
 	 *
-	 * @param bool $x
+	 * @param bool|null $x
 	 * @return bool
 	 */
 	public function fromMaster( $x = null ) {
@@ -894,7 +894,7 @@ class Block {
 
 	/**
 	 * Get/set whether the Block is a hardblock (affects logged-in users on a given IP/range
-	 * @param bool $x
+	 * @param bool|null $x
 	 * @return bool
 	 */
 	public function isHardblock( $x = null ) {
@@ -906,6 +906,10 @@ class Block {
 			: $this->isHardblock;
 	}
 
+	/**
+	 * @param null|bool $x
+	 * @return bool
+	 */
 	public function isAutoblocking( $x = null ) {
 		wfSetVar( $this->isAutoblocking, $x );
 
@@ -919,7 +923,7 @@ class Block {
 	/**
 	 * Get/set whether the Block prevents a given action
 	 * @param string $action
-	 * @param bool $x
+	 * @param bool|null $x
 	 * @return bool
 	 */
 	public function prevents( $action, $x = null ) {
@@ -1123,6 +1127,7 @@ class Block {
 	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
 	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
 	 *	  local-squid, ...)
+	 * @throws MWException
 	 * @return Block|null The "best" block from the list
 	 */
 	public static function chooseBlock( array $blocks, array $ipChain ) {
@@ -1156,6 +1161,7 @@ class Block {
 		);
 		$ipChain = array_reverse( $ipChain );
 
+		/** @var Block $block */
 		foreach ( $blocks as $block ) {
 			// Stop searching if we have already have a "better" block. This
 			// is why the order of the blocks matters
