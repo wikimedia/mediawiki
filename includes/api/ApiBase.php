@@ -64,16 +64,16 @@ abstract class ApiBase extends ContextSource {
 	// Boolean, if MIN/MAX are set, enforce (die) these?
 	// Only applies if TYPE='integer' Use with extreme caution
 	const PARAM_RANGE_ENFORCE = 9;
-
-	// Name of property group that is on the root element of the result,
-	// i.e. not part of a list
-	const PROP_ROOT = 'ROOT';
-	// Boolean, is the result multiple items? Defaults to true for query modules,
-	// to false for other modules
-	const PROP_LIST = 'LIST';
-	const PROP_TYPE = 0; // Type of the property, uses same format as PARAM_TYPE
-	// Boolean, can the property be not included in the result? Defaults to false
-	const PROP_NULLABLE = 1;
+	/// @since 1.24
+	// Specify an alternative i18n message for this help parameter.
+	// Value can be a string key, an array giving key and parameters, or a
+	// Message object.
+	const PARAM_HELP_MSG = 10;
+	/// @since 1.24
+	// Specify additional i18n messages to append to the normal message. Value
+	// is an array of any of strings giving the message key, arrays giving key and
+	// parameters, or Message objects.
+	const PARAM_HELP_MSG_APPEND = 11;
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -153,27 +153,64 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Returns the description string for this module
+	 * Returns usage examples for this module.
+	 *
+	 * Return value has query strings as keys, with values being either strings
+	 * (message key), arrays (message key + parameter), or Message objects.
+	 *
+	 * Do not call this base class implementation when overriding this method.
+	 *
+	 * @since 1.24
+	 * @return array
+	 */
+	protected function getExamplesMessages() {
+		// Fall back to old non-localised method
+		$ret = array();
+
+		$examples = $this->getExamples();
+		if ( $examples ) {
+			if ( !is_array( $examples ) ) {
+				$examples = array( $examples );
+			} elseif ( $examples && ( count( $examples ) & 1 ) == 0 &&
+				array_keys( $examples ) === range( 0, count( $examples ) - 1 ) &&
+				!preg_match( '/^\s*api\.php\?/', $examples[0] )
+			) {
+				// Fix up the ugly "even numbered elements are description, odd
+				// numbered elemts are the link" format (see doc for self::getExamples)
+				$tmp = array();
+				for ( $i = 0; $i < count( $examples ); $i += 2 ) {
+					$tmp[$examples[$i + 1]] = $examples[$i];
+				}
+				$examples = $tmp;
+			}
+
+			foreach ( $examples as $k => $v ) {
+				if ( is_numeric( $k ) ) {
+					$qs = $v;
+					$msg = '';
+				} else {
+					$qs = $k;
+					$msg = self::escapeWikiText( $v );
+					if ( is_array( $msg ) ) {
+						$msg = join( " ", $msg );
+					}
+				}
+
+				$qs = preg_replace( '/^\s*api\.php\?/', '', $qs );
+				$ret[$qs] = $this->msg( 'api-help-fallback-example', array( $msg ) );
+			}
+		}
+
+		return $ret;
+	}
+
+	/**
+	 * Return links to more detailed help pages about the module.
+	 * @since 1.24, returning boolean false is deprecated
 	 * @return string|array
 	 */
-	protected function getDescription() {
-		return false;
-	}
-
-	/**
-	 * Returns usage examples for this module. Return false if no examples are available.
-	 * @return bool|string|array
-	 */
-	protected function getExamples() {
-		return false;
-	}
-
-	/**
-	 * @return bool|string|array Returns a false if the module has no help URL,
-	 *   else returns a (array of) string
-	 */
 	public function getHelpUrls() {
-		return false;
+		return array();
 	}
 
 	/**
@@ -186,22 +223,12 @@ abstract class ApiBase extends ContextSource {
 	 * in the overriding methods. Callers of this method can pass zero or
 	 * more OR-ed flags like GET_VALUES_FOR_HELP.
 	 *
-	 * @return array|bool
+	 * @return array
 	 */
 	protected function getAllowedParams( /* $flags = 0 */ ) {
 		// int $flags is not declared because it causes "Strict standards"
 		// warning. Most derived classes do not implement it.
-		return false;
-	}
-
-	/**
-	 * Returns an array of parameter descriptions.
-	 * Don't call this function directly: use getFinalParamDescription() to
-	 * allow hooks to modify descriptions as needed.
-	 * @return array|bool False on no parameter descriptions
-	 */
-	protected function getParamDescription() {
-		return false;
+		return array();
 	}
 
 	/**
@@ -237,6 +264,24 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Indicates whether this module is deprecated
+	 * @since 1.24
+	 * @return bool
+	 */
+	public function isDeprecated() {
+		return false;
+	}
+
+	/**
+	 * Indicates whether this module is "internal" or unstable
+	 * @since 1.24
+	 * @return bool
+	 */
+	public function isInternal() {
+		return false;
+	}
+
+	/**
 	 * Returns the token type this module requires in order to execute.
 	 *
 	 * Modules are strongly encouraged to use the core 'csrf' type unless they
@@ -244,11 +289,9 @@ abstract class ApiBase extends ContextSource {
 	 * core types, you must use the ApiQueryTokensRegisterTypes hook to
 	 * register it.
 	 *
-	 * Returning a non-falsey value here will cause self::getFinalParams() to
-	 * return a required string 'token' parameter and
-	 * self::getFinalParamDescription() to ensure there is standardized
-	 * documentation for it. Also, self::mustBePosted() must return true when
-	 * tokens are used.
+	 * Returning a non-falsey value here will force the addition of an
+	 * appropriate 'token' parameter in self::getFinalParams(). Also,
+	 * self::mustBePosted() must return true when tokens are used.
 	 *
 	 * In previous versions of MediaWiki, true was a valid return value.
 	 * Returning true will generate errors indicating that the API module needs
@@ -314,6 +357,73 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Get the parent of this module
+	 * @since 1.24
+	 * @return ApiBase|null
+	 */
+	public function getParent() {
+		return $this->isMain() ? null : $this->getMain();
+	}
+
+	/**
+	 * Get the path to this module
+	 *
+	 * @since 1.24
+	 * @return string
+	 */
+	public function getModulePath() {
+		if ( $this->isMain() ) {
+			return 'main';
+		} elseif ( $this->getParent()->isMain() ) {
+			return $this->getModuleName();
+		} else {
+			return $this->getParent()->getModulePath() . '+' . $this->getModuleName();
+		}
+	}
+
+	/**
+	 * Get a module from its module path
+	 *
+	 * @since 1.24
+	 * @param string $path
+	 * @return ApiBase|null
+	 * @throws UsageException
+	 */
+	public function getModuleFromPath( $path ) {
+		$module = $this->getMain();
+		if ( $path === 'main' ) {
+			return $module;
+		}
+
+		$parts = explode( '+', $path );
+		if ( count( $parts ) === 1 ) {
+			// In case the '+' was typed into URL, it resolves as a space
+			$parts = explode( ' ', $path );
+		}
+
+		$count = count( $parts );
+		for ( $i = 0; $i < $count; $i++ ) {
+			$parent = $module;
+			$manager = $parent->getModuleManager();
+			if ( $manager === null ) {
+				$errorPath = join( '+', array_slice( $parts, 0, $i ) );
+				$this->dieUsage( "The module \"$errorPath\" has no submodules", 'badmodule' );
+			}
+			$module = $manager->getModule( $parts[$i] );
+
+			if ( $module === null ) {
+				$errorPath = $i ? join( '+', array_slice( $parts, 0, $i ) ) : $parent->getModuleName();
+				$this->dieUsage(
+					"The module \"$errorPath\" does not have a submodule \"{$parts[$i]}\"",
+					'badmodule'
+				);
+			}
+		}
+
+		return $module;
+	}
+
+	/**
 	 * Get the result object
 	 * @return ApiResult
 	 */
@@ -347,70 +457,6 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $this->mSlaveDB;
-	}
-
-	/**
-	 * Get final module description, after hooks have had a chance to tweak it as
-	 * needed.
-	 *
-	 * @return array|bool False on no parameters
-	 */
-	public function getFinalDescription() {
-		$desc = $this->getDescription();
-		wfRunHooks( 'APIGetDescription', array( &$this, &$desc ) );
-
-		return $desc;
-	}
-
-	/**
-	 * Get final list of parameters, after hooks have had a chance to
-	 * tweak it as needed.
-	 *
-	 * @param int $flags Zero or more flags like GET_VALUES_FOR_HELP
-	 * @return array|bool False on no parameters
-	 * @since 1.21 $flags param added
-	 */
-	public function getFinalParams( $flags = 0 ) {
-		$params = $this->getAllowedParams( $flags );
-
-		if ( $this->needsToken() ) {
-			$params['token'] = array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true,
-			);
-		}
-
-		wfRunHooks( 'APIGetAllowedParams', array( &$this, &$params, $flags ) );
-
-		return $params;
-	}
-
-	/**
-	 * Get final parameter descriptions, after hooks have had a chance to tweak it as
-	 * needed.
-	 *
-	 * @return array|bool False on no parameter descriptions
-	 */
-	public function getFinalParamDescription() {
-		$desc = $this->getParamDescription();
-
-		$tokenType = $this->needsToken();
-		if ( $tokenType ) {
-			if ( !isset( $desc['token'] ) ) {
-				$desc['token'] = array();
-			} elseif ( !is_array( $desc['token'] ) ) {
-				// We ignore a plain-string token, because it's probably an
-				// extension that is supplying the string for BC.
-				$desc['token'] = array();
-			}
-			array_unshift( $desc['token'],
-				"A '$tokenType' token retrieved from action=query&meta=tokens"
-			);
-		}
-
-		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ) );
-
-		return $desc;
 	}
 
 	/**@}*/
@@ -1101,6 +1147,55 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $user;
+	}
+
+	/**
+	 * A subset of wfEscapeWikiText for BC texts
+	 *
+	 * @since 1.24
+	 * @param string|array $v
+	 * @return string|array
+	 */
+	private static function escapeWikiText( $v ) {
+		if ( is_array( $v ) ) {
+			return array_map( 'self::escapeWikiText', $v );
+		} else {
+			return strtr( $v, array(
+				'__' => '_&#95;', '{' => '&#123;', '}' => '&#125;',
+				'[[Category:' => '[[:Category:',
+				'[[File:' => '[[:File:', '[[Image:' => '[[:Image:',
+			) );
+		}
+	}
+
+	/**
+	 * Create a Message from a string or array
+	 *
+	 * A string is used as a message key. An array has the message key as the
+	 * first value and message parameters as subsequent values.
+	 *
+	 * @since 1.24
+	 * @param string|array|Message $msg
+	 * @param IContextSource $context
+	 * @param array $params
+	 * @return Message|null
+	 */
+	public static function makeMessage( $msg, IContextSource $context, array $params = null ) {
+		if ( is_string( $msg ) ) {
+			$msg = wfMessage( $msg );
+		} elseif ( is_array( $msg ) ) {
+			$msg = call_user_func_array( 'wfMessage', $msg );
+		}
+		if ( !$msg instanceof Message ) {
+			return null;
+		}
+
+		$msg->setContext( $context );
+		if ( $params ) {
+			$msg->params( $params );
+		}
+
+		return $msg;
 	}
 
 	/**@}*/
@@ -1829,262 +1924,190 @@ abstract class ApiBase extends ContextSource {
 	 */
 
 	/**
-	 * Generates help message for this module, or false if there is no description
-	 * @return string|bool
+	 * Get final module description, after hooks have had a chance to tweak it as
+	 * needed.
+	 *
+	 * @since 1.24, returns Message[] rather than string[]
+	 * @return Message[]
 	 */
-	public function makeHelpMsg() {
-		static $lnPrfx = "\n  ";
-
-		$msg = $this->getFinalDescription();
-
-		if ( $msg !== false ) {
-
-			if ( !is_array( $msg ) ) {
-				$msg = array(
-					$msg
-				);
-			}
-			$msg = $lnPrfx . implode( $lnPrfx, $msg ) . "\n";
-
-			$msg .= $this->makeHelpArrayToString( $lnPrfx, false, $this->getHelpUrls() );
-
-			if ( $this->isReadMode() ) {
-				$msg .= "\nThis module requires read rights";
-			}
-			if ( $this->isWriteMode() ) {
-				$msg .= "\nThis module requires write rights";
-			}
-			if ( $this->mustBePosted() ) {
-				$msg .= "\nThis module only accepts POST requests";
-			}
-			if ( $this->isReadMode() || $this->isWriteMode() ||
-				$this->mustBePosted()
-			) {
-				$msg .= "\n";
-			}
-
-			// Parameters
-			$paramsMsg = $this->makeHelpMsgParameters();
-			if ( $paramsMsg !== false ) {
-				$msg .= "Parameters:\n$paramsMsg";
-			}
-
-			$examples = $this->getExamples();
-			if ( $examples ) {
-				if ( !is_array( $examples ) ) {
-					$examples = array(
-						$examples
-					);
-				}
-				$msg .= "Example" . ( count( $examples ) > 1 ? 's' : '' ) . ":\n";
-				foreach ( $examples as $k => $v ) {
-					if ( is_numeric( $k ) ) {
-						$msg .= "  $v\n";
-					} else {
-						if ( is_array( $v ) ) {
-							$msgExample = implode( "\n", array_map( array( $this, 'indentExampleText' ), $v ) );
-						} else {
-							$msgExample = "  $v";
-						}
-						$msgExample .= ":";
-						$msg .= wordwrap( $msgExample, 100, "\n" ) . "\n    $k\n";
-					}
-				}
-			}
+	public function getFinalDescription() {
+		$desc = $this->getDescription();
+		wfRunHooks( 'APIGetDescription', array( &$this, &$desc ) );
+		$desc = self::escapeWikiText( $desc );
+		if ( is_array( $desc ) ) {
+			$desc = join( "\n", $desc );
+		} else {
+			$desc = (string)$desc;
 		}
 
-		return $msg;
+		$msg = $this->msg( "apihelp-{$this->getModulePath()}-description", array(
+			$this->getModulePrefix(),
+			$this->getModuleName(),
+			$this->getModulePath(),
+		) );
+		if ( !$msg->exists() ) {
+			$msg = $this->msg( 'api-help-fallback-description', $desc );
+		}
+		$msgs = array( $msg );
+
+		wfRunHooks( 'APIGetDescriptionMessages', array( $this, &$msgs ) );
+
+		return $msgs;
 	}
 
 	/**
-	 * @param string $item
-	 * @return string
+	 * Get final list of parameters, after hooks have had a chance to
+	 * tweak it as needed.
+	 *
+	 * @param int $flags Zero or more flags like GET_VALUES_FOR_HELP
+	 * @return array|bool False on no parameters
+	 * @since 1.21 $flags param added
 	 */
-	private function indentExampleText( $item ) {
-		return "  " . $item;
+	public function getFinalParams( $flags = 0 ) {
+		$params = $this->getAllowedParams( $flags );
+		if ( !$params ) {
+			$params = array();
+		}
+
+		if ( $this->needsToken() ) {
+			$params['token'] = array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_HELP_MSG => array(
+					'api-help-param-token',
+					$this->needsToken(),
+				),
+			) + ( isset( $params['token'] ) ? $params['token'] : array() );
+		}
+
+		wfRunHooks( 'APIGetAllowedParams', array( &$this, &$params, $flags ) );
+
+		return $params;
 	}
 
 	/**
-	 * @param string $prefix Text to split output items
-	 * @param string $title What is being output
-	 * @param string|array $input
-	 * @return string
+	 * Get final parameter descriptions, after hooks have had a chance to tweak it as
+	 * needed.
+	 *
+	 * @since 1.24, returns array of Message[] rather than array of string[]
+	 * @return array Keys are parameter names, values are arrays of Message objects
 	 */
-	protected function makeHelpArrayToString( $prefix, $title, $input ) {
-		if ( $input === false ) {
-			return '';
+	public function getFinalParamDescription() {
+		$desc = $this->getParamDescription();
+		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ) );
+
+		if ( !$desc ) {
+			$desc = array();
 		}
-		if ( !is_array( $input ) ) {
-			$input = array( $input );
-		}
+		$desc = self::escapeWikiText( $desc );
 
-		if ( count( $input ) > 0 ) {
-			if ( $title ) {
-				$msg = $title . ( count( $input ) > 1 ? 's' : '' ) . ":\n  ";
-			} else {
-				$msg = '  ';
-			}
-			$msg .= implode( $prefix, $input ) . "\n";
-
-			return $msg;
-		}
-
-		return '';
-	}
-
-	/**
-	 * Generates the parameter descriptions for this module, to be displayed in the
-	 * module's help.
-	 * @return string|bool
-	 */
-	public function makeHelpMsgParameters() {
 		$params = $this->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
-		if ( $params ) {
-
-			$paramsDescription = $this->getFinalParamDescription();
-			$msg = '';
-			$paramPrefix = "\n" . str_repeat( ' ', 24 );
-			$descWordwrap = "\n" . str_repeat( ' ', 28 );
-			foreach ( $params as $paramName => $paramSettings ) {
-				$desc = isset( $paramsDescription[$paramName] ) ? $paramsDescription[$paramName] : '';
-				if ( is_array( $desc ) ) {
-					$desc = implode( $paramPrefix, $desc );
-				}
-
-				//handle shorthand
-				if ( !is_array( $paramSettings ) ) {
-					$paramSettings = array(
-						self::PARAM_DFLT => $paramSettings,
-					);
-				}
-
-				//handle missing type
-				if ( !isset( $paramSettings[ApiBase::PARAM_TYPE] ) ) {
-					$dflt = isset( $paramSettings[ApiBase::PARAM_DFLT] )
-						? $paramSettings[ApiBase::PARAM_DFLT]
-						: null;
-					if ( is_bool( $dflt ) ) {
-						$paramSettings[ApiBase::PARAM_TYPE] = 'boolean';
-					} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
-						$paramSettings[ApiBase::PARAM_TYPE] = 'string';
-					} elseif ( is_int( $dflt ) ) {
-						$paramSettings[ApiBase::PARAM_TYPE] = 'integer';
-					}
-				}
-
-				if ( isset( $paramSettings[self::PARAM_DEPRECATED] )
-					&& $paramSettings[self::PARAM_DEPRECATED]
-				) {
-					$desc = "DEPRECATED! $desc";
-				}
-
-				if ( isset( $paramSettings[self::PARAM_REQUIRED] )
-					&& $paramSettings[self::PARAM_REQUIRED]
-				) {
-					$desc .= $paramPrefix . "This parameter is required";
-				}
-
-				$type = isset( $paramSettings[self::PARAM_TYPE] )
-					? $paramSettings[self::PARAM_TYPE]
-					: null;
-				if ( isset( $type ) ) {
-					$hintPipeSeparated = true;
-					$multi = isset( $paramSettings[self::PARAM_ISMULTI] )
-						? $paramSettings[self::PARAM_ISMULTI]
-						: false;
-					if ( $multi ) {
-						$prompt = 'Values (separate with \'|\'): ';
-					} else {
-						$prompt = 'One value: ';
-					}
-
-					if ( $type === 'submodule' ) {
-						$type = $this->getModuleManager()->getNames( $paramName );
-						sort( $type );
-					}
-					if ( is_array( $type ) ) {
-						$choices = array();
-						$nothingPrompt = '';
-						foreach ( $type as $t ) {
-							if ( $t === '' ) {
-								$nothingPrompt = 'Can be empty, or ';
-							} else {
-								$choices[] = $t;
-							}
-						}
-						$desc .= $paramPrefix . $nothingPrompt . $prompt;
-						$choicesstring = implode( ', ', $choices );
-						$desc .= wordwrap( $choicesstring, 100, $descWordwrap );
-						$hintPipeSeparated = false;
-					} else {
-						switch ( $type ) {
-							case 'namespace':
-								// Special handling because namespaces are
-								// type-limited, yet they are not given
-								$desc .= $paramPrefix . $prompt;
-								$desc .= wordwrap( implode( ', ', MWNamespace::getValidNamespaces() ),
-									100, $descWordwrap );
-								$hintPipeSeparated = false;
-								break;
-							case 'limit':
-								$desc .= $paramPrefix . "No more than {$paramSettings[self::PARAM_MAX]}";
-								if ( isset( $paramSettings[self::PARAM_MAX2] ) ) {
-									$desc .= " ({$paramSettings[self::PARAM_MAX2]} for bots)";
-								}
-								$desc .= ' allowed';
-								break;
-							case 'integer':
-								$s = $multi ? 's' : '';
-								$hasMin = isset( $paramSettings[self::PARAM_MIN] );
-								$hasMax = isset( $paramSettings[self::PARAM_MAX] );
-								if ( $hasMin || $hasMax ) {
-									if ( !$hasMax ) {
-										$intRangeStr = "The value$s must be no less than " .
-											"{$paramSettings[self::PARAM_MIN]}";
-									} elseif ( !$hasMin ) {
-										$intRangeStr = "The value$s must be no more than " .
-											"{$paramSettings[self::PARAM_MAX]}";
-									} else {
-										$intRangeStr = "The value$s must be between " .
-											"{$paramSettings[self::PARAM_MIN]} and {$paramSettings[self::PARAM_MAX]}";
-									}
-
-									$desc .= $paramPrefix . $intRangeStr;
-								}
-								break;
-							case 'upload':
-								$desc .= $paramPrefix . "Must be posted as a file upload using multipart/form-data";
-								break;
-						}
-					}
-
-					if ( $multi ) {
-						if ( $hintPipeSeparated ) {
-							$desc .= $paramPrefix . "Separate values with '|'";
-						}
-
-						$isArray = is_array( $type );
-						if ( !$isArray
-							|| $isArray && count( $type ) > self::LIMIT_SML1
-						) {
-							$desc .= $paramPrefix . "Maximum number of values " .
-								self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
-						}
-					}
-				}
-
-				$default = isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null;
-				if ( !is_null( $default ) && $default !== false ) {
-					$desc .= $paramPrefix . "Default: $default";
-				}
-
-				$msg .= sprintf( "  %-19s - %s\n", $this->encodeParamName( $paramName ), $desc );
+		$msgs = array();
+		foreach ( $params as $param => $settings ) {
+			if ( !is_array( $settings ) ) {
+				$settings = array();
 			}
 
-			return $msg;
+			$d = isset( $desc[$param] ) ? $desc[$param] : '';
+			if ( is_array( $d ) ) {
+				// Special handling for prop parameters
+				$d = array_map( function ( $line ) {
+					if ( preg_match( '/^\s+(\S+)\s+-\s+(.+)$/', $line, $m ) ) {
+						$line = "\n;{$m[1]}:{$m[2]}";
+					}
+					return $line;
+				}, $d );
+				$d = join( ' ', $d );
+			}
+
+			if ( isset( $settings[ApiBase::PARAM_HELP_MSG] ) ) {
+				$msg = $settings[ApiBase::PARAM_HELP_MSG];
+			} else {
+				$msg = $this->msg( "apihelp-{$this->getModulePath()}-param-{$param}" );
+				if ( !$msg->exists() ) {
+					$msg = $this->msg( 'api-help-fallback-parameter', $d );
+				}
+			}
+			$msg = ApiBase::makeMessage( $msg, $this->getContext(), array(
+				$this->getModulePrefix(),
+				$param,
+				$this->getModuleName(),
+				$this->getModulePath(),
+			) );
+			if ( !$msg ) {
+				$this->dieDebug( __METHOD__,
+					'Value in ApiBase::PARAM_HELP_MSG is not valid' );
+			}
+			$msgs[$param] = array( $msg );
+
+			if ( isset( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
+				if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
+					$this->dieDebug( __METHOD__,
+						'Value for ApiBase::PARAM_HELP_MSG_APPEND is not an array' );
+				}
+				foreach ( $settings[ApiBase::PARAM_HELP_MSG_APPEND] as $m ) {
+					$m = ApiBase::makeMessage( $m, $this->getContext(), array(
+						$this->getModulePrefix(),
+						$param,
+						$this->getModuleName(),
+						$this->getModulePath(),
+					) );
+					if ( $m ) {
+						$msgs[$param][] = $m;
+					} else {
+						$this->dieDebug( __METHOD__,
+							'Value in ApiBase::PARAM_HELP_MSG_APPEND is not valid' );
+					}
+				}
+			}
 		}
 
-		return false;
+		wfRunHooks( 'APIGetParamDescriptionMessages', array( $this, &$msgs ) );
+
+		return $msgs;
+	}
+
+	/**
+	 * Generates the list of flags for the help screen and for action=paraminfo
+	 *
+	 * Corresponding messages: api-help-flag-deprecated,
+	 * api-help-flag-internal, api-help-flag-readrights,
+	 * api-help-flag-writerights, api-help-flag-mustbeposted
+	 *
+	 * @return string[]
+	 */
+	protected function getHelpFlags() {
+		$flags = array();
+
+		if ( $this->isDeprecated() ) {
+			$flags[] = 'deprecated';
+		}
+		if ( $this->isInternal() ) {
+			$flags[] = 'internal';
+		}
+		if ( $this->isReadMode() ) {
+			$flags[] = 'readrights';
+		}
+		if ( $this->isWriteMode() ) {
+			$flags[] = 'writerights';
+		}
+		if ( $this->mustBePosted() ) {
+			$flags[] = 'mustbeposted';
+		}
+
+		return $flags;
+	}
+
+	/**
+	 * Called from ApiHelp before the pieces are joined together and returned.
+	 *
+	 * This exists mainly for ApiMain to add the Permissions and Credits
+	 * sections. Other modules probably don't need it.
+	 *
+	 * @param string[] &$help Array of help data
+	 * @param array $options Options passed to ApiHelp::getHelp
+	 */
+	public function modifyHelp( array &$help, array $options ) {
 	}
 
 	/**@}*/
@@ -2259,6 +2282,15 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Constants formerly used with self::getResultProperties()
+	 * @deprecated since 1.24
+	 */
+	const PROP_ROOT = 'ROOT';
+	const PROP_LIST = 'LIST';
+	const PROP_TYPE = 0;
+	const PROP_NULLABLE = 1;
+
+	/**
 	 * Formerly used to fetch a list of possible properites in the result,
 	 * somehow organized with respect to the prop parameter that causes them to
 	 * be returned. The specific semantics of the return value was never
@@ -2364,6 +2396,321 @@ abstract class ApiBase extends ContextSource {
 	public function parseErrors( $errors ) {
 		wfDeprecated( __METHOD__, '1.24' );
 		return array();
+	}
+
+	/**
+	 * Returns the description string for this module
+	 *
+	 * Ignored if an i18n message exists for
+	 * "apihelp-{$this->getModulePathString()}-description".
+	 *
+	 * @deprecated since 1.24
+	 * @return Message|string|array
+	 */
+	protected function getDescription() {
+		return false;
+	}
+
+	/**
+	 * Returns an array of parameter descriptions.
+	 *
+	 * For each parameter, ignored if an i18n message exists for the parameter.
+	 * By default that message is
+	 * "apihelp-{$this->getModulePathString()}-param-{$param}", but it may be
+	 * overridden using ApiBase::PARAM_HELP_MSG in the data returned by
+	 * self::getFinalParams().
+	 *
+	 * @deprecated since 1.24
+	 * @return array|bool False on no parameter descriptions
+	 */
+	protected function getParamDescription() {
+		return false;
+	}
+
+	/**
+	 * Returns usage examples for this module.
+	 *
+	 * Return value as an array is either:
+	 *  - numeric keys with partial URLs ("api.php?" plus a query string) as
+	 *    values
+	 *  - sequential numeric keys with even-numbered keys being display-text
+	 *    and odd-numbered keys being partial urls
+	 *  - partial URLs as keys with display-text (string or array-to-be-joined)
+	 *    as values
+	 * Return value as a string is the same as an array with a numeric key and
+	 * that value, and boolean false means "no examples".
+	 *
+	 * @deprecated since 1.24, use getExamplesMessages() instead
+	 * @return bool|string|array
+	 */
+	protected function getExamples() {
+		return false;
+	}
+
+	/**
+	 * Generates help message for this module, or false if there is no description
+	 * @deprecated since 1.24
+	 * @return string|bool
+	 */
+	public function makeHelpMsg() {
+		wfDeprecated( __METHOD__, '1.24' );
+		static $lnPrfx = "\n  ";
+
+		$msg = $this->getFinalDescription();
+
+		if ( $msg !== false ) {
+
+			if ( !is_array( $msg ) ) {
+				$msg = array(
+					$msg
+				);
+			}
+			$msg = $lnPrfx . implode( $lnPrfx, $msg ) . "\n";
+
+			$msg .= $this->makeHelpArrayToString( $lnPrfx, false, $this->getHelpUrls() );
+
+			if ( $this->isReadMode() ) {
+				$msg .= "\nThis module requires read rights";
+			}
+			if ( $this->isWriteMode() ) {
+				$msg .= "\nThis module requires write rights";
+			}
+			if ( $this->mustBePosted() ) {
+				$msg .= "\nThis module only accepts POST requests";
+			}
+			if ( $this->isReadMode() || $this->isWriteMode() ||
+				$this->mustBePosted()
+			) {
+				$msg .= "\n";
+			}
+
+			// Parameters
+			$paramsMsg = $this->makeHelpMsgParameters();
+			if ( $paramsMsg !== false ) {
+				$msg .= "Parameters:\n$paramsMsg";
+			}
+
+			$examples = $this->getExamples();
+			if ( $examples ) {
+				if ( !is_array( $examples ) ) {
+					$examples = array(
+						$examples
+					);
+				}
+				$msg .= "Example" . ( count( $examples ) > 1 ? 's' : '' ) . ":\n";
+				foreach ( $examples as $k => $v ) {
+					if ( is_numeric( $k ) ) {
+						$msg .= "  $v\n";
+					} else {
+						if ( is_array( $v ) ) {
+							$msgExample = implode( "\n", array_map( array( $this, 'indentExampleText' ), $v ) );
+						} else {
+							$msgExample = "  $v";
+						}
+						$msgExample .= ":";
+						$msg .= wordwrap( $msgExample, 100, "\n" ) . "\n    $k\n";
+					}
+				}
+			}
+		}
+
+		return $msg;
+	}
+
+	/**
+	 * @deprecated since 1.24
+	 * @param string $item
+	 * @return string
+	 */
+	private function indentExampleText( $item ) {
+		return "  " . $item;
+	}
+
+	/**
+	 * @deprecated since 1.24
+	 * @param string $prefix Text to split output items
+	 * @param string $title What is being output
+	 * @param string|array $input
+	 * @return string
+	 */
+	protected function makeHelpArrayToString( $prefix, $title, $input ) {
+		wfDeprecated( __METHOD__, '1.24' );
+		if ( $input === false ) {
+			return '';
+		}
+		if ( !is_array( $input ) ) {
+			$input = array( $input );
+		}
+
+		if ( count( $input ) > 0 ) {
+			if ( $title ) {
+				$msg = $title . ( count( $input ) > 1 ? 's' : '' ) . ":\n  ";
+			} else {
+				$msg = '  ';
+			}
+			$msg .= implode( $prefix, $input ) . "\n";
+
+			return $msg;
+		}
+
+		return '';
+	}
+
+	/**
+	 * Generates the parameter descriptions for this module, to be displayed in the
+	 * module's help.
+	 * @deprecated since 1.24
+	 * @return string|bool
+	 */
+	public function makeHelpMsgParameters() {
+		wfDeprecated( __METHOD__, '1.24' );
+		$params = $this->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
+		if ( $params ) {
+
+			$paramsDescription = $this->getFinalParamDescription();
+			$msg = '';
+			$paramPrefix = "\n" . str_repeat( ' ', 24 );
+			$descWordwrap = "\n" . str_repeat( ' ', 28 );
+			foreach ( $params as $paramName => $paramSettings ) {
+				$desc = isset( $paramsDescription[$paramName] ) ? $paramsDescription[$paramName] : '';
+				if ( is_array( $desc ) ) {
+					$desc = implode( $paramPrefix, $desc );
+				}
+
+				//handle shorthand
+				if ( !is_array( $paramSettings ) ) {
+					$paramSettings = array(
+						self::PARAM_DFLT => $paramSettings,
+					);
+				}
+
+				//handle missing type
+				if ( !isset( $paramSettings[ApiBase::PARAM_TYPE] ) ) {
+					$dflt = isset( $paramSettings[ApiBase::PARAM_DFLT] )
+						? $paramSettings[ApiBase::PARAM_DFLT]
+						: null;
+					if ( is_bool( $dflt ) ) {
+						$paramSettings[ApiBase::PARAM_TYPE] = 'boolean';
+					} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
+						$paramSettings[ApiBase::PARAM_TYPE] = 'string';
+					} elseif ( is_int( $dflt ) ) {
+						$paramSettings[ApiBase::PARAM_TYPE] = 'integer';
+					}
+				}
+
+				if ( isset( $paramSettings[self::PARAM_DEPRECATED] )
+					&& $paramSettings[self::PARAM_DEPRECATED]
+				) {
+					$desc = "DEPRECATED! $desc";
+				}
+
+				if ( isset( $paramSettings[self::PARAM_REQUIRED] )
+					&& $paramSettings[self::PARAM_REQUIRED]
+				) {
+					$desc .= $paramPrefix . "This parameter is required";
+				}
+
+				$type = isset( $paramSettings[self::PARAM_TYPE] )
+					? $paramSettings[self::PARAM_TYPE]
+					: null;
+				if ( isset( $type ) ) {
+					$hintPipeSeparated = true;
+					$multi = isset( $paramSettings[self::PARAM_ISMULTI] )
+						? $paramSettings[self::PARAM_ISMULTI]
+						: false;
+					if ( $multi ) {
+						$prompt = 'Values (separate with \'|\'): ';
+					} else {
+						$prompt = 'One value: ';
+					}
+
+					if ( $type === 'submodule' ) {
+						$type = $this->getModuleManager()->getNames( $paramName );
+						sort( $type );
+					}
+					if ( is_array( $type ) ) {
+						$choices = array();
+						$nothingPrompt = '';
+						foreach ( $type as $t ) {
+							if ( $t === '' ) {
+								$nothingPrompt = 'Can be empty, or ';
+							} else {
+								$choices[] = $t;
+							}
+						}
+						$desc .= $paramPrefix . $nothingPrompt . $prompt;
+						$choicesstring = implode( ', ', $choices );
+						$desc .= wordwrap( $choicesstring, 100, $descWordwrap );
+						$hintPipeSeparated = false;
+					} else {
+						switch ( $type ) {
+							case 'namespace':
+								// Special handling because namespaces are
+								// type-limited, yet they are not given
+								$desc .= $paramPrefix . $prompt;
+								$desc .= wordwrap( implode( ', ', MWNamespace::getValidNamespaces() ),
+									100, $descWordwrap );
+								$hintPipeSeparated = false;
+								break;
+							case 'limit':
+								$desc .= $paramPrefix . "No more than {$paramSettings[self::PARAM_MAX]}";
+								if ( isset( $paramSettings[self::PARAM_MAX2] ) ) {
+									$desc .= " ({$paramSettings[self::PARAM_MAX2]} for bots)";
+								}
+								$desc .= ' allowed';
+								break;
+							case 'integer':
+								$s = $multi ? 's' : '';
+								$hasMin = isset( $paramSettings[self::PARAM_MIN] );
+								$hasMax = isset( $paramSettings[self::PARAM_MAX] );
+								if ( $hasMin || $hasMax ) {
+									if ( !$hasMax ) {
+										$intRangeStr = "The value$s must be no less than " .
+											"{$paramSettings[self::PARAM_MIN]}";
+									} elseif ( !$hasMin ) {
+										$intRangeStr = "The value$s must be no more than " .
+											"{$paramSettings[self::PARAM_MAX]}";
+									} else {
+										$intRangeStr = "The value$s must be between " .
+											"{$paramSettings[self::PARAM_MIN]} and {$paramSettings[self::PARAM_MAX]}";
+									}
+
+									$desc .= $paramPrefix . $intRangeStr;
+								}
+								break;
+							case 'upload':
+								$desc .= $paramPrefix . "Must be posted as a file upload using multipart/form-data";
+								break;
+						}
+					}
+
+					if ( $multi ) {
+						if ( $hintPipeSeparated ) {
+							$desc .= $paramPrefix . "Separate values with '|'";
+						}
+
+						$isArray = is_array( $type );
+						if ( !$isArray
+							|| $isArray && count( $type ) > self::LIMIT_SML1
+						) {
+							$desc .= $paramPrefix . "Maximum number of values " .
+								self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
+						}
+					}
+				}
+
+				$default = isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null;
+				if ( !is_null( $default ) && $default !== false ) {
+					$desc .= $paramPrefix . "Default: $default";
+				}
+
+				$msg .= sprintf( "  %-19s - %s\n", $this->encodeParamName( $paramName ), $desc );
+			}
+
+			return $msg;
+		}
+
+		return false;
 	}
 
 	/**@}*/
