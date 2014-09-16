@@ -81,9 +81,11 @@ abstract class ApiFormatBase extends ApiBase {
 	 * special-case fix that should be removed once the help has been
 	 * reworked to use a fully HTML interface.
 	 *
+	 * @deprecated since 1.24
 	 * @param bool $b Whether or not ampersands should be escaped.
 	 */
 	public function setUnescapeAmps( $b ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		$this->mUnescapeAmps = $b;
 	}
 
@@ -101,9 +103,11 @@ abstract class ApiFormatBase extends ApiBase {
 	 * Whether this formatter can format the help message in a nice way.
 	 * By default, this returns the same as getIsHtml().
 	 * When action=help is set explicitly, the help will always be shown
+	 * @deprecated since 1.24
 	 * @return bool
 	 */
 	public function getWantsHelp() {
+		wfDeprecated( __METHOD__, '1.24' );
 		return $this->getIsHtml();
 	}
 
@@ -135,9 +139,9 @@ abstract class ApiFormatBase extends ApiBase {
 	 * A human-targeted notice about available formats is printed for the HTML-based output,
 	 * except for help screens (caused by either an error in the API parameters,
 	 * the calling of action=help, or requesting the root script api.php).
-	 * @param bool $isHelpScreen Whether a help screen is going to be shown
+	 * @param bool $unused Always false since 1.24
 	 */
-	function initPrinter( $isHelpScreen ) {
+	function initPrinter( $unused ) {
 		if ( $this->mDisabled ) {
 			return;
 		}
@@ -172,13 +176,10 @@ abstract class ApiFormatBase extends ApiBase {
 ?>	<title>MediaWiki API Result</title>
 <?php
 			}
+// @codingStandardsIgnoreStart Exclude long line from CodeSniffer checks
 ?>
 </head>
 <body>
-<?php
-			if ( !$isHelpScreen ) {
-// @codingStandardsIgnoreStart Exclude long line from CodeSniffer checks
-?>
 <br />
 <small>
 You are looking at the HTML representation of the <?php echo $this->mFormat; ?> format.<br />
@@ -191,14 +192,6 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 <pre style='white-space: pre-wrap;'>
 <?php
 // @codingStandardsIgnoreEnd
-			// don't wrap the contents of the <pre> for help screens
-			// because these are actually formatted to rely on
-			// the monospaced font for layout purposes
-			} else {
-?>
-<pre>
-<?php
-			}
 		}
 	}
 
@@ -263,9 +256,11 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 
 	/**
 	 * Sets whether the pretty-printer should format *bold*
+	 * @deprecated since 1.24
 	 * @param bool $help
 	 */
 	public function setHelp( $help = true ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		$this->mHelp = $help;
 	}
 
