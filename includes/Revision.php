@@ -114,6 +114,10 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromTitle( $title, $id = 0, $flags = 0 ) {
+		$hookOutput = null;
+		if ( !$id && !wfRunHooks( 'RevisionFromTitle', array( &$title, &$id, &$hookOutput ) ) ) {
+			return $hookOutput;
+		}
 		$conds = array(
 			'page_namespace' => $title->getNamespace(),
 			'page_title' => $title->getDBkey()
@@ -260,6 +264,10 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromTitle( $db, $title, $id = 0 ) {
+		$hookOutput = null;
+		if ( !$id && !wfRunHooks( 'RevisionFromTitle', array( &$title, &$id, &$hookOutput ) ) ) {
+			return $hookOutput;
+		}
 		if ( $id ) {
 			$matchId = intval( $id );
 		} else {

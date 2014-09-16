@@ -2179,6 +2179,12 @@ testModules['qunit']['myext.tests'] = array(
 For QUnit framework, the mediawiki.tests.qunit.testrunner dependency will be
 added to any module.
 
+'RevisionFromTitle': Called when the latest revision of a title is being loaded
+from a Title object.
+$title: The title of the revision being fetched.
+&$id: The revision ID to fetch. Always 0 when called, but can be changed.
+&$revision: If the hook returns false, this is returned as the Revision object.
+
 'RevisionInsertComplete': Called after a revision is inserted into the database.
 &$revision: the Revision
 $data: the data stored in old_text.  The meaning depends on $flags: if external
