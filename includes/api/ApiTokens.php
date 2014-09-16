@@ -76,6 +76,10 @@ class ApiTokens extends ApiBase {
 		return $types;
 	}
 
+	public function isDeprecated() {
+		return true;
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'type' => array(
