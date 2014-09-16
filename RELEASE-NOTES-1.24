@@ -267,6 +267,7 @@ production.
 * Hitting api.php without specifying an action now displays only the help for
   the main module, with links to submodule help.
 * API help is no longer displayed on errors.
+* Default output format for the API is now jsonfm.
 
 === Action API internal changes in 1.24 ===
 * Methods for handling continuation are added to ApiResult, so actions other
