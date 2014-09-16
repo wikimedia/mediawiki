@@ -750,6 +750,7 @@ bmwschema
 bmysql
 bname
 bodycontent
+bogo
 boldening
 bolding
 booksources
@@ -861,6 +862,7 @@ categorypage
 categoryviewer
 catids
 catlinks
+catmsg
 catpage
 catrope
 cattitles
@@ -1677,6 +1679,7 @@ geocoordinate
 geodata
 geosearch
 gerrit
+geshi
 getcookie
 getenv
 getheader
@@ -1810,6 +1813,7 @@ hit
 hitcount
 hitcounter
 hits
+hlist
 hmac
 hobby
 homelink
@@ -2249,6 +2253,7 @@ loginerror
 loginfo
 loginlanguagelinks
 loginlink
+loginout
 loginprompt
 loginreqlink
 loginreqpagetext
@@ -2453,6 +2458,7 @@ moodbar
 moredotdotdot
 morelinkstoimage
 morethan
+mouseup
 move
 movedarticleprotection
 moveddeleted
@@ -2599,6 +2605,7 @@ newpos
 newquery
 newrevid
 news
+newsectionheaderdefaultlevel
 newsectionlink
 newsectionsummary
 newset
@@ -4010,6 +4017,7 @@ test
 testclean
 testdata
 testmailuser
+teston
 testpass
 testrunner
 testswarm
@@ -4156,6 +4164,7 @@ transwiki
 troff
 true
 truespeed
+truncatedtext
 trustworthy
 truteq
 truthy
@@ -4263,6 +4272,7 @@ unseed
 unserialization
 unserialize
 unserialized
+unserializes
 unserializing
 unsetting
 unstub
@@ -4437,6 +4447,7 @@ viewdeleted
 viewhelppage
 viewmyprivateinfo
 viewmywatchlist
+viewport
 viewprevnext
 viewsource
 viewsourcelink
@@ -4612,6 +4623,7 @@ xml
 xmldoublequote
 xmlfm
 xmlimport
+xmlmeta
 xmlns
 xmlselect
 xor
