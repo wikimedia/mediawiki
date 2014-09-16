@@ -1000,9 +1000,8 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	private static function getCachedRevisionObject( $parser, $title = null ) {
-		static $cache = null;
-		if ( $cache == null ) {
-			$cache = new MapCacheLRU( 50 );
+		if ( $parser->mExpensiveParserFunctionRevCache == null ) {
+			$parser->mExpensiveParserFunctionRevCache = new MapCacheLRU( 50 );
 		}
 
 		if ( is_null( $title ) ) {
@@ -1024,21 +1023,21 @@ class CoreParserFunctions {
 		// Normalize name for cache
 		$page = $title->getPrefixedDBkey();
 
-		if ( $cache->has( $page ) ) { // cache contains null values
-			return $cache->get( $page );
+		if ( $parser->mExpensiveParserFunctionRevCache->has( $page ) ) { // cache contains null values
+			return $parser->mExpensiveParserFunctionRevCache->get( $page );
 		}
 		if ( $parser->incrementExpensiveFunctionCount() ) {
-			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			$rev = $parser->fetchCurrentRevisionOfTitle( $title );
 			$pageID = $rev ? $rev->getPage() : 0;
 			$revID = $rev ? $rev->getId() : 0;
-			$cache->set( $page, $rev ); // maybe null
+			$parser->mExpensiveParserFunctionRevCache->set( $page, $rev ); // maybe null
 
 			// Register dependency in templatelinks
 			$parser->getOutput()->addTemplate( $title, $pageID, $revID );
 
 			return $rev;
 		}
-		$cache->set( $page, null );
+		$parser->mExpensiveParserFunctionRevCache->set( $page, null );
 		return null;
 	}
 

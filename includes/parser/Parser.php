@@ -211,6 +211,12 @@ class Parser {
 	public $mLangLinkLanguages;
 
 	/**
+	 * @var MapCacheLRU
+	 * Not intended for use outside of CoreParserFunctions
+	 */
+	public $mExpensiveParserFunctionRevCache;
+
+	/**
 	 * @var bool Recursive call protection.
 	 * This variable should be treated as if it were private.
 	 */
@@ -305,6 +311,7 @@ class Parser {
 		$this->mVarCache = array();
 		$this->mUser = null;
 		$this->mLangLinkLanguages = array();
+		$this->mExpensiveParserFunctionRevCache = null;
 
 		/**
 		 * Prefix for temporary replacement strings for the multipass parser.
@@ -376,6 +383,7 @@ class Parser {
 
 		$this->startParse( $title, $options, self::OT_HTML, $clearState );
 
+		$this->mExpensiveParserFunctionRevCache = null;
 		$this->mInputSize = strlen( $text );
 		if ( $this->mOptions->getEnableLimitReport() ) {
 			$this->mOutput->resetParseStartTime();
@@ -588,6 +596,7 @@ class Parser {
 		$this->mRevisionUser = $oldRevisionUser;
 		$this->mRevisionSize = $oldRevisionSize;
 		$this->mInputSize = false;
+		$this->mExpensiveParserFunctionRevCache = null;
 		wfProfileOut( $fname );
 		wfProfileOut( __METHOD__ );
 
@@ -3795,6 +3804,33 @@ class Parser {
 	}
 
 	/**
+	 * Fetch the current revision of a given title. Note that the revision
+	 * (and even the title) may not exist in the database, so everything
+	 * contributing to the output of the parser should use this method
+	 * where possible, rather than getting the revisions themselves.
+	 *
+	 * @since 1.24
+	 * @param Title $title
+	 * @return Revision
+	 */
+	public function fetchCurrentRevisionOfTitle( $title ) {
+		// Defaults to Parser::statelessFetchRevision()
+		return call_user_func( $this->mOptions->getCurrentRevisionCallback(), $title, $this );
+	}
+
+	/**
+	 * Wrapper around Revision::newFromTitle to allow passing additional parameters
+	 * without passing them on to it.
+	 *
+	 * @param Title $title
+	 * @param Parser $parser
+	 * @return Revision
+	 */
+	public static function statelessFetchRevision( $title, $parser = false ) {
+		return Revision::newFromTitle( $title );
+	}
+
+	/**
 	 * Fetch the unparsed text of a template and register a reference to it.
 	 * @param Title $title
 	 * @return array ( string or false, Title )
@@ -3859,9 +3895,13 @@ class Parser {
 				break;
 			}
 			# Get the revision
-			$rev = $id
-				? Revision::newFromId( $id )
-				: Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			if ( $id ) {
+				$rev = Revision::newFromId( $id );
+			} elseif ( $parser ) {
+				$rev = $parser->fetchCurrentRevisionOfTitle( $title );
+			} else {
+				$rev = Revision::newFromTitle( $title );
+			}
 			$rev_id = $rev ? $rev->getId() : 0;
 			# If there is no current revision, there is no page
 			if ( $id === false && !$rev ) {
