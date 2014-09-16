@@ -110,6 +110,10 @@ class ApiFormatWddx extends ApiFormatBase {
 	}
 
 	public function getDescription() {
-		return 'DEPRECATED! Output data in WDDX format' . parent::getDescription();
+		return 'Output data in WDDX format' . parent::getDescription();
+	}
+
+	public function isDeprecated() {
+		return true;
 	}
 }
