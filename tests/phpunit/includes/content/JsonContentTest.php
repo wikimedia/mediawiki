@@ -8,27 +8,32 @@ class JsonContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideValidConstruction
+	 * @param $text
+	 * @param $isValid
+	 * @param $expected
 	 */
-	public function testValidConstruct( $text, $modelId, $isValid, $expected ) {
-		$obj = new JsonContent( $text, $modelId );
-		$this->assertEquals( $isValid, $obj->isValid() );
-		$this->assertEquals( $expected, $obj->getJsonData() );
+	public function testValidConstruct( $text, $isValid, $expected ) {
+		$obj = new JsonContent( $text, CONTENT_MODEL_JSON );
+		$status = $obj->getJson();
+		$this->assertEquals( $isValid, $status->isOK() );
+		$this->assertEquals( $expected, $status->getValue() );
 	}
 
 	public function provideValidConstruction() {
 		return array(
-			array( 'foo', CONTENT_MODEL_JSON, false, null ),
-			array( FormatJson::encode( array() ), CONTENT_MODEL_JSON, true, array() ),
-			array( FormatJson::encode( array( 'foo' ) ), CONTENT_MODEL_JSON, true, array( 'foo' ) ),
+			array( 'foo', false, null ),
+			array( FormatJson::encode( array() ), true, array() ),
+			array( FormatJson::encode( array( 'foo' ) ), true, array( 'foo' ) ),
 		);
 	}
 
 	/**
 	 * @dataProvider provideDataToEncode
 	 */
-	public function testBeautifyUsesFormatJson( $data ) {
+	public function testPreSaveTransform( $data ) {
 		$obj = new JsonContent( FormatJson::encode( $data ) );
-		$this->assertEquals( FormatJson::encode( $data, true ), $obj->beautifyJSON() );
+		$newObj = $obj->preSaveTransform( $this->getMockTitle(), $this->getMockUser(), $this->getMockParserOptions() );
+		$this->assertTrue( $newObj->equals( new JsonContent( FormatJson::encode( $data, false, FormatJson::ALL_OK ) ) ) );
 	}
 
 	public function provideDataToEncode() {
@@ -39,15 +44,6 @@ class JsonContentTest extends MediaWikiLangTestCase {
 			array( array( 'baz' => 'foo', 'bar' ) ),
 			array( array( 'baz' => 1000, 'bar' ) ),
 		);
-	}
-
-	/**
-	 * @dataProvider provideDataToEncode
-	 */
-	public function testPreSaveTransform( $data ) {
-		$obj = new JsonContent( FormatJson::encode( $data ) );
-		$newObj = $obj->preSaveTransform( $this->getMockTitle(), $this->getMockUser(), $this->getMockParserOptions() );
-		$this->assertTrue( $newObj->equals( new JsonContent( FormatJson::encode( $data, true ) ) ) );
 	}
 
 	private function getMockTitle() {
@@ -61,6 +57,7 @@ class JsonContentTest extends MediaWikiLangTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 	}
+
 	private function getMockParserOptions() {
 		return $this->getMockBuilder( 'ParserOptions' )
 			->disableOriginalConstructor()
