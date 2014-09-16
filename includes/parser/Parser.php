@@ -3795,6 +3795,20 @@ class Parser {
 	}
 
 	/**
+	 * Fetch the current revision of a given title. Note that the revision
+	 * (and even the title) may not exist in the database, so everything
+	 * contributing to the output of the parser should use this method
+	 * where possible, rather than getting the revisions themselves.
+	 *
+	 * @param Title $title
+	 * @return Revision
+	 */
+	public function fetchCurrentRevisionOfTitle( $title ) {
+		// Defaults to Revision::newFromTitle
+		return call_user_func( $this->mOptions->getCurrentRevisionCallback(), $title );
+	}
+
+	/**
 	 * Fetch the unparsed text of a template and register a reference to it.
 	 * @param Title $title
 	 * @return array ( string or false, Title )
@@ -3859,9 +3873,13 @@ class Parser {
 				break;
 			}
 			# Get the revision
-			$rev = $id
-				? Revision::newFromId( $id )
-				: Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			if ( $id ) {
+				$rev = Revision::newFromId( $id );
+			} elseif ( $parser ) {
+				$rev = $parser->fetchCurrentRevisionOfTitle( $title );
+			} else {
+				$rev = Revision::newFromTitle( $title );
+			}
 			$rev_id = $rev ? $rev->getId() : 0;
 			# If there is no current revision, there is no page
 			if ( $id === false && !$rev ) {

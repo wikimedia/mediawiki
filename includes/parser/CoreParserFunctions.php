@@ -1028,7 +1028,7 @@ class CoreParserFunctions {
 			return $cache->get( $page );
 		}
 		if ( $parser->incrementExpensiveFunctionCount() ) {
-			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			$rev = $parser->fetchCurrentRevisionOfTitle( $title );
 			$pageID = $rev ? $rev->getPage() : 0;
 			$revID = $rev ? $rev->getId() : 0;
 			$cache->set( $page, $rev ); // maybe null
