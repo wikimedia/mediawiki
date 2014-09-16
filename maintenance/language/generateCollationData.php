@@ -48,7 +48,7 @@ class GenerateCollationData extends Maintenance {
 	 * Important tertiary weights from UTS #10 section 7.2
 	 */
 	const NORMAL_UPPERCASE = 0x08;
-	const NORMAL_HIRAGANA = 0X0E;
+	const NORMAL_HIRAGANA = 0x0E;
 
 	public function __construct() {
 		parent::__construct();
