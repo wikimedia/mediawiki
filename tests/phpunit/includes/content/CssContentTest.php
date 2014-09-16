@@ -32,13 +32,13 @@ class CssContentTest extends JavaScriptContentTest {
 				'MediaWiki:Test.css',
 				null,
 				"hello <world>\n",
-				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>"
+				"<pre class='mw-code mw-css' dir='ltr'>\nhello &lt;world&gt;\n\n</pre>"
 			),
 			array(
 				'MediaWiki:Test.css',
 				null,
 				"/* hello [[world]] */\n",
-				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\n/* hello [[world]] */\n\n</pre>",
+				"<pre class='mw-code mw-css' dir='ltr'>\n/* hello [[world]] */\n\n</pre>",
 				array(
 					'Links' => array(
 						array( 'World' => 0 )

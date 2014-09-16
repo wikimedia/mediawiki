@@ -30,7 +30,7 @@
  *
  * @ingroup Content
  */
-class JavaScriptContent extends TextContent {
+class JavaScriptContent extends CodeContent {
 
 	/**
 	 * @param string $text JavaScript code.
@@ -41,36 +41,10 @@ class JavaScriptContent extends TextContent {
 	}
 
 	/**
-	 * Returns a Content object with pre-save transformations applied using
-	 * Parser::preSaveTransform().
-	 *
-	 * @param Title $title
-	 * @param User $user
-	 * @param ParserOptions $popts
-	 *
-	 * @return JavaScriptContent
-	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		global $wgParser;
-		// @todo Make pre-save transformation optional for script pages
-		// See bug #32858
-
-		$text = $this->getNativeData();
-		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
-
-		return new static( $pst );
-	}
-
-	/**
 	 * @return string JavaScript wrapped in a <pre> tag.
 	 */
 	protected function getHtml() {
-		$html = "";
-		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
-		$html .= htmlspecialchars( $this->getNativeData() );
-		$html .= "\n</pre>\n";
-
-		return $html;
+		return $this->codeToPreElement( 'mw-js' );
 	}
 
 }
