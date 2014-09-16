@@ -2899,6 +2899,7 @@
 	"watchlistedit-clear-submit": "Испразни списак надгледања (Ово је трајно!)",
 	"watchlistedit-clear-done": "Ваш списак надгледања је испражњен.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|1 наслов је уклоњен|$1 наслова је уклоњено}}:",
+	"watchlistedit-too-many": "Има превише страница за приказ овде.",
 	"watchlisttools-clear": "испразни списак надгледања",
 	"watchlisttools-view": "прикажи сродне измене",
 	"watchlisttools-edit": "прикажи и уреди списак надгледања",

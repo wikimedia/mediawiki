@@ -490,7 +490,7 @@
 	"throttled-mailpassword": "密碼重設的電子郵件已經在最近 $1 小時內寄出。\n為防止濫用，$1 小時內只能寄出一次密碼重設信件。",
 	"mailerror": "傳送電子郵件錯誤：$1",
 	"acct_creation_throttle_hit": "使用您目前的 IP 位址的訪客在最近一天建立了 {{PLURAL:$1|1 個帳號|$1 個帳號}}，已超出系統允許的上限。\n因此，目前無法讓使用此 IP 位址的訪客建立帳號。",
-	"emailauthenticated": "您的電子郵件位址已確認於 $2 的 $3。",
+	"emailauthenticated": "您的電子郵件位址已於 $2 $3 確認。",
 	"emailnotauthenticated": "您的電子郵件位址尚未確認，\n尚不會寄出以下功能的電子郵件給您。",
 	"noemailprefs": "在您的偏好設定中設定電子郵件位址，讓您可以使用這些功能。",
 	"emailconfirmlink": "確認您的電子郵件位址",
