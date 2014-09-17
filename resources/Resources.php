@@ -774,13 +774,14 @@ return array(
 
 	'mediawiki' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.js',
+		'dependencies' => 'promise-as-deferred',
 		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
 		'raw' => true,
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.js',
-		'dependencies' => 'mediawiki.util',
+		'dependencies' => array( 'mediawiki.util', 'promise-as-deferred' ),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.category' => array(
@@ -802,6 +803,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.login.js',
 		'dependencies' => array(
 			'mediawiki.api',
+			'promise-as-deferred'
 		),
 	),
 	'mediawiki.api.parse' => array(
@@ -813,6 +815,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.api',
 			'user.tokens',
+			'promise-as-deferred'
 		),
 	),
 	'mediawiki.content.json' => array(
@@ -1509,6 +1512,13 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 		'skipFunction' => 'resources/src/es5-skip.js',
+	),
+
+	'promise-as-deferred' => array(
+		'scripts' => array(
+			'resources/src/promise-as-deferred.js'
+		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* OOjs */

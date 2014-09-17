@@ -30,9 +30,7 @@
 	$.each( mw.user.tokens.get(), function ( key, value ) {
 		// This requires #getToken to use the same key as user.tokens.
 		// Format: token-type + "Token" (eg. editToken, patrolToken, watchToken).
-		promises[ defaultOptions.ajax.url ][ key ] = $.Deferred()
-			.resolve( value )
-			.promise( { abort: function () {} } );
+		promises[ defaultOptions.ajax.url ][ key ] = Promise.resolve( value );
 	} );
 
 	/**
@@ -45,7 +43,7 @@
 	 *     api.get( {
 	 *         action: 'query',
 	 *         meta: 'userinfo'
-	 *     } ).done ( function ( data ) {
+	 *     } ).then ( function ( data ) {
 	 *         console.log( data );
 	 *     } );
 	 *
@@ -96,7 +94,7 @@
 		 *
 		 * @param {Object} parameters
 		 * @param {Object|Function} [ajaxOptions]
-		 * @return {jQuery.Promise}
+		 * @return {Promise}
 		 */
 		get: function ( parameters, ajaxOptions ) {
 			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
@@ -111,7 +109,7 @@
 		 *
 		 * @param {Object} parameters
 		 * @param {Object|Function} [ajaxOptions]
-		 * @return {jQuery.Promise}
+		 * @return {Promise}
 		 */
 		post: function ( parameters, ajaxOptions ) {
 			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
@@ -124,12 +122,17 @@
 		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise} Done: API response data and the jqXHR object.
+		 * @return {Promise} Done: API response data and the jqXHR object.
 		 *  Fail: Error code
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
 			var token,
-				apiDeferred = $.Deferred(),
+				resolve,
+				reject,
+				apiPromise = new Promise( function( _resolve, _reject ) {
+					resolve = _resolve;
+					reject = _reject;
+				} ),
 				msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.',
 				xhr, key, formData;
 
@@ -188,13 +191,13 @@
 			if ( ajaxOptions.ok ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
-				apiDeferred.done( ajaxOptions.ok );
+				apiPromise.then( ajaxOptions.ok );
 				delete ajaxOptions.ok;
 			}
 			if ( ajaxOptions.err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
-				apiDeferred.fail( ajaxOptions.err );
+				apiPromise.catch( ajaxOptions.err );
 				delete ajaxOptions.err;
 			}
 
@@ -203,32 +206,38 @@
 				// If AJAX fails, reject API call with error code 'http'
 				// and details in second argument.
 				.fail( function ( xhr, textStatus, exception ) {
-					apiDeferred.reject( 'http', {
+					reject( [ 'http', {
 						xhr: xhr,
 						textStatus: textStatus,
 						exception: exception
-					} );
+					} ] );
 				} )
 				// AJAX success just means "200 OK" response, also check API error codes
 				.done( function ( result, textStatus, jqXHR ) {
 					if ( result === undefined || result === null || result === '' ) {
-						apiDeferred.reject( 'ok-but-empty',
+						reject( [
+							'ok-but-empty',
 							'OK response but empty result (check HTTP headers?)'
-						);
+						] );
 					} else if ( result.error ) {
 						var code = result.error.code === undefined ? 'unknown' : result.error.code;
-						apiDeferred.reject( code, result );
+						reject( [ code, result ] );
 					} else {
-						apiDeferred.resolve( result, jqXHR );
+						resolve( result );
 					}
 				} );
 
-			// Return the Promise
-			return apiDeferred.promise( { abort: xhr.abort } ).fail( function ( code, details ) {
+			apiPromise.abort = xhr.abort;
+			apiPromise.catch( function ( data ) {
+				var code = data[0];
+				var details = data[1];
 				if ( !( code === 'http' && details && details.textStatus === 'abort' ) ) {
 					mw.log( 'mw.Api error: ', code, details );
 				}
 			} );
+
+			// Return the Promise
+			return apiPromise;
 		},
 
 		/**
@@ -245,7 +254,7 @@
 		 * @param {string} tokenType The name of the token, like options or edit.
 		 * @param {Object} params API parameters
 		 * @param {Object} [ajaxOptions]
-		 * @return {jQuery.Promise} See #post
+		 * @return {Promise} See #post
 		 * @since 1.22
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
@@ -263,7 +272,8 @@
 					// If no error, return to caller as-is
 					null,
 					// Error handler
-					function ( code ) {
+					function ( data ) {
+						var code = data[0];
 						if ( code === 'badtoken' ) {
 							// Clear from cache
 							promises[ api.defaults.ajax.url ][ tokenType + 'Token' ] =
@@ -277,7 +287,7 @@
 						}
 
 						// Different error, pass on to let caller handle the error code
-						return this;
+						return Promise.reject( data );
 					}
 				);
 			} );
@@ -287,9 +297,9 @@
 		 * Get a token for a certain action from the API.
 		 *
 		 * @param {string} type Token type
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {string} return.done.token Received token.
+		 * @return {Promise}
+		 * @return {Function} return.then
+		 * @return {string} return.then.token Received token.
 		 * @since 1.22
 		 */
 		getToken: function ( type ) {
@@ -298,7 +308,7 @@
 				d = promiseGroup && promiseGroup[ type + 'Token' ];
 
 			if ( !d ) {
-				apiPromise = this.get( { action: 'tokens', type: type } );
+				apiPromise = this.get( { action: 'query', meta: 'tokens', type: type } );
 
 				d = apiPromise
 					.then( function ( data ) {
@@ -308,16 +318,14 @@
 							return data.tokens[type + 'token'];
 						}
 
-						return $.Deferred().reject( 'token-missing', data );
-					}, function () {
+						return Promise.reject( [ 'token-missing', data ] );
+					}, function ( data ) {
 						// Clear promise. Do not cache errors.
 						delete promiseGroup[ type + 'Token' ];
 
 						// Pass on to allow the caller to handle the error
-						return this;
-					} )
-					// Attach abort handler
-					.promise( { abort: apiPromise.abort } );
+						return Promise.reject( data );
+					} );
 
 				// Store deferred now so that we can use it again even if it isn't ready yet
 				if ( !promiseGroup ) {

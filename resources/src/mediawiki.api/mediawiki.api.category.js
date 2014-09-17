@@ -11,9 +11,9 @@
 		 * @param {mw.Title|string} title
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {boolean} return.done.isCategory Whether the category exists.
+		 * @return {Promise}
+		 * @return {Function} return.then
+		 * @return {boolean} return.then.isCategory Whether the category exists.
 		 */
 		isCategory: function ( title, ok, err ) {
 			var apiPromise = this.get( {
@@ -38,9 +38,8 @@
 					}
 					return exists;
 				} )
-				.done( ok )
-				.fail( err )
-				.promise( { abort: apiPromise.abort } );
+				.then( ok )
+				.catch( err );
 		},
 
 		/**
@@ -51,9 +50,9 @@
 		 * @param {string} prefix Prefix to match.
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {string[]} return.done.categories Matched categories
+		 * @return {Promise}
+		 * @return {Function} return.then
+		 * @return {string[]} return.then.categories Matched categories
 		 */
 		getCategoriesByPrefix: function ( prefix, ok, err ) {
 			// Fetch with allpages to only get categories that have a corresponding description page.
@@ -78,9 +77,8 @@
 					}
 					return texts;
 				} )
-				.done( ok )
-				.fail( err )
-				.promise( { abort: apiPromise.abort } );
+				.then( ok )
+				.catch( err );
 		},
 
 		/**
@@ -90,9 +88,9 @@
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
 		 * @param {boolean} [async=true] Asynchronousness (deprecated)
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {boolean|mw.Title[]} return.done.categories List of category titles or false
+		 * @return {Promise}
+		 * @return {Function} return.then
+		 * @return {boolean|mw.Title[]} return.then.categories List of category titles or false
 		 *  if title was not found.
 		 */
 		getCategories: function ( title, ok, err, async ) {
@@ -132,9 +130,8 @@
 					}
 					return titles;
 				} )
-				.done( ok )
-				.fail( err )
-				.promise( { abort: apiPromise.abort } );
+				.then( ok )
+				.catch( err );
 		}
 	} );
 

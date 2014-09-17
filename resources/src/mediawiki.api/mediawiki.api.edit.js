@@ -14,7 +14,7 @@
 		 * @param {Object} params API parameters
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
-		 * @return {jQuery.Promise} See #post
+		 * @return {Promise} See #post
 		 */
 		postWithEditToken: function ( params, ok, err ) {
 			if ( ok || err ) {
@@ -22,7 +22,7 @@
 				mw.log.warn( msg );
 			}
 
-			return this.postWithToken( 'edit', params ).done( ok ).fail( err );
+			return this.postWithToken( 'edit', params ).then( ok ).catch( err );
 		},
 
 		/**
@@ -30,9 +30,9 @@
 		 *
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {string} return.done.token Received token.
+		 * @return {Promise}
+		 * @return {Function} return.then
+		 * @return {string} return.then.token Received token.
 		 */
 		getEditToken: function ( ok, err ) {
 			if ( ok || err ) {
@@ -40,7 +40,7 @@
 				mw.log.warn( msg );
 			}
 
-			return this.getToken( 'edit' ).done( ok ).fail( err );
+			return this.getToken( 'edit' ).then( ok ).catch( err );
 		},
 
 		/**
@@ -52,7 +52,7 @@
 		 * @param {Object} [additionalParams] Additional API parameters, e.g. `{ redirect: true }`
 		 * @param {Function} [ok] Success handler (deprecated)
 		 * @param {Function} [err] Error handler (deprecated)
-		 * @return {jQuery.Promise}
+		 * @return {Promise}
 		 */
 		newSection: function ( title, header, message, additionalParams, ok, err ) {
 			// Until we remove 'ok' and 'err' parameters, we have to support code that passes them,
@@ -75,7 +75,7 @@
 				title: String( title ),
 				summary: header,
 				text: message
-			}, additionalParams ) ).done( ok ).fail( err );
+			}, additionalParams ) ).then( ok ).catch( err );
 		}
 	} );
 

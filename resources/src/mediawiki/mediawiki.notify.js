@@ -8,7 +8,7 @@
 	 * @see mw.notification#notify
 	 * @param message
 	 * @param options
-	 * @return {jQuery.Promise}
+	 * @return {Promise}
 	 */
 	mw.notify = function ( message, options ) {
 		// Don't bother loading the whole notification system if we never use it.

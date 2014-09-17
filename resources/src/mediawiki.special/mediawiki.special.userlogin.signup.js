@@ -55,32 +55,25 @@
 		// * 'username' is the validated username if 'state' is 'ok', null otherwise (if it's not
 		//   possible to register such an account)
 		function checkUsername( username ) {
-			// We could just use .then() if we didn't have to pass on .abort()…
-			var d, apiPromise;
-
-			d = $.Deferred();
-			apiPromise = api.get( {
+			return api.get( {
 				action: 'query',
 				list: 'users',
 				ususers: username // '|' in usernames is handled below
 			} )
-				.done( function ( resp ) {
+				.then( function ( resp ) {
 					var userinfo = resp.query.users[0];
 
 					if ( resp.query.users.length !== 1 ) {
 						// Happens if the user types '|' into the field
-						d.resolve( { state: 'invalid', username: null } );
+						return { state: 'invalid', username: null };
 					} else if ( userinfo.invalid !== undefined ) {
-						d.resolve( { state: 'invalid', username: null } );
+						return { state: 'invalid', username: null };
 					} else if ( userinfo.userid !== undefined ) {
-						d.resolve( { state: 'taken', username: null } );
+						return { state: 'taken', username: null };
 					} else {
-						d.resolve( { state: 'ok', username: username } );
+						return { state: 'ok', username: username };
 					}
-				} )
-				.fail( d.reject );
-
-			return d.promise( { abort: apiPromise.abort } );
+				} );
 		}
 
 		function updateUsernameStatus() {
@@ -98,7 +91,7 @@
 				return;
 			}
 
-			currentRequest = currentRequestInternal = checkUsername( username ).done( function ( info ) {
+			currentRequest = currentRequestInternal = checkUsername( username ).then( function ( info ) {
 				var message;
 
 				// Another request was fired in the meantime, the result we got here is no longer current.
@@ -130,7 +123,7 @@
 						)
 						.slideDown();
 				}
-			} ).fail( function () {
+			} ).catch( function () {
 				clearStatus();
 			} );
 		}

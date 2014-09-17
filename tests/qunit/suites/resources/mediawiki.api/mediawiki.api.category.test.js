@@ -11,6 +11,7 @@
 		var api = new mw.Api();
 
 		api.getCategoriesByPrefix( 'Foo' ).done( function ( matches ) {
+			QUnit.start();
 			assert.deepEqual(
 				matches,
 				[ 'Food', 'Fool Supermarine S.6', 'Fools' ]
@@ -26,5 +27,7 @@
 					'] } }'
 			);
 		} );
+
+		QUnit.stop();
 	} );
 }( mediaWiki ) );

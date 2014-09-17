@@ -1709,10 +1709,13 @@
 				 *  dependends on to be ready before executing
 				 * @param {Function} [ready] Callback to execute when all dependencies are ready
 				 * @param {Function} [error] Callback to execute if one or more dependencies failed
-				 * @return {jQuery.Promise}
+				 * @return {Promise}
 				 */
 				using: function ( dependencies, ready, error ) {
-					var deferred = $.Deferred();
+					var resolvePromise, rejectPromise, promise = new Promise( function( _resolve, _reject) {
+						resolvePromise = _resolve;
+						rejectPromise = _reject;
+					} );
 
 					// Allow calling with a single dependency as a string
 					if ( typeof dependencies === 'string' ) {
@@ -1723,29 +1726,29 @@
 					}
 
 					if ( ready ) {
-						deferred.done( ready );
+						promise.then( ready );
 					}
 					if ( error ) {
-						deferred.fail( error );
+						promise.catch( error );
 					}
 
 					// Resolve entire dependency map
 					dependencies = resolve( dependencies );
 					if ( allReady( dependencies ) ) {
 						// Run ready immediately
-						deferred.resolve();
+						resolvePromise();
 					} else if ( filter( ['error', 'missing'], dependencies ).length ) {
 						// Execute error immediately if any dependencies have errors
-						deferred.reject(
+						rejectPromise( [
 							new Error( 'One or more dependencies failed to load' ),
 							dependencies
-						);
+						] );
 					} else {
 						// Not all dependencies are ready: queue up a request
-						request( dependencies, deferred.resolve, deferred.reject );
+						request( dependencies, resolvePromise, rejectPromise );
 					}
 
-					return deferred.promise();
+					return promise;
 				},
 
 				/**

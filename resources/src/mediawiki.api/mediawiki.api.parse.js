@@ -10,9 +10,9 @@
 		 * @param {string} wikitext
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {string} return.done.data Parsed HTML of `wikitext`.
+		 * @return {Promise}
+		 * @return {Function} return.then
+		 * @return {string} return.then.data Parsed HTML of `wikitext`.
 		 */
 		parse: function ( wikitext, ok, err ) {
 			var apiPromise = this.get( {
@@ -31,9 +31,8 @@
 				.then( function ( data ) {
 					return data.parse.text['*'];
 				} )
-				.done( ok )
-				.fail( err )
-				.promise( { abort: apiPromise.abort } );
+				.then( ok )
+				.catch( err );
 		}
 	} );
 

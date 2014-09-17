@@ -67,7 +67,7 @@
 				prop: 'imageinfo',
 				iiprop: 'uploadwarning',
 				indexpageids: ''
-			} ).done( function ( result ) {
+			} ).then( function ( result ) {
 				var resultOut = '';
 				if ( result.query ) {
 					resultOut = result.query.pages[result.query.pageids[0]].imageinfo[0];
@@ -118,7 +118,7 @@
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
 				prop: 'text',
 				pst: ''
-			} ).done( function ( result ) {
+			} ).then( function ( result ) {
 				$spinnerLicense.remove();
 				uploadLicense.processResult( result, license );
 			} );
