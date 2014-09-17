@@ -24,6 +24,10 @@ Markup:
 <button class="mw-ui-button mw-ui-constructive {$modifiers}">Constructive</button>
 <button class="mw-ui-button mw-ui-destructive {$modifiers}">Destructive</button>
 <button class="mw-ui-button mw-ui-progressive {$modifiers}" disabled>Disabled Progressive</button>
+<a class="mw-ui-button {$modifiers}">Default Anchor</a>
+<a class="mw-ui-button mw-ui-progressive {$modifiers}">Progressive Anchor</a>
+<a class="mw-ui-button mw-ui-constructive {$modifiers}">Constructive Anchor</a>
+<a class="mw-ui-button mw-ui-destructive {$modifiers}">Destructive Anchor</a>
 
 .mw-ui-quiet - Quiet: A button that doesn't look like a button.
 .mw-ui-inline - Inline: An even smaller button (zero padding) which also inherits font weight.
@@ -54,8 +58,10 @@ Styleguide 2.
 
 	.mixin-mw-ui-button-normal-mode() {
 		background: @contextualColor;
-		color: @colorWhite;
 		text-shadow: 0 1px fade( @textShadowColor, 10% );
+		&, &:visited {
+			color: @colorWhite;
+		}
 
 		.mixin-mw-ui-button-disabled-state();
 
@@ -94,7 +100,10 @@ Styleguide 2.
 	.lte-ie8 &.mw-ui-quiet,
 	&.mw-ui-quiet {
 		background: transparent;
-		color: @colorTextLight;
+
+		&, &:visited {
+			color: @colorTextLight;
+		}
 
 		&:hover {
 			color: @contextualColor;
@@ -115,7 +124,11 @@ Styleguide 2.
 // Default button styles
 .mixin-mw-ui-button-default() {
 	background: @colorGrayLightest;
-	color: @colorTextLight;
+
+	&, &:visited {
+		color: @colorTextLight;
+	}
+
 	@textShadowColor: spin( @colorTextLight, 180 );
 	@borderColor: mix( @colorGrayLightest, #000, 75% );
 	@raisedColor: mix( @colorGrayLightest, #fff, 92% );
@@ -188,7 +201,9 @@ Styleguide 2.
 	font-size: 1em;
 	font-weight: bold;
 	line-height: inherit;
-	text-decoration: none;
+	&, &:hover {
+		text-decoration: none;
+	}
 
 	// Design
 	border: 0px solid transparent;
