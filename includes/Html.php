@@ -909,12 +909,20 @@ class Html {
 		}
 
 		$html = Html::openElement( 'html', $attribs );
-
 		if ( $html ) {
-			$html .= "\n";
-		}
+			$htmlie6 = preg_replace('/class="[^"]+/', '$0 ie6 lte-ie7 lte-ie8', $html);
+			$htmlie7 = preg_replace('/class="[^"]+/', '$0 ie7 lte-ie7 lte-ie8', $html);
+			$htmlie8 = preg_replace('/class="[^"]+/', '$0 ie8 lte-ie8', $html);
 
-		$ret .= $html;
+			// Add IE conditional classes
+			$ret .= <<<HTML
+<!--[if lt IE 7]> {$htmlie6} <![endif]-->
+<!--[if IE 7]>    {$htmlie7} <![endif]-->
+<!--[if IE 8]>    {$htmlie8} <![endif]-->
+<!--[if gt IE 8]><!--> {$html} <!--<![endif]-->
+
+HTML;
+		}
 
 		return $ret;
 	}
