@@ -785,6 +785,10 @@ return array(
 			'mediawiki.hlist',
 		),
 	),
+	'mediawiki.apipretty' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.apipretty.css',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.api' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.js',
 		'dependencies' => 'mediawiki.util',
