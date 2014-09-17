@@ -58,7 +58,7 @@ class ProfilerSimpleDB extends ProfilerStandard {
 			$dbw = wfGetDB( DB_MASTER );
 			$useTrx = ( $dbw->getType() === 'sqlite' ); // much faster
 			if ( $useTrx ) {
-				$dbw->begin();
+				$dbw->startAtomic( __METHOD__ );
 			}
 			foreach ( $this->mCollated as $name => $data ) {
 				$eventCount = $data['count'];
@@ -103,7 +103,7 @@ class ProfilerSimpleDB extends ProfilerStandard {
 				//     "pf_time=pf_time + VALUES(pf_time)";
 			}
 			if ( $useTrx ) {
-				$dbw->commit();
+				$dbw->endAtomic( __METHOD__ );
 			}
 		} catch ( DBError $e ) {
 		}
