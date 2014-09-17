@@ -107,6 +107,7 @@ class Sanitizer {
 		'delta'    => 948,
 		'diams'    => 9830,
 		'divide'   => 247,
+		'dollar'   => 36,
 		'Eacute'   => 201,
 		'eacute'   => 233,
 		'Ecirc'    => 202,
