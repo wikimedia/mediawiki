@@ -14,13 +14,13 @@
 	 *  array of appropriate objects.
 	 * @param {Function} [ok] Success callback (deprecated)
 	 * @param {Function} [err] Error callback (deprecated)
-	 * @return {jQuery.Promise}
-	 * @return {Function} return.done
-	 * @return {Object|Object[]} return.done.watch Object or list of objects (depends on the `pages`
+	 * @return {Promise}
+	 * @return {Function} return.then
+	 * @return {Object|Object[]} return.then.watch Object or list of objects (depends on the `pages`
 	 *  parameter)
-	 * @return {string} return.done.watch.title Full pagename
-	 * @return {boolean} return.done.watch.watched Whether the page is now watched or unwatched
-	 * @return {string} return.done.watch.message Parsed HTML of the confirmational interface message
+	 * @return {string} return.then.watch.title Full pagename
+	 * @return {boolean} return.then.watch.watched Whether the page is now watched or unwatched
+	 * @return {string} return.then.watch.message Parsed HTML of the confirmational interface message
 	 */
 	function doWatchInternal( pages, ok, err, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
@@ -42,14 +42,17 @@
 			mw.log.warn( 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.' );
 		}
 
-		return apiPromise
+		apiPromise = apiPromise
 			.then( function ( data ) {
 				// If a single page was given (not an array) respond with a single item as well.
-				return $.isArray( pages ) ? data.watch : data.watch[0];
-			} )
-			.done( ok )
-			.fail( err )
-			.promise( { abort: apiPromise.abort } );
+				return Promise.resolve( $.isArray( pages ) ? data.watch : data.watch[0] );
+			} );
+
+		apiPromise
+			.then( ok )
+			.catch( err );
+
+		return apiPromise;
 	}
 
 	$.extend( mw.Api.prototype, {

@@ -132,7 +132,7 @@
 						search: query,
 						namespace: 0,
 						suggest: ''
-					} ).done( function ( data ) {
+					} ).then( function ( data ) {
 						response( data[ 1 ] );
 					} ) );
 				},
