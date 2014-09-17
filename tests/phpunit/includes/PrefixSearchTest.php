@@ -29,7 +29,7 @@ class PrefixSearchTest extends MediaWikiTestCase {
 
 	public function addDBData() {
 		$this->insertPage( 'Sandbox' );
-
+		$this->insertPage( 'Bar' );
 		$this->insertPage( 'Example' );
 		$this->insertPage( 'Example Bar' );
 		$this->insertPage( 'Example Foo' );
@@ -150,6 +150,79 @@ class PrefixSearchTest extends MediaWikiTestCase {
 			),
 			$results,
 			'Special page subpages with prefix'
+		);
+	}
+
+	/**
+	 * @covers PrefixSearch::searchBackend
+	 */
+	public function testBug70958() {
+		$this->searchProvision( array(
+			'Bar',
+			'Barcelona',
+			'Barbara',
+		) );
+		$searcher = new StringPrefixSearch;
+		$results = $searcher->search( 'Bar', 3 );
+		$this->assertEquals(
+			array(
+				'Bar',
+				'Barcelona',
+				'Barbara',
+			),
+			$results,
+			'Simple case'
+		);
+
+		$this->searchProvision( array(
+			'Barcelona',
+			'Bar',
+			'Barbara',
+		) );
+		$searcher = new StringPrefixSearch;
+		$results = $searcher->search( 'Bar', 3 );
+		$this->assertEquals(
+			array(
+				'Bar',
+				'Barcelona',
+				'Barbara',
+			),
+			$results,
+			'Exact match not on top'
+		);
+
+		$this->searchProvision( array(
+			'Barcelona',
+			'Barbara',
+			'Bart',
+		) );
+		$searcher = new StringPrefixSearch;
+		$results = $searcher->search( 'Bar', 3 );
+		$this->assertEquals(
+			array(
+				'Bar',
+				'Barcelona',
+				'Barbara',
+			),
+			$results,
+			'Exact match missing'
+		);
+
+		$this->searchProvision( array(
+			'Exile',
+			'Exist',
+			'External',
+		) );
+		$searcher = new StringPrefixSearch;
+		$results = $searcher->search( 'Ex', 3 );
+		$this->assertEquals(
+			array(
+				'Exile',
+				'Exist',
+				'External',
+			),
+			$results,
+			'Exact match missing and not existing'
 		);
 	}
 }
