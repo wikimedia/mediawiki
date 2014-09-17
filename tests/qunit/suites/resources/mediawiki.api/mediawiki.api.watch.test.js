@@ -21,9 +21,12 @@
 		} );
 
 		api.watch( [ 'Foo', 'Bar' ] ).done( function ( items ) {
+			QUnit.start();
 			assert.equal( items[0].title, 'Foo' );
 			assert.equal( items[1].title, 'Bar' );
 		} );
+
+		this.server.autoRespond = true;
 
 		// Requests are POST, match requestBody instead of url
 		this.server.respond( function ( req ) {
@@ -42,5 +45,7 @@
 				);
 			}
 		} );
+
+		QUnit.stop();
 	} );
 }( mediaWiki ) );

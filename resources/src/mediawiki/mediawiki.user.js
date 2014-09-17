@@ -15,33 +15,29 @@
 	 *
 	 * @private
 	 * @param {string} info One of 'groups' or 'rights'
-	 * @return {jQuery.Promise}
+	 * @return {Promise}
 	 */
 	function getUserInfo( info ) {
-		var api;
+		var api, promise;
 		if ( !deferreds[info] ) {
 
-			deferreds.rights = $.Deferred();
-			deferreds.groups = $.Deferred();
-
 			api = new mw.Api();
-			api.get( {
+			promise = api.get( {
 				action: 'query',
 				meta: 'userinfo',
 				uiprop: 'rights|groups'
-			} ).always( function ( data ) {
-				var rights, groups;
-				if ( data.query && data.query.userinfo ) {
-					rights = data.query.userinfo.rights;
-					groups = data.query.userinfo.groups;
-				}
-				deferreds.rights.resolve( rights || [] );
-				deferreds.groups.resolve( groups || [] );
+			} ).catch( function() {} ).then( function ( data ) {
+				return data && data.query && data.query.userinfo;
 			} );
-
+			deferreds.rights = promise.then( function( userinfo ) {
+				return userinfo.rights;
+			} );
+			deferreds.groups = promise.then( function( userinfo ) {
+				return userinfo.groups;
+			} );
 		}
 
-		return deferreds[info].promise();
+		return deferreds[info];
 	}
 
 	mw.user = user = {
@@ -224,20 +220,20 @@
 		 * Get the current user's groups
 		 *
 		 * @param {Function} [callback]
-		 * @return {jQuery.Promise}
+		 * @return {Promise}
 		 */
 		getGroups: function ( callback ) {
-			return getUserInfo( 'groups' ).done( callback );
+			return getUserInfo( 'groups' ).then( callback );
 		},
 
 		/**
 		 * Get the current user's rights
 		 *
 		 * @param {Function} [callback]
-		 * @return {jQuery.Promise}
+		 * @return {Promise}
 		 */
 		getRights: function ( callback ) {
-			return getUserInfo( 'rights' ).done( callback );
+			return getUserInfo( 'rights' ).then( callback );
 		}
 	};
 
