@@ -38,6 +38,7 @@ class CSSMin {
 	 * which when base64 encoded will result in a 1/3 increase in size.
 	 */
 	const EMBED_SIZE_LIMIT = 24576;
+	const DATA_URI_SIZE_LIMIT = 32768;
 	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\'"]*?)(?P<query>\?[^\)\'"]*?|)[\'"]?\s*\)';
 	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
 	const COMMENT_REGEX = '\/\*.*?\*\/';
@@ -125,8 +126,22 @@ class CSSMin {
 		if ( !$type ) {
 			return false;
 		}
-		$data = base64_encode( file_get_contents( $file ) );
-		return 'data:' . $type . ';base64,' . $data;
+
+		$contents = file_get_contents( $file );
+		// Only whitespace and printable ASCII characters
+		$isText = (bool)preg_match( '/^[\r\n\t\x20-\x7e]+$/', $contents );
+
+		// Do not base64-encode non-binary files (sane SVGs)…
+		// (This often produces longer URLs, but they compress better, yielding a net smaller size.)
+		if ( $isText ) {
+			$uri = 'data:' . $type . ',' . rawurlencode( $contents );
+		}
+		// …but never exceed the length limit.
+		if ( !$isText || strlen( $uri ) >= self::DATA_URI_SIZE_LIMIT ) {
+			$uri = 'data:' . $type . ';base64,' . base64_encode( $contents );
+		}
+
+		return $uri;
 	}
 
 	/**

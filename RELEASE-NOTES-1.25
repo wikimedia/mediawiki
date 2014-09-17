@@ -13,6 +13,9 @@ production.
 === New features in 1.25 ===
 * (bug 58139) ResourceLoaderFileModule now supports language fallback
   for 'languageScripts'.
+* (bug 67341) SVG images will no longer be base64-encoded when being embedded
+  in CSS. This results in slight size increase before gzip compression (due to
+  percent-encoding), but up to 20% decrease after it.
 
 === Bug fixes in 1.25 ===
 
