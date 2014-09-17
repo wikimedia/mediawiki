@@ -37,8 +37,4 @@ class ApiFormatPhp extends ApiFormatBase {
 	public function execute() {
 		$this->printText( serialize( $this->getResultData() ) );
 	}
-
-	public function getDescription() {
-		return 'Output data in serialized PHP format' . parent::getDescription();
-	}
 }

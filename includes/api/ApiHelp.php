@@ -42,10 +42,12 @@ class ApiHelp extends ApiBase {
 		}
 
 		// Get the help
-		$context = new RequestContext;
+		$context = new DerivativeContext( $this->getMain()->getContext() );
 		$context->setUser( new User ); // anon to avoid caching issues
 		$context->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'apioutput' ) );
 		$context->setLanguage( $this->getMain()->getLanguage() );
+		$out = new OutputPage( $context );
+		$context->setOutput( $out );
 
 		self::getHelp( $context, $modules, $params );
 

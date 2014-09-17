@@ -47,6 +47,8 @@ production.
 * Default output format for the API is now jsonfm.
 * Simplified continuation will return a "batchcomplete" property in the result
   when a batch of pages is complete.
+* Pretty-printed HTML output now has nicer formatting and (if available)
+  better syntax highlighting.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -66,6 +68,11 @@ production.
 * Api formatters will no longer be asked to display the help screen on errors.
 * ApiMain::getCredits() was removed. The credits are available in the
   'api-credits' i18n message.
+* ApiFormatBase has been changed to support i18n and syntax highlighting via
+  extensions with the new 'ApiFormatHighlight' hook. Core syntax highlighting
+  has been removed.
+* ApiFormatBase now always buffers. Output is done when
+  ApiFormatBase::closePrinter is called.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
@@ -77,6 +84,9 @@ production.
   * ApiFormatBase::setUnescapeAmps
   * ApiFormatBase::getWantsHelp
   * ApiFormatBase::setHelp
+  * ApiFormatBase::formatHTML
+  * ApiFormatBase::setBufferResult
+  * ApiFormatBase::getDescription
   * ApiMain::setHelp
   * ApiMain::reallyMakeHelpMsg
   * ApiMain::makeHelpMsgHeader
