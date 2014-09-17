@@ -80,25 +80,13 @@ class ApiFormatJson extends ApiFormatBase {
 
 	public function getAllowedParams() {
 		return array(
-			'callback' => null,
-			'utf8' => false,
+			'callback' => array(
+				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
+			),
+			'utf8' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-utf8',
+			),
 		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'callback' => 'If specified, wraps the output into a given function ' .
-				'call. For safety, all user-specific data will be restricted.',
-			'utf8' => 'If specified, encodes most (but not all) non-ASCII ' .
-				'characters as UTF-8 instead of replacing them with hexadecimal escape sequences.',
-		);
-	}
-
-	public function getDescription() {
-		if ( $this->mIsRaw ) {
-			return 'Output data with the debugging elements in JSON format' . parent::getDescription();
-		}
-
-		return 'Output data in JSON format' . parent::getDescription();
 	}
 }
