@@ -151,7 +151,31 @@ abstract class PrefixSearch {
 		$srchres = array();
 		if ( wfRunHooks( 'PrefixSearchBackend', array( $namespaces, $search, $limit, &$srchres ) ) ) {
 			return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit ) );
+		} else {
+			// Default search backend does proper prefix searching, but custom backends
+			// may sort based on other algorythms that may cause the exact title match
+			// to not be in the results or be lower down the list.
+
+			// Pick namespace (based on PrefixSearch::defaultSearchBackend)
+			$ns = in_array( NS_MAIN, $namespaces ) ? NS_MAIN : $namespaces[0];
+			$t = Title::newFromText( $search, $ns );
+			$string = $t->getPrefixedText();
+
+			$key = array_search( $string, $srchres );
+			if ( $key !== false ) {
+				// Move it to the front
+				$cut = array_splice( $srchres, $key, 1 );
+				array_unshift( $srchres, $cut[0] );
+			} elseif ( $t->exists() ) {
+				// Add it in front
+				array_unshift( $srchres, $string );
+
+				if ( count( $srchres ) > $limit ) {
+					array_pop( $srchres );
+				}
+			}
 		}
+
 		return $this->strings( $srchres );
 	}
 
