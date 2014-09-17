@@ -112,8 +112,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$form->setWrapperLegendMsg( 'changeemail-header' );
 		$form->setSubmitTextMsg( 'changeemail-submit' );
 		$form->addButton( 'wpCancel', $this->msg( 'changeemail-cancel' )->text(),
-			null, array( 'formnovalidate')
-		);
+			null, array( 'formnovalidate' ) );
 		$form->addHiddenField( 'returnto', $this->getRequest()->getVal( 'returnto' ) );
 	}
 
