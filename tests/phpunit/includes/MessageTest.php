@@ -277,6 +277,55 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function messagePlaintextParamsProvider() {
+		return array(
+			array(
+				'one $2 <div>foo</div> [[Bar]] {{Baz}} &lt;',
+				'plain',
+			),
+
+			array(
+				// expect
+				'one $2 <div>foo</div> [[Bar]] {{Baz}} &lt;',
+				// format
+				'text',
+			),
+			array(
+				'one $2 &lt;div&gt;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;',
+				'escaped',
+			),
+
+			array(
+				'one $2 &lt;div&gt;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;',
+				'parse',
+			),
+
+			array(
+				"<p>one $2 &lt;div&gt;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;\n</p>",
+				'parseAsBlock',
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider messagePlaintextParamsProvider
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextParams( $expect, $format ) {
+		$lang = Language::factory( 'en' );
+
+		$msg = new RawMessage( '$1 $2' );
+		$params = array(
+			'one $2',
+			'<div>foo</div> [[Bar]] {{Baz}} &lt;',
+		);
+		$this->assertEquals(
+			$expect,
+			$msg->inLanguage( $lang )->plaintextParams( $params )->$format(),
+			"Fail formatting for $format"
+		);
+	}
+
 	/**
 	 * @covers Message::inContentLanguage
 	 */
