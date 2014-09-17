@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (49b64bdba7)
+ * OOjs UI v0.1.0-pre (24ac83a472)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-15T22:18:37Z
+ * Date: 2014-09-17T18:23:50Z
  */
 ( function ( OO ) {
 
@@ -4725,7 +4725,7 @@ OO.ui.ClippableElement.prototype.isClippedVertically = function () {
 };
 
 /**
- * Set the ideal size.
+ * Set the ideal size. These are the dimensions the element will have when it's not being clipped.
  *
  * @param {number|string} [width] Width as a number of pixels or CSS string with unit suffix
  * @param {number|string} [height] Height as a number of pixels or CSS string with unit suffix
@@ -4733,6 +4733,12 @@ OO.ui.ClippableElement.prototype.isClippedVertically = function () {
 OO.ui.ClippableElement.prototype.setIdealSize = function ( width, height ) {
 	this.idealWidth = width;
 	this.idealHeight = height;
+
+	if ( !this.clipping ) {
+		// Update dimensions
+		this.$clippable.css( { width: width, height: height } );
+	}
+	// While clipping, idealWidth and idealHeight are not considered
 };
 
 /**
@@ -11091,18 +11097,17 @@ OO.ui.TextInputMenuWidget.prototype.toggle = function ( visible ) {
 
 	var change = visible !== this.isVisible();
 
-	// Parent method
-	OO.ui.TextInputMenuWidget.super.prototype.toggle.call( this, visible );
-
 	if ( change ) {
-		if ( this.isVisible() ) {
+		if ( visible ) {
 			this.position();
 			this.$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
 		} else {
 			this.$( this.getElementWindow() ).off( 'resize', this.onWindowResizeHandler );
 		}
 	}
-	return this;
+
+	// Parent method
+	return OO.ui.TextInputMenuWidget.super.prototype.toggle.call( this, visible );
 };
 
 /**

@@ -2,12 +2,17 @@
 	"@metadata": {
 		"authors": [
 			"Vacio",
-			"Xelgen"
+			"Xelgen",
+			"Դավիթ Սարոյան"
 		]
 	},
-	"ooui-dialog-action-close": "Փակել",
 	"ooui-outline-control-move-down": "Իջեցնել կետը",
 	"ooui-outline-control-move-up": "Բարձրացնել կետը",
 	"ooui-outline-control-remove": "Հեռացնել տարրը",
-	"ooui-toolbar-more": "Ավելին"
+	"ooui-toolbar-more": "Ավելին",
+	"ooui-dialog-message-accept": "Լավ",
+	"ooui-dialog-message-reject": "Չեղարկել",
+	"ooui-dialog-process-error": "Ինչ-որ սխալ է տեղի ունեցել",
+	"ooui-dialog-process-dismiss": "Փակել",
+	"ooui-dialog-process-retry": "Կրկին փորձել"
 }
