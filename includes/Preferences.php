@@ -290,6 +290,7 @@ class Preferences {
 			'section' => 'personal/info',
 			'label-message' => 'yourrealname',
 			'help-message' => 'prefs-help-realname',
+			'cssclass' => 'mw-ui-input-inline',
 		);
 
 		if ( $canEditPrivateInfo && $wgAuth->allowPasswordChange() ) {
