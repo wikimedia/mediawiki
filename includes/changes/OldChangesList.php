@@ -78,6 +78,7 @@ class OldChangesList extends ChangesList {
 	 * @return string
 	 */
 	private function formatChangeLine( RecentChange $rc, array &$classes, $watched ) {
+		wfProfileIn( __METHOD__ );
 		$html = '';
 
 		if ( $rc->mAttribs['rc_log_type'] ) {
@@ -138,6 +139,7 @@ class OldChangesList extends ChangesList {
 			$html .= ' ' . $this->numberofWatchingusers( $rc->numberofWatchingusers );
 		}
 
+		wfProfileOut( __METHOD__ );
 		return $html;
 	}
 }
