@@ -54,6 +54,7 @@ class EnhancedChangesList extends ChangesList {
 		$this->cacheEntryFactory = new RCCacheEntryFactory(
 			$context,
 			$this->message
+			$this->linkFormatter
 		);
 	}
 
@@ -313,7 +314,7 @@ class EnhancedChangesList extends ChangesList {
 			} elseif ( $isnew ) {
 				$logtext .= $nchanges[$n];
 			} else {
-				$logtext .= Linker::link(
+				$logtext .= $this->linkFormatter->link(
 					$block0->getTitle(),
 					$nchanges[$n],
 					array(),
@@ -324,7 +325,7 @@ class EnhancedChangesList extends ChangesList {
 					array( 'known', 'noclasses' )
 				);
 				if ( $sinceLast > 0 && $sinceLast < $n ) {
-					$logtext .= $this->message['pipe-separator'] . Linker::link(
+					$logtext .= $this->message['pipe-separator'] . $this->linkFormatter->link(
 						$block0->getTitle(),
 						$sinceLastVisitMsg[$sinceLast],
 						array(),
@@ -348,7 +349,7 @@ class EnhancedChangesList extends ChangesList {
 			$params['action'] = 'history';
 
 			$logtext .= $this->message['pipe-separator'] .
-				Linker::linkKnown(
+				$this->linkFormatter->linkKnown(
 					$block0->getTitle(),
 					$this->message['enhancedrc-history'],
 					array(),
@@ -419,7 +420,7 @@ class EnhancedChangesList extends ChangesList {
 				$link = '<span class="history-deleted">' . $rcObj->timestamp . '</span> ';
 			} else {
 
-				$link = Linker::linkKnown(
+				$link = $this->linkFormatter->linkKnown(
 					$rcObj->getTitle(),
 					$rcObj->timestamp,
 					array(),
@@ -513,7 +514,7 @@ class EnhancedChangesList extends ChangesList {
 			$logTitle = SpecialPage::getTitleFor( 'Log', $logType );
 			$logName = $logPage->getName()->escaped();
 			$r .= $this->msg( 'parentheses' )
-				->rawParams( Linker::linkKnown( $logTitle, $logName ) )->escaped();
+				->rawParams( $this->linkFormatter->linkKnown( $logTitle, $logName ) )->escaped();
 		} else {
 			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}
@@ -521,12 +522,14 @@ class EnhancedChangesList extends ChangesList {
 		if ( $type != RC_LOG ) {
 			$query['action'] = 'history';
 			$r .= ' ' . $this->msg( 'parentheses' )
-				->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
-					$rcObj->getTitle(),
-					$this->message['hist'],
-					array(),
-					$query
-				) )->escaped();
+				->rawParams( $rcObj->difflink . $this->message['pipe-separator']
+					. $this->linkFormatter->linkKnown(
+						$rcObj->getTitle(),
+						$this->message['hist'],
+						array(),
+						$query
+					)
+				)->escaped();
 		}
 		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 		# Character diff
