@@ -11,7 +11,7 @@
 		 * cached token and start over.
 		 *
 		 * @param {Object} params API parameters
-		 * @return {jQuery.Promise} See #post
+		 * @return {Promise} See #post
 		 */
 		postWithEditToken: function ( params ) {
 			return this.postWithToken( 'edit', params );
@@ -20,9 +20,9 @@
 		/**
 		 * API helper to grab an edit token.
 		 *
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {string} return.done.token Received token.
+		 * @return {Promise}
+		 * @return {Function} return.then
+		 * @return {string} return.then.token Received token.
 		 */
 		getEditToken: function () {
 			return this.getToken( 'edit' );
@@ -35,7 +35,7 @@
 		 * @param {string} header
 		 * @param {string} message wikitext message
 		 * @param {Object} [additionalParams] Additional API parameters, e.g. `{ redirect: true }`
-		 * @return {jQuery.Promise}
+		 * @return {Promise}
 		 */
 		newSection: function ( title, header, message, additionalParams ) {
 			return this.postWithEditToken( $.extend( {

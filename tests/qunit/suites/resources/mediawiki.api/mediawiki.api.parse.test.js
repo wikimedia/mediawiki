@@ -11,6 +11,7 @@
 		var api = new mw.Api();
 
 		api.parse( '\'\'\'Hello world\'\'\'' ).done( function ( html ) {
+			QUnit.start();
 			assert.equal( html, '<p><b>Hello world</b></p>' );
 		} );
 
@@ -21,5 +22,7 @@
 		} );
 
 		this.server.respond();
+
+		QUnit.stop();
 	} );
 }( mediaWiki ) );

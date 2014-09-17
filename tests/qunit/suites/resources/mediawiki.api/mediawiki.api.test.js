@@ -12,17 +12,22 @@
 
 		api.get( {} )
 			.done( function ( data ) {
+				QUnit.start();
 				assert.deepEqual( data, [], 'If request succeeds without errors, resolve deferred' );
+				QUnit.stop();
 			} );
 
 		api.post( {} )
 			.done( function ( data ) {
+				QUnit.start();
 				assert.deepEqual( data, [], 'Simple POST request' );
 			} );
 
 		this.server.respond( function ( request ) {
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
+
+		QUnit.stop();
 	} );
 
 	QUnit.test( 'API error', function ( assert ) {
@@ -31,8 +36,9 @@
 		var api = new mw.Api();
 
 		api.get( { action: 'doesntexist' } )
-			.fail( function ( errorCode ) {
-				assert.equal( errorCode, 'unknown_action', 'API error should reject the deferred' );
+			.fail( function ( data ) {
+				QUnit.start();
+				assert.equal( data[0] , 'unknown_action', 'API error should reject the deferred' );
 			} );
 
 		this.server.respond( function ( request ) {
@@ -40,6 +46,8 @@
 				'{ "error": { "code": "unknown_action" } }'
 			);
 		} );
+
+		QUnit.stop();
 	} );
 
 	QUnit.test( 'FormData support', function ( assert ) {
@@ -70,13 +78,17 @@
 		// a request as it should be retrieved from user.tokens.
 		api.getToken( 'edit' )
 			.done( function ( token ) {
+				QUnit.start();
 				assert.ok( token.length, 'Got a token' );
 			} )
 			.fail( function ( err ) {
-				assert.equal( '', err, 'API error' );
+				QUnit.start();
+				assert.equal( '', err[0], 'API error' );
 			} );
 
 		assert.equal( this.server.requests.length, 0, 'Requests made' );
+
+		QUnit.stop();
 	} );
 
 	QUnit.test( 'getToken()', function ( assert ) {
@@ -100,13 +112,13 @@
 				assert.ok( token.length, 'Got testaction token (cached)' );
 			} )
 			.fail( function ( err ) {
-				assert.equal( err, '', 'API error' );
+				assert.equal( err[0], '', 'API error' );
 			} );
 
 		// Don't cache error (bug 65268)
 		api.getToken( 'testaction2' )
 			.fail( function ( err ) {
-				assert.equal( err, 'bite-me', 'Expected error' );
+				assert.equal( err[0], 'bite-me', 'Expected error' );
 			} )
 			.always( function () {
 				// Make this request after the first one has finished.
@@ -115,10 +127,11 @@
 				// reject it so that the next one tries fresh.
 				api.getToken( 'testaction2' )
 					.done( function ( token ) {
+						QUnit.start();
 						assert.ok( token.length, 'Got testaction2 token (error was not be cached)' );
 					} )
 					.fail( function ( err ) {
-						assert.equal( err, '', 'API error' );
+						assert.equal( err[0], '', 'API error' );
 					} );
 
 				assert.equal( test.server.requests.length, 3, 'Requests made' );
@@ -135,6 +148,8 @@
 		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
 			'{ "error": { "code": "bite-me", "info": "Smite me, O Mighty Smiter" } }'
 		);
+
+		QUnit.stop();
 	} );
 
 	QUnit.test( 'postWithToken( tokenType, params )', function ( assert ) {
@@ -146,6 +161,7 @@
 		// - Performs action=example
 		api.postWithToken( 'testsimpletoken', { action: 'example', key: 'foo' } )
 			.done( function ( data ) {
+				QUnit.start();
 				assert.deepEqual( data, { example: { foo: 'quux' } } );
 			} );
 
@@ -153,9 +169,14 @@
 			'{ "tokens": { "testsimpletokentoken": "a-bad-token" } }'
 		);
 
-		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "example": { "foo": "quux" } }'
-		);
+		var self = this;
+		window.setTimeout( function() {
+			self.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
+				'{ "example": { "foo": "quux" } }'
+			);
+		}, 20 );
+
+		QUnit.stop();
 	} );
 
 	QUnit.test( 'postWithToken( tokenType, params with assert )', function ( assert ) {
@@ -210,9 +231,15 @@
 			assert.equal( data.example, 'quux' );
 		} );
 
-		assert.equal( this.server.requests.length, 2, 'Request made' );
-		assert.equal( this.server.requests[0].requestHeaders['X-Foo'], 'Bar', 'Header sent' );
+		var self = this;
+		QUnit.stop();
+		window.setTimeout( function() {
+			QUnit.start();
+			assert.equal( self.server.requests.length, 2, 'Request made' );
+			assert.equal( self.server.requests[0].requestHeaders['X-Foo'], 'Bar', 'Header sent' );
+		}, 0 );
 
+		this.server.autoRespond = true;
 		this.server.respond( function ( request ) {
 			request.respond( 200, { 'Content-Type': 'application/json' }, '{ "example": "quux" }' );
 		} );
@@ -229,25 +256,35 @@
 		// - Request: action=example
 		api.postWithToken( 'testbadtoken', { action: 'example', key: 'foo' } )
 			.done( function ( data ) {
+				QUnit.start();
 				assert.deepEqual( data, { example: { foo: 'quux' } } );
 			} );
 
-		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
+		var server = this.server;
+
+		server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
 			'{ "tokens": { "testbadtokentoken": "a-bad-token" } }'
 		);
 
-		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "error": { "code": "badtoken" } }'
-		);
+		window.setTimeout( function() {
+			server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
+				'{ "error": { "code": "badtoken" } }'
+			);
 
-		this.server.requests[2].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testbadtokentoken": "a-good-token" } }'
-		);
+			window.setTimeout( function() {
+				server.requests[2].respond( 200, { 'Content-Type': 'application/json' },
+					'{ "tokens": { "testbadtokentoken": "a-good-token" } }'
+				);
 
-		this.server.requests[3].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "example": { "foo": "quux" } }'
-		);
+				window.setTimeout( function() {
+					server.requests[3].respond( 200, { 'Content-Type': 'application/json' },
+						'{ "example": { "foo": "quux" } }'
+					);
+				}, 0 );
+			}, 0 );
+		}, 10 );
 
+		QUnit.stop();
 	} );
 
 	QUnit.test( 'postWithToken() - badtoken-cached', function ( assert ) {
@@ -268,28 +305,39 @@
 		// - Request: action=example
 		api.postWithToken( 'testbadtokencache', { action: 'example', key: 'bar' } )
 			.done( function ( data ) {
+				QUnit.start();
 				assert.deepEqual( data, { example: { bar: 'quux' } } );
 			} );
 
-		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
+		var server = this.server;
+
+		server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
 			'{ "tokens": { "testbadtokencachetoken": "a-good-token-once" } }'
 		);
 
-		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "example": { "foo": "quux" } }'
-		);
+		window.setTimeout( function() {
+			server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
+				'{ "example": { "foo": "quux" } }'
+			);
 
-		this.server.requests[2].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "error": { "code": "badtoken" } }'
-		);
+			server.requests[2].respond( 200, { 'Content-Type': 'application/json' },
+				'{ "error": { "code": "badtoken" } }'
+			);
 
-		this.server.requests[3].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testbadtokencachetoken": "a-good-new-token" } }'
-		);
+			window.setTimeout( function() {
+				server.requests[3].respond( 200, { 'Content-Type': 'application/json' },
+					'{ "tokens": { "testbadtokencachetoken": "a-good-new-token" } }'
+				);
 
-		this.server.requests[4].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "example": { "bar": "quux" } }'
-		);
+				window.setTimeout( function() {
+					server.requests[4].respond( 200, { 'Content-Type': 'application/json' },
+						'{ "example": { "bar": "quux" } }'
+					);
+				}, 0 );
+			}, 0 );
+		}, 10 );
+
+		QUnit.stop();
 
 	} );
 

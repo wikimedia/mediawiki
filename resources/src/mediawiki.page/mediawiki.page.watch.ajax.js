@@ -139,7 +139,7 @@
 			api = new mw.Api();
 
 			api[action]( title )
-				.done( function ( watchResponse ) {
+				.then( function ( watchResponse ) {
 					var otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
 					mw.notify( $.parseHTML( watchResponse.message ), {
@@ -153,7 +153,7 @@
 					// page is watched or unwatched via the tab (bug 12395).
 					$( '#wpWatchthis' ).prop( 'checked', watchResponse.watched !== undefined );
 				} )
-				.fail( function () {
+				.catch( function () {
 					var cleanTitle, msg, link;
 
 					// Reset link to non-loading mode

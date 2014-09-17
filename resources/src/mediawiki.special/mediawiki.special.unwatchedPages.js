@@ -22,27 +22,28 @@
 			// Use the class to determine whether to watch or unwatch
 			if ( !$subjectLink.hasClass( 'mw-watched-item' ) ) {
 				$link.text( mw.msg( 'watching' ) );
-				promise = api.watch( title ).done( function () {
+				promise = api.watch( title ).then( function () {
 					$subjectLink.addClass( 'mw-watched-item' );
 					$link.text( mw.msg( 'unwatch' ) );
 					mw.notify( mw.msg( 'addedwatchtext-short', title ) );
-				} ).fail( function () {
+				} ).catch( function () {
 					$link.text( mw.msg( 'watch' ) );
 					mw.notify( mw.msg( 'watcherrortext', title ) );
 				} );
 			} else {
 				$link.text( mw.msg( 'unwatching' ) );
-				promise = api.unwatch( title ).done( function () {
+				promise = api.unwatch( title ).then( function () {
 					$subjectLink.removeClass( 'mw-watched-item' );
 					$link.text( mw.msg( 'watch' ) );
 					mw.notify( mw.msg( 'removedwatchtext-short', title ) );
-				} ).fail( function () {
+				} ).catch( function () {
 					$link.text( mw.msg( 'unwatch' ) );
 					mw.notify( mw.msg( 'watcherrortext', title ) );
 				} );
 			}
 
-			promise.always( function () {
+			// Since we catch errors in the promise above, this is always executed.
+			promise.then( function () {
 				$link.data( 'mwDisabled', false ).removeClass( 'mw-watch-link-disabled' );
 			} );
 

@@ -8,9 +8,9 @@
 		 * Convenience method for 'action=parse'.
 		 *
 		 * @param {string} wikitext
-		 * @return {jQuery.Promise}
-		 * @return {Function} return.done
-		 * @return {string} return.done.data Parsed HTML of `wikitext`.
+		 * @return {Promise}
+		 * @return {Function} return.then
+		 * @return {string} return.then.data Parsed HTML of `wikitext`.
 		 */
 		parse: function ( wikitext ) {
 			var apiPromise = this.get( {
@@ -22,8 +22,7 @@
 			return apiPromise
 				.then( function ( data ) {
 					return data.parse.text['*'];
-				} )
-				.promise( { abort: apiPromise.abort } );
+				} );
 		}
 	} );
 

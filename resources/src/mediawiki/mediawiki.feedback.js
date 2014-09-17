@@ -286,7 +286,7 @@
 				message,
 				{ redirect: true }
 			)
-			.done( function ( result ) {
+			.then( function ( result ) {
 				if ( result.edit !== undefined ) {
 					if ( result.edit.result === 'Success' ) {
 						fb.displayThanks();
@@ -299,7 +299,7 @@
 					fb.displayError( 'feedback-error2' );
 				}
 			} )
-			.fail( function () {
+			.catch( function () {
 				// ajax request failed
 				fb.displayError( 'feedback-error3' );
 			} );

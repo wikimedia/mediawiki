@@ -34,7 +34,7 @@
 				action: 'patrol',
 				rcid: rcid
 			} )
-			.done( function ( data ) {
+			.then( function ( data ) {
 				// Remove all patrollinks from the page (including any spinners inside).
 				$patrolLinks.closest( '.patrollink' ).remove();
 				if ( data.patrol !== undefined ) {
@@ -46,7 +46,7 @@
 					mw.notify( mw.msg( 'markedaspatrollederrornotify' ) );
 				}
 			} )
-			.fail( function ( error ) {
+			.catch( function ( error ) {
 				$spinner.remove();
 				// Restore the patrol link. This allows the user to try again
 				// (or open it in a new window, bypassing this ajax module).
