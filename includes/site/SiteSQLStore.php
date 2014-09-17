@@ -392,18 +392,10 @@ class SiteSQLStore implements SiteStore {
 		wfProfileIn( __METHOD__ );
 		$dbw = $this->sitesTable->getWriteDbConnection();
 
-		$trx = $dbw->trxLevel();
-
-		if ( $trx == 0 ) {
-			$dbw->begin( __METHOD__ );
-		}
-
+		$dbw->startAtomic( __METHOD__ );
 		$ok = $dbw->delete( 'sites', '*', __METHOD__ );
 		$ok = $dbw->delete( 'site_identifiers', '*', __METHOD__ ) && $ok;
-
-		if ( $trx == 0 ) {
-			$dbw->commit( __METHOD__ );
-		}
+		$dbw->endAtomic( __METHOD__);
 
 		$this->reset();
 
