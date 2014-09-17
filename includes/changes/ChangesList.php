@@ -39,6 +39,8 @@ class ChangesList extends ContextSource {
 	/** @var MapCacheLRU */
 	protected $watchingCache;
 
+	protected $linkFormatter;
+
 	/**
 	 * Changeslist constructor
 	 *
@@ -54,6 +56,7 @@ class ChangesList extends ContextSource {
 		}
 		$this->preCacheMessages();
 		$this->watchingCache = new MapCacheLRU( 50 );
+		$this->linkFormatter = new LinkFormatter();
 	}
 
 	/**
@@ -97,6 +100,7 @@ class ChangesList extends ContextSource {
 	 * they are called often, we call them once and save them in $this->message
 	 */
 	private function preCacheMessages() {
+		wfProfileIn( __METHOD__ );
 		if ( !isset( $this->message ) ) {
 			foreach ( array(
 				'cur', 'diff', 'hist', 'enhancedrc-history', 'last', 'blocklink', 'history',
@@ -105,6 +109,7 @@ class ChangesList extends ContextSource {
 				$this->message[$msg] = $this->msg( $msg )->escaped();
 			}
 		}
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -114,6 +119,7 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function recentChangesFlags( $flags, $nothing = '&#160;' ) {
+		wfProfileIn( __METHOD__ );
 		$f = '';
 		foreach ( array_keys( $this->getConfig()->get( 'RecentChangesFlags' ) ) as $flag ) {
 			$f .= isset( $flags[$flag] ) && $flags[$flag]
@@ -121,6 +127,7 @@ class ChangesList extends ContextSource {
 				: $nothing;
 		}
 
+		wfProfileOut( __METHOD__ );
 		return $f;
 	}
 
@@ -134,6 +141,7 @@ class ChangesList extends ContextSource {
 	 * @return string Raw HTML
 	 */
 	public static function flag( $flag ) {
+		wfProfileIn( __METHOD__ );
 		static $flagInfos = null;
 		if ( is_null( $flagInfos ) ) {
 			global $wgRecentChangesFlags;
@@ -156,9 +164,12 @@ class ChangesList extends ContextSource {
 			$flag = $map[$flag];
 		}
 
-		return "<abbr class='" . $flagInfos[$flag]['class'] . "' title='" .
+		$html = "<abbr class='" . $flagInfos[$flag]['class'] . "' title='" .
 			$flagInfos[$flag]['title'] . "'>" . $flagInfos[$flag]['letter'] .
 			'</abbr>';
+
+		wfProfileOut( __METHOD__ );
+		return $html;
 	}
 
 	/**
@@ -191,6 +202,7 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public static function showCharacterDifference( $old, $new, IContextSource $context = null ) {
+		wfProfileIn( __METHOD__ );
 		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}
@@ -204,7 +216,8 @@ class ChangesList extends ContextSource {
 		$code = $lang->getCode();
 		static $fastCharDiff = array();
 		if ( !isset( $fastCharDiff[$code] ) ) {
-			$fastCharDiff[$code] = $config->get( 'MiserMode' ) || $context->msg( 'rc-change-size' )->plain() === '$1';
+			$fastCharDiff[$code] = $config->get( 'MiserMode' )
+				|| $context->msg( 'rc-change-size' )->plain() === '$1';
 		}
 
 		$formattedSize = $lang->formatNum( $szdiff );
@@ -230,9 +243,12 @@ class ChangesList extends ContextSource {
 
 		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $new )->text();
 
-		return Html::element( $tag,
+		$html = Html::element( $tag,
 			array( 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ),
 			$context->msg( 'parentheses', $formattedSize )->plain() ) . $lang->getDirMark();
+
+		wfProfileOut( __METHOD__ );
+		return $html;
 	}
 
 	/**
@@ -243,6 +259,7 @@ class ChangesList extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	public function formatCharacterDifference( RecentChange $old, RecentChange $new = null ) {
+		wfProfileIn( __METHOD__ );
 		$oldlen = $old->mAttribs['rc_old_len'];
 
 		if ( $new ) {
@@ -252,10 +269,13 @@ class ChangesList extends ContextSource {
 		}
 
 		if ( $oldlen === null || $newlen === null ) {
+			wfProfileOut( __METHOD__ );
 			return '';
 		}
 
-		return self::showCharacterDifference( $oldlen, $newlen, $this->getContext() );
+		$html = self::showCharacterDifference( $oldlen, $newlen, $this->getContext() );
+		wfProfileOut( __METHOD__ );
+		return $html;
 	}
 
 	/**
@@ -274,6 +294,7 @@ class ChangesList extends ContextSource {
 	 * @param mixed $rc_timestamp
 	 */
 	public function insertDateHeader( &$s, $rc_timestamp ) {
+		wfProfileIn( __METHOD__ );
 		# Make date header if necessary
 		$date = $this->getLanguage()->userDate( $rc_timestamp, $this->getUser() );
 		if ( $date != $this->lastdate ) {
@@ -284,6 +305,8 @@ class ChangesList extends ContextSource {
 			$this->lastdate = $date;
 			$this->rclistOpen = true;
 		}
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -292,9 +315,14 @@ class ChangesList extends ContextSource {
 	 * @param string $logtype
 	 */
 	public function insertLog( &$s, $title, $logtype ) {
+		wfProfileIn( __METHOD__ );
 		$page = new LogPage( $logtype );
 		$logname = $page->getName()->escaped();
-		$s .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $title, $logname ) )->escaped();
+		$s .= $this->msg( 'parentheses' )->rawParams(
+			$this->linkFormatter->linkKnown( $title, $logname )
+		)->escaped();
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -303,6 +331,7 @@ class ChangesList extends ContextSource {
 	 * @param bool $unpatrolled
 	 */
 	public function insertDiffHist( &$s, &$rc, $unpatrolled ) {
+		wfProfileIn( __METHOD__ );
 		# Diff link
 		if ( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$diffLink = $this->message['diff'];
@@ -315,7 +344,7 @@ class ChangesList extends ContextSource {
 				'oldid' => $rc->mAttribs['rc_last_oldid']
 			);
 
-			$diffLink = Linker::linkKnown(
+			$diffLink = $this->linkFormatter->linkKnown(
 				$rc->getTitle(),
 				$this->message['diff'],
 				array( 'tabindex' => $rc->counter ),
@@ -324,7 +353,7 @@ class ChangesList extends ContextSource {
 		}
 		$diffhist = $diffLink . $this->message['pipe-separator'];
 		# History link
-		$diffhist .= Linker::linkKnown(
+		$diffhist .= $this->linkFormatter->linkKnown(
 			$rc->getTitle(),
 			$this->message['hist'],
 			array(),
@@ -336,6 +365,7 @@ class ChangesList extends ContextSource {
 		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there be?
 		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() .
 			' <span class="mw-changeslist-separator">. .</span> ';
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -345,12 +375,13 @@ class ChangesList extends ContextSource {
 	 * @param bool $watched
 	 */
 	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
+		wfProfileIn( __METHOD__ );
 		$params = array();
 		if ( $rc->getTitle()->isRedirect() ) {
 			$params = array( 'redirect' => 'no' );
 		}
 
-		$articlelink = Linker::linkKnown(
+		$articlelink = $this->linkFormatter->linkKnown(
 			$rc->getTitle(),
 			null,
 			array( 'class' => 'mw-changeslist-title' ),
@@ -368,6 +399,7 @@ class ChangesList extends ContextSource {
 			array( &$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched ) );
 
 		$s .= " $articlelink";
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -379,11 +411,16 @@ class ChangesList extends ContextSource {
 	 */
 	public function getTimestamp( $rc ) {
 		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there be?
-		return $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
+		wfProfileIn( __METHOD__ );
+
+		$timestamp = $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
 			$this->getLanguage()->userTime(
 				$rc->mAttribs['rc_timestamp'],
 				$this->getUser()
 			) . '</span> <span class="mw-changeslist-separator">. .</span> ';
+
+		wfProfileOut( __METHOD__ );
+		return $timestamp;
 	}
 
 	/**
@@ -403,14 +440,22 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange &$rc
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
+		wfProfileIn( __METHOD__ );
 		if ( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
 			$s .= ' <span class="history-deleted">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
-			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'],
-				$rc->mAttribs['rc_user_text'] );
-			$s .= Linker::userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+			$s .= $this->getLanguage()->getDirMark()
+				. $this->linkFormatter->userLink(
+					$rc->mAttribs['rc_user'],
+					$rc->mAttribs['rc_user_text']
+				);
+			$s .= $this->linkFormatter->userToolLinks(
+				$rc->mAttribs['rc_user'],
+				$rc->mAttribs['rc_user_text']
+			);
 		}
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -420,12 +465,16 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function insertLogEntry( $rc ) {
+		wfProfileIn( __METHOD__ );
 		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
 		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( true );
 		$mark = $this->getLanguage()->getDirMark();
 
-		return $formatter->getActionText() . " $mark" . $formatter->getComment();
+		$logEntry = $formatter->getActionText() . " $mark" . $formatter->getComment();
+
+		wfProfileOut( __METHOD__ );
+		return $logEntry;
 	}
 
 	/**
@@ -434,12 +483,20 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function insertComment( $rc ) {
+		wfProfileIn( __METHOD__ );
+
 		if ( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
-			return ' <span class="history-deleted">' .
+			$comment = ' <span class="history-deleted">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 		} else {
-			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
+			$comment = $this->linkFormatter->commentBlock(
+				$rc->mAttribs['rc_comment'],
+				$rc->getTitle()
+			);
 		}
+
+		wfProfileOut( __METHOD__ );
+		return $comment;
 	}
 
 	/**
@@ -462,6 +519,7 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	protected function numberofWatchingusers( $count ) {
+		wfProfileIn( __METHOD__ );
 		$cache = $this->watchingCache;
 		if ( $count > 0 ) {
 			if ( !$cache->has( $count ) ) {
@@ -469,8 +527,10 @@ class ChangesList extends ContextSource {
 					->numParams( $count )->escaped() );
 			}
 
+			wfProfileOut( __METHOD__ );
 			return $cache->get( $count );
 		} else {
+			wfProfileOut( __METHOD__ );
 			return '';
 		}
 	}
@@ -520,6 +580,7 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange $rc
 	 */
 	public function insertRollback( &$s, &$rc ) {
+		wfProfileIn( __METHOD__ );
 		if ( $rc->mAttribs['rc_type'] == RC_EDIT
 			&& $rc->mAttribs['rc_this_oldid']
 			&& $rc->mAttribs['rc_cur_id']
@@ -537,9 +598,11 @@ class ChangesList extends ContextSource {
 					'user_text' => $rc->mAttribs['rc_user_text'],
 					'deleted' => $rc->mAttribs['rc_deleted']
 				) );
-				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
+				$s .= ' ' . $this->linkFormatter->generateRollback( $rev, $this->getContext() );
 			}
 		}
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -552,12 +615,15 @@ class ChangesList extends ContextSource {
 			return;
 		}
 
+		wfProfileIn( __METHOD__ );
 		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
 			$rc->mAttribs['ts_tags'],
 			'changeslist'
 		);
 		$classes = array_merge( $classes, $newClasses );
 		$s .= ' ' . $tagSummary;
+
+		wfProfileOut( __METHOD__ );
 	}
 
 	public function insertExtra( &$s, &$rc, &$classes ) {
