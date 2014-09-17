@@ -272,6 +272,77 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextParams() {
+		$lang = Language::factory( 'en' );
+
+		foreach ( array( 'plain', 'text' ) as $format ) {
+			$msg = new RawMessage( '$1' );
+			$this->assertEquals(
+				'<foo>',
+				$msg->inLanguage( $lang )->plaintextParams( '<foo>' )->$format(),
+				"Does not escape for $format"
+			);
+		}
+
+		foreach ( array( 'parse', 'escaped' ) as $format ) {
+			$msg = new RawMessage( '$1' );
+			$this->assertEquals(
+				'&lt;foo&gt;',
+				$msg->inLanguage( $lang )->plaintextParams( '<foo>' )->$format(),
+				"Escapes output for $format"
+			);
+		}
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			"<p>&lt;foo&gt;\n</p>",
+			$msg->inLanguage( $lang )->plaintextParams( '<foo>' )->parseAsBlock(),
+			"Escapes output for $format"
+		);
+	}
+
+	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextDoesNotGetTreatedAsArgument() {
+		$lang = Language::factory( 'en' );
+		$msg = new RawMessage( '$1 $2' );
+		$this->assertEquals(
+			// when using ->params() this instead results in "It cost foo foo"
+			'It cost $2 foo',
+			$msg->inLanguage( $lang )->plaintextParams( 'It cost $2' )->rawParams( 'foo' )->parse()
+		);
+	}
+
+	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextDoesNotTransclude() {
+		$lang = Language::factory( 'en' );
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			'{{Main_Page}}',
+			// when using ->params() this results in Main_Page being treated
+			// as a transclusion
+			$msg->inLanguage( $lang )->plaintextParams( '{{Main_Page}}' )->text()
+		);
+	}
+
+	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextPassesThroughParsedWikitext() {
+		$lang = Language::factory( 'en' );
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			'[[Main_Page]]',
+			$msg->inLanguage( $lang )->params( '[[Main_Page]]' )->parse()
+		);
+	}
+
+	/**
 	 * @covers Message::inContentLanguage
 	 */
 	public function testInContentLanguage() {

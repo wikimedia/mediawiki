@@ -541,6 +541,30 @@ class Message {
 	}
 
 	/**
+	 * Add parameters that are plaintext and will be output exactly
+	 * as they are provided here.  This differs from self::rawParams
+	 * in that the values are still appropriatly escaped based on the
+	 * output format.
+	 *
+	 * @since 1.25
+	 *
+	 * @param string|string[] $param,... plaintext parameters, or a single argument that is
+	 * an array of plaintext parameters.
+	 *
+	 * @return Message $this
+	 */
+	public function plaintextParams( /*...*/ ) {
+		$params = func_get_args();
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+		foreach ( $params as $param ) {
+			$this->parameters[] = self::plaintextParam( $param );
+		}
+		return $this;
+	}
+
+	/**
 	 * Set the language and the title from a context object
 	 *
 	 * @since 1.19
@@ -917,6 +941,17 @@ class Message {
 	}
 
 	/**
+	 * @since 1.25
+	 *
+	 * @param string $plaintext
+	 *
+	 * @return string[] Array with a single "plaintext" key.
+	 */
+	public static function plaintextParam( $plaintext ) {
+		return array( 'plaintext' => $plaintext );
+	}
+
+	/**
 	 * Substitutes any parameters into the message text.
 	 *
 	 * @since 1.17
@@ -965,6 +1000,8 @@ class Message {
 				return array( 'before', $this->language->formatSize( $param['size'] ) );
 			} elseif ( isset( $param['bitrate'] ) ) {
 				return array( 'before', $this->language->formatBitrate( $param['bitrate'] ) );
+			} elseif ( isset( $param['plaintext'] ) ) {
+				return array( 'after', $this->formatPlaintext( $param['plaintext'] ) );
 			} else {
 				$warning = 'Invalid parameter for message "' . $this->getKey() . '": ' .
 					htmlspecialchars( serialize( $param ) );
@@ -1050,6 +1087,17 @@ class Message {
 		return $this->message;
 	}
 
+	protected function formatPlaintext( $plaintext ) {
+		switch( $this->format ) {
+		case 'parse':
+		case 'block-parse':
+		case 'escaped':
+			return htmlspecialchars( $plaintext, ENT_QUOTES, 'UTF-8', false );
+
+		default:
+			return $plaintext;
+		}
+	}
 }
 
 /**
