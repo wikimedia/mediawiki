@@ -379,6 +379,13 @@ $editPage : the EditPage object
 $text : the new text of the article (has yet to be saved)
 &$resultArr : data in this array will be added to the API result
 
+'ApiFormatHighlight': Use to syntax-highlight API pretty-printed output. When
+highlighting, add output to $context->getOutput() and return false.
+$context: An IContextSource.
+$text: Text to be highlighted.
+$mime: MIME type of $text.
+$format: API format code for $text.
+
 'APIGetAllowedParams': Use this hook to modify a module's parameters.
 &$module: ApiBase Module object
 &$params: Array of parameters

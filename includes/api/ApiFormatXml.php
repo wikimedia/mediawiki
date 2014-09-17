@@ -237,20 +237,13 @@ class ApiFormatXml extends ApiFormatBase {
 
 	public function getAllowedParams() {
 		return array(
-			'xslt' => null,
-			'includexmlnamespace' => false,
+			'xslt' => array(
+				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
+			),
+			'includexmlnamespace' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
+			),
 		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'xslt' => 'If specified, adds <xslt> as stylesheet. This should be a wiki page '
-				. 'in the MediaWiki namespace whose page name ends with ".xsl"',
-			'includexmlnamespace' => 'If specified, adds an XML namespace'
-		);
-	}
-
-	public function getDescription() {
-		return 'Output data in XML format' . parent::getDescription();
 	}
 }

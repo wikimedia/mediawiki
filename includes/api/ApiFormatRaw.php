@@ -30,20 +30,22 @@
  */
 class ApiFormatRaw extends ApiFormatBase {
 
+	private $errorFallback;
+
 	/**
 	 * @param ApiMain $main
 	 * @param ApiFormatBase $errorFallback Object to fall back on for errors
 	 */
 	public function __construct( ApiMain $main, ApiFormatBase $errorFallback ) {
 		parent::__construct( $main, 'raw' );
-		$this->mErrorFallback = $errorFallback;
+		$this->errorFallback = $errorFallback;
 	}
 
 	public function getMimeType() {
 		$data = $this->getResultData();
 
 		if ( isset( $data['error'] ) ) {
-			return $this->mErrorFallback->getMimeType();
+			return $this->errorFallback->getMimeType();
 		}
 
 		if ( !isset( $data['mime'] ) ) {
@@ -53,11 +55,28 @@ class ApiFormatRaw extends ApiFormatBase {
 		return $data['mime'];
 	}
 
+	public function initPrinter( $unused ) {
+		$data = $this->getResultData();
+		if ( isset( $data['error'] ) ) {
+			$this->errorFallback->initPrinter( $unused );
+		} else {
+			parent::initPrinter( $unused );
+		}
+	}
+
+	public function closePrinter() {
+		$data = $this->getResultData();
+		if ( isset( $data['error'] ) ) {
+			$this->errorFallback->closePrinter();
+		} else {
+			parent::closePrinter();
+		}
+	}
+
 	public function execute() {
 		$data = $this->getResultData();
 		if ( isset( $data['error'] ) ) {
-			$this->mErrorFallback->execute();
-
+			$this->errorFallback->execute();
 			return;
 		}
 

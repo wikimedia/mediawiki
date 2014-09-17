@@ -396,10 +396,6 @@ class ApiMain extends ApiBase {
 		// avoid sending public cache headers for errors.
 		$this->sendCacheHeaders();
 
-		if ( $this->mPrinter->getIsHtml() && !$this->mPrinter->isDisabled() ) {
-			echo wfReportTime();
-		}
-
 		ob_end_flush();
 	}
 
