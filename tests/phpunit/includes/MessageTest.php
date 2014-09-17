@@ -278,6 +278,115 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextParams() {
+		$lang = Language::factory( 'en' );
+
+		foreach ( array( 'plain', 'text' ) as $format ) {
+			$msg = new RawMessage( '$1' );
+			$this->assertEquals(
+				'<foo>',
+				$msg->inLanguage( $lang )->plaintextParams( '<foo>' )->$format(),
+				"Does not escape for $format"
+			);
+		}
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			'&lt;foo&gt;',
+			$msg->inLanguage( $lang )->plaintextParams( '<foo>' )->escaped(),
+			"Escapes output for escaped"
+		);
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			wfEscapeWikiText( '<foo>' ),
+			$msg->inLanguage( $lang )->plaintextParams( '<foo>' )->parse(),
+			"Escapes output for parse"
+		);
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			"<p>" . wfEscapeWikiText( '<foo>' ) . "\n</p>",
+			$msg->inLanguage( $lang )->plaintextParams( '<foo>' )->parseAsBlock(),
+			"Escapes output for parseAsBlock"
+		);
+	}
+
+	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextEncodesEntities() {
+		$lang = Language::factory( 'en' );
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			'&amp;lt;',
+			$msg->inLanguage( $lang )->plaintextParams( '&lt;' )->escaped()
+		);
+
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			'&#38;lt&#59;',
+			$msg->inLanguage( $lang )->plaintextParams( '&lt;' )->parse()
+		);
+	}
+
+	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextDoesNotGetTreatedAsArgument() {
+		$lang = Language::factory( 'en' );
+		$msg = new RawMessage( '$1 $2' );
+
+		$this->assertEquals(
+			// when using ->params() this instead results in "It cost foo foo"
+			'It cost &#36;2 foo',
+			$msg->inLanguage( $lang )->plaintextParams( 'It cost $2' )->rawParams( 'foo' )->parse()
+		);
+	}
+
+	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextDoesNotTransclude() {
+		$lang = Language::factory( 'en' );
+		$msg = new RawMessage( '$1' );
+
+		$this->assertEquals(
+			wfEscapeWikiText( '{{Main_Page}}' ),
+			// when using ->params() this results in Main_Page being treated
+			// as a transclusion
+			$msg->inLanguage( $lang )->plaintextParams( '{{Main_Page}}' )->parse()
+		);
+	}
+
+	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextParsedPassesThroughWikitext() {
+		$lang = Language::factory( 'en' );
+		$msg = new RawMessage( '$1' );
+		$this->assertEquals(
+			wfEscapeWikiText( '[[Main_Page]]' ),
+			$msg->inLanguage( $lang )->plaintextParams( '[[Main_Page]]' )->parse()
+		);
+	}
+
+	/**
+	 * @covers Message::plaintextParams
+	 */
+	public function testMessagePlaintextIsParserFunctionArgument() {
+		$lang = Language::factory( 'en' );
+		$msg = new RawMessage( '{{lcfirst:$1}}' );
+		$this->assertEquals(
+			'main_Page',
+			$msg->inLanguage( $lang )->plaintextParams( 'Main_Page' )->parse()
+		);
+	}
+
+	/**
 	 * @covers Message::inContentLanguage
 	 */
 	public function testInContentLanguage() {
