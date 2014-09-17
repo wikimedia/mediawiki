@@ -102,6 +102,15 @@ if ( $wgGitInfoCacheDirectory === false && $wgCacheDirectory !== false ) {
 	$wgGitInfoCacheDirectory = "{$wgCacheDirectory}/gitinfo";
 }
 
+// Fix path to icon images after they were moved in 1.24
+if ( $wgRightsIcon ) {
+	$wgRightsIcon = str_replace(
+		"{$wgStylePath}/common/images/",
+		"{$wgScriptPath}/resources/assets/licenses/",
+		$wgRightsIcon
+	);
+}
+
 if ( isset( $wgFooterIcons['copyright'] )
 	&& isset( $wgFooterIcons['copyright']['copyright'] )
 	&& $wgFooterIcons['copyright']['copyright'] === array()
@@ -124,7 +133,11 @@ if ( isset( $wgFooterIcons['poweredby'] )
 	&& $wgFooterIcons['poweredby']['mediawiki']['src'] === null
 ) {
 	$wgFooterIcons['poweredby']['mediawiki']['src'] =
+<<<<<<< HEAD
 		"$wgStylePath/common/images/poweredby_mediawiki_88x31.png";
+=======
+		"$wgScriptPath/resources/assets/poweredby_mediawiki_88x31.png";
+>>>>>>> 1cf5a6e... Move assets/ to resources/assets/
 }
 
 /**
