@@ -970,13 +970,20 @@ class Html {
 			$attribs['version'] = $wgHtml5Version;
 		}
 
+		// Base tag for most browsers
 		$html = Html::openElement( 'html', $attribs );
 
-		if ( $html ) {
-			$html .= "\n";
-		}
+		// Tag for IE8 and less
+		$attribs['class'] = ( isset( $attribs['class'] ) ? $attribs['class'] : '' ) . ' ie8 lte-ie8';
+		$htmlie8 = Html::openElement( 'html', $attribs );
 
-		$ret .= $html;
+		if ( $html ) {
+			$ret .= <<<HTML
+<!--[if lte IE 8]>    {$htmlie8} <![endif]-->
+<!--[if gt IE 8]><!--> {$html} <!--<![endif]-->
+
+HTML;
+		}
 
 		return $ret;
 	}
