@@ -17,13 +17,11 @@ abstract class ApiFormatTestBase extends ApiTestCase {
 
 		$printer = $module->createPrinterByName( $format );
 
-		$printer->initPrinter( false );
-
 		ob_start();
+		$printer->initPrinter( false );
 		$printer->execute();
-		$out = ob_get_clean();
-
 		$printer->closePrinter();
+		$out = ob_get_clean();
 
 		return $out;
 	}

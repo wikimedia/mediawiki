@@ -271,6 +271,8 @@ production.
   language by default. 'uselang' is now a recognized API parameter;
   "uselang=user" may be used to select the language from the current user's
   preferences.
+* Pretty-printed HTML output now has nicer formatting and (if available)
+  better syntax highlighting.
 
 === Action API internal changes in 1.24 ===
 * Methods for handling continuation are added to ApiResult, so actions other
@@ -317,6 +319,11 @@ production.
 * Api formatters will no longer be asked to display the help screen on errors.
 * ApiMain::getCredits() was removed. The credits are available in the
   'api-credits' i18n message.
+* ApiFormatBase has been changed to support i18n and syntax highlighting via
+  extensions with the new 'ApiFormatHighlight' hook. Core syntax highlighting
+  has been removed.
+* ApiFormatBase now always buffers. Output is done when
+  ApiFormatBase::closePrinter is called.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getResultProperties
@@ -338,6 +345,9 @@ production.
   * ApiFormatBase::setUnescapeAmps
   * ApiFormatBase::getWantsHelp
   * ApiFormatBase::setHelp
+  * ApiFormatBase::formatHTML
+  * ApiFormatBase::setBufferResult
+  * ApiFormatBase::getDescription
   * ApiMain::setHelp
   * ApiMain::reallyMakeHelpMsg
   * ApiMain::makeHelpMsgHeader

@@ -36,8 +36,4 @@ class ApiFormatNone extends ApiFormatBase {
 
 	public function execute() {
 	}
-
-	public function getDescription() {
-		return 'Output nothing' . parent::getDescription();
-	}
 }
