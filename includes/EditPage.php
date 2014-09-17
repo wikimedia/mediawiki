@@ -1944,9 +1944,7 @@ class EditPage {
 			// Do this in its own transaction to reduce contention...
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->onTransactionIdle( function () use ( $dbw, $title, $watch, $wgUser, $fname ) {
-				$dbw->begin( $fname );
 				WatchAction::doWatchOrUnwatch( $watch, $title, $wgUser );
-				$dbw->commit( $fname );
 			} );
 		}
 	}
