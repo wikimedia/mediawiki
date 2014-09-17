@@ -11,6 +11,9 @@ production.
 === Configuration changes in 1.25 ===
 
 === New features in 1.25 ===
+* (bug 67341) SVG images will no longer be base64-encoded when being embedded
+  in CSS. This results in slight size increase before gzip compression (due to
+  percent-encoding), but up to 20% decrease after it.
 
 === Bug fixes in 1.25 ===
 
