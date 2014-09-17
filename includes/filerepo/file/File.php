@@ -1312,8 +1312,8 @@ abstract class File {
 	 * @return ThumbnailImage
 	 */
 	function iconThumb() {
-		global $wgScriptPath, $IP;
-		$assetsPath = "$wgScriptPath/resources/assets/file-type-icons/";
+		global $wgResourceBasePath, $IP;
+		$assetsPath = "$wgResourceBasePath/resources/assets/file-type-icons/";
 		$assetsDirectory = "$IP/resources/assets/file-type-icons/";
 
 		$try = array( 'fileicon-' . $this->getExtension() . '.png', 'fileicon.png' );

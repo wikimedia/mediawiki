@@ -77,6 +77,9 @@ if ( $wgStyleDirectory === false ) {
 if ( $wgExtensionAssetsPath === false ) {
 	$wgExtensionAssetsPath = "$wgScriptPath/extensions";
 }
+if ( $wgResourceBasePath === null ) {
+	$wgResourceBasePath = $wgScriptPath;
+}
 
 if ( $wgLogo === false ) {
 	$wgLogo = "$wgStylePath/common/images/wiki.png";
