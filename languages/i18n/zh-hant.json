@@ -61,7 +61,7 @@
 		]
 	},
 	"tog-underline": "連結顯示底線：",
-	"tog-hideminor": "隱藏最近變更中的小修訂",
+	"tog-hideminor": "隱藏最近變更以來的小編輯",
 	"tog-hidepatrolled": "隱藏最近變更中巡查過的編輯",
 	"tog-newpageshidepatrolled": "隱藏新頁面清單中巡查過的頁面",
 	"tog-extendwatchlist": "展開監視清單顯示包含最近以外的所有變更",
@@ -585,6 +585,7 @@
 	"headline_tip": "第 2 層標題文字",
 	"nowiki_sample": "插入非格式化文字",
 	"nowiki_tip": "忽略 Wiki 格式化語法",
+	"image_sample": "範例.jpg",
 	"image_tip": "附加檔案",
 	"media_tip": "檔案連結",
 	"sig_tip": "您的簽名與日期時間",
