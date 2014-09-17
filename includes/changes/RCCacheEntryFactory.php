@@ -28,13 +28,16 @@ class RCCacheEntryFactory {
 	/* @var string[] */
 	private $messages;
 
+	private $linkFormatter;
+
 	/**
 	 * @param IContextSource $context
 	 * @param string[] $messages
 	 */
-	public function __construct( IContextSource $context, $messages ) {
+	public function __construct( IContextSource $context, $messages, LinkFormatter $linkFormatter ) {
 		$this->context = $context;
 		$this->messages = $messages;
+		$this->linkFormatter = $linkFormatter;
 	}
 
 	/**
@@ -70,7 +73,7 @@ class RCCacheEntryFactory {
 		$cacheEntry->userlink = $this->getUserLink( $cacheEntry );
 
 		if ( !ChangesList::isDeleted( $cacheEntry, Revision::DELETED_USER ) ) {
-			$cacheEntry->usertalklink = Linker::userToolLinks(
+			$cacheEntry->usertalklink = $this->linkFormatter->userToolLinks(
 				$cacheEntry->mAttribs['rc_user'],
 				$cacheEntry->mAttribs['rc_user_text']
 			);
@@ -99,7 +102,7 @@ class RCCacheEntryFactory {
 
 		// New unpatrolled pages
 		if ( $cacheEntry->unpatrolled && $type == RC_NEW ) {
-			$clink = Linker::linkKnown( $cacheEntry->getTitle() );
+			$clink = $this->linkFormatter->linkKnown( $cacheEntry->getTitle() );
 		// Log entries
 		} elseif ( $type == RC_LOG ) {
 			$logType = $cacheEntry->mAttribs['rc_log_type'];
@@ -108,7 +111,7 @@ class RCCacheEntryFactory {
 				$clink = $this->getLogLink( $logType );
 			} else {
 				wfDebugLog( 'recentchanges', 'Unexpected log entry with no log type in recent changes' );
-				$clink = Linker::link( $cacheEntry->getTitle() );
+				$clink = $this->linkFormatter->link( $cacheEntry->getTitle() );
 			}
 		// Log entries (old format) and special pages
 		} elseif ( $cacheEntry->mAttribs['rc_namespace'] == NS_SPECIAL ) {
@@ -116,7 +119,7 @@ class RCCacheEntryFactory {
 			$clink = '';
 		// Edits
 		} else {
-			$clink = Linker::linkKnown( $cacheEntry->getTitle() );
+			$clink = $this->linkFormatter->linkKnown( $cacheEntry->getTitle() );
 		}
 
 		return $clink;
@@ -128,7 +131,7 @@ class RCCacheEntryFactory {
 		$logname = $logpage->getName()->escaped();
 
 		$logLink = $this->context->msg( 'parentheses' )
-			->rawParams( Linker::linkKnown( $logtitle, $logname ) )->escaped();
+			->rawParams( $this->linkFormatter->linkKnown( $logtitle, $logname ) )->escaped();
 
 		return $logLink;
 	}
@@ -233,7 +236,7 @@ class RCCacheEntryFactory {
 		if ( !$showDiffLinks || !$lastOldid || in_array( $type, $logTypes ) ) {
 			$lastLink = $lastMessage;
 		} else {
-			$lastLink = Linker::linkKnown(
+			$lastLink = $this->linkFormatter->linkKnown(
 				$cacheEntry->getTitle(),
 				$lastMessage,
 				array(),
@@ -254,7 +257,7 @@ class RCCacheEntryFactory {
 			$userLink = ' <span class="history-deleted">' .
 				$this->context->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
-			$userLink = Linker::userLink(
+			$userLink = $this->linkFormatter->userLink(
 				$cacheEntry->mAttribs['rc_user'],
 				$cacheEntry->mAttribs['rc_user_text']
 			);

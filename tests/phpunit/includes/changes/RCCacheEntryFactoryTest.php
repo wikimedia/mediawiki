@@ -35,7 +35,9 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	public function testNewFromRecentChange( $expected, $context, $messages,
 		$recentChange, $watched
 	) {
-		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages );
+		$linkFormatter = new LinkFormatter();
+
+		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages, $linkFormatter );
 		$cacheEntry = $cacheEntryFactory->newFromRecentChange( $recentChange, $watched );
 
 		$this->assertInstanceOf( 'RCCacheEntry', $cacheEntry );
@@ -89,7 +91,8 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	 * @dataProvider deleteChangeProvider
 	 */
 	public function testNewForDeleteChange( $expected, $context, $messages, $recentChange, $watched ) {
-		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages );
+		$linkFormatter = new LinkFormatter();
+		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages, $linkFormatter );
 		$cacheEntry = $cacheEntryFactory->newFromRecentChange( $recentChange, $watched );
 
 		$this->assertInstanceOf( 'RCCacheEntry', $cacheEntry );

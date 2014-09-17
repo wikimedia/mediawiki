@@ -118,6 +118,7 @@ $wgAutoloadLocalClasses = array(
 	'License' => 'includes/Licenses.php',
 	'Licenses' => 'includes/Licenses.php',
 	'Linker' => 'includes/Linker.php',
+	'LinkFormatter' => 'includes/LinkFormatter.php',
 	'LinkFilter' => 'includes/LinkFilter.php',
 	'MagicWord' => 'includes/MagicWord.php',
 	'MagicWordArray' => 'includes/MagicWord.php',
