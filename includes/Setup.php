@@ -77,6 +77,9 @@ if ( $wgStyleDirectory === false ) {
 if ( $wgExtensionAssetsPath === false ) {
 	$wgExtensionAssetsPath = "$wgScriptPath/extensions";
 }
+if ( $wgResourceBasePath === null ) {
+	$wgResourceBasePath = $wgScriptPath;
+}
 
 if ( $wgLogo === false ) {
 	$wgLogo = "$wgStylePath/common/images/wiki.png";
@@ -106,7 +109,7 @@ if ( $wgGitInfoCacheDirectory === false && $wgCacheDirectory !== false ) {
 if ( $wgRightsIcon ) {
 	$wgRightsIcon = str_replace(
 		"{$wgStylePath}/common/images/",
-		"{$wgScriptPath}/resources/assets/licenses/",
+		"{$wgResourceBasePath}/resources/assets/licenses/",
 		$wgRightsIcon
 	);
 }
@@ -133,7 +136,7 @@ if ( isset( $wgFooterIcons['poweredby'] )
 	&& $wgFooterIcons['poweredby']['mediawiki']['src'] === null
 ) {
 	$wgFooterIcons['poweredby']['mediawiki']['src'] =
-		"$wgScriptPath/resources/assets/poweredby_mediawiki_88x31.png";
+		"$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png";
 }
 
 /**
