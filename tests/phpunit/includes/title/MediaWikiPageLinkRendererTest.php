@@ -24,6 +24,7 @@
  * @covers MediaWikiPageLinkRenderer
  *
  * @group Title
+ * @group Database
  */
 class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 
