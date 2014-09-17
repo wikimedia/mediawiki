@@ -124,7 +124,11 @@ if ( isset( $wgFooterIcons['poweredby'] )
 	&& $wgFooterIcons['poweredby']['mediawiki']['src'] === null
 ) {
 	$wgFooterIcons['poweredby']['mediawiki']['src'] =
+<<<<<<< HEAD
 		"$wgStylePath/common/images/poweredby_mediawiki_88x31.png";
+=======
+		"$wgScriptPath/resources/assets/poweredby_mediawiki_88x31.png";
+>>>>>>> 1cf5a6e... Move assets/ to resources/assets/
 }
 
 /**
