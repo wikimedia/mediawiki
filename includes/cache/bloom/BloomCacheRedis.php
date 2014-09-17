@@ -20,11 +20,11 @@
  */
 
 /**
- * Bloom filter implented using Redis
+ * Bloom filter implemented using Redis
  *
  * The Redis server must be >= 2.6 and should have volatile-lru or volatile-ttl
  * if there is any eviction policy. It should not be allkeys-* in any case. Also,
- * this can be used in a simple master/slave setup or with Redis Sentinal preferably.
+ * this can be used in a simple master/slave setup or with Redis Sentinel preferably.
  *
  * Some bits are based on https://github.com/ErikDubbelboer/redis-lua-scaling-bloom-filter
  * but are simplified to use a single filter instead of up to 32 filters.
