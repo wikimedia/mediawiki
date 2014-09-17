@@ -1313,8 +1313,8 @@ abstract class File {
 	 */
 	function iconThumb() {
 		global $wgScriptPath, $IP;
-		$assetsPath = "$wgScriptPath/assets/file-type-icons/";
-		$assetsDirectory = "$IP/assets/file-type-icons/";
+		$assetsPath = "$wgScriptPath/resources/assets/file-type-icons/";
+		$assetsDirectory = "$IP/resources/assets/file-type-icons/";
 
 		$try = array( 'fileicon-' . $this->getExtension() . '.png', 'fileicon.png' );
 		foreach ( $try as $icon ) {
