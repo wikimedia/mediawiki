@@ -191,6 +191,9 @@ production.
   settings.
 * (bug 69418) A MultiConfig implementation was added that supports fallback
   to multiple Config instances.
+* (bug 67341) SVG images will no longer be base64-encoded when being embedded
+  in CSS. This results in slight size increase before gzip compression (due to
+  percent-encoding), but large decrease after it.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
