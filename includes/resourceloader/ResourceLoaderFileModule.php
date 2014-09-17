@@ -168,7 +168,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param string $localBasePath Base path to prepend to all local paths in $options. Defaults
 	 *     to $IP
 	 * @param string $remoteBasePath Base path to prepend to all remote paths in $options. Defaults
-	 *     to $wgScriptPath
+	 *     to $wgResourceBasePath
 	 *
 	 * Below is a description for the $options array:
 	 * @throws MWException
@@ -177,7 +177,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *     array(
 	 *         // Base path to prepend to all local paths in $options. Defaults to $IP
 	 *         'localBasePath' => [base path],
-	 *         // Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath
+	 *         // Base path to prepend to all remote paths in $options. Defaults to $wgResourceBasePath
 	 *         'remoteBasePath' => [base path],
 	 *         // Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath
 	 *         'remoteExtPath' => [base path],
@@ -291,7 +291,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param string $localBasePath Path to use if not provided in module definition. Defaults
 	 *     to $IP
 	 * @param string $remoteBasePath Path to use if not provided in module definition. Defaults
-	 *     to $wgScriptPath
+	 *     to $wgResourceBasePath
 	 * @return array Array( localBasePath, remoteBasePath )
 	 */
 	public static function extractBasePaths(
@@ -299,14 +299,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
-		global $IP, $wgScriptPath, $wgResourceBasePath;
+		global $IP, $wgResourceBasePath;
 
 		// The different ways these checks are done, and their ordering, look very silly,
 		// but were preserved for backwards-compatibility just in case. Tread lightly.
 
 		$localBasePath = $localBasePath === null ? $IP : $localBasePath;
 		if ( $remoteBasePath === null ) {
-			$remoteBasePath = $wgResourceBasePath === null ? $wgScriptPath : $wgResourceBasePath;
+			$remoteBasePath = $wgResourceBasePath;
 		}
 
 		if ( isset( $options['remoteExtPath'] ) ) {
