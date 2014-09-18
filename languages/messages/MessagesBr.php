@@ -66,6 +66,7 @@ $specialPageAliases = array(
 	'Mostlinkedtemplates'       => array( 'PatromoùImplijetañ' ),
 	'Movepage'                  => array( 'AdkasPajenn' ),
 	'Mycontributions'           => array( 'MaDegasadennoù' ),
+	'MyLanguage'                => array( 'MaYezh' ),
 	'Mypage'                    => array( 'MaFajenn' ),
 	'Mytalk'                    => array( 'MaC\'haozeadennoù' ),
 	'Newimages'                 => array( 'RestroùNevez', 'SkeudennoùNevez' ),

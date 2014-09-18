@@ -130,6 +130,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'ЧланциСаНајвишеРевизија' ),
 	'Movepage'                  => array( 'Преусмери', 'Премести_страницу' ),
 	'Mycontributions'           => array( 'МојиДоприноси', 'Моји_доприноси', 'Моји_прилози' ),
+	'MyLanguage'                => array( 'Мој_језик' ),
 	'Mypage'                    => array( 'МојаСтраница', 'Моја_страница' ),
 	'Mytalk'                    => array( 'МојРазговор', 'Мој_разговор' ),
 	'Myuploads'                 => array( 'Моја_слања' ),

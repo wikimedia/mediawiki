@@ -267,6 +267,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Flest_endringar' ),
 	'Movepage'                  => array( 'Flytt_side' ),
 	'Mycontributions'           => array( 'Bidraga_mine' ),
+	'MyLanguage'                => array( 'Språket_mitt' ),
 	'Mypage'                    => array( 'Sida_mi' ),
 	'Mytalk'                    => array( 'Diskusjonssida_mi' ),
 	'Myuploads'                 => array( 'Opplastingane_mine' ),

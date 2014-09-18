@@ -111,6 +111,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( '編集履歴の多いページ', '版の多い項目', '版の多いページ' ),
 	'Movepage'                  => array( '移動', 'ページの移動' ),
 	'Mycontributions'           => array( '自分の投稿記録' ),
+	'MyLanguage'                => array( '自分の言語' ),
 	'Mypage'                    => array( '利用者ページ', 'マイページ', 'マイ・ページ' ),
 	'Mytalk'                    => array( 'トークページ', '会話ページ', 'マイトーク', 'マイ・トーク' ),
 	'Myuploads'                 => array( '自分のアップロード記録' ),

@@ -98,6 +98,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'MIMEMIMEmmmgM_অনুসন্ধান' ),
 	'Movepage'                  => array( 'পৃষ্ঠা_স্থানান্তৰ' ),
 	'Mycontributions'           => array( 'মোৰ_বৰঙনি' ),
+	'MyLanguage'                => array( 'মোৰ_ভাষা' ),
 	'Mypage'                    => array( 'মোৰ_পৃষ্ঠা' ),
 	'Mytalk'                    => array( 'মোৰ_কথোপকথন' ),
 	'Myuploads'                 => array( 'মোৰ_আপল’ডসমূহ' ),

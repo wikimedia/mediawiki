@@ -184,6 +184,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Наибольшее_количество_версий' ),
 	'Movepage'                  => array( 'Переименовать_страницу', 'Переименование', 'Переименовать' ),
 	'Mycontributions'           => array( 'Мой_вклад' ),
+	'MyLanguage'                => array( 'Мой_язык' ),
 	'Mypage'                    => array( 'Моя_страница' ),
 	'Mytalk'                    => array( 'Моё_обсуждение' ),
 	'Myuploads'                 => array( 'Мои_загрузки' ),

@@ -245,6 +245,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Perubahan_terbanyak', 'PerubahanTerbanyak' ),
 	'Movepage'                  => array( 'Pindahkan_halaman', 'PindahkanHalaman' ),
 	'Mycontributions'           => array( 'Kontribusi_saya', 'KontribusiSaya' ),
+	'MyLanguage'                => array( 'Bahasa_saya' ),
 	'Mypage'                    => array( 'Halaman_saya', 'HalamanSaya' ),
 	'Mytalk'                    => array( 'Pembicaraan_saya', 'PembicaraanSaya' ),
 	'Myuploads'                 => array( 'Unggahan_saya' ),

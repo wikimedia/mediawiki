@@ -48,6 +48,10 @@ $namespaceAliases = array(
 	'Категория_чугаазы'  => NS_CATEGORY_TALK,
 );
 
+$specialPageAliases = array(
+	'MyLanguage'                => array( 'Дылым' ),
+);
+
 $magicWords = array(
 	'redirect'                  => array( '0', '#көжүрүлге', '#ШИГЛЕДИР', '#перенаправление', '#перенапр', '#REDIRECT' ),
 	'notoc'                     => array( '0', '__ЭГЕ_ЧОК__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__БЕЗ_ОГЛ__', '__NOTOC__' ),

@@ -169,6 +169,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( '最多修訂頁面' ),
 	'Movepage'                  => array( '移動頁面' ),
 	'Mycontributions'           => array( '我的貢獻' ),
+	'MyLanguage'                => array( '我的語言' ),
 	'Mypage'                    => array( '我的用戶頁' ),
 	'Mytalk'                    => array( '我的討論頁' ),
 	'Myuploads'                 => array( '我的上傳' ),
