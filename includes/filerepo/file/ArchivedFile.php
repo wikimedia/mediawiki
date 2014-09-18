@@ -264,6 +264,9 @@ class ArchivedFile {
 			// old row, populate from key
 			$this->sha1 = LocalRepo::getHashFromKey( $this->key );
 		}
+		if ( !$this->title ) {
+			$this->title = Title::makeTitleSafe( NS_FILE, $row->fa_name );
+		}
 	}
 
 	/**
@@ -272,6 +275,9 @@ class ArchivedFile {
 	 * @return Title
 	 */
 	public function getTitle() {
+		if ( !$this->title ) {
+			$this->load();
+		}
 		return $this->title;
 	}
 
