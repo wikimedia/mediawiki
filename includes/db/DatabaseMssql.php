@@ -228,7 +228,7 @@ class DatabaseMssql extends DatabaseBase {
 
 				if ( $success ) {
 					$this->mAffectedRows = 0;
-					return true;
+					return $stmt;
 				}
 			}
 		}
@@ -415,10 +415,8 @@ class DatabaseMssql extends DatabaseBase {
 			}
 			$this->mScrollableCursor = true;
 			$this->mPrepareStatements = true;
-
 			return $ret;
 		}
-
 		return $this->query( $sql, $fname );
 	}
 
@@ -613,7 +611,14 @@ class DatabaseMssql extends DatabaseBase {
 
 		// Determine binary/varbinary fields so we can encode data as a hex string like 0xABCDEF
 		$binaryColumns = $this->getBinaryColumns( $table );
-
+        
+		// INSERT IGNORE is not supported by SQL Server
+		// remove IGNORE from options list and set ignore flag to true
+		if ( in_array( 'IGNORE', $options ) ) {
+			$options = array_diff( $options, array( 'IGNORE' ) );
+			$this->mIgnoreDupKeyErrors = true;
+		}
+        
 		foreach ( $arrToInsert as $a ) {
 			// start out with empty identity column, this is so we can return
 			// it as a result of the insert logic
@@ -645,13 +650,7 @@ class DatabaseMssql extends DatabaseBase {
 
 			$keys = array_keys( $a );
 
-			// INSERT IGNORE is not supported by SQL Server
-			// remove IGNORE from options list and set ignore flag to true
-			$ignoreClause = false;
-			if ( in_array( 'IGNORE', $options ) ) {
-				$options = array_diff( $options, array( 'IGNORE' ) );
-				$this->mIgnoreDupKeyErrors = true;
-			}
+
 
 			// Build the actual query
 			$sql = $sqlPre . 'INSERT ' . implode( ' ', $options ) .
@@ -691,15 +690,16 @@ class DatabaseMssql extends DatabaseBase {
 				throw $e;
 			}
 			$this->mScrollableCursor = true;
-			$this->mIgnoreDupKeyErrors = false;
-
+            
 			if ( !is_null( $identity ) ) {
 				// then we want to get the identity column value we were assigned and save it off
 				$row = $ret->fetchObject();
-				$this->mInsertId = $row->$identity;
+				if(is_object($row)){
+					$this->mInsertId = $row->$identity;
+				}
 			}
 		}
-
+		$this->mIgnoreDupKeyErrors = false;
 		return $ret;
 	}
 
@@ -921,7 +921,7 @@ class DatabaseMssql extends DatabaseBase {
 			}
 			if ( !$s2 ) {
 				// no ORDER BY
-				$overOrder = 'ORDER BY 1';
+				$overOrder = 'ORDER BY (SELECT 1)';
 			} else {
 				if ( !isset( $orderby[2] ) || !$orderby[2] ) {
 					// don't need to strip it out if we're using a FOR XML clause
@@ -1009,7 +1009,7 @@ class DatabaseMssql extends DatabaseBase {
 			global $wgDBmwschema;
 			$schema = $wgDBmwschema;
 		}
-
+		
 		$res = $this->query( "SELECT 1 FROM INFORMATION_SCHEMA.TABLES
 			WHERE TABLE_TYPE = 'BASE TABLE'
 			AND TABLE_SCHEMA = '$schema' AND TABLE_NAME = '$table'" );
