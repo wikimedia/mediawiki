@@ -12,7 +12,6 @@
 //
 // Styleguide 2.
 
-@buttonBorderRadius: 3px;
 @transitionDuration: .1s;
 @transitionFunction: ease-in-out;
 
@@ -43,7 +42,7 @@
 
 	// Container styling
 	.button-colors(#FFF);
-	border-radius: @buttonBorderRadius;
+	border-radius: @borderRadius;
 	min-width: 80px;
 
 	// Ensure that buttons and inputs are nicely aligned when they have differing heights
@@ -216,8 +215,8 @@ a.mw-ui-button {
 	float: left;
 
 	&:first-child {
-		border-top-left-radius: @buttonBorderRadius;
-		border-bottom-left-radius: @buttonBorderRadius;
+		border-top-left-radius: @borderRadius;
+		border-bottom-left-radius: @borderRadius;
 	}
 
 	&:not(:first-child) {
@@ -225,7 +224,7 @@ a.mw-ui-button {
 	}
 
 	&:last-child{
-		border-top-right-radius: @buttonBorderRadius;
-		border-bottom-right-radius: @buttonBorderRadius;
+		border-top-right-radius: @borderRadius;
+		border-bottom-right-radius: @borderRadius;
 	}
 }
