@@ -64,15 +64,26 @@
 		&:checked {
 			+ label {
 				&::before {
-					.background-image-svg('images/checked.svg', 'images/checked.png');
+					.background-image-svg('images/checked_gray.svg', 'images/checked_gray.png');
 					background-repeat: no-repeat;
 					background-position: center top;
 				}
 			}
 		}
 
+		&:hover:checked {
+			+ label {
+				&::before {
+					.background-image-svg('images/checked_green.svg', 'images/checked_green.png');
+					background-repeat: no-repeat;
+					background-position: center top;
+				}
+			}
+		}
+
+
 		@focusBottomBorderSize: 3px;
-		&:active,
+		&:hover,
 		&:focus {
 			+ label {
 				&::after {
