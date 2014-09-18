@@ -429,6 +429,34 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Insert a new page.
+	 *
+	 * Should be called from addDBData().
+	 *
+	 * @since 1.25
+	 * @param string $pageName Page name
+	 * @param string $text Page's content
+	 * @return array Title object and page id
+	 */
+	protected function insertPage( $pageName, $text = 'Sample page for unit test.' ) {
+		$title = Title::newFromText( $pageName, 0 );
+
+		$user = User::newFromName( 'WikiSysop' );
+		$comment = __METHOD__ . ': Sample page for unit test.';
+
+		// Avoid memory leak...?
+		LinkCache::singleton()->clear();
+
+		$page = WikiPage::factory( $title );
+		$page->doEditContent( ContentHandler::makeContent( $text, $title ), $comment, 0, false, $user );
+
+		return array(
+			'title' => $title,
+			'id' => $page->getId(),
+		);
+	}
+
+	/**
 	 * Stub. If a test needs to add additional data to the database, it should
 	 * implement this method and do so
 	 *
@@ -464,7 +492,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		User::resetIdByNameCache();
 
-		//Make sysop user
+		// Make sysop user
 		$user = User::newFromName( 'UTSysop' );
 
 		if ( $user->idForName() == 0 ) {
@@ -476,7 +504,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$user->saveSettings();
 		}
 
-		//Make 1 page with 1 revision
+		// Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		if ( $page->getId() == 0 ) {
 			$page->doEditContent(
@@ -484,7 +512,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'UTPageSummary',
 				EDIT_NEW,
 				false,
-				User::newFromName( 'UTSysop' ) );
+				User::newFromName( 'UTSysop' )
+			);
 		}
 	}
 
