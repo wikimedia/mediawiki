@@ -1772,11 +1772,6 @@ abstract class Installer {
 
 		// Some of the environment checks make shell requests, remove limits
 		$GLOBALS['wgMaxShellMemory'] = 0;
-
-		// Don't bother embedding images into generated CSS, which is not cached
-		$GLOBALS['wgResourceLoaderLESSFunctions']['embeddable'] = function ( $frame, $less ) {
-			return $less->toBool( false );
-		};
 	}
 
 	/**
