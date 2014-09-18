@@ -3488,11 +3488,10 @@ $wgResourceLoaderLESSVars = array();
  * Changes to LESS functions do not trigger cache invalidation.
  *
  * @since 1.22
+ * @deprecated since 1.24 Questionable usefulness and problematic to support,
+ *     will be removed in the future.
  */
-$wgResourceLoaderLESSFunctions = array(
-	'embeddable' => 'ResourceLoaderLESSFunctions::embeddable',
-	'embed' => 'ResourceLoaderLESSFunctions::embed',
-);
+$wgResourceLoaderLESSFunctions = array();
 
 /**
  * Default import paths for LESS modules. LESS files referenced in @import
