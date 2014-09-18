@@ -246,16 +246,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array(
 			'from' => null,
-			'continue' => null,
 			'to' => null,
 			'prefix' => null,
-			'limit' => array(
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
 			'dir' => array(
 				ApiBase::PARAM_DFLT => 'ascending',
 				ApiBase::PARAM_TYPE => array(
@@ -283,48 +275,23 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'archivename',
 				),
 			),
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'from' => 'The image title to start enumerating from',
-			'continue' => 'When more results are available, use this to continue',
-			'to' => 'The image title to stop enumerating at',
-			'prefix' => 'Search for all image titles that begin with this value',
-			'dir' => 'The direction in which to list',
-			'limit' => 'How many images to return in total',
-			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36",
-			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
-			'prop' => array(
-				'What image information to get:',
-				' sha1              - Adds SHA-1 hash for the image',
-				' timestamp         - Adds timestamp for the uploaded version',
-				' user              - Adds user who uploaded the image version',
-				' size              - Adds the size of the image in bytes and the height, ' .
-					'width and page count (if applicable)',
-				' dimensions        - Alias for size',
-				' description       - Adds description the image version',
-				' parseddescription - Parse the description on the version',
-				' mime              - Adds MIME of the image',
-				' mediatype         - Adds the media type of the image',
-				' metadata          - Lists Exif metadata for the version of the image',
-				' bitdepth          - Adds the bit depth of the version',
-				' archivename       - Adds the file name of the archive version for non-latest versions'
+			'limit' => array(
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+			),
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
 		);
 	}
 
-	public function getDescription() {
-		return 'Enumerate all deleted files sequentially.';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=query&list=filearchive' => array(
-				'Simple Use',
-				'Show a list of all deleted files',
-			),
+			'action=query&list=filearchive'
+				=> 'apihelp-query+filearchive-example-simple',
 		);
 	}
 

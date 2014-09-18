@@ -119,26 +119,12 @@ class ApiUserrights extends ApiBase {
 			),
 			'reason' => array(
 				ApiBase::PARAM_DFLT => ''
-			)
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'user' => 'User name',
-			'userid' => 'User id',
-			'add' => 'Add the user to these groups',
-			'remove' => 'Remove the user from these groups',
-			'token' => array(
-				/* Standard description automatically prepended */
-				'For compatibility, the token used in the web UI is also accepted.'
 			),
-			'reason' => 'Reason for the change',
+			'token' => array(
+				// Standard definition automatically inserted
+				ApiBase::PARAM_HELP_MSG_APPEND => array( 'api-help-param-token-webui' ),
+			),
 		);
-	}
-
-	public function getDescription() {
-		return 'Add/remove a user to/from groups.';
 	}
 
 	public function needsToken() {
@@ -149,10 +135,12 @@ class ApiUserrights extends ApiBase {
 		return $this->getUrUser( $params )->getName();
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC',
-			'api.php?action=userrights&userid=123&add=bot&remove=sysop|bureaucrat&token=123ABC'
+			'action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC'
+				=> 'apihelp-userrights-example-user',
+			'action=userrights&userid=123&add=bot&remove=sysop|bureaucrat&token=123ABC'
+				=> 'apihelp-userrights-example-userid',
 		);
 	}
 

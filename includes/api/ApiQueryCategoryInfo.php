@@ -103,22 +103,17 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array(
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'continue' => 'When more results are available, use this to continue',
+			'action=query&prop=categoryinfo&titles=Category:Foo|Category:Bar'
+				=> 'apihelp-query+categoryinfo-example-simple',
 		);
-	}
-
-	public function getDescription() {
-		return 'Returns information about the given categories.';
-	}
-
-	public function getExamples() {
-		return 'api.php?action=query&prop=categoryinfo&titles=Category:Foo|Category:Bar';
 	}
 
 	public function getHelpUrls() {

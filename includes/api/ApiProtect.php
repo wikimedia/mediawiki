@@ -175,43 +175,21 @@ class ApiProtect extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
-		return array(
-			'title' => "Title of the page you want to (un)protect. Cannot be used together with {$p}pageid",
-			'pageid' => "ID of the page you want to (un)protect. Cannot be used together with {$p}title",
-			'protections' => 'List of protection levels, formatted action=group (e.g. edit=sysop)',
-			'expiry' => array(
-				'Expiry timestamps. If only one timestamp is ' .
-					'set, it\'ll be used for all protections.',
-				'Use \'infinite\', \'indefinite\', \'infinity\' or \'never\', for a never-expiring protection.'
-			),
-			'reason' => 'Reason for (un)protecting',
-			'cascade' => array(
-				'Enable cascading protection (i.e. protect pages included in this page)',
-				'Ignored if not all protection levels are \'sysop\' or \'protect\''
-			),
-			'watch' => 'If set, add the page being (un)protected to your watchlist',
-			'watchlist' => 'Unconditionally add or remove the page from your ' .
-				'watchlist, use preferences or do not change watch',
-		);
-	}
-
-	public function getDescription() {
-		return 'Change the protection level of a page.';
-	}
-
 	public function needsToken() {
 		return 'csrf';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=protect&title=Main%20Page&token=123ABC&' .
-				'protections=edit=sysop|move=sysop&cascade=&expiry=20070901163000|never',
-			'api.php?action=protect&title=Main%20Page&token=123ABC&' .
+			'action=protect&title=Main%20Page&token=123ABC&' .
+				'protections=edit=sysop|move=sysop&cascade=&expiry=20070901163000|never'
+				=> 'apihelp-protect-example-protect',
+			'action=protect&title=Main%20Page&token=123ABC&' .
 				'protections=edit=all|move=all&reason=Lifting%20restrictions'
+				=> 'apihelp-protect-example-unprotect',
+			'action=protect&title=Main%20Page&token=123ABC&' .
+				'protections=&reason=Lifting%20restrictions'
+				=> 'apihelp-protect-example-unprotect2',
 		);
 	}
 

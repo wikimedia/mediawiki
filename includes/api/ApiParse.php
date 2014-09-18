@@ -703,7 +703,12 @@ class ApiParse extends ApiBase {
 			'section' => null,
 			'disablepp' => false,
 			'disableeditsection' => false,
-			'generatexml' => false,
+			'generatexml' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => array(
+					'apihelp-parse-param-generatexml', CONTENT_MODEL_WIKITEXT
+				),
+			),
 			'preview' => false,
 			'sectionpreview' => false,
 			'disabletoc' => false,
@@ -716,97 +721,16 @@ class ApiParse extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-		$wikitext = CONTENT_MODEL_WIKITEXT;
-
+	public function getExamplesMessages() {
 		return array(
-			'text' => "Text to parse. Use {$p}title or {$p}contentmodel to control the content model",
-			'summary' => 'Summary to parse',
-			'redirects' => "If the {$p}page or the {$p}pageid parameter is set to a redirect, resolve it",
-			'title' => "Title of page the text belongs to. " .
-				"If omitted, {$p}contentmodel must be specified, and \"API\" will be used as the title",
-			'page' => "Parse the content of this page. Cannot be used together with {$p}text and {$p}title",
-			'pageid' => "Parse the content of this page. Overrides {$p}page",
-			'oldid' => "Parse the content of this revision. Overrides {$p}page and {$p}pageid",
-			'prop' => array(
-				'Which pieces of information to get',
-				' text           - Gives the parsed text of the wikitext',
-				' langlinks      - Gives the language links in the parsed wikitext',
-				' categories     - Gives the categories in the parsed wikitext',
-				' categorieshtml - Gives the HTML version of the categories',
-				' links          - Gives the internal links in the parsed wikitext',
-				' templates      - Gives the templates in the parsed wikitext',
-				' images         - Gives the images in the parsed wikitext',
-				' externallinks  - Gives the external links in the parsed wikitext',
-				' sections       - Gives the sections in the parsed wikitext',
-				' revid          - Adds the revision ID of the parsed page',
-				' displaytitle   - Adds the title of the parsed wikitext',
-				' headitems      - Gives items to put in the <head> of the page',
-				' headhtml       - Gives parsed <head> of the page',
-				' modules        - Gives the ResourceLoader modules used on the page',
-				' indicators     - Gives the HTML of page status indicators used on the page',
-				' iwlinks        - Gives interwiki links in the parsed wikitext',
-				' wikitext       - Gives the original wikitext that was parsed',
-				' properties     - Gives various properties defined in the parsed wikitext',
-				' limitreportdata - Gives the limit report in a structured way.',
-				"                   Gives no data, when {$p}disablepp is set.",
-				' limitreporthtml - Gives the HTML version of the limit report.',
-				"                   Gives no data, when {$p}disablepp is set.",
-			),
-			'effectivelanglinks' => array(
-				'Includes language links supplied by extensions',
-				'(for use with prop=langlinks)',
-			),
-			'pst' => array(
-				'Do a pre-save transform on the input before parsing it',
-				"Only valid when used with {$p}text",
-			),
-			'onlypst' => array(
-				'Do a pre-save transform (PST) on the input, but don\'t parse it',
-				'Returns the same wikitext, after a PST has been applied.',
-				"Only valid when used with {$p}text",
-			),
-			'section' => 'Only retrieve the content of this section number',
-			'disablepp' => 'Disable the PP Report from the parser output',
-			'disableeditsection' => 'Disable edit section links from the parser output',
-			'generatexml' => "Generate XML parse tree (requires contentmodel=$wikitext)",
-			'preview' => 'Parse in preview mode',
-			'sectionpreview' => 'Parse in section preview mode (enables preview mode too)',
-			'disabletoc' => 'Disable table of contents in output',
-			'contentformat' => array(
-				'Content serialization format used for the input text',
-				"Only valid when used with {$p}text",
-			),
-			'contentmodel' => array(
-				"Content model of the input text. If omitted, ${p}title must be specified, " .
-					"and default will be the model of the specified ${p}title",
-				"Only valid when used with {$p}text",
-			),
-		);
-	}
-
-	public function getDescription() {
-		$p = $this->getModulePrefix();
-
-		return array(
-			'Parses content and returns parser output.',
-			'See the various prop-Modules of action=query to get information from the current' .
-				'version of a page.',
-			'There are several ways to specify the text to parse:',
-			"1) Specify a page or revision, using {$p}page, {$p}pageid, or {$p}oldid.",
-			"2) Specify content explicitly, using {$p}text, {$p}title, and {$p}contentmodel.",
-			"3) Specify only a summary to parse. {$p}prop should be given an empty value.",
-		);
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=parse&page=Project:Sandbox' => 'Parse a page',
-			'api.php?action=parse&text={{Project:Sandbox}}&contentmodel=wikitext' => 'Parse wikitext',
-			'api.php?action=parse&text={{PAGENAME}}&title=Test'
-				=> 'Parse wikitext, specifying the page title',
-			'api.php?action=parse&summary=Some+[[link]]&prop=' => 'Parse a summary',
+			'action=parse&page=Project:Sandbox'
+				=> 'apihelp-parse-example-page',
+			'action=parse&text={{Project:Sandbox}}&contentmodel=wikitext'
+				=> 'apihelp-parse-example-text',
+			'action=parse&text={{PAGENAME}}&title=Test'
+				=> 'apihelp-parse-example-texttitle',
+			'action=parse&summary=Some+[[link]]&prop='
+				=> 'apihelp-parse-example-summary',
 		);
 	}
 

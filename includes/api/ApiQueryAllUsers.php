@@ -352,43 +352,20 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'witheditsonly' => false,
-			'activeusers' => false,
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'from' => 'The user name to start enumerating from',
-			'to' => 'The user name to stop enumerating at',
-			'prefix' => 'Search for all users that begin with this value',
-			'dir' => 'Direction to sort in',
-			'group' => 'Limit users to given group name(s)',
-			'excludegroup' => 'Exclude users in given group name(s)',
-			'rights' => 'Limit users to given right(s) (does not include rights ' .
-				'granted by implicit or auto-promoted groups like *, user, or autoconfirmed)',
-			'prop' => array(
-				'What pieces of information to include.',
-				' blockinfo      - Adds the information about a current block on the user',
-				' groups         - Lists groups that the user is in. This uses ' .
-					'more server resources and may return fewer results than the limit',
-				' implicitgroups - Lists all the groups the user is automatically in',
-				' rights         - Lists rights that the user has',
-				' editcount      - Adds the edit count of the user',
-				' registration   - Adds the timestamp of when the user registered if available (may be blank)',
+			'activeusers' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => array(
+					'apihelp-query+allusers-param-activeusers',
+					$this->getConfig()->get( 'ActiveUserDays' )
+				),
 			),
-			'limit' => 'How many total user names to return',
-			'witheditsonly' => 'Only list users who have made edits',
-			'activeusers' => "Only list users active in the last {$this->getConfig()->get( 'ActiveUserDays' )} days(s)"
 		);
 	}
 
-	public function getDescription() {
-		return 'Enumerate all registered users.';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=query&list=allusers&aufrom=Y',
+			'action=query&list=allusers&aufrom=Y'
+				=> 'apihelp-query+allusers-example-Y',
 		);
 	}
 

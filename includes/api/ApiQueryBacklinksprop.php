@@ -40,15 +40,13 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'code' => 'rd',
 			'prefix' => 'rd',
 			'linktable' => 'redirect',
-			'what' => 'redirects to',
-			'description' => 'Returns all redirects to the given pages.',
 			'props' => array(
-				'fragment' => 'Fragment of each redirect, if any',
+				'fragment',
 			),
 			'showredirects' => false,
 			'show' => array(
-				'fragment' => 'Only show redirects with a fragment',
-				'!fragment' => 'Only show redirects without a fragment',
+				'fragment',
+				'!fragment',
 			),
 		),
 		'linkshere' => array(
@@ -56,8 +54,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'prefix' => 'pl',
 			'linktable' => 'pagelinks',
 			'from_namespace' => true,
-			'what' => 'pages linking to',
-			'description' => 'Find all pages that link to the given pages.',
 			'showredirects' => true,
 		),
 		'transcludedin' => array(
@@ -65,8 +61,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'prefix' => 'tl',
 			'linktable' => 'templatelinks',
 			'from_namespace' => true,
-			'what' => 'pages transcluding',
-			'description' => 'Find all pages that transclude the given pages.',
 			'showredirects' => true,
 		),
 		'fileusage' => array(
@@ -75,9 +69,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'linktable' => 'imagelinks',
 			'from_namespace' => true,
 			'to_namespace' => NS_FILE,
-			'what' => 'pages using',
 			'exampletitle' => 'File:Example.jpg',
-			'description' => 'Find all pages that use the given files.',
 			'showredirects' => true,
 		),
 	);
@@ -348,6 +340,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace',
 			),
+			'show' => null, // Will be filled/removed below
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -355,8 +348,16 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
+
+		if ( empty( $settings['from_namespace'] ) && $this->getConfig()->get( 'MiserMode' ) ) {
+			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = array(
+				'api-help-param-limited-in-miser-mode',
+			);
+		}
 
 		if ( !empty( $settings['showredirects'] ) ) {
 			$ret['prop'][ApiBase::PARAM_TYPE][] = 'redirect';
@@ -364,7 +365,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 		if ( isset( $settings['props'] ) ) {
 			$ret['prop'][ApiBase::PARAM_TYPE] = array_merge(
-				$ret['prop'][ApiBase::PARAM_TYPE], array_keys( $settings['props'] )
+				$ret['prop'][ApiBase::PARAM_TYPE], $settings['props']
 			);
 		}
 
@@ -374,93 +375,32 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			$show[] = '!redirect';
 		}
 		if ( isset( $settings['show'] ) ) {
-			$show = array_merge( $show, array_keys( $settings['show'] ) );
+			$show = array_merge( $show, $settings['show'] );
 		}
 		if ( $show ) {
 			$ret['show'] = array(
 				ApiBase::PARAM_TYPE => $show,
 				ApiBase::PARAM_ISMULTI => true,
 			);
+		} else {
+			unset( $ret['show'] );
 		}
 
 		return $ret;
 	}
 
-	public function getParamDescription() {
-		$settings = self::$settings[$this->getModuleName()];
-		$p = $this->getModulePrefix();
-
-		$ret = array(
-			'prop' => array(
-				'Which properties to get:',
-			),
-			'show' => array(
-				'Show only items that meet this criteria.',
-			),
-			'namespace' => 'Only include pages in these namespaces',
-			'limit' => 'How many to return',
-			'continue' => 'When more results are available, use this to continue',
-		);
-
-		if ( empty( $settings['from_namespace'] ) && $this->getConfig()->get( 'MiserMode' ) ) {
-			$ret['namespace'] = array(
-				$ret['namespace'],
-				"NOTE: Due to \$wgMiserMode, using this may result in fewer than \"{$p}limit\" results",
-				'returned before continuing; in extreme cases, zero results may be returned.',
-			);
-			if ( isset( $ret['type'] ) ) {
-				$ret['namespace'][] = "Note that you can use {$p}type=subcat or {$p}type=file " .
-					"instead of {$p}namespace=14 or 6.";
-			}
-		}
-
-		$props = array(
-			'pageid' => 'Adds the ID of page',
-			'title' => 'Adds the title and namespace ID of the page',
-		);
-		if ( !empty( $settings['showredirects'] ) ) {
-			$props['redirect'] = 'Indicate if the page is a redirect';
-		}
-		if ( isset( $settings['props'] ) ) {
-			$props += $settings['props'];
-		}
-		foreach ( $props as $k => $v ) {
-			$ret['props'][] = sprintf( "%-9s - %s", $k, $v );
-		}
-
-		$show = array();
-		if ( !empty( $settings['showredirects'] ) ) {
-			$show += array(
-				'redirect' => 'Only show redirects',
-				'!redirect' => 'Only show non-redirects',
-			);
-		}
-		if ( isset( $settings['show'] ) ) {
-			$show += $settings['show'];
-		}
-		foreach ( $show as $k => $v ) {
-			$ret['show'][] = sprintf( "%-9s - %s", $k, $v );
-		}
-
-		return $ret;
-	}
-
-	public function getDescription() {
-		return self::$settings[$this->getModuleName()]['description'];
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		$settings = self::$settings[$this->getModuleName()];
 		$name = $this->getModuleName();
-		$what = $settings['what'];
+		$path = $this->getModulePath();
 		$title = isset( $settings['exampletitle'] ) ? $settings['exampletitle'] : 'Main Page';
 		$etitle = rawurlencode( $title );
 
 		return array(
-			"api.php?action=query&prop={$name}&titles={$etitle}"
-				=> "Get a list of $what [[$title]]",
-			"api.php?action=query&generator={$name}&titles={$etitle}&prop=info"
-				=> "Get information about $what [[$title]]",
+			"action=query&prop={$name}&titles={$etitle}"
+				=> "apihelp-$path-example-simple",
+			"action=query&generator={$name}&titles={$etitle}&prop=info"
+				=> "apihelp-$path-example-generator",
 		);
 	}
 

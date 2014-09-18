@@ -133,7 +133,9 @@ class ApiPurge extends ApiBase {
 		$result = array(
 			'forcelinkupdate' => false,
 			'forcerecursivelinkupdate' => false,
-			'continue' => '',
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -142,25 +144,12 @@ class ApiPurge extends ApiBase {
 		return $result;
 	}
 
-	public function getParamDescription() {
-		return $this->getPageSet()->getFinalParamDescription()
-			+ array(
-				'forcelinkupdate' => 'Update the links tables',
-				'forcerecursivelinkupdate' => 'Update the links table, and update ' .
-					'the links tables for any page that uses this page as a template',
-				'continue' => 'When more results are available, use this to continue',
-			);
-	}
-
-	public function getDescription() {
-		return array( 'Purge the cache for the given titles.',
-			'Requires a POST request if the user is not logged in.'
-		);
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=purge&titles=Main_Page|API' => 'Purge the "Main Page" and the "API" page',
+			'action=purge&titles=Main_Page|API'
+				=> 'apihelp-purge-example-simple',
+			'action=purge&generator=allpages&gapnamespace=0&gaplimit=10'
+				=> 'apihelp-purge-example-generator',
 		);
 	}
 

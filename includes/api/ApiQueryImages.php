@@ -146,7 +146,9 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'images' => array(
 				ApiBase::PARAM_ISMULTI => true,
 			),
@@ -160,26 +162,12 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'limit' => 'How many images to return',
-			'continue' => 'When more results are available, use this to continue',
-			'images' => 'Only list these images. Useful for checking whether a ' .
-				'certain page has a certain Image.',
-			'dir' => 'The direction in which to list',
-		);
-	}
-
-	public function getDescription() {
-		return 'Returns all images contained on the given page(s).';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&prop=images&titles=Main%20Page'
-				=> 'Get a list of images used in the [[Main Page]]',
-			'api.php?action=query&generator=images&titles=Main%20Page&prop=info'
-				=> 'Get information about all images used in the [[Main Page]]',
+			'action=query&prop=images&titles=Main%20Page'
+				=> 'apihelp-query+images-example-simple',
+			'action=query&generator=images&titles=Main%20Page&prop=info'
+				=> 'apihelp-query+images-example-generator',
 		);
 	}
 

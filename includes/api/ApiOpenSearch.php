@@ -91,23 +91,10 @@ class ApiOpenSearch extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'search' => 'Search string',
-			'limit' => 'Maximum amount of results to return',
-			'namespace' => 'Namespaces to search',
-			'suggest' => 'Do nothing if $wgEnableOpenSearchSuggest is false',
-			'format' => 'The format of the output',
-		);
-	}
-
-	public function getDescription() {
-		return 'Search the wiki using the OpenSearch protocol.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=opensearch&search=Te'
+			'action=opensearch&search=Te'
+				=> 'apihelp-opensearch-example-te',
 		);
 	}
 
