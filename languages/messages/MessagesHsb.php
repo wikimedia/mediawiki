@@ -99,6 +99,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Strony_z_najwjace_wersijemi' ),
 	'Movepage'                  => array( 'Přesunyć' ),
 	'Mycontributions'           => array( 'Moje_přinoški' ),
+	'MyLanguage'                => array( 'Moja_rěč' ),
 	'Mypage'                    => array( 'Moja_wužiwarska_strona' ),
 	'Mytalk'                    => array( 'Moja_diskusijna_strona' ),
 	'Newimages'                 => array( 'Nowe_dataje' ),

@@ -115,6 +115,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'ਸਭ_ਤੋਂ_ਵੱਧ_ਰੀਵਿਜ਼ਨ' ),
 	'Movepage'                  => array( 'ਸਿਰਲੇਖ_ਬਦਲੋ' ),
 	'Mycontributions'           => array( 'ਮੇਰੇ_ਯੋਗਦਾਨ' ),
+	'MyLanguage'                => array( 'ਮੇਰੀ_ਭਾਸ਼ਾ', 'ਮੇਰੀ_ਬੋਲੀ' ),
 	'Mypage'                    => array( 'ਮੇਰਾ_ਸਫ਼ਾ' ),
 	'Mytalk'                    => array( 'ਮੇਰੀ_ਚਰਚਾ' ),
 	'Myuploads'                 => array( 'ਮੇਰੇ_ਅੱਪਲੋਡ' ),

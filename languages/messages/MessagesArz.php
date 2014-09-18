@@ -83,6 +83,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'اكتر_مراجعات' ),
 	'Movepage'                  => array( 'نقل_صفحه' ),
 	'Mycontributions'           => array( 'مساهماتى' ),
+	'MyLanguage'                => array( 'اللغة_بتاعتى' ),
 	'Mypage'                    => array( 'صفحتى' ),
 	'Mytalk'                    => array( 'مناقشتى' ),
 	'Newimages'                 => array( 'فايلات_جديده', 'صور_جديده' ),

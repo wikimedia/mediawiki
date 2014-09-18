@@ -108,6 +108,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'ΠερισσότεροΕπεξεργασίες' ),
 	'Movepage'                  => array( 'ΜετακίνησηΣελίδας' ),
 	'Mycontributions'           => array( 'ΟιΣυνεισφορέςΜου' ),
+	'MyLanguage'                => array( 'ΗΓλώσσαΜου' ),
 	'Mypage'                    => array( 'ΗΣελίδαΜου' ),
 	'Mytalk'                    => array( 'ΗΣυζήτησήΜου' ),
 	'Myuploads'                 => array( 'ΟιΕπιφορτώσειςΜου' ),

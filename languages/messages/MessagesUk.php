@@ -165,6 +165,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Найбільш_редаговані' ),
 	'Movepage'                  => array( 'Перейменувати' ),
 	'Mycontributions'           => array( 'Мій_внесок' ),
+	'MyLanguage'                => array( 'Моя_мова' ),
 	'Mypage'                    => array( 'Моя_сторінка' ),
 	'Mytalk'                    => array( 'Моє_обговорення' ),
 	'Myuploads'                 => array( 'Мої_завантаження' ),

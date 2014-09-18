@@ -92,6 +92,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Paubahan_pambanyaknya' ),
 	'Movepage'                  => array( 'Pindahakan_tungkaran' ),
 	'Mycontributions'           => array( 'Sumbangan_ulun' ),
+	'MyLanguage'                => array( 'Bahasa_ulun' ),
 	'Mypage'                    => array( 'Tungkaran_ulun' ),
 	'Mytalk'                    => array( 'Pamandiran_ulun' ),
 	'Myuploads'                 => array( 'Unggahan_ulun' ),

@@ -84,6 +84,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'AnchaLlamkapusqa', 'AchkaKutiLlamkapusqa' ),
 	'Movepage'                  => array( 'PanqataAstay' ),
 	'Mycontributions'           => array( 'Rurasqaykuna', 'Llamkapusqaykuna' ),
+	'MyLanguage'                => array( 'Rimayniy' ),
 	'Mypage'                    => array( 'Panqay', 'NuqapPanqay' ),
 	'Mytalk'                    => array( 'Rimachinay', 'RimanakuyPanqay', 'NuqapRimachinay', 'NuqapRimanakuyPanqay' ),
 	'Newimages'                 => array( 'MusuqRikcha', 'MusuqRikchakuna' ),

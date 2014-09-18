@@ -91,6 +91,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Meistbearbeitete_Seiten' ),
 	'Movepage'                  => array( 'Verschieben' ),
 	'Mycontributions'           => array( 'Meine_Beiträge' ),
+	'MyLanguage'                => array( 'Meine_Sprache' ),
 	'Mypage'                    => array( 'Meine_Benutzerseite' ),
 	'Mytalk'                    => array( 'Meine_Diskussionsseite' ),
 	'Myuploads'                 => array( 'Meine_hochgeladenen_Dateien' ),

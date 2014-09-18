@@ -62,6 +62,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'Lîsteya_Botan' ),
 	'Listusers'                 => array( 'Lîsteya_bikarhêneran' ),
 	'Longpages'                 => array( 'Rûpelên_dirêj' ),
+	'MyLanguage'                => array( 'Zimanê_Min' ),
 	'Newpages'                  => array( 'Rûpelên_nû' ),
 	'Randompage'                => array( 'Rûpela_tesadufî' ),
 	'Randomredirect'            => array( 'Redirecta_tasadufî' ),
