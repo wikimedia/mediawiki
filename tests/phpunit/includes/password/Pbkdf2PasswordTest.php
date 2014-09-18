@@ -13,7 +13,7 @@ class Pbkdf2PasswordTest extends PasswordTestCase {
 		) );
 	}
 
-	public function providePasswordTests() {
+	public static function providePasswordTests() {
 		return array(
 			array( true, ":pbkdf2:sha1:1:20:c2FsdA==:DGDID5YfDnHzqbUkr2ASBi/gN6Y=", 'password' ),
 			array( true, ":pbkdf2:sha1:2:20:c2FsdA==:6mwBTcctb4zNHtkqzh1B8NjeiVc=", 'password' ),

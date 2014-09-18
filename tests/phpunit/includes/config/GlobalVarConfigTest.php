@@ -50,7 +50,7 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 		$this->assertFalse( $config->has( 'GlobalVarConfigTestNotHas' ) );
 	}
 
-	public function provideGet() {
+	public static function provideGet() {
 		$set = array(
 			'wgSomething' => 'default1',
 			'wgFoo' => 'default2',

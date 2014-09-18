@@ -29,7 +29,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '1406833268', $timestamp->__toString() );
 	}
 
-	public function provideValidTimestampDifferences() {
+	public static function provideValidTimestampDifferences() {
 		return array(
 			array( '1406833268', '1406833269', '00 00 00 01' ),
 			array( '1406833268', '1406833329', '00 00 01 01' ),

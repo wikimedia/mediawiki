@@ -34,7 +34,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expectedLang, $langProperty->getValue( $message ) );
 	}
 
-	public function provideConstructor() {
+	public static function provideConstructor() {
 		$langDe = Language::factory( 'de' );
 		$langEn = Language::factory( 'en' );
 
@@ -45,7 +45,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideTestParams() {
+	public static function provideTestParams() {
 		return array(
 			array( array() ),
 			array( array( 'foo' ), 'foo' ),

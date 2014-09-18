@@ -53,7 +53,7 @@ class SpecialMyLanguageTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $title );
 	}
 
-	public function provideFindTitle() {
+	public static function provideFindTitle() {
 		return array(
 			array( null, '::Fail', 'en', 'en' ),
 			array( 'Page/Another', 'Page/Another/en', 'en', 'en' ),

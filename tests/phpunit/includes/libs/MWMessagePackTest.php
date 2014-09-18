@@ -13,7 +13,7 @@ class MWMessagePackTest extends MediaWikiTestCase {
 	 * using <https://github.com/msgpack/msgpack-php>, which includes a
 	 * serialization function.
 	 */
-	public function provider() {
+	public static function providePacks() {
 		$tests = array(
 			array( 'nil', null, 'c0' ),
 			array( 'bool', true, 'c3' ),
@@ -66,7 +66,7 @@ class MWMessagePackTest extends MediaWikiTestCase {
 	/**
 	 * Verify that values are serialized correctly.
 	 * @covers MWMessagePack::pack
-	 * @dataProvider provider
+	 * @dataProvider providePacks
 	 */
 	public function testPack( $type, $value, $expected ) {
 		$actual = bin2hex( MWMessagePack::pack( $value ) );

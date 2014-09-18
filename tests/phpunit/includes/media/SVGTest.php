@@ -28,7 +28,7 @@ class SvgTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $res, $expected );
 	}
 
-	public function providerGetIndependentMetaArray() {
+	public static function providerGetIndependentMetaArray() {
 		return array(
 			array( 'Tux.svg', array(
 				'ObjectName' => 'Tux',

@@ -68,7 +68,7 @@ class UploadStashTest extends MediaWikiTestCase {
 		$stash->removeFile( $file->getFileKey() );
 	}
 
-	public function provideInvalidRequests() {
+	public static function provideInvalidRequests() {
 		return array(
 			'Check failure on bad wpFileKey' =>
 				array( new FauxRequest( array( 'wpFileKey' => 'foo' ) ) ),
@@ -84,7 +84,7 @@ class UploadStashTest extends MediaWikiTestCase {
 		$this->assertFalse( UploadFromStash::isValidRequest( $request ) );
 	}
 
-	public function provideValidRequests() {
+	public static function provideValidRequests() {
 		return array(
 			'Check good wpFileKey' =>
 				array( new FauxRequest( array( 'wpFileKey' => 'testkey-test.test' ) ) ),

@@ -64,7 +64,7 @@ class TitleArrayFromResultTest extends MediaWikiTestCase {
 		$this->assertEquals( $title, $object->current->mTextform );
 	}
 
-	public function provideNumberOfRows() {
+	public static function provideNumberOfRows() {
 		return array(
 			array( 0 ),
 			array( 1 ),

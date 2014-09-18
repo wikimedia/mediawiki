@@ -11,7 +11,7 @@ class BcryptPasswordTestCase extends PasswordTestCase {
 		) );
 	}
 
-	public function providePasswordTests() {
+	public static function providePasswordTests() {
 		/** @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong */
 		return array(
 			// Tests from glibc bcrypt implementation

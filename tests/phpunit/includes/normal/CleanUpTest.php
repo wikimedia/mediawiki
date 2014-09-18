@@ -110,7 +110,7 @@ class CleanUpTest extends MediaWikiTestCase {
 	}
 
 	/** @todo document */
-	public function provideAllBytes() {
+	public static function provideAllBytes() {
 		return array(
 			array( '', '' ),
 			array( 'x', '' ),

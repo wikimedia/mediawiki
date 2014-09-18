@@ -180,7 +180,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		return $page;
 	}
 
-	public function provideCreatePages() {
+	public static function provideCreatePages() {
 		return array(
 			array( 'expected article being created',
 				'EditPageTest_testCreatePage',

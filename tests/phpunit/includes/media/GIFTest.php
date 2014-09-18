@@ -116,7 +116,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideGetIndependentMetaArray() {
+	public static function provideGetIndependentMetaArray() {
 		return array(
 			array( 'nonanimated.gif', array(
 				'GIFFileComment' => array(

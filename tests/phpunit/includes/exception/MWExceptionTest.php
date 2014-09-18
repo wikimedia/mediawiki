@@ -87,7 +87,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedReturn, $e->runHooks( $name, $args ) );
 	}
 
-	public function provideRunHooks() {
+	public static function provideRunHooks() {
 		return array(
 			array( null, null, null, null ),
 			array( array(), 'name', array(), null ),
@@ -134,7 +134,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $e->isCommandLine() );
 	}
 
-	public function provideIsCommandLine() {
+	public static function provideIsCommandLine() {
 		return array(
 			array( false, null ),
 			array( true, true ),
@@ -155,7 +155,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 			"The $exception_class exception should be JSON serializable, got false." );
 	}
 
-	public function provideExceptionClasses() {
+	public static function provideExceptionClasses() {
 		return array(
 			array( 'Exception' ),
 			array( 'MWException' ),
@@ -192,7 +192,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	/**
 	 * Returns test cases: exception class, key name, gettype()
 	 */
-	public function provideJsonSerializedKeys() {
+	public static function provideJsonSerializedKeys() {
 		$testCases = array();
 		foreach ( array( 'Exception', 'MWException' ) as $exClass ) {
 			$exTests = array(
