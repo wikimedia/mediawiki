@@ -1806,6 +1806,7 @@
 	"protect-othertime": "Іншы тэрмін:",
 	"protect-othertime-op": "іншы тэрмін",
 	"protect-existing-expiry": "Наяўны час сканчэньня: $3, $2",
+	"protect-existing-expiry-infinity": "Наяўны тэрмін сканчэньня: бясконца",
 	"protect-otherreason": "Іншая/дадатковая прычына:",
 	"protect-otherreason-op": "Іншая прычына",
 	"protect-dropdown": "*Звычайныя прычыны абароны\n** Часты вандалізм\n** Празьмерны спам\n** Непрадуктыўная вайна рэдагаваньняў\n** Папулярная старонка",

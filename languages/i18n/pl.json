@@ -1862,6 +1862,7 @@
 	"protect-othertime": "Inny okres",
 	"protect-othertime-op": "inny okres",
 	"protect-existing-expiry": "Obecny czas wygaśnięcia: $2 o $3",
+	"protect-existing-expiry-infinity": "Obecny czas wygaśnięcia: nieskończony",
 	"protect-otherreason": "Inny lub dodatkowy powód",
 	"protect-otherreason-op": "Inny powód",
 	"protect-dropdown": "*Najczęstsze powody zabezpieczenia\n** Częste wandalizmy\n** Częste spamowanie\n** Wojna edycyjna\n** Wygłupy",

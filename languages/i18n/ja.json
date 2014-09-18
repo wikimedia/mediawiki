@@ -3013,7 +3013,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|トーク]])",
 	"unknown_extension_tag": "不明な拡張機能タグ「$1」です",
 	"duplicate-defaultsort": "<strong>警告:</strong> 既定のソートキー「$2」が、その前に書かれている既定のソートキー「$1」を上書きしています。",
-	"duplicate-displaytitle": "<strong>警告:</strong> 既定のDISPLAYTITLE「$2」が、その前に書かれている既定のDISPLAYTITLE「$1」を上書きしています。",
+	"duplicate-displaytitle": "<strong>警告:</strong> DISPLAYTITLE「$2」が、その前に書かれているDISPLAYTITLE「$1」を上書きしています。",
 	"version": "バージョン情報",
 	"version-extensions": "インストール済み拡張機能",
 	"version-skins": "インストール済み外装",

@@ -1820,6 +1820,7 @@
 	"protect-othertime": "Jiný čas vypršení:",
 	"protect-othertime-op": "jiný čas",
 	"protect-existing-expiry": "Současný čas vypršení: $2, $3",
+	"protect-existing-expiry-infinity": "Současný čas vypršení: do odvolání",
 	"protect-otherreason": "Jiný/další důvod:",
 	"protect-otherreason-op": "Jiný důvod",
 	"protect-dropdown": "*Obvyklé důvody zamčení\n** Opakovaný vandalismus\n** Vkládání reklamních externích odkazů\n** Editační válka\n** Často používaná stránka",

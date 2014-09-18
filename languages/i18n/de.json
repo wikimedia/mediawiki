@@ -1875,6 +1875,7 @@
 	"protect-othertime": "Andere Sperrdauer:",
 	"protect-othertime-op": "andere Sperrdauer",
 	"protect-existing-expiry": "Aktuelles Seitenschutzende: $2, $3 Uhr",
+	"protect-existing-expiry-infinity": "Vorhandene Ablaufzeit: unbeschränkt",
 	"protect-otherreason": "Anderer/ergänzender Grund:",
 	"protect-otherreason-op": "Anderer Grund",
 	"protect-dropdown": "* Allgemeine Schutzgründe\n** Edit-War\n** Wiederkehrender Vandalismus\n** Wiederholtes Einstellen von Werbung\n** Häufig eingebundene Vorlage\n** Seite mit hoher Besucherzahl",

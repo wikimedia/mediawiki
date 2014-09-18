@@ -1414,7 +1414,7 @@
 	"mywatchlist": "Uzraugāmie raksti",
 	"watchlistfor2": "Priekš $1 ($2)",
 	"nowatchlist": "Tavā uzraugāmo rakstu sarakstā nav neviena raksta.",
-	"watchlistanontext": "Lūdzu $1, lai apskatītu vai labotu savu uzraugāmo rakstu saraksta saturu.",
+	"watchlistanontext": "Lūdzu pieslēdzies, lai apskatītu vai labotu savu uzraugāmo rakstu saraksta saturu.",
 	"watchnologin": "Neesi iegājis",
 	"addwatch": "Pievienot uzraugāmo lapu sarakstam",
 	"addedwatchtext": "Lapa \"[[:$1]]\" ir pievienota [[Special:Watchlist|tevis uzraudzītajām lapām]], kur tiks parādītas izmaiņas, kas izdarītas šajā lapā vai šīs lapas diskusiju lapā, kā arī šī lapa tiks iezīmēta '''pustrekna''' [[Special:RecentChanges|pēdējo izmaiņu lapā]], lai to būtu vieglāk pamanīt.\n\nJa vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz saites '''neuzraudzīt''' rīku joslā.",

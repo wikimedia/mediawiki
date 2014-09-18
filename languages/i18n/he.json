@@ -1822,6 +1822,7 @@
 	"protect-othertime": "זמן אחר:",
 	"protect-othertime-op": "זמן אחר",
 	"protect-existing-expiry": "זמן פקיעה נוכחי: $3, $2",
+	"protect-existing-expiry-infinity": "זמן תפוגה נוכחי: אינסופי",
 	"protect-otherreason": "סיבה אחרת/נוספת:",
 	"protect-otherreason-op": "סיבה אחרת",
 	"protect-dropdown": "* סיבות הגנה נפוצות\n** השחתה רבה\n** ספאם רב\n** מלחמת עריכה בלתי מועילה\n** דף בשימוש רב",

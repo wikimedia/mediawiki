@@ -1879,6 +1879,7 @@
 	"protect-othertime": "其它时间：",
 	"protect-othertime-op": "其它时间",
 	"protect-existing-expiry": "现有的终止时间：$2 $3",
+	"protect-existing-expiry-infinity": "当前到期时间：无限期",
 	"protect-otherreason": "其他/附加原因：",
 	"protect-otherreason-op": "其他原因",
 	"protect-dropdown": "*常见保护原因\n** 过度破坏\n** 过多垃圾信息\n** 负面的编辑战\n** 高流量页面",

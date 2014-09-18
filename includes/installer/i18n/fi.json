@@ -12,7 +12,8 @@
 			"아라",
 			"Elseweyr",
 			"Lliehu",
-			"Syreeni"
+			"Syreeni",
+			"Stryn"
 		]
 	},
 	"config-desc": "MediaWiki-asennin",
@@ -56,6 +57,7 @@
 	"config-env-good": "Asennusympäristö on tarkastettu.\nVoit asentaa MediaWikin.",
 	"config-env-bad": "Asennusympäristö on tarkastettu.\nEt voi asentaa MediaWikiä.",
 	"config-env-php": "PHP $1 on asennettu.",
+	"config-env-hhvm": "HHVM $1 on asennettu.",
 	"config-no-db": "Sopivaa tietokanta-ajuria ei löytynyt! Sinun täytyy asentaa tietokanta-ajurit PHP:lle.\nSeuraavat tietokantatyypit ovat tuettuja: $1.",
 	"config-outdated-sqlite": "<strong>Varoitus:</strong> sinulla on käytössä SQLite $1, joke on vanhempi kuin vähintään vaadittava versio $2. SQLite ei ole saatavilla.",
 	"config-safe-mode": "'''Varoitus:''' PHP:n [http://www.php.net/features.safe-mode safe mode] -tila on aktiivinen.\nSe voi aiheuttaa ongelmia erityisesti tiedostojen tallentamisen ja matemaattisten kaavojen kanssa.",

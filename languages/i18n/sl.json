@@ -1804,6 +1804,7 @@
 	"protect-othertime": "Drugačen čas:",
 	"protect-othertime-op": "drugačen čas",
 	"protect-existing-expiry": "Obstoječ čas izteka: $3, $2",
+	"protect-existing-expiry-infinity": "Obstoječ čas izteka: neskončno",
 	"protect-otherreason": "Drug/dodaten razlog:",
 	"protect-otherreason-op": "Drug razlog",
 	"protect-dropdown": "*Pogosti razlogi za zaščito\n** Prekomeren vandalizem\n** Vztrajno dodajanje reklamnih povezav\n** Neproduktivne urejevalske vojne\n** Zelo obiskana stran",
