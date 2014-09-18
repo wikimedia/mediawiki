@@ -45,6 +45,8 @@
 
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label {
+			cursor: pointer;
+
 			&::before {
 						content: '';
 						position: absolute;
@@ -55,7 +57,6 @@
 						width: @checkboxSize;
 						height: @checkboxSize;
 						background-color: #fff;
-						cursor: pointer;
 						border: 1px solid grey;
 					}
 		}
@@ -88,8 +89,12 @@
 		}
 
 		// disabled checked boxes have a gray background
-		&:disabled + label::before {
-			background-color: lightgrey;
+		&:disabled + label {
+			cursor: default;
+
+			&::before {
+				background-color: lightgrey;
+			}
 		}
 	}
 }
