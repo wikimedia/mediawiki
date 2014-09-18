@@ -185,6 +185,12 @@ production.
 * Added HTMLAutoCompleteSelectField.
 * Added a new hook, "SkinPreloadExistence", to allow extensions to add titles to
   link existence cache before the page is rendered.
+* Config::set() was moved to its own interface, MutableConfig. GlobalVarConfig::set()
+  is now deprecated, does not implement MutableConfig.
+* A MutableConfig named HashConfig was added, that stores an array of configuration
+  settings.
+* (bug 69418) A MultiConfig implementation was added that supports fallback 
+  to multiple Config instances.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
