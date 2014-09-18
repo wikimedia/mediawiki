@@ -649,7 +649,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			),
 			'urlwidth' => array(
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => -1
+				ApiBase::PARAM_DFLT => -1,
+				ApiBase::PARAM_HELP_MSG => array(
+					'apihelp-query+imageinfo-param-urlwidth',
+					ApiQueryImageInfo::TRANSFORM_LIMIT,
+				),
 			),
 			'urlheight' => array(
 				ApiBase::PARAM_TYPE => 'integer',
@@ -675,7 +679,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => '',
 				ApiBase::PARAM_TYPE => 'string',
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'localonly' => false,
 		);
 	}
@@ -694,6 +700,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	/**
 	 * Returns array key value pairs of properties and their descriptions
 	 *
+	 * @deprecated since 1.25
 	 * @param string $modulePrefix
 	 * @return array
 	 */
@@ -730,6 +737,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	/**
 	 * Returns the descriptions for the properties provided by getPropertyNames()
 	 *
+	 * @deprecated since 1.25
 	 * @param array $filter List of properties to filter out
 	 * @param string $modulePrefix
 	 * @return array
@@ -741,55 +749,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		);
 	}
 
-	/**
-	 * Return the API documentation for the parameters.
-	 * @return array Parameter documentation.
-	 */
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
+	public function getExamplesMessages() {
 		return array(
-			'prop' => self::getPropertyDescriptions( array(), $p ),
-			'urlwidth' => array(
-				"If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
-				'For performance reasons if this option is used, ' .
-					'no more than ' . self::TRANSFORM_LIMIT . ' scaled images will be returned.'
-			),
-			'urlheight' => "Similar to {$p}urlwidth.",
-			'urlparam' => array(
-				"A handler specific parameter string. For example, pdf's ",
-				"might use 'page15-100px'."
-			),
-			'limit' => 'How many image revisions to return per image',
-			'start' => 'Timestamp to start listing from',
-			'end' => 'Timestamp to stop listing at',
-			'metadataversion'
-				=> array( "Version of metadata to use. if 'latest' is specified, use latest version.",
-				"Defaults to '1' for backwards compatibility" ),
-			'extmetadatalanguage' => array(
-				'What language to fetch extmetadata in. This affects both which',
-				'translation to fetch, if multiple are available, as well as how things',
-				'like numbers and various values are formatted.'
-			),
-			'extmetadatamultilang'
-				=>'If translations for extmetadata property are available, fetch all of them.',
-			'extmetadatafilter'
-				=> "If specified and non-empty, only these keys will be returned for {$p}prop=extmetadata",
-			'continue' => 'If the query response includes a continue value, ' .
-				'use it here to get another page of results',
-			'localonly' => 'Look only for files in the local repository',
-		);
-	}
-
-	public function getDescription() {
-		return 'Returns image information and upload history.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&titles=File:Albert%20Einstein%20Head.jpg&prop=imageinfo',
-			'api.php?action=query&titles=File:Test.jpg&prop=imageinfo&iilimit=50&' .
-				'iiend=20071231235959&iiprop=timestamp|user|url',
+			'action=query&titles=File:Albert%20Einstein%20Head.jpg&prop=imageinfo'
+				=> 'apihelp-query+imageinfo-example-simple',
+			'action=query&titles=File:Test.jpg&prop=imageinfo&iilimit=50&' .
+				'iiend=2007-12-31T23:59:59Z&iiprop=timestamp|user|url'
+				=> 'apihelp-query+imageinfo-example-dated',
 		);
 	}
 

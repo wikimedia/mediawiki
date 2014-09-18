@@ -116,36 +116,15 @@ class ApiImport extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
-		return array(
-			'summary' => 'Import summary',
-			'xml' => 'Uploaded XML file',
-			'interwikisource' => 'For interwiki imports: wiki to import from',
-			'interwikipage' => 'For interwiki imports: page to import',
-			'fullhistory' => 'For interwiki imports: import the full history, not just the current version',
-			'templates' => 'For interwiki imports: import all included templates as well',
-			'namespace' => 'For interwiki imports: import to this namespace',
-			'rootpage' => 'Import as subpage of this page',
-		);
-	}
-
-	public function getDescription() {
-		return array(
-			'Import a page from another wiki, or an XML file.',
-			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
-			'sending a file for the "xml" parameter.'
-		);
-	}
-
 	public function needsToken() {
 		return 'csrf';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=import&interwikisource=meta&interwikipage=Help:ParserFunctions&' .
+			'action=import&interwikisource=meta&interwikipage=Help:ParserFunctions&' .
 				'namespace=100&fullhistory=&token=123ABC'
-				=> 'Import [[meta:Help:Parserfunctions]] to namespace 100 with full history',
+				=> 'apihelp-import-example-import',
 		);
 	}
 

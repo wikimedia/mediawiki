@@ -89,27 +89,10 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		) ) );
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'prop' => array(
-				'Which repository properties to get (there may be more available on some wikis):',
-				' apiurl      - URL to the repository API - helpful for getting image info from the host.',
-				' name        - The key of the repository - used in e.g. ' .
-					'$wgForeignFileRepos and imageinfo return values.',
-				' displayname - The human-readable name of the repository wiki.',
-				' rooturl     - Root URL for image paths.',
-				' local       - Whether that repository is the local one or not.',
-			),
-		);
-	}
-
-	public function getDescription() {
-		return 'Return meta information about image repositories configured on the wiki.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&meta=filerepoinfo&friprop=apiurl|name|displayname',
+			'action=query&meta=filerepoinfo&friprop=apiurl|name|displayname'
+				=> 'apihelp-query+filerepoinfo-example-simple',
 		);
 	}
 }

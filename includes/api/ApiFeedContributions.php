@@ -161,7 +161,7 @@ class ApiFeedContributions extends ApiBase {
 	public function getAllowedParams() {
 		$feedFormatNames = array_keys( $this->getConfig()->get( 'FeedClasses' ) );
 
-		return array(
+		$ret = array(
 			'feedformat' => array(
 				ApiBase::PARAM_DFLT => 'rss',
 				ApiBase::PARAM_TYPE => $feedFormatNames
@@ -187,32 +187,22 @@ class ApiFeedContributions extends ApiBase {
 			'deletedonly' => false,
 			'toponly' => false,
 			'newonly' => false,
-			'showsizediff' => false,
+			'showsizediff' => array(
+				ApiBase::PARAM_DFLT => false,
+			),
 		);
+
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+			$ret['showsizediff'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
+		}
+
+		return $ret;
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'feedformat' => 'The format of the feed',
-			'user' => 'What users to get the contributions for',
-			'namespace' => 'What namespace to filter the contributions by',
-			'year' => 'From year (and earlier)',
-			'month' => 'From month (and earlier)',
-			'tagfilter' => 'Filter contributions that have these tags',
-			'deletedonly' => 'Show only deleted contributions',
-			'toponly' => 'Only show edits that are latest revisions',
-			'newonly' => 'Only show edits that are page creations',
-			'showsizediff' => 'Show the size difference between revisions. Disabled in Miser Mode',
-		);
-	}
-
-	public function getDescription() {
-		return 'Returns a user contributions feed.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=feedcontributions&user=Reedy',
+			'action=feedcontributions&user=Example'
+				=> 'apihelp-feedcontributions-example-simple',
 		);
 	}
 }

@@ -135,7 +135,9 @@ class ApiQueryTags extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array(
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -156,27 +158,10 @@ class ApiQueryTags extends ApiQueryBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'continue' => 'When more results are available, use this to continue',
-			'limit' => 'The maximum number of tags to list',
-			'prop' => array(
-				'Which properties to get',
-				' name         - Adds name of tag',
-				' displayname  - Adds system message for the tag',
-				' description  - Adds description of the tag',
-				' hitcount     - Adds the amount of revisions that have this tag',
-			),
-		);
-	}
-
-	public function getDescription() {
-		return 'List change tags.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=tags&tgprop=displayname|description|hitcount'
+			'action=query&list=tags&tgprop=displayname|description|hitcount'
+				=> 'apihelp-query+tags-example-simple',
 		);
 	}
 

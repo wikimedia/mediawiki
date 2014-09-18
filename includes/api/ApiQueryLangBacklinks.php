@@ -168,7 +168,9 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		return array(
 			'lang' => null,
 			'title' => null,
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -194,34 +196,12 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'lang' => 'Language for the language link',
-			'title' => "Language link to search for. Must be used with {$this->getModulePrefix()}lang",
-			'continue' => 'When more results are available, use this to continue',
-			'prop' => array(
-				'Which properties to get',
-				' lllang         - Adds the language code of the language link',
-				' lltitle        - Adds the title of the language link',
-			),
-			'limit' => 'How many total pages to return',
-			'dir' => 'The direction in which to list',
-		);
-	}
-
-	public function getDescription() {
-		return array( 'Find all pages that link to the given language link.',
-			'Can be used to find all links with a language code, or',
-			'all links to a title (with a given language).',
-			'Using neither parameter is effectively "All Language Links".',
-			'Note that this may not consider language links added by extensions.',
-		);
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=langbacklinks&lbltitle=Test&lbllang=fr',
-			'api.php?action=query&generator=langbacklinks&glbltitle=Test&glbllang=fr&prop=info'
+			'action=query&list=langbacklinks&lbltitle=Test&lbllang=fr'
+				=> 'apihelp-query+langbacklinks-example-simple',
+			'action=query&generator=langbacklinks&glbltitle=Test&glbllang=fr&prop=info'
+				=> 'apihelp-query+langbacklinks-example-generator',
 		);
 	}
 

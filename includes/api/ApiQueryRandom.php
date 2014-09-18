@@ -165,28 +165,13 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'namespace' => 'Return pages in these namespaces only',
-			'limit' => 'Limit how many random pages will be returned',
-			'redirect' => 'Load a random redirect instead of a random page'
+			'action=query&list=random&rnnamespace=0&rnlimit=2'
+				=> 'apihelp-query+random-example-simple',
+			'action=query&generator=random&grnnamespace=0&grnlimit=2&prop=info'
+				=> 'apihelp-query+random-example-generator',
 		);
-	}
-
-	public function getDescription() {
-		return array(
-			'Get a set of random pages.',
-			'NOTE: Pages are listed in a fixed sequence, only the starting point is random.',
-			'      This means that if, for example, "Main Page" is the first random page on',
-			'      your list, "List of fictional monkeys" will *always* be second, "List of',
-			'      people on stamps of Vanuatu" third, etc.',
-			'NOTE: If the number of pages in the namespace is lower than rnlimit, you will',
-			'      get fewer pages. You will not get the same page twice.'
-		);
-	}
-
-	public function getExamples() {
-		return 'api.php?action=query&list=random&rnnamespace=0&rnlimit=2';
 	}
 
 	public function getHelpUrls() {

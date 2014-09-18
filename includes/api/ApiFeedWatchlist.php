@@ -219,50 +219,42 @@ class ApiFeedWatchlist extends ApiBase {
 			),
 			'linktosections' => false,
 		);
+
+		$copyParams = array(
+			'allrev' => 'allrev',
+			'owner' => 'wlowner',
+			'token' => 'wltoken',
+			'show' => 'wlshow',
+			'type' => 'wltype',
+			'excludeuser' => 'wlexcludeuser',
+		);
 		if ( $flags ) {
 			$wlparams = $this->getWatchlistModule()->getAllowedParams( $flags );
-			$ret['allrev'] = $wlparams['allrev'];
-			$ret['wlowner'] = $wlparams['owner'];
-			$ret['wltoken'] = $wlparams['token'];
-			$ret['wlshow'] = $wlparams['show'];
-			$ret['wltype'] = $wlparams['type'];
-			$ret['wlexcludeuser'] = $wlparams['excludeuser'];
+			foreach ( $copyParams as $from => $to ) {
+				$p = $wlparams[$from];
+				if ( !is_array( $p ) ) {
+					$p = array( ApiBase::PARAM_DFLT => $p );
+				}
+				if ( !isset( $p[ApiBase::PARAM_HELP_MSG] ) ) {
+					$p[ApiBase::PARAM_HELP_MSG] = "apihelp-query+watchlist-param-$from";
+				}
+				$ret[$to] = $p;
+			}
 		} else {
-			$ret['allrev'] = null;
-			$ret['wlowner'] = null;
-			$ret['wltoken'] = null;
-			$ret['wlshow'] = null;
-			$ret['wltype'] = null;
-			$ret['wlexcludeuser'] = null;
+			foreach ( $copyParams as $from => $to ) {
+				$ret[$to] = null;
+			}
 		}
 
 		return $ret;
 	}
 
-	public function getParamDescription() {
-		$wldescr = $this->getWatchlistModule()->getParamDescription();
-
+	public function getExamplesMessages() {
 		return array(
-			'feedformat' => 'The format of the feed',
-			'hours' => 'List pages modified within this many hours from now',
-			'linktosections' => 'Link directly to changed sections if possible',
-			'allrev' => $wldescr['allrev'],
-			'wlowner' => $wldescr['owner'],
-			'wltoken' => $wldescr['token'],
-			'wlshow' => $wldescr['show'],
-			'wltype' => $wldescr['type'],
-			'wlexcludeuser' => $wldescr['excludeuser'],
-		);
-	}
-
-	public function getDescription() {
-		return 'Returns a watchlist feed.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=feedwatchlist',
-			'api.php?action=feedwatchlist&allrev=&hours=6'
+			'action=feedwatchlist'
+				=> 'apihelp-feedwatchlist-example-default',
+			'action=feedwatchlist&allrev=&hours=6'
+				=> 'apihelp-feedwatchlist-example-all6hrs',
 		);
 	}
 

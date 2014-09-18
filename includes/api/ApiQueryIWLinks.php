@@ -147,24 +147,12 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array(
-			'url' => array(
-				ApiBase::PARAM_DFLT => false,
-				ApiBase::PARAM_DEPRECATED => true,
-			),
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'url',
 				)
 			),
-			'limit' => array(
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => null,
 			'prefix' => null,
 			'title' => null,
 			'dir' => array(
@@ -174,32 +162,27 @@ class ApiQueryIWLinks extends ApiQueryBase {
 					'descending'
 				)
 			),
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'prop' => array(
-				'Which additional properties to get for each interlanguage link',
-				' url      - Adds the full URL',
+			'limit' => array(
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'url' => "Whether to get the full URL (Cannot be used with {$this->getModulePrefix()}prop)",
-			'limit' => 'How many interwiki links to return',
-			'continue' => 'When more results are available, use this to continue',
-			'prefix' => 'Prefix for the interwiki',
-			'title' => "Interwiki link to search for. Must be used with {$this->getModulePrefix()}prefix",
-			'dir' => 'The direction in which to list',
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
+			'url' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 		);
 	}
 
-	public function getDescription() {
-		return 'Returns all interwiki links from the given page(s).';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=query&prop=iwlinks&titles=Main%20Page'
-				=> 'Get interwiki links from the [[Main Page]]',
+			'action=query&prop=iwlinks&titles=Main%20Page'
+				=> 'apihelp-query+iwlinks-example-simple',
 		);
 	}
 

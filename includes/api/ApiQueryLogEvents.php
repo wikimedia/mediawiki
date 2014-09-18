@@ -474,7 +474,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	public function getAllowedParams( $flags = 0 ) {
 		$config = $this->getConfig();
-		return array(
+		$ret = array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|title|type|user|timestamp|comment|details',
@@ -511,14 +511,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => array(
 					'newer',
 					'older'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			),
 			'user' => null,
 			'title' => null,
 			'namespace' => array(
 				ApiBase::PARAM_TYPE => 'namespace'
 			),
-			'prefix' => null,
+			'prefix' => array(),
 			'tag' => null,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -527,52 +528,22 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'continue' => null,
-		);
-	}
-
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
-		return array(
-			'prop' => array(
-				'Which properties to get',
-				' ids            - Adds the ID of the log event',
-				' title          - Adds the title of the page for the log event',
-				' type           - Adds the type of log event',
-				' user           - Adds the user responsible for the log event',
-				' userid         - Adds the user ID who was responsible for the log event',
-				' timestamp      - Adds the timestamp for the event',
-				' comment        - Adds the comment of the event',
-				' parsedcomment  - Adds the parsed comment of the event',
-				' details        - Lists additional details about the event',
-				' tags           - Lists tags for the event',
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
-			'type' => 'Filter log entries to only this type',
-			'action' => array(
-				"Filter log actions to only this action. Overrides {$p}type",
-				"Wildcard actions like 'action/*' allows to specify any string for the asterisk"
-			),
-			'start' => 'The timestamp to start enumerating from',
-			'end' => 'The timestamp to end enumerating',
-			'dir' => $this->getDirectionDescription( $p ),
-			'user' => 'Filter entries to those made by the given user',
-			'title' => 'Filter entries to those related to a page',
-			'namespace' => 'Filter entries to those in the given namespace',
-			'prefix' => 'Filter entries that start with this prefix. Disabled in Miser Mode',
-			'limit' => 'How many total event entries to return',
-			'tag' => 'Only list event entries tagged with this tag',
-			'continue' => 'When more results are available, use this to continue',
 		);
+
+		if ( $config->get( 'MiserMode' ) ) {
+			$ret['prefix'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
+		}
+
+		return $ret;
 	}
 
-	public function getDescription() {
-		return 'Get events from logs.';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=query&list=logevents'
+			'action=query&list=logevents'
+				=> 'apihelp-query+logevents-example-simple',
 		);
 	}
 

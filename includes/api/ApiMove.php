@@ -220,37 +220,15 @@ class ApiMove extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
-		return array(
-			'from' => "Title of the page you want to move. Cannot be used together with {$p}fromid",
-			'fromid' => "Page ID of the page you want to move. Cannot be used together with {$p}from",
-			'to' => 'Title you want to rename the page to',
-			'reason' => 'Reason for the move',
-			'movetalk' => 'Move the talk page, if it exists',
-			'movesubpages' => 'Move subpages, if applicable',
-			'noredirect' => 'Don\'t create a redirect',
-			'watch' => 'Add the page and the redirect to your watchlist',
-			'unwatch' => 'Remove the page and the redirect from your watchlist',
-			'watchlist' => 'Unconditionally add or remove the page from your ' .
-				'watchlist, use preferences or do not change watch',
-			'ignorewarnings' => 'Ignore any warnings'
-		);
-	}
-
-	public function getDescription() {
-		return 'Move a page.';
-	}
-
 	public function needsToken() {
 		return 'csrf';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=move&from=Badtitle&to=Goodtitle&token=123ABC&' .
+			'action=move&from=Badtitle&to=Goodtitle&token=123ABC&' .
 				'reason=Misspelled%20title&movetalk=&noredirect='
+				=> 'apihelp-move-example-move',
 		);
 	}
 

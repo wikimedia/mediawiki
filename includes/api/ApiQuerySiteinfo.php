@@ -837,54 +837,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		);
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
+	public function getExamplesMessages() {
 		return array(
-			'prop' => array(
-				'Which sysinfo properties to get:',
-				' general               - Overall system information',
-				' namespaces            - List of registered namespaces and their canonical names',
-				' namespacealiases      - List of registered namespace aliases',
-				' specialpagealiases    - List of special page aliases',
-				' magicwords            - List of magic words and their aliases',
-				' statistics            - Returns site statistics',
-				' interwikimap          - Returns interwiki map ' .
-					"(optionally filtered, (optionally localised by using {$p}inlanguagecode))",
-				' dbrepllag             - Returns database server with the highest replication lag',
-				' usergroups            - Returns user groups and the associated permissions',
-				' extensions            - Returns extensions installed on the wiki',
-				' fileextensions        - Returns list of file extensions allowed to be uploaded',
-				' rightsinfo            - Returns wiki rights (license) information if available',
-				' restrictions          - Returns information on available restriction (protection) types',
-				' languages             - Returns a list of languages MediaWiki supports ' .
-					"(optionally localised by using {$p}inlanguagecode)",
-				' skins                 - Returns a list of all enabled skins ' .
-					"(optionally localised by using {$p}inlanguagecode, otherwise in content language)",
-				' extensiontags         - Returns a list of parser extension tags',
-				' functionhooks         - Returns a list of parser function hooks',
-				' showhooks             - Returns a list of all subscribed hooks (contents of $wgHooks)',
-				' variables             - Returns a list of variable IDs',
-				' protocols             - Returns a list of protocols that are allowed in external links.',
-				' defaultoptions        - Returns the default values for user preferences.',
-			),
-			'filteriw' => 'Return only local or only nonlocal entries of the interwiki map',
-			'showalldb' => 'List all database servers, not just the one lagging the most',
-			'numberingroup' => 'Lists the number of users in user groups',
-			'inlanguagecode' => 'Language code for localised language names ' .
-				'(best effort, use CLDR extension) and skin names',
-		);
-	}
-
-	public function getDescription() {
-		return 'Return general information about the site.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&meta=siteinfo&siprop=general|namespaces|namespacealiases|statistics',
-			'api.php?action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local',
-			'api.php?action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb=',
+			'action=query&meta=siteinfo&siprop=general|namespaces|namespacealiases|statistics'
+				=> 'apihelp-query+siteinfo-example-simple',
+			'action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local'
+				=> 'apihelp-query+siteinfo-example-interwiki',
+			'action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb='
+				=> 'apihelp-query+siteinfo-example-replag',
 		);
 	}
 

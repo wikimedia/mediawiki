@@ -120,31 +120,10 @@ class ApiRollback extends ApiBase {
 					'nochange'
 				),
 			),
-		);
-	}
-
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
-		return array(
-			'title' => "Title of the page you want to roll back. Cannot be used together with {$p}pageid",
-			'pageid' => "Page ID of the page you want to roll back. Cannot be used together with {$p}title",
-			'user' => 'Name of the user whose edits are to be rolled back.',
 			'token' => array(
-				/* Standard description automatically prepended */
-				'For compatibility, the token used in the web UI is also accepted.'
+				// Standard definition automatically inserted
+				ApiBase::PARAM_HELP_MSG_APPEND => array( 'api-help-param-token-webui' ),
 			),
-			'summary' => 'Custom edit summary. If empty, default summary will be used',
-			'markbot' => 'Mark the reverted edits and the revert as bot edits',
-			'watchlist' => 'Unconditionally add or remove the page from your watchlist, ' .
-				'use preferences or do not change watch',
-		);
-	}
-
-	public function getDescription() {
-		return array(
-			'Undo the last edit to the page. If the last user who edited the page made',
-			'multiple edits in a row, they will all be rolled back.'
 		);
 	}
 
@@ -211,12 +190,13 @@ class ApiRollback extends ApiBase {
 		return $this->mTitleObj;
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=rollback&title=Main%20Page&user=Catrope&token=123ABC',
-			'api.php?action=rollback&pageid=122&user=Catrope&token=123ABC',
-			'api.php?action=rollback&title=Main%20Page&user=217.121.114.116&' .
-				'token=123ABC&summary=Reverting%20vandalism&markbot=1'
+			'action=rollback&title=Main%20Page&user=Example&token=123ABC' =>
+				'apihelp-rollback-example-simple',
+			'action=rollback&title=Main%20Page&user=192.0.2.5&' .
+				'token=123ABC&summary=Reverting%20vandalism&markbot=1' =>
+				'apihelp-rollback-example-summary',
 		);
 	}
 

@@ -173,10 +173,11 @@ class ApiParamInfo extends ApiBase {
 	private function getModuleInfo( $module ) {
 		$result = $this->getResult();
 		$ret = array();
+		$path = $module->getModulePath();
 
 		$ret['name'] = $module->getModuleName();
 		$ret['classname'] = get_class( $module );
-		$ret['path'] = $module->getModulePath();
+		$ret['path'] = $path;
 		if ( !$module->isMain() ) {
 			$ret['group'] = $module->getParent()->getModuleManager()->getModuleGroup(
 				$module->getModuleName()
@@ -314,6 +315,29 @@ class ApiParamInfo extends ApiBase {
 			if ( isset( $settings[ApiBase::PARAM_MIN] ) ) {
 				$item['min'] = $settings[ApiBase::PARAM_MIN];
 			}
+
+			if ( !empty( $settings[ApiBase::PARAM_HELP_MSG_INFO] ) ) {
+				$item['info'] = array();
+				foreach ( $settings[ApiBase::PARAM_HELP_MSG_INFO] as $i ) {
+					$tag = array_shift( $i );
+					$info = array(
+						'name' => $tag,
+					);
+					if ( count( $i ) ) {
+						$info['values'] = $i;
+						$result->setIndexedTagName( $info['values'], 'v' );
+					}
+					$this->formatHelpMessages( $info, 'text', array(
+						$this->context->msg( "apihelp-{$path}-paraminfo-{$tag}" )
+							->numParams( count( $i ) )
+							->params( $this->context->getLanguage()->commaList( $i ) )
+					) );
+					$result->setSubelements( $info, 'text' );
+					$item['info'][] = $info;
+				}
+				$result->setIndexedTagName( $item['info'], 'i' );
+			}
+
 			$ret['parameters'][] = $item;
 		}
 		$result->setIndexedTagName( $ret['parameters'], 'param' );
@@ -361,26 +385,10 @@ class ApiParamInfo extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'modules' => 'List of module names (values of the action= and format= parameters, or "main"). Can specify submodules with a \'+\'',
-			'helpformat' => 'Format of help strings',
-
-			'querymodules' => 'List of query module names (value of prop=, meta= or list= parameter)',
-			'mainmodule' => 'Get information about the main (top-level) module as well',
-			'pagesetmodule' => 'Get information about the pageset module ' .
-				'(providing titles= and friends) as well',
-			'formatmodules' => 'List of format module names (value of format= parameter)',
-		);
-	}
-
-	public function getDescription() {
-		return 'Obtain information about certain API parameters and errors.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=paraminfo&modules=parse|phpfm|query+allpages|query+siteinfo'
+			'action=paraminfo&modules=parse|phpfm|query+allpages|query+siteinfo'
+				=> 'apihelp-paraminfo-example-1',
 		);
 	}
 

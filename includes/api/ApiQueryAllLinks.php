@@ -31,13 +31,12 @@
  */
 class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
-	private $table, $tablePrefix, $indexTag,
-		$description, $descriptionWhat, $descriptionTargets, $descriptionLinking;
+	private $table, $tablePrefix, $indexTag;
 	private $fieldTitle = 'title';
 	private $dfltNamespace = NS_MAIN;
 	private $hasNamespace = true;
 	private $useIndex = null;
-	private $props = array(), $propHelp = array();
+	private $props = array();
 
 	public function __construct( ApiQuery $query, $moduleName ) {
 		switch ( $moduleName ) {
@@ -47,10 +46,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->tablePrefix = 'pl_';
 				$this->useIndex = 'pl_namespace';
 				$this->indexTag = 'l';
-				$this->description = 'Enumerate all links that point to a given namespace';
-				$this->descriptionWhat = 'link';
-				$this->descriptionTargets = 'linked titles';
-				$this->descriptionLinking = 'linking';
 				break;
 			case 'alltransclusions':
 				$prefix = 'at';
@@ -59,11 +54,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->dfltNamespace = NS_TEMPLATE;
 				$this->useIndex = 'tl_namespace';
 				$this->indexTag = 't';
-				$this->description =
-					'List all transclusions (pages embedded using {{x}}), including non-existing';
-				$this->descriptionWhat = 'transclusion';
-				$this->descriptionTargets = 'transcluded titles';
-				$this->descriptionLinking = 'transcluding';
 				break;
 			case 'allfileusages':
 				$prefix = 'af';
@@ -73,27 +63,15 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->dfltNamespace = NS_FILE;
 				$this->hasNamespace = false;
 				$this->indexTag = 'f';
-				$this->description = 'List all file usages, including non-existing';
-				$this->descriptionWhat = 'file';
-				$this->descriptionTargets = 'file titles';
-				$this->descriptionLinking = 'using';
 				break;
 			case 'allredirects':
 				$prefix = 'ar';
 				$this->table = 'redirect';
 				$this->tablePrefix = 'rd_';
 				$this->indexTag = 'r';
-				$this->description = 'List all redirects to a namespace';
-				$this->descriptionWhat = 'redirect';
-				$this->descriptionTargets = 'target pages';
-				$this->descriptionLinking = 'redirecting';
 				$this->props = array(
 					'fragment' => 'rd_fragment',
 					'interwiki' => 'rd_interwiki',
-				);
-				$this->propHelp = array(
-					' fragment - Adds the fragment from the redirect, if any',
-					' interwiki - Adds the interwiki prefix from the redirect, if any',
 				);
 				break;
 			default:
@@ -262,7 +240,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		$allowedParams = array(
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'from' => null,
 			'to' => null,
 			'prefix' => null,
@@ -300,59 +280,20 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		return $allowedParams;
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-		$what = $this->descriptionWhat;
-		$targets = $this->descriptionTargets;
-		$linking = $this->descriptionLinking;
-		$paramDescription = array(
-			'from' => "The title of the $what to start enumerating from",
-			'to' => "The title of the $what to stop enumerating at",
-			'prefix' => "Search for all $targets that begin with this value",
-			'unique' => array(
-				"Only show distinct $targets. Cannot be used with {$p}prop=" .
-					join( '|', array_keys( array( 'ids' => 1 ) + $this->props ) ) . '.',
-				'When used as a generator, yields target pages instead of source pages.',
-			),
-			'prop' => array(
-				'What pieces of information to include',
-				" ids      - Adds the pageid of the $linking page (Cannot be used with {$p}unique)",
-				" title    - Adds the title of the $what",
-			),
-			'namespace' => 'The namespace to enumerate',
-			'limit' => 'How many total items to return',
-			'continue' => 'When more results are available, use this to continue',
-			'dir' => 'The direction in which to list',
-		);
-		foreach ( $this->propHelp as $help ) {
-			$paramDescription['prop'][] = "$help (Cannot be used with {$p}unique)";
-		}
-		if ( !$this->hasNamespace ) {
-			unset( $paramDescription['namespace'] );
-		}
-
-		return $paramDescription;
-	}
-
-	public function getDescription() {
-		return $this->description;
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		$p = $this->getModulePrefix();
 		$name = $this->getModuleName();
-		$what = $this->descriptionWhat;
-		$targets = $this->descriptionTargets;
+		$path = $this->getModulePath();
 
 		return array(
-			"api.php?action=query&list={$name}&{$p}from=B&{$p}prop=ids|title"
-				=> "List $targets with page ids they are from, including missing ones. Start at B",
-			"api.php?action=query&list={$name}&{$p}unique=&{$p}from=B"
-				=> "List unique $targets",
-			"api.php?action=query&generator={$name}&g{$p}unique=&g{$p}from=B"
-				=> "Gets all $targets, marking the missing ones",
-			"api.php?action=query&generator={$name}&g{$p}from=B"
-				=> "Gets pages containing the {$what}s",
+			"action=query&list={$name}&{$p}from=B&{$p}prop=ids|title"
+				=> "apihelp-$path-example-B",
+			"action=query&list={$name}&{$p}unique=&{$p}from=B"
+				=> "apihelp-$path-example-unique",
+			"action=query&generator={$name}&g{$p}unique=&g{$p}from=B"
+				=> "apihelp-$path-example-unique-generator",
+			"action=query&generator={$name}&g{$p}from=B"
+				=> "apihelp-$path-example-generator",
 		);
 	}
 

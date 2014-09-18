@@ -730,59 +730,17 @@ class ApiUpload extends ApiBase {
 		return $params;
 	}
 
-	public function getParamDescription() {
-		$params = array(
-			'filename' => 'Target filename',
-			'comment' => 'Upload comment. Also used as the initial page text for new ' .
-				'files if "text" is not specified',
-			'text' => 'Initial page text for new files',
-			'watch' => 'Watch the page',
-			'watchlist' => 'Unconditionally add or remove the page from your watchlist, ' .
-				'use preferences or do not change watch',
-			'ignorewarnings' => 'Ignore any warnings',
-			'file' => 'File contents',
-			'url' => 'URL to fetch the file from',
-			'filekey' => 'Key that identifies a previous upload that was stashed temporarily.',
-			'sessionkey' => 'Same as filekey, maintained for backward compatibility.',
-			'stash' => 'If set, the server will not add the file to the repository ' .
-				'and stash it temporarily.',
-
-			'chunk' => 'Chunk contents',
-			'offset' => 'Offset of chunk in bytes',
-			'filesize' => 'Filesize of entire upload',
-
-			'async' => 'Make potentially large file operations asynchronous when possible',
-			'asyncdownload' => 'Make fetching a URL asynchronous',
-			'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
-			'statuskey' => 'Fetch the upload status for this file key (upload by URL)',
-			'checkstatus' => 'Only fetch the upload status for the given file key',
-		);
-
-		return $params;
-	}
-
-	public function getDescription() {
-		return array(
-			'Upload a file, or get the status of pending uploads. Several methods are available:',
-			' * Upload file contents directly, using the "file" parameter',
-			' * Have the MediaWiki server fetch a file from a URL, using the "url" parameter',
-			' * Complete an earlier upload that failed due to warnings, using the "filekey" parameter',
-			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
-			'sending the "file".',
-		);
-	}
-
 	public function needsToken() {
 		return 'csrf';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=upload&filename=Wiki.png' .
-			'&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png&token=123ABC'
-				=> 'Upload from a URL',
-			'api.php?action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1&token=123ABC'
-				=> 'Complete an upload that failed due to warnings',
+			'action=upload&filename=Wiki.png' .
+				'&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png&token=123ABC'
+				=> 'apihelp-upload-example-url',
+			'action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1&token=123ABC'
+				=> 'apihelp-upload-example-filekey',
 		);
 	}
 

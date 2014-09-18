@@ -233,15 +233,19 @@ abstract class ApiQueryORM extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => $this->getTable()->getFieldNames(),
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_HELP_MSG => 'api-orm-param-props',
 			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 20,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
+				ApiBase::PARAM_HELP_MSG => 'api-orm-param-limit',
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
 
 		return array_merge( $this->getTable()->getAPIParams(), $params );
@@ -249,6 +253,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 
 	/**
 	 * @see ApiBase::getParamDescription()
+	 * @deprecated since 1.25
 	 * @return array
 	 */
 	public function getParamDescription() {

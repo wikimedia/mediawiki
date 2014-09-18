@@ -46,21 +46,10 @@ class ApiLogout extends ApiBase {
 		return false;
 	}
 
-	public function getAllowedParams() {
-		return array();
-	}
-
-	public function getParamDescription() {
-		return array();
-	}
-
-	public function getDescription() {
-		return 'Log out and clear session data.';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=logout' => 'Log the current user out',
+			'action=logout'
+				=> 'apihelp-logout-example-logout',
 		);
 	}
 

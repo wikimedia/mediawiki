@@ -625,7 +625,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => array(
 					'newer',
 					'older'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			),
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -696,57 +697,18 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				)
 			),
 			'toponly' => false,
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
+	public function getExamplesMessages() {
 		return array(
-			'start' => 'The timestamp to start enumerating from',
-			'end' => 'The timestamp to end enumerating',
-			'dir' => $this->getDirectionDescription( $p ),
-			'namespace' => 'Filter log entries to only this namespace(s)',
-			'user' => 'Only list changes by this user',
-			'excludeuser' => 'Don\'t list changes by this user',
-			'prop' => array(
-				'Include additional pieces of information',
-				' user           - Adds the user responsible for the edit and tags if they are an IP',
-				' userid         - Adds the user id responsible for the edit',
-				' comment        - Adds the comment for the edit',
-				' parsedcomment  - Adds the parsed comment for the edit',
-				' flags          - Adds flags for the edit',
-				' timestamp      - Adds timestamp of the edit',
-				' title          - Adds the page title of the edit',
-				' ids            - Adds the page ID, recent changes ID and the new and old revision ID',
-				' sizes          - Adds the new and old page length in bytes',
-				' redirect       - Tags edit if page is a redirect',
-				' patrolled      - Tags patrollable edits as being patrolled or unpatrolled',
-				' loginfo        - Adds log information (logid, logtype, etc) to log entries',
-				' tags           - Lists tags for the entry',
-				' sha1           - Adds the content checksum for entries associated with a revision',
-			),
-			'token' => 'Which tokens to obtain for each change',
-			'show' => array(
-				'Show only items that meet this criteria.',
-				"For example, to see only minor edits done by logged-in users, set {$p}show=minor|!anon"
-			),
-			'type' => 'Which types of changes to show',
-			'limit' => 'How many total changes to return',
-			'tag' => 'Only list changes tagged with this tag',
-			'toponly' => 'Only list changes which are the latest revision',
-			'continue' => 'When more results are available, use this to continue',
-		);
-	}
-
-	public function getDescription() {
-		return 'Enumerate recent changes.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=recentchanges'
+			'action=query&list=recentchanges'
+				=> 'apihelp-query+recentchanges-example-simple',
+			'action=query&generator=recentchanges&grcshow=!patrolled&prop=info'
+				=> 'apihelp-query+recentchanges-example-generator',
 		);
 	}
 
