@@ -107,9 +107,10 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	protected function alterForm( HTMLForm $form ) {
+		$form->setDisplayFormat( 'vform' );
 		$form->setId( 'mw-changeemail-form' );
 		$form->setTableId( 'mw-changeemail-table' );
-		$form->setWrapperLegendMsg( 'changeemail-header' );
+		$form->setWrapperLegend( false );
 		$form->setSubmitTextMsg( 'changeemail-submit' );
 		$form->addHiddenField( 'returnto', $this->getRequest()->getVal( 'returnto' ) );
 	}
