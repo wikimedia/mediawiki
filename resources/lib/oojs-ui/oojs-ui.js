@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (ec785c2c64)
+ * OOjs UI v0.1.0-pre (f2c3f12959)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-18T01:30:17Z
+ * Date: 2014-09-18T23:22:18Z
  */
 ( function ( OO ) {
 
@@ -1644,16 +1644,25 @@ OO.ui.Window.prototype.getSize = function () {
  * @return {number} Content height
  */
 OO.ui.Window.prototype.getContentHeight = function () {
+	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements
+	var bodyHeight, oldHeight = this.$frame[0].style.height;
+	this.$frame[0].style.height = '1px';
+	bodyHeight = this.getBodyHeight();
+	this.$frame[0].style.height = oldHeight;
+
 	return Math.round(
 		// Add buffer for border
 		( this.$frame.outerHeight() - this.$frame.innerHeight() ) +
 		// Use combined heights of children
-		( this.$head.outerHeight( true ) + this.getBodyHeight() + this.$foot.outerHeight( true ) )
+		( this.$head.outerHeight( true ) + bodyHeight + this.$foot.outerHeight( true ) )
 	);
 };
 
 /**
  * Get the height of the dialog contents.
+ *
+ * When this function is called, the dialog will temporarily have been resized
+ * to height=1px, so .scrollHeight measurements can be taken accurately.
  *
  * @return {number} Height of content
  */
@@ -2800,7 +2809,6 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 					manager.opening.notify( { state: 'setup' } );
 					setTimeout( function () {
 						win.ready( data ).then( function () {
-							manager.updateWindowSize( win );
 							manager.opening.notify( { state: 'ready' } );
 							manager.opening = null;
 							manager.opened = $.Deferred();
@@ -11150,6 +11158,8 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
 	}
 	this.$element.css( dimensions );
 	this.setIdealSize( $container.width() );
+	// We updated the position, so re-evaluate the clipping state
+	this.clip();
 
 	return this;
 };

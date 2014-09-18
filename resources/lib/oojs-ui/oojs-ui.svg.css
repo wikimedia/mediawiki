@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (ec785c2c64)
+ * OOjs UI v0.1.0-pre (f2c3f12959)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-18T01:30:17Z
+ * Date: 2014-09-18T23:22:18Z
  */
 /*
  * Blank theme mixins.
@@ -15,98 +15,98 @@
  * additional rules to the base styles.
  */
 .oo-ui-icon-add-item {
-  background-image: /* @embed */ url(images/icons/add-item.svg);
+	background-image: /* @embed */ url(images/icons/add-item.svg);
 }
 .oo-ui-icon-advanced {
-  background-image: /* @embed */ url(images/icons/advanced.svg);
+	background-image: /* @embed */ url(images/icons/advanced.svg);
 }
 .oo-ui-icon-alert {
-  background-image: /* @embed */ url(images/icons/alert.svg);
+	background-image: /* @embed */ url(images/icons/alert.svg);
 }
 .oo-ui-icon-check {
-  background-image: /* @embed */ url(images/icons/check.svg);
+	background-image: /* @embed */ url(images/icons/check.svg);
 }
 .oo-ui-icon-clear {
-  background-image: /* @embed */ url(images/icons/clear.svg);
+	background-image: /* @embed */ url(images/icons/clear.svg);
 }
 .oo-ui-icon-close {
-  background-image: /* @embed */ url(images/icons/close.svg);
+	background-image: /* @embed */ url(images/icons/close.svg);
 }
 .oo-ui-icon-code {
-  background-image: /* @embed */ url(images/icons/code.svg);
+	background-image: /* @embed */ url(images/icons/code.svg);
 }
 .oo-ui-icon-collapse {
-  background-image: /* @embed */ url(images/icons/collapse.svg);
+	background-image: /* @embed */ url(images/icons/collapse.svg);
 }
 .oo-ui-icon-comment {
-  background-image: /* @embed */ url(images/icons/comment.svg);
+	background-image: /* @embed */ url(images/icons/comment.svg);
 }
 .oo-ui-icon-expand {
-  background-image: /* @embed */ url(images/icons/expand.svg);
+	background-image: /* @embed */ url(images/icons/expand.svg);
 }
 .oo-ui-icon-help {
-  background-image: /* @embed */ url(images/icons/help.svg);
+	background-image: /* @embed */ url(images/icons/help.svg);
 }
 .oo-ui-icon-info {
-  background-image: /* @embed */ url(images/icons/info.svg);
+	background-image: /* @embed */ url(images/icons/info.svg);
 }
 .oo-ui-icon-link {
-  background-image: /* @embed */ url(images/icons/link.svg);
+	background-image: /* @embed */ url(images/icons/link.svg);
 }
 .oo-ui-icon-menu {
-  background-image: /* @embed */ url(images/icons/menu.svg);
+	background-image: /* @embed */ url(images/icons/menu.svg);
 }
 .oo-ui-icon-next {
-  background-image: /* @embed */ url(images/icons/move-ltr.svg);
+	background-image: /* @embed */ url(images/icons/move-ltr.svg);
 }
 .oo-ui-icon-picture {
-  background-image: /* @embed */ url(images/icons/picture.svg);
+	background-image: /* @embed */ url(images/icons/picture.svg);
 }
 .oo-ui-icon-previous {
-  background-image: /* @embed */ url(images/icons/move-rtl.svg);
+	background-image: /* @embed */ url(images/icons/move-rtl.svg);
 }
 .oo-ui-icon-redo {
-  background-image: /* @embed */ url(images/icons/arched-arrow-ltr.svg);
+	background-image: /* @embed */ url(images/icons/arched-arrow-ltr.svg);
 }
 .oo-ui-icon-remove {
-  background-image: /* @embed */ url(images/icons/remove.svg);
+	background-image: /* @embed */ url(images/icons/remove.svg);
 }
 .oo-ui-icon-search {
-  background-image: /* @embed */ url(images/icons/search.svg);
+	background-image: /* @embed */ url(images/icons/search.svg);
 }
 .oo-ui-icon-settings {
-  background-image: /* @embed */ url(images/icons/settings.svg);
+	background-image: /* @embed */ url(images/icons/settings.svg);
 }
 .oo-ui-icon-tag {
-  background-image: /* @embed */ url(images/icons/tag.svg);
+	background-image: /* @embed */ url(images/icons/tag.svg);
 }
 .oo-ui-icon-undo {
-  background-image: /* @embed */ url(images/icons/arched-arrow-rtl.svg);
+	background-image: /* @embed */ url(images/icons/arched-arrow-rtl.svg);
 }
 .oo-ui-icon-window {
-  background-image: /* @embed */ url(images/icons/window.svg);
+	background-image: /* @embed */ url(images/icons/window.svg);
 }
 .oo-ui-indicator-alert {
-  background-image: /* @embed */ url(images/indicators/alert.svg);
+	background-image: /* @embed */ url(images/indicators/alert.svg);
 }
 .oo-ui-indicator-down {
-  background-image: /* @embed */ url(images/indicators/arrow-down.svg);
+	background-image: /* @embed */ url(images/indicators/arrow-down.svg);
 }
 .oo-ui-indicator-next {
-  background-image: /* @embed */ url(images/indicators/arrow-ltr.svg);
+	background-image: /* @embed */ url(images/indicators/arrow-ltr.svg);
 }
 .oo-ui-indicator-previous {
-  background-image: /* @embed */ url(images/indicators/arrow-rtl.svg);
+	background-image: /* @embed */ url(images/indicators/arrow-rtl.svg);
 }
 .oo-ui-indicator-required {
-  background-image: /* @embed */ url(images/indicators/required.svg);
+	background-image: /* @embed */ url(images/indicators/required.svg);
 }
 .oo-ui-indicator-up {
-  background-image: /* @embed */ url(images/indicators/arrow-up.svg);
+	background-image: /* @embed */ url(images/indicators/arrow-up.svg);
 }
 .oo-ui-texture-pending {
-  background-image: /* @embed */ url(images/textures/pending.gif);
+	background-image: /* @embed */ url(images/textures/pending.gif);
 }
 .oo-ui-texture-transparency {
-  background-image: /* @embed */ url(images/textures/transparency.svg);
+	background-image: /* @embed */ url(images/textures/transparency.svg);
 }
