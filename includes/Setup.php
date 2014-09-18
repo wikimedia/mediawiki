@@ -82,7 +82,7 @@ if ( $wgResourceBasePath === null ) {
 }
 
 if ( $wgLogo === false ) {
-	$wgLogo = "$wgStylePath/common/images/wiki.png";
+	$wgLogo = "$wgResourceBasePath/resources/assets/wiki.png";
 }
 
 if ( $wgUploadPath === false ) {
