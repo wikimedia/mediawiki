@@ -324,7 +324,7 @@ abstract class QueryPage extends SpecialPage {
 							'qc_value' => $value );
 				}
 
-				$dbw->begin( __METHOD__ );
+				$dbw->startAtomic( __METHOD__ );
 				# Clear out any old cached data
 				$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 				# Save results into the querycache table on the master
@@ -336,7 +336,7 @@ abstract class QueryPage extends SpecialPage {
 				$dbw->insert( 'querycache_info',
 					array( 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ),
 					$fname );
-				$dbw->commit( __METHOD__ );
+				$dbw->endAtomic( __METHOD__ );
 			}
 		} catch ( DBError $e ) {
 			if ( !$ignoreErrors ) {
