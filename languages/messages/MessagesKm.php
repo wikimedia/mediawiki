@@ -139,6 +139,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'ទំព័រមានកំណែច្រើនជាងគេ' ),
 	'Movepage'                  => array( 'ប្ដូរទីតាំងទំព័រ' ),
 	'Mycontributions'           => array( 'ការរួមចំណែករបស់ខ្ញុំ' ),
+	'MyLanguage'                => array( 'ភាសារបស់ខ្ញុំ' ),
 	'Mypage'                    => array( 'ទំព័ររបស់ខ្ញុំ' ),
 	'Mytalk'                    => array( 'ការពិភាក្សារបស់ខ្ញុំ' ),
 	'Myuploads'                 => array( 'អ្វីដែលខ្ញុំផ្ទុកឡើង' ),

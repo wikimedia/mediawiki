@@ -106,6 +106,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'TewrvéşiRevizyon' ),
 	'Movepage'                  => array( 'PelerBeré' ),
 	'Mycontributions'           => array( 'DekerdenéMe' ),
+	'MyLanguage'                => array( 'ZıwaneMe' ),
 	'Mypage'                    => array( 'PeréMe' ),
 	'Mytalk'                    => array( 'VatenayışéMe' ),
 	'Myuploads'                 => array( 'BarkerdışéMe' ),

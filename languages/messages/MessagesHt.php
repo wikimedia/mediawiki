@@ -86,6 +86,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'PlisRevizyon' ),
 	'Movepage'                  => array( 'DeplasePaj' ),
 	'Mycontributions'           => array( 'KontribisyonM' ),
+	'MyLanguage'                => array( 'LangMwen' ),
 	'Mypage'                    => array( 'PajMwen' ),
 	'Mytalk'                    => array( 'DiskisyonM' ),
 	'Myuploads'                 => array( 'ChajmanM' ),

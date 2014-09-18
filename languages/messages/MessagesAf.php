@@ -139,6 +139,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'MeesteWysigings' ),
 	'Movepage'                  => array( 'Skuif_bladsy', 'Skuifbladsy' ),
 	'Mycontributions'           => array( 'Mybydrae' ),
+	'MyLanguage'                => array( 'MyTaal' ),
 	'Mypage'                    => array( 'MyBladsy' ),
 	'Mytalk'                    => array( 'Mybespreking', 'Mybesprekings' ),
 	'Newimages'                 => array( 'Nuwe_beelde', 'Nuwebeelde', 'Nuwe_lêers', 'Nuwelêers' ),

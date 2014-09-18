@@ -85,6 +85,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Le_plus_versiones' ),
 	'Movepage'                  => array( 'Renominar_pagina' ),
 	'Mycontributions'           => array( 'Mi_contributiones' ),
+	'MyLanguage'                => array( 'Mi_lingua' ),
 	'Mypage'                    => array( 'Mi_pagina' ),
 	'Mytalk'                    => array( 'Mi_discussion' ),
 	'Myuploads'                 => array( 'Mi_files_incargate' ),

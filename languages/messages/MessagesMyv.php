@@ -74,6 +74,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'ВесемедеЛамокстьЛиякстомтозь' ),
 	'Movepage'                  => array( 'ПечтевтемсЛопа' ),
 	'Mycontributions'           => array( 'МонМезеТеинь' ),
+	'MyLanguage'                => array( 'Келем' ),
 	'Mypage'                    => array( 'МоньЛопам' ),
 	'Mytalk'                    => array( 'МоньКортамом' ),
 	'Newimages'                 => array( 'ОдАртовкст' ),

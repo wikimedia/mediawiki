@@ -101,6 +101,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Plej_multaj_revizioj' ),
 	'Movepage'                  => array( 'Alinomigi_paĝon' ),
 	'Mycontributions'           => array( 'Miaj_kontribuoj', 'MiajKontribuoj' ),
+	'MyLanguage'                => array( 'Mia_lingvo' ),
 	'Mypage'                    => array( 'Mia_paĝo', 'MiaPaĝo' ),
 	'Mytalk'                    => array( 'Mia_diskutpaĝo', 'MiaDiskutpaĝo' ),
 	'Myuploads'                 => array( 'Miaj_alŝutaĵoj' ),

@@ -104,6 +104,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Säite_mat_de_meeschten_Ännerungen' ),
 	'Movepage'                  => array( 'Säit_réckelen' ),
 	'Mycontributions'           => array( 'Meng_Kontributiounen' ),
+	'MyLanguage'                => array( 'Meng_Sprooch' ),
 	'Mypage'                    => array( 'Meng_Benotzersäit' ),
 	'Mytalk'                    => array( 'Meng_Diskussiounssäit' ),
 	'Myuploads'                 => array( 'Meng_eropgeluede_Fichieren' ),

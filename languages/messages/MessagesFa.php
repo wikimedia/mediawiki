@@ -92,6 +92,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'بیشترین_نسخه' ),
 	'Movepage'                  => array( 'انتقال_صفحه' ),
 	'Mycontributions'           => array( 'مشارکت‌های_من' ),
+	'MyLanguage'                => array( 'زبان‌های_من' ),
 	'Mypage'                    => array( 'صفحه_من' ),
 	'Mytalk'                    => array( 'بحث_من' ),
 	'Myuploads'                 => array( 'بارگذاری‌های_من' ),

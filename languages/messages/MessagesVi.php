@@ -111,6 +111,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Nhiều_phiên_bản_nhất' ),
 	'Movepage'                  => array( 'Di_chuyển', 'Đổi_tên_trang' ),
 	'Mycontributions'           => array( 'Đóng_góp_của_tôi', 'Tôi_đóng_góp' ),
+	'MyLanguage'                => array( 'Ngôn_ngữ_tôi' ),
 	'Mypage'                    => array( 'Trang_tôi', 'Trang_cá_nhân' ),
 	'Mytalk'                    => array( 'Thảo_luận_tôi', 'Trang_thảo_luận_của_tôi' ),
 	'Myuploads'                 => array( 'Tập_tin_tôi' ),

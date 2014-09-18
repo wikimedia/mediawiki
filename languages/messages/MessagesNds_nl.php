@@ -271,6 +271,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Meeste_bewarkingen' ),
 	'Movepage'                  => array( 'Zied_herneumen' ),
 	'Mycontributions'           => array( 'Mien_biedragen' ),
+	'MyLanguage'                => array( 'Mien_taal' ),
 	'Mypage'                    => array( 'Mien_gebrukerszied' ),
 	'Mytalk'                    => array( 'Mien_overleg' ),
 	'Myuploads'                 => array( 'Mien_in-elaojen_bestaanden' ),
