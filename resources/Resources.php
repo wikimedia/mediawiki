@@ -1464,38 +1464,48 @@ return array(
 	/* MediaWiki UI */
 
 	'mediawiki.ui' => array(
-		'styles' => array(
-			'resources/src/mediawiki.ui/default.less',
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/default.less',
+			),
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.ui.checkbox' => array(
-		'styles' => array(
-			'resources/src/mediawiki.ui/components/checkbox.less',
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/components/checkbox.less',
+			),
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	// Lightweight module for anchor styles
 	'mediawiki.ui.anchor' => array(
-		'styles' => array(
-			'resources/src/mediawiki.ui/components/anchors.less',
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/components/anchors.less',
+			),
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => array(
-		'styles' => array(
-			'resources/src/mediawiki.ui/components/buttons.less',
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/components/buttons.less',
+			),
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.ui.input' => array(
-		'styles' => array(
-			'resources/src/mediawiki.ui/components/inputs.less',
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/components/inputs.less',
+			),
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
