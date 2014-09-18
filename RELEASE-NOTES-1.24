@@ -220,6 +220,8 @@ production.
 * (bug 69249) wfBaseConvert() now works around PHP Bug #50175 when using GMP.
 * (bug 57909) URLs in the externallinks table will no longer have certain
   characters decoded in the query string.
+* (bug 67368) LESS mixins like .background-image() correctly flip image
+  references for RTL stylesheets now.
 
 === Action API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
@@ -473,6 +475,8 @@ changes to languages because of Bugzilla reports.
 * In Linker.php, link(), linkText() and makeBrokenImageLinkObj() now display
   warnings if their first parameter is not a Title object. Also makeImageLink()
   now requires a Parser as its first parameter.
+* (bug 67368) LESS functions embed() and embeddable(), added in MediaWiki 1.23
+  and broken by design, have been removed. Use appropriate LESS mixins instead.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
@@ -521,6 +525,7 @@ changes to languages because of Bugzilla reports.
 * RawPage - Use RawAction directly
 * StubContLang - Use Language::factory() instead
 * XMLReader2 - Use XMLReader directly
+* ResourceLoaderLESSFunctions - No longer in use, not intended for public usage
 
 == Compatibility ==
 

@@ -3489,10 +3489,7 @@ $wgResourceLoaderLESSVars = array();
  *
  * @since 1.22
  */
-$wgResourceLoaderLESSFunctions = array(
-	'embeddable' => 'ResourceLoaderLESSFunctions::embeddable',
-	'embed' => 'ResourceLoaderLESSFunctions::embed',
-);
+$wgResourceLoaderLESSFunctions = array();
 
 /**
  * Default import paths for LESS modules. LESS files referenced in @import
