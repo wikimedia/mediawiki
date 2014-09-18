@@ -176,43 +176,11 @@ class SpecialPageFactory {
 	private static $aliases;
 
 	/**
-	 * Reset the internal list of special pages. Useful when changing $wgSpecialPages after
-	 * the internal list has already been initialized, e.g. during testing.
-	 */
-	public static function resetList() {
-		self::$list = null;
-		self::$aliases = null;
-	}
-
-	/**
-	 * Returns a list of canonical special page names.
-	 * May be used to iterate over all registered special pages.
+	 * Get the special page list
 	 *
-	 * @return string[]
+	 * @return array
 	 */
-	public static function getNames() {
-		return array_keys( get_object_vars( self::getListObject() ) );
-	}
-
-	/**
-	 * Get the special page list as an object, with each special page represented by a member
-	 * field in the object.
-	 *
-	 * @deprecated since 1.24, use getNames() instead.
-	 * @return object
-	 */
-	public static function getList() {
-		wfDeprecated( __FUNCTION__, '1.24' );
-		return self::getListObject();
-	}
-
-	/**
-	 * Get the special page list as an object, with each special page represented by a member
-	 * field in the object.
-	 *
-	 * @return object
-	 */
-	private static function getListObject() {
+	static function getList() {
 		global $wgSpecialPages;
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
@@ -255,8 +223,6 @@ class SpecialPageFactory {
 			// This hook can be used to remove undesired built-in special pages
 			wfRunHooks( 'SpecialPage_initList', array( &self::$list ) );
 
-			self::$list = (object)self::$list;
-
 			wfProfileOut( __METHOD__ );
 		}
 
@@ -271,13 +237,12 @@ class SpecialPageFactory {
 	 * contain at least one entry (English fallbacks will be added if necessary).
 	 * @return object
 	 */
-	private static function getAliasListObject() {
+	static function getAliasList() {
 		if ( !is_object( self::$aliases ) ) {
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
 
-			// Objects are passed by reference by default, need to create a copy
-			$missingPages = clone self::getListObject();
+			$missingPages = self::getList();
 
 			self::$aliases = array();
 			// Check for $aliases being an array since Language::getSpecialPageAliases can return null
@@ -314,8 +279,8 @@ class SpecialPageFactory {
 
 		$caseFoldedAlias = $wgContLang->caseFold( $bits[0] );
 		$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
-		if ( isset( self::getAliasListObject()->$caseFoldedAlias ) ) {
-			$name = self::getAliasListObject()->$caseFoldedAlias;
+		if ( isset( self::getAliasList()->$caseFoldedAlias ) ) {
+			$name = self::getAliasList()->$caseFoldedAlias;
 		} else {
 			return array( null, null );
 		}
@@ -366,7 +331,8 @@ class SpecialPageFactory {
 	public static function exists( $name ) {
 		list( $title, /*...*/ ) = self::resolveAlias( $name );
 
-		return property_exists( self::getListObject(), $title );
+		$specialPageList = self::getList();
+		return isset( $specialPageList[$title] );
 	}
 
 	/**
@@ -377,36 +343,22 @@ class SpecialPageFactory {
 	 */
 	public static function getPage( $name ) {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
-		if ( property_exists( self::getListObject(), $realName ) ) {
-			$rec = self::getListObject()->$realName;
-
+		$specialPageList = self::getList();
+		if ( isset( $specialPageList[$realName] ) ) {
+			$rec = $specialPageList[$realName];
 			if ( is_string( $rec ) ) {
 				$className = $rec;
-				$page = new $className;
-			} elseif ( is_callable( $rec ) ) {
-				// Use callback to instantiate the special page
-				$page = call_user_func( $rec );
+
+				return new $className;
 			} elseif ( is_array( $rec ) ) {
 				$className = array_shift( $rec );
 				// @deprecated, officially since 1.18, unofficially since forever
 				wfDeprecated( "Array syntax for \$wgSpecialPages is deprecated ($className), " .
 					"define a subclass of SpecialPage instead.", '1.18' );
-				$page = MWFunction::newObj( $className, $rec );
-			} elseif ( $rec instanceof SpecialPage ) {
-				$page = $rec; //XXX: we should deep clone here
-			} else {
-				$page = null;
+				$specialPageList[$realName] = MWFunction::newObj( $className, $rec );
 			}
 
-			if ( $page instanceof SpecialPage ) {
-				return $page;
-			} else {
-				// It's not a classname, nor a callback, nor a legacy constructor array,
-				// nor a special page object. Give up.
-				wfLogWarning( "Cannot instantiate special page $realName: bad spec!" );
-				return null;
-			}
-
+			return $specialPageList[$realName];
 		} else {
 			return null;
 		}
@@ -426,7 +378,7 @@ class SpecialPageFactory {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		foreach ( self::getListObject() as $name => $rec ) {
+		foreach ( self::getList() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page ) { // not null
 				$page->setContext( RequestContext::getMain() );
@@ -448,7 +400,7 @@ class SpecialPageFactory {
 	 */
 	public static function getRegularPages() {
 		$pages = array();
-		foreach ( self::getListObject() as $name => $rec ) {
+		foreach ( self::getList() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page->isListed() && !$page->isRestricted() ) {
 				$pages[$name] = $page;
@@ -471,7 +423,7 @@ class SpecialPageFactory {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		foreach ( self::getListObject() as $name => $rec ) {
+		foreach ( self::getList() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if (
 				$page->isListed()
@@ -580,7 +532,7 @@ class SpecialPageFactory {
 	 * @param IContextSource $context
 	 * @return string HTML fragment
 	 */
-	public static function capturePath( Title $title, IContextSource $context ) {
+	static function capturePath( Title $title, IContextSource $context ) {
 		global $wgOut, $wgTitle, $wgRequest, $wgUser, $wgLang;
 
 		// Save current globals
@@ -617,7 +569,7 @@ class SpecialPageFactory {
 	 * @param string|bool $subpage
 	 * @return string
 	 */
-	public static function getLocalNameFor( $name, $subpage = false ) {
+	static function getLocalNameFor( $name, $subpage = false ) {
 		global $wgContLang;
 		$aliases = $wgContLang->getSpecialPageAliases();
 
@@ -656,7 +608,7 @@ class SpecialPageFactory {
 	 * @param string $alias
 	 * @return Title|null Title or null if there is no such alias
 	 */
-	public static function getTitleForAlias( $alias ) {
+	static function getTitleForAlias( $alias ) {
 		list( $name, $subpage ) = self::resolveAlias( $alias );
 		if ( $name != null ) {
 			return SpecialPage::getTitleFor( $name, $subpage );
