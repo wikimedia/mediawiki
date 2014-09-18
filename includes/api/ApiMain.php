@@ -783,10 +783,12 @@ class ApiMain extends ApiBase {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			}
 
-			if ( array_key_exists(
-				$module->encodeParamName( 'token' ),
-				$this->getRequest()->getQueryValues()
-			) ) {
+			if ( !$this->getConfig()->get( 'DebugAPI' ) &&
+				array_key_exists(
+					$module->encodeParamName( 'token' ),
+					$this->getRequest()->getQueryValues()
+				)
+			) {
 				$this->dieUsage(
 					"The '{$module->encodeParamName( 'token' )}' parameter was found in the query string, but must be in the POST body",
 					'mustposttoken'
