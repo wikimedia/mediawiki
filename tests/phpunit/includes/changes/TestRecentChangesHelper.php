@@ -129,6 +129,9 @@ class TestRecentChangesHelper {
 
 		$context->setUser( $user );
 
+		$title = Title::newFromText( 'RecentChanges', NS_SPECIAL );
+		$context->setTitle( $title );
+
 		return $context;
 	}
 }
