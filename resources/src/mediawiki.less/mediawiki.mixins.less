@@ -10,13 +10,8 @@
  * See <http://lesscss.org/#-mixins> for more information about how to write mixins.
  */
 
-.background-image(@url) when (embeddable(@url)) {
-	background-image: embed(@url);
-	background-image: url(@url)!ie;
-}
-
-.background-image(@url) when not (embeddable(@url)) {
-	background-image: url(@url);
+.background-image(@url) {
+	background-image: e('/* @embed */') url(@url);
 }
 
 .vertical-gradient(@startColor: gray, @endColor: white, @startPos: 0, @endPos: 100%) {
@@ -37,27 +32,14 @@
  * We do not embed the fallback image on the assumption that the gain for old browsers
  * is not worth the harm done to modern ones.
  */
-.background-image-svg(@svg, @fallback) when (embeddable(@svg)) {
+.background-image-svg(@svg, @fallback) {
 	background-image: url(@fallback);
-	/* We don't need the !ie hack because this old IE uses the fallback already */
-	background-image: -webkit-linear-gradient(transparent, transparent), embed(@svg);
-	background-image: linear-gradient(transparent, transparent), embed(@svg);
+	background-image: -webkit-linear-gradient(transparent, transparent), e('/* @embed */') url(@svg);
+	background-image: linear-gradient(transparent, transparent), e('/* @embed */') url(@svg);
 }
 
-.background-image-svg(@svg, @fallback) when not (embeddable(@svg)) {
-	background-image: url(@fallback);
-	background-image: -webkit-linear-gradient(transparent, transparent), url(@svg);
-	background-image: linear-gradient(transparent, transparent), url(@svg);
-}
-
-/* Caution: Does not support localisable images */
-.list-style-image(@url) when (embeddable(@url)) {
-	list-style-image: embed(@url);
-	list-style-image: url(@url)!ie;
-}
-
-.list-style-image(@url) when not (embeddable(@url)) {
-	list-style-image: url(@url);
+.list-style-image(@url) {
+	list-style-image: e('/* @embed */') url(@url);
 }
 
 .transition(@value) {
