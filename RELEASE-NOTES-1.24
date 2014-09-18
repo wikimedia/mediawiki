@@ -466,6 +466,9 @@ changes to languages because of Bugzilla reports.
   and "jquery" modules. In the past, this behavior was undefined, now it will
   throw an error.
 * Removed BagOStuff::replace(). (deprecated since 1.23)
+* In Linker.php, link(), linkText() and makeBrokenImageLinkObj() now display
+  warnings if their first parameter is not a Title object. Also makeImageLink()
+  now requires a Parser as its first parameter.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
