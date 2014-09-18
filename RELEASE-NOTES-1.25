@@ -94,6 +94,7 @@ production.
   * ApiMain::setHelp
   * ApiMain::reallyMakeHelpMsg
   * ApiMain::makeHelpMsgHeader
+  * ApiQueryImageInfo::getPropertyDescriptions
 
 === Languages updated in 1.25 ===
 

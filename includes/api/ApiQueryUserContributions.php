@@ -464,7 +464,9 @@ class ApiQueryContributions extends ApiQueryBase {
 			'end' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'user' => array(
 				ApiBase::PARAM_ISMULTI => true
 			),
@@ -474,7 +476,8 @@ class ApiQueryContributions extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => array(
 					'newer',
 					'older'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			),
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -507,7 +510,11 @@ class ApiQueryContributions extends ApiQueryBase {
 					'!top',
 					'new',
 					'!new',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG => array(
+					'apihelp-query+usercontribs-param-show',
+					$this->getConfig()->get( 'RCMaxAge' )
+				),
 			),
 			'tag' => null,
 			'toponly' => array(
@@ -517,53 +524,12 @@ class ApiQueryContributions extends ApiQueryBase {
 		);
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-		$RCMaxAge = $this->getConfig()->get( 'RCMaxAge' );
-
+	public function getExamplesMessages() {
 		return array(
-			'limit' => 'The maximum number of contributions to return',
-			'start' => 'The start timestamp to return from',
-			'end' => 'The end timestamp to return to',
-			'continue' => 'When more results are available, use this to continue',
-			'user' => 'The users to retrieve contributions for',
-			'userprefix' => array(
-				"Retrieve contributions for all users whose names begin with this value.",
-				"Overrides {$p}user",
-			),
-			'dir' => $this->getDirectionDescription( $p ),
-			'namespace' => 'Only list contributions in these namespaces',
-			'prop' => array(
-				'Include additional pieces of information',
-				' ids            - Adds the page ID and revision ID',
-				' title          - Adds the title and namespace ID of the page',
-				' timestamp      - Adds the timestamp of the edit',
-				' comment        - Adds the comment of the edit',
-				' parsedcomment  - Adds the parsed comment of the edit',
-				' size           - Adds the new size of the edit',
-				' sizediff       - Adds the size delta of the edit against its parent',
-				' flags          - Adds flags of the edit',
-				' patrolled      - Tags patrolled edits',
-				' tags           - Lists tags for the edit',
-			),
-			'show' => array(
-				"Show only items that meet thse criteria, e.g. non minor edits only: {$p}show=!minor",
-				"NOTE: If {$p}show=patrolled or {$p}show=!patrolled is set, revisions older than",
-				"\$wgRCMaxAge ($RCMaxAge) won't be shown",
-			),
-			'tag' => 'Only list revisions tagged with this tag',
-			'toponly' => 'Only list changes which are the latest revision',
-		);
-	}
-
-	public function getDescription() {
-		return 'Get all edits by a user.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=usercontribs&ucuser=YurikBot',
-			'api.php?action=query&list=usercontribs&ucuserprefix=217.121.114.',
+			'action=query&list=usercontribs&ucuser=Example'
+				=> 'apihelp-query+usercontribs-example-user',
+			'action=query&list=usercontribs&ucuserprefix=192.0.2.'
+				=> 'apihelp-query+usercontribs-example-ipprefix',
 		);
 	}
 

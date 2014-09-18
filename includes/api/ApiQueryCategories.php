@@ -202,7 +202,9 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'categories' => array(
 				ApiBase::PARAM_ISMULTI => true,
 			),
@@ -216,34 +218,12 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'prop' => array(
-				'Which additional properties to get for each category',
-				' sortkey    - Adds the sortkey (hexadecimal string) and sortkey prefix',
-				'              (human-readable part) for the category',
-				' timestamp  - Adds timestamp of when the category was added',
-				' hidden     - Tags categories that are hidden with __HIDDENCAT__',
-			),
-			'limit' => 'How many categories to return',
-			'show' => 'Which kind of categories to show',
-			'continue' => 'When more results are available, use this to continue',
-			'categories' => 'Only list these categories. Useful for checking ' .
-				'whether a certain page is in a certain category',
-			'dir' => 'The direction in which to list',
-		);
-	}
-
-	public function getDescription() {
-		return 'List all categories the page(s) belong to.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&prop=categories&titles=Albert%20Einstein'
-				=> 'Get a list of categories [[Albert Einstein]] belongs to',
-			'api.php?action=query&generator=categories&titles=Albert%20Einstein&prop=info'
-				=> 'Get information about all categories used in the [[Albert Einstein]]',
+			'action=query&prop=categories&titles=Albert%20Einstein'
+				=> 'apihelp-query+categories-example-simple',
+			'action=query&generator=categories&titles=Albert%20Einstein&prop=info'
+				=> 'apihelp-query+categories-example-generator',
 		);
 	}
 

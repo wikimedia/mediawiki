@@ -597,44 +597,13 @@ class ApiQuery extends ApiBase {
 		return true;
 	}
 
-	public function getParamDescription() {
-		return $this->getPageSet()->getFinalParamDescription() + array(
-			'prop' => 'Which properties to get for the titles/revisions/pageids. ' .
-				'Module help is available below',
-			'list' => 'Which lists to get. Module help is available below',
-			'meta' => 'Which metadata to get about the site. Module help is available below',
-			'indexpageids' => 'Include an additional pageids section listing all returned page IDs',
-			'export' => 'Export the current revisions of all given or generated pages',
-			'exportnowrap' => 'Return the export XML without wrapping it in an ' .
-				'XML result (same format as Special:Export). Can only be used with export',
-			'iwurl' => 'Whether to get the full URL if the title is an interwiki link',
-			'continue' => array(
-				'When present, formats query-continue as key-value pairs that ' .
-					'should simply be merged into the original request.',
-				'This parameter must be set to an empty string in the initial query.',
-				'This parameter is recommended for all new development, and ' .
-					'will be made default in the next API version.'
-			),
-			'rawcontinue' => 'Currently ignored. In the future, \'continue=\' will become the ' .
-				'default and this will be needed to receive the raw query-continue data.',
-		);
-	}
-
-	public function getDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'Query API module allows applications to get needed pieces of data ' .
-				'from the MediaWiki databases,',
-			'and is loosely based on the old query.php interface.',
-			'All data modifications will first have to use query to acquire a ' .
-				'token to prevent abuse from malicious sites.'
-		);
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&prop=revisions&meta=siteinfo&' .
-				'titles=Main%20Page&rvprop=user|comment&continue=',
-			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions&continue=',
+			'action=query&prop=revisions&meta=siteinfo&' .
+				'titles=Main%20Page&rvprop=user|comment&continue='
+				=> 'apihelp-query-example-revisions',
+			'action=query&generator=allpages&gapprefix=API/&prop=revisions&continue='
+				=> 'apihelp-query-example-allpages',
 		);
 	}
 

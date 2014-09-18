@@ -824,38 +824,18 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() )
 			),
-			'continue' => null,
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'prop' => array(
-				'Which additional properties to get:',
-				' protection            - List the protection level of each page',
-				' talkid                - The page ID of the talk page for each non-talk page',
-				' watched               - List the watched status of each page',
-				' watchers              - The number of watchers, if allowed',
-				' notificationtimestamp - The watchlist notification timestamp of each page',
-				' subjectid             - The page ID of the parent page for each talk page',
-				' url                   - Gives a full URL, an edit URL, and the canonical URL for each page',
-				' readable              - Whether the user can read this page',
-				' preload               - Gives the text returned by EditFormPreloadText',
-				' displaytitle          - Gives the way the page title is actually displayed',
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
-			'token' => 'Request a token to perform a data-modifying action on a page',
-			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 
-	public function getDescription() {
-		return 'Get basic page information such as namespace, title, last touched date, ...';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=query&prop=info&titles=Main%20Page',
-			'api.php?action=query&prop=info&inprop=protection&titles=Main%20Page'
+			'action=query&prop=info&titles=Main%20Page'
+				=> 'apihelp-query+info-example-simple',
+			'action=query&prop=info&inprop=protection&titles=Main%20Page'
+				=> 'apihelp-query+info-example-protection',
 		);
 	}
 

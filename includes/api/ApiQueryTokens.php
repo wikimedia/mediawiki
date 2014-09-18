@@ -81,20 +81,12 @@ class ApiQueryTokens extends ApiQueryBase {
 		);
 	}
 
-	public function getParamDescription() {
+	protected function getExamplesMessages() {
 		return array(
-			'type' => 'Type of token(s) to request'
-		);
-	}
-
-	public function getDescription() {
-		return 'Gets tokens for data-modifying actions.';
-	}
-
-	protected function getExamples() {
-		return array(
-			'api.php?action=query&meta=tokens' => 'Retrieve a csrf token (the default)',
-			'api.php?action=query&meta=tokens&type=watch|patrol' => 'Retrieve a watch token and a patrol token'
+			'action=query&meta=tokens'
+				=> 'apihelp-query+tokens-example-simple',
+			'action=query&meta=tokens&type=watch|patrol'
+				=> 'apihelp-query+tokens-example-types',
 		);
 	}
 

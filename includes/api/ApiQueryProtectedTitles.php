@@ -196,7 +196,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => array(
 					'newer',
 					'older'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			),
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
@@ -217,39 +218,18 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					'level'
 				)
 			),
-			'continue' => null,
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'namespace' => 'Only list titles in these namespaces',
-			'start' => 'Start listing at this protection timestamp',
-			'end' => 'Stop listing at this protection timestamp',
-			'dir' => $this->getDirectionDescription( $this->getModulePrefix() ),
-			'limit' => 'How many total pages to return',
-			'prop' => array(
-				'Which properties to get',
-				' timestamp      - Adds the timestamp of when protection was added',
-				' user           - Adds the user that added the protection',
-				' userid         - Adds the user id that added the protection',
-				' comment        - Adds the comment for the protection',
-				' parsedcomment  - Adds the parsed comment for the protection',
-				' expiry         - Adds the timestamp of when the protection will be lifted',
-				' level          - Adds the protection level',
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
-			'level' => 'Only list titles with these protection levels',
-			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 
-	public function getDescription() {
-		return 'List all titles protected from creation.';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=query&list=protectedtitles',
+			'action=query&list=protectedtitles'
+				=> 'apihelp-query+protectedtitles-example-simple',
+			'action=query&generator=protectedtitles&gptnamespace=0&prop=linkshere'
+				=> 'apihelp-query+protectedtitles-example-generator',
 		);
 	}
 

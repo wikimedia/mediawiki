@@ -156,7 +156,9 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	public function getAllowedParams() {
 		return array(
 			'from' => null,
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'to' => null,
 			'prefix' => null,
 			'dir' => array(
@@ -189,32 +191,12 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'from' => 'The category to start enumerating from',
-			'continue' => 'When more results are available, use this to continue',
-			'to' => 'The category to stop enumerating at',
-			'prefix' => 'Search for all category titles that begin with this value',
-			'dir' => 'Direction to sort in',
-			'min' => 'Minimum number of category members',
-			'max' => 'Maximum number of category members',
-			'limit' => 'How many categories to return',
-			'prop' => array(
-				'Which properties to get',
-				' size    - Adds number of pages in the category',
-				' hidden  - Tags categories that are hidden with __HIDDENCAT__',
-			),
-		);
-	}
-
-	public function getDescription() {
-		return 'Enumerate all categories.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=allcategories&acprop=size',
-			'api.php?action=query&generator=allcategories&gacprefix=List&prop=info',
+			'action=query&list=allcategories&acprop=size'
+				=> 'apihelp-query+allcategories-example-size',
+			'action=query&generator=allcategories&gacprefix=List&prop=info'
+				=> 'apihelp-query+allcategories-example-generator',
 		);
 	}
 

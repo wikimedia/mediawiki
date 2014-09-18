@@ -184,28 +184,12 @@ class ApiLogin extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'name' => 'User Name',
-			'password' => 'Password',
-			'domain' => 'Domain (optional)',
-			'token' => 'Login token obtained in first request',
-		);
-	}
-
-	public function getDescription() {
-		return array(
-			'Log in and get the authentication tokens.',
-			'In the event of a successful log-in, a cookie will be attached to your session.',
-			'In the event of a failed log-in, you will not be able to attempt another log-in',
-			'through this method for 5 seconds. This is to prevent password guessing by',
-			'automated password crackers.'
-		);
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=login&lgname=user&lgpassword=password'
+			'action=login&lgname=user&lgpassword=password'
+				=> 'apihelp-login-example-gettoken',
+			'action=login&lgname=user&lgpassword=password&lgtoken=123ABC'
+				=> 'apihelp-login-example-login',
 		);
 	}
 

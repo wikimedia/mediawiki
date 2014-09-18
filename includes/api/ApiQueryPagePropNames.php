@@ -83,7 +83,9 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array(
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'limit' => array(
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => 10,
@@ -94,20 +96,10 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'continue' => 'When more results are available, use this to continue',
-			'limit' => 'The maximum number of pages to return',
-		);
-	}
-
-	public function getDescription() {
-		return 'List all page prop names in use on the wiki.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=pagepropnames' => 'Get first 10 prop names',
+			'action=query&list=pagepropnames'
+				=> 'apihelp-query+pagepropnames-example-simple',
 		);
 	}
 

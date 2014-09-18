@@ -51,21 +51,10 @@ class ApiRsd extends ApiBase {
 		return new ApiFormatXmlRsd( $this->getMain(), 'xml' );
 	}
 
-	public function getAllowedParams() {
-		return array();
-	}
-
-	public function getParamDescription() {
-		return array();
-	}
-
-	public function getDescription() {
-		return 'Export an RSD (Really Simple Discovery) schema.';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=rsd'
+			'action=rsd'
+				=> 'apihelp-rsd-example-simple',
 		);
 	}
 

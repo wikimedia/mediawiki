@@ -1135,26 +1135,46 @@ class ApiPageSet extends ApiBase {
 	public function getAllowedParams( $flags = 0 ) {
 		$result = array(
 			'titles' => array(
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-titles',
 			),
 			'pageids' => array(
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-pageids',
 			),
 			'revids' => array(
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-revids',
 			),
-			'redirects' => false,
-			'converttitles' => false,
+			'generator' => array(
+				ApiBase::PARAM_TYPE => null,
+				ApiBase::PARAM_VALUE_LINKS => array(),
+				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-generator',
+			),
+			'redirects' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => $this->mAllowGenerator
+					? 'api-pageset-param-redirects-generator'
+					: 'api-pageset-param-redirects-nogenerator',
+			),
+			'converttitles' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => array(
+					'api-pageset-param-converttitles',
+					$this->getLanguage()->commaList( LanguageConverter::$languagesWithVariants ),
+				),
+			),
 		);
-		if ( $this->mAllowGenerator ) {
-			if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
-				$result['generator'] = array(
-					ApiBase::PARAM_TYPE => $this->getGenerators()
-				);
-			} else {
-				$result['generator'] = null;
+
+		if ( !$this->mAllowGenerator ) {
+			unset( $result['generator'] );
+		} elseif ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
+			$result['generator'][ApiBase::PARAM_TYPE] = $this->getGenerators();
+			foreach ( $result['generator'][ApiBase::PARAM_TYPE] as $g ) {
+				$result['generator'][ApiBase::PARAM_TYPE][] = $g;
+				$result['generator'][ApiBase::PARAM_VALUE_LINKS][$g] = "Special:ApiHelp/query+$g";
 			}
 		}
 
@@ -1187,24 +1207,5 @@ class ApiPageSet extends ApiBase {
 		}
 
 		return self::$generators;
-	}
-
-	public function getParamDescription() {
-		return array(
-			'titles' => 'A list of titles to work on',
-			'pageids' => 'A list of page IDs to work on',
-			'revids' => 'A list of revision IDs to work on',
-			'generator' => array(
-				'Get the list of pages to work on by executing the specified query module.',
-				'NOTE: generator parameter names must be prefixed with a \'g\', see examples'
-			),
-			'redirects' => 'Automatically resolve redirects',
-			'converttitles' => array(
-				'Convert titles to other variants if necessary. Only works if ' .
-					'the wiki\'s content language supports variant conversion.',
-				'Languages that support variant conversion include ' .
-					implode( ', ', LanguageConverter::$languagesWithVariants )
-			),
-		);
 	}
 }

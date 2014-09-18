@@ -496,10 +496,6 @@ class ApiEditPage extends ApiBase {
 		return true;
 	}
 
-	public function getDescription() {
-		return 'Create and edit pages.';
-	}
-
 	public function getAllowedParams() {
 		return array(
 			'title' => array(
@@ -557,58 +553,11 @@ class ApiEditPage extends ApiBase {
 			),
 			'contentmodel' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
-			)
-		);
-	}
-
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
-		return array(
-			'title' => "Title of the page you want to edit. Cannot be used together with {$p}pageid",
-			'pageid' => "Page ID of the page you want to edit. Cannot be used together with {$p}title",
-			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
-			'sectiontitle' => 'The title for a new section',
-			'text' => 'Page content',
+			),
 			'token' => array(
-				/* Standard description is automatically prepended */
-				'The token should always be sent as the last parameter, or at ' .
-					"least, after the {$p}text parameter"
+				// Standard definition automatically inserted
+				ApiBase::PARAM_HELP_MSG_APPEND => array( 'apihelp-edit-param-token' ),
 			),
-			'summary'
-				=> "Edit summary. Also section title when {$p}section=new and {$p}sectiontitle is not set",
-			'minor' => 'Minor edit',
-			'notminor' => 'Non-minor edit',
-			'bot' => 'Mark this edit as bot',
-			'basetimestamp' => array(
-				'Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp).',
-				'Used to detect edit conflicts; leave unset to ignore conflicts'
-			),
-			'starttimestamp' => array(
-				'Timestamp when you began the editing process, e.g. when the current page content ' .
-					'was loaded for editing.',
-				'Used to detect edit conflicts; leave unset to ignore conflicts'
-			),
-			'recreate' => 'Override any errors about the article having been deleted in the meantime',
-			'createonly' => 'Don\'t edit the page if it exists already',
-			'nocreate' => 'Throw an error if the page doesn\'t exist',
-			'watch' => 'Add the page to your watchlist',
-			'unwatch' => 'Remove the page from your watchlist',
-			'watchlist' => 'Unconditionally add or remove the page from your ' .
-				'watchlist, use preferences or do not change watch',
-			'md5' => array(
-				"The MD5 hash of the {$p}text parameter, or the {$p}prependtext " .
-					"and {$p}appendtext parameters concatenated.",
-				'If set, the edit won\'t be done unless the hash is correct'
-			),
-			'prependtext' => "Add this text to the beginning of the page. Overrides {$p}text",
-			'appendtext' => array( "Add this text to the end of the page. Overrides {$p}text.",
-				"Use {$p}section=new to append a new section" ),
-			'undo' => "Undo this revision. Overrides {$p}text, {$p}prependtext and {$p}appendtext",
-			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
-			'redirect' => 'Automatically resolve redirects',
-			'contentformat' => 'Content serialization format used for the input text',
-			'contentmodel' => 'Content model of the new content',
 		);
 	}
 
@@ -616,17 +565,17 @@ class ApiEditPage extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=edit&title=Test&summary=test%20summary&' .
-			'text=article%20content&basetimestamp=20070824123454&token=%2B\\'
-				=> 'Edit a page (anonymous user)',
-			'api.php?action=edit&title=Test&summary=NOTOC&minor=&' .
-				'prependtext=__NOTOC__%0A&basetimestamp=20070824123454&token=%2B\\'
-				=> 'Prepend __NOTOC__ to a page (anonymous user)',
-			'api.php?action=edit&title=Test&undo=13585&undoafter=13579&' .
-				'basetimestamp=20070824123454&token=%2B\\'
-				=> 'Undo r13579 through r13585 with autosummary (anonymous user)',
+			'action=edit&title=Test&summary=test%20summary&' .
+				'text=article%20content&basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
+				=> 'apihelp-edit-example-edit',
+			'action=edit&title=Test&summary=NOTOC&minor=&' .
+				'prependtext=__NOTOC__%0A&basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
+				=> 'apihelp-edit-example-prepend',
+			'action=edit&title=Test&undo=13585&undoafter=13579&' .
+				'basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
+				=> 'apihelp-edit-example-undo',
 		);
 	}
 

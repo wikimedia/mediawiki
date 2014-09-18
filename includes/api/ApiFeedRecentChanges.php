@@ -171,37 +171,12 @@ class ApiFeedRecentChanges extends ApiBase {
 		return $ret;
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'feedformat' => 'The format of the feed',
-			'namespace' => 'Namespace to limit the results to',
-			'invert' => 'All namespaces but the selected one',
-			'associated' => 'Include associated (talk or main) namespace',
-			'days' => 'Days to limit the results to',
-			'limit' => 'Maximum number of results to return',
-			'from' => 'Show changes since then',
-			'hideminor' => 'Hide minor changes',
-			'hidebots' => 'Hide changes made by bots',
-			'hideanons' => 'Hide changes made by anonymous users',
-			'hideliu' => 'Hide changes made by registered users',
-			'hidepatrolled' => 'Hide patrolled changes',
-			'hidemyself' => 'Hide changes made by yourself',
-			'tagfilter' => 'Filter by tag',
-			'target' => 'Show only changes on pages linked from this page',
-			'showlinkedto' => 'Show changes on pages linked to the selected page instead',
-			'categories' => 'Show only changes on pages in all of these categories',
-			'categories_any' => 'Show only changes on pages in any of the categories instead',
-		);
-	}
-
-	public function getDescription() {
-		return 'Returns a recent changes feed';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=feedrecentchanges',
-			'api.php?action=feedrecentchanges&days=30'
+			'action=feedrecentchanges'
+				=> 'apihelp-feedrecentchanges-example-simple',
+			'action=feedrecentchanges&days=30'
+				=> 'apihelp-feedrecentchanges-example-30days',
 		);
 	}
 }

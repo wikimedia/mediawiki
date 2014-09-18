@@ -126,27 +126,10 @@ class ApiComparePages extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'fromtitle' => 'First title to compare',
-			'fromid' => 'First page ID to compare',
-			'fromrev' => 'First revision to compare',
-			'totitle' => 'Second title to compare',
-			'toid' => 'Second page ID to compare',
-			'torev' => 'Second revision to compare',
-		);
-	}
-
-	public function getDescription() {
-		return array(
-			'Get the difference between 2 pages.',
-			'You must pass a revision number or a page title or a page ID id for each part (1 and 2).'
-		);
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=compare&fromrev=1&torev=2' => 'Create a diff between revision 1 and 2',
+			'action=compare&fromrev=1&torev=2'
+				=> 'apihelp-compare-example-1',
 		);
 	}
 }

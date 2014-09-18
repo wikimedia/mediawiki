@@ -91,23 +91,12 @@ class ApiTokens extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
+	protected function getExamplesMessages() {
 		return array(
-			'type' => 'Type of token(s) to request'
-		);
-	}
-
-	public function getDescription() {
-		return array(
-			'This module is deprecated in favor of action=query&meta=tokens.',
-			'Gets tokens for data-modifying actions.'
-		);
-	}
-
-	protected function getExamples() {
-		return array(
-			'api.php?action=tokens' => 'Retrieve an edit token (the default)',
-			'api.php?action=tokens&type=email|move' => 'Retrieve an email token and a move token'
+			'action=tokens'
+				=> 'apihelp-tokens-example-edit',
+			'action=tokens&type=email|move'
+				=> 'apihelp-tokens-example-emailmove',
 		);
 	}
 }
