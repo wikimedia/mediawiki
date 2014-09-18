@@ -236,43 +236,16 @@ class ApiQueryContributors extends ApiQueryBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'group' => array(
-				'Limit users to given group name(s)',
-				'Does not include implicit or auto-promoted groups like *, user, or autoconfirmed'
-			),
-			'excludegroup' => array(
-				'Exclude users in given group name(s)',
-				'Does not include implicit or auto-promoted groups like *, user, or autoconfirmed'
-			),
-			'rights' => array(
-				'Limit users to those having given right(s)',
-				'Does not include rights granted by implicit or auto-promoted groups ' .
-					'like *, user, or autoconfirmed'
-			),
-			'excluderights' => array(
-				'Limit users to those not having given right(s)',
-				'Does not include rights granted by implicit or auto-promoted groups ' .
-					'like *, user, or autoconfirmed'
-			),
-			'limit' => 'How many contributors to return',
-			'continue' => 'When more results are available, use this to continue',
-		);
-	}
-
-	public function getDescription() {
-		return 'Get the list of logged-in contributors and ' .
-			'the count of anonymous contributors to a page.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&prop=contributors&titles=Main_Page',
+			'action=query&prop=contributors&titles=Main_Page'
+				=> 'apihelp-query+contributors-example-simple',
 		);
 	}
 

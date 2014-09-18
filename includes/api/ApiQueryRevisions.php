@@ -717,32 +717,41 @@ class ApiQueryRevisions extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
 			),
 			'startid' => array(
-				ApiBase::PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
 			),
 			'endid' => array(
-				ApiBase::PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
 			),
 			'start' => array(
-				ApiBase::PARAM_TYPE => 'timestamp'
+				ApiBase::PARAM_TYPE => 'timestamp',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
 			),
 			'end' => array(
-				ApiBase::PARAM_TYPE => 'timestamp'
+				ApiBase::PARAM_TYPE => 'timestamp',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
 			),
 			'dir' => array(
 				ApiBase::PARAM_DFLT => 'older',
 				ApiBase::PARAM_TYPE => array(
 					'newer',
 					'older'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
 			),
 			'user' => array(
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
 			),
 			'excludeuser' => array(
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
 			),
 			'tag' => null,
 			'expandtemplates' => false,
@@ -754,7 +763,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
 				ApiBase::PARAM_ISMULTI => true
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'diffto' => null,
 			'difftotext' => null,
 			'contentformat' => array(
@@ -764,83 +775,26 @@ class ApiQueryRevisions extends ApiQueryBase {
 		);
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
+	public function getExamplesMessages() {
 		return array(
-			'prop' => array(
-				'Which properties to get for each revision:',
-				' ids            - The ID of the revision',
-				' flags          - Revision flags (minor)',
-				' timestamp      - The timestamp of the revision',
-				' user           - User that made the revision',
-				' userid         - User id of revision creator',
-				' size           - Length (bytes) of the revision',
-				' sha1           - SHA-1 (base 16) of the revision',
-				' contentmodel   - Content model id',
-				' comment        - Comment by the user for revision',
-				' parsedcomment  - Parsed comment by the user for the revision',
-				' content        - Text of the revision',
-				' tags           - Tags for the revision',
-			),
-			'limit' => 'Limit how many revisions will be returned (enum)',
-			'startid' => 'From which revision id to start enumeration (enum)',
-			'endid' => 'Stop revision enumeration on this revid (enum)',
-			'start' => 'From which revision timestamp to start enumeration (enum)',
-			'end' => 'Enumerate up to this timestamp (enum)',
-			'dir' => $this->getDirectionDescription( $p, ' (enum)' ),
-			'user' => 'Only include revisions made by user (enum)',
-			'excludeuser' => 'Exclude revisions made by user (enum)',
-			'expandtemplates' => "Expand templates in revision content (requires {$p}prop=content)",
-			'generatexml' => "Generate XML parse tree for revision content (requires {$p}prop=content)",
-			'parse' => array( "Parse revision content (requires {$p}prop=content).",
-				'For performance reasons if this option is used, rvlimit is enforced to 1.' ),
-			'section' => 'Only retrieve the content of this section number',
-			'token' => 'Which tokens to obtain for each revision',
-			'continue' => 'When more results are available, use this to continue',
-			'diffto' => array( 'Revision ID to diff each revision to.',
-				'Use "prev", "next" and "cur" for the previous, next and current revision respectively' ),
-			'difftotext' => array(
-				'Text to diff each revision to. Only diffs a limited number of revisions.',
-				"Overrides {$p}diffto. If {$p}section is set, only that section will be",
-				'diffed against this text',
-			),
-			'tag' => 'Only list revisions tagged with this tag',
-			'contentformat' => 'Serialization format used for difftotext and expected for output of content',
-		);
-	}
-
-	public function getDescription() {
-		return array(
-			'Get revision information.',
-			'May be used in several ways:',
-			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter.',
-			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params.',
-			' 3) Get data about a set of revisions by setting their IDs with revids parameter.',
-			'All parameters marked as (enum) may only be used with a single page (#2).'
-		);
-	}
-
-	public function getExamples() {
-		return array(
-			'Get data with content for the last revision of titles "API" and "Main Page"',
-			'  api.php?action=query&prop=revisions&titles=API|Main%20Page&' .
-				'rvprop=timestamp|user|comment|content',
-			'Get last 5 revisions of the "Main Page"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
-				'rvprop=timestamp|user|comment',
-			'Get first 5 revisions of the "Main Page"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
-				'rvprop=timestamp|user|comment&rvdir=newer',
-			'Get first 5 revisions of the "Main Page" made after 2006-05-01',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
-				'rvprop=timestamp|user|comment&rvdir=newer&rvstart=20060501000000',
-			'Get first 5 revisions of the "Main Page" that were not made made by anonymous user "127.0.0.1"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
-				'rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1',
-			'Get first 5 revisions of the "Main Page" that were made by the user "MediaWiki default"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
-				'rvprop=timestamp|user|comment&rvuser=MediaWiki%20default',
+			'action=query&prop=revisions&titles=API|Main%20Page&' .
+				'rvprop=timestamp|user|comment|content'
+				=> 'apihelp-query+revisions-example-content',
+			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment'
+				=> 'apihelp-query+revisions-example-last5',
+			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvdir=newer'
+				=> 'apihelp-query+revisions-example-first5',
+			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvdir=newer&rvstart=2006-05-01T00:00:00Z'
+				=> 'apihelp-query+revisions-example-first5-after',
+			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1'
+				=> 'apihelp-query+revisions-example-first5-not-localhost',
+			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvuser=MediaWiki%20default'
+				=> 'apihelp-query+revisions-example-first5-user',
 		);
 	}
 

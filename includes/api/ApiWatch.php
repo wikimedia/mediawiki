@@ -161,7 +161,9 @@ class ApiWatch extends ApiBase {
 				ApiBase::PARAM_DEPRECATED => true
 			),
 			'unwatch' => false,
-			'continue' => '',
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -170,24 +172,14 @@ class ApiWatch extends ApiBase {
 		return $result;
 	}
 
-	public function getParamDescription() {
-		$psModule = $this->getPageSet();
-
-		return $psModule->getParamDescription() + array(
-			'title' => 'The page to (un)watch. use titles instead',
-			'unwatch' => 'If set the page will be unwatched rather than watched',
-			'continue' => 'When more results are available, use this to continue',
-		);
-	}
-
-	public function getDescription() {
-		return 'Add or remove pages from/to the current user\'s watchlist.';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=watch&titles=Main_Page' => 'Watch the page "Main Page"',
-			'api.php?action=watch&titles=Main_Page&unwatch=' => 'Unwatch the page "Main Page"',
+			'action=watch&titles=Main_Page&token=123ABC'
+				=> 'apihelp-watch-example-watch',
+			'action=watch&titles=Main_Page&unwatch=&token=123ABC'
+				=> 'apihelp-watch-example-unwatch',
+			'action=watch&generator=allpages&gapnamespace=0&token=123ABC'
+				=> 'apihelp-watch-example-generator',
 		);
 	}
 

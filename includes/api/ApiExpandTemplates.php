@@ -159,35 +159,10 @@ class ApiExpandTemplates extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'text' => 'Wikitext to convert',
-			'title' => 'Title of page',
-			'prop' => array(
-				'Which pieces of information to get',
-				' wikitext   - The expanded wikitext',
-				' categories - Any categories present in the input that are not represented in ' .
-					'the wikitext output',
-				' volatile   - Whether the output is volatile and should not be reused ' .
-					'elsewhere within the page',
-				' ttl        - The maximum time after which caches of the result should be ' .
-					'invalidated',
-				' parsetree  - The XML parse tree of the input',
-				'Note that if no values are selected, the result will contain the wikitext,',
-				'but the output will be in a deprecated format.',
-			),
-			'includecomments' => 'Whether to include HTML comments in the output',
-			'generatexml' => 'Generate XML parse tree (replaced by prop=parsetree)',
-		);
-	}
-
-	public function getDescription() {
-		return 'Expands all templates in wikitext.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=expandtemplates&text={{Project:Sandbox}}'
+			'action=expandtemplates&text={{Project:Sandbox}}'
+				=> 'apihelp-expandtemplates-example-simple',
 		);
 	}
 

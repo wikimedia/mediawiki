@@ -327,31 +327,11 @@ class ApiQueryUsers extends ApiQueryBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'prop' => array(
-				'What pieces of information to include',
-				'  blockinfo      - Tags if the user is blocked, by whom, and for what reason',
-				'  groups         - Lists all the groups the user(s) belongs to',
-				'  implicitgroups - Lists all the groups a user is automatically a member of',
-				'  rights         - Lists all the rights the user(s) has',
-				'  editcount      - Adds the user\'s edit count',
-				'  registration   - Adds the user\'s registration timestamp',
-				'  emailable      - Tags if the user can and wants to receive ' .
-					'email through [[Special:Emailuser]]',
-				'  gender         - Tags the gender of the user. Returns "male", "female", or "unknown"',
-			),
-			'users' => 'A list of users to obtain the same information for',
-			'token' => 'Which tokens to obtain for each user',
+			'action=query&list=users&ususers=Example&usprop=groups|editcount|gender'
+				=> 'apihelp-query+users-example-simple',
 		);
-	}
-
-	public function getDescription() {
-		return 'Get information about a list of users.';
-	}
-
-	public function getExamples() {
-		return 'api.php?action=query&list=users&ususers=brion|TimStarling&usprop=groups|editcount|gender';
 	}
 
 	public function getHelpUrls() {

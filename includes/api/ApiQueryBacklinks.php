@@ -457,7 +457,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			'pageid' => array(
 				ApiBase::PARAM_TYPE => 'integer',
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace'
@@ -493,59 +495,25 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		return $retval;
 	}
 
-	public function getParamDescription() {
-		$retval = array(
-			'title' => "Title to search. Cannot be used together with {$this->bl_code}pageid",
-			'pageid' => "Pageid to search. Cannot be used together with {$this->bl_code}title",
-			'continue' => 'When more results are available, use this to continue',
-			'namespace' => 'The namespace to enumerate',
-			'dir' => 'The direction in which to list',
-		);
-		if ( $this->getModuleName() != 'embeddedin' ) {
-			return array_merge( $retval, array(
-				'redirect' => 'If linking page is a redirect, find all pages ' .
-					'that link to that redirect as well. Maximum limit is halved.',
-				'filterredir' => 'How to filter for redirects. If set to ' .
-					"nonredirects when {$this->bl_code}redirect is enabled, " .
-					'this is only applied to the second level',
-				'limit' => 'How many total pages to return. If ' .
-					"{$this->bl_code}redirect is enabled, limit applies to each " .
-					'level separately (which means you may get up to 2 * limit results).'
-			) );
-		}
-
-		return array_merge( $retval, array(
-			'filterredir' => 'How to filter for redirects',
-			'limit' => 'How many total pages to return'
-		) );
-	}
-
-	public function getDescription() {
-		switch ( $this->getModuleName() ) {
-			case 'backlinks':
-				return 'Find all pages that link to the given page.';
-			case 'embeddedin':
-				return 'Find all pages that embed (transclude) the given title.';
-			case 'imageusage':
-				return 'Find all pages that use the given image title.';
-			default:
-				ApiBase::dieDebug( __METHOD__, 'Unknown module name.' );
-		}
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		static $examples = array(
 			'backlinks' => array(
-				'api.php?action=query&list=backlinks&bltitle=Main%20Page',
-				'api.php?action=query&generator=backlinks&gbltitle=Main%20Page&prop=info'
+				'action=query&list=backlinks&bltitle=Main%20Page'
+					=> 'apihelp-query+backlinks-example-simple',
+				'action=query&generator=backlinks&gbltitle=Main%20Page&prop=info'
+					=> 'apihelp-query+backlinks-example-generator',
 			),
 			'embeddedin' => array(
-				'api.php?action=query&list=embeddedin&eititle=Template:Stub',
-				'api.php?action=query&generator=embeddedin&geititle=Template:Stub&prop=info'
+				'action=query&list=embeddedin&eititle=Template:Stub'
+					=> 'apihelp-query+embeddedin-example-simple',
+				'action=query&generator=embeddedin&geititle=Template:Stub&prop=info'
+					=> 'apihelp-query+embeddedin-example-generator',
 			),
 			'imageusage' => array(
-				'api.php?action=query&list=imageusage&iutitle=File:Albert%20Einstein%20Head.jpg',
-				'api.php?action=query&generator=imageusage&giutitle=File:Albert%20Einstein%20Head.jpg&prop=info'
+				'action=query&list=imageusage&iutitle=File:Albert%20Einstein%20Head.jpg'
+					=> 'apihelp-query+imageusage-example-simple',
+				'action=query&generator=imageusage&giutitle=File:Albert%20Einstein%20Head.jpg&prop=info'
+					=> 'apihelp-query+imageusage-example-generator',
 			)
 		);
 

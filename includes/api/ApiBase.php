@@ -74,6 +74,17 @@ abstract class ApiBase extends ContextSource {
 	// is an array of any of strings giving the message key, arrays giving key and
 	// parameters, or Message objects.
 	const PARAM_HELP_MSG_APPEND = 11;
+	/// @since 1.25
+	// Specify additional information tags for the parameter. Value is an array
+	// of arrays, with the first member being the 'tag' for the info and the
+	// remaining members being the values. In the help, this is formatted using
+	// apihelp-{$path}-paraminfo-{$tag}, which is passed $1 = count, $2 =
+	// comma-joined list of values.
+	const PARAM_HELP_MSG_INFO = 12;
+	/// @since 1.25
+	// When PARAM_DFLT is an array, this may be an array mapping those values
+	// to page titles which will be linked in the help.
+	const PARAM_VALUE_LINKS = 13;
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -1924,6 +1935,15 @@ abstract class ApiBase extends ContextSource {
 	 */
 
 	/**
+	 * Return the description message.
+	 *
+	 * @return string|array|Message
+	 */
+	protected function getDescriptionMessage() {
+		return "apihelp-{$this->getModulePath()}-description";
+	}
+
+	/**
 	 * Get final module description, after hooks have had a chance to tweak it as
 	 * needed.
 	 *
@@ -1940,7 +1960,7 @@ abstract class ApiBase extends ContextSource {
 			$desc = (string)$desc;
 		}
 
-		$msg = $this->msg( "apihelp-{$this->getModulePath()}-description", array(
+		$msg = ApiBase::makeMessage( $this->getDescriptionMessage(), $this->getContext(), array(
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
@@ -2424,7 +2444,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return array|bool False on no parameter descriptions
 	 */
 	protected function getParamDescription() {
-		return false;
+		return array();
 	}
 
 	/**

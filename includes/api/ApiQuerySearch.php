@@ -303,7 +303,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
-			'offset' => 0,
+			'offset' => array(
+				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -328,47 +331,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		return $params;
 	}
 
-	public function getParamDescription() {
-		$descriptions = array(
-			'search' => 'Search for all page titles (or content) that has this value',
-			'namespace' => 'The namespace(s) to enumerate',
-			'what' => 'Search inside the text or titles',
-			'info' => 'What metadata to return',
-			'prop' => array(
-				'What properties to return',
-				' size             - Adds the size of the page in bytes',
-				' wordcount        - Adds the word count of the page',
-				' timestamp        - Adds the timestamp of when the page was last edited',
-				' score            - DEPRECATED and IGNORED',
-				' snippet          - Adds a parsed snippet of the page',
-				' titlesnippet     - Adds a parsed snippet of the page title',
-				' redirectsnippet  - Adds a parsed snippet of the redirect title',
-				' redirecttitle    - Adds the title of the matching redirect',
-				' sectionsnippet   - Adds a parsed snippet of the matching section title',
-				' sectiontitle     - Adds the title of the matching section',
-				' hasrelated       - DEPRECATED and IGNORED',
-			),
-			'offset' => 'Use this value to continue paging (return by query)',
-			'limit' => 'How many total pages to return',
-			'interwiki' => 'Include interwiki results in the search, if available'
-		);
-
-		if ( count( SearchEngine::getSearchTypes() ) > 1 ) {
-			$descriptions['backend'] = 'Which search backend to use, if not the default';
-		}
-
-		return $descriptions;
-	}
-
-	public function getDescription() {
-		return 'Perform a full text search.';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=query&list=search&srsearch=meaning',
-			'api.php?action=query&list=search&srwhat=text&srsearch=meaning',
-			'api.php?action=query&generator=search&gsrsearch=meaning&prop=info',
+			'action=query&list=search&srsearch=meaning'
+				=> 'apihelp-query+search-example-simple',
+			'action=query&list=search&srwhat=text&srsearch=meaning'
+				=> 'apihelp-query+search-example-text',
+			'action=query&generator=search&gsrsearch=meaning&prop=info'
+				=> 'apihelp-query+search-example-generator',
 		);
 	}
 

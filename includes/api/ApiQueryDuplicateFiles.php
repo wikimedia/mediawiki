@@ -167,7 +167,9 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'dir' => array(
 				ApiBase::PARAM_DFLT => 'ascending',
 				ApiBase::PARAM_TYPE => array(
@@ -179,23 +181,12 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'limit' => 'How many duplicate files to return',
-			'continue' => 'When more results are available, use this to continue',
-			'dir' => 'The direction in which to list',
-			'localonly' => 'Look only for files in the local repository',
-		);
-	}
-
-	public function getDescription() {
-		return 'List all files that are duplicates of the given file(s) based on hash values.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&titles=File:Albert_Einstein_Head.jpg&prop=duplicatefiles',
-			'api.php?action=query&generator=allimages&prop=duplicatefiles',
+			'action=query&titles=File:Albert_Einstein_Head.jpg&prop=duplicatefiles'
+				=> 'apihelp-query+duplicatefiles-example-simple',
+			'action=query&generator=allimages&prop=duplicatefiles'
+				=> 'apihelp-query+duplicatefiles-example-generated',
 		);
 	}
 

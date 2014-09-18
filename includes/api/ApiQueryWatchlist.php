@@ -455,7 +455,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => array(
 					'newer',
 					'older'
-				)
+				),
+				ApiHelp::PARAM_HELP_MSG => 'api-help-param-direction',
 			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -512,67 +513,26 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string'
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
+	public function getExamplesMessages() {
 		return array(
-			'allrev' => 'Include multiple revisions of the same page within given timeframe',
-			'start' => 'The timestamp to start enumerating from',
-			'end' => 'The timestamp to end enumerating',
-			'namespace' => 'Filter changes to only the given namespace(s)',
-			'user' => 'Only list changes by this user',
-			'excludeuser' => 'Don\'t list changes by this user',
-			'dir' => $this->getDirectionDescription( $p ),
-			'limit' => 'How many total results to return per request',
-			'prop' => array(
-				'Which additional items to get (non-generator mode only).',
-				' ids                    - Adds revision ids and page ids',
-				' title                  - Adds title of the page',
-				' flags                  - Adds flags for the edit',
-				' user                   - Adds the user who made the edit',
-				' userid                 - Adds user id of whom made the edit',
-				' comment                - Adds comment of the edit',
-				' parsedcomment          - Adds parsed comment of the edit',
-				' timestamp              - Adds timestamp of the edit',
-				' patrol                 - Tags edits that are patrolled',
-				' sizes                  - Adds the old and new lengths of the page',
-				' notificationtimestamp  - Adds timestamp of when the user was last notified about the edit',
-				' loginfo                - Adds log information where appropriate',
-			),
-			'show' => array(
-				'Show only items that meet this criteria.',
-				"For example, to see only minor edits done by logged-in users, set {$p}show=minor|!anon"
-			),
-			'type' => array(
-				'Which types of changes to show',
-				' edit           - Regular page edits',
-				' external       - External changes',
-				' new            - Page creations',
-				' log            - Log entries',
-			),
-			'owner' => 'The name of the user whose watchlist you\'d like to access',
-			'token' => 'Give a security token (settable in preferences) to ' .
-				'allow access to another user\'s watchlist',
-			'continue' => 'When more results are available, use this to continue',
-		);
-	}
-
-	public function getDescription() {
-		return "Get all recent changes to pages in the logged in user's watchlist.";
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=watchlist',
-			'api.php?action=query&list=watchlist&wlprop=ids|title|timestamp|user|comment',
-			'api.php?action=query&list=watchlist&wlallrev=&wlprop=ids|title|timestamp|user|comment',
-			'api.php?action=query&generator=watchlist&prop=info',
-			'api.php?action=query&generator=watchlist&gwlallrev=&prop=revisions&rvprop=timestamp|user',
-			'api.php?action=query&list=watchlist&wlowner=Bob_Smith&wltoken=123ABC'
+			'action=query&list=watchlist'
+				=> 'apihelp-query+watchlist-example-simple',
+			'action=query&list=watchlist&wlprop=ids|title|timestamp|user|comment'
+				=> 'apihelp-query+watchlist-example-props',
+			'action=query&list=watchlist&wlallrev=&wlprop=ids|title|timestamp|user|comment'
+				=> 'apihelp-query+watchlist-example-allrev',
+			'action=query&generator=watchlist&prop=info'
+				=> 'apihelp-query+watchlist-example-generator',
+			'action=query&generator=watchlist&gwlallrev=&prop=revisions&rvprop=timestamp|user'
+				=> 'apihelp-query+watchlist-example-generator-rev',
+			'action=query&list=watchlist&wlowner=Example&wltoken=123ABC'
+				=> 'apihelp-query+watchlist-example-wlowner',
 		);
 	}
 

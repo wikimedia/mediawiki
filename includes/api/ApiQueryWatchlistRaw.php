@@ -131,7 +131,9 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		return array(
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace'
@@ -168,35 +170,17 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 					'ascending',
 					'descending'
 				),
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			),
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'continue' => 'When more results are available, use this to continue',
-			'namespace' => 'Only list pages in the given namespace(s)',
-			'limit' => 'How many total results to return per request',
-			'prop' => array(
-				'Which additional properties to get (non-generator mode only)',
-				' changed  - Adds timestamp of when the user was last notified about the edit',
-			),
-			'show' => 'Only list items that meet these criteria',
-			'owner' => 'The name of the user whose watchlist you\'d like to access',
-			'token' => 'Give a security token (settable in preferences) to allow ' .
-				'access to another user\'s watchlist',
-			'dir' => 'Direction to sort the titles and namespaces in',
-		);
-	}
-
-	public function getDescription() {
-		return "Get all pages on the logged in user's watchlist.";
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=watchlistraw',
-			'api.php?action=query&generator=watchlistraw&gwrshow=changed&prop=revisions',
+			'action=query&list=watchlistraw'
+				=> 'apihelp-query+watchlistraw-example-simple',
+			'action=query&generator=watchlistraw&gwrshow=changed&prop=info'
+				=> 'apihelp-query+watchlistraw-example-generator',
 		);
 	}
 
