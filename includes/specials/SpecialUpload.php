@@ -1142,6 +1142,7 @@ class UploadForm extends HTMLForm {
 			'wgStrictFileExtensions' => $config->get( 'StrictFileExtensions' ),
 			'wgCapitalizeUploads' => MWNamespace::isCapitalized( NS_FILE ),
 			'wgMaxUploadSize' => $this->mMaxUploadSize,
+			'wgFileCanRotate' => SpecialUpload::rotationEnabled(),
 		);
 
 		$out = $this->getOutput();
