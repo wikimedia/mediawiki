@@ -12,7 +12,7 @@ class IPSetTest extends MediaWikiTestCase {
 	 * config is an array constructor argument for IPSet, and the tests are
 	 * an array of IP => expected (boolean) result against the config dataset.
 	 */
-	public function provider() {
+	public static function provideIPSets() {
 		return array(
 			array(
 				'old_list_subset',
@@ -240,7 +240,7 @@ class IPSetTest extends MediaWikiTestCase {
 	 * Validates IPSet loading and matching code
 	 *
 	 * @covers IPSet
-	 * @dataProvider provider
+	 * @dataProvider provideIPSets
 	 */
 	public function testIPSet( $desc, array $cfg, array $tests ) {
 		$ipset = new IPSet( $cfg );

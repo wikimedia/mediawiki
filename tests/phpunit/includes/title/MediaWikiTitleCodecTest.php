@@ -85,7 +85,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		return new MediaWikiTitleCodec( $lang, $gender );
 	}
 
-	public function provideFormat() {
+	public static function provideFormat() {
 		return array(
 			array( NS_MAIN, 'Foo_Bar', '', 'en', 'Foo Bar' ),
 			array( NS_USER, 'Hansi_Maier', 'stuff_and_so_on', 'en', 'User:Hansi Maier#stuff and so on' ),
@@ -129,7 +129,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		$this->assertEquals( $normalized, $actual2, 'normalized after round trip' );
 	}
 
-	public function provideGetText() {
+	public static function provideGetText() {
 		return array(
 			array( NS_MAIN, 'Foo_Bar', '', 'en', 'Foo Bar' ),
 			array( NS_USER, 'Hansi_Maier', 'stuff_and_so_on', 'en', 'Hansi Maier' ),
@@ -148,7 +148,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideGetPrefixedText() {
+	public static function provideGetPrefixedText() {
 		return array(
 			array( NS_MAIN, 'Foo_Bar', '', 'en', 'Foo Bar' ),
 			array( NS_USER, 'Hansi_Maier', 'stuff_and_so_on', 'en', 'User:Hansi Maier' ),
@@ -174,7 +174,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideGetFullText() {
+	public static function provideGetFullText() {
 		return array(
 			array( NS_MAIN, 'Foo_Bar', '', 'en', 'Foo Bar' ),
 			array( NS_USER, 'Hansi_Maier', 'stuff_and_so_on', 'en', 'User:Hansi Maier#stuff and so on' ),
@@ -196,7 +196,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideParseTitle() {
+	public static function provideParseTitle() {
 		//TODO: test capitalization and trimming
 		//TODO: test unicode normalization
 
@@ -281,7 +281,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		$this->assertEquals( $title, $actual );
 	}
 
-	public function provideParseTitle_invalid() {
+	public static function provideParseTitle_invalid() {
 		//TODO: test unicode errors
 
 		return array(
@@ -353,7 +353,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		$codec->parseTitle( $text, NS_MAIN );
 	}
 
-	public function provideGetNamespaceName() {
+	public static function provideGetNamespaceName() {
 		return array(
 			array( NS_MAIN, 'Foo', 'en', '' ),
 			array( NS_USER, 'Foo', 'en', 'User' ),

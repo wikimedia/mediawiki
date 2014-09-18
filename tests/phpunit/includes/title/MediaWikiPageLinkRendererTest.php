@@ -53,7 +53,7 @@ class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 		return $genderCache;
 	}
 
-	public function provideGetPageUrl() {
+	public static function provideGetPageUrl() {
 		return array(
 			array(
 				new TitleValue( NS_MAIN, 'Foo_Bar' ),
@@ -86,7 +86,7 @@ class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 		$this->assertEquals( $url, $actual );
 	}
 
-	public function provideRenderHtmlLink() {
+	public static function provideRenderHtmlLink() {
 		return array(
 			array(
 				new TitleValue( NS_MAIN, 'Foo_Bar' ),
@@ -128,7 +128,7 @@ class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 		$this->assertRegExp( $pattern, $actual );
 	}
 
-	public function provideRenderWikitextLink() {
+	public static function provideRenderWikitextLink() {
 		return array(
 			array(
 				new TitleValue( NS_MAIN, 'Foo_Bar' ),

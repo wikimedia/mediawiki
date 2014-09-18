@@ -25,7 +25,7 @@ class TidyTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $text, $msg );
 	}
 
-	public function provideTestWrapping() {
+	public static function provideTestWrapping() {
 		$testMathML = <<<'MathML'
 <math xmlns="http://www.w3.org/1998/Math/MathML">
     <mrow>

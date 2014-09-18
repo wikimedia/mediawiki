@@ -38,7 +38,7 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function provideGet() {
+	public static function provideGet() {
 		$set = array(
 			'wgSomething' => 'default1',
 			'wgFoo' => 'default2',

@@ -22,7 +22,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$this->assertEquals( $expected, $module->isKnownEmpty( $context ) );
 	}
 
-	public function provideIsKnownEmpty() {
+	public static function provideIsKnownEmpty() {
 		return array(
 			// No valid pages
 			array( array(), 'test1', true ),

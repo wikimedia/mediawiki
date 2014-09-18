@@ -39,7 +39,7 @@ class TitleTest extends MediaWikiTestCase {
 		}
 	}
 
-	public function provideValidSecureAndSplit() {
+	public static function provideValidSecureAndSplit() {
 		return array(
 			array( 'Sandbox' ),
 			array( 'A "B"' ),
@@ -76,7 +76,7 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function provideInvalidSecureAndSplit() {
+	public static function provideInvalidSecureAndSplit() {
 		return array(
 			array( '' ),
 			array( ':' ),
@@ -288,10 +288,7 @@ class TitleTest extends MediaWikiTestCase {
 		}
 	}
 
-	/**
-	 * Provides test parameter values for testIsValidMoveOperation()
-	 */
-	public function dataTestIsValidMoveOperation() {
+	public static function provideTestIsValidMoveOperation() {
 		return array(
 			array( 'Test', 'Test', 'selfmove' ),
 			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
@@ -413,13 +410,6 @@ class TitleTest extends MediaWikiTestCase {
 		}
 
 		return $result;
-	}
-
-	public static function provideTestIsValidMoveOperation() {
-		return array(
-			array( 'Test', 'Test', 'selfmove' ),
-			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
-		);
 	}
 
 	/**
@@ -548,7 +538,7 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function provideNewFromTitleValue() {
+	public static function provideNewFromTitleValue() {
 		return array(
 			array( new TitleValue( NS_MAIN, 'Foo' ) ),
 			array( new TitleValue( NS_MAIN, 'Foo', 'bar' ) ),
@@ -568,7 +558,7 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( $value->getFragment(), $title->getFragment() );
 	}
 
-	public function provideGetTitleValue() {
+	public static function provideGetTitleValue() {
 		return array(
 			array( 'Foo' ),
 			array( 'Foo#bar' ),
@@ -589,7 +579,7 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( $title->getFragment(), $value->getFragment() );
 	}
 
-	public function provideGetFragment() {
+	public static function provideGetFragment() {
 		return array(
 			array( 'Foo', '' ),
 			array( 'Foo#bar', 'bar' ),
@@ -629,7 +619,7 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( $isKnown, $title->isAlwaysKnown() );
 	}
 
-	public function provideIsAlwaysKnown() {
+	public static function provideIsAlwaysKnown() {
 		return array(
 			array( 'Some nonexistent page', false ),
 			array( 'UTPage', false ),

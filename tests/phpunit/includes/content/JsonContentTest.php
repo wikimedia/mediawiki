@@ -15,7 +15,7 @@ class JsonContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $obj->getJsonData() );
 	}
 
-	public function provideValidConstruction() {
+	public static function provideValidConstruction() {
 		return array(
 			array( 'foo', CONTENT_MODEL_JSON, false, null ),
 			array( FormatJson::encode( array() ), CONTENT_MODEL_JSON, true, array() ),
@@ -31,7 +31,7 @@ class JsonContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( FormatJson::encode( $data, true ), $obj->beautifyJSON() );
 	}
 
-	public function provideDataToEncode() {
+	public static function provideDataToEncode() {
 		return array(
 			array( array() ),
 			array( array( 'foo' ) ),
@@ -74,11 +74,10 @@ class JsonContentTest extends MediaWikiLangTestCase {
 		$obj = new JsonContent( FormatJson::encode( $data ) );
 		$parserOutput = $obj->getParserOutput( $this->getMockTitle(), null, null, true );
 		$this->assertInstanceOf( 'ParserOutput', $parserOutput );
-//		var_dump( $parserOutput->getText(), "\n" );
 		$this->assertEquals( $expected, $parserOutput->getText() );
 	}
 
-	public function provideDataAndParserText() {
+	public static function provideDataAndParserText() {
 		return array(
 			array(
 				array(),

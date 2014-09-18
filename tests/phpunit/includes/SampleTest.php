@@ -47,7 +47,7 @@ class TestSample extends MediaWikiLangTestCase {
 	 * If you want to run a the same test with a variety of data, use a data provider.
 	 * see: http://www.phpunit.de/manual/3.4/en/writing-tests-for-phpunit.html
 	 */
-	public function provideTitles() {
+	public static function provideTitles() {
 		return array(
 			array( 'Text', NS_MEDIA, 'Media:Text' ),
 			array( 'Text', null, 'Text' ),

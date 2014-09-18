@@ -118,7 +118,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideGetIndependentMetaArray() {
+	public static function provideGetIndependentMetaArray() {
 		return array(
 			array( 'rgb-na-png.png', array() ),
 			array( 'xmp.png',

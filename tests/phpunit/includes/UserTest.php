@@ -338,7 +338,7 @@ class UserTest extends MediaWikiTestCase {
 		}
 	}
 
-	public function provideGetCanonicalName() {
+	public static function provideGetCanonicalName() {
 		return array(
 			array( ' trailing space ', array( 'creatable' => 'Trailing space' ), 'Trailing spaces' ),
 			// @todo FIXME: Maybe the createable name should be 'Talk:Username' or false to reject?
