@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (24ac83a472)
+ * OOjs UI v0.1.0-pre (ec785c2c64)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-17T18:23:50Z
+ * Date: 2014-09-18T01:30:17Z
  */
 ( function ( OO ) {
 
@@ -2293,7 +2293,7 @@ OO.ui.Dialog.prototype.getActionProcess = function ( action ) {
  * @inheritdoc
  *
  * @param {Object} [data] Dialog opening data
- * @param {jQuery|string|Function|null} [data.label] Dialog label, omit to use #static-label
+ * @param {jQuery|string|Function|null} [data.title] Dialog title, omit to use #static-title
  * @param {Object[]} [data.actions] List of OO.ui.ActionWidget configuration options for each
  *   action item, omit to use #static-actions
  */
@@ -11097,8 +11097,18 @@ OO.ui.TextInputMenuWidget.prototype.toggle = function ( visible ) {
 
 	var change = visible !== this.isVisible();
 
+	if ( change && visible ) {
+		// Make sure the width is set before the parent method runs.
+		// After this we have to call this.position(); again to actually
+		// position ourselves correctly.
+		this.position();
+	}
+
+	// Parent method
+	OO.ui.TextInputMenuWidget.super.prototype.toggle.call( this, visible );
+
 	if ( change ) {
-		if ( visible ) {
+		if ( this.isVisible() ) {
 			this.position();
 			this.$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
 		} else {
@@ -11106,8 +11116,7 @@ OO.ui.TextInputMenuWidget.prototype.toggle = function ( visible ) {
 		}
 	}
 
-	// Parent method
-	return OO.ui.TextInputMenuWidget.super.prototype.toggle.call( this, visible );
+	return this;
 };
 
 /**
