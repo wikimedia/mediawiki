@@ -137,6 +137,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Flest_versioner' ),
 	'Movepage'                  => array( 'Flytta' ),
 	'Mycontributions'           => array( 'Mina_bidrag' ),
+	'MyLanguage'                => array( 'Mitt_språk' ),
 	'Mypage'                    => array( 'Min_sida' ),
 	'Mytalk'                    => array( 'Min_diskussion' ),
 	'Myuploads'                 => array( 'Mina_uppladdningar' ),

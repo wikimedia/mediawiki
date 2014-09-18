@@ -64,6 +64,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'ܬܢܝ̈ܬܐ_ܝܬܝܪ_ܡܢ_ܟܠ' ),
 	'Movepage'                  => array( 'ܫܢܝ_ܦܐܬܐ' ),
 	'Mycontributions'           => array( 'ܫܘܬܦܘ̈ܬܝ' ),
+	'MyLanguage'                => array( 'ܠܫܢܐ_ܕܝܠܝ' ),
 	'Mypage'                    => array( 'ܦܐܬܐ_ܕܝܠܝ' ),
 	'Mytalk'                    => array( 'ܡܡܠܠܐ_ܕܝܠܝ' ),
 	'Myuploads'                 => array( 'ܐܣܩ̈ܬܐ_ܕܝܠܝ' ),

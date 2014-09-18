@@ -145,6 +145,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'EnÇokRevizyon' ),
 	'Movepage'                  => array( 'SayfaTaşı' ),
 	'Mycontributions'           => array( 'Katkılarım' ),
+	'MyLanguage'                => array( 'Dilim', 'BenimDilim' ),
 	'Mypage'                    => array( 'Sayfam', 'BenimSayfam', 'KullanıcıSayfam' ),
 	'Mytalk'                    => array( 'MesajSayfam', 'İletiSayfam' ),
 	'Myuploads'                 => array( 'Yüklemelerim' ),

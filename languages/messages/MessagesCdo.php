@@ -80,6 +80,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( '最稠其版本' ),
 	'Movepage'                  => array( '移動其頁面' ),
 	'Mycontributions'           => array( '我其貢獻' ),
+	'MyLanguage'                => array( '我其語言' ),
 	'Mypage'                    => array( '我其頁面' ),
 	'Mytalk'                    => array( '我其討論' ),
 	'Myuploads'                 => array( '我其上傳' ),

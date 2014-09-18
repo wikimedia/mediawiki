@@ -143,6 +143,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( '最多版本' ),
 	'Movepage'                  => array( '搬頁' ),
 	'Mycontributions'           => array( '我嘅貢獻' ),
+	'MyLanguage'                => array( '我個話' ),
 	'Mypage'                    => array( '我嘅頁面' ),
 	'Mytalk'                    => array( '我嘅傾偈' ),
 	'Myuploads'                 => array( '我嘅上傳' ),

@@ -102,6 +102,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'บทความที่ถูกแก้ไขมากที่สุด' ),
 	'Movepage'                  => array( 'เปลี่ยนทาง' ),
 	'Mycontributions'           => array( 'เรื่องที่ฉันเขียน' ),
+	'MyLanguage'                => array( 'ภาษาของฉัน' ),
 	'Mypage'                    => array( 'หน้าของฉัน' ),
 	'Mytalk'                    => array( 'หน้าพูดคุยของฉัน' ),
 	'Myuploads'                 => array( 'ไฟล์ที่อัปโหลดของฉัน' ),

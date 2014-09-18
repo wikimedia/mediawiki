@@ -73,6 +73,7 @@ $specialPageAliases = array(
 	'Longpages'                 => array( 'გრძელი_გვერდები' ),
 	'Movepage'                  => array( 'გვერდის_გადატანა' ),
 	'Mycontributions'           => array( 'ჩემი_წვლილი' ),
+	'MyLanguage'                => array( 'ჩემი_ენა' ),
 	'Mypage'                    => array( 'ჩემი_გვერდი' ),
 	'Mytalk'                    => array( 'ჩენი_განხილვა' ),
 	'Myuploads'                 => array( 'ჩემი_ატვირთვები' ),
