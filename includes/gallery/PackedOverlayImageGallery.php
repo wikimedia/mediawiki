@@ -50,7 +50,7 @@ class PackedOverlayImageGallery extends PackedImageGallery {
 
 		return "\n\t\t\t" . $outerWrapper . '<div class="gallerytext">' . "\n"
 			. $galleryText
-			. "\n\t\t\t</div>";
+			. "\n\t\t\t</div></div>";
 	}
 }
 
