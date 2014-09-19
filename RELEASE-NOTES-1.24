@@ -183,6 +183,8 @@ production.
 * Added HTMLAutoCompleteSelectField.
 * Added a new hook, "SkinPreloadExistence", to allow extensions to add titles to
   link existence cache before the page is rendered.
+* Added a new hook, "ContentAlterParserOutput", to allow extensions to modify the
+  parser output for a content object before links update.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
