@@ -1300,6 +1300,10 @@ return array(
 		'dependencies' => array(
 			'mediawiki.language',
 		),
+		'messages' => array(
+			'prefswarning-warning',
+			'saveprefs',
+		),
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',

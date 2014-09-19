@@ -1540,7 +1540,11 @@ class PreferencesForm extends HTMLForm {
 	 */
 	function getButtons() {
 		global $wgUseMediaWikiUIEverywhere;
-		$attrs = $wgUseMediaWikiUIEverywhere ? array( 'class' => 'mw-ui-button mw-ui-quiet' ) : array();
+
+		$attrs = array( 'id' => 'mw-prefs-restoreprefs' );
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			$attrs['class'] = 'mw-ui-button mw-ui-quiet';
+		}
 
 		if ( !$this->getModifiedUser()->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
 			return '';
