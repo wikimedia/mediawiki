@@ -912,6 +912,18 @@ generation of HTML may be skipped, but other information should still be present
 ParserOutput object.
 &$output: ParserOutput, to manipulate or replace
 
+'ContentAlterParserOutput': Modify parser output for a given content object.
+Called by WikitextContent::getParserOutput after parsing has finished. Other
+Content classes might also call this hook if they do something sufficiently similar
+to wikitext parsing.
+ContentAlterParserOutput can be used for changes that depend on the result of the
+parsing but have to be done before LinksUpdate is called (such as adding tracking
+categories based on the rendered HTML).
+$content: The Content to render
+$title: Title of the page, as context
+$parser: Parser object used for producing the ParseOutput
+$parserOutput: ParserOutput to manipulate
+
 'ConvertContent': Called by AbstractContent::convert when a conversion to another
 content model is requested.
 $content: The Content object to be converted.
