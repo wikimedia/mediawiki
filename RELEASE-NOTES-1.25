@@ -13,6 +13,8 @@ production.
 === New features in 1.25 ===
 * (bug 58139) ResourceLoaderFileModule now supports language fallback
   for 'languageScripts'.
+* Added a new hook, "ContentAlterParserOutput", to allow extensions to modify the
+  parser output for a content object before links update.
 
 === Bug fixes in 1.25 ===
 
