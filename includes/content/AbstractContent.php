@@ -491,6 +491,8 @@ abstract class AbstractContent implements Content {
 			$options->setRedirectTarget( $oldRedir );
 		}
 
+		wfRunHooks( 'ContentAlterParserOutput', array( $this, $title, $po ) );
+
 		return $po;
 	}
 
