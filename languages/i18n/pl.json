@@ -566,7 +566,6 @@
 	"passwordreset-emailsent-capture": "Wyświetlony poniżej e‐mail pozwalający na zresetowanie hasła został wysłany.",
 	"passwordreset-emailerror-capture": "Poniżej wyświetlony e‐mail pozwalający na zresetowanie hasła został wygenerowany, ale nie udało się wysłać go do {{GENDER:$2|użytkownika|użytkowniczki}}: $1",
 	"changeemail": "Zmiana adresu e‐mail",
-	"changeemail-header": "Zmiana adresu e‐mail",
 	"changeemail-text": "Wypełnij formularz, jeśli chcesz zmienić swój adres poczty elektronicznej. Będziesz musiał wprowadzić hasło, aby potwierdzić tę zmianę.",
 	"changeemail-no-info": "Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.",
 	"changeemail-oldemail": "Obecny adres e‐mail:",
@@ -574,7 +573,6 @@
 	"changeemail-none": "(brak)",
 	"changeemail-password": "Twoje hasło:",
 	"changeemail-submit": "Zapisz nowy",
-	"changeemail-cancel": "Anuluj",
 	"changeemail-throttled": "Zbyt wiele razy próbowałeś zalogować się na to konto.\nOdczekaj $1, zanim ponowisz próbę.",
 	"resettokens": "Resetowanie tokenów",
 	"resettokens-text": "Na tej stronie możesz zresetować tokeny, które umożliwiają dostęp do pewnych prywatnych danych związanych z Twoim kontem.\n\nNależy to zrobić, jeśli ktoś je poznał lub zdobył hasło do Twojego konta.",
@@ -3207,5 +3205,15 @@
 	"log-description-pagelang": "Rejestr zmian języków przypisanych do poszczególnych stron",
 	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|zmienił|zmieniła}} język strony $3 z „$4” na „$5”.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (włączone)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''wyłączone''')"
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''wyłączone''')",
+	"mediastatistics-table-mimetype": "Typ MIME",
+	"mediastatistics-table-count": "Liczba plików",
+	"mediastatistics-table-totalbytes": "Łączny rozmiar",
+	"mediastatistics-header-unknown": "Nieznane",
+	"mediastatistics-header-bitmap": "Obrazy bitmapowe",
+	"mediastatistics-header-drawing": "Rysunki (obrazy wektorowe)",
+	"mediastatistics-header-audio": "Audio",
+	"mediastatistics-header-video": "Filmy",
+	"mediastatistics-header-executable": "Pliki wykonywalne",
+	"mediastatistics-header-archive": "Formaty skompresowane"
 }
