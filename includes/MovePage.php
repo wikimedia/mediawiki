@@ -43,6 +43,90 @@ class MovePage {
 	}
 
 	/**
+	 * Does various sanity checks that the move is
+	 * valid. Only things based on the two titles
+	 * should be checked here.
+	 *
+	 * @return Status
+	 */
+	public function isValidMove() {
+		global $wgContentHandlerUseDB;
+		$status = new Status();
+
+		if ( $this->oldTitle->equals( $this->newTitle ) ) {
+			$status->fatal( 'selfmove' );
+		}
+		if ( !$this->oldTitle->isMovable() ) {
+			$status->fatal( 'immobile-source-namespace', $this->oldTitle->getNsText() );
+		}
+		if ( $this->newTitle->isExternal() ) {
+			$status->fatal( 'immobile-target-namespace-iw' );
+		}
+		if ( !$this->newTitle->isMovable() ) {
+			$status->fatal( 'immobile-target-namespace', $this->newTitle->getNsText() );
+		}
+
+		$oldid = $this->oldTitle->getArticleID();
+
+		if ( strlen( $this->newTitle->getDBkey() ) < 1 ) {
+			$errors[] = array( 'articleexists' );
+		}
+		if (
+			( $this->oldTitle->getDBkey() == '' ) ||
+			( !$oldid ) ||
+			( $this->newTitle->getDBkey() == '' )
+		) {
+			$errors[] = array( 'badarticleerror' );
+		}
+
+		// Content model checks
+		if ( !$wgContentHandlerUseDB &&
+			$this->oldTitle->getContentModel() !== $this->newTitle->getContentModel() ) {
+			// can't move a page if that would change the page's content model
+			$status->fatal(
+				'bad-target-model',
+				ContentHandler::getLocalizedName( $this->oldTitle->getContentModel() ),
+				ContentHandler::getLocalizedName( $this->newTitle->getContentModel() )
+			);
+		}
+
+		// Image-specific checks
+		if ( $this->oldTitle->inNamespace( NS_FILE ) ) {
+			$status->merge( $this->isValidFileMove() );
+		}
+
+		if ( $this->newTitle->inNamespace( NS_FILE ) && !$this->oldTitle->inNamespace( NS_FILE ) ) {
+			$status->fatal( 'nonfile-cannot-move-to-file' );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * Sanity checks for when a file is being moved
+	 *
+	 * @return Status
+	 */
+	protected function isValidFileMove() {
+		$status = new Status();
+		$file = wfLocalFile( $this->oldTitle );
+		if ( $file->exists() ) {
+			if ( $this->newTitle->getText() != wfStripIllegalFilenameChars( $this->newTitle->getText() ) ) {
+				$status->fatal( 'imageinvalidfilename' );
+			}
+			if ( !File::checkExtensionCompatibility( $file, $this->newTitle->getDBkey() ) ) {
+				$status->fatal( 'imagetypemismatch' );
+			}
+		}
+
+		if ( !$this->newTitle->inNamespace( NS_FILE ) ) {
+			$status->fatal( 'imagenocrossnamespace' );
+		}
+
+		return $status;
+	}
+
+	/**
 	 * @param User $user
 	 * @param string $reason
 	 * @param bool $createRedirect
