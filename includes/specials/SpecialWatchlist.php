@@ -347,12 +347,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			return;
 		}
 
-		$dbr->dataSeek( $rows, 0 );
+		$rows->seek( 0 );
 
 		$list = ChangesList::newFromContext( $this->getContext() );
 		$list->setWatchlistDivs();
 		$list->initChangesListRows( $rows );
-		$dbr->dataSeek( $rows, 0 );
+		$rows->seek( 0 );
 
 		$s = $list->beginRecentChangesList();
 		$counter = 1;
