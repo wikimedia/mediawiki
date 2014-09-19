@@ -548,7 +548,6 @@
 	"changeemail-none": "(none)",
 	"changeemail-password": "Your {{SITENAME}} password:",
 	"changeemail-submit": "Change email",
-	"changeemail-cancel": "Cancel",
 	"changeemail-throttled": "You have made too many login attempts.\nPlease wait $1 before trying again.",
 	"resettokens": "Reset tokens",
 	"resettokens-summary": "",
