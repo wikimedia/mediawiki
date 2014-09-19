@@ -87,8 +87,10 @@ class JobRunner {
 		$jobsRun = 0;
 		$timeMsTotal = 0;
 		$flags = JobQueueGroup::USE_CACHE;
+		$checkPeriod = 5.0; // seconds
+		$checkPhase = mt_rand( 0, 1000 * $checkPeriod ) / 1000; // avoid stampedes
 		$startTime = microtime( true ); // time since jobs started running
-		$lastTime = microtime( true ); // time since last slave check
+		$lastTime = microtime( true ) - $checkPhase; // time since last slave check
 		do {
 			// Sync the persistent backoffs with concurrent runners
 			$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
