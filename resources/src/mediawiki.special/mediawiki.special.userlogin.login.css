@@ -6,6 +6,10 @@
 	background: url(images/glyph-people-large.png) no-repeat 50%;
 	margin: 0 auto;
 	padding-top: 4em;
+}
+
+#mw-createaccount-cta,
+#mw-createaccount-another {
 	font-size: 0.9em;
 	font-weight: normal;
 	text-align: center;
