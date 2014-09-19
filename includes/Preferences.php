@@ -706,6 +706,7 @@ class Preferences {
 			'options' => $tzOptions,
 			'default' => $tzSetting,
 			'size' => 20,
+			'maxlength' => 6,
 			'section' => 'rendering/timeoffset',
 		);
 	}
