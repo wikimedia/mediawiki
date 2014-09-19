@@ -76,6 +76,7 @@ abstract class QueryPage extends SpecialPage {
 				array( 'ListredirectsPage', 'Listredirects' ),
 				array( 'LonelyPagesPage', 'Lonelypages' ),
 				array( 'LongPagesPage', 'Longpages' ),
+				array( 'MediaStatisticsPage', 'MediaStatistics' ),
 				array( 'MIMEsearchPage', 'MIMEsearch' ),
 				array( 'MostcategoriesPage', 'Mostcategories' ),
 				array( 'MostimagesPage', 'Mostimages' ),
