@@ -223,6 +223,7 @@ class TextContent extends AbstractContent {
 		if ( in_array( $this->getModel(), $wgTextModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
 			$output = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
+			wfRunHooks( 'ContentAlterParserOutput', array( $this, $title, $wgParser, $output ) );
 		}
 
 		if ( $generateHtml ) {

@@ -336,6 +336,7 @@ class WikitextContent extends TextContent {
 
 		list( $redir, $text ) = $this->getRedirectTargetAndText();
 		$output = $wgParser->parse( $text, $title, $options, true, true, $revId );
+		wfRunHooks( 'ContentAlterParserOutput', array( $this, $title, $wgParser, $output ) );
 
 		// Add redirect indicator at the top
 		if ( $redir ) {
