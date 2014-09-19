@@ -192,28 +192,26 @@ class SpecialPageFactory {
 	 * @return string[]
 	 */
 	public static function getNames() {
-		return array_keys( get_object_vars( self::getListObject() ) );
+		return array_keys( self::getPageList() );
 	}
 
 	/**
-	 * Get the special page list as an object, with each special page represented by a member
-	 * field in the object.
+	 * Get the special page list as an array
 	 *
 	 * @deprecated since 1.24, use getNames() instead.
-	 * @return object
+	 * @return array
 	 */
 	public static function getList() {
 		wfDeprecated( __FUNCTION__, '1.24' );
-		return self::getListObject();
+		return self::getPageList();
 	}
 
 	/**
-	 * Get the special page list as an object, with each special page represented by a member
-	 * field in the object.
+	 * Get the special page list as an array
 	 *
-	 * @return object
+	 * @return array
 	 */
-	private static function getListObject() {
+	private static function getPageList() {
 		global $wgSpecialPages;
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
@@ -256,8 +254,6 @@ class SpecialPageFactory {
 			// This hook can be used to remove undesired built-in special pages
 			wfRunHooks( 'SpecialPage_initList', array( &self::$list ) );
 
-			self::$list = (object)self::$list;
-
 			wfProfileOut( __METHOD__ );
 		}
 
@@ -277,8 +273,7 @@ class SpecialPageFactory {
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
 
-			// Objects are passed by reference by default, need to create a copy
-			$missingPages = clone self::getListObject();
+			$missingPages = self::getList();
 
 			self::$aliases = array();
 			// Check for $aliases being an array since Language::getSpecialPageAliases can return null
@@ -367,7 +362,8 @@ class SpecialPageFactory {
 	public static function exists( $name ) {
 		list( $title, /*...*/ ) = self::resolveAlias( $name );
 
-		return property_exists( self::getListObject(), $title );
+		$specialPageList = self::getPageList();
+		return isset( $specialPageList[$title] );
 	}
 
 	/**
@@ -378,8 +374,11 @@ class SpecialPageFactory {
 	 */
 	public static function getPage( $name ) {
 		list( $realName, /*...*/ ) = self::resolveAlias( $name );
-		if ( property_exists( self::getListObject(), $realName ) ) {
-			$rec = self::getListObject()->$realName;
+
+		$specialPageList = self::getPageList();
+
+		if ( isset( $specialPageList[$realName] ) ) {
+			$rec = $specialPageList[$realName];
 
 			if ( is_string( $rec ) ) {
 				$className = $rec;
@@ -427,7 +426,7 @@ class SpecialPageFactory {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		foreach ( self::getListObject() as $name => $rec ) {
+		foreach ( self::getPageList() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page ) { // not null
 				$page->setContext( RequestContext::getMain() );
@@ -449,7 +448,7 @@ class SpecialPageFactory {
 	 */
 	public static function getRegularPages() {
 		$pages = array();
-		foreach ( self::getListObject() as $name => $rec ) {
+		foreach ( self::getPageList() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page->isListed() && !$page->isRestricted() ) {
 				$pages[$name] = $page;
@@ -472,7 +471,7 @@ class SpecialPageFactory {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		foreach ( self::getListObject() as $name => $rec ) {
+		foreach ( self::getPageList() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if (
 				$page->isListed()
