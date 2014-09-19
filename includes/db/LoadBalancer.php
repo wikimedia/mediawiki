@@ -394,7 +394,9 @@ class LoadBalancer {
 	 * @return bool
 	 */
 	protected function doWait( $index, $open = false, $timeout = null ) {
-		# Find a connection to wait on
+		$close = false; // close the connection afterwards
+
+		# Find a connection to wait on, creating one if needed and allowed
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
 			if ( !$open ) {
@@ -408,6 +410,9 @@ class LoadBalancer {
 
 					return false;
 				}
+				// Avoid connection spam in waitForAll() when connections
+				// are made just for the sake of doing this lag check.
+				$close = true;
 			}
 		}
 
@@ -418,13 +423,17 @@ class LoadBalancer {
 		if ( $result == -1 || is_null( $result ) ) {
 			# Timed out waiting for slave, use master instead
 			wfDebug( __METHOD__ . ": Timed out waiting for slave #$index pos {$this->mWaitForPos}\n" );
-
-			return false;
+			$ok = false;
 		} else {
 			wfDebug( __METHOD__ . ": Done\n" );
-
-			return true;
+			$ok = true;
 		}
+
+		if ( $close ) {
+			$this->closeConnection( $conn );
+		}
+
+		return $ok;
 	}
 
 	/**
