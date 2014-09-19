@@ -731,6 +731,8 @@ class Language {
 	}
 
 	/**
+	 * @deprecated since 1.24, doesn't handle conflicting aliases. Use
+	 *   SpecialPageFactory::getLocalNameFor instead.
 	 * @param string $name
 	 * @return string
 	 */
