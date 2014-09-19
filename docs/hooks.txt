@@ -1376,6 +1376,10 @@ page history view, i.e. undo, rollback, etc.
 $rev: Revision object
 &$links: Array of HTML links
 
+'HTMLFileCache::useFileCache': Override whether a page should be cached in file
+cache.
+$context: An IContextSource object with information about the request being served.
+
 'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
 image insertion. You can skip the default logic entirely by returning false, or
 just modify a few things using call-by-reference.
