@@ -37,6 +37,11 @@ class UserloginTemplate extends BaseTemplate {
 	<?php } ?>
 	<div id="userloginForm">
 		<form name="userlogin" class="mw-ui-vform" method="post" action="<?php $this->text( 'action' ); ?>">
+			<?php if ( $this->data['loggedin'] ) { ?>
+				<div class="warningbox">
+					<?php echo $this->getMsg( 'userlogin-loggedin' )->params( $this->data['loggedinuser'] )->parse(); ?>
+				</div>
+			<?php } ?>
 			<section class="mw-form-header">
 				<?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
 			</section>
@@ -166,9 +171,15 @@ class UserloginTemplate extends BaseTemplate {
 			</div>
 
 			<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
-				<div id="mw-createaccount-cta">
-					<?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-progressive"><?php $this->msg( 'userlogin-joinproject' ); ?></a>
-				</div>
+				<?php if ( $this->data['loggedin'] ) { ?>
+					<div id="mw-createaccount-another">
+						<a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button"><?php $this->msg( 'userlogin-createanother' ); ?></a>
+					</div>
+				<?php } else { ?>
+					<div id="mw-createaccount-cta">
+						<?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-progressive"><?php $this->msg( 'userlogin-joinproject' ); ?></a>
+					</div>
+				<?php } ?>
 			<?php } ?>
 			<?php if ( $this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 			<?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>

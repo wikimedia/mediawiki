@@ -238,11 +238,19 @@ class LoginForm extends SpecialPage {
 		}
 		$this->setHeaders();
 
-		// In the case where the user is already logged in, do not show the login page.
-		// The use case scenario for this is when a user opens a large number of tabs, is
-		// redirected to the login page on all of them, and then logs in on one, expecting
-		// all the others to work properly.
-		if ( $this->mType !== 'signup' && !$this->mPosted && $this->getUser()->isLoggedIn() ) {
+		// In the case where the user is already logged in, and was redirected to the login form from a
+		// page that requires login, do not show the login page. The use case scenario for this is when
+		// a user opens a large number of tabs, is redirected to the login page on all of them, and then
+		// logs in on one, expecting all the others to work properly.
+		//
+		// However, do show the form if it was visited intentionally (no 'returnto' is present). People
+		// who often switch between several accounts have grown accustomed to this behavior.
+		if (
+			$this->mType !== 'signup' &&
+			!$this->mPosted &&
+			$this->getUser()->isLoggedIn() &&
+			( $this->mReturnTo || $this->mReturnToQuery )
+		) {
 			$this->successfulLogin();
 		}
 
@@ -1392,6 +1400,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
 		$template->set( 'stickhttps', (int)$this->mStickHTTPS );
 		$template->set( 'loggedin', $user->isLoggedIn() );
+		$template->set( 'loggedinuser', $user->getName() );
 
 		if ( $this->mType == 'signup' ) {
 			if ( !self::getCreateaccountToken() ) {
