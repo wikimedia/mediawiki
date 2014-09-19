@@ -84,11 +84,14 @@ class JobRunner {
 		$backoffDeltas = array(); // map of (type => seconds)
 		$wait = 'wait'; // block to read backoffs the first time
 
+		$checkPeriod = 5.0; // seconds
+		$checkPhase = mt_rand( 0, $checkPeriod ); // avoid stampedes
+		$sTime = microtime( true ); // time since jobs started running
+		$lastTime = microtime( true ) - $checkPhase; // time since last slave check
+
+		$flags = JobQueueGroup::USE_CACHE;
 		$jobsRun = 0; // counter
 		$timeMsTotal = 0;
-		$flags = JobQueueGroup::USE_CACHE;
-		$sTime = microtime( true ); // time since jobs started running
-		$lastTime = microtime( true ); // time since last slave check
 		do {
 			// Sync the persistent backoffs with concurrent runners
 			$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
