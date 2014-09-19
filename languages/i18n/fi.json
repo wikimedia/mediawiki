@@ -40,7 +40,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Syreeni",
-			"MrTapsa"
+			"MrTapsa",
+			"SMAUG"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -539,7 +540,6 @@
 	"passwordreset-emailsent-capture": "Salasanan uudistamisesta kertova sähköpostiviesti on lähetetty, ja se näkyy myös alla.",
 	"passwordreset-emailerror-capture": "Allaoleva sähköpostiviesti luotiin, mutta sen lähettäminen {{GENDER:$2|käyttäjälle}} epäonnistui: $1",
 	"changeemail": "Muuta sähköpostiosoitetta",
-	"changeemail-header": "Muuta tunnuksen sähköpostiosoite",
 	"changeemail-text": "Voit vaihtaa sähköpostiosoitteesi täyttämällä tämän lomakkeen. Muutoksen vahvistamiseen tarvitaan myös salasana.",
 	"changeemail-no-info": "Tämän sivun käyttö edellyttää sisäänkirjautumista.",
 	"changeemail-oldemail": "Nykyinen sähköpostiosoite:",
@@ -547,7 +547,6 @@
 	"changeemail-none": "(ei asetettu)",
 	"changeemail-password": "{{SITENAME}}-salasanasi:",
 	"changeemail-submit": "Muuta sähköpostiosoite",
-	"changeemail-cancel": "Peruuta",
 	"changeemail-throttled": "Olet tehnyt liian monta kirjautumisyritystä.\nOdota $1 ennen kuin yrität uudelleen.",
 	"resettokens": "Uudista avaimet",
 	"resettokens-text": "Tällä sivulla voit uudistaa avaimesi (''eng.'' reset tokens), jotka mahdollistavat pääsyn käyttäjätunnukseesi liittyviin tiettyihin yksityisiin tietoihin.\n\nSinun pitäisi tehdä tämä, jos olet vahingossa jakanut avaimet jonkun kanssa tai jos käyttäjätunnuksesi on vaarannettu.",
@@ -992,6 +991,7 @@
 	"prefs-tokenwatchlist": "Avain",
 	"prefs-diffs": "Eroavaisuudet",
 	"prefs-help-prefershttps": "Tämä asetus tulee voimaan seuraavan sisäänkirjautumisesi yhteydessä.",
+	"prefswarning-warning": "Olet tehnyt asetuksiisi muutoksia, joita ei ole vielä tallennettu.\nJos poistut sivulta klikkaamatta \"$1\", asetuksiasi ei päivitetä.",
 	"prefs-tabs-navigation-hint": "Vihje: Voit käyttää vasenta ja oikeata nuolinäppäintä liikkumiseen välilehtien välillä.",
 	"email-address-validity-valid": "Sähköpostiosoite vaikuttaa kelvolliselta",
 	"email-address-validity-invalid": "Virheellinen sähköpostiosoite",
@@ -1835,6 +1835,7 @@
 	"protect-othertime": "Muu kesto:",
 	"protect-othertime-op": "muu kesto",
 	"protect-existing-expiry": "Nykyinen vanhentumisaika: $2 kello $3",
+	"protect-existing-expiry-infinity": "Nykyinen kesto: ikuinen",
 	"protect-otherreason": "Muu syy tai tarkennus:",
 	"protect-otherreason-op": "Muu syy",
 	"protect-dropdown": "*Yleiset suojaussyyt\n** Jatkuva vandalismi\n** Jatkuva mainoslinkkien lisääminen\n** Muokkaussota\n** Suuri näkyvyys",

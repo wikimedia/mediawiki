@@ -461,7 +461,6 @@
 	"changeemail-none": "(ҳеҷ)",
 	"changeemail-password": "Гузарвожаи Шумо дар {{SITENAME}}:",
 	"changeemail-submit": "Ивази email",
-	"changeemail-cancel": "Лағв",
 	"resettokens-no-tokens": "Ягон нишона барои танзими муҷадад вуҷуд надорад.",
 	"resettokens-legend": "Танзими муҷадади нишона",
 	"resettokens-tokens": "Нишонаҳо:",
