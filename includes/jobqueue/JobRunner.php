@@ -84,10 +84,10 @@ class JobRunner {
 		$backoffDeltas = array(); // map of (type => seconds)
 		$wait = 'wait'; // block to read backoffs the first time
 
-		$jobsRun = 0; // counter
+		$jobsRun = 0;
 		$timeMsTotal = 0;
 		$flags = JobQueueGroup::USE_CACHE;
-		$sTime = microtime( true ); // time since jobs started running
+		$startTime = microtime( true ); // time since jobs started running
 		$lastTime = microtime( true ); // time since last slave check
 		do {
 			// Sync the persistent backoffs with concurrent runners
@@ -121,7 +121,7 @@ class JobRunner {
 
 				// Run the job...
 				wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
-				$sTime = microtime( true );
+				$jobStartTime = microtime( true );
 				try {
 					++$jobsRun;
 					$status = $job->run();
@@ -133,7 +133,7 @@ class JobRunner {
 					$error = get_class( $e ) . ': ' . $e->getMessage();
 					MWExceptionHandler::logException( $e );
 				}
-				$timeMs = intval( ( microtime( true ) - $sTime ) * 1000 );
+				$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
 				wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
 				$timeMsTotal += $timeMs;
 
@@ -167,7 +167,7 @@ class JobRunner {
 				if ( $maxJobs && $jobsRun >= $maxJobs ) {
 					$response['reached'] = 'job-limit';
 					break;
-				} elseif ( $maxTime && ( microtime( true ) - $sTime ) > $maxTime ) {
+				} elseif ( $maxTime && ( microtime( true ) - $startTime ) > $maxTime ) {
 					$response['reached'] = 'time-limit';
 					break;
 				}
