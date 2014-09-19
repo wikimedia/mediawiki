@@ -306,7 +306,7 @@ EOT;
 			}
 		}
 
-		$cache = HTMLFileCache::newFromTitle( $t, 'view' );
+		$cache = new HTMLFileCache( $t, 'view' );
 		if ( $cache->isCached() ) {
 			return $cache->fetchText();
 		} else {
