@@ -214,8 +214,10 @@ class UserTest extends MediaWikiTestCase {
 	 */
 	public function testEditCount() {
 		$user = User::newFromName( 'UnitTestUser' );
-		$user->loadDefaults();
-		$user->addToDatabase();
+
+		if ( !$user->getId() ) {
+			$user->addToDatabase();
+		}
 
 		// let the user have a few (3) edits
 		$page = WikiPage::factory( Title::newFromText( 'Help:UserTest_EditCount' ) );
@@ -248,7 +250,10 @@ class UserTest extends MediaWikiTestCase {
 	 */
 	public function testOptions() {
 		$user = User::newFromName( 'UnitTestUser' );
-		$user->addToDatabase();
+
+		if ( !$user->getId() ) {
+			$user->addToDatabase();
+		}
 
 		$user->setOption( 'userjs-someoption', 'test' );
 		$user->setOption( 'cols', 200 );
@@ -281,7 +286,7 @@ class UserTest extends MediaWikiTestCase {
 		$wgPasswordExpireGrace = 3600 * 24 * 7; // 7 days
 
 		$user = User::newFromName( 'UnitTestUser' );
-		$user->loadDefaults();
+		$user->loadDefaults( 'UnitTestUser' );
 		$this->assertEquals( false, $user->getPasswordExpired() );
 
 		$ts = time() - ( 3600 * 24 * 1 ); // 1 day ago
