@@ -491,6 +491,7 @@ changes to languages because of Bugzilla reports.
   now requires a Parser as its first parameter.
 * (bug 67368) LESS functions embed() and embeddable(), added in MediaWiki 1.23
   and broken by design, have been removed. Use appropriate LESS mixins instead.
+* Removed cssjanus.py from maintenance directory as it was unused.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
