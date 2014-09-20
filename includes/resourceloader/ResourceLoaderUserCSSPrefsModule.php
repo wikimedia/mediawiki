@@ -83,8 +83,6 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 		$style = implode( "\n", $rules );
 		if ( $this->getFlip( $context ) ) {
 			$style = CSSJanus::transform( $style, true, false );
-		} else {
-			$style = CSSJanus::nullTransform( $style );
 		}
 		return array( 'all' => $style );
 	}

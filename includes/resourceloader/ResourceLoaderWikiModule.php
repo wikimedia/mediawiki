@@ -152,8 +152,6 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 			if ( $this->getFlip( $context ) ) {
 				$style = CSSJanus::transform( $style, true, false );
-			} else {
-				$style = CSSJanus::nullTransform( $style );
 			}
 			$style = CSSMin::remap( $style, false, $this->getConfig()->get( 'ScriptPath' ), true );
 			if ( !isset( $styles[$media] ) ) {
