@@ -1128,7 +1128,7 @@ class LoadBalancer {
 	 * Results are cached for a short time in memcached, and indefinitely in the process cache
 	 *
 	 * @param string|bool $wiki
-	 * @return array
+	 * @return array Map of (server index => seconds)
 	 */
 	function getLagTimes( $wiki = false ) {
 		# Try process cache
