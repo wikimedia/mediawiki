@@ -3057,6 +3057,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|tallensi}} uuden version tiedostosta $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|tallensi}} tiedoston $3",
 	"rightsnone": "(ei oikeuksia)",
+	"revdelete-summary": "yhteenvedon",
 	"feedback-bugornote": "Jos voit kuvailla teknisen ongelman tarkasti – [$1 ilmoita ohjelmointivirheestä].\nMuussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi lisätään sivulle [$3 $2], ja siinä on mukana käyttäjätunnuksesi.",
 	"feedback-subject": "Otsikko",
 	"feedback-message": "Viesti",

@@ -2213,6 +2213,7 @@
 	"logentry-move-move_redir": "$1 {{GENDER:$2|spustau}} la pàggina $3 nti $4 cu nu rinnirizzamentu",
 	"logentry-newusers-create": "$1 criau na utenza",
 	"rightsnone": "(nuddu)",
+	"revdelete-summary": "riassuntu dô canciamentu",
 	"searchsuggest-search": "Risciduta",
 	"api-error-nomodule": "Erruri nternu: nun fu mpustatu lu mòdulu di carricamentu",
 	"api-error-ok-but-empty": "Erruri ntenru: nudda risposta dû server",

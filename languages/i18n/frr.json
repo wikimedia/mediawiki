@@ -2968,6 +2968,7 @@
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|hää}} det brükerskööl för $3 feranert.",
 	"logentry-rights-autopromote": "$1 as automaatisk faan $4 tu $5 {{GENDER:$2|tuwiset}} wurden.",
 	"rightsnone": "(-)",
+	"revdelete-summary": "tuhuupefootings-komäntoor",
 	"feedback-bugornote": "Wan dü en technisk probleem beskriiw wel, wees so gud an skriiw [$1 am di feeler].\nÖöders könst dü uk det formulaar oner brük. Dan komentaar woort tuup mä dan brükernööm an det werjuun faan dan browser üüb det sidj „[$3 $2]“ skrewen.",
 	"feedback-subject": "Teemo:",
 	"feedback-message": "Mädialang:",

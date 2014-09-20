@@ -1456,5 +1456,6 @@
 	"tag-filter": "[[Special:Tags|標籤]]過濾器：",
 	"revdelete-restricted": "yí-kîn yin-yung han-tsṳ tsṳ tshâu-tsok-yèn",
 	"revdelete-unrestricted": "yí-kîn yì-tshù yû-kûan tshâu-tsok-yè ke han-tsṳ",
-	"rightsnone": "（無）"
+	"rightsnone": "（無）",
+	"revdelete-summary": "piên-sip tsak-yêu"
 }

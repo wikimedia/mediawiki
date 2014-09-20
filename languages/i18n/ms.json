@@ -3037,6 +3037,7 @@
 	"logentry-upload-overwrite": "$1 telah {{GENDER:$2|muat naik}} versi baru $3",
 	"logentry-upload-revert": "$1 telah {{GENDER:$2|muat naik}} $3",
 	"rightsnone": "(tiada)",
+	"revdelete-summary": "ringkasan",
 	"feedback-bugornote": "Jika anda bersedia untuk menerangkan masalah teknikal secara terperinci, sila [$1 laporkan pepijat]. \nAtaupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dicatatkan pada laman \"[$3 $2]\", beserta nama pengguna anda dan pelayar yang anda gunakan.",
 	"feedback-subject": "Perkara:",
 	"feedback-message": "Pesanan:",

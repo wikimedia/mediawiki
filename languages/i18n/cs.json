@@ -3077,6 +3077,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|načetl|načetla}} novou verzi $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|načetl|načetla}} $3",
 	"rightsnone": "(žádné)",
+	"revdelete-summary": "shrnutí editace",
 	"feedback-bugornote": "Pokud dokážete podrobně popsat technický problém, můžete [$1 nahlásit chybu].\nJinak můžete využít jednoduchý formulář níže. Váš komentář bude přidán na stránku „[$3 $2]“ spolu s vaším uživatelským jménem a informací o tom, jaký prohlížeč používáte.",
 	"feedback-subject": "Předmět:",
 	"feedback-message": "Zpráva:",

@@ -3093,6 +3093,7 @@
 	"logentry-rights-rights-legacy": "$1 je {{GENDER:$2|promenio|promenila}} čalnstvo grupe za $3",
 	"logentry-rights-autopromote": "$1 je automatski {{GENDER:$1|unapređen|unapređena}} iz $4 u $5",
 	"rightsnone": "(nema)",
+	"revdelete-summary": "opis izmene",
 	"feedback-bugornote": "Ako ste spremni da detaljno opišete tehnički problem, onda [$1 prijavite grešku].\nU suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajati na stranici „[$3 $2]“, zajedno s korisničkim imenom i pregledačem koji koristite.",
 	"feedback-subject": "Naslov:",
 	"feedback-message": "Poruka:",

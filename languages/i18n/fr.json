@@ -3204,6 +3204,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|a téléchargé}} une nouvelle version de $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|a téléchargé}} $3",
 	"rightsnone": "(aucun)",
+	"revdelete-summary": "résumé de modification",
 	"feedback-bugornote": "Si vous êtes prêt à décrire un problème technique en détail, veuillez [$1 signaler un bogue].\nSinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentaire sera ajouté à la page « [$3 $2] », avec votre nom d'utilisateur.",
 	"feedback-subject": "Objet :",
 	"feedback-message": "Message :",

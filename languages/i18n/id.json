@@ -3128,6 +3128,7 @@
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|mengubah}} keanggotaan grup $3",
 	"logentry-rights-autopromote": "$1 secara otomatis {{GENDER:$2|dipromosikan}} dari $4 menjadi $5",
 	"rightsnone": "(tidak ada)",
+	"revdelete-summary": "ringkasan",
 	"feedback-bugornote": "Jika Anda sudah siap untuk mendeskripsikan masalah teknis secara rinci silakan [$1 melaporkan bug].\nJika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda akan ditambahkan ke halaman \"[$3 $2]\", bersama dengan nama pengguna Anda dan apa browser yang Anda gunakan.",
 	"feedback-subject": "Perihal:",
 	"feedback-message": "Pesan:",

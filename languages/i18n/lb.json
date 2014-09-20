@@ -2964,6 +2964,7 @@
 	"logentry-upload-overwrite": "$1 huet eng nei Versioun vu(n) $3 {{GENDER:$2|eropgelueden}}",
 	"logentry-upload-revert": "$1 huet $3 {{GENDER:$2|eropgelueden}}",
 	"rightsnone": "(keen)",
+	"revdelete-summary": "Resumé änneren",
 	"feedback-bugornote": "Wann Dir bereet sidd fir en technesche Problem am Detail ze beschreiwen da [$1 mellt w.e.g. e Feeler (Bug)].\nSoss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gëtt op d'Säit \"[$3 $2]\" derbäigesat, zesumme mat Ärem Benotzernumm an dem Numm vum Browser deen Dir benotzt.",
 	"feedback-subject": "Sujet:",
 	"feedback-message": "Message:",

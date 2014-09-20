@@ -2528,6 +2528,7 @@
 	"logentry-upload-upload": "$1 $3ی {{GENDER:$2|بار کرد}}",
 	"logentry-upload-overwrite": "$1 وەشانێکی نوێی $3ی {{GENDER:$2|بار کرد}}",
 	"rightsnone": "(ھیچ)",
+	"revdelete-summary": "پوختەی دەستکاری",
 	"feedback-subject": "بابەت:",
 	"feedback-message": "پەیام:",
 	"feedback-cancel": "ھەڵیوەشێنەوە",

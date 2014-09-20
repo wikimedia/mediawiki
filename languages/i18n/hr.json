@@ -2898,6 +2898,7 @@
 	"logentry-upload-overwrite": "$1 је {{GENDER:$2|postavio|postavila}} novu inačicu $3",
 	"logentry-upload-revert": "$1 је {{GENDER:$2|postavio|postavila}} $3",
 	"rightsnone": "(suradnik)",
+	"revdelete-summary": "sažetak",
 	"feedback-bugornote": "Ako ste spremni detaljno opisati tehnički problem molimo [$1 prijavite \"bug\"].\nInače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će dodan na stranicu \"[$3 $2]\", zajedno s vašim suradničkim imenom i imenom internetskog preglednika koji rabite.",
 	"feedback-subject": "Tema:",
 	"feedback-message": "Poruka:",

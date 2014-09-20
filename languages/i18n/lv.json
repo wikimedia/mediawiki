@@ -2424,6 +2424,7 @@
 	"logentry-newusers-create2": "$1 {{GENDER:$2|izveidoja}} lietotāja kontu $3",
 	"logentry-newusers-autocreate": "Lietotaja konts $1 tika {{GENDER:$2|izveidots}} automātiski",
 	"rightsnone": "(nav)",
+	"revdelete-summary": "izmaiņu kopsavilkums",
 	"feedback-subject": "Temats:",
 	"feedback-message": "Ziņojums:",
 	"feedback-cancel": "Atcelt",

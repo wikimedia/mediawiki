@@ -318,6 +318,8 @@
 	"config-install-stats": "初始化統計資訊",
 	"config-install-keys": "產生秘密金鑰中",
 	"config-insecure-keys": "<strong>警告：</strong>在安裝過程中所產生的 $2 組安全金鑰($1)並不完全安全。請考慮手動更改。",
+	"config-install-updates": "略過執行不需要的更新",
+	"config-install-updates-failed": "<strong>錯誤：</strong> 插入更新鍵值至資料表失敗，並出現以下錯誤：$1",
 	"config-install-sysop": "正在建立管理員使用者帳號",
 	"config-install-subscribe-fail": "無法訂閱 mediawiki-announce：$1",
 	"config-install-subscribe-notpossible": "未安裝 cURL，因此無法使用 <code>allow_url_fopen</code> 設定項目。",

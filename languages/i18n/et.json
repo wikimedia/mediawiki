@@ -3010,6 +3010,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|laadis üles}} uue versiooni failist $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|laadis üles}} faili $3",
 	"rightsnone": "(puudub)",
+	"revdelete-summary": "resümee",
 	"feedback-bugornote": "Kui arvad, et oskad tehnilist probleemi üksikasjalikult kirjeldada, [$1 teata veast].\nKui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajanime ja teabega kasutatava võrgulehitsejaga kohta leheküljele \"[$3 $2]\".",
 	"feedback-subject": "Teema:",
 	"feedback-message": "Sõnum:",

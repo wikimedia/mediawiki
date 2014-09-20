@@ -3001,6 +3001,7 @@
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|a l'ha modificà}} l'apartenensa a la partìa për $3",
 	"logentry-rights-autopromote": "$1 a l'é {{GENDER:$2|stàit promovù}} an automàtich da $4 a $5",
 	"rightsnone": "(gnun)",
+	"revdelete-summary": "resumé dla modìfica",
 	"feedback-bugornote": "S'a l'é pront a descrive un problema técnich an detaj, për piasì ch'a [$1 signala un bigat]. \nDësnò, a peul dovré ël formolari semplificà sì-sota. Sò coment a sarà giontà a la pàgina «[$3 $2]», con sò stranòm.",
 	"feedback-subject": "Soget:",
 	"feedback-message": "Mëssagi:",

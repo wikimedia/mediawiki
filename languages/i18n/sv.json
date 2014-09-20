@@ -3062,6 +3062,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|laddade upp}} en ny version av $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|laddade upp}} $3",
 	"rightsnone": "(inga)",
+	"revdelete-summary": "sammanfattning",
 	"feedback-bugornote": "Om du är redo att beskriva ett tekniskt problem detaljerat, var god [$1 rapporterar en bugg].\nAnnars kan du använda det enkla formuläret nedan. Din kommentar kommer att läggas till på sidan \"[$3 $2]\", tillsammans med ditt användarnamn och vilken webbläsare du använder.",
 	"feedback-subject": "Ämne:",
 	"feedback-message": "Meddelande:",

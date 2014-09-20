@@ -3107,6 +3107,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2}}đã tải lên một phiên bản mới của $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2}}đã tải lên $3",
 	"rightsnone": "(không có)",
+	"revdelete-summary": "tóm lược sửa đổi",
 	"feedback-bugornote": "Nếu bạn đã sẵn sàng để miêu tả các chi tiết của một vấn đề kỹ thuật, xin vui lòng [$1 báo cáo lỗi].\nNếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới. Lời ghi của bạn sẽ được đăng lên trang “[$3 $2]”, cùng với tên người dùng và trình duyệt của bạn.",
 	"feedback-subject": "Tiêu đề:",
 	"feedback-message": "Thông điệp:",

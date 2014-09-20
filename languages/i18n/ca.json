@@ -3026,6 +3026,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|ha carregat}} una nova versió de $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|ha carregat}} $3",
 	"rightsnone": "(cap)",
+	"revdelete-summary": "el resum d'edició",
 	"feedback-bugornote": "Si podeu descriure un problema tècnic en detall, [$1 informeu-ne].\nAltrament, podeu fer servir un senzill formulari a continuació. El vostre comentari s'afegirà a la pàgina «[$3 $2]», juntament amb el vostre nom d'usuari i el navegador que esteu emprant.",
 	"feedback-subject": "Assumpte:",
 	"feedback-message": "Missatge:",

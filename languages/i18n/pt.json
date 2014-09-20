@@ -3047,6 +3047,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|carregou}} uma nova versão de $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|carregou}} $3",
 	"rightsnone": "(nenhum)",
+	"revdelete-summary": "resumo da edição",
 	"feedback-bugornote": "Se está pronto para descrever um problema técnico em detalhe, por favor, [$1 comunique o defeito].\nCaso contrário, pode facilmente usar o formulário abaixo. O seu comentário será adicionado à página \"[$3 $2]\", junto com o seu nome de utilizador e o navegador que está a usar.",
 	"feedback-subject": "Assunto:",
 	"feedback-message": "Mensagem:",

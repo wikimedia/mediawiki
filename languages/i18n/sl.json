@@ -3003,6 +3003,7 @@
 	"logentry-upload-overwrite": "$1 je {{GENDER:$2|naložil|naložila|naložil(-a)}} novo različico $3",
 	"logentry-upload-revert": "$1 je {{GENDER:$2|naložil|naložila|naložil(-a)}} $3",
 	"rightsnone": "(nobeno)",
+	"revdelete-summary": "povzetek urejanja",
 	"feedback-bugornote": "Če ste pripravljeni podrobno opisati tehnično težavo, vložite [$1 poročilo o hrošču].\nV nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bomo dodali na stran »[$3 $2]«, skupaj z vašim uporabniškim imenom in podatkom o brskalniku, ki ga uporabljate.",
 	"feedback-subject": "Zadeva:",
 	"feedback-message": "Sporočilo:",
