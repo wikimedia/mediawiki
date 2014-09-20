@@ -743,13 +743,19 @@ class SpecialVersion extends SpecialPage {
 			$licenseLink = Linker::link(
 				$this->getPageTitle( 'License/' . $extensionName ),
 				$out->parseInline( $extension['license-name'] ),
-				array( 'class' => 'mw-version-ext-license' )
+				array(
+					'class' => 'mw-version-ext-license',
+					'dir' => 'auto',
+				)
 			);
 		} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
 			$licenseLink = Linker::link(
 				$this->getPageTitle( 'License/' . $extensionName ),
 				$this->msg( 'version-ext-license' ),
-				array( 'class' => 'mw-version-ext-license' )
+				array(
+					'class' => 'mw-version-ext-license',
+					'dir' => 'auto',
+				)
 			);
 		}
 
