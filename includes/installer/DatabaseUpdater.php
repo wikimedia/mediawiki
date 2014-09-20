@@ -31,6 +31,7 @@ require_once __DIR__ . '/../../maintenance/Maintenance.php';
  * @since 1.17
  */
 abstract class DatabaseUpdater {
+	protected static $updateCounter = 0;
 
 	/**
 	 * Array of updates to perform on the database
@@ -460,7 +461,8 @@ abstract class DatabaseUpdater {
 		if ( !$this->canUseNewUpdatelog() ) {
 			return;
 		}
-		$key = "updatelist-$version-" . time();
+		$key = "updatelist-$version-" . time() . self::$updateCounter;
+		self::$updateCounter++;
 		$this->db->insert( 'updatelog',
 			array( 'ul_key' => $key, 'ul_value' => serialize( $updates ) ),
 			__METHOD__ );
