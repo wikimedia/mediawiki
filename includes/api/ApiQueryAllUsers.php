@@ -78,14 +78,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$from = is_null( $params['from'] ) ? null : $this->getCanonicalUserName( $params['from'] );
 		$to = is_null( $params['to'] ) ? null : $this->getCanonicalUserName( $params['to'] );
 
-		# MySQL can't figure out that 'user_name' and 'qcc_title' are the same
-		# despite the JOIN condition, so manually sort on the correct one.
-		$userFieldToSort = $params['activeusers'] ? 'qcc_title' : 'user_name';
-
-		$this->addWhereRange( $userFieldToSort, $dir, $from, $to );
+		$this->addWhereRange( 'user_name', $dir, $from, $to );
 
 		if ( !is_null( $params['prefix'] ) ) {
-			$this->addWhere( $userFieldToSort .
+			$this->addWhere( 'user_name' .
 				$db->buildLike( $this->getCanonicalUserName( $params['prefix'] ), $db->anyString() ) );
 		}
 
@@ -148,14 +144,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$activeUserSeconds = $activeUserDays * 86400;
 
 			// Filter query to only include users in the active users cache
-			$this->addTables( 'querycachetwo' );
-			$this->addJoinConds( array( 'querycachetwo' => array(
-				'INNER JOIN', array(
-					'qcc_type' => 'activeusers',
-					'qcc_namespace' => NS_USER,
-					'qcc_title=user_name',
-				),
-			) ) );
+			$activeUsersExists = $db->selectSQLText( 'querycachetwo', '1', array(
+				'qcc_type' => 'activeusers',
+				'qcc_namespace' => NS_USER,
+				'qcc_title=user_name',
+			) );
+
+			$this->addWhere( 'EXISTS (' . $activeUsersExists . ')' );
 
 			// Actually count the actions using a subquery (bug 64505 and bug 64507)
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
@@ -261,13 +256,20 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 
 			if ( $sqlLimit == $count ) {
-				// @todo BUG!  database contains group name that User::getAllGroups() does not return
-				// Should handle this more gracefully
-				ApiBase::dieDebug(
-					__METHOD__,
-					'MediaWiki configuration error: The database contains more ' .
-						'user groups than known to User::getAllGroups() function'
-				);
+				if ( $fld_groups || $fld_rights ) {
+					// @todo BUG!  database contains group name that User::getAllGroups() does not return
+					// Should handle this more gracefully
+					ApiBase::dieDebug(
+						__METHOD__,
+						'MediaWiki configuration error: The database contains more ' .
+							'user groups than known to User::getAllGroups() function'
+					);
+				} else {
+					ApiBase::dieDebug(
+						__METHOD__,
+						'The query returned more rows than expected for an unknown reason.'
+					);
+				}
 			}
 
 			$lastUserObj = User::newFromId( $row->user_id );
