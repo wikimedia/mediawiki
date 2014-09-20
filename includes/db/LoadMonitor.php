@@ -48,7 +48,7 @@ interface LoadMonitor {
 	 * @param array $serverIndexes
 	 * @param string $wiki
 	 *
-	 * @return array
+	 * @return array Map of (server index => seconds)
 	 */
 	public function getLagTimes( $serverIndexes, $wiki );
 }
