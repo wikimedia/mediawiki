@@ -203,6 +203,11 @@ class CSSMinTest extends MediaWikiTestCase {
 				"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; }",
 			),
 			array(
+				'Embedded file, other comments before the rule',
+				"foo { /* Bar. */ /* @embed */ background: url(red.gif); }",
+				"foo { /* Bar. */ background: url($red); /* Bar. */ background: url(http://localhost/w/red.gif?timestamp)!ie; }",
+			),
+			array(
 				'Can not re-embed data: URIs',
 				"foo { /* @embed */ background: url($red); }",
 				"foo { background: url($red); }",
