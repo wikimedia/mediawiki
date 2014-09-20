@@ -166,13 +166,6 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @return string
-	 */
-	function getServerVersion() {
-		return $this->mConn->server_info;
-	}
-
-	/**
 	 * @param mysqli $res
 	 * @return bool
 	 */
