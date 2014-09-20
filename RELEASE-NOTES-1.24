@@ -486,6 +486,7 @@ changes to languages because of Bugzilla reports.
 * In Linker.php, link(), linkText() and makeBrokenImageLinkObj() now display
   warnings if their first parameter is not a Title object. Also makeImageLink()
   now requires a Parser as its first parameter.
+* Removed cssjanus.py from maintenance directory as it was unused.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
