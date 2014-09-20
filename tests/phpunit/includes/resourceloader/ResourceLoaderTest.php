@@ -91,6 +91,15 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * Strip @noflip annotations from CSS code.
+	 * @param string $css
+	 * @return string
+	 */
+	private function stripNoflip( $css ) {
+		return str_replace( '/*@noflip*/ ', '', $css );
+	}
+
+	/**
 	 * What happens when you mix @embed and @noflip?
 	 * This really is an integration test, but oh well.
 	 */
@@ -108,14 +117,16 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$contextLtr = self::getResourceLoaderContext( 'en' );
 		$contextRtl = self::getResourceLoaderContext( 'he' );
 
+		// Since we want to compare the effect of @noflip+@embed against the effect of just @embed, and
+		// the @noflip annotations are always preserved, we need to strip them first.
 		$this->assertEquals(
 			$expectedModule->getStyles( $contextLtr ),
-			$testModule->getStyles( $contextLtr ),
+			$this->stripNoflip( $testModule->getStyles( $contextLtr ) ),
 			"/*@noflip*/ with /*@embed*/ gives correct results in LTR mode"
 		);
 		$this->assertEquals(
 			$expectedModule->getStyles( $contextLtr ),
-			$testModule->getStyles( $contextRtl ),
+			$this->stripNoflip( $testModule->getStyles( $contextRtl ) ),
 			"/*@noflip*/ with /*@embed*/ gives correct results in RTL mode"
 		);
 	}

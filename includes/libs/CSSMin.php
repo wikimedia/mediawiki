@@ -200,10 +200,9 @@ class CSSMin {
 			$remote = substr( $remote, 0, -1 );
 		}
 
-		// Replace all comments by a placeholder so they will not interfere
-		// with the remapping
-		// Warning: This will also catch on anything looking like the start of
-		// a comment between quotation marks (e.g. "foo /* bar").
+		// Replace all comments by a placeholder so they will not interfere with the remapping.
+		// Warning: This will also catch on anything looking like the start of a comment between
+		// quotation marks (e.g. "foo /* bar").
 		$comments = array();
 		$placeholder = uniqid( '', true );
 
@@ -226,12 +225,13 @@ class CSSMin {
 
 		$source = preg_replace_callback(
 			$pattern,
-			function ( $matchOuter ) use ( $local, $remote, $embedData ) {
+			function ( $matchOuter ) use ( $local, $remote, $embedData, $placeholder ) {
 				$rule = $matchOuter[0];
 
-				// Check for global @embed comment and remove it
+				// Check for global @embed comment and remove it. Allow other comments to be present
+				// before @embed (they have been replaced with placeholders at this point).
 				$embedAll = false;
-				$rule = preg_replace( '/^(\s*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
+				$rule = preg_replace( '/^((?:\s+|' . $placeholder . '(\d+)x)*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
 
 				// Build two versions of current rule: with remapped URLs
 				// and with embedded data: URIs (where possible).
