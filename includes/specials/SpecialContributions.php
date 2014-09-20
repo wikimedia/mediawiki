@@ -39,6 +39,16 @@ class SpecialContributions extends IncludableSpecialPage {
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'mediawiki.special' );
 
+		// Generic styles and scripts for both login and signup form
+		$out->addModuleStyles( array(
+			'mediawiki.ui',
+			'mediawiki.ui.button',
+			'mediawiki.ui.checkbox',
+			'mediawiki.ui.input',
+		) );
+
+
+
 		$this->opts = array();
 		$request = $this->getRequest();
 
@@ -448,7 +458,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			array(
 				'method' => 'get',
 				'action' => wfScript(),
-				'class' => 'mw-contributions-form'
+				'class' => 'mw-contributions-form mw-ui-vform'
 			)
 		);
 
@@ -477,17 +487,17 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		if ( $tagFilter ) {
 			$filterSelection = Html::rawElement(
-				'td',
+				'div',
 				array( 'class' => 'mw-label' ),
 				array_shift( $tagFilter )
 			);
 			$filterSelection .= Html::rawElement(
-				'td',
+				'div',
 				array( 'class' => 'mw-input' ),
 				implode( '&#160', $tagFilter )
 			);
 		} else {
-			$filterSelection = Html::rawElement( 'td', array( 'colspan' => 2 ), '' );
+			$filterSelection = Html::rawElement( 'div', array( 'colspan' => 2 ), '' );
 		}
 
 		$labelNewbies = Xml::radioLabel(
@@ -521,7 +531,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		);
 
 		$namespaceSelection = Xml::tags(
-			'td',
+			'div',
 			array( 'class' => 'mw-label' ),
 			Xml::label(
 				$this->msg( 'namespace' )->text(),
@@ -530,7 +540,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			)
 		);
 		$namespaceSelection .= Html::rawElement(
-			'td',
+			'div',
 			null,
 			Html::namespaceSelector(
 				array( 'selected' => $this->opts['namespace'], 'all' => '' ),
@@ -541,7 +551,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				)
 			) . '&#160;' .
 				Html::rawElement(
-					'span',
+					'div',
 					array( 'style' => 'white-space: nowrap' ),
 					Xml::checkLabel(
 						$this->msg( 'invert' )->text(),
@@ -554,7 +564,7 @@ class SpecialContributions extends IncludableSpecialPage {
 						)
 					) . '&#160;'
 				) .
-				Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+				Html::rawElement( 'div', array( 'style' => 'white-space: nowrap' ),
 					Xml::checkLabel(
 						$this->msg( 'namespace_association' )->text(),
 						'associated',
@@ -570,7 +580,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$deletedOnlyCheck = Html::rawElement(
-				'span',
+				'div',
 				array( 'style' => 'white-space: nowrap' ),
 				Xml::checkLabel(
 					$this->msg( 'history-show-deleted' )->text(),
@@ -585,7 +595,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		$checkLabelTopOnly = Html::rawElement(
-			'span',
+			'div',
 			array( 'style' => 'white-space: nowrap' ),
 			Xml::checkLabel(
 				$this->msg( 'sp-contributions-toponly' )->text(),
@@ -596,7 +606,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			)
 		);
 		$checkLabelNewOnly = Html::rawElement(
-			'span',
+			'div',
 			array( 'style' => 'white-space: nowrap' ),
 			Xml::checkLabel(
 				$this->msg( 'sp-contributions-newonly' )->text(),
@@ -607,7 +617,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			)
 		);
 		$extraOptions = Html::rawElement(
-			'td',
+			'div',
 			array( 'colspan' => 2 ),
 			$deletedOnlyCheck . $checkLabelTopOnly . $checkLabelNewOnly
 		);
@@ -616,20 +626,19 @@ class SpecialContributions extends IncludableSpecialPage {
 			Xml::dateMenu(
 				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
 				$this->opts['month']
-			) . ' ' .
+			) . '<br>' .
 				Xml::submitButton(
 					$this->msg( 'sp-contributions-submit' )->text(),
-					array( 'class' => 'mw-submit' )
+					array( 'class' => 'mw-submit mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive' )
 				)
 		);
 
-		$form .= Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() );
-		$form .= Html::rawElement( 'table', array( 'class' => 'mw-contributions-table' ), "\n" .
-			Html::rawElement( 'tr', array(), $targetSelection ) . "\n" .
-			Html::rawElement( 'tr', array(), $namespaceSelection ) . "\n" .
-			Html::rawElement( 'tr', array(), $filterSelection ) . "\n" .
-			Html::rawElement( 'tr', array(), $extraOptions ) . "\n" .
-			Html::rawElement( 'tr', array(), $dateSelectionAndSubmit ) . "\n"
+	$form .= Html::rawElement( 'div', array( 'class' => 'mw-contributions-table' ), "\n" .
+			Html::rawElement( 'div', array(), $targetSelection ) . "\n" .
+			Html::rawElement( 'div', array(), $namespaceSelection ) . "\n" .
+			Html::rawElement( 'div', array(), $filterSelection ) . "\n" .
+			Html::rawElement( 'div', array(), $extraOptions ) . "\n" .
+			Html::rawElement( 'div', array(), $dateSelectionAndSubmit ) . "\n"
 		);
 
 		$explain = $this->msg( 'sp-contributions-explain' );
@@ -637,7 +646,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$form .= "<p id='mw-sp-contributions-explain'>{$explain->parse()}</p>";
 		}
 
-		$form .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' );
+		$form .= Xml::closeElement( 'form' );
 
 		return $form;
 	}
@@ -935,7 +944,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function getStartBody() {
-		return "<ul>\n";
+		return "<ul class=\"mw-contributions-list\">\n";
 	}
 
 	/**

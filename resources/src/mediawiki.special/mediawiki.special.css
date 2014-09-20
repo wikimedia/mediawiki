@@ -118,3 +118,11 @@ table.mw-userrights-groups * td,
 table.mw-userrights-groups * th {
 	padding-right: 1.5em;
 }
+
+/* Special:Contributions */
+ul.mw-contributions-list {
+	margin-left: 350px;
+}
+.mw-contributions-form {
+	float: left;
+}
