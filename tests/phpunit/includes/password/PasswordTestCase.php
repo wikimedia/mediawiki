@@ -52,7 +52,7 @@ abstract class PasswordTestCase extends MediaWikiTestCase {
 	 *
 	 * @return array
 	 */
-	abstract public static function providePasswordTests();
+	abstract public function providePasswordTests();
 
 	/**
 	 * @dataProvider providePasswordTests
