@@ -15,27 +15,15 @@ class CSSJanusTest extends MediaWikiTestCase {
 
 		if ( $cssB ) {
 			$transformedA = CSSJanus::transform( $cssA );
-			$this->assertEquals(
-				$transformedA,
-				str_replace( '/* @noflip */ ', '', $cssB ),
-				'Test A-B transformation'
-			);
+			$this->assertEquals( $transformedA, $cssB, 'Test A-B transformation' );
 
 			$transformedB = CSSJanus::transform( $cssB );
-			$this->assertEquals(
-				$transformedB,
-				str_replace( '/* @noflip */ ', '', $cssA ),
-				'Test B-A transformation'
-			);
+			$this->assertEquals( $transformedB, $cssA, 'Test B-A transformation' );
 		} else {
 			// If no B version is provided, it means
 			// the output should equal the input (modulo @noflip annotations).
 			$transformedA = CSSJanus::transform( $cssA );
-			$this->assertEquals(
-				$transformedA,
-				str_replace( '/* @noflip */ ', '', $cssA ),
-				'Nothing was flipped'
-			);
+			$this->assertEquals( $transformedA, $cssA, 'Nothing was flipped' );
 		}
 	}
 

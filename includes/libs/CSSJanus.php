@@ -174,22 +174,6 @@ class CSSJanus {
 		$css = $noFlipClass->detokenize( $css );
 		$css = $noFlipSingle->detokenize( $css );
 
-		// Remove remaining /* @noflip */ annotations, they won't be needed anymore
-		// and can interfere with other code (bug 69698).
-		$css = self::nullTransform( $css );
-
-		return $css;
-	}
-
-	/**
-	 * Remove @noflip annotations, but don't do any other transforms.
-	 * @param string $css stylesheet to transform
-	 * @return string Transformed stylesheet
-	 */
-	public static function nullTransform( $css ) {
-		$patt = self::$patterns['noflip_annotation'];
-		$css = preg_replace( "/($patt)\\s*/i", '', $css );
-
 		return $css;
 	}
 
