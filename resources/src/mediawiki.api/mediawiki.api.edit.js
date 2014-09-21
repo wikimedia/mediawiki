@@ -71,7 +71,6 @@
 			return this.postWithEditToken( $.extend( {
 				action: 'edit',
 				section: 'new',
-				format: 'json',
 				title: String( title ),
 				summary: header,
 				text: message
