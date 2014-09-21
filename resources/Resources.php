@@ -245,14 +245,6 @@ return array(
 	'jquery.hoverIntent' => array(
 		'scripts' => 'resources/lib/jquery/jquery.hoverIntent.js',
 	),
-	'jquery.json' => array(
-		// @deprecated since 1.24: Use the 'json' module and global JSON object instead.
-		'scripts' => array(
-			'resources/lib/jquery/jquery.json.js',
-			'resources/src/jquery.json-deprecate.js',
-		),
-		'targets' => array( 'mobile', 'desktop' ),
-	),
 	'jquery.localize' => array(
 		'scripts' => 'resources/src/jquery/jquery.localize.js',
 	),
