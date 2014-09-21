@@ -17,6 +17,7 @@
 		"../../resources/src/mediawiki.language",
 		"../../resources/src/mediawiki.page",
 		"../../resources/src/mediawiki.special",
+		"../../resources/src/mediawiki.toolbar",
 		"../../resources/src/jquery/jquery.accessKeyLabel.js",
 		"../../resources/src/jquery/jquery.arrowSteps.js",
 		"../../resources/src/jquery/jquery.autoEllipsis.js",
