@@ -10,17 +10,32 @@
 	/**
 	 * Internal helper that does the actual insertion of the button into the toolbar.
 	 *
-	 * See #addButton for parameter documentation.
+	 * For backwards-compatibility, passing `imageFile`, `speedTip`, `tagOpen`, `tagClose`,
+	 * `sampleText` and `imageId` as separate arguments (in this order) is also supported.
 	 *
 	 * @private
+	 *
+	 * @param {Object} button Object with the following properties.
+	 *  You are required to provide *either* the `onClick` parameter, or the three parameters
+	 *  `tagOpen`, `tagClose` and `sampleText`, but not both (they're mutually exclusive).
+	 * @param {string} [button.imageFile] Image to use for the button.
+	 * @param {string} button.speedTip Tooltip displayed when user mouses over the button.
+	 * @param {Function} [button.onClick] Function to be executed when the button is clicked.
+	 * @param {string} [button.tagOpen]
+	 * @param {string} [button.tagClose]
+	 * @param {string} [button.sampleText] Alternative to `onClick`. `tagOpen`, `tagClose` and
+	 *  `sampleText` together provide the markup that should be inserted into page text at
+	 *  current cursor position.
+	 * @param {string} [button.imageId] `id` attribute of the button HTML element. Can be
+	 *  used to define the image with CSS if it's not provided as `imageFile`.
 	 */
-	function insertButton( b, speedTip, tagOpen, tagClose, sampleText, imageId ) {
+	function insertButton( button, speedTip, tagOpen, tagClose, sampleText, imageId ) {
 		var $button;
 
 		// Backwards compatibility
-		if ( typeof b !== 'object' ) {
-			b = {
-				imageFile: b,
+		if ( typeof button !== 'object' ) {
+			button = {
+				imageFile: button,
 				speedTip: speedTip,
 				tagOpen: tagOpen,
 				tagClose: tagClose,
@@ -29,27 +44,27 @@
 			};
 		}
 
-		if ( b.imageFile ) {
+		if ( button.imageFile ) {
 			$button = $( '<img>' ).attr( {
-			src: b.imageFile,
-			alt: b.speedTip,
-			title: b.speedTip,
-			id: b.imageId || undefined,
-			'class': 'mw-toolbar-editbutton'
+				src: button.imageFile,
+				alt: button.speedTip,
+				title: button.speedTip,
+				id: button.imageId || undefined,
+				'class': 'mw-toolbar-editbutton'
 			} );
 		} else {
 			$button = $( '<div>' ).attr( {
-				title: b.speedTip,
-				id: b.imageId || undefined,
+				title: button.speedTip,
+				id: button.imageId || undefined,
 				'class': 'mw-toolbar-editbutton'
 			} );
 		}
 
 		$button.click( function ( e ) {
-			if ( b.onClick !== undefined ) {
-				b.onClick( e );
+			if ( button.onClick !== undefined ) {
+				button.onClick( e );
 			} else {
-				toolbar.insertTags( b.tagOpen, b.tagClose, b.sampleText );
+				toolbar.insertTags( button.tagOpen, button.tagClose, button.sampleText );
 			}
 
 			return false;
@@ -75,26 +90,13 @@
 		/**
 		 * Add buttons to the toolbar.
 		 *
-		 * Takes care of race conditions and time-based dependencies
-		 * by placing buttons in a queue if this method is called before
-		 * the toolbar is created.
+		 * Takes care of race conditions and time-based dependencies by placing buttons in a queue if
+		 * this method is called before the toolbar is created.
 		 *
 		 * For backwards-compatibility, passing `imageFile`, `speedTip`, `tagOpen`, `tagClose`,
 		 * `sampleText` and `imageId` as separate arguments (in this order) is also supported.
 		 *
-		 * @param {Object} button Object with the following properties.
-		 *  You are required to provide *either* the `onClick` parameter, or the three parameters
-		 *  `tagOpen`, `tagClose` and `sampleText`, but not both (they're mutually exclusive).
-		 * @param {string} [button.imageFile] Image to use for the button.
-		 * @param {string} button.speedTip Tooltip displayed when user mouses over the button.
-		 * @param {Function} [button.onClick] Function to be executed when the button is clicked.
-		 * @param {string} [button.tagOpen]
-		 * @param {string} [button.tagClose]
-		 * @param {string} [button.sampleText] Alternative to `onClick`. `tagOpen`, `tagClose` and
-		 *  `sampleText` together provide the markup that should be inserted into page text at
-		 *  current cursor position.
-		 * @param {string} [button.imageId] `id` attribute of the button HTML element. Can be
-         *  used to define the image with CSS if it's not provided as `imageFile`.
+		 * @inheritdoc #insertButton
 		 */
 		addButton: function () {
 			if ( isReady ) {
@@ -104,6 +106,7 @@
 				queue.push( slice.call( arguments ) );
 			}
 		},
+
 		/**
 		 * Add multiple buttons to the toolbar (see also #addButton).
 		 *
@@ -163,7 +166,7 @@
 	mw.toolbar = toolbar;
 
 	$( function () {
-		var i, b;
+		var i, button;
 
 		// Used to determine where to insert tags
 		$currentFocused = $( '#wpTextbox1' );
@@ -172,13 +175,13 @@
 		$toolbar = $( '#toolbar' );
 
 		for ( i = 0; i < queue.length; i++ ) {
-			b = queue[i];
-			if ( $.isArray( b ) ) {
+			button = queue[i];
+			if ( $.isArray( button ) ) {
 				// Forwarded arguments array from mw.toolbar.addButton
-				insertButton.apply( toolbar, b );
+				insertButton.apply( toolbar, button );
 			} else {
 				// Raw object from mw.toolbar.addButtons
-				insertButton( b );
+				insertButton( button );
 			}
 		}
 
