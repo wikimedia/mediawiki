@@ -6,6 +6,7 @@
 
 ( function ( mw, $ ) {
 	$.fn.confirmable.defaultOptions.i18n = {
+		space: mw.message( 'word-separator' ).text(),
 		confirm: mw.message( 'confirmable-confirm', mw.user ).text(),
 		yes: mw.message( 'confirmable-yes' ).text(),
 		no: mw.message( 'confirmable-no' ).text()

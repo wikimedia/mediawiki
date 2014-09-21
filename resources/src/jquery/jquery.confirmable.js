@@ -36,6 +36,7 @@
 	 * @param {Function} [options.handler] Callback to fire when the action is confirmed (user clicks
 	 *     the 'Yes' button).
 	 * @param {string} [options.i18n] Text to use for interface elements.
+	 * @param {string} [options.i18n.space] Word separator to place between the three text messages.
 	 * @param {string} [options.i18n.confirm] Text to use for the confirmation question.
 	 * @param {string} [options.i18n.yes] Text to use for the 'Yes' button.
 	 * @param {string} [options.i18n.no] Text to use for the 'No' button.
@@ -126,7 +127,7 @@
 
 				$interface = $( '<span>' )
 					.addClass( 'jquery-confirmable-interface' )
-					.append( $text, $buttonYes, $buttonNo );
+					.append( $text, options.i18n.space, $buttonYes, options.i18n.space, $buttonNo );
 				$interface = options.wrapperCallback( $interface );
 
 				// Render offscreen to measure real width
@@ -160,6 +161,7 @@
 		buttonCallback: identity,
 		handler: null,
 		i18n: {
+			space: ' ',
 			confirm: 'Are you sure?',
 			yes: 'Yes',
 			no: 'No'

@@ -200,6 +200,7 @@ return array(
 			'confirmable-confirm',
 			'confirmable-yes',
 			'confirmable-no',
+			'word-separator',
 		),
 		'styles' => 'resources/src/jquery/jquery.confirmable.css',
 		'dependencies' => 'mediawiki.jqueryMsg',
