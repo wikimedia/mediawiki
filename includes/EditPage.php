@@ -2284,7 +2284,7 @@ class EditPage {
 	 *     during form output near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback = null ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgRequest;
 
 		wfProfileIn( __METHOD__ );
 
@@ -2421,6 +2421,10 @@ class EditPage {
 
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
+
+		if ( $wgRequest->getCheck( 'debug' ) ) {
+			$wgOut->addHTML( Html::hidden( 'debug', '1' ) );
+		}
 
 		if ( $this->section == 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
