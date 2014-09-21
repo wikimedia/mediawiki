@@ -123,6 +123,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'सर्वाधिकआवर्तने' ),
 	'Movepage'                  => array( 'पान_हलवा' ),
 	'Mycontributions'           => array( 'माझे_योगदान' ),
+	'MyLanguage'                => array( 'माझीभाषा' ),
 	'Mypage'                    => array( 'माझे_पान' ),
 	'Mytalk'                    => array( 'माझ्या_चर्चा' ),
 	'Newimages'                 => array( 'नवीन_संचिका', 'नवीन_चित्रे' ),

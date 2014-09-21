@@ -92,6 +92,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Pages_les_plus_modifiées', 'PagesLesPlusModifiées', 'Pages_les_plus_modifiees', 'PagesLesPlusModifiees', 'Les_plus_modifiés', 'LesPlusModifiés', 'Les_plus_modifies', 'LesPlusModifies' ),
 	'Movepage'                  => array( 'Renommer_une_page', 'Renommer', 'Renommage' ),
 	'Mycontributions'           => array( 'Mes_contributions', 'Mescontributions' ),
+	'MyLanguage'                => array( 'MaLangue', 'Ma_langue' ),
 	'Mypage'                    => array( 'Ma_page', 'Mapage' ),
 	'Mytalk'                    => array( 'Mes_discussions', 'Mesdiscussions' ),
 	'Newimages'                 => array( 'Nouveaux_fichiers', 'NouveauxFichiers', 'Nouvelles_images', 'NouvellesImages' ),

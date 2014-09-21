@@ -110,6 +110,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'AnMoyhaAmendyansow' ),
 	'Movepage'                  => array( 'GwayaFolen' ),
 	'Mycontributions'           => array( 'OwHevrohow' ),
+	'MyLanguage'                => array( 'OwYeth' ),
 	'Mypage'                    => array( 'OwFolen' ),
 	'Mytalk'                    => array( 'OwHeskows' ),
 	'Myuploads'                 => array( 'OwUghkargansow' ),

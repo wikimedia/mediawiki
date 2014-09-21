@@ -148,6 +148,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'Flest_revisjoner' ),
 	'Movepage'                  => array( 'Flytt_side' ),
 	'Mycontributions'           => array( 'Mine_bidrag' ),
+	'MyLanguage'                => array( 'Mitt_språk' ),
 	'Mypage'                    => array( 'Min_side' ),
 	'Mytalk'                    => array( 'Min_diskusjon' ),
 	'Myuploads'                 => array( 'Mine_opplastinger' ),

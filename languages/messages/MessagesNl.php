@@ -323,6 +323,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'MeesteVersies', 'MeesteHerzieningen', 'MeesteRevisies' ),
 	'Movepage'                  => array( 'PaginaHernoemen', 'PaginaVerplaatsen', 'TitelWijzigen', 'VerplaatsPagina' ),
 	'Mycontributions'           => array( 'MijnBijdragen' ),
+	'MyLanguage'                => array( 'MijnTaal' ),
 	'Mypage'                    => array( 'MijnPagina' ),
 	'Mytalk'                    => array( 'MijnOverleg' ),
 	'Myuploads'                 => array( 'MijnUploads' ),

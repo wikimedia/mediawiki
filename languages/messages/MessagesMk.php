@@ -145,6 +145,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'НајмногуРевизии' ),
 	'Movepage'                  => array( 'ПреместиСтраница' ),
 	'Mycontributions'           => array( 'МоиПридонеси' ),
+	'MyLanguage'                => array( 'МојЈазик' ),
 	'Mypage'                    => array( 'МојаСтраница' ),
 	'Mytalk'                    => array( 'МојРазговор', 'МоиРазговори' ),
 	'Myuploads'                 => array( 'МоиПодигања' ),

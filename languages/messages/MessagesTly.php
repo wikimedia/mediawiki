@@ -46,6 +46,7 @@ $specialPageAliases = array(
 	'Emailuser'                 => array( 'Бә_иштирокәкә_номә_вығандеј' ),
 	'Longpages'                 => array( 'Дырозә_сәһифон' ),
 	'Movepage'                  => array( 'Сәһифә_номи_дәгиш_кардеј' ),
+	'MyLanguage'                => array( 'Чымы_зывон' ),
 	'Mypage'                    => array( 'Чымы_сәһифә' ),
 	'Mytalk'                    => array( 'Чымы_мызокирә' ),
 	'Myuploads'                 => array( 'Чымы_бо_жә_быә_чијон' ),

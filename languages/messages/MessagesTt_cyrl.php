@@ -140,6 +140,7 @@ $specialPageAliases = array(
 	'Mostcategories'            => array( 'Зур_төркемнәр' ),
 	'Mostrevisions'             => array( 'Зур_үзгәртүләр' ),
 	'Movepage'                  => array( 'Битне_күчерү' ),
+	'MyLanguage'                => array( 'Телем' ),
 	'Mypage'                    => array( 'Сәхифәм' ),
 	'Mytalk'                    => array( 'Бәхәсем' ),
 	'Newimages'                 => array( 'Яңа_файл' ),

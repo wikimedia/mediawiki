@@ -125,6 +125,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( '역사긴문서' ),
 	'Movepage'                  => array( '옮기기', '문서옮기기', '이동', '문서이동' ),
 	'Mycontributions'           => array( '내기여', '내기여목록' ),
+	'MyLanguage'                => array( '내언어' ),
 	'Mypage'                    => array( '내사용자문서' ),
 	'Mytalk'                    => array( '내사용자토론' ),
 	'Myuploads'                 => array( '내가올린파일' ),

@@ -185,6 +185,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( '最多修订页面' ),
 	'Movepage'                  => array( '移动页面' ),
 	'Mycontributions'           => array( '我的贡献' ),
+	'MyLanguage'                => array( '我的语言' ),
 	'Mypage'                    => array( '我的用户页' ),
 	'Mytalk'                    => array( '我的讨论页' ),
 	'Myuploads'                 => array( '我上传的文件' ),

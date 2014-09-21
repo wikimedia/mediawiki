@@ -357,6 +357,7 @@ $specialPageAliases = array(
 	'Mycontributions'           => array( 'مساهماتي' ),
 	'Mypage'                    => array( 'صفحتي' ),
 	'Mytalk'                    => array( 'نقاشي' ),
+	'MyLanguage'                => array( 'لغتي' ),
 	'Myuploads'                 => array( 'رفوعاتي' ),
 	'Newimages'                 => array( 'ملفات_جديدة', 'صور_جديدة' ),
 	'Newpages'                  => array( 'صفحات_جديدة' ),

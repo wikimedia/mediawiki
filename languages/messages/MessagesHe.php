@@ -95,6 +95,7 @@ $specialPageAliases = array(
 	'Mostrevisions'             => array( 'הגרסאות_הרבות_ביותר', 'הדפים_בעלי_מספר_העריכות_הגבוה_ביותר' ),
 	'Movepage'                  => array( 'העברת_דף', 'העברה' ),
 	'Mycontributions'           => array( 'התרומות_שלי' ),
+	'MyLanguage'                => array( 'השפה_שלי' ),
 	'Mypage'                    => array( 'הדף_שלי', 'דף_המשתמש_שלי' ),
 	'Mytalk'                    => array( 'השיחה_שלי', 'דף_השיחה_שלי' ),
 	'Myuploads'                 => array( 'ההעלאות_שלי' ),
