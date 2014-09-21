@@ -165,7 +165,7 @@ production.
   similar way, links like [[localInterwikiPrefix:File:Image.png]] and
   [[localInterwikiPrefix:Category:Hello]] will now render as regular links, and
   will not include the file or add the page to the category.
-* New special page, MyLanguages, to redirect users to subpages with localised
+* New special page, MyLanguage, to redirect users to subpages with localised
   versions of a page. (Integrated from Extension:Translate)
 * MediaWiki now supports multiple password types, including bcrypt and PBKDF2.
   The default type can be changed with $wgPasswordDefault and the type
