@@ -3059,5 +3059,10 @@
 	"log-name-pagelang": "Log vum Ännere vun der Sprooch",
 	"log-description-pagelang": "Dëst ass a Log mat den Ännerunge vun de Sprooche vun de Säiten.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (aktivéiert)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''desaktivéiert''')"
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''desaktivéiert''')",
+	"mediastatistics-table-count": "Zuel vun de Fichieren",
+	"mediastatistics-header-unknown": "Onbekannt",
+	"mediastatistics-header-audio": "Audio",
+	"mediastatistics-header-video": "Videoen",
+	"mediastatistics-header-office": "Office"
 }

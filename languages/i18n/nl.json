@@ -3067,6 +3067,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|heeft}} een nieuwe versie van $3 geüpload",
 	"logentry-upload-revert": "$1 heeft $3 {{GENDER:$2|geupload}}",
 	"rightsnone": "(geen)",
+	"revdelete-summary": "bewerkingssamenvatting",
 	"feedback-bugornote": "Als u zover bent om een technisch probleem in detail te beschrijven, [$1 rapporteer dan een bug].\nAnders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt dan toegevoegd aan de pagina \"[$3 $2]\", samen met uw gebruikersnaam en de browser die u gebruikt.",
 	"feedback-subject": "Onderwerp:",
 	"feedback-message": "Bericht:",
@@ -3170,5 +3171,11 @@
 	"log-description-pagelang": "Dit is een logboek van wijzigingen van de taal van pagina's.",
 	"logentry-pagelang-pagelang": "$1 wijzigde de taal van de pagina '$3' van $4 naar $5.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (ingeschakeld)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>uitgeschakeld</strong>)"
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>uitgeschakeld</strong>)",
+	"mediastatistics-nbytes": "{{PLURAL:$1|$1 byte|$1 bytes}} ($2; $3%)",
+	"mediastatistics-table-count": "Aantal bestanden",
+	"mediastatistics-header-unknown": "Onbekend",
+	"mediastatistics-header-audio": "Audio",
+	"mediastatistics-header-video": "Video's",
+	"mediastatistics-header-executable": "Uitvoerbare bestanden"
 }

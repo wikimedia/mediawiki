@@ -1254,7 +1254,7 @@
 	"filetype-badmime": "不允許上傳 MIME 類型為 \"$1\" 的檔案。",
 	"filetype-bad-ie-mime": "Internet Explorer 會將此檔案類型誤判為 \"$1\"，可能造成潛在問題，不允許上傳此類型檔案。",
 	"filetype-unwanted-type": "不建議使用檔案類型 <strong>\".$1\"</strong>。\n建議的檔案類型有 $2。",
-	"filetype-banned-type": "不允許使用檔案類型 <strong>\".$1\"</strong>。\n允許的{{PLURAL:$3|檔案類型|檔案類型}}為 $2。",
+	"filetype-banned-type": "不允許使用檔案類型 <strong>\".$1\"</strong>。允許的{{PLURAL:$3|檔案類型}}為 $2。",
 	"filetype-missing": "該檔案沒有副檔名 (如 \".jpg\")。",
 	"empty-file": "您所送出的檔案為空的。",
 	"file-too-large": "您所送出的檔案過大。",

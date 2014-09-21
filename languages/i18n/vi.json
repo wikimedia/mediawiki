@@ -1818,7 +1818,7 @@
 	"protect-othertime": "Thời hạn khác:",
 	"protect-othertime-op": "thời hạn khác",
 	"protect-existing-expiry": "Thời hạn hiện thời: $3, $2",
-	"protect-existing-expiry-infinity": "Thời gian hết hạn hiện thời: vô hạn",
+	"protect-existing-expiry-infinity": "Thời hạn hiện thời: vô hạn",
 	"protect-otherreason": "Lý do khác/bổ sung:",
 	"protect-otherreason-op": "Lý do khác",
 	"protect-dropdown": "*Các lý do thường dùng khi khóa\n** Bị phá hoại quá mức\n** Bị spam quá mức\n** Bút chiến thiếu tính xây dựng\n** Trang nhiều người xem",
