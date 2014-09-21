@@ -979,6 +979,10 @@ return array(
 			'jquery.cookie',
 		),
 	),
+	'mediawiki.toolbar' => array(
+		'class' => 'ResourceLoaderEditToolbarModule',
+		'styles' => 'resources/src/mediawiki.toolbar/toolbar.less',
+	),
 
 	/* MediaWiki Action */
 
@@ -987,7 +991,7 @@ return array(
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.css',
 		'dependencies' => array(
 			'mediawiki.action.edit.styles',
-			'mediawiki.action.edit.toolbar',
+			'mediawiki.toolbar',
 			'jquery.textSelection',
 			'jquery.byteLimit',
 		),
@@ -996,10 +1000,6 @@ return array(
 	'mediawiki.action.edit.styles' => array(
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.styles.css',
 		'position' => 'top',
-	),
-	'mediawiki.action.edit.toolbar' => array(
-		'class' => 'ResourceLoaderEditToolbarModule',
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.toolbar/mediawiki.action.edit.toolbar.less',
 	),
 	'mediawiki.action.edit.collapsibleFooter' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.js',

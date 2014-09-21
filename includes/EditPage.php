@@ -3640,7 +3640,7 @@ HTML
 			)
 		);
 
-		$script = 'mw.loader.using("mediawiki.action.edit", function() {';
+		$script = 'mw.loader.using("mediawiki.toolbar", function () {';
 		foreach ( $toolarray as $tool ) {
 			if ( !$tool ) {
 				continue;
