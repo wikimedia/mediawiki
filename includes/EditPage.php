@@ -3640,7 +3640,13 @@ HTML
 			)
 		);
 
-		$script = 'mw.loader.using("mediawiki.toolbar", function () {';
+		if ( ResourceLoader::inDebugMode() ) {
+			$break = "\n";
+			$indent = "\t";
+		} else {
+			$break = $indent = '';
+		}
+		$script = 'mw.loader.using( "mediawiki.toolbar", function () {';
 		foreach ( $toolarray as $tool ) {
 			if ( !$tool ) {
 				continue;
@@ -3660,16 +3666,14 @@ HTML
 				$tool['id'],
 			);
 
-			$script .= Xml::encodeJsCall( 'mw.toolbar.addButton', $params );
+			$script .= $break . $indent . Xml::encodeJsCall( 'mw.toolbar.addButton', $params, ResourceLoader::inDebugMode() );
 		}
 
 		// This used to be called on DOMReady from mediawiki.action.edit, which
 		// ended up causing race conditions with the setup code above.
-		$script .= "\n" .
-			"// Create button bar\n" .
-			"$(function() { mw.toolbar.init(); } );\n";
+		$script .= $break . $indent . '$(function () { mw.toolbar.init(); });';
 
-		$script .= '});';
+		$script .= $break . '});';
 		$wgOut->addScript( Html::inlineScript( ResourceLoader::makeLoaderConditionalScript( $script ) ) );
 
 		$toolbar = '<div id="toolbar"></div>';
