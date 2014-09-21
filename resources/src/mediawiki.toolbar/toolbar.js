@@ -151,16 +151,15 @@
 					}
 				);
 			}
-		},
-
-		// For backwards compatibility,
-		// Called from EditPage.php, maybe in other places as well.
-		init: function () {}
+		}
 	};
 
 	// Legacy (for compatibility with the code previously in skins/common.edit.js)
 	mw.log.deprecate( window, 'addButton', toolbar.addButton, 'Use mw.toolbar.addButton instead.' );
 	mw.log.deprecate( window, 'insertTags', toolbar.insertTags, 'Use mw.toolbar.insertTags instead.' );
+
+	// For backwards compatibility. Used to be called from EditPage.php, maybe other places as well.
+	mw.log.deprecate( toolbar, 'init', $.noop );
 
 	// Expose API publicly
 	mw.toolbar = toolbar;
