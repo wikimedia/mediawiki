@@ -237,10 +237,9 @@ class CSSMinTest extends MediaWikiTestCase {
 				"foo { background: url(http://localhost/w/large.png?timestamp); }",
 			),
 			array(
-				'SVG files are embedded without base64 encoding',
+				'SVG files are embedded without base64 encoding and unnecessary IE 6 and 7 fallback',
 				'foo { /* @embed */ background: url(circle.svg); }',
-				"foo { background: url($svg); "
-					. "background: url(http://localhost/w/circle.svg?timestamp)!ie; }",
+				"foo { background: url($svg); }",
 			),
 			array(
 				'Two regular files in one rule',
