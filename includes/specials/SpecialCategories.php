@@ -188,9 +188,11 @@ class CategoryPager extends AlphabeticPager {
 					$this->msg( 'categories' )->text(),
 					Xml::inputLabel(
 						$this->msg( 'categoriesfrom' )->text(),
-						'from', 'from', 20, $from ) .
+						'from', 'from', 20, $from, array( 'class' => 'mw-ui-input-inline') ) .
 						' ' .
-						Xml::submitButton( $this->msg( 'allpagessubmit' )->text()
+						Xml::submitButton(
+							$this->msg( 'allpagessubmit' )->text(),
+							array( 'class' => 'mw-ui-button mw-ui-progressive' )
 						)
 				)
 		);
