@@ -485,6 +485,17 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Get non-ResourceLoader script content, normally inserted at the bottom of either
+	 * the head or the body.
+	 *
+	 * @since 1.25
+	 * @return string
+	 */
+	function getNonRLScripts() {
+		return $this->mScripts;
+	}
+
+	/**
 	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
 	 * @param array $modules
