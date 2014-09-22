@@ -28,7 +28,9 @@ class LanguageTlTest extends LanguageClassesTestCase {
 		return array(
 			array( 'one', 0 ),
 			array( 'one', 1 ),
-			array( 'other', 2 ),
+			array( 'one', 2 ),
+			array( 'other', 4 ),
+			array( 'other', 6 ),
 		);
 	}
 }
