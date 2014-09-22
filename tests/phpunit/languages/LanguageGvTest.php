@@ -37,7 +37,7 @@ class LanguageGvTest extends LanguageClassesTestCase {
 			array( 'other', 23 ),
 			array( 'other', 50 ),
 			array( 'few', 60 ),
-			array( 'other', 80 ),
+			array( 'few', 80 ),
 			array( 'few', 100 )
 		);
 	}
