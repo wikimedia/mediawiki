@@ -898,11 +898,12 @@ abstract class Installer {
 	}
 
 	/**
-	 * Scare user to death if they have mod_security
+	 * Scare user to death if they have mod_security or mod_security2
 	 * @return bool
 	 */
 	protected function envCheckModSecurity() {
-		if ( self::apacheModulePresent( 'mod_security' ) ) {
+		if ( self::apacheModulePresent( 'mod_security' )
+			|| self::apacheModulePresent( 'mod_security2' ) ) {
 			$this->showMessage( 'config-mod-security' );
 		}
 
