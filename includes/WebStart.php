@@ -6,7 +6,7 @@
  * MW_NO_SETUP is defined.
  *
  * Setup.php (if loaded) then sets up GlobalFunctions, the AutoLoader,
- * and the configuration globals (though not $wgTitle).
+ * and the configuration globals.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
