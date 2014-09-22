@@ -14,16 +14,14 @@ versus
 
     # Save current globals
     $oldTitle = $wgTitle;
-    $oldArticle = $wgArticle;
 
     # Generate the HTML
     $wgTitle = Title::newFromText( $t );
-    $wgArticle = new Article;
-    $wgArticle->view();
+    $article = new Article( $wgTitle );
+    $article->view();
 
     # Restore globals
     $wgTitle = $oldTitle
-    $wgArticle = $oldArticle
 
 Some of the current MediaWiki developers have an idle fantasy that some day,
 globals will be eliminated from MediaWiki entirely, replaced by an application
