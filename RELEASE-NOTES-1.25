@@ -16,6 +16,8 @@ production.
   percent-encoding), but up to 20% decrease after it.
 
 === Bug fixes in 1.25 ===
+* (bug 71003) No additional code will be generated to try to load CSS-embedded
+  SVG images in Internet Explorer 6 and 7, as they don't support them anyway.
 
 === Action API changes in 1.25 ===
 * (bug 65403) XML tag highlighting is now only performed for formats
