@@ -1,12 +1,13 @@
-/* This is CLDRPluralRuleParser v1.1, ported to MediaWiki ResourceLoader */
+/* This is CLDRPluralRuleParser v1.1.3, ported to MediaWiki ResourceLoader */
 
 /**
 * CLDRPluralRuleParser.js
 * A parser engine for CLDR plural rules.
 *
-* Copyright 2012 GPLV3+, Santhosh Thottingal
+* Copyright 2012-2014 Santhosh Thottingal and other contributors
+* Released under the MIT license
+* http://opensource.org/licenses/MIT
 *
-* @version 0.1.0-alpha
 * @source https://github.com/santhoshtr/CLDRPluralRuleParser
 * @author Santhosh Thottingal <santhosh.thottingal@gmail.com>
 * @author Timo Tijhof
@@ -22,6 +23,8 @@
  */
 
 function pluralRuleParser(rule, number) {
+	'use strict';
+
 	/*
 	Syntax: see http://unicode.org/reports/tr35/#Language_Plural_Rules
 	-----------------------------------------------------------------
@@ -44,14 +47,15 @@ function pluralRuleParser(rule, number) {
 	decimalValue  = value ('.' value)?
 	*/
 
-	// we don't evaluate the samples section of the rule. Ignore it.
+	// We don't evaluate the samples section of the rule. Ignore it.
 	rule = rule.split('@')[0].replace(/^\s*/, '').replace(/\s*$/, '');
 
 	if (!rule.length) {
-		// empty rule or 'other' rule.
+		// Empty rule or 'other' rule.
 		return true;
 	}
-	// Indicates current position in the rule as we parse through it.
+
+	// Indicates the current position in the rule as we parse through it.
 	// Shared among all parsing functions below.
 	var pos = 0,
 		operand,
@@ -87,15 +91,18 @@ function pluralRuleParser(rule, number) {
 	debug('pluralRuleParser', rule, number);
 
 	// Try parsers until one works, if none work return null
-
 	function choice(parserSyntax) {
 		return function() {
-			for (var i = 0; i < parserSyntax.length; i++) {
-				var result = parserSyntax[i]();
+			var i, result;
+
+			for (i = 0; i < parserSyntax.length; i++) {
+				result = parserSyntax[i]();
+
 				if (result !== null) {
 					return result;
 				}
 			}
+
 			return null;
 		};
 	}
@@ -103,46 +110,56 @@ function pluralRuleParser(rule, number) {
 	// Try several parserSyntax-es in a row.
 	// All must succeed; otherwise, return null.
 	// This is the only eager one.
-
 	function sequence(parserSyntax) {
-		var originalPos = pos;
-		var result = [];
-		for (var i = 0; i < parserSyntax.length; i++) {
-			var res = parserSyntax[i]();
-			if (res === null) {
+		var i, parserRes,
+			originalPos = pos,
+			result = [];
+
+		for (i = 0; i < parserSyntax.length; i++) {
+			parserRes = parserSyntax[i]();
+
+			if (parserRes === null) {
 				pos = originalPos;
+
 				return null;
 			}
-			result.push(res);
+
+			result.push(parserRes);
 		}
+
 		return result;
 	}
 
 	// Run the same parser over and over until it fails.
 	// Must succeed a minimum of n times; otherwise, return null.
-
 	function nOrMore(n, p) {
 		return function() {
-			var originalPos = pos;
-			var result = [];
-			var parsed = p();
+			var originalPos = pos,
+				result = [],
+				parsed = p();
+
 			while (parsed !== null) {
 				result.push(parsed);
 				parsed = p();
 			}
+
 			if (result.length < n) {
 				pos = originalPos;
+
 				return null;
 			}
+
 			return result;
 		};
 	}
 
-	// Helpers -- just make parserSyntax out of simpler JS builtin types
+	// Helpers - just make parserSyntax out of simpler JS builtin types
 	function makeStringParser(s) {
 		var len = s.length;
+
 		return function() {
 			var result = null;
+
 			if (rule.substr(pos, len) === s) {
 				result = s;
 				pos += len;
@@ -155,95 +172,122 @@ function pluralRuleParser(rule, number) {
 	function makeRegexParser(regex) {
 		return function() {
 			var matches = rule.substr(pos).match(regex);
+
 			if (matches === null) {
 				return null;
 			}
+
 			pos += matches[0].length;
+
 			return matches[0];
 		};
 	}
 
-	/*
-	 * integer digits of n.
+	/**
+	 * Integer digits of n.
 	 */
 	function i() {
 		var result = _i_();
+
 		if (result === null) {
 			debug(' -- failed i', parseInt(number, 10));
+
 			return result;
 		}
+
 		result = parseInt(number, 10);
 		debug(' -- passed i ', result);
+
 		return result;
 	}
 
-	/*
-	 * absolute value of the source number (integer and decimals).
+	/**
+	 * Absolute value of the source number (integer and decimals).
 	 */
 	function n() {
 		var result = _n_();
+
 		if (result === null) {
 			debug(' -- failed n ', number);
+
 			return result;
 		}
+
 		result = parseFloat(number, 10);
 		debug(' -- passed n ', result);
+
 		return result;
 	}
 
-	/*
-	 * visible fractional digits in n, with trailing zeros.
+	/**
+	 * Visible fractional digits in n, with trailing zeros.
 	 */
 	function f() {
 		var result = _f_();
+
 		if (result === null) {
 			debug(' -- failed f ', number);
+
 			return result;
 		}
+
 		result = (number + '.').split('.')[1] || 0;
 		debug(' -- passed f ', result);
+
 		return result;
 	}
 
-	/*
-	 * visible fractional digits in n, without trailing zeros.
+	/**
+	 * Visible fractional digits in n, without trailing zeros.
 	 */
 	function t() {
 		var result = _t_();
+
 		if (result === null) {
 			debug(' -- failed t ', number);
+
 			return result;
 		}
+
 		result = (number + '.').split('.')[1].replace(/0$/, '') || 0;
 		debug(' -- passed t ', result);
+
 		return result;
 	}
 
-	/*
-	 * number of visible fraction digits in n, with trailing zeros.
+	/**
+	 * Number of visible fraction digits in n, with trailing zeros.
 	 */
 	function v() {
 		var result = _v_();
+
 		if (result === null) {
 			debug(' -- failed v ', number);
+
 			return result;
 		}
+
 		result = (number + '.').split('.')[1].length || 0;
 		debug(' -- passed v ', result);
+
 		return result;
 	}
 
-	/*
-	 * number of visible fraction digits in n, without trailing zeros.
+	/**
+	 * Number of visible fraction digits in n, without trailing zeros.
 	 */
 	function w() {
 		var result = _w_();
+
 		if (result === null) {
 			debug(' -- failed w ', number);
+
 			return result;
 		}
+
 		result = (number + '.').split('.')[1].replace(/0$/, '').length || 0;
 		debug(' -- passed w ', result);
+
 		return result;
 	}
 
@@ -254,19 +298,27 @@ function pluralRuleParser(rule, number) {
 	expression = choice([mod, operand]);
 
 	function mod() {
-		var result = sequence([operand, whitespace, choice([_mod_, _percent_]), whitespace, value]);
+		var result = sequence(
+			[operand, whitespace, choice([_mod_, _percent_]), whitespace, value]
+		);
+
 		if (result === null) {
 			debug(' -- failed mod');
+
 			return null;
 		}
+
 		debug(' -- passed ' + parseInt(result[0], 10) + ' ' + result[2] + ' ' + parseInt(result[4], 10));
+
 		return parseInt(result[0], 10) % parseInt(result[4], 10);
 	}
 
 	function not() {
 		var result = sequence([whitespace, _not_]);
+
 		if (result === null) {
 			debug(' -- failed not');
+
 			return null;
 		}
 
@@ -276,120 +328,170 @@ function pluralRuleParser(rule, number) {
 	// is_relation   = expr 'is' ('not')? value
 	function is() {
 		var result = sequence([expression, whitespace, choice([_is_]), whitespace, value]);
+
 		if (result !== null) {
 			debug(' -- passed is : ' + result[0] + ' == ' + parseInt(result[4], 10));
+
 			return result[0] === parseInt(result[4], 10);
 		}
+
 		debug(' -- failed is');
+
 		return null;
 	}
 
 	// is_relation   = expr 'is' ('not')? value
 	function isnot() {
-		var result = sequence([expression, whitespace, choice([_isnot_, _isnot_sign_]), whitespace, value]);
+		var result = sequence(
+			[expression, whitespace, choice([_isnot_, _isnot_sign_]), whitespace, value]
+		);
+
 		if (result !== null) {
 			debug(' -- passed isnot: ' + result[0] + ' != ' + parseInt(result[4], 10));
+
 			return result[0] !== parseInt(result[4], 10);
 		}
+
 		debug(' -- failed isnot');
+
 		return null;
 	}
 
 	function not_in() {
-		var result = sequence([expression, whitespace, _isnot_sign_, whitespace, rangeList]);
+		var i, range_list,
+			result = sequence([expression, whitespace, _isnot_sign_, whitespace, rangeList]);
+
 		if (result !== null) {
 			debug(' -- passed not_in: ' + result[0] + ' != ' + result[4]);
-			var range_list = result[4];
-			for (var i = 0; i < range_list.length; i++) {
+			range_list = result[4];
+
+			for (i = 0; i < range_list.length; i++) {
 				if (parseInt(range_list[i], 10) === parseInt(result[0], 10)) {
 					return false;
 				}
 			}
+
 			return true;
 		}
+
 		debug(' -- failed not_in');
+
 		return null;
 	}
 
 	// range_list    = (range | value) (',' range_list)*
 	function rangeList() {
-		var result = sequence([choice([range, value]), nOrMore(0, rangeTail)]);
-		var resultList = [];
+		var result = sequence([choice([range, value]), nOrMore(0, rangeTail)]),
+			resultList = [];
+
 		if (result !== null) {
 			resultList = resultList.concat(result[0]);
+
 			if (result[1][0]) {
 				resultList = resultList.concat(result[1][0]);
 			}
+
 			return resultList;
 		}
+
 		debug(' -- failed rangeList');
+
 		return null;
 	}
 
 	function rangeTail() {
 		// ',' range_list
 		var result = sequence([_comma_, rangeList]);
+
 		if (result !== null) {
 			return result[1];
 		}
+
 		debug(' -- failed rangeTail');
+
 		return null;
 	}
 
 	// range         = value'..'value
-
 	function range() {
-		var i;
-		var result = sequence([value, _range_, value]);
+		var i, array, left, right,
+			result = sequence([value, _range_, value]);
+
 		if (result !== null) {
 			debug(' -- passed range');
-			var array = [];
-			var left = parseInt(result[0], 10);
-			var right = parseInt(result[2], 10);
+
+			array = [];
+			left = parseInt(result[0], 10);
+			right = parseInt(result[2], 10);
+
 			for (i = left; i <= right; i++) {
 				array.push(i);
 			}
+
 			return array;
 		}
+
 		debug(' -- failed range');
+
 		return null;
 	}
 
 	function _in() {
+		var result, range_list, i;
+
 		// in_relation   = expr ('not')? 'in' range_list
-		var result = sequence([expression, nOrMore(0, not), whitespace, choice([_in_, _equal_]), whitespace, rangeList]);
+		result = sequence(
+			[expression, nOrMore(0, not), whitespace, choice([_in_, _equal_]), whitespace, rangeList]
+		);
+
 		if (result !== null) {
 			debug(' -- passed _in:' + result);
-			var range_list = result[5];
-			for (var i = 0; i < range_list.length; i++) {
+
+			range_list = result[5];
+
+			for (i = 0; i < range_list.length; i++) {
 				if (parseInt(range_list[i], 10) === parseInt(result[0], 10)) {
 					return (result[1][0] !== 'not');
 				}
 			}
+
 			return (result[1][0] === 'not');
 		}
+
 		debug(' -- failed _in ');
+
 		return null;
 	}
 
-	/*
-	 * The difference between in and within is that in only includes integers in the specified range,
-	 * while within includes all values.
+	/**
+	 * The difference between "in" and "within" is that
+	 * "in" only includes integers in the specified range,
+	 * while "within" includes all values.
 	 */
-
 	function within() {
+		var range_list, result;
+
 		// within_relation = expr ('not')? 'within' range_list
-		var result = sequence([expression, nOrMore(0, not), whitespace, _within_, whitespace, rangeList]);
+		result = sequence(
+			[expression, nOrMore(0, not), whitespace, _within_, whitespace, rangeList]
+		);
+
 		if (result !== null) {
 			debug(' -- passed within');
-			var range_list = result[5];
+
+			range_list = result[5];
+
 			if ((result[0] >= parseInt(range_list[0], 10)) &&
 				(result[0] < parseInt(range_list[range_list.length - 1], 10))) {
+
 				return (result[1][0] !== 'not');
 			}
+
 			return (result[1][0] === 'not');
 		}
+
 		debug(' -- failed within ');
+
 		return null;
 	}
 
@@ -398,65 +500,83 @@ function pluralRuleParser(rule, number) {
 
 	// and_condition = relation ('and' relation)*
 	function and() {
-		var result = sequence([relation, nOrMore(0, andTail)]);
+		var i,
+			result = sequence([relation, nOrMore(0, andTail)]);
+
 		if (result) {
 			if (!result[0]) {
 				return false;
 			}
-			for (var i = 0; i < result[1].length; i++) {
+
+			for (i = 0; i < result[1].length; i++) {
 				if (!result[1][i]) {
 					return false;
 				}
 			}
+
 			return true;
 		}
+
 		debug(' -- failed and');
+
 		return null;
 	}
 
 	// ('and' relation)*
 	function andTail() {
 		var result = sequence([whitespace, _and_, whitespace, relation]);
+
 		if (result !== null) {
 			debug(' -- passed andTail' + result);
+
 			return result[3];
 		}
+
 		debug(' -- failed andTail');
+
 		return null;
 
 	}
 	//  ('or' and_condition)*
 	function orTail() {
 		var result = sequence([whitespace, _or_, whitespace, and]);
+
 		if (result !== null) {
 			debug(' -- passed orTail: ' + result[3]);
+
 			return result[3];
 		}
-		debug(' -- failed orTail');
-		return null;
 
+		debug(' -- failed orTail');
+
+		return null;
 	}
 
 	// condition     = and_condition ('or' and_condition)*
 	function condition() {
-		var result = sequence([and, nOrMore(0, orTail)]);
+		var i,
+			result = sequence([and, nOrMore(0, orTail)]);
+
 		if (result) {
-			for (var i = 0; i < result[1].length; i++) {
+			for (i = 0; i < result[1].length; i++) {
 				if (result[1][i]) {
 					return true;
 				}
 			}
-			return result[0];
 
+			return result[0];
 		}
+
 		return false;
 	}
 
 	result = condition();
-	/*
+
+	/**
 	 * For success, the pos must have gotten to the end of the rule
 	 * and returned a non-null.
-	 * n.b. This is part of language infrastructure, so we do not throw an internationalizable message.
+	 * n.b. This is part of language infrastructure,
+	 * so we do not throw an internationalizable message.
 	 */
 	if (result === null) {
 		throw new Error('Parse error at position ' + pos.toString() + ' for rule: ' + rule);
