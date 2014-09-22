@@ -510,7 +510,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'target',
 			$this->opts['target'],
 			'text',
-			array( 'size' => '40', 'required' => '', 'class' => 'mw-input' ) +
+			array( 'size' => '40', 'required' => '', 'class' => 'mw-input mw-ui-input-inline' ) +
 				( $this->opts['target'] ? array() : array( 'autofocus' )
 				)
 		);
@@ -522,16 +522,12 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$namespaceSelection = Xml::tags(
 			'td',
-			array( 'class' => 'mw-label' ),
+			array(),
 			Xml::label(
 				$this->msg( 'namespace' )->text(),
 				'namespace',
 				''
-			)
-		);
-		$namespaceSelection .= Html::rawElement(
-			'td',
-			null,
+			) .
 			Html::namespaceSelector(
 				array( 'selected' => $this->opts['namespace'], 'all' => '' ),
 				array(
@@ -619,7 +615,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			) . ' ' .
 				Xml::submitButton(
 					$this->msg( 'sp-contributions-submit' )->text(),
-					array( 'class' => 'mw-submit' )
+					array( 'class' => 'mw-submit mw-ui-button mw-ui-progressive' )
 				)
 		);
 
