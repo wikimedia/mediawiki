@@ -185,6 +185,9 @@ class MediaStatisticsPage extends QueryPage {
 		if ( $decimal == 0 ) {
 			return '0';
 		}
+		if ( $decimal >= 100 ) {
+			return '100';
+		}
 		$percent = sprintf( "%." . max( 0, 2 - floor( log10( $decimal ) ) ) . "f", $decimal );
 		// Then remove any trailing 0's
 		return preg_replace( '/\.?0*$/', '', $percent );
