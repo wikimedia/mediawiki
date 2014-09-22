@@ -5184,7 +5184,7 @@ $wgDebugDumpSqlLength = 500;
  *
  * @par Advanced example:
  * @code
- * $wgDebugLogGroups['memcached'] = (
+ * $wgDebugLogGroups['memcached'] = array(
  *     'destination' => '/var/log/mediawiki/memcached.log',
  *     'sample' => 1000,  // log 1 message out of every 1,000.
  * );
