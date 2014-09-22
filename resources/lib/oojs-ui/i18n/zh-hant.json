@@ -23,6 +23,6 @@
 	"ooui-dialog-message-accept": "確定",
 	"ooui-dialog-message-reject": "取消",
 	"ooui-dialog-process-error": "發生不明錯誤",
-	"ooui-dialog-process-dismiss": "放棄",
+	"ooui-dialog-process-dismiss": "關閉",
 	"ooui-dialog-process-retry": "再試一次"
 }

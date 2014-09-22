@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (f2c3f12959)
+ * OOjs UI v0.1.0-pre (bab8befc94)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-18T23:22:20Z
+ * Date: 2014-09-22T21:17:15Z
  */
 ( function ( OO ) {
 
@@ -8218,6 +8218,7 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
  * @param {Object} [config] Configuration options
  * @cfg {string} [action] Symbolic action name
  * @cfg {string[]} [modes] Symbolic mode names
+ * @cfg {boolean} [framed=false] Render button with a frame
  */
 OO.ui.ActionWidget = function OoUiActionWidget( config ) {
 	// Config intialization
