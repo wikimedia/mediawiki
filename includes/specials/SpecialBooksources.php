@@ -131,9 +131,12 @@ class SpecialBookSources extends SpecialPage {
 			'isbn',
 			20,
 			$this->isbn,
-			array( 'autofocus' => true )
+			array( 'autofocus' => true, 'class' => 'mw-ui-input-inline' )
 		);
-		$form .= '&#160;' . Xml::submitButton( $this->msg( 'booksources-go' )->text() ) . "</p>\n";
+		$form .= '&#160;' . Xml::submitButton(
+			$this->msg( 'booksources-search' )->text(),
+			array( 'class' => 'mw-ui-button mw-ui-progressive' )
+		) . "</p>\n";
 		$form .= Html::closeElement( 'form' ) . "\n";
 		$form .= Html::closeElement( 'fieldset' ) . "\n";
 
