@@ -126,6 +126,11 @@ class ApiExpandTemplates extends ApiBase {
 				if ( isset( $prop['wikitext'] ) ) {
 					$retval['wikitext'] = $wikitext;
 				}
+				if ( isset( $prop['modules'] ) ) {
+					$expandedContext = new RequestContext;
+					$expandedContext->getOutput()->addParserOutputMetadata( $wgParser->getOutput() );
+					$retval['modules'] = $expandedContext->getOutput()->getModules();
+				}
 			}
 		}
 		$result->setSubelements( $retval, array( 'wikitext', 'parsetree' ) );
@@ -147,6 +152,7 @@ class ApiExpandTemplates extends ApiBase {
 					'categories',
 					'volatile',
 					'ttl',
+					'modules',
 					'parsetree',
 				),
 				ApiBase::PARAM_ISMULTI => true,
@@ -172,6 +178,8 @@ class ApiExpandTemplates extends ApiBase {
 					'elsewhere within the page',
 				' ttl        - The maximum time after which caches of the result should be ' .
 					'invalidated',
+				' modules    - Any ResourceLoader modules that parser functions have requested ' .
+					'be added to the output',
 				' parsetree  - The XML parse tree of the input',
 				'Note that if no values are selected, the result will contain the wikitext,',
 				'but the output will be in a deprecated format.',
