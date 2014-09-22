@@ -1683,7 +1683,7 @@
 	"booksources-summary": "",
 	"booksources-search-legend": "Search for book sources",
 	"booksources-isbn": "ISBN:",
-	"booksources-go": "Go",
+	"booksources-search": "Search",
 	"booksources-text": "Below is a list of links to other sites that sell new and used books, and may also have further information about books you are looking for:",
 	"booksources-invalid-isbn": "The given ISBN does not appear to be valid; check for errors copying from the original source.",
 	"rfcurl": "//tools.ietf.org/html/rfc$1",
