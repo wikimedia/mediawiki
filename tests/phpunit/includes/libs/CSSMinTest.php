@@ -147,9 +147,12 @@ class CSSMinTest extends MediaWikiTestCase {
 		// Full paths start with http://localhost/w/.
 		// Timestamps in output are replaced with 'timestamp'.
 
-		// data: URIs for red.gif and green.gif
+		// data: URIs for red.gif, green.gif, circle.svg
 		$red   = 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=';
 		$green = 'data:image/gif;base64,R0lGODlhAQABAIAAAACAADAAACwAAAAAAQABAAACAkQBADs=';
+		$svg = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KP'
+			. 'HN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo'
+			. '8Y2lyY2xlIGN4PSI0IiBjeT0iNCIgcj0iMiIvPgo8L3N2Zz4K';
 
 		return array(
 			array(
@@ -227,6 +230,11 @@ class CSSMinTest extends MediaWikiTestCase {
 				'Can not embed large files',
 				'foo { /* @embed */ background: url(large.png); }',
 				"foo { background: url(http://localhost/w/large.png?timestamp); }",
+			),
+			array(
+				'SVG files are embedded without unnecessary IE 6 and 7 fallback',
+				'foo { /* @embed */ background: url(circle.svg); }',
+				"foo { background: url($svg); }",
 			),
 			array(
 				'Two regular files in one rule',

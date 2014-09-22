@@ -248,9 +248,12 @@ class CSSMin {
 				);
 
 				if ( $embedData ) {
+					// Remember the occurring MIME types to avoid fallbacks when embedding some files.
+					$mimeTypes = array();
+
 					$ruleWithEmbedded = preg_replace_callback(
 						$pattern,
-						function ( $match ) use ( $embedAll, $local, $remote ) {
+						function ( $match ) use ( $embedAll, $local, $remote, &$mimeTypes ) {
 							$embed = $embedAll || $match['embed'];
 							$embedded = CSSMin::remapOne(
 								$match['file'],
@@ -260,21 +263,35 @@ class CSSMin {
 								$embed
 							);
 
+							$url = $match['file'] . $match['query'];
+							$file = $local . $match['file'];
+							if (
+								!CSSMin::isRemoteUrl( $url ) && !CSSMin::isLocalUrl( $url )
+								&& file_exists( $file )
+							) {
+								$mimeTypes[ CSSMin::getMimeType( $file ) ] = true;
+							}
+
 							return CSSMin::buildUrlValue( $embedded );
 						},
 						$rule
 					);
+
+					// Are all referenced images SVGs?
+					$needsEmbedFallback = $mimeTypes !== array( 'image/svg+xml' => true );
 				}
 
-				if ( $embedData && $ruleWithEmbedded !== $ruleWithRemapped ) {
-					// Build 2 CSS properties; one which uses a base64 encoded data URI in place
-					// of the @embed comment to try and retain line-number integrity, and the
-					// other with a remapped an versioned URL and an Internet Explorer hack
+				if ( !$embedData || $ruleWithEmbedded === $ruleWithRemapped ) {
+					// We're not embedding anything, or we tried to but the file is not embeddable
+					return $ruleWithRemapped;
+				} elseif ( $embedData && $needsEmbedFallback ) {
+					// Build 2 CSS properties; one which uses a data URI in place of the @embed comment, and
+					// the other with a remapped and versioned URL with an Internet Explorer 6 and 7 hack
 					// making it ignored in all browsers that support data URIs
 					return "$ruleWithEmbedded;$ruleWithRemapped!ie";
 				} else {
-					// No reason to repeat twice
-					return $ruleWithRemapped;
+					// Look ma, no fallbacks! This is for files which IE 6 and 7 don't support anyway: SVG.
+					return $ruleWithEmbedded;
 				}
 			}, $source );
 
@@ -286,6 +303,34 @@ class CSSMin {
 
 		return $source;
 
+	}
+
+	/**
+	 * Is this CSS rule referencing a remote URL?
+	 *
+	 * @private Until we require PHP 5.5 and we can access self:: from closures.
+	 * @param string $maybeUrl
+	 * @return bool
+	 */
+	public static function isRemoteUrl( $maybeUrl ) {
+		if ( substr( $maybeUrl, 0, 2 ) === '//' || parse_url( $maybeUrl, PHP_URL_SCHEME ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Is this CSS rule referencing a local URL?
+	 *
+	 * @private Until we require PHP 5.5 and we can access self:: from closures.
+	 * @param string $maybeUrl
+	 * @return bool
+	 */
+	public static function isLocalUrl( $maybeUrl ) {
+		if ( !self::isRemoteUrl( $maybeUrl ) && $maybeUrl !== '' && $maybeUrl[0] === '/' ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -302,22 +347,16 @@ class CSSMin {
 		// The full URL possibly with query, as passed to the 'url()' value in CSS
 		$url = $file . $query;
 
-		// Skip fully-qualified and protocol-relative URLs and data URIs
-		if ( substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME ) ) {
-			return $url;
+		// Expand local URLs with absolute paths like /w/index.php to possibly protocol-relative URL, if
+		// wfExpandUrl() is available. (This will not be the case if we're running outside of MW.)
+		if ( self::isLocalUrl( $url ) && function_exists( 'wfExpandUrl' ) ) {
+			return wfExpandUrl( $url, PROTO_RELATIVE );
 		}
 
-		// URLs with absolute paths like /w/index.php need to be expanded
-		// to absolute URLs but otherwise left alone
-		if ( $url !== '' && $url[0] === '/' ) {
-			// Replace the file path with an expanded (possibly protocol-relative) URL
-			// ...but only if wfExpandUrl() is even available.
-			// This will not be the case if we're running outside of MW
-			if ( function_exists( 'wfExpandUrl' ) ) {
-				return wfExpandUrl( $url, PROTO_RELATIVE );
-			} else {
-				return $url;
-			}
+		// Pass thru fully-qualified and protocol-relative URLs and data URIs, as well as local URLs if
+		// we can't expand them.
+		if ( self::isRemoteUrl( $url ) || self::isLocalUrl( $url ) ) {
+			return $url;
 		}
 
 		if ( $local === false ) {
