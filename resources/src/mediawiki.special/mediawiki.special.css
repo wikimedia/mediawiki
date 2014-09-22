@@ -118,3 +118,8 @@ table.mw-userrights-groups * td,
 table.mw-userrights-groups * th {
 	padding-right: 1.5em;
 }
+
+/* Special:Contributions */
+.mw-contributions-form select {
+	vertical-align: middle;
+}
