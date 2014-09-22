@@ -1292,13 +1292,11 @@ return array(
 		'position' => 'top',
 		'messages' => array(
 			'prefs-tabs-navigation-hint',
+			'prefswarning-warning',
+			'saveprefs',
 		),
 		'dependencies' => array(
 			'mediawiki.language',
-		),
-		'messages' => array(
-			'prefswarning-warning',
-			'saveprefs',
 		),
 	),
 	'mediawiki.special.recentchanges' => array(
