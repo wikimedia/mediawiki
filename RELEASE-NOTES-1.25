@@ -27,6 +27,8 @@ changes to languages because of Bugzilla reports.
   removed. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for
   migration guide for creators and users of custom skins that relied on it. 
 * Javascript variable 'wgFileCanRotate' now only available on Special:Upload.
+* (bug 56257) Set site logo url in ResourceLoaderSiteModule instead of inline
+  styles in the HTML output.
 
 == Compatibility ==
 
