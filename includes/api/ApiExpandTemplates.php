@@ -126,6 +126,24 @@ class ApiExpandTemplates extends ApiBase {
 				if ( isset( $prop['wikitext'] ) ) {
 					$retval['wikitext'] = $wikitext;
 				}
+				if ( isset( $prop['modules'] ) || isset( $prop['scripts'] ) ) {
+					$expandedContext = new RequestContext;
+					$outputPage = $expandedContext->getOutput();
+					$outputPage->addParserOutputMetadata( $wgParser->getOutput() );
+					if ( isset( $prop['modules'] ) ) {
+						$retval['modules'] = $outputPage->getModules();
+						$retval['modulescripts'] = $outputPage->getModuleScripts();
+						$retval['modulestyles'] = $outputPage->getModuleStyles();
+						$retval['modulemessages'] = $outputPage->getModuleMessages();
+						$result->setIndexedTagName( $retval['modules'], 'module' );
+						$result->setIndexedTagName( $retval['modulescripts'], 'modulescript' );
+						$result->setIndexedTagName( $retval['modulestyles'], 'modulestyle' );
+						$result->setIndexedTagName( $retval['modulemessages'], 'modulemessage' );
+					}
+					if ( isset( $prop['scripts'] ) ) {
+						$retval['scripts'] = $outputPage->getNonRLScripts();
+					}
+				}
 			}
 		}
 		$result->setSubelements( $retval, array( 'wikitext', 'parsetree' ) );
@@ -147,6 +165,8 @@ class ApiExpandTemplates extends ApiBase {
 					'categories',
 					'volatile',
 					'ttl',
+					'modules',
+					'scripts',
 					'parsetree',
 				),
 				ApiBase::PARAM_ISMULTI => true,
@@ -172,6 +192,10 @@ class ApiExpandTemplates extends ApiBase {
 					'elsewhere within the page',
 				' ttl        - The maximum time after which caches of the result should be ' .
 					'invalidated',
+				' modules    - Any ResourceLoader modules that parser functions have requested ' .
+					'be added to the output',
+				' scripts    - Any non-ResourceLoader scripts that parser functions have requested ' .
+					'be added to the output',
 				' parsetree  - The XML parse tree of the input',
 				'Note that if no values are selected, the result will contain the wikitext,',
 				'but the output will be in a deprecated format.',
