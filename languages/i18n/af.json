@@ -403,6 +403,8 @@
 	"userlogin-resetlink": "U besonderhede vergeet?",
 	"userlogin-resetpassword-link": "Wagwoord vergeet?",
 	"userlogin-helplink2": "Hulp met aanmelding",
+	"userlogin-loggedin": "U is reeds aangemeld as {{GENDER:$1|$1}}.\nGebruik die onderstaande vorm om as 'n ander gebruiker aan te meld.",
+	"userlogin-createanother": "Skep nog 'n rekening",
 	"createacct-emailrequired": "E-posadres",
 	"createacct-emailoptional": "E-posadres (opsioneel)",
 	"createacct-email-ph": "Sleutel u e-posadres in",

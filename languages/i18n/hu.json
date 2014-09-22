@@ -420,6 +420,8 @@
 	"userlogin-resetlink": "Elfelejtetted a bejelentkezési adataidat?",
 	"userlogin-resetpassword-link": "Elfelejtetted a jelszavad?",
 	"userlogin-helplink2": "Segítség a bejelentkezéshez",
+	"userlogin-loggedin": "Már be vagy jelentkezve mint {{GENDER:$1|$1}}. Ha más néven akarsz belépni, alább megteheted.",
+	"userlogin-createanother": "Felhasználói fiók létrehozása",
 	"createacct-emailrequired": "E-mail cím",
 	"createacct-emailoptional": "E-mail cím (opcionális)",
 	"createacct-email-ph": "Add meg e-mail címed",

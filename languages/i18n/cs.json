@@ -411,6 +411,8 @@
 	"userlogin-resetlink": "Zapomněli jste přihlašovací údaje?",
 	"userlogin-resetpassword-link": "Zapomněli jste heslo?",
 	"userlogin-helplink2": "Nápověda k přihlašování",
+	"userlogin-loggedin": "Již jste {{GENDER:$1|přihlášen|přihlášena}} jako $1.\nPomocí formuláře níže se můžete přihlásit jako jiný uživatel.",
+	"userlogin-createanother": "Vytvořit jiný účet",
 	"createacct-emailrequired": "E-mailová adresa",
 	"createacct-emailoptional": "E-mailová adresa (nepovinné)",
 	"createacct-email-ph": "Zadejte svou e-mailovou adresu",

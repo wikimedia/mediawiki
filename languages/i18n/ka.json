@@ -402,6 +402,7 @@
 	"userlogin-resetlink": "ავტორიზაციის მონაცემები დაგავიწყდათ?",
 	"userlogin-resetpassword-link": "დაგავიწყდათ პაროლი?",
 	"userlogin-helplink2": "დახმარება:შესვლა",
+	"userlogin-createanother": "სხვა ანგარიშის შექმნა",
 	"createacct-emailrequired": "ელ. ფოსტის მისამართი",
 	"createacct-emailoptional": "ელ. ფოსტის მისამართი (არასავალდებულო)",
 	"createacct-email-ph": "შეიყვანეთ თქვენი ელ. ფოსტის მისამართი",

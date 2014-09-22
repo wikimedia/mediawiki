@@ -391,6 +391,8 @@
 	"userlogin-resetlink": "وردەکارییەکانی چوونەژوورەوەتت لە بیر کردووە؟",
 	"userlogin-resetpassword-link": "تێپەڕوشەکەت بیر کردووە؟",
 	"userlogin-helplink2": "یارمەتی بۆ چوونەژوورەوە",
+	"userlogin-loggedin": "تۆ ھەر ئێستا بە ناوی {{GENDER:$1|$1}} چوویتە ژوورەوە.\nفۆرمی ژێرەوە بەکاربھێنە بۆ چوونەژوورەوە وەک بەکارھێنەرێکی تر.",
+	"userlogin-createanother": "ھەژمارێکی تر دروست بکە",
 	"createacct-emailrequired": "ناونیشانی ئیمەیل",
 	"createacct-emailoptional": "ناونیشانی ئیمەیل (دڵخوازانە)",
 	"createacct-email-ph": "ناونیشانی ئیمەیلەکەت بنووسە",

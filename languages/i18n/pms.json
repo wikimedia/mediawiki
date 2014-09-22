@@ -399,6 +399,8 @@
 	"userlogin-resetlink": "A l'ha dësmentià ij sò detaj për intré ant ël sistema?",
 	"userlogin-resetpassword-link": "Ciav dësmentià?",
 	"userlogin-helplink2": "Agiut a la conession",
+	"userlogin-loggedin": "A l'é già rintrà an ël sistema tanme {{GENDER:$1|$1}}.\nCh'a deuvra ël formolari sì-sota për rintré coma n'àutr n'utent.",
+	"userlogin-createanother": "Creé n'àutr cont",
 	"createacct-emailrequired": "Adrëssa ëd pòsta eletrònica",
 	"createacct-emailoptional": "Adrëssa ëd pòsta eletrònica (opsional)",
 	"createacct-email-ph": "Ch'a buta soa adrëssa ëd pòsta eletrònica",

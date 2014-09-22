@@ -394,6 +394,8 @@
 	"userlogin-resetlink": "V'avite scurdato 'e dettaglie d'acciesso vuoste?",
 	"userlogin-resetpassword-link": "Te sì scurdat' 'a password?",
 	"userlogin-helplink2": "Aiuto cu l'accieso",
+	"userlogin-loggedin": "Sì già connesso comme {{GENDER:$1|$1}}.\nUsa 'o modulo ccà abbascio pe trasì com'a n'atu utente.",
+	"userlogin-createanother": "Cria n'at'account",
 	"createacct-emailrequired": "Indirizzo email",
 	"createacct-emailoptional": "Indirizzo 'e posta elettronica (ozzionale)",
 	"createacct-email-ph": "Scrive 'o nderizzo mail tuo",

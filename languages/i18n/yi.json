@@ -398,6 +398,8 @@
 	"userlogin-resetlink": "פארגעסן אײַערע אַרײַנלאָגירן פרטים?",
 	"userlogin-resetpassword-link": "פֿאַרגעסן אײַער פאַסווארט?",
 	"userlogin-helplink2": "הילף מיט ארײַנלאגירן",
+	"userlogin-loggedin": "איר זענט שוין אריינלאגירט ווי {{GENDER:$1|$1}}.\nניצט די פארעם אונטן כדי אריינלאגירן ווי אן אנדער באניצער.",
+	"userlogin-createanother": "שאפֿן נאך א קאנטע",
 	"createacct-emailrequired": "בליצפּאָסט אַדרעס",
 	"createacct-emailoptional": "בליצפאסט אדרעס (אפציאנאל)",
 	"createacct-email-ph": "קלאַפט ארײַן אײַער בליצפּאָסט אַדרעס",

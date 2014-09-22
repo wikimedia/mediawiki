@@ -422,6 +422,8 @@
 	"userlogin-resetlink": "Ξεχάσατε τα στοιχεία εισόδου σας;",
 	"userlogin-resetpassword-link": "Ξεχάσατε τον κωδικό πρόσβασης;",
 	"userlogin-helplink2": "Βοήθεια για τη σύνδεση",
+	"userlogin-loggedin": "Είστε ήδη {{GENDER:$1|συνδεδεμένος|συνδεδεμένη}} ως $1.\nΧρησιμοποιήστε την παρακάτω φόρμα για να συνδεθείτε ως άλλος χρήστης.",
+	"userlogin-createanother": "Δημιουργήσετε έναν άλλο λογαριασμό",
 	"createacct-emailrequired": "Διεύθυνση ηλεκτρονικού ταχυδρομείου",
 	"createacct-emailoptional": "Διεύθυνση ηλεκτρονικού ταχυδρομείου (προαιρετικό)",
 	"createacct-email-ph": "Εισάγετε το email σας",
@@ -976,6 +978,7 @@
 	"prefs-tokenwatchlist": "Κλειδί",
 	"prefs-diffs": "Διαφορές",
 	"prefs-help-prefershttps": "Αυτή η προτίμηση θα τεθεί σε ισχύ στην επόμενή σας σύνδεση.",
+	"prefswarning-warning": "Έχετε κάνει αλλαγές στις προτιμήσεις σας που δεν έχουν αποθηκευτεί ακόμα.\nΕάν αφήσετε αυτή τη σελίδα χωρίς να κάνετε κλικ στο \"$1\" οι προτιμήσεις σας δεν θα ενημερωθούν.",
 	"prefs-tabs-navigation-hint": "Συμβουλή: Μπορείτε να χρησιμοποιήσετε τα πλήκτρα διευθύνσεων αριστερά και δεξιά για να πλοηγηθείτε μεταξύ των καρτελών στη λίστα καρτελών.",
 	"email-address-validity-valid": "Η διεύθυνση ηλεκτρονικού ταχυδρομείου φαίνεται έγκυρη",
 	"email-address-validity-invalid": "Εισάγετε  μια έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου",
@@ -1792,6 +1795,7 @@
 	"protect-othertime": "Άλλο χρονικό διάστημα:",
 	"protect-othertime-op": "άλλος χρόνος",
 	"protect-existing-expiry": "Υπάρχουσα λήξη προθεσμίας: $3, $2",
+	"protect-existing-expiry-infinity": "Τρέχον χρόνος λήξης: αόριστος",
 	"protect-otherreason": "Άλλος/πρόσθετος λόγος:",
 	"protect-otherreason-op": "Άλλος λόγος",
 	"protect-dropdown": "*Συνήθεις λόγοι προστασίας\n** Υπερβολικός βανδαλισμός\n** Υπερβολικό spamming\n** Αντιπαραγωγική μάχη επεξεργασιών\n** Σελίδα μεγάλης κίνησης",
@@ -3068,5 +3072,12 @@
 	"right-pagelang": "Αλλαγή γλώσσας σελίδας",
 	"action-pagelang": "αλλαγή της γλώσσας σελίδας",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> /$2 (ενεργοποιημένο)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''απενεργοποιημένο''')"
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''απενεργοποιημένο''')",
+	"mediastatistics": "Στατιστικά πολυμέσων",
+	"mediastatistics-table-mimetype": "Τύποι MIME",
+	"mediastatistics-table-count": "Αριθμός αρχείων",
+	"mediastatistics-header-bitmap": "Εικόνες bitmap",
+	"mediastatistics-header-drawing": "Σχέδια (διανυσματικές εικόνες)",
+	"mediastatistics-header-audio": "Ήχος",
+	"mediastatistics-header-office": "Γραφείο"
 }

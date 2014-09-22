@@ -407,6 +407,8 @@
 	"userlogin-resetlink": "Lupa nama pengguna/kata laluan anda?",
 	"userlogin-resetpassword-link": "Lupa kata laluan anda?",
 	"userlogin-helplink2": "Bantuan untuk log masuk",
+	"userlogin-loggedin": "Anda sudah log masuk sebagai {{GENDER:$1|$1}}. Gunakan borang di bawah untuk log masuk sebagai pengguna lain.",
+	"userlogin-createanother": "Buka satu lagi akaun",
 	"createacct-emailrequired": "Alamat e-mel",
 	"createacct-emailoptional": "Alamat e-mel (pilihan)",
 	"createacct-email-ph": "Isikan alamt e-mel anda",

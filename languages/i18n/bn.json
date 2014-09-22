@@ -406,6 +406,8 @@
 	"userlogin-resetlink": "আপনার লগইনের বিস্তারিত তথ্যাদি ভুলে গেছেন?",
 	"userlogin-resetpassword-link": "পাসওয়ার্ড ভুলে গেছেন?",
 	"userlogin-helplink2": "লগইন সংক্রান্ত সাহায্য",
+	"userlogin-loggedin": "আপনি বর্তমানে {{GENDER:$1|$1}} হিসাবে লগইন আছেন।\nঅন্য ব্যবহারকারী নামে লগইন করতে চাইলে নিচের ফর্মটি ব্যবহার করুন।",
+	"userlogin-createanother": "আরেকটি অ্যাকাউন্ট তৈরি করুন",
 	"createacct-emailrequired": "ইমেইল ঠিকানা",
 	"createacct-emailoptional": "ইমেইল ঠিকানা (ঐচ্ছিক)",
 	"createacct-email-ph": "আপনার ইমেইল ঠিকানা যোগ করুন",

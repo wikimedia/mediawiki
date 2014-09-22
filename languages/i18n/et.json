@@ -408,6 +408,8 @@
 	"userlogin-resetlink": "Kas oled unustanud oma sisselogimisandmed?",
 	"userlogin-resetpassword-link": "Kas unustasid parooli?",
 	"userlogin-helplink2": "Sisselogimisabi",
+	"userlogin-loggedin": "Oled juba sisse logitud nimega {{GENDER:$1|$1}}.\nKasuta allolevat vormi, et logida sisse teise kasutajaga.",
+	"userlogin-createanother": "Loo teine konto",
 	"createacct-emailrequired": "E-posti aadress",
 	"createacct-emailoptional": "E-posti aadress (valikuline)",
 	"createacct-email-ph": "Sisesta e-posti aadress",

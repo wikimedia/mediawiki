@@ -402,6 +402,8 @@
 	"gotaccountlink": "Prijavite se",
 	"userlogin-resetlink": "Zaboravili ste detalje vaše prijave?",
 	"userlogin-resetpassword-link": "Zaboravili ste zaporku?",
+	"userlogin-loggedin": "Već ste prijavljeni kao {{GENDER:$1|$1}}.\nRabite donji obrazac da biste se prijavili kao drugi suradnik.",
+	"userlogin-createanother": "Stvori još jedan račun",
 	"createacct-emailrequired": "Adresa e-pošte",
 	"createacct-emailoptional": "Adresa e-pošte",
 	"createacct-email-ph": "Upišite svoju adresu e-pošte",

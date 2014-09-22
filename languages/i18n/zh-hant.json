@@ -442,6 +442,8 @@
 	"userlogin-resetlink": "您忘記了登入的詳細資訊？",
 	"userlogin-resetpassword-link": "忘記密碼？",
 	"userlogin-helplink2": "登入協助",
+	"userlogin-loggedin": "您目前已登入 {{GENDER:$1|$1}} 使用者，\n請使用下列表單改登入另一位使用者。",
+	"userlogin-createanother": "建立另一個帳號",
 	"createacct-emailrequired": "電子郵件位址",
 	"createacct-emailoptional": "電子郵件位址 (選填)",
 	"createacct-email-ph": "輸入您的電子郵件位址",

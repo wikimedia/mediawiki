@@ -35,7 +35,8 @@
 			"아라",
 			"C5st4wr6ch",
 			"Raynasution",
-			"Arifin.wijaya"
+			"Arifin.wijaya",
+			"Ahdan"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -421,6 +422,8 @@
 	"userlogin-resetlink": "Lupa detail info masuk Anda?",
 	"userlogin-resetpassword-link": "Lupa kata sandi?",
 	"userlogin-helplink2": "Bantuan masuk log",
+	"userlogin-loggedin": "Andan telah masuk log sebagai $1.\nGunakan formulir di bawah untuk masuk log sebagai pengguna lain.",
+	"userlogin-createanother": "Buat akun lain",
 	"createacct-emailrequired": "Alamat surel",
 	"createacct-emailoptional": "Alamat surel (opsional)",
 	"createacct-email-ph": "Masukkan alamat surel Anda",
@@ -3230,5 +3233,8 @@
 	"action-pagelang": "mengubah bahasa halaman",
 	"log-name-pagelang": "Ubah bahasa log",
 	"log-description-pagelang": "Ini adalah log perubahan dalam bahasa halaman.",
-	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|mengubah}} bahasa halaman $3 dari $4 menjadi $5."
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|mengubah}} bahasa halaman $3 dari $4 menjadi $5.",
+	"mediastatistics-summary": "Statistik tentang jenis file yang terunggah. Ini hanya mencakup versi terbaru dari sebuah file. Terkecuali file lama dan file yang sudah dihapus",
+	"mediastatistics-header-unknown": "Tidak diketahui",
+	"mediastatistics-header-video": "Video"
 }

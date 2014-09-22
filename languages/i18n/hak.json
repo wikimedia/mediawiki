@@ -385,6 +385,7 @@
 	"gotaccountlink": "登入",
 	"userlogin-resetlink": "毋記得汝嘅登入信息？",
 	"userlogin-resetpassword-link": "添忘訖汝嘅密碼？",
+	"userlogin-loggedin": "汝已作為{{GENDER:$1|$1}}登錄。\n利用以下表單以作為另一賬戶登錄。",
 	"createacct-emailrequired": "電郵地址：",
 	"createacct-emailoptional": "電郵地址（可選）",
 	"createacct-email-ph": "設置電郵地址",

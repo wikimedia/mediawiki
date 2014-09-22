@@ -399,6 +399,8 @@
 	"userlogin-resetlink": "Hutt Dir d'Detailer vun Ärem Login vergiess?",
 	"userlogin-resetpassword-link": "Hutt Dir Äert Passwuert vergiess?",
 	"userlogin-helplink2": "Hëllef beim Aloggen",
+	"userlogin-loggedin": "Dir sidd schonn als {{GENDER:$1|$1}} ageloggt.\nBenotzt de Formulaire hei drënner fir Iech als een anere Benotzer anzeloggen.",
+	"userlogin-createanother": "Maacht een anere Benotzerkont op",
 	"createacct-emailrequired": "E-Mail-Adress",
 	"createacct-emailoptional": "E-Mailadress (fakultativ)",
 	"createacct-email-ph": "Gitt Är E-Mail-Adress an",

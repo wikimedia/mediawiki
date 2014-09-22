@@ -440,6 +440,8 @@
 	"userlogin-resetlink": "Забули дані, потрібні для входу?",
 	"userlogin-resetpassword-link": "Забули пароль?",
 	"userlogin-helplink2": "Допомога з входом у систему",
+	"userlogin-loggedin": "Ви вже увійшли як {{GENDER:$1|$1}}.\nВикористайте нижче форму для входу як інший користувач.",
+	"userlogin-createanother": "Створити інший обліковий запис",
 	"createacct-emailrequired": "Адреса електронної пошти",
 	"createacct-emailoptional": "Адреса електронної пошти (не обов'язково)",
 	"createacct-email-ph": "Введіть Вашу адресу електронної пошти",

@@ -408,6 +408,8 @@
 	"userlogin-resetlink": "Забыліся даныя для ўваходу?",
 	"userlogin-resetpassword-link": "Забылі пароль?",
 	"userlogin-helplink2": "Даведка па прадстаўленні сістэме",
+	"userlogin-loggedin": "Вы ўжо ўвайшлі ў сістэму як {{GENDER:$1|$1}}.\nСкарыстайцеся формай ніжэй, каб прадставіцца сістэме як іншы ўдзельнік.",
+	"userlogin-createanother": "Стварыць яшчэ адзін уліковы запіс",
 	"createacct-emailrequired": "Адрас электроннай пошты",
 	"createacct-emailoptional": "Адрас электроннай пошты (неабавязкова)",
 	"createacct-email-ph": "Увядзіце ваш адрас электроннай пошты",

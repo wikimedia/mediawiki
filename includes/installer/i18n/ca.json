@@ -46,6 +46,7 @@
 	"config-env-good": "S'ha comprovat l'entorn.\nPodeu instal·lar el MediaWiki.",
 	"config-env-bad": "S'ha comprovat l'entorn.\nNo podeu instal·lar el MediaWiki.",
 	"config-env-php": "El PHP $1 està instal·lat.",
+	"config-env-hhvm": "L’HHVM $1 és instal·lat.",
 	"config-memory-raised": "El <code>memory_limit</code> del PHP és $1 i s'ha aixecat a $2.",
 	"config-memory-bad": "<strong>Avís:</strong> El <code>memory_limit</code> del PHP és $1.\nAixò és probablement massa baix.\nLa instal·lació pot fallar!",
 	"config-apc": "L’[http://www.php.net/apc APC] està instal·lat",

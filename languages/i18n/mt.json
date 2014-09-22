@@ -388,6 +388,8 @@
 	"userlogin-resetlink": "Insejt kif tidħol fil-kont tiegħek?",
 	"userlogin-resetpassword-link": "Insejt il-kelma tad-dħul (password)?",
 	"userlogin-helplink2": "Għajnuna biex tidħol fil-kont",
+	"userlogin-loggedin": "Diġà dħalt fil-kont bħala {{GENDER:$1|$1}}.\nUża l-formola t'hawn taħt biex tidħol bħala utent ieħor",
+	"userlogin-createanother": "Oħloq kont ieħor",
 	"createacct-emailrequired": "Indirizz elettroniku",
 	"createacct-emailoptional": "Indirizz elettroniku (mhux obbligatorju)",
 	"createacct-email-ph": "Daħħal l-indirizz elettroniku tiegħek",

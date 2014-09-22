@@ -453,6 +453,8 @@
 	"userlogin-resetlink": "Zapomniałeś danych do zalogowania się?",
 	"userlogin-resetpassword-link": "Nie pamiętasz hasła?",
 	"userlogin-helplink2": "Pomoc przy logowaniu",
+	"userlogin-loggedin": "Zalogowano jako {{GENDER:$1|$1}}.\nUżyj poniższego formularza, aby zalogować się jako inny użytkownik.",
+	"userlogin-createanother": "Załóż nowe konto",
 	"createacct-emailrequired": "Adres e‐mail",
 	"createacct-emailoptional": "Adres e-mail (opcjonalnie)",
 	"createacct-email-ph": "Wpisz swój adres e-mail",

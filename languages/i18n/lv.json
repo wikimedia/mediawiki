@@ -381,6 +381,8 @@
 	"userlogin-resetlink": "Esat aizmirsis savu pieslēgšanās informāciju?",
 	"userlogin-resetpassword-link": "Aizmirsi savu paroli?",
 	"userlogin-helplink2": "Palīdzība ar pieslēgšanos",
+	"userlogin-loggedin": "Tu esi pieslēdzies ar lietotājvārdu {{GENDER:$1|$1}}.\nLai pieslēgtos ar citu lietotājvārdu, aizpildi šo formu.",
+	"userlogin-createanother": "Izveidot citu kontu",
 	"createacct-emailrequired": "E-pasta adrese",
 	"createacct-emailoptional": "E-pasta adrese (nav obligāta)",
 	"createacct-email-ph": "Ievadiet savu e-pasta adresi",

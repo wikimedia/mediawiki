@@ -12,7 +12,8 @@
 			"Tynchtyk Chorotegin",
 			"Ztimur",
 			"Викиней",
-			"아라"
+			"아라",
+			"Askar Nazyrov"
 		]
 	},
 	"tog-underline": "Шилтемелердин алдын сызуу:",
@@ -442,7 +443,6 @@
 	"passwordreset-emailsent-capture": "Төмөндө көрсөтүлгөн эмейлге сырсөздү алмаштыруучу кат жөнөтүлдү.",
 	"passwordreset-emailerror-capture": "Төмөндө көрсөтүлгөн дарекке сырсөздү алмаштыруу кат түзүлдү,бирок аны  {{GENDER:$2|катышуучуга}} жөнөтүү оңунан чыккан жок: $1",
 	"changeemail": "E-mail даректи өзгөртүү",
-	"changeemail-header": "Эл. почтанын дарегин өзгөртүү",
 	"changeemail-text": "Эмейл дарегиңизди алмаштыруу үчүн ушул үлгүнү толтуруңуз. Өзгөрүүнү аныктоо үчүн сырсөздү киргизүү талап кылынат.",
 	"changeemail-no-info": "Бул баракка түз кайрылыш үчүн, сиз системага киришиңиз керек.",
 	"changeemail-oldemail": "Учурдагы e-mail дарек:",
@@ -450,7 +450,6 @@
 	"changeemail-none": "(жок)",
 	"changeemail-password": "«{{SITENAME}}» долбоору үчүн сиздин сырсөзүңүз:",
 	"changeemail-submit": "E-mail'ди өзгөртүү",
-	"changeemail-cancel": "Жокко чыгаруу",
 	"bold_sample": "Калың текст",
 	"bold_tip": "Калың текст",
 	"italic_sample": "жантык текст",
@@ -621,7 +620,6 @@
 	"search-relatedarticle": "Байланыштуу",
 	"searchrelated": "байланыштуу",
 	"searchall": "баары",
-	"showingresultsheader": "'''$4''' үчүн {{PLURAL:$5|'''$3''' жыйынтыктан '''$1'''-и|'''$1 - $2''' -дан '''$3''' жыйынтык}}",
 	"search-nonefound": "Талапка төп маалымат табылган жок.",
 	"powersearch-legend": "Кеңейтилген издөө",
 	"powersearch-ns": "Аталыш мейкиндиктеринен издөө:",
@@ -1083,7 +1081,6 @@
 	"thumbnail_image-type": "Сүрөт түрү колдолбойт",
 	"import": "Барактарды импорттоо",
 	"importinterwiki": "Уики аралык импорт",
-	"import-interwiki-source": "Уики-булак/барак:",
 	"import-interwiki-history": "Бул барактын бүткүл өзгөртүү тарыхын көчүрүү",
 	"import-interwiki-templates": "Бардык калыптарды камтуу",
 	"import-interwiki-submit": "Импорттоо",
@@ -1420,5 +1417,12 @@
 	"duration-years": "$1 {{PLURAL:$1|жыл}}",
 	"duration-decades": "$1 {{PLURAL:$1|оң жылдык мөөнөт}}",
 	"duration-centuries": "$1 {{PLURAL:$1|кылым}}",
-	"duration-millennia": "$1 {{PLURAL:$1|миң жылдык мөөнөт}}"
+	"duration-millennia": "$1 {{PLURAL:$1|миң жылдык мөөнөт}}",
+	"mediastatistics-table-count": "Файлдар саны",
+	"mediastatistics-table-totalbytes": "Жалпы өлчөм",
+	"mediastatistics-header-unknown": "Белгисиз",
+	"mediastatistics-header-audio": "Аудио",
+	"mediastatistics-header-video": "Видеолор",
+	"mediastatistics-header-office": "Кеңсе",
+	"mediastatistics-header-text": "Тексттик"
 }

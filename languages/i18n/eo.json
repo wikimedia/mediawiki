@@ -420,6 +420,8 @@
 	"userlogin-resetlink": "Ĉu vi forgesis ensalutajn detalojn?",
 	"userlogin-resetpassword-link": "Ĉu vi forgesis vian pasvorton?",
 	"userlogin-helplink2": "Helpo pri ensaluto",
+	"userlogin-loggedin": "Vi jam estas ensalutita kiel {{GENDER:$1|$1}}.\nUzu la formularon suben por ensaluti kiel alia uzanto.",
+	"userlogin-createanother": "Krei alian konton",
 	"createacct-emailrequired": "Retpoŝta adreso",
 	"createacct-emailoptional": "Retpoŝta adreso (nedeviga)",
 	"createacct-email-ph": "Enigu vian retpoŝtan adreson",
