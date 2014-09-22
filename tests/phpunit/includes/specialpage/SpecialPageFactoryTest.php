@@ -37,6 +37,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers SpecialPageFactory::getPage
 	 * @dataProvider specialPageProvider
 	 */
 	public function testGetPage( $spec, $shouldReuseInstance ) {
@@ -53,6 +54,9 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		SpecialPageFactory::resetList();
 	}
 
+	/**
+	 * @covers SpecialPageFactory::getNames
+	 */
 	public function testGetNames() {
 		$this->mergeMwGlobalArrayValue( 'wgSpecialPages', array( 'testdummy' => 'SpecialAllPages' ) );
 
@@ -63,6 +67,9 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		SpecialPageFactory::resetList();
 	}
 
+	/**
+	 * @covers SpecialPageFactory::resolveAlias
+	 */
 	public function testResolveAlias() {
 		$this->setMwGlobals( 'wgContLang', Language::factory( 'de' ) );
 
@@ -75,6 +82,9 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		SpecialPageFactory::resetList();
 	}
 
+	/**
+	 * @covers SpecialPageFactory::getLocalNameFor
+	 */
 	public function testGetLocalNameFor() {
 		$this->setMwGlobals( 'wgContLang', Language::factory( 'de' ) );
 
@@ -86,6 +96,9 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		SpecialPageFactory::resetList();
 	}
 
+	/**
+	 * @covers SpecialPageFactory::getTitleForAlias
+	 */
 	public function testGetTitleForAlias() {
 		$this->setMwGlobals( 'wgContLang', Language::factory( 'de' ) );
 
