@@ -49,6 +49,7 @@ class MailAddressTest extends MediaWikiTestCase {
 			array( false, 'foo@bar.baz', 'AUserName', 'Some real name', 'AUserName <foo@bar.baz>' ),
 			array( false, 'foo@bar.baz', '', '', 'foo@bar.baz' ),
 			array( true, 'foo@bar.baz', '', '', 'foo@bar.baz' ),
+			array( true, '', '', '', '' ),
 		);
 	}
 
