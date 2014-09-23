@@ -104,7 +104,7 @@ class JobQueueGroup {
 	 * This inserts the jobs into the queue specified by $wgJobTypeConf
 	 * and updates the aggregate job queue information cache as needed.
 	 *
-	 * @param Job|array $jobs A single Job or a list of Jobs
+	 * @param Job|Job[] $jobs A single Job or a list of Jobs
 	 * @throws MWException
 	 * @return void
 	 */

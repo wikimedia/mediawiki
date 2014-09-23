@@ -87,7 +87,7 @@ abstract class Job implements IJobSpecification {
 	 * This may add duplicate at insert time, but they will be
 	 * removed later on, when the first one is popped.
 	 *
-	 * @param array $jobs Array of Job objects
+	 * @param Job[] $jobs Array of Job objects
 	 * @return bool
 	 * @deprecated since 1.21
 	 */
@@ -103,7 +103,7 @@ abstract class Job implements IJobSpecification {
 	 * be rolled-back as part of a larger transaction. However,
 	 * large batches of jobs can cause slave lag.
 	 *
-	 * @param array $jobs Array of Job objects
+	 * @param Job[] $jobs Array of Job objects
 	 * @return bool
 	 * @deprecated since 1.21
 	 */
@@ -143,7 +143,7 @@ abstract class Job implements IJobSpecification {
 	/**
 	 * @param string $command
 	 * @param Title $title
-	 * @param array|bool $params
+	 * @param array|bool $params Can not be === true
 	 */
 	public function __construct( $command, $title, $params = false ) {
 		$this->command = $command;
