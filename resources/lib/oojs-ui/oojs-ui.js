@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (4ea8e2cba9)
+ * OOjs UI v0.1.0-pre (880100c45e)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-23T20:24:02Z
+ * Date: 2014-09-23T22:28:43Z
  */
 ( function ( OO ) {
 
@@ -10126,6 +10126,9 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 		// Prevent transitioning immediately
 		this.$element.removeClass( 'oo-ui-popupWidget-transitioning' );
 	}
+
+	// Reevaluate clipping state since we've relocated and resized the popup
+	this.clip();
 
 	return this;
 };
