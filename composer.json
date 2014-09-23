@@ -28,5 +28,14 @@
 		"ext-wikidiff2": "*",
 		"ext-apc": "*",
 		"monolog/monolog": "*"
+	},
+	"autoload": {
+		"psr-0": {
+			"ComposerHookHandler": "includes/composer"
+		}
+	},
+	"scripts": {
+		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
+		"pre-install-cmd": "ComposerHookHandler::onPreInstall"
 	}
 }
