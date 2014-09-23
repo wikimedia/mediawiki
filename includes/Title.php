@@ -3589,7 +3589,7 @@ class Title {
 	 * Check whether a given move operation would be valid.
 	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
 	 *
-	 * @todo move this into MovePage
+	 * @todo finish moving this into MovePage
 	 * @param Title $nt The new title
 	 * @param bool $auth Indicates whether $wgUser's permissions
 	 *  should be checked
@@ -3597,60 +3597,18 @@ class Title {
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
-		global $wgUser, $wgContentHandlerUseDB;
+		global $wgUser;
 
-		$errors = array();
-		if ( !$nt ) {
+		if ( !( $nt instanceof Title ) ) {
 			// Normally we'd add this to $errors, but we'll get
 			// lots of syntax errors if $nt is not an object
 			return array( array( 'badtitletext' ) );
 		}
-		if ( $this->equals( $nt ) ) {
-			$errors[] = array( 'selfmove' );
-		}
-		if ( !$this->isMovable() ) {
-			$errors[] = array( 'immobile-source-namespace', $this->getNsText() );
-		}
-		if ( $nt->isExternal() ) {
-			$errors[] = array( 'immobile-target-namespace-iw' );
-		}
-		if ( !$nt->isMovable() ) {
-			$errors[] = array( 'immobile-target-namespace', $nt->getNsText() );
-		}
 
-		$oldid = $this->getArticleID();
+		$mp = new MovePage( $this, $nt );
+		$errors = $mp->isValidMove()->getErrorsArray();
+
 		$newid = $nt->getArticleID();
-
-		if ( strlen( $nt->getDBkey() ) < 1 ) {
-			$errors[] = array( 'articleexists' );
-		}
-		if (
-			( $this->getDBkey() == '' ) ||
-			( !$oldid ) ||
-			( $nt->getDBkey() == '' )
-		) {
-			$errors[] = array( 'badarticleerror' );
-		}
-
-		// Content model checks
-		if ( !$wgContentHandlerUseDB &&
-				$this->getContentModel() !== $nt->getContentModel() ) {
-			// can't move a page if that would change the page's content model
-			$errors[] = array(
-				'bad-target-model',
-				ContentHandler::getLocalizedName( $this->getContentModel() ),
-				ContentHandler::getLocalizedName( $nt->getContentModel() )
-			);
-		}
-
-		// Image-specific checks
-		if ( $this->getNamespace() == NS_FILE ) {
-			$errors = array_merge( $errors, $this->validateFileMoveOperation( $nt ) );
-		}
-
-		if ( $nt->getNamespace() == NS_FILE && $this->getNamespace() != NS_FILE ) {
-			$errors[] = array( 'nonfile-cannot-move-to-file' );
-		}
 
 		if ( $auth ) {
 			$errors = wfMergeErrorArrays( $errors,
@@ -3700,6 +3658,7 @@ class Title {
 
 	/**
 	 * Check if the requested move target is a valid file move target
+	 * @todo move this to MovePage
 	 * @param Title $nt Target title
 	 * @return array List of errors
 	 */
@@ -3707,27 +3666,6 @@ class Title {
 		global $wgUser;
 
 		$errors = array();
-
-		// wfFindFile( $nt ) / wfLocalFile( $nt ) is not allowed until below
-
-		$file = wfLocalFile( $this );
-		if ( $file->exists() ) {
-			if ( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
-				$errors[] = array( 'imageinvalidfilename' );
-			}
-			if ( !File::checkExtensionCompatibility( $file, $nt->getDBkey() ) ) {
-				$errors[] = array( 'imagetypemismatch' );
-			}
-		}
-
-		if ( $nt->getNamespace() != NS_FILE ) {
-			$errors[] = array( 'imagenocrossnamespace' );
-			// From here we want to do checks on a file object, so if we can't
-			// create one, we must return.
-			return $errors;
-		}
-
-		// wfFindFile( $nt ) / wfLocalFile( $nt ) is allowed below here
 
 		$destFile = wfLocalFile( $nt );
 		if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destFile->exists() && wfFindFile( $nt ) ) {
@@ -3899,6 +3837,7 @@ class Title {
 	 * Checks if $this can be moved to a given Title
 	 * - Selects for update, so don't call it unless you mean business
 	 *
+	 * @todo move to MovePage
 	 * @param Title $nt The new title to check
 	 * @return bool
 	 */
