@@ -1165,6 +1165,35 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
+	 * MS SQL supports more pattern operators than other databases (ex: [,],^)
+	 *
+	 * @param string $s
+	 * @return string
+	 */
+	protected function escapeLikeInternal( $s ) {
+		return addcslashes( $s, '\%_[]^' );
+	}
+
+	/**
+	 * MS SQL requires specifying the escape character used in a LIKE query
+	 * or using Square brackets to surround characters that are to be escaped
+	 * http://msdn.microsoft.com/en-us/library/ms179859.aspx
+	 * Here we take the Specify-Escape-Character approach since it's less
+	 * invasive, renders a query that is closer to other DB's and better at
+	 * handling square bracket escaping
+	 *
+	 * @return string Fully built LIKE statement
+	 */
+	public function buildLike() {
+		$params = func_get_args();
+		if ( count( $params ) > 0 && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+
+		return parent::buildLike( $params ) . " ESCAPE '\' ";
+	}
+
+	/**
 	 * @param string $db
 	 * @return bool
 	 */
