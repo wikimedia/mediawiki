@@ -849,6 +849,8 @@ class Language {
 		global $wgExtraLanguageNames;
 		static $coreLanguageNames;
 
+		wfProfileIn( __METHOD__ );
+
 		if ( $coreLanguageNames === null ) {
 			global $IP;
 			include "$IP/languages/Names.php";
@@ -876,6 +878,7 @@ class Language {
 		}
 
 		if ( $include === 'all' ) {
+			wfProfileOut( __METHOD__ );
 			return $names;
 		}
 
@@ -897,10 +900,12 @@ class Language {
 				}
 			}
 
+			wfProfileOut( __METHOD__ );
 			return $namesMwFile;
 		}
 
 		# 'mw' option; default if it's not one of the other two options (all/mwfile)
+		wfProfileOut( __METHOD__ );
 		return $returnMw;
 	}
 
