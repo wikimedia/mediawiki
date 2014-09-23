@@ -174,7 +174,10 @@ class PNGHandler extends BitmapHandler {
 		return $wgLang->commaList( $info );
 	}
 
+	// PNGs should be easy to support, but it will need some sharpening applied
+	// and another user test to check if the perceived quality change is noticeable
+
 	public function supportsBucketing() {
-		return true;
+		return false;
 	}
 }
