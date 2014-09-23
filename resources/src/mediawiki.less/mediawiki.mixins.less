@@ -14,6 +14,15 @@
 	background-image: e('/* @embed */') url(@url);
 }
 
+.background-size(@width, @height) {
+	// Vendor prefix for certain older opera browsers e.g. nintendo ds
+	-o-background-size: @width @height;
+	// Vendor prefix is added to support Android 2
+	-webkit-background-size: @width @height;
+	background-size: @width @height;
+}
+
+
 .vertical-gradient(@startColor: gray, @endColor: white, @startPos: 0, @endPos: 100%) {
 	background-color: @endColor;
 	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Firefox 3.6+
