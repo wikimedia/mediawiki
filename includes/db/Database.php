@@ -272,8 +272,19 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * Either a short hexidecimal string if a transaction is active or ""
 	 *
 	 * @var string
+	 * @see DatabaseBase::mTrxLevel
 	 */
 	protected $mTrxShortId = '';
+
+	/**
+	 * The UNIX time that the transaction started. Callers can assume that if
+	 * snapshot isolation is used, then the data is *at least* up to date to that
+	 * point (possibly more up-to-date since the first SELECT defines the snapshot).
+	 *
+	 * @var float|null
+	 * @see DatabaseBase::mTrxLevel
+	 */
+	private $mTrxTimestamp = null;
 
 	/**
 	 * Remembers the function name given for starting the most recent transaction via begin().
@@ -417,6 +428,19 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 */
 	public function trxLevel() {
 		return $this->mTrxLevel;
+	}
+
+	/**
+	 * Get the UNIX timestamp of the time that the transaction was established
+	 *
+	 * This can be used to reason about the staleness of SELECT data
+	 * in REPEATABLE-READ transaction isolation level.
+	 *
+	 * @return float|null Returns null if there is not active transaction
+	 * @since 1.25
+	 */
+	public function trxTimestamp() {
+		return $this->mTrxLevel ? $this->mTrxTimestamp : null;
 	}
 
 	/**
@@ -3512,6 +3536,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		}
 
 		$this->doBegin( $fname );
+		$this->mTrxTimestamp = microtime( true );
 		$this->mTrxFname = $fname;
 		$this->mTrxDoneWrites = false;
 		$this->mTrxAutomatic = false;

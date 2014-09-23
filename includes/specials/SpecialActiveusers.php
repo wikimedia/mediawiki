@@ -342,6 +342,8 @@ class SpecialActiveUsers extends SpecialPage {
 			array( 'qci_type' => 'activeusers' )
 		);
 		$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
+		// Account for snapshot isolation if present
+		$cTimeUnix = min( $cTimeUnix, $now - (int)$dbw->getTrxTimestamp() );
 
 		// Pick the date range to fetch from. This is normally from the last
 		// update to till the present time, but has a limited window for sanity.
