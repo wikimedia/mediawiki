@@ -336,6 +336,7 @@ class SpecialActiveUsers extends SpecialPage {
 		if ( !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
 			return false; // exclusive update (avoids duplicate entries)
 		}
+		$dbw->startAtomic( __METHOD__ );
 
 		$now = time();
 		$cTime = $dbw->selectField( 'querycache_info',
@@ -343,6 +344,9 @@ class SpecialActiveUsers extends SpecialPage {
 			array( 'qci_type' => 'activeusers' )
 		);
 		$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
+		// If a transaction was already started, it might have an old
+		// snapshot, so kludge the timestamp range a few seconds back.
+		$cTimeUnix -= 5;
 
 		// Pick the date range to fetch from. This is normally from the last
 		// update to till the present time, but has a limited window for sanity.
@@ -389,7 +393,10 @@ class SpecialActiveUsers extends SpecialPage {
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title' => array_keys( $names ) ),
-				__METHOD__
+				__METHOD__,
+				// See the latest data (ignoring trx snapshot) to avoid
+				// duplicates if this method was called in a transaction
+				array( 'LOCK IN SHARE MODE' )
 			);
 			foreach ( $res as $row ) {
 				unset( $names[$row->user_name] );
@@ -425,6 +432,7 @@ class SpecialActiveUsers extends SpecialPage {
 			__METHOD__
 		);
 
+		$dbw->endAtomic( __METHOD__ );
 		$dbw->unlock( $lockKey, __METHOD__ );
 
 		return $eTimestamp;
