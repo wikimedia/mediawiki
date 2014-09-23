@@ -117,6 +117,8 @@ class SpecialBookSources extends SpecialPage {
 	 * @return string
 	 */
 	private function makeForm() {
+		global $wgUseMediaWikiUIEverywhere;
+
 		$form = Html::openElement( 'fieldset' ) . "\n";
 		$form .= Html::element(
 			'legend',
