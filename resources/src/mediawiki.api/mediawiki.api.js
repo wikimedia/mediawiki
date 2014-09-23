@@ -331,6 +331,43 @@
 	};
 
 	/**
+	 * Returns a mediaWiki.Api instance which can interact with a given API endpoint,
+	 * even if it's remote.
+	 *
+	 * @static
+	 * @param {string} apiEndpoint
+	 * @return {mediaWiki.Api}
+	 */
+	mw.Api.newFor = function( apiEndpoint ) {
+		var localApiEndpoint = mw.config.get( 'wgServer' )
+			+ mw.config.get( 'wgScriptPath' )
+			+ '/api.php';
+		var mwApiOptions = {};
+
+		if( localApiEndpoint !== apiEndpoint ) {
+			var corsOrigin = mw.config.get( 'wgServer' );
+			if ( corsOrigin.indexOf( '//' ) === 0 ) {
+				// The origin parameter musn't be protocol relative
+				corsOrigin = document.location.protocol + corsOrigin;
+			}
+			mwApiOptions = {
+				ajax: {
+					url: apiEndpoint,
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true
+				},
+				parameters: {
+					origin: corsOrigin
+				}
+			};
+		}
+
+		return new mw.Api( mwApiOptions );
+	}
+
+	/**
 	 * @static
 	 * @property {Array}
 	 * List of errors we might receive from the API.
