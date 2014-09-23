@@ -1052,6 +1052,14 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Identify that the submit button in the form has a progressive action
+	 *
+	 */
+	public function setSubmitProgressive() {
+		$this->mSubmitModifierClass = 'mw-ui-progressive';
+	}
+
+	/**
 	 * Set the text for the submit button to a message
 	 * @since 1.19
 	 *

@@ -103,6 +103,7 @@ class SpecialBlockList extends SpecialPage {
 		$form->setMethod( 'get' );
 		$form->setWrapperLegendMsg( 'ipblocklist-legend' );
 		$form->setSubmitTextMsg( 'ipblocklist-submit' );
+		$form->setSubmitProgressive();
 		$form->prepareForm();
 
 		$form->displayForm( '' );
