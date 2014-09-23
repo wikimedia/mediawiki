@@ -59,6 +59,12 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 					$label
 				);
 
+				$checkbox = Html::rawElement(
+					'div',
+					array( 'class' => 'mw-ui-checkbox' ),
+					$checkbox
+				);
+
 				$html .= ' ' . Html::rawElement(
 					'div',
 					array( 'class' => 'mw-htmlform-flatlist-item' ),
