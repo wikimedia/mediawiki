@@ -33,6 +33,11 @@
 class JavaScriptContent extends TextContent {
 
 	/**
+	 * @var bool|Title|null
+	 */
+	private $redirectTarget = false;
+
+	/**
 	 * @param string $text JavaScript code.
 	 * @param string $modelId the content model name
 	 */
@@ -71,6 +76,48 @@ class JavaScriptContent extends TextContent {
 		$html .= "\n</pre>\n";
 
 		return $html;
+	}
+
+	/**
+	 * If this page is a redirect, return the content
+	 * if it should redirect to $target instead
+	 *
+	 * @param Title $target
+	 * @return JavaScriptContent
+	 */
+	public function updateRedirect( Title $target ) {
+		if ( !$this->isRedirect() ) {
+			return $this;
+		}
+
+		return $this->getContentHandler()->makeRedirectContent( $target );
+	}
+
+	/**
+	 * @return Title|null
+	 */
+	public function getRedirectTarget() {
+		if ( $this->redirectTarget !== false ) {
+			return $this->redirectTarget;
+		}
+		$this->redirectTarget = null;
+		$text = $this->getNativeData();
+		if ( strpos( $text, '/* #REDIRECT */' ) === 0 ) {
+			// Extract the title from the url
+			preg_match( '/title=(.*?)\\\\u0026action=raw/', $text, $matches );
+			if ( isset( $matches[1] ) ) {
+				$title = Title::newFromText( $matches[1] );
+				if ( $title ) {
+					// Have a title, check that the current content equals what
+					// the redirect content should be
+					if ( $this->equals( $this->getContentHandler()->makeRedirectContent( $title ) ) ) {
+						$this->redirectTarget = $title;
+					}
+				}
+			}
+		}
+
+		return $this->redirectTarget;
 	}
 
 }
