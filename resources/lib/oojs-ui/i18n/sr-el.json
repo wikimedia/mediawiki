@@ -4,10 +4,13 @@
 			"Milicevic01"
 		]
 	},
-	"ooui-dialog-action-close": "Zatvori",
 	"ooui-outline-control-move-down": "Premesti stavku na dole",
 	"ooui-outline-control-move-up": "Premesti stavku na gore",
 	"ooui-outline-control-remove": "Ukloni stavku",
 	"ooui-toolbar-more": "Više",
-	"ooui-dialog-confirm-default-prompt": "Jeste li sigurni?"
+	"ooui-dialog-message-accept": "U redu",
+	"ooui-dialog-message-reject": "Otkaži",
+	"ooui-dialog-process-error": "Nešto je pošlo naopako",
+	"ooui-dialog-process-dismiss": "Odbaci",
+	"ooui-dialog-process-retry": "Pokušaj ponovo"
 }

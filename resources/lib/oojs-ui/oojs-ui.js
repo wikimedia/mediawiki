@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (f2c3f12959)
+ * OOjs UI v0.1.0-pre (4ea8e2cba9)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-18T23:22:20Z
+ * Date: 2014-09-23T20:24:02Z
  */
 ( function ( OO ) {
 
@@ -8218,6 +8218,7 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
  * @param {Object} [config] Configuration options
  * @cfg {string} [action] Symbolic action name
  * @cfg {string[]} [modes] Symbolic mode names
+ * @cfg {boolean} [framed=false] Render button with a frame
  */
 OO.ui.ActionWidget = function OoUiActionWidget( config ) {
 	// Config intialization
@@ -8661,6 +8662,7 @@ OO.ui.InlineMenuWidget.prototype.onClick = function ( e ) {
  * @abstract
  * @class
  * @extends OO.ui.Widget
+ * @mixins OO.ui.FlaggedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -8675,6 +8677,9 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 
 	// Parent constructor
 	OO.ui.InputWidget.super.call( this, config );
+
+	// Mixin constructors
+	OO.ui.FlaggedElement.call( this, config );
 
 	// Properties
 	this.$input = this.getInputElement( config );
@@ -8697,6 +8702,7 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.InputWidget, OO.ui.Widget );
+OO.mixinClass( OO.ui.InputWidget, OO.ui.FlaggedElement );
 
 /* Events */
 
@@ -8945,6 +8951,8 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  * @cfg {boolean} [multiline=false] Allow multiple lines of text
  * @cfg {boolean} [autosize=false] Automatically resize to fit content
  * @cfg {boolean} [maxRows=10] Maximum number of rows to make visible when autosizing
+ * @cfg {RegExp|string} [validate] Regular expression (or symbolic name referencing
+ *  one, see #static-validationPatterns)
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Configuration initialization
@@ -8962,9 +8970,13 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.multiline = !!config.multiline;
 	this.autosize = !!config.autosize;
 	this.maxRows = config.maxRows !== undefined ? config.maxRows : 10;
+	this.validate = config.validate || null;
 
 	// Events
-	this.$input.on( 'keypress', OO.ui.bind( this.onKeyPress, this ) );
+	this.$input.on( {
+		keypress: OO.ui.bind( this.onKeyPress, this ),
+		blur: OO.ui.bind( this.setValidityFlag, this )
+	} );
 	this.$element.on( 'DOMNodeInsertedIntoDocument', OO.ui.bind( this.onElementAttach, this ) );
 	this.$icon.on( 'mousedown', OO.ui.bind( this.onIconMouseDown, this ) );
 	this.$indicator.on( 'mousedown', OO.ui.bind( this.onIndicatorMouseDown, this ) );
@@ -8985,6 +8997,13 @@ OO.inheritClass( OO.ui.TextInputWidget, OO.ui.InputWidget );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IconElement );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.IndicatorElement );
 OO.mixinClass( OO.ui.TextInputWidget, OO.ui.PendingElement );
+
+/* Static properties */
+
+OO.ui.TextInputWidget.static.validationPatterns = {
+	'non-empty': /.+/,
+	integer: /^\d+$/
+};
 
 /* Events */
 
@@ -9076,6 +9095,7 @@ OO.ui.TextInputWidget.prototype.setValue = function ( value ) {
 	// Parent method
 	OO.ui.TextInputWidget.super.prototype.setValue.call( this, value );
 
+	this.setValidityFlag();
 	this.adjustSize();
 	return this;
 };
@@ -9155,6 +9175,31 @@ OO.ui.TextInputWidget.prototype.isAutosizing = function () {
 OO.ui.TextInputWidget.prototype.select = function () {
 	this.$input.select();
 	return this;
+};
+
+/**
+ * Sets the 'invalid' flag appropriately.
+ */
+OO.ui.TextInputWidget.prototype.setValidityFlag = function () {
+	this.isValid().done( OO.ui.bind( function ( valid ) {
+		this.setFlags( { invalid: !valid } );
+	}, this ) );
+};
+
+/**
+ * Returns whether or not the current value is considered valid, according to the
+ * supplied validation pattern.
+ *
+ * @return {jQuery.Deferred}
+ */
+OO.ui.TextInputWidget.prototype.isValid = function () {
+	var validationRegexp;
+	if ( this.validate instanceof RegExp ) {
+		validationRegexp = this.validate;
+	} else {
+		validationRegexp = this.constructor.static.validationPatterns[this.validate];
+	}
+	return $.Deferred().resolve( !!this.getValue().match( validationRegexp ) ).promise();
 };
 
 /**
