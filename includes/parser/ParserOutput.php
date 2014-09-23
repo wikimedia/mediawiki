@@ -472,6 +472,46 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Add a tracking category, getting the title from a system message,
+	 * or print a debug message if the title is invalid.
+	 *
+	 * Please add any message that you use with this function to
+	 * $wgTrackingCategories. That way they will be listed on
+	 * Special:TrackingCategories.
+	 *
+	 * @param string $msg Message key
+	 * @param Title $title title of the page which is being tracked
+	 * @return bool Whether the addition was successful
+	 * @since 1.25
+	 */
+	public function addTrackingCategory( $msg, $title ) {
+		if ( $title->getNamespace() === NS_SPECIAL ) {
+			wfDebug( __METHOD__ . ": Not adding tracking category $msg to special page!\n" );
+			return false;
+		}
+
+		// Important to parse with correct title (bug 31469)
+		$cat = wfMessage( $msg )
+			->title( $title )
+			->inContentLanguage()
+			->text();
+
+		# Allow tracking categories to be disabled by setting them to "-"
+		if ( $cat === '-' ) {
+			return false;
+		}
+
+		$containerCategory = Title::makeTitleSafe( NS_CATEGORY, $cat );
+		if ( $containerCategory ) {
+			$this->addCategory( $containerCategory->getDBkey(), $this->getProperty( 'defaultsort' ) ?: '' );
+			return true;
+		} else {
+			wfDebug( __METHOD__ . ": [[MediaWiki:$msg]] is not a valid title!\n" );
+			return false;
+		}
+	}
+
+	/**
 	 * Override the title to be used for display
 	 * -- this is assumed to have been validated
 	 * (check equal normalisation, etc.)

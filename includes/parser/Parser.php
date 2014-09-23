@@ -4359,40 +4359,12 @@ class Parser {
 	}
 
 	/**
-	 * Add a tracking category, getting the title from a system message,
-	 * or print a debug message if the title is invalid.
-	 *
-	 * Please add any message that you use with this function to
-	 * $wgTrackingCategories. That way they will be listed on
-	 * Special:TrackingCategories.
-	 *
+	 * @see ParserOutput::addTrackingCategory()
 	 * @param string $msg Message key
 	 * @return bool Whether the addition was successful
 	 */
 	public function addTrackingCategory( $msg ) {
-		if ( $this->mTitle->getNamespace() === NS_SPECIAL ) {
-			wfDebug( __METHOD__ . ": Not adding tracking category $msg to special page!\n" );
-			return false;
-		}
-		// Important to parse with correct title (bug 31469)
-		$cat = wfMessage( $msg )
-			->title( $this->getTitle() )
-			->inContentLanguage()
-			->text();
-
-		# Allow tracking categories to be disabled by setting them to "-"
-		if ( $cat === '-' ) {
-			return false;
-		}
-
-		$containerCategory = Title::makeTitleSafe( NS_CATEGORY, $cat );
-		if ( $containerCategory ) {
-			$this->mOutput->addCategory( $containerCategory->getDBkey(), $this->getDefaultSort() );
-			return true;
-		} else {
-			wfDebug( __METHOD__ . ": [[MediaWiki:$msg]] is not a valid title!\n" );
-			return false;
-		}
+		return $this->mOutput->addTrackingCategory( $msg, $this->mTitle );
 	}
 
 	/**
