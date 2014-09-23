@@ -144,6 +144,12 @@ class Language {
 	static private $fallbackLanguageCache = array();
 
 	/**
+	 * Cache for language names
+	 * @var MapCacheLRU|null
+	 */
+	static private $languageNameCache;
+
+	/**
 	 * Get a cached or new language object for a given language code
 	 * @param string $code
 	 * @return Language
@@ -846,10 +852,35 @@ class Language {
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
+		wfProfileIn( __METHOD__ );
+		$cacheKey = $inLanguage === null ? 'null' : $inLanguage;
+		$cacheKey .= ":$include";
+		if ( self::$languageNameCache === null ) {
+			self::$languageNameCache = new MapCacheLRU( 20 );
+		}
+		if ( self::$languageNameCache->has( $cacheKey ) ) {
+			$ret = self::$languageNameCache->get( $cacheKey );
+		} else {
+			$ret = self::fetchLanguageNamesUncached( $inLanguage, $include );
+			self::$languageNameCache->set( $cacheKey, $ret );
+		}
+		wfProfileOut( __METHOD__ );
+		return $ret;
+	}
+
+	/**
+	 * Uncached helper for fetchLanguageNames
+	 * @param null|string $inLanguage Code of language in which to return the names
+	 *		Use null for autonyms (native names)
+	 * @param string $include One of:
+	 *		'all' all available languages
+	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
+	 *		'mwfile' only if the language is in 'mw' *and* has a message file
+	 * @return array Language code => language name
+	 */
+	private static function fetchLanguageNamesUncached( $inLanguage = null, $include = 'mw' ) {
 		global $wgExtraLanguageNames;
 		static $coreLanguageNames;
-
-		wfProfileIn( __METHOD__ );
 
 		if ( $coreLanguageNames === null ) {
 			global $IP;
@@ -878,7 +909,6 @@ class Language {
 		}
 
 		if ( $include === 'all' ) {
-			wfProfileOut( __METHOD__ );
 			return $names;
 		}
 
@@ -900,12 +930,10 @@ class Language {
 				}
 			}
 
-			wfProfileOut( __METHOD__ );
 			return $namesMwFile;
 		}
 
 		# 'mw' option; default if it's not one of the other two options (all/mwfile)
-		wfProfileOut( __METHOD__ );
 		return $returnMw;
 	}
 
