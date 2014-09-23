@@ -4,6 +4,8 @@
  * @group ContentHandler
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
+ *
+ * @FIXME this should not extend JavaScriptContentTest.
  */
 class CssContentTest extends JavaScriptContentTest {
 
