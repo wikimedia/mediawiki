@@ -3127,5 +3127,6 @@
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''адключана''')",
 	"mediastatistics": "Статыстыка мэдыяфайлаў",
 	"mediastatistics-summary": "Статыстыка тыпаў загружаных файлаў. Яна ўключае толькі актуальныя вэрсіі файлаў. Старыя і выдаленыя вэрсіі ня ўлічваюцца.",
-	"mediastatistics-nbytes": "{{PLURAL:$1|$1 байт|$1 байты|$1 байтаў}} ($2; $3%)"
+	"mediastatistics-nbytes": "{{PLURAL:$1|$1 байт|$1 байты|$1 байтаў}} ($2; $3%)",
+	"mediastatistics-table-mimetype": "MIME-тып"
 }

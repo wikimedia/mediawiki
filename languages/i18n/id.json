@@ -989,6 +989,7 @@
 	"prefs-tokenwatchlist": "Tanda",
 	"prefs-diffs": "Beda",
 	"prefs-help-prefershttps": "Preferensi ini akan diaktifkan kali berikutnya Anda masuk log.",
+	"prefswarning-warning": "Perubahan preferensi anda belum tersimpan. Apabila anda meninggalkan halaman ini tanpa men-klik \"$1\" preferensi anda tidak akan diperbarui.",
 	"prefs-tabs-navigation-hint": "Tip: Anda dapat menggunakan tombol panah kiri dan kanan untuk bernavigasi antartab di dalam daftar tab.",
 	"email-address-validity-valid": "Alamat surel tampaknya sah",
 	"email-address-validity-invalid": "Masukkan alamat surel yang sah",
@@ -3235,6 +3236,14 @@
 	"log-description-pagelang": "Ini adalah log perubahan dalam bahasa halaman.",
 	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|mengubah}} bahasa halaman $3 dari $4 menjadi $5.",
 	"mediastatistics-summary": "Statistik tentang jenis file yang terunggah. Ini hanya mencakup versi terbaru dari sebuah file. Terkecuali file lama dan file yang sudah dihapus",
+	"mediastatistics-table-count": "Jumlah file",
+	"mediastatistics-table-totalbytes": "Ukuran gabungan",
 	"mediastatistics-header-unknown": "Tidak diketahui",
-	"mediastatistics-header-video": "Video"
+	"mediastatistics-header-bitmap": "Gambar bitmap",
+	"mediastatistics-header-audio": "Audio",
+	"mediastatistics-header-video": "Video",
+	"mediastatistics-header-office": "Office",
+	"mediastatistics-header-text": "Tekstual",
+	"mediastatistics-header-executable": "Executable",
+	"mediastatistics-header-archive": "Format terkompresi"
 }

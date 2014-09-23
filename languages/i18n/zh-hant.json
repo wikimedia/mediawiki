@@ -629,7 +629,7 @@
 	"userpage-userdoesnotexist": "使用者帳號 \"$1\" 尚未註冊。\n若您要建立/編輯此頁面，請先檢查是否正確。",
 	"userpage-userdoesnotexist-view": "使用者帳號 \"$1\" 尚未註冊。",
 	"blocked-notice-logextract": "此使用者目前已被封鎖。\n以下為最近的封鎖紀錄以供參考：",
-	"clearyourcache": "<strong>注意：</strong> 在您儲存之後您必須清除瀏覽器快取才可看到最新的變動。\n* <strong>Firefox / Safari:</strong> 按住 <em>Shift</em> 時點選 <em>重新整理</em>，或按 <em>Ctrl-F5</em> 或 <em>Ctrl-R</em> (Mac 為 <em>⌘-R</em>)\n* <strong>Google Chrome:</strong> 按 <em>Ctrl-Shift-R</em> (Mac 為 <em>⌘-Shift-R</em>)\n* <strong>Internet Explorer:</strong> 按住 <em>Ctrl</em> 時點選 <em>重新整理</em>，或按 <em>Ctrl-F5</em>\n* <strong>Opera:</strong> 進入 <em>工具 → 偏好設定</em> 中清除快取。",
+	"clearyourcache": "<strong>注意：</strong>在您儲存之後您必須清除瀏覽器快取才可看到最新的變動。\n* <strong>Firefox / Safari：</strong>按住 <em>Shift</em> 時點選 <em>重新整理</em>，或按 <em>Ctrl-F5</em> 或 <em>Ctrl-R</em>（Mac 則為 <em>⌘-R</em>）\n* <strong>Google Chrome：</strong>按 <em>Ctrl-Shift-R</em>（Mac 則為 <em>⌘-Shift-R</em>）\n* <strong>Internet Explorer：</strong>按住 <em>Ctrl</em> 時點選 <em>重新整理</em>，或按 <em>Ctrl-F5</em>\n* <strong>Opera：</strong>進入 <em>工具 → 偏好設定</em> 中清除快取。",
 	"usercssyoucanpreview": "<strong>提示:</strong>在儲存之前使用 \"{{int:showpreview}}\" 按鈕來測試您的新 CSS。",
 	"userjsyoucanpreview": "<strong>提示:</strong>在儲存之前使用 \"{{int:showpreview}}\" 按鈕來測試您的新 JavaScript。",
 	"usercsspreview": "<strong>您目前正預覽您的使用者 CSS，CSS 還尚未儲存！</strong>",

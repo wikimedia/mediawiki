@@ -2122,7 +2122,7 @@
 	"sorbs_create_account_reason": "Votre adresse IP est listée comme mandataire ouvert dans le DNSBL utilisé par {{SITENAME}}.\nVous ne pouvez pas créer un compte.",
 	"xffblockreason": "Une adresse IP dans l'en-tête X-Forwarded-For, soit la vôtre ou celle d'un serveur proxy que vous utilisez, a été bloquée. La raison du blocage initial est : $1",
 	"cant-see-hidden-user": "L’utilisateur que vous tentez de bloquer a déjà été bloqué et masqué. N’ayant pas le droit ''hideuser'', vous ne pouvez pas voir ou modifier le blocage de cet utilisateur.",
-	"ipbblocked": "Vous ne pouvez pas bloquer ou débloquer d'autres utilisateurs, parce que vous êtes vous-même bloqué{{GENDER:||e|(e)}",
+	"ipbblocked": "Vous ne pouvez pas bloquer ou débloquer d'autres utilisateurs, parce que vous êtes vous-même bloqué{{GENDER:||e|}",
 	"ipbnounblockself": "Vous n'êtes pas autorisé{{GENDER:||e}} à vous débloquer vous-même",
 	"lockdb": "Verrouiller la base de données",
 	"unlockdb": "Déverrouiller la base de données",
