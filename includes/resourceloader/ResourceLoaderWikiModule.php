@@ -149,7 +149,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	protected function getContent( $titleText ) {
 		$title = Title::newFromText( $titleText );
-		if ( !$title || $title->isRedirect() ) {
+		if ( !$title ) {
 			return null;
 		}
 
