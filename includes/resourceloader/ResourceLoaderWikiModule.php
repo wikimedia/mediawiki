@@ -118,7 +118,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				continue;
 			}
 			$title = Title::newFromText( $titleText );
-			if ( !$title || $title->isRedirect() ) {
+			if ( !$title ) {
 				continue;
 			}
 			$script = $this->getContent( $title );
