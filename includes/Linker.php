@@ -193,7 +193,7 @@ class Linker {
 		$target, $html = null, $customAttribs = array(), $query = array(), $options = array()
 	) {
 		if ( !$target instanceof Title ) {
-			wfWarn( __METHOD__ . ': Requires $target to be a Title object.' );
+			wfWarn( __METHOD__ . ': Requires $target to be a Title object.', 2 );
 			return "<!-- ERROR -->$html";
 		}
 		wfProfileIn( __METHOD__ );
