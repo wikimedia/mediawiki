@@ -44,8 +44,8 @@
 
 	&:focus {
 		box-shadow:inset 0px 0px 0px 3px rgba(0, 0, 0, 20%);
-//		box-shadow: 0 1px rgba(0, 0, 0, 10%), inset 0 -3px rgba(0, 0, 0, 20%);
 		outline: none;
+
 		// remove outline in Firefox
 		&::-moz-focus-inner {
 			border-color: transparent;
@@ -107,11 +107,21 @@
 	// constructive/progressive/destructive color on hover and active.
 	color: @colorButtonText;
 
-	&:hover,
-	&:focus {
+	&:hover {
 		// lessphp doesn't implement tint, see above
 		// color: tint(@textColor, 20%);
 		color: mix(#fff, @textColor, 20%);
+	}
+
+	&:focus {
+		box-shadow:inset 0px 0px 0px 3px rgba(0, 0, 0, 20%);
+		outline: none;
+
+		// remove outline in Firefox
+		&::-moz-focus-inner {
+			border-color: transparent;
+		}
+
 	}
 
 	&:active,
