@@ -609,6 +609,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = new EditWatchlistNormalHTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
+		$form->setSubmitDestructive();
 		# Used message keys:
 		# 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
 		$form->setSubmitTooltip( 'watchlistedit-normal-submit' );
