@@ -363,9 +363,8 @@ class MediaWiki {
 			$this->context->setWikiPage( $article->getPage() );
 		}
 
-		// NS_MEDIAWIKI has no redirects.
-		// It is also used for CSS/JS, so performance matters here...
-		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
+		// Skip some unnecessary code if the content model doesn't support redirects
+		if ( !ContentHandler::getForTitle( $title )->supportsRedirects() ) {
 			return $article;
 		}
 

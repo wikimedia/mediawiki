@@ -4,6 +4,8 @@
  * @group ContentHandler
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
+ *
+ * @FIXME this should not extend JavaScriptContentTest.
  */
 class CssContentTest extends JavaScriptContentTest {
 
@@ -68,7 +70,28 @@ class CssContentTest extends JavaScriptContentTest {
 		$this->assertEquals( CONTENT_MODEL_CSS, $content->getContentHandler()->getModelID() );
 	}
 
-	public static function dataEquals() {
+	/**
+	 * Redirects aren't supported
+	 */
+	public static function provideUpdateRedirect() {
+		return array(
+			array(
+				'#REDIRECT [[Someplace]]',
+				'#REDIRECT [[Someplace]]',
+			),
+		);
+	}
+
+	/**
+	 * Override this since CssContent does not support redirects yet
+	 */
+	public static function provideGetRedirectTarget() {
+		return array(
+			array( null, '' ),
+		);
+	}
+
+		public static function dataEquals() {
 		return array(
 			array( new CssContent( 'hallo' ), null, false ),
 			array( new CssContent( 'hallo' ), new CssContent( 'hallo' ), true ),
