@@ -40,6 +40,8 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
 		$elementFunc = array( 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' );
 
+		global $wgUseMediaWikiUIEverywhere;
+
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
 				$html .= Html::rawElement( 'h1', array(), $label ) . "\n";
@@ -59,11 +61,13 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 					$label
 				);
 
-				$checkbox = Html::rawElement(
-					'div',
-					array( 'class' => 'mw-ui-checkbox' ),
-					$checkbox
-				);
+				if ( $wgUseMediaWikiUIEverywhere ) {
+					$checkbox = Html::rawElement(
+						'div',
+						array( 'class' => 'mw-ui-checkbox' ),
+						$checkbox
+					);
+				}
 
 				$html .= ' ' . Html::rawElement(
 					'div',
