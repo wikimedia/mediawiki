@@ -63,8 +63,7 @@ abstract class PrefixSearch {
 			if ( $ns[0] == NS_MAIN ) {
 				$ns = $namespaces; // no explicit prefix, use default namespaces
 			}
-			return $this->searchBackend(
-				$ns, $title->getText(), $limit );
+			return $this->searchBackend( $ns, $title->getText(), $limit );
 		}
 
 		// Is this a namespace prefix?
