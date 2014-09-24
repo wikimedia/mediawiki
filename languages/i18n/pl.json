@@ -1627,7 +1627,6 @@
 	"querypage-disabled": "Ta strona specjalna została wyłączona ze względu na ograniczenia wydajności.",
 	"booksources": "Książki",
 	"booksources-search-legend": "Szukaj informacji o książkach",
-	"booksources-go": "Pokaż",
 	"booksources-text": "Poniżej znajduje się lista odnośników do innych witryn, które pośredniczą w sprzedaży nowych i używanych książek, a także mogą posiadać dalsze informacje na temat poszukiwanej przez Ciebie książki.",
 	"booksources-invalid-isbn": "Podany numer ISBN został rozpoznany jako nieprawidłowy. Sprawdź czy podany numer zgadza się z numerem zaczerpniętym ze źródła.",
 	"specialloguserlabel": "Kto",

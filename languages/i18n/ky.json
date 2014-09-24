@@ -903,7 +903,6 @@
 	"pager-older-n": "{{PLURAL:$1|эскирээк 1|эскирээк $1}}",
 	"booksources": "Китеп тууралуу маалыматтар",
 	"booksources-search-legend": "Китеп тууралуу маалыматтарды издөө",
-	"booksources-go": "Алга",
 	"specialloguserlabel": "Аткаруучу:",
 	"speciallogtitlelabel": "Максаты (аталышы же колдонуучу):",
 	"log": "Журналдар",

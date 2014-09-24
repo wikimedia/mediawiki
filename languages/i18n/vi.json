@@ -1586,7 +1586,6 @@
 	"querypage-disabled": "Trang đặc biệt này bị tắt vì lý do hiệu suất.",
 	"booksources": "Nguồn sách",
 	"booksources-search-legend": "Tìm kiếm nguồn sách",
-	"booksources-go": "Tìm kiếm",
 	"booksources-text": "Dưới đây là danh sách những trang bán sách mới và cũ, đồng thời có thể có thêm thông tin về những cuốn sách bạn đang tìm:",
 	"booksources-invalid-isbn": "ISBN mà bạn cung cấp dường như không đúng; xin hãy kiểm tra lại xem có lỗi gì khi sao chép từ nội dung gốc hay không.",
 	"specialloguserlabel": "Người thực hiện:",

@@ -1571,7 +1571,6 @@
 	"querypage-disabled": "Iste pagina special es disactivate pro evitar de supercargar le systema.",
 	"booksources": "Fontes de libros",
 	"booksources-search-legend": "Cercar fontes de libros",
-	"booksources-go": "Va",
 	"booksources-text": "Infra es un lista de ligamines a altere sitos que vende libros nove e usate, e pote etiam haber altere informationes super libros que tu cerca:",
 	"booksources-invalid-isbn": "Le ISBN date non pare esser valide; verifica que tu non ha facite errores copiante lo del fonte original.",
 	"specialloguserlabel": "Executor:",

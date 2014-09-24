@@ -1518,7 +1518,6 @@
 	"querypage-disabled": "Hierdie spesiale bladsy is afgeskakel om werkverrigting te verbeter (bediener is oorlaai).",
 	"booksources": "Boekbronne",
 	"booksources-search-legend": "Soek vir boekbronne",
-	"booksources-go": "Soek",
 	"booksources-text": "Hieronder is 'n lys van webtuistes wat nuwe en gebruikte boeke verkoop, en dalk meer inligting oor die boeke waarna u soek kan bevat:",
 	"booksources-invalid-isbn": "Die ingevoerde ISBN-kode blyk asof dit ongeldig is; maak asseblief seker dat u dit sonder fout oorgekopiëer het vanaf die oorspronklike bron.",
 	"specialloguserlabel": "Uitvoerende gebruiker:",

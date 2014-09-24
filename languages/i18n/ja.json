@@ -1631,7 +1631,6 @@
 	"booksources": "書籍情報源",
 	"booksources-search-legend": "書籍情報源を検索",
 	"booksources-isbn": "ISBN:",
-	"booksources-go": "検索",
 	"booksources-text": "お探しの書籍の新品/中古品を販売している外部サイトへのリンクを以下に列挙します。この書籍についてさらに詳しい情報があるかもしれません:",
 	"booksources-invalid-isbn": "指定した ISBN は有効ではないようです。情報源から写し間違えていないか確認してください。",
 	"specialloguserlabel": "実行者:",

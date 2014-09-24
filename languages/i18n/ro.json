@@ -1583,7 +1583,7 @@
 	"querypage-disabled": "Această pagină specială este dezactivată din motive de performanță.",
 	"booksources": "Surse de cărți",
 	"booksources-search-legend": "Căutare surse pentru cărți",
-	"booksources-go": "Salt",
+	"booksources-search": "Caută",
 	"booksources-text": "Mai jos se află o listă de legături înspre alte situri care vând cărți noi sau vechi și care pot oferi informații suplimentare despre cărțile pe care le căutați:",
 	"booksources-invalid-isbn": "Codul ISBN oferit nu este valid; verificați dacă a fost copiat corect de la sursa originală.",
 	"specialloguserlabel": "Executant:",

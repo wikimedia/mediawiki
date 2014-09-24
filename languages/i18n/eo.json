@@ -1578,7 +1578,6 @@
 	"querypage-disabled": "Tiu ĉi speciala paĝo estas malfunkciigita pro rendimentaj kialoj.",
 	"booksources": "Libroservoj",
 	"booksources-search-legend": "Serĉi librofontojn",
-	"booksources-go": "Ek",
 	"booksources-text": "Jen ligilaro al aliaj TTT-ejoj, kiuj vendas librojn,\nkaj/aŭ informumos pri la libro ligita.\nLa {{SITENAME}} ne estas komerce ligita al tiuj vendejoj, kaj la listo ne estu\nkomprenata kiel rekomendo aŭ reklamo.",
 	"booksources-invalid-isbn": "La donata ISBN verŝajne estas nevalida; kontrolu pri erara kopiado el la originala fonto.",
 	"specialloguserlabel": "Faranto:",

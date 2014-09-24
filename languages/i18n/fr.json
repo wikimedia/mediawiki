@@ -1677,7 +1677,7 @@
 	"booksources": "Ouvrages de référence",
 	"booksources-search-legend": "Rechercher parmi des ouvrages de référence",
 	"booksources-isbn": "ISBN :",
-	"booksources-go": "Lister",
+	"booksources-search": "Rechercher",
 	"booksources-text": "Voici une liste indicative de liens vers d’autres sites vendant des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez :",
 	"booksources-invalid-isbn": "L’ISBN donné ne semble pas être correct ; vérifiez si vous avez fait une erreur en copiant la source originale.",
 	"specialloguserlabel": "Auteur :",

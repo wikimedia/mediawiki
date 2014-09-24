@@ -1616,7 +1616,6 @@
 	"querypage-disabled": "Deze speciale pagina is uitgeschakeld om performanceredenen.",
 	"booksources": "Boekinformatie",
 	"booksources-search-legend": "Bronnen en gegevens over een boek zoeken",
-	"booksources-go": "OK",
 	"booksources-text": "Hieronder staat een lijst met koppelingen naar andere websites die nieuwe of gebruikte boeken verkopen, en die wellicht meer informatie over het boek dat u zoekt hebben:",
 	"booksources-invalid-isbn": "Het opgegeven ISBN lijkt niet geldig te zijn.\nControleer of u wellicht een fout hebt gemaakt bij de invoer.",
 	"specialloguserlabel": "Uitvoerende gebruiker:",

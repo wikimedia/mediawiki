@@ -1640,7 +1640,7 @@
 	"querypage-disabled": "Diese Spezialseite wurde aus Gründen der Leistungserhaltung deaktiviert.",
 	"booksources": "ISBN-Suche",
 	"booksources-search-legend": "Suche nach Bezugsquellen für Bücher",
-	"booksources-go": "Suchen",
+	"booksources-search": "Suchen",
 	"booksources-text": "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 	"booksources-invalid-isbn": "Vermutlich ist die ISBN ungültig.\nBitte prüfe, ob sie korrekt von der Quelle übertragen wurde.",
 	"specialloguserlabel": "Ausführender Benutzer:",

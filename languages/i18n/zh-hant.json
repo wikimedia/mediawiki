@@ -1616,7 +1616,6 @@
 	"booksources": "圖書資源",
 	"booksources-search-legend": "尋找圖書資源",
 	"booksources-isbn": "國際標準書號：",
-	"booksources-go": "執行",
 	"booksources-text": "下列清單包含其他銷售新書籍或二手書籍的網站連結，可會有你想尋找書籍的進一部資訊：",
 	"booksources-invalid-isbn": "您提供的 ISBN 不正確，請檢查複製的來源是否有誤。",
 	"specialloguserlabel": "執行者：",

@@ -116,7 +116,8 @@
 			"AVIADOR",
 			"F3RaN",
 			"Amitie 10g",
-			"Eurodyne"
+			"Eurodyne",
+			"Gleki"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -316,7 +317,7 @@
 	"viewhelppage": "Ver página de ayuda",
 	"categorypage": "Ver página de categoría",
 	"viewtalkpage": "Ver discusión",
-	"otherlanguages": "Otros idiomas",
+	"otherlanguages": "En otros idiomas",
 	"redirectedfrom": "(Redirigido desde «$1»)",
 	"redirectpagesub": "Página de redirección",
 	"redirectto": "Redirigir a:",
@@ -1674,7 +1675,6 @@
 	"querypage-disabled": "Esta página especial está deshabilitada por motivos de rendimiento.",
 	"booksources": "Fuentes de libros",
 	"booksources-search-legend": "Buscar fuentes de libros",
-	"booksources-go": "Ir",
 	"booksources-text": "Abajo hay una lista de enlaces a otros sitios que venden libros nuevos y usados, puede que contengan más información sobre los libros que estás buscando.",
 	"booksources-invalid-isbn": "El número de ISBN no parece ser válido; comprueba los errores copiándolo de la fuente original.",
 	"specialloguserlabel": "Usuario:",

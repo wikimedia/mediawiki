@@ -1570,7 +1570,7 @@
 	"querypage-disabled": "Ta posebna stran je onemogočena iz zmogljivostnih razlogov.",
 	"booksources": "Viri knjig",
 	"booksources-search-legend": "Išči knjižne vire",
-	"booksources-go": "Pojdi",
+	"booksources-search": "Išči",
 	"booksources-text": "Sledi seznam povezav do drugi spletnih strani, ki prodajajo nove in rabljene knjige, in imajo morda nadaljnje informacije o knjigah, ki jih iščete:",
 	"booksources-invalid-isbn": "Za dani ISBN se ne zdi, da je veljaven; preverite za morebitne napake pri kopiranju iz prvotnega vira.",
 	"specialloguserlabel": "Izvajalec:",

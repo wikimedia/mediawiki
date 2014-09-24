@@ -1600,7 +1600,6 @@
 	"querypage-disabled": "Aquesta pàgina especial està desactivada per a no perjudicar el rendiment.",
 	"booksources": "Obres de referència",
 	"booksources-search-legend": "Cerca fonts de llibres",
-	"booksources-go": "Vés-hi",
 	"booksources-text": "A sota hi ha una llista d'enllaços d'altres llocs que venen llibres nous i de segona mà, i també podrien tenir més informació dels llibres que esteu cercant:",
 	"booksources-invalid-isbn": "El codi ISBN donat no és vàlid. Comproveu si l'heu copiat correctament.",
 	"specialloguserlabel": "Realitzador:",

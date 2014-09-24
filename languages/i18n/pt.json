@@ -1621,7 +1621,7 @@
 	"querypage-disabled": "Esta página especial está desativada para não prejudicar o desempenho.",
 	"booksources": "Fontes bibliográficas",
 	"booksources-search-legend": "Pesquisar referências bibliográficas",
-	"booksources-go": "Ir",
+	"booksources-search": "Pesquisar",
 	"booksources-text": "É apresentada abaixo uma lista de ligações para outros sítios na Internet que vendem livros novos e usados e talvez possuam informações adicionais sobre os livros que procura:",
 	"booksources-invalid-isbn": "O número ISBN fornecido não parece ser válido; verifique a existência de erros ao copiar da fonte original.",
 	"specialloguserlabel": "Executante:",

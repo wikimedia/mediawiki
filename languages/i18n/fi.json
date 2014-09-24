@@ -1156,7 +1156,7 @@
 	"enhancedrc-history": "historia",
 	"recentchanges": "Tuoreet muutokset",
 	"recentchanges-legend": "Tuoreiden muutosten asetukset",
-	"recentchanges-summary": "Tällä sivulla voi seurata tuoreita {{GRAMMAR:illative|{{SITENAME}}}} tehtyjä muutoksia.",
+	"recentchanges-summary": "Tällä sivulla voi seurata tuoreita tähän wikiin tehtyjä muutoksia.",
 	"recentchanges-noresult": "Ei muutoksia, jotka täyttävät nämä kriteerit valitun ajanjakson aikana.",
 	"recentchanges-feed-description": "Tällä sivulla voi seurata tuoreita {{GRAMMAR:illative|{{SITENAME}}}} tehtyjä muutoksia.",
 	"recentchanges-label-newpage": "Tämä muutos loi uuden sivun",
@@ -1602,7 +1602,6 @@
 	"booksources": "Kirjalähteet",
 	"booksources-search-legend": "Etsi kirjalähteitä",
 	"booksources-isbn": "ISBN",
-	"booksources-go": "Siirry",
 	"booksources-text": "Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.",
 	"booksources-invalid-isbn": "Annettu ISBN-numero ei ole kelvollinen. Tarkista alkuperäisestä lähteestä kirjoitusvirheiden varalta.",
 	"specialloguserlabel": "Suorittaja:",
@@ -3164,5 +3163,6 @@
 	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|muutti}} sivun kieltä sivulla $3 kielestä $4 kieleksi $5.",
 	"default-skin-not-found": "Hupsista! Oletuksena tuleva ulkoasu sinun wikillesi, joka on määritelty koodissa <code dir=\"ltr\">$wgDefaultSkin</code> muotoon <code>$1</code>, ei ole saatavilla.\n\n\n<strong>Alla on ohjeita englanniksi:</strong>\n\n\nYour installation seems to include the following skins. See [https://www.mediawiki.org/wiki/Manual:Skin_configuration Manual: Skin configuration] for information how to enable them and choose the default.\n\n$2\n\n; If you have just installed MediaWiki: \n: You probably installed from git, or directly from the source code using some other method. This is expected. Try installing some skins from [https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org's skin directory], by: :* Downloading the [https://www.mediawiki.org/wiki/Download tarball installer], which comes with several skins and extensions. You can copy and paste the <code>skins/</code> directory from it. \n:* Cloning one of the <code>mediawiki/skins/*</code> repositories via git into the <code>skins/</code> directory of your MediaWiki installation. \n: Doing this should not interfere with your git repository if you're a MediaWiki developer.\n\n\n; If you have just upgraded MediaWiki: \n: MediaWiki 1.24 and newer no longer automatically enables installed skins (see [https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery Manual: Skin autodiscovery]). You can paste the following lines into <code>LocalSettings.php</code> to enable all currently installed skins:\n\n<pre>$3</pre>\n\n; If you have just modified <code>LocalSettings.php</code>: \n: Double-check the skin names for typos.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (käytössä)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''ei käytössä''')"
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''ei käytössä''')",
+	"mediastatistics-header-video": "Videot"
 }

@@ -1567,7 +1567,6 @@
 	"booksources": "Štampani izvori",
 	"booksources-search-legend": "Traženje izvora knjige",
 	"booksources-isbn": "ISBN:",
-	"booksources-go": "Idi",
 	"booksources-text": "Ispod se nalazi spisak veza ka sajtovima koji se bave prodajom novih i polovnih knjiga, a koji bi mogli imati dodatne podatke o knjigama koje tražite:",
 	"booksources-invalid-isbn": "Navedeni ISBN broj nije ispravan. Proverite da nije došlo do greške pri umnožavanju iz prvobitnog izvora.",
 	"specialloguserlabel": "Izvršilac:",

@@ -1620,7 +1620,6 @@
 	"querypage-disabled": "Den här specialsidan är inaktiverad av prestandaskäl.",
 	"booksources": "Bokkällor",
 	"booksources-search-legend": "Sök efter bokkällor",
-	"booksources-go": "Visa",
 	"booksources-text": "Nedan följer en lista över länkar till webbplatser som säljer nya och begagnade böcker, och som kanske har ytterligare information om de böcker du söker.",
 	"booksources-invalid-isbn": "Det angivna ISBN-numret verkar inte vara giltigt. Kontrollera källan för eventuella fel.",
 	"specialloguserlabel": "Utförare:",

@@ -1498,7 +1498,6 @@
 	"querypage-disabled": "Ova posebna stranica onemogućena je jer bi usporila funkcioniranje projekta.",
 	"booksources": "Pretraživanje po ISBN-u",
 	"booksources-search-legend": "Traženje izvora za knjigu",
-	"booksources-go": "Kreni",
 	"booksources-text": "Ovdje je popis vanjskih poveznica na internetskim stranicama koje prodaju nove i rabljene knjige, ali mogu sadržavati i ostale podatke o knjigama koje tražite:",
 	"booksources-invalid-isbn": "Čini se da dani ISBN nije valjan; provjerite greške kopirajući iz izvornika.",
 	"specialloguserlabel": "Suradnik:",
