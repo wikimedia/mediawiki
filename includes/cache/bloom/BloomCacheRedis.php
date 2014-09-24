@@ -328,7 +328,7 @@ LUA;
 	}
 
 	/**
-	 * $param string $to (master/slave)
+	 * @param string $to (master/slave)
 	 * @return RedisConnRef|bool Returns false on failure
 	 */
 	protected function getConnection( $to ) {
@@ -354,6 +354,7 @@ LUA;
 					return $conn;
 				}
 				unset( $servers[$index] ); // skip next time
+				$servers = array_values( $servers ); // reindex
 			}
 		}
 
