@@ -117,8 +117,6 @@ class SpecialBookSources extends SpecialPage {
 	 * @return string
 	 */
 	private function makeForm() {
-		global $wgUseMediaWikiUIEverywhere;
-
 		$form = Html::openElement( 'fieldset' ) . "\n";
 		$form .= Html::element(
 			'legend',
@@ -136,7 +134,7 @@ class SpecialBookSources extends SpecialPage {
 			array( 'autofocus' => true, 'class' => 'mw-ui-input-inline' )
 		);
 
-		if ( $wgUseMediaWikiUIEverywhere ) {
+		if ( $this->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$form .= '&#160;' . Xml::submitButton(
 				$this->msg( 'booksources-search' )->text(),
 				array( 'class' => 'mw-ui-button mw-ui-progressive' )
