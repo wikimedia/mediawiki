@@ -55,6 +55,8 @@ for editing, such as action overrides or specific api modules.
 * mediaWiki.confirmCloseWindow now returns an object of functions, instead of
 one function. The callback can't be called directly any more. The callback function
 is replaced with confirmCloseWindow.release().
+* A el_from_namespace field has been added to the externallinks table. Run
+  update.php to apply this change to the schema.
 
 == Compatibility ==
 
