@@ -96,7 +96,8 @@ changes to languages because of Bugzilla reports.
 * The Block class constructor now takes an associative array of parameters
   instead of many optional positional arguments. Calling the constructor the old
   way will issue a deprecation warning.
-
+* A el_from_namespace field has been added to the externallinks table. Run
+  update.php to apply this change to the schema.
 
 == Compatibility ==
 
