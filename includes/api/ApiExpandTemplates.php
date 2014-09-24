@@ -117,6 +117,20 @@ class ApiExpandTemplates extends ApiBase {
 						$retval['categories'] = $categories_result;
 					}
 				}
+				if ( isset( $prop['indicators'] ) ) {
+					$indicators = $wgParser->getOutput()->getIndicators();
+					if ( !empty( $indicators ) ) {
+						$indicators_result = array();
+						foreach ( $indicators as $name => $content ) {
+							$entry = array();
+							$entry['name'] = $name;
+							ApiResult::setContent( $entry, $content );
+							$indicators_result[] = $entry;
+						}
+						$result->setIndexedTagName( $indicators_result, 'ind' );
+						$retval['indicators'] = $indicators_result;
+					}
+				}
 				if ( isset( $prop['volatile'] ) && $frame->isVolatile() ) {
 					$retval['volatile'] = '';
 				}
@@ -145,6 +159,7 @@ class ApiExpandTemplates extends ApiBase {
 				ApiBase::PARAM_TYPE => array(
 					'wikitext',
 					'categories',
+					'indicators',
 					'volatile',
 					'ttl',
 					'parsetree',
@@ -168,6 +183,7 @@ class ApiExpandTemplates extends ApiBase {
 				' wikitext   - The expanded wikitext',
 				' categories - Any categories present in the input that are not represented in ' .
 					'the wikitext output',
+				' indicators - Page status indicators (as expanded wikitext)',
 				' volatile   - Whether the output is volatile and should not be reused ' .
 					'elsewhere within the page',
 				' ttl        - The maximum time after which caches of the result should be ' .
