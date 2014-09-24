@@ -14,7 +14,11 @@ production.
 
 === Bug fixes in 1.25 ===
 
-=== Web API changes in 1.25 ===
+=== Action API changes in 1.25 ===
+* (bug 65403) XML tag highlighting is now only performed for formats
+  "xmlfm" and "wddxfm".
+
+=== Action API internal changes in 1.25 ===
 
 === Languages updated in 1.25 ===
 
@@ -29,8 +33,6 @@ changes to languages because of Bugzilla reports.
 * Javascript variable 'wgFileCanRotate' now only available on Special:Upload.
 * (bug 56257) Set site logo url in ResourceLoaderSiteModule instead of inline
   styles in the HTML output.
-* (bug 65403) XML tag highlighting is now only performed for formats
-  "xmlfm" and "wddxfm".
 
 == Compatibility ==
 
