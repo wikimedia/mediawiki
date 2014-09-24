@@ -244,6 +244,7 @@ CREATE SEQUENCE externallinks_el_id_seq;
 CREATE TABLE externallinks (
   el_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('externallinks_el_id_seq'),
   el_from   INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  el_from_namespace INTEGER NOT NULL DEFAULT 0,
   el_to     TEXT     NOT NULL,
   el_index  TEXT     NOT NULL
 );

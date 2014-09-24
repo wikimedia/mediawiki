@@ -140,7 +140,9 @@ class LinkSearchPage extends QueryPage {
 				)
 			) . "\n";
 
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( !$this->getConfig()->get( 'MiserMode' )
+			|| $this->getConfig()->get( 'UseExternallinksNamespaceDBField' )
+		) {
 			$s .= Html::namespaceSelector(
 				array(
 					'selected' => $namespace,
@@ -213,7 +215,9 @@ class LinkSearchPage extends QueryPage {
 	function linkParameters() {
 		$params = array();
 		$params['target'] = $this->mProt . $this->mQuery;
-		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->mNs !== null && ( !$this->getConfig()->get( 'MiserMode' )
+			|| $this->getConfig()->get( 'UseExternallinksNamespaceDBField' ) )
+		) {
 			$params['namespace'] = $this->mNs;
 		}
 
@@ -247,8 +251,12 @@ class LinkSearchPage extends QueryPage {
 			'options' => array( 'USE INDEX' => $clause )
 		);
 
-		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
-			$retval['conds']['page_namespace'] = $this->mNs;
+		if ( $this->mNs !== null ) {
+			if ( $this->getConfig()->get( 'UseExternallinksNamespaceDBField') ) {
+				$retval['conds']['el_from_namespace'] = $this->mNs;
+			} elseif ( !$this->getConfig()->get( 'MiserMode' ) ) {
+				$retval['conds']['page_namespace'] = $this->mNs;
+			}
 		}
 
 		return $retval;
