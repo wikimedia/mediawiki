@@ -217,6 +217,8 @@ changes to languages because of Phabricator reports.
   'Project:Oversight' to 'Project:Suppress'.
 * (T84937) Free external links ("autolinked" urls) will now be terminated
   by &nbsp; and HTML entity encodings of &nbsp, <, and >.
+* A el_from_namespace field has been added to the externallinks table. Run
+  update.php to apply this change to the schema.
 
 == Compatibility ==
 

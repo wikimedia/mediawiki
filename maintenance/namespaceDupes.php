@@ -527,7 +527,8 @@ class NamespaceConflictChecker extends Maintenance {
 		$fromNamespaceTables = array(
 			array( 'pagelinks', 'pl' ),
 			array( 'templatelinks', 'tl' ),
-			array( 'imagelinks', 'il' ) );
+			array( 'imagelinks', 'il' ),
+			array( 'externallinks', 'el' ) );
 		foreach ( $fromNamespaceTables as $tableInfo ) {
 			list( $table, $fieldPrefix ) = $tableInfo;
 			$this->db->update( $table,
