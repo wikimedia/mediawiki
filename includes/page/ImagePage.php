@@ -1199,9 +1199,9 @@ class ImageHistoryList extends ContextSource {
 			. $this->msg( 'filehist-help' )->parseAsBlock()
 			. $navLinks . "\n"
 			. Xml::openElement( 'table', array( 'class' => 'wikitable filehistory' ) ) . "\n"
-			. '<tr><td></td>'
+			. '<tr><th></th>'
 			. ( $this->current->isLocal()
-				&& ( $this->getUser()->isAllowedAny( 'delete', 'deletedhistory' ) ) ? '<td></td>' : '' )
+				&& ( $this->getUser()->isAllowedAny( 'delete', 'deletedhistory' ) ) ? '<th></th>' : '' )
 			. '<th>' . $this->msg( 'filehist-datetime' )->escaped() . '</th>'
 			. ( $this->showThumb ? '<th>' . $this->msg( 'filehist-thumb' )->escaped() . '</th>' : '' )
 			. '<th>' . $this->msg( 'filehist-dimensions' )->escaped() . '</th>'
