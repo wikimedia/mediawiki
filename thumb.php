@@ -32,7 +32,7 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 	wfThumbHandle404();
 } else {
 	// Called directly, use $_GET params
-	wfThumbHandleRequest();
+	wfStreamThumb( $_GET );
 }
 
 wfLogProfilingData();
@@ -42,19 +42,6 @@ $factory->commitMasterChanges();
 $factory->shutdown();
 
 //--------------------------------------------------------------------------
-
-/**
- * Handle a thumbnail request via query parameters
- *
- * @return void
- */
-function wfThumbHandleRequest() {
-	$params = get_magic_quotes_gpc()
-		? array_map( 'stripslashes', $_GET )
-		: $_GET;
-
-	wfStreamThumb( $params ); // stream the thumbnail
-}
 
 /**
  * Handle a thumbnail request via thumbnail file URL
