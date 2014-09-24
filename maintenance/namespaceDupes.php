@@ -410,7 +410,7 @@ class NamespaceConflictChecker extends Maintenance {
 			__METHOD__ );
 
 		// @fixme Needs updating the *_from_namespace fields in categorylinks,
-		// pagelinks, templatelinks and imagelinks.
+		// pagelinks, templatelinks, imagelinks and externallinks.
 
 		return true;
 	}
