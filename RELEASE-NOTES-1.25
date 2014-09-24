@@ -161,6 +161,8 @@ changes to languages because of Bugzilla reports.
   tag, instead of after the <text> and <sha1> tags.
   The new schema version is 0.10, the new schema URI is
   <https://www.mediawiki.org/xml/export-0.10.xsd>.
+* A el_from_namespace field has been added to the externallinks table. Run
+  update.php to apply this change to the schema.
 
 == Compatibility ==
 
