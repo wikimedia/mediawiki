@@ -137,6 +137,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addField', 'pagelinks', 'pl_from_namespace', 'patch-pl_from_namespace.sql' ),
 			array( 'addField', 'templatelinks', 'tl_from_namespace', 'patch-tl_from_namespace.sql' ),
 			array( 'addField', 'imagelinks', 'il_from_namespace', 'patch-il_from_namespace.sql' ),
+
+			// 1.25
+			array( 'addField', 'externallinks', 'el_from_namespace', 'patch-el_from_namespace.sql' ),
 		);
 	}
 

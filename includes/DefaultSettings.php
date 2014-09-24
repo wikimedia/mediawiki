@@ -7386,6 +7386,14 @@ $wgPageLanguageUseDB = false;
 $wgUseLinkNamespaceDBFields = true;
 
 /**
+ * Enable use of the el_from_namespace fields of the externallinks table.
+ * Set this only if the fields are fully populated. This may be removed before release of 1.25.
+ * @var bool
+ * @since 1.25
+ */
+$wgUseExternallinksNamespaceDBField = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
