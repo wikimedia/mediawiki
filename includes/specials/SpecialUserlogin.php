@@ -1423,16 +1423,9 @@ class LoginForm extends SpecialPage {
 		}
 
 		$template->set( 'secureLoginUrl', $this->mSecureLoginUrl );
-		// Use loginend-https for HTTPS requests if it's not blank, loginend otherwise
-		// Ditto for signupend.  New forms use neither.
+		// Use signupend-https for HTTPS requests if it's not blank, signupend otherwise
 		$usingHTTPS = $this->mRequest->getProtocol() == 'https';
-		$loginendHTTPS = $this->msg( 'loginend-https' );
 		$signupendHTTPS = $this->msg( 'signupend-https' );
-		if ( $usingHTTPS && !$loginendHTTPS->isBlank() ) {
-			$template->set( 'loginend', $loginendHTTPS->parse() );
-		} else {
-			$template->set( 'loginend', $this->msg( 'loginend' )->parse() );
-		}
 		if ( $usingHTTPS && !$signupendHTTPS->isBlank() ) {
 			$template->set( 'signupend', $signupendHTTPS->parse() );
 		} else {
