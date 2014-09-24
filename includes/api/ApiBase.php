@@ -65,16 +65,6 @@ abstract class ApiBase extends ContextSource {
 	// Only applies if TYPE='integer' Use with extreme caution
 	const PARAM_RANGE_ENFORCE = 9;
 
-	// Name of property group that is on the root element of the result,
-	// i.e. not part of a list
-	const PROP_ROOT = 'ROOT';
-	// Boolean, is the result multiple items? Defaults to true for query modules,
-	// to false for other modules
-	const PROP_LIST = 'LIST';
-	const PROP_TYPE = 0; // Type of the property, uses same format as PARAM_TYPE
-	// Boolean, can the property be not included in the result? Defaults to false
-	const PROP_NULLABLE = 1;
-
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
 	const LIMIT_SML1 = 50; // Slow query, std user limit
@@ -2244,6 +2234,15 @@ abstract class ApiBase extends ContextSource {
 	 * @name   Deprecated
 	 * @{
 	 */
+
+	/// @deprecated since 1.24
+	const PROP_ROOT = 'ROOT';
+	/// @deprecated since 1.24
+	const PROP_LIST = 'LIST';
+	/// @deprecated since 1.24
+	const PROP_TYPE = 0;
+	/// @deprecated since 1.24
+	const PROP_NULLABLE = 1;
 
 	/**
 	 * Formerly returned a string that identifies the version of the extending
