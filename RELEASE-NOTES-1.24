@@ -350,6 +350,12 @@ production.
   * ApiFormatWddx
   * ApiFormatYaml
   * ApiTokens
+* The following class constants have been deprecated and may be removed in a
+  future release:
+  * ApiBase::PROP_ROOT
+  * ApiBase::PROP_LIST
+  * ApiBase::PROP_TYPE
+  * ApiBase::PROP_NULLABLE
 
 === Languages updated in 1.24 ===
 
