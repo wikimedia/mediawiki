@@ -200,6 +200,8 @@ changes to languages because of Bugzilla reports.
 * The mw.api.getToken() method now uses action=query?meta=tokens. This will now
   fail for custom tokens registered only via the deprecated ApiTokensGetTokenTypes
   hook. The ApiQueryTokensRegisterTypes hook should be used for this to work.
+* A el_from_namespace field has been added to the externallinks table. Run
+  update.php to apply this change to the schema.
 
 == Compatibility ==
 
