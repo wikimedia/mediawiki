@@ -418,6 +418,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'pagelinks', 'pl_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'templatelinks', 'tl_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'imagelinks', 'il_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ),
+
+			// 1.25
+			array( 'addPgField', 'externallinks', 'el_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ),
 		);
 	}
 
