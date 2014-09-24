@@ -1045,7 +1045,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Identify that the submit button in the form has a destructive action
-	 *
+	 * @since 1.24
 	 */
 	public function setSubmitDestructive() {
 		$this->mSubmitModifierClass = 'mw-ui-destructive';
@@ -1053,7 +1053,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Identify that the submit button in the form has a progressive action
-	 *
+	 * @since 1.25
 	 */
 	public function setSubmitProgressive() {
 		$this->mSubmitModifierClass = 'mw-ui-progressive';
