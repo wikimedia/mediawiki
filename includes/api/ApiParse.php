@@ -337,6 +337,14 @@ class ApiParse extends ApiBase {
 			$result_array['modulemessages'] = array_values( array_unique( $p_result->getModuleMessages() ) );
 		}
 
+		if ( isset( $prop['indicators'] ) ) {
+			foreach ( $p_result->getIndicators() as $name => $content ) {
+				$indicator = array( 'name' => $name );
+				ApiResult::setContent( $indicator, $content );
+				$result_array['indicators'][] = $indicator;
+			}
+		}
+
 		if ( isset( $prop['iwlinks'] ) ) {
 			$result_array['iwlinks'] = $this->formatIWLinks( $p_result->getInterwikiLinks() );
 		}
@@ -391,6 +399,7 @@ class ApiParse extends ApiBase {
 			'sections' => 's',
 			'headitems' => 'hi',
 			'modules' => 'm',
+			'indicators' => 'ind',
 			'modulescripts' => 'm',
 			'modulestyles' => 'm',
 			'modulemessages' => 'm',
@@ -680,6 +689,7 @@ class ApiParse extends ApiBase {
 					'headitems',
 					'headhtml',
 					'modules',
+					'indicators',
 					'iwlinks',
 					'wikitext',
 					'properties',
@@ -735,6 +745,7 @@ class ApiParse extends ApiBase {
 				' headitems      - Gives items to put in the <head> of the page',
 				' headhtml       - Gives parsed <head> of the page',
 				' modules        - Gives the ResourceLoader modules used on the page',
+				' indicators     - Gives the HTML of page status indicators used on the page',
 				' iwlinks        - Gives interwiki links in the parsed wikitext',
 				' wikitext       - Gives the original wikitext that was parsed',
 				' properties     - Gives various properties defined in the parsed wikitext',

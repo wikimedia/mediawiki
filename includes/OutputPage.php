@@ -122,6 +122,9 @@ class OutputPage extends ContextSource {
 	/** @var array */
 	protected $mCategories = array();
 
+	/** @var array */
+	protected $mIndicators = array();
+
 	/** @var array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page') */
 	private $mLanguageLinks = array();
 
@@ -1330,6 +1333,32 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Add an array of indicators, with their identifiers as array keys and HTML contents as values.
+	 *
+	 * In case of duplicate keys, existing values are overwritten.
+	 *
+	 * @param array $indicators
+	 * @since 1.25
+	 */
+	public function setIndicators( array $indicators ) {
+		$this->mIndicators = $indicators + $this->mIndicators;
+		// Keep ordered by key
+		ksort( $this->mIndicators );
+	}
+
+	/**
+	 * Get the indicators associated with this page.
+	 *
+	 * The array will be internally ordered by item keys.
+	 *
+	 * @return array Keys: identifiers, values: HTML contents
+	 * @since 1.25
+	 */
+	public function getIndicators() {
+		return $this->mIndicators;
+	}
+
+	/**
 	 * Restrict the page to loading modules bundled the software.
 	 *
 	 * Disallows the queue to contain any modules which can be modified by wiki
@@ -1641,6 +1670,7 @@ class OutputPage extends ContextSource {
 	public function addParserOutputMetadata( $parserOutput ) {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
+		$this->setIndicators( $parserOutput->getIndicators() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
 

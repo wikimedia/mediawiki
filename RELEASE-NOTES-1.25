@@ -21,6 +21,14 @@ production.
 * (bug 67341) SVG images will no longer be base64-encoded when being embedded
   in CSS. This results in slight size increase before gzip compression (due to
   percent-encoding), but up to 20% decrease after it.
+* MediaWiki now natively supports page status indicators: icons (or short text
+  snippets) usually displayed in the top-right corner of the page. They have
+  been in use on Wikipedia for a long time, implemented using templates and CSS
+  absolute positioning.
+  - Basic wikitext syntax: <indicator name="foo">[[File:Foo.svg|20px]]</indicator>
+  - Usage instructions: https://www.mediawiki.org/wiki/Help:Page_status_indicators
+  - Adjusting custom skins to support indicators:
+    https://www.mediawiki.org/wiki/Manual:Skinning#Page_status_indicators
 
 === Bug fixes in 1.25 ===
 * (bug 71003) No additional code will be generated to try to load CSS-embedded

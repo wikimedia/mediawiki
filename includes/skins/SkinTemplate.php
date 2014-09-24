@@ -438,6 +438,8 @@ class SkinTemplate extends Skin {
 			}
 		}
 
+		$tpl->set( 'indicators', $out->getIndicators() );
+
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 		$tpl->set( 'printfooter', $this->printSource() );
