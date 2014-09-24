@@ -945,9 +945,9 @@ $wgAutoloadLocalClasses = array(
 	'SiteStore' => 'includes/site/SiteStore.php',
 
 	# includes/skins
-	'BaseTemplate' => 'includes/skins/SkinTemplate.php',
-	'MediaWikiI18N' => 'includes/skins/SkinTemplate.php',
-	'QuickTemplate' => 'includes/skins/SkinTemplate.php',
+	'BaseTemplate' => 'includes/skins/BaseTemplate.php',
+	'MediaWikiI18N' => 'includes/skins/MediaWikiI18N.php',
+	'QuickTemplate' => 'includes/skins/QuickTemplate.php',
 	'Skin' => 'includes/skins/Skin.php',
 	'SkinException' => 'includes/skins/SkinException.php',
 	'SkinFactory' => 'includes/skins/SkinFactory.php',
