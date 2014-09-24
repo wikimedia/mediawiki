@@ -66,6 +66,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'speciale', array( __CLASS__, 'speciale' ) );
 		$parser->setFunctionHook( 'tag', array( __CLASS__, 'tagObj' ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate' ) );
+		$parser->setFunctionHook( 'indicator', array( __CLASS__, 'indicator' ), SFH_OBJECT_ARGS );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -119,6 +120,30 @@ class CoreParserFunctions {
 
 		$date = $df->reformat( $pref, $date, array( 'match-whole' ) );
 		return $date;
+	}
+
+	/**
+	 * Parser function for page status indicators: icons (or short text snippets) usually displayed in
+	 * the top-right corner of the page, outside of the main content.
+	 *
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @param array $args
+	 * @return string
+	 */
+	public static function indicator( $parser, $frame, $args ) {
+		if ( count( $args ) !== 2 ) {
+			return '<span class="error">' .
+				wfMessage( 'invalid-indicator' )->inContentLanguage()->text() .
+				'</span>';
+		}
+
+		$id = trim( $frame->expand( $args[0], PPFrame::STRIP_COMMENTS ) );
+		$content = $parser->recursiveTagParse( trim( $frame->expand( $args[1] ) ), $frame );
+
+		$parser->getOutput()->addIndicator( $id, $content );
+
+		return '';
 	}
 
 	public static function ns( $parser, $part1 = '' ) {

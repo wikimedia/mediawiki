@@ -25,6 +25,7 @@ class ParserOutput extends CacheTime {
 	public $mText,                       # The output text
 		$mLanguageLinks,              # List of the full text of language links, in the order they appear
 		$mCategories,                 # Map of category names to sort keys
+		$mIndicators = array(),       # Page status indicators, usually displayed in top-right corner
 		$mTitleText,                  # title text of the chosen language variant
 		$mLinks = array(),            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
 		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
@@ -128,6 +129,10 @@ class ParserOutput extends CacheTime {
 
 	public function &getCategories() {
 		return $this->mCategories;
+	}
+
+	public function getIndicators() {
+		return $this->mIndicators;
 	}
 
 	public function getTitleText() {
@@ -265,6 +270,10 @@ class ParserOutput extends CacheTime {
 
 	public function addCategory( $c, $sort ) {
 		$this->mCategories[$c] = $sort;
+	}
+
+	public function addIndicator( $id, $content ) {
+		$this->mIndicators[$id] = $content;
 	}
 
 	public function addLanguageLink( $t ) {
