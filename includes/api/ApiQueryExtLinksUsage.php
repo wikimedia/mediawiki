@@ -58,13 +58,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$this->addTables( array( 'page', 'externallinks' ) ); // must be in this order for 'USE INDEX'
 		$this->addOption( 'USE INDEX', 'el_index' );
 		$this->addWhere( 'page_id=el_from' );
-
-		$miser_ns = array();
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
-			$miser_ns = $params['namespace'];
-		} else {
-			$this->addWhereFld( 'page_namespace', $params['namespace'] );
-		}
+		$this->addWhereFld( 'el_from_namespace', $params['namespace'] );
 
 		$whereQuery = $this->prepareUrlQuerySearchString( $query, $protocol );
 
@@ -105,10 +99,6 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'offset', $offset + $limit );
 				break;
-			}
-
-			if ( count( $miser_ns ) && !in_array( $row->page_namespace, $miser_ns ) ) {
-				continue;
 			}
 
 			if ( is_null( $resultPageSet ) ) {
@@ -209,7 +199,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
-		$desc = array(
+		return array(
 			'prop' => array(
 				'What pieces of information to include',
 				' ids    - Adds the ID of page',
@@ -227,16 +217,6 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			'limit' => 'How many pages to return.',
 			'expandurl' => 'Expand protocol-relative URLs with the canonical protocol',
 		);
-
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
-			$desc['namespace'] = array(
-				$desc['namespace'],
-				"NOTE: Due to \$wgMiserMode, using this may result in fewer than \"{$p}limit\" results",
-				'returned before continuing; in extreme cases, zero results may be returned',
-			);
-		}
-
-		return $desc;
 	}
 
 	public function getDescription() {

@@ -33,10 +33,11 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 		parent::__construct();
 		$this->mDescription = "Populate the *_from_namespace fields";
 		$this->addOption( 'lastUpdatedId', "Highest page_id with updated links", false, true );
+		$this->addOption( 'tables', 'Comma separated list of tables to populate', false, true );
 	}
 
 	protected function getUpdateKey() {
-		return 'populate *_from_namespace';
+		return 'populate *_from_namespace2';
 	}
 
 	protected function updateSkippedMessage() {
@@ -60,6 +61,14 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 		}
 		$end = $db->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
 
+		$tables = $this->getOption( 'tables' );
+		if ( $tables ) {
+			$tables = explode( ',', $tables );
+		} else {
+			$tables = array( 'pagelinks', 'templatelinks', 'imagelinks', 'externallinks' );
+		}
+		$tables = array_flip( $tables );
+
 		# Do remaining chunk
 		$end += $this->mBatchSize - 1;
 		$blockStart = $start;
@@ -69,21 +78,34 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 			$cond = "page_id BETWEEN $blockStart AND $blockEnd";
 			$res = $db->select( 'page', array( 'page_id', 'page_namespace' ), $cond, __METHOD__ );
 			foreach ( $res as $row ) {
-				$db->update( 'pagelinks',
-					array( 'pl_from_namespace' => $row->page_namespace ),
-					array( 'pl_from' => $row->page_id ),
-					__METHOD__
-				);
-				$db->update( 'templatelinks',
-					array( 'tl_from_namespace' => $row->page_namespace ),
-					array( 'tl_from' => $row->page_id ),
-					__METHOD__
-				);
-				$db->update( 'imagelinks',
-					array( 'il_from_namespace' => $row->page_namespace ),
-					array( 'il_from' => $row->page_id ),
-					__METHOD__
-				);
+				if ( isset( $tables['pagelinks'] ) ) {
+					$db->update( 'pagelinks',
+						array( 'pl_from_namespace' => $row->page_namespace ),
+						array( 'pl_from' => $row->page_id ),
+						__METHOD__
+					);
+				}
+				if ( isset( $tables['templatelinks'] ) ) {
+					$db->update( 'templatelinks',
+						array( 'tl_from_namespace' => $row->page_namespace ),
+						array( 'tl_from' => $row->page_id ),
+						__METHOD__
+					);
+				}
+				if ( isset( $tables['imagelinks'] ) ) {
+					$db->update( 'imagelinks',
+						array( 'il_from_namespace' => $row->page_namespace ),
+						array( 'il_from' => $row->page_id ),
+						__METHOD__
+					);
+				}
+				if ( isset( $tables['externallinks'] ) ) {
+					$db->update( 'externallinks',
+						array( 'el_from_namespace' => $row->page_namespace ),
+						array( 'el_from' => $row->page_id ),
+						__METHOD__
+					);
+				}
 			}
 			$blockStart += $this->mBatchSize - 1;
 			$blockEnd += $this->mBatchSize - 1;
