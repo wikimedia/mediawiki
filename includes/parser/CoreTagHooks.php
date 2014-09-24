@@ -35,6 +35,7 @@ class CoreTagHooks {
 		$parser->setHook( 'pre', array( __CLASS__, 'pre' ) );
 		$parser->setHook( 'nowiki', array( __CLASS__, 'nowiki' ) );
 		$parser->setHook( 'gallery', array( __CLASS__, 'gallery' ) );
+		$parser->setHook( 'indicator', array( __CLASS__, 'indicator' ) );
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', array( __CLASS__, 'html' ) );
 		}
@@ -118,5 +119,31 @@ class CoreTagHooks {
 	 */
 	public static function gallery( $content, $attributes, $parser ) {
 		return $parser->renderImageGallery( $content, $attributes );
+	}
+
+	/**
+	 * XML-style tag for page status indicators: icons (or short text snippets) usually displayed in
+	 * the top-right corner of the page, outside of the main content.
+	 *
+	 * @param string $content
+	 * @param array $attributes
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string
+	 * @since 1.25
+	 */
+	public static function indicator( $content, array $attributes, Parser $parser, PPFrame $frame ) {
+		if ( !isset( $attributes['name'] ) || trim( $attributes['name'] ) === '' ) {
+			return '<span class="error">' .
+				wfMessage( 'invalid-indicator-name' )->inContentLanguage()->text() .
+				'</span>';
+		}
+
+		$parser->getOutput()->addIndicator(
+			trim( $attributes['name'] ),
+			$parser->recursiveTagParse( $content, $frame )
+		);
+
+		return '';
 	}
 }
