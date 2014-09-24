@@ -634,6 +634,8 @@ CREATE TABLE /*_*/externallinks (
 
   -- page_id of the referring page
   el_from int unsigned NOT NULL default 0,
+  -- Namespace for this page
+  el_from_namespace int NOT NULL default 0,
 
   -- The URL
   el_to blob NOT NULL,
@@ -655,6 +657,7 @@ CREATE TABLE /*_*/externallinks (
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from, el_to(40));
 CREATE INDEX /*i*/el_to ON /*_*/externallinks (el_to(60), el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index(60));
+CREATE INDEX /*i*/el_backlinks_namespace ON /*_*/externallinks (el_from_namespace, el_to(60), el_from);
 
 --
 -- Track interlanguage links

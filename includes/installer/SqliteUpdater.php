@@ -143,6 +143,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
 			array( 'modifyField', 'filearchive', 'fa_deleted_reason', 'patch-editsummary-length.sql' ),
+
+			// 1.26
+			array( 'addField', 'externallinks', 'el_from_namespace', 'patch-el_from_namespace.sql' ),
 		);
 	}
 

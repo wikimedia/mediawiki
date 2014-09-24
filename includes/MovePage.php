@@ -355,6 +355,11 @@ class MovePage {
 				array( 'il_from' => $pageid ),
 				__METHOD__
 			);
+			$dbw->update( 'externallinks',
+				array( 'el_from_namespace' => $this->newTitle->getNamespace() ),
+				array( 'el_from' => $pageid ),
+				__METHOD__
+			);
 		}
 
 		# Update watchlists
