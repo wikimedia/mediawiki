@@ -3,6 +3,16 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.19.19 ==
+
+This is a security release of the MediaWiki 1.19 branch.
+
+=== Changes since 1.19.18 ===
+* (bug 69008) SECURITY: Enhance CSS filtering in SVG files. Filter <style>
+  elements; normalize style elements and attributes before filtering; add
+  checks for attributes that contain css; add unit tests for html5sec and
+  reported bugs.
+
 == MediaWiki 1.19.18 ==
 
 This is a security release of the MediaWiki 1.19 branch.
