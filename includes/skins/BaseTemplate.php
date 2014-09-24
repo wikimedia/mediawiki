@@ -601,6 +601,37 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
+	 * Get the suggested HTML for page status indicators: icons (or short text snippets) usually
+	 * displayed in the top-right corner of the page, outside of the main content.
+	 *
+	 * Your skin may implement this differently, for example by handling some indicator names
+	 * specially with a different UI. However, it is recommended to use a `<div class="mw-indicator"
+	 * id="mw-indicator-<id>" />` as a wrapper element for each indicator, for better compatibility
+	 * with extensions and user scripts.
+	 *
+	 * The raw data is available in `$this->data['indicators']` as an associative array (keys:
+	 * identifiers, values: contents) internally ordered by keys.
+	 *
+	 * @return string HTML
+	 * @since 1.25
+	 */
+	public function getIndicators() {
+		$out = "<div class=\"mw-indicators\">\n";
+		foreach ( $this->data['indicators'] as $id => $content ) {
+			$out .= Html::rawElement(
+				'div',
+				array(
+					'id' => Sanitizer::escapeId( "mw-indicator-$id" ),
+					'class' => 'mw-indicator',
+				),
+				$content
+			) . "\n";
+		}
+		$out .= "</div>\n";
+		return $out;
+	}
+
+	/**
 	 * Output the basic end-page trail including bottomscripts, reporttime, and
 	 * debug stuff. This should be called right before outputting the closing
 	 * body and html tags.
