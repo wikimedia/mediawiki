@@ -10,6 +10,8 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-banana-checker": "0.2.0",
     "grunt-jscs": "0.6.1",
-    "grunt-jsonlint": "1.0.4"
+    "grunt-jsonlint": "1.0.4",
+    "grunt-styleguide": "0.2.15",
+    "kss": ">=0.3.7"
   }
 }

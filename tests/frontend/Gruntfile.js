@@ -9,6 +9,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
+	grunt.loadNpmTasks( 'grunt-styleguide' );
 
 	grunt.file.setBase(  __dirname + '/../..' );
 
@@ -60,10 +61,26 @@ module.exports = function ( grunt ) {
 				'.jshintrc'
 			],
 			tasks: 'test'
+		},
+		styleguide: {
+			options: {
+				template: {
+					src: 'docs/kss/styleguide-template',
+				},
+				framework: {
+					name: 'kss'
+				}
+			},
+			all: {
+				files: [{
+					'docs/kss/static': 'resources/src/mediawiki.ui'
+				}]
+			}
 		}
 	} );
 
 	grunt.registerTask( 'lint', ['jshint', 'jscs', 'jsonlint', 'banana'] );
 	grunt.registerTask( 'test', ['lint'] );
+	grunt.registerTask( 'docs', ['styleguide'] );
 	grunt.registerTask( 'default', ['test'] );
 };
