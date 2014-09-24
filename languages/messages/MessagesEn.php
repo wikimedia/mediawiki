@@ -362,6 +362,7 @@ $magicWords = array(
 	'protectionlevel'         => array( 1, 'PROTECTIONLEVEL' ),
 	'cascadingsources'        => array( 1, 'CASCADINGSOURCES' ),
 	'formatdate'              => array( 0, 'formatdate', 'dateformat' ),
+	'indicator'               => array( 0, 'indicator' ),
 	'url_path'                => array( 0, 'PATH' ),
 	'url_wiki'                => array( 0, 'WIKI' ),
 	'url_query'               => array( 0, 'QUERY' ),

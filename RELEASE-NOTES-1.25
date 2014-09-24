@@ -13,6 +13,14 @@ production.
 === New features in 1.25 ===
 * (bug 58139) ResourceLoaderFileModule now supports language fallback
   for 'languageScripts'.
+* MediaWiki now natively supports page status indicators: icons (or short text
+  snippets) usually displayed in the top-right corner of the page. They have
+  been in use on Wikipedia for a long time, implemented using templates and CSS
+  absolute positioning.
+  - Basic wikitext syntax: {{#indicator:foo|[[File:Foo.svg|20px]]}}
+  - Usage instructions: https://www.mediawiki.org/wiki/Help:Page_status_indicators
+  - Adjusting custom skins to support indicators:
+    https://www.mediawiki.org/wiki/Manual:Skinning#Page_status_indicators
 
 === Bug fixes in 1.25 ===
 
