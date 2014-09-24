@@ -137,19 +137,17 @@ class LinkSearchPage extends QueryPage {
 				)
 			) . "\n";
 
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
-			$s .= Html::namespaceSelector(
-				array(
-					'selected' => $namespace,
-					'all' => '',
-					'label' => $this->msg( 'linksearch-ns' )->text()
-				), array(
-					'name' => 'namespace',
-					'id' => 'namespace',
-					'class' => 'namespaceselector',
-				)
-			);
-		}
+		$s .= Html::namespaceSelector(
+			array(
+				'selected' => $namespace,
+				'all' => '',
+				'label' => $this->msg( 'linksearch-ns' )->text()
+			), array(
+				'name' => 'namespace',
+				'id' => 'namespace',
+				'class' => 'namespaceselector',
+			)
+		);
 
 		$s .= Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) . "\n" .
 			Html::closeElement( 'fieldset' ) . "\n" .
@@ -210,7 +208,7 @@ class LinkSearchPage extends QueryPage {
 	function linkParameters() {
 		$params = array();
 		$params['target'] = $this->mProt . $this->mQuery;
-		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->mNs !== null ) {
 			$params['namespace'] = $this->mNs;
 		}
 
@@ -244,8 +242,8 @@ class LinkSearchPage extends QueryPage {
 			'options' => array( 'USE INDEX' => $clause )
 		);
 
-		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
-			$retval['conds']['page_namespace'] = $this->mNs;
+		if ( $this->mNs !== null ) {
+			$retval['conds']['el_from_namespace'] = $this->mNs;
 		}
 
 		return $retval;
