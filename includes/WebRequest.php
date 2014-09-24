@@ -705,21 +705,22 @@ class WebRequest {
 
 	/**
 	 * Take an arbitrary query and rewrite the present URL to include it
+	 * @deprecated Use appendQueryValue/appendQueryArray instead
 	 * @param string $query Query string fragment; do not include initial '?'
-	 *
 	 * @return string
 	 */
 	public function appendQuery( $query ) {
+		wfDeprecated( __METHOD__, '1.25' );
 		return $this->appendQueryArray( wfCgiToArray( $query ) );
 	}
 
 	/**
 	 * @param string $key
 	 * @param string $value
-	 * @param bool $onlyquery
+	 * @param bool $onlyquery [deprecated]
 	 * @return string
 	 */
-	public function appendQueryValue( $key, $value, $onlyquery = false ) {
+	public function appendQueryValue( $key, $value, $onlyquery = true ) {
 		return $this->appendQueryArray( array( $key => $value ), $onlyquery );
 	}
 
@@ -727,16 +728,21 @@ class WebRequest {
 	 * Appends or replaces value of query variables.
 	 *
 	 * @param array $array Array of values to replace/add to query
-	 * @param bool $onlyquery Whether to only return the query string and not the complete URL
+	 * @param bool $onlyquery Whether to only return the query string and not the complete URL [deprecated]
 	 * @return string
 	 */
-	public function appendQueryArray( $array, $onlyquery = false ) {
+	public function appendQueryArray( $array, $onlyquery = true ) {
 		global $wgTitle;
 		$newquery = $this->getQueryValues();
 		unset( $newquery['title'] );
 		$newquery = array_merge( $newquery, $array );
 		$query = wfArrayToCgi( $newquery );
-		return $onlyquery ? $query : $wgTitle->getLocalURL( $query );
+		if ( $onlyquery ) {
+			wfDeprecated( __METHOD__, '1.25' );
+			return $wgTitle->getLocalURL( $query );
+		}
+
+		return $query;
 	}
 
 	/**
