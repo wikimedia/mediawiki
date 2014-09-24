@@ -61,6 +61,8 @@ changes to languages because of Bugzilla reports.
 * Deprecated OutputPage::readOnlyPage() and OutputPage::rateLimited().
   Also, the former will now throw an MWException if called with one or more
   arguments.
+* A el_from_namespace field has been added to the externallinks table. Run
+  update.php to apply this change to the schema.
 
 == Compatibility ==
 
