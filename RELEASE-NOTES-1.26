@@ -120,6 +120,8 @@ changes to languages because of Phabricator reports.
 * $wgSpecialPageGroups was removed (deprecated in 1.21).
 * SpecialPageFactory::setGroup was removed (deprecated in 1.21).
 * SpecialPageFactory::getGroup was removed (deprecated in 1.21).
+* A el_from_namespace field has been added to the externallinks table. Run
+  update.php to apply this change to the schema.
 
 == Compatibility ==
 
