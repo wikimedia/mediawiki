@@ -556,7 +556,7 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	protected function doWaitForBackups() {
-		wfWaitForSlaves();
+		wfWaitForSlaves( false, $this->wiki, $this->cluster ?: false );
 	}
 
 	/**
