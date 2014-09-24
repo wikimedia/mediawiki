@@ -150,6 +150,8 @@ changes to languages because of Phabricator reports.
 * BREAKING CHANGE: mediawiki.legacy.ajax has been removed, following
   a lengthy deprecation period.
 * The ScopedPHPTimeout class was removed.
+* A el_from_namespace field has been added to the externallinks table. Run
+  update.php to apply this change to the schema.
 
 == Compatibility ==
 

@@ -7696,6 +7696,14 @@ $wgPageLanguageUseDB = false;
 $wgUseLinkNamespaceDBFields = true;
 
 /**
+ * Enable use of the el_from_namespace fields of the externallinks table.
+ * Set this only if the fields are fully populated. This may be removed before release of 1.26.
+ * @var bool
+ * @since 1.26
+ */
+$wgUseExternallinksNamespaceDBField = false;
+
+/**
  * Global configuration variable for Virtual REST Services.
  * Parameters for different services are to be declared inside
  * $wgVirtualRestConfig['modules'], which is to be treated as an associative
