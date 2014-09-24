@@ -59,7 +59,7 @@ class FindMissingFiles extends Maintenance {
 		do {
 			$res = $dbr->select(
 				array_merge( array( 'page' ), $joinTables ),
-				array( 'img_name' => 'DISTINCT(page_title)' ),
+				array( 'name' => 'DISTINCT(page_title)' ),
 				array( 'page_namespace' => NS_FILE,
 					"page_title >= " . $dbr->addQuotes( $lastName ) ),
 				__METHOD__,
@@ -70,9 +70,9 @@ class FindMissingFiles extends Maintenance {
 			// Check if any of these files are missing...
 			$pathsByName = array();
 			foreach ( $res as $row ) {
-				$file = $repo->newFile( $row->img_name );
-				$pathsByName[$row->img_name] = $file->getPath();
-				$lastName = $row->img_name;
+				$file = $repo->newFile( $row->name );
+				$pathsByName[$row->name] = $file->getPath();
+				$lastName = $row->name;
 			}
 			$be->preloadFileStat( array( 'srcs' => $pathsByName ) );
 			foreach ( $pathsByName as $path ) {
