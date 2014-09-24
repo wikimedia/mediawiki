@@ -332,6 +332,8 @@ class SpecialActiveUsers extends SpecialPage {
 	 * @return int|bool UNIX timestamp the cache is now up-to-date as of (false on error)
 	 */
 	protected static function doQueryCacheUpdate( DatabaseBase $dbw, $days, $window ) {
+		$dbw->startAtomic( __METHOD__ );
+
 		$lockKey = wfWikiID() . '-activeusers';
 		if ( !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
 			return false; // exclusive update (avoids duplicate entries)
@@ -343,6 +345,9 @@ class SpecialActiveUsers extends SpecialPage {
 			array( 'qci_type' => 'activeusers' )
 		);
 		$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
+		// If a transaction was already started, it might have an old
+		// snapshot, so kludge the timestamp range a few seconds back.
+		$cTimeUnix -= 5;
 
 		// Pick the date range to fetch from. This is normally from the last
 		// update to till the present time, but has a limited window for sanity.
@@ -389,7 +394,10 @@ class SpecialActiveUsers extends SpecialPage {
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title' => array_keys( $names ) ),
-				__METHOD__
+				__METHOD__,
+				// See the latest data (ignoring trx snapshot) to avoid
+				// duplicates if this method was called in a transaction
+				array( 'LOCK IN SHARE MODE' )
 			);
 			foreach ( $res as $row ) {
 				unset( $names[$row->user_name] );
@@ -426,6 +434,7 @@ class SpecialActiveUsers extends SpecialPage {
 		);
 
 		$dbw->unlock( $lockKey, __METHOD__ );
+		$dbw->endAtomic( __METHOD__ );
 
 		return $eTimestamp;
 	}
