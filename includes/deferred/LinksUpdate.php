@@ -426,6 +426,7 @@ class LinksUpdate extends SqlDataUpdate {
 				$arr[] = array(
 					'el_id' => $this->mDb->nextSequenceValue( 'externallinks_el_id_seq' ),
 					'el_from' => $this->mId,
+					'el_from_namespace' => $this->mTitle->getNamespace(),
 					'el_to' => $url,
 					'el_index' => $index,
 				);

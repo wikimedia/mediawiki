@@ -69,7 +69,8 @@ changes to languages because of Bugzilla reports.
   - The $uniq_prefix argument for Parser::extractTagsAndParams() and the
     $prefix argument for StripState::_construct() are deprecated and their
     value is ignored.
-
+* A el_from_namespace field has been added to the externallinks table. Run
+  update.php to apply this change to the schema.
 
 == Compatibility ==
 
