@@ -4,6 +4,7 @@
  * Test class for Import methods.
  *
  * @group Database
+ * @group Upload
  *
  * @author Sebastian Brückner < sebastian.brueckner@student.hpi.uni-potsdam.de >
  */
@@ -40,6 +41,26 @@ class ImportTest extends MediaWikiLangTestCase {
 		$importer->doImport();
 
 		$this->assertEquals( $redirectTitle, $redirect );
+	}
+
+	public function testImportTemplateFromFile() {
+		$file_path = __DIR__ . '/../data/import/Template-!!.xml';
+		$actual_titles = array();
+
+		$expected_titles = array(
+			'Template:!!',
+		);
+
+		$callback = function ( $title ) use( &$actual_titles ) {
+			$actual_titles[] = $title->getPrefixedText();
+		};
+
+		$source = ImportStreamSource::newFromFile( $file_path );
+		$importer = new WikiImporter( $source->value );
+		$importer->setPageOutCallback( $callback );
+		$importer->doImport();
+
+		$this->assertArrayEquals( $expected_titles, $actual_titles );
 	}
 
 	public function getRedirectXML() {
