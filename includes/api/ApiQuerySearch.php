@@ -168,7 +168,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
 				}
 				if ( isset( $prop['titlesnippet'] ) ) {
-					$vals['titlesnippet'] = $result->getTitleSnippet( $terms );
+					$vals['titlesnippet'] = $result->getTitleSnippet();
 				}
 				if ( !is_null( $result->getRedirectTitle() ) ) {
 					if ( isset( $prop['redirecttitle'] ) ) {
