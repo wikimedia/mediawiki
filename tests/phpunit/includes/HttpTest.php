@@ -179,6 +179,18 @@ class HttpTest extends MediaWikiTestCase {
 	 * Constant values are from PHP 5.3.28 using cURL 7.24.0
 	 * @see http://php.net/manual/en/curl.constants.php
 	 *
+	 * All constant values are present so that developers don’t need to remember
+	 * to add them if added at a later date. The commented out constants were
+	 * not found anywhere in the MediaWiki core code.
+	 *
+	 * Commented out constants that were not available in:
+	 * HipHop VM 3.3.0 (rel)
+	 * Compiler: heads/master-0-g08810d920dfff59e0774cf2d651f92f13a637175
+	 * Repo schema: 3214fc2c684a4520485f715ee45f33f2182324b1
+	 * Extension API: 20140829
+	 *
+	 * Commented out constants that were removed in PHP 5.6.0
+	 *
 	 * @covers CurlHttpRequest::execute
 	 */
 	public function provideCurlConstants() {
@@ -189,11 +201,11 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLAUTH_DIGEST' ),
 			array( 'CURLAUTH_GSSNEGOTIATE' ),
 			array( 'CURLAUTH_NTLM' ),
-			array( 'CURLCLOSEPOLICY_CALLBACK' ),
-			array( 'CURLCLOSEPOLICY_LEAST_RECENTLY_USED' ),
-			array( 'CURLCLOSEPOLICY_LEAST_TRAFFIC' ),
-			array( 'CURLCLOSEPOLICY_OLDEST' ),
-			array( 'CURLCLOSEPOLICY_SLOWEST' ),
+			// array( 'CURLCLOSEPOLICY_CALLBACK' ), // removed in PHP 5.6.0
+			// array( 'CURLCLOSEPOLICY_LEAST_RECENTLY_USED' ), // removed in PHP 5.6.0
+			// array( 'CURLCLOSEPOLICY_LEAST_TRAFFIC' ), // removed in PHP 5.6.0
+			// array( 'CURLCLOSEPOLICY_OLDEST' ), // removed in PHP 5.6.0
+			// array( 'CURLCLOSEPOLICY_SLOWEST' ), // removed in PHP 5.6.0
 			array( 'CURLE_ABORTED_BY_CALLBACK' ),
 			array( 'CURLE_BAD_CALLING_ORDER' ),
 			array( 'CURLE_BAD_CONTENT_ENCODING' ),
@@ -245,7 +257,7 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLE_RECV_ERROR' ),
 			array( 'CURLE_SEND_ERROR' ),
 			array( 'CURLE_SHARE_IN_USE' ),
-			array( 'CURLE_SSH' ),
+			// array( 'CURLE_SSH' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLE_SSL_CACERT' ),
 			array( 'CURLE_SSL_CERTPROBLEM' ),
 			array( 'CURLE_SSL_CIPHER' ),
@@ -263,14 +275,14 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLFTPAUTH_DEFAULT' ),
 			array( 'CURLFTPAUTH_SSL' ),
 			array( 'CURLFTPAUTH_TLS' ),
-			array( 'CURLFTPMETHOD_MULTICWD' ),
-			array( 'CURLFTPMETHOD_NOCWD' ),
-			array( 'CURLFTPMETHOD_SINGLECWD' ),
+			// array( 'CURLFTPMETHOD_MULTICWD' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLFTPMETHOD_NOCWD' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLFTPMETHOD_SINGLECWD' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLFTPSSL_ALL' ),
 			array( 'CURLFTPSSL_CONTROL' ),
 			array( 'CURLFTPSSL_NONE' ),
 			array( 'CURLFTPSSL_TRY' ),
-			array( 'CURLINFO_CERTINFO' ),
+			// array( 'CURLINFO_CERTINFO' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLINFO_CONNECT_TIME' ),
 			array( 'CURLINFO_CONTENT_LENGTH_DOWNLOAD' ),
 			array( 'CURLINFO_CONTENT_LENGTH_UPLOAD' ),
@@ -285,7 +297,7 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLINFO_PRIVATE' ),
 			array( 'CURLINFO_REDIRECT_COUNT' ),
 			array( 'CURLINFO_REDIRECT_TIME' ),
-			array( 'CURLINFO_REDIRECT_URL' ),
+			// array( 'CURLINFO_REDIRECT_URL' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLINFO_REQUEST_SIZE' ),
 			array( 'CURLINFO_SIZE_DOWNLOAD' ),
 			array( 'CURLINFO_SIZE_UPLOAD' ),
@@ -306,8 +318,8 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLOPT_BUFFERSIZE' ),
 			array( 'CURLOPT_CAINFO' ),
 			array( 'CURLOPT_CAPATH' ),
-			array( 'CURLOPT_CERTINFO' ),
-			array( 'CURLOPT_CLOSEPOLICY' ),
+			// array( 'CURLOPT_CERTINFO' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLOPT_CLOSEPOLICY' ), // removed in PHP 5.6.0
 			array( 'CURLOPT_CONNECTTIMEOUT' ),
 			array( 'CURLOPT_CONNECTTIMEOUT_MS' ),
 			array( 'CURLOPT_COOKIE' ),
@@ -331,8 +343,8 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLOPT_FTPPORT' ),
 			array( 'CURLOPT_FTPSSLAUTH' ),
 			array( 'CURLOPT_FTP_CREATE_MISSING_DIRS' ),
-			array( 'CURLOPT_FTP_FILEMETHOD' ),
-			array( 'CURLOPT_FTP_SKIP_PASV_IP' ),
+			// array( 'CURLOPT_FTP_FILEMETHOD' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLOPT_FTP_SKIP_PASV_IP' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLOPT_FTP_SSL' ),
 			array( 'CURLOPT_FTP_USE_EPRT' ),
 			array( 'CURLOPT_FTP_USE_EPSV' ),
@@ -348,14 +360,14 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLOPT_INFILESIZE' ),
 			array( 'CURLOPT_INTERFACE' ),
 			array( 'CURLOPT_IPRESOLVE' ),
-			array( 'CURLOPT_KEYPASSWD' ),
+			// array( 'CURLOPT_KEYPASSWD' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLOPT_KRB4LEVEL' ),
 			array( 'CURLOPT_LOW_SPEED_LIMIT' ),
 			array( 'CURLOPT_LOW_SPEED_TIME' ),
 			array( 'CURLOPT_MAXCONNECTS' ),
 			array( 'CURLOPT_MAXREDIRS' ),
-			array( 'CURLOPT_MAX_RECV_SPEED_LARGE' ),
-			array( 'CURLOPT_MAX_SEND_SPEED_LARGE' ),
+			// array( 'CURLOPT_MAX_RECV_SPEED_LARGE' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLOPT_MAX_SEND_SPEED_LARGE' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLOPT_NETRC' ),
 			array( 'CURLOPT_NOBODY' ),
 			array( 'CURLOPT_NOPROGRESS' ),
@@ -367,7 +379,7 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLOPT_POSTREDIR' ),
 			array( 'CURLOPT_PRIVATE' ),
 			array( 'CURLOPT_PROGRESSFUNCTION' ),
-			array( 'CURLOPT_PROTOCOLS' ),
+			// array( 'CURLOPT_PROTOCOLS' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLOPT_PROXY' ),
 			array( 'CURLOPT_PROXYAUTH' ),
 			array( 'CURLOPT_PROXYPORT' ),
@@ -379,14 +391,14 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLOPT_RANGE' ),
 			array( 'CURLOPT_READDATA' ),
 			array( 'CURLOPT_READFUNCTION' ),
-			array( 'CURLOPT_REDIR_PROTOCOLS' ),
+			// array( 'CURLOPT_REDIR_PROTOCOLS' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLOPT_REFERER' ),
 			array( 'CURLOPT_RESUME_FROM' ),
 			array( 'CURLOPT_RETURNTRANSFER' ),
-			array( 'CURLOPT_SSH_AUTH_TYPES' ),
-			array( 'CURLOPT_SSH_HOST_PUBLIC_KEY_MD5' ),
-			array( 'CURLOPT_SSH_PRIVATE_KEYFILE' ),
-			array( 'CURLOPT_SSH_PUBLIC_KEYFILE' ),
+			// array( 'CURLOPT_SSH_AUTH_TYPES' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLOPT_SSH_HOST_PUBLIC_KEY_MD5' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLOPT_SSH_PRIVATE_KEYFILE' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLOPT_SSH_PUBLIC_KEYFILE' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLOPT_SSLCERT' ),
 			array( 'CURLOPT_SSLCERTPASSWD' ),
 			array( 'CURLOPT_SSLCERTTYPE' ),
@@ -414,28 +426,28 @@ class HttpTest extends MediaWikiTestCase {
 			array( 'CURLOPT_VERBOSE' ),
 			array( 'CURLOPT_WRITEFUNCTION' ),
 			array( 'CURLOPT_WRITEHEADER' ),
-			array( 'CURLPROTO_ALL' ),
-			array( 'CURLPROTO_DICT' ),
-			array( 'CURLPROTO_FILE' ),
-			array( 'CURLPROTO_FTP' ),
-			array( 'CURLPROTO_FTPS' ),
-			array( 'CURLPROTO_HTTP' ),
-			array( 'CURLPROTO_HTTPS' ),
-			array( 'CURLPROTO_LDAP' ),
-			array( 'CURLPROTO_LDAPS' ),
-			array( 'CURLPROTO_SCP' ),
-			array( 'CURLPROTO_SFTP' ),
-			array( 'CURLPROTO_TELNET' ),
-			array( 'CURLPROTO_TFTP' ),
+			// array( 'CURLPROTO_ALL' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_DICT' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_FILE' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_FTP' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_FTPS' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_HTTP' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_HTTPS' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_LDAP' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_LDAPS' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_SCP' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_SFTP' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_TELNET' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLPROTO_TFTP' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLPROXY_HTTP' ),
-			array( 'CURLPROXY_SOCKS4' ),
+			// array( 'CURLPROXY_SOCKS4' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLPROXY_SOCKS5' ),
-			array( 'CURLSSH_AUTH_DEFAULT' ),
-			array( 'CURLSSH_AUTH_HOST' ),
-			array( 'CURLSSH_AUTH_KEYBOARD' ),
-			array( 'CURLSSH_AUTH_NONE' ),
-			array( 'CURLSSH_AUTH_PASSWORD' ),
-			array( 'CURLSSH_AUTH_PUBLICKEY' ),
+			// array( 'CURLSSH_AUTH_DEFAULT' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLSSH_AUTH_HOST' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLSSH_AUTH_KEYBOARD' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLSSH_AUTH_NONE' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLSSH_AUTH_PASSWORD' ), // not present in HHVM 3.3.0-dev
+			// array( 'CURLSSH_AUTH_PUBLICKEY' ), // not present in HHVM 3.3.0-dev
 			array( 'CURLVERSION_NOW' ),
 			array( 'CURL_HTTP_VERSION_1_0' ),
 			array( 'CURL_HTTP_VERSION_1_1' ),
@@ -457,8 +469,8 @@ class HttpTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Added this test based on an issue experienced with hhvm where it did
-	 * not define a cURL constant.
+	 * Added this test based on an issue experienced with HHVM 3.3.0-dev
+	 * where it did not define a cURL constant.
 	 *
 	 * @bug 70570
 	 * @dataProvider provideCurlConstants
