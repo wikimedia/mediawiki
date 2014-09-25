@@ -117,6 +117,12 @@ class ParserOptions {
 	public $mRemoveComments = true;
 
 	/**
+	 * Callback for current revision fetching. Used as first argument to call_user_func().
+	 */
+	public $mCurrentRevisionCallback =
+		array( 'Parser', 'statelessFetchRevision' );
+
+	/**
 	 * Callback for template fetching. Used as first argument to call_user_func().
 	 */
 	public $mTemplateCallback =
@@ -287,6 +293,11 @@ class ParserOptions {
 
 	public function getRemoveComments() {
 		return $this->mRemoveComments;
+	}
+
+	/* @since 1.24 */
+	public function getCurrentRevisionCallback() {
+		return $this->mCurrentRevisionCallback;
 	}
 
 	public function getTemplateCallback() {
@@ -460,6 +471,11 @@ class ParserOptions {
 
 	public function setRemoveComments( $x ) {
 		return wfSetVar( $this->mRemoveComments, $x );
+	}
+
+	/* @since 1.24 */
+	public function setCurrentRevisionCallback( $x ) {
+		return wfSetVar( $this->mCurrentRevisionCallback, $x );
 	}
 
 	public function setTemplateCallback( $x ) {
