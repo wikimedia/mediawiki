@@ -224,8 +224,11 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$out->setPageTitle( $this->msg( 'errorpagetitle' ) );
-		$out->addWikiMsg( 'difference-missing-revision',
-			$this->getLanguage()->listToText( $missing ), count( $missing ) );
+		$msg = $this->msg( 'difference-missing-revision' )
+			->params( $this->getLanguage()->listToText( $missing ) )
+			->numParams( count( $missing ) )
+			->parseAsBlock();
+		$out->addHtml( $msg );
 	}
 
 	public function showDiffPage( $diffOnly = false ) {
