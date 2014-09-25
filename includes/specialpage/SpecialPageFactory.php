@@ -402,12 +402,12 @@ class SpecialPageFactory {
 		if ( isset( $specialPageList[$realName] ) ) {
 			$rec = $specialPageList[$realName];
 
-			if ( is_string( $rec ) ) {
-				$className = $rec;
-				$page = new $className;
-			} elseif ( is_callable( $rec ) ) {
+			if ( is_callable( $rec ) ) {
 				// Use callback to instantiate the special page
 				$page = call_user_func( $rec );
+			} elseif ( is_string( $rec ) ) {
+				$className = $rec;
+				$page = new $className;
 			} elseif ( is_array( $rec ) ) {
 				$className = array_shift( $rec );
 				// @deprecated, officially since 1.18, unofficially since forever
