@@ -1243,6 +1243,46 @@ $wgThumbnailBuckets = null;
 $wgThumbnailMinimumBucketDistance = 50;
 
 /**
+ * When defined, is an array of thumbnail widths to be rendered at upload time. The idea is to
+ * prerender common thumbnail sizes, in order to avoid the necessity to render them on demand, which
+ * has a performance impact for the first client to view a certain size.
+ *
+ * This obviously means that more disk space is needed per upload upfront.
+ *
+ * @since 1.24
+ */
+
+$wgUploadThumbnailRenderMap = array();
+
+/**
+ * The method through which the thumbnails will be prerendered for the entries in
+ * $wgUploadThumbnailRenderMap
+ *
+ * The method can be either "http" or "jobqueue". The former uses an http request to hit the
+ * thumbnail's URL.
+ * This method only works if thumbnails are configured to be rendered by a 404 handler. The latter
+ * option uses the job queue to render the thumbnail.
+ *
+ * @since 1.24
+ */
+$wgUploadThumbnailRenderMethod = 'jobqueue';
+
+/**
+ * When using the "http" wgUploadThumbnailRenderMethod, lets one specify a custom Host HTTP header.
+ *
+ * @since 1.24
+ */
+$wgUploadThumbnailRenderHttpCustomHost = false;
+
+/**
+ * When using the "http" wgUploadThumbnailRenderMethod, lets one specify a custom domain to send the
+ * HTTP request to.
+ *
+ * @since 1.24
+ */
+$wgUploadThumbnailRenderHttpCustomDomain = false;
+
+/**
  * Default parameters for the "<gallery>" tag
  */
 $wgGalleryOptions = array(
@@ -6317,6 +6357,7 @@ $wgJobClasses = array(
 	'uploadFromUrl' => 'UploadFromUrlJob',
 	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
 	'PublishStashedFile' => 'PublishStashedFileJob',
+	'ThumbnailRender' => 'ThumbnailRenderJob',
 	'null' => 'NullJob'
 );
 
