@@ -790,7 +790,8 @@ class Article implements Page {
 
 		if ( !$rev ) {
 			$this->getContext()->getOutput()->setPageTitle( wfMessage( 'errorpagetitle' ) );
-			$this->getContext()->getOutput()->addWikiMsg( 'difference-missing-revision', $oldid, 1 );
+			$this->getContext()->getOutput()->addWikiText( $this->msg( 'difference-missing-revision',
+				$oldid )->numParams( 1 )->text() );
 			return;
 		}
 
