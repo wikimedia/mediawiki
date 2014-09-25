@@ -61,7 +61,7 @@ class ProcessCacheLRU {
 			unset( $this->cacheTimes[$evictKey] );
 		}
 		$this->cache[$key][$prop] = $value;
-		$this->cacheTimes[$key][$prop] = time();
+		$this->cacheTimes[$key][$prop] = microtime( true );
 	}
 
 	/**
@@ -69,12 +69,13 @@ class ProcessCacheLRU {
 	 *
 	 * @param $key string
 	 * @param $prop string
-	 * @param $maxAge integer Ignore items older than this many seconds (since 1.21)
+	 * @param $maxAge float Ignore items older than this many seconds (since 1.21)
 	 * @return bool
 	 */
-	public function has( $key, $prop, $maxAge = 0 ) {
+	public function has( $key, $prop, $maxAge = 0.0 ) {
 		if ( isset( $this->cache[$key][$prop] ) ) {
-			return ( $maxAge <= 0 || ( time() - $this->cacheTimes[$key][$prop] ) <= $maxAge );
+			return ( $maxAge <= 0 ||
+				( microtime( true ) - $this->cacheTimes[$key][$prop] ) <= $maxAge );
 		}
 
 		return false;
@@ -121,6 +122,7 @@ class ProcessCacheLRU {
 	 *
 	 * @param $maxKeys integer
 	 * @return void
+	 * @throws UnexpectedValueException
 	 */
 	public function resize( $maxKeys ) {
 		if ( !is_int( $maxKeys ) || $maxKeys < 1 ) {
