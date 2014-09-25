@@ -111,18 +111,35 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 		}
 
+		if ( !is_null( $params['group'] ) && !is_null( $params['excludegroup'] ) ) {
+			$this->dieUsage( 'group and excludegroup cannot be used together', 'group-excludegroup' );
+		}
+
 		if ( !is_null( $params['group'] ) && count( $params['group'] ) ) {
+			$useIndex = false;
 			// Filter only users that belong to a given group
-			$this->addWhere( 'EXISTS (' . $db->selectSQLText(
-				'user_groups', '1', array( 'ug_user=user_id', 'ug_group' => $params['group'] )
-			) . ')' );
+			$this->addTables( 'user_groups', 'ug1' );
+			$this->addJoinConds( array( 'ug1' => array( 'INNER JOIN', array( 'ug1.ug_user=user_id',
+				'ug1.ug_group' => $params['group'] ) ) ) );
 		}
 
 		if ( !is_null( $params['excludegroup'] ) && count( $params['excludegroup'] ) ) {
+			$useIndex = false;
 			// Filter only users don't belong to a given group
-			$this->addWhere( 'NOT EXISTS (' . $db->selectSQLText(
-				'user_groups', '1', array( 'ug_user=user_id', 'ug_group' => $params['excludegroup'] )
-			) . ')' );
+			$this->addTables( 'user_groups', 'ug1' );
+
+			if ( count( $params['excludegroup'] ) == 1 ) {
+				$exclude = array( 'ug1.ug_group' => $params['excludegroup'][0] );
+			} else {
+				$exclude = array( $db->makeList(
+					array( 'ug1.ug_group' => $params['excludegroup'] ),
+					LIST_OR
+				) );
+			}
+			$this->addJoinConds( array( 'ug1' => array( 'LEFT OUTER JOIN',
+				array_merge( array( 'ug1.ug_user=user_id' ), $exclude )
+			) ) );
+			$this->addWhere( 'ug1.ug_user IS NULL' );
 		}
 
 		if ( $params['witheditsonly'] ) {
