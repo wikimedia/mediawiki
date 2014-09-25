@@ -339,21 +339,19 @@ class SpecialActiveUsers extends SpecialPage {
 			return false; // exclusive update (avoids duplicate entries)
 		}
 
-		$now = time();
+		$nowUnix = time();
+		// Get the last-updated timestamp for the cache
 		$cTime = $dbw->selectField( 'querycache_info',
 			'qci_timestamp',
 			array( 'qci_type' => 'activeusers' )
 		);
 		$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
-		// If a transaction was already started, it might have an old
-		// snapshot, so kludge the timestamp range a few seconds back.
-		$cTimeUnix -= 5;
 
 		// Pick the date range to fetch from. This is normally from the last
 		// update to till the present time, but has a limited window for sanity.
 		// If the window is limited, multiple runs are need to fully populate it.
-		$sTimestamp = max( $cTimeUnix, $now - $days * 86400 );
-		$eTimestamp = min( $sTimestamp + $window, $now );
+		$sTimestamp = max( $cTimeUnix, $nowUnix - $days * 86400 );
+		$eTimestamp = min( $sTimestamp + $window, $nowUnix );
 
 		// Get all the users active since the last update
 		$res = $dbw->select(
@@ -381,7 +379,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$dbw->delete( 'querycachetwo',
 			array(
 				'qcc_type' => 'activeusers',
-				'qcc_value < ' . $dbw->addQuotes( $now - $days * 86400 ) // TS_UNIX
+				'qcc_value < ' . $dbw->addQuotes( $nowUnix - $days * 86400 ) // TS_UNIX
 			),
 			__METHOD__
 		);
@@ -425,11 +423,15 @@ class SpecialActiveUsers extends SpecialPage {
 			}
 		}
 
+		// If a transaction was already started, it might have an old
+		// snapshot, so kludge the timestamp range back as needed.
+		$asOfTimestamp = min( $eTimestamp, (int)$dbw->trxTimestamp() );
+
 		// Touch the data freshness timestamp
 		$dbw->replace( 'querycache_info',
 			array( 'qci_type' ),
 			array( 'qci_type' => 'activeusers',
-				'qci_timestamp' => $dbw->timestamp( $eTimestamp ) ), // not always $now
+				'qci_timestamp' => $dbw->timestamp( $asOfTimestamp ) ), // not always $now
 			__METHOD__
 		);
 
