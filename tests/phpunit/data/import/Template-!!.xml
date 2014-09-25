@@ -1,0 +1,81 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.9/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.9/ http://www.mediawiki.org/xml/export-0.9.xsd" version="0.9" xml:lang="en">
+  <siteinfo>
+    <sitename>Wikimedia Commons</sitename>
+    <dbname>commonswiki</dbname>
+    <base>http://commons.wikimedia.org/wiki/Main_Page</base>
+    <generator>MediaWiki 1.24wmf20</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">Commons</namespace>
+      <namespace key="5" case="first-letter">Commons talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+      <namespace key="100" case="first-letter">Creator</namespace>
+      <namespace key="101" case="first-letter">Creator talk</namespace>
+      <namespace key="102" case="first-letter">TimedText</namespace>
+      <namespace key="103" case="first-letter">TimedText talk</namespace>
+      <namespace key="104" case="first-letter">Sequence</namespace>
+      <namespace key="105" case="first-letter">Sequence talk</namespace>
+      <namespace key="106" case="first-letter">Institution</namespace>
+      <namespace key="107" case="first-letter">Institution talk</namespace>
+      <namespace key="460" case="case-sensitive">Campaign</namespace>
+      <namespace key="461" case="case-sensitive">Campaign talk</namespace>
+      <namespace key="490" case="first-letter">GWToolset</namespace>
+      <namespace key="491" case="first-letter">GWToolset talk</namespace>
+      <namespace key="828" case="first-letter">Module</namespace>
+      <namespace key="829" case="first-letter">Module talk</namespace>
+      <namespace key="1198" case="first-letter">Translations</namespace>
+      <namespace key="1199" case="first-letter">Translations talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Template:!!</title>
+    <ns>10</ns>
+    <id>3716844</id>
+    <revision>
+      <id>36096016</id>
+      <parentid>36092996</parentid>
+      <timestamp>2010-03-03T10:34:19Z</timestamp>
+      <contributor>
+        <username>Martin H.</username>
+        <id>237227</id>
+      </contributor>
+      <minor/>
+      <comment/>
+      <text xml:space="preserve" bytes="657">||&lt;noinclude&gt;
+
+
+----
+This is an auxiliary template allowing to encode &quot;&lt;code&gt;||&lt;/code&gt;&quot;
+within template parameters. It is '''unnecessary''' to get a
+&quot;&lt;code&gt;||&lt;/code&gt;&quot; in these cases, better use &quot;&lt;code&gt;&amp;amp;#124;&amp;amp;#124;&lt;/code&gt;&quot;
+for this purpose. However the &quot;&lt;code&gt;||&lt;/code&gt;&quot; delimiter for a
+Wiki table has to be escaped by a template if it's used
+within a template, see also [[w:WP:QIF]].
+
+Note that there's no such problem with &quot;&lt;code&gt;!!&lt;/code&gt;&quot; (exclamation mark), it
+only affects &quot;&lt;code&gt;||&lt;/code&gt;&quot; (vertical bar) in conjunction
+with the [[m:Help:Parameter_default]] mechanism within tables.
+
+[[Category:Workaround templates|{{PAGENAME}}]]
+&lt;/noinclude&gt;</text>
+      <sha1>7fn0k48yx2ibfn675tjlxlqd8nmri20</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+</mediawiki>
