@@ -181,6 +181,11 @@ class HistoryAction extends FormlessAction {
 
 		// Add the general form
 		$action = htmlspecialchars( wfScript() );
+		$className = '';
+		$className = 'historysubmit mw-history-compareselectedversions-button';
+		if ( $config->get( 'UseMediaWikiUIEverywhere' ) ) {
+			$className = 'mw-ui-button mw-ui-progressive';
+		}
 		$out->addHTML(
 			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
 			Xml::fieldset(
@@ -196,7 +201,10 @@ class HistoryAction extends FormlessAction {
 			) . '&#160;' .
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
 			$checkDeleted .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
+			Xml::submitButton(
+				$this->msg( 'allpagessubmit' )->text(),
+				array( 'class' => $className )
+			 ) . "\n" .
 			'</fieldset></form>'
 		);
 
@@ -486,7 +494,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->buttons = '<div>';
 		$className = 'historysubmit mw-history-compareselectedversions-button';
 		if ( $this->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-			$className .= ' mw-ui-button mw-ui-constructive';
+			$className .= ' mw-ui-button';
 		}
 		$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
 			array( 'class' => $className )
