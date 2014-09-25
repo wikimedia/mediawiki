@@ -591,7 +591,7 @@ class SpecialSearch extends SpecialPage {
 
 		$title = $result->getTitle();
 
-		$titleSnippet = $result->getTitleSnippet( $terms );
+		$titleSnippet = $result->getTitleSnippet();
 
 		if ( $titleSnippet == '' ) {
 			$titleSnippet = null;
