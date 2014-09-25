@@ -58,8 +58,8 @@ class LoadBalancer {
 	private $mLaggedSlaveMode;
 	/** @var string The last DB selection or connection error */
 	private $mLastError = 'Unknown error';
-	/** @var array Process cache of LoadMonitor::getLagTimes() */
-	private $mLagTimes;
+	/** @var ProcessCacheLRU */
+	private $mProcCache;
 
 	/**
 	 * @param array $params Array with keys:
@@ -108,6 +108,8 @@ class LoadBalancer {
 				}
 			}
 		}
+
+		$this->mProcCache = new ProcessCacheLRU( 30 );
 	}
 
 	/**
@@ -1080,7 +1082,8 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Get the hostname and lag time of the most-lagged slave.
+	 * Get the hostname and lag time of the most-lagged slave
+	 *
 	 * This is useful for maintenance scripts that need to throttle their updates.
 	 * May attempt to open connections to slaves on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
@@ -1093,67 +1096,45 @@ class LoadBalancer {
 		$host = '';
 		$maxIndex = 0;
 
-		if ( $this->getServerCount() <= 1 ) { // no replication = no lag
-			return array( $host, $maxLag, $maxIndex );
+		if ( $this->getServerCount() <= 1 ) {
+			return array( $host, $maxLag, $maxIndex ); // no replication = no lag
 		}
 
-		// Try to get the max lag info from the server cache
-		$key = 'loadbalancer:maxlag:cluster:' . $this->mServers[0]['host'];
-		$cache = ObjectCache::newAccelerator( array(), 'hash' );
-		$maxLagInfo = $cache->get( $key ); // (host, lag, index)
-
-		// Fallback to connecting to each slave and getting the lag
-		if ( !$maxLagInfo ) {
-			foreach ( $this->mServers as $i => $conn ) {
-				if ( $i == $this->getWriterIndex() ) {
-					continue; // nothing to check
-				}
-				$conn = false;
-				if ( $wiki === false ) {
-					$conn = $this->getAnyOpenConnection( $i );
-				}
-				if ( !$conn ) {
-					$conn = $this->openConnection( $i, $wiki );
-				}
-				if ( !$conn ) {
-					continue;
-				}
-				$lag = $conn->getLag();
-				if ( $lag > $maxLag ) {
-					$maxLag = $lag;
-					$host = $this->mServers[$i]['host'];
-					$maxIndex = $i;
-				}
+		$lagTimes = $this->getLagTimes( $wiki );
+		foreach ( $lagTimes as $i => $lag ) {
+			if ( $lag > $maxLag ) {
+				$maxLag = $lag;
+				$host = $this->mServers[$i]['host'];
+				$maxIndex = $i;
 			}
-			$maxLagInfo = array( $host, $maxLag, $maxIndex );
-			$cache->set( $key, $maxLagInfo, 5 );
 		}
 
-		return $maxLagInfo;
+		return array( $host, $maxLag, $maxIndex );
 	}
 
 	/**
 	 * Get lag time for each server
-	 * Results are cached for a short time in memcached, and indefinitely in the process cache
+	 *
+	 * Results are cached for a short time in memcached/process cache
 	 *
 	 * @param string|bool $wiki
 	 * @return array Map of (server index => seconds)
 	 */
 	function getLagTimes( $wiki = false ) {
-		# Try process cache
-		if ( isset( $this->mLagTimes ) ) {
-			return $this->mLagTimes;
-		}
-		if ( $this->getServerCount() == 1 ) {
-			# No replication
-			$this->mLagTimes = array( 0 => 0 );
-		} else {
-			# Send the request to the load monitor
-			$this->mLagTimes = $this->getLoadMonitor()->getLagTimes(
-				array_keys( $this->mServers ), $wiki );
+		if ( $this->getServerCount() <= 1 ) {
+			return array( 0 => 0 ); // no replication = no lag
 		}
 
-		return $this->mLagTimes;
+		if ( $this->mProcCache->has( 'slave_lag', 'times', 1 ) ) {
+			return $this->mProcCache->get( 'slave_lag', 'times' );
+		}
+
+		# Send the request to the load monitor
+		$times = $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $wiki );
+
+		$this->mProcCache->set( 'slave_lag', 'times', $times );
+
+		return $times;
 	}
 
 	/**
@@ -1179,10 +1160,10 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Clear the cache for getLagTimes
+	 * Clear the cache for slag lag delay times
 	 */
 	function clearLagTimeCache() {
-		$this->mLagTimes = null;
+		$this->mProcCache->clear( 'slave_lag' );
 	}
 }
 
