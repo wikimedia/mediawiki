@@ -52,12 +52,23 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function specialPageProvider() {
+		$specialPageTestHelper = new SpecialPageTestHelper();
+
 		return array(
 			'class name' => array( 'SpecialAllPages', false ),
 			'closure' => array( function () {
 				return new SpecialAllPages();
 			}, false ),
 			'function' => array( array( $this, 'newSpecialAllPages' ), false ),
+			'callback string' => array( 'SpecialPageTestHelper::newSpecialAllPages', false ),
+			'callback with object' => array(
+				array( $specialPageTestHelper, 'newSpecialAllPages' ),
+				false
+			),
+			'callback array' => array(
+				array( 'SpecialPageTestHelper', 'newSpecialAllPages' ),
+				false
+			)
 		);
 	}
 
