@@ -3128,5 +3128,18 @@
 	"mediastatistics": "Статыстыка мэдыяфайлаў",
 	"mediastatistics-summary": "Статыстыка тыпаў загружаных файлаў. Яна ўключае толькі актуальныя вэрсіі файлаў. Старыя і выдаленыя вэрсіі ня ўлічваюцца.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 байт|$1 байты|$1 байтаў}} ($2; $3%)",
-	"mediastatistics-table-mimetype": "MIME-тып"
+	"mediastatistics-table-mimetype": "MIME-тып",
+	"mediastatistics-table-extensions": "Магчымыя пашырэньні",
+	"mediastatistics-table-count": "Колькасьць файлаў",
+	"mediastatistics-table-totalbytes": "Агульны памер",
+	"mediastatistics-header-unknown": "Невядомыя",
+	"mediastatistics-header-bitmap": "Растравыя выявы",
+	"mediastatistics-header-drawing": "Рысункі (вэктарныя выявы)",
+	"mediastatistics-header-audio": "Гук",
+	"mediastatistics-header-video": "Відэа",
+	"mediastatistics-header-multimedia": "Зьмяшанае мультымэдыя",
+	"mediastatistics-header-office": "Офіс",
+	"mediastatistics-header-text": "Тэкст",
+	"mediastatistics-header-executable": "Выконваныя файлы",
+	"mediastatistics-header-archive": "Сьціснутыя фарматы"
 }

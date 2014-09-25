@@ -425,7 +425,7 @@
 	"userlogin-loggedin": "Andan telah masuk log sebagai $1.\nGunakan formulir di bawah untuk masuk log sebagai pengguna lain.",
 	"userlogin-createanother": "Buat akun lain",
 	"createacct-emailrequired": "Alamat surel",
-	"createacct-emailoptional": "Alamat surel (opsional)",
+	"createacct-emailoptional": "Alamat surel/email (dianjurkan untuk diisi)",
 	"createacct-email-ph": "Masukkan alamat surel Anda",
 	"createacct-another-email-ph": "Masukkan alamat surel",
 	"createaccountmail": "Gunakan kata sandi acak sementara dan kirimkan ke surel yang diinginkan",
