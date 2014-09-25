@@ -77,8 +77,7 @@ class JobRunner {
 		}
 
 		// Bail out if there is too much DB lag
-		// @note: getLagTimes() has better caching than getMaxLag()
-		$maxLag = max( wfGetLBFactory()->getMainLB( wfWikiID() )->getLagTimes() );
+		list( , $maxLag ) = wfGetLBFactory()->getMainLB( wfWikiID() )->getMaxLag();
 		if ( $maxLag >= 5 ) {
 			$response['reached'] = 'slave-lag-limit';
 			return $response;
