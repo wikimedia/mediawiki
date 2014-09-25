@@ -179,7 +179,15 @@ class Hooks {
 			// Run autoloader (workaround for call_user_func_array bug)
 			// and throw error if not callable.
 			if ( !is_callable( $callback ) ) {
-				throw new MWException( 'Invalid callback in hooks for ' . $event . "\n" );
+				if ( is_string( $callback ) ) {
+					// Common mistake is a typo in the callback, so say
+					// which callback appears to be wrong
+					$message = "callback ($callback)";
+				} else {
+					// This shouldn't be reachable, but stay on the safe side
+					$message = "callback";
+				}
+				throw new MWException( "Invalid $message in hooks for $event\n" );
 			}
 
 			/*
