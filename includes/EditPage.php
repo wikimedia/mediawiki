@@ -2230,11 +2230,7 @@ class EditPage {
 	 *   $this->allowNonTextContent is not true.
 	 */
 	protected function toEditText( $content ) {
-		if ( $content === null || $content === false ) {
-			return $content;
-		}
-
-		if ( is_string( $content ) ) {
+		if ( $content === null || $content === false || is_string( $content ) ) {
 			return $content;
 		}
 

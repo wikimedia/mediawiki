@@ -184,9 +184,9 @@ class Status {
 	/**
 	 * Get the error list as a wikitext formatted list
 	 *
-	 * @param string $shortContext A short enclosing context message name, to
+	 * @param string|bool $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
-	 * @param string $longContext A long enclosing context message name, for a list
+	 * @param string|bool $longContext A long enclosing context message name, for a list
 	 * @return string
 	 */
 	public function getWikiText( $shortContext = false, $longContext = false ) {
