@@ -304,7 +304,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// The different ways these checks are done, and their ordering, look very silly,
 		// but were preserved for backwards-compatibility just in case. Tread lightly.
 
-		$localBasePath = $localBasePath === null ? $IP : $localBasePath;
+		if ( $localBasePath === null ) {
+			$localBasePath = $IP;
+		}
 		if ( $remoteBasePath === null ) {
 			$remoteBasePath = $wgResourceBasePath;
 		}
