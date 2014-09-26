@@ -277,19 +277,6 @@ class ApiQueryUsers extends ApiQueryBase {
 		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'user' );
 	}
 
-	/**
-	 * Gets all the groups that a user is automatically a member of (implicit groups)
-	 *
-	 * @deprecated since 1.20; call User::getAutomaticGroups() directly.
-	 * @param User $user
-	 * @return array
-	 */
-	public static function getAutoGroups( $user ) {
-		wfDeprecated( __METHOD__, '1.20' );
-
-		return $user->getAutomaticGroups();
-	}
-
 	public function getCacheMode( $params ) {
 		if ( isset( $params['token'] ) ) {
 			return 'private';
