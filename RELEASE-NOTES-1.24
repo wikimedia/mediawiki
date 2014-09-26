@@ -552,6 +552,137 @@ changes to languages because of Bugzilla reports.
 * XMLReader2 - Use XMLReader directly
 * ResourceLoaderLESSFunctions - No longer in use, not intended for public usage
 
+==== Removed files ====
+The skins/common/ directory, previously containing some assets intended to be
+used by skins and a number of legacy styles and scripts, has been removed. Its
+contents have been deleted or relocated into the resources/ directory. Full list
+of files that are no longer available follows.
+
+* skins/common/ajax.js
+* skins/common/commonContent.css
+* skins/common/commonElements.css
+* skins/common/commonInterface.css
+* skins/common/commonPrint.css
+* skins/common/config-cc.css
+* skins/common/config.css
+* skins/common/config.js
+* skins/common/feed.css
+* skins/common/IEFixes.js
+* skins/common/oldshared.css
+* skins/common/protect.js
+* skins/common/shared.css
+* skins/common/upload.js
+* skins/common/wikibits.js
+* skins/common/images/add.png
+* skins/common/images/ajax-loader.gif
+* skins/common/images/arrow_disabled_first_25.png
+* skins/common/images/arrow_disabled_last_25.png
+* skins/common/images/arrow_disabled_left_25.png
+* skins/common/images/arrow_disabled_right_25.png
+* skins/common/images/arrow_first_25.png
+* skins/common/images/arrow_last_25.png
+* skins/common/images/arrow_left_25.png
+* skins/common/images/arrow_right_25.png
+* skins/common/images/Arr_.png
+* skins/common/images/Arr_d.png
+* skins/common/images/Arr_l.png
+* skins/common/images/Arr_r.png
+* skins/common/images/Arr_u.png
+* skins/common/images/bullet.gif
+* skins/common/images/button_bold.png
+* skins/common/images/button_extlink.png
+* skins/common/images/button_headline.png
+* skins/common/images/button_hr.png
+* skins/common/images/button_image.png
+* skins/common/images/button_italic.png
+* skins/common/images/button_link.png
+* skins/common/images/button_media.png
+* skins/common/images/button_nowiki.png
+* skins/common/images/button_sig.png
+* skins/common/images/button_template.png
+* skins/common/images/cc-0.png
+* skins/common/images/cc-by-nc-sa.png
+* skins/common/images/cc-by-sa.png
+* skins/common/images/cc-by.png
+* skins/common/images/Checker-16x16.png
+* skins/common/images/closewindow.png
+* skins/common/images/closewindow19x19.png
+* skins/common/images/critical-32.png
+* skins/common/images/diffunderline.gif
+* skins/common/images/download-32.png
+* skins/common/images/feed-icon.png
+* skins/common/images/feed-icon.svg
+* skins/common/images/gnu-fdl.png
+* skins/common/images/help-question-hover.gif
+* skins/common/images/help-question.gif
+* skins/common/images/info-32.png
+* skins/common/images/link_icon.gif
+* skins/common/images/magnify-clip-rtl.png
+* skins/common/images/magnify-clip.png
+* skins/common/images/mediawiki.png
+* skins/common/images/nextredirectltr.png
+* skins/common/images/nextredirectrtl.png
+* skins/common/images/poweredby_mediawiki_88x31.png
+* skins/common/images/public-domain.png
+* skins/common/images/question-small.png
+* skins/common/images/question.svg
+* skins/common/images/redirectltr.png
+* skins/common/images/redirectrtl.png
+* skins/common/images/remove.png
+* skins/common/images/spinner.gif
+* skins/common/images/tick-32.png
+* skins/common/images/tipsy-arrow.gif
+* skins/common/images/tooltip_icon.png
+* skins/common/images/warning-32.png
+* skins/common/images/wiki.png
+* skins/common/images/Zoom_sans.gif
+* skins/common/images/ar/button_bold.png
+* skins/common/images/ar/button_headline.png
+* skins/common/images/ar/button_italic.png
+* skins/common/images/ar/button_link.png
+* skins/common/images/ar/button_nowiki.png
+* skins/common/images/be-tarask/button_bold.png
+* skins/common/images/be-tarask/button_italic.png
+* skins/common/images/be-tarask/button_link.png
+* skins/common/images/cyrl/button_bold.png
+* skins/common/images/cyrl/button_italic.png
+* skins/common/images/cyrl/button_link.png
+* skins/common/images/de/button_bold.png
+* skins/common/images/de/button_italic.png
+* skins/common/images/fa/button_bold.png
+* skins/common/images/fa/button_headline.png
+* skins/common/images/fa/button_italic.png
+* skins/common/images/fa/button_link.png
+* skins/common/images/fa/button_nowiki.png
+* skins/common/images/icons/fileicon-c.png
+* skins/common/images/icons/fileicon-cpp.png
+* skins/common/images/icons/fileicon-deb.png
+* skins/common/images/icons/fileicon-djvu.png
+* skins/common/images/icons/fileicon-djvu.xcf
+* skins/common/images/icons/fileicon-dvi.png
+* skins/common/images/icons/fileicon-exe.png
+* skins/common/images/icons/fileicon-h.png
+* skins/common/images/icons/fileicon-html.png
+* skins/common/images/icons/fileicon-iso.png
+* skins/common/images/icons/fileicon-java.png
+* skins/common/images/icons/fileicon-mid.png
+* skins/common/images/icons/fileicon-mov.png
+* skins/common/images/icons/fileicon-o.png
+* skins/common/images/icons/fileicon-ogg.png
+* skins/common/images/icons/fileicon-ogg.xcf
+* skins/common/images/icons/fileicon-pdf.png
+* skins/common/images/icons/fileicon-ps.png
+* skins/common/images/icons/fileicon-psd.png
+* skins/common/images/icons/fileicon-rm.png
+* skins/common/images/icons/fileicon-rpm.png
+* skins/common/images/icons/fileicon-svg.png
+* skins/common/images/icons/fileicon-tar.png
+* skins/common/images/icons/fileicon-tex.png
+* skins/common/images/icons/fileicon-ttf.png
+* skins/common/images/icons/fileicon-txt.png
+* skins/common/images/icons/fileicon.png
+* skins/common/images/ksh/button_S_italic.png
+
 == Compatibility ==
 
 MediaWiki 1.24 requires PHP 5.3.2 or later. There is experimental support for
