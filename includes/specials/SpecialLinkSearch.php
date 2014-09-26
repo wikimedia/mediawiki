@@ -252,6 +252,25 @@ class LinkSearchPage extends QueryPage {
 	}
 
 	/**
+	 * Pre-fill the link cache
+	 *
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $res
+	 */
+	function preprocessResults( $db, $res ) {
+		if ( $res->numRows() > 0 ) {
+			$linkBatch = new LinkBatch();
+
+			foreach ( $res as $row ) {
+				$linkBatch->add( $row->namespace, $row->title );
+			}
+
+			$res->seek( 0 );
+			$linkBatch->execute();
+		}
+	}
+
+	/**
 	 * @param Skin $skin
 	 * @param object $result Result row
 	 * @return string
