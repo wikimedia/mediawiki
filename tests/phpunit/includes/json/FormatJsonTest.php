@@ -123,6 +123,69 @@ class FormatJsonTest extends MediaWikiTestCase {
 		);
 	}
 
+	public static function provideParse() {
+		return array(
+			array( null ),
+			array( true ),
+			array( false ),
+			array( 0 ),
+			array( 1 ),
+			array( 1.2 ),
+			array( '' ),
+			array( 'str' ),
+			array( array( 0, 1, 2 ) ),
+			array( array( 'a' => 'b' ) ),
+			array( array( 'a' => 'b' ) ),
+			array( array( 'a' => 'b', 'x' => array( 'c' => 'd' ) ) ),
+		);
+	}
+
+	/**
+	 * Recursively convert arrays into stdClass
+	 * @param array|string|bool|int|float|null $value
+	 * @return stdClass|string|bool|int|float|null
+	 */
+	public static function toObject( $value ) {
+		return !is_array( $value ) ? $value : (object) array_map( __METHOD__, $value );
+	}
+
+	/**
+	 * @dataProvider provideParse
+	 * @param mixed $value
+	 */
+	public function testParse( $value ) {
+		$expected = self::toObject( $value );
+		$json = FormatJson::encode( $expected, false, FormatJson::ALL_OK );
+		$this->assertJson( $json );
+
+		$st = FormatJson::parse( $json );
+		$this->assertType( 'Status', $st );
+		$this->assertTrue( $st->isGood() );
+		$this->assertEquals( $expected, $st->getValue() );
+
+		$st = FormatJson::parse( $json, FormatJson::FORCE_ASSOC );
+		$this->assertType( 'Status', $st );
+		$this->assertTrue( $st->isGood() );
+		$this->assertEquals( $value, $st->getValue() );
+	}
+
+	public static function provideParseErrors() {
+		return array(
+			array( 'aaa' ),
+			array( '{"j": 1 ] }' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideParseErrors
+	 * @param mixed $value
+	 */
+	public function testParseErrors( $value ) {
+		$st = FormatJson::parse( $value );
+		$this->assertType( 'Status', $st );
+		$this->assertFalse( $st->isOK() );
+	}
+
 	/**
 	 * Generate a set of test cases for a particular combination of encoder options.
 	 *
