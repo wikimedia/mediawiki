@@ -58,17 +58,6 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * Deprecated alias for getTitle(); do not use.
-	 *
-	 * @deprecated since 1.20; use getTitle() instead.
-	 * @return Title
-	 */
-	public function getDisplayTitle() {
-		wfDeprecated( __METHOD__, '1.20' );
-		return $this->getTitle();
-	}
-
-	/**
 	 * Show options for the log list
 	 *
 	 * @param array|string $types

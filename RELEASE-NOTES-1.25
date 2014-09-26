@@ -37,6 +37,7 @@ changes to languages because of Bugzilla reports.
   inline styles in the HTML.
 * Removed ApiQueryUsers::getAutoGroups(). (deprecated since 1.20)
 * Removed XmlDumpWriter::schemaVersion(). (deprecated since 1.20)
+* Removed LogEventsList::getDisplayTitle(). (deprecated since 1.20)
 
 == Compatibility ==
 
