@@ -30,8 +30,10 @@ under the GPL for use of the whole code or other sections thereof.
 MediaWiki uses the following Creative Commons icons to illustrate links to the
 CC licenses:
 
-* skins/common/images/cc-by-nc-sa.png
-* skins/common/images/cc-by-sa.png
+* resources/assets/licenses/cc-0.png
+* resources/assets/licenses/cc-by-nc-sa.png
+* resources/assets/licenses/cc-by-sa.png
+* resources/assets/licenses/cc-by.png
 
 These icons are trademarked, and used subject to the CC trademark license,
 available at http://creativecommons.org/policies#trademark
