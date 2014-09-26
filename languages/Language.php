@@ -3209,7 +3209,7 @@ class Language {
 
 	/**
 	 * Get special page names, as an associative array
-	 *   case folded alias => real name
+	 *   canonical name => array of valid names, including aliases
 	 * @return array
 	 */
 	function getSpecialPageAliases() {
