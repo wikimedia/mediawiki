@@ -74,7 +74,7 @@ class SpecialPageFactory {
 		'Wantedtemplates' => 'WantedTemplatesPage',
 
 		// List of pages
-		'Allpages' => 'SpecialAllpages',
+		'Allpages' => 'SpecialAllPages',
 		'Prefixindex' => 'SpecialPrefixindex',
 		'Categories' => 'SpecialCategories',
 		'Listredirects' => 'ListredirectsPage',
@@ -123,7 +123,7 @@ class SpecialPageFactory {
 
 		// Data and tools
 		'Statistics' => 'SpecialStatistics',
-		'Allmessages' => 'SpecialAllmessages',
+		'Allmessages' => 'SpecialAllMessages',
 		'Version' => 'SpecialVersion',
 		'Lockdb' => 'SpecialLockdb',
 		'Unlockdb' => 'SpecialUnlockdb',
