@@ -1467,28 +1467,6 @@ class Preferences {
 
 		return Status::newGood();
 	}
-
-	/**
-	 * Try to set a user's email address.
-	 * This does *not* try to validate the address.
-	 * Caller is responsible for checking $wgAuth and 'editmyprivateinfo'
-	 * right.
-	 *
-	 * @deprecated since 1.20; use User::setEmailWithConfirmation() instead.
-	 * @param User $user
-	 * @param string $newaddr New email address
-	 * @return array (true on success or Status on failure, info string)
-	 */
-	public static function trySetUserEmail( User $user, $newaddr ) {
-		wfDeprecated( __METHOD__, '1.20' );
-
-		$result = $user->setEmailWithConfirmation( $newaddr );
-		if ( $result->isGood() ) {
-			return array( true, $result->value );
-		} else {
-			return array( $result, 'mailerror' );
-		}
-	}
 }
 
 /** Some tweaks to allow js prefs to work */
