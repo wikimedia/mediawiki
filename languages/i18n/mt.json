@@ -1410,6 +1410,7 @@
 	"booksources": "Sorsi tal-kotba",
 	"booksources-search-legend": "Fittex għal sorsi tal-kotba",
 	"booksources-isbn": "Kodiċi ISBN:",
+	"booksources-search": "Fittex",
 	"booksources-text": "Hawn taħt hawn lista ta' ħoloq għal siti oħrajn li jbiegħu kotba ġodda u wżati, u jistgħu jkollhom aktar informazzjoni dwar il-kotba li qiegħed tfittex:",
 	"booksources-invalid-isbn": "L-ISBN li ngħata jidher li mhuwiex validu; iċċekkja għal xi żbalji mis-sors oriġinali.",
 	"specialloguserlabel": "Azzjoni effettwata minn:",

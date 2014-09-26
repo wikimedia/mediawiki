@@ -1586,6 +1586,7 @@
 	"querypage-disabled": "Tato speciální stránka je z výkonnostních důvodů vypnuta.",
 	"booksources": "Zdroje knih",
 	"booksources-search-legend": "Vyhledat knižní zdroje",
+	"booksources-search": "Hledat",
 	"booksources-text": "Níže je seznam odkazů na servery prodávající knihy, nebo které mohou mít další informace o knihách, které hledáte.",
 	"booksources-invalid-isbn": "Zadané ISBN se zdá být neplatné. Zkontrolujte jej s originálním zdrojem.",
 	"specialloguserlabel": "Původce:",

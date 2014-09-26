@@ -62,6 +62,7 @@
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] dipasang",
 	"config-apc": "[http://www.php.net/apc APC] dipasang",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] dipasang",
+	"config-mod-security": "<strong>Amaran:</strong> Pelayan web anda dihidupkan [http://modsecurity.org/ mod_security]/mod_security2. Kebanyakan konfigurasinya yang umum boleh menimbulkan kesulitan untuk MediaWiki dan perisian-perisian lain yang membolehkan pengguna untuk mengeposkan kandungan yang sewenang-wenang.\nJika boleh, ciri-ciri ini harus dimatikan. Jika tidak, rujuki [http://modsecurity.org/documentation/ dokumentasi mod_security] atau hubungi bantuan hos anda jika anda menghadapi ralat sembarangan.",
 	"config-diff3-bad": "GNU diff3 tidak dijumpai.",
 	"config-git": "Perisian kawalan versi Git dijumpai: <code>$1</code>.",
 	"config-git-bad": "Perisian kawalan versi Git tidak dijumpai.",
