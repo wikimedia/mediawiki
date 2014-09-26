@@ -192,6 +192,7 @@ production.
   settings.
 * (bug 69418) A MultiConfig implementation was added that supports fallback
   to multiple Config instances.
+* Update CSSJanus to v1.1.0.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
