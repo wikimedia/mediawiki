@@ -147,6 +147,16 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
+	 * Check, if a Title object is set
+	 *
+	 * @since 1.25
+	 * @return Title|null
+	 */
+	public function hasTitle() {
+		return $this->title !== null;
+	}
+
+	/**
 	 * Check whether a WikiPage object can be get with getWikiPage().
 	 * Callers should expect that an exception is thrown from getWikiPage()
 	 * if this method returns false.
