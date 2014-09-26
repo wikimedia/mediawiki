@@ -290,7 +290,7 @@ class InfoAction extends FormlessAction {
 
 		$pageInfo['header-basic'][] = array( $langDisp,
 			Language::fetchLanguageName( $pageLang, $lang->getCode() )
-			. ' ' . $this->msg( 'parentheses', $pageLang ) );
+			. ' ' . $this->msg( 'parentheses', $pageLang )->escaped() );
 
 		// Content model of the page
 		$pageInfo['header-basic'][] = array(
