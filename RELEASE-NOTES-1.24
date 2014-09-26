@@ -1,6 +1,14 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will no longer work with it enabled.
 
+== MediaWiki 1.24.2 ==
+
+This is a not yet released maintenance release of the MediaWiki 1.24 branch.
+
+== Changes since 1.24.1 ==
+
+* Fix case of SpecialAllPages/SpecialAllMessages in SpecialPageFactory
+
 
 == MediaWiki 1.24.1 ==
 
