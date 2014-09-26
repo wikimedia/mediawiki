@@ -1,4 +1,4 @@
-@chrome @clean @en.wikipedia.beta.wmflabs.org @firefox @phantomjs @test2.wikipedia.org
+@chrome @clean @firefox @phantomjs
 Feature: Create account
 
   Scenario Outline: Go to Create account page
