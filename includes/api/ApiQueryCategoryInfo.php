@@ -38,14 +38,13 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$alltitles = $this->getPageSet()->getAllTitlesByNamespace();
+		$alltitles = $this->getPageSet()->getGoodAndMissingTitlesByNamespace();
 		if ( empty( $alltitles[NS_CATEGORY] ) ) {
 			return;
 		}
 		$categories = $alltitles[NS_CATEGORY];
 
-		$titles = $this->getPageSet()->getGoodTitles() +
-			$this->getPageSet()->getMissingTitles();
+		$titles = $this->getPageSet()->getGoodAndMissingTitles();
 		$cattitles = array();
 		foreach ( $categories as $c ) {
 			/** @var $t Title */
