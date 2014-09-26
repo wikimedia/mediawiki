@@ -3694,5 +3694,7 @@
     "expand_templates_remove_nowiki": "Option on [[Special:Expandtemplates]]\n\nHere's what the tick box does:\n\nFor:\n<pre>\n&lt;nowiki>test&lt;/nowiki>\n</pre>\n\nNot ticked:\n<pre>\n&lt;nowiki>test&lt;/nowiki>\n</pre>\n\nTicked:\n<pre>\ntest\n</pre>",
     "expand_templates_generate_xml": "Used as checkbox label.",
     "expand_templates_generate_rawhtml": "Used as checkbox label.",
-    "expand_templates_preview": "{{Identical|Preview}}"
+    "expand_templates_preview": "{{Identical|Preview}}",
+    "expand_templates_preview_fail_html": "Used as error message in Preview section of [[Special:ExpandTemplates]] page.",
+    "expand_templates_preview_fail_html_anon": "Used as error message in Preview section of [[Special:ExpandTemplates]] page."
 }

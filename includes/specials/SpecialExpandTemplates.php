@@ -137,6 +137,9 @@ class SpecialExpandTemplates extends SpecialPage {
 	 */
 	private function makeForm( $title, $input ) {
 		$self = $this->getPageTitle();
+		$request = $this->getRequest();
+		$user = $this->getUser();
+
 		$form = Xml::openElement(
 			'form',
 			array( 'method' => 'post', 'action' => $self->getLocalUrl() )
@@ -192,6 +195,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			array( 'accesskey' => 's' )
 		) . '</p>';
 		$form .= "</fieldset>\n";
+		$form .= Html::hidden( 'wpEditToken', $user->getEditToken( '', $request ) );
 		$form .= Xml::closeElement( 'form' );
 
 		return $form;
@@ -244,6 +248,30 @@ class SpecialExpandTemplates extends SpecialPage {
 	private function showHtmlPreview( Title $title, $html, OutputPage $out ) {
 		$lang = $title->getPageViewLanguage();
 		$out->addHTML( "<h2>" . $this->msg( 'expand_templates_preview' )->escaped() . "</h2>\n" );
+
+		global $wgRawHtml;
+		if ( $wgRawHtml ) {
+			$request = $this->getRequest();
+			$user = $this->getUser();
+
+			// To prevent cross-site scripting attacks, don't show the preview if raw HTML is
+			// allowed and a valid edit token is not provided (bug 71111). However, MediaWiki
+			// does not currently provide logged-out users with CSRF protection; in that case,
+			// do not show the preview unless anonymous editing is allowed.
+			if ( $user->isAnon() && !$user->isAllowed( 'edit' ) ) {
+				$error = array( 'expand_templates_preview_fail_html_anon' );
+			} elseif ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ), '', $request ) ) {
+				$error = array( 'expand_templates_preview_fail_html' );
+			} else {
+				$error = false;
+			}
+
+			if ( $error ) {
+				$out->wrapWikiMsg( "<div class='previewnote'>\n$1\n</div>", $error );
+				return;
+			}
+		}
+
 		$out->addHTML( Html::openElement( 'div', array(
 			'class' => 'mw-content-' . $lang->getDir(),
 			'dir' => $lang->getDir(),
