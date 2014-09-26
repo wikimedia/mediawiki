@@ -3530,6 +3530,8 @@
 	"expand_templates_generate_xml": "Show XML parse tree",
 	"expand_templates_generate_rawhtml": "Show raw HTML",
 	"expand_templates_preview": "Preview",
+	"expand_templates_preview_fail_html": "<em>Because {{SITENAME}} has raw HTML enabled and there was a loss of session data, the preview is hidden as a precaution against JavaScript attacks.</em>\n\n<strong>If this is a legitimate preview attempt, please try again.</strong>\nIf it still does not work, try [[Special:UserLogout|logging out]] and logging back in.",
+	"expand_templates_preview_fail_html_anon": "<em>Because {{SITENAME}} has raw HTML enabled and you are not logged in, the preview is hidden as a precaution against JavaScript attacks.</em>\n\n<strong>If this is a legitimate preview attempt, please [[Special:UserLogin|log in]] and try again.</strong>",
 	"pagelanguage": "Page language selector",
 	"pagelang-name": "Page",
 	"pagelang-language": "Language",
