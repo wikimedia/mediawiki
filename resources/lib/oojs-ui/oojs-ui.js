@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (880100c45e)
+ * OOjs UI v0.1.0-pre (98e770ce46)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-23T22:28:43Z
+ * Date: 2014-09-26T22:57:14Z
  */
 ( function ( OO ) {
 
@@ -10685,7 +10685,7 @@ OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direct
 			// Default to n-1 instead of -1, if nothing is selected let's start at the end
 			Math.min( index, len );
 
-	while ( true ) {
+	while ( len !== 0 ) {
 		i = ( i + inc + len ) % len;
 		item = this.items[i];
 		if ( item instanceof OO.ui.OptionWidget && item.isSelectable() ) {
