@@ -480,16 +480,6 @@ class WikiExporter {
  */
 class XmlDumpWriter {
 	/**
-	 * Returns the export schema version.
-	 * @deprecated since 1.20; use WikiExporter::schemaVersion() instead
-	 * @return string
-	 */
-	function schemaVersion() {
-		wfDeprecated( __METHOD__, '1.20' );
-		return WikiExporter::schemaVersion();
-	}
-
-	/**
 	 * Opens the XML output stream's root "<mediawiki>" element.
 	 * This does not include an xml directive, so is safe to include
 	 * as a subelement in a larger XML stream. Namespace and XML Schema
