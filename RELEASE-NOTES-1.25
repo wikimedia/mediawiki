@@ -35,6 +35,7 @@ changes to languages because of Bugzilla reports.
 * Javascript variable 'wgFileCanRotate' now only available on Special:Upload.
 * (bug 56257) Set site logo from mediawiki.skinning.interface module instead of
   inline styles in the HTML.
+* Removed ApiQueryUsers::getAutoGroups(). (deprecated since 1.20)
 
 == Compatibility ==
 
