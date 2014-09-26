@@ -52,7 +52,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 	 */
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
-		$namespaces = $this->getPageSet()->getAllTitlesByNamespace();
+		$namespaces = $this->getPageSet()->getGoodAndMissingTitlesByNamespace();
 		if ( empty( $namespaces[NS_FILE] ) ) {
 			return;
 		}

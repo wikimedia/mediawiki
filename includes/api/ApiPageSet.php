@@ -53,7 +53,10 @@ class ApiPageSet extends ApiBase {
 
 	private $mAllPages = array(); // [ns][dbkey] => page_id or negative when missing
 	private $mTitles = array();
+	private $mGoodAndMissingPages = array(); // [ns][dbkey] => page_id or negative when missing
+	private $mGoodPages = array(); // [ns][dbkey] => page_id
 	private $mGoodTitles = array();
+	private $mMissingPages = array(); // [ns][dbkey] => fake page_id
 	private $mMissingTitles = array();
 	private $mInvalidTitles = array();
 	private $mMissingPageIDs = array();
@@ -344,6 +347,14 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
+	 * Returns an array [ns][dbkey] => page_id for all good titles.
+	 * @return array
+	 */
+	public function getGoodTitlesByNamespace() {
+		return $this->mGoodPages;
+	}
+
+	/**
 	 * Title objects that were found in the database.
 	 * @return Title[] Array page_id (int) => Title (obj)
 	 */
@@ -360,12 +371,37 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
+	 * Returns an array [ns][dbkey] => fake_page_id for all missing titles.
+	 * fake_page_id is a unique negative number.
+	 * @return array
+	 */
+	public function getMissingTitlesByNamespace() {
+		return $this->mMissingPages;
+	}
+
+	/**
 	 * Title objects that were NOT found in the database.
 	 * The array's index will be negative for each item
 	 * @return Title[]
 	 */
 	public function getMissingTitles() {
 		return $this->mMissingTitles;
+	}
+
+	/**
+	 * Returns an array [ns][dbkey] => page_id for all good and missing titles.
+	 * @return array
+	 */
+	public function getGoodAndMissingTitlesByNamespace() {
+		return $this->mGoodAndMissingPages;
+	}
+
+	/**
+	 * Title objects for good and missing titles.
+	 * @return array
+	 */
+	public function getGoodAndMissingTitles() {
+		return $this->mGoodTitles + $this->mMissingTitles;
 	}
 
 	/**
@@ -667,6 +703,8 @@ class ApiPageSet extends ApiBase {
 		if ( $this->mResolveRedirects && $row->page_is_redirect == '1' ) {
 			$this->mPendingRedirectIDs[$pageId] = $title;
 		} else {
+			$this->mGoodPages[$row->page_namespace][$row->page_title] = $pageId;
+			$this->mGoodAndMissingPages[$row->page_namespace][$row->page_title] = $pageId;
 			$this->mGoodTitles[$pageId] = $title;
 		}
 
@@ -803,6 +841,8 @@ class ApiPageSet extends ApiBase {
 					foreach ( array_keys( $dbkeys ) as $dbkey ) {
 						$title = Title::makeTitle( $ns, $dbkey );
 						$this->mAllPages[$ns][$dbkey] = $this->mFakePageId;
+						$this->mMissingPages[$ns][$dbkey] = $this->mFakePageId;
+						$this->mGoodAndMissingPages[$ns][$dbkey] = $this->mFakePageId;
 						$this->mMissingTitles[$this->mFakePageId] = $title;
 						$this->mFakePageId--;
 						$this->mTitles[] = $title;

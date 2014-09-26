@@ -106,8 +106,8 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$emptyString = $db->addQuotes( '' );
 
 		$pageSet = $this->getPageSet();
-		$titles = $pageSet->getGoodTitles() + $pageSet->getMissingTitles();
-		$map = $pageSet->getAllTitlesByNamespace();
+		$titles = $pageSet->getGoodAndMissingTitles();
+		$map = $pageSet->getGoodAndMissingTitlesByNamespace();
 
 		// Determine our fields to query on
 		$p = $settings['prefix'];

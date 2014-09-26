@@ -58,7 +58,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'revdelUser' => $this->getUser(),
 		);
 
-		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
+		$pageIds = $this->getPageSet()->getGoodAndMissingTitlesByNamespace();
 		if ( !empty( $pageIds[NS_FILE] ) ) {
 			$titles = array_keys( $pageIds[NS_FILE] );
 			asort( $titles ); // Ensure the order is always the same
