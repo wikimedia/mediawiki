@@ -1,4 +1,4 @@
-@chrome @clean @en.wikipedia.beta.wmflabs.org @firefox @login @phantomjs @test2.wikipedia.org
+@chrome @clean @firefox @login @phantomjs
 Feature: Edit Page
 
   Scenario: Create and edit page
