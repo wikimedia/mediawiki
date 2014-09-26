@@ -286,24 +286,6 @@ class LinkSearchPage extends QueryPage {
 	}
 
 	/**
-	 * Override to check query validity.
-	 *
-	 * @param mixed $offset Numerical offset or false for no offset
-	 * @param mixed $limit Numerical limit or false for no limit
-	 */
-	function doQuery( $offset = false, $limit = false ) {
-		list( $this->mMungedQuery, ) = LinkSearchPage::mungeQuery( $this->mQuery, $this->mProt );
-		if ( $this->mMungedQuery === false ) {
-			$this->getOutput()->addWikiMsg( 'linksearch-error' );
-		} else {
-			// For debugging
-			// Generates invalid xhtml with patterns that contain --
-			//$this->getOutput()->addHTML( "\n<!-- " . htmlspecialchars( $this->mMungedQuery ) . " -->\n" );
-			parent::doQuery( $offset, $limit );
-		}
-	}
-
-	/**
 	 * Override to squash the ORDER BY.
 	 * We do a truncated index search, so the optimizer won't trust
 	 * it as good enough for optimizing sort. The implicit ordering
