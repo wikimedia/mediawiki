@@ -1,4 +1,4 @@
-@chrome @clean @en.wikipedia.beta.wmflabs.org @firefox @phantomjs @test2.wikipedia.org
+@chrome @clean @firefox @phantomjs
 Feature: View History
 
   Scenario: Edit page and view history
