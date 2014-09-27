@@ -280,4 +280,25 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		$this->assertTrue( $called, 'Recursive call succeeded' );
 	}
 
+	/**
+	 * Test if all classes in SpecialPageFactory::$list exists.
+	 */
+	public function testClassNameInPageList() {
+		global $wgAutoloadLocalClasses;
+
+		// Use reflection to make SpecialPageFactory::getPageList() public
+		$class = new ReflectionClass( 'SpecialPageFactory' );
+		$method = $class->getMethod( 'getPageList' );
+		$method->setAccessible( true );
+
+		$pageList = $method->invoke( null );
+
+		foreach( $pageList as $name => $class ) {
+			$this->assertArrayHasKey(
+				$class,
+				$wgAutoloadLocalClasses,
+				'Class ' . $class . ' for special page ' . $name . ' not in autoloader (with exact case)'
+			);
+		}
+	}
 }
