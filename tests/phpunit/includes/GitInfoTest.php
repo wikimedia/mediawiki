@@ -10,7 +10,7 @@ class GitInfoTest extends MediaWikiTestCase {
 	}
 
 	public function testValidJsonData() {
-		$dir = $GLOBALS['IP'] . '/testValidJsonData';
+		$dir = $GLOBALS['IP'] . DIRECTORY_SEPARATOR . 'testValidJsonData';
 		$fixture = new GitInfo( $dir );
 
 		$this->assertTrue( $fixture->cacheIsComplete() );
