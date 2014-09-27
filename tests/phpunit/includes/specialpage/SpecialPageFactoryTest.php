@@ -28,6 +28,33 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		SpecialPageFactory::resetList();
 	}
 
+	/**
+	 * Test if the classes in SpecialPageFactory::$list exists.
+	 * Run this as first test, to avoid a broken SpecialPageFactory::$list due to calls to
+	 * SpecialPageFactory::resetList().
+	 */
+	public function testClassNameInPageList() {
+		global $wgAutoloadLocalClasses;
+
+		// Use reflection to make SpecialPageFactory::getPageList() public
+		$class = new ReflectionClass( 'SpecialPageFactory' );
+		$method = $class->getMethod( 'getPageList' );
+		$method->setAccessible( true );
+
+		$pageList = $method->invoke( null );
+
+		// Avoid a to short list due to reset calls from later tests
+		$this->assertTrue( count( $pageList ) > 10, 'page list to short' );
+
+		foreach( $pageList as $name => $class ) {
+			$this->assertArrayHasKey(
+				$class,
+				$wgAutoloadLocalClasses,
+				'Class ' . $class . ' for special page ' . $name . ' not in autoloader (with exact case)'
+			);
+		}
+	}
+
 	public function newSpecialAllPages() {
 		return new SpecialAllPages();
 	}
