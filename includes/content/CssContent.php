@@ -30,48 +30,21 @@
  *
  * @ingroup Content
  */
-class CssContent extends TextContent {
+class CssContent extends CodeContent {
 
 	/**
 	 * @param string $text CSS code.
 	 * @param string $modelId the content content model
 	 */
 	public function __construct( $text, $modelId = CONTENT_MODEL_CSS ) {
-		parent::__construct( $text, $modelId );
-	}
-
-	/**
-	 * Returns a Content object with pre-save transformations applied using
-	 * Parser::preSaveTransform().
-	 *
-	 * @param Title $title
-	 * @param User $user
-	 * @param ParserOptions $popts
-	 *
-	 * @return CssContent
-	 *
-	 * @see TextContent::preSaveTransform
-	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		global $wgParser;
-		// @todo Make pre-save transformation optional for script pages
-
-		$text = $this->getNativeData();
-		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
-
-		return new static( $pst );
+		parent::__construct( $text, $modelId, CodeContent::ApplyPST );
 	}
 
 	/**
 	 * @return string CSS wrapped in a <pre> tag.
 	 */
 	protected function getHtml() {
-		$html = "";
-		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-		$html .= htmlspecialchars( $this->getNativeData() );
-		$html .= "\n</pre>\n";
-
-		return $html;
+		return $this->codeToPreElement( 'mw-css', $this->getNativeData() );
 	}
 
 }
