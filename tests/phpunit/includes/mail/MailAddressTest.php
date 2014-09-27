@@ -14,6 +14,9 @@ class MailAddressTest extends MediaWikiTestCase {
 	 * @covers MailAddress::newFromUser
 	 */
 	public function testNewFromUser() {
+		if ( wfIsWindows() ) {
+			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
+		}
 		$user = $this->getMock( 'User' );
 		$user->expects( $this->any() )->method( 'getName' )->will( $this->returnValue( 'UserName' ) );
 		$user->expects( $this->any() )->method( 'getEmail' )->will( $this->returnValue( 'foo@bar.baz' ) );
