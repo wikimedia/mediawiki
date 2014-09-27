@@ -123,14 +123,16 @@ class FormatJson {
 	}
 
 	/**
-	 * Decodes a JSON string.
+	 * Decodes a JSON string. It is recommended to use FormatJson::parse(), which returns more comprehensive
+	 * result in case of an error.
 	 *
 	 * @param string $value The JSON string being decoded
 	 * @param bool $assoc When true, returned objects will be converted into associative arrays.
 	 *
 	 * @return mixed The value encoded in JSON in appropriate PHP type.
-	 * `null` is returned if the JSON cannot be decoded or if the encoded data is deeper than
-	 * the recursion limit.
+	 * `null` is returned if $value represented `null`, if $value could not be decoded,
+	 * or if the encoded data was deeper than the recursion limit.
+	 * Use FormatJson::parse() to distinguish between types of `null` and to get proper error code.
 	 */
 	public static function decode( $value, $assoc = false ) {
 		return json_decode( $value, $assoc );
@@ -138,11 +140,11 @@ class FormatJson {
 
 	/**
 	 * Decodes a JSON string.
+	 * Unlike FormatJson::decode(), if $value represents null value, it will be properly decoded as valid.
 	 *
 	 * @param string $value The JSON string being decoded
-	 * @param int $options A bit field that allows FORCE_ASSOC, TRY_FIXING, WRAP_RESULT
-	 * For backward compatibility, FORCE_ASSOC is set to 1 to match the legacy 'true'
-	 * @return Status If good, the value is available in $result->getValue()
+	 * @param int $options A bit field that allows FORCE_ASSOC
+	 * @return Status If valid JSON, the value is available in $result->getValue()
 	 */
 	public static function parse( $value, $options = 0 ) {
 		$assoc = ( $options & self::FORCE_ASSOC ) !== 0;
