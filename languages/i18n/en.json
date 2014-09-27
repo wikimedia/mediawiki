@@ -3559,6 +3559,7 @@
 	"mediastatistics-header-text": "Textual",
 	"mediastatistics-header-executable": "Executables",
 	"mediastatistics-header-archive": "Compressed formats",
+	"json-warn-trailing-comma": "$1 trailing {{PLURAL:$1|comma was|commas were}} removed from JSON",
 	"json-error-unknown": "There was a problem with the JSON. Error: $1",
 	"json-error-depth": "The maximum stack depth has been exceeded",
 	"json-error-state-mismatch": "Invalid or malformed JSON",
