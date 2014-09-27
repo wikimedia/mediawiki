@@ -61,7 +61,14 @@ class FormatJson {
 	 *
 	 * @since 1.24
 	 */
-	const FORCE_ASSOC = 1;
+	const FORCE_ASSOC = 0x1;
+
+	/**
+	 * If set, attempts to fix invalid json.
+	 *
+	 * @since 1.24
+	 */
+	const TRY_FIXING = 0x2;
 
 	/**
 	 * Regex that matches whitespace inside empty arrays and objects.
@@ -148,6 +155,28 @@ class FormatJson {
 		$assoc = ( $options & self::FORCE_ASSOC ) !== 0;
 		$result = json_decode( $value, $assoc );
 		$code = json_last_error();
+
+		if ( $code === JSON_ERROR_SYNTAX && ( $options & self::TRY_FIXING ) !== 0 ) {
+			// The most common error is the trailing comma in a list or an object.
+			// We cannot simply replace /,\s*[}\]]/ because it could be inside a string value.
+			// But we could use the fact that JSON does not allow multi-line string values,
+			// And remove trailing commas if they are et the end of a line.
+			// JSON only allows 4 control characters: [ \t\r\n].  So we must not use '\s' for matching.
+			// Regex match   ,]<any non-quote chars>\n   or   ,\n]   with optional spaces/tabs.
+			$count = 0;
+			$value =
+				preg_replace( '/,([ \t]*[}\]][^"\r\n]*([\r\n]|$)|[ \t]*[\r\n][ \t\r\n]*[}\]])/', '$1',
+					$value, - 1, $count );
+			if ( $count > 0 ) {
+				$result = json_decode( $value, $assoc );
+				if ( JSON_ERROR_NONE === json_last_error() ) {
+					// Report warning
+					$st = Status::newGood( $result );
+					$st->warning( wfMessage( 'json-warn-trailing-comma' )->numParams( $count ) );
+					return $st;
+				}
+			}
+		}
 
 		switch ( $code ) {
 			case JSON_ERROR_NONE:

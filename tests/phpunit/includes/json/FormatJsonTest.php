@@ -169,6 +169,42 @@ class FormatJsonTest extends MediaWikiTestCase {
 		$this->assertEquals( $value, $st->getValue() );
 	}
 
+	public static function provideParseTryFixing() {
+		return array(
+			array( "[,]", '[]' ),
+			array( "[ , ]", '[]' ),
+			array( "[ , }", false ),
+			array( '[1],', false ),
+			array( "[1,]", '[1]' ),
+			array( "[1\n,]", '[1]' ),
+			array( "[1,\n]", '[1]' ),
+			array( "[1,]\n", '[1]' ),
+			array( "[1\n,\n]\n", '[1]' ),
+			array( '["a,",]', '["a,"]' ),
+			array( "[[1,]\n,[2,\n],[3\n,]]", '[[1],[2],[3]]' ),
+			array( '[[1,],[2,],[3,]]', false ), // I wish we could parse this, but would need quote parsing
+			array( '[1,,]', false ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideParseTryFixing
+	 * @param string $value
+	 * @param string|bool $expected
+	 */
+	public function testParseTryFixing( $value, $expected ) {
+		$st = FormatJson::parse( $value, FormatJson::TRY_FIXING );
+		$this->assertType( 'Status', $st );
+		if ( $expected === false ) {
+			$this->assertFalse( $st->isOK() );
+		} else {
+			$this->assertFalse( $st->isGood() );
+			$this->assertTrue( $st->isOK() );
+			$val = FormatJson::encode( $st->getValue(), false, FormatJson::ALL_OK );
+			$this->assertEquals( $expected, $val );
+		}
+	}
+
 	public static function provideParseErrors() {
 		return array(
 			array( 'aaa' ),
