@@ -6,11 +6,6 @@
  */
 class XMPTest extends MediaWikiTestCase {
 
-	protected function setUp() {
-		parent::setUp();
-		$this->checkPHPExtension( 'exif' ); # Requires libxml to do XMP parsing
-	}
-
 	/**
 	 * Put XMP in, compare what comes out...
 	 *
@@ -24,6 +19,8 @@ class XMPTest extends MediaWikiTestCase {
 	 * @covers XMPReader::parse
 	 */
 	public function testXMPParse( $xmp, $expected, $info ) {
+		$this->checkPHPExtension( 'exif' ); # Requires libxml to do XMP parsing
+
 		if ( !is_string( $xmp ) || !is_array( $expected ) ) {
 			throw new Exception( "Invalid data provided to " . __METHOD__ );
 		}
@@ -84,6 +81,8 @@ class XMPTest extends MediaWikiTestCase {
 	 * @covers XMPReader::parseExtended
 	 */
 	public function testExtendedXMP() {
+		$this->checkPHPExtension( 'exif' ); # Requires libxml to do XMP parsing
+
 		$xmpPath = __DIR__ . '/../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
@@ -116,6 +115,8 @@ class XMPTest extends MediaWikiTestCase {
 	 * @covers XMPReader::parseExtended
 	 */
 	public function testExtendedXMPWithWrongGUID() {
+		$this->checkPHPExtension( 'exif' ); # Requires libxml to do XMP parsing
+
 		$xmpPath = __DIR__ . '/../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
@@ -147,6 +148,8 @@ class XMPTest extends MediaWikiTestCase {
 	 * @covers XMPReader::parseExtended
 	 */
 	public function testExtendedXMPMissingPacket() {
+		$this->checkPHPExtension( 'exif' ); # Requires libxml to do XMP parsing
+
 		$xmpPath = __DIR__ . '/../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );

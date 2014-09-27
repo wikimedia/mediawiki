@@ -11,7 +11,6 @@ class ExifTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->checkPHPExtension( 'exif' );
 
 		$this->mediaPath = __DIR__ . '/../../data/media/';
 
@@ -19,6 +18,8 @@ class ExifTest extends MediaWikiTestCase {
 	}
 
 	public function testGPSExtraction() {
+		$this->checkPHPExtension( 'exif' );
+
 		$filename = $this->mediaPath . 'exif-gps.jpg';
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 		$exif = new Exif( $filename, $seg['byteOrder'] );
@@ -34,6 +35,8 @@ class ExifTest extends MediaWikiTestCase {
 	}
 
 	public function testUnicodeUserComment() {
+		$this->checkPHPExtension( 'exif' );
+
 		$filename = $this->mediaPath . 'exif-user-comment.jpg';
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 		$exif = new Exif( $filename, $seg['byteOrder'] );

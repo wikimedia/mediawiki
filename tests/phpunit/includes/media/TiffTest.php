@@ -12,7 +12,6 @@ class TiffTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->checkPHPExtension( 'exif' );
 
 		$this->setMwGlobals( 'wgShowEXIF', true );
 
@@ -24,6 +23,8 @@ class TiffTest extends MediaWikiTestCase {
 	 * @covers TiffHandler::getMetadata
 	 */
 	public function testInvalidFile() {
+		$this->checkPHPExtension( 'exif' );
+
 		$res = $this->handler->getMetadata( null, $this->filePath . 'README' );
 		$this->assertEquals( ExifBitmapHandler::BROKEN_FILE, $res );
 	}
@@ -32,6 +33,8 @@ class TiffTest extends MediaWikiTestCase {
 	 * @covers TiffHandler::getMetadata
 	 */
 	public function testTiffMetadataExtraction() {
+		$this->checkPHPExtension( 'exif' );
+
 		$res = $this->handler->getMetadata( null, $this->filePath . 'test.tiff' );
 
 		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong

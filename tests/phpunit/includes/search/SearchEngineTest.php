@@ -14,21 +14,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 */
 	protected $search;
 
-	/**
-	 * Checks for database type & version.
-	 * Will skip current test if DB does not support search.
-	 */
 	protected function setUp() {
 		parent::setUp();
-
-		// Search tests require MySQL or SQLite with FTS
-		$dbType = $this->db->getType();
-		$dbSupported = ( $dbType === 'mysql' )
-			|| ( $dbType === 'sqlite' && $this->db->getFulltextSearchModule() == 'FTS3' );
-
-		if ( !$dbSupported ) {
-			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
-		}
 
 		$searchType = $this->db->getSearchEngine();
 		$this->setMwGlobals( array(
@@ -42,6 +29,21 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		unset( $this->search );
 
 		parent::tearDown();
+	}
+
+	/**
+	 * Checks for database type & version.
+	 * Will skip current test if DB does not support search.
+	 */
+	protected function checkHasSearchEngine() {
+		// Search tests require MySQL or SQLite with FTS
+		$dbType = $this->db->getType();
+		$dbSupported = ( $dbType === 'mysql' )
+			|| ( $dbType === 'sqlite' && $this->db->getFulltextSearchModule() == 'FTS3' );
+
+		if ( !$dbSupported ) {
+			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
+		}
 	}
 
 	public function addDBData() {
@@ -95,6 +97,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testFullWidth() {
+		$this->checkHasSearchEngine();
+
 		$this->assertEquals(
 			array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
 			$this->fetchIds( $this->search->searchText( 'AZ' ) ),
@@ -114,6 +118,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testTextSearch() {
+		$this->checkHasSearchEngine();
+
 		$this->assertEquals(
 			array( 'Smithee' ),
 			$this->fetchIds( $this->search->searchText( 'smithee' ) ),
@@ -121,6 +127,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testTextPowerSearch() {
+		$this->checkHasSearchEngine();
+
 		$this->search->setNamespaces( array( 0, 1, 4 ) );
 		$this->assertEquals(
 			array(
@@ -132,6 +140,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testTitleSearch() {
+		$this->checkHasSearchEngine();
+
 		$this->assertEquals(
 			array(
 				'Alan Smithee',
@@ -142,6 +152,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testTextTitlePowerSearch() {
+		$this->checkHasSearchEngine();
+
 		$this->search->setNamespaces( array( 0, 1, 4 ) );
 		$this->assertEquals(
 			array(

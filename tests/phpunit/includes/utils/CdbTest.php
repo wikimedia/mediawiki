@@ -7,8 +7,7 @@
  */
 class CdbTest extends MediaWikiTestCase {
 
-	protected function setUp() {
-		parent::setUp();
+	protected function checkHasCdb() {
 		if ( !CdbReader::haveExtension() ) {
 			$this->markTestSkipped( 'Native CDB support is not available' );
 		}
@@ -18,6 +17,8 @@ class CdbTest extends MediaWikiTestCase {
 	 * @group medium
 	 */
 	public function testCdb() {
+		$this->checkHasCdb();
+
 		$dir = wfTempDir();
 		if ( !is_writable( $dir ) ) {
 			$this->markTestSkipped( "Temp dir isn't writable" );

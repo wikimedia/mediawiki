@@ -5,8 +5,7 @@
  */
 class TidyTest extends MediaWikiTestCase {
 
-	protected function setUp() {
-		parent::setUp();
+	protected function checkHasTidy() {
 		$check = MWTidy::tidy( '' );
 		if ( strpos( $check, '<!--' ) !== false ) {
 			$this->markTestSkipped( 'Tidy not found' );
@@ -17,6 +16,8 @@ class TidyTest extends MediaWikiTestCase {
 	 * @dataProvider provideTestWrapping
 	 */
 	public function testTidyWrapping( $expected, $text, $msg = '' ) {
+		$this->checkHasTidy();
+
 		$text = MWTidy::tidy( $text );
 		// We don't care about where Tidy wants to stick is <p>s
 		$text = trim( preg_replace( '#</?p>#', '', $text ) );

@@ -8,7 +8,6 @@ class JpegTest extends MediaWikiMediaTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->checkPHPExtension( 'exif' );
 
 		$this->setMwGlobals( 'wgShowEXIF', true );
 
@@ -16,12 +15,16 @@ class JpegTest extends MediaWikiMediaTestCase {
 	}
 
 	public function testInvalidFile() {
+		$this->checkPHPExtension( 'exif' );
+
 		$file = $this->dataFile( 'README', 'image/jpeg' );
 		$res = $this->handler->getMetadata( $file, $this->filePath . 'README' );
 		$this->assertEquals( ExifBitmapHandler::BROKEN_FILE, $res );
 	}
 
 	public function testJpegMetadataExtraction() {
+		$this->checkPHPExtension( 'exif' );
+
 		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
 		$res = $this->handler->getMetadata( $file, $this->filePath . 'test.jpg' );
 		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
@@ -36,6 +39,8 @@ class JpegTest extends MediaWikiMediaTestCase {
 	 * @covers JpegHandler::getCommonMetaArray
 	 */
 	public function testGetIndependentMetaArray() {
+		$this->checkPHPExtension( 'exif' );
+
 		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
 		$res = $this->handler->getCommonMetaArray( $file );
 		$expected = array(

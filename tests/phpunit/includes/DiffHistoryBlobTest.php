@@ -2,16 +2,12 @@
 
 class DiffHistoryBlobTest extends MediaWikiTestCase {
 
-	protected function setUp() {
-		parent::setUp();
-
+	protected function checkHasXdiff() {
 		$this->checkPHPExtension( 'hash' );
 		$this->checkPHPExtension( 'xdiff' );
 
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
 			$this->markTestSkipped( 'The version of xdiff extension is lower than 1.5.0' );
-
-			return;
 		}
 	}
 
@@ -21,6 +17,8 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 	 * @covers DiffHistoryBlob::xdiffAdler32
 	 */
 	public function testXdiffAdler32( $input ) {
+		$this->checkHasXdiff();
+
 		$xdiffHash = substr( xdiff_string_rabdiff( $input, '' ), 0, 4 );
 		$dhb = new DiffHistoryBlob;
 		$myHash = $dhb->xdiffAdler32( $input );

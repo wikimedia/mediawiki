@@ -8,11 +8,6 @@
  * @covers UppercaseCollation
  */
 class CollationTest extends MediaWikiLangTestCase {
-	protected function setUp() {
-		parent::setUp();
-		$this->checkPHPExtension( 'intl' );
-	}
-
 	/**
 	 * Test to make sure, that if you
 	 * have "X" and "XY", the binary
@@ -27,6 +22,8 @@ class CollationTest extends MediaWikiLangTestCase {
 	 * @dataProvider prefixDataProvider
 	 */
 	public function testIsPrefix( $lang, $base, $extended ) {
+		$this->checkPHPExtension( 'intl' );
+
 		$cp = Collator::create( $lang );
 		$cp->setStrength( Collator::PRIMARY );
 		$baseBin = $cp->getSortKey( $base );
@@ -60,6 +57,8 @@ class CollationTest extends MediaWikiLangTestCase {
 	 * @dataProvider notPrefixDataProvider
 	 */
 	public function testNotIsPrefix( $lang, $base, $extended ) {
+		$this->checkPHPExtension( 'intl' );
+
 		$cp = Collator::create( $lang );
 		$cp->setStrength( Collator::PRIMARY );
 		$baseBin = $cp->getSortKey( $base );
@@ -88,6 +87,8 @@ class CollationTest extends MediaWikiLangTestCase {
 	 * @dataProvider firstLetterProvider
 	 */
 	public function testGetFirstLetter( $collation, $string, $firstLetter ) {
+		$this->checkPHPExtension( 'intl' );
+
 		$col = Collation::factory( $collation );
 		$this->assertEquals( $firstLetter, $col->getFirstLetter( $string ) );
 	}

@@ -8,7 +8,6 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->checkPHPExtension( 'exif' );
 		$this->setMwGlobals( 'wgShowEXIF', true );
 	}
 
@@ -16,6 +15,8 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	 * @covers File::formatMetadata
 	 */
 	public function testInvalidDate() {
+		$this->checkPHPExtension( 'exif' );
+
 		$file = $this->dataFile( 'broken_exif_date.jpg', 'image/jpeg' );
 
 		// Throws an error if bug hit
@@ -43,6 +44,8 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	 * @covers FormatMetadata::flattenArray
 	 */
 	public function testFlattenArray( $vals, $type, $noHtml, $ctx, $expected ) {
+		$this->checkPHPExtension( 'exif' );
+
 		$actual = FormatMetadata::flattenArray( $vals, $type, $noHtml, $ctx );
 		$this->assertEquals( $expected, $actual );
 	}

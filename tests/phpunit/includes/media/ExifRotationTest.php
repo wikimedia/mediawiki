@@ -11,7 +11,6 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->checkPHPExtension( 'exif' );
 
 		$this->handler = new BitmapHandler();
 
@@ -32,6 +31,8 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideFiles
 	 */
 	public function testMetadata( $name, $type, $info ) {
+		$this->checkPHPExtension( 'exif' );
+
 		if ( !$this->handler->canRotate() ) {
 			$this->markTestSkipped( "This test needs a rasterizer that can auto-rotate." );
 		}
@@ -48,6 +49,8 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideFiles
 	 */
 	public function testMetadataAutoRotate( $name, $type, $info ) {
+		$this->checkPHPExtension( 'exif' );
+
 		$this->setMwGlobals( 'wgEnableAutoRotation', null );
 		$this->setMwGlobals( 'wgUseImageMagick', true );
 		$this->setMwGlobals( 'wgUseImageResize', true );
@@ -62,6 +65,8 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideFiles
 	 */
 	public function testRotationRendering( $name, $type, $info, $thumbs ) {
+		$this->checkPHPExtension( 'exif' );
+
 		if ( !$this->handler->canRotate() ) {
 			$this->markTestSkipped( "This test needs a rasterizer that can auto-rotate." );
 		}
@@ -143,6 +148,8 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideFilesNoAutoRotate
 	 */
 	public function testMetadataNoAutoRotate( $name, $type, $info ) {
+		$this->checkPHPExtension( 'exif' );
+
 		$this->setMwGlobals( 'wgEnableAutoRotation', false );
 
 		$file = $this->dataFile( $name, $type );
@@ -155,6 +162,8 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideFilesNoAutoRotate
 	 */
 	public function testMetadataAutoRotateUnsupported( $name, $type, $info ) {
+		$this->checkPHPExtension( 'exif' );
+
 		$this->setMwGlobals( 'wgEnableAutoRotation', null );
 		$this->setMwGlobals( 'wgUseImageResize', false );
 
@@ -168,6 +177,8 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideFilesNoAutoRotate
 	 */
 	public function testRotationRenderingNoAutoRotate( $name, $type, $info, $thumbs ) {
+		$this->checkPHPExtension( 'exif' );
+
 		$this->setMwGlobals( 'wgEnableAutoRotation', false );
 
 		foreach ( $thumbs as $size => $out ) {
@@ -250,6 +261,8 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideBitmapExtractPreRotationDimensions
 	 */
 	public function testBitmapExtractPreRotationDimensions( $rotation, $expected ) {
+		$this->checkPHPExtension( 'exif' );
+
 		$result = $this->handler->extractPreRotationDimensions( array(
 			'physicalWidth' => self::TEST_WIDTH,
 			'physicalHeight' => self::TEST_HEIGHT,

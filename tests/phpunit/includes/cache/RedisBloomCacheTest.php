@@ -15,16 +15,26 @@ class BloomCacheRedisTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		self::$suffix = self::$suffix ? : mt_rand();
+		$this->clearBloom();
+	}
 
+	protected function checkHasBloom() {
 		$fcache = BloomCache::get( 'main' );
-		if ( $fcache instanceof BloomCacheRedis ) {
-			$fcache->delete( "unit-testing-" . self::$suffix );
-		} else {
+		if ( !$fcache instanceof BloomCacheRedis ) {
 			$this->markTestSkipped( 'The main bloom cache is not redis.' );
 		}
 	}
 
+	protected function clearBloom() {
+		$fcache = BloomCache::get( 'main' );
+		if ( $fcache instanceof BloomCacheRedis ) {
+			$fcache->delete( "unit-testing-" . self::$suffix );
+		}
+	}
+
 	public function testBloomCache() {
+		$this->checkHasBloom();
+
 		$key = "unit-testing-" . self::$suffix;
 		$fcache = BloomCache::get( 'main' );
 		$count = 1500;
@@ -63,9 +73,6 @@ class BloomCacheRedisTest extends MediaWikiTestCase {
 	protected function tearDown() {
 		parent::tearDown();
 
-		$fcache = BloomCache::get( 'main' );
-		if ( $fcache instanceof BloomCacheRedis ) {
-			$fcache->delete( "unit-testing-" . self::$suffix );
-		}
+		$this->clearBloom();
 	}
 }
