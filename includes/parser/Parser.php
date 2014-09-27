@@ -4878,9 +4878,9 @@ class Parser {
 		# Signatures
 		$sigText = $this->getUserSig( $user );
 		$text = strtr( $text, array(
-			'~~~~~' => $d,
-			'~~~~' => "$sigText $d",
-			'~~~' => $sigText
+			'~~~~~' => "<span class='mw-user-sig'>$d</span>",
+			'~~~~' => "<span class='mw-user-sig'>$sigText $d</span>",
+			'~~~' => "<span class='mw-user-sig'>$sigText</span>",
 		) );
 
 		# Context links ("pipe tricks"): [[|name]] and [[name (context)|]]
