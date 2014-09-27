@@ -116,12 +116,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		if ( $this->getRequest()->getBool( 'wpCancel' ) ) {
-			$status = Status::newGood( true );
-		} else {
-			$password = isset( $data['Password'] ) ? $data['Password'] : null;
-			$status = $this->attemptChange( $this->getUser(), $password, $data['NewEmail'] );
-		}
+		$password = isset( $data['Password'] ) ? $data['Password'] : null;
+		$status = $this->attemptChange( $this->getUser(), $password, $data['NewEmail'] );
 
 		$this->status = $status;
 
