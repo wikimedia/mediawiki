@@ -6,12 +6,6 @@
  */
 class SanitizerTest extends MediaWikiTestCase {
 
-	protected function setUp() {
-		parent::setUp();
-
-		AutoLoader::loadClass( 'Sanitizer' );
-	}
-
 	/**
 	 * @covers Sanitizer::decodeCharReferences
 	 */

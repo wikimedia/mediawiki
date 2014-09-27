@@ -6,11 +6,6 @@
  */
 class SVGMetadataExtractorTest extends MediaWikiTestCase {
 
-	protected function setUp() {
-		parent::setUp();
-		AutoLoader::loadClass( 'SVGMetadataExtractorTest' );
-	}
-
 	/**
 	 * @dataProvider provideSvgFiles
 	 */
