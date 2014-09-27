@@ -3274,5 +3274,14 @@
 	"mediastatistics-header-office": "Биротехнички",
 	"mediastatistics-header-text": "Текстуални",
 	"mediastatistics-header-executable": "Извршни",
-	"mediastatistics-header-archive": "Збиени формати"
+	"mediastatistics-header-archive": "Збиени формати",
+	"json-error-unknown": "Се јави проблем со JSON. Грешка: $1.",
+	"json-error-depth": "Надмината е максималната дозволена длабочина на пластот",
+	"json-error-state-mismatch": "Неважечки или погрешно срочен JSON",
+	"json-error-ctrl-char": "Грешка во контролниот знак. Можеби е неисправно кодиран",
+	"json-error-syntax": "Синтаксна грешка",
+	"json-error-utf8": "Неисправно срочени UTF-8-знаци. Може да се неисправно кодирани",
+	"json-error-recursion": "Има една или повеќе повторниви наводи во вредноста што треба да се кодираат",
+	"json-error-inf-or-nan": "Има една или повеќе NAN- или INF-вредности што треба да се кодираат",
+	"json-error-unsupported-type": "Зададена е вредност од тип што не може да се кодира"
 }

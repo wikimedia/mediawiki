@@ -3218,5 +3218,10 @@
 	"mediastatistics-header-audio": "Audio",
 	"mediastatistics-header-video": "Filmy",
 	"mediastatistics-header-executable": "Pliki wykonywalne",
-	"mediastatistics-header-archive": "Formaty skompresowane"
+	"mediastatistics-header-archive": "Formaty skompresowane",
+	"json-error-unknown": "Wystąpił problem z JSON. Błąd: $1",
+	"json-error-depth": "Została przekroczona maksymalna głębokość stosu",
+	"json-error-syntax": "Błąd składni",
+	"json-error-utf8": "Nieprawidłowe znaki UTF-8, prawdopodobnie niepoprawnie zakodowane",
+	"json-error-unsupported-type": "Podano wartość typu, która nie mogła być kodowana"
 }

@@ -3233,5 +3233,14 @@
 	"mediastatistics-header-office": "办公文件",
 	"mediastatistics-header-text": "文本",
 	"mediastatistics-header-executable": "可执行文件",
-	"mediastatistics-header-archive": "压缩格式"
+	"mediastatistics-header-archive": "压缩格式",
+	"json-error-unknown": "JSON出现问题。错误：$1",
+	"json-error-depth": "超出最大堆栈深度",
+	"json-error-state-mismatch": "无效或格式不正确的JSON",
+	"json-error-ctrl-char": "控制字符错误，可能是错误编码",
+	"json-error-syntax": "语法错误",
+	"json-error-utf8": "不正确的UTF-8字符，可能是错误编码",
+	"json-error-recursion": "要编码的数值中一个或更多递归引用",
+	"json-error-inf-or-nan": "要编码的数值中一个或更多NAN或INF值",
+	"json-error-unsupported-type": "给出了不能编码的类型的值"
 }

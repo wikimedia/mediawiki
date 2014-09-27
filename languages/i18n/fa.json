@@ -1028,7 +1028,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|کاربر تأییدشده}}",
 	"group-bot-member": "ربات",
 	"group-sysop-member": "{{GENDER:$1|مدیر}}",
-	"group-bureaucrat-member": "{{GENDER:$1|دیوانسالار}}",
+	"group-bureaucrat-member": "{{GENDER:$1|دیوان‌سالار}}",
 	"group-suppress-member": "{{GENDER:$1|نظارت}}",
 	"grouppage-user": "{{ns:project}}:کاربران",
 	"grouppage-autoconfirmed": "{{ns:project}}:کاربران تأییدشده",
@@ -3221,5 +3221,14 @@
 	"mediastatistics-header-office": "دفتر",
 	"mediastatistics-header-text": "متنی",
 	"mediastatistics-header-executable": "اجرایی",
-	"mediastatistics-header-archive": "قالب‌های فشرده"
+	"mediastatistics-header-archive": "قالب‌های فشرده",
+	"json-error-unknown": "مشکلی با جی‌سن بود. خطا: $1",
+	"json-error-depth": "بیشینهٔ عمق پشته رد شده است",
+	"json-error-state-mismatch": "جی‌سن نادرست یا نافض",
+	"json-error-ctrl-char": "خطای نویسهٔ کنترلی، احتمالاً به نادرستی کدگذاری شده است",
+	"json-error-syntax": "خطای نحوی",
+	"json-error-utf8": "نویسه‌های نادرست یوتی‌اف-۸، احتمالاً نادرست کدگذاری شده است",
+	"json-error-recursion": "ارجاع بازگشتی یک یا بیشتر در مقداری که کذگذاری می‌شود",
+	"json-error-inf-or-nan": "مقادیر INF یا NAN یک یا بیشتر در مقداری که کدگذاری می‌شود",
+	"json-error-unsupported-type": "یک مقداری نوعی که نمی‌تواند کدگذاری شود داده شده است"
 }

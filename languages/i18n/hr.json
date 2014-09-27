@@ -2283,7 +2283,7 @@
 	"minutes-ago": "prije $1 {{PLURAL:$1|minute|minuta}}",
 	"seconds-ago": "prije $1 {{PLURAL:$1|sekunde|sekundi}}",
 	"bad_image_list": "Rabi se sljedeći format:\n\nSamo retci koji počinju sa zvjezdicom su prikazani. Prva poveznica u retku mora biti poveznica na nevaljanu sliku.\nSvaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se slike pojavljuju ''inline''.",
-	"variantname-sr-ec": "ћирилица",
+	"variantname-sr-ec": "ćirilica",
 	"variantname-sr-el": "latinica",
 	"metadata": "Metapodaci",
 	"metadata-help": "Ova datoteka sadržava dodatne podatke koje je vjerojatno dodala digitalna kamera ili skener u procesu snimanja odnosno digitalizacije. Ako je datoteka mijenjana, podatci možda nisu u skladu sa stvarnim stanjem.",

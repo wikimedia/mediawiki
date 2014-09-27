@@ -3141,5 +3141,6 @@
 	"mediastatistics-header-office": "Офіс",
 	"mediastatistics-header-text": "Тэкст",
 	"mediastatistics-header-executable": "Выконваныя файлы",
-	"mediastatistics-header-archive": "Сьціснутыя фарматы"
+	"mediastatistics-header-archive": "Сьціснутыя фарматы",
+	"json-error-unknown": "Узьнікла праблема з JSON. Памылка: $1"
 }

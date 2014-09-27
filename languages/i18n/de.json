@@ -3226,5 +3226,14 @@
 	"mediastatistics-header-office": "Office",
 	"mediastatistics-header-text": "Text",
 	"mediastatistics-header-executable": "Ausführbare Dateien",
-	"mediastatistics-header-archive": "Komprimierte Formate"
+	"mediastatistics-header-archive": "Komprimierte Formate",
+	"json-error-unknown": "Es gab ein Problem mit dem JSON. Fehler: $1",
+	"json-error-depth": "Die maximale Stapeltiefe wurde überschritten",
+	"json-error-state-mismatch": "Ungültiges oder fehlerhaftes JSON",
+	"json-error-ctrl-char": "Steuerzeichenfehler, vermutlich falsch kodiert",
+	"json-error-syntax": "Syntax-Fehler",
+	"json-error-utf8": "Fehlerhafte UTF-8-Zeichen, vermutlich falsch kodiert",
+	"json-error-recursion": "Eine oder mehrere zu kodierende rekursive Referenzen im Wert",
+	"json-error-inf-or-nan": "Eine oder mehrere zu kodierende NAN- oder INF-Werte im Wert",
+	"json-error-unsupported-type": "Ein Wert eines Typs, der nicht kodiert werden kann, wurde angegeben"
 }

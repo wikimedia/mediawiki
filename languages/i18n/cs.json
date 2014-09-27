@@ -3202,5 +3202,14 @@
 	"mediastatistics-header-office": "Kancelářské soubory",
 	"mediastatistics-header-text": "Text",
 	"mediastatistics-header-executable": "Spustitelné soubory",
-	"mediastatistics-header-archive": "Komprimované formáty"
+	"mediastatistics-header-archive": "Komprimované formáty",
+	"json-error-unknown": "Došlo k potížím s JSONem. Chyba: $1",
+	"json-error-depth": "Byla překročena maximální hloubka zásobníku",
+	"json-error-state-mismatch": "Neplatný nebo poškozený JSON",
+	"json-error-ctrl-char": "Chybný řídicí znak, možná nesprávné kódování",
+	"json-error-syntax": "Syntaktická chyba",
+	"json-error-utf8": "Poškozené znaky UTF-8, možná nesprávné kódování",
+	"json-error-recursion": "Jeden či více rekurzivních odkazů v kódované hodnotě",
+	"json-error-inf-or-nan": "Jedna či více hodnot NAN nebo INF v kódované hodnotě",
+	"json-error-unsupported-type": "Dodána hodnota nekódovatelného typu"
 }
