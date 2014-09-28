@@ -2699,8 +2699,10 @@ actions).
 $action: action name
 $article: article "acted on"
 
-'UnitTestsList': Called when building a list of files with PHPUnit tests.
-&$files: list of files
+'UnitTestsList': Called when building a list of paths containing PHPUnit tests.
+If directories are given, they will be searched for -Test.php and -TestCase.php
+files.
+&$files: list of test case file and directory paths
 
 'UnwatchArticle': Before a watch is removed from an article.
 $user: user watching
