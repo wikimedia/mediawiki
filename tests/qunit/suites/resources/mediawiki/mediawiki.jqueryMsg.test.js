@@ -54,7 +54,9 @@
 
 			'jquerymsg-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
 
-			'external-link-replace': 'Foo [$1 bar]'
+			'external-link-replace': 'Foo [$1 bar]',
+			'external-link-plural': 'Foo {{PLURAL:$1|is [$2 one]|are [$2 some]|2=[$2 two]|3=three|4=a=b|5=}} things.',
+			'plural-only-explicit-forms': 'It is a {{PLURAL:$1|1=single|2=double}} room.'
 		}
 	} ) );
 
@@ -85,7 +87,7 @@
 			} );
 	}
 
-	QUnit.test( 'Replace', 9, function ( assert ) {
+	QUnit.test( 'Replace', 16, function ( assert ) {
 		mw.messages.set( 'simple', 'Foo $1 baz $2' );
 
 		assert.equal( formatParse( 'simple' ), 'Foo $1 baz $2', 'Replacements with no substitutes' );
@@ -132,6 +134,41 @@
 			formatParse( 'external-link-replace', 'http://example.org/?x=y&z' ),
 			'Foo <a href="http://example.org/?x=y&amp;z">bar</a>',
 			'Href is not double-escaped in wikilink function'
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 1, 'http://example.org' ),
+			'Foo is <a href="http://example.org">one</a> things.',
+			'Link is expanded inside plural and is not escaped html'
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 2, 'http://example.org' ),
+			'Foo <a href=\"http://example.org\">two</a> things.',
+			'Link is expanded inside an explicit plural form and is not escaped html'
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 3 ),
+			'Foo three things.',
+			'A simple explicit plural form co-existing with complex explicit plural forms'
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 4, 'http://example.org' ),
+			'Foo a=b things.',
+			'Only first equal sign is used as delimiter for explicit plural form. Repeated equal signs does not create issue'
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 5, 'http://example.org' ),
+			'Foo are <a href="http://example.org">some</a> things.',
+			'Invalid explicit plural form. Plural fallback to the "other" plural form'
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 6, 'http://example.org' ),
+			'Foo are <a href="http://example.org">some</a> things.',
+			'Plural fallback to the "other" plural form'
+		);
+		assert.equal(
+			formatParse( 'plural-only-explicit-forms', 2 ),
+			'It is a double room.',
+			'Plural with explicit forms alone.'
 		);
 	} );
 
