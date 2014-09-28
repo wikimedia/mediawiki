@@ -982,6 +982,10 @@ class Article implements Page {
 		$query = $request->getValues();
 		unset( $query['rdfrom'] );
 		unset( $query['title'] );
+		if ( $this->getTitle()->isRedirect() ) {
+			// Prevent double redirects
+			$query['redirect'] = 'no';
+		}
 		$redirectTargetUrl = $this->getTitle()->getLinkURL( $query );
 
 		if ( isset( $this->mRedirectedFrom ) ) {
