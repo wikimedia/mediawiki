@@ -681,9 +681,6 @@ class Revision implements IDBAccessObject {
 			if ( !$this->mSize ) {
 				if ( $this->mContent !== null ) {
 					$this->mSize = $this->mContent->getSize();
-				} else {
-					#NOTE: this should never happen if we have either text or content object!
-					$this->mSize = null;
 				}
 			}
 
