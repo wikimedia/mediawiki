@@ -544,30 +544,10 @@ class Html {
 					$ret .= " $key=\"\"";
 				}
 			} else {
-				// Apparently we need to entity-encode \n, \r, \t, although the
-				// spec doesn't mention that.  Since we're doing strtr() anyway,
-				// and we don't need <> escaped here, we may as well not call
-				// htmlspecialchars().
-				// @todo FIXME: Verify that we actually need to
-				// escape \n\r\t here, and explain why, exactly.
-				#
-				// We could call Sanitizer::encodeAttribute() for this, but we
-				// don't because we're stubborn and like our marginal savings on
-				// byte size from not having to encode unnecessary quotes.
-				$map = array(
-					'&' => '&amp;',
-					'"' => '&quot;',
-					"\n" => '&#10;',
-					"\r" => '&#13;',
-					"\t" => '&#9;'
-				);
-				if ( $wgWellFormedXml ) {
-					// This is allowed per spec: <http://www.w3.org/TR/xml/#NT-AttValue>
-					// But reportedly it breaks some XML tools?
-					// @todo FIXME: Is this really true?
-					$map['<'] = '&lt;';
-				}
-				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
+				// Note: It's important to encode < and >, even if its not
+				// required in this context, due to how language converter
+				// works.
+				$ret .= " $key=$quote" . Sanitizer::encodeAttribute( $value ) . $quote;
 			}
 		}
 		return $ret;
