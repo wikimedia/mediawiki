@@ -54,7 +54,8 @@
 
 			'jquerymsg-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
 
-			'external-link-replace': 'Foo [$1 bar]'
+			'external-link-replace': 'Foo [$1 bar]',
+			'external-link-plural': 'Foo {{PLURAL:$1|is [$2 one]|are [$2 some]|2=[$2 two]|3=three|5=a=b}} things.'
 		}
 	} ) );
 
@@ -85,7 +86,7 @@
 			} );
 	}
 
-	QUnit.test( 'Replace', 9, function ( assert ) {
+	QUnit.test( 'Replace', 14, function ( assert ) {
 		mw.messages.set( 'simple', 'Foo $1 baz $2' );
 
 		assert.equal( formatParse( 'simple' ), 'Foo $1 baz $2', 'Replacements with no substitutes' );
@@ -132,6 +133,31 @@
 			formatParse( 'external-link-replace', 'http://example.org/?x=y&z' ),
 			'Foo <a href="http://example.org/?x=y&amp;z">bar</a>',
 			'Href is not double-escaped in wikilink function'
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 1, 'http://example.org' ),
+			'Foo is <a href="http://example.org">one</a> things.',
+			''
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 2, 'http://example.org' ),
+			'Foo <a href=\"http://example.org\">two</a> things.',
+			''
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 3 ),
+			'Foo three things.',
+			''
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 4, 'http://example.org' ),
+			'Foo are <a href="http://example.org">some</a> things.',
+			''
+		);
+		assert.equal(
+			formatParse( 'external-link-plural', 5, 'http://example.org' ),
+			'Foo a=b things.',
+			''
 		);
 	} );
 

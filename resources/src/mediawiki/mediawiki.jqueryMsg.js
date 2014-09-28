@@ -1129,16 +1129,38 @@
 		 * @return {string} selected pluralized form according to current language
 		 */
 		plural: function ( nodes ) {
-			var forms, formIndex, node, count;
+			var forms, firstChild, explicitPluralForms = {}, explicitPluralFormNumber, formIndex, form, count;
+
 			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
 			forms = nodes.slice( 1 );
 			for ( formIndex = 0; formIndex < forms.length; formIndex++ ) {
-				node = forms[formIndex];
-				if ( node.jquery && node.hasClass( 'mediaWiki_htmlEmitter' )  ) {
-					// This is a nested node, already expanded.
-					forms[formIndex] = forms[formIndex].html();
+				form = forms[formIndex];
+				if ( form.jquery && form.hasClass( 'mediaWiki_htmlEmitter' ) ) {
+					// This is a nested node, may be an explicit plural form
+					firstChild = form.contents().get( 0 );
+					if ( firstChild.nodeType === 3 && /\d+=$/.test( firstChild.textContent ) ) {
+						explicitPluralFormNumber = firstChild.textContent.substr( 0, firstChild.textContent.length - 1 );
+						explicitPluralForms[ parseInt( explicitPluralFormNumber, 10 ) ] = form.contents().splice( 1 );
+						forms[ formIndex ] = undefined;
+					} else if ( /^\d+=/.test( form.html() ) ) {
+						form  = form.html();
+					}
+				}
+				if ( /^\d+=/.test( form ) ) {
+						explicitPluralForms[ parseInt( form.split( /=/ )[0], 10 ) ] = form.split( /=/ ).splice( 1 );
+						forms[ formIndex ] = undefined;
 				}
 			}
+
+			if ( explicitPluralForms[count] ) {
+				return explicitPluralForms[count];
+			}
+
+			// Remove explicit plural forms from the forms. They were set undefined in the above loop.
+			forms = $.map( forms, function ( form ) {
+				return form;
+			} );
+
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
 		},
 
