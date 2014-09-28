@@ -3269,5 +3269,14 @@
 	"mediastatistics-header-office": "Офисные",
 	"mediastatistics-header-text": "Текстовые",
 	"mediastatistics-header-executable": "Исполняемые",
-	"mediastatistics-header-archive": "Архивы"
+	"mediastatistics-header-archive": "Архивы",
+	"json-error-unknown": "Имеется проблема с JSON. Ошибка: $1",
+	"json-error-depth": "Превышена максимальная глубина стека",
+	"json-error-state-mismatch": "Недопустимый или неправильно составленный JSON",
+	"json-error-ctrl-char": "Ошибка управляющего символа, возможно, неверная кодировка",
+	"json-error-syntax": "Синтаксическая ошибка",
+	"json-error-utf8": "Некорректные символы UTF-8, возможно, неверная кодировка",
+	"json-error-recursion": "Должны быть закодированы одна или несколько рекурсивных ссылок в значении",
+	"json-error-inf-or-nan": "Должны быть закодированы одно или несколько NAN- или INF-значений",
+	"json-error-unsupported-type": "Было указано значение типа, который не может быть закодирован"
 }

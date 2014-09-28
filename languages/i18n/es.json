@@ -117,7 +117,8 @@
 			"F3RaN",
 			"Amitie 10g",
 			"Eurodyne",
-			"Gleki"
+			"Gleki",
+			"Jonathan rrr"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -530,7 +531,7 @@
 	"nocookieslogin": "{{SITENAME}} utiliza <em>cookies</em> para la autenticación de usuarios. Las <em>cookies</em> están desactivadas en tu navegador. Por favor, actívalas e inténtalo de nuevo.",
 	"nocookiesfornew": "No se pudo crear la cuenta de usuario, porque no pudimos confirmar su origen.\nAsegúrate de que tienes las cookies activadas, luego recarga esta página e inténtalo de nuevo.",
 	"noname": "No se ha especificado un nombre de usuario válido.",
-	"loginsuccesstitle": "Ya iniciaste sesión",
+	"loginsuccesstitle": "Has accedido correctamente",
 	"loginsuccess": "<strong>Has accedido a {{SITENAME}} como «$1».</strong>",
 	"nosuchuser": "No existe ningún usuario llamado «$1».\nLos nombres de usuario son sensibles a las mayúsculas.\nRevisa la ortografía, o [[Special:UserLogin/signup|crea una cuenta nueva]].",
 	"nosuchusershort": "No hay un usuario con el nombre «$1». Comprueba que lo has escrito correctamente.",
@@ -1675,6 +1676,7 @@
 	"querypage-disabled": "Esta página especial está deshabilitada por motivos de rendimiento.",
 	"booksources": "Fuentes de libros",
 	"booksources-search-legend": "Buscar fuentes de libros",
+	"booksources-search": "Buscar",
 	"booksources-text": "Abajo hay una lista de enlaces a otros sitios que venden libros nuevos y usados, puede que contengan más información sobre los libros que estás buscando.",
 	"booksources-invalid-isbn": "El número de ISBN no parece ser válido; comprueba los errores copiándolo de la fuente original.",
 	"specialloguserlabel": "Usuario:",
@@ -3226,6 +3228,7 @@
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (activado)",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''desactivado''')",
 	"mediastatistics": "Estadísticas de multimedia",
+	"mediastatistics-summary": "Estadísticas sobre los tipos de archivos cargados. Sólo se incluyen las versiones más recientes. Los archivos antiguos o eliminados están excluidos.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 ''byte''|$1 ''bytes''}} ($2; $3 %)",
 	"mediastatistics-table-mimetype": "Tipo MIME",
 	"mediastatistics-table-extensions": "Extensiones posibles",
@@ -3240,5 +3243,12 @@
 	"mediastatistics-header-office": "Oficina",
 	"mediastatistics-header-text": "Textual",
 	"mediastatistics-header-executable": "Ejecutables",
-	"mediastatistics-header-archive": "Formatos comprimidos"
+	"mediastatistics-header-archive": "Formatos comprimidos",
+	"json-error-unknown": "Ocurrió un problema con el código JSON. Error: $1",
+	"json-error-state-mismatch": "JSON no válido o con formato incorrecto",
+	"json-error-ctrl-char": "Error de carácter de control, posiblemente codificada incorrectamente",
+	"json-error-syntax": "Error de sintaxis",
+	"json-error-utf8": "Los caracteres UTF-8 tienen errores de formato; probablemente la codificación es incorrecta.",
+	"json-error-inf-or-nan": "Uno o más valores NAN o INF en el valor a ser codificado",
+	"json-error-unsupported-type": "Fue dado un valor de un tipo que no puede ser codificado"
 }

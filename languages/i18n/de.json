@@ -3227,6 +3227,7 @@
 	"mediastatistics-header-text": "Text",
 	"mediastatistics-header-executable": "Ausführbare Dateien",
 	"mediastatistics-header-archive": "Komprimierte Formate",
+	"json-warn-trailing-comma": "{{PLURAL:$1|Ein anhängendes Komma wurde|$1 anhängende Kommas wurden}} aus JSON entfernt",
 	"json-error-unknown": "Es gab ein Problem mit dem JSON. Fehler: $1",
 	"json-error-depth": "Die maximale Stapeltiefe wurde überschritten",
 	"json-error-state-mismatch": "Ungültiges oder fehlerhaftes JSON",

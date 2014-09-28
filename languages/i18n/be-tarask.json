@@ -3142,5 +3142,6 @@
 	"mediastatistics-header-text": "Тэкст",
 	"mediastatistics-header-executable": "Выконваныя файлы",
 	"mediastatistics-header-archive": "Сьціснутыя фарматы",
-	"json-error-unknown": "Узьнікла праблема з JSON. Памылка: $1"
+	"json-error-unknown": "Узьнікла праблема з JSON. Памылка: $1",
+	"json-error-depth": "Перавышаная максымальная глыбіня стэку"
 }

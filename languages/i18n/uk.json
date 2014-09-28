@@ -3325,5 +3325,11 @@
 	"mediastatistics-header-office": "Офіс",
 	"mediastatistics-header-text": "Текст",
 	"mediastatistics-header-executable": "Виконувані файли",
-	"mediastatistics-header-archive": "Стиснуті формати"
+	"mediastatistics-header-archive": "Стиснуті формати",
+	"json-error-unknown": "Виникла проблема із JSON. Помилка: $1",
+	"json-error-depth": "Перевищено дозволену глибину стека",
+	"json-error-state-mismatch": "Недозволений чи невірно сформований JSON",
+	"json-error-ctrl-char": "Помилковий контрольний символ, можливо, неправильно кодований",
+	"json-error-syntax": "Синтаксична помилка",
+	"json-error-utf8": "Спотворені символи UTF-8, можливо, неправильно закодовано"
 }

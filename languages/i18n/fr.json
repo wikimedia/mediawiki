@@ -3331,5 +3331,14 @@
 	"mediastatistics-header-office": "Bureautique",
 	"mediastatistics-header-text": "Textuel",
 	"mediastatistics-header-executable": "Exécutables",
-	"mediastatistics-header-archive": "Formats compressés"
+	"mediastatistics-header-archive": "Formats compressés",
+	"json-error-unknown": "Il y a eu un problème avec le JSON. Erreur : $1",
+	"json-error-depth": "La taille maximale de la pile a été dépassée",
+	"json-error-state-mismatch": "JSON non valide ou mal formé",
+	"json-error-ctrl-char": "Erreur de caractères de contrôle, peut-être mal encodé",
+	"json-error-syntax": "Erreur de syntaxe",
+	"json-error-utf8": "Caractères UTF-8 mal formés, peut-être mal encodé",
+	"json-error-recursion": "Une ou plusieurs références récursives dans la valeur à encoder",
+	"json-error-inf-or-nan": "Une une plusieurs valeurs NaN ou INF dans la valeur à encoder",
+	"json-error-unsupported-type": "Une valeur a été donnée dans un type ne pouvant pas être encodé"
 }
