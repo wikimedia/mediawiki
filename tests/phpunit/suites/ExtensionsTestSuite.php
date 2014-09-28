@@ -9,9 +9,22 @@ class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
 	public function __construct() {
 		parent::__construct();
 		$files = array();
+		// Extensions can return a list of files or directories
 		wfRunHooks( 'UnitTestsList', array( &$files ) );
-		foreach ( $files as $file ) {
-			$this->addTestFile( $file );
+		foreach ( $files as $path ) {
+			if ( is_dir( $path ) ) {
+				// If the path is a directory, search for test cases.
+				$suffixes = array(
+					'Test.php',
+					'TestCase.php',
+				);
+				$fileIterator = new File_Iterator_Facade();
+				$files = $fileIterator->getFilesAsArray( $path, $suffixes );
+				$this->addTestFiles( $files );
+			} else {
+				// Add a single test case or suite class
+				$this->addTestFile( $path );
+			}
 		}
 		if ( !count( $files ) ) {
 			$this->addTest( new DummyExtensionsTest( 'testNothing' ) );
