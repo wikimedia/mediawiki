@@ -331,6 +331,7 @@ class ApiParamInfo extends ApiBase {
 						$this->context->msg( "apihelp-{$path}-paraminfo-{$tag}" )
 							->numParams( count( $i ) )
 							->params( $this->context->getLanguage()->commaList( $i ) )
+							->params( $module->getModulePrefix() )
 					) );
 					$result->setSubelements( $info, 'text' );
 					$item['info'][] = $info;
