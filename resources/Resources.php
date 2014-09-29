@@ -1333,9 +1333,13 @@ return array(
 			'size-megabytes',
 			'size-gigabytes',
 			'largefileserver',
+			'editwarning-warning',
+			// editwarning-warning uses {{int:prefs-editing}}
+			'prefs-editing',
 		),
 		'dependencies' => array(
 			'jquery.spinner',
+			'mediawiki.jqueryMsg',
 			'mediawiki.api',
 			'mediawiki.libs.jpegmeta',
 			'mediawiki.Title',
