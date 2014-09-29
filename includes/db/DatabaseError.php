@@ -136,10 +136,12 @@ class DBConnectionError extends DBExpectedError {
 		$args = array_slice( func_get_args(), 2 );
 
 		if ( $this->useMessageCache() ) {
-			return wfMessage( $key, $args )->useDatabase( false )->text();
+			$msg = wfMessage( $key )->useDatabase( false );
 		} else {
-			return wfMsgReplaceArgs( $fallback, $args );
+			$msg = new RawMessage( $fallback );
 		}
+
+		return $msg->params( $args )->text();
 	}
 
 	/**
