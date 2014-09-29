@@ -265,7 +265,7 @@ class ChangeTags {
 				'tagfilter',
 				20,
 				$selected,
-				array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' )
+				array( 'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline', 'id' => 'tagfilter' )
 			)
 		);
 
