@@ -603,11 +603,6 @@ class SpecialContributions extends IncludableSpecialPage {
 			$deletedOnlyCheck . $checkLabelTopOnly . $checkLabelNewOnly
 		);
 
-		$className = 'mw-submit';
-		if ( $this->getConfig( 'UseMediaWikiUIEverywhere') ) {
-			$className .= ' mw-ui-button mw-ui-progressive';
-		}
-
 		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
 			Xml::dateMenu(
 				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
@@ -615,7 +610,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			) . ' ' .
 				Xml::submitButton(
 					$this->msg( 'sp-contributions-submit' )->text(),
-					array( 'class' => $className )
+					Html::buttonAttributes( array( 'class' => 'mw-submit' ), array( 'mw-ui-progressive' ) )
 				)
 		);
 

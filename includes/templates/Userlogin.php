@@ -148,11 +148,15 @@ class UserloginTemplate extends BaseTemplate {
 
 			<div class="mw-ui-vform-field">
 				<?php
-				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'pt-login-button' )->text(), 'submit', array(
-					'id' => 'wpLoginAttempt',
-					'tabindex' => '6',
-					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive'
-				) );
+				$attrs = Html::buttonAttributes(
+					array(
+						'id' => 'wpLoginAttempt',
+						'tabindex' => '6',
+					), array(
+						'mw-ui-big', 'mw-ui-block', 'mw-ui-constructive',
+					)
+				);
+				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'pt-login-button' )->text(), 'submit', $attrs );
 				?>
 			</div>
 

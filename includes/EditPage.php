@@ -3190,7 +3190,7 @@ HTML
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {
-		global $wgOut, $wgUseMediaWikiUIEverywhere;
+		global $wgOut;
 		$wgOut->addHTML( "<div class='editOptions'>\n" );
 
 		if ( $this->section != 'new' ) {
@@ -3222,9 +3222,7 @@ HTML
 			'target' => 'helpwindow',
 			'href' => $edithelpurl,
 		);
-		if ( $wgUseMediaWikiUIEverywhere ) {
-			$attrs['class'] = 'mw-ui-button mw-ui-quiet';
-		}
+		$attrs = Html::buttonAttributes( $attrs, array( 'mw-ui-quiet' ) );
 		$edithelp = Html::element( 'a', $attrs, wfMessage( 'edithelp' )->text() ) .
 			wfMessage( 'word-separator' )->escaped() .
 			wfMessage( 'newwindow' )->parse();
@@ -3268,20 +3266,16 @@ HTML
 	 * @return string
 	 */
 	public function getCancelLink() {
-		global $wgUseMediaWikiUIEverywhere;
 		$cancelParams = array();
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
 		}
 		$attrs = array( 'id' => 'mw-editform-cancel' );
-		if ( $wgUseMediaWikiUIEverywhere ) {
-			$attrs['class'] = 'mw-ui-button mw-ui-quiet';
-		}
 
 		return Linker::linkKnown(
 			$this->getContextTitle(),
 			wfMessage( 'cancel' )->parse(),
-			$attrs,
+			Html::buttonAttributes( $attrs, array( 'mw-ui-quiet' ) ),
 			$cancelParams
 		);
 	}
@@ -3750,8 +3744,6 @@ HTML
 	 * @return array
 	 */
 	public function getEditButtons( &$tabindex ) {
-		global $wgUseMediaWikiUIEverywhere;
-
 		$buttons = array();
 
 		$attribs = array(
@@ -3761,9 +3753,7 @@ HTML
 			'tabindex' => ++$tabindex,
 			'value' => wfMessage( 'savearticle' )->text(),
 		) + Linker::tooltipAndAccesskeyAttribs( 'save' );
-		if ( $wgUseMediaWikiUIEverywhere ) {
-			$attribs['class'] = 'mw-ui-button mw-ui-constructive';
-		}
+		$attribs = Html::buttonAttributes( $attribs, array( 'mw-ui-constructive' ) );
 		$buttons['save'] = Xml::element( 'input', $attribs, '' );
 
 		++$tabindex; // use the same for preview and live preview
@@ -3774,9 +3764,7 @@ HTML
 			'tabindex' => $tabindex,
 			'value' => wfMessage( 'showpreview' )->text(),
 		) + Linker::tooltipAndAccesskeyAttribs( 'preview' );
-		if ( $wgUseMediaWikiUIEverywhere ) {
-			$attribs['class'] = 'mw-ui-button mw-ui-progressive';
-		}
+		$attribs = Html::buttonAttributes( $attribs, array( 'mw-ui-progressive' ) );
 		$buttons['preview'] = Xml::element( 'input', $attribs, '' );
 		$buttons['live'] = '';
 
@@ -3787,9 +3775,7 @@ HTML
 			'tabindex' => ++$tabindex,
 			'value' => wfMessage( 'showdiff' )->text(),
 		) + Linker::tooltipAndAccesskeyAttribs( 'diff' );
-		if ( $wgUseMediaWikiUIEverywhere ) {
-			$attribs['class'] = 'mw-ui-button mw-ui-progressive';
-		}
+		$attribs = Html::buttonAttributes( $attribs, array( 'mw-ui-progressive' ) );
 		$buttons['diff'] = Xml::element( 'input', $attribs, '' );
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
