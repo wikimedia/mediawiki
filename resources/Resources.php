@@ -1549,14 +1549,13 @@ return array(
 	'oojs-ui' => array(
 		'scripts' => array(
 			'resources/lib/oojs-ui/oojs-ui.js',
-		),
-		'styles' => array(
-			'resources/lib/oojs-ui/oojs-ui.svg.css',
+			// TODO: When skinScripts is implemented, include a theme script accordingly
+			'resources/lib/oojs-ui/oojs-ui-apex.js',
 		),
 		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.css',
+			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.svg.css',
 			// FIXME As of July 2014, this is to be gone "in a couple of months".
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-minerva.css',
+			'minerva' => 'resources/lib/oojs-ui/oojs-ui-minerva.svg.css',
 		),
 		'messages' => array(
 			'ooui-outline-control-move-down',
