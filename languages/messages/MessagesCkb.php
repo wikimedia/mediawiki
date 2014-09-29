@@ -8,10 +8,8 @@
  *
  */
 
-$linkPrefixExtension = true;
-$fallback8bitEncoding = 'windows-1256';
-
 $rtl = true;
+$fallback8bitEncoding = 'windows-1256';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'میدیا',
