@@ -474,10 +474,14 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
-	 * Import the resolved user IP, HTTP headers, user ID, and session ID.
+	 * Import an client IP address, HTTP headers, user ID, and session ID
+	 *
 	 * This sets the current session and sets $wgUser and $wgRequest.
 	 * Once the return value falls out of scope, the old context is restored.
-	 * This function can only be called within CLI mode scripts.
+	 * This method should only be called in contexts (CLI or HTTP job runners)
+	 * where there is no session ID or end user receiving the response. This
+	 * is partly enforced, and is done so to avoid leaking cookies if certain
+	 * error conditions arise.
 	 *
 	 * This will setup the session from the given ID. This is useful when
 	 * background scripts inherit context when acting on behalf of a user.
@@ -490,11 +494,12 @@ class RequestContext implements IContextSource {
 	 * @since 1.21
 	 */
 	public static function importScopedSession( array $params ) {
-		if ( PHP_SAPI !== 'cli' ) {
-			// Don't send random private cookies or turn $wgRequest into FauxRequest
-			throw new MWException( "Sessions can only be imported in cli mode." );
-		} elseif ( !strlen( $params['sessionId'] ) ) {
-			throw new MWException( "No session ID was specified." );
+		if ( session_id() != '' && strlen( $params['sessionId'] ) ) {
+			// Sanity check to avoid sending random cookies for the wrong users.
+			// This method should only called by CLI scripts or by HTTP job runners.
+			throw new MWException( "Sessions can only be imported when none is active." );
+		} elseif ( !IP::isValid( $params['ip'] ) ) {
+			throw new MWException( "Invalid client IP address '{$params['ip']}'." );
 		}
 
 		if ( $params['userId'] ) { // logged-in user
@@ -503,8 +508,6 @@ class RequestContext implements IContextSource {
 			if ( !$user->getId() ) {
 				throw new MWException( "No user with ID '{$params['userId']}'." );
 			}
-		} elseif ( !IP::isValid( $params['ip'] ) ) {
-			throw new MWException( "Could not load user '{$params['ip']}'." );
 		} else { // anon user
 			$user = User::newFromName( $params['ip'], false );
 		}
@@ -542,12 +545,17 @@ class RequestContext implements IContextSource {
 		// Stash the old session and load in the new one
 		$oUser = self::getMain()->getUser();
 		$oParams = self::getMain()->exportSession();
+		$oRequest = self::getMain()->getRequest();
 		$importSessionFunction( $user, $params );
 
 		// Set callback to save and close the new session and reload the old one
-		return new ScopedCallback( function () use ( $importSessionFunction, $oUser, $oParams ) {
-			$importSessionFunction( $oUser, $oParams );
-		} );
+		return new ScopedCallback(
+			function () use ( $importSessionFunction, $oUser, $oParams, $oRequest ) {
+				$importSessionFunction( $oUser, $oParams );
+				// Restore the exact previous Request object (instead of leaving FauxRequest)
+				RequestContext::getMain()->setRequest( $oRequest );
+			}
+		);
 	}
 
 	/**
