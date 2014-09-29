@@ -28,6 +28,7 @@
  * Query module to enumerate all deleted revisions.
  *
  * @ingroup API
+ * @deprecated since 1.25
  */
 class ApiQueryDeletedrevs extends ApiQueryBase {
 
@@ -44,6 +45,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				'permissiondenied'
 			);
 		}
+
+		$this->setWarning(
+			'list=deletedrevs has been deprecated. Please use prop=deletedrevisions or ' .
+			'list=alldeletedrevisions instead.'
+		);
+		$this->logFeatureUsage( 'action=query&list=deletedrevs' );
 
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
@@ -418,6 +425,10 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 		}
 		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'page' );
+	}
+
+	public function isDeprecated() {
+		return true;
 	}
 
 	public function getAllowedParams() {
