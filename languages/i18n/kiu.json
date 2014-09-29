@@ -530,7 +530,6 @@
 	"search-relatedarticle": "alaqedar",
 	"searchrelated": "alaqedar",
 	"searchall": "pêro",
-	"showingresultsheader": "'''$4''' rê {{PLURAL:$5|'''$3''' netice ra '''$1'''i|'''$1 - $2''' miyan de '''$3''' netice}}",
 	"search-nonefound": "Neticeo ke ebe perşi zubini cêno çino.",
 	"powersearch-legend": "Cıcêraiso hira",
 	"powersearch-ns": "Caunê namun de cıcêre:",
@@ -777,7 +776,6 @@
 	"pager-older-n": "{{PLURAL:$1|1 khanêr|$1 khanêri}}",
 	"booksources": "Çımê kıtabun",
 	"booksources-search-legend": "Serba çımeunê kıtabu cıfeteliye",
-	"booksources-go": "So",
 	"specialloguserlabel": "Kerdoğ:",
 	"speciallogtitlelabel": "Sernuste:",
 	"log": "Qeydi",
@@ -821,7 +819,7 @@
 	"watchthispage": "Na pele de şêr ke",
 	"unwatch": "Şêr meke",
 	"watchlist-details": "Pelunê hurênaişi ra qêri {{PLURAL:$1|$1 pele lista şêrkerdişi dera|$1 peli lista şêrkerdişi derê}}.",
-	"wlshowlast": "$1 saetunê $2 rozunê peyênu bıasne $3",
+	"wlshowlast": "$1 saetunê $2 rozunê peyênu bıasne",
 	"watchlist-options": "Alternatifê lista şêrkerdene",
 	"watching": "Şêr ke…",
 	"unwatching": "Şêr meke…",
@@ -1083,7 +1081,6 @@
 	"exif-imagewidth": "Verındêni",
 	"exif-imagelength": "Berzêni",
 	"exif-meteringmode-255": "Bin",
-	"watchlistall2": "pêro",
 	"namespacesall": "pêro",
 	"monthsall": "pêro",
 	"confirm_purge_button": "Temam",
@@ -1112,5 +1109,6 @@
 	"tag-filter": "Parzünê [[Special:Tags|etiket]]i:",
 	"compare-page1": "Pele 1",
 	"compare-page2": "Pele 2",
-	"rightsnone": "(qet jü)"
+	"rightsnone": "(qet jü)",
+	"revdelete-summary": "xulasa vurnaene"
 }

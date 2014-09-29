@@ -425,7 +425,6 @@
 	"search-relatedarticle": "шоайл дола",
 	"searchrelated": "гаргара",
 	"searchall": "деррига",
-	"showingresultsheader": "{{PLURAL:$5|1='''$1''' толамче укх '''$3''' долачарах|'''$1 — $2''' толамчаш укх '''$3''' долачарах}} '''$4'''а",
 	"search-nonefound": "ДIахаттама нийсамаш корадаьдац.",
 	"powersearch-legend": " Доккха тахкар",
 	"powersearch-ns": " ЦIерий аренашкахь лахар",
@@ -588,7 +587,6 @@
 	"pager-older-n": "{{PLURAL:$1|къаьнара дара|къаьнара долaчаьрахь|къаьнара дараш}} $1",
 	"booksources": "Китабий гIувам",
 	"booksources-search-legend": "Китаба лоаца маIандара тохкам",
-	"booksources-go": "Лаха",
 	"log": "Тептараш",
 	"allpages": "Еррига оагIувнаш",
 	"prevpage": "($1) хьалхара оагIув",
@@ -611,7 +609,7 @@
 	"watchthispage": "Укх оагIува теркам бе",
 	"unwatch": "Лора ма де",
 	"watchlist-details": "Шун теркама дагарченгахь йола  $1 {{PLURAL:$1|1=оагIув|оагIувнаш}}, дувцама оагIувнаш ца лоархIаш.",
-	"wlshowlast": "Тlехьара $1 сахьаташ $2 денош $3 хьахьокха",
+	"wlshowlast": "Тlехьара $1 сахьаташ $2 денош  хьахьокха",
 	"watchlist-options": "Зем баккха дагарена хувцамаш",
 	"watching": "Тохкам беча оагIув тIа тIадаккха",
 	"unwatching": "Тохкам беча оагIув тIера дIадаккха",
@@ -810,7 +808,6 @@
 	"exif-iimcategory-spo": "Нидзоамал",
 	"exif-iimcategory-war": "ТIемаш, кховсамаши латтараши",
 	"exif-iimcategory-wea": "Хаоттам",
-	"watchlistall2": "деррига",
 	"namespacesall": "деррига",
 	"monthsall": "деррига",
 	"confirm_purge_button": "ХIаа",
@@ -846,5 +843,6 @@
 	"htmlform-submit": "ДIадахьийта",
 	"htmlform-reset": "Хувцамаш юхадаккха",
 	"htmlform-selectorother-other": "Кхыдола",
-	"rightsnone": "(а)"
+	"rightsnone": "(а)",
+	"revdelete-summary": "хувцамий лоацам"
 }

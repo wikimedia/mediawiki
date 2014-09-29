@@ -561,7 +561,6 @@
 	"searchrelated": "verwandt",
 	"searchall": "olle",
 	"showingresults": "Hier {{PLURAL:$1|ies '''1''' Ergebnis|sein '''$1''' Ergebnisse}}, beginnend miet Nummer '''$2.'''",
-	"showingresultsheader": "{{PLURAL:$5|Ergebnis '''$1''' vu '''$3'''|Ergebnisse '''$1–$2''' vu '''$3'''}} fier '''$4'''",
 	"search-nonefound": "Fier denne Sichoafroage wurden kenne Ergebnisse gefunda.",
 	"powersearch-ns": "Suche ei Noamasräuma:",
 	"powersearch-toggleall": "Olle",
@@ -968,7 +967,6 @@
 	"pager-older-n": "{{PLURAL:$1|vurheriger|vurherige $1}}",
 	"booksources": "ISBN-Suche",
 	"booksources-search-legend": "Suche noach Bezugsquella fier Bicher",
-	"booksources-go": "Sucha",
 	"booksources-text": "Dies ies anne Liste miet Links zu Internetseyta, de neue und gebrauchte Bicher verkoofa. Durt koan is au wettere Informationen ieber de Bicher gahn. {{SITENAME}} ies miet kemm dieser Oabieter geschäftlich verbunda.",
 	"booksources-invalid-isbn": "Vermutlich ies de ISBN ungiltig.\nBitte priefe, ob korrekt vu dar Quelle iebertraga wurde.",
 	"speciallogtitlelabel": "Tittel:",
@@ -1044,7 +1042,7 @@
 	"wlheader-enotif": "Dar E-Mail-Benoachrichtigungsdienst ies aktiviert.",
 	"wlheader-showupdated": "Seyta miet noo ne gesehenen Änderunga waan '''fett''' dargestellt.",
 	"wlnote": "Is {{PLURAL:$1|folgt de letzte Änderung|folga de letzta '''$1''' Änderunga}} dar letzta {{PLURAL:$2|Stunde|'''$2''' Stunda}}.",
-	"wlshowlast": "Zeige de Änneronga dar letzta $1 Stonda, $2 Taage oder $3.",
+	"wlshowlast": "Zeige de Änneronga dar letzta $1 Stonda, $2 Taage oder .",
 	"watchlist-options": "Oazeegeoptiona",
 	"watching": "Beobachta …",
 	"unwatching": "Nee beobachta …",
@@ -1343,7 +1341,6 @@
 	"thumbnail_image-type": "Bildtyp ne understützt",
 	"import": "Seyta importiern",
 	"import-interwiki-text": "Wähle a Wiki und anne Seite zum Importieren aus.\nDe Versionsdaten und Nutzernoama bleiba dabei erhaala.\nOlle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] protokolliert.",
-	"import-interwiki-source": "Quell-Wiki/-Seite:",
 	"import-interwiki-history": "Olle Versionen dieser Seite importieren",
 	"import-interwiki-templates": "Olle Vurloaga einschließen",
 	"import-interwiki-namespace": "Zielnoamasraum:",
@@ -1588,7 +1585,6 @@
 	"exif-sharpness-2": "Stork",
 	"exif-subjectdistancerange-0": "Unbekennt",
 	"exif-gpsstatus-v": "Interoperabilität vu Messunga",
-	"watchlistall2": "olle",
 	"namespacesall": "olle",
 	"monthsall": "olle",
 	"confirmemail": "E-Mail-Atresse bestätiga (Authentifizierung)",
@@ -1687,5 +1683,6 @@
 	"htmlform-reset": "Änderunga rickgängig macha",
 	"htmlform-selectorother-other": "Ondere",
 	"revdelete-restricted": "Einschränkungen gelten au fier Administratorn",
-	"revdelete-unrestricted": "Einschränkungen fier Administratorn uffgehobn"
+	"revdelete-unrestricted": "Einschränkungen fier Administratorn uffgehobn",
+	"revdelete-summary": "Zusommafoassungskommentar"
 }

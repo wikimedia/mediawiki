@@ -994,6 +994,7 @@
 	"prefs-tokenwatchlist": "Testimoni",
 	"prefs-diffs": "Difs",
 	"prefs-help-prefershttps": "Aquesta preferència tindrà efecte quan inicieu una nova sessió.",
+	"prefswarning-warning": "Heu fet canvis a les preferències que encara no s'han desat.\nSi abandoneu la pàgina sense fer clic a «$1», les preferències no s'actualitzaran.",
 	"prefs-tabs-navigation-hint": "Consell: Podeu utilitzar les tecles de cursor de dreta i esquerra per a navegar entre les pestanyes.",
 	"email-address-validity-valid": "L'adreça de correu electrònic sembla vàlida",
 	"email-address-validity-invalid": "Escriviu una adreça vàlida de correu electrònic",
@@ -1600,6 +1601,7 @@
 	"querypage-disabled": "Aquesta pàgina especial està desactivada per a no perjudicar el rendiment.",
 	"booksources": "Obres de referència",
 	"booksources-search-legend": "Cerca fonts de llibres",
+	"booksources-search": "Cerca",
 	"booksources-text": "A sota hi ha una llista d'enllaços d'altres llocs que venen llibres nous i de segona mà, i també podrien tenir més informació dels llibres que esteu cercant:",
 	"booksources-invalid-isbn": "El codi ISBN donat no és vàlid. Comproveu si l'heu copiat correctament.",
 	"specialloguserlabel": "Realitzador:",
@@ -1735,7 +1737,7 @@
 	"wlheader-enotif": "La notificació per correu electrònic està habilitada.",
 	"wlheader-showupdated": "Les pàgines que s'han canviat des de la vostra darrera visita es mostren en '''negreta'''.",
 	"wlnote": "A sota hi ha {{PLURAL:$1|el darrer canvi|els darrers <strong>$1</strong> canvis}} en {{PLURAL:$2|la darrera hora|les <strong>$2</strong> darreres hores}}, a $4 del $3.",
-	"wlshowlast": "<small>- Mostra les darreres $1 hores, els darrers $2 dies o $3</small>",
+	"wlshowlast": "<small>- Mostra les darreres $1 hores, els darrers $2 dies o </small>",
 	"watchlist-options": "Opcions de la llista de seguiment",
 	"watching": "S'està vigilant...",
 	"unwatching": "S'està desatenent...",
@@ -2774,7 +2776,6 @@
 	"exif-urgency-low": "Baixa ($1)",
 	"exif-urgency-high": "Alta ($1)",
 	"exif-urgency-other": "Prioritat definida per l'usuari ($1)",
-	"watchlistall2": "totes",
 	"namespacesall": "tots",
 	"monthsall": "tots",
 	"confirmemail": "Confirma l'adreça de correu electrònic",
@@ -3141,5 +3142,6 @@
 	"mediastatistics-header-video": "Vídeos",
 	"mediastatistics-header-office": "Oficina",
 	"mediastatistics-header-executable": "Executables",
-	"mediastatistics-header-archive": "Formats comprimits"
+	"mediastatistics-header-archive": "Formats comprimits",
+	"json-error-syntax": "Error de sintaxi"
 }

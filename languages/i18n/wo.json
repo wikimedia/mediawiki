@@ -602,7 +602,6 @@
 	"searchrelated": "yeneeni ngérte",
 	"searchall": "yépp",
 	"showingresults": "Woneg <b>$1</b> {{PLURAL:$1|ngérte|ciy ngérte}} doore ko ci #<b>$2</b>.",
-	"showingresultsheader": "{{PLURAL:$5|Ngérte '''$1''' bu '''$3'''|Ngértey '''$1 - $2'''}}  ngir '''$4'''",
 	"search-nonefound": "Ceet gi jurul dara.",
 	"powersearch-legend": "Ceet gu xóot",
 	"powersearch-ns": "Seet ci barabi tur yi :",
@@ -1062,7 +1061,6 @@
 	"booksources": "Téereb delluwaay",
 	"booksources-search-legend": "Seet ab téereb delluwaay",
 	"booksources-isbn": "ISBN :",
-	"booksources-go": "Ayca",
 	"booksources-text": "Lii ab lima ay lëkkalekaay la yu jëme ciy dal yu biti yuy jaayi téere yu yees ak yu magget, man nga faa ami xibaar ñeel téere yi ngay seet:",
 	"booksources-invalid-isbn": "ISBN bi nga joxe mel na ni baaxul; xoolal bu baax ndax defoo ag njuumte ci bi nga koy duppi ca gongikuwaayam.",
 	"specialloguserlabel": "Jëfandikukat :",
@@ -1152,7 +1150,7 @@
 	"watchlist-details": "Topp nga $1 {{PLURAL:$1|xët|ciy xët}}, soo waññiwaalewul xëti waxtaanuwaay yi.",
 	"wlheader-showupdated": "Xët yi ñu soppiwoon ca sa duggu bu mujj ñoom la ñu fesal ñu <b>xëm</b>",
 	"wlnote": "Fii ci suuf {{PLURAL:$1| ngay gis coppite yu mujj yi|ngay gis $1 coppite yu mujj}} ci {{PLURAL:$2|waxtu gu mujj gi|<b>$2</b> waxtu yu mujj}}.",
-	"wlshowlast": "wone $1 waxtu yu mujj, $2 bess yu mujj, walla $3.",
+	"wlshowlast": "wone $1 waxtu yu mujj, $2 bess yu mujj, walla .",
 	"watchlist-options": "Tànneefi limu toppte bi",
 	"watching": "Topp...",
 	"unwatching": "Farug toppte gi ...",
@@ -1529,7 +1527,6 @@
 	"exif-imagelength": "Kawewaay",
 	"exif-usercomment": "Kadduy jëfëndikookat bi",
 	"exif-componentsconfiguration-0": "Amul",
-	"watchlistall2": "yépp",
 	"namespacesall": "Yépp",
 	"monthsall": "Yépp",
 	"confirmemail": "Dëggalal sa m-bataaxal",
@@ -1557,5 +1554,6 @@
 	"specialpages": "Xëti jagleel",
 	"revdelete-restricted": "doxalub digal ngir yorkat yi",
 	"revdelete-unrestricted": "digal ngir yorkat yi deñ na",
-	"rightsnone": "(menn)"
+	"rightsnone": "(menn)",
+	"revdelete-summary": "soppi tënk gi"
 }

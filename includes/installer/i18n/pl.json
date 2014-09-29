@@ -17,7 +17,8 @@
 			"WTM",
 			"Alan ffm",
 			"Matik7",
-			"Pio387"
+			"Pio387",
+			"Darellur"
 		]
 	},
 	"config-desc": "Instalator MediaWiki",
@@ -88,7 +89,7 @@
 	"config-apc": "[Http://www.php.net/apc APC] jest zainstalowany",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] jest zainstalowany",
 	"config-no-cache": "'''Uwaga:''' Pamięć podręczna dla kodu MediaWiki nie będzie uruchomiona., gdyż nie ma żadnego z następujących narzędzi: [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].",
-	"config-mod-security": "''' Ostrzeżenie ''': Serwer sieci web ma włączone [http://modsecurity.org/ mod_security]. Jeśli niepoprawnie skonfigurowane, może być przyczyną problemów MediaWiki lub innego oprogramowania, które pozwala użytkownikom na wysyłanie dowolnej zawartości.\nSprawdź w [http://modsecurity.org/documentation/ dokumentacji mod_security] lub skontaktuj się z obsługa hosta, jeśli wystąpią losowe błędy.",
+	"config-mod-security": "''' Ostrzeżenie ''': Serwer sieci web ma włączone [http://modsecurity.org/ mod_security]. Jeśli jest niepoprawnie skonfigurowane, może być przyczyną problemów MediaWiki lub innego oprogramowania, które pozwala użytkownikom na wysyłanie dowolnej zawartości.\nSprawdź w [http://modsecurity.org/documentation/ dokumentacji mod_security] lub skontaktuj się z obsługa hosta, jeśli wystąpią losowe błędy.",
 	"config-diff3-bad": "Nie znaleziono GNU diff3.",
 	"config-git": "Znaleziono oprogramowanie kontroli wersji Git: <code>$1</code>.",
 	"config-git-bad": "Oprogramowanie systemu kontroli wersji Git nie zostało znalezione.",

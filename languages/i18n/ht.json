@@ -673,7 +673,6 @@
 	"pager-older-n": "{{PLURAL:$1|pi vye|$1 pi vye yo}}",
 	"booksources": "Ouvraj referans yo",
 	"booksources-search-legend": "Chache nan lis ouvraj ki sèvi pou referans",
-	"booksources-go": "Ale",
 	"specialloguserlabel": "itilizatè :",
 	"speciallogtitlelabel": "Tit :",
 	"log": "Jounal yo",
@@ -701,7 +700,7 @@
 	"watchthispage": "Swiv paj sa a",
 	"unwatch": "Pa swiv ankò",
 	"watchlist-details": "W ap swiv {{PLURAL:$1|paj|paj}}, san konte paj diskisyon yo.",
-	"wlshowlast": "Montre dènye $1 è yo, dènye $2 jou yo, oubyen $3.",
+	"wlshowlast": "Montre dènye $1 è yo, dènye $2 jou yo, oubyen .",
 	"watchlist-options": "Opsyon pou lis swivi",
 	"watching": "Swiv...",
 	"unwatching": "Fini swiv paj sa a...",
@@ -868,7 +867,6 @@
 	"metadata-expand": "Montre detay konplè yo",
 	"metadata-collapse": "Kache enfòmasyon ak tout detay yo",
 	"metadata-fields": "Chan metadone EXIF ki liste nan mesaj sa a ap parèt nan paj deskripsyon imaj la lè tab metadone a ap pi piti. Lòt chan yo ap kache pa defo.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"watchlistall2": "tout",
 	"namespacesall": "Tout",
 	"monthsall": "tout",
 	"watchlisttools-view": "Wè chanjman enpòtan yo",
@@ -877,5 +875,6 @@
 	"version": "Vèsyon",
 	"specialpages": "Paj espesyal yo",
 	"htmlform-reset": "Revoke chanjman yo",
-	"revdelete-restricted": "aplike restriksyon sa yo pou administratè yo"
+	"revdelete-restricted": "aplike restriksyon sa yo pou administratè yo",
+	"revdelete-summary": "somè pou modifikasyon"
 }

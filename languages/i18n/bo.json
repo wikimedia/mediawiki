@@ -370,7 +370,6 @@
 	"changeemail-newemail": "དྲ་འཕྲིན་ཁ་བྱང་གསར་བ།",
 	"changeemail-none": "(སྟོང་པ།)",
 	"changeemail-submit": "དྲ་འཕྲིན་བརྗེ་བ།",
-	"changeemail-cancel": "རྩིས་མེད་ཐོངས།",
 	"bold_sample": "ཡིག་གཟུགས་སྦོམ་པོ།",
 	"bold_tip": "ཡིག་གཟུགས་སྦོམ་པོ།",
 	"italic_sample": "ཡིག་གཟུགས་གསེག་མ།",
@@ -484,7 +483,6 @@
 	"search-relatedarticle": "འབྲེལ་ཡོད།",
 	"searchrelated": "འབྲེལ་ཡོད།",
 	"searchall": "ཚང་མ།",
-	"showingresultsheader": "{{PLURAL:$5|གྲུབ་འབྲས་ <strong>$1</strong> ཡི་<strong>$3</strong>གྲབ་འབྲས། <strong>$1 - $2</strong> ཡི་ <strong>$3</strong>}} ཆེད་དུ་ <strong>$4</strong>",
 	"search-nonefound": "ཁྱེད་ཀྱི་འདྲི་ཞིབ་དང་མཐུན་པའི་ལན་མི་འདུག་",
 	"powersearch-legend": "ཞིབ་ཏུ་འཚོལ་བ།",
 	"powersearch-ns": "མིང་གནས་ནང་འཚོལ་བ།",
@@ -649,7 +647,6 @@
 	"pager-older-n": "{{PLURAL:$1|རྙིང་པ་1|རྙིང་པ་$1}}",
 	"booksources": "དཔེ་ཆའི་ཁུངས།",
 	"booksources-search-legend": "དེབ་ཁུངས་འཚོལ་བ།",
-	"booksources-go": "སོང་།",
 	"log": "པོད་ཁུག",
 	"allpages": "དྲ་ངོས་ཡོངས།",
 	"prevpage": "ཤོག་ངོས་གོང་མ་ ($1)",
@@ -667,7 +664,7 @@
 	"watchthispage": "དྲ་ངོས་འདི་ལ་གཟིགས།",
 	"unwatch": "མི་བལྟ་བ།",
 	"unwatchthispage": "བལྟ་བ་མཚམས་འཇོག",
-	"wlshowlast": "འདས་བའི་དུས་ཚོད་ $1 ནང་ཚུན་  ཉིན་མ་ $2 ནང་ཚུན་ $3 སྟོན།",
+	"wlshowlast": "འདས་བའི་དུས་ཚོད་ $1 ནང་ཚུན་  ཉིན་མ་ $2 ནང་ཚུན་  སྟོན།",
 	"watchlist-options": "ལྟ་ཐོའི་འདེམས་ཚན།",
 	"watching": "ལྟ་ཐོར་འཇུག་བཞིན་པ་་་",
 	"unwatching": "ལྟ་ཐོ་ལས་འདོར་བཞིན་པ་་་",
@@ -806,7 +803,6 @@
 	"metadata": "རྒྱུ་གཞི་གྲངས།",
 	"metadata-help": "ཡིག་ཆ་འདིར་ཆ་འཕྲིན་གཞན་དག་པ་ཁ་ཅིག་འདུག། ཕལ་ཆེར་གྲངས་འཛིན་དཔར་ཆས་འམ་འབེབས་ཆས་ལས་གྲངས་འཛིན་ཡོང་ཆེད་བཟོས་པ་ཡིན། \nགལ་སྲིད་ཡིག་ཆ་འདིར་འགྱུར་བ་གཏོང་གནང་ན། དེ་སྔོན་གྱི་ལྟར་ཞིབས་ཚག་སྟོན་མི་ཐུབ།",
 	"metadata-fields": "དཔར་རིས་ཀྱི་ནང་དོན་འདིར་ཡོད་པ་རྣམས་ནང་དོན་ཞིབ་ཕྲའི་སྐབས་སྟོན་རྒྱུ་ཡིན། དེ་མིན་རྣམས་རང་འགུལ་གྱི་འབས་ཞོགས་རྒྱུ་ཡིན།\n* བཟོ་སྐྲུན།\n* དབྱབས་གཟུགས།",
-	"watchlistall2": "ཚང་མ།",
 	"namespacesall": "ཡོངས་རྫོགས།",
 	"monthsall": "ཡོངས་རྫོགས།",
 	"imgmultigo": "སོང་།!",
@@ -816,5 +812,6 @@
 	"watchlisttools-raw": "ལྟ་ཐོའི་གོ་རིམ་བཅོས་སྒྲིག",
 	"specialpages": "ཆེད་ལས་ཤོག་ངོས།",
 	"tag-filter": "འདེམས་འཚག། [[Special:Tags|Tag]]",
-	"rightsnone": "(སྟོང་པ།)"
+	"rightsnone": "(སྟོང་པ།)",
+	"revdelete-summary": "བསྡུས་དོན་བཟོ་བཅོས།"
 }

@@ -616,7 +616,6 @@
 	"pager-older-n": "{{PLURAL:$1|1 stôrszi|$1 stôrszé|$1 stôrszich}}",
 	"booksources": "Ksążczi",
 	"booksources-search-legend": "Szëkba za wëdowiédzą ò ksążkach",
-	"booksources-go": "Biéj",
 	"specialloguserlabel": "Brëkòwnik:",
 	"speciallogtitlelabel": "Titel:",
 	"log": "Lodżi",
@@ -656,7 +655,7 @@
 	"watchlist-details": "Ùzérôsz {{PLURAL:$1|$1 artikel|$1 artikle/-ów}}, nie rechùjąc diskùsëjów.",
 	"wlheader-showupdated": "Artiklë jakczé òsta zmienioné òd Twòji slédny wizytë są wëapratnioné '''pògrëbieniém'''",
 	"wlnote": "Niżi môsz wëskrzënioné {{PLURAL:$1|slédną zmianã|'''$1''' slédnëch zmianów}} zrobioné òb {{PLURAL:$2|gòdzënã|'''$2''' gòdzënë/gòdzënów}}.",
-	"wlshowlast": "Wëskrzëni zjinaczi z $1 gòdzënów $2 dni $3",
+	"wlshowlast": "Wëskrzëni zjinaczi z $1 gòdzënów $2 dni",
 	"watchlist-options": "Òptacëje ùzérónych",
 	"watching": "Ùzéróm...",
 	"unwatching": "Ju ni ùzéróm...",
@@ -865,7 +864,6 @@
 	"exif-source": "Zdrój",
 	"exif-languagecode": "Jãzëk",
 	"exif-iimcategory-spo": "Szpòrt",
-	"watchlistall2": "wszëtczé",
 	"namespacesall": "wszëtczé",
 	"monthsall": "wszëtczé",
 	"confirmemail_loggedin": "Twòjô adresa e-mail òsta pòcwierdzona.",
@@ -878,5 +876,6 @@
 	"version": "Wersëjô",
 	"specialpages": "Specjalné starnë",
 	"revdelete-restricted": "nastôwi ògrańczenia dlô sprôwników",
-	"revdelete-unrestricted": "rëmôj ògrańczenia dlô sprôwników"
+	"revdelete-unrestricted": "rëmôj ògrańczenia dlô sprôwników",
+	"revdelete-summary": "òpisënk zjinaczi"
 }

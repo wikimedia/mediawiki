@@ -485,7 +485,6 @@
 	"search-interwiki-caption": "Mga kaubang proyekto",
 	"search-interwiki-default": "$1 ka mga resulta:",
 	"search-interwiki-more": "(dugang pa)",
-	"showingresultsheader": "{{PLURAL:$5|Resulta '''$1''' sa '''$3'''|Mga resulta '''$1 - $2''' of '''$3'''}} sa '''$4'''",
 	"search-nonefound": "Walay mga resulta nga nag-match sa gipangita.",
 	"powersearch-legend": "Abansadong pagpangita",
 	"powersearch-ns": "Pangitaa sa mga ngalang espasyo:",
@@ -654,7 +653,6 @@
 	"pager-older-n": "{{PLURAL:$1|mas daan1|mas daan $1}}",
 	"booksources": "Mga reperensiyang libro",
 	"booksources-search-legend": "Pangitaa ang mga reperensiyang libro",
-	"booksources-go": "Sige",
 	"log": "Mga log",
 	"allpages": "Tanang panid",
 	"prevpage": "Miaging panid ($1)",
@@ -677,7 +675,7 @@
 	"watchthispage": "Bantayi kining panid",
 	"unwatch": "Pasagdi",
 	"watchlist-details": "{{PLURAL:$1|$1 ka panid|$1 ka mga panid}} ang imong gibantayan, way labot ang mga panid sa hisgot.",
-	"wlshowlast": "Ipakita ang miaging $1 ka oras $2 ka mga adlaw $3",
+	"wlshowlast": "Ipakita ang miaging $1 ka oras $2 ka mga adlaw",
 	"watchlist-options": "Mga opsyon sa akong gibantayan",
 	"watching": "Gibantayan...",
 	"unwatching": "Gipasagdan...",
@@ -833,7 +831,6 @@
 	"metadata-expand": "Ipakita ang mas daghang detalye",
 	"metadata-collapse": "Tagoa ang mga ekstended nga detalye",
 	"metadata-fields": "Ang XIF metadata fields nga nakatala niining mensahe iapil sa display sa panid sa imahen kon gi-collapse ang metadata table.\nAng uban default nga nakatago.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"watchlistall2": "tanan",
 	"namespacesall": "tanan",
 	"monthsall": "tanan",
 	"watchlisttools-view": "Tan-awa ang may kalabotan nga mga pag-usab",
@@ -842,5 +839,6 @@
 	"specialpages": "Espesyal nga mga panid",
 	"revdelete-restricted": "mga na-aplay nga restriksyon sa mga tagdumala",
 	"revdelete-unrestricted": "gitangtang ang mga restriksyon alang sa mga tagdumala",
-	"rightsnone": "(wala)"
+	"rightsnone": "(wala)",
+	"revdelete-summary": "mubong sugid sa pag-usab"
 }

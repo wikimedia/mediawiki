@@ -908,7 +908,6 @@
 	"suppress": "Alakton (oversight)",
 	"booksources": "Aklat a pikuanan",
 	"booksources-search-legend": "Panintunan la reng aklat penibatan",
-	"booksources-go": "Sige",
 	"booksources-text": "Makabili la king lalam deng suglung kareng aliwang karinan o site a mamisaling librung bayu at megamit na, at mapalyaring atin la muring aliwang informaciun kareng librung paintunan mu.",
 	"specialloguserlabel": "Talagamit:",
 	"speciallogtitlelabel": "Bansag:",
@@ -979,7 +978,7 @@
 	"wlheader-enotif": "Makasalangi (enabled) ing pamipabalu kapamilatan ning e-mail.",
 	"wlheader-showupdated": "'''Makapal''' la pangasulat deng bulung a miyalilan manibat aniang tauli mu lang pintalan.",
 	"wlnote": "{{PLURAL:$1|Ing makatuki ing tauling|Ding makatuki ring tauling '''$1''' miyalilan}} kilub {{PLURAL:$2|ning tauling metung a oras|ding tauling '''$2''' oras}}.",
-	"wlshowlast": "Pakit la reng tauling $1 oras $2 aldo $3",
+	"wlshowlast": "Pakit la reng tauling $1 oras $2 aldo",
 	"watchlist-options": "Deng maliaring gawan kareng listaan da reng babanten (''watchlist'')",
 	"watching": "Babanten...",
 	"unwatching": "E ne babanten...",
@@ -1563,7 +1562,6 @@
 	"exif-gpsspeed-k": "Kilometru balang oras",
 	"exif-gpsspeed-m": "Milla balang oras",
 	"exif-gpsdirection-t": "Tutung direksiun",
-	"watchlistall2": "eganagana",
 	"namespacesall": "ila ngan",
 	"monthsall": "eganagana",
 	"confirmemail": "Patutwan mung keka ya itang e-mail address",
@@ -1632,5 +1630,6 @@
 	"specialpages-group-highuse": "Deng bulung a magamitan",
 	"revdelete-restricted": "ipairal la reng limitasiun kareng sysop",
 	"revdelete-unrestricted": "ilako la reng makabawal kareng sysops",
-	"rightsnone": "(ala)"
+	"rightsnone": "(ala)",
+	"revdelete-summary": "sampulung da reng mibayu (edit summary)"
 }

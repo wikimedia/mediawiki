@@ -1757,7 +1757,7 @@
 	"wlheader-enotif": "A notificação por correio eletrónico está ativa.",
 	"wlheader-showupdated": "As páginas modificadas desde a última vez que as visitou aparecem destacadas a '''negrito'''.",
 	"wlnote": "A seguir {{PLURAL:$1|está a última alteração ocorrida|estão as últimas <strong>$1</strong> alterações ocorridas}} {{PLURAL:$2|na última hora|nas últimas <strong>$2</strong> horas}} até $3, $4.",
-	"wlshowlast": "Ver últimas $1 horas $2 dias $3",
+	"wlshowlast": "Ver últimas $1 horas $2 dias",
 	"watchlist-options": "Opções da lista de páginas vigiadas",
 	"watching": "A vigiar...",
 	"unwatching": "A deixar de vigiar...",
@@ -2796,7 +2796,6 @@
 	"exif-urgency-low": "Baixa ($1)",
 	"exif-urgency-high": "Alta ($1)",
 	"exif-urgency-other": "Prioridade definida pelo utilizador ($1)",
-	"watchlistall2": "todas",
 	"namespacesall": "todos",
 	"monthsall": "todos",
 	"confirmemail": "Confirmar endereço de correio eletrónico",
@@ -3169,5 +3168,10 @@
 	"mediastatistics-header-office": "Documentos",
 	"mediastatistics-header-text": "Textuais",
 	"mediastatistics-header-executable": "Executáveis",
-	"mediastatistics-header-archive": "Formatos compactados"
+	"mediastatistics-header-archive": "Formatos compactados",
+	"json-error-unknown": "Houve um problema com o JSON. Erro: $1",
+	"json-error-depth": "A profundidade máxima da pilha foi excedida",
+	"json-error-state-mismatch": "Código JSON inválido ou mal formatado",
+	"json-error-syntax": "Erro de sintaxe",
+	"json-error-unsupported-type": "Foi dado um valor de um tipo que não pode ser codificado"
 }

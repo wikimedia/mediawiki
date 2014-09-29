@@ -1772,7 +1772,7 @@
 	"wlheader-enotif": "La notifica via email è attiva.",
 	"wlheader-showupdated": "Le pagine che sono state modificate dopo l'ultima visita sono evidenziate in '''grassetto'''.",
 	"wlnote": "Di seguito {{PLURAL:$1|è elencata la modifica più recente apportata|sono elencate le <strong>$1</strong> modifiche più recenti apportate}} {{PLURAL:$2|nella scorsa ora|nelle scorse <strong>$2</strong> ore}}; i dati sono aggiornati alle $4 del $3.",
-	"wlshowlast": "Mostra le ultime $1 ore $2 giorni $3",
+	"wlshowlast": "Mostra le ultime $1 ore $2 giorni",
 	"watchlist-options": "Opzioni osservati speciali",
 	"watching": "Aggiunta agli osservati speciali...",
 	"unwatching": "Eliminazione dagli osservati speciali...",
@@ -2832,7 +2832,6 @@
 	"exif-urgency-low": "Bassa ($1)",
 	"exif-urgency-high": "Alta ($1)",
 	"exif-urgency-other": "Priorità definite dal'utente ($1)",
-	"watchlistall2": "tutte",
 	"namespacesall": "tutti",
 	"monthsall": "tutti",
 	"confirmemail": "Conferma indirizzo email",
@@ -3214,5 +3213,15 @@
 	"mediastatistics-header-office": "Ufficio",
 	"mediastatistics-header-text": "Testuali",
 	"mediastatistics-header-executable": "File eseguibili",
-	"mediastatistics-header-archive": "Formati compressi"
+	"mediastatistics-header-archive": "Formati compressi",
+	"json-warn-trailing-comma": "$1 {{PLURAL:$1|virgola finale è stata rimossa|virgole finali sono state rimosse}} dal JSON",
+	"json-error-unknown": "Si è verificato un problema con il JSON. Errore: $1",
+	"json-error-depth": "La profondità massima dello stack è stata superata",
+	"json-error-state-mismatch": "JSON non valido o malformato",
+	"json-error-ctrl-char": "Errore nel carattere di controllo, possibile codifica errata",
+	"json-error-syntax": "Errore di sintassi",
+	"json-error-utf8": "Caratteri UTF-8 non validi, possibile codifica errata",
+	"json-error-recursion": "Uno o più riferimenti ricorsivi nel valore da codificare",
+	"json-error-inf-or-nan": "Uno o più valori NAN o INF nel valore da codificare",
+	"json-error-unsupported-type": "È stato fornito un valore di un tipo che non può essere codificato"
 }

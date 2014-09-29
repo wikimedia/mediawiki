@@ -565,7 +565,6 @@
 	"searchrelated": "gerelateerd",
 	"searchall": "aolle",
 	"showingresults": "Ieronder {{PLURAL:$1|sti '''1''' resultaot|staen '''$1''' resultaoten}} vanof #'''$2'''.",
-	"showingresultsheader": "{{PLURAL:$5|Resultaot '''$1''' von '''$3'''|Resultaot'n '''$1 - $2''' von '''$3'''}} vò '''$4'''",
 	"search-nonefound": "Er zin geen resultaot'n vò je zoekopdracht.",
 	"powersearch-legend": "Uutebreid zoeken",
 	"search-external": "Extern zoeken",
@@ -743,7 +742,6 @@
 	"pager-older-n": "{{PLURAL:$1|1 ouwere|$1 ouwere}}",
 	"booksources": "Bronnen vò boeken",
 	"booksources-search-legend": "Bronn'n en informaosie over 'n boek zoek'n",
-	"booksources-go": "OK",
 	"specialloguserlabel": "Gebruker:",
 	"log": "Logboek'n",
 	"alllogstext": "Saemengesteld overzicht van de wis-, bescherm-, blokkeer- en gebrukerslechtenlogboeken.\nJe kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bladzie uut te kiezen.",
@@ -772,7 +770,7 @@
 	"watchthispage": "Bekiek deêze bladzie",
 	"unwatch": "Nie meêr volge",
 	"watchlist-details": "Er {{PLURAL:$1|sti eên pagina|staen $1 pagina's}} op je volglieste, exclusief overlegpagina's.",
-	"wlshowlast": "Laetste $1 uur, $2 daegen bekieken ($3)",
+	"wlshowlast": "Laetste $1 uur, $2 daegen bekieken ()",
 	"watchlist-options": "Opties vò volglieste",
 	"actioncomplete": "Actie uutgevoerd",
 	"actionfailed": "De handelienge is mislukt.",
@@ -918,7 +916,6 @@
 	"metadata": "Metadata",
 	"metadata-help": "Dit bestand bevat anvullende informaotie, die deur 'n fotocaomera, scanner of fotobewarkiengsprogramma toegevoegd kan zien. As 't bestand angepast is, kommen details mogelijk nie overeên mei 't gewiezigde bestand.",
 	"metadata-fields": "De aofbildiengsmetadataveld'n in dit bericht worr'n oôk weergegeev'n op 'n aofbildiengspagina as de metadatatabel ingeklapt is.\nAorre veld'n worr'n verborr'n.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"watchlistall2": "aol",
 	"namespacesall": "aol",
 	"monthsall": "aolle",
 	"imgmultipageprev": "← vorrege bladzie",
@@ -939,5 +936,6 @@
 	"tag-filter": "[[Special:Tags|Labelfilter]]:",
 	"revdelete-restricted": "ei beperkiengen an beheêrders opeleid",
 	"revdelete-unrestricted": "ei beperkiengen voe beheêrders opeheven",
-	"rightsnone": "(hin)"
+	"rightsnone": "(hin)",
+	"revdelete-summary": "saemenvattieng bewerken"
 }

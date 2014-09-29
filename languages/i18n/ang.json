@@ -645,7 +645,6 @@
 	"pager-older-n": "{{PLURAL:$1|ieldre 1|ieldran $1}}",
 	"booksources": "Bōcfruman",
 	"booksources-search-legend": "Sēcan bōcfruman",
-	"booksources-go": "Gān",
 	"booksources-text": "Niðer is getæl hlencena tō ōðrum webstedum þe cīpaþ nīwa and gebrocena bēc, and wēninga hæbben ēac mā cȳþþu ymbe bēc þe þu sēcst:",
 	"specialloguserlabel": "Gelǣstende brūcend:",
 	"speciallogtitlelabel": "Ende (trametes titul oþþe brūcendes nama):",
@@ -689,7 +688,7 @@
 	"unwatchthispage": "Ablinnan behealdunge",
 	"watchlist-details": "{{PLURAL:$1|Þǣr is $1 tramet|Þǣr sind $1 trameta}} on þīnum behealdunggetæle, nā sunderlīce arīmedum mōtunga trametum.",
 	"wlnote": "Niðer {{PLURAL:$1|is sēo nīwoste andwendung|sind þā nīwostan '''$1''' andwendunga}} in {{PLURAL:$2|þǣre latostan tīde|þǣm latostan '''$2''' tīda}}, fram: $3, $4.",
-	"wlshowlast": "Īwan þā nīwostan $1 tīda $2 daga $3",
+	"wlshowlast": "Īwan þā nīwostan $1 tīda $2 daga",
 	"watchlist-options": "Behealdungtæles cyras",
 	"watching": "Behealdende...",
 	"unwatching": "Ablinnende behealdunge...",
@@ -931,7 +930,6 @@
 	"exif-gpslongitude-e": "Ēast lengu",
 	"exif-gpslongitude-w": "West lengu",
 	"exif-gpsdirection-t": "Sōþ rihtung",
-	"watchlistall2": "eall",
 	"namespacesall": "eall",
 	"monthsall": "eall",
 	"confirmemail_body": "Hwilchwega, gewēne þu of IP stōwe $1, hæfþ in namanbēc gestt ǣnne hordcleofan\n\"$2\" mid þissum e-ǣrendes naman on {{SITENAME}}n.\n\nTō āsēðenne þæt þes hordcleofa tō þē gebyraþ and tō openienne\ne-ǣrenda hwilcnessa on {{SITENAME}}n, opena þisne bend in þīnum webbscēawere:\n\n$3\n\nGif þis is *nā* þū, ne folga þisne bend.\n\n$5\n\nÞēos āsēðungrūn forealdaþ æt $4.",
@@ -967,5 +965,6 @@
 	"tags-edit": "adihtan",
 	"htmlform-submit": "Forþsendan",
 	"htmlform-reset": "Undōn andwendunga",
-	"htmlform-selectorother-other": "Ōðer"
+	"htmlform-selectorother-other": "Ōðer",
+	"revdelete-summary": "ādihtscortnes"
 }

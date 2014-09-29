@@ -61,7 +61,8 @@
 			"아라",
 			"Arystanbek",
 			"Sayginer",
-			"Sucsuzz"
+			"Sucsuzz",
+			"Kafkasmurat"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -1728,7 +1729,7 @@
 	"wlheader-enotif": "E-posta bildirimi etkin.",
 	"wlheader-showupdated": "Sayfaları son ziyaretinizden beri değişen sayfalar '''kalın''' gösterilmiştir.",
 	"wlnote": "$3 saat $4 itibariyle son {{PLURAL:$2|bir saatte|'''$2''' saatte}} yapılan {{PLURAL:$1|son değişiklik|son '''$1''' değişiklik}} aşağıdadır.",
-	"wlshowlast": "Son $1 saati $2 günü göster $3",
+	"wlshowlast": "Son $1 saati $2 günü göster",
 	"watchlist-options": "İzleme listesi seçenekleri",
 	"watching": "İzleniyor...",
 	"unwatching": "İzlenmiyor...",
@@ -2784,7 +2785,6 @@
 	"exif-urgency-low": "Düşük ( $1 )",
 	"exif-urgency-high": "Yüksek ( $1 )",
 	"exif-urgency-other": "Kullanıcı tanımlı öncelik ($1)",
-	"watchlistall2": "Hepsini göster",
 	"namespacesall": "hepsi",
 	"monthsall": "hepsi",
 	"confirmemail": "E-posta adresini onayla",
@@ -3140,5 +3140,6 @@
 	"pagelang-use-default": "Varsayılan dili kullan",
 	"pagelang-select-lang": "Dil seçin",
 	"right-pagelang": "Sayfa dilini değiştir",
-	"action-pagelang": "sayfa dilini değiştir"
+	"action-pagelang": "sayfa dilini değiştir",
+	"json-error-inf-or-nan": "Değerde kodlanacak bir veya daha fazla NAN veya INF değerleri"
 }

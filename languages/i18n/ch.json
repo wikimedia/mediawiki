@@ -593,7 +593,6 @@
 	"move": "Kånya",
 	"movethispage": "Kånya i påhina",
 	"booksources": "I source i lepblo",
-	"booksources-go": "Hånao",
 	"specialloguserlabel": "Muna'sesetbi:",
 	"speciallogtitlelabel": "Titulo:",
 	"log": "Logs",
@@ -619,7 +618,7 @@
 	"watchthispage": "Pulan este na påhina",
 	"unwatch": "Basta mapulan",
 	"watchlist-details": "{{PLURAL:$1|$1 påhina|$1 na påhina siha}} un pupulan, sin i påhinan kombetsasion siha.",
-	"wlshowlast": "Na'annok $1 na ora yan $2 na diha siha gi halacha $3",
+	"wlshowlast": "Na'annok $1 na ora yan $2 na diha siha gi halacha",
 	"watching": "Mamulan...",
 	"unwatching": "Pumapara mamulan...",
 	"deletepage": "Na'suha i påhina",
@@ -760,7 +759,6 @@
 	"metadata": "Metadata",
 	"metadata-expand": "Na'annok todu i infotmasion-ña",
 	"metadata-collapse": "Na'atok patte i infotmasion-ña",
-	"watchlistall2": "todu",
 	"namespacesall": "todu",
 	"monthsall": "todu",
 	"imgmultigo": "Hånao!",
@@ -771,5 +769,6 @@
 	"version": "Tinilaika",
 	"version-specialpages": "Manespesiat na påhina",
 	"fileduplicatesearch-submit": "Aligao",
-	"specialpages": "Manespesiat na påhina"
+	"specialpages": "Manespesiat na påhina",
+	"revdelete-summary": "tulaika i sumaria"
 }

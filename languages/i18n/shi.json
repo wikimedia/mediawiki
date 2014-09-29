@@ -494,7 +494,6 @@
 	"searchrelated": "Tuyzday",
 	"searchall": "Kullu",
 	"showingresults": "Ẓr azddar  {{PLURAL:$1|'''1''' May tuykfan|'''$1''' Mad kfan}} Bdu s #'''$2'''",
-	"showingresultsheader": "{{PLURAL:$5|May kfa '''$1''' ar '''$3'''|Mad kfan '''$1 - $2''' ar '''$3'''}} i '''$4'''",
 	"search-nonefound": "Ur ittuykfa walu maygan zund ɣayli trit",
 	"powersearch-legend": "Amsigl imzwarn",
 	"powersearch-ns": "Icnubbucn ɣ tɣulin",
@@ -673,7 +672,6 @@
 	"booksources": "Iɣbula n udlis",
 	"booksources-search-legend": "Acnubc s iɣbula n idlisn",
 	"booksources-isbn": "ISBN:",
-	"booksources-go": "Ftu",
 	"specialloguserlabel": "Amsqdac",
 	"speciallogtitlelabel": "Azwl",
 	"log": "Immussutn ittyuran",
@@ -702,7 +700,7 @@
 	"watchthispage": "Ṭfr tasna yad",
 	"unwatch": "Ur rast tsaggaɣ",
 	"watchlist-details": "Umuɣ nk n imttfura ar  ittawi $1 tasna {{PLURAL:$1||s}}, bla dis tsmunt tisniwin n imdiwiln.",
-	"wlshowlast": "Ml ikudan imggura $1 , ussan imggura $2 niɣd $3",
+	"wlshowlast": "Ml ikudan imggura $1 , ussan imggura $2 niɣd",
 	"watchlist-options": "Tixtiṛiyin n umuɣ lli ntfar",
 	"watching": "Ar itt sagga",
 	"unwatching": "Ur at sul ntsagga",
@@ -928,7 +926,6 @@
 	"exif-subjectdistancerange-2": "tannayt iqrbn",
 	"exif-gpslatitude-n": "dairat lard chamaliya",
 	"exif-gpsspeed-n": "Knots",
-	"watchlistall2": "kraygat (kullu)",
 	"namespacesall": "kullu",
 	"monthsall": "kullu",
 	"recreate": "awd skr",
@@ -992,5 +989,6 @@
 	"htmlform-selectorother-other": "wayya",
 	"revdelete-restricted": "iskr aqn i indbaln",
 	"revdelete-unrestricted": "Aqn iḥiyd i indbaln",
-	"rightsnone": "(ḥtta yan)"
+	"rightsnone": "(ḥtta yan)",
+	"revdelete-summary": "Awal uflla n imbddln"
 }

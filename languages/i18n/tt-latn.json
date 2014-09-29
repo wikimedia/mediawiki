@@ -592,7 +592,6 @@
 	"searchrelated": "bäylängän",
 	"searchall": "barlıq",
 	"showingresults": "Asta № '''$2''' {{PLURAL:$1|başlap}} '''$1''' {{PLURAL:$1|rezultat}} kürsätelgän.",
-	"showingresultsheader": "'''$4''' öçen {{PLURAL:$5|Rezultat '''$1''' sennän '''$3'''|Rezultatlar '''$1 — $2''' sennän  '''$3'''}}",
 	"search-nonefound": "Sorawğa turı kilgän cawaplar tabılmadı.",
 	"powersearch-legend": "Östämä ezläw",
 	"powersearch-ns": "isemnärendä ezläw",
@@ -960,7 +959,6 @@
 	"suppress": "Yäşerü",
 	"booksources": "Kitap çığanaqları",
 	"booksources-search-legend": "Kitap çığanaqlarını ezläw",
-	"booksources-go": "Başqaru",
 	"booksources-text": "Älege bittä kürsätelgän sıltamalar yärämendä sezneñ qızıqsındırğan kitap buyınça östämä mäğlümatlar tabarğa mömkin. Bolar internet-kibetlär häm kitapxanä cıyıntığında ezläwçe sistemalar.",
 	"booksources-invalid-isbn": "Birelgän ISBN sanı bälki xataldır. Zinhar, birelgän sannarnı yañadan tikşeregez.",
 	"specialloguserlabel": "Qullanuçı:",
@@ -1022,7 +1020,7 @@
 	"unwatch": "Küzätmäw",
 	"notanarticle": "Mäqälä tügel",
 	"watchlist-details": "Küzätü isemlegegezdä, bäxäs bitlären sanamıyça, {{PLURAL:$1|$1 bit|$1 bit}} bar.",
-	"wlshowlast": "Bayağı $1 säğät $2 kön eçendä yäki $3nı kürsät",
+	"wlshowlast": "Bayağı $1 säğät $2 kön eçendä yäki nı kürsät",
 	"watchlist-options": "Küzätü isemlege köyläwläre",
 	"watching": "Küzätü isemlegemä östäwe…",
 	"unwatching": "Küzätü isemlegemnän çığaruı…",
@@ -1427,7 +1425,6 @@
 	"exif-subjectdistancerange-3": "Yıraqtan töşerü",
 	"exif-gpsspeed-k": "km/säğ",
 	"exif-gpsspeed-m": "milya/säğ",
-	"watchlistall2": "barlıq",
 	"namespacesall": "barlıq",
 	"monthsall": "barlıq",
 	"recreate": "Yañadan yasaw",
@@ -1484,5 +1481,6 @@
 	"htmlform-reset": "Üzgärtülärne kire qaytaru",
 	"htmlform-selectorother-other": "Başqa",
 	"revdelete-restricted": "çikläwlär idaräçelärgä dä qullanıla",
-	"rightsnone": "(yuq)"
+	"rightsnone": "(yuq)",
+	"revdelete-summary": "üzgärtülär taswirlaması"
 }

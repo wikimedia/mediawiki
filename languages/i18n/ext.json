@@ -950,7 +950,6 @@
 	"pager-older-n": "{{PLURAL:$1|1 mas antigu|$1 mas antigus}}",
 	"booksources": "Huentis de librus",
 	"booksources-search-legend": "Landeal huentis de librus",
-	"booksources-go": "Dil",
 	"booksources-text": "Embahu se muestra una lista d'atihus a páhinas que vendin librus usaus i nuevus, i ondi pueis alcuentral enhormación al tentu los librus qu'estás landeandu:",
 	"specialloguserlabel": "Usuáriu:",
 	"speciallogtitlelabel": "Entítulu:",
@@ -1025,7 +1024,7 @@
 	"wlheader-enotif": "Se premitin notificacionis pol email.",
 	"wlheader-showupdated": "Las páhinas que s'án emburacau dendi la úrtima vezi que las visoreasti son muestrás en '''negrina'''",
 	"wlnote": "Embahu {{PLURAL:$1|es el úrtimu chambu|son los úrtimus '''$1''' chambus}} enas úrtimas {{PLURAL:$2|oras|'''$2''' oras}}.",
-	"wlshowlast": "Muestral úrtimus $1 oras $2 dias $3",
+	"wlshowlast": "Muestral úrtimus $1 oras $2 dias",
 	"watchlist-options": "Ocionis de la mi lista e seguimientu",
 	"watching": "Vehilandu...",
 	"unwatching": "Abaldonandu la vehiláncia en...",
@@ -1616,7 +1615,6 @@
 	"exif-gpsspeed-n": "Ñus",
 	"exif-gpsdirection-t": "Direción verdaera",
 	"exif-gpsdirection-m": "Direción manética",
-	"watchlistall2": "tó",
 	"namespacesall": "tó",
 	"monthsall": "tó",
 	"confirmemail": "Confirmal email",
@@ -1723,5 +1721,6 @@
 	"revdelete-restricted": "las restricionis a los çahorilis án siu apricás",
 	"revdelete-unrestricted": "las restricionis a los çahorilis án siu esborrás",
 	"rightsnone": "(dengunu)",
+	"revdelete-summary": "eital sumáriu",
 	"expand_templates_preview": "Previsoreal"
 }

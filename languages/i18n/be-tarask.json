@@ -1708,7 +1708,7 @@
 	"wlheader-enotif": "Апавяшчэньне па e-mail уключанае.",
 	"wlheader-showupdated": "Старонкі, зьмененыя з часу вашага апошняга візыту, вылучаныя '''тоўстым''' шрыфтам.",
 	"wlnote": "Ніжэй {{PLURAL:$1|паказаная <strong>$1</strong> апошняя зьмена|паказаныя <strong>$1</strong> апошнія зьмены|паказаныя <strong>$1</strong> апошніх зьменаў}} за <strong>$2</strong> {{PLURAL:$2|гадзіну|гадзіны|гадзінаў}}, па стане на $4 $3.",
-	"wlshowlast": "Паказаць: за апошнія $1 гадзінаў, $2 дзён, $3",
+	"wlshowlast": "Паказаць: за апошнія $1 гадзінаў, $2 дзён,",
 	"watchlist-options": "Налады сьпісу назіраньня",
 	"watching": "Дадаецца ў сьпіс назіраньня…",
 	"unwatching": "Выдаляецца са сьпісу назіраньня…",
@@ -2750,7 +2750,6 @@
 	"exif-urgency-low": "Нізкая ($1)",
 	"exif-urgency-high": "Высокая ($1)",
 	"exif-urgency-other": "Прыярытэт вызначаны карыстальнікам ($1)",
-	"watchlistall2": "усё",
 	"namespacesall": "усе",
 	"monthsall": "усе",
 	"confirmemail": "Пацьвердзіць адрас электроннай пошты",
@@ -3142,6 +3141,7 @@
 	"mediastatistics-header-text": "Тэкст",
 	"mediastatistics-header-executable": "Выконваныя файлы",
 	"mediastatistics-header-archive": "Сьціснутыя фарматы",
+	"json-warn-trailing-comma": "$1 {{PLURAL:$1|залішняя коска ў канцы была выдаленая|залішнія коскі ў канцы былі выдаленыя|залішніх косак у канцы былі выдаленыя}} з JSON",
 	"json-error-unknown": "Узьнікла праблема з JSON. Памылка: $1",
 	"json-error-depth": "Перавышаная максымальная глыбіня стэку"
 }

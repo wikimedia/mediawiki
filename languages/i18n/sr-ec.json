@@ -1701,7 +1701,7 @@
 	"wlheader-enotif": "Обавештење е-поруком је омогућено.",
 	"wlheader-showupdated": "Странице које су измењене откад сте их последњи пут посетили су '''подебљане'''.",
 	"wlnote": "Испод {{PLURAL:$1|је последња измена|су последње '''$1''' измене|је последњих '''$1''' измена}} у {{PLURAL:$2|претходном сату|претходна '''$2''' сата|претходних '''$2''' сати}}, закључно са $3, $4.",
-	"wlshowlast": "Прикажи последњих $1 сати, $2 дана, $3",
+	"wlshowlast": "Прикажи последњих $1 сати, $2 дана",
 	"watchlist-options": "Поставке списка надгледања",
 	"watching": "Надгледање…",
 	"unwatching": "Прекидање надгледања…",
@@ -2807,7 +2807,6 @@
 	"exif-urgency-low": "Ниско ($1)",
 	"exif-urgency-high": "Високо ($1)",
 	"exif-urgency-other": "Прилагођени приоритет ($1)",
-	"watchlistall2": "све",
 	"namespacesall": "сви",
 	"monthsall": "све",
 	"confirmemail": "Потврда е-адресе",
@@ -3209,5 +3208,7 @@
 	"pagelang-language": "Језик",
 	"pagelang-select-lang": "Изабери језик",
 	"right-pagelang": "мењање језика странице",
-	"action-pagelang": "промену језика странице"
+	"action-pagelang": "промену језика странице",
+	"mediastatistics-table-mimetype": "MIME тип",
+	"mediastatistics-table-count": "Број датотека"
 }

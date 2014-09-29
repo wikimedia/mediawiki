@@ -728,7 +728,6 @@
 	"pager-older-n": "{{PLURAL:$1|нэхъ жьыуэ 1|нэхъ жьыху $1}}",
 	"booksources": "Тхылъ къыздихар",
 	"booksources-search-legend": "Тхылъым и хъыбар лъыхъуэн",
-	"booksources-go": "Къэгъуэтын",
 	"log": "Тхылъхэр",
 	"allpages": "НапэкIуэцIухъуар",
 	"prevpage": "Япэреуэ кӀуа напэкӀуэцӀыр ($1)",
@@ -747,7 +746,7 @@
 	"watchthispage": "НапэкӀуэцӀым кӀэлъыплъын",
 	"unwatch": "КӀэлъымыплъын",
 	"watchlist-details": "Уи щӀэлъыплъыгъуэ тхылъым $1 {{PLURAL:$1|напэкӀуэцӀ|напэкӀуэцӀу}}, напэкӀуэцӀ тепсэлъыхьыгъуэхэр хэмыту",
-	"wlshowlast": "Гъэлъэгъуэн кӀуа $1 сэхьэтым $2 махуэ $3",
+	"wlshowlast": "Гъэлъэгъуэн кӀуа $1 сэхьэтым $2 махуэ",
 	"watchlist-options": "ЩӀэлъыплъыгъуэхэм я тхылъ зэгъэзэхуэгъуэ",
 	"watching": "СызыкӀэлъыплъ тхылъым хэлъхьэн...",
 	"unwatching": "СызыкӀэлъыплъ тхылъым хэхын",
@@ -900,7 +899,6 @@
 	"metadata-expand": "Дээпыкъуэгъу кэӀуэтэгъуэхэр гъэлъэгъуэн",
 	"metadata-collapse": "Дээпыкъуэгъу кэӀуэтэгъуэхэр гъэпшкӀун",
 	"metadata-fields": "Метаданнэхэр, мыбы кърибжэкІхэр къызэрыгуэкІыу сурэтым и напэкІуэцІым къщридзэнущ, адрейхэр гъэпщкІуау щытынущ.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
-	"watchlistall2": "псори",
 	"namespacesall": "псори",
 	"monthsall": "псори",
 	"imgmultipageprev": "япэрыт напэкӀуэцӀыр",
@@ -915,5 +913,6 @@
 	"version-specialpages": "Лэжыгъэ напэкӀуэцӀ",
 	"specialpages": "СпецнапэкӀуэцӀхэр",
 	"revdelete-restricted": "теубыдыгъуэхэр тхьэмадэхэм ятохуэ",
-	"revdelete-unrestricted": "теубыдыгъуэхэр тхьэмадэхэм ятеха"
+	"revdelete-unrestricted": "теубыдыгъуэхэр тхьэмадэхэм ятеха",
+	"revdelete-summary": "зэхъуэкӀыгъуэхэм я тепсэлъыхьыгъуэ"
 }

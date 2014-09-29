@@ -636,7 +636,6 @@
 	"suppress": "Επόπτες",
 	"booksources": "Βιβλιογραφικά πηγάς",
 	"booksources-search-legend": "Αράεμαν τη βιβλίων",
-	"booksources-go": "Δέβα",
 	"specialloguserlabel": "Χρήστες:",
 	"speciallogtitlelabel": "Τίτλος:",
 	"log": "Αρχεία",
@@ -675,7 +674,7 @@
 	"unwatch": "Τέλεμαν τ' ωριαγματί",
 	"unwatchthispage": "Τέλεμαν ωριαγματί",
 	"watchlist-details": "{{PLURAL:$1|$1 σελίδα|$1 σελίδας}} ωριάσκουνταν, θέγα τα σελίδας καλατσεματί.",
-	"wlshowlast": "Φανέρωμαν τ' υστερναίων $1 ωρίων $2 ημερίων $3",
+	"wlshowlast": "Φανέρωμαν τ' υστερναίων $1 ωρίων $2 ημερίων",
 	"watchlist-options": "Επιλογάς ωριαγματί",
 	"watching": "Ωριάζω...",
 	"unwatching": "'κ ωριάζω...",
@@ -949,7 +948,6 @@
 	"exif-gpsstatus-v": "Διαλειτουργικότητα μετρησίων",
 	"exif-gpsspeed-m": "Μίλιαν την ώραν",
 	"exif-gpsspeed-n": "Κορδίλαι",
-	"watchlistall2": "ούλαι",
 	"namespacesall": "ούλαι",
 	"monthsall": "ούλαι",
 	"recreate": "Ποίσον αξάν",
@@ -996,5 +994,6 @@
 	"htmlform-reset": "Κλώσον τ'αλλαγάς",
 	"htmlform-selectorother-other": "Άλλον",
 	"rightsnone": "(τιδέν)",
+	"revdelete-summary": "σύνοψην",
 	"searchsuggest-search": "Αράεμαν"
 }
