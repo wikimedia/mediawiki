@@ -45,6 +45,7 @@ class ApiQuery extends ApiBase {
 		'categories' => 'ApiQueryCategories',
 		'categoryinfo' => 'ApiQueryCategoryInfo',
 		'contributors' => 'ApiQueryContributors',
+		'deletedrevisions' => 'ApiQueryDeletedRevisions',
 		'duplicatefiles' => 'ApiQueryDuplicateFiles',
 		'extlinks' => 'ApiQueryExternalLinks',
 		'fileusage' => 'ApiQueryBacklinksprop',
@@ -69,6 +70,7 @@ class ApiQuery extends ApiBase {
 	 */
 	private static $QueryListModules = array(
 		'allcategories' => 'ApiQueryAllCategories',
+		'alldeletedrevisions' => 'ApiQueryAllDeletedRevisions',
 		'allfileusages' => 'ApiQueryAllLinks',
 		'allimages' => 'ApiQueryAllImages',
 		'alllinks' => 'ApiQueryAllLinks',

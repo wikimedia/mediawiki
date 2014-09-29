@@ -376,6 +376,7 @@ class ApiHelp extends ApiBase {
 							$info[] = $context->msg( "apihelp-{$path}-paraminfo-{$tag}" )
 								->numParams( count( $i ) )
 								->params( $context->getLanguage()->commaList( $i ) )
+								->params( $module->getModulePrefix() )
 								->parse();
 						}
 					}
