@@ -1602,6 +1602,7 @@ function wfMsgGetKey( $key, $useDB = true, $langCode = false, $transform = true 
  * @param string $message
  * @param array $args
  * @return string
+ * @deprecated since 1.25 Use the RawMessage class
  * @private
  */
 function wfMsgReplaceArgs( $message, $args ) {

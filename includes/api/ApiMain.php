@@ -1306,7 +1306,8 @@ class ApiMain extends ApiBase {
 		$msg .= "\n$astriks Permissions $astriks\n\n";
 		foreach ( self::$mRights as $right => $rightMsg ) {
 			$groups = User::getGroupsWithPermission( $right );
-			$msg .= "* " . $right . " *\n  " . wfMsgReplaceArgs( $rightMsg['msg'], $rightMsg['params'] ) .
+			$rightRawMsg = new RawMessage( $rightMsg['msg'] );
+			$msg .= "* " . $right . " *\n  " . $rightRawMsg->params( $rightMsg['params'] )->text() .
 				"\nGranted to:\n  " . str_replace( '*', 'all', implode( ', ', $groups ) ) . "\n\n";
 		}
 
