@@ -47,6 +47,9 @@ class Pbkdf2Password extends ParameterizedPassword {
 		}
 
 		if ( function_exists( 'hash_pbkdf2' ) ) {
+			if ( !is_string( $password ) ) {
+				throw new MWException( __METHOD__ . ': $password is not a string' );
+			}
 			$hash = hash_pbkdf2(
 				$this->params['algo'],
 				$password,
