@@ -2351,11 +2351,7 @@ class User implements IDBAccessObject {
 		$this->setToken();
 
 		$passwordFactory = self::getPasswordFactory();
-		if ( $str === null ) {
-			$this->mPassword = $passwordFactory->newFromCiphertext( null );
-		} else {
-			$this->mPassword = $passwordFactory->newFromPlaintext( $str );
-		}
+		$this->mPassword = $passwordFactory->newFromPlaintext( $str );
 
 		$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
 		$this->mNewpassTime = null;
@@ -2400,14 +2396,11 @@ class User implements IDBAccessObject {
 	public function setNewpassword( $str, $throttle = true ) {
 		$this->loadPasswords();
 
+		$this->mNewpassword = self::getPasswordFactory()->newFromPlaintext( $str );
 		if ( $str === null ) {
-			$this->mNewpassword = '';
 			$this->mNewpassTime = null;
-		} else {
-			$this->mNewpassword = self::getPasswordFactory()->newFromPlaintext( $str );
-			if ( $throttle ) {
-				$this->mNewpassTime = wfTimestampNow();
-			}
+		} elseif ( $throttle ) {
+			$this->mNewpassTime = wfTimestampNow();
 		}
 	}
 
