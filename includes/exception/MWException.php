@@ -117,12 +117,10 @@ class MWException extends Exception {
 		$args = array_slice( func_get_args(), 2 );
 
 		if ( $this->useMessageCache() ) {
-			$msg = wfMessage( $key );
+			return wfMessage( $key, $args )->text();
 		} else {
-			$msg = new RawMessage( $fallback );
+			return wfMsgReplaceArgs( $fallback, $args );
 		}
-
-		return $msg->params( $args )->text();
 	}
 
 	/**
