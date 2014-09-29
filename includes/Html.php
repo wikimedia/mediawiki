@@ -102,6 +102,35 @@ class Html {
 	);
 
 	/**
+	 * Modifies a set of attributes meant for button elements
+	 * and apply a set of default attributes when $wgUseMediaWikiUIEverywhere enabled.
+	 * @param array $modifiers to add to the button
+	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @return array $attrs A modified attribute array
+	 */
+	public static function buttonAttributes( $attrs, $modifiers = array() ) {
+		global $wgUseMediaWikiUIEverywhere;
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			if ( isset( $attrs['class'] ) ) {
+				if ( is_array( $attrs['class'] ) ) {
+					$attrs['class'][] = 'mw-ui-button';
+					$attrs = array_merge( $attrs, $modifiers );
+					// ensure compatibility with Xml
+					$attrs['class'] = implode( ' ', $attrs['class'] );
+				} else {
+					$attrs['class'] .= ' mw-ui-button ' . implode( ' ', $modifiers );
+				}
+			} else {
+				$attrs['class'] = array( 'mw-ui-button' );
+				$attrs = array_merge( $attrs, $modifiers );
+				// ensure compatibility with Xml
+				$attrs['class'] = implode( ' ', $attrs['class'] );
+			}
+		}
+		return $attrs;
+	}
+
+	/**
 	 * Modifies a set of attributes meant for text input elements
 	 * and apply a set of default attributes.
 	 * Removes size attribute when $wgUseMediaWikiUIEverywhere enabled.
