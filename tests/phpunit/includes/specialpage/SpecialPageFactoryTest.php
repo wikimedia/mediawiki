@@ -35,10 +35,10 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	public function specialPageProvider() {
 		return array(
 			'class name' => array( 'SpecialAllPages', false ),
-			'closure' => array( function() {
+			'closure' => array( function () {
 				return new SpecialAllPages();
 			}, false ),
-			'function' => array( array( $this, 'newSpecialAllPages' ), false  ),
+			'function' => array( array( $this, 'newSpecialAllPages' ), false ),
 		);
 	}
 

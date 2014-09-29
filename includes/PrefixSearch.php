@@ -195,7 +195,7 @@ abstract class PrefixSearch {
 		// Unlike SpecialPage itself, we want the canonical forms of both
 		// canonical and alias title forms...
 		$keys = array();
-		foreach ( SpecialPageFactory::getNames() as $page  ) {
+		foreach ( SpecialPageFactory::getNames() as $page ) {
 			$keys[$wgContLang->caseFold( $page )] = $page;
 		}
 

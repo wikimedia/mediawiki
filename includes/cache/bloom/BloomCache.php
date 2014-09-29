@@ -318,6 +318,6 @@ class EmptyBloomCache extends BloomCache {
 	}
 
 	protected function doGetStatus( $virtualKey ) {
-		return array( 'lastID' => null, 'asOfTime' => null, 'epoch' => null ) ;
+		return array( 'lastID' => null, 'asOfTime' => null, 'epoch' => null );
 	}
 }

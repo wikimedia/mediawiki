@@ -2769,7 +2769,6 @@ $templates
 				);
 				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 
-
 				// Extract modules that know they're empty and see if we have one or more
 				// raw modules
 				$isRaw = false;

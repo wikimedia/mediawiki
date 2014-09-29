@@ -170,7 +170,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
 		$titleInfo = $this->getTitleInfo( $context );
 		if ( count( $titleInfo ) ) {
-			$mtimes = array_map( function( $value ) {
+			$mtimes = array_map( function ( $value ) {
 				return $value['timestamp'];
 			}, $titleInfo );
 			$modifiedTime = max( $modifiedTime, max( $mtimes ) );

@@ -423,5 +423,4 @@ class MovePage {
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
 	}
-
 }

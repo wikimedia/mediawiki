@@ -60,5 +60,4 @@ class MailAddressTest extends MediaWikiTestCase {
 		$ma = new MailAddress( 'some@email.com', 'UserName', 'A real name' );
 		$this->assertEquals( $ma->toString(), (string)$ma );
 	}
-
 }

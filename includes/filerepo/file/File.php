@@ -1237,7 +1237,7 @@ abstract class File {
 			$that = $this;
 			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $this->getName() ),
 				array(
-					'doWork' => function() use ( $that ) {
+					'doWork' => function () use ( $that ) {
 						return $that->getLocalRefPath();
 					}
 				)

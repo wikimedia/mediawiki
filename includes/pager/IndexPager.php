@@ -478,7 +478,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$attrs['class'] = "mw-{$type}link";
 		}
 
-
 		return Linker::linkKnown(
 			$this->getTitle(),
 			$text,
