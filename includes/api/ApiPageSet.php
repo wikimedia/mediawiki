@@ -68,6 +68,8 @@ class ApiPageSet extends ApiBase {
 	private $mPendingRedirectIDs = array();
 	private $mConvertedTitles = array();
 	private $mGoodRevIDs = array();
+	private $mLiveRevIDs = array();
+	private $mDeletedRevIDs = array();
 	private $mMissingRevIDs = array();
 	private $mFakePageId = -1;
 	private $mCacheMode = 'public';
@@ -596,11 +598,27 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
-	 * Get the list of revision IDs (requested with the revids= parameter)
+	 * Get the list of valid revision IDs (requested with the revids= parameter)
 	 * @return array Array of revID (int) => pageID (int)
 	 */
 	public function getRevisionIDs() {
 		return $this->mGoodRevIDs;
+	}
+
+	/**
+	 * Get the list of non-deleted revision IDs (requested with the revids= parameter)
+	 * @return array Array of revID (int) => pageID (int)
+	 */
+	public function getLiveRevisionIDs() {
+		return $this->mLiveRevIDs;
+	}
+
+	/**
+	 * Get the list of revision IDs that were associated with deleted titles.
+	 * @return array Array of revID (int) => pageID (int)
+	 */
+	public function getDeletedRevisionIDs() {
+		return $this->mDeletedRevIDs;
 	}
 
 	/**
@@ -901,6 +919,7 @@ class ApiPageSet extends ApiBase {
 				$revid = intval( $row->rev_id );
 				$pageid = intval( $row->rev_page );
 				$this->mGoodRevIDs[$revid] = $pageid;
+				$this->mLiveRevIDs[$revid] = $pageid;
 				$pageids[$pageid] = '';
 				unset( $remaining[$revid] );
 			}
@@ -911,6 +930,51 @@ class ApiPageSet extends ApiBase {
 
 		// Populate all the page information
 		$this->initFromPageIds( array_keys( $pageids ) );
+
+		// If the user can see deleted revisions, pull out the corresponding
+		// titles from the archive table and include them too. We ignore
+		// ar_page_id because deleted revisions are tied by title, not page_id.
+		if ( !empty( $this->mMissingRevIDs ) && $this->getUser()->isAllowed( 'deletedhistory' ) ) {
+			$remaining = array_flip( $this->mMissingRevIDs );
+			$tables = array( 'archive' );
+			$fields = array( 'ar_rev_id', 'ar_namespace', 'ar_title' );
+			$where = array( 'ar_rev_id' => $this->mMissingRevIDs );
+
+			$this->profileDBIn();
+			$res = $db->select( $tables, $fields, $where, __METHOD__ );
+			$titles = array();
+			foreach ( $res as $row ) {
+				$revid = intval( $row->ar_rev_id );
+				$titles[$revid] = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+				unset( $remaining[$revid] );
+			}
+			$this->profileDBOut();
+
+			$this->initFromTitles( $titles );
+
+			foreach ( $titles as $revid => $title ) {
+				$ns = $title->getNamespace();
+				$dbkey = $title->getDBkey();
+
+				// Handle converted titles
+				if ( !isset( $this->mAllPages[$ns][$dbkey] ) &&
+					isset( $this->mConvertedTitles[$title->getPrefixedText()] )
+				) {
+					$title = Title::newFromText( $this->mConvertedTitles[$title->getPrefixedText()] );
+					$ns = $title->getNamespace();
+					$dbkey = $title->getDBkey();
+				}
+
+				if ( isset( $this->mAllPages[$ns][$dbkey] ) ) {
+					$this->mGoodRevIDs[$revid] = $this->mAllPages[$ns][$dbkey];
+					$this->mDeletedRevIDs[$revid] = $this->mAllPages[$ns][$dbkey];
+				} else {
+					$remaining[$revid] = true;
+				}
+			}
+
+			$this->mMissingRevIDs = array_keys( $remaining );
+		}
 	}
 
 	/**

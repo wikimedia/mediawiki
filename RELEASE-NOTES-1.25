@@ -85,6 +85,15 @@ production.
   when a batch of pages is complete.
 * Pretty-printed HTML output now has nicer formatting and (if available)
   better syntax highlighting.
+* Deprecated list=deletedrevs in favor of newly-added prop=deletedrevisions and
+  list=alldeletedrevisions.
+* prop=revisions will gracefully continue when given too many revids or titles,
+  rather than just ignoring the extras.
+* prop=revisions will no longer die if rvcontentformat doesn't match a
+  revision's content model; it will instead warn and omit the content.
+* If the user has the 'deletedhistory' right, action=query's revids parameter
+  will now recognize deleted revids.
+* prop=revisions may be used as a generator, generating revids.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -109,6 +118,11 @@ production.
   has been removed.
 * ApiFormatBase now always buffers. Output is done when
   ApiFormatBase::closePrinter is called.
+* Much of the logic in ApiQueryRevisions has been split into ApiQueryRevisionsBase.
+* The 'revids' parameter supplied by ApiPageSet will now count deleted
+  revisions as "good" if the user has the 'deletedhistory' right. New methods
+  ApiPageSet::getLiveRevisionIDs() and ApiPageSet::getDeletedRevisionIDs() are
+  provided to access just the live or just the deleted revids.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
@@ -127,6 +141,9 @@ production.
   * ApiMain::reallyMakeHelpMsg
   * ApiMain::makeHelpMsgHeader
   * ApiQueryImageInfo::getPropertyDescriptions
+* The following classes have been deprecated and may be removed in a future
+  release:
+  * ApiQueryDeletedrevs
 
 === Languages updated in 1.25 ===
 
