@@ -265,11 +265,15 @@ class DjVuImage {
 
 	/**
 	 * Return an XML string describing the DjVu image
-	 * @return string
+	 * @return string|bool
 	 */
 	function retrieveMetaData() {
 		global $wgDjvuToXML, $wgDjvuDump, $wgDjvuTxt;
 		wfProfileIn( __METHOD__ );
+
+		if ( !$this->isValid() ) {
+			return false;
+		}
 
 		if ( isset( $wgDjvuDump ) ) {
 			# djvudump is faster as of version 3.5
