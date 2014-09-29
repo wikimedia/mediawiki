@@ -767,7 +767,7 @@ abstract class UploadBase {
 		rsort( $sizes );
 
 		foreach ( $sizes as $size ) {
-			$jobs []= new ThumbnailRenderJob( $this->getLocalFile()->getTitle(), array(
+			$jobs[] = new ThumbnailRenderJob( $this->getLocalFile()->getTitle(), array(
 				'transformParams' => array( 'width' => $size ),
 			) );
 		}

@@ -38,7 +38,7 @@ class MailAddress {
 	function __construct( $address, $name = null, $realName = null ) {
 		if ( is_object( $address ) && $address instanceof User ) {
 			// Old calling format, now deprecated
-			wfDeprecated( __METHOD__ . ' with a User object' , '1.24' );
+			wfDeprecated( __METHOD__ . ' with a User object', '1.24' );
 			$this->address = $address->getEmail();
 			$this->name = $address->getName();
 			$this->realName = $address->getRealName();

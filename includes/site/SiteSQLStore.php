@@ -395,7 +395,7 @@ class SiteSQLStore implements SiteStore {
 		$dbw->startAtomic( __METHOD__ );
 		$ok = $dbw->delete( 'sites', '*', __METHOD__ );
 		$ok = $dbw->delete( 'site_identifiers', '*', __METHOD__ ) && $ok;
-		$dbw->endAtomic( __METHOD__);
+		$dbw->endAtomic( __METHOD__ );
 
 		$this->reset();
 

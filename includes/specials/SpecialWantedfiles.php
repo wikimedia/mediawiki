@@ -102,7 +102,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * @return boolean
 	 */
 	protected function existenceCheck( Title $title ) {
-		return (bool) wfFindFile( $title );
+		return (bool)wfFindFile( $title );
 	}
 
 	function getQueryInfo() {
