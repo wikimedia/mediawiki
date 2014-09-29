@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (98e770ce46)
+ * OOjs UI v0.1.0-pre (4f50c34924)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-26T22:57:14Z
+ * Date: 2014-09-30T19:00:57Z
  */
 ( function ( OO ) {
 
@@ -248,6 +248,7 @@ OO.ui.PendingElement.prototype.isPending = function () {
 OO.ui.PendingElement.prototype.pushPending = function () {
 	if ( this.pending === 0 ) {
 		this.$pending.addClass( 'oo-ui-pendingElement-pending' );
+		this.updateThemeClasses();
 	}
 	this.pending++;
 
@@ -264,6 +265,7 @@ OO.ui.PendingElement.prototype.pushPending = function () {
 OO.ui.PendingElement.prototype.popPending = function () {
 	if ( this.pending === 1 ) {
 		this.$pending.removeClass( 'oo-ui-pendingElement-pending' );
+		this.updateThemeClasses();
 	}
 	this.pending = Math.max( 0, this.pending - 1 );
 
@@ -699,6 +701,10 @@ OO.ui.Element = function OoUiElement( config ) {
 	this.$ = config.$ || OO.ui.Element.getJQuery( document );
 	this.$element = this.$( this.$.context.createElement( this.getTagName() ) );
 	this.elementGroup = null;
+	this.debouncedUpdateThemeClassesHandler = OO.ui.bind(
+		this.debouncedUpdateThemeClasses, this
+	);
+	this.updateThemeClassesPending = false;
 
 	// Initialization
 	if ( $.isArray( config.classes ) ) {
@@ -1052,6 +1058,28 @@ OO.ui.Element.scrollIntoView = function ( el, config ) {
 /* Methods */
 
 /**
+ * Update the theme-provided classes.
+ *
+ * @localdoc This is called in element mixins and widget classes anytime state changes.
+ *   Updating is debounced, minimizing overhead of changing multiple attributes and
+ *   guaranteeing that theme updates do not occur within an element's constructor
+ */
+OO.ui.Element.prototype.updateThemeClasses = function () {
+	if ( !this.updateThemeClassesPending ) {
+		this.updateThemeClassesPending = true;
+		setTimeout( this.debouncedUpdateThemeClassesHandler );
+	}
+};
+
+/**
+ * @private
+ */
+OO.ui.Element.prototype.debouncedUpdateThemeClasses = function () {
+	OO.ui.theme.updateElementClasses( this );
+	this.updateThemeClassesPending = false;
+};
+
+/**
  * Get the HTML tag name.
  *
  * Override this method to base the result on instance information.
@@ -1293,6 +1321,7 @@ OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
 		this.$element.toggleClass( 'oo-ui-widget-disabled', isDisabled );
 		this.$element.toggleClass( 'oo-ui-widget-enabled', !isDisabled );
 		this.emit( 'disable', isDisabled );
+		this.updateThemeClasses();
 	}
 	this.wasDisabled = isDisabled;
 
@@ -3446,6 +3475,55 @@ OO.ui.ToolGroupFactory.static.getDefaultClasses = function () {
 };
 
 /**
+ * Theme logic.
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.Theme = function OoUiTheme( config ) {
+	// Initialize config
+	config = config || {};
+};
+
+/* Setup */
+
+OO.initClass( OO.ui.Theme );
+
+/* Methods */
+
+/**
+ * Get a list of classes to be applied to a widget.
+ *
+ * @localdoc The 'on' and 'off' lists combined MUST contain keys for all classes the theme adds or
+ *   removes, otherwise state transitions will not work properly.
+ *
+ * @param {OO.ui.Element} element Element for which to get classes
+ * @return {Object.<string,string[]>} Categorized class names with `on` and `off` lists
+ */
+OO.ui.Theme.prototype.getElementClasses = function ( /* element */ ) {
+	return { on: [], off: [] };
+};
+
+/**
+ * Update CSS classes provided by the theme.
+ *
+ * For elements with theme logic hooks, this should be called anytime there's a state change.
+ *
+ * @param {OO.ui.Element} Element for which to update classes
+ * @return {Object.<string,string[]>} Categorized class names with `on` and `off` lists
+ */
+OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
+	var classes = this.getElementClasses( element );
+
+	element.$element
+		.removeClass( classes.off.join( ' ' ) )
+		.addClass( classes.on.join( ' ' ) );
+};
+
+/**
  * Element with a button.
  *
  * Buttons are used for controls which can be clicked. They can be configured to use tab indexing
@@ -3558,6 +3636,15 @@ OO.ui.ButtonElement.prototype.onMouseUp = function ( e ) {
 };
 
 /**
+ * Check if button has a frame.
+ *
+ * @return {boolean} Button is framed
+ */
+OO.ui.ButtonElement.prototype.isFramed = function () {
+	return this.framed;
+};
+
+/**
  * Toggle frame.
  *
  * @param {boolean} [framed] Make button framed, omit to toggle
@@ -3570,6 +3657,7 @@ OO.ui.ButtonElement.prototype.toggleFramed = function ( framed ) {
 		this.$element
 			.toggleClass( 'oo-ui-buttonElement-frameless', !framed )
 			.toggleClass( 'oo-ui-buttonElement-framed', framed );
+		this.updateThemeClasses();
 	}
 
 	return this;
@@ -3979,6 +4067,7 @@ OO.ui.IconElement.prototype.setIcon = function ( icon ) {
 	}
 
 	this.$element.toggleClass( 'oo-ui-iconElement', !!this.icon );
+	this.updateThemeClasses();
 
 	return this;
 };
@@ -4122,6 +4211,7 @@ OO.ui.IndicatorElement.prototype.setIndicator = function ( indicator ) {
 	}
 
 	this.$element.toggleClass( 'oo-ui-indicatorElement', !!this.indicator );
+	this.updateThemeClasses();
 
 	return this;
 };
@@ -4436,6 +4526,7 @@ OO.ui.FlaggedElement.prototype.clearFlags = function () {
 		this.$flagged.removeClass( remove.join( ' ' ) );
 	}
 
+	this.updateThemeClasses();
 	this.emit( 'flag', changes );
 
 	return this;
@@ -4501,6 +4592,7 @@ OO.ui.FlaggedElement.prototype.setFlags = function ( flags ) {
 			.removeClass( remove.join( ' ' ) );
 	}
 
+	this.updateThemeClasses();
 	this.emit( 'flag', changes );
 
 	return this;
@@ -7854,7 +7946,7 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
  */
 OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, config ) {
 	// Configuration initialization
-	config = $.extend( { icon: 'add-item' }, config );
+	config = $.extend( { icon: 'add' }, config );
 
 	// Parent constructor
 	OO.ui.OutlineControlsWidget.super.call( this, config );
@@ -8970,7 +9062,9 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.multiline = !!config.multiline;
 	this.autosize = !!config.autosize;
 	this.maxRows = config.maxRows !== undefined ? config.maxRows : 10;
-	this.validate = config.validate || null;
+	this.validate = null;
+
+	this.setValidation( config.validate );
 
 	// Events
 	this.$input.on( {
@@ -9178,6 +9272,19 @@ OO.ui.TextInputWidget.prototype.select = function () {
 };
 
 /**
+ * Sets the validation pattern to use.
+ * @param validate {RegExp|string|null} Regular expression (or symbolic name referencing
+ *  one, see #static-validationPatterns)
+ */
+OO.ui.TextInputWidget.prototype.setValidation = function ( validate ) {
+	if ( validate instanceof RegExp ) {
+		this.validate = validate;
+	} else {
+		this.validate = this.constructor.static.validationPatterns[validate] || /.*/;
+	}
+};
+
+/**
  * Sets the 'invalid' flag appropriately.
  */
 OO.ui.TextInputWidget.prototype.setValidityFlag = function () {
@@ -9193,13 +9300,7 @@ OO.ui.TextInputWidget.prototype.setValidityFlag = function () {
  * @return {jQuery.Deferred}
  */
 OO.ui.TextInputWidget.prototype.isValid = function () {
-	var validationRegexp;
-	if ( this.validate instanceof RegExp ) {
-		validationRegexp = this.validate;
-	} else {
-		validationRegexp = this.constructor.static.validationPatterns[this.validate];
-	}
-	return $.Deferred().resolve( !!this.getValue().match( validationRegexp ) ).promise();
+	return $.Deferred().resolve( !!this.getValue().match( this.validate ) ).promise();
 };
 
 /**
@@ -9506,6 +9607,7 @@ OO.ui.OptionWidget.prototype.setSelected = function ( state ) {
 		if ( state && this.constructor.static.scrollIntoViewOnSelect ) {
 			this.scrollElementIntoView();
 		}
+		this.updateThemeClasses();
 	}
 	return this;
 };
@@ -9520,6 +9622,7 @@ OO.ui.OptionWidget.prototype.setHighlighted = function ( state ) {
 	if ( this.constructor.static.highlightable ) {
 		this.highlighted = !!state;
 		this.$element.toggleClass( 'oo-ui-optionWidget-highlighted', state );
+		this.updateThemeClasses();
 	}
 	return this;
 };
@@ -9534,6 +9637,7 @@ OO.ui.OptionWidget.prototype.setPressed = function ( state ) {
 	if ( this.constructor.static.pressable ) {
 		this.pressed = !!state;
 		this.$element.toggleClass( 'oo-ui-optionWidget-pressed', state );
+		this.updateThemeClasses();
 	}
 	return this;
 };
@@ -9804,6 +9908,7 @@ OO.ui.OutlineItemWidget.prototype.getLevel = function () {
  */
 OO.ui.OutlineItemWidget.prototype.setMovable = function ( movable ) {
 	this.movable = !!movable;
+	this.updateThemeClasses();
 	return this;
 };
 
@@ -9817,6 +9922,7 @@ OO.ui.OutlineItemWidget.prototype.setMovable = function ( movable ) {
  */
 OO.ui.OutlineItemWidget.prototype.setRemovable = function ( removable ) {
 	this.removable = !!removable;
+	this.updateThemeClasses();
 	return this;
 };
 
@@ -9839,6 +9945,7 @@ OO.ui.OutlineItemWidget.prototype.setLevel = function ( level ) {
 			this.$element.removeClass( levelClass + i );
 		}
 	}
+	this.updateThemeClasses();
 
 	return this;
 };
@@ -10115,7 +10222,7 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	}
 
 	// Position body relative to anchor
-	this.$popup.css( 'left', popupOffset );
+	this.$popup.css( 'margin-left', popupOffset );
 
 	if ( transition ) {
 		// Prevent transitioning after transition is complete
