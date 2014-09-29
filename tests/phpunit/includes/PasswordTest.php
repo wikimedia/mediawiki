@@ -30,4 +30,10 @@ class PasswordTest extends MediaWikiTestCase {
 
 		$this->assertFalse( $invalid1->equals( $invalid2 ) );
 	}
+
+	public function testInvalidPlaintext() {
+		$invalid = User::getPasswordFactory()->newFromPlaintext( null );
+
+		$this->assertInstanceOf( 'InvalidPassword', $invalid );
+	}
 }
