@@ -678,13 +678,8 @@ class Revision implements IDBAccessObject {
 			$this->mCurrent = false;
 
 			// If we still have no length, see it we have the text to figure it out
-			if ( !$this->mSize ) {
-				if ( $this->mContent !== null ) {
-					$this->mSize = $this->mContent->getSize();
-				} else {
-					#NOTE: this should never happen if we have either text or content object!
-					$this->mSize = null;
-				}
+			if ( !$this->mSize && $this->mContent !== null ) {
+				$this->mSize = $this->mContent->getSize();
 			}
 
 			// Same for sha1
