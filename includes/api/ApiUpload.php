@@ -223,11 +223,12 @@ class ApiUpload extends ApiBase {
 		// Check we added the last chunk:
 		if ( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
 			if ( $this->mParams['async'] ) {
-				$progress = UploadBase::getSessionStatus( $filekey );
+				$progress = UploadBase::getSessionStatus( $this->getUser(), $filekey );
 				if ( $progress && $progress['result'] === 'Poll' ) {
 					$this->dieUsage( "Chunk assembly already in progress.", 'stashfailed' );
 				}
 				UploadBase::setSessionStatus(
+					$this->getUser(),
 					$filekey,
 					array( 'result' => 'Poll',
 						'stage' => 'queued', 'status' => Status::newGood() )
@@ -327,7 +328,7 @@ class ApiUpload extends ApiBase {
 
 		// Status report for "upload to stash"/"upload from stash"
 		if ( $this->mParams['filekey'] && $this->mParams['checkstatus'] ) {
-			$progress = UploadBase::getSessionStatus( $this->mParams['filekey'] );
+			$progress = UploadBase::getSessionStatus( $this->getUser(), $this->mParams['filekey'] );
 			if ( !$progress ) {
 				$this->dieUsage( 'No result in status data', 'missingresult' );
 			} elseif ( !$progress['status']->isGood() ) {
@@ -612,11 +613,12 @@ class ApiUpload extends ApiBase {
 
 		// No errors, no warnings: do the upload
 		if ( $this->mParams['async'] ) {
-			$progress = UploadBase::getSessionStatus( $this->mParams['filekey'] );
+			$progress = UploadBase::getSessionStatus( $this->getUser(), $this->mParams['filekey'] );
 			if ( $progress && $progress['result'] === 'Poll' ) {
 				$this->dieUsage( "Upload from stash already in progress.", 'publishfailed' );
 			}
 			UploadBase::setSessionStatus(
+				$this->getUser(),
 				$this->mParams['filekey'],
 				array( 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() )
 			);
