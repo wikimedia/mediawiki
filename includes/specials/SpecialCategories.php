@@ -180,10 +180,6 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 	public function getStartForm( $from ) {
-		$submitClassName = '';
-		if ( $this->getConfig( 'UseMediaWikiUIEverywhere' ) ) {
-			$submitClassName = 'mw-ui-button mw-ui-progressive';
-		}
 		return Xml::tags(
 			'form',
 			array( 'method' => 'get', 'action' => wfScript() ),
@@ -194,9 +190,9 @@ class CategoryPager extends AlphabeticPager {
 						$this->msg( 'categoriesfrom' )->text(),
 						'from', 'from', 20, $from, array( 'class' => 'mw-ui-input-inline' ) ) .
 						' ' .
-						Xml::submitButton(
+						Html::submitButton(
 							$this->msg( 'allpagessubmit' )->text(),
-							array( 'class' => $submitClassName )
+							array(), array( 'mw-ui-progressive' )
 						)
 				)
 		);

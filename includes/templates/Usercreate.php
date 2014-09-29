@@ -254,14 +254,16 @@ class UsercreateTemplate extends BaseTemplate {
 			?>
 			<div class="mw-ui-vform-field mw-submit">
 				<?php
-				echo Html::input(
-					'wpCreateaccount',
+				echo Html::submitButton(
 					$this->getMsg( $this->data['loggedin'] ? 'createacct-another-submit' : 'createacct-submit' ),
-					'submit',
-					array(
-						'class' => "mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive",
+					$attrs = array(
 						'id' => 'wpCreateaccount',
 						'tabindex' => $tabIndex++
+					),
+					array(
+						'mw-ui-big',
+						'mw-ui-block',
+						'mw-ui-constructive',
 					)
 				);
 				?>
