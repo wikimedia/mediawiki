@@ -50,7 +50,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		if ( $params['activeusers'] ) {
 			// Update active user cache
-			SpecialActiveUsers::mergeActiveUsers( 600, $activeUserDays );
+			SpecialActiveUsers::mergeActiveUsers( 300, $activeUserDays );
 		}
 
 		$db = $this->getDB();

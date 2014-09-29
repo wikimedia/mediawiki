@@ -259,7 +259,7 @@ class SpecialActiveUsers extends SpecialPage {
 			array( 'activeusers-intro', $this->getLanguage()->formatNum( $days ) ) );
 
 		// Occasionally merge in new updates
-		$seconds = min( self::mergeActiveUsers( 600, $days ), $days * 86400 );
+		$seconds = min( self::mergeActiveUsers( 300, $days ), $days * 86400 );
 		// Mention the level of staleness
 		$out->addWikiMsg( 'cachedspecial-viewing-cached-ttl',
 			$this->getLanguage()->formatDuration( $seconds ) );
