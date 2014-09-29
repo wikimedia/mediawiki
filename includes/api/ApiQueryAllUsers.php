@@ -72,7 +72,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$limit = $params['limit'];
 
 		$this->addTables( 'user' );
-		$useIndex = true;
 
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
 		$from = is_null( $params['from'] ) ? null : $this->getCanonicalUserName( $params['from'] );
@@ -81,6 +80,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		# MySQL can't figure out that 'user_name' and 'qcc_title' are the same
 		# despite the JOIN condition, so manually sort on the correct one.
 		$userFieldToSort = $params['activeusers'] ? 'qcc_title' : 'user_name';
+
+		# Some of these subtable joins are going to give us duplicate rows, so
+		# calculate the maximum number of duplicates we might see.
+		$maxDuplicateRows = 1;
 
 		$this->addWhereRange( $userFieldToSort, $dir, $from, $to );
 
@@ -116,16 +119,17 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		if ( !is_null( $params['group'] ) && count( $params['group'] ) ) {
-			$useIndex = false;
-			// Filter only users that belong to a given group
+			// Filter only users that belong to a given group. This might
+			// produce as many rows-per-user as there are groups being checked.
 			$this->addTables( 'user_groups', 'ug1' );
 			$this->addJoinConds( array( 'ug1' => array( 'INNER JOIN', array( 'ug1.ug_user=user_id',
 				'ug1.ug_group' => $params['group'] ) ) ) );
+			$maxDuplicateRows *= count( $params['group'] );
 		}
 
 		if ( !is_null( $params['excludegroup'] ) && count( $params['excludegroup'] ) ) {
-			$useIndex = false;
-			// Filter only users don't belong to a given group
+			// Filter only users don't belong to a given group. This can only
+			// produce one row-per-user, because we only keep on "no match".
 			$this->addTables( 'user_groups', 'ug1' );
 
 			if ( count( $params['excludegroup'] ) == 1 ) {
@@ -149,22 +153,16 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->showHiddenUsersAddBlockInfo( $fld_blockinfo );
 
 		if ( $fld_groups || $fld_rights ) {
-			// Show the groups the given users belong to
-			// request more than needed to avoid not getting all rows that belong to one user
-			$groupCount = count( User::getAllGroups() );
-			$sqlLimit = $limit + $groupCount + 1;
-
-			$this->addTables( 'user_groups', 'ug2' );
-			$this->addJoinConds( array( 'ug2' => array( 'LEFT JOIN', 'ug2.ug_user=user_id' ) ) );
-			$this->addFields( array( 'ug_group2' => 'ug2.ug_group' ) );
-		} else {
-			$sqlLimit = $limit + 1;
+			$this->addFields( array( 'groups' =>
+				$db->buildGroupConcatField( '|', 'user_groups', 'ug_group', 'ug_user=user_id' )
+			) );
 		}
 
 		if ( $params['activeusers'] ) {
 			$activeUserSeconds = $activeUserDays * 86400;
 
-			// Filter query to only include users in the active users cache
+			// Filter query to only include users in the active users cache.
+			// There shouldn't be any duplicate rows in querycachetwo here.
 			$this->addTables( 'querycachetwo' );
 			$this->addJoinConds( array( 'querycachetwo' => array(
 				'INNER JOIN', array(
@@ -190,6 +188,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			) );
 		}
 
+		$sqlLimit = $limit + $maxDuplicateRows;
 		$this->addOption( 'LIMIT', $sqlLimit );
 
 		$this->addFields( array(
@@ -199,144 +198,105 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addFieldsIf( 'user_editcount', $fld_editcount );
 		$this->addFieldsIf( 'user_registration', $fld_registration );
 
-		if ( $useIndex ) {
-			$this->addOption( 'USE INDEX', array( 'user' => 'user_name' ) );
-		}
-
 		$res = $this->select( __METHOD__ );
-
 		$count = 0;
-		$lastUserData = false;
+		$countDuplicates = 0;
 		$lastUser = false;
 		$result = $this->getResult();
-
-		// This loop keeps track of the last entry. For each new row, if the
-		// new row is for different user then the last, the last entry is added
-		// to results. Otherwise, the group of the new row is appended to the
-		// last entry. The setContinue... is more complex because of this, and
-		// takes into account the higher sql limit to make sure all rows that
-		// belong to the same user are received.
-
 		foreach ( $res as $row ) {
 			$count++;
 
-			if ( $lastUser !== $row->user_name ) {
-				// Save the last pass's user data
-				if ( is_array( $lastUserData ) ) {
-					if ( $params['activeusers'] && $lastUserData['recentactions'] === 0 ) {
-						// activeusers cache was out of date
-						$fit = true;
-					} else {
-						$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-							null, $lastUserData );
-					}
+			if ( $lastUser === $row->user_name ) {
+				// Duplicate row due to one of the needed subtable joins.
+				// Ignore it, but count the number of them to sanely handle
+				// miscalculation of $maxDuplicateRows.
+				$countDuplicates++;
+				if ( $countDuplicates == $maxDuplicateRows ) {
+					ApiBase::dieDebug( __METHOD__, 'Saw more duplicate rows than expected' );
+				}
+				continue;
+			}
 
-					$lastUserData = null;
+			$countDuplicates = 0;
+			$lastUser = $row->user_name;
 
-					if ( !$fit ) {
-						$this->setContinueEnumParameter( 'from', $lastUserData['name'] );
-						break;
-					}
+			if ( $count > $limit ) {
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
+				$this->setContinueEnumParameter( 'from', $row->user_name );
+				break;
+			}
+
+			if ( $count == $sqlLimit ) {
+				// Should never hit this (either the $countDuplicates check or
+				// the $count > $limit check should hit first), but check it
+				// anyway just in case.
+				ApiBase::dieDebug( __METHOD__, 'Saw more duplicate rows than expected' );
+			}
+
+			if ( $params['activeusers'] && $row->recentactions === 0 ) {
+				// activeusers cache was out of date
+				continue;
+			}
+
+			$data = array(
+				'userid' => $row->user_id,
+				'name' => $row->user_name,
+			);
+
+			if ( $fld_blockinfo && !is_null( $row->ipb_by_text ) ) {
+				$data['blockid'] = $row->ipb_id;
+				$data['blockedby'] = $row->ipb_by_text;
+				$data['blockedbyid'] = $row->ipb_by;
+				$data['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
+				$data['blockreason'] = $row->ipb_reason;
+				$data['blockexpiry'] = $row->ipb_expiry;
+			}
+			if ( $row->ipb_deleted ) {
+				$data['hidden'] = '';
+			}
+			if ( $fld_editcount ) {
+				$data['editcount'] = intval( $row->user_editcount );
+			}
+			if ( $params['activeusers'] ) {
+				$data['recentactions'] = intval( $row->recentactions );
+				// @todo 'recenteditcount' is set for BC, remove in 1.25
+				$data['recenteditcount'] = $data['recentactions'];
+			}
+			if ( $fld_registration ) {
+				$data['registration'] = $row->user_registration ?
+					wfTimestamp( TS_ISO_8601, $row->user_registration ) : '';
+			}
+
+			if ( $fld_implicitgroups || $fld_groups || $fld_rights ) {
+				$user = User::newFromId( $row->user_id );
+				$implicitGroups = User::newFromId( $row->user_id )->getAutomaticGroups();
+				if ( isset( $row->groups ) && $row->groups !== '' ) {
+					$groups = array_merge( $implicitGroups, explode( '|', $row->groups ) );
+				} else {
+					$groups = $implicitGroups;
 				}
 
-				if ( $count > $limit ) {
-					// We've reached the one extra which shows that there are
-					// additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'from', $row->user_name );
-					break;
+				if ( $fld_groups ) {
+					$data['groups'] = $groups;
+					$result->setIndexedTagName( $data['groups'], 'g' );
 				}
 
-				// Record new user's data
-				$lastUser = $row->user_name;
-				$lastUserData = array(
-					'userid' => $row->user_id,
-					'name' => $lastUser,
-				);
-				if ( $fld_blockinfo && !is_null( $row->ipb_by_text ) ) {
-					$lastUserData['blockid'] = $row->ipb_id;
-					$lastUserData['blockedby'] = $row->ipb_by_text;
-					$lastUserData['blockedbyid'] = $row->ipb_by;
-					$lastUserData['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
-					$lastUserData['blockreason'] = $row->ipb_reason;
-					$lastUserData['blockexpiry'] = $row->ipb_expiry;
+				if ( $fld_implicitgroups ) {
+					$data['implicitgroups'] = $implicitGroups;
+					$result->setIndexedTagName( $data['implicitgroups'], 'g' );
 				}
-				if ( $row->ipb_deleted ) {
-					$lastUserData['hidden'] = '';
-				}
-				if ( $fld_editcount ) {
-					$lastUserData['editcount'] = intval( $row->user_editcount );
-				}
-				if ( $params['activeusers'] ) {
-					$lastUserData['recentactions'] = intval( $row->recentactions );
-					// @todo 'recenteditcount' is set for BC, remove in 1.25
-					$lastUserData['recenteditcount'] = $lastUserData['recentactions'];
-				}
-				if ( $fld_registration ) {
-					$lastUserData['registration'] = $row->user_registration ?
-						wfTimestamp( TS_ISO_8601, $row->user_registration ) : '';
+
+				if ( $fld_rights ) {
+					$data['rights'] = User::getGroupPermissions( $groups );
+					$result->setIndexedTagName( $data['rights'], 'r' );
 				}
 			}
 
-			if ( $sqlLimit == $count ) {
-				// @todo BUG!  database contains group name that User::getAllGroups() does not return
-				// Should handle this more gracefully
-				ApiBase::dieDebug(
-					__METHOD__,
-					'MediaWiki configuration error: The database contains more ' .
-						'user groups than known to User::getAllGroups() function'
-				);
-			}
-
-			$lastUserObj = User::newFromId( $row->user_id );
-
-			// Add user's group info
-			if ( $fld_groups ) {
-				if ( !isset( $lastUserData['groups'] ) ) {
-					if ( $lastUserObj ) {
-						$lastUserData['groups'] = $lastUserObj->getAutomaticGroups();
-					} else {
-						// This should not normally happen
-						$lastUserData['groups'] = array();
-					}
-				}
-
-				if ( !is_null( $row->ug_group2 ) ) {
-					$lastUserData['groups'][] = $row->ug_group2;
-				}
-
-				$result->setIndexedTagName( $lastUserData['groups'], 'g' );
-			}
-
-			if ( $fld_implicitgroups && !isset( $lastUserData['implicitgroups'] ) && $lastUserObj ) {
-				$lastUserData['implicitgroups'] = $lastUserObj->getAutomaticGroups();
-				$result->setIndexedTagName( $lastUserData['implicitgroups'], 'g' );
-			}
-			if ( $fld_rights ) {
-				if ( !isset( $lastUserData['rights'] ) ) {
-					if ( $lastUserObj ) {
-						$lastUserData['rights'] = User::getGroupPermissions( $lastUserObj->getAutomaticGroups() );
-					} else {
-						// This should not normally happen
-						$lastUserData['rights'] = array();
-					}
-				}
-
-				if ( !is_null( $row->ug_group2 ) ) {
-					$lastUserData['rights'] = array_unique( array_merge( $lastUserData['rights'],
-						User::getGroupPermissions( array( $row->ug_group2 ) ) ) );
-				}
-
-				$result->setIndexedTagName( $lastUserData['rights'], 'r' );
-			}
-		}
-
-		if ( is_array( $lastUserData ) &&
-			!( $params['activeusers'] && $lastUserData['recentactions'] === 0 )
-		) {
-			$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-				null, $lastUserData );
+			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $data );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'from', $lastUserData['name'] );
+				$this->setContinueEnumParameter( 'from', $data['name'] );
+				break;
 			}
 		}
 
