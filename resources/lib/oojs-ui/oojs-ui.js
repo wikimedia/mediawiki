@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (afa3241e8e)
+ * OOjs UI v0.1.0-pre (30b0407428)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-30T21:18:39Z
+ * Date: 2014-09-30T23:08:05Z
  */
 ( function ( OO ) {
 
@@ -1434,13 +1434,6 @@ OO.ui.Window = function OoUiWindow( config ) {
 OO.inheritClass( OO.ui.Window, OO.ui.Element );
 OO.mixinClass( OO.ui.Window, OO.EventEmitter );
 
-/* Events */
-
-/**
- * @event resize
- * @param {string} size Symbolic size name, e.g. 'small', 'medium', 'large', 'full'
- */
-
 /* Static Properties */
 
 /**
@@ -1908,6 +1901,7 @@ OO.ui.Window.prototype.initialize = function () {
 	this.$body = this.$( '<div>' );
 	this.$foot = this.$( '<div>' );
 	this.$overlay = this.$( '<div>' );
+	this.$focusTrap = this.$( '<div>' ).prop( 'tabIndex', 0 );
 
 	// Events
 	this.$element.on( 'mousedown', OO.ui.bind( this.onMouseDown, this ) );
@@ -1917,9 +1911,18 @@ OO.ui.Window.prototype.initialize = function () {
 	this.$body.addClass( 'oo-ui-window-body' );
 	this.$foot.addClass( 'oo-ui-window-foot' );
 	this.$overlay.addClass( 'oo-ui-window-overlay' );
-	this.$content.append( this.$head, this.$body, this.$foot, this.$overlay );
+	this.$focusTrap.addClass( 'oo-ui-window-focustrap' );
+	this.$content.append( this.$head, this.$body, this.$foot, this.$overlay, this.$focusTrap );
 
 	return this;
+};
+
+/**
+ * Called when someone tries to focus the hidden element at the end of the dialog.
+ * Sends focus back to the start of the dialog.
+ */
+OO.ui.Window.prototype.onFocusTrapFocused = function () {
+	this.$content.find( ':focusable:first' ).focus();
 };
 
 /**
@@ -1964,6 +1967,8 @@ OO.ui.Window.prototype.setup = function ( data ) {
 
 	this.$element.show();
 	this.visible = true;
+	this.focusTrapHandler = OO.ui.bind( this.onFocusTrapFocused, this );
+	this.$focusTrap.on( 'focus', this.focusTrapHandler );
 	this.getSetupProcess( data ).execute().done( function () {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.addClass( 'oo-ui-window-setup' ).width();
@@ -2042,14 +2047,15 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 	var win = this,
 		deferred = $.Deferred();
 
-	this.getTeardownProcess( data ).execute().done( function () {
+	this.getTeardownProcess( data ).execute().done( OO.ui.bind( function () {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.removeClass( 'oo-ui-window-setup' ).width();
 		win.$content.removeClass( 'oo-ui-window-content-setup' ).width();
 		win.$element.hide();
+		this.$focusTrap.off( 'focus', this.focusTrapHandler );
 		win.visible = false;
 		deferred.resolve();
-	} );
+	}, this ) );
 
 	return deferred.promise();
 };
@@ -2128,7 +2134,7 @@ OO.ui.Window.prototype.load = function () {
 	doc.close();
 
 	// Properties
-	this.$ = OO.ui.Element.getJQuery( doc, this.$element );
+	this.$ = OO.ui.Element.getJQuery( doc, this.$iframe );
 	this.$content = this.$( '.oo-ui-window-content' ).attr( 'tabIndex', 0 );
 	this.$document = this.$( doc );
 
@@ -2537,6 +2543,13 @@ OO.mixinClass( OO.ui.WindowManager, OO.EventEmitter );
  *   is resolved the first argument will be a the closing data; progress notifications will be fired
  *   on the promise for `hold` and `teardown` when those processes are completed respectively.
  * @param {Object} data Window closing data
+ */
+
+/**
+ * Window was resized.
+ *
+ * @event resize
+ * @param {OO.ui.Window} win Window that was resized
  */
 
 /* Static Properties */
@@ -3028,6 +3041,8 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 	this.$element.toggleClass( 'oo-ui-windowManager-fullscreen', size === 'full' );
 	this.$element.toggleClass( 'oo-ui-windowManager-floating', size !== 'full' );
 	win.setDimensions( sizes[size] );
+
+	this.emit( 'resize', win );
 
 	return this;
 };
@@ -4873,14 +4888,14 @@ OO.ui.ClippableElement.prototype.clip = function () {
 		clipHeight = desiredHeight < naturalHeight;
 
 	if ( clipWidth ) {
-		this.$clippable.css( { overflowX: 'auto', width: desiredWidth } );
+		this.$clippable.css( { overflowX: 'scroll', width: desiredWidth } );
 	} else {
 		this.$clippable.css( 'width', this.idealWidth || '' );
 		this.$clippable.width(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
 		this.$clippable.css( 'overflowX', '' );
 	}
 	if ( clipHeight ) {
-		this.$clippable.css( { overflowY: 'auto', height: desiredHeight } );
+		this.$clippable.css( { overflowY: 'scroll', height: desiredHeight } );
 	} else {
 		this.$clippable.css( 'height', this.idealHeight || '' );
 		this.$clippable.height(); // Force reflow for https://code.google.com/p/chromium/issues/detail?id=387290
@@ -4900,6 +4915,7 @@ OO.ui.ClippableElement.prototype.clip = function () {
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.IconElement
+ * @mixins OO.ui.FlaggedElement
  *
  * @constructor
  * @param {OO.ui.ToolGroup} toolGroup
@@ -4915,6 +4931,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 
 	// Mixin constructors
 	OO.ui.IconElement.call( this, config );
+	OO.ui.FlaggedElement.call( this, config );
 
 	// Properties
 	this.toolGroup = toolGroup;
@@ -4948,6 +4965,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 
 OO.inheritClass( OO.ui.Tool, OO.ui.Widget );
 OO.mixinClass( OO.ui.Tool, OO.ui.IconElement );
+OO.mixinClass( OO.ui.Tool, OO.ui.FlaggedElement );
 
 /* Events */
 
@@ -9202,31 +9220,34 @@ OO.ui.TextInputWidget.prototype.setValue = function ( value ) {
  * @chainable
  */
 OO.ui.TextInputWidget.prototype.adjustSize = function () {
-	var $clone, scrollHeight, innerHeight, outerHeight, maxInnerHeight, idealHeight;
+	var $clone, scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError, idealHeight;
 
 	if ( this.multiline && this.autosize ) {
 		$clone = this.$input.clone()
 			.val( this.$input.val() )
+			// Set inline height property to 0 to measure scroll height
 			.css( { height: 0 } )
 			.insertAfter( this.$input );
-		// Set inline height property to 0 to measure scroll height
 		scrollHeight = $clone[0].scrollHeight;
 		// Remove inline height property to measure natural heights
 		$clone.css( 'height', '' );
 		innerHeight = $clone.innerHeight();
 		outerHeight = $clone.outerHeight();
 		// Measure max rows height
-		$clone.attr( 'rows', this.maxRows ).css( 'height', 'auto' );
+		$clone.attr( 'rows', this.maxRows ).css( 'height', 'auto' ).val( '' );
 		maxInnerHeight = $clone.innerHeight();
-		$clone.removeAttr( 'rows' ).css( 'height', '' );
+		// Difference between reported innerHeight and scrollHeight with no scrollbars present
+		// Equals 1 on Blink-based browsers and 0 everywhere else
+		measurementError = maxInnerHeight - $clone[0].scrollHeight;
 		$clone.remove();
-		idealHeight = Math.min( maxInnerHeight, scrollHeight );
+		idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
 		// Only apply inline height when expansion beyond natural height is needed
-		this.$input.css(
-			'height',
+		if ( idealHeight > innerHeight ) {
 			// Use the difference between the inner and outer height as a buffer
-			idealHeight > outerHeight ? idealHeight + ( outerHeight - innerHeight ) : ''
-		);
+			this.$input.css( 'height', idealHeight + ( outerHeight - innerHeight ) );
+		} else {
+			this.$input.css( 'height', '' );
+		}
 	}
 	return this;
 };
