@@ -692,7 +692,7 @@ class DatabaseMssql extends DatabaseBase {
 			if ( !is_null( $identity ) ) {
 				// then we want to get the identity column value we were assigned and save it off
 				$row = $ret->fetchObject();
-				if( is_object( $row ) ){
+				if ( is_object( $row ) ){
 					$this->mInsertId = $row->$identity;
 				}
 			}
