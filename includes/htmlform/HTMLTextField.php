@@ -20,6 +20,7 @@ class HTMLTextField extends HTMLFormField {
 		# @todo Enforce pattern, step, required, readonly on the server side as
 		# well
 		$allowedParams = array(
+			'type',
 			'min',
 			'max',
 			'pattern',
@@ -38,10 +39,13 @@ class HTMLTextField extends HTMLFormField {
 
 		$attribs += $this->getAttributes( $allowedParams );
 
+		# Extract 'type'
+		$type = isset( $attribs['type'] ) ? $attribs['type'] : 'text';
+		unset( $attribs['type'] );
+
 		# Implement tiny differences between some field variants
 		# here, rather than creating a new class for each one which
 		# is essentially just a clone of this one.
-		$type = 'text';
 		if ( isset( $this->mParams['type'] ) ) {
 			switch ( $this->mParams['type'] ) {
 				case 'int':
@@ -60,6 +64,7 @@ class HTMLTextField extends HTMLFormField {
 					break;
 			}
 		}
+
 		return Html::input( $this->mName, $value, $type, $attribs );
 	}
 }
