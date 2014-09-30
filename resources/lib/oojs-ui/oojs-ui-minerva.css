@@ -1,23 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (98e770ce46)
+ * OOjs UI v0.1.0-pre (afa3241e8e)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-26T22:57:14Z
- */
-/*
- * Blank theme mixins.
- *
- * Base styles invoke these mixins at the end of their definitions. Override these mixins to add
- * additional rules to the base styles.
- */
-/*
- * Base styles.
- *
- * Themes should include this file after defining their variables and mixins.
+ * Date: 2014-09-30T21:18:39Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -440,12 +429,6 @@
 	cursor: pointer;
 	white-space: nowrap;
 }
-.oo-ui-menuToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
-	background-image: none;
-}
-.oo-ui-menuToolGroup .oo-ui-tool-active .oo-ui-tool-link .oo-ui-iconElement-icon {
-	background-image: /* @embed */ url(images/icons/check.svg);
-}
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link {
 	cursor: default;
 }
@@ -711,9 +694,6 @@
 	left: 0.25em;
 	margin-left: 0;
 }
-.oo-ui-actionWidget.oo-ui-pendingElement-pending {
-	background-image: /* @embed */ url(images/textures/pending.gif);
-}
 .oo-ui-popupWidget {
 	position: absolute;
 }
@@ -770,7 +750,6 @@
 }
 .oo-ui-popupButtonWidget .oo-ui-popupWidget {
 	position: absolute;
-	left: 1em;
 	cursor: auto;
 }
 .oo-ui-lookupInputWidget-menu {
@@ -790,10 +769,6 @@
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
-}
-.oo-ui-textInputWidget.oo-ui-pendingElement-pending input,
-.oo-ui-textInputWidget.oo-ui-pendingElement-pending textarea {
-	background-image: /* @embed */ url(images/textures/pending.gif);
 }
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator {
@@ -963,10 +938,15 @@
 .oo-ui-outlineControlsWidget-items {
 	margin-left: 0;
 }
+.oo-ui-comboBoxWidget {
+	display: inline-block;
+	position: relative;
+}
 .oo-ui-comboBoxWidget > .oo-ui-selectWidget {
+	width: 100%;
 	z-index: 1;
 }
-.oo-ui-comboBoxWidget > .oo-ui-selectWidget > .oo-ui-selectWidget {
+.oo-ui-comboBoxWidget > .oo-ui-selectWidget {
 	min-width: 20em;
 }
 .oo-ui-searchWidget-query {
@@ -1000,7 +980,6 @@
 }
 .oo-ui-window {
 	line-height: 1em;
-	/* Content div takes focus when opened, so hide outline */
 }
 .oo-ui-window-frame {
 	-webkit-box-sizing: border-box;
@@ -1048,9 +1027,6 @@
 .oo-ui-dialog-content > .oo-ui-window-head {
 	z-index: 1;
 	top: 0;
-}
-.oo-ui-dialog-content > .oo-ui-window-head.oo-ui-pendingElement-pending {
-	background-image: /* @embed */ url(images/textures/pending.gif);
 }
 .oo-ui-dialog-content > .oo-ui-window-body {
 	z-index: 2;
@@ -1389,13 +1365,10 @@
 	box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.3);
 }
 
-/*
- * Blank theme mixins.
- *
- * Base styles invoke these mixins at the end of their definitions. Override these mixins to add
- * additional rules to the base styles.
- */
 .oo-ui-icon-check {
 	background-image: /* @embed */ url(themes/minerva/images/icons/check.png);
-	background: #347bff;
+}
+.oo-ui-image-invert .oo-ui-icon-check,
+.oo-ui-image-invert.oo-ui-icon-check {
+	background-image: /* @embed */ url(themes/minerva/images/icons/check-invert.png);
 }

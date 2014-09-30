@@ -1557,13 +1557,13 @@ return array(
 		'scripts' => array(
 			'resources/lib/oojs-ui/oojs-ui.js',
 		),
-		'styles' => array(
-			'resources/lib/oojs-ui/oojs-ui.svg.css',
+		'skinScripts' => array(
+			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.js',
+			'minerva' => 'resources/lib/oojs-ui/oojs-ui-minerva.js',
 		),
 		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.css',
-			// FIXME As of July 2014, this is to be gone "in a couple of months".
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-minerva.css',
+			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.svg.css',
+			'minerva' => 'resources/lib/oojs-ui/oojs-ui-minerva.svg.css',
 		),
 		'messages' => array(
 			'ooui-outline-control-move-down',
