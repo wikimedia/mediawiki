@@ -3221,6 +3221,7 @@
 	"mediastatistics-header-text": "متنی",
 	"mediastatistics-header-executable": "اجرایی",
 	"mediastatistics-header-archive": "قالب‌های فشرده",
+	"json-warn-trailing-comma": "$1 کامای در انتها از جی‌سن {{PLURAL:$1|حذف شد}}.",
 	"json-error-unknown": "مشکلی با جی‌سن بود. خطا: $1",
 	"json-error-depth": "بیشینهٔ عمق پشته رد شده است",
 	"json-error-state-mismatch": "جی‌سن نادرست یا نافض",

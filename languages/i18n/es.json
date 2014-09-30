@@ -726,7 +726,7 @@
 	"protectedpagewarning": "'''Aviso: Esta página ha sido protegida de manera que solo usuarios con permisos de administrador puedan editarla.'''\nA continuación se muestra la última entrada de registro para referencia:",
 	"semiprotectedpagewarning": "'''Nota:''' Esta página ha sido protegida para que solo usuarios registrados puedan editarla.\nA continuación se provee la última entrada de registro para referencia:",
 	"cascadeprotectedwarning": "'''Aviso:''' Esta página está protegida, solo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
-	"titleprotectedwarning": "'''Aviso: Esta página está protegida de modo que se necesitan [[Special:ListGroupRights|derechos especificos]] para crearla.'''\nA continuación se muestra la última entrada de registro para referencia:",
+	"titleprotectedwarning": "'''Aviso: Esta página está protegida de modo que se necesitan [[Special:ListGroupRights|permisos especificos]] para crearla.'''\nA continuación se muestra la última entrada de registro para referencia:",
 	"templatesused": "{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta página:",
 	"templatesusedpreview": "{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta previsualización:",
 	"templatesusedsection": "{{PLURAL:$1|Plantilla usada|Plantillas usadas}} en esta sección:",

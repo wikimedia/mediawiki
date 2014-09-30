@@ -266,6 +266,7 @@
 	"hidetoc": "بیشارەوە",
 	"collapsible-collapse": "کۆی بکەوە",
 	"collapsible-expand": "بڵاوی بکەوە",
+	"confirmable-confirm": "{{GENDER:$1|دڵنیای}}؟",
 	"confirmable-yes": "بەڵێ",
 	"confirmable-no": "نا",
 	"thisisdeleted": "$1 نیشان بدە یا بھێنەوە؟",

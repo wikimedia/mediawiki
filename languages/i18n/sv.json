@@ -3186,5 +3186,10 @@
 	"mediastatistics-header-office": "Dokument",
 	"mediastatistics-header-text": "Text",
 	"mediastatistics-header-executable": "Körbara filer",
-	"mediastatistics-header-archive": "Komprimerade format"
+	"mediastatistics-header-archive": "Komprimerade format",
+	"json-warn-trailing-comma": "$1 avslutande {{PLURAL:$1|kommatecken}} togs bort från JSON",
+	"json-error-unknown": "Det var ett problem med JSON. Fel: $1",
+	"json-error-state-mismatch": "Ogiltig eller felaktig JSON",
+	"json-error-syntax": "Syntaxfel",
+	"json-error-utf8": "Felaktiga UTF-8-tecken, möjligen felkodade"
 }

@@ -689,7 +689,7 @@
 	"last": "farany",
 	"page_first": "voalohany",
 	"page_last": "farany",
-	"histlegend": "Fisafidianana ny votoatiny hohampitahaina: Mario ny bokotra radiôn'ny fiovana hampitahazay ary tsintrio ny bokotra fanekena amin'ny faram-pejy<br />\nMaribolana: '''(ank)''' = fampitahana amin'ny votoatin'ny pejy ankehitriny,\n'''(farany)''' = fampitahana amin'ny version talohan'ity, M = fanovana madinika",
+	"histlegend": "Safidim-pahasamihafana: Mariho ireo bokotra radiôn'ny versiona mba hampitahàna azy ireo  ary tsindrony ilay bokotra amin'ny faran'ny pejy: <strong>({{int:cur}})</strong> = fampitahana amin'ny versiona farany indrindra, <strong>({{int:last}})</strong> = fahasamihafana amin'ny versiona farany nialoha ity, <strong>{{int:minoreditletter}}</strong> = fiovana madinika.",
 	"history-fieldset-title": "Karohy ny tantara",
 	"history-show-deleted": "Voafafa ihany",
 	"histfirst": "antitra indrindra",

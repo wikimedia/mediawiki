@@ -245,7 +245,7 @@
 	"config-profile-help": "如果您允许尽量多的人编写wiki，网站上的内容会更加丰富。在MediaWiki中，您可以轻松地审查最近更改，并轻易回退掉新手或破坏者造成的损害。\n\n然而，许多人觉得让MediaWiki存在多种角色将更加好用；同时，要说服所有人都愿以wiki的方式作贡献并非一件易事。因此，您可以有以下选择：\n\n'''{{int:config-profile-wiki}}'''允许包括未登录用户在内的所有人编辑。'''{{int:config-profile-no-anon}}'''的wiki需要额外的注册流程，这有可能会阻碍随意贡献者。\n\n'''{{int:config-profile-fishbowl}}'''模式只允许获批准的用户编辑，但对公众开放页面浏览（包括历史记录）。'''{{int:config-profile-private}}'''则只允许获批准的用户浏览、编辑页面。\n\n安装完成后，您还可以对用户权限进行更多、更复杂的配置，参见[//www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights 相关的使用手册]。",
 	"config-license": "版权和许可证：",
 	"config-license-none": "页脚无许可证",
-	"config-license-cc-by-sa": "知识共享署名-相同方式共享",
+	"config-license-cc-by-sa": "知识共享“署名-相同方式共享”",
 	"config-license-cc-by": "知识共享署名",
 	"config-license-cc-by-nc-sa": "知识共享署名-非商业性使用-相同方式共享",
 	"config-license-cc-0": "知识共享Zero（公有领域）",

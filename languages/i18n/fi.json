@@ -3182,6 +3182,7 @@
 	"mediastatistics-header-text": "Tekstitiedostot",
 	"mediastatistics-header-executable": "Ohjelmatiedostot",
 	"mediastatistics-header-archive": "Pakatussa muodossa",
+	"json-warn-trailing-comma": "$1 {{PLURAL:$1|jäljelle jäänyt pilkku|jäljelle jäänyttä pilkkua}} poistettiin JSON-tekstistä.",
 	"json-error-unknown": "Syntyi ongelma JSONin kanssa. Virhe: $1",
 	"json-error-depth": "Suurin mahdollinen pinosyvyys (stack depth) on ylitetty",
 	"json-error-state-mismatch": "Kelvoton tai vääränmuotoinen JSON",

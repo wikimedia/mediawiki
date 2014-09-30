@@ -3133,11 +3133,14 @@
 	"mediastatistics-header-text": "Text",
 	"mediastatistics-header-executable": "Executabile",
 	"mediastatistics-header-archive": "Formate comprimate",
+	"json-warn-trailing-comma": "$1 {{PLURAL:$1|virgulă|virgule|de virgule}} în exces înlăturat{{PLURAL:$1|ă|e}} din JSON",
 	"json-error-unknown": "A apărut o problemă cu JSON. Eroare: $1",
 	"json-error-depth": "S-a depășit adâncimea maximă a stivei",
 	"json-error-state-mismatch": "JSON deformat sau incorect",
 	"json-error-ctrl-char": "Eroare în caracterul de control, posibil incorect codificat",
 	"json-error-syntax": "Eroare de sintaxă",
 	"json-error-utf8": "Caractere UTF-8 deformate, posibil incorect codificate",
+	"json-error-recursion": "Una sau mai multe referințe recursive în valoarea pentru codificat",
+	"json-error-inf-or-nan": "Una sau mai valori NAN sau INF în valoarea pentru codificat",
 	"json-error-unsupported-type": "A fost furnizată o valoare de un tip care nu poate fi codificat"
 }
