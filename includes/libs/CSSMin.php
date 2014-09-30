@@ -38,6 +38,7 @@ class CSSMin {
 	 * which when base64 encoded will result in a 1/3 increase in size.
 	 */
 	const EMBED_SIZE_LIMIT = 24576;
+	const DATA_URI_SIZE_LIMIT = 32768;
 	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\'"]*?)(?P<query>\?[^\)\'"]*?|)[\'"]?\s*\)';
 	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
 	const COMMENT_REGEX = '\/\*.*?\*\/';
@@ -100,10 +101,11 @@ class CSSMin {
 	}
 
 	/**
-	 * Encode an image file as a base64 data URI.
-	 * If the image file has a suitable MIME type and size, encode it as a
-	 * base64 data URI. Return false if the image type is unfamiliar or exceeds
-	 * the size limit.
+	 * Encode an image file as a data URI.
+	 *
+	 * If the image file has a suitable MIME type and size, encode it as a data URI, base64-encoded
+	 * for binary files or just percent-encoded otherwise. Return false if the image type is
+	 * unfamiliar or file exceeds the size limit.
 	 *
 	 * @param string $file Image file to encode.
 	 * @param string|null $type File's MIME type or null. If null, CSSMin will
@@ -111,7 +113,7 @@ class CSSMin {
 	 * @param int|bool $sizeLimit If the size of the target file is greater than
 	 *     this value, decline to encode the image file and return false
 	 *     instead. If $sizeLimit is false, no limit is enforced.
-	 * @return string|bool: Image contents encoded as a data URI or false.
+	 * @return string|bool Image contents encoded as a data URI or false.
 	 */
 	public static function encodeImageAsDataURI( $file, $type = null,
 		$sizeLimit = self::EMBED_SIZE_LIMIT
@@ -125,8 +127,23 @@ class CSSMin {
 		if ( !$type ) {
 			return false;
 		}
-		$data = base64_encode( file_get_contents( $file ) );
-		return 'data:' . $type . ';base64,' . $data;
+
+		$contents = file_get_contents( $file );
+		// Only whitespace and printable ASCII characters
+		$isText = (bool)preg_match( '/^[\r\n\t\x20-\x7e]+$/', $contents );
+
+		if ( $isText ) {
+			// Do not base64-encode non-binary files (sane SVGs), unless that'd exceed URI length limit.
+			// (This often produces longer URLs, but they compress better, yielding a net smaller size.)
+			$uri = 'data:' . $type . ',' . rawurlencode( $contents );
+			if ( strlen( $uri ) >= self::DATA_URI_SIZE_LIMIT ) {
+				$uri = 'data:' . $type . ';base64,' . base64_encode( $contents );
+			}
+		} else {
+			$uri = 'data:' . $type . ';base64,' . base64_encode( $contents );
+		}
+
+		return $uri;
 	}
 
 	/**

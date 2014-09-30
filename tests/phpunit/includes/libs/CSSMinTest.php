@@ -147,9 +147,12 @@ class CSSMinTest extends MediaWikiTestCase {
 		// Full paths start with http://localhost/w/.
 		// Timestamps in output are replaced with 'timestamp'.
 
-		// data: URIs for red.gif and green.gif
+		// data: URIs for red.gif, green.gif, circle.svg
 		$red   = 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=';
 		$green = 'data:image/gif;base64,R0lGODlhAQABAIAAAACAADAAACwAAAAAAQABAAACAkQBADs=';
+		$svg = 'data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A'
+			. '%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D'
+			. '%228%22%3E%0A%3Ccircle%20cx%3D%224%22%20cy%3D%224%22%20r%3D%222%22%2F%3E%0A%3C%2Fsvg%3E%0A';
 
 		return array(
 			array(
@@ -232,6 +235,12 @@ class CSSMinTest extends MediaWikiTestCase {
 				'Can not embed large files',
 				'foo { /* @embed */ background: url(large.png); }',
 				"foo { background: url(http://localhost/w/large.png?timestamp); }",
+			),
+			array(
+				'SVG files are embedded without base64 encoding',
+				'foo { /* @embed */ background: url(circle.svg); }',
+				"foo { background: url($svg); "
+					. "background: url(http://localhost/w/circle.svg?timestamp)!ie; }",
 			),
 			array(
 				'Two regular files in one rule',
