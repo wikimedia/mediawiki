@@ -1249,7 +1249,7 @@ $wgThumbnailMinimumBucketDistance = 50;
  *
  * This obviously means that more disk space is needed per upload upfront.
  *
- * @since 1.24
+ * @since 1.25
  */
 
 $wgUploadThumbnailRenderMap = array();
@@ -1263,14 +1263,14 @@ $wgUploadThumbnailRenderMap = array();
  * This method only works if thumbnails are configured to be rendered by a 404 handler. The latter
  * option uses the job queue to render the thumbnail.
  *
- * @since 1.24
+ * @since 1.25
  */
 $wgUploadThumbnailRenderMethod = 'jobqueue';
 
 /**
  * When using the "http" wgUploadThumbnailRenderMethod, lets one specify a custom Host HTTP header.
  *
- * @since 1.24
+ * @since 1.25
  */
 $wgUploadThumbnailRenderHttpCustomHost = false;
 
@@ -1278,7 +1278,7 @@ $wgUploadThumbnailRenderHttpCustomHost = false;
  * When using the "http" wgUploadThumbnailRenderMethod, lets one specify a custom domain to send the
  * HTTP request to.
  *
- * @since 1.24
+ * @since 1.25
  */
 $wgUploadThumbnailRenderHttpCustomDomain = false;
 

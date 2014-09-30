@@ -757,6 +757,8 @@ abstract class UploadBase {
 
 	/**
 	 * Perform extra steps after a successful upload.
+	 *
+	 * @since  1.25
 	 */
 	public function postProcessUpload() {
 		global $wgUploadThumbnailRenderMap;
