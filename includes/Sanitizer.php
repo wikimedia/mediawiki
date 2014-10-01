@@ -332,8 +332,18 @@ class Sanitizer {
 	 */
 	static function getAttribsRegex() {
 		if ( self::$attribsRegex === null ) {
-			$attribFirst = '[:A-Z_a-z0-9]';
-			$attrib = '[:A-Z_a-z-.0-9]';
+			// Ranges of letters from several RTL alphabets.
+			// The XML standard allows awide range of Unicode characters
+			// to be used in attribute names, but for MediaWiki's practical purposes
+			// these should be enough.
+			$hebrewRange = 'א-ת';
+			$arabicRange = 'ء-يٮ-ە';
+			$syriacRange = 'ܐ-ܬ';
+			$thaanaRange = 'ހ-ޱ';
+			$extraRanges = $hebrewRange . $arabicRange . $syriacRange . $thaanaRange;
+
+			$attribFirst = "[:A-Z_a-z0-9$extraRanges]";
+			$attrib = "[:A-Z_a-z-.0-9$extraRanges]";
 			$space = '[\x09\x0a\x0d\x20]';
 			self::$attribsRegex =
 				"/(?:^|$space)({$attribFirst}{$attrib}*)
