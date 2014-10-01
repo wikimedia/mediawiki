@@ -5886,11 +5886,6 @@ $wgAdvertisedFeedTypes = array( 'atom' );
 $wgRCShowWatchingUsers = false; # UPO
 
 /**
- * Show watching users in Page views
- */
-$wgPageShowWatchingUsers = false;
-
-/**
  * Show the amount of changed characters in recent changes
  */
 $wgRCShowChangedSize = true;

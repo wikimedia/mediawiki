@@ -2587,6 +2587,8 @@ $templates
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgContLang;
 
+		$section = new ProfileSection( __METHOD__ );
+
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
 

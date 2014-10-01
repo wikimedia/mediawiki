@@ -261,7 +261,7 @@ class SkinTemplate extends Skin {
 	protected function prepareQuickTemplate() {
 		global $wgContLang, $wgScript, $wgStylePath, $wgMimeType, $wgJsMimeType,
 			$wgDisableCounters, $wgSitename, $wgLogo, $wgMaxCredits,
-			$wgShowCreditsIfMax, $wgPageShowWatchingUsers, $wgArticlePath,
+			$wgShowCreditsIfMax, $wgArticlePath,
 			$wgScriptPath, $wgServer;
 
 		wfProfileIn( __METHOD__ );
@@ -383,19 +383,6 @@ class SkinTemplate extends Skin {
 					$viewcount = $this->getWikiPage()->getCount();
 					if ( $viewcount ) {
 						$tpl->set( 'viewcount', $this->msg( 'viewcount' )->numParams( $viewcount )->parse() );
-					}
-				}
-
-				if ( $wgPageShowWatchingUsers ) {
-					$dbr = wfGetDB( DB_SLAVE );
-					$num = $dbr->selectField( 'watchlist', 'COUNT(*)',
-						array( 'wl_title' => $title->getDBkey(), 'wl_namespace' => $title->getNamespace() ),
-						__METHOD__
-					);
-					if ( $num > 0 ) {
-						$tpl->set( 'numberofwatchingusers',
-							$this->msg( 'number_of_watching_users_pageview' )->numParams( $num )->parse()
-						);
 					}
 				}
 
