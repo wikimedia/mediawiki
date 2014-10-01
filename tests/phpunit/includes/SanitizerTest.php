@@ -178,6 +178,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	public static function provideTagAttributesToDecode() {
 		return [
 			[ [ 'foo' => 'bar' ], 'foo=bar', 'Unquoted attribute' ],
+			[ [ 'עברית' => 'bar' ], 'עברית=bar', 'Non-Latin attribute' ],
 			[ [ 'foo' => 'bar' ], '    foo   =   bar    ', 'Spaced attribute' ],
 			[ [ 'foo' => 'bar' ], 'foo="bar"', 'Double-quoted attribute' ],
 			[ [ 'foo' => 'bar' ], 'foo=\'bar\'', 'Single-quoted attribute' ],
