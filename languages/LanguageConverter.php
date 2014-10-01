@@ -44,6 +44,7 @@ class LanguageConverter {
 		'tg',
 		'uz',
 		'zh',
+		'tt',
 	);
 
 	public $mMainLanguageCode;
