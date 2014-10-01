@@ -74,7 +74,7 @@
 			}
 		}
 
-		@focusBottomBorderSize: 3px;
+		@focusBottomBorderSize: 0.2em;
 		&:active,
 		&:focus {
 			+ label {
@@ -82,7 +82,7 @@
 					content: '';
 					position: absolute;
 					width: @checkboxSize;
-					height: @checkboxSize - @focusBottomBorderSize + 1; // offset by bottom border
+					height: @checkboxSize - @focusBottomBorderSize + 0.08; // offset by bottom border
 					// offset from the checkbox by 1px to account for left border
 					left: 1px;
 					border-bottom: solid @focusBottomBorderSize lightgrey;
