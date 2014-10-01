@@ -1521,8 +1521,10 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.ui.icon' => array(
-		'styles' => array(
-			'resources/src/mediawiki.ui/components/icons.less',
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/components/icons.less',
+			),
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
