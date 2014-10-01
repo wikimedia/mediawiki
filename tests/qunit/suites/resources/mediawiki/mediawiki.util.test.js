@@ -189,7 +189,7 @@
 		);
 
 		assert.equal( $tbMW.closest( '.portlet' ).attr( 'id' ), 'p-test-tb', 'Link was inserted within correct portlet' );
-		assert.strictEqual( $tbMW.next()[0], tbRL, 'Link is in the correct position (by passing nextnode)' );
+		assert.strictEqual( $tbMW.next()[0], tbRL, 'Link is in the correct position (nextnode as Node object)' );
 
 		cuQuux = mw.util.addPortletLink( 'p-test-custom', '#', 'Quux', null, 'Example [shift-x]', 'q' );
 		$cuQuux = $( cuQuux );
@@ -205,7 +205,7 @@
 		tbRLDM = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
 			'Default modules', 't-rldm', 'List of all default modules ', 'd', '#t-rl' );
 
-		assert.equal( $( tbRLDM ).next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing CSS selector)' );
+		assert.strictEqual( $( tbRLDM ).next()[0], tbRL, 'Link is in the correct position (CSS selector as nextnode)' );
 
 		caFoo = mw.util.addPortletLink( 'p-test-views', '#', 'Foo' );
 
@@ -213,19 +213,19 @@
 		assert.strictEqual( $( caFoo ).find( 'span' ).length, 1, 'A <span> element should be added for porlets with vectorTabs class.' );
 
 		addedAfter = mw.util.addPortletLink( 'p-test-tb', '#', 'After foo', 'post-foo', 'After foo', null, $( tbRL ) );
-		assert.strictEqual( $( addedAfter ).next()[0], tbRL, 'Link is in the correct position (by passing a jQuery object as nextnode)' );
+		assert.strictEqual( $( addedAfter ).next()[0], tbRL, 'Link is in the correct position (jQuery object as nextnode)' );
 
 		// test case - nonexistent id as next node
 		tbRLDMnonexistentid = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
 			'Default modules', 't-rldm-nonexistent', 'List of all default modules ', 'd', '#t-rl-nonexistent' );
 
-		assert.equal( tbRLDMnonexistentid, $( '#p-test-tb li:last' )[0], 'Nonexistent id as nextnode adds the portlet at end' );
+		assert.equal( tbRLDMnonexistentid, $( '#p-test-tb li:last' )[0], 'Fallback to adding at the end (nextnode non-matching CSS selector)' );
 
 		// test case - empty jquery object as next node
 		tbRLDMemptyjquery = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
 			'Default modules', 't-rldm-empty-jquery', 'List of all default modules ', 'd', $( '#t-rl-nonexistent' ) );
 
-		assert.equal( tbRLDMemptyjquery, $( '#p-test-tb li:last' )[0], 'Empty jquery as nextnode adds the portlet at end' );
+		assert.equal( tbRLDMemptyjquery, $( '#p-test-tb li:last' )[0], 'Fallback to adding at the end (nextnode as empty jQuery object)' );
 	} );
 
 	QUnit.test( 'jsMessage', 1, function ( assert ) {

@@ -290,26 +290,30 @@
 			}
 
 			if ( nextnode ) {
+				// Case: nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
+				// Case: nextnode is a CSS selector for jQuery
 				if ( nextnode.nodeType || typeof nextnode === 'string' ) {
-					// nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
-					// or nextnode is a CSS selector for jQuery
 					nextnode = $ul.find( nextnode );
-				} else if ( !nextnode.jquery || ( nextnode.length && nextnode[0].parentNode !== $ul[0] ) ) {
-					// Fallback
-					$ul.append( $item );
-					return $item[0];
+				} else if ( !nextnode.jquery ) {
+					// Error: Invalid nextnode
+					nextnode = undefined;
 				}
-				if ( nextnode.length === 1 ) {
-					// nextnode is a jQuery object that represents exactly one element
-					nextnode.before( $item );
-					return $item[0];
+				if ( nextnode && ( nextnode.length !== 1 || nextnode[0].parentNode !== $ul[0] ) ) {
+					// Error: nextnode must resolve to a single node
+					// Error: nextnode must have the associated <ul> as its parent
+					nextnode = undefined;
 				}
 			}
 
-			// Fallback (this is the default behavior)
-			$ul.append( $item );
-			return $item[0];
+			// Case: nextnode is a jQuery-wrapped DOM element
+			if ( nextnode ) {
+				nextnode.before( $item );
+			} else {
+				// Fallback (this is the default behavior)
+				$ul.append( $item );
+			}
 
+			return $item[0];
 		},
 
 		/**
