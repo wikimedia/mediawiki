@@ -47,7 +47,7 @@ class SpecialPageFactory {
 	/**
 	 * List of special page names to the subclass of SpecialPage which handles them.
 	 */
-	private static $list = array(
+	private static $coreList = array(
 		// Maintenance Reports
 		'BrokenRedirects' => 'BrokenRedirectsPage',
 		'Deadendpages' => 'DeadendPagesPage',
@@ -174,6 +174,7 @@ class SpecialPageFactory {
 		'Userlogout' => 'SpecialUserlogout',
 	);
 
+	private static $list;
 	private static $aliases;
 
 	/**
@@ -217,8 +218,10 @@ class SpecialPageFactory {
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
 		global $wgPageLanguageUseDB;
 
-		if ( !is_object( self::$list ) ) {
+		if ( !is_array( self::$list ) ) {
 			wfProfileIn( __METHOD__ );
+
+			self::$list = self::$coreList;
 
 			if ( !$wgDisableCounters ) {
 				self::$list['Popularpages'] = 'PopularPagesPage';
@@ -271,12 +274,13 @@ class SpecialPageFactory {
 		if ( !is_object( self::$aliases ) ) {
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
+			$pageList = self::getPageList();
 
 			self::$aliases = array();
 			$keepAlias = array();
 
 			// Force every canonical name to be an alias for itself.
-			foreach ( self::getPageList() as $name => $stuff ) {
+			foreach ( $pageList as $name => $stuff ) {
 				$caseFoldedAlias = $wgContLang->caseFold( $name );
 				self::$aliases[$caseFoldedAlias] = $name;
 				$keepAlias[$caseFoldedAlias] = 'canonical';
