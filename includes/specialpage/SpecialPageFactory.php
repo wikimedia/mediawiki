@@ -47,7 +47,7 @@ class SpecialPageFactory {
 	/**
 	 * List of special page names to the subclass of SpecialPage which handles them.
 	 */
-	private static $list = array(
+	private static $coreList = array(
 		// Maintenance Reports
 		'BrokenRedirects' => 'BrokenRedirectsPage',
 		'Deadendpages' => 'DeadendPagesPage',
@@ -174,6 +174,7 @@ class SpecialPageFactory {
 		'Userlogout' => 'SpecialUserlogout',
 	);
 
+	private static $list;
 	private static $aliases;
 
 	/**
@@ -217,8 +218,10 @@ class SpecialPageFactory {
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
 		global $wgPageLanguageUseDB;
 
-		if ( !is_object( self::$list ) ) {
+		if ( !is_array( self::$list ) ) {
 			wfProfileIn( __METHOD__ );
+
+			self::$list = self::$coreList;
 
 			if ( !$wgDisableCounters ) {
 				self::$list['Popularpages'] = 'PopularPagesPage';
@@ -268,7 +271,14 @@ class SpecialPageFactory {
 	 * @return object
 	 */
 	private static function getAliasListObject() {
+		static $recursionCheck = false;
+
 		if ( !is_object( self::$aliases ) ) {
+			if ( $recursionCheck ) {
+				throw new MWException( __METHOD__ . ": Recursion detected" );
+			}
+			$recursionCheck = true;
+
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
 
@@ -313,6 +323,8 @@ class SpecialPageFactory {
 
 			// Cast to object: func()[$key] doesn't work, but func()->$key does
 			self::$aliases = (object)self::$aliases;
+
+			$recursionCheck = false;
 		}
 
 		return self::$aliases;

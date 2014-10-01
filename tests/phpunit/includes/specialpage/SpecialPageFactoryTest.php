@@ -28,6 +28,25 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		SpecialPageFactory::resetList();
 	}
 
+	public function testResetList() {
+		SpecialPageFactory::resetList();
+		$this->assertContains( 'Specialpages', SpecialPageFactory::getNames() );
+	}
+
+	public function testHookNotCalledTwice() {
+		$count = 0;
+		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
+			'SpecialPage_initList' => array(
+				function () use ( &$count ) {
+					$count++;
+				}
+		) ) );
+		SpecialPageFactory::resetList();
+		SpecialPageFactory::getNames();
+		SpecialPageFactory::getNames();
+		$this->assertEquals( 1, $count );
+	}
+
 	public function newSpecialAllPages() {
 		return new SpecialAllPages();
 	}
@@ -233,6 +252,22 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 			),
 
 		);
+	}
+
+	/**
+	 * @expectedException MWException
+	 * @expectedExceptionMessage SpecialPageFactory::getAliasListObject: Recursion detected
+	 */
+	public function testGetAliasListRecursion() {
+		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
+			'SpecialPage_initList' => array(
+				function () {
+					SpecialPageFactory::getLocalNameFor( 'Specialpages' );
+				}
+			),
+		) );
+		SpecialPageFactory::resetList();
+		SpecialPageFactory::getLocalNameFor( 'Specialpages' );
 	}
 
 }
