@@ -1129,17 +1129,42 @@
 		 * @return {string} selected pluralized form according to current language
 		 */
 		plural: function ( nodes ) {
-			var forms, formIndex, node, count;
+			var forms, firstChild, firstChildText,
+				explicitPluralForms = {}, explicitPluralFormNumber, formIndex, form, count;
+
 			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
 			forms = nodes.slice( 1 );
 			for ( formIndex = 0; formIndex < forms.length; formIndex++ ) {
-				node = forms[formIndex];
-				if ( node.jquery && node.hasClass( 'mediaWiki_htmlEmitter' )  ) {
-					// This is a nested node, already expanded.
-					forms[formIndex] = forms[formIndex].html();
+				form = forms[formIndex];
+
+				if ( form.jquery && form.hasClass( 'mediaWiki_htmlEmitter' ) ) {
+					// This is a nested node, may be an explicit plural form like 5=[$2 linktext]
+					firstChild = form.contents().get( 0 );
+					if ( firstChild && firstChild.nodeType === Node.TEXT_NODE ) {
+						firstChildText = firstChild.textContent;
+						if ( /^\d+=/.test( firstChildText ) ) {
+							explicitPluralFormNumber = parseInt( firstChildText.split( /=/ )[0], 10 );
+							// Use the digit part as key and rest of first text node and
+							// rest of child nodes as value.
+							firstChild.textContent = firstChildText.slice( firstChildText.indexOf( '=' ) + 1 );
+							explicitPluralForms[explicitPluralFormNumber] = form;
+							forms[formIndex] = undefined;
+						}
+					}
+				} else if ( /^\d+=/.test( form ) ) {
+					// Simple explicit plural forms like 12=a dozen
+					explicitPluralFormNumber = parseInt( form.split( /=/ )[0], 10 );
+					explicitPluralForms[explicitPluralFormNumber] = form.slice( form.indexOf( '=' ) + 1 );
+					forms[formIndex] = undefined;
 				}
 			}
-			return forms.length ? this.language.convertPlural( count, forms ) : '';
+
+			// Remove explicit plural forms from the forms. They were set undefined in the above loop.
+			forms = $.map( forms, function ( form ) {
+				return form;
+			} );
+
+			return this.language.convertPlural( count, forms, explicitPluralForms );
 		},
 
 		/**
