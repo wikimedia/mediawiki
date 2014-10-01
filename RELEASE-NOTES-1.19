@@ -3,6 +3,14 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.19.20 ==
+
+This is a security release of the MediaWiki 1.19 branch.
+
+=== Changes since 1.19.19 ===
+* (bug 70672) SECURITY: OutputPage: Remove separation of css and js module
+  allowance.
+
 == MediaWiki 1.19.19 ==
 
 This is a security release of the MediaWiki 1.19 branch.
