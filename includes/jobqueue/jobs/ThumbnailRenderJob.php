@@ -81,6 +81,10 @@ class ThumbnailRenderJob extends Job {
 		$thumbUrl = $file->getThumbUrl( $thumbName );
 
 		if ( $wgUploadThumbnailRenderHttpCustomDomain ) {
+			// Workaround for parse_url not handling scheme-less urls properly in PHP < 3.4.7
+			if ( substr( $thumbUrl, 0, 2 ) === '//' ) {
+				$thumbUrl = 'http:' . $thumbUrl;
+			}
 			$thumbUrl = '//' . $wgUploadThumbnailRenderHttpCustomDomain . parse_url( $thumbUrl, PHP_URL_PATH );
 		}
 
