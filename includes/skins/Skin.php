@@ -932,6 +932,7 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML anchor
 	 */
 	public function footerLink( $desc, $page ) {
+		$section = new ProfileSection( __METHOD__ );
 		// if the link description has been set to "-" in the default language,
 		if ( $this->msg( $desc )->inContentLanguage()->isDisabled() ) {
 			// then it is disabled, for all languages.
