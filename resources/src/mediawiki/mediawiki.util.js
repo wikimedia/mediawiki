@@ -286,7 +286,7 @@
 			}
 
 			if ( tooltip ) {
-				$link.attr( 'title', tooltip ).updateTooltipAccessKeys();
+				$link.attr( 'title', tooltip );
 			}
 
 			if ( nextnode ) {
@@ -312,6 +312,10 @@
 				// Fallback (this is the default behavior)
 				$ul.append( $item );
 			}
+
+			// Update tooltip for the access key after inserting into DOM
+			// to get a localized access key label (bug 67946).
+			$link.updateTooltipAccessKeys();
 
 			return $item[0];
 		},
