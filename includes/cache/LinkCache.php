@@ -216,7 +216,7 @@ class LinkCache {
 	 * @return int
 	 */
 	public function addLinkObj( $nt ) {
-		global $wgAntiLockFlags, $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB;
 
 		wfProfileIn( __METHOD__ );
 
@@ -242,14 +242,8 @@ class LinkCache {
 		# Some fields heavily used for linking...
 		if ( $this->mForUpdate ) {
 			$db = wfGetDB( DB_MASTER );
-			if ( !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
-				$options = array( 'FOR UPDATE' );
-			} else {
-				$options = array();
-			}
 		} else {
 			$db = wfGetDB( DB_SLAVE );
-			$options = array();
 		}
 
 		$f = array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
@@ -259,7 +253,7 @@ class LinkCache {
 
 		$s = $db->selectRow( 'page', $f,
 			array( 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ),
-			__METHOD__, $options );
+			__METHOD__ );
 		# Set fields...
 		if ( $s !== false ) {
 			$this->addGoodLinkObjFromRow( $nt, $s );

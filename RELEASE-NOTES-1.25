@@ -9,6 +9,7 @@ MediaWiki 1.25 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.25 ===
+* $wgAntiLockFlags was removed.
 
 === New features in 1.25 ===
 * (bug 58139) ResourceLoaderFileModule now supports language fallback

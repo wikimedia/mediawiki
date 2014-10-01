@@ -1998,15 +1998,6 @@ $wgAllowSlowParserFunctions = false;
 $wgAllowSchemaUpdates = true;
 
 /**
- * Anti-lock flags - bitfield
- *   - ALF_NO_LINK_LOCK:
- *       Don't use locking reads when updating the link table. This is
- *       necessary for wikis with a high edit rate for performance
- *       reasons, but may cause link table inconsistency
- */
-$wgAntiLockFlags = 0;
-
-/**
  * Maximum article size in kilobytes
  */
 $wgMaxArticleSize = 2048;
