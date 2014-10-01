@@ -59,11 +59,13 @@ class FindMissingFiles extends Maintenance {
 		do {
 			$res = $dbr->select(
 				array_merge( array( 'page' ), $joinTables ),
-				array( 'name' => 'DISTINCT(page_title)' ),
+				array( 'name' => 'img_name' ),
 				array( 'page_namespace' => NS_FILE,
 					"page_title >= " . $dbr->addQuotes( $lastName ) ),
 				__METHOD__,
-				array( 'ORDER BY' => 'page_title', 'LIMIT' => $this->mBatchSize ),
+				// DISTINCT causes a pointless filesort
+				array( 'ORDER BY' => 'name', 'GROUP BY' => 'name',
+					'LIMIT' => $this->mBatchSize ),
 				$joinConds
 			);
 
