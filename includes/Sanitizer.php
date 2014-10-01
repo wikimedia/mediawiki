@@ -339,8 +339,8 @@ class Sanitizer {
 	 */
 	static function getAttribsRegex() {
 		if ( self::$attribsRegex === null ) {
-			$attribFirst = '[:A-Z_a-z0-9]';
-			$attrib = '[:A-Z_a-z-.0-9]';
+			$attribFirst = "[:\p{L}\p{N}]";
+			$attrib = "[:_\.\-\p{L}\p{N}]";
 			$space = '[\x09\x0a\x0c\x0d\x20]';
 			self::$attribsRegex =
 				"/(?:^|$space)({$attribFirst}{$attrib}*)
@@ -351,7 +351,7 @@ class Sanitizer {
 						| '([^']*)(?:'|\$)
 						| (((?!$space|>).)*)
 					)
-				)?(?=$space|\$)/sx";
+				)?(?=$space|\$)/sxu";
 		}
 		return self::$attribsRegex;
 	}
