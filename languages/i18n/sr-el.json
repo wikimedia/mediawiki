@@ -1828,7 +1828,7 @@
 	"undeleteinvert": "Obrni izbor",
 	"undeletecomment": "Razlog:",
 	"undeletedrevisions": "{{PLURAL:$1|Izmena je vraćena|$1 izmene su vraćene|$1 izmena je vraćeno}}",
-	"undeletedrevisions-files": "$1 {{PLURAL:$1|1 izmena|izmene|izmena}} i $2 {{PLURAL:$2|1 datoteka je vraćena|datoteke su vraćene|datoteka je vraćeno}}",
+	"undeletedrevisions-files": "$1 {{PLURAL:$1|izmena|izmene|izmena}} i $2 {{PLURAL:$2|datoteka je vraćena|datoteke su vraćene|datoteka je vraćeno}}",
 	"undeletedfiles": "{{PLURAL:$1|Datoteka je vraćena|$1 datoteke su vraćene|$1 datoteka je vraćeno}}",
 	"cannotundelete": "Vraćanje nije uspelo:\n$1",
 	"undeletedpage": "'''Stranica $1 je vraćena'''\n\nPogledajte [[Special:Log/delete|istoriju brisanja]] za zapise o skorašnjim brisanjima i vraćanjima.",

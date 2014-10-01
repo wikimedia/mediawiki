@@ -438,7 +438,7 @@
 	"nocookiesnew": "Uživatelský účet byl vytvořen, ale nejste přihlášeni. {{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím, zapněte je a poté se přihlaste svým novým uživatelským jménem a heslem.",
 	"nocookieslogin": "{{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a zkuste znovu.",
 	"nocookiesfornew": "Uživatelský účet nebyl založen, neboť jsme nebyli schopni potvrdit jeho původ.\nUjistěte se, že máte povoleny cookies, obnovte tuto stránku a zkuste to znovu.",
-	"noname": "Musíte uvést jméno svého účtu.",
+	"noname": "{{GENDER:|Nezadal|Nezadala|Nezadali}} jste platné uživatelské jméno.",
 	"loginsuccesstitle": "Přihlášení bylo úspěšné",
 	"loginsuccess": "Nyní jste přihlášen na {{grammar:6sg|{{SITENAME}}}} jako uživatel „$1“.",
 	"nosuchuser": "Neexistuje uživatel se jménem „$1“. U uživatelských jmen se rozlišují malá/velká písmena. Zkontrolujte zápis, nebo si [[Special:UserLogin/signup|vytvořte nový účet]].",
