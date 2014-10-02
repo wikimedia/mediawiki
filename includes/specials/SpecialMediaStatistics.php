@@ -153,7 +153,8 @@ class MediaStatisticsPage extends QueryPage {
 		);
 		$row .= Html::rawElement(
 			'td',
-			array(),
+			// Make sure js sorts it in numeric order
+			array( 'data-sort-value' => $count ),
 			$this->msg( 'mediastatistics-nfiles' )
 				->numParams( $count )
 				/** @todo Check to be sure this really should have number formatting */
