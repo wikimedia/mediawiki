@@ -4,21 +4,38 @@
 
 // Helpers
 .mixin-mw-ui-anchor-styles( @mainColor ) {
-	color: @mainColor;
-
-	// Hover state
-	&:hover {
-		color: lighten( @mainColor, @colorLightenPercentage );
+	// Make all context classes take the main color in IE6
+	// This takes advantage of IE6's inability to have multiple class selectors
+	// In IE6, IE6 will ignores the dummy class .select-ie6-only
+	// thus in IE6 the rule .select-ie6-only.mw-ui-progressive is recognised as .mw-ui-progressive
+	// to give plain coloring
+	// DO NOT USE the select-ie6-only class in your markup!
+	.select-ie6-only& {
+		&:link, &:visited, a&:hover, a&:focus, a&:active {
+			color: @mainColor;
+		}
 	}
-	// Focus and active states
-	&:focus, &:active {
-		color: darken( @mainColor, @colorDarkenPercentage );
-		outline: none; // outline fix
-	}
 
-	// Quiet mode is gray at first
-	&.mw-ui-quiet {
-		.mixin-mw-ui-anchor-styles-quiet( @mainColor );
+	// When applied with mw-ui-anchor, use the link styling enhancements
+	// Note that mw-ui-anchor is purposely applied at the end to avoid IE6 multi-selector conflict
+	// Like above, becomes .mw-ui-progressive.mw-ui-anchor, but doesn't interfere with non-link mw-ui-progressive
+	&.mw-ui-anchor {
+		color: @mainColor;
+
+		// Hover state
+		&:hover {
+			color: lighten( @mainColor, @colorLightenPercentage );
+		}
+		// Focus and active states
+		&:focus, &:active {
+			color: darken( @mainColor, @colorDarkenPercentage );
+			outline: none; // outline fix
+		}
+
+		// Quiet mode is gray at first
+		&.mw-ui-quiet {
+			.mixin-mw-ui-anchor-styles-quiet( @mainColor );
+		}
 	}
 }
 
@@ -52,16 +69,12 @@ Styleguide 6.2.
 */
 
 // Base definitions for text styling; link styling is in mixin
-.mw-ui-anchor {
-	&.mw-ui-progressive {
-		.mixin-mw-ui-anchor-styles( @colorProgressive );
-	}
-
-	&.mw-ui-constructive {
-		.mixin-mw-ui-anchor-styles( @colorConstructive );
-	}
-
-	&.mw-ui-destructive {
-		.mixin-mw-ui-anchor-styles( @colorDestructive );
-	}
+.mw-ui-progressive {
+	.mixin-mw-ui-anchor-styles( @colorProgressive );
+}
+.mw-ui-constructive {
+	.mixin-mw-ui-anchor-styles( @colorConstructive );
+}
+.mw-ui-destructive {
+	.mixin-mw-ui-anchor-styles( @colorDestructive );
 }
