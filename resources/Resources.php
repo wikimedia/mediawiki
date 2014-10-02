@@ -1529,6 +1529,16 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	// Lightweight module for text styles
+	'mediawiki.ui.text' => array(
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/components/text.less',
+			),
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 
 	/* es5-shim */
 	'es5-shim' => array(
