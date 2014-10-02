@@ -26,7 +26,7 @@ class FindMissingFiles extends Maintenance {
 		parent::__construct();
 
 		$this->mDescription = 'Find registered files with no corresponding file.';
-		$this->addOption( 'start', 'Starting file name', false, true );
+		$this->addOption( 'start', 'Start with file names after this', false, true );
 		$this->addOption( 'mtimeafter', 'Only include files changed since this time', false, true );
 		$this->addOption( 'mtimebefore', 'Only includes files changed before this time', false, true );
 		$this->setBatchSize( 300 );
@@ -61,7 +61,7 @@ class FindMissingFiles extends Maintenance {
 				array_merge( array( 'page' ), $joinTables ),
 				array( 'name' => 'img_name' ),
 				array( 'page_namespace' => NS_FILE,
-					"page_title >= " . $dbr->addQuotes( $lastName ) ),
+					"page_title > " . $dbr->addQuotes( $lastName ) ),
 				__METHOD__,
 				// DISTINCT causes a pointless filesort
 				array( 'ORDER BY' => 'name', 'GROUP BY' => 'name',
