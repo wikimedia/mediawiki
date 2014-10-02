@@ -3166,5 +3166,9 @@
 	"mediastatistics-header-office": "Office",
 	"mediastatistics-header-text": "Tekstual",
 	"mediastatistics-header-executable": "Fail boleh laksana",
-	"mediastatistics-header-archive": "Format mampat"
+	"mediastatistics-header-archive": "Format mampat",
+	"json-warn-trailing-comma": "$1 koma pengekor telah digugurkan dari JSON",
+	"json-error-unknown": "Terdapat masalah dengan JSON. Ralat: $1",
+	"json-error-depth": "Kedalaman tindakan maksimum telah dicecah",
+	"json-error-syntax": "Ralat sintaks"
 }

@@ -2865,7 +2865,7 @@
 	"bitrate-zetabits": "$1 Zbit/s",
 	"bitrate-yottabits": "$1 Ybit/s",
 	"lag-warn-normal": "Muutokset, jotka ovat uudempia kuin $1 {{PLURAL:$1|sekunti|sekuntia}}, eivät välttämättä näy tällä sivulla.",
-	"lag-warn-high": "Tietokannoilla on työjonoa. Muutokset, jotka ovat uudempia kuin $1 {{PLURAL:$1|sekunti|sekuntia}}, eivät välttämättä näy tällä sivulla.",
+	"lag-warn-high": "Tietokantojen päivityksessä on huomattavaa viivettä. Muutokset, jotka ovat tuoreempia kuin $1 {{PLURAL:$1|sekunti|sekuntia}}, eivät välttämättä näy luettelossa.",
 	"watchlistedit-normal-title": "Tarkkailulistan muokkaus",
 	"watchlistedit-normal-legend": "Poista sivuja tarkkailulistalta",
 	"watchlistedit-normal-explain": "Tarkkailulistasi sivut on lueteltu alla. Voit poistaa sivuja valitsemalla niitä vastaavat valintaruudut ja napsauttamalla ”{{int:Watchlistedit-normal-submit}}”. Voit myös muokata listaa [[Special:EditWatchlist/raw|tekstimuodossa]].",

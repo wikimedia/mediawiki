@@ -1599,6 +1599,7 @@
 	"booksources": "Sumber buku",
 	"booksources-search-legend": "Cari di sumber buku",
 	"booksources-isbn": "ISBN:",
+	"booksources-search": "Cari",
 	"booksources-text": "Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:",
 	"booksources-invalid-isbn": "ISBN yang diberikan tampaknya tidak valid; periksa kesalahan penyalinan dari sumber asli.",
 	"specialloguserlabel": "Pengguna:",
@@ -3243,5 +3244,7 @@
 	"mediastatistics-header-office": "Office",
 	"mediastatistics-header-text": "Tekstual",
 	"mediastatistics-header-executable": "Executable",
-	"mediastatistics-header-archive": "Format terkompresi"
+	"mediastatistics-header-archive": "Format terkompresi",
+	"json-error-depth": "Kedalaman tumpukan maksimal telah terlewati",
+	"json-error-syntax": "Kesalahan sintaks"
 }
