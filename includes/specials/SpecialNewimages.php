@@ -201,7 +201,10 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getTitle() ); // Remove subpage
 		$form = new HTMLForm( $fields, $context );
+
 		$form->setSubmitTextMsg( 'ilsubmit' );
+		$form->setSubmitProgressive();
+
 		$form->setMethod( 'get' );
 		$form->setWrapperLegendMsg( 'newimages-legend' );
 
