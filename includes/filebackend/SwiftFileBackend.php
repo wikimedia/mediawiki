@@ -112,7 +112,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// Optional settings
 		$this->authTTL = isset( $config['swiftAuthTTL'] )
 			? $config['swiftAuthTTL']
-			: 5 * 60; // some sane number
+			: 15 * 60; // some sane number
 		$this->swiftTempUrlKey = isset( $config['swiftTempUrlKey'] )
 			? $config['swiftTempUrlKey']
 			: '';
