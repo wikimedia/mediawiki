@@ -317,6 +317,8 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	 * page.
 	 */
 	public function testGetAutosummary() {
+		$this->setMwGlobals( 'wgContLang', Language::factory( 'en' ) );
+
 		$content = new DummyContentHandlerForTesting( CONTENT_MODEL_WIKITEXT );
 		$title = Title::newFromText( 'Help:Test' );
 		// Create a new content object with no content
