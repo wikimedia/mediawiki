@@ -160,6 +160,15 @@ class Status {
 	}
 
 	/**
+	 * Don't save the callback when serializing, because Closures can't be
+	 * serialized and we're going to clear it in __wakeup anyway.
+	 */
+	public function __sleep() {
+		$keys = array_keys( get_object_vars( $this ) );
+		return array_diff( $keys, array( 'cleanCallback' ) );
+	}
+
+	/**
 	 * Sanitize the callback parameter on wakeup, to avoid arbitrary execution.
 	 */
 	public function __wakeup() {
