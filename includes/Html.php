@@ -105,7 +105,7 @@ class Html {
 	 * Modifies a set of attributes meant for button elements
 	 * and apply a set of default attributes when $wgUseMediaWikiUIEverywhere enabled.
 	 * @param array $modifiers to add to the button
-	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return array $attrs A modified attribute array
 	 */
 	public static function buttonAttributes( $attrs, $modifiers = array() ) {
