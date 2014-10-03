@@ -151,7 +151,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			'contexttitle',
 			60,
 			$title,
-			array( 'autofocus' => true )
+			array( 'autofocus' => true, 'class' => 'mw-ui-input-inline' )
 		) . '</p>';
 		$form .= '<p>' . Xml::label(
 			$this->msg( 'expand_templates_input' )->text(),
@@ -162,7 +162,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			$input,
 			10,
 			10,
-			array( 'id' => 'input' )
+			array( 'id' => 'input', 'class' => 'mw-ui-input' )
 		);
 
 		$form .= '<p>' . Xml::checkLabel(
@@ -189,7 +189,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			'generate_rawhtml',
 			$this->generateRawHtml
 		) . '</p>';
-		$form .= '<p>' . Xml::submitButton(
+		$form .= '<p>' . Html::submitButton(
 			$this->msg( 'expand_templates_ok' )->text(),
 			array( 'accesskey' => 's' )
 		) . '</p>';
