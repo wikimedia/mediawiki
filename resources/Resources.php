@@ -1087,6 +1087,7 @@ return array(
 		),
 		'messages' => array(
 			'editwarning-warning',
+			// editwarning-warning uses {{int:prefs-editing}}
 			'prefs-editing'
 		),
 	),
