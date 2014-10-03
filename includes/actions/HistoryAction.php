@@ -182,9 +182,6 @@ class HistoryAction extends FormlessAction {
 		// Add the general form
 		$action = htmlspecialchars( wfScript() );
 		$className = 'historysubmit mw-history-compareselectedversions-button';
-		if ( $config->get( 'UseMediaWikiUIEverywhere' ) ) {
-			$className .= ' mw-ui-button mw-ui-progressive';
-		}
 		$out->addHTML(
 			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
 			Xml::fieldset(
@@ -200,9 +197,10 @@ class HistoryAction extends FormlessAction {
 			) . '&#160;' .
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
 			$checkDeleted .
-			Xml::submitButton(
+			Html::submitButton(
 				$this->msg( 'allpagessubmit' )->text(),
-				array( 'class' => $className )
+				$attrs,
+				array( 'mw-ui-progressive' )
 			) . "\n" .
 			'</fieldset></form>'
 		);
@@ -492,12 +490,10 @@ class HistoryPager extends ReverseChronologicalPager {
 		// Button container stored in $this->buttons for re-use in getEndBody()
 		$this->buttons = '<div>';
 		$className = 'historysubmit mw-history-compareselectedversions-button';
-		if ( $this->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-			$className .= ' mw-ui-button';
-		}
+		$attrs = array( 'class' => $className )
+			+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' );
 		$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
-			array( 'class' => $className )
-				+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' )
+			$attrs
 		) . "\n";
 
 		if ( $this->getUser()->isAllowed( 'deleterevision' ) ) {
@@ -568,7 +564,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	function submitButton( $message, $attributes = array() ) {
 		# Disable submit button if history has 1 revision only
 		if ( $this->getNumRows() > 1 ) {
-			return Xml::submitButton( $message, $attributes );
+			return Html::submitButton( $message, $attributes );
 		} else {
 			return '';
 		}

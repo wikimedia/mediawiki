@@ -102,6 +102,34 @@ class Html {
 	);
 
 	/**
+	 * Modifies a set of attributes meant for button elements
+	 * and apply a set of default attributes when $wgUseMediaWikiUIEverywhere enabled.
+	 * @param array $modifiers to add to the button
+	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @return array $attrs A modified attribute array
+	 */
+	public static function buttonAttributes( $attrs, $modifiers = array() ) {
+		global $wgUseMediaWikiUIEverywhere;
+		if ( $wgUseMediaWikiUIEverywhere ) {
+			if ( isset( $attrs['class'] ) ) {
+				if ( is_array( $attrs['class'] ) ) {
+					$attrs['class'][] = 'mw-ui-button';
+					$attrs = array_merge( $attrs, $modifiers );
+					// ensure compatibility with Xml
+					$attrs['class'] = implode( ' ', $attrs['class'] );
+				} else {
+					$attrs['class'] .= ' mw-ui-button ' . implode( ' ', $modifiers );
+				}
+			} else {
+				$attrs['class'] = array( 'mw-ui-button' );
+				// ensure compatibility with Xml
+				$attrs['class'] = implode( ' ', array_merge( $attrs['class'], $modifiers ) );
+			}
+		}
+		return $attrs;
+	}
+
+	/**
 	 * Modifies a set of attributes meant for text input elements
 	 * and apply a set of default attributes.
 	 * Removes size attribute when $wgUseMediaWikiUIEverywhere enabled.
@@ -128,6 +156,43 @@ class Html {
 			unset( $attrs['size'] );
 		}
 		return $attrs;
+	}
+
+	/**
+	 * Returns an HTML link element in a string styled as a button (when $wgUseMediaWikiUIEverywhere is enabled).
+	 *
+	 * @param string $contents The raw HTML contents of the element: *not*
+	 *   escaped!
+	 * @param array $attrs Associative array of attributes, e.g., array(
+	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
+	 *   further documentation.
+	 * @param array $modifiers to add to the button
+	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @return string Raw HTML
+	 */
+	public static function linkButton( $contents, $attrs, $modifiers = array() ) {
+		return Html::element( 'a',
+			self::buttonAttributes( $attrs, $modifiers ),
+			$contents
+		);
+	}
+
+	/**
+	 * Returns an HTML link element in a string styled as a button (when $wgUseMediaWikiUIEverywhere is enabled).
+	 *
+	 * @param string $contents The raw HTML contents of the element: *not*
+	 *   escaped!
+	 * @param array $attrs Associative array of attributes, e.g., array(
+	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
+	 *   further documentation.
+	 * @param array $modifiers to add to the button
+	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @return string Raw HTML
+	 */
+	public static function submitButton( $contents, $attrs, $modifiers = array() ) {
+		$attrs['type'] = 'submit';
+		$attrs['value'] = $contents;
+		return Html::element( 'input', self::buttonAttributes( $attrs, $modifiers ) );
 	}
 
 	/**
