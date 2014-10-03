@@ -105,9 +105,12 @@ class LoginForm extends SpecialPage {
 	 * @param WebRequest $request
 	 */
 	public function __construct( $request = null ) {
+		global $wgUseMediaWikiUIEverywhere;
 		parent::__construct( 'Userlogin' );
 
 		$this->mOverrideRequest = $request;
+		// Override UseMediaWikiEverywhere to true, to force login and create form to use mw ui
+		$wgUseMediaWikiUIEverywhere = true;
 	}
 
 	/**
