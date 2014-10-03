@@ -3653,12 +3653,6 @@ HTML
 			$script .= Xml::encodeJsCall( 'mw.toolbar.addButton', $params );
 		}
 
-		// This used to be called on DOMReady from mediawiki.action.edit, which
-		// ended up causing race conditions with the setup code above.
-		$script .= "\n" .
-			"// Create button bar\n" .
-			"$(function() { mw.toolbar.init(); } );\n";
-
 		$script .= '});';
 		$wgOut->addScript( Html::inlineScript( ResourceLoader::makeLoaderConditionalScript( $script ) ) );
 
