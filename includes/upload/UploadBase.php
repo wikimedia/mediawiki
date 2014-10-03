@@ -768,13 +768,20 @@ abstract class UploadBase {
 		$sizes = $wgUploadThumbnailRenderMap;
 		rsort( $sizes );
 
+		$file = $this->getLocalFile();
+
 		foreach ( $sizes as $size ) {
-			$jobs[] = new ThumbnailRenderJob( $this->getLocalFile()->getTitle(), array(
-				'transformParams' => array( 'width' => $size ),
-			) );
+			if ( $file->isVectorized()
+				|| $file->getWidth() > $size ) {
+					$jobs[] = new ThumbnailRenderJob( $file->getTitle(), array(
+						'transformParams' => array( 'width' => $size ),
+					) );
+			}
 		}
 
-		JobQueueGroup::singleton()->push( $jobs );
+		if ( $jobs ) {
+			JobQueueGroup::singleton()->push( $jobs );
+		}
 	}
 
 	/**
