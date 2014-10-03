@@ -152,12 +152,13 @@ define( 'AV_SCAN_FAILED', false );  #scan failed (scanner not found or error in 
 
 /**@{
  * Anti-lock flags
- * See DefaultSettings.php for a description
+ * Was used by $wgAntiLockFlags, which was removed with 1.25
+ * Constants kept to not have warnings when used in LocalSettings
  */
 define( 'ALF_PRELOAD_LINKS', 1 ); // unused
 define( 'ALF_PRELOAD_EXISTENCE', 2 ); // unused
-define( 'ALF_NO_LINK_LOCK', 4 );
-define( 'ALF_NO_BLOCK_LOCK', 8 );
+define( 'ALF_NO_LINK_LOCK', 4 ); // unused
+define( 'ALF_NO_BLOCK_LOCK', 8 ); // unused
 /**@}*/
 
 /**@{
