@@ -256,14 +256,11 @@ class UsercreateTemplate extends BaseTemplate {
 				<?php
 				echo Html::submitButton(
 					$this->getMsg( $this->data['loggedin'] ? 'createacct-another-submit' : 'createacct-submit' ),
-					$attrs = array(
-						'id' => 'wpCreateaccount',
-						'tabindex' => $tabIndex++
-					),
 					array(
-						'mw-ui-big',
-						'mw-ui-block',
-						'mw-ui-constructive',
+						'id' => 'wpCreateaccount',
+						'tabindex' => $tabIndex++,
+						// FIXME: move this to modifiers, when wgUseMediaWikiUIEverywhere is enabled
+						'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive',
 					)
 				);
 				?>
