@@ -422,7 +422,7 @@ class MessageCache {
 			$this->mLoadedLanguages[$code] = true;
 		}
 		$info = implode( ', ', $where );
-		wfDebug( __METHOD__ . ": Loading $code... $info\n" );
+		wfDebugLog( 'MessageCache', __METHOD__ . ": Loading $code... $info\n" );
 		wfProfileOut( __METHOD__ );
 
 		return $success;
