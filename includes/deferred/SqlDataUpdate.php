@@ -35,7 +35,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	protected $mDb;
 
 	/** @var array SELECT options to be used (array) */
-	protected $mOptions;
+	protected $mOptions = array();
 
 	/** @var bool Whether a transaction is open on this object (internal use only!) */
 	private $mHasTransaction;
@@ -51,15 +51,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 *   transaction is already in progress, see beginTransaction() for details.
 	 */
 	public function __construct( $withTransaction = true ) {
-		global $wgAntiLockFlags;
-
 		parent::__construct();
-
-		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
-			$this->mOptions = array();
-		} else {
-			$this->mOptions = array( 'FOR UPDATE' );
-		}
 
 		// @todo Get connection only when it's needed? Make sure that doesn't
 		// break anything, especially transactions!
