@@ -151,11 +151,10 @@ class UserloginTemplate extends BaseTemplate {
 				$attrs = array(
 					'id' => 'wpLoginAttempt',
 					'tabindex' => '6',
+					// FIXME: move this to modifiers, when wgUseMediaWikiUIEverywhere is enabled
+					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive',
 				);
-				$modifiers = array(
-					'mw-ui-big', 'mw-ui-block', 'mw-ui-constructive',
-				);
-				echo Html::submitButton( $this->getMsg( 'pt-login-button' )->text(), $attrs, $modifiers );
+				echo Html::submitButton( $this->getMsg( 'pt-login-button' )->text(), $attrs );
 				?>
 			</div>
 
