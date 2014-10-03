@@ -914,17 +914,11 @@ class Language {
 			return $names;
 		}
 
-		$returnMw = array();
-		$coreCodes = array_keys( $mwNames );
-		foreach ( $coreCodes as $coreCode ) {
-			$returnMw[$coreCode] = $names[$coreCode];
-		}
-
 		if ( $include === 'mwfile' ) {
 			$namesMwFile = array();
 			# We do this using a foreach over the codes instead of a directory
 			# loop so that messages files in extensions will work correctly.
-			foreach ( $returnMw as $code => $value ) {
+			foreach ( $coreCodes as $code => $value ) {
 				if ( is_readable( self::getMessagesFileName( $code ) )
 					|| is_readable( self::getJsonMessagesFileName( $code ) )
 				) {
@@ -936,7 +930,7 @@ class Language {
 		}
 
 		# 'mw' option; default if it's not one of the other two options (all/mwfile)
-		return $returnMw;
+		return $coreCodes;
 	}
 
 	/**
