@@ -3755,7 +3755,7 @@ HTML
 			'tabindex' => $tabindex,
 		) + Linker::tooltipAndAccesskeyAttribs( 'preview' );
 		$buttons['preview'] = Html::submitButton( wfMessage( 'showpreview' )->text(),
-			$attribs, array( 'mw-ui-progressive' ) );
+			$attribs );
 		$buttons['live'] = '';
 
 		$attribs = array(
@@ -3764,7 +3764,7 @@ HTML
 			'tabindex' => ++$tabindex,
 		) + Linker::tooltipAndAccesskeyAttribs( 'diff' );
 		$buttons['diff'] = Html::submitButton( wfMessage( 'showdiff' )->text(),
-			$attribs, array( 'mw-ui-progressive' ) );
+			$attribs );
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
