@@ -60,6 +60,9 @@ class SpecialExpandTemplates extends SpecialPage {
 		$request = $this->getRequest();
 		$titleStr = $request->getText( 'wpContextTitle' );
 		$title = Title::newFromText( $titleStr );
+		$this->getOutput()->addModuleStyles( array(
+			'mediawiki.ui', 'mediawiki.ui.button', 'mediawiki.ui.input', 'mediawiki.ui.checkbox'
+		) );
 
 		if ( !$title ) {
 			$title = $this->getPageTitle();
@@ -151,7 +154,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			'contexttitle',
 			60,
 			$title,
-			array( 'autofocus' => true )
+			array( 'autofocus' => true, 'class' => 'mw-ui-input-inline' )
 		) . '</p>';
 		$form .= '<p>' . Xml::label(
 			$this->msg( 'expand_templates_input' )->text(),
@@ -162,36 +165,52 @@ class SpecialExpandTemplates extends SpecialPage {
 			$input,
 			10,
 			10,
-			array( 'id' => 'input' )
+			array( 'id' => 'input', 'class' => 'mw-ui-input' )
 		);
 
-		$form .= '<p>' . Xml::checkLabel(
-			$this->msg( 'expand_templates_remove_comments' )->text(),
-			'wpRemoveComments',
-			'removecomments',
-			$this->removeComments
+		$form .= '<p>' . Html::rawElement(
+			'div',
+			array( 'class' => 'mw-ui-checkbox' ),
+			Xml::checkLabel(
+				$this->msg( 'expand_templates_remove_comments' )->text(),
+				'wpRemoveComments',
+				'removecomments',
+				$this->removeComments
+			)
 		) . '</p>';
-		$form .= '<p>' . Xml::checkLabel(
-			$this->msg( 'expand_templates_remove_nowiki' )->text(),
-			'wpRemoveNowiki',
-			'removenowiki',
-			$this->removeNowiki
+		$form .= '<p>' . Html::rawElement(
+			'div',
+			array( 'class' => 'mw-ui-checkbox' ),
+			Xml::checkLabel(
+				$this->msg( 'expand_templates_remove_nowiki' )->text(),
+				'wpRemoveNowiki',
+				'removenowiki',
+				$this->removeNowiki
+			)
 		) . '</p>';
-		$form .= '<p>' . Xml::checkLabel(
-			$this->msg( 'expand_templates_generate_xml' )->text(),
-			'wpGenerateXml',
-			'generate_xml',
-			$this->generateXML
+		$form .= '<p>' . Html::rawElement(
+			'div',
+			array( 'class' => 'mw-ui-checkbox' ),
+			Xml::checkLabel(
+				$this->msg( 'expand_templates_generate_xml' )->text(),
+				'wpGenerateXml',
+				'generate_xml',
+				$this->generateXML
+			)
 		) . '</p>';
-		$form .= '<p>' . Xml::checkLabel(
-			$this->msg( 'expand_templates_generate_rawhtml' )->text(),
-			'wpGenerateRawHtml',
-			'generate_rawhtml',
-			$this->generateRawHtml
+		$form .= '<p>' . Html::rawElement(
+			'div',
+			array( 'class' => 'mw-ui-checkbox' ),
+			Xml::checkLabel(
+				$this->msg( 'expand_templates_generate_rawhtml' )->text(),
+				'wpGenerateRawHtml',
+				'generate_rawhtml',
+				$this->generateRawHtml
+			)
 		) . '</p>';
 		$form .= '<p>' . Xml::submitButton(
 			$this->msg( 'expand_templates_ok' )->text(),
-			array( 'accesskey' => 's' )
+			array( 'accesskey' => 's', 'class' => 'mw-ui-button mw-ui-constructive' )
 		) . '</p>';
 		$form .= "</fieldset>\n";
 		$form .= Xml::closeElement( 'form' );
