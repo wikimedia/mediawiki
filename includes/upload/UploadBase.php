@@ -69,8 +69,6 @@ abstract class UploadBase {
 	const WINDOWS_NONASCII_FILENAME = 13;
 	const FILENAME_TOO_LONG = 14;
 
-	const SESSION_STATUS_KEY = 'wsUploadStatusData';
-
 	/**
 	 * @param int $error
 	 * @return string
@@ -1979,29 +1977,38 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Get the current status of a chunked upload (used for polling).
-	 * The status will be read from the *current* user session.
+	 * Get the current status of a chunked upload (used for polling)
+	 *
+	 * The value will be read from cache.
+	 *
+	 * @param User $user
 	 * @param string $statusKey
 	 * @return Status[]|bool
 	 */
-	public static function getSessionStatus( $statusKey ) {
-		return isset( $_SESSION[self::SESSION_STATUS_KEY][$statusKey] )
-			? $_SESSION[self::SESSION_STATUS_KEY][$statusKey]
-			: false;
+	public static function getSessionStatus( User $user, $statusKey ) {
+		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
+
+		return wfGetCache( CACHE_ANYTHING )->get( $key );
 	}
 
 	/**
-	 * Set the current status of a chunked upload (used for polling).
-	 * The status will be stored in the *current* user session.
+	 * Set the current status of a chunked upload (used for polling)
+	 *
+	 * The value will be set in cache for 1 day
+	 *
+	 * @param User $user
 	 * @param string $statusKey
 	 * @param array|bool $value
 	 * @return void
 	 */
-	public static function setSessionStatus( $statusKey, $value ) {
+	public static function setSessionStatus( User $user, $statusKey, $value ) {
+		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
+
+		$cache = wfGetCache( CACHE_ANYTHING );
 		if ( $value === false ) {
-			unset( $_SESSION[self::SESSION_STATUS_KEY][$statusKey] );
+			$cache->delete( $key );
 		} else {
-			$_SESSION[self::SESSION_STATUS_KEY][$statusKey] = $value;
+			$cache->set( $key, $value, 86400 );
 		}
 	}
 }
