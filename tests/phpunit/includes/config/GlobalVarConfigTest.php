@@ -87,34 +87,10 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 		$this->assertEquals( $config->get( $name ), $expected );
 	}
 
-	public static function provideSet() {
-		return array(
-			array( 'Foo', 'wg', 'wgFoo' ),
-			array( 'SomethingRandom', 'wg', 'wgSomethingRandom' ),
-			array( 'FromAnExtension', 'eg', 'egFromAnExtension' ),
-			array( 'NoPrefixHere', '', 'NoPrefixHere' ),
-		);
-	}
-
 	private function maybeStashGlobal( $var ) {
 		if ( array_key_exists( $var, $GLOBALS ) ) {
 			// Will be reset after this test is over
 			$this->stashMwGlobals( $var );
 		}
-	}
-
-	/**
-	 * @dataProvider provideSet
-	 * @covers GlobalVarConfig::set
-	 * @covers GlobalVarConfig::setWithPrefix
-	 */
-	public function testSet( $name, $prefix, $var ) {
-		$this->hideDeprecated( 'GlobalVarConfig::set' );
-		$this->maybeStashGlobal( $var );
-		$config = new GlobalVarConfig( $prefix );
-		$random = wfRandomString();
-		$config->set( $name, $random );
-		$this->assertArrayHasKey( $var, $GLOBALS );
-		$this->assertEquals( $random, $GLOBALS[$var] );
 	}
 }
