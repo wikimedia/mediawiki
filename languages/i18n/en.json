@@ -1356,6 +1356,7 @@
 	"php-uploaddisabledtext": "File uploads are disabled in PHP.\nPlease check the file_uploads setting.",
 	"uploadscripted": "This file contains HTML or script code that may be erroneously interpreted by a web browser.",
 	"upload-scripted-pi-callback": "Cannot upload a file that contains XML-stylesheet processing instruction.",
+	"uploadscripted-advice": "This file contains HTML or script code that may be erroneously interpreted by a web browser. More information on [https://commons.wikimedia.org/wiki/Commons:Exif editing Exif tags].",
 	"uploaded-script-svg": "Found scriptable element \"$1\" in the uploaded SVG file.",
 	"uploaded-hostile-svg": "Found unsafe CSS in the style element of uploaded SVG file.",
 	"uploaded-event-handler-on-svg": "Setting event-handler attributes <code>$1=\"$2\"</code> is not allowed in SVG files.",

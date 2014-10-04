@@ -1526,6 +1526,7 @@
 	"php-uploaddisabledtext": "This means that file uploading is disabled in PHP, not upload of PHP-files.",
 	"uploadscripted": "Used as error message when uploading a file.\n\nSee also:\n* {{msg-mw|zip-wrong-format}}\n* {{msg-mw|uploadjava}}\n* {{msg-mw|uploadvirus}}",
 	"upload-scripted-pi-callback": "Used as error message when uploading an SVG file that contains xml-stylesheet processing instruction.",
+	"uploadscripted-advice": "Used as error message when uploading a file and it also gives an advice on how to remove specific data.\n\nSee also:\n* {{msg-mw|zip-wrong-format}}\n* {{msg-mw|uploadjava}}\n* {{msg-mw|uploadvirus}}\n* {{msg-mw|uploadscripted}}",
 	"uploaded-script-svg": "Used as error message when uploading an SVG file that contains scriptable tags (script, handler, stylesheet, iframe).\n\nParameters:\n* $1 - The scriptable tag that blocked the SVG file from uploading.",
 	"uploaded-hostile-svg": "Used as error message when uploading an SVG file that contains unsafe CSS.",
 	"uploaded-event-handler-on-svg": "Used as error message when uploading an SVG file that contains event-handler attributes.\n\nParameters:\n* $1 - The event-handler attribute that is being modified in the SVG file.\n* $2 - The value that is given to the event-handler attribute.",
