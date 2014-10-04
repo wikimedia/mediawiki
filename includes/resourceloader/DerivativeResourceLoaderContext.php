@@ -126,6 +126,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	public function setUser( $user ) {
 		$this->user = $user;
 		$this->hash = null;
+		$this->userObj = null;
 	}
 
 	public function getDebug() {

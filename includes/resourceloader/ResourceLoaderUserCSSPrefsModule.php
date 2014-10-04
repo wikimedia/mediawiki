@@ -42,8 +42,7 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$hash = $context->getHash();
 		if ( !isset( $this->modifiedTime[$hash] ) ) {
-			global $wgUser;
-			$this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
+			$this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $context->getUserObj()->getTouched() );
 		}
 
 		return $this->modifiedTime[$hash];
@@ -54,13 +53,11 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
-		global $wgUser;
-
 		if ( !$this->getConfig()->get( 'AllowUserCssPrefs' ) ) {
 			return array();
 		}
 
-		$options = $wgUser->getOptions();
+		$options = $context->getUserObj()->getOptions();
 
 		// Build CSS rules
 		$rules = array();
