@@ -193,6 +193,7 @@ production.
 * $wgUseTidy is now set when parserTests are run with the tidy option to match
   output on wiki.
 * (T37472) update.php will purge ResourceLoader cache unless --nopurge is passed to it.
+* (T72109) mediawiki.language should respect $wgTranslateNumerals in convertNumber().
 
 === Action API changes in 1.25 ===
 * (T67403) XML tag highlighting is now only performed for formats

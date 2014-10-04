@@ -167,6 +167,10 @@
 		convertNumber: function ( num, integer ) {
 			var i, tmp, transformTable, numberString, convertedNumber, pattern;
 
+			if ( !mw.config.get( 'wgTranslateNumerals' ) ) {
+				return num;
+			}
+
 			pattern = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
 				'digitGroupingPattern' ) || '#,##0.###';
 
