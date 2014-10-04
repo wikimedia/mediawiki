@@ -1573,11 +1573,11 @@ return array(
 		),
 		'skinScripts' => array(
 			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.js',
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-minerva.js',
+			'minerva' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.js',
 		),
 		'skinStyles' => array(
 			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.svg.css',
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-minerva.svg.css',
+			'minerva' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.svg.css',
 		),
 		'messages' => array(
 			'ooui-outline-control-move-down',
