@@ -92,7 +92,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 
 		<div class="mw-body" role="main">
 			<h1 class="firstHeading">
-				<span dir="auto"><?php $this->html( 'title' ) ?></span>
+				<?php $this->html( 'title' ) ?>
 			</h1>
 
 			<div class="mw-body-content">
