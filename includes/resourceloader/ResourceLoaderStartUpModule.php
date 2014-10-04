@@ -387,11 +387,20 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$registrations = $this->getModuleRegistrations( $context );
 			// Fix indentation
 			$registrations = str_replace( "\n", "\n\t", trim( $registrations ) );
+			$mwMapJsCall = Xml::encodeJsCall(
+				'mw.Map',
+				array( $this->getConfig()->get( 'LegacyJavaScriptGlobals' ) )
+			);
+			$mwConfigSetJsCall = Xml::encodeJsCall(
+				'mw.config.set',
+				array( $configuration )
+			);
+
 			$out .= "var startUp = function () {\n" .
 				"\tmw.config = new " .
-				Xml::encodeJsCall( 'mw.Map', array( $this->getConfig()->get( 'LegacyJavaScriptGlobals' ) ) ) . "\n" .
+				$mwMapJsCall . "\n" .
 				"\t$registrations\n" .
-				"\t" . Xml::encodeJsCall( 'mw.config.set', array( $configuration ) ) .
+				"\t" . $mwConfigSetJsCall .
 				"};\n";
 
 			// Conditional script injection
