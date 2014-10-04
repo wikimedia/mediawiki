@@ -115,6 +115,8 @@ class HTMLForm extends ContextSource {
 		'info' => 'HTMLInfoField',
 		'selectorother' => 'HTMLSelectOrOtherField',
 		'selectandother' => 'HTMLSelectAndOtherField',
+		'namespaceselect' => 'HTMLSelectNamespace',
+		'tagfilter' => 'HTMLTagFilter',
 		'submit' => 'HTMLSubmitField',
 		'hidden' => 'HTMLHiddenField',
 		'edittools' => 'HTMLEditTools',
