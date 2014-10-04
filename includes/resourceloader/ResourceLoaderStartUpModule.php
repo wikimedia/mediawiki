@@ -43,7 +43,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			return $this->configVars[$hash];
 		}
 
-		global $wgContLang;
+		global $wgContLang, $wgTranslateNumerals;
 
 		$mainPage = Title::newMainPage();
 
@@ -82,6 +82,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgServerName' => $conf->get( 'ServerName' ),
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $wgContLang->getCode(),
+			'wgTranslateNumerals' => $wgTranslateNumerals,
 			'wgVersion' => $conf->get( 'Version' ),
 			'wgEnableAPI' => $conf->get( 'EnableAPI' ),
 			'wgEnableWriteAPI' => $conf->get( 'EnableWriteAPI' ),
