@@ -37,15 +37,16 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	/**
 	 * Fetch the tokens for the current user.
 	 *
+	 * @param ResourceLoaderContext $context
 	 * @return array List of tokens keyed by token type
 	 */
-	protected function contextUserTokens() {
-		global $wgUser;
+	protected function contextUserTokens( ResourceLoaderContext $context ) {
+		$user = $context->getUserObj();
 
 		return array(
-			'editToken' => $wgUser->getEditToken(),
-			'patrolToken' => $wgUser->getEditToken( 'patrol' ),
-			'watchToken' => $wgUser->getEditToken( 'watch' ),
+			'editToken' => $user->getEditToken(),
+			'patrolToken' => $user->getEditToken( 'patrol' ),
+			'watchToken' => $user->getEditToken( 'watch' ),
 		);
 	}
 
@@ -55,7 +56,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall( 'mw.user.tokens.set',
-			array( $this->contextUserTokens() ),
+			array( $this->contextUserTokens( $context ) ),
 			ResourceLoader::inDebugMode()
 		);
 	}
