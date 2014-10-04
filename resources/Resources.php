@@ -1570,14 +1570,10 @@ return array(
 	'oojs-ui' => array(
 		'scripts' => array(
 			'resources/lib/oojs-ui/oojs-ui.js',
+			'resources/lib/oojs-uo/oojs-ui-mediawiki.js',
 		),
-		'skinScripts' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.js',
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.js',
-		),
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.svg.css',
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.svg.css',
+		'styles' => array(
+			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.svg.css',
 		),
 		'messages' => array(
 			'ooui-outline-control-move-down',
