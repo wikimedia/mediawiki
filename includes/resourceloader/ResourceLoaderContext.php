@@ -41,6 +41,7 @@ class ResourceLoaderContext {
 	protected $version;
 	protected $hash;
 	protected $raw;
+	protected $userObj;
 
 	/* Methods */
 
@@ -176,6 +177,31 @@ class ResourceLoaderContext {
 	 */
 	public function getUser() {
 		return $this->user;
+	}
+
+	/**
+	 * Get the possibly-cached User object for the specified username
+	 *
+	 * @since 1.25
+	 * @return User|bool false if a valid object cannot be created
+	 */
+	public function getUserObj() {
+		if ( $this->userObj === null ) {
+			$username = $this->getUser();
+			if ( $username ) {
+				// Optimize: Avoid loading a new User object if possible
+				global $wgUser;
+				if ( is_object( $wgUser ) && $wgUser->getName() === $username ) {
+					$this->userObj = $wgUser;
+				} else {
+					$this->userObj = User::newFromName( $username );
+				}
+			} else {
+				$this->userObj = new User; // Anonymous user
+			}
+		}
+
+		return $this->userObj;
 	}
 
 	/**
