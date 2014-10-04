@@ -1116,9 +1116,9 @@ return array(
 			'uk' => 'resources/src/mediawiki.language/languages/uk.js',
 		),
 		'dependencies' => array(
-				'mediawiki.language.data',
-				'mediawiki.cldr',
-			),
+			'mediawiki.language.data',
+			'mediawiki.cldr',
+		),
 		'targets' => array( 'desktop', 'mobile' ),
 		'messages' => array(
 			'and',
