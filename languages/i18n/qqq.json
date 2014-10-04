@@ -1475,6 +1475,7 @@
 	"uploaddisabledtext": "Parameters:\n* $1 - (Optional) the name of the target file. See r22243 and [[bugzilla:8818|bug 8818]].",
 	"php-uploaddisabledtext": "This means that file uploading is disabled in PHP, not upload of PHP-files.",
 	"uploadscripted": "Used as error message when uploading a file.\n\nSee also:\n* {{msg-mw|zip-wrong-format}}\n* {{msg-mw|uploadjava}}\n* {{msg-mw|uploadvirus}}",
+	"uploadscripted-advice": "Used as error message when uploading a file and it also gives an advice on how to remove specific data.\n\nSee also:\n* {{msg-mw|zip-wrong-format}}\n* {{msg-mw|uploadjava}}\n* {{msg-mw|uploadvirus}}\n* {{msg-mw|uploadscripted}}",
 	"uploadscriptednamespace": "Used as error message when uploading a file. This error is specific to SVG files, when they include a namespace that has not been whitelisted.\n\nParameters:\n* $1 - the invalid namespace name\nSee also:\n* {{msg-mw|zip-wrong-format}}\n* {{msg-mw|uploadjava}}\n* {{msg-mw|uploadvirus}}",
 	"uploadinvalidxml": "Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.",
 	"uploadvirus": "Error message displayed when uploaded file contains a virus.\n\nParameters:\n* $1 - {{msg-mw|Virus-unknownscanner}}, {{msg-mw|Virus-scanfailed}}, or something\nSee also:\n* {{msg-mw|Uploadscripted}}\n* {{msg-mw|Zip-wrong-format}}\n* {{msg-mw|Uploadjava}}",
