@@ -31,6 +31,7 @@ production.
 === Action API changes in 1.25 ===
 * (bug 65403) XML tag highlighting is now only performed for formats
   "xmlfm" and "wddxfm".
+* (bug 70109) mediawiki.language should respect $wgTranslateNumerals in convertNumber().
 
 === Action API internal changes in 1.25 ===
 
