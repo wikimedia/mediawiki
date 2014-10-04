@@ -501,6 +501,14 @@ abstract class UploadBase {
 			if ( self::detectScript( $this->mTempPath, $mime, $this->mFinalExtension ) ) {
 				wfProfileOut( __METHOD__ );
 
+				# check for html code in the exif tag of a jpeg/tiff image (bug 25163)
+				$mime = $this->mFileProps['mime'];
+
+				if ( ( strpos( $mime, 'image/jpeg' ) === 0 || strpos( $mime, 'image/tiff') === 0) &&
+				     self::checkHtmlInExifTag( $this->mTempPath ) ) {
+					return array ('uploadscripted-advice');
+				}
+
 				return array( 'uploadscripted' );
 			}
 			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
@@ -2017,5 +2025,24 @@ abstract class UploadBase {
 		} else {
 			$cache->set( $key, $value, 86400 );
 		}
+	}
+
+	/**
+	 * Helper function that checks whether the file has HTML code in the Exif tag
+	 *
+	 * @param string $filepath The filepath of the temporary file.
+	 * @return bool
+	 */
+	protected function checkHtmlInExifTag( $filepath ) {
+
+		$exifData = exif_read_data($filepath);
+
+		foreach ($exifData as $itemExifData) {
+			if (strip_tags($itemExifData) != $itemExifData) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
