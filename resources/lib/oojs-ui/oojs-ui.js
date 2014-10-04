@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (30b0407428)
+ * OOjs UI v0.1.0-pre (48980881f3)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-30T23:08:05Z
+ * Date: 2014-10-04T01:50:53Z
  */
 ( function ( OO ) {
 
@@ -1055,6 +1055,35 @@ OO.ui.Element.scrollIntoView = function ( el, config ) {
 	}
 };
 
+/**
+ * Bind a handler for an event on a DOM element.
+ *
+ * Used to be for working around a jQuery bug (jqbug.com/14180),
+ * but obsolete as of jQuery 1.11.0.
+ *
+ * @static
+ * @deprecated Use jQuery#on instead.
+ * @param {HTMLElement|jQuery} el DOM element
+ * @param {string} event Event to bind
+ * @param {Function} callback Callback to call when the event fires
+ */
+OO.ui.Element.onDOMEvent = function ( el, event, callback ) {
+	$( el ).on( event, callback );
+};
+
+/**
+ * Unbind a handler bound with #static-method-onDOMEvent.
+ *
+ * @deprecated Use jQuery#off instead.
+ * @static
+ * @param {HTMLElement|jQuery} el DOM element
+ * @param {string} event Event to unbind
+ * @param {Function} [callback] Callback to unbind
+ */
+OO.ui.Element.offDOMEvent = function ( el, event, callback ) {
+	$( el ).off( event, callback );
+};
+
 /* Methods */
 
 /**
@@ -1173,37 +1202,6 @@ OO.ui.Element.prototype.onDOMEvent = function ( event, callback ) {
 OO.ui.Element.prototype.offDOMEvent = function ( event, callback ) {
 	OO.ui.Element.offDOMEvent( this.$element, event, callback );
 };
-
-( function () {
-	/**
-	 * Bind a handler for an event on a DOM element.
-	 *
-	 * Used to be for working around a jQuery bug (jqbug.com/14180),
-	 * but obsolete as of jQuery 1.11.0.
-	 *
-	 * @static
-	 * @deprecated Use jQuery#on instead.
-	 * @param {HTMLElement|jQuery} el DOM element
-	 * @param {string} event Event to bind
-	 * @param {Function} callback Callback to call when the event fires
-	 */
-	OO.ui.Element.onDOMEvent = function ( el, event, callback ) {
-		$( el ).on( event, callback );
-	};
-
-	/**
-	 * Unbind a handler bound with #static-method-onDOMEvent.
-	 *
-	 * @deprecated Use jQuery#off instead.
-	 * @static
-	 * @param {HTMLElement|jQuery} el DOM element
-	 * @param {string} event Event to unbind
-	 * @param {Function} [callback] Callback to unbind
-	 */
-	OO.ui.Element.offDOMEvent = function ( el, event, callback ) {
-		$( el ).off( event, callback );
-	};
-}() );
 
 /**
  * Container for elements.
@@ -7723,7 +7721,7 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
  * @constructor
  * @param {OO.ui.TextInputWidget} input Input widget
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$overlay=this.$( 'body' )] Overlay layer
+ * @cfg {jQuery} [$overlay=this.$( 'body, .oo-ui-window-overlay' ).last()] Overlay layer
  */
 OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	// Config intialization
@@ -7731,7 +7729,7 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 
 	// Properties
 	this.lookupInput = input;
-	this.$overlay = config.$overlay || this.$( 'body,.oo-ui-window-overlay' ).last();
+	this.$overlay = config.$overlay || this.$( 'body, .oo-ui-window-overlay' ).last();
 	this.lookupMenu = new OO.ui.TextInputMenuWidget( this, {
 		$: OO.ui.Element.getJQuery( this.$overlay ),
 		input: this.lookupInput,
