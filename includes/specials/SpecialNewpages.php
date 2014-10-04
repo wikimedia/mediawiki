@@ -119,6 +119,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param string $par
 	 */
 	public function execute( $par ) {
+		global $wgUseMediaWikiUIEverywhere;
+		// force MediaWiki UI, the form looks ugly without it
+		$wgUseMediaWikiUIEverywhere = true;
+
 		$out = $this->getOutput();
 
 		$this->setHeaders();
@@ -224,59 +228,64 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$form = Xml::openElement( 'form', array( 'action' => wfScript() ) ) .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 			Xml::fieldset( $this->msg( 'newpages' )->text() ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
-			'<tr>
-				<td class="mw-label">' .
-			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
-			'</td>
-			<td class="mw-input">' .
-			Html::namespaceSelector(
-				array(
-					'selected' => $namespace,
-					'all' => 'all',
-				), array(
-					'name' => 'namespace',
-					'id' => 'namespace',
-					'class' => 'namespaceselector',
+			Html::rawElement(
+				'div',
+				null,
+				Xml::label(
+					$this->msg( 'namespace' )->text(),
+					'namespace',
+					array( 'class' => 'mw-ui-input-inline' )
+				) . '&#160;' .
+				Html::namespaceSelector(
+					array(
+						'selected' => $namespace,
+						'all' => 'all'
+					), array(
+						'name' => 'namespace',
+						'id' => 'namespace',
+						'class' => 'namespaceselector mw-ui-input-inline',
+					)
+				) . '&#160;' .
+				Xml::checkLabel(
+					$this->msg( 'invert' )->text(),
+					'invert',
+					'nsinvert',
+					$nsinvert,
+					array( 'title' => $this->msg( 'tooltip-invert' )->text() )
 				)
-			) . '&#160;' .
-			Xml::checkLabel(
-				$this->msg( 'invert' )->text(),
-				'invert',
-				'nsinvert',
-				$nsinvert,
-				array( 'title' => $this->msg( 'tooltip-invert' )->text() )
 			) .
-			'</td>
-			</tr>' . ( $tagFilter ? (
-			'<tr>
-				<td class="mw-label">' .
-				$tagFilterLabel .
-				'</td>
-				<td class="mw-input">' .
-				$tagFilterSelector .
-				'</td>
-			</tr>' ) : '' ) .
-			'<tr>
-				<td class="mw-label">' .
-					Xml::label( $this->msg( 'newpages-username' )->text(), 'mw-np-username' ) .
-					'</td>
-				<td class="mw-input">' .
-					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
-					'</td>
-			</tr>' .
-			'<tr> <td></td>
-				<td class="mw-submit">' .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
-			'</td>
-		</tr>' .
-			'<tr>
-				<td></td>
-				<td class="mw-input">' .
-			$this->filterLinks() .
-			'</td>
-			</tr>' .
-			Xml::closeElement( 'table' ) .
+			( $tagFilter ? (
+				Html::rawElement(
+					'div',
+					null,
+					$tagFilterLabel . '&#160;' . $tagFilterSelector
+				)
+			): '' ) .
+			Html::rawElement(
+				'div',
+				null,
+				Xml::inputLabel(
+					$this->msg( 'newpages-username' )->text(),
+					'username',
+					'mw-np-username',
+					30,
+					$userText,
+					array( 'class' => 'mw-ui-input-inline mw-ui-block' )
+				)
+			) .
+			Html::rawElement(
+				'div',
+				null,
+				Xml::submitButton(
+					$this->msg( 'allpagessubmit' )->text(),
+					array( 'class' => 'mw-ui-button mw-ui-progressive' )
+				)
+			) .
+			Html::rawElement(
+				'div',
+				null,
+				$this->filterLinks()
+			) .
 			Xml::closeElement( 'fieldset' ) .
 			$hidden .
 			Xml::closeElement( 'form' );

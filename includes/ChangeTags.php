@@ -258,7 +258,7 @@ class ChangeTags {
 		$data = array(
 			Html::rawElement(
 				'label',
-				array( 'for' => 'tagfilter' ),
+				array( 'for' => 'tagfilter', 'class' => 'mw-ui-input-inline' ),
 				wfMessage( 'tag-filter' )->parse()
 			),
 			Xml::input(
