@@ -198,6 +198,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function form() {
+		$out = $this->getOutput();
 		// Consume values
 		$this->opts->consumeValue( 'offset' ); // don't carry offset, DWIW
 		$namespace = $this->opts->consumeValue( 'namespace' );
@@ -216,72 +217,64 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 		$hidden = implode( "\n", $hidden );
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $tagFilterVal );
-		if ( $tagFilter ) {
-			list( $tagFilterLabel, $tagFilterSelector ) = $tagFilter;
-		}
+		$form = array(
+			'namespace' => array(
+				'type' => 'namespaceselect',
+				'name' => 'namespace',
+				'label-message' => 'namespace',
+				'default' => $namespace,
+			),
+			'nsinvert' => array(
+				'type' => 'check',
+				'name' => 'nsinvert',
+				'label-message' => 'invert',
+				'default' => $nsinvert,
+				'tooltip' => $this->msg( 'tooltip-invert' )->text(),
+			),
+			'tagFilter' => array(
+				'type' => 'tagfilter',
+				'name' => 'tagfilter',
+				'label-raw' => wfMessage( 'tag-filter' )->parse(),
+				'default' => $tagFilterVal,
+			),
+			'username' => array(
+				'type' => 'text',
+				'name' => 'username',
+				'label-message' => 'newpages-username',
+				'default' => $userText,
+				'id' => 'mw-np-username',
+				'size' => 30
+			),
+		);
 
-		$form = Xml::openElement( 'form', array( 'action' => wfScript() ) ) .
-			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
-			Xml::fieldset( $this->msg( 'newpages' )->text() ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
-			'<tr>
-				<td class="mw-label">' .
-			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
-			'</td>
-			<td class="mw-input">' .
-			Html::namespaceSelector(
-				array(
-					'selected' => $namespace,
-					'all' => 'all',
-				), array(
-					'name' => 'namespace',
-					'id' => 'namespace',
-					'class' => 'namespaceselector',
-				)
-			) . '&#160;' .
-			Xml::checkLabel(
-				$this->msg( 'invert' )->text(),
-				'invert',
-				'nsinvert',
-				$nsinvert,
-				array( 'title' => $this->msg( 'tooltip-invert' )->text() )
+		$htmlForm = new HTMLForm( $form, $this->getContext() );
+ 
+		$htmlForm->setSubmitText( $this->msg( 'allpagessubmit' )->text() );
+		$htmlForm->setSubmitProgressive();
+		$htmlForm->setSubmitCallback( array( 'SpecialNewpages', 'dummyCallback' ) );
+		$htmlForm->setMethod( 'get' );
+
+		$out->addHtml( Xml::fieldset( $this->msg( 'newpages' )->text() ) );
+
+		$htmlForm->show();
+
+		$out->addHtml(
+			Html::rawElement(
+				'div',
+				null,
+				$this->filterLinks()
 			) .
-			'</td>
-			</tr>' . ( $tagFilter ? (
-			'<tr>
-				<td class="mw-label">' .
-				$tagFilterLabel .
-				'</td>
-				<td class="mw-input">' .
-				$tagFilterSelector .
-				'</td>
-			</tr>' ) : '' ) .
-			'<tr>
-				<td class="mw-label">' .
-					Xml::label( $this->msg( 'newpages-username' )->text(), 'mw-np-username' ) .
-					'</td>
-				<td class="mw-input">' .
-					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
-					'</td>
-			</tr>' .
-			'<tr> <td></td>
-				<td class="mw-submit">' .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
-			'</td>
-		</tr>' .
-			'<tr>
-				<td></td>
-				<td class="mw-input">' .
-			$this->filterLinks() .
-			'</td>
-			</tr>' .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' ) .
-			$hidden .
-			Xml::closeElement( 'form' );
+			Xml::closeElement( 'fieldset' )
+		);
+	}
 
-		$this->getOutput()->addHTML( $form );
+	/**
+	 * Dummy callback function for HTMLForm. The form doesn't need to be checked really.
+	 */
+	public static function dummyCallback() {
+		// The form should be visible on each request (inclusive requests with submitted forms), so
+		// return false here.
+		return false;
 	}
 
 	/**
