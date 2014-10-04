@@ -63,6 +63,7 @@ production.
 ** Title::moveTo() was deprecated. Use the MovePage class instead.
 ** Title::isValidMoveOperation() broken down into MovePage::isValidMove()
    and MovePage::checkPermissions().
+* (bug 70109) mediawiki.language should respect $wgTranslateNumerals in convertNumber().
 
 === Action API changes in 1.25 ===
 * (bug 65403) XML tag highlighting is now only performed for formats
