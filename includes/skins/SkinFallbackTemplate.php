@@ -91,7 +91,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 		</form>
 
 		<div class="mw-body" role="main">
-			<h1 class="firstHeading"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
+			<h1 class="firstHeading"><?php $this->html( 'title' ) ?></h1>
 
 			<div class="mw-body-content">
 				<?php $this->html( 'bodytext' ) ?>
