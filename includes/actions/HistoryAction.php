@@ -181,7 +181,6 @@ class HistoryAction extends FormlessAction {
 
 		// Add the general form
 		$action = htmlspecialchars( wfScript() );
-		$className = 'historysubmit mw-history-compareselectedversions-button';
 		$out->addHTML(
 			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
 			Xml::fieldset(
@@ -199,7 +198,7 @@ class HistoryAction extends FormlessAction {
 			$checkDeleted .
 			Html::submitButton(
 				$this->msg( 'allpagessubmit' )->text(),
-				$attrs,
+				array(),
 				array( 'mw-ui-progressive' )
 			) . "\n" .
 			'</fieldset></form>'
