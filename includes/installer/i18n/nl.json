@@ -284,6 +284,8 @@
 	"config-extensions-help": "De bovenstaande uitbreidingen zijn aangetroffen in de map <code>./extensions</code>.\n\nMogelijk moet u aanvullende instellingen maken, maar u kunt deze uitbreidingen nu inschakelen.",
 	"config-skins": "Vormgevingen",
 	"config-skins-use-as-default": "Als standaard vormgeving instellen",
+	"config-skins-must-enable-some": "U moet minstens één vormgeving kiezen om in te schakelen.",
+	"config-skins-must-enable-default": "De vormgeving gekozen als standaard moet ingeschakeld zijn.",
 	"config-install-alreadydone": "'''Waarschuwing:''' het lijkt alsof u MediaWiki al hebt geïnstalleerd en probeert het programma opnieuw te installeren.\nGa door naar de volgende pagina.",
 	"config-install-begin": "Als u nu op \"{{int:config-continue}}\" klikt, begint de installatie van MediaWiki.\nAls u nog wijzigingen wilt maken, klik dan op \"{{int:config-back}}\".",
 	"config-install-step-done": "afgerond",

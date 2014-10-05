@@ -12,7 +12,8 @@
 			"Sky Harbor",
 			"tl.wikipedia.org sysops",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Ianlopez1115"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng link:",
@@ -178,6 +179,7 @@
 	"permalink": "Palagiang kawing",
 	"print": "Ilimbag",
 	"view": "Tingnan",
+	"view-foreign": "Tingnan sa $1",
 	"edit": "Baguhin",
 	"create": "Likhain",
 	"editthispage": "Baguhin ang pahinang ito",
@@ -1473,6 +1475,7 @@
 	"booksources": "Mga mapagkukunang aklat",
 	"booksources-search-legend": "Maghanap ng mapagkukunang aklat",
 	"booksources-isbn": "ISBN:",
+	"booksources-search": "Hanapin",
 	"booksources-text": "Matatagpuan sa ibaba ang isang tala ng mga kawil patungo sa ibang mga website na nagtitinda ng mga bago at gamit nang aklat, at maaaring may iba pang impormasyon ito tungkol sa mga aklat na hinahanap mo:",
 	"booksources-invalid-isbn": "Tila mukhang hindi yata katanggap-tanggap ang ibinigay na ISBN; pakisuri kung may mga kamalian ang pagkakasip/pagkakakopya mula sa orihinal na pinagmulan.",
 	"specialloguserlabel": "Tagaganap:",

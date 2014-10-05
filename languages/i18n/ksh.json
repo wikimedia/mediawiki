@@ -349,7 +349,7 @@
 	"invalidtitle-knownnamespace": "„$3“ es ene onjöltijje Tittel för em Appachtemang „$2“",
 	"invalidtitle-unknownnamespace": "„$2“ es ene onjöltijje Tittel för e Appachtemang met dä verkehte Nommer $1.",
 	"exception-nologin": "Nit enjelogg",
-	"exception-nologin-text": "Heh di Sigg udder heh dä Opdraach jeiht blooß, wann De heh [[Special:Userlogin|em Wiki enjelogg]] bes.",
+	"exception-nologin-text": "Heh di Sigg udder heh dä Opdraach jeiht blooß, wann De heh enjelogg bes.",
 	"exception-nologin-text-manual": "De mööds ald $1, öm heh di Sigg udder di Axjuhn zohjriife ze dörve.",
 	"virus-badscanner": "Fääler en de Enstellunge: Dat Projramm ''$1'' fö noh Kompjuterwiere ze söke, dat kenne mer nit.",
 	"virus-scanfailed": "Dat Söhke eß donevve jejange, dä Kood för dä Fähler es „$1“.",

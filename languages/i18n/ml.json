@@ -3148,5 +3148,12 @@
 	"mediastatistics-header-office": "ആപ്പീസ്",
 	"mediastatistics-header-text": "എഴുത്ത്",
 	"mediastatistics-header-executable": "എക്സിക്യൂട്ടബിളുകൾ",
-	"mediastatistics-header-archive": "ചുരുക്കിയ ഫയൽതരങ്ങൾ"
+	"mediastatistics-header-archive": "ചുരുക്കിയ ഫയൽതരങ്ങൾ",
+	"json-warn-trailing-comma": "ജെസണിൽ നിന്നും $1 എന്നതിന്റെ പിന്നാലെയുള്ള {{PLURAL:$1|കോമ|കോമകൾ}} നീക്കി",
+	"json-error-unknown": "ജെസണിൽ ഒരു പ്രശ്നമുണ്ടായി. പിഴവ്: $1",
+	"json-error-depth": "സ്റ്റാക്കിന്റെ പരമാവധി ആഴം അധികരിച്ചിരിക്കുന്നു",
+	"json-error-state-mismatch": "അസാധുവായ അല്ലെങ്കിൽ തെറ്റായവിധത്തിലുള്ള ജെസൺ",
+	"json-error-ctrl-char": "കണ്ട്രോൾ കാരക്ടർ പിഴവ്, മിക്കവാറും തെറ്റായി എൻകോഡ് ചെയ്യപ്പെട്ടത്",
+	"json-error-syntax": "എഴുത്തുരീതിയിൽ പിഴവ്",
+	"json-error-utf8": "തെറ്റായരൂപത്തിലുള്ള UTF-8 അക്ഷരങ്ങൾ, മിക്കവാറും തെറ്റായി എൻകോഡ് ചെയ്യപ്പെട്ടവ"
 }

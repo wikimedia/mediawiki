@@ -72,7 +72,8 @@
 			"555",
 			"Fabsouza1",
 			"아라",
-			"Jefersonmoraes"
+			"Jefersonmoraes",
+			"Marcos dias de oliveira"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -275,6 +276,7 @@
 	"otherlanguages": "Em outros idiomas",
 	"redirectedfrom": "(Redirecionado de $1)",
 	"redirectpagesub": "Página de redirecionamento",
+	"redirectto": "Redirecionar para:",
 	"lastmodifiedat": "Esta página foi modificada pela última vez à(s) $2 de $1.",
 	"viewcount": "Esta página foi acessada {{PLURAL:$1|uma vez|$1 vezes}}.",
 	"protectedpage": "Página protegida",
@@ -519,6 +521,7 @@
 	"createaccount-text": "Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como senha \"$3\".\nVocê deve se autenticar e alterar sua senha.\n\nIgnore esta mensagem caso a conta tenha sido criada por engano.",
 	"login-throttled": "Você recentemente tentou iniciar sessão muitas vezes.\nPor favor aguarde $1 antes de tentar novamente.",
 	"login-abort-generic": "A sua autenticação não teve êxito - Abortada",
+	"login-migrated-generic": "A sua conta foi migrada e o seu nome de usuário já não existe nesta wiki.",
 	"loginlanguagelabel": "Idioma: $1",
 	"suspicious-userlogout": "Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.",
 	"createacct-another-realname-tip": "O nome verdadeiro é opcional.\nSe você optar por fornecê-lo, este nome será utilizado para dar ao usuário a atribuição de seu trabalho.",

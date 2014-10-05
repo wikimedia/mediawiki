@@ -554,7 +554,7 @@
 	"session_fail_preview_html": "'''Neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.'''\n\n''Tā, kā {{grammar:ģenitīvs|{{SITENAME}}}} darbojas neapstrādāts HTML, pirmskats ir paslēpts, lai aizsargātos no JavaScripta  uzbrukumiem.''\n\n'''Ja šis bija parasts rediģēšanas mēģinājums, mēģini vēlreiz.\nJa tas joprojām nedarbojas, mēģini [[Special:UserLogout|izlogoties ārā]] un ielogoties no jauna.'''",
 	"editing": "Labot $1",
 	"creating": "Izveido lapu $1",
-	"editingsection": "Labot $1 (sadaļa)",
+	"editingsection": "Labot lapas \"$1\" sadaļu",
 	"editingcomment": "Labot $1 (jauna sadaļa)",
 	"editconflict": "Izmaiņu konflikts: $1",
 	"explainconflict": "Kāds cits ir izmainījis šo lapu pēc tam, kad tu sāki to mainīt.\nAugšējā teksta logā ir lapas teksts tā pašreizējā versijā.\nTevis veiktās izmaiņas ir redzamas apakšējā teksta logā.\nLai saglabātu savas izmaiņas, tev ir jāapvieno savs teksts ar saglabāto pašreizējo variantu.\nKad spiedīsi pogu \"{{int:savearticle}}\", tiks saglabāts '''tikai''' teksts, kas ir augšējā teksta logā.",

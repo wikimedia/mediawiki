@@ -1725,7 +1725,7 @@
 	"wlheader-enotif": "Pemberitahuan melalui e-mel dibolehkan.",
 	"wlheader-showupdated": "Laman-laman yang telah diubah sejak kunjungan terakhir anda dipaparkan dalam '''teks tebal'''.",
 	"wlnote": "Yang berikut ialah <strong>$1</strong> perubahan terakhir sejak $2 jam yang lalu, sehingga $3, $4.",
-	"wlshowlast": "Tunjukkan $1 jam / $2 hari yang lalu / .",
+	"wlshowlast": "Tunjukkan $2 hari $1 jam yang lalu",
 	"watchlist-options": "Pilihan senarai pantau",
 	"watching": "Memantau...",
 	"unwatching": "Menyahpantau...",
@@ -3170,5 +3170,8 @@
 	"json-warn-trailing-comma": "$1 koma pengekor telah digugurkan dari JSON",
 	"json-error-unknown": "Terdapat masalah dengan JSON. Ralat: $1",
 	"json-error-depth": "Kedalaman tindakan maksimum telah dicecah",
-	"json-error-syntax": "Ralat sintaks"
+	"json-error-state-mismatch": "JSON tidak sah atau cacat",
+	"json-error-ctrl-char": "Ralat aksara kawalan, mungkin salah dikodkan",
+	"json-error-syntax": "Ralat sintaks",
+	"json-error-utf8": "Aksara UTF-8 cacat, mungkin salah dikodkan"
 }

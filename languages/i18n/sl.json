@@ -1706,7 +1706,7 @@
 	"wlheader-enotif": "Obveščanje po elektronski pošti je omogočeno.",
 	"wlheader-showupdated": "Strani, spremenjene od vašega zadnjega ogleda, so prikazane '''krepko'''.",
 	"wlnote": "{{PLURAL:$1|Navedena je zadnja|Navedeni sta zadnji|Navedene so zadnje|Navedenih je zadnjih}} <strong>$1</strong> {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb}} v {{PLURAL:$2|zadnji <strong>$2</strong> uri|zadnjih <strong>$2</strong> urah}}, od $3, $4.",
-	"wlshowlast": "Prikaži zadnjih $1 ur; $2 dni; ;",
+	"wlshowlast": "Prikaži zadnjih $1 ur; $2 dni",
 	"watchlist-options": "Možnosti spiska nadzorov",
 	"watching": "Nadziranje ...",
 	"unwatching": "Nenadziranje ...",
@@ -3128,5 +3128,15 @@
 	"mediastatistics-header-office": "Pisarna",
 	"mediastatistics-header-text": "Besedilno",
 	"mediastatistics-header-executable": "Izvedljive datoteke",
-	"mediastatistics-header-archive": "Stisnjene oblike"
+	"mediastatistics-header-archive": "Stisnjene oblike",
+	"json-warn-trailing-comma": "Iz JSON-a smo odstranili $1 {{PLURAL:$1|končno vejico|končni vejici|končne vejice|končnih vejic}}",
+	"json-error-unknown": "Naleteli smo na težavo z JSON-om. Napaka: $1",
+	"json-error-depth": "Presegli smo največjo globino sklada",
+	"json-error-state-mismatch": "Neveljaven ali slabo oblikovan JSON",
+	"json-error-ctrl-char": "Napaka kontrolnega znaka; morda je nepravilno zakodiran",
+	"json-error-syntax": "Skladenjska napaka",
+	"json-error-utf8": "Nepravilno oblikovani znaki UTF-8; morda so nepravilno zakodirani",
+	"json-error-recursion": "En ali več rekurzivnih sklicev v vrednosti za zakodirati",
+	"json-error-inf-or-nan": "Ena ali več vrednosti NAN ali INF v vrednosti za zakodirati",
+	"json-error-unsupported-type": "Podana je bila vrsta, ki je ni mogoče zakodirati"
 }

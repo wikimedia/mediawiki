@@ -396,7 +396,7 @@
 	"userlogout": "விடுபதிகை",
 	"notloggedin": "புகுபதிகை செய்யப்படவில்லை",
 	"userlogin-noaccount": "பயனர் கணக்கு இல்லையா?",
-	"userlogin-joinproject": "இணைக {{SITENAME}}",
+	"userlogin-joinproject": "{{SITENAME}}-இல் இணைக",
 	"nologin": "பயனர் கணக்கு இல்லையா? '''$1'''.",
 	"nologinlink": "கணக்கு ஒன்றை உருவாக்கவும்",
 	"createaccount": "புதிய கணக்கை உருவாக்கு",

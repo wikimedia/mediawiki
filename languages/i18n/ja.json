@@ -1631,6 +1631,7 @@
 	"booksources": "書籍情報源",
 	"booksources-search-legend": "書籍情報源を検索",
 	"booksources-isbn": "ISBN:",
+	"booksources-search": "検索",
 	"booksources-text": "お探しの書籍の新品/中古品を販売している外部サイトへのリンクを以下に列挙します。この書籍についてさらに詳しい情報があるかもしれません:",
 	"booksources-invalid-isbn": "指定した ISBN は有効ではないようです。情報源から写し間違えていないか確認してください。",
 	"specialloguserlabel": "実行者:",
@@ -1768,7 +1769,7 @@
 	"wlheader-enotif": "メール通知が有効になっています。",
 	"wlheader-showupdated": "最終訪問以降に変更されたページは、<strong>太字</strong>で表示されます。",
 	"wlnote": "$3 $4 までの{{PLURAL:$2|<strong>$2</strong>時間}}になされた{{PLURAL:$1|<strong>$1</strong>件の変更}}は以下の通りです。",
-	"wlshowlast": "表示する期間: $1時間、$2日間、",
+	"wlshowlast": "表示する期間: $1時間、$2日間",
 	"watchlist-options": "ウォッチリストのオプション",
 	"watching": "ウォッチリストに追加中...",
 	"unwatching": "ウォッチリストから除去中...",
@@ -3291,7 +3292,7 @@
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''無効''')",
 	"mediastatistics": "メディア統計",
 	"mediastatistics-summary": "アップロードされたファイルの種類に関する統計。これはファイルの最新バージョンのみを含みます。以前のまたは削除されたバージョンについては除外されています。",
-	"mediastatistics-nbytes": "{{PLURAL:$1|$1 バイト|$1 バイト}} ($2; $3%)",
+	"mediastatistics-nbytes": "{{PLURAL:$1|$1 バイト}} ($2; $3%)",
 	"mediastatistics-table-mimetype": "MIMEタイプ",
 	"mediastatistics-table-extensions": "取りうる拡張子",
 	"mediastatistics-table-count": "ファイル数",
@@ -3305,5 +3306,7 @@
 	"mediastatistics-header-office": "オフィス",
 	"mediastatistics-header-text": "テキスト",
 	"mediastatistics-header-executable": "実行ファイル",
-	"mediastatistics-header-archive": "圧縮フォーマット"
+	"mediastatistics-header-archive": "圧縮フォーマット",
+	"json-warn-trailing-comma": "JSON の末尾の{{PLURAL:$1|カンマ $1 個}}を除去しました",
+	"json-error-syntax": "構文エラー"
 }

@@ -12,7 +12,8 @@
 			"Cybermandrake",
 			"Fabsouza1",
 			"Rodrigo codignoli",
-			"Tuliouel"
+			"Tuliouel",
+			"Marcos dias de oliveira"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
@@ -57,6 +58,7 @@
 	"config-env-good": "O ambiente foi verificado.\nVocê pode instalar o MediaWiki.",
 	"config-env-bad": "O ambiente foi verificado.\nVocê não pode instalar o MediaWiki.",
 	"config-env-php": "O PHP $1 está instalado.",
+	"config-env-hhvm": "HHVM $1 está instalado.",
 	"config-unicode-using-utf8": "Usando o utf8_normalize.so, de Brion Vibber, para a normalização Unicode.",
 	"config-unicode-using-intl": "Usando a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Aviso</strong>: A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode, abortando e passando para a lenta implementação de PHP puro.\nSe o seu site tem um alto volume de tráfego, informe-se sobre a [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalização Unicode].",
@@ -217,6 +219,8 @@
 	"config-instantcommons": "Ativar o Instant Commons",
 	"config-cc-again": "Escolha novamente...",
 	"config-advanced-settings": "Configuração avançada",
+	"config-cache-options": "Configuração da cache de objetos:",
+	"config-cache-help": "A cache de objetos é usada para melhorar o desempenho do MediaWiki. Armazena dados usados com frequência.\nSites de tamanho médio ou grande são altamente encorajados a ativar esta funcionalidade e os sites pequenos também terão alguns benefícios em fazê-lo.",
 	"config-extensions": "Extensões",
 	"config-install-step-done": "feito",
 	"config-install-extensions": "Incluindo extensões",

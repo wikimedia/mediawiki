@@ -1313,6 +1313,7 @@
 	"querypage-disabled": "此奇頁基以效，故停之。",
 	"booksources": "書海",
 	"booksources-search-legend": "舀書海",
+	"booksources-search": "尋",
 	"booksources-text": "有賈售新舊書，或有助焉。茲列如下：",
 	"booksources-invalid-isbn": "供之ISBN無確，查始複之誤。",
 	"specialloguserlabel": "簿：",
@@ -2116,5 +2117,8 @@
 	"revdelete-unrestricted": "除限自有秩",
 	"rightsnone": "（凡）",
 	"revdelete-summary": "摘",
-	"searchsuggest-search": "尋"
+	"searchsuggest-search": "尋",
+	"mediastatistics-header-unknown": "未知",
+	"mediastatistics-header-video": "映像",
+	"json-error-syntax": "語法有誤"
 }

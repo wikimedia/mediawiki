@@ -1210,7 +1210,7 @@
 	"reuploaddesc": "Avbryt opplasting og gå tilbake til opplastingsskjemaet",
 	"upload-tryagain": "Send inn endret filbeskrivelse",
 	"uploadnologin": "Ikke logget inn",
-	"uploadnologintext": "Du må $1 for å laste opp filer.",
+	"uploadnologintext": "Du må $1 for å kunne laste opp filer.",
 	"upload_directory_missing": "Oppplastingsmappen ($1) mangler og kunne ikke opprettes av tjeneren.",
 	"upload_directory_read_only": "Opplastingsmappa ($1) er ikke skrivbar for tjeneren.",
 	"uploaderror": "Feil under opplasting av fil",
