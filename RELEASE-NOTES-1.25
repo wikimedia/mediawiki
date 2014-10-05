@@ -21,6 +21,7 @@ production.
 * (bug 67341) SVG images will no longer be base64-encoded when being embedded
   in CSS. This results in slight size increase before gzip compression (due to
   percent-encoding), but up to 20% decrease after it.
+* Upgrade jQuery Validate to 1.9.0. It also adds jquery.validate.additional-methods.
 
 === Bug fixes in 1.25 ===
 * (bug 71003) No additional code will be generated to try to load CSS-embedded
