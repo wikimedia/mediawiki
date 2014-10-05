@@ -51,12 +51,24 @@
 
 		this.server.respond( function ( request ) {
 			if ( window.FormData ) {
-				assert.ok( !request.url.match( /action=/), 'Request has no query string' );
+				assert.ok( !request.url.match( /action=/ ), 'Request has no query string' );
 				assert.ok( request.requestBody instanceof FormData, 'Request uses FormData body' );
 			} else {
-				assert.ok( !request.url.match( /action=test/), 'Request has no query string' );
+				assert.ok( !request.url.match( /action=test/ ), 'Request has no query string' );
 				assert.equal( request.requestBody, 'action=test&format=json', 'Request uses query string body' );
 			}
+			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+		} );
+	} );
+
+	QUnit.test( 'Converting arrays to pipe-separated', function ( assert ) {
+		QUnit.expect( 1 );
+
+		var api = new mw.Api();
+		api.get( { test: [ 'foo', 'bar', 'baz' ] } );
+
+		this.server.respond( function ( request ) {
+			assert.ok( request.url.match( /test=foo%7Cbar%7Cbaz/ ), 'Pipe-separated value was submitted' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 	} );
