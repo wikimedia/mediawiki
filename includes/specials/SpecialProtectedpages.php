@@ -538,7 +538,8 @@ class ProtectedPagesPager extends TablePager {
 			'join_conds' => array(
 				'log_search' => array(
 					'LEFT JOIN', array(
-						'ls_field' => 'pr_id', 'ls_value = pr_id'
+						'ls_field' => 'pr_id',
+						$wgDBtype === 'postgres' ? 'ls_value = pr_id::text' : 'ls_value = pr_id'
 					)
 				),
 				'logging' => array(
