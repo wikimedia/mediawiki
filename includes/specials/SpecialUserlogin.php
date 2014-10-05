@@ -1435,6 +1435,11 @@ class LoginForm extends SpecialPage {
 			$template->set( 'signupend', $this->msg( 'signupend' )->parse() );
 		}
 
+		// If using HTTPS coming from HTTP, then the 'fromhttp' parameter must be preserved
+		if ( $usingHTTPS ) {
+			$template->set( 'fromhttp', $this->mFromHTTP );
+		}
+
 		// Give authentication and captcha plugins a chance to modify the form
 		$wgAuth->modifyUITemplate( $template, $this->mType );
 		if ( $this->mType == 'signup' ) {
