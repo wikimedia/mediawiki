@@ -49,6 +49,16 @@
 	 *         console.log( data );
 	 *     } );
 	 *
+	 * Multiple values for the parameter can be specified using an array:
+	 *
+	 *     var api = new mw.Api();
+	 *     api.get( {
+	 *         action: 'query',
+	 *         meta: ['userinfo', 'siteinfo']
+	 *     } ).done ( function ( data ) {
+	 *         console.log( data );
+	 *     } );
+	 *
 	 * @class
 	 *
 	 * @constructor
@@ -122,6 +132,12 @@
 			if ( parameters.token ) {
 				token = parameters.token;
 				delete parameters.token;
+			}
+
+			for ( key in parameters ) {
+				if ( parameters[key] instanceof Array ) {
+					parameters[key] = parameters[key].join( '|' );
+				}
 			}
 
 			// If multipart/form-data has been requested and emulation is possible, emulate it
