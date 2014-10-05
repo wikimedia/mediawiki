@@ -239,25 +239,33 @@ abstract class Skin extends ContextSource {
 	 * Preload the existence of three commonly-requested pages in a single query
 	 */
 	function preloadExistence() {
+		$titles = array();
+
 		$user = $this->getUser();
+		$title = $this->getRelevantTitle();
 
 		// User/talk link
-		$titles = array( $user->getUserPage(), $user->getTalkPage() );
+		if ( $user->isLoggedIn() || $this->showIPinHeader() ) {
+			$titles[] = $user->getUserPage();
+			$titles[] = $user->getTalkPage();
+		}
 
 		// Other tab link
-		if ( $this->getTitle()->isSpecialPage() ) {
+		if ( $title->isSpecialPage() ) {
 			// nothing
-		} elseif ( $this->getTitle()->isTalkPage() ) {
-			$titles[] = $this->getTitle()->getSubjectPage();
+		} elseif ( $title->isTalkPage() ) {
+			$titles[] = $title->getSubjectPage();
 		} else {
-			$titles[] = $this->getTitle()->getTalkPage();
+			$titles[] = $title->getTalkPage();
 		}
 
 		wfRunHooks( 'SkinPreloadExistence', array( &$titles, $this ) );
 
-		$lb = new LinkBatch( $titles );
-		$lb->setCaller( __METHOD__ );
-		$lb->execute();
+		if ( count( $titles ) ) {
+			$lb = new LinkBatch( $titles );
+			$lb->setCaller( __METHOD__ );
+			$lb->execute();
+		}
 	}
 
 	/**
