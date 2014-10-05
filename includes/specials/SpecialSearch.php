@@ -615,9 +615,9 @@ class SpecialSearch extends SpecialPage {
 
 		// format redirects / relevant sections
 		$redirectTitle = $result->getRedirectTitle();
-		$redirectText = $result->getRedirectSnippet( $terms );
+		$redirectText = $result->getRedirectSnippet();
 		$sectionTitle = $result->getSectionTitle();
-		$sectionText = $result->getSectionSnippet( $terms );
+		$sectionText = $result->getSectionSnippet();
 		$redirect = '';
 
 		if ( !is_null( $redirectTitle ) ) {
