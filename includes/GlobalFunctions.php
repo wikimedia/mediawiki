@@ -1789,12 +1789,19 @@ function wfDebugBacktrace( $limit = 0 ) {
 /**
  * Get a debug backtrace as a string
  *
+ * @param string $mode (html/text); default depends on $wgCommandLineMode
  * @return string
  */
-function wfBacktrace() {
+function wfBacktrace( $mode = null ) {
 	global $wgCommandLineMode;
 
-	if ( $wgCommandLineMode ) {
+	if ( $mode === null ) {
+		$htmlMode = $wgCommandLineMode ? false : true;
+	} else {
+		$htmlMode = ( $mode === 'html' );
+	}
+
+	if ( !$htmlMode ) {
 		$msg = '';
 	} else {
 		$msg = "<ul>\n";
@@ -1812,7 +1819,7 @@ function wfBacktrace() {
 		} else {
 			$line = '-';
 		}
-		if ( $wgCommandLineMode ) {
+		if ( !$htmlMode ) {
 			$msg .= "$file line $line calls ";
 		} else {
 			$msg .= '<li>' . $file . ' line ' . $line . ' calls ';
@@ -1822,13 +1829,13 @@ function wfBacktrace() {
 		}
 		$msg .= $call['function'] . '()';
 
-		if ( $wgCommandLineMode ) {
+		if ( !$htmlMode ) {
 			$msg .= "\n";
 		} else {
 			$msg .= "</li>\n";
 		}
 	}
-	if ( $wgCommandLineMode ) {
+	if ( !$htmlMode ) {
 		$msg .= "\n";
 	} else {
 		$msg .= "</ul>\n";
