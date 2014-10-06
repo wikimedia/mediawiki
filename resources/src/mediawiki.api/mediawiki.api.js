@@ -218,12 +218,6 @@
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
 			var api = this;
 
-			// Do not allow deprecated ok-callback
-			// FIXME: Remove this check when the deprecated ok-callback is removed in #post
-			if ( $.isFunction( ajaxOptions ) ) {
-				ajaxOptions = undefined;
-			}
-
 			return api.getToken( tokenType, params.assert ).then( function ( token ) {
 				params.token = token;
 				return api.post( params, ajaxOptions ).then(
