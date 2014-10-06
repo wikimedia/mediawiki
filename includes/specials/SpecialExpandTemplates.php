@@ -251,6 +251,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		) ) );
 		$out->addParserOutputContent( $pout );
 		$out->addHTML( Html::closeElement( 'div' ) );
+		$out->setCategoryLinks( $pout->getCategories() );
 	}
 
 	protected function getGroupName() {
