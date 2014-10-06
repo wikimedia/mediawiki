@@ -2106,6 +2106,15 @@ class EditPage {
 		if ( $namespace == NS_MEDIAWIKI ) {
 			# Show a warning if editing an interface message
 			$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
+			# If this is a default message (but not css or js), show a hint that it is translatable on translatewiki.net
+			if ( !$this->mTitle->hasContentModel( CONTENT_MODEL_CSS )
+				&& !$this->mTitle->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+			) {
+				$defaultMessageText = $this->mTitle->getDefaultMessageText();
+				if ( $defaultMessageText !== false ) {
+					$wgOut->wrapWikiMsg( "<div class='mw-translateinterface'>\n$1\n</div>", 'translateinterface' );
+				}
+			}
 		} elseif ( $namespace == NS_FILE ) {
 			# Show a hint to shared repo
 			$file = wfFindFile( $this->mTitle );
