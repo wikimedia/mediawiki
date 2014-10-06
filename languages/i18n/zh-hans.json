@@ -3220,7 +3220,7 @@
 	"mediastatistics-summary": "有关上传文件类型的统计。这只包含文件的最新版本，旧版本或删除版本则不会包括。",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1字节}}（$2；$3%）",
 	"mediastatistics-table-mimetype": "MIME类型",
-	"mediastatistics-table-extensions": "可能的扩展",
+	"mediastatistics-table-extensions": "可用扩展名",
 	"mediastatistics-table-count": "文件数",
 	"mediastatistics-table-totalbytes": "组合尺寸",
 	"mediastatistics-header-unknown": "未知",

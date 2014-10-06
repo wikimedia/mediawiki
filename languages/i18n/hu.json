@@ -971,6 +971,7 @@
 	"prefs-advancedwatchlist": "Haladó beállítások",
 	"prefs-displayrc": "Megjelenítési beállítások",
 	"prefs-displaywatchlist": "Megjelenítési beállítások",
+	"prefs-tokenwatchlist": "Token",
 	"prefs-diffs": "Eltérések (diffek)",
 	"prefs-help-prefershttps": "A beállítás a legközelebbi belépés után lép érvénybe.",
 	"email-address-validity-valid": "Az e-mail cím érvényesnek tűnik",
@@ -1464,6 +1465,7 @@
 	"statistics-users-active": "Aktív szerkesztők",
 	"statistics-users-active-desc": "Szerkesztők, akik csináltak valamit az elmúlt {{PLURAL:$1|egy|$1}} napban",
 	"statistics-mostpopular": "Legtöbbször megtekintett lapok",
+	"pageswithprop-prop": "Tulajdonságnév:",
 	"pageswithprop-submit": "Ugrás",
 	"doubleredirects": "Dupla átirányítások",
 	"doubleredirectstext": "Ez a lap azokat a lapokat listázza, melyek átirányító lapokra irányítanak át.\nMinden sor tartalmaz egy hivatkozást az első, valamint a második átirányításra, valamint a második átirányítás céljára, ami általában a valódi céllap, erre kellene az első átirányításnak mutatnia.\nAz <del>áthúzott</del> sorok a lista elkészülése óta javítva lettek.",
@@ -3046,5 +3048,8 @@
 	"mediastatistics-header-office": "Iroda",
 	"mediastatistics-header-text": "Szöveges",
 	"mediastatistics-header-executable": "Futtatható",
-	"mediastatistics-header-archive": "Tömörített formátumok"
+	"mediastatistics-header-archive": "Tömörített formátumok",
+	"json-error-state-mismatch": "Érvénytelen vagy hibás JSON",
+	"json-error-syntax": "Szintaktikai hiba",
+	"json-error-utf8": "Hibás UTF-8 karakter, esetleg helytelenül kódolt"
 }

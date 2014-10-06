@@ -1597,6 +1597,7 @@
 	"booksources": "책 찾기",
 	"booksources-search-legend": "책 원본 검색",
 	"booksources-isbn": "ISBN:",
+	"booksources-search": "검색",
 	"booksources-text": "아래의 목록은 새 책이나 중고 책을 판매하는 바깥 사이트로, 원하는 책의 정보를 얻을 수 있습니다.",
 	"booksources-invalid-isbn": "입력한 ISBN이 잘못된 것으로 보입니다. 원본과 대조해 보세요.",
 	"specialloguserlabel": "작업 수행자:",
@@ -1832,6 +1833,7 @@
 	"protect-othertime": "다른 기간:",
 	"protect-othertime-op": "다른 기간",
 	"protect-existing-expiry": "현재 만료 기간: $2 $3",
+	"protect-existing-expiry-infinity": "기존 만료 시간: 무기한",
 	"protect-otherreason": "다른 이유/추가적인 이유:",
 	"protect-otherreason-op": "다른 이유",
 	"protect-dropdown": "*일반적인 보호 이유\n** 빈번한 훼손 행위\n** 빈번한 광고 행위\n** 비생산적인 편집 분쟁\n** 방문이 많은 문서",
@@ -3145,5 +3147,6 @@
 	"log-description-pagelang": "문서 언어를 바꾼 기록입니다.",
 	"logentry-pagelang-pagelang": "$1 사용자가 $3의 문서 언어를 $4에서 $5로 {{GENDER:$2|바꾸었습니다}}.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (활성화)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''비활성화''')"
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''비활성화''')",
+	"json-error-syntax": "구문 오류"
 }

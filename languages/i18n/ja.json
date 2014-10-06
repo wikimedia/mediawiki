@@ -3308,5 +3308,10 @@
 	"mediastatistics-header-executable": "実行ファイル",
 	"mediastatistics-header-archive": "圧縮フォーマット",
 	"json-warn-trailing-comma": "JSON の末尾の{{PLURAL:$1|カンマ $1 個}}を除去しました",
-	"json-error-syntax": "構文エラー"
+	"json-error-unknown": "JSON に問題点がありました。エラー: $1",
+	"json-error-depth": "スタックの深さが上限を超えました",
+	"json-error-state-mismatch": "JSON が無効か、または破損しています",
+	"json-error-ctrl-char": "制御文字のエラーです。おそらく正しく符号化されていません",
+	"json-error-syntax": "構文エラー",
+	"json-error-utf8": "UTF-8 の文字が破損しています。エンコーディングが誤っているおそれがあります"
 }

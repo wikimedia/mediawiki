@@ -3248,6 +3248,6 @@
 	"json-error-ctrl-char": "Error de carácter de control, posiblemente codificada incorrectamente",
 	"json-error-syntax": "Error de sintaxis",
 	"json-error-utf8": "Los caracteres UTF-8 tienen errores de formato; probablemente la codificación es incorrecta.",
-	"json-error-inf-or-nan": "Uno o más valores NAN o INF en el valor a ser codificado",
-	"json-error-unsupported-type": "Fue dado un valor de un tipo que no puede ser codificado"
+	"json-error-inf-or-nan": "Hay uno o más valores «NAN» o «INF» en el valor que se codificará",
+	"json-error-unsupported-type": "Se proporcionó un valor en un tipo que no se puede codificar"
 }
