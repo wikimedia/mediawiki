@@ -951,6 +951,7 @@ return array(
 			'jquery.suggestions',
 			'jquery.getAttrs',
 			'mediawiki.api',
+			'user.options',
 		),
 	),
 	'mediawiki.Title' => array(

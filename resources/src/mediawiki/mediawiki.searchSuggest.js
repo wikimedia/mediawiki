@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var api, map, resultRenderCache, searchboxesSelectors,
+		var api, map, resultRenderCache, searchboxesSelectors, namespaces,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -106,6 +106,14 @@
 			}
 		}
 
+		// Query namespaces from user options
+		// Based on SearchEngine::userNamespaces()
+		namespaces = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( name, nsId ) {
+			if ( mw.user.options.get( 'searchNs' + nsId ) ) {
+				return nsId;
+			}
+		} );
+
 		// Generic suggestions functionality for all search boxes
 		searchboxesSelectors = [
 			// Primary searchbox on every page in standard skins
@@ -127,7 +135,7 @@
 					$.data( node, 'request', api.get( {
 						action: 'opensearch',
 						search: query,
-						namespace: 0,
+						namespace: namespaces.length ? namespaces : '0',
 						limit: maxRows,
 						suggest: ''
 					} ).done( function ( data ) {
@@ -153,7 +161,7 @@
 				cache: true,
 				highlightInput: true
 			} )
-			.bind( 'paste cut drop', function () {
+			.on( 'paste cut drop', function () {
 				// make sure paste and cut events from the mouse and drag&drop events
 				// trigger the keypress handler and cause the suggestions to update
 				$( this ).trigger( 'keypress' );
