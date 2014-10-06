@@ -156,6 +156,12 @@ interface PPFrame {
 	public function isEmpty();
 
 	/**
+	 * Returns all argument keys of this frame
+	 * @return array
+	 */
+	public function getArgumentKeys();
+
+	/**
 	 * Returns all arguments of this frame
 	 * @return array
 	 */
