@@ -129,6 +129,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * Gets the db field prefix.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.25, use the $this->fieldPrefix property instead
 	 *
 	 * @return string
 	 */
@@ -770,7 +771,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return string
 	 */
 	public function getPrefixedField( $field ) {
-		return $this->getFieldPrefix() . $field;
+		return $this->fieldPrefix . $field;
 	}
 
 	/**
@@ -796,7 +797,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return string
 	 */
 	public function unprefixFieldName( $fieldName ) {
-		return substr( $fieldName, strlen( $this->getFieldPrefix() ) );
+		return substr( $fieldName, strlen( $this->fieldPrefix ) );
 	}
 
 	/**
