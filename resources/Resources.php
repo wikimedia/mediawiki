@@ -929,6 +929,7 @@ return array(
 			'jquery.placeholder',
 			'jquery.suggestions',
 			'mediawiki.api',
+			'user.options',
 		),
 	),
 	'mediawiki.Title' => array(
