@@ -99,6 +99,8 @@ class ORMTableTest extends MediaWikiTestCase {
 
 class PageORMTableForTesting extends ORMTable {
 
+	protected $fieldPrefix = 'page_';
+
 	/**
 	 * @see ORMTable::getName
 	 *
@@ -137,14 +139,5 @@ class PageORMTableForTesting extends ORMTable {
 			'namespace' => 'int',
 			'title' => 'str',
 		);
-	}
-
-	/**
-	 * @see ORMTable::getFieldPrefix
-	 *
-	 * @return string
-	 */
-	protected function getFieldPrefix() {
-		return 'page_';
 	}
 }

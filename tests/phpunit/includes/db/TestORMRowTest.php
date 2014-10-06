@@ -150,6 +150,8 @@ class TestORMRow extends ORMRow {
 
 class TestORMTable extends ORMTable {
 
+	protected $fieldPrefix = 'test_';
+
 	/**
 	 * Returns the name of the database table objects of this type are stored in.
 	 *
@@ -203,16 +205,5 @@ class TestORMTable extends ORMTable {
 			'moarstuff' => 'blob',
 			'time' => 'str', // TS_MW
 		);
-	}
-
-	/**
-	 * Gets the db field prefix.
-	 *
-	 * @since 1.20
-	 *
-	 * @return string
-	 */
-	protected function getFieldPrefix() {
-		return 'test_';
 	}
 }
