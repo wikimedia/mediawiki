@@ -509,6 +509,7 @@
 	"viewyourtext": "Same as {{msg-mw|viewsourcetext}} but when showing the text submitted by the user, this happens e.g. when the user was blocked while he is editing the page",
 	"protectedinterface": "Message shown if a user without the \"editinterface\" right tries to edit a page in the MediaWiki namespace.\n\nSee also {{msg-mw|editinginterface}}. Parameters:\n* $1 - (Unused) the action the user attempted to perform",
 	"editinginterface": "A message shown when editing pages in the namespace MediaWiki:.\n\nSee also {{msg-mw|protectedinterface}}.",
+	"translateinterface": "A message shown when editing pages in the namespace MediaWiki:, which have a default message text.\n\nSee also {{msg-mw|protectedinterface}}, {{msg-mw|editinginterface}}.",
 	"cascadeprotected": "Parameters:\n* $1 - number of cascade-protected pages, used for PLURAL\n* $2 - list of cascade-protected pages\n* $3 - (Unused) the action the user attempted to perform",
 	"namespaceprotected": "Parameters:\n* $1 - namespace name\n* $2 - (Unused) the action the user attempted to perform",
 	"customcssprotected": "Used as error message. Parameters:\n* $1 - (Unused) the action the user attempted to perform",
