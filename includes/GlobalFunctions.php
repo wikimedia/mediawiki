@@ -1789,52 +1789,37 @@ function wfDebugBacktrace( $limit = 0 ) {
 /**
  * Get a debug backtrace as a string
  *
+ * @param bool|null $raw If true, the return value is plain text. If false, HTML.
+ *   Defaults to $wgCommandLineMode if unset.
  * @return string
+ * @since 1.25 Supports $raw parameter.
  */
-function wfBacktrace() {
+function wfBacktrace( $raw = null ) {
 	global $wgCommandLineMode;
 
-	if ( $wgCommandLineMode ) {
-		$msg = '';
-	} else {
-		$msg = "<ul>\n";
-	}
-	$backtrace = wfDebugBacktrace();
-	foreach ( $backtrace as $call ) {
-		if ( isset( $call['file'] ) ) {
-			$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
-			$file = $f[count( $f ) - 1];
-		} else {
-			$file = '-';
-		}
-		if ( isset( $call['line'] ) ) {
-			$line = $call['line'];
-		} else {
-			$line = '-';
-		}
-		if ( $wgCommandLineMode ) {
-			$msg .= "$file line $line calls ";
-		} else {
-			$msg .= '<li>' . $file . ' line ' . $line . ' calls ';
-		}
-		if ( !empty( $call['class'] ) ) {
-			$msg .= $call['class'] . $call['type'];
-		}
-		$msg .= $call['function'] . '()';
-
-		if ( $wgCommandLineMode ) {
-			$msg .= "\n";
-		} else {
-			$msg .= "</li>\n";
-		}
-	}
-	if ( $wgCommandLineMode ) {
-		$msg .= "\n";
-	} else {
-		$msg .= "</ul>\n";
+	if ( $raw === null ) {
+		$raw = $wgCommandLineMode;
 	}
 
-	return $msg;
+	if ( $raw ) {
+		$frameFormat = "%s line %s calls %s()\n";
+		$traceFormat = "%s";
+	} else {
+		$frameFormat = "<li>%s line %s calls %s()</li>\n";
+		$traceFormat = "<ul>\n%s</ul>\n";
+	}
+
+	$frames = array_map( function ( $frame ) use ( $frameFormat ) {
+		$file = !empty( $frame['file'] ) ? basename( $frame['file'] ) : '-';
+		$line = $frame['line'] ?: '-';
+		$call = $frame['function'];
+		if ( !empty( $frame['class'] ) ) {
+			$call = $frame['class'] . $frame['type'] . $call;
+		}
+		return sprintf( $frameFormat, $file, $line, $call );
+	}, wfDebugBacktrace() );
+
+	return sprintf( $traceFormat, implode( '', $frames ) );
 }
 
 /**
