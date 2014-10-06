@@ -130,7 +130,7 @@
 					$.data( node, 'request', api.get( {
 						action: 'opensearch',
 						search: query,
-						namespace: 0,
+						namespace: mw.user.options.get( 'searchNS' ),
 						suggest: ''
 					} ).done( function ( data ) {
 						response( data[ 1 ] );

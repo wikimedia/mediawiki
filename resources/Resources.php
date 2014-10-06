@@ -929,6 +929,7 @@ return array(
 			'jquery.placeholder',
 			'jquery.suggestions',
 			'mediawiki.api',
+			'user.options',
 		),
 	),
 	'mediawiki.Title' => array(
@@ -966,7 +967,8 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.userSuggest.js',
 		'dependencies' => array(
 			'jquery.suggestions',
-			'mediawiki.api'
+			'mediawiki.api',
+			'user.options'
 		)
 	),
 	'mediawiki.util' => array(
