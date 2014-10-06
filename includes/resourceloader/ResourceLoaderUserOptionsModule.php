@@ -58,9 +58,27 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		global $wgUser;
 		return Xml::encodeJsCall( 'mw.user.options.set',
-			array( $wgUser->getOptions() ),
+			array( $wgUser->getOptions() + $this->getSearchNs( $wgUser->getOptions() ) ),
 			ResourceLoader::inDebugMode()
 		);
+	}
+
+	/**
+	 * Convert searchNsXXX into one array of namespaces to search
+	 *
+	 * @param array
+	 * @return array
+	 */
+	protected function getSearchNS( $options ) {
+		$namespaces = array();
+		foreach( $options as $optname => $optval ) {
+				if ( strpos( $optname, 'searchNs' ) === 0 ) {
+					if ( $optval ) {
+						$namespaces[] = substr( $optname, 8 );
+					}
+				}
+		}
+		return array( 'searchNSpref' => $namespaces );
 	}
 
 	/**
