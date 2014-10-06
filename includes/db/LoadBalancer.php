@@ -410,7 +410,9 @@ class LoadBalancer {
 
 		if ( $result == -1 || is_null( $result ) ) {
 			# Timed out waiting for slave, use master instead
-			wfDebug( __METHOD__ . ": Timed out waiting for slave #$index pos {$this->mWaitForPos}\n" );
+			$server = $this->mServers[$index];
+			wfDebug( __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}\n" );
+			wfLogDBError( __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}\n" );
 			$ok = false;
 		} else {
 			wfDebug( __METHOD__ . ": Done\n" );
