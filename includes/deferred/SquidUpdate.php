@@ -52,41 +52,6 @@ class SquidUpdate {
 	}
 
 	/**
-	 * Create a SquidUpdate from the given Title object.
-	 *
-	 * The resulting SquidUpdate will purge the given Title's URLs as well as
-	 * the pages that link to it. Capped at $wgMaxSquidPurgeTitles total URLs.
-	 *
-	 * @param Title $title
-	 * @return SquidUpdate
-	 */
-	public static function newFromLinksTo( Title $title ) {
-		global $wgMaxSquidPurgeTitles;
-		wfProfileIn( __METHOD__ );
-
-		# Get a list of URLs linking to this page
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( array( 'links', 'page' ),
-			array( 'page_namespace', 'page_title' ),
-			array(
-				'pl_namespace' => $title->getNamespace(),
-				'pl_title' => $title->getDBkey(),
-				'pl_from=page_id' ),
-			__METHOD__ );
-		$blurlArr = $title->getSquidURLs();
-		if ( $res->numRows() <= $wgMaxSquidPurgeTitles ) {
-			foreach ( $res as $BL ) {
-				$tobj = Title::makeTitle( $BL->page_namespace, $BL->page_title );
-				$blurlArr[] = $tobj->getInternalURL();
-			}
-		}
-
-		wfProfileOut( __METHOD__ );
-
-		return new SquidUpdate( $blurlArr );
-	}
-
-	/**
 	 * Create a SquidUpdate from an array of Title objects, or a TitleArray object
 	 *
 	 * @param array $titles
