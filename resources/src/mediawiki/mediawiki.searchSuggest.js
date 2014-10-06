@@ -106,6 +106,14 @@
 			}
 		}
 
+		// Query namespaces from user options
+		var namespaces = [];
+		$.each( mw.user.options.values, function ( opt ) {
+			if ( opt.indexOf( 'searchNs' ) === 0 && mw.user.options.get( opt ) ) {
+				namespaces.push( opt.substr( 8 ) );
+			}
+		} );
+
 		// Generic suggestions functionality for all search boxes
 		searchboxesSelectors = [
 			// Primary searchbox on every page in standard skins
@@ -127,7 +135,7 @@
 					$.data( node, 'request', api.get( {
 						action: 'opensearch',
 						search: query,
-						namespace: 0,
+						namespace: namespaces || 0,
 						suggest: ''
 					} ).done( function ( data ) {
 						response( data[ 1 ] );
