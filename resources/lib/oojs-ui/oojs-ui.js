@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (48980881f3)
+ * OOjs UI v0.1.0-pre (26dadbc60f)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-04T01:50:53Z
+ * Date: 2014-10-06T16:03:39Z
  */
 ( function ( OO ) {
 
@@ -1417,12 +1417,14 @@ OO.ui.Window = function OoUiWindow( config ) {
 	this.loading = null;
 	this.size = config.size || this.constructor.static.size;
 	this.$frame = this.$( '<div>' );
+	this.$overlay = this.$( '<div>' );
 
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-window' )
-		.append( this.$frame );
+		.append( this.$frame, this.$overlay );
 	this.$frame.addClass( 'oo-ui-window-frame' );
+	this.$overlay.addClass( 'oo-ui-window-overlay' );
 
 	// NOTE: Additional intitialization will occur when #setManager is called
 };
@@ -1898,7 +1900,6 @@ OO.ui.Window.prototype.initialize = function () {
 	this.$head = this.$( '<div>' );
 	this.$body = this.$( '<div>' );
 	this.$foot = this.$( '<div>' );
-	this.$overlay = this.$( '<div>' );
 	this.$focusTrap = this.$( '<div>' ).prop( 'tabIndex', 0 );
 
 	// Events
@@ -1908,9 +1909,8 @@ OO.ui.Window.prototype.initialize = function () {
 	this.$head.addClass( 'oo-ui-window-head' );
 	this.$body.addClass( 'oo-ui-window-body' );
 	this.$foot.addClass( 'oo-ui-window-foot' );
-	this.$overlay.addClass( 'oo-ui-window-overlay' );
 	this.$focusTrap.addClass( 'oo-ui-window-focustrap' );
-	this.$content.append( this.$head, this.$body, this.$foot, this.$overlay, this.$focusTrap );
+	this.$content.append( this.$head, this.$body, this.$foot, this.$focusTrap );
 
 	return this;
 };
@@ -5296,7 +5296,7 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 				group.type = 'list';
 			}
 			if ( group.label === undefined ) {
-				group.label = 'ooui-toolbar-more';
+				group.label = OO.ui.msg( 'ooui-toolbar-more' );
 			}
 		}
 		// Check type has been registered
@@ -7721,7 +7721,7 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
  * @constructor
  * @param {OO.ui.TextInputWidget} input Input widget
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$overlay=this.$( 'body, .oo-ui-window-overlay' ).last()] Overlay layer
+ * @cfg {jQuery} [$overlay] Overlay layer; defaults to the current window's overlay.
  */
 OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	// Config intialization
@@ -7729,7 +7729,10 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 
 	// Properties
 	this.lookupInput = input;
-	this.$overlay = config.$overlay || this.$( 'body, .oo-ui-window-overlay' ).last();
+	this.$overlay = config.$overlay || ( this.$.$iframe || this.$element ).closest( '.oo-ui-window' ).children( '.oo-ui-window-overlay' );
+	if ( this.$overlay.length === 0 ) {
+		this.$overlay = this.$( 'body' );
+	}
 	this.lookupMenu = new OO.ui.TextInputMenuWidget( this, {
 		$: OO.ui.Element.getJQuery( this.$overlay ),
 		input: this.lookupInput,
@@ -8659,7 +8662,7 @@ OO.ui.IndicatorWidget.static.tagName = 'span';
  * Inline menus provide a control for accessing a menu and compose a menu within the widget, which
  * can be accessed using the #getMenu method.
  *
- * Use with OO.ui.MenuOptionWidget.
+ * Use with OO.ui.MenuItemWidget.
  *
  * @class
  * @extends OO.ui.Widget
@@ -9332,6 +9335,7 @@ OO.ui.TextInputWidget.prototype.isValid = function () {
  * @param {Object} [config] Configuration options
  * @cfg {Object} [menu] Configuration options to pass to menu widget
  * @cfg {Object} [input] Configuration options to pass to input widget
+ * @cfg {jQuery} [$overlay] Overlay layer; defaults to the current window's overlay.
  */
 OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 	// Configuration initialization
@@ -9341,11 +9345,15 @@ OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 	OO.ui.ComboBoxWidget.super.call( this, config );
 
 	// Properties
+	this.$overlay = config.$overlay || ( this.$.$iframe || this.$element ).closest( '.oo-ui-window' ).children( '.oo-ui-window-overlay' );
+	if ( this.$overlay.length === 0 ) {
+		this.$overlay = this.$( 'body' );
+	}
 	this.input = new OO.ui.TextInputWidget( $.extend(
 		{ $: this.$, indicator: 'down', disabled: this.isDisabled() },
 		config.input
 	) );
-	this.menu = new OO.ui.MenuWidget( $.extend(
+	this.menu = new OO.ui.TextInputMenuWidget( this.input, $.extend(
 		{ $: this.$, widget: this, input: this.input, disabled: this.isDisabled() },
 		config.menu
 	) );
@@ -9363,10 +9371,8 @@ OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 	} );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-comboBoxWidget' ).append(
-		this.input.$element,
-		this.menu.$element
-	);
+	this.$element.addClass( 'oo-ui-comboBoxWidget' ).append( this.input.$element );
+	this.$overlay.append( this.menu.$element );
 	this.onMenuItemsChange();
 };
 
@@ -10417,7 +10423,7 @@ OO.ui.SearchWidget.prototype.getResults = function () {
 /**
  * Generic selection of options.
  *
- * Items can contain any rendering, and are uniquely identified by a has of thier data. Any widget
+ * Items can contain any rendering, and are uniquely identified by a hash of their data. Any widget
  * that provides options, from which the user must choose one, should be built on this class.
  *
  * Use together with OO.ui.OptionWidget.
@@ -11232,7 +11238,7 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
  * Menu for a text input widget.
  *
  * This menu is specially designed to be positioned beneath the text input widget. Even if the input
- * is in a different frame, the menu's position is automatically calulated and maintained when the
+ * is in a different frame, the menu's position is automatically calculated and maintained when the
  * menu is toggled or the window is resized.
  *
  * @class
@@ -11314,7 +11320,7 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
 	// Position under input
 	dimensions.top += $container.height();
 
-	// Compensate for frame position if in a differnt frame
+	// Compensate for frame position if in a different frame
 	if ( this.input.$.$iframe && this.input.$.context !== this.$element[0].ownerDocument ) {
 		frameOffset = OO.ui.Element.getRelativePosition(
 			this.input.$.$iframe, this.$element.offsetParent()
@@ -11326,7 +11332,7 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
 		if ( this.$element.css( 'direction' ) === 'rtl' ) {
 			dimensions.right = this.$element.parent().position().left -
 				$container.width() - dimensions.left;
-			// Erase the value for 'left':
+			// Erase the value for 'left'
 			delete dimensions.left;
 		}
 	}

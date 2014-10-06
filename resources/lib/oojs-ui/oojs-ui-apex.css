@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (48980881f3)
+ * OOjs UI v0.1.0-pre (26dadbc60f)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-04T01:51:03Z
+ * Date: 2014-10-06T16:03:50Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -72,6 +72,11 @@
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
 	margin-right: -0.75em;
+	margin-left: -0.75em;
+}
+.oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator,
+.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
+	margin-left: 0;
 }
 .oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator,
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
@@ -82,6 +87,10 @@
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 	/* Don't animate opacities for now, causes wiggling in Chrome (bug 63020) */
 	/*.oo-ui-transition(opacity 200ms);*/
+}
+.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover,
+.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus {
+	outline: none;
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover > .oo-ui-iconElement-icon,
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus > .oo-ui-iconElement-icon {
@@ -133,10 +142,12 @@
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
 	border-color: #aaaaaa;
+	outline: none;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	line-height: 1.9em;
 }
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
 .oo-ui-buttonElement-framed.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
@@ -174,6 +185,7 @@
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button:focus {
 	border-color: #9dc2d4;
 }
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	border: solid 1px #a6cee1;
@@ -201,6 +213,7 @@
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:focus {
 	border-color: #adcb89;
 }
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	border: solid 1px #b8d892;
@@ -1591,7 +1604,8 @@
 	top: 0;
 	left: 0;
 }
-.oo-ui-window-isolated {
+.oo-ui-window-isolated,
+.oo-ui-window-overlay {
 	background-color: transparent;
 	background-image: none;
 	font-family: sans-serif;
