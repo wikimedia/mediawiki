@@ -1365,6 +1365,13 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * @return array
 	 */
+	public function getArgumentKeys() {
+		return array();
+	}
+
+	/**
+	 * @return array
+	 */
 	public function getArguments() {
 		return array();
 	}
@@ -1548,6 +1555,19 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 */
 	public function isEmpty() {
 		return !count( $this->numberedArgs ) && !count( $this->namedArgs );
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getArgumentKeys() {
+		$argumentKeys = array();
+		foreach ( array_merge(
+				array_keys( $this->numberedArgs ),
+				array_keys( $this->namedArgs ) ) as $key ) {
+			$argumentKeys[$key] = true;
+		}
+		return $argumentKeys;
 	}
 
 	/**

@@ -1450,6 +1450,13 @@ class PPFrame_DOM implements PPFrame {
 	/**
 	 * @return array
 	 */
+	public function getArgumentKeys() {
+		return array();
+	}
+
+	/**
+	 * @return array
+	 */
 	public function getArguments() {
 		return array();
 	}
@@ -1633,6 +1640,16 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 */
 	public function isEmpty() {
 		return !count( $this->numberedArgs ) && !count( $this->namedArgs );
+	}
+
+	public function getArgumentKeys() {
+		$argumentKeys = array();
+		foreach ( array_merge(
+				array_keys( $this->numberedArgs ),
+				array_keys( $this->namedArgs ) ) as $key ) {
+			$argumentKeys[$key] = true;
+		}
+		return $argumentKeys;
 	}
 
 	public function getArguments() {
