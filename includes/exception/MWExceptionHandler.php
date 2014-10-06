@@ -82,6 +82,8 @@ class MWExceptionHandler {
 			} else {
 				echo nl2br( htmlspecialchars( $message ) ) . "\n";
 			}
+
+			self::logException( $e );
 		}
 	}
 
