@@ -431,9 +431,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$f .= Xml::fieldset( $this->msg( 'whatlinkshere' )->text() );
 
-		# Target input
+		# Target input (.mw-searchInput enables suggestions)
 		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
-			'mw-whatlinkshere-target', 40, $target );
+			'mw-whatlinkshere-target', 40, $target, array( 'class' => 'mw-searchInput' ) );
 
 		$f .= ' ';
 
