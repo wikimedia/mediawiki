@@ -558,7 +558,7 @@ class TestFileIterator implements Iterator {
 						$line = trim( $line );
 
 						if ( $line ) {
-							$delayedParserTest->requireTransparentHook( $line );
+							$this->delayedParserTest->requireTransparentHook( $line );
 						}
 					}
 
