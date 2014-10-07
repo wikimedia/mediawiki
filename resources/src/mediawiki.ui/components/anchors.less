@@ -65,3 +65,14 @@ Styleguide 6.2.
 		.mixin-mw-ui-anchor-styles( @colorDestructive );
 	}
 }
+
+// IE 6
+// DO NOT USE the select-ie6-only class in your HTML markup!
+//
+// The html part of the selector is a hack to add specificity.
+// See text.less for more explanation.
+html .select-ie6-only.mw-ui-anchor {
+	background: none;
+	border-top: none;
+	border-bottom: none;
+}

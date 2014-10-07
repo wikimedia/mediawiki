@@ -26,15 +26,28 @@ Styleguide 6.1.
 */
 
 .mw-ui-text {
-	// The selector order is like this on purpose; IE6 ignores the second selector,
-	// so we don't want to accidentally apply this color on all mw-ui-CONTEXT classes
-	.mw-ui-progressive& {
+	// The selector order is like this on purpose; IE 6 only considers the last selector
+	// and we don't want all mw-ui-text to have the same color in IE 6.
+	&.mw-ui-progressive {
 		color: @colorProgressive;
 	}
-	.mw-ui-constructive& {
+	&.mw-ui-constructive {
 		color: @colorConstructive;
 	}
-	.mw-ui-destructive& {
+	&.mw-ui-destructive {
 		color: @colorDestructive;
 	}
+}
+
+// DO NOT USE the select-ie6-only class in your HTML markup!
+// IE 6 does not support compound selectors.  We take advantage of that
+// bug to reset certain styles from other modules
+// (e.g. mediawiki.ui.button). which take effect on mw-ui-text elements
+// due to the same bug.
+//
+// This will never match in compliant browsers.
+.select-ie6-only.mw-ui-text {
+	background: none;
+	border-top: none;
+	border-bottom: none;
 }

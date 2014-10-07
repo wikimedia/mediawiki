@@ -275,3 +275,17 @@ a.mw-ui-button {
 		border-bottom-right-radius: @borderRadius;
 	}
 }
+
+// IE 6
+// DO NOT USE the select-ie6-only class in your HTML markup!
+//
+// Overrides rules that conflict in other modules due to the
+// IE 6 compound class bug.
+//
+// The html part of the selector is a hack to add specificity.
+// See text.less for more explanation.
+html .select-ie6-only.mw-ui-button {
+	// This can be tweaked; it should show up well against all four
+	// (including white) button background colors.
+	color: #000;
+}
