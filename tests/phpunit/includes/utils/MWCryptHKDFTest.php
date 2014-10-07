@@ -6,6 +6,12 @@
 
 class MWCryptHKDFTest extends MediaWikiTestCase {
 
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( 'wgSecretKey', '5bf1945342e67799cb50704a7fa19ac6' );
+	}
+
 	/**
 	 * Test basic usage works
 	 */
