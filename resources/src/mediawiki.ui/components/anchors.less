@@ -53,6 +53,11 @@ Styleguide 6.2.
 
 // Setup compound anchor selectors (such as .mw-ui-anchor.my-ui-progressive)
 .mw-ui-anchor {
+
+	&.mw-ui-block {
+		display: block;
+	}
+
 	&.mw-ui-progressive {
 		.mixin-mw-ui-anchor-styles( @colorProgressive );
 	}
