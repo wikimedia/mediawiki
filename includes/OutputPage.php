@@ -2414,83 +2414,22 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Display a page stating that the Wiki is in read-only mode,
-	 * and optionally show the source of the page that the user
-	 * was trying to edit.  Should only be called (for this
-	 * purpose) after wfReadOnly() has returned true.
+	 * Display a page stating that the Wiki is in read-only mode.
+	 * Should only be called after wfReadOnly() has returned true.
 	 *
-	 * For historical reasons, this function is _also_ used to
-	 * show the error message when a user tries to edit a page
-	 * they are not allowed to edit.  (Unless it's because they're
-	 * blocked, then we show blockedPage() instead.)  In this
-	 * case, the second parameter should be set to true and a list
-	 * of reasons supplied as the third parameter.
+	 * Historically, this function was used to show the source of the page that the user
+	 * was trying to edit and _also_ permissions error messages. The relevant code was
+	 * moved into EditPage in 1.19 (r102024 / d83c2a431c2a) and removed here in 1.25.
 	 *
-	 * @todo Needs to be split into multiple functions.
-	 *
-	 * @param string $source Source code to show (or null).
-	 * @param bool $protected Is this a permissions error?
-	 * @param array $reasons List of reasons for this error, as returned by
-	 *   Title::getUserPermissionsErrors().
-	 * @param string $action Action that was denied or null if unknown
+	 * @deprecated since 1.25; throw the exception directly
 	 * @throws ReadOnlyError
 	 */
-	public function readOnlyPage( $source = null, $protected = false,
-		array $reasons = array(), $action = null
-	) {
-		$this->setRobotPolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-
-		// If no reason is given, just supply a default "I can't let you do
-		// that, Dave" message.  Should only occur if called by legacy code.
-		if ( $protected && empty( $reasons ) ) {
-			$reasons[] = array( 'badaccess-group0' );
+	public function readOnlyPage() {
+		if ( func_num_args() > 0 ) {
+			throw new MWException( __METHOD__ . ' no longer accepts arguments since 1.25.' );
 		}
 
-		if ( !empty( $reasons ) ) {
-			// Permissions error
-			if ( $source ) {
-				$this->setPageTitle( $this->msg( 'viewsource-title', $this->getTitle()->getPrefixedText() ) );
-				$this->addBacklinkSubtitle( $this->getTitle() );
-			} else {
-				$this->setPageTitle( $this->msg( 'badaccess' ) );
-			}
-			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ) );
-		} else {
-			// Wiki is read only
-			throw new ReadOnlyError;
-		}
-
-		// Show source, if supplied
-		if ( is_string( $source ) ) {
-			$this->addWikiMsg( 'viewsourcetext' );
-
-			$pageLang = $this->getTitle()->getPageLanguage();
-			$params = array(
-				'id' => 'wpTextbox1',
-				'name' => 'wpTextbox1',
-				'cols' => $this->getUser()->getOption( 'cols' ),
-				'rows' => $this->getUser()->getOption( 'rows' ),
-				'readonly' => 'readonly',
-				'lang' => $pageLang->getHtmlCode(),
-				'dir' => $pageLang->getDir(),
-			);
-			$this->addHTML( Html::element( 'textarea', $params, $source ) );
-
-			// Show templates used by this article
-			$templates = Linker::formatTemplates( $this->getTitle()->getTemplateLinksFrom() );
-			$this->addHTML( "<div class='templatesUsed'>
-$templates
-</div>
-" );
-		}
-
-		# If the title doesn't exist, it's fairly pointless to print a return
-		# link to it.  After all, you just tried editing it and couldn't, so
-		# what's there to do there?
-		if ( $this->getTitle()->exists() ) {
-			$this->returnToMain( null, $this->getTitle() );
-		}
+		throw new ReadOnlyError;
 	}
 
 	/**

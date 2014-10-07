@@ -58,6 +58,8 @@ changes to languages because of Bugzilla reports.
   since 1.20)
 * Removed 'jquery.json' module. (deprecated since 1.24)
   Use the 'json' module and global JSON object instead.
+* Deprecated OutputPage::readOnlyPage(). Also, it will now throw an MWException
+  if called with one or more arguments.
 
 == Compatibility ==
 
