@@ -98,6 +98,7 @@ class SpecialBlock extends FormSpecialPage {
 		$form->setWrapperLegendMsg( 'blockip-legend' );
 		$form->setHeaderText( '' );
 		$form->setSubmitCallback( array( __CLASS__, 'processUIForm' ) );
+		$form->setSubmitDestructive();
 
 		$msg = $this->alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit';
 		$form->setSubmitTextMsg( $msg );
