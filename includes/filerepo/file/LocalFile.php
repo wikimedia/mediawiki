@@ -2797,7 +2797,7 @@ class LocalFileMoveBatch {
 			array( 'oi_archive_name', 'oi_deleted' ),
 			array( 'oi_name' => $this->oldName ),
 			__METHOD__,
-			array( 'FOR UPDATE' ) // ignore snapshot
+			array( 'LOCK IN SHARE MODE' ) // ignore snapshot
 		);
 
 		foreach ( $result as $row ) {
