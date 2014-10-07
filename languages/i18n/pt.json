@@ -62,7 +62,8 @@
 			"555",
 			"아라",
 			"Leon saudanha",
-			"Macofe"
+			"Macofe",
+			"He7d3r"
 		]
 	},
 	"tog-underline": "Sublinhar ligações:",
@@ -1691,7 +1692,7 @@
 	"listgrouprights-namespaceprotection-header": "Restrições do domínio",
 	"listgrouprights-namespaceprotection-namespace": "Domínio",
 	"listgrouprights-namespaceprotection-restrictedto": "Direito(s) do utilizador para editar",
-	"trackingcategories": "Monitoramento de categorias",
+	"trackingcategories": "Categorias de monitoramento",
 	"trackingcategories-summary": "Esta página lista as categorias monitoradas que foram geradas automaticamente pelo software MediaWiki. Os seus nomes podem ser alterados ao editar sua mensagem correspondente no domínio {{ns:8}}.",
 	"trackingcategories-msg": "Categoria monitorada",
 	"trackingcategories-name": "Nome da mensagem",

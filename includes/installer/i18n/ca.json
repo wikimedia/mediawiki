@@ -5,7 +5,8 @@
 			"පසිඳු කාවින්ද",
 			"Kippelboy",
 			"Toniher",
-			"Fitoschido"
+			"Fitoschido",
+			"Jmarchn"
 		]
 	},
 	"config-desc": "L'instal·lador del MediaWiki",
@@ -19,6 +20,8 @@
 	"config-localsettings-incomplete": "El <code>LocalSettings.php</code> que hi ha sembla incomplet.\nLa variable $1 no està definida.\nCanvieu <code>LocalSettings.php</code> perquè la variable estigui definida i feu clic a «{{int:Config-continue}}».",
 	"config-localsettings-connection-error": "S'ha trobat un error en connectar-se amb la base de dades fent servir els paràmetres especificats a <code>LocalSettings.php</code>. Corregiu aquests paràmetres i torneu-ho a provar.\n\n$1",
 	"config-session-error": "Error en iniciar la sessió: $1",
+	"config-session-expired": "Les dades de la vostra sessió sembla que han caducat.\nLes sessions estan configurades per a un temps de $1.\nPodeu augmentar-lo posant <code>session.gc_maxlifetime</code> en php.ini.\nReprengueu el procés d'instal·lació.",
+	"config-no-session": "Les dades de la vostra sessió s'han perdut!\nComprovar el vostre php.ini i assegureu-vos que <code>session.save_path</code> està assignat a un directori apropiat.",
 	"config-your-language": "La vostra llengua:",
 	"config-your-language-help": "Seleccioneu la llengua que s'utilitzarà durant el procés d'instal·lació.",
 	"config-wiki-language": "Llengua del wiki:",

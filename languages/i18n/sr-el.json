@@ -2036,7 +2036,7 @@
 	"movepage-moved": "'''„$1“ je premeštena na „$2“'''",
 	"movepage-moved-redirect": "Preusmerenje je napravljeno.",
 	"movepage-moved-noredirect": "Stvaranje preusmerenja je onemogućeno.",
-	"articleexists": "Stranica s tim imenom već postoji, ili je ime neispravno.\nIzaberite drugo ime.",
+	"articleexists": "Stranica s tim imenom već postoji ili je ime neispravno.\nIzaberite drugo ime.",
 	"cantmove-titleprotected": "Ne možete da premestite stranicu na to mesto jer je željeni naslov zaštićen od stvaranja",
 	"movetalk": "Premesti i stranicu za razgovor",
 	"move-subpages": "Premesti i podstranice (do $1)",
