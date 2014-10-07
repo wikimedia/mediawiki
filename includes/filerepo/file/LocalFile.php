@@ -1850,7 +1850,7 @@ class LocalFile extends File {
 	 * Start a transaction and lock the image for update
 	 * Increments a reference counter if the lock is already held
 	 * @throws MWException Throws an error if the lock was not acquired
-	 * @return bool Success
+	 * @return bool Whether the file lock owns/spawned the DB transaction
 	 */
 	function lock() {
 		$dbw = $this->repo->getMasterDB();
@@ -1877,7 +1877,7 @@ class LocalFile extends File {
 
 		$this->markVolatile(); // file may change soon
 
-		return true;
+		return $this->lockedOwnTrx;
 	}
 
 	/**
@@ -2419,13 +2419,19 @@ class LocalFileRestoreBatch {
 			return $this->file->repo->newGood();
 		}
 
-		$this->file->lock();
+		$locksOwnsTrx = $this->file->lock();
 
 		$dbw = $this->file->repo->getMasterDB();
 		$status = $this->file->repo->newGood();
 
 		$exists = (bool)$dbw->selectField( 'image', '1',
-			array( 'img_name' => $this->file->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
+			array( 'img_name' => $this->file->getName() ),
+			__METHOD__,
+			// The lock() should already prevents changes, but this still may need
+			// to bypass any transaction snapshot. However, if lock() started the
+			// trx (which is probably did) then snapshot is post-lock and up-to-date.
+			$locksOwnsTrx ? array() : array( 'LOCK IN SHARE MODE' )
+		);
 
 		// Fetch all or selected archived revisions for the file,
 		// sorted from the most recent to the oldest.
