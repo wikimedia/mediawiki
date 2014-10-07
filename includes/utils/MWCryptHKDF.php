@@ -106,7 +106,7 @@ class MWCryptHKDF {
 	 */
 	public function __construct( $secretKeyMaterial, $algorithm, $cache, $context ) {
 		if ( strlen( $secretKeyMaterial ) < 16 ) {
-			throw new MWException( "MWCryptHKDF secret was too short." );
+			throw new MWException( "MWCryptHKDF secret was too short; length was " . strlen( $secretKeyMaterial ) );
 		}
 		$this->skm = $secretKeyMaterial;
 		$this->algorithm = $algorithm;
