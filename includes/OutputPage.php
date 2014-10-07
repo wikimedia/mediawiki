@@ -2435,8 +2435,11 @@ class OutputPage extends ContextSource {
 	/**
 	 * Turn off regular page output and return an error response
 	 * for when rate limiting has triggered.
+	 *
+	 * @deprecated since 1.25; throw the exception directly
 	 */
 	public function rateLimited() {
+		wfDeprecated( __METHOD__, '1.25' );
 		throw new ThrottledError;
 	}
 
