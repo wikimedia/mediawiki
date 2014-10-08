@@ -2986,7 +2986,9 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
  * function, as all the arguments to wfShellExec can become unwieldy.
  *
  * @note This also includes errors from limit.sh, e.g. if $wgMaxShellFileSize is exceeded.
- * @param string $cmd Command line, properly escaped for shell.
+ * @param string|string[] $cmd If string, a properly shell-escaped command line,
+ *   or an array of unescaped arguments, in which case each value will be escaped
+ *   Example:   [ 'convert', '-font', 'font name' ] would produce "'convert' '-font' 'font name'"
  * @param null|mixed &$retval Optional, will receive the program's exit code.
  *   (non-zero is usually failure)
  * @param array $environ Optional environment variables which should be
