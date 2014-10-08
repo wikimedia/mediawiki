@@ -145,7 +145,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * TTLs higher than 30 days will be detected as absolute TTLs
 	 * (UNIX timestamps), and will result in the cache entry being
 	 * discarded immediately because the expiry is in the past.
-	 * Clamp expiries >30d at 30d, unless they're >=1e9 in which
+	 * Clamp expires >30d at 30d, unless they're >=1e9 in which
 	 * case they are likely to really be absolute (1e9 = 2011-09-09)
 	 * @param int $expiry
 	 * @return int
