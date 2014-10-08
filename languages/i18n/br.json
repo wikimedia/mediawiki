@@ -1917,6 +1917,7 @@
 	"unblocked": "Distanket eo bet [[User:$1|$1]]",
 	"unblocked-range": "Distanket eo bet $1",
 	"unblocked-id": "Distanket eo bet $1",
+	"unblocked-ip": "[[Special:Contributions/$1|$1]] zo bet distanket.",
 	"blocklist": "Implijerien stanket",
 	"ipblocklist": "Implijerien stanket",
 	"ipblocklist-legend": "Kavout un implijer stanket",

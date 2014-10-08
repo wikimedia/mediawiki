@@ -2828,7 +2828,7 @@
 	"confirmemail_body": "不明人士 (可能是您自己，來自 IP 位址 $1)  已在 {{SITENAME}} 註冊了一個帳號 \"$2\" 並使用了此電子郵件位址。\n\n請確認這個帳號是屬於您的，並使用瀏覽器開啟下方連結以啟用在 {{SITENAME}} 上的電子郵件功能：\n\n$3\n\n若您 *未* 註冊此帳號，\n請開啟下方連結取消電子郵件確認：\n\n$5\n\n此確認代碼會於 $4 過期。",
 	"confirmemail_body_changed": "不明人士 (可能是您自己，來自 IP 位址 $1)  已將在 {{SITENAME}} 帳號 \"$2\" 的電子郵件位址更改至此。\n\n請確認這個帳號是屬於您的，並使用瀏覽器開啟下方連結以啟用在 {{SITENAME}} 上的電子郵件功能：\n\n$3\n\n若您 *未* 註冊此帳號，\n請開啟下方連結取消電子郵件確認：\n\n$5\n\n此確認代碼會於 $4 過期。",
 	"confirmemail_body_set": "不明人士 (可能是您自己，來自 IP 位址 $1)  已將在 {{SITENAME}} 帳號 \"$2\" 的電子郵件位址設定至此。\n\n請確認這個帳號是屬於您的，並使用瀏覽器開啟下方連結以啟用在 {{SITENAME}} 上的電子郵件功能：\n\n$3\n\n若您 *未* 註冊此帳號，\n請開啟下方連結取消電子郵件確認：\n\n$5\n\n此確認代碼會於 $4 過期。",
-	"confirmemail_invalidated": "已取消電子郵件地址確認",
+	"confirmemail_invalidated": "已取消電子郵件位址確認",
 	"invalidateemail": "取消電子郵件確認",
 	"scarytranscludedisabled": "[Interwiki 轉換代碼不可用]",
 	"scarytranscludefailed": "[樣版 $1 讀取失敗]",

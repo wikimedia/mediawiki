@@ -255,7 +255,7 @@
 	"pagetitle": "$1 — {{SITENAME}}",
 	"retrievedfrom": "Атрымана з «$1»",
 	"youhavenewmessages": "Вы атрымалі $1 ($2).",
-	"youhavenewmessagesfromusers": "{{PLURAL:$4|Вы}} атрымалі $1 ад {{PLURAL:$3|1=іншага ўдзельніка|$3 удзельнікаў}} ($2).",
+	"youhavenewmessagesfromusers": "{{PLURAL:$4|Вы}} атрымалі $1 ад $3 {{PLURAL:$3|удзельніка|удзельнікаў}} ($2).",
 	"youhavenewmessagesmanyusers": "Вы атрымалі $1 ад некалькіх удзельнікаў ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|1=новае паведамленьне|999=новыя паведамленьні}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|1=апошняя зьмена|999=апошнія зьмены}}",
@@ -3149,5 +3149,6 @@
 	"json-error-syntax": "Сынтаксычная памылка",
 	"json-error-utf8": "Некарэктныя сымбалі UTF-8, магчыма, няслушнае кадаваньне",
 	"json-error-recursion": "Значэньне, якое трэба закадаваць, утрымлівае адну ці некалькі рэкурсіўных спасылак",
-	"json-error-inf-or-nan": "У значэньні, якое трэба закадаваць, прысутнічаюць адно ці болей NAN- або INF-значэньняў"
+	"json-error-inf-or-nan": "У значэньні, якое трэба закадаваць, прысутнічаюць адно ці болей NAN- або INF-значэньняў",
+	"json-error-unsupported-type": "Было пададзенае значэньне тыпу, які ня можа быць закадаваны"
 }
