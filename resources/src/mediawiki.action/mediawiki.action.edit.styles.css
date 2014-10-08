@@ -25,11 +25,37 @@
 	font-size: 0.9em;
 }
 
+#wpSummaryLabel {
+	float: left;
+	margin-right: 0.5em;
+	/* IE7 and earlier */
+	*float: none; /* stylelint-disable-line declaration-block-no-duplicate-properties */
+}
+
+/* Create a line break when the remaining space is less than 40em */
+.mw-summary-wrap {
+	display: table;
+	width: 40em;
+	/* IE7 and earlier */
+	*display: none; /* stylelint-disable-line declaration-block-no-duplicate-properties */
+}
+
+/* Hack for a box with the remaining space */
+.mw-summary-div {
+	display: table-cell;
+	width: 1%;
+	/* IE7 and earlier */
+	*width: auto;
+}
+
 input#wpSummary {
 	display: block;
 	background-color: #fff;
 	color: #000;
-	width: 80%;
+	width: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 	margin-top: 0;
 	margin-bottom: 1em;
 	padding: 0.625em 0.546875em 0.546875em;
@@ -48,6 +74,11 @@ input#wpSummary:active {
 	outline: 0;
 	border-color: #36c;
 	box-shadow: inset 0 0 0 1px #36c;
+}
+
+/* Ensure that the element after the summary is below of #wpSummaryLabel */
+.mw-summary-clear {
+	clear: left;
 }
 
 .editButtons input:first-child {
