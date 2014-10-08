@@ -38,16 +38,19 @@ class ShowJobs extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Show number of jobs waiting in master database";
 		$this->addOption( 'group', 'Show number of jobs per job type' );
-		$this->addOption(
-			'list',
-			'Show a complete list of all jobs in a machine-readable format, instead of statistics'
-		);
+		$this->addOption( 'list',
+			'Show a list of all jobs in a machine-readable format, instead of statistics' );
+		$this->addOption( 'type', 'Only show/count jobs of a given type', false, true );
 	}
 
 	public function execute() {
+		$filterType = $this->getOption( 'type', '' );
 		$group = JobQueueGroup::singleton();
 		if ( $this->hasOption( 'list' ) ) {
 			foreach ( $group->getQueueTypes() as $type ) {
+				if ( $filterType != '' && $type != $filterType ) {
+					continue;
+				}
 				$queue = $group->get( $type );
 				foreach ( $queue->getAllQueuedJobs() as $job ) {
 					$this->output( $job->toString() . " status=unclaimed\n" );
@@ -58,6 +61,9 @@ class ShowJobs extends Maintenance {
 			}
 		} elseif ( $this->hasOption( 'group' ) ) {
 			foreach ( $group->getQueueTypes() as $type ) {
+				if ( $filterType != '' && $type != $filterType ) {
+					continue;
+				}
 				$queue = $group->get( $type );
 				$delayed = $queue->getDelayedCount();
 				$pending = $queue->getSize();
@@ -75,6 +81,9 @@ class ShowJobs extends Maintenance {
 		} else {
 			$count = 0;
 			foreach ( $group->getQueueTypes() as $type ) {
+				if ( $filterType != '' && $type != $filterType ) {
+					continue;
+				}
 				$count += $group->get( $type )->getSize();
 			}
 			$this->output( "$count\n" );
