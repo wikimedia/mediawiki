@@ -1624,4 +1624,44 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+
+	'oojs-ui-test' => array(
+		'class' => 'ResourceLoaderImageModule',
+		'localBasePath' => $IP . '/resources/lib/oojs-ui/themes/mediawiki/images',
+		'variants' => array(
+			'icon' => array(
+				'invert' => array(
+					'color' => '#FFFFFF',
+					'global' => true,
+				),
+				'primary' => array(
+					'color' => '#598AD1',
+				),
+				'constructive' => array(
+					'color' => '#00C697',
+				),
+				'destructive' => array(
+					'color' => '#E81915',
+				),
+			),
+			'indicator' => array(
+				'invert' => array(
+					'color' => '#FFFFFF',
+					'global' => true,
+				),
+			),
+		),
+		'images' => array(
+			'icon' => array(
+				'icons/add.svg' => array(
+					'variants' => array( 'constructive' ),
+				),
+				'icons/advanced.svg',
+				'icons/alert.svg',
+				'icons/check.svg' => array(
+					'variants' => array( 'primary' ),
+				),
+			),
+		),
+	),
 );
