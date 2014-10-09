@@ -42,7 +42,8 @@ if ( !$wgRequest->checkUrlExtension() ) {
 // foo()->bar() syntax is not supported in PHP4, and this file needs to *parse* in PHP4.
 $configFactory = ConfigFactory::getDefaultInstance();
 $resourceLoader = new ResourceLoader( $configFactory->makeConfig( 'main' ) );
-$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
+$context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
+$resourceLoader->respond( $context );
 
 wfProfileOut( 'load.php' );
 wfLogProfilingData();
