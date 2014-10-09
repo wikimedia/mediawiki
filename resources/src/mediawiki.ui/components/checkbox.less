@@ -48,6 +48,8 @@
 		// ensure the invisible checkbox takes up the required width
 		width: @checkboxSize;
 		height: @checkboxSize;
+		// This is needed for Firefox mobile (See bug 71750 to workaround default Firefox stylesheet)
+		max-width: none;
 
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label {
