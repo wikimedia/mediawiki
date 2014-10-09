@@ -42,7 +42,26 @@ if ( !$wgRequest->checkUrlExtension() ) {
 $resourceLoader = new ResourceLoader(
 	ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
 );
-$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
+
+if ( $wgRequest->getVal( 'image' ) ) {
+	wfProfileIn( 'load.php-image' );
+
+	// TODO Extend ResourceLoaderContext to provide these, make RLImage take a context
+	$imageName = $wgRequest->getVal( 'image' );
+	$moduleName = $wgRequest->getVal( 'module' );
+	$variant = $wgRequest->getVal( 'variant' );
+	$format = $wgRequest->getVal( 'format' );
+
+	// TODO Input validity checks, let's not fatal when there's no such module, etc.
+	$module = $resourceLoader->getModule( $moduleName );
+	$context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
+	$image = $module->getImage( $imageName, $context );
+	$image->respond( $variant, $format );
+
+	wfProfileOut( 'load.php-image' );
+} else {
+	$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
+}
 
 wfProfileOut( 'load.php' );
 wfLogProfilingData();
