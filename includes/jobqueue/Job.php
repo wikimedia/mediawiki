@@ -315,7 +315,7 @@ abstract class Job implements IJobSpecification {
 							break;
 						}
 					}
-					if ( $filteredValue ) {
+					if ( $filteredValue && count( $filteredValue ) < 10 ) {
 						$value = FormatJson::encode( $filteredValue );
 					} else {
 						$value = "array(" . count( $value ) . ")";
@@ -329,15 +329,15 @@ abstract class Job implements IJobSpecification {
 		}
 
 		if ( is_object( $this->title ) ) {
-			$s = "{$this->command} " . $this->title->getPrefixedDBkey();
+			$s = "{$this->command} {$this->title->getPrefixedDBkey()}";
 			if ( $paramString !== '' ) {
-				$s .= ' ' . $paramString;
+				$s .= " $paramString";
 			}
-
-			return $s;
 		} else {
-			return "{$this->command} $paramString";
+			$s = "{$this->command} $paramString";
 		}
+
+		return $s;
 	}
 
 	protected function setLastError( $error ) {
