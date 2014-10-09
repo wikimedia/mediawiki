@@ -33,16 +33,39 @@ require __DIR__ . '/includes/WebStart.php';
 
 wfProfileIn( 'load.php' );
 
-// URL safety checks
-if ( !$wgRequest->checkUrlExtension() ) {
-	return;
-}
-
 // Respond to resource loading request
 $resourceLoader = new ResourceLoader(
 	ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
 );
-$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
+
+if ( $wgRequest->getVal( 'image' ) ) {
+	wfProfileIn( 'load.php-image' );
+
+	$imageName = $wgRequest->getVal( 'image' );
+	$moduleName = $wgRequest->getVal( 'module' );
+	$variant = $wgRequest->getVal( 'variant' );
+	$format = $wgRequest->getVal( 'format' );
+
+	// TODO Input validity checks, let's not fatal
+	$module = $resourceLoader->getModule( $moduleName );
+	$image = $module->getImage( $imageName );
+
+	// URL safety checks
+	if ( !$wgRequest->checkUrlExtension( array( $image->getExtension() ) ) ) {
+		return;
+	}
+
+	$image->respond( $variant, $format );
+
+	wfProfileOut( 'load.php-image' );
+} else {
+	// URL safety checks
+	if ( !$wgRequest->checkUrlExtension() ) {
+		return;
+	}
+
+	$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
+}
 
 wfProfileOut( 'load.php' );
 wfLogProfilingData();
