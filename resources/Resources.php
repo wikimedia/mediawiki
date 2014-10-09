@@ -1624,4 +1624,21 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+
+	'oojs-ui-test' => array(
+		'class' => 'ResourceLoaderImageModule',
+		'localBasePath' => $IP . '/resources/lib/oojs-ui/themes/mediawiki/images',
+		'images' => array(
+			'icon' => array(
+				'icons/add.svg' => array(
+					'variants' => array( 'constructive' ),
+				),
+				'icons/advanced.svg',
+				'icons/alert.svg',
+				'icons/check.svg' => array(
+					'variants' => array( 'primary' ),
+				),
+			),
+		),
+	),
 );
