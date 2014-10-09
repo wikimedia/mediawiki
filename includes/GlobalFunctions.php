@@ -2660,13 +2660,19 @@ function wfIniGetBool( $setting ) {
  * Also fixes the locale problems on Linux in PHP 5.2.6+ (bug backported to
  * earlier distro releases of PHP)
  *
- * @param string $args,...
+ * @param string ... strings to escape and glue together, or a single array of strings parameter
  * @return string
  */
 function wfEscapeShellArg( /*...*/ ) {
 	wfInitShellLocale();
 
 	$args = func_get_args();
+	if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
+		// If only one argument has been passed, and that argument is an array,
+		// treat it as a list of arguments
+		$args = reset( $args );
+	}
+
 	$first = true;
 	$retVal = '';
 	foreach ( $args as $arg ) {
@@ -2796,12 +2802,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		}
 	}
 	if ( is_array( $cmd ) ) {
-		// Command line may be given as an array, escape each value and glue them together with a space
-		$cmdVals = array();
-		foreach ( $cmd as $val ) {
-			$cmdVals[] = wfEscapeShellArg( $val );
-		}
-		$cmd = implode( ' ', $cmdVals );
+		$cmd = wfEscapeShellArg( $cmd );
 	}
 
 	$cmd = $envcmd . $cmd;
@@ -3051,7 +3052,7 @@ function wfShellWikiCmd( $script, array $parameters = array(), array $options = 
 	}
 	$cmd[] = $script;
 	// Escape each parameter for shell
-	return implode( " ", array_map( 'wfEscapeShellArg', array_merge( $cmd, $parameters ) ) );
+	return wfEscapeShellArg( array_merge( $cmd, $parameters ) );
 }
 
 /**
@@ -3096,10 +3097,7 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 	fclose( $yourtextFile );
 
 	# Check for a conflict
-	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a --overlap-only ' .
-		wfEscapeShellArg( $mytextName ) . ' ' .
-		wfEscapeShellArg( $oldtextName ) . ' ' .
-		wfEscapeShellArg( $yourtextName );
+	$cmd = wfEscapeShellArg( $wgDiff3, '-a', '--overlap-only', $mytextName, $oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
 
 	if ( fgets( $handle, 1024 ) ) {
@@ -3110,8 +3108,7 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 	pclose( $handle );
 
 	# Merge differences
-	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a -e --merge ' .
-		wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
+	$cmd = wfEscapeShellArg( $wgDiff3, '-a', '-e', '--merge', $mytextName, $oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
 	$result = '';
 	do {
