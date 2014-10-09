@@ -179,7 +179,7 @@ class Hooks {
 			// Run autoloader (workaround for call_user_func_array bug)
 			// and throw error if not callable.
 			if ( !is_callable( $callback ) ) {
-				throw new MWException( 'Invalid callback in hooks for ' . $event . "\n" );
+				throw new MWException( 'Invalid callback ' . $func . ' in hooks for ' . $event . "\n" );
 			}
 
 			/*
