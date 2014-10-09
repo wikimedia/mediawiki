@@ -42,7 +42,26 @@ if ( !$wgRequest->checkUrlExtension() ) {
 // foo()->bar() syntax is not supported in PHP4, and this file needs to *parse* in PHP4.
 $configFactory = ConfigFactory::getDefaultInstance();
 $resourceLoader = new ResourceLoader( $configFactory->makeConfig( 'main' ) );
-$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
+$context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
+
+if ( $wgRequest->getVal( 'image' ) ) {
+	wfProfileIn( 'load.php-image' );
+
+	// TODO Extend ResourceLoaderContext to provide these, make RLImage take a context
+	$imageName = $wgRequest->getVal( 'image' );
+	$moduleName = $wgRequest->getVal( 'module' );
+	$variant = $wgRequest->getVal( 'variant' );
+	$format = $wgRequest->getVal( 'format' );
+
+	// TODO Input validity checks, let's not fatal when there's no such module, etc.
+	$module = $resourceLoader->getModule( $moduleName );
+	$image = $module->getImage( $imageName, $context );
+	$image->respond( $variant, $format );
+
+	wfProfileOut( 'load.php-image' );
+} else {
+	$resourceLoader->respond( $context );
+}
 
 wfProfileOut( 'load.php' );
 wfLogProfilingData();
