@@ -2796,11 +2796,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	}
 	if ( is_array( $cmd ) ) {
 		// Command line may be given as an array, escape each value and glue them together with a space
-		$cmdVals = array();
-		foreach ( $cmd as $val ) {
-			$cmdVals[] = wfEscapeShellArg( $val );
-		}
-		$cmd = implode( ' ', $cmdVals );
+		$cmd = call_user_func_array( 'wfEscapeShellArg', $cmd );
 	}
 
 	$cmd = $envcmd . $cmd;
