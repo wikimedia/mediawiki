@@ -276,6 +276,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		$html = '';
+		$hidden = '';
 		$hasLabel = false;
 
 		$fields = $this->createFieldsForKey( $key );
@@ -283,11 +284,18 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			$v = ( empty( $field->mParams['nodata'] ) && $values !== null )
 				? $values[$fieldname]
 				: $field->getDefault();
-			$html .= $field->$getFieldHtmlMethod( $v );
 
-			$labelValue = trim( $field->getLabel() );
-			if ( $labelValue != '&#160;' && $labelValue !== '' ) {
-				$hasLabel = true;
+			if ( $field instanceof HTMLHiddenField ) {
+				// HTMLHiddenField doesn't generate its own HTML
+				list( $name, $value, $params ) = $field->getHiddenFieldData( $v );
+				$hidden .= Html::hidden( $name, $value, $params ) . "\n";
+			} else {
+				$html .= $field->$getFieldHtmlMethod( $v );
+
+				$labelValue = trim( $field->getLabel() );
+				if ( $labelValue != '&#160;' && $labelValue !== '' ) {
+					$hasLabel = true;
+				}
 			}
 		}
 
@@ -334,6 +342,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
 			}
 		}
+
+		$html .= $hidden;
 
 		if ( !empty( $this->mParams['row-legend'] ) ) {
 			$legend = $this->msg( $this->mParams['row-legend'] )->text();
