@@ -2783,6 +2783,7 @@
 	"watchlistedit-raw-done": "A figyelőlistád változtatásait elmentettem.",
 	"watchlistedit-raw-added": "A {{PLURAL:$1|következő|következő $1}} cikket hozzáadtam a figyelőlistádhoz:",
 	"watchlistedit-raw-removed": "A {{PLURAL:$1|következő|következő $1}} cikket eltávolítottam a figyelőlistádról:",
+	"watchlisttools-clear": "A figyelőlista kiürítése",
 	"watchlisttools-view": "Kapcsolódó változtatások",
 	"watchlisttools-edit": "A figyelőlista megtekintése és szerkesztése",
 	"watchlisttools-raw": "A nyers figyelőlista szerkesztése",
