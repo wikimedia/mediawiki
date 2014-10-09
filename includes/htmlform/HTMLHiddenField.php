@@ -1,22 +1,36 @@
 <?php
 
 class HTMLHiddenField extends HTMLFormField {
+	protected $outputAsDefault = true;
+
 	public function __construct( $params ) {
 		parent::__construct( $params );
+
+		if ( isset( $this->mParams['output-as-default'] ) ) {
+			$this->outputAsDefault = (bool)$this->mParams['output-as-default'];
+		}
 
 		# Per HTML5 spec, hidden fields cannot be 'required'
 		# http://www.w3.org/TR/html5/forms.html#hidden-state-%28type=hidden%29
 		unset( $this->mParams['required'] );
 	}
 
-	public function getTableRow( $value ) {
+	public function getHiddenFieldData( $value ) {
 		$params = array();
 		if ( $this->mID ) {
 			$params['id'] = $this->mID;
 		}
 
-		$this->mParent->addHiddenField( $this->mName, $this->mDefault, $params );
+		if ( $this->outputAsDefault ) {
+			$value = $this->mDefault;
+		}
 
+		return array( $this->mName, $value, $params );
+	}
+
+	public function getTableRow( $value ) {
+		list( $name, $value, $params ) = $this->getHiddenFieldData( $value );
+		$this->mParent->addHiddenField( $name, $value, $params );
 		return '';
 	}
 
