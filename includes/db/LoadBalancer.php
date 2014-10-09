@@ -316,20 +316,6 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Wait for a specified number of microseconds, and return the period waited
-	 * @param int $t
-	 * @return int
-	 */
-	function sleep( $t ) {
-		wfProfileIn( __METHOD__ );
-		wfDebug( __METHOD__ . ": waiting $t us\n" );
-		usleep( $t );
-		wfProfileOut( __METHOD__ );
-
-		return $t;
-	}
-
-	/**
 	 * Set the master wait position
 	 * If a DB_SLAVE connection has been opened already, waits
 	 * Otherwise sets a variable telling it to wait if such a connection is opened
