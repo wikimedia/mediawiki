@@ -31,8 +31,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/** @var string Local base path, see __construct() */
 	protected $localBasePath = '';
 
+	/** @var string The local path to where templates are located, see __construct() */
+	protected $localTemplateBasePath = '';
+
 	/** @var string Remote base path, see __construct() */
 	protected $remoteBasePath = '';
+
+	/** @var array Saves a list of the templates named by the modules. */
+	protected $templates = array();
 
 	/**
 	 * @var array List of paths to JavaScript files to always include
@@ -158,6 +164,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected $localFileRefs = array();
 
+	/** @var boolean Whether the module has templates or not. */
+	private $hasTemplates = false;
+
+	/**
+	 * @var array Cache for mtime of templates
+	 * @example array( [hash] => [mtime], [hash] => [mtime], ... )
+	 */
+	protected $templateModifiedTime = array();
+
 	/* Methods */
 
 	/**
@@ -258,6 +273,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 						$this->{$member}[$key] = (array)$value;
 					}
 					break;
+				case 'localTemplateBasePath':
+					$this->{$member} = (string) $option;
+					break;
+				case 'templates':
+					$this->hasTemplates = true;
+					$this->{$member} = (array) $option;
+					break;
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
@@ -280,6 +302,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					$this->{$member} = (bool)$option;
 					break;
 			}
+		}
+		if ( $this->hasTemplates ) {
+			$this->dependencies[] = 'mediawiki.templates';
 		}
 	}
 
@@ -495,7 +520,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the last modified timestamp of this module.
+	 * Get the last modified timestamp of the files in this module.
 	 *
 	 * Last modified timestamps are calculated from the highest last modified
 	 * timestamp of this module's constituent files as well as the files it
@@ -508,7 +533,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return int UNIX timestamp
 	 * @see ResourceLoaderModule::getFileDependencies
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
+	public function getModifiedTimeFiles( ResourceLoaderContext $context ) {
 		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
 			return $this->modifiedTime[$context->getHash()];
 		}
@@ -570,6 +595,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Checks whether any resources used by module have changed
+	 *
+	 * @param ResourceLoaderContext $context in which to generate script
+	 * @return int UNIX timestamp
+	 */
+	public function getModifiedTime( ResourceLoaderContext $context ) {
+		return max( $this->getModifiedTimeFiles( $context ),
+			$this->getModifiedTimeTemplates( $context ) );
+	}
+
+	/**
 	 * Get the definition summary for this module.
 	 *
 	 * @param ResourceLoaderContext $context
@@ -615,6 +651,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		return "{$this->localBasePath}/$path";
+	}
+
+	/**
+	 * Note: Generally you don't want to use this, but this is for backwards compatibility with Flow
+	 * and MobileFrontend where the template path differs from the local path
+	 * @see Extension:Mantle
+	 * @param string|ResourceLoaderFilePath $path
+	 * @return string
+	 */
+	protected function getLocalTemplatePath( $path ) {
+		return $this->getLocalPath( $path );
 	}
 
 	/**
@@ -958,5 +1005,65 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
 		return ResourceLoader::getLessCompiler( $this->getConfig() );
+	}
+
+	/**
+	 * Returns the templates named by the modules
+	 * Each template has a corresponding html file in includes/templates/
+	 * @return array List of template names
+	 */
+	function getTemplateNames() {
+		return $this->templates;
+	}
+
+	/**
+	 * Takes named templates by the module and adds them to the JavaScript output
+	 *
+	 * @return string JavaScript code
+	 */
+	function getTemplates() {
+		$templates = array();
+		$templateNames = $this->getTemplateNames();
+
+		foreach( $templateNames as $templateName ) {
+			$localPath = $this->getLocalTemplatePath( $templateName );
+			if ( file_exists( $localPath ) ) {
+				$content = file_get_contents( $localPath );
+				$templates[ $templateName ] = $content;
+			}
+		}
+		return $templates;
+	}
+
+	/**
+	 * Checks whether any templates used by module have changed
+	 *
+	 * @param ResourceLoaderContext $context Context in which to generate script
+	 * @return int UNIX timestamp
+	 */
+	public function getModifiedTimeTemplates( ResourceLoaderContext $context ) {
+		$hash = $context->getHash();
+		if ( isset( $this->templateModifiedTime[$hash] ) ) {
+			$tlm = $this->templateModifiedTime[$hash];
+		} else {
+			// Get local paths to all templates
+			$files = array_map(
+				array( $this, 'getLocalTemplatePath' ),
+				$this->getTemplateNames()
+			);
+
+			// Store for quicker future lookup
+			if ( count( $files ) === 0 ) {
+				$tlm = 1;
+			} else {
+				// check the last modified time of them
+				wfProfileIn( __METHOD__ . '-filemtime' );
+				$tlm = max( array_map( array( __CLASS__, 'safeFilemtime' ), $files ) );
+				wfProfileOut( __METHOD__ . '-filemtime' );
+			}
+			// store for future lookup
+			$this->templateModifiedTime[$hash] = $tlm;
+		}
+		return $tlm;
 	}
 }
