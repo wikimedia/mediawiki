@@ -2085,8 +2085,6 @@ class OutputPage extends ContextSource {
 	 * the object, let's actually output it:
 	 */
 	public function output() {
-		global $wgLanguageCode;
-
 		if ( $this->mDoNothing ) {
 			return;
 		}
@@ -2140,7 +2138,7 @@ class OutputPage extends ContextSource {
 		ob_start();
 
 		$response->header( 'Content-type: ' . $config->get( 'MimeType' ) . '; charset=UTF-8' );
-		$response->header( 'Content-language: ' . $wgLanguageCode );
+		$response->header( 'Content-language: ' . $config->get( 'LanguageCode' ) );
 
 		// Avoid Internet Explorer "compatibility view" in IE 8-10, so that
 		// jQuery etc. can work correctly.
