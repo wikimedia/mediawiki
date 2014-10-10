@@ -970,6 +970,12 @@ more stuff
 	public function testDoRollback() {
 		$admin = new User();
 		$admin->setName( "Admin" );
+		if ( $admin->isAnon() ) {
+			// User must exist on the database to let {{GENDER:}} work
+			$admin->addToDatabase();
+		}
+		$admin->setOption( 'gender', 'female' );
+		$admin->saveSettings();
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
@@ -1002,7 +1008,7 @@ more stuff
 		);
 		$errors = $page->doRollback(
 			$user1->getName(),
-			"testing revert",
+			"Testing revert: $1 {{GENDER:$1|male|female}} - from $2",
 			$token,
 			false,
 			$details,
@@ -1018,6 +1024,8 @@ more stuff
 		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),
 			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one", $page->getContent()->getNativeData() );
+		$this->assertEquals( "Testing revert: Admin female - from 127.0.1.11",
+			$page->getRevision()->getComment() );
 	}
 
 	/**

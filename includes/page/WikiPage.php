@@ -3042,11 +3042,10 @@ class WikiPage implements Page, IDBAccessObject {
 			$wgContLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ) ),
 			$current->getId(), $wgContLang->timeanddate( $current->getTimestamp() )
 		);
-		if ( $summary instanceof Message ) {
-			$summary = $summary->params( $args )->inContentLanguage()->text();
-		} else {
-			$summary = wfMsgReplaceArgs( $summary, $args );
+		if ( !$summary instanceof Message ) {
+			$summary = new RawMessage( $summary );
 		}
+		$summary->params( $args )->inContentLanguage()->text();
 
 		// Trim spaces on user supplied text
 		$summary = trim( $summary );
