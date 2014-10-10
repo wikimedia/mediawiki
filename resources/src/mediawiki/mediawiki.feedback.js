@@ -100,47 +100,20 @@
 				target: '_blank'
 			} );
 
-			// TODO: Use a stylesheet instead of these inline styles
-			this.$dialog =
-				$( '<div style="position: relative;"></div>' ).append(
-					$( '<div class="feedback-mode feedback-form"></div>' ).append(
-						$( '<small>' ).append(
-							$( '<p>' ).msg(
-								'feedback-bugornote',
-								$bugNoteLink,
-								fb.title.getNameText(),
-								$feedbackPageLink.clone()
-							)
-						),
-						$( '<div style="margin-top: 1em;"></div>' )
-						.msg( 'feedback-subject' )
-						.append(
-							$( '<br>' ),
-							$( '<input type="text" class="feedback-subject" name="subject" maxlength="60" style="width: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;"/>' )
-						),
-						$( '<div style="margin-top: 0.4em;"></div>' )
-						.msg( 'feedback-message' )
-						.append(
-							$( '<br>' ),
-							$( '<textarea name="message" class="feedback-message" rows="5" cols="60"></textarea>' )
-						)
-					),
-					$( '<div class="feedback-mode feedback-bugs"></div>' ).append(
-						$( '<p>' ).msg( 'feedback-bugcheck', $bugsListLink )
-					),
-					$( '<div class="feedback-mode feedback-submitting" style="text-align: center; margin: 3em 0;"></div>' )
-					.msg( 'feedback-adding' )
-					.append(
-						$( '<br>' ),
-						$( '<span class="feedback-spinner"></span>' )
-					),
-					$( '<div class="feedback-mode feedback-thanks" style="text-align: center; margin:1em"></div>' ).msg(
-						'feedback-thanks', fb.title.getNameText(), $feedbackPageLink.clone()
-					),
-					$( '<div class="feedback-mode feedback-error" style="position: relative;"></div>' ).append(
-						$( '<div class="feedback-error-msg style="color: #990000; margin-top: 0.4em;"></div>' )
-					)
-				);
+			// TODO: Use a stylesheet instead of these inline styles in the template
+			this.$dialog = mw.template.get( 'mediawiki.feedback', 'dialog.html' ).render();
+			this.$dialog.find( '.feedback-mode small p' ).msg(
+				'feedback-bugornote',
+				$bugNoteLink,
+				fb.title.getNameText(),
+				$feedbackPageLink.clone()
+			);
+			this.$dialog.find( '.feedback-form .subject span' ).msg( 'feedback-subject' );
+			this.$dialog.find( '.feedback-form .message span' ).msg( 'feedback-message' );
+			this.$dialog.find( '.feedback-bugs p' ).msg( 'feedback-bugcheck', $bugsListLink );
+			this.$dialog.find( '.feedback-submitting span' ).msg( 'feedback-adding' );
+			this.$dialog.find( '.feedback-thanks' ).msg( 'feedback-thanks', fb.title.getNameText(),
+				$feedbackPageLink.clone() );
 
 			this.$dialog.dialog( {
 				width: 500,

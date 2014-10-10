@@ -13,7 +13,8 @@
 					"mw.html",
 					"mw.html.Cdata",
 					"mw.html.Raw",
-					"mw.hook"
+					"mw.hook",
+					"mw.template"
 				]
 			},
 			{
