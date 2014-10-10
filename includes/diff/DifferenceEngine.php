@@ -94,6 +94,10 @@ class DifferenceEngine extends ContextSource {
 
 	/** @var bool Show rev_deleted content if allowed */
 	protected $unhide = false;
+
+	/** @var bool Refresh the diff cache */
+	protected $mRefreshCache = false;
+
 	/**#@-*/
 
 	/**
