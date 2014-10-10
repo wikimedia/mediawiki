@@ -3322,6 +3322,38 @@ $wgResourceLoaderLESSImportPaths = array(
 	"$IP/resources/mediawiki.less/",
 );
 
+<<<<<<< HEAD
+=======
+/**
+ * Whether ResourceLoader should attempt to persist modules in localStorage on
+ * browsers that support the Web Storage API.
+ *
+ * @since 1.23 - Client-side module persistence is experimental. Exercise care.
+ */
+$wgResourceLoaderStorageEnabled = false;
+
+/**
+ * Cache version for client-side ResourceLoader module storage. You can trigger
+ * invalidation of the contents of the module store by incrementing this value.
+ *
+ * @since 1.23
+ */
+$wgResourceLoaderStorageVersion = 1;
+
+/**
+ * Whether to allow site-wide CSS (MediaWiki:Common.css and friends) on
+ * restricted pages like Special:UserLogin or Special:Preferences where
+ * JavaScript is disabled for security reasons. As it is possible to
+ * execute JavaScript through CSS, setting this to true opens up a
+ * potential security hole. Some sites may "skin" their wiki by using
+ * site-wide CSS, causing restricted pages to look unstyled and different
+ * from the rest of the site.
+ *
+ * @since 1.25
+ */
+$wgAllowSiteCSSOnRestrictedPages = false;
+
+>>>>>>> f9c0a42... Make allowing site-wide styles on restricted special pages a config option
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
