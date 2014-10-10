@@ -136,6 +136,7 @@ class SpecialBlock extends FormSpecialPage {
 				'autofocus' => true,
 				'required' => true,
 				'validation-callback' => array( __CLASS__, 'validateTargetField' ),
+				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 			),
 			'Expiry' => array(
 				'type' => !count( $suggestedDurations ) ? 'text' : 'selectorother',
@@ -308,7 +309,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected function preText() {
-		$this->getOutput()->addModules( 'mediawiki.special.block' );
+		$this->getOutput()->addModules( array( 'mediawiki.special.block', 'mediawiki.userSuggest' ) );
 
 		$text = $this->msg( 'blockiptext' )->parse();
 

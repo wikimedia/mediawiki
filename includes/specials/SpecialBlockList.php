@@ -47,6 +47,7 @@ class SpecialBlockList extends SpecialPage {
 		$lang = $this->getLanguage();
 		$out->setPageTitle( $this->msg( 'ipblocklist' ) );
 		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModules( 'mediawiki.userSuggest' );
 
 		$request = $this->getRequest();
 		$par = $request->getVal( 'ip', $par );
@@ -72,6 +73,7 @@ class SpecialBlockList extends SpecialPage {
 				'tabindex' => '1',
 				'size' => '45',
 				'default' => $this->target,
+				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 			),
 			'Options' => array(
 				'type' => 'multiselect',
