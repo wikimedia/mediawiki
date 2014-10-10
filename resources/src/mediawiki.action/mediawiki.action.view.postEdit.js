@@ -30,14 +30,7 @@
 			data.message = $.parseHTML( mw.message( 'postedit-confirmation-saved', data.user || mw.user ).escaped() );
 		}
 
-		$div = $(
-			'<div class="postedit-container">' +
-				'<div class="postedit">' +
-					'<div class="postedit-icon postedit-icon-checkmark postedit-content"></div>' +
-					'<a href="#" class="postedit-close">&times;</a>' +
-				'</div>' +
-			'</div>'
-		);
+		$div = mw.template.get( 'mediawiki.action.view.postEdit', 'postEdit.html' ).render();
 
 		if ( typeof data.message === 'string' ) {
 			$div.find( '.postedit-content' ).text( data.message );
