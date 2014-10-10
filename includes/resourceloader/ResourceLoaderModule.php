@@ -135,6 +135,16 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * Returns JavaScript relating to adding templates to the client.
+	 *
+	 * @return string JavaScript code
+	 */
+	public function getTemplates() {
+		// Stub, override expected.
+		return array();
+	}
+
+	/**
 	 * @return Config
 	 * @since 1.24
 	 */
