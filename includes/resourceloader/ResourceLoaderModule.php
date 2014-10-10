@@ -135,6 +135,16 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * Takes named templates by the module and returns an array mapping.
+	 *
+	 * @return array of templates mapping template alias to content
+	 */
+	public function getTemplates() {
+		// Stub, override expected.
+		return array();
+	}
+
+	/**
 	 * @return Config
 	 * @since 1.24
 	 */
