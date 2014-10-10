@@ -974,12 +974,16 @@ class ResourceLoader {
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
 						break;
+					case 'templates':
+						$out .= $module->getTemplateScript();
+						break;
 					default:
 						$out .= self::makeLoaderImplementScript(
 							$name,
 							$scripts,
 							$styles,
-							new XmlJsCode( $messagesBlob )
+							new XmlJsCode( $messagesBlob ),
+							$module->getTemplateScript()
 						);
 						break;
 				}
@@ -1044,10 +1048,11 @@ class ResourceLoader {
 	 * @param mixed $messages List of messages associated with this module. May either be an
 	 *   associative array mapping message key to value, or a JSON-encoded message blob containing
 	 *   the same data, wrapped in an XmlJsCode object.
+	 * @param string JavaScript for templates.
 	 * @throws MWException
 	 * @return string
 	 */
-	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
+	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages, $templateJs='' ) {
 		if ( is_string( $scripts ) ) {
 			$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
 		} elseif ( !is_array( $scripts ) ) {
@@ -1064,7 +1069,8 @@ class ResourceLoader {
 				// PHP/json_encode() consider empty arrays to be numerical arrays and
 				// output javascript "[]" instead of "{}". This fixes that.
 				(object)$styles,
-				(object)$messages
+				(object)$messages,
+				new XmlJsCode( "function () {\n{$templateJs}\n}" ),
 			),
 			ResourceLoader::inDebugMode()
 		);
