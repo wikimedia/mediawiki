@@ -483,6 +483,12 @@
 		 */
 		messages: new Map(),
 
+		/**
+		 * Templates associated with a module
+		 * @property {mw.Map}
+		 */
+		templates: new Map(),
+
 		/* Public Methods */
 
 		/**
@@ -1170,6 +1176,11 @@
 					mw.messages.set( registry[module].messages );
 				}
 
+				// Initialise templates
+				if ( !$.isEmptyObject( registry[module].templates ) ) {
+					mw.templates.set( module, registry[module].templates );
+				}
+
 				if ( $.isReady || registry[module].async ) {
 					// Make sure we don't run the scripts until all (potentially asynchronous)
 					// stylesheet insertions have completed.
@@ -1660,8 +1671,11 @@
 				 * whether it's safe to extend the stylesheet (see #canExpandStylesheetWith).
 				 *
 				 * @param {Object} msgs List of key/value pairs to be added to mw#messages.
+				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates
 				 */
-				implement: function ( module, script, style, msgs ) {
+				implement: function ( module, script, style, msgs, templates ) {
+					// A module may not have templates so deal with that case here.
+					templates = templates || {};
 					// Validate input
 					if ( typeof module !== 'string' ) {
 						throw new Error( 'module must be a string, not a ' + typeof module );
@@ -1675,6 +1689,9 @@
 					if ( !$.isPlainObject( msgs ) ) {
 						throw new Error( 'msgs must be an object, not a ' + typeof msgs );
 					}
+					if ( !$.isPlainObject( templates ) ) {
+						throw new Error( 'templates must be an object, not a ' + typeof templates );
+					}
 					// Automatically register module
 					if ( registry[module] === undefined ) {
 						mw.loader.register( module );
@@ -1687,6 +1704,7 @@
 					registry[module].script = script;
 					registry[module].style = style;
 					registry[module].messages = msgs;
+					registry[module].templates = templates;
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
 						registry[module].state = 'loaded';
