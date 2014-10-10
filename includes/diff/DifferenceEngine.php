@@ -845,6 +845,13 @@ class DifferenceEngine extends ContextSource {
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
 
+		# Custom difference engine hook
+		wfRunHooks( 'CustomDifferenceEngine', array( &$otext, &$ntext, &$diffText ) );
+		if ( $diffText !== false ) {
+			wfProfileOut( __METHOD__ );
+			return $diffText;
+		}
+
 		if ( $wgExternalDiffEngine == 'wikidiff' && function_exists( 'wikidiff_do_diff' ) ) {
 			# For historical reasons, external diff engine expects
 			# input text to be HTML-escaped already
