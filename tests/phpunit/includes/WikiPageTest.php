@@ -1023,6 +1023,65 @@ more stuff
 	/**
 	 * @covers WikiPage::doRollback
 	 */
+	public function testDoRollbackCustomSummarySameArgs() {
+		$admin = new User();
+		$admin->setName( "Admin" );
+
+		$text = "one";
+		$page = $this->newPage( "WikiPageTest_testDoRollbackCustomSummarySameArgs" );
+		$page->doEditContent(
+			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			"section one",
+			EDIT_NEW,
+			false,
+			$admin
+		);
+		$rev1 = $page->getRevision();
+
+		$user1 = new User();
+		$user1->setName( "127.0.1.11" );
+		$user1->setOption( 'gender', 'male' );
+		$text .= "\n\ntwo";
+		$page = new WikiPage( $page->getTitle() );
+		$page->doEditContent(
+			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			"adding section two",
+			0,
+			false,
+			$user1
+		);
+
+		# now, try the rollback
+		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
+		$token = $admin->getEditToken(
+			array( $page->getTitle()->getPrefixedText(), $user1->getName() ),
+			null
+		);
+		$errors = $page->doRollback(
+			$user1->getName(),
+			"Testsummary: $1 {{GENDER:$1|male|female}} - from $2",
+			$token,
+			false,
+			$details,
+			$admin
+		);
+
+		if ( $errors ) {
+			$this->fail( "Rollback failed:\n" . print_r( $errors, true )
+				. ";\n" . print_r( $details, true ) );
+		}
+
+		$page = new WikiPage( $page->getTitle() );
+		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),
+			"rollback did not revert to the correct revision" );
+		$this->assertEquals( "one", $page->getContent()->getNativeData() );
+		$this->assertEquals( "Testsummary: Admin male - from 127.0.1.11",
+			$page->getRevision()->getComment() );
+	}
+
+	/**
+	 * @covers WikiPage::doRollback
+	 */
 	public function testDoRollbackFailureSameContent() {
 		$admin = new User();
 		$admin->setName( "Admin" );
