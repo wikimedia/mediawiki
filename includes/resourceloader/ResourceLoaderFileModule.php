@@ -34,6 +34,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/** @var string Remote base path, see __construct() */
 	protected $remoteBasePath = '';
 
+	/** @var array Saves a list of the templates named by the modules. */
+	protected $templates = array();
+
 	/**
 	 * @var array List of paths to JavaScript files to always include
 	 * @par Usage:
@@ -199,6 +202,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         'loaderScripts' => [file path string or array of file path strings],
 	 *         // Modules which must be loaded before this module
 	 *         'dependencies' => [module name string or array of module name strings],
+	 *         'templates' => array(
+	 *             [template alias with file.ext] => [file path to a template file],
+	 *         ),
 	 *         // Styles to always load
 	 *         'styles' => [file path string or array of file path strings],
 	 *         // Styles to include in specific skin contexts
@@ -267,6 +273,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					sort( $option );
 
 					$this->{$member} = $option;
+					break;
+				// templates
+				case 'templates':
+					$this->{$member} = (array)$option;
 					break;
 				// Single strings
 				case 'group':
@@ -535,6 +545,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$files = array_merge(
 			$files,
 			$this->scripts,
+			$this->templates,
 			$context->getDebug() ? $this->debugScripts : array(),
 			$this->getLanguageScripts( $context->getLanguage() ),
 			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ),
@@ -958,5 +969,31 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
 		return ResourceLoader::getLessCompiler( $this->getConfig() );
+	}
+
+	/**
+	 * Takes named templates by the module and returns an array mapping.
+	 *
+	 * @return array of templates mapping template alias to content
+	 */
+	function getTemplates() {
+		$templates = array();
+
+		foreach ( $this->templates as $alias => $templatePath ) {
+			// Alias is optional
+			if ( is_int( $alias ) ) {
+				$alias = $templatePath;
+			}
+			$localPath = $this->getLocalPath( $templatePath );
+			if ( file_exists( $localPath ) ) {
+				$content = file_get_contents( $localPath );
+				$templates[ $alias ] = $content;
+			} else {
+				$msg = __METHOD__ . ": template file not found: \"$localPath\"";
+				wfDebugLog( 'resourceloader', $msg );
+				throw new MWException( $msg );
+			}
+		}
+		return $templates;
 	}
 }
