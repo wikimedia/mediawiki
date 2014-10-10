@@ -287,7 +287,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		$res = $this->select( __METHOD__ );
 		$count = 0;
-		$result = $this->getResult();
 		foreach ( $res as $row ) {
 			$ns = $this->hasNS ? $row->{$this->bl_ns} : NS_FILE;
 
@@ -319,10 +318,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$parentID = $this->pageMap[$ns][$row->{$this->bl_title}];
 				// Put all the results in an array first
 				$this->resultArr[$parentID]['redirlinks'][$row->page_id] = $a;
-				$result->setIndexedTagName(
-					$this->resultArr[$parentID]['redirlinks'],
-					$this->bl_code
-				);
 			} else {
 				$resultPageSet->processDbRow( $row );
 			}
@@ -427,7 +422,15 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			// Try to add the result data in one go and pray that it fits
-			$fit = $result->addValue( 'query', $this->getModuleName(), array_values( $this->resultArr ) );
+			$code = $this->bl_code;
+			$data = array_map( function ( $arr ) use ( $result, $code ) {
+				if ( isset( $arr['redirlinks'] ) ) {
+					$arr['redirlinks'] = array_values( $arr['redirlinks'] );
+					$result->setIndexedTagName( $arr['redirlinks'], $code );
+				}
+				return $arr;
+			}, array_values( $this->resultArr ) );
+			$fit = $result->addValue( 'query', $this->getModuleName(), $data );
 			if ( !$fit ) {
 				// It didn't fit. Add elements one by one until the
 				// result is full.
