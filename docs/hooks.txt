@@ -992,6 +992,11 @@ $title: the diff page title (nullable)
 $old: the ?old= param value from the url
 $new: the ?new= param value from the url
 
+'GetDiffEngineClass': Called when getting the diff engine class name.
+Return false for valid class name in $diffEngineClass or true for the default diff engine.
+$context: IContextSource context to be used for diff
+&$diffEngineClass: output parameter, class name of diff engine to be used for diff
+
 'DiffRevisionTools': Override or extend the revision tools available from the
 diff view, i.e. undo, etc.
 $newRev: Revision object of the "new" revision
