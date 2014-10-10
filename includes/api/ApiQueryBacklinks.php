@@ -422,7 +422,15 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			// Try to add the result data in one go and pray that it fits
-			$fit = $result->addValue( 'query', $this->getModuleName(), array_values( $this->resultArr ) );
+			$code = $this->bl_code;
+			$data = array_map( function ( $arr ) use ( $result, $code ) {
+				if ( isset( $arr['redirlinks'] ) ) {
+					$arr['redirlinks'] = array_values( $arr['redirlinks'] );
+					$result->setIndexedTagName( $arr['redirlinks'], $code );
+				}
+				return $arr;
+			}, array_values( $this->resultArr ) );
+			$fit = $result->addValue( 'query', $this->getModuleName(), $data );
 			if ( !$fit ) {
 				// It didn't fit. Add elements one by one until the
 				// result is full.
