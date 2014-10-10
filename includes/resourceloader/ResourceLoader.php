@@ -974,12 +974,20 @@ class ResourceLoader {
 					case 'messages':
 						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
 						break;
+					case 'templates':
+						$out .= Xml::encodeJsCall(
+							'mw.templates.set',
+							array( (object)$module->getTemplates() ),
+							ResourceLoader::inDebugMode()
+						);
+						break;
 					default:
 						$out .= self::makeLoaderImplementScript(
 							$name,
 							$scripts,
 							$styles,
-							new XmlJsCode( $messagesBlob )
+							new XmlJsCode( $messagesBlob ),
+							$module->getTemplates()
 						);
 						break;
 				}
@@ -1044,30 +1052,38 @@ class ResourceLoader {
 	 * @param mixed $messages List of messages associated with this module. May either be an
 	 *   associative array mapping message key to value, or a JSON-encoded message blob containing
 	 *   the same data, wrapped in an XmlJsCode object.
+	 * @param array $templates where keys are name of templates and values are the source of
+	 *   the template.
 	 * @throws MWException
 	 * @return string
 	 */
-	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
+	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages,
+		$templates = array()
+	) {
 		if ( is_string( $scripts ) ) {
 			$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
 		} elseif ( !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
-		return Xml::encodeJsCall(
-			'mw.loader.implement',
-			array(
-				$name,
-				$scripts,
-				// Force objects. mw.loader.implement requires them to be javascript objects.
-				// Although these variables are associative arrays, which become javascript
-				// objects through json_encode. In many cases they will be empty arrays, and
-				// PHP/json_encode() consider empty arrays to be numerical arrays and
-				// output javascript "[]" instead of "{}". This fixes that.
-				(object)$styles,
-				(object)$messages
-			),
-			ResourceLoader::inDebugMode()
+
+		$args = array(
+			$name,
+			$scripts,
+			// Force objects. mw.loader.implement requires them to be javascript objects.
+			// Although these variables are associative arrays, which become javascript
+			// objects through json_encode. In many cases they will be empty arrays, and
+			// PHP/json_encode() consider empty arrays to be numerical arrays and
+			// output javascript "[]" instead of "{}". This fixes that.
+			(object)$styles,
+			(object)$messages,
 		);
+
+		// Since templates are optional only pass when this is the case
+		if ( count( $templates ) > 0 ) {
+			$args[] = (object)$templates;
+		}
+
+		return Xml::encodeJsCall( 'mw.loader.implement', $args, ResourceLoader::inDebugMode() );
 	}
 
 	/**
