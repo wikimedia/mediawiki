@@ -485,6 +485,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			$filterSelection = Html::rawElement( 'td', array( 'colspan' => 2 ), '' );
 		}
 
+		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+
 		$labelNewbies = Xml::radioLabel(
 			$this->msg( 'sp-contributions-newbies' )->text(),
 			'contribs',
@@ -505,9 +507,15 @@ class SpecialContributions extends IncludableSpecialPage {
 			'target',
 			$this->opts['target'],
 			'text',
-			array( 'size' => '40', 'required' => '', 'class' => 'mw-input mw-ui-input-inline' ) +
-				( $this->opts['target'] ? array() : array( 'autofocus' )
-				)
+			array(
+				'size' => '40',
+				'required' => '',
+				'class' => array(
+					'mw-input',
+					'mw-ui-input-inline',
+					'mw-autocomplete-user', // used by mediawiki.userSuggest
+				),
+			) +	( $this->opts['target'] ? array() : array( 'autofocus' ) )
 		);
 		$targetSelection = Html::rawElement(
 			'td',
