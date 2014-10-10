@@ -626,8 +626,14 @@ abstract class ContentHandler {
 	public function createDifferenceEngine( IContextSource $context, $old = 0, $new = 0,
 		$rcid = 0, //FIXME: Deprecated, no longer used
 		$refreshCache = false, $unhide = false ) {
-		$diffEngineClass = $this->getDiffEngineClass();
 
+		// hook: get diff engine class name
+		$diffEngineClass = '';
+		if ( wfRunHooks( 'GetDiffEngineClass', array( &$context, &$diffEngineClass ) ) ) {
+
+			// use default diff engine
+			$diffEngineClass = $this->getDiffEngineClass();
+		}
 		return new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
 	}
 
