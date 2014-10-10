@@ -287,6 +287,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		$res = $this->select( __METHOD__ );
 		$count = 0;
+		$result = $this->getResult();
 		foreach ( $res as $row ) {
 			$ns = $this->hasNS ? $row->{$this->bl_ns} : NS_FILE;
 
@@ -318,6 +319,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$parentID = $this->pageMap[$ns][$row->{$this->bl_title}];
 				// Put all the results in an array first
 				$this->resultArr[$parentID]['redirlinks'][$row->page_id] = $a;
+				$result->setIndexedTagName(
+ 					$this->resultArr[$parentID]['redirlinks'],
+ 					$this->bl_code
+				);
 			} else {
 				$resultPageSet->processDbRow( $row );
 			}
