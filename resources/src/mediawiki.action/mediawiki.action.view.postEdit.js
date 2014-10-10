@@ -30,6 +30,7 @@
 			data.message = $.parseHTML( mw.message( 'postedit-confirmation-saved', data.user || mw.user ).escaped() );
 		}
 
+		// FIXME: use template
 		$div = $(
 			'<div class="postedit-container">' +
 				'<div class="postedit">' +

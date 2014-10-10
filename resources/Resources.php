@@ -840,6 +840,9 @@ return array(
 		'position' => 'bottom',
 	),
 	'mediawiki.feedback' => array(
+		'templates' => array(
+			'resources/src/mediawiki/templates/dialog.html',
+		),
 		'scripts' => 'resources/src/mediawiki/mediawiki.feedback.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.feedback.css',
 		'dependencies' => array(
@@ -936,6 +939,12 @@ return array(
 		'dependencies' => array(
 			'jquery.byteLength',
 			'mediawiki.util',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.templates' => array(
+		'scripts' => array(
+			'resources/src/mediawiki/mediawiki.templates.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
@@ -1326,6 +1335,9 @@ return array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.undelete.js',
 	),
 	'mediawiki.special.upload' => array(
+		'templates' => array(
+			'resources/src/mediawiki.special/templates/thumbnail.html',
+		),
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.upload.js',
 		'messages' => array(
 			'widthheight',
