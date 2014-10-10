@@ -1575,7 +1575,7 @@
 	"wlheader-enotif": "Posta bidezko ohartarazpena gaituta dago.",
 	"wlheader-showupdated": "Bisitatu zenituen azken alditik aldaketak izan dituzten orrialdeak '''beltzez''' nabarmenduta daude.",
 	"wlnote": "Jarraian {{PLURAL:$2|ikus daiteke azken orduko|ikus daitezke azken '''$2''' orduetako}} azken {{PLURAL:$1|aldaketa|'''$1''' aldaketak}}, $3, $4 gisa.",
-	"wlshowlast": "Erakutsi azken $1 orduak $2 egunak",
+	"wlshowlast": "Erakutsi azken $1 orduak, azken $2 egunak",
 	"watchlist-options": "Jarraitze-zerrendaren aukerak",
 	"watching": "Zerrendan gehitzen...",
 	"unwatching": "Zerrendatik kentzen...",

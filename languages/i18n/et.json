@@ -3136,5 +3136,15 @@
 	"mediastatistics-header-office": "Kontoritarkvara failid",
 	"mediastatistics-header-text": "Tekstifailid",
 	"mediastatistics-header-executable": "Täitmisfailid",
-	"mediastatistics-header-archive": "Tihendatud vormingud"
+	"mediastatistics-header-archive": "Tihendatud vormingud",
+	"json-warn-trailing-comma": "$1 lõpukoma eemaldati JSON-ist.",
+	"json-error-unknown": "JSON-iga oli probleem. Tõrge: $1",
+	"json-error-depth": "Suurim võimalik pinusügavus on ületatud.",
+	"json-error-state-mismatch": "Vigane või väärdunud JSON",
+	"json-error-ctrl-char": "Juhtmärgi tõrge; see võib olla valesti kodeeritud",
+	"json-error-syntax": "Süntaksitõrge",
+	"json-error-utf8": "Väärdunud UTF-8 märgid; need võivad olla valesti kodeeritud",
+	"json-error-recursion": "Vähemalt üks rekursiivne viide kodeeritavas väärtuses",
+	"json-error-inf-or-nan": "Vähemalt üks NAN- või INF-väärtus kodeeritavas väärtuses",
+	"json-error-unsupported-type": "Ette tuli tüüp, mille väärtust ei saa kodeerida"
 }

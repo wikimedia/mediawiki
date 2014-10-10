@@ -1921,7 +1921,7 @@
 	"isimage": "وصلة ملف",
 	"whatlinkshere-prev": "{{PLURAL:$1|السابق|ال$1 السابقة}}",
 	"whatlinkshere-next": "{{PLURAL:$1|القادمة|ال$1 القادمة}}",
-	"whatlinkshere-links": "← وصلات",
+	"whatlinkshere-links": "وصلات",
 	"whatlinkshere-hideredirs": "$1 التحويلات",
 	"whatlinkshere-hidetrans": "$1 التضمينات",
 	"whatlinkshere-hidelinks": "$1 الوصلات",

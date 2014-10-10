@@ -2922,6 +2922,7 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|byte|byte}}",
 	"expand_templates_preview": "Anteprimma",
 	"pagelang-name": "Paggena",
+	"mediastatistics-header-unknown": "Scanusciuto",
 	"mediastatistics-header-audio": "Audio",
 	"mediastatistics-header-video": "Video",
 	"json-error-unknown": "Ce sta nu probblema c' 'o JSON. Errore: $1",

@@ -3189,7 +3189,12 @@
 	"mediastatistics-header-archive": "Komprimerade format",
 	"json-warn-trailing-comma": "$1 avslutande {{PLURAL:$1|kommatecken}} togs bort från JSON",
 	"json-error-unknown": "Det var ett problem med JSON. Fel: $1",
+	"json-error-depth": "Listans maximala djup har överskridits",
 	"json-error-state-mismatch": "Ogiltig eller felaktig JSON",
+	"json-error-ctrl-char": "Kontrollteckenfel, möjligen felaktigt kodad",
 	"json-error-syntax": "Syntaxfel",
-	"json-error-utf8": "Felaktiga UTF-8-tecken, möjligen felkodade"
+	"json-error-utf8": "Felaktiga UTF-8-tecken, möjligen felkodade",
+	"json-error-recursion": "En eller flera rekursiva referenser i värde som ska kodas",
+	"json-error-inf-or-nan": "En eller flera NAN- eller INF-värden i värdet som ska kodas",
+	"json-error-unsupported-type": "Ett värde av en typ som inte kan kodas angavs"
 }

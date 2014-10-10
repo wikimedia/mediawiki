@@ -1717,7 +1717,7 @@
 	"mywatchlist": "주시문서 목록",
 	"watchlistfor2": "사용자:$1 $2",
 	"nowatchlist": "주시하는 문서가 아직 없습니다.",
-	"watchlistanontext": "주시문서 목록을 보거나 고치려면 $1 하세요.",
+	"watchlistanontext": "주시문서 목록을 보거나 고치려면 로그인하세요.",
 	"watchnologin": "로그인하지 않음",
 	"addwatch": "주시문서 목록에 추가",
 	"addedwatchtext": "\"[[:$1]]\" 문서를 [[Special:Watchlist|주시문서 목록]]에 추가했습니다.\n앞으로 이 문서나 관련된 토론 문서가 바뀌면 보일 것입니다.",
