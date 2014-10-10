@@ -31,8 +31,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/** @var string Local base path, see __construct() */
 	protected $localBasePath = '';
 
+	/** @var string The local path to where templates are located, see __construct() */
+	protected $localTemplateBasePath = '';
+
 	/** @var string Remote base path, see __construct() */
 	protected $remoteBasePath = '';
+
+	/** @var array Saves a list of the templates named by the modules. */
+	protected $templates = array();
 
 	/**
 	 * @var array List of paths to JavaScript files to always include
@@ -267,6 +273,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					sort( $option );
 
 					$this->{$member} = $option;
+					break;
+				// templates
+				case 'localTemplateBasePath':
+					$this->{$member} = (string) $option;
+					break;
+				case 'templates':
+					$this->dependencies[] = 'mediawiki.templates';
+					$this->{$member} = (array) $option;
 					break;
 				// Single strings
 				case 'group':
@@ -544,6 +558,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$files[] = $this->skipFunction;
 		}
 		$files = array_map( array( $this, 'getLocalPath' ), $files );
+		// Templates
+		$templateFiles = array_map( array( $this, 'getLocalTemplatePath' ), $this->templates );
+		$files = array_merge( $files, $templateFiles );
 		// File deps need to be treated separately because they're already prefixed
 		$files = array_merge( $files, $this->getFileDependencies( $context->getSkin() ) );
 
@@ -615,6 +632,18 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		return "{$this->localBasePath}/$path";
+	}
+
+	/**
+	 * Note: Generally you don't want to use this, but this is for backwards compatibility with Flow
+	 * and MobileFrontend where the template path differs from the local path
+	 * @see Extension:Mantle
+	 * @deprecated
+	 * @param string|ResourceLoaderFilePath $path
+	 * @return string
+	 */
+	protected function getLocalTemplatePath( $path ) {
+		return $this->getLocalPath( $path );
 	}
 
 	/**
@@ -958,5 +987,27 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
 		return ResourceLoader::getLessCompiler( $this->getConfig() );
+	}
+
+	/**
+	 * Takes named templates by the module and adds them to the JavaScript output
+	 *
+	 * @return array of templates mapping template alias to content
+	 */
+	function getTemplates() {
+		$templates = array();
+
+		foreach( $this->templates as $alias => $templatePath ) {
+			// Alias is optional
+			if ( is_int( $alias ) ) {
+				$alias = $templatePath;
+			}
+			$localPath = $this->getLocalTemplatePath( $templatePath );
+			if ( file_exists( $localPath ) ) {
+				$content = file_get_contents( $localPath );
+				$templates[ $alias ] = $content;
+			}
+		}
+		return $templates;
 	}
 }
