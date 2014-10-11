@@ -39,6 +39,16 @@ production.
   SVG images in Internet Explorer 6 and 7, as they don't support them anyway.
 * (bug 67021) On Special:BookSources, corrected validation of ISBNs (both
   10- and 13-digit forms) containing "X".
+* Page moving was refactored into a MovePage class. As part of that:
+** The AbortMove hook was removed.
+** MovePageIsValidMove is for extensions to specify whether a page
+   cannot be moved for technical reasons, and should not be overriden.
+** MovePageCheckPermissions is for checking whether the given user is
+   allowed to make the move.
+** Title::moveNoAuth() was deprecated. Use the MovePage class instead.
+** Title::moveTo() was deprecated. Use the MovePage class instead.
+** Title::isValidMoveOperation() broken down into MovePage::isValidMove()
+   and MovePage::checkPermissions().
 
 === Action API changes in 1.25 ===
 * (bug 65403) XML tag highlighting is now only performed for formats

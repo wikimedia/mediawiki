@@ -260,13 +260,6 @@ $password: the password being submitted, not yet checked for validity
           a machine API rather than the HTML user interface.
 &$msg: the message identifier for abort reason (new in 1.18, not available before 1.18)
 
-'AbortMove': Allows to abort moving an article (title).
-$old: old title
-$nt: new title
-$user: user who is doing the move
-$err: error message
-$reason: the reason for the move (added in 1.13)
-
 'AbortNewAccount': Return false to cancel explicit account creation.
 $user: the User object about to be created (read-only, incomplete)
 &$msg: out parameter: HTML to display on abort
@@ -1834,6 +1827,18 @@ $db: The database object to be queried.
 &$conds: Conditions in the query.
 &$opts: Options for the query.
 &$join_conds: Join conditions for the query.
+
+'MovePageCheckPermissions': Specify whether the user is allowed to move the page.
+$oldTitle: Title object of the current (old) location
+$newTitle: Title object of the new location
+$user: User making the move
+$reason: string of the reason provided by the user
+$status: Status object to pass error messages to
+
+'MovePageIsValidMove': Specify whether a page can be moved for technical reasons.
+$oldTitle: Title object of the current (old) location
+$newTitle: Title object of the new location
+$status: Status object to pass error messages to
 
 'BaseTemplateToolbox': Called by BaseTemplate when building the $toolbox array
 and returning it for the skin to output. You can add items to the toolbox while
