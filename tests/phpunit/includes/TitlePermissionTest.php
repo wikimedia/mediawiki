@@ -403,7 +403,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->setTitle( NS_USER );
 		$this->setUserPerm( '' );
-		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'namespaceprotected', 'User', 'bogus' ) ),
+		$this->assertEquals( array( array( 'badaccess-group0' ),
+				array( 'namespaceprotected', 'User', 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MEDIAWIKI );
@@ -630,7 +631,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( false,
 			$this->title->userCan( 'bogus', $this->user ) );
-		$this->assertEquals( array( array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ),
+		$this->assertEquals( array(
+				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ),
 				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ),
 				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );

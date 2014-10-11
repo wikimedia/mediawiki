@@ -315,7 +315,8 @@ class DeletedContributionsPage extends SpecialPage {
 			return;
 		}
 
-		$options['limit'] = $request->getInt( 'limit', $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
+		$options['limit'] = $request->getInt( 'limit',
+			$this->getConfig()->get( 'QueryPageDefaultLimit' ) );
 		$options['target'] = $target;
 
 		$userObj = User::newFromName( $target, false );

@@ -629,7 +629,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function buildRemoveLine( $title ) {
 		$link = Linker::link( $title );
 
-		$tools['talk'] = Linker::link( $title->getTalkPage(), $this->msg( 'talkpagelinktext' )->escaped() );
+		$tools['talk'] = Linker::link(
+			$title->getTalkPage(),
+			$this->msg( 'talkpagelinktext' )->escaped()
+		);
 
 		if ( $title->exists() ) {
 			$tools['history'] = Linker::linkKnown(

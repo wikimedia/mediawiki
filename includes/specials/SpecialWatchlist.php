@@ -288,7 +288,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		);
 	}
 
-	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) {
+	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options,
+		&$join_conds, $opts
+	) {
 		return parent::runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts )
 			&& wfRunHooks(
 				'SpecialWatchlistQuery',
@@ -367,7 +369,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$updated = false;
 			}
 
-			if ( $this->getConfig()->get( 'RCShowWatchingUsers' ) && $user->getOption( 'shownumberswatching' ) ) {
+			if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
+				&& $user->getOption( 'shownumberswatching' )
+			) {
 				$rc->numberofWatchingusers = $dbr->selectField( 'watchlist',
 					'COUNT(*)',
 					array(
@@ -503,7 +507,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$form .= $this->msg( 'nowatchlist' )->parse() . "\n";
 		} else {
 			$form .= $this->msg( 'watchlist-details' )->numParams( $numItems )->parse() . "\n";
-			if ( $this->getConfig()->get( 'EnotifWatchlist' ) && $user->getOption( 'enotifwatchlistpages' ) ) {
+			if ( $this->getConfig()->get( 'EnotifWatchlist' )
+				&& $user->getOption( 'enotifwatchlistpages' )
+			) {
 				$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
 			}
 			if ( $showUpdatedMarker ) {
