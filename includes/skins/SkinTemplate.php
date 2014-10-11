@@ -844,7 +844,7 @@ class SkinTemplate extends Skin {
 		);
 
 		// parameters
-		$action = Action::getActionName( $this );
+		$action = $request->getVal( 'action', 'view' );
 
 		$userCanRead = $title->quickUserCan( 'read', $user );
 
