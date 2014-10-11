@@ -69,14 +69,14 @@ class MovePage {
 		$oldid = $this->oldTitle->getArticleID();
 
 		if ( strlen( $this->newTitle->getDBkey() ) < 1 ) {
-			$errors[] = array( 'articleexists' );
+			$status->fatal( 'articleexists' );
 		}
 		if (
 			( $this->oldTitle->getDBkey() == '' ) ||
 			( !$oldid ) ||
 			( $this->newTitle->getDBkey() == '' )
 		) {
-			$errors[] = array( 'badarticleerror' );
+			$status->fatal( 'badarticleerror' );
 		}
 
 		// Content model checks
