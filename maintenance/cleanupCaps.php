@@ -37,6 +37,9 @@ require_once __DIR__ . '/cleanupTable.inc';
  * @ingroup Maintenance
  */
 class CapsCleanup extends TableCleanup {
+
+	private $user;
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Script to cleanup capitalization";
@@ -44,13 +47,13 @@ class CapsCleanup extends TableCleanup {
 	}
 
 	public function execute() {
-		global $wgCapitalLinks, $wgUser;
+		global $wgCapitalLinks;
 
 		if ( $wgCapitalLinks ) {
 			$this->error( "\$wgCapitalLinks is on -- no need for caps links cleanup.", true );
 		}
 
-		$wgUser = User::newFromName( 'Conversion script' );
+		$this->user = User::newFromName( 'Conversion script' );
 
 		$this->namespace = intval( $this->getOption( 'namespace', 0 ) );
 		$this->dryrun = $this->hasOption( 'dry-run' );
@@ -87,7 +90,9 @@ class CapsCleanup extends TableCleanup {
 			$this->output( "\"$display\" -> \"$targetDisplay\": DRY RUN, NOT MOVED\n" );
 			$ok = true;
 		} else {
-			$ok = $current->moveTo( $target, false, 'Converting page titles to lowercase' );
+			$mp = new MovePage( $current, $target );
+			$status = $mp->move( $this->user, 'Converting page titles to lowercase', true );
+			$ok = $status->isOK() ? 'OK' : $status->getWikiText();
 			$this->output( "\"$display\" -> \"$targetDisplay\": $ok\n" );
 		}
 		if ( $ok === true ) {
