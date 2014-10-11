@@ -2535,7 +2535,7 @@ class Title {
 	 * @return array|bool An associative array representing any existent title
 	 *   protection, or false if there's none.
 	 */
-	private function getTitleProtection() {
+	public function getTitleProtection() {
 		// Can't protect pages in special namespaces
 		if ( $this->getNamespace() < 0 ) {
 			return false;
@@ -3578,10 +3578,12 @@ class Title {
 	/**
 	 * Move this page without authentication
 	 *
+	 * @deprecated since 1.25 use MovePage class instead
 	 * @param Title $nt The new page Title
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveNoAuth( &$nt ) {
+		wfDeprecated( __METHOD__, '1.25' );
 		return $this->moveTo( $nt, false );
 	}
 
@@ -3589,10 +3591,9 @@ class Title {
 	 * Check whether a given move operation would be valid.
 	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
 	 *
-	 * @todo finish moving this into MovePage
+	 * @deprecated since 1.25, use MovePage's methods instead
 	 * @param Title $nt The new title
-	 * @param bool $auth Indicates whether $wgUser's permissions
-	 *  should be checked
+	 * @param bool $auth Ignored
 	 * @param string $reason Is the log summary of the move, used for spam checking
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
@@ -3606,54 +3607,12 @@ class Title {
 		}
 
 		$mp = new MovePage( $this, $nt );
-		$errors = $mp->isValidMove()->getErrorsArray();
+		$errors = wfMergeErrorArrays(
+			$mp->isValidMove()->getErrorsArray(),
+			$mp->checkPermissions( $wgUser, $reason )->getErrorsArray()
+		);
 
-		$newid = $nt->getArticleID();
-
-		if ( $auth ) {
-			$errors = wfMergeErrorArrays( $errors,
-				$this->getUserPermissionsErrors( 'move', $wgUser ),
-				$this->getUserPermissionsErrors( 'edit', $wgUser ),
-				$nt->getUserPermissionsErrors( 'move-target', $wgUser ),
-				$nt->getUserPermissionsErrors( 'edit', $wgUser ) );
-		}
-
-		$match = EditPage::matchSummarySpamRegex( $reason );
-		if ( $match !== false ) {
-			// This is kind of lame, won't display nice
-			$errors[] = array( 'spamprotectiontext' );
-		}
-
-		$err = null;
-		if ( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err, $reason ) ) ) {
-			$errors[] = array( 'hookaborted', $err );
-		}
-
-		# The move is allowed only if (1) the target doesn't exist, or
-		# (2) the target is a redirect to the source, and has no history
-		# (so we can undo bad moves right after they're done).
-
-		if ( 0 != $newid ) { # Target exists; check for validity
-			if ( !$this->isValidMoveTarget( $nt ) ) {
-				$errors[] = array( 'articleexists' );
-			}
-		} else {
-			$tp = $nt->getTitleProtection();
-			$right = $tp['pt_create_perm'];
-			if ( $right == 'sysop' ) {
-				$right = 'editprotected'; // B/C
-			}
-			if ( $right == 'autoconfirmed' ) {
-				$right = 'editsemiprotected'; // B/C
-			}
-			if ( $tp and !$wgUser->isAllowed( $right ) ) {
-				$errors[] = array( 'cantmove-titleprotected' );
-			}
-		}
-		if ( empty( $errors ) ) {
-			return true;
-		}
-		return $errors;
+		return $errors ? : true;
 	}
 
 	/**
@@ -3678,7 +3637,7 @@ class Title {
 	/**
 	 * Move a title to a new location
 	 *
-	 * @todo Deprecate this in favor of MovePage
+	 * @deprecated since 1.25, use the MovePage class instead
 	 * @param Title $nt The new title
 	 * @param bool $auth Indicates whether $wgUser's permissions
 	 *  should be checked
@@ -3699,8 +3658,6 @@ class Title {
 		if ( $auth && !$wgUser->isAllowed( 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
-
-		wfRunHooks( 'TitleMove', array( $this, $nt, $wgUser ) );
 
 		$mp = new MovePage( $this, $nt );
 		$status = $mp->move( $wgUser, $reason, $createRedirect );
