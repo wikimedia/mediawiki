@@ -258,6 +258,7 @@ class UsercreateTemplate extends BaseTemplate {
 					$this->getMsg( $this->data['loggedin'] ? 'createacct-another-submit' : 'createacct-submit' ),
 					$attrs = array(
 						'id' => 'wpCreateaccount',
+						'name' => 'wpCreateaccount',
 						'tabindex' => $tabIndex++
 					),
 					array(
