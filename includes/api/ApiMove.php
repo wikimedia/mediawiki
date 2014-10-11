@@ -72,9 +72,9 @@ class ApiMove extends ApiBase {
 
 		// Move the page
 		$toTitleExists = $toTitle->exists();
-		$retval = $fromTitle->moveTo( $toTitle, true, $params['reason'], !$params['noredirect'] );
-		if ( $retval !== true ) {
-			$this->dieUsageMsg( reset( $retval ) );
+		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'] );
+		if ( !$status->isOK() ) {
+			$this->dieStatus( $status );
 		}
 
 		$r = array(
@@ -99,8 +99,8 @@ class ApiMove extends ApiBase {
 		// Move the talk page
 		if ( $params['movetalk'] && $fromTalk->exists() && !$fromTitle->isTalkPage() ) {
 			$toTalkExists = $toTalk->exists();
-			$retval = $fromTalk->moveTo( $toTalk, true, $params['reason'], !$params['noredirect'] );
-			if ( $retval === true ) {
+			$status = $this->movePage( $fromTalk, $toTalk, $params['reason'], !$params['noredirect'] );
+			if ( $status->isOK() ) {
 				$r['talkfrom'] = $fromTalk->getPrefixedText();
 				$r['talkto'] = $toTalk->getPrefixedText();
 				if ( $toTalkExists ) {
@@ -108,9 +108,9 @@ class ApiMove extends ApiBase {
 				}
 			} else {
 				// We're not gonna dieUsage() on failure, since we already changed something
-				$parsed = $this->parseMsg( reset( $retval ) );
-				$r['talkmove-error-code'] = $parsed['code'];
-				$r['talkmove-error-info'] = $parsed['info'];
+				$error = $this->getErrorFromStatus( $status );
+				$r['talkmove-error-code'] = $error[0];
+				$r['talkmove-error-info'] = $error[1];
 			}
 		}
 
@@ -145,6 +145,28 @@ class ApiMove extends ApiBase {
 		$this->setWatch( $watch, $toTitle, 'watchmoves' );
 
 		$result->addValue( null, $this->getModuleName(), $r );
+	}
+
+	/**
+	 * @param Title $from
+	 * @param Title $to
+	 * @param string $reason
+	 * @param bool $createRedirect
+	 * @return Status
+	 */
+	protected function movePage( Title $from, Title $to, $reason, $createRedirect ) {
+		$mp = new MovePage( $from, $to );
+		$valid = $mp->isValidMove();
+		if ( !$valid->isOK() ) {
+			return $valid;
+		}
+
+		$permStatus = $mp->checkPermissions( $this->getUser(), $reason );
+		if ( !$permStatus->isOK() ) {
+			return $permStatus;
+		}
+
+		return $mp->move( $this->getUser(), $reason, $createRedirect );
 	}
 
 	/**
