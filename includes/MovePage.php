@@ -42,6 +42,10 @@ class MovePage {
 		$this->newTitle = $newTitle;
 	}
 
+	public function checkPermissions( User $user ) {
+
+	}
+
 	/**
 	 * Does various sanity checks that the move is
 	 * valid. Only things based on the two titles
@@ -69,14 +73,14 @@ class MovePage {
 		$oldid = $this->oldTitle->getArticleID();
 
 		if ( strlen( $this->newTitle->getDBkey() ) < 1 ) {
-			$errors[] = array( 'articleexists' );
+			$status->fatal( 'articleexists' );
 		}
 		if (
 			( $this->oldTitle->getDBkey() == '' ) ||
 			( !$oldid ) ||
 			( $this->newTitle->getDBkey() == '' )
 		) {
-			$errors[] = array( 'badarticleerror' );
+			$status->fatal( 'badarticleerror' );
 		}
 
 		// Content model checks
