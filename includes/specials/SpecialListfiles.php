@@ -203,7 +203,9 @@ class ImageListPager extends TablePager {
 			} else {
 				return false;
 			}
-		} elseif ( $this->getConfig()->get( 'MiserMode' ) && $this->mShowAll /* && mUserName === null */ ) {
+		} elseif ( $this->getConfig()->get( 'MiserMode' )
+			&& $this->mShowAll /* && mUserName === null */
+		) {
 			// no oi_timestamp index, so only alphabetical sorting in this case.
 			if ( $field === 'img_name' ) {
 				return true;

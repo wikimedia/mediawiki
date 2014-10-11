@@ -1218,7 +1218,8 @@ class Article implements Page {
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					array( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ) );
-			} elseif ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) { # Show log extract if the user is currently blocked
+			} elseif ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
+				# Show log extract if the user is currently blocked
 				LogEventsList::showLogExtract(
 					$outputPage,
 					'block',
@@ -1381,9 +1382,14 @@ class Article implements Page {
 			: 'revision-info';
 
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->addSubtitle( "<div id=\"mw-{$infomsg}\">" . wfMessage( $infomsg,
-			$td )->rawParams( $userlinks )->params( $revision->getID(), $tddate,
-			$tdtime, $revision->getUserText() )->rawParams( Linker::revComment( $revision, true, true ) )->parse() . "</div>" );
+		$outputPage->addSubtitle( "<div id=\"mw-{$infomsg}\">" .
+			wfMessage( $infomsg, $td )
+				->rawParams( $userlinks )
+				->params( $revision->getID(), $tddate, $tdtime, $revision->getUserText() )
+				->rawParams( Linker::revComment( $revision, true, true ) )
+				->parse() .
+			"</div>"
+		);
 
 		$lnk = $current
 			? wfMessage( 'currentrevisionlink' )->escaped()
@@ -1631,10 +1637,11 @@ class Article implements Page {
 		if ( $hasHistory ) {
 			$title = $this->getTitle();
 
-			// The following can use the real revision count as this is only being shown for users that can delete
-			// this page.
-			// This, as a side-effect, also makes sure that the following query isn't being run for pages with a
-			// larger history, unless the user has the 'bigdelete' right (and is about to delete this page).
+			// The following can use the real revision count as this is only being shown for users
+			// that can delete this page.
+			// This, as a side-effect, also makes sure that the following query isn't being run for
+			// pages with a larger history, unless the user has the 'bigdelete' right
+			// (and is about to delete this page).
 			$dbr = wfGetDB( DB_SLAVE );
 			$revisions = $edits = (int)$dbr->selectField(
 				'revision',
@@ -1644,7 +1651,8 @@ class Article implements Page {
 			);
 
 			// @todo FIXME: i18n issue/patchwork message
-			$this->getContext()->getOutput()->addHTML( '<strong class="mw-delete-warning-revisions">' .
+			$this->getContext()->getOutput()->addHTML(
+				'<strong class="mw-delete-warning-revisions">' .
 				wfMessage( 'historywarning' )->numParams( $revisions )->parse() .
 				wfMessage( 'word-separator' )->plain() . Linker::linkKnown( $title,
 					wfMessage( 'history' )->escaped(),

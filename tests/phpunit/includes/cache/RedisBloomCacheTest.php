@@ -57,7 +57,8 @@ class BloomCacheRedisTest extends MediaWikiTestCase {
 			'value2898',
 			'value2975'
 		);
-		$this->assertEquals( $eFalsePositives, $falsePositives, "Correct number of false positives found." );
+		$this->assertEquals( $eFalsePositives, $falsePositives,
+			"Correct number of false positives found." );
 	}
 
 	protected function tearDown() {

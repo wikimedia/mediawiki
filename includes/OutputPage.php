@@ -3512,7 +3512,9 @@ class OutputPage extends ContextSource {
 		$moduleStyles[] = 'user.groups';
 
 		// Per-user custom styles
-		if ( $this->getConfig()->get( 'AllowUserCss' ) && $this->getTitle()->isCssSubpage() && $this->userCanPreview() ) {
+		if ( $this->getConfig()->get( 'AllowUserCss' ) && $this->getTitle()->isCssSubpage()
+			&& $this->userCanPreview()
+		) {
 			// We're on a preview of a CSS subpage
 			// Exclude this page from the user module in case it's in there (bug 26283)
 			$link = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES, false,

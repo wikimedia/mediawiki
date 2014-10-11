@@ -779,7 +779,8 @@ class EditPage {
 				// TODO: softened the check for cutover.  Once we determine
 				// that it is safe, we should complete the transition by
 				// removing the "edittime" clause.
-				$this->incompleteForm = ( !$request->getVal( 'wpUltimateParam' ) && is_null( $this->edittime ) );
+				$this->incompleteForm = ( !$request->getVal( 'wpUltimateParam' )
+					&& is_null( $this->edittime ) );
 			}
 			if ( $this->incompleteForm ) {
 				# If the form is incomplete, force to preview.
@@ -2137,7 +2138,8 @@ class EditPage {
 			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
 					array( 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) ) );
-			} elseif ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) { # Show log extract if the user is currently blocked
+			} elseif ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
+				# Show log extract if the user is currently blocked
 				LogEventsList::showLogExtract(
 					$wgOut,
 					'block',
@@ -2204,7 +2206,10 @@ class EditPage {
 			if ( $title instanceof Title && $title->exists() && $title->userCan( 'read' ) ) {
 				global $wgOut;
 				// Added using template syntax, to take <noinclude>'s into account.
-				$wgOut->addWikiTextTitleTidy( '<div class="mw-editintro">{{:' . $title->getFullText() . '}}</div>', $this->mTitle );
+				$wgOut->addWikiTextTitleTidy(
+					'<div class="mw-editintro">{{:' . $title->getFullText() . '}}</div>',
+					$this->mTitle
+				);
 				return true;
 			}
 		}
