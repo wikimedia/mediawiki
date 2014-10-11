@@ -150,6 +150,7 @@ class UserloginTemplate extends BaseTemplate {
 				<?php
 				$attrs = array(
 					'id' => 'wpLoginAttempt',
+					'name' => 'wpLoginAttempt',
 					'tabindex' => '6',
 				);
 				$modifiers = array(
