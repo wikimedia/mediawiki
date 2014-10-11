@@ -3323,7 +3323,7 @@
 	"mediastatistics-table-totalbytes": "Taille combinée",
 	"mediastatistics-header-unknown": "Inconnu",
 	"mediastatistics-header-bitmap": "Images raster",
-	"mediastatistics-header-drawing": "Desseins (images vectorielles)",
+	"mediastatistics-header-drawing": "Dessins (images vectorielles)",
 	"mediastatistics-header-audio": "Audio",
 	"mediastatistics-header-video": "Vidéos",
 	"mediastatistics-header-multimedia": "Média riche",

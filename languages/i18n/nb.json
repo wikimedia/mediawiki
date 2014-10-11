@@ -955,7 +955,7 @@
 	"youremail": "E-post:",
 	"username": "{{GENDER:$1|Brukernavn}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Medlem}} i følgende {{PLURAL:$1|gruppe|grupper}}:",
-	"prefs-registration": "Registreringstid:",
+	"prefs-registration": "Registreringstidspunkt:",
 	"yourrealname": "Virkelig navn:",
 	"yourlanguage": "Språk:",
 	"yourvariant": "Språkvariant for innhold:",

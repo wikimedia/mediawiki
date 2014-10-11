@@ -3313,5 +3313,8 @@
 	"json-error-state-mismatch": "JSON が無効か、または破損しています",
 	"json-error-ctrl-char": "制御文字のエラーです。おそらく正しく符号化されていません",
 	"json-error-syntax": "構文エラー",
-	"json-error-utf8": "UTF-8 の文字が破損しています。エンコーディングが誤っているおそれがあります"
+	"json-error-utf8": "UTF-8 の文字が破損しています。エンコーディングが誤っているおそれがあります",
+	"json-error-recursion": "エンコードされる値に1つ以上の循環参照が含まれます",
+	"json-error-inf-or-nan": "エンコードされる値に1つ以上の NAN または INF が含まれます",
+	"json-error-unsupported-type": "エンコードできない種類の値が入力されました"
 }
