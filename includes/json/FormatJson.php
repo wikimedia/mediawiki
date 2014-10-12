@@ -71,6 +71,13 @@ class FormatJson {
 	const TRY_FIXING = 0x200;
 
 	/**
+	 * If set, strip comments from input before parsing as JSON.
+	 *
+	 * @since 1.25
+	 */
+	const STRIP_COMMENTS = 0x400;
+
+	/**
 	 * Regex that matches whitespace inside empty arrays and objects.
 	 *
 	 * This doesn't affect regular strings inside the JSON because those can't
@@ -150,10 +157,14 @@ class FormatJson {
 	 * Unlike FormatJson::decode(), if $value represents null value, it will be properly decoded as valid.
 	 *
 	 * @param string $value The JSON string being decoded
-	 * @param int $options A bit field that allows FORCE_ASSOC, TRY_FIXING
+	 * @param int $options A bit field that allows FORCE_ASSOC, TRY_FIXING,
+	 * STRIP_COMMENTS
 	 * @return Status If valid JSON, the value is available in $result->getValue()
 	 */
 	public static function parse( $value, $options = 0 ) {
+		if ( $options & self::STRIP_COMMENTS ) {
+			$value = self::stripComments( $value );
+		}
 		$assoc = ( $options & self::FORCE_ASSOC ) !== 0;
 		$result = json_decode( $value, $assoc );
 		$code = json_last_error();
@@ -346,5 +357,80 @@ class FormatJson {
 		$buf = preg_replace( self::WS_CLEANUP_REGEX, '', $buf );
 
 		return str_replace( "\x01", '\"', $buf );
+	}
+
+	/**
+	 * Remove multiline and single line comments from an otherwise valid JSON
+	 * input string. This can be used as a preprocessor for to allow JSON
+	 * formatted configuration files to contain comments.
+	 *
+	 * @param string $json
+	 * @return string JSON with comments removed
+	 */
+	public static function stripComments( $json ) {
+		// Ensure we have a string
+		$str = (string) $json;
+		$buffer = '';
+		$maxLen = strlen( $str );
+		$mark = 0;
+
+		$inString = false;
+		$inComment = false;
+		$multiline = false;
+
+		for ($idx = 0; $idx < $maxLen; $idx++) {
+			switch ( $str[$idx] ) {
+				case '"':
+					$lookBehind = ( $idx - 1 >= 0 ) ? $str[$idx - 1] : '';
+					if ( !$inComment && $lookBehind !== '\\' ) {
+						// Either started or ended a string
+						$inString = !$inString;
+					}
+					break;
+
+				case '/':
+					$lookAhead = ( $idx + 1 < $maxLen ) ? $str[$idx + 1] : '';
+					$lookBehind = ( $idx - 1 >= 0 ) ? $str[$idx - 1] : '';
+					if ( $inString ) {
+						continue;
+
+					} elseif ( !$inComment &&
+						( $lookAhead === '/' || $lookAhead === '*' )
+					) {
+						// Transition into a comment
+						// Add characters seen to buffer
+						$buffer .= substr( $str, $mark, $idx - $mark );
+						// Consume the look ahead character
+						$idx++;
+						// Track state
+						$inComment = true;
+						$multiline = $lookAhead === '*';
+
+					} elseif ( $multiline && $lookBehind === '*' ) {
+						// Found the end of the current comment
+						$mark = $idx + 1;
+						$inComment = false;
+						$multiline = false;
+					}
+					break;
+
+				case "\n":
+					if ( $inComment && !$multiline ) {
+						// Found the end of the current comment
+						$mark = $idx + 1;
+						$inComment = false;
+					}
+					break;
+			}
+		}
+		if ( $inComment ) {
+			// Comment ends with input
+			// Technically we should check to ensure that we aren't in
+			// a multiline comment that hasn't been properly ended, but this
+			// is a strip filter, not a validating parser.
+			$mark = $maxLen;
+		}
+		// Add final chunk to buffer before returning
+		return $buffer . substr( $str, $mark, $maxLen - $mark );
 	}
 }
