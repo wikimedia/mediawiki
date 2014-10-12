@@ -49,7 +49,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->altUserName = 'Altuseruser';
 		date_default_timezone_set( $localZone );
 
-		$this->title = Title::makeTitle( NS_MAIN, "Main Page" );
+		$this->setTitle( NS_MAIN, 'Main Page' );
 		if ( !isset( $this->userUser ) || !( $this->userUser instanceof User ) ) {
 			$this->userUser = User::newFromName( $this->userName );
 
@@ -86,6 +86,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 	protected function setTitle( $ns, $title = "Main_Page" ) {
 		$this->title = Title::makeTitle( $ns, $title );
+
+		$this->titleSecurity = TestingAccessWrapper::newFromObject(
+			TestingAccessWrapper::newFromObject( $this->title )->getTitleSecurity()
+		);
 	}
 
 	protected function setUser( $userName = null ) {
@@ -532,9 +536,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
 
 		$this->setTitle( NS_MAIN );
-		$this->title->mRestrictionsLoaded = true;
+		$this->titleSecurity->mRestrictionsLoaded = true;
 		$this->setUserPerm( "edit" );
-		$this->title->mRestrictions = array( "bogus" => array( 'bogus', "sysop", "protect", "" ) );
+		$this->titleSecurity->mRestrictions = array( "bogus" => array( 'bogus', "sysop", "protect", "" ) );
 
 		$this->assertEquals( array(),
 			$this->title->getUserPermissionsErrors( 'edit',
@@ -542,7 +546,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( true,
 			$this->title->quickUserCan( 'edit', $this->user ) );
-		$this->title->mRestrictions = array( "edit" => array( 'bogus', "sysop", "protect", "" ),
+		$this->titleSecurity->mRestrictions = array( "edit" => array( 'bogus', "sysop", "protect", "" ),
 			"bogus" => array( 'bogus', "sysop", "protect", "" ) );
 
 		$this->assertEquals( array( array( 'badaccess-group0' ),
@@ -581,7 +585,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 
-		$this->title->mCascadeRestriction = true;
+		$this->titleSecurity->mCascadeRestriction = true;
 		$this->setUserPerm( "edit" );
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'bogus', $this->user ) );
@@ -621,11 +625,11 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->setUserPerm( array( "edit", "bogus" ) );
 
-		$this->title->mCascadeSources = array(
+		$this->titleSecurity->mCascadeSources = array(
 			Title::makeTitle( NS_MAIN, "Bogus" ),
 			Title::makeTitle( NS_MAIN, "UnBogus" )
 		);
-		$this->title->mCascadingRestrictions = array(
+		$this->titleSecurity->mCascadingRestrictions = array(
 			"bogus" => array( 'bogus', "sysop", "protect", "" )
 		);
 
@@ -650,18 +654,25 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	public function testActionPermissions() {
 		$this->setUserPerm( array( "createpage" ) );
 		$this->setTitle( NS_MAIN, "test page" );
-		$this->title->mTitleProtection['pt_create_perm'] = '';
-		$this->title->mTitleProtection['pt_user'] = $this->user->getID();
-		$this->title->mTitleProtection['pt_expiry'] = wfGetDB( DB_SLAVE )->getInfinity();
-		$this->title->mTitleProtection['pt_reason'] = 'test';
-		$this->title->mCascadeRestriction = false;
+
+		// Note that we can't set attributes on the member variable directly,
+		// because reflection getValue does not return a reference.
+		$titleProtection = array(
+			'pt_create_perm' => '',
+			'pt_user' => $this->user->getID(),
+			'pt_expiry' => wfGetDB( DB_SLAVE )->getInfinity(),
+			'pt_reason' => 'test',
+		);
+		$this->titleSecurity->mTitleProtection = $titleProtection;
+		$this->titleSecurity->mCascadeRestriction = false;
 
 		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'create', $this->user ) );
 
-		$this->title->mTitleProtection['pt_create_perm'] = 'sysop';
+		$titleProtection['pt_create_perm'] = 'sysop';
+		$this->titleSecurity->mTitleProtection = $titleProtection;
 		$this->setUserPerm( array( 'createpage', 'protect' ) );
 		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
@@ -768,5 +779,43 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		# $action != 'read' && $action != 'createaccount' && $user->isBlockedFrom( $this )
 		#   $user->blockedFor() == ''
 		#   $user->mBlock->mExpiry == 'infinity'
+	}
+}
+
+/**
+ * Break access restrictions to manipulate class internals.
+ *
+ * TODO: In the unlikely event I'm not fired for writing this,
+ * go ahead and write the remaining magic methods, and move to its
+ * own file so other tests can be equally devious.
+ */
+class TestingAccessWrapper {
+	public $object;
+
+	public static function newFromObject( $object ) {
+		$wrapper = new TestingAccessWrapper();
+		$wrapper->object = $object;
+		return $wrapper;
+	}
+
+	public function __call( $method, $args ) {
+		$classReflection = new ReflectionClass( $this->object );
+		$methodReflection = $classReflection->getMethod( $method );
+		$methodReflection->setAccessible( ReflectionMethod::IS_PUBLIC );
+		return $methodReflection->invoke( $this->object, $args );
+	}
+
+	public function __set( $name, $value ) {
+		$classReflection = new ReflectionClass( $this->object );
+		$propertyReflection = $classReflection->getProperty( $name );
+		$propertyReflection->setAccessible( ReflectionProperty::IS_PUBLIC );
+		$propertyReflection->setValue( $this->object, $value );
+	}
+
+	public function __get( $name ) {
+		$classReflection = new ReflectionClass( $this->object );
+		$propertyReflection = $classReflection->getProperty( $name );
+		$propertyReflection->setAccessible( ReflectionProperty::IS_PUBLIC );
+		return $propertyReflection->getValue( $this->object );
 	}
 }
