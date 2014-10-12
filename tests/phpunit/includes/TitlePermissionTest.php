@@ -49,7 +49,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->altUserName = 'Altuseruser';
 		date_default_timezone_set( $localZone );
 
-		$this->title = Title::makeTitle( NS_MAIN, "Main Page" );
+		$this->setTitle( NS_MAIN, 'Main Page' );
 		if ( !isset( $this->userUser ) || !( $this->userUser instanceof User ) ) {
 			$this->userUser = User::newFromName( $this->userName );
 
@@ -86,6 +86,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 	protected function setTitle( $ns, $title = "Main_Page" ) {
 		$this->title = Title::makeTitle( $ns, $title );
+
+		$this->titleSecurity = TestingAccessWrapper::newFromObject(
+			$this->title->getTitleSecurity()
+		);
 	}
 
 	protected function setUser( $userName = null ) {
@@ -544,9 +548,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
 
 		$this->setTitle( NS_MAIN );
-		$this->title->mRestrictionsLoaded = true;
+		$this->titleSecurity->mRestrictionsLoaded = true;
 		$this->setUserPerm( "edit" );
-		$this->title->mRestrictions = array( "bogus" => array( 'bogus', "sysop", "protect", "" ) );
+		$this->titleSecurity->mRestrictions = array( "bogus" => array( 'bogus', "sysop", "protect", "" ) );
 
 		$this->assertEquals( array(),
 			$this->title->getUserPermissionsErrors( 'edit',
@@ -554,7 +558,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( true,
 			$this->title->quickUserCan( 'edit', $this->user ) );
-		$this->title->mRestrictions = array( "edit" => array( 'bogus', "sysop", "protect", "" ),
+		$this->titleSecurity->mRestrictions = array( "edit" => array( 'bogus', "sysop", "protect", "" ),
 			"bogus" => array( 'bogus', "sysop", "protect", "" ) );
 
 		$this->assertEquals( array( array( 'badaccess-group0' ),
@@ -593,7 +597,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 
-		$this->title->mCascadeRestriction = true;
+		$this->titleSecurity->mCascadeRestriction = true;
 		$this->setUserPerm( "edit" );
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'bogus', $this->user ) );
@@ -633,11 +637,11 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->setUserPerm( array( "edit", "bogus" ) );
 
-		$this->title->mCascadeSources = array(
+		$this->titleSecurity->mCascadeSources = array(
 			Title::makeTitle( NS_MAIN, "Bogus" ),
 			Title::makeTitle( NS_MAIN, "UnBogus" )
 		);
-		$this->title->mCascadingRestrictions = array(
+		$this->titleSecurity->mCascadingRestrictions = array(
 			"bogus" => array( 'bogus', "sysop", "protect", "" )
 		);
 
@@ -662,18 +666,25 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	public function testActionPermissions() {
 		$this->setUserPerm( array( "createpage" ) );
 		$this->setTitle( NS_MAIN, "test page" );
-		$this->title->mTitleProtection['permission'] = '';
-		$this->title->mTitleProtection['user'] = $this->user->getID();
-		$this->title->mTitleProtection['expiry'] = wfGetDB( DB_SLAVE )->getInfinity();
-		$this->title->mTitleProtection['reason'] = 'test';
-		$this->title->mCascadeRestriction = false;
+
+		// Note that we can't set attributes on the member variable directly,
+		// because reflection getValue does not return a reference.
+		$titleProtection = array(
+			'permission' => '',
+			'user' => $this->user->getID(),
+			'expiry' => wfGetDB( DB_SLAVE )->getInfinity(),
+			'reason' => 'test',
+		);
+		$this->titleSecurity->mTitleProtection = $titleProtection;
+		$this->titleSecurity->mCascadeRestriction = false;
 
 		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
 		$this->assertEquals( false,
 			$this->title->userCan( 'create', $this->user ) );
 
-		$this->title->mTitleProtection['permission'] = 'editprotected';
+		$titleProtection['permission'] = 'editprotected';
+		$this->titleSecurity->mTitleProtection = $titleProtection;
 		$this->setUserPerm( array( 'createpage', 'protect' ) );
 		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );
