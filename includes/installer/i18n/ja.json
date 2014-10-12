@@ -321,6 +321,7 @@
 	"config-install-stats": "統計情報の初期化",
 	"config-install-keys": "秘密鍵の生成",
 	"config-insecure-keys": "<strong>警告:</strong> インストール中に生成されたセキュアキー ($1) は完璧に安全ではありません。手動で変更することを検討してください。",
+	"config-install-updates": "不要な更新を実行するのを防ぐ",
 	"config-install-sysop": "管理者のアカウントの作成",
 	"config-install-subscribe-fail": "mediawiki-announce を購読できませんでした: $1",
 	"config-install-subscribe-notpossible": "cURL がインストールされていないため、<code>allow_url_fopen</code> を利用できません。",

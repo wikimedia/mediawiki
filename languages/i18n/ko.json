@@ -947,7 +947,7 @@
 	"prefs-files": "파일",
 	"prefs-custom-css": "사용자 CSS",
 	"prefs-custom-js": "사용자 자바스크립트",
-	"prefs-common-css-js": "모든 스킨에 대한 공통 CSS/자바스크립트:",
+	"prefs-common-css-js": "모든 스킨에 공유된 CSS/자바스크립트:",
 	"prefs-reset-intro": "이 페이지를 사용해 사이트 기본값으로 환경 설정을 재설정할 수 있습니다.\n이는 되돌릴 수 없습니다.",
 	"prefs-emailconfirm-label": "이메일 인증:",
 	"youremail": "이메일:",

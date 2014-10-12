@@ -926,7 +926,7 @@
 	"prefs-watchlist": "ウォッチリスト",
 	"prefs-watchlist-days": "ウォッチリストの表示日数:",
 	"prefs-watchlist-days-max": "最大 $1 {{PLURAL:$1|日間}}",
-	"prefs-watchlist-edits": "拡張ウォッチリストの表示件数:",
+	"prefs-watchlist-edits": "ウォッチリストの展開時の最大表示件数:",
 	"prefs-watchlist-edits-max": "最大数: 1000",
 	"prefs-watchlist-token": "ウォッチリストのトークン:",
 	"prefs-misc": "その他",

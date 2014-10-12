@@ -1194,7 +1194,7 @@
 	"recentchanges-legend-heading": "'''Legenda:'''",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zobacz też [[Special:NewPages|listę nowych stron]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
-	"rcnotefrom": "Poniżej {{PLURAL:$5|pokazano zmianę|pokazano zmiany}} wykonane po <strong>$3, $4</strong> (nie więcej niż '''$1''' pozycji).",
+	"rcnotefrom": "Poniżej {{PLURAL:$5|pokazano zmianę|pokazano zmiany}} {{PLURAL:$5|wykonaną|wykonane}} po <strong>$3, $4</strong> (nie więcej niż '''$1''' pozycji).",
 	"rclistfrom": "Pokaż nowe zmiany od $3 $2",
 	"rcshowhideminor": "$1 drobne zmiany",
 	"rcshowhideminor-show": "Pokaż",

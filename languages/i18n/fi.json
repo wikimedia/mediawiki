@@ -357,7 +357,7 @@
 	"cannotdelete-title": "Sivua $1 ei voi poistaa",
 	"delete-hook-aborted": "Laajennuskoodi esti poiston antamatta syytä.",
 	"no-null-revision": "Nollamuokkausta sivulla \"$1\" ei voi tehdä",
-	"badtitle": "Virheellinen otsikko",
+	"badtitle": "Kelvoton sivun nimi",
 	"badtitletext": "Pyytämäsi sivunimi oli virheellinen, tyhjä tai väärin linkitetty kieltenvälinen tai wikienvälinen nimi.\nSiinä saattaa olla yksi tai useampi sellainen merkki, jota ei voi käyttää sivujen nimissä.",
 	"perfcached": "Nämä tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla. Välimuistissa on saatavilla enintään {{PLURAL:$1|yksi tulos|$1 tulosta}}.",
 	"perfcachedts": "Nämä tiedot ovat välimuistista, ja ne on päivitetty viimeksi $1. Välimuistissa on saatavilla enintään {{PLURAL:$4|yksi tulos|$4 tulosta}}.",

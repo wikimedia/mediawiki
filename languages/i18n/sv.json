@@ -2305,7 +2305,7 @@
 	"tooltip-recreate": "Återskapa sidan fast den har tagits bort",
 	"tooltip-upload": "Starta uppladdning",
 	"tooltip-rollback": "\"Tillbakarullning\" tar med en knapptryckning bort ändringar som gjorts av den som senast redigerade sidan",
-	"tooltip-undo": "\"Gör ogjord\" återställer denna redigering och öppnar redigeringsrutan med förhandsgranskning.\nDen ger möjlighet att skriva en motivering i redigeringssammanfattningen.",
+	"tooltip-undo": "\"Gör ogjord\" återställer denna redigering och öppnar redigeringsrutan med förhandsgranskning. Det ger möjlighet att skriva en motivering i redigeringssammanfattningen.",
 	"tooltip-preferences-save": "Spara inställningar",
 	"tooltip-summary": "Skriv en kort sammanfattning",
 	"interlanguage-link-title": "$1 - $2",

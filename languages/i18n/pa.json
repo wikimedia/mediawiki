@@ -476,7 +476,7 @@
 	"changepassword": "ਪਛਾਣ-ਸ਼ਬਦ ਬਦਲੋ",
 	"resetpass_announce": "ਲਾਗਇਨ ਪੂਰਾ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਨਵਾਂ ਪਾਸਵਰਡ ਬਣਾਉਣਾ ਪਵੇਗਾ।",
 	"resetpass_header": "ਖਾਤੇ ਦਾ ਪਛਾਣ-ਸ਼ਬਦ ਬਦਲੋ",
-	"oldpassword": "ਪੁਰਾਣਾ ਪਾਸਵਰਡ:",
+	"oldpassword": "ਪੁਰਾਣਾ ਪਛਾਣ-ਸ਼ਬਦ:",
 	"newpassword": "ਨਵਾਂ ਪਾਸਵਰਡ:",
 	"retypenew": "ਨਵਾਂ ਪਾਸਵਰਡ ਮੁੜ-ਲਿਖੋ:",
 	"resetpass_submit": "ਪਾਸਵਰਡ ਸੈੱਟ ਕਰੋ ਅਤੇ ਲਾਗਇਨ ਕਰੋ",
@@ -1400,7 +1400,7 @@
 	"mywatchlist": "ਨਿਗਰਾਨੀ-ਲਿਸਟ",
 	"watchlistfor2": "$1 $2 ਲਈ",
 	"nowatchlist": "ਤੁਹਾਡੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚ ਕੋਈ ਚੀਜ਼ ਨਹੀਂ ਹੈ।",
-	"watchlistanontext": "ਆਪਣੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚਲੀਆਂ ਚੀਜ਼ਾਂ ਵੇਖਣ ਜਾਂ ਸੋਧਣ ਲਈ ਮਿਹਰਬਾਨੀ ਕਰਕੇ $1।",
+	"watchlistanontext": "ਆਪਣੀ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚਲੀਆਂ ਚੀਜ਼ਾਂ ਵੇਖਣ ਜਾਂ ਸੋਧਣ ਲਈ ਮਿਹਰਬਾਨੀ ਕਰਕੇ ਦਾਖ਼ਲ ਹੋਵੋ।",
 	"watchnologin": "ਲਾਗਇਨ ਨਹੀਂ",
 	"addwatch": "ਨਿਗਰਾਨੀ-ਲਿਸਟ ’ਚ ਜੋੜੋ",
 	"addedwatchtext": "ਪੰਨਾ \"[[:$1]]\" ਤੁਹਾਡੀ [[Special:Watchlist|ਧਿਆਨਸੂਚੀ]] ’ਚ ਜੁੜ ਚੁੱਕਾ ਹੈ।\nਇਸ ਅਤੇ ਇਸਦੇ ਚਰਚਾ ਪੰਨੇ ’ਚ ਹੋਈਆਂ ਬਦਲੀਆਂ ਓਥੇ ਵਖਾਈ ਦੇਣਗੀਆਂ ਅਤੇ ਵੇਖਣ ਦੀ ਸੌਖ ਲਈ [[Special:RecentChanges|ਹਾਲ ਹੀ ’ਚ ਹੋਈਆਂ ਬਦਲੀਆਂ]] ਵਿੱਚ ਇਹ ਪੰਨਾ '''ਗੂੜ੍ਹਾ''' ਦਿਖਾਈ ਦੇਵੇਗਾ।",
@@ -2337,5 +2337,6 @@
 	"mediastatistics-header-audio": "ਆਡੀਓ",
 	"mediastatistics-header-video": "ਵੀਡੀਓਆਂ",
 	"mediastatistics-header-office": "ਦਫ਼ਤਰ",
-	"mediastatistics-header-text": "ਲਿਖਤੀ"
+	"mediastatistics-header-text": "ਲਿਖਤੀ",
+	"json-error-syntax": "ਵਾਕ-ਵਿਉਂਤ 'ਚ ਦੋਸ਼"
 }

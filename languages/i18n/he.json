@@ -1268,7 +1268,7 @@
 	"upload-source": "קובץ המקור",
 	"sourcefilename": "שם הקובץ:",
 	"sourceurl": "כתובת URL של המקור:",
-	"destfilename": "שמור קובץ בשם:",
+	"destfilename": "שמירת הקובץ בשם:",
 	"upload-maxfilesize": "גודל הקובץ המרבי: $1",
 	"upload-description": "תיאור הקובץ",
 	"upload-options": "אפשרויות העלאה",
