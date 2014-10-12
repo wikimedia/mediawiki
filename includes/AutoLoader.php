@@ -168,6 +168,7 @@ $wgAutoloadLocalClasses = array(
 	'TitleArray' => 'includes/TitleArray.php',
 	'TitleArrayFromResult' => 'includes/TitleArrayFromResult.php',
 	'TitlePrefixSearch' => 'includes/PrefixSearch.php',
+	'TitleSecurity' => 'includes/security/TitleSecurity.php',
 	'UploadSourceAdapter' => 'includes/Import.php',
 	'UppercaseCollation' => 'includes/Collation.php',
 	'User' => 'includes/User.php',
