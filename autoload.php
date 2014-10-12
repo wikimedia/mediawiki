@@ -1210,6 +1210,7 @@ $wgAutoloadLocalClasses = array(
 	'TitleFormatter' => __DIR__ . '/includes/title/TitleFormatter.php',
 	'TitleParser' => __DIR__ . '/includes/title/TitleParser.php',
 	'TitlePrefixSearch' => __DIR__ . '/includes/PrefixSearch.php',
+	'TitleSecurity' => __DIR__ . '/includes/security/TitleSecurity.php',
 	'TitleValue' => __DIR__ . '/includes/title/TitleValue.php',
 	'TrackBlobs' => __DIR__ . '/maintenance/storage/trackBlobs.php',
 	'TraditionalImageGallery' => __DIR__ . '/includes/gallery/TraditionalImageGallery.php',
