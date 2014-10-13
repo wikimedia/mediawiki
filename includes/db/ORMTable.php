@@ -783,7 +783,11 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return array
 	 */
 	public function unprefixFieldNames( array $fieldNames ) {
-		return array_map( array( $this, 'unprefixFieldName' ), $fieldNames );
+		$start = strlen( $this->fieldPrefix );
+
+		return array_map( function( $fieldName ) use ( $start ) {
+			return substr( $fieldName, $start );
+		}, $fieldNames );
 	}
 
 	/**
