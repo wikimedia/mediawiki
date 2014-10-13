@@ -273,7 +273,7 @@ class FakeDatabaseUpdater extends DatabaseUpdater {
 		return true;
 	}
 
-	public function setAppliedUpdates( $version, $updates ) {
+	public function setAppliedUpdates( $version, $updates = array() ) {
 		parent::setAppliedUpdates( $version, $updates );
 	}
 }
