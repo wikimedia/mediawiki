@@ -25,5 +25,9 @@
 
 .mw-changeslist-legend dd {
 	margin-left: 1.5em;
+}
+
+.mw-changeslist-legend dt,
+.mw-changeslist-legend dd {
 	line-height: 1.3em;
 }
