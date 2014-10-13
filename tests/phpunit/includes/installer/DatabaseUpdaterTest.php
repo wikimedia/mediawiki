@@ -272,8 +272,8 @@ class FakeDatabaseUpdater extends DatabaseUpdater {
 	public function canUseNewUpdatelog() {
 		return true;
 	}
-
-	public function setAppliedUpdates( $version, $updates ) {
+	
+	public function setAppliedUpdates( $version, $updates = array() ) {
 		parent::setAppliedUpdates( $version, $updates );
 	}
 }
