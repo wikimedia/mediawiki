@@ -16,7 +16,8 @@
 			"Duolaimi",
 			"Impersonator 1",
 			"LNDDYL",
-			"TheChampionMan1234"
+			"TheChampionMan1234",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "鏈接下橫線：",
@@ -292,7 +293,7 @@
 	"databaseerror-text": "數據庫討信出錯。\n嘸數說明軟件裏有一個bug。",
 	"databaseerror-textcl": "數據庫討信出錯。",
 	"databaseerror-query": "討信：$1",
-	"databaseerror-function": "功能ː $1",
+	"databaseerror-function": "功能: $1",
 	"databaseerror-error": "出錯：$1",
 	"laggedslavemode": "警告: 页面可能弗包含最近个更新。",
 	"readonly": "數據庫鎖牢",

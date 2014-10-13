@@ -3209,6 +3209,14 @@
 	"pagelang-select-lang": "Изабери језик",
 	"right-pagelang": "мењање језика странице",
 	"action-pagelang": "промену језика странице",
+	"mediastatistics-summary": "Статистике о типовима послатих датотека. Овде су урачунате само најновије верзије датотека. Старе или обрисане верзије нису урачунате.",
 	"mediastatistics-table-mimetype": "MIME тип",
-	"mediastatistics-table-count": "Број датотека"
+	"mediastatistics-table-extensions": "Могуће екстензије",
+	"mediastatistics-table-count": "Број датотека",
+	"mediastatistics-table-totalbytes": "Укупна величина",
+	"mediastatistics-header-bitmap": "Битмап слике",
+	"mediastatistics-header-drawing": "Цртежи (векторске слике)",
+	"mediastatistics-header-audio": "Аудио",
+	"mediastatistics-header-video": "Видео",
+	"mediastatistics-header-office": "Канцеларија"
 }

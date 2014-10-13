@@ -3200,5 +3200,7 @@
 	"pagelang-language": "Jezik",
 	"pagelang-select-lang": "Izaberi jezik",
 	"right-pagelang": "menjanje jezika stranice",
-	"action-pagelang": "promenu jezika stranice"
+	"action-pagelang": "promenu jezika stranice",
+	"mediastatistics-table-mimetype": "MIME tip",
+	"mediastatistics-table-count": "Broj datoteka"
 }
