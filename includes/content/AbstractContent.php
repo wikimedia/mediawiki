@@ -483,9 +483,10 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @return ParserOutput
 	 */
-	public function getParserOutputForTransclusion( Title $title, $revId = null,
-		ParserOptions $options = null ) {
+	public function getParserOutputForTransclusion( Title $title, TransclusionParameters $parameters,
+		$revId = null, ParserOptions $options = null ) {
 
+		//FIXME: apply parameter substitution, or stuff parameters into the ParserOptions.
 		return $this->getParserOutput( $title, $revId, $options );
 	}
 

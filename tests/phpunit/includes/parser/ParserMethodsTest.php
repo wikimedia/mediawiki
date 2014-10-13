@@ -159,7 +159,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 				'html' => "<h2>all the pages</h2>",
 			),
 			'MediaWiki:Common.js' => array(
-				'text' => "{{MediaWiki:common.js}}",
+				'text' => "{{MediaWiki:Common.js}}",
 				'html' => "<pre>JS</pre>",
 			),
 		);
@@ -181,7 +181,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 				"x {{MediaWiki:common.js}} y",
 				$templates,
 				false,
-				"@^x {{MediaWiki:common.js}} y$@",
+				"@^x {{MediaWiki:Common.js}} y$@",
 			),
 			'special page transclusion, with html' => array(
 				"x {{Special:Contributions/ParserMethodsTest82374652843}} y",
@@ -193,7 +193,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 				"x {{MediaWiki:common.js}} y",
 				$templates,
 				true,
-				'@^x <mw-transclude content-type="text/html" data-wikitext="{{MediaWiki:common.js}}"><pre>JS</pre></mw-transclude> y$@',
+				'@^x <mw-transclude content-type="text/html" data-wikitext="{{MediaWiki:Common.js}}"><pre>JS</pre></mw-transclude> y$@',
 			),
 		);
 	}
@@ -213,13 +213,12 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 				$template = $templates[$key];
 
 				$isWikitext = $title->getContentModel() === CONTENT_MODEL_WIKITEXT;
-				$templateParserOutput = $isWikitext ? false : new ParserOutput( $template['html'] );
 
-				return array(
-					'text' => $template['text'],
-					'ParserOutput' => $templateParserOutput,
-					'finalTitle' => $title,
-					'deps' => array() );
+				if ( $isWikitext ) {
+					return new WikitextTransclusion( $template['text'], $title );
+				} else {
+					return HtmlTransclusion::newFromHtml( $template['html'], $title );
+				}
 			}
 		);
 

@@ -3595,10 +3595,11 @@ class Parser {
 					$context->setLanguage( $this->mOptions->getUserLangObj() );
 					$ret = SpecialPageFactory::capturePath( $title, $context );
 					if ( $ret ) {
-						$wikitextBits = $frame->virtualBracketedImplode( '{{', '|', '}}', $titleWithSpaces, $args );
-						$wikitext = $frame->implode( '', $wikitextBits );
-						$text = $this->makeWikitextForHtml( $context->getOutput()->getHTML(), $wikitext );
-						$this->mOutput->addOutputPageMetadata( $context->getOutput() );
+						$transclusion = HtmlTransclusion::newFromOutputPage( $context->getOutput(), $title );
+						//XXX: put $args into a PPTransclusionParameters?
+						$transclusionParams = new HashTransclusionParameters( array() );
+						$text = $transclusion->getWikitext( $this, $transclusionParams );
+						$transclusion->augmentParserOutput( $this->getOutput() );
 						$found = true;
 						$this->disableCache();
 					}
@@ -3607,9 +3608,9 @@ class Parser {
 					wfDebug( __METHOD__ . ": template inclusion denied for " .
 						$title->getPrefixedDBkey() . "\n" );
 				} else {
-					$wikitextBits = $frame->virtualBracketedImplode( '{{', '|', '}}', $titleWithSpaces, $args );
-					$wikitext = $frame->implode( '', $wikitextBits );
-					list( $text, $title ) = $this->getTemplateDom( $title, $wikitext );
+					//FIXME: put $args into a PPTransclusionParameters!
+					$templateParams = new HashTransclusionParameters( array() );
+					list( $text, $title ) = $this->getTemplateDom( $title, $templateParams );
 					if ( $text !== false ) {
 						$found = true;
 						$isChildObj = true;
@@ -3844,12 +3845,10 @@ class Parser {
 	 * and its redirect destination title. Cached.
 	 *
 	 * @param Title $title
-	 * @param string $wikitext The wikitext representing the transclusion, e.g. {{Foo}}.
-	 *        Will be derived from $title if not given.
 	 *
 	 * @return array
 	 */
-	public function getTemplateDom( $title, $wikitext = null ) {
+	public function getTemplateDom( $title ) {
 		$cacheTitle = $title;
 		$titleText = $title->getPrefixedDBkey();
 
@@ -3862,28 +3861,18 @@ class Parser {
 			return array( $this->mTplDomCache[$titleText], $title );
 		}
 
-		if ( $wikitext === null ) {
-			$wikitext = '{{' . $title->getFullText() . '}}';
-		}
-
 		# Cache miss, go to the database
-		list( $text, $title, $parserOutput ) = $this->fetchTemplateAndTitle( $title, $wikitext );
+		$transclusion = $this->fetchTemplateAndTitle( $title );
 
-		if ( $parserOutput ) {
-			# If a ParserOutput object was returned from fetching the template,
-			# merge it with the current parser output. This is done only once when
-			# encountering the template first. It is intended to allow non-wikitext
-			# template transclusion to control caching and inject resource modules.
-			# @todo: merge more, e.g. links, expiry, etc.
-			$this->getOutput()->mergePageMetadata( $parserOutput );
-		}
-
-		if ( $text === false ) {
+		if ( !$transclusion ) {
 			$this->mTplDomCache[$titleText] = false;
 			return array( false, $title );
 		}
 
-		$dom = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
+		$transclusion->augmentParserOutput( $this->getOutput() );
+
+		$params = new HashTransclusionParameters( array() );
+		$dom = $transclusion->getDom( $this, $params );
 		$this->mTplDomCache[$titleText] = $dom;
 
 		if ( !$title->equals( $cacheTitle ) ) {
@@ -3934,78 +3923,40 @@ class Parser {
 
 	/**
 	 * Fetch the unparsed text of a template and register a reference to it.
-	 * In case the template was included via HTML,
-	 * the wikitext representation will be returned (see makeWikitextForHtml) along
-	 * with a ParserOutput object containing any meta info from parsing the template.
+	 * In case the template was included via HTML,a suitable wikitext representation
+	 * will be returned (using the stripmark mechanism).
 	 *
 	 * @param Title $title
-	 * @param string $wikitext The original wikitext representing the transclusion, e.g. {{Foo}}
 	 *
-	 * @return array ( string or false, Title, ParserOutput or null )
+	 * @return Transclusion
 	 */
-	public function fetchTemplateAndTitle( Title $title, $wikitext ) {
+	public function fetchTemplateAndTitle( Title $title ) {
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
-		$templateInfo = call_user_func( $templateCb, $title, $this );
+		$transclusion = call_user_func( $templateCb, $title, $this );
 
-		$text = $templateInfo['text'];
-		$finalTitle = isset( $templateInfo['finalTitle'] ) ? $templateInfo['finalTitle'] : $title;
-		$parserOutput = isset( $templateInfo['ParserOutput'] ) ? $templateInfo['ParserOutput'] : null;
+		if ( is_array( $transclusion ) ) {
+			wfWarn( 'Old-style template callback encountered' );
 
-		// If we got a parser output object back, use the info we got from there.
-		if ( $parserOutput && $parserOutput instanceof ParserOutput ) {
-			$html = $parserOutput->getText();
-
-			$text = $this->makeWikitextForHtml( $html, $wikitext );
+			//B/C for old callbacks
+			if ( $transclusion['text'] === false ) {
+				$transclusion = null;
+			} else {
+				$transclusion = new WikitextTransclusion(
+					$transclusion['text'],
+					isset( $transclusion['finalTitle'] ) ? $transclusion['finalTitle'] : $title,
+					isset( $transclusion['deps'] ) ? $transclusion['deps'] : array()
+				);
+			}
 		}
 
-		if ( isset( $templateInfo['deps'] )
-			&& $this->hasSelfTransclusion( $templateInfo['deps'] )
-		) {
+		if ( $transclusion && $this->hasSelfTransclusion( $transclusion->getDependencies() ) ) {
 			// If we transclude ourselves, the final result
 			// will change based on the new version of the page
 			$this->mOutput->setFlag( 'vary-revision' );
 		}
 
-		return array( $text, $finalTitle, $parserOutput );
-	}
-
-	/**
-	 * Returns a wikitext representation of the given HTML coming from the template
-	 * with the given title. The behavior of this method depends on the parser's
-	 * current output type: for OT_HTML, a strip mark is used to protect the raw
-	 * HTML from further parsing. For other output types (most importantly, OT_PREPROCESS),
-	 * the template reference is kept as is.
-	 *
-	 * @param string $html The HTML to be transcluded
-	 * @param string $wikitext The wikitext representing the transclusion, e.g. {{Foo}}
-	 *
-	 * @throws InvalidArgumentException
-	 * @return string wikitext
-	 */
-	protected function makeWikitextForHtml( $html, $wikitext ) {
-		if ( !is_string( $html ) ) {
-			throw new InvalidArgumentException( '$html must be a string' );
-		}
-
-		if ( !is_string( $wikitext ) ) {
-			throw new InvalidArgumentException( '$wikitext must be a string' );
-		}
-
-		if ( $this->ot['html'] ) {
-			$text = $this->insertStripItem( $html );
-		} elseif ( $this->ot['pre+html'] ) {
-			// This is the mode used by parsoid don't keep the transclusion syntax in the wikitext,
-			// that would cause parsoid to try to expandit over and over.
-			$text = '<mw-transclude content-type="text/html" data-wikitext="' . $wikitext . '">';
-			$text .= $this->insertStripItem( $html );
-			$text .= '</mw-transclude>';
-		} else {
-			// Use strip mark to avoid template loop
-			$text = $this->insertStripItem( $wikitext );
-		}
-
-		return $text;
+		return $transclusion;
 	}
 
 	/**
@@ -4013,7 +3964,7 @@ class Parser {
 	 * that is being parser (that is, whether the page is including itself).
 	 *
 	 * @param array $dependencies An array of template dependencies, as returned by
-	 * the template callback function (e.g. statelessFetchTemplate()).
+	 * Template::getDependencies.
 	 *
 	 * @return bool
 	 */
@@ -4036,9 +3987,15 @@ class Parser {
 	 * @return string|bool
 	 */
 	public function fetchTemplate( Title $title ) {
-		$wikitext = '{{' . $title->getFullText() . '}}';
-		$rv = $this->fetchTemplateAndTitle( $title, $wikitext );
-		return $rv[0];
+		$transclusion = $this->fetchTemplateAndTitle( $title );
+
+		if ( $transclusion ) {
+			$params = new HashTransclusionParameters( array() );
+			$text = $transclusion->getWikitext( $this, $params );
+			return $text;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -4048,11 +4005,7 @@ class Parser {
 	 * @param Title $title
 	 * @param bool|Parser $parser
 	 *
-	 * @return array (
-	 *   'text' => $text,
-	 *   'ParserOutput' => $parserOutput,
-	 *   'finalTitle' => $finalTitle,
-	 *   'deps' => $deps )
+	 * @return Transclusion|null
 	 */
 	public static function statelessFetchTemplate( Title $title, $parser = false ) {
 		$text = $skip = false;
@@ -4151,11 +4104,14 @@ class Parser {
 			$finalTitle = $title;
 			$title = $content->getRedirectTarget();
 		}
-		return array(
-			'text' => $text,
-			'ParserOutput' => $templateParserOutput,
-			'finalTitle' => $finalTitle,
-			'deps' => $deps );
+
+		if ( $templateParserOutput ) {
+			return new HtmlTransclusion( $templateParserOutput, $finalTitle, $deps );
+		} elseif ( is_string( $text ) ) {
+			return new WikitextTransclusion( $text, $finalTitle, $deps );
+		} else {
+			return null;
+		}
 	}
 
 	/**
