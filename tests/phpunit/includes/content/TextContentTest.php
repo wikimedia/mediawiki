@@ -338,8 +338,9 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @covers TextContent::getParserOutputForTransclusion
 	 */
 	public function testGetParserOutputForTransclusion() {
-		$content = $this->newContent( 'hello&world.' );
-		$pout = $content->getParserOutputForTransclusion( new Title( 'Test' ) );
+		$content = $this->newContent( 'hello&{{{1}}}.' );
+		$parameters = new HashTransclusionParameters( array( 1 => 'world' ) );
+		$pout = $content->getParserOutputForTransclusion( new Title( 'Test' ), $parameters );
 
 		$this->assertRegExp( '!hello&amp;world!', $pout->getText() );
 	}

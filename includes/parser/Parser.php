@@ -3934,19 +3934,22 @@ class Parser {
 
 	/**
 	 * Fetch the unparsed text of a template and register a reference to it.
+	 *
 	 * In case the template was included via HTML,
 	 * the wikitext representation will be returned (see makeWikitextForHtml) along
 	 * with a ParserOutput object containing any meta info from parsing the template.
 	 *
 	 * @param Title $title
-	 * @param string $wikitext The original wikitext representing the transclusion, e.g. {{Foo}}
+	 * @param PPTransclusion|null $parameters
 	 *
 	 * @return array ( string or false, Title, ParserOutput or null )
 	 */
-	public function fetchTemplateAndTitle( Title $title, $wikitext ) {
+	public function fetchTemplateAndTitle( Title $title, PPTransclusion $transclusion = null ) {
+		$transclusionParameters = $transclusion ? $transclusion->getParameters() : null;
+
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
-		$templateInfo = call_user_func( $templateCb, $title, $this );
+		$templateInfo = call_user_func( $templateCb, $title, $this, $transclusionParameters );
 
 		$text = $templateInfo['text'];
 		$finalTitle = isset( $templateInfo['finalTitle'] ) ? $templateInfo['finalTitle'] : $title;
@@ -3956,7 +3959,8 @@ class Parser {
 		if ( $parserOutput && $parserOutput instanceof ParserOutput ) {
 			$html = $parserOutput->getText();
 
-			$text = $this->makeWikitextForHtml( $html, $wikitext );
+			$transclusionWikitext = $transclusion ? $transclusion->getTransclusionWikitext() : '';
+			$text = $this->makeWikitextForHtml( $html, $transclusionWikitext );
 		}
 
 		if ( isset( $templateInfo['deps'] )
@@ -4046,7 +4050,8 @@ class Parser {
 	 * Can be overridden via ParserOptions::setTemplateCallback().
 	 *
 	 * @param Title $title
-	 * @param bool|Parser $parser
+	 * @param Parser|false $parser
+	 * @param TransclusionParameters|null $parameters
 	 *
 	 * @return array (
 	 *   'text' => $text,
@@ -4054,10 +4059,18 @@ class Parser {
 	 *   'finalTitle' => $finalTitle,
 	 *   'deps' => $deps )
 	 */
-	public static function statelessFetchTemplate( Title $title, $parser = false ) {
+	public static function statelessFetchTemplate(
+		Title $title,
+		$parser = false,
+		TransclusionParameters $parameters = null
+	) {
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = array();
+
+		if ( !$parameters ) {
+			$parameters = new HashTransclusionParameters( array() );
+		}
 
 		// for recording the output of non-text transclusions
 		$templateParserOutput = false;
@@ -4118,6 +4131,7 @@ class Parser {
 						if ( $parser ) {
 							$templateParserOutput = $content->getParserOutputForTransclusion(
 								$parser->getTitle(),
+								$parameters,
 								$parser->getRevisionId(),
 								$parser->getOptions()
 							);

@@ -286,6 +286,7 @@ interface Content {
 	 * @see Parser::statelessFetchTemplate()
 	 *
 	 * @param Title $title
+	 * @param TransclusionParameters $parameters
 	 * @param int $revId
 	 * @param ParserOptions $options
 	 *
@@ -294,7 +295,7 @@ interface Content {
 	 * @return ParserOutput|null A ParserOutput object for transclusion, or null if
 	 *         transclusion is not supported.
 	 */
-	public function getParserOutputForTransclusion( Title $title, $revId = null,
+	public function getParserOutputForTransclusion( Title $title, TransclusionParameters $parameters, $revId = null,
 		ParserOptions $options = null );
 
 	/**
