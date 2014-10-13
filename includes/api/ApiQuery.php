@@ -540,9 +540,11 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Override the parent to generate help messages for all available query modules.
+	 * @deprecated since 1.25
 	 * @return string
 	 */
 	public function makeHelpMsg() {
+		wfDeprecated( __METHOD__, '1.25' );
 
 		// Use parent to make default message for the query module
 		$msg = parent::makeHelpMsg();
@@ -562,6 +564,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * For all modules of a given group, generate help messages and join them together
+	 * @deprecated since 1.25
 	 * @param string $group Module group
 	 * @return string
 	 */

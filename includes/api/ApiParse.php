@@ -79,16 +79,6 @@ class ApiParse extends ApiBase {
 		// TODO: Does this still need $wgTitle?
 		global $wgParser, $wgTitle;
 
-		// Currently unnecessary, code to act as a safeguard against any change
-		// in current behavior of uselang
-		$oldLang = null;
-		if ( isset( $params['uselang'] )
-			&& $params['uselang'] != $this->getContext()->getLanguage()->getCode()
-		) {
-			$oldLang = $this->getContext()->getLanguage(); // Backup language
-			$this->getContext()->setLanguage( Language::factory( $params['uselang'] ) );
-		}
-
 		$redirValues = null;
 
 		// Return result
@@ -409,10 +399,6 @@ class ApiParse extends ApiBase {
 		);
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
-
-		if ( !is_null( $oldLang ) ) {
-			$this->getContext()->setLanguage( $oldLang ); // Reset language to $oldLang
-		}
 	}
 
 	/**
@@ -499,7 +485,7 @@ class ApiParse extends ApiBase {
 			$entry['lang'] = $bits[0];
 			if ( $title ) {
 				$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
-				// localised language name in user language (maybe set by uselang=)
+				// localised language name in 'uselang' language
 				$entry['langname'] = Language::fetchLanguageName(
 					$title->getInterwiki(),
 					$this->getLanguage()->getCode()
@@ -704,7 +690,6 @@ class ApiParse extends ApiBase {
 			'pst' => false,
 			'onlypst' => false,
 			'effectivelanglinks' => false,
-			'uselang' => null,
 			'section' => null,
 			'disablepp' => false,
 			'disableeditsection' => false,
@@ -771,7 +756,6 @@ class ApiParse extends ApiBase {
 				'Returns the same wikitext, after a PST has been applied.',
 				"Only valid when used with {$p}text",
 			),
-			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
 			'disablepp' => 'Disable the PP Report from the parser output',
 			'disableeditsection' => 'Disable edit section links from the parser output',

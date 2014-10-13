@@ -1023,6 +1023,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialAllMessages' => 'includes/specials/SpecialAllMessages.php',
 	'SpecialAllMyUploads' => 'includes/specials/SpecialMyRedirectPages.php',
 	'SpecialAllPages' => 'includes/specials/SpecialAllPages.php',
+	'SpecialApiHelp' => 'includes/specials/SpecialApiHelp.php',
 	'SpecialBlankpage' => 'includes/specials/SpecialBlankpage.php',
 	'SpecialBlock' => 'includes/specials/SpecialBlock.php',
 	'SpecialBlockList' => 'includes/specials/SpecialBlockList.php',

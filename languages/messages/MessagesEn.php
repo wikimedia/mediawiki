@@ -388,6 +388,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'AllMessages' ),
 	'AllMyUploads'              => array( 'AllMyUploads', 'AllMyFiles' ),
 	'Allpages'                  => array( 'AllPages' ),
+	'ApiHelp'                   => array( 'ApiHelp' ),
 	'Ancientpages'              => array( 'AncientPages' ),
 	'Badtitle'                  => array( 'Badtitle' ),
 	'Blankpage'                 => array( 'BlankPage' ),
