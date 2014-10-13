@@ -44,6 +44,7 @@ production.
   language by default. 'uselang' is now a recognized API parameter;
   "uselang=user" may be used to select the language from the current user's
   preferences.
+* Default output format for the API is now jsonfm.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.

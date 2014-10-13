@@ -42,7 +42,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * When no format parameter is given, this format will be used
 	 */
-	const API_DEFAULT_FORMAT = 'xmlfm';
+	const API_DEFAULT_FORMAT = 'jsonfm';
 
 	/**
 	 * List of available modules: action name => module class
