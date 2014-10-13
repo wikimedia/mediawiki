@@ -3154,6 +3154,7 @@ $wgExperimentalHtmlIds = false;
  * for the icon, the following keys are used:
  * - src: An absolute url to the image to use for the icon, this is recommended
  *        but not required, however some skins will ignore icons without an image
+ * - srcset: optional additional-resolution images; see HTML5 specs
  * - url: The url to use in the a element around the text or icon, if not set an a element will
  *        not be outputted
  * - alt: This is the text form of the icon, it will be displayed without an image in
@@ -3170,7 +3171,7 @@ $wgFooterIcons = array(
 	),
 	"poweredby" => array(
 		"mediawiki" => array(
-			"src" => null, // Defaults to "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
+			"src" => null, // Defaults to "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png" plus srcset for 1.5x, 2x
 			"url" => "//www.mediawiki.org/",
 			"alt" => "Powered by MediaWiki",
 		)

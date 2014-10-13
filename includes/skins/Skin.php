@@ -837,9 +837,12 @@ abstract class Skin extends ContextSource {
 	function getPoweredBy() {
 		global $wgResourceBasePath;
 
-		$url = htmlspecialchars( "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png" );
-		$text = '<a href="//www.mediawiki.org/"><img src="' . $url
-			. '" height="31" width="88" alt="Powered by MediaWiki" /></a>';
+		$url1 = htmlspecialchars( "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png" );
+		$url1_5 = htmlspecialchars( "$wgResourceBasePath/resources/assets/poweredby_mediawiki_132x47.png" );
+		$url2 = htmlspecialchars( "$wgResourceBasePath/resources/assets/poweredby_mediawiki_176x62.png" );
+		$text = '<a href="//www.mediawiki.org/"><img src="' . $url1
+			. '" srcset="' . $url1_5 . ' 1.5x, ' . $url2 . ' 2x" '
+			. 'height="31" width="88" alt="Powered by MediaWiki" /></a>';
 		Hooks::run( 'SkinGetPoweredBy', array( &$text, $this ) );
 		return $text;
 	}
