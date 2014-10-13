@@ -390,6 +390,9 @@ $wgAutoloadLocalClasses = array(
 	'MWContentSerializationException' => 'includes/content/ContentHandler.php',
 	'TextContent' => 'includes/content/TextContent.php',
 	'TextContentHandler' => 'includes/content/TextContentHandler.php',
+	'TransclusionParameters' => 'includes/content/TransclusionParameters.php',
+	'HashTransclusionParameters' => 'includes/content/HashTransclusionParameters.php',
+	'PPTransclusionParameters' => 'includes/content/PPTransclusionParameters.php',
 	'WikitextContent' => 'includes/content/WikitextContent.php',
 	'WikitextContentHandler' => 'includes/content/WikitextContentHandler.php',
 
@@ -842,6 +845,10 @@ $wgAutoloadLocalClasses = array(
 	'Preprocessor_DOM' => 'includes/parser/Preprocessor_DOM.php',
 	'Preprocessor_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'StripState' => 'includes/parser/StripState.php',
+	'Transclusion' => 'includes/parser/Transclusion.php',
+	'WikitextTransclusion' => 'includes/parser/WikitextTransclusion.php',
+	'HtmlTransclusion' => 'includes/parser/HtmlTransclusion.php',
+	'ContentTransclusion' => 'includes/parser/ContentTransclusion.php',
 
 	# includes/password
 	'BcryptPassword' => 'includes/password/BcryptPassword.php',
