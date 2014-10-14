@@ -221,6 +221,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			list( $tagFilterLabel, $tagFilterSelector ) = $tagFilter;
 		}
 
+		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+
 		$form = Xml::openElement( 'form', array( 'action' => wfScript() ) ) .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 			Xml::fieldset( $this->msg( 'newpages' )->text() ) .
@@ -262,7 +264,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 					Xml::label( $this->msg( 'newpages-username' )->text(), 'mw-np-username' ) .
 					'</td>
 				<td class="mw-input">' .
-					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
+					Xml::input( 'username', 30, $userText, array(
+						'id' => 'mw-np-username',
+						'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
+					) ) .
 					'</td>
 			</tr>' .
 			'<tr> <td></td>
