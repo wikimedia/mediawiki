@@ -1587,6 +1587,8 @@
 	"pager-older-n": "{{PLURAL:$1|$1 sebelumnya}}",
 	"suppress": "Kawalan",
 	"querypage-disabled": "Laman khas ini dilumpuhkan atas sebab-sebab prestasi.",
+	"apihelp": "Bantuan API",
+	"apihelp-no-such-module": "Modul \"$1\" tidak dijumpai.",
 	"booksources": "Sumber buku",
 	"booksources-search-legend": "Cari sumber buku",
 	"booksources-search": "Cari",

@@ -6,7 +6,8 @@
 			"WikiPhoenix",
 			"Josve05a",
 			"Lokal Profil",
-			"Tobulos1"
+			"Tobulos1",
+			"Rotsee"
 		]
 	},
 	"config-desc": "Installationsprogrammet för MediaWiki",
@@ -226,7 +227,7 @@
 	"config-profile-no-anon": "Kontoskapande krävs",
 	"config-profile-fishbowl": "Endast auktoriserade redigerare",
 	"config-profile-private": "Privat wiki",
-	"config-profile-help": "Wikis fungerar bäst när du låter som många människor som möjligt redigera dem.\nI MediaWiki, är det lätt att granska de senaste ändringarna och återställa alla skador som utförs av naiva eller illvilliga användare.\n\nMen många har funnit MediaWiki användbart i en mängd olika roller, och ibland är det inte lätt att övertyga alla fördelarna med wiki-sättet.\nSå valet är ditt.\n\nModellen <strong>{{int:config-profil-wiki}}</strong> tillåter vem som helst att redigera, utan att ens behöva logga in.\nEn wiki med <strong>{{int:config-profil-ingen-anon}}</strong> ger extra ansvarskänsla, men kan avskräcka tillfälliga bidragsgivare.\n\nScenariot <strong>{{int:config-profil-fishbowl}}</strong> tillåter godkända användare att redigera, men allmänheten kan se sidorna, inklusive historik.\nA <strong>{{int:config-profil-privat}}</strong> tillåter endast godkända användare att se sidor, samma grupp får även redigera.\n\nMer komplexa användarrättighetskonfigurationer finns tillgängliga efter installationen, se [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights avsnittet i manualen].",
+	"config-profile-help": "Wikier fungerar bäst när du låter som många människor som möjligt redigera dem.\nI MediaWiki är det lätt att granska de senaste ändringarna och återställa alla skador som utförs av naiva eller illvilliga användare.\n\nMen många har funnit MediaWiki användbart i en mängd olika roller, och ibland är det inte lätt att övertyga alla om fördelarna med wiki-sättet.\nSå valet är ditt.\n\nModellen <strong>{{int:config-profil-wiki}}</strong> tillåter vem som helst att redigera, utan att ens behöva logga in.\nEn wiki med <strong>{{int:config-profil-ingen-anon}}</strong> ger extra ansvarskänsla, men kan avskräcka tillfälliga bidragsgivare.\n\nScenariot <strong>{{int:config-profil-fishbowl}}</strong> tillåter godkända användare att redigera, men allmänheten kan se sidorna, inklusive historik.\nA <strong>{{int:config-profil-privat}}</strong> tillåter endast godkända användare att se sidor, samma grupp får även redigera.\n\nMer komplexa användarrättighetskonfigurationer finns tillgängliga efter installationen, se [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights avsnittet i manualen].",
 	"config-license": "Upphovsrätt och licens:",
 	"config-license-none": "Ingen licenssidfot",
 	"config-license-cc-by-sa": "Creative Commons Erkännande-DelaLika",

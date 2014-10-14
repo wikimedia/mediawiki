@@ -1619,6 +1619,7 @@
 	"pager-older-n": "{{PLURAL:$1|1 oudere|$1 oudere}}",
 	"suppress": "Toezicht",
 	"querypage-disabled": "Deze speciale pagina is uitgeschakeld om performanceredenen.",
+	"apihelp": "API-hulp",
 	"booksources": "Boekinformatie",
 	"booksources-search-legend": "Bronnen en gegevens over een boek zoeken",
 	"booksources-search": "Zoeken",

@@ -13,7 +13,8 @@
 			"Elseweyr",
 			"Lliehu",
 			"Syreeni",
-			"Stryn"
+			"Stryn",
+			"SMAUG"
 		]
 	},
 	"config-desc": "MediaWiki-asennin",
@@ -165,7 +166,13 @@
 	"config-profile-fishbowl": "Vain hyväksytyt muokkaajat",
 	"config-profile-private": "Yksityinen wiki",
 	"config-license": "Tekijänoikeus ja lisenssi:",
+	"config-license-cc-by-sa": "Creative Commons Nimeä-Tarttuva",
+	"config-license-cc-by": "Creative Commons Nimeä",
+	"config-license-cc-by-nc-sa": "Creative Commons Nimeä-Epäkaupallinen-Tarttuva",
+	"config-license-cc-0": "Creative Commons Zero (Public Domain)",
+	"config-license-gfdl": "GNU Free Documentation -lisenssi 1.3 tai uudempi",
 	"config-license-pd": "Public domain",
+	"config-license-cc-choose": "Valitse mukautettu Creative Commons -lisenssi",
 	"config-email-settings": "Sähköpostiasetukset",
 	"config-enable-email": "Ota käyttöön sähköpostien lähetys",
 	"config-enable-email-help": "Jotta sähköposti toimii, [http://www.php.net/manual/en/mail.configuration.php PHP:n sähköpostiasetukset] täytyy asettaa oikein.\nJos et halua käyttää sähköpostiominaisuuksia, ne voi kytkeä pois päältä tästä.",

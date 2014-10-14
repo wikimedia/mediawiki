@@ -1569,6 +1569,7 @@
 	"pager-older-n": "$1 {{PLURAL:$1|старэйшая|старэйшыя|старэйшых}}",
 	"suppress": "Рэвізаваць",
 	"querypage-disabled": "Гэта спэцыяльная старонка адключаная для падвышэньня прадукцыйнасьці",
+	"apihelp": "Даведка API",
 	"booksources": "Пошук кніг",
 	"booksources-search-legend": "Пошук кніг",
 	"booksources-isbn": "ISBN:",
