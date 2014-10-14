@@ -777,10 +777,11 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * Takes an array of field names with prefix and returns the unprefixed equivalent.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.25, will become private
 	 *
-	 * @param array $fieldNames
+	 * @param string[] $fieldNames
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function unprefixFieldNames( array $fieldNames ) {
 		$start = strlen( $this->fieldPrefix );
@@ -794,6 +795,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * Takes a field name with prefix and returns the unprefixed equivalent.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.25, will be removed
 	 *
 	 * @param string $fieldName
 	 *
