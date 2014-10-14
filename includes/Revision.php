@@ -1060,8 +1060,6 @@ class Revision implements IDBAccessObject {
 				$format = $this->getContentFormat();
 
 				$this->mContent = $handler->unserializeContent( $this->mText, $format );
-			} else {
-				$this->mContent = false; // negative caching!
 			}
 		}
 
