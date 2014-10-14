@@ -614,7 +614,6 @@ LUA;
 				if attempts < ARGV[3] then
 					-- Claim expired and retries left: re-enqueue the job
 					redis.call('lPush',kUnclaimed,id)
-					redis.call('hIncrBy',kAttempts,id,1)
 					released = released + 1
 				else
 					-- Claim expired and no retries left: mark the job as dead
