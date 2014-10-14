@@ -776,31 +776,16 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * Takes an array of field names with prefix and returns the unprefixed equivalent.
 	 *
-	 * @since 1.20
+	 * @param string[] $fieldNames
 	 *
-	 * @param array $fieldNames
-	 *
-	 * @return array
+	 * @return string[]
 	 */
-	public function unprefixFieldNames( array $fieldNames ) {
+	private function unprefixFieldNames( array $fieldNames ) {
 		$start = strlen( $this->fieldPrefix );
 
 		return array_map( function( $fieldName ) use ( $start ) {
 			return substr( $fieldName, $start );
 		}, $fieldNames );
-	}
-
-	/**
-	 * Takes a field name with prefix and returns the unprefixed equivalent.
-	 *
-	 * @since 1.20
-	 *
-	 * @param string $fieldName
-	 *
-	 * @return string
-	 */
-	public function unprefixFieldName( $fieldName ) {
-		return substr( $fieldName, strlen( $this->getFieldPrefix() ) );
 	}
 
 	/**
