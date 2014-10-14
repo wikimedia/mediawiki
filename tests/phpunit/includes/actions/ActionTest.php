@@ -56,8 +56,6 @@ class ActionTest extends MediaWikiTestCase {
 			// Null and non-existing values
 			[ 'null', null ],
 			[ 'undeclared', null ],
-			[ '', null ],
-			[ false, null ],
 		];
 	}
 
@@ -137,22 +135,39 @@ class ActionTest extends MediaWikiTestCase {
 		$this->assertType( $expected ?: 'null', $action );
 	}
 
-	public function testNull_doesNotExist() {
-		$exists = Action::exists( null );
+	public function emptyActionProvider() {
+		return [
+			[ null ],
+			[ false ],
+			[ '' ],
+		];
+	}
+
+	/**
+	 * @dataProvider emptyActionProvider
+	 */
+	public function testEmptyAction_doesNotExist( $requestedAction ) {
+		$exists = Action::exists( $requestedAction );
 
 		$this->assertFalse( $exists );
 	}
 
-	public function testNull_defaultsToView() {
-		$context = $this->getContext( null );
+	/**
+	 * @dataProvider emptyActionProvider
+	 */
+	public function testEmptyAction_defaultsToView( $requestedAction ) {
+		$context = $this->getContext( $requestedAction );
 		$actionName = Action::getActionName( $context );
 
 		$this->assertEquals( 'view', $actionName );
 	}
 
-	public function testNull_canNotBeInstantiated() {
+	/**
+	 * @dataProvider emptyActionProvider
+	 */
+	public function testEmptyAction_canNotBeInstantiated( $requestedAction ) {
 		$page = $this->getPage();
-		$action = Action::factory( null, $page );
+		$action = Action::factory( $requestedAction, $page );
 
 		$this->assertNull( $action );
 	}
