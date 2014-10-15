@@ -125,7 +125,7 @@
 		var api = new mw.Api();
 
 		this.server.respondWith( /type=testuncached/, [ 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testuncachedtoken": "good" } }'
+			'{ "query": { "tokens": { "testuncachedtoken": "good" } } }'
 		] );
 
 		// Get a token of a type that isn't prepopulated by user.tokens.
@@ -157,7 +157,7 @@
 		this.server.respondWith( /type=testerror/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
 			[
 				'{ "error": { "code": "bite-me", "info": "Smite me, O Mighty Smiter" } }',
-				'{ "tokens": { "testerrortoken": "good" } }'
+				'{ "query": { "tokens": { "testerrortoken": "good" } } }'
 			]
 		) );
 
@@ -175,6 +175,27 @@
 		} );
 	} );
 
+	QUnit.test( 'getToken() - deprecated', function ( assert ) {
+		QUnit.expect( 2 );
+		// Cache API endpoint from default to avoid cachehit in mw.user.tokens
+		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } );
+
+		this.server.respondWith( /type=csrf/, [ 200, { 'Content-Type': 'application/json' },
+			'{ "query": { "tokens": { "csrftoken": "csrfgood" } } }'
+		] );
+
+		// Get a token of a type that is in the legacy map.
+		api.getToken( 'email' )
+			.done( function ( token ) {
+				assert.equal( token, 'csrfgood', 'Token' );
+			} )
+			.fail( function ( err ) {
+				assert.equal( err, '', 'API error' );
+			} );
+
+		assert.equal( this.server.requests.length, 1, 'Requests made' );
+	} );
+
 	QUnit.test( 'badToken()', function ( assert ) {
 		QUnit.expect( 2 );
 		var api = new mw.Api(),
@@ -182,8 +203,8 @@
 
 		this.server.respondWith( /type=testbad/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
 			[
-				'{ "tokens": { "testbadtoken": "bad" } }',
-				'{ "tokens": { "testbadtoken": "good" } }'
+				'{ "query": { "tokens": { "testbadtoken": "bad" } } }',
+				'{ "query": { "tokens": { "testbadtoken": "good" } } }'
 			]
 		) );
 
@@ -204,7 +225,7 @@
 		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } );
 
 		this.server.respondWith( 'GET', /type=testpost/, [ 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testposttoken": "good" } }'
+			'{ "query": { "tokens": { "testposttoken": "good" } } }'
 		] );
 		this.server.respondWith( 'POST', /api/, function ( request ) {
 			if ( request.requestBody.match( /token=good/ ) ) {
@@ -277,8 +298,8 @@
 
 		this.server.respondWith( /type=testbadtoken/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
 			[
-				'{ "tokens": { "testbadtokentoken": "bad" } }',
-				'{ "tokens": { "testbadtokentoken": "good" } }'
+				'{ "query": { "tokens": { "testbadtokentoken": "bad" } } }',
+				'{ "query": { "tokens": { "testbadtokentoken": "good" } } }'
 			]
 		) );
 		this.server.respondWith( 'POST', /api/, function ( request ) {
@@ -311,8 +332,8 @@
 
 		this.server.respondWith( /type=testonce/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
 			[
-				'{ "tokens": { "testoncetoken": "good-A" } }',
-				'{ "tokens": { "testoncetoken": "good-B" } }'
+				'{ "query": { "tokens": { "testoncetoken": "good-A" } } }',
+				'{ "query": { "tokens": { "testoncetoken": "good-B" } } }'
 			]
 		) );
 		sequenceA = sequenceBodies( 200, { 'Content-Type': 'application/json' },
