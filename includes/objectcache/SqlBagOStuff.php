@@ -638,6 +638,11 @@ class SqlBagOStuff extends BagOStuff {
 		return true;
 	}
 
+	/**
+	 * Delete content of shard tables in every server.
+	 * Return true if the operation is successful, false otherwise.
+	 * @return bool
+	 */
 	public function deleteAll() {
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
 			try {
