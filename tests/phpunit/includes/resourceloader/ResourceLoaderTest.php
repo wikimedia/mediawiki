@@ -2,8 +2,6 @@
 
 class ResourceLoaderTest extends ResourceLoaderTestCase {
 
-	protected static $resourceLoaderRegisterModulesHook;
-
 	protected function setUp() {
 		parent::setUp();
 
@@ -30,17 +28,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		) );
 	}
 
-	/* Hook Methods */
-
-	/**
-	 * ResourceLoaderRegisterModules hook
-	 */
-	public static function resourceLoaderRegisterModules( &$resourceLoader ) {
-		self::$resourceLoaderRegisterModulesHook = true;
-
-		return true;
-	}
-
 	/* Provider Methods */
 	public static function provideValidModules() {
 		return array(
@@ -56,9 +43,21 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoader::__construct
 	 */
 	public function testCreatingNewResourceLoaderCallsRegistrationHook() {
-		self::$resourceLoaderRegisterModulesHook = false;
+		$resourceLoaderRegisterModulesHook = false;
+
+		$this->setMwGlobals( 'wgHooks', array(
+			'ResourceLoaderRegisterModules' => array(
+				function ( &$resourceLoader ) use ( &$resourceLoaderRegisterModulesHook ) {
+					$resourceLoaderRegisterModulesHook = true;
+				}
+			)
+		) );
+
 		$resourceLoader = new ResourceLoader();
-		$this->assertTrue( self::$resourceLoaderRegisterModulesHook );
+		$this->assertTrue(
+			$resourceLoaderRegisterModulesHook,
+			'Hook ResourceLoaderRegisterModules called'
+		);
 
 		return $resourceLoader;
 	}
@@ -242,7 +241,3 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		}
 	}
 }
-
-/* Hooks */
-global $wgHooks;
-$wgHooks['ResourceLoaderRegisterModules'][] = 'ResourceLoaderTest::resourceLoaderRegisterModules';
