@@ -136,12 +136,12 @@
 				assert.equal( test.server.requests.length, 3, 'Requests made' );
 
 				test.server.requests[2].respond( 200, { 'Content-Type': 'application/json' },
-					'{ "tokens": { "testaction2token": "0123abc" } }'
+					'{ "query": { "tokens": { "testaction2token": "0123abc" } } }'
 				);
 			} );
 
 		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testactiontoken": "0123abc" } }'
+			'{ "query": { "tokens": { "testactiontoken": "0123abc" } } }'
 		);
 
 		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
@@ -162,7 +162,7 @@
 			} );
 
 		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testsimpletokentoken": "a-bad-token" } }'
+			'{ "query": { "tokens": { "testsimpletokentoken": "a-bad-token" } } }'
 		);
 
 		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
@@ -245,7 +245,7 @@
 			} );
 
 		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testbadtokentoken": "a-bad-token" } }'
+			'{ "query": { "tokens": { "testbadtokentoken": "a-bad-token" } } }'
 		);
 
 		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
@@ -253,7 +253,7 @@
 		);
 
 		this.server.requests[2].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testbadtokentoken": "a-good-token" } }'
+			'{ "query": { "tokens": { "testbadtokentoken": "a-good-token" } } }'
 		);
 
 		this.server.requests[3].respond( 200, { 'Content-Type': 'application/json' },
@@ -284,7 +284,7 @@
 			} );
 
 		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testbadtokencachetoken": "a-good-token-once" } }'
+			'{ "query": { "tokens": { "testbadtokencachetoken": "a-good-token-once" } } }'
 		);
 
 		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
@@ -296,7 +296,7 @@
 		);
 
 		this.server.requests[3].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "testbadtokencachetoken": "a-good-new-token" } }'
+			'{ "query": { "tokens": { "testbadtokencachetoken": "a-good-new-token" } } }'
 		);
 
 		this.server.requests[4].respond( 200, { 'Content-Type': 'application/json' },
