@@ -2,27 +2,22 @@
 
 class AutoLoaderTest extends MediaWikiTestCase {
 	protected function setUp() {
-		global $wgAutoloadLocalClasses, $wgAutoloadClasses;
-
 		parent::setUp();
 
 		// Fancy dance to trigger a rebuild of AutoLoader::$autoloadLocalClassesLower
-		$this->testLocalClasses = array(
-			'TestAutoloadedLocalClass' => __DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php',
-			'TestAutoloadedCamlClass' => __DIR__ . '/../data/autoloader/TestAutoloadedCamlClass.php',
+		$this->mergeMwGlobalArrayValue( 'wgAutoloadLocalClasses', array(
+			'TestAutoloadedLocalClass' =>
+				__DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php',
+			'TestAutoloadedCamlClass' =>
+				__DIR__ . '/../data/autoloader/TestAutoloadedCamlClass.php',
 			'TestAutoloadedSerializedClass' =>
 				__DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
-		);
-		$this->setMwGlobals(
-			'wgAutoloadLocalClasses',
-			$this->testLocalClasses + $wgAutoloadLocalClasses
-		);
+		) );
 		AutoLoader::resetAutoloadLocalClassesLower();
 
-		$this->testExtensionClasses = array(
+		$this->mergeMwGlobalArrayValue( 'wgAutoloadClasses', array(
 			'TestAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedClass.php',
-		);
-		$this->setMwGlobals( 'wgAutoloadClasses', $this->testExtensionClasses + $wgAutoloadClasses );
+		) );
 	}
 
 	/**
