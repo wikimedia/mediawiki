@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (d74a46ca6a)
+ * OOjs UI v0.1.0-pre (98cecf304d)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-15T00:40:17Z
+ * Date: 2014-10-15T22:39:24Z
  */
 ( function ( OO ) {
 
@@ -11181,7 +11181,9 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 	visible = ( visible === undefined ? !this.visible : !!visible ) && !!this.items.length;
 
 	var i, len,
-		change = visible !== this.isVisible();
+		change = visible !== this.isVisible(),
+		elementDoc = this.getElementDocument(),
+		widgetDoc = this.$widget ? this.$widget[0].ownerDocument : null;
 
 	// Parent method
 	OO.ui.MenuWidget.super.prototype.toggle.call( this, visible );
@@ -11205,9 +11207,15 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 
 			// Auto-hide
 			if ( this.autoHide ) {
-				this.getElementDocument().addEventListener(
+				elementDoc.addEventListener(
 					'mousedown', this.onDocumentMouseDownHandler, true
 				);
+				// Support $widget being in a different document
+				if ( widgetDoc && widgetDoc !== elementDoc ) {
+					widgetDoc.addEventListener(
+						'mousedown', this.onDocumentMouseDownHandler, true
+					);
+				}
 			}
 		} else {
 			this.unbindKeyDownListener();
@@ -11215,9 +11223,15 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 				this.$previousFocus[0].focus();
 				this.$previousFocus = null;
 			}
-			this.getElementDocument().removeEventListener(
+			elementDoc.removeEventListener(
 				'mousedown', this.onDocumentMouseDownHandler, true
 			);
+			// Support $widget being in a different document
+			if ( widgetDoc && widgetDoc !== elementDoc ) {
+				widgetDoc.removeEventListener(
+					'mousedown', this.onDocumentMouseDownHandler, true
+				);
+			}
 			this.toggleClipping( false );
 		}
 	}
