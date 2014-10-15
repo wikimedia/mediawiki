@@ -23,6 +23,7 @@
 		"wikimedia/cdb": "1.0.1"
 	},
 	"require-dev": {
+		"justinrainbow/json-schema": "~1.3",
 		"phpunit/phpunit": "*"
 	},
 	"suggest": {
