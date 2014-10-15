@@ -69,6 +69,7 @@ $wgAutoloadLocalClasses = array(
 	'DumpPipeOutput' => 'includes/Export.php',
 	'EditPage' => 'includes/EditPage.php',
 	'EmptyBloomCache' => 'includes/cache/bloom/BloomCache.php',
+	'ExtensionRegistrerer' => 'includes/ExtensionRegistrerer.php',
 	'Fallback' => 'includes/Fallback.php',
 	'FauxRequest' => 'includes/WebRequest.php',
 	'FauxResponse' => 'includes/WebResponse.php',

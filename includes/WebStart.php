@@ -79,6 +79,9 @@ wfProfileIn( 'WebStart.php-conf' );
 # Load default settings
 require_once "$IP/includes/DefaultSettings.php";
 
+# Load global functions
+require_once "$IP/includes/GlobalFunctions.php";
+
 # Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {
 	require_once "$IP/vendor/autoload.php";

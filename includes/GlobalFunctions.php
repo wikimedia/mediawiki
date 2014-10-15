@@ -160,6 +160,15 @@ if ( !function_exists( 'hash_equals' ) ) {
 }
 /// @endcond
 
+function wfLoadExtension( $name, $path = null ) {
+	static $registerer = null;
+	if ( $registerer === null ) {
+		$registerer = new ExtensionRegistrerer( ConfigFactory::getDefaultInstance() );
+	}
+
+	$registerer->loadExtension( $name, $path );
+}
+
 /**
  * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
  * @param array $a
