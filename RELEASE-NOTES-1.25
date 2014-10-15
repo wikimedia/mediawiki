@@ -18,9 +18,6 @@ production.
   for 'languageScripts'.
 * Added a new hook, "ContentAlterParserOutput", to allow extensions to modify the
   parser output for a content object before links update.
-* (bug 35785) Enhanced recent changes and extended watchlist are now default.
-  Documentation: https://meta.wikimedia.org/wiki/Help:Enhanced_recent_changes
-  and https://www.mediawiki.org/wiki/Manual:$wgDefaultUserOptions.
 * (bug 67341) SVG images will no longer be base64-encoded when being embedded
   in CSS. This results in slight size increase before gzip compression (due to
   percent-encoding), but up to 20% decrease after it.
