@@ -60,21 +60,23 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 	}
 
 	public function testRecacheFallbacksWithHooks() {
-		global $wgHooks;
-
 		// Use hook to provide updates for messages. This is what the
 		// LocalisationUpdate extension does. See bug 68781.
-		$wgHooks['LocalisationCacheRecacheFallback'][] = function (
-			LocalisationCache $lc,
-			$code,
-			array &$cache
-		) {
-			if ( $code === 'ru' ) {
-				$cache['messages']['present-uk'] = 'ru-override';
-				$cache['messages']['present-ru'] = 'ru-override';
-				$cache['messages']['present-en'] = 'ru-override';
-			}
-		};
+		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
+			'LocalisationCacheRecacheFallback' => array(
+				function (
+					LocalisationCache $lc,
+					$code,
+					array &$cache
+				) {
+					if ( $code === 'ru' ) {
+						$cache['messages']['present-uk'] = 'ru-override';
+						$cache['messages']['present-ru'] = 'ru-override';
+						$cache['messages']['present-en'] = 'ru-override';
+					}
+				}
+			)
+		) );
 
 		$lc = new LocalisationCache( array( 'store' => 'detect' ) );
 		$lc->recache( 'uk' );
