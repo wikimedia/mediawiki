@@ -2308,6 +2308,7 @@
 	"tooltip-feed-atom": "本页面的Atom源",
 	"tooltip-t-contributions": "该用户的贡献的列表",
 	"tooltip-t-emailuser": "给该用户发送电子邮件",
+	"tooltip-t-info": "关于此页面的更多信息",
 	"tooltip-t-upload": "上传文件",
 	"tooltip-t-specialpages": "所有特殊页面的列表",
 	"tooltip-t-print": "本页面的可打印版本",

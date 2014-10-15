@@ -695,7 +695,7 @@
 	"page_last": "lescht",
 	"histlegend": "Fir d'Ännerungen unzeweisen: Klickt déi zwou Versiounen un, déi solle verglach ginn.<br />\n*(aktuell) = Ënnerscheed mat der aktueller Versioun,\n*(lescht) = Ënnerscheed mat der aler Versioun,\n*k = Kleng Ännerung.",
 	"history-fieldset-title": "An de Versioune sichen",
-	"history-show-deleted": "nëmmen déi geläschten",
+	"history-show-deleted": "nëmmen déi geläscht",
 	"histfirst": "eelst",
 	"histlast": "neist",
 	"historysize": "({{PLURAL:$1|1 Byte|$1 Byten}})",

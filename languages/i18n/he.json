@@ -26,7 +26,8 @@
 			"פדיחה",
 			"שומבלע",
 			"תומר ט",
-			"Matanya"
+			"Matanya",
+			"GilCahana"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -548,7 +549,7 @@
 	"bold_sample": "טקסט מודגש",
 	"bold_tip": "טקסט מודגש",
 	"italic_sample": "טקסט נטוי",
-	"italic_tip": "טקסט נטוי (לא מומלץ בעברית)",
+	"italic_tip": "טקסט נטוי",
 	"link_sample": "קישור",
 	"link_tip": "קישור פנימי",
 	"extlink_sample": "http://www.example.com כותרת הקישור לתצוגה",
@@ -2246,11 +2247,12 @@
 	"tooltip-n-randompage": "צפייה בדף תוכן אקראי",
 	"tooltip-n-help": "עזרה בשימוש באתר",
 	"tooltip-t-whatlinkshere": "רשימת כל הדפים המקושרים לכאן",
-	"tooltip-t-recentchangeslinked": "השינויים האחרונים שבוצעו בדפים המקושרים לכאן",
+	"tooltip-t-recentchangeslinked": "השינויים האחרונים שבוצעו בדפים המקושרים מכאן",
 	"tooltip-feed-rss": "הזנת RSS עבור דף זה",
 	"tooltip-feed-atom": "הזנת Atom עבור דף זה",
 	"tooltip-t-contributions": "תרומותיו של משתמש זה",
 	"tooltip-t-emailuser": "שליחת דואר אלקטרוני למשתמש זה",
+	"tooltip-t-info": "מידע נוסף על דף זה",
 	"tooltip-t-upload": "העלאת קבצים",
 	"tooltip-t-specialpages": "רשימת כל הדפים המיוחדים",
 	"tooltip-t-print": "גרסה להדפסה של דף זה",

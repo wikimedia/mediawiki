@@ -605,7 +605,7 @@
 	"semiprotectedpagewarning": "'''ਨੋਟ:''' ਇਹ ਸਫ਼ਾ ਸੁਰੱਖਿਅਤ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਰਜਿਸਟਰ ਹੋਏ ਮੈਂਬਰ ਹੀ ਇਸ ਨੂੰ ਸੋਧ ਸਕਣ।\nਚਿੱਠੇ ਵਿਚਲਾ ਨਵਾਂ ਦਾਖ਼ਲਾ ਹਵਾਲੇ ਲਈ ਹੇਠਾਂ ਦਿੱਤਾ ਗਿਆ ਹੈ:",
 	"titleprotectedwarning": "'''ਖ਼ਬਰਦਾਰ: ਇਹ ਸਫ਼ਾ ਸੁਰੱਖਿਅਤ ਹੈ ਸੋ ਇਸਨੂੰ ਬਣਾਉਣ ਲਈ [[Special:ListGroupRights|ਖ਼ਾਸ ਹੱਕਾਂ]] ਦੀ ਲੋੜ ਹੈ।'''\nਚਿੱਠੇ ਦਾ ਨਵਾਂ ਦਾਖ਼ਲਾ ਹਵਾਲੇ ਲਈ ਹੇਠਾਂ ਦਿੱਤਾ ਗਿਆ ਹੈ:",
 	"templatesused": "ਇਸ ਪੰਨੇ ’ਤੇ {{PLURAL:$1|ਵਰਤਿਆ ਸਾਂਚਾ|ਵਰਤੇ ਸਾਂਚੇ}}:",
-	"templatesusedpreview": "{{PLURAL:$1|ਟੈਪਲੇਟ|ਟੈਪਲੇਟ}} ਇਹ ਝਲਕ 'ਚ ਵਰਤੇ ਜਾਂਦੇ ਹਨ:",
+	"templatesusedpreview": "ਏਸ ਝਾਤ 'ਚ {{PLURAL:$1|ਵਰਤਿਆ ਗਿਆ ਫਰਮਾ|ਵਰਤੇ ਗਏ ਫਰਮੇ}}:",
 	"templatesusedsection": "ਇਹ ਭਾਗ ਵਿੱਚ {{PLURAL:$1|ਸਾਂਚਾ|ਸਾਂਚੇ}} ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ:",
 	"template-protected": "(ਸੁਰੱਖਿਅਤ)",
 	"template-semiprotected": "(ਨੀਮ-ਸੁਰੱਖਿਅਤ)",
