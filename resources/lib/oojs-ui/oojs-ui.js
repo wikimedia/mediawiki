@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (98cecf304d)
+ * OOjs UI v0.1.0-pre (1829141230)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-15T22:39:24Z
+ * Date: 2014-10-15T22:49:59Z
  */
 ( function ( OO ) {
 
@@ -11286,7 +11286,7 @@ OO.ui.TextInputMenuWidget.prototype.onWindowResize = function () {
  * @inheritdoc
  */
 OO.ui.TextInputMenuWidget.prototype.toggle = function ( visible ) {
-	visible = !!visible;
+	visible = visible === undefined ? !this.isVisible() : !!visible;
 
 	var change = visible !== this.isVisible();
 
