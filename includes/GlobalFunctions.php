@@ -160,6 +160,32 @@ if ( !function_exists( 'hash_equals' ) ) {
 }
 /// @endcond
 
+function wfLoadExtension( $name, $path = null ) {
+	if ( !$path ) {
+		global $IP;
+		$path = "$IP/extensions/$name/extension.json";
+	}
+	RegistryFactory::getExtensionRegistry()->load( $path );
+}
+
+function wfLoadExtensions( array $exts ) {
+	global $IP;
+	$registry = RegistryFactory::getExtensionRegistry();
+	foreach ( $exts as $ext ) {
+		$registry->queue( "$IP/extensions/$ext/extension.json" );
+	}
+
+	$registry->loadFromQueue();
+}
+
+function wfLoadSkin( $name, $path = null ) {
+	if ( !$path ) {
+		global $IP;
+		$path = "$IP/skins/$name/skin.json";
+	}
+	RegistryFactory::getSkinRegistry()->load( $path );
+}
+
 /**
  * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
  * @param array $a
