@@ -2348,6 +2348,23 @@ $wgClockSkewFudge = 5;
  */
 $wgInvalidateCacheOnLocalSettingsChange = true;
 
+/**
+ * When loading extensions through the extension registration system, this
+ * can be used to invalidate the cache. A good idea would be to set this to
+ * one file, you can just `touch` that one to invalidate the cache
+ *
+ * @par Example:
+ * @code
+ * $wgExtensionInfoMtime = filemtime( "$IP/LocalSettings.php" );
+ * @endcode
+ *
+ * If set to false, the mtime for each individual JSON file will be checked,
+ * which can be slow if a large number of extensions are being loaded.
+ *
+ * @var int|bool
+ */
+$wgExtensionInfoMTime = false;
+
 /** @} */ # end of cache settings
 
 /************************************************************************//**
