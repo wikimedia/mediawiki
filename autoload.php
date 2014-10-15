@@ -358,6 +358,7 @@ $wgAutoloadLocalClasses = array(
 	'EmaillingJob' => __DIR__ . '/includes/jobqueue/jobs/EmaillingJob.php',
 	'EmptyBagOStuff' => __DIR__ . '/includes/objectcache/EmptyBagOStuff.php',
 	'EmptyBloomCache' => __DIR__ . '/includes/cache/bloom/BloomCache.php',
+	''ExtensionRegistrerer' => __DIR__ . '/includes/ExtensionRegistrerer.php',
 	'EncryptedPassword' => __DIR__ . '/includes/password/EncryptedPassword.php',
 	'EnhancedChangesList' => __DIR__ . '/includes/changes/EnhancedChangesList.php',
 	'EnotifNotifyJob' => __DIR__ . '/includes/jobqueue/jobs/EnotifNotifyJob.php',
