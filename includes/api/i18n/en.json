@@ -37,7 +37,7 @@
 	"apihelp-wddxfm-description": "Output data in WDDX format (pretty-print in HTML).",
 	"apihelp-xml-description": "Output data in XML format.",
 	"apihelp-xml-param-xslt": "If specified, adds &lt;xslt&gt; as stylesheet. This should be a wiki page in the MediaWiki namespace whose page name ends with \".xsl\".",
-	"apihelp-xml-param-includexmlnamespac": "If specified, adds an XML namespace.",
+	"apihelp-xml-param-includexmlnamespace": "If specified, adds an XML namespace.",
 	"apihelp-xmlfm-description": "Output data in XML format (pretty-print in HTML).",
 	"apihelp-yaml-description": "Output data in YAML format.",
 	"apihelp-yamlfm-description": "Output data in YAML format (pretty-print in HTML).",

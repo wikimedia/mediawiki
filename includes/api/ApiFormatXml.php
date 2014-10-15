@@ -238,11 +238,11 @@ class ApiFormatXml extends ApiFormatBase {
 	public function getAllowedParams() {
 		return array(
 			'xslt' => array(
-				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
+				ApiBase::PARAM_HELP_MSG => 'apihelp-xml-param-xslt',
 			),
 			'includexmlnamespace' => array(
 				ApiBase::PARAM_DFLT => false,
-				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
+				ApiBase::PARAM_HELP_MSG => 'apihelp-xml-param-includexmlnamespace',
 			),
 		);
 	}

@@ -35,7 +35,7 @@
 	"apihelp-wddxfm-description": "{{doc-apihelp-description|wddxfm|seealso=* {{msg-mw|apihelp-wddx-description}}}}",
 	"apihelp-xml-description": "{{doc-apihelp-description|xml|seealso=* {{msg-mw|apihelp-xmlfm-description}}}}",
 	"apihelp-xml-param-xslt": "{{doc-apihelp-param|xml|xslt}}",
-	"apihelp-xml-param-includexmlnamespac": "{{doc-apihelp-param|xml|includexmlnamespac}}",
+	"apihelp-xml-param-includexmlnamespace": "{{doc-apihelp-param|xml|includexmlnamespace}}",
 	"apihelp-xmlfm-description": "{{doc-apihelp-description|xmlfm|seealso=* {{msg-mw|apihelp-xml-description}}}}",
 	"apihelp-yaml-description": "{{doc-apihelp-description|yaml|seealso=* {{msg-mw|apihelp-yamlfm-description}}}}",
 	"apihelp-yamlfm-description": "{{doc-apihelp-description|yamlfm|seealso=* {{msg-mw|apihelp-yaml-description}}}}",
