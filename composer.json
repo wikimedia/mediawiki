@@ -23,6 +23,7 @@
 		"cdb/cdb": "1.0.0"
 	},
 	"require-dev": {
+		"geraintluff/jsv4": "1.0.1",
 		"phpunit/phpunit": "*"
 	},
 	"suggest": {
