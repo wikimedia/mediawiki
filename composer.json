@@ -23,6 +23,7 @@
 		"wikimedia/cdb": "1.0.1"
 	},
 	"require-dev": {
+		"geraintluff/jsv4": "1.0.1",
 		"phpunit/phpunit": "*"
 	},
 	"suggest": {
