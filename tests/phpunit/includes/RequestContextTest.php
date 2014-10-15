@@ -88,9 +88,9 @@ class RequestContextTest extends MediaWikiTestCase {
 		unset( $sc ); // restore previous context
 
 		$info = $context->exportSession();
-		$this->assertEquals( $oInfo['ip'], $info['ip'], "Correct initial IP address." );
-		$this->assertEquals( $oInfo['headers'], $info['headers'], "Correct initial headers." );
-		$this->assertEquals( $oInfo['sessionId'], $info['sessionId'], "Correct initial session ID." );
-		$this->assertEquals( $oInfo['userId'], $info['userId'], "Correct initial user ID." );
+		$this->assertEquals( $oInfo['ip'], $info['ip'], "Correct restored IP address." );
+		$this->assertEquals( $oInfo['headers'], $info['headers'], "Correct restored headers." );
+		$this->assertEquals( $oInfo['sessionId'], $info['sessionId'], "Correct restored session ID." );
+		$this->assertEquals( $oInfo['userId'], $info['userId'], "Correct restored user ID." );
 	}
 }
