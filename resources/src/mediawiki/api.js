@@ -26,6 +26,22 @@
 		// Keyed by ajax url and symbolic name for the individual request
 		promises = {};
 
+	function mapLegacyToken( action ) {
+		// Legacy types for backward-compatibility with API action=tokens.
+		var csrfActions = [
+			'edit',
+			'delete',
+			'protect',
+			'move',
+			'block',
+			'unblock',
+			'email',
+			'import',
+			'options'
+		];
+		return $.inArray( action, csrfActions ) !== -1 ? 'csrf' : action;
+	}
+
 	// Pre-populate with fake ajax promises to save http requests for tokens
 	// we already have on the page via the user.tokens module (bug 34733).
 	promises[ defaultOptions.ajax.url ] = {};
@@ -295,32 +311,41 @@
 		 *
 		 * The assert parameter is only for internal use by postWithToken.
 		 *
-		 * @param {string} type Token type
+		 * @param {string} action Token type
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string} return.done.token Received token.
 		 * @since 1.22
 		 */
-		getToken: function ( type, assert ) {
+		getToken: function ( action, assert ) {
 			var apiPromise,
+				type = mapLegacyToken( action ),
 				promiseGroup = promises[ this.defaults.ajax.url ],
-				d = promiseGroup && promiseGroup[ type + 'Token' ];
+				d = promiseGroup && promiseGroup[ action + 'Token' ];
 
 			if ( !d ) {
-				apiPromise = this.get( { action: 'tokens', type: type, assert: assert } );
+				apiPromise = this.get( {
+					action: 'query',
+					meta: 'tokens',
+					type: type,
+					assert: assert
+				} );
 
 				d = apiPromise
-					.then( function ( data ) {
-						if ( data.tokens && data.tokens[ type + 'token' ] ) {
-							return data.tokens[ type + 'token' ];
+					.then( function ( res ) {
+						// If token type is not available for this user,
+						// key '...token' is either missing or set to boolean false
+						if ( res.query.tokens && res.query.tokens[ type + 'token' ] ) {
+							return res.query.tokens[ type + 'token' ];
 						}
 
 						// If token type is not available for this user,
 						// key '...token' is either missing or set to boolean false
-						return $.Deferred().reject( 'token-missing', data );
+						return $.Deferred().reject( 'token-missing', res );
 					}, function () {
 						// Clear promise. Do not cache errors.
-						delete promiseGroup[ type + 'Token' ];
+						delete promiseGroup[ action + 'Token' ];
+
 						// Pass on to allow the caller to handle the error
 						return this;
 					} )
@@ -331,7 +356,7 @@
 				if ( !promiseGroup ) {
 					promiseGroup = promises[ this.defaults.ajax.url ] = {};
 				}
-				promiseGroup[ type + 'Token' ] = d;
+				promiseGroup[ action + 'Token' ] = d;
 			}
 
 			return d;

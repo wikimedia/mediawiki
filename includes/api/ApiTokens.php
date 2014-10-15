@@ -25,7 +25,7 @@
  */
 
 /**
- * @deprecated since 1.24
+ * @deprecated since 1.24 Use action=query&meta=tokens instead.
  * @ingroup API
  */
 class ApiTokens extends ApiBase {
@@ -63,17 +63,29 @@ class ApiTokens extends ApiBase {
 		}
 
 		static $types = null;
-		if ( $types ) {
-			return $types;
+		if ( !$types ) {
+			$types = array(
+				'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' ),
+			);
+			$names = array(
+				'edit',
+				'delete',
+				'protect',
+				'move',
+				'block',
+				'unblock',
+				'email',
+				'import',
+				'watch',
+				'options',
+			);
+			foreach ( $names as $name ) {
+				$types[$name] = array( 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' );
+			}
+			// Deprecated: Use ApiQueryTokensRegisterTypes instead.
+			Hooks::run( 'ApiTokensGetTokenTypes', array( &$types ), '1.24' );
+			ksort( $types );
 		}
-		$types = array( 'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' ) );
-		$names = array( 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
-			'email', 'import', 'watch', 'options' );
-		foreach ( $names as $name ) {
-			$types[$name] = array( 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' );
-		}
-		Hooks::run( 'ApiTokensGetTokenTypes', array( &$types ) );
-		ksort( $types );
 
 		return $types;
 	}
