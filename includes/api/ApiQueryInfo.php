@@ -107,7 +107,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			'import' => array( 'ApiQueryInfo', 'getImportToken' ),
 			'watch' => array( 'ApiQueryInfo', 'getWatchToken' ),
 		);
-		Hooks::run( 'APIQueryInfoTokens', array( &$this->tokenFunctions ) );
+		// Deprecated: Use ApiQueryTokensRegisterTypes instead.
+		Hooks::run( 'APIQueryInfoTokens', array( &$this->tokenFunctions ), '1.24' );
 
 		return $this->tokenFunctions;
 	}
