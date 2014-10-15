@@ -7,32 +7,21 @@
  * @covers ApiQuery
  */
 class ApiQueryTest extends ApiTestCase {
-	/**
-	 * @var array Storage for $wgHooks
-	 */
-	protected $hooks;
-
 	protected function setUp() {
-		global $wgHooks;
-
 		parent::setUp();
 		$this->doLogin();
 
-		// Setup en: as interwiki prefix
-		$this->hooks = $wgHooks;
-		$wgHooks['InterwikiLoadPrefix'][] = function ( $prefix, &$data ) {
-			if ( $prefix == 'apiquerytestiw' ) {
-				$data = array( 'iw_url' => 'wikipedia' );
-			}
-			return false;
-		};
-	}
-
-	protected function tearDown() {
-		global $wgHooks;
-		$wgHooks = $this->hooks;
-
-		parent::tearDown();
+		// Setup apiquerytestiw: as interwiki prefix
+		$this->setMwGlobals( 'wgHooks', array(
+			'InterwikiLoadPrefix' => array(
+				function ( $prefix, &$data ) {
+					if ( $prefix == 'apiquerytestiw' ) {
+						$data = array( 'iw_url' => 'wikipedia' );
+					}
+					return false;
+				}
+			)
+		) );
 	}
 
 	public function testTitlesGetNormalized() {
