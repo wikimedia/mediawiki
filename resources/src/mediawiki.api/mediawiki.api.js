@@ -274,10 +274,33 @@
 		getToken: function ( type, assert ) {
 			var apiPromise,
 				promiseGroup = promises[ this.defaults.ajax.url ],
-				d = promiseGroup && promiseGroup[ type + 'Token' ];
+				d,
+				// Token types from action=tokens that need to be mapped
+				// to the csrf token type for backward-compatibility.
+				csrfActions = [
+					'block',
+					'delete',
+					'edit',
+					'email',
+					'import',
+					'move',
+					'options',
+					'protect',
+					'unblock'
+				];
 
+			if ( $.inArray( type, csrfActions ) !== -1 ) {
+				type = 'csrf';
+			}
+
+			d = promiseGroup && promiseGroup[ type + 'Token' ];
 			if ( !d ) {
-				apiPromise = this.get( { action: 'tokens', type: type, assert: assert } );
+				apiPromise = this.get( {
+					action: 'query',
+					meta: 'tokens',
+					type: type,
+					assert: assert
+				} );
 
 				d = apiPromise
 					.then( function ( data ) {
