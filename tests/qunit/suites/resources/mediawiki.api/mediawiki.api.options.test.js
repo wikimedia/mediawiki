@@ -27,9 +27,9 @@
 		// until after the server.respond call, which confuses sinon terribly. This sucks a lot.
 		api.getToken( 'options' );
 		this.server.respond(
-			/action=tokens.*&type=options/,
+			/meta=tokens&type=csrf/,
 			[ 200, { 'Content-Type': 'application/json' },
-				'{ "tokens": { "optionstoken": "+\\\\" } }' ]
+				'{ "query": { "tokens": { "csrftoken": "+\\\\" } } }' ]
 		);
 
 		api.saveOptions( {} ).done( function () {
@@ -71,7 +71,7 @@
 						'{ "options": "success" }' );
 					break;
 				default:
-					assert.ok( false, 'Unexpected request:' + request.requestBody );
+					assert.ok( false, 'Unexpected request: ' + request.requestBody );
 			}
 		} );
 	} );
