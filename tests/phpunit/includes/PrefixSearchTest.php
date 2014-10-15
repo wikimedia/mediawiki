@@ -3,7 +3,7 @@
  * @group Search
  * @group Database
  */
-class PrefixSearchTest extends MediaWikiTestCase {
+class PrefixSearchTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
 		parent::setUp();
