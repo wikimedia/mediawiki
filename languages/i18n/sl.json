@@ -655,6 +655,8 @@
 	"content-model-text": "golo besedilo",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "Strani s podvojenimi argumenti v klicih predlog",
+	"duplicate-args-category-desc": "Stran vsebuje klice predlog, ki vsebujejo dvojnike argumentov, kot sta <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ali <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Opozorilo:''' Ta stran vsebuje preveč klicev funkcije razčlenjevalnika kode.\n\nStran naj bi vsebovala manj kot $2 {{PLURAL:$2|klic|klica|klice|klicev}}, trenutno {{PLURAL:$1|je v uporabi $1 klic|sta v uporabi $1 klica|so v uporabi $1 klici|je v uporabi $1 klicev}}.",
 	"expensive-parserfunction-category": "Strani s prevelikim številom klicev na funkcijo razčlenjevalnika kode",
 	"post-expand-template-inclusion-warning": "'''Opozorilo:''' Velikost vključenih predlog je prevelika.\nNekatere predloge ne bodo prikazane.",

@@ -659,6 +659,7 @@
 	"content-model-text": "mach test",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "Pàgine ch'a deuvro d'argoment dobi ant j'arceste dë stamp",
 	"expensive-parserfunction-warning": "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le fonsions d'anàlisi sintàtica.\n\nA dovrìa essnie men che {{PLURAL:$2|$2}}, adess a-i na j'é {{PLURAL:$1|$1}}.",
 	"expensive-parserfunction-category": "Pàgine con tròpe ciamà costose ëd fonsion ëd l'analisator sintàtich",
 	"post-expand-template-inclusion-warning": "'''Atension:''' La dimension dj'anseriment dë stamp a l'é tròp gròssa.\nChèich stamp a saran nen anserì.",

@@ -304,7 +304,7 @@
 	"nospecialpagetext": "Du har bede om ei spesialside som ikkje finst. Lista over spesialsider finn du [[Special:SpecialPages|her]].",
 	"error": "Feil",
 	"databaseerror": "Databasefeil",
-	"databaseerror-text": "Ein spørjefeil mot databasa har oppstått.\nDette kan indikere ein feil i programvara.",
+	"databaseerror-text": "Ein spørjefeil mot databasen har oppstått.\nDette kan indikere ein feil i programvara.",
 	"databaseerror-error": "Feil: $1",
 	"laggedslavemode": "Åtvaring: Det er mogleg at sida ikkje er heilt oppdatert.",
 	"readonly": "Databasen er skriveverna",
