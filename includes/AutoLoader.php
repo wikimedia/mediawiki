@@ -463,6 +463,12 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/debug
 	'MWDebug' => 'includes/debug/MWDebug.php',
+	'MWLogger' => 'includes/debug/logger/Logger.php',
+	'MWLoggerMonologHandler' => 'includes/debug/logger/monolog/Handler.php',
+	'MWLoggerMonologProcessor' => 'includes/debug/logger/monolog/Processor.php',
+	'MWLoggerMonologSpi' => 'includes/debug/logger/monolog/Spi.php',
+	'MWLoggerNullSpi' => 'includes/debug/logger/NullSpi.php',
+	'MWLoggerSpi' => 'includes/debug/logger/Spi.php',
 
 	# includes/deferred
 	'DataUpdate' => 'includes/deferred/DataUpdate.php',
