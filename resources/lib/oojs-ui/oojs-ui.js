@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (1829141230)
+ * OOjs UI v0.1.0-pre (99ec31d9b9)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-15T22:49:59Z
+ * Date: 2014-10-16T18:08:01Z
  */
 ( function ( OO ) {
 
@@ -727,7 +727,7 @@ OO.initClass( OO.ui.Element );
 /**
  * HTML tag name.
  *
- * This may be ignored if getTagName is overridden.
+ * This may be ignored if #getTagName is overridden.
  *
  * @static
  * @inheritable
@@ -2604,8 +2604,10 @@ OO.ui.WindowManager.prototype.afterWindowResize = function () {
  *
  * @param {jQuery.Event} e Mouse wheel event
  */
-OO.ui.WindowManager.prototype.onWindowMouseWheel = function () {
-	return false;
+OO.ui.WindowManager.prototype.onWindowMouseWheel = function ( e ) {
+	// Kill all events in the parent window if the child window is isolated,
+	// or if the event didn't come from the child window
+	return !( this.shouldIsolate() || !$.contains( this.getCurrentWindow().$frame[0], e.target ) );
 };
 
 /**
@@ -2623,8 +2625,9 @@ OO.ui.WindowManager.prototype.onDocumentKeyDown = function ( e ) {
 		case OO.ui.Keys.UP:
 		case OO.ui.Keys.RIGHT:
 		case OO.ui.Keys.DOWN:
-			// Prevent any key events that might cause scrolling
-			return false;
+			// Kill all events in the parent window if the child window is isolated,
+			// or if the event didn't come from the child window
+			return !( this.shouldIsolate() || !$.contains( this.getCurrentWindow().$frame[0], e.target ) );
 	}
 };
 
@@ -2866,7 +2869,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 	var manager = this,
 		preparing = [],
 		closing = $.Deferred(),
-		opened = this.opened;
+		opened;
 
 	// Argument handling
 	if ( typeof win === 'string' ) {
@@ -2903,6 +2906,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 			manager.closing = closing;
 			manager.preparingToClose = null;
 			manager.emit( 'closing', win, closing, data );
+			opened = manager.opened;
 			manager.opened = null;
 			opened.resolve( closing.promise(), data );
 			setTimeout( function () {
@@ -8174,7 +8178,7 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	OO.ui.IconElement.call( this, config );
 	OO.ui.IndicatorElement.call( this, config );
 	OO.ui.LabelElement.call( this, config );
-	OO.ui.TitledElement.call( this, config, $.extend( {}, config, { $titled: this.$button } ) );
+	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$button } ) );
 	OO.ui.FlaggedElement.call( this, config );
 
 	// Properties
