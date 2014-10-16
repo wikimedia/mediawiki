@@ -125,4 +125,72 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideArgumentsForAnchorParserFunction
+	 */
+	public function testAnchorParserFunction( $message, $expected, $href, $content ) {
+		$this->assertEquals(
+			"<p>$expected\n</p>",
+			MessageCache::singleton()->parse( "<a href='$href'>$content</a>" )->getText(),
+			$message
+		);
+	}
+
+	function provideArgumentsForAnchorParserFunction() {
+		return array(
+			array(
+				'Allows link url to current domain',
+				// strtr is necessary because Html::element normalizes the anchor into that.
+				'<a href="' . str_replace( '&', '&amp;', Title::newMainPage()->getLinkURL( 'action=edit' ) ) . '">edit</a>',
+				Title::newMainPage()->getLinkURL( 'action=edit' ),
+				'edit',
+			),
+
+			array(
+				'Allows links internal to the page via hash',
+				'<a href="#beep">boop</a>',
+				'#beep',
+				'boop'
+			),
+
+			array(
+				// perhaps not desirable, but describes the
+				// current implementation
+				'disallows relative anchors',
+				'<a href="#">hi</a>',
+				'User_talk:Jimbo_Wales',
+				'hi',
+			),
+
+			array(
+				// perhaps not desirable, but describes the
+				// current implementation
+				'disallows relative anchors',
+				'<a href="#">there</a>',
+				'./User_talk:Jimbo_Wales',
+				'there',
+			),
+
+			array(
+				'disallows javascript anchors',
+				'<a href="#">nope</a>',
+				'javascript:alert(1)',
+				'nope'
+			),
+
+			array(
+				'disallows urls that change domain',
+				'<a href="#">probably</a>',
+				'//icanhazwiki.foo/bar',
+				'probably',
+			),
+
+			array(
+				'disallows urls that change domain',
+				'<a href="#">not</a>',
+				'https://qwe.rty/qwerty',
+				'not',
+			),
+		);
+	}
 }

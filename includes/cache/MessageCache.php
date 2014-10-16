@@ -1014,9 +1014,52 @@ class MessageCache {
 			} else {
 				$this->mParser = clone $wgParser;
 			}
+
+			// Extension tag for using pre-created urls in anchors.  Only available
+			// within messages and not the parser at-large.
+			$this->mParser->setHook( 'a', 'MessageCache::linkExtensionTag' );
 		}
 
 		return $this->mParser;
+	}
+
+	/**
+	 * @param string $input
+	 * @param array $args
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string HTML safe for output to user
+	 */
+	static public function linkExtensionTag( $input, array $args, Parser $parser, PPFrame $frame ) {
+			
+		$finalAttributes = array( 'href' => '#' );
+		foreach ( $args as $attribute => $value ) {
+			switch ( $attribute ) {
+				case 'href':
+					// allow urls that start with single / character not followed by a /
+					$allowed = strlen( $value ) > 2 && $value[0] === '/' && $value[1] !== '/';
+					// also allow urls that start with a hash
+					$allowed = $allowed || ( strlen( $value ) > 1 && $value[0] === '#' );
+
+					if ( $allowed ) {
+						$finalAttributes['href'] = $value;
+					}
+					break;
+
+				case 'target':
+					// only allow _blank for opening in new tabs.  Further whitelisting
+					// can be considered as use cases arise.
+					if ( strtolower( $value ) === '_blank' ) {
+						$finalAttributes['target'] = '_blank';
+					}
+					break;
+
+				default:
+					// ignore non-whitelisted attributes
+			}
+		}
+
+		return Html::element( 'a', $finalAttributes, $input );
 	}
 
 	/**
