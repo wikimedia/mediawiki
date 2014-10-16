@@ -818,24 +818,16 @@ class Sanitizer {
 	}
 
 	/**
-	 * Pick apart some CSS and check it for forbidden or unsafe structures.
-	 * Returns a sanitized string. This sanitized string will have
-	 * character references and escape sequences decoded and comments
-	 * stripped (unless it is itself one valid comment, in which case the value
-	 * will be passed through). If the input is just too evil, only a comment
-	 * complaining about evilness will be returned.
-	 *
-	 * Currently URL references, 'expression', 'tps' are forbidden.
-	 *
-	 * NOTE: Despite the fact that character references are decoded, the
-	 * returned string may contain character references given certain
-	 * clever input strings. These character references must
-	 * be escaped before the return value is embedded in HTML.
-	 *
-	 * @param string $value
-	 * @return string
+	 * Normalize CSS into a format we can easily search for hostile input
+	 *  - decode character references
+	 *  - decode escape sequences
+	 *  - convert characters that IE6 interprets into ascii
+	 *  - remove comments, unless the entire value is one single comment
+	 * @param string $value the css string
+	 * @return string normalized css
 	 */
-	static function checkCss( $value ) {
+	public static function normalizeCss( $value ) {
+
 		// Decode character references like &#123;
 		$value = Sanitizer::decodeCharReferences( $value );
 
@@ -920,6 +912,31 @@ class Sanitizer {
 			'ss',
 			$value
 		);
+
+		return $value;
+	}
+
+
+	/**
+	 * Pick apart some CSS and check it for forbidden or unsafe structures.
+	 * Returns a sanitized string. This sanitized string will have
+	 * character references and escape sequences decoded and comments
+	 * stripped (unless it is itself one valid comment, in which case the value
+	 * will be passed through). If the input is just too evil, only a comment
+	 * complaining about evilness will be returned.
+	 *
+	 * Currently URL references, 'expression', 'tps' are forbidden.
+	 *
+	 * NOTE: Despite the fact that character references are decoded, the
+	 * returned string may contain character references given certain
+	 * clever input strings. These character references must
+	 * be escaped before the return value is embedded in HTML.
+	 *
+	 * @param string $value
+	 * @return string
+	 */
+	static function checkCss( $value ) {
+		$value = self::normalizeCss( $value );
 
 		// Reject problematic keywords and control characters
 		if ( preg_match( '/[\000-\010\013\016-\037\177]/', $value ) ) {

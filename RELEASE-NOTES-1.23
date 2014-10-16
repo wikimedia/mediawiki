@@ -1,6 +1,28 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.23.5 ==
+
+This is a security release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.4 ===
+* (bug 70672) SECURITY: OutputPage: Remove separation of css and js module
+  allowance.
+
+== MediaWiki 1.23.4 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.3 ===
+
+* (bug 69008) SECURITY: Enhance CSS filtering in SVG files. Filter <style>
+  elements; normalize style elements and attributes before filtering; add
+  checks for attributes that contain css; add unit tests for html5sec and
+  reported bugs.
+* (bug 65998) Make MySQLi work with non-standard socket.
+* (bug 66986) GlobalVarConfig shouldn't throw exceptions for null-valued config
+  settings.
+
 == MediaWiki 1.23.3 ==
 
 This is a maintenance release of the MediaWiki 1.23 branch.
