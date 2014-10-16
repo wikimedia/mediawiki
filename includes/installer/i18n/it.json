@@ -10,7 +10,8 @@
 			"Lucas2",
 			"Ontsed",
 			"Seb35",
-			"Nemo bis"
+			"Nemo bis",
+			"Ricordisamoa"
 		]
 	},
 	"config-desc": "Il programma di installazione per MediaWiki",
@@ -220,7 +221,7 @@
 	"config-admin-error-password": "Errore interno durante l'impostazione di una password per amministratore \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "È stato inserito un indirizzo email non valido.",
 	"config-subscribe": "Sottoscrivi la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list degli annunci di rilasci].",
-	"config-subscribe-help": "Si tratta di una mailing list a basso traffico dedicata agli annunci di nuove versioni, compresi importanti segnalazioni riguardanti la sicurezza.\nÈ consigliato iscriversi e aggiornare la proprio installazione di MediaWiki quando una nuova versione viene resa pubblica.",
+	"config-subscribe-help": "Si tratta di una mailing list a basso traffico dedicata agli annunci di nuove versioni, compresi importanti segnalazioni riguardanti la sicurezza.\nÈ consigliato iscriversi e aggiornare la propria installazione di MediaWiki quando una nuova versione viene resa pubblica.",
 	"config-subscribe-noemail": "Hai provato ad iscriverti alla mailing list dedicata agli annunci delle nuove versioni senza fornire un indirizzo email.\nInserire un indirizzo email se si desidera effettuare l'iscrizione alla mailing list.",
 	"config-almost-done": "Hai quasi finito!\nAdesso puoi saltare la rimanente parte della configurazione e semplicemente installare la wiki.",
 	"config-optional-continue": "Fammi altre domande.",
