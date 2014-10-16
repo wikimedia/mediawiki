@@ -2346,7 +2346,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		# Split database and table into proper variables.
 		# We reverse the explode so that database.table and table both output
 		# the correct table.
-		$dbDetails = explode( '.', $name, 2 );
+		$dbDetails = explode( '.', $name, 3 );
 		if ( count( $dbDetails ) == 3 ) {
 			list( $database, $schema, $table ) = $dbDetails;
 			# We don't want any prefix added in this case
