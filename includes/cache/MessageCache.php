@@ -1031,6 +1031,28 @@ class MessageCache {
 			} else {
 				$this->mParser = clone $wgParser;
 			}
+
+			// Function hook for using pre-created urls in anchors.  Only available
+			// within messages and not the parser at-large.
+			// @todo is there a better location for this implementation, while still
+			// being logically separated for only Message parsing?
+			$this->mParser->setFunctionHook( 'link', function( $parser, $url = '', $content = '' ) {
+				// must start with single / character not followed by a /
+				if ( strlen( $url ) < 2 || $url[0] !== '/' || $url[1] === '/' ) {
+					$url = '#';
+				}
+
+				return array(
+					'found' => true,
+					'noparse' => true,
+					'isHTML' => true,
+					'text' => Html::element(
+						'a',
+						array( 'href' => $url ),
+						$content
+					),
+				);
+			} );
 		}
 
 		return $this->mParser;
