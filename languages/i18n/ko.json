@@ -909,7 +909,7 @@
 	"prefs-changeemail": "이메일 주소 바꾸기",
 	"prefs-setemail": "이메일 주소 설정하기",
 	"prefs-email": "이메일 설정",
-	"prefs-rendering": "문서 보기 설정",
+	"prefs-rendering": "문서 보이기 설정",
 	"saveprefs": "저장",
 	"restoreprefs": "(모든 부분에서) 모두 기본 설정으로 되돌리기",
 	"prefs-editing": "편집 상자",
