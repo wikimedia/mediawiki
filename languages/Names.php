@@ -342,6 +342,7 @@
 	'sdc' => 'Sassaresu',	# Sassarese
 	'se' => 'sámegiella',	# Northern Sami
 	'sei' => 'Cmique Itom',	# Seri
+	'ses' => 'Koyraboro Senni',	# Koyraboro Senni
 	'sg' => 'Sängö',		# Sango/Sangho
 	'sgs' => 'žemaitėška', # Samogitian
 	'sh' => 'srpskohrvatski / српскохрватски', # Serbocroatian
