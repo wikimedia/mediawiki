@@ -55,7 +55,7 @@ class ApiFormatRaw extends ApiFormatBase {
 		return $data['mime'];
 	}
 
-	public function initPrinter( $unused ) {
+	public function initPrinter( $unused = false ) {
 		$data = $this->getResultData();
 		if ( isset( $data['error'] ) ) {
 			$this->errorFallback->initPrinter( $unused );
