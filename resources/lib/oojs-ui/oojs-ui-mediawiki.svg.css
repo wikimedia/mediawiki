@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (1829141230)
+ * OOjs UI v0.1.0-pre (99ec31d9b9)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-15T22:50:09Z
+ * Date: 2014-10-16T18:08:12Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -417,6 +417,7 @@
 	z-index: 4;
 }
 .oo-ui-popupTool .oo-ui-popupWidget {
+	/* @noflip */
 	margin-left: 1.25em;
 	font-size: 0.8em;
 }
@@ -986,6 +987,8 @@
 }
 .oo-ui-popupWidget {
 	position: absolute;
+	/* @noflip */
+	left: 0;
 }
 .oo-ui-popupWidget-popup {
 	position: relative;
@@ -1000,6 +1003,8 @@
 	display: block;
 	position: absolute;
 	top: 0;
+	/* @noflip */
+	left: 0;
 	background-repeat: no-repeat;
 }
 .oo-ui-popupWidget-head {
@@ -1390,6 +1395,18 @@
 	right: 0;
 	overflow-x: hidden;
 	overflow-y: auto;
+}
+.oo-ui-searchWidget-query {
+	height: 2.4em;
+	top: 1px;
+}
+.oo-ui-searchWidget-query .oo-ui-textInputWidget input {
+	border-width: 1px 0;
+}
+.oo-ui-searchWidget-results {
+	top: 2.2em;
+	bottom: 0.2em;
+	line-height: 0;
 }
 .oo-ui-window {
 	line-height: 1em;
