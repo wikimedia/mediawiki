@@ -767,10 +767,7 @@ return array(
 	/* MediaWiki */
 
 	'mediawiki' => array(
-		'scripts' => array(
-			'resources/src/mediawiki/mediawiki.js',
-			'resources/src/mediawiki/mediawiki.templates.js',
-		),
+		'scripts' => 'resources/src/mediawiki/mediawiki.js',
 		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
 		'raw' => true,
 		'targets' => array( 'desktop', 'mobile' ),
@@ -854,9 +851,6 @@ return array(
 		'position' => 'bottom',
 	),
 	'mediawiki.feedback' => array(
-		'templates' => array(
-			'dialog.html' => 'resources/src/mediawiki/templates/dialog.html',
-		),
 		'scripts' => 'resources/src/mediawiki/mediawiki.feedback.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.feedback.css',
 		'dependencies' => array(
@@ -1069,9 +1063,6 @@ return array(
 		),
 	),
 	'mediawiki.action.view.postEdit' => array(
-		'templates' => array(
-			'postEdit.html' => 'resources/src/mediawiki.action/templates/postEdit.html',
-		),
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.css',
 		'dependencies' => array(
@@ -1346,9 +1337,6 @@ return array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.undelete.js',
 	),
 	'mediawiki.special.upload' => array(
-		'templates' => array(
-			'thumbnail.html' => 'resources/src/mediawiki.special/templates/thumbnail.html',
-		),
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.upload.js',
 		'messages' => array(
 			'widthheight',
@@ -1390,9 +1378,6 @@ return array(
 		'position' => 'top',
 	),
 	'mediawiki.special.userlogin.common.js' => array(
-		'templates' => array(
-			'captcha.html' => 'resources/src/mediawiki.special/templates/captcha.html',
-		),
 		'scripts' => array(
 			'resources/src/mediawiki.special/mediawiki.special.userlogin.common.js',
 		),
