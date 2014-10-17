@@ -1305,7 +1305,10 @@ class FileRepo {
 		list( , $container, ) = FileBackend::splitStoragePath( $path );
 
 		$params = array( 'dir' => $path );
-		if ( $this->isPrivate || $container === $this->zones['deleted']['container'] ) {
+		if ( $this->isPrivate
+			|| $container === $this->zones['deleted']['container']
+			|| $container === $this->zones['temp']['container']
+		) {
 			# Take all available measures to prevent web accessibility of new deleted
 			# directories, in case the user has not configured offline storage
 			$params = array( 'noAccess' => true, 'noListing' => true ) + $params;
