@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (99ec31d9b9)
+ * OOjs UI v0.1.0-pre (0d358b167a)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-16T18:08:01Z
+ * Date: 2014-10-17T20:02:41Z
  */
 /**
  * @class
@@ -40,8 +40,8 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 		// Parent method
 		classes = OO.ui.MediaWikiTheme.super.prototype.getElementClasses.call( this, element );
 
-	if ( element.isFramed && element.hasFlag ) {
-		if ( element.isFramed() ) {
+	if ( element.supports( [ 'isFramed', 'isDisabled', 'hasFlag' ] ) ) {
+		if ( element.isFramed() && !element.isDisabled() ) {
 			if (
 				element.hasFlag( 'primary' ) ||
 				element.hasFlag( 'constructive' ) ||

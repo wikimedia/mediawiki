@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (99ec31d9b9)
+ * OOjs UI v0.1.0-pre (0d358b167a)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-16T18:08:01Z
+ * Date: 2014-10-17T20:02:41Z
  */
 ( function ( OO ) {
 
@@ -701,9 +701,7 @@ OO.ui.Element = function OoUiElement( config ) {
 	this.$ = config.$ || OO.ui.Element.getJQuery( document );
 	this.$element = this.$( this.$.context.createElement( this.getTagName() ) );
 	this.elementGroup = null;
-	this.debouncedUpdateThemeClassesHandler = OO.ui.bind(
-		this.debouncedUpdateThemeClasses, this
-	);
+	this.debouncedUpdateThemeClassesHandler = this.debouncedUpdateThemeClasses.bind( this );
 	this.updateThemeClassesPending = false;
 
 	// Initialization
@@ -865,15 +863,35 @@ OO.ui.Element.getFrameOffset = function ( from, to, offset ) {
 /**
  * Get the offset between two elements.
  *
+ * The two elements may be in a different frame, but in that case the frame $element is in must
+ * be contained in the frame $anchor is in.
+ *
  * @static
- * @param {jQuery} $from
- * @param {jQuery} $to
+ * @param {jQuery} $element Element whose position to get
+ * @param {jQuery} $anchor Element to get $element's position relative to
  * @return {Object} Translated position coordinates, containing top and left properties
  */
-OO.ui.Element.getRelativePosition = function ( $from, $to ) {
-	var from = $from.offset(),
-		to = $to.offset();
-	return { top: Math.round( from.top - to.top ), left: Math.round( from.left - to.left ) };
+OO.ui.Element.getRelativePosition = function ( $element, $anchor ) {
+	var iframe, iframePos,
+		pos = $element.offset(),
+		anchorPos = $anchor.offset(),
+		elementDocument = this.getDocument( $element ),
+		anchorDocument = this.getDocument( $anchor );
+
+	// If $element isn't in the same document as $anchor, traverse up
+	while ( elementDocument !== anchorDocument ) {
+		iframe = elementDocument.defaultView.frameElement;
+		if ( !iframe ) {
+			throw new Error( '$element frame is not contained in $anchor frame' );
+		}
+		iframePos = $( iframe ).offset();
+		pos.left += iframePos.left;
+		pos.top += iframePos.top;
+		elementDocument = iframe.ownerDocument;
+	}
+	pos.left -= anchorPos.left;
+	pos.top -= anchorPos.top;
+	return pos;
 };
 
 /**
@@ -1085,6 +1103,26 @@ OO.ui.Element.offDOMEvent = function ( el, event, callback ) {
 };
 
 /* Methods */
+
+/**
+ * Check if element supports one or more methods.
+ *
+ * @param {string|string[]} methods Method or list of methods to check
+ * @return boolean All methods are supported
+ */
+OO.ui.Element.prototype.supports = function ( methods ) {
+	var i, len,
+		support = 0;
+
+	methods = $.isArray( methods ) ? methods : [ methods ];
+	for ( i = 0, len = methods.length; i < len; i++ ) {
+		if ( $.isFunction( this[methods[i]] ) ) {
+			support++;
+		}
+	}
+
+	return methods.length === support;
+};
 
 /**
  * Update the theme-provided classes.
@@ -1903,7 +1941,7 @@ OO.ui.Window.prototype.initialize = function () {
 	this.$innerOverlay = this.$( '<div>' );
 
 	// Events
-	this.$element.on( 'mousedown', OO.ui.bind( this.onMouseDown, this ) );
+	this.$element.on( 'mousedown', this.onMouseDown.bind( this ) );
 
 	// Initialization
 	this.$head.addClass( 'oo-ui-window-head' );
@@ -2375,7 +2413,7 @@ OO.ui.Dialog.prototype.initialize = function () {
 
 	// Events
 	if ( this.constructor.static.escapable ) {
-		this.$document.on( 'keydown', OO.ui.bind( this.onDocumentKeyDown, this ) );
+		this.$document.on( 'keydown', this.onDocumentKeyDown.bind( this ) );
 	}
 
 	// Initialization
@@ -2415,7 +2453,7 @@ OO.ui.Dialog.prototype.detachActions = function () {
 OO.ui.Dialog.prototype.executeAction = function ( action ) {
 	this.pushPending();
 	return this.getActionProcess( action ).execute()
-		.always( OO.ui.bind( this.popPending, this ) );
+		.always( this.popPending.bind( this ) );
 };
 
 /**
@@ -2487,10 +2525,10 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	this.$ariaHidden = null;
 	this.requestedSize = null;
 	this.onWindowResizeTimeout = null;
-	this.onWindowResizeHandler = OO.ui.bind( this.onWindowResize, this );
-	this.afterWindowResizeHandler = OO.ui.bind( this.afterWindowResize, this );
-	this.onWindowMouseWheelHandler = OO.ui.bind( this.onWindowMouseWheel, this );
-	this.onDocumentKeyDownHandler = OO.ui.bind( this.onDocumentKeyDown, this );
+	this.onWindowResizeHandler = this.onWindowResize.bind( this );
+	this.afterWindowResizeHandler = this.afterWindowResize.bind( this );
+	this.onWindowMouseWheelHandler = this.onWindowMouseWheel.bind( this );
+	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
 
 	// Initialization
 	this.$element
@@ -2988,7 +3026,7 @@ OO.ui.WindowManager.prototype.removeWindows = function ( names ) {
 		if ( !win ) {
 			throw new Error( 'Cannot remove window' );
 		}
-		promises.push( this.closeWindow( name ).then( OO.ui.bind( cleanup, null, name, win ) ) );
+		promises.push( this.closeWindow( name ).then( cleanup.bind( null, name, win ) ) );
 	}
 
 	return $.when.apply( $, promises );
@@ -3555,8 +3593,8 @@ OO.ui.ButtonElement = function OoUiButtonElement( config ) {
 	this.tabIndex = null;
 	this.accessKey = null;
 	this.active = false;
-	this.onMouseUpHandler = OO.ui.bind( this.onMouseUp, this );
-	this.onMouseDownHandler = OO.ui.bind( this.onMouseDown, this );
+	this.onMouseUpHandler = this.onMouseUp.bind( this );
+	this.onMouseDownHandler = this.onMouseDown.bind( this );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonElement' );
@@ -3843,7 +3881,7 @@ OO.ui.GroupElement.prototype.aggregate = function ( events ) {
  *
  * Adding an existing item (by value) will move it.
  *
- * @param {OO.ui.Element[]} items Item
+ * @param {OO.ui.Element[]} items Items
  * @param {number} [index] Index to insert items at
  * @chainable
  */
@@ -4725,8 +4763,8 @@ OO.ui.ClippableElement = function OoUiClippableElement( config ) {
 	this.$clippableWindow = null;
 	this.idealWidth = null;
 	this.idealHeight = null;
-	this.onClippableContainerScrollHandler = OO.ui.bind( this.clip, this );
-	this.onClippableWindowResizeHandler = OO.ui.bind( this.clip, this );
+	this.onClippableContainerScrollHandler = this.clip.bind( this );
+	this.onClippableWindowResizeHandler = this.clip.bind( this );
 
 	// Initialization
 	this.setClippableElement( config.$clippable || this.$element );
@@ -5194,7 +5232,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	// Events
 	this.$element
 		.add( this.$bar ).add( this.$group ).add( this.$actions )
-		.on( 'mousedown touchstart', OO.ui.bind( this.onPointerDown, this ) );
+		.on( 'mousedown touchstart', this.onPointerDown.bind( this ) );
 
 	// Initialization
 	this.$group.addClass( 'oo-ui-toolbar-tools' );
@@ -5406,14 +5444,14 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	this.exclude = config.exclude || [];
 	this.promote = config.promote || [];
 	this.demote = config.demote || [];
-	this.onCapturedMouseUpHandler = OO.ui.bind( this.onCapturedMouseUp, this );
+	this.onCapturedMouseUpHandler = this.onCapturedMouseUp.bind( this );
 
 	// Events
 	this.$element.on( {
-		'mousedown touchstart': OO.ui.bind( this.onPointerDown, this ),
-		'mouseup touchend': OO.ui.bind( this.onPointerUp, this ),
-		mouseover: OO.ui.bind( this.onMouseOver, this ),
-		mouseout: OO.ui.bind( this.onMouseOut, this )
+		'mousedown touchstart': this.onPointerDown.bind( this ),
+		'mouseup touchend': this.onPointerUp.bind( this ),
+		mouseover: this.onMouseOver.bind( this ),
+		mouseout: this.onMouseOut.bind( this )
 	} );
 	this.toolbar.getToolFactory().connect( this, { register: 'onToolFactoryRegister' } );
 	this.aggregate( { disable: 'itemDisable' } );
@@ -6066,7 +6104,7 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
  */
 OO.ui.ProcessDialog.prototype.executeAction = function ( action ) {
 	OO.ui.ProcessDialog.super.prototype.executeAction.call( this, action )
-		.fail( OO.ui.bind( this.showErrors, this ) );
+		.fail( this.showErrors.bind( this ) );
 };
 
 /**
@@ -6175,7 +6213,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	}
 	if ( this.autoFocus ) {
 		// Event 'focus' does not bubble, but 'focusin' does
-		this.stackLayout.onDOMEvent( 'focusin', OO.ui.bind( this.onStackLayoutFocus, this ) );
+		this.stackLayout.onDOMEvent( 'focusin', this.onStackLayoutFocus.bind( this ) );
 	}
 
 	// Initialization
@@ -6562,18 +6600,18 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
  *    scanning for a specific label in a form with many fields
  *  - right: Label is before the field and aligned toward it, best for forms the user is very
  *    familiar with and will tab through field checking quickly to verify which field they are in
- *  - top: Label is before the field and above it, best for when the use will need to fill out all
+ *  - top: Label is before the field and above it, best for when the user will need to fill out all
  *    fields from top to bottom in a form with few fields
  *  - inline: Label is after the field and aligned toward it, best for small boolean fields like
  *    checkboxes or radio buttons
  *
  * @constructor
- * @param {OO.ui.Widget} field Field widget
+ * @param {OO.ui.Widget} fieldWidget Field widget
  * @param {Object} [config] Configuration options
  * @cfg {string} [align='left'] Alignment mode, either 'left', 'right', 'top' or 'inline'
  * @cfg {string} [help] Explanatory text shown as a '?' icon.
  */
-OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
+OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	// Config initialization
 	config = $.extend( { align: 'left' }, config );
 
@@ -6585,7 +6623,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 
 	// Properties
 	this.$field = this.$( '<div>' );
-	this.field = field;
+	this.fieldWidget = fieldWidget;
 	this.align = null;
 	if ( config.help ) {
 		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
@@ -6606,17 +6644,17 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 	}
 
 	// Events
-	if ( this.field instanceof OO.ui.InputWidget ) {
-		this.$label.on( 'click', OO.ui.bind( this.onLabelClick, this ) );
+	if ( this.fieldWidget instanceof OO.ui.InputWidget ) {
+		this.$label.on( 'click', this.onLabelClick.bind( this ) );
 	}
-	this.field.connect( this, { disable: 'onFieldDisable' } );
+	this.fieldWidget.connect( this, { disable: 'onFieldDisable' } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-fieldLayout' );
 	this.$field
 		.addClass( 'oo-ui-fieldLayout-field' )
-		.toggleClass( 'oo-ui-fieldLayout-disable', this.field.isDisabled() )
-		.append( this.field.$element );
+		.toggleClass( 'oo-ui-fieldLayout-disable', this.fieldWidget.isDisabled() )
+		.append( this.fieldWidget.$element );
 	this.setAlignment( config.align );
 };
 
@@ -6642,7 +6680,7 @@ OO.ui.FieldLayout.prototype.onFieldDisable = function ( value ) {
  * @param {jQuery.Event} e Mouse click event
  */
 OO.ui.FieldLayout.prototype.onLabelClick = function () {
-	this.field.simulateLabelClick();
+	this.fieldWidget.simulateLabelClick();
 	return false;
 };
 
@@ -6652,7 +6690,7 @@ OO.ui.FieldLayout.prototype.onLabelClick = function () {
  * @return {OO.ui.Widget} Field widget
  */
 OO.ui.FieldLayout.prototype.getField = function () {
-	return this.field;
+	return this.fieldWidget;
 };
 
 /**
@@ -6673,17 +6711,16 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 		} else {
 			this.$element.append( this.$help, this.$label, this.$field );
 		}
-		// Set classes
+		// Set classes. The following classes can be used here:
+		// * oo-ui-fieldLayout-align-left
+		// * oo-ui-fieldLayout-align-right
+		// * oo-ui-fieldLayout-align-top
+		// * oo-ui-fieldLayout-align-inline
 		if ( this.align ) {
 			this.$element.removeClass( 'oo-ui-fieldLayout-align-' + this.align );
 		}
+		this.$element.addClass( 'oo-ui-fieldLayout-align-' + value );
 		this.align = value;
-		// The following classes can be used here:
-		// oo-ui-fieldLayout-align-left
-		// oo-ui-fieldLayout-align-right
-		// oo-ui-fieldLayout-align-top
-		// oo-ui-fieldLayout-align-inline
-		this.$element.addClass( 'oo-ui-fieldLayout-align-' + this.align );
 	}
 
 	return this;
@@ -6702,7 +6739,6 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {string} [icon] Symbolic icon name
  * @cfg {OO.ui.FieldLayout[]} [items] Items to add
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
@@ -6733,10 +6769,6 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.IconElement );
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
 
-/* Static Properties */
-
-OO.ui.FieldsetLayout.static.tagName = 'div';
-
 /**
  * Layout with an HTML form.
  *
@@ -6754,7 +6786,7 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	OO.ui.FormLayout.super.call( this, config );
 
 	// Events
-	this.$element.on( 'submit', OO.ui.bind( this.onFormSubmit, this ) );
+	this.$element.on( 'submit', this.onFormSubmit.bind( this ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-formLayout' );
@@ -6797,7 +6829,7 @@ OO.ui.FormLayout.prototype.onFormSubmit = function () {
  * @param {OO.ui.PanelLayout[]} panels Panels in the grid
  * @param {Object} [config] Configuration options
  * @cfg {number[]} [widths] Widths of columns as ratios
- * @cfg {number[]} [heights] Heights of columns as ratios
+ * @cfg {number[]} [heights] Heights of rows as ratios
  */
 OO.ui.GridLayout = function OoUiGridLayout( panels, config ) {
 	var i, len, widths;
@@ -6823,10 +6855,7 @@ OO.ui.GridLayout = function OoUiGridLayout( panels, config ) {
 		this.layout( config.widths || [ 1 ], config.heights || [ 1 ] );
 	} else {
 		// Arrange in columns by default
-		widths = [];
-		for ( i = 0, len = this.panels.length; i < len; i++ ) {
-			widths[i] = 1;
-		}
+		widths = this.panels.map( function () { return 1; } );
 		this.layout( widths, [ 1 ] );
 	}
 };
@@ -6844,10 +6873,6 @@ OO.inheritClass( OO.ui.GridLayout, OO.ui.Layout );
 /**
  * @event update
  */
-
-/* Static Properties */
-
-OO.ui.GridLayout.static.tagName = 'div';
 
 /* Methods */
 
@@ -6898,33 +6923,32 @@ OO.ui.GridLayout.prototype.layout = function ( widths, heights ) {
  * @fires update
  */
 OO.ui.GridLayout.prototype.update = function () {
-	var x, y, panel,
+	var x, y, panel, width, height, dimensions,
 		i = 0,
-		left = 0,
 		top = 0,
-		dimensions,
-		width = 0,
-		height = 0,
+		left = 0,
 		cols = this.widths.length,
 		rows = this.heights.length;
 
 	for ( y = 0; y < rows; y++ ) {
 		height = this.heights[y];
 		for ( x = 0; x < cols; x++ ) {
-			panel = this.panels[i];
 			width = this.widths[x];
+			panel = this.panels[i];
 			dimensions = {
 				width: Math.round( width * 100 ) + '%',
 				height: Math.round( height * 100 ) + '%',
-				top: Math.round( top * 100 ) + '%',
-				// HACK: Work around IE bug by setting visibility: hidden; if width or height is zero
-				visibility: width === 0 || height === 0 ? 'hidden' : ''
+				top: Math.round( top * 100 ) + '%'
 			};
 			// If RTL, reverse:
 			if ( OO.ui.Element.getDir( this.$.context ) === 'rtl' ) {
 				dimensions.right = Math.round( left * 100 ) + '%';
 			} else {
 				dimensions.left = Math.round( left * 100 ) + '%';
+			}
+			// HACK: Work around IE bug by setting visibility: hidden; if width or height is zero
+			if ( width === 0 || height === 0 ) {
+				dimensions.visibility = 'hidden';
 			}
 			panel.$element.css( dimensions );
 			i++;
@@ -6947,7 +6971,7 @@ OO.ui.GridLayout.prototype.update = function () {
  * @return {OO.ui.PanelLayout} The panel at the given postion
  */
 OO.ui.GridLayout.prototype.getPanel = function ( x, y ) {
-	return this.panels[( x * this.widths.length ) + y];
+	return this.panels[ ( x * this.widths.length ) + y ];
 };
 
 /**
@@ -6964,7 +6988,11 @@ OO.ui.GridLayout.prototype.getPanel = function ( x, y ) {
  */
 OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 	// Config initialization
-	config = config || {};
+	config = $.extend( {
+		scrollable: false,
+		padded: false,
+		expanded: true
+	}, config );
 
 	// Parent constructor
 	OO.ui.PanelLayout.super.call( this, config );
@@ -6974,12 +7002,10 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 	if ( config.scrollable ) {
 		this.$element.addClass( 'oo-ui-panelLayout-scrollable' );
 	}
-
 	if ( config.padded ) {
 		this.$element.addClass( 'oo-ui-panelLayout-padded' );
 	}
-
-	if ( config.expanded === undefined || config.expanded ) {
+	if ( config.expanded ) {
 		this.$element.addClass( 'oo-ui-panelLayout-expanded' );
 	}
 };
@@ -7337,13 +7363,13 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	// Properties
 	this.active = false;
 	this.dragging = false;
-	this.onBlurHandler = OO.ui.bind( this.onBlur, this );
+	this.onBlurHandler = this.onBlur.bind( this );
 	this.$handle = this.$( '<span>' );
 
 	// Events
 	this.$handle.on( {
-		'mousedown touchstart': OO.ui.bind( this.onHandlePointerDown, this ),
-		'mouseup touchend': OO.ui.bind( this.onHandlePointerUp, this )
+		'mousedown touchstart': this.onHandlePointerDown.bind( this ),
+		'mouseup touchend': this.onHandlePointerUp.bind( this )
 	} );
 
 	// Initialization
@@ -7740,9 +7766,9 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	this.$overlay.append( this.lookupMenu.$element );
 
 	this.lookupInput.$input.on( {
-		focus: OO.ui.bind( this.onLookupInputFocus, this ),
-		blur: OO.ui.bind( this.onLookupInputBlur, this ),
-		mousedown: OO.ui.bind( this.onLookupInputMouseDown, this )
+		focus: this.onLookupInputFocus.bind( this ),
+		blur: this.onLookupInputBlur.bind( this ),
+		mousedown: this.onLookupInputMouseDown.bind( this )
 	} );
 	this.lookupInput.connect( this, { change: 'onLookupInputChange' } );
 
@@ -8188,8 +8214,8 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 
 	// Events
 	this.$button.on( {
-		click: OO.ui.bind( this.onClick, this ),
-		keypress: OO.ui.bind( this.onKeyPress, this )
+		click: this.onClick.bind( this ),
+		keypress: this.onKeyPress.bind( this )
 	} );
 
 	// Initialization
@@ -8686,7 +8712,7 @@ OO.ui.InlineMenuWidget = function OoUiInlineMenuWidget( config ) {
 	this.$handle = this.$( '<span>' );
 
 	// Events
-	this.$element.on( { click: OO.ui.bind( this.onClick, this ) } );
+	this.$element.on( { click: this.onClick.bind( this ) } );
 	this.menu.connect( this, { select: 'onMenuSelect' } );
 
 	// Initialization
@@ -8792,7 +8818,7 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	this.inputFilter = config.inputFilter;
 
 	// Events
-	this.$input.on( 'keydown mouseup cut paste change input select', OO.ui.bind( this.onEdit, this ) );
+	this.$input.on( 'keydown mouseup cut paste change input select', this.onEdit.bind( this ) );
 
 	// Initialization
 	this.$input
@@ -8993,8 +9019,6 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 
 OO.inheritClass( OO.ui.CheckboxInputWidget, OO.ui.InputWidget );
 
-/* Events */
-
 /* Methods */
 
 /**
@@ -9016,7 +9040,9 @@ OO.ui.CheckboxInputWidget.prototype.getValue = function () {
 };
 
 /**
- * Set value
+ * Set checked state of the checkbox
+ *
+ * @param {boolean} value New value
  */
 OO.ui.CheckboxInputWidget.prototype.setValue = function ( value ) {
 	value = !!value;
@@ -9080,12 +9106,12 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 
 	// Events
 	this.$input.on( {
-		keypress: OO.ui.bind( this.onKeyPress, this ),
-		blur: OO.ui.bind( this.setValidityFlag, this )
+		keypress: this.onKeyPress.bind( this ),
+		blur: this.setValidityFlag.bind( this )
 	} );
-	this.$element.on( 'DOMNodeInsertedIntoDocument', OO.ui.bind( this.onElementAttach, this ) );
-	this.$icon.on( 'mousedown', OO.ui.bind( this.onIconMouseDown, this ) );
-	this.$indicator.on( 'mousedown', OO.ui.bind( this.onIndicatorMouseDown, this ) );
+	this.$element.on( 'DOMNodeInsertedIntoDocument', this.onElementAttach.bind( this ) );
+	this.$icon.on( 'mousedown', this.onIconMouseDown.bind( this ) );
+	this.$indicator.on( 'mousedown', this.onIndicatorMouseDown.bind( this ) );
 
 	// Initialization
 	this.$element
@@ -9303,9 +9329,10 @@ OO.ui.TextInputWidget.prototype.setValidation = function ( validate ) {
  * Sets the 'invalid' flag appropriately.
  */
 OO.ui.TextInputWidget.prototype.setValidityFlag = function () {
-	this.isValid().done( OO.ui.bind( function ( valid ) {
-		this.setFlags( { invalid: !valid } );
-	}, this ) );
+	var widget = this;
+	this.isValid().done( function ( valid ) {
+		widget.setFlags( { invalid: !valid } );
+	} );
 };
 
 /**
@@ -9469,7 +9496,7 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 
 	// Events
 	if ( this.input instanceof OO.ui.InputWidget ) {
-		this.$element.on( 'click', OO.ui.bind( this.onClick, this ) );
+		this.$element.on( 'click', this.onClick.bind( this ) );
 	}
 
 	// Initialization
@@ -10016,7 +10043,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.height = config.height !== undefined ? config.height : null;
 	this.align = config.align || 'center';
 	this.closeButton = new OO.ui.ButtonWidget( { $: this.$, framed: false, icon: 'close' } );
-	this.onMouseDownHandler = OO.ui.bind( this.onMouseDown, this );
+	this.onMouseDownHandler = this.onMouseDown.bind( this );
 
 	// Events
 	this.closeButton.connect( this, { click: 'onCloseButtonClick' } );
@@ -10301,7 +10328,7 @@ OO.ui.SearchWidget = function OoUiSearchWidget( config ) {
 		highlight: 'onResultsHighlight',
 		select: 'onResultsSelect'
 	} );
-	this.query.$input.on( 'keydown', OO.ui.bind( this.onQueryKeydown, this ) );
+	this.query.$input.on( 'keydown', this.onQueryKeydown.bind( this ) );
 
 	// Initialization
 	this.$query
@@ -10445,14 +10472,14 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	this.pressed = false;
 	this.selecting = null;
 	this.hashes = {};
-	this.onMouseUpHandler = OO.ui.bind( this.onMouseUp, this );
-	this.onMouseMoveHandler = OO.ui.bind( this.onMouseMove, this );
+	this.onMouseUpHandler = this.onMouseUp.bind( this );
+	this.onMouseMoveHandler = this.onMouseMove.bind( this );
 
 	// Events
 	this.$element.on( {
-		mousedown: OO.ui.bind( this.onMouseDown, this ),
-		mouseover: OO.ui.bind( this.onMouseOver, this ),
-		mouseleave: OO.ui.bind( this.onMouseLeave, this )
+		mousedown: this.onMouseDown.bind( this ),
+		mouseover: this.onMouseOver.bind( this ),
+		mouseleave: this.onMouseLeave.bind( this )
 	} );
 
 	// Initialization
@@ -10995,8 +11022,8 @@ OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	this.$widget = config.widget ? config.widget.$element : null;
 	this.$previousFocus = null;
 	this.isolated = !config.input;
-	this.onKeyDownHandler = OO.ui.bind( this.onKeyDown, this );
-	this.onDocumentMouseDownHandler = OO.ui.bind( this.onDocumentMouseDown, this );
+	this.onKeyDownHandler = this.onKeyDown.bind( this );
+	this.onDocumentMouseDownHandler = this.onDocumentMouseDown.bind( this );
 
 	// Initialization
 	this.$element
@@ -11265,7 +11292,7 @@ OO.ui.TextInputMenuWidget = function OoUiTextInputMenuWidget( input, config ) {
 	// Properties
 	this.input = input;
 	this.$container = config.$container || this.input.$element;
-	this.onWindowResizeHandler = OO.ui.bind( this.onWindowResize, this );
+	this.onWindowResizeHandler = this.onWindowResize.bind( this );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-textInputMenuWidget' );
@@ -11322,30 +11349,14 @@ OO.ui.TextInputMenuWidget.prototype.toggle = function ( visible ) {
  * @chainable
  */
 OO.ui.TextInputMenuWidget.prototype.position = function () {
-	var frameOffset,
-		$container = this.$container,
-		dimensions = $container.offset();
+	var $container = this.$container,
+		pos = OO.ui.Element.getRelativePosition( $container, this.$element.offsetParent() );
 
 	// Position under input
-	dimensions.top += $container.height();
+	pos.top += $container.height();
+	this.$element.css( pos );
 
-	// Compensate for frame position if in a different frame
-	if ( this.input.$.$iframe && this.input.$.context !== this.$element[0].ownerDocument ) {
-		frameOffset = OO.ui.Element.getRelativePosition(
-			this.input.$.$iframe, this.$element.offsetParent()
-		);
-		dimensions.left += frameOffset.left;
-		dimensions.top += frameOffset.top;
-	} else {
-		// Fix for RTL (for some reason, no need to fix if the frameoffset is set)
-		if ( this.$element.css( 'direction' ) === 'rtl' ) {
-			dimensions.right = this.$element.parent().position().left -
-				$container.width() - dimensions.left;
-			// Erase the value for 'left'
-			delete dimensions.left;
-		}
-	}
-	this.$element.css( dimensions );
+	// Set width
 	this.setIdealSize( $container.width() );
 	// We updated the position, so re-evaluate the clipping state
 	this.clip();
@@ -11405,7 +11416,7 @@ OO.ui.ToggleSwitchWidget = function OoUiToggleSwitchWidget( config ) {
 	this.$grip = this.$( '<span>' );
 
 	// Events
-	this.$element.on( 'click', OO.ui.bind( this.onClick, this ) );
+	this.$element.on( 'click', this.onClick.bind( this ) );
 
 	// Initialization
 	this.$glow.addClass( 'oo-ui-toggleSwitchWidget-glow' );
