@@ -132,6 +132,9 @@ changes to languages because of Bugzilla reports.
   Also, the former will now throw an MWException if called with one or more
   arguments.
 * Removed hitcounters and associated code.
+* The "temp" zone of the upload respository is now considered private. If it
+  already exists (such as under the images/ directory), please make sure that
+  the directory is not web readable (e.g. via a .htaccess file).
 
 == Compatibility ==
 
