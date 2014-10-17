@@ -294,7 +294,12 @@
 				ctx,
 				meta,
 				previewSize = 180,
-				thumb = $( mw.template.get( 'mediawiki.special.upload', 'thumbnail.html' ).render() );
+				thumb = $( '<div id="mw-upload-thumbnail" class="thumb tright">' +
+							'<div class="thumbinner">' +
+								'<div class="mw-small-spinner" style="width: 180px; height: 180px"></div>' +
+								'<div class="thumbcaption"><div class="filename"></div><div class="fileinfo"></div></div>' +
+							'</div>' +
+						'</div>' );
 
 			thumb.find( '.filename' ).text( file.name ).end()
 				.find( '.fileinfo' ).text( prettySize( file.size ) ).end();
