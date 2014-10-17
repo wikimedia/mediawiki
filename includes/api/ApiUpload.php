@@ -741,7 +741,7 @@ class ApiUpload extends ApiBase {
 			'action=upload&filename=Wiki.png' .
 				'&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png&token=123ABC'
 				=> 'apihelp-upload-example-url',
-			'action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1&token=123ABC'
+			'action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=&token=123ABC'
 				=> 'apihelp-upload-example-filekey',
 		);
 	}
