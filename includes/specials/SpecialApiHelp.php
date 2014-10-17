@@ -58,7 +58,7 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 
 			if ( substr( $par, 0, 5 ) === 'rsub/' ) {
 				$par = substr( $par, 5 );
-				$options['recursivesubmodules'] = 1;
+				$options['recursivesubmodules'] = '';
 				continue;
 			}
 

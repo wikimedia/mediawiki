@@ -633,7 +633,7 @@ class ApiHelp extends ApiBase {
 	public function getExamplesMessages() {
 		return array(
 			'action=help' => 'apihelp-help-example-main',
-			'action=help&recursivesubmodules=1' => 'apihelp-help-example-recursive',
+			'action=help&recursivesubmodules=' => 'apihelp-help-example-recursive',
 			'action=help&modules=help' => 'apihelp-help-example-help',
 			'action=help&modules=query+info|query+categorymembers' => 'apihelp-help-example-query',
 		);
