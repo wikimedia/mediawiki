@@ -114,6 +114,9 @@ class FileRepo {
 	/** @var string The URL of the repo's favicon, if any */
 	protected $favicon;
 
+	/** @var bool Whether all zones should be private (e.g. private wiki repo) */
+	protected $isPrivate;
+
 	/**
 	 * Factory functions for creating new files
 	 * Override these in the base class
@@ -269,7 +272,7 @@ class FileRepo {
 	 * @return string|bool
 	 */
 	public function getZoneUrl( $zone, $ext = null ) {
-		if ( in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) ) ) {
+		if ( in_array( $zone, array( 'public', 'thumb', 'transcoded' ) ) ) {
 			// standard public zones
 			if ( $ext !== null && isset( $this->zones[$zone]['urlsByExt'][$ext] ) ) {
 				// custom URL for extension/zone
@@ -283,7 +286,6 @@ class FileRepo {
 			case 'public':
 				return $this->url;
 			case 'temp':
-				return "{$this->url}/temp";
 			case 'deleted':
 				return false; // no public URL
 			case 'thumb':
@@ -1305,7 +1307,10 @@ class FileRepo {
 		list( , $container, ) = FileBackend::splitStoragePath( $path );
 
 		$params = array( 'dir' => $path );
-		if ( $this->isPrivate || $container === $this->zones['deleted']['container'] ) {
+		if ( $this->isPrivate
+			|| $container === $this->zones['deleted']['container']
+			|| $container === $this->zones['temp']['container']
+		) {
 			# Take all available measures to prevent web accessibility of new deleted
 			# directories, in case the user has not configured offline storage
 			$params = array( 'noAccess' => true, 'noListing' => true ) + $params;
@@ -1817,7 +1822,8 @@ class FileRepo {
 			'url' => $this->getZoneUrl( 'temp' ),
 			'thumbUrl' => $this->getZoneUrl( 'thumb' ) . '/temp',
 			'transcodedUrl' => $this->getZoneUrl( 'transcoded' ) . '/temp',
-			'hashLevels' => $this->hashLevels // performance
+			'hashLevels' => $this->hashLevels, // performance
+			'isPrivate' => $this->isPrivate
 		) );
 	}
 
