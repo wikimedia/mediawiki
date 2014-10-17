@@ -114,6 +114,9 @@ class FileRepo {
 	/** @var string The URL of the repo's favicon, if any */
 	protected $favicon;
 
+	/** @var bool Whether all zones should be private (e.g. private wiki repo) */
+	protected $isPrivate;
+
 	/**
 	 * Factory functions for creating new files
 	 * Override these in the base class
@@ -269,7 +272,7 @@ class FileRepo {
 	 * @return string|bool
 	 */
 	public function getZoneUrl( $zone, $ext = null ) {
-		if ( in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) ) ) {
+		if ( in_array( $zone, array( 'public', 'thumb', 'transcoded' ) ) ) {
 			// standard public zones
 			if ( $ext !== null && isset( $this->zones[$zone]['urlsByExt'][$ext] ) ) {
 				// custom URL for extension/zone
@@ -283,7 +286,6 @@ class FileRepo {
 			case 'public':
 				return $this->url;
 			case 'temp':
-				return "{$this->url}/temp";
 			case 'deleted':
 				return false; // no public URL
 			case 'thumb':
@@ -1305,7 +1307,10 @@ class FileRepo {
 		list( , $container, ) = FileBackend::splitStoragePath( $path );
 
 		$params = array( 'dir' => $path );
-		if ( $this->isPrivate || $container === $this->zones['deleted']['container'] ) {
+		if ( $this->isPrivate
+			|| $container === $this->zones['deleted']['container']
+			|| $container === $this->zones['temp']['container']
+		) {
 			# Take all available measures to prevent web accessibility of new deleted
 			# directories, in case the user has not configured offline storage
 			$params = array( 'noAccess' => true, 'noListing' => true ) + $params;
@@ -1785,9 +1790,9 @@ class FileRepo {
 	}
 
 	/**
-	 * Get an temporary FileRepo associated with this repo.
-	 * Files will be created in the temp zone of this repo and
-	 * thumbnails in a /temp subdirectory in thumb zone of this repo.
+	 * Get a temporary private FileRepo associated with this repo.
+	 *
+	 * Files will be created in the temp zone of this repo.
 	 * It will have the same backend as this repo.
 	 *
 	 * @return TempFileRepo
@@ -1798,26 +1803,26 @@ class FileRepo {
 			'backend' => $this->backend,
 			'zones' => array(
 				'public' => array(
+					// Same place storeTemp() uses in the base repo, though
+					// the path hashing is mismatched, which is annoying.
 					'container' => $this->zones['temp']['container'],
 					'directory' => $this->zones['temp']['directory']
 				),
 				'thumb' => array(
-					'container' => $this->zones['thumb']['container'],
-					'directory' => $this->zones['thumb']['directory'] == ''
-						? 'temp'
-						: $this->zones['thumb']['directory'] . '/temp'
+					'container' => $this->zones['temp']['container'],
+					'directory' => $this->zones['temp']['directory'] == ''
+						? 'thumb'
+						: $this->zones['temp']['directory'] . '/thumb'
 				),
 				'transcoded' => array(
-					'container' => $this->zones['transcoded']['container'],
-					'directory' => $this->zones['transcoded']['directory'] == ''
-						? 'temp'
-						: $this->zones['transcoded']['directory'] . '/temp'
+					'container' => $this->zones['temp']['container'],
+					'directory' => $this->zones['temp']['directory'] == ''
+						? 'transcoded'
+						: $this->zones['temp']['directory'] . '/transcoded'
 				)
 			),
-			'url' => $this->getZoneUrl( 'temp' ),
-			'thumbUrl' => $this->getZoneUrl( 'thumb' ) . '/temp',
-			'transcodedUrl' => $this->getZoneUrl( 'transcoded' ) . '/temp',
-			'hashLevels' => $this->hashLevels // performance
+			'hashLevels' => $this->hashLevels, // performance
+			'isPrivate' => true // all in temp zone
 		) );
 	}
 
