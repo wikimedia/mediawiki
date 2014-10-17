@@ -1159,7 +1159,7 @@ class ApiMain extends ApiBase {
 	public function getExamplesMessages() {
 		return array(
 			'action=help' => 'apihelp-help-example-main',
-			'action=help&recursivesubmodules=1' => 'apihelp-help-example-recursive',
+			'action=help&recursivesubmodules=' => 'apihelp-help-example-recursive',
 		);
 	}
 
