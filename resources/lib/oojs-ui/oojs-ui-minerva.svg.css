@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (d74a46ca6a)
+ * OOjs UI v0.1.0-pre (ba5901bd56)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-15T00:40:28Z
+ * Date: 2014-10-17T23:27:03Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -696,6 +696,8 @@
 }
 .oo-ui-popupWidget {
 	position: absolute;
+	/* @noflip */
+	left: 0;
 }
 .oo-ui-popupWidget-popup {
 	position: relative;
@@ -710,6 +712,8 @@
 	display: block;
 	position: absolute;
 	top: 0;
+	/* @noflip */
+	left: 0;
 	background-repeat: no-repeat;
 }
 .oo-ui-popupWidget-head {
