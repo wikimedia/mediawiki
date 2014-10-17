@@ -39,6 +39,7 @@ class ApiBlock extends ApiBase {
 	 * of success. If it fails, the result will specify the nature of the error.
 	 */
 	public function execute() {
+		global $wgLang;
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
@@ -52,6 +53,13 @@ class ApiBlock extends ApiBase {
 			if ( $status !== true ) {
 				$this->dieUsageMsg( array( $status ) );
 			}
+		}
+		$status = SpecialBlock::checkBlockGroups( $params['user'], $user );
+		if ( $status ) {
+			$this->dieUsageMsg( array(
+				'badaccess_blockgroups',
+				$wgLang->commaList( $status )
+			) );
 		}
 
 		$target = User::newFromName( $params['user'] );

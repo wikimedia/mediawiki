@@ -1507,6 +1507,14 @@ abstract class ApiBase extends ContextSource {
 			'code' => 'ipbnounblockself',
 			'info' => 'You are not allowed to unblock yourself'
 		),
+		'badaccess_blockgroups' => array(
+			'code' => 'badaccessblockgroups',
+			'info' => 'You are not authorized to block users who are in the group(s): \"\$1\"'
+		),
+		'badaccess_unblockgroups' => array(
+			'code' => 'badaccessunblockgroups',
+			'info' => 'You are not authorized to unblock users who are in the group(s): \"\$1\"'
+		),
 		'usermaildisabled' => array(
 			'code' => 'usermaildisabled',
 			'info' => "User email has been disabled"

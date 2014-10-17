@@ -531,7 +531,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return Status
 	 */
 	public static function validateTarget( $value, User $user ) {
-		global $wgBlockCIDRLimit;
+		global $wgBlockCIDRLimit, $wgLang;
 
 		/** @var User $target */
 		list( $target, $type ) = self::getTargetAndType( $value );
@@ -548,6 +548,14 @@ class SpecialBlock extends FormSpecialPage {
 			$unblockStatus = self::checkUnblockSelf( $target, $user );
 			if ( $unblockStatus !== true ) {
 				$status->fatal( 'badaccess', $unblockStatus );
+			}
+			$blockGroupsStatus = self::checkBlockGroups( $target, $user );
+			if ( $blockGroupsStatus ) {
+				$status->fatal(
+					'badaccess-blockgroups',
+					$wgLang->commaList( $blockGroupsStatus ),
+					count( $blockGroupsStatus )
+				);
 			}
 		} elseif ( $type == Block::TYPE_RANGE ) {
 			list( $ip, $range ) = explode( '/', $target, 2 );
@@ -904,6 +912,44 @@ class SpecialBlock extends FormSpecialPage {
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * @param User|int|string $user
+	 * @param User $performer User doing the request
+	 * @return bool|string False or array of groups the user is in, whose members the
+	 *     performer is not allowed to block
+	 */
+	public static function checkBlockGroups( $user, User $performer ) {
+		global $wgBlockGroups;
+		if ( is_int( $user ) ) {
+			$user = User::newFromId( $user );
+		} elseif ( is_string( $user ) ) {
+			$user = User::newFromName( $user );
+		}
+		if ( !( $user instanceof User ) ) {
+			return false;
+		}
+		$performerGroups = $performer->getGroups();
+		$userGroups = $user->getGroups();
+		$cannotBlockTheseGroups = array();
+		foreach( $performerGroups as $performerGroup ) {
+			if( isset( $wgBlockGroups[$performerGroup] )
+				&& is_array( $wgBlockGroups[$performerGroup] ) ) {
+				foreach( $userGroups as $userGroup ) {
+					if ( !in_array( $userGroup,
+						$wgBlockGroups[$performerGroup] )
+						&& !in_array( $userGroup,
+						$cannotBlockTheseGroups ) ) {
+						$cannotBlockTheseGroups[] = $userGroup;
+					}
+				}
+			}
+		}
+		if ( !$cannotBlockTheseGroups ) {
+			return false;
+		}
+		return $cannotBlockTheseGroups;
 	}
 
 	/**

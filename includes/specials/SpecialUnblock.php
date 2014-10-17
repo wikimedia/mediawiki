@@ -185,6 +185,12 @@ class SpecialUnblock extends SpecialPage {
 		if ( $status !== true ) {
 			throw new ErrorPageError( 'badaccess', $status );
 		}
+		$status = SpecialBlock::checkBlockGroups( $target, $performer );
+		if ( $status ) {
+			throw new ErrorPageError( 'badaccess', 'badaccess-unblockgroups',
+				array( $context->getLanguage()->commaList( $status ),
+				      count( $status ) ) );
+		}
 
 		# If the specified IP is a single address, and the block is a range block, don't
 		# unblock the whole range.

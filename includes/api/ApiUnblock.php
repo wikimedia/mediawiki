@@ -36,6 +36,7 @@ class ApiUnblock extends ApiBase {
 	 * Unblocks the specified user or provides the reason the unblock failed.
 	 */
 	public function execute() {
+		global $wgLang;
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
@@ -55,6 +56,13 @@ class ApiUnblock extends ApiBase {
 			if ( $status !== true ) {
 				$this->dieUsageMsg( $status );
 			}
+		}
+		$status = SpecialBlock::checkBlockGroups( $params['user'], $user );
+		if ( $status ) {
+			$this->dieUsageMsg( array(
+				'badaccess_unblockgroups',
+				$wgLang->commaList( $status )
+			) );
 		}
 
 		$data = array(
