@@ -95,6 +95,16 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf( 'log_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_params', $this->fld_details );
 
+		$this->addFieldsIf(
+			array( 'relations' => $db->buildGroupConcatField(
+				"\n",
+				'log_search',
+				$db->buildConcat( array( 'ls_field', $db->addQuotes( '=' ), 'ls_value' ) ),
+				'ls_log_id=log_id'
+			) ),
+			$this->fld_details
+		);
+
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
 			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', 'log_id=ts_log_id' ) ) );
@@ -440,11 +450,64 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$vals['tags'] = array();
 			}
 		}
+		if ( $this->fld_details ) {
+			$anythingDeleted = LogPage::DELETED_ACTION | LogPage::DELETED_COMMENT | LogPage::DELETED_USER;
+			if ( $row->log_deleted & $anythingDeleted !== 0 ) {
+				// Since the log_search relations often link to other tables, its
+				// possible that including them in the output could give away information
+				// that's revdeleted from the log. As a precaution, never output relations
+				// if the user cannot read something about the log entry.
+				$vals['logsearchhidden'] = '';
+				$anyHidden = true;
+			}
+			if ( LogEventsList::userCan( $row, $anythingDeleted, $this->getUser() ) ) {
+				$this->addLogRelations(
+					$this->getResult(),
+					$vals,
+					$row->relations
+				);
+			}
+		}
 
 		if ( $anyHidden && LogEventsList::isDeleted( $row, LogPage::DELETED_RESTRICTED ) ) {
 			$vals['suppressed'] = '';
 		}
 
+		return $vals;
+	}
+
+	/**
+	 * Add the relations from log_search to the output
+	 *
+	 * @param $result ApiResult
+	 * @param $vals Array Results to output
+	 * @param $dbRelationsField string A list of relations formatted ls_field=ls_value\nls_field=ls_value..
+	 * @return array
+	 */
+	private function addLogRelations( $result, &$vals, $dbRelationsField ) {
+		$relations = array();
+		if ( $dbRelationsField !== null ) {
+			$relationsLines = explode( "\n", $dbRelationsField );
+			foreach ( $relationsLines as $relationLine ) {
+				list( $field, $value ) = explode( '=', $relationLine, 2 );
+				if ( ( $field === 'target_author_id' || $field === 'target_author_ip' )
+					&& !$this->userCanSeeRevDel()
+				) {
+					// This is the author of a revdeleted revision that the log entry
+					// is about. This can be sensitive even if the general log entry is
+					// public.
+					continue;
+				}
+				if ( substr( $field, -9 ) === 'timestamp' ) {
+					$formatted = wfTimestamp( TS_ISO_8601, $value );
+					if ( $formatted !== false ) {
+						$value = $formatted;
+					}
+				}
+				$relations[$field] = $value;
+			}
+		}
+		$vals['logsearch'] = $relations;
 		return $vals;
 	}
 

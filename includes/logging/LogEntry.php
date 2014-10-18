@@ -407,6 +407,8 @@ class ManualLogEntry extends LogEntryBase {
 	 * Declare arbitrary tag/value relations to this log entry.
 	 * These can be used to filter log entries later on.
 	 *
+	 * @note The api assumes any relation with a tag name ending
+	 *  in "timestamp", is a timestamp.
 	 * @param array $relations Map of (tag => (list of values|value))
 	 * @since 1.22
 	 */
