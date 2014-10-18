@@ -545,6 +545,7 @@ class ImageListPager extends TablePager {
 		unset( $query['title'] );
 		unset( $query['limit'] );
 		unset( $query['ilsearch'] );
+		unset( $query['ilshowall'] );
 		unset( $query['user'] );
 
 		$form = new HTMLForm( $fields, $this->getContext() );
