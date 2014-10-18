@@ -1668,7 +1668,7 @@
 	"noindex-category-desc": "Stránka není indexována roboty, protože obsahuje kouzelné slovo <code><nowiki>__NOINDEX__</nowiki></code> a je ve jmenném prostoru, ve kterém je tento příznak dovolen.",
 	"index-category-desc": "Stránka obsahuje kouzelné slovo <code><nowiki>__INDEX__</nowiki></code> (a je ve jmenném prostoru, ve kterém je tento příznak dovolen), takže je indexována roboty, přestože by normálně nebyla.",
 	"post-expand-template-inclusion-category-desc": "Stránka je po rozbalení všech šablon větší než <code>$wgMaxArticleSize</code>, takže některé šablony rozbaleny nebyly.",
-	"post-expand-template-argument-category-desc": "Stránka je po rozbalení argumentu šablony (něco v trojitých závorkách, např. <code>{{{Foo}}})</code> větší než <code>$wgMaxArticleSize</code>.",
+	"post-expand-template-argument-category-desc": "Stránka je po rozbalení argumentu šablony (něco v trojitých závorkách, např. <code>{{{Foo}}}</code>) větší než <code>$wgMaxArticleSize</code>.",
 	"expensive-parserfunction-category-desc": "Stránka používá příliš mnoho náročných funkcí syntaktického analyzátoru (jako <code>#ifexist</code>). Vizte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
 	"broken-file-category-desc": "Stránka obsahuje nefunkční odkaz na soubor (odkaz pro vložení souboru, který neexistuje).",
 	"hidden-category-category-desc": "Kategorie ve svém textu obsahuje <code><nowiki>__HIDDENCAT__</nowiki></code>, což způsobuje, že se na stránkách implicitně nezobrazuje v rámečku odkazů na kategorie.",

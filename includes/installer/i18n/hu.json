@@ -6,7 +6,8 @@
 			"아라",
 			"Dj",
 			"Misibacsi",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Dorgan"
 		]
 	},
 	"config-desc": "A MediaWiki telepítője",
@@ -51,14 +52,12 @@
 	"config-env-good": "A környezet ellenőrzése befejeződött.\nA MediaWiki telepíthető.",
 	"config-env-bad": "A környezet ellenőrzése befejeződött.\nA MediaWiki nem telepíthető.",
 	"config-env-php": "A PHP verziója: $1",
-	"config-env-php-toolow": "PHP $1 van telepítve,\nazonban a MediaWikinek PHP $2, vagy újabb szükséges.",
 	"config-unicode-using-utf8": "A rendszer Unicode normalizálására Brion Vibber utf8_normalize.so könyvtárát használja.",
 	"config-unicode-using-intl": "A rendszer Unicode normalizálására az [http://pecl.php.net/intl intl PECL kiterjesztést] használja.",
 	"config-unicode-pure-php-warning": "'''Figyelmeztetés''': Az Unicode normalizáláshoz szükséges [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el, helyette a lassú, PHP alapú implementáció lesz használva.\nHa nagy látogatottságú oldalt üzemeltetsz, itt találhatsz további információkat [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations a témáról].",
 	"config-unicode-update-warning": "'''Figyelmeztetés''': Az Unicode normalizáláshoz szükséges burkolókönyvtár [http://site.icu-project.org/ ICU projekt] függvénykönyvtárának régebbi változatát használja.\nHa ügyelni kívánsz a Unicode használatára, fontold meg a [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations frissítését].",
 	"config-no-db": "Nem sikerült egyetlen használható adatbázis-illesztőprogramot sem találni.  Telepítened kell egyet a PHP-hez.\nA következő adatbázistípusok támogatottak: $1.\n\nHa a PHP-t magad fordítottad, konfiguráld újra úgy, hogy engedélyezve legyen egy adatbáziskliens, pl. a <code>./configure --with-mysql</code> parancs használatával.\nHa a PHP-t Debian vagy Ubuntu csomaggal telepítetted, akkor szükséged lesz a php5-mysql modulra is.",
 	"config-no-fts3": "'''Figyelmeztetés''': Az SQLite [//sqlite.org/fts3.html FTS3 modul] nélkül lett fordítva, a keresési funkciók nem fognak működni ezen a rendszeren.",
-	"config-register-globals": "'''Figyelmeztetés: A PHP <code>[http://php.net/register_globals register_globals]</code> beállítása engedélyezve van.'''\n'''Tiltsd le, ha van rá lehetőséged.'''\nA MediaWiki működőképes a beállítás használata mellett, de a szerver biztonsági kockázatnak lesz kitéve.",
 	"config-magic-quotes-runtime": "'''Kritikus hiba: a [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] aktív!'''\nEz a beállítás kiszámíthatatlan károkat okoz a bevitt adatokban.\nA MediaWiki csak akkor telepíthető, ha ki van kapcsolva.",
 	"config-magic-quotes-sybase": "'''Kritikus hiba: a [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase] aktív!'''\nEz a beállítás kiszámíthatatlan károkat okoz a bevitt adatokban.\nA MediaWiki csak akkor telepíthető, ha ki van kapcsolva.",
 	"config-mbstring": "'''Kritikus hiba: az [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime mbstring.func_overload] aktív!'''\nEz a beállítás hibákat okoz és kiszámíthatatlanul károsíthatja bevitt adatokat.\nA MediaWiki csak akkor telepíthető, ha ki van kapcsolva.",
@@ -261,6 +260,8 @@
 	"config-memcache-badport": "A Memcached a(z) $1 és $2 közötti portokat szokta használni.",
 	"config-extensions": "Kiterjesztések",
 	"config-extensions-help": "A fent felsorolt kiterjesztések találhatóak meg az <code>./extensions</code> könyvtárban.\n\nLehetséges, hogy további beállításra lesz szükség hozzájuk, de már most engedélyezheted őket.",
+	"config-skins": "Felületek",
+	"config-skins-use-as-default": "Felület használata alapértelmezettként",
 	"config-install-alreadydone": "'''Figyelmeztetés:''' Úgy tűnik, hogy a MediaWiki telepítve van, és te ismét megpróbálod telepíteni.\nFolytasd a következő oldalon.",
 	"config-install-begin": "A „{{int:config-continue}}” gomb megnyomása elindítja a MediaWiki telepítését.\nHa szeretnél módosítani a beállításokon, kattints a \"{{int:config-back}}\" gombra.",
 	"config-install-step-done": "kész",

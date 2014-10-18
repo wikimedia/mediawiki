@@ -2937,6 +2937,7 @@
 	"unknown_extension_tag": "Unbekanntes Parsertag „$1“",
 	"duplicate-defaultsort": "Achtung: Der Sortierungsschlüssel „$2“ überschreibt den vorher verwendeten Schlüssel „$1“.",
 	"duplicate-displaytitle": "<strong>Warnung:</strong> Der Anzeigetitel „$2“ überschreibt den früheren Anzeigetitel „$1“.",
+	"invalid-indicator-name": "<strong>Fehler:</strong> Das Attribut <code>name</code> des Seitenstatusindikators darf nicht leer sein.",
 	"version": "Version",
 	"version-extensions": "Installierte Erweiterungen",
 	"version-skins": "Installierte Benutzeroberflächen",
