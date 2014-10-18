@@ -54,18 +54,18 @@ if ( isset( $options['d'] ) ) {
 	}
 }
 
-$useReadline = function_exists( 'readline_add_history' )
+$__useReadline = function_exists( 'readline_add_history' )
 	&& Maintenance::posix_isatty( 0 /*STDIN*/ );
 
-if ( $useReadline ) {
-	$historyFile = isset( $_ENV['HOME'] ) ?
+if ( $__useReadline ) {
+	$__historyFile = isset( $_ENV['HOME'] ) ?
 		"{$_ENV['HOME']}/.mweval_history" : "$IP/maintenance/.mweval_history";
-	readline_read_history( $historyFile );
+	readline_read_history( $__historyFile );
 }
 
-$e = null; // PHP exception
-while ( ( $line = Maintenance::readconsole() ) !== false ) {
-	if ( $e && !preg_match( '/^(exit|die);?$/', $line ) ) {
+$__e = null; // PHP exception
+while ( ( $__line = Maintenance::readconsole() ) !== false ) {
+	if ( $__e && !preg_match( '/^(exit|die);?$__/', $__line ) ) {
 		// Internal state may be corrupted or fatals may occur later due
 		// to some object not being set. Don't drop out of eval in case
 		// lines were being pasted in (which would then get dumped to the shell).
@@ -73,23 +73,23 @@ while ( ( $line = Maintenance::readconsole() ) !== false ) {
 		echo "Exception was thrown before; please restart eval.php\n";
 		continue;
 	}
-	if ( $useReadline ) {
-		readline_add_history( $line );
-		readline_write_history( $historyFile );
+	if ( $__useReadline ) {
+		readline_add_history( $__line );
+		readline_write_history( $__historyFile );
 	}
 	try {
-		$val = eval( $line . ";" );
-	} catch ( Exception $e ) {
-		echo "Caught exception " . get_class( $e ) .
-			": {$e->getMessage()}\n" . $e->getTraceAsString() . "\n";
+		$__val = eval( $__line . ";" );
+	} catch ( Exception $__e ) {
+		echo "Caught exception " . get_class( $__e ) .
+			": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n";
 		continue;
 	}
-	if ( wfIsHHVM() || is_null( $val ) ) {
+	if ( wfIsHHVM() || is_null( $__val ) ) {
 		echo "\n";
-	} elseif ( is_string( $val ) || is_numeric( $val ) ) {
-		echo "$val\n";
+	} elseif ( is_string( $__val ) || is_numeric( $__val ) ) {
+		echo "$__val\n";
 	} else {
-		var_dump( $val );
+		var_dump( $__val );
 	}
 }
 
