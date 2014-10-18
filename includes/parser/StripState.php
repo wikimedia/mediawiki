@@ -26,6 +26,7 @@
  * @ingroup Parser
  */
 class StripState {
+	protected $id;
 	protected $prefix;
 	protected $data;
 	protected $regex;
@@ -37,15 +38,17 @@ class StripState {
 	const UNSTRIP_RECURSION_LIMIT = 20;
 
 	/**
-	 * @param string $prefix
+	 * @param string $id
 	 */
-	public function __construct( $prefix ) {
-		$this->prefix = $prefix;
+	public function __construct( $id ) {
+		$this->id = $id;
+		$this->prefix = Parser::MARKER_PREFIX . $id;
 		$this->data = array(
 			'nowiki' => array(),
 			'general' => array()
 		);
-		$this->regex = "/{$this->prefix}([^\x7f]+)" . Parser::MARKER_SUFFIX . '/';
+		$this->regex = "/" . Parser::MARKER_PREFIX .
+			'(' . Parser::MARKER_STATE_ID_REGEX . ")([^\x7f]+)" . Parser::MARKER_SUFFIX . '/';
 		$this->circularRefGuard = array();
 	}
 
@@ -73,11 +76,11 @@ class StripState {
 	 * @param string $value
 	 */
 	protected function addItem( $type, $marker, $value ) {
-		if ( !preg_match( $this->regex, $marker, $m ) ) {
+		if ( !preg_match( $this->regex, $marker, $m ) || $m[1] !== $this->id ) {
 			throw new MWException( "Invalid marker: $marker" );
 		}
 
-		$this->data[$type][$m[1]] = $value;
+		$this->data[$type][$m[2]] = $value;
 	}
 
 	/**
@@ -131,8 +134,8 @@ class StripState {
 	 * @return array
 	 */
 	protected function unstripCallback( $m ) {
-		$marker = $m[1];
-		if ( isset( $this->data[$this->tempType][$marker] ) ) {
+		$marker = $m[2];
+		if ( $m[1] === $this->id && isset( $this->data[$this->tempType][$marker] ) ) {
 			if ( isset( $this->circularRefGuard[$marker] ) ) {
 				return '<span class="error">'
 					. wfMessage( 'parser-unstrip-loop-warning' )->inContentLanguage()->text()
@@ -164,7 +167,7 @@ class StripState {
 	 * @return StripState
 	 */
 	public function getSubState( $text ) {
-		$subState = new StripState( $this->prefix );
+		$subState = new StripState( $this->id );
 		$pos = 0;
 		while ( true ) {
 			$startPos = strpos( $text, $this->prefix, $pos );
@@ -175,11 +178,11 @@ class StripState {
 
 			$endPos += strlen( Parser::MARKER_SUFFIX );
 			$marker = substr( $text, $startPos, $endPos - $startPos );
-			if ( !preg_match( $this->regex, $marker, $m ) ) {
+			if ( !preg_match( $this->regex, $marker, $m ) || $m[1] !== $this->id ) {
 				continue;
 			}
 
-			$key = $m[1];
+			$key = $m[2];
 			if ( isset( $this->data['nowiki'][$key] ) ) {
 				$subState->data['nowiki'][$key] = $this->data['nowiki'][$key];
 			} elseif ( isset( $this->data['general'][$key] ) ) {
@@ -219,8 +222,12 @@ class StripState {
 	 * @return string
 	 */
 	protected function mergeCallback( $m ) {
-		$key = $m[1];
-		return "{$this->prefix}{$this->tempMergePrefix}-$key" . Parser::MARKER_SUFFIX;
+		if ( $m[1] === $this->id ) {
+			$key = $m[2];
+			return "{$this->prefix}{$this->tempMergePrefix}-$key" . Parser::MARKER_SUFFIX;
+		} else {
+			return $m[0];
+		}
 	}
 
 	/**
@@ -230,6 +237,15 @@ class StripState {
 	 * @return string
 	 */
 	public function killMarkers( $text ) {
-		return preg_replace( $this->regex, '', $text );
+		$id = $this->id; // PHP 5.3 hack
+		return preg_replace_callback( $this->regex,
+			function ( $m ) use ( $id ) {
+				if ( $m[1] === $id ) {
+					return '';
+				} else {
+					return $m[0];
+				}
+			},
+			$text );
 	}
 }
