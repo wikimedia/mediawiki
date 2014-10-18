@@ -28,22 +28,53 @@
 interface Transclusion {
 
 	/**
-	 * TBD
+	 * Generates the wikitext to be transcluded.
+	 * This is a twin of generateDom() and should generate an equivalent result.
+	 *
+	 * @note Calling this may have change the state of $parser. In particular,
+	 * implementations are free to manipulate $parser's ParserOutput to include
+	 * additional modules, scripts, or styles needed by the transcluded text,
+	 * or register pagelinks or other links. Similarly, caching options may be
+	 * altered.
+	 *
+	 * @note Implementations should take care not to corrupt $parser's parse state.
+	 * If a parser is needed internally, $parser->getFreshParser() should be used
+	 * to ensure a fresh copy.
+	 *
+	 * @note When transcluding raw HTML, $parser->insertStripItem() should be
+	 * used to guard the generated HTML against wikitext processing.
+	 *
+	 * @see generateDom()
+	 *
+	 * @param Parser $parser
+	 * @param TransclusionParameters $parameters
 	 *
 	 * @return string
-	 * @throws InvalidArgumentException
 	 */
-	public function getWikitext( Parser $parser, TransclusionParameters $parameters );
+	public function generateWikitext( Parser $parser, TransclusionParameters $parameters );
 
 	/**
+	 * Returns a preprocessor DOM representing the wikitext to be transcluded.
+	 * This is a twin of generateWikitext() and should generate an equivalent result.
+	 *
+	 * In the simplest case, this just calls $parser->preprocessToDom on the text
+	 * returned by generateWikitext().
+	 *
+	 * @note Just like generateWikitext(), this may change the state of $parser.
+	 * See there for details.
+	 *
+	 * @see generateWikitext()
+	 *
 	 * @param Parser $parser
 	 * @param TransclusionParameters $parameters
 	 *
 	 * @return PPNode
 	 */
-	public function getDom( Parser $parser, TransclusionParameters $parameters );
+	public function generateDom( Parser $parser, TransclusionParameters $parameters );
 
 	/**
+	 * Returns the title of the transcluded template.
+	 *
 	 * @return Title
 	 */
 	public function getTemplateTitle();
@@ -62,9 +93,5 @@ interface Transclusion {
 	 */
 	public function getDependencies();
 
-	/**
-	 * @param ParserOutput $out
-	 */
-	public function augmentParserOutput( ParserOutput $out );
 }
  

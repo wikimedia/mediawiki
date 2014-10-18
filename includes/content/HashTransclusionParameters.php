@@ -54,6 +54,21 @@ class HashTransclusionParameters implements TransclusionParameters {
 		$this->parameters = $parameters;
 	}
 
+	public static function newFromPPNode( PPNode $args, PPFrame $frame ) {
+		$pageArgs = array();
+		$argsLength = $args->getLength();
+		for ( $i = 0; $i < $argsLength; $i++ ) {
+			$bits = $args->item( $i )->splitArg();
+			if ( strval( $bits['index'] ) === '' ) {
+				$name = trim( $frame->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
+				$value = trim( $frame->expand( $bits['value'] ) );
+				$pageArgs[$name] = $value;
+			}
+		}
+
+		return new HashTransclusionParameters( $pageArgs );
+	}
+
 	/**
 	 * @see TransclusionParameters::getParameters().
 	 *

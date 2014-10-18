@@ -25,12 +25,7 @@
  *
  * @author Daniel Kinzler
  */
-class ContentTransclusion implements Transclusion {
-
-	/**
-	 * @var Content
-	 */
-	private $content;
+class SpecialPageTransclusion implements Transclusion {
 
 	/**
 	 * @var Title
@@ -45,21 +40,28 @@ class ContentTransclusion implements Transclusion {
 	/**
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( Content $content, Title $title, array $dependencies = array() ) {
-		$this->content = $content;
+	public function __construct( Title $title, array $dependencies = array() ) {
+		if ( $title->getNamespace() !== NS_SPECIAL ) {
+			throw new InvalidArgumentException( '$title must represent a page in the Special namespace' );
+		}
+
 		$this->title = $title;
 		$this->dependencies = $dependencies;
 	}
 
-	private function getParserOutput( Parser $parser, TransclusionParameters $parameters ) {
-		$parserOutput = $this->content->getParserOutputForTransclusion(
-			$this->title,
-			$parameters,
-			$parser->getRevisionId(),
-			$parser->getOptions()
-		);
+	private function getOutput( Parser $parser, TransclusionParameters $parameters ) {
+		$pageArgs = $parameters->getParameters();
 
-		return $parserOutput;
+		// Create a new context to execute the special page
+		$context = new RequestContext;
+		$context->setTitle( $this->title );
+		$context->setRequest( new FauxRequest( $pageArgs ) );
+		$context->setUser( $parser->getUser() );
+		$context->setLanguage( $parser->getOptions()->getUserLangObj() );
+
+		$ret = SpecialPageFactory::capturePath( $this->title, $context );
+
+		return $ret ? $context->getOutput() : null;
 	}
 
 	/**
@@ -72,15 +74,18 @@ class ContentTransclusion implements Transclusion {
 	 * @return string
 	 */
 	public function generateWikitext( Parser $parser, TransclusionParameters $parameters ) {
-		$text = $this->content->getWikitextForTransclusion();
+		$output = $this->getOutput( $parser, $parameters );
 
-		if ( $text === false || $text === null ) {
-			$parserOutput = $this->getParserOutput( $parser, $parameters );
-			$htmlTransclusion = new HtmlTransclusion( $parserOutput, $this->title, $this->dependencies );
-			$text = $htmlTransclusion->generateWikitext( $parser, $parameters );
+		if ( !$output ) {
+			//FIXME!
+			return $this->getTransclusionWikitext( $parser, $parameters );
 		}
 
-		//FIXME: return $parserOutput too, so meta-data can be transferred. augmentParserOutput() doesn't cut it.
+		$htmlTransclusion = HtmlTransclusion::newFromOutputPage( $output, $this->title, $this->dependencies );
+		$text = $htmlTransclusion->generateWikitext( $parser, $parameters );
+
+		$parser->disableCache();
+
 		return $text;
 	}
 
@@ -98,12 +103,7 @@ class ContentTransclusion implements Transclusion {
 		return $this->dependencies;
 	}
 
-	public function augmentParserOutput( ParserOutput $out ) {
-		//FIXME: don't want to re-parse here! Also need params...
-	}
-
 	public function generateDom( Parser $parser, TransclusionParameters $parameters ) {
-		//TODO: Some kinds of content could generate a wikitext DOM directly.
 		$text = $this->generateWikitext( $parser, $parameters );
 		$dom = $parser->preprocessToDom( $text, Parser::PTD_FOR_INCLUSION );
 		return $dom;

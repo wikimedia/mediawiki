@@ -62,7 +62,7 @@ class WikitextTransclusion implements Transclusion {
 	 * @return string
 	 * @throws InvalidArgumentException
 	 */
-	public function getWikitext(  Parser $parser, TransclusionParameters $parameters ) {
+	public function generateWikitext( Parser $parser, TransclusionParameters $parameters ) {
 		return $this->wikitext;
 	}
 
@@ -80,12 +80,8 @@ class WikitextTransclusion implements Transclusion {
 		return $this->dependencies;
 	}
 
-	public function augmentParserOutput( ParserOutput $out ) {
-		// noop
-	}
-
-	public function getDom( Parser $parser, TransclusionParameters $parameters ) {
-		$text = $this->getWikitext( $parser, $parameters );
+	public function generateDom( Parser $parser, TransclusionParameters $parameters ) {
+		$text = $this->generateWikitext( $parser, $parameters );
 		$dom = $parser->preprocessToDom( $text, Parser::PTD_FOR_INCLUSION );
 		return $dom;
 	}

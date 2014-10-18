@@ -3576,33 +3576,10 @@ class Parser {
 					// Pass the template arguments as URL parameters.
 					// "uselang" will have no effect since the Language object
 					// is forced to the one defined in ParserOptions.
-					$pageArgs = array();
-					$argsLength = $args->getLength();
-					for ( $i = 0; $i < $argsLength; $i++ ) {
-						$bits = $args->item( $i )->splitArg();
-						if ( strval( $bits['index'] ) === '' ) {
-							$name = trim( $frame->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
-							$value = trim( $frame->expand( $bits['value'] ) );
-							$pageArgs[$name] = $value;
-						}
-					}
-
-					// Create a new context to execute the special page
-					$context = new RequestContext;
-					$context->setTitle( $title );
-					$context->setRequest( new FauxRequest( $pageArgs ) );
-					$context->setUser( $this->getUser() );
-					$context->setLanguage( $this->mOptions->getUserLangObj() );
-					$ret = SpecialPageFactory::capturePath( $title, $context );
-					if ( $ret ) {
-						//FIXME: we lose /subpage here?! getWikitext needs it!
-						$transclusion = HtmlTransclusion::newFromOutputPage( $context->getOutput(), $title );
-						$transclusionParams = new PPTransclusionParameters( $frame, $args );
-						$text = $transclusion->getWikitext( $this, $transclusionParams );
-						$transclusion->augmentParserOutput( $this->getOutput() );
-						$found = true;
-						$this->disableCache();
-					}
+					$transclusion = new SpecialPageTransclusion( $title );
+					$transclusionParams = HashTransclusionParameters::newFromPPNode( $args, $frame );
+					$text = $transclusion->generateWikitext( $this, $transclusionParams );
+					$found = true;
 				} elseif ( MWNamespace::isNonincludable( $title->getNamespace() ) ) {
 					$found = false; # access denied
 					wfDebug( __METHOD__ . ": template inclusion denied for " .
@@ -3868,10 +3845,8 @@ class Parser {
 			return array( false, $title );
 		}
 
-		$transclusion->augmentParserOutput( $this->getOutput() );
-
 		$params = new HashTransclusionParameters( array() );
-		$dom = $transclusion->getDom( $this, $params );
+		$dom = $transclusion->generateDom( $this, $params );
 		$this->mTplDomCache[$titleText] = $dom;
 
 		if ( !$title->equals( $cacheTitle ) ) {
@@ -3990,7 +3965,7 @@ class Parser {
 
 		if ( $transclusion ) {
 			$params = new HashTransclusionParameters( array() );
-			$text = $transclusion->getWikitext( $this, $params );
+			$text = $transclusion->generateWikitext( $this, $params );
 			return $text;
 		} else {
 			return false;

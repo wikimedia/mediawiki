@@ -82,7 +82,7 @@ class HtmlTransclusion implements Transclusion {
 	}
 
 	/**
-	 * @see Transclusion::getWikitext()
+	 * @see Transclusion::getWikitext(generateWikitext
 	 *
 	 * @param Parser $parser
 	 * @param TransclusionParameters $parameters
@@ -90,7 +90,7 @@ class HtmlTransclusion implements Transclusion {
 	 * @throws InvalidArgumentException
 	 * @return string
 	 */
-	public function getWikitext( Parser $parser, TransclusionParameters $parameters ) {
+	public function generateWikitext( Parser $parser, TransclusionParameters $parameters ) {
 		$html = $this->parserOutput->getText();
 
 		if ( $parameters instanceof PPTransclusionParameters ) {
@@ -120,6 +120,8 @@ class HtmlTransclusion implements Transclusion {
 			$text = $parser->insertStripItem( $wikitext );
 		}
 
+		$this->augmentParserOutput( $parser->getOutput() );
+
 		return $text;
 	}
 
@@ -142,8 +144,8 @@ class HtmlTransclusion implements Transclusion {
 		$out->mergePageMetadata( $this->parserOutput );
 	}
 
-	public function getDom( Parser $parser, TransclusionParameters $parameters ) {
-		$text = $this->getWikitext( $parser, $parameters );
+	public function generateDom( Parser $parser, TransclusionParameters $parameters ) {
+		$text = $this->generateWikitext( $parser, $parameters );
 		$dom = $parser->preprocessToDom( $text, Parser::PTD_FOR_INCLUSION );
 		return $dom;
 	}

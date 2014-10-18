@@ -849,6 +849,7 @@ $wgAutoloadLocalClasses = array(
 	'WikitextTransclusion' => 'includes/parser/WikitextTransclusion.php',
 	'HtmlTransclusion' => 'includes/parser/HtmlTransclusion.php',
 	'ContentTransclusion' => 'includes/parser/ContentTransclusion.php',
+	'SpecialPageTransclusion' => 'includes/parser/SpecialPageTransclusion.php',
 
 	# includes/password
 	'BcryptPassword' => 'includes/password/BcryptPassword.php',
