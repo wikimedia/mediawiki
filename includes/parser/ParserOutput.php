@@ -318,8 +318,8 @@ class ParserOutput extends CacheTime {
 			# If server is proto relative, check also for http/https links
 			( substr( $internal, 0, 2 ) === '//' ? '(?:https?:)?' : '' ) .
 			preg_quote( $internal, '/' ) .
-			# check for query/path/anchor or end of link in each case
-			'(?:[\?\/\#]|$)/i',
+			# check for query/path/anchor/port or end of link in each case
+			'(?:[\?\/\#:]|$)/i',
 			$url
 		);
 	}

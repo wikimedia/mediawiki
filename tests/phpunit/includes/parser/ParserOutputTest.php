@@ -16,10 +16,11 @@ class ParserOutputTest extends MediaWikiTestCase {
 			array( true, '//example.org', '//example.org' ),
 			// Same domain different cases
 			array( true, 'http://example.org', 'http://EXAMPLE.ORG' ),
-			// Paths, queries, and fragments are not relevant
+			// Paths, queries, fragments, and ports are not relevant
 			array( true, 'http://example.org', 'http://example.org/wiki/Main_Page' ),
 			array( true, 'http://example.org', 'http://example.org?my=query' ),
 			array( true, 'http://example.org', 'http://example.org#its-a-fragment' ),
+			array( true, 'http://example.org', 'http://example.org:80' ),
 			// Different protocols
 			array( false, 'http://example.org', 'https://example.org' ),
 			array( false, 'https://example.org', 'http://example.org' ),
