@@ -5,24 +5,32 @@
  * like password if we log in via the API.
  */
 class TestUser {
+	/**
+	 * @deprecated Use TestUser::getUser()->getName()
+	 * @private
+	 * @var string
+	 */
 	public $username;
+
+	/**
+	 * @deprecated Use TestUser::getPassword()
+	 * @private
+	 * @var string
+	 */
 	public $password;
-	public $email;
-	public $groups;
+
+	/**
+	 * @deprecated Use TestUser::getUser()
+	 * @private
+	 * @var User
+	 */
 	public $user;
 
 	public function __construct( $username, $realname = 'Real Name',
 		$email = 'sample@example.com', $groups = array()
 	) {
 		$this->username = $username;
-		$this->realname = $realname;
-		$this->email = $email;
-		$this->groups = $groups;
-
-		// don't allow user to hardcode or select passwords -- people sometimes run tests
-		// on live wikis. Sometimes we create sysop users in these tests. A sysop user with
-		// a known password would be a Bad Thing.
-		$this->password = User::randomPassword();
+		$this->password = 'TestUser';
 
 		$this->user = User::newFromName( $this->username );
 		$this->user->load();
@@ -31,32 +39,53 @@ class TestUser {
 		// But for now, we just need to create or update the user with the desired properties.
 		// we particularly need the new password, since we just generated it randomly.
 		// In core MediaWiki, there is no functionality to delete users, so this is the best we can do.
-		if ( !$this->user->getID() ) {
+		if ( !$this->user->isLoggedIn() ) {
 			// create the user
 			$this->user = User::createNew(
 				$this->username, array(
-					"email" => $this->email,
-					"real_name" => $this->realname
+					"email" => $email,
+					"real_name" => $realname
 				)
 			);
+
 			if ( !$this->user ) {
 				throw new Exception( "error creating user" );
 			}
 		}
 
-		// update the user to use the new random password and other details
+		// Update the user to use the password and other details
 		$this->user->setPassword( $this->password );
-		$this->user->setEmail( $this->email );
-		$this->user->setRealName( $this->realname );
+		$this->user->setEmail( $email );
+		$this->user->setRealName( $realname );
 
 		// Adjust groups by adding any missing ones and removing any extras
 		$currentGroups = $this->user->getGroups();
-		foreach ( array_diff( $this->groups, $currentGroups ) as $group ) {
+		foreach ( array_diff( $groups, $currentGroups ) as $group ) {
 			$this->user->addGroup( $group );
 		}
-		foreach ( array_diff( $currentGroups, $this->groups ) as $group ) {
+		foreach ( array_diff( $currentGroups, $groups ) as $group ) {
 			$this->user->removeGroup( $group );
 		}
+		$this->user->saveSettings();
+	}
+
+	/**
+	 * @return User
+	 */
+	public function getUser() {
+		return $this->user;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPassword() {
+		return $this->password;
+	}
+
+	public function __destruct() {
+		// To make sure the user is not usable, even if it leaked in the real DB
+		$this->user->setInternalPassword( null );
 		$this->user->saveSettings();
 	}
 }
