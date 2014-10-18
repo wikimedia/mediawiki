@@ -24,7 +24,7 @@
  *
  * @author Daniel Kinzler
  */
-class PPTransclusionParameters implements TransclusionParameters {
+class PPTransclusionParameters extends TransclusionParameters {
 
 	/**
 	 * @var array

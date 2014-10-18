@@ -24,7 +24,7 @@
  *
  * @author Daniel Kinzler
  */
-interface TransclusionParameters {
+abstract class TransclusionParameters {
 
 	/**
 	 * Returns the parameters, as an associative array of strings.
@@ -38,7 +38,20 @@ interface TransclusionParameters {
 	 *
 	 * @return string[]
 	 */
-	public function getParameters();
+	public abstract function getParameters();
+
+	/**
+	 * Convenience function to get positional parameters as an in-order array.
+	 * Returns parameters with integer keys from the array getParameters() returns.
+	 * The resulting array is sorted by key.
+	 *
+	 * @return array
+	 */
+	public function getPositionalParameters() {
+		$parameters = array_filter( $this->getParameters(), 'is_int' );
+		ksort( $parameters );
+		return $parameters;
+	}
 
 }
  

@@ -24,7 +24,7 @@
  *
  * @author Daniel Kinzler
  */
-class HashTransclusionParameters implements TransclusionParameters {
+class HashTransclusionParameters extends TransclusionParameters {
 
 	/**
 	 * @var string[]
