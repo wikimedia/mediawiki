@@ -106,6 +106,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$needsResetDB = false;
 		$logName = get_class( $this ) . '::' . $this->getName( false );
 
+		$this->setMwGlobals( array(
+			'wgPasswordDefault' => 'B'
+		) );
+
 		if ( $this->needsDB() ) {
 			// set up a DB connection for this test to use
 
@@ -130,6 +134,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 
 			wfProfileIn( $logName . ' (prepare-db)' );
+
 			$this->addCoreDBData();
 			$this->addDBData();
 			wfProfileOut( $logName . ' (prepare-db)' );
