@@ -155,12 +155,13 @@ abstract class ApiFormatBase extends ApiBase {
 			$result = $this->getBuffer();
 
 			$context = new DerivativeContext( $this->getMain() );
-			$context->setUser( new User ); // anon to avoid caching issues
 			$context->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'apioutput' ) );
+			$context->setTitle( SpecialPage::getTitleFor( 'ApiHelp' ) );
 			$out = new OutputPage( $context );
+			$context->setOutput( $out );
+
 			$out->addModules( 'mediawiki.apipretty' );
 			$out->setPageTitle( $context->msg( 'api-format-title' ) );
-			$context->setOutput( $out );
 
 			$header = $context->msg( 'api-format-prettyprint-header' )
 			   ->params( $format, strtolower( $format ) )

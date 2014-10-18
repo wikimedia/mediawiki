@@ -38,4 +38,34 @@ class SkinApi extends SkinTemplate {
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'mediawiki.skinning.interface' );
 	}
+
+	// Skip work and hooks for stuff we don't use
+
+	function buildSidebar() {
+		return array();
+	}
+
+	function getNewtalks() {
+		return '';
+	}
+
+	function getSiteNotice() {
+		return '';
+	}
+
+	public function getLanguages() {
+		return array();
+	}
+
+	protected function buildPersonalUrls() {
+		return array();
+	}
+
+	protected function buildContentNavigationUrls() {
+		return array();
+	}
+
+	protected function buildNavUrls() {
+		return array();
+	}
 }
