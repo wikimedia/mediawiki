@@ -26,26 +26,28 @@
  * @ingroup Parser
  */
 class StripState {
+	protected $id;
 	protected $prefix;
 	protected $data;
 	protected $regex;
 
-	protected $tempType, $tempMergePrefix;
 	protected $circularRefGuard;
 	protected $recursionLevel = 0;
 
 	const UNSTRIP_RECURSION_LIMIT = 20;
 
 	/**
-	 * @param string $prefix
+	 * @param string $id
 	 */
-	public function __construct( $prefix ) {
-		$this->prefix = $prefix;
+	public function __construct( $id ) {
+		$this->id = $id;
+		$this->prefix = Parser::MARKER_PREFIX . $id;
 		$this->data = array(
 			'nowiki' => array(),
 			'general' => array()
 		);
-		$this->regex = "/{$this->prefix}([^\x7f]+)" . Parser::MARKER_SUFFIX . '/';
+		$this->regex = "/" . Parser::MARKER_PREFIX . 
+			'(' . Parser::MARKER_STATE_ID_REGEX . ")([^\x7f]+)" . Parser::MARKER_SUFFIX . '/';
 		$this->circularRefGuard = array();
 	}
 
@@ -73,11 +75,11 @@ class StripState {
 	 * @param string $value
 	 */
 	protected function addItem( $type, $marker, $value ) {
-		if ( !preg_match( $this->regex, $marker, $m ) ) {
+		if ( !preg_match( $this->regex, $marker, $m ) || $m[1] !== $this->id ) {
 			throw new MWException( "Invalid marker: $marker" );
 		}
 
-		$this->data[$type][$m[1]] = $value;
+		$this->data[$type][$m[2]] = $value;
 	}
 
 	/**
@@ -118,41 +120,35 @@ class StripState {
 		}
 
 		wfProfileIn( __METHOD__ );
-		$oldType = $this->tempType;
-		$this->tempType = $type;
-		$text = preg_replace_callback( $this->regex, array( $this, 'unstripCallback' ), $text );
-		$this->tempType = $oldType;
+		$state = $this; // PHP 5.3 hack
+		$text = preg_replace_callback( $this->regex, 
+			function ( $m ) use ( $state, $type ) {
+				$marker = $m[2];
+				if ( $m[1] === $state->id && isset( $state->data[$type][$marker] ) ) {
+					if ( isset( $state->circularRefGuard[$marker] ) ) {
+						return '<span class="error">'
+							. wfMessage( 'parser-unstrip-loop-warning' )->inContentLanguage()->text()
+							. '</span>';
+					}
+					if ( $state->recursionLevel >= self::UNSTRIP_RECURSION_LIMIT ) {
+						return '<span class="error">' .
+							wfMessage( 'parser-unstrip-recursion-limit' )
+								->numParams( self::UNSTRIP_RECURSION_LIMIT )->inContentLanguage()->text() .
+							'</span>';
+					}
+					$state->circularRefGuard[$marker] = true;
+					$state->recursionLevel++;
+					$ret = $state->unstripType( $type, $state->data[$type][$marker] );
+					$state->recursionLevel--;
+					unset( $state->circularRefGuard[$marker] );
+					return $ret;
+				} else {
+					return $m[0];
+				}
+			},
+			$text );
 		wfProfileOut( __METHOD__ );
 		return $text;
-	}
-
-	/**
-	 * @param array $m
-	 * @return array
-	 */
-	protected function unstripCallback( $m ) {
-		$marker = $m[1];
-		if ( isset( $this->data[$this->tempType][$marker] ) ) {
-			if ( isset( $this->circularRefGuard[$marker] ) ) {
-				return '<span class="error">'
-					. wfMessage( 'parser-unstrip-loop-warning' )->inContentLanguage()->text()
-					. '</span>';
-			}
-			if ( $this->recursionLevel >= self::UNSTRIP_RECURSION_LIMIT ) {
-				return '<span class="error">' .
-					wfMessage( 'parser-unstrip-recursion-limit' )
-						->numParams( self::UNSTRIP_RECURSION_LIMIT )->inContentLanguage()->text() .
-					'</span>';
-			}
-			$this->circularRefGuard[$marker] = true;
-			$this->recursionLevel++;
-			$ret = $this->unstripType( $this->tempType, $this->data[$this->tempType][$marker] );
-			$this->recursionLevel--;
-			unset( $this->circularRefGuard[$marker] );
-			return $ret;
-		} else {
-			return $m[0];
-		}
 	}
 
 	/**
@@ -164,7 +160,7 @@ class StripState {
 	 * @return StripState
 	 */
 	public function getSubState( $text ) {
-		$subState = new StripState( $this->prefix );
+		$subState = new StripState( $this->id );
 		$pos = 0;
 		while ( true ) {
 			$startPos = strpos( $text, $this->prefix, $pos );
@@ -175,11 +171,11 @@ class StripState {
 
 			$endPos += strlen( Parser::MARKER_SUFFIX );
 			$marker = substr( $text, $startPos, $endPos - $startPos );
-			if ( !preg_match( $this->regex, $marker, $m ) ) {
+			if ( !preg_match( $this->regex, $marker, $m ) || $m[1] !== $this->id ) {
 				continue;
 			}
 
-			$key = $m[1];
+			$key = $m[2];
 			if ( isset( $this->data['nowiki'][$key] ) ) {
 				$subState->data['nowiki'][$key] = $this->data['nowiki'][$key];
 			} elseif ( isset( $this->data['general'][$key] ) ) {
@@ -208,19 +204,18 @@ class StripState {
 			}
 		}
 
-		$this->tempMergePrefix = $mergePrefix;
-		$texts = preg_replace_callback( $otherState->regex, array( $this, 'mergeCallback' ), $texts );
-		$this->tempMergePrefix = null;
+		$state = $this; // PHP 5.3 hack
+		$texts = preg_replace_callback( $otherState->regex,
+			function ( $m ) use ( $state, $mergePrefix ) {
+				if ( $m[1] === $state->id ) {
+					$key = $m[2];
+					return "{$state->prefix}{$mergePrefix}-$key" . Parser::MARKER_SUFFIX;
+				} else {
+					return $m[0];
+				}
+			},
+			$texts );
 		return $texts;
-	}
-
-	/**
-	 * @param array $m
-	 * @return string
-	 */
-	protected function mergeCallback( $m ) {
-		$key = $m[1];
-		return "{$this->prefix}{$this->tempMergePrefix}-$key" . Parser::MARKER_SUFFIX;
 	}
 
 	/**
@@ -230,6 +225,15 @@ class StripState {
 	 * @return string
 	 */
 	public function killMarkers( $text ) {
-		return preg_replace( $this->regex, '', $text );
+		$state = $this; // PHP 5.3 hack
+		return preg_replace_callback( $this->regex,
+			function ( $m ) use ( $state ) {
+				if ( $m[1] === $state->id ) {
+					return '';
+				} else {
+					return $m[0];
+				}
+			},
+			$text );
 	}
 }
