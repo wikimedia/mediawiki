@@ -203,6 +203,7 @@ a.stub {
 /**
  * Floating divs
  */
+/* @noflip */
 div.floatright {
 	float: right;
 	clear: right;
@@ -214,6 +215,7 @@ div.floatright p {
 	font-style: italic;
 }
 
+/* @noflip */
 div.floatleft {
 	float: left;
 	clear: left;
