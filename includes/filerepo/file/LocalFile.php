@@ -1373,6 +1373,24 @@ class LocalFile extends File {
 				'img_timestamp' => $timestamp,
 			]
 		);
+
+		if ( $reupload ) {
+			// Allow associating whatever the previous version of
+			// the image was, with this log entry.
+			$oldimage = $dbw->selectRow(
+				'oldimage',
+				array( 'oi_timestamp', 'oi_sha1' ),
+				array( 'oi_archive_name' => $oldver, 'oi_name' => $this->getName() ),
+				__METHOD__,
+				array( 'ORDER BY' => 'oi_timestamp DESC' )
+			);
+			if ( $oldimage ) {
+				$logEntry->setRelations( array(
+					'oi_timestamp' => $oldimage->oi_timestamp,
+					'oi_sha1' => $oldimage->oi_sha1,
+				) );
+			}
+		}
 		// Note we keep $logId around since during new image
 		// creation, page doesn't exist yet, so log_page = 0
 		// but we want it to point to the page we're making,
