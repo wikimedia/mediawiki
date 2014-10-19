@@ -38,7 +38,7 @@ class MWOldPassword extends ParameterizedPassword {
 	public function crypt( $plaintext ) {
 		global $wgPasswordSalt;
 
-		if ( $wgPasswordSalt && count( $this->args ) == 1 ) {
+		if ( $wgPasswordSalt && count( $this->args ) === 1 ) {
 			$this->hash = md5( $this->args[0] . '-' . md5( $plaintext ) );
 		} else {
 			$this->args = array();
