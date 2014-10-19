@@ -91,6 +91,7 @@ class JobQueueRedis extends JobQueue {
 		$this->compression = isset( $params['compression'] ) ? $params['compression'] : 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
 		$this->daemonized = !empty( $params['daemonized'] );
+		$this->checkDelay = true; // always enabled
 	}
 
 	protected function supportedOrders() {
@@ -152,9 +153,6 @@ class JobQueueRedis extends JobQueue {
 	 * @throws JobQueueError
 	 */
 	protected function doGetDelayedCount() {
-		if ( !$this->checkDelay ) {
-			return 0; // no delayed jobs
-		}
 		$conn = $this->getConnection();
 		try {
 			return $conn->zSize( $this->getQueueKey( 'z-delayed' ) );
@@ -295,7 +293,7 @@ LUA;
 
 		// Push ready delayed jobs into the queue every 10 jobs to spread the load.
 		// This is also done as a periodic task, but we don't want too much done at once.
-		if ( !$this->daemonized && $this->checkDelay && mt_rand( 0, 9 ) == 0 ) {
+		if ( !$this->daemonized && mt_rand( 0, 9 ) == 0 ) {
 			$this->recyclePruneAndUndelayJobs();
 		}
 
@@ -678,12 +676,9 @@ LUA;
 		if ( $this->daemonized ) {
 			return array(); // managed in the runner loop
 		}
-		$periods = array( 3600 ); // standard cleanup (useful on config change)
+		$periods = array( 300 ); // 5 min; delayed/stale jobs
 		if ( $this->claimTTL > 0 ) {
 			$periods[] = ceil( $this->claimTTL / 2 ); // halved to avoid bad timing
-		}
-		if ( $this->checkDelay ) {
-			$periods[] = 300; // 5 minutes
 		}
 		$period = min( $periods );
 		$period = max( $period, 30 ); // sanity
