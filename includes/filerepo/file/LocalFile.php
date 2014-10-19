@@ -1303,9 +1303,11 @@ class LocalFile extends File {
 		);
 		if ( $dbw->affectedRows() == 0 ) {
 			if ( $allowTimeKludge ) {
-				# Use FOR UPDATE to ignore any transaction snapshotting
+				# Use LOCK IN SHARE MODE to ignore any transaction snapshotting
 				$ltimestamp = $dbw->selectField( 'image', 'img_timestamp',
-					array( 'img_name' => $this->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
+					array( 'img_name' => $this->getName() ),
+					__METHOD__,
+					array( 'LOCK IN SHARE MODE' ) );
 				$lUnixtime = $ltimestamp ? wfTimestamp( TS_UNIX, $ltimestamp ) : false;
 				# Avoid a timestamp that is not newer than the last version
 				# TODO: the image/oldimage tables should be like page/revision with an ID field
