@@ -83,10 +83,14 @@ abstract class ParameterizedPassword extends Password {
 	}
 
 	public function toString() {
-		return
-			':' . $this->config['type'] . ':' .
-			implode( $this->getDelimiter(), array_merge( $this->params, $this->args ) ) .
-			$this->getDelimiter() . $this->hash;
+		$str = ':' . $this->config['type'] . ':';
+
+		if ( count( $this->params ) || count( $this->args ) ) {
+			$str .= implode( $this->getDelimiter(), array_merge( $this->params, $this->args ) );
+			$str .= $this->getDelimiter();
+		}
+
+		return $str . $this->hash;
 	}
 
 	/**

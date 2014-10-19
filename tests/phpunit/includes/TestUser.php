@@ -114,8 +114,8 @@ class TestUser {
 		$passwordFactory = $this->user->getPasswordFactory();
 		$oldDefaultType = $passwordFactory->getDefaultType();
 
-		 // B is salted MD5 (thus fast) ... we don't care about security here, this is test only
-		$passwordFactory->setDefaultType( 'B' ); // @TODO: Change this to A once that is fixed: https://gerrit.wikimedia.org/r/167523
+		 // A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
+		$passwordFactory->setDefaultType( 'A' );
 		$newPassword = $passwordFactory->newFromPlaintext( $password , $this->user->getPassword() );
 
 		$change = false;
