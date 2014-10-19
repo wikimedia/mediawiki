@@ -69,6 +69,15 @@ final class PasswordFactory {
 	}
 
 	/**
+	 * Get the default password type
+	 *
+	 * @return string
+	 */
+	public function getDefaultType() {
+		return $this->default;
+	}
+
+	/**
 	 * Initialize the internal static variables using the global variables
 	 *
 	 * @param Config $config Configuration object to load data from
