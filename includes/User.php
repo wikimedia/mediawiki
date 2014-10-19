@@ -3817,7 +3817,6 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		$passwordFactory = self::getPasswordFactory();
 		if ( !$this->mPassword->equals( $password ) ) {
 			if ( $wgLegacyEncoding ) {
 				// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
@@ -3831,6 +3830,7 @@ class User implements IDBAccessObject {
 			}
 		}
 
+		$passwordFactory = self::getPasswordFactory();
 		if ( $passwordFactory->needsUpdate( $this->mPassword ) ) {
 			$this->mPassword = $passwordFactory->newFromPlaintext( $password );
 			$this->saveSettings();
