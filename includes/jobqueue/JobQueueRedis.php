@@ -295,7 +295,7 @@ LUA;
 
 		// Push ready delayed jobs into the queue every 10 jobs to spread the load.
 		// This is also done as a periodic task, but we don't want too much done at once.
-		if ( $this->checkDelay && mt_rand( 0, 9 ) == 0 ) {
+		if ( !$this->daemonized && $this->checkDelay && mt_rand( 0, 9 ) == 0 ) {
 			$this->recyclePruneAndUndelayJobs();
 		}
 
