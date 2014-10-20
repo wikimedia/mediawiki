@@ -426,15 +426,18 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
+		$messageName = 'searchmenu-new-nocreate';
 		$linkClass = 'mw-search-createlink';
-		if ( $title->isKnown() ) {
-			$messageName = 'searchmenu-exists';
-			$linkClass = 'mw-search-exists';
-		} elseif ( $title->quickUserCan( 'create', $this->getUser() ) ) {
-			$messageName = 'searchmenu-new';
-		} else {
-			$messageName = 'searchmenu-new-nocreate';
+
+		if ( !$title->isExternal() ) {
+			if ( $title->isKnown() ) {
+				$messageName = 'searchmenu-exists';
+				$linkClass = 'mw-search-exists';
+			} elseif ( $title->quickUserCan( 'create', $this->getUser() ) ) {
+				$messageName = 'searchmenu-new';
+			}
 		}
+
 		$params = array(
 			$messageName,
 			wfEscapeWikiText( $title->getPrefixedText() ),
