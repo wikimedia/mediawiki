@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0d358b167a)
+ * OOjs UI v0.1.0-pre (db065e5a9f)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-17T23:41:15Z
+ * Date: 2014-10-20T14:47:55Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -154,6 +154,7 @@
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
 	outline: none;
 }
+.oo-ui-buttonElement-framed > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	line-height: 2.2em;
 }

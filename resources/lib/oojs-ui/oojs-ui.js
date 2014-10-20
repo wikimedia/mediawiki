@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0d358b167a)
+ * OOjs UI v0.1.0-pre (db065e5a9f)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-17T23:41:06Z
+ * Date: 2014-10-20T14:47:45Z
  */
 ( function ( OO ) {
 
@@ -111,6 +111,10 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
 		'ooui-outline-control-remove': 'Remove item',
 		// Label for the toolbar group that contains a list of all other available tools
 		'ooui-toolbar-more': 'More',
+		// Label for the fake tool that expands the full list of tools in a toolbar group
+		'ooui-toolgroup-expand': 'More',
+		// Label for the fake tool that collapses the full list of tools in a toolbar group
+		'ooui-toolgroup-collapse': 'Fewer',
 		// Default label for the accept button of a confirmation dialog
 		'ooui-dialog-message-accept': 'OK',
 		// Default label for the reject button of a confirmation dialog
@@ -7499,14 +7503,29 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 /**
  * Drop down list layout of tools as labeled icon buttons.
  *
+ * This layout allows some tools to be collapsible, controlled by a "More" / "Fewer" option at the
+ * bottom of the main list. These are not automatically positioned at the bottom of the list; you
+ * may want to use the 'promote' and 'demote' configuration options to achieve this.
+ *
  * @class
  * @extends OO.ui.PopupToolGroup
  *
  * @constructor
  * @param {OO.ui.Toolbar} toolbar
  * @param {Object} [config] Configuration options
+ * @cfg {Array} [allowCollapse] List of tools that can be collapsed. Remaining tools will be always
+ *  shown.
+ * @cfg {Array} [forceExpand] List of tools that *may not* be collapsed. All remaining tools will be
+ *  allowed to be collapsed.
+ * @cfg {boolean} [expanded=false] Whether the collapsible tools are expanded by default
  */
 OO.ui.ListToolGroup = function OoUiListToolGroup( toolbar, config ) {
+	// Properties (must be set before parent constructor, which calls #populate)
+	this.allowCollapse = config.allowCollapse;
+	this.forceExpand = config.forceExpand;
+	this.expanded = config.expanded !== undefined ? config.expanded : false;
+	this.collapsibleTools = [];
+
 	// Parent constructor
 	OO.ui.ListToolGroup.super.call( this, toolbar, config );
 
@@ -7523,6 +7542,96 @@ OO.inheritClass( OO.ui.ListToolGroup, OO.ui.PopupToolGroup );
 OO.ui.ListToolGroup.static.accelTooltips = true;
 
 OO.ui.ListToolGroup.static.name = 'list';
+
+/* Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ListToolGroup.prototype.populate = function () {
+	var i, len, allowCollapse = [];
+
+	OO.ui.ListToolGroup.super.prototype.populate.call( this );
+
+	// Update the list of collapsible tools
+	if ( this.allowCollapse !== undefined ) {
+		allowCollapse = this.allowCollapse;
+	} else if ( this.forceExpand !== undefined ) {
+		allowCollapse = OO.simpleArrayDifference( Object.keys( this.tools ), this.forceExpand );
+	}
+
+	this.collapsibleTools = [];
+	for ( i = 0, len = allowCollapse.length; i < len; i++ ) {
+		if ( this.tools[ allowCollapse[i] ] !== undefined ) {
+			this.collapsibleTools.push( this.tools[ allowCollapse[i] ] );
+		}
+	}
+
+	// Keep at the end, even when tools are added
+	this.$group.append( this.getExpandCollapseTool().$element );
+
+	this.getExpandCollapseTool().toggle( this.collapsibleTools.length !== 0 );
+
+	// Calling jQuery's .hide() and then .show() on a detached element caches the default value of its
+	// 'display' attribute and restores it, and the tool uses a <span> and can be hidden and re-shown.
+	// Is this a jQuery bug? http://jsfiddle.net/gtj4hu3h/
+	if ( this.getExpandCollapseTool().$element.css( 'display' ) === 'inline' ) {
+		this.getExpandCollapseTool().$element.css( 'display', 'inline-block' );
+	}
+
+	this.updateCollapsibleState();
+};
+
+OO.ui.ListToolGroup.prototype.getExpandCollapseTool = function () {
+	if ( this.expandCollapseTool === undefined ) {
+		var ExpandCollapseTool = function () {
+			ExpandCollapseTool.super.apply( this, arguments );
+		};
+
+		OO.inheritClass( ExpandCollapseTool, OO.ui.Tool );
+
+		ExpandCollapseTool.prototype.onSelect = function () {
+			this.toolGroup.expanded = !this.toolGroup.expanded;
+			this.toolGroup.updateCollapsibleState();
+			this.setActive( false );
+		};
+		ExpandCollapseTool.prototype.onUpdateState = function () {
+			// Do nothing. Tool interface requires an implementation of this function.
+		};
+
+		ExpandCollapseTool.static.name = 'more-fewer';
+
+		this.expandCollapseTool = new ExpandCollapseTool( this );
+	}
+	return this.expandCollapseTool;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ListToolGroup.prototype.onPointerUp = function ( e ) {
+	var ret = OO.ui.ListToolGroup.super.prototype.onPointerUp.call( this, e );
+
+	// Do not close the popup when the user wants to show more/fewer tools
+	if ( this.$( e.target ).closest( '.oo-ui-tool-name-more-fewer' ).length ) {
+		// Prevent the popup list from being hidden
+		this.setActive( true );
+	}
+
+	return ret;
+};
+
+OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
+	var i, len;
+
+	this.getExpandCollapseTool()
+		.setIcon( this.expanded ? 'collapse' : 'expand' )
+		.setTitle( OO.ui.msg( this.expanded ? 'ooui-toolgroup-collapse' : 'ooui-toolgroup-expand' ) );
+
+	for ( i = 0, len = this.collapsibleTools.length; i < len; i++ ) {
+		this.collapsibleTools[i].toggle( this.expanded );
+	}
+};
 
 /**
  * Drop down menu layout of tools as selectable menu items.
@@ -8996,6 +9105,140 @@ OO.ui.InputWidget.prototype.focus = function () {
 OO.ui.InputWidget.prototype.blur = function () {
 	this.$input[0].blur();
 	return this;
+};
+
+/**
+ * A button that is an input widget. Intended to be used within FormLayouts.
+ *
+ * @class
+ * @extends OO.ui.InputWidget
+ * @mixins OO.ui.ButtonElement
+ * @mixins OO.ui.IconElement
+ * @mixins OO.ui.IndicatorElement
+ * @mixins OO.ui.LabelElement
+ * @mixins OO.ui.TitledElement
+ * @mixins OO.ui.FlaggedElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {string} [type='button'] HTML tag `type` attribute, may be 'button', 'submit' or 'reset'
+ * @cfg {boolean} [useInputTag=false] Whether to use `<input/>` rather than `<button/>`. Only useful
+ *  if you need IE 6 support in a form with multiple buttons. By using this option, you sacrifice
+ *  icons and indicators, as well as the ability to have non-plaintext label or a label different
+ *  from the value.
+ */
+OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
+	// Configuration initialization
+	config = $.extend( { type: 'button', useInputTag: false }, config );
+
+	// Parent constructor
+	OO.ui.ButtonInputWidget.super.call( this, config );
+
+	// Mixin constructors
+	OO.ui.ButtonElement.call( this, $.extend( {}, config, { $button: this.$input } ) );
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$input } ) );
+	OO.ui.FlaggedElement.call( this, config );
+
+	// Properties
+	this.useInputTag = config.useInputTag;
+
+	// Events
+	this.$input.on( {
+		click: this.onClick.bind( this ),
+		keypress: this.onKeyPress.bind( this )
+	} );
+
+	// Initialization
+	if ( !config.useInputTag ) {
+		this.$input.append( this.$icon, this.$label, this.$indicator );
+	}
+	this.$element.addClass( 'oo-ui-buttonInputWidget' );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.ButtonInputWidget, OO.ui.InputWidget );
+OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.ButtonElement );
+OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.IconElement );
+OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.IndicatorElement );
+OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.LabelElement );
+OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.TitledElement );
+OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.FlaggedElement );
+
+/* Events */
+
+/**
+ * @event click
+ */
+
+/* Methods */
+
+/**
+ * Get input element.
+ *
+ * @param {Object} [config] Configuration options
+ * @return {jQuery} Input element
+ */
+OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
+	var html = '<' + ( config.useInputTag ? 'input' : 'button' ) + ' type="' + config.type + '">';
+	return this.$( html );
+};
+
+/**
+ * Set the label.
+ *
+ * Overridden to support setting the 'value' of `<input/>` elements.
+ *
+ * @param {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
+ *  text; or null for no label
+ * @chainable
+ */
+OO.ui.ButtonInputWidget.prototype.setLabel = function ( label ) {
+	OO.ui.LabelElement.prototype.setLabel.call( this, label );
+
+	if ( this.useInputTag ) {
+		if ( typeof label === 'function' ) {
+			label = OO.ui.resolveMsg( label );
+		}
+		if ( label instanceof jQuery ) {
+			label = label.text();
+		}
+		if ( !label ) {
+			label = '';
+		}
+		this.$input.val( label );
+	}
+
+	return this;
+};
+
+/**
+ * Handles mouse click events.
+ *
+ * @param {jQuery.Event} e Mouse click event
+ * @fires click
+ */
+OO.ui.ButtonInputWidget.prototype.onClick = function () {
+	if ( !this.isDisabled() ) {
+		this.emit( 'click' );
+	}
+	return false;
+};
+
+/**
+ * Handles keypress events.
+ *
+ * @param {jQuery.Event} e Keypress event
+ * @fires click
+ */
+OO.ui.ButtonInputWidget.prototype.onKeyPress = function ( e ) {
+	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
+		this.emit( 'click' );
+	}
+	return false;
 };
 
 /**

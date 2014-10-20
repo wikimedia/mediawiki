@@ -20,6 +20,8 @@
 	"ooui-outline-control-move-up": "Move item up",
 	"ooui-outline-control-remove": "Remove item",
 	"ooui-toolbar-more": "More",
+	"ooui-toolgroup-expand": "More",
+	"ooui-toolgroup-collapse": "Fewer",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Cancel",
 	"ooui-dialog-process-error": "Something went wrong",

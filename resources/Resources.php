@@ -1595,6 +1595,8 @@ return array(
 			'ooui-outline-control-move-up',
 			'ooui-outline-control-remove',
 			'ooui-toolbar-more',
+			'ooui-toolgroup-collapse',
+			'ooui-toolgroup-expand',
 			'ooui-dialog-message-accept',
 			'ooui-dialog-message-reject',
 			'ooui-dialog-process-dismiss',

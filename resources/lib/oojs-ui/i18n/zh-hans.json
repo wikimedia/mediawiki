@@ -23,6 +23,8 @@
 	"ooui-outline-control-move-up": "上移项",
 	"ooui-outline-control-remove": "删除项",
 	"ooui-toolbar-more": "更多",
+	"ooui-toolgroup-expand": "更多",
+	"ooui-toolgroup-collapse": "更少",
 	"ooui-dialog-message-accept": "确定",
 	"ooui-dialog-message-reject": "取消",
 	"ooui-dialog-process-error": "发生一些错误",
