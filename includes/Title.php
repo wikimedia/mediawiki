@@ -795,7 +795,8 @@ class Title {
 
 	/**
 	 * Determine whether the object refers to a page within
-	 * this project.
+	 * this project (either this wiki or a Wiki whith a local
+	 * interwiki (see https://www.mediawiki.org/wiki/Manual:Interwiki_table#iw_local )
 	 *
 	 * @return bool True if this is an in-project interwiki link or a wikilink, false otherwise
 	 */
