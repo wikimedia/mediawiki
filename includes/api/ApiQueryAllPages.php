@@ -227,7 +227,9 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	public function getAllowedParams() {
 		return array(
 			'from' => null,
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'to' => null,
 			'prefix' => null,
 			'namespace' => array(
@@ -297,54 +299,15 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
+	public function getExamplesMessages() {
 		return array(
-			'from' => 'The page title to start enumerating from',
-			'continue' => 'When more results are available, use this to continue',
-			'to' => 'The page title to stop enumerating at',
-			'prefix' => 'Search for all page titles that begin with this value',
-			'namespace' => 'The namespace to enumerate',
-			'filterredir' => 'Which pages to list',
-			'dir' => 'The direction in which to list',
-			'minsize' => 'Limit to pages with at least this many bytes',
-			'maxsize' => 'Limit to pages with at most this many bytes',
-			'prtype' => 'Limit to protected pages only',
-			'prlevel' => "The protection level (must be used with {$p}prtype= parameter)",
-			'prfiltercascade'
-				=> "Filter protections based on cascadingness (ignored when {$p}prtype isn't set)",
-			'filterlanglinks' => array(
-				'Filter based on whether a page has langlinks',
-				'Note that this may not consider langlinks added by extensions.',
-			),
-			'limit' => 'How many total pages to return.',
-			'prexpiry' => array(
-				'Which protection expiry to filter the page on',
-				' indefinite - Get only pages with indefinite protection expiry',
-				' definite - Get only pages with a definite (specific) protection expiry',
-				' all - Get pages with any protections expiry'
-			),
-		);
-	}
-
-	public function getDescription() {
-		return 'Enumerate all pages sequentially in a given namespace.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=allpages&apfrom=B' => array(
-				'Simple Use',
-				'Show a list of pages starting at the letter "B"',
-			),
-			'api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info' => array(
-				'Using as Generator',
-				'Show info about 4 pages starting at the letter "T"',
-			),
-			'api.php?action=query&generator=allpages&gaplimit=2&' .
+			'action=query&list=allpages&apfrom=B'
+				=> 'apihelp-query+allpages-example-B',
+			'action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info'
+				=> 'apihelp-query+allpages-example-generator',
+			'action=query&generator=allpages&gaplimit=2&' .
 				'gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content'
-				=> array( 'Show content of first 2 non-redirect pages beginning at "Re"' )
+				=> 'apihelp-query+allpages-example-generator-revisions',
 		);
 	}
 

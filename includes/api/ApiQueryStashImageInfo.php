@@ -94,46 +94,32 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			),
 			'urlwidth' => array(
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => -1
+				ApiBase::PARAM_DFLT => -1,
+				ApiBase::PARAM_HELP_MSG => array(
+					'apihelp-query+imageinfo-param-urlwidth',
+					ApiQueryImageInfo::TRANSFORM_LIMIT,
+				),
 			),
 			'urlheight' => array(
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => -1
+				ApiBase::PARAM_DFLT => -1,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+imageinfo-param-urlheight',
 			),
 			'urlparam' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_DFLT => '',
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+imageinfo-param-urlparam',
 			),
 		);
 	}
 
-	/**
-	 * Return the API documentation for the parameters.
-	 * @return array Parameter documentation.
-	 */
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-
+	public function getExamplesMessages() {
 		return array(
-			'prop' => self::getPropertyDescriptions( $this->propertyFilter, $p ),
-			'filekey' => 'Key that identifies a previous upload that was stashed temporarily.',
-			'sessionkey' => 'Alias for filekey, for backward compatibility.',
-			'urlwidth' => "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
-			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
-			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
-				"might use 'page15-100px'. {$p}urlwidth must be used and be consistent with {$p}urlparam" ),
-		);
-	}
-
-	public function getDescription() {
-		return 'Returns image information for stashed images.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&prop=stashimageinfo&siifilekey=124sd34rsdf567',
-			'api.php?action=query&prop=stashimageinfo&siifilekey=b34edoe3|bceffd4&' .
-				'siiurlwidth=120&siiprop=url',
+			'action=query&prop=stashimageinfo&siifilekey=124sd34rsdf567'
+				=> 'apihelp-query+stashimageinfo-example-simple',
+			'action=query&prop=stashimageinfo&siifilekey=b34edoe3|bceffd4&' .
+				'siiurlwidth=120&siiprop=url'
+				=> 'apihelp-query+stashimageinfo-example-params',
 		);
 	}
 }

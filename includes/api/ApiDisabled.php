@@ -44,19 +44,7 @@ class ApiDisabled extends ApiBase {
 		return false;
 	}
 
-	public function getAllowedParams() {
-		return array();
-	}
-
-	public function getParamDescription() {
-		return array();
-	}
-
-	public function getDescription() {
-		return 'This module has been disabled.';
-	}
-
-	public function getExamples() {
-		return array();
+	protected function getDescriptionMessage() {
+		return 'apihelp-disabled-description';
 	}
 }

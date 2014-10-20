@@ -140,18 +140,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	public function getAllowedParams() {
 		global $wgContLang;
 		return array(
-			'limit' => array(
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => null,
-			'url' => array(
-				ApiBase::PARAM_DFLT => false,
-				ApiBase::PARAM_DEPRECATED => true,
-			),
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
@@ -170,36 +158,27 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				)
 			),
 			'inlanguagecode' => $wgContLang->getCode(),
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'limit' => 'How many langlinks to return',
-			'continue' => 'When more results are available, use this to continue',
-			'url' => "Whether to get the full URL (Cannot be used with {$this->getModulePrefix()}prop)",
-			'prop' => array(
-				'Which additional properties to get for each interlanguage link',
-				' url      - Adds the full URL',
-				' langname - Adds the localised language name (best effort, use CLDR extension)',
-				"            Use {$this->getModulePrefix()}inlanguagecode to control the language",
-				' autonym  - Adds the native language name',
+			'limit' => array(
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'lang' => 'Language code',
-			'title' => "Link to search for. Must be used with {$this->getModulePrefix()}lang",
-			'dir' => 'The direction in which to list',
-			'inlanguagecode' => 'Language code for localised language names',
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
+			'url' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 		);
 	}
 
-	public function getDescription() {
-		return 'Returns all interlanguage links from the given page(s).';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=query&prop=langlinks&titles=Main%20Page&redirects='
-				=> 'Get interlanguage links from the [[Main Page]]',
+			'action=query&prop=langlinks&titles=Main%20Page&redirects='
+				=> 'apihelp-query+langlinks-example-simple',
 		);
 	}
 

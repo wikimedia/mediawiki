@@ -275,7 +275,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		$ret = array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
 			),
@@ -307,7 +307,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					'file'
 				)
 			),
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'limit' => array(
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => 10,
@@ -351,67 +353,22 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_DEPRECATED => true,
 			),
 		);
-	}
-
-	public function getParamDescription() {
-		$p = $this->getModulePrefix();
-		$desc = array(
-			'title' => "Which category to enumerate (required). Must include " .
-				"'Category:' prefix. Cannot be used together with {$p}pageid",
-			'pageid' => "Page ID of the category to enumerate. Cannot be used together with {$p}title",
-			'prop' => array(
-				'What pieces of information to include',
-				' ids           - Adds the page ID',
-				' title         - Adds the title and namespace ID of the page',
-				' sortkey       - Adds the sortkey used for sorting in the category (hexadecimal string)',
-				' sortkeyprefix - Adds the sortkey prefix used for sorting in the ' .
-					'category (human-readable part of the sortkey)',
-				' type          - Adds the type that the page has been categorised as (page, subcat or file)',
-				' timestamp     - Adds the timestamp of when the page was included',
-			),
-			'namespace' => 'Only include pages in these namespaces',
-			'type' => "What type of category members to include. Ignored when {$p}sort=timestamp is set",
-			'sort' => 'Property to sort by',
-			'dir' => 'In which direction to sort',
-			'start' => "Timestamp to start listing from. Can only be used with {$p}sort=timestamp",
-			'end' => "Timestamp to end listing at. Can only be used with {$p}sort=timestamp",
-			'starthexsortkey' => "Sortkey to start listing from, as returned by prop=sortkey. " .
-				"Can only be used with {$p}sort=sortkey",
-			'endhexsortkey' => "Sortkey to end listing from, as returned by prop=sortkey. " .
-				"Can only be used with {$p}sort=sortkey",
-			'startsortkeyprefix' => "Sortkey prefix to start listing from. Can " .
-				"only be used with {$p}sort=sortkey. Overrides {$p}starthexsortkey",
-			'endsortkeyprefix' => "Sortkey prefix to end listing BEFORE (not at, " .
-				"if this value occurs it will not be included!). Can only be used with " .
-				"{$p}sort=sortkey. Overrides {$p}endhexsortkey",
-			'startsortkey' => "Use starthexsortkey instead",
-			'endsortkey' => "Use endhexsortkey instead",
-			'continue' => 'For large categories, give the value returned from previous query',
-			'limit' => 'The maximum number of pages to return.',
-		);
 
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
-			$desc['namespace'] = array(
-				$desc['namespace'],
-				"NOTE: Due to \$wgMiserMode, using this may result in fewer than \"{$p}limit\" results",
-				'returned before continuing; in extreme cases, zero results may be returned.',
-				"Note that you can use {$p}type=subcat or {$p}type=file instead of {$p}namespace=14 or 6.",
+			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = array(
+				'api-help-param-limited-in-miser-mode',
 			);
 		}
 
-		return $desc;
+		return $ret;
 	}
 
-	public function getDescription() {
-		return 'List all pages in a given category.';
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=query&list=categorymembers&cmtitle=Category:Physics'
-				=> 'Get first 10 pages in [[Category:Physics]]',
-			'api.php?action=query&generator=categorymembers&gcmtitle=Category:Physics&prop=info'
-				=> 'Get page info about first 10 pages in [[Category:Physics]]',
+			'action=query&list=categorymembers&cmtitle=Category:Physics'
+				=> 'apihelp-query+categorymembers-example-simple',
+			'action=query&generator=categorymembers&gcmtitle=Category:Physics&prop=info'
+				=> 'apihelp-query+categorymembers-example-generator',
 		);
 	}
 

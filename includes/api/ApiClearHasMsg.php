@@ -42,13 +42,10 @@ class ApiClearHasMsg extends ApiBase {
 		return false;
 	}
 
-	public function getDescription() {
-		return array( 'Clears the hasmsg flag for current user.' );
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=clearhasmsg' => 'Clears the hasmsg flag for current user',
+			'action=clearhasmsg'
+				=> 'apihelp-clearhasmsg-example-1',
 		);
 	}
 

@@ -100,21 +100,10 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 			);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'search' => 'Search string',
-			'limit' => 'Maximum amount of results to return',
-			'namespace' => 'Namespaces to search',
-		);
-	}
-
-	public function getDescription() {
-		return 'Perform a prefix search for page titles';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=prefixsearch&pssearch=meaning',
+			'action=query&list=prefixsearch&pssearch=meaning'
+				=> 'apihelp-query+prefixsearch-example-simple',
 		);
 	}
 

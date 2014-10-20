@@ -1158,8 +1158,10 @@ class ApiMain extends ApiBase {
 	/** @see ApiBase::getExamplesMessages() */
 	public function getExamplesMessages() {
 		return array(
-			'action=help' => 'apihelp-help-example-main',
-			'action=help&recursivesubmodules=1' => 'apihelp-help-example-recursive',
+			'action=help'
+				=> 'apihelp-help-example-main',
+			'action=help&recursivesubmodules=1'
+				=> 'apihelp-help-example-recursive',
 		);
 	}
 
@@ -1242,87 +1244,6 @@ class ApiMain extends ApiBase {
 	 * @name   Deprecated
 	 * @{
 	 */
-
-	/**
-	 * @deprecated since 1.25
-	 * @return array
-	 */
-	public function getParamDescription() {
-		return array(
-			'format' => 'The format of the output',
-			'action' => 'What action you would like to perform. See below for module help',
-			'maxlag' => array(
-				'Maximum lag can be used when MediaWiki is installed on a database replicated cluster.',
-				'To save actions causing any more site replication lag, this parameter can make the client',
-				'wait until the replication lag is less than the specified value.',
-				'In case of a replag error, error code "maxlag" is returned, with the message like',
-				'"Waiting for $host: $lag seconds lagged\n".',
-				'See https://www.mediawiki.org/wiki/Manual:Maxlag_parameter for more information',
-			),
-			'smaxage' => 'Set the s-maxage header to this many seconds. Errors are never cached',
-			'maxage' => 'Set the max-age header to this many seconds. Errors are never cached',
-			'assert' => 'Verify the user is logged in if set to "user", or has the bot userright if "bot"',
-			'requestid' => 'Request ID to distinguish requests. This will just be output back to you',
-			'servedby' => 'Include the hostname that served the request in the ' .
-				'results. Unconditionally shown on error',
-			'curtimestamp' => 'Include the current timestamp in the result.',
-			'origin' => array(
-				'When accessing the API using a cross-domain AJAX request (CORS), set this to the',
-				'originating domain. This must be included in any pre-flight request, and',
-				'therefore must be part of the request URI (not the POST body). This must match',
-				'one of the origins in the Origin: header exactly, so it has to be set to ',
-				'something like http://en.wikipedia.org or https://meta.wikimedia.org . If this',
-				'parameter does not match the Origin: header, a 403 response will be returned. If',
-				'this parameter matches the Origin: header and the origin is whitelisted, an',
-				'Access-Control-Allow-Origin header will be set.',
-			),
-		);
-	}
-
-	/**
-	 * @deprecated since 1.25
-	 * @return array
-	 */
-	public function getDescription() {
-		return array(
-			'',
-			'',
-			'**********************************************************************************************',
-			'**                                                                                          **',
-			'**                This is an auto-generated MediaWiki API documentation page                **',
-			'**                                                                                          **',
-			'**                               Documentation and Examples:                                **',
-			'**                            https://www.mediawiki.org/wiki/API                            **',
-			'**                                                                                          **',
-			'**********************************************************************************************',
-			'',
-			'Status:                All features shown on this page should be working, but the API',
-			'                       is still in active development, and may change at any time.',
-			'                       Make sure to monitor our mailing list for any updates.',
-			'',
-			'Erroneous requests:    When erroneous requests are sent to the API, a HTTP header will be sent',
-			'                       with the key "MediaWiki-API-Error" and then both the value of the',
-			'                       header and the error code sent back will be set to the same value.',
-			'',
-			'                       In the case of an invalid action being passed, these will have a value',
-			'                       of "unknown_action".',
-			'',
-			'                       For more information see https://www.mediawiki.org' .
-				'/wiki/API:Errors_and_warnings',
-			'',
-			'Documentation:         https://www.mediawiki.org/wiki/API:Main_page',
-			'FAQ                    https://www.mediawiki.org/wiki/API:FAQ',
-			'Mailing list:          https://lists.wikimedia.org/mailman/listinfo/mediawiki-api',
-			'Api Announcements:     https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce',
-			'Bugs & Requests:       https://bugzilla.wikimedia.org/buglist.cgi?component=API&' .
-				'bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts',
-			'',
-			'',
-			'',
-			'',
-			'',
-		);
-	}
 
 	/**
 	 * Sets whether the pretty-printer should format *bold* and $italics$

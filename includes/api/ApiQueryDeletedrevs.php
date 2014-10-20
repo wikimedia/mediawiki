@@ -423,40 +423,46 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array(
 			'start' => array(
-				ApiBase::PARAM_TYPE => 'timestamp'
+				ApiBase::PARAM_TYPE => 'timestamp',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 1, 2 ) ),
 			),
 			'end' => array(
 				ApiBase::PARAM_TYPE => 'timestamp',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 1, 2 ) ),
 			),
 			'dir' => array(
 				ApiBase::PARAM_TYPE => array(
 					'newer',
 					'older'
 				),
-				ApiBase::PARAM_DFLT => 'older'
+				ApiBase::PARAM_DFLT => 'older',
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 1, 3 ) ),
 			),
-			'from' => null,
-			'to' => null,
-			'prefix' => null,
-			'continue' => null,
-			'unique' => false,
+			'from' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
+			),
+			'to' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
+			),
+			'prefix' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
+			),
+			'unique' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
+			),
+			'namespace' => array(
+				ApiBase::PARAM_TYPE => 'namespace',
+				ApiBase::PARAM_DFLT => NS_MAIN,
+				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'modes', 3 ) ),
+			),
 			'tag' => null,
 			'user' => array(
 				ApiBase::PARAM_TYPE => 'user'
 			),
 			'excludeuser' => array(
 				ApiBase::PARAM_TYPE => 'user'
-			),
-			'namespace' => array(
-				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_DFLT => NS_MAIN,
-			),
-			'limit' => array(
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'user|comment',
@@ -476,68 +482,30 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				),
 				ApiBase::PARAM_ISMULTI => true
 			),
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'start' => 'The timestamp to start enumerating from (1, 2)',
-			'end' => 'The timestamp to stop enumerating at (1, 2)',
-			'dir' => $this->getDirectionDescription( $this->getModulePrefix(), ' (1, 3)' ),
-			'from' => 'Start listing at this title (3)',
-			'to' => 'Stop listing at this title (3)',
-			'prefix' => 'Search for all page titles that begin with this value (3)',
-			'limit' => 'The maximum amount of revisions to list',
-			'prop' => array(
-				'Which properties to get',
-				' revid          - Adds the revision ID of the deleted revision',
-				' parentid       - Adds the revision ID of the previous revision to the page',
-				' user           - Adds the user who made the revision',
-				' userid         - Adds the user ID whom made the revision',
-				' comment        - Adds the comment of the revision',
-				' parsedcomment  - Adds the parsed comment of the revision',
-				' minor          - Tags if the revision is minor',
-				' len            - Adds the length (bytes) of the revision',
-				' sha1           - Adds the SHA-1 (base 16) of the revision',
-				' content        - Adds the content of the revision',
-				' token          - DEPRECATED! Gives the edit token',
-				' tags           - Tags for the revision',
+			'limit' => array(
+				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_TYPE => 'limit',
+				ApiBase::PARAM_MIN => 1,
+				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'namespace' => 'Only list pages in this namespace (3)',
-			'user' => 'Only list revisions by this user',
-			'excludeuser' => 'Don\'t list revisions by this user',
-			'continue' => 'When more results are available, use this to continue',
-			'unique' => 'List only one revision for each page (3)',
-			'tag' => 'Only list revisions tagged with this tag',
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
 	}
 
-	public function getDescription() {
-		$p = $this->getModulePrefix();
-
+	public function getExamplesMessages() {
 		return array(
-			'List deleted revisions.',
-			'Operates in three modes:',
-			' 1) List deleted revisions for the given title(s), sorted by timestamp.',
-			' 2) List deleted contributions for the given user, sorted by timestamp (no titles specified).',
-			' 3) List all deleted revisions in the given namespace, sorted by title and timestamp',
-			"    (no titles specified, {$p}user not set).",
-			'Certain parameters only apply to some modes and are ignored in others.',
-			'For instance, a parameter marked (1) only applies to mode 1 and is ignored in modes 2 and 3.',
-		);
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&' .
+			'action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&' .
 				'drprop=user|comment|content'
-				=> 'List the last deleted revisions of Main Page and Talk:Main Page, with content (mode 1)',
-			'api.php?action=query&list=deletedrevs&druser=Bob&drlimit=50'
-				=> 'List the last 50 deleted contributions by Bob (mode 2)',
-			'api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50'
-				=> 'List the first 50 deleted revisions in the main namespace (mode 3)',
-			'api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique='
-				=> 'List the first 50 deleted pages in the Talk namespace (mode 3):',
+				=> 'apihelp-query+deletedrevs-example-mode1',
+			'action=query&list=deletedrevs&druser=Bob&drlimit=50'
+				=> 'apihelp-query+deletedrevs-example-mode2',
+			'action=query&list=deletedrevs&drdir=newer&drlimit=50'
+				=> 'apihelp-query+deletedrevs-example-mode3-main',
+			'action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique='
+				=> 'apihelp-query+deletedrevs-example-mode3-talk',
 		);
 	}
 

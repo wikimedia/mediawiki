@@ -135,29 +135,15 @@ class ApiFileRevert extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
-		return array(
-			'filename' => 'Target filename without the File: prefix',
-			'comment' => 'Upload comment',
-			'archivename' => 'Archive name of the revision to revert to',
-		);
-	}
-
-	public function getDescription() {
-		return array(
-			'Revert a file to an old version.'
-		);
-	}
-
 	public function needsToken() {
 		return 'csrf';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=filerevert&filename=Wiki.png&comment=Revert&' .
+			'action=filerevert&filename=Wiki.png&comment=Revert&' .
 				'archivename=20110305152740!Wiki.png&token=123ABC'
-				=> 'Revert Wiki.png to the version of 20110305152740',
+				=> 'apihelp-filerevert-example-revert',
 		);
 	}
 }

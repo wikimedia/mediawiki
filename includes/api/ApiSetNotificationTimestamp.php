@@ -219,7 +219,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			'newerthanrevid' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
-			'continue' => '',
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -228,34 +230,17 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		return $result;
 	}
 
-	public function getParamDescription() {
-		return $this->getPageSet()->getFinalParamDescription() + array(
-			'entirewatchlist' => 'Work on all watched pages',
-			'timestamp' => 'Timestamp to which to set the notification timestamp',
-			'torevid' => 'Revision to set the notification timestamp to (one page only)',
-			'newerthanrevid' => 'Revision to set the notification timestamp newer than (one page only)',
-			'continue' => 'When more results are available, use this to continue',
-		);
-	}
-
-	public function getDescription() {
-		return array( 'Update the notification timestamp for watched pages.',
-			'This affects the highlighting of changed pages in the watchlist and history,',
-			'and the sending of email when the "Email me when a page on my watchlist is',
-			'changed" preference is enabled.'
-		);
-	}
-
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=setnotificationtimestamp&entirewatchlist=&token=123ABC'
-				=> 'Reset the notification status for the entire watchlist',
-			'api.php?action=setnotificationtimestamp&titles=Main_page&token=123ABC'
-				=> 'Reset the notification status for "Main page"',
-			'api.php?action=setnotificationtimestamp&titles=Main_page&' .
+			'action=setnotificationtimestamp&entirewatchlist=&token=123ABC'
+				=> 'apihelp-setnotificationtimestamp-example-all',
+			'action=setnotificationtimestamp&titles=Main_page&token=123ABC'
+				=> 'apihelp-setnotificationtimestamp-example-page',
+			'action=setnotificationtimestamp&titles=Main_page&' .
 				'timestamp=2012-01-01T00:00:00Z&token=123ABC'
-				=> 'Set the notification timestamp for "Main page" so all edits ' .
-					'since 1 January 2012 are unviewed',
+				=> 'apihelp-setnotificationtimestamp-example-pagetimestamp',
+			'action=setnotificationtimestamp&generator=allpages&gapnamespace=2&token=123ABC'
+				=> 'apihelp-setnotificationtimestamp-example-allpages',
 		);
 	}
 

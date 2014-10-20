@@ -117,39 +117,17 @@ class ApiUndelete extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
-		return array(
-			'title' => 'Title of the page you want to restore',
-			'reason' => 'Reason for restoring',
-			'timestamps' => array(
-				'Timestamps of the revisions to restore.',
-				'If both timestamps and fileids are empty, all will be restored.',
-			),
-			'fileids' => array(
-				'IDs of the file revisions to restore.',
-				'If both timestamps and fileids are empty, all will be restored.',
-			),
-			'watchlist' => 'Unconditionally add or remove the page from your ' .
-				'watchlist, use preferences or do not change watch',
-		);
-	}
-
-	public function getDescription() {
-		return array(
-			'Restore certain revisions of a deleted page. A list of deleted revisions ',
-			'(including timestamps) can be retrieved through list=deletedrevs, and a list',
-			'of deleted file ids can be retrieved through list=filearchive.'
-		);
-	}
-
 	public function needsToken() {
 		return 'csrf';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=undelete&title=Main%20Page&token=123ABC&reason=Restoring%20main%20page',
-			'api.php?action=undelete&title=Main%20Page&token=123ABC&timestamps=20070703220045|20070702194856'
+			'action=undelete&title=Main%20Page&token=123ABC&reason=Restoring%20main%20page'
+				=> 'apihelp-undelete-example-page',
+			'action=undelete&title=Main%20Page&token=123ABC' .
+				'&timestamps=2007-07-03T22:00:45Z|2007-07-02T19:48:56Z'
+				=> 'apihelp-undelete-example-revisions',
 		);
 	}
 

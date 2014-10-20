@@ -246,45 +246,22 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'acceptlang',
 					'registrationdate',
 					'unreadcount',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG => array(
+					'apihelp-query+userinfo-param-prop',
+					self::WL_UNREAD_LIMIT - 1,
+					self::WL_UNREAD_LIMIT . '+',
+				),
 			)
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'prop' => array(
-				'What pieces of information to include',
-				'  blockinfo        - Tags if the current user is blocked, by whom, and for what reason',
-				'  hasmsg           - Adds a tag "message" if the current user has pending messages',
-				'  groups           - Lists all the groups the current user belongs to',
-				'  implicitgroups   - Lists all the groups the current user is automatically a member of',
-				'  rights           - Lists all the rights the current user has',
-				'  changeablegroups - Lists the groups the current user can add to and remove from',
-				'  options          - Lists all preferences the current user has set',
-				'  preferencestoken - DEPRECATED! Get a token to change current user\'s preferences',
-				'  editcount        - Adds the current user\'s edit count',
-				'  ratelimits       - Lists all rate limits applying to the current user',
-				'  realname         - Adds the user\'s real name',
-				'  email            - Adds the user\'s email address and email authentication date',
-				'  acceptlang       - Echoes the Accept-Language header sent by ' .
-					'the client in a structured format',
-				'  registrationdate - Adds the user\'s registration date',
-				'  unreadcount      - Adds the count of unread pages on the user\'s watchlist ' .
-					'(maximum ' . ( self::WL_UNREAD_LIMIT - 1 ) . '; returns "' .
-					self::WL_UNREAD_LIMIT . '+" if more)',
-			)
-		);
-	}
-
-	public function getDescription() {
-		return 'Get information about the current user.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&meta=userinfo',
-			'api.php?action=query&meta=userinfo&uiprop=blockinfo|groups|rights|hasmsg',
+			'action=query&meta=userinfo'
+				=> 'apihelp-query+userinfo-example-simple',
+			'action=query&meta=userinfo&uiprop=blockinfo|groups|rights|hasmsg'
+				=> 'apihelp-query+userinfo-example-data',
 		);
 	}
 

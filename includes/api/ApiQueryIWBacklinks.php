@@ -169,7 +169,9 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		return array(
 			'prefix' => null,
 			'title' => null,
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -195,33 +197,12 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getParamDescription() {
+	public function getExamplesMessages() {
 		return array(
-			'prefix' => 'Prefix for the interwiki',
-			'title' => "Interwiki link to search for. Must be used with {$this->getModulePrefix()}prefix",
-			'continue' => 'When more results are available, use this to continue',
-			'prop' => array(
-				'Which properties to get',
-				' iwprefix       - Adds the prefix of the interwiki',
-				' iwtitle        - Adds the title of the interwiki',
-			),
-			'limit' => 'How many total pages to return',
-			'dir' => 'The direction in which to list',
-		);
-	}
-
-	public function getDescription() {
-		return array( 'Find all pages that link to the given interwiki link.',
-			'Can be used to find all links with a prefix, or',
-			'all links to a title (with a given prefix).',
-			'Using neither parameter is effectively "All IW Links".',
-		);
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks',
-			'api.php?action=query&generator=iwbacklinks&giwbltitle=Test&giwblprefix=wikibooks&prop=info'
+			'action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks'
+				=> 'apihelp-query+iwbacklinks-example-simple',
+			'action=query&generator=iwbacklinks&giwbltitle=Test&giwblprefix=wikibooks&prop=info'
+				=> 'apihelp-query+iwbacklinks-example-generator',
 		);
 	}
 

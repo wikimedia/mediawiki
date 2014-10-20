@@ -199,34 +199,18 @@ class ApiRevisionDelete extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
-		return array(
-			'type' => 'Type of revision deletion being performed',
-			'target' => 'Page title for the revision deletion, if required for the type',
-			'ids' => 'Identifiers for the revisions to be deleted',
-			'hide' => 'What to hide for each revision',
-			'show' => 'What to unhide for each revision',
-			'suppress' => 'Whether to suppress data from administrators as well as others',
-			'reason' => 'Reason for the deletion/undeletion',
-		);
-	}
-
-	public function getDescription() {
-		return 'Delete/undelete revisions.';
-	}
-
 	public function needsToken() {
 		return 'csrf';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=revisiondelete&target=Main%20Page&type=revision&ids=12345&' .
+			'action=revisiondelete&target=Main%20Page&type=revision&ids=12345&' .
 				'hide=content&token=123ABC'
-				=> 'Hide content for revision 12345 on the Main Page',
-			'api.php?action=revisiondelete&type=logging&ids=67890&hide=content|comment|user&' .
+				=> 'apihelp-revisiondelete-example-revision',
+			'action=revisiondelete&type=logging&ids=67890&hide=content|comment|user&' .
 				'reason=BLP%20violation&token=123ABC'
-				=> 'Hide all data on log entry 67890 with the reason "BLP violation"',
+				=> 'apihelp-revisiondelete-example-log',
 		);
 	}
 

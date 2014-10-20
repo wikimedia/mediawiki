@@ -165,38 +165,16 @@ class ApiBlock extends ApiBase {
 		);
 	}
 
-	public function getParamDescription() {
-		return array(
-			'user' => 'Username, IP address or IP range you want to block',
-			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. ' .
-				'If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
-			'reason' => 'Reason for block',
-			'anononly' => 'Block anonymous users only (i.e. disable anonymous edits for this IP)',
-			'nocreate' => 'Prevent account creation',
-			'autoblock' => 'Automatically block the last used IP address, and ' .
-				'any subsequent IP addresses they try to login from',
-			'noemail'
-				=> 'Prevent user from sending email through the wiki. (Requires the "blockemail" right.)',
-			'hidename' => 'Hide the username from the block log. (Requires the "hideuser" right.)',
-			'allowusertalk'
-				=> 'Allow the user to edit their own talk page (depends on $wgBlockAllowsUTEdit)',
-			'reblock' => 'If the user is already blocked, overwrite the existing block',
-			'watchuser' => 'Watch the user/IP\'s user and talk pages',
-		);
-	}
-
-	public function getDescription() {
-		return 'Block a user.';
-	}
-
 	public function needsToken() {
 		return 'csrf';
 	}
 
-	public function getExamples() {
+	public function getExamplesMessages() {
 		return array(
-			'api.php?action=block&user=123.5.5.12&expiry=3%20days&reason=First%20strike&token=123ABC',
-			'api.php?action=block&user=Vandal&expiry=never&reason=Vandalism&nocreate=&autoblock=&noemail=&token=123ABC'
+			'action=block&user=192.0.2.5&expiry=3%20days&reason=First%20strike&token=123ABC'
+				=> 'apihelp-block-example-ip-simple',
+			'action=block&user=Vandal&expiry=never&reason=Vandalism&nocreate=&autoblock=&noemail=&token=123ABC'
+				=> 'apihelp-block-example-user-complex',
 		);
 	}
 

@@ -369,6 +369,17 @@ class ApiHelp extends ApiBase {
 						$info[] = $context->msg( 'api-help-param-required' )->parse();
 					}
 
+					// Custom info?
+					if ( !empty( $settings[ApiBase::PARAM_HELP_MSG_INFO] ) ) {
+						foreach ( $settings[ApiBase::PARAM_HELP_MSG_INFO] as $i ) {
+							$tag = array_shift( $i );
+							$info[] = $context->msg( "apihelp-{$path}-paraminfo-{$tag}" )
+								->numParams( count( $i ) )
+								->params( $context->getLanguage()->commaList( $i ) )
+								->parse();
+						}
+					}
+
 					// Type documentation
 					if ( !isset( $settings[ApiBase::PARAM_TYPE] ) ) {
 						$dflt = isset( $settings[ApiBase::PARAM_DFLT] )
@@ -390,7 +401,16 @@ class ApiHelp extends ApiBase {
 
 						if ( is_array( $type ) ) {
 							$count = count( $type );
-							$type = array_map( 'wfEscapeWikiText', $type );
+							$links = isset( $settings[ApiBase::PARAM_VALUE_LINKS] )
+								? $settings[ApiBase::PARAM_VALUE_LINKS]
+								: array();
+							$type = array_map( function ( $v ) use ( $links ) {
+								$ret = wfEscapeWikiText( $v );
+								if ( isset( $links[$v] ) ) {
+									$ret = "[[{$links[$v]}|$ret]]";
+								}
+								return $ret;
+							}, $type );
 							$i = array_search( '', $type, true );
 							if ( $i === false ) {
 								$type = $context->getLanguage()->commaList( $type );
@@ -632,10 +652,14 @@ class ApiHelp extends ApiBase {
 
 	public function getExamplesMessages() {
 		return array(
-			'action=help' => 'apihelp-help-example-main',
-			'action=help&recursivesubmodules=1' => 'apihelp-help-example-recursive',
-			'action=help&modules=help' => 'apihelp-help-example-help',
-			'action=help&modules=query+info|query+categorymembers' => 'apihelp-help-example-query',
+			'action=help'
+				=> 'apihelp-help-example-main',
+			'action=help&recursivesubmodules=1'
+				=> 'apihelp-help-example-recursive',
+			'action=help&modules=help'
+				=> 'apihelp-help-example-help',
+			'action=help&modules=query+info|query+categorymembers'
+				=> 'apihelp-help-example-query',
 		);
 	}
 
