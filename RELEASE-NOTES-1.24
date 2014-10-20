@@ -233,6 +233,8 @@ production.
   characters decoded in the query string.
 * (bug 67368) LESS mixins like .background-image() correctly flip image
   references for RTL stylesheets now.
+* (bug 72274) Job queue not running (HTTP 411) due to missing
+  Content-Length: header
 
 === Action API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
