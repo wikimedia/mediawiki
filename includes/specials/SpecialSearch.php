@@ -427,7 +427,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$linkClass = 'mw-search-createlink';
-		if ( $title->isKnown() ) {
+		if ( $title->isKnown() && $title->isLocal() ) {
 			$messageName = 'searchmenu-exists';
 			$linkClass = 'mw-search-exists';
 		} elseif ( $title->quickUserCan( 'create', $this->getUser() ) ) {
