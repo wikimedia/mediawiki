@@ -22,6 +22,8 @@
 	"ooui-outline-control-move-up": "Переместить элемент вверх",
 	"ooui-outline-control-remove": "Удалить пункт",
 	"ooui-toolbar-more": "Ещё",
+	"ooui-toolgroup-expand": "Больше",
+	"ooui-toolgroup-collapse": "Меньше",
 	"ooui-dialog-message-accept": "ОК",
 	"ooui-dialog-message-reject": "Отмена",
 	"ooui-dialog-process-error": "Что-то пошло не так",

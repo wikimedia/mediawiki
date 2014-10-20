@@ -17,6 +17,8 @@
 	"ooui-outline-control-move-up": "Element nach oben verschieben",
 	"ooui-outline-control-remove": "Element entfernen",
 	"ooui-toolbar-more": "Mehr",
+	"ooui-toolgroup-expand": "Mehr",
+	"ooui-toolgroup-collapse": "Weniger",
 	"ooui-dialog-message-accept": "Okay",
 	"ooui-dialog-message-reject": "Abbrechen",
 	"ooui-dialog-process-error": "Etwas ist schief gelaufen",
