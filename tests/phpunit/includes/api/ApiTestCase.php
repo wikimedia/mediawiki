@@ -8,6 +8,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 */
 	protected $apiContext;
 
+	/**
+	 * @var array
+	 */
+	protected $tablesUsed = array( 'user', 'user_groups', 'user_properties' );
+
 	protected function setUp() {
 		global $wgServer;
 
