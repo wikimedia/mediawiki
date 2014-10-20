@@ -202,7 +202,7 @@ class StripState {
 	 * @return array
 	 */
 	public function merge( $otherState, $texts ) {
-		$mergePrefix = Parser::getRandomString();
+		$mergePrefix = Parser::getRandomString( true );
 
 		foreach ( $otherState->data as $type => $items ) {
 			foreach ( $items as $key => $value ) {
