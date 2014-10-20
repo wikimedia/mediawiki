@@ -7354,6 +7354,16 @@ $wgPageLanguageUseDB = false;
 $wgUseLinkNamespaceDBFields = true;
 
 /**
+ * A non-cryptographic key used to generate unique marker strings.
+ * Assigning a string value to this variable will make unique marker strings
+ * consistent across requests. This is desirable under HHVM, because it
+ * improves the cache hit ratio of the PCRE cache.
+ * @var string
+ * @since 1.25
+ */
+$wgParserMarkerKey = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

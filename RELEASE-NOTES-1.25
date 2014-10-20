@@ -12,6 +12,8 @@ production.
 * $wgPageShowWatchingUsers was removed.
 * $wgLocalVirtualHosts has been added to replace $wgConf->localVHosts.
 * $wgAntiLockFlags was removed.
+* Added $wgParserMarkerKey. Setting this configuration variable will improve
+  PCRE cache hit ratio under HHVM.
 
 === New features in 1.25 ===
 * (bug 58139) ResourceLoaderFileModule now supports language fallback
