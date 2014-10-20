@@ -39,7 +39,13 @@ if ( ini_get( 'register_globals' ) ) {
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
 
-$wgRequestTime = microtime( true );
+# $_SERVER["REQUEST_TIME_FLOAT"] is available since PHP 5.4
+if ( isset( $_SERVER["REQUEST_TIME_FLOAT"] ) ) {
+	$wgRequestTime = $_SERVER["REQUEST_TIME_FLOAT"];
+} else {
+	$wgRequestTime = microtime( true );
+}
+
 unset( $IP );
 
 # Valid web server entry point, enable includes.

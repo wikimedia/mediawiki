@@ -554,8 +554,12 @@ abstract class Maintenance {
 		# But sometimes this doesn't seem to be the case.
 		ini_set( 'max_execution_time', 0 );
 
-		$wgRequestTime = microtime( true );
-
+		# $_SERVER["REQUEST_TIME_FLOAT"] is available since PHP 5.4
+		if ( isset( $_SERVER["REQUEST_TIME_FLOAT"] ) ) {
+			$wgRequestTime = $_SERVER["REQUEST_TIME_FLOAT"];
+		} else {
+			$wgRequestTime = microtime( true );
+		}
 		# Define us as being in MediaWiki
 		define( 'MEDIAWIKI', true );
 
