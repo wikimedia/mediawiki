@@ -342,7 +342,7 @@ class Parser {
 		$this->mLangLinkLanguages = array();
 		$this->currentRevisionCache = null;
 
-		$stripId = self::getRandomString();
+		$stripId = self::getUniqueString();
 		$this->mUniqPrefix = self::MARKER_PREFIX . $stripId;
 		$this->mStripState = new StripState( $stripId );
 
@@ -715,12 +715,13 @@ class Parser {
 	}
 
 	/**
-	 * Get a random string
+	 * Generate a string that is unique in the context of the current request.
 	 *
 	 * @return string
 	 */
-	public static function getRandomString() {
-		return wfRandomString( 16 );
+	public static function getUniqueString() {
+		static $ordinal = 0;
+		return substr( hash_hmac( 'sha1', $ordinal++, getmypid() ), -16 );
 	}
 
 	/**
