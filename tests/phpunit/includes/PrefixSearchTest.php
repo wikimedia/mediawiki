@@ -8,6 +8,12 @@ class PrefixSearchTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		if ( !$this->isWikitextNS( NS_MAIN ) ) {
+			$this->markTestSkipped( 'Main namespace does not support wikitext.' );
+		}
+
+		$this->insertPages();
+
 		// Avoid special pages from extensions interferring with the tests
 		$this->setMwGlobals( 'wgSpecialPages', array() );
 	}
@@ -27,7 +33,7 @@ class PrefixSearchTest extends MediaWikiTestCase {
 		}
 	}
 
-	public function addDBData() {
+	public function insertPages() {
 		$this->insertPage( 'Sandbox' );
 		$this->insertPage( 'Bar' );
 		$this->insertPage( 'Example' );
