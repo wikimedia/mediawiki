@@ -159,19 +159,21 @@ abstract class PrefixSearch {
 			// Pick namespace (based on PrefixSearch::defaultSearchBackend)
 			$ns = in_array( NS_MAIN, $namespaces ) ? NS_MAIN : $namespaces[0];
 			$t = Title::newFromText( $search, $ns );
-			$string = $t->getPrefixedText();
+			if ( $t ) {
+				// If text is a valid title and is in the search results
+				$string = $t->getPrefixedText();
+				$key = array_search( $string, $srchres );
+				if ( $key !== false ) {
+					// Move it to the front
+					$cut = array_splice( $srchres, $key, 1 );
+					array_unshift( $srchres, $cut[0] );
+				} elseif ( $t->exists() ) {
+					// Add it in front
+					array_unshift( $srchres, $string );
 
-			$key = array_search( $string, $srchres );
-			if ( $key !== false ) {
-				// Move it to the front
-				$cut = array_splice( $srchres, $key, 1 );
-				array_unshift( $srchres, $cut[0] );
-			} elseif ( $t->exists() ) {
-				// Add it in front
-				array_unshift( $srchres, $string );
-
-				if ( count( $srchres ) > $limit ) {
-					array_pop( $srchres );
+					if ( count( $srchres ) > $limit ) {
+						array_pop( $srchres );
+					}
 				}
 			}
 		}
