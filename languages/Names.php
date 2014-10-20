@@ -85,6 +85,7 @@
 	'br' => 'brezhoneg',	# Breton
 	'brh' => 'Bráhuí',	# Brahui
 	'bs' => 'bosanski',		# Bosnian
+	'bto' => 'Iriga Bicolano',	# Rinconada Bikol
 	'bug' => 'ᨅᨔ ᨕᨘᨁᨗ',	# Buginese
 	'bxr' => 'буряад',	# Buryat (Russia)
 	'ca' => 'català',	# Catalan
