@@ -65,7 +65,7 @@ if ( $__useReadline ) {
 
 $__e = null; // PHP exception
 while ( ( $__line = Maintenance::readconsole() ) !== false ) {
-	if ( $__e && !preg_match( '/^(exit|die);?$__/', $__line ) ) {
+	if ( $__e && !preg_match( '/^(exit|die);?$/', $__line ) ) {
 		// Internal state may be corrupted or fatals may occur later due
 		// to some object not being set. Don't drop out of eval in case
 		// lines were being pasted in (which would then get dumped to the shell).
