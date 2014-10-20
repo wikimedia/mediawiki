@@ -278,6 +278,8 @@
 	"config-memcache-badport": "Memcached-port-numrene må være mellom $1 og $2.",
 	"config-extensions": "Utvidelser",
 	"config-extensions-help": "Utvidelsene listet over ble oppdaget i din <code>./extensions</code>-folder.\n\nDisse kan trenge ekstra konfigurering, men du kan aktivisere dem nå.",
+	"config-skins": "Drakt",
+	"config-skins-use-as-default": "Bruk denne drakta som standard",
 	"config-install-alreadydone": "'''Advarsel:''' Det ser ut til at allerede har installert MediaWiki og prøver å installere denne må nytt.\nVær vennlig å fortsette til neste side.",
 	"config-install-begin": "Ved å trykke \"{{int:config-continue}}\", starter du installeringen av MediaWiki.\nHvis du først ønsker å endre på noe, trykk\"{{int:config-back}}\".",
 	"config-install-step-done": "ferdig",

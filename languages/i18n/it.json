@@ -2932,6 +2932,7 @@
 	"unknown_extension_tag": "Tag estensione sconosciuto: \"$1\"",
 	"duplicate-defaultsort": "Attenzione: la chiave di ordinamento predefinita \"$2\" sostituisce la precedente \"$1\".",
 	"duplicate-displaytitle": "<strong>Attenzione:</strong> il titolo visualizzato \"$2\" sostituisce il precedente titolo \"$1\".",
+	"invalid-indicator-name": "<strong>Errore:</strong> attributo <code>name</code> degli indicatori dello stato della pagina non può essere vuoto.",
 	"version": "Versione",
 	"version-extensions": "Estensioni installate",
 	"version-skins": "Skin installate",
