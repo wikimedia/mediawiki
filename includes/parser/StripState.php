@@ -153,9 +153,9 @@ class StripState {
 			$this->recursionLevel--;
 			unset( $this->circularRefGuard[$marker] );
 			return $ret;
-		} else {
-			return $m[0];
 		}
+
+		return $m[0];
 	}
 
 	/**
@@ -225,9 +225,8 @@ class StripState {
 		if ( $m[1] === $this->id ) {
 			$key = $m[2];
 			return "{$this->prefix}{$this->tempMergePrefix}-$key" . Parser::MARKER_SUFFIX;
-		} else {
-			return $m[0];
 		}
+		return $m[0];
 	}
 
 	/**
@@ -238,14 +237,15 @@ class StripState {
 	 */
 	public function killMarkers( $text ) {
 		$id = $this->id; // PHP 5.3 hack
-		return preg_replace_callback( $this->regex,
+		return preg_replace_callback(
+			$this->regex,
 			function ( $m ) use ( $id ) {
 				if ( $m[1] === $id ) {
 					return '';
-				} else {
-					return $m[0];
 				}
+				return $m[0];
 			},
-			$text );
+			$text
+		);
 	}
 }
