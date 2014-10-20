@@ -346,7 +346,7 @@ class Parser {
 		 * Must not consist of all title characters, or else it will change
 		 * the behavior of <nowiki> in a link.
 		 */
-		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
+		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString( true );
 		$this->mStripState = new StripState( $this->mUniqPrefix );
 
 		# Clear these on every parse, bug 4549
@@ -685,10 +685,22 @@ class Parser {
 	/**
 	 * Get a random string
 	 *
+	 * @param bool $repeatable If true, repeated calls to this function
+	 *  will return the same value, if CACHE_ACCEL is available.
+	 * @deprecated since 1.26 Use wfRandomString instead.
 	 * @return string
 	 */
-	public static function getRandomString() {
-		return wfRandomString( 16 );
+	public static function getRandomString( $repeatable = false ) {
+		if ( !$repeatable ) {
+			return wfRandomString( 16 );
+		}
+		$cache = ObjectCache::newAccelerator( array(), 'hash' );
+		$lastString = $cache->get( __METHOD__ );
+		if ( !is_string( $lastString ) || strlen( $lastString ) !== 16 ) {
+			$lastString = wfRandomString( 16 );
+			$cache->set( __METHOD__, $lastString );
+		}
+		return $lastString;
 	}
 
 	/**
