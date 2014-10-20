@@ -63,9 +63,9 @@ class TestUser {
 		}
 
 		// Update the user to use the password and other details
-		$this->user->setPassword( $this->password );
-		$this->user->setEmail( $email );
-		$this->user->setRealName( $realname );
+		$change = $this->setPassword( $this->password ) ||
+			$this->setEmail( $email ) ||
+			$this->setRealName( $realname );
 
 		// Adjust groups by adding any missing ones and removing any extras
 		$currentGroups = $this->user->getGroups();
@@ -75,7 +75,59 @@ class TestUser {
 		foreach ( array_diff( $currentGroups, $groups ) as $group ) {
 			$this->user->removeGroup( $group );
 		}
-		$this->user->saveSettings();
+		if ( $change ) {
+			$this->user->saveSettings();
+		}
+	}
+
+	/**
+	 * @param string $realname
+	 * @return bool
+	 */
+	private function setRealName( $realname ) {
+		if ( $this->user->getRealName() !== $realname ) {
+			$this->user->setRealName( $realname );
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param string $email
+	 * @return bool
+	 */
+	private function setEmail( $email ) {
+		if ( $this->user->getEmail() !== $email ) {
+			$this->user->setEmail( $email );
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param string $password
+	 * @return bool
+	 */
+	private function setPassword( $password ) {
+		$passwordFactory = $this->user->getPasswordFactory();
+		$oldDefaultType = $passwordFactory->getDefaultType();
+
+		 // B is salted MD5 (thus fast) ... we don't care about security here, this is test only
+		$passwordFactory->setDefaultType( 'B' ); // @TODO: Change this to A once that is fixed: https://gerrit.wikimedia.org/r/167523
+		$newPassword = $passwordFactory->newFromPlaintext( $password , $this->user->getPassword() );
+
+		$change = false;
+		if ( !$this->user->getPassword()->equals( $newPassword ) ) {
+			// Password changed
+			$this->user->setPassword( $password );
+			$change = true;
+		}
+
+		$passwordFactory->setDefaultType( $oldDefaultType );
+
+		return $change;
 	}
 
 	/**
