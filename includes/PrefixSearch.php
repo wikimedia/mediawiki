@@ -159,9 +159,12 @@ abstract class PrefixSearch {
 			// Pick namespace (based on PrefixSearch::defaultSearchBackend)
 			$ns = in_array( NS_MAIN, $namespaces ) ? NS_MAIN : $namespaces[0];
 			$t = Title::newFromText( $search, $ns );
-			$string = $t->getPrefixedText();
-
-			$key = array_search( $string, $srchres );
+			$key = false;
+			if ( $t ) {
+				// If text is a valid title and is in the search resutls
+				$string = $t->getPrefixedText();
+				$key = array_search( $string, $srchres );
+			}
 			if ( $key !== false ) {
 				// Move it to the front
 				$cut = array_splice( $srchres, $key, 1 );
