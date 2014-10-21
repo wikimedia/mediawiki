@@ -3765,11 +3765,19 @@ function wfGetNull() {
 }
 
 /**
- * Modern version of wfWaitForSlaves(). Instead of looking at replication lag
- * and waiting for it to go down, this waits for the slaves to catch up to the
- * master position. Use this when updating very large numbers of rows, as
- * in maintenance scripts, to avoid causing too much lag.  Of course, this is
- * a no-op if there are no slaves.
+ * Waits for the slaves to catch up to the master position
+ *
+ * Use this when updating very large numbers of rows, as in maintenance scripts,
+ * to avoid causing too much lag. Of course, this is a no-op if there are no slaves.
+ *
+ * By default this waits on the main DB cluster of the current wiki.
+ * If $cluster is set to "*" it will wait on all DB clusters, including
+ * external ones. If the lag being waiting on is caused by the code that
+ * does this check, it makes since to use $ifWritesSince, particularly if
+ * cluster is "*", to avoid excess overhead.
+ *
+ * Never call this method after a big DB write that is still in a transaction.
+ * This only makes sense after the possible lag inducing changes were committed.
  *
  * @param float|null $ifWritesSince Only wait if writes were done since this UNIX timestamp
  * @param string|bool $wiki Wiki identifier accepted by wfGetLB
@@ -3787,31 +3795,40 @@ function wfWaitForSlaves(
 		$timeout = ( PHP_SAPI === 'cli' ) ? 86400 : 10;
 	}
 
-	if ( $cluster !== false ) {
-		$lb = wfGetLBFactory()->getExternalLB( $cluster );
+	// Figure out which clusters need to be checked
+	$lbs = array();
+	if ( $cluster === '*' ) {
+		wfGetLBFactory()->forEachLB( function( LoadBalancer $lb ) use ( &$lbs ) {
+			$lbs[] = $lb;
+		} );
+	} elseif ( $cluster !== false ) {
+		$lbs[] = wfGetLBFactory()->getExternalLB( $cluster );
 	} else {
-		$lb = wfGetLB( $wiki );
+		$lbs[] = wfGetLB( $wiki );
 	}
 
-	// bug 27975 - Don't try to wait for slaves if there are none
-	// Prevents permission error when getting master position
-	if ( $lb->getServerCount() > 1 ) {
-		if ( $ifWritesSince && !$lb->hasMasterConnection() ) {
-			return true; // assume no writes done
-		}
-		$dbw = $lb->getConnection( DB_MASTER, array(), $wiki );
-		if ( $ifWritesSince && $dbw->lastDoneWrites() < $ifWritesSince ) {
-			return true; // no writes since the last wait
-		}
-		$pos = $dbw->getMasterPos();
-		// The DBMS may not support getMasterPos() or the whole
-		// load balancer might be fake (e.g. $wgAllDBsAreLocalhost).
-		if ( $pos !== false ) {
-			return $lb->waitForAll( $pos, $timeout );
+	$ok = true;
+	foreach ( $lbs as $lb ) {
+		// bug 27975 - Don't try to wait for slaves if there are none
+		// Prevents permission error when getting master position
+		if ( $lb->getServerCount() > 1 ) {
+			if ( $ifWritesSince && !$lb->hasMasterConnection() ) {
+				break; // assume no writes done
+			}
+			$dbw = $lb->getConnection( DB_MASTER, array(), $wiki );
+			if ( $ifWritesSince && $dbw->lastDoneWrites() < $ifWritesSince ) {
+				break; // no writes since the last wait
+			}
+			$pos = $dbw->getMasterPos();
+			// The DBMS may not support getMasterPos() or the whole
+			// load balancer might be fake (e.g. $wgAllDBsAreLocalhost).
+			if ( $pos !== false ) {
+				$ok = $lb->waitForAll( $pos, $timeout ) && $ok;
+			}
 		}
 	}
 
-	return true;
+	return $ok;
 }
 
 /**
