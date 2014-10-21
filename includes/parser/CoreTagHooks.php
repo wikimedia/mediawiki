@@ -134,6 +134,7 @@ class CoreTagHooks {
 	 */
 	public static function indicator( $content, array $attributes, Parser $parser, PPFrame $frame ) {
 		if ( !isset( $attributes['name'] ) || trim( $attributes['name'] ) === '' ) {
+			// This output will be treated as wikitext
 			return '<span class="error">' .
 				wfMessage( 'invalid-indicator-name' )->inContentLanguage()->text() .
 				'</span>';

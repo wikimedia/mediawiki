@@ -430,6 +430,7 @@ class CoreParserFunctions {
 			}
 			if ( $old !== false && $old !== $text && !$arg ) {
 				$converter = $parser->getConverterLanguage()->getConverter();
+				// This output will be treated as wikitext
 				return '<span class="error">' .
 					wfMessage( 'duplicate-displaytitle',
 						// Message should be parsed, but these params should only be escaped.
@@ -887,6 +888,7 @@ class CoreParserFunctions {
 			return '';
 		} else {
 			$converter = $parser->getConverterLanguage()->getConverter();
+			// This output will be treated as wikitext
 			return '<span class="error">' .
 				wfMessage( 'duplicate-defaultsort',
 					// Message should be parsed, but these params should only be escaped.
@@ -955,6 +957,7 @@ class CoreParserFunctions {
 
 		$stripList = $parser->getStripList();
 		if ( !in_array( $tagName, $stripList ) ) {
+			// This output will be treated as wikitext
 			return '<span class="error">' .
 				wfMessage( 'unknown_extension_tag', $tagName )->inContentLanguage()->text() .
 				'</span>';
