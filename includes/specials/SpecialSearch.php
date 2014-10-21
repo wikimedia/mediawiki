@@ -1062,7 +1062,8 @@ class SpecialSearch extends SpecialPage {
 		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
 		$out .= Html::submitButton(
 			$this->msg( 'searchbutton' )->text(),
-			array(), array( 'mw-ui-progressive' )
+			array( 'class' => 'mw-ui-button mw-ui-progressive' ),
+			array( 'mw-ui-progressive' )
 		) . "\n";
 
 		// Results-info
