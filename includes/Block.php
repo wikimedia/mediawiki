@@ -1114,6 +1114,7 @@ class Block {
 
 	/**
 	 * From a list of multiple blocks, find the most exact and strongest Block.
+	 *
 	 * The logic for finding the "best" block is:
 	 *  - Blocks that match the block's target IP are preferred over ones in a range
 	 *  - Hardblocks are chosen over softblocks that prevent account creation
@@ -1121,8 +1122,10 @@ class Block {
 	 *  - Other softblocks are chosen over autoblocks
 	 *  - If there are multiple exact or range blocks at the same level, the one chosen
 	 *    is random
+	 * This should be used when $blocks where retrieved from the user's IP address
+	 * and $ipChain is populated from the same IP address information.
 	 *
-	 * @param array $blocks Array of blocks
+	 * @param array $blocks Array of Block objects
 	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
 	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
 	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
