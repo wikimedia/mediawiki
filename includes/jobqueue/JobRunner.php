@@ -186,7 +186,7 @@ class JobRunner {
 				// other wikis in the farm (on different masters) get a chance.
 				$timePassed = microtime( true ) - $lastTime;
 				if ( $timePassed >= 5 || $timePassed < 0 ) {
-					if ( !wfWaitForSlaves( $lastTime, wfWikiID(), false, 5 ) ) {
+					if ( !wfWaitForSlaves( $lastTime, false, '*', 5 ) ) {
 						$response['reached'] = 'slave-lag-limit';
 						break;
 					}
