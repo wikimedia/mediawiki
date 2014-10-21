@@ -109,7 +109,7 @@ class LocalisationCache {
 		'linkTrail', 'linkPrefixCharset', 'namespaceAliases',
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
 		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
-		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
+		'imageFiles', 'namespaceGenderAliases',
 		'digitGroupingPattern', 'pluralRules', 'pluralRuleTypes', 'compiledPluralRules',
 	);
 
@@ -118,7 +118,7 @@ class LocalisationCache {
 	 * by a fallback sequence.
 	 */
 	static public $mergeableMapKeys = array( 'messages', 'namespaceNames',
-		'dateFormats', 'imageFiles', 'preloadedMessages'
+		'dateFormats', 'imageFiles'
 	);
 
 	/**
@@ -153,6 +153,124 @@ class LocalisationCache {
 	 * Keys which are loaded automatically by initLanguage()
 	 */
 	static public $preloadedKeys = array( 'dateFormats', 'namespaceNames' );
+
+	/**
+	 * A list of messages to preload for each request.
+	 * Here we add messages that are needed for a typical anonymous parser cache hit.
+	 */
+	static public $preloadedMessages = array(
+		'aboutpage',
+		'aboutsite',
+		'accesskey-ca-edit',
+		'accesskey-ca-history',
+		'accesskey-ca-nstab-main',
+		'accesskey-ca-talk',
+		'accesskey-ca-viewsource',
+		'accesskey-n-currentevents',
+		'accesskey-n-help',
+		'accesskey-n-mainpage-description',
+		'accesskey-n-portal',
+		'accesskey-n-randompage',
+		'accesskey-n-recentchanges',
+		'accesskey-p-logo',
+		'accesskey-pt-login',
+		'accesskey-pt-createaccount',
+		'accesskey-search',
+		'accesskey-search-fulltext',
+		'accesskey-search-go',
+		'accesskey-t-info',
+		'accesskey-t-permalink',
+		'accesskey-t-print',
+		'accesskey-t-recentchangeslinked',
+		'accesskey-t-specialpages',
+		'accesskey-t-whatlinkshere',
+		'actions',
+		'anonnotice',
+		'brackets',
+		'comma-separator',
+		'currentevents',
+		'currentevents-url',
+		'disclaimerpage',
+		'disclaimers',
+		'edit',
+		'editsection',
+		'editsectionhint',
+		'help',
+		'helppage',
+		'interlanguage-link-title',
+		'jumpto',
+		'jumptonavigation',
+		'jumptosearch',
+		'lastmodifiedat',
+		'mainpage',
+		'mainpage-description',
+		'mainpage-nstab',
+		'namespaces',
+		'navigation',
+		'nav-login-createaccount',
+		'nstab-main',
+		'opensearch-desc',
+		'pagecategories',
+		'pagecategorieslink',
+		'pagetitle',
+		'pagetitle-view-mainpage',
+		'permalink',
+		'personaltools',
+		'portal',
+		'portal-url',
+		'printableversion',
+		'privacy',
+		'privacypage',
+		'randompage',
+		'randompage-url',
+		'recentchanges',
+		'recentchangeslinked-toolbox',
+		'recentchanges-url',
+		'retrievedfrom',
+		'search',
+		'searcharticle',
+		'searchbutton',
+		'searchsuggest-search',
+		'sidebar',
+		'navigation-heading',
+		'site-atom-feed',
+		'sitenotice',
+		'specialpages',
+		'tagline',
+		'talk',
+		'toolbox',
+		'tooltip-ca-edit',
+		'tooltip-ca-history',
+		'tooltip-ca-nstab-main',
+		'tooltip-ca-talk',
+		'tooltip-ca-viewsource',
+		'tooltip-n-currentevents',
+		'tooltip-n-help',
+		'tooltip-n-mainpage-description',
+		'tooltip-n-portal',
+		'tooltip-n-randompage',
+		'tooltip-n-recentchanges',
+		'tooltip-p-logo',
+		'tooltip-pt-login',
+		'tooltip-pt-createaccount',
+		'tooltip-search',
+		'tooltip-search-fulltext',
+		'tooltip-search-go',
+		'tooltip-t-info',
+		'tooltip-t-permalink',
+		'tooltip-t-print',
+		'tooltip-t-recentchangeslinked',
+		'tooltip-t-specialpages',
+		'tooltip-t-whatlinkshere',
+		'variants',
+		'vector-view-edit',
+		'vector-view-history',
+		'vector-view-view',
+		'viewcount',
+		'views',
+		'whatlinkshere',
+		'word-separator',
+	);
 
 	/**
 	 * Associative array of cached plural rules. The key is the language code,
@@ -1037,7 +1155,7 @@ class LocalisationCache {
 			$preload[$key] = $data[$key];
 		}
 
-		foreach ( $data['preloadedMessages'] as $subkey ) {
+		foreach ( self::$preloadedMessages as $subkey ) {
 			if ( isset( $data['messages'][$subkey] ) ) {
 				$subitem = $data['messages'][$subkey];
 			} else {
