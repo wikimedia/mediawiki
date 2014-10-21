@@ -41,6 +41,7 @@
 	'aa' => 'Qafár af',	# Afar
 	'ab' => 'Аҧсшәа',	# Abkhaz
 	'ace' => 'Acèh',	# Aceh
+	'aeb' => 'زَوُن',	# Tunisian Arabic
 	'af' => 'Afrikaans',	# Afrikaans
 	'ak' => 'Akan',		# Akan
 	'aln' => 'Gegë',	# Gheg Albanian
