@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (44db8292bf)
+ * OOjs UI v0.1.0-pre (531d497d3b)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-21T18:33:49Z
+ * Date: 2014-10-21T23:53:47Z
  */
 ( function ( OO ) {
 
@@ -6782,6 +6782,9 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {string} [method] HTML form `method` attribute
+ * @cfg {string} [action] HTML form `action` attribute
+ * @cfg {string} [enctype] HTML form `enctype` attribute
  */
 OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	// Configuration initialization
@@ -6794,7 +6797,13 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	this.$element.on( 'submit', this.onFormSubmit.bind( this ) );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-formLayout' );
+	this.$element
+		.addClass( 'oo-ui-formLayout' )
+		.attr( {
+			method: config.method,
+			action: config.action,
+			enctype: config.enctype
+		} );
 };
 
 /* Setup */
@@ -6954,6 +6963,8 @@ OO.ui.GridLayout.prototype.update = function () {
 			// HACK: Work around IE bug by setting visibility: hidden; if width or height is zero
 			if ( width === 0 || height === 0 ) {
 				dimensions.visibility = 'hidden';
+			} else {
+				dimensions.visibility = '';
 			}
 			panel.$element.css( dimensions );
 			i++;
@@ -8379,7 +8390,7 @@ OO.ui.ButtonWidget.prototype.onClick = function () {
  */
 OO.ui.ButtonWidget.prototype.onKeyPress = function ( e ) {
 	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
-		this.onClick();
+		this.emit( 'click' );
 		if ( this.isHyperlink ) {
 			return true;
 		}
@@ -9321,6 +9332,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {string} [type='text'] HTML tag `type` attribute
  * @cfg {string} [placeholder] Placeholder text
  * @cfg {boolean} [multiline=false] Allow multiple lines of text
  * @cfg {boolean} [autosize=false] Automatically resize to fit content
@@ -9523,10 +9535,9 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
  * @return {jQuery} Input element
  */
 OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
-	return config.multiline ? this.$( '<textarea>' ) : this.$( '<input type="text" />' );
+	var type = config.type || 'text';
+	return config.multiline ? this.$( '<textarea>' ) : this.$( '<input type="' + type + '" />' );
 };
-
-/* Methods */
 
 /**
  * Check if input supports multiple lines.
@@ -10255,6 +10266,7 @@ OO.ui.OutlineItemWidget.prototype.setLevel = function ( level ) {
  * @cfg {boolean} [anchor=true] Show anchor pointing to origin of popup
  * @cfg {string} [align='center'] Alignment of popup to origin
  * @cfg {jQuery} [$container] Container to prevent popup from rendering outside of
+ * @cfg {number} [containerPadding=10] How much padding to keep between popup and container
  * @cfg {jQuery} [$content] Content to append to the popup's body
  * @cfg {boolean} [autoClose=false] Popup auto-closes when it loses focus
  * @cfg {jQuery} [$autoCloseIgnore] Elements to not auto close when clicked
@@ -10278,7 +10290,9 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.$head = this.$( '<div>' );
 	this.$body = this.$( '<div>' );
 	this.$anchor = this.$( '<div>' );
-	this.$container = config.$container; // If undefined, will be computed lazily in updateDimensions()
+	// If undefined, will be computed lazily in updateDimensions()
+	this.$container = config.$container;
+	this.containerPadding = config.containerPadding !== undefined ? config.containerPadding : 10;
 	this.autoClose = !!config.autoClose;
 	this.$autoCloseIgnore = config.$autoCloseIgnore;
 	this.transitionTimeout = null;
@@ -10324,16 +10338,6 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 OO.inheritClass( OO.ui.PopupWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.ClippableElement );
-
-/* Events */
-
-/**
- * @event hide
- */
-
-/**
- * @event show
- */
 
 /* Methods */
 
@@ -10462,8 +10466,7 @@ OO.ui.PopupWidget.prototype.setSize = function ( width, height, transition ) {
 OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	var popupOffset, originOffset, containerLeft, containerWidth, containerRight,
 		popupLeft, popupRight, overlapLeft, overlapRight, anchorWidth,
-		widget = this,
-		padding = 10;
+		widget = this;
 
 	if ( !this.$container ) {
 		// Lazy-initialize $container if not specified in constructor
@@ -10485,8 +10488,8 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	containerLeft = Math.round( this.$container.offset().left );
 	containerWidth = this.$container.innerWidth();
 	containerRight = containerLeft + containerWidth;
-	popupLeft = popupOffset - padding;
-	popupRight = popupOffset + padding + this.width + padding;
+	popupLeft = popupOffset - this.containerPadding;
+	popupRight = popupOffset + this.containerPadding + this.width + this.containerPadding;
 	overlapLeft = ( originOffset + popupLeft ) - containerLeft;
 	overlapRight = containerRight - ( originOffset + popupRight );
 
@@ -10498,11 +10501,13 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	}
 
 	// Adjust offset to avoid anchor being rendered too close to the edge
-	anchorWidth = this.$anchor.width();
-	if ( this.align === 'right' ) {
-		popupOffset += anchorWidth;
-	} else if ( this.align === 'left' ) {
-		popupOffset -= anchorWidth;
+	// $anchor.width() doesn't work with the pure CSS anchor (returns 0)
+	// TODO: Find a measurement that works for CSS anchors and image anchors
+	anchorWidth = this.$anchor[0].scrollWidth * 2;
+	if ( popupOffset + this.width < anchorWidth ) {
+		popupOffset = anchorWidth - this.width;
+	} else if ( -popupOffset < anchorWidth ) {
+		popupOffset = -anchorWidth;
 	}
 
 	// Prevent transition from being interrupted

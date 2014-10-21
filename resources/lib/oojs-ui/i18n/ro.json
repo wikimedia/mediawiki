@@ -12,6 +12,8 @@
 	"ooui-outline-control-move-up": "Mută elementul mai sus",
 	"ooui-outline-control-remove": "Elimină elementul",
 	"ooui-toolbar-more": "Mai mult",
+	"ooui-toolgroup-expand": "Mai multe",
+	"ooui-toolgroup-collapse": "Mai puține",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Revocare",
 	"ooui-dialog-process-error": "Ceva nu a funcționat",

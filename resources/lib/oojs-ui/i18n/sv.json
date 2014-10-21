@@ -18,6 +18,8 @@
 	"ooui-outline-control-move-up": "Flytta upp objekt",
 	"ooui-outline-control-remove": "Ta bort objekt",
 	"ooui-toolbar-more": "Mer",
+	"ooui-toolgroup-expand": "Fler",
+	"ooui-toolgroup-collapse": "Färre",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Avbryt",
 	"ooui-dialog-process-error": "Något gick fel",

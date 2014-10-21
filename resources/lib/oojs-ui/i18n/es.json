@@ -22,6 +22,8 @@
 	"ooui-outline-control-move-up": "Subir elemento",
 	"ooui-outline-control-remove": "Eliminar elemento",
 	"ooui-toolbar-more": "Más",
+	"ooui-toolgroup-expand": "Más",
+	"ooui-toolgroup-collapse": "Menos",
 	"ooui-dialog-message-accept": "Aceptar",
 	"ooui-dialog-message-reject": "Cancelar",
 	"ooui-dialog-process-error": "Algo salió mal",
