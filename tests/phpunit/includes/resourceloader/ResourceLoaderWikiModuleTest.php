@@ -3,11 +3,93 @@
 class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 
 	/**
+	 * @covers ResourceLoaderWikiModule::__construct
+	 * @dataProvider provideConstructor
+	 */
+	public function testConstructor( $params ) {
+		$module = new ResourceLoaderWikiModule( $params );
+		$this->assertInstanceOf( 'ResourceLoaderWikiModule', $module );
+	}
+
+	public static function provideConstructor() {
+		return array(
+			// Nothing
+			array( null ),
+			array( array() ),
+			// Unrecognized settings
+			array( array( 'foo' => 'baz' ) ),
+			// Real settings
+			array( array( 'scripts' => array( 'MediaWiki:Common.js' ) ) ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetPages
+	 * @covers ResourceLoaderWikiModule::getPages
+	 */
+	public function testGetPages( $params, Config $config, $expected ) {
+		$module = new ResourceLoaderWikiModule( $params );
+		$module->setConfig( $config );
+
+		// Use getDefinitionSummary because getPages is protected
+		$summary = $module->getDefinitionSummary( ResourceLoaderContext::newDummyContext() );
+		$this->assertEquals(
+			$expected,
+			$summary['pages']
+		);
+	}
+
+	public static function provideGetPages() {
+		$settings = array(
+			'UseSiteJs' => true,
+			'UseSiteCss' => true,
+		);
+
+		$params = array(
+			'styles' => array( 'MediaWiki:Common.css' ),
+			'scripts' => array( 'MediaWiki:Common.js' ),
+		);
+
+		return array(
+			array( array(), new HashConfig( $settings ), array() ),
+			array( $params, new HashConfig( $settings ), array(
+				'MediaWiki:Common.js' => array( 'type' => 'script' ),
+				'MediaWiki:Common.css' => array( 'type' => 'style' )
+			) ),
+			array( $params, new HashConfig( array( 'UseSiteCss' => false ) + $settings ), array(
+				'MediaWiki:Common.js' => array( 'type' => 'script' ),
+			) ),
+			array( $params, new HashConfig( array( 'UseSiteJs' => false ) + $settings ), array(
+				'MediaWiki:Common.css' => array( 'type' => 'style' ),
+			) ),
+			array( $params, new HashConfig( array( 'UseSiteJs' => false, 'UseSiteCss' => false ) ), array() ),
+		);
+	}
+
+	/**
+	 * @covers ResourceLoaderWikiModule::getGroup
+	 * @dataProvider provideGetGroup
+	 */
+	public function testGetGroup( $params, $expected ) {
+		$module = new ResourceLoaderWikiModule( $params );
+		$this->assertEquals( $expected, $module->getGroup() );
+	}
+
+	public static function provideGetGroup() {
+		return array(
+			// No group specified
+			array( array(), null ),
+			// A random group
+			array( array( 'group' => 'foobar' ), 'foobar' ),
+		);
+	}
+
+	/**
 	 * @covers ResourceLoaderWikiModule::isKnownEmpty
 	 * @dataProvider provideIsKnownEmpty
 	 */
 	public function testIsKnownEmpty( $titleInfo, $group, $expected ) {
-		$module = $this->getMockBuilder( 'ResourceLoaderWikiModuleTestModule' )
+		$module = $this->getMockBuilder( 'ResourceLoaderWikiModule' )
 			->setMethods( array( 'getTitleInfo', 'getGroup' ) )
 			->getMock();
 		$module->expects( $this->any() )
