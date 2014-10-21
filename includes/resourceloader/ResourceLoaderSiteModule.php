@@ -27,13 +27,10 @@
  */
 class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 
-	/* Protected Methods */
-
 	/**
-	 * Gets list of pages used by this module
+	 * Get list of pages used by this module
 	 *
 	 * @param ResourceLoaderContext $context
-	 *
 	 * @return array List of pages
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
@@ -51,12 +48,10 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 		return $pages;
 	}
 
-	/* Methods */
-
 	/**
-	 * Gets group name
+	 * Get group name
 	 *
-	 * @return string Name of group
+	 * @return string
 	 */
 	public function getGroup() {
 		return 'site';

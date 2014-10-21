@@ -25,12 +25,8 @@
  */
 class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 
-	/* Protected Members */
-
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 	protected $targets = array( 'desktop', 'mobile' );
-
-	/* Protected Methods */
 
 	/**
 	 * @param ResourceLoaderContext $context
@@ -63,9 +59,9 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 		return $pages;
 	}
 
-	/* Methods */
-
 	/**
+	 * Get group name
+	 *
 	 * @return string
 	 */
 	public function getGroup() {
