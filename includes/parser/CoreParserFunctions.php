@@ -435,7 +435,7 @@ class CoreParserFunctions {
 						// Message should be parsed, but these params should only be escaped.
 						$converter->markNoConversion( wfEscapeWikiText( $old ) ),
 						$converter->markNoConversion( wfEscapeWikiText( $text ) )
-					)->inContentLanguage()->text() .
+					)->inContentLanguage()->escaped() .
 					'</span>';
 			}
 		}
@@ -892,7 +892,7 @@ class CoreParserFunctions {
 					// Message should be parsed, but these params should only be escaped.
 					$converter->markNoConversion( wfEscapeWikiText( $old ) ),
 					$converter->markNoConversion( wfEscapeWikiText( $text ) )
-				)->inContentLanguage()->text() .
+				)->inContentLanguage()->escaped() .
 				'</span>';
 		}
 	}
@@ -956,7 +956,7 @@ class CoreParserFunctions {
 		$stripList = $parser->getStripList();
 		if ( !in_array( $tagName, $stripList ) ) {
 			return '<span class="error">' .
-				wfMessage( 'unknown_extension_tag', $tagName )->inContentLanguage()->text() .
+				wfMessage( 'unknown_extension_tag', $tagName )->inContentLanguage()->escaped() .
 				'</span>';
 		}
 
