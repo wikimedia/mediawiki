@@ -5,3 +5,4 @@ source "https://rubygems.org"
 
 gem "mediawiki_api"
 gem "mediawiki_selenium"
+gem "rubocop", require: false
