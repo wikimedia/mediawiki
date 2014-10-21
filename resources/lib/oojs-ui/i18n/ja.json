@@ -12,6 +12,8 @@
 	"ooui-outline-control-move-up": "項目を上に移動させる",
 	"ooui-outline-control-remove": "項目を除去",
 	"ooui-toolbar-more": "その他",
+	"ooui-toolgroup-expand": "続き",
+	"ooui-toolgroup-collapse": "折り畳む",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "キャンセル",
 	"ooui-dialog-process-error": "エラーが発生しました…",

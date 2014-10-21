@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (db065e5a9f)
+ * OOjs UI v0.1.0-pre (44db8292bf)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-20T14:47:55Z
+ * Date: 2014-10-21T18:33:58Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -530,11 +530,24 @@
 	vertical-align: middle;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
-	display: inline-block;
+	display: inline-table;
 	vertical-align: middle;
+	width: 100%;
+	margin-right: -2.5em;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-accel {
-	display: none;
+.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title .oo-ui-tool-title-text,
+.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title .oo-ui-tool-accel {
+	display: table-cell;
+}
+.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title .oo-ui-tool-title-text {
+	width: 100%;
+}
+.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title .oo-ui-tool-accel {
+	text-align: right;
+	padding-right: 2.5em;
+}
+.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title .oo-ui-tool-accel:not(:empty) {
+	padding-left: 3em;
 }
 .oo-ui-popupToolGroup.oo-ui-indicatorElement.oo-ui-iconElement {
 	min-width: 3.5em;
@@ -982,6 +995,24 @@
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-glow {
 	background-color: #ffffff;
+}
+.oo-ui-progressBarWidget {
+	width: 20em;
+	border: solid 1px #cccccc;
+	border-radius: 0.1em;
+}
+.oo-ui-progressBarWidget-bar {
+	height: 1em;
+	border-right: solid 1px #cccccc;
+	background: #0274ff;
+	-webkit-transition: width 200ms;
+	   -moz-transition: width 200ms;
+	    -ms-transition: width 200ms;
+	     -o-transition: width 200ms;
+	        transition: width 200ms;
+}
+.oo-ui-progressBarWidget.oo-ui-widget-disabled {
+	opacity: 0.2;
 }
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
 	background-image: /* @embed */ url(themes/mediawiki/images/textures/pending.gif);

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (db065e5a9f)
+ * OOjs UI v0.1.0-pre (44db8292bf)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-20T14:47:45Z
+ * Date: 2014-10-21T18:33:49Z
  */
 ( function ( OO ) {
 
@@ -4971,6 +4971,8 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.toolbar = this.toolGroup.getToolbar();
 	this.active = false;
 	this.$title = this.$( '<span>' );
+	this.$titleText = this.$( '<span>' );
+	this.$accel = this.$( '<span>' );
 	this.$link = this.$( '<a>' );
 	this.title = null;
 
@@ -4978,7 +4980,11 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.toolbar.connect( this, { updateState: 'onUpdateState' } );
 
 	// Initialization
-	this.$title.addClass( 'oo-ui-tool-title' );
+	this.$titleText.addClass( 'oo-ui-tool-title-text' );
+	this.$accel.addClass( 'oo-ui-tool-accel' );
+	this.$title
+		.addClass( 'oo-ui-tool-title' )
+		.append( this.$titleText, this.$accel );
 	this.$link
 		.addClass( 'oo-ui-tool-link' )
 		.append( this.$icon, this.$title )
@@ -5169,13 +5175,8 @@ OO.ui.Tool.prototype.updateTitle = function () {
 		accel = this.toolbar.getToolAccelerator( this.constructor.static.name ),
 		tooltipParts = [];
 
-	this.$title.empty()
-		.text( this.title )
-		.append(
-			this.$( '<span>' )
-				.addClass( 'oo-ui-tool-accel' )
-				.text( accel )
-		);
+	this.$titleText.text( this.title );
+	this.$accel.text( accel );
 
 	if ( titleTooltips && typeof this.title === 'string' && this.title.length ) {
 		tooltipParts.push( this.title );
@@ -10528,6 +10529,71 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	this.clip();
 
 	return this;
+};
+
+/**
+ * Progress bar widget.
+ *
+ * @class
+ * @extends OO.ui.Widget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {number} [progress=0] Initial progress
+ */
+OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
+	// Config intialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.ProgressBarWidget.super.call( this, config );
+
+	// Properties
+	this.$bar = this.$( '<div>' );
+	this.progress = null;
+
+	// Initialization
+	this.setProgress( config.progress || 0 );
+	this.$bar.addClass( 'oo-ui-progressBarWidget-bar');
+	this.$element
+		.attr( {
+			role: 'progressbar',
+			'aria-valuemin': 0,
+			'aria-valuemax': 100
+		} )
+		.addClass( 'oo-ui-progressBarWidget' )
+		.append( this.$bar );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.ProgressBarWidget, OO.ui.Widget );
+
+/* Static Properties */
+
+OO.ui.ProgressBarWidget.static.tagName = 'div';
+
+/* Methods */
+
+/**
+ * Get progress percent
+ *
+ * @return {number} Progress percent
+ */
+OO.ui.ProgressBarWidget.prototype.getProgress = function () {
+	return this.progress;
+};
+
+/**
+ * Set progress percent
+ *
+ * @param {number} progress Progress percent
+ */
+OO.ui.ProgressBarWidget.prototype.setProgress = function ( progress ) {
+	this.progress = progress;
+
+	this.$bar.css( 'width', this.progress + '%' );
+	this.$element.attr( 'aria-valuenow', this.progress );
 };
 
 /**
