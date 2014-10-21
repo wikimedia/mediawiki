@@ -75,7 +75,7 @@ class ProfilerMwprof extends Profiler {
 	 * @param string $outName Section to close
 	 */
 	public function profileOut( $outName ) {
-		list( $inName, $inCount, $inWall, $inCpu ) = array_pop( $this->mWorkStack );
+		list( $inName, , $inWall, $inCpu ) = array_pop( $this->mWorkStack );
 
 		// Check for unbalanced profileIn / profileOut calls.
 		// Bad entries are logged but not sent.
