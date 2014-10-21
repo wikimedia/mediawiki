@@ -621,7 +621,8 @@ class SqlBagOStuff extends BagOStuff {
 								if ( $remainingSeconds > $totalSeconds ) {
 									$totalSeconds = $remainingSeconds;
 								}
-								$percent = ( $i + $remainingSeconds / $totalSeconds )
+								$processedSeconds = $totalSeconds - $remainingSeconds;
+								$percent = ( $i + $processedSeconds / $totalSeconds )
 									/ $this->shards * 100;
 							}
 							$percent = ( $percent / $this->numServers )
