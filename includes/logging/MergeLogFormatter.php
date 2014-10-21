@@ -19,13 +19,13 @@
  *
  * @file
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
- * @since 1.24
+ * @since 1.25
  */
 
 /**
  * This class formats merge log entries.
  *
- * @since 1.24
+ * @since 1.25
  */
 class MergeLogFormatter extends LogFormatter {
 	public function getPreloadTitles() {
