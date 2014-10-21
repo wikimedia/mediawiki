@@ -277,13 +277,22 @@ abstract class Job implements IJobSpecification {
 			}
 		}
 
-		if ( is_object( $this->title ) ) {
-			$s = "{$this->command} {$this->title->getPrefixedDBkey()}";
-			if ( $paramString !== '' ) {
-				$s .= " $paramString";
+		$metaString = '';
+		foreach ( $this->metadata as $key => $value ) {
+			if ( is_scalar( $value ) && mb_strlen( $value ) < 1024 ) {
+				$metaString .= ( $metaString ? ",$key=$value" : "$key=$value" );
 			}
-		} else {
-			$s = "{$this->command} $paramString";
+		}
+
+		$s = $this->command;
+		if ( is_object( $this->title ) ) {
+			$s .= " {$this->title->getPrefixedDBkey()}";
+		}
+		if ( $paramString != '' ) {
+			$s .= " $paramString";
+		}
+		if ( $metaString != '' ) {
+			$s .= " ($metaString)";
 		}
 
 		return $s;
