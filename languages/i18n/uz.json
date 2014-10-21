@@ -535,7 +535,6 @@
 	"mergehistory-submit": "Tahrirlarni birlashtirish",
 	"mergehistory-reason": "Sabab:",
 	"mergelog": "Birlashtirish qaydlari",
-	"pagemerge-logentry": "[[$1]] va [[$2]]lar birlashtirildi ($3 gacha bo'lgan versiyalar)",
 	"revertmerge": "Bo'lish",
 	"history-title": "$1 - oʻzgarishlar tarixi",
 	"difference-title": "$1 — versiyalar orasidagi farq",
