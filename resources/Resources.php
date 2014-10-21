@@ -32,9 +32,16 @@ return array(
 
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
 	'site' => array( 'class' => 'ResourceLoaderSiteModule' ),
-	'noscript' => array( 'class' => 'ResourceLoaderNoscriptModule' ),
+	'noscript' => array(
+		'class' => 'ResourceLoaderWikiModule',
+		'styles' => array( 'MediaWiki:Noscript.css' ),
+		'group' => 'noscript',
+	),
 	'startup' => array( 'class' => 'ResourceLoaderStartUpModule' ),
-	'filepage' => array( 'class' => 'ResourceLoaderFilePageModule' ),
+	'filepage' => array(
+		'class' => 'ResourceLoaderWikiModule',
+		'styles' => array( 'MediaWiki:Filepage.css' ),
+	),
 	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
 
 	// Scripts managed by the current user (stored in their user space)

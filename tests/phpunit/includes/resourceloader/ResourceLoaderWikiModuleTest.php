@@ -7,7 +7,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	 * @dataProvider provideIsKnownEmpty
 	 */
 	public function testIsKnownEmpty( $titleInfo, $group, $expected ) {
-		$module = $this->getMockBuilder( 'ResourceLoaderWikiModuleTestModule' )
+		$module = $this->getMockBuilder( 'ResourceLoaderWikiModule' )
 			->setMethods( array( 'getTitleInfo', 'getGroup' ) )
 			->getMock();
 		$module->expects( $this->any() )
