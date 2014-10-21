@@ -6,7 +6,8 @@
 			"Rhinestorm",
 			"SiLveRLeaD",
 			"Trncmvsr",
-			"Sayginer"
+			"Sayginer",
+			"Trockya"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -175,6 +176,7 @@
 	"config-install-schema": "Şema oluştur",
 	"config-install-pg-schema-not-exist": "PostgreSQL şema yok.",
 	"config-install-pg-commit": "Değişiklikleri yapılıyor",
+	"config-pg-no-create-privs": "Kurulum için belirttiğiniz hesap yeni bir hesap oluşturmak için gereken izinlere sahip değil.",
 	"config-install-user": "Veritabanı kullanıcısı oluşturma",
 	"config-install-user-alreadyexists": "Kullanıcı \" $1 \" zaten var",
 	"config-install-user-create-failed": "Kullanıcı oluşturma \" $1 \" başarısız oldu:$2",
