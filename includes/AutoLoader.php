@@ -39,7 +39,6 @@ $wgAutoloadLocalClasses = array(
 	'BloomCache' => 'includes/cache/bloom/BloomCache.php',
 	'BloomCacheRedis' => 'includes/cache/bloom/BloomCacheRedis.php',
 	'BloomFilterTitleHasLogs' => 'includes/cache/bloom/BloomFilters.php',
-	'CacheHelper' => 'includes/CacheHelper.php',
 	'Category' => 'includes/Category.php',
 	'CategoryFinder' => 'includes/CategoryFinder.php',
 	'CategoryViewer' => 'includes/CategoryViewer.php',
