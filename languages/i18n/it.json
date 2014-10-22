@@ -3073,6 +3073,7 @@
 	"revdelete-uname-unhid": "nome utente ripristinato",
 	"revdelete-restricted": "limitazioni ai soli amministratori attivate",
 	"revdelete-unrestricted": "limitazioni ai soli amministratori rimosse",
+	"logentry-merge-merge": "$1 {{GENDER:$2|ha unito}} $3 in $4 (versioni fino al $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4 senza lasciare redirect",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4 tramite redirect",

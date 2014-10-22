@@ -3078,6 +3078,7 @@
 	"revdelete-uname-unhid": "הסתרת שם המשתמש בוטלה",
 	"revdelete-restricted": "נוספו הגבלות למפעילי מערכת",
 	"revdelete-unrestricted": "הוסרו הגבלות ממפעילי מערכת",
+	"logentry-merge-merge": "$1 {{GENDER:$2|מיזג|מיזגה}} את $3 לתוך $4 (גרסאות עד $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}}",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}} בלי להשאיר הפניה",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}} תוך דריסת הפניה",

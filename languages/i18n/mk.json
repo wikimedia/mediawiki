@@ -3132,6 +3132,7 @@
 	"revdelete-uname-unhid": "корисничкото име е скриено",
 	"revdelete-restricted": "применети ограничувања на администратори",
 	"revdelete-unrestricted": "отстранети ограничувања за систем оператори",
+	"logentry-merge-merge": "$1 {{GENDER:$2|ја припои}} $3 кон $4 (преработки сè до $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|ја премести}} страницата $3 на $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|ја премести}} страницата $3 на $4 без да остави пренасочување",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|ја премести}} страницата $3 на $4 презапишувајќи врз пренасочување",

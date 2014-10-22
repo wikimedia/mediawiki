@@ -2987,6 +2987,7 @@
 	"revdelete-uname-unhid": "uporabniško ime je ponovno prikazano",
 	"revdelete-restricted": "uveljavljene omejitve administratorjev",
 	"revdelete-unrestricted": "odstranjene omejitve administratorjev",
+	"logentry-merge-merge": "$1 je {{GENDER:$2|združil|združila|združil(-a)}} $3 z $4 (redakcije do $5)",
 	"logentry-move-move": "$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4",
 	"logentry-move-move-noredirect": "$1 je {{GENDER:$2|prestavil|prestavila|prestavil(-a)}} stran $3 na $4 brez preusmeritve",
 	"logentry-move-move_redir": "$1 je {{GENDER:$2|prestavil|prestavila|prestavil(-a)}} stran $3 na $4 prek preusmeritve",

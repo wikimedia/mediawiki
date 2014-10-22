@@ -634,6 +634,7 @@
 	"content-model-text": "hreinn texti",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "Síður með eins gildi í ítengingu sniðs",
 	"expensive-parserfunction-warning": "'''Viðvörun:''' Þessi síða inniheldur of mörg vinnslufrek aðgerðar þáttunar köll.\n\nHún ætti að innihalda minna en $2 {{PLURAL:$2|kall|köll}}, en {{PLURAL:$1|er nú $1 kall|eru nú $1 köll}}.",
 	"expensive-parserfunction-category": "Síður með of mörg vinnslufrek aðgerðar þáttunar köll",
 	"post-expand-template-inclusion-warning": "'''Viðvörun:''' Sniðið tekur of mikið pláss.\nHluti sniðsins verður ekki með.",
