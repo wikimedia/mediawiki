@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (531d497d3b)
+ * OOjs UI v0.1.0-pre (40de4dabe6)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-21T23:53:57Z
+ * Date: 2014-10-22T23:42:26Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -436,6 +436,9 @@
 }
 .oo-ui-toolGroup.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
 	color: #000000;
+}
+.oo-ui-toolGroup.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title .oo-ui-tool-accel {
+	color: #888888;
 }
 .oo-ui-barToolGroup > .oo-ui-iconElement-icon,
 .oo-ui-barToolGroup > .oo-ui-labelElement-label {
