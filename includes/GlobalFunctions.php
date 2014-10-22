@@ -3807,8 +3807,11 @@ function wfWaitForSlaves(
 		$lbs[] = wfGetLB( $wiki );
 	}
 
-	$ok = true;
-	foreach ( $lbs as $lb ) {
+	// Get all the master positions of applicable DBs right now.
+	// This can be faster since waiting on one cluster reduces the
+	// time needed to wait on the next clusters.
+	$masterPositions = array_fill( 0, count( $lbs ), false );
+	foreach ( $lbs as $i => $lb ) {
 		// bug 27975 - Don't try to wait for slaves if there are none
 		// Prevents permission error when getting master position
 		if ( $lb->getServerCount() > 1 ) {
@@ -3819,12 +3822,16 @@ function wfWaitForSlaves(
 			if ( $ifWritesSince && $dbw->lastDoneWrites() < $ifWritesSince ) {
 				continue; // no writes since the last wait
 			}
-			$pos = $dbw->getMasterPos();
+			$masterPositions[$i] = $dbw->getMasterPos();
+		}
+	}
+
+	$ok = true;
+	foreach ( $lbs as $i => $lb ) {
+		if ( $masterPositions[$i] ) {
 			// The DBMS may not support getMasterPos() or the whole
 			// load balancer might be fake (e.g. $wgAllDBsAreLocalhost).
-			if ( $pos !== false ) {
-				$ok = $lb->waitForAll( $pos, $timeout ) && $ok;
-			}
+			$ok = $lb->waitForAll( $masterPositions[$i], $timeout ) && $ok;
 		}
 	}
 
