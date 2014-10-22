@@ -1425,6 +1425,12 @@ return array(
 		'position' => 'top',
 	),
 	'mediawiki.special.userlogin.common.js' => array(
+		'dependencies' => array(
+			'mediawiki.template.mustache',
+		),
+		'templates' => array(
+			'captcha.mustache' => 'resources/src/mediawiki.special/templates/captcha.mustache',
+		),
 		'scripts' => array(
 			'resources/src/mediawiki.special/mediawiki.special.userlogin.common.js',
 		),
