@@ -3897,7 +3897,7 @@ class User implements IDBAccessObject {
 			if ( is_array( $salt ) ) {
 				$salt = implode( '|', $salt );
 			}
-			return hash_hmac( 'md5', $timestamp . $salt, $token, false ) .
+			return hash_hmac( 'sha256', $timestamp . $salt, $token, false ) .
 				dechex( $timestamp ) .
 				self::EDIT_TOKEN_SUFFIX;
 		}
@@ -3950,11 +3950,11 @@ class User implements IDBAccessObject {
 		}
 
 		$suffixLen = strlen( self::EDIT_TOKEN_SUFFIX );
-		if ( strlen( $val ) <= 32 + $suffixLen ) {
+		if ( strlen( $val ) <= 64 + $suffixLen ) {
 			return false;
 		}
 
-		$timestamp = hexdec( substr( $val, 32, -$suffixLen ) );
+		$timestamp = hexdec( substr( $val, 64, -$suffixLen ) );
 		if ( $maxage !== null && $timestamp < wfTimestamp() - $maxage ) {
 			// Expired token
 			return false;
