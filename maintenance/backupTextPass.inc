@@ -422,6 +422,31 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	/**
+	 * Gets the revision test using getText(), and applies ContentHandler::exportTransform().
+	 *
+	 * @param string $id The revision id to get the text for
+	 * @param string|null $contentModel The revision's content model
+	 * @param string|null $contentFormat The revision's content format
+	 *
+	 * @return string The revision text for $id, or ""
+	 * @throws MWException
+	 */
+	function getTextWithTransform( $id, $contentModel = null, $contentFormat = null ) {
+		$text = $this->getText( $id );
+
+		if ( $contentModel !== null ) {
+			try {
+				$handler = ContentHandler::getForModelID( $contentModel );
+				$text = $handler->exportTransform( $text, $contentFormat );
+			} catch ( MWException $ex ) {
+				$this->progress( "Unknown content model: $contentModel" );
+			}
+		}
+
+		return $text;
+	}
+
+	/**
 	 * Tries to get the revision text for a revision id.
 	 *
 	 * Upon errors, retries (Up to $this->maxFailures tries each call).
@@ -747,6 +772,7 @@ class TextPassDumper extends BackupDumper {
 			$this->state = $name;
 			$this->egress->writeOpenPage( null, $this->buffer );
 			$this->buffer = "";
+			$this->revData = array();
 		} elseif ( $name == 'page' ) {
 			$this->state = $name;
 			if ( $this->atStart ) {
@@ -756,22 +782,59 @@ class TextPassDumper extends BackupDumper {
 			}
 		}
 
+		$openTag = array( $name, $attribs );
+
 		if ( $name == "text" && isset( $attribs['id'] ) ) {
-			$text = $this->getText( $attribs['id'] );
-			$this->openElement = array( $name, array( 'xml:space' => 'preserve' ) );
+			// We do not have all neccessary information yet, so we stash
+			// what we have in $this->revData and handle it in extraRevisionData().
+			$this->revData['text-id'] = $attribs['id'];
+			$openTag['skip'] = true;
+			$openTag = false;
+		}
+		else if ( $name == "model" && isset( $this->revData['text-id'] ) ) {
+			$openTag['skip'] = true;
+		}
+		else if ( $name == "format" && isset( $this->revData['text-id'] ) ) {
+			$openTag['skip'] = true;
+		}
+		else if ( $name == "sha1" && isset( $this->revData['text-id'] ) ) {
+			$openTag['skip'] = true;
+		}
+
+		$this->openElement = $openTag;
+	}
+
+	function extraRevisionData( $parser, $data ) {
+		if ( isset( $data['text-id'] ) ) {
+			$model = isset( $data['model'] ) ? $data['model'] : null;
+			$format = isset( $data['format'] ) ? $data['format'] : null;
+			$text = $this->getTextWithTransform( $data['text-id'], $model, $format );
+
 			if ( strlen( $text ) > 0 ) {
-				$this->characterData( $parser, $text );
+				$attributes = array( 'xml:space' => 'preserve' );
+				$this->bufferElement( 'text', $attributes, $text );
 			}
-		} else {
-			$this->openElement = array( $name, $attribs );
+
+			unset( $data['text-id'] );
+			$this->revData = false;
+		}
+
+		foreach ( $data as $name => $text ) {
+			$this->bufferElement( $name, array(), $text );
 		}
 	}
 
 	function endElement( $parser, $name ) {
 		$this->checkpointJustWritten = false;
 
+		if ( !empty( $this->revData ) ) {
+			$this->extraRevisionData( $parser, $this->revData );
+		}
+
 		if ( $this->openElement ) {
-			$this->clearOpenElement( "" );
+			if ( empty( $this->openElement['skip'] ) ) {
+				$this->clearOpenElement( "" );
+			}
 		} else {
 			$this->buffer .= "</$name>";
 		}
@@ -834,7 +897,18 @@ class TextPassDumper extends BackupDumper {
 				$this->thisPage .= $data;
 			}
 		}
-		// have to skip the newline left over from closepagetag line of
+
+		if ( $this->state == "revision"
+			&& ( $this->lastName == "model" || $this->lastName == "format" || $this->lastName == "sha1" )
+		) {
+			$this->revData[ $this->lastName ] = $data;
+		}
+
+		if ( isset( $this->openElement['skip'] ) ) {
+			return;
+		}
+
+ 		// have to skip the newline left over from closepagetag line of
 		// end of checkpoint files. nasty hack!!
 		if ( $this->checkpointJustWritten ) {
 			if ( $data[0] == "\n" ) {
@@ -845,10 +919,14 @@ class TextPassDumper extends BackupDumper {
 		$this->buffer .= htmlspecialchars( $data );
 	}
 
-	function clearOpenElement( $style ) {
+	function clearOpenElement( $content ) {
 		if ( $this->openElement ) {
-			$this->buffer .= Xml::element( $this->openElement[0], $this->openElement[1], $style );
+			$this->bufferElement( $this->openElement[0], $this->openElement[1], $content );
 			$this->openElement = false;
 		}
+	}
+
+	function bufferElement( $name, $attributes, $content ) {
+		$this->buffer .= Xml::element( $this->openElement[0], $this->openElement[1], $content );
 	}
 }
