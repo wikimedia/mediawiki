@@ -2139,6 +2139,13 @@ $search : search term (not guaranteed to be conveniently normalized)
 $limit : maximum number of results to return
 &$results : out param: array of page names (strings)
 
+'PrefixSearchExtractNamespace': Called if core was not able to extract a
+namespace from the search string so that extensions can attempt it.
+$namespaces : array of int namespace keys to search in (change this if you can
+extract namespaces)
+$search : search term (replace this with term without the namespace if you can
+extract one)
+
 'PrefsEmailAudit': Called when user changes their email address.
 $user: User (object) changing his email address
 $oldaddr: old email address (string)
