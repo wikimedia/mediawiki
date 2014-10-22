@@ -247,8 +247,9 @@ class JobQueueTest extends MediaWikiTestCase {
 			$this->assertNull( $queue->push( $this->newJob( 0, $root1 ) ), "Push worked ($desc)" );
 		}
 		$queue->deduplicateRootJob( $this->newJob( 0, $root1 ) );
-		sleep( 1 ); // roo job timestamp will increase
-		$root2 = Job::newRootJobParams( "nulljobspam:$id" ); // task ID/timestamp
+
+		$root2 = $root1;
+		$root2['rootJobTimestamp']++;
 		$this->assertNotEquals( $root1['rootJobTimestamp'], $root2['rootJobTimestamp'],
 			"Root job signatures have different timestamps." );
 		for ( $i = 0; $i < 5; ++$i ) {
