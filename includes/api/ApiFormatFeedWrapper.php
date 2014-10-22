@@ -82,17 +82,41 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	 * $result['_feed'] - an instance of one of the $wgFeedClasses classes
 	 * $result['_feeditems'] - an array of FeedItem instances
 	 */
+	public function initPrinter( $unused = false ) {
+		parent::initPrinter( $unused );
+
+		if ( $this->isDisabled() ) {
+			return;
+		}
+
+		$data = $this->getResultData();
+		if ( isset( $data['_feed'] ) && isset( $data['_feeditems'] ) ) {
+			$data['_feed']->httpHeaders();
+		} else {
+			// Error has occurred, print something useful
+			ApiBase::dieDebug( __METHOD__, 'Invalid feed class/item' );
+		}
+	}
+
+	/**
+	 * This class expects the result data to be in a custom format set by self::setResult()
+	 * $result['_feed'] - an instance of one of the $wgFeedClasses classes
+	 * $result['_feeditems'] - an array of FeedItem instances
+	 */
 	public function execute() {
 		$data = $this->getResultData();
 		if ( isset( $data['_feed'] ) && isset( $data['_feeditems'] ) ) {
 			$feed = $data['_feed'];
 			$items = $data['_feeditems'];
 
+			// execute() needs to pass strings to $this->printText, not produce output itself.
+			ob_start();
 			$feed->outHeader();
 			foreach ( $items as & $item ) {
 				$feed->outItem( $item );
 			}
 			$feed->outFooter();
+			$this->printText( ob_get_clean() );
 		} else {
 			// Error has occurred, print something useful
 			ApiBase::dieDebug( __METHOD__, 'Invalid feed class/item' );
