@@ -62,14 +62,14 @@ if ( !$wgEnableAPI ) {
 // In a perfect world this wouldn't be necessary
 $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
 
-/* Construct an ApiMain with the arguments passed via the URL. What we get back
- * is some form of an ApiMain, possibly even one that produces an error message,
- * but we don't care here, as that is handled by the ctor.
- */
-$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
-
-// Last chance hook before executing the API
 try {
+	/* Construct an ApiMain with the arguments passed via the URL. What we get back
+	 * is some form of an ApiMain, possibly even one that produces an error message,
+	 * but we don't care here, as that is handled by the ctor.
+	 */
+	$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
+
+	// Last chance hook before executing the API
 	wfRunHooks( 'ApiBeforeMain', array( &$processor ) );
 	if ( !$processor instanceof ApiMain ) {
 		throw new MWException( 'ApiBeforMain hook set $processor to a non-ApiMain class' );

@@ -197,7 +197,8 @@ class ApiMain extends ApiBase {
 		$this->getContext()->setLanguage( $code );
 		if ( !$this->mInternalMode ) {
 			global $wgLang;
-			$wgLang = RequestContext::getMain()->getLanguage();
+			$wgLang = $this->getContext()->getLanguage();
+			RequestContext::getMain()->setLanguage( $wgLang );
 		}
 
 		$config = $this->getConfig();
