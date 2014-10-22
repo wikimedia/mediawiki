@@ -9,6 +9,7 @@
 	function adjustFancyCaptcha( $content, buttonSubmit ) {
 		var $submit = $content.find( buttonSubmit ),
 			tabIndex,
+			$el,
 			$captchaStuff,
 			$captchaImageContainer,
 			// JavaScript can't yet parse the message 'createacct-imgcaptcha-help' when it
@@ -38,18 +39,12 @@
 
 			// Insert another div before the submit button that will include the
 			// repositioned FancyCaptcha div, an input field, and possible help.
-			$submit.closest( 'div' ).before( [
-				'<div>',
-					'<label for="wpCaptchaWord">' + mw.message( 'createacct-captcha' ).escaped() + '</label>',
-					'<div class="mw-createacct-captcha-container">',
-						'<div class="mw-createacct-captcha-and-reload" />',
-						'<input id="wpCaptchaWord" class="mw-ui-input" name="wpCaptchaWord" type="text" placeholder="' +
-							mw.message( 'createacct-imgcaptcha-ph' ).escaped() +
-							'" tabindex="' + tabIndex + '" autocapitalize="off" autocorrect="off">',
-							helpHtml,
-					'</div>',
-				'</div>'
-			].join( '' ) );
+			$el = $submit.closest( 'div' ).before(
+				mw.template.get( 'mediawiki.special.userlogin.common.js', 'captcha.html' ).render() );
+			$el.find( 'label' ).text( mw.msg( 'createacct-captcha' ) );
+			$el.find( '#wpCaptchaWord' ).attr( 'tabindex', tabIndex )
+				.attr( 'placeholder', mw.msg( 'createacct-imgcaptcha-ph' ) );
+			$el.find( 'span' ).html( helpHtml );
 
 			// Stick the FancyCaptcha container inside our bordered and framed parents.
 			$captchaImageContainer
