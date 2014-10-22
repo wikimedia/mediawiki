@@ -3776,7 +3776,7 @@ function wfGetNull() {
  * does this check, it makes since to use $ifWritesSince, particularly if
  * cluster is "*", to avoid excess overhead.
  *
- * Never call this method after a big DB write that is still in a transaction.
+ * Never call this function after a big DB write that is still in a transaction.
  * This only makes sense after the possible lag inducing changes were committed.
  *
  * @param float|null $ifWritesSince Only wait if writes were done since this UNIX timestamp
@@ -3813,11 +3813,11 @@ function wfWaitForSlaves(
 		// Prevents permission error when getting master position
 		if ( $lb->getServerCount() > 1 ) {
 			if ( $ifWritesSince && !$lb->hasMasterConnection() ) {
-				break; // assume no writes done
+				continue; // assume no writes done
 			}
 			$dbw = $lb->getConnection( DB_MASTER, array(), $wiki );
 			if ( $ifWritesSince && $dbw->lastDoneWrites() < $ifWritesSince ) {
-				break; // no writes since the last wait
+				continue; // no writes since the last wait
 			}
 			$pos = $dbw->getMasterPos();
 			// The DBMS may not support getMasterPos() or the whole
