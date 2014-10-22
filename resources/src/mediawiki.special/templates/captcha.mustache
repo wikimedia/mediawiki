@@ -1,0 +1,17 @@
+<div>
+	<label for="wpCaptchaWord">{{label}}</label>
+	<div class="mw-createacct-captcha-container">
+		<div class="mw-createacct-captcha-and-reload"></div>
+		<input id="wpCaptchaWord" tabindex="{{tabindex}}" class="mw-ui-input"
+			placeholder="{{captchaPlaceholder}}" name="wpCaptchaWord" value="{{value}}"
+			type="text" autocapitalize="off" autocorrect="off">
+		<input type="hidden" name="wpCaptchaId" id="wpCaptchaId" value="{{captchaId}}">
+		<span>
+			{{#msg}}
+			<small class="mw-createacct-captcha-assisted">
+				{{{htmlMessage}}}
+			</small>
+			{{/msg}}
+		</span>
+	</div>
+</div>
