@@ -283,7 +283,7 @@ class RecentChange {
 		}
 
 		# If our database is strict about IP addresses, use NULL instead of an empty string
-		if ( $dbw->strictIPs() and $this->mAttribs['rc_ip'] == '' ) {
+		if ( $dbw->strictIPs() && $this->mAttribs['rc_ip'] == '' ) {
 			unset( $this->mAttribs['rc_ip'] );
 		}
 
@@ -298,7 +298,7 @@ class RecentChange {
 		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'recentchanges_rc_id_seq' );
 
 		## If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
-		if ( $dbw->cascadingDeletes() and $this->mAttribs['rc_cur_id'] == 0 ) {
+		if ( $dbw->cascadingDeletes() && $this->mAttribs['rc_cur_id'] == 0 ) {
 			unset( $this->mAttribs['rc_cur_id'] );
 		}
 

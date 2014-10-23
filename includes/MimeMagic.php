@@ -210,7 +210,7 @@ class MimeMagic {
 		}
 
 		if ( $mimeTypeFile ) {
-			if ( is_file( $mimeTypeFile ) and is_readable( $mimeTypeFile ) ) {
+			if ( is_file( $mimeTypeFile ) && is_readable( $mimeTypeFile ) ) {
 				wfDebug( __METHOD__ . ": loading mime types from $mimeTypeFile\n" );
 				$types .= "\n";
 				$types .= file_get_contents( $mimeTypeFile );
@@ -287,7 +287,7 @@ class MimeMagic {
 		$info = MM_WELL_KNOWN_MIME_INFO;
 
 		if ( $mimeInfoFile ) {
-			if ( is_file( $mimeInfoFile ) and is_readable( $mimeInfoFile ) ) {
+			if ( is_file( $mimeInfoFile ) && is_readable( $mimeInfoFile ) ) {
 				wfDebug( __METHOD__ . ": loading mime info from $mimeInfoFile\n" );
 				$info .= "\n";
 				$info .= file_get_contents( $mimeInfoFile );

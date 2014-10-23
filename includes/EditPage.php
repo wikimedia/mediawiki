@@ -3984,7 +3984,7 @@ HTML
 				// Do some sanity checks. These aren't needed for reversibility,
 				// but should help keep the breakage down if the editor
 				// breaks one of the entities whilst editing.
-				if ( ( substr( $invalue, $i, 1 ) == ";" ) and ( strlen( $hexstring ) <= 6 ) ) {
+				if ( ( substr( $invalue, $i, 1 ) == ";" ) && ( strlen( $hexstring ) <= 6 ) ) {
 					$codepoint = hexdec( $hexstring );
 					$result .= codepointToUtf8( $codepoint );
 				} else {

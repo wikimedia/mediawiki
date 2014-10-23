@@ -3647,7 +3647,7 @@ class Title {
 			if ( $right == 'autoconfirmed' ) {
 				$right = 'editsemiprotected'; // B/C
 			}
-			if ( $tp and !$wgUser->isAllowed( $right ) ) {
+			if ( $tp && !$wgUser->isAllowed( $right ) ) {
 				$errors[] = array( 'cantmove-titleprotected' );
 			}
 		}
