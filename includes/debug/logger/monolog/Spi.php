@@ -29,73 +29,75 @@
  * for any channel that isn't explicitly named in the 'loggers' configuration
  * section.
  *
- * Configuration can be specified using the $wgMWLoggerMonologSpiConfig global
- * variable.
- *
- * Example:
+ * Configuration will most typically be provided in the $wgMWLoggerDefaultSpi
+ * global configuration variable used by MWLogger to construct its default SPI
+ * provider:
  * @code
- * $wgMWLoggerMonologSpiConfig = array(
- *     'loggers' => array(
- *         '@default' => array(
- *             'processors' => array( 'wiki', 'psr', 'pid', 'uid', 'web' ),
- *             'handlers'   => array( 'stream' ),
- *         ),
- *         'runJobs' => array(
- *             'processors' => array( 'wiki', 'psr', 'pid' ),
- *             'handlers'   => array( 'stream' ),
- *         )
- *     ),
- *     'processors' => array(
- *         'wiki' => array(
- *             'class' => 'MWLoggerMonologProcessor',
- *         ),
- *         'psr' => array(
- *             'class' => '\\Monolog\\Processor\\PsrLogMessageProcessor',
- *         ),
- *         'pid' => array(
- *             'class' => '\\Monolog\\Processor\\ProcessIdProcessor',
- *         ),
- *         'uid' => array(
- *             'class' => '\\Monolog\\Processor\\UidProcessor',
- *         ),
- *         'web' => array(
- *             'class' => '\\Monolog\\Processor\\WebProcessor',
- *         ),
- *     ),
- *     'handlers' => array(
- *         'stream' => array(
- *             'class'     => '\\Monolog\\Handler\\StreamHandler',
- *             'args'      => array( 'path/to/your.log' ),
- *             'formatter' => 'line',
- *         ),
- *         'redis' => array(
- *             'class'     => '\\Monolog\\Handler\\RedisHandler',
- *             'args'      => array( function() {
- *                     $redis = new Redis();
- *                     $redis->connect( '127.0.0.1', 6379 );
- *                     return $redis;
- *                 },
- *                 'logstash'
- *             ),
- *             'formatter' => 'logstash',
- *         ),
- *         'udp2log' => array(
- *             'class' => 'MWLoggerMonologHandler',
- *             'args' => array(
- *                 'udp://127.0.0.1:8420/mediawiki
- *             ),
- *             'formatter' => 'line',
- *         ),
- *     ),
- *     'formatters' => array(
- *         'line' => array(
- *             'class' => '\\Monolog\\Formatter\\LineFormatter',
- *          ),
- *          'logstash' => array(
- *              'class' => '\\Monolog\\Formatter\\LogstashFormatter',
- *              'args'  => array( 'mediawiki', php_uname( 'n' ), null, '', 1 ),
- *          ),
- *     ),
+ * $wgMWLoggerDefaultSpi = array(
+ *   'class' => 'MWLoggerMonologSpi',
+ *   'args' => array( array(
+ *       'loggers' => array(
+ *           '@default' => array(
+ *               'processors' => array( 'wiki', 'psr', 'pid', 'uid', 'web' ),
+ *               'handlers'   => array( 'stream' ),
+ *           ),
+ *           'runJobs' => array(
+ *               'processors' => array( 'wiki', 'psr', 'pid' ),
+ *               'handlers'   => array( 'stream' ),
+ *           )
+ *       ),
+ *       'processors' => array(
+ *           'wiki' => array(
+ *               'class' => 'MWLoggerMonologProcessor',
+ *           ),
+ *           'psr' => array(
+ *               'class' => '\\Monolog\\Processor\\PsrLogMessageProcessor',
+ *           ),
+ *           'pid' => array(
+ *               'class' => '\\Monolog\\Processor\\ProcessIdProcessor',
+ *           ),
+ *           'uid' => array(
+ *               'class' => '\\Monolog\\Processor\\UidProcessor',
+ *           ),
+ *           'web' => array(
+ *               'class' => '\\Monolog\\Processor\\WebProcessor',
+ *           ),
+ *       ),
+ *       'handlers' => array(
+ *           'stream' => array(
+ *               'class'     => '\\Monolog\\Handler\\StreamHandler',
+ *               'args'      => array( 'path/to/your.log' ),
+ *               'formatter' => 'line',
+ *           ),
+ *           'redis' => array(
+ *               'class'     => '\\Monolog\\Handler\\RedisHandler',
+ *               'args'      => array( function() {
+ *                       $redis = new Redis();
+ *                       $redis->connect( '127.0.0.1', 6379 );
+ *                       return $redis;
+ *                   },
+ *                   'logstash'
+ *               ),
+ *               'formatter' => 'logstash',
+ *           ),
+ *           'udp2log' => array(
+ *               'class' => 'MWLoggerMonologHandler',
+ *               'args' => array(
+ *                   'udp://127.0.0.1:8420/mediawiki
+ *               ),
+ *               'formatter' => 'line',
+ *           ),
+ *       ),
+ *       'formatters' => array(
+ *           'line' => array(
+ *               'class' => '\\Monolog\\Formatter\\LineFormatter',
+ *            ),
+ *            'logstash' => array(
+ *                'class' => '\\Monolog\\Formatter\\LogstashFormatter',
+ *                'args'  => array( 'mediawiki', php_uname( 'n' ), null, '', 1 ),
+ *            ),
+ *       ),
+ *   ) ),
  * );
  * @endcode
  *
@@ -119,14 +121,9 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 
 
 	/**
-	 * @param array $config Configuration data. Defaults to global
-	 *     $wgMWLoggerMonologSpiConfig
+	 * @param array $config Configuration data.
 	 */
-	public function __construct( $config = null ) {
-		if ( $config === null ) {
-			global $wgMWLoggerMonologSpiConfig;
-			$config = $wgMWLoggerMonologSpiConfig;
-		}
+	public function __construct( array $config ) {
 		$this->config = $config;
 		$this->reset();
 	}
@@ -166,8 +163,8 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 				$this->config['loggers'][$channel] :
 				$this->config['loggers']['@default'];
 
-				$monolog = $this->createLogger( $channel, $spec );
-				$this->singletons['loggers'][$channel] = new MWLogger( $monolog );
+			$monolog = $this->createLogger( $channel, $spec );
+			$this->singletons['loggers'][$channel] = new MWLogger( $monolog );
 		}
 
 		return $this->singletons['loggers'][$channel];
@@ -206,7 +203,8 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 	protected function getProcessor( $name ) {
 		if ( !isset( $this->singletons['processors'][$name] ) ) {
 			$spec = $this->config['processors'][$name];
-			$this->singletons['processors'][$name] = $this->instantiate( $spec );
+			$processor = ObjectFactory::getObjectFromSpec( $spec );
+			$this->singletons['processors'][$name] = $processor;
 		}
 		return $this->singletons['processors'][$name];
 	}
@@ -220,7 +218,7 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 	protected function getHandler( $name ) {
 		if ( !isset( $this->singletons['handlers'][$name] ) ) {
 			$spec = $this->config['handlers'][$name];
-			$handler = $this->instantiate( $spec );
+			$handler = ObjectFactory::getObjectFromSpec( $spec );
 			$handler->setFormatter( $this->getFormatter( $spec['formatter'] ) );
 			$this->singletons['handlers'][$name] = $handler;
 		}
@@ -236,7 +234,8 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 	protected function getFormatter( $name ) {
 		if ( !isset( $this->singletons['formatters'][$name] ) ) {
 			$spec = $this->config['formatters'][$name];
-			$this->singletons['formatters'][$name] = $this->instantiate( $spec );
+			$formatter = ObjectFactory::getObjectFromSpec( $spec );
+			$this->singletons['formatters'][$name] = $formatter;
 		}
 		return $this->singletons['formatters'][$name];
 	}
@@ -258,12 +257,12 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 		// If an argument is a callable, call it.
 		// This allows passing things such as a database connection to a logger.
 		$args = array_map( function ( $value ) {
-				if ( is_callable( $value ) ) {
-					return $value();
-				} else {
-					return $value;
-				}
-			}, $args );
+			if ( is_callable( $value ) ) {
+				return $value();
+			} else {
+				return $value;
+			}
+		}, $args );
 
 		if ( empty( $args ) ) {
 			$obj = new $clazz();
