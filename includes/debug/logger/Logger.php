@@ -198,11 +198,9 @@ class MWLogger implements \Psr\Log\LoggerInterface {
 	public static function getInstance( $channel ) {
 		if ( self::$spi === null ) {
 			global $wgMWLoggerDefaultSpi;
-			if ( is_callable( $wgMWLoggerDefaultSpi ) ) {
-				$provider = $wgMWLoggerDefaultSpi();
-			} else {
-				$provider = new $wgMWLoggerDefaultSpi();
-			}
+			$provider = ObjectFactory::getObjectFromSpec(
+				$wgMWLoggerDefaultSpi
+			);
 			self::registerProvider( $provider );
 		}
 
