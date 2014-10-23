@@ -4418,7 +4418,7 @@ class User implements IDBAccessObject {
 
 		$groups = $wgImplicitGroups;
 		# Deprecated, use $wgImplictGroups instead
-		wfRunHooks( 'UserGetImplicitGroups', array( &$groups ) );
+		wfRunHooks( 'UserGetImplicitGroups', array( &$groups ), '1.25' );
 
 		return $groups;
 	}
