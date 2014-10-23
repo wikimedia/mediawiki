@@ -27,6 +27,10 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'text';
 
+		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', array(
+			"BackupTextPassTestModel" => "BackupTextPassTestModelHandler"
+		) );
+
 		$ns = $this->getDefaultWikitextNS();
 
 		try {
@@ -61,7 +65,8 @@ class TextPassDumperTest extends DumpTestCase {
 			$this->pageId3 = $page->getId();
 			$page->doDeleteArticle( "Testing ;)" );
 
-			// Page from non-default namespace
+			// Page from non-default namespace and model.
+			// ExportTransform applies.
 
 			if ( $ns === NS_TALK ) {
 				// @todo work around this.
@@ -73,7 +78,8 @@ class TextPassDumperTest extends DumpTestCase {
 			$page = WikiPage::factory( $title );
 			list( $this->revId4_1, $this->textId4_1 ) = $this->addRevision( $page,
 				"Talk about BackupDumperTestP1 Text1",
-				"Talk BackupDumperTestP1 Summary1" );
+				"Talk BackupDumperTestP1 Summary1",
+				"BackupTextPassTestModel" );
 			$this->pageId4 = $page->getId();
 		} catch ( Exception $e ) {
 			// We'd love to pass $e directly. However, ... see
@@ -141,7 +147,10 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
-			"Talk about BackupDumperTestP1 Text1" );
+			"TALK ABOUT BACKUPDUMPERTESTP1 TEXT1",
+			false,
+			"BackupTextPassTestModel",
+			"text/plain" );
 		$this->assertPageEnd();
 
 		$this->assertDumpEnd();
@@ -209,7 +218,10 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
-			"Talk about BackupDumperTestP1 Text1" );
+			"TALK ABOUT BACKUPDUMPERTESTP1 TEXT1",
+			false,
+			"BackupTextPassTestModel",
+			"text/plain" );
 		$this->assertPageEnd();
 
 		$this->assertDumpEnd();
@@ -362,7 +374,10 @@ class TextPassDumperTest extends DumpTestCase {
 					$this->assertRevision( $this->revId4_1 + $i * self::$numOfRevs,
 						"Talk BackupDumperTestP1 Summary1",
 						$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
-						"Talk about BackupDumperTestP1 Text1" );
+						"TALK ABOUT BACKUPDUMPERTESTP1 TEXT1",
+						false,
+						"BackupTextPassTestModel",
+						"text/plain" );
 					$this->assertPageEnd();
 
 					$lookingForPage = 1;
@@ -566,8 +581,8 @@ class TextPassDumperTest extends DumpTestCase {
         <ip>127.0.0.1</ip>
       </contributor>
       <comment>Talk BackupDumperTestP1 Summary1</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
+      <model>BackupTextPassTestModel</model>
+      <format>text/plain</format>
       <text id="' . $this->textId4_1 . '" bytes="35" />
       <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
     </revision>
@@ -581,4 +596,16 @@ class TextPassDumperTest extends DumpTestCase {
 
 		return $fname;
 	}
+}
+
+class BackupTextPassTestModelHandler extends TextContentHandler {
+
+	public function __construct() {
+		parent::__construct( 'BackupTextPassTestModel' );
+	}
+
+	public function exportTransform( $text, $format = null ) {
+		return strtoupper( $text );
+	}
+
 }

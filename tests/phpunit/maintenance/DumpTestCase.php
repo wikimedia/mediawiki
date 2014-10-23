@@ -30,13 +30,15 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 *
 	 * @param Page $page Page to add the revision to
 	 * @param string $text Revisions text
-	 * @param string $summary Revisions summare
-	 * @return array
+	 * @param string $summary Revisions summary
+	 * @param string $model The model ID (defaults to wikitext)
+	 *
 	 * @throws MWException
+	 * @return array
 	 */
-	protected function addRevision( Page $page, $text, $summary ) {
+	protected function addRevision( Page $page, $text, $summary, $model = CONTENT_MODEL_WIKITEXT ) {
 		$status = $page->doEditContent(
-			ContentHandler::makeContent( $text, $page->getTitle() ),
+			ContentHandler::makeContent( $text, $page->getTitle(), $model ),
 			$summary
 		);
 
