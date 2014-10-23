@@ -654,7 +654,6 @@
 	"mergehistory-same-destination": "صفحتا المصدر والهدف لا يمكن أن تكونا نفس الشيء",
 	"mergehistory-reason": "السبب:",
 	"mergelog": "سجل الدمج",
-	"pagemerge-logentry": "دمج [[$1]] إلى [[$2]] (المراجعات حتى $3)",
 	"revertmerge": "إلغاء الدمج",
 	"mergelogpagetext": "بالأسفل قائمة بأحدث عمليات الدمج لتاريخ صفحة ما إلى أخرى.",
 	"history-title": " «$1»: تاريخ المراجعة",

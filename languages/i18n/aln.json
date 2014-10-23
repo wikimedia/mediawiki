@@ -558,7 +558,6 @@
 	"mergehistory-comment": "U bashkua [[:$1]] në [[:$2]]: $3",
 	"mergehistory-same-destination": "Burimi dhe faqja e përcaktimit nuk mund të jenë të njëjta",
 	"mergelog": "Regjistri i bashkimeve",
-	"pagemerge-logentry": "u bashkua [[$1]] në [[$2]] (versione deri më $3)",
 	"revertmerge": "Çkape",
 	"mergelogpagetext": "Më poshtë jepet një listë e bashkimeve së fundmi nga historiku i një faqeje në historikun e një faqeje tjetër.",
 	"history-title": "Historiku i redaktimeve për \"$1\"",

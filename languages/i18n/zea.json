@@ -529,7 +529,6 @@
 	"mergehistory-autocomment": "[[:$1]] saemenevoegd ni [[:$2]]",
 	"mergehistory-comment": "[[:$1]] saemenevoegd ni [[:$2]]: $3",
 	"mergelog": "Saemenvoehiengslogboek",
-	"pagemerge-logentry": "voehen [[$1]] ni [[$2]] saemen (versies tot en met $3)",
 	"revertmerge": "Saemenvoehieng onhedaen maeken",
 	"mergelogpagetext": "Ieronder zie je een lieste van recente saemenvoehiengen van een paginaheschiedenisse ni een aorn.",
 	"history-title": "Heschiedenisse van \"$1\"",

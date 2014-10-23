@@ -449,7 +449,6 @@
 	"movethispage": "си страницѧ прѣимєнованиѥ",
 	"pager-newer-n": "{{PLURAL:$1|нова 1|новꙑ $1|новъ $1}}",
 	"pager-older-n": "{{PLURAL:$1|давьнꙗ 1|давьни $1|давьн҄ь $1}}",
-	"booksources-go": "прѣиди",
 	"specialloguserlabel": "испльнитєл҄ь :",
 	"speciallogtitlelabel": "страницѧ или польꙃєватєлꙗ имѧ :",
 	"log": "їсторїѩ",
@@ -633,7 +632,6 @@
 	"exif-iimcategory-rel": "вѣра",
 	"exif-iimcategory-sci": "оучєниѥ и тєхнологїꙗ",
 	"exif-iimcategory-spo": "аѳлитїка",
-	"watchlistall2": "вьсꙗ",
 	"namespacesall": "вьсꙗ",
 	"monthsall": "вьсѩ",
 	"unit-pixel": "п҃ѯ",
@@ -661,6 +659,7 @@
 	"logentry-move-move": "$1 {{GENDER:$2|нарєчє}} страницѫ ⁖ $3 ⁖ имєньмь ⁖ $4 ⁖",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|нарєчє}} страницѫ ⁖ $3 ⁖ имєньмь ⁖ $4 ⁖ бєꙁ прѣнаправлєниꙗ сътворѥниꙗ",
 	"logentry-newusers-create": "польꙃєватєльско мѣсто ⁖ $1 ⁖ {{GENDER:$2|сътворѥно}} ѥстъ",
+	"revdelete-summary": "мѣнꙑ опьсаниѥ",
 	"searchsuggest-search": "исканиѥ",
 	"searchsuggest-containing": "сѥ дрьжащи···",
 	"api-error-unknownerror": "нєвѣдома блаꙁна : ⁖ $1 ⁖"

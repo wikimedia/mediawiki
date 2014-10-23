@@ -6,7 +6,8 @@
 			"Iketsi",
 			"Wantok",
 			"Wytukaze",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"सरोज कुमार ढकाल"
 		]
 	},
 	"tog-underline": "Putim lain ananit long ol link:",
@@ -429,7 +430,6 @@
 	"unusedcategoriestext": "Ol dispela grup istap yet, tasol i no gat wanpela pes o grup i stap insait long ol.",
 	"booksources": "Ol as bilong buk",
 	"booksources-search-legend": "Painim long ol buk as",
-	"booksources-go": "Go",
 	"specialloguserlabel": "Yusa:",
 	"speciallogtitlelabel": "Nem:",
 	"log": "Ol ripot",
@@ -463,7 +463,7 @@
 	"unwatchthispage": "Pinis long lukautim",
 	"watchlist-details": "$1 pes istap long lukautbuk (dispela namba i no kaunim ol pes bilong toktok).",
 	"wlheader-showupdated": "Ol pes i senis pinis bihain long taim yu lukim ol igat nem i '''strongpela'''",
-	"wlshowlast": "Lukim dispela $1 aua $2 de $3",
+	"wlshowlast": "Lukim dispela $1 aua $2 de",
 	"watchlist-options": "Ol laik bilong Lukautbuk",
 	"watching": "Wet liklik, i go insait long lukautbuk nau...",
 	"unwatching": "Wet liklik, i raus nau long lukautbuk...",
@@ -581,7 +581,6 @@
 	"metadata": "Metadata",
 	"exif-imagedescription": "Nem bilong piksa",
 	"exif-meteringmode-255": "Narapela",
-	"watchlistall2": "olgeta",
 	"namespacesall": "ol",
 	"monthsall": "olgeta",
 	"scarytranscludetoolong": "[URL i longpela tumas]",

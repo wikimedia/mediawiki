@@ -1689,7 +1689,7 @@
 	"listusers-blocked": "（已封禁）",
 	"activeusers": "活跃用户列表",
 	"activeusers-intro": "这是在过去$1{{PLURAL:$1|天}}有过某种活动的用户的列表。",
-	"activeusers-count": "过去{{PLURAL:$3|$3天}}有$1个{{PLURAL:$1|操作}}",
+	"activeusers-count": "过去$3天有$1次操作",
 	"activeusers-from": "显示用户开始于：",
 	"activeusers-hidebots": "隐藏机器人",
 	"activeusers-hidesysops": "隐藏管理员",

@@ -69,7 +69,8 @@
 			"Vengir",
 			"Darellur",
 			"Michał Sobkowski",
-			"Py64"
+			"Py64",
+			"Nanaki"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -717,8 +718,8 @@
 	"content-model-text": "zwykły tekst",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
-	"duplicate-args-category": "Strony używają duplikaty argumentów w odwołaniach do szablonów.",
-	"duplicate-args-category-desc": "Strona zawiera szablony, które używają duplikaty argumentów, jak <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> lub <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>",
+	"duplicate-args-category": "Strony zawierające duplikaty argumentów w odwołaniach do szablonów",
+	"duplicate-args-category-desc": "Strona zawiera szablony, które używają duplikatów argumentów, jak <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> lub <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.\n\nPowinno być mniej niż $2 {{PLURAL:$2|wywołanie|wywołania|wywołań}}, a obecnie {{PLURAL:$1|jest $1 wywołanie|są $1 wywołania|jest $1 wywołań}}.",
 	"expensive-parserfunction-category": "Strony ze zbyt dużą liczbą wywołań kosztownych funkcji parsera",
 	"post-expand-template-inclusion-warning": "Uwaga – zbyt duża wielkość wykorzystanych szablonów.\nNiektóre szablony nie zostaną użyte.",
@@ -1269,7 +1270,7 @@
 	"illegalfilename": "Nazwa pliku „$1” zawiera znaki niedozwolone w tytułach stron.\nZmień nazwę pliku i prześlij go ponownie.",
 	"filename-toolong": "Nazwy plików nie mogą być dłuższe niż 240 bajtów.",
 	"badfilename": "Nazwa pliku została zmieniona na „$1”.",
-	"filetype-mime-mismatch": "Rozszerzenie pliku „.$1“ nie pasuje do wykrytego typu MIME $2.",
+	"filetype-mime-mismatch": "Rozszerzenie pliku „.$1” nie pasuje do wykrytego typu MIME $2.",
 	"filetype-badmime": "Przesyłanie plików z typem MIME „$1” jest niedozwolone.",
 	"filetype-bad-ie-mime": "Nie można załadować tego pliku, ponieważ Internet Explorer wykryje go jako „$1”, a taki typ pliku jest zabronioniony jako potencjalnie niebezpieczny.",
 	"filetype-unwanted-type": "'''„.$1”''' nie jest zalecanym typem pliku. Pożądane są pliki w {{PLURAL:$3|formacie|formatach}} $2.",

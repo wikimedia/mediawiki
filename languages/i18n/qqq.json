@@ -2684,7 +2684,7 @@
 	"pageinfo-language": "Language in which the page content is written.",
 	"pageinfo-content-model": "The model in which the page content is written.\n\nUsed as label at [{{fullurl:Main Page|action=info}} action=info]. Followed by one of the following messages:\n* {{msg-mw|Content-model-wikitext}}\n* {{msg-mw|Content-model-javascript}}\n* {{msg-mw|Content-model-css}}\n* {{msg-mw|Content-model-text}}",
 	"pageinfo-robot-policy": "The search engine status of the page.\n\nUsed as label. Followed by any one of the following messages:\n*{{msg-mw|Pageinfo-robot-index}}\n*{{msg-mw|Pageinfo-robot-noindex}}",
-	"pageinfo-robot-index": "An indication that the page is indexable by search engines, that is listed in their search results.\n\nPreceded by the label {{msg-mw|Pageinfo-robot-policy}}.",
+	"pageinfo-robot-index": "An indication that the page is indexable by search engines, that is listed in their search results.\n\nPreceded by the label {{msg-mw|Pageinfo-robot-policy}}.\n{{Identical|Allowed}}",
 	"pageinfo-robot-noindex": "An indication that the page is not indexable (that is, is not listed on the results page of a search engine).\n\nPreceded by the label {{msg-mw|Pageinfo-robot-policy}}.",
 	"pageinfo-watchers": "Header of the row in the first table of the info action.",
 	"pageinfo-few-watchers": "Message displayed when there are fewer than $wgUnwatchedPageThreshold watchers. $1 is the value of $wgUnwatchedPageThreshold.",
