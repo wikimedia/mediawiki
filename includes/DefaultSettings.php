@@ -4484,8 +4484,8 @@ $wgGroupPermissions['*']['editmyuserjs'] = true;
 $wgGroupPermissions['*']['viewmywatchlist'] = true;
 $wgGroupPermissions['*']['editmywatchlist'] = true;
 $wgGroupPermissions['*']['viewmyprivateinfo'] = true;
-$wgGroupPermissions['*']['editmyprivateinfo'] = true;
-$wgGroupPermissions['*']['editmyoptions'] = true;
+$wgGroupPermissions['*']['editmyprivateinfo'] = true; //controls whether a user may change their private information.
+$wgGroupPermissions['*']['editmyoptions'] = true; //controls whether a user may change their preferences.
 #$wgGroupPermissions['*']['patrolmarks'] = false; // let anons see what was patrolled
 
 // Implicit group for all logged-in accounts
