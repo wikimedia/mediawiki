@@ -47,6 +47,9 @@ Options:
   --prefetch=<type>:<file> Use a prior dump file as a text source, to save
 			  pressure on the database.
 			  (Requires the XMLReader extension)
+  --force-transform Apply export transformations on prefetched text.
+	          Without this option, export transformatiosn are only applied to
+	          text loaded from the database.
   --maxtime=<minutes> Write out checkpoint file after this many minutes (writing
 	          out complete page, closing xml file properly, and opening new one
 	          with header).  This option requires the checkpointfile option.
