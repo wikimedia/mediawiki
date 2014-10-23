@@ -225,6 +225,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 					} else {
 						$out .= '<li>[[' . htmlspecialchars( $s->page_title ) . "]]</li>\n";
 					}
+					$n++;
 				}
 				$out .= Xml::closeElement( 'ul' );
 			} else {
