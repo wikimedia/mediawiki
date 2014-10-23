@@ -37,27 +37,15 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 	 * @return array
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
-		global $wgUser;
-
-		$userName = $context->getUser();
-		if ( $userName === null ) {
-			return array();
-		}
-
 		$useSiteJs = $this->getConfig()->get( 'UseSiteJs' );
 		$useSiteCss = $this->getConfig()->get( 'UseSiteCss' );
 		if ( !$useSiteJs && !$useSiteCss ) {
 			return array();
 		}
 
-		// Use $wgUser is possible; allows to skip a lot of code
-		if ( is_object( $wgUser ) && $wgUser->getName() == $userName ) {
-			$user = $wgUser;
-		} else {
-			$user = User::newFromName( $userName );
-			if ( !$user instanceof User ) {
-				return array();
-			}
+		$user = $context->getUserObj();
+		if ( !$user || $user->isAnon() ) {
+			return array();
 		}
 
 		$pages = array();

@@ -44,8 +44,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$hash = $context->getHash();
 		if ( !isset( $this->modifiedTime[$hash] ) ) {
-			global $wgUser;
-			$this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
+			$this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $context->getUserObj()->getTouched() );
 		}
 
 		return $this->modifiedTime[$hash];
@@ -56,9 +55,8 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		global $wgUser;
 		return Xml::encodeJsCall( 'mw.user.options.set',
-			array( $wgUser->getOptions() ),
+			array( $context->getUserObj()->getOptions() ),
 			ResourceLoader::inDebugMode()
 		);
 	}
