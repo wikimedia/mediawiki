@@ -505,6 +505,9 @@ changes to languages because of Bugzilla reports.
 * Removed maintenance/purgeOldText.inc and the PurgeRedundantText() function
   it contained (superseded by Maintenance::purgeRedundantText() in 1.16).
   The purgeOldText.php maintenance script has been retained.
+* PHPUnit tests can be found by directory discovery, by adding the directory
+  path from your UnitTestsList callback. Older versions of MediaWiki core will
+  barf at this usage.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
