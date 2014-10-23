@@ -50,10 +50,8 @@ a more feature rich logging configuration.
 
 == Globals ==
 ; $wgMWLoggerDefaultSpi
-: Default service provider interface to use with MWLogger
-; $wgMWLoggerMonologSpiConfig
-: Configuration for MWLoggerMonologSpi describing how to configure the
-  Monolog logger instances.
+: Specification for creating the default service provider interface to use
+  with MWLogger
 
 [0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
 [1]: https://github.com/Seldaek/monolog

@@ -5218,38 +5218,21 @@ $wgDebugLogGroups = array();
 /**
  * Default service provider for creating MWLogger instances.
  *
- * This can either be the name of a class implementing the MWLoggerSpi
- * interface with a zero argument constructor or a callable that will return
- * an MWLoggerSpi instance. Alternately the MWLogger::registerProvider method
- * can be called to inject an MWLoggerSpi instance into MWLogger and bypass
- * the use of this configuration variable.
+ * The value should be an array suitable for use with
+ * ObjectFactory::getObjectFromSpec(). The created object is expected to
+ * implement the MWLoggerSpi interface. See ObjectFactory for additional
+ * details.
+ *
+ * Alternately the MWLogger::registerProvider method can be called to inject
+ * an MWLoggerSpi instance into MWLogger and bypass the use of this
+ * configuration variable entirely.
  *
  * @since 1.25
- * @var $wgMWLoggerDefaultSpi string|callable
+ * @var array $wgMWLoggerDefaultSpi
  * @see MwLogger
  */
-$wgMWLoggerDefaultSpi = 'MWLoggerNullSpi';
-
-/**
- * Configuration for MWLoggerMonologSpi logger factory.
- *
- * Default configuration installs a null handler that will silently discard
- * all logging events.
- *
- * @since 1.25
- * @see MWLoggerMonologSpi
- */
-$wgMWLoggerMonologSpiConfig = array(
-	'loggers' => array(
-		'@default' => array(
-			'handlers' => array( 'null' ),
-		),
-	),
-	'handlers' => array(
-		'null' => array(
-			'class' => '\\Monolog\\Logger\\NullHandler',
-		),
-	),
+$wgMWLoggerDefaultSpi = array(
+	'class' => 'MWLoggerNullSpi',
 );
 
 /**
