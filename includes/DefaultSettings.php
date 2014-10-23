@@ -3079,6 +3079,7 @@ $wgEditPageFrameOptions = 'DENY';
  *   - 'DENY': Do not allow framing. This is recommended for most wikis.
  *   - 'SAMEORIGIN': Allow framing by pages on the same domain.
  *   - false: Allow all framing.
+ * Note: $wgBreakFrames will override this for human formatted API output.
  */
 $wgApiFrameOptions = 'DENY';
 
