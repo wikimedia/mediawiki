@@ -7,11 +7,8 @@
  */
 class TextContentTest extends MediaWikiLangTestCase {
 	protected $context;
-	protected $savedContentGetParserOutput;
 
 	protected function setUp() {
-		global $wgHooks;
-
 		parent::setUp();
 
 		// Anon user
@@ -32,24 +29,8 @@ class TextContentTest extends MediaWikiLangTestCase {
 			'wgUseTidy' => false,
 			'wgAlwaysUseTidy' => false,
 			'wgCapitalLinks' => true,
+			'wgHooks' => array(), // bypass hook ContentGetParserOutput that force custom rendering
 		) );
-
-		// bypass hooks that force custom rendering
-		if ( isset( $wgHooks['ContentGetParserOutput'] )  ) {
-			$this->savedContentGetParserOutput = $wgHooks['ContentGetParserOutput'];
-			unset( $wgHooks['ContentGetParserOutput'] );
-		}
-	}
-
-	public function teardown() {
-		global $wgHooks;
-
-		// restore hooks that force custom rendering
-		if ( $this->savedContentGetParserOutput !== null ) {
-			$wgHooks['ContentGetParserOutput'] = $this->savedContentGetParserOutput;
-		}
-
-		parent::teardown();
 	}
 
 	public function newContent( $text ) {
