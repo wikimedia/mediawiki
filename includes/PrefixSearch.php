@@ -60,10 +60,12 @@ abstract class PrefixSearch {
 		$title = Title::newFromText( $search );
 		if ( $title && !$title->isExternal() ) {
 			$ns = array( $title->getNamespace() );
+			$search = $title->getText();
 			if ( $ns[0] == NS_MAIN ) {
 				$ns = $namespaces; // no explicit prefix, use default namespaces
+				wfRunHooks( 'PrefixSearchExtractNamespace', array( &$ns, &$search ) );
 			}
-			return $this->searchBackend( $ns, $title->getText(), $limit );
+			return $this->searchBackend( $ns, $search, $limit );
 		}
 
 		// Is this a namespace prefix?
@@ -74,6 +76,8 @@ abstract class PrefixSearch {
 		{
 			$namespaces = array( $title->getNamespace() );
 			$search = '';
+		} else {
+			wfRunHooks( 'PrefixSearchExtractNamespace', array( &$namespaces, &$search ) );
 		}
 
 		return $this->searchBackend( $namespaces, $search, $limit );
