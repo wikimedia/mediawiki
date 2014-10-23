@@ -569,7 +569,7 @@ class TextPassDumperTest extends DumpTestCase {
       <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text id="' . $this->textId4_1 . '" bytes="35" />
+      <text id="' . $this->textId4_1 . '" bytes="35" model="wikitext" format="text/x-wiki" />
     </revision>
   </page>
 ';
