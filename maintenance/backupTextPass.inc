@@ -422,7 +422,33 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	/**
+	 * Applies applicable export transformations to $text.
+	 *
+	 * @param string $text
+	 * @param string $model
+	 * @param string|null $format
+	 *
+	 * @return string
+	 */
+	private function exportTransform( $text, $model, $format = null ) {
+		try {
+			$handler = ContentHandler::getForModelID( $model );
+			$text = $handler->exportTransform( $text, $format );
+		}
+		catch ( MWException $ex ) {
+			$this->progress(
+				"Unable to apply export transformation for content model '$model': " .
+				$ex->getMessage()
+			);
+		}
+
+		return $text;
+	}
+
+	/**
 	 * Tries to get the revision text for a revision id.
+	 * Export transformations are applied if the content model can is given or can be
+	 * determined from the database.
 	 *
 	 * Upon errors, retries (Up to $this->maxFailures tries each call).
 	 * If still no good revision get could be found even after this retrying, "" is returned.
@@ -431,11 +457,14 @@ class TextPassDumper extends BackupDumper {
 	 * is thrown.
 	 *
 	 * @param string $id The revision id to get the text for
+	 * @param string|bool|null $model The content model used to determine applicable export transformations.
+	 *      If $model is null, it will be determined from the database.
+	 * @param string|null $format The content format used when applying export transformations.
 	 *
-	 * @return string The revision text for $id, or ""
 	 * @throws MWException
+	 * @return string The revision text for $id, or ""
 	 */
-	function getText( $id ) {
+	function getText( $id, $model = null, $format = null ) {
 		global $wgContentHandlerUseDB;
 
 		$prefetchNotTried = true; // Whether or not we already tried to get the text via prefetch.
@@ -453,6 +482,24 @@ class TextPassDumper extends BackupDumper {
 		$oldConsecutiveFailedTextRetrievals = $consecutiveFailedTextRetrievals;
 		$consecutiveFailedTextRetrievals = 0;
 
+		if ( $model === null && $wgContentHandlerUseDB ) {
+			$row = $this->db->selectRow(
+				'revision',
+				array( 'rev_content_model', 'rev_content_format' ),
+				array( 'rev_id' => $this->thisRev ),
+				__METHOD__
+			);
+
+			if ( $row ) {
+				$model = $row->rev_content_model;
+				$format = $row->rev_content_format;
+			}
+		}
+
+		if ( $model === null || $model === '' ) {
+			$model = false;
+		}
+
 		while ( $failures < $this->maxFailures ) {
 
 			// As soon as we found a good text for the $id, we will return immediately.
@@ -469,8 +516,18 @@ class TextPassDumper extends BackupDumper {
 					$tryIsPrefetch = true;
 					$text = $this->prefetch->prefetch( intval( $this->thisPage ),
 						intval( $this->thisRev ) );
+
 					if ( $text === null ) {
 						$text = false;
+					}
+
+					if ( is_string( $text ) && $model !== false ) {
+						// Apply export transformation to text coming from an old dump.
+						// The purpose of this transformation is to convert up from legacy
+						// formats, which may still be used in the older dump that is used
+						// for pre-fetching. Applying the transformation again should not
+						// interfere with content that is already in the correct form.
+						$text = $this->exportTransform( $text, $model, $format );
 					}
 				}
 
@@ -481,6 +538,12 @@ class TextPassDumper extends BackupDumper {
 						$text = $this->getTextSpawned( $id );
 					} else {
 						$text = $this->getTextDb( $id );
+					}
+
+					if ( $text !== false && $model !== false ) {
+						// Apply export transformation to text coming from the database.
+						// Prefetched text should already have transformations applied.
+						$text = $this->exportTransform( $text, $model, $format );
 					}
 
 					// No more checks for texts from DB for now.
@@ -504,21 +567,8 @@ class TextPassDumper extends BackupDumper {
 					throw new MWException( "No database available" );
 				}
 
-				$revLength = strlen( $text );
-				if ( $wgContentHandlerUseDB ) {
-					$row = $this->db->selectRow(
-						'revision',
-						array( 'rev_len', 'rev_content_model' ),
-						array( 'rev_id' => $revID ),
-						__METHOD__
-					);
-					if ( $row ) {
-						// only check the length for the wikitext content handler,
-						// it's a wasted (and failed) check otherwise
-						if ( $row->rev_content_model == CONTENT_MODEL_WIKITEXT ) {
-							$revLength = $row->rev_len;
-						}
-					}
+				if ( $model !== CONTENT_MODEL_WIKITEXT ) {
+					$revLength = strlen( $text );
 				} else {
 					$revLength = $this->db->selectField( 'revision', 'rev_len', array( 'rev_id' => $revID ) );
 				}
@@ -757,7 +807,11 @@ class TextPassDumper extends BackupDumper {
 		}
 
 		if ( $name == "text" && isset( $attribs['id'] ) ) {
-			$text = $this->getText( $attribs['id'] );
+			$id = $attribs['id'];
+			$model = isset( $attribs['model'] ) ? $attribs['model'] : null;
+			$format = isset( $attribs['format'] ) ? $attribs['format'] : null;
+
+			$text = $this->getText( $id, $model, $format );
 			$this->openElement = array( $name, array( 'xml:space' => 'preserve' ) );
 			if ( strlen( $text ) > 0 ) {
 				$this->characterData( $parser, $text );

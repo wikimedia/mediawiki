@@ -697,6 +697,11 @@ class XmlDumpWriter {
 		$out .= "      " . Xml::element( 'format', null, strval( $content_format ) ) . "\n";
 
 		$text = '';
+		$textAttribs = array(
+			'xml:space' => 'preserve',
+			'bytes' => intval( $row->rev_len ),
+		);
+
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
 			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif ( isset( $row->old_text ) ) {
@@ -704,12 +709,20 @@ class XmlDumpWriter {
 			$text = strval( Revision::getRevisionText( $row ) );
 			$text = $content_handler->exportTransform( $text, $content_format );
 			$out .= "      " . Xml::elementClean( 'text',
-				array( 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ),
+				$textAttribs,
 				strval( $text ) ) . "\n";
 		} else {
 			// Stub output
+			$textAttribs['id'] = $row->rev_text_id;
+
+			// NOTE: Including the model and format attributes here is a hack to work around
+			// bug 72417 in order to fix bug 72361. It's technically a violation of
+			// the current XML schema <https://www.mediawiki.org/xml/export-0.9.xsd>.
+			$textAttribs['model'] = $content_model;
+			$textAttribs['format'] = $content_format;
+
 			$out .= "      " . Xml::element( 'text',
-				array( 'id' => $row->rev_text_id, 'bytes' => intval( $row->rev_len ) ),
+				$textAttribs,
 				"" ) . "\n";
 		}
 

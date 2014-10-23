@@ -568,7 +568,7 @@ class TextPassDumperTest extends DumpTestCase {
       <comment>Talk BackupDumperTestP1 Summary1</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text id="' . $this->textId4_1 . '" bytes="35" />
+      <text id="' . $this->textId4_1 . '" bytes="35" model="wikitext" format="text/x-wiki" />
       <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
     </revision>
   </page>
