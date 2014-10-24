@@ -621,8 +621,9 @@ class SpecialSearch extends SpecialPage {
 		$redirectText = $result->getRedirectSnippet();
 		$sectionTitle = $result->getSectionTitle();
 		$sectionText = $result->getSectionSnippet();
-		$redirect = '';
+		$categorySnippet = $result->getCategorySnippet();
 
+		$redirect = '';
 		if ( !is_null( $redirectTitle ) ) {
 			if ( $redirectText == '' ) {
 				$redirectText = null;
@@ -635,7 +636,6 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$section = '';
-
 		if ( !is_null( $sectionTitle ) ) {
 			if ( $sectionText == '' ) {
 				$sectionText = null;
@@ -644,6 +644,13 @@ class SpecialSearch extends SpecialPage {
 			$section = "<span class='searchalttitle'>" .
 				$this->msg( 'search-section' )->rawParams(
 					Linker::linkKnown( $sectionTitle, $sectionText ) )->text() .
+				"</span>";
+		}
+
+		$category = '';
+		if ( $categorySnippet ) {
+			$category = "<span class='searchalttitle'>" .
+				$this->msg( 'search-category' )->rawParams( $categorySnippet )->text() .
 				"</span>";
 		}
 
@@ -691,7 +698,7 @@ class SpecialSearch extends SpecialPage {
 						$thumb->toHtml( array( 'desc-link' => true ) ) .
 						'</td>' .
 						'<td style="vertical-align: top;">' .
-						"{$link} {$redirect} {$section} {$fileMatch}" .
+						"{$link} {$redirect} {$category} {$section} {$fileMatch}" .
 						$extract .
 						"<div class='mw-search-result-data'>{$desc} - {$date}</div>" .
 						'</td>' .
@@ -712,7 +719,7 @@ class SpecialSearch extends SpecialPage {
 			&$html
 		) ) ) {
 			$html = "<li><div class='mw-search-result-heading'>" .
-				"{$link} {$redirect} {$section} {$fileMatch}</div> {$extract}\n" .
+				"{$link} {$redirect} {$category} {$section} {$fileMatch}</div> {$extract}\n" .
 				"<div class='mw-search-result-data'>{$size} - {$date}</div>" .
 				"</li>\n";
 		}
