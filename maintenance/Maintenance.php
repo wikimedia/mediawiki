@@ -21,7 +21,7 @@
  */
 
 // Make sure we're on PHP5.3.2 or better
-if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.2' ) < 0 ) {
+if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.3' ) < 0 ) {
 	// We need to use dirname( __FILE__ ) here cause __DIR__ is PHP5.3+
 	require_once dirname( __FILE__ ) . '/../includes/PHPVersionError.php';
 	wfPHPVersionError( 'cli' );
