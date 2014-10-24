@@ -226,7 +226,8 @@ class SkinTemplate extends Skin {
 
 		$oldContext = null;
 		if ( $out !== null ) {
-			// @todo Add wfDeprecated in 1.20
+			// Deprecated since 1.20, note added in 1.25
+			wfDeprecated( __METHOD__, '1.25' );
 			$oldContext = $this->getContext();
 			$this->setContext( $out->getContext() );
 		}
