@@ -113,6 +113,7 @@
 	"apihelp-expandtemplates-param-prop": "{{doc-apihelp-param|expandtemplates|prop}}",
 	"apihelp-expandtemplates-param-includecomments": "{{doc-apihelp-param|expandtemplates|includecomments}}",
 	"apihelp-expandtemplates-param-generatexml": "{{doc-apihelp-param|expandtemplates|generatexml}}",
+	"apihelp-expandtemplates-param-preprocessflags": "{{doc-apihelp-param|expandtemplates|preprocessflags}}",
 	"apihelp-expandtemplates-example-simple": "{{doc-apihelp-example|expandtemplates}}",
 
 	"apihelp-feedcontributions-description": "{{doc-apihelp-description|feedcontributions}}",
@@ -262,6 +263,7 @@
 	"apihelp-parse-param-disabletoc": "{{doc-apihelp-param|parse|disabletoc}}",
 	"apihelp-parse-param-contentformat": "{{doc-apihelp-param|parse|contentformat}}",
 	"apihelp-parse-param-contentmodel": "{{doc-apihelp-param|parse|contentmodel}}",
+	"apihelp-parse-param-preprocessflags": "{{doc-apihelp-param|parse|preprocessflags}}",
 	"apihelp-parse-example-page": "{{doc-apihelp-example|parse}}",
 	"apihelp-parse-example-text": "{{doc-apihelp-example|parse}}",
 	"apihelp-parse-example-texttitle": "{{doc-apihelp-example|parse}}",
@@ -778,6 +780,7 @@
 	"apihelp-query+revisions-param-diffto": "{{doc-apihelp-param|query+revisions|diffto}}",
 	"apihelp-query+revisions-param-difftotext": "{{doc-apihelp-param|query+revisions|difftotext}}",
 	"apihelp-query+revisions-param-contentformat": "{{doc-apihelp-param|query+revisions|contentformat}}",
+	"apihelp-query+revisions-param-preprocessflags": "{{doc-apihelp-param|query+revisions|preprocessflags}}",
 	"apihelp-query+revisions-example-content": "{{doc-apihelp-example|query+revisions}}",
 	"apihelp-query+revisions-example-last5": "{{doc-apihelp-example|query+revisions}}",
 	"apihelp-query+revisions-example-first5": "{{doc-apihelp-example|query+revisions}}",
