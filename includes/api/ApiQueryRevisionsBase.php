@@ -32,12 +32,12 @@
 abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	protected $limit, $diffto, $difftotext, $expandTemplates, $generateXML, $section,
-		$parseContent, $fetchContent, $contentFormat, $setParsedLimit = true;
+		$parseContent, $fetchContent, $contentFormat, $setParsedLimit = true, $preprocessflags;
 
 	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
 		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
 		$fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-		$fld_content = false, $fld_tags = false, $fld_contentmodel = false;
+		$fld_content = false, $fld_tags = false, $fld_contentmodel = false, $fld_parsetree;
 
 	public function execute() {
 		$this->run();
@@ -104,6 +104,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$this->fld_userid = isset( $prop['userid'] );
 		$this->fld_user = isset( $prop['user'] );
 		$this->fld_tags = isset( $prop['tags'] );
+		$this->fld_parsetree = isset( $prop['parsetree'] );
 
 		if ( !empty( $params['contentformat'] ) ) {
 			$this->contentFormat = $params['contentformat'];
@@ -112,13 +113,14 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$this->limit = $params['limit'];
 
 		$this->fetchContent = $this->fld_content || !is_null( $this->diffto )
-			|| !is_null( $this->difftotext );
+			|| !is_null( $this->difftotext ) || $this->fld_parsetree;
 
 		$smallLimit = false;
 		if ( $this->fetchContent ) {
 			$smallLimit = true;
 			$this->expandTemplates = $params['expandtemplates'];
 			$this->generateXML = $params['generatexml'];
+			$this->preprocessflags = (array)$params['preprocessflags'];
 			$this->parseContent = $params['parse'];
 			if ( $this->parseContent ) {
 				// Must manually initialize unset limit
@@ -273,19 +275,25 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$vals['textmissing'] = '';
 			}
 		}
-		if ( $this->fld_content && $content ) {
-			$text = null;
-
-			if ( $this->generateXML ) {
+		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
+			if ( !$this->fld_parsetree ) {
+				$this->logFeatureUsage( 'action=query&prop=revisions+base&generatexml' );
+			}
+			if ( $content ) {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$t = $content->getNativeData(); # note: don't set $text
+
+					$preflags = 0;
+					if ( $this->fld_parsetree && in_array( 'forinclusion', $this->preprocessflags ) ) {
+						$preflags |= Parser::PTD_FOR_INCLUSION;
+					}
 
 					$wgParser->startExternalParse(
 						$title,
 						ParserOptions::newFromContext( $this->getContext() ),
 						Parser::OT_PREPROCESS
 					);
-					$dom = $wgParser->preprocessToDom( $t );
+					$dom = $wgParser->preprocessToDom( $t, $preflags );
 					if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 						$xml = $dom->saveXML();
 					} else {
@@ -299,6 +307,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						" uses content model " . $content->getModel() );
 				}
 			}
+		}
+
+		if ( $this->fld_content && $content ) {
+			$text = null;
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
 				#XXX: implement template expansion for all content types in ContentHandler?
@@ -431,7 +443,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'comment',
 					'parsedcomment',
 					'content',
-					'tags'
+					'tags',
+					'parsetree',
 				),
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-prop',
 			),
@@ -448,6 +461,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			),
 			'generatexml' => array(
 				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-generatexml',
 			),
 			'parse' => array(
@@ -470,6 +484,13 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
+			),
+			'preprocessflags' => array(
+				ApiBase::PARAM_TYPE => array(
+					'forinclusion',
+				),
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-preprocessflags',
 			),
 		);
 	}
