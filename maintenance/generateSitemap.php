@@ -181,7 +181,14 @@ class GenerateSitemap extends Maintenance {
 		$this->setNamespacePriorities();
 		$this->url_limit = 50000;
 		$this->size_limit = pow( 2, 20 ) * 10;
-		$this->fspath = self::init_path( $this->getOption( 'fspath', getcwd() ) );
+
+		# Create directory if needed
+		$fspath = $this->getOption( 'fspath', getcwd() );
+		if ( !wfMkdirParents( $fspath, null, __METHOD__ ) ) {
+			$this->error( "Can not create directory $fspath.", 1 );
+		}
+
+		$this->fspath = realpath( $fspath ) . DIRECTORY_SEPARATOR;
 		$this->urlpath = $this->getOption( 'urlpath', "" );
 		if ( $this->urlpath !== "" && substr( $this->urlpath, -1 ) !== '/' ) {
 			$this->urlpath .= '/';
@@ -236,20 +243,6 @@ class GenerateSitemap extends Maintenance {
 				$this->priorities[$namespace] = $priority;
 			}
 		}
-	}
-
-	/**
-	 * Create directory if it does not exist and return pathname with a trailing slash
-	 * @param string $fspath
-	 * @return null|string
-	 */
-	private static function init_path( $fspath ) {
-		# Create directory if needed
-		if ( $fspath && !is_dir( $fspath ) ) {
-			wfMkdirParents( $fspath, null, __METHOD__ ) or die( "Can not create directory $fspath.\n" );
-		}
-
-		return realpath( $fspath ) . DIRECTORY_SEPARATOR;
 	}
 
 	/**
