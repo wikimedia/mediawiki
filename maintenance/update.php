@@ -26,7 +26,7 @@
  * @ingroup Maintenance
  */
 
-if ( !function_exists( 'version_compare' ) || ( version_compare( PHP_VERSION, '5.3.2' ) < 0 ) ) {
+if ( !function_exists( 'version_compare' ) || ( version_compare( PHP_VERSION, '5.3.3' ) < 0 ) ) {
 	require dirname( __FILE__ ) . '/../includes/PHPVersionError.php';
 	wfPHPVersionError( 'cli' );
 }

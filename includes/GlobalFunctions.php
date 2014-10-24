@@ -30,7 +30,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 /**
  * Compatibility functions
  *
- * We support PHP 5.3.2 and up.
+ * We support PHP 5.3.3 and up.
  * Re-implementations of newer functions or functions in non-standard
  * PHP extensions may be included here.
  */
@@ -1124,13 +1124,7 @@ function wfLogDBError( $text ) {
 			$logDBErrorTimeZoneObject = new DateTimeZone( $wgDBerrorLogTZ );
 		}
 
-		// Workaround for https://bugs.php.net/bug.php?id=52063
-		// Can be removed when min PHP > 5.3.2
-		if ( $logDBErrorTimeZoneObject === null ) {
-			$d = date_create( "now" );
-		} else {
-			$d = date_create( "now", $logDBErrorTimeZoneObject );
-		}
+		$d = date_create( "now", $logDBErrorTimeZoneObject );
 
 		$date = $d->format( 'D M j G:i:s T Y' );
 
