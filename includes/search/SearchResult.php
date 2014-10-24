@@ -186,6 +186,13 @@ class SearchResult {
 	}
 
 	/**
+	 * @return string Highlighted relevant category name or '' if none or not supported
+	 */
+	public function getCategorySnippet() {
+		return '';
+	}
+
+	/**
 	 * @return string Timestamp
 	 */
 	function getTimestamp() {
