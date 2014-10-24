@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+2: Siebrand <siebrand@kitano.nl>
+Code-Review+1: Springle <springle@wikimedia.org>
+Code-Review+1: Wmat <btraynor@gmail.com>
+Submitted-by: jenkins-bot
+Submitted-at: Fri, 24 Oct 2014 22:23:36 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/161491
+Project: mediawiki/core
+Branch: refs/heads/master
