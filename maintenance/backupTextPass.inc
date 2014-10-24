@@ -429,13 +429,20 @@ class TextPassDumper extends BackupDumper {
 	 * @param string $text
 	 * @param string $model
 	 * @param string|null $format
+	 * @param string|null|false &$sha1Update If not false, receives the updated SHA1, if an update is required.
 	 *
 	 * @return string
 	 */
-	private function exportTransform( $text, $model, $format = null ) {
+	private function exportTransform( $text, $model, $format = null, &$sha1Update = false ) {
 		try {
 			$handler = ContentHandler::getForModelID( $model );
-			$text = $handler->exportTransform( $text, $format );
+			$transformedText = $handler->exportTransform( $text, $format );
+
+			if ( $sha1Update !== false && $transformedText != $text ) {
+				$sha1Update = Revision::base36Sha1( $transformedText );
+			}
+
+			$text = $transformedText;
 		}
 		catch ( MWException $ex ) {
 			$this->progress(
@@ -462,11 +469,12 @@ class TextPassDumper extends BackupDumper {
 	 * @param string|bool|null $model The content model used to determine applicable export transformations.
 	 *      If $model is null, it will be determined from the database.
 	 * @param string|null $format The content format used when applying export transformations.
+	 * @param string|null|false &$sha1Update If not false, receives the updated SHA1, if an update is required.
 	 *
 	 * @throws MWException
 	 * @return string The revision text for $id, or ""
 	 */
-	function getText( $id, $model = null, $format = null ) {
+	function getText( $id, $model = null, $format = null, &$sha1Update = false ) {
 		global $wgContentHandlerUseDB;
 
 		$prefetchNotTried = true; // Whether or not we already tried to get the text via prefetch.
@@ -529,7 +537,7 @@ class TextPassDumper extends BackupDumper {
 						// formats, which may still be used in the older dump that is used
 						// for pre-fetching. Applying the transformation again should not
 						// interfere with content that is already in the correct form.
-						$text = $this->exportTransform( $text, $model, $format );
+						$text = $this->exportTransform( $text, $model, $format, $sha1Update );
 					}
 				}
 
@@ -545,7 +553,7 @@ class TextPassDumper extends BackupDumper {
 					if ( $text !== false && $model !== false ) {
 						// Apply export transformation to text coming from the database.
 						// Prefetched text should already have transformations applied.
-						$text = $this->exportTransform( $text, $model, $format );
+						$text = $this->exportTransform( $text, $model, $format, $sha1Update );
 					}
 
 					// No more checks for texts from DB for now.
@@ -816,7 +824,7 @@ class TextPassDumper extends BackupDumper {
 			$model = $model === '' ? null : $model;
 			$format = $format === '' ? null : $format;
 
-			$text = $this->getText( $id, $model, $format );
+			$text = $this->getText( $id, $model, $format, $this->thisRevSha1 );
 			$this->openElement = array( $name, array( 'xml:space' => 'preserve' ) );
 			if ( strlen( $text ) > 0 ) {
 				$this->characterData( $parser, $text );
@@ -841,6 +849,7 @@ class TextPassDumper extends BackupDumper {
 			$this->thisRev = "";
 			$this->thisRevModel = null;
 			$this->thisRevFormat = null;
+			$this->thisRevSha1 = null;
 		} elseif ( $name == 'page' ) {
 			if ( !$this->firstPageWritten ) {
 				$this->firstPageWritten = trim( $this->thisPage );
@@ -901,7 +910,10 @@ class TextPassDumper extends BackupDumper {
 		elseif ( $this->lastName == "format"  ) {
 			$this->thisRevFormat .= $data;
 		}
-
+		elseif ( $this->lastName == "sha1" && $this->thisRevSha1 !== null ) {
+			$data = trim( $this->thisRevSha1 );
+			$this->thisRevSha1 = ''; // future call in the same tag add nothing.
+		}
 		// have to skip the newline left over from closepagetag line of
 		// end of checkpoint files. nasty hack!!
 		if ( $this->checkpointJustWritten ) {
