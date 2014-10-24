@@ -69,7 +69,7 @@ class WikiExporter {
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		return "0.9";
+		return "0.10";
 	}
 
 	/**
@@ -693,6 +693,9 @@ class XmlDumpWriter {
 			$content_format = $content_handler->getDefaultFormat();
 		}
 
+		$out .= "      " . Xml::element( 'model', null, strval( $content_model ) ) . "\n";
+		$out .= "      " . Xml::element( 'format', null, strval( $content_format ) ) . "\n";
+
 		$text = '';
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
 			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
@@ -718,9 +721,6 @@ class XmlDumpWriter {
 		} else {
 			$out .= "      <sha1/>\n";
 		}
-
-		$out .= "      " . Xml::element( 'model', null, strval( $content_model ) ) . "\n";
-		$out .= "      " . Xml::element( 'format', null, strval( $content_format ) ) . "\n";
 
 		wfRunHooks( 'XmlDumpWriterWriteRevision', array( &$this, &$out, $row, $text ) );
 
