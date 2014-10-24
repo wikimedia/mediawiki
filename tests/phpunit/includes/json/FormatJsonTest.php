@@ -222,6 +222,64 @@ class FormatJsonTest extends MediaWikiTestCase {
 		$this->assertFalse( $st->isOK() );
 	}
 
+	public function provideStripComments() {
+		return array(
+			array( '{"a":"b"}', '{"a":"b"}' ),
+			array( "{\"a\":\"b\"}\n", "{\"a\":\"b\"}\n" ),
+			array( '/*c*/{"c":"b"}', '{"c":"b"}' ),
+			array( '{"a":"c"}/*c*/', '{"a":"c"}' ),
+			array( '/*c//d*/{"c":"b"}', '{"c":"b"}' ),
+			array( '{/*c*/"c":"b"}', '{"c":"b"}' ),
+			array( "/*\nc\r\n*/{\"c\":\"b\"}", '{"c":"b"}' ),
+			array( "//c\n{\"c\":\"b\"}", '{"c":"b"}' ),
+			array( "//c\r\n{\"c\":\"b\"}", '{"c":"b"}' ),
+			array( '{"a":"c"}//c', '{"a":"c"}' ),
+			array( "{\"a-c\"://c\n\"b\"}", '{"a-c":"b"}' ),
+			array( '{"/*a":"b"}', '{"/*a":"b"}' ),
+			array( '{"a":"//b"}', '{"a":"//b"}' ),
+			array( '{"a":"b/*c*/"}', '{"a":"b/*c*/"}' ),
+			array( "{\"\\\"/*a\":\"b\"}", "{\"\\\"/*a\":\"b\"}" ),
+			array( '', '' ),
+			array( '/*c', '' ),
+			array( '//c', '' ),
+			array( '"http://example.com"', '"http://example.com"' ),
+			array( "\0", "\0" ),
+			array( '"Blåbærsyltetøy"', '"Blåbærsyltetøy"' ),
+		);
+	}
+
+	/**
+	 * @covers FormatJson::stripComments
+	 * @dataProvider provideStripComments
+	 * @param string $json
+	 * @param string $expect
+	 */
+	public function testStripComments( $json, $expect ) {
+		$this->assertSame( $expect, FormatJson::stripComments( $json ) );
+	}
+
+	public function provideParseStripComments() {
+		return array(
+			array( '/* blah */true', true ),
+			array( "// blah \ntrue", true ),
+			array( '[ "a" , /* blah */ "b" ]', array( 'a', 'b' ) ),
+		);
+	}
+
+	/**
+	 * @covers FormatJson::parse
+	 * @covers FormatJson::stripComments
+	 * @dataProvider provideParseStripComments
+	 * @param string $json
+	 * @param mixed $expect
+	 */
+	public function testParseStripComments( $json, $expect ) {
+		$st = FormatJson::parse( $json, FormatJson::STRIP_COMMENTS );
+		$this->assertType( 'Status', $st );
+		$this->assertTrue( $st->isGood() );
+		$this->assertEquals( $expect, $st->getValue() );
+	}
+
 	/**
 	 * Generate a set of test cases for a particular combination of encoder options.
 	 *
