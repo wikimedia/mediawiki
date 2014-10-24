@@ -655,12 +655,12 @@ abstract class Skin extends ContextSource {
 	function getUndeleteLink() {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 
-		if ( $this->getUser()->isAllowed( 'deletedhistory' ) &&
+		if ( $this->getTitle()->userCan( 'deletedhistory', $this->getUser() ) &&
 			( $this->getTitle()->getArticleID() == 0 || $action == 'history' ) ) {
 			$n = $this->getTitle()->isDeleted();
 
 			if ( $n ) {
-				if ( $this->getUser()->isAllowed( 'undelete' ) ) {
+				if ( $this->getTitle()->userCan( 'undelete', $this->getUser() ) ) {
 					$msg = 'thisisdeleted';
 				} else {
 					$msg = 'viewdeleted';
