@@ -702,7 +702,14 @@ class XmlDumpWriter {
 		} elseif ( isset( $row->old_text ) ) {
 			// Raw text from the database may have invalid chars
 			$text = strval( Revision::getRevisionText( $row ) );
-			$text = $content_handler->exportTransform( $text, $content_format );
+
+			$transformedText = $content_handler->exportTransform( $text, $content_format );
+
+			if ( !$row->rev_sha1 || $transformedText !== $text ) {
+				// text changed, so we have to re-calculate the checksum
+				$row->rev_sha1 = Revision::base36Sha1( $text );
+			}
+
 			$out .= "      " . Xml::elementClean( 'text',
 				array( 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ),
 				strval( $text ) ) . "\n";
