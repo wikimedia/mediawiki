@@ -679,6 +679,7 @@
 	"content-model-text": "egyszerű szöveg",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "Dupla paramétermegadást tartalmazó lapok",
 	"expensive-parserfunction-warning": "Figyelem: ezen a lapon túl sok erőforrásigényes elemzőfüggvény-hívás található.\n\nKevesebb, mint {{PLURAL:$2|egy|$2}} kellene, jelenleg {{PLURAL:$1|egy|$1}} van.",
 	"expensive-parserfunction-category": "Túl sok költséges elemzőfüggvény-hívást tartalmazó lapok",
 	"post-expand-template-inclusion-warning": "Figyelem: a beillesztett sablonok mérete túl nagy.\nNéhány sablon nem fog megjelenni.",

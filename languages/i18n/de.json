@@ -906,6 +906,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 Seite|$1 Seiten}} ({{PLURAL:$2|1 Unterkategorie|$2 Unterkategorien}}, {{PLURAL:$3|1 Datei|$3 Dateien}})",
 	"search-redirect": "(Weiterleitung von „$1“)",
 	"search-section": "(Abschnitt $1)",
+	"search-category": "(Kategorie $1)",
 	"search-file-match": "(treffende Dateiinhalte)",
 	"search-suggest": "Meintest du „$1“?",
 	"search-interwiki-caption": "Schwesterprojekte",

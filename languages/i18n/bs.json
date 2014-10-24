@@ -641,6 +641,7 @@
 	"content-model-text": "obični tekst",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "Stranice sa istim argumentima kod poziva šablona",
 	"expensive-parserfunction-warning": "Upozorenje: Ova stranica sadrži previše poziva opterećujućih parserskih funkcija.\n\nTrebalo bi imati manje od $2 {{PLURAL:$2|poziv|poziva}}, a sad ima {{PLURAL:$1|$1 poziv|$1 poziva}}.",
 	"expensive-parserfunction-category": "Stranice sa previše poziva parserskih funkcija",
 	"post-expand-template-inclusion-warning": "Pažnja: Šablon koji je uključen je prevelik.\nNeki šabloni neće biti uključeni.",

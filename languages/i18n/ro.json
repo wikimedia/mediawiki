@@ -1699,7 +1699,7 @@
 	"mywatchlist": "Pagini urmărite",
 	"watchlistfor2": "Pentru $1 $2",
 	"nowatchlist": "Lista dumneavoastră de pagini urmărite nu conține nici o pagină.",
-	"watchlistanontext": "Vă rugăm să vă autentificați pentru a vizualiza sau modifica elementele din lista dumneavoastră de pagini urmărite.",
+	"watchlistanontext": "Vă rugăm să vă autentificați pentru a consulta și modifica lista de pagini urmărite.",
 	"watchnologin": "Nu sunteți autentificat",
 	"addwatch": "Adăugă la lista de pagini urmărite",
 	"addedwatchtext": "Pagina „[[:$1]]” a fost adăugată în lista dumneavoastră de [[Special:Watchlist|pagini urmărite]].\nModificările viitoare efectuate asupra acestei pagini dar și asupra paginii de discuție asociată vor fi listate acolo.",

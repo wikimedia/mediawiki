@@ -715,6 +715,7 @@
 	"content-model-text": "düz metin",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "Yinelenen şablon değişkenleri kullanan sayfalar",
 	"expensive-parserfunction-warning": "Uyarı: Bu sayfa çok fazla zengin derleyici fonksiyonu çağrısı içeriyor.\n\nBu $2 çağrıdan az olmalı, şu anda {{PLURAL:$1|1 çağrı var|$1 çağrı var}}.",
 	"expensive-parserfunction-category": "Çok fazla zengin derleyici fonksiyonu çağrısına sahip sayfalar",
 	"post-expand-template-inclusion-warning": "'''Uyarı''': Şablon içeriği çok büyük.\nBazı şablonlar eklenemeyecek.",

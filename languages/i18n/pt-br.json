@@ -719,6 +719,7 @@
 	"content-model-text": "texto simples",
 	"content-model-javascript": "Javascript",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "Páginas que utilizam argumentos duplicados ao chamar predefinições",
 	"expensive-parserfunction-warning": "Aviso: Esta página contém muitas chamadas a funções do analisador \"parser\".\n\nDeveria ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento {{PLURAL:$1|há $1 chamada|existem $1 chamadas}}.",
 	"expensive-parserfunction-category": "Páginas com muitas chamadas a funções do analisador \"parser\"",
 	"post-expand-template-inclusion-warning": "'''Aviso''': a soma do tamanho de inclusão de predefinições é muito grande.\nAlgumas predefinições não serão processadas.",
