@@ -32,7 +32,7 @@
 abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	protected $limit, $diffto, $difftotext, $expandTemplates, $generateXML, $section,
-		$parseContent, $fetchContent, $contentFormat, $setParsedLimit = true;
+		$parseContent, $fetchContent, $contentFormat, $setParsedLimit = true, $preprocessflags;
 
 	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
 		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
@@ -120,6 +120,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$smallLimit = true;
 			$this->expandTemplates = $params['expandtemplates'];
 			$this->generateXML = $params['generatexml'];
+			$this->preprocessflags = (array)$params['preprocessflags'];
 			$this->parseContent = $params['parse'];
 			if ( $this->parseContent ) {
 				// Must manually initialize unset limit
@@ -282,12 +283,17 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$t = $content->getNativeData(); # note: don't set $text
 
+					$preflags = 0;
+					if ( in_array( 'forinclusion', $this->preprocessflags ) ) {
+						$preflags |= Parser::PTD_FOR_INCLUSION;
+					}
+
 					$wgParser->startExternalParse(
 						$title,
 						ParserOptions::newFromContext( $this->getContext() ),
 						Parser::OT_PREPROCESS
 					);
-					$dom = $wgParser->preprocessToDom( $t );
+					$dom = $wgParser->preprocessToDom( $t, $preflags );
 					if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 						$xml = $dom->saveXML();
 					} else {
@@ -494,6 +500,16 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
+			),
+			'preprocessflags' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
+					'forinclusion',
+				),
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-preprocessflags',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(
+					'forinclusion' => 'apihelp-query+revisions+base-paramvalue-preprocessflags-forinclusion',
+				),
 			),
 		);
 	}

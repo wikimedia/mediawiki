@@ -84,8 +84,13 @@ class ApiExpandTemplates extends ApiBase {
 				$this->logFeatureUsage( 'action=expandtemplates&generatexml' );
 			}
 
+			$preprocessflags = 0;
+			if ( in_array( 'forinclusion', (array)$params['preprocessflags'] ) ) {
+				$preprocessflags |= Parser::PTD_FOR_INCLUSION;
+			}
+
 			$wgParser->startExternalParse( $title_obj, $options, Parser::OT_PREPROCESS );
-			$dom = $wgParser->preprocessToDom( $params['text'] );
+			$dom = $wgParser->preprocessToDom( $params['text'], $preprocessflags );
 			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 				$xml = $dom->saveXML();
 			} else {
@@ -201,6 +206,13 @@ class ApiExpandTemplates extends ApiBase {
 			'generatexml' => array(
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'preprocessflags' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
+					'forinclusion',
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 		);
 	}
