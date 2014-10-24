@@ -35,7 +35,7 @@
 class ApiQueryRevisions extends ApiQueryBase {
 
 	private $diffto, $difftotext, $expandTemplates, $generateXML, $section,
-		$token, $parseContent, $contentFormat;
+		$token, $parseContent, $contentFormat, $preprocessflags;
 
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rv' );
@@ -44,7 +44,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
 		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
 		$fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-		$fld_content = false, $fld_tags = false, $fld_contentmodel = false;
+		$fld_content = false, $fld_tags = false, $fld_contentmodel = false, $fld_parsetree;
 
 	private $tokenFunctions;
 
@@ -176,6 +176,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_contentmodel = isset( $prop['contentmodel'] );
 		$this->fld_userid = isset( $prop['userid'] );
 		$this->fld_user = isset( $prop['user'] );
+		$this->fld_parsetree = isset( $prop['parsetree'] );
 		$this->token = $params['token'];
 
 		if ( !empty( $params['contentformat'] ) ) {
@@ -232,6 +233,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			$this->expandTemplates = $params['expandtemplates'];
 			$this->generateXML = $params['generatexml'];
+			$this->preprocessflags = $params['preprocessflags'];
 			$this->parseContent = $params['parse'];
 			if ( $this->parseContent ) {
 				// Must manually initialize unset limit
@@ -527,7 +529,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		$content = null;
 		global $wgParser;
-		if ( $this->fld_content || !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
+		if ( $this->fld_content || !is_null( $this->diffto ) || !is_null( $this->difftotext )
+			|| $this->fld_parsetree
+		) {
 			$content = $revision->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
@@ -548,19 +552,26 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['textmissing'] = '';
 			}
 		}
-		if ( $this->fld_content && $content ) {
-			$text = null;
 
-			if ( $this->generateXML ) {
+		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
+			if ( !$this->fld_parsetree ) {
+				$this->logFeatureUsage( 'action=query&prop=revisions&generatexml' );
+			}
+			if ( $content ) {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$t = $content->getNativeData(); # note: don't set $text
+
+					$preflags = 0;
+					if ( $this->fld_parsetree && in_array( 'forinclusion', $this->preprocessflags ) ) {
+						$preflags |= Parser::PTD_FOR_INCLUSION;
+					}
 
 					$wgParser->startExternalParse(
 						$title,
 						ParserOptions::newFromContext( $this->getContext() ),
 						Parser::OT_PREPROCESS
 					);
-					$dom = $wgParser->preprocessToDom( $t );
+					$dom = $wgParser->preprocessToDom( $t, $preflags );
 					if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 						$xml = $dom->saveXML();
 					} else {
@@ -573,6 +584,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 						" uses content model " . $content->getModel() );
 				}
 			}
+		}
+
+		if ( $this->fld_content && $content ) {
+			$text = null;
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
 				#XXX: implement template expansion for all content types in ContentHandler?
@@ -710,7 +725,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'comment',
 					'parsedcomment',
 					'content',
-					'tags'
+					'tags',
+					'parsetree',
 				)
 			),
 			'limit' => array(
@@ -755,7 +771,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			),
 			'tag' => null,
 			'expandtemplates' => false,
-			'generatexml' => false,
+			'generatexml' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 			'parse' => false,
 			'section' => null,
 			'token' => array(
@@ -771,6 +790,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'contentformat' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 				ApiBase::PARAM_DFLT => null
+			),
+			'preprocessflags' => array(
+				ApiBase::PARAM_TYPE => array(
+					'forinclusion',
+				),
+				ApiBase::PARAM_ISMULTI => true,
 			),
 		);
 	}
