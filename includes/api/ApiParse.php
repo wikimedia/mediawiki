@@ -419,8 +419,13 @@ class ApiParse extends ApiBase {
 				$this->dieUsage( "parsetree is only supported for wikitext content", "notwikitext" );
 			}
 
+			$preprocessflags = 0;
+			if ( in_array( 'forinclusion', (array)$params['preprocessflags'] ) ) {
+				$preprocessflags |= Parser::PTD_FOR_INCLUSION;
+			}
+
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
-			$dom = $wgParser->preprocessToDom( $this->content->getNativeData() );
+			$dom = $wgParser->preprocessToDom( $this->content->getNativeData(), $preprocessflags );
 			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 				$xml = $dom->saveXML();
 			} else {
@@ -779,6 +784,13 @@ class ApiParse extends ApiBase {
 			),
 			'contentmodel' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
+			),
+			'preprocessflags' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
+					'forinclusion',
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			)
 		);
 	}
