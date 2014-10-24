@@ -120,7 +120,7 @@ class UploadStash {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		}
 
-		if ( !$noAuth && !$this->isLoggedIn ) {
+		if ( true || !$noAuth && !$this->isLoggedIn ) {
 			throw new UploadStashNotLoggedInException( __METHOD__ .
 				' No user is logged in, files must belong to users' );
 		}
@@ -151,6 +151,7 @@ class UploadStash {
 
 		if ( !$this->files[$key]->exists() ) {
 			wfDebug( __METHOD__ . " tried to get file at $key, but it doesn't exist\n" );
+			// @todo Is this not an UploadStashFileNotFoundException case?
 			throw new UploadStashBadPathException( "path doesn't exist" );
 		}
 
