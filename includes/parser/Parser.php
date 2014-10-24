@@ -2594,7 +2594,7 @@ class Parser {
 					$t
 				);
 
-				if ( $openmatch or $closematch ) {
+				if ( $openmatch || $closematch ) {
 					$paragraphStack = false;
 					# @todo bug 5718: paragraph closed
 					$output .= $this->closeParagraph();

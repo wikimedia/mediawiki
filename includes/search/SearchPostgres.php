@@ -85,7 +85,7 @@ class SearchPostgres extends SearchDatabase {
 				if ( strtolower( $terms[2] ) === 'and' ) {
 					$searchstring .= ' & ';
 				}
-				elseif ( strtolower( $terms[2] ) === 'or' or $terms[2] === '|' ) {
+				elseif ( strtolower( $terms[2] ) === 'or' || $terms[2] === '|' ) {
 					$searchstring .= ' | ';
 				}
 				elseif ( strtolower( $terms[2] ) === 'not' ) {
