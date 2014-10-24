@@ -90,7 +90,6 @@ $namespaceAliases = array(
 	'Hjälp_diskussion'     => NS_HELP_TALK
 );
 
-#!!# Translation <b>Prefixindex</b> for <a href="#mw-sp-magic-Prefixindex">Prefixindex</a> is not in normalised form, which is <b>PrefixIndex</b>
 $specialPageAliases = array(
 	'Allmessages'               => array( 'Systemmeddelanden' ),
 	'Allpages'                  => array( 'Alla_sidor' ),
