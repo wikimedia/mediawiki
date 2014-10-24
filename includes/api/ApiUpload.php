@@ -64,7 +64,7 @@ class ApiUpload extends ApiBase {
 				$this->dieUsage( 'No upload module set', 'nomodule' );
 			}
 		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
-			$this->dieUsage( get_class( $e ) . ": " . $e->getMessage(), 'stasherror' );
+			$this->handleStashException( $e );
 		}
 
 		// First check permission to upload
@@ -112,7 +112,7 @@ class ApiUpload extends ApiBase {
 				$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
 			}
 		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
-			$this->dieUsage( get_class( $e ) . ": " . $e->getMessage(), 'stasherror' );
+			$this->handleStashException( $e );
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
@@ -159,6 +159,8 @@ class ApiUpload extends ApiBase {
 			if ( $warnings && count( $warnings ) > 0 ) {
 				$result['warnings'] = $warnings;
 			}
+		} catch ( UploadStashException $e ) {
+			$this->handleStashException( $e );
 		} catch ( MWException $e ) {
 			$this->dieUsage( $e->getMessage(), 'stashfailed' );
 		}
@@ -180,6 +182,8 @@ class ApiUpload extends ApiBase {
 		try {
 			$result['filekey'] = $this->performStash();
 			$result['sessionkey'] = $result['filekey']; // backwards compatibility
+		} catch ( UploadStashException $e ) {
+			$this->handleStashException( $e );
 		} catch ( MWException $e ) {
 			$result['warnings']['stashfailed'] = $e->getMessage();
 		}
@@ -205,6 +209,8 @@ class ApiUpload extends ApiBase {
 		if ( $this->mParams['offset'] == 0 ) {
 			try {
 				$filekey = $this->performStash();
+			} catch ( UploadStashException $e ) {
+				$this->handleStashException( $e );
 			} catch ( MWException $e ) {
 				// FIXME: Error handling here is wrong/different from rest of this
 				$this->dieUsage( $e->getMessage(), 'stashfailed' );
@@ -282,7 +288,8 @@ class ApiUpload extends ApiBase {
 		} catch ( MWException $e ) {
 			$message = 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage();
 			wfDebug( __METHOD__ . ' ' . $message . "\n" );
-			throw new MWException( $message );
+			$className = get_class( $e );
+			throw new $className( $message );
 		}
 
 		return $fileKey;
@@ -574,6 +581,41 @@ class ApiUpload extends ApiBase {
 		}
 
 		return $warnings;
+	}
+
+	/**
+	 * Handles a stash exception, giving a useful error to the user.
+	 * @param Exception $e The exception we encountered.
+	 */
+	protected function handleStashException( $e ) {
+		$exceptionType = get_class( $e );
+
+		switch ( $exceptionType ) {
+			case 'UploadStashFileNotFoundException':
+				$this->dieUsage( 'Could not find the file in the stash: ' . $e->getMessage(), 'stashedfilenotfound' );
+				break;
+			case 'UploadStashBadPathException':
+				$this->dieUsage( 'File key of improper format or otherwise invalid: ' . $e->getMessage(), 'stashpathinvalid' );
+				break;
+			case 'UploadStashFileException':
+				$this->dieUsage( 'Could not store upload in the stash: ' . $e->getMessage(), 'stashfilestorage' );
+				break;
+			case 'UploadStashZeroLengthFileException':
+				$this->dieUsage( 'File is of zero length, and could not be stored in the stash: ' . $e->getMessage(), 'stashzerolength' );
+				break;
+			case 'UploadStashNotLoggedInException':
+				$this->dieUsage( 'Not logged in: ' . $e->getMessage(), 'stashnotloggedin' );
+				break;
+			case 'UploadStashWrongOwnerException':
+				$this->dieUsage( 'Wrong owner: ' . $e->getMessage(), 'stashwrongowner' );
+				break;
+			case 'UploadStashNoSuchKeyException':
+				$this->dieUsage( 'No such filekey: ' . $e->getMessage(), 'stashnosuchfilekey' );
+				break;
+			default:
+				$this->dieUsage( $exceptionType . ": " . $e->getMessage(), 'stasherror' );
+				break;
+		}
 	}
 
 	/**
