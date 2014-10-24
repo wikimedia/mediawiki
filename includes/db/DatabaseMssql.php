@@ -953,12 +953,8 @@ class DatabaseMssql extends DatabaseBase {
 		// Matches: LIMIT {[offset,] row_count | row_count OFFSET offset}
 		$pattern = '/\bLIMIT\s+((([0-9]+)\s*,\s*)?([0-9]+)(\s+OFFSET\s+([0-9]+))?)/i';
 		if ( preg_match( $pattern, $sql, $matches ) ) {
-			// row_count = $matches[4]
 			$row_count = $matches[4];
-			// offset = $matches[3] OR $matches[6]
-			$offset = $matches[3] or
-			$offset = $matches[6] or
-			$offset = false;
+			$offset = $matches[3] ?: $matches[6] ?: false;
 
 			// strip the matching LIMIT clause out
 			$sql = str_replace( $matches[0], '', $sql );
