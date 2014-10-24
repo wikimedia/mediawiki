@@ -75,7 +75,7 @@ class ApiExpandTemplates extends ApiBase {
 				$this->logFeatureUsage( 'action=expandtemplates&generatexml' );
 			}
 
-			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );
+			$wgParser->startExternalParse( $title_obj, $options, Parser::OT_PREPROCESS );
 			$dom = $wgParser->preprocessToDom( $params['text'] );
 			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 				$xml = $dom->saveXML();
@@ -96,7 +96,7 @@ class ApiExpandTemplates extends ApiBase {
 		// if they didn't want any output except (probably) the parse tree,
 		// then don't bother actually fully expanding it
 		if ( $prop || $params['prop'] === null ) {
-			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );
+			$wgParser->startExternalParse( $title_obj, $options, Parser::OT_PREPROCESS );
 			$frame = $wgParser->getPreprocessor()->newFrame();
 			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, null, $frame );
 			if ( $params['prop'] === null ) {
