@@ -330,6 +330,12 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$this->assertTextNode( "comment", $summary );
 		$this->skipWhitespace();
 
+		$this->assertTextNode( "model", $model );
+		$this->skipWhitespace();
+
+		$this->assertTextNode( "format", $format );
+		$this->skipWhitespace();
+
 		if ( $this->xml->name == "text" ) {
 			// note: <text> tag may occur here or at the very end.
 			$text_found = true;
@@ -339,12 +345,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		}
 
 		$this->assertTextNode( "sha1", $text_sha1 );
-
-		$this->assertTextNode( "model", $model );
-		$this->skipWhitespace();
-
-		$this->assertTextNode( "format", $format );
-		$this->skipWhitespace();
 
 		if ( !$text_found ) {
 			$this->assertText( $id, $text_id, $text_bytes, $text );

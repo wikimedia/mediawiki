@@ -156,6 +156,11 @@ changes to languages because of Bugzilla reports.
 * The "temp" zone of the upload respository is now considered private. If it
   already exists (such as under the images/ directory), please make sure that
   the directory is not web readable (e.g. via a .htaccess file).
+* BREAKING CHANGE: In the XML dump format used by Special:Export and
+  dumpBackup.php, the <model> and <format> tags now apprear before the <text>
+  tag, instead of after the <text> and <sha1> tags.
+  The new schema version is 0.10, the new schema URI is
+  <https://www.mediawiki.org/xml/export-0.10.xsd>.
 
 == Compatibility ==
 

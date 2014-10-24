@@ -45,7 +45,7 @@ class ImportTest extends MediaWikiLangTestCase {
 		return array(
 			array(
 				<<< EOF
-<mediawiki>
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
 	<page>
 		<title>Test</title>
 		<ns>0</ns>
@@ -59,10 +59,10 @@ class ImportTest extends MediaWikiLangTestCase {
 				<id>10</id>
 			</contributor>
 			<comment>Admin moved page [[Test]] to [[Test22]]</comment>
-			<text xml:space="preserve" bytes="20">#REDIRECT [[Test22]]</text>
-			<sha1>tq456o9x3abm7r9ozi6km8yrbbc56o6</sha1>
 			<model>wikitext</model>
 			<format>text/x-wiki</format>
+			<text xml:space="preserve" bytes="20">#REDIRECT [[Test22]]</text>
+			<sha1>tq456o9x3abm7r9ozi6km8yrbbc56o6</sha1>
 		</revision>
 	</page>
 </mediawiki>
@@ -72,7 +72,7 @@ EOF
 			),
 			array(
 				<<< EOF
-<mediawiki>
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.9/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.9/ http://www.mediawiki.org/xml/export-0.9.xsd" version="0.9" xml:lang="en">
 	<page>
 		<title>Test</title>
 		<ns>0</ns>

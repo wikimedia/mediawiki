@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	This is an XML Schema description of the format
+	output by MediaWiki's Special:Export system.
+
+	Version 0.2 adds optional basic file upload info support,
+	which is used by our OAI export/import submodule.
+
+	Version 0.3 adds some site configuration information such
+	as a list of defined namespaces.
+
+	Version 0.4 adds per-revision delete flags, log exports,
+	discussion threading data, a per-page redirect flag, and
+	per-namespace capitalization.
+
+	Version 0.5 adds byte count per revision.
+
+	Version 0.6 adds a separate namespace tag, and resolves the
+	redirect target and adds a separate sha1 tag for each revision.
+
+	Version 0.7 adds a unique identity constraint for both page and
+	revision identifiers. See also bug 4220.
+	Fix type for <ns> from "positiveInteger" to "nonNegativeInteger" to allow 0
+	Moves <logitem> to its right location.
+	Add parentid to revision.
+	Fix type for <id> within <contributor> to "nonNegativeInteger"
+
+	Version 0.8 adds support for a <model> and a <format> tag for
+	each revision. See contenthandler.txt.
+
+	Version 0.9 adds the database name to the site information.
+
+	Version 0.10 moved the <model> and <format> tags before the <text> tag.
+
+	The canonical URL to the schema document is:
+	http://www.mediawiki.org/xml/export-0.10.xsd
+
+	Use the namespace:
+	http://www.mediawiki.org/xml/export-0.10/
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		xmlns:mw="http://www.mediawiki.org/xml/export-0.10/"
+		targetNamespace="http://www.mediawiki.org/xml/export-0.10/"
+		elementFormDefault="qualified">
+
+	<annotation>
+		<documentation xml:lang="en">
+			MediaWiki's page export format
+		</documentation>
+	</annotation>
+
+	<!-- Need this to reference xml:lang -->
+	<import namespace="http://www.w3.org/XML/1998/namespace"
+			schemaLocation="http://www.w3.org/2001/xml.xsd" />
+
+	<!-- Our root element -->
+	<element name="mediawiki" type="mw:MediaWikiType">
+		<!-- Page ID contraint, see bug 4220 -->
+		<unique name="PageIDConstraint">
+			<selector xpath="mw:page" />
+			<field xpath="mw:id" />
+		</unique>
+		<!-- Revision ID contraint, see bug 4220 -->
+		<unique name="RevIDConstraint">
+			<selector xpath="mw:page/mw:revision" />
+			<field xpath="mw:id" />
+		</unique>
+	</element>
+
+	<complexType name="MediaWikiType">
+		<sequence>
+			<element name="siteinfo" type="mw:SiteInfoType"
+					 minOccurs="0" maxOccurs="1" />
+			<element name="page" type="mw:PageType"
+					 minOccurs="0" maxOccurs="unbounded" />
+			<element name="logitem" type="mw:LogItemType"
+					 minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="version" type="string" use="required" />
+		<attribute ref="xml:lang" use="required" />
+	</complexType>
+
+	<complexType name="SiteInfoType">
+		<sequence>
+			<element name="sitename" type="string" minOccurs="0" />
+            <element name="dbname" type="string" minOccurs="0" />
+			<element name="base" type="anyURI" minOccurs="0" />
+			<element name="generator" type="string" minOccurs="0" />
+			<element name="case" type="mw:CaseType" minOccurs="0" />
+			<element name="namespaces" type="mw:NamespacesType" minOccurs="0" />
+		</sequence>
+	</complexType>
+
+	<simpleType name="CaseType">
+		<restriction base="NMTOKEN">
+			<!-- Cannot have two titles differing only by case of first letter. -->
+			<!-- Default behavior through 1.5, $wgCapitalLinks = true -->
+			<enumeration value="first-letter" />
+
+			<!-- Complete title is case-sensitive -->
+			<!-- Behavior when $wgCapitalLinks = false -->
+			<enumeration value="case-sensitive" />
+
+			<!-- Cannot have non-case senstitive titles eg [[FOO]] == [[Foo]] -->
+			<!-- Not yet implemented as of MediaWiki 1.18 -->
+			<enumeration value="case-insensitive" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="DeletedFlagType">
+		<restriction base="NMTOKEN">
+			<enumeration value="deleted" />
+		</restriction>
+	</simpleType>
+
+	<complexType name="NamespacesType">
+		<sequence>
+			<element name="namespace" type="mw:NamespaceType"
+					 minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="NamespaceType">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="key" type="integer" />
+				<attribute name="case" type="mw:CaseType" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="RedirectType">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="title" type="string" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<simpleType name="ContentModelType">
+		<restriction base="string">
+			<pattern value="[a-zA-Z][-+./a-zA-Z0-9]*" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="ContentFormatType">
+		<restriction base="string">
+			<pattern value="[a-zA-Z][-+.a-zA-Z0-9]*/[a-zA-Z][-+.a-zA-Z0-9]*" />
+		</restriction>
+	</simpleType>
+
+	<complexType name="PageType">
+		<sequence>
+			<!-- Title in text form. (Using spaces, not underscores; with namespace ) -->
+			<element name="title" type="string" />
+
+			<!-- Namespace in canonical form -->
+			<element name="ns" type="nonNegativeInteger" />
+
+			<!-- optional page ID number -->
+			<element name="id" type="positiveInteger" />
+
+			<!-- flag if the current revision is a redirect -->
+			<element name="redirect" type="mw:RedirectType" minOccurs="0" maxOccurs="1" />
+
+			<!-- comma-separated list of string tokens, if present -->
+			<element name="restrictions" type="string" minOccurs="0" />
+
+			<!-- Zero or more sets of revision or upload data -->
+			<choice minOccurs="0" maxOccurs="unbounded">
+				<element name="revision" type="mw:RevisionType" />
+				<element name="upload" type="mw:UploadType" />
+			</choice>
+
+			<!-- Zero or One sets of discussion threading data -->
+			<element name="discussionthreadinginfo" minOccurs="0" maxOccurs="1" type="mw:DiscussionThreadingInfo" />
+		</sequence>
+	</complexType>
+
+	<complexType name="RevisionType">
+		<sequence>
+			<element name="id" type="positiveInteger" />
+			<element name="parentid" type="positiveInteger" minOccurs="0" />
+			<element name="timestamp" type="dateTime" />
+			<element name="contributor" type="mw:ContributorType" />
+			<element name="minor" minOccurs="0" maxOccurs="1" />
+			<element name="comment" type="mw:CommentType" minOccurs="0" maxOccurs="1" />
+			<element name="model" type="mw:ContentModelType" />
+			<element name="format" type="mw:ContentFormatType" />
+			<element name="text" type="mw:TextType" />
+			<element name="sha1" type="string" />
+		</sequence>
+	</complexType>
+
+	<complexType name="LogItemType">
+		<sequence>
+			<element name="id" type="positiveInteger" />
+			<element name="timestamp" type="dateTime" />
+			<element name="contributor" type="mw:ContributorType" />
+			<element name="comment" type="mw:CommentType" minOccurs="0" />
+			<element name="type" type="string" />
+			<element name="action" type="string" />
+			<element name="text" type="mw:LogTextType" minOccurs="0" maxOccurs="1" />
+			<element name="logtitle" type="string" minOccurs="0" maxOccurs="1" />
+			<element name="params" type="mw:LogParamsType" minOccurs="0" maxOccurs="1" />
+		</sequence>
+	</complexType>
+
+	<complexType name="CommentType">
+		<simpleContent>
+			<extension base="string">
+				<!-- This allows deleted=deleted on non-empty elements, but XSD is not omnipotent -->
+				<attribute name="deleted" use="optional" type="mw:DeletedFlagType" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="TextType">
+		<simpleContent>
+			<extension base="string">
+				<attribute ref="xml:space" use="optional" default="preserve" />
+				<!-- This allows deleted=deleted on non-empty elements, but XSD is not omnipotent -->
+				<attribute name="deleted" use="optional" type="mw:DeletedFlagType" />
+				<!-- This isn't a good idea; we should be using "ID" instead of "NMTOKEN" -->
+				<!-- However, "NMTOKEN" is strictest definition that is both compatible with existing -->
+				<!-- usage ([0-9]+) and with the "ID" type. -->
+				<attribute name="id" type="NMTOKEN" />
+				<attribute name="bytes" use="optional" type="nonNegativeInteger" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="LogTextType">
+		<simpleContent>
+			<extension base="string">
+				<!-- This allows deleted=deleted on non-empty elements, but XSD is not omnipotent -->
+				<attribute name="deleted" use="optional" type="mw:DeletedFlagType" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="LogParamsType">
+		<simpleContent>
+			<extension base="string">
+				<attribute ref="xml:space" use="optional" default="preserve" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="ContributorType">
+		<sequence>
+			<element name="username" type="string" minOccurs="0" />
+			<element name="id" type="nonNegativeInteger" minOccurs="0" />
+
+			<element name="ip" type="string" minOccurs="0" />
+		</sequence>
+		<!-- This allows deleted=deleted on non-empty elements, but XSD is not omnipotent -->
+		<attribute name="deleted" use="optional" type="mw:DeletedFlagType" />
+	</complexType>
+
+	<complexType name="UploadType">
+		<sequence>
+			<!-- Revision-style data... -->
+			<element name="timestamp" type="dateTime" />
+			<element name="contributor" type="mw:ContributorType" />
+			<element name="comment" type="string" minOccurs="0" />
+
+			<!-- Filename. (Using underscores, not spaces. No 'File:' namespace marker.) -->
+			<element name="filename" type="string" />
+
+			<!-- URI at which this resource can be obtained -->
+			<element name="src" type="anyURI" />
+
+			<element name="size" type="positiveInteger" />
+
+			<!-- TODO: add other metadata fields -->
+		</sequence>
+	</complexType>
+
+	<!-- Discussion threading data for LiquidThreads -->
+	<complexType name="DiscussionThreadingInfo">
+		<sequence>
+			<element name="ThreadSubject" type="string" />
+			<element name="ThreadParent" type="positiveInteger" />
+			<element name="ThreadAncestor" type="positiveInteger" />
+			<element name="ThreadPage" type="string" />
+			<element name="ThreadID" type="positiveInteger" />
+			<element name="ThreadAuthor" type="string" />
+			<element name="ThreadEditStatus" type="string" />
+			<element name="ThreadType" type="string" />
+		</sequence>
+	</complexType>
+
+</schema>
