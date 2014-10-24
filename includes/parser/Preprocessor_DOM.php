@@ -1044,6 +1044,8 @@ class PPFrame_DOM implements PPFrame {
 					$index = $nameNodes->item( 0 )->attributes->getNamedItem( 'index' )->textContent;
 					$index = $index - $indexOffset;
 					if ( isset( $namedArgs[$index] ) || isset( $numberedArgs[$index] ) ) {
+						$this->parser->getOutput()->addWarning( wfMessage( 'duplicate-args-warning',
+							$this->title, $title, $index )->text() );
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
 					$numberedArgs[$index] = $value->item( 0 );
@@ -1052,6 +1054,8 @@ class PPFrame_DOM implements PPFrame {
 					// Named parameter
 					$name = trim( $this->expand( $nameNodes->item( 0 ), PPFrame::STRIP_COMMENTS ) );
 					if ( isset( $namedArgs[$name] ) || isset( $numberedArgs[$name] ) ) {
+						$this->parser->getOutput()->addWarning( wfMessage( 'duplicate-args-warning',
+							$this->title, $title, $name )->text() );
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
 					$namedArgs[$name] = $value->item( 0 );
