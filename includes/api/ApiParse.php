@@ -371,13 +371,20 @@ class ApiParse extends ApiBase {
 			ApiResult::setContent( $result_array['limitreporthtml'], $limitreportHtml );
 		}
 
-		if ( $params['generatexml'] ) {
+		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
 			if ( $this->content->getModel() != CONTENT_MODEL_WIKITEXT ) {
-				$this->dieUsage( "generatexml is only supported for wikitext content", "notwikitext" );
+				$this->dieUsage( "parsetree is only supported for wikitext content", "notwikitext" );
+			}
+
+			$preprocessflags = 0;
+			if ( !isset( $prop['parsetree'] ) ) {
+				$this->logFeatureUsage( 'action=parse&generatexml' );
+			} elseif ( in_array( 'forinclusion', (array)$params['preprocessflags'] ) ) {
+				$preprocessflags |= Parser::PTD_FOR_INCLUSION;
 			}
 
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
-			$dom = $wgParser->preprocessToDom( $this->content->getNativeData() );
+			$dom = $wgParser->preprocessToDom( $this->content->getNativeData(), $preprocessflags );
 			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 				$xml = $dom->saveXML();
 			} else {
@@ -692,6 +699,7 @@ class ApiParse extends ApiBase {
 					'properties',
 					'limitreportdata',
 					'limitreporthtml',
+					'parsetree',
 				)
 			),
 			'pst' => false,
@@ -705,6 +713,7 @@ class ApiParse extends ApiBase {
 				ApiBase::PARAM_HELP_MSG => array(
 					'apihelp-parse-param-generatexml', CONTENT_MODEL_WIKITEXT
 				),
+				ApiBase::PARAM_DEPRECATED => true,
 			),
 			'preview' => false,
 			'sectionpreview' => false,
@@ -714,7 +723,13 @@ class ApiParse extends ApiBase {
 			),
 			'contentmodel' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
-			)
+			),
+			'preprocessflags' => array(
+				ApiBase::PARAM_TYPE => array(
+					'forinclusion',
+				),
+				ApiBase::PARAM_ISMULTI => true,
+			),
 		);
 	}
 
