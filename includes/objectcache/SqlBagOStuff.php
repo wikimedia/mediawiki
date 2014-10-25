@@ -322,9 +322,7 @@ class SqlBagOStuff extends BagOStuff {
 			if ( $exptime == 0 ) {
 				$encExpiry = $this->getMaxDateTime( $db );
 			} else {
-				if ( $exptime < 3.16e8 ) { # ~10 years
-					$exptime += time();
-				}
+				$exptime = $this->convertExpiry( $exptime );
 				$encExpiry = $db->timestamp( $exptime );
 			}
 			foreach ( $serverKeys as $tableName => $tableKeys ) {
@@ -377,10 +375,7 @@ class SqlBagOStuff extends BagOStuff {
 			if ( $exptime == 0 ) {
 				$encExpiry = $this->getMaxDateTime( $db );
 			} else {
-				if ( $exptime < 3.16e8 ) { # ~10 years
-					$exptime += time();
-				}
-
+				$exptime = $this->convertExpiry( $exptime );
 				$encExpiry = $db->timestamp( $exptime );
 			}
 			// (bug 24425) use a replace if the db supports it instead of
@@ -421,9 +416,7 @@ class SqlBagOStuff extends BagOStuff {
 			if ( $exptime == 0 ) {
 				$encExpiry = $this->getMaxDateTime( $db );
 			} else {
-				if ( $exptime < 3.16e8 ) { # ~10 years
-					$exptime += time();
-				}
+				$exptime = $this->convertExpiry( $exptime );
 				$encExpiry = $db->timestamp( $exptime );
 			}
 			// (bug 24425) use a replace if the db supports it instead of
