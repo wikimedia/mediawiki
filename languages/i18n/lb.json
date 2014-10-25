@@ -832,6 +832,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 Säit|$1 Säiten}} ({{PLURAL:$2|1 Ënnerkategorie|$2 Ënnerkategorien}}, {{PLURAL:$3|1 Fichier|$3 Fichieren}})",
 	"search-redirect": "(Viruleedung $1)",
 	"search-section": "(Abschnitt $1)",
+	"search-category": "(Kategorie $1)",
 	"search-file-match": "(Inhalt vum Fichier passt)",
 	"search-suggest": "Mengt Dir: $1",
 	"search-interwiki-caption": "Schwësterprojeten",

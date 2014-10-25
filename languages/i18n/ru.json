@@ -900,6 +900,7 @@
 	"search-result-category-size": "$1 {{PLURAL:$1|вхождение|вхождений|вхождения}} ($2 {{PLURAL:$2|подкатегория|подкатегорий|подкатегории}}, $3 {{PLURAL:$3|файл|файлов|файла}})",
 	"search-redirect": "(перенаправление с $1)",
 	"search-section": "(раздел «$1»)",
+	"search-category": "(категория $1)",
 	"search-file-match": "(совпадает с содержимым файла)",
 	"search-suggest": "Возможно, вы имели в виду «$1».",
 	"search-interwiki-caption": "Родственные проекты",

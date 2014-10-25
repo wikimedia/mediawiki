@@ -852,6 +852,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 lehekülg|$1 lehekülge}} ({{PLURAL:$2|1 alamkategooria|$2 alamkategooriat}}, {{PLURAL:$3|1 fail|$3 faili}})",
 	"search-redirect": "(ümbersuunamine $1)",
 	"search-section": "(alaosa $1)",
+	"search-category": "(kategooria \"$1\")",
 	"search-file-match": "(vastab faili sisule)",
 	"search-suggest": "Kas mõtlesid: $1",
 	"search-interwiki-caption": "Sõsarprojektid",

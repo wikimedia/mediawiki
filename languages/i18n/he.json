@@ -857,6 +857,7 @@
 	"search-result-category-size": "{{PLURAL:$1|חבר אחד|$1 חברים}} ({{PLURAL:$2|קטגוריית משנה אחת|$2 קטגוריות משנה}}, {{PLURAL:$3|קובץ אחד|$3 קבצים}})",
 	"search-redirect": "(הפניה $1)",
 	"search-section": "(פסקה $1)",
+	"search-category": "(קטגוריה $1)",
 	"search-file-match": "(התאמה בתוכן הקובץ)",
 	"search-suggest": "האם התכוונת ל: $1",
 	"search-interwiki-caption": "מיזמי אחות",

@@ -892,6 +892,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 membro|$1 membros}} ({{PLURAL:$2|1 subcategoria|$2 subcategorias}}, {{PLURAL:$3|1 ficheiro|$3 ficheiros}})",
 	"search-redirect": "(redirecionamento de $1)",
 	"search-section": "(seção $1)",
+	"search-category": "(categoria $1)",
 	"search-file-match": "(coincide com o conteúdo do ficheiro)",
 	"search-suggest": "Será que quis dizer: $1",
 	"search-interwiki-caption": "Projetos irmãos",

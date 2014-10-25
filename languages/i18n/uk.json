@@ -888,6 +888,7 @@
 	"search-result-category-size": "{{PLURAL:$1|$1 елемент|$1 елементи|$1 елементів}} ({{PLURAL:$2|$2 підкатегорія|$2 підкатегорії|$2 підкатегорій}}, {{PLURAL:$3|$3 файл|$3 файли|$3 файлів}})",
 	"search-redirect": "(перенаправлення $1)",
 	"search-section": "(розділ $1)",
+	"search-category": "(категорія $1)",
 	"search-file-match": "(збігається із вмістом файлу)",
 	"search-suggest": "Можливо, ви мали на увазі: $1",
 	"search-interwiki-caption": "Братні проекти",

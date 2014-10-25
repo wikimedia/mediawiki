@@ -6,7 +6,8 @@
 			"Katimawan2005",
 			"Urhixidur",
 			"Val2397",
-			"아라"
+			"아라",
+			"Leeheonjin"
 		]
 	},
 	"tog-underline": "Gulisan lang panglalam deng suglung:",
@@ -543,6 +544,7 @@
 	"search-result-size": "$1 ({{PLURAL:$2|1 a kataya|$2 kataya}})",
 	"search-redirect": "(pamanalis direksiun $1)",
 	"search-section": "(seksion $1)",
+	"search-category": "(kategorya $1)",
 	"search-suggest": "Ing buri mung sabian: $1",
 	"search-interwiki-caption": "Kapatad a proyektu",
 	"search-interwiki-default": "$1 linual/resulta:",

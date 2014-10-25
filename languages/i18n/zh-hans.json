@@ -912,6 +912,7 @@
 	"search-result-category-size": "$1个成员（$2个子分类，$3个文件）",
 	"search-redirect": "（重定向自“$1”）",
 	"search-section": "（“$1”段落）",
+	"search-category": "（分类$1）",
 	"search-file-match": "（匹配文件内容）",
 	"search-suggest": "您是不是要找：$1",
 	"search-interwiki-caption": "姊妹项目",
