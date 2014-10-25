@@ -1365,6 +1365,35 @@
 				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, async );
 			}
 
+			/**
+			 * Resolve indexed dependencies.
+			 *
+			 * ResourceLoader uses an optimization to save space which replaces module names in
+			 * dependency lists with the index of that module within the array of module
+			 * registration data if it exists. The benefit is a significant reduction in the data
+			 * size of the startup module. This function changes those dependency lists back to
+			 * arrays of strings.
+			 *
+			 * @param {[type]} modules [description]
+			 * @return {[type]} [description]
+			 */
+			function resolveIndexedDependencies( modules ) {
+				var i, iLen, j, jLen, module, dependency;
+
+				// Expand indexed dependency names
+				for ( i = 0, iLen = modules.length; i < iLen; i++ ) {
+					module = modules[i];
+					if ( module[2] ) {
+						for ( j = 0, jLen = module[2].length; j < jLen; j++ ) {
+							dependency = module[2][j];
+							if ( typeof dependency === 'number' ) {
+								module[2][j] = modules[dependency][0];
+							}
+						}
+					}
+				}
+			}
+
 			/* Public Members */
 			return {
 				/**
@@ -1597,7 +1626,12 @@
 				 * Register a module, letting the system know about it and its
 				 * properties. Startup modules contain calls to this function.
 				 *
-				 * @param {string} module Module name
+				 * When using multiple module registration by passing an array, dependencies that
+				 * are specified as references to modules within the array will be resolved before
+				 * the modules are registered.
+				 *
+				 * @param {string|Array} module Module name or array of arrays, each containing
+				 *   a list of arguments compatible with this method
 				 * @param {number} version Module version number as a timestamp (falls backs to 0)
 				 * @param {string|Array|Function} dependencies One string or array of strings of module
 				 *  names on which this module depends, or a function that returns that array.
@@ -1606,16 +1640,17 @@
 				 * @param {string} [skip=null] Script body of the skip function
 				 */
 				register: function ( module, version, dependencies, group, source, skip ) {
-					var m;
+					var i, len;
 					// Allow multiple registration
 					if ( typeof module === 'object' ) {
-						for ( m = 0; m < module.length; m += 1 ) {
+						resolveIndexedDependencies( module );
+						for ( i = 0, len = module.length; i < len; i++ ) {
 							// module is an array of module names
-							if ( typeof module[m] === 'string' ) {
-								mw.loader.register( module[m] );
+							if ( typeof module[i] === 'string' ) {
+								mw.loader.register( module[i] );
 							// module is an array of arrays
-							} else if ( typeof module[m] === 'object' ) {
-								mw.loader.register.apply( mw.loader, module[m] );
+							} else if ( typeof module[i] === 'object' ) {
+								mw.loader.register.apply( mw.loader, module[i] );
 							}
 						}
 						return;
