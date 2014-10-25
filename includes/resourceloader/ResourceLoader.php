@@ -1219,6 +1219,24 @@ class ResourceLoader {
 		$dependencies = null, $group = null, $source = null, $skip = null
 	) {
 		if ( is_array( $name ) ) {
+			// Build module name index
+			$index = array();
+			foreach ( $name as $i => $module ) {
+				$index[$module[0]] = $i;
+			}
+
+			// Transform dependency names into indexes when possible, they will be resolved by
+			// mw.loader.register on the other end
+			foreach ( $name as &$module ) {
+				if ( isset( $module[2] ) ) {
+					foreach ( $module[2] as &$dependency ) {
+						if ( isset( $index[$dependency] ) ) {
+							$dependency = $index[$dependency];
+						}
+					}
+				}
+			}
+
 			return Xml::encodeJsCall(
 				'mw.loader.register',
 				array( $name ),
