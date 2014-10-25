@@ -146,6 +146,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 			) );
 		}
 
+		if ( isset( $params['byusers'] ) ) {
+			$byusers = array();
+			foreach ( (array)$params['byusers'] as $u) {
+				$byusers[] = $this->prepareUsername( $u );
+			}
+			$this->addWhereFld( 'ipb_by_text', $byusers );
+		}
+
 		if ( !is_null( $params['show'] ) ) {
 			$show = array_flip( $params['show'] );
 
@@ -294,6 +302,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 					$blockCIDRLimit['IPv4'],
 					$blockCIDRLimit['IPv6'],
 				),
+			),
+			'byusers' => array(
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,

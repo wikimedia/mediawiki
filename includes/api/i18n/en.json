@@ -462,6 +462,7 @@
 	"apihelp-query+blocks-param-ids": "List of block IDs to list (optional).",
 	"apihelp-query+blocks-param-users": "List of users to search for (optional).",
 	"apihelp-query+blocks-param-ip": "Get all blocks applying to this IP or CIDR range, including range blocks.\nCannot be used together with $3users. CIDR ranges broader than IPv4/$1 or IPv6/$2 are not accepted.",
+	"apihelp-query+blocks-param-byusers": "List of administrators to search for who made the block (optional).",
 	"apihelp-query+blocks-param-limit": "The maximum number of blocks to list.",
 	"apihelp-query+blocks-param-prop": "Which properties to get:\n;id:Adds the ID of the block.\n;user:Adds the username of the blocked user.\n;userid:Adds the user ID of the blocked user.\n;by:Adds the username of the blocking user.\n;byid:Adds the user ID of the blocking user.\n;timestamp:Adds the timestamp of when the block was given.\n;expiry:Adds the timestamp of when the block expires.\n;reason:Adds the reason given for the block.\n;range:Adds the range of IPs affected by the block.\n;flags:Tags the ban with (autoblock, anononly, etc.).",
 	"apihelp-query+blocks-param-show": "Show only items that meet these criteria.\nFor example, to see only indefinite blocks on IPs, set $1show=ip|!temp.",
