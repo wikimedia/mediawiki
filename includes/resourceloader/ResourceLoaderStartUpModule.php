@@ -147,7 +147,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Optimize the dependency tree in $this->modules and return it.
+	 * Optimize the dependency tree in $this->modules.
 	 *
 	 * The optimization basically works like this:
 	 *	Given we have module A with the dependencies B and C
@@ -155,7 +155,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *	Now we don't have to tell the client to explicitly fetch module
 	 *		C as that's already included in module B.
 	 *
-	 * This way we can reasonably reduce the amout of module registration
+	 * This way we can reasonably reduce the amount of module registration
 	 * data send to the client.
 	 *
 	 * @param array &$registryData Modules keyed by name with properties:
@@ -251,7 +251,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if ( $data['loader'] !== false ) {
 				$out .= ResourceLoader::makeCustomLoaderScript(
 					$name,
-					wfTimestamp( TS_ISO_8601_BASIC, $data['version'] ),
+					intval( $data['version'] ),
 					$data['dependencies'],
 					$data['group'],
 					$data['source'],
@@ -268,7 +268,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			) {
 				// Modules with no dependencies, group, foreign source or skip function;
 				// call mw.loader.register(name, timestamp)
-				$registrations[] = array( $name, $data['version'] );
+				$registrations[] = array( $name, intval( $data['version'] ) );
 			} elseif (
 				$data['group'] === null &&
 				$data['source'] === 'local' &&
@@ -276,7 +276,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			) {
 				// Modules with dependencies but no group, foreign source or skip function;
 				// call mw.loader.register(name, timestamp, dependencies)
-				$registrations[] = array( $name, $data['version'], $data['dependencies'] );
+				$registrations[] = array(
+					$name,
+					intval( $data['version'] ),
+					$data['dependencies']
+				);
 			} elseif (
 				$data['source'] === 'local' &&
 				$data['skip'] === null
@@ -285,7 +289,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				// call mw.loader.register(name, timestamp, dependencies, group)
 				$registrations[] = array(
 					$name,
-					$data['version'],
+					intval( $data['version'] ),
 					$data['dependencies'],
 					$data['group']
 				);
@@ -294,7 +298,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				// call mw.loader.register(name, timestamp, dependencies, group, source)
 				$registrations[] = array(
 					$name,
-					$data['version'],
+					intval( $data['version'] ),
 					$data['dependencies'],
 					$data['group'],
 					$data['source']
@@ -304,7 +308,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				// call mw.loader.register(name, timestamp, dependencies, group, source, skip)
 				$registrations[] = array(
 					$name,
-					$data['version'],
+					intval( $data['version'] ),
 					$data['dependencies'],
 					$data['group'],
 					$data['source'],
