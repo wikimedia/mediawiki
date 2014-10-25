@@ -115,8 +115,8 @@ mw.loader.addSource( {
 					'test.z.foo' => new ResourceLoaderTestModule( array(
 						'dependencies' => array(
 							'test.x.core',
-							'test.x.polyfil',
-							'test.y.polyfil',
+							'test.x.polyfill',
+							'test.y.polyfill',
 						),
 					) ),
 				),
@@ -148,9 +148,9 @@ mw.loader.addSource( {
         "test.z.foo",
         1388534400,
         [
-            "test.x.core",
-            "test.x.polyfil",
-            "test.y.polyfil"
+            0,
+            1,
+            2
         ]
     ]
 ] );',
@@ -232,29 +232,29 @@ mw.loader.addSource( {
         "test.x.util",
         1388534400,
         [
-            "test.x.core"
+            1
         ]
     ],
     [
         "test.x.foo",
         1388534400,
         [
-            "test.x.core"
+            1
         ]
     ],
     [
         "test.x.bar",
         1388534400,
         [
-            "test.x.util"
+            2
         ]
     ],
     [
         "test.x.quux",
         1388534400,
         [
-            "test.x.foo",
-            "test.x.bar",
+            3,
+            4,
             "test.x.unknown"
         ]
     ],
@@ -345,7 +345,7 @@ mw.loader.addSource( {
 'mw.loader.addSource({"local":"/w/load.php"});'
 . 'mw.loader.register(['
 . '["test.blank",1388534400],'
-. '["test.min",1388534400,["test.blank"],null,"local",'
+. '["test.min",1388534400,[0],null,"local",'
 . '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
 . ']]);',
 			$module->getModuleRegistrations( $context ),
@@ -373,7 +373,7 @@ mw.loader.addSource( {
         "test.min",
         1388534400,
         [
-            "test.blank"
+            0
         ],
         null,
         "local",
