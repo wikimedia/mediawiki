@@ -2152,7 +2152,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 		wfProfileIn( __METHOD__ );
 
-		$options += array( 'changed' => true, 'created' => false, 'oldcountable' => null );
+		$options += array(
+			'changed' => true,
+			'created' => false,
+			'moved' => false,
+			'oldcountable' => null
+		);
 		$content = $revision->getContent();
 
 		// Parse the text
@@ -2201,7 +2206,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$title = $this->mTitle->getPrefixedDBkey();
 		$shortTitle = $this->mTitle->getDBkey();
 
-		if ( !$options['changed'] ) {
+		if ( !$options['changed'] && !$options['moved'] ) {
 			$good = 0;
 		} elseif ( $options['created'] ) {
 			$good = (int)$this->isCountable( $editInfo );
