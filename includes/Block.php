@@ -893,7 +893,7 @@ class Block {
 	}
 
 	/**
-	 * Get/set whether the Block is a hardblock (affects logged-in users on a given IP/range
+	 * Get/set whether the Block is a hardblock (affects logged-in users on a given IP/range)
 	 * @param bool|null $x
 	 * @return bool
 	 */
