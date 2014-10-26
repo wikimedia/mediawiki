@@ -48,6 +48,15 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	/**
+	 * @param string $hexSortkey
+	 * @return bool
+	 */
+	private function validateHexSortkey( $hexSortkey ) {
+		// A hex sortkey has an unbound number of 2 letter pairs
+		return preg_match( '/^(?:[a-f0-9]{2})*$/', $hexSortkey );
+	}
+
+	/**
 	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
@@ -128,6 +137,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$queryTypes = array_slice( $queryTypes, $contTypeIndex );
 
 				// Add a WHERE clause for sortkey and from
+				if ( !$this->validateHexSortkey( $cont[1] ) ) {
+					$this->dieUsage( 'The hexsortkey provided is not valid', 'invalidhexsortkey' );
+				}
 				// pack( "H*", $foo ) is used to convert hex back to binary
 				$escSortkey = $this->getDB()->addQuotes( pack( 'H*', $cont[1] ) );
 				$from = intval( $cont[2] );
@@ -143,6 +155,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				if ( $params['startsortkeyprefix'] !== null ) {
 					$startsortkey = Collation::singleton()->getSortkey( $params['startsortkeyprefix'] );
 				} elseif ( $params['starthexsortkey'] !== null ) {
+					if ( !$this->validateHexSortkey( $params['starthexsortkey'] ) ) {
+						$this->dieUsage( 'The hexsortkey provided is not valid', 'invalidhexsortkey' );
+					}
 					$startsortkey = pack( 'H*', $params['starthexsortkey'] );
 				} else {
 					$this->logFeatureUsage( 'list=categorymembers&cmstartsortkey' );
@@ -151,6 +166,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				if ( $params['endsortkeyprefix'] !== null ) {
 					$endsortkey = Collation::singleton()->getSortkey( $params['endsortkeyprefix'] );
 				} elseif ( $params['endhexsortkey'] !== null ) {
+					if ( !$this->validateHexSortkey( $params['endhexsortkey'] ) ) {
+						$this->dieUsage( 'The hexsortkey provided is not valid', 'invalidhexsortkey' );
+					}
 					$endsortkey = pack( 'H*', $params['endhexsortkey'] );
 				} else {
 					$this->logFeatureUsage( 'list=categorymembers&cmendsortkey' );
