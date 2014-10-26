@@ -840,6 +840,7 @@
 	"search-result-category-size": "$1 {{PLURAL:$1|član|člana|člani|članov}} ($1 {{PLURAL:$2|podkategorija|podkategoriji|podkategorije|podkategorij}}, $1 {{PLURAL:$3|datoteka|datoteki|datoteke|datotek}})",
 	"search-redirect": "(preusmeritev $1)",
 	"search-section": "(razdelek $1)",
+	"search-category": "(kategorija $1)",
 	"search-file-match": "(ujema se z vsebino datoteke)",
 	"search-suggest": "Iščete morda: $1",
 	"search-interwiki-caption": "Sorodni projekti",

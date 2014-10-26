@@ -893,6 +893,7 @@
 	"search-result-category-size": "{{PLURAL:$1|$1 件}} ({{PLURAL:$2|$2 下位カテゴリ}}、{{PLURAL:$3|$3 ファイル}})",
 	"search-redirect": "($1からのリダイレクト)",
 	"search-section": "($1の節)",
+	"search-category": "(カテゴリ $1)",
 	"search-file-match": "(ファイルの内容との一致)",
 	"search-suggest": "もしかして: $1",
 	"search-interwiki-caption": "姉妹プロジェクト",

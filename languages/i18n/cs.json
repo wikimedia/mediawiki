@@ -856,6 +856,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 položka|$1 položky|$1 položek}} ({{PLURAL:$2|1 podkategorie|$2 podkategorie|$2 podkategorií}}, {{PLURAL:$3|1 soubor|$3 soubory|$3 souborů}})",
 	"search-redirect": "(přesměrování $1)",
 	"search-section": "(část $1)",
+	"search-category": "(kategorie $1)",
 	"search-file-match": "(odpovídá obsahu souboru)",
 	"search-suggest": "Mysleli jste: $1",
 	"search-interwiki-caption": "Sesterské projekty",

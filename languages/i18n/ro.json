@@ -853,6 +853,7 @@
 	"search-result-category-size": "$1 {{PLURAL:$1|element|elemente}} ($2 {{PLURAL:$2|categorie|categorii}}, $3 {{PLURAL:$3|fișier|fișiere}})",
 	"search-redirect": "(redirecționare de la $1)",
 	"search-section": "(secțiunea $1)",
+	"search-category": "(categoria $1)",
 	"search-file-match": "(se regăsește în conținutul fișierului)",
 	"search-suggest": "V-ați referit la: $1",
 	"search-interwiki-caption": "Proiecte înrudite",

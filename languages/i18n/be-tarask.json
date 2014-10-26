@@ -843,6 +843,7 @@
 	"search-result-category-size": "$1 {{PLURAL:$1|элемэнт|элемэнты|элемэнтаў}} ($2 {{PLURAL:$2|падкатэгорыя|падкатэгорыі|падкатэгорыяў}}, $3 {{PLURAL:|файл|файлы|файлаў}})",
 	"search-redirect": "(перанакіраваньне $1)",
 	"search-section": "(сэкцыя $1)",
+	"search-category": "(катэгорыя $1)",
 	"search-file-match": "(супадае зь зьмесьцівам файла)",
 	"search-suggest": "Магчыма, вы мелі на ўвазе: $1",
 	"search-interwiki-caption": "Сумежныя праекты",

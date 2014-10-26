@@ -853,6 +853,7 @@
 	"search-result-category-size": "$1 {{PLURAL:$1|ahli|ahli}} ($2 {{PLURAL:$2|subkategori|subkategori}}, $3 {{PLURAL:$3|fail|fail}})",
 	"search-redirect": "(pelencongan $1)",
 	"search-section": "(bahagian $1)",
+	"search-category": "(kategori $1)",
 	"search-file-match": "(sepadan dengan kandungan fail)",
 	"search-suggest": "Maksud anda, $1?",
 	"search-interwiki-caption": "Projek-projek lain",
