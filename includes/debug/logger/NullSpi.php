@@ -23,6 +23,13 @@
  * MWLogger service provider that creates \Psr\Log\NullLogger instances.
  * A NullLogger silently discards all log events sent to it.
  *
+ * Usage:
+ * @code
+ * $wgMWLoggerDefaultSpi = array(
+ *   'class' => 'MWLoggerNullSpi',
+ * );
+ * @endcode
+ *
  * @see MWLogger
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
