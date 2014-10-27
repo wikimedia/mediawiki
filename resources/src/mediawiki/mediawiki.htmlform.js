@@ -368,12 +368,12 @@
 		}
 
 		// Add/remove cloner clones without having to resubmit the form
-		$root.find( '.mw-htmlform-cloner-delete-button' ).click( function ( ev ) {
+		$root.find( '.mw-htmlform-cloner-delete-button' ).filter( ':input' ).click( function ( ev ) {
 			ev.preventDefault();
 			$( this ).closest( 'li.mw-htmlform-cloner-li' ).remove();
 		} );
 
-		$root.find( '.mw-htmlform-cloner-create-button' ).click( function ( ev ) {
+		$root.find( '.mw-htmlform-cloner-create-button' ).filter( ':input' ).click( function ( ev ) {
 			var $ul, $li, html;
 
 			ev.preventDefault();
