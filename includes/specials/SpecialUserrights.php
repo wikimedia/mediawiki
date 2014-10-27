@@ -415,6 +415,8 @@ class UserrightsPage extends SpecialPage {
 	 * Output a form to allow searching for a user
 	 */
 	function switchForm() {
+		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+
 		$this->getOutput()->addHTML(
 			Html::openElement(
 				'form',
@@ -433,7 +435,10 @@ class UserrightsPage extends SpecialPage {
 				'username',
 				30,
 				str_replace( '_', ' ', $this->mTarget ),
-				array( 'autofocus' => true )
+				array(
+					'autofocus' => true,
+					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
+				)
 			) . ' ' .
 			Xml::submitButton( $this->msg( 'editusergroup' )->text() ) .
 			Html::closeElement( 'fieldset' ) .
