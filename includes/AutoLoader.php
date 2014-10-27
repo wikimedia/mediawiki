@@ -698,6 +698,7 @@ $wgAutoloadLocalClasses = array(
 	'SwiftVirtualRESTService' => 'includes/libs/virtualrest/SwiftVirtualRESTService.php',
 	'VirtualRESTService' => 'includes/libs/virtualrest/VirtualRESTService.php',
 	'VirtualRESTServiceClient' => 'includes/libs/virtualrest/VirtualRESTServiceClient.php',
+	'Xhprof' => 'includes/libs/Xhprof.php',
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',
 
 	# includes/libs/lessphp
@@ -875,6 +876,7 @@ $wgAutoloadLocalClasses = array(
 	'ProfilerStandard' => 'includes/profiler/ProfilerStandard.php',
 	'ProfilerStub' => 'includes/profiler/ProfilerStub.php',
 	'ProfileSection' => 'includes/profiler/Profiler.php',
+	'ProfilerXhprof' => 'includes/profiler/ProfilerXhprof.php',
 	'TransactionProfiler' => 'includes/profiler/Profiler.php',
 
 	# includes/rcfeed
