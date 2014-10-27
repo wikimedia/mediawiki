@@ -487,10 +487,7 @@ class SpecialPage {
 		if ( $this->mContext instanceof IContextSource ) {
 			return $this->mContext;
 		} else {
-			wfDebug( __METHOD__ . " called and \$mContext is null. " .
-				"Return RequestContext::getMain(); for sanity\n" );
-
-			return RequestContext::getMain();
+			return RequestContext::getMainAndWarn( __METHOD__ );
 		}
 	}
 
