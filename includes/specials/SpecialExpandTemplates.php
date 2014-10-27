@@ -77,7 +77,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			$options->setMaxIncludeSize( self::MAX_INCLUDE_SIZE );
 
 			if ( $this->generateXML ) {
-				$wgParser->startExternalParse( $title, $options, OT_PREPROCESS );
+				$wgParser->startExternalParse( $title, $options, Parser::OT_PREPROCESS );
 				$dom = $wgParser->preprocessToDom( $input );
 
 				if ( method_exists( $dom, 'saveXML' ) ) {

@@ -558,7 +558,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					$wgParser->startExternalParse(
 						$title,
 						ParserOptions::newFromContext( $this->getContext() ),
-						OT_PREPROCESS
+						Parser::OT_PREPROCESS
 					);
 					$dom = $wgParser->preprocessToDom( $t );
 					if ( is_callable( array( $dom, 'saveXML' ) ) ) {

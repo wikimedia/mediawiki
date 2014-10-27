@@ -376,7 +376,7 @@ class ApiParse extends ApiBase {
 				$this->dieUsage( "generatexml is only supported for wikitext content", "notwikitext" );
 			}
 
-			$wgParser->startExternalParse( $titleObj, $popts, OT_PREPROCESS );
+			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
 			$dom = $wgParser->preprocessToDom( $this->content->getNativeData() );
 			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 				$xml = $dom->saveXML();
