@@ -72,9 +72,9 @@ abstract class LockManager {
 	public function __construct( array $config ) {
 		$this->domain = isset( $config['domain'] ) ? $config['domain'] : wfWikiID();
 		if ( isset( $config['lockTTL'] ) ) {
-			$this->lockTTL = max( 1, $config['lockTTL'] );
+			$this->lockTTL = max( 5, $config['lockTTL'] );
 		} elseif ( PHP_SAPI === 'cli' ) {
-			$this->lockTTL = 2 * 3600;
+			$this->lockTTL = 3600;
 		} else {
 			$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
 			$this->lockTTL = max( 5 * 60, 2 * (int)$met );
