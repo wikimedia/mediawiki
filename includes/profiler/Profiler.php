@@ -187,6 +187,8 @@ abstract class Profiler {
 	abstract public function getOutput();
 
 	/**
+	 * Get data for the debugging toolbar.
+	 *
 	 * @return array
 	 */
 	abstract public function getRawData();
