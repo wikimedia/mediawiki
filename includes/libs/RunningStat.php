@@ -126,7 +126,7 @@ class RunningStat implements Countable {
 	}
 
 	/**
-	 * Get the estimated stanard deviation.
+	 * Get the estimated standard deviation.
 	 *
 	 * The standard deviation of a statistical population is the square root of
 	 * its variance. It shows shows how much variation from the mean exists. In
