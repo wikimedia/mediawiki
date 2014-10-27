@@ -856,6 +856,7 @@
 	"search-result-category-size": "$1 trang thành viên ($2 thể loại con, $3 tập tin)",
 	"search-redirect": "(đổi hướng $1)",
 	"search-section": "(đề mục $1)",
+	"search-category": "(thể loại $1)",
 	"search-file-match": "(khớp nội dung tập tin)",
 	"search-suggest": "Có phải bạn muốn tìm: $1",
 	"search-interwiki-caption": "Các dự án liên quan",

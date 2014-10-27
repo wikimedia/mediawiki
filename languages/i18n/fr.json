@@ -945,6 +945,7 @@
 	"search-result-category-size": "$1 membre{{PLURAL:$1||s}} ($2 sous-catégorie{{PLURAL:$2||s}}, $3 fichier{{PLURAL:$3||s}})",
 	"search-redirect": "(redirection depuis $1)",
 	"search-section": "(section $1)",
+	"search-category": "(catégorie $1)",
 	"search-file-match": "(correspond au contenu du fichier)",
 	"search-suggest": "Essayez avec cette orthographe : $1",
 	"search-interwiki-caption": "Projets frères",

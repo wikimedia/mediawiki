@@ -3134,5 +3134,12 @@
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (abilità)",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''disabilità''')",
 	"mediastatistics": "Statìstiche an sij mojen",
-	"mediastatistics-summary": "Statìstiche an sle sòrt d'archivi carià. A ancludo mach la version pi recent ëd n'archivi. Le version veje o dëscancelà dj'archivi a son escludùe."
+	"mediastatistics-summary": "Statìstiche an sle sòrt d'archivi carià. A ancludo mach la version pi recent ëd n'archivi. Le version veje o dëscancelà dj'archivi a son escludùe.",
+	"mediastatistics-nbytes": "{{PLURAL:$1|$1 otet}} ($2 ; $3%)",
+	"mediastatistics-table-mimetype": "Sòrt MIME",
+	"mediastatistics-table-extensions": "Estension possìbij",
+	"mediastatistics-table-count": "Nùmer d'archivi",
+	"mediastatistics-table-totalbytes": "Taja combinà",
+	"mediastatistics-header-unknown": "Nen conossù",
+	"mediastatistics-header-bitmap": "Plance bitmap"
 }
