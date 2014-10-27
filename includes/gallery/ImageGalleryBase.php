@@ -93,9 +93,14 @@ abstract class ImageGalleryBase extends ContextSource {
 	static function factory( $mode = false, IContextSource $context = null ) {
 		global $wgContLang;
 		self::loadModes();
+
 		if ( !$context ) {
-			$context = RequestContext::getMainAndWarn( __METHOD__ );
+			wfDebug( __METHOD__ . ' called without context. ' .
+			"Using RequestContext::getMain() for sanity\n" );
+
+			$context = RequestContext::getMain();
 		}
+
 		if ( !$mode ) {
 			$galleryOpions = $context->getConfig()->get( 'GalleryOptions' );
 			$mode = $galleryOpions['mode'];

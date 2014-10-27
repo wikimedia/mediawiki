@@ -433,21 +433,6 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
-	 * Get the RequestContext object associated with the main request
-	 * and gives a warning to the log, to find places, where a context maybe is missing.
-	 *
-	 * @param string $func
-	 * @return RequestContext
-	 * @since 1.24
-	 */
-	public static function getMainAndWarn( $func = __METHOD__ ) {
-		wfDebug( $func . ' called without context. ' .
-			"Using RequestContext::getMain() for sanity\n" );
-
-		return self::getMain();
-	}
-
-	/**
 	 * Resets singleton returned by getMain(). Should be called only from unit tests.
 	 */
 	public static function resetMain() {
