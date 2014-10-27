@@ -782,7 +782,7 @@ class Sanitizer {
 				# HTML5 microdata
 				|| $attribute === 'itemid' || $attribute === 'itemprop'
 				|| $attribute === 'itemref' || $attribute === 'itemscope'
-				|| $attribute === 'itemtype'
+				|| $attribute === 'itemtype' || $attribute === 'content'
 			) {
 				//Paranoia. Allow "simple" values but suppress javascript
 				if ( preg_match( self::EVIL_URI_PATTERN, $value ) ) {
@@ -1550,7 +1550,7 @@ class Sanitizer {
 			# add HTML5 microdata tags as specified by
 			# http://www.whatwg.org/html/microdata.html#the-microdata-model
 			$common = array_merge( $common, array(
-				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
+				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype', 'content'
 			) );
 		}
 
