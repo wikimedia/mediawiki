@@ -60,7 +60,7 @@ class ApiHelp extends ApiBase {
 		if ( $params['wrap'] ) {
 			$data = array(
 				'mime' => 'text/html',
-				'help' => $help,
+				'help' => $html,
 			);
 			$result->setSubelements( $data, 'help' );
 			$result->addValue( null, $this->getModuleName(), $data );
