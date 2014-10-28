@@ -19,6 +19,8 @@
 	"ooui-outline-control-move-up": "להזיז את הפריט מעלה",
 	"ooui-outline-control-remove": "להסיר את הפריט",
 	"ooui-toolbar-more": "עוד",
+	"ooui-toolgroup-expand": "יותר",
+	"ooui-toolgroup-collapse": "פחות",
 	"ooui-dialog-message-accept": "אישור",
 	"ooui-dialog-message-reject": "ביטול",
 	"ooui-dialog-process-error": "משהו השתבש",

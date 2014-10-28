@@ -19,6 +19,8 @@
 	"ooui-outline-control-move-up": "Sposta in alto",
 	"ooui-outline-control-remove": "Rimuovi elemento",
 	"ooui-toolbar-more": "Altro",
+	"ooui-toolgroup-expand": "Più",
+	"ooui-toolgroup-collapse": "Meno",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Annulla",
 	"ooui-dialog-process-error": "Qualcosa è andato storto",

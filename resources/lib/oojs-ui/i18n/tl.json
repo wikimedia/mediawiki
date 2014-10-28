@@ -5,13 +5,10 @@
 			"Sky Harbor"
 		]
 	},
-	"ooui-dialog-action-close": "Isara",
 	"ooui-outline-control-move-down": "Ilipat ang aytem pababa",
 	"ooui-outline-control-move-up": "Ilipat ang aytem pataas",
 	"ooui-outline-control-remove": "Tanggalin ang aytem",
 	"ooui-toolbar-more": "Marami pa",
-	"ooui-dialog-confirm-title": "Tiyakin",
-	"ooui-dialog-confirm-default-prompt": "Nakatitiyak ka ba?",
-	"ooui-dialog-confirm-default-ok": "Sige",
-	"ooui-dialog-confirm-default-cancel": "Huwag ituloy"
+	"ooui-dialog-message-accept": "Sige",
+	"ooui-dialog-message-reject": "Huwag ituloy"
 }

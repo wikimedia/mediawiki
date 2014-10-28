@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (40de4dabe6)
+ * OOjs UI v0.1.0-pre (deccd11549)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-22T23:42:26Z
+ * Date: 2014-10-28T16:52:27Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -1001,12 +1001,12 @@
 }
 .oo-ui-progressBarWidget {
 	width: 20em;
-	border: solid 1px #cccccc;
+	border: solid 1px #0274ff;
 	border-radius: 0.1em;
 }
 .oo-ui-progressBarWidget-bar {
 	height: 1em;
-	border-right: solid 1px #cccccc;
+	border-right: solid 1px #0274ff;
 	background: #0274ff;
 	-webkit-transition: width 200ms;
 	   -moz-transition: width 200ms;
@@ -1480,8 +1480,8 @@
 	/* @noflip */
 	left: 0;
 }
-.oo-ui-window-isolated,
-.oo-ui-window-overlay {
+.oo-ui-window,
+.oo-ui-window-isolated {
 	background: transparent;
 	font-family: sans-serif;
 	font-size: 0.8em;

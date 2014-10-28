@@ -6,8 +6,6 @@
 			"Serwan"
 		]
 	},
-	"ooui-dialog-action-close": "دایخە",
-	"ooui-dialog-confirm-default-prompt": "ئایا تۆ دڵنیات ؟",
-	"ooui-dialog-confirm-default-ok": "باشە",
-	"ooui-dialog-confirm-default-cancel": "پاشگەزبوونەوە"
+	"ooui-dialog-message-accept": "باشە",
+	"ooui-dialog-message-reject": "پاشگەزبوونەوە"
 }

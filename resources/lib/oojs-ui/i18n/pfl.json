@@ -4,12 +4,10 @@
 			"Manuae"
 		]
 	},
-	"ooui-dialog-action-close": "Schließe",
 	"ooui-outline-control-move-down": "Bweeschs nunna",
 	"ooui-outline-control-move-up": "Bweeschs nuff",
 	"ooui-outline-control-remove": "Leschs",
 	"ooui-toolbar-more": "Mea",
-	"ooui-dialog-confirm-default-prompt": "Bischda sischa?",
-	"ooui-dialog-confirm-default-ok": "OK",
-	"ooui-dialog-confirm-default-cancel": "Abbresche"
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "Abbresche"
 }
