@@ -903,7 +903,7 @@ class UploadForm extends HTMLForm {
 					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] )
 				)->parse() .
 					$this->msg( 'word-separator' )->escaped() .
-					$this->msg( 'upload_source_url' )->escaped(),
+					$this->msg( 'upload_source_url' )->parse(),
 				'checked' => $selectedSourceType == 'url',
 			);
 		}
