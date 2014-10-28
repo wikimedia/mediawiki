@@ -159,10 +159,7 @@ $dbw->commit( __METHOD__ );
 
 Use of locking reads (e.g. the FOR UPDATE clause) is not advised. They
 are poorly implemented in InnoDB and will cause regular deadlock errors.
-It's also surprisingly easy to cripple the wiki with lock contention. If
-you must use them, define a new flag for $wgAntiLockFlags which allows
-them to be turned off, because we'll almost certainly need to do so on
-the Wikimedia cluster.
+It's also surprisingly easy to cripple the wiki with lock contention.
 
 Instead of locking reads, combine your existence checks into your write
 queries, by using an appropriate condition in the WHERE clause of an
