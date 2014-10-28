@@ -528,11 +528,11 @@ class ApiHelp extends ApiBase {
 							->parse();
 					}
 
-					if ( !$description && !$info ) {
-						$description[] = self::wrap(
+					if ( !array_filter( $description ) ) {
+						$description = array( self::wrap(
 							$context->msg( 'api-help-param-no-description' ),
 							'apihelp-empty'
-						);
+						) );
 					}
 
 					// Add "deprecated" flag
