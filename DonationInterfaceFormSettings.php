@@ -354,6 +354,55 @@ $forms_whitelist['email-cc-vma'] = $forms_whitelist['cc-vma'];
 $forms_whitelist['email-cc-vm'] = $forms_whitelist['cc-vm'];
 
 /*************************
+ * WorldPay Form Tests *
+ *************************/
+
+$forms_whitelist['wp-sn'] = array(
+	'file' => $form_dirs['worldpay'] . '/worldpay-test.html',
+	'gateway' => 'worldpay',
+	'countries' => array( '+' => array( 'BE', 'FR', 'US' ) ),
+	'currencies' => array( '+' => 'ALL' ),
+	'payment_methods' => array( 'cc' => 'ALL' ),
+	'selection_weight' => 0
+);
+
+$forms_whitelist['wp-sw'] = array(
+	'file' => $form_dirs['worldpay'] . '/worldpay-test.html',
+	'gateway' => 'worldpay',
+	'countries' => array( '+' => array( 'BE', 'FR', 'US' ) ),
+	'currencies' => array( '+' => 'ALL' ),
+	'payment_methods' => array( 'cc' => 'ALL' ),
+	'selection_weight' => 0
+);
+
+$forms_whitelist['wp-fud'] = array(
+	'file' => $form_dirs['worldpay'] . '/worldpay-test.html',
+	'gateway' => 'worldpay',
+	'countries' => array( '+' => array( 'BE', 'FR', 'US' ) ),
+	'currencies' => array( '+' => 'ALL' ),
+	'payment_methods' => array( 'cc' => 'ALL' ),
+	'selection_weight' => 0
+);
+
+$forms_whitelist['wp-btnb'] = array(
+	'file' => $form_dirs['worldpay'] . '/worldpay-test.html',
+	'gateway' => 'worldpay',
+	'countries' => array( '+' => array( 'BE', 'FR', 'US' ) ),
+	'currencies' => array( '+' => 'ALL' ),
+	'payment_methods' => array( 'cc' => 'ALL' ),
+	'selection_weight' => 0
+);
+
+$forms_whitelist['wp-btng'] = array(
+	'file' => $form_dirs['worldpay'] . '/worldpay-test.html',
+	'gateway' => 'worldpay',
+	'countries' => array( '+' => array( 'BE', 'FR', 'US' ) ),
+	'currencies' => array( '+' => 'ALL' ),
+	'payment_methods' => array( 'cc' => 'ALL' ),
+	'selection_weight' => 0
+);
+
+/*************************
  * Recurring Credit Card *
  *************************/
 
