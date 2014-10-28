@@ -493,6 +493,20 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 		'payment_methods' => array( 'cc' => 'ALL' ),
 		'selection_weight' => 0
 	);
+
+	/*************************
+	 * WorldPay Form Tests *
+	 *************************/
+
+	$worldpay_test_spec = array(
+		'file' => $form_dirs['worldpay'] . '/worldpay-test.html',
+	) + $forms_whitelist['worldpay'];
+
+	$forms_whitelist['wp-sn'] = $worldpay_test_spec;
+	$forms_whitelist['wp-sw'] = $worldpay_test_spec;
+	$forms_whitelist['wp-fud'] = $worldpay_test_spec;
+	$forms_whitelist['wp-btnb'] = $worldpay_test_spec;
+	$forms_whitelist['wp-btng'] = $worldpay_test_spec;
 }
 
 /* * ***********
