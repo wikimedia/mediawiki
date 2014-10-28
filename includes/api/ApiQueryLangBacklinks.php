@@ -196,7 +196,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=langbacklinks&lbltitle=Test&lbllang=fr'
 				=> 'apihelp-query+langbacklinks-example-simple',

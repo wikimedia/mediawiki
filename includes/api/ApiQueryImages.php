@@ -162,7 +162,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&prop=images&titles=Main%20Page'
 				=> 'apihelp-query+images-example-simple',

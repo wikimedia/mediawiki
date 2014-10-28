@@ -200,7 +200,7 @@ class ApiCreateAccount extends ApiBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=createaccount&name=testuser&password=test123'
 				=> 'apihelp-createaccount-example-pass',

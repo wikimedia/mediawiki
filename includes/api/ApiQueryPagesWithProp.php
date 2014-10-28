@@ -160,7 +160,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=pageswithprop&pwppropname=displaytitle&pwpprop=ids|title|value'
 				=> 'apihelp-query+pageswithprop-example-simple',

@@ -171,7 +171,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		return $ret;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=feedrecentchanges'
 				=> 'apihelp-feedrecentchanges-example-simple',

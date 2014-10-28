@@ -389,7 +389,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		return $ret;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		$settings = self::$settings[$this->getModuleName()];
 		$name = $this->getModuleName();
 		$path = $this->getModulePath();

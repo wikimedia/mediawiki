@@ -721,7 +721,7 @@ class ApiParse extends ApiBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=parse&page=Project:Sandbox'
 				=> 'apihelp-parse-example-page',

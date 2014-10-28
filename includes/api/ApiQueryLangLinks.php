@@ -175,7 +175,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&prop=langlinks&titles=Main%20Page&redirects='
 				=> 'apihelp-query+langlinks-example-simple',

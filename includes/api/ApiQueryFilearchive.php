@@ -288,7 +288,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=filearchive'
 				=> 'apihelp-query+filearchive-example-simple',

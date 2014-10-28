@@ -190,7 +190,7 @@ class ApiRollback extends ApiBase {
 		return $this->mTitleObj;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=rollback&title=Main%20Page&user=Example&token=123ABC' =>
 				'apihelp-rollback-example-simple',

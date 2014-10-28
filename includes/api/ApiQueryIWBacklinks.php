@@ -197,7 +197,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=iwbacklinks&iwbltitle=Test&iwblprefix=wikibooks'
 				=> 'apihelp-query+iwbacklinks-example-simple',

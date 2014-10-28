@@ -565,7 +565,7 @@ class ApiEditPage extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=edit&title=Test&summary=test%20summary&' .
 				'text=article%20content&basetimestamp=2007-08-24T12:34:54Z&token=123ABC'

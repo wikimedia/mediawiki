@@ -144,7 +144,7 @@ class ApiPurge extends ApiBase {
 		return $result;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=purge&titles=Main_Page|API'
 				=> 'apihelp-purge-example-simple',

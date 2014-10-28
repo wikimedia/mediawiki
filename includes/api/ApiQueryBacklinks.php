@@ -550,7 +550,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		return $retval;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		static $examples = array(
 			'backlinks' => array(
 				'action=query&list=backlinks&bltitle=Main%20Page'

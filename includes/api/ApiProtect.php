@@ -179,7 +179,7 @@ class ApiProtect extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=protect&title=Main%20Page&token=123ABC&' .
 				'protections=edit=sysop|move=sysop&cascade=&expiry=20070901163000|never'

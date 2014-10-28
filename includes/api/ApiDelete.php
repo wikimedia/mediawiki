@@ -214,7 +214,7 @@ class ApiDelete extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=delete&title=Main%20Page&token=123ABC'
 				=> 'apihelp-delete-example-simple',

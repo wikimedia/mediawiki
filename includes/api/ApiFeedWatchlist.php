@@ -249,7 +249,7 @@ class ApiFeedWatchlist extends ApiBase {
 		return $ret;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=feedwatchlist'
 				=> 'apihelp-feedwatchlist-example-default',

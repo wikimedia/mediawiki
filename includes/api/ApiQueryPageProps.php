@@ -134,7 +134,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&prop=pageprops&titles=Category:Foo'
 				=> 'apihelp-query+pageprops-example-simple',

@@ -607,7 +607,7 @@ class ApiQuery extends ApiBase {
 		return true;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&prop=revisions&meta=siteinfo&' .
 				'titles=Main%20Page&rvprop=user|comment&continue='

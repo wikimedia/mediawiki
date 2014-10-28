@@ -100,7 +100,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 			);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=prefixsearch&pssearch=meaning'
 				=> 'apihelp-query+prefixsearch-example-simple',

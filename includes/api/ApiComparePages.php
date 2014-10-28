@@ -126,7 +126,7 @@ class ApiComparePages extends ApiBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=compare&fromrev=1&torev=2'
 				=> 'apihelp-compare-example-1',

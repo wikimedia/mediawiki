@@ -362,7 +362,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=allusers&aufrom=Y'
 				=> 'apihelp-query+allusers-example-Y',

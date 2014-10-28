@@ -199,7 +199,7 @@ class ApiFeedContributions extends ApiBase {
 		return $ret;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=feedcontributions&user=Example'
 				=> 'apihelp-feedcontributions-example-simple',

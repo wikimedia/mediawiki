@@ -51,7 +51,7 @@ class ApiRsd extends ApiBase {
 		return new ApiFormatXmlRsd( $this->getMain(), 'xml' );
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=rsd'
 				=> 'apihelp-rsd-example-simple',

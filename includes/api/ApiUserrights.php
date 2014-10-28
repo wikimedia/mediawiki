@@ -135,7 +135,7 @@ class ApiUserrights extends ApiBase {
 		return $this->getUrUser( $params )->getName();
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC'
 				=> 'apihelp-userrights-example-user',

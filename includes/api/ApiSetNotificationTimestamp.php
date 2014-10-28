@@ -230,7 +230,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		return $result;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=setnotificationtimestamp&entirewatchlist=&token=123ABC'
 				=> 'apihelp-setnotificationtimestamp-example-all',

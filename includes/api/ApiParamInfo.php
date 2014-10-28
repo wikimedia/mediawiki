@@ -385,7 +385,7 @@ class ApiParamInfo extends ApiBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=paraminfo&modules=parse|phpfm|query+allpages|query+siteinfo'
 				=> 'apihelp-paraminfo-example-1',

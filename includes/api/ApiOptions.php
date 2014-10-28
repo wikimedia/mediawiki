@@ -161,7 +161,7 @@ class ApiOptions extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/API:Options';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=options&reset=&token=123ABC'
 				=> 'apihelp-options-example-reset',

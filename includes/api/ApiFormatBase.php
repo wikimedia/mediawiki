@@ -207,7 +207,7 @@ abstract class ApiFormatBase extends ApiBase {
 		return $this->mBuffer;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&meta=siteinfo&siprop=namespaces&format=' . $this->getModuleName()
 				=> array( 'apihelp-format-example-generic', $this->getFormat() )

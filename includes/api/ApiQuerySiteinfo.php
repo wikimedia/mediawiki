@@ -834,7 +834,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&meta=siteinfo&siprop=general|namespaces|namespacealiases|statistics'
 				=> 'apihelp-query+siteinfo-example-simple',

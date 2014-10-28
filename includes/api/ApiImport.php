@@ -120,7 +120,7 @@ class ApiImport extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=import&interwikisource=meta&interwikipage=Help:ParserFunctions&' .
 				'namespace=100&fullhistory=&token=123ABC'

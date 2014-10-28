@@ -91,7 +91,7 @@ class ApiOpenSearch extends ApiBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=opensearch&search=Te'
 				=> 'apihelp-opensearch-example-te',

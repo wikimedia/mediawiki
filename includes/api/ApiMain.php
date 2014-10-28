@@ -1157,7 +1157,7 @@ class ApiMain extends ApiBase {
 	}
 
 	/** @see ApiBase::getExamplesMessages() */
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=help'
 				=> 'apihelp-help-example-main',

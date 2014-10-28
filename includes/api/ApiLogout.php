@@ -46,7 +46,7 @@ class ApiLogout extends ApiBase {
 		return false;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=logout'
 				=> 'apihelp-logout-example-logout',

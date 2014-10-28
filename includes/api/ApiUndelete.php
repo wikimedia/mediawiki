@@ -121,7 +121,7 @@ class ApiUndelete extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=undelete&title=Main%20Page&token=123ABC&reason=Restoring%20main%20page'
 				=> 'apihelp-undelete-example-page',

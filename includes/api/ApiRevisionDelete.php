@@ -203,7 +203,7 @@ class ApiRevisionDelete extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=revisiondelete&target=Main%20Page&type=revision&ids=12345&' .
 				'hide=content&token=123ABC'

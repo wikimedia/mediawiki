@@ -97,7 +97,7 @@ class ApiUnblock extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=unblock&id=105'
 				=> 'apihelp-unblock-example-id',

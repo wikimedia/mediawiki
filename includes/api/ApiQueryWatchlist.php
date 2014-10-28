@@ -519,7 +519,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=watchlist'
 				=> 'apihelp-query+watchlist-example-simple',

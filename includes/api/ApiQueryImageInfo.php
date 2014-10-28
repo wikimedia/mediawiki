@@ -749,7 +749,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&titles=File:Albert%20Einstein%20Head.jpg&prop=imageinfo'
 				=> 'apihelp-query+imageinfo-example-simple',

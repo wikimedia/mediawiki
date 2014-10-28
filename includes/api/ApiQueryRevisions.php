@@ -775,7 +775,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&prop=revisions&titles=API|Main%20Page&' .
 				'rvprop=timestamp|user|comment|content'

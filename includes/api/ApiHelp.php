@@ -650,7 +650,7 @@ class ApiHelp extends ApiBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=help'
 				=> 'apihelp-help-example-main',

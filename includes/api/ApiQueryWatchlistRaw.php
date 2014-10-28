@@ -175,7 +175,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=watchlistraw'
 				=> 'apihelp-query+watchlistraw-example-simple',

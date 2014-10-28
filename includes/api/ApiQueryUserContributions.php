@@ -524,7 +524,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=usercontribs&ucuser=Example'
 				=> 'apihelp-query+usercontribs-example-user',

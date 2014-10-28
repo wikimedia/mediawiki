@@ -158,7 +158,7 @@ class ApiQueryTags extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=tags&tgprop=displayname|description|hitcount'
 				=> 'apihelp-query+tags-example-simple',

@@ -184,7 +184,7 @@ class ApiLogin extends ApiBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=login&lgname=user&lgpassword=password'
 				=> 'apihelp-login-example-gettoken',

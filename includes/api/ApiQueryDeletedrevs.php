@@ -495,7 +495,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&' .
 				'drprop=user|comment|content'

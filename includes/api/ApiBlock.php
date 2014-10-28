@@ -169,7 +169,7 @@ class ApiBlock extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=block&user=192.0.2.5&expiry=3%20days&reason=First%20strike&token=123ABC'
 				=> 'apihelp-block-example-ip-simple',

@@ -172,7 +172,7 @@ class ApiWatch extends ApiBase {
 		return $result;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=watch&titles=Main_Page&token=123ABC'
 				=> 'apihelp-watch-example-watch',

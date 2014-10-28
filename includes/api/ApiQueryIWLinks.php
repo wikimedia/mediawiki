@@ -179,7 +179,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&prop=iwlinks&titles=Main%20Page'
 				=> 'apihelp-query+iwlinks-example-simple',

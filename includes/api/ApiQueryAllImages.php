@@ -376,7 +376,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	private $propertyFilter = array( 'archivename', 'thumbmime', 'uploadwarning' );
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=allimages&aifrom=B'
 				=> 'apihelp-query+allimages-example-B',

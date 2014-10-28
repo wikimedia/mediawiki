@@ -191,7 +191,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=allcategories&acprop=size'
 				=> 'apihelp-query+allcategories-example-size',

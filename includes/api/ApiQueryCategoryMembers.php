@@ -379,7 +379,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		return $ret;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=categorymembers&cmtitle=Category:Physics'
 				=> 'apihelp-query+categorymembers-example-simple',

@@ -199,7 +199,7 @@ class ApiImageRotate extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=imagerotate&titles=File:Example.jpg&rotation=90&token=123ABC'
 				=> 'apihelp-imagerotate-example-simple',

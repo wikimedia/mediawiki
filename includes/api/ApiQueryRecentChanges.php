@@ -703,7 +703,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=recentchanges'
 				=> 'apihelp-query+recentchanges-example-simple',

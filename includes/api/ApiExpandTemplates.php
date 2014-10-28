@@ -159,7 +159,7 @@ class ApiExpandTemplates extends ApiBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=expandtemplates&text={{Project:Sandbox}}'
 				=> 'apihelp-expandtemplates-example-simple',

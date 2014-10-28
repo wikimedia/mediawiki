@@ -89,7 +89,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		) ) );
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&meta=filerepoinfo&friprop=apiurl|name|displayname'
 				=> 'apihelp-query+filerepoinfo-example-simple',

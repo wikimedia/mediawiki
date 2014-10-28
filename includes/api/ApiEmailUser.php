@@ -106,7 +106,7 @@ class ApiEmailUser extends ApiBase {
 		return 'csrf';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=emailuser&target=WikiSysop&text=Content&token=123ABC'
 				=> 'apihelp-emailuser-example-email',

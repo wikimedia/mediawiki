@@ -165,7 +165,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=random&rnnamespace=0&rnlimit=2'
 				=> 'apihelp-query+random-example-simple',

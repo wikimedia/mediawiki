@@ -331,7 +331,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		return $params;
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&list=search&srsearch=meaning'
 				=> 'apihelp-query+search-example-simple',

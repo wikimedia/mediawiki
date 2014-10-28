@@ -113,7 +113,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&prop=stashimageinfo&siifilekey=124sd34rsdf567'
 				=> 'apihelp-query+stashimageinfo-example-simple',

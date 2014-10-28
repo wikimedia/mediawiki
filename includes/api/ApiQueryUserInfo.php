@@ -256,7 +256,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=query&meta=userinfo'
 				=> 'apihelp-query+userinfo-example-simple',

@@ -207,7 +207,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		$name = $this->getModuleName();
 		$path = $this->getModulePath();
 

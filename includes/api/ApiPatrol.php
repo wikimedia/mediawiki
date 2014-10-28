@@ -90,7 +90,7 @@ class ApiPatrol extends ApiBase {
 		return 'patrol';
 	}
 
-	public function getExamplesMessages() {
+	protected function getExamplesMessages() {
 		return array(
 			'action=patrol&token=123ABC&rcid=230672766'
 				=> 'apihelp-patrol-example-rcid',
