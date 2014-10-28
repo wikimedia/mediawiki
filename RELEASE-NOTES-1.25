@@ -18,6 +18,9 @@ production.
   newly-generated token.
 
 === New features in 1.25 ===
+* (bug 62861) Updated plural rules to CLDR 26. Includes incompatible changes
+  for plural forms in Russian, Prussian, Tagalog, Manx and several languages
+  that fall back to Russian.
 * (bug 58139) ResourceLoaderFileModule now supports language fallback
   for 'languageScripts'.
 * Added a new hook, "ContentAlterParserOutput", to allow extensions to modify the
