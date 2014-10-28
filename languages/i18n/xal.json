@@ -597,7 +597,7 @@
 	"brokenredirects-edit": "чиклх",
 	"brokenredirects-delete": "һарһх",
 	"nbytes": "$1 {{PLURAL:$1|байд|байдуд|байдуд}}",
-	"nmembers": "$1 {{PLURAL:$1|мөч|мөчүд|мөчин}}",
+	"nmembers": "$1 {{PLURAL:$1|мөч|мөчин|мөчүд}}",
 	"prefixindex": "Цуг халхс эн эклцтә",
 	"newpages": "Шин халхс",
 	"move": "Көндәх",

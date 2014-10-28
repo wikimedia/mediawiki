@@ -45,7 +45,8 @@
 			"아라",
 			"Test Create account",
 			"Kuwaity26",
-			"Calak"
+			"Calak",
+			"Omda4wady"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -1466,6 +1467,8 @@
 	"randomincategory": "صفحة عشوائية في التصنيف",
 	"randomincategory-invalidcategory": "\"$1\" ليس اسم تصنيف صالح.",
 	"randomincategory-nopages": "لا توجد صفحات في التصنيف [[:Category:$1|$1]].",
+	"randomincategory-category": "التصنيف:",
+	"randomincategory-legend": "صفحة عشوائية في التصنيف",
 	"randomredirect": "تحويلة عشوائية",
 	"randomredirect-nopages": "لا توجد تحويلات في النطاق \"$1\".",
 	"statistics": "إحصاءات",
@@ -1584,6 +1587,7 @@
 	"booksources": "مصادر كتاب",
 	"booksources-search-legend": "البحث عن مصادر الكتب",
 	"booksources-isbn": "ردمك:",
+	"booksources-search": "بحث",
 	"booksources-text": "توجد أدناه قائمة بوصلات لمواقع أخرى تبيع الكتب الجديدة والمستعملة، أيضا يمكنك أن تحصل على معلومات إضافية عن الكتب التي تبحث عنها من هناك:",
 	"booksources-invalid-isbn": "رقم ISBN المعطى لا يبدو صحيحا؛ تحقق من أخطاء النسخ من المصدر الأصلي.",
 	"specialloguserlabel": "المؤدي:",
@@ -3213,5 +3217,7 @@
 	"pagelang-select-lang": "اختر اللغة",
 	"right-pagelang": "تغيير لغة الصفحة",
 	"action-pagelang": "تغيير لغة الصفحة",
-	"log-name-pagelang": "تغيير سجل الصفحة"
+	"log-name-pagelang": "تغيير سجل الصفحة",
+	"mediastatistics-header-video": "مقاطع الفيديو",
+	"json-error-syntax": "خطأ صياغة"
 }

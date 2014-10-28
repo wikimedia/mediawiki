@@ -368,7 +368,7 @@
 	"searchprofile-everything-tooltip": "Чыла лаштык-влакыште кычалаш (каҥашымаш лаштык-влакыштат)",
 	"searchprofile-advanced-tooltip": "Искать в заданных пространствах имён",
 	"search-result-size": "$1 ({{PLURAL:$2|1=$2 мут|$2 мут}})",
-	"search-result-category-size": "$1 {{PLURAL:$1|вхождение|вхождений|вхождения}} ($2 {{PLURAL:$2|подкатегория|подкатегорий|подкатегории}}, $3 {{PLURAL:$3|файл|файлов|файла}}).",
+	"search-result-category-size": "$1 {{PLURAL:$1|вхождение|вхождения|вхождений}} ($2 {{PLURAL:$2|подкатегория|подкатегории|подкатегорий}}, $3 {{PLURAL:$3|файл|файла|файлов}}).",
 	"search-redirect": "($1 вес вере колтымаш)",
 	"search-section": "(ужаш $1)",
 	"search-suggest": "Але те $1 возынеда ыле",
