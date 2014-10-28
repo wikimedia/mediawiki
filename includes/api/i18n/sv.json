@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jopparn"
+		]
+	},
+	"apihelp-help-example-recursive": "All hjälp på en sida",
+	"apihelp-help-example-help": "Hjälp för själva hjälpmodulen",
+	"api-help-main-header": "Huvudmodul",
+	"api-help-flag-deprecated": "Denna modul är föråldrad.",
+	"api-help-flag-internal": "<strong>Denna modul är intern eller instabil.</strong> Dess funktion kan ändras utan föregående meddelande.",
+	"api-help-flag-readrights": "Denna modul kräver läsrättigheter.",
+	"api-help-flag-writerights": "Denna modul kräver skrivrättigheter.",
+	"api-help-flag-mustbeposted": "Denna modul accepterar endast POST-begäranden.",
+	"api-help-flag-generator": "Denna modul kan användas som en generator.",
+	"api-help-parameters": "{{PLURAL:$1|Parameter|Parametrar}}:",
+	"api-help-param-deprecated": "Föråldrad.",
+	"api-help-param-required": "Denna parameter är obligatorisk.",
+	"api-help-param-list": "{{PLURAL:$1|1=ett värde|2=värden (separade med \"{{!}}\")}}: $2",
+	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Måste vara tom|Kan vara tom, eller $2}}",
+	"api-help-param-limit": "Inte mer än $1 tillåts.",
+	"api-help-param-limit2": "Inte mer än $1 ($2 för robotar) tillåts."
+}

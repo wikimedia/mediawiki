@@ -1,12 +1,15 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Liuxinyu970226",
+			"Robby",
+			"Shirayuki"
+		]
 	},
-
 	"apihelp-main-description": "{{doc-apihelp-description|main}}",
 	"apihelp-main-param-action": "{{doc-apihelp-param|main|action}}",
 	"apihelp-main-param-format": "{{doc-apihelp-param|main|format}}",
-	"apihelp-main-param-maxlag": "{{doc-apihelp-param|main|maxlag}}",
+	"apihelp-main-param-maxlag": "{{doc-apihelp-param|main|maxlag}}\n\n\"$host\" and \"$lag\" are not variables and appear as is.",
 	"apihelp-main-param-smaxage": "{{doc-apihelp-param|main|smaxage}}",
 	"apihelp-main-param-maxage": "{{doc-apihelp-param|main|maxage}}",
 	"apihelp-main-param-assert": "{{doc-apihelp-param|main|assert}}",
@@ -15,7 +18,6 @@
 	"apihelp-main-param-curtimestamp": "{{doc-apihelp-param|main|curtimestamp}}",
 	"apihelp-main-param-origin": "{{doc-apihelp-param|main|origin}}",
 	"apihelp-main-param-uselang": "{{doc-apihelp-param|main|uselang}}",
-
 	"apihelp-block-description": "{{doc-apihelp-description|block}}",
 	"apihelp-block-param-user": "{{doc-apihelp-param|block|user}}",
 	"apihelp-block-param-expiry": "{{doc-apihelp-param|block|expiry}}",
@@ -30,10 +32,8 @@
 	"apihelp-block-param-watchuser": "{{doc-apihelp-param|block|watchuser}}",
 	"apihelp-block-example-ip-simple": "{{doc-apihelp-example|block}}",
 	"apihelp-block-example-user-complex": "{{doc-apihelp-example|block}}",
-
 	"apihelp-clearhasmsg-description": "{{doc-apihelp-description|clearhasmsg}}",
 	"apihelp-clearhasmsg-example-1": "{{doc-apihelp-example|clearhasmsg}}",
-
 	"apihelp-compare-description": "{{doc-apihelp-description|compare}}",
 	"apihelp-compare-param-fromtitle": "{{doc-apihelp-param|compare|fromtitle}}",
 	"apihelp-compare-param-fromid": "{{doc-apihelp-param|compare|fromid}}",
@@ -42,7 +42,6 @@
 	"apihelp-compare-param-toid": "{{doc-apihelp-param|compare|toid}}",
 	"apihelp-compare-param-torev": "{{doc-apihelp-param|compare|torev}}",
 	"apihelp-compare-example-1": "{{doc-apihelp-example|compare}}",
-
 	"apihelp-createaccount-description": "{{doc-apihelp-description|createaccount}}",
 	"apihelp-createaccount-param-name": "{{doc-apihelp-param|createaccount|name}}",
 	"apihelp-createaccount-param-password": "{{doc-apihelp-param|createaccount|password}}",
@@ -55,7 +54,6 @@
 	"apihelp-createaccount-param-language": "{{doc-apihelp-param|createaccount|language}}",
 	"apihelp-createaccount-example-pass": "{{doc-apihelp-example|createaccount}}",
 	"apihelp-createaccount-example-mail": "{{doc-apihelp-example|createaccount}}",
-
 	"apihelp-delete-description": "{{doc-apihelp-description|delete}}",
 	"apihelp-delete-param-title": "{{doc-apihelp-param|delete|title}}",
 	"apihelp-delete-param-pageid": "{{doc-apihelp-param|delete|pageid}}",
@@ -66,9 +64,7 @@
 	"apihelp-delete-param-oldimage": "{{doc-apihelp-param|delete|oldimage}}",
 	"apihelp-delete-example-simple": "{{doc-apihelp-example|delete}}",
 	"apihelp-delete-example-reason": "{{doc-apihelp-example|delete}}",
-
 	"apihelp-disabled-description": "{{doc-apihelp-description|disabled}}",
-
 	"apihelp-edit-description": "{{doc-apihelp-description|edit}}",
 	"apihelp-edit-param-title": "{{doc-apihelp-param|edit|title}}",
 	"apihelp-edit-param-pageid": "{{doc-apihelp-param|edit|pageid}}",
@@ -76,7 +72,7 @@
 	"apihelp-edit-param-sectiontitle": "{{doc-apihelp-param|edit|sectiontitle}}",
 	"apihelp-edit-param-text": "{{doc-apihelp-param|edit|text}}",
 	"apihelp-edit-param-summary": "{{doc-apihelp-param|edit|summary}}",
-	"apihelp-edit-param-minor": "{{doc-apihelp-param|edit|minor}}",
+	"apihelp-edit-param-minor": "{{doc-apihelp-param|edit|minor}}\n{{Identical|Minor edit}}",
 	"apihelp-edit-param-notminor": "{{doc-apihelp-param|edit|notminor}}",
 	"apihelp-edit-param-bot": "{{doc-apihelp-param|edit|bot}}",
 	"apihelp-edit-param-basetimestamp": "{{doc-apihelp-param|edit|basetimestamp}}",
@@ -99,14 +95,12 @@
 	"apihelp-edit-example-edit": "{{doc-apihelp-example|edit}}",
 	"apihelp-edit-example-prepend": "{{doc-apihelp-example|edit}}",
 	"apihelp-edit-example-undo": "{{doc-apihelp-example|edit}}",
-
 	"apihelp-emailuser-description": "{{doc-apihelp-description|emailuser}}",
 	"apihelp-emailuser-param-target": "{{doc-apihelp-param|emailuser|target}}",
 	"apihelp-emailuser-param-subject": "{{doc-apihelp-param|emailuser|subject}}",
 	"apihelp-emailuser-param-text": "{{doc-apihelp-param|emailuser|text}}",
 	"apihelp-emailuser-param-ccme": "{{doc-apihelp-param|emailuser|ccme}}",
 	"apihelp-emailuser-example-email": "{{doc-apihelp-example|emailuser}}",
-
 	"apihelp-expandtemplates-description": "{{doc-apihelp-description|expandtemplates}}",
 	"apihelp-expandtemplates-param-title": "{{doc-apihelp-param|expandtemplates|title}}",
 	"apihelp-expandtemplates-param-text": "{{doc-apihelp-param|expandtemplates|text}}",
@@ -114,7 +108,6 @@
 	"apihelp-expandtemplates-param-includecomments": "{{doc-apihelp-param|expandtemplates|includecomments}}",
 	"apihelp-expandtemplates-param-generatexml": "{{doc-apihelp-param|expandtemplates|generatexml}}",
 	"apihelp-expandtemplates-example-simple": "{{doc-apihelp-example|expandtemplates}}",
-
 	"apihelp-feedcontributions-description": "{{doc-apihelp-description|feedcontributions}}",
 	"apihelp-feedcontributions-param-feedformat": "{{doc-apihelp-param|feedcontributions|feedformat}}",
 	"apihelp-feedcontributions-param-user": "{{doc-apihelp-param|feedcontributions|user}}",
@@ -127,7 +120,6 @@
 	"apihelp-feedcontributions-param-newonly": "{{doc-apihelp-param|feedcontributions|newonly}}",
 	"apihelp-feedcontributions-param-showsizediff": "{{doc-apihelp-param|feedcontributions|showsizediff}}",
 	"apihelp-feedcontributions-example-simple": "{{doc-apihelp-example|feedcontributions}}",
-
 	"apihelp-feedrecentchanges-description": "{{doc-apihelp-description|feedrecentchanges}}",
 	"apihelp-feedrecentchanges-param-feedformat": "{{doc-apihelp-param|feedrecentchanges|feedformat}}",
 	"apihelp-feedrecentchanges-param-namespace": "{{doc-apihelp-param|feedrecentchanges|namespace}}",
@@ -147,20 +139,17 @@
 	"apihelp-feedrecentchanges-param-showlinkedto": "{{doc-apihelp-param|feedrecentchanges|showlinkedto}}",
 	"apihelp-feedrecentchanges-example-simple": "{{doc-apihelp-example|feedrecentchanges}}",
 	"apihelp-feedrecentchanges-example-30days": "{{doc-apihelp-example|feedrecentchanges}}",
-
 	"apihelp-feedwatchlist-description": "{{doc-apihelp-description|feedwatchlist}}",
 	"apihelp-feedwatchlist-param-feedformat": "{{doc-apihelp-param|feedwatchlist|feedformat}}",
 	"apihelp-feedwatchlist-param-hours": "{{doc-apihelp-param|feedwatchlist|hours}}",
 	"apihelp-feedwatchlist-param-linktosections": "{{doc-apihelp-param|feedwatchlist|linktosections}}",
 	"apihelp-feedwatchlist-example-default": "{{doc-apihelp-example|feedwatchlist}}",
 	"apihelp-feedwatchlist-example-all6hrs": "{{doc-apihelp-example|feedwatchlist}}",
-
 	"apihelp-filerevert-description": "{{doc-apihelp-description|filerevert}}",
 	"apihelp-filerevert-param-filename": "{{doc-apihelp-param|filerevert|filename}}",
 	"apihelp-filerevert-param-comment": "{{doc-apihelp-param|filerevert|comment}}",
 	"apihelp-filerevert-param-archivename": "{{doc-apihelp-param|filerevert|archivename}}",
 	"apihelp-filerevert-example-revert": "{{doc-apihelp-example|filerevert}}",
-
 	"apihelp-help-description": "{{doc-apihelp-description|help}}",
 	"apihelp-help-param-modules": "{{doc-apihelp-param|help|modules}}",
 	"apihelp-help-param-submodules": "{{doc-apihelp-param|help|submodules}}",
@@ -172,12 +161,10 @@
 	"apihelp-help-example-recursive": "{{doc-apihelp-example|help}}",
 	"apihelp-help-example-help": "{{doc-apihelp-example|help}}",
 	"apihelp-help-example-query": "{{doc-apihelp-example|help}}",
-
 	"apihelp-imagerotate-description": "{{doc-apihelp-description|imagerotate}}",
 	"apihelp-imagerotate-param-rotation": "{{doc-apihelp-param|imagerotate|rotation}}",
 	"apihelp-imagerotate-example-simple": "{{doc-apihelp-example|imagerotate}}",
 	"apihelp-imagerotate-example-generator": "{{doc-apihelp-example|imagerotate}}",
-
 	"apihelp-import-description": "{{doc-apihelp-description|import}}",
 	"apihelp-import-param-summary": "{{doc-apihelp-param|import|summary}}",
 	"apihelp-import-param-xml": "{{doc-apihelp-param|import|xml}}",
@@ -188,18 +175,15 @@
 	"apihelp-import-param-namespace": "{{doc-apihelp-param|import|namespace}}",
 	"apihelp-import-param-rootpage": "{{doc-apihelp-param|import|rootpage}}",
 	"apihelp-import-example-import": "{{doc-apihelp-example|import}}",
-
 	"apihelp-login-description": "{{doc-apihelp-description|login}}",
-	"apihelp-login-param-name": "{{doc-apihelp-param|login|name}}",
-	"apihelp-login-param-password": "{{doc-apihelp-param|login|password}}",
+	"apihelp-login-param-name": "{{doc-apihelp-param|login|name}}\n{{Identical|Username}}",
+	"apihelp-login-param-password": "{{doc-apihelp-param|login|password}}\n{{Identical|Password}}",
 	"apihelp-login-param-domain": "{{doc-apihelp-param|login|domain}}",
 	"apihelp-login-param-token": "{{doc-apihelp-param|login|token}}",
 	"apihelp-login-example-gettoken": "{{doc-apihelp-example|login}}",
 	"apihelp-login-example-login": "{{doc-apihelp-example|login}}",
-
 	"apihelp-logout-description": "{{doc-apihelp-description|logout}}",
 	"apihelp-logout-example-logout": "{{doc-apihelp-example|logout}}",
-
 	"apihelp-move-description": "{{doc-apihelp-description|move}}",
 	"apihelp-move-param-from": "{{doc-apihelp-param|move|from}}",
 	"apihelp-move-param-fromid": "{{doc-apihelp-param|move|fromid}}",
@@ -213,7 +197,6 @@
 	"apihelp-move-param-watchlist": "{{doc-apihelp-param|move|watchlist}}",
 	"apihelp-move-param-ignorewarnings": "{{doc-apihelp-param|move|ignorewarnings}}",
 	"apihelp-move-example-move": "{{doc-apihelp-example|move}}",
-
 	"apihelp-opensearch-description": "{{doc-apihelp-description|opensearch}}",
 	"apihelp-opensearch-param-search": "{{doc-apihelp-param|opensearch|search}}",
 	"apihelp-opensearch-param-limit": "{{doc-apihelp-param|opensearch|limit}}",
@@ -221,7 +204,6 @@
 	"apihelp-opensearch-param-suggest": "{{doc-apihelp-param|opensearch|suggest}}",
 	"apihelp-opensearch-param-format": "{{doc-apihelp-param|opensearch|format}}",
 	"apihelp-opensearch-example-te": "{{doc-apihelp-example|opensearch}}",
-
 	"apihelp-options-description": "{{doc-apihelp-description|options}}",
 	"apihelp-options-param-reset": "{{doc-apihelp-param|options|reset}}",
 	"apihelp-options-param-resetkinds": "{{doc-apihelp-param|options|resetkinds}}",
@@ -231,7 +213,6 @@
 	"apihelp-options-example-reset": "{{doc-apihelp-example|options}}",
 	"apihelp-options-example-change": "{{doc-apihelp-example|options}}",
 	"apihelp-options-example-complex": "{{doc-apihelp-example|options}}",
-
 	"apihelp-paraminfo-description": "{{doc-apihelp-description|paraminfo}}",
 	"apihelp-paraminfo-param-modules": "{{doc-apihelp-param|paraminfo|modules}}",
 	"apihelp-paraminfo-param-helpformat": "{{doc-apihelp-param|paraminfo|helpformat}}",
@@ -240,7 +221,6 @@
 	"apihelp-paraminfo-param-pagesetmodule": "{{doc-apihelp-param|paraminfo|pagesetmodule}}",
 	"apihelp-paraminfo-param-formatmodules": "{{doc-apihelp-param|paraminfo|formatmodules}}",
 	"apihelp-paraminfo-example-1": "{{doc-apihelp-example|paraminfo}}",
-
 	"apihelp-parse-description": "{{doc-apihelp-description|parse}}",
 	"apihelp-parse-param-title": "{{doc-apihelp-param|parse|title}}",
 	"apihelp-parse-param-text": "{{doc-apihelp-param|parse|text}}",
@@ -266,13 +246,11 @@
 	"apihelp-parse-example-text": "{{doc-apihelp-example|parse}}",
 	"apihelp-parse-example-texttitle": "{{doc-apihelp-example|parse}}",
 	"apihelp-parse-example-summary": "{{doc-apihelp-example|parse}}",
-
 	"apihelp-patrol-description": "{{doc-apihelp-description|patrol}}",
 	"apihelp-patrol-param-rcid": "{{doc-apihelp-param|patrol|rcid}}",
 	"apihelp-patrol-param-revid": "{{doc-apihelp-param|patrol|revid}}",
 	"apihelp-patrol-example-rcid": "{{doc-apihelp-example|patrol}}",
 	"apihelp-patrol-example-revid": "{{doc-apihelp-example|patrol}}",
-
 	"apihelp-protect-description": "{{doc-apihelp-description|protect}}",
 	"apihelp-protect-param-title": "{{doc-apihelp-param|protect|title}}",
 	"apihelp-protect-param-pageid": "{{doc-apihelp-param|protect|pageid}}",
@@ -285,13 +263,11 @@
 	"apihelp-protect-example-protect": "{{doc-apihelp-example|protect}}",
 	"apihelp-protect-example-unprotect": "{{doc-apihelp-example|protect}}",
 	"apihelp-protect-example-unprotect2": "{{doc-apihelp-example|protect}}",
-
 	"apihelp-purge-description": "{{doc-apihelp-description|purge}}",
 	"apihelp-purge-param-forcelinkupdate": "{{doc-apihelp-param|purge|forcelinkupdate}}",
 	"apihelp-purge-param-forcerecursivelinkupdate": "{{doc-apihelp-param|purge|forcerecursivelinkupdate}}",
 	"apihelp-purge-example-simple": "{{doc-apihelp-example|purge}}",
 	"apihelp-purge-example-generator": "{{doc-apihelp-example|purge}}",
-
 	"apihelp-query-description": "{{doc-apihelp-description|query}}",
 	"apihelp-query-param-prop": "{{doc-apihelp-param|query|prop}}",
 	"apihelp-query-param-list": "{{doc-apihelp-param|query|list}}",
@@ -304,7 +280,6 @@
 	"apihelp-query-param-rawcontinue": "{{doc-apihelp-param|query|rawcontinue}}",
 	"apihelp-query-example-revisions": "{{doc-apihelp-example|query}}",
 	"apihelp-query-example-allpages": "{{doc-apihelp-example|query}}",
-
 	"apihelp-query+allcategories-description": "{{doc-apihelp-description|query+allcategories}}",
 	"apihelp-query+allcategories-param-from": "{{doc-apihelp-param|query+allcategories|from}}",
 	"apihelp-query+allcategories-param-to": "{{doc-apihelp-param|query+allcategories|to}}",
@@ -316,7 +291,6 @@
 	"apihelp-query+allcategories-param-prop": "{{doc-apihelp-param|query+allcategories|prop}}",
 	"apihelp-query+allcategories-example-size": "{{doc-apihelp-example|query+allcategories}}",
 	"apihelp-query+allcategories-example-generator": "{{doc-apihelp-example|query+allcategories}}",
-
 	"apihelp-query+allfileusages-description": "{{doc-apihelp-description|query+allfileusages}}",
 	"apihelp-query+allfileusages-param-from": "{{doc-apihelp-param|query+allfileusages|from}}",
 	"apihelp-query+allfileusages-param-to": "{{doc-apihelp-param|query+allfileusages|to}}",
@@ -329,7 +303,6 @@
 	"apihelp-query+allfileusages-example-unique": "{{doc-apihelp-example|query+allfileusages}}",
 	"apihelp-query+allfileusages-example-unique-generator": "{{doc-apihelp-example|query+allfileusages}}",
 	"apihelp-query+allfileusages-example-generator": "{{doc-apihelp-example|query+allfileusages}}",
-
 	"apihelp-query+allimages-description": "{{doc-apihelp-description|query+allimages}}",
 	"apihelp-query+allimages-param-sort": "{{doc-apihelp-param|query+allimages|sort}}",
 	"apihelp-query+allimages-param-dir": "{{doc-apihelp-param|query+allimages|dir}}",
@@ -350,7 +323,6 @@
 	"apihelp-query+allimages-example-B": "{{doc-apihelp-example|query+allimages}}",
 	"apihelp-query+allimages-example-recent": "{{doc-apihelp-example|query+allimages}}",
 	"apihelp-query+allimages-example-generator": "{{doc-apihelp-example|query+allimages}}",
-
 	"apihelp-query+alllinks-description": "{{doc-apihelp-description|query+alllinks}}",
 	"apihelp-query+alllinks-param-from": "{{doc-apihelp-param|query+alllinks|from}}",
 	"apihelp-query+alllinks-param-to": "{{doc-apihelp-param|query+alllinks|to}}",
@@ -364,7 +336,6 @@
 	"apihelp-query+alllinks-example-unique": "{{doc-apihelp-example|query+alllinks}}",
 	"apihelp-query+alllinks-example-unique-generator": "{{doc-apihelp-example|query+alllinks}}",
 	"apihelp-query+alllinks-example-generator": "{{doc-apihelp-example|query+alllinks}}",
-
 	"apihelp-query+allmessages-description": "{{doc-apihelp-description|query+allmessages}}",
 	"apihelp-query+allmessages-param-messages": "{{doc-apihelp-param|query+allmessages|messages}}",
 	"apihelp-query+allmessages-param-prop": "{{doc-apihelp-param|query+allmessages|prop}}",
@@ -381,7 +352,6 @@
 	"apihelp-query+allmessages-param-prefix": "{{doc-apihelp-param|query+allmessages|prefix}}",
 	"apihelp-query+allmessages-example-ipb": "{{doc-apihelp-example|query+allmessages}}",
 	"apihelp-query+allmessages-example-de": "{{doc-apihelp-example|query+allmessages}}",
-
 	"apihelp-query+allpages-description": "{{doc-apihelp-description|query+allpages}}",
 	"apihelp-query+allpages-param-from": "{{doc-apihelp-param|query+allpages|from}}",
 	"apihelp-query+allpages-param-to": "{{doc-apihelp-param|query+allpages|to}}",
@@ -400,7 +370,6 @@
 	"apihelp-query+allpages-example-B": "{{doc-apihelp-example|query+allpages}}",
 	"apihelp-query+allpages-example-generator": "{{doc-apihelp-example|query+allpages}}",
 	"apihelp-query+allpages-example-generator-revisions": "{{doc-apihelp-example|query+allpages}}",
-
 	"apihelp-query+allredirects-description": "{{doc-apihelp-description|query+allredirects}}",
 	"apihelp-query+allredirects-param-from": "{{doc-apihelp-param|query+allredirects|from}}",
 	"apihelp-query+allredirects-param-to": "{{doc-apihelp-param|query+allredirects|to}}",
@@ -414,7 +383,6 @@
 	"apihelp-query+allredirects-example-unique": "{{doc-apihelp-example|query+allredirects}}",
 	"apihelp-query+allredirects-example-unique-generator": "{{doc-apihelp-example|query+allredirects}}",
 	"apihelp-query+allredirects-example-generator": "{{doc-apihelp-example|query+allredirects}}",
-
 	"apihelp-query+alltransclusions-description": "{{doc-apihelp-description|query+alltransclusions}}",
 	"apihelp-query+alltransclusions-param-from": "{{doc-apihelp-param|query+alltransclusions|from}}",
 	"apihelp-query+alltransclusions-param-to": "{{doc-apihelp-param|query+alltransclusions|to}}",
@@ -428,7 +396,6 @@
 	"apihelp-query+alltransclusions-example-unique": "{{doc-apihelp-example|query+alltransclusions}}",
 	"apihelp-query+alltransclusions-example-unique-generator": "{{doc-apihelp-example|query+alltransclusions}}",
 	"apihelp-query+alltransclusions-example-generator": "{{doc-apihelp-example|query+alltransclusions}}",
-
 	"apihelp-query+allusers-description": "{{doc-apihelp-description|query+allusers}}",
 	"apihelp-query+allusers-param-from": "{{doc-apihelp-param|query+allusers|from}}",
 	"apihelp-query+allusers-param-to": "{{doc-apihelp-param|query+allusers|to}}",
@@ -442,7 +409,6 @@
 	"apihelp-query+allusers-param-witheditsonly": "{{doc-apihelp-param|query+allusers|witheditsonly}}",
 	"apihelp-query+allusers-param-activeusers": "{{doc-apihelp-param|query+allusers|activeusers|params=* $1 - Value of [[mw:Manual:$wgActiveUserDays]]|paramstart=2}}",
 	"apihelp-query+allusers-example-Y": "{{doc-apihelp-example|query+allusers}}",
-
 	"apihelp-query+backlinks-description": "{{doc-apihelp-description|query+backlinks}}",
 	"apihelp-query+backlinks-param-title": "{{doc-apihelp-param|query+backlinks|title}}",
 	"apihelp-query+backlinks-param-pageid": "{{doc-apihelp-param|query+backlinks|pageid}}",
@@ -453,7 +419,6 @@
 	"apihelp-query+backlinks-param-redirect": "{{doc-apihelp-param|query+backlinks|redirect}}",
 	"apihelp-query+backlinks-example-simple": "{{doc-apihelp-example|query+backlinks}}",
 	"apihelp-query+backlinks-example-generator": "{{doc-apihelp-example|query+backlinks}}",
-
 	"apihelp-query+blocks-description": "{{doc-apihelp-description|query+blocks}}",
 	"apihelp-query+blocks-param-start": "{{doc-apihelp-param|query+blocks|start}}",
 	"apihelp-query+blocks-param-end": "{{doc-apihelp-param|query+blocks|end}}",
@@ -465,7 +430,6 @@
 	"apihelp-query+blocks-param-show": "{{doc-apihelp-param|query+blocks|show}}",
 	"apihelp-query+blocks-example-simple": "{{doc-apihelp-example|query+blocks}}",
 	"apihelp-query+blocks-example-users": "{{doc-apihelp-example|query+blocks}}",
-
 	"apihelp-query+categories-description": "{{doc-apihelp-description|query+categories}}",
 	"apihelp-query+categories-param-prop": "{{doc-apihelp-param|query+categories|prop}}",
 	"apihelp-query+categories-param-show": "{{doc-apihelp-param|query+categories|show}}",
@@ -474,10 +438,8 @@
 	"apihelp-query+categories-param-dir": "{{doc-apihelp-param|query+categories|dir}}",
 	"apihelp-query+categories-example-simple": "{{doc-apihelp-example|query+categories}}",
 	"apihelp-query+categories-example-generator": "{{doc-apihelp-example|query+categories}}",
-
 	"apihelp-query+categoryinfo-description": "{{doc-apihelp-description|query+categoryinfo}}",
 	"apihelp-query+categoryinfo-example-simple": "{{doc-apihelp-example|query+categoryinfo}}",
-
 	"apihelp-query+categorymembers-description": "{{doc-apihelp-description|query+categorymembers}}",
 	"apihelp-query+categorymembers-param-title": "{{doc-apihelp-param|query+categorymembers|title}}",
 	"apihelp-query+categorymembers-param-pageid": "{{doc-apihelp-param|query+categorymembers|pageid}}",
@@ -497,7 +459,6 @@
 	"apihelp-query+categorymembers-param-endsortkey": "{{doc-apihelp-param|query+categorymembers|endsortkey}}",
 	"apihelp-query+categorymembers-example-simple": "{{doc-apihelp-example|query+categorymembers}}",
 	"apihelp-query+categorymembers-example-generator": "{{doc-apihelp-example|query+categorymembers}}",
-
 	"apihelp-query+contributors-description": "{{doc-apihelp-description|query+contributors}}",
 	"apihelp-query+contributors-param-group": "{{doc-apihelp-param|query+contributors|group}}",
 	"apihelp-query+contributors-param-excludegroup": "{{doc-apihelp-param|query+contributors|excludegroup}}",
@@ -505,9 +466,8 @@
 	"apihelp-query+contributors-param-excluderights": "{{doc-apihelp-param|query+contributors|excluderights}}",
 	"apihelp-query+contributors-param-limit": "{{doc-apihelp-param|query+contributors|limit}}",
 	"apihelp-query+contributors-example-simple": "{{doc-apihelp-example|query+contributors}}",
-
 	"apihelp-query+deletedrevs-description": "{{doc-apihelp-description|query+deletedrevs}}",
-	"apihelp-query+deletedrevs-paraminfo-modes": "{{doc-apihelp-paraminfo|query+deletedrevs|modes}}",
+	"apihelp-query+deletedrevs-paraminfo-modes": "{{doc-apihelp-paraminfo|query+deletedrevs|modes}}\n{{Identical|Mode}}",
 	"apihelp-query+deletedrevs-param-start": "{{doc-apihelp-param|query+deletedrevs|start}}",
 	"apihelp-query+deletedrevs-param-end": "{{doc-apihelp-param|query+deletedrevs|end}}",
 	"apihelp-query+deletedrevs-param-from": "{{doc-apihelp-param|query+deletedrevs|from}}",
@@ -524,16 +484,13 @@
 	"apihelp-query+deletedrevs-example-mode2": "{{doc-apihelp-example|query+deletedrevs}}",
 	"apihelp-query+deletedrevs-example-mode3-main": "{{doc-apihelp-example|query+deletedrevs}}",
 	"apihelp-query+deletedrevs-example-mode3-talk": "{{doc-apihelp-example|query+deletedrevs}}",
-
 	"apihelp-query+disabled-description": "{{doc-apihelp-description|query+disabled}}",
-
 	"apihelp-query+duplicatefiles-description": "{{doc-apihelp-description|query+duplicatefiles}}",
 	"apihelp-query+duplicatefiles-param-limit": "{{doc-apihelp-param|query+duplicatefiles|limit}}",
 	"apihelp-query+duplicatefiles-param-dir": "{{doc-apihelp-param|query+duplicatefiles|dir}}",
 	"apihelp-query+duplicatefiles-param-localonly": "{{doc-apihelp-param|query+duplicatefiles|localonly}}",
 	"apihelp-query+duplicatefiles-example-simple": "{{doc-apihelp-example|query+duplicatefiles}}",
 	"apihelp-query+duplicatefiles-example-generated": "{{doc-apihelp-example|query+duplicatefiles}}",
-
 	"apihelp-query+embeddedin-description": "{{doc-apihelp-description|query+embeddedin}}",
 	"apihelp-query+embeddedin-param-title": "{{doc-apihelp-param|query+embeddedin|title}}",
 	"apihelp-query+embeddedin-param-pageid": "{{doc-apihelp-param|query+embeddedin|pageid}}",
@@ -543,14 +500,12 @@
 	"apihelp-query+embeddedin-param-limit": "{{doc-apihelp-param|query+embeddedin|limit}}",
 	"apihelp-query+embeddedin-example-simple": "{{doc-apihelp-example|query+embeddedin}}",
 	"apihelp-query+embeddedin-example-generator": "{{doc-apihelp-example|query+embeddedin}}",
-
 	"apihelp-query+extlinks-description": "{{doc-apihelp-description|query+extlinks}}",
 	"apihelp-query+extlinks-param-limit": "{{doc-apihelp-param|query+extlinks|limit}}",
 	"apihelp-query+extlinks-param-protocol": "{{doc-apihelp-param|query+extlinks|protocol}}",
 	"apihelp-query+extlinks-param-query": "{{doc-apihelp-param|query+extlinks|query}}",
 	"apihelp-query+extlinks-param-expandurl": "{{doc-apihelp-param|query+extlinks|expandurl}}",
 	"apihelp-query+extlinks-example-simple": "{{doc-apihelp-example|query+extlinks}}",
-
 	"apihelp-query+exturlusage-description": "{{doc-apihelp-description|query+exturlusage}}",
 	"apihelp-query+exturlusage-param-prop": "{{doc-apihelp-param|query+exturlusage|prop}}",
 	"apihelp-query+exturlusage-param-protocol": "{{doc-apihelp-param|query+exturlusage|protocol}}",
@@ -559,7 +514,6 @@
 	"apihelp-query+exturlusage-param-limit": "{{doc-apihelp-param|query+exturlusage|limit}}",
 	"apihelp-query+exturlusage-param-expandurl": "{{doc-apihelp-param|query+exturlusage|expandurl}}",
 	"apihelp-query+exturlusage-example-simple": "{{doc-apihelp-example|query+exturlusage}}",
-
 	"apihelp-query+filearchive-description": "{{doc-apihelp-description|query+filearchive}}",
 	"apihelp-query+filearchive-param-from": "{{doc-apihelp-param|query+filearchive|from}}",
 	"apihelp-query+filearchive-param-to": "{{doc-apihelp-param|query+filearchive|to}}",
@@ -570,11 +524,9 @@
 	"apihelp-query+filearchive-param-sha1base36": "{{doc-apihelp-param|query+filearchive|sha1base36}}",
 	"apihelp-query+filearchive-param-prop": "{{doc-apihelp-param|query+filearchive|prop}}",
 	"apihelp-query+filearchive-example-simple": "{{doc-apihelp-example|query+filearchive}}",
-
 	"apihelp-query+filerepoinfo-description": "{{doc-apihelp-description|query+filerepoinfo}}",
 	"apihelp-query+filerepoinfo-param-prop": "{{doc-apihelp-param|query+filerepoinfo|prop}}",
 	"apihelp-query+filerepoinfo-example-simple": "{{doc-apihelp-example|query+filerepoinfo}}",
-
 	"apihelp-query+fileusage-description": "{{doc-apihelp-description|query+fileusage}}",
 	"apihelp-query+fileusage-param-prop": "{{doc-apihelp-param|query+fileusage|prop}}",
 	"apihelp-query+fileusage-param-namespace": "{{doc-apihelp-param|query+fileusage|namespace}}",
@@ -582,7 +534,6 @@
 	"apihelp-query+fileusage-param-show": "{{doc-apihelp-param|query+fileusage|show}}",
 	"apihelp-query+fileusage-example-simple": "{{doc-apihelp-example|query+fileusage}}",
 	"apihelp-query+fileusage-example-generator": "{{doc-apihelp-example|query+fileusage}}",
-
 	"apihelp-query+imageinfo-description": "{{doc-apihelp-description|query+imageinfo}}",
 	"apihelp-query+imageinfo-param-prop": "{{doc-apihelp-param|query+imageinfo|prop}}",
 	"apihelp-query+imageinfo-param-limit": "{{doc-apihelp-param|query+imageinfo|limit}}",
@@ -598,14 +549,12 @@
 	"apihelp-query+imageinfo-param-localonly": "{{doc-apihelp-param|query+imageinfo|localonly}}",
 	"apihelp-query+imageinfo-example-simple": "{{doc-apihelp-example|query+imageinfo}}",
 	"apihelp-query+imageinfo-example-dated": "{{doc-apihelp-example|query+imageinfo}}",
-
 	"apihelp-query+images-description": "{{doc-apihelp-description|query+images}}",
 	"apihelp-query+images-param-limit": "{{doc-apihelp-param|query+images|limit}}",
 	"apihelp-query+images-param-images": "{{doc-apihelp-param|query+images|images}}",
 	"apihelp-query+images-param-dir": "{{doc-apihelp-param|query+images|dir}}",
 	"apihelp-query+images-example-simple": "{{doc-apihelp-example|query+images}}",
 	"apihelp-query+images-example-generator": "{{doc-apihelp-example|query+images}}",
-
 	"apihelp-query+imageusage-description": "{{doc-apihelp-description|query+imageusage}}",
 	"apihelp-query+imageusage-param-title": "{{doc-apihelp-param|query+imageusage|title}}",
 	"apihelp-query+imageusage-param-pageid": "{{doc-apihelp-param|query+imageusage|pageid}}",
@@ -616,13 +565,11 @@
 	"apihelp-query+imageusage-param-redirect": "{{doc-apihelp-param|query+imageusage|redirect}}",
 	"apihelp-query+imageusage-example-simple": "{{doc-apihelp-example|query+imageusage}}",
 	"apihelp-query+imageusage-example-generator": "{{doc-apihelp-example|query+imageusage}}",
-
 	"apihelp-query+info-description": "{{doc-apihelp-description|query+info}}",
 	"apihelp-query+info-param-prop": "{{doc-apihelp-param|query+info|prop}}",
 	"apihelp-query+info-param-token": "{{doc-apihelp-param|query+info|token}}",
 	"apihelp-query+info-example-simple": "{{doc-apihelp-example|query+info}}",
 	"apihelp-query+info-example-protection": "{{doc-apihelp-example|query+info}}",
-
 	"apihelp-query+iwbacklinks-description": "{{doc-apihelp-description|query+iwbacklinks}}",
 	"apihelp-query+iwbacklinks-param-prefix": "{{doc-apihelp-param|query+iwbacklinks|prefix}}",
 	"apihelp-query+iwbacklinks-param-title": "{{doc-apihelp-param|query+iwbacklinks|title}}",
@@ -631,7 +578,6 @@
 	"apihelp-query+iwbacklinks-param-dir": "{{doc-apihelp-param|query+iwbacklinks|dir}}",
 	"apihelp-query+iwbacklinks-example-simple": "{{doc-apihelp-example|query+iwbacklinks}}",
 	"apihelp-query+iwbacklinks-example-generator": "{{doc-apihelp-example|query+iwbacklinks}}",
-
 	"apihelp-query+iwlinks-description": "{{doc-apihelp-description|query+iwlinks}}",
 	"apihelp-query+iwlinks-param-url": "{{doc-apihelp-param|query+iwlinks|url}}",
 	"apihelp-query+iwlinks-param-prop": "{{doc-apihelp-param|query+iwlinks|prop}}",
@@ -640,7 +586,6 @@
 	"apihelp-query+iwlinks-param-title": "{{doc-apihelp-param|query+iwlinks|title}}",
 	"apihelp-query+iwlinks-param-dir": "{{doc-apihelp-param|query+iwlinks|dir}}",
 	"apihelp-query+iwlinks-example-simple": "{{doc-apihelp-example|query+iwlinks}}",
-
 	"apihelp-query+langbacklinks-description": "{{doc-apihelp-description|query+langbacklinks}}",
 	"apihelp-query+langbacklinks-param-lang": "{{doc-apihelp-param|query+langbacklinks|lang}}",
 	"apihelp-query+langbacklinks-param-title": "{{doc-apihelp-param|query+langbacklinks|title}}",
@@ -649,7 +594,6 @@
 	"apihelp-query+langbacklinks-param-dir": "{{doc-apihelp-param|query+langbacklinks|dir}}",
 	"apihelp-query+langbacklinks-example-simple": "{{doc-apihelp-example|query+langbacklinks}}",
 	"apihelp-query+langbacklinks-example-generator": "{{doc-apihelp-example|query+langbacklinks}}",
-
 	"apihelp-query+langlinks-description": "{{doc-apihelp-description|query+langlinks}}",
 	"apihelp-query+langlinks-param-limit": "{{doc-apihelp-param|query+langlinks|limit}}",
 	"apihelp-query+langlinks-param-url": "{{doc-apihelp-param|query+langlinks|url}}",
@@ -659,7 +603,6 @@
 	"apihelp-query+langlinks-param-dir": "{{doc-apihelp-param|query+langlinks|dir}}",
 	"apihelp-query+langlinks-param-inlanguagecode": "{{doc-apihelp-param|query+langlinks|inlanguagecode}}",
 	"apihelp-query+langlinks-example-simple": "{{doc-apihelp-example|query+langlinks}}",
-
 	"apihelp-query+links-description": "{{doc-apihelp-description|query+links}}",
 	"apihelp-query+links-param-namespace": "{{doc-apihelp-param|query+links|namespace}}",
 	"apihelp-query+links-param-limit": "{{doc-apihelp-param|query+links|limit}}",
@@ -668,7 +611,6 @@
 	"apihelp-query+links-example-simple": "{{doc-apihelp-example|query+links}}",
 	"apihelp-query+links-example-generator": "{{doc-apihelp-example|query+links}}",
 	"apihelp-query+links-example-namespaces": "{{doc-apihelp-example|query+links}}",
-
 	"apihelp-query+linkshere-description": "{{doc-apihelp-description|query+linkshere}}",
 	"apihelp-query+linkshere-param-prop": "{{doc-apihelp-param|query+linkshere|prop}}",
 	"apihelp-query+linkshere-param-namespace": "{{doc-apihelp-param|query+linkshere|namespace}}",
@@ -676,7 +618,6 @@
 	"apihelp-query+linkshere-param-show": "{{doc-apihelp-param|query+linkshere|show}}",
 	"apihelp-query+linkshere-example-simple": "{{doc-apihelp-example|query+linkshere}}",
 	"apihelp-query+linkshere-example-generator": "{{doc-apihelp-example|query+linkshere}}",
-
 	"apihelp-query+logevents-description": "{{doc-apihelp-description|query+logevents}}",
 	"apihelp-query+logevents-param-prop": "{{doc-apihelp-param|query+logevents|prop}}",
 	"apihelp-query+logevents-param-type": "{{doc-apihelp-param|query+logevents|type}}",
@@ -690,15 +631,12 @@
 	"apihelp-query+logevents-param-tag": "{{doc-apihelp-param|query+logevents|tag}}",
 	"apihelp-query+logevents-param-limit": "{{doc-apihelp-param|query+logevents|limit}}",
 	"apihelp-query+logevents-example-simple": "{{doc-apihelp-example|query+logevents}}",
-
 	"apihelp-query+pagepropnames-description": "{{doc-apihelp-description|query+pagepropnames}}",
 	"apihelp-query+pagepropnames-param-limit": "{{doc-apihelp-param|query+pagepropnames|limit}}",
 	"apihelp-query+pagepropnames-example-simple": "{{doc-apihelp-example|query+pagepropnames}}",
-
 	"apihelp-query+pageprops-description": "{{doc-apihelp-description|query+pageprops}}",
 	"apihelp-query+pageprops-param-prop": "{{doc-apihelp-param|query+pageprops|prop}}",
 	"apihelp-query+pageprops-example-simple": "{{doc-apihelp-example|query+pageprops}}",
-
 	"apihelp-query+pageswithprop-description": "{{doc-apihelp-description|query+pageswithprop}}",
 	"apihelp-query+pageswithprop-param-propname": "{{doc-apihelp-param|query+pageswithprop|propname}}",
 	"apihelp-query+pageswithprop-param-prop": "{{doc-apihelp-param|query+pageswithprop|prop}}",
@@ -706,13 +644,11 @@
 	"apihelp-query+pageswithprop-param-dir": "{{doc-apihelp-param|query+pageswithprop|dir}}",
 	"apihelp-query+pageswithprop-example-simple": "{{doc-apihelp-example|query+pageswithprop}}",
 	"apihelp-query+pageswithprop-example-generator": "{{doc-apihelp-example|query+pageswithprop}}",
-
 	"apihelp-query+prefixsearch-description": "{{doc-apihelp-description|query+prefixsearch}}",
 	"apihelp-query+prefixsearch-param-search": "{{doc-apihelp-param|query+prefixsearch|search}}",
 	"apihelp-query+prefixsearch-param-namespace": "{{doc-apihelp-param|query+prefixsearch|namespace}}",
 	"apihelp-query+prefixsearch-param-limit": "{{doc-apihelp-param|query+prefixsearch|limit}}",
 	"apihelp-query+prefixsearch-example-simple": "{{doc-apihelp-example|query+prefixsearch}}",
-
 	"apihelp-query+protectedtitles-description": "{{doc-apihelp-description|query+protectedtitles}}",
 	"apihelp-query+protectedtitles-param-namespace": "{{doc-apihelp-param|query+protectedtitles|namespace}}",
 	"apihelp-query+protectedtitles-param-level": "{{doc-apihelp-param|query+protectedtitles|level}}",
@@ -722,19 +658,16 @@
 	"apihelp-query+protectedtitles-param-prop": "{{doc-apihelp-param|query+protectedtitles|prop}}",
 	"apihelp-query+protectedtitles-example-simple": "{{doc-apihelp-example|query+protectedtitles}}",
 	"apihelp-query+protectedtitles-example-generator": "{{doc-apihelp-example|query+protectedtitles}}",
-
 	"apihelp-query+querypage-description": "{{doc-apihelp-description|query+querypage}}",
 	"apihelp-query+querypage-param-page": "{{doc-apihelp-param|query+querypage|page}}",
 	"apihelp-query+querypage-param-limit": "{{doc-apihelp-param|query+querypage|limit}}",
 	"apihelp-query+querypage-example-ancientpages": "{{doc-apihelp-example|query+querypage}}",
-
 	"apihelp-query+random-description": "{{doc-apihelp-description|query+random}}",
 	"apihelp-query+random-param-namespace": "{{doc-apihelp-param|query+random|namespace}}",
 	"apihelp-query+random-param-limit": "{{doc-apihelp-param|query+random|limit}}",
 	"apihelp-query+random-param-redirect": "{{doc-apihelp-param|query+random|redirect}}",
 	"apihelp-query+random-example-simple": "{{doc-apihelp-example|query+random}}",
 	"apihelp-query+random-example-generator": "{{doc-apihelp-example|query+random}}",
-
 	"apihelp-query+recentchanges-description": "{{doc-apihelp-description|query+recentchanges}}",
 	"apihelp-query+recentchanges-param-start": "{{doc-apihelp-param|query+recentchanges|start}}",
 	"apihelp-query+recentchanges-param-end": "{{doc-apihelp-param|query+recentchanges|end}}",
@@ -750,7 +683,6 @@
 	"apihelp-query+recentchanges-param-toponly": "{{doc-apihelp-param|query+recentchanges|toponly}}",
 	"apihelp-query+recentchanges-example-simple": "{{doc-apihelp-example|query+recentchanges}}",
 	"apihelp-query+recentchanges-example-generator": "{{doc-apihelp-example|query+recentchanges}}",
-
 	"apihelp-query+redirects-description": "{{doc-apihelp-description|query+redirects}}",
 	"apihelp-query+redirects-param-prop": "{{doc-apihelp-param|query+redirects|prop}}",
 	"apihelp-query+redirects-param-namespace": "{{doc-apihelp-param|query+redirects|namespace}}",
@@ -758,7 +690,6 @@
 	"apihelp-query+redirects-param-show": "{{doc-apihelp-param|query+redirects|show}}",
 	"apihelp-query+redirects-example-simple": "{{doc-apihelp-example|query+redirects}}",
 	"apihelp-query+redirects-example-generator": "{{doc-apihelp-example|query+redirects}}",
-
 	"apihelp-query+revisions-description": "{{doc-apihelp-description|query+revisions}}",
 	"apihelp-query+revisions-paraminfo-singlepageonly": "{{doc-apihelp-paraminfo|query+revisions|singlepageonly}}",
 	"apihelp-query+revisions-param-prop": "{{doc-apihelp-param|query+revisions|prop}}",
@@ -784,7 +715,6 @@
 	"apihelp-query+revisions-example-first5-after": "{{doc-apihelp-example|query+revisions}}",
 	"apihelp-query+revisions-example-first5-not-localhost": "{{doc-apihelp-example|query+revisions}}",
 	"apihelp-query+revisions-example-first5-user": "{{doc-apihelp-example|query+revisions}}",
-
 	"apihelp-query+search-description": "{{doc-apihelp-description|query+search}}",
 	"apihelp-query+search-param-search": "{{doc-apihelp-param|query+search|search}}",
 	"apihelp-query+search-param-namespace": "{{doc-apihelp-param|query+search|namespace}}",
@@ -797,7 +727,6 @@
 	"apihelp-query+search-example-simple": "{{doc-apihelp-example|query+search}}",
 	"apihelp-query+search-example-text": "{{doc-apihelp-example|query+search}}",
 	"apihelp-query+search-example-generator": "{{doc-apihelp-example|query+search}}",
-
 	"apihelp-query+siteinfo-description": "{{doc-apihelp-description|query+siteinfo}}",
 	"apihelp-query+siteinfo-param-prop": "{{doc-apihelp-param|query+siteinfo|prop}}",
 	"apihelp-query+siteinfo-param-filteriw": "{{doc-apihelp-param|query+siteinfo|filteriw}}",
@@ -807,19 +736,16 @@
 	"apihelp-query+siteinfo-example-simple": "{{doc-apihelp-example|query+siteinfo}}",
 	"apihelp-query+siteinfo-example-interwiki": "{{doc-apihelp-example|query+siteinfo}}",
 	"apihelp-query+siteinfo-example-replag": "{{doc-apihelp-example|query+siteinfo}}",
-
 	"apihelp-query+stashimageinfo-description": "{{doc-apihelp-description|query+stashimageinfo}}",
 	"apihelp-query+stashimageinfo-param-filekey": "{{doc-apihelp-param|query+stashimageinfo|filekey}}",
 	"apihelp-query+stashimageinfo-param-sessionkey": "{{doc-apihelp-param|query+stashimageinfo|sessionkey}}",
 	"apihelp-query+stashimageinfo-param-prop": "{{doc-apihelp-param|query+stashimageinfo|prop}}",
 	"apihelp-query+stashimageinfo-example-simple": "{{doc-apihelp-example|query+stashimageinfo}}",
 	"apihelp-query+stashimageinfo-example-params": "{{doc-apihelp-example|query+stashimageinfo}}",
-
 	"apihelp-query+tags-description": "{{doc-apihelp-description|query+tags}}",
 	"apihelp-query+tags-param-limit": "{{doc-apihelp-param|query+tags|limit}}",
 	"apihelp-query+tags-param-prop": "{{doc-apihelp-param|query+tags|prop}}",
 	"apihelp-query+tags-example-simple": "{{doc-apihelp-example|query+tags}}",
-
 	"apihelp-query+templates-description": "{{doc-apihelp-description|query+templates}}",
 	"apihelp-query+templates-param-namespace": "{{doc-apihelp-param|query+templates|namespace}}",
 	"apihelp-query+templates-param-limit": "{{doc-apihelp-param|query+templates|limit}}",
@@ -828,12 +754,10 @@
 	"apihelp-query+templates-example-simple": "{{doc-apihelp-example|query+templates}}",
 	"apihelp-query+templates-example-generator": "{{doc-apihelp-example|query+templates}}",
 	"apihelp-query+templates-example-namespaces": "{{doc-apihelp-example|query+templates}}",
-
 	"apihelp-query+tokens-description": "{{doc-apihelp-description|query+tokens}}",
 	"apihelp-query+tokens-param-type": "{{doc-apihelp-param|query+tokens|type}}",
 	"apihelp-query+tokens-example-simple": "{{doc-apihelp-example|query+tokens}}",
 	"apihelp-query+tokens-example-types": "{{doc-apihelp-example|query+tokens}}",
-
 	"apihelp-query+transcludedin-description": "{{doc-apihelp-description|query+transcludedin}}",
 	"apihelp-query+transcludedin-param-prop": "{{doc-apihelp-param|query+transcludedin|prop}}",
 	"apihelp-query+transcludedin-param-namespace": "{{doc-apihelp-param|query+transcludedin|namespace}}",
@@ -841,7 +765,6 @@
 	"apihelp-query+transcludedin-param-show": "{{doc-apihelp-param|query+transcludedin|show}}",
 	"apihelp-query+transcludedin-example-simple": "{{doc-apihelp-example|query+transcludedin}}",
 	"apihelp-query+transcludedin-example-generator": "{{doc-apihelp-example|query+transcludedin}}",
-
 	"apihelp-query+usercontribs-description": "{{doc-apihelp-description|query+usercontribs}}",
 	"apihelp-query+usercontribs-param-limit": "{{doc-apihelp-param|query+usercontribs|limit}}",
 	"apihelp-query+usercontribs-param-start": "{{doc-apihelp-param|query+usercontribs|start}}",
@@ -855,18 +778,15 @@
 	"apihelp-query+usercontribs-param-toponly": "{{doc-apihelp-param|query+usercontribs|toponly}}",
 	"apihelp-query+usercontribs-example-user": "{{doc-apihelp-example|query+usercontribs}}",
 	"apihelp-query+usercontribs-example-ipprefix": "{{doc-apihelp-example|query+usercontribs}}",
-
 	"apihelp-query+userinfo-description": "{{doc-apihelp-description|query+userinfo}}",
 	"apihelp-query+userinfo-param-prop": "{{doc-apihelp-param|query+userinfo|prop|params=* $1 - Maximum value for the \"unreadcount\" property.\n$2 - Return value when there are more unread pages.|paramstart=3}}",
 	"apihelp-query+userinfo-example-simple": "{{doc-apihelp-example|query+userinfo}}",
 	"apihelp-query+userinfo-example-data": "{{doc-apihelp-example|query+userinfo}}",
-
 	"apihelp-query+users-description": "{{doc-apihelp-description|query+users}}",
 	"apihelp-query+users-param-prop": "{{doc-apihelp-param|query+users|prop}}",
 	"apihelp-query+users-param-users": "{{doc-apihelp-param|query+users|users}}",
 	"apihelp-query+users-param-token": "{{doc-apihelp-param|query+users|token}}",
 	"apihelp-query+users-example-simple": "{{doc-apihelp-example|query+users}}",
-
 	"apihelp-query+watchlist-description": "{{doc-apihelp-description|query+watchlist}}",
 	"apihelp-query+watchlist-param-allrev": "{{doc-apihelp-param|query+watchlist|allrev}}",
 	"apihelp-query+watchlist-param-start": "{{doc-apihelp-param|query+watchlist|start}}",
@@ -886,7 +806,6 @@
 	"apihelp-query+watchlist-example-generator": "{{doc-apihelp-example|query+watchlist}}",
 	"apihelp-query+watchlist-example-generator-rev": "{{doc-apihelp-example|query+watchlist}}",
 	"apihelp-query+watchlist-example-wlowner": "{{doc-apihelp-example|query+watchlist}}",
-
 	"apihelp-query+watchlistraw-description": "{{doc-apihelp-description|query+watchlistraw}}",
 	"apihelp-query+watchlistraw-param-namespace": "{{doc-apihelp-param|query+watchlistraw|namespace}}",
 	"apihelp-query+watchlistraw-param-limit": "{{doc-apihelp-param|query+watchlistraw|limit}}",
@@ -896,7 +815,6 @@
 	"apihelp-query+watchlistraw-param-token": "{{doc-apihelp-param|query+watchlistraw|token}}",
 	"apihelp-query+watchlistraw-example-simple": "{{doc-apihelp-example|query+watchlistraw}}",
 	"apihelp-query+watchlistraw-example-generator": "{{doc-apihelp-example|query+watchlistraw}}",
-
 	"apihelp-revisiondelete-description": "{{doc-apihelp-description|revisiondelete}}",
 	"apihelp-revisiondelete-param-type": "{{doc-apihelp-param|revisiondelete|type}}",
 	"apihelp-revisiondelete-param-target": "{{doc-apihelp-param|revisiondelete|target}}",
@@ -907,7 +825,6 @@
 	"apihelp-revisiondelete-param-reason": "{{doc-apihelp-param|revisiondelete|reason}}",
 	"apihelp-revisiondelete-example-revision": "{{doc-apihelp-example|revisiondelete}}",
 	"apihelp-revisiondelete-example-log": "{{doc-apihelp-example|revisiondelete}}",
-
 	"apihelp-rollback-description": "{{doc-apihelp-description|rollback}}",
 	"apihelp-rollback-param-title": "{{doc-apihelp-param|rollback|title}}",
 	"apihelp-rollback-param-pageid": "{{doc-apihelp-param|rollback|pageid}}",
@@ -917,10 +834,8 @@
 	"apihelp-rollback-param-watchlist": "{{doc-apihelp-param|rollback|watchlist}}",
 	"apihelp-rollback-example-simple": "{{doc-apihelp-example|rollback}}",
 	"apihelp-rollback-example-summary": "{{doc-apihelp-example|rollback}}",
-
 	"apihelp-rsd-description": "{{doc-apihelp-description|rsd}}",
 	"apihelp-rsd-example-simple": "{{doc-apihelp-example|rsd}}",
-
 	"apihelp-setnotificationtimestamp-description": "{{doc-apihelp-description|setnotificationtimestamp}}",
 	"apihelp-setnotificationtimestamp-param-entirewatchlist": "{{doc-apihelp-param|setnotificationtimestamp|entirewatchlist}}",
 	"apihelp-setnotificationtimestamp-param-timestamp": "{{doc-apihelp-param|setnotificationtimestamp|timestamp}}",
@@ -930,19 +845,16 @@
 	"apihelp-setnotificationtimestamp-example-page": "{{doc-apihelp-example|setnotificationtimestamp}}",
 	"apihelp-setnotificationtimestamp-example-pagetimestamp": "{{doc-apihelp-example|setnotificationtimestamp}}",
 	"apihelp-setnotificationtimestamp-example-allpages": "{{doc-apihelp-example|setnotificationtimestamp}}",
-
 	"apihelp-tokens-description": "{{doc-apihelp-description|tokens}}",
 	"apihelp-tokens-param-type": "{{doc-apihelp-param|tokens|type}}",
 	"apihelp-tokens-example-edit": "{{doc-apihelp-example|tokens}}",
 	"apihelp-tokens-example-emailmove": "{{doc-apihelp-example|tokens}}",
-
 	"apihelp-unblock-description": "{{doc-apihelp-description|unblock}}",
 	"apihelp-unblock-param-id": "{{doc-apihelp-param|unblock|id}}",
 	"apihelp-unblock-param-user": "{{doc-apihelp-param|unblock|user}}",
 	"apihelp-unblock-param-reason": "{{doc-apihelp-param|unblock|reason}}",
 	"apihelp-unblock-example-id": "{{doc-apihelp-example|unblock}}",
 	"apihelp-unblock-example-user": "{{doc-apihelp-example|unblock}}",
-
 	"apihelp-undelete-description": "{{doc-apihelp-description|undelete}}",
 	"apihelp-undelete-param-title": "{{doc-apihelp-param|undelete|title}}",
 	"apihelp-undelete-param-reason": "{{doc-apihelp-param|undelete|reason}}",
@@ -951,7 +863,6 @@
 	"apihelp-undelete-param-watchlist": "{{doc-apihelp-param|undelete|watchlist}}",
 	"apihelp-undelete-example-page": "{{doc-apihelp-example|undelete}}",
 	"apihelp-undelete-example-revisions": "{{doc-apihelp-example|undelete}}",
-
 	"apihelp-upload-description": "{{doc-apihelp-description|upload}}",
 	"apihelp-upload-param-filename": "{{doc-apihelp-param|upload|filename}}",
 	"apihelp-upload-param-comment": "{{doc-apihelp-param|upload|comment}}",
@@ -974,23 +885,20 @@
 	"apihelp-upload-param-checkstatus": "{{doc-apihelp-param|upload|checkstatus}}",
 	"apihelp-upload-example-url": "{{doc-apihelp-example|upload}}",
 	"apihelp-upload-example-filekey": "{{doc-apihelp-example|upload}}",
-
 	"apihelp-userrights-description": "{{doc-apihelp-description|userrights}}",
-	"apihelp-userrights-param-user": "{{doc-apihelp-param|userrights|user}}",
+	"apihelp-userrights-param-user": "{{doc-apihelp-param|userrights|user}}\n{{Identical|Username}}",
 	"apihelp-userrights-param-userid": "{{doc-apihelp-param|userrights|userid}}",
 	"apihelp-userrights-param-add": "{{doc-apihelp-param|userrights|add}}",
 	"apihelp-userrights-param-remove": "{{doc-apihelp-param|userrights|remove}}",
 	"apihelp-userrights-param-reason": "{{doc-apihelp-param|userrights|reason}}",
 	"apihelp-userrights-example-user": "{{doc-apihelp-example|userrights}}",
 	"apihelp-userrights-example-userid": "{{doc-apihelp-example|userrights}}",
-
 	"apihelp-watch-description": "{{doc-apihelp-description|watch}}",
 	"apihelp-watch-param-title": "{{doc-apihelp-param|watch|title}}",
 	"apihelp-watch-param-unwatch": "{{doc-apihelp-param|watch|unwatch}}",
 	"apihelp-watch-example-watch": "{{doc-apihelp-example|watch}}",
 	"apihelp-watch-example-unwatch": "{{doc-apihelp-example|watch}}",
 	"apihelp-watch-example-generator": "{{doc-apihelp-example|watch}}",
-
 	"apihelp-format-example-generic": "{{doc-apihelp-example|format|params=* $1 - Format name|paramstart=2|noseealso=1}}",
 	"apihelp-dbg-description": "{{doc-apihelp-description|dbg|seealso=* {{msg-mw|apihelp-dbgfm-description}}}}",
 	"apihelp-dbgfm-description": "{{doc-apihelp-description|dbgfm|seealso=* {{msg-mw|apihelp-dbg-description}}}}",
@@ -1014,13 +922,10 @@
 	"apihelp-xmlfm-description": "{{doc-apihelp-description|xmlfm|seealso=* {{msg-mw|apihelp-xml-description}}}}",
 	"apihelp-yaml-description": "{{doc-apihelp-description|yaml|seealso=* {{msg-mw|apihelp-yamlfm-description}}}}",
 	"apihelp-yamlfm-description": "{{doc-apihelp-description|yamlfm|seealso=* {{msg-mw|apihelp-yaml-description}}}}",
-
 	"api-format-title": "Page title when API output is pretty-printed in HTML.",
 	"api-format-prettyprint-header": "{{technical}} Displayed as a header when API output is pretty-printed in HTML.\n\nParameters:\n* $1 - Format name\n* $2 - Non-pretty-printing module name",
-
 	"api-orm-param-props": "{{doc-apihelp-param|orm|props|description=the \"props\" parameter in subclasses of ApiQueryORM}}",
 	"api-orm-param-limit": "{{doc-apihelp-param|orm|limit|description=the \"limit\" parameter in subclasses of ApiQueryORM}}",
-
 	"api-pageset-param-titles": "{{doc-apihelp-param|pageset|titles|description=the \"titles\" parameter in pageset-using modules}}",
 	"api-pageset-param-pageids": "{{doc-apihelp-param|pageset|pageids|description=the \"pageids\" parameter in pageset-using modules}}",
 	"api-pageset-param-revids": "{{doc-apihelp-param|pageset|revids|description=the \"revids\" parameter in pageset-using modules}}",
@@ -1028,7 +933,6 @@
 	"api-pageset-param-redirects-generator": "{{doc-apihelp-param|pageset|redirects-generator|description=the \"redirects\" parameter in pageset-using modules when the \"generator\" parameter is also available}}",
 	"api-pageset-param-redirects-nogenerator": "{{doc-apihelp-param|pageset|redirects-generator|description=the \"redirects\" parameter in pageset-using modules when the \"generator\" parameter is not available}}",
 	"api-pageset-param-converttitles": "{{doc-apihelp-param|pageset|converttitles|description=the \"converttitles\" parameter in pageset-using modules|params=* $1 - List of languages with variants|paramstart=2}}",
-
 	"api-help-title": "Page title for the auto-generated help output",
 	"api-help-lead": "Text displayed at the top of the API help page",
 	"api-help-main-header": "Text for the header of the main module",
@@ -1043,20 +947,20 @@
 	"api-help-flag-mustbeposted": "Flag displayed for an API module that only accepts POST requests",
 	"api-help-flag-generator": "Flag displayed for an API module that can be used as a generator",
 	"api-help-help-urls": "{{optional}} Label for the API help urls section\n\nParameters:\n* $1 - Number of urls to be displayed",
-	"api-help-parameters": "Label for the API help parameters section\n\nParameters:\n* $1 - Number of parameters to be displayed",
-	"api-help-param-deprecated": "Displayed in the API help for any deprecated parameter",
+	"api-help-parameters": "Label for the API help parameters section\n\nParameters:\n* $1 - Number of parameters to be displayed\n{{Identical|Parameter}}",
+	"api-help-param-deprecated": "Displayed in the API help for any deprecated parameter\n{{Identical|Deprecated}}",
 	"api-help-param-required": "Displayed in the API help for any required parameter",
 	"api-help-param-list": "Used to display the possible values for a parameter taking a list of values\n\nParameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values\n* $2 - Comma-separated list of values, possibly formatted using {{msg-mw|api-help-param-list-can-be-empty}}",
 	"api-help-param-list-can-be-empty": "Used to indicate that one of the possible values in the list is the empty string.\n\nParameters:\n* $1 - Number of items in the rest of the list; may be 0\n* $2 - Remainder of the list as a comma-separated string",
 	"api-help-param-limit": "Used to display the maximum value of a limit parameter\n\nParameters:\n* $1 - Maximum value",
 	"api-help-param-limit2": "Used to display the maximum values of a limit parameter\n\nParameters:\n* $1 - Maximum value without the apihighlimits right\n* $2 - Maximum value with the apihighlimits right",
 	"api-help-param-integer-min": "Used to display an integer parameter with a minimum but no maximum value\n\nParameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values\n* $2 - Minimum value\n* $3 - unused\n\nSee also:\n* {{msg-mw|api-help-param-integer-max}}\n* {{msg-mw|api-help-param-integer-minmax}}",
-	"api-help-param-integer-max": "Used to display an integer parameter with a maximum but no minimum value\n\nParameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values\n* $2 - unused\n* $3 - Maximum value\n\nSee also:\n* {{msg-mw|api-help-param-integer-min}}\n* {{msg-mw|api-help-param-integer-minmax}}",
+	"api-help-param-integer-max": "Used to display an integer parameter with a maximum but no minimum value.\n\nParameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values\n* $2 - (Unused)\n* $3 - Maximum value\nSee also:\n* {{msg-mw|Api-help-param-integer-min}}\n* {{msg-mw|Api-help-param-integer-minmax}}",
 	"api-help-param-integer-minmax": "Used to display an integer parameter with a maximum and minimum values\n\nParameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values\n* $2 - Minimum value\n* $3 - Maximum value\n\nSee also:\n* {{msg-mw|api-help-param-integer-min}}\n* {{msg-mw|api-help-param-integer-max}}",
 	"api-help-param-upload": "{{technical}} Used to indicate that an 'upload'-type parameter must be posted as a file upload using multipart/form-data",
 	"api-help-param-multi-separate": "Used to indicate how to separate multiple values. Not used with {{msg-mw|api-help-param-list}}.",
 	"api-help-param-multi-max": "Used to indicate the maximum number of values accepted for a multi-valued parameter.\n\nParameters:\n* $1 - Maximum value without the apihighlimits right\n* $2 - Maximum value with the apihighlimits right",
-	"api-help-param-default": "Used to display the default value for an API parameter\n\nParameters:\n* $1 - Default value\n\nSee also:\n* {{msg-mw|api-help-param-default-empty}}",
+	"api-help-param-default": "Used to display the default value for an API parameter\n\nParameters:\n* $1 - Default value\n\nSee also:\n* {{msg-mw|api-help-param-default-empty}}\n{{Identical|Default}}",
 	"api-help-param-default-empty": "Used to display the default value for an API parameter when that default is an empty value\n\nSee also:\n* {{msg-mw|api-help-param-default}}",
 	"api-help-param-token": "{{doc-apihelp-param|description=any 'token' parameter|paramstart=3|params=\n* $1 - Token type|noseealso=1}}",
 	"api-help-param-token-webui": "{{doc-apihelp-param|description=additional text for any \"token\" parameter, explaining that web UI tokens are also accepted|noseealso=1}}",
@@ -1065,11 +969,10 @@
 	"api-help-param-direction": "{{doc-apihelp-param|description=any standard \"dir\" parameter|noseealso=1}}",
 	"api-help-param-continue": "{{doc-apihelp-param|description=any standard \"continue\" parameter, or other parameter with the same semantics|noseealso=1}}",
 	"api-help-param-no-description": "Displayed on API parameters that lack any description",
-	"api-help-examples": "Label for the API help examples section\n\nParameters:\n* $1 - Number of examples to be displayed",
-	"api-help-permissions": "Label for the \"permissions\" section in the main module's help output.\n\nParameters:\n* $1 - Number of permissions displayed",
+	"api-help-examples": "Label for the API help examples section\n\nParameters:\n* $1 - Number of examples to be displayed\n{{Identical|Example}}",
+	"api-help-permissions": "Label for the \"permissions\" section in the main module's help output.\n\nParameters:\n* $1 - Number of permissions displayed\n{{Identical|Permission}}",
 	"api-help-permissions-granted-to": "Used to introduce the list of groups each permission is assigned to.\n\nParameters:\n* $1 - Number of groups\n* $2 - List of group names, comma-separated",
 	"api-help-right-apihighlimits": "{{technical}}{{doc-right|apihighlimits|prefix=api-help}}\nThis message is used instead of {{msg-mw|right-apihighlimits}} in the API help to display the actual limits.\n\nParameters:\n* $1 - Limit for slow queries\n* $2 - Limit for fast queries",
-
-	"api-credits-header": "Header for the API credits section in the API help output",
+	"api-credits-header": "Header for the API credits section in the API help output\n{{Identical|Credit}}",
 	"api-credits": "API credits text, displayed in the API help output"
 }
