@@ -4,13 +4,10 @@
 			"DzWiki"
 		]
 	},
-	"ooui-dialog-action-close": "Zatvori",
 	"ooui-outline-control-move-down": "Premjesti stavku dole",
 	"ooui-outline-control-move-up": "Premjesti stavku gore",
 	"ooui-outline-control-remove": "Ukloni stavku",
 	"ooui-toolbar-more": "Više",
-	"ooui-dialog-confirm-title": "Potvrdi",
-	"ooui-dialog-confirm-default-prompt": "Da li ste sigurni?",
-	"ooui-dialog-confirm-default-ok": "U redu",
-	"ooui-dialog-confirm-default-cancel": "Otkaži"
+	"ooui-dialog-message-accept": "U redu",
+	"ooui-dialog-message-reject": "Otkaži"
 }

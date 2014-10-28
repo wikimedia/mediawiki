@@ -5,9 +5,6 @@
 			"Artificial123"
 		]
 	},
-	"ooui-dialog-action-close": "Закрыць",
-	"ooui-dialog-confirm-title": "Пацвердзіць",
-	"ooui-dialog-confirm-default-prompt": "Вы ўпэўненыя?",
-	"ooui-dialog-confirm-default-ok": "ОК",
-	"ooui-dialog-confirm-default-cancel": "Адмяніць"
+	"ooui-dialog-message-accept": "ОК",
+	"ooui-dialog-message-reject": "Адмяніць"
 }

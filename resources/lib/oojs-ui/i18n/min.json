@@ -5,13 +5,10 @@
 			"Jagwar"
 		]
 	},
-	"ooui-dialog-action-close": "Tutuik",
 	"ooui-outline-control-move-down": "Pindahan ko ka bawah",
 	"ooui-outline-control-move-up": "Pindahan ko ka ateh",
 	"ooui-outline-control-remove": "Hapuih ko",
 	"ooui-toolbar-more": "Lainnyo",
-	"ooui-dialog-confirm-title": "Pastian",
-	"ooui-dialog-confirm-default-prompt": "Yakin?",
-	"ooui-dialog-confirm-default-ok": "Yo",
-	"ooui-dialog-confirm-default-cancel": "Batal"
+	"ooui-dialog-message-accept": "Yo",
+	"ooui-dialog-message-reject": "Batal"
 }

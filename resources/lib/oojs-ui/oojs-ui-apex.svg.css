@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (40de4dabe6)
+ * OOjs UI v0.1.0-pre (deccd11549)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-22T23:42:26Z
+ * Date: 2014-10-28T16:52:27Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -234,6 +234,7 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	opacity: 0.5;
+	-webkit-transform: translate3d(0, 0, 0);
 	box-shadow: none;
 	color: #333333;
 	background: #eeeeee;
@@ -1114,25 +1115,25 @@
 }
 .oo-ui-progressBarWidget {
 	width: 20em;
-	border: solid 1px #cccccc;
+	border: solid 1px #a6cee1;
 	border-radius: 0.25em;
 }
 .oo-ui-progressBarWidget-bar {
 	height: 1em;
-	border-right: solid 1px #cccccc;
+	border-right: solid 1px #a6cee1;
 	-webkit-transition: width 200ms;
 	   -moz-transition: width 200ms;
 	    -ms-transition: width 200ms;
 	     -o-transition: width 200ms;
 	        transition: width 200ms;
-	background: #eeeeee;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#dddddd');
-	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
-	background-image: -webkit-linear-gradient(top, #ffffff 0%, #dddddd 100%);
-	background-image:    -moz-linear-gradient(top, #ffffff 0%, #dddddd 100%);
-	background-image:     -ms-linear-gradient(top, #ffffff 0%, #dddddd 100%);
-	background-image:      -o-linear-gradient(top, #ffffff 0%, #dddddd 100%);
-	background-image:         linear-gradient(top, #ffffff 0%, #dddddd 100%);
+	background: #cde7f4;
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#eaf4fa', endColorstr='#b0d9ee');
+	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #eaf4fa), color-stop(100%, #b0d9ee));
+	background-image: -webkit-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
+	background-image:    -moz-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
+	background-image:     -ms-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
+	background-image:      -o-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
+	background-image:         linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
 }
 .oo-ui-progressBarWidget.oo-ui-widget-disabled {
 	opacity: 0.6;
@@ -1653,8 +1654,8 @@
 	/* @noflip */
 	left: 0;
 }
-.oo-ui-window-isolated,
-.oo-ui-window-overlay {
+.oo-ui-window,
+.oo-ui-window-isolated {
 	background-color: transparent;
 	background-image: none;
 	font-family: sans-serif;

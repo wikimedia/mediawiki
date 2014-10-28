@@ -6,10 +6,8 @@
 			"Gloria sah"
 		]
 	},
-	"ooui-dialog-action-close": "Sara",
 	"ooui-outline-control-move-down": "Sposta in baso",
 	"ooui-outline-control-move-up": "Sposta in sima",
 	"ooui-toolbar-more": "Altro",
-	"ooui-dialog-confirm-title": "Conferma",
-	"ooui-dialog-confirm-default-ok": "Va ben"
+	"ooui-dialog-message-accept": "Va ben"
 }

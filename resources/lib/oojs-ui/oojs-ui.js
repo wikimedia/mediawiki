@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (40de4dabe6)
+ * OOjs UI v0.1.0-pre (deccd11549)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-22T23:42:16Z
+ * Date: 2014-10-28T16:52:18Z
  */
 ( function ( OO ) {
 
@@ -1329,7 +1329,7 @@ OO.mixinClass( OO.ui.Widget, OO.EventEmitter );
 /**
  * Check if the widget is disabled.
  *
- * @param {boolean} Button is disabled
+ * @return {boolean} Button is disabled
  */
 OO.ui.Widget.prototype.isDisabled = function () {
 	return this.disabled;
@@ -5116,7 +5116,7 @@ OO.ui.Tool.prototype.onSelect = function () {
 /**
  * Check if the button is active.
  *
- * @param {boolean} Button is active
+ * @return {boolean} Button is active
  */
 OO.ui.Tool.prototype.isActive = function () {
 	return this.active;
@@ -7861,7 +7861,7 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
  * @constructor
  * @param {OO.ui.TextInputWidget} input Input widget
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$overlay] Overlay layer; defaults to the current window's overlay.
+ * @cfg {jQuery} [$overlay] Overlay for dropdown; defaults to relative positioning
  */
 OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	// Config intialization
@@ -7869,10 +7869,7 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 
 	// Properties
 	this.lookupInput = input;
-	this.$overlay = config.$overlay || ( this.$.$iframe || this.$element ).closest( '.oo-ui-window' ).children( '.oo-ui-window-overlay' );
-	if ( this.$overlay.length === 0 ) {
-		this.$overlay = this.$( 'body' );
-	}
+	this.$overlay = config.$overlay || this.$element;
 	this.lookupMenu = new OO.ui.TextInputMenuWidget( this, {
 		$: OO.ui.Element.getJQuery( this.$overlay ),
 		input: this.lookupInput,
@@ -7884,8 +7881,6 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	this.populating = false;
 
 	// Events
-	this.$overlay.append( this.lookupMenu.$element );
-
 	this.lookupInput.$input.on( {
 		focus: this.onLookupInputFocus.bind( this ),
 		blur: this.onLookupInputBlur.bind( this ),
@@ -7896,6 +7891,7 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	// Initialization
 	this.$element.addClass( 'oo-ui-lookupWidget' );
 	this.lookupMenu.$element.addClass( 'oo-ui-lookupWidget-menu' );
+	this.$overlay.append( this.lookupMenu.$element );
 };
 
 /* Methods */
@@ -8959,7 +8955,7 @@ OO.mixinClass( OO.ui.InputWidget, OO.ui.FlaggedElement );
 
 /**
  * @event change
- * @param value
+ * @param {string} value
  */
 
 /* Methods */
@@ -9569,7 +9565,7 @@ OO.ui.TextInputWidget.prototype.select = function () {
 
 /**
  * Sets the validation pattern to use.
- * @param validate {RegExp|string|null} Regular expression (or symbolic name referencing
+ * @param {RegExp|string|null} validate Regular expression (or symbolic name referencing
  *  one, see #static-validationPatterns)
  */
 OO.ui.TextInputWidget.prototype.setValidation = function ( validate ) {
@@ -9610,7 +9606,7 @@ OO.ui.TextInputWidget.prototype.isValid = function () {
  * @param {Object} [config] Configuration options
  * @cfg {Object} [menu] Configuration options to pass to menu widget
  * @cfg {Object} [input] Configuration options to pass to input widget
- * @cfg {jQuery} [$overlay] Overlay layer; defaults to the current window's overlay.
+ * @cfg {jQuery} [$overlay] Overlay layer; defaults to relative positioning
  */
 OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 	// Configuration initialization
@@ -9620,16 +9616,18 @@ OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 	OO.ui.ComboBoxWidget.super.call( this, config );
 
 	// Properties
-	this.$overlay = config.$overlay || ( this.$.$iframe || this.$element ).closest( '.oo-ui-window' ).children( '.oo-ui-window-overlay' );
-	if ( this.$overlay.length === 0 ) {
-		this.$overlay = this.$( 'body' );
-	}
+	this.$overlay = config.$overlay || this.$element;
 	this.input = new OO.ui.TextInputWidget( $.extend(
 		{ $: this.$, indicator: 'down', disabled: this.isDisabled() },
 		config.input
 	) );
 	this.menu = new OO.ui.TextInputMenuWidget( this.input, $.extend(
-		{ $: this.$, widget: this, input: this.input, disabled: this.isDisabled() },
+		{
+			$: OO.ui.Element.getJQuery( this.$overlay ),
+			widget: this,
+			input: this.input,
+			disabled: this.isDisabled()
+		},
 		config.menu
 	) );
 
