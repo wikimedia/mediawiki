@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sayginer"
+		]
+	},
+	"apihelp-edit-param-text": "Sayfa içeriği.",
+	"apihelp-edit-param-minor": "Küçük değişiklik.",
+	"apihelp-edit-param-nocreate": "Sayfa mevcut değilse hata oluştur.",
+	"apihelp-edit-param-watch": "Sayfayı izleme listenize ekleyin.",
+	"apihelp-edit-param-unwatch": "Sayfayı izleme listenizden çıkarın.",
+	"apihelp-edit-param-redirect": "Yönlendirmeleri otomatik olarak çöz.",
+	"apihelp-emailuser-description": "Bir kullanıcıya e-posta gönder.",
+	"apihelp-emailuser-param-target": "E-posta gönderilecek kullanıcı.",
+	"apihelp-emailuser-param-subject": "Konu başlığı.",
+	"apihelp-emailuser-param-text": "E-posta metni.",
+	"apihelp-emailuser-param-ccme": "Bu e-postanın bir kopyasını bana gönder.",
+	"apihelp-feedcontributions-param-toponly": "Yalnızca son revizyon olan değişiklikleri göster.",
+	"apihelp-feedcontributions-param-newonly": "Yalnızca yeni sayfa oluşturan değişiklikleri göster.",
+	"apihelp-feedcontributions-param-showsizediff": "Sürümler arasındaki boyut farkını göster.",
+	"apihelp-feedrecentchanges-param-limit": "Verilecek azami sonuç sayısı.",
+	"apihelp-feedrecentchanges-param-hideminor": "Küçük değişiklikleri gizle.",
+	"apihelp-feedrecentchanges-param-hidebots": "Bot değişikliklerini gizle.",
+	"apihelp-feedrecentchanges-param-hideanons": "Anonim kullanıcı değişikliklerini gizle.",
+	"apihelp-feedrecentchanges-param-hideliu": "Kayıtlı kullanıcı değişikliklerini gizle.",
+	"apihelp-feedrecentchanges-param-hidemyself": "Kendi değişikliklerini gizle.",
+	"apihelp-feedrecentchanges-example-simple": "Son değişiklikleri göster",
+	"apihelp-feedrecentchanges-example-30days": "Son 30 gündeki değişiklikleri göster",
+	"apihelp-filerevert-description": "Bir dosyayı eski bir sürümüne geri döndür.",
+	"apihelp-move-description": "Bir sayfayı taşı.",
+	"apihelp-move-param-from": "Taşımak istediğiniz sayfanın başlığı. $1fromid ile birlikte kullanılamaz.",
+	"apihelp-move-param-noredirect": "Yönlendirme oluşturmayın.",
+	"apihelp-opensearch-param-limit": "Verilecek azami sonuç sayısı.",
+	"apihelp-options-example-reset": "Tüm tercihleri sıfırla",
+	"api-help-title": "MediaWiki API yardımı",
+	"api-help-parameters": "{{PLURAL:$1|Parametre|Parametre}}:",
+	"api-help-param-limit": "$1 taneden fazla olamaz.",
+	"api-help-param-limit2": "$1 taneden fazla (botlar için $2) olamaz.",
+	"api-help-param-default": "Varsayılan: $1"
+}

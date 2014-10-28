@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeblad"
+		]
+	},
+	"apihelp-main-param-action": "Hvilken handling skal utføres",
+	"apihelp-main-param-format": "Resultatets format.",
+	"apihelp-main-param-servedby": "Inkluder navnet på tjeneren som utførte forespørselen i resultatene.",
+	"apihelp-main-param-curtimestamp": "Inkluder det nåværende tidsmerket i resultatet.",
+	"apihelp-dbg-description": "Resultatdata i PHP's var_export() format.",
+	"apihelp-dbgfm-description": "Resultatdata i PHP's var_export() format (pen utskrift i HTML).",
+	"apihelp-dump-description": "Resultatdata i PHP's var_export() format.",
+	"apihelp-dumpfm-description": "Resultatdata i PHP's var_export() format (pen utskrift i HTML).",
+	"apihelp-json-description": "Resultatdata i JSON-format.",
+	"apihelp-none-description": "Ingen resultat.",
+	"api-help-flag-readrights": "Denne modulen krever lesetilgang.",
+	"api-help-flag-writerights": "Denne modulen krever skrivetilgang.",
+	"api-help-flag-mustbeposted": "Denne modulen aksepterer bare POST forespørsler.",
+	"api-help-flag-generator": "Denne modulen kan brukes som en generator.",
+	"api-help-parameters": "{{PLURAL:$1|Parameter|Parametre}}:",
+	"api-help-param-deprecated": "Utgått.",
+	"api-help-param-required": "Denne parameteren er påkrevd."
+}
