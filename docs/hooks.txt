@@ -1698,6 +1698,13 @@ optional localisation messages
 &$ignored Array of ignored message keys
 &$optional Array of optional message keys
 
+'LogEventsListGetExtraInputs': When getting extra inputs to display on Special:Log
+for a specific log type
+$type: String of log type being displayed
+$logEventsList: LogEventsList object for context and access to the WebRequest
+&$input: string HTML of an input element
+
+
 'LogEventsListShowLogExtract': Called before the string is added to OutputPage.
 Returning false will prevent the string from being added to the OutputPage.
 &$s: html string to show for the log extract
@@ -2464,6 +2471,11 @@ $out: The header HTML
 UsersPager::getQueryInfo()
 $pager: The UsersPager instance
 $query: The query array to be returned
+
+'SpecialLogAddLogSearchRelations': Add log relations to the current log
+$type: String of the log type
+$request: WebRequest object for getting the value provided by the current user
+&$qc: Array for query conditions to add
 
 'SpecialMovepageAfterMove': Called after moving a page.
 $movePage: MovePageForm object
