@@ -158,7 +158,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addOption( 'USE INDEX', $index );
 
 		// Paranoia: avoid brute force searches (bug 17342)
-		if ( !is_null( $title ) ) {
+		if ( !is_null( $title ) || !is_null( $params['action'] ) ) {
 			$this->addWhere( $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0' );
 		}
 		if ( !is_null( $user ) ) {
@@ -279,10 +279,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 		}
 
-		if ( $this->fld_title || $this->fld_ids ) {
+		if ( $this->fld_title || $this->fld_ids || $this->fld_type ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = '';
 			} else {
+				if ( $this->fld_type ) {
+					$vals['action'] = $row->log_action;
+				}
 				if ( $this->fld_title ) {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
@@ -292,9 +295,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->fld_type || $this->fld_action ) {
+		if ( $this->fld_type ) {
 			$vals['type'] = $row->log_type;
-			$vals['action'] = $row->log_action;
 		}
 
 		if ( $this->fld_details && $row->log_params !== '' ) {
