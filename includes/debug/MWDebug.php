@@ -46,7 +46,7 @@ class MWDebug {
 	protected static $debug = array();
 
 	/**
-	 * SQL statements of the databses queries.
+	 * SQL statements of the database queries.
 	 *
 	 * @var array $query
 	 */
