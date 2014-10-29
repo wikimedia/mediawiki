@@ -3154,6 +3154,7 @@ class OutputPage extends ContextSource {
 			'wgMonthNames' => $lang->getMonthNamesArray(),
 			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
+			'wgRelevantArticleId' => WikiPage::factory( $relevantTitle )->getId()
 		);
 
 		if ( $user->isLoggedIn() ) {
