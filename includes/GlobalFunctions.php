@@ -3729,7 +3729,9 @@ function wfWaitForSlaves(
 			if ( $ifWritesSince && !$lb->hasMasterConnection() ) {
 				continue; // assume no writes done
 			}
-			$dbw = $lb->getConnection( DB_MASTER, array(), $wiki );
+			// Use the empty string to not trigger selectDB() since the connection
+			// may have been to a server that does not have a DB for the current wiki.
+			$dbw = $lb->getConnection( DB_MASTER, array(), '' );
 			if ( $ifWritesSince && $dbw->lastDoneWrites() < $ifWritesSince ) {
 				continue; // no writes since the last wait
 			}
