@@ -143,14 +143,10 @@ abstract class Profiler {
 			if ( is_array( $wgProfiler ) ) {
 				if ( !isset( $wgProfiler['class'] ) ) {
 					$class = 'ProfilerStub';
-				} elseif ( $wgProfiler['class'] === 'Profiler' ) {
-					$class = 'ProfilerStub'; // b/c; don't explode
 				} else {
 					$class = $wgProfiler['class'];
 				}
 				self::$__instance = new $class( $wgProfiler );
-			} elseif ( $wgProfiler instanceof Profiler ) {
-				self::$__instance = $wgProfiler; // back-compat
 			} else {
 				self::$__instance = new ProfilerStub( array() );
 			}
