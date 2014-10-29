@@ -50,6 +50,7 @@ module.exports = function ( grunt ) {
 		},
 		banana: {
 			core: 'languages/i18n/',
+			api: 'includes/api/i18n/',
 			installer: 'includes/installer/i18n/'
 		},
 		watch: {
