@@ -320,7 +320,6 @@
 		'nomodule',
 		'mustbeposted',
 		'badaccess-groups',
-		'stashfailed',
 		'missingresult',
 		'missingparam',
 		'invalid-file-key',
@@ -342,7 +341,18 @@
 		'fetchfileerror',
 		'fileexists-shared-forbidden',
 		'invalidtitle',
-		'notloggedin'
+		'notloggedin',
+
+		// Stash-specific errors - expanded
+		'stashfailed',
+		'stasherror',
+		'stashedfilenotfound',
+		'stashpathinvalid',
+		'stashfilestorage',
+		'stashzerolength',
+		'stashnotloggedin',
+		'stashwrongowner',
+		'stashnosuchfilekey'
 	];
 
 	/**
