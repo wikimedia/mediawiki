@@ -2810,7 +2810,7 @@
 	"revdelete-restricted": "administratzaileentzako mugak ezarri dira",
 	"revdelete-unrestricted": "administratzaileentzako mugak kendu dira",
 	"logentry-move-move": "$1 {{GENDER:$2|wikilariak}} «$3» orria «$4» izenera aldatu du",
-	"logentry-move-move-noredirect": "$1 {{GENDER:$2|wikilariak}} $3 orria $4 izenera aldatu du, birzuzenketarik utzi gabe",
+	"logentry-move-move-noredirect": "$1 {{GENDER:$2|wikilariak}} «$3» orria «$4» izenera aldatu du, birzuzenketarik utzi gabe",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|wikilariak}} «$3» orria «$4» izenera aldatu du, birzuzenketaren gainetik",
 	"logentry-move-move_redir-noredirect": "$1 {{GENDER:wikilariak}} «$3» orria «$4» izenera aldatu du, birbideratze bat gainidatzita, birbideratzerik utzi gabe",
 	"logentry-patrol-patrol": "$1(e)k $3 orrialdearen $4 berrikuzpena patruilatutzat {{GENDER:$2|markatu}} du",

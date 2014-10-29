@@ -1720,7 +1720,7 @@
 	"deletepage": "Обриши страницу",
 	"confirm": "Потврди",
 	"excontent": "садржај је био: „$1“",
-	"excontentauthor": "садржај је био: „$1“ (а једини уредник је био „[[Special:Contribs/$2|$2]]“)",
+	"excontentauthor": "садржај је био: „$1“ (а једини уредник [[Special:Contribs/$2|$2]])",
 	"exbeforeblank": "садржај пре брисања је био: „$1“",
 	"delete-confirm": "Брисање странице „$1“",
 	"delete-legend": "Обриши",

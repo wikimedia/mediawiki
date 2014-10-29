@@ -208,7 +208,7 @@
 	"listingcontinuesabbrev": "续",
 	"index-category": "已索引页面",
 	"noindex-category": "不可索引页面",
-	"broken-file-category": "有受损文件链接的页面",
+	"broken-file-category": "含有受损文件链接的页面",
 	"categoryviewer-pagedlinks": "（$1）（$2）",
 	"about": "关于",
 	"article": "内容页面",

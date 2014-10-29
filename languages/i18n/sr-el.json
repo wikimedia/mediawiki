@@ -1712,7 +1712,7 @@
 	"deletepage": "Obriši stranicu",
 	"confirm": "Potvrdi",
 	"excontent": "sadržaj je bio: „$1“",
-	"excontentauthor": "sadržaj je bio: „$1“ (a jedini urednik je bio „[[Special:Contribs/$2|$2]]“)",
+	"excontentauthor": "sadržaj je bio: „$1“ (a jedini urednik [[Special:Contribs/$2|$2]])",
 	"exbeforeblank": "sadržaj pre brisanja je bio: „$1“",
 	"delete-confirm": "Brisanje stranice „$1“",
 	"delete-legend": "Obriši",
