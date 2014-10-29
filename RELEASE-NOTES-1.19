@@ -9,6 +9,7 @@ This is a maintenance release of the MediaWiki 1.19 branch.
 
 === Changes since 1.19.20 ===
 
+* (bug 67440) Allow classes to be registered properly from installer.
 * (bug 47281) Fixed a dumpBackup.php error with --uploads --include-files
   options: Unable to find the wrapper "mwstore".
   System administrators are encouraged to upgrade to this release or 1.22+
