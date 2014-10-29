@@ -992,14 +992,11 @@ $title: the diff page title (nullable)
 $old: the ?old= param value from the url
 $new: the ?new= param value from the url
 
-'GenerateTextDiffBody': Generate a custom diff body instead of using
-the diff engine specified in $wgExternalDiffEngine
-&$otext: the old text version string
-&$ntext: the new text version string
-&$diffText: custom diff output: table-formatted html string
+'GetDiffEngineClass': Called when getting the diff engine class name
+&$context: IContextSource context to be used for diff
+&$diffEngineClass: output parameter, class name of diff engine to be used for diff
 
-Return true to allow the default engine to be used, or false
-to indicate a valid diff html string in $diffText.
+Return false for valid class name in $diffEngineClass or true for the default diff engine.
 
 'DiffRevisionTools': Override or extend the revision tools available from the
 diff view, i.e. undo, etc.
