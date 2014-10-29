@@ -3153,8 +3153,12 @@ class OutputPage extends ContextSource {
 			'wgDefaultDateFormat' => $lang->getDefaultDateFormat(),
 			'wgMonthNames' => $lang->getMonthNamesArray(),
 			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
-			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
+			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey()
 		);
+
+		if ( $relevantTitle->getNamespace() >= 0 ) {
+			$vars['wgRelevantArticleId'] = WikiPage::factory( $relevantTitle )->getId();
+		}
 
 		if ( $user->isLoggedIn() ) {
 			$vars['wgUserId'] = $user->getId();
