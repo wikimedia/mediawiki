@@ -1,6 +1,14 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.23.6 ==
+
+This is a maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.5 ===
+* (Bug 72274) Job queue not running (HTTP 411) due to missing
+  Content-Length: header
+
 == MediaWiki 1.23.5 ==
 
 This is a security release of the MediaWiki 1.23 branch.
