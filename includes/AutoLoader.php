@@ -696,6 +696,7 @@ $wgAutoloadLocalClasses = array(
 	'ScopedCallback' => 'includes/libs/ScopedCallback.php',
 	'ScopedPHPTimeout' => 'includes/libs/ScopedPHPTimeout.php',
 	'SwiftVirtualRESTService' => 'includes/libs/virtualrest/SwiftVirtualRESTService.php',
+	'UDPTransport' => 'includes/libs/UDPTransport.php',
 	'VirtualRESTService' => 'includes/libs/virtualrest/VirtualRESTService.php',
 	'VirtualRESTServiceClient' => 'includes/libs/virtualrest/VirtualRESTServiceClient.php',
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',

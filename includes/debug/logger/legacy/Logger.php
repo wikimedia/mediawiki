@@ -260,48 +260,8 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 	*/
 	public static function emit( $text, $file ) {
 		if ( substr( $file, 0, 4 ) == 'udp:' ) {
-			# Needs the sockets extension
-			if ( preg_match( '!^udp:(?://)?\[([0-9a-fA-F:]+)\]:(\d+)(?:/(.*))?$!', $file, $m ) ) {
-				// IPv6 bracketed host
-				$host = $m[1];
-				$port = intval( $m[2] );
-				$prefix = isset( $m[3] ) ? $m[3] : false;
-				$domain = AF_INET6;
-			} elseif ( preg_match( '!^udp:(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
-				$host = $m[1];
-				if ( !IP::isIPv4( $host ) ) {
-					$host = gethostbyname( $host );
-				}
-				$port = intval( $m[2] );
-				$prefix = isset( $m[3] ) ? $m[3] : false;
-				$domain = AF_INET;
-			} else {
-				throw new MWException( __METHOD__ . ': Invalid UDP specification' );
-			}
-
-			// Clean it up for the multiplexer
-			if ( strval( $prefix ) !== '' ) {
-				$text = preg_replace( '/^/m', $prefix . ' ', $text );
-
-				// Limit to 64KB
-				if ( strlen( $text ) > 65506 ) {
-					$text = substr( $text, 0, 65506 );
-				}
-
-				if ( substr( $text, -1 ) != "\n" ) {
-					$text .= "\n";
-				}
-			} elseif ( strlen( $text ) > 65507 ) {
-				$text = substr( $text, 0, 65507 );
-			}
-
-			$sock = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
-			if ( !$sock ) {
-				return;
-			}
-
-			socket_sendto( $sock, $text, strlen( $text ), 0, $host, $port );
-			socket_close( $sock );
+			$transport = UDPTransport::newFromString( $file );
+			$transport->emit( $text );
 		} else {
 			wfSuppressWarnings();
 			$exists = file_exists( $file );
