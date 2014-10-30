@@ -164,8 +164,8 @@ abstract class ApiFormatBase extends ApiBase {
 			$out->setPageTitle( $context->msg( 'api-format-title' ) );
 
 			$header = $context->msg( 'api-format-prettyprint-header' )
-			   ->params( $format, strtolower( $format ) )
-			   ->parseAsBlock();
+				->params( $format, strtolower( $format ) )
+				->parseAsBlock();
 			$out->addHTML(
 				Html::rawElement( 'div', array( 'class' => 'api-pretty-header' ),
 					ApiHelp::fixHelpLinks( $header )

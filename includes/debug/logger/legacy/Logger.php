@@ -83,7 +83,7 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 		if ( $channel === 'wfLogDBError' ) {
 			// wfLogDBError messages are emitted if a database log location is
 			// specfied.
-			$shouldEmit = (bool) $wgDBerrorLog;
+			$shouldEmit = (bool)$wgDBerrorLog;
 
 		} elseif ( $channel === 'wfErrorLog' ) {
 			// All messages on the wfErrorLog channel should be emitted.

@@ -50,7 +50,7 @@ class MWLoggerLegacySpi implements MWLoggerSpi {
 	 */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons[$channel] ) ) {
-			$this->singletons[$channel] = new MWLoggerLegacyLogger($channel);
+			$this->singletons[$channel] = new MWLoggerLegacyLogger( $channel );
 		}
 		return $this->singletons[$channel];
 	}
