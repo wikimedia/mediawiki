@@ -1042,7 +1042,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param array $params All supplied parameters for the module
 	 * @return bool
 	 */
-	public final function validateToken( $token, array $params ) {
+	final public function validateToken( $token, array $params ) {
 		$tokenType = $this->needsToken();
 		$salts = ApiQueryTokens::getTokenTypeSalts();
 		if ( !isset( $salts[$tokenType] ) ) {
