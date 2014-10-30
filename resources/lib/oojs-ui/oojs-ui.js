@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (deccd11549)
+ * OOjs UI v0.1.0-pre (da4b0d5c14)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-28T16:52:18Z
+ * Date: 2014-10-30T00:10:09Z
  */
 ( function ( OO ) {
 
@@ -693,7 +693,7 @@ OO.ui.ActionSet.prototype.organize = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {Function} [$] jQuery for the frame the widget is in
- * @cfg {string[]} [classes] CSS class names
+ * @cfg {string[]} [classes] CSS class names to add
  * @cfg {string} [text] Text to insert
  * @cfg {jQuery} [$content] Content elements to append (after text)
  */
@@ -1011,7 +1011,7 @@ OO.ui.Element.getClosestScrollableContainer = function ( el, dimension ) {
  *
  * @static
  * @param {HTMLElement} el Element to scroll into view
- * @param {Object} [config={}] Configuration config
+ * @param {Object} [config] Configuration options
  * @param {string} [config.duration] jQuery animation duration value
  * @param {string} [config.direction] Scroll in only one direction, e.g. 'x' or 'y', omit
  *  to scroll in both directions
@@ -1112,7 +1112,7 @@ OO.ui.Element.offDOMEvent = function ( el, event, callback ) {
  * Check if element supports one or more methods.
  *
  * @param {string|string[]} methods Method or list of methods to check
- * @return boolean All methods are supported
+ * @return {boolean} All methods are supported
  */
 OO.ui.Element.prototype.supports = function ( methods ) {
 	var i, len,
@@ -1217,7 +1217,7 @@ OO.ui.Element.prototype.setElementGroup = function ( group ) {
 /**
  * Scroll element into view.
  *
- * @param {Object} [config={}]
+ * @param {Object} [config] Configuration options
  */
 OO.ui.Element.prototype.scrollElementIntoView = function ( config ) {
 	return OO.ui.Element.scrollIntoView( this.$element[0], config );
@@ -3545,8 +3545,8 @@ OO.initClass( OO.ui.Theme );
 /**
  * Get a list of classes to be applied to a widget.
  *
- * @localdoc The 'on' and 'off' lists combined MUST contain keys for all classes the theme adds or
- *   removes, otherwise state transitions will not work properly.
+ * The 'on' and 'off' lists combined MUST contain keys for all classes the theme adds or removes,
+ * otherwise state transitions will not work properly.
  *
  * @param {OO.ui.Element} element Element for which to get classes
  * @return {Object.<string,string[]>} Categorized class names with `on` and `off` lists
@@ -3560,7 +3560,7 @@ OO.ui.Theme.prototype.getElementClasses = function ( /* element */ ) {
  *
  * For elements with theme logic hooks, this should be called anytime there's a state change.
  *
- * @param {OO.ui.Element} Element for which to update classes
+ * @param {OO.ui.Element} element Element for which to update classes
  * @return {Object.<string,string[]>} Categorized class names with `on` and `off` lists
  */
 OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
@@ -3584,7 +3584,8 @@ OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$button] Button node, assigned to #$button, omit to use a generated `<a>`
  * @cfg {boolean} [framed=true] Render button with a frame
- * @cfg {number} [tabIndex=0] Button's tab index, use null to have no tabIndex
+ * @cfg {number} [tabIndex=0] Button's tab index. Use 0 to use default ordering, use -1 to prevent
+ *   tab focusing.
  * @cfg {string} [accessKey] Button's access key
  */
 OO.ui.ButtonElement = function OoUiButtonElement( config ) {
@@ -3883,7 +3884,7 @@ OO.ui.GroupElement.prototype.aggregate = function ( events ) {
 /**
  * Add items.
  *
- * Adding an existing item (by value) will move it.
+ * Adding an existing item will move it.
  *
  * @param {OO.ui.Element[]} items Items
  * @param {number} [index] Index to insert items at
@@ -4091,7 +4092,7 @@ OO.ui.IconElement.prototype.setIconElement = function ( $icon ) {
 };
 
 /**
- * Set icon.
+ * Set icon name.
  *
  * @param {Object|string|null} icon Symbolic icon name, or map of icon names keyed by language ID;
  *  use the 'default' key to specify the icon to be used when there is no icon in the user's
@@ -4147,9 +4148,9 @@ OO.ui.IconElement.prototype.setIconTitle = function ( iconTitle ) {
 };
 
 /**
- * Get icon.
+ * Get icon name.
  *
- * @return {string} Icon
+ * @return {string} Icon name
  */
 OO.ui.IconElement.prototype.getIcon = function () {
 	return this.icon;
@@ -4199,7 +4200,7 @@ OO.initClass( OO.ui.IndicatorElement );
  *
  * @static
  * @inheritable
- * @property {string|null} Symbolic indicator name or null for no indicator
+ * @property {string|null} Symbolic indicator name
  */
 OO.ui.IndicatorElement.static.indicator = null;
 
@@ -4238,7 +4239,7 @@ OO.ui.IndicatorElement.prototype.setIndicatorElement = function ( $indicator ) {
 };
 
 /**
- * Set indicator.
+ * Set indicator name.
  *
  * @param {string|null} indicator Symbolic name of indicator to use or null for no indicator
  * @chainable
@@ -4291,7 +4292,7 @@ OO.ui.IndicatorElement.prototype.setIndicatorTitle = function ( indicatorTitle )
 };
 
 /**
- * Get indicator.
+ * Get indicator name.
  *
  * @return {string} title Symbolic name of indicator
  */
@@ -4372,7 +4373,7 @@ OO.ui.LabelElement.prototype.setLabelElement = function ( $label ) {
  * Set the label.
  *
  * An empty string will result in the label being hidden. A string containing only whitespace will
- * be converted to a single &nbsp;
+ * be converted to a single `&nbsp;`.
  *
  * @param {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
  *  text; or null for no label
@@ -4487,7 +4488,7 @@ OO.ui.PopupElement.prototype.getPopup = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {string[]} [flags=[]] Styling flags, e.g. 'primary', 'destructive' or 'constructive'
+ * @cfg {string|string[]} [flags] Styling flags, e.g. 'primary', 'destructive' or 'constructive'
  * @cfg {jQuery} [$flagged] Flagged node, assigned to #$flagged, omit to use #$element
  */
 OO.ui.FlaggedElement = function OoUiFlaggedElement( config ) {
@@ -4658,7 +4659,8 @@ OO.ui.FlaggedElement.prototype.setFlags = function ( flags ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$titled] Titled node, assigned to #$titled, omit to use #$element
- * @cfg {string|Function} [title] Title text or a function that returns text
+ * @cfg {string|Function} [title] Title text or a function that returns text. If not provided, the
+ *    static property 'title' is used.
  */
 OO.ui.TitledElement = function OoUiTitledElement( config ) {
 	// Config intialization
@@ -6596,10 +6598,6 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
 /**
  * Layout made of a field and optional label.
  *
- * @class
- * @extends OO.ui.Layout
- * @mixins OO.ui.LabelElement
- *
  * Available label alignment modes include:
  *  - left: Label is before the field and aligned away from it, best for when the user will be
  *    scanning for a specific label in a form with many fields
@@ -6609,6 +6607,10 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
  *    fields from top to bottom in a form with few fields
  *  - inline: Label is after the field and aligned toward it, best for small boolean fields like
  *    checkboxes or radio buttons
+ *
+ * @class
+ * @extends OO.ui.Layout
+ * @mixins OO.ui.LabelElement
  *
  * @constructor
  * @param {OO.ui.Widget} fieldWidget Field widget
@@ -6668,6 +6670,10 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 OO.inheritClass( OO.ui.FieldLayout, OO.ui.Layout );
 OO.mixinClass( OO.ui.FieldLayout, OO.ui.LabelElement );
 
+/* Static Properties */
+
+OO.ui.FieldLayout.static.tagName = 'label';
+
 /* Methods */
 
 /**
@@ -6701,6 +6707,7 @@ OO.ui.FieldLayout.prototype.getField = function () {
 /**
  * Set the field alignment mode.
  *
+ * @private
  * @param {string} value Alignment mode, either 'left', 'right', 'top' or 'inline'
  * @chainable
  */
@@ -6738,8 +6745,8 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
  *
  * @class
  * @extends OO.ui.Layout
- * @mixins OO.ui.LabelElement
  * @mixins OO.ui.IconElement
+ * @mixins OO.ui.LabelElement
  * @mixins OO.ui.GroupElement
  *
  * @constructor
@@ -8086,6 +8093,18 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
 };
 
 /**
+ * Get lookup cache item from server response data.
+ *
+ * @abstract
+ * @param {Mixed} data Response from server
+ * @return {Mixed} Cached result data
+ */
+OO.ui.LookupInputWidget.prototype.getLookupCacheItemFromData = function () {
+	// Stub, implemented in subclass
+	return [];
+};
+
+/**
  * Set of controls for an OO.ui.OutlineWidget.
  *
  * Controls include moving items up and down, removing items, and adding different kinds of items.
@@ -8271,7 +8290,7 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {OO.ui.ButtonWidget} [items] Buttons to add
+ * @cfg {OO.ui.ButtonWidget[]} [items] Buttons to add
  */
 OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 	// Parent constructor
@@ -8915,12 +8934,11 @@ OO.ui.InlineMenuWidget.prototype.onClick = function ( e ) {
  * @param {Object} [config] Configuration options
  * @cfg {string} [name=''] HTML input name
  * @cfg {string} [value=''] Input value
- * @cfg {boolean} [readOnly=false] Prevent changes
  * @cfg {Function} [inputFilter] Filter function to apply to the input. Takes a string argument and returns a string.
  */
 OO.ui.InputWidget = function OoUiInputWidget( config ) {
-	// Config intialization
-	config = $.extend( { readOnly: false }, config );
+	// Configuration initialization
+	config = config || {};
 
 	// Parent constructor
 	OO.ui.InputWidget.super.call( this, config );
@@ -8931,7 +8949,6 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	// Properties
 	this.$input = this.getInputElement( config );
 	this.value = '';
-	this.readOnly = false;
 	this.inputFilter = config.inputFilter;
 
 	// Events
@@ -8941,7 +8958,6 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	this.$input
 		.attr( 'name', config.name )
 		.prop( 'disabled', this.isDisabled() );
-	this.setReadOnly( config.readOnly );
 	this.$element.addClass( 'oo-ui-inputWidget' ).append( this.$input );
 	this.setValue( config.value );
 };
@@ -8963,6 +8979,7 @@ OO.mixinClass( OO.ui.InputWidget, OO.ui.FlaggedElement );
 /**
  * Get input element.
  *
+ * @private
  * @param {Object} [config] Configuration options
  * @return {jQuery} Input element
  */
@@ -9033,8 +9050,9 @@ OO.ui.InputWidget.prototype.setValue = function ( value ) {
 /**
  * Sanitize incoming value.
  *
- * Ensures value is a string, and converts undefined and null to empty strings.
+ * Ensures value is a string, and converts undefined and null to empty string.
  *
+ * @private
  * @param {string} value Original value
  * @return {string} Sanitized value
  */
@@ -9059,29 +9077,6 @@ OO.ui.InputWidget.prototype.simulateLabelClick = function () {
 			this.$input[0].focus();
 		}
 	}
-};
-
-/**
- * Check if the widget is read-only.
- *
- * @return {boolean}
- */
-OO.ui.InputWidget.prototype.isReadOnly = function () {
-	return this.readOnly;
-};
-
-/**
- * Set the read-only state of the widget.
- *
- * This should probably change the widgets's appearance and prevent it from being used.
- *
- * @param {boolean} state Make input read-only
- * @chainable
- */
-OO.ui.InputWidget.prototype.setReadOnly = function ( state ) {
-	this.readOnly = !!state;
-	this.$input.prop( 'readOnly', this.readOnly );
-	return this;
 };
 
 /**
@@ -9116,7 +9111,7 @@ OO.ui.InputWidget.prototype.blur = function () {
 };
 
 /**
- * A button that is an input widget. Intended to be used within FormLayouts.
+ * A button that is an input widget. Intended to be used within a OO.ui.FormLayout.
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -9139,6 +9134,9 @@ OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	// Configuration initialization
 	config = $.extend( { type: 'button', useInputTag: false }, config );
 
+	// Properties (must be set before parent constructor, which calls #setValue)
+	this.useInputTag = config.useInputTag;
+
 	// Parent constructor
 	OO.ui.ButtonInputWidget.super.call( this, config );
 
@@ -9149,9 +9147,6 @@ OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	OO.ui.LabelElement.call( this, config );
 	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$input } ) );
 	OO.ui.FlaggedElement.call( this, config );
-
-	// Properties
-	this.useInputTag = config.useInputTag;
 
 	// Events
 	this.$input.on( {
@@ -9187,6 +9182,7 @@ OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.FlaggedElement );
 /**
  * Get input element.
  *
+ * @private
  * @param {Object} [config] Configuration options
  * @return {jQuery} Input element
  */
@@ -9196,7 +9192,7 @@ OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
 };
 
 /**
- * Set the label.
+ * Set label value.
  *
  * Overridden to support setting the 'value' of `<input/>` elements.
  *
@@ -9220,6 +9216,21 @@ OO.ui.ButtonInputWidget.prototype.setLabel = function ( label ) {
 		this.$input.val( label );
 	}
 
+	return this;
+};
+
+/**
+ * Set the value of the input.
+ *
+ * Overridden to disable for `<input/>` elements, which have value identical to the label.
+ *
+ * @param {string} value New value
+ * @chainable
+ */
+OO.ui.ButtonInputWidget.prototype.setValue = function ( value ) {
+	if ( !this.useInputTag ) {
+		OO.ui.ButtonInputWidget.super.prototype.setValue.call( this, value );
+	}
 	return this;
 };
 
@@ -9275,6 +9286,7 @@ OO.inheritClass( OO.ui.CheckboxInputWidget, OO.ui.InputWidget );
 /**
  * Get input element.
  *
+ * @private
  * @return {jQuery} Input element
  */
 OO.ui.CheckboxInputWidget.prototype.getInputElement = function () {
@@ -9330,6 +9342,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='text'] HTML tag `type` attribute
  * @cfg {string} [placeholder] Placeholder text
+ * @cfg {boolean} [readOnly=false] Prevent changes
  * @cfg {boolean} [multiline=false] Allow multiple lines of text
  * @cfg {boolean} [autosize=false] Automatically resize to fit content
  * @cfg {boolean} [maxRows=10] Maximum number of rows to make visible when autosizing
@@ -9338,7 +9351,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Configuration initialization
-	config = config || {};
+	config = $.extend( { readOnly: false }, config );
 
 	// Parent constructor
 	OO.ui.TextInputWidget.super.call( this, config );
@@ -9349,6 +9362,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	OO.ui.PendingElement.call( this, config );
 
 	// Properties
+	this.readOnly = false;
 	this.multiline = !!config.multiline;
 	this.autosize = !!config.autosize;
 	this.maxRows = config.maxRows !== undefined ? config.maxRows : 10;
@@ -9369,6 +9383,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-textInputWidget' )
 		.append( this.$icon, this.$indicator );
+	this.setReadOnly( config.readOnly );
 	if ( config.placeholder ) {
 		this.$input.attr( 'placeholder', config.placeholder );
 	}
@@ -9485,6 +9500,29 @@ OO.ui.TextInputWidget.prototype.setValue = function ( value ) {
 };
 
 /**
+ * Check if the widget is read-only.
+ *
+ * @return {boolean}
+ */
+OO.ui.TextInputWidget.prototype.isReadOnly = function () {
+	return this.readOnly;
+};
+
+/**
+ * Set the read-only state of the widget.
+ *
+ * This should probably change the widgets's appearance and prevent it from being used.
+ *
+ * @param {boolean} state Make input read-only
+ * @chainable
+ */
+OO.ui.TextInputWidget.prototype.setReadOnly = function ( state ) {
+	this.readOnly = !!state;
+	this.$input.prop( 'readOnly', this.readOnly );
+	return this;
+};
+
+/**
  * Automatically adjust the size of the text input.
  *
  * This only affects multi-line inputs that are auto-sized.
@@ -9527,6 +9565,7 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
 /**
  * Get input element.
  *
+ * @private
  * @param {Object} [config] Configuration options
  * @return {jQuery} Input element
  */
