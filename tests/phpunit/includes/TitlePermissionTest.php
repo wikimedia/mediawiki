@@ -650,10 +650,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	public function testActionPermissions() {
 		$this->setUserPerm( array( "createpage" ) );
 		$this->setTitle( NS_MAIN, "test page" );
-		$this->title->mTitleProtection['pt_create_perm'] = '';
-		$this->title->mTitleProtection['pt_user'] = $this->user->getID();
-		$this->title->mTitleProtection['pt_expiry'] = wfGetDB( DB_SLAVE )->getInfinity();
-		$this->title->mTitleProtection['pt_reason'] = 'test';
+		$this->title->mTitleProtection['permission'] = '';
+		$this->title->mTitleProtection['user'] = $this->user->getID();
+		$this->title->mTitleProtection['expiry'] = wfGetDB( DB_SLAVE )->getInfinity();
+		$this->title->mTitleProtection['reason'] = 'test';
 		$this->title->mCascadeRestriction = false;
 
 		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
@@ -661,7 +661,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( false,
 			$this->title->userCan( 'create', $this->user ) );
 
-		$this->title->mTitleProtection['pt_create_perm'] = 'sysop';
+		$this->title->mTitleProtection['permission'] = 'editprotected';
 		$this->setUserPerm( array( 'createpage', 'protect' ) );
 		$this->assertEquals( array( array( 'titleprotected', 'Useruser', 'test' ) ),
 			$this->title->getUserPermissionsErrors( 'create', $this->user ) );

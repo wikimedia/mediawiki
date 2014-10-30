@@ -42,6 +42,52 @@ class MovePage {
 		$this->newTitle = $newTitle;
 	}
 
+	public function checkPermissions( User $user, $reason ) {
+		$status = new Status();
+
+		$errors = wfMergeErrorArrays(
+			$this->oldTitle->getUserPermissionsErrors( 'move', $user ),
+			$this->oldTitle->getUserPermissionsErrors( 'edit', $user ),
+			$this->newTitle->getUserPermissionsErrors( 'move-target', $user ),
+			$this->newTitle->getUserPermissionsErrors( 'edit', $user )
+		);
+
+		// Convert into a Status object
+		if ( $errors ) {
+			foreach ( $errors as $error ) {
+				call_user_func_array( array( $status, 'fatal' ), $error );
+			}
+		}
+
+		if ( EditPage::matchSummarySpamRegex( $reason ) !== false ) {
+			// This is kind of lame, won't display nice
+			$status->fatal( 'spamprotectiontext' );
+		}
+
+		# The move is allowed only if (1) the target doesn't exist, or
+		# (2) the target is a redirect to the source, and has no history
+		# (so we can undo bad moves right after they're done).
+
+		if ( $this->newTitle->getArticleID() ) { # Target exists; check for validity
+			if ( !$this->isValidMoveTarget() ) {
+				$status->fatal( 'articleexists' );
+			}
+		} else {
+			$tp = $this->newTitle->getTitleProtection();
+			if ( $tp !== false ) {
+				if ( !$user->isAllowed( $tp['permission'] ) ) {
+					$status->fatal( 'cantmove-titleprotected' );
+				}
+			}
+		}
+
+		wfRunHooks( 'MovePageCheckPermissions',
+			array( $this->oldTitle, $this->newTitle, $user, $reason, $status )
+		);
+
+		return $status;
+	}
+
 	/**
 	 * Does various sanity checks that the move is
 	 * valid. Only things based on the two titles
@@ -99,6 +145,9 @@ class MovePage {
 			$status->fatal( 'nonfile-cannot-move-to-file' );
 		}
 
+		// Hook for extensions to say a title can't be moved for technical reasons
+		wfRunHooks( 'MovePageIsValidMove', array( $this->oldTitle, $this->newTitle, $status ) );
+
 		return $status;
 	}
 
@@ -127,6 +176,53 @@ class MovePage {
 	}
 
 	/**
+	 * Checks if $this can be moved to a given Title
+	 * - Selects for update, so don't call it unless you mean business
+	 *
+	 * @since 1.25
+	 * @return bool
+	 */
+	protected function isValidMoveTarget() {
+		# Is it an existing file?
+		if ( $this->newTitle->inNamespace( NS_FILE ) ) {
+			$file = wfLocalFile( $this->newTitle );
+			if ( $file->exists() ) {
+				wfDebug( __METHOD__ . ": file exists\n" );
+				return false;
+			}
+		}
+		# Is it a redirect with no history?
+		if ( !$this->newTitle->isSingleRevRedirect() ) {
+			wfDebug( __METHOD__ . ": not a one-rev redirect\n" );
+			return false;
+		}
+		# Get the article text
+		$rev = Revision::newFromTitle( $this->newTitle, false, Revision::READ_LATEST );
+		if ( !is_object( $rev ) ) {
+			return false;
+		}
+		$content = $rev->getContent();
+		# Does the redirect point to the source?
+		# Or is it a broken self-redirect, usually caused by namespace collisions?
+		$redirTitle = $content ? $content->getRedirectTarget() : null;
+
+		if ( $redirTitle ) {
+			if ( $redirTitle->getPrefixedDBkey() !== $this->oldTitle->getPrefixedDBkey() &&
+				$redirTitle->getPrefixedDBkey() !== $this->newTitle->getPrefixedDBkey() ) {
+				wfDebug( __METHOD__ . ": redirect points to other page\n" );
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			# Fail safe (not a redirect after all. strange.)
+			wfDebug( __METHOD__ . ": failsafe: database says " . $this->newTitle->getPrefixedDBkey() .
+				" is a redirect, but it doesn't contain a valid redirect.\n" );
+			return false;
+		}
+	}
+
+	/**
 	 * @param User $user
 	 * @param string $reason
 	 * @param bool $createRedirect
@@ -134,6 +230,8 @@ class MovePage {
 	 */
 	public function move( User $user, $reason, $createRedirect ) {
 		global $wgCategoryCollation;
+
+		wfRunHooks( 'TitleMove', array( $this->oldTitle, $this->newTitle, $user ) );
 
 		// If it is a file, move it first.
 		// It is done before all other moving stuff is done because it's hard to revert.
@@ -274,7 +372,6 @@ class MovePage {
 
 		wfRunHooks( 'TitleMoveComplete', array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason ) );
 		return Status::newGood();
-
 	}
 
 	/**
