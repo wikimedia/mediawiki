@@ -675,8 +675,6 @@ $wgAutoloadLocalClasses = array(
 	'FormatJson' => 'includes/json/FormatJson.php',
 
 	# includes/libs
-	'CSSJanus' => 'includes/libs/CSSJanus.php',
-	'CSSJanusTokenizer' => 'includes/libs/CSSJanus.php',
 	'CSSMin' => 'includes/libs/CSSMin.php',
 	'GenericArrayObject' => 'includes/libs/GenericArrayObject.php',
 	'HashRing' => 'includes/libs/HashRing.php',
