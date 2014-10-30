@@ -868,7 +868,6 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/profiler
 	'Profiler' => 'includes/profiler/Profiler.php',
-	'ProfilerMwprof' => 'includes/profiler/ProfilerMwprof.php',
 	'ProfilerSimpleDB' => 'includes/profiler/ProfilerSimpleDB.php',
 	'ProfilerSimpleText' => 'includes/profiler/ProfilerSimpleText.php',
 	'ProfilerSimpleTrace' => 'includes/profiler/ProfilerSimpleTrace.php',
