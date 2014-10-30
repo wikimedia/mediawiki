@@ -270,7 +270,7 @@ TEXT;
 		$this->startTime = microtime( true );
 
 		$source = new ImportStreamSource( $handle );
-		$importer = new WikiImporter( $source );
+		$importer = new WikiImporter( $source, $this->getConfig() );
 
 		if ( $this->hasOption( 'debug' ) ) {
 			$importer->setDebug( true );

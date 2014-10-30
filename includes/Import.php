@@ -37,13 +37,21 @@ class WikiImporter {
 	private $mNoticeCallback, $mDebug;
 	private $mImportUploads, $mImageBasePath;
 	private $mNoUpdates = false;
+	/** @var Config */
+	private $config;
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
 	 * @param ImportStreamSource $source
+	 * @param Config $config
 	 */
-	function __construct( ImportStreamSource $source ) {
+	function __construct( ImportStreamSource $source, Config $config = null ) {
 		$this->reader = new XMLReader();
+		if ( !$config ) {
+			wfDeprecated( __METHOD__ . ' without a Config instance', '1.25' );
+			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		}
+		$this->config = $config;
 
 		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
 			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
@@ -536,7 +544,7 @@ class WikiImporter {
 	 * @return bool|mixed
 	 */
 	private function processLogItem( $logInfo ) {
-		$revision = new WikiRevision;
+		$revision = new WikiRevision( $this->config );
 
 		$revision->setID( $logInfo['id'] );
 		$revision->setType( $logInfo['type'] );
@@ -670,7 +678,7 @@ class WikiImporter {
 	 * @return bool|mixed
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
-		$revision = new WikiRevision;
+		$revision = new WikiRevision( $this->config );
 
 		if ( isset( $revisionInfo['id'] ) ) {
 			$revision->setID( $revisionInfo['id'] );
@@ -786,7 +794,7 @@ class WikiImporter {
 	 * @return mixed
 	 */
 	private function processUpload( $pageInfo, $uploadInfo ) {
-		$revision = new WikiRevision;
+		$revision = new WikiRevision( $this->config );
 		$text = isset( $uploadInfo['text'] ) ? $uploadInfo['text'] : '';
 
 		$revision->setTitle( $pageInfo['_title'] );
@@ -847,8 +855,6 @@ class WikiImporter {
 	 * @return array|bool
 	 */
 	private function processTitle( $text ) {
-		global $wgCommandLineMode;
-
 		$workTitle = $text;
 		$origTitle = Title::newFromText( $workTitle );
 
@@ -864,6 +870,7 @@ class WikiImporter {
 			$title = Title::newFromText( $workTitle );
 		}
 
+		$commandLineMode = $this->config->get( 'CommandLineMode' );
 		if ( is_null( $title ) ) {
 			# Invalid page title? Ignore the page
 			$this->notice( 'import-error-invalid', $workTitle );
@@ -874,11 +881,11 @@ class WikiImporter {
 		} elseif ( !$title->canExist() ) {
 			$this->notice( 'import-error-special', $title->getPrefixedText() );
 			return false;
-		} elseif ( !$title->userCan( 'edit' ) && !$wgCommandLineMode ) {
+		} elseif ( !$title->userCan( 'edit' ) && !$commandLineMode ) {
 			# Do not import if the importing wiki user cannot edit this page
 			$this->notice( 'import-error-edit', $title->getPrefixedText() );
 			return false;
-		} elseif ( !$title->exists() && !$title->userCan( 'create' ) && !$wgCommandLineMode ) {
+		} elseif ( !$title->exists() && !$title->userCan( 'create' ) && !$commandLineMode ) {
 			# Do not import if the importing wiki user cannot create this page
 			$this->notice( 'import-error-create', $title->getPrefixedText() );
 			return false;
@@ -1092,6 +1099,13 @@ class WikiRevision {
 
 	/** @var bool */
 	private $mNoUpdates = false;
+
+	/** @var Config $config */
+	private $config;
+
+	public function __construct( Config $config ) {
+		$this->config = $config;
+	}
 
 	/**
 	 * @param Title $title
@@ -1608,8 +1622,7 @@ class WikiRevision {
 	 * @return bool|string
 	 */
 	function downloadSource() {
-		global $wgEnableUploads;
-		if ( !$wgEnableUploads ) {
+		if ( !$this->config->get( 'EnableUploads' ) ) {
 			return false;
 		}
 

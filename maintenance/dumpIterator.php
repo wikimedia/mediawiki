@@ -54,7 +54,7 @@ abstract class DumpIterator extends Maintenance {
 		$this->checkOptions();
 
 		if ( $this->hasOption( 'file' ) ) {
-			$revision = new WikiRevision;
+			$revision = new WikiRevision( $this->getConfig() );
 
 			$revision->setText( file_get_contents( $this->getOption( 'file' ) ) );
 			$revision->setTitle( Title::newFromText(
@@ -73,7 +73,7 @@ abstract class DumpIterator extends Maintenance {
 			$this->error( "Sorry, I don't support dump filenames yet. "
 				. "Use - and provide it on stdin on the meantime.", true );
 		}
-		$importer = new WikiImporter( $source );
+		$importer = new WikiImporter( $source, $this->getConfig() );
 
 		$importer->setRevisionCallback(
 			array( &$this, 'handleRevision' ) );

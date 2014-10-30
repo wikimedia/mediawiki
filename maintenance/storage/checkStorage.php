@@ -39,6 +39,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 /**
  * Maintenance script to do various checks on external storage.
  *
+ * @fixme this should extend the base Maintenance class
  * @ingroup Maintenance ExternalStorage
  */
 class CheckStorage {
@@ -466,7 +467,10 @@ class CheckStorage {
 		$dbw->ping();
 
 		$source = new ImportStreamSource( $file );
-		$importer = new WikiImporter( $source );
+		$importer = new WikiImporter(
+			$source,
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+		);
 		$importer->setRevisionCallback( array( &$this, 'importRevision' ) );
 		$importer->doImport();
 	}
