@@ -30,10 +30,6 @@ class ProfilerSimpleTrace extends ProfilerStandard {
 	protected $trace = "Beginning trace: \n";
 	protected $memory = 0;
 
-	protected function collateOnly() {
-		return true;
-	}
-
 	public function profileIn( $functionname ) {
 		parent::profileIn( $functionname );
 

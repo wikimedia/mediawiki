@@ -40,8 +40,8 @@ class ProfilerStandard extends Profiler {
 	protected $mCollated = array();
 	/** @var bool */
 	protected $mCollateDone = false;
-	/** @var bool */
-	protected $mCollateOnly = false;
+	/** @var bool Whether to collect the full stack trace or just aggregates */
+	protected $mCollateOnly = true;
 	/** @var array Cache of a standard broken collation entry */
 	protected $mErrorEntry;
 
@@ -50,8 +50,6 @@ class ProfilerStandard extends Profiler {
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( $params );
-
-		$this->mCollateOnly = $this->collateOnly();
 
 		$this->addInitialStack();
 	}
@@ -72,18 +70,6 @@ class ProfilerStandard extends Profiler {
 	 * @return bool
 	 */
 	public function isPersistent() {
-		return false;
-	}
-
-	/**
-	 * Whether to internally just track aggregates and ignore the full stack trace
-	 *
-	 * Only doing collation saves memory overhead but limits the use of certain
-	 * features like that of graph generation for the debug toolbar.
-	 *
-	 * @return bool
-	 */
-	protected function collateOnly() {
 		return false;
 	}
 
