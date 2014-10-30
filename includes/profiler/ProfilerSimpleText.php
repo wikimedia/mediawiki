@@ -42,10 +42,6 @@ class ProfilerSimpleText extends ProfilerStandard {
 		parent::__construct( $profileConfig );
 	}
 
-	protected function collateOnly() {
-		return true;
-	}
-
 	public function logData() {
 		if ( $this->mTemplated ) {
 			$this->close();

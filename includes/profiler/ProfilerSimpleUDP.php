@@ -28,10 +28,6 @@
  * @ingroup Profiler
  */
 class ProfilerSimpleUDP extends ProfilerStandard {
-	protected function collateOnly() {
-		return true;
-	}
-
 	public function isPersistent() {
 		return true;
 	}

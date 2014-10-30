@@ -27,10 +27,6 @@
  * @ingroup Profiler
  */
 class ProfilerSimpleDB extends ProfilerStandard {
-	protected function collateOnly() {
-		return true;
-	}
-
 	public function isPersistent() {
 		return true;
 	}
