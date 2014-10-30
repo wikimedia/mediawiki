@@ -191,7 +191,7 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 		}
 
 		// Workaround for https://bugs.php.net/bug.php?id=52063
-		// Can be removed when min PHP > 5.3.2
+		// Can be removed when min PHP > 5.3.6
 		if ( $cachedTimezone === null ) {
 			$d = date_create( 'now' );
 		} else {

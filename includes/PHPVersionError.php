@@ -40,7 +40,7 @@
  */
 function wfPHPVersionError( $type ) {
 	$mwVersion = '1.25';
-	$minimumVersionPHP = '5.3.2';
+	$minimumVersionPHP = '5.3.3';
 
 	$phpVersion = PHP_VERSION;
 	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
