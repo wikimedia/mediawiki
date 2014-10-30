@@ -127,11 +127,6 @@ class ProfilerXhprof extends Profiler {
 		return false;
 	}
 
-	public function isPersistent() {
-		// Disable per-title profiling sections
-		return true;
-	}
-
 	/**
 	 * No-op for xhprof profiling.
 	 *
