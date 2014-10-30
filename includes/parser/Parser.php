@@ -3416,8 +3416,6 @@ class Parser {
 		$args = ( null == $piece['parts'] ) ? array() : $piece['parts'];
 		wfProfileOut( __METHOD__ . '-setup' );
 
-		$titleProfileIn = null; // profile templates
-
 		# SUBST
 		wfProfileIn( __METHOD__ . '-modifiers' );
 		if ( !$found ) {
@@ -3537,11 +3535,6 @@ class Parser {
 
 		# Load from database
 		if ( !$found && $title ) {
-			if ( !Profiler::instance()->isPersistent() ) {
-				# Too many unique items can kill profiling DBs/collectors
-				$titleProfileIn = __METHOD__ . "-title-" . $title->getPrefixedDBkey();
-				wfProfileIn( $titleProfileIn ); // template in
-			}
 			wfProfileIn( __METHOD__ . '-loadtpl' );
 			if ( !$title->isExternal() ) {
 				if ( $title->isSpecialPage()
@@ -3623,9 +3616,6 @@ class Parser {
 		# Recover the source wikitext and return it
 		if ( !$found ) {
 			$text = $frame->virtualBracketedImplode( '{{', '|', '}}', $titleWithSpaces, $args );
-			if ( $titleProfileIn ) {
-				wfProfileOut( $titleProfileIn ); // template out
-			}
 			wfProfileOut( __METHOD__ );
 			return array( 'object' => $text );
 		}
@@ -3648,10 +3638,6 @@ class Parser {
 		if ( $isLocalObj && $nowiki ) {
 			$text = $frame->expand( $text, PPFrame::RECOVER_ORIG );
 			$isLocalObj = false;
-		}
-
-		if ( $titleProfileIn ) {
-			wfProfileOut( $titleProfileIn ); // template out
 		}
 
 		# Replace raw HTML by a placeholder
