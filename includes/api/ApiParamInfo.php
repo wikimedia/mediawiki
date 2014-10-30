@@ -37,8 +37,6 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgContLang;
-
 		// Get parameters
 		$params = $this->extractRequestParams();
 

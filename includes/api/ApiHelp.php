@@ -32,8 +32,6 @@
  */
 class ApiHelp extends ApiBase {
 	public function execute() {
-		global $wgContLang;
-
 		$params = $this->extractRequestParams();
 		$modules = array();
 
