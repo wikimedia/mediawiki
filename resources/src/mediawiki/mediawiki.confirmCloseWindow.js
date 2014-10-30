@@ -47,7 +47,11 @@
 				}, 1 );
 
 				// show an alert with this message
-				return options.message;
+				if ( $.isFunction( options.message ) ) {
+					return options.message();
+				} else {
+					return options.message;
+				}
 			}
 		} ).on( showEventName, function () {
 			// Re-add onbeforeunload handler
