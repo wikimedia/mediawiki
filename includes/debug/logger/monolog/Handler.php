@@ -168,7 +168,7 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 			$this->openSink();
 		}
 
-		$text = (string) $record['formatted'];
+		$text = (string)$record['formatted'];
 		if ( $this->useUdp() ) {
 
 			// Clean it up for the multiplexer

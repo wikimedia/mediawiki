@@ -3709,7 +3709,7 @@ function wfWaitForSlaves(
 	// Figure out which clusters need to be checked
 	$lbs = array();
 	if ( $cluster === '*' ) {
-		wfGetLBFactory()->forEachLB( function( LoadBalancer $lb ) use ( &$lbs ) {
+		wfGetLBFactory()->forEachLB( function ( LoadBalancer $lb ) use ( &$lbs ) {
 			$lbs[] = $lb;
 		} );
 	} elseif ( $cluster !== false ) {

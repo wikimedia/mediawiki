@@ -800,7 +800,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	private function stripFieldPrefix( array $fieldNames ) {
 		$start = strlen( $this->fieldPrefix );
 
-		return array_map( function( $fieldName ) use ( $start ) {
+		return array_map( function ( $fieldName ) use ( $start ) {
 			return substr( $fieldName, $start );
 		}, $fieldNames );
 	}

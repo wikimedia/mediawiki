@@ -310,7 +310,7 @@ class ApiMain extends ApiBase {
 			// then there's an appropriate Vary header set by whatever set
 			// their non-default language.
 			wfDebug( __METHOD__ . ": downgrading cache mode 'public' to " .
-			   "'anon-public-user-private' due to uselang=user\n" );
+				"'anon-public-user-private' due to uselang=user\n" );
 			$mode = 'anon-public-user-private';
 		}
 

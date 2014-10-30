@@ -251,7 +251,7 @@ class SpecialImport extends SpecialPage {
 					Xml::label( $this->msg( 'import-comment' )->text(), 'mw-import-comment' ) .
 					"</td>
 					<td class='mw-input'>" .
-					Xml::input( 'log-comment', 50, 
+					Xml::input( 'log-comment', 50,
 						( $this->sourceName == 'upload' ? $this->logcomment : '' ),
 						array( 'id' => 'mw-import-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>

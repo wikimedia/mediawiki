@@ -255,7 +255,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		// The form should be visible on each request (inclusive requests with submitted forms), so
 		// return always false here.
 		$htmlForm->setSubmitCallback(
-			function() {
+			function () {
 				return false;
 			}
 		);

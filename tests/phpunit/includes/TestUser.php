@@ -28,7 +28,7 @@ class TestUser {
 
 	private function assertNotReal() {
 		global $wgDBprefix;
-		if( $wgDBprefix !== MediaWikiTestCase::DB_PREFIX && $wgDBprefix !== MediaWikiTestCase::ORA_DB_PREFIX ) {
+		if ( $wgDBprefix !== MediaWikiTestCase::DB_PREFIX && $wgDBprefix !== MediaWikiTestCase::ORA_DB_PREFIX ) {
 			throw new MWException( "Can't create user on real database" );
 		}
 	}
@@ -114,9 +114,9 @@ class TestUser {
 		$passwordFactory = $this->user->getPasswordFactory();
 		$oldDefaultType = $passwordFactory->getDefaultType();
 
-		 // A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
+		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordFactory->setDefaultType( 'A' );
-		$newPassword = $passwordFactory->newFromPlaintext( $password , $this->user->getPassword() );
+		$newPassword = $passwordFactory->newFromPlaintext( $password, $this->user->getPassword() );
 
 		$change = false;
 		if ( !$this->user->getPassword()->equals( $newPassword ) ) {

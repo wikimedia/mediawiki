@@ -993,7 +993,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$localPath = $this->getLocalPath( $templatePath );
 			if ( file_exists( $localPath ) ) {
 				$content = file_get_contents( $localPath );
-				$templates[ $alias ] = $content;
+				$templates[$alias] = $content;
 			} else {
 				$msg = __METHOD__ . ": template file not found: \"$localPath\"";
 				wfDebugLog( 'resourceloader', $msg );
