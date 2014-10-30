@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (deccd11549)
+ * OOjs UI v0.1.0-pre (da4b0d5c14)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-28T16:52:27Z
+ * Date: 2014-10-30T00:10:19Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -1114,7 +1114,8 @@
 	margin-left: 0;
 }
 .oo-ui-progressBarWidget {
-	width: 20em;
+	width: 100%;
+	max-width: 50em;
 	border: solid 1px #a6cee1;
 	border-radius: 0.25em;
 }
@@ -1258,7 +1259,8 @@
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
-	width: 20em;
+	width: 100%;
+	max-width: 50em;
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
@@ -1401,7 +1403,8 @@
 	position: relative;
 	display: inline-block;
 	margin: 0.25em 0;
-	min-width: 20em;
+	width: 100%;
+	max-width: 50em;
 }
 .oo-ui-inlineMenuWidget-handle {
 	width: 100%;
@@ -1566,7 +1569,8 @@
 .oo-ui-comboBoxWidget {
 	display: inline-block;
 	position: relative;
-	min-width: 20em;
+	width: 100%;
+	max-width: 50em;
 }
 .oo-ui-comboBoxWidget > .oo-ui-selectWidget {
 	width: 100%;
