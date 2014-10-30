@@ -3,10 +3,10 @@ turn it off. MediaWiki will no longer work with it enabled.
 
 == MediaWiki 1.24 ==
 
-THIS IS NOT A RELEASE YET
+THIS IS A RELEASE CANDIDATE
 
-MediaWiki 1.24 is an alpha-quality branch and is not recommended for use in
-production.
+MediaWiki 1.24 is being prepared for release.  Please file bugs for
+any problems found.
 
 === Configuration changes in 1.24 ===
 * MediaWiki will no longer run if register_globals is enabled. It has been
@@ -505,9 +505,9 @@ changes to languages because of Bugzilla reports.
 * Removed maintenance/purgeOldText.inc and the PurgeRedundantText() function
   it contained (superseded by Maintenance::purgeRedundantText() in 1.16).
   The purgeOldText.php maintenance script has been retained.
-* PHPUnit tests can be found by directory discovery, by adding the directory
-  path from your UnitTestsList callback. Older versions of MediaWiki core will
-  barf at this usage.
+* (Bug 70630) PHPUnit tests can be found by directory discovery, by adding the
+  directory path from your UnitTestsList callback. Older versions of
+  MediaWiki core will barf at this usage.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
