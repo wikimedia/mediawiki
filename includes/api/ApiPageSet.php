@@ -669,6 +669,10 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate this PageSet from a rowset returned from the database
+	 *
+	 * Note that the query result must include the columns returned by
+	 * $this->getPageTableFields().
+	 *
 	 * @param DatabaseBase $db
 	 * @param ResultWrapper $queryResult Query result object
 	 */
