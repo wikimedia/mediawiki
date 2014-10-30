@@ -890,6 +890,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 medlem|$1 medlemmar}} ({{PLURAL:$2|1 underkategori|$2 underkategorier}}, {{PLURAL:$3|1 fil|$3 filer}})",
 	"search-redirect": "(omdirigering $1)",
 	"search-section": "(avsnitt $1)",
+	"search-category": "(kategorin $1)",
 	"search-file-match": "(överensstämmer filens innehåll)",
 	"search-suggest": "Menade du: $1",
 	"search-interwiki-caption": "Systerprojekt",

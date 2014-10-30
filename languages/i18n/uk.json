@@ -704,7 +704,7 @@
 	"content-model-text": "звичайний текст",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
-	"duplicate-args-category": "Сторінки, що включають шаблони з дублікатним визначенням аргументу",
+	"duplicate-args-category": "Сторінки, що містять шаблон із кількома значеннями одного й того ж параметра",
 	"duplicate-args-category-desc": "Тут перелічено сторінки, що містять дублікатне визначення аргументу при включенні шаблону, приміром, <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> або <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Увага:''' Ця сторінка містить дуже багато викликів ресурсомістких функцій.\n\nКількість викликів не повинна перевищувати $2, зараз потрібно зробити $1 {{PLURAL:$1|виклик|виклики|викликів}}.",
 	"expensive-parserfunction-category": "Сторінки з дуже великою кількістю викликів ресурсомістких функцій",
