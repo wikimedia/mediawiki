@@ -198,8 +198,13 @@ class FormatJsonTest extends MediaWikiTestCase {
 		if ( $expected === false ) {
 			$this->assertFalse( $st->isOK() );
 		} else {
-			$this->assertFalse( $st->isGood() );
-			$this->assertTrue( $st->isOK() );
+			if ( !wfIsHHVM() ) {
+				// HHVM has a lenient json parser (yeah great idea right?)
+				// which allows trailing commas, so our JSON_ERROR_SYNTAX
+				// rescue block is not triggered.
+				$this->assertFalse( $st->isGood() );
+				$this->assertTrue( $st->isOK() );
+			}
 			$val = FormatJson::encode( $st->getValue(), false, FormatJson::ALL_OK );
 			$this->assertEquals( $expected, $val );
 		}
