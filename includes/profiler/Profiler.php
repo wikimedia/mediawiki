@@ -81,18 +81,6 @@ abstract class Profiler {
 	abstract public function isStub();
 
 	/**
-	 * Return whether this profiler stores data
-	 *
-	 * Called by Parser::braceSubstitution. If true, the parser will not
-	 * generate per-title profiling sections, to avoid overloading the
-	 * profiling data collector.
-	 *
-	 * @see Profiler::logData()
-	 * @return bool
-	 */
-	abstract public function isPersistent();
-
-	/**
 	 * @param string $id
 	 */
 	public function setProfileID( $id ) {

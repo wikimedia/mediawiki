@@ -67,16 +67,6 @@ class ProfilerStandard extends Profiler {
 	}
 
 	/**
-	 * Return whether this profiler stores data
-	 *
-	 * @see Profiler::logData()
-	 * @return bool
-	 */
-	public function isPersistent() {
-		return false;
-	}
-
-	/**
 	 * Add the inital item in the stack.
 	 */
 	protected function addInitialStack() {

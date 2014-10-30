@@ -27,10 +27,6 @@
  * @ingroup Profiler
  */
 class ProfilerSimpleDB extends ProfilerStandard {
-	public function isPersistent() {
-		return true;
-	}
-
 	/**
 	 * Log the whole profiling data into the database.
 	 */
