@@ -481,10 +481,14 @@ class ApiResult extends ApiBase {
 			$continue = explode( '||', $continue );
 			$this->dieContinueUsageIf( count( $continue ) !== 2 );
 			$this->generatorDone = ( $continue[0] === '-' );
+			$skip = explode( '|', $continue[1] );
 			if ( !$this->generatorDone ) {
 				$this->generatorParams = explode( '|', $continue[0] );
+			} else {
+				// When the generator is complete, don't run any modules that
+				// depend on it.
+				$skip += $this->continueGeneratedModules;
 			}
-			$skip = explode( '|', $continue[1] );
 		}
 
 		$this->continueAllModules = array();
