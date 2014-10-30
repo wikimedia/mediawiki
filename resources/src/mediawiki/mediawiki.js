@@ -1727,6 +1727,7 @@
 				 * @param {Function} [ready] Callback to execute when all dependencies are ready
 				 * @param {Function} [error] Callback to execute if one or more dependencies failed
 				 * @return {jQuery.Promise}
+				 * @since 1.23 this returns a promise
 				 */
 				using: function ( dependencies, ready, error ) {
 					var deferred = $.Deferred();
