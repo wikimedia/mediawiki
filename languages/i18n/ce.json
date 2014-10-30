@@ -644,7 +644,7 @@
 	"content-model-text": "цхьалхе йоза",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
-	"duplicate-args-category": "Кепийн дехарашкахь юх юха аргументаш йолу агӀонаш",
+	"duplicate-args-category": "Кепийн кхайкхамашкахь аргументаш юх-юха лелош йолу агӀонаш",
 	"expensive-parserfunction-warning": "'''Тидам бе!''' Ресурсийн функцийн дехарш сов даьлла агӀонаш .\n\nДукху хилла ца деза {{PLURAL:$2|$2 дехар|$2 дехарш|1=цхьана дехар}}, хӀинца $1 {{PLURAL:$1|дехар}} ду.",
 	"expensive-parserfunction-category": "Ресурсийн функцийн дехарш сов даьлла агӀонаш",
 	"post-expand-template-inclusion-warning": "ДӀахьедар: юкъа тоьхна кепашан жамӀан барам тӀех бокха бу. Цхьайолу кепаш юкъа тухур яц.",
