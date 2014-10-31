@@ -895,10 +895,7 @@ class SpecialSearch extends SpecialPage {
 		// be arranged nicely while still accommodating different screen widths
 		$namespaceTables = '';
 		for ( $i = 0; $i < $numRows; $i += 4 ) {
-			$namespaceTables .= Xml::openElement(
-				'table',
-				array( 'cellpadding' => 0, 'cellspacing' => 0 )
-			);
+			$namespaceTables .= Xml::openElement( 'table' );
 
 			for ( $j = $i; $j < $i + 4 && $j < $numRows; $j++ ) {
 				$namespaceTables .= Xml::tags( 'tr', null, $rows[$j] );
