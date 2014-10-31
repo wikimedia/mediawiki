@@ -169,12 +169,28 @@ class FormatJsonTest extends MediaWikiTestCase {
 		$this->assertEquals( $value, $st->getValue() );
 	}
 
+	/**
+	 * Test data for testParseTryFixing.
+	 *
+	 * HHVM has a lenient json parser (yeah great idea right?) which allows
+	 * trailing commas for array and object delarations among other things, so
+	 * our JSON_ERROR_SYNTAX rescue block is not always triggered. It however
+	 * isn't lenient in exactly the same ways as our TRY_FIXING mode, so the
+	 * assertions in this test are a bit more complicated than they ideally
+	 * would be:
+	 *
+	 * Optional third argument: true if hhvm parses the value without
+	 * intervention, false otherwise. Defaults to true.
+	 *
+	 * Optional fourth argument: expected cannonical JSON serialization of HHVM
+	 * parsed result. Defaults to the second argument's value.
+	 */
 	public static function provideParseTryFixing() {
 		return array(
-			array( "[,]", '[]' ),
-			array( "[ , ]", '[]' ),
+			array( "[,]", '[]', false ),
+			array( "[ , ]", '[]', false ),
 			array( "[ , }", false ),
-			array( '[1],', false ),
+			array( '[1],', false, true, '[1]' ),
 			array( "[1,]", '[1]' ),
 			array( "[1\n,]", '[1]' ),
 			array( "[1,\n]", '[1]' ),
@@ -182,24 +198,43 @@ class FormatJsonTest extends MediaWikiTestCase {
 			array( "[1\n,\n]\n", '[1]' ),
 			array( '["a,",]', '["a,"]' ),
 			array( "[[1,]\n,[2,\n],[3\n,]]", '[[1],[2],[3]]' ),
-			array( '[[1,],[2,],[3,]]', false ), // I wish we could parse this, but would need quote parsing
-			array( '[1,,]', false ),
+			// I wish we could parse this, but would need quote parsing
+			array( '[[1,],[2,],[3,]]', false, true, '[[1],[2],[3]]' ),
+			array( '[1,,]', false, false, '[1]' ),
 		);
 	}
 
 	/**
 	 * @dataProvider provideParseTryFixing
 	 * @param string $value
-	 * @param string|bool $expected
+	 * @param string|bool $expected Expected result with Zend PHP
+	 * @param bool $hhvmParses Will HHVM parse this value without TRY_FIXING?
+	 * @param string|bool $expectedHHVM Expected result with HHVM if different
+	 * from the PHP5 expectation
 	 */
-	public function testParseTryFixing( $value, $expected ) {
+	public function testParseTryFixing(
+		$value, $expected,
+		$hhvmParses = true, $expectedHHVM = null
+	) {
+		// PHP5 results are always expected to have isGood() === false
+		$expectedGoodStatus = false;
+
+		if ( wfIsHHVM() ) {
+			// Use HHVM specific expected result if provided
+			$expected = ( $expectedHHVM === null ) ? $expected : $expectedHHVM;
+			// If HHVM parses the value natively, expect isGood() === true
+			$expectedGoodStatus = $hhvmParses;
+		}
+
 		$st = FormatJson::parse( $value, FormatJson::TRY_FIXING );
 		$this->assertType( 'Status', $st );
 		if ( $expected === false ) {
-			$this->assertFalse( $st->isOK() );
+			$this->assertFalse( $st->isOK(), 'Expected isOK() == false' );
 		} else {
-			$this->assertFalse( $st->isGood() );
-			$this->assertTrue( $st->isOK() );
+			$this->assertSame( $expectedGoodStatus, $st->isGood(),
+				'Expected isGood() == ' . ( $expectedGoodStatus ? 'true' : 'false' )
+			);
+			$this->assertTrue( $st->isOK(), 'Expected isOK == true' );
 			$val = FormatJson::encode( $st->getValue(), false, FormatJson::ALL_OK );
 			$this->assertEquals( $expected, $val );
 		}
