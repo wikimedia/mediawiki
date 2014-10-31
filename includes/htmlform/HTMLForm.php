@@ -208,6 +208,7 @@ class HTMLForm extends ContextSource {
 		'div',
 		'raw',
 		'vform',
+		'inline',
 	);
 
 	/**

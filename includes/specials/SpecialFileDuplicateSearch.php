@@ -110,25 +110,35 @@ class FileDuplicateSearchPage extends QueryPage {
 		$out = $this->getOutput();
 
 		# Create the input form
-		$out->addHTML(
-			Html::openElement(
-				'form',
-				array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => wfScript() )
-			) . "\n" .
-				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
-				Html::openElement( 'fieldset' ) . "\n" .
-				Html::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() ) . "\n" .
-				Xml::inputLabel(
-					$this->msg( 'fileduplicatesearch-filename' )->text(),
-					'filename',
-					'filename',
-					50,
-					$this->filename
-				) . "\n" .
-				Xml::submitButton( $this->msg( 'fileduplicatesearch-submit' )->text() ) . "\n" .
-				Html::closeElement( 'fieldset' ) . "\n" .
-				Html::closeElement( 'form' )
+		$formFields = array(
+			'filename' => array(
+				'type' => 'text',
+				'name' => 'filename',
+				'label-message' => 'fileduplicatesearch-filename',
+				'id' => 'filename',
+				'size' => 50,
+				'value' => $this->filename,
+				'cssclass' => 'mw-ui-input-inline'
+			),
 		);
+		$hiddenFields = array(
+			'title' => $this->getPageTitle()->getPrefixedDBKey(),
+		);
+		$htmlForm = new HTMLForm( $formFields, $this->getContext() );
+		$htmlForm->addHiddenFields( $hiddenFields );
+		// The form should be visible always, even if it was submitted (to perform another action e.g.).
+		// HTMLForm requires a callback to check a submitted form, return false, to force to show the form.
+		$htmlForm->setSubmitCallback(
+			function() {
+				return false;
+			}
+		);
+		$htmlForm->setMethod( 'get' );
+		$htmlForm->setSubmitProgressive();
+		$htmlForm->setWrapperLegendMsg( 'fileduplicatesearch-legend' );
+		$htmlForm->setDisplayFormat( 'inline' );
+
+		$htmlForm->show();
 
 		if ( $this->file ) {
 			$this->hash = $this->file->getSha1();
