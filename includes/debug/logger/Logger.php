@@ -19,6 +19,15 @@
  * @file
  */
 
+if ( !interface_exists( '\Psr\Log\LoggerInterface' ) ) {
+	$psr3Required = <<<'EOD'
+MediaWiki requires the PSR-3 logging library (https://github.com/php-fig/log) to be present. This library is not embedded directly in MediaWiki's git repository and must be installed separately by the end user.
+
+Install with `composer install` or `git clone https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git`.
+EOD;
+	throw new Exception( $psr3Required );
+}
+
 /**
  * PSR-3 logging service.
  *
