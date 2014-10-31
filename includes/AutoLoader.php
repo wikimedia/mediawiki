@@ -455,6 +455,7 @@ $wgAutoloadLocalClasses = array(
 	'ORMResult' => 'includes/db/ORMResult.php',
 	'ORMRow' => 'includes/db/ORMRow.php',
 	'ORMTable' => 'includes/db/ORMTable.php',
+	'PostgresBlob' => 'includes/db/DatabasePostgres.php',
 	'PostgresField' => 'includes/db/DatabasePostgres.php',
 	'PostgresTransactionState' => 'includes/db/DatabasePostgres.php',
 	'ResultWrapper' => 'includes/db/DatabaseUtility.php',
