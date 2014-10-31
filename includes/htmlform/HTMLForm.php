@@ -207,6 +207,7 @@ class HTMLForm extends ContextSource {
 		'table',
 		'div',
 		'raw',
+		'inline',
 	);
 
 	/**
@@ -1366,6 +1367,8 @@ class HTMLForm extends ContextSource {
 				$html = Html::rawElement( 'table',
 						$attribs,
 						Html::rawElement( 'tbody', array(), "\n$html\n" ) ) . "\n";
+			} elseif ( $displayFormat === 'inline' ) {
+				$html = Html::rawElement( 'span', $attribs, "\n$html\n" );
 			} else {
 				$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
 			}
