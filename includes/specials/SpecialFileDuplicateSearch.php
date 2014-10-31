@@ -110,24 +110,44 @@ class FileDuplicateSearchPage extends QueryPage {
 		$out = $this->getOutput();
 
 		# Create the input form
+		$formFields = array(
+			'filename' => array(
+				'type' => 'text',
+				'name' => 'filename',
+				// FIXME: label-message would be better, but there is a missing space between label
+				// and input (because we use raw as display format)
+				'label-raw' => $this->msg( 'fileduplicatesearch-filename' )->escaped() . '&#160;',
+				'id' => 'filename',
+				'size' => 50,
+				'value' => $this->filename,
+				'cssclass' => 'mw-ui-input-inline'
+			),
+			'title' => array(
+				'type' => 'hidden',
+				'name' => 'title',
+				'value' => $this->getPageTitle()->getPrefixedDBKey()
+			)
+		);
+		$htmlForm = new HTMLForm( $formFields, $this->getContext() );
+		$htmlForm->setSubmitCallback(
+			function() {
+				return false;
+			}
+		);
+		$htmlForm->setMethod( 'get' );
+		$htmlForm->setSubmitProgressive();
+		// needed to be pseudo inline form
+		$htmlForm->setDisplayFormat( 'raw' );
+
 		$out->addHTML(
-			Html::openElement(
-				'form',
-				array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => wfScript() )
-			) . "\n" .
-				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
-				Html::openElement( 'fieldset' ) . "\n" .
-				Html::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() ) . "\n" .
-				Xml::inputLabel(
-					$this->msg( 'fileduplicatesearch-filename' )->text(),
-					'filename',
-					'filename',
-					50,
-					$this->filename
-				) . "\n" .
-				Xml::submitButton( $this->msg( 'fileduplicatesearch-submit' )->text() ) . "\n" .
-				Html::closeElement( 'fieldset' ) . "\n" .
-				Html::closeElement( 'form' )
+			Html::openElement( 'fieldset' ) . "\n" .
+			Html::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() )
+		);
+
+		$htmlForm->show();
+
+		$out->addHtml(
+			Html::closeElement( 'fieldset' )
 		);
 
 		if ( $this->file ) {
