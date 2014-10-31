@@ -215,6 +215,7 @@ class HTMLForm extends ContextSource {
 	 */
 	protected $availableSubclassDisplayFormats = array(
 		'vform',
+		'inline',
 	);
 
 	/**
