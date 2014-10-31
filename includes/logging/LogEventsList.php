@@ -535,7 +535,23 @@ class LogEventsList extends ContextSource {
 			$pager->mLimit = $lim;
 		}
 
-		$logBody = $pager->getBody();
+		$logBody = null;
+		// Check if we can avoid the DB query all together
+		if ( $page !== '' && !$param['useMaster'] ) {
+			$title = ( $page instanceof Title ) ? $page : Title::newFromText( $page );
+			if ( $title ) {
+				$member = $title->getNamespace() . ':' . $title->getDBkey();
+				if ( !BloomCache::get( 'main' )->check( wfWikiId(), 'TitleHasLogs', $member ) ) {
+					$logBody = '';
+				}
+			} else {
+				$logBody = '';
+			}
+		}
+
+		// Fetch the log rows and build the HTML if needed
+		$logBody = ( $logBody === null ) ? $pager->getBody() : $logBody;
+
 		$s = '';
 
 		if ( $logBody ) {
