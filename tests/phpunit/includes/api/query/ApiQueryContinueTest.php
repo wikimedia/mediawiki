@@ -148,7 +148,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 		};
 		// generator + 2 props
 		$data = $this->query( $mk( 99, 99, 99 ), 1, 'G2P', false ) +
-			array( 'batchcomplete' => '' );;
+			array( 'batchcomplete' => '' );
 		$this->checkC( $data, $mk( 1, 1, 1 ), 16, 'G2P-111' );
 		$this->checkC( $data, $mk( 2, 2, 2 ), 9, 'G2P-222' );
 		$this->checkC( $data, $mk( 3, 3, 3 ), 6, 'G2P-333' );
