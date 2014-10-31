@@ -532,6 +532,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return string
 	 */
 	function strencode( $s ) {
+		if ( $s instanceof Blob ) {
+			$s = $s->fetch();
+		}
 		$sQuoted = $this->mysqlRealEscapeString( $s );
 
 		if ( $sQuoted === false ) {

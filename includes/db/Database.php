@@ -3864,6 +3864,9 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return string
 	 */
 	public function decodeBlob( $b ) {
+		if ( $b instanceof Blob ) {
+			$b = $b->fetch();
+		}
 		return $b;
 	}
 
