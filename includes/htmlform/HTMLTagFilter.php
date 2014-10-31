@@ -10,6 +10,6 @@ class HTMLTagFilter extends HTMLFormField {
 			// we only need the select field, HTMLForm should handle the label
 			return $tagFilterSelector;
 		}
-		return;
+		return '';
 	}
 }
