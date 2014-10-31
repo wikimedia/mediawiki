@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (da4b0d5c14)
+ * OOjs UI v0.1.0-pre (eee616d664)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-30T00:10:19Z
+ * Date: 2014-10-31T23:24:06Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -20,6 +20,7 @@
 	cursor: pointer;
 	display: inline-block;
 	vertical-align: middle;
+	font-family: inherit;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
@@ -1399,14 +1400,14 @@
 	padding: 0.33em 0.75em;
 	color: #888888;
 }
-.oo-ui-inlineMenuWidget {
+.oo-ui-dropdownWidget {
 	position: relative;
 	display: inline-block;
 	margin: 0.25em 0;
 	width: 100%;
 	max-width: 50em;
 }
-.oo-ui-inlineMenuWidget-handle {
+.oo-ui-dropdownWidget-handle {
 	width: 100%;
 	display: inline-block;
 	cursor: pointer;
@@ -1419,57 +1420,57 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
-.oo-ui-inlineMenuWidget-handle .oo-ui-indicatorElement-indicator,
-.oo-ui-inlineMenuWidget-handle .oo-ui-iconElement-icon {
+.oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator,
+.oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
 	position: absolute;
 	background-position: center center;
 	background-repeat: no-repeat;
 }
-.oo-ui-inlineMenuWidget .oo-ui-menuWidget {
+.oo-ui-dropdownWidget .oo-ui-menuWidget {
 	z-index: 1;
 	width: 100%;
 }
-.oo-ui-inlineMenuWidget.oo-ui-widget-disabled .oo-ui-inlineMenuWidget-handle {
+.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
 	cursor: default;
 }
-.oo-ui-inlineMenuWidget-handle {
+.oo-ui-dropdownWidget-handle {
 	height: 2.5em;
 	border: solid 1px rgba(0, 0, 0, 0.1);
 	border-radius: 0.25em;
 }
-.oo-ui-inlineMenuWidget-handle:hover {
+.oo-ui-dropdownWidget-handle:hover {
 	border-color: rgba(0, 0, 0, 0.2);
 }
-.oo-ui-inlineMenuWidget-handle .oo-ui-indicatorElement-indicator {
+.oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
 	right: 0;
 }
-.oo-ui-inlineMenuWidget-handle .oo-ui-iconElement-icon {
+.oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
 	left: 0.25em;
 }
-.oo-ui-inlineMenuWidget-handle .oo-ui-labelElement-label {
+.oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
 	line-height: 2.5em;
 	margin: 0 0.5em;
 }
-.oo-ui-inlineMenuWidget-handle .oo-ui-indicatorElement-indicator,
-.oo-ui-inlineMenuWidget-handle .oo-ui-iconElement-icon {
+.oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator,
+.oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
 	top: 0;
 	width: 2.5em;
 	height: 2.5em;
 	opacity: 0.8;
 }
-.oo-ui-inlineMenuWidget.oo-ui-widget-disabled .oo-ui-inlineMenuWidget-handle {
+.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
 	color: #cccccc;
 	text-shadow: 0 1px 1px #ffffff;
 	border-color: #dddddd;
 	background-color: #f3f3f3;
 }
-.oo-ui-inlineMenuWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
+.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
 	opacity: 0.2;
 }
-.oo-ui-inlineMenuWidget.oo-ui-iconElement .oo-ui-inlineMenuWidget-handle .oo-ui-labelElement-label {
+.oo-ui-dropdownWidget.oo-ui-iconElement .oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
 	margin-left: 3em;
 }
-.oo-ui-inlineMenuWidget.oo-ui-indicatorElement .oo-ui-inlineMenuWidget-handle .oo-ui-labelElement-label {
+.oo-ui-dropdownWidget.oo-ui-indicatorElement .oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
 	margin-right: 2em;
 }
 .oo-ui-outlineItemWidget {

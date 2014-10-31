@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (da4b0d5c14)
+ * OOjs UI v0.1.0-pre (eee616d664)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-30T00:10:09Z
+ * Date: 2014-10-31T23:23:56Z
  */
 ( function ( OO ) {
 
@@ -800,7 +800,7 @@ OO.ui.Element.getWindow = function ( obj ) {
  *
  * @static
  * @param {jQuery|HTMLElement|HTMLDocument|Window} obj Context to get the direction for
- * @return {string} Text direction, either `ltr` or `rtl`
+ * @return {string} Text direction, either 'ltr' or 'rtl'
  */
 OO.ui.Element.getDir = function ( obj ) {
 	var isDoc, isWin;
@@ -4294,7 +4294,7 @@ OO.ui.IndicatorElement.prototype.setIndicatorTitle = function ( indicatorTitle )
 /**
  * Get indicator name.
  *
- * @return {string} title Symbolic name of indicator
+ * @return {string} Symbolic name of indicator
  */
 OO.ui.IndicatorElement.prototype.getIndicator = function () {
 	return this.indicator;
@@ -4398,7 +4398,7 @@ OO.ui.LabelElement.prototype.setLabel = function ( label ) {
 /**
  * Get the label.
  *
- * @return {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
+ * @return {jQuery|string|Function|null} Label nodes; text; a function that returns nodes or
  *  text; or null for no label
  */
 OO.ui.LabelElement.prototype.getLabel = function () {
@@ -4546,7 +4546,7 @@ OO.ui.FlaggedElement.prototype.hasFlag = function ( flag ) {
 /**
  * Get the names of all flags set.
  *
- * @return {string[]} flags Flag names
+ * @return {string[]} Flag names
  */
 OO.ui.FlaggedElement.prototype.getFlags = function () {
 	return Object.keys( this.flags );
@@ -7862,6 +7862,10 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
  *
  * Subclasses must handle `select` and `choose` events on #lookupMenu to make use of selections.
  *
+ * Subclasses that set the value of #lookupInput from their `choose` or `select` handler should
+ * be aware that this will cause new suggestions to be looked up for the new value. If this is
+ * not desired, disable lookups with #setLookupsDisabled, then set the value, then re-enable lookups.
+ *
  * @class
  * @abstract
  *
@@ -7885,7 +7889,8 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	this.lookupCache = {};
 	this.lookupQuery = null;
 	this.lookupRequest = null;
-	this.populating = false;
+	this.lookupsDisabled = false;
+	this.lookupInputFocused = false;
 
 	// Events
 	this.lookupInput.$input.on( {
@@ -7894,6 +7899,7 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 		mousedown: this.onLookupInputMouseDown.bind( this )
 	} );
 	this.lookupInput.connect( this, { change: 'onLookupInputChange' } );
+	this.lookupMenu.connect( this, { toggle: 'onLookupMenuToggle' } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-lookupWidget' );
@@ -7909,7 +7915,8 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
  * @param {jQuery.Event} e Input focus event
  */
 OO.ui.LookupInputWidget.prototype.onLookupInputFocus = function () {
-	this.openLookupMenu();
+	this.lookupInputFocused = true;
+	this.populateLookupMenu();
 };
 
 /**
@@ -7918,7 +7925,8 @@ OO.ui.LookupInputWidget.prototype.onLookupInputFocus = function () {
  * @param {jQuery.Event} e Input blur event
  */
 OO.ui.LookupInputWidget.prototype.onLookupInputBlur = function () {
-	this.lookupMenu.toggle( false );
+	this.closeLookupMenu();
+	this.lookupInputFocused = false;
 };
 
 /**
@@ -7927,7 +7935,13 @@ OO.ui.LookupInputWidget.prototype.onLookupInputBlur = function () {
  * @param {jQuery.Event} e Input mouse down event
  */
 OO.ui.LookupInputWidget.prototype.onLookupInputMouseDown = function () {
-	this.openLookupMenu();
+	// Only open the menu if the input was already focused.
+	// This way we allow the user to open the menu again after closing it with Esc
+	// by clicking in the input. Opening (and populating) the menu when initially
+	// clicking into the input is handled by the focus handler.
+	if ( this.lookupInputFocused ) {
+		this.openLookupMenu();
+	}
 };
 
 /**
@@ -7936,7 +7950,23 @@ OO.ui.LookupInputWidget.prototype.onLookupInputMouseDown = function () {
  * @param {string} value New input value
  */
 OO.ui.LookupInputWidget.prototype.onLookupInputChange = function () {
-	this.openLookupMenu();
+	if ( this.lookupInputFocused ) {
+		this.populateLookupMenu();
+	}
+};
+
+/**
+ * Handle the lookup menu being shown/hidden.
+ * @param {boolean} visible Whether the lookup menu is now visible.
+ */
+OO.ui.LookupInputWidget.prototype.onLookupMenuToggle = function ( visible ) {
+	if ( !visible ) {
+		// When the menu is hidden, abort any active request and clear the menu.
+		// This has to be done here in addition to closeLookupMenu(), because
+		// MenuWidget will close itself when the user presses Esc.
+		this.abortLookupRequest();
+		this.lookupMenu.clearItems();
+	}
 };
 
 /**
@@ -7949,35 +7979,61 @@ OO.ui.LookupInputWidget.prototype.getLookupMenu = function () {
 };
 
 /**
- * Open the menu.
+ * Disable or re-enable lookups.
+ *
+ * When lookups are disabled, calls to #populateLookupMenu will be ignored.
+ *
+ * @param {boolean} disabled Disable lookups
+ */
+OO.ui.LookupInputWidget.prototype.setLookupsDisabled = function ( disabled ) {
+	this.lookupsDisabled = !!disabled;
+};
+
+/**
+ * Open the menu. If there are no entries in the menu, this does nothing.
  *
  * @chainable
  */
 OO.ui.LookupInputWidget.prototype.openLookupMenu = function () {
-	var value = this.lookupInput.getValue();
-
-	if ( this.lookupMenu.$input.is( ':focus' ) && $.trim( value ) !== '' ) {
-		this.populateLookupMenu();
+	if ( !this.lookupMenu.isEmpty() ) {
 		this.lookupMenu.toggle( true );
-	} else {
-		this.lookupMenu
-			.clearItems()
-			.toggle( false );
 	}
-
 	return this;
 };
 
 /**
- * Populate lookup menu with current information.
+ * Close the menu, empty it, and abort any pending request.
+ *
+ * @chainable
+ */
+OO.ui.LookupInputWidget.prototype.closeLookupMenu = function () {
+	this.lookupMenu.toggle( false );
+	this.abortLookupRequest();
+	this.lookupMenu.clearItems();
+	return this;
+};
+
+/**
+ * Request menu items based on the input's current value, and when they arrive,
+ * populate the menu with these items and show the menu.
+ *
+ * If lookups have been disabled with #setLookupsDisabled, this function does nothing.
  *
  * @chainable
  */
 OO.ui.LookupInputWidget.prototype.populateLookupMenu = function () {
-	var widget = this;
+	var widget = this,
+		value = this.lookupInput.getValue();
 
-	if ( !this.populating ) {
-		this.populating = true;
+	if ( this.lookupsDisabled ) {
+		return;
+	}
+
+	// If the input is empty, clear the menu
+	if ( value === '' ) {
+		this.closeLookupMenu();
+	// Skip population if there is already a request pending for the current value
+	} else if ( value !== this.lookupQuery ) {
 		this.getLookupMenuItems()
 			.done( function ( items ) {
 				widget.lookupMenu.clearItems();
@@ -7986,15 +8042,12 @@ OO.ui.LookupInputWidget.prototype.populateLookupMenu = function () {
 						.addItems( items )
 						.toggle( true );
 					widget.initializeLookupMenuSelection();
-					widget.openLookupMenu();
 				} else {
-					widget.lookupMenu.toggle( true );
+					widget.lookupMenu.toggle( false );
 				}
-				widget.populating = false;
 			} )
 			.fail( function () {
 				widget.lookupMenu.clearItems();
-				widget.populating = false;
 			} );
 	}
 
@@ -8002,7 +8055,7 @@ OO.ui.LookupInputWidget.prototype.populateLookupMenu = function () {
 };
 
 /**
- * Set selection in the lookup menu with current information.
+ * Select and highlight the first selectable item in the menu.
  *
  * @chainable
  */
@@ -8017,67 +8070,78 @@ OO.ui.LookupInputWidget.prototype.initializeLookupMenuSelection = function () {
  * Get lookup menu items for the current query.
  *
  * @return {jQuery.Promise} Promise object which will be passed menu items as the first argument
- * of the done event
+ * of the done event. If the request was aborted to make way for a subsequent request,
+ * this promise will not be rejected: it will remain pending forever.
  */
 OO.ui.LookupInputWidget.prototype.getLookupMenuItems = function () {
 	var widget = this,
 		value = this.lookupInput.getValue(),
-		deferred = $.Deferred();
+		deferred = $.Deferred(),
+		ourRequest;
 
-	if ( value && value !== this.lookupQuery ) {
-		// Abort current request if query has changed
-		if ( this.lookupRequest ) {
-			this.lookupRequest.abort();
-			this.lookupQuery = null;
-			this.lookupRequest = null;
-		}
-		if ( value in this.lookupCache ) {
-			deferred.resolve( this.getLookupMenuItemsFromData( this.lookupCache[value] ) );
-		} else {
-			this.lookupQuery = value;
-			this.lookupRequest = this.getLookupRequest()
-				.always( function () {
+	this.abortLookupRequest();
+	if ( value in this.lookupCache ) {
+		deferred.resolve( this.getLookupMenuItemsFromData( this.lookupCache[value] ) );
+	} else {
+		this.lookupInput.pushPending();
+		this.lookupQuery = value;
+		ourRequest = this.lookupRequest = this.getLookupRequest();
+		ourRequest
+			.always( function () {
+				// We need to pop pending even if this is an old request, otherwise
+				// the widget will remain pending forever.
+				// TODO: this assumes that an aborted request will fail or succeed soon after
+				// being aborted, or at least eventually. It would be nice if we could popPending()
+				// at abort time, but only if we knew that we hadn't already called popPending()
+				// for that request.
+				widget.lookupInput.popPending();
+			} )
+			.done( function ( data ) {
+				// If this is an old request (and aborting it somehow caused it to still succeed),
+				// ignore its success completely
+				if ( ourRequest === widget.lookupRequest ) {
 					widget.lookupQuery = null;
 					widget.lookupRequest = null;
-				} )
-				.done( function ( data ) {
 					widget.lookupCache[value] = widget.getLookupCacheItemFromData( data );
 					deferred.resolve( widget.getLookupMenuItemsFromData( widget.lookupCache[value] ) );
-				} )
-				.fail( function () {
+				}
+			} )
+			.fail( function () {
+				// If this is an old request (or a request failing because it's being aborted),
+				// ignore its failure completely
+				if ( ourRequest === widget.lookupRequest ) {
+					widget.lookupQuery = null;
+					widget.lookupRequest = null;
 					deferred.reject();
-				} );
-			this.pushPending();
-			this.lookupRequest.always( function () {
-				widget.popPending();
+				}
 			} );
-		}
 	}
 	return deferred.promise();
+};
+
+/**
+ * Abort the currently pending lookup request, if any.
+ */
+OO.ui.LookupInputWidget.prototype.abortLookupRequest = function () {
+	var oldRequest = this.lookupRequest;
+	if ( oldRequest ) {
+		// First unset this.lookupRequest to the fail handler will notice
+		// that the request is no longer current
+		this.lookupRequest = null;
+		this.lookupQuery = null;
+		oldRequest.abort();
+	}
 };
 
 /**
  * Get a new request object of the current lookup query value.
  *
  * @abstract
- * @return {jqXHR} jQuery AJAX object, or promise object with an .abort() method
+ * @return {jQuery.Promise} jQuery AJAX object, or promise object with an .abort() method
  */
 OO.ui.LookupInputWidget.prototype.getLookupRequest = function () {
 	// Stub, implemented in subclass
 	return null;
-};
-
-/**
- * Handle successful lookup request.
- *
- * Overriding methods should call #populateLookupMenu when results are available and cache results
- * for future lookups in #lookupCache as an array of #OO.ui.MenuItemWidget objects.
- *
- * @abstract
- * @param {Mixed} data Response from server
- */
-OO.ui.LookupInputWidget.prototype.onLookupRequestDone = function () {
-	// Stub, implemented in subclass
 };
 
 /**
@@ -8736,6 +8800,117 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 };
 
 /**
+ * Dropdown menu of options.
+ *
+ * Dropdown menus provide a control for accessing a menu and compose a menu within the widget, which
+ * can be accessed using the #getMenu method.
+ *
+ * Use with OO.ui.MenuItemWidget.
+ *
+ * @class
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.IconElement
+ * @mixins OO.ui.IndicatorElement
+ * @mixins OO.ui.LabelElement
+ * @mixins OO.ui.TitledElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {Object} [menu] Configuration options to pass to menu widget
+ */
+OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
+	// Configuration initialization
+	config = $.extend( { indicator: 'down' }, config );
+
+	// Parent constructor
+	OO.ui.DropdownWidget.super.call( this, config );
+
+	// Mixin constructors
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$label } ) );
+
+	// Properties
+	this.menu = new OO.ui.MenuWidget( $.extend( { $: this.$, widget: this }, config.menu ) );
+	this.$handle = this.$( '<span>' );
+
+	// Events
+	this.$element.on( { click: this.onClick.bind( this ) } );
+	this.menu.connect( this, { select: 'onMenuSelect' } );
+
+	// Initialization
+	this.$handle
+		.addClass( 'oo-ui-dropdownWidget-handle' )
+		.append( this.$icon, this.$label, this.$indicator );
+	this.$element
+		.addClass( 'oo-ui-dropdownWidget' )
+		.append( this.$handle, this.menu.$element );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.DropdownWidget, OO.ui.Widget );
+OO.mixinClass( OO.ui.DropdownWidget, OO.ui.IconElement );
+OO.mixinClass( OO.ui.DropdownWidget, OO.ui.IndicatorElement );
+OO.mixinClass( OO.ui.DropdownWidget, OO.ui.LabelElement );
+OO.mixinClass( OO.ui.DropdownWidget, OO.ui.TitledElement );
+
+/* Methods */
+
+/**
+ * Get the menu.
+ *
+ * @return {OO.ui.MenuWidget} Menu of widget
+ */
+OO.ui.DropdownWidget.prototype.getMenu = function () {
+	return this.menu;
+};
+
+/**
+ * Handles menu select events.
+ *
+ * @param {OO.ui.MenuItemWidget} item Selected menu item
+ */
+OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
+	var selectedLabel;
+
+	if ( !item ) {
+		return;
+	}
+
+	selectedLabel = item.getLabel();
+
+	// If the label is a DOM element, clone it, because setLabel will append() it
+	if ( selectedLabel instanceof jQuery ) {
+		selectedLabel = selectedLabel.clone();
+	}
+
+	this.setLabel( selectedLabel );
+};
+
+/**
+ * Handles mouse click events.
+ *
+ * @param {jQuery.Event} e Mouse click event
+ */
+OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
+	// Skip clicks within the menu
+	if ( $.contains( this.menu.$element[0], e.target ) ) {
+		return;
+	}
+
+	if ( !this.isDisabled() ) {
+		if ( this.menu.isVisible() ) {
+			this.menu.toggle( false );
+		} else {
+			this.menu.toggle( true );
+		}
+	}
+	return false;
+};
+
+/**
  * Icon widget.
  *
  * See OO.ui.IconElement for more information.
@@ -8810,117 +8985,6 @@ OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.TitledElement );
 /* Static Properties */
 
 OO.ui.IndicatorWidget.static.tagName = 'span';
-
-/**
- * Inline menu of options.
- *
- * Inline menus provide a control for accessing a menu and compose a menu within the widget, which
- * can be accessed using the #getMenu method.
- *
- * Use with OO.ui.MenuItemWidget.
- *
- * @class
- * @extends OO.ui.Widget
- * @mixins OO.ui.IconElement
- * @mixins OO.ui.IndicatorElement
- * @mixins OO.ui.LabelElement
- * @mixins OO.ui.TitledElement
- *
- * @constructor
- * @param {Object} [config] Configuration options
- * @cfg {Object} [menu] Configuration options to pass to menu widget
- */
-OO.ui.InlineMenuWidget = function OoUiInlineMenuWidget( config ) {
-	// Configuration initialization
-	config = $.extend( { indicator: 'down' }, config );
-
-	// Parent constructor
-	OO.ui.InlineMenuWidget.super.call( this, config );
-
-	// Mixin constructors
-	OO.ui.IconElement.call( this, config );
-	OO.ui.IndicatorElement.call( this, config );
-	OO.ui.LabelElement.call( this, config );
-	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$label } ) );
-
-	// Properties
-	this.menu = new OO.ui.MenuWidget( $.extend( { $: this.$, widget: this }, config.menu ) );
-	this.$handle = this.$( '<span>' );
-
-	// Events
-	this.$element.on( { click: this.onClick.bind( this ) } );
-	this.menu.connect( this, { select: 'onMenuSelect' } );
-
-	// Initialization
-	this.$handle
-		.addClass( 'oo-ui-inlineMenuWidget-handle' )
-		.append( this.$icon, this.$label, this.$indicator );
-	this.$element
-		.addClass( 'oo-ui-inlineMenuWidget' )
-		.append( this.$handle, this.menu.$element );
-};
-
-/* Setup */
-
-OO.inheritClass( OO.ui.InlineMenuWidget, OO.ui.Widget );
-OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IconElement );
-OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IndicatorElement );
-OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.LabelElement );
-OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.TitledElement );
-
-/* Methods */
-
-/**
- * Get the menu.
- *
- * @return {OO.ui.MenuWidget} Menu of widget
- */
-OO.ui.InlineMenuWidget.prototype.getMenu = function () {
-	return this.menu;
-};
-
-/**
- * Handles menu select events.
- *
- * @param {OO.ui.MenuItemWidget} item Selected menu item
- */
-OO.ui.InlineMenuWidget.prototype.onMenuSelect = function ( item ) {
-	var selectedLabel;
-
-	if ( !item ) {
-		return;
-	}
-
-	selectedLabel = item.getLabel();
-
-	// If the label is a DOM element, clone it, because setLabel will append() it
-	if ( selectedLabel instanceof jQuery ) {
-		selectedLabel = selectedLabel.clone();
-	}
-
-	this.setLabel( selectedLabel );
-};
-
-/**
- * Handles mouse click events.
- *
- * @param {jQuery.Event} e Mouse click event
- */
-OO.ui.InlineMenuWidget.prototype.onClick = function ( e ) {
-	// Skip clicks within the menu
-	if ( $.contains( this.menu.$element[0], e.target ) ) {
-		return;
-	}
-
-	if ( !this.isDisabled() ) {
-		if ( this.menu.isVisible() ) {
-			this.menu.toggle( false );
-		} else {
-			this.menu.toggle( true );
-		}
-	}
-	return false;
-};
 
 /**
  * Base class for input widgets.
@@ -9126,9 +9190,9 @@ OO.ui.InputWidget.prototype.blur = function () {
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='button'] HTML tag `type` attribute, may be 'button', 'submit' or 'reset'
  * @cfg {boolean} [useInputTag=false] Whether to use `<input/>` rather than `<button/>`. Only useful
- *  if you need IE 6 support in a form with multiple buttons. By using this option, you sacrifice
- *  icons and indicators, as well as the ability to have non-plaintext label or a label different
- *  from the value.
+ *  if you need IE 6 support in a form with multiple buttons. If you use this option, icons and
+ *  indicators will not be displayed, it won't be possible to have a non-plaintext label, and it
+ *  won't be possible to set a value (which will internally become identical to the label).
  */
 OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	// Configuration initialization
