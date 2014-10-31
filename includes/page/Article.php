@@ -1248,16 +1248,12 @@ class Article implements Page {
 		wfRunHooks( 'Article::MissingArticleConditions', array( &$conds, $logTypes ) );
 
 		# Show delete and move logs
-		$member = $title->getNamespace() . ':' . $title->getDBkey();
-		// @todo: move optimization to showLogExtract()?
-		if ( BloomCache::get( 'main' )->check( wfWikiId(), 'TitleHasLogs', $member ) ) {
-			LogEventsList::showLogExtract( $outputPage, $logTypes, $title, '',
-				array( 'lim' => 10,
-					'conds' => $conds,
-					'showIfEmpty' => false,
-					'msgKey' => array( 'moveddeleted-notice' ) )
-			);
-		}
+		LogEventsList::showLogExtract( $outputPage, $logTypes, $title, '',
+			array( 'lim' => 10,
+				'conds' => $conds,
+				'showIfEmpty' => false,
+				'msgKey' => array( 'moveddeleted-notice' ) )
+		);
 
 		if ( !$this->mPage->hasViewableContent() && $wgSend404Code && !$validUserPage ) {
 			// If there's no backing content, send a 404 Not Found
