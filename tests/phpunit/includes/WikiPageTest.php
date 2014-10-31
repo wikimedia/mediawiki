@@ -55,8 +55,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @param Title $title
-	 * @param string $model
+	 * @param Title|string $title
+	 * @param string|null $model
 	 * @return WikiPage
 	 */
 	protected function newPage( $title, $model = null ) {
