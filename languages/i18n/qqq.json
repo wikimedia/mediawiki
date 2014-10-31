@@ -1852,7 +1852,7 @@
 	"pubmedurl": "{{notranslate}}\nParameters:\n* $1 - Pubmed number\nSee also:\n* {{msg-mw|Rfcurl}}",
 	"specialloguserlabel": "Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions ''performed'' by the specified user.  \"Carried out\" and \"done\" are possible alternatives for \"performed\".",
 	"speciallogtitlelabel": "Used in [[Special:Log]] as a label for an input field with which the log can be filtered.  This filter selects for pages or users on which a log action was performed.",
-	"log": "{{doc-special|Log}}",
+	"log": "{{doc-special|Log}}\n{{Identical|Log}}",
 	"all-logs-page": "{{doc-logpage}}\nTitle of [[Special:Log]].",
 	"alllogstext": "Header of [[Special:Log]]",
 	"logempty": "Used as warning when there are no items to show.",

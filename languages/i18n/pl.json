@@ -923,7 +923,7 @@
 	"powersearch-remember": "Zapamiętaj wybór dla kolejnych wyszukiwań",
 	"search-external": "Wyszukiwanie zewnętrzne",
 	"searchdisabled": "Wyszukiwanie w {{GRAMMAR:MS.lp|{{SITENAME}}}} zostało wyłączone.\nW międzyczasie możesz skorzystać z wyszukiwania Google.\nJednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google nieaktualne.",
-	"search-error": "Wystąpił błąd podczas wyszukiwania:$1",
+	"search-error": "Wystąpił błąd podczas wyszukiwania: $1",
 	"preferences": "Preferencje",
 	"mypreferences": "Preferencje",
 	"prefs-edits": "Liczba edycji:",
