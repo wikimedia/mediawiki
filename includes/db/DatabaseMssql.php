@@ -1124,7 +1124,7 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * @param string $s
+	 * @param string|Blob $s
 	 * @return string
 	 */
 	public function addQuotes( $s ) {
