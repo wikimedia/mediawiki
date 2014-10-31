@@ -207,6 +207,7 @@ class HTMLForm extends ContextSource {
 		'table',
 		'div',
 		'raw',
+		'inline',
 	);
 
 	/**
