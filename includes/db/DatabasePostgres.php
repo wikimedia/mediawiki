@@ -1495,12 +1495,14 @@ SQL;
 	 * @return Blob
 	 */
 	function encodeBlob( $b ) {
-		return new Blob( pg_escape_bytea( $this->mConn, $b ) );
+		return new PostgresBlob( pg_escape_bytea( $b ) );
 	}
 
 	function decodeBlob( $b ) {
-		if ( $b instanceof Blob ) {
+		if ( $b instanceof PostgresBlob ) {
 			$b = $b->fetch();
+		} elseif ( $b instanceof Blob ) {
+			return $b->fetch();
 		}
 
 		return pg_unescape_bytea( $b );
@@ -1520,7 +1522,12 @@ SQL;
 		} elseif ( is_bool( $s ) ) {
 			return intval( $s );
 		} elseif ( $s instanceof Blob ) {
-			return "'" . $s->fetch( $s ) . "'";
+			if ( $s instanceof PostgresBlob ) {
+				$s = $s->fetch();
+			} else {
+				$s = pg_escape_bytea( $this->mConn, $s->fetch() );
+			}
+			return "'$s'";
 		}
 
 		return "'" . pg_escape_string( $this->mConn, $s ) . "'";
@@ -1692,3 +1699,5 @@ SQL;
 		return wfBaseConvert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
 	}
 } // end DatabasePostgres class
+
+class PostgresBlob extends Blob {}
