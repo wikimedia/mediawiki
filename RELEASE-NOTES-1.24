@@ -1,6 +1,15 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will no longer work with it enabled.
 
+
+== MediaWiki 1.24.1 ==
+
+This is a (XXX security and ??) maintenance release of the MediaWiki 1.24 branch.
+
+== Changes since 1.24.0 ==
+
+* (bug 72834) Make 1.24 branch directly installable under PostgreSQL.
+
 == MediaWiki 1.24 ==
 
 MediaWiki 1.24.0 is the stable branch and is recommended for use in production.
