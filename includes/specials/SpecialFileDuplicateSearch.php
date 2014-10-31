@@ -110,24 +110,39 @@ class FileDuplicateSearchPage extends QueryPage {
 		$out = $this->getOutput();
 
 		# Create the input form
+		$formFields = array(
+			'filename' => array(
+				'type' => 'text',
+				'name' => 'filename',
+				'label-message' => 'fileduplicatesearch-filename',
+				'id' => 'filename',
+				'size' => 50,
+				'value' => $this->filename
+			),
+			'title' => array(
+				'type' => 'hidden',
+				'name' => 'title',
+				'value' => $this->getPageTitle()->getPrefixedDBKey()
+			)
+		);
+		$htmlForm = new HTMLForm( $formFields, $this->getContext() );
+		$htmlForm->setSubmitCallback(
+			function() {
+				return false;
+			}
+		);
+		$htmlForm->setMethod( 'get' );
+		$htmlForm->setSubmitProgressive();
+
 		$out->addHTML(
-			Html::openElement(
-				'form',
-				array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => wfScript() )
-			) . "\n" .
-				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
-				Html::openElement( 'fieldset' ) . "\n" .
-				Html::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() ) . "\n" .
-				Xml::inputLabel(
-					$this->msg( 'fileduplicatesearch-filename' )->text(),
-					'filename',
-					'filename',
-					50,
-					$this->filename
-				) . "\n" .
-				Xml::submitButton( $this->msg( 'fileduplicatesearch-submit' )->text() ) . "\n" .
-				Html::closeElement( 'fieldset' ) . "\n" .
-				Html::closeElement( 'form' )
+			Html::openElement( 'fieldset' ) . "\n" .
+			Html::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() )
+		);
+
+		$htmlForm->show();
+
+		$out->addHtml(
+			Html::closeElement( 'fieldset' )
 		);
 
 		if ( $this->file ) {
