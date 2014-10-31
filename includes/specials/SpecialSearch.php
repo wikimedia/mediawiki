@@ -897,7 +897,7 @@ class SpecialSearch extends SpecialPage {
 		for ( $i = 0; $i < $numRows; $i += 4 ) {
 			$namespaceTables .= Xml::openElement(
 				'table',
-				array( 'cellpadding' => 0, 'cellspacing' => 0 )
+				array()
 			);
 
 			for ( $j = $i; $j < $i + 4 && $j < $numRows; $j++ ) {
