@@ -19,6 +19,16 @@
  * @file
  */
 
+if ( !interface_exists( '\Psr\Log\LoggerInterface' ) ) {
+	$message = <<<TXT
+MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging library</a> to be present. This library is not embedded directly in MediaWiki's git repository and must be installed separately by the end user.
+
+Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a> for help on installing the required components.
+TXT;
+	echo $message;
+	die( 1 );
+}
+
 /**
  * PSR-3 logging service.
  *
