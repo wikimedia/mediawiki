@@ -1896,7 +1896,7 @@
 	"invert": "Käänteinen valinta",
 	"tooltip-invert": "Valitse tämä kohta, jos haluat piilottaa muutokset sivuihin valitussa nimiavaruudessa (ja liittyviin nimiavaruuksiin, jos valittu)",
 	"namespace_association": "Liittyvä nimiavaruus",
-	"tooltip-namespace_association": "Valitse tämä kohta, jos haluat sisällyttää ne keskustelu- tai aihe-nimiavaruudet, jotka liittyvät valittuun nimiavaruuteen",
+	"tooltip-namespace_association": "Valitse tämä kohta, jos haluat haun sisältävän myös sen keskustelu- tai aihe-nimiavaruuden, joka liittyy valittuun nimiavaruuteen",
 	"blanknamespace": "(sivut)",
 	"contributions": "{{GENDER:$1|Käyttäjän}} muokkaukset",
 	"contributions-title": "Käyttäjän $1 muokkaukset",

@@ -7,6 +7,8 @@
 	},
 	"apihelp-main-param-action": "要執行的動作。",
 	"apihelp-main-param-format": "輸出的格式。",
+	"apihelp-login-param-name": "使用者名稱。",
+	"apihelp-userrights-param-user": "使用者名稱。",
 	"apihelp-format-example-generic": "格式化查詢結果為 $1 格式",
 	"apihelp-dbg-description": "使用 PHP 的 var_export() 格式輸出資料。",
 	"apihelp-dbgfm-description": "使用 PHP 的 var_export() 格式輸出資料 (使用 HTML 格式顯示)。",

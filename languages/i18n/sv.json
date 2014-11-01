@@ -1979,7 +1979,7 @@
 	"ipboptions": "2 timmar:2 hours,1 dygn:1 day,3 dygn:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite",
 	"ipbhidename": "Dölj användarnamnet från redigeringar och listor",
 	"ipbwatchuser": "Bevaka användarens användarsida och diskussionssida",
-	"ipb-disableusertalk": "Hindra användaren från att redigera sina egna diskussionssida under blockeringen",
+	"ipb-disableusertalk": "Hindra användaren från att redigera sin egen diskussionssida under blockeringen",
 	"ipb-change-block": "Återblockera användaren med de här inställningarna",
 	"ipb-confirm": "Bekräfta blockering",
 	"badipaddress": "Du har inte skrivit IP-adressen korrekt.",
