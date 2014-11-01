@@ -54,7 +54,7 @@ class LoginForm extends SpecialPage {
 	 * ignored.
 	 *
 	 * @since 1.24
-	 * @var string[]
+	 * @var null
 	 */
 	public static $validErrorMessages = array(
 		'exception-nologin-text',
@@ -111,6 +111,21 @@ class LoginForm extends SpecialPage {
 		$this->mOverrideRequest = $request;
 		// Override UseMediaWikiEverywhere to true, to force login and create form to use mw ui
 		$wgUseMediaWikiUIEverywhere = true;
+	}
+
+	/**
+	 * Returns an array of all valid error messages.
+	 *
+	 * @return array
+	 */
+	public static function getValidErrorMessages() {
+		static $messages = null;
+		if ( !$messages ) {
+			$messages = self::$validErrorMessages;
+			wfRunHooks( 'LoginFormValidErrorMessages', array( &$messages ) );
+		}
+
+		return $messages;
 	}
 
 	/**
@@ -175,13 +190,13 @@ class LoginForm extends SpecialPage {
 
 		// Only show valid error or warning messages.
 		if ( $entryError->exists()
-			&& in_array( $entryError->getKey(), self::$validErrorMessages )
+			&& in_array( $entryError->getKey(), self::getValidErrorMessages() )
 		) {
 			$this->mEntryErrorType = 'error';
 			$this->mEntryError = $entryError->rawParams( $loginreqlink )->escaped();
 
 		} elseif ( $entryWarning->exists()
-			&& in_array( $entryWarning->getKey(), self::$validErrorMessages )
+			&& in_array( $entryWarning->getKey(), self::getValidErrorMessages() )
 		) {
 			$this->mEntryErrorType = 'warning';
 			$this->mEntryError = $entryWarning->rawParams( $loginreqlink )->escaped();
