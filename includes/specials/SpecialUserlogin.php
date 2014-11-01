@@ -54,9 +54,22 @@ class LoginForm extends SpecialPage {
 	 * ignored.
 	 *
 	 * @since 1.24
+	 * @var null
+	 */
+
+	public static $validErrorMessages;
+
+	/**
+	 * Valid error and warning messages templates
+	 *
+	 * This are the hard-coded (usually used in core functions) error and warning
+	 * messages. Combined with the messages of the LoginFormValidErrorMessages hook
+	 * they represent all $validErrorMessages.
+	 *
+	 * @since 1.25
 	 * @var string[]
 	 */
-	public static $validErrorMessages = array(
+	public static $validErrorMessagesTemplate = array(
 		'exception-nologin-text',
 		'watchlistanontext',
 		'changeemail-no-info',
@@ -111,6 +124,21 @@ class LoginForm extends SpecialPage {
 		$this->mOverrideRequest = $request;
 		// Override UseMediaWikiEverywhere to true, to force login and create form to use mw ui
 		$wgUseMediaWikiUIEverywhere = true;
+	}
+
+	/**
+	 * Returns an array of all valid error messages.
+	 *
+	 * @return array
+	 */
+	public static function getValidErrorMessages() {
+		if ( !self::$validErrorMessages ) {
+			$messages = self::$validErrorMessagesTemplate;
+			wfRunHooks( 'LoginFormValidErrorMessages', array( &$messages ) );
+			self::$validErrorMessages = $messages;
+		}
+
+		return self::$validErrorMessages;
 	}
 
 	/**
@@ -175,13 +203,13 @@ class LoginForm extends SpecialPage {
 
 		// Only show valid error or warning messages.
 		if ( $entryError->exists()
-			&& in_array( $entryError->getKey(), self::$validErrorMessages )
+			&& in_array( $entryError->getKey(), self::getValidErrorMessages() )
 		) {
 			$this->mEntryErrorType = 'error';
 			$this->mEntryError = $entryError->rawParams( $loginreqlink )->escaped();
 
 		} elseif ( $entryWarning->exists()
-			&& in_array( $entryWarning->getKey(), self::$validErrorMessages )
+			&& in_array( $entryWarning->getKey(), self::getValidErrorMessages() )
 		) {
 			$this->mEntryErrorType = 'warning';
 			$this->mEntryError = $entryWarning->rawParams( $loginreqlink )->escaped();
