@@ -1807,6 +1807,9 @@ class Article implements Page {
 			$loglink = '[[Special:Log/delete|' . wfMessage( 'deletionlog' )->text() . ']]';
 
 			$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
+
+			wfRunHooks( 'ArticleDeleteAfter', array( $this->getTitle(), $outputPage ) );
+
 			$outputPage->returnToMain( false );
 		} else {
 			$outputPage->setPageTitle(

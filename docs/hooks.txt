@@ -528,6 +528,10 @@ $error: if the deletion was prohibited, the (raw HTML) error message to display
 $status: Status object, modify this to throw an error. Overridden by $error
   (added in 1.20)
 
+'ArticleDeleteAfter': Output after an article is deleted.
+$title: Title of the article that has been deleted.
+$outputPage: OutputPage that can be used to append the output.
+
 'ArticleDeleteComplete': After an article is deleted.
 $wikiPage: the WikiPage that was deleted
 $user: the user that deleted the article
