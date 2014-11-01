@@ -114,6 +114,18 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
+	 * Returns an array of all valid error messages.
+	 *
+	 * @return array
+	 */
+	public static function getValidErrorMessages() {
+		$messages = self::$validErrorMessages;
+		wfRunHooks( 'ValidErrorMessages', array( &$messages ) );
+
+		return $messages;
+	}
+
+	/**
 	 * Loader
 	 */
 	function load() {
@@ -175,13 +187,13 @@ class LoginForm extends SpecialPage {
 
 		// Only show valid error or warning messages.
 		if ( $entryError->exists()
-			&& in_array( $entryError->getKey(), self::$validErrorMessages )
+			&& in_array( $entryError->getKey(), self::getValidErrorMessages() )
 		) {
 			$this->mEntryErrorType = 'error';
 			$this->mEntryError = $entryError->rawParams( $loginreqlink )->escaped();
 
 		} elseif ( $entryWarning->exists()
-			&& in_array( $entryWarning->getKey(), self::$validErrorMessages )
+			&& in_array( $entryWarning->getKey(), self::getValidErrorMessages() )
 		) {
 			$this->mEntryErrorType = 'warning';
 			$this->mEntryError = $entryWarning->rawParams( $loginreqlink )->escaped();
