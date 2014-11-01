@@ -25,8 +25,9 @@
  * 'exception-nologin' as a title and 'exception-nologin-text' for the message.
  *
  * @note In order for this exception to redirect, the error message passed to the
- * constructor has to be explicitly added to LoginForm::validErrorMessages. Otherwise,
- * the user will just be shown the message rather than redirected.
+ * constructor has to be explicitly added to LoginForm::validErrorMessages or with
+ * the LoginFormValidErrorMessages hook. Otherwise, the user will just be shown the message
+ * rather than redirected.
  *
  * @par Example:
  * @code
@@ -52,7 +53,8 @@
 class UserNotLoggedIn extends ErrorPageError {
 
 	/**
-	 * @note The value of the $reasonMsg parameter must be put into LoginForm::validErrorMessages
+	 * @note The value of the $reasonMsg parameter must be put into LoginForm::validErrorMessages or
+	 * set with the LoginFormValidErrorMessages Hook.
 	 * if you want the user to be automatically redirected to the login form.
 	 *
 	 * @param string $reasonMsg A message key containing the reason for the error.
@@ -77,7 +79,7 @@ class UserNotLoggedIn extends ErrorPageError {
 	public function report() {
 		// If an unsupported message is used, don't try redirecting to Special:Userlogin,
 		// since the message may not be compatible.
-		if ( !in_array( $this->msg, LoginForm::$validErrorMessages ) ) {
+		if ( !in_array( $this->msg, LoginForm::getValidErrorMessages() ) ) {
 			parent::report();
 		}
 
