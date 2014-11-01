@@ -46,8 +46,7 @@ class SkinApiTemplate extends BaseTemplate {
 
 		<?php $this->printTrail() ?>
 		</body></html>
-
-	<?php
+<?php
 	}
 
 	// Skip work and hooks for stuff we don't use
