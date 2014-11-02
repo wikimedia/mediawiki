@@ -643,6 +643,14 @@ class ParserTest {
 				$out = "$title\n$out";
 			}
 
+			if ( isset( $opts['showindicators'] ) ) {
+				$indicators = '';
+				foreach ( $output->getIndicators() as $id => $content ) {
+					$indicators .= "$id=$content\n";
+				}
+				$out = $indicators . $out;
+			}
+
 			if ( isset( $opts['ill'] ) ) {
 				$out = implode( ' ', $output->getLanguageLinks() );
 			} elseif ( isset( $opts['cat'] ) ) {
