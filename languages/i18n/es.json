@@ -118,7 +118,8 @@
 			"Amitie 10g",
 			"Eurodyne",
 			"Gleki",
-			"Jonathan rrr"
+			"Jonathan rrr",
+			"Paynekiller92"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1046,7 +1047,7 @@
 	"gender-female": "Femenino",
 	"prefs-help-gender": "Opcional: el software utiliza esta preferencia para dirigirse a ti con el género gramatical apropiado. Esta información es pública.",
 	"email": "Correo electrónico",
-	"prefs-help-realname": "El nombre real es opcional. Si decides proporcionarlo, se usará para dar atribución a tu trabajo.",
+	"prefs-help-realname": "El nombre real es opcional. Si lo proporcionas, se usará para dar atribución a tu trabajo.",
 	"prefs-help-email": "La dirección de correo electrónico es opcional, pero es necesaria para el restablecimiento de tu contraseña, en caso de que la olvides.",
 	"prefs-help-email-others": "También puedes permitir que otros usuarios te contacten por correo a través de un enlace en tus páginas de usuario y de discusión.\nTu dirección de correo no se revela cuando otros usuarios te contactan.",
 	"prefs-help-email-required": "Es necesario proporcionar una dirección de correo electrónico.",

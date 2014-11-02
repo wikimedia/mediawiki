@@ -1337,7 +1337,7 @@
 	"action-userrights": "{{Doc-action|userrights}}\n\nThis action allows editing of all of the \"user rights\", not just the rights of the group \"all users\".",
 	"action-userrights-interwiki": "{{Doc-action|userrights-interwiki}}",
 	"action-siteadmin": "{{Doc-action|siteadmin}}",
-	"action-sendemail": "{{doc-action|sendemail}}",
+	"action-sendemail": "{{doc-action|sendemail}}\n{{Identical|E-mail}}",
 	"action-editmywatchlist": "{{doc-action|editmywatchlist}}\n{{Identical|Edit your watchlist}}",
 	"action-viewmywatchlist": "{{doc-action|viewmywatchlist}}\n{{Identical|View your watchlist}}",
 	"action-viewmyprivateinfo": "{{doc-action|viewmyprivateinfo}}",

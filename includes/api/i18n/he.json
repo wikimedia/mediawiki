@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Guycn2"
+			"Guycn2",
+			"Amire80"
 		]
 	},
 	"apihelp-main-param-action": "איזו פעולה לבצע.",
@@ -11,7 +12,7 @@
 	"apihelp-query+categories-param-limit": "כמה קטגוריות להחזיר.",
 	"apihelp-query+tokens-example-types": "אחזור אסימון של רשימת המעקב ואסימון של ניטור",
 	"apihelp-xml-param-xslt": "אם צוין, מוסיף &lt;xslt&gt; כגליון סגנונות. זה צריך להיות דף ויקי במרחב השם מדיה ויקי ששמו מסתיים ב\".xsl\".",
-	"api-help-title": "עזרה ב־MediaWiki API",
+	"api-help-title": "עזרה של MediaWiki API",
 	"api-help-lead": "זהו דף תיעוד של API שנוצר באופן אוטומטי.\n\nתיעוד ודוגמאות: https://www.mediawiki.org/wiki/API",
 	"api-help-main-header": "יחידה ראשית",
 	"api-help-flag-deprecated": "יחידה זו אינה מומלצת לשימוש.",
@@ -23,12 +24,12 @@
 	"api-help-param-required": "פרמטר זה נדרש.",
 	"api-help-param-list": "{{PLURAL:$1|1=ערך אחד|2=ערכים (מופרדים באמצעות \"{{!}}\")}}: $2",
 	"api-help-param-limit": "מספר הפרמטרים לא יכול להיות גדול מ־$1.",
-	"api-help-param-limit2": "המספר המירבי המותר הוא $1 ($2 עבור בוטים).",
+	"api-help-param-limit2": "המספר המרבי המותר הוא $1 (עבור בוטים – $2).",
 	"api-help-param-integer-min": "ה{{PLURAL:$1|1=ערך|2=ערכים}} לא יכולים להיות קטנים מ־$2.",
 	"api-help-param-integer-max": "ה{{PLURAL:$1|1=ערך לא יכול להיות גדול|2=ערכים לא יכולים להיות גדולים}} מ־$3.",
 	"api-help-param-integer-minmax": "ה{{PLURAL:$1|1=ערך חייב|2=ערכים חייבים}} להיות בין $2 ל־$3.",
 	"api-help-param-multi-separate": "הפרדה בין ערכים נעשית באמצעות \"|\".",
-	"api-help-param-multi-max": "מספר הערכים המירבי הוא {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} עבור בוטים).",
+	"api-help-param-multi-max": "מספר הערכים המרבי הוא {{PLURAL:$1|$1}} (עבור בוטים – {{PLURAL:$2|$2}}).",
 	"api-help-param-default": "ברירת מחדל: $1",
 	"api-help-param-default-empty": "ברירת מחדל: <span class=\"apihelp-empty\">(ריק)</span>",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(ללא תיאור)</span>",

@@ -234,6 +234,7 @@
 	"apihelp-protect-param-pageid": "Назнака на страница што се (од)заштитува. Не може да се користи заедно со $1title.",
 	"apihelp-protect-param-reason": "Причиина за (од)заштитување",
 	"apihelp-protect-example-protect": "Заштити страница",
+	"apihelp-purge-param-forcelinkupdate": "Поднови ги табелите со врски.",
 	"apihelp-purge-example-simple": "Превчитај ги „Главна страница“ и „Прилог“",
 	"apihelp-query-param-list": "Кои списоци да се набават.",
 	"apihelp-query-param-meta": "Кои метаподатоци да се набават.",

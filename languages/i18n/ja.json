@@ -3166,7 +3166,7 @@
 	"revdelete-uname-unhid": "利用者名の可視化",
 	"revdelete-restricted": "管理者に対する制限の適用",
 	"revdelete-unrestricted": "管理者に対する制限の除去",
-	"logentry-merge-merge": "$1 {{GENDER:$2|統合元}} と$3 を $4 に統合(改訂版を$5に掲載)",
+	"logentry-merge-merge": "$1{{GENDER:$2|統合元}} と$3を$4に統合(改訂版を$5に掲載)",
 	"logentry-move-move": "$1 がページ「$3」を「$4」に{{GENDER:$2|移動しました}}",
 	"logentry-move-move-noredirect": "$1 がページ「$3」を「$4」に、リダイレクトを残さずに{{GENDER:$2|移動しました}}",
 	"logentry-move-move_redir": "$1 がページ「$3」をリダイレクトの「$4」に{{GENDER:$2|移動しました}}",
