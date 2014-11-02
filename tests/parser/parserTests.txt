@@ -26,6 +26,7 @@
 # php           php-only test (not run by the parsoid parser unless
 #                 the test includes an html/parsoid section)
 # showtitle     make the first line the title
+# showindicators make the first lines the page status indicators
 # comment       run through Linker::formatComment() instead of main parser
 # local         format section links in edit comment text as local links
 # notoc         disable table of contents
@@ -18886,6 +18887,82 @@ this is not the the title
 !! html
 <span style="color: red;">s</span>creen
 <p>this is not the the title
+</p>
+!! end
+
+!! test
+Page status indicators: Empty name is invalid
+!! options
+showindicators
+!! wikitext
+<indicator name=" "></indicator>
+<indicator></indicator>
+!! html
+<p><span class="error"><strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.</span>
+<span class="error"><strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.</span>
+</p>
+!! end
+
+!! test
+Page status indicators: Weird syntaxes that are okay
+!! options
+showindicators
+!! wikitext
+<indicator name="empty" />
+<indicator name></indicator>
+!! html
+empty=
+name=
+<p><br />
+</p>
+!! end
+
+!! test
+Page status indicators: Torture test
+!! options
+showindicators
+!! wikitext
+<indicator name="01">hello world</indicator>
+<indicator name="02">[[Main Page]]</indicator>
+<indicator name="03">[[File:Foobar.jpg|25px|link=]]</indicator>
+<indicator name="04">[[File:Foobar.jpg|25px]]</indicator>
+<indicator name="05">* foo
+* bar</indicator>
+<indicator name="06"><nowiki>foo</nowiki></indicator>
+<indicator name="07"> Preformatted</indicator>
+<indicator name="08"><div>Broken tag</indicator>
+<indicator name="09">{| class=wikitable
+| cell
+|}</indicator>
+<indicator name="10">Two
+
+paragraphs</indicator>
+!! html
+01=hello world
+02=<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+03=<img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" />
+04=<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" /></a>
+05=<ul><li> foo</li>
+<li> bar</li></ul>
+
+06=foo
+07=<pre>Preformatted
+</pre>
+08=<div>Broken tag</div>
+
+09=<table class="wikitable">
+<tr>
+<td> cell
+</td></tr></table>
+
+10=<p>Two
+</p><p>paragraphs
+</p>
+<p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
 </p>
 !! end
 
