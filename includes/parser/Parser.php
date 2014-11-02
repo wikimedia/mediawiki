@@ -389,7 +389,7 @@ class Parser {
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy, $wgShowHostnames;
+		global $wgShowHostnames;
 		$fname = __METHOD__ . '-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -430,41 +430,6 @@ class Parser {
 		$text = $this->internalParse( $text );
 		wfRunHooks( 'ParserAfterParse', array( &$this, &$text, &$this->mStripState ) );
 
-		$text = $this->mStripState->unstripGeneral( $text );
-
-		# Clean up special characters, only run once, next-to-last before doBlockLevels
-		$fixtags = array(
-			# french spaces, last one Guillemet-left
-			# only if there is something before the space
-			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#160;',
-			# french spaces, Guillemet-right
-			'/(\\302\\253) /' => '\\1&#160;',
-			'/&#160;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, bug #11874.
-		);
-		$text = preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
-
-		$text = $this->doBlockLevels( $text, $linestart );
-
-		$this->replaceLinkHolders( $text );
-
-		/**
-		 * The input doesn't get language converted if
-		 * a) It's disabled
-		 * b) Content isn't converted
-		 * c) It's a conversion table
-		 * d) it is an interface message (which is in the user language)
-		 */
-		if ( !( $options->getDisableContentConversion()
-			|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) )
-		) {
-			if ( !$this->mOptions->getInterfaceMessage() ) {
-				# The position of the convert() call should not be changed. it
-				# assumes that the links are all replaced and the only thing left
-				# is the <nowiki> mark.
-				$text = $this->getConverterLanguage()->convert( $text );
-			}
-		}
-
 		/**
 		 * A converted title will be provided in the output object if title and
 		 * content conversion are enabled, the article text does not contain
@@ -486,44 +451,7 @@ class Parser {
 			}
 		}
 
-		$text = $this->mStripState->unstripNoWiki( $text );
-
-		wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
-
-		$text = $this->replaceTransparentTags( $text );
-		$text = $this->mStripState->unstripGeneral( $text );
-
-		$text = Sanitizer::normalizeCharReferences( $text );
-
-		if ( ( $wgUseTidy && $this->mOptions->getTidy() ) || $wgAlwaysUseTidy ) {
-			$text = MWTidy::tidy( $text );
-		} else {
-			# attempt to sanitize at least some nesting problems
-			# (bug #2702 and quite a few others)
-			$tidyregs = array(
-				# ''Something [http://www.cool.com cool''] -->
-				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>
-				'/(<([bi])>)(<([bi])>)?([^<]*)(<\/?a[^<]*>)([^<]*)(<\/\\4>)?(<\/\\2>)/' =>
-				'\\1\\3\\5\\8\\9\\6\\1\\3\\7\\8\\9',
-				# fix up an anchor inside another anchor, only
-				# at least for a single single nested link (bug 3695)
-				'/(<a[^>]+>)([^<]*)(<a[^>]+>[^<]*)<\/a>(.*)<\/a>/' =>
-				'\\1\\2</a>\\3</a>\\1\\4</a>',
-				# fix div inside inline elements- doBlockLevels won't wrap a line which
-				# contains a div, so fix it up here; replace
-				# div with escaped text
-				'/(<([aib]) [^>]+>)([^<]*)(<div([^>]*)>)(.*)(<\/div>)([^<]*)(<\/\\2>)/' =>
-				'\\1\\3&lt;div\\5&gt;\\6&lt;/div&gt;\\8\\9',
-				# remove empty italic or bold tag pairs, some
-				# introduced by rules above
-				'/<([bi])><\/\\1>/' => '',
-			);
-
-			$text = preg_replace(
-				array_keys( $tidyregs ),
-				array_values( $tidyregs ),
-				$text );
-		}
+		$text = $this->internalParseHalfParsed( $text, true, $linestart );
 
 		if ( $this->mExpensiveFunctionCount > $this->mOptions->getExpensiveParserFunctionLimit() ) {
 			$this->limitationWarn( 'expensive-parserfunction',
@@ -531,8 +459,6 @@ class Parser {
 				$this->mOptions->getExpensiveParserFunctionLimit()
 			);
 		}
-
-		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
 
 		# Information on include size limits, for the benefit of users who try to skirt them
 		if ( $this->mOptions->getEnableLimitReport() ) {
@@ -621,21 +547,52 @@ class Parser {
 	}
 
 	/**
-	 * Recursive parser entry point that can be called from an extension tag
-	 * hook.
+	 * Half-parse wikitext to half-parsed HTML. This recursive parser entry point can be called from
+	 * an extension tag hook.
+	 *
+	 * The output of this function IS NOT SAFE PARSED HTML; it is "half-parsed" instead, which means
+	 * that lists and links have not been fully parsed yet, and strip markers are still present.
+	 *
+	 * Use recursiveTagParseFully() to fully parse wikitext to output-safe HTML.
+	 *
+	 * Use this function if you're a parser tag hook and you want to parse wikitext before or after
+	 * applying additional transformations, and you intend to *return the result as hook output*,
+	 * which will cause it to go through the rest of parsing process automatically.
 	 *
 	 * If $frame is not provided, then template variables (e.g., {{{1}}}) within $text are not expanded
 	 *
 	 * @param string $text Text extension wants to have parsed
 	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
-	 *
-	 * @return string
+	 * @return string UNSAFE half-parsed HTML
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
 		wfProfileIn( __METHOD__ );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->internalParse( $text, false, $frame );
+		wfProfileOut( __METHOD__ );
+		return $text;
+	}
+
+	/**
+	 * Fully parse wikitext to fully parsed HTML. This recursive parser entry point can be called from
+	 * an extension tag hook.
+	 *
+	 * The output of this function is fully-parsed HTML that is safe for output. If you're a parser
+	 * tag hook, you might want to use recursiveTagParse() instead.
+	 *
+	 * If $frame is not provided, then template variables (e.g., {{{1}}}) within $text are not expanded
+	 *
+	 * @since 1.25
+	 *
+	 * @param string $text Text extension wants to have parsed
+	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
+	 * @return string Fully parsed HTML
+	 */
+	public function recursiveTagParseFully( $text, $frame = false ) {
+		wfProfileIn( __METHOD__ );
+		$text = $this->recursiveTagParse( $text, $frame );
+		$text = $this->internalParseHalfParsed( $text, false );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -1227,7 +1184,7 @@ class Parser {
 	}
 
 	/**
-	 * Helper function for parse() that transforms wiki markup into
+	 * Helper function for parse() that transforms wiki markup into half-parsed
 	 * HTML. Only called for $mOutputType == self::OT_HTML.
 	 *
 	 * @private
@@ -1297,6 +1254,102 @@ class Parser {
 		$text = $this->formatHeadings( $text, $origText, $isMain );
 
 		wfProfileOut( __METHOD__ );
+		return $text;
+	}
+
+	/**
+	 * Helper function for parse() that transforms half-parsed HTML into fully parsed HTML.
+	 *
+	 * @private
+	 *
+	 * @param string $text
+	 * @param bool $isMain
+	 * @param bool $linestart
+	 * @return string
+	 */
+	private function internalParseHalfParsed( $text, $isMain = true, $linestart = true ) {
+		global $wgUseTidy, $wgAlwaysUseTidy;
+
+		$text = $this->mStripState->unstripGeneral( $text );
+
+		# Clean up special characters, only run once, next-to-last before doBlockLevels
+		$fixtags = array(
+			# french spaces, last one Guillemet-left
+			# only if there is something before the space
+			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#160;',
+			# french spaces, Guillemet-right
+			'/(\\302\\253) /' => '\\1&#160;',
+			'/&#160;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, bug #11874.
+		);
+		$text = preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
+
+		$text = $this->doBlockLevels( $text, $linestart );
+
+		$this->replaceLinkHolders( $text );
+
+		/**
+		 * The input doesn't get language converted if
+		 * a) It's disabled
+		 * b) Content isn't converted
+		 * c) It's a conversion table
+		 * d) it is an interface message (which is in the user language)
+		 */
+		if ( !( $this->mOptions->getDisableContentConversion()
+			|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) )
+		) {
+			if ( !$this->mOptions->getInterfaceMessage() ) {
+				# The position of the convert() call should not be changed. it
+				# assumes that the links are all replaced and the only thing left
+				# is the <nowiki> mark.
+				$text = $this->getConverterLanguage()->convert( $text );
+			}
+		}
+
+		$text = $this->mStripState->unstripNoWiki( $text );
+
+		if ( $isMain ) {
+			wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
+		}
+
+		$text = $this->replaceTransparentTags( $text );
+		$text = $this->mStripState->unstripGeneral( $text );
+
+		$text = Sanitizer::normalizeCharReferences( $text );
+
+		if ( ( $wgUseTidy && $this->mOptions->getTidy() ) || $wgAlwaysUseTidy ) {
+			$text = MWTidy::tidy( $text );
+		} else {
+			# attempt to sanitize at least some nesting problems
+			# (bug #2702 and quite a few others)
+			$tidyregs = array(
+				# ''Something [http://www.cool.com cool''] -->
+				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>
+				'/(<([bi])>)(<([bi])>)?([^<]*)(<\/?a[^<]*>)([^<]*)(<\/\\4>)?(<\/\\2>)/' =>
+				'\\1\\3\\5\\8\\9\\6\\1\\3\\7\\8\\9',
+				# fix up an anchor inside another anchor, only
+				# at least for a single single nested link (bug 3695)
+				'/(<a[^>]+>)([^<]*)(<a[^>]+>[^<]*)<\/a>(.*)<\/a>/' =>
+				'\\1\\2</a>\\3</a>\\1\\4</a>',
+				# fix div inside inline elements- doBlockLevels won't wrap a line which
+				# contains a div, so fix it up here; replace
+				# div with escaped text
+				'/(<([aib]) [^>]+>)([^<]*)(<div([^>]*)>)(.*)(<\/div>)([^<]*)(<\/\\2>)/' =>
+				'\\1\\3&lt;div\\5&gt;\\6&lt;/div&gt;\\8\\9',
+				# remove empty italic or bold tag pairs, some
+				# introduced by rules above
+				'/<([bi])><\/\\1>/' => '',
+			);
+
+			$text = preg_replace(
+				array_keys( $tidyregs ),
+				array_values( $tidyregs ),
+				$text );
+		}
+
+		if ( $isMain ) {
+			wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
+		}
+
 		return $text;
 	}
 
