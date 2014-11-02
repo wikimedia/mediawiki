@@ -267,17 +267,15 @@ class LinkHolderArray {
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 *
 	 * @param string $text
-	 * @return array Array of link CSS classes, indexed by PDBK.
 	 */
 	public function replace( &$text ) {
 		wfProfileIn( __METHOD__ );
 
-		/** @todo FIXME: replaceInternal doesn't return a value */
-		$colours = $this->replaceInternal( $text );
+		$this->replaceInternal( $text );
 		$this->replaceInterwiki( $text );
 
 		wfProfileOut( __METHOD__ );
-		return $colours;
+
 	}
 
 	/**
