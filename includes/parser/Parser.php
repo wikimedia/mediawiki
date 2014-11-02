@@ -4636,14 +4636,15 @@ class Parser {
 			# * <sup> and <sub> (bug 8393)
 			# * <i> (bug 26375)
 			# * <b> (r105284)
+			# * <bdi> (bug 72884)
 			# * <span dir="rtl"> and <span dir="ltr"> (bug 35167)
 			#
 			# We strip any parameter from accepted tags (second regex), except dir="rtl|ltr" from <span>,
 			# to allow setting directionality in toc items.
 			$tocline = preg_replace(
 				array(
-					'#<(?!/?(span|sup|sub|i|b)(?: [^>]*)?>).*?' . '>#',
-					'#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|i|b))(?: .*?)?' . '>#'
+					'#<(?!/?(span|sup|sub|bdi|i|b)(?: [^>]*)?>).*?' . '>#',
+					'#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|bdi|i|b))(?: .*?)?' . '>#'
 				),
 				array( '', '<$1>' ),
 				$safeHeadline
