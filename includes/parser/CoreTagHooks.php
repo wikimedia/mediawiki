@@ -141,7 +141,7 @@ class CoreTagHooks {
 
 		$parser->getOutput()->setIndicator(
 			trim( $attributes['name'] ),
-			$parser->recursiveTagParse( $content, $frame )
+			Parser::stripOuterParagraph( $parser->recursiveTagParseFully( $content, $frame ) )
 		);
 
 		return '';
