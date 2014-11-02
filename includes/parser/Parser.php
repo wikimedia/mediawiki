@@ -5317,11 +5317,9 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @param int $options
-	 *
-	 * @return array Array of link CSS classes, indexed by PDBK.
 	 */
 	public function replaceLinkHolders( &$text, $options = 0 ) {
-		return $this->mLinkHolders->replace( $text );
+		$this->mLinkHolders->replace( $text );
 	}
 
 	/**
