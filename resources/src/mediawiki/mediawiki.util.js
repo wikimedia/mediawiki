@@ -228,7 +228,7 @@
 		addPortletLink: function ( portlet, href, text, id, tooltip, accesskey, nextnode ) {
 			var $item, $link, $portlet, $ul;
 
-			// Check if there's atleast 3 arguments to prevent a TypeError
+			// Check if there's at least 3 arguments to prevent a TypeError
 			if ( arguments.length < 3 ) {
 				return null;
 			}
