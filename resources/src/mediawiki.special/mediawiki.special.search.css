@@ -106,9 +106,10 @@ fieldset#mw-searchoptions div#mw-search-togglebox input {
 fieldset#mw-searchoptions table {
 	float: left;
 	margin-right: 3em;
+	border-collapse: collapse;
 }
 fieldset#mw-searchoptions table td {
-	padding-right: 1em;
+	padding: 0 1em 0 0;
 	white-space: nowrap;
 }
 fieldset#mw-searchoptions div.divider {
