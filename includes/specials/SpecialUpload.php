@@ -732,7 +732,7 @@ class SpecialUpload extends SpecialPage {
 
 		return '<li>' .
 			wfMessage( 'file-exists-duplicate' )->numParams( count( $dupes ) )->parse() .
-			$gallery->toHtml() . "</li>\n";
+			$gallery->toHTML() . "</li>\n";
 	}
 
 	protected function getGroupName() {
