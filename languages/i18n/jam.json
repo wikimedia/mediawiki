@@ -5,7 +5,8 @@
 			"Ukabia",
 			"Yocahuna",
 			"គីមស៊្រុន",
-			"아라"
+			"아라",
+			"Chabi1"
 		]
 	},
 	"tog-underline": "Lingk andalainin",
@@ -490,6 +491,7 @@
 	"powersearch-ns": "Saach ina niemspies:",
 	"preferences": "Prefrens",
 	"mypreferences": "Mi prefrans",
+	"prefs-help-realname": "Riil niem apshanal. Ef yu giit, imaita yuuz az achribyuushan fi yu wok.",
 	"group-sysop": "Adminischrieta",
 	"grouppage-sysop": "{{ns:project}}:Adminischrieta",
 	"newuserlogpage": "Yuuza krieshan lag",
@@ -688,6 +690,7 @@
 	"tooltip-feed-atom": "Atom fiid fi dis piej",
 	"tooltip-t-contributions": "Vyuu di lis a kanchribyuushan a dis yuuza",
 	"tooltip-t-emailuser": "Sen e-miel tu dis yuuza",
+	"tooltip-t-info": "Muo infamieshan bout da piej ya",
 	"tooltip-t-upload": "Opluod fail",
 	"tooltip-t-specialpages": "Lis a aal peshal piej",
 	"tooltip-t-print": "Printobl voerjan a dis piej",

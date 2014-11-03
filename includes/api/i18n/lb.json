@@ -53,6 +53,7 @@
 	"apihelp-query+images-example-simple": "Eng Lëscht vun de Fichiere kréien déi op der [[Main Page|Haaptsäit]] benotzt ginn",
 	"apihelp-query+imageusage-example-simple": "Säite weisen déi [[:File:Albert Einstein Head.jpg]] benotzen",
 	"apihelp-query+langlinks-param-lang": "Nëmme Sproochlinke mat dësem Sproochcode zréckginn.",
+	"apihelp-query+protectedtitles-param-namespace": "Nëmmen Titelen aus dësen Nummraim opzielen.",
 	"apihelp-query+recentchanges-param-user": "Nëmmen Ännerunge vun dësem Benotzer opzielen.",
 	"apihelp-query+recentchanges-example-simple": "Rezent Ännerunge weisen",
 	"apihelp-query+revisions-example-last5": "Déi lescht 5 Versioune vun der \"Haaptsäit\" kréien",
