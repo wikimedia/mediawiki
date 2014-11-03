@@ -579,6 +579,7 @@
 	"apihelp-query+extlinks-param-protocol": "Protocol of the URL. If empty and $1query is set, the protocol is \"http\". Leave both this and $1query empty to list all external links.",
 	"apihelp-query+extlinks-param-query": "Search string without protocol. Useful for checking whether a certain page contains a certain external url.",
 	"apihelp-query+extlinks-param-expandurl": "Expand protocol-relative URLs with the canonical protocol.",
+	"apihelp-query+extlinks-param-namespace": "The page namespaces to enumerate.",
 	"apihelp-query+extlinks-example-simple": "Get a list of external links on the [[Main Page]]",
 
 	"apihelp-query+exturlusage-description": "Enumerate pages that contain a given URL.",
