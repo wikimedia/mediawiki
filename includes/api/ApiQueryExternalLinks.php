@@ -52,6 +52,9 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		if ( $this->getConfig()->get( 'UseExternallinksNamespaceDBField' ) ) {
+			$this->addWhereFld( 'el_from_namespace', $params['namespace'] );
+		}
 
 		$whereQuery = $this->prepareUrlQuerySearchString( $query, $protocol );
 
@@ -105,7 +108,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		$r = array(
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -124,6 +127,13 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			'query' => null,
 			'expandurl' => false,
 		);
+		if ( $this->getConfig()->get( 'UseExternallinksNamespaceDBField' ) ) {
+			$r['namespace'] = array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => 'namespace'
+			);
+		}
+		return $r;
 	}
 
 	protected function getExamplesMessages() {

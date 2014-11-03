@@ -60,7 +60,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$this->addWhere( 'page_id=el_from' );
 
 		$miser_ns = array();
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( 'UseExternallinksNamespaceDBField' ) ) {
+			$this->addWhereFld( 'el_from_namespace', $params['namespace'] );
+		} elseif ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$miser_ns = $params['namespace'];
 		} else {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
@@ -178,7 +180,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			'expandurl' => false,
 		);
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) &&
+			!$this->getConfig()->get( 'UseExternallinksNamespaceDBField' )
+		) {
 			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = array(
 				'api-help-param-limited-in-miser-mode',
 			);
