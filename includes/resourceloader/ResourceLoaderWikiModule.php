@@ -70,7 +70,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * In particular, it doesn't work for getting the content of JS and CSS pages. That functionality
 	 * will use the local DB irrespective of the return value of this method.
 	 *
-	 * @return DatabaseBase|null
+	 * @return IDatabase|null
 	 */
 	protected function getDB() {
 		return wfGetDB( DB_SLAVE );
