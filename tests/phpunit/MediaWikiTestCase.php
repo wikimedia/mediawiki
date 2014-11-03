@@ -223,6 +223,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->db->ignoreErrors( false );
 		}
 
+		\DeferredUpdates::clearPendingUpdates();
+
 		wfProfileOut( __METHOD__ );
 	}
 
