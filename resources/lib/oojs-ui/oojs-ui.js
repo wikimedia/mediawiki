@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (eee616d664)
+ * OOjs UI v0.1.0-pre (571f26d0ab)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-10-31T23:23:56Z
+ * Date: 2014-11-03T21:02:06Z
  */
 ( function ( OO ) {
 
@@ -9806,6 +9806,8 @@ OO.ui.ComboBoxWidget.prototype.onMenuChoose = function ( item ) {
  * Handle menu item change events.
  */
 OO.ui.ComboBoxWidget.prototype.onMenuItemsChange = function () {
+	var match = this.menu.getItemFromData( this.input.getValue() );
+	this.menu.selectItem( match );
 	this.$element.toggleClass( 'oo-ui-comboBoxWidget-empty', this.menu.isEmpty() );
 };
 
