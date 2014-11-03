@@ -481,3 +481,6 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
+[submodule "extensions/WikiGrok"]
+	path = extensions/WikiGrok
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiGrok.git
