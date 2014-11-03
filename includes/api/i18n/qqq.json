@@ -535,6 +535,7 @@
 	"apihelp-query+extlinks-param-protocol": "{{doc-apihelp-param|query+extlinks|protocol}}",
 	"apihelp-query+extlinks-param-query": "{{doc-apihelp-param|query+extlinks|query}}",
 	"apihelp-query+extlinks-param-expandurl": "{{doc-apihelp-param|query+extlinks|expandurl}}",
+	"apihelp-query+extlinks-param-namespace": "{{doc-apihelp-param|query+extlinks|namespace}}",
 	"apihelp-query+extlinks-example-simple": "{{doc-apihelp-example|query+extlinks}}",
 	"apihelp-query+exturlusage-description": "{{doc-apihelp-description|query+exturlusage}}",
 	"apihelp-query+exturlusage-param-prop": "{{doc-apihelp-param|query+exturlusage|prop}}",
