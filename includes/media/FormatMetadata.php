@@ -1648,15 +1648,19 @@ class FormatMetadata extends ContextSource {
 	 * @since 1.23
 	 */
 	protected function getExtendedMetadataFromFile( File $file ) {
+		wfProfileIn( __METHOD__ );
+
 		// If this is a remote file accessed via an API request, we already
 		// have remote metadata so we just ignore any local one
 		if ( $file instanceof ForeignAPIFile ) {
 			// In case of error we pretend no metadata - this will get cached.
 			// Might or might not be a good idea.
-			return $file->getExtendedMetadata() ?: array();
-		}
+			$result = $this->cleanWrapperArrayValues( $file->getExtendedMetadata() ) ?: array();
 
-		wfProfileIn( __METHOD__ );
+			wfProfileOut( __METHOD__ );
+
+			return $result;
+		}
 
 		$uploadDate = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
 
@@ -1696,9 +1700,31 @@ class FormatMetadata extends ContextSource {
 			}
 		}
 
+		$result = $this->cleanWrapperArrayValues( $fileMetadata );
+
 		wfProfileOut( __METHOD__ );
 
-		return $fileMetadata;
+		return $result;
+	}
+
+	/**
+	 * Flattens metadata values that are arrays wrapping a single value, artifacts from EXIF
+	 *
+	 * @param array $metadata Metadata coming from getExtendedMetadataFromFile
+	 * @return array Cleaned metadata
+	 * @since  1.25
+	 */
+	protected function cleanWrapperArrayValues( $metadata ) {
+		foreach ( $metadata as $key => &$val ) {
+			if ( isset( $val['value'] )
+				&& is_array( $val['value'] )
+				&& count( $val['value'] ) == 1
+				&& isset( $val['value']['_'] ) ) {
+				$val['value'] = $val['value']['_'];
+			}
+		}
+
+		return $metadata;
 	}
 
 	/**
