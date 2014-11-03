@@ -59,7 +59,7 @@ abstract class ImageQueryPage extends QueryPage {
 				}
 			}
 
-			$out->addHTML( $gallery->toHtml() );
+			$out->addHTML( $gallery->toHTML() );
 		}
 	}
 
