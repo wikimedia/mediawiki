@@ -634,7 +634,15 @@ abstract class File {
 			return false;
 		}
 
-		return $handler->getCommonMetaArray( $this );
+		$metaArray = $handler->getCommonMetaArray( $this );
+
+		foreach ( $metaArray as &$val ) {
+			if ( is_array( $val ) && count( $val ) == 1 ) {
+				$val = array_pop( $val );
+			}
+		}
+
+		return $metaArray;
 	}
 
 	/**
