@@ -16,6 +16,9 @@ production.
   validity must be checked by passing the user-supplied token to
   User::matchEditToken rather than by testing for equality with a
   newly-generated token.
+* (bug 72951) The UserGetLanguageObject hook may be passed any IContextSource
+  for its $context parameter. Formerly it was documented as receiving a
+  RequestContext specifically.
 
 === New features in 1.25 ===
 * (bug 62861) Updated plural rules to CLDR 26. Includes incompatible changes
