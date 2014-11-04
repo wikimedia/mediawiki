@@ -1721,7 +1721,7 @@
 	"wlheader-enotif": "Đã bật thông báo qua thư điện tử.",
 	"wlheader-showupdated": "Các trang đã thay đổi kể từ lần cuối bạn xem chúng được in '''đậm'''",
 	"wlnote": "Dưới đây là {{PLURAL:$1|thay đổi duy nhất|<strong>$1</strong> thay đổi gần nhất}} trong {{PLURAL:$2|giờ|<strong>$2</strong> giờ}} qua, tính tới $3 lúc $4.",
-	"wlshowlast": "Hiển thị $1 giờ $2 ngày gần đây $3",
+	"wlshowlast": "Hiển thị $1 giờ $2 ngày gần đây",
 	"watchlist-options": "Tùy chọn về danh sách theo dõi",
 	"watching": "Đang theo dõi…",
 	"unwatching": "Đang ngừng theo dõi…",

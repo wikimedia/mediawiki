@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Reedy"
+		]
+	},
+	"apihelp-edit-param-contentformat": "Content serialisation format used for the input text.",
+	"apihelp-parse-param-contentformat": "Content serialisation format used for the input text. Only valid when used with $1text.",
+	"apihelp-query+revisions+base-param-contentformat": "Serialisation format used for $1difftotext and expected for output of content.",
+	"apihelp-php-description": "Output data in serialised PHP format.",
+	"apihelp-phpfm-description": "Output data in serialised PHP format (pretty-print in HTML)."
+}
