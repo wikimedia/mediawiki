@@ -74,14 +74,6 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Set the profiler to a specific profiler instance. Mostly for dumpHTML
-	 * @param Profiler $p
-	 */
-	final public static function setInstance( Profiler $p ) {
-		self::$__instance = $p;
-	}
-
-	/**
 	 * Return whether this a stub profiler
 	 *
 	 * @return bool
