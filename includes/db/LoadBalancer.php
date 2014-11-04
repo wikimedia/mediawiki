@@ -655,7 +655,9 @@ class LoadBalancer {
 			$conn = reset( $this->mConns['foreignFree'][$i] );
 			$oldWiki = key( $this->mConns['foreignFree'][$i] );
 
-			if ( !$conn->selectDB( $dbName ) ) {
+			// The empty string as a DB name means "don't care".
+			// DatabaseMysqlBase::open() already handle this on connection.
+			if ( $dbName !== '' && !$conn->selectDB( $dbName ) ) {
 				$this->mLastError = "Error selecting database $dbName on server " .
 					$conn->getServer() . " from client host " . wfHostname() . "\n";
 				$this->mErrorConnection = $conn;
