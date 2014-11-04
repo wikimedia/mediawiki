@@ -30,5 +30,6 @@
 	"ooui-dialog-message-reject": "Default label for the reject button of a message dialog\n{{Identical|Cancel}}",
 	"ooui-dialog-process-error": "Title for process dialog error description",
 	"ooui-dialog-process-dismiss": "Label for process dialog dismiss error button, visible when describing errors\n{{Identical|Dismiss}}",
-	"ooui-dialog-process-retry": "Label for process dialog retry action button, visible when describing recoverable errors\n{{Identical|Try again}}"
+	"ooui-dialog-process-retry": "Label for process dialog retry action button, visible when describing recoverable errors\n{{Identical|Try again}}",
+	"ooui-dialog-process-continue": "Label for process dialog retry action button, visible when describing only warnings\n{{Identical|Continue}}"
 }

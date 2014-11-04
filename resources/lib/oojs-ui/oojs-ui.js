@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (571f26d0ab)
+ * OOjs UI v0.1.0-pre (b38d485723)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-03T21:02:06Z
+ * Date: 2014-11-04T22:41:45Z
  */
 ( function ( OO ) {
 
@@ -123,8 +123,10 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
 		'ooui-dialog-process-error': 'Something went wrong',
 		// Label for process dialog dismiss error button, visible when describing errors
 		'ooui-dialog-process-dismiss': 'Dismiss',
-		// Label for process dialog retry action button, visible when describing recoverable errors
-		'ooui-dialog-process-retry': 'Try again'
+		// Label for process dialog retry action button, visible when describing only recoverable errors
+		'ooui-dialog-process-retry': 'Try again',
+		// Label for process dialog retry action button, visible when describing only warnings
+		'ooui-dialog-process-continue': 'Continue'
 	};
 
 	/**
@@ -202,7 +204,7 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
  * @param {Object} [config] Configuration options
  */
 OO.ui.PendingElement = function OoUiPendingElement( config ) {
-	// Config initialisation
+	// Configuration initialization
 	config = config || {};
 
 	// Properties
@@ -1257,7 +1259,7 @@ OO.ui.Element.prototype.offDOMEvent = function ( event, callback ) {
  * @param {Object} [config] Configuration options
  */
 OO.ui.Layout = function OoUiLayout( config ) {
-	// Initialize config
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -3166,6 +3168,7 @@ OO.ui.WindowManager.prototype.destroy = function () {
  * @param {string|jQuery} message Description of error
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [recoverable=true] Error is recoverable
+ * @cfg {boolean} [warning=false] Whether this error is a warning or not.
  */
 OO.ui.Error = function OoUiElement( message, config ) {
 	// Configuration initialization
@@ -3174,6 +3177,7 @@ OO.ui.Error = function OoUiElement( message, config ) {
 	// Properties
 	this.message = message instanceof jQuery ? message : String( message );
 	this.recoverable = config.recoverable === undefined || !!config.recoverable;
+	this.warning = !!config.warning;
 };
 
 /* Setup */
@@ -3189,6 +3193,15 @@ OO.initClass( OO.ui.Error );
  */
 OO.ui.Error.prototype.isRecoverable = function () {
 	return this.recoverable;
+};
+
+/**
+ * Check if the error is a warning
+ *
+ * @return {boolean} Error is warning
+ */
+OO.ui.Error.prototype.isWarning = function () {
+	return this.warning;
 };
 
 /**
@@ -3532,7 +3545,7 @@ OO.ui.ToolGroupFactory.static.getDefaultClasses = function () {
  * @param {Object} [config] Configuration options
  */
 OO.ui.Theme = function OoUiTheme( config ) {
-	// Initialize config
+	// Configuration initialization
 	config = config || {};
 };
 
@@ -3780,7 +3793,7 @@ OO.ui.ButtonElement.prototype.setActive = function ( value ) {
  * @cfg {jQuery} [$group] Container node, assigned to #$group, omit to use a generated `<div>`
  */
 OO.ui.GroupElement = function OoUiGroupElement( config ) {
-	// Configuration
+	// Configuration intialization
 	config = config || {};
 
 	// Properties
@@ -4018,7 +4031,7 @@ OO.ui.GroupElement.prototype.clearItems = function () {
  * @cfg {string} [iconTitle] Icon title text or a function that returns text
  */
 OO.ui.IconElement = function OoUiIconElement( config ) {
-	// Config intialization
+	// Configuration intialization
 	config = config || {};
 
 	// Properties
@@ -4175,7 +4188,7 @@ OO.ui.IconElement.prototype.getIcon = function () {
  * @cfg {string} [indicatorTitle] Indicator title text or a function that returns text
  */
 OO.ui.IndicatorElement = function OoUiIndicatorElement( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Properties
@@ -4322,7 +4335,7 @@ OO.ui.IndicatorElement.prototype.getIndicatorTitle = function () {
  * @cfg {boolean} [autoFitLabel=true] Whether to fit the label or not.
  */
 OO.ui.LabelElement = function OoUiLabelElement( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Properties
@@ -4492,7 +4505,7 @@ OO.ui.PopupElement.prototype.getPopup = function () {
  * @cfg {jQuery} [$flagged] Flagged node, assigned to #$flagged, omit to use #$element
  */
 OO.ui.FlaggedElement = function OoUiFlaggedElement( config ) {
-	// Config initialization
+	// Configuration initialization
 	config = config || {};
 
 	// Properties
@@ -4663,7 +4676,7 @@ OO.ui.FlaggedElement.prototype.setFlags = function ( flags ) {
  *    static property 'title' is used.
  */
 OO.ui.TitledElement = function OoUiTitledElement( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Properties
@@ -4958,7 +4971,7 @@ OO.ui.ClippableElement.prototype.clip = function () {
  * @cfg {string|Function} [title] Title text or a function that returns text
  */
 OO.ui.Tool = function OoUiTool( toolGroup, config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -6040,10 +6053,7 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 		$: this.$,
 		label: OO.ui.msg( 'ooui-dialog-process-dismiss' )
 	} );
-	this.retryButton = new OO.ui.ButtonWidget( {
-		$: this.$,
-		label: OO.ui.msg( 'ooui-dialog-process-retry' )
-	} );
+	this.retryButton = new OO.ui.ButtonWidget( { $: this.$ } );
 	this.$errors = this.$( '<div>' );
 	this.$errorsTitle = this.$( '<div>' );
 
@@ -6137,11 +6147,15 @@ OO.ui.ProcessDialog.prototype.fitLabel = function () {
 OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 	var i, len, $item,
 		items = [],
-		recoverable = true;
+		recoverable = true,
+		warning = false;
 
 	for ( i = 0, len = errors.length; i < len; i++ ) {
 		if ( !errors[i].isRecoverable() ) {
 			recoverable = false;
+		}
+		if ( errors[i].isWarning() ) {
+			warning = true;
 		}
 		$item = this.$( '<div>' )
 			.addClass( 'oo-ui-processDialog-error' )
@@ -6153,6 +6167,11 @@ OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 		this.retryButton.clearFlags().setFlags( this.currentAction.getFlags() );
 	} else {
 		this.currentAction.setDisabled( true );
+	}
+	if ( warning ) {
+		this.retryButton.setLabel( OO.ui.msg( 'ooui-dialog-process-continue' ) );
+	} else {
+		this.retryButton.setLabel( OO.ui.msg( 'ooui-dialog-process-retry' ) );
 	}
 	this.retryButton.toggle( recoverable );
 	this.$errorsTitle.after( this.$errorItems );
@@ -6182,7 +6201,7 @@ OO.ui.ProcessDialog.prototype.hideErrors = function () {
  * @cfg {boolean} [editable=false] Show controls for adding, removing and reordering pages
  */
 OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
-	// Initialize configuration
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -6619,7 +6638,7 @@ OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
  * @cfg {string} [help] Explanatory text shown as a '?' icon.
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
-	// Config initialization
+	// Configuration initialization
 	config = $.extend( { align: 'left' }, config );
 
 	// Parent constructor
@@ -6754,7 +6773,7 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
  * @cfg {OO.ui.FieldLayout[]} [items] Items to add
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
-	// Config initialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -6855,7 +6874,7 @@ OO.ui.FormLayout.prototype.onFormSubmit = function () {
 OO.ui.GridLayout = function OoUiGridLayout( panels, config ) {
 	var i, len, widths;
 
-	// Config initialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -7010,7 +7029,7 @@ OO.ui.GridLayout.prototype.getPanel = function ( x, y ) {
  * @cfg {boolean} [expanded=true] Expand size to fill the entire parent element
  */
 OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
-	// Config initialization
+	// Configuration initialization
 	config = $.extend( {
 		scrollable: false,
 		padded: false,
@@ -7165,7 +7184,7 @@ OO.ui.PageLayout.prototype.setActive = function ( active ) {
  * @cfg {OO.ui.Layout[]} [items] Layouts to add
  */
 OO.ui.StackLayout = function OoUiStackLayout( config ) {
-	// Config initialization
+	// Configuration initialization
 	config = $.extend( { scrollable: true }, config );
 
 	// Parent constructor
@@ -7539,6 +7558,9 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  * @cfg {boolean} [expanded=false] Whether the collapsible tools are expanded by default
  */
 OO.ui.ListToolGroup = function OoUiListToolGroup( toolbar, config ) {
+	// Configuration intialization
+	config = config || {};
+
 	// Properties (must be set before parent constructor, which calls #populate)
 	this.allowCollapse = config.allowCollapse;
 	this.forceExpand = config.forceExpand;
@@ -7873,9 +7895,10 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
  * @param {OO.ui.TextInputWidget} input Input widget
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$overlay] Overlay for dropdown; defaults to relative positioning
+ * @cfg {jQuery} [$container=input.$element] Element to render menu under
  */
 OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Properties
@@ -7939,8 +7962,8 @@ OO.ui.LookupInputWidget.prototype.onLookupInputMouseDown = function () {
 	// This way we allow the user to open the menu again after closing it with Esc
 	// by clicking in the input. Opening (and populating) the menu when initially
 	// clicking into the input is handled by the focus handler.
-	if ( this.lookupInputFocused ) {
-		this.openLookupMenu();
+	if ( this.lookupInputFocused && !this.lookupMenu.isVisible() ) {
+		this.populateLookupMenu();
 	}
 };
 
@@ -8357,6 +8380,9 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
  * @cfg {OO.ui.ButtonWidget[]} [items] Buttons to add
  */
 OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
 	// Parent constructor
 	OO.ui.ButtonGroupWidget.super.call( this, config );
 
@@ -8551,7 +8577,7 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
  * @cfg {boolean} [framed=false] Render button with a frame
  */
 OO.ui.ActionWidget = function OoUiActionWidget( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = $.extend( { framed: false }, config );
 
 	// Parent constructor
@@ -8924,7 +8950,7 @@ OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
  * @param {Object} [config] Configuration options
  */
 OO.ui.IconWidget = function OoUiIconWidget( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -8962,7 +8988,7 @@ OO.ui.IconWidget.static.tagName = 'span';
  * @param {Object} [config] Configuration options
  */
 OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -9251,7 +9277,11 @@ OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.FlaggedElement );
  * @return {jQuery} Input element
  */
 OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
+	// Configuration intialization
+	config = config || {};
+
 	var html = '<' + ( config.useInputTag ? 'input' : 'button' ) + ' type="' + config.type + '">';
+
 	return this.$( html );
 };
 
@@ -9634,7 +9664,11 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
  * @return {jQuery} Input element
  */
 OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
+	// Configuration initialization
+	config = config || {};
+
 	var type = config.type || 'text';
+
 	return config.multiline ? this.$( '<textarea>' ) : this.$( '<input type="' + type + '" />' );
 };
 
@@ -9839,7 +9873,7 @@ OO.ui.ComboBoxWidget.prototype.setDisabled = function ( disabled ) {
  * @param {Object} [config] Configuration options
  */
 OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -9897,7 +9931,7 @@ OO.ui.LabelWidget.prototype.onClick = function () {
  * @cfg {string} [rel] Value for `rel` attribute in DOM, allowing per-option styling
  */
 OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -10240,7 +10274,7 @@ OO.ui.MenuSectionItemWidget.static.highlightable = false;
  * @cfg {boolean} [movable] Allow modification from outline controls
  */
 OO.ui.OutlineItemWidget = function OoUiOutlineItemWidget( data, config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -10377,7 +10411,7 @@ OO.ui.OutlineItemWidget.prototype.setLevel = function ( level ) {
  * @cfg {boolean} [padded] Add padding to the body
  */
 OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -10650,7 +10684,7 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
  * @cfg {number} [progress=0] Initial progress
  */
 OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -10876,7 +10910,7 @@ OO.ui.SearchWidget.prototype.getResults = function () {
  * @cfg {OO.ui.OptionWidget[]} [items] Options to add
  */
 OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -11421,7 +11455,7 @@ OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
  * @cfg {boolean} [autoHide=true] Hide the menu when the mouse is pressed outside the menu
  */
 OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
@@ -11703,6 +11737,9 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
  * @cfg {jQuery} [$container=input.$element] Element to render menu under
  */
 OO.ui.TextInputMenuWidget = function OoUiTextInputMenuWidget( input, config ) {
+	// Configuration intialization
+	config = config || {};
+
 	// Parent constructor
 	OO.ui.TextInputMenuWidget.super.call( this, config );
 
@@ -11793,7 +11830,7 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
  * @param {Object} [config] Configuration options
  */
 OO.ui.OutlineWidget = function OoUiOutlineWidget( config ) {
-	// Config intialization
+	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor

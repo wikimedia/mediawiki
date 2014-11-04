@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (571f26d0ab)
+ * OOjs UI v0.1.0-pre (b38d485723)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-03T21:02:16Z
+ * Date: 2014-11-04T22:41:55Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -726,6 +726,9 @@
 .oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-tool-title {
 	color: #cccccc;
 }
+.oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-tool-title .oo-ui-tool-accel {
+	color: #dddddd;
+}
 .oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-iconElement-icon {
 	opacity: 0.2;
 }
@@ -1327,7 +1330,6 @@
 .oo-ui-textInputWidget input[readonly],
 .oo-ui-textInputWidget textarea[readonly] {
 	color: #777777;
-	text-shadow: 0 1px 1px #ffffff;
 }
 .oo-ui-textInputWidget.oo-ui-pendingElement-pending input,
 .oo-ui-textInputWidget.oo-ui-pendingElement-pending textarea {
