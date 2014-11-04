@@ -54,20 +54,20 @@
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label {
 			cursor: pointer;
-			margin: 0 .4em;
+			margin: 0 0.4em;
 
 			&::before {
-						content: '';
-						position: absolute;
-						left: 0;
-						display: inline-block;
-						border-radius: @borderRadius;
-						margin-right: 18px;
-						width: @checkboxSize;
-						height: @checkboxSize;
-						background-color: #fff;
-						border: 1px solid grey;
-					}
+				content: '';
+				position: absolute;
+				left: 0;
+				display: inline-block;
+				border-radius: @borderRadius;
+				margin-right: 18px;
+				width: @checkboxSize;
+				height: @checkboxSize;
+				background-color: #fff;
+				border: 1px solid grey;
+			}
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
