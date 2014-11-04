@@ -278,7 +278,6 @@ class WikiPage implements Page, IDBAccessObject {
 			'page_namespace',
 			'page_title',
 			'page_restrictions',
-			'page_counter',
 			'page_is_redirect',
 			'page_is_new',
 			'page_random',
@@ -346,8 +345,7 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Set the general counter, title etc data loaded from
-	 * some source.
+	 * Load the object from a given source by title
 	 *
 	 * @param object|string|int $from One of the following:
 	 *   - A DB query result object.
