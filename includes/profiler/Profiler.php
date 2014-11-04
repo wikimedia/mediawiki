@@ -159,6 +159,7 @@ abstract class Profiler {
 	 * @param Profiler $p
 	 */
 	final public static function setInstance( Profiler $p ) {
+		wfDeprecated( __METHOD__, '1.25' );
 		self::$__instance = $p;
 	}
 
