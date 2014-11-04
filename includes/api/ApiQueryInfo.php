@@ -70,6 +70,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $config->get( 'ContentHandlerUseDB' ) ) {
 			$pageSet->requestField( 'page_content_model' );
 		}
+		if ( $config->get( 'PageLanguageUseDB' ) ) {
+			$pageSet->requestField( 'page_lang' );
+		}
 	}
 
 	/**
