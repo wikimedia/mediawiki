@@ -79,7 +79,7 @@ abstract class ApiBase extends ContextSource {
 	// of arrays, with the first member being the 'tag' for the info and the
 	// remaining members being the values. In the help, this is formatted using
 	// apihelp-{$path}-paraminfo-{$tag}, which is passed $1 = count, $2 =
-	// comma-joined list of values.
+	// comma-joined list of values, $3 = module prefix.
 	const PARAM_HELP_MSG_INFO = 12;
 	/// @since 1.25
 	// When PARAM_DFLT is an array, this may be an array mapping those values
