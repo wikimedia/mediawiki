@@ -2667,6 +2667,8 @@ function wfShellExecDisabled() {
  * @param array $options Array of options:
  *   - duplicateStderr: Set this to true to duplicate stderr to stdout,
  *     including errors from limit.sh
+ *   - stdin: What to use as the  input for the command. If not given, current script's standard
+ *     input stream is passed. See documentation for proc_open() for valid values.
  *
  * @return string Collected stdout as a string
  */
@@ -2692,7 +2694,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	foreach ( $environ as $k => $v ) {
 		if ( wfIsWindows() ) {
 			/* Surrounding a set in quotes (method used by wfEscapeShellArg) makes the quotes themselves
-			 * appear in the environment variable, so we must use carat escaping as documented in
+			 * appear in the environment variable, so we must use caret escaping as documented in
 			 * http://technet.microsoft.com/en-us/library/cc723564.aspx
 			 * Note however that the quote isn't listed there, but is needed, and the parentheses
 			 * are listed there but doesn't appear to need it.
@@ -2750,8 +2752,14 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
 
+	if ( isset( $options['stdin'] ) ) {
+		$stdin = $options['stdin'];
+	} else {
+		$stdin = array( 'file', 'php://stdin', 'r' );
+	}
+
 	$desc = array(
-		0 => array( 'file', 'php://stdin', 'r' ),
+		0 => $stdin,
 		1 => array( 'pipe', 'w' ),
 		2 => array( 'file', 'php://stderr', 'w' ) );
 	if ( $useLogPipe ) {
