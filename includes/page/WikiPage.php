@@ -2142,6 +2142,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param array $options Array of options, following indexes are used:
 	 * - changed: boolean, whether the revision changed the content (default true)
 	 * - created: boolean, whether the revision created the page (default false)
+	 * - moved: boolean, whether the page was moved (default false)
 	 * - oldcountable: boolean or null (default null):
 	 *   - boolean: whether the page was counted as an article before that
 	 *     revision, only used in changed is true and created is false
@@ -2152,7 +2153,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 		wfProfileIn( __METHOD__ );
 
-		$options += array( 'changed' => true, 'created' => false, 'oldcountable' => null );
+		$options += array(
+			'changed' => true,
+			'created' => false,
+			'moved' => false,
+			'oldcountable' => null
+		);
 		$content = $revision->getContent();
 
 		// Parse the text
@@ -2201,7 +2207,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$title = $this->mTitle->getPrefixedDBkey();
 		$shortTitle = $this->mTitle->getDBkey();
 
-		if ( !$options['changed'] ) {
+		if ( !$options['changed'] && !$options['moved'] ) {
 			$good = 0;
 		} elseif ( $options['created'] ) {
 			$good = (int)$this->isCountable( $editInfo );
