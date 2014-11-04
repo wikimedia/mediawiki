@@ -119,6 +119,20 @@ class ApiEditPage extends ApiBase {
 		if ( !$titleObj->exists() ) {
 			$errors = array_merge( $errors, $titleObj->getUserPermissionsErrors( 'create', $user ) );
 		}
+
+		$titleProps = new TitleProperties(
+			$titleObj->getTitleValue(),
+			$contentHandler->getModelID()
+		);
+		$tpc = new TitlePermissionChecks( $titleProps, $user );
+		$status = $tpc->userCanEdit(); // redo this
+
+		if ( !$status->isGood() ) {
+			foreach ( $status->getErrorsArray() as $error ) {
+				$errors[] = $error;
+			}
+		}
+
 		if ( count( $errors ) ) {
 			$this->dieUsageMsg( $errors[0] );
 		}

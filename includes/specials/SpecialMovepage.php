@@ -65,7 +65,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 	public function execute( $par ) {
 		$this->checkReadOnly();
-
+wfDebugLog( "TPC", __METHOD__ . " doing move" );
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -86,9 +86,11 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$newTitleTextMain = $request->getText( 'wpNewTitleMain' );
 		$newTitleTextNs = $request->getInt( 'wpNewTitleNs', $this->oldTitle->getNamespace() );
+wfDebugLog( "TPC", __METHOD__ . "newTitleTextMain: $newTitleTextMain, newTitleTextNs: $newTitleTextNs" );
 		// Backwards compatibility for forms submitting here from other sources
 		// which is more common than it should be..
 		$newTitleText_bc = $request->getText( 'wpNewTitle' );
+wfDebugLog( "TPC", __METHOD__ . " newTitleText_bc: '$newTitleText_bc' - " . strlen( $newTitleText_bc ) );
 		$this->newTitle = strlen( $newTitleText_bc ) > 0
 			? Title::newFromText( $newTitleText_bc )
 			: Title::makeTitleSafe( $newTitleTextNs, $newTitleTextMain );
@@ -96,13 +98,14 @@ class MovePageForm extends UnlistedSpecialPage {
 		$user = $this->getUser();
 
 		# Check rights
+wfDebugLog( "TPC", __METHOD__ . " Checking rights" );
 		$permErrors = $this->oldTitle->getUserPermissionsErrors( 'move', $user );
 		if ( count( $permErrors ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			$user->spreadAnyEditBlock();
 			throw new PermissionsError( 'move', $permErrors );
 		}
-
+wfDebugLog( "TPC", __METHOD__ . " oldTitle checks pass" );
 		$def = !$request->wasPosted();
 
 		$this->reason = $request->getText( 'wpReason' );
@@ -482,7 +485,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 	function doSubmit() {
 		$user = $this->getUser();
-
+wfDebugLog( "TPC", __METHOD__ . " doing submit" );
 		if ( $user->pingLimiter( 'move' ) ) {
 			throw new ThrottledError;
 		}
@@ -509,6 +512,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		# Delete to make way if requested
+wfDebugLog( "TPC", "deleteAndMove: " . (int)$this->deleteAndMove );
 		if ( $this->deleteAndMove ) {
 			$permErrors = $nt->getUserPermissionsErrors( 'delete', $user );
 			if ( count( $permErrors ) ) {
@@ -547,10 +551,11 @@ class MovePageForm extends UnlistedSpecialPage {
 		} else {
 			$createRedirect = true;
 		}
-
+wfDebugLog( "TPC", "doing actual move" );
 		# Do the actual move.
 		$error = $ot->moveTo( $nt, true, $this->reason, $createRedirect );
 		if ( $error !== true ) {
+wfDebugLog( "TPC", "errors" );
 			$this->showForm( $error );
 
 			return;

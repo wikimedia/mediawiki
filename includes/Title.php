@@ -159,6 +159,9 @@ class Title {
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
 
+	/** @var TitleProperties A corresponding TitleProperties object */
+	private $mTitleProperties = null;
+
 	/** @var bool Would deleting this page be a big deletion? */
 	private $mIsBigDeletion = null;
 	// @}
@@ -892,6 +895,25 @@ class Title {
 	}
 
 	/**
+	 * Get a TitleValue object representing this Title.
+	 *
+	 * @note Not all valid Titles have a corresponding valid TitleValue
+	 * (e.g. TitleValues cannot represent page-local links that have a
+	 * fragment but no title text).
+	 *
+	 * @return TitleValue|null
+	 */
+	public function getTitleProperties() {
+		if ( $this->mTitleProperties === null ) {
+			$this->mTitleProperties = new TitleProperties(
+					$this->getTitleValue(),
+					$this->getContentModel()
+			);
+		}
+		return $this->mTitleProperties;
+	}
+
+	/**
 	 * Get the text form (spaces not underscores) of the main part
 	 *
 	 * @return string Main part of the title
@@ -973,7 +995,7 @@ class Title {
 	 * @return bool True if $this->getContentModel() == $id
 	 */
 	public function hasContentModel( $id ) {
-		return $this->getContentModel() == $id;
+		return $this->getTitleProperties()->hasContentModel( $id );
 	}
 
 	/**
@@ -1029,7 +1051,7 @@ class Title {
 	 * @return bool
 	 */
 	public function canTalk() {
-		return MWNamespace::canTalk( $this->mNamespace );
+		return $this->getTitleProperties()->canTalk();
 	}
 
 	/**
@@ -1039,7 +1061,7 @@ class Title {
 	 * @internal note -- uses hardcoded namespace index instead of constants
 	 */
 	public function canExist() {
-		return $this->mNamespace >= NS_MAIN;
+		return $this->getTitleProperties()->canExist();
 	}
 
 	/**
@@ -1057,7 +1079,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isSpecialPage() {
-		return $this->getNamespace() == NS_SPECIAL;
+		return $this->getTitleProperties()->isSpecialPage();
 	}
 
 	/**
@@ -1106,7 +1128,7 @@ class Title {
 	 * @since 1.19
 	 */
 	public function inNamespace( $ns ) {
-		return MWNamespace::equals( $this->getNamespace(), $ns );
+		return $this->getTitleProperties()->inNamespace( $ns );
 	}
 
 	/**
@@ -1121,14 +1143,7 @@ class Title {
 		if ( count( $namespaces ) > 0 && is_array( $namespaces[0] ) ) {
 			$namespaces = $namespaces[0];
 		}
-
-		foreach ( $namespaces as $ns ) {
-			if ( $this->inNamespace( $ns ) ) {
-				return true;
-			}
-		}
-
-		return false;
+		return $this->getTitleProperties()->inNamespaces( $namespaces );
 	}
 
 	/**
@@ -1145,7 +1160,7 @@ class Title {
 	 * @return bool
 	 */
 	public function hasSubjectNamespace( $ns ) {
-		return MWNamespace::subjectEquals( $this->getNamespace(), $ns );
+		return $this->getTitleProperties()->hasSubjectNamespace( $ns );
 	}
 
 	/**
@@ -1156,7 +1171,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isContentPage() {
-		return MWNamespace::isContent( $this->getNamespace() );
+		return $this->getTitleProperties()->isContentPage();
 	}
 
 	/**
@@ -1196,9 +1211,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isSubpage() {
-		return MWNamespace::hasSubpages( $this->mNamespace )
-			? strpos( $this->getText(), '/' ) !== false
-			: false;
+		return $this->getTitleProperties()->isSubpage();
 	}
 
 	/**
@@ -1207,10 +1220,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isConversionTable() {
-		// @todo ConversionTable should become a separate content model.
-
-		return $this->getNamespace() == NS_MEDIAWIKI &&
-			strpos( $this->getText(), 'Conversiontable/' ) === 0;
+		return $this->getTitleProperties()->isConversionTable();
 	}
 
 	/**
@@ -1219,7 +1229,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isWikitextPage() {
-		return $this->hasContentModel( CONTENT_MODEL_WIKITEXT );
+		return $this->getTitleProperties()->isWikitextPage();
 	}
 
 	/**
@@ -1254,9 +1264,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isCssJsSubpage() {
-		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
-					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
+		return $this->getTitleProperties()->isCssJsSubpage();
 	}
 
 	/**
@@ -1280,8 +1288,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isCssSubpage() {
-		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-			&& $this->hasContentModel( CONTENT_MODEL_CSS ) );
+		return $this->getTitleProperties()->isCssSubpage();
 	}
 
 	/**
@@ -1290,8 +1297,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isJsSubpage() {
-		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
+		return $this->getTitleProperties()->isJsSubpage();
 	}
 
 	/**
@@ -1300,7 +1306,7 @@ class Title {
 	 * @return bool
 	 */
 	public function isTalkPage() {
-		return MWNamespace::isTalk( $this->getNamespace() );
+		return $this->getTitleProperties()->isTalkPage();
 	}
 
 	/**
@@ -1943,56 +1949,21 @@ class Title {
 			return $errors;
 		}
 
-		if ( $action == 'create' ) {
-			if (
-				( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
-				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) )
-			) {
-				$errors[] = $user->isAnon() ? array( 'nocreatetext' ) : array( 'nocreate-loggedin' );
-			}
-		} elseif ( $action == 'move' ) {
-			if ( !$user->isAllowed( 'move-rootuserpages' )
-					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
-				// Show user page-specific message only if the user can move other pages
-				$errors[] = array( 'cant-move-user-page' );
-			}
+		$tpc = new TitlePermissionChecks(
+			$this->getTitleProperties(),
+			$user,
+			$doExpensiveQueries
+		);
+		$status = $tpc->checkQuickPermissions( $action );
 
-			// Check if user is allowed to move files if it's a file
-			if ( $this->mNamespace == NS_FILE && !$user->isAllowed( 'movefile' ) ) {
-				$errors[] = array( 'movenotallowedfile' );
-			}
-
-			// Check if user is allowed to move category pages if it's a category page
-			if ( $this->mNamespace == NS_CATEGORY && !$user->isAllowed( 'move-categorypages' ) ) {
-				$errors[] = array( 'cant-move-category-page' );
-			}
-
-			if ( !$user->isAllowed( 'move' ) ) {
-				// User can't move anything
-				$userCanMove = User::groupHasPermission( 'user', 'move' );
-				$autoconfirmedCanMove = User::groupHasPermission( 'autoconfirmed', 'move' );
-				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
-					// custom message if logged-in users without any special rights can move
-					$errors[] = array( 'movenologintext' );
-				} else {
-					$errors[] = array( 'movenotallowed' );
+		if ( !$status->isGood() ) {
+			if ( $status->hasMessage( 'tpc-user-not-allowed' ) ) {
+				$errors[] = $this->missingPermissionError( $action, $short );
+			} else {
+				foreach ( $status->getErrorsArray() as $error ) {
+					$errors[] = $error;
 				}
 			}
-		} elseif ( $action == 'move-target' ) {
-			if ( !$user->isAllowed( 'move' ) ) {
-				// User can't move anything
-				$errors[] = array( 'movenotallowed' );
-			} elseif ( !$user->isAllowed( 'move-rootuserpages' )
-					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
-				// Show user page-specific message only if the user can move other pages
-				$errors[] = array( 'cant-move-to-user-page' );
-			} elseif ( !$user->isAllowed( 'move-categorypages' )
-					&& $this->mNamespace == NS_CATEGORY ) {
-				// Show category page-specific message only if the user can move other pages
-				$errors[] = array( 'cant-move-to-category-page' );
-			}
-		} elseif ( !$user->isAllowed( $action ) ) {
-			$errors[] = $this->missingPermissionError( $action, $short );
 		}
 
 		return $errors;
@@ -2095,26 +2066,21 @@ class Title {
 	 * @param array $errors List of current errors
 	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
 	 * @param bool $short Short circuit on first error
-	 *
 	 * @return array List of errors
 	 */
 	private function checkCSSandJSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		# Protect css/js subpages of user pages
-		# XXX: this might be better using restrictions
-		# XXX: right 'editusercssjs' is deprecated, for backward compatibility only
-		if ( $action != 'patrol' && !$user->isAllowed( 'editusercssjs' ) ) {
-			if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
-				if ( $this->isCssSubpage() && !$user->isAllowedAny( 'editmyusercss', 'editusercss' ) ) {
-					$errors[] = array( 'mycustomcssprotected', $action );
-				} elseif ( $this->isJsSubpage() && !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' ) ) {
-					$errors[] = array( 'mycustomjsprotected', $action );
-				}
-			} else {
-				if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
-					$errors[] = array( 'customcssprotected', $action );
-				} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
-					$errors[] = array( 'customjsprotected', $action );
-				}
+wfDebugLog( "TPC", __METHOD__ . " called for '$action', {$user->getName()}, '{$this->getText()}'" );
+
+		$tpc = new TitlePermissionChecks(
+			$this->getTitleProperties(),
+			$user,
+			$doExpensiveQueries
+		);
+		$status = $tpc->checkCSSandJSPermissions( $action );
+
+		if ( !$status->isGood() ) {
+			foreach ( $status->getErrorsArray() as $error ) {
+				$errors[] = $error;
 			}
 		}
 
@@ -2645,15 +2611,11 @@ class Title {
 	 */
 	public function isNamespaceProtected( User $user ) {
 		global $wgNamespaceProtection;
-
-		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
-			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
-				if ( $right != '' && !$user->isAllowed( $right ) ) {
-					return true;
-				}
-			}
-		}
-		return false;
+		$tpc = new TitlePermissionChecks(
+			$this->getTitleProperties(),
+			$user
+		);
+		return $tpc->isNamespaceProtected( $wgNamespaceProtection );
 	}
 
 	/**
@@ -3608,9 +3570,9 @@ class Title {
 
 		$mp = new MovePage( $this, $nt );
 		$errors = $mp->isValidMove()->getErrorsArray();
-
+wfDebugLog( "TPC", __METHOD__ . " errors: " . print_r( $errors, true ) );
 		$newid = $nt->getArticleID();
-
+wfDebugLog( "TPC", __METHOD__ . " wgUser: {$wgUser->getName()}" );
 		if ( $auth ) {
 			$errors = wfMergeErrorArrays( $errors,
 				$this->getUserPermissionsErrors( 'move', $wgUser ),
@@ -3619,6 +3581,13 @@ class Title {
 				$nt->getUserPermissionsErrors( 'edit', $wgUser ) );
 		}
 
+wfDebugLog( "TPC", __METHOD__ . " this->getUserPermissionsErrors/move: " . print_r( $this->getUserPermissionsErrors( 'move', $wgUser ), true ) );
+wfDebugLog( "TPC", __METHOD__ . " this->getUserPermissionsErrors/edit: " . print_r( $this->getUserPermissionsErrors( 'edit', $wgUser ), true ) );
+wfDebugLog( "TPC", __METHOD__ . " nt->getUserPermissionsErrors/move-target: " . print_r( $nt->getUserPermissionsErrors( 'move-target', $wgUser ), true ) );
+wfDebugLog( "TPC", __METHOD__ . " nt->getUserPermissionsErrors/edit: " . print_r( $nt->getUserPermissionsErrors( 'edit', $wgUser ), true ) );
+
+
+wfDebugLog( "TPC", __METHOD__ . " errors2: " . print_r( $errors, true ) );
 		$match = EditPage::matchSummarySpamRegex( $reason );
 		if ( $match !== false ) {
 			// This is kind of lame, won't display nice
