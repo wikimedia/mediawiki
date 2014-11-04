@@ -76,10 +76,9 @@ production.
 * Hitting api.php without specifying an action now displays only the help for
   the main module, with links to submodule help.
 * API help is no longer displayed on errors.
-* Internationalized messages returned by the API will be in the wiki's content
-  language by default. 'uselang' is now a recognized API parameter;
-  "uselang=user" may be used to select the language from the current user's
-  preferences.
+* 'uselang' is now a recognized API parameter; "uselang=user" may be used to
+  explicitly select the language from the current user's preferences, and
+  "uselang=content" may be used to select the wiki's content language.
 * Default output format for the API is now jsonfm.
 * Simplified continuation will return a "batchcomplete" property in the result
   when a batch of pages is complete.
