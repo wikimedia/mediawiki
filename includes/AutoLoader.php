@@ -877,8 +877,8 @@ $wgAutoloadLocalClasses = array(
 	'ProfilerSimpleUDP' => 'includes/profiler/ProfilerSimpleUDP.php',
 	'ProfilerStandard' => 'includes/profiler/ProfilerStandard.php',
 	'ProfilerStub' => 'includes/profiler/ProfilerStub.php',
-	'ProfileSection' => 'includes/profiler/Profiler.php',
-	'TransactionProfiler' => 'includes/profiler/Profiler.php',
+	'ProfileSection' => 'includes/profiler/ProfileSection.php',
+	'TransactionProfiler' => 'includes/profiler/TransactionProfiler.php',
 
 	# includes/rcfeed
 	'RCFeedEngine' => 'includes/rcfeed/RCFeedEngine.php',
