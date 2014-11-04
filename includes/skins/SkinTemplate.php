@@ -1004,7 +1004,7 @@ class SkinTemplate extends Skin {
 					if ( $user->isAllowed( 'deletedhistory' ) ) {
 						$n = $title->isDeleted();
 						if ( $n ) {
-							$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
+							$undelTitle = SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedDBkey() );
 							// If the user can't undelete but can view deleted
 							// history show them a "View .. deleted" tab instead.
 							$msgKey = $user->isAllowed( 'undelete' ) ? 'undelete' : 'viewdeleted';
@@ -1012,7 +1012,7 @@ class SkinTemplate extends Skin {
 								'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
 								'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
 									->setContext( $this->getContext() )->numParams( $n )->text(),
-								'href' => $undelTitle->getLocalURL( array( 'target' => $title->getPrefixedDBkey() ) )
+								'href' => $undelTitle->getLocalURL()
 							);
 						}
 					}
