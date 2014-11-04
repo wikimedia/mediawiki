@@ -1,6 +1,6 @@
 <?php
 /**
- * Base class and functions for profiling.
+ * Base class for profiling.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,88 +21,6 @@
  * @ingroup Profiler
  * @defgroup Profiler Profiler
  */
-
-/**
- * Get system resource usage of current request context.
- * Invokes the getrusage(2) system call, requesting RUSAGE_SELF if on PHP5
- * or RUSAGE_THREAD if on HHVM. Returns false if getrusage is not available.
- *
- * @since 1.24
- * @return array|bool Resource usage data or false if no data available.
- */
-function wfGetRusage() {
-	if ( !function_exists( 'getrusage' ) ) {
-		return false;
-	} elseif ( defined ( 'HHVM_VERSION' ) ) {
-		return getrusage( 2 /* RUSAGE_THREAD */ );
-	} else {
-		return getrusage( 0 /* RUSAGE_SELF */ );
-	}
-}
-
-/**
- * Begin profiling of a function
- * @param string $functionname Name of the function we will profile
- */
-function wfProfileIn( $functionname ) {
-	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
-		Profiler::instance();
-	}
-	if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
-		Profiler::$__instance->profileIn( $functionname );
-	}
-}
-
-/**
- * Stop profiling of a function
- * @param string $functionname Name of the function we have profiled
- */
-function wfProfileOut( $functionname = 'missing' ) {
-	if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
-		Profiler::instance();
-	}
-	if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
-		Profiler::$__instance->profileOut( $functionname );
-	}
-}
-
-/**
- * Class for handling function-scope profiling
- *
- * @since 1.22
- */
-class ProfileSection {
-	protected $name; // string; method name
-	protected $enabled = false; // boolean; whether profiling is enabled
-
-	/**
-	 * Begin profiling of a function and return an object that ends profiling of
-	 * the function when that object leaves scope. As long as the object is not
-	 * specifically linked to other objects, it will fall out of scope at the same
-	 * moment that the function to be profiled terminates.
-	 *
-	 * This is typically called like:
-	 * <code>$section = new ProfileSection( __METHOD__ );</code>
-	 *
-	 * @param string $name Name of the function to profile
-	 */
-	public function __construct( $name ) {
-		$this->name = $name;
-		if ( Profiler::$__instance === null ) { // use this directly to reduce overhead
-			Profiler::instance();
-		}
-		if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
-			$this->enabled = true;
-			Profiler::$__instance->profileIn( $this->name );
-		}
-	}
-
-	function __destruct() {
-		if ( $this->enabled ) {
-			Profiler::$__instance->profileOut( $this->name );
-		}
-	}
-}
 
 /**
  * Profiler base class that defines the interface and some trivial functionality
