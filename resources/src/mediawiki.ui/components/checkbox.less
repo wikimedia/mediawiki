@@ -54,7 +54,8 @@
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label {
 			cursor: pointer;
-			margin: 0 .4em;
+			// Make space for the checkbox in front of the label
+			margin: 0 @checkboxSize 0 0;
 
 			&::before {
 						content: '';
