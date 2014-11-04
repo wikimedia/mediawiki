@@ -7297,13 +7297,21 @@ $wgPagePropsHaveSortkey = true;
 $wgHttpsPort = 443;
 
 /**
- * Secret and algorithm for hmac-based key derivation function (fast,
+ * Secret for hmac-based key derivation function (fast,
  * cryptographically secure random numbers).
  * This should be set in LocalSettings.php, otherwise wgSecretKey will
  * be used.
+ * See also: $wgHKDFAlgorithm
  * @since 1.24
  */
 $wgHKDFSecret = false;
+
+/**
+ * Algorithm for hmac-based key derivation function (fast,
+ * cryptographically secure random numbers).
+ * See also: $wgHKDFSecret
+ * @since 1.24
+ */
 $wgHKDFAlgorithm = 'sha256';
 
 /**
