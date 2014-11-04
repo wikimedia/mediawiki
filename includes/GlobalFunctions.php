@@ -1067,8 +1067,6 @@ function wfDebugMem( $exact = false ) {
  *     - false: same as 'private'
  */
 function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
-	global $wgDebugLogGroups;
-
 	// Turn $dest into a string if it's a boolean (for b/c)
 	if ( $dest === true ) {
 		$dest = 'all';
