@@ -67,13 +67,14 @@ class ProfilerSimpleTrace extends ProfilerStandard {
 
 	public function logData() {
 		if ( $this->mTemplated ) {
+			$contentType = $this->getContentType();
 			if ( PHP_SAPI === 'cli' ) {
 				print "<!-- \n {$this->trace} \n -->";
-			} elseif ( $this->getContentType() === 'text/html' ) {
+			} elseif ( $contentType === 'text/html' ) {
 				print "<!-- \n {$this->trace} \n -->";
-			} elseif ( $this->getContentType() === 'text/javascript' ) {
+			} elseif ( $contentType === 'text/javascript' ) {
 				print "\n/*\n {$this->trace}\n*/";
-			} elseif ( $this->getContentType() === 'text/css' ) {
+			} elseif ( $contentType === 'text/css' ) {
 				print "\n/*\n {$this->trace}\n*/";
 			}
 		}
