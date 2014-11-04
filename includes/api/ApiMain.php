@@ -188,17 +188,19 @@ class ApiMain extends ApiBase {
 		}
 
 		$uselang = $this->getParameter( 'uselang' );
-		if ( $uselang === 'user' ) {
-			$uselang = $this->getUser()->getOption( 'language' );
-			$uselang = RequestContext::sanitizeLangCode( $uselang );
-			wfRunHooks( 'UserGetLanguageObject', array( $this->getUser(), &$uselang, $this ) );
-		}
-		$code = RequestContext::sanitizeLangCode( $uselang );
-		$this->getContext()->setLanguage( $code );
-		if ( !$this->mInternalMode ) {
-			global $wgLang;
-			$wgLang = $this->getContext()->getLanguage();
-			RequestContext::getMain()->setLanguage( $wgLang );
+		if ( $uselang !== null ) {
+			if ( $uselang === 'user' ) {
+				$uselang = $this->getUser()->getOption( 'language' );
+				$uselang = RequestContext::sanitizeLangCode( $uselang );
+				wfRunHooks( 'UserGetLanguageObject', array( $this->getUser(), &$uselang, $this ) );
+			}
+			$code = RequestContext::sanitizeLangCode( $uselang );
+			$this->getContext()->setLanguage( $code );
+			if ( !$this->mInternalMode ) {
+				global $wgLang;
+				$wgLang = $this->getContext()->getLanguage();
+				RequestContext::getMain()->setLanguage( $wgLang );
+			}
 		}
 
 		$config = $this->getConfig();
@@ -1121,8 +1123,6 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	public function getAllowedParams() {
-		global $wgContLang;
-
 		return array(
 			'action' => array(
 				ApiBase::PARAM_DFLT => 'help',
@@ -1150,9 +1150,7 @@ class ApiMain extends ApiBase {
 			'servedby' => false,
 			'curtimestamp' => false,
 			'origin' => null,
-			'uselang' => array(
-				ApiBase::PARAM_DFLT => $wgContLang->getCode(),
-			),
+			'uselang' => null,
 		);
 	}
 
