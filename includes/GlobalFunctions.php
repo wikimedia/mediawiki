@@ -102,19 +102,30 @@ if ( !function_exists( 'gzdecode' ) ) {
 }
 
 // hash_equals function only exists in PHP >= 5.6.0
+// http://php.net/hash_equals
 if ( !function_exists( 'hash_equals' ) ) {
 	/**
-	 * Check whether a user-provided string is equal to a fixed-length secret without
-	 * revealing bytes of the secret through timing differences.
+	 * Check whether a user-provided string is equal to a fixed-length secret string
+	 * without revealing bytes of the secret string through timing differences.
 	 *
-	 * This timing guarantee -- that a partial match takes the same time as a complete
-	 * mismatch -- is why this function is used in some security-sensitive parts of the code.
-	 * For example, it shouldn't be possible to guess an HMAC signature one byte at a time.
+	 * The usual way to compare strings (PHP's === operator or the underlying memcmp()
+	 * function in C) is to compare corresponding bytes and stop at the first difference,
+	 * which would take longer for a partial match than for a complete mismatch. This
+	 * is not secure when one of the strings (e.g. an HMAC or token) must remain secret
+	 * and the other may come from an attacker. Statistical analysis of timing measurements
+	 * over many requests may allow the attacker to guess the string's bytes one at a time
+	 * (and check his guesses) even if the timing differences are extremely small.
+	 *
+	 * When making such a security-sensitive comparison, it is essential that the sequence
+	 * in which instructions are executed and memory locations are accessed not depend on
+	 * the secret string's value. HOWEVER, for simplicity, we do not attempt to minimize
+	 * the inevitable leakage of the string's length. That is generally known anyway as
+	 * a chararacteristic of the hash function used to compute the secret value.
 	 *
 	 * Longer explanation: http://www.emerose.com/timing-attacks-explained
 	 *
 	 * @codeCoverageIgnore
-	 * @param string $known_string Fixed-length secret to compare against
+	 * @param string $known_string Fixed-length secret string to compare against
 	 * @param string $user_string User-provided string
 	 * @return bool True if the strings are the same, false otherwise
 	 */
@@ -134,14 +145,14 @@ if ( !function_exists( 'hash_equals' ) ) {
 			return false;
 		}
 
-		// Note that we do one thing PHP doesn't: try to avoid leaking information about
-		// relative lengths of $known_string and $user_string, and of multiple $known_strings.
-		// However, lengths may still inevitably leak through, for example, CPU cache misses.
 		$known_string_len = strlen( $known_string );
-		$user_string_len = strlen( $user_string );
-		$result = $known_string_len ^ $user_string_len;
-		for ( $i = 0; $i < $user_string_len; $i++ ) {
-			$result |= ord( $known_string[$i % $known_string_len] ) ^ ord( $user_string[$i] );
+		if ( $known_string_len !== strlen( $user_string ) ) {
+			return false;
+		}
+
+		$result = 0;
+		for ( $i = 0; $i < $known_string_len; $i++ ) {
+			$result |= ord( $known_string[$i] ) ^ ord( $user_string[$i] );
 		}
 
 		return ( $result === 0 );
