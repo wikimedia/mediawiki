@@ -439,7 +439,7 @@ class MovePage {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		$oldpage = WikiPage::factory( $this );
+		$oldpage = WikiPage::factory( $this->oldTitle );
 		$oldcountable = $oldpage->isCountable();
 
 		$newpage = WikiPage::factory( $nt );
