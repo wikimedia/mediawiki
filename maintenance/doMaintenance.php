@@ -56,8 +56,8 @@ $self = $maintenance->getName();
 
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
-# Stub the profiler
-require_once "$IP/includes/profiler/Profiler.php";
+# Grab profiling functions
+require_once "$IP/includes/profiler/ProfilerFunctions.php";
 
 # Start the profiler
 $wgProfiler = array();

@@ -33,7 +33,6 @@
  */
 class ProfilerSimpleText extends ProfilerStandard {
 	public $visible = false; /* Show as <PRE> or <!-- ? */
-	static private $out;
 
 	public function __construct( $profileConfig ) {
 		if ( isset( $profileConfig['visible'] ) && $profileConfig['visible'] ) {
@@ -43,37 +42,40 @@ class ProfilerSimpleText extends ProfilerStandard {
 	}
 
 	public function logData() {
+		$out = '';
 		if ( $this->mTemplated ) {
 			$this->close();
 			$totalReal = isset( $this->mCollated['-total'] )
 				? $this->mCollated['-total']['real']
 				: 0; // profiling mismatch error?
-			uasort( $this->mCollated, array( 'self', 'sort' ) );
-			array_walk( $this->mCollated, array( 'self', 'format' ), $totalReal );
+
+			uasort( $this->mCollated, function( $a, $b ) {
+				// sort descending by time elapsed
+				return $a['real'] < $b['real'];
+			} );
+
+			array_walk( $this->mCollated,
+				function( $item, $key ) use ( &$out, $totalReal ) {
+					$perc = $totalReal ? $item['real'] / $totalReal * 100 : 0;
+					$out .= sprintf( "%6.2f%% %3.6f %6d - %s\n",
+						$perc, $item['real'], $item['count'], $key );
+				}
+			);
+
 			$contentType = $this->getContentType();
 			if ( PHP_SAPI === 'cli' ) {
-				print "<!--\n" . self::$out . "\n-->\n";
+				print "<!--\n{$out}\n-->\n";
 			} elseif ( $contentType === 'text/html' ) {
 				if ( $this->visible ) {
-					print '<pre>' . self::$out . '</pre>';
+					print "<pre>{$out}</pre>";
 				} else {
-					print "<!--\n" . self::$out . "\n-->\n";
+					print "<!--\n{$out}\n-->\n";
 				}
 			} elseif ( $contentType === 'text/javascript' ) {
-				print "\n/*\n" . self::$out . "*/\n";
+				print "\n/*\n${$out}*/\n";
 			} elseif ( $contentType === 'text/css' ) {
-				print "\n/*\n" . self::$out . "*/\n";
+				print "\n/*\n{$out}*/\n";
 			}
 		}
-	}
-
-	static function sort( $a, $b ) {
-		return $a['real'] < $b['real']; /* sort descending by time elapsed */
-	}
-
-	static function format( $item, $key, $totalReal ) {
-		$perc = $totalReal ? $item['real'] / $totalReal * 100 : 0;
-		self::$out .= sprintf( "%6.2f%% %3.6f %6d - %s\n",
-			$perc, $item['real'], $item['count'], $key );
 	}
 }
