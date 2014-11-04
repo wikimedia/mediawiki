@@ -17,7 +17,7 @@ jQuery.fn.getAttrs = function () {
 		len = map.length;
 
 	for ( i = 0; i < len; i++ ) {
-		attrs[ map[i].nodeName ] = map[i].nodeValue;
+		attrs[ map[i].name ] = map[i].value;
 	}
 
 	return attrs;
