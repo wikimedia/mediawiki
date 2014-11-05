@@ -110,7 +110,11 @@ class StubObject {
 	 * @return object
 	 */
 	public function _newObject() {
-		return MWFunction::newObj( $this->class, $this->params );
+		return ObjectFactory::getObjectFromSpec( array(
+			'class' => $this->class,
+			'args' => $this->params,
+			'closure_expansion' => false,
+		) );
 	}
 
 	/**
