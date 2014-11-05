@@ -1518,6 +1518,15 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.ui.radio' => array(
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/components/radio.less',
+			),
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	// Lightweight module for anchor styles
 	'mediawiki.ui.anchor' => array(
 		'skinStyles' => array(
