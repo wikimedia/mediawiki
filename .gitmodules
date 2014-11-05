@@ -484,3 +484,7 @@
 [submodule "extensions/WikiGrok"]
 	path = extensions/WikiGrok
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiGrok.git
+[submodule "extensions/BounceHandler"]
+	path = extensions/BounceHandler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/BounceHandler.git
+	branch = wmf/1.25wmf6
