@@ -84,14 +84,8 @@
 		&:active,
 		&:focus {
 			+ label {
-				&::after {
-					content: '';
-					position: absolute;
-					width: @checkboxSize;
-					height: @checkboxSize - @focusBottomBorderSize + 0.08; // offset by bottom border
-					// offset from the checkbox by 1px to account for left border
-					left: 1px;
-					border-bottom: solid @focusBottomBorderSize lightgrey;
+				&::before {
+					box-shadow: inset 0 -@focusBottomBorderSize 0 0 lightgrey;
 				}
 			}
 		}
