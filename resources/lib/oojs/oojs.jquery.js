@@ -632,7 +632,7 @@ oo.isPlainObject = $.isPlainObject;
 	oo.EventEmitter.prototype.emit = function ( event ) {
 		var i, len, binding, bindings, args, method;
 
-		if ( event in this.bindings ) {
+		if ( hasOwn.call( this.bindings, event ) ) {
 			// Slicing ensures that we don't get tripped up by event handlers that add/remove bindings
 			bindings = this.bindings[event].slice();
 			args = Array.prototype.slice.call( arguments, 1 );
