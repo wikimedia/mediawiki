@@ -50,14 +50,14 @@ class MWFunction {
 	 * @param string $class
 	 * @param array $args
 	 * @return object
+	 * @deprecated 1.25 Use ObjectFactory::getObjectFromSpec() instead
 	 */
 	public static function newObj( $class, $args = array() ) {
-		if ( !count( $args ) ) {
-			return new $class;
-		}
+		wfDeprecated( __METHOD__, '1.25' );
 
-		$ref = new ReflectionClass( $class );
-
-		return $ref->newInstanceArgs( $args );
+		return ObjectFactory::getObjectFromSpec( array(
+			'class' => $class,
+			'args' => $args,
+		) );
 	}
 }
