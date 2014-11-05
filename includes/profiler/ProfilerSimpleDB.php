@@ -56,7 +56,7 @@ class ProfilerSimpleDB extends ProfilerStandard {
 			if ( $useTrx ) {
 				$dbw->startAtomic( __METHOD__ );
 			}
-			foreach ( $this->mCollated as $name => $data ) {
+			foreach ( $this->collated as $name => $data ) {
 				$eventCount = $data['count'];
 				$timeSum = (float)( $data['real'] * 1000 );
 				$memorySum = (float)$data['memory'];

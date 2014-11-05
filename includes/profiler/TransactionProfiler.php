@@ -32,11 +32,11 @@
  */
 class TransactionProfiler {
 	/** @var float Seconds */
-	protected $mDBLockThreshold = 3.0;
+	protected $dbLockThreshold = 3.0;
 	/** @var array DB/server name => (active trx count, time, DBs involved) */
-	protected $mDBTrxHoldingLocks = array();
+	protected $dbTrxHoldingLocks = array();
 	/** @var array DB/server name => list of (function name, elapsed time) */
-	protected $mDBTrxMethodTimes = array();
+	protected $dbTrxMethodTimes = array();
 
 	/**
 	 * Mark a DB as in a transaction with one or more writes pending
@@ -49,16 +49,16 @@ class TransactionProfiler {
 	 */
 	public function transactionWritingIn( $server, $db, $id ) {
 		$name = "{$server} ({$db}) (TRX#$id)";
-		if ( isset( $this->mDBTrxHoldingLocks[$name] ) ) {
+		if ( isset( $this->dbTrxHoldingLocks[$name] ) ) {
 			wfDebugLog( 'DBPerformance', "Nested transaction for '$name' - out of sync." );
 		}
-		$this->mDBTrxHoldingLocks[$name] = array(
+		$this->dbTrxHoldingLocks[$name] = array(
 			'start' => microtime( true ),
 			'conns' => array(),
 		);
-		$this->mDBTrxMethodTimes[$name] = array();
+		$this->dbTrxMethodTimes[$name] = array();
 
-		foreach ( $this->mDBTrxHoldingLocks as $name => &$info ) {
+		foreach ( $this->dbTrxHoldingLocks as $name => &$info ) {
 			// Track all DBs in transactions for this transaction
 			$info['conns'][$name] = 1;
 		}
@@ -73,7 +73,7 @@ class TransactionProfiler {
 	 * @param float $realtime Wall time ellapsed
 	 */
 	public function recordFunctionCompletion( $method, $realtime ) {
-		if ( !$this->mDBTrxHoldingLocks ) {
+		if ( !$this->dbTrxHoldingLocks ) {
 			// Short-circuit
 			return;
 		// @todo hardcoded check is a tad janky
@@ -83,10 +83,10 @@ class TransactionProfiler {
 		}
 
 		$now = microtime( true );
-		foreach ( $this->mDBTrxHoldingLocks as $name => $info ) {
+		foreach ( $this->dbTrxHoldingLocks as $name => $info ) {
 			// Hacky check to exclude entries from before the first TRX write
 			if ( ( $now - $realtime ) >= $info['start'] ) {
-				$this->mDBTrxMethodTimes[$name][] = array( $method, $realtime );
+				$this->dbTrxMethodTimes[$name][] = array( $method, $realtime );
 			}
 		}
 	}
@@ -104,28 +104,28 @@ class TransactionProfiler {
 	 */
 	public function transactionWritingOut( $server, $db, $id ) {
 		$name = "{$server} ({$db}) (TRX#$id)";
-		if ( !isset( $this->mDBTrxMethodTimes[$name] ) ) {
+		if ( !isset( $this->dbTrxMethodTimes[$name] ) ) {
 			wfDebugLog( 'DBPerformance', "Detected no transaction for '$name' - out of sync." );
 			return;
 		}
 		$slow = false;
-		foreach ( $this->mDBTrxMethodTimes[$name] as $info ) {
+		foreach ( $this->dbTrxMethodTimes[$name] as $info ) {
 			$realtime = $info[1];
-			if ( $realtime >= $this->mDBLockThreshold ) {
+			if ( $realtime >= $this->dbLockThreshold ) {
 				$slow = true;
 				break;
 			}
 		}
 		if ( $slow ) {
-			$dbs = implode( ', ', array_keys( $this->mDBTrxHoldingLocks[$name]['conns'] ) );
+			$dbs = implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) );
 			$msg = "Sub-optimal transaction on DB(s) [{$dbs}]:\n";
-			foreach ( $this->mDBTrxMethodTimes[$name] as $i => $info ) {
+			foreach ( $this->dbTrxMethodTimes[$name] as $i => $info ) {
 				list( $method, $realtime ) = $info;
 				$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
 			}
 			wfDebugLog( 'DBPerformance', $msg );
 		}
-		unset( $this->mDBTrxHoldingLocks[$name] );
-		unset( $this->mDBTrxMethodTimes[$name] );
+		unset( $this->dbTrxHoldingLocks[$name] );
+		unset( $this->dbTrxMethodTimes[$name] );
 	}
 }
