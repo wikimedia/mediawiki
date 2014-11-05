@@ -5528,8 +5528,23 @@ $wgSearchHighlightBoundaries = '[\p{Z}\p{P}\p{C}]';
  * PHP wrapper to avoid firing up mediawiki for every keystroke
  *
  * Placeholders: {searchTerms}
+ *
+ * @deprecated since 1.25 Use $wgOpenSearchTemplates['application/x-suggestions+json'] instead
  */
 $wgOpenSearchTemplate = false;
+
+/**
+ * Templates for OpenSearch suggestions, defaults to API action=opensearch
+ *
+ * Sites with heavy load would typically have these point to a custom
+ * PHP wrapper to avoid firing up mediawiki for every keystroke
+ *
+ * Placeholders: {searchTerms}
+ */
+$wgOpenSearchTemplates = array(
+	'application/x-suggestions+json' => false,
+	'application/x-suggestions+xml' => false,
+);
 
 /**
  * Enable OpenSearch suggestions requested by MediaWiki. Set this to
@@ -5544,6 +5559,11 @@ $wgEnableOpenSearchSuggest = true;
  * OpenSearch call.
  */
 $wgOpenSearchDefaultLimit = 10;
+
+/**
+ * Minimum length of extract in <Description>. Actual extracts will last until the end of sentence.
+ */
+$wgOpenSearchDescriptionLength = 100;
 
 /**
  * Expiry time for search suggestion responses

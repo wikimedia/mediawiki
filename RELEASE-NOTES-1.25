@@ -23,6 +23,10 @@ production.
   See StartProfiler.sample for details.
 * $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
   might be a flash policy directive configurable.
+* ApiOpenSearch now supports XML output. The OpenSearchXml extension should no
+  longer be used. If extracts and page images are desired, the TextExtracts and
+  PageImages extensions are required.
+* $wgOpenSearchTemplate is deprecated in favor of $wgOpenSearchTemplates.
 
 === New features in 1.25 ===
 * (bug 62861) Updated plural rules to CLDR 26. Includes incompatible changes
@@ -52,6 +56,9 @@ production.
 * The debug logging internals have been overhauled, and are now using the
   PSR-3 interfaces.
 * Update CSSJanus to v1.1.1.
+* Added a hook, "ApiOpenSearchSuggest", to allow extensions to provide extracts
+  and images for ApiOpenSearch output. The semantics are identical to the
+  "OpenSearchXml" hook provided by the OpenSearchXml extension.
 
 === Bug fixes in 1.25 ===
 * (bug 71003) No additional code will be generated to try to load CSS-embedded
@@ -106,6 +113,9 @@ production.
 * Query page data for generator=search and generator=prefixsearch will now
   include an "index" field, which may be used by the client for sorting the
   search results.
+* ApiOpenSearch now supports XML output.
+* ApiOpenSearch will now output descriptions and URLs as array indexes 2 and 3
+  in JSON format.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
