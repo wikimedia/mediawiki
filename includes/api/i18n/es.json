@@ -1,9 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Macofe"
+			"Macofe",
+			"Effy"
 		]
 	},
+	"apihelp-createaccount-param-name": "Nombre de usuario.",
+	"apihelp-expandtemplates-param-title": "Título de la página.",
+	"apihelp-feedrecentchanges-param-hideminor": "Ocultar cambios menores.",
 	"apihelp-query+allusers-param-activeusers": "Solo listar usuarios activos en {{PLURAL:$1|el último día|los $1 últimos días}}.",
 	"apihelp-query+images-description": "Devuelve todos los archivos contenidos en las páginas dadas.",
 	"apihelp-query+search-param-info": "Qué metadatos devolver.",

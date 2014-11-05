@@ -12,7 +12,7 @@
 	"apihelp-main-param-requestid": "任意の値を指定でき、その値が結果に含められます。リクエストを識別するために使用できます。",
 	"apihelp-main-param-servedby": "リクエストを処理したホスト名を結果に含めます。",
 	"apihelp-main-param-curtimestamp": "現在のタイムスタンプを結果に含めます。",
-	"apihelp-main-param-uselang": "メッセージの翻訳に使用する言語です。言語の一覧は [[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]] から取得できます。\"user\" を指定することで、現在の利用者の個人設定の言語を使用することもできます。",
+	"apihelp-main-param-uselang": "メッセージの翻訳に使用する言語です。コードの一覧は [[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]] に siprop=languages を付けることで取得できます。\"user\" を指定することで現在の利用者の個人設定の言語を、\"content\" を指定することでこのウィキの本文の言語を使用することもできます。",
 	"apihelp-help-description": "指定したモジュールのヘルプを表示します。",
 	"apihelp-help-param-modules": "ヘルプを表示するモジュールです (action= パラメーターおよび format= パラメーターの値、または \"main\")。\"+\" を使用して下位モジュールを指定できます。",
 	"apihelp-help-param-submodules": "指定したモジュールの下位モジュールのヘルプを含めます。",

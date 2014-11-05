@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robin0van0der0vliet"
+		]
+	},
+	"apihelp-login-param-name": "Brûkersnamme.",
+	"apihelp-login-param-password": "Wachtwurd.",
+	"apihelp-userrights-param-user": "Brûkersnamme."
+}

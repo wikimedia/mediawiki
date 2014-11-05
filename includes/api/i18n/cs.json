@@ -15,7 +15,7 @@
 	"apihelp-main-param-servedby": "Zahrnout do odpovědi název hostitele, který požadavek obsloužil.",
 	"apihelp-main-param-curtimestamp": "Zahrnout do odpovědi aktuální časové razítko.",
 	"apihelp-main-param-origin": "Pokud k API přistupujete pomocí mezidoménového AJAXového požadavku (CORS), nastavte tento parametr na doménu původu. Musí být součástí všech předběžných požadavků, takže musí být součástí URI požadavku (nikoli těla POSTu). Hodnota musí přesně odpovídat jednomu z původů v hlavičce Origin:, takže musí být nastavena na něco jako http://en.wikipedia.org nebo https://meta.wikimedia.org. Pokud parametr neodpovídá hlavičce Origin:, bude vrácena odpověď 403. Pokud parametr odpovídá hlavičce Origin: a tento původ je na bílé listině, bude nastavena hlavička Access-Control-Allow-Origin.",
-	"apihelp-main-param-uselang": "Jazyk, který se má použít pro překlad hlášení. Seznam kódů lze načíst z [[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]] nebo uveďte „user“ pro použití předvoleného jazyka aktuálního uživatele.",
+	"apihelp-main-param-uselang": "Jazyk, který se má použít pro překlad hlášení. Seznam kódů lze načíst z [[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]] se siprop=languages nebo uveďte „user“ pro použití předvoleného jazyka aktuálního uživatele či „content“ pro použití jazyka obsahu této wiki.",
 	"apihelp-help-description": "Zobrazuje nápovědu k uvedeným modulům.",
 	"apihelp-help-param-modules": "Moduly, pro které se má zobrazit nápověda (hodnoty parametrů action= a format= nebo „main“). Submoduly lze zadávat pomocí „+“.",
 	"apihelp-help-param-submodules": "Zahrnout nápovědu pro submoduly uvedeného modulu.",

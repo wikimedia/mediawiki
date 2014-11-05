@@ -2787,7 +2787,7 @@
 	"autosumm-blank": "পাতা খালি করা হয়েছে",
 	"autosumm-replace": "পাতাকে '$1' দিয়ে প্রতিস্থাপিত করা হল",
 	"autoredircomment": "[[$1]]-এ পুনর্নির্দেশ করা হল",
-	"autosumm-new": "$1 দিয়ে তৈরি পাতা",
+	"autosumm-new": "\"$1\" দিয়ে পাতা তৈরি",
 	"autosumm-newblank": "খালি পাতা তৈরি হয়েছে",
 	"size-bytes": "$1 বাইট",
 	"size-kilobytes": "$1 কিলোবাইট",

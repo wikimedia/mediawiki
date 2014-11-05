@@ -245,7 +245,7 @@
 	"apihelp-query+backlinks-example-simple": "Прикажи врски до [[Главна страница|Главната страница]]",
 	"apihelp-query+backlinks-example-generator": "Дава информации за страниците што водат до [[Главна страница|Главната страница]]",
 	"apihelp-query+blocks-description": "Список на сите блокирани корисници и IP-адреси",
-	"apihelp-query+blocks-param-start": "Од кој датум и време да се почне набројувањето.",
+	"apihelp-query+blocks-param-start": "Од кој датум и време да почне набројувањето.",
 	"apihelp-query+blocks-param-end": "На кој датум и време да запре набројувањето.",
 	"apihelp-query+blocks-param-ids": "Список на назнаки на блоковите за испис (незадолжително)",
 	"apihelp-query+blocks-param-users": "Список на корисници што ќе се пребаруваат (незадолжително)",

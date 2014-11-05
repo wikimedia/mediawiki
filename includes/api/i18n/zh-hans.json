@@ -276,6 +276,7 @@
 	"apihelp-query+pageswithprop-example-generator": "获取有关前10个使用_&#95;NOTOC_&#95;的页面的信息",
 	"apihelp-query+prefixsearch-param-search": "搜索字符串。",
 	"apihelp-query+prefixsearch-param-namespace": "搜索的名字空间。",
+	"apihelp-query+protectedtitles-param-namespace": "只列出这些名字空间的标题。",
 	"apihelp-query+protectedtitles-example-simple": "受保护标题列表",
 	"apihelp-query+querypage-param-limit": "返回的结果数。",
 	"apihelp-query+querypage-example-ancientpages": "返回[[Special:Ancientpages]]的结果。",
