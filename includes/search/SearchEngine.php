@@ -500,22 +500,12 @@ class SearchEngine {
 	/**
 	 * Get OpenSearch suggestion template
 	 *
+	 * @deprecated since 1.25
 	 * @return string
 	 */
 	public static function getOpenSearchTemplate() {
-		global $wgOpenSearchTemplate, $wgCanonicalServer;
-
-		if ( $wgOpenSearchTemplate ) {
-			return $wgOpenSearchTemplate;
-		} else {
-			$ns = implode( '|', SearchEngine::defaultNamespaces() );
-			if ( !$ns ) {
-				$ns = "0";
-			}
-
-			return $wgCanonicalServer . wfScript( 'api' )
-				. '?action=opensearch&search={searchTerms}&namespace=' . $ns;
-		}
+		wfDeprecated( __METHOD__, '1.25' );
+		return ApiOpenSearch::getOpenSearchTemplate( 'application/x-suggestions+json' );
 	}
 
 	/**
