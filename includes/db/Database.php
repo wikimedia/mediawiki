@@ -1117,7 +1117,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		# Keep track of whether the transaction has write queries pending
 		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
 			$this->mTrxDoneWrites = true;
-			Profiler::instance()->transactionWritingIn(
+			Profiler::instance()->getTransactionProfiler()->transactionWritingIn(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 
@@ -1161,6 +1161,14 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( !$this->isOpen() ) {
 			throw new DBUnexpectedError( $this, "DB connection was already closed." );
 		}
+
+		# Log the query time and feed it into the DB trx profiler
+		$queryStartTime = microtime( true );
+		$queryProfile = new ScopedCallback( function() use ( $queryStartTime, $queryProf ) {
+			$elapsed = microtime( true ) - $queryStartTime;
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
+			$trxProfiler->recordFunctionCompletion( $queryProf, $elapsed );
+		} );
 
 		# Do the query and handle errors
 		$ret = $this->doQuery( $commentedSql );
@@ -3524,7 +3532,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->runOnTransactionPreCommitCallbacks();
 			$this->doCommit( $fname );
 			if ( $this->mTrxDoneWrites ) {
-				Profiler::instance()->transactionWritingOut(
+				Profiler::instance()->getTransactionProfiler()->transactionWritingOut(
 					$this->mServer, $this->mDBname, $this->mTrxShortId );
 			}
 			$this->runOnTransactionIdleCallbacks();
@@ -3604,7 +3612,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->runOnTransactionPreCommitCallbacks();
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
-			Profiler::instance()->transactionWritingOut(
+			Profiler::instance()->getTransactionProfiler()->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 		$this->runOnTransactionIdleCallbacks();
@@ -3662,7 +3670,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->mTrxPreCommitCallbacks = array(); // cancel
 		$this->mTrxAtomicLevels = new SplStack;
 		if ( $this->mTrxDoneWrites ) {
-			Profiler::instance()->transactionWritingOut(
+			Profiler::instance()->getTransactionProfiler()->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 	}
