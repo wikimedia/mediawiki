@@ -13,6 +13,7 @@ class MWFunctionTest extends MediaWikiTestCase {
 		$args = array( $arg1, $arg2, $arg3, $arg4 );
 
 		$newObject = new MWBlankClass( $arg1, $arg2, $arg3, $arg4 );
+		$this->hideDeprecated( 'MWFunction::newObj' );
 		$this->assertEquals(
 			MWFunction::newObj( 'MWBlankClass', $args )->args,
 			$newObject->args
