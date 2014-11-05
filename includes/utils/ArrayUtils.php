@@ -98,11 +98,11 @@ class ArrayUtils {
 	 *
 	 * @since 1.23
 	 *
-	 * @param array $valueCallback A function to call to get the value with
+	 * @param callable $valueCallback A function to call to get the value with
 	 *     a given array index.
 	 * @param int $valueCount The number of items accessible via $valueCallback,
 	 *     indexed from 0 to $valueCount - 1
-	 * @param array $comparisonCallback A callback to compare two values, returning
+	 * @param callable $comparisonCallback A callback to compare two values, returning
 	 *     -1, 0 or 1 in the style of strcmp().
 	 * @param string $target The target value to find.
 	 *
