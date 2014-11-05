@@ -202,6 +202,7 @@
 	"apihelp-opensearch-param-limit": "{{doc-apihelp-param|opensearch|limit}}",
 	"apihelp-opensearch-param-namespace": "{{doc-apihelp-param|opensearch|namespace}}",
 	"apihelp-opensearch-param-suggest": "{{doc-apihelp-param|opensearch|suggest}}",
+	"apihelp-opensearch-param-redirects": "{{doc-apihelp-param|opensearch|redirects}}",
 	"apihelp-opensearch-param-format": "{{doc-apihelp-param|opensearch|format}}",
 	"apihelp-opensearch-example-te": "{{doc-apihelp-example|opensearch}}",
 	"apihelp-options-description": "{{doc-apihelp-description|options}}",

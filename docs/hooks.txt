@@ -407,6 +407,18 @@ $module: ApiBase Module object
 &$help: Array of HTML strings to be joined for the output.
 $options: Array Options passed to ApiHelp::getHelp
 
+'ApiOpenSearchSuggest': Called when constructing the OpenSearch results. Hooks
+can alter or append to the array.
+&$results: array of associative arrays. Keys are:
+  - title: Title object.
+  - redirect from: Title or null.
+  - extract: Description for this result.
+  - extract trimmed: If truthy, the extract will not be trimmed to
+    $wgOpenSearchDescriptionLength.
+  - image: Thumbnail for this result. Value is an array with subkeys 'source'
+    (url), 'width', 'height', 'alt', 'align'.
+  - url: Url for the given title.
+
 'APIQueryAfterExecute': After calling the execute() method of an
 action=query submodule. Use this to extend core API modules.
 &$module: Module object
