@@ -30,9 +30,9 @@
  */
 abstract class Profiler {
 	/** @var string|bool Profiler ID for bucketing data */
-	protected $mProfileID = false;
+	protected $profileID = false;
 	/** @var bool Whether MediaWiki is in a SkinTemplate output context */
-	protected $mTemplated = false;
+	protected $templated = false;
 
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
@@ -47,7 +47,7 @@ abstract class Profiler {
 	 */
 	public function __construct( array $params ) {
 		if ( isset( $params['profileID'] ) ) {
-			$this->mProfileID = $params['profileID'];
+			$this->profileID = $params['profileID'];
 		}
 		$this->trxProfiler = new TransactionProfiler();
 	}
@@ -96,17 +96,17 @@ abstract class Profiler {
 	 * @param string $id
 	 */
 	public function setProfileID( $id ) {
-		$this->mProfileID = $id;
+		$this->profileID = $id;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getProfileID() {
-		if ( $this->mProfileID === false ) {
+		if ( $this->profileID === false ) {
 			return wfWikiID();
 		} else {
-			return $this->mProfileID;
+			return $this->profileID;
 		}
 	}
 
@@ -148,7 +148,7 @@ abstract class Profiler {
 	 * @param bool $t
 	 */
 	public function setTemplated( $t ) {
-		$this->mTemplated = $t;
+		$this->templated = $t;
 	}
 
 	/**

@@ -45,7 +45,7 @@ class ProfilerSimpleUDP extends ProfilerStandard {
 		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 		$plength = 0;
 		$packet = "";
-		foreach ( $this->mCollated as $entry => $pfdata ) {
+		foreach ( $this->collated as $entry => $pfdata ) {
 			if ( !isset( $pfdata['count'] )
 				|| !isset( $pfdata['cpu'] )
 				|| !isset( $pfdata['cpu_sq'] )

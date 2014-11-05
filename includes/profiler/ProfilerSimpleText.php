@@ -43,18 +43,18 @@ class ProfilerSimpleText extends ProfilerStandard {
 
 	public function logData() {
 		$out = '';
-		if ( $this->mTemplated ) {
+		if ( $this->templated ) {
 			$this->close();
-			$totalReal = isset( $this->mCollated['-total'] )
-				? $this->mCollated['-total']['real']
+			$totalReal = isset( $this->collated['-total'] )
+				? $this->collated['-total']['real']
 				: 0; // profiling mismatch error?
 
-			uasort( $this->mCollated, function( $a, $b ) {
+			uasort( $this->collated, function( $a, $b ) {
 				// sort descending by time elapsed
 				return $a['real'] < $b['real'];
 			} );
 
-			array_walk( $this->mCollated,
+			array_walk( $this->collated,
 				function( $item, $key ) use ( &$out, $totalReal ) {
 					$perc = $totalReal ? $item['real'] / $totalReal * 100 : 0;
 					$out .= sprintf( "%6.2f%% %3.6f %6d - %s\n",
