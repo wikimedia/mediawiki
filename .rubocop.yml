@@ -1,1 +1,8 @@
 inherit_from: .rubocop_todo.yml
+
+AllCops:
+    Exclude:
+        - 'extensions/**/*'
+        - 'skins/**/*'
+        - 'tests/frontend/node_modules/**/*'
+        - 'vendor/**/*'
