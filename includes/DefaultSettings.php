@@ -2715,8 +2715,7 @@ $wgBrowserBlackList = array(
 $wgLegacySchemaConversion = false;
 
 /**
- * Enable dates like 'May 12' instead of '12 May', this only takes effect if
- * the interface is set to English.
+ * Enable dates like 'May 12' instead of '12 May'.
  */
 $wgAmericanDates = false;
 
