@@ -32,18 +32,18 @@
  */
 class ProfilerStandard extends Profiler {
 	/** @var array List of resolved profile calls with start/end data */
-	protected $mStack = array();
+	protected $stack = array();
 	/** @var array Queue of open profile calls with start data */
-	protected $mWorkStack = array();
+	protected $workStack = array();
 
 	/** @var array Map of (function name => aggregate data array) */
-	protected $mCollated = array();
+	protected $collated = array();
 	/** @var bool */
-	protected $mCollateDone = false;
+	protected $collateDone = false;
 	/** @var bool Whether to collect the full stack trace or just aggregates */
-	protected $mCollateOnly = true;
+	protected $collateOnly = true;
 	/** @var array Cache of a standard broken collation entry */
-	protected $mErrorEntry;
+	protected $errorEntry;
 
 	/**
 	 * @param array $params
@@ -77,17 +77,17 @@ class ProfilerStandard extends Profiler {
 	 * Add the inital item in the stack.
 	 */
 	protected function addInitialStack() {
-		$this->mErrorEntry = $this->getErrorEntry();
+		$this->errorEntry = $this->getErrorEntry();
 
 		$initialTime = $this->getInitialTime( 'wall' );
 		$initialCpu = $this->getInitialTime( 'cpu' );
 		if ( $initialTime !== null && $initialCpu !== null ) {
-			$this->mWorkStack[] = array( '-total', 0, $initialTime, $initialCpu, 0 );
-			if ( $this->mCollateOnly ) {
-				$this->mWorkStack[] = array( '-setup', 1, $initialTime, $initialCpu, 0 );
+			$this->workStack[] = array( '-total', 0, $initialTime, $initialCpu, 0 );
+			if ( $this->collateOnly ) {
+				$this->workStack[] = array( '-setup', 1, $initialTime, $initialCpu, 0 );
 				$this->profileOut( '-setup' );
 			} else {
-				$this->mStack[] = array( '-setup', 1, $initialTime, $initialCpu, 0,
+				$this->stack[] = array( '-setup', 1, $initialTime, $initialCpu, 0,
 					$this->getTime( 'wall' ), $this->getTime( 'cpu' ), 0 );
 			}
 		} else {
@@ -110,8 +110,8 @@ class ProfilerStandard extends Profiler {
 			'max_cpu'  => 0.0,
 			'min_real' => 0.0,
 			'max_real' => 0.0,
-			'periods'  => array(), // not filled if mCollateOnly
-			'overhead' => 0 // not filled if mCollateOnly
+			'periods'  => array(), // not filled if collateOnly
+			'overhead' => 0 // not filled if collateOnly
 		);
 	}
 
@@ -137,10 +137,10 @@ class ProfilerStandard extends Profiler {
 	protected function updateEntry(
 		$name, $elapsedCpu, $elapsedReal, $memChange, $subcalls = 0, $period = null
 	) {
-		$entry =& $this->mCollated[$name];
+		$entry =& $this->collated[$name];
 		if ( !is_array( $entry ) ) {
 			$entry = $this->getZeroEntry();
-			$this->mCollated[$name] =& $entry;
+			$this->collated[$name] =& $entry;
 		}
 		$entry['cpu'] += $elapsedCpu;
 		$entry['cpu_sq'] += $elapsedCpu * $elapsedCpu;
@@ -168,13 +168,13 @@ class ProfilerStandard extends Profiler {
 		global $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry ) {
-			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) ) .
+			$this->debug( str_repeat( ' ', count( $this->workStack ) ) .
 				'Entering ' . $functionname . "\n" );
 		}
 
-		$this->mWorkStack[] = array(
+		$this->workStack[] = array(
 			$functionname,
-			count( $this->mWorkStack ),
+			count( $this->workStack ),
 			$this->getTime( 'time' ),
 			$this->getTime( 'cpu' ),
 			memory_get_usage()
@@ -190,11 +190,11 @@ class ProfilerStandard extends Profiler {
 		global $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry ) {
-			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) .
+			$this->debug( str_repeat( ' ', count( $this->workStack ) - 1 ) .
 				'Exiting ' . $functionname . "\n" );
 		}
 
-		$item = array_pop( $this->mWorkStack );
+		$item = array_pop( $this->workStack );
 		list( $ofname, /* $ocount */, $ortime, $octime, $omem ) = $item;
 
 		if ( $item === null ) {
@@ -204,31 +204,31 @@ class ProfilerStandard extends Profiler {
 				if ( $ofname !== '-total' ) {
 					$message = "Profile section ended by close(): {$ofname}";
 					$this->debugGroup( 'profileerror', $message );
-					if ( $this->mCollateOnly ) {
-						$this->mCollated[$message] = $this->mErrorEntry;
+					if ( $this->collateOnly ) {
+						$this->collated[$message] = $this->errorEntry;
 					} else {
-						$this->mStack[] = array( $message, 0, 0.0, 0.0, 0, 0.0, 0.0, 0 );
+						$this->stack[] = array( $message, 0, 0.0, 0.0, 0, 0.0, 0.0, 0 );
 					}
 				}
 				$functionname = $ofname;
 			} elseif ( $ofname !== $functionname ) {
 				$message = "Profiling error: in({$ofname}), out($functionname)";
 				$this->debugGroup( 'profileerror', $message );
-				if ( $this->mCollateOnly ) {
-					$this->mCollated[$message] = $this->mErrorEntry;
+				if ( $this->collateOnly ) {
+					$this->collated[$message] = $this->errorEntry;
 				} else {
-					$this->mStack[] = array( $message, 0, 0.0, 0.0, 0, 0.0, 0.0, 0 );
+					$this->stack[] = array( $message, 0, 0.0, 0.0, 0, 0.0, 0.0, 0 );
 				}
 			}
 			$realTime = $this->getTime( 'wall' );
 			$cpuTime = $this->getTime( 'cpu' );
-			if ( $this->mCollateOnly ) {
+			if ( $this->collateOnly ) {
 				$elapsedcpu = $cpuTime - $octime;
 				$elapsedreal = $realTime - $ortime;
 				$memchange = memory_get_usage() - $omem;
 				$this->updateEntry( $functionname, $elapsedcpu, $elapsedreal, $memchange );
 			} else {
-				$this->mStack[] = array_merge( $item,
+				$this->stack[] = array_merge( $item,
 					array( $realTime, $cpuTime,	memory_get_usage() ) );
 			}
 			$this->trxProfiler->recordFunctionCompletion( $functionname, $realTime - $ortime );
@@ -239,7 +239,7 @@ class ProfilerStandard extends Profiler {
 	 * Close opened profiling sections
 	 */
 	public function close() {
-		while ( count( $this->mWorkStack ) ) {
+		while ( count( $this->workStack ) ) {
 			$this->profileOut( 'close' );
 		}
 	}
@@ -261,7 +261,7 @@ class ProfilerStandard extends Profiler {
 
 		$wgDebugFunctionEntry = false; // hack
 
-		if ( !count( $this->mStack ) && !count( $this->mCollated ) ) {
+		if ( !count( $this->stack ) && !count( $this->collated ) ) {
 			return "No profiling output\n";
 		}
 
@@ -278,7 +278,7 @@ class ProfilerStandard extends Profiler {
 	 */
 	protected function getCallTree() {
 		return implode( '', array_map(
-			array( &$this, 'getCallTreeLine' ), $this->remapCallTree( $this->mStack )
+			array( &$this, 'getCallTreeLine' ), $this->remapCallTree( $this->stack )
 		) );
 	}
 
@@ -339,28 +339,28 @@ class ProfilerStandard extends Profiler {
 	}
 
 	/**
-	 * Populate mCollated
+	 * Populate collated
 	 */
 	protected function collateData() {
-		if ( $this->mCollateDone ) {
+		if ( $this->collateDone ) {
 			return;
 		}
-		$this->mCollateDone = true;
+		$this->collateDone = true;
 		$this->close(); // set "-total" entry
 
-		if ( $this->mCollateOnly ) {
+		if ( $this->collateOnly ) {
 			return; // already collated as methods exited
 		}
 
-		$this->mCollated = array();
+		$this->collated = array();
 
 		# Estimate profiling overhead
-		$profileCount = count( $this->mStack );
+		$profileCount = count( $this->stack );
 		self::calculateOverhead( $profileCount );
 
 		# First, subtract the overhead!
 		$overheadTotal = $overheadMemory = $overheadInternal = array();
-		foreach ( $this->mStack as $entry ) {
+		foreach ( $this->stack as $entry ) {
 			// $entry is (name,pos,rtime0,cputime0,mem0,rtime1,cputime1,mem1)
 			$fname = $entry[0];
 			$elapsed = $entry[5] - $entry[2];
@@ -381,13 +381,13 @@ class ProfilerStandard extends Profiler {
 			array_sum( $overheadInternal ) / count( $overheadInternal ) : 0;
 
 		# Collate
-		foreach ( $this->mStack as $index => $entry ) {
+		foreach ( $this->stack as $index => $entry ) {
 			// $entry is (name,pos,rtime0,cputime0,mem0,rtime1,cputime1,mem1)
 			$fname = $entry[0];
 			$elapsedCpu = $entry[6] - $entry[3];
 			$elapsedReal = $entry[5] - $entry[2];
 			$memchange = $entry[7] - $entry[4];
-			$subcalls = $this->calltreeCount( $this->mStack, $index );
+			$subcalls = $this->calltreeCount( $this->stack, $index );
 
 			if ( substr( $fname, 0, 9 ) !== '-overhead' ) {
 				# Adjust for profiling overhead (except special values with elapsed=0
@@ -403,8 +403,8 @@ class ProfilerStandard extends Profiler {
 			$this->updateEntry( $fname, $elapsedCpu, $elapsedReal, $memchange, $subcalls, $period );
 		}
 
-		$this->mCollated['-overhead-total']['count'] = $profileCount;
-		arsort( $this->mCollated, SORT_NUMERIC );
+		$this->collated['-overhead-total']['count'] = $profileCount;
+		arsort( $this->collated, SORT_NUMERIC );
 	}
 
 	/**
@@ -422,11 +422,11 @@ class ProfilerStandard extends Profiler {
 		$prof = "\nProfiling data\n";
 		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
 
-		$total = isset( $this->mCollated['-total'] )
-			? $this->mCollated['-total']['real']
+		$total = isset( $this->collated['-total'] )
+			? $this->collated['-total']['real']
 			: 0;
 
-		foreach ( $this->mCollated as $fname => $data ) {
+		foreach ( $this->collated as $fname => $data ) {
 			$calls = $data['count'];
 			$percent = $total ? 100 * $data['real'] / $total : 0;
 			$memory = $data['memory'];
@@ -455,28 +455,28 @@ class ProfilerStandard extends Profiler {
 		// If some outer methods have not yet called wfProfileOut(), work around
 		// that by clearing anything in the work stack to just the "-total" entry.
 		// Collate after doing this so the results do not include profile errors.
-		if ( count( $this->mWorkStack ) > 1 ) {
-			$oldWorkStack = $this->mWorkStack;
-			$this->mWorkStack = array( $this->mWorkStack[0] ); // just the "-total" one
+		if ( count( $this->workStack ) > 1 ) {
+			$oldWorkStack = $this->workStack;
+			$this->workStack = array( $this->workStack[0] ); // just the "-total" one
 		} else {
 			$oldWorkStack = null;
 		}
 		$this->collateData();
 		// If this trick is used, then the old work stack is swapped back afterwards
-		// and mCollateDone is reset to false. This means that logData() will still
+		// and collateDone is reset to false. This means that logData() will still
 		// make use of all the method data since the missing wfProfileOut() calls
 		// should be made by the time it is called.
 		if ( $oldWorkStack ) {
-			$this->mWorkStack = $oldWorkStack;
-			$this->mCollateDone = false;
+			$this->workStack = $oldWorkStack;
+			$this->collateDone = false;
 		}
 
-		$total = isset( $this->mCollated['-total'] )
-			? $this->mCollated['-total']['real']
+		$total = isset( $this->collated['-total'] )
+			? $this->collated['-total']['real']
 			: 0;
 
 		$profile = array();
-		foreach ( $this->mCollated as $fname => $data ) {
+		foreach ( $this->collated as $fname => $data ) {
 			$periods = array();
 			foreach ( $data['periods'] as $period ) {
 				$period['start'] *= 1000;
