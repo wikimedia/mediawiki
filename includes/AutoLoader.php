@@ -675,6 +675,7 @@ $wgAutoloadLocalClasses = array(
 	'FormatJson' => 'includes/json/FormatJson.php',
 
 	# includes/libs
+	'ArrayUtils' => 'includes/libs/ArrayUtils.php',
 	'CSSMin' => 'includes/libs/CSSMin.php',
 	'GenericArrayObject' => 'includes/libs/GenericArrayObject.php',
 	'HashRing' => 'includes/libs/HashRing.php',
@@ -1151,7 +1152,6 @@ $wgAutoloadLocalClasses = array(
 	'UploadStashNoSuchKeyException' => 'includes/upload/UploadStash.php',
 
 	# includes/utils
-	'ArrayUtils' => 'includes/utils/ArrayUtils.php',
 	'CdbException' => 'includes/utils/Cdb.php',
 	'CdbFunctions' => 'includes/utils/CdbPHP.php',
 	'CdbReader' => 'includes/utils/Cdb.php',
