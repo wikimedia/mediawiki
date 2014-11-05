@@ -180,6 +180,8 @@ changes to languages because of Bugzilla reports.
   tag, instead of after the <text> and <sha1> tags.
   The new schema version is 0.10, the new schema URI is
   <https://www.mediawiki.org/xml/export-0.10.xsd>.
+* MWFunction::call() and MWFunction::callArray() were removed, having being
+  deprecated in 1.22.
 
 == Compatibility ==
 
