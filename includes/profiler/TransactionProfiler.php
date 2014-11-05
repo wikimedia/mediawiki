@@ -19,6 +19,7 @@
  *
  * @file
  * @ingroup Profiler
+ * @author Aaron Schulz
  */
 
 /**
@@ -69,17 +70,11 @@ class TransactionProfiler {
 	 * This method is only to be called by the Profiler class as methods finish
 	 *
 	 * @param string $method Function name
-	 * @param float $realtime Wal time ellapsed
+	 * @param float $realtime Wall time ellapsed
 	 */
 	public function recordFunctionCompletion( $method, $realtime ) {
 		if ( !$this->mDBTrxHoldingLocks ) {
 			// Short-circuit
-			return;
-		// @todo hardcoded check is a tad janky (what about FOR UPDATE?)
-		} elseif ( !preg_match( '/^query-m: (?!SELECT)/', $method )
-			&& $realtime < $this->mDBLockThreshold
-		) {
-			// Not a DB master query nor slow enough
 			return;
 		}
 		$now = microtime( true );
