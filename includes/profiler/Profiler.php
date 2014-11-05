@@ -125,31 +125,11 @@ abstract class Profiler {
 	abstract public function profileOut( $functionname );
 
 	/**
-	 * Mark a DB as in a transaction with one or more writes pending
-	 *
-	 * Note that there can be multiple connections to a single DB.
-	 *
-	 * @param string $server DB server
-	 * @param string $db DB name
-	 * @param string $id Resource ID string of connection
+	 * @return TransactionProfiler
+	 * @since 1.25
 	 */
-	public function transactionWritingIn( $server, $db, $id = '' ) {
-		$this->trxProfiler->transactionWritingIn( $server, $db, $id );
-	}
-
-	/**
-	 * Mark a DB as no longer in a transaction
-	 *
-	 * This will check if locks are possibly held for longer than
-	 * needed and log any affected transactions to a special DB log.
-	 * Note that there can be multiple connections to a single DB.
-	 *
-	 * @param string $server DB server
-	 * @param string $db DB name
-	 * @param string $id Resource ID string of connection
-	 */
-	public function transactionWritingOut( $server, $db, $id = '' ) {
-		$this->trxProfiler->transactionWritingOut( $server, $db, $id );
+	public function getTransactionProfiler() {
+		return $this->trxProfiler;
 	}
 
 	/**
