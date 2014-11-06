@@ -2956,7 +2956,7 @@ HTML
 		);
 
 		$pageLang = $this->mTitle->getPageLanguage();
-		$attribs['lang'] = $pageLang->getCode();
+		$attribs['lang'] = $pageLang->getHtmlCode();
 		$attribs['dir'] = $pageLang->getDir();
 
 		$wgOut->addHTML( Html::textarea( $name, $wikitext, $attribs ) );
