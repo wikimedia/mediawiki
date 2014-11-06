@@ -355,7 +355,7 @@ class DBQueryError extends DBExpectedError {
 	 */
 	protected function getHTMLContent() {
 		$key = 'databaseerror-text';
-		$s = Html::element( 'p', array(), $this->msg( $key, $this->getFallbackMessage( $key ) ) );
+		$s = Html::element( 'p', array(), $this->msg( $key, $this->getFallbackMessage( $key ) )->parse() );
 
 		$details = $this->getTechnicalDetails();
 		if ( $details ) {
@@ -428,7 +428,7 @@ class DBQueryError extends DBExpectedError {
 	private function getFallbackMessage( $key ) {
 		$messages = array(
 			'databaseerror-text' => 'A database query error has occurred.
-This may indicate a bug in the software.',
+This may indicate a bug in the software. See the [https://www.mediawiki.org/wiki/Manual:How_to_debug#SQL_errors manual on how to debug SQL errors].',
 			'databaseerror-textcl' => 'A database query error has occurred.',
 			'databaseerror-query' => 'Query: $1',
 			'databaseerror-function' => 'Function: $1',
