@@ -307,7 +307,7 @@
 	"nospecialpagetext": "<strong>You have requested an invalid special page.</strong>\n\nA list of valid special pages can be found at [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Error",
 	"databaseerror": "Database error",
-	"databaseerror-text": "A database query error has occurred.\nThis may indicate a bug in the software.",
+	"databaseerror-text": "A database query error has occurred. This may indicate a bug in the software. See the [https://www.mediawiki.org/wiki/Manual:How_to_debug#SQL_errors manual on how to debug SQL errors].",
 	"databaseerror-textcl": "A database query error has occurred.",
 	"databaseerror-query": "Query: $1",
 	"databaseerror-function": "Function: $1",
