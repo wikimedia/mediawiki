@@ -1,7 +1,0 @@
-This directory hold several benchmarking scripts used as a proof of speed
-or to track PHP performances over time.
-
-To get somehow accurate result, you might want to bound the PHP process
-to a specific CPU with `taskset` and raise its priority with `nice`. Example:
-
- $ taskset 1 nice -n-10 php bench_wfIsWindows.php

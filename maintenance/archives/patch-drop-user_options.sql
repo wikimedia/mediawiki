@@ -1,1 +1,0 @@
-ALTER TABLE /*_*/user DROP COLUMN user_options;

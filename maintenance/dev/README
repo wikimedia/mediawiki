@@ -1,7 +1,0 @@
-maintenance/dev/ scripts can help quickly setup a local MediaWiki for development purposes.
-
-Wikis setup in this way are NOT meant to be publicly available. They use a development database not acceptible for use in production. Place a sqlite database in an unsafe location a real wiki should never place it in. And use predictable default logins for the initial administrator user.
-
-Running maintenance/dev/install.sh will download and install a local copy of php 5.4, install a sqlite powered instance of MW for development, and then start up a local webserver to view the wiki.
-
-After installation you can bring the webserver back up at any time you want with maintenance/dev/start.sh

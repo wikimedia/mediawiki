@@ -1,9 +1,0 @@
-The classes in this directory are general utilities for use by any part of
-MediaWiki. They do not favour any particular user interface and are not
-constrained to serve any particular feature. This is similar to includes/libs,
-except that some dependency on the MediaWiki framework (such as the use of
-MWException, Status or wfDebug()) disqualifies them from use outside of
-MediaWiki without modification.
-
-Utilities should not use global configuration variables, rather they should rely
-on the caller to configure their behaviour.
