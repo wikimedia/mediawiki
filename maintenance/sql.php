@@ -39,7 +39,8 @@ class MwSql extends Maintenance {
 	}
 
 	public function execute() {
-		$wiki = $this->getOption( 'wikidb' ) ?: false;
+		// We wan't to allow "" for the wikidb, meaning don't call select_db()
+		$wiki = $this->hasOption( 'wikidb' ) ? $this->getOption( 'wikidb' ) : false;
 		// Get the appropriate load balancer (for this wiki)
 		if ( $this->hasOption( 'cluster' ) ) {
 			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ), $wiki );
