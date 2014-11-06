@@ -6,20 +6,6 @@
  */
 class ErrorPageErrorTest extends MediaWikiTestCase {
 
-	private $wgOut;
-
-	protected function setUp() {
-		parent::setUp();
-		global $wgOut;
-		$this->wgOut = clone $wgOut;
-	}
-
-	protected function tearDown() {
-		global $wgOut;
-		$wgOut = $this->wgOut;
-		parent::tearDown();
-	}
-
 	private function getMockMessage() {
 		$mockMessage = $this->getMockBuilder( 'Message' )
 			->disableOriginalConstructor()
@@ -48,20 +34,18 @@ class ErrorPageErrorTest extends MediaWikiTestCase {
 		$title = 'Foo';
 		$params = array( 'Baz' );
 
-		global $wgOut;
-		$wgOut = $this->getMockBuilder( 'OutputPage' )
+		$mock = $this->getMockBuilder( 'OutputPage' )
 			->disableOriginalConstructor()
 			->getMock();
-		$wgOut->expects( $this->once() )
+		$mock->expects( $this->once() )
 			->method( 'showErrorPage' )
 			->with( $title, $mockMessage, $params );
-		$wgOut->expects( $this->once() )
+		$mock->expects( $this->once() )
 			->method( 'output' );
+		$this->setMwGlobals( 'wgOut', $mock );
 
 		$e = new ErrorPageError( $title, $mockMessage, $params );
 		$e->report();
 	}
-
-
 
 }
