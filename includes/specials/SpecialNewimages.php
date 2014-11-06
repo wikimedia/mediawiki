@@ -59,7 +59,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		if ( !$message->isDisabled() ) {
 			$this->getOutput()->addWikiText(
 				Html::rawElement( 'p',
-					array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
+					array( 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ),
 					"\n" . $message->plain() . "\n"
 				),
 				/* $lineStart */ false,

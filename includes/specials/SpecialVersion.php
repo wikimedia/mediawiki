@@ -1203,7 +1203,7 @@ class SpecialVersion extends SpecialPage {
 		$language = $this->getLanguage();
 		$thAttribures = array(
 			'dir' => $language->getDir(),
-			'lang' => $language->getCode()
+			'lang' => $language->getHtmlCode()
 		);
 		$out = Html::element(
 				'h2',
