@@ -54,12 +54,6 @@ class ProfilerStub extends Profiler {
 		return '';
 	}
 
-	public function transactionWritingIn( $server, $db, $id = '' ) {
-	}
-
-	public function transactionWritingOut( $server, $db, $id = '' ) {
-	}
-
 	public function getRawData() {
 		return array();
 	}

@@ -231,7 +231,6 @@ class ProfilerStandard extends Profiler {
 				$this->mStack[] = array_merge( $item,
 					array( $realTime, $cpuTime,	memory_get_usage() ) );
 			}
-			$this->trxProfiler->recordFunctionCompletion( $functionname, $realTime - $ortime );
 		}
 	}
 
