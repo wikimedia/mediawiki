@@ -1002,6 +1002,7 @@ return array(
 		'dependencies' => array(
 			'jquery.cookie',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.toolbar' => array(
 		'class' => 'ResourceLoaderEditToolbarModule',
