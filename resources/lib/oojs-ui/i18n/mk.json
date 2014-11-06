@@ -16,5 +16,6 @@
 	"ooui-dialog-message-reject": "Откажи",
 	"ooui-dialog-process-error": "Нешто не е во ред",
 	"ooui-dialog-process-dismiss": "Тргни",
-	"ooui-dialog-process-retry": "Обиди се пак"
+	"ooui-dialog-process-retry": "Обиди се пак",
+	"ooui-dialog-process-continue": "Продолжи"
 }

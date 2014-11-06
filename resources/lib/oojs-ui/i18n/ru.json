@@ -15,7 +15,8 @@
 			"Putnik",
 			"Sunpriat",
 			"Yury Katkov",
-			"Умар"
+			"Умар",
+			"Камалист"
 		]
 	},
 	"ooui-outline-control-move-down": "Переместить элемент вниз",
@@ -28,5 +29,6 @@
 	"ooui-dialog-message-reject": "Отмена",
 	"ooui-dialog-process-error": "Что-то пошло не так",
 	"ooui-dialog-process-dismiss": "Закрыть",
-	"ooui-dialog-process-retry": "Попробовать ещё раз"
+	"ooui-dialog-process-retry": "Попробовать ещё раз",
+	"ooui-dialog-process-continue": "Продолжить"
 }

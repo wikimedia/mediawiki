@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (b38d485723)
+ * OOjs UI v0.1.0-pre (12b66051ff)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-04T22:41:45Z
+ * Date: 2014-11-06T19:08:33Z
  */
 ( function ( OO ) {
 
@@ -2856,7 +2856,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 	// Window opening
 	if ( opening.state() !== 'rejected' ) {
 		// Begin loading the window if it's not loading or loaded already - may take noticable time
-		// and we want to do this in paralell with any other preparatory actions
+		// and we want to do this in parallel with any other preparatory actions
 		if ( !win.isLoading() && !win.isLoaded() ) {
 			// Finish initializing the window (must be done after manager is attached to DOM)
 			win.setManager( this );
@@ -3859,7 +3859,7 @@ OO.ui.GroupElement.prototype.aggregate = function ( events ) {
 		groupEvent = events[itemEvent];
 
 		// Remove existing aggregated event
-		if ( itemEvent in this.aggregateItemEvents ) {
+		if ( Object.prototype.hasOwnProperty.call( this.aggregateItemEvents, itemEvent ) ) {
 			// Don't allow duplicate aggregations
 			if ( groupEvent ) {
 				throw new Error( 'Duplicate item event aggregation for ' + itemEvent );
@@ -3966,7 +3966,7 @@ OO.ui.GroupElement.prototype.removeItems = function ( items ) {
 				!$.isEmptyObject( this.aggregateItemEvents )
 			) {
 				remove = {};
-				if ( itemEvent in this.aggregateItemEvents ) {
+				if ( Object.prototype.hasOwnProperty.call( this.aggregateItemEvents, itemEvent ) ) {
 					remove[itemEvent] = [ 'emit', this.aggregateItemEvents[itemEvent], item ];
 				}
 				item.disconnect( this, remove );
@@ -3998,7 +3998,7 @@ OO.ui.GroupElement.prototype.clearItems = function () {
 			!$.isEmptyObject( this.aggregateItemEvents )
 		) {
 			remove = {};
-			if ( itemEvent in this.aggregateItemEvents ) {
+			if ( Object.prototype.hasOwnProperty.call( this.aggregateItemEvents, itemEvent ) ) {
 				remove[itemEvent] = [ 'emit', this.aggregateItemEvents[itemEvent], item ];
 			}
 			item.disconnect( this, remove );
@@ -8103,7 +8103,7 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItems = function () {
 		ourRequest;
 
 	this.abortLookupRequest();
-	if ( value in this.lookupCache ) {
+	if ( Object.prototype.hasOwnProperty.call( this.lookupCache, value ) ) {
 		deferred.resolve( this.getLookupMenuItemsFromData( this.lookupCache[value] ) );
 	} else {
 		this.lookupInput.pushPending();
@@ -9048,7 +9048,7 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	this.$input
 		.attr( 'name', config.name )
 		.prop( 'disabled', this.isDisabled() );
-	this.$element.addClass( 'oo-ui-inputWidget' ).append( this.$input );
+	this.$element.addClass( 'oo-ui-inputWidget' ).append( this.$input, $( '<span>' ) );
 	this.setValue( config.value );
 };
 
@@ -9955,9 +9955,6 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 		.attr( 'role', 'option' )
 		.addClass( 'oo-ui-optionWidget' )
 		.append( this.$label );
-	this.$element
-		.prepend( this.$icon )
-		.append( this.$indicator );
 };
 
 /* Setup */
@@ -11153,7 +11150,7 @@ OO.ui.SelectWidget.prototype.getHighlightedItem = function () {
 OO.ui.SelectWidget.prototype.getItemFromData = function ( data ) {
 	var hash = OO.getHash( data );
 
-	if ( hash in this.hashes ) {
+	if ( Object.prototype.hasOwnProperty.call( this.hashes, hash ) ) {
 		return this.hashes[hash];
 	}
 
@@ -11340,7 +11337,7 @@ OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
 		hash = OO.getHash( item.getData() );
-		if ( hash in this.hashes ) {
+		if ( Object.prototype.hasOwnProperty.call( this.hashes, hash ) ) {
 			// Remove item with same value
 			remove.push( this.hashes[hash] );
 		}
@@ -11374,7 +11371,7 @@ OO.ui.SelectWidget.prototype.removeItems = function ( items ) {
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
 		hash = OO.getHash( item.getData() );
-		if ( hash in this.hashes ) {
+		if ( Object.prototype.hasOwnProperty.call( this.hashes, hash ) ) {
 			// Remove existing item
 			delete this.hashes[hash];
 		}

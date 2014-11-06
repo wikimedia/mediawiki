@@ -27,5 +27,6 @@
 	"ooui-dialog-message-reject": "Anuluj",
 	"ooui-dialog-process-error": "Coś poszło nie tak",
 	"ooui-dialog-process-dismiss": "Ukryj",
-	"ooui-dialog-process-retry": "Spróbuj ponownie"
+	"ooui-dialog-process-retry": "Spróbuj ponownie",
+	"ooui-dialog-process-continue": "Kontynuuj"
 }

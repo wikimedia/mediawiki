@@ -15,5 +15,6 @@
 	"ooui-dialog-message-reject": "Loobu",
 	"ooui-dialog-process-error": "Midagi läks valesti",
 	"ooui-dialog-process-dismiss": "Hülga",
-	"ooui-dialog-process-retry": "Proovi uuesti"
+	"ooui-dialog-process-retry": "Proovi uuesti",
+	"ooui-dialog-process-continue": "Jätka"
 }

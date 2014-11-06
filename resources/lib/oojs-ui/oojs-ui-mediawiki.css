@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (b38d485723)
+ * OOjs UI v0.1.0-pre (12b66051ff)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-04T22:41:55Z
+ * Date: 2014-11-06T19:08:43Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -1138,6 +1138,54 @@
 .oo-ui-popupButtonWidget.oo-ui-buttonElement-framed > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
 	left: -1.75em;
 }
+.oo-ui-checkboxInputWidget {
+	position: relative;
+	line-height: 1.6em;
+}
+.oo-ui-checkboxInputWidget * {
+	vertical-align: middle;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"] {
+	opacity: 0;
+	width: 1.6em;
+	height: 1.6em;
+	max-width: none;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"] + span {
+	cursor: pointer;
+	margin: 0 0.4em;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"] + span::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	border-radius: 0.3em;
+	width: 1.6em;
+	height: 1.6em;
+	background-color: #ffffff;
+	border: 1px solid grey;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"]:checked + span::before {
+	background-image: /* @embed */ url(themes/mediawiki/images/icons/check-constructive.svg);
+	background-size: 1.6em, 1.6em;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"]:active + span::after,
+.oo-ui-checkboxInputWidget input[type="checkbox"]:focus + span::after {
+	content: "";
+	position: absolute;
+	width: 1.6em;
+	height: 1.5em;
+	left: 1px;
+	border-bottom: solid 0.2em #d3d3d3;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled + span {
+	cursor: default;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled + span::before {
+	background-color: lightgrey;
+}
 .oo-ui-textInputWidget {
 	position: relative;
 	-webkit-box-sizing: border-box;
@@ -1898,9 +1946,9 @@
 .oo-ui-icon-check {
 	background-image: /* @embed */ url(themes/mediawiki/images/icons/check.png);
 }
-.oo-ui-image-primary .oo-ui-icon-check,
-.oo-ui-image-primary.oo-ui-icon-check {
-	background-image: /* @embed */ url(themes/mediawiki/images/icons/check-primary.png);
+.oo-ui-image-constructive .oo-ui-icon-check,
+.oo-ui-image-constructive.oo-ui-icon-check {
+	background-image: /* @embed */ url(themes/mediawiki/images/icons/check-constructive.png);
 }
 .oo-ui-image-invert .oo-ui-icon-check,
 .oo-ui-image-invert.oo-ui-icon-check {
