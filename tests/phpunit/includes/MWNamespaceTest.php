@@ -306,13 +306,11 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @covers MWNamespace::isContent
 	 */
 	public function testIsContentAdvanced() {
-		global $wgContentNamespaces;
-
 		// Test that user defined namespace #252 is not content
 		$this->assertIsNotContent( 252 );
 
 		// Bless namespace # 252 as a content namespace
-		$wgContentNamespaces[] = 252;
+		$this->mergeMwGlobalArrayValue( 'wgContentNamespaces', array( 252 ) );
 
 		$this->assertIsContent( 252 );
 
@@ -341,8 +339,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @covers MWNamespace::hasSubpages
 	 */
 	public function testHasSubpages() {
-		global $wgNamespacesWithSubpages;
-
 		// Special namespaces:
 		$this->assertHasNotSubpages( NS_MEDIA );
 		$this->assertHasNotSubpages( NS_SPECIAL );
@@ -350,10 +346,10 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		// Namespaces without subpages
 		$this->assertHasNotSubpages( NS_MAIN );
 
-		$wgNamespacesWithSubpages[NS_MAIN] = true;
+		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', array( NS_MAIN => true ) );
 		$this->assertHasSubpages( NS_MAIN );
 
-		$wgNamespacesWithSubpages[NS_MAIN] = false;
+		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', array( NS_MAIN => false ) );
 		$this->assertHasNotSubpages( NS_MAIN );
 
 		// Some namespaces with subpages
@@ -366,47 +362,45 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @covers MWNamespace::getContentNamespaces
 	 */
 	public function testGetContentNamespaces() {
-		global $wgContentNamespaces;
-
 		$this->assertEquals(
 			array( NS_MAIN ),
 			MWNamespace::getContentNamespaces(),
 			'$wgContentNamespaces is an array with only NS_MAIN by default'
 		);
 
-		# test !is_array( $wgcontentNamespaces )
-		$wgContentNamespaces = '';
+		# test !is_array( $wgContentNamespaces )
+		$this->setMwGlobals( 'wgContentNamespaces', '' );
 		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
-		$wgContentNamespaces = false;
+		$this->setMwGlobals( 'wgContentNamespaces', false );
 		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
-		$wgContentNamespaces = null;
+		$this->setMwGlobals( 'wgContentNamespaces', null );
 		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
-		$wgContentNamespaces = 5;
+		$this->setMwGlobals( 'wgContentNamespaces', 5 );
 		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
 		# test $wgContentNamespaces === array()
-		$wgContentNamespaces = array();
+		$this->setMwGlobals( 'wgContentNamespaces', array() );
 		$this->assertEquals( array( NS_MAIN ), MWNamespace::getContentNamespaces() );
 
 		# test !in_array( NS_MAIN, $wgContentNamespaces )
-		$wgContentNamespaces = array( NS_USER, NS_CATEGORY );
+		$this->setMwGlobals( 'wgContentNamespaces', array( NS_USER, NS_CATEGORY ) );
 		$this->assertEquals(
 			array( NS_MAIN, NS_USER, NS_CATEGORY ),
 			MWNamespace::getContentNamespaces(),
 			'NS_MAIN is forced in $wgContentNamespaces even if unwanted'
 		);
 
-		# test other cases, return $wgcontentNamespaces as is
-		$wgContentNamespaces = array( NS_MAIN );
+		# test other cases, return $wgContentNamespaces as is
+		$this->setMwGlobals( 'wgContentNamespaces', array( NS_MAIN ) );
 		$this->assertEquals(
 			array( NS_MAIN ),
 			MWNamespace::getContentNamespaces()
 		);
 
-		$wgContentNamespaces = array( NS_MAIN, NS_USER, NS_CATEGORY );
+		$this->setMwGlobals( 'wgContentNamespaces', array( NS_MAIN, NS_USER, NS_CATEGORY ) );
 		$this->assertEquals(
 			array( NS_MAIN, NS_USER, NS_CATEGORY ),
 			MWNamespace::getContentNamespaces()
@@ -483,12 +477,10 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @covers MWNamespace::isCapitalized
 	 */
 	public function testIsCapitalizedWithWgCapitalLinks() {
-		global $wgCapitalLinks;
-
 		$this->assertIsCapitalized( NS_PROJECT );
 		$this->assertIsCapitalized( NS_PROJECT_TALK );
 
-		$wgCapitalLinks = false;
+		$this->setMwGlobals( 'wgCapitalLinks', false );
 
 		// hardcoded namespaces (see above function) are still capitalized:
 		$this->assertIsCapitalized( NS_SPECIAL );
@@ -508,8 +500,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @covers MWNamespace::isCapitalized
 	 */
 	public function testIsCapitalizedWithWgCapitalLinkOverrides() {
-		global $wgCapitalLinkOverrides;
-
 		// Test default settings
 		$this->assertIsCapitalized( NS_PROJECT );
 		$this->assertIsCapitalized( NS_PROJECT_TALK );
@@ -520,20 +510,23 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
 
 		// Hardcoded namespaces remains capitalized
-		$wgCapitalLinkOverrides[NS_SPECIAL] = false;
-		$wgCapitalLinkOverrides[NS_USER] = false;
-		$wgCapitalLinkOverrides[NS_MEDIAWIKI] = false;
+		$this->mergeMwGlobalArrayValue( 'wgCapitalLinkOverrides', array(
+			NS_SPECIAL => false,
+			NS_USER => false,
+			NS_MEDIAWIKI => false,
+		) );
 
 		$this->assertIsCapitalized( NS_SPECIAL );
 		$this->assertIsCapitalized( NS_USER );
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
 
-		$wgCapitalLinkOverrides[NS_PROJECT] = false;
+		$this->mergeMwGlobalArrayValue( 'wgCapitalLinkOverrides', array( NS_PROJECT => false ) );
 		$this->assertIsNotCapitalized( NS_PROJECT );
 
-		$wgCapitalLinkOverrides[NS_PROJECT] = true;
+		$this->mergeMwGlobalArrayValue( 'wgCapitalLinkOverrides', array( NS_PROJECT => true ) );
 		$this->assertIsCapitalized( NS_PROJECT );
 
+		global $wgCapitalLinkOverrides; # TODO: Allow unsetting keys with function
 		unset( $wgCapitalLinkOverrides[NS_PROJECT] );
 		$this->assertIsCapitalized( NS_PROJECT );
 	}
@@ -557,9 +550,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @covers MWNamespace::isNonincludable
 	 */
 	public function testIsNonincludable() {
-		global $wgNonincludableNamespaces;
-
-		$wgNonincludableNamespaces = array( NS_USER );
+		$this->setMwGlobals( 'wgNonincludableNamespaces', array( NS_USER ) );
 
 		$this->assertTrue( MWNamespace::isNonincludable( NS_USER ) );
 		$this->assertFalse( MWNamespace::isNonincludable( NS_TEMPLATE ) );
