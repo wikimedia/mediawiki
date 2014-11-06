@@ -18,5 +18,6 @@
 	"ooui-dialog-message-reject": "Revocare",
 	"ooui-dialog-process-error": "Ceva nu a funcționat",
 	"ooui-dialog-process-dismiss": "Renunțare",
-	"ooui-dialog-process-retry": "Reîncearcă"
+	"ooui-dialog-process-retry": "Reîncearcă",
+	"ooui-dialog-process-continue": "Continuă"
 }

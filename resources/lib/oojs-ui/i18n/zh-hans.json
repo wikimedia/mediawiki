@@ -29,5 +29,6 @@
 	"ooui-dialog-message-reject": "取消",
 	"ooui-dialog-process-error": "发生一些错误",
 	"ooui-dialog-process-dismiss": "解除",
-	"ooui-dialog-process-retry": "重试"
+	"ooui-dialog-process-retry": "重试",
+	"ooui-dialog-process-continue": "继续"
 }

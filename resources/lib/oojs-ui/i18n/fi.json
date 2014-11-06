@@ -20,6 +20,8 @@
 	"ooui-outline-control-move-up": "Siirrä kohdetta ylöspäin",
 	"ooui-outline-control-remove": "Poista kohde",
 	"ooui-toolbar-more": "Lisää",
+	"ooui-toolgroup-expand": "Enemmän",
+	"ooui-toolgroup-collapse": "Vähemmän",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Peruuta",
 	"ooui-dialog-process-error": "Jokin meni pieleen",
