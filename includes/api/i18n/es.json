@@ -5,7 +5,13 @@
 			"Effy"
 		]
 	},
+	"apihelp-block-description": "Bloquear usuario",
+	"apihelp-compare-param-fromtitle": "Primer título para comparar",
+	"apihelp-createaccount-description": "Crear una nueva cuenta de usuario.",
 	"apihelp-createaccount-param-name": "Nombre de usuario.",
+	"apihelp-delete-param-watch": "Añadir esta página a su lista de seguimiento",
+	"apihelp-delete-param-unwatch": "Borrar esta página de su lista de seguimiento",
+	"apihelp-edit-description": "Crear y editar páginas.",
 	"apihelp-expandtemplates-param-title": "Título de la página.",
 	"apihelp-feedrecentchanges-param-hideminor": "Ocultar cambios menores.",
 	"apihelp-query+allusers-param-activeusers": "Solo listar usuarios activos en {{PLURAL:$1|el último día|los $1 últimos días}}.",

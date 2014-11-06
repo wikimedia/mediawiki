@@ -3158,5 +3158,13 @@
 	"mediastatistics-header-executable": "Eseguìbij",
 	"mediastatistics-header-archive": "Formà compress",
 	"json-warn-trailing-comma": "$1 {{PLURAL:$1|coma final a l'é stàita|còme finaj a son ëstàite}} gavà dal JSON",
-	"json-error-unknown": "A-i é staje un problema con ël JSON. Eror: $1"
+	"json-error-unknown": "A-i é staje un problema con ël JSON. Eror: $1",
+	"json-error-depth": "La dimension màssima dël baron a l'é stàita sorpassà",
+	"json-error-state-mismatch": "JSON nen bon o mal formà",
+	"json-error-ctrl-char": "Eror ëd caràter ëd contròl, miraco mal codificà",
+	"json-error-syntax": "Eror ëd sintassi",
+	"json-error-utf8": "Caràter UTF-8 mal formà, miraco mal codificà",
+	"json-error-recursion": "Un-a o pi rëspondense ant ël valor da codifiché",
+	"json-error-inf-or-nan": "Un o pi valor NAN o INF ant ël valor da codifiché",
+	"json-error-unsupported-type": "A l'é stàit dàit un valor ëd na sòrt ch'a peul nen esse codificà"
 }

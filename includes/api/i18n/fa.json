@@ -5,7 +5,8 @@
 			"Arash.pt",
 			"Fatemi127",
 			"Reza1615",
-			"KhabarNegar"
+			"KhabarNegar",
+			"Sahehco"
 		]
 	},
 	"apihelp-main-param-action": "کدام عملیات را انجام دهد.",
@@ -76,6 +77,7 @@
 	"apihelp-emailuser-param-subject": "موضوع هدر.",
 	"apihelp-emailuser-param-text": "متن رایانه.",
 	"apihelp-emailuser-param-ccme": "ارسال یک نسخه از رایانه به شما.",
+	"apihelp-expandtemplates-description": "گسترش همه الگوها در ویکی نبشته",
 	"apihelp-expandtemplates-param-title": "عنوان صفحه",
 	"apihelp-expandtemplates-param-text": "تبدیل برای ویکی‌متن.",
 	"apihelp-feedcontributions-description": "خوراک مشارکت‌های یک کاربر را برمی‌گرداند.",

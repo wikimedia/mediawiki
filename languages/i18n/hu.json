@@ -36,7 +36,8 @@
 			"아라",
 			"Csega",
 			"ViDam",
-			"Adam78"
+			"Adam78",
+			"Grin"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -246,7 +247,7 @@
 	"jumptonavigation": "navigáció",
 	"jumptosearch": "keresés",
 	"view-pool-error": "A szerverek jelenleg túl vannak terhelve, mert túl sok felhasználó próbálta megtekinteni ezt az oldalt.\nKérjük, várj egy kicsit, mielőtt újra próbálkoznál a lap megtekintésével!\n\n$1",
-	"generic-pool-error": "Sajnáljuk, a szerverek jelenleg túl vannak terhelve.\nTúl sok felhasználó próbálja ezt az oldalt megtekinteni.\nKérjük, várj egy kicsit, mielőtt újra próbálkoznál!",
+	"generic-pool-error": "Sajnáljuk, a szerverek jelenleg túl vannak terhelve.\nTúl sok felhasználó próbálja ezt az erőforrást elérni.\nKérjük, várj egy kicsit, mielőtt újra próbálkoznál!",
 	"pool-timeout": "Letelt a zárolás feloldására szánt várakozási idő",
 	"pool-queuefull": "A pool sor megtelt",
 	"pool-errorunknown": "Ismeretlen hiba",
@@ -349,7 +350,7 @@
 	"badarticleerror": "Ez a tevékenység nem végezhető el ezen a lapon.",
 	"cannotdelete": "A(z) $1 lapot vagy fájlt nem lehet törölni.\nTalán már valaki más törölte.",
 	"cannotdelete-title": "Nem lehet törölni a(z) „$1” lapot",
-	"delete-hook-aborted": "A törlés meg lett szakítva egy hook által.\nNem lett magyarázat csatolva.",
+	"delete-hook-aborted": "A törlést egy hook (szűrő) megszakította.\nNincs csatolt magyarázat hozzá.",
 	"no-null-revision": "Nem sikerült új null-revíziót létrehozni a(z) „$1” lap számára.",
 	"badtitle": "Hibás cím",
 	"badtitletext": "A kért oldal címe érvénytelen, üres, vagy rosszul hivatkozott nyelvközi vagy wikiközi cím volt. Olyan karaktereket is tartalmazhatott, melyek címekben nem használhatók.",
