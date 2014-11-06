@@ -808,7 +808,7 @@ class SpecialVersion extends SpecialPage {
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-ext-description' ), $description );
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-ext-authors' ), $authors );
 
-		$html .= Html::closeElement( 'td' );
+		$html .= Html::closeElement( 'tr' );
 
 		return $html;
 	}
