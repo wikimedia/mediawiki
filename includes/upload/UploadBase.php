@@ -424,7 +424,7 @@ abstract class UploadBase {
 	 * @return mixed True of the file is verified, array otherwise.
 	 */
 	protected function verifyFile() {
-		global $wgVerifyMimeType;
+		global $wgVerifyMimeType, $wgDisableUploadScriptChecks;
 		wfProfileIn( __METHOD__ );
 
 		$status = $this->verifyPartialFile();
@@ -443,6 +443,18 @@ abstract class UploadBase {
 				wfProfileOut( __METHOD__ );
 
 				return array( 'filetype-mime-mismatch', $this->mFinalExtension, $mime );
+			}
+		}
+
+		# check for htmlish code and javascript
+		if ( !$wgDisableUploadScriptChecks ) {
+			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
+				$svgStatus = $this->detectScriptInSvg( $this->mTempPath, false );
+				if ( $svgStatus !== false ) {
+					wfProfileOut( __METHOD__ );
+
+					return $svgStatus;
+				}
 			}
 		}
 
@@ -504,7 +516,7 @@ abstract class UploadBase {
 				return array( 'uploadscripted' );
 			}
 			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
-				$svgStatus = $this->detectScriptInSvg( $this->mTempPath );
+				$svgStatus = $this->detectScriptInSvg( $this->mTempPath, true );
 				if ( $svgStatus !== false ) {
 					wfProfileOut( __METHOD__ );
 
@@ -1281,9 +1293,10 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $filename
+	 * @param bool $partial
 	 * @return mixed False of the file is verified (does not contain scripts), array otherwise.
 	 */
-	protected function detectScriptInSvg( $filename ) {
+	protected function detectScriptInSvg( $filename, $partial ) {
 		$this->mSVGNSError = false;
 		$check = new XmlTypeCheck(
 			$filename,
@@ -1293,7 +1306,8 @@ abstract class UploadBase {
 		);
 		if ( $check->wellFormed !== true ) {
 			// Invalid xml (bug 58553)
-			return array( 'uploadinvalidxml' );
+			// But only when non-partial (bug 65724)
+			return $partial ? false : array( 'uploadinvalidxml' );
 		} elseif ( $check->filterMatch ) {
 			if ( $this->mSVGNSError ) {
 				return array( 'uploadscriptednamespace', $this->mSVGNSError );
