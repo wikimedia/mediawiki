@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.1.1 optimised for jQuery
+ * OOjs v1.1.2 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-09-11T00:40:09Z
+ * Date: 2014-11-06T17:42:36Z
  */
 ( function ( global ) {
 
@@ -506,11 +506,6 @@ oo.isPlainObject = $.isPlainObject;
 			if ( context === undefined || context === null ) {
 				throw new Error( 'Method name "' + method + '" has no context.' );
 			}
-			if ( !( method in context ) ) {
-				// Technically the method does not need to exist yet: it could be
-				// added before call time. But this probably signals a typo.
-				throw new Error( 'Method not found: "' + method + '"' );
-			}
 			if ( typeof context[method] !== 'function' ) {
 				// Technically the property could be replaced by a function before
 				// call time. But this probably signals a typo.
@@ -593,7 +588,7 @@ oo.isPlainObject = $.isPlainObject;
 
 		validateMethod( method, context );
 
-		if ( !( event in this.bindings ) || !this.bindings[event].length ) {
+		if ( !hasOwn.call( this.bindings, event ) || !this.bindings[event].length ) {
 			// No matching bindings
 			return this;
 		}
@@ -632,7 +627,7 @@ oo.isPlainObject = $.isPlainObject;
 	oo.EventEmitter.prototype.emit = function ( event ) {
 		var i, len, binding, bindings, args, method;
 
-		if ( event in this.bindings ) {
+		if ( hasOwn.call( this.bindings, event ) ) {
 			// Slicing ensures that we don't get tripped up by event handlers that add/remove bindings
 			bindings = this.bindings[event].slice();
 			args = Array.prototype.slice.call( arguments, 1 );
