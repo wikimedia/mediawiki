@@ -261,14 +261,21 @@ class LogEventsList extends ContextSource {
 	 * @return string
 	 */
 	private function getExtraInputs( $types ) {
-		$offender = $this->getRequest()->getVal( 'offender' );
-		$user = User::newFromName( $offender, false );
-		if ( !$user || ( $user->getId() == 0 && !IP::isIPAddress( $offender ) ) ) {
-			$offender = ''; // Blank field if invalid
-		}
-		if ( count( $types ) == 1 && $types[0] == 'suppress' ) {
-			return Xml::inputLabel( $this->msg( 'revdelete-offender' )->text(), 'offender',
-				'mw-log-offender', 20, $offender );
+		if ( count( $types ) == 1 ) {
+			if ( $types[0] == 'suppress' ) {
+				$offender = $this->getRequest()->getVal( 'offender' );
+				$user = User::newFromName( $offender, false );
+				if ( !$user || ( $user->getId() == 0 && !IP::isIPAddress( $offender ) ) ) {
+					$offender = ''; // Blank field if invalid
+				}
+				return Xml::inputLabel( $this->msg( 'revdelete-offender' )->text(), 'offender',
+					'mw-log-offender', 20, $offender );
+			} else {
+				// Allow extensions to add their own extra inputs
+				$input = '';
+				wfRunHooks( 'LogEventsListGetExtraInputs', array( $types[0], $this, &$input ) );
+				return $input;
+			}
 		}
 
 		return '';

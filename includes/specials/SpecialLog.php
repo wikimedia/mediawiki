@@ -95,6 +95,9 @@ class SpecialLog extends SpecialPage {
 			} elseif ( $offender && IP::isIPAddress( $offender->getName() ) ) {
 				$qc = array( 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() );
 			}
+		} else {
+			// Allow extensions to add relations to their search types
+			wfRunHooks( 'SpecialLogAddLogSearchRelations', array( $opts->getValue( 'type' ), $this->getRequest(), &$qc ) );
 		}
 
 		# Some log types are only for a 'User:' title but we might have been given
