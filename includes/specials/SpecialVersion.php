@@ -191,8 +191,8 @@ class SpecialVersion extends SpecialPage {
 			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
-			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw', $othersLink,
-			$translatorsLink
+			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw', 'Brad Jorsch',
+			$othersLink, $translatorsLink
 		);
 
 		return wfMessage( 'version-poweredby-credits', MWTimestamp::getLocalInstance()->format( 'Y' ),
