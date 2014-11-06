@@ -6,14 +6,10 @@
  */
 class GenderCacheTest extends MediaWikiLangTestCase {
 
-	protected function setUp() {
-		global $wgDefaultUserOptions;
-		parent::setUp();
-		//ensure the correct default gender
-		$wgDefaultUserOptions['gender'] = 'unknown';
-	}
-
 	function addDBData() {
+		//ensure the correct default gender
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', array( 'gender' => 'unknown' ) );
+
 		$user = User::newFromName( 'UTMale' );
 		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();
