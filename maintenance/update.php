@@ -178,11 +178,12 @@ class UpdateMediaWiki extends Maintenance {
 			}
 		}
 
+		$updater->setFileAccess();
 		if ( !$this->hasOption( 'nopurge' ) ) {
 			$updater->purgeCache();
 		}
-		$time2 = new MWTimestamp();
 
+		$time2 = new MWTimestamp();
 		$timeDiff = $time2->diff( $time1 );
 		$this->output( "\nDone in " . $timeDiff->format( "%i:%S" ) . ".\n" );
 	}
