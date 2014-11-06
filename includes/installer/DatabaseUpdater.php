@@ -898,6 +898,29 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Set any .htaccess files or equivilent for storage repos
+	 *
+	 * Some zones (e.g. "temp") used to be public and may have been initialized as such
+	 */
+	public function setFileAccess() {
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		$zonePath = $repo->getZonePath( 'temp' );
+		if ( $repo->getBackend()->directoryExists( array( 'dir' => $zonePath ) ) ) {
+			// If the directory was never made, then it will have the right ACLs when it is made
+			$status = $repo->getBackend()->secure( array(
+				'dir' => $zonePath,
+				'noAccess' => true,
+				'noListing' => true
+			) );
+			if ( $status->isOK() ) {
+				$this->output( "Set the local repo temp zone container to be private.\n" );
+			} else {
+				$this->output( "Failed to set the local repo temp zone container to be private.\n" );
+			}
+		}
+	}
+
+	/**
 	 * Purge the objectcache table
 	 */
 	public function purgeCache() {
