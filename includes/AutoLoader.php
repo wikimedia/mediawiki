@@ -48,8 +48,6 @@ $wgAutoloadLocalClasses = array(
 	'CollationCkb' => 'includes/Collation.php',
 	'CollationEt' => 'includes/Collation.php',
 	'ConcatenatedGzipHistoryBlob' => 'includes/HistoryBlob.php',
-	'Cookie' => 'includes/Cookie.php',
-	'CookieJar' => 'includes/Cookie.php',
 	'CurlHttpRequest' => 'includes/HttpFunctions.php',
 	'DeprecatedGlobal' => 'includes/DeprecatedGlobal.php',
 	'DerivativeRequest' => 'includes/WebRequest.php',
@@ -676,6 +674,8 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/libs
 	'ArrayUtils' => 'includes/libs/ArrayUtils.php',
+	'Cookie' => 'includes/libs/Cookie.php',
+	'CookieJar' => 'includes/libs/Cookie.php',
 	'CSSMin' => 'includes/libs/CSSMin.php',
 	'GenericArrayObject' => 'includes/libs/GenericArrayObject.php',
 	'HashRing' => 'includes/libs/HashRing.php',
