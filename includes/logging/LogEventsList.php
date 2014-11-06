@@ -557,7 +557,7 @@ class LogEventsList extends ContextSource {
 		if ( $logBody ) {
 			if ( $msgKey[0] ) {
 				$dir = $context->getLanguage()->getDir();
-				$lang = $context->getLanguage()->getCode();
+				$lang = $context->getLanguage()->getHtmlCode();
 
 				$s = Xml::openElement( 'div', array(
 					'class' => "mw-warning-with-logexcerpt mw-content-$dir",

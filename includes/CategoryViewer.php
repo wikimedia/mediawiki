@@ -136,7 +136,7 @@ class CategoryViewer extends ContextSource {
 		}
 
 		$lang = $this->getLanguage();
-		$langAttribs = array( 'lang' => $lang->getCode(), 'dir' => $lang->getDir() );
+		$langAttribs = array( 'lang' => $lang->getHtmlCode(), 'dir' => $lang->getDir() );
 		# put a div around the headings which are in the user language
 		$r = Html::openElement( 'div', $langAttribs ) . $r . '</div>';
 
@@ -515,7 +515,7 @@ class CategoryViewer extends ContextSource {
 		}
 
 		$pageLang = $this->title->getPageLanguage();
-		$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
+		$attribs = array( 'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
 			'class' => 'mw-content-' . $pageLang->getDir() );
 		$list = Html::rawElement( 'div', $attribs, $list );
 
