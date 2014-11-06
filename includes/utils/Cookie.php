@@ -69,7 +69,7 @@ class Cookie {
 				$this->domain = $attr['domain'];
 			}
 		} else {
-			throw new MWException( 'You must specify a domain.' );
+			throw new InvalidArgumentException( '$attr must contain a domain' );
 		}
 	}
 
