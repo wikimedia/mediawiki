@@ -1165,3 +1165,58 @@ class RawMessage extends Message {
 	}
 
 }
+
+/**
+ * Variant of the Message class.
+ *
+ * This class will wrap the underlying message in some other text, typically
+ * some layout wikitext or HTML that shouldn't be included in the i18n.
+ *
+ * All other functionality (parsing, escaping, etc.)
+ * is preserved.
+ *
+ * @since 1.25
+ */
+class WrappedMessage extends Message {
+
+	protected $wrapper;
+
+	/**
+	 * @see Message::__construct
+	 *
+	 * @param string $wrapper Wrapper text. '$1' is replaced with the actual message.
+	 * @param string $text Message to use.
+	 * @param array $params Parameters for the message.
+	 * @throws InvalidArgumentException
+	 */
+	public function __construct( $wrapper, $text, $params = array() ) {
+		if ( !is_string( $wrapper ) ) {
+			throw new InvalidArgumentException( '$wrapper must be a string' );
+		}
+
+		parent::__construct( $text, $params );
+		$this->wrapper = $wrapper;
+	}
+
+	/**
+	 * Fetch the wrapping text
+	 *
+	 * @return string
+	 */
+	public function getWrapText() {
+		return $this->wrapper;
+	}
+
+	/**
+	 * Fetch the message.
+	 *
+	 * @return string
+	 */
+	public function fetchMessage() {
+		if ( $this->message === null ) {
+			$this->message = str_replace( '$1', parent::fetchMessage(), $this->wrapper );
+		}
+		return $this->message;
+	}
+
+}
