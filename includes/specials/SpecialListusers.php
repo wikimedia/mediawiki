@@ -176,7 +176,7 @@ class UsersPager extends AlphabeticPager {
 		$lang = $this->getLanguage();
 
 		$groups = '';
-		$groups_list = self::getGroups( $row->user_id );
+		$groups_list = self::getGroups( $row->user_id, $this->userGroupCache );
 
 		if ( !$this->including && count( $groups_list ) > 0 ) {
 			$list = array();
@@ -218,11 +218,38 @@ class UsersPager extends AlphabeticPager {
 
 	function doBatchLookups() {
 		$batch = new LinkBatch();
+		$userIds = array();
 		# Give some pointers to make user links
 		foreach ( $this->mResult as $row ) {
 			$batch->add( NS_USER, $row->user_name );
 			$batch->add( NS_USER_TALK, $row->user_name );
+			$userIds[] = $row->user_id;
 		}
+
+		// Lookup groups for all the users
+		$dbr = wfGetDB( DB_SLAVE );
+		$groupRes = $dbr->select(
+			'user_groups',
+			array( 'ug_user', 'ug_group' ),
+			array( 'ug_user' => $userIds ),
+			__METHOD__
+		);
+		$cache = array();
+		$groups = array();
+		foreach ( $groupRes as $row ) {
+			$cache[$row->ug_user][] = $row->ug_group;
+			$groups[$row->ug_group] = true;
+		}
+		$this->userGroupCache = $cache;
+
+		// Add page of groups to link batch
+		foreach( $groups as $group => $unused ) {
+			$groupPage = User::getGroupPage( $group );
+			if ( $groupPage ) {
+				$batch->addObj( $groupPage );
+			}
+		}
+
 		$batch->execute();
 		$this->mResult->rewind();
 	}
@@ -331,11 +358,17 @@ class UsersPager extends AlphabeticPager {
 	 * Get a list of groups the specified user belongs to
 	 *
 	 * @param int $uid User id
+	 * @param array|null $cache
 	 * @return array
 	 */
-	protected static function getGroups( $uid ) {
-		$user = User::newFromId( $uid );
-		$groups = array_diff( $user->getEffectiveGroups(), User::getImplicitGroups() );
+	protected static function getGroups( $uid, $cache = null ) {
+		if ( $cache === null ) {
+			$user = User::newFromId( $uid );
+			$effectiveGroups = $user->getEffectiveGroups();
+		} else {
+			$effectiveGroups = isset( $cache[$uid] ) ? $cache[$uid] : array();
+		}
+		$groups = array_diff( $effectiveGroups, User::getImplicitGroups() );
 
 		return $groups;
 	}
