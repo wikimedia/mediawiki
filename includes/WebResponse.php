@@ -38,6 +38,21 @@ class WebResponse {
 	}
 
 	/**
+	 * Get a request header
+	 * @param string $key The name of the header to get (case insensitive).
+	 * @return string|null The header value (if set); null otherwise.
+	 * @since 1.25
+	 */
+	public function getHeader( $key ) {
+		foreach ( headers_list() as $header ) {
+			list( $name, $val ) = explode( ':', $header, 2 );
+			if ( !strcasecmp( $name, $key ) ) {
+				return trim( $val );
+			}
+		}
+	}
+
+	/**
 	 * Set the browser cookie
 	 * @param string $name Name of cookie
 	 * @param string $value Value to give cookie
@@ -150,7 +165,7 @@ class FauxResponse extends WebResponse {
 	 * @param string $key The name of the header to get (case insensitive).
 	 * @return string
 	 */
-	public function getheader( $key ) {
+	public function getHeader( $key ) {
 		$key = strtoupper( $key );
 
 		if ( isset( $this->headers[$key] ) ) {
