@@ -32,12 +32,8 @@ class CSSMin {
 	/* Constants */
 
 	/**
-	 * Maximum file size to still qualify for in-line embedding as a data-URI
-	 *
-	 * 24,576 is used because Internet Explorer has a 32,768 byte limit for data URIs,
-	 * which when base64 encoded will result in a 1/3 increase in size.
+	 * Internet Explorer data URI length limit. See encodeImageAsDataURI().
 	 */
-	const EMBED_SIZE_LIMIT = 24576;
 	const DATA_URI_SIZE_LIMIT = 32768;
 	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\'"]*?)(?P<query>\?[^\)\'"]*?|)[\'"]?\s*\)';
 	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
@@ -110,17 +106,17 @@ class CSSMin {
 	 * @param string $file Image file to encode.
 	 * @param string|null $type File's MIME type or null. If null, CSSMin will
 	 *     try to autodetect the type.
-	 * @param int|bool $sizeLimit If the size of the target file is greater than
-	 *     this value, decline to encode the image file and return false
-	 *     instead. If $sizeLimit is false, no limit is enforced.
+	 * @param bool $ie8Compat By default, a data URI will only be produced if it can be made short
+	 *     enough to fit in Internet Explorer 8 (and earlier) URI length limit (32,768 bytes). Pass
+	 *     `false` to remove this limitation.
 	 * @return string|bool Image contents encoded as a data URI or false.
 	 */
-	public static function encodeImageAsDataURI( $file, $type = null,
-		$sizeLimit = self::EMBED_SIZE_LIMIT
-	) {
-		if ( $sizeLimit !== false && filesize( $file ) >= $sizeLimit ) {
+	public static function encodeImageAsDataURI( $file, $type = null, $ie8Compat = true ) {
+		// Fast-fail for files that definitely exceed the maximum data URI length
+		if ( $ie8Compat && filesize( $file ) >= self::DATA_URI_SIZE_LIMIT ) {
 			return false;
 		}
+
 		if ( $type === null ) {
 			$type = self::getMimeType( $file );
 		}
@@ -128,22 +124,41 @@ class CSSMin {
 			return false;
 		}
 
-		$contents = file_get_contents( $file );
-		// Only whitespace and printable ASCII characters
-		$isText = (bool)preg_match( '/^[\r\n\t\x20-\x7e]+$/', $contents );
+		return self::encodeStringAsDataURI( file_get_contents( $file ), $type, $ie8Compat );
+	}
 
-		if ( $isText ) {
-			// Do not base64-encode non-binary files (sane SVGs), unless that'd exceed URI length limit.
+	/**
+	 * Encode file contents as a data URI with chosen MIME type.
+	 *
+	 * The URI will be base64-encoded for binary files or just percent-encoded otherwise.
+	 *
+	 * @since 1.25
+	 *
+	 * @param string $contents File contents to encode.
+	 * @param string $type File's MIME type.
+	 * @param bool $ie8Compat See encodeImageAsDataURI().
+	 * @return string|bool Image contents encoded as a data URI or false.
+	 */
+	public static function encodeStringAsDataURI( $contents, $type, $ie8Compat = true ) {
+		// Try #1: Non-encoded data URI
+		// The regular expression matches ASCII whitespace and printable characters.
+		if ( preg_match( '/^[\r\n\t\x20-\x7e]+$/', $contents ) ) {
+			// Do not base64-encode non-binary files (sane SVGs).
 			// (This often produces longer URLs, but they compress better, yielding a net smaller size.)
 			$uri = 'data:' . $type . ',' . rawurlencode( $contents );
-			if ( strlen( $uri ) >= self::DATA_URI_SIZE_LIMIT ) {
-				$uri = 'data:' . $type . ';base64,' . base64_encode( $contents );
+			if ( !$ie8Compat || strlen( $uri ) < self::DATA_URI_SIZE_LIMIT ) {
+				return $uri;
 			}
-		} else {
-			$uri = 'data:' . $type . ';base64,' . base64_encode( $contents );
 		}
 
-		return $uri;
+		// Try #2: Encoded data URI
+		$uri = 'data:' . $type . ';base64,' . base64_encode( $contents );
+		if ( !$ie8Compat || strlen( $uri ) < self::DATA_URI_SIZE_LIMIT ) {
+			return $uri;
+		}
+
+		// A data URI couldn't be produced
+		return false;
 	}
 
 	/**
