@@ -1161,7 +1161,7 @@ function wfErrorLog( $text, $file ) {
  * @todo document
  */
 function wfLogProfilingData() {
-	global $wgRequestTime, $wgDebugLogFile, $wgDebugLogGroups, $wgDebugRawPage;
+	global $wgRequestTime, $wgDebugLogGroups, $wgDebugRawPage;
 	global $wgProfileLimit, $wgUser, $wgRequest;
 
 	StatCounter::singleton()->flush();
