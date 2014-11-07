@@ -135,6 +135,6 @@
 			} );
 		}
 
-		$input.on( events, $.debounce( 250, updateUsernameStatus ) );
+		$input.on( events, $.debounce( 1000, updateUsernameStatus ) );
 	} );
 }( mediaWiki, jQuery ) );
