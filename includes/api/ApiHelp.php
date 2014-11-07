@@ -546,10 +546,10 @@ class ApiHelp extends ApiBase {
 					}
 
 					if ( $description ) {
-						$help['parameters'] .= Html::openElement( 'dd',
-							array( 'class' => 'description' ) );
-						$help['parameters'] .= join( '', $description );
-						$help['parameters'] .= Html::closeElement( 'dd' );
+						$description = join( '', $description );
+						$description = preg_replace( '!\s*</([oud]l)>\s*<\1>\s*!', "\n", $description );
+						$help['parameters'] .= Html::rawElement( 'dd',
+							array( 'class' => 'description' ), $description );
 					}
 
 					foreach ( $info as $i ) {
@@ -669,4 +669,51 @@ class ApiHelp extends ApiBase {
 			'https://www.mediawiki.org/wiki/API:Quick_start_guide',
 		);
 	}
+}
+
+/**
+ * Message subclass that prepends wikitext for API help.
+ *
+ * This exists so the apihelp-*-paramvalue-*-* messages don't all have to
+ * include markup wikitext while still keeping the
+ * 'APIGetParamDescriptionMessages' hook simple.
+ *
+ * @since 1.25
+ */
+class ApiHelpParamValueMessage extends Message {
+
+	protected $paramValue;
+
+	/**
+	 * @see Message::__construct
+	 *
+	 * @param string $paramValue Parameter value being documented
+	 * @param string $text Message to use.
+	 * @param array $params Parameters for the message.
+	 * @throws InvalidArgumentException
+	 */
+	public function __construct( $paramValue, $text, $params = array() ) {
+		parent::__construct( $text, $params );
+		$this->paramValue = $paramValue;
+	}
+
+	/**
+	 * Fetch the parameter value
+	 * @return string
+	 */
+	public function getParamValue() {
+		return $this->paramValue;
+	}
+
+	/**
+	 * Fetch the message.
+	 * @return string
+	 */
+	public function fetchMessage() {
+		if ( $this->message === null ) {
+			$this->message = ";{$this->paramValue}:" . parent::fetchMessage();
+		}
+		return $this->message;
+	}
+
 }
