@@ -44,6 +44,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiFormatXmlRsd' => __DIR__ . '/includes/api/ApiRsd.php',
 	'ApiFormatYaml' => __DIR__ . '/includes/api/ApiFormatYaml.php',
 	'ApiHelp' => __DIR__ . '/includes/api/ApiHelp.php',
+	'ApiHelpParamValueMessage' => __DIR__ . '/includes/api/ApiHelpParamValueMessage.php',
 	'ApiImageRotate' => __DIR__ . '/includes/api/ApiImageRotate.php',
 	'ApiImport' => __DIR__ . '/includes/api/ApiImport.php',
 	'ApiImportReporter' => __DIR__ . '/includes/api/ApiImport.php',

@@ -90,7 +90,9 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'timestamp|url',
-				ApiBase::PARAM_TYPE => self::getPropertyNames( $this->propertyFilter )
+				ApiBase::PARAM_TYPE => self::getPropertyNames( $this->propertyFilter ),
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+imageinfo-param-prop',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => self::getPropertyMessages( $this->propertyFilter )
 			),
 			'urlwidth' => array(
 				ApiBase::PARAM_TYPE => 'integer',
