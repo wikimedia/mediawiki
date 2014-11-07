@@ -1298,6 +1298,7 @@ $wgAutoloadLocalClasses = array(
 	'WithoutInterwikiPage' => __DIR__ . '/includes/specials/SpecialWithoutinterwiki.php',
 	'WordLevelDiff' => __DIR__ . '/includes/diff/DairikiDiff.php',
 	'WrapOldPasswords' => __DIR__ . '/maintenance/wrapOldPasswords.php',
+	'WrappedMessage' => __DIR__ . '/includes/Message.php',
 	'XCFHandler' => __DIR__ . '/includes/media/XCF.php',
 	'XCacheBagOStuff' => __DIR__ . '/includes/objectcache/XCacheBagOStuff.php',
 	'XMLRCFeedFormatter' => __DIR__ . '/includes/rcfeed/XMLRCFeedFormatter.php',
