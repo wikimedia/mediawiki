@@ -132,8 +132,6 @@ class UsersPager extends AlphabeticPager {
 				'user_name' => $this->creationSort ? 'MAX(user_name)' : 'user_name',
 				'user_id' => $this->creationSort ? 'user_id' : 'MAX(user_id)',
 				'edits' => 'MAX(user_editcount)',
-				'numgroups' => 'COUNT(ug_group)',
-				'singlegroup' => 'MAX(ug_group)', // the usergroup if there is only one
 				'creation' => 'MIN(user_registration)',
 				'ipb_deleted' => 'MAX(ipb_deleted)' // block/hide status
 			),
