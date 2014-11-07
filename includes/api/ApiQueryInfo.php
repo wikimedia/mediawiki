@@ -811,7 +811,9 @@ class ApiQueryInfo extends ApiQueryBase {
 					'displaytitle',
 					// If you add more properties here, please consider whether they
 					// need to be added to getCacheMode()
-				) ),
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
+			),
 			'token' => array(
 				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_DFLT => null,

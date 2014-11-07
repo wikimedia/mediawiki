@@ -632,7 +632,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'timestamp|user',
-				ApiBase::PARAM_TYPE => self::getPropertyNames()
+				ApiBase::PARAM_TYPE => self::getPropertyNames(),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => self::getPropertyMessages(),
 			),
 			'limit' => array(
 				ApiBase::PARAM_TYPE => 'limit',
@@ -690,11 +691,43 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * Returns all possible parameters to iiprop
 	 *
 	 * @param array $filter List of properties to filter out
-	 *
 	 * @return array
 	 */
 	public static function getPropertyNames( $filter = array() ) {
-		return array_diff( array_keys( self::getProperties() ), $filter );
+		return array_keys( self::getPropertyMessages( $filter ) );
+	}
+
+	/**
+	 * Returns messages for all possible parameters to iiprop
+	 *
+	 * @param array $filter List of properties to filter out
+	 * @return array
+	 */
+	public static function getPropertyMessages( $filter = array() ) {
+		return array_diff_key(
+			array(
+				'timestamp' => 'apihelp-query+imageinfo-paramvalue-prop-timestamp',
+				'user' => 'apihelp-query+imageinfo-paramvalue-prop-user',
+				'userid' => 'apihelp-query+imageinfo-paramvalue-prop-userid',
+				'comment' => 'apihelp-query+imageinfo-paramvalue-prop-comment',
+				'parsedcomment' => 'apihelp-query+imageinfo-paramvalue-prop-parsedcomment',
+				'canonicaltitle' => 'apihelp-query+imageinfo-paramvalue-prop-canonicaltitle',
+				'url' => 'apihelp-query+imageinfo-paramvalue-prop-url',
+				'size' => 'apihelp-query+imageinfo-paramvalue-prop-size',
+				'dimensions' => 'apihelp-query+imageinfo-paramvalue-prop-dimensions',
+				'sha1' => 'apihelp-query+imageinfo-paramvalue-prop-sha1',
+				'mime' => 'apihelp-query+imageinfo-paramvalue-prop-mime',
+				'thumbmime' => 'apihelp-query+imageinfo-paramvalue-prop-thumbmime',
+				'mediatype' => 'apihelp-query+imageinfo-paramvalue-prop-mediatype',
+				'metadata' => 'apihelp-query+imageinfo-paramvalue-prop-metadata',
+				'commonmetadata' => 'apihelp-query+imageinfo-paramvalue-prop-commonmetadata',
+				'extmetadata' => 'apihelp-query+imageinfo-paramvalue-prop-extmetadata',
+				'archivename' => 'apihelp-query+imageinfo-paramvalue-prop-archivename',
+				'bitdepth' => 'apihelp-query+imageinfo-paramvalue-prop-bitdepth',
+				'uploadwarning' => 'apihelp-query+imageinfo-paramvalue-prop-uploadwarning',
+			),
+			array_flip( $filter )
+		);
 	}
 
 	/**

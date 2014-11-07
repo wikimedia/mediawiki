@@ -183,6 +183,7 @@ $wgAutoloadLocalClasses = array(
 	'WikiRevision' => 'includes/Import.php',
 	'WikiMap' => 'includes/WikiMap.php',
 	'WikiReference' => 'includes/WikiMap.php',
+	'WrappedMessage' => 'includes/Message.php',
 	'Xml' => 'includes/Xml.php',
 	'XmlDumpWriter' => 'includes/Export.php',
 	'XmlJsCode' => 'includes/Xml.php',

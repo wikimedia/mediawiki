@@ -66,13 +66,11 @@ abstract class ApiBase extends ContextSource {
 	const PARAM_RANGE_ENFORCE = 9;
 	/// @since 1.25
 	// Specify an alternative i18n message for this help parameter.
-	// Value can be a string key, an array giving key and parameters, or a
-	// Message object.
+	// Value is $msg for ApiBase::makeMessage()
 	const PARAM_HELP_MSG = 10;
 	/// @since 1.25
 	// Specify additional i18n messages to append to the normal message. Value
-	// is an array of any of strings giving the message key, arrays giving key and
-	// parameters, or Message objects.
+	// is an array of $msg for ApiBase::makeMessage()
 	const PARAM_HELP_MSG_APPEND = 11;
 	/// @since 1.25
 	// Specify additional information tags for the parameter. Value is an array
@@ -82,9 +80,14 @@ abstract class ApiBase extends ContextSource {
 	// comma-joined list of values, $3 = module prefix.
 	const PARAM_HELP_MSG_INFO = 12;
 	/// @since 1.25
-	// When PARAM_DFLT is an array, this may be an array mapping those values
+	// When PARAM_TYPE is an array, this may be an array mapping those values
 	// to page titles which will be linked in the help.
 	const PARAM_VALUE_LINKS = 13;
+	/// @since 1.25
+	// When PARAM_TYPE is an array, this is an array mapping those values to
+	// $msg for ApiBase::makeMessage(). Any value not having a mapping will use
+	// apihelp-{$path}-paramvalue-{$param}-{$value} is used.
+	const PARAM_HELP_MSG_PER_VALUE = 14;
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -2013,6 +2016,10 @@ abstract class ApiBase extends ContextSource {
 	 * @return array Keys are parameter names, values are arrays of Message objects
 	 */
 	public function getFinalParamDescription() {
+		$prefix = $this->getModulePrefix();
+		$name = $this->getModuleName();
+		$path = $this->getModulePath();
+
 		$desc = $this->getParamDescription();
 		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ) );
 
@@ -2043,22 +2050,52 @@ abstract class ApiBase extends ContextSource {
 			if ( isset( $settings[ApiBase::PARAM_HELP_MSG] ) ) {
 				$msg = $settings[ApiBase::PARAM_HELP_MSG];
 			} else {
-				$msg = $this->msg( "apihelp-{$this->getModulePath()}-param-{$param}" );
+				$msg = $this->msg( "apihelp-{$path}-param-{$param}" );
 				if ( !$msg->exists() ) {
 					$msg = $this->msg( 'api-help-fallback-parameter', $d );
 				}
 			}
-			$msg = ApiBase::makeMessage( $msg, $this->getContext(), array(
-				$this->getModulePrefix(),
-				$param,
-				$this->getModuleName(),
-				$this->getModulePath(),
-			) );
+			$msg = ApiBase::makeMessage( $msg, $this->getContext(),
+				array( $prefix, $param, $name, $path ) );
 			if ( !$msg ) {
 				$this->dieDebug( __METHOD__,
 					'Value in ApiBase::PARAM_HELP_MSG is not valid' );
 			}
 			$msgs[$param] = array( $msg );
+
+			if ( isset( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
+				if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
+					$this->dieDebug( __METHOD__,
+						'ApiBase::PARAM_HELP_MSG_PER_VALUE is not valid' );
+				}
+				if ( !is_array( $settings[ApiBase::PARAM_TYPE] ) ) {
+					$this->dieDebug( __METHOD__,
+						'ApiBase::PARAM_HELP_MSG_PER_VALUE may only be used when ' .
+						'ApiBase::PARAM_TYPE is an array' );
+				}
+
+				$valueMsgs = $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE];
+				foreach ( $settings[ApiBase::PARAM_TYPE] as $value ) {
+					if ( isset( $valueMsgs[$value] ) ) {
+						$msg = $valueMsgs[$value];
+					} else {
+						$msg = "apihelp-{$path}-paramvalue-{$param}-{$value}";
+					}
+					$m = ApiBase::makeMessage( $msg, $this->getContext(),
+						array( $prefix, $param, $name, $path, $value ) );
+					if ( $m ) {
+						$m = new WrappedMessage(
+							";$value:$1",
+							array( $m->getKey(), 'api-help-param-no-description' ),
+							$m->getParams()
+						);
+						$msgs[$param][] = $m->setContext( $this->getContext() );
+					} else {
+						$this->dieDebug( __METHOD__,
+							"Value in ApiBase::PARAM_HELP_MSG_PER_VALUE for $value is not valid" );
+					}
+				}
+			}
 
 			if ( isset( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
 				if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
@@ -2066,12 +2103,8 @@ abstract class ApiBase extends ContextSource {
 						'Value for ApiBase::PARAM_HELP_MSG_APPEND is not an array' );
 				}
 				foreach ( $settings[ApiBase::PARAM_HELP_MSG_APPEND] as $m ) {
-					$m = ApiBase::makeMessage( $m, $this->getContext(), array(
-						$this->getModulePrefix(),
-						$param,
-						$this->getModuleName(),
-						$this->getModulePath(),
-					) );
+					$m = ApiBase::makeMessage( $m, $this->getContext(),
+						array( $prefix, $param, $name, $path ) );
 					if ( $m ) {
 						$msgs[$param][] = $m;
 					} else {
