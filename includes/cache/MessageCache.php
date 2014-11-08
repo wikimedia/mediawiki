@@ -72,7 +72,7 @@ class MessageCache {
 	protected $mExpiry;
 
 	/**
-	 * Message cache has it's own parser which it uses to transform
+	 * Message cache has its own parser which it uses to transform
 	 * messages.
 	 */
 	protected $mParserOptions, $mParser;

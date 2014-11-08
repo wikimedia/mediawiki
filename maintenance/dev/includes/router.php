@@ -98,5 +98,5 @@ if ( $mime ) {
 	return true;
 }
 
-# Let the php server handle things on it's own otherwise
+# Let the php server handle things on its own otherwise
 return false;

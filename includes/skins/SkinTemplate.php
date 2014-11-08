@@ -488,7 +488,7 @@ class SkinTemplate extends Skin {
 			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
 		}
 
-		// Set the bodytext to another key so that skins can just output it on it's own
+		// Set the bodytext to another key so that skins can just output it on its own
 		// and output printfooter and debughtml separately
 		$tpl->set( 'bodycontent', $tpl->data['bodytext'] );
 

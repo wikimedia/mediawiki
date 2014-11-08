@@ -783,7 +783,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Utility method taking an array of elements and wrapping
-	 * each element in it's own array. Useful for data providers
+	 * each element in its own array. Useful for data providers
 	 * that only return a single argument.
 	 *
 	 * @since 1.20

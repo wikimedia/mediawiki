@@ -35,18 +35,18 @@
  *
  * - Parser::parse()
  *     produces HTML output
- * - Parser::preSaveTransform().
- *     produces altered wiki markup.
+ * - Parser::preSaveTransform()
+ *     produces altered wiki markup
  * - Parser::preprocess()
  *     removes HTML comments and expands templates
  * - Parser::cleanSig() and Parser::cleanSigInSig()
- *     Cleans a signature before saving it to preferences
+ *     cleans a signature before saving it to preferences
  * - Parser::getSection()
- *     Return the content of a section from an article for section editing
+ *     return the content of a section from an article for section editing
  * - Parser::replaceSection()
- *     Replaces a section by number inside an article
+ *     replaces a section by number inside an article
  * - Parser::getPreloadText()
- *     Removes <noinclude> sections, and <includeonly> tags.
+ *     removes <noinclude> sections and <includeonly> tags
  *
  * Globals used:
  *    object: $wgContLang
@@ -4829,7 +4829,7 @@ class Parser {
 
 	/**
 	 * Transform wiki markup when saving a page by doing "\r\n" -> "\n"
-	 * conversion, substitting signatures, {{subst:}} templates, etc.
+	 * conversion, substituting signatures, {{subst:}} templates, etc.
 	 *
 	 * @param string $text The text to transform
 	 * @param Title $title The Title object for the current article
