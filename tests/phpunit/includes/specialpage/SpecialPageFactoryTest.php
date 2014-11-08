@@ -22,6 +22,12 @@
  */
 class SpecialPageFactoryTest extends MediaWikiTestCase {
 
+	protected function tearDown() {
+		parent::tearDown();
+
+		SpecialPageFactory::resetList();
+	}
+
 	public function newSpecialAllPages() {
 		return new SpecialAllPages();
 	}
@@ -41,7 +47,6 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 */
 	public function testGetPage( $spec, $shouldReuseInstance ) {
 		$this->mergeMwGlobalArrayValue( 'wgSpecialPages', array( 'testdummy' => $spec ) );
-
 		SpecialPageFactory::resetList();
 
 		$page = SpecialPageFactory::getPage( 'testdummy' );
@@ -49,53 +54,172 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 
 		$page2 = SpecialPageFactory::getPage( 'testdummy' );
 		$this->assertEquals( $shouldReuseInstance, $page2 === $page, "Should re-use instance:" );
-
-		SpecialPageFactory::resetList();
 	}
 
 	public function testGetNames() {
 		$this->mergeMwGlobalArrayValue( 'wgSpecialPages', array( 'testdummy' => 'SpecialAllPages' ) );
-
 		SpecialPageFactory::resetList();
+
 		$names = SpecialPageFactory::getNames();
 		$this->assertInternalType( 'array', $names );
 		$this->assertContains( 'testdummy', $names );
-		SpecialPageFactory::resetList();
 	}
 
 	public function testResolveAlias() {
 		$this->setMwGlobals( 'wgContLang', Language::factory( 'de' ) );
-
 		SpecialPageFactory::resetList();
 
 		list( $name, $param ) = SpecialPageFactory::resolveAlias( 'Spezialseiten/Foo' );
 		$this->assertEquals( 'Specialpages', $name );
 		$this->assertEquals( 'Foo', $param );
-
-		SpecialPageFactory::resetList();
 	}
 
 	public function testGetLocalNameFor() {
 		$this->setMwGlobals( 'wgContLang', Language::factory( 'de' ) );
-
 		SpecialPageFactory::resetList();
 
 		$name = SpecialPageFactory::getLocalNameFor( 'Specialpages', 'Foo' );
 		$this->assertEquals( 'Spezialseiten/Foo', $name );
-
-		SpecialPageFactory::resetList();
 	}
 
 	public function testGetTitleForAlias() {
 		$this->setMwGlobals( 'wgContLang', Language::factory( 'de' ) );
-
 		SpecialPageFactory::resetList();
 
 		$title = SpecialPageFactory::getTitleForAlias( 'Specialpages/Foo' );
 		$this->assertEquals( 'Spezialseiten/Foo', $title->getText() );
 		$this->assertEquals( NS_SPECIAL, $title->getNamespace() );
+	}
 
+	/**
+	 * @dataProvider provideTestConflictResolution
+	 */
+	public function testConflictResolution(
+		$test, $aliasesList, $alias, $expectedName, $expectedAlias, $expectWarnings
+	) {
+		global $wgContLang;
+		$lang = clone $wgContLang;
+		$lang->mExtendedSpecialPageAliases = $aliasesList;
+		$this->setMwGlobals( 'wgContLang', $lang );
+		$this->setMwGlobals( 'wgSpecialPages',
+			array_combine( array_keys( $aliasesList ), array_keys( $aliasesList ) )
+		);
 		SpecialPageFactory::resetList();
+
+		// Catch the warnings we expect to be raised
+		$warnings = array();
+		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		set_error_handler( function ( $errno, $errstr ) use ( &$warnings ) {
+			if ( preg_match( '/First alias \'[^\']*\' for .*/', $errstr ) ||
+				preg_match( '/Did not find a usable alias for special page .*/', $errstr )
+			) {
+				$warnings[] = $errstr;
+				return true;
+			}
+			return false;
+		} );
+		$reset = new ScopedCallback( 'restore_error_handler' );
+
+		list( $name, /*...*/ ) = SpecialPageFactory::resolveAlias( $alias );
+		$this->assertEquals( $expectedName, $name, "$test: Alias to name" );
+		$result = SpecialPageFactory::getLocalNameFor( $name );
+		$this->assertEquals( $expectedAlias, $result, "$test: Alias to name to alias" );
+
+		$gotWarnings = count( $warnings );
+		if ( $gotWarnings !== $expectWarnings ) {
+			$this->fail( "Expected $expectWarnings warning(s), but got $gotWarnings:\n" .
+				join( "\n", $warnings )
+			);
+		}
+	}
+
+	/**
+	 * @dataProvider provideTestConflictResolution
+	 */
+	public function testConflictResolutionReversed(
+		$test, $aliasesList, $alias, $expectedName, $expectedAlias, $expectWarnings
+	) {
+		// Make sure order doesn't matter by reversing the list
+		$aliasesList = array_reverse( $aliasesList );
+		return $this->testConflictResolution(
+			$test, $aliasesList, $alias, $expectedName, $expectedAlias, $expectWarnings
+		);
+	}
+
+	public function provideTestConflictResolution() {
+		return array(
+			array(
+				'Canonical name wins',
+				array( 'Foo' => array( 'Foo', 'Bar' ), 'Baz' => array( 'Foo', 'BazPage', 'Baz2' ) ),
+				'Foo',
+				'Foo',
+				'Foo',
+				1,
+			),
+
+			array(
+				'Doesn\'t redirect to a different special page\'s canonical name',
+				array( 'Foo' => array( 'Foo', 'Bar' ), 'Baz' => array( 'Foo', 'BazPage', 'Baz2' ) ),
+				'Baz',
+				'Baz',
+				'BazPage',
+				1,
+			),
+
+			array(
+				'Canonical name wins even if not aliased',
+				array( 'Foo' => array( 'FooPage' ), 'Baz' => array( 'Foo', 'BazPage', 'Baz2' ) ),
+				'Foo',
+				'Foo',
+				'FooPage',
+				1,
+			),
+
+			array(
+				'Doesn\'t redirect to a different special page\'s canonical name even if not aliased',
+				array( 'Foo' => array( 'FooPage' ), 'Baz' => array( 'Foo', 'BazPage', 'Baz2' ) ),
+				'Baz',
+				'Baz',
+				'BazPage',
+				1,
+			),
+
+			array(
+				'First local name beats non-first',
+				array( 'First' => array( 'Foo' ), 'NonFirst' => array( 'Bar', 'Foo' ) ),
+				'Foo',
+				'First',
+				'Foo',
+				0,
+			),
+
+			array(
+				'Doesn\'t redirect to a different special page\'s first alias',
+				array(
+					'Foo' => array( 'Foo' ),
+					'First' => array( 'Bar' ),
+					'Baz' => array( 'Foo', 'Bar', 'BazPage', 'Baz2' )
+				),
+				'Baz',
+				'Baz',
+				'BazPage',
+				1,
+			),
+
+			array(
+				'Doesn\'t redirect wrong even if all aliases conflict',
+				array(
+					'Foo' => array( 'Foo' ),
+					'First' => array( 'Bar' ),
+					'Baz' => array( 'Foo', 'Bar' )
+				),
+				'Baz',
+				'Baz',
+				'Baz',
+				2,
+			),
+
+		);
 	}
 
 }
