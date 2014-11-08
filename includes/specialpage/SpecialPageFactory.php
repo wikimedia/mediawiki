@@ -262,10 +262,9 @@ class SpecialPageFactory {
 
 	/**
 	 * Initialise and return the list of special page aliases.  Returns an object with
-	 * properties which can be accessed $obj->pagename - each property is an array of
-	 * aliases; the first in the array is the canonical alias.  All registered special
-	 * pages are guaranteed to have a property entry, and for that property array to
-	 * contain at least one entry (English fallbacks will be added if necessary).
+	 * properties which can be accessed $obj->pagename - each property name is an
+	 * alias, with the value being the canonical name of the special page. All
+	 * registered special pages are guaranteed to map to themselves.
 	 * @return object
 	 */
 	private static function getAliasListObject() {
@@ -273,20 +272,43 @@ class SpecialPageFactory {
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
 
-			$missingPages = self::getPageList();
-
 			self::$aliases = array();
+			$keepAlias = array();
+
+			// Force every canonical name to be an alias for itself.
+			foreach ( self::getPageList() as $name => $stuff ) {
+				$caseFoldedAlias = $wgContLang->caseFold( $name );
+				self::$aliases[$caseFoldedAlias] = $name;
+				$keepAlias[$caseFoldedAlias] = 'canonical';
+			}
+
 			// Check for $aliases being an array since Language::getSpecialPageAliases can return null
 			if ( is_array( $aliases ) ) {
 				foreach ( $aliases as $realName => $aliasList ) {
-					foreach ( $aliasList as $alias ) {
-						self::$aliases[$wgContLang->caseFold( $alias )] = $realName;
+					$aliasList = array_values( $aliasList );
+					foreach ( $aliasList as $i => $alias ) {
+						$caseFoldedAlias = $wgContLang->caseFold( $alias );
+
+						if ( isset( self::$aliases[$caseFoldedAlias] ) &&
+							$realName === self::$aliases[$caseFoldedAlias]
+						) {
+							// Ignore same-realName conflicts
+							continue;
+						}
+
+						if ( !isset( $keepAlias[$caseFoldedAlias] ) ) {
+							self::$aliases[$caseFoldedAlias] = $realName;
+							if ( !$i ) {
+								$keepAlias[$caseFoldedAlias] = 'first';
+							}
+						} elseif ( !$i ) {
+							wfWarn( "First alias '$alias' for $realName conflicts with " .
+								"{$keepAlias[$caseFoldedAlias]} alias for " .
+								self::$aliases[$caseFoldedAlias]
+							);
+						}
 					}
-					unset( $missingPages->$realName );
 				}
-			}
-			foreach ( $missingPages as $name => $stuff ) {
-				self::$aliases[$wgContLang->caseFold( $name )] = $name;
 			}
 
 			// Cast to object: func()[$key] doesn't work, but func()->$key does
@@ -620,29 +642,42 @@ class SpecialPageFactory {
 	public static function getLocalNameFor( $name, $subpage = false ) {
 		global $wgContLang;
 		$aliases = $wgContLang->getSpecialPageAliases();
+		$aliasList = self::getAliasListObject();
 
-		if ( isset( $aliases[$name][0] ) ) {
-			$name = $aliases[$name][0];
-		} else {
-			// Try harder in case someone misspelled the correct casing
+		// Find the first alias that maps back to $name
+		if ( isset( $aliases[$name] ) ) {
 			$found = false;
-			// Check for $aliases being an array since Language::getSpecialPageAliases can return null
+			foreach ( $aliases[$name] as $alias ) {
+				$caseFoldedAlias = $wgContLang->caseFold( $alias );
+				$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
+				if ( isset( $aliasList->$caseFoldedAlias ) &&
+					$aliasList->$caseFoldedAlias === $name
+				) {
+					$name = $alias;
+					$found = true;
+					break;
+				}
+			}
+			if ( !$found ) {
+				wfWarn( "Did not find a usable alias for special page '$name'. " .
+					"It seems all defined aliases conflict?" );
+			}
+		} else {
+			// Check if someone misspelled the correct casing
 			if ( is_array( $aliases ) ) {
 				foreach ( $aliases as $n => $values ) {
 					if ( strcasecmp( $name, $n ) === 0 ) {
 						wfWarn( "Found alias defined for $n when searching for " .
 							"special page aliases for $name. Case mismatch?" );
-						$name = $values[0];
-						$found = true;
-						break;
+						return self::getLocalNameFor( $n, $subpage );
 					}
 				}
 			}
-			if ( !$found ) {
-				wfWarn( "Did not find alias for special page '$name'. " .
-					"Perhaps no aliases are defined for it?" );
-			}
+
+			wfWarn( "Did not find alias for special page '$name'. " .
+				"Perhaps no aliases are defined for it?" );
 		}
+
 		if ( $subpage !== false && !is_null( $subpage ) ) {
 			$name = "$name/$subpage";
 		}
