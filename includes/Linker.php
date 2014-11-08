@@ -1376,7 +1376,7 @@ class Linker {
 	}
 
 	/**
-	 * Formats wiki links and media links in text; all other wiki formatting
+	 * Formats wiki, media, and magic links in text; all other wiki formatting
 	 * is ignored
 	 *
 	 * @todo FIXME: Doesn't handle sub-links as in image thumb texts like the main parser
@@ -1386,7 +1386,8 @@ class Linker {
 	 * @return string
 	 */
 	public static function formatLinksInComment( $comment, $title = null, $local = false ) {
-		return preg_replace_callback(
+		global $wgParser;
+		return $wgParser->doMagicLinks( preg_replace_callback(
 			'/
 				\[\[
 				:? # ignore optional leading colon
@@ -1475,7 +1476,7 @@ class Linker {
 				return $comment;
 			},
 			$comment
-		);
+		) );
 	}
 
 	/**
