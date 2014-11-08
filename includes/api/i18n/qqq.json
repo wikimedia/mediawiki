@@ -976,7 +976,7 @@
 	"api-help-parameters": "Label for the API help parameters section\n\nParameters:\n* $1 - Number of parameters to be displayed\n{{Identical|Parameter}}",
 	"api-help-param-deprecated": "Displayed in the API help for any deprecated parameter\n{{Identical|Deprecated}}",
 	"api-help-param-required": "Displayed in the API help for any required parameter",
-	"api-help-param-list": "Used to display the possible values for a parameter taking a list of values\n\nParameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values\n* $2 - Comma-separated list of values, possibly formatted using {{msg-mw|api-help-param-list-can-be-empty}}",
+	"api-help-param-list": "Used to display the possible values for a parameter taking a list of values\n\nParameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values\n* $2 - Comma-separated list of values, possibly formatted using {{msg-mw|api-help-param-list-can-be-empty}}\n{{Identical|Value}}",
 	"api-help-param-list-can-be-empty": "Used to indicate that one of the possible values in the list is the empty string.\n\nParameters:\n* $1 - Number of items in the rest of the list; may be 0\n* $2 - Remainder of the list as a comma-separated string",
 	"api-help-param-limit": "Used to display the maximum value of a limit parameter\n\nParameters:\n* $1 - Maximum value",
 	"api-help-param-limit2": "Used to display the maximum values of a limit parameter\n\nParameters:\n* $1 - Maximum value without the apihighlimits right\n* $2 - Maximum value with the apihighlimits right",

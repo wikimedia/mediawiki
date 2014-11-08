@@ -1,8 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Csega"
+			"Csega",
+			"Dorgan"
 		]
 	},
+	"apihelp-block-description": "Szerkesztő blokkolása",
+	"apihelp-block-param-reason": "Blokkolás oka.",
+	"apihelp-block-param-nocreate": "Új regisztráció megakadályozása",
+	"apihelp-createaccount-param-name": "Felhasználónév.",
+	"apihelp-delete-description": "Lap törlése.",
+	"apihelp-delete-example-simple": "Kezdőlap törlése.",
+	"apihelp-edit-example-edit": "Lap szerkesztése",
+	"apihelp-expandtemplates-param-title": "Lap címe.",
 	"apihelp-userrights-param-userid": "Felhasználói azonosító."
 }

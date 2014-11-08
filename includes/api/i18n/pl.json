@@ -2,13 +2,17 @@
 	"@metadata": {
 		"authors": [
 			"Chrumps",
-			"Py64"
+			"Py64",
+			"Pan Cube"
 		]
 	},
 	"apihelp-main-param-action": "Wybierz akcję do wykonania.",
 	"apihelp-main-param-format": "Format danych wyjściowych.",
 	"apihelp-main-param-maxlag": "Maksymalne opóźnienie mogą być używane kiedy MediaWiki jest zainstalowana w klastrze zreplikowanej bazy danych. By zapisać działania powodujące większe opóźnienie replikacji, ten parametr może wymusić czekanie u klienta, dopóki opóźnienie replikacji jest mniejsze niż określona wartość. W przypadku nadmiernego opóźnienia, kod błędu \"maxlag\" jest zwracany z wiadomością jak \"Oczekiwanie na $host: $lag sekund opóźnienia\".<br />Zobacz https://www.mediawiki.org/wiki/Manual:Maxlag_parameter by uzyskać więcej informacji.",
 	"apihelp-main-param-assert": "Sprawdź, czy użytkownik jest zalogowany jeżeli jest ustawiony na \"użytkownik\", lub ma prawa bota jeśli \"bot\".",
+	"apihelp-block-description": "Zablokuj użytkownika.",
+	"apihelp-block-param-reason": "Powód blokady.",
+	"apihelp-createaccount-param-name": "Nazwa użytkownika",
 	"apihelp-edit-example-edit": "Edytuj stronę",
 	"apihelp-help-description": "Wyświetl pomoc dla określonych modułów.",
 	"apihelp-help-param-modules": "Moduły do wyświetlenia pomocy dla (wartości akcji= i format= parametry, lub \"głównego\"). Może określić podmoduły z \"+\".",
