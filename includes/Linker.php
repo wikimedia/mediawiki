@@ -1375,8 +1375,84 @@ class Linker {
 		);
 	}
 
+	static function internalLinkCallback ( $match ) {
+		global $wgContLang;
+
+		$medians = '(?:' . preg_quote( MWNamespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
+		$medians .= preg_quote( $wgContLang->getNsText( NS_MEDIA ), '/' ) . '):';
+
+		$comment = $match[0];
+
+		# fix up urlencoded title texts (copied from Parser::replaceInternalLinks)
+		if ( strpos( $match[1], '%' ) !== false ) {
+			$match[1] = str_replace(
+				array( '<', '>' ),
+				array( '&lt;', '&gt;' ),
+				rawurldecode( $match[1] )
+			);
+		}
+
+		# Handle link renaming [[foo|text]] will show link as "text"
+		if ( $match[2] != "" ) {
+			$text = $match[2];
+		} else {
+			$text = $match[1];
+		}
+		$submatch = array();
+		$thelink = null;
+		if ( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
+			# Media link; trail not supported.
+			$linkRegexp = '/\[\[(.*?)\]\]/';
+			$title = Title::makeTitleSafe( NS_FILE, $submatch[1] );
+			if ( $title ) {
+				$thelink = Linker::makeMediaLinkObj( $title, $text );
+			}
+		} else {
+			# Other kind of link
+			if ( preg_match( $wgContLang->linkTrail(), $match[3], $submatch ) ) {
+				$trail = $submatch[1];
+			} else {
+				$trail = "";
+			}
+			$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
+			if ( isset( $match[1][0] ) && $match[1][0] == ':' ) {
+				$match[1] = substr( $match[1], 1 );
+			}
+			list( $inside, $trail ) = Linker::splitTrail( $trail );
+
+			$linkText = $text;
+			$linkTarget = Linker::normalizeSubpageLink( $title, $match[1], $linkText );
+
+			$target = Title::newFromText( $linkTarget );
+			if ( $target ) {
+				if ( $target->getText() == '' && !$target->isExternal()
+					&& !$local && $title
+				) {
+					$newTarget = clone ( $title );
+					$newTarget->setFragment( '#' . $target->getFragment() );
+					$target = $newTarget;
+				}
+				$thelink = Linker::link(
+					$target,
+					$linkText . $inside
+				) . $trail;
+			}
+		}
+		if ( $thelink ) {
+			// If the link is still valid, go ahead and replace it in!
+			$comment = preg_replace(
+				$linkRegexp,
+				StringUtils::escapeRegexReplacement( $thelink ),
+				$comment,
+				1
+			);
+		}
+
+		return $comment;
+	}
+
 	/**
-	 * Formats wiki links and media links in text; all other wiki formatting
+	 * Formats wiki, media, and magic links in text; all other wiki formatting
 	 * is ignored
 	 *
 	 * @todo FIXME: Doesn't handle sub-links as in image thumb texts like the main parser
@@ -1386,7 +1462,9 @@ class Linker {
 	 * @return string
 	 */
 	public static function formatLinksInComment( $comment, $title = null, $local = false ) {
-		return preg_replace_callback(
+		global $wgParser;
+
+		$comment = preg_replace_callback(
 			'/
 				\[\[
 				:? # ignore optional leading colon
@@ -1399,83 +1477,13 @@ class Linker {
 				\]\]
 				([^[]*) # 3. link trail (the text up until the next link)
 			/x',
-			function ( $match ) use ( $title, $local ) {
-				global $wgContLang;
-
-				$medians = '(?:' . preg_quote( MWNamespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
-				$medians .= preg_quote( $wgContLang->getNsText( NS_MEDIA ), '/' ) . '):';
-
-				$comment = $match[0];
-
-				# fix up urlencoded title texts (copied from Parser::replaceInternalLinks)
-				if ( strpos( $match[1], '%' ) !== false ) {
-					$match[1] = str_replace(
-						array( '<', '>' ),
-						array( '&lt;', '&gt;' ),
-						rawurldecode( $match[1] )
-					);
-				}
-
-				# Handle link renaming [[foo|text]] will show link as "text"
-				if ( $match[2] != "" ) {
-					$text = $match[2];
-				} else {
-					$text = $match[1];
-				}
-				$submatch = array();
-				$thelink = null;
-				if ( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
-					# Media link; trail not supported.
-					$linkRegexp = '/\[\[(.*?)\]\]/';
-					$title = Title::makeTitleSafe( NS_FILE, $submatch[1] );
-					if ( $title ) {
-						$thelink = Linker::makeMediaLinkObj( $title, $text );
-					}
-				} else {
-					# Other kind of link
-					if ( preg_match( $wgContLang->linkTrail(), $match[3], $submatch ) ) {
-						$trail = $submatch[1];
-					} else {
-						$trail = "";
-					}
-					$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
-					if ( isset( $match[1][0] ) && $match[1][0] == ':' ) {
-						$match[1] = substr( $match[1], 1 );
-					}
-					list( $inside, $trail ) = Linker::splitTrail( $trail );
-
-					$linkText = $text;
-					$linkTarget = Linker::normalizeSubpageLink( $title, $match[1], $linkText );
-
-					$target = Title::newFromText( $linkTarget );
-					if ( $target ) {
-						if ( $target->getText() == '' && !$target->isExternal()
-							&& !$local && $title
-						) {
-							$newTarget = clone ( $title );
-							$newTarget->setFragment( '#' . $target->getFragment() );
-							$target = $newTarget;
-						}
-						$thelink = Linker::link(
-							$target,
-							$linkText . $inside
-						) . $trail;
-					}
-				}
-				if ( $thelink ) {
-					// If the link is still valid, go ahead and replace it in!
-					$comment = preg_replace(
-						$linkRegexp,
-						StringUtils::escapeRegexReplacement( $thelink ),
-						$comment,
-						1
-					);
-				}
-
-				return $comment;
-			},
+			array( __CLASS__, 'internalLinkCallback' ),
 			$comment
 		);
+
+		$comment = $wgParser->doMagicLinks($comment);
+
+		return $comment;
 	}
 
 	/**
