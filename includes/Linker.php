@@ -1386,7 +1386,8 @@ class Linker {
 	 * @return string
 	 */
 	public static function formatLinksInComment( $comment, $title = null, $local = false ) {
-		return preg_replace_callback(
+		global $wgParser;
+		return $wgParser->doMagicLinks( preg_replace_callback(
 			'/
 				\[\[
 				:? # ignore optional leading colon
@@ -1475,7 +1476,7 @@ class Linker {
 				return $comment;
 			},
 			$comment
-		);
+		) );
 	}
 
 	/**
