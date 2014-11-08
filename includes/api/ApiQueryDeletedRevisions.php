@@ -94,7 +94,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
 
-		if ( $this->fld_content || !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
+		if ( $this->fetchContent ) {
 			// Modern MediaWiki has the content for deleted revs in the 'text'
 			// table using fields old_text and old_flags. But revisions deleted
 			// pre-1.5 store the content in the 'archive' table directly using
