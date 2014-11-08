@@ -198,6 +198,11 @@ any problems found.
 * Added FormatJson::parse() returning status with result or localized error message
 
 === Bug fixes in 1.24 ===
+* (bug 70686) More sensible behavior when special page aliases conflict
+* (bug 71040) Add Oracle version of update-keys.sql
+* (bug 64912, 64922) mw.Title: Add new static methods `newFromFileName`,
+  `newFromUserInput`
+* MediaWikiVersionFetcher::fetchVersion() now supports semantic versions.
 * (bug 50572) MediaWiki:Blockip should support gender
 * (bug 49116) Footer copyright notice is now always displayed in user language
   rather than content language (same as copyright notice for editing interface).
