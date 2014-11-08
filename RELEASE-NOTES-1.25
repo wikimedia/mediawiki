@@ -150,6 +150,9 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* (bug 64440) The language variant converter for Kazakh (kk) no longer sets
+  $wgLanguageCode according to the selected variant.
+
 === Other changes in 1.25 ===
 * The skin autodiscovery mechanism, deprecated in MediaWiki 1.23, has been
   removed. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for
