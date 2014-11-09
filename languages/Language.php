@@ -2512,23 +2512,15 @@ class Language {
 	}
 
 	/**
-	 * @param string $in
-	 * @param string $out
-	 * @param string $string
+	 * @param string $in Input encoding
+	 * @param string $out Desired encoding
+	 * @param string $string Bytes to convert
 	 * @return string
 	 */
 	function iconv( $in, $out, $string ) {
 		# This is a wrapper for iconv in all languages except esperanto,
 		# which does some nasty x-conversions beforehand
-
-		# Even with //IGNORE iconv can whine about illegal characters in
-		# *input* string. We just ignore those too.
-		# REF: http://bugs.php.net/bug.php?id=37166
-		# REF: https://bugzilla.wikimedia.org/show_bug.cgi?id=16885
-		wfSuppressWarnings();
-		$text = iconv( $in, $out . '//IGNORE', $string );
-		wfRestoreWarnings();
-		return $text;
+		return StringUtils::convertEncoding( $in, $out, $string );
 	}
 
 	// callback functions for uc(), lc(), ucwords(), ucwordbreaks()
