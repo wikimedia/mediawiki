@@ -314,6 +314,46 @@ class StringUtils {
 			return new ArrayIterator( explode( $separator, $subject ) );
 		}
 	}
+
+	/**
+	 * Convert a string from one byte encoding to another while silently
+	 * discarding characaters that cannot be represented in the desired
+	 * encoding.
+	 *
+	 * @param string $in Input encoding
+	 * @param string $out Desired encoding
+	 * @param string $string Bytes to convert
+	 * @return string
+	 * @since 1.25
+	 */
+	public static function convertEncoding( $in, $out, $string ) {
+		// Check to see if we can use mb_convert_encoding
+		$useMB = function_exists( 'mb_convert_encoding' ) &&
+			in_array( $out, mb_list_encodings() );
+
+		if ( $useMB ) {
+			// Bug 37665: work around problem with glibc's iconv that keeps
+			// '//IGNORE' from returning characters following an invalid byte
+			// sequence.
+			// REF: http://php.net/manual/en/function.iconv.php#108643
+			// REF: https://sourceware.org/bugzilla/show_bug.cgi?id=13541
+			// REF: https://bugs.php.net/bug.php?id=48147
+			$oldSubst = mb_substitute_character();
+			mb_substitute_character( 'none' );
+			$text = mb_convert_encoding( $string, $out, $in );
+			mb_substitute_character( $oldSubst );
+
+		} else {
+			// Even with //IGNORE iconv can whine about illegal characters in
+			// the input string. We just ignore those too.
+		    // REF: http://bugs.php.net/bug.php?id=37166
+			// REF: https://bugzilla.wikimedia.org/show_bug.cgi?id=16885
+			wfSuppressWarnings();
+			$text = iconv( $in, "{$out}//IGNORE", $string );
+			wfRestoreWarnings();
+		}
+		return $text;
+	}
 }
 
 /**
