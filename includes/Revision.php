@@ -1313,8 +1313,7 @@ class Revision implements IDBAccessObject {
 			# Upconvert on demand.
 			# ("utf8" checked for compatibility with some broken
 			#  conversion scripts 2008-12-30)
-			global $wgContLang;
-			$text = $wgContLang->iconv( $wgLegacyEncoding, 'UTF-8', $text );
+			$text = Language::iconv( $wgLegacyEncoding, 'UTF-8', $text );
 		}
 
 		return $text;

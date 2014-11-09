@@ -1130,7 +1130,7 @@ abstract class UploadBase {
 		}
 
 		if ( $enc ) {
-			$chunk = iconv( $enc, "ASCII//IGNORE", $chunk );
+			$chunk = Language::iconv( $enc, 'ASCII', $chunk );
 		}
 
 		$chunk = trim( $chunk );
