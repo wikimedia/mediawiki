@@ -34,23 +34,29 @@ class ChangeTags {
 	public static function formatSummaryRow( $tags, $page ) {
 		global $wgLang;
 
-		if ( !$tags ) {
-			return array( '', array() );
-		}
-
 		$classes = array();
-
-		$tags = explode( ',', $tags );
 		$displayTags = array();
-		foreach ( $tags as $tag ) {
+		foreach ( explode( ',', $tags ) as $tag ) {
+			if ( !$tag ) {
+				continue;
+			}
+			$description = self::tagDescription( $tag );
+			if ( $description === false ) {
+				continue;
+			}
 			$displayTags[] = Xml::tags(
 				'span',
 				array( 'class' => 'mw-tag-marker ' .
 								Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ),
-				self::tagDescription( $tag )
+				$description
 			);
 			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 		}
+
+		if ( !$displayTags ) {
+			return array( '', array() );
+		}
+
 		$markers = wfMessage( 'tag-list-wrapper' )
 			->numParams( count( $displayTags ) )
 			->rawParams( $wgLang->commaList( $displayTags ) )
@@ -61,16 +67,29 @@ class ChangeTags {
 	}
 
 	/**
-	 * Get a short description for a tag
+	 * Get a short description for a tag.
+	 *
+	 * Checks if message key "mediawiki:tag-$tag" exists. If it does not,
+	 * returns the HTML-escaped tag name. Uses the message if the message
+	 * exists, provided it is not disabled. If the message is disabled,
+	 * we consider the tag hidden, and return false.
 	 *
 	 * @param string $tag Tag
-	 *
-	 * @return string Short description of the tag from "mediawiki:tag-$tag" if this message exists,
-	 *   html-escaped version of $tag otherwise
+	 * @return string|bool Tag description or false if tag is to be hidden.
+	 * @since 1.25 Returns false if tag is to be hidden.
 	 */
 	public static function tagDescription( $tag ) {
 		$msg = wfMessage( "tag-$tag" );
-		return $msg->exists() ? $msg->parse() : htmlspecialchars( $tag );
+		if ( !$msg->exists() ) {
+			// No such message, so return the HTML-escaped tag name.
+			return htmlspecialchars( $tag );
+		} elseif ( !$msg->isDisabled() ) {
+			// Message exists and isn't disabled, so use it.
+			return $msg->parse();
+		} else {
+			// If the message exists but is disabled, don't show the tag.
+			return false;
+		}
 	}
 
 	/**
