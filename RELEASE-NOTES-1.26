@@ -11,6 +11,8 @@ production.
 === Configuration changes in 1.26 ===
 
 === New features in 1.26 ===
+* Change tags can now be hidden in the interface by disabling the associated
+  "tag-<id>" interface message.
 
 ==== External libraries ====
 
@@ -28,7 +30,8 @@ changes to languages because of Bugzilla reports.
 
 
 === Other changes in 1.26 ===
-
+* ChangeTags::tagDescription() will return false if the interface message
+  for the tag is disabled.
 
 == Compatibility ==
 
