@@ -2517,17 +2517,30 @@ class Language {
 	 * @param string $string
 	 * @return string
 	 */
-	function iconv( $in, $out, $string ) {
+	public static function iconv( $in, $out, $string ) {
 		# This is a wrapper for iconv in all languages except esperanto,
 		# which does some nasty x-conversions beforehand
 
-		# Even with //IGNORE iconv can whine about illegal characters in
-		# *input* string. We just ignore those too.
-		# REF: http://bugs.php.net/bug.php?id=37166
-		# REF: https://bugzilla.wikimedia.org/show_bug.cgi?id=16885
-		wfSuppressWarnings();
-		$text = iconv( $in, $out . '//IGNORE', $string );
-		wfRestoreWarnings();
+		if ( function_exists( 'mb_convert_encoding' ) ) {
+			// Bug 37665: work around problem with glibc's iconv that keeps
+			// '//IGNORE' from returning characters following an invalid
+			// byte sequence.
+			// REF: http://php.net/manual/en/function.iconv.php#108643
+			// REF: https://sourceware.org/bugzilla/show_bug.cgi?id=13541
+			// REF: https://bugs.php.net/bug.php?id=48147
+			$oldSubst = mb_substitute_character();
+			mb_substitute_character( 'none' );
+			$text = mb_convert_encoding( $string, $out, $in );
+			mb_substitute_character( $oldSubst );
+		} else {
+			# Even with //IGNORE iconv can whine about illegal characters in
+			# *input* string. We just ignore those too.
+			# REF: http://bugs.php.net/bug.php?id=37166
+			# REF: https://bugzilla.wikimedia.org/show_bug.cgi?id=16885
+			wfSuppressWarnings();
+			$text = iconv( $in, $out . '//IGNORE', $string );
+			wfRestoreWarnings();
+		}
 		return $text;
 	}
 
@@ -2792,7 +2805,7 @@ class Language {
 			return $s;
 		}
 
-		return $this->iconv( $this->fallback8bitEncoding(), 'utf-8', $s );
+		return self::iconv( $this->fallback8bitEncoding(), 'utf-8', $s );
 	}
 
 	/**
@@ -2957,7 +2970,7 @@ class Language {
 		if ( $wgEditEncoding == '' || $wgEditEncoding == 'UTF-8' ) {
 			return $s;
 		} else {
-			return $this->iconv( 'UTF-8', $wgEditEncoding, $s );
+			return self::iconv( 'UTF-8', $wgEditEncoding, $s );
 		}
 	}
 
@@ -2976,7 +2989,7 @@ class Language {
 		if ( $enc == 'UTF-8' ) {
 			return $s;
 		} else {
-			return $this->iconv( $enc, 'UTF-8', $s );
+			return self::iconv( $enc, 'UTF-8', $s );
 		}
 	}
 
