@@ -53,8 +53,7 @@ before_script:
       --dbpass ""
       --scriptpath "/w"
 
-script:
-  - php tests/phpunit/phpunit.php
+script: ./.travis/run_tests.sh
 
 notifications:
   email: false
