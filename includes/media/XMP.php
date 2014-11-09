@@ -322,9 +322,7 @@ class XMPReader {
 			}
 			if ( $this->charset !== 'UTF-8' ) {
 				//don't convert if already utf-8
-				wfSuppressWarnings();
-				$content = iconv( $this->charset, 'UTF-8//IGNORE', $content );
-				wfRestoreWarnings();
+				$content = StringUtils::convertEncodingWithIgnore( $this->charset, 'UTF-8', $content );
 			}
 
 			// Ensure the XMP block does not have an xml doctype declaration, which
