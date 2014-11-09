@@ -11,12 +11,16 @@ production.
 === Configuration changes in 1.26 ===
 
 === New features in 1.26 ===
+* Change tags can now be hidden in the interface by disabling the associated
+  "tag-<id>" interface message.
 
 ==== External libraries ====
 
 === Bug fixes in 1.26 ===
 
 === Action API changes in 1.26 ===
+* API action=query&list=tags: The displayname can now be boolean false if the
+  tag is meant to be hidden from user interfaces.
 
 === Action API internal changes in 1.26 ===
 
@@ -28,7 +32,8 @@ changes to languages because of Bugzilla reports.
 
 
 === Other changes in 1.26 ===
-
+* ChangeTags::tagDescription() will return false if the interface message
+  for the tag is disabled.
 
 == Compatibility ==
 
