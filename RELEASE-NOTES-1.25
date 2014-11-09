@@ -182,6 +182,8 @@ changes to languages because of Bugzilla reports.
   <https://www.mediawiki.org/xml/export-0.10.xsd>.
 * MWFunction::call() and MWFunction::callArray() were removed, having being
   deprecated in 1.22.
+* ChangeTags::tagDescription() will return false if the interface message
+  for the tag is disabled.
 
 == Compatibility ==
 
