@@ -309,7 +309,7 @@
 	"versionrequiredtext": "Użycie tej strony wymaga oprogramowania MediaWiki w wersji $1. Zobacz stronę [[Special:Version|wersja oprogramowania]].",
 	"ok": "OK",
 	"pagetitle": "$1 – {{SITENAME}}",
-	"retrievedfrom": "Źródło „$1”",
+	"retrievedfrom": "Źródło: „$1”",
 	"youhavenewmessages": "Masz $1 ($2).",
 	"youhavenewmessagesfromusers": "Masz $1 od {{PLURAL:$3|innego użytkownika|$3 użytkowników}} ($2).",
 	"youhavenewmessagesmanyusers": "Masz $1 od wielu użytkowników ($2).",
