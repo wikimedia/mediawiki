@@ -471,6 +471,8 @@ abstract class File {
 	public function getThumbnailBucket( $desiredWidth, $page = 1 ) {
 		global $wgThumbnailBuckets, $wgThumbnailMinimumBucketDistance;
 
+		wfDebugLog( 'thumbnail', 'thumbnail buckets ' . json_encode( $wgThumbnailBuckets ) );
+
 		$imageWidth = $this->getWidth( $page );
 
 		if ( $imageWidth === false ) {
