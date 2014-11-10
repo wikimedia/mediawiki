@@ -21,29 +21,6 @@
  */
 
 /**
- * Reader class which uses the DBA extension
- */
-class CdbReaderDBA extends CdbReader {
-	public function __construct( $fileName ) {
-		$this->handle = dba_open( $fileName, 'r-', 'cdb' );
-		if ( !$this->handle ) {
-			throw new CdbException( 'Unable to open CDB file "' . $fileName . '"' );
-		}
-	}
-
-	public function close() {
-		if ( isset( $this->handle ) ) {
-			dba_close( $this->handle );
-		}
-		unset( $this->handle );
-	}
-
-	public function get( $key ) {
-		return dba_fetch( $key, $this->handle );
-	}
-}
-
-/**
  * Writer class which uses the DBA extension
  */
 class CdbWriterDBA extends CdbWriter {
