@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vitorvicentevalente"
+			"Vitorvicentevalente",
+			"Fúlvio"
 		]
 	},
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page Documentação]\n* [https://www.mediawiki.org/wiki/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://bugzilla.wikimedia.org/buglist.cgi?component=API&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts Erros e solicitações]\n</div>\n<strong>Estado:</strong> Todas as funcionalidades mostradas nesta página deveriam estar a funcionar, mas a API ainda está em activo desenvolvimento, e pode ser alterada a qualquer momento. Inscreva-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para ser informado acerca das actualizações.\n\n<strong>Solicitações erradas:</strong> Quando solicitações erradas são enviadas à API, um cabeçalho em HTTP será enviado com a chave \"MediaWiki-API-Error\" e, em seguida, tanto o valor do cabeçalho quanto o código de erro retornado serão definidos com o mesmo valor. Para mais informação, consulte https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
+	"apihelp-main-param-action": "Qual acção a executar.",
 	"apihelp-main-param-format": "O formato de saída.",
 	"apihelp-block-description": "Bloquear um utilizador.",
 	"apihelp-block-param-user": "Nome de utilizador(a), endereço ou gama de IP que pretende bloquear.",

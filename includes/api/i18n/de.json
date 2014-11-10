@@ -182,6 +182,7 @@
 	"apihelp-logout-example-logout": "Meldet den aktuellen Benutzer ab",
 	"apihelp-move-description": "Eine Seite verschieben.",
 	"apihelp-move-param-from": "Titel der Seite, die du verschieben möchtest. Kann nicht zusammen mit $1fromid verwendet werden.",
+	"apihelp-move-param-fromid": "Seitenkennung der Seite, die du verschieben möchtest. Kann nicht zusammen mit $1from verwendet werden.",
 	"apihelp-move-param-to": "Titel, zu dem die Seite umbenannt werden soll.",
 	"apihelp-move-param-reason": "Grund für die Verschiebung.",
 	"apihelp-move-param-movetalk": "Verschiebt die Diskussionsseite, falls vorhanden.",

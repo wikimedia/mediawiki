@@ -404,7 +404,7 @@
 	"gotaccountlink": "Daxil olun",
 	"userlogin-resetlink": "Daxilolma məlumatlarınızı unutmusunuz?",
 	"userlogin-resetpassword-link": "Parolu unutdunuzmu?",
-	"userlogin-loggedin": "Siz artıq {{GENDER:$1|$1}} kimi daxil olmusunuz.\nAşağıdakı formadan istifadə edərək, bağqa bir istifadəçi kimi daxil ola bilərsiniz.",
+	"userlogin-loggedin": "Siz artıq {{GENDER:$1|$1}} kimi daxil olmusunuz.\nAşağıdakı formadan istifadə edərək, başqa bir istifadəçi kimi daxil ola bilərsiniz.",
 	"userlogin-createanother": "Başqa bir istifadəçi hesabı yarat",
 	"createacct-emailrequired": "E-poçt ünvanı",
 	"createacct-emailoptional": "E-poçt ünvanı (istəyə bağlı)",
