@@ -702,14 +702,14 @@ $wgAutoloadLocalClasses = array(
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',
 
 	# includes/libs/cdb
-	'CdbException' => 'includes/libs/cdb/Cdb.php',
-	'CdbFunctions' => 'includes/libs/cdb/CdbPHP.php',
-	'CdbReader' => 'includes/libs/cdb/Cdb.php',
-	'CdbReaderDBA' => 'includes/libs/cdb/CdbDBA.php',
-	'CdbReaderPHP' => 'includes/libs/cdb/CdbPHP.php',
-	'CdbWriter' => 'includes/libs/cdb/Cdb.php',
-	'CdbWriterDBA' => 'includes/libs/cdb/CdbDBA.php',
-	'CdbWriterPHP' => 'includes/libs/cdb/CdbPHP.php',
+	'CdbException' => 'includes/libs/cdb/CdbException.php',
+	'CdbFunctions' => 'includes/libs/cdb/CdbFunctions.php',
+	'CdbReader' => 'includes/libs/cdb/CdbReader.php',
+	'CdbReaderDBA' => 'includes/libs/cdb/CdbReaderDBA.php',
+	'CdbReaderPHP' => 'includes/libs/cdb/CdbReaderPHP.php',
+	'CdbWriter' => 'includes/libs/cdb/CdbWriter.php',
+	'CdbWriterDBA' => 'includes/libs/cdb/CdbWriterDBA.php',
+	'CdbWriterPHP' => 'includes/libs/cdb/CdbWriterPHP.php',
 
 	# includes/libs/lessphp
 	'lessc' => 'includes/libs/lessc.inc.php',
