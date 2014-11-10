@@ -172,18 +172,20 @@ class FormatJsonTest extends MediaWikiTestCase {
 	/**
 	 * Test data for testParseTryFixing.
 	 *
-	 * HHVM has a lenient json parser (yeah great idea right?) which allows
-	 * trailing commas for array and object delarations among other things, so
-	 * our JSON_ERROR_SYNTAX rescue block is not always triggered. It however
-	 * isn't lenient in exactly the same ways as our TRY_FIXING mode, so the
-	 * assertions in this test are a bit more complicated than they ideally
-	 * would be:
+	 * Some PHP interpreters use json-c rather than the JSON.org cannonical
+	 * parser to avoid being encumbered by the "shall be used for Good, not
+	 * Evil" clause of the JSON.org parser's license. By default, json-c
+	 * parses in a non-strict mode which allows trailing commas for array and
+	 * object delarations among other things, so our JSON_ERROR_SYNTAX rescue
+	 * block is not always triggered. It however isn't lenient in exactly the
+	 * same ways as our TRY_FIXING mode, so the assertions in this test are
+	 * a bit more complicated than they ideally would be:
 	 *
-	 * Optional third argument: true if hhvm parses the value without
+	 * Optional third argument: true if json-c parses the value without
 	 * intervention, false otherwise. Defaults to true.
 	 *
-	 * Optional fourth argument: expected cannonical JSON serialization of HHVM
-	 * parsed result. Defaults to the second argument's value.
+	 * Optional fourth argument: expected cannonical JSON serialization of
+	 * json-c parsed result. Defaults to the second argument's value.
 	 */
 	public static function provideParseTryFixing() {
 		return array(
@@ -207,23 +209,24 @@ class FormatJsonTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideParseTryFixing
 	 * @param string $value
-	 * @param string|bool $expected Expected result with Zend PHP
-	 * @param bool $hhvmParses Will HHVM parse this value without TRY_FIXING?
-	 * @param string|bool $expectedHHVM Expected result with HHVM if different
-	 * from the PHP5 expectation
+	 * @param string|bool $expected Expected result with strict parser
+	 * @param bool $jsoncParses Will json-c parse this value without TRY_FIXING?
+	 * @param string|bool $expectedJsonc Expected result with lenient parser
+	 * if different from the strict expectation
 	 */
 	public function testParseTryFixing(
 		$value, $expected,
-		$hhvmParses = true, $expectedHHVM = null
+		$jsoncParses = true, $expectedJsonc = null
 	) {
 		// PHP5 results are always expected to have isGood() === false
 		$expectedGoodStatus = false;
 
-		if ( wfIsHHVM() ) {
-			// Use HHVM specific expected result if provided
-			$expected = ( $expectedHHVM === null ) ? $expected : $expectedHHVM;
-			// If HHVM parses the value natively, expect isGood() === true
-			$expectedGoodStatus = $hhvmParses;
+		// Check to see if json parser allows trailing commas
+		if ( json_decode( '[1,]' ) !== null ) {
+			// Use json-c specific expected result if provided
+			$expected = ( $expectedJsonc === null ) ? $expected : $expectedJsonc;
+			// If json-c parses the value natively, expect isGood() === true
+			$expectedGoodStatus = $jsoncParses;
 		}
 
 		$st = FormatJson::parse( $value, FormatJson::TRY_FIXING );
