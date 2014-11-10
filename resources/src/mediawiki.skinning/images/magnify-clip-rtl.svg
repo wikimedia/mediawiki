@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path id="bigbox" d="M15.964 7.035h-10.93v7.93h10.93z" fill="#fff" stroke="#000" stroke-width="1.07"/>
+    <path id="smallbox" d="M18.956 12.045h-5.911v4.911h5.911z" fill="#fff" stroke="#000" stroke-width="1.089"/>
+</svg>
