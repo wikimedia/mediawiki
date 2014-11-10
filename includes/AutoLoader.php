@@ -701,6 +701,16 @@ $wgAutoloadLocalClasses = array(
 	'VirtualRESTServiceClient' => 'includes/libs/virtualrest/VirtualRESTServiceClient.php',
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',
 
+	# includes/libs/cdb
+	'CdbException' => 'includes/libs/cdb/Cdb.php',
+	'CdbFunctions' => 'includes/libs/cdb/CdbPHP.php',
+	'CdbReader' => 'includes/libs/cdb/Cdb.php',
+	'CdbReaderDBA' => 'includes/libs/cdb/CdbDBA.php',
+	'CdbReaderPHP' => 'includes/libs/cdb/CdbPHP.php',
+	'CdbWriter' => 'includes/libs/cdb/Cdb.php',
+	'CdbWriterDBA' => 'includes/libs/cdb/CdbDBA.php',
+	'CdbWriterPHP' => 'includes/libs/cdb/CdbPHP.php',
+
 	# includes/libs/lessphp
 	'lessc' => 'includes/libs/lessc.inc.php',
 	'lessc_parser' => 'includes/libs/lessc.inc.php',
@@ -1151,14 +1161,6 @@ $wgAutoloadLocalClasses = array(
 	'UploadStashNoSuchKeyException' => 'includes/upload/UploadStash.php',
 
 	# includes/utils
-	'CdbException' => 'includes/utils/Cdb.php',
-	'CdbFunctions' => 'includes/utils/CdbPHP.php',
-	'CdbReader' => 'includes/utils/Cdb.php',
-	'CdbReaderDBA' => 'includes/utils/CdbDBA.php',
-	'CdbReaderPHP' => 'includes/utils/CdbPHP.php',
-	'CdbWriter' => 'includes/utils/Cdb.php',
-	'CdbWriterDBA' => 'includes/utils/CdbDBA.php',
-	'CdbWriterPHP' => 'includes/utils/CdbPHP.php',
 	'DoubleReplacer' => 'includes/utils/StringUtils.php',
 	'ExplodeIterator' => 'includes/utils/StringUtils.php',
 	'HashtableReplacer' => 'includes/utils/StringUtils.php',
