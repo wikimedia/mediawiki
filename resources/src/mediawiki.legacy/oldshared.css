@@ -120,7 +120,7 @@ div.magnify a {
 	width: 15px;
 	height: 11px;
 	/* @embed */
-	background: url(images/magnify-clip-ltr.png) center center no-repeat;
+	background: url(../mediawiki.skinning/images/magnify-clip-ltr.png) center center no-repeat;
 	/* Don't annoy people who copy-paste everything too much */
 	-moz-user-select: none;
 	-webkit-user-select: none;
