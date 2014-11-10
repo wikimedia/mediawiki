@@ -31,11 +31,6 @@
  */
 class ApiQueryBlocks extends ApiQueryBase {
 
-	/**
-	 * @var array
-	 */
-	protected $usernames;
-
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'bk' );
 	}
@@ -102,10 +97,11 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereFld( 'ipb_id', $params['ids'] );
 		}
 		if ( isset( $params['users'] ) ) {
+			$usernames = array();
 			foreach ( (array)$params['users'] as $u ) {
-				$this->prepareUsername( $u );
+				$usernames[] = $this->prepareUsername( $u );
 			}
-			$this->addWhereFld( 'ipb_address', $this->usernames );
+			$this->addWhereFld( 'ipb_address', $usernames );
 			$this->addWhereFld( 'ipb_auto', 0 );
 		}
 		if ( isset( $params['ip'] ) ) {
@@ -264,7 +260,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		if ( $name === false ) {
 			$this->dieUsage( "User name {$user} is not valid", 'param_user' );
 		}
-		$this->usernames[] = $name;
+		return $name;
 	}
 
 	public function getAllowedParams() {
