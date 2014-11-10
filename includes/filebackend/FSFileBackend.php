@@ -451,10 +451,13 @@ class FSFileBackend extends FileBackendStore {
 		// Create the directory and its parents as needed...
 		$this->trapWarnings();
 		if ( !wfMkdirParents( $dir ) ) {
+			wfDebugLog( 'FSFileBackend', __METHOD__ . ": cannot create directory $dir" );
 			$status->fatal( 'directorycreateerror', $params['dir'] ); // fails on races
 		} elseif ( !is_writable( $dir ) ) {
+			wfDebugLog( 'FSFileBackend',  __METHOD__ . ": directory $dir is read-only" );
 			$status->fatal( 'directoryreadonlyerror', $params['dir'] );
 		} elseif ( !is_readable( $dir ) ) {
+			wfDebugLog( 'FSFileBackend',  __METHOD__ . ": directory $dir is not readable" );
 			$status->fatal( 'directorynotreadableerror', $params['dir'] );
 		}
 		$this->untrapWarnings();

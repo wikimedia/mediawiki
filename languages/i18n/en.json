@@ -325,6 +325,8 @@
 	"filerenameerror": "Could not rename file \"$1\" to \"$2\".",
 	"filedeleteerror": "Could not delete file \"$1\".",
 	"directorycreateerror": "Could not create directory \"$1\".",
+	"directoryreadonlyerror": "Directory \"$1\" is read-only.",
+	"directorynotreadableerror": "Directory \"$1\" is not readable.",
 	"filenotfound": "Could not find file \"$1\".",
 	"unexpected": "Unexpected value: \"$1\"=\"$2\".",
 	"formerror": "Error: Could not submit form.",
