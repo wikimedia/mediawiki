@@ -401,7 +401,8 @@ class WatchedItem {
 		$newtitle = $nt->getDBkey();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$res = $dbw->select( 'watchlist', 'wl_user',
+		$res = $dbw->select( 'watchlist',
+			array( 'wl_user', 'wl_notificationtimestamp' ),
 			array( 'wl_namespace' => $oldnamespace, 'wl_title' => $oldtitle ),
 			__METHOD__, 'FOR UPDATE'
 		);
@@ -411,7 +412,8 @@ class WatchedItem {
 			$values[] = array(
 				'wl_user' => $s->wl_user,
 				'wl_namespace' => $newnamespace,
-				'wl_title' => $newtitle
+				'wl_title' => $newtitle,
+				'wl_notificationtimestamp' => $s->wl_notificationtimestamp,
 			);
 		}
 
