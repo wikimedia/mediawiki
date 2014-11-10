@@ -419,7 +419,6 @@ $wgAutoloadLocalClasses = array(
 	'DatabasePostgres' => 'includes/db/DatabasePostgres.php',
 	'DatabaseSqlite' => 'includes/db/DatabaseSqlite.php',
 	'DatabaseSqliteStandalone' => 'includes/db/DatabaseSqlite.php',
-	'DatabaseType' => 'includes/db/Database.php',
 	'DBAccessError' => 'includes/db/LBFactory.php',
 	'DBConnectionError' => 'includes/db/DatabaseError.php',
 	'DBConnRef' => 'includes/db/LoadBalancer.php',
