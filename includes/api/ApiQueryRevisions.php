@@ -167,7 +167,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
 
-		if ( $this->fld_content || !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
+		if ( $this->fetchContent ) {
 			// For each page we will request, the user must have read rights for that page
 			$user = $this->getUser();
 			/** @var $title Title */

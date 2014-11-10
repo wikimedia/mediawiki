@@ -32,7 +32,7 @@
 abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	protected $limit, $diffto, $difftotext, $expandTemplates, $generateXML, $section,
-		$parseContent, $contentFormat, $setParsedLimit = true;
+		$parseContent, $fetchContent, $contentFormat, $setParsedLimit = true;
 
 	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
 		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
@@ -111,8 +111,11 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		$this->limit = $params['limit'];
 
+		$this->fetchContent = $this->fld_content || !is_null( $this->diffto )
+			|| !is_null( $this->difftotext );
+
 		$smallLimit = false;
-		if ( $this->fld_content || !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
+		if ( $this->fetchContent ) {
 			$smallLimit = true;
 			$this->expandTemplates = $params['expandtemplates'];
 			$this->generateXML = $params['generatexml'];
@@ -249,7 +252,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		$content = null;
 		global $wgParser;
-		if ( $this->fld_content || !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
+		if ( $this->fetchContent ) {
 			$content = $revision->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
