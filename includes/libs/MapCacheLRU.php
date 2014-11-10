@@ -38,11 +38,11 @@ class MapCacheLRU {
 
 	/**
 	 * @param int $maxKeys Maximum number of entries allowed (min 1).
-	 * @throws MWException When $maxCacheKeys is not an int or =< 0.
+	 * @throws Exception When $maxCacheKeys is not an int or =< 0.
 	 */
 	public function __construct( $maxKeys ) {
 		if ( !is_int( $maxKeys ) || $maxKeys < 1 ) {
-			throw new MWException( __METHOD__ . " must be given an integer and >= 1" );
+			throw new Exception( __METHOD__ . " must be given an integer and >= 1" );
 		}
 		$this->maxCacheKeys = $maxKeys;
 	}
