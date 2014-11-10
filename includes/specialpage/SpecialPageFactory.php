@@ -414,7 +414,11 @@ class SpecialPageFactory {
 				// @deprecated, officially since 1.18, unofficially since forever
 				wfDeprecated( "Array syntax for \$wgSpecialPages is deprecated ($className), " .
 					"define a subclass of SpecialPage instead.", '1.18' );
-				$page = MWFunction::newObj( $className, $rec );
+				$page = ObjectFactory::getObjectFromSpec( array(
+					'class' => $className,
+					'args' => $rec,
+					'closure_expansion' => false,
+				) );
 			} elseif ( $rec instanceof SpecialPage ) {
 				$page = $rec; //XXX: we should deep clone here
 			} else {

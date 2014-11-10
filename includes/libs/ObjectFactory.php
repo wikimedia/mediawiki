@@ -47,7 +47,8 @@ class ObjectFactory {
 	 * expanded by invoking them with no arguments before passing the
 	 * resulting value on to the constructor/callable. This can be used to
 	 * pass DatabaseBase instances or other live objects to the
-	 * constructor/callable.
+	 * constructor/callable. This behavior can be suppressed by adding
+	 * closure_expansion => false to the specification.
 	 *
 	 * @param array $spec Object specification
 	 * @return object
@@ -59,14 +60,18 @@ class ObjectFactory {
 	public static function getObjectFromSpec( $spec ) {
 		$args = isset( $spec['args'] ) ? $spec['args'] : array();
 
-		$args = array_map( function ( $value ) {
-			if ( is_object( $value ) && $value instanceof Closure ) {
-				// If an argument is a Closure, call it.
-				return $value();
-			} else {
-				return $value;
-			}
-		}, $args );
+		if ( !isset( $spec['closure_expansion'] ) ||
+			$spec['closure_expansion'] === true
+		) {
+			$args = array_map( function ( $value ) {
+				if ( is_object( $value ) && $value instanceof Closure ) {
+					// If an argument is a Closure, call it.
+					return $value();
+				} else {
+					return $value;
+				}
+			}, $args );
+		}
 
 		if ( isset( $spec['class'] ) ) {
 			$clazz = $spec['class'];
