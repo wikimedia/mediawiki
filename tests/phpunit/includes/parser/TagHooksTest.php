@@ -89,7 +89,7 @@ class TagHookTest extends MediaWikiTestCase {
 		global $wgParserConf, $wgContLang;
 		$parser = new Parser( $wgParserConf );
 
-		$parser->setFunctionTagHook( $tag, array( $this, 'functionTagCallback' ), SFH_OBJECT_ARGS );
+		$parser->setFunctionTagHook( $tag, array( $this, 'functionTagCallback' ), Parser::SFH_OBJECT_ARGS );
 		$parser->parse(
 			"Foo<$tag>Bar</$tag>Baz",
 			Title::newFromText( 'Test' ),
