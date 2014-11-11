@@ -44,8 +44,8 @@ class LanguageRu extends Language {
 			return $wgGrammarForms['ru'][$case][$word];
 		}
 
-		# These rules are not perfect, but they are currently only used for Wikimedia
-		# site names so it doesn't matter if they are wrong sometimes.
+		# These rules are not perfect, but they are currently only used for
+		# names of languages and Wikimedia sites, so it doesn't matter if they are wrong sometimes.
 		# Just add a special case for your site name if necessary.
 
 		# substr doesn't support Unicode and mb_substr has issues,
@@ -101,6 +101,28 @@ class LanguageRu extends Language {
 						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'ных';
 					}
 					break;
+				case 'languageadverb': # наречие с названием языка
+					$suffix = join( '', array_slice( $chars[0], -4 ) );
+					if ( $suffix === 'ский' || $suffix === 'цкий' ) {
+						$word = 'по-' . join(
+							'',
+							array_slice( $chars[0], 0, count( $chars[0] ) - 1 )
+						);
+						break;
+					}
+
+					if ( $word === 'иврит' ) {
+						$word = 'на иврите';
+						break;
+					}
+
+					if ( $word === 'идиш' ) {
+						$word = 'на идиш';
+						break;
+					}
+
+					// Несклоняемые
+					$word = 'на языке ' . $word;
 			}
 		}
 
