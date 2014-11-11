@@ -629,6 +629,25 @@ class IP {
 	}
 
 	/**
+	 * Determines if an IP address is a list of CIDR a.b.c.d/n ranges.
+	 *
+	 * @since 1.25
+	 *
+	 * @param string $ip the IP to check
+	 * @param array $ranges the IP ranges, each element a range
+	 *
+	 * @return bool true if the specified adress belongs to the specified range; otherwise, false.
+	 */
+	public static function isInRanges( $ip, $ranges ) {
+		foreach ( $ranges as $range ) {
+			if ( self::isInRange( $ip, $range ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Convert some unusual representations of IPv4 addresses to their
 	 * canonical dotted quad representation.
 	 *
