@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (12b66051ff)
+ * OOjs UI v0.1.0-pre (05f0fefc3f)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-06T19:08:33Z
+ * Date: 2014-11-11T16:29:49Z
  */
 ( function ( OO ) {
 
@@ -202,6 +202,7 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$pending] Element to mark as pending, defaults to this.$element
  */
 OO.ui.PendingElement = function OoUiPendingElement( config ) {
 	// Configuration initialization
@@ -1438,7 +1439,6 @@ OO.ui.Widget.prototype.updateDisabled = function () {
  * @param {Object} [config] Configuration options
  * @cfg {string} [size] Symbolic name of dialog size, `small`, `medium`, `large` or `full`; omit to
  *   use #static-size
- * @fires initialize
  */
 OO.ui.Window = function OoUiWindow( config ) {
 	// Configuration initialization
@@ -1820,7 +1820,7 @@ OO.ui.Window.prototype.getTeardownProcess = function () {
  * instead of display.
  *
  * @param {boolean} [show] Make window visible, omit to toggle visibility
- * @fires visible
+ * @fires toggle
  * @chainable
  */
 OO.ui.Window.prototype.toggle = function ( show ) {
@@ -2081,7 +2081,7 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 
 	this.getTeardownProcess( data ).execute().done( function () {
 		// Force redraw by asking the browser to measure the elements' widths
-		win.$element.removeClass( 'oo-ui-window-setup' ).width();
+		win.$element.removeClass( 'oo-ui-window-load oo-ui-window-setup' ).width();
 		win.$content.removeClass( 'oo-ui-window-content-setup' ).width();
 		win.$element.hide();
 		win.visible = false;
@@ -2094,10 +2094,9 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 /**
  * Load the frame contents.
  *
- * Once the iframe's stylesheets are loaded, the `load` event will be emitted and the returned
- * promise will be resolved. Calling while loading will return a promise but not trigger a new
- * loading cycle. Calling after loading is complete will return a promise that's already been
- * resolved.
+ * Once the iframe's stylesheets are loaded the returned promise will be resolved. Calling while
+ * loading will return a promise but not trigger a new loading cycle. Calling after loading is
+ * complete will return a promise that's already been resolved.
  *
  * Sounds simple right? Read on...
  *
@@ -2126,11 +2125,12 @@ OO.ui.Window.prototype.teardown = function ( data ) {
  * All this stylesheet injection and polling magic is in #transplantStyles.
  *
  * @return {jQuery.Promise} Promise resolved when loading is complete
- * @fires load
  */
 OO.ui.Window.prototype.load = function () {
 	var sub, doc, loading,
 		win = this;
+
+	this.$element.addClass( 'oo-ui-window-load' );
 
 	// Non-isolated windows are already "loaded"
 	if ( !this.loading && !this.isolated ) {
@@ -2855,13 +2855,10 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 
 	// Window opening
 	if ( opening.state() !== 'rejected' ) {
-		// Begin loading the window if it's not loading or loaded already - may take noticable time
-		// and we want to do this in parallel with any other preparatory actions
-		if ( !win.isLoading() && !win.isLoaded() ) {
-			// Finish initializing the window (must be done after manager is attached to DOM)
+		if ( !win.getManager() ) {
 			win.setManager( this );
-			preparing.push( win.load() );
 		}
+		preparing.push( win.load() );
 
 		if ( this.closing ) {
 			// If a window is currently closing, wait for it to complete
@@ -9928,7 +9925,6 @@ OO.ui.LabelWidget.prototype.onClick = function () {
  * @constructor
  * @param {Mixed} data Option data
  * @param {Object} [config] Configuration options
- * @cfg {string} [rel] Value for `rel` attribute in DOM, allowing per-option styling
  */
 OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 	// Configuration initialization
@@ -9951,7 +9947,6 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 	// Initialization
 	this.$element
 		.data( 'oo-ui-optionWidget', this )
-		.attr( 'rel', config.rel )
 		.attr( 'role', 'option' )
 		.addClass( 'oo-ui-optionWidget' )
 		.append( this.$label );

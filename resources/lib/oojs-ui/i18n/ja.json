@@ -5,7 +5,8 @@
 			"Miya",
 			"Penn Station",
 			"Shirayuki",
-			"Takot"
+			"Takot",
+			"Los688"
 		]
 	},
 	"ooui-outline-control-move-down": "項目を下に移動させる",
@@ -18,5 +19,6 @@
 	"ooui-dialog-message-reject": "キャンセル",
 	"ooui-dialog-process-error": "エラーが発生しました…",
 	"ooui-dialog-process-dismiss": "閉じる",
-	"ooui-dialog-process-retry": "もう一度お試しください"
+	"ooui-dialog-process-retry": "もう一度お試しください",
+	"ooui-dialog-process-continue": "続行"
 }

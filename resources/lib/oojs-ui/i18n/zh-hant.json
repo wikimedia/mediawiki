@@ -13,7 +13,8 @@
 			"Simon Shek",
 			"Spring Roll Conan",
 			"Waihorace",
-			"Cwlin0416"
+			"Cwlin0416",
+			"LNDDYL"
 		]
 	},
 	"ooui-outline-control-move-down": "項目下移",
@@ -26,5 +27,6 @@
 	"ooui-dialog-message-reject": "取消",
 	"ooui-dialog-process-error": "發生不明錯誤",
 	"ooui-dialog-process-dismiss": "關閉",
-	"ooui-dialog-process-retry": "再試一次"
+	"ooui-dialog-process-retry": "再試一次",
+	"ooui-dialog-process-continue": "繼續"
 }

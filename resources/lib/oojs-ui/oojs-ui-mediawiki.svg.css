@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (12b66051ff)
+ * OOjs UI v0.1.0-pre (05f0fefc3f)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-06T19:08:43Z
+ * Date: 2014-11-11T16:30:00Z
  */
 /* @noflip */
 .oo-ui-rtl {
@@ -1229,6 +1229,7 @@
 	font-size: 1em;
 	font-family: sans-serif;
 	background-color: #ffffff;
+	color: black;
 	border: solid 1px #cccccc;
 	box-shadow: inset 0 0 0 0 #0274ff;
 	border-radius: 0.1em;
@@ -1254,31 +1255,26 @@
 	border-color: #aaaaaa;
 	box-shadow: inset 0.4em 0 0 0 #0274ff;
 }
-.oo-ui-textInputWidget.oo-ui-pendingElement-pending input,
-.oo-ui-textInputWidget.oo-ui-pendingElement-pending textarea {
-	background-image: /* @embed */ url(themes/mediawiki/images/textures/pending.gif);
-}
-.oo-ui-textInputWidget input[readonly],
-.oo-ui-textInputWidget textarea[readonly] {
+.oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly],
+.oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly] {
 	color: #777777;
 	text-shadow: 0 1px 1px #ffffff;
 }
-.oo-ui-textInputWidget input[readonly]:focus,
-.oo-ui-textInputWidget textarea[readonly]:focus {
+.oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly]:focus,
+.oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly]:focus {
 	box-shadow: inset 0.4em 0 0 0 #cccccc;
 }
-.oo-ui-textInputWidget.oo-ui-pendingElement-pending input,
-.oo-ui-textInputWidget.oo-ui-pendingElement-pending textarea {
-	background-color: transparent;
-}
 .oo-ui-textInputWidget.oo-ui-widget-disabled input,
-.oo-ui-textInputWidget.oo-ui-widget-disabled input:focus,
-.oo-ui-textInputWidget.oo-ui-widget-disabled textarea,
-.oo-ui-textInputWidget.oo-ui-widget-disabled textarea:focus {
+.oo-ui-textInputWidget.oo-ui-widget-disabled textarea {
 	color: #cccccc;
 	text-shadow: 0 1px 1px #ffffff;
 	border-color: #dddddd;
 	background-color: #f3f3f3;
+}
+.oo-ui-textInputWidget.oo-ui-pendingElement-pending input,
+.oo-ui-textInputWidget.oo-ui-pendingElement-pending textarea {
+	background-color: transparent;
+	background-image: /* @embed */ url(themes/mediawiki/images/textures/pending.gif);
 }
 .oo-ui-textInputWidget.oo-ui-iconElement input,
 .oo-ui-textInputWidget.oo-ui-iconElement textarea {
@@ -1850,7 +1846,7 @@
 	height: 0;
 	overflow: hidden;
 }
-.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup {
+.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-load {
 	width: auto;
 	height: auto;
 	top: 0;
@@ -1871,6 +1867,12 @@
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup > .oo-ui-window-frame > iframe {
 	width: 100%;
 	height: 100%;
+}
+.oo-ui-windowManager-modal > .oo-ui-dialog .oo-ui-window-frame {
+	visibility: hidden;
+}
+.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready > .oo-ui-window-frame {
+	visibility: visible;
 }
 .oo-ui-windowManager-fullscreen > .oo-ui-dialog > .oo-ui-window-frame {
 	width: 100%;
@@ -1902,7 +1904,7 @@
 	     -o-transition: all 250ms ease-in-out;
 	        transition: all 250ms ease-in-out;
 }
-.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready {
+.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-load {
 	opacity: 1;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready > .oo-ui-window-frame {

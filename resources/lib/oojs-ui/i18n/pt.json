@@ -18,6 +18,7 @@
 	"ooui-outline-control-remove": "Remover elemento",
 	"ooui-toolbar-more": "Mais",
 	"ooui-toolgroup-expand": "Mais",
+	"ooui-toolgroup-collapse": "Menos",
 	"ooui-dialog-message-accept": "Aceitar",
 	"ooui-dialog-message-reject": "Cancelar",
 	"ooui-dialog-process-error": "Algo correu mal",
