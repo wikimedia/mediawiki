@@ -36,7 +36,7 @@ class CoreParserFunctions {
 		# Syntax for arguments (see Parser::setFunctionHook):
 		#  "name for lookup in localized magic words array",
 		#  function callback,
-		#  optional SFH_NO_HASH to omit the hash from calls (e.g. {{int:...}}
+		#  optional Parser::SFH_NO_HASH to omit the hash from calls (e.g. {{int:...}}
 		#    instead of {{#int:...}})
 		$noHashFunctions = array(
 			'ns', 'nse', 'urlencode', 'lcfirst', 'ucfirst', 'lc', 'uc',
@@ -57,24 +57,24 @@ class CoreParserFunctions {
 			'revisiontimestamp', 'revisionuser', 'cascadingsources',
 		);
 		foreach ( $noHashFunctions as $func ) {
-			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
+			$parser->setFunctionHook( $func, array( __CLASS__, $func ), Parser::SFH_NO_HASH );
 		}
 
-		$parser->setFunctionHook( 'namespace', array( __CLASS__, 'mwnamespace' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'int', array( __CLASS__, 'intFunction' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'namespace', array( __CLASS__, 'mwnamespace' ), Parser::SFH_NO_HASH );
+		$parser->setFunctionHook( 'int', array( __CLASS__, 'intFunction' ), Parser::SFH_NO_HASH );
 		$parser->setFunctionHook( 'special', array( __CLASS__, 'special' ) );
 		$parser->setFunctionHook( 'speciale', array( __CLASS__, 'speciale' ) );
-		$parser->setFunctionHook( 'tag', array( __CLASS__, 'tagObj' ), SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'tag', array( __CLASS__, 'tagObj' ), Parser::SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate' ) );
 
 		if ( $wgAllowDisplayTitle ) {
-			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
+			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), Parser::SFH_NO_HASH );
 		}
 		if ( $wgAllowSlowParserFunctions ) {
 			$parser->setFunctionHook(
 				'pagesinnamespace',
 				array( __CLASS__, 'pagesinnamespace' ),
-				SFH_NO_HASH
+				Parser::SFH_NO_HASH
 			);
 		}
 	}

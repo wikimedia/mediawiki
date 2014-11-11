@@ -234,6 +234,9 @@ define( 'OT_PLAIN', 4 );
 
 /**@{
  * Flags for Parser::setFunctionHook
+ * Use of Parser consts is preferred:
+ * - Parser::SFH_NO_HASH
+ * - Parser::SFH_OBJECT_ARGS
  */
 define( 'SFH_NO_HASH', 1 );
 define( 'SFH_OBJECT_ARGS', 2 );
