@@ -10,6 +10,9 @@
 class ImportTest extends MediaWikiLangTestCase {
 
 	private function getInputStreamSource( $xml ) {
+		if ( ini_get( 'allow_url_fopen' ) != 1 ) {
+			$this->markTestSkipped( 'bug 73283: this test needs allow_url_fopen to be enabled' );
+		}
 		$file = 'data:application/xml,' . $xml;
 		$status = ImportStreamSource::newFromFile( $file );
 		if ( !$status->isGood() ) {
