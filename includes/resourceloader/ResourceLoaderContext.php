@@ -41,6 +41,9 @@ class ResourceLoaderContext {
 	protected $version;
 	protected $hash;
 	protected $raw;
+	protected $image;
+	protected $variant;
+	protected $format;
 	protected $userObj;
 
 	/* Methods */
@@ -66,6 +69,10 @@ class ResourceLoaderContext {
 		$this->only = $request->getVal( 'only' );
 		$this->version = $request->getVal( 'version' );
 		$this->raw = $request->getFuzzyBool( 'raw' );
+		// Image requests
+		$this->image = $request->getVal( 'image' );
+		$this->variant = $request->getVal( 'variant' );
+		$this->format = $request->getVal( 'format' );
 
 		$skinnames = Skin::getSkinNames();
 		// If no skin is specified, or we don't recognize the skin, use the default skin
@@ -233,6 +240,56 @@ class ResourceLoaderContext {
 	}
 
 	/**
+	 * @return string|null
+	 */
+	public function getImage() {
+		return $this->image;
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getVariant() {
+		return $this->variant;
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getFormat() {
+		return $this->format;
+	}
+
+	/**
+	 * If this is a request for an image, get the ResourceLoaderImage object.
+	 *
+	 * @since 1.25
+	 * @return ResourceLoaderImage|bool false if a valid object cannot be created
+	 */
+	public function getImageObj() {
+		if ( !$this->image ) {
+			return false;
+		}
+
+		$modules = $this->getModules();
+		if ( count( $modules ) !== 1 ) {
+			return false;
+		}
+
+		$module = $this->getResourceLoader()->getModule( $modules[0] );
+		if ( !$module || !$module instanceof ResourceLoaderImageModule ) {
+			return false;
+		}
+
+		$image = $module->getImage( $this->image );
+		if ( !$image ) {
+			return false;
+		}
+
+		return $image;
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function shouldIncludeScripts() {
@@ -260,6 +317,7 @@ class ResourceLoaderContext {
 		if ( !isset( $this->hash ) ) {
 			$this->hash = implode( '|', array(
 				$this->getLanguage(), $this->getDirection(), $this->getSkin(), $this->getUser(),
+				$this->getImage(), $this->getVariant(), $this->getFormat(),
 				$this->getDebug(), $this->getOnly(), $this->getVersion()
 			) );
 		}
