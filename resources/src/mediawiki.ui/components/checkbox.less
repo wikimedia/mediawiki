@@ -29,8 +29,7 @@
 	vertical-align: middle;
 }
 
-@checkboxSize: 1.6em;
-@focusBottomBorderSize: 0.2em;
+@checkboxSize: 2em;
 
 // We use the not selector to cancel out styling on IE 8 and below
 .mw-ui-checkbox:not(#noop) {
@@ -63,26 +62,36 @@
 			width: @checkboxSize;
 			height: @checkboxSize;
 			background-color: #fff;
-			border: 1px solid grey;
+			border: 1px solid @colorGray7;
+			.box-sizing(border-box);
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
 		&:checked + label::before {
 			.background-image-svg('images/checked.svg', 'images/checked.png');
-			.background-size( @checkboxSize, @checkboxSize );
+			.background-size( @checkboxSize - 0.2em, @checkboxSize - 0.2em );
 			background-repeat: no-repeat;
-			background-position: center top;
+			background-position: center center;
 		}
 
-		&:active + label::before,
+		&:active + label::before {
+			background-color: @colorGray13;
+			border-color: @colorGray13;
+		}
+
 		&:focus + label::before {
-			box-shadow: inset 0 -@focusBottomBorderSize 0 0 lightgrey;
+			border-width: 2px;
+		}
+
+		&:hover + label::before {
+			border-bottom-width: 3px;
 		}
 
 		// disabled checked boxes have a gray background
 		&:disabled + label::before {
 			cursor: default;
-			background-color: lightgrey;
+			background-color: @colorGray14;
+			border-color: @colorGray14;
 		}
 	}
 }
