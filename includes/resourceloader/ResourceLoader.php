@@ -646,19 +646,32 @@ class ResourceLoader {
 		// Generate a response
 		$response = $this->makeModuleResponse( $context, $modules, $missing );
 
-		// Prepend comments indicating exceptions
-		$response = $errors . $response;
-
 		// Capture any PHP warnings from the output buffer and append them to the
-		// response in a comment if we're in debug mode.
+		// error list if we're in debug mode.
 		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
-			$response = self::makeComment( $warnings ) . $response;
+			$errors .= self::makeComment( $warnings );
 			$this->hasErrors = true;
 		}
 
+		if ( $context->getImageObj() && !$response ) {
+			$errors .= self::makeComment( "Image generation failed." );
+			$this->hasErrors = true;
+		}
+
+		if ( $this->hasErrors ) {
+			if ( $context->getImageObj() ) {
+				// Bail, we can't show both the error messages and the response when it's not CSS or JS.
+				// sendResponseHeaders() will handle this sensibly.
+				$response = $errors;
+			} else {
+				// Prepend comments indicating exceptions
+				$response = $errors . $response;
+			}
+		}
+
 		// Save response to file cache unless there are errors
-		if ( isset( $fileCache ) && !$errors && !count( $missing ) ) {
-			// Cache single modules...and other requests if there are enough hits
+		if ( isset( $fileCache ) && !$this->hasErrors && !count( $missing ) ) {
+			// Cache single modules and images...and other requests if there are enough hits
 			if ( ResourceFileCache::useFileCache( $context ) ) {
 				if ( $fileCache->isCacheWorthy() ) {
 					$fileCache->saveText( $response );
@@ -699,7 +712,13 @@ class ResourceLoader {
 			$maxage = $rlMaxage['versioned']['client'];
 			$smaxage = $rlMaxage['versioned']['server'];
 		}
-		if ( $context->getOnly() === 'styles' ) {
+		if ( $context->getImageObj() ) {
+			if ( $errors ) {
+				header( 'Content-Type: text/plain; charset=utf-8' );
+			} else {
+				$context->getImageObj()->sendResponseHeaders( $context );
+			}
+		} elseif ( $context->getOnly() === 'styles' ) {
 			header( 'Content-Type: text/css; charset=utf-8' );
 			header( 'Access-Control-Allow-Origin: *' );
 		} else {
@@ -857,6 +876,13 @@ class ResourceLoader {
 		}
 
 		wfProfileIn( __METHOD__ );
+
+		$image = $context->getImageObj();
+		if ( $image ) {
+			$data = $image->getImageData( $context );
+			wfProfileOut( __METHOD__ );
+			return $data;
+		}
 
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
