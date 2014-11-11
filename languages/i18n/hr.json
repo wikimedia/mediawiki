@@ -2673,6 +2673,7 @@
 	"autosumm-replace": "tekst stranice se zamjenjuje s '$1'",
 	"autoredircomment": "preusmjeravanje na [[$1]]",
 	"autosumm-new": "nova stranica: $1",
+	"autosumm-newblank": "stvorena prazna stranica",
 	"lag-warn-normal": "Moguće je da izmjene nastale posljednjih $1 {{PLURAL:$1|sekundu|sekundi}} neće biti vidljive na ovom popisu.",
 	"lag-warn-high": "Zbog kašnjenja baze podataka, moguće je da promjene napravljene u posljednjih $1 {{PLURAL:$1|sekundu|sekunde|sekundi}} nisu prikazane u popisu.",
 	"watchlistedit-normal-title": "Uredi popis praćenja",

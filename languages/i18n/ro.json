@@ -330,6 +330,8 @@
 	"filerenameerror": "Fișierul \"$1\" nu a putut fi mutat la \"$2\".",
 	"filedeleteerror": "Fișierul \"$1\" nu a putut fi șters.",
 	"directorycreateerror": "Nu se poate crea directorul \"$1\".",
+	"directoryreadonlyerror": "Dosarul „$1” este doar în citire.",
+	"directorynotreadableerror": "Dosarul „$1” nu poate fi citit.",
 	"filenotfound": "Fișierul „$1” nu a putut fi găsit.",
 	"unexpected": "Valoare neașteptată: „$1”=„$2”.",
 	"formerror": "Eroare: datele nu au putut fi trimise",

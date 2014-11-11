@@ -382,6 +382,8 @@
 	"filerenameerror": "Impossibile rinominare il file \"$1\" in \"$2\".",
 	"filedeleteerror": "Impossibile cancellare il file \"$1\".",
 	"directorycreateerror": "Impossibile creare la directory \"$1\".",
+	"directoryreadonlyerror": "La directory \"$1\" è di sola lettura.",
+	"directorynotreadableerror": "La directory \"$1\" non è leggibile.",
 	"filenotfound": "Impossibile trovare il file \"$1\".",
 	"unexpected": "Valore imprevisto: \"$1\"=\"$2\".",
 	"formerror": "Errore: impossibile inviare il modulo",

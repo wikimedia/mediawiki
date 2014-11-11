@@ -2,11 +2,21 @@
 	"@metadata": {
 		"authors": [
 			"Guycn2",
-			"Amire80"
+			"Amire80",
+			"Inkbug"
 		]
 	},
 	"apihelp-main-param-action": "איזו פעולה לבצע.",
 	"apihelp-main-param-format": "התבנית של הפלט.",
+	"apihelp-block-description": "חסימת משתמש.",
+	"apihelp-block-param-user": "שם משתמש, כתובת IP, או טווח IP שהנך רוצה לחסום.",
+	"apihelp-block-param-reason": "סיבה לחסימה.",
+	"apihelp-createaccount-param-name": "שם משתמש.",
+	"apihelp-delete-example-simple": "מחיקת הדף הראשי",
+	"apihelp-edit-param-minor": "עריכה משנית.",
+	"apihelp-edit-example-edit": "עריכת דף",
+	"apihelp-emailuser-description": "שליחת דוא\"ל למשתמש.",
+	"apihelp-expandtemplates-param-title": "כותרת הדף.",
 	"apihelp-help-description": "הצגת עזרה עבור היחידות שצוינו.",
 	"apihelp-help-param-toc": "לכלול תוכן עניינים בפלט HTML.",
 	"apihelp-query+categories-param-limit": "כמה קטגוריות להחזיר.",

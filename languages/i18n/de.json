@@ -383,6 +383,8 @@
 	"filerenameerror": "Die Datei „$1“ konnte nicht nach „$2“ umbenannt werden.",
 	"filedeleteerror": "Die Datei „$1“ konnte nicht gelöscht werden.",
 	"directorycreateerror": "Das Verzeichnis „$1“ konnte nicht angelegt werden.",
+	"directoryreadonlyerror": "Das Wörterbuch „$1“ ist schreibgeschützt.",
+	"directorynotreadableerror": "Das Wörterbuch „$1“ ist nicht lesbar.",
 	"filenotfound": "Die Datei „$1“ wurde nicht gefunden.",
 	"unexpected": "Unerwarteter Wert: „$1“ = „$2“",
 	"formerror": "Fehler: Die Eingaben konnten nicht verarbeitet werden.",

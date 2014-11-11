@@ -389,6 +389,8 @@
 	"filerenameerror": "无法将文件“$1”重命名为“$2”。",
 	"filedeleteerror": "无法删除文件“$1”。",
 	"directorycreateerror": "无法创建目录“$1”。",
+	"directoryreadonlyerror": "目录“$1”是只读的。",
+	"directorynotreadableerror": "目录“$1”无法读取。",
 	"filenotfound": "找不到文件“$1”。",
 	"unexpected": "非正常值：“$1”=“$2”。",
 	"formerror": "错误：无法提交表单",

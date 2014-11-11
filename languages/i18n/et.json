@@ -330,6 +330,8 @@
 	"filerenameerror": "Ei saanud faili \"$1\" failiks \"$2\" ümber nimetada.",
 	"filedeleteerror": "Faili nimega \"$1\" ei ole võimalik kustutada.",
 	"directorycreateerror": "Kataloogi \"$1\" ei saanud luua.",
+	"directoryreadonlyerror": "Kataloog \"$1\" on kirjutuskaitstud.",
+	"directorynotreadableerror": "Kataloog \"$1\" pole loetav.",
 	"filenotfound": "Faili nimega \"$1\" ei leitud.",
 	"unexpected": "Ootamatu väärtus: \"$1\"=\"$2\".",
 	"formerror": "Viga: vormi ei saanud salvestada",

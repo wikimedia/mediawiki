@@ -336,6 +336,8 @@
 	"filerenameerror": "שינוי השם של \"$1\" ל־\"$2\" נכשל.",
 	"filedeleteerror": "מחיקת \"$1\" נכשלה.",
 	"directorycreateerror": "יצירת התיקייה \"$1\" נכשלה.",
+	"directoryreadonlyerror": "התיקייה \"$1\" היא לקריאה בלבד.",
+	"directorynotreadableerror": "התיקייה \"$1\" אינה ניתנת לקריאה.",
 	"filenotfound": "הקובץ \"$1\" לא נמצא.",
 	"unexpected": "ערך לא צפוי: \"$1\"=\"$2\"",
 	"formerror": "שגיאה: לא ניתן היה לשלוח את הטופס.",
