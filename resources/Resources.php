@@ -1654,4 +1654,66 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+
+	'oojs-ui-test' => array(
+		'class' => 'ResourceLoaderImageModule',
+		'localBasePath' => $IP . '/oojs-ui-test',
+		'prefix' => 'oo-ui',
+		'variants' => array(
+			'icon' => array(
+				'invert' => array(
+					'color' => '#FFFFFF',
+					'global' => true,
+				),
+				'primary' => array(
+					'color' => '#598AD1',
+				),
+				'constructive' => array(
+					'color' => '#00C697',
+				),
+				'destructive' => array(
+					'color' => '#E81915',
+				),
+			),
+			'indicator' => array(
+				'invert' => array(
+					'color' => '#FFFFFF',
+					'global' => true,
+				),
+			),
+		),
+		'images' => array(
+			'icon' => array(
+				'advanced' => 'advanced.svg',
+				'remove' => array(
+					'image' => 'remove.svg',
+					'variants' => array( 'destructive' ),
+				),
+				'next' => array(
+					'image' => array(
+						'ltr' => 'next.svg',
+						'rtl' => 'prev.svg'
+					),
+				),
+				'help' => array(
+					'image' => array(
+						'ltr' => 'help-ltr.svg',
+						'rtl' => 'help-rtl.svg',
+						'lang' => array(
+							'he' => 'help-ltr.svg',
+						)
+					),
+				),
+				'bold' => array(
+					'image' => array(
+						'default' => 'bold-a.svg',
+						'lang' => array(
+							'en' => 'bold-b.svg',
+							'de' => 'bold-f.svg',
+						)
+					),
+				)
+			),
+		),
+	),
 );
