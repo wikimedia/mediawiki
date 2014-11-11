@@ -3802,7 +3802,7 @@ class Parser {
 		}
 
 		$allArgs = array( &$this );
-		if ( $flags & SFH_OBJECT_ARGS ) {
+		if ( $flags & self::SFH_OBJECT_ARGS ) {
 			# Convert arguments to PPNodes and collect for appending to $allArgs
 			$funcArgs = array();
 			foreach ( $args as $k => $v ) {
@@ -5204,7 +5204,7 @@ class Parser {
 	 * The callback function should have the form:
 	 *    function myParserFunction( &$parser, $arg1, $arg2, $arg3 ) { ... }
 	 *
-	 * Or with SFH_OBJECT_ARGS:
+	 * Or with Parser::SFH_OBJECT_ARGS:
 	 *    function myParserFunction( $parser, $frame, $args ) { ... }
 	 *
 	 * The callback may either return the text result of the function, or an array with the text
@@ -5218,10 +5218,10 @@ class Parser {
 	 * @param string $id The magic word ID
 	 * @param callable $callback The callback function (and object) to use
 	 * @param int $flags A combination of the following flags:
-	 *     SFH_NO_HASH   No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
+	 *     Parser::SFH_NO_HASH      No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
 	 *
-	 *     SFH_OBJECT_ARGS   Pass the template arguments as PPNode objects instead of text. This
-	 *     allows for conditional expansion of the parse tree, allowing you to eliminate dead
+	 *     Parser::SFH_OBJECT_ARGS  Pass the template arguments as PPNode objects instead of text.
+	 *     This allows for conditional expansion of the parse tree, allowing you to eliminate dead
 	 *     branches and thus speed up parsing. It is also possible to analyse the parse tree of
 	 *     the arguments, and to control the way they are expanded.
 	 *
@@ -5263,7 +5263,7 @@ class Parser {
 				$syn = $wgContLang->lc( $syn );
 			}
 			# Add leading hash
-			if ( !( $flags & SFH_NO_HASH ) ) {
+			if ( !( $flags & self::SFH_NO_HASH ) ) {
 				$syn = '#' . $syn;
 			}
 			# Remove trailing colon
