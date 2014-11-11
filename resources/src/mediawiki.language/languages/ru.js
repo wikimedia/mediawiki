@@ -2,11 +2,11 @@
  * Russian (Русский) language functions
  */
 
-// These tests were originally made for names of Wikimedia
-// websites, so they don't currently cover all the possible
-// cases.
+// These rules are not perfect, but they are currently only used for
+// names of languages and Wikimedia sites, so it doesn't matter if they are wrong sometimes.
 
 mediaWiki.language.convertGrammar = function ( word, form ) {
+	/*global $ */
 	'use strict';
 
 	var grammarForms = mediaWiki.language.getData( 'ru', 'grammarForms' );
@@ -50,6 +50,31 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 				word = word.slice( 0, -3 ) + 'ных';
 			} else if ( word.slice( -3 ) === 'ник' ) {
 				word = word.slice( 0, -3 ) + 'нике';
+			}
+			break;
+		case 'languagegen': // язык в родительном падеже ("(с) русского")
+			if ( word.slice( -3 ) === 'кий' ) {
+				word = word.slice( 0, -2 ) + 'ого';
+			} else if ( $.inArray( word, [ 'иврит', 'идиш' ] ) > -1 ) {
+				word = word + 'а';
+			}
+			break;
+		case 'languageprep': // язык в предложном падеже ("(на) русском")
+			if ( word.slice( -3 ) === 'кий' ) {
+				word = word.slice( 0, -2 ) + 'ом';
+			} else if ( $.inArray( word, [ 'иврит', 'идиш' ] ) > -1 ) {
+				word = word + 'е';
+			}
+			break;
+		case 'languageadverb': // наречие с названием языка ("по-русски")
+			if ( word.slice( -3 ) === 'кий' ) {
+				word = 'по-' + word.slice( 0, -1 );
+			} else if ( $.inArray( word, [ 'иврит', 'идиш' ] ) > -1 ) {
+				word = 'на ' + word + 'е';
+			} else if ( $.inArray( word, [ 'идо', 'урду', 'хинди', 'эсперанто' ] ) > -1 ) {
+				word = 'на ' + word;
+			} else {
+				word = 'на языке ' + word;
 			}
 			break;
 	}
