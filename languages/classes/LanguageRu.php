@@ -44,8 +44,8 @@ class LanguageRu extends Language {
 			return $wgGrammarForms['ru'][$case][$word];
 		}
 
-		# These rules are not perfect, but they are currently only used for Wikimedia
-		# site names so it doesn't matter if they are wrong sometimes.
+		# These rules are not perfect, but they are currently only used for
+		# names of languages and Wikimedia sites, so it doesn't matter if they are wrong sometimes.
 		# Just add a special case for your site name if necessary.
 
 		# substr doesn't support Unicode and mb_substr has issues,
@@ -100,6 +100,70 @@ class LanguageRu extends Language {
 					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ные' ) {
 						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'ных';
 					}
+					break;
+				case 'languagegen': # язык в родительном падеже ("(с) русского")
+					$suffix = join( '', array_slice( $chars[0], -4 ) );
+					if ( $suffix === 'ский' || $suffix === 'цкий' ) {
+						$word = join(
+							'',
+							array_slice( $chars[0], 0, count( $chars[0] ) - 2 )
+						) . 'ого';
+
+						break;
+					}
+
+					if ( in_array( $word, array( 'иврит', 'идиш' ) ) ) {
+						$word = $word . 'а';
+
+						break;
+					}
+
+					break;
+				case 'languageprep': # язык в предложном падеже ("(на) русском"
+					$suffix = join( '', array_slice( $chars[0], -4 ) );
+					if ( $suffix === 'ский' || $suffix === 'цкий' ) {
+						$word = join(
+							'',
+							array_slice( $chars[0], 0, count( $chars[0] ) - 2 )
+						) . 'ом';
+
+						break;
+					}
+
+					if ( in_array( $word, array( 'иврит', 'идиш' ) ) ) {
+						$word = $word . 'е';
+
+						break;
+					}
+
+					break;
+				case 'languageadverb': # наречие с названием языка ("по-русски")
+					$suffix = join( '', array_slice( $chars[0], -4 ) );
+					if ( $suffix === 'ский' || $suffix === 'цкий' ) {
+						$word = 'по-' . join(
+							'',
+							array_slice( $chars[0], 0, count( $chars[0] ) - 1 )
+						);
+
+						break;
+					}
+
+					if ( in_array( $word, array( 'иврит', 'идиш' ) ) ) {
+						$word = 'на ' . $word . 'е';
+
+						break;
+					}
+
+					// Известные несклоняемые
+					if ( in_array( $word, array( 'идо', 'урду', 'хинди', 'эсперанто' ) ) ) {
+						$word = "на $word";
+
+						break;
+					}
+
+					// Остальные несклоняемые
+					$word = "на языке $word";
+
 					break;
 			}
 		}

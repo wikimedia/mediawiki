@@ -110,6 +110,71 @@ class LanguageRuTest extends LanguageClassesTestCase {
 				'Викиданные',
 				'prepositional',
 			),
+			array(
+				'русского',
+				'русский',
+				'languagegen',
+			),
+			array(
+				'немецкого',
+				'немецкий',
+				'languagegen',
+			),
+			array(
+				'иврита',
+				'иврит',
+				'languagegen',
+			),
+			array(
+				'эсперанто',
+				'эсперанто',
+				'languagegen',
+			),
+			array(
+				'русском',
+				'русский',
+				'languageprep',
+			),
+			array(
+				'немецком',
+				'немецкий',
+				'languageprep',
+			),
+			array(
+				'иврите',
+				'иврит',
+				'languageprep',
+			),
+			array(
+				'эсперанто',
+				'эсперанто',
+				'languageprep',
+			),
+			array(
+				'по-русски',
+				'русский',
+				'languageadverb',
+			),
+			array(
+				'по-немецки',
+				'немецкий',
+				'languageadverb',
+			),
+			array(
+				'на иврите',
+				'иврит',
+				'languageadverb',
+			),
+			array(
+				'на эсперанто',
+				'эсперанто',
+				'languageadverb',
+			),
+			array(
+				'на языке гуарани',
+				'гуарани',
+				'languageadverb',
+			),
 		);
 	}
 }
