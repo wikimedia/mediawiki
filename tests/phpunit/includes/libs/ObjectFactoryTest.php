@@ -21,6 +21,9 @@
 
 class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 
+	/**
+	 * @covers ObjectFactory::getObjectFromSpec
+	 */
 	public function testClosureExpansionDisabled() {
 		$obj = ObjectFactory::getObjectFromSpec( array(
 			'class' => 'ObjectFactoryTest_Fixture',
@@ -31,6 +34,9 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( 'unwrapped', $obj->args[0]() );
 	}
 
+	/**
+	 * @covers ObjectFactory::getObjectFromSpec
+	 */
 	public function testClosureExpansionEnabled() {
 		$obj = ObjectFactory::getObjectFromSpec( array(
 			'class' => 'ObjectFactoryTest_Fixture',
