@@ -38,6 +38,9 @@
  * @covers TestORMRow
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @group Broken
+ * Bug 37601: This test cannot be run in isolation; it succeeds
+ * when run isolated and fails when a whole suite is run
  */
 class TestORMRowTest extends ORMRowTest {
 
