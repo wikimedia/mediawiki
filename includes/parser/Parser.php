@@ -224,6 +224,9 @@ class Parser {
 	 */
 	public $mInParse = false;
 
+	/** @var ExplicitProfiler */
+	protected $mProfiler;
+
 	/**
 	 * @param array $conf
 	 */
@@ -364,6 +367,8 @@ class Parser {
 		if ( isset( $this->mPreprocessor ) && $this->mPreprocessor->parser !== $this ) {
 			$this->mPreprocessor = null;
 		}
+
+		$this->mProfiler = new ExplicitProfiler();
 
 		wfRunHooks( 'ParserClearState', array( &$this ) );
 		wfProfileOut( __METHOD__ );
@@ -525,6 +530,19 @@ class Parser {
 			// which looks much like the problematic '-'.
 			$limitReport = str_replace( array( '-', '&' ), array( '‐', '&amp;' ), $limitReport );
 			$text .= "\n<!-- \n$limitReport-->\n";
+
+			// Add on template profiling data
+			$dataByFunc = $this->mProfiler->getRawData();
+			uasort( $dataByFunc, function( $a, $b ) {
+				return $a['elapsed'] < $b['elapsed']; // descending order
+			} );
+			$profileReport = "Top template expansion time report (%,ms,calls,template)\n";
+			foreach ( array_slice( $dataByFunc, 0, 10 ) as $item ) {
+				$profileReport .= sprintf( "%6.2f%% %3.6f %6d - %s\n",
+					$item['percent'], $item['elapsed'], $item['calls'],
+					htmlspecialchars($item['name'] ) );
+			}
+			$text .= "\n<!-- \n$profileReport-->\n";
 
 			if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
 				wfDebugLog( 'generated-pp-node-count', $this->mGeneratedPPNodeCount . ' ' .
@@ -3473,7 +3491,7 @@ class Parser {
 		$args = ( null == $piece['parts'] ) ? array() : $piece['parts'];
 		wfProfileOut( __METHOD__ . '-setup' );
 
-		$titleProfileIn = null; // profile templates
+		$profileSection = null; // profile templates
 
 		# SUBST
 		wfProfileIn( __METHOD__ . '-modifiers' );
@@ -3594,11 +3612,7 @@ class Parser {
 
 		# Load from database
 		if ( !$found && $title ) {
-			if ( !Profiler::instance()->isPersistent() ) {
-				# Too many unique items can kill profiling DBs/collectors
-				$titleProfileIn = __METHOD__ . "-title-" . $title->getPrefixedDBkey();
-				wfProfileIn( $titleProfileIn ); // template in
-			}
+			$profileSection = $this->mProfiler->scopedProfileIn( $title->getPrefixedDBkey() );
 			wfProfileIn( __METHOD__ . '-loadtpl' );
 			if ( !$title->isExternal() ) {
 				if ( $title->isSpecialPage()
@@ -3680,8 +3694,8 @@ class Parser {
 		# Recover the source wikitext and return it
 		if ( !$found ) {
 			$text = $frame->virtualBracketedImplode( '{{', '|', '}}', $titleWithSpaces, $args );
-			if ( $titleProfileIn ) {
-				wfProfileOut( $titleProfileIn ); // template out
+			if ( $profileSection ) {
+				$this->mProfiler->scopedProfileOut( $profileSection );
 			}
 			wfProfileOut( __METHOD__ );
 			return array( 'object' => $text );
@@ -3707,8 +3721,8 @@ class Parser {
 			$isLocalObj = false;
 		}
 
-		if ( $titleProfileIn ) {
-			wfProfileOut( $titleProfileIn ); // template out
+		if ( $profileSection ) {
+			$this->mProfiler->scopedProfileOut( $profileSection );
 		}
 
 		# Replace raw HTML by a placeholder

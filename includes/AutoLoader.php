@@ -878,6 +878,7 @@ $wgAutoloadLocalClasses = array(
 	'EncryptedPassword' => 'includes/password/EncryptedPassword.php',
 
 	# includes/profiler
+	'ExplicitProfiler' => 'includes/profiler/ExplicitProfiler.php',
 	'Profiler' => 'includes/profiler/Profiler.php',
 	'ProfilerSimpleDB' => 'includes/profiler/ProfilerSimpleDB.php',
 	'ProfilerSimpleText' => 'includes/profiler/ProfilerSimpleText.php',
