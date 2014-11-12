@@ -47,11 +47,14 @@ class ProfilerStandard extends Profiler {
 
 	/**
 	 * @param array $params
+	 *   - initTotal : set to false to omit -total/-setup entries (which use request start time)
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( $params );
 
-		$this->addInitialStack();
+		if ( !isset( $params['initTotal'] ) || $params['initTotal'] ) {
+			$this->addInitialStack();
+		}
 	}
 
 	/**
