@@ -19,6 +19,8 @@
  *
  * @file
  */
+use \Cdb\Exception as CdbException;
+use \Cdb\Reader as CdbReader;
 
 /**
  * The interwiki class
