@@ -116,18 +116,20 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$this->dieUsage( $matches->getWikiText(), 'search-error' );
 		}
 
-		$apiResult = $this->getResult();
-		// Add search meta data to result
-		if ( isset( $searchInfo['totalhits'] ) ) {
-			$totalhits = $matches->getTotalHits();
-			if ( $totalhits !== null ) {
-				$apiResult->addValue( array( 'query', 'searchinfo' ),
-					'totalhits', $totalhits );
+		if ( $resultPageSet === null ) {
+			$apiResult = $this->getResult();
+			// Add search meta data to result
+			if ( isset( $searchInfo['totalhits'] ) ) {
+				$totalhits = $matches->getTotalHits();
+				if ( $totalhits !== null ) {
+					$apiResult->addValue( array( 'query', 'searchinfo' ),
+						'totalhits', $totalhits );
+				}
 			}
-		}
-		if ( isset( $searchInfo['suggestion'] ) && $matches->hasSuggestion() ) {
-			$apiResult->addValue( array( 'query', 'searchinfo' ),
-				'suggestion', $matches->getSuggestionQuery() );
+			if ( isset( $searchInfo['suggestion'] ) && $matches->hasSuggestion() ) {
+				$apiResult->addValue( array( 'query', 'searchinfo' ),
+					'suggestion', $matches->getSuggestionQuery() );
+			}
 		}
 
 		// Add the search results to the result
@@ -151,7 +153,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			}
 
 			$title = $result->getTitle();
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$vals = array();
 				ApiQueryBase::addTitleInfo( $vals, $title );
 
@@ -207,7 +209,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$hasInterwikiResults = true;
 
 			// Include number of results if requested
-			if ( isset( $searchInfo['totalhits'] ) ) {
+			if ( $resultPageSet === null && isset( $searchInfo['totalhits'] ) ) {
 				$totalhits = $matches->getTotalHits();
 				if ( $totalhits !== null ) {
 					$apiResult->addValue( array( 'query', 'interwikisearchinfo' ),
@@ -218,30 +220,35 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$result = $matches->next();
 			while ( $result ) {
 				$title = $result->getTitle();
-				$vals = array(
-					'namespace' => $result->getInterwikiNamespaceText(),
-					'title' => $title->getText(),
-					'url' => $title->getFullUrl(),
-				);
 
-				// Add item to results and see whether it fits
-				$fit = $apiResult->addValue(
-					array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
-					null,
-					$vals
-				);
+				if ( $resultPageSet === null ) {
+					$vals = array(
+						'namespace' => $result->getInterwikiNamespaceText(),
+						'title' => $title->getText(),
+						'url' => $title->getFullUrl(),
+					);
 
-				if ( !$fit ) {
-					// We hit the limit. We can't really provide any meaningful
-					// pagination info so just bail out
-					break;
+					// Add item to results and see whether it fits
+					$fit = $apiResult->addValue(
+						array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
+						null,
+						$vals
+					);
+
+					if ( !$fit ) {
+						// We hit the limit. We can't really provide any meaningful
+						// pagination info so just bail out
+						break;
+					}
+				} else {
+					$titles[] = $title;
 				}
 
 				$result = $matches->next();
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$apiResult->setIndexedTagName_internal( array(
 				'query', $this->getModuleName()
 			), 'p' );
