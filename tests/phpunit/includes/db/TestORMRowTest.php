@@ -24,6 +24,14 @@
  *
  * @ingroup Test
  *
+ * @licence GNU GPL v2+
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ */
+require_once __DIR__ . "/ORMRowTest.php";
+
+/**
+ * @covers TestORMRow
+ *
  * @group ORM
  *
  * The database group has as a side effect that temporal database tables are created. This makes
@@ -35,13 +43,9 @@
  * that hold the first tests in a pending state awaiting access to the database.
  * @group medium
  *
- * @licence GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
- */
-require_once __DIR__ . "/ORMRowTest.php";
-
-/**
- * @covers TestORMRow
+ * @group Broken
+ * Bug 37601: This test cannot be run in isolation; it succeeds
+ * when run isolated and fails when a whole suite is run
  */
 class TestORMRowTest extends ORMRowTest {
 
