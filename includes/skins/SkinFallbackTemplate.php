@@ -79,6 +79,8 @@ class SkinFallbackTemplate extends BaseTemplate {
 	public function execute() {
 		$this->html( 'headelement' ) ?>
 
+		<div id="siteNotice"></div>
+
 		<div class="warningbox">
 			<?php echo $this->buildHelpfulInformationMessage() ?>
 		</div>
