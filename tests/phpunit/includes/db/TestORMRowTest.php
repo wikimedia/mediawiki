@@ -35,13 +35,9 @@
  * that hold the first tests in a pending state awaiting access to the database.
  * @group medium
  *
+ * @covers TestORMRow
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
- */
-require_once __DIR__ . "/ORMRowTest.php";
-
-/**
- * @covers TestORMRow
  */
 class TestORMRowTest extends ORMRowTest {
 

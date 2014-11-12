@@ -1,8 +1,4 @@
 <?php
-
-//Load our FakeDiffOp
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'FakeDiffOp.php';
-
 /**
  * @licence GNU GPL v2+
  * @author Adam Shorland

@@ -23,8 +23,6 @@
  * @file
  */
 
-require_once 'ApiQueryTestBase.php';
-
 /**
  * These tests validate basic functionality of the api query module
  *

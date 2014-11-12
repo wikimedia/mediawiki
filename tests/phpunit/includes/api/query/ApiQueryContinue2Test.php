@@ -18,8 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-require_once 'ApiQueryContinueTestBase.php';
-
 /**
  * @group API
  * @group Database
