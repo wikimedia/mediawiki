@@ -20,6 +20,9 @@
  * @file
  */
 
+use Cdb\Exception as CdbException;
+use Cdb\Reader;
+use Cdb\Writer;
 /**
  * Class for caching the contents of localisation files, Messages*.php
  * and *.i18n.php.
@@ -1229,10 +1232,10 @@ class LCStoreDB implements LCStore {
  * See Cdb.php and http://cr.yp.to/cdb.html
  */
 class LCStoreCDB implements LCStore {
-	/** @var CdbReader[] */
+	/** @var Reader[] */
 	private $readers;
 
-	/** @var CdbWriter */
+	/** @var Writer */
 	private $writer;
 
 	/** @var string Current language code */
@@ -1258,7 +1261,7 @@ class LCStoreCDB implements LCStore {
 			$this->readers[$code] = false;
 			if ( file_exists( $fileName ) ) {
 				try {
-					$this->readers[$code] = CdbReader::open( $fileName );
+					$this->readers[$code] = Reader::open( $fileName );
 				} catch ( CdbException $e ) {
 					wfDebug( __METHOD__ . ": unable to open cdb file for reading\n" );
 				}
@@ -1297,7 +1300,7 @@ class LCStoreCDB implements LCStore {
 		}
 
 		try {
-			$this->writer = CdbWriter::open( $this->getFileName( $code ) );
+			$this->writer = Writer::open( $this->getFileName( $code ) );
 		} catch ( CdbException $e ) {
 			throw new MWException( $e->getMessage() );
 		}

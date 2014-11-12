@@ -19,6 +19,8 @@
  *
  * @file
  */
+use \Cdb\Exception as CdbException;
+use \Cdb\Reader;
 
 /**
  * The interwiki class
@@ -152,7 +154,7 @@ class Interwiki {
 		$value = false;
 		try {
 			if ( !$db ) {
-				$db = CdbReader::open( $wgInterwikiCache );
+				$db = Reader::open( $wgInterwikiCache );
 			}
 			/* Resolve site name */
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
@@ -277,7 +279,7 @@ class Interwiki {
 		$data = array();
 		try {
 			if ( !$db ) {
-				$db = CdbReader::open( $wgInterwikiCache );
+				$db = Reader::open( $wgInterwikiCache );
 			}
 			/* Resolve site name */
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
