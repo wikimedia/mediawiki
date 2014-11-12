@@ -76,8 +76,8 @@ do {
 			$file = $args[0];
 			print "Loading cdb file $file...";
 			try {
-				$fileHandle = CdbReader::open( $file );
-			} catch ( CdbException $e ) {
+				$fileHandle = \Cdb\Reader::open( $file );
+			} catch ( \Cdb\Exception $e ) {
 			}
 
 			if ( !$fileHandle ) {
@@ -97,7 +97,7 @@ do {
 			}
 			try {
 				$res = $fileHandle->get( $args[0] );
-			} catch ( CdbException $e ) {
+			} catch ( \Cdb\Exception $e ) {
 				print "Unable to read key from file\n";
 				break;
 			}

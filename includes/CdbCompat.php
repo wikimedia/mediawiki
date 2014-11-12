@@ -18,9 +18,25 @@
  * @file
  */
 
-/**
- * Exception for Cdb errors.
- * This explicitly doesn't subclass MWException to encourage reuse.
+/***
+ * This file contains a set of backwards-compatability class names
+ * after the cdb functions were moved out into a separate library
+ * and put under a proper namespace
+ *
+ * @since 1.25
  */
-class CdbException extends Exception {
-}
+
+/**
+ * @deprecated since 1.25
+ */
+abstract class CdbReader extends \Cdb\Reader {}
+
+/**
+ * @deprecated since 1.25
+ */
+abstract class CdbWriter extends \Cdb\Writer {}
+
+/**
+ * @deprecated since 1.25
+ */
+class CdbException extends \Cdb\Exception {}
