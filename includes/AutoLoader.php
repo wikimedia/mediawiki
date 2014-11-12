@@ -701,15 +701,10 @@ $wgAutoloadLocalClasses = array(
 	'VirtualRESTServiceClient' => 'includes/libs/virtualrest/VirtualRESTServiceClient.php',
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',
 
-	# includes/libs/cdb
-	'CdbException' => 'includes/libs/cdb/CdbException.php',
-	'CdbFunctions' => 'includes/libs/cdb/CdbFunctions.php',
-	'CdbReader' => 'includes/libs/cdb/CdbReader.php',
-	'CdbReaderDBA' => 'includes/libs/cdb/CdbReaderDBA.php',
-	'CdbReaderPHP' => 'includes/libs/cdb/CdbReaderPHP.php',
-	'CdbWriter' => 'includes/libs/cdb/CdbWriter.php',
-	'CdbWriterDBA' => 'includes/libs/cdb/CdbWriterDBA.php',
-	'CdbWriterPHP' => 'includes/libs/cdb/CdbWriterPHP.php',
+	# Formerly includes/libs/cdb
+	'CdbException' => 'includes/CdbCompat.php',
+	'CdbReader' => 'includes/CdbCompat.php',
+	'CdbWriter' => 'includes/CdbCompat.php',
 
 	# includes/libs/lessphp
 	'lessc' => 'includes/libs/lessc.inc.php',

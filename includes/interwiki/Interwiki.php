@@ -152,7 +152,7 @@ class Interwiki {
 		$value = false;
 		try {
 			if ( !$db ) {
-				$db = CdbReader::open( $wgInterwikiCache );
+				$db = \Cdb\Reader::open( $wgInterwikiCache );
 			}
 			/* Resolve site name */
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
@@ -174,7 +174,7 @@ class Interwiki {
 			if ( $value == 'undef' ) {
 				$value = '';
 			}
-		} catch ( CdbException $e ) {
+		} catch ( \Cdb\Exception $e ) {
 			wfDebug( __METHOD__ . ": CdbException caught, error message was "
 				. $e->getMessage() );
 		}
@@ -277,7 +277,7 @@ class Interwiki {
 		$data = array();
 		try {
 			if ( !$db ) {
-				$db = CdbReader::open( $wgInterwikiCache );
+				$db = \Cdb\Reader::open( $wgInterwikiCache );
 			}
 			/* Resolve site name */
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
@@ -320,7 +320,7 @@ class Interwiki {
 					);
 				}
 			}
-		} catch ( CdbException $e ) {
+		} catch ( \Cdb\Exception $e ) {
 			wfDebug( __METHOD__ . ": CdbException caught, error message was "
 				. $e->getMessage() );
 		}
