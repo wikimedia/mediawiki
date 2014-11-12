@@ -21,6 +21,8 @@
  * @todo document
  * @ingroup Maintenance
  */
+use \Cdb\Exception as CdbException;
+use \Cdb\Reader as CdbReader;
 
 /** */
 require_once __DIR__ . '/commandLine.inc';
