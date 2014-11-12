@@ -569,6 +569,7 @@
 	"edit-gone-missing": "Mpussìbbili aggiurnari la pàggina.\nPari ca fu scancillata.",
 	"edit-conflict": "Cunflittu di edizzioni.",
 	"edit-no-change": "La mudifica fu ignurata pirchì nu foru appurtati canci ntô testu.",
+	"postedit-confirmation-created": "La pàggina fu criata.",
 	"postedit-confirmation-saved": "Lu canciamentu fu sarbatu.",
 	"edit-already-exists": "Mpussìbbili criari na pàggina nova.\nEsisti ggià.",
 	"expensive-parserfunction-warning": "Accura: Sta pàggina cunteni troppi chiamati ê parser functions.\n\nAvissi a èssiri menu di $2, ô mumentu ci {{PLURAL:$1|nn'è $1|nni sunnu $1}}.",

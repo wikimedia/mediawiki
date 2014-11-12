@@ -321,6 +321,8 @@
 	"filerenameerror": "A l'é pa podusse cangeje nòm a l'archivi «$1» an «$2».",
 	"filedeleteerror": "A l'é pa podusse scancelé l'archivi «$1».",
 	"directorycreateerror": "A l'é pa podusse creé ël dossié «$1».",
+	"directoryreadonlyerror": "Ël dossié «$1» a l'é mach an letura.",
+	"directorynotreadableerror": "Ël dossié «$1» as peul nen les-se.",
 	"filenotfound": "A l'é pa trovasse l'archivi «$1».",
 	"unexpected": "Valor che i së spetavo pa: «$1»=«$2».",
 	"formerror": "Eror: A l'é nen podusse mandé ël formolari.",

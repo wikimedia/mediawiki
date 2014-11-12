@@ -420,6 +420,8 @@
 	"filerenameerror": "Impossible de renommer le fichier « $1 » en « $2 ».",
 	"filedeleteerror": "Impossible de supprimer le fichier « $1 ».",
 	"directorycreateerror": "Impossible de créer le dossier « $1 ».",
+	"directoryreadonlyerror": "Le répertoire « $1 » est en lecture seule.",
+	"directorynotreadableerror": "Le répertoire « $1 » n’est pas lisible.",
 	"filenotfound": "Impossible de trouver le fichier « $1 ».",
 	"unexpected": "Valeur inattendue : « $1 » = « $2 ».",
 	"formerror": "Erreur : Impossible de soumettre le formulaire.",

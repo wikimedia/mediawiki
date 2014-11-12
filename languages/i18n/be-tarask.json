@@ -323,6 +323,7 @@
 	"filedeleteerror": "Немагчыма выдаліць файл «$1».",
 	"directorycreateerror": "Немагчыма стварыць дырэкторыю «$1».",
 	"directoryreadonlyerror": "Тэчка «$1» толькі для чытаньня.",
+	"directorynotreadableerror": "Тэчка «$1» не чытаецца.",
 	"filenotfound": "Немагчыма знайсьці файл «$1».",
 	"unexpected": "Нечаканае значэньне: «$1»=«$2».",
 	"formerror": "Памылка: не атрымалася адаслаць зьвесткі формы",

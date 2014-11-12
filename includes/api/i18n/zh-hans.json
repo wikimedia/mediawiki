@@ -370,6 +370,7 @@
 	"apihelp-upload-param-watch": "监视页面。",
 	"apihelp-upload-param-ignorewarnings": "忽略任何警告。",
 	"apihelp-upload-param-file": "文件内容。",
+	"apihelp-upload-param-stash": "如果设置，服务器将不会添加文件至存储库并暂时藏匿。",
 	"apihelp-upload-param-chunk": "大块内容。",
 	"apihelp-upload-example-url": "从URL上传",
 	"apihelp-userrights-param-user": "用户名。",
