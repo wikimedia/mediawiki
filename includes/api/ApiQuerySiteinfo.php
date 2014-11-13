@@ -183,6 +183,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['linktrail'] = '';
 		}
 
+		$data['legalTitleChars'] = $config->get( 'LegalTitleChars' );
+
 		global $IP;
 		$git = SpecialVersion::getGitHeadSha1( $IP );
 		if ( $git ) {
