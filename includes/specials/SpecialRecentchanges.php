@@ -440,11 +440,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
 			$this->getOutput()->addWikiText(
-				Html::rawElement( 'p',
-					array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
+				Html::rawElement( 'div',
+					array( 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ),
 					"\n" . $message->plain() . "\n"
 				),
-				/* $lineStart */ false,
+				/* $lineStart */ true,
 				/* $interface */ false
 			);
 		}
