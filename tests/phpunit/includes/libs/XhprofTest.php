@@ -69,14 +69,23 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideRawData() {
-		return array(
+		$tests = array(
 			array( 0, array( 'ct', 'wt' ) ),
-			array( XHPROF_FLAGS_MEMORY, array( 'ct', 'wt', 'mu', 'pmu' ) ),
-			array( XHPROF_FLAGS_CPU, array( 'ct', 'wt', 'cpu' ) ),
-			array( XHPROF_FLAGS_MEMORY | XHPROF_FLAGS_CPU, array(
-				'ct', 'wt', 'mu', 'pmu', 'cpu',
-			) ),
 		);
+
+		if ( defined( 'XHPROF_FLAGS_CPU' ) && defined( 'XHPROF_FLAGS_CPU' ) ) {
+			$tests[] = array( XHPROF_FLAGS_MEMORY, array(
+				'ct', 'wt', 'mu', 'pmu',
+			) );
+			$tests[] = array( XHPROF_FLAGS_CPU, array(
+				'ct', 'wt', 'cpu',
+			) );
+			$tests[] = array( XHPROF_FLAGS_MEMORY | XHPROF_FLAGS_CPU, array(
+					'ct', 'wt', 'mu', 'pmu', 'cpu',
+				) );
+		}
+
+		return $tests;
 	}
 
 	/**
