@@ -306,6 +306,11 @@ if ( $wgSharedPrefix === false ) {
 	$wgSharedPrefix = $wgDBprefix;
 }
 
+// Set default shared schema
+if ( $wgSharedSchema === false ) {
+	$wgSharedSchema = $wgDBmwschema;
+}
+
 if ( !$wgCookiePrefix ) {
 	if ( $wgSharedDB && $wgSharedPrefix && in_array( 'user', $wgSharedTables ) ) {
 		$wgCookiePrefix = $wgSharedDB . '_' . $wgSharedPrefix;
