@@ -39,6 +39,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			'wgLang' => Language::factory( 'en' ),
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
+			'wgMetaNamespace' => 'TestMetaSpace',
 			'wgLocalInterwikis' => array( 'localtestiw' ),
 			'wgCapitalLinks' => true,
 
