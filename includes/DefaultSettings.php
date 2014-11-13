@@ -1702,6 +1702,9 @@ $wgAllDBsAreLocalhost = false;
  * $wgSharedPrefix is the table prefix for the shared database. It defaults to
  * $wgDBprefix.
  *
+ * $wgSharedSchema is the table schema for the shared database. It defaults to
+ * $wgDBmwschema.
+ *
  * @deprecated since 1.21 In new code, use the $wiki parameter to wfGetLB() to
  *   access remote databases. Using wfGetLB() allows the shared database to
  *   reside on separate servers to the wiki's own database, with suitable
@@ -1718,6 +1721,11 @@ $wgSharedPrefix = false;
  * @see $wgSharedDB
  */
 $wgSharedTables = array( 'user', 'user_properties' );
+
+/**
+ * @see $wgSharedDB
+ */
+$wgSharedSchema = false;
 
 /**
  * Database load balancer
