@@ -72,11 +72,12 @@
 			"Nirovulf",
 			"Striking Blue",
 			"Fitoschido",
-			"MaxBioHazard"
+			"MaxBioHazard",
+			"Tourorist"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
-	"tog-hideminor": "Скрывать малые правки в списке свежих правок",
+	"tog-hideminor": "Скрывать малые правки из списка свежих правок",
 	"tog-hidepatrolled": "Скрывать патрулированные правки в списке свежих правок",
 	"tog-newpageshidepatrolled": "Скрывать отпатрулированные страницы в списке новых страниц",
 	"tog-extendwatchlist": "Расширенный список наблюдения, включающий все изменения, а не только последние",
@@ -1102,7 +1103,7 @@
 	"right-browsearchive": "поиск удалённых страниц",
 	"right-undelete": "восстановление страниц",
 	"right-suppressrevision": "просмотр, сокрытие и восстановление скрытых версий страниц",
-	"right-viewsuppressed": "Просмотр версий, скрытых от всех участников",
+	"right-viewsuppressed": "просмотр версий, скрытых от всех участников",
 	"right-suppressionlog": "просмотр частных журналов",
 	"right-block": "установка ограничений на редактирование для других участников",
 	"right-blockemail": "установка запрета на отправку электронной почты",
@@ -3250,7 +3251,7 @@
 	"pagelang-language": "Язык",
 	"pagelang-use-default": "Использовать язык по умолчанию",
 	"pagelang-select-lang": "Выберите язык",
-	"right-pagelang": "Изменить язык страницы",
+	"right-pagelang": "изменение языка страницы",
 	"action-pagelang": "изменять язык страницы",
 	"log-name-pagelang": "Журнал изменения языка",
 	"log-description-pagelang": "Это журнал изменений в языках страницы.",

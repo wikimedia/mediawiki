@@ -75,7 +75,8 @@
 			"Lucas2",
 			"Taxandru",
 			"C.R.",
-			"Elitre"
+			"Elitre",
+			"Laurentius"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1596,7 +1597,7 @@
 	"deadendpagestext": "Le pagine indicate di seguito sono prive di collegamenti verso altre pagine di {{SITENAME}}.",
 	"protectedpages": "Pagine protette",
 	"protectedpages-indef": "Solo protezioni infinite",
-	"protectedpages-summary": "Questa pagina elenca le pagine esistenti che sono attualmente protette. Per un'elenco di titoli protetti dalla creazione, vedi [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
+	"protectedpages-summary": "Questa pagina elenca le pagine esistenti che sono attualmente protette. Per un elenco di titoli protetti dalla creazione, vedi [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
 	"protectedpages-cascade": "Solo protezioni ricorsive",
 	"protectedpages-noredirect": "Nascondi redirect",
 	"protectedpagesempty": "Al momento non vi sono pagine protette",
@@ -1609,7 +1610,7 @@
 	"protectedpages-unknown-timestamp": "Sconosciuto",
 	"protectedpages-unknown-performer": "Utente sconosciuto",
 	"protectedtitles": "Titoli protetti",
-	"protectedtitles-summary": "Questa pagina elenca i titoli che sono attualmente protetti dalla creazione. Per un'elenco di pagine esistenti che sono protette, vedi [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].",
+	"protectedtitles-summary": "Questa pagina elenca i titoli che sono attualmente protetti dalla creazione. Per un elenco di pagine esistenti che sono protette, vedi [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].",
 	"protectedtitlesempty": "Al momento non esistono titoli protetti con i parametri specificati.",
 	"listusers": "Elenco degli utenti",
 	"listusers-editsonly": "Mostra solo utenti con dei contributi",

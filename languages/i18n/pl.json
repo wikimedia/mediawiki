@@ -3091,6 +3091,7 @@
 	"revdelete-uname-unhid": "wycofano ukrycie nazwy użytkownika",
 	"revdelete-restricted": "ograniczono widoczność dla administratorów",
 	"revdelete-unrestricted": "wycofano ograniczenie widoczności dla administratorów",
+	"logentry-merge-merge": "$1 {{GENDER:$2|scalił|scaliła}} stronę $3 do $4 (wersje do $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 do $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 w miejsce przekierowania",

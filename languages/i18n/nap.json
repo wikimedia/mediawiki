@@ -317,6 +317,8 @@
 	"filerenameerror": "Nun se può rinnummenare 'o file \"$1\" into \"$2\".",
 	"filedeleteerror": "Nun se pô scancellà 'o file \"$1\"",
 	"directorycreateerror": "Nun se può crià 'a cartella \"$1\".",
+	"directoryreadonlyerror": "'A cartella \"$1\" è de lettura surtanto.",
+	"directorynotreadableerror": "'A cartella \"$1\" nun se può liegge.",
 	"filenotfound": "Nun se può truvà 'o file \"$1\".",
 	"unexpected": "Valore imprevisto: \"$1\"=\"$2\".",
 	"formerror": "Sbàglio: nun se può mannà 'o modulo",
