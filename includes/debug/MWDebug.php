@@ -26,8 +26,6 @@
  * By default, most methods do nothing ( self::$enabled = false ). You have
  * to explicitly call MWDebug::init() to enabled them.
  *
- * @todo Profiler support
- *
  * @since 1.19
  */
 class MWDebug {
@@ -534,7 +532,6 @@ class MWDebug {
 		$result->setIndexedTagName( $debugInfo['debugLog'], 'msg' );
 		$result->setIndexedTagName( $debugInfo['queries'], 'query' );
 		$result->setIndexedTagName( $debugInfo['includes'], 'queries' );
-		$result->setIndexedTagName( $debugInfo['profile'], 'function' );
 		$result->addValue( null, 'debuginfo', $debugInfo );
 	}
 
@@ -578,7 +575,6 @@ class MWDebug {
 			'memory' => $context->getLanguage()->formatSize( memory_get_usage( $realMemoryUsage ) ),
 			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage( $realMemoryUsage ) ),
 			'includes' => self::getFilesIncluded( $context ),
-			'profile' => Profiler::instance()->getRawData(),
 		);
 	}
 }

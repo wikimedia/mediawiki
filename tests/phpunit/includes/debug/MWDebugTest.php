@@ -105,7 +105,7 @@ class MWDebugTest extends MediaWikiTestCase {
 
 		$expectedKeys = array( 'mwVersion', 'phpEngine', 'phpVersion', 'gitRevision', 'gitBranch',
 			'gitViewUrl', 'time', 'log', 'debugLog', 'queries', 'request', 'memory',
-			'memoryPeak', 'includes', 'profile', '_element' );
+			'memoryPeak', 'includes', '_element' );
 
 		foreach ( $expectedKeys as $expectedKey ) {
 			$this->assertArrayHasKey( $expectedKey, $data['debuginfo'], "debuginfo has $expectedKey" );
