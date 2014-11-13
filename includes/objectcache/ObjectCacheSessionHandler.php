@@ -49,7 +49,7 @@ class ObjectCacheSessionHandler {
 
 	/**
 	 * Get the cache storage object to use for session storage
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function getCache() {
 		global $wgSessionCacheType;
