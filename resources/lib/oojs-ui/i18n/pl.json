@@ -23,6 +23,8 @@
 	"ooui-outline-control-move-up": "Przenieś wyżej",
 	"ooui-outline-control-remove": "Usuń element",
 	"ooui-toolbar-more": "Więcej",
+	"ooui-toolgroup-expand": "Więcej",
+	"ooui-toolgroup-collapse": "Mniej",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Anuluj",
 	"ooui-dialog-process-error": "Coś poszło nie tak",

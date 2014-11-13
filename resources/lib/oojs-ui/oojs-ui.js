@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (05f0fefc3f)
+ * OOjs UI v0.1.0-pre (fe4076af75)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-11T16:29:49Z
+ * Date: 2014-11-13T22:25:17Z
  */
 ( function ( OO ) {
 
@@ -91,6 +91,30 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
 	}
 
 	return undefined;
+};
+
+/**
+ * Check if a node is contained within another node
+ *
+ * Similar to jQuery#contains except a list of containers can be supplied
+ * and a boolean argument allows you to include the container in the match list
+ *
+ * @param {HTMLElement|HTMLElement[]} containers Container node(s) to search in
+ * @param {HTMLElement} contained Node to find
+ * @param {boolean} [matchContainers] Include the container(s) in the list of nodes to match, otherwise only match descendents
+ * @returns {boolean} The node is in the list of target nodes
+ */
+OO.ui.contains = function ( containers, contained, matchContainers ) {
+	var i;
+	if ( !Array.isArray( containers ) ) {
+		containers = [ containers ];
+	}
+	for ( i = containers.length - 1; i >= 0; i-- ) {
+		if ( ( matchContainers && contained === containers[i] ) || $.contains( containers[i], contained ) ) {
+			return true;
+		}
+	}
+	return false;
 };
 
 ( function () {
@@ -7474,7 +7498,9 @@ OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
  */
 OO.ui.PopupToolGroup.prototype.onPointerUp = function ( e ) {
 	// e.which is 0 for touch events, 1 for left mouse button
-	if ( !this.isDisabled() && e.which <= 1 ) {
+	// Only close toolgroup when a tool was actually selected
+	// FIXME: this duplicates logic from the parent class
+	if ( !this.isDisabled() && e.which <= 1 && this.pressed && this.pressed === this.getTargetTool( e ) ) {
 		this.setActive( false );
 	}
 	return OO.ui.PopupToolGroup.super.prototype.onPointerUp.call( this, e );
@@ -11488,7 +11514,10 @@ OO.mixinClass( OO.ui.MenuWidget, OO.ui.ClippableElement );
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.MenuWidget.prototype.onDocumentMouseDown = function ( e ) {
-	if ( !$.contains( this.$element[0], e.target ) && ( !this.$widget || !$.contains( this.$widget[0], e.target ) ) ) {
+	if (
+		!OO.ui.contains( this.$element[0], e.target, true ) &&
+		( !this.$widget || !OO.ui.contains( this.$widget[0], e.target, true ) )
+	) {
 		this.toggle( false );
 	}
 };
