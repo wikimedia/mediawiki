@@ -835,11 +835,9 @@ return array(
 	'mediawiki.debug' => array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.debug.js',
-			'resources/src/mediawiki/mediawiki.debug.profile.js'
 		),
 		'styles' => array(
 			'resources/src/mediawiki/mediawiki.debug.less',
-			'resources/src/mediawiki/mediawiki.debug.profile.css'
 		),
 		'dependencies' => array(
 			'jquery.footHovzer',

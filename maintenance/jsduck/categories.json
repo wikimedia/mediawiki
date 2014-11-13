@@ -71,7 +71,6 @@
 					"mw.inspect",
 					"mw.inspect.reports",
 					"mw.Debug",
-					"mw.Debug.profile"
 				]
 			}
 		]
