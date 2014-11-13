@@ -185,6 +185,9 @@ changes to languages because of Bugzilla reports.
   <https://www.mediawiki.org/xml/export-0.10.xsd>.
 * MWFunction::call() and MWFunction::callArray() were removed, having being
   deprecated in 1.22.
+* Deprecated the getInternalLinkAttributes, getInternalLinkAttributesObj,
+  and getInternalLinkAttributes methods in Linker, and removed
+  getExternalLinkAttributes method, which was deprecated in MediaWiki 1.18.
 
 == Compatibility ==
 

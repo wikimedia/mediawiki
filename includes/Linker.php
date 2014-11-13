@@ -39,6 +39,8 @@ class Linker {
 	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an interwiki link.
 	 *
+	 * @deprecated since 1.25
+	 *
 	 * @param string $title The title text for the link, URL-encoded (???) but
 	 *   not HTML-escaped
 	 * @param string $unused Unused
@@ -48,6 +50,8 @@ class Linker {
 	 */
 	static function getInterwikiLinkAttributes( $title, $unused = null, $class = 'external' ) {
 		global $wgContLang;
+
+		wfDeprecated( __METHOD__, '1.25' );
 
 		# @todo FIXME: We have a whole bunch of handling here that doesn't happen in
 		# getExternalLinkAttributes, why?
@@ -61,6 +65,8 @@ class Linker {
 	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an internal link.
 	 *
+	 * @deprecated since 1.25
+	 *
 	 * @param string $title The title text for the link, URL-encoded (???) but
 	 *   not HTML-escaped
 	 * @param string $unused Unused
@@ -68,6 +74,8 @@ class Linker {
 	 * @return string
 	 */
 	static function getInternalLinkAttributes( $title, $unused = null, $class = '' ) {
+		wfDeprecated( __METHOD__, '1.25' );
+
 		$title = urldecode( $title );
 		$title = str_replace( '_', ' ', $title );
 		return self::getLinkAttributesInternal( $title, $class );
@@ -77,6 +85,8 @@ class Linker {
 	 * Get the appropriate HTML attributes to add to the "a" element of an internal
 	 * link, given the Title object for the page we want to link to.
 	 *
+	 * @deprecated since 1.25
+	 *
 	 * @param Title $nt
 	 * @param string $unused Unused
 	 * @param string $class The contents of the class attribute, default none
@@ -85,6 +95,8 @@ class Linker {
 	 * @return string
 	 */
 	static function getInternalLinkAttributesObj( $nt, $unused = null, $class = '', $title = false ) {
+		wfDeprecated( __METHOD__, '1.25' );
+
 		if ( $title === false ) {
 			$title = $nt->getPrefixedText();
 		}
@@ -94,12 +106,16 @@ class Linker {
 	/**
 	 * Common code for getLinkAttributesX functions
 	 *
+	 * @deprecated since 1.25
+	 *
 	 * @param string $title
 	 * @param string $class
 	 *
 	 * @return string
 	 */
 	private static function getLinkAttributesInternal( $title, $class ) {
+		wfDeprecated( __METHOD__, '1.25' );
+
 		$title = htmlspecialchars( $title );
 		$class = htmlspecialchars( $class );
 		$r = '';
