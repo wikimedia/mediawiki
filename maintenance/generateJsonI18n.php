@@ -221,7 +221,7 @@ if ( !function_exists( '{{FUNC}}' ) ) {
 	function {{FUNC}}( $cache, $code, &$cachedData ) {
 		$codeSequence = array_merge( array( $code ), $cachedData['fallbackSequence'] );
 		foreach ( $codeSequence as $csCode ) {
-			$fileName = dirname( __FILE__ ) . "/{{OUT}}/$csCode.json";
+			$fileName = __DIR__ . "/{{OUT}}/$csCode.json";
 			if ( is_readable( $fileName ) ) {
 				$data = FormatJson::decode( file_get_contents( $fileName ), true );
 				foreach ( array_keys( $data ) as $key ) {
