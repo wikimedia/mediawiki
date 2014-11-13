@@ -39,6 +39,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			'wgLang' => Language::factory( 'en' ),
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
+			'wgMetaNamespace' => 'TestMetaSpace',
 			'wgLocalInterwikis' => array( 'localtestiw' ),
 			'wgCapitalLinks' => true,
 
@@ -82,6 +83,8 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 	protected function makeCodec( $lang ) {
 		$gender = $this->getGenderCache();
 		$lang = Language::factory( $lang );
+		// language object can came from cache, which does not respect test settings
+		$lang->resetNamespaces();
 		return new MediaWikiTitleCodec( $lang, $gender );
 	}
 
