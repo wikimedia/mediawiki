@@ -19,6 +19,8 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 */
 	public function testWatchEdit() {
+		$this->stashMwGlobals( 'wgTitle' ); // set by ApiEditPage
+
 		$tokens = $this->getTokens();
 
 		$data = $this->doApiRequest( array(

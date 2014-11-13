@@ -11,6 +11,9 @@ class ApiParseTest extends ApiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+
+		$this->stashMwGlobals( 'wgTitle' ); // set by ApiParse
+
 		$this->doLogin();
 	}
 

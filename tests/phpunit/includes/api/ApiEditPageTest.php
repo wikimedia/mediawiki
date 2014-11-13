@@ -34,6 +34,8 @@ class ApiEditPageTest extends ApiTestCase {
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
 
+		$this->stashMwGlobals( 'wgTitle' ); // set by ApiEditPage
+
 		$this->doLogin();
 	}
 
