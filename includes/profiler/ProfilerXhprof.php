@@ -284,6 +284,9 @@ class ProfilerXhprof extends Profiler {
 		$buffer = '';
 		$bufferSize = 0;
 		foreach ( $metrics as $func => $data ) {
+			if ( strpos( $func, '@' ) !== false ) {
+				continue; // ignore cyclic re-entries to functions
+			}
 			$line = sprintf( $wgUDPProfilerFormatString,
 				$this->getProfileID(),
 				$data['ct'],
