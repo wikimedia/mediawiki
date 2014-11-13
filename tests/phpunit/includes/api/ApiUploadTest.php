@@ -17,8 +17,6 @@
 
 // @todo Port the other Upload tests, and other API tests to this framework
 
-require_once 'ApiTestCaseUpload.php';
-
 /**
  * @group Database
  * @group Broken

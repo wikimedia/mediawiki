@@ -21,9 +21,6 @@
  *
  * @file
  */
-
-require_once 'ApiQueryTestBase.php';
-
 abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 
 	/**

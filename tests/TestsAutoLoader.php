@@ -55,7 +55,10 @@ $wgAutoloadClasses += array(
 
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
+	'ApiQueryTestBase' => "$testDir/phpunit/includes/api/query/ApiQueryTestBase.php",
+	'ApiQueryContinueTestBase' => "$testDir/phpunit/includes/api/query/ApiQueryContinueTestBase.php",
 	'ApiTestCase' => "$testDir/phpunit/includes/api/ApiTestCase.php",
+	'ApiTestCaseUpload' => "$testDir/phpunit/includes/api/ApiTestCaseUpload.php",
 	'ApiTestContext' => "$testDir/phpunit/includes/api/ApiTestContext.php",
 	'MockApi' => "$testDir/phpunit/includes/api/MockApi.php",
 	'MockApiQueryBase' => "$testDir/phpunit/includes/api/MockApiQueryBase.php",
@@ -78,6 +81,9 @@ $wgAutoloadClasses += array(
 	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 	'PageORMTableForTesting' => "$testDir/phpunit/includes/db/ORMTableTest.php",
 	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
+
+	# tests/phpunit/includes/diff
+	'FakeDiffOp' => "$testDir/phpunit/includes/diff/FakeDiffOp.php",
 
 	# tests/phpunit/includes/passwords
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
