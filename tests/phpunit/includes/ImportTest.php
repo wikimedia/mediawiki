@@ -21,6 +21,7 @@ class ImportTest extends MediaWikiLangTestCase {
 	 */
 	public function testHandlePageContainsRedirect( $xml, $redirectTitle ) {
 		$source = $this->getDataSource( $xml );
+		wfDebugLog( "wikiimportertest", "Testing for <" . var_export( $redirectTitle, true) . ">" );
 
 		$redirect = null;
 		$callback = function ( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) use ( &$redirect ) {
@@ -32,6 +33,7 @@ class ImportTest extends MediaWikiLangTestCase {
 		$importer = new WikiImporter( $source, ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
 		$importer->setPageOutCallback( $callback );
 		$importer->doImport();
+		wfDebugLog( "wikiimportertest", "Redirect value received is <" . var_export( $redirect, true ) . ">" );
 
 		$this->assertEquals( $redirectTitle, $redirect );
 	}
