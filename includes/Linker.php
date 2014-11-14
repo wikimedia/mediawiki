@@ -1489,9 +1489,10 @@ class Linker {
 		# Foobar -- normal
 		# :Foobar -- override special treatment of prefix (images, language links)
 		# /Foobar -- convert to CurrentPage/Foobar
-		# /Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
+		# /Foobar/ -- convert to CurrentPage/Foobar, strip the initial and final / from text
 		# ../ -- convert to CurrentPage, from CurrentPage/CurrentSubPage
 		# ../Foobar -- convert to CurrentPage/Foobar, from CurrentPage/CurrentSubPage
+		# ../Foobar/ -- convert to CurrentPage/Foobar, from CurrentPage/CurrentSubPage, use 'Foobar' as text
 
 		wfProfileIn( __METHOD__ );
 		$ret = $target; # default return value is no change
@@ -1537,7 +1538,7 @@ class Linker {
 						$ret = implode( '/', array_slice( $exploded, 0, -$dotdotcount ) );
 						# / at the end means don't show full path
 						if ( substr( $nodotdot, -1, 1 ) === '/' ) {
-							$nodotdot = substr( $nodotdot, 0, -1 );
+							$nodotdot = rtrim( $nodotdot, '/' );
 							if ( $text === '' ) {
 								$text = $nodotdot . $suffix;
 							}
