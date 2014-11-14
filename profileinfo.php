@@ -384,7 +384,7 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	$last = false;
 	foreach ( $res as $o ) {
 		$next = new profile_point( $o->pf_name, $o->pf_count, $o->pf_time, $o->pf_memory );
-		if ( $next->name() == '-total' ) {
+		if ( $next->name() == '-total' || $next->name() == 'main()' ) {
 			profile_point::$totaltime = $next->time();
 			profile_point::$totalcount = $next->count();
 			profile_point::$totalmemory = $next->memory();

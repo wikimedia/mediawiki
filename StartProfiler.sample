@@ -3,24 +3,27 @@
 /**
  * To use a profiler, copy this file to StartProfiler.php,
  * and add either:
+ *  $wgProfiler['class'] = 'ProfilerStandard';
+ *    or
+ *  $wgProfiler['class'] = 'ProfilerXhprof';
  *
- *   // Does not support the debugging toolbar
- *   // Stores profiling information in the database
- *   // Requires running maintenance/archives/patch-profiling.sql
- *   $wgProfiler['class'] = 'ProfilerSimpleDB'
+ * For output, add:
+ *  $wgProfiler['output'] = array( 'text' );
+ *    'text' can be one (or more) of 'text' 'udp' or 'db'
+ *    'db' requires creating the profiling table, see patch-profiling.sql
  *
- * or:
+ * The 'text' output will be added to the output page in a comment approriate
+ * to the output's mime type. For a text/html page, this display can be
+ * changed to a preformatted text block by setting the 'visible' configuration
+ * flag:
+ *  $wgProfiler['visible'] = true;
  *
- *   // Supports the debugging toolbar
- *   // Does not store profiling information in the database
- *   $wgProfiler['class'] = 'ProfilerStandard';
+ * The 'db' output expects a database table that can be created by applying
+ * maintenance/archives/patch-profiling.sql to your database.
  *
- * Or for a sampling profiler:
+ * For a rudimentary sampling profiler:
  *   if ( !mt_rand( 0, 100 ) ) {
- *       $wgProfiler['class'] = 'ProfilerSimpleDB';
- *   } else {
- *       $wgProfiler['class'] = 'ProfilerStub';
+ *       $wgProfiler['class'] = 'ProfilerStandard';
+ *       $wgProfiler['output'] = array( 'db' );
  *   }
- *
- * Configuration of the profiler output can be done in LocalSettings.php
  */
