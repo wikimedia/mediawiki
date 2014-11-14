@@ -124,7 +124,7 @@ class AutoloadGenerator {
 
 		// We need to generate a line each rather than exporting the
 		// full array so __DIR__ can be prepended to all the paths
-		$format = "\${$this->variableName}[%s] = __DIR__ . %s;\n";
+		$format = "%s => __DIR__ . %s,";
 		foreach ( $this->classes as $path => $contained ) {
 			$exportedPath = var_export( $path, true );
 			foreach ( $contained as $fqcn ) {
@@ -147,7 +147,7 @@ class AutoloadGenerator {
 		// sort for stable output
 		ksort( $content );
 
-		$output = implode( '', $content );
+		$output = implode( "\n\t", $content );
 		file_put_contents(
 			$this->basepath . '/autoload.php',
 			<<<EOD
@@ -156,7 +156,9 @@ class AutoloadGenerator {
 
 global \${$this->variableName};
 
-{$output}
+\${$this->variableName} = array(
+	{$output}
+);
 EOD
 		);
 	}
