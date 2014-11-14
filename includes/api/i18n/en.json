@@ -994,7 +994,7 @@
 	"apihelp-upload-param-url": "URL to fetch the file from.",
 	"apihelp-upload-param-filekey": "Key that identifies a previous upload that was stashed temporarily.",
 	"apihelp-upload-param-sessionkey": "Same as $1filekey, maintained for backward compatibility.",
-	"apihelp-upload-param-stash": "If set, the server will not add the file to the repository and stash it temporarily.",
+	"apihelp-upload-param-stash": "If set, the server will stash the file temporarily instead of adding it to the repository.",
 	"apihelp-upload-param-filesize": "Filesize of entire upload.",
 	"apihelp-upload-param-offset": "Offset of chunk in bytes.",
 	"apihelp-upload-param-chunk": "Chunk contents.",
