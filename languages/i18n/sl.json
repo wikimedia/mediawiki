@@ -317,6 +317,8 @@
 	"filerenameerror": "Datoteke »$1« ni mogoče preimenovati v »$2«.",
 	"filedeleteerror": "Datoteke »$1« ni mogoče izbrisati.",
 	"directorycreateerror": "Ne morem ustvariti direktorija »$1«.",
+	"directoryreadonlyerror": "Mapa »$1« je samo za branje.",
+	"directorynotreadableerror": "Mapa »$1« ni berljiva.",
 	"filenotfound": "Datoteke »$1« ne najdem.",
 	"unexpected": "Nepričakovana vrednost: \"$1\"=\"$2\".",
 	"formerror": "Napaka: obrazca ni mogoče predložiti",

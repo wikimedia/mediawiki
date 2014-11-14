@@ -5,5 +5,6 @@
 		]
 	},
 	"apihelp-main-param-action": "Дзеяньне для выкананьня.",
-	"apihelp-main-param-format": "Фармат вываду."
+	"apihelp-main-param-format": "Фармат вываду.",
+	"apihelp-main-param-smaxage": "Выстаўце загаловак s-maxage на зададзеную колькасьць сэкундаў. Памылкі ніколі не кэшуюцца."
 }
