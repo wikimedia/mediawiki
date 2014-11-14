@@ -37,20 +37,16 @@ class ProfilerStub extends Profiler {
 	public function profileOut( $fn ) {
 	}
 
+	public function getFunctionStats() {
+	}
+
 	public function getOutput() {
 	}
 
 	public function close() {
 	}
 
-	public function logData() {
-	}
-
 	public function getCurrentSection() {
 		return '';
-	}
-
-	public function getRawData() {
-		return array();
 	}
 }
