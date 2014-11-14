@@ -9,13 +9,8 @@
  */
 class ImportTest extends MediaWikiLangTestCase {
 
-	private function getInputStreamSource( $xml ) {
-		$file = 'data:application/xml,' . $xml;
-		$status = ImportStreamSource::newFromFile( $file );
-		if ( !$status->isGood() ) {
-			throw new MWException( "Cannot create InputStreamSource." );
-		}
-		return $status->value;
+	private function getDataSource( $xml ) {
+		return new ImportStringSource( $xml );
 	}
 
 	/**
@@ -25,7 +20,8 @@ class ImportTest extends MediaWikiLangTestCase {
 	 * @param string|null $redirectTitle
 	 */
 	public function testHandlePageContainsRedirect( $xml, $redirectTitle ) {
-		$source = $this->getInputStreamSource( $xml );
+		$source = $this->getDataSource( $xml );
+		wfDebugLog( "wikiimportertest", "Testing for <" . var_export( $redirectTitle, true) . ">" );
 
 		$redirect = null;
 		$callback = function ( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) use ( &$redirect ) {
@@ -34,9 +30,15 @@ class ImportTest extends MediaWikiLangTestCase {
 			}
 		};
 
-		$importer = new WikiImporter( $source, ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+		$importer = new WikiImporter(
+			$source,
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+		);
 		$importer->setPageOutCallback( $callback );
 		$importer->doImport();
+		wfDebugLog( "wikiimportertest", "Redirect value received is " .
+			"<" . var_export( $redirect, true ) . ">"
+		);
 
 		$this->assertEquals( $redirectTitle, $redirect );
 	}

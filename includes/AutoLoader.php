@@ -179,6 +179,7 @@ $wgAutoloadLocalClasses = array(
 	'WebRequestUpload' => 'includes/WebRequest.php',
 	'WebResponse' => 'includes/WebResponse.php',
 	'WikiExporter' => 'includes/Export.php',
+	'WikiImportSource' => 'includes/Import.php',
 	'WikiImporter' => 'includes/Import.php',
 	'WikiRevision' => 'includes/Import.php',
 	'WikiMap' => 'includes/WikiMap.php',

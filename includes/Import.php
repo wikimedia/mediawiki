@@ -42,10 +42,10 @@ class WikiImporter {
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
-	 * @param ImportStreamSource $source
+	 * @param WikiImportSource $source
 	 * @param Config $config
 	 */
-	function __construct( ImportStreamSource $source, Config $config = null ) {
+	function __construct( WikiImportSource $source, Config $config = null ) {
 		$this->reader = new XMLReader();
 		if ( !$config ) {
 			wfDeprecated( __METHOD__ . ' without a Config instance', '1.25' );
@@ -62,6 +62,7 @@ class WikiImporter {
 		} else {
 			$this->reader->open( "uploadsource://$id" );
 		}
+		wfDebugLog( "wikiimporter", "Source $id registered" );
 
 		// Default callbacks
 		$this->setRevisionCallback( array( $this, "importRevision" ) );
@@ -404,7 +405,8 @@ class WikiImporter {
 	/**
 	 * Retrieves the contents of the named attribute of the current element.
 	 * @param string $attr The name of the attribute
-	 * @return string The value of the attribute or an empty string if it is not set in the current element.
+	 * @return string The value of the attribute or an empty string
+	 *                if it is not set in the current element.
 	 */
 	public function nodeAttribute( $attr ) {
 		return $this->reader->getAttribute( $attr );
@@ -913,7 +915,7 @@ class UploadSourceAdapter {
 	 * @param ImportStreamSource $source
 	 * @return string
 	 */
-	static function registerSource( ImportStreamSource $source ) {
+	static function registerSource( WikiImportSource $source ) {
 		$id = wfRandomString();
 
 		self::$sourceRegistrations[$id] = $source;
@@ -1652,13 +1654,31 @@ class WikiRevision {
 }
 
 /**
+ * Generic interface for various import sources
+ */
+interface WikiImportSource {
+	/**
+	 * Is import source fully consumed?
+	 * @return bool
+	 */
+	function atEnd();
+	/**
+	 * Get next chunk of data or false if already consumed
+	 * @return bool|string
+	 */
+	function readChunk();
+}
+
+
+/**
  * @todo document (e.g. one-sentence class description).
  * @ingroup SpecialPage
  */
-class ImportStringSource {
+class ImportStringSource implements WikiImportSource  {
 	function __construct( $string ) {
 		$this->mString = $string;
 		$this->mRead = false;
+		wfDebugLog( "wikiimporter", "ImportStringSource created" );
 	}
 
 	/**
@@ -1673,6 +1693,7 @@ class ImportStringSource {
 	 */
 	function readChunk() {
 		if ( $this->atEnd() ) {
+			wfDebugLog( "wikiimporter", "attempt to read past string data" );
 			return false;
 		}
 		$this->mRead = true;
@@ -1684,7 +1705,7 @@ class ImportStringSource {
  * @todo document (e.g. one-sentence class description).
  * @ingroup SpecialPage
  */
-class ImportStreamSource {
+class ImportStreamSource implements WikiImportSource {
 	function __construct( $handle ) {
 		$this->mHandle = $handle;
 	}
@@ -1767,11 +1788,7 @@ class ImportStreamSource {
 		# as the Wikimedia cluster, etc.
 		$data = Http::request( $method, $url, array( 'followRedirects' => true ) );
 		if ( $data !== false ) {
-			$file = tmpfile();
-			fwrite( $file, $data );
-			fflush( $file );
-			fseek( $file, 0 );
-			return Status::newGood( new ImportStreamSource( $file ) );
+			return Status::newGood( new ImportStringSource( $data ) );
 		} else {
 			return Status::newFatal( 'importcantopen' );
 		}
