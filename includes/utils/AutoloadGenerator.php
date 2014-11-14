@@ -159,6 +159,7 @@ global \${$this->variableName};
 \${$this->variableName} = array(
 	{$output}
 );
+
 EOD
 		);
 	}
