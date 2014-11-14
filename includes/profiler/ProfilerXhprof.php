@@ -338,19 +338,6 @@ class ProfilerXhprof extends Profiler {
 	}
 
 	/**
-	 * Get the content type of the current request.
-	 * @return string
-	 */
-	protected function getContentType() {
-		foreach ( headers_list() as $header ) {
-			if ( preg_match( '#^content-type: (\w+/\w+);?#i', $header, $m ) ) {
-				return $m[1];
-			}
-		}
-		return 'application/octet-stream';
-	}
-
-	/**
 	 * Returns a profiling output to be stored in debug file
 	 *
 	 * @return string

@@ -19,6 +19,8 @@ production.
 * (bug 72951) The UserGetLanguageObject hook may be passed any IContextSource
   for its $context parameter. Formerly it was documented as receiving a
   RequestContext specifically.
+* Profiling was restructured and $wgProfiler now requires an 'output' parameter.
+  See StartProfiler.sample for details.
 
 === New features in 1.25 ===
 * (bug 62861) Updated plural rules to CLDR 26. Includes incompatible changes

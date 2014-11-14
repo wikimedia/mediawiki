@@ -31,30 +31,20 @@
  *
  * @ingroup Profiler
  */
-class ProfilerSimpleText extends ProfilerStandard {
-	public $visible = false; /* Show as <PRE> or <!-- ? */
-
-	public function __construct( $profileConfig ) {
-		if ( isset( $profileConfig['visible'] ) && $profileConfig['visible'] ) {
-			$this->visible = true;
-		}
-		parent::__construct( $profileConfig );
-	}
-
-	public function logData() {
+class ProfilerOutputText extends ProfilerOutput {
+	protected function logStandardData( array $collated ) {
 		$out = '';
-		if ( $this->templated ) {
-			$this->close();
-			$totalReal = isset( $this->collated['-total'] )
-				? $this->collated['-total']['real']
+		if ( $this->collector->getTemplated() ) {
+			$totalReal = isset( $collated['-total'] )
+				? $collated['-total']['real']
 				: 0; // profiling mismatch error?
 
-			uasort( $this->collated, function( $a, $b ) {
+			uasort( $collated, function( $a, $b ) {
 				// sort descending by time elapsed
 				return $a['real'] < $b['real'];
 			} );
 
-			array_walk( $this->collated,
+			array_walk( $collated,
 				function( $item, $key ) use ( &$out, $totalReal ) {
 					$perc = $totalReal ? $item['real'] / $totalReal * 100 : 0;
 					$out .= sprintf( "%6.2f%% %3.6f %6d - %s\n",
@@ -62,11 +52,13 @@ class ProfilerSimpleText extends ProfilerStandard {
 				}
 			);
 
-			$contentType = $this->getContentType();
+			$contentType = $this->collector->getContentType();
 			if ( PHP_SAPI === 'cli' ) {
 				print "<!--\n{$out}\n-->\n";
 			} elseif ( $contentType === 'text/html' ) {
-				if ( $this->visible ) {
+				$visible = isset( $this->params['visible'] ) ?
+					$this->params['visible'] : false;
+				if ( $visible ) {
 					print "<pre>{$out}</pre>";
 				} else {
 					print "<!--\n{$out}\n-->\n";
