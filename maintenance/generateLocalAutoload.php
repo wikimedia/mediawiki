@@ -1,5 +1,9 @@
 <?php
 
+if ( PHP_SAPI != 'cli' ) {
+	die( "This script can only be run from the command line.\n" );
+}
+
 require_once __DIR__ . '/../includes/utils/AutoloadGenerator.php';
 
 // Mediawiki installation directory
