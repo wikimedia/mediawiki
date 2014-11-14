@@ -221,7 +221,9 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		$sha1Hash = wfBaseConvert( sha1( $params['content'] ), 16, 36, 31 );
-		$contentType = $this->getContentType( $params['dst'], $params['content'], null );
+		$contentType = isset( $params['headers']['content-type'] )
+			? $params['headers']['content-type']
+			: $this->getContentType( $params['dst'], $params['content'], null );
 
 		$reqs = array( array(
 			'method' => 'PUT',
@@ -277,7 +279,9 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 		$sha1Hash = wfBaseConvert( $sha1Hash, 16, 36, 31 );
-		$contentType = $this->getContentType( $params['dst'], null, $params['src'] );
+		$contentType = isset( $params['headers']['content-type'] )
+			? $params['headers']['content-type']
+			: $this->getContentType( $params['dst'], null, $params['src'] );
 
 		$handle = fopen( $params['src'], 'rb' );
 		if ( $handle === false ) { // source doesn't exist?
