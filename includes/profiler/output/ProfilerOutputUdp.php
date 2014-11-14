@@ -27,21 +27,19 @@
  *  http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile)
  * @ingroup Profiler
  */
-class ProfilerSimpleUDP extends ProfilerStandard {
-	public function logData() {
+class ProfilerOutputUdp extends ProfilerOutput {
+	public function canUse() {
+		# Sockets are not enabled
+		return function_exists( 'socket_create' );
+	}
+
+	protected function logStandardData( array $collated ) {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgUDPProfilerFormatString;
-
-		$this->close();
-
-		if ( !function_exists( 'socket_create' ) ) {
-			# Sockets are not enabled
-			return;
-		}
 
 		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 		$plength = 0;
 		$packet = "";
-		foreach ( $this->collated as $entry => $pfdata ) {
+		foreach ( $collated as $entry => $pfdata ) {
 			if ( !isset( $pfdata['count'] )
 				|| !isset( $pfdata['cpu'] )
 				|| !isset( $pfdata['cpu_sq'] )
@@ -49,7 +47,7 @@ class ProfilerSimpleUDP extends ProfilerStandard {
 				|| !isset( $pfdata['real_sq'] ) ) {
 				continue;
 			}
-			$pfline = sprintf( $wgUDPProfilerFormatString, $this->getProfileID(), $pfdata['count'],
+			$pfline = sprintf( $wgUDPProfilerFormatString, $this->collector->getProfileID(), $pfdata['count'],
 				$pfdata['cpu'], $pfdata['cpu_sq'], $pfdata['real'], $pfdata['real_sq'], $entry,
 				$pfdata['memory'] );
 			$length = strlen( $pfline );
