@@ -17,5 +17,5 @@ foreach ( glob( $base . '/*.php' ) as $file ) {
 $generator->forceClassPath( 'MyLocalSettingsGenerator', "$base/mw-config/overrides.php" );
 
 // Write out the autoload
-$generator->generateAutoload();
+$generator->generateAutoload( 'maintenance/generateLocalAutoload.php' );
 
