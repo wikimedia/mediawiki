@@ -166,6 +166,7 @@ class FileBackendGroup {
 				? FileJournal::factory( $config['fileJournal'], $name )
 				: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $name );
 			$config['wanCache'] = ObjectCache::getMainWANInstance();
+			$config['mimeCallback'] = array( $this, 'guessMimeInternal' );
 
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
@@ -202,5 +203,28 @@ class FileBackendGroup {
 		}
 
 		return null;
+	}
+
+	/**
+	 * @param string $storagePath
+	 * @param string|null $content
+	 * @param string|null $fsPath
+	 * @return string
+	 * @since 1.27
+	 */
+	public function guessMimeInternal( $storagePath, $content, $fsPath ) {
+		$magic = MimeMagic::singleton();
+		// Trust the extension of the storage path (caller must validate)
+		$ext = FileBackend::extensionFromPath( $storagePath );
+		$type = $magic->guessTypesForExtension( $ext );
+		// For files without a valid extension (or one at all), inspect the contents
+		if ( !$type && $fsPath ) {
+			$type = $magic->guessMimeType( $fsPath, false );
+		} elseif ( !$type && strlen( $content ) ) {
+			$tmpFile = TempFSFile::factory( 'mime_' );
+			file_put_contents( $tmpFile->getPath(), $content );
+			$type = $magic->guessMimeType( $tmpFile->getPath(), false );
+		}
+		return $type ?: 'unknown/unknown';
 	}
 }
