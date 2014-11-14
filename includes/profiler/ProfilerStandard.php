@@ -237,13 +237,6 @@ class ProfilerStandard extends Profiler {
 	}
 
 	/**
-	 * Log the data to some store or even the page output
-	 */
-	public function logData() {
-		/* Implement in subclasses */
-	}
-
-	/**
 	 * Returns a profiling output to be stored in debug file
 	 *
 	 * @return string
@@ -328,6 +321,17 @@ class ProfilerStandard extends Profiler {
 		# which has been fixed in recent releases.
 		return sprintf( "%10s %s %s\n",
 			trim( sprintf( "%7.3f", $delta * 1000.0 ) ), $space, $fname );
+	}
+
+	/**
+	 * Return the collated data, collating first if need be
+	 * @return array
+	 */
+	public function getCollatedData() {
+		if ( !$this->collateDone ) {
+			$this->collateData();
+		}
+		return $this->collated;
 	}
 
 	/**
@@ -519,20 +523,6 @@ class ProfilerStandard extends Profiler {
 			$count ++;
 		}
 		return $count;
-	}
-
-	/**
-	 * Get the content type sent out to the client.
-	 * Used for profilers that output instead of store data.
-	 * @return string
-	 */
-	protected function getContentType() {
-		foreach ( headers_list() as $header ) {
-			if ( preg_match( '#^content-type: (\w+/\w+);?#i', $header, $m ) ) {
-				return $m[1];
-			}
-		}
-		return null;
 	}
 
 	/**

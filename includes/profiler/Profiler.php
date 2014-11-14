@@ -33,6 +33,8 @@ abstract class Profiler {
 	protected $profileID = false;
 	/** @var bool Whether MediaWiki is in a SkinTemplate output context */
 	protected $templated = false;
+	/** @var array All of the params passed from $wgProfiler */
+	protected $params = array();
 
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
@@ -49,6 +51,7 @@ abstract class Profiler {
 		if ( isset( $params['profileID'] ) ) {
 			$this->profileID = $params['profileID'];
 		}
+		$this->params = $params;
 		$this->trxProfiler = new TransactionProfiler();
 	}
 
@@ -128,7 +131,41 @@ abstract class Profiler {
 	/**
 	 * Log the data to some store or even the page output
 	 */
-	abstract public function logData();
+	public function logData() {
+		$output = isset( $this->params['output'] ) ?
+			$this->params['output'] : null;
+
+		if ( !$output || $this->isStub() ) {
+			// return early when no output classes defined or we're a stub
+			return;
+		}
+
+		if ( !is_array( $output ) ) {
+			$output = array( $output );
+		}
+
+		foreach ( $output as $outType ) {
+			$class = 'ProfilerOutput' . ucfirst( strtolower( $outType ) );
+			$profileOut = new $class( $this, $this->params );
+			if ( $profileOut->canUse() ) {
+				$profileOut->log();
+			}
+		}
+	}
+
+	/**
+	 * Get the content type sent out to the client.
+	 * Used for profilers that output instead of store data.
+	 * @return string
+	 */
+	public function getContentType() {
+		foreach ( headers_list() as $header ) {
+			if ( preg_match( '#^content-type: (\w+/\w+);?#i', $header, $m ) ) {
+				return $m[1];
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Mark this call as templated or not
@@ -137,6 +174,15 @@ abstract class Profiler {
 	 */
 	public function setTemplated( $t ) {
 		$this->templated = $t;
+	}
+
+	/**
+	 * Was this call as templated or not
+	 *
+	 * @return bool
+	 */
+	public function getTemplated() {
+		return $this->templated;
 	}
 
 	/**
