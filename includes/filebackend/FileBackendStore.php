@@ -69,8 +69,19 @@ abstract class FileBackendStore extends FileBackend {
 		$this->mimeCallback = isset( $config['mimeCallback'] )
 			? $config['mimeCallback']
 			: function ( $storagePath, $content, $fsPath ) {
-				// @todo handle the case of extension-less files using the contents
-				return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
+				$magic = MimeMagic::singleton();
+				// Trust the extension of the storage path (caller must validate)
+				$ext = FileBackend::extensionFromPath( $storagePath );
+				$type = $magic->guessTypesForExtension( $ext );
+				// For files without a valid extension (or one at all), inspect the contents
+				if ( !$type && $fsPath ) {
+					$type = $magic->guessMimeType( $fsPath, false );
+				} elseif ( !$type && strlen( $content ) ) {
+					$tmpFile = TempFSFile::factory( 'mime_' );
+					file_put_contents( $tmpFile->getPath(), $content );
+					$type = $magic->guessMimeType( $tmpFile->getPath(), false );
+				}
+				return $type ?: 'unknown/unknown';
 			};
 		$this->memCache = new EmptyBagOStuff(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
@@ -1065,7 +1076,7 @@ abstract class FileBackendStore extends FileBackend {
 		$status = Status::newGood();
 
 		// Fix up custom header name/value pairs...
-		$ops = array_map( array( $this, 'stripInvalidHeadersFromOp' ), $ops );
+		$ops = array_map( array( $this, 'sanitizeOpHeaders' ), $ops );
 
 		// Build up a list of FileOps...
 		$performOps = $this->getOperationsInternal( $ops );
@@ -1131,7 +1142,7 @@ abstract class FileBackendStore extends FileBackend {
 		$status = Status::newGood();
 
 		// Fix up custom header name/value pairs...
-		$ops = array_map( array( $this, 'stripInvalidHeadersFromOp' ), $ops );
+		$ops = array_map( array( $this, 'sanitizeOpHeaders' ), $ops );
 
 		// Clear any file cache entries
 		$this->clearCache();
@@ -1228,7 +1239,9 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * Strip long HTTP headers from a file operation.
+	 * Normalize and filter HTTP headers from a file operation
+	 *
+	 * This normalizes and strips long HTTP headers from a file operation.
 	 * Most headers are just numbers, but some are allowed to be long.
 	 * This function is useful for cleaning up headers and avoiding backend
 	 * specific errors, especially in the middle of batch file operations.
@@ -1236,18 +1249,21 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $op Same format as doOperation()
 	 * @return array
 	 */
-	protected function stripInvalidHeadersFromOp( array $op ) {
-		static $longs = array( 'Content-Disposition' );
+	protected function sanitizeOpHeaders( array $op ) {
+		static $longs = array( 'content-disposition' );
+
 		if ( isset( $op['headers'] ) ) { // op sets HTTP headers
+			$newHeaders = array();
 			foreach ( $op['headers'] as $name => $value ) {
+				$name = strtolower( $name );
 				$maxHVLen = in_array( $name, $longs ) ? INF : 255;
 				if ( strlen( $name ) > 255 || strlen( $value ) > $maxHVLen ) {
 					trigger_error( "Header '$name: $value' is too long." );
-					unset( $op['headers'][$name] );
-				} elseif ( !strlen( $value ) ) {
-					$op['headers'][$name] = ''; // null/false => ""
+				} else {
+					$newHeaders[$name] = strlen( $value ) ? $value : ''; // null/false => ""
 				}
 			}
+			$op['headers'] = $newHeaders;
 		}
 
 		return $op;
