@@ -2397,6 +2397,26 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Scoped unlocking of files succeeded with OK status ($backendName)." );
 	}
 
+	public function testGetContentType() {
+		global $IP;
+
+		$be = TestingAccessWrapper::newFromObject( new MemoryFileBackend(
+			array( 'name' => 'testing', 'class' => 'MemoryFileBackend', 'wikiId' => 'meow' )
+		) );
+
+		$dst = 'mwstore://testing/container/path/to/file_no_ext';
+
+		$src = "$IP/tests/phpunit/data/media/srgb.jpg";
+		$this->assertEquals( 'image/jpeg', $be->getContentType( $dst, null, $src ) );
+		$this->assertEquals( 'image/jpeg',
+			$be->getContentType( $dst, file_get_contents( $src ), null ) );
+
+		$src = "$IP/tests/phpunit/data/media/Png-native-test.png";
+		$this->assertEquals( 'image/png', $be->getContentType( $dst, null, $src ) );
+		$this->assertEquals( 'image/png',
+			$be->getContentType( $dst, file_get_contents( $src ), null ) );
+	}
+
 	public function testReadAffinity() {
 		$be = TestingAccessWrapper::newFromObject(
 			new FileBackendMultiWrite( array(

@@ -70,8 +70,19 @@ abstract class FileBackendStore extends FileBackend {
 		$this->mimeCallback = isset( $config['mimeCallback'] )
 			? $config['mimeCallback']
 			: function ( $storagePath, $content, $fsPath ) {
-				// @todo handle the case of extension-less files using the contents
-				return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
+				$magic = MimeMagic::singleton();
+				// Trust the extension of the storage path (caller must validate)
+				$ext = FileBackend::extensionFromPath( $storagePath );
+				$type = $magic->guessTypesForExtension( $ext );
+				// For files without a valid extension (or one at all), inspect the contents
+				if ( !$type && $fsPath ) {
+					$type = $magic->guessMimeType( $fsPath, false );
+				} elseif ( !$type && strlen( $content ) ) {
+					$tmpFile = TempFSFile::factory( 'mime_' );
+					file_put_contents( $tmpFile->getPath(), $content );
+					$type = $magic->guessMimeType( $tmpFile->getPath(), false );
+				}
+				return $type ?: 'unknown/unknown';
 			};
 		$this->memCache = WANObjectCache::newEmpty(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
