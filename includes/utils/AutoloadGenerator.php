@@ -67,11 +67,11 @@ class AutoloadGenerator {
 	public function forceClassPath( $fqcn, $inputPath ) {
 		$path = realpath( $inputPath );
 		if ( !$path ) {
-			throw new \MWException( "Invalid path: $inputPath" );
+			throw new \Exception( "Invalid path: $inputPath" );
 		}
 		$len = strlen( $this->basepath );
 		if ( substr( $path, 0, $len ) !== $this->basepath ) {
-			throw new \MWException( "Path is not within basepath: $inputPath" );
+			throw new \Exception( "Path is not within basepath: $inputPath" );
 		}
 		$shortpath = substr( $path, $len );
 		$this->overrides[$fqcn] = $shortpath;
@@ -83,11 +83,11 @@ class AutoloadGenerator {
 	public function readFile( $inputPath ) {
 		$path = realpath( $inputPath );
 		if ( !$path ) {
-			throw new \MWException( "Invalid path: $inputPath" );
+			throw new \Exception( "Invalid path: $inputPath" );
 		}
 		$len = strlen( $this->basepath );
 		if ( substr( $path, 0, $len ) !== $this->basepath ) {
-			throw new \MWException( "Path is not within basepath: $inputPath" );
+			throw new \Exception( "Path is not within basepath: $inputPath" );
 		}
 		$result = $this->collector->getClasses(
 			file_get_contents( $path )
