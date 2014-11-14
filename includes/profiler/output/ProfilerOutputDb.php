@@ -26,17 +26,17 @@
  *
  * @ingroup Profiler
  */
-class ProfilerSimpleDB extends ProfilerStandard {
+class ProfilerOutputDb extends ProfilerOutput {
+	public function canUse() {
+		# Do not log anything if database is readonly (bug 5375)
+		return !wfReadOnly();
+	}
+
 	/**
 	 * Log the whole profiling data into the database.
 	 */
-	public function logData() {
+	protected function logStandardData( array $collated ) {
 		global $wgProfilePerHost;
-
-		# Do not log anything if database is readonly (bug 5375)
-		if ( wfReadOnly() ) {
-			return;
-		}
 
 		if ( $wgProfilePerHost ) {
 			$pfhost = wfHostname();
@@ -45,14 +45,12 @@ class ProfilerSimpleDB extends ProfilerStandard {
 		}
 
 		try {
-			$this->collateData();
-
 			$dbw = wfGetDB( DB_MASTER );
 			$useTrx = ( $dbw->getType() === 'sqlite' ); // much faster
 			if ( $useTrx ) {
 				$dbw->startAtomic( __METHOD__ );
 			}
-			foreach ( $this->collated as $name => $data ) {
+			foreach ( $collated as $name => $data ) {
 				$eventCount = $data['count'];
 				$timeSum = (float)( $data['real'] * 1000 );
 				$memorySum = (float)$data['memory'];
