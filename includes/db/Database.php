@@ -3070,7 +3070,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return bool
 	 */
 	public function deadlockLoop() {
-		$this->begin( __METHOD__ );
+		$this->startAtomic( __METHOD__ );
 		$args = func_get_args();
 		$function = array_shift( $args );
 		$oldIgnore = $this->ignoreErrors( true );
@@ -3106,7 +3106,7 @@ abstract class DatabaseBase implements IDatabase {
 
 			return false;
 		} else {
-			$this->commit( __METHOD__ );
+			$this->endAtomic( __METHOD__ );
 
 			return $retVal;
 		}
