@@ -1031,7 +1031,6 @@ $wgAutoloadLocalClasses['SiteStats'] = __DIR__ . '/includes/SiteStats.php';
 $wgAutoloadLocalClasses['SiteStatsInit'] = __DIR__ . '/includes/SiteStats.php';
 $wgAutoloadLocalClasses['SiteStatsUpdate'] = __DIR__ . '/includes/deferred/SiteStatsUpdate.php';
 $wgAutoloadLocalClasses['SiteStore'] = __DIR__ . '/includes/site/SiteStore.php';
-$wgAutoloadLocalClasses['Sites'] = __DIR__ . '/includes/site/SiteSQLStore.php';
 $wgAutoloadLocalClasses['Skin'] = __DIR__ . '/includes/skins/Skin.php';
 $wgAutoloadLocalClasses['SkinApi'] = __DIR__ . '/includes/skins/SkinApi.php';
 $wgAutoloadLocalClasses['SkinApiTemplate'] = __DIR__ . '/includes/skins/SkinApiTemplate.php';
