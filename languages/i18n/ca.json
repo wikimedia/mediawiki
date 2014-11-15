@@ -350,6 +350,7 @@
 	"filerenameerror": "No s'ha pogut reanomenar el fitxer «$1» com «$2».",
 	"filedeleteerror": "No s'ha pogut eliminar el fitxer «$1».",
 	"directorycreateerror": "No s'ha pogut crear el directori «$1».",
+	"directoryreadonlyerror": "Directory \"$1\" is read-only.",
 	"filenotfound": "No s'ha pogut trobar el fitxer «$1».",
 	"unexpected": "S'ha trobat un valor imprevist: «$1»=«$2».",
 	"formerror": "Error: no s'ha pogut enviar les dades del formulari",
