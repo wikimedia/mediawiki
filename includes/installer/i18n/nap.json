@@ -93,6 +93,7 @@
 	"config-db-password-empty": "Avita nzertà na password pe' l'utente nuovo d' 'o database: $1.\nPure si fosse possibbele 'e crià ll'utente senza password chisto nun fosse sicuro.",
 	"config-db-username-empty": "Avita miette nu valore p' 'o \"{{int:config-db-username}}\"",
 	"config-db-wiki-account": "Account utente p' 'o funzionamento nurmale",
+	"config-db-prefix": "Prefisso d' 'a tavolozza d' 'o database:",
 	"config-db-charset": "Nzieme 'e carattere d' 'o database",
 	"config-charset-mysql5-binary": "MySQL 4.1/5.0 binario",
 	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
@@ -117,5 +118,6 @@
 	"config-missing-db-host": "Avita miette nu valore p' 'o \"{{int:config-db-host}}\"",
 	"config-missing-db-server-oracle": "Avita miette nu valore p' 'o \"{{int:config-db-host-oracle}}\"",
 	"config-mssql-install-auth": "Sceglie 'o tipo d'autenticazziona ca s'ausarrà pe cunnettà â database, durante ll'operazziona d'istallazziona. Si piglie \"{{int:config-mssql-windowsauth}}\", 'e credenziale 'e qualunque fosse ll'utenza ca 'o webserver sta pruciessanno sarranno ausate.",
-	"config-mssql-web-auth": "Sceglie 'o tipo d'autenticazziona ca 'o web server pigliarrà pe se cunnettà a 'o server 'e bbase 'e dati, durante ll'operazziona nurmale d' 'a wiki.\nSi piglie \"{{int:config-mssql-windowsauth}}\", 'e credenziale 'e qualunque fosse ll'utenza ca 'o webserver sta pruciessanno sarranno ausate."
+	"config-mssql-web-auth": "Sceglie 'o tipo d'autenticazziona ca 'o web server pigliarrà pe se cunnettà a 'o server 'e bbase 'e dati, durante ll'operazziona nurmale d' 'a wiki.\nSi piglie \"{{int:config-mssql-windowsauth}}\", 'e credenziale 'e qualunque fosse ll'utenza ca 'o webserver sta pruciessanno sarranno ausate.",
+	"config-install-updates": "Mpiccià ll'agghiurnamiente ca nun fossero necessarie"
 }

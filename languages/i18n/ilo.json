@@ -314,6 +314,8 @@
 	"filerenameerror": "Saan a managanan manen ti papeles \"$1\" iti \"$2\".",
 	"filedeleteerror": "Saan a maikkat ti papeles \"$1\".",
 	"directorycreateerror": "Saan a mapartuat ti direktorio \"$1\".",
+	"directoryreadonlyerror": "Ti direktorio ti \"$1\" ket mabasa laeng.",
+	"directorynotreadableerror": "Ti direktorio ti \"$1\" ket saan a mabasa.",
 	"filenotfound": "Saan a mabirukan ti papeles \"$1\".",
 	"unexpected": "Di nanamnama a pateg: \"$1\"=\"$2\".",
 	"formerror": "Biddut: saan a maited ti porma.",
