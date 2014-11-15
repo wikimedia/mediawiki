@@ -1032,7 +1032,6 @@ $wgAutoloadLocalClasses = array(
 	'SiteStatsInit' => __DIR__ . '/includes/SiteStats.php',
 	'SiteStatsUpdate' => __DIR__ . '/includes/deferred/SiteStatsUpdate.php',
 	'SiteStore' => __DIR__ . '/includes/site/SiteStore.php',
-	'Sites' => __DIR__ . '/includes/site/SiteSQLStore.php',
 	'Skin' => __DIR__ . '/includes/skins/Skin.php',
 	'SkinApi' => __DIR__ . '/includes/skins/SkinApi.php',
 	'SkinApiTemplate' => __DIR__ . '/includes/skins/SkinApiTemplate.php',
