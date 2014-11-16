@@ -973,19 +973,16 @@ function wfDebug( $text, $dest = 'all' ) {
 	}
 
 	$timer = wfDebugTimer();
-	if ( $timer !== '' ) {
-		// Prepend elapsed request time and real memory usage to each line
-		$text = preg_replace( '/[^\n]/', $timer . '\0', $text, 1 );
-	}
 
 	if ( $dest === 'all' ) {
-		MWDebug::debugMsg( $text );
+		MWDebug::debugMsg( $text, $timer );
 	}
 
 	$ctx = array();
 	if ( $wgDebugLogPrefix !== '' ) {
 		$ctx['prefix'] = $wgDebugLogPrefix;
 	}
+	$ctx['debugtimestamps'] = $timer;
 
 	$logger = MWLogger::getInstance( 'wfDebug' );
 	$logger->debug( rtrim( $text, "\n" ), $ctx );
@@ -1076,13 +1073,16 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 
 	$text = trim( $text );
 
+	$timer = wfDebugTimer();
+
 	if ( $dest === 'all' ) {
-		MWDebug::debugMsg( "[{$logGroup}] {$text}\n" );
+		MWDebug::debugMsg( "[{$logGroup}] {$text}\n", $timer );
 	}
 
 	$logger = MWLogger::getInstance( $logGroup );
 	$logger->debug( $text, array(
 		'private' => ( $dest === 'private' ),
+		'debugtimestamps' => $timer
 	) );
 }
 
