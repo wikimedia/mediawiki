@@ -1,17 +1,15 @@
-/**
- * Common LESS mixin library for MediaWiki
- *
- * By default the folder containing this file is included in $wgResourceLoaderLESSImportPaths,
- * which makes this file importable by all less files via '@import "mediawiki.mixins";'.
- *
- * The mixins included below are considered a public interface for MediaWiki extensions.
- * The signatures of parametrized mixins should be kept as stable as possible.
- *
- * See <http://lesscss.org/#-mixins> for more information about how to write mixins.
- */
+// Common LESS mixin library for MediaWiki
+//
+// By default the folder containing this file is included in $wgResourceLoaderLESSImportPaths,
+// which makes this file importable by all less files via '@import "mediawiki.mixins";'.
+//
+// The mixins included below are considered a public interface for MediaWiki extensions.
+// The signatures of parametrized mixins should be kept as stable as possible.
+//
+// See <http://lesscss.org/#-mixins> for more information about how to write mixins.
 
 .background-image(@url) {
-	background-image: e('/* @embed */') url(@url);
+	background-image: e('/* @embed///') url(@url);
 }
 
 .background-size(@width, @height) {
@@ -31,16 +29,14 @@
 	background-image: linear-gradient( @startColor @startPos, @endColor @endPos ); // Standard
 }
 
-/*
- * SVG support using a transparent gradient to guarantee cross-browser
- * compatibility (browsers able to understand gradient syntax support also SVG).
- * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
- *
- * We use gzip compression, which means that it is okay to embed twice.
- *
- * We do not embed the fallback image on the assumption that the gain for old browsers
- * is not worth the harm done to modern ones.
- */
+// SVG support using a transparent gradient to guarantee cross-browser
+// compatibility (browsers able to understand gradient syntax support also SVG).
+// http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
+//
+// We use gzip compression, which means that it is okay to embed twice.
+//
+// We do not embed the fallback image on the assumption that the gain for old browsers
+// is not worth the harm done to modern ones.
 .background-image-svg(@svg, @fallback) {
 	background-image: url(@fallback);
 	background-image: -webkit-linear-gradient(transparent, transparent), e('/* @embed */') url(@svg);
