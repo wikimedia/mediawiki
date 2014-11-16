@@ -312,11 +312,11 @@ class MWDebug {
 	 * @since 1.19
 	 * @param string $str
 	 */
-	public static function debugMsg( $str ) {
+	public static function debugMsg( $str, $debugtimestamp = '' ) {
 		global $wgDebugComments, $wgShowDebug;
 
 		if ( self::$enabled || $wgDebugComments || $wgShowDebug ) {
-			self::$debug[] = rtrim( UtfNormal::cleanUp( $str ) );
+			self::$debug[] = new MWDebugEntry( rtrim( UtfNormal::cleanUp( $str ) ), $debugtimestamp );
 		}
 	}
 
@@ -580,5 +580,26 @@ class MWDebug {
 			'includes' => self::getFilesIncluded( $context ),
 			'profile' => Profiler::instance()->getRawData(),
 		);
+	}
+}
+
+/*
+ * Single debugger log entry
+ *
+ * @since 1.25
+ */
+class MWDebugEntry {
+
+	function __construct( $text, $debugtimestamp = '' ) {
+		$this->text = $text;
+		$this->debugtimestamp = $debugtimestamp;
+	}
+
+	function __toString() {
+		if ( $this->debugtimestamp) {
+			return "{$this->debugtimestamp} {$this->text}";
+		} else {
+			return $this->text;
+		}
 	}
 }

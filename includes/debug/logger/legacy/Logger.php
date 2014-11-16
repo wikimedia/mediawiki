@@ -166,6 +166,7 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 
 			$log = sprintf( "%s\t%04.3f\t%s%s\n",
 				gmdate( 'YmdHis' ), $context['elapsed'], $context['url'], $forward );
+			unset( $context['debugtimestamps'] ); // redundant with profiling
 
 			$text = self::formatAsWfDebugLog(
 				$channel, $log . $context['output'], $context );
@@ -194,6 +195,9 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $message );
 		if ( isset( $context['prefix'] ) ) {
 			$text = "{$context['prefix']}{$text}";
+		}
+		if ( isset( $context['debugtimestamps'] ) && $context['debugtimestamps'] ) {
+			$text = "{$context['debugtimestamps']} {$text}";
 		}
 		return "{$text}\n";
 	}
@@ -241,6 +245,9 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 	 */
 	protected static function formatAsWfDebugLog( $channel, $message, $context ) {
 		$time = wfTimestamp( TS_DB );
+		if ( isset( $context['debugtimestamps'] ) && $context['debugtimestamps'] ) {
+			$time = "{$context['debugtimestamps']} {$time}";
+		}
 		$wiki = wfWikiID();
 		$host = wfHostname();
 		$text = "{$time} {$host} {$wiki}: {$message}\n";
