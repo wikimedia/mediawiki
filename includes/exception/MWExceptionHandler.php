@@ -23,11 +23,13 @@
  * @ingroup Exception
  */
 class MWExceptionHandler {
+
 	/**
-	 * Install an exception handler for MediaWiki exception types.
+	 * Install handlers with PHP.
 	 */
 	public static function installHandler() {
-		set_exception_handler( array( 'MWExceptionHandler', 'handle' ) );
+		set_exception_handler( array( 'MWExceptionHandler', 'handleException' ) );
+		set_error_handler( array( 'MWExceptionHandler', 'handleError' ) );
 	}
 
 	/**
@@ -45,7 +47,7 @@ class MWExceptionHandler {
 				$e->report();
 			} catch ( Exception $e2 ) {
 				// Exception occurred from within exception handler
-				// Show a simpler error message for the original exception,
+				// Show a simpler message for the original exception,
 				// don't try to invoke report()
 				$message = "MediaWiki internal error.\n\n";
 
@@ -83,7 +85,6 @@ class MWExceptionHandler {
 				echo nl2br( htmlspecialchars( $message ) ) . "\n";
 			}
 
-			self::logException( $e );
 		}
 	}
 
@@ -108,6 +109,7 @@ class MWExceptionHandler {
 	 * If there are any open database transactions, roll them back and log
 	 * the stack trace of the exception that should have been caught so the
 	 * transaction could be aborted properly.
+	 *
 	 * @since 1.23
 	 * @param Exception $e
 	 */
@@ -133,13 +135,15 @@ class MWExceptionHandler {
 	 *   } catch ( Exception $e ) {
 	 *       echo $e->__toString();
 	 *   }
+	 *
+	 * @since 1.25
 	 * @param Exception $e
 	 */
-	public static function handle( $e ) {
+	public static function handleException( $e ) {
 		global $wgFullyInitialised;
 
 		self::rollbackMasterChangesAndLog( $e );
-
+		self::logException( $e );
 		self::report( $e );
 
 		// Final cleanup
@@ -153,6 +157,22 @@ class MWExceptionHandler {
 
 		// Exit value should be nonzero for the benefit of shell jobs
 		exit( 1 );
+	}
+
+	/**
+	 * @since 1.25
+	 * @param int $level Error level raised
+	 * @param string $message
+	 * @param string $file
+	 * @param int $line
+	 */
+	public static function handleError( $level, $message, $file = null, $line = null ) {
+		$e = new ErrorException( $message, 0, $level, $file, $line );
+		self::logError( $e );
+
+		// This handler is for logging only. Return false will instruct PHP
+		// to continue regular handling.
+		return false;
 	}
 
 	/**
@@ -219,7 +239,7 @@ class MWExceptionHandler {
 	}
 
 	/**
-	 * Get the ID for this error.
+	 * Get the ID for this exception.
 	 *
 	 * The ID is saved so that one can match the one output to the user (when
 	 * $wgShowExceptionDetails is set to false), to the entry in the debug log.
@@ -251,8 +271,7 @@ class MWExceptionHandler {
 	}
 
 	/**
-	 * Return the requested URL and point to file and line number from which the
-	 * exception occurred.
+	 * Get a message formatting the exception message and its origin.
 	 *
 	 * @since 1.22
 	 * @param Exception $e
@@ -260,12 +279,13 @@ class MWExceptionHandler {
 	 */
 	public static function getLogMessage( Exception $e ) {
 		$id = self::getLogId( $e );
+		$type = get_class( $e );
 		$file = $e->getFile();
 		$line = $e->getLine();
 		$message = $e->getMessage();
 		$url = self::getURL() ?: '[no req]';
 
-		return "[$id] $url   Exception from line $line of $file: $message";
+		return "[$id] $url   $type from line $line of $file: $message";
 	}
 
 	/**
@@ -287,6 +307,7 @@ class MWExceptionHandler {
 	 * @code
 	 *  {
 	 *    "id": "c41fb419",
+	 *    "type": "MWException",
 	 *    "file": "/var/www/mediawiki/includes/cache/MessageCache.php",
 	 *    "line": 704,
 	 *    "message": "Non-string key given",
@@ -298,6 +319,7 @@ class MWExceptionHandler {
 	 * @code
 	 *  {
 	 *    "id": "dc457938",
+	 *    "type": "MWException",
 	 *    "file": "/vagrant/mediawiki/includes/cache/MessageCache.php",
 	 *    "line": 704,
 	 *    "message": "Non-string key given",
@@ -324,6 +346,7 @@ class MWExceptionHandler {
 
 		$exceptionData = array(
 			'id' => self::getLogId( $e ),
+			'type' => get_class( $e ),
 			'file' => $e->getFile(),
 			'line' => $e->getLine(),
 			'message' => $e->getMessage(),
@@ -347,7 +370,7 @@ class MWExceptionHandler {
 	 * Log an exception to the exception log (if enabled).
 	 *
 	 * This method must not assume the exception is an MWException,
-	 * it is also used to handle PHP errors or errors from other libraries.
+	 * it is also used to handle PHP exceptions or exceptions from other libraries.
 	 *
 	 * @since 1.22
 	 * @param Exception $e
@@ -368,7 +391,22 @@ class MWExceptionHandler {
 				wfDebugLog( 'exception-json', $json, 'private' );
 			}
 		}
-
 	}
 
+	/**
+	 * Log an exception that wasn't thrown but made to wrap an error.
+	 *
+	 * @since 1.25
+	 * @param Exception $e
+	*/
+	protected static function logError( Exception $e ) {
+		global $wgLogExceptionBacktrace;
+
+		$log = self::getLogMessage( $e );
+		if ( $wgLogExceptionBacktrace ) {
+			wfDebugLog( 'error', $log . "\n" . $e->getTraceAsString() );
+		} else {
+			wfDebugLog( 'error', $log );
+		}
+	}
 }

@@ -446,7 +446,7 @@ class MediaWiki {
 			$this->triggerJobs();
 			$this->restInPeace();
 		} catch ( Exception $e ) {
-			MWExceptionHandler::handle( $e );
+			MWExceptionHandler::handleException( $e );
 		}
 	}
 
