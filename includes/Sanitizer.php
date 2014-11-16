@@ -510,15 +510,12 @@ class Sanitizer {
 						$newparams = '';
 					} else {
 						# Keep track for later
-						if ( isset( $tabletags[$t] ) &&
-						!in_array( 'table', $tagstack ) ) {
+						if ( isset( $tabletags[$t] ) && !in_array( 'table', $tagstack ) ) {
 							$badtag = true;
-						} elseif ( in_array( $t, $tagstack ) &&
-						!isset( $htmlnest[$t] ) ) {
+						} elseif ( in_array( $t, $tagstack ) && !isset( $htmlnest[$t] ) ) {
 							$badtag = true;
 						# Is it a self closed htmlpair ? (bug 5487)
-						} elseif ( $brace == '/>' &&
-						isset( $htmlpairs[$t] ) ) {
+						} elseif ( $brace == '/>' && isset( $htmlpairs[$t] ) ) {
 							$badtag = true;
 						} elseif ( isset( $htmlsingleonly[$t] ) ) {
 							# Hack to force empty tag for unclosable elements
@@ -530,8 +527,7 @@ class Sanitizer {
 							# the tag stack so that we can match end tags
 							# instead of marking them as bad.
 							array_push( $tagstack, $t );
-						} elseif ( isset( $tabletags[$t] )
-						&& in_array( $t, $tagstack ) ) {
+						} elseif ( isset( $tabletags[$t] ) && in_array( $t, $tagstack ) ) {
 							// New table tag but forgot to close the previous one
 							$text .= "</$t>";
 						} else {
@@ -1120,14 +1116,14 @@ class Sanitizer {
 			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
 			$id = trim( $id, '_' );
 			if ( $id === '' ) {
-				# Must have been all whitespace to start with.
+				// Must have been all whitespace to start with.
 				return '_';
 			} else {
 				return $id;
 			}
 		}
 
-		# HTML4-style escaping
+		// HTML4-style escaping
 		static $replace = array(
 			'%3A' => ':',
 			'%' => '.'
@@ -1136,8 +1132,7 @@ class Sanitizer {
 		$id = urlencode( strtr( $id, ' ', '_' ) );
 		$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
 
-		if ( !preg_match( '/^[a-zA-Z]/', $id )
-		&& !in_array( 'noninitial', $options ) ) {
+		if ( !preg_match( '/^[a-zA-Z]/', $id ) && !in_array( 'noninitial', $options ) ) {
 			// Initial character must be a letter!
 			$id = "x$id";
 		}
@@ -1368,8 +1363,7 @@ class Sanitizer {
 	static function normalizeEntity( $name ) {
 		if ( isset( self::$htmlEntityAliases[$name] ) ) {
 			return '&' . self::$htmlEntityAliases[$name] . ';';
-		} elseif ( in_array( $name,
-		array( 'lt', 'gt', 'amp', 'quot' ) ) ) {
+		} elseif ( in_array( $name, array( 'lt', 'gt', 'amp', 'quot' ) ) ) {
 			return "&$name;";
 		} elseif ( isset( self::$htmlEntities[$name] ) ) {
 			return '&#' . self::$htmlEntities[$name] . ';';

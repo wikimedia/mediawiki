@@ -267,8 +267,7 @@ class Html {
 		// In text/html, initial <html> and <head> tags can be omitted under
 		// pretty much any sane circumstances, if they have no attributes.  See:
 		// <http://www.whatwg.org/html/syntax.html#optional-tags>
-		if ( !$wgWellFormedXml && !$attribs
-		&& in_array( $element, array( 'html', 'head' ) ) ) {
+		if ( !$wgWellFormedXml && !$attribs && in_array( $element, array( 'html', 'head' ) ) ) {
 			return '';
 		}
 
@@ -301,8 +300,7 @@ class Html {
 				'tel',
 				'color',
 			);
-			if ( isset( $attribs['type'] )
-			&& !in_array( $attribs['type'], $validTypes ) ) {
+			if ( isset( $attribs['type'] ) && !in_array( $attribs['type'], $validTypes ) ) {
 				unset( $attribs['type'] );
 			}
 		}
@@ -396,8 +394,9 @@ class Html {
 			}
 
 			// Simple checks using $attribDefaults
-			if ( isset( $attribDefaults[$element][$lcattrib] ) &&
-			$attribDefaults[$element][$lcattrib] == $value ) {
+			if ( isset( $attribDefaults[$element][$lcattrib] )
+				&& $attribDefaults[$element][$lcattrib] == $value
+			) {
 				unset( $attribs[$attrib] );
 			}
 
@@ -407,8 +406,9 @@ class Html {
 		}
 
 		// More subtle checks
-		if ( $element === 'link' && isset( $attribs['type'] )
-		&& strval( $attribs['type'] ) == 'text/css' ) {
+		if ( $element === 'link'
+			&& isset( $attribs['type'] ) && strval( $attribs['type'] ) == 'text/css'
+		) {
 			unset( $attribs['type'] );
 		}
 		if ( $element === 'input' ) {
@@ -507,8 +507,7 @@ class Html {
 
 			// For boolean attributes, support array( 'foo' ) instead of
 			// requiring array( 'foo' => 'meaningless' ).
-			if ( is_int( $key )
-			&& in_array( strtolower( $value ), self::$boolAttribs ) ) {
+			if ( is_int( $key ) && in_array( strtolower( $value ), self::$boolAttribs ) ) {
 				$key = $value;
 			}
 
@@ -587,14 +586,13 @@ class Html {
 			// marks omitted, but not all.  (Although a literal " is not
 			// permitted, we don't check for that, since it will be escaped
 			// anyway.)
-			#
+
 			// See also research done on further characters that need to be
 			// escaped: http://code.google.com/p/html5lib/issues/detail?id=93
 			$badChars = "\\x00- '=<>`/\x{00a0}\x{1680}\x{180e}\x{180F}\x{2000}\x{2001}"
 				. "\x{2002}\x{2003}\x{2004}\x{2005}\x{2006}\x{2007}\x{2008}\x{2009}"
 				. "\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}";
-			if ( $wgWellFormedXml || $value === ''
-			|| preg_match( "![$badChars]!u", $value ) ) {
+			if ( $wgWellFormedXml || $value === '' || preg_match( "![$badChars]!u", $value ) ) {
 				$quote = '"';
 			} else {
 				$quote = '';

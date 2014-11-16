@@ -13,6 +13,7 @@
 class HTMLSelectAndOtherField extends HTMLSelectField {
 	function __construct( $params ) {
 		if ( array_key_exists( 'other', $params ) ) {
+			// Do nothing
 		} elseif ( array_key_exists( 'other-message', $params ) ) {
 			$params['other'] = wfMessage( $params['other-message'] )->plain();
 		} else {
@@ -22,7 +23,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		parent::__construct( $params );
 
 		if ( $this->getOptions() === null ) {
-			# Sulk
+			// Sulk
 			throw new MWException( 'HTMLSelectAndOtherField called without any options' );
 		}
 		if ( !in_array( 'other', $this->mOptions, true ) ) {

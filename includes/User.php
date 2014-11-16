@@ -641,10 +641,11 @@ class User implements IDBAccessObject {
 		global $wgContLang, $wgMaxNameChars;
 
 		if ( $name == ''
-		|| User::isIP( $name )
-		|| strpos( $name, '/' ) !== false
-		|| strlen( $name ) > $wgMaxNameChars
-		|| $name != $wgContLang->ucfirst( $name ) ) {
+			|| User::isIP( $name )
+			|| strpos( $name, '/' ) !== false
+			|| strlen( $name ) > $wgMaxNameChars
+			|| $name != $wgContLang->ucfirst( $name )
+		) {
 			wfDebugLog( 'username', __METHOD__ .
 				": '$name' invalid due to empty, IP, slash, length, or lowercase" );
 			return false;
@@ -4511,6 +4512,7 @@ class User implements IDBAccessObject {
 
 		// Same thing for remove
 		if ( empty( $wgRemoveGroups[$group] ) ) {
+			// Do nothing
 		} elseif ( $wgRemoveGroups[$group] === true ) {
 			$groups['remove'] = self::getAllGroups();
 		} elseif ( is_array( $wgRemoveGroups[$group] ) ) {
@@ -4536,6 +4538,7 @@ class User implements IDBAccessObject {
 
 		// Now figure out what groups the user can add to him/herself
 		if ( empty( $wgGroupsAddToSelf[$group] ) ) {
+			// Do nothing
 		} elseif ( $wgGroupsAddToSelf[$group] === true ) {
 			// No idea WHY this would be used, but it's there
 			$groups['add-self'] = User::getAllGroups();
@@ -4544,6 +4547,7 @@ class User implements IDBAccessObject {
 		}
 
 		if ( empty( $wgGroupsRemoveFromSelf[$group] ) ) {
+			// Do nothing
 		} elseif ( $wgGroupsRemoveFromSelf[$group] === true ) {
 			$groups['remove-self'] = User::getAllGroups();
 		} elseif ( is_array( $wgGroupsRemoveFromSelf[$group] ) ) {

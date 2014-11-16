@@ -208,8 +208,9 @@ class Linker {
 		$dummy = new DummyLinker; // dummy linker instance for bc on the hooks
 
 		$ret = null;
-		if ( !wfRunHooks( 'LinkBegin', array( $dummy, $target, &$html,
-		&$customAttribs, &$query, &$options, &$ret ) ) ) {
+		if ( !wfRunHooks( 'LinkBegin',
+			array( $dummy, $target, &$html, &$customAttribs, &$query, &$options, &$ret ) )
+		) {
 			wfProfileOut( __METHOD__ );
 			return $ret;
 		}
