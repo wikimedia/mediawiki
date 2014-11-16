@@ -326,13 +326,13 @@ class MWDebug {
 		if ( self::$enabled || $wgDebugComments || $wgShowDebug ) {
 			if ( $context ) {
 				$prefix = '';
-				if ( isset( $context['prefix'] ) ) {
-					$prefix = $context['prefix'];
-				} elseif ( isset( $context['channel'] ) && $context['channel'] !== 'wfDebug' ) {
-					$prefix = "[{$context['channel']}] ";
-				}
 				if ( isset( $context['seconds_elapsed'] ) && isset( $context['memory_used'] ) ) {
-					$prefix .= "{$context['seconds_elapsed']} {$context['memory_used']}  ";
+					$prefix = "{$context['seconds_elapsed']} {$context['memory_used']}  ";
+				}
+				if ( isset( $context['prefix'] ) ) {
+					$prefix .= $context['prefix'];
+				} elseif ( isset( $context['channel'] ) && $context['channel'] !== 'wfDebug' ) {
+					$prefix .= "[{$context['channel']}] ";
 				}
 				$str = $prefix . $str;
 			}

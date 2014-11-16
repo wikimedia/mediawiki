@@ -1090,7 +1090,25 @@ function wfDebugMem( $exact = false ) {
 function wfDebugLog(
 	$logGroup, $text, $dest = 'all', array $context = []
 ) {
+	global $wgDebugLogPrefix;
+	global $wgDebugTimestamps, $wgRequestTime;
+
 	$text = trim( $text );
+
+	if ( $wgDebugTimestamps ) {
+		$context['seconds_elapsed'] = sprintf(
+			'%6.4f',
+			microtime( true ) - $wgRequestTime
+		);
+		$context['memory_used'] = sprintf(
+			'%5.1fM',
+			( memory_get_usage( true ) / ( 1024 * 1024 ) )
+		);
+	}
+
+	if ( $wgDebugLogPrefix !== '' ) {
+		$context['prefix'] = $wgDebugLogPrefix;
+	}
 
 	$logger = LoggerFactory::getInstance( $logGroup );
 	$context['private'] = ( $dest === false || $dest === 'private' );
