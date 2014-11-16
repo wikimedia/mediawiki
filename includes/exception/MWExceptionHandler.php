@@ -23,11 +23,13 @@
  * @ingroup Exception
  */
 class MWExceptionHandler {
+
 	/**
-	 * Install an exception handler for MediaWiki exception types.
+	 * Install handlers with PHP.
 	 */
 	public static function installHandler() {
-		set_exception_handler( array( 'MWExceptionHandler', 'handle' ) );
+		set_exception_handler( array( 'MWExceptionHandler', 'handleException' ) );
+		set_error_handler( array( 'MWExceptionHandler', 'handleError' ) );
 	}
 
 	/**
@@ -40,12 +42,13 @@ class MWExceptionHandler {
 		$cmdLine = MWException::isCommandLine();
 
 		if ( $e instanceof MWException ) {
+			self::logException( $e );
 			try {
 				// Try and show the exception prettily, with the normal skin infrastructure
 				$e->report();
 			} catch ( Exception $e2 ) {
 				// Exception occurred from within exception handler
-				// Show a simpler error message for the original exception,
+				// Show a simpler message for the original exception,
 				// don't try to invoke report()
 				$message = "MediaWiki internal error.\n\n";
 
@@ -135,7 +138,7 @@ class MWExceptionHandler {
 	 *   }
 	 * @param Exception $e
 	 */
-	public static function handle( $e ) {
+	public static function handleException( $e ) {
 		global $wgFullyInitialised;
 
 		self::rollbackMasterChangesAndLog( $e );
@@ -156,6 +159,21 @@ class MWExceptionHandler {
 	}
 
 	/**
+	 * @param int $level Error level raised
+	 * @param string $message
+	 * @param string $file
+	 * @param int $line
+	 */
+	public static function handleError( $level, $message, $file = null, $line = null ) {
+		$e = new ErrorException( $message, 0, $level, $file, $line );
+		self::logException( $e, 'error' );
+
+		// This handler is for logging only. Return false will instruct PHP
+		// to continue regular handling.
+		return false;
+	}
+
+	/**
 	 * Generate a string representation of an exception's stack trace
 	 *
 	 * Like Exception::getTraceAsString, but replaces argument values with
@@ -165,9 +183,13 @@ class MWExceptionHandler {
 	 * @return string
 	 */
 	public static function getRedactedTraceAsString( Exception $e ) {
+		return self::formatTrace( self::getRedactedTrace( $e ) );
+	}
+
+	protected static function formatTrace( Array $trace ) {
 		$text = '';
 
-		foreach ( self::getRedactedTrace( $e ) as $level => $frame ) {
+		foreach ( $trace as $level => $frame ) {
 			if ( isset( $frame['file'] ) && isset( $frame['line'] ) ) {
 				$text .= "#{$level} {$frame['file']}({$frame['line']}): ";
 			} else {
@@ -219,7 +241,7 @@ class MWExceptionHandler {
 	}
 
 	/**
-	 * Get the ID for this error.
+	 * Get the ID for this exception.
 	 *
 	 * The ID is saved so that one can match the one output to the user (when
 	 * $wgShowExceptionDetails is set to false), to the entry in the debug log.
@@ -251,8 +273,7 @@ class MWExceptionHandler {
 	}
 
 	/**
-	 * Return the requested URL and point to file and line number from which the
-	 * exception occurred.
+	 * Get a message formatting the exception message and its origin.
 	 *
 	 * @since 1.22
 	 * @param Exception $e
@@ -263,6 +284,19 @@ class MWExceptionHandler {
 		$file = $e->getFile();
 		$line = $e->getLine();
 		$message = $e->getMessage();
+		$url = self::getURL() ?: '[no req]';
+
+		return "[$id] $url   Exception from line $line of $file: $message";
+	}
+
+	/**
+	 * Get a message formatting the error and its origin.
+	 *
+	 * @since 1.24
+	 * @return string
+	 */
+	protected static function getLogMessageForError( $level, $message, $file, $line ) {
+		$id = wfRandomString( 8 );
 		$url = self::getURL() ?: '[no req]';
 
 		return "[$id] $url   Exception from line $line of $file: $message";
@@ -347,28 +381,31 @@ class MWExceptionHandler {
 	 * Log an exception to the exception log (if enabled).
 	 *
 	 * This method must not assume the exception is an MWException,
-	 * it is also used to handle PHP errors or errors from other libraries.
+	 * it is also used to handle PHP exceptions or exceptions from other libraries.
 	 *
+	 * @param Exception $e
+	 * @param string $logGroup [optional] Since 1.25, exceptions that weren't
+	 *  thrown but made to wrap around an error, should and up in a different log.
 	 * @since 1.22
 	 * @param Exception $e
 	 */
-	public static function logException( Exception $e ) {
+	public static function logException( Exception $e, $logGroup = 'exception' ) {
 		global $wgLogExceptionBacktrace;
 
 		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
 			$log = self::getLogMessage( $e );
 			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . $e->getTraceAsString() );
+				wfDebugLog( $logGroup, $log . "\n" . $e->getTraceAsString() );
 			} else {
-				wfDebugLog( 'exception', $log );
+				wfDebugLog( $logGroup, $log );
 			}
 
-			$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
-			if ( $json !== false ) {
-				wfDebugLog( 'exception-json', $json, 'private' );
+			if ( $logGroup === 'exception' ) {
+				$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
+				if ( $json !== false ) {
+					wfDebugLog( 'exception-json', $json, 'private' );
+				}
 			}
 		}
-
 	}
-
 }
