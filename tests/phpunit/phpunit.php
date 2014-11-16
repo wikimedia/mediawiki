@@ -93,6 +93,12 @@ class PHPUnitMaintClass extends Maintenance {
 	public function execute() {
 		global $IP;
 
+		// Deregister handler from MWExceptionHandler::installHandle so that PHPUnit's own handler
+		// stays in tact.
+		// Has to in execute() instead of finalSetup(), because finalSetup() runs before
+		// doMaintenance.php includes Setup.php, which calls MWExceptionHandler::installHandle().
+		restore_error_handler();
+
 		$this->forceFormatServerArgv();
 
 		# Make sure we have --configuration or PHPUnit might complain
