@@ -1287,8 +1287,7 @@ class WebInstallerOptions extends WebInstallerPage {
 
 		$retVal = true;
 
-		if ( !array_key_exists( $this->getVar( '_RightsProfile' ), $this->parent->rightsProfiles )
-		) {
+		if ( !array_key_exists( $this->getVar( '_RightsProfile' ), $this->parent->rightsProfiles ) ) {
 			reset( $this->parent->rightsProfiles );
 			$this->setVar( '_RightsProfile', key( $this->parent->rightsProfiles ) );
 		}
