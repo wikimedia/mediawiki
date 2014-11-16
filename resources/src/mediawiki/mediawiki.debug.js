@@ -311,11 +311,12 @@
 		 * @return {jQuery}
 		 */
 		buildDebugLogTable: function () {
-			var $list, i, length, line;
+			var $list, i, length, line, logentry;
 			$list = $( '<ul>' );
 
 			for ( i = 0, length = this.data.debugLog.length; i < length; i += 1 ) {
-				line = this.data.debugLog[i];
+				logentry = this.data.debugLog[i];
+				line = ( logentry.timer ? logentry.timer + " " + logentry.text : logentry.text );
 				$( '<li>' )
 					.html( mw.html.escape( line ).replace( /\n/g, '<br />\n' ) )
 					.appendTo( $list );
