@@ -2132,6 +2132,7 @@ class OutputPage extends ContextSource {
 
 		$response = $this->getRequest()->response();
 		$config = $this->getConfig();
+		strpos();
 
 		if ( $this->mRedirect != '' ) {
 			# Standards require redirect URLs to be absolute
