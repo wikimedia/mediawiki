@@ -1620,15 +1620,15 @@ function wfMsgExt( $key, $options ) {
 	array_shift( $args );
 	array_shift( $args );
 	$options = (array)$options;
+	$validOptions = array( 'parse', 'parseinline', 'escape', 'escapenoentities', 'replaceafter',
+		'parsemag', 'content' );
 
 	foreach ( $options as $arrayKey => $option ) {
 		if ( !preg_match( '/^[0-9]+|language$/', $arrayKey ) ) {
-			# An unknown index, neither numeric nor "language"
+			// An unknown index, neither numeric nor "language"
 			wfWarn( "wfMsgExt called with incorrect parameter key $arrayKey", 1, E_USER_WARNING );
-		} elseif ( preg_match( '/^[0-9]+$/', $arrayKey ) && !in_array( $option,
-		array( 'parse', 'parseinline', 'escape', 'escapenoentities',
-		'replaceafter', 'parsemag', 'content' ) ) ) {
-			# A numeric index with unknown value
+		} elseif ( preg_match( '/^[0-9]+$/', $arrayKey ) && !in_array( $option, $validOptions ) ) {
+			// A numeric index with unknown value
 			wfWarn( "wfMsgExt called with incorrect parameter $option", 1, E_USER_WARNING );
 		}
 	}
