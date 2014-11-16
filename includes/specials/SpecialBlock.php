@@ -147,6 +147,7 @@ class SpecialBlock extends FormSpecialPage {
 			),
 			'Reason' => array(
 				'type' => 'selectandother',
+				'maxlength' => 255,
 				'label-message' => 'ipbreason',
 				'options-message' => 'ipbreason-dropdown',
 			),
