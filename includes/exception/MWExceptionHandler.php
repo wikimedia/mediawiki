@@ -167,7 +167,39 @@ class MWExceptionHandler {
 	 * @param int $line
 	 */
 	public static function handleError( $level, $message, $file = null, $line = null ) {
-		$e = new ErrorException( $message, 0, $level, $file, $line );
+		// Map error constant to error name (reverse-engineer PHP error reporting)
+		switch ( $level ) {
+			case E_ERROR:
+			case E_CORE_ERROR:
+			case E_COMPILE_ERROR:
+			case E_USER_ERROR:
+			case E_RECOVERABLE_ERROR:
+			case E_PARSE:
+				$levelName = 'Error';
+				break;
+			case E_WARNING:
+			case E_CORE_WARNING:
+			case E_COMPILE_WARNING:
+			case E_USER_WARNING:
+				$levelName = 'Warning';
+				break;
+			case E_NOTICE:
+			case E_USER_NOTICE:
+				$levelName = 'Notice';
+				break;
+			case E_STRICT:
+				$levelName = 'Strict Standards';
+				break;
+			case E_DEPRECATED:
+			case E_USER_DEPRECATED:
+				$levelName = 'Deprecated';
+				break;
+			default:
+				$levelName = 'Unknown error';
+				break;
+		}
+
+		$e = new ErrorException( "PHP $levelName: $message", 0, $level, $file, $line );
 		self::logError( $e );
 
 		// This handler is for logging only. Return false will instruct PHP
