@@ -222,8 +222,6 @@ class MWException extends Exception {
 	public function report() {
 		global $wgMimeType;
 
-		MWExceptionHandler::logException( $this );
-
 		if ( defined( 'MW_API' ) ) {
 			// Unhandled API exception, we can't be sure that format printer is alive
 			self::header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $this ) );
