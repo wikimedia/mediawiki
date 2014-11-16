@@ -626,6 +626,7 @@
 	"content-model-text": "қалыпты мәтін",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "Үлгіні шақыруда қабатталып тұрған аргументтер қолданған беттер",
 	"expensive-parserfunction-warning": "<strong>Ескерту:</strong> Бұл бет тым көп шығыс алатын құрылым талдатқыш жетелер шақыруынан тұрады.\n\nБұл $2  {{PLURAL:$2|шақыру|шақырулар}} шамасынан кем болуы керек, осы арада {{PLURAL:$1|қазір $1 шақыру|қазір $1 шақыру}}.",
 	"expensive-parserfunction-category": "Шығыс алатын құрылым талдатқыш жетелерінің тым көп шақырымы бар беттер",
 	"post-expand-template-inclusion-warning": "<strong>Ескерту:</strong> Үлгі кірістіру мөлшері тым үлкен.\nКейбір үлгілер кірістірілмейді.",

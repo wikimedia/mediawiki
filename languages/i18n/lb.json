@@ -3057,6 +3057,7 @@
 	"log-description-pagelang": "Dëst ass a Log mat den Ännerunge vun de Sprooche vun de Säiten.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (aktivéiert)",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''desaktivéiert''')",
+	"mediastatistics": "Statistike vun de Medien",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 Byte|$1 Byten}} ($2; $3%)",
 	"mediastatistics-table-mimetype": "MIME-Typ",
 	"mediastatistics-table-extensions": "Méiglech Erweiderungen",
@@ -3066,6 +3067,7 @@
 	"mediastatistics-header-video": "Videoen",
 	"mediastatistics-header-office": "Office",
 	"mediastatistics-header-text": "Textuell",
+	"mediastatistics-header-archive": "Kompriméiert Formater",
 	"json-error-unknown": "Et gouf e Problem mam JSON. Feeler: $1",
 	"json-error-syntax": "Syntaxfeeler"
 }

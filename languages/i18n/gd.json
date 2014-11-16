@@ -844,7 +844,7 @@
 	"search-result-category-size": "{{PLURAL:$1|$1 bhall|$1 bhall|$1 bhuill|$1 ball}} ({{PLURAL:$2|$2 fho-roinn-seòrsa|$2 fho-roinn-seòrsa|$2 fo-roinnean-seòrsa|$2 fo-roinn-seòrsa}}, {{PLURAL:$3|$3 fhaidhle|$3 fhaidhle|$3 faidhlichean|$3 faidhle}})",
 	"search-redirect": "(ag ath-sheòladh $1)",
 	"search-section": "(earrann $1)",
-	"search-file-match": "{a' freagairt ri susbaint an fhaidhle)",
+	"search-file-match": "(a' freagairt ri susbaint an fhaidhle)",
 	"search-suggest": "An e na leanas a bha fa-near dhut: $1",
 	"search-interwiki-caption": "Pròiseactan co-cheangailte",
 	"search-interwiki-default": "Toraidhean o $1:",

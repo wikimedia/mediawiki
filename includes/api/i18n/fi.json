@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nike"
+		]
+	},
+	"apihelp-upload-param-stash": "Mikäli valittu, palvelin säilöö tiedoston väliaikaisesti tallentamisen sijaan."
+}

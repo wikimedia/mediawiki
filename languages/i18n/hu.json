@@ -819,7 +819,7 @@
 	"mergelogpagetext": "A lapok egyesítéséről szóló napló. Szűkítheted a listát a műveletet végző szerkesztő, vagy az érintett oldal megadásával.",
 	"history-title": "A(z) „$1” laptörténete",
 	"difference-title": "„$1” változatai közötti eltérés",
-	"difference-title-multipage": "Oldalak közötti különbség \" $1 \"és\" $2 \"",
+	"difference-title-multipage": "„$1” és „$2” oldalak közötti különbség",
 	"difference-multipage": "(Lapok közti eltérés)",
 	"lineno": "$1. sor:",
 	"compareselectedversions": "Kiválasztott változatok összehasonlítása",

@@ -334,6 +334,8 @@
 	"filerenameerror": "Không thể đổi tên tập tin “$1” thành “$2”.",
 	"filedeleteerror": "Không thể xóa tập tin “$1”.",
 	"directorycreateerror": "Không thể tạo được danh mục “$1”.",
+	"directoryreadonlyerror": "Thư mục “$1” là chỉ-đọc.",
+	"directorynotreadableerror": "Không đọc được thư mục “$1”.",
 	"filenotfound": "Không tìm thấy tập tin “$1”.",
 	"unexpected": "Không hiểu giá trị: “$1”=“$2”.",
 	"formerror": "Lỗi: không gửi mẫu đi được.",

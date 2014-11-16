@@ -462,7 +462,7 @@
 	"createacct-submit": "建立您的帳號",
 	"createacct-another-submit": "建立另一個帳號",
 	"createacct-benefit-heading": "{{SITENAME}} 是由像您一樣貢獻的人所建立的。",
-	"createacct-benefit-body1": " {{PLURAL:$1|次編輯}}",
+	"createacct-benefit-body1": "{{PLURAL:$1|次編輯}}",
 	"createacct-benefit-body2": "$1 頁",
 	"createacct-benefit-body3": " 位最近的{{PLURAL:$1|貢獻者}}",
 	"badretype": "兩次輸入的密碼並不相同。",
