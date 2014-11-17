@@ -116,4 +116,24 @@ class ApiQueryTest extends ApiTestCase {
 			array( 'apiquerytestiw:foo', NS_MAIN, null, true ),
 		);
 	}
+
+	/**
+	 * Test if all classes in the query module manager exists
+	 */
+	public function testClassNamesInModuleManager() {
+		global $wgAutoloadLocalClasses;
+
+		$api = new ApiMain(
+			new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ) )
+		);
+		$queryApi = new ApiQuery( $api, 'query' );
+		$modules = $queryApi->getModuleManager()->getNamesWithClasses();
+		foreach( $modules as $name => $class ) {
+			$this->assertArrayHasKey(
+				$class,
+				$wgAutoloadLocalClasses,
+				'Class ' . $class . ' for api module ' . $name . ' not in autoloader (with exact case)'
+			);
+		}
+	}
 }
