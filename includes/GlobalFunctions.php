@@ -1226,10 +1226,9 @@ function wfLogProfilingData() {
 	}
 
 	$ctx['output'] = $profiler->getOutput();
-	$ctx['profile'] = $profiler->getRawData();
 
 	$log = MWLogger::getInstance( 'profileoutput' );
-	$log->info( 'Elapsed: {elapsed}', $ctx );
+	$log->info( "Elapsed: {elapsed}; URL: <{url}>\n{output}", $ctx );
 }
 
 /**
