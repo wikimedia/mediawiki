@@ -77,11 +77,8 @@
 .button-colors(@bgColor) when (lightness(@bgColor) < 70%) {
 	color: #fff;
 	// border of the same color as background so that light background and
-	// dark background buttons are the same height (only top and bottom to
-	// make box shadow on hover cover the corners too)
+	// dark background buttons are the same height and width
 	border: 1px solid @bgColor;
-	border-left: none;
-	border-right: none;
 	text-shadow: 0 1px rgba(0, 0, 0, .1);
 
 	&:disabled {
