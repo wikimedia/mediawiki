@@ -16742,7 +16742,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! wikitext
 [[../../////]]
 !! html
-<p><a href="/index.php?title=Subpage_test/L1////&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1//// (page does not exist)">///</a>
+<p><a href="/index.php?title=Subpage_test/L1&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (page does not exist)">Subpage test/L1</a>
 </p>
 !! end
 
