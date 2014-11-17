@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.1.2 optimised for jQuery
+ * OOjs v1.1.3 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-06T17:42:36Z
+ * Date: 2014-11-17T19:17:29Z
  */
 ( function ( global ) {
 
@@ -20,6 +20,7 @@ var
 	 * @singleton
 	 */
 	oo = {},
+	// Optimisation: Local reference to Object.prototype.hasOwnProperty
 	hasOwn = oo.hasOwnProperty,
 	toString = oo.toString;
 
@@ -159,6 +160,64 @@ oo.mixinClass = function ( targetFn, originFn ) {
 /* Object Methods */
 
 /**
+ * Get a deeply nested property of an object using variadic arguments, protecting against
+ * undefined property errors.
+ *
+ * `quux = oo.getProp( obj, 'foo', 'bar', 'baz' );` is equivalent to `quux = obj.foo.bar.baz;`
+ * except that the former protects against JS errors if one of the intermediate properties
+ * is undefined. Instead of throwing an error, this function will return undefined in
+ * that case.
+ *
+ * @param {Object} obj
+ * @param {Mixed...} [keys]
+ * @returns obj[arguments[1]][arguments[2]].... or undefined
+ */
+oo.getProp = function ( obj ) {
+	var i,
+		retval = obj;
+	for ( i = 1; i < arguments.length; i++ ) {
+		if ( retval === undefined || retval === null ) {
+			// Trying to access a property of undefined or null causes an error
+			return undefined;
+		}
+		retval = retval[arguments[i]];
+	}
+	return retval;
+};
+
+/**
+ * Set a deeply nested property of an object using variadic arguments, protecting against
+ * undefined property errors.
+ *
+ * `oo.setProp( obj, 'foo', 'bar', 'baz' );` is equivalent to `obj.foo.bar = baz;` except that
+ * the former protects against JS errors if one of the intermediate properties is
+ * undefined. Instead of throwing an error, undefined intermediate properties will be
+ * initialized to an empty object. If an intermediate property is not an object, or if obj itself
+ * is not an object, this function will silently abort.
+ *
+ * @param {Object} obj
+ * @param {Mixed...} [keys]
+ * @param {Mixed} [value]
+ */
+oo.setProp = function ( obj ) {
+	var i,
+		prop = obj;
+	if ( Object( obj ) !== obj ) {
+		return;
+	}
+	for ( i = 1; i < arguments.length - 2; i++ ) {
+		if ( prop[arguments[i]] === undefined ) {
+			prop[arguments[i]] = {};
+		}
+		if ( Object( prop[arguments[i]] ) !== prop[arguments[i]] ) {
+			return;
+		}
+		prop = prop[arguments[i]];
+	}
+	prop[arguments[arguments.length - 2]] = arguments[arguments.length - 1];
+};
+
+/**
  * Create a new object that is an instance of the same
  * constructor as the input, inherits from the same object
  * and contains the same own properties.
@@ -228,7 +287,8 @@ oo.getObjectValues = function ( obj ) {
  *
  * @param {Object|undefined|null} a First object to compare
  * @param {Object|undefined|null} b Second object to compare
- * @param {boolean} [asymmetrical] Whether to check only that b contains values from a
+ * @param {boolean} [asymmetrical] Whether to check only that a's values are equal to b's
+ *  (i.e. a is a subset of b)
  * @return {boolean} If the objects contain the same values as each other
  */
 oo.compare = function ( a, b, asymmetrical ) {
@@ -242,9 +302,11 @@ oo.compare = function ( a, b, asymmetrical ) {
 	b = b || {};
 
 	for ( k in a ) {
-		if ( !hasOwn.call( a, k ) ) {
-			// Support es3-shim: Without this filter, comparing [] to {} will be false in ES3
+		if ( !hasOwn.call( a, k ) || a[k] === undefined ) {
+			// Support es3-shim: Without the hasOwn filter, comparing [] to {} will be false in ES3
 			// because the shimmed "forEach" is enumerable and shows up in Array but not Object.
+			// Also ignore undefined values, because there is no conceptual difference between
+			// a key that is absent and a key that is present but whose value is undefined.
 			continue;
 		}
 
