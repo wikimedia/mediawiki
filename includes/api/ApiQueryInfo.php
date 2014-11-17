@@ -58,10 +58,10 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public function requestExtraData( $pageSet ) {
 		$pageSet->requestField( 'page_restrictions' );
-		// when resolving redirects, no page will have this field
-		if ( !$pageSet->isResolvingRedirects() ) {
-			$pageSet->requestField( 'page_is_redirect' );
-		}
+		// If the pageset is resolving redirects we won't get page_is_redirect.
+		// But we can't know for sure until the pageset is executed (revids may
+		// turn it off), so request it unconditionally.
+		$pageSet->requestField( 'page_is_redirect' );
 		$pageSet->requestField( 'page_is_new' );
 		$config = $this->getConfig();
 		$pageSet->requestField( 'page_touched' );
