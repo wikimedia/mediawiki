@@ -13,7 +13,8 @@
 			"아라",
 			"Se4598",
 			"Suriyaa Kudo",
-			"Das Schäfchen"
+			"Das Schäfchen",
+			"Florian"
 		]
 	},
 	"config-desc": "Das MediaWiki-Installationsprogramm",
@@ -23,7 +24,7 @@
 	"config-localsettings-cli-upgrade": "Eine Datei <code>LocalSettings.php</code> wurde gefunden.\nUm die vorhandene Installation zu aktualisieren, muss die Datei <code>update.php</code> ausgeführt werden.",
 	"config-localsettings-key": "Aktualisierungsschlüssel:",
 	"config-localsettings-badkey": "Der angegebene Aktualisierungsschlüssel ist falsch.",
-	"config-upgrade-key-missing": "Eine MediaWiki-Installation wurde gefunden.\nUm die vorhandene Installation aktualisieren zu können, muss die unten angegebene Codezeile in die Datei <code>LocalSettings.php</code> an deren Ende eingefügt werden:\n\n$1",
+	"config-upgrade-key-missing": "Eine MediaWiki-Installation wurde gefunden.\nUm die vorhandene Installation aktualisieren zu können, muss die unten angegebene Codezeile an das Ende der Datei <code>LocalSettings.php</code> eingefügt werden:\n\n$1",
 	"config-localsettings-incomplete": "Die vorhandene Datei <code>LocalSettings.php</code> scheint unvollständig zu sein.\nDie Variable <code>$1</code> wurde nicht definiert.\nDie Datei <code>LocalSettings.php</code> muss entsprechend geändert werden, so dass sie definiert ist. Klicke danach auf „{{int:Config-continue}}“.",
 	"config-localsettings-connection-error": "Beim Verbindungsversuch zur Datenbank ist, unter Verwendung der in der Datei <code>LocalSettings.php</code> hinterlegten Einstellungen, ein Fehler aufgetreten. Diese Einstellungen müssen korrigiert werden. Danach kann ein erneuter Versuch unternommen werden.\n\n$1",
 	"config-session-error": "Fehler beim Starten der Sitzung: $1",

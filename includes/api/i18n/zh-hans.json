@@ -5,10 +5,11 @@
 			"Linforest",
 			"Liuxinyu970226",
 			"Papapasan",
-			"LNDDYL"
+			"LNDDYL",
+			"Shizhao"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page 文档]\n* [https://www.mediawiki.org/wiki/API:FAQ 常见问题]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://bugzilla.wikimedia.org/buglist.cgi?component=API&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong> 本页所展示的所有特性都应正常工作，但是API仍在开发当中，将会随时变化。请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong> 当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅https://www.mediawiki.org/wiki/API:Errors_and_warnings 。",
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page/zh 文档]\n* [https://www.mediawiki.org/wiki/API:FAQ/zh 常见问题]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://bugzilla.wikimedia.org/buglist.cgi?component=API&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong> 本页所展示的所有特性都应正常工作，但是API仍在开发当中，将会随时变化。请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong> 当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅 https://www.mediawiki.org/wiki/API:Errors_and_warnings 。",
 	"apihelp-main-param-action": "要执行的操作。",
 	"apihelp-main-param-format": "输出的格式。",
 	"apihelp-main-param-curtimestamp": "在结果中包括当前时间戳。",

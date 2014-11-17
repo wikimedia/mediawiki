@@ -3063,6 +3063,8 @@
 	"mediastatistics-table-extensions": "Méiglech Erweiderungen",
 	"mediastatistics-table-count": "Zuel vun de Fichieren",
 	"mediastatistics-header-unknown": "Onbekannt",
+	"mediastatistics-header-bitmap": "Bitmap-Biller",
+	"mediastatistics-header-drawing": "Zeechnungen (Vektorbiller)",
 	"mediastatistics-header-audio": "Audio",
 	"mediastatistics-header-video": "Videoen",
 	"mediastatistics-header-office": "Office",
