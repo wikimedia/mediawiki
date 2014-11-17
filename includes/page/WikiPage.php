@@ -2216,6 +2216,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 		$edits = $options['changed'] ? 1 : 0;
 		$total = $options['created'] ? 1 : 0;
+		wfDebug( __METHOD__ . ': page counting: $good=' . $good );
 
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, $edits, $good, $total ) );
 		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content ) );
