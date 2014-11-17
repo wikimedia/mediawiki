@@ -537,6 +537,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status; // already there
 		} elseif ( $stat === null ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
+			wfDebugLog( 'SwiftBackend', __METHOD__ . ': cannot get container stat' );
 
 			return $status;
 		}
@@ -568,6 +569,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
 		} else {
 			$status->fatal( 'backend-fail-internal', $this->name );
+			wfDebugLog( 'SwiftBackend', __METHOD__ . ': cannot get container stat' );
 		}
 
 		return $status;
@@ -588,6 +590,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
 		} else {
 			$status->fatal( 'backend-fail-internal', $this->name );
+			wfDebugLog( 'SwiftBackend', __METHOD__ . ': cannot get container stat' );
 		}
 
 		return $status;
@@ -607,6 +610,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status; // ok, nothing to do
 		} elseif ( !is_array( $stat ) ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
+			wfDebugLog( 'SwiftBackend', __METHOD__ . ': cannot get container stat' );
 
 			return $status;
 		}
@@ -1253,6 +1257,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		if ( $rcode != 204 && $rcode !== 202 ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
+			wfDebugLog( 'SwiftBackend', __METHOD__ . ': unexpected rcode value (' . $rcode . ')' );
 		}
 
 		return $status;
