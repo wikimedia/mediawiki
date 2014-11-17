@@ -1458,6 +1458,7 @@ class WikiRevision {
 			$pageId = $page->insertOn( $dbw );
 			$created = true;
 			$oldcountable = null;
+			wfDebugLog( 'Bug40009', __METHOD__ . ': nonexistent page "' . $this->title . '", created=true' );
 		} else {
 			$pageId = $page->getId();
 			$created = false;
@@ -1476,6 +1477,7 @@ class WikiRevision {
 				return false;
 			}
 			$oldcountable = $page->isCountable();
+			wfDebugLog( 'Bug40009', __METHOD__ . ': existing page "' . $this->title . '", oldcountable=' . $oldcountable );
 		}
 
 		# @todo FIXME: Use original rev_id optionally (better for backups)
@@ -1495,6 +1497,7 @@ class WikiRevision {
 			) );
 		$revision->insertOn( $dbw );
 		$changed = $page->updateIfNewerOn( $dbw, $revision );
+		wfDebugLog( 'Bug40009', __METHOD__ . ': after updateIfNewerOn, changed=' . $changed );
 
 		if ( $changed !== false && !$this->mNoUpdates ) {
 			wfDebug( __METHOD__ . ": running updates\n" );
