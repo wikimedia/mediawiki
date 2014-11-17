@@ -209,19 +209,6 @@ class ApiParse extends ApiBase {
 			if ( $params['pst'] || $params['onlypst'] ) {
 				$this->pstContent = $this->content->preSaveTransform( $titleObj, $this->getUser(), $popts );
 			}
-			if ( $params['onlypst'] ) {
-				// Build a result and bail out
-				$result_array = array();
-				$result_array['text'] = array();
-				ApiResult::setContent( $result_array['text'], $this->pstContent->serialize( $format ) );
-				if ( isset( $prop['wikitext'] ) ) {
-					$result_array['wikitext'] = array();
-					ApiResult::setContent( $result_array['wikitext'], $this->content->serialize( $format ) );
-				}
-				$result->addValue( null, $this->getModuleName(), $result_array );
-
-				return;
-			}
 
 			// Not cached (save or load)
 			if ( $params['pst'] ) {
@@ -235,12 +222,33 @@ class ApiParse extends ApiBase {
 
 		$result_array['title'] = $titleObj->getPrefixedText();
 
+		if ( !is_null( $params['summary'] ) ) {
+			$result_array['parsedsummary'] = array();
+			ApiResult::setContent(
+				$result_array['parsedsummary'],
+				Linker::formatComment( $params['summary'], $titleObj )
+			);
+		}
+
 		if ( !is_null( $oldid ) ) {
 			$result_array['revid'] = intval( $oldid );
 		}
 
 		if ( $params['redirects'] && !is_null( $redirValues ) ) {
 			$result_array['redirects'] = $redirValues;
+		}
+
+		if ( $params['onlypst'] ) {
+			// Build a result and bail out.
+			$result_array['text'] = array();
+			ApiResult::setContent( $result_array['text'], $this->pstContent->serialize( $format ) );
+			if ( isset( $prop['wikitext'] ) ) {
+				$result_array['wikitext'] = array();
+				ApiResult::setContent( $result_array['wikitext'], $this->content->serialize( $format ) );
+			}
+			$result->addValue( null, $this->getModuleName(), $result_array );
+
+			return;
 		}
 
 		if ( $params['disabletoc'] ) {
@@ -250,14 +258,6 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['text'] ) ) {
 			$result_array['text'] = array();
 			ApiResult::setContent( $result_array['text'], $p_result->getText() );
-		}
-
-		if ( !is_null( $params['summary'] ) ) {
-			$result_array['parsedsummary'] = array();
-			ApiResult::setContent(
-				$result_array['parsedsummary'],
-				Linker::formatComment( $params['summary'], $titleObj )
-			);
 		}
 
 		if ( isset( $prop['langlinks'] ) ) {
