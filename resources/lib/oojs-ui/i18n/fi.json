@@ -26,5 +26,6 @@
 	"ooui-dialog-message-reject": "Peruuta",
 	"ooui-dialog-process-error": "Jokin meni pieleen",
 	"ooui-dialog-process-dismiss": "Hylkää",
-	"ooui-dialog-process-retry": "Yritä uudelleen"
+	"ooui-dialog-process-retry": "Yritä uudelleen",
+	"ooui-dialog-process-continue": "Jatka"
 }

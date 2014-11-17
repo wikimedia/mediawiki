@@ -13,8 +13,11 @@
 	"ooui-outline-control-move-up": "Elem mozgatása felfelé",
 	"ooui-outline-control-remove": "Elem eltávolítása",
 	"ooui-toolbar-more": "Tovább...",
+	"ooui-toolgroup-expand": "Több",
+	"ooui-toolgroup-collapse": "Kevesebb",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Mégse",
 	"ooui-dialog-process-dismiss": "Elrejt",
-	"ooui-dialog-process-retry": "Próbáld újra"
+	"ooui-dialog-process-retry": "Próbáld újra",
+	"ooui-dialog-process-continue": "Folytatás"
 }

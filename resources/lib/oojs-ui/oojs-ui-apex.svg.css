@@ -1,13 +1,59 @@
 /*!
- * OOjs UI v0.1.0-pre (fe4076af75)
+ * OOjs UI v0.1.0-pre (f1abca8e82)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-13T22:25:27Z
+ * Date: 2014-11-17T23:49:34Z
  */
+.oo-ui-progressBarWidget-slide-frames from {
+	margin-left: -40%;
+}
+.oo-ui-progressBarWidget-slide-frames to {
+	margin-left: 100%;
+}
+@-webkit-keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
+}
+@-moz-keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
+}
+@-ms-keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
+}
+@-o-keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
+}
+@keyframes oo-ui-progressBarWidget-slide {
+	from {
+		margin-left: -40%;
+	}
+	to {
+		margin-left: 100%;
+	}
+}
 /* @noflip */
 .oo-ui-rtl {
 	direction: rtl;
@@ -1119,19 +1165,19 @@
 	margin-left: 0;
 }
 .oo-ui-progressBarWidget {
-	width: 100%;
 	max-width: 50em;
 	border: solid 1px #a6cee1;
 	border-radius: 0.25em;
+	overflow: hidden;
 }
 .oo-ui-progressBarWidget-bar {
 	height: 1em;
 	border-right: solid 1px #a6cee1;
-	-webkit-transition: width 200ms;
-	   -moz-transition: width 200ms;
-	    -ms-transition: width 200ms;
-	     -o-transition: width 200ms;
-	        transition: width 200ms;
+	-webkit-transition: width 200ms, margin-left 200ms;
+	   -moz-transition: width 200ms, margin-left 200ms;
+	    -ms-transition: width 200ms, margin-left 200ms;
+	     -o-transition: width 200ms, margin-left 200ms;
+	        transition: width 200ms, margin-left 200ms;
 	background: #cde7f4;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#eaf4fa', endColorstr='#b0d9ee');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #eaf4fa), color-stop(100%, #b0d9ee));
@@ -1140,6 +1186,16 @@
 	background-image:     -ms-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
 	background-image:      -o-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
 	background-image:         linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
+}
+.oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
+	-webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	   -moz-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	    -ms-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	     -o-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	        animation: oo-ui-progressBarWidget-slide 2s infinite linear;
+	width: 40%;
+	margin-left: -10%;
+	border-left: solid 1px #a6cee1;
 }
 .oo-ui-progressBarWidget.oo-ui-widget-disabled {
 	opacity: 0.6;
@@ -1996,7 +2052,7 @@
 	width: 100%;
 	height: 100%;
 }
-.oo-ui-windowManager-modal > .oo-ui-dialog .oo-ui-window-frame {
+.oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
 	visibility: hidden;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready > .oo-ui-window-frame {

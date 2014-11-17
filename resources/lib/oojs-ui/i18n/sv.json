@@ -24,5 +24,6 @@
 	"ooui-dialog-message-reject": "Avbryt",
 	"ooui-dialog-process-error": "Något gick fel",
 	"ooui-dialog-process-dismiss": "Stäng",
-	"ooui-dialog-process-retry": "Försök igen"
+	"ooui-dialog-process-retry": "Försök igen",
+	"ooui-dialog-process-continue": "Fortsätt"
 }

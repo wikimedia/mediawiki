@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (fe4076af75)
+ * OOjs UI v0.1.0-pre (f1abca8e82)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-13T22:25:17Z
+ * Date: 2014-11-17T23:49:27Z
  */
 ( function ( OO ) {
 
@@ -10699,7 +10699,7 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {number} [progress=0] Initial progress
+ * @cfg {number|boolean} [progress=false] Initial progress percent or false for indeterminate
  */
 OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
 	// Configuration initialization
@@ -10713,7 +10713,7 @@ OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
 	this.progress = null;
 
 	// Initialization
-	this.setProgress( config.progress || 0 );
+	this.setProgress( config.progress !== undefined ? config.progress : false );
 	this.$bar.addClass( 'oo-ui-progressBarWidget-bar');
 	this.$element
 		.attr( {
@@ -10747,13 +10747,19 @@ OO.ui.ProgressBarWidget.prototype.getProgress = function () {
 /**
  * Set progress percent
  *
- * @param {number} progress Progress percent
+ * @param {number|boolean} progress Progress percent or false for indeterminate
  */
 OO.ui.ProgressBarWidget.prototype.setProgress = function ( progress ) {
 	this.progress = progress;
 
-	this.$bar.css( 'width', this.progress + '%' );
-	this.$element.attr( 'aria-valuenow', this.progress );
+	if ( progress !== false ) {
+		this.$bar.css( 'width', this.progress + '%' );
+		this.$element.attr( 'aria-valuenow', this.progress );
+	} else {
+		this.$bar.css( 'width', '' );
+		this.$element.removeAttr( 'aria-valuenow' );
+	}
+	this.$element.toggleClass( 'oo-ui-progressBarWidget-indeterminate', !progress );
 };
 
 /**
@@ -11293,7 +11299,7 @@ OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
  * Get an item relative to another one.
  *
  * @param {OO.ui.OptionWidget} item Item to start at
- * @param {number} direction Direction to move in
+ * @param {number} direction Direction to move in, -1 to look backward, 1 to move forward
  * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the menu
  */
 OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direction ) {

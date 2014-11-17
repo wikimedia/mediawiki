@@ -10,7 +10,8 @@
 			"Mormegil",
 			"Polda18",
 			"Tchoř",
-			"ශ්වෙත"
+			"ශ්වෙත",
+			"Vojtěch Dostál"
 		]
 	},
 	"ooui-outline-control-move-down": "Přesunout položku dolů",
@@ -23,5 +24,6 @@
 	"ooui-dialog-message-reject": "Storno",
 	"ooui-dialog-process-error": "Něco se pokazilo",
 	"ooui-dialog-process-dismiss": "Zavřít",
-	"ooui-dialog-process-retry": "Zkusit znovu"
+	"ooui-dialog-process-retry": "Zkusit znovu",
+	"ooui-dialog-process-continue": "Pokračovat"
 }
