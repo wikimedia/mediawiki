@@ -536,9 +536,9 @@ class Parser {
 			uasort( $dataByFunc, function( $a, $b ) {
 				return $a['real'] < $b['real']; // descending order
 			} );
-			$profileReport = "Top template expansion time report (%,ms,calls,template)\n";
+			$profileReport = "Transclusion expansion time report (%,ms,calls,template)\n";
 			foreach ( array_slice( $dataByFunc, 0, 10 ) as $item ) {
-				$profileReport .= sprintf( "%6.2f%% %3.6f %6d - %s\n",
+				$profileReport .= sprintf( "%6.2f%% %8.3f %6d - %s\n",
 					$item['%real'], $item['real'], $item['calls'],
 					htmlspecialchars($item['name'] ) );
 			}
