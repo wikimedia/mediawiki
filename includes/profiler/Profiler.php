@@ -157,11 +157,11 @@ abstract class Profiler {
 		}
 
 		foreach ( $output as $outType ) {
-			if ( isset( self::$outputTypes[$outType] ) ) {
-				$class = self::$outputTypes[$outType];
-			} else {
+			if ( !isset( self::$outputTypes[$outType] ) ) {
 				throw new MWException( "'$outType' is an invalid output type" );
 			}
+			$class = self::$outputTypes[$outType];
+
 			/** @var ProfilerOutput $profileOut */
 			$profileOut = new $class( $this, $this->params );
 			if ( $profileOut->canUse() ) {
