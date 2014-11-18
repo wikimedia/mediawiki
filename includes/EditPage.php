@@ -155,6 +155,12 @@ class EditPage {
 	const AS_IMAGE_REDIRECT_LOGGED = 234;
 
 	/**
+	 * Status: user tried to modify the content model, but is not allowed to do that
+	 * ( User::isAllowed('editcontentmodel') == false )
+	 */
+	const AS_NO_CHANGE_CONTENT_MODEL = 235;
+
+	/**
 	 * Status: can't parse content
 	 */
 	const AS_PARSE_ERROR = 240;
@@ -1329,6 +1335,9 @@ class EditPage {
 				$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
 				throw new PermissionsError( $permission );
 
+			case self::AS_NO_CHANGE_CONTENT_MODEL:
+				throw new PermissionsError( 'editcontentmodel' );
+
 			default:
 				// We don't recognize $status->value. The only way that can happen
 				// is if an extension hook aborted from inside ArticleSave.
@@ -1541,6 +1550,15 @@ class EditPage {
 				wfProfileOut( __METHOD__ );
 				return $status;
 			}
+		}
+
+		if ( $this->contentModel !== $this->mTitle->getContentModel()
+			&& !$wgUser->isAllowed( 'editcontentmodel' )
+		) {
+			$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
+			wfProfileOut( __METHOD__ . '-checks' );
+			wfProfileOut( __METHOD__ );
+			return $status;
 		}
 
 		if ( wfReadOnly() ) {
