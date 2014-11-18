@@ -63,6 +63,11 @@ if ( $__useReadline ) {
 	readline_read_history( $__historyFile );
 }
 
+$__phpPath = preg_match( '/Zend Engine|HipHop VM/', wfShellExecWithStderr( 'php --version' ) )
+	? 'php' //standard system path name
+	: ''; // not accessible somehow
+
+$__multiLine = '';
 $__e = null; // PHP exception
 while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 	if ( $__e && !preg_match( '/^(exit|die);?$/', $__line ) ) {
@@ -77,8 +82,18 @@ while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 		readline_add_history( $__line );
 		readline_write_history( $__historyFile );
 	}
+	// Try to only run PHP once a valid chunk is formed (deals with newlines)
+	if ( $__phpPath ) {
+		$res = wfShellExecWithStderr(
+			"echo " . wfEscapeShellArg( "<?php\n{$__multiLine}{$__line}" ) . " | php -l" );
+		if ( strpos( $res, 'No syntax errors' ) !== 0 && substr( $__multiLine, -2 ) !== "\n\n" ) {
+			$__multiLine .= "$__line\n";
+			continue;
+		}
+	}
 	try {
-		$__val = eval( $__line . ";" );
+		$__val = eval( $__multiLine . $__line . ";" );
+		$__multiLine = '';
 	} catch ( Exception $__e ) {
 		echo "Caught exception " . get_class( $__e ) .
 			": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n";
