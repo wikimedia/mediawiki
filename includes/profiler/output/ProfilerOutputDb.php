@@ -35,7 +35,7 @@ class ProfilerOutputDb extends ProfilerOutput {
 		return !wfReadOnly();
 	}
 
-	protected function logStandardData( array $stats ) {
+	public function log( array $stats ) {
 		global $wgProfilePerHost;
 
 		if ( $wgProfilePerHost ) {

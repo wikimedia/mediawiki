@@ -42,7 +42,7 @@ class ProfilerOutputText extends ProfilerOutput {
 			? $params['thresholdMs']
 			: .25;
 	}
-	protected function logStandardData( array $stats ) {
+	public function log( array $stats ) {
 		if ( $this->collector->getTemplated() ) {
 			$out = '';
 

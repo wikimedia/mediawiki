@@ -150,7 +150,7 @@ abstract class Profiler {
 			$class = 'ProfilerOutput' . ucfirst( strtolower( $outType ) );
 			$profileOut = new $class( $this, $this->params );
 			if ( $profileOut->canUse() ) {
-				$profileOut->log();
+				$profileOut->log( $this->getFunctionStats() );
 			}
 		}
 	}
