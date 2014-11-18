@@ -1,6 +1,6 @@
-/*
-** Diff rendering
-*/
+/*!
+ * Diff rendering
+ */
 table.diff {
 	border: none;
 	border-spacing: 4px;
