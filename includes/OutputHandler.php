@@ -28,8 +28,8 @@
  * @return string
  */
 function wfOutputHandler( $s ) {
-	global $wgDisableOutputCompression, $wgValidateAllHtml;
-	$s = wfMangleFlashPolicy( $s );
+	global $wgDisableOutputCompression, $wgValidateAllHtml, $wgMangleFlashPolicy;
+	$s = $wgMangleFlashPolicy ? wfMangleFlashPolicy( $s ) : $s;
 	if ( $wgValidateAllHtml ) {
 		$headers = headers_list();
 		$isHTML = false;
