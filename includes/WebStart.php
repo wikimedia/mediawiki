@@ -111,7 +111,7 @@ wfProfileIn( 'WebStart.php-ob_start' );
 # Check that there is no previous output or previously set up buffers, because
 # that would cause us to potentially mix gzip and non-gzip output, creating a
 # big mess.
-if ( !defined( 'MW_NO_OUTPUT_BUFFER' ) && ob_get_level() == 0 ) {
+if ( ob_get_level() == 0 ) {
 	require_once "$IP/includes/OutputHandler.php";
 	ob_start( 'wfOutputHandler' );
 }
