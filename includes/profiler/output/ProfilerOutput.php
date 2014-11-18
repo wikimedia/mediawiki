@@ -49,16 +49,9 @@ abstract class ProfilerOutput {
 	}
 
 	/**
-	 * Delegate to the proper method
-	 */
-	public function log() {
-		$this->logStandardData( $this->collector->getFunctionStats() );
-	}
-
-	/**
 	 * Log MediaWiki-style profiling data
 	 *
 	 * @param array $stats Result of Profiler::getFunctionStats()
 	 */
-	abstract protected function logStandardData( array $stats );
+	abstract public function log( array $stats );
 }

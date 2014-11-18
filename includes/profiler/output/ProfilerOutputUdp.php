@@ -34,7 +34,7 @@ class ProfilerOutputUdp extends ProfilerOutput {
 		return function_exists( 'socket_create' );
 	}
 
-	protected function logStandardData( array $stats ) {
+	public function log( array $stats ) {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgUDPProfilerFormatString;
 
 		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );

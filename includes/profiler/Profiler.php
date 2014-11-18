@@ -165,7 +165,7 @@ abstract class Profiler {
 			/** @var ProfilerOutput $profileOut */
 			$profileOut = new $class( $this, $this->params );
 			if ( $profileOut->canUse() ) {
-				$profileOut->log();
+				$profileOut->log( $this->getFunctionStats() );
 			}
 		}
 	}
