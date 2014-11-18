@@ -3459,6 +3459,7 @@ Refers to {{msg-mw|Protect-level-autoconfirmed}}.
 
 See also:
 * {{msg-mw|Right-editprotected}}',
+'right-editcontentmodel' => '{{doc-right|editcontentmodel}}',
 'right-editinterface' => '{{doc-right|editinterface}}',
 'right-editusercssjs' => '{{doc-right|editusercssjs}}',
 'right-editusercss' => '{{doc-right|editusercss}}
@@ -3558,6 +3559,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 {{Identical|View your watchlist}}',
 'action-viewmyprivateinfo' => '{{doc-action|viewmyprivateinfo}}',
 'action-editmyprivateinfo' => '{{doc-action|editmyprivateinfo}}',
+'action-editcontentmodel' => '{{doc-action|editcontentmodel}}',
 
 # Recent changes
 'nchanges' => 'Appears on enhanced watchlist and recent changes when page has more than one change on given date, linking to a diff of the changes.
