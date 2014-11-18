@@ -39,6 +39,15 @@ abstract class Profiler {
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
 
+	/**
+	 * @var array Mapping of output type to class name
+	 */
+	private static $outputTypes = array(
+		'db' => 'ProfilerOutputDb',
+		'text' => 'ProfilerOutputText',
+		'udp' => 'ProfilerOutputUdp',
+	);
+
 	// @codingStandardsIgnoreStart PSR2.Classes.PropertyDeclaration.Underscore
 	/** @var Profiler Do not call this outside Profiler and ProfileSection */
 	public static $__instance = null;
@@ -131,6 +140,7 @@ abstract class Profiler {
 	/**
 	 * Log the data to some store or even the page output
 	 *
+	 * @throws MWException
 	 * @since 1.25
 	 */
 	public function logData() {
@@ -147,7 +157,12 @@ abstract class Profiler {
 		}
 
 		foreach ( $output as $outType ) {
-			$class = 'ProfilerOutput' . ucfirst( strtolower( $outType ) );
+			if ( isset( self::$outputTypes[$outType] ) ) {
+				$class = self::$outputTypes[$outType];
+			} else {
+				throw new MWException( "'$outType' is an invalid output type" );
+			}
+			/** @var ProfilerOutput $profileOut */
 			$profileOut = new $class( $this, $this->params );
 			if ( $profileOut->canUse() ) {
 				$profileOut->log();
