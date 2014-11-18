@@ -61,37 +61,22 @@ class ProfilerOutputDb extends ProfilerOutput {
 				$timeSum = $timeSum >= 0 ? $timeSum : 0;
 				$memorySum = $memorySum >= 0 ? $memorySum : 0;
 
-				$dbw->update( 'profiling',
+				$dbw->upsert( 'profiling',
+					array(
+						'pf_name' => $name,
+						'pf_count' => $eventCount,
+						'pf_time' => $timeSum,
+						'pf_memory' => $memorySum,
+						'pf_server' => $pfhost
+					),
+					array( array( 'pf_name', 'pf_server' ) ),
 					array(
 						"pf_count=pf_count+{$eventCount}",
 						"pf_time=pf_time+{$timeSum}",
 						"pf_memory=pf_memory+{$memorySum}",
 					),
-					array(
-						'pf_name' => $name,
-						'pf_server' => $pfhost,
-					),
-					__METHOD__ );
-
-				$rc = $dbw->affectedRows();
-				if ( $rc == 0 ) {
-					$dbw->insert( 'profiling',
-						array(
-							'pf_name' => $name,
-							'pf_count' => $eventCount,
-							'pf_time' => $timeSum,
-							'pf_memory' => $memorySum,
-							'pf_server' => $pfhost
-						),
-						__METHOD__,
-						array( 'IGNORE' )
-					);
-				}
-				// When we upgrade to mysql 4.1, the insert+update
-				// can be merged into just a insert with this construct added:
-				//     "ON DUPLICATE KEY UPDATE ".
-				//     "pf_count=pf_count + VALUES(pf_count), ".
-				//     "pf_time=pf_time + VALUES(pf_time)";
+					__METHOD__
+				);
 			}
 			if ( $useTrx ) {
 				$dbw->endAtomic( __METHOD__ );
