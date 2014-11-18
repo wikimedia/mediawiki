@@ -5,7 +5,7 @@
  * http://www.modernmethod.com/sajax/
  */
 
-/*jshint camelcase:false */
+/*jscs:disable requireCamelCaseOrUpperCaseIdentifiers */
 /*global alert */
 ( function ( mw ) {
 
