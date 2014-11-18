@@ -24,8 +24,6 @@
 /**
  * Logs profiling data into the local DB
  *
- * $wgProfiler['class'] = 'ProfilerSimpleDB';
- *
  * @ingroup Profiler
  * @since 1.25
  */

@@ -24,11 +24,6 @@
 /**
  * The least sophisticated profiler output class possible, view your source! :)
  *
- * Put the following 2 lines in StartProfiler.php:
- *
- * $wgProfiler['class'] = 'ProfilerSimpleText';
- * $wgProfiler['visible'] = true;
- *
  * @ingroup Profiler
  * @since 1.25
  */
