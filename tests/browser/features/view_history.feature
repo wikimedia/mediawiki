@@ -1,6 +1,10 @@
 @chrome @clean @firefox @phantomjs
 Feature: View History
 
+  Scenario: View history link is present
+    When I am at a random page
+    Then View history link should be present
+
   Scenario: Edit page and view history
     Given I go to the "History Test Page" page with content "This is a page that will have history"
     When I click Edit
