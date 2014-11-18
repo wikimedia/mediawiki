@@ -224,6 +224,12 @@ define( 'MW_SUPPORTS_RESOURCE_MODULES', 1 );
 /**@{
  * Allowed values for Parser::$mOutputType
  * Parameter to Parser::startExternalParse().
+ * Use of Parser consts is preferred:
+ * - Parser::OT_HTML
+ * - Parser::OT_WIKI
+ * - Parser::OT_PREPROCESS
+ * - Parser::OT_MSG
+ * - Parser::OT_PLAIN
  */
 define( 'OT_HTML', 1 );
 define( 'OT_WIKI', 2 );
