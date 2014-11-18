@@ -21,6 +21,8 @@ production.
   RequestContext specifically.
 * Profiling was restructured and $wgProfiler now requires an 'output' parameter.
   See StartProfiler.sample for details.
+* $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
+  might be a flash policy directive configurable.
 
 === New features in 1.25 ===
 * (bug 62861) Updated plural rules to CLDR 26. Includes incompatible changes
