@@ -23,37 +23,35 @@
 
 /**
  * ProfilerSimpleUDP class, that sends out messages for 'udpprofile' daemon
- * (the one from
- *  http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile)
+ * (see http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile)
+ *
  * @ingroup Profiler
+ * @since 1.25
  */
-class ProfilerSimpleUDP extends ProfilerStandard {
-	public function logData() {
+class ProfilerOutputUdp extends ProfilerOutput {
+	public function canUse() {
+		# Sockets are not enabled
+		return function_exists( 'socket_create' );
+	}
+
+	protected function logStandardData( array $stats ) {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgUDPProfilerFormatString;
-
-		$this->close();
-
-		if ( !function_exists( 'socket_create' ) ) {
-			# Sockets are not enabled
-			return;
-		}
 
 		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 		$plength = 0;
 		$packet = "";
-		foreach ( $this->collated as $entry => $pfdata ) {
-			if ( !isset( $pfdata['count'] )
-				|| !isset( $pfdata['cpu'] )
-				|| !isset( $pfdata['cpu_sq'] )
-				|| !isset( $pfdata['real'] )
-				|| !isset( $pfdata['real_sq'] ) ) {
-				continue;
-			}
-			$pfline = sprintf( $wgUDPProfilerFormatString, $this->getProfileID(), $pfdata['count'],
-				$pfdata['cpu'], $pfdata['cpu_sq'], $pfdata['real'], $pfdata['real_sq'], $entry,
-				$pfdata['memory'] );
+		foreach ( $stats as $pfdata ) {
+			$pfline = sprintf( $wgUDPProfilerFormatString,
+				$this->collector->getProfileID(),
+				$pfdata['calls'],
+				$pfdata['cpu'] / 1000, // ms => sec
+				0.0, // sum of CPU^2 for each invocation (unused)
+				$pfdata['real'] / 1000, // ms => sec
+				0.0, // sum of real^2 for each invocation (unused)
+				$pfdata['name'],
+				$pfdata['memory']
+			);
 			$length = strlen( $pfline );
-			/* printf("<!-- $pfline -->"); */
 			if ( $length + $plength > 1400 ) {
 				socket_sendto( $sock, $packet, $plength, 0, $wgUDPProfilerHost, $wgUDPProfilerPort );
 				$packet = "";

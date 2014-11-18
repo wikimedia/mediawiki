@@ -237,13 +237,6 @@ class ProfilerStandard extends Profiler {
 	}
 
 	/**
-	 * Log the data to some store or even the page output
-	 */
-	public function logData() {
-		/* Implement in subclasses */
-	}
-
-	/**
 	 * Returns a profiling output to be stored in debug file
 	 *
 	 * @return string
@@ -328,6 +321,17 @@ class ProfilerStandard extends Profiler {
 		# which has been fixed in recent releases.
 		return sprintf( "%10s %s %s\n",
 			trim( sprintf( "%7.3f", $delta * 1000.0 ) ), $space, $fname );
+	}
+
+	/**
+	 * Return the collated data, collating first if need be
+	 * @return array
+	 */
+	public function getCollatedData() {
+		if ( !$this->collateDone ) {
+			$this->collateData();
+		}
+		return $this->collated;
 	}
 
 	/**
@@ -439,10 +443,7 @@ class ProfilerStandard extends Profiler {
 		return $prof;
 	}
 
-	/**
-	 * @return array
-	 */
-	public function getRawData() {
+	public function getFunctionStats() {
 		// This method is called before shutdown in the footer method on Skins.
 		// If some outer methods have not yet called wfProfileOut(), work around
 		// that by clearing anything in the work stack to just the "-total" entry.
@@ -463,28 +464,29 @@ class ProfilerStandard extends Profiler {
 			$this->collateDone = false;
 		}
 
-		$total = isset( $this->collated['-total'] )
+		$totalCpu = isset( $this->collated['-total'] )
+			? $this->collated['-total']['cpu']
+			: 0;
+		$totalReal = isset( $this->collated['-total'] )
 			? $this->collated['-total']['real']
+			: 0;
+		$totalMem = isset( $this->collated['-total'] )
+			? $this->collated['-total']['memory']
 			: 0;
 
 		$profile = array();
 		foreach ( $this->collated as $fname => $data ) {
-			$periods = array();
-			foreach ( $data['periods'] as $period ) {
-				$period['start'] *= 1000;
-				$period['end'] *= 1000;
-				$periods[] = $period;
-			}
 			$profile[] = array(
 				'name' => $fname,
 				'calls' => $data['count'],
-				'elapsed' => $data['real'] * 1000,
-				'percent' => $total ? 100 * $data['real'] / $total : 0,
+				'real' => $data['real'] * 1000,
+				'%real' => $totalReal ? 100 * $data['real'] / $totalReal : 0,
+				'cpu' => $data['cpu'] * 1000,
+				'%cpu' => $totalCpu ? 100 * $data['cpu'] / $totalCpu : 0,
 				'memory' => $data['memory'],
+				'%memory' => $totalMem ? 100 * $data['memory'] / $totalMem : 0,
 				'min' => $data['min_real'] * 1000,
-				'max' => $data['max_real'] * 1000,
-				'overhead' => $data['overhead'],
-				'periods' => $periods
+				'max' => $data['max_real'] * 1000
 			);
 		}
 
@@ -522,17 +524,67 @@ class ProfilerStandard extends Profiler {
 	}
 
 	/**
-	 * Get the content type sent out to the client.
-	 * Used for profilers that output instead of store data.
-	 * @return string
+	 * Get the initial time of the request, based either on $wgRequestTime or
+	 * $wgRUstart. Will return null if not able to find data.
+	 *
+	 * @param string|bool $metric Metric to use, with the following possibilities:
+	 *   - user: User CPU time (without system calls)
+	 *   - cpu: Total CPU time (user and system calls)
+	 *   - wall (or any other string): elapsed time
+	 *   - false (default): will fall back to default metric
+	 * @return float|null
 	 */
-	protected function getContentType() {
-		foreach ( headers_list() as $header ) {
-			if ( preg_match( '#^content-type: (\w+/\w+);?#i', $header, $m ) ) {
-				return $m[1];
+	protected function getTime( $metric = 'wall' ) {
+		if ( $metric === 'cpu' || $metric === 'user' ) {
+			$ru = wfGetRusage();
+			if ( !$ru ) {
+				return 0;
+			}
+			$time = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
+			if ( $metric === 'cpu' ) {
+				# This is the time of system calls, added to the user time
+				# it gives the total CPU time
+				$time += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
+			}
+			return $time;
+		} else {
+			return microtime( true );
+		}
+	}
+
+	/**
+	 * Get the initial time of the request, based either on $wgRequestTime or
+	 * $wgRUstart. Will return null if not able to find data.
+	 *
+	 * @param string|bool $metric Metric to use, with the following possibilities:
+	 *   - user: User CPU time (without system calls)
+	 *   - cpu: Total CPU time (user and system calls)
+	 *   - wall (or any other string): elapsed time
+	 *   - false (default): will fall back to default metric
+	 * @return float|null
+	 */
+	protected function getInitialTime( $metric = 'wall' ) {
+		global $wgRequestTime, $wgRUstart;
+
+		if ( $metric === 'cpu' || $metric === 'user' ) {
+			if ( !count( $wgRUstart ) ) {
+				return null;
+			}
+
+			$time = $wgRUstart['ru_utime.tv_sec'] + $wgRUstart['ru_utime.tv_usec'] / 1e6;
+			if ( $metric === 'cpu' ) {
+				# This is the time of system calls, added to the user time
+				# it gives the total CPU time
+				$time += $wgRUstart['ru_stime.tv_sec'] + $wgRUstart['ru_stime.tv_usec'] / 1e6;
+			}
+			return $time;
+		} else {
+			if ( empty( $wgRequestTime ) ) {
+				return null;
+			} else {
+				return $wgRequestTime;
 			}
 		}
-		return null;
 	}
 
 	/**

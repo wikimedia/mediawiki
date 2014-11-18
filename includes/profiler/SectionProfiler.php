@@ -61,7 +61,7 @@ class SectionProfiler {
 	}
 
 	/**
-	 * Get the raw and collated breakdown data for each method
+	 * Get the aggregated inclusive profiling data for each method
 	 *
 	 * The percent time for each time is based on the current "total" time
 	 * used is based on all methods so far. This method can therefore be
@@ -70,37 +70,41 @@ class SectionProfiler {
 	 * is always included in the results.
 	 *
 	 * @return array List of method entries arrays, each having:
-	 *   - name     : method name
-	 *   - calls    : the number of method calls
-	 *   - elapsed  : real time ellapsed (ms)
-	 *   - percent  : percent real time
-	 *   - memory   : memory used (bytes)
-	 *   - min      : min real time of all calls (ms)
-	 *   - max      : max real time of all calls (ms)
+	 *   - name    : method name
+	 *   - calls   : the number of invoking calls
+	 *   - real    : real time ellapsed (ms)
+	 *   - %real   : percent real time
+	 *   - cpu     : real time ellapsed (ms)
+	 *   - %cpu    : percent real time
+	 *   - memory  : memory used (bytes)
+	 *   - %memory : percent memory used
 	 */
 	public function getFunctionStats() {
-		$data = $this->profiler->getRawData();
+		$data = $this->profiler->getFunctionStats();
 
+		$cpuTotal = 0;
 		$memoryTotal = 0;
 		$elapsedTotal = 0;
 		foreach ( $data as $item ) {
 			$memoryTotal += $item['memory'];
-			$elapsedTotal += $item['elapsed'];
+			$elapsedTotal += $item['real'];
+			$cpuTotal += $item['cpu'];
 		}
 
 		foreach ( $data as &$item ) {
-			$item['percent'] = $item['elapsed'] / $elapsedTotal * 100;
+			$item['%cpu'] = $item['cpu'] ? $item['cpu'] / $cpuTotal * 100 : 0;
+			$item['%real'] = $elapsedTotal ? $item['real'] / $elapsedTotal * 100 : 0;
+			$item['%memory'] = $item['memory'] ? $item['memory'] / $memoryTotal * 100 : 0;
 		}
 		unset( $item );
 
 		$data[] = array(
 			'name' => '-total',
 			'calls' => 1,
-			'elapsed' => $elapsedTotal,
-			'percent' => 100,
+			'real' => $elapsedTotal,
+			'%real' => 100,
 			'memory' => $memoryTotal,
-			'min' => $elapsedTotal,
-			'max' => $elapsedTotal
+			'%memory' => 100,
 		);
 
 		return $data;

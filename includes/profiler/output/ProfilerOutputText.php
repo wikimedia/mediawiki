@@ -30,43 +30,46 @@
  * $wgProfiler['visible'] = true;
  *
  * @ingroup Profiler
+ * @since 1.25
  */
-class ProfilerSimpleText extends ProfilerStandard {
-	public $visible = false; /* Show as <PRE> or <!-- ? */
+class ProfilerOutputText extends ProfilerOutput {
+	/** @var float Min real time display threshold */
+	protected $thresholdMs;
 
-	public function __construct( $profileConfig ) {
-		if ( isset( $profileConfig['visible'] ) && $profileConfig['visible'] ) {
-			$this->visible = true;
-		}
-		parent::__construct( $profileConfig );
+	function __construct( Profiler $collector, array $params ) {
+		parent::__construct( $collector, $params );
+		$this->thresholdMs = isset( $params['thresholdMs'] )
+			? $params['thresholdMs']
+			: .25;
 	}
+	protected function logStandardData( array $stats ) {
+		if ( $this->collector->getTemplated() ) {
+			$out = '';
 
-	public function logData() {
-		$out = '';
-		if ( $this->templated ) {
-			$this->close();
-			$totalReal = isset( $this->collated['-total'] )
-				? $this->collated['-total']['real']
-				: 0; // profiling mismatch error?
-
-			uasort( $this->collated, function( $a, $b ) {
-				// sort descending by time elapsed
+			// Filter out really tiny entries
+			$min = $this->thresholdMs;
+			$stats = array_filter( $stats, function( $a ) use ( $min ) {
+				return $a['real'] > $min;
+			} );
+			// Sort descending by time elapsed
+			usort( $stats, function( $a, $b ) {
 				return $a['real'] < $b['real'];
 			} );
 
-			array_walk( $this->collated,
-				function( $item, $key ) use ( &$out, $totalReal ) {
-					$perc = $totalReal ? $item['real'] / $totalReal * 100 : 0;
-					$out .= sprintf( "%6.2f%% %3.6f %6d - %s\n",
-						$perc, $item['real'], $item['count'], $key );
+			array_walk( $stats,
+				function ( $item ) use ( &$out ) {
+					$out .= sprintf( "%6.2f%% %3.3f %6d - %s\n",
+						$item['%real'], $item['real'], $item['calls'], $item['name'] );
 				}
 			);
 
-			$contentType = $this->getContentType();
+			$contentType = $this->collector->getContentType();
 			if ( PHP_SAPI === 'cli' ) {
 				print "<!--\n{$out}\n-->\n";
 			} elseif ( $contentType === 'text/html' ) {
-				if ( $this->visible ) {
+				$visible = isset( $this->params['visible'] ) ?
+					$this->params['visible'] : false;
+				if ( $visible ) {
 					print "<pre>{$out}</pre>";
 				} else {
 					print "<!--\n{$out}\n-->\n";
