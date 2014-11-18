@@ -1053,7 +1053,10 @@ return array(
 		'group' => 'mediawiki.action.history',
 	),
 	'mediawiki.action.history.diff' => array(
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.diff.css',
+		'styles' => array(
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.css',
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.print.css' => array( 'media' => 'print' ),
+		),
 		'group' => 'mediawiki.action.history',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
