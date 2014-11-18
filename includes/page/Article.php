@@ -226,7 +226,6 @@ class Article implements Page {
 	 * @since 1.21
 	 */
 	protected function getContentObject() {
-		wfProfileIn( __METHOD__ );
 
 		if ( $this->mPage->getID() === 0 ) {
 			# If this is a MediaWiki:x message, then load the messages
@@ -247,7 +246,6 @@ class Article implements Page {
 			$content = $this->mContentObject;
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $content;
 	}
 
@@ -344,12 +342,10 @@ class Article implements Page {
 			return $this->mContent;
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		$content = $this->fetchContentObject();
 
 		if ( !$content ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -357,7 +353,6 @@ class Article implements Page {
 		$this->mContent = ContentHandler::getContentText( $content );
 		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
 
-		wfProfileOut( __METHOD__ );
 
 		return $this->mContent;
 	}
@@ -379,7 +374,6 @@ class Article implements Page {
 			return $this->mContentObject;
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		$this->mContentLoaded = true;
 		$this->mContent = null;
@@ -397,7 +391,6 @@ class Article implements Page {
 				$this->mRevision = Revision::newFromId( $oldid );
 				if ( !$this->mRevision ) {
 					wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
-					wfProfileOut( __METHOD__ );
 					return false;
 				}
 			}
@@ -405,7 +398,6 @@ class Article implements Page {
 			if ( !$this->mPage->getLatest() ) {
 				wfDebug( __METHOD__ . " failed to find page data for title " .
 					$this->getTitle()->getPrefixedText() . "\n" );
-				wfProfileOut( __METHOD__ );
 				return false;
 			}
 
@@ -414,7 +406,6 @@ class Article implements Page {
 			if ( !$this->mRevision ) {
 				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " .
 					$this->mPage->getLatest() . "\n" );
-				wfProfileOut( __METHOD__ );
 				return false;
 			}
 		}
@@ -430,7 +421,6 @@ class Article implements Page {
 
 		wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
 
-		wfProfileOut( __METHOD__ );
 
 		return $this->mContentObject;
 	}
@@ -482,7 +472,6 @@ class Article implements Page {
 	public function view() {
 		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar, $wgMaxRedirects;
 
-		wfProfileIn( __METHOD__ );
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -495,7 +484,6 @@ class Article implements Page {
 		$permErrors = $this->getTitle()->getUserPermissionsErrors( 'read', $user );
 		if ( count( $permErrors ) ) {
 			wfDebug( __METHOD__ . ": denied on secondary read check\n" );
-			wfProfileOut( __METHOD__ );
 			throw new PermissionsError( 'read', $permErrors );
 		}
 
@@ -504,7 +492,6 @@ class Article implements Page {
 		if ( $this->mRedirectUrl ) {
 			$outputPage->redirect( $this->mRedirectUrl );
 			wfDebug( __METHOD__ . ": redirecting due to oldid\n" );
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -513,7 +500,6 @@ class Article implements Page {
 		if ( $this->getContext()->getRequest()->getCheck( 'diff' ) ) {
 			wfDebug( __METHOD__ . ": showing diff page\n" );
 			$this->showDiffPage();
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -568,7 +554,6 @@ class Article implements Page {
 			# Is it client cached?
 			if ( $outputPage->checkLastModified( $timestamp ) ) {
 				wfDebug( __METHOD__ . ": done 304\n" );
-				wfProfileOut( __METHOD__ );
 
 				return;
 			# Try file cache
@@ -577,7 +562,6 @@ class Article implements Page {
 				# tell wgOut that output is taken care of
 				$outputPage->disable();
 				$this->mPage->doViewUpdates( $user, $oldid );
-				wfProfileOut( __METHOD__ );
 
 				return;
 			}
@@ -610,7 +594,6 @@ class Article implements Page {
 						wfDebug( __METHOD__ . ": showing missing article\n" );
 						$this->showMissingArticle();
 						$this->mPage->doViewUpdates( $user );
-						wfProfileOut( __METHOD__ );
 						return;
 					}
 
@@ -649,7 +632,6 @@ class Article implements Page {
 
 						if ( !$this->showDeletedRevisionHeader() ) {
 							wfDebug( __METHOD__ . ": cannot view deleted revision\n" );
-							wfProfileOut( __METHOD__ );
 							return;
 						}
 					}
@@ -696,7 +678,6 @@ class Article implements Page {
 							$outputPage->addWikiText( '<div class="errorbox">' . $errortext . '</div>' );
 						}
 						# Connection or timeout error
-						wfProfileOut( __METHOD__ );
 						return;
 					}
 
@@ -755,7 +736,6 @@ class Article implements Page {
 
 		$outputPage->addModules( 'mediawiki.action.view.postEdit' );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -1096,7 +1076,6 @@ class Article implements Page {
 			return false;
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		// New page patrol: Get the timestamp of the oldest revison which
 		// the revision table holds for the given page. Then we look
@@ -1106,7 +1085,6 @@ class Article implements Page {
 
 		// Check for cached results
 		if ( $cache->get( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ) ) ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -1115,7 +1093,6 @@ class Article implements Page {
 		) {
 			// The current revision is already older than what could be in the RC table
 			// 6h tolerance because the RC might not be cleaned out regularly
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -1151,14 +1128,12 @@ class Article implements Page {
 			// Don't cache in case we can patrol as this could change
 			$cache->set( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ), '1' );
 
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
 		if ( $rc->getPerformer()->getName() == $user->getName() ) {
 			// Don't show a patrol link for own creations. If the user could
 			// patrol them, they already would be patrolled
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -1188,7 +1163,6 @@ class Article implements Page {
 			'</div>'
 		);
 
-		wfProfileOut( __METHOD__ );
 		return true;
 	}
 

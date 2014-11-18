@@ -48,9 +48,7 @@ class WatchAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		wfProfileIn( __METHOD__ );
 		self::doWatch( $this->getTitle(), $this->getUser() );
-		wfProfileOut( __METHOD__ );
 
 		return true;
 	}

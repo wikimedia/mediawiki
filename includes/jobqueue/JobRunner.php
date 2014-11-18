@@ -253,7 +253,6 @@ class JobRunner {
 	 * @return array Map of (job type => backoff expiry timestamp)
 	 */
 	private function loadBackoffs( array $backoffs, $mode = 'wait' ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		$file = wfTempDir() . '/mw-runJobs-backoffs.json';
 		if ( is_file( $file ) ) {
@@ -292,7 +291,6 @@ class JobRunner {
 	 * @return array The new backoffs account for $backoffs and the latest file data
 	 */
 	private function syncBackoffDeltas( array $backoffs, array &$deltas, $mode = 'wait' ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		if ( !$deltas ) {
 			return $this->loadBackoffs( $backoffs, $mode );

@@ -198,7 +198,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function setUp() {
-		wfProfileIn( __METHOD__ );
 		parent::setUp();
 		$this->called['setUp'] = true;
 
@@ -224,13 +223,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		DeferredUpdates::clearPendingUpdates();
-
-		wfProfileOut( __METHOD__ );
 	}
 
 	protected function tearDown() {
-		wfProfileIn( __METHOD__ );
-
 		$this->called['tearDown'] = true;
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {
@@ -273,7 +268,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		parent::tearDown();
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

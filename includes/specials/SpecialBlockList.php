@@ -426,7 +426,6 @@ class BlockListPager extends TablePager {
 	 * @param ResultWrapper $result
 	 */
 	function preprocessResults( $result ) {
-		wfProfileIn( __METHOD__ );
 		# Do a link batch query
 		$lb = new LinkBatch;
 		$lb->setCaller( __METHOD__ );
@@ -451,6 +450,5 @@ class BlockListPager extends TablePager {
 		}
 
 		$lb->execute();
-		wfProfileOut( __METHOD__ );
 	}
 }

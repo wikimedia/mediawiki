@@ -515,7 +515,6 @@ class Revision implements IDBAccessObject {
 		if ( !$revIds ) {
 			return $revLens; // empty
 		}
-		wfProfileIn( __METHOD__ );
 		$res = $db->select( 'revision',
 			array( 'rev_id', 'rev_len' ),
 			array( 'rev_id' => $revIds ),
@@ -523,7 +522,6 @@ class Revision implements IDBAccessObject {
 		foreach ( $res as $row ) {
 			$revLens[$row->rev_id] = $row->rev_len;
 		}
-		wfProfileOut( __METHOD__ );
 		return $revLens;
 	}
 
@@ -1213,7 +1211,6 @@ class Revision implements IDBAccessObject {
 	 * @return string Text the text requested or false on failure
 	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
-		wfProfileIn( __METHOD__ );
 
 		# Get data
 		$textField = $prefix . 'text';
@@ -1228,7 +1225,6 @@ class Revision implements IDBAccessObject {
 		if ( isset( $row->$textField ) ) {
 			$text = $row->$textField;
 		} else {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -1237,7 +1233,6 @@ class Revision implements IDBAccessObject {
 			$url = $text;
 			$parts = explode( '://', $url, 2 );
 			if ( count( $parts ) == 1 || $parts[1] == '' ) {
-				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			$text = ExternalStore::fetchFromURL( $url, array( 'wiki' => $wiki ) );
@@ -1247,7 +1242,6 @@ class Revision implements IDBAccessObject {
 		if ( $text !== false ) {
 			$text = self::decompressRevisionText( $text, $flags );
 		}
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -1331,7 +1325,6 @@ class Revision implements IDBAccessObject {
 	public function insertOn( $dbw ) {
 		global $wgDefaultExternalStore, $wgContentHandlerUseDB;
 
-		wfProfileIn( __METHOD__ );
 
 		$this->checkContentModel();
 
@@ -1343,7 +1336,6 @@ class Revision implements IDBAccessObject {
 			// Store and get the URL
 			$data = ExternalStore::insertToDefault( $data );
 			if ( !$data ) {
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "Unable to store text to external storage" );
 			}
 			if ( $flags ) {
@@ -1403,7 +1395,6 @@ class Revision implements IDBAccessObject {
 			$title = $this->getTitle();
 
 			if ( $title === null ) {
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "Insufficient information to determine the title of the "
 					. "revision's page!" );
 			}
@@ -1421,7 +1412,6 @@ class Revision implements IDBAccessObject {
 
 		wfRunHooks( 'RevisionInsertComplete', array( &$this, $data, $flags ) );
 
-		wfProfileOut( __METHOD__ );
 		return $this->mId;
 	}
 
@@ -1490,7 +1480,6 @@ class Revision implements IDBAccessObject {
 	 * @return string|bool The revision's text, or false on failure
 	 */
 	protected function loadText() {
-		wfProfileIn( __METHOD__ );
 
 		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry, $wgMemc;
@@ -1500,7 +1489,6 @@ class Revision implements IDBAccessObject {
 			$text = $wgMemc->get( $key );
 			if ( is_string( $text ) ) {
 				wfDebug( __METHOD__ . ": got id $textId from cache\n" );
-				wfProfileOut( __METHOD__ );
 				return $text;
 			}
 		}
@@ -1548,7 +1536,6 @@ class Revision implements IDBAccessObject {
 			$wgMemc->set( $key, $text, $wgRevisionCacheExpiry );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $text;
 	}
@@ -1571,7 +1558,6 @@ class Revision implements IDBAccessObject {
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
 		global $wgContentHandlerUseDB;
 
-		wfProfileIn( __METHOD__ );
 
 		$fields = array( 'page_latest', 'page_namespace', 'page_title',
 						'rev_text_id', 'rev_len', 'rev_sha1' );
@@ -1619,7 +1605,6 @@ class Revision implements IDBAccessObject {
 			$revision = null;
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $revision;
 	}
 

@@ -92,7 +92,6 @@ class SiteSQLStore implements SiteStore {
 	 * @return string The cache key.
 	 */
 	protected function getCacheKey() {
-		wfProfileIn( __METHOD__ );
 
 		if ( $this->cacheKey === null ) {
 			$type = 'SiteList#' . SiteList::getSerialVersionId();
@@ -105,7 +104,6 @@ class SiteSQLStore implements SiteStore {
 			$this->cacheKey = wfMemcKey( "$source/$type" );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $this->cacheKey;
 	}
 
@@ -119,7 +117,6 @@ class SiteSQLStore implements SiteStore {
 	 * @return SiteList
 	 */
 	public function getSites( $source = 'cache' ) {
-		wfProfileIn( __METHOD__ );
 
 		if ( $source === 'cache' ) {
 			if ( $this->sites === null ) {
@@ -137,7 +134,6 @@ class SiteSQLStore implements SiteStore {
 			$this->loadSites();
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $this->sites;
 	}
 
@@ -151,7 +147,6 @@ class SiteSQLStore implements SiteStore {
 	 * @return Site
 	 */
 	protected function siteFromRow( ORMRow $siteRow ) {
-		wfProfileIn( __METHOD__ );
 
 		$site = Site::newForType( $siteRow->getField( 'type', Site::TYPE_UNKNOWN ) );
 
@@ -186,7 +181,6 @@ class SiteSQLStore implements SiteStore {
 			$site->setExtraConfig( $siteRow->getField( 'config' ) );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $site;
 	}
 
@@ -229,7 +223,6 @@ class SiteSQLStore implements SiteStore {
 	 * @since 1.21
 	 */
 	protected function loadSites() {
-		wfProfileIn( __METHOD__ );
 
 		$this->sites = new SiteList();
 
@@ -260,7 +253,6 @@ class SiteSQLStore implements SiteStore {
 		$cache = wfGetMainCache();
 		$cache->set( $this->getCacheKey(), $this->sites, $this->cacheTimeout );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -274,11 +266,9 @@ class SiteSQLStore implements SiteStore {
 	 * @return Site|null
 	 */
 	public function getSite( $globalId, $source = 'cache' ) {
-		wfProfileIn( __METHOD__ );
 
 		$sites = $this->getSites( $source );
 
-		wfProfileOut( __METHOD__ );
 		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : null;
 	}
 
@@ -305,10 +295,8 @@ class SiteSQLStore implements SiteStore {
 	 * @return bool Success indicator
 	 */
 	public function saveSites( array $sites ) {
-		wfProfileIn( __METHOD__ );
 
 		if ( empty( $sites ) ) {
-			wfProfileOut( __METHOD__ );
 			return true;
 		}
 
@@ -361,7 +349,6 @@ class SiteSQLStore implements SiteStore {
 		// purge cache
 		$this->reset();
 
-		wfProfileOut( __METHOD__ );
 		return $success;
 	}
 
@@ -372,13 +359,11 @@ class SiteSQLStore implements SiteStore {
 	 * @since 1.21
 	 */
 	public function reset() {
-		wfProfileIn( __METHOD__ );
 		// purge cache
 		$cache = wfGetMainCache();
 		$cache->delete( $this->getCacheKey() );
 		$this->sites = null;
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -389,7 +374,6 @@ class SiteSQLStore implements SiteStore {
 	 * @return bool Success
 	 */
 	public function clear() {
-		wfProfileIn( __METHOD__ );
 		$dbw = $this->sitesTable->getWriteDbConnection();
 
 		$dbw->startAtomic( __METHOD__ );
@@ -399,7 +383,6 @@ class SiteSQLStore implements SiteStore {
 
 		$this->reset();
 
-		wfProfileOut( __METHOD__ );
 		return $ok;
 	}
 

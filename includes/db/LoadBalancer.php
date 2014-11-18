@@ -218,7 +218,6 @@ class LoadBalancer {
 			return $this->mReadIndex;
 		}
 
-		$section = new ProfileSection( __METHOD__ );
 
 		# Find the relevant load array
 		if ( $group !== false ) {
@@ -322,7 +321,6 @@ class LoadBalancer {
 	 * @param DBMasterPos $pos
 	 */
 	public function waitFor( $pos ) {
-		wfProfileIn( __METHOD__ );
 		$this->mWaitForPos = $pos;
 		$i = $this->mReadIndex;
 
@@ -332,7 +330,6 @@ class LoadBalancer {
 				$this->mLaggedSlaveMode = true;
 			}
 		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -342,7 +339,6 @@ class LoadBalancer {
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
 	public function waitForAll( $pos, $timeout = null ) {
-		wfProfileIn( __METHOD__ );
 		$this->mWaitForPos = $pos;
 		$serverCount = count( $this->mServers );
 
@@ -352,7 +348,6 @@ class LoadBalancer {
 				$ok = $this->doWait( $i, true, $timeout ) && $ok;
 			}
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $ok;
 	}
@@ -439,10 +434,8 @@ class LoadBalancer {
 	 * @return DatabaseBase
 	 */
 	public function &getConnection( $i, $groups = array(), $wiki = false ) {
-		wfProfileIn( __METHOD__ );
 
 		if ( $i === null || $i === false ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( 'Attempt to call ' . __METHOD__ .
 				' with invalid server index' );
 		}
@@ -480,7 +473,6 @@ class LoadBalancer {
 			# Couldn't find a working server in getReaderIndex()?
 			if ( $i === false ) {
 				$this->mLastError = 'No working slave server: ' . $this->mLastError;
-				wfProfileOut( __METHOD__ );
 
 				return $this->reportConnectionError();
 			}
@@ -489,12 +481,10 @@ class LoadBalancer {
 		# Now we have an explicit index into the servers array
 		$conn = $this->openConnection( $i, $wiki );
 		if ( !$conn ) {
-			wfProfileOut( __METHOD__ );
 
 			return $this->reportConnectionError();
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $conn;
 	}
@@ -595,10 +585,8 @@ class LoadBalancer {
 	 * @access private
 	 */
 	function openConnection( $i, $wiki = false ) {
-		wfProfileIn( __METHOD__ );
 		if ( $wiki !== false ) {
 			$conn = $this->openForeignConnection( $i, $wiki );
-			wfProfileOut( __METHOD__ );
 
 			return $conn;
 		}
@@ -617,7 +605,6 @@ class LoadBalancer {
 				$conn = false;
 			}
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $conn;
 	}
@@ -641,7 +628,6 @@ class LoadBalancer {
 	 * @return DatabaseBase
 	 */
 	function openForeignConnection( $i, $wiki ) {
-		wfProfileIn( __METHOD__ );
 		list( $dbName, $prefix ) = wfSplitWikiID( $wiki );
 		if ( isset( $this->mConns['foreignUsed'][$i][$wiki] ) ) {
 			// Reuse an already-used connection
@@ -694,7 +680,6 @@ class LoadBalancer {
 			$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
 			$conn->setLBInfo( 'foreignPoolRefCount', $refCount + 1 );
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $conn;
 	}

@@ -630,7 +630,6 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageCounts( Title $title ) {
-		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
 
@@ -743,7 +742,6 @@ class InfoAction extends FormlessAction {
 			__METHOD__
 		);
 
-		wfProfileOut( __METHOD__ );
 
 		return $result;
 	}

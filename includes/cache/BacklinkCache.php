@@ -176,7 +176,6 @@ class BacklinkCache {
 	 * @return ResultWrapper
 	 */
 	protected function queryLinks( $table, $startId, $endId, $max, $select = 'all' ) {
-		wfProfileIn( __METHOD__ );
 
 		$fromField = $this->getPrefix( $table ) . '_from';
 
@@ -231,7 +230,6 @@ class BacklinkCache {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $res;
 	}

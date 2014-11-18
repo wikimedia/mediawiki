@@ -92,8 +92,6 @@ function wfThumbHandle404() {
 function wfStreamThumb( array $params ) {
 	global $wgVaryOnXFP;
 
-	$section = new ProfileSection( __METHOD__ );
-
 	$headers = array(); // HTTP headers to send
 
 	$fileName = isset( $params['f'] ) ? $params['f'] : '';

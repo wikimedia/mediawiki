@@ -149,7 +149,6 @@ class Preprocessor_DOM implements Preprocessor {
 	 * @return PPNode_DOM
 	 */
 	public function preprocessToObj( $text, $flags = 0 ) {
-		wfProfileIn( __METHOD__ );
 		global $wgMemc, $wgPreprocessorCacheThreshold;
 
 		$xml = false;
@@ -188,7 +187,6 @@ class Preprocessor_DOM implements Preprocessor {
 			if ( $cacheable ) {
 				wfProfileOut( __METHOD__ . '-cacheable' );
 			}
-			wfProfileOut( __METHOD__ );
 			throw new MWException( __METHOD__ . ': generated node count limit exceeded' );
 		}
 
@@ -213,7 +211,6 @@ class Preprocessor_DOM implements Preprocessor {
 			wfProfileOut( __METHOD__ . '-cacheable' );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		if ( !$result ) {
 			throw new MWException( __METHOD__ . ' generated invalid XML' );
@@ -227,7 +224,6 @@ class Preprocessor_DOM implements Preprocessor {
 	 * @return string
 	 */
 	public function preprocessToXml( $text, $flags = 0 ) {
-		wfProfileIn( __METHOD__ );
 		$rules = array(
 			'{' => array(
 				'end' => '}',
@@ -764,7 +760,6 @@ class Preprocessor_DOM implements Preprocessor {
 		$stack->rootAccum .= '</root>';
 		$xml = $stack->rootAccum;
 
-		wfProfileOut( __METHOD__ );
 
 		return $xml;
 	}
@@ -1101,7 +1096,6 @@ class PPFrame_DOM implements PPFrame {
 			);
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
-		wfProfileIn( __METHOD__ );
 		++$expansionDepth;
 		if ( $expansionDepth > $this->parser->mHighestExpansionDepth ) {
 			$this->parser->mHighestExpansionDepth = $expansionDepth;
@@ -1290,7 +1284,6 @@ class PPFrame_DOM implements PPFrame {
 					$newIterator = $contextNode->childNodes;
 				}
 			} else {
-				wfProfileOut( __METHOD__ );
 				throw new MWException( __METHOD__ . ': Invalid parameter type' );
 			}
 
@@ -1314,7 +1307,6 @@ class PPFrame_DOM implements PPFrame {
 			}
 		}
 		--$expansionDepth;
-		wfProfileOut( __METHOD__ );
 		return $outStack[0];
 	}
 

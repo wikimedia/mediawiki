@@ -854,7 +854,6 @@ class Language {
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
-		wfProfileIn( __METHOD__ );
 		$cacheKey = $inLanguage === null ? 'null' : $inLanguage;
 		$cacheKey .= ":$include";
 		if ( self::$languageNameCache === null ) {
@@ -866,7 +865,6 @@ class Language {
 			$ret = self::fetchLanguageNamesUncached( $inLanguage, $include );
 			self::$languageNameCache->set( $cacheKey, $ret );
 		}
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -4432,7 +4430,6 @@ class Language {
 			return array( $wikiUpperChars, $wikiLowerChars );
 		}
 
-		wfProfileIn( __METHOD__ );
 		$arr = wfGetPrecompiledData( 'Utf8Case.ser' );
 		if ( $arr === false ) {
 			throw new MWException(
@@ -4440,7 +4437,6 @@ class Language {
 		}
 		$wikiUpperChars = $arr['wikiUpperChars'];
 		$wikiLowerChars = $arr['wikiLowerChars'];
-		wfProfileOut( __METHOD__ );
 		return array( $wikiUpperChars, $wikiLowerChars );
 	}
 

@@ -323,7 +323,6 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	public function getStartBody() {
-		wfProfileIn( __METHOD__ );
 		# Do a link batch query
 		if ( $this->getNumRows() > 0 ) {
 			$lb = new LinkBatch;
@@ -339,7 +338,6 @@ class LogPager extends ReverseChronologicalPager {
 			$lb->execute();
 			$this->mResult->seek( 0 );
 		}
-		wfProfileOut( __METHOD__ );
 
 		return '';
 	}

@@ -78,7 +78,6 @@ class SearchUpdate implements DeferrableUpdate {
 			return;
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		$page = WikiPage::newFromId( $this->id, WikiPage::READ_LATEST );
 
@@ -108,7 +107,6 @@ class SearchUpdate implements DeferrableUpdate {
 			$search->update( $this->id, $normalTitle, $search->normalizeText( $text ) );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

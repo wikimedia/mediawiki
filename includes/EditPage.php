@@ -446,13 +446,11 @@ class EditPage {
 			return;
 		}
 
-		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . ": enter\n" );
 
 		// If they used redlink=1 and the page exists, redirect to the main article
 		if ( $wgRequest->getBool( 'redlink' ) && $this->mTitle->exists() ) {
 			$wgOut->redirect( $this->mTitle->getFullURL() );
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -461,7 +459,6 @@ class EditPage {
 
 		if ( $this->live ) {
 			$this->livePreview();
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -494,7 +491,6 @@ class EditPage {
 
 			$this->displayPermissionsError( $permErrors );
 
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -521,7 +517,6 @@ class EditPage {
 		if ( 'save' == $this->formtype ) {
 			if ( !$this->attemptSave() ) {
 				wfProfileOut( __METHOD__ . "-business-end" );
-				wfProfileOut( __METHOD__ );
 				return;
 			}
 		}
@@ -532,7 +527,6 @@ class EditPage {
 			if ( $this->initialiseForm() === false ) {
 				$this->noSuchSectionPage();
 				wfProfileOut( __METHOD__ . "-business-end" );
-				wfProfileOut( __METHOD__ );
 				return;
 			}
 
@@ -546,7 +540,6 @@ class EditPage {
 
 		$this->showEditForm();
 		wfProfileOut( __METHOD__ . "-business-end" );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -711,13 +704,11 @@ class EditPage {
 	function importFormData( &$request ) {
 		global $wgContLang, $wgUser;
 
-		wfProfileIn( __METHOD__ );
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
 
 		if ( $this->section !== null && $this->section !== '' && !$this->isSectionEditSupported() ) {
-			wfProfileOut( __METHOD__ );
 			throw new ErrorPageError( 'sectioneditnotsupported-title', 'sectioneditnotsupported-text' );
 		}
 
@@ -908,7 +899,6 @@ class EditPage {
 		// Allow extensions to modify form data
 		wfRunHooks( 'EditPage::importFormData', array( $this, $request ) );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -969,7 +959,6 @@ class EditPage {
 	protected function getContentObject( $def_content = null ) {
 		global $wgOut, $wgRequest, $wgUser, $wgContLang;
 
-		wfProfileIn( __METHOD__ );
 
 		$content = false;
 
@@ -1082,7 +1071,6 @@ class EditPage {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $content;
 	}
 
@@ -1502,7 +1490,6 @@ class EditPage {
 
 		$status = Status::newGood();
 
-		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-checks' );
 
 		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) ) {
@@ -1510,7 +1497,6 @@ class EditPage {
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1528,7 +1514,6 @@ class EditPage {
 			$status->fatal( 'spamprotectionmatch', false );
 			$status->value = self::AS_SPAM_ERROR;
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1544,7 +1529,6 @@ class EditPage {
 			);
 			$status->value = self::AS_PARSE_ERROR;
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1557,7 +1541,6 @@ class EditPage {
 				$status->setResult( false, $code );
 
 				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
 
 				return $status;
 		}
@@ -1588,7 +1571,6 @@ class EditPage {
 			$status->fatal( 'spamprotectionmatch', $match );
 			$status->value = self::AS_SPAM_ERROR;
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 		if ( !wfRunHooks(
@@ -1599,14 +1581,12 @@ class EditPage {
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		} elseif ( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1616,7 +1596,6 @@ class EditPage {
 			# Check block state against master, thus 'false'.
 			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1626,7 +1605,6 @@ class EditPage {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1634,13 +1612,11 @@ class EditPage {
 			if ( $wgUser->isAnon() ) {
 				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			} else {
 				$status->fatal( 'readonlytext' );
 				$status->value = self::AS_READ_ONLY_PAGE_LOGGED;
 				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 		}
@@ -1649,14 +1625,12 @@ class EditPage {
 			$status->fatal( 'readonlytext' );
 			$status->value = self::AS_READ_ONLY_PAGE;
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
 			$status->fatal( 'actionthrottledtext' );
 			$status->value = self::AS_RATE_LIMITED;
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1665,7 +1639,6 @@ class EditPage {
 		if ( $this->wasDeletedSinceLastEdit() && !$this->recreate ) {
 			$status->setResult( false, self::AS_ARTICLE_WAS_DELETED );
 			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1682,7 +1655,6 @@ class EditPage {
 				$status->fatal( 'nocreatetext' );
 				$status->value = self::AS_NO_CREATE_PERMISSION;
 				wfDebug( __METHOD__ . ": no create permission\n" );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
@@ -1700,12 +1672,10 @@ class EditPage {
 				$this->blankArticle = true;
 				$status->fatal( 'blankarticle' );
 				$status->setResult( false, self::AS_BLANK_ARTICLE );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
 			if ( !$this->runPostMergeFilters( $textbox_content, $status, $wgUser ) ) {
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
@@ -1810,12 +1780,10 @@ class EditPage {
 
 			if ( $this->isConflict ) {
 				$status->setResult( false, self::AS_CONFLICT_DETECTED );
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
 			if ( !$this->runPostMergeFilters( $content, $status, $wgUser ) ) {
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
@@ -1825,7 +1793,6 @@ class EditPage {
 					$this->missingSummary = true;
 					$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
 					$status->value = self::AS_SUMMARY_NEEDED;
-					wfProfileOut( __METHOD__ );
 					return $status;
 				}
 
@@ -1834,7 +1801,6 @@ class EditPage {
 					$this->missingComment = true;
 					$status->fatal( 'missingcommenttext' );
 					$status->value = self::AS_TEXTBOX_EMPTY;
-					wfProfileOut( __METHOD__ );
 					return $status;
 				}
 			} elseif ( !$this->allowBlankSummary
@@ -1845,7 +1811,6 @@ class EditPage {
 				$this->missingSummary = true;
 				$status->fatal( 'missingsummary' );
 				$status->value = self::AS_SUMMARY_NEEDED;
-				wfProfileOut( __METHOD__ );
 				return $status;
 			}
 
@@ -1884,7 +1849,6 @@ class EditPage {
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1914,7 +1878,6 @@ class EditPage {
 				// Destroys data doEdit() put in $status->value but who cares
 				$doEditStatus->value = self::AS_END;
 			}
-			wfProfileOut( __METHOD__ );
 			return $doEditStatus;
 		}
 
@@ -1925,7 +1888,6 @@ class EditPage {
 		}
 		$result['redirect'] = $content->isRedirect();
 		$this->updateWatchlist();
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -1962,7 +1924,6 @@ class EditPage {
 	 * @return bool
 	 */
 	private function mergeChangesIntoContent( &$editContent ) {
-		wfProfileIn( __METHOD__ );
 
 		$db = wfGetDB( DB_MASTER );
 
@@ -1971,7 +1932,6 @@ class EditPage {
 		$baseContent = $baseRevision ? $baseRevision->getContent() : null;
 
 		if ( is_null( $baseContent ) ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -1980,7 +1940,6 @@ class EditPage {
 		$currentContent = $currentRevision ? $currentRevision->getContent() : null;
 
 		if ( is_null( $currentContent ) ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -1990,11 +1949,9 @@ class EditPage {
 
 		if ( $result ) {
 			$editContent = $result;
-			wfProfileOut( __METHOD__ );
 			return true;
 		}
 
-		wfProfileOut( __METHOD__ );
 		return false;
 	}
 
@@ -2298,7 +2255,6 @@ class EditPage {
 	function showEditForm( $formCallback = null ) {
 		global $wgOut, $wgUser;
 
-		wfProfileIn( __METHOD__ );
 
 		# need to parse the preview early so that we know which templates are used,
 		# otherwise users with "show preview after edit box" will get a blank list
@@ -2314,7 +2270,6 @@ class EditPage {
 		$this->setHeaders();
 
 		if ( $this->showHeader() === false ) {
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -2511,7 +2466,6 @@ class EditPage {
 			$this->displayPreviewArea( $previewOutput, false );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -3164,7 +3118,6 @@ HTML
 			return '';
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		$limitReport = Html::rawElement( 'div', array( 'class' => 'mw-limitReportExplanation' ),
 			wfMessage( 'limitreport-title' )->parseAsBlock()
@@ -3200,7 +3153,6 @@ HTML
 			Html::closeElement( 'table' ) .
 			Html::closeElement( 'div' );
 
-		wfProfileOut( __METHOD__ );
 
 		return $limitReport;
 	}
@@ -3387,7 +3339,6 @@ HTML
 		global $wgOut, $wgUser, $wgRawHtml, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
-		wfProfileIn( __METHOD__ );
 
 		if ( $wgRawHtml && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if
@@ -3400,7 +3351,6 @@ HTML
 				$parsedNote = $wgOut->parse( "<div class='previewnote'>" .
 					wfMessage( 'session_fail_preview_html' )->text() . "</div>", true, /* interface */true );
 			}
-			wfProfileOut( __METHOD__ );
 			return $parsedNote;
 		}
 
@@ -3414,7 +3364,6 @@ HTML
 				'AlternateEditPreview',
 				array( $this, &$content, &$previewHTML, &$this->mParserOutput ) )
 			) {
-				wfProfileOut( __METHOD__ );
 				return $previewHTML;
 			}
 
@@ -3528,7 +3477,6 @@ HTML
 			'class' => 'mw-content-' . $pageViewLang->getDir() );
 		$previewHTML = Html::rawElement( 'div', $attribs, $previewHTML );
 
-		wfProfileOut( __METHOD__ );
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;
 	}
 

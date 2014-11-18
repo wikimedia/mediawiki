@@ -269,7 +269,6 @@ class DjVuImage {
 	 */
 	function retrieveMetaData() {
 		global $wgDjvuToXML, $wgDjvuDump, $wgDjvuTxt;
-		wfProfileIn( __METHOD__ );
 
 		if ( !$this->isValid() ) {
 			return false;
@@ -320,7 +319,6 @@ EOR;
 				$xml = $xml . $txt . '</mw-djvu>';
 			}
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $xml;
 	}

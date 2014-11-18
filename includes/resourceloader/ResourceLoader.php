@@ -162,12 +162,10 @@ class ResourceLoader {
 	 * @return string Filtered data, or a comment containing an error message
 	 */
 	public function filter( $filter, $data, $cacheReport = true ) {
-		wfProfileIn( __METHOD__ );
 
 		// For empty/whitespace-only data or for unknown filters, don't perform
 		// any caching or processing
 		if ( trim( $data ) === '' || !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) {
-			wfProfileOut( __METHOD__ );
 			return $data;
 		}
 
@@ -178,7 +176,6 @@ class ResourceLoader {
 		$cacheEntry = $cache->get( $key );
 		if ( is_string( $cacheEntry ) ) {
 			wfIncrStats( "rl-$filter-cache-hits" );
-			wfProfileOut( __METHOD__ );
 			return $cacheEntry;
 		}
 
@@ -214,7 +211,6 @@ class ResourceLoader {
 			$result = self::formatException( $e );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $result;
 	}
@@ -228,7 +224,6 @@ class ResourceLoader {
 	public function __construct( Config $config = null ) {
 		global $IP;
 
-		wfProfileIn( __METHOD__ );
 
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' was called without providing a Config instance' );
@@ -253,7 +248,6 @@ class ResourceLoader {
 			$this->registerTestModules();
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -277,14 +271,12 @@ class ResourceLoader {
 	 *   not registered
 	 */
 	public function register( $name, $info = null ) {
-		wfProfileIn( __METHOD__ );
 
 		// Allow multiple modules to be registered in one call
 		$registrations = is_array( $name ) ? $name : array( $name => $info );
 		foreach ( $registrations as $name => $info ) {
 			// Disallow duplicate registrations
 			if ( isset( $this->moduleInfos[$name] ) ) {
-				wfProfileOut( __METHOD__ );
 				// A module has already been registered by this name
 				throw new MWException(
 					'ResourceLoader duplicate registration error. ' .
@@ -294,7 +286,6 @@ class ResourceLoader {
 
 			// Check $name for validity
 			if ( !self::isValidModuleName( $name ) ) {
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "ResourceLoader module name '$name' is invalid, "
 					. "see ResourceLoader::isValidModuleName()" );
 			}
@@ -308,7 +299,6 @@ class ResourceLoader {
 				// New calling convention
 				$this->moduleInfos[$name] = $info;
 			} else {
-				wfProfileOut( __METHOD__ );
 				throw new MWException(
 					'ResourceLoader module info type error for module \'' . $name .
 					'\': expected ResourceLoaderModule or array (got: ' . gettype( $info ) . ')'
@@ -356,7 +346,6 @@ class ResourceLoader {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -370,7 +359,6 @@ class ResourceLoader {
 				. 'Edit your <code>LocalSettings.php</code> to enable it.' );
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		// Get core test suites
 		$testModules = array();
@@ -399,7 +387,6 @@ class ResourceLoader {
 			$this->testModuleNames[$id] = array_keys( $testModules[$id] );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -578,7 +565,6 @@ class ResourceLoader {
 		// See http://bugs.php.net/bug.php?id=36514
 		ob_start();
 
-		wfProfileIn( __METHOD__ );
 		$errors = '';
 
 		// Find out which modules are missing and instantiate the others
@@ -639,7 +625,6 @@ class ResourceLoader {
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		if ( $this->tryRespondLastModified( $context, $mtime ) ) {
-			wfProfileOut( __METHOD__ );
 			return; // output handled (buffers cleared)
 		}
 
@@ -675,7 +660,6 @@ class ResourceLoader {
 		ob_end_clean();
 		echo $response;
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -856,7 +840,6 @@ class ResourceLoader {
    no modules were requested. Max made me put this here. */";
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
@@ -1036,7 +1019,6 @@ class ResourceLoader {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $exceptions . $out;
 	}
 

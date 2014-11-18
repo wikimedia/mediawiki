@@ -197,7 +197,6 @@ class Linker {
 			wfWarn( __METHOD__ . ': Requires $target to be a Title object.', 2 );
 			return "<!-- ERROR -->$html";
 		}
-		wfProfileIn( __METHOD__ );
 
 		if ( is_string( $query ) ) {
 			// some functions withing core using this still hand over query strings
@@ -212,7 +211,6 @@ class Linker {
 		if ( !wfRunHooks( 'LinkBegin',
 			array( $dummy, $target, &$html, &$customAttribs, &$query, &$options, &$ret ) )
 		) {
-			wfProfileOut( __METHOD__ );
 			return $ret;
 		}
 
@@ -255,7 +253,6 @@ class Linker {
 			$ret = Html::rawElement( 'a', $attribs, $html );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -280,7 +277,6 @@ class Linker {
 	 * @return string
 	 */
 	private static function linkUrl( $target, $query, $options ) {
-		wfProfileIn( __METHOD__ );
 		# We don't want to include fragments for broken links, because they
 		# generally make no sense.
 		if ( in_array( 'broken', $options ) && $target->hasFragment() ) {
@@ -306,7 +302,6 @@ class Linker {
 		}
 
 		$ret = $target->getLinkURL( $query, false, $proto );
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -320,7 +315,6 @@ class Linker {
 	 * @return array
 	 */
 	private static function linkAttribs( $target, $attribs, $options ) {
-		wfProfileIn( __METHOD__ );
 		global $wgUser;
 		$defaults = array();
 
@@ -370,7 +364,6 @@ class Linker {
 				$ret[$key] = $val;
 			}
 		}
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -933,7 +926,6 @@ class Linker {
 		}
 
 		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
-		wfProfileIn( __METHOD__ );
 		if ( $label == '' ) {
 			$label = $title->getPrefixedText();
 		}
@@ -946,19 +938,16 @@ class Linker {
 			$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
 
 			if ( $redir ) {
-				wfProfileOut( __METHOD__ );
 				return self::linkKnown( $title, $encLabel, array(), wfCgiToArray( $query ) );
 			}
 
 			$href = self::getUploadUrl( $title, $query );
 
-			wfProfileOut( __METHOD__ );
 			return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
 				htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
 				$encLabel . '</a>';
 		}
 
-		wfProfileOut( __METHOD__ );
 		return self::linkKnown( $title, $encLabel, array(), wfCgiToArray( $query ) );
 	}
 
@@ -1295,7 +1284,6 @@ class Linker {
 	 * @return mixed|string
 	 */
 	public static function formatComment( $comment, $title = null, $local = false ) {
-		wfProfileIn( __METHOD__ );
 
 		# Sanitize text a bit:
 		$comment = str_replace( "\n", " ", $comment );
@@ -1306,7 +1294,6 @@ class Linker {
 		$comment = self::formatAutocomments( $comment, $title, $local );
 		$comment = self::formatLinksInComment( $comment, $title, $local );
 
-		wfProfileOut( __METHOD__ );
 		return $comment;
 	}
 
@@ -1498,7 +1485,6 @@ class Linker {
 		# ../Foobar/ -- convert to CurrentPage/Foobar, use 'Foobar' as text
 		#              (from CurrentPage/CurrentSubPage)
 
-		wfProfileIn( __METHOD__ );
 		$ret = $target; # default return value is no change
 
 		# Some namespaces don't allow subpages,
@@ -1557,7 +1543,6 @@ class Linker {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -1980,7 +1965,6 @@ class Linker {
 		$section = false, $more = null
 	) {
 		global $wgLang;
-		wfProfileIn( __METHOD__ );
 
 		$outText = '';
 		if ( count( $templates ) > 0 ) {
@@ -2060,7 +2044,6 @@ class Linker {
 
 			$outText .= '</ul>';
 		}
-		wfProfileOut( __METHOD__ );
 		return $outText;
 	}
 
@@ -2072,7 +2055,6 @@ class Linker {
 	 * @return string HTML output
 	 */
 	public static function formatHiddenCategories( $hiddencats ) {
-		wfProfileIn( __METHOD__ );
 
 		$outText = '';
 		if ( count( $hiddencats ) > 0 ) {
@@ -2089,7 +2071,6 @@ class Linker {
 			}
 			$outText .= '</ul>';
 		}
-		wfProfileOut( __METHOD__ );
 		return $outText;
 	}
 
@@ -2118,7 +2099,6 @@ class Linker {
 	 *   escape), or false for no title attribute
 	 */
 	public static function titleAttrib( $name, $options = null ) {
-		wfProfileIn( __METHOD__ );
 
 		$message = wfMessage( "tooltip-$name" );
 
@@ -2147,7 +2127,6 @@ class Linker {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $tooltip;
 	}
 
@@ -2167,7 +2146,6 @@ class Linker {
 		if ( isset( self::$accesskeycache[$name] ) ) {
 			return self::$accesskeycache[$name];
 		}
-		wfProfileIn( __METHOD__ );
 
 		$message = wfMessage( "accesskey-$name" );
 
@@ -2183,7 +2161,6 @@ class Linker {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		self::$accesskeycache[$name] = $accesskey;
 		return self::$accesskeycache[$name];
 	}
@@ -2291,7 +2268,6 @@ class Linker {
 	static function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfDeprecated( __METHOD__, '1.21' );
 
-		wfProfileIn( __METHOD__ );
 		$query = wfCgiToArray( $query );
 		list( $inside, $trail ) = self::splitTrail( $trail );
 		if ( $text === '' ) {
@@ -2300,7 +2276,6 @@ class Linker {
 
 		$ret = self::link( $nt, "$prefix$text$inside", array(), $query ) . $trail;
 
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -2325,7 +2300,6 @@ class Linker {
 	) {
 		wfDeprecated( __METHOD__, '1.21' );
 
-		wfProfileIn( __METHOD__ );
 
 		if ( $text == '' ) {
 			$text = self::linkText( $title );
@@ -2340,7 +2314,6 @@ class Linker {
 		$ret = self::link( $title, "$prefix$text$inside", $attribs, $query,
 			array( 'known', 'noclasses' ) ) . $trail;
 
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 

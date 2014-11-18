@@ -55,7 +55,6 @@ class ApiQueryTokens extends ApiQueryBase {
 	public static function getTokenTypeSalts() {
 		static $salts = null;
 		if ( !$salts ) {
-			wfProfileIn( __METHOD__ );
 			$salts = array(
 				'csrf' => '',
 				'watch' => 'watch',
@@ -65,7 +64,6 @@ class ApiQueryTokens extends ApiQueryBase {
 			);
 			wfRunHooks( 'ApiQueryTokensRegisterTypes', array( &$salts ) );
 			ksort( $salts );
-			wfProfileOut( __METHOD__ );
 		}
 
 		return $salts;
