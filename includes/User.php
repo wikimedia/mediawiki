@@ -568,7 +568,8 @@ class User implements IDBAccessObject {
 		// We don't want to call Title::makeTitleSafe yet, since that call path
 		// ends up needing the user language, which ends up trying to load the
 		// user object, which ends up back here (bug 54193).
-		$nt = Title::makeTitle( NS_USER, $name );
+		$nt = Title::makeTitle( NS_USER, Title::capitalize( $name, NS_USER ) );
+
 		if ( isset( self::$idCacheByName[$name] ) ) {
 			return self::$idCacheByName[$name];
 		}
