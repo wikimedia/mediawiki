@@ -1,6 +1,5 @@
-/*
-** Diff rendering
-*/
+/* Styles for diff rendering as output from TableDiffFormatter */
+
 table.diff {
 	border: none;
 	border-spacing: 4px;
@@ -62,10 +61,12 @@ td.diff-context {
 }
 
 td.diff-addedline {
+	background: #fff;
 	border-color: #a3d3ff;
 }
 
 td.diff-deletedline {
+	background: #fff;
 	border-color: #ffe49c;
 }
 
