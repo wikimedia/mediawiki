@@ -153,7 +153,6 @@ class LinksUpdate extends SqlDataUpdate {
 	}
 
 	protected function doIncrementalUpdate() {
-		wfProfileIn( __METHOD__ );
 
 		# Page links
 		$existing = $this->getExistingLinks();
@@ -227,7 +226,6 @@ class LinksUpdate extends SqlDataUpdate {
 			$this->queueRecursiveJobs();
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -251,7 +249,6 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @param string $table Table to use (e.g. 'templatelinks')
 	 */
 	public static function queueRecursiveJobsForTable( Title $title, $table ) {
-		wfProfileIn( __METHOD__ );
 		if ( $title->getBacklinkCache()->hasLinks( $table ) ) {
 			$job = new RefreshLinksJob(
 				$title,
@@ -265,7 +262,6 @@ class LinksUpdate extends SqlDataUpdate {
 			JobQueueGroup::singleton()->push( $job );
 			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

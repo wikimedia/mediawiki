@@ -58,7 +58,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		global $wgAllDBsAreLocalhost, $wgSQLMode;
-		wfProfileIn( __METHOD__ );
 
 		# Debugging hack -- fake cluster
 		if ( $wgAllDBsAreLocalhost ) {
@@ -83,7 +82,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$this->mConn = $this->mysqlConnect( $realServer );
 		} catch ( Exception $ex ) {
 			wfProfileOut( "dbconnect-$server" );
-			wfProfileOut( __METHOD__ );
 			$this->restoreErrorHandler();
 			throw $ex;
 		}
@@ -101,7 +99,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				"Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 
-			wfProfileOut( __METHOD__ );
 
 			$this->reportConnectionError( $error );
 		}
@@ -115,7 +112,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				wfDebug( "Error selecting database $dbName on server {$this->mServer} " .
 					"from client host " . wfHostname() . "\n" );
 
-				wfProfileOut( __METHOD__ );
 
 				$this->reportConnectionError( "Error selecting database $dbName" );
 			}
@@ -133,13 +129,11 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$success = $this->doQuery( "SET sql_mode = $mode", __METHOD__ );
 			if ( !$success ) {
 				wfLogDBError( "Error setting sql_mode to $mode on server {$this->mServer}" );
-				wfProfileOut( __METHOD__ );
 				$this->reportConnectionError( "Error setting sql_mode to $mode" );
 			}
 		}
 
 		$this->mOpened = true;
-		wfProfileOut( __METHOD__ );
 
 		return true;
 	}
@@ -655,7 +649,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			return '0'; // http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html
 		}
 
-		wfProfileIn( __METHOD__ );
 		# Commit any open transactions
 		$this->commit( __METHOD__, 'flush' );
 
@@ -664,18 +657,15 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 			if ( $wait > $timeout * 1e6 ) {
 				wfDebug( "Fake slave timed out waiting for $pos ($wait us)\n" );
-				wfProfileOut( __METHOD__ );
 
 				return -1;
 			} elseif ( $wait > 0 ) {
 				wfDebug( "Fake slave waiting $wait us\n" );
 				usleep( $wait );
-				wfProfileOut( __METHOD__ );
 
 				return 1;
 			} else {
 				wfDebug( "Fake slave up to date ($wait us)\n" );
-				wfProfileOut( __METHOD__ );
 
 				return 0;
 			}
@@ -695,7 +685,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $status;
 	}

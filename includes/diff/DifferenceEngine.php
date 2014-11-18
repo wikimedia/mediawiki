@@ -232,7 +232,6 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	public function showDiffPage( $diffOnly = false ) {
-		wfProfileIn( __METHOD__ );
 
 		# Allow frames except in certain special cases
 		$out = $this->getOutput();
@@ -241,7 +240,6 @@ class DifferenceEngine extends ContextSource {
 
 		if ( !$this->loadRevisionData() ) {
 			$this->showMissingRevision();
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -253,7 +251,6 @@ class DifferenceEngine extends ContextSource {
 				$this->mOldPage->getUserPermissionsErrors( 'read', $user ) );
 		}
 		if ( count( $permErrors ) ) {
-			wfProfileOut( __METHOD__ );
 			throw new PermissionsError( 'read', $permErrors );
 		}
 
@@ -454,7 +451,6 @@ class DifferenceEngine extends ContextSource {
 				$this->renderNewRevision();
 			}
 		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -547,7 +543,6 @@ class DifferenceEngine extends ContextSource {
 	 * Show the new revision of the page.
 	 */
 	public function renderNewRevision() {
-		wfProfileIn( __METHOD__ );
 		$out = $this->getOutput();
 		$revHeader = $this->getRevisionHeader( $this->mNewRev );
 		# Add "current version as of X" title
@@ -605,7 +600,6 @@ class DifferenceEngine extends ContextSource {
 		# Add redundant patrol link on bottom...
 		$out->addHTML( $this->markPatrolledLink() );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	protected function getParserOutput( WikiPage $page, Revision $rev ) {
@@ -684,23 +678,19 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function getDiffBody() {
 		global $wgMemc;
-		wfProfileIn( __METHOD__ );
 		$this->mCacheHit = true;
 		// Check if the diff should be hidden from this user
 		if ( !$this->loadRevisionData() ) {
-			wfProfileOut( __METHOD__ );
 
 			return false;
 		} elseif ( $this->mOldRev &&
 			!$this->mOldRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
 		) {
-			wfProfileOut( __METHOD__ );
 
 			return false;
 		} elseif ( $this->mNewRev &&
 			!$this->mNewRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
 		) {
-			wfProfileOut( __METHOD__ );
 
 			return false;
 		}
@@ -708,7 +698,6 @@ class DifferenceEngine extends ContextSource {
 		if ( $this->mOldRev === false || ( $this->mOldRev && $this->mNewRev
 			&& $this->mOldRev->getID() == $this->mNewRev->getID() )
 		) {
-			wfProfileOut( __METHOD__ );
 
 			return '';
 		}
@@ -724,7 +713,6 @@ class DifferenceEngine extends ContextSource {
 					wfIncrStats( 'diff_cache_hit' );
 					$difftext = $this->localiseLineNumbers( $difftext );
 					$difftext .= "\n<!-- diff cache key $key -->\n";
-					wfProfileOut( __METHOD__ );
 
 					return $difftext;
 				}
@@ -734,7 +722,6 @@ class DifferenceEngine extends ContextSource {
 
 		// Loadtext is permission safe, this just clears out the diff
 		if ( !$this->loadText() ) {
-			wfProfileOut( __METHOD__ );
 
 			return false;
 		}
@@ -754,7 +741,6 @@ class DifferenceEngine extends ContextSource {
 		if ( $difftext !== false ) {
 			$difftext = $this->localiseLineNumbers( $difftext );
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $difftext;
 	}
@@ -840,7 +826,6 @@ class DifferenceEngine extends ContextSource {
 	public function generateTextDiffBody( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
-		wfProfileIn( __METHOD__ );
 
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
@@ -850,7 +835,6 @@ class DifferenceEngine extends ContextSource {
 			# input text to be HTML-escaped already
 			$otext = htmlspecialchars( $wgContLang->segmentForDiff( $otext ) );
 			$ntext = htmlspecialchars( $wgContLang->segmentForDiff( $ntext ) );
-			wfProfileOut( __METHOD__ );
 
 			return $wgContLang->unsegmentForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) ) .
 			$this->debug( 'wikidiff1' );
@@ -863,7 +847,6 @@ class DifferenceEngine extends ContextSource {
 			$text = wikidiff2_do_diff( $otext, $ntext, 2 );
 			$text .= $this->debug( 'wikidiff2' );
 			wfProfileOut( 'wikidiff2_do_diff' );
-			wfProfileOut( __METHOD__ );
 
 			return $text;
 		}
@@ -875,13 +858,11 @@ class DifferenceEngine extends ContextSource {
 
 			$tempFile1 = fopen( $tempName1, "w" );
 			if ( !$tempFile1 ) {
-				wfProfileOut( __METHOD__ );
 
 				return false;
 			}
 			$tempFile2 = fopen( $tempName2, "w" );
 			if ( !$tempFile2 ) {
-				wfProfileOut( __METHOD__ );
 
 				return false;
 			}
@@ -896,7 +877,6 @@ class DifferenceEngine extends ContextSource {
 			wfProfileOut( __METHOD__ . "-shellexec" );
 			unlink( $tempName1 );
 			unlink( $tempName2 );
-			wfProfileOut( __METHOD__ );
 
 			return $difftext;
 		}
@@ -907,7 +887,6 @@ class DifferenceEngine extends ContextSource {
 		$diffs = new Diff( $ota, $nta );
 		$formatter = new TableDiffFormatter();
 		$difftext = $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) ) .
-			wfProfileOut( __METHOD__ );
 
 		return $difftext;
 	}

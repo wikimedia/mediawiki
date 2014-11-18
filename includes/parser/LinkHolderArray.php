@@ -229,7 +229,6 @@ class LinkHolderArray {
 	 * @return string
 	 */
 	public function makeHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = '' ) {
-		wfProfileIn( __METHOD__ );
 		if ( !is_object( $nt ) ) {
 			# Fail gracefully
 			$retVal = "<!-- ERROR -->{$prefix}{$text}{$trail}";
@@ -259,7 +258,6 @@ class LinkHolderArray {
 			}
 			$this->size++;
 		}
-		wfProfileOut( __METHOD__ );
 		return $retVal;
 	}
 
@@ -269,12 +267,10 @@ class LinkHolderArray {
 	 * @param string $text
 	 */
 	public function replace( &$text ) {
-		wfProfileIn( __METHOD__ );
 
 		$this->replaceInternal( $text );
 		$this->replaceInterwiki( $text );
 
-		wfProfileOut( __METHOD__ );
 
 	}
 
@@ -287,7 +283,6 @@ class LinkHolderArray {
 			return;
 		}
 
-		wfProfileIn( __METHOD__ );
 		global $wgContLang, $wgContentHandlerUseDB;
 
 		$colours = array();
@@ -435,7 +430,6 @@ class LinkHolderArray {
 		);
 
 		wfProfileOut( __METHOD__ . '-replace' );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -447,7 +441,6 @@ class LinkHolderArray {
 			return;
 		}
 
-		wfProfileIn( __METHOD__ );
 		# Make interwiki link HTML
 		$output = $this->parent->getOutput();
 		$replacePairs = array();
@@ -461,7 +454,6 @@ class LinkHolderArray {
 			'/<!--IWLINK (.*?)-->/',
 			$replacer->cb(),
 			$text );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -642,14 +634,12 @@ class LinkHolderArray {
 	 * @return string
 	 */
 	public function replaceText( $text ) {
-		wfProfileIn( __METHOD__ );
 
 		$text = preg_replace_callback(
 			'/<!--(LINK|IWLINK) (.*?)-->/',
 			array( &$this, 'replaceTextCallback' ),
 			$text );
 
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 

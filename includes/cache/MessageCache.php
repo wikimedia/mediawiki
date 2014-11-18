@@ -266,7 +266,6 @@ class MessageCache {
 		}
 
 		# Loading code starts
-		wfProfileIn( __METHOD__ );
 		$success = false; # Keep track of success
 		$staleCache = false; # a cache array with expired data, or false if none has been loaded
 		$where = array(); # Debug info, delayed to avoid spamming debug log too much
@@ -423,7 +422,6 @@ class MessageCache {
 		}
 		$info = implode( ', ', $where );
 		wfDebugLog( 'MessageCache', __METHOD__ . ": Loading $code... $info\n" );
-		wfProfileOut( __METHOD__ );
 
 		return $success;
 	}
@@ -437,7 +435,6 @@ class MessageCache {
 	 * @return array Loaded messages for storing in caches.
 	 */
 	function loadFromDB( $code ) {
-		wfProfileIn( __METHOD__ );
 		global $wgMaxMsgCacheEntrySize, $wgLanguageCode, $wgAdaptiveMessageCache;
 		$dbr = wfGetDB( DB_SLAVE );
 		$cache = array();
@@ -511,7 +508,6 @@ class MessageCache {
 
 		$cache['VERSION'] = MSG_CACHE_VERSION;
 		$cache['EXPIRY'] = wfTimestamp( TS_MW, time() + $this->mExpiry );
-		wfProfileOut( __METHOD__ );
 
 		return $cache;
 	}
@@ -524,10 +520,8 @@ class MessageCache {
 	 */
 	public function replace( $title, $text ) {
 		global $wgMaxMsgCacheEntrySize;
-		wfProfileIn( __METHOD__ );
 
 		if ( $this->mDisable ) {
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -577,7 +571,6 @@ class MessageCache {
 
 		wfRunHooks( 'MessageCacheReplace', array( $title, $text ) );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -610,7 +603,6 @@ class MessageCache {
 	 * @return bool
 	 */
 	protected function saveToCaches( $cache, $dest, $code = false ) {
-		wfProfileIn( __METHOD__ );
 		global $wgUseLocalMessageCache;
 
 		$cacheKey = wfMemcKey( 'messages', $code );
@@ -629,7 +621,6 @@ class MessageCache {
 			$this->saveToLocal( $serialized, $hash, $code );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $success;
 	}
@@ -708,7 +699,6 @@ class MessageCache {
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLang;
 
-		$section = new ProfileSection( __METHOD__ );
 
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints
@@ -1056,7 +1046,6 @@ class MessageCache {
 		$popts->setInterfaceMessage( $interface );
 		$popts->setTargetLanguage( $language );
 
-		wfProfileIn( __METHOD__ );
 		if ( !$title || !$title instanceof Title ) {
 			global $wgTitle;
 			wfDebugLog( 'GlobalTitleFail', __METHOD__ . ' called by ' . wfGetAllCallers() . ' with no title set.' );
@@ -1073,7 +1062,6 @@ class MessageCache {
 		$res = $parser->parse( $text, $title, $popts, $linestart );
 		$this->mInParser = false;
 
-		wfProfileOut( __METHOD__ );
 
 		return $res;
 	}

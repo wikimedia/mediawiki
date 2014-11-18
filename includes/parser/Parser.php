@@ -296,14 +296,12 @@ class Parser {
 		}
 		$this->mFirstCall = false;
 
-		wfProfileIn( __METHOD__ );
 
 		CoreParserFunctions::register( $this );
 		CoreTagHooks::register( $this );
 		$this->initialiseVariables();
 
 		wfRunHooks( 'ParserFirstCallInit', array( &$this ) );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -312,7 +310,6 @@ class Parser {
 	 * @private
 	 */
 	public function clearState() {
-		wfProfileIn( __METHOD__ );
 		if ( $this->mFirstCall ) {
 			$this->firstCallInit();
 		}
@@ -371,7 +368,6 @@ class Parser {
 		$this->mProfiler = new SectionProfiler();
 
 		wfRunHooks( 'ParserClearState', array( &$this ) );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -396,7 +392,6 @@ class Parser {
 
 		global $wgShowHostnames;
 		$fname = __METHOD__ . '-' . wfGetCaller();
-		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
 
 		if ( $clearState ) {
@@ -559,7 +554,6 @@ class Parser {
 		$this->mInputSize = false;
 		$this->currentRevisionCache = null;
 		wfProfileOut( $fname );
-		wfProfileOut( __METHOD__ );
 
 		return $this->mOutput;
 	}
@@ -587,11 +581,9 @@ class Parser {
 	 * @return string UNSAFE half-parsed HTML
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
-		wfProfileIn( __METHOD__ );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->internalParse( $text, false, $frame );
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -613,10 +605,8 @@ class Parser {
 	 * @return string Fully parsed HTML
 	 */
 	public function recursiveTagParseFully( $text, $frame = false ) {
-		wfProfileIn( __METHOD__ );
 		$text = $this->recursiveTagParse( $text, $frame );
 		$text = $this->internalParseHalfParsed( $text, false );
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -632,7 +622,6 @@ class Parser {
 	 * @return mixed|string
 	 */
 	public function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null, $frame = false ) {
-		wfProfileIn( __METHOD__ );
 		$magicScopeVariable = $this->lock();
 		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
 		if ( $revid !== null ) {
@@ -642,7 +631,6 @@ class Parser {
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -656,10 +644,8 @@ class Parser {
 	 * @since 1.19
 	 */
 	public function recursivePreprocess( $text, $frame = false ) {
-		wfProfileIn( __METHOD__ );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -1014,7 +1000,6 @@ class Parser {
 	 * @return string
 	 */
 	public function doTableStuff( $text ) {
-		wfProfileIn( __METHOD__ );
 
 		$lines = StringUtils::explode( "\n", $text );
 		$out = '';
@@ -1201,7 +1186,6 @@ class Parser {
 			$out = '';
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $out;
 	}
@@ -1219,13 +1203,11 @@ class Parser {
 	 * @return string
 	 */
 	public function internalParse( $text, $isMain = true, $frame = false ) {
-		wfProfileIn( __METHOD__ );
 
 		$origText = $text;
 
 		# Hook to suspend the parser in this state
 		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$this->mStripState ) ) ) {
-			wfProfileOut( __METHOD__ );
 			return $text;
 		}
 
@@ -1276,7 +1258,6 @@ class Parser {
 		$text = $this->doMagicLinks( $text );
 		$text = $this->formatHeadings( $text, $origText, $isMain );
 
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -1387,7 +1368,6 @@ class Parser {
 	 * @return string
 	 */
 	public function doMagicLinks( $text ) {
-		wfProfileIn( __METHOD__ );
 		$prots = wfUrlProtocolsWithoutProtRel();
 		$urlChar = self::EXT_LINK_URL_CLASS;
 		$text = preg_replace_callback(
@@ -1402,7 +1382,6 @@ class Parser {
 					[0-9Xx]                 # check digit
 					\b)
 			)!xu', array( &$this, 'magicLinkCallback' ), $text );
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -1465,7 +1444,6 @@ class Parser {
 	 * @private
 	 */
 	public function makeFreeExternalLink( $url ) {
-		wfProfileIn( __METHOD__ );
 
 		$trail = '';
 
@@ -1506,7 +1484,6 @@ class Parser {
 			$pasteurized = self::normalizeLinkUrl( $url );
 			$this->mOutput->addExternalLink( $pasteurized );
 		}
-		wfProfileOut( __METHOD__ );
 		return $text . $trail;
 	}
 
@@ -1520,12 +1497,10 @@ class Parser {
 	 * @return string
 	 */
 	public function doHeadings( $text ) {
-		wfProfileIn( __METHOD__ );
 		for ( $i = 6; $i >= 1; --$i ) {
 			$h = str_repeat( '=', $i );
 			$text = preg_replace( "/^$h(.+)$h\\s*$/m", "<h$i>\\1</h$i>", $text );
 		}
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -1538,14 +1513,12 @@ class Parser {
 	 * @return string The altered text
 	 */
 	public function doAllQuotes( $text ) {
-		wfProfileIn( __METHOD__ );
 		$outtext = '';
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {
 			$outtext .= $this->doQuotes( $line ) . "\n";
 		}
 		$outtext = substr( $outtext, 0, -1 );
-		wfProfileOut( __METHOD__ );
 		return $outtext;
 	}
 
@@ -1747,11 +1720,9 @@ class Parser {
 	 * @return string
 	 */
 	public function replaceExternalLinks( $text ) {
-		wfProfileIn( __METHOD__ );
 
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		if ( $bits === false ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "PCRE needs to be compiled with "
 				. "--enable-unicode-properties in order for MediaWiki to function" );
 		}
@@ -1815,7 +1786,6 @@ class Parser {
 			$this->mOutput->addExternalLink( $pasteurized );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $s;
 	}
 
@@ -2013,7 +1983,6 @@ class Parser {
 	 */
 	public function replaceInternalLinks2( &$s ) {
 		global $wgExtraInterlanguageLinkPrefixes;
-		wfProfileIn( __METHOD__ );
 
 		wfProfileIn( __METHOD__ . '-setup' );
 		static $tc = false, $e1, $e1_img;
@@ -2048,7 +2017,6 @@ class Parser {
 
 		if ( is_null( $this->mTitle ) ) {
 			wfProfileOut( __METHOD__ . '-setup' );
-			wfProfileOut( __METHOD__ );
 			throw new MWException( __METHOD__ . ": \$this->mTitle is null\n" );
 		}
 		$nottalk = !$this->mTitle->isTalkPage();
@@ -2345,7 +2313,6 @@ class Parser {
 			}
 			wfProfileOut( __METHOD__ . "-always_known" );
 		}
-		wfProfileOut( __METHOD__ );
 		return $holders;
 	}
 
@@ -2544,7 +2511,6 @@ class Parser {
 	 * @return string The lists rendered as HTML
 	 */
 	public function doBlockLevels( $text, $linestart ) {
-		wfProfileIn( __METHOD__ );
 
 		# Parsing through the text line by line.  The main thing
 		# happening here is handling of block-level elements p, pre,
@@ -2747,7 +2713,6 @@ class Parser {
 			$this->mLastSection = '';
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $output;
 	}
 
@@ -2762,12 +2727,10 @@ class Parser {
 	 * @return string The position of the ':', or false if none found
 	 */
 	public function findColonNoLinks( $str, &$before, &$after ) {
-		wfProfileIn( __METHOD__ );
 
 		$pos = strpos( $str, ':' );
 		if ( $pos === false ) {
 			# Nothing to find!
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -2776,7 +2739,6 @@ class Parser {
 			# Easy; no tag nesting to worry about
 			$before = substr( $str, 0, $pos );
 			$after = substr( $str, $pos + 1 );
-			wfProfileOut( __METHOD__ );
 			return $pos;
 		}
 
@@ -2800,7 +2762,6 @@ class Parser {
 						# We found it!
 						$before = substr( $str, 0, $i );
 						$after = substr( $str, $i + 1 );
-						wfProfileOut( __METHOD__ );
 						return $i;
 					}
 					# Embedded in a tag; don't break it.
@@ -2810,7 +2771,6 @@ class Parser {
 					$colon = strpos( $str, ':', $i );
 					if ( $colon === false ) {
 						# Nothing else interesting
-						wfProfileOut( __METHOD__ );
 						return false;
 					}
 					$lt = strpos( $str, '<', $i );
@@ -2819,7 +2779,6 @@ class Parser {
 							# We found it!
 							$before = substr( $str, 0, $colon );
 							$after = substr( $str, $colon + 1 );
-							wfProfileOut( __METHOD__ );
 							return $i;
 						}
 					}
@@ -2870,7 +2829,6 @@ class Parser {
 					$stack--;
 					if ( $stack < 0 ) {
 						wfDebug( __METHOD__ . ": Invalid input; too many close tags\n" );
-						wfProfileOut( __METHOD__ );
 						return false;
 					}
 					$state = self::COLON_STATE_TEXT;
@@ -2905,16 +2863,13 @@ class Parser {
 				}
 				break;
 			default:
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "State machine error in " . __METHOD__ );
 			}
 		}
 		if ( $stack > 0 ) {
 			wfDebug( __METHOD__ . ": Invalid input; not enough close tags (stack $stack, state $state)\n" );
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
-		wfProfileOut( __METHOD__ );
 		return false;
 	}
 
@@ -3282,13 +3237,11 @@ class Parser {
 	 * @private
 	 */
 	public function initialiseVariables() {
-		wfProfileIn( __METHOD__ );
 		$variableIDs = MagicWord::getVariableIDs();
 		$substIDs = MagicWord::getSubstIDs();
 
 		$this->mVariables = new MagicWordArray( $variableIDs );
 		$this->mSubstWords = new MagicWordArray( $substIDs );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -3363,7 +3316,6 @@ class Parser {
 		if ( strlen( $text ) < 1 || strlen( $text ) > $this->mOptions->getMaxIncludeSize() ) {
 			return $text;
 		}
-		wfProfileIn( __METHOD__ );
 
 		if ( $frame === false ) {
 			$frame = $this->getPreprocessor()->newFrame();
@@ -3377,7 +3329,6 @@ class Parser {
 		$flags = $argsOnly ? PPFrame::NO_TEMPLATES : 0;
 		$text = $frame->expand( $dom, $flags );
 
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -3455,7 +3406,6 @@ class Parser {
 	 * @return string The text of the template
 	 */
 	public function braceSubstitution( $piece, $frame ) {
-		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-setup' );
 
 		// Flags
@@ -3568,7 +3518,6 @@ class Parser {
 					$result = $this->callParserFunction( $frame, $func, $funcArgs );
 				} catch ( Exception $ex ) {
 					wfProfileOut( __METHOD__ . '-pfunc' );
-					wfProfileOut( __METHOD__ );
 					throw $ex;
 				}
 
@@ -3697,7 +3646,6 @@ class Parser {
 			if ( $profileSection ) {
 				$this->mProfiler->scopedProfileOut( $profileSection );
 			}
-			wfProfileOut( __METHOD__ );
 			return array( 'object' => $text );
 		}
 
@@ -3763,7 +3711,6 @@ class Parser {
 			$ret = array( 'text' => $text );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -3789,7 +3736,6 @@ class Parser {
 	public function callParserFunction( $frame, $function, array $args = array() ) {
 		global $wgContLang;
 
-		wfProfileIn( __METHOD__ );
 
 		# Case sensitive functions
 		if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
@@ -3800,7 +3746,6 @@ class Parser {
 			if ( isset( $this->mFunctionSynonyms[0][$function] ) ) {
 				$function = $this->mFunctionSynonyms[0][$function];
 			} else {
-				wfProfileOut( __METHOD__ );
 				return array( 'found' => false );
 			}
 		}
@@ -3811,7 +3756,6 @@ class Parser {
 		# Workaround for PHP bug 35229 and similar
 		if ( !is_callable( $callback ) ) {
 			wfProfileOut( __METHOD__ . '-pfunc-' . $function );
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "Tag hook for $function is not callable\n" );
 		}
 
@@ -3877,7 +3821,6 @@ class Parser {
 			$result['isChildObj'] = true;
 		}
 		wfProfileOut( __METHOD__ . '-pfunc-' . $function );
-		wfProfileOut( __METHOD__ );
 
 		return $result;
 	}
@@ -4207,7 +4150,6 @@ class Parser {
 	 * @return array
 	 */
 	public function argSubstitution( $piece, $frame ) {
-		wfProfileIn( __METHOD__ );
 
 		$error = false;
 		$parts = $piece['parts'];
@@ -4242,7 +4184,6 @@ class Parser {
 			$ret = array( 'text' => $text );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -4373,7 +4314,6 @@ class Parser {
 	 * @return string
 	 */
 	public function doDoubleUnderscore( $text ) {
-		wfProfileIn( __METHOD__ );
 
 		# The position of __TOC__ needs to be recorded
 		$mw = MagicWord::get( 'toc' );
@@ -4421,7 +4361,6 @@ class Parser {
 			$this->mOutput->setProperty( $key, '' );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -5125,7 +5064,6 @@ class Parser {
 		}
 		$executing = true;
 
-		wfProfileIn( __METHOD__ );
 		if ( !$title ) {
 			global $wgTitle;
 			$title = $wgTitle;
@@ -5134,7 +5072,6 @@ class Parser {
 		$text = $this->preprocess( $text, $title, $options );
 
 		$executing = false;
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -5361,7 +5298,6 @@ class Parser {
 	 * @return string HTML
 	 */
 	public function renderImageGallery( $text, $params ) {
-		wfProfileIn( __METHOD__ );
 
 		$mode = false;
 		if ( isset( $params['mode'] ) ) {
@@ -5513,7 +5449,6 @@ class Parser {
 		}
 		$html = $ig->toHTML();
 		wfRunHooks( 'AfterParserFetchFileAndTitle', array( $this, $ig, &$html ) );
-		wfProfileOut( __METHOD__ );
 		return $html;
 	}
 
@@ -6085,7 +6020,6 @@ class Parser {
 	 */
 	public function getRevisionTimestamp() {
 		if ( is_null( $this->mRevisionTimestamp ) ) {
-			wfProfileIn( __METHOD__ );
 
 			global $wgContLang;
 
@@ -6100,7 +6034,6 @@ class Parser {
 			# it needs to be consistent for all visitors.
 			$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp, '' );
 
-			wfProfileOut( __METHOD__ );
 		}
 		return $this->mRevisionTimestamp;
 	}
@@ -6355,14 +6288,12 @@ class Parser {
 	 * @return array
 	 */
 	public function serializeHalfParsedText( $text ) {
-		wfProfileIn( __METHOD__ );
 		$data = array(
 			'text' => $text,
 			'version' => self::HALF_PARSED_VERSION,
 			'stripState' => $this->mStripState->getSubState( $text ),
 			'linkHolders' => $this->mLinkHolders->getSubArray( $text )
 		);
-		wfProfileOut( __METHOD__ );
 		return $data;
 	}
 

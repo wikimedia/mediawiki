@@ -102,7 +102,6 @@ class HistoryAction extends FormlessAction {
 			return; // Client cache fresh and headers sent, nothing more to do.
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		$this->preCacheMessages();
 		$config = $this->context->getConfig();
@@ -131,7 +130,6 @@ class HistoryAction extends FormlessAction {
 		$feedType = $request->getVal( 'feed' );
 		if ( $feedType ) {
 			$this->feed( $feedType );
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -151,7 +149,6 @@ class HistoryAction extends FormlessAction {
 					'msgKey' => array( 'moveddeleted-notice' )
 				)
 			);
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -215,7 +212,6 @@ class HistoryAction extends FormlessAction {
 		);
 		$out->preventClickjacking( $pager->getPreventClickjacking() );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

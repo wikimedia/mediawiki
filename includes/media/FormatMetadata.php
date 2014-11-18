@@ -1595,11 +1595,9 @@ class FormatMetadata extends ContextSource {
 	public function fetchExtendedMetadata( File $file ) {
 		global $wgMemc;
 
-		wfProfileIn( __METHOD__ );
 
 		// If revision deleted, exit immediately
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
-			wfProfileOut( __METHOD__ );
 
 			return array();
 		}
@@ -1633,7 +1631,6 @@ class FormatMetadata extends ContextSource {
 			$wgMemc->set( $cacheKey, $valueToCache, $maxCacheTime );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $extendedMetadata;
 	}
@@ -1656,7 +1653,6 @@ class FormatMetadata extends ContextSource {
 			return $file->getExtendedMetadata() ?: array();
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		$uploadDate = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
 
@@ -1696,7 +1692,6 @@ class FormatMetadata extends ContextSource {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $fileMetadata;
 	}
@@ -1714,7 +1709,6 @@ class FormatMetadata extends ContextSource {
 	protected function getExtendedMetadataFromHook( File $file, array $extendedMetadata,
 		&$maxCacheTime
 	) {
-		wfProfileIn( __METHOD__ );
 
 		wfRunHooks( 'GetExtendedMetadata', array(
 			&$extendedMetadata,
@@ -1731,7 +1725,6 @@ class FormatMetadata extends ContextSource {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $extendedMetadata;
 	}

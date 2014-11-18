@@ -501,10 +501,8 @@ abstract class ResourceLoaderModule {
 	 *  by getDefinitionSummary()
 	 */
 	public function getDefinitionMtime( ResourceLoaderContext $context ) {
-		wfProfileIn( __METHOD__ );
 		$summary = $this->getDefinitionSummary( $context );
 		if ( $summary === null ) {
-			wfProfileOut( __METHOD__ );
 			return 0;
 		}
 
@@ -526,7 +524,6 @@ abstract class ResourceLoaderModule {
 		$data = $cache->get( $key );
 		if ( is_int( $data ) && $data > 0 ) {
 			// We've seen this hash before, re-use the timestamp of when we first saw it.
-			wfProfileOut( __METHOD__ );
 			return $data;
 		}
 
@@ -536,7 +533,6 @@ abstract class ResourceLoaderModule {
 		$timestamp = time();
 		$cache->set( $key, $timestamp );
 
-		wfProfileOut( __METHOD__ );
 		return $timestamp;
 	}
 

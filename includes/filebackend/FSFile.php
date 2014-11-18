@@ -104,7 +104,6 @@ class FSFile {
 	 * @return array
 	 */
 	public function getProps( $ext = true ) {
-		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . ": Getting file info for $this->path\n" );
 
 		$info = self::placeholderProps();
@@ -146,7 +145,6 @@ class FSFile {
 			wfDebug( __METHOD__ . ": $this->path NOT FOUND!\n" );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $info;
 	}
@@ -201,10 +199,8 @@ class FSFile {
 	 * @return bool|string False on failure
 	 */
 	public function getSha1Base36( $recache = false ) {
-		wfProfileIn( __METHOD__ );
 
 		if ( $this->sha1Base36 !== null && !$recache ) {
-			wfProfileOut( __METHOD__ );
 
 			return $this->sha1Base36;
 		}
@@ -217,7 +213,6 @@ class FSFile {
 			$this->sha1Base36 = wfBaseConvert( $this->sha1Base36, 16, 36, 31 );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $this->sha1Base36;
 	}

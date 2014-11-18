@@ -1771,7 +1771,6 @@ class Title {
 	 * @return string The URL
 	 */
 	public function getLinkURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
-		wfProfileIn( __METHOD__ );
 		if ( $this->isExternal() || $proto !== PROTO_RELATIVE ) {
 			$ret = $this->getFullURL( $query, $query2, $proto );
 		} elseif ( $this->getPrefixedText() === '' && $this->hasFragment() ) {
@@ -1779,7 +1778,6 @@ class Title {
 		} else {
 			$ret = $this->getLocalURL( $query, $query2 ) . $this->getFragmentForURL();
 		}
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -2433,7 +2431,6 @@ class Title {
 	protected function getUserPermissionsErrorsInternal( $action, $user,
 		$doExpensiveQueries = true, $short = false
 	) {
-		wfProfileIn( __METHOD__ );
 
 		# Read has special handling
 		if ( $action == 'read' ) {
@@ -2474,7 +2471,6 @@ class Title {
 			$errors = $this->$method( $action, $user, $errors, $doExpensiveQueries, $short );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $errors;
 	}
 
@@ -2710,7 +2706,6 @@ class Title {
 			return array( $this->mHasCascadingRestrictions, $pagerestrictions );
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -2786,7 +2781,6 @@ class Title {
 			$this->mHasCascadingRestrictions = $sources;
 		}
 
-		wfProfileOut( __METHOD__ );
 		return array( $sources, $pagerestrictions );
 	}
 
@@ -4617,16 +4611,13 @@ class Title {
 	 */
 	public function getPageLanguage() {
 		global $wgLang, $wgLanguageCode;
-		wfProfileIn( __METHOD__ );
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
-			wfProfileOut( __METHOD__ );
 			return $wgLang;
 		}
 
 		// Checking if DB language is set
 		if ( $this->mDbPageLanguage ) {
-			wfProfileOut( __METHOD__ );
 			return wfGetLangObj( $this->mDbPageLanguage );
 		}
 
@@ -4644,7 +4635,6 @@ class Title {
 			$langObj = wfGetLangObj( $this->mPageLanguage[0] );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $langObj;
 	}
 

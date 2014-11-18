@@ -73,7 +73,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function get( $key, &$casToken = null ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
@@ -93,7 +92,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function set( $key, $value, $expiry = 0 ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
@@ -117,7 +115,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function cas( $casToken, $key, $value, $expiry = 0 ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
@@ -151,7 +148,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function delete( $key, $time = 0 ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
@@ -171,7 +167,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function getMulti( array $keys ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		$batches = array();
 		$conns = array();
@@ -217,7 +212,6 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function setMulti( array $data, $expiry = 0 ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		$batches = array();
 		$conns = array();
@@ -265,7 +259,6 @@ class RedisBagOStuff extends BagOStuff {
 
 
 	public function add( $key, $value, $expiry = 0 ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
@@ -303,7 +296,6 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return int|bool New value or false on failure
 	 */
 	public function incr( $key, $value = 1 ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
