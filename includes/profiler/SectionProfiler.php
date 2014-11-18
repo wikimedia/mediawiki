@@ -25,18 +25,30 @@
 /**
  * Custom PHP profiler for parser/DB type section names that xhprof/xdebug can't handle
  *
- * @TODO: refactor implementation by moving Profiler code to here when non-automatic
- * profiler support is dropped.
- *
  * @since 1.25
  */
 class SectionProfiler {
-	/** @var ProfilerStandard */
-	protected $profiler;
+	/** @var array List of resolved profile calls with start/end data */
+	protected $stack = array();
+	/** @var array Queue of open profile calls with start data */
+	protected $workStack = array();
 
-	public function __construct() {
-		// This does *not* care about PHP request start time
-		$this->profiler = new ProfilerStandard( array( 'initTotal' => false ) );
+	/** @var array Map of (function name => aggregate data array) */
+	protected $collated = array();
+	/** @var bool */
+	protected $collateDone = false;
+	/** @var bool Whether to collect the full stack trace or just aggregates */
+	protected $collateOnly = true;
+
+	/** @var array Cache of a standard broken collation entry */
+	protected $errorEntry;
+
+	/**
+	 * @param array $params
+	 */
+	public function __construct( array $params = array() ) {
+		$this->errorEntry = $this->getErrorEntry();
+		$this->collateOnly = empty( $params['trace'] );
 	}
 
 	/**
@@ -44,13 +56,12 @@ class SectionProfiler {
 	 * @return ScopedCallback
 	 */
 	public function scopedProfileIn( $section ) {
-		$profiler = $this->profiler;
-		$sc = new ScopedCallback( function() use ( $profiler, $section ) {
-			$profiler->profileOut( $section );
-		} );
-		$profiler->profileIn( $section );
+		$this->profileInInternal( $section );
 
-		return $sc;
+		$that = $this;
+		return new ScopedCallback( function() use ( $that, $section ) {
+			$that->profileOutInternal( $section );
+		} );
 	}
 
 	/**
@@ -80,33 +91,365 @@ class SectionProfiler {
 	 *   - %memory : percent memory used
 	 */
 	public function getFunctionStats() {
-		$data = $this->profiler->getFunctionStats();
+		$this->collateData();
 
-		$cpuTotal = 0;
-		$memoryTotal = 0;
-		$elapsedTotal = 0;
-		foreach ( $data as $item ) {
-			$memoryTotal += $item['memory'];
-			$elapsedTotal += $item['real'];
-			$cpuTotal += $item['cpu'];
+		$totalCpu = 0.0;
+		$totalReal = 0.0;
+		$totalMem = 0;
+		foreach ( $this->collated as $fname => $data ) {
+			$totalCpu += $data['cpu'];
+			$totalReal += $data['real'];
+			$totalMem += $data['memory'];
 		}
 
-		foreach ( $data as &$item ) {
-			$item['%cpu'] = $item['cpu'] ? $item['cpu'] / $cpuTotal * 100 : 0;
-			$item['%real'] = $elapsedTotal ? $item['real'] / $elapsedTotal * 100 : 0;
-			$item['%memory'] = $item['memory'] ? $item['memory'] / $memoryTotal * 100 : 0;
+		$profile = array();
+		foreach ( $this->collated as $fname => $data ) {
+			$profile[] = array(
+				'name' => $fname,
+				'calls' => $data['count'],
+				'real' => $data['real'] * 1000,
+				'%real' => $totalReal ? 100 * $data['real'] / $totalReal : 0,
+				'cpu' => $data['cpu'] * 1000,
+				'%cpu' => $totalCpu ? 100 * $data['cpu'] / $totalCpu : 0,
+				'memory' => $data['memory'],
+				'%memory' => $totalMem ? 100 * $data['memory'] / $totalMem : 0,
+			);
 		}
-		unset( $item );
 
-		$data[] = array(
+		$profile[] = array(
 			'name' => '-total',
 			'calls' => 1,
-			'real' => $elapsedTotal,
+			'real' => 1000 * $totalReal,
 			'%real' => 100,
-			'memory' => $memoryTotal,
+			'cpu' => 1000 * $totalCpu,
+			'%cpu' => 100,
+			'memory' => $totalMem,
 			'%memory' => 100,
 		);
 
-		return $data;
+		return $profile;
+	}
+
+	/**
+	 * @return array Initial collation entry
+	 */
+	protected function getZeroEntry() {
+		return array(
+			'cpu'      => 0.0,
+			'real'     => 0.0,
+			'memory'   => 0,
+			'count'    => 0
+		);
+	}
+
+	/**
+	 * @return array Initial collation entry for errors
+	 */
+	protected function getErrorEntry() {
+		$entry = $this->getZeroEntry();
+		$entry['count'] = 1;
+		return $entry;
+	}
+
+	/**
+	 * Update the collation entry for a given method name
+	 *
+	 * @param string $name
+	 * @param float $elapsedCpu
+	 * @param float $elapsedReal
+	 * @param int $memChange
+	 */
+	protected function updateEntry( $name, $elapsedCpu, $elapsedReal, $memChange ) {
+		$entry =& $this->collated[$name];
+		if ( !is_array( $entry ) ) {
+			$entry = $this->getZeroEntry();
+			$this->collated[$name] =& $entry;
+		}
+		$entry['cpu'] += $elapsedCpu;
+		$entry['real'] += $elapsedReal;
+		$entry['memory'] += $memChange > 0 ? $memChange : 0;
+		$entry['count']++;
+	}
+
+	/**
+	 * This method should not be called outside SectionProfiler
+	 *
+	 * @param string $functionname
+	 */
+	public function profileInInternal( $functionname ) {
+		$this->workStack[] = array(
+			$functionname,
+			count( $this->workStack ),
+			$this->getTime( 'time' ),
+			$this->getTime( 'cpu' ),
+			memory_get_usage()
+		);
+	}
+
+	/**
+	 * This method should not be called outside SectionProfiler
+	 *
+	 * @param string $functionname
+	 */
+	public function profileOutInternal( $functionname ) {
+		$item = array_pop( $this->workStack );
+		if ( $item === null ) {
+			$this->debugGroup( 'profileerror', "Profiling error: $functionname" );
+			return;
+		}
+		list( $ofname, /* $ocount */, $ortime, $octime, $omem ) = $item;
+
+		if ( $functionname === 'close' ) {
+			$message = "Profile section ended by close(): {$ofname}";
+			$this->debugGroup( 'profileerror', $message );
+			if ( $this->collateOnly ) {
+				$this->collated[$message] = $this->errorEntry;
+			} else {
+				$this->stack[] = array( $message, 0, 0.0, 0.0, 0, 0.0, 0.0, 0 );
+			}
+			$functionname = $ofname;
+		} elseif ( $ofname !== $functionname ) {
+			$message = "Profiling error: in({$ofname}), out($functionname)";
+			$this->debugGroup( 'profileerror', $message );
+			if ( $this->collateOnly ) {
+				$this->collated[$message] = $this->errorEntry;
+			} else {
+				$this->stack[] = array( $message, 0, 0.0, 0.0, 0, 0.0, 0.0, 0 );
+			}
+		}
+		$realTime = $this->getTime( 'wall' );
+		$cpuTime = $this->getTime( 'cpu' );
+		if ( $this->collateOnly ) {
+			$elapsedcpu = $cpuTime - $octime;
+			$elapsedreal = $realTime - $ortime;
+			$memchange = memory_get_usage() - $omem;
+			$this->updateEntry( $functionname, $elapsedcpu, $elapsedreal, $memchange );
+		} else {
+			$this->stack[] = array_merge( $item,
+				array( $realTime, $cpuTime,	memory_get_usage() ) );
+		}
+	}
+
+	/**
+	 * Returns a tree of function calls with their real times
+	 * @return string
+	 */
+	public function getCallTreeReport() {
+		if ( $this->collateOnly ) {
+			throw new Exception( "Tree is only available for trace profiling." );
+		}
+		return implode( '', array_map(
+			array( $this, 'getCallTreeLine' ), $this->remapCallTree( $this->stack )
+		) );
+	}
+
+	/**
+	 * Recursive function the format the current profiling array into a tree
+	 *
+	 * @param array $stack Profiling array
+	 * @return array
+	 */
+	protected function remapCallTree( array $stack ) {
+		if ( count( $stack ) < 2 ) {
+			return $stack;
+		}
+		$outputs = array();
+		for ( $max = count( $stack ) - 1; $max > 0; ) {
+			/* Find all items under this entry */
+			$level = $stack[$max][1];
+			$working = array();
+			for ( $i = $max -1; $i >= 0; $i-- ) {
+				if ( $stack[$i][1] > $level ) {
+					$working[] = $stack[$i];
+				} else {
+					break;
+				}
+			}
+			$working = $this->remapCallTree( array_reverse( $working ) );
+			$output = array();
+			foreach ( $working as $item ) {
+				array_push( $output, $item );
+			}
+			array_unshift( $output, $stack[$max] );
+			$max = $i;
+
+			array_unshift( $outputs, $output );
+		}
+		$final = array();
+		foreach ( $outputs as $output ) {
+			foreach ( $output as $item ) {
+				$final[] = $item;
+			}
+		}
+		return $final;
+	}
+
+	/**
+	 * Callback to get a formatted line for the call tree
+	 * @param array $entry
+	 * @return string
+	 */
+	protected function getCallTreeLine( $entry ) {
+		// $entry has (name, level, stime, scpu, smem, etime, ecpu, emem)
+		list( $fname, $level, $startreal, , , $endreal ) = $entry;
+		$delta = $endreal - $startreal;
+		$space = str_repeat( ' ', $level );
+		# The ugly double sprintf is to work around a PHP bug,
+		# which has been fixed in recent releases.
+		return sprintf( "%10s %s %s\n",
+			trim( sprintf( "%7.3f", $delta * 1000.0 ) ), $space, $fname );
+	}
+
+	/**
+	 * Populate collated data
+	 */
+	protected function collateData() {
+		if ( $this->collateDone ) {
+			return;
+		}
+		$this->collateDone = true;
+		// Close opened profiling sections
+		while ( count( $this->workStack ) ) {
+			$this->profileOutInternal( 'close' );
+		}
+
+		if ( $this->collateOnly ) {
+			return; // already collated as methods exited
+		}
+
+		$this->collated = array();
+
+		# Estimate profiling overhead
+		$profileCount = count( $this->stack );
+		$this->calculateOverhead( $profileCount );
+
+		# First, subtract the overhead!
+		$overheadTotal = $overheadMemory = $overheadInternal = array();
+		foreach ( $this->stack as $entry ) {
+			// $entry is (name,pos,rtime0,cputime0,mem0,rtime1,cputime1,mem1)
+			$fname = $entry[0];
+			$elapsed = $entry[5] - $entry[2];
+			$memchange = $entry[7] - $entry[4];
+
+			if ( $fname === '-overhead-total' ) {
+				$overheadTotal[] = $elapsed;
+				$overheadMemory[] = max( 0, $memchange );
+			} elseif ( $fname === '-overhead-internal' ) {
+				$overheadInternal[] = $elapsed;
+			}
+		}
+		$overheadTotal = $overheadTotal ?
+			array_sum( $overheadTotal ) / count( $overheadInternal ) : 0;
+		$overheadMemory = $overheadMemory ?
+			array_sum( $overheadMemory ) / count( $overheadInternal ) : 0;
+		$overheadInternal = $overheadInternal ?
+			array_sum( $overheadInternal ) / count( $overheadInternal ) : 0;
+
+		# Collate
+		foreach ( $this->stack as $index => $entry ) {
+			// $entry is (name,pos,rtime0,cputime0,mem0,rtime1,cputime1,mem1)
+			$fname = $entry[0];
+			$elapsedCpu = $entry[6] - $entry[3];
+			$elapsedReal = $entry[5] - $entry[2];
+			$memchange = $entry[7] - $entry[4];
+			$subcalls = $this->calltreeCount( $this->stack, $index );
+
+			if ( substr( $fname, 0, 9 ) !== '-overhead' ) {
+				# Adjust for profiling overhead (except special values with elapsed=0
+				if ( $elapsed ) {
+					$elapsed -= $overheadInternal;
+					$elapsed -= ( $subcalls * $overheadTotal );
+					$memchange -= ( $subcalls * $overheadMemory );
+				}
+			}
+
+			$this->updateEntry( $fname, $elapsedCpu, $elapsedReal, $memchange );
+		}
+
+		$this->collated['-overhead-total']['count'] = $profileCount;
+		arsort( $this->collated, SORT_NUMERIC );
+	}
+
+	/**
+	 * Dummy calls to calculate profiling overhead
+	 *
+	 * @param int $profileCount
+	 */
+	protected function calculateOverhead( $profileCount ) {
+		$this->profileInInternal( '-overhead-total' );
+		for ( $i = 0; $i < $profileCount; $i++ ) {
+			$this->profileInInternal( '-overhead-internal' );
+			$this->profileOutInternal( '-overhead-internal' );
+		}
+		$this->profileOutInternal( '-overhead-total' );
+	}
+
+	/**
+	 * Counts the number of profiled function calls sitting under
+	 * the given point in the call graph. Not the most efficient algo.
+	 *
+	 * @param array $stack
+	 * @param int $start
+	 * @return int
+	 */
+	protected function calltreeCount( $stack, $start ) {
+		$level = $stack[$start][1];
+		$count = 0;
+		for ( $i = $start -1; $i >= 0 && $stack[$i][1] > $level; $i-- ) {
+			$count ++;
+		}
+		return $count;
+	}
+
+	/**
+	 * Get the initial time of the request, based either on $wgRequestTime or
+	 * $wgRUstart. Will return null if not able to find data.
+	 *
+	 * @param string|bool $metric Metric to use, with the following possibilities:
+	 *   - user: User CPU time (without system calls)
+	 *   - cpu: Total CPU time (user and system calls)
+	 *   - wall (or any other string): elapsed time
+	 *   - false (default): will fall back to default metric
+	 * @return float|null
+	 */
+	protected function getTime( $metric = 'wall' ) {
+		if ( $metric === 'cpu' || $metric === 'user' ) {
+			$ru = wfGetRusage();
+			if ( !$ru ) {
+				return 0;
+			}
+			$time = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
+			if ( $metric === 'cpu' ) {
+				# This is the time of system calls, added to the user time
+				# it gives the total CPU time
+				$time += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
+			}
+			return $time;
+		} else {
+			return microtime( true );
+		}
+	}
+
+	/**
+	 * Add an entry in the debug log file
+	 *
+	 * @param string $s String to output
+	 */
+	protected function debug( $s ) {
+		if ( function_exists( 'wfDebug' ) ) {
+			wfDebug( $s );
+		}
+	}
+
+	/**
+	 * Add an entry in the debug log group
+	 *
+	 * @param string $group Group to send the message to
+	 * @param string $s String to output
+	 */
+	protected function debugGroup( $group, $s ) {
+		if ( function_exists( 'wfDebugLog' ) ) {
+			wfDebugLog( $group, $s );
+		}
 	}
 }
