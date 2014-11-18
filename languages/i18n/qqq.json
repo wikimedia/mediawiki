@@ -1566,7 +1566,7 @@
 	"img-auth-nopathinfo": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Missing PATH_INFO - see english description\n{{Doc-important|This is plain text. Do not use any wiki syntax.}}",
 	"img-auth-notindir": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: When the specified path is not in upload directory.",
 	"img-auth-badtitle": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Bad title, $1 is the invalid title",
-	"img-auth-nologinnWL": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Logged in and file not whitelisted. $1 is the file not in whitelist.",
+	"img-auth-nologinnWL": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Logged in and file not whitelisted.  $1 is the file not in whitelist.",
 	"img-auth-nofile": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Non existent file, $1 is the file that does not exist.",
 	"img-auth-isdir": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Trying to access a directory instead of a file, $1 is the directory.",
 	"img-auth-streaming": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Is now streaming file specified by $1.",
