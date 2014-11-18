@@ -1351,6 +1351,7 @@ abstract class ApiBase extends ContextSource {
 		'permdenied-undelete' => array( 'code' => 'permissiondenied', 'info' => "You don't have permission to restore deleted revisions" ),
 		'createonly-exists' => array( 'code' => 'articleexists', 'info' => "The article you tried to create has been created already" ),
 		'nocreate-missing' => array( 'code' => 'missingtitle', 'info' => "The article you tried to edit doesn't exist" ),
+		'cantchangecontentmodel' => array( 'code' => 'cantchangecontentmodel', 'info' => "You don't have permission to change the content model of a page" ),
 		'nosuchrcid' => array( 'code' => 'nosuchrcid', 'info' => "There is no change with rcid \"\$1\"" ),
 		'protect-invalidaction' => array( 'code' => 'protect-invalidaction', 'info' => "Invalid protection type \"\$1\"" ),
 		'protect-invalidlevel' => array( 'code' => 'protect-invalidlevel', 'info' => "Invalid protection level \"\$1\"" ),
