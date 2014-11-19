@@ -1100,11 +1100,29 @@ class WikiRevision {
 	/** @var bool */
 	private $mNoUpdates = false;
 
+	/**
+	 * @var array
+	 * Associative array of title => bool (is page countable?)
+	 */
+	private static $countableCache = array();
+
 	/** @var Config $config */
 	private $config;
 
 	public function __construct( Config $config ) {
 		$this->config = $config;
+	}
+
+	/**
+	 * Consumes the ArticleEditIpdates hook to store whether a particular title
+	 * is countable or not.
+	 * @param string $title
+	 * @param WikiPage &$article
+	 * @param object &$editInfo
+	 * @param bool changed
+	 */
+	static function onArticleEditUpdates( $title, &$article, &$editInfo, $changed ) {
+		self::$countableCache['title_' . $title] = $article->isCountable( $editInfo );
 	}
 
 	/**
@@ -1475,7 +1493,12 @@ class WikiRevision {
 					$this->title->getPrefixedText() . "]], timestamp " . $this->timestamp . "\n" );
 				return false;
 			}
-			$oldcountable = $page->isCountable();
+
+			if ( isset( self::$countableCache['title_' . $this->title] ) ) {
+				$oldcountable = self::$countableCache['title_' . $this->title];
+			} else {
+				$oldcountable = $page->isCountable();
+			}
 		}
 
 		# @todo FIXME: Use original rev_id optionally (better for backups)
@@ -1498,11 +1521,18 @@ class WikiRevision {
 
 		if ( $changed !== false && !$this->mNoUpdates ) {
 			wfDebug( __METHOD__ . ": running updates\n" );
+			$hookName = 'WikiRevision::onArticleEditUpdates';
+			$wgHooks['ArticleEditUpdates'][] = array( $hookName, $this->title );
 			$page->doEditUpdates(
 				$revision,
 				$userObj,
 				array( 'created' => $created, 'oldcountable' => $oldcountable )
 			);
+			foreach ( $wgHooks['ArticleEditUpdates'] as $key => $hook ) {
+				if ( is_array( $hook ) && isset( $hook[0] ) && $hook[0] == $hookName ) {
+					unset( $wgHooks['ArticleEditUpdates'][$key] );
+				}
+			}
 		}
 
 		return true;
