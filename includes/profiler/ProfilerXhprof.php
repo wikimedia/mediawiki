@@ -109,10 +109,6 @@ class ProfilerXhprof extends Profiler {
 	 * @param string $functionname
 	 */
 	public function profileIn( $functionname ) {
-		global $wgDebugFunctionEntry;
-		if ( $wgDebugFunctionEntry ) {
-			$this->debug( "Entering {$functionname}" );
-		}
 	}
 
 	/**
@@ -124,10 +120,6 @@ class ProfilerXhprof extends Profiler {
 	 * @param string $functionname
 	 */
 	public function profileOut( $functionname ) {
-		global $wgDebugFunctionEntry;
-		if ( $wgDebugFunctionEntry ) {
-			$this->debug( "Exiting {$functionname}" );
-		}
 	}
 
 	/**
