@@ -67,7 +67,8 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->parserOptions = $parserOptions;
 		$this->content = $content;
 		$this->cacheKey = ParserCache::singleton()->getKey( $page, $parserOptions );
-		parent::__construct( 'ArticleView', $this->cacheKey . ':revid:' . $revid );
+		$keyPrefix = $this->cacheKey ?: wfMemcKey( 'articleview', 'missingcachekey' );
+		parent::__construct( 'ArticleView', $keyPrefix . ':revid:' . $revid );
 	}
 
 	/**
