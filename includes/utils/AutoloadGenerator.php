@@ -150,6 +150,14 @@ class AutoloadGenerator {
 		// sort for stable output
 		ksort( $content );
 
+		// extensions using this generator are appending to the existing
+		// autoload.
+		if ( $this->variableName === 'wgAutoloadClasses' ) {
+			$op = '+=';
+		} else {
+			$op = '=';
+		}
+
 		$output = implode( "\n\t", $content );
 		file_put_contents(
 			$this->basepath . '/autoload.php',
@@ -159,7 +167,7 @@ class AutoloadGenerator {
 
 global \${$this->variableName};
 
-\${$this->variableName} = array(
+\${$this->variableName} {$op} array(
 	{$output}
 );
 
