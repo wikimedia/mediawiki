@@ -81,6 +81,13 @@ class ObjectCache {
 	 * @return BagOStuff
 	 */
 	static function newFromParams( $params ) {
+		if ( isset( $params['loggroup'] ) ) {
+			$params['logger'] = MWLogger::getInstance( $params['loggroup'] );
+		} else {
+			// For backwards-compatability with custom parameters, lets not
+			// have all logging suddenly disappear
+			$params['logger'] = MWLogger::getInstance( 'objectcache' );
+		}
 		if ( isset( $params['factory'] ) ) {
 			return call_user_func( $params['factory'], $params );
 		} elseif ( isset( $params['class'] ) ) {

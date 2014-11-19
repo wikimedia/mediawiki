@@ -31,7 +31,8 @@ class HashBagOStuff extends BagOStuff {
 	/** @var array */
 	protected $bag;
 
-	function __construct() {
+	function __construct( $params = array() ) {
+		parent::__construct( $params );
 		$this->bag = array();
 	}
 
