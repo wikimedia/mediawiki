@@ -43,6 +43,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @throws MWException
 	 */
 	public function __construct( $params ) {
+		parent::__construct( $params );
 		if ( !isset( $params['caches'] ) ) {
 			throw new MWException( __METHOD__ . ': the caches parameter is required' );
 		}
