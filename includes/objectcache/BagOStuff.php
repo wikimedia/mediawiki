@@ -28,6 +28,10 @@
  * @defgroup Cache Cache
  */
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 /**
  * interface is intended to be more or less compatible with
  * the PHP memcached client.
@@ -40,16 +44,37 @@
  *
  * @ingroup Cache
  */
-abstract class BagOStuff {
+abstract class BagOStuff implements LoggerAwareInterface {
 	private $debugMode = false;
 
 	protected $lastError = self::ERR_NONE;
+
+	/**
+	 * @var LoggerInterface
+	 */
+	protected $logger;
 
 	/** Possible values for getLastError() */
 	const ERR_NONE = 0; // no error
 	const ERR_NO_RESPONSE = 1; // no response
 	const ERR_UNREACHABLE = 2; // can't connect
 	const ERR_UNEXPECTED = 3; // response gave some error
+
+	public function __construct( array $params = array() ) {
+		if ( isset( $params['logger'] ) ) {
+			$this->setLogger( $params['logger'] );
+		} else {
+			$this->setLogger( new NullLogger() );
+		}
+	}
+
+	/**
+	 * @param LoggerInterface $logger
+	 * @return null
+	 */
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
 
 	/**
 	 * @param bool $bool
@@ -358,8 +383,9 @@ abstract class BagOStuff {
 	 */
 	public function debug( $text ) {
 		if ( $this->debugMode ) {
-			$class = get_class( $this );
-			wfDebug( "$class debug: $text\n" );
+			$this->logger->debug( "{class} debug: $text", array(
+				'class' => get_class( $this ),
+			) );
 		}
 	}
 

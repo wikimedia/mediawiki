@@ -42,6 +42,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	 * @param array $params
 	 */
 	function __construct( $params ) {
+		parent::__construct( $params );
 		$params = $this->applyDefaultParams( $params );
 
 		$this->client = new MemCachedClientforWiki( $params );
