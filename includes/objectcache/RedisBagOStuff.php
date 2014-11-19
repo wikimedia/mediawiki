@@ -56,6 +56,7 @@ class RedisBagOStuff extends BagOStuff {
 	 * @param array $params
 	 */
 	function __construct( $params ) {
+		parent::__construct( $params );
 		$redisConf = array( 'serializer' => 'none' ); // manage that in this class
 		foreach ( array( 'connectTimeout', 'persistent', 'password' ) as $opt ) {
 			if ( isset( $params[$opt] ) ) {
@@ -363,7 +364,7 @@ class RedisBagOStuff extends BagOStuff {
 	 * @param string $msg
 	 */
 	protected function logError( $msg ) {
-		wfDebugLog( 'redis', "Redis error: $msg" );
+		$this->logger->error( "Redis error: $msg" );
 	}
 
 	/**
