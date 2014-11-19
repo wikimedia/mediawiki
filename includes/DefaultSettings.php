@@ -1383,7 +1383,7 @@ $wgDjvuOutputExtension = 'jpg';
 /**
  * Site admin email address.
  *
- * Defaults to "wikiadmin@{$wgServerName}".
+ * Defaults to "wikiadmin@$wgServerName".
  */
 $wgEmergencyContact = false;
 
@@ -1392,7 +1392,7 @@ $wgEmergencyContact = false;
  *
  * The address we should use as sender when a user is requesting his password.
  *
- * Defaults to "apache@{$wgServerName}".
+ * Defaults to "apache@$wgServerName".
  */
 $wgPasswordSender = false;
 
