@@ -1000,12 +1000,14 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		# Log the query time and feed it into the DB trx profiler
-		$queryStartTime = microtime( true );
-		$queryProfile = new ScopedCallback( function() use ( $queryStartTime, $queryProf ) {
-			$elapsed = microtime( true ) - $queryStartTime;
-			$trxProfiler = Profiler::instance()->getTransactionProfiler();
-			$trxProfiler->recordFunctionCompletion( $queryProf, $elapsed );
-		} );
+		if ( $queryProf != '' ) {
+			$queryStartTime = microtime( true );
+			$queryProfile = new ScopedCallback( function() use ( $queryStartTime, $queryProf ) {
+				$elapsed = microtime( true ) - $queryStartTime;
+				$trxProfiler = Profiler::instance()->getTransactionProfiler();
+				$trxProfiler->recordFunctionCompletion( $queryProf, $elapsed );
+			} );
+		}
 
 		# Do the query and handle errors
 		$ret = $this->doQuery( $commentedSql );
