@@ -565,13 +565,14 @@ class User implements IDBAccessObject {
 	 * @return int|null The corresponding user's ID, or null if user is nonexistent
 	 */
 	public static function idFromName( $name ) {
-		// We don't want to call Title::makeTitleSafe yet, since that call path
-		// ends up needing the user language, which ends up trying to load the
-		// user object, which ends up back here (bug 54193).
-		$nt = Title::makeTitle( NS_USER, $name );
 		if ( isset( self::$idCacheByName[$name] ) ) {
 			return self::$idCacheByName[$name];
 		}
+
+		// We don't want to call Title::makeTitleSafe yet, since that call path
+		// ends up needing the user language, which ends up trying to load the
+		// user object, which ends up back here (bug 54193).
+		$nt = Title::makeTitle( NS_USER, Title::capitalize( $name, NS_USER ) );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$s = $dbr->selectRow(
