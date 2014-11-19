@@ -7,7 +7,7 @@
 		// it works only comparing to window.self or window.window (http://stackoverflow.com/q/4850978/319266)
 		if ( window.top !== window.self ) {
 			// Un-trap us from framesets
-			window.top.location = window.location;
+			window.top.location.href = location.href;
 		}
 	}
 

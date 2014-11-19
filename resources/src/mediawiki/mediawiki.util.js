@@ -151,12 +151,12 @@
 		 * Returns null if not found.
 		 *
 		 * @param {string} param The parameter name.
-		 * @param {string} [url=document.location.href] URL to search through, defaulting to the current document's URL.
+		 * @param {string} [url=location.href] URL to search through, defaulting to the current browsing location.
 		 * @return {Mixed} Parameter value or null.
 		 */
 		getParamValue: function ( param, url ) {
 			if ( url === undefined ) {
-				url = document.location.href;
+				url = location.href;
 			}
 			// Get last match, stop at hash
 			var	re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ),

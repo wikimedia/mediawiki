@@ -1463,7 +1463,7 @@ class WebInstallerComplete extends WebInstallerPage {
 			strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) !== false
 		) {
 			// JS appears to be the only method that works consistently with IE7+
-			$this->addHtml( "\n<script>jQuery( function () { document.location = " .
+			$this->addHtml( "\n<script>jQuery( function () { location.href = " .
 				Xml::encodeJsVar( $lsUrl ) . "; } );</script>\n" );
 		} else {
 			$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );
