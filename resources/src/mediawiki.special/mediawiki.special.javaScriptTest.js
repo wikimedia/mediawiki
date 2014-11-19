@@ -25,7 +25,7 @@
 			// Bind onchange event handler and append to form
 			$html.append(
 				$( select ).change( function () {
-					window.location = QUnit.url( { useskin: $( this ).val() } );
+					location.href = QUnit.url( { useskin: $( this ).val() } );
 				} )
 			);
 

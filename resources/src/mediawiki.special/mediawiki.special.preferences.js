@@ -57,7 +57,7 @@ jQuery( function ( $ ) {
 		// therefore save and restore scrollTop to prevent jumping.
 		scrollTop = $( window ).scrollTop();
 		if ( mode !== 'noHash' ) {
-			window.location.hash = '#mw-prefsection-' + name;
+			location.hash = '#mw-prefsection-' + name;
 		}
 		$( window ).scrollTop( scrollTop );
 
@@ -127,7 +127,7 @@ jQuery( function ( $ ) {
 
 	// If we've reloaded the page or followed an open-in-new-window,
 	// make the selected tab visible.
-	hash = window.location.hash;
+	hash = location.hash;
 	if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 		switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
 	}
@@ -142,7 +142,7 @@ jQuery( function ( $ ) {
 		( document.documentMode === undefined || document.documentMode >= 8 )
 	) {
 		$( window ).on( 'hashchange', function () {
-			var hash = window.location.hash;
+			var hash = location.hash;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
 			} else if ( hash === '' ) {

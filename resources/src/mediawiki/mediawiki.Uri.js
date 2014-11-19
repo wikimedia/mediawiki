@@ -147,8 +147,8 @@
 		 * @param {Object|string} [uri] URI string, or an Object with appropriate properties (especially
 		 *  another URI object to clone). Object must have non-blank `protocol`, `host`, and `path`
 		 *  properties. If omitted (or set to `undefined`, `null` or empty string), then an object
-		 *  will be created for the default `uri` of this constructor (`document.location` for
-		 *  mw.Uri, other values for other instances -- see mw.UriRelative for details).
+		 *  will be created for the default `uri` of this constructor (`location.href` for mw.Uri,
+		 *  other values for other instances -- see mw.UriRelative for details).
 		 * @param {Object|boolean} [options] Object with options, or (backwards compatibility) a boolean
 		 *  for strictMode
 		 * @param {boolean} [options.strictMode=false] Trigger strict mode parsing of the url.
@@ -395,9 +395,7 @@
 		return Uri;
 	};
 
-	// If we are running in a browser, inject the current document location (for relative URLs).
-	if ( document && document.location && document.location.href ) {
-		mw.Uri = mw.UriRelative( document.location.href );
-	}
+	// Default to the current browsing location (for relative URLs).
+	mw.Uri = mw.UriRelative( location.href );
 
 }( mediaWiki, jQuery ) );
