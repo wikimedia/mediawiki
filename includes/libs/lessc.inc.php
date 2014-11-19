@@ -1,7 +1,7 @@
 <?php
 // @codingStandardsIgnoreFile File external to MediaWiki. Ignore coding conventions checks.
 /**
- * lessphp v0.4.0@2cc77e3c7b
+ * lessphp v0.4.0@011afcca8e
  * http://leafo.net/lessphp
  *
  * LESS CSS compiler, adapted from http://lesscss.org
@@ -374,9 +374,9 @@ class lessc {
 		$other = array_merge($other, $stack);
 
 		if ($split) {
-			return array(array_merge($vars, $imports), $other);
+			return array(array_merge($imports, $vars), $other);
 		} else {
-			return array_merge($vars, $imports, $other);
+			return array_merge($imports, $vars, $other);
 		}
 	}
 
