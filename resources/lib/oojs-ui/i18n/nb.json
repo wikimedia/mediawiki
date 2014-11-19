@@ -13,9 +13,12 @@
 	"ooui-outline-control-move-up": "Flytt opp",
 	"ooui-outline-control-remove": "Fjern element",
 	"ooui-toolbar-more": "Mer",
+	"ooui-toolgroup-expand": "Mer",
+	"ooui-toolgroup-collapse": "Mindre",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Avbryt",
 	"ooui-dialog-process-error": "Noe gikk galt",
 	"ooui-dialog-process-dismiss": "Lukk",
-	"ooui-dialog-process-retry": "Prøv igjen"
+	"ooui-dialog-process-retry": "Prøv igjen",
+	"ooui-dialog-process-continue": "Fortsett"
 }

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (f1abca8e82)
+ * OOjs UI v0.1.0-pre (7922a50558)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-17T23:49:27Z
+ * Date: 2014-11-19T23:18:49Z
  */
 ( function ( OO ) {
 
@@ -102,7 +102,7 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
  * @param {HTMLElement|HTMLElement[]} containers Container node(s) to search in
  * @param {HTMLElement} contained Node to find
  * @param {boolean} [matchContainers] Include the container(s) in the list of nodes to match, otherwise only match descendents
- * @returns {boolean} The node is in the list of target nodes
+ * @return {boolean} The node is in the list of target nodes
  */
 OO.ui.contains = function ( containers, contained, matchContainers ) {
 	var i;
@@ -5017,7 +5017,14 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 
 	// Initialization
 	this.$titleText.addClass( 'oo-ui-tool-title-text' );
-	this.$accel.addClass( 'oo-ui-tool-accel' );
+	this.$accel
+		.addClass( 'oo-ui-tool-accel' )
+		.prop( {
+			// This may need to be changed if the key names are ever localized,
+			// but for now they are essentially written in English
+			dir: 'ltr',
+			lang: 'en'
+		} );
 	this.$title
 		.addClass( 'oo-ui-tool-title' )
 		.append( this.$titleText, this.$accel );
@@ -5277,12 +5284,10 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 
 	// Initialization
 	this.$group.addClass( 'oo-ui-toolbar-tools' );
-	this.$bar.addClass( 'oo-ui-toolbar-bar' ).append( this.$group );
 	if ( config.actions ) {
-		this.$actions.addClass( 'oo-ui-toolbar-actions' );
-		this.$bar.append( this.$actions );
+		this.$bar.append( this.$actions.addClass( 'oo-ui-toolbar-actions' ) );
 	}
-	this.$bar.append( '<div style="clear:both"></div>' );
+	this.$bar.append( this.$group, '<div style="clear:both"></div>' );
 	if ( config.shadow ) {
 		this.$bar.append( '<div class="oo-ui-toolbar-shadow"></div>' );
 	}

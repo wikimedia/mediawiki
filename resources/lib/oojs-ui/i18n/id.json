@@ -13,5 +13,14 @@
 	},
 	"ooui-outline-control-move-down": "Pindahkan butir ke bawah",
 	"ooui-outline-control-move-up": "Pindahkan butir ke atas",
-	"ooui-toolbar-more": "Lainnya"
+	"ooui-outline-control-remove": "Hapus butir",
+	"ooui-toolbar-more": "Lainnya",
+	"ooui-toolgroup-expand": "Selengkapnya",
+	"ooui-toolgroup-collapse": "Secukupnya",
+	"ooui-dialog-message-accept": "Oke",
+	"ooui-dialog-message-reject": "Batal",
+	"ooui-dialog-process-error": "Ada yang tidak beres",
+	"ooui-dialog-process-dismiss": "Tutup",
+	"ooui-dialog-process-retry": "Coba lagi",
+	"ooui-dialog-process-continue": "Lanjutkan"
 }
