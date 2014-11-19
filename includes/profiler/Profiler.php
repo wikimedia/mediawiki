@@ -235,4 +235,15 @@ abstract class Profiler {
 	 * @return string
 	 */
 	abstract public function getOutput();
+
+	/**
+	 * Add an entry in the debug log file
+	 *
+	 * @param string $s String to output
+	 */
+	protected function debug( $s ) {
+		if ( function_exists( 'wfDebug' ) ) {
+			wfDebug( $s );
+		}
+	}
 }

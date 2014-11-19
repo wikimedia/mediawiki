@@ -588,17 +588,6 @@ class ProfilerStandard extends Profiler {
 	}
 
 	/**
-	 * Add an entry in the debug log file
-	 *
-	 * @param string $s String to output
-	 */
-	protected function debug( $s ) {
-		if ( function_exists( 'wfDebug' ) ) {
-			wfDebug( $s );
-		}
-	}
-
-	/**
 	 * Add an entry in the debug log group
 	 *
 	 * @param string $group Group to send the message to
