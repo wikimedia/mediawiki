@@ -88,6 +88,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * @param array $params
 	 */
 	public function __construct( $params ) {
+		parent::__construct( $params );
 		if ( isset( $params['servers'] ) ) {
 			$this->serverInfos = $params['servers'];
 			$this->numServers = count( $this->serverInfos );
@@ -138,12 +139,12 @@ class SqlBagOStuff extends BagOStuff {
 			# If server connection info was given, use that
 			if ( $this->serverInfos ) {
 				if ( $wgDebugDBTransactions ) {
-					wfDebug( "Using provided serverInfo for SqlBagOStuff\n" );
+					$this->logger->debug( "Using provided serverInfo for SqlBagOStuff" );
 				}
 				$info = $this->serverInfos[$serverIndex];
 				$type = isset( $info['type'] ) ? $info['type'] : 'mysql';
 				$host = isset( $info['host'] ) ? $info['host'] : '[unknown]';
-				wfDebug( __CLASS__ . ": connecting to $host\n" );
+				$this->logger->debug( __CLASS__ . ": connecting to $host" );
 				$db = DatabaseBase::factory( $type, $info );
 				$db->clearFlag( DBO_TRX );
 			} else {
@@ -161,7 +162,7 @@ class SqlBagOStuff extends BagOStuff {
 				}
 			}
 			if ( $wgDebugDBTransactions ) {
-				wfDebug( sprintf( "Connection %s will be used for SqlBagOStuff\n", $db ) );
+				$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $db ) );
 			}
 			$this->conns[$serverIndex] = $db;
 		}
@@ -702,13 +703,13 @@ class SqlBagOStuff extends BagOStuff {
 		if ( $exception instanceof DBConnectionError ) {
 			$this->markServerDown( $exception, $serverIndex );
 		}
-		wfDebugLog( 'SQLBagOStuff', "DBError: {$exception->getMessage()}" );
+		$this->logger->error( "DBError: {$exception->getMessage()}" );
 		if ( $exception instanceof DBConnectionError ) {
 			$this->setLastError( BagOStuff::ERR_UNREACHABLE );
-			wfDebug( __METHOD__ . ": ignoring connection error\n" );
+			$this->logger->debug( __METHOD__ . ": ignoring connection error" );
 		} else {
 			$this->setLastError( BagOStuff::ERR_UNEXPECTED );
-			wfDebug( __METHOD__ . ": ignoring query error\n" );
+			$this->logger->debug( __METHOD__ . ": ignoring query error" );
 		}
 	}
 
@@ -728,13 +729,14 @@ class SqlBagOStuff extends BagOStuff {
 			} catch ( DBError $e ) {
 			}
 		}
-		wfDebugLog( 'SQLBagOStuff', "DBError: {$exception->getMessage()}" );
+
+		$this->logger->error( "DBError: {$exception->getMessage()}" );
 		if ( $exception instanceof DBConnectionError ) {
 			$this->setLastError( BagOStuff::ERR_UNREACHABLE );
-			wfDebug( __METHOD__ . ": ignoring connection error\n" );
+			$this->logger->debug( __METHOD__ . ": ignoring connection error" );
 		} else {
 			$this->setLastError( BagOStuff::ERR_UNEXPECTED );
-			wfDebug( __METHOD__ . ": ignoring query error\n" );
+			$this->logger->debug( __METHOD__ . ": ignoring query error" );
 		}
 	}
 
@@ -750,12 +752,12 @@ class SqlBagOStuff extends BagOStuff {
 				unset( $this->connFailureTimes[$serverIndex] );
 				unset( $this->connFailureErrors[$serverIndex] );
 			} else {
-				wfDebug( __METHOD__ . ": Server #$serverIndex already down\n" );
+				$this->logger->debug( __METHOD__ . ": Server #$serverIndex already down" );
 				return;
 			}
 		}
 		$now = time();
-		wfDebug( __METHOD__ . ": Server #$serverIndex down until " . ( $now + 60 ) . "\n" );
+		$this->logger->info( __METHOD__ . ": Server #$serverIndex down until " . ( $now + 60 ) );
 		$this->connFailureTimes[$serverIndex] = $now;
 		$this->connFailureErrors[$serverIndex] = $exception;
 	}

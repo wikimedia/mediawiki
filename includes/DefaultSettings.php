@@ -2101,17 +2101,17 @@ $wgLanguageConverterCacheType = CACHE_ANYTHING;
  */
 $wgObjectCaches = array(
 	CACHE_NONE => array( 'class' => 'EmptyBagOStuff' ),
-	CACHE_DB => array( 'class' => 'SqlBagOStuff' ),
+	CACHE_DB => array( 'class' => 'SqlBagOStuff', 'loggroup' => 'SQLBagOStuff' ),
 
 	CACHE_ANYTHING => array( 'factory' => 'ObjectCache::newAnything' ),
 	CACHE_ACCEL => array( 'factory' => 'ObjectCache::newAccelerator' ),
-	CACHE_MEMCACHED => array( 'factory' => 'ObjectCache::newMemcached' ),
+	CACHE_MEMCACHED => array( 'factory' => 'ObjectCache::newMemcached', 'loggroup' => 'memcached' ),
 
 	'apc' => array( 'class' => 'APCBagOStuff' ),
 	'xcache' => array( 'class' => 'XCacheBagOStuff' ),
 	'wincache' => array( 'class' => 'WinCacheBagOStuff' ),
-	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff' ),
-	'memcached-pecl' => array( 'class' => 'MemcachedPeclBagOStuff' ),
+	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ),
+	'memcached-pecl' => array( 'class' => 'MemcachedPeclBagOStuff', 'loggroup' => 'memcached' ),
 	'hash' => array( 'class' => 'HashBagOStuff' ),
 );
 

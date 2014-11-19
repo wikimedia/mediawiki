@@ -64,6 +64,9 @@
  * @version 0.1.2
  */
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 // {{{ requirements
 // }}}
 
@@ -233,6 +236,11 @@ class MWMemcached {
 	 */
 	public $_connect_attempts;
 
+	/**
+	 * @var LoggerInterface
+	 */
+	private $_logger;
+
 	// }}}
 	// }}}
 	// {{{ methods
@@ -263,6 +271,8 @@ class MWMemcached {
 
 		$this->_connect_timeout = isset( $args['connect_timeout'] ) ? $args['connect_timeout'] : 0.1;
 		$this->_connect_attempts = 2;
+
+		$this->_logger = isset( $args['logger'] ) ? $args['logger'] : new NullLogger();
 	}
 
 	// }}}
@@ -1104,14 +1114,14 @@ class MWMemcached {
 	 * @param string $text
 	 */
 	function _debugprint( $text ) {
-		wfDebugLog( 'memcached', $text );
+		$this->_logger->debug( $text );
 	}
 
 	/**
 	 * @param string $text
 	 */
 	function _error_log( $text ) {
-		wfDebugLog( 'memcached-serious', "Memcached error: $text" );
+		$this->_logger->error( "Memcached error: $text" );
 	}
 
 	/**
