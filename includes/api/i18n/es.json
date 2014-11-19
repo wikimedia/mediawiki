@@ -36,5 +36,7 @@
 	"apihelp-query+search-param-info": "Qué metadatos devolver.",
 	"apihelp-query+userinfo-description": "Obtener información sobre el usuario actual.",
 	"apihelp-query+watchlist-param-excludeuser": "No listar cambios de este usuario.",
-	"apihelp-query+watchlistraw-param-show": "Sólo listar los elementos que cumplen estos criterios."
+	"apihelp-query+watchlistraw-param-show": "Sólo listar los elementos que cumplen estos criterios.",
+	"api-help-parameters": "{{PLURAL:$1|Parámetro|Parámetros}}:",
+	"api-help-examples": "{{PLURAL:$1|Ejemplo|Ejemplos}}:"
 }

@@ -243,6 +243,8 @@
 	"apihelp-query+allcategories-param-from": "Од која категорија да почне набројувањето.",
 	"apihelp-query+allcategories-param-to": "На која категорија да запре набројувањето.",
 	"apihelp-query+allcategories-param-dir": "Насока на подредувањето.",
+	"apihelp-query+alldeletedrevisions-param-from": "Почни го исписот од овој наслов.",
+	"apihelp-query+alldeletedrevisions-param-to": "Запри го исписот на овој наслов.",
 	"apihelp-query+alldeletedrevisions-example-user": "Список на последните 50 избришани придонеси на Корисник:Пример",
 	"apihelp-query+alldeletedrevisions-example-ns-main": "Список на последните 50 избришани преработки во главниот именски простор",
 	"apihelp-query+alllinks-param-namespace": "Именскиот простор што се набројува.",

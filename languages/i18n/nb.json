@@ -211,7 +211,7 @@
 	"edit": "Rediger",
 	"edit-local": "Rediger lokal beskrivelse",
 	"create": "Opprett",
-	"create-local": "Legg til lokal beskrivelse",
+	"create-local": "Opprett lokal beskrivelse",
 	"editthispage": "Rediger siden",
 	"create-this-page": "Opprett denne siden",
 	"delete": "Slett",
@@ -3171,6 +3171,7 @@
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (slått på)",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''slått av''')",
 	"mediastatistics": "Mediestatistikk",
+	"mediastatistics-summary": "Statistikk over opplastede filtyper. Dette inkluderer bare den nyeste versjonen av hver fil. Eldre eller slettede versjoner av filene er eksludert.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 byte}} ($2; $3 %)",
 	"mediastatistics-table-mimetype": "MIME-type",
 	"mediastatistics-table-extensions": "Mulige filtyper",
@@ -3187,6 +3188,13 @@
 	"mediastatistics-header-executable": "Kjørbare filer",
 	"mediastatistics-header-archive": "Komprimerte formater",
 	"json-warn-trailing-comma": "$1 etterfølgende {{PLURAL:$1|komma|kommaer}} ble fjernet fra JSON",
+	"json-error-unknown": "Det var et problem med JSON. Feil: $1",
+	"json-error-depth": "Maksimal stakkdybde har blitt overskredet",
 	"json-error-state-mismatch": "Ugyldig JSON",
-	"json-error-syntax": "Syntaksfeil"
+	"json-error-ctrl-char": "Kontrolltegnfeil, muligens feilaktig kodet",
+	"json-error-syntax": "Syntaksfeil",
+	"json-error-utf8": "Feilaktige UTF-8-tegn, muligens feilkodet",
+	"json-error-recursion": "En eller flere rekursive referanser i verdien som skal kodes",
+	"json-error-inf-or-nan": "En eller flere NAN- eller INF-verdier i verdien som skal kodes",
+	"json-error-unsupported-type": "En verdi av en type som ikke kan kodes ble angitt"
 }

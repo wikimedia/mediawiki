@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Glavkos"
+		]
+	},
+	"apihelp-block-description": "Φραγή χρήστη",
+	"apihelp-block-param-user": "Όνομα χρήστη, διεύθυνση IP ή εύρος διευθύνσεων IP που θέλετε να επιβάλετε φραγή.",
+	"apihelp-block-param-reason": "Λόγος φραγής.",
+	"apihelp-createaccount-param-name": "Όνομα χρήστη.",
+	"apihelp-delete-description": "Διαγραφή σελίδας."
+}

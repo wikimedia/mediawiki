@@ -53,7 +53,7 @@
 	"apihelp-query+stashimageinfo-param-filekey": "Nyckel som identifierar en tidigare uppladdning som lagrats temporärt.",
 	"apihelp-query+stashimageinfo-example-simple": "Returnerar information för en temporär fil",
 	"apihelp-upload-param-filekey": "Nyckel som identifierar en tidigare uppladdning som lagrats temporärt.",
-	"apihelp-upload-param-stash": "Om angiven, kommer servern inte att lägga till filen till centralförvaret och lagra den temporärt.",
+	"apihelp-upload-param-stash": "Om angiven, kommer servern att temporärt lagra filen istället för att lägga till den i centralförvaret.",
 	"api-help-main-header": "Huvudmodul",
 	"api-help-flag-deprecated": "Denna modul är föråldrad.",
 	"api-help-flag-internal": "<strong>Denna modul är intern eller instabil.</strong> Dess funktion kan ändras utan föregående meddelande.",

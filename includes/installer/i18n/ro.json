@@ -4,7 +4,8 @@
 			"Firilacroco",
 			"Minisarm",
 			"Stelistcristi",
-			"XXN"
+			"XXN",
+			"Tuxilina"
 		]
 	},
 	"config-desc": "Programul de instalare pentru MediaWiki",
@@ -39,7 +40,9 @@
 	"config-page-copying": "Copiere",
 	"config-page-upgradedoc": "Actualizare",
 	"config-page-existingwiki": "Wiki existent",
+	"config-help-restart": "Vreți să ștergeți toate datele salvate introduse și să resetați procesul de instalare?",
 	"config-restart": "Da, repornește.",
+	"config-env-good": "Verificarea mediului a fost efectuată cu succes. Puteți instala MediaWiki.",
 	"config-env-php": "PHP $1 este instalat.",
 	"config-env-hhvm": "HHVM $1 este instalat.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] este instalat",

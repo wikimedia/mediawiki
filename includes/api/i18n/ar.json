@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25"
+		]
+	},
+	"apihelp-main-param-format": "صيغة الخرج.",
+	"apihelp-block-description": "منع مستخدم.",
+	"apihelp-block-param-reason": "السبب للمنع.",
+	"apihelp-block-param-nocreate": "امنع إنشاء الحسابات.",
+	"apihelp-compare-param-fromtitle": "العنوان الأول للمقارنة.",
+	"apihelp-compare-param-fromid": "رقم الصفحة الأول للمقارنة.",
+	"apihelp-compare-param-fromrev": "أول مراجعة للمقارنة.",
+	"apihelp-compare-param-totitle": "العنوان الثاني للمقارنة.",
+	"apihelp-compare-param-toid": "رقم الصفحة الثاني للمقارنة.",
+	"apihelp-compare-param-torev": "المراجعة الثانية للمقارنة.",
+	"apihelp-createaccount-param-name": "اسم المستخدم.",
+	"apihelp-delete-description": "حذف صفحة.",
+	"apihelp-delete-param-unwatch": "أزل الصفحة من قائمة مراقبتك.",
+	"apihelp-edit-description": "إنشاء وتعديل الصفحات."
+}

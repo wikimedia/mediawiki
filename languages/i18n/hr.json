@@ -1135,7 +1135,7 @@
 	"recentchangeslinked": "Povezane stranice",
 	"recentchangeslinked-feed": "Povezane stranice",
 	"recentchangeslinked-toolbox": "Povezane stranice",
-	"recentchangeslinked-title": "Povezane promjene sa \"$1\"",
+	"recentchangeslinked-title": "Povezane promjene sa stranicom \"$1\"",
 	"recentchangeslinked-summary": "Ova posebna stranica pokazuje nedavne promjene na povezanim stranicama (ili stranicama određene kategorije). Stranice koje su na [[Special:Watchlist|Vašem popisu praćenja]] su '''podebljane'''.",
 	"recentchangeslinked-page": "Naslov stranice:",
 	"recentchangeslinked-to": "Pokaži promjene na stranicama s poveznicom na ovu stranicu",

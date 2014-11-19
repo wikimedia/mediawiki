@@ -319,6 +319,8 @@
 	"filerenameerror": "Impossibile renominar file \"$1\" a \"$2\".",
 	"filedeleteerror": "Impossibile deler file \"$1\".",
 	"directorycreateerror": "Impossibile crear le directorio \"$1\".",
+	"directoryreadonlyerror": "Le directorio \"$1\" es protegite contra scriptura.",
+	"directorynotreadableerror": "Le directorio \"$1\" non es legibile.",
 	"filenotfound": "Impossibile trovar file \"$1\".",
 	"unexpected": "Valor impreviste: \"$1\"=\"$2\".",
 	"formerror": "Error: impossibile submitter formulario",
