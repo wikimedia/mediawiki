@@ -174,6 +174,6 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * @param string $text
 	 */
 	protected function debugLog( $text ) {
-		wfDebugLog( 'memcached', $text );
+		$this->logger->debug( $text );
 	}
 }

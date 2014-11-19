@@ -45,6 +45,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @param array $params
 	 */
 	function __construct( $params ) {
+		parent::__construct( $params );
 		$params = $this->applyDefaultParams( $params );
 
 		if ( $params['persistent'] ) {
@@ -53,7 +54,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			// We can only reuse a pool ID if we keep the config consistent.
 			$this->client = new Memcached( md5( serialize( $params ) ) );
 			if ( count( $this->client->getServerList() ) ) {
-				wfDebug( __METHOD__ . ": persistent Memcached object already loaded.\n" );
+				$this->logger->debug( __METHOD__ . ": persistent Memcached object already loaded.\n" );
 				return; // already initialized; don't add duplicate servers
 			}
 		} else {
@@ -231,7 +232,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				} else {
 					$msg = "Memcached error: $msg";
 				}
-				wfDebugLog( 'memcached-serious', $msg );
+				$this->logger->critical( $msg );
 				$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		}
 		return $result;
