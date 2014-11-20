@@ -51,7 +51,7 @@ production.
 * (T69341) SVG images will no longer be base64-encoded when being embedded
   in CSS. This results in slight size increase before gzip compression (due to
   percent-encoding), but up to 20% decrease after it.
-* Upgrade jStorage to v0.4.12.
+* Update jStorage to v0.4.12.
 * MediaWiki now natively supports page status indicators: icons (or short text
   snippets) usually displayed in the top-right corner of the page. They have
   been in use on Wikipedia for a long time, implemented using templates and CSS
@@ -79,6 +79,7 @@ production.
   installed via composer will not be shown in this section as it is assumed
   they will add the proper credits to the skins or extensions section.
 * Update QUnit from v1.14.0 to v1.16.0.
+* Update Moment.js from v2.8.3 to v2.8.4.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
