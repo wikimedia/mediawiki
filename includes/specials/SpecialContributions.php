@@ -934,7 +934,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function getStartBody() {
-		return "<ul>\n";
+		return "<ul class=\"mw-contributions-list\">\n";
 	}
 
 	/**
