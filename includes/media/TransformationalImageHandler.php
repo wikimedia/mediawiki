@@ -216,6 +216,12 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		# Transform functions and binaries need a FS source file
 		$thumbnailSource = $this->getThumbnailSource( $image, $params );
 
+		// If the source isn't the original, disable EXIF rotation because it's already been applied
+		if ( $scalerParams['srcWidth'] != $thumbnailSource['width']
+			|| $scalerParams['srcHeight'] != $thumbnailSource['height'] ) {
+			$scalerParams['disableRotation'] = true;
+		}
+
 		$scalerParams['srcPath'] = $thumbnailSource['path'];
 		$scalerParams['srcWidth'] = $thumbnailSource['width'];
 		$scalerParams['srcHeight'] = $thumbnailSource['height'];

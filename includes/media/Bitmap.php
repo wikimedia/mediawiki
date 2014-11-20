@@ -142,7 +142,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			$env['MAGICK_TMPDIR'] = $wgImageMagickTempDir;
 		}
 
-		$rotation = $this->getRotation( $image );
+		$rotation = isset( $params['disableRotation'] ) ? 0 : $this->getRotation( $image );
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
 		$cmd = call_user_func_array( 'wfEscapeShellArg', array_merge(
@@ -223,7 +223,7 @@ class BitmapHandler extends TransformationalImageHandler {
 				}
 			}
 
-			$rotation = $this->getRotation( $image );
+			$rotation = isset( $params['disableRotation'] ) ? 0 : $this->getRotation( $image );
 			list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
 			$im->setImageBackgroundColor( new ImagickPixel( 'white' ) );
@@ -344,7 +344,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		$src_image = call_user_func( $loader, $params['srcPath'] );
 
-		$rotation = function_exists( 'imagerotate' ) ? $this->getRotation( $image ) : 0;
+		$rotation = function_exists( 'imagerotate' ) && !isset( $params['disableRotation'] )  ? $this->getRotation( $image ) : 0;
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 		$dst_image = imagecreatetruecolor( $width, $height );
 
