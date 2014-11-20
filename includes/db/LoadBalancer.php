@@ -28,13 +28,13 @@
  * @ingroup Database
  */
 class LoadBalancer {
-	/** @var array Map of (server index => server config array) */
+	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
-	/** @var array Map of (local/foreignUsed/foreignFree => server index => DatabaseBase array) */
+	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => DatabaseBase array) */
 	private $mConns;
 	/** @var array Map of (server index => weight) */
 	private $mLoads;
-	/** @var array Map of (group => server index => weight) */
+	/** @var array[] Map of (group => server index => weight) */
 	private $mGroupLoads;
 	/** @var bool Whether to disregard slave lag as a factor in slave selection */
 	private $mAllowLagged;
@@ -197,8 +197,8 @@ class LoadBalancer {
 	 * always return a consistent index during a given invocation
 	 *
 	 * Side effect: opens connections to databases
-	 * @param bool|string $group
-	 * @param bool|string $wiki
+	 * @param string|bool $group Query group, or false for the generic reader
+	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @throws MWException
 	 * @return bool|int|string
 	 */
@@ -218,7 +218,7 @@ class LoadBalancer {
 			return $this->mReadIndex;
 		}
 
-		$section = new ProfileSection( __METHOD__ );
+		new ProfileSection( __METHOD__ );
 
 		# Find the relevant load array
 		if ( $group !== false ) {
@@ -410,7 +410,7 @@ class LoadBalancer {
 
 		if ( $result == -1 || is_null( $result ) ) {
 			# Timed out waiting for slave, use master instead
-			$server = $this->mServers[$index];
+			$server = $this->mServers[$index]['host'];
 			$msg = __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}";
 			wfDebug( "$msg\n" );
 			wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
@@ -432,8 +432,8 @@ class LoadBalancer {
 	 * This is the main entry point for this class.
 	 *
 	 * @param int $i Server index
-	 * @param array $groups Query groups
-	 * @param bool|string $wiki Wiki ID
+	 * @param array|string|bool $groups Query group(s), or false for the generic reader
+	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 *
 	 * @throws MWException
 	 * @return DatabaseBase
@@ -556,8 +556,8 @@ class LoadBalancer {
 	 * @see LoadBalancer::getConnection() for parameter information
 	 *
 	 * @param int $db
-	 * @param mixed $groups
-	 * @param bool|string $wiki
+	 * @param array|string|bool $groups Query group(s), or false for the generic reader
+	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return DBConnRef
 	 */
 	public function getConnectionRef( $db, $groups = array(), $wiki = false ) {
@@ -572,8 +572,8 @@ class LoadBalancer {
 	 * @see LoadBalancer::getConnection() for parameter information
 	 *
 	 * @param int $db
-	 * @param mixed $groups
-	 * @param bool|string $wiki
+	 * @param array|string|bool $groups Query group(s), or false for the generic reader
+	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return DBConnRef
 	 */
 	public function getLazyConnectionRef( $db, $groups = array(), $wiki = false ) {
@@ -589,7 +589,7 @@ class LoadBalancer {
 	 * error will be available via $this->mErrorConnection.
 	 *
 	 * @param int $i Server index
-	 * @param bool|string $wiki Wiki ID to open
+	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return DatabaseBase
 	 *
 	 * @access private
@@ -1119,7 +1119,7 @@ class LoadBalancer {
 	 * Results are cached for a short time in memcached/process cache
 	 *
 	 * @param string|bool $wiki
-	 * @return array Map of (server index => seconds)
+	 * @return int[] Map of (server index => seconds)
 	 */
 	function getLagTimes( $wiki = false ) {
 		if ( $this->getServerCount() <= 1 ) {
