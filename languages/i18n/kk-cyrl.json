@@ -781,6 +781,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 мүше|$1 мүше}} ({{PLURAL:$2|1 санатша|$2 санатша}}, {{PLURAL:$3|1 файл|$3 файл}})",
 	"search-redirect": "(айдағыш $1)",
 	"search-section": "(бөлім $1)",
+	"search-category": "(Санат:$1)",
 	"search-suggest": "Мүмкін осы болар: $1",
 	"search-interwiki-caption": "Бауырлас жобалар",
 	"search-interwiki-default": "$1 дегеннен нәтиже:",

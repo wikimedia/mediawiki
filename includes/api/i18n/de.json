@@ -3,7 +3,8 @@
 		"authors": [
 			"Florian",
 			"Kghbln",
-			"Metalhead64"
+			"Metalhead64",
+			"Inkowik"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page/de Dokumentation]\n* [https://www.mediawiki.org/wiki/API:FAQ/de Häufig gestellte Fragen]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailingliste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-Ankündigungen]\n* [https://bugzilla.wikimedia.org/buglist.cgi?component=API&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts Fehlerberichte und Anfragen]\n</div>\n<strong>Status:</strong> Alle auf dieser Seite gezeigten Funktionen sollten funktionieren, aber die API ist noch in aktiver Entwicklung und könnte sich zu jeder Zeit ändern. Abonniere die [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki-API-Ankündigungs-Mailingliste] für Mitteilungen über Aktualisierungen.\n\n<strong>Fehlerhafte Anfragen:</strong> Wenn fehlerhafte Anfragen an die API gesendet werden, wird ein HTTP-Header mit dem Schlüssel „MediaWiki-API-Error“ versandt. Die zurückgesandten Werte des Headers und des Fehlercodes werden auf den gleichen Wert gesetzt. Für weitere Informationen siehe https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
@@ -208,7 +209,18 @@
 	"apihelp-parse-example-text": "Wikitext parsen.",
 	"apihelp-patrol-description": "Kontrolliert eine Seite oder Version.",
 	"apihelp-patrol-example-revid": "Kontrolliert eine Version",
+	"apihelp-protect-description": "Ändert den Schutzstatus einer Seite.",
+	"apihelp-protect-param-title": "Titel der Seite, die du (ent-)sperren möchtest. Kann nicht zusammen mit $1pageid verwendet werden.",
+	"apihelp-protect-param-pageid": "Seitenkennung der Seite, die du (ent-)sperren möchtest. Kann nicht zusammen mit $1title verwendet werden.",
+	"apihelp-protect-param-protections": "Liste der Schutzebenen nach dem Format Aktion=Ebene (z.B. edit=sysop).\n\n'''HINWEIS:''' Wenn eine Aktion nicht angegeben wird, wird deren Schutz entfernt.",
+	"apihelp-protect-param-expiry": "Zeitstempel des Schutzablaufs. Wenn nur ein Zeitstempel übergeben wird, ist dieser für alle Seitenschutze gültig. Um eine unendliche Schutzdauer festzulegen, kannst du die Werte \"infinite\", \"indefinite\", \"infinity\" oder \"never\" übergeben.",
+	"apihelp-protect-param-reason": "Grund für den Seitenschutz oder dessen Aufhebung.",
+	"apihelp-protect-param-cascade": "Aktiviert den Kaskadenschutz (alle eingebundenen Seiten werden ebenfalls geschützt). Wenn die übergebenen Schutzebenen keinen Kaskadenschutz unterstützen, wird dieser Parameter ignoriert.",
+	"apihelp-protect-param-watch": "Wenn vorhanden, fügt dieser Parameter die zu (ent-)sperrende Seite der Beobachtungsliste hinzu.",
+	"apihelp-protect-param-watchlist": "Die Seite bedingungslos zu deiner Beobachtungsliste hinzufügen oder von ihr entfernen, Einstellungen verwenden oder Beobachtung nicht ändern.",
 	"apihelp-protect-example-protect": "Schützt eine Seite",
+	"apihelp-protect-example-unprotect": "Eine Seite entsperren, indem die Einschränkungen durch den Schutz auf \"all\" gestellt werden.",
+	"apihelp-protect-example-unprotect2": "Eine Seite entsperren, indem keine Einschränkungen übergeben werden",
 	"apihelp-purge-param-forcelinkupdate": "Aktualisiert die Linktabellen.",
 	"apihelp-query-param-list": "Welche Listen abgerufen werden sollen.",
 	"apihelp-query+allcategories-description": "Alle Kategorien aufzählen.",
