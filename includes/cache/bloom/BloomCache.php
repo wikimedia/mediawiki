@@ -102,7 +102,7 @@ abstract class BloomCache {
 				$status = $this->getStatus( $virtualKey );
 				if ( $status == false ) {
 					wfDebug( "Could not query virtual bloom filter '$virtualKey'." );
-					return null;
+					return true;
 				}
 
 				$useFilter = call_user_func_array(
