@@ -1696,7 +1696,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param bool|int $baseRevId The revision ID this edit was based off, if any
 	 * @param User $user The user doing the edit
-	 * @param string $serialisation_format Format for storing the content in the
+	 * @param string $serialFormat Format for storing the content in the
 	 *   database.
 	 *
 	 * @throws MWException
@@ -1717,7 +1717,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.21
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
-		User $user = null, $serialisation_format = null
+		User $user = null, $serialFormat = null
 	) {
 		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
 
@@ -1783,7 +1783,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$summary = $handler->getAutosummary( $old_content, $content, $flags );
 		}
 
-		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialisation_format );
+		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat, true );
 		$serialized = $editInfo->pst;
 
 		/**
@@ -1825,7 +1825,7 @@ class WikiPage implements Page, IDBAccessObject {
 				'user_text'  => $user->getName(),
 				'timestamp'  => $now,
 				'content_model' => $content->getModel(),
-				'content_format' => $serialisation_format,
+				'content_format' => $serialFormat,
 			) ); // XXX: pass content object?!
 
 			$changed = !$content->equals( $old_content );
@@ -1956,7 +1956,7 @@ class WikiPage implements Page, IDBAccessObject {
 					'user_text'  => $user->getName(),
 					'timestamp'  => $now,
 					'content_model' => $content->getModel(),
-					'content_format' => $serialisation_format,
+					'content_format' => $serialFormat,
 				) );
 				$revisionId = $revision->insertOn( $dbw );
 
@@ -2073,49 +2073,71 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Content $content
 	 * @param int|null $revid
 	 * @param User|null $user
-	 * @param string|null $serialization_format
+	 * @param string|null $serialFormat
+	 * @param bool $useCache Check shared prepared edit cache
 	 *
-	 * @return bool|object
+	 * @return object
 	 *
 	 * @since 1.21
 	 */
-	public function prepareContentForEdit( Content $content, $revid = null, User $user = null,
-		$serialization_format = null
+	public function prepareContentForEdit(
+		Content $content, $revid = null, User $user = null, $serialFormat = null, $useCache = false
 	) {
 		global $wgContLang, $wgUser;
+
 		$user = is_null( $user ) ? $wgUser : $user;
 		//XXX: check $user->getId() here???
 
-		// Use a sane default for $serialization_format, see bug 57026
-		if ( $serialization_format === null ) {
-			$serialization_format = $content->getContentHandler()->getDefaultFormat();
+		// Use a sane default for $serialFormat, see bug 57026
+		if ( $serialFormat === null ) {
+			$serialFormat = $content->getContentHandler()->getDefaultFormat();
 		}
 
 		if ( $this->mPreparedEdit
 			&& $this->mPreparedEdit->newContent
 			&& $this->mPreparedEdit->newContent->equals( $content )
 			&& $this->mPreparedEdit->revid == $revid
-			&& $this->mPreparedEdit->format == $serialization_format
+			&& $this->mPreparedEdit->format == $serialFormat
 			// XXX: also check $user here?
 		) {
 			// Already prepared
 			return $this->mPreparedEdit;
 		}
 
+		// The edit may have already been prepared via api.php?action=stashedit
+		$cachedEdit = $useCache
+			? ApiStashEdit::checkCache( $this->getTitle(), $content, $user )
+			: false;
+
 		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
 		wfRunHooks( 'ArticlePrepareTextForEdit', array( $this, $popts ) );
 
 		$edit = (object)array();
+		if ( $cachedEdit ) {
+			$edit->timestamp = $cachedEdit->timestamp;
+		} else {
+			$edit->timestamp = wfTimestampNow();
+		}
+		// @note: $cachedEdit is not used if the rev ID was referenced in the text
 		$edit->revid = $revid;
-		$edit->timestamp = wfTimestampNow();
 
-		$edit->pstContent = $content ? $content->preSaveTransform( $this->mTitle, $user, $popts ) : null;
+		if ( $cachedEdit ) {
+			$edit->pstContent = $cachedEdit->pstContent;
+		} else {
+			$edit->pstContent = $content
+				? $content->preSaveTransform( $this->mTitle, $user, $popts )
+				: null;
+		}
 
-		$edit->format = $serialization_format;
+		$edit->format = $serialFormat;
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $edit->pstContent
-			? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
-			: null;
+		if ( $cachedEdit ) {
+			$edit->output = $cachedEdit->output;
+		} else {
+			$edit->output = $edit->pstContent
+				? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
+				: null;
+		}
 
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
@@ -2123,7 +2145,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// NOTE: B/C for hooks! don't use these fields!
 		$edit->newText = $edit->newContent ? ContentHandler::getContentText( $edit->newContent ) : '';
 		$edit->oldText = $edit->oldContent ? ContentHandler::getContentText( $edit->oldContent ) : '';
-		$edit->pst = $edit->pstContent ? $edit->pstContent->serialize( $serialization_format ) : '';
+		$edit->pst = $edit->pstContent ? $edit->pstContent->serialize( $serialFormat ) : '';
 
 		$this->mPreparedEdit = $edit;
 		return $edit;
@@ -2293,14 +2315,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User $user The relevant user
 	 * @param string $comment Comment submitted
 	 * @param bool $minor Whereas it's a minor modification
-	 * @param string $serialisation_format Format for storing the content in the database
+	 * @param string $serialFormat Format for storing the content in the database
 	 */
 	public function doQuickEditContent( Content $content, User $user, $comment = '', $minor = false,
-		$serialisation_format = null
+		$serialFormat = null
 	) {
 		wfProfileIn( __METHOD__ );
 
-		$serialized = $content->serialize( $serialisation_format );
+		$serialized = $content->serialize( $serialFormat );
 
 		$dbw = wfGetDB( DB_MASTER );
 		$revision = new Revision( array(
