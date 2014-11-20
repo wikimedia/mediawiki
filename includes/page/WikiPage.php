@@ -2075,7 +2075,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User|null $user
 	 * @param string|null $serialization_format
 	 *
-	 * @return bool|object
+	 * @return object
 	 *
 	 * @since 1.21
 	 */
@@ -2083,6 +2083,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$serialization_format = null
 	) {
 		global $wgContLang, $wgUser;
+
 		$user = is_null( $user ) ? $wgUser : $user;
 		//XXX: check $user->getId() here???
 
@@ -2102,20 +2103,33 @@ class WikiPage implements Page, IDBAccessObject {
 			return $this->mPreparedEdit;
 		}
 
+		// The edit may have already been prepared via ?action=prepareedit
+		$cachedEdit = ApiPrepareEdit::checkCache( $content, $serialization_format, $user );
+
 		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
 		wfRunHooks( 'ArticlePrepareTextForEdit', array( $this, $popts ) );
 
-		$edit = (object)array();
+		if ( $cachedEdit ) {
+			$edit = $cachedEdit;
+		} else {
+			$edit = (object)array();
+			$edit->timestamp = wfTimestampNow();
+		}
 		$edit->revid = $revid;
-		$edit->timestamp = wfTimestampNow();
 
-		$edit->pstContent = $content ? $content->preSaveTransform( $this->mTitle, $user, $popts ) : null;
+		if ( !$cachedEdit ) {
+			$edit->pstContent = $content
+				? $content->preSaveTransform( $this->mTitle, $user, $popts )
+				: null;
+		}
 
 		$edit->format = $serialization_format;
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $edit->pstContent
-			? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
-			: null;
+		if ( !$cachedEdit ) {
+			$edit->output = $edit->pstContent
+				? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
+				: null;
+		}
 
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );

@@ -22,6 +22,29 @@
 				scrollTop.value = editBox.scrollTop;
 			} );
 		}
+
+		// Pre-render pages while users type edit summaries
+		// @TODO: move elsewhere or put behind a config flag
+		isBusy = false; // poor mans debounce
+		// @TODO: don't trigger unless textarea changed or section=new and the summary changed
+		$labelBox = $( '#wpSummary' );
+		$labelBox.focus( function() {
+			if ( isBusy ) {
+				return;
+			}
+			isBusy = true;
+			api = new mw.Api();
+			api.post( {
+				action: 'prepareedit',
+				title: mw.config.get( 'wgPageName' ),
+				section: $( '#wpSection' ).val(),
+				sectionTitle : $( '#wpSection' ).val() === 'all' ? $labelBox.val() : '',
+				text : editBox.value
+			} ).done ( function ( data ) {
+				isBusy = false;
+				console.log( data ); // debug
+			} );
+		} );
 	} );
 
 }( mediaWiki, jQuery ) );
