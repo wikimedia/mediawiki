@@ -51,6 +51,7 @@ production.
   User::matchEditToken will reject any older tokens.
 * The debug logging internals have been overhauled, and are now using the
   PSR-3 interfaces.
+* Update CSSJanus to v1.1.1.
 
 === Bug fixes in 1.25 ===
 * (bug 71003) No additional code will be generated to try to load CSS-embedded
