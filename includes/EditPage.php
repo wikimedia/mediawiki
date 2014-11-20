@@ -315,6 +315,9 @@ class EditPage {
 	/** @var int */
 	public $oldid = 0;
 
+	/** @var int */
+	public $sectionRevId = 0;
+
 	/** @var string */
 	public $editintro = '';
 
@@ -875,6 +878,7 @@ class EditPage {
 		}
 
 		$this->oldid = $request->getInt( 'oldid' );
+		$this->sectionRevId = $request->getInt( 'sectionRevId' );
 
 		$this->bot = $request->getBool( 'bot', true );
 		$this->nosummary = $request->getBool( 'nosummary' );
@@ -2430,6 +2434,8 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
 		$wgOut->addHTML( Html::hidden( 'oldid', $this->oldid ) );
+		$wgOut->addHTML( Html::hidden( 'sectionRevId',
+			$this->sectionRevId ?: $this->mArticle->getRevIdFetched() ) );
 
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
@@ -2838,7 +2844,7 @@ class EditPage {
 		global $wgOut;
 		$section = htmlspecialchars( $this->section );
 		$wgOut->addHTML( <<<HTML
-<input type='hidden' value="{$section}" name="wpSection" />
+<input type='hidden' value="{$section}" name="wpSection"/>
 <input type='hidden' value="{$this->starttime}" name="wpStarttime" />
 <input type='hidden' value="{$this->edittime}" name="wpEdittime" />
 <input type='hidden' value="{$this->scrolltop}" name="wpScrolltop" id="wpScrolltop" />
