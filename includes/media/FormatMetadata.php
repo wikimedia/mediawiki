@@ -1624,6 +1624,7 @@ class FormatMetadata extends ContextSource {
 			if ( $this->singleLang ) {
 				$this->resolveMultilangMetadata( $extendedMetadata );
 			}
+			$this->discardMultipleValues( $extendedMetadata );
 			// Make sure the metadata won't break the API when an XML format is used.
 			// This is an API-specific function so it would be cleaner to call it from
 			// outside fetchExtendedMetadata, but this way we don't need to redo the
@@ -1777,6 +1778,32 @@ class FormatMetadata extends ContextSource {
 	}
 
 	/**
+	 * Turns an XMP-style multivalue array into a single value by dropping all but the first value.
+	 * If the value is not a multivalue array (or a multivalue array inside a multilang array), it is returned unchanged.
+	 * See mediawiki.org/wiki/Manual:File_metadata_handling#Multi-language_array_format
+	 * @param mixed $value
+	 * @return mixed The value, or the first value if there were multiple ones
+	 * @since 1.25
+	 */
+	protected function resolveMultivalueValue( $value ) {
+		if ( !is_array( $value ) ) {
+			return $value;
+		} elseif ( isset( $value['_type'] ) && $value['_type'] === 'lang' ) { // if this is a multilang array, process fields separately
+			$newValue = array();
+			foreach ( $value as $k => $v ) {
+				$newValue[$k] = $this->resolveMultivalueValue( $v );
+			}
+			return $newValue;
+		} else { // _type is 'ul' or 'ol' or missing in which case it defaults to 'ul'
+			list( $k, $v ) = each( $value );
+			if ( $k === '_type' ) {
+				$v = current( $value );
+			}
+			return $v;
+		}
+	}
+
+	/**
 	 * Takes an array returned by the getExtendedMetadata* functions,
 	 * and resolves multi-language values in it.
 	 * @param array $metadata
@@ -1791,6 +1818,29 @@ class FormatMetadata extends ContextSource {
 				$field['value'] = $this->resolveMultilangValue( $field['value'] );
 			}
 		}
+	}
+
+	/**
+	 * Takes an array returned by the getExtendedMetadata* functions,
+	 * and turns all fields into single-valued ones by dropping extra values.
+	 * @param array $metadata
+	 * @since 1.25
+	 */
+	protected function discardMultipleValues( &$metadata ) {
+		if ( !is_array( $metadata ) ) {
+			return;
+		}
+		foreach ( $metadata as $key => &$field ) {
+			if ( $key === 'Software' || $key === 'Contact' ) {
+				// we skip some fields which have composite values. They are not particularly interesting
+				// and you can get them via the metadata / commonmetadata APIs anyway.
+				continue;
+			}
+			if ( isset( $field['value'] ) ) {
+				$field['value'] = $this->resolveMultivalueValue( $field['value'] );
+			}
+		}
+
 	}
 
 	/**
