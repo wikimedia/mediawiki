@@ -8,7 +8,8 @@
 			if ( parseInt( mw.user.options.get( 'editondblclick' ), 10 ) ) {
 				e.preventDefault();
 				// Trigger native HTMLElement click instead of opening URL (bug 43052)
-				$( '#ca-edit a' ).get( 0 ).click();
+				var $a = $( '#ca-edit a' ).get( 0 );
+				$a && $a.click();
 			}
 		} );
 	} );
