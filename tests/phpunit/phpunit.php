@@ -30,13 +30,6 @@ class PHPUnitMaintClass extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption(
-			'with-phpunitdir',
-			'Directory to include PHPUnit from, for example when using a git '
-				. 'fetchout from upstream. Path will be prepended to PHP `include_path`.',
-			false, # not required
-			true # need arg
-		);
-		$this->addOption(
 			'debug-tests',
 			'Log testing activity to the PHPUnitCommand log channel.',
 			false, # not required
@@ -106,24 +99,6 @@ class PHPUnitMaintClass extends Maintenance {
 			//Hack to eliminate the need to use the Makefile (which sucks ATM)
 			array_splice( $_SERVER['argv'], 1, 0,
 				array( '--configuration', $IP . '/tests/phpunit/suite.xml' ) );
-		}
-
-		# --with-phpunitdir let us override the default PHPUnit version
-		# Can use with either or phpunit.phar in the directory or the
-		# full PHPUnit code base.
-		if ( $this->hasOption( 'with-phpunitdir' ) ) {
-			$phpunitDir = $this->getOption( 'with-phpunitdir' );
-
-			# prepends provided PHPUnit directory or phar
-			$this->output( "Will attempt loading PHPUnit from `$phpunitDir`\n" );
-			set_include_path( $phpunitDir . PATH_SEPARATOR . get_include_path() );
-
-			# Cleanup $args array so the option and its value do not
-			# pollute PHPUnit
-			$key = array_search( '--with-phpunitdir', $_SERVER['argv'] );
-			unset( $_SERVER['argv'][$key] ); // the option
-			unset( $_SERVER['argv'][$key + 1] ); // its value
-			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
 		}
 
 		if ( !wfIsWindows() ) {

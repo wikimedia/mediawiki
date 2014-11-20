@@ -198,6 +198,8 @@ changes to languages because of Bugzilla reports.
   getExternalLinkAttributes method, which was deprecated in MediaWiki 1.18.
 * PHPUnit is runnable using 'composer phpunit'. Some legacy scripts under
   tests/phpunit have been removed.
+* Our phpunit wrapper no more supports '--with-phpunitdir', use composer
+  instead.
 * Removed Sites class, which was deprecated in 1.21 and replaced by SiteSQLStore.
 
 == Compatibility ==
