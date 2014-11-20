@@ -54,6 +54,7 @@ class ApiMain extends ApiBase {
 		'query' => 'ApiQuery',
 		'expandtemplates' => 'ApiExpandTemplates',
 		'parse' => 'ApiParse',
+		'prepareedit' => 'ApiPrepareEdit',
 		'opensearch' => 'ApiOpenSearch',
 		'feedcontributions' => 'ApiFeedContributions',
 		'feedrecentchanges' => 'ApiFeedRecentChanges',
