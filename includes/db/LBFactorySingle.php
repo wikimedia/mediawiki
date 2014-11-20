@@ -26,13 +26,13 @@
  */
 class LBFactorySingle extends LBFactory {
 	/** @var LoadBalancerSingle */
-	protected $lb;
+	private $lb;
 
 	/**
 	 * @param array $conf An associative array with one member:
 	 *  - connection: The DatabaseBase connection object
 	 */
-	function __construct( array $conf ) {
+	public function __construct( array $conf ) {
 		$this->lb = new LoadBalancerSingle( $conf );
 	}
 
@@ -40,7 +40,7 @@ class LBFactorySingle extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return LoadBalancerSingle
 	 */
-	function newMainLB( $wiki = false ) {
+	public function newMainLB( $wiki = false ) {
 		return $this->lb;
 	}
 
@@ -48,7 +48,7 @@ class LBFactorySingle extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return LoadBalancerSingle
 	 */
-	function getMainLB( $wiki = false ) {
+	public function getMainLB( $wiki = false ) {
 		return $this->lb;
 	}
 
@@ -57,7 +57,7 @@ class LBFactorySingle extends LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancerSingle
 	 */
-	function newExternalLB( $cluster, $wiki = false ) {
+	public function newExternalLB( $cluster, $wiki = false ) {
 		return $this->lb;
 	}
 
@@ -66,7 +66,7 @@ class LBFactorySingle extends LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancerSingle
 	 */
-	function &getExternalLB( $cluster, $wiki = false ) {
+	public function &getExternalLB( $cluster, $wiki = false ) {
 		return $this->lb;
 	}
 
@@ -74,7 +74,7 @@ class LBFactorySingle extends LBFactory {
 	 * @param string|callable $callback
 	 * @param array $params
 	 */
-	function forEachLB( $callback, array $params = array() ) {
+	public function forEachLB( $callback, array $params = array() ) {
 		call_user_func_array( $callback, array_merge( array( $this->lb ), $params ) );
 	}
 }
@@ -84,12 +84,12 @@ class LBFactorySingle extends LBFactory {
  */
 class LoadBalancerSingle extends LoadBalancer {
 	/** @var DatabaseBase */
-	protected $db;
+	private $db;
 
 	/**
 	 * @param array $params
 	 */
-	function __construct( array $params ) {
+	public function __construct( array $params ) {
 		$this->db = $params['connection'];
 		parent::__construct( array( 'servers' => array( array(
 			'type' => $this->db->getType(),
@@ -106,7 +106,7 @@ class LoadBalancerSingle extends LoadBalancer {
 	 *
 	 * @return DatabaseBase
 	 */
-	function reallyOpenConnection( $server, $dbNameOverride = false ) {
+	protected function reallyOpenConnection( $server, $dbNameOverride = false ) {
 		return $this->db;
 	}
 }

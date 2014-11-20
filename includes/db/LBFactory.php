@@ -27,7 +27,7 @@
  */
 abstract class LBFactory {
 	/** @var LBFactory */
-	protected static $instance;
+	private static $instance;
 
 	/**
 	 * Disables all access to the load balancer, will cause all database access
@@ -43,7 +43,7 @@ abstract class LBFactory {
 	 *
 	 * @return LBFactory
 	 */
-	static function &singleton() {
+	public static function &singleton() {
 		global $wgLBFactoryConf;
 
 		if ( is_null( self::$instance ) ) {
@@ -87,7 +87,7 @@ abstract class LBFactory {
 	/**
 	 * Shut down, close connections and destroy the cached instance.
 	 */
-	static function destroyInstance() {
+	public static function destroyInstance() {
 		if ( self::$instance ) {
 			self::$instance->shutdown();
 			self::$instance->forEachLBCallMethod( 'closeAll' );
@@ -100,7 +100,7 @@ abstract class LBFactory {
 	 *
 	 * @param LBFactory $instance
 	 */
-	static function setInstance( $instance ) {
+	public static function setInstance( $instance ) {
 		self::destroyInstance();
 		self::$instance = $instance;
 	}
@@ -109,7 +109,7 @@ abstract class LBFactory {
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 * @param array $conf
 	 */
-	abstract function __construct( array $conf );
+	public abstract function __construct( array $conf );
 
 	/**
 	 * Create a new load balancer object. The resulting object will be untracked,
@@ -118,7 +118,7 @@ abstract class LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	abstract function newMainLB( $wiki = false );
+	public abstract function newMainLB( $wiki = false );
 
 	/**
 	 * Get a cached (tracked) load balancer object.
@@ -126,7 +126,7 @@ abstract class LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	abstract function getMainLB( $wiki = false );
+	public abstract function getMainLB( $wiki = false );
 
 	/**
 	 * Create a new load balancer for external storage. The resulting object will be
@@ -137,7 +137,7 @@ abstract class LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	abstract function newExternalLB( $cluster, $wiki = false );
+	public abstract function newExternalLB( $cluster, $wiki = false );
 
 	/**
 	 * Get a cached (tracked) load balancer for external storage
@@ -146,7 +146,7 @@ abstract class LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	abstract function &getExternalLB( $cluster, $wiki = false );
+	public abstract function &getExternalLB( $cluster, $wiki = false );
 
 	/**
 	 * Execute a function for each tracked load balancer
@@ -156,13 +156,13 @@ abstract class LBFactory {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	abstract function forEachLB( $callback, array $params = array() );
+	public abstract function forEachLB( $callback, array $params = array() );
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
 	 * STUB
 	 */
-	function shutdown() {
+	public function shutdown() {
 	}
 
 	/**
@@ -171,24 +171,16 @@ abstract class LBFactory {
 	 * @param string $methodName
 	 * @param array $args
 	 */
-	function forEachLBCallMethod( $methodName, array $args = array() ) {
-		$this->forEachLB( array( $this, 'callMethod' ), array( $methodName, $args ) );
-	}
-
-	/**
-	 * Private helper for forEachLBCallMethod
-	 * @param LoadBalancer $loadBalancer
-	 * @param string $methodName
-	 * @param array $args
-	 */
-	function callMethod( $loadBalancer, $methodName, $args ) {
-		call_user_func_array( array( $loadBalancer, $methodName ), $args );
+	public function forEachLBCallMethod( $methodName, array $args = array() ) {
+		$this->forEachLB( function( LoadBalancer $loadBalancer, $methodName, array $args ) {
+			call_user_func_array( array( $loadBalancer, $methodName ), $args );
+		}, array( $methodName, $args ) );
 	}
 
 	/**
 	 * Commit changes on all master connections
 	 */
-	function commitMasterChanges() {
+	public function commitMasterChanges() {
 		$this->forEachLBCallMethod( 'commitMasterChanges' );
 	}
 
@@ -196,7 +188,7 @@ abstract class LBFactory {
 	 * Rollback changes on all master connections
 	 * @since 1.23
 	 */
-	function rollbackMasterChanges() {
+	public function rollbackMasterChanges() {
 		$this->forEachLBCallMethod( 'rollbackMasterChanges' );
 	}
 
@@ -205,7 +197,7 @@ abstract class LBFactory {
 	 * @since 1.23
 	 * @return bool
 	 */
-	function hasMasterChanges() {
+	public function hasMasterChanges() {
 		$ret = false;
 		$this->forEachLB( function ( $lb ) use ( &$ret ) {
 			$ret = $ret || $lb->hasMasterChanges();
@@ -219,15 +211,15 @@ abstract class LBFactory {
  */
 class LBFactorySimple extends LBFactory {
 	/** @var LoadBalancer */
-	protected $mainLB;
+	private $mainLB;
 
 	/** @var LoadBalancer[] */
-	protected $extLBs = array();
+	private $extLBs = array();
 
 	/** @var ChronologyProtector */
-	protected $chronProt;
+	private $chronProt;
 
-	function __construct( array $conf ) {
+	public function __construct( array $conf ) {
 		$this->chronProt = new ChronologyProtector;
 	}
 
@@ -235,7 +227,7 @@ class LBFactorySimple extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
-	function newMainLB( $wiki = false ) {
+	public function newMainLB( $wiki = false ) {
 		global $wgDBservers;
 		if ( $wgDBservers ) {
 			$servers = $wgDBservers;
@@ -274,7 +266,7 @@ class LBFactorySimple extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
-	function getMainLB( $wiki = false ) {
+	public function getMainLB( $wiki = false ) {
 		if ( !isset( $this->mainLB ) ) {
 			$this->mainLB = $this->newMainLB( $wiki );
 			$this->mainLB->parentInfo( array( 'id' => 'main' ) );
@@ -290,7 +282,7 @@ class LBFactorySimple extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
-	function newExternalLB( $cluster, $wiki = false ) {
+	public function newExternalLB( $cluster, $wiki = false ) {
 		global $wgExternalServers;
 		if ( !isset( $wgExternalServers[$cluster] ) ) {
 			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
@@ -306,7 +298,7 @@ class LBFactorySimple extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return array
 	 */
-	function &getExternalLB( $cluster, $wiki = false ) {
+	public function &getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
@@ -324,7 +316,7 @@ class LBFactorySimple extends LBFactory {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	function forEachLB( $callback, array $params = array() ) {
+	public function forEachLB( $callback, array $params = array() ) {
 		if ( isset( $this->mainLB ) ) {
 			call_user_func_array( $callback, array_merge( array( $this->mainLB ), $params ) );
 		}
@@ -333,7 +325,7 @@ class LBFactorySimple extends LBFactory {
 		}
 	}
 
-	function shutdown() {
+	public function shutdown() {
 		if ( $this->mainLB ) {
 			$this->chronProt->shutdownLB( $this->mainLB );
 		}
@@ -352,26 +344,26 @@ class LBFactorySimple extends LBFactory {
  * LBFactory::enableBackend() to return to normal behavior
  */
 class LBFactoryFake extends LBFactory {
-	function __construct( array $conf ) {
+	public function __construct( array $conf ) {
 	}
 
-	function newMainLB( $wiki = false ) {
+	public function newMainLB( $wiki = false ) {
 		throw new DBAccessError;
 	}
 
-	function getMainLB( $wiki = false ) {
+	public function getMainLB( $wiki = false ) {
 		throw new DBAccessError;
 	}
 
-	function newExternalLB( $cluster, $wiki = false ) {
+	public function newExternalLB( $cluster, $wiki = false ) {
 		throw new DBAccessError;
 	}
 
-	function &getExternalLB( $cluster, $wiki = false ) {
+	public function &getExternalLB( $cluster, $wiki = false ) {
 		throw new DBAccessError;
 	}
 
-	function forEachLB( $callback, array $params = array() ) {
+	public function forEachLB( $callback, array $params = array() ) {
 	}
 }
 
@@ -379,7 +371,7 @@ class LBFactoryFake extends LBFactory {
  * Exception class for attempted DB access
  */
 class DBAccessError extends MWException {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). " .
 			"This is not allowed." );
 	}
