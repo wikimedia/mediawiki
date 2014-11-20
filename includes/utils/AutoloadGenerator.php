@@ -81,19 +81,15 @@ class AutoloadGenerator {
 	 * @var string $inputPath Path to a php file to find classes within
 	 */
 	public function readFile( $inputPath ) {
-		$path = realpath( $inputPath );
-		if ( !$path ) {
-			throw new \Exception( "Invalid path: $inputPath" );
-		}
 		$len = strlen( $this->basepath );
-		if ( substr( $path, 0, $len ) !== $this->basepath ) {
+		if ( substr( $inputPath, 0, $len ) !== $this->basepath ) {
 			throw new \Exception( "Path is not within basepath: $inputPath" );
 		}
 		$result = $this->collector->getClasses(
-			file_get_contents( $path )
+			file_get_contents( $inputPath )
 		);
 		if ( $result ) {
-			$shortpath = substr( $path, $len );
+			$shortpath = substr( $inputPath, $len );
 			$this->classes[$shortpath] = $result;
 		}
 	}
