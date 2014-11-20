@@ -1051,6 +1051,13 @@ return array(
 			'mediawiki.action.history.diff',
 		),
 	),
+	'mediawiki.action.edit.stash' => array(
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.stash.js',
+		'dependencies' => array(
+			'jquery.getAttrs',
+			'mediawiki.api',
+		),
+	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',
