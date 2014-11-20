@@ -5012,6 +5012,13 @@ $wgRateLimits = array(
 		'ip' => null,
 		'subnet' => null,
 	),
+	'prepareedit' => array( // preparing edits into cache before save
+		'anon' => null,
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
+	)
 );
 
 /**
