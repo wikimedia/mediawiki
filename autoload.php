@@ -58,6 +58,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiParamInfo' => __DIR__ . '/includes/api/ApiParamInfo.php',
 	'ApiParse' => __DIR__ . '/includes/api/ApiParse.php',
 	'ApiPatrol' => __DIR__ . '/includes/api/ApiPatrol.php',
+	'ApiPrepareEdit' => __DIR__ . '/includes/api/ApiPrepareEdit.php',
 	'ApiProtect' => __DIR__ . '/includes/api/ApiProtect.php',
 	'ApiPurge' => __DIR__ . '/includes/api/ApiPurge.php',
 	'ApiQuery' => __DIR__ . '/includes/api/ApiQuery.php',

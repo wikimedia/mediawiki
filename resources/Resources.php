@@ -1047,6 +1047,9 @@ return array(
 			'mediawiki.action.history.diff',
 		),
 	),
+	'mediawiki.action.edit.prepare' => array(
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.prepare.js',
+	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',

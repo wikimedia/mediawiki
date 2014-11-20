@@ -23,6 +23,8 @@ production.
   See StartProfiler.sample for details.
 * $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
   might be a flash policy directive configurable.
+* Edits are now prepared via AJAX as users type edit summaries. This behavior
+  can be disabled via $wgAjaxEditPrepare.
 
 === New features in 1.25 ===
 * (bug 62861) Updated plural rules to CLDR 26. Includes incompatible changes
