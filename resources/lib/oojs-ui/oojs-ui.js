@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (7922a50558)
+ * OOjs UI v0.1.0-pre (1fa4eb7a73)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-19T23:18:49Z
+ * Date: 2014-11-20T00:05:37Z
  */
 ( function ( OO ) {
 
@@ -6244,7 +6244,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	if ( this.outlined ) {
 		this.editable = !!config.editable;
 		this.outlineControlsWidget = null;
-		this.outlineWidget = new OO.ui.OutlineWidget( { $: this.$ } );
+		this.outlineSelectWidget = new OO.ui.OutlineSelectWidget( { $: this.$ } );
 		this.outlinePanel = new OO.ui.PanelLayout( { $: this.$, scrollable: true } );
 		this.gridLayout = new OO.ui.GridLayout(
 			[ this.outlinePanel, this.stackLayout ],
@@ -6253,7 +6253,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 		this.outlineVisible = true;
 		if ( this.editable ) {
 			this.outlineControlsWidget = new OO.ui.OutlineControlsWidget(
-				this.outlineWidget, { $: this.$ }
+				this.outlineSelectWidget, { $: this.$ }
 			);
 		}
 	}
@@ -6261,7 +6261,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	// Events
 	this.stackLayout.connect( this, { set: 'onStackLayoutSet' } );
 	if ( this.outlined ) {
-		this.outlineWidget.connect( this, { select: 'onOutlineWidgetSelect' } );
+		this.outlineSelectWidget.connect( this, { select: 'onOutlineSelectWidgetSelect' } );
 	}
 	if ( this.autoFocus ) {
 		// Event 'focus' does not bubble, but 'focusin' does
@@ -6274,7 +6274,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	if ( this.outlined ) {
 		this.outlinePanel.$element
 			.addClass( 'oo-ui-bookletLayout-outlinePanel' )
-			.append( this.outlineWidget.$element );
+			.append( this.outlineSelectWidget.$element );
 		if ( this.editable ) {
 			this.outlinePanel.$element
 				.addClass( 'oo-ui-bookletLayout-outlinePanel-editable' )
@@ -6356,7 +6356,7 @@ OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
  *
  * @param {OO.ui.OptionWidget|null} item Selected item
  */
-OO.ui.BookletLayout.prototype.onOutlineWidgetSelect = function ( item ) {
+OO.ui.BookletLayout.prototype.onOutlineSelectWidgetSelect = function ( item ) {
 	if ( item ) {
 		this.setPage( item.getData() );
 	}
@@ -6421,16 +6421,16 @@ OO.ui.BookletLayout.prototype.getClosestPage = function ( page ) {
 		prev = pages[index - 1];
 		// Prefer adjacent pages at the same level
 		if ( this.outlined ) {
-			level = this.outlineWidget.getItemFromData( page.getName() ).getLevel();
+			level = this.outlineSelectWidget.getItemFromData( page.getName() ).getLevel();
 			if (
 				prev &&
-				level === this.outlineWidget.getItemFromData( prev.getName() ).getLevel()
+				level === this.outlineSelectWidget.getItemFromData( prev.getName() ).getLevel()
 			) {
 				return prev;
 			}
 			if (
 				next &&
-				level === this.outlineWidget.getItemFromData( next.getName() ).getLevel()
+				level === this.outlineSelectWidget.getItemFromData( next.getName() ).getLevel()
 			) {
 				return next;
 			}
@@ -6442,10 +6442,10 @@ OO.ui.BookletLayout.prototype.getClosestPage = function ( page ) {
 /**
  * Get the outline widget.
  *
- * @return {OO.ui.OutlineWidget|null} Outline widget, or null if boolet has no outline
+ * @return {OO.ui.OutlineSelectWidget|null} Outline widget, or null if boolet has no outline
  */
 OO.ui.BookletLayout.prototype.getOutline = function () {
-	return this.outlineWidget;
+	return this.outlineSelectWidget;
 };
 
 /**
@@ -6517,15 +6517,15 @@ OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
 		name = page.getName();
 		this.pages[page.getName()] = page;
 		if ( this.outlined ) {
-			item = new OO.ui.OutlineItemWidget( name, page, { $: this.$ } );
+			item = new OO.ui.OutlineOptionWidget( name, page, { $: this.$ } );
 			page.setOutlineItem( item );
 			items.push( item );
 		}
 	}
 
 	if ( this.outlined && items.length ) {
-		this.outlineWidget.addItems( items, index );
-		this.updateOutlineWidget();
+		this.outlineSelectWidget.addItems( items, index );
+		this.updateOutlineSelectWidget();
 	}
 	this.stackLayout.addItems( pages, index );
 	this.emit( 'add', pages, index );
@@ -6548,13 +6548,13 @@ OO.ui.BookletLayout.prototype.removePages = function ( pages ) {
 		name = page.getName();
 		delete this.pages[name];
 		if ( this.outlined ) {
-			items.push( this.outlineWidget.getItemFromData( name ) );
+			items.push( this.outlineSelectWidget.getItemFromData( name ) );
 			page.setOutlineItem( null );
 		}
 	}
 	if ( this.outlined && items.length ) {
-		this.outlineWidget.removeItems( items );
-		this.updateOutlineWidget();
+		this.outlineSelectWidget.removeItems( items );
+		this.updateOutlineSelectWidget();
 	}
 	this.stackLayout.removeItems( pages );
 	this.emit( 'remove', pages );
@@ -6575,7 +6575,7 @@ OO.ui.BookletLayout.prototype.clearPages = function () {
 	this.pages = {};
 	this.currentPageName = null;
 	if ( this.outlined ) {
-		this.outlineWidget.clearItems();
+		this.outlineSelectWidget.clearItems();
 		for ( i = 0, len = pages.length; i < len; i++ ) {
 			pages[i].setOutlineItem( null );
 		}
@@ -6600,9 +6600,9 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 
 	if ( name !== this.currentPageName ) {
 		if ( this.outlined ) {
-			selectedItem = this.outlineWidget.getSelectedItem();
+			selectedItem = this.outlineSelectWidget.getSelectedItem();
 			if ( selectedItem && selectedItem.getData() !== name ) {
-				this.outlineWidget.selectItem( this.outlineWidget.getItemFromData( name ) );
+				this.outlineSelectWidget.selectItem( this.outlineSelectWidget.getItemFromData( name ) );
 			}
 		}
 		if ( page ) {
@@ -6627,14 +6627,14 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 };
 
 /**
- * Call this after adding or removing items from the OutlineWidget.
+ * Call this after adding or removing items from the OutlineSelectWidget.
  *
  * @chainable
  */
-OO.ui.BookletLayout.prototype.updateOutlineWidget = function () {
+OO.ui.BookletLayout.prototype.updateOutlineSelectWidget = function () {
 	// Auto-select first item when nothing is selected anymore
-	if ( !this.outlineWidget.getSelectedItem() ) {
-		this.outlineWidget.selectItem( this.outlineWidget.getFirstSelectableItem() );
+	if ( !this.outlineSelectWidget.getSelectedItem() ) {
+		this.outlineSelectWidget.selectItem( this.outlineSelectWidget.getFirstSelectableItem() );
 	}
 
 	return this;
@@ -7143,7 +7143,7 @@ OO.ui.PageLayout.prototype.isActive = function () {
 /**
  * Get outline item.
  *
- * @return {OO.ui.OutlineItemWidget|null} Outline item widget
+ * @return {OO.ui.OutlineOptionWidget|null} Outline item widget
  */
 OO.ui.PageLayout.prototype.getOutlineItem = function () {
 	return this.outlineItem;
@@ -7155,9 +7155,9 @@ OO.ui.PageLayout.prototype.getOutlineItem = function () {
  * @localdoc Subclasses should override #setupOutlineItem instead of this method to adjust the
  *   outline item as desired; this method is called for setting (with an object) and unsetting
  *   (with null) and overriding methods would have to check the value of `outlineItem` to avoid
- *   operating on null instead of an OO.ui.OutlineItemWidget object.
+ *   operating on null instead of an OO.ui.OutlineOptionWidget object.
  *
- * @param {OO.ui.OutlineItemWidget|null} outlineItem Outline item widget, null to clear
+ * @param {OO.ui.OutlineOptionWidget|null} outlineItem Outline item widget, null to clear
  * @chainable
  */
 OO.ui.PageLayout.prototype.setOutlineItem = function ( outlineItem ) {
@@ -7173,7 +7173,7 @@ OO.ui.PageLayout.prototype.setOutlineItem = function ( outlineItem ) {
  *
  * @localdoc Subclasses should override this method to adjust the outline item as desired.
  *
- * @param {OO.ui.OutlineItemWidget} outlineItem Outline item widget to setup
+ * @param {OO.ui.OutlineOptionWidget} outlineItem Outline item widget to setup
  * @chainable
  */
 OO.ui.PageLayout.prototype.setupOutlineItem = function () {
@@ -7932,7 +7932,7 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	// Properties
 	this.lookupInput = input;
 	this.$overlay = config.$overlay || this.$element;
-	this.lookupMenu = new OO.ui.TextInputMenuWidget( this, {
+	this.lookupMenu = new OO.ui.TextInputMenuSelectWidget( this, {
 		$: OO.ui.Element.getJQuery( this.$overlay ),
 		input: this.lookupInput,
 		$container: config.$container
@@ -8014,7 +8014,7 @@ OO.ui.LookupInputWidget.prototype.onLookupMenuToggle = function ( visible ) {
 	if ( !visible ) {
 		// When the menu is hidden, abort any active request and clear the menu.
 		// This has to be done here in addition to closeLookupMenu(), because
-		// MenuWidget will close itself when the user presses Esc.
+		// MenuSelectWidget will close itself when the user presses Esc.
 		this.abortLookupRequest();
 		this.lookupMenu.clearItems();
 	}
@@ -8023,7 +8023,7 @@ OO.ui.LookupInputWidget.prototype.onLookupMenuToggle = function ( visible ) {
 /**
  * Get lookup menu.
  *
- * @return {OO.ui.TextInputMenuWidget}
+ * @return {OO.ui.TextInputMenuSelectWidget}
  */
 OO.ui.LookupInputWidget.prototype.getLookupMenu = function () {
 	return this.lookupMenu;
@@ -8200,7 +8200,7 @@ OO.ui.LookupInputWidget.prototype.getLookupRequest = function () {
  *
  * @abstract
  * @param {Mixed} data Cached result data, usually an array
- * @return {OO.ui.MenuItemWidget[]} Menu items
+ * @return {OO.ui.MenuOptionWidget[]} Menu items
  */
 OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
 	// Stub, implemented in subclass
@@ -8220,7 +8220,7 @@ OO.ui.LookupInputWidget.prototype.getLookupCacheItemFromData = function () {
 };
 
 /**
- * Set of controls for an OO.ui.OutlineWidget.
+ * Set of controls for an OO.ui.OutlineSelectWidget.
  *
  * Controls include moving items up and down, removing items, and adding different kinds of items.
  *
@@ -8230,7 +8230,7 @@ OO.ui.LookupInputWidget.prototype.getLookupCacheItemFromData = function () {
  * @mixins OO.ui.IconElement
  *
  * @constructor
- * @param {OO.ui.OutlineWidget} outline Outline to control
+ * @param {OO.ui.OutlineSelectWidget} outline Outline to control
  * @param {Object} [config] Configuration options
  */
 OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, config ) {
@@ -8859,7 +8859,7 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
  * Dropdown menus provide a control for accessing a menu and compose a menu within the widget, which
  * can be accessed using the #getMenu method.
  *
- * Use with OO.ui.MenuItemWidget.
+ * Use with OO.ui.MenuOptionWidget.
  *
  * @class
  * @extends OO.ui.Widget
@@ -8886,7 +8886,7 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$label } ) );
 
 	// Properties
-	this.menu = new OO.ui.MenuWidget( $.extend( { $: this.$, widget: this }, config.menu ) );
+	this.menu = new OO.ui.MenuSelectWidget( $.extend( { $: this.$, widget: this }, config.menu ) );
 	this.$handle = this.$( '<span>' );
 
 	// Events
@@ -8915,7 +8915,7 @@ OO.mixinClass( OO.ui.DropdownWidget, OO.ui.TitledElement );
 /**
  * Get the menu.
  *
- * @return {OO.ui.MenuWidget} Menu of widget
+ * @return {OO.ui.MenuSelectWidget} Menu of widget
  */
 OO.ui.DropdownWidget.prototype.getMenu = function () {
 	return this.menu;
@@ -8924,7 +8924,7 @@ OO.ui.DropdownWidget.prototype.getMenu = function () {
 /**
  * Handles menu select events.
  *
- * @param {OO.ui.MenuItemWidget} item Selected menu item
+ * @param {OO.ui.MenuOptionWidget} item Selected menu item
  */
 OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
 	var selectedLabel;
@@ -9786,7 +9786,7 @@ OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 		{ $: this.$, indicator: 'down', disabled: this.isDisabled() },
 		config.input
 	) );
-	this.menu = new OO.ui.TextInputMenuWidget( this.input, $.extend(
+	this.menu = new OO.ui.TextInputMenuSelectWidget( this.input, $.extend(
 		{
 			$: OO.ui.Element.getJQuery( this.$overlay ),
 			widget: this,
@@ -10230,7 +10230,7 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
 };
 
 /**
- * Item of an OO.ui.MenuWidget.
+ * Item of an OO.ui.MenuSelectWidget.
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -10239,25 +10239,25 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
  * @param {Mixed} data Item data
  * @param {Object} [config] Configuration options
  */
-OO.ui.MenuItemWidget = function OoUiMenuItemWidget( data, config ) {
+OO.ui.MenuOptionWidget = function OoUiMenuOptionWidget( data, config ) {
 	// Configuration initialization
 	config = $.extend( { icon: 'check' }, config );
 
 	// Parent constructor
-	OO.ui.MenuItemWidget.super.call( this, data, config );
+	OO.ui.MenuOptionWidget.super.call( this, data, config );
 
 	// Initialization
 	this.$element
 		.attr( 'role', 'menuitem' )
-		.addClass( 'oo-ui-menuItemWidget' );
+		.addClass( 'oo-ui-menuOptionWidget' );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.MenuItemWidget, OO.ui.DecoratedOptionWidget );
+OO.inheritClass( OO.ui.MenuOptionWidget, OO.ui.DecoratedOptionWidget );
 
 /**
- * Section to group one or more items in a OO.ui.MenuWidget.
+ * Section to group one or more items in a OO.ui.MenuSelectWidget.
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -10266,26 +10266,26 @@ OO.inheritClass( OO.ui.MenuItemWidget, OO.ui.DecoratedOptionWidget );
  * @param {Mixed} data Item data
  * @param {Object} [config] Configuration options
  */
-OO.ui.MenuSectionItemWidget = function OoUiMenuSectionItemWidget( data, config ) {
+OO.ui.MenuSectionOptionWidget = function OoUiMenuSectionOptionWidget( data, config ) {
 	// Parent constructor
-	OO.ui.MenuSectionItemWidget.super.call( this, data, config );
+	OO.ui.MenuSectionOptionWidget.super.call( this, data, config );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-menuSectionItemWidget' );
+	this.$element.addClass( 'oo-ui-menuSectionOptionWidget' );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.MenuSectionItemWidget, OO.ui.DecoratedOptionWidget );
+OO.inheritClass( OO.ui.MenuSectionOptionWidget, OO.ui.DecoratedOptionWidget );
 
 /* Static Properties */
 
-OO.ui.MenuSectionItemWidget.static.selectable = false;
+OO.ui.MenuSectionOptionWidget.static.selectable = false;
 
-OO.ui.MenuSectionItemWidget.static.highlightable = false;
+OO.ui.MenuSectionOptionWidget.static.highlightable = false;
 
 /**
- * Items for an OO.ui.OutlineWidget.
+ * Items for an OO.ui.OutlineSelectWidget.
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -10296,12 +10296,12 @@ OO.ui.MenuSectionItemWidget.static.highlightable = false;
  * @cfg {number} [level] Indentation level
  * @cfg {boolean} [movable] Allow modification from outline controls
  */
-OO.ui.OutlineItemWidget = function OoUiOutlineItemWidget( data, config ) {
+OO.ui.OutlineOptionWidget = function OoUiOutlineOptionWidget( data, config ) {
 	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.OutlineItemWidget.super.call( this, data, config );
+	OO.ui.OutlineOptionWidget.super.call( this, data, config );
 
 	// Properties
 	this.level = 0;
@@ -10309,23 +10309,23 @@ OO.ui.OutlineItemWidget = function OoUiOutlineItemWidget( data, config ) {
 	this.removable = !!config.removable;
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-outlineItemWidget' );
+	this.$element.addClass( 'oo-ui-outlineOptionWidget' );
 	this.setLevel( config.level );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.OutlineItemWidget, OO.ui.DecoratedOptionWidget );
+OO.inheritClass( OO.ui.OutlineOptionWidget, OO.ui.DecoratedOptionWidget );
 
 /* Static Properties */
 
-OO.ui.OutlineItemWidget.static.highlightable = false;
+OO.ui.OutlineOptionWidget.static.highlightable = false;
 
-OO.ui.OutlineItemWidget.static.scrollIntoViewOnSelect = true;
+OO.ui.OutlineOptionWidget.static.scrollIntoViewOnSelect = true;
 
-OO.ui.OutlineItemWidget.static.levelClass = 'oo-ui-outlineItemWidget-level-';
+OO.ui.OutlineOptionWidget.static.levelClass = 'oo-ui-outlineOptionWidget-level-';
 
-OO.ui.OutlineItemWidget.static.levels = 3;
+OO.ui.OutlineOptionWidget.static.levels = 3;
 
 /* Methods */
 
@@ -10336,7 +10336,7 @@ OO.ui.OutlineItemWidget.static.levels = 3;
  *
  * @return {boolean} Item is movable
  */
-OO.ui.OutlineItemWidget.prototype.isMovable = function () {
+OO.ui.OutlineOptionWidget.prototype.isMovable = function () {
 	return this.movable;
 };
 
@@ -10347,7 +10347,7 @@ OO.ui.OutlineItemWidget.prototype.isMovable = function () {
  *
  * @return {boolean} Item is removable
  */
-OO.ui.OutlineItemWidget.prototype.isRemovable = function () {
+OO.ui.OutlineOptionWidget.prototype.isRemovable = function () {
 	return this.removable;
 };
 
@@ -10356,7 +10356,7 @@ OO.ui.OutlineItemWidget.prototype.isRemovable = function () {
  *
  * @return {number} Indentation level
  */
-OO.ui.OutlineItemWidget.prototype.getLevel = function () {
+OO.ui.OutlineOptionWidget.prototype.getLevel = function () {
 	return this.level;
 };
 
@@ -10368,7 +10368,7 @@ OO.ui.OutlineItemWidget.prototype.getLevel = function () {
  * @param {boolean} movable Item is movable
  * @chainable
  */
-OO.ui.OutlineItemWidget.prototype.setMovable = function ( movable ) {
+OO.ui.OutlineOptionWidget.prototype.setMovable = function ( movable ) {
 	this.movable = !!movable;
 	this.updateThemeClasses();
 	return this;
@@ -10382,7 +10382,7 @@ OO.ui.OutlineItemWidget.prototype.setMovable = function ( movable ) {
  * @param {boolean} movable Item is removable
  * @chainable
  */
-OO.ui.OutlineItemWidget.prototype.setRemovable = function ( removable ) {
+OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
 	this.removable = !!removable;
 	this.updateThemeClasses();
 	return this;
@@ -10394,7 +10394,7 @@ OO.ui.OutlineItemWidget.prototype.setRemovable = function ( removable ) {
  * @param {number} [level=0] Indentation level, in the range of [0,#maxLevel]
  * @chainable
  */
-OO.ui.OutlineItemWidget.prototype.setLevel = function ( level ) {
+OO.ui.OutlineOptionWidget.prototype.setLevel = function ( level ) {
 	var levels = this.constructor.static.levels,
 		levelClass = this.constructor.static.levelClass,
 		i = levels;
@@ -11471,7 +11471,7 @@ OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
  * Menus are clipped to the visible viewport. They do not provide a control for opening or closing
  * the menu.
  *
- * Use together with OO.ui.MenuItemWidget.
+ * Use together with OO.ui.MenuOptionWidget.
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -11483,12 +11483,12 @@ OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
  * @cfg {OO.ui.Widget} [widget] Widget to bind mouse handlers to
  * @cfg {boolean} [autoHide=true] Hide the menu when the mouse is pressed outside the menu
  */
-OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
+OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.MenuWidget.super.call( this, config );
+	OO.ui.MenuSelectWidget.super.call( this, config );
 
 	// Mixin constructors
 	OO.ui.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
@@ -11509,13 +11509,13 @@ OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	this.$element
 		.hide()
 		.attr( 'role', 'menu' )
-		.addClass( 'oo-ui-menuWidget' );
+		.addClass( 'oo-ui-menuSelectWidget' );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.MenuWidget, OO.ui.SelectWidget );
-OO.mixinClass( OO.ui.MenuWidget, OO.ui.ClippableElement );
+OO.inheritClass( OO.ui.MenuSelectWidget, OO.ui.SelectWidget );
+OO.mixinClass( OO.ui.MenuSelectWidget, OO.ui.ClippableElement );
 
 /* Methods */
 
@@ -11524,7 +11524,7 @@ OO.mixinClass( OO.ui.MenuWidget, OO.ui.ClippableElement );
  *
  * @param {jQuery.Event} e Key down event
  */
-OO.ui.MenuWidget.prototype.onDocumentMouseDown = function ( e ) {
+OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
 	if (
 		!OO.ui.contains( this.$element[0], e.target, true ) &&
 		( !this.$widget || !OO.ui.contains( this.$widget[0], e.target, true ) )
@@ -11538,7 +11538,7 @@ OO.ui.MenuWidget.prototype.onDocumentMouseDown = function ( e ) {
  *
  * @param {jQuery.Event} e Key down event
  */
-OO.ui.MenuWidget.prototype.onKeyDown = function ( e ) {
+OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
 	var nextItem,
 		handled = false,
 		highlightItem = this.getHighlightedItem();
@@ -11585,7 +11585,7 @@ OO.ui.MenuWidget.prototype.onKeyDown = function ( e ) {
 /**
  * Bind key down listener.
  */
-OO.ui.MenuWidget.prototype.bindKeyDownListener = function () {
+OO.ui.MenuSelectWidget.prototype.bindKeyDownListener = function () {
 	if ( this.$input ) {
 		this.$input.on( 'keydown', this.onKeyDownHandler );
 	} else {
@@ -11597,7 +11597,7 @@ OO.ui.MenuWidget.prototype.bindKeyDownListener = function () {
 /**
  * Unbind key down listener.
  */
-OO.ui.MenuWidget.prototype.unbindKeyDownListener = function () {
+OO.ui.MenuSelectWidget.prototype.unbindKeyDownListener = function () {
 	if ( this.$input ) {
 		this.$input.off( 'keydown' );
 	} else {
@@ -11613,11 +11613,11 @@ OO.ui.MenuWidget.prototype.unbindKeyDownListener = function () {
  * @param {OO.ui.OptionWidget} item Item to choose
  * @chainable
  */
-OO.ui.MenuWidget.prototype.chooseItem = function ( item ) {
+OO.ui.MenuSelectWidget.prototype.chooseItem = function ( item ) {
 	var widget = this;
 
 	// Parent method
-	OO.ui.MenuWidget.super.prototype.chooseItem.call( this, item );
+	OO.ui.MenuSelectWidget.super.prototype.chooseItem.call( this, item );
 
 	if ( item && !this.flashing ) {
 		this.flashing = true;
@@ -11635,11 +11635,11 @@ OO.ui.MenuWidget.prototype.chooseItem = function ( item ) {
 /**
  * @inheritdoc
  */
-OO.ui.MenuWidget.prototype.addItems = function ( items, index ) {
+OO.ui.MenuSelectWidget.prototype.addItems = function ( items, index ) {
 	var i, len, item;
 
 	// Parent method
-	OO.ui.MenuWidget.super.prototype.addItems.call( this, items, index );
+	OO.ui.MenuSelectWidget.super.prototype.addItems.call( this, items, index );
 
 	// Auto-initialize
 	if ( !this.newItems ) {
@@ -11665,9 +11665,9 @@ OO.ui.MenuWidget.prototype.addItems = function ( items, index ) {
 /**
  * @inheritdoc
  */
-OO.ui.MenuWidget.prototype.removeItems = function ( items ) {
+OO.ui.MenuSelectWidget.prototype.removeItems = function ( items ) {
 	// Parent method
-	OO.ui.MenuWidget.super.prototype.removeItems.call( this, items );
+	OO.ui.MenuSelectWidget.super.prototype.removeItems.call( this, items );
 
 	// Reevaluate clipping
 	this.clip();
@@ -11678,9 +11678,9 @@ OO.ui.MenuWidget.prototype.removeItems = function ( items ) {
 /**
  * @inheritdoc
  */
-OO.ui.MenuWidget.prototype.clearItems = function () {
+OO.ui.MenuSelectWidget.prototype.clearItems = function () {
 	// Parent method
-	OO.ui.MenuWidget.super.prototype.clearItems.call( this );
+	OO.ui.MenuSelectWidget.super.prototype.clearItems.call( this );
 
 	// Reevaluate clipping
 	this.clip();
@@ -11691,7 +11691,7 @@ OO.ui.MenuWidget.prototype.clearItems = function () {
 /**
  * @inheritdoc
  */
-OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
+OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 	visible = ( visible === undefined ? !this.visible : !!visible ) && !!this.items.length;
 
 	var i, len,
@@ -11700,7 +11700,7 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
 		widgetDoc = this.$widget ? this.$widget[0].ownerDocument : null;
 
 	// Parent method
-	OO.ui.MenuWidget.super.prototype.toggle.call( this, visible );
+	OO.ui.MenuSelectWidget.super.prototype.toggle.call( this, visible );
 
 	if ( change ) {
 		if ( visible ) {
@@ -11761,19 +11761,19 @@ OO.ui.MenuWidget.prototype.toggle = function ( visible ) {
  * menu is toggled or the window is resized.
  *
  * @class
- * @extends OO.ui.MenuWidget
+ * @extends OO.ui.MenuSelectWidget
  *
  * @constructor
  * @param {OO.ui.TextInputWidget} input Text input widget to provide menu for
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$container=input.$element] Element to render menu under
  */
-OO.ui.TextInputMenuWidget = function OoUiTextInputMenuWidget( input, config ) {
+OO.ui.TextInputMenuSelectWidget = function OoUiTextInputMenuSelectWidget( input, config ) {
 	// Configuration intialization
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.TextInputMenuWidget.super.call( this, config );
+	OO.ui.TextInputMenuSelectWidget.super.call( this, config );
 
 	// Properties
 	this.input = input;
@@ -11781,12 +11781,12 @@ OO.ui.TextInputMenuWidget = function OoUiTextInputMenuWidget( input, config ) {
 	this.onWindowResizeHandler = this.onWindowResize.bind( this );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-textInputMenuWidget' );
+	this.$element.addClass( 'oo-ui-textInputMenuSelectWidget' );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.TextInputMenuWidget, OO.ui.MenuWidget );
+OO.inheritClass( OO.ui.TextInputMenuSelectWidget, OO.ui.MenuSelectWidget );
 
 /* Methods */
 
@@ -11795,14 +11795,14 @@ OO.inheritClass( OO.ui.TextInputMenuWidget, OO.ui.MenuWidget );
  *
  * @param {jQuery.Event} e Window resize event
  */
-OO.ui.TextInputMenuWidget.prototype.onWindowResize = function () {
+OO.ui.TextInputMenuSelectWidget.prototype.onWindowResize = function () {
 	this.position();
 };
 
 /**
  * @inheritdoc
  */
-OO.ui.TextInputMenuWidget.prototype.toggle = function ( visible ) {
+OO.ui.TextInputMenuSelectWidget.prototype.toggle = function ( visible ) {
 	visible = visible === undefined ? !this.isVisible() : !!visible;
 
 	var change = visible !== this.isVisible();
@@ -11815,7 +11815,7 @@ OO.ui.TextInputMenuWidget.prototype.toggle = function ( visible ) {
 	}
 
 	// Parent method
-	OO.ui.TextInputMenuWidget.super.prototype.toggle.call( this, visible );
+	OO.ui.TextInputMenuSelectWidget.super.prototype.toggle.call( this, visible );
 
 	if ( change ) {
 		if ( this.isVisible() ) {
@@ -11834,7 +11834,7 @@ OO.ui.TextInputMenuWidget.prototype.toggle = function ( visible ) {
  *
  * @chainable
  */
-OO.ui.TextInputMenuWidget.prototype.position = function () {
+OO.ui.TextInputMenuSelectWidget.prototype.position = function () {
 	var $container = this.$container,
 		pos = OO.ui.Element.getRelativePosition( $container, this.$element.offsetParent() );
 
@@ -11853,7 +11853,7 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
 /**
  * Structured list of items.
  *
- * Use with OO.ui.OutlineItemWidget.
+ * Use with OO.ui.OutlineOptionWidget.
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -11861,20 +11861,20 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  */
-OO.ui.OutlineWidget = function OoUiOutlineWidget( config ) {
+OO.ui.OutlineSelectWidget = function OoUiOutlineSelectWidget( config ) {
 	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.OutlineWidget.super.call( this, config );
+	OO.ui.OutlineSelectWidget.super.call( this, config );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-outlineWidget' );
+	this.$element.addClass( 'oo-ui-outlineSelectWidget' );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.OutlineWidget, OO.ui.SelectWidget );
+OO.inheritClass( OO.ui.OutlineSelectWidget, OO.ui.SelectWidget );
 
 /**
  * Switch that slides on and off.
