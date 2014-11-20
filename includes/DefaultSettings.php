@@ -3199,6 +3199,8 @@ $wgEnableCanonicalServerLink = false;
  * <cross-domain-policy>. Without this, an attacker can send their own
  * cross-domain policy unless it is prevented by the crossdomain.xml file at
  * the domain root.
+ *
+ * @since 1.25
  */
 $wgMangleFlashPolicy = true;
 
