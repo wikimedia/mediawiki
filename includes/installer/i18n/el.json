@@ -103,7 +103,7 @@
 	"config-cc-again": "Επιλέξτε ξανά...",
 	"config-advanced-settings": "Προηγμένες ρυθμίσεις παραμέτρων",
 	"config-extensions": "Επεκτάσεις",
-	"config-skins": "Skins",
+	"config-skins": "Θέματα εμφάνισης",
 	"config-skins-help": "Τα skins που αναφέρονται παραπάνω, εντοπίστηκαν στον κατάλογο <code>./skins</code>. Πρέπει να  ενεργοποιήσετε τουλάχιστον ένα, και επιλέξτε το προεπιλεγμένο.",
 	"config-skins-use-as-default": "Χρησιμοποιήστε αυτό το skin ως προεπιλογή",
 	"config-skins-must-enable-default": "Το skin που επιλέχθηκε ως προεπιλεγμένο πρέπει να ενεργοποιηθεί.",

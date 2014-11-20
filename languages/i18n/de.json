@@ -2002,7 +2002,7 @@
 	"ipboptions": "2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,unbeschränkt:infinite",
 	"ipbhidename": "Benutzername in Bearbeitungen und Listen verstecken",
 	"ipbwatchuser": "Benutzer(diskussions)seite beobachten",
-	"ipb-disableusertalk": "Diesen Benutzer daran hindern seine eigene Diskussionsseite zu bearbeiten, solange er gesperrt ist",
+	"ipb-disableusertalk": "Diesen Benutzer daran hindern, seine eigene Diskussionsseite zu bearbeiten, solange er gesperrt ist",
 	"ipb-change-block": "Sperre mit diesen Sperrparametern erneuern",
 	"ipb-confirm": "Sperrung bestätigen",
 	"badipaddress": "Die IP-Adresse hat ein falsches Format.",
