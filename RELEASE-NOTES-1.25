@@ -27,6 +27,8 @@ production.
   longer be used. If extracts and page images are desired, the TextExtracts and
   PageImages extensions are required.
 * $wgOpenSearchTemplate is deprecated in favor of $wgOpenSearchTemplates.
+* Edits are now prepared via AJAX as users type edit summaries. This behavior
+  can be disabled via $wgAjaxEditStash.
 
 === New features in 1.25 ===
 * (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
