@@ -38,6 +38,7 @@
 	},
 	"scripts": {
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
-		"pre-install-cmd": "ComposerHookHandler::onPreInstall"
+		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
+		"phpunit": "php tests/phpunit/phpunit.php"
 	}
 }

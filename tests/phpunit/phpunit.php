@@ -212,28 +212,5 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
 	} );
 }
 
-
-$ok = false;
-
-foreach ( array(
-	stream_resolve_include_path( 'phpunit.phar' ),
-	'PHPUnit/Runner/Version.php',
-	'PHPUnit/Autoload.php'
-) as $includePath ) {
-	@include_once $includePath;
-	if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
-		$ok = true;
-		break;
-	}
-}
-
-if ( !$ok ) {
-	die( "Couldn't find a usable PHPUnit.\n" );
-}
-
-$puVersion = PHPUnit_Runner_Version::id();
-if ( $puVersion !== '@package_version@' && version_compare( $puVersion, '3.7.0', '<' ) ) {
-	die( "PHPUnit 3.7.0 or later required; you have {$puVersion}.\n" );
-}
-
+# Provided by composer
 PHPUnit_TextUI_Command::main();

@@ -14,35 +14,22 @@ TO RETAIN YOUR DATA.
 
 == Installation ==
 
-If PHPUnit is not installed, follow the installation instructions in the
-PHPUnit Manual at:
+From the root of the repository:
 
-  http://www.phpunit.de/manual/current/en/installation.html
-
-- or -
-
-On Unix-like operating systems, run:
-
-  make install
+  composer install --prefer-dist
 
 
 == Running tests ==
 
-The tests are run from your operating system's command line.
+From the root of the repository:
 
-Ensure that you are in the tests/phpunit directory of your MediaWiki
-installation.
+  composer phpunit
 
+Non destructive tests are provided as a convenience, they are available via a
+Makefile:
 
-On Unix-like operating systems, the tests runs are controlled with a makefile.
-Run command:
-
+  cd tests/phpunit
   make help
-
-for a full list of options for running tests.
-
-
-On Windows-family operating systems, run the 'run-tests.bat' batch file.
 
 
 === Writing tests ===
