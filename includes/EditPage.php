@@ -315,6 +315,9 @@ class EditPage {
 	/** @var int */
 	public $oldid = 0;
 
+	/** @var int */
+	public $parentRevId = 0;
+
 	/** @var string */
 	public $editintro = '';
 
@@ -875,6 +878,7 @@ class EditPage {
 		}
 
 		$this->oldid = $request->getInt( 'oldid' );
+		$this->parentRevId = $request->getInt( 'parentRevId' );
 
 		$this->bot = $request->getBool( 'bot', true );
 		$this->nosummary = $request->getBool( 'nosummary' );
@@ -2053,7 +2057,7 @@ class EditPage {
 	}
 
 	function setHeaders() {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgAjaxEditPrepare;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
@@ -2064,6 +2068,10 @@ class EditPage {
 
 		if ( $wgUser->getOption( 'useeditwarning', false ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.editWarning' );
+		}
+
+		if ( $wgAjaxEditPrepare ) {
+			$wgOut->addModules( 'mediawiki.action.edit.prepare' );
 		}
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -2430,6 +2438,8 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
 		$wgOut->addHTML( Html::hidden( 'oldid', $this->oldid ) );
+		$wgOut->addHTML( Html::hidden( 'parentRevId',
+			$this->parentRevId ?: $this->mArticle->getRevIdFetched() ) );
 
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
@@ -2838,7 +2848,7 @@ class EditPage {
 		global $wgOut;
 		$section = htmlspecialchars( $this->section );
 		$wgOut->addHTML( <<<HTML
-<input type='hidden' value="{$section}" name="wpSection" />
+<input type='hidden' value="{$section}" name="wpSection"/>
 <input type='hidden' value="{$this->starttime}" name="wpStarttime" />
 <input type='hidden' value="{$this->edittime}" name="wpEdittime" />
 <input type='hidden' value="{$this->scrolltop}" name="wpScrolltop" id="wpScrolltop" />
