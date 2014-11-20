@@ -5024,6 +5024,13 @@ $wgRateLimits = array(
 		'ip' => null,
 		'subnet' => null,
 	),
+	'stashedit' => array( // stashing edits into cache before save
+		'anon' => null,
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
+	)
 );
 
 /**
@@ -7036,6 +7043,12 @@ $wgAjaxUploadDestCheck = true;
  * Enable previewing licences via AJAX. Also requires $wgEnableAPI to be true.
  */
 $wgAjaxLicensePreview = true;
+
+/**
+ * Have clients send edits to be prepared when filling in edit summaries.
+ * This gives the server a head start on the expensive parsing operation.
+ */
+$wgAjaxEditStash = true;
 
 /**
  * Settings for incoming cross-site AJAX requests:
