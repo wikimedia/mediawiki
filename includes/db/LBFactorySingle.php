@@ -32,7 +32,7 @@ class LBFactorySingle extends LBFactory {
 	 * @param array $conf An associative array with one member:
 	 *  - connection: The DatabaseBase connection object
 	 */
-	function __construct( $conf ) {
+	function __construct( array $conf ) {
 		$this->lb = new LoadBalancerSingle( $conf );
 	}
 
@@ -74,7 +74,7 @@ class LBFactorySingle extends LBFactory {
 	 * @param string|callable $callback
 	 * @param array $params
 	 */
-	function forEachLB( $callback, $params = array() ) {
+	function forEachLB( $callback, array $params = array() ) {
 		call_user_func_array( $callback, array_merge( array( $this->lb ), $params ) );
 	}
 }
@@ -89,7 +89,7 @@ class LoadBalancerSingle extends LoadBalancer {
 	/**
 	 * @param array $params
 	 */
-	function __construct( $params ) {
+	function __construct( array $params ) {
 		$this->db = $params['connection'];
 		parent::__construct( array( 'servers' => array( array(
 			'type' => $this->db->getType(),
