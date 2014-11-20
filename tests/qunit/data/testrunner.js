@@ -228,6 +228,7 @@
 				},
 
 				teardown: function () {
+					var timers;
 					log( 'MwEnvironment> TEARDOWN for "' + QUnit.config.current.module
 						+ ': ' + QUnit.config.current.testName + '"' );
 
@@ -244,9 +245,18 @@
 					// Check for incomplete animations/requests/etc and throw
 					// error if there are any.
 					if ( $.timers && $.timers.length !== 0 ) {
-						// Test may need to use fake timers, wait for animations or
-						// call $.fx.stop().
-						throw new Error( 'Unfinished animations: ' + $.timers.length );
+						timers = $.timers.length;
+						// Tests shoulld use fake timers or wait for animations to complete
+						$.each( $.timers, function ( i, timer ) {
+							var node = timer.elem;
+							mw.log.warn( 'Unfinished animation #' + i + ' in ' + timer.queue + ' queue on ' +
+								mw.html.element( node.nodeName.toLowerCase(), $(node).getAttrs() )
+							);
+						} );
+						// Force animations to stop to give the next test a clean start
+						$.fx.stop();
+
+						throw new Error( 'Unfinished animations: ' + timers );
 					}
 					if ( $.active !== undefined && $.active !== 0 ) {
 						// Test may need to use fake XHR, wait for requests or
