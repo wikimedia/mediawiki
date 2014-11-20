@@ -173,13 +173,14 @@ abstract class BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param int $timeout [optional]
+	 * @param int $timeout Lock wait timeout [optional]
+	 * @param int $expiry Lock expiry [optional]
 	 * @return bool Success
 	 */
-	public function lock( $key, $timeout = 6 ) {
+	public function lock( $key, $timeout = 6, $expiry = 6 ) {
 		$this->clearLastError();
 		$timestamp = microtime( true ); // starting UNIX timestamp
-		if ( $this->add( "{$key}:lock", 1, $timeout ) ) {
+		if ( $this->add( "{$key}:lock", 1, $expiry ) ) {
 			return true;
 		} elseif ( $this->getLastError() ) {
 			return false;
@@ -198,11 +199,11 @@ abstract class BagOStuff {
 			}
 			usleep( $sleep ); // back off
 			$this->clearLastError();
-			$locked = $this->add( "{$key}:lock", 1, $timeout );
+			$locked = $this->add( "{$key}:lock", 1, $expiry );
 			if ( $this->getLastError() ) {
 				return false;
 			}
-		} while ( !$locked );
+		} while ( !$locked && ( microtime( true ) - $timestamp ) < $timeout );
 
 		return $locked;
 	}
