@@ -558,6 +558,7 @@ class LogEventsList extends ContextSource {
 
 		// Fetch the log rows and build the HTML if needed
 		$logBody = ( $logBody === null ) ? $pager->getBody() : $logBody;
+		$numRows = ( $logBody === null ) ? $pager->getNumRows() : 0;
 
 		$s = '';
 
@@ -588,7 +589,7 @@ class LogEventsList extends ContextSource {
 				$context->msg( 'logempty' )->parse() );
 		}
 
-		if ( $pager->getNumRows() > $pager->mLimit ) { # Show "Full log" link
+		if ( $numRows > $pager->mLimit ) { # Show "Full log" link
 			$urlParam = array();
 			if ( $page instanceof Title ) {
 				$urlParam['page'] = $page->getPrefixedDBkey();
@@ -635,7 +636,7 @@ class LogEventsList extends ContextSource {
 			}
 		}
 
-		return $pager->getNumRows();
+		return $numRows;
 	}
 
 	/**
