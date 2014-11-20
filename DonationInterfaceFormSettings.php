@@ -491,7 +491,7 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 		'countries' => array( '+' => array( 'BE', 'FR', 'US' ) ),
 		'currencies' => array( '+' => 'ALL' ),
 		'payment_methods' => array( 'cc' => 'ALL' ),
-		'selection_weight' => 0
+		'selection_weight' => 10
 	);
 
 	/*************************
@@ -500,6 +500,7 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 
 	$worldpay_test_spec = array(
 		'file' => $form_dirs['worldpay'] . '/worldpay-test.html',
+		'selection_weight' => 0,
 	) + $forms_whitelist['worldpay'];
 
 	$forms_whitelist['wp-sn'] = $worldpay_test_spec;
