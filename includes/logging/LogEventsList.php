@@ -542,22 +542,28 @@ class LogEventsList extends ContextSource {
 			$pager->mLimit = $lim;
 		}
 
-		$logBody = null;
+		$knownEmptyResult = false;
 		// Check if we can avoid the DB query all together
 		if ( $page !== '' && !$param['useMaster'] ) {
 			$title = ( $page instanceof Title ) ? $page : Title::newFromText( $page );
 			if ( $title ) {
 				$member = $title->getNamespace() . ':' . $title->getDBkey();
 				if ( !BloomCache::get( 'main' )->check( wfWikiId(), 'TitleHasLogs', $member ) ) {
-					$logBody = '';
+					$knownEmptyResult = true;
 				}
 			} else {
-				$logBody = '';
+				$knownEmptyResult = true;
 			}
 		}
 
 		// Fetch the log rows and build the HTML if needed
-		$logBody = ( $logBody === null ) ? $pager->getBody() : $logBody;
+		if ( $knownEmptyResult ) {
+			$logBody = '';
+			$numRows = 0;
+		} else {
+			$logBody = $pager->getBody();
+			$numRows = $pager->getNumRows();
+		}
 
 		$s = '';
 
@@ -588,7 +594,7 @@ class LogEventsList extends ContextSource {
 				$context->msg( 'logempty' )->parse() );
 		}
 
-		if ( $pager->getNumRows() > $pager->mLimit ) { # Show "Full log" link
+		if ( $numRows > $pager->mLimit ) { # Show "Full log" link
 			$urlParam = array();
 			if ( $page instanceof Title ) {
 				$urlParam['page'] = $page->getPrefixedDBkey();
@@ -635,7 +641,7 @@ class LogEventsList extends ContextSource {
 			}
 		}
 
-		return $pager->getNumRows();
+		return $numRows;
 	}
 
 	/**
