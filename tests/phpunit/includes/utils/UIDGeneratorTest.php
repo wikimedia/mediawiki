@@ -35,14 +35,14 @@ class UIDGeneratorTest extends MediaWikiTestCase {
 			$lastId_bin = wfBaseConvert( $lastId, 10, 2 );
 
 			$this->assertGreaterThanOrEqual(
-				substr( $id_bin, 0, $tbits ),
 				substr( $lastId_bin, 0, $tbits ),
+				substr( $id_bin, 0, $tbits ),
 				"New ID timestamp ($id_bin) >= prior one ($lastId_bin)." );
 
 			if ( $hostbits ) {
 				$this->assertEquals(
-					substr( $id_bin, 0, -$hostbits ),
-					substr( $lastId_bin, 0, -$hostbits ),
+					substr( $id_bin, -$hostbits ),
+					substr( $lastId_bin, -$hostbits ),
 					"Host ID of ($id_bin) is same as prior one ($lastId_bin)." );
 			}
 
