@@ -67,7 +67,7 @@ class LoadBalancer {
 	 *   loadMonitor       Name of a class used to fetch server lag and load.
 	 * @throws MWException
 	 */
-	function __construct( $params ) {
+	function __construct( array $params ) {
 		if ( !isset( $params['servers'] ) ) {
 			throw new MWException( __CLASS__ . ': missing servers parameter' );
 		}
@@ -144,7 +144,7 @@ class LoadBalancer {
 	 * @param array $weights
 	 * @return bool|int|string
 	 */
-	function pickRandom( $weights ) {
+	function pickRandom( array $weights ) {
 		return ArrayUtils::pickRandom( $weights );
 	}
 
@@ -153,7 +153,7 @@ class LoadBalancer {
 	 * @param bool|string $wiki Wiki to get non-lagged for
 	 * @return bool|int|string
 	 */
-	function getRandomNonLagged( $loads, $wiki = false ) {
+	function getRandomNonLagged( array $loads, $wiki = false ) {
 		# Unset excessively lagged servers
 		$lags = $this->getLagTimes( $wiki );
 		foreach ( $lags as $i => $lag ) {
@@ -857,7 +857,7 @@ class LoadBalancer {
 	 * @param int $i
 	 * @param array $serverInfo
 	 */
-	function setServerInfo( $i, $serverInfo ) {
+	function setServerInfo( $i, array $serverInfo ) {
 		$this->mServers[$i] = $serverInfo;
 	}
 
@@ -1071,7 +1071,7 @@ class LoadBalancer {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	function forEachOpenConnection( $callback, $params = array() ) {
+	function forEachOpenConnection( $callback, array $params = array() ) {
 		foreach ( $this->mConns as $conns2 ) {
 			foreach ( $conns2 as $conns3 ) {
 				foreach ( $conns3 as $conn ) {

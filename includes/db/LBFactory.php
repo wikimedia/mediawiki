@@ -109,7 +109,7 @@ abstract class LBFactory {
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 * @param array $conf
 	 */
-	abstract function __construct( $conf );
+	abstract function __construct( array $conf );
 
 	/**
 	 * Create a new load balancer object. The resulting object will be untracked,
@@ -156,7 +156,7 @@ abstract class LBFactory {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	abstract function forEachLB( $callback, $params = array() );
+	abstract function forEachLB( $callback, array $params = array() );
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
@@ -171,7 +171,7 @@ abstract class LBFactory {
 	 * @param string $methodName
 	 * @param array $args
 	 */
-	function forEachLBCallMethod( $methodName, $args = array() ) {
+	function forEachLBCallMethod( $methodName, array $args = array() ) {
 		$this->forEachLB( array( $this, 'callMethod' ), array( $methodName, $args ) );
 	}
 
@@ -227,7 +227,7 @@ class LBFactorySimple extends LBFactory {
 	/** @var ChronologyProtector */
 	protected $chronProt;
 
-	function __construct( $conf ) {
+	function __construct( array $conf ) {
 		$this->chronProt = new ChronologyProtector;
 	}
 
@@ -324,7 +324,7 @@ class LBFactorySimple extends LBFactory {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	function forEachLB( $callback, $params = array() ) {
+	function forEachLB( $callback, array $params = array() ) {
 		if ( isset( $this->mainLB ) ) {
 			call_user_func_array( $callback, array_merge( array( $this->mainLB ), $params ) );
 		}
@@ -352,7 +352,7 @@ class LBFactorySimple extends LBFactory {
  * LBFactory::enableBackend() to return to normal behavior
  */
 class LBFactoryFake extends LBFactory {
-	function __construct( $conf ) {
+	function __construct( array $conf ) {
 	}
 
 	function newMainLB( $wiki = false ) {
@@ -371,7 +371,7 @@ class LBFactoryFake extends LBFactory {
 		throw new DBAccessError;
 	}
 
-	function forEachLB( $callback, $params = array() ) {
+	function forEachLB( $callback, array $params = array() ) {
 	}
 }
 

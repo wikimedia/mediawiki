@@ -152,7 +152,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param array $conf
 	 * @throws MWException
 	 */
-	function __construct( $conf ) {
+	function __construct( array $conf ) {
 		$this->chronProt = new ChronologyProtector;
 		$this->conf = $conf;
 		$required = array( 'sectionsByDB', 'sectionLoads', 'serverTemplate' );
@@ -377,7 +377,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	function forEachLB( $callback, $params = array() ) {
+	function forEachLB( $callback, array $params = array() ) {
 		foreach ( $this->mainLBs as $lb ) {
 			call_user_func_array( $callback, array_merge( array( $lb ), $params ) );
 		}
