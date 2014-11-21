@@ -130,7 +130,7 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 	 * @param array $context
 	 * @return string
 	 */
-	protected static function format( $channel, $message, $context ) {
+	public static function format( $channel, $message, $context ) {
 		global $wgDebugLogGroups;
 
 		if ( $channel === 'wfDebug' ) {
