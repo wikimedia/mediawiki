@@ -2882,7 +2882,7 @@ $user: User object
 &$timestamp: timestamp, change this to override local email authentication
   timestamp
 
-'UserGetImplicitGroups': Called in User::getImplicitGroups().
+'UserGetImplicitGroups': DEPRECATED, called in User::getImplicitGroups().
 &$groups: List of implicit (automatically-assigned) groups
 
 'UserGetLanguageObject': Called when getting user's interface language object.
