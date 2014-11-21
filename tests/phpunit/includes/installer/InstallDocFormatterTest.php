@@ -34,6 +34,21 @@ class InstallDocFormatterTest extends MediaWikiTestCase {
 			array( ':One indentation', "\tOne indentation", 'Replacing a single \t' ),
 			array( '::Two indentations', "\t\tTwo indentations", 'Replacing 2 x \t' ),
 
+			# Transform 'T123' links
+			array(
+				'<span class="config-plainlink">[https://phabricator.wikimedia.org/T123 T123]</span>',
+				'T123', 'Testing T123 links' ),
+			array(
+				'bug <span class="config-plainlink">[https://phabricator.wikimedia.org/T123 T123]</span>',
+				'bug T123', 'Testing bug T123 links' ),
+			array(
+				'(<span class="config-plainlink">[https://phabricator.wikimedia.org/T987654 T987654]</span>)',
+				'(T987654)', 'Testing (T987654) links' ),
+
+			# "Tabc" shouldn't work
+			array( 'Tfoobar', 'Tfoobar', "Don't match T followed by non-digits" ),
+			array( 'T!!fakefake!!', 'T!!fakefake!!', "Don't match T followed by non-digits" ),
+
 			# Transform 'bug 123' links
 			array(
 				'<span class="config-plainlink">[https://bugzilla.wikimedia.org/123 bug 123]</span>',
