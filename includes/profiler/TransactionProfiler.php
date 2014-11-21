@@ -1,6 +1,6 @@
 <?php
 /**
- * Transaction profiling.
+ * Transaction profiling for contention
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,17 +25,19 @@
 /**
  * Helper class that detects high-contention DB queries via profiling calls
  *
- * This class is meant to work with a Profiler, as the later already knows
- * when methods start and finish (which may take place during transactions).
+ * This class is meant to work with a DatabaseBase object, which manages queries
  *
  * @since 1.24
  */
 class TransactionProfiler {
 	/** @var float Seconds */
 	protected $dbLockThreshold = 3.0;
-	/** @var array DB/server name => (active trx count, time, DBs involved) */
+	/** @var float Seconds */
+	protected $eventThreshold = .25;
+
+	/** @var array transaction ID => (write start time, list of DBs involved) */
 	protected $dbTrxHoldingLocks = array();
-	/** @var array DB/server name => list of (function name, elapsed time) */
+	/** @var array transaction ID => list of (query name, start time, end time) */
 	protected $dbTrxMethodTimes = array();
 
 	/**
@@ -54,7 +56,7 @@ class TransactionProfiler {
 		}
 		$this->dbTrxHoldingLocks[$name] = array(
 			'start' => microtime( true ),
-			'conns' => array(),
+			'conns' => array(), // all connections involved
 		);
 		$this->dbTrxMethodTimes[$name] = array();
 
@@ -67,26 +69,41 @@ class TransactionProfiler {
 	/**
 	 * Register the name and time of a method for slow DB trx detection
 	 *
-	 * This method is only to be called by the Profiler class as methods finish
+	 * This assumes that all queries are synchronous (non-overlapping)
 	 *
-	 * @param string $method Function name
-	 * @param float $realtime Wall time ellapsed
+	 * @param string $query Function name
+	 * @param float $sTime Starting UNIX wall time
+	 * @param bool $isWrite Whether this is a write query
 	 */
-	public function recordFunctionCompletion( $method, $realtime ) {
+	public function recordQueryCompletion( $query, $sTime, $isWrite = false ) {
+		$eTime = microtime( true );
+		$elapsed = ( $eTime - $sTime );
+
 		if ( !$this->dbTrxHoldingLocks ) {
 			// Short-circuit
 			return;
-		// @todo hardcoded check is a tad janky
-		} elseif ( !preg_match( '/^query-m: /', $method ) && $realtime < 1.0 ) {
-			// Not a DB master query nor slow enough
+		} elseif ( !$isWrite && $elapsed < $this->eventThreshold ) {
+			// Not an important query nor slow enough
 			return;
 		}
 
-		$now = microtime( true );
 		foreach ( $this->dbTrxHoldingLocks as $name => $info ) {
-			// Hacky check to exclude entries from before the first TRX write
-			if ( ( $now - $realtime ) >= $info['start'] ) {
-				$this->dbTrxMethodTimes[$name][] = array( $method, $realtime );
+			$lastQuery = end( $this->dbTrxMethodTimes[$name] );
+			if ( $lastQuery ) {
+				// Additional query in the trx...
+				$lastEnd = $lastQuery[2];
+				if ( $sTime >= $lastEnd ) { // sanity check
+					if ( ( $sTime - $lastEnd ) > $this->eventThreshold ) {
+						// Add an entry representing the time spent doing non-queries
+						$this->dbTrxMethodTimes[$name][] = array( '...delay...', $lastEnd, $sTime );
+					}
+					$this->dbTrxMethodTimes[$name][] = array( $query, $sTime, $eTime );
+				}
+			} else {
+				// First query in the trx...
+				if ( $sTime >= $info['start'] ) { // sanity check
+					$this->dbTrxMethodTimes[$name][] = array( $query, $sTime, $eTime );
+				}
 			}
 		}
 	}
@@ -108,10 +125,20 @@ class TransactionProfiler {
 			wfDebugLog( 'DBPerformance', "Detected no transaction for '$name' - out of sync." );
 			return;
 		}
+		// Fill in the last non-query period...
+		$lastQuery = end( $this->dbTrxMethodTimes[$name] );
+		if ( $lastQuery ) {
+			$now = microtime( true );
+			$lastEnd = $lastQuery[2];
+			if ( ( $now - $lastEnd ) > $this->eventThreshold ) {
+				$this->dbTrxMethodTimes[$name][] = array( '...delay...', $lastEnd, $now );
+			}
+		}
+		// Check for any slow queries or non-query periods...
 		$slow = false;
 		foreach ( $this->dbTrxMethodTimes[$name] as $info ) {
-			$realtime = $info[1];
-			if ( $realtime >= $this->dbLockThreshold ) {
+			$elapsed = ( $info[2] - $info[1] );
+			if ( $elapsed >= $this->dbLockThreshold ) {
 				$slow = true;
 				break;
 			}
@@ -120,8 +147,8 @@ class TransactionProfiler {
 			$dbs = implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) );
 			$msg = "Sub-optimal transaction on DB(s) [{$dbs}]:\n";
 			foreach ( $this->dbTrxMethodTimes[$name] as $i => $info ) {
-				list( $method, $realtime ) = $info;
-				$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
+				list( $query, $sTime, $end ) = $info;
+				$msg .= sprintf( "%d\t%.6f\t%s\n", $i, ( $end - $sTime ), $query );
 			}
 			wfDebugLog( 'DBPerformance', $msg );
 		}
