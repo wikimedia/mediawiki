@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (23565e7519)
+ * OOjs UI v0.1.0-pre (8f8896196f)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-21T22:18:30Z
+ * Date: 2014-11-21T22:32:38Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -970,6 +970,9 @@
 	border-bottom-right-radius: 0.3em;
 	border-top-right-radius: 0.3em;
 }
+.oo-ui-radioSelectWidget {
+	padding: 0.75em 0 0.5em 0;
+}
 .oo-ui-buttonOptionWidget {
 	display: inline-block;
 	padding: 0;
@@ -996,6 +999,24 @@
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-highlighted {
 	background-color: transparent;
+}
+.oo-ui-radioOptionWidget {
+	cursor: default;
+	padding: 0;
+	background-color: transparent;
+}
+.oo-ui-radioOptionWidget .oo-ui-radioInputWidget,
+.oo-ui-radioOptionWidget .oo-ui-labelElement-label {
+	display: inline-block;
+	vertical-align: middle;
+}
+.oo-ui-radioOptionWidget.oo-ui-optionWidget-selected,
+.oo-ui-radioOptionWidget.oo-ui-optionWidget-pressed,
+.oo-ui-radioOptionWidget.oo-ui-optionWidget-highlighted {
+	background-color: transparent;
+}
+.oo-ui-radioOptionWidget > .oo-ui-labelElement-label {
+	padding: 0 0.5em;
 }
 .oo-ui-labelWidget {
 	display: inline-block;
