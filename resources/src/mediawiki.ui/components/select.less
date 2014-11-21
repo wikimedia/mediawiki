@@ -1,0 +1,82 @@
+// Select
+@import "mediawiki.mixins";
+@import "mediawiki.ui/variables";
+@import "mediawiki.ui/mixins";
+
+// Select
+//
+// Apply the mw-ui-select class to select.
+//
+// Styleguide 9.
+
+// mw-ui-select
+//
+// Style an select using MediaWiki UI.
+// Currently in draft status and subject to change.
+//
+// Markup:
+// <div class="mw-ui-select">
+//   <select>
+//     <option>Inputs</option>
+//     <option>Buttons</option>
+//     <option>Checkboxes</option>
+//     <option>Radioboxes</option>
+//   </select>
+// </div>
+//
+// Styleguide 9.1.
+.mw-ui-select {
+
+	width: 160px;
+	height: 2em;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	border-radius: @borderRadius;
+	border: 1px solid @colorGray8;
+	.box-sizing( border-box );
+	background-color: #fff;
+	.background-image-svg('images/chevron.svg', 'images/chevron.png');
+	.background-size( 1em, 1em );
+	background-repeat: no-repeat;
+	background-position: center right;
+	background-origin: content-box;
+	padding-right: 0.5em;
+
+	select {
+		width: 180px;
+
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+
+		border: none;
+		border-radius: 0;
+		background: transparent;
+		font-size: 1em;
+		line-height: 2em;
+		height: 100%;
+		.box-sizing( border-box );
+		padding: 0 1em;
+		margin: 0;
+		border-bottom: 1px solid #fff;
+		outline: none;
+
+		&:focus {
+			outline: none;
+		}
+
+		&:-moz-focusring {
+			color: transparent;
+			text-shadow: 0 0 0 #000;
+		}
+
+		&:hover {
+			border-bottom: 1px solid @colorGray8;
+		}
+	}
+
+
+
+
+}
