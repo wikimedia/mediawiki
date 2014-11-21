@@ -277,6 +277,7 @@
 	"apihelp-query+embeddedin-example-simple": "显示嵌入[[Template:Stub]]的页面",
 	"apihelp-query+embeddedin-example-generator": "获取有关显示嵌入[[Template:Stub]]的页面的信息",
 	"apihelp-query+extlinks-param-limit": "返回多少链接。",
+	"apihelp-query+extlinks-example-simple": "获取[[首页]]的外部链接列表",
 	"apihelp-query+exturlusage-param-limit": "返回多少页面。",
 	"apihelp-query+exturlusage-example-simple": "显示链接至http://www.mediawiki.org的页面",
 	"apihelp-query+filearchive-param-sha1": "图片的SHA1哈希值。覆盖$1sha1base36。",

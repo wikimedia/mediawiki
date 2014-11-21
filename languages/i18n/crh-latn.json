@@ -1226,6 +1226,7 @@
 	"allmessagescurrent": "Şimdi qullanılğan metin",
 	"allmessagestext": "İşbu cedvel MediaWikide mevcut olğan bütün sistema beyanatlarınıñ cedvelidir.\nMediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege isteseñiz [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] ve [//translatewiki.net translatewiki.net] saifelerine ziyaret etiñiz.",
 	"allmessages-filter-legend": "Süzgüç",
+	"allmessages-language": "Til:",
 	"thumbnail-more": "Büyüt",
 	"filemissing": "Fayl tapılmadı",
 	"thumbnail_error": "Kiçik resim (thumbnail) yaratılğanda bir hata çıqtı: $1",
@@ -1311,6 +1312,7 @@
 	"spambot_username": "Spamdan temizlev",
 	"spam_reverting": "$1 saytına bağlantısı olmağan soñki versiyağa keri ketirüv",
 	"spam_blanking": "Bar olğan versiyalarda $1 saytına bağlantılar bar, temizlev",
+	"pageinfo-language": "Saife içindekisiniñ tili",
 	"patrol-log-page": "Teşkerüv jurnalı",
 	"log-show-hide-patrol": "Teşkerüv jurnalını $1",
 	"deletedrevision": "$1 sayılı eski versiya yoq etildi.",
@@ -1371,6 +1373,7 @@
 	"exif-gpsaltitude": "Yükseklik",
 	"exif-gpstimestamp": "GPS saatı (atom saatı)",
 	"exif-gpssatellites": "Ölçemek içün qullanğanı sputnikler",
+	"exif-languagecode": "Til",
 	"exif-compression-1": "Sıqıştırılmağan",
 	"exif-orientation-3": "180° aylandırılğan",
 	"exif-exposureprogram-1": "Elnen",
@@ -1482,5 +1485,6 @@
 	"compare-submit": "Teñeştir",
 	"htmlform-reset": "Deñişikliklerni keri al",
 	"searchsuggest-search": "Qıdır",
-	"searchsuggest-containing": "içinde bu olğan..."
+	"searchsuggest-containing": "içinde bu olğan...",
+	"pagelang-language": "Til"
 }

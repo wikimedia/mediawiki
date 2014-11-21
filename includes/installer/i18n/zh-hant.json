@@ -286,7 +286,7 @@
 	"config-skins": "外觀",
 	"config-skins-help": "系統偵測到您於 <code>./skins</code> 資料夾中含有外觀如上清單。 您必須開啟其中一項並設為預設值。",
 	"config-skins-use-as-default": "使用這種外觀作為預設",
-	"config-skins-missing": "沒有發現任何外觀；MediaWiki在您安裝一些恰當的外觀前將會使用備用外觀。",
+	"config-skins-missing": "沒有發現任何外觀；MediaWiki 在您安裝一些恰當的外觀前將會使用備用外觀。",
 	"config-skins-must-enable-some": "您必須至少選擇一個外觀以啟用。",
 	"config-skins-must-enable-default": "必須啟用選為預設的外觀。",
 	"config-install-alreadydone": "<strong>警告：</strong>您已經安裝 MediaWiki，並且試圖重新安裝。\n請點繼續前往下一個頁面。",
