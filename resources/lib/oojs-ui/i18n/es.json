@@ -28,5 +28,6 @@
 	"ooui-dialog-message-reject": "Cancelar",
 	"ooui-dialog-process-error": "Algo salió mal",
 	"ooui-dialog-process-dismiss": "Descartar",
-	"ooui-dialog-process-retry": "Intentar de nuevo"
+	"ooui-dialog-process-retry": "Intentar de nuevo",
+	"ooui-dialog-process-continue": "Continuar"
 }

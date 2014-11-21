@@ -26,7 +26,8 @@
 			"Urhixidur",
 			"Verdy p",
 			"Wyz",
-			"SnowedEarth"
+			"SnowedEarth",
+			"Jdforrester"
 		]
 	},
 	"ooui-outline-control-move-down": "Faire descendre l’élément",
@@ -34,9 +35,11 @@
 	"ooui-outline-control-remove": "Supprimer l’élément",
 	"ooui-toolbar-more": "Plus",
 	"ooui-toolgroup-expand": "Plus",
+	"ooui-toolgroup-collapse": "Moins",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Annuler",
 	"ooui-dialog-process-error": "Quelque chose a mal tourné",
 	"ooui-dialog-process-dismiss": "Rejeter",
-	"ooui-dialog-process-retry": "Réessayez"
+	"ooui-dialog-process-retry": "Réessayez",
+	"ooui-dialog-process-continue": "Continuer"
 }
