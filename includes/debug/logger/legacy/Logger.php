@@ -77,7 +77,7 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 	 * @return bool True if message should be sent to disk/network, false
 	 * otherwise
 	 */
-	protected static function shouldEmit( $channel, $message, $context ) {
+	public static function shouldEmit( $channel, $message, $context ) {
 		global $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups;
 
 		if ( $channel === 'wfLogDBError' ) {
@@ -102,10 +102,10 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 			}
 
 		} elseif ( isset( $context['private'] ) && $context['private'] ) {
-			// Don't emit if the message didn't match previous checks based on the
-			// channel and the event is marked as private. This check discards
-			// messages sent via wfDebugLog() with dest == 'private' and no explicit
-			// wgDebugLogGroups configuration.
+			// Don't emit if the message didn't match previous checks based on
+			// the channel and the event is marked as private. This check
+			// discards messages sent via wfDebugLog() with dest == 'private'
+			// and no explicit wgDebugLogGroups configuration.
 			$shouldEmit = false;
 		} else {
 			// Default return value is the the same as the historic wfDebug
