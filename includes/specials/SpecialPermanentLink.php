@@ -26,20 +26,51 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialPermanentLink extends RedirectSpecialPage {
+class SpecialPermanentLink extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'PermanentLink' );
-		$this->mAllowedRedirectParams = array();
 	}
 
-	function getRedirect( $subpage ) {
-		$subpage = intval( $subpage );
-		if ( $subpage === 0 ) {
-			# throw an error page when no subpage was given
-			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
-		}
-		$this->mAddedRedirectParams['oldid'] = $subpage;
+	public function execute( $subpage ) {
+		$request = $this->getRequest();
+		$opts = new FormOptions;
+		$opts->add( 'revid', '' );
+		$opts->fetchValuesFromRequest( $request );
 
+		$out = $this->getOutput();
+		$subpage = intval( $subpage );
+		if ( $subpage === 0 && $opts->getValue( 'revid' ) ) {
+			$subpage = intval( $opts->getValue( 'revid' ) );
+		}
+		if ( $subpage === 0 ) {
+			$this->setHeaders();
+			$this->outputHeader();
+
+			$form = new HTMLForm( array(
+				'revid' => array(
+					'type' => 'int',
+					'name' => 'revid',
+					'label-message' => 'permanentlink-revid',
+				),
+			), $this->getContext(), 'permanentlink' );
+			$form->setSubmitTextMsg( 'permanentlink-submit' );
+			$form->setMethod( 'get' );
+			$form->setSubmitCallback( array( __CLASS__, 'getPermanentLink' ) );
+			$form->setDisplayFormat( 'vform' );
+			$form->show();
+			return true;
+		}
+		$url = wfAppendQuery( wfScript( 'index' ), array( 'oldid' => $subpage ) );
+		$out->redirect( $url );
 		return true;
+	}
+
+	static function getPermanentLink( $formData, $form ) {
+		// If it returns true, the form is hidden.
+		return false;
+	}
+
+	protected function getGroupName() {
+		return 'redirects';
 	}
 }
