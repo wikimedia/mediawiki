@@ -446,6 +446,7 @@ abstract class Maintenance {
 		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
 			"http://en.wikipedia.org. This is sometimes necessary because " .
 			"server name detection may fail in command line scripts.", false, true );
+		$this->addOption( 'profiler', 'Profiler output format (usually "text")', false, true );
 
 		# Save generic options to display them separately in help
 		$this->mGenericParameters = $this->mParams;
@@ -593,6 +594,23 @@ abstract class Maintenance {
 		}
 		if ( $limit != 'default' ) {
 			ini_set( 'memory_limit', $limit );
+		}
+	}
+
+	/**
+	 * Activate the profiler (assuming $wgProfiler is set)
+	 */
+	protected function activateProfiler() {
+		global $wgProfiler;
+
+		$output = $this->getOption( 'profiler' );
+		if ( $output && is_array( $wgProfiler ) ) {
+			$class = $wgProfiler['class'];
+			$profiler = new $class(
+				array( 'sampling' => 1, 'output' => $output ) + $wgProfiler
+			);
+			$profiler->setTemplated( true );
+			Profiler::replaceStubInstance( $profiler );
 		}
 	}
 
@@ -918,6 +936,9 @@ abstract class Maintenance {
 			}
 			LBFactory::destroyInstance();
 		}
+
+		// Per-script profiling; useful for debugging
+		$this->activateProfiler();
 
 		$this->afterFinalSetup();
 

@@ -22,8 +22,12 @@
  * maintenance/archives/patch-profiling.sql to your database.
  *
  * For a rudimentary sampling profiler:
- *   if ( !mt_rand( 0, 100 ) ) {
- *       $wgProfiler['class'] = 'ProfilerStandard';
- *       $wgProfiler['output'] = array( 'db' );
- *   }
+ *   $wgProfiler['class'] = 'ProfilerStandard';
+ *   $wgProfiler['output'] = array( 'db' );
+ *   $wgProfiler['sampling'] = 50; // one every 50 requests
+ * This will use ProfilerStub for non-sampled cases.
+ *
+ * For performance, the profiler is always disabled for CLI scripts
+ * as they could be long running and the data would accumulate. Use
+ * the --profiler parameter of maintenance scripts to override this.
  */
