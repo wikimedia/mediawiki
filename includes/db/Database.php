@@ -975,7 +975,6 @@ abstract class DatabaseBase implements IDatabase {
 			# Include query transaction state
 			$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
 
-			$trx = $this->mTrxLevel ? 'TRX=yes' : 'TRX=no';
 			wfProfileIn( $totalProf );
 			wfProfileIn( $queryProf );
 		}
