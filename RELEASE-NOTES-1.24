@@ -9,6 +9,9 @@ MediaWiki 1.24 is being prepared for release.  Please file bugs for
 any problems found.
 
 === Configuration changes in 1.24 ===
+* Setting $wgAllowSiteCSSOnRestrictedPages to true is necessary if you want to 
+  use on-wiki CSS modifications (e.g MediaWiki:Common.css) on
+  Special:UserLogin or Special:Preferences.
 * MediaWiki will no longer run if register_globals is enabled. It has been
   deprecated for 5 years now, and was removed in PHP 5.4. For more information
   about why, see <https://www.mediawiki.org/wiki/register_globals>.
