@@ -75,7 +75,7 @@ $wgConfigRegistry = array(
  * Using single quotes is, therefore, important here.
  * @since 1.2
  */
-$wgVersion = '1.24.0-rc.FINAL';
+$wgVersion = '1.24.0-rc.2';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
