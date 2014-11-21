@@ -36,26 +36,77 @@
  * @ingroup SpecialPage
  * @since 1.23
  */
-class SpecialDiff extends RedirectSpecialPage {
+class SpecialDiff extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'Diff' );
-		$this->mAllowedRedirectParams = array();
 	}
 
-	function getRedirect( $subpage ) {
+	public function execute( $subpage ) {
+		$request = $this->getRequest();
+		$opts = new FormOptions;
+		$opts->add( 'diff', '' );
+		$opts->add( 'oldid', '' );
+		$opts->fetchValuesFromRequest( $request );
+
+		$params = array();
+
+		$out = $this->getOutput();
 		$parts = explode( '/', $subpage );
 
 		// Try to parse the values given, generating somewhat pretty URLs if possible
 		if ( count( $parts ) === 1 && $parts[0] !== '' ) {
-			$this->mAddedRedirectParams['diff'] = $parts[0];
+			$params['diff'] = $parts[0];
 		} elseif ( count( $parts ) === 2 ) {
-			$this->mAddedRedirectParams['oldid'] = $parts[0];
-			$this->mAddedRedirectParams['diff'] = $parts[1];
+			$params['oldid'] = $parts[0];
+			$params['diff'] = $parts[1];
+		} elseif ( $opts->getValue( 'diff' ) || $opts->getValue( 'oldid' ) ) {
+			$params['oldid'] = $opts->getValue( 'oldid' );
+			$params['diff'] = $opts->getValue( 'diff' );
 		} else {
-			// Wrong number of parameters, bail out
-			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
-		}
+			// Wrong number of parameters, show form
 
+			$this->setHeaders();
+			$this->outputHeader();
+
+			$form = new HTMLForm( array(
+				'oldid' => array(
+					'name' => 'oldid',
+					'type' => 'int',
+					'label-message' => 'diff-form-oldid',
+				),
+				'diff' => array(
+					'name' => 'diff',
+					'class' => 'HTMLTextField',
+					'label-message' => 'diff-form-revid',
+				),
+			), $this->getContext(), 'diff-form' );
+			$form->setSubmitTextMsg( 'diff-form-submit' );
+			$form->setMethod( 'get' );
+			$form->setSubmitCallback( array( __CLASS__, 'callbackDiff' ) );
+			$form->setDisplayFormat( 'vform' );
+			$form->show();
+			return true;
+		}
+		$url = wfAppendQuery( wfScript( 'index' ), $params );
+		$out->redirect( $url );
 		return true;
+	}
+
+	static function callbackDiff( $formData ) {
+		// If it returns true, the form is hidden.
+		return false;
+	}
+
+	function getDescription() {
+		// 'diff' message is in lowercase, using own message
+		return $this->msg( 'diff-form' )->text();
+	}
+
+	function getName() {
+		return 'diff-form';
+	}
+
+	protected function getGroupName() {
+		return 'redirects';
 	}
 }
