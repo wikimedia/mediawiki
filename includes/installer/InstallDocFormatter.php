@@ -44,25 +44,31 @@ class InstallDocFormatter {
 		// Replace tab indents with colons
 		$text = preg_replace( '/^\t\t/m', '::', $text );
 		$text = preg_replace( '/^\t/m', ':', $text );
+
+		$linkStart = '<span class="config-plainlink">[';
+		$linkEnd = ' $0]</span>';
+
+		// turn (Tnnnn) into links
+		$text = preg_replace(
+			'/T\d+/',
+			"{$linkStart}https://phabricator.wikimedia.org/$0{$linkEnd}",
+			$text
+		);
+
 		// turn (bug nnnn) into links
-		$text = preg_replace_callback( '/bug (\d+)/', array( $this, 'replaceBugLinks' ), $text );
+		$text = preg_replace(
+			'/bug (\d+)/',
+			"{$linkStart}https://bugzilla.wikimedia.org/$1{$linkEnd}",
+			$text
+		);
+
 		// add links to manual to every global variable mentioned
-		$text = preg_replace_callback(
-			'/(\$wg[a-z0-9_]+)/i',
-			array( $this, 'replaceConfigLinks' ),
+		$text = preg_replace(
+			'/\$wg[a-z0-9_]+/i',
+			"{$linkStart}https://www.mediawiki.org/wiki/Manual:$0{$linkEnd}",
 			$text
 		);
 
 		return $text;
-	}
-
-	protected function replaceBugLinks( $matches ) {
-		return '<span class="config-plainlink">[https://bugzilla.wikimedia.org/' .
-			$matches[1] . ' bug ' . $matches[1] . ']</span>';
-	}
-
-	protected function replaceConfigLinks( $matches ) {
-		return '<span class="config-plainlink">[https://www.mediawiki.org/wiki/Manual:' .
-			$matches[1] . ' ' . $matches[1] . ']</span>';
 	}
 }
