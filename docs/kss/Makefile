@@ -6,7 +6,7 @@ kss: kssnodecheck
 	$(eval KSS_RL_TMP := $(shell mktemp /tmp/tmp.XXXXXXXXXX))
 # Keep module names in strict alphabetical order, so CSS loads in the same order as ResourceLoader's addModuleStyles does; this can affect rendering.
 # See OutputPage::makeResourceLoaderLink.
-	@curl -sG "${MEDIAWIKI_LOAD_URL}?modules=mediawiki.legacy.commonPrint|mediawiki.legacy.shared|mediawiki.ui|mediawiki.ui.anchor|mediawiki.ui.button|mediawiki.ui.checkbox|mediawiki.ui.radio|mediawiki.ui.icon|mediawiki.ui.input|mediawiki.ui.text&only=styles" > $(KSS_RL_TMP)
+	@curl -sG "${MEDIAWIKI_LOAD_URL}?modules=mediawiki.legacy.commonPrint|mediawiki.legacy.shared|mediawiki.ui|mediawiki.ui.anchor|mediawiki.ui.button|mediawiki.ui.checkbox|mediawiki.ui.radio|mediawiki.ui.select|mediawiki.ui.icon|mediawiki.ui.input|mediawiki.ui.text&only=styles" > $(KSS_RL_TMP)
 	@node_modules/.bin/kss-node ../../resources/src/mediawiki.ui static/ --css $(KSS_RL_TMP) -t styleguide-template
 	@rm $(KSS_RL_TMP)
 
