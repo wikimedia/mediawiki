@@ -49,6 +49,12 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 	protected $uri;
 
 	/**
+	 * Filter log events using legacy rules
+	 * @var bool $useLegacyFilter
+	 */
+	protected $useLegacyFilter;
+
+	/**
 	 * Log sink
 	 * @var resource $sink
 	 */
@@ -77,16 +83,30 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 
 	/**
 	 * @param string $stream Stream URI
+	 * @param bool $useLegacyFilter Filter log events using legacy rules
 	 * @param int $level Minimum logging level that will trigger handler
 	 * @param bool $bubble Can handled meesages bubble up the handler stack?
 	 */
 	public function __construct(
-		$stream, $level = \Monolog\Logger::DEBUG, $bubble = true
+		$stream,
+		$useLegacyFilter = false,
+		$level = \Monolog\Logger::DEBUG,
+		$bubble = true
 	) {
 		parent::__construct( $level, $bubble );
 		$this->uri = $stream;
+		$this->useLegacyFilter = $useLegacyFilter;
 	}
 
+	public function isHandling( array $record ) {
+		$levelOk = parent::isHandling( $record );
+		if ( $levelOk && $this->useLegacyFilter ) {
+			return MWLoggerLegacyLogger::shouldEmit(
+				$record['channel'], $record['message'], $record
+			);
+		}
+		return $levelOk;
+	}
 
 	/**
 	 * Open the log sink described by our stream URI.
