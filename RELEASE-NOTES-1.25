@@ -197,6 +197,9 @@ changes to languages because of Bugzilla reports.
   and getInternalLinkAttributes methods in Linker, and removed
   getExternalLinkAttributes method, which was deprecated in MediaWiki 1.18.
 * Removed Sites class, which was deprecated in 1.21 and replaced by SiteSQLStore.
+* The mw.api.getToken() method now uses action=query?meta=tokens. This will now
+  fail for custom tokens registered only via the deprecated ApiTokensGetTokenTypes
+  hook. The ApiQueryTokensRegisterTypes hook should be used for this to work.
 
 == Compatibility ==
 
