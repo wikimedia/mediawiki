@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (23565e7519)
+ * OOjs UI v0.1.0-pre (8f8896196f)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-21T22:18:20Z
+ * Date: 2014-11-21T22:32:28Z
  */
 ( function ( OO ) {
 
@@ -9163,12 +9163,12 @@ OO.ui.InputWidget.prototype.setRTL = function ( isRTL ) {
  * @chainable
  */
 OO.ui.InputWidget.prototype.setValue = function ( value ) {
-	value = this.sanitizeValue( value );
+	value = this.cleanUpValue( value );
 	if ( this.value !== value ) {
 		this.value = value;
 		this.emit( 'change', this.value );
 	}
-	// Update the DOM if it has changed. Note that with sanitizeValue, it
+	// Update the DOM if it has changed. Note that with cleanUpValue, it
 	// is possible for the DOM value to change without this.value changing.
 	if ( this.$input.val() !== this.value ) {
 		this.$input.val( this.value );
@@ -9177,15 +9177,15 @@ OO.ui.InputWidget.prototype.setValue = function ( value ) {
 };
 
 /**
- * Sanitize incoming value.
+ * Clean up incoming value.
  *
  * Ensures value is a string, and converts undefined and null to empty string.
  *
  * @private
  * @param {string} value Original value
- * @return {string} Sanitized value
+ * @return {string} Cleaned up value
  */
-OO.ui.InputWidget.prototype.sanitizeValue = function ( value ) {
+OO.ui.InputWidget.prototype.cleanUpValue = function ( value ) {
 	if ( value === undefined || value === null ) {
 		return '';
 	} else if ( this.inputFilter ) {
@@ -9460,6 +9460,74 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
 			widget.setValue( widget.$input.prop( 'checked' ) );
 		} );
 	}
+};
+
+/**
+ * Radio input widget.
+ *
+ * Radio buttons only make sense as a set, and you probably want to use the OO.ui.RadioSelectWidget
+ * class instead of using this class directly.
+ *
+ * This class doesn't make it possible to learn whether the radio button is selected ("pressed").
+ *
+ * @class
+ * @extends OO.ui.InputWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @param {boolean} [config.selected=false] Whether the radio button is initially selected
+ */
+OO.ui.RadioInputWidget = function OoUiRadioInputWidget( config ) {
+	// Parent constructor
+	OO.ui.RadioInputWidget.super.call( this, config );
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-radioInputWidget' );
+	this.setSelected( config.selected !== undefined ? config.selected : false );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.RadioInputWidget, OO.ui.InputWidget );
+
+/* Methods */
+
+/**
+ * Get input element.
+ *
+ * @private
+ * @return {jQuery} Input element
+ */
+OO.ui.RadioInputWidget.prototype.getInputElement = function () {
+	return this.$( '<input type="radio" />' );
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.RadioInputWidget.prototype.onEdit = function () {
+	// RadioInputWidget doesn't track its state.
+};
+
+/**
+ * Set selection state of this radio button.
+ *
+ * @param {boolean} state Whether the button is selected
+ * @chainable
+ */
+OO.ui.RadioInputWidget.prototype.setSelected = function ( state ) {
+	// RadioInputWidget doesn't track its state.
+	this.$input.prop( 'checked', state );
+	return this;
+};
+
+/**
+ * Check if this radio button is selected.
+ *
+ * @return {boolean} Radio is selected
+ */
+OO.ui.RadioInputWidget.prototype.isSelected = function () {
+	return this.$input.prop( 'checked' );
 };
 
 /**
@@ -10236,6 +10304,55 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
 	if ( this.constructor.static.selectable ) {
 		this.setActive( state );
 	}
+
+	return this;
+};
+
+/**
+ * Option widget that looks like a radio button.
+ *
+ * Use together with OO.ui.RadioSelectWidget.
+ *
+ * @class
+ * @extends OO.ui.OptionWidget
+ * @mixins OO.ui.ButtonElement
+ *
+ * @constructor
+ * @param {Mixed} data Option data
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( data, config ) {
+	// Parent constructor
+	OO.ui.RadioOptionWidget.super.call( this, data, config );
+
+	// Properties
+	this.radio = new OO.ui.RadioInputWidget( { value: data } );
+
+	// Initialization
+	this.$element
+		.addClass( 'oo-ui-radioOptionWidget' )
+		.prepend( this.radio.$element );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.RadioOptionWidget, OO.ui.OptionWidget );
+
+/* Static Properties */
+
+OO.ui.RadioOptionWidget.static.highlightable = false;
+
+OO.ui.RadioOptionWidget.static.pressable = false;
+
+/* Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.RadioOptionWidget.prototype.setSelected = function ( state ) {
+	OO.ui.RadioOptionWidget.super.prototype.setSelected.call( this, state );
+
+	this.radio.setSelected( state );
 
 	return this;
 };
@@ -11475,6 +11592,29 @@ OO.ui.ButtonSelectWidget = function OoUiButtonSelectWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
+
+/**
+ * Select widget containing radio button options.
+ *
+ * Use together with OO.ui.RadioOptionWidget.
+ *
+ * @class
+ * @extends OO.ui.SelectWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.RadioSelectWidget = function OoUiRadioSelectWidget( config ) {
+	// Parent constructor
+	OO.ui.RadioSelectWidget.super.call( this, config );
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-radioSelectWidget' );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.RadioSelectWidget, OO.ui.SelectWidget );
 
 /**
  * Overlaid menu of options.
