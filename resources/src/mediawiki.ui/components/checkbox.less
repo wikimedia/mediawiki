@@ -30,6 +30,7 @@
 }
 
 @checkboxSize: 1.6em;
+@focusBottomBorderSize: 0.2em;
 
 // We use the not selector to cancel out styling on IE 8 and below
 .mw-ui-checkbox:not(#noop) {
@@ -55,50 +56,35 @@
 		margin-right: .4em;
 
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
-		& + label {
+		& + label::before {
+			content: '';
 			cursor: pointer;
-
-			&::before {
-				content: '';
-				position: absolute;
-				left: 0;
-				border-radius: @borderRadius;
-				width: @checkboxSize;
-				height: @checkboxSize;
-				background-color: #fff;
-				border: 1px solid grey;
-			}
+			position: absolute;
+			left: 0;
+			border-radius: @borderRadius;
+			width: @checkboxSize;
+			height: @checkboxSize;
+			background-color: #fff;
+			border: 1px solid grey;
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
-		&:checked {
-			+ label {
-				&::before {
-					.background-image-svg('images/checked.svg', 'images/checked.png');
-					.background-size( @checkboxSize, @checkboxSize );
-					background-repeat: no-repeat;
-					background-position: center top;
-				}
-			}
+		&:checked + label::before {
+			.background-image-svg('images/checked.svg', 'images/checked.png');
+			.background-size( @checkboxSize, @checkboxSize );
+			background-repeat: no-repeat;
+			background-position: center top;
 		}
 
-		@focusBottomBorderSize: 0.2em;
-		&:active,
-		&:focus {
-			+ label {
-				&::before {
-					box-shadow: inset 0 -@focusBottomBorderSize 0 0 lightgrey;
-				}
-			}
+		&:active + label::before,
+		&:focus + label::before {
+			box-shadow: inset 0 -@focusBottomBorderSize 0 0 lightgrey;
 		}
 
 		// disabled checked boxes have a gray background
-		&:disabled + label {
+		&:disabled + label::before {
 			cursor: default;
-
-			&::before {
-				background-color: lightgrey;
-			}
+			background-color: lightgrey;
 		}
 	}
 }
