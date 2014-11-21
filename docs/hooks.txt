@@ -314,7 +314,8 @@ $output: The OutputPage object where output() was called
 
 'AfterImportPage': When a page import is completed.
 $title: Title under which the revisions were imported
-$origTitle: Title provided by the XML file
+$foreignTitleValue: ForeignTitleValue object based on data provided by the XML
+file
 $revCount: Number of revisions in the XML file
 $sRevCount: Number of successfully imported revisions
 $pageInfo: associative array of page information
