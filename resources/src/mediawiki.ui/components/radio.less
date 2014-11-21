@@ -42,7 +42,6 @@
 	line-height: @radioSize;
 
 	* {
-		font: inherit;
 		vertical-align: middle;
 	}
 
@@ -59,8 +58,8 @@
 
 		// the pseudo before element of the label after the radio now looks like a radio
 		& + label::before {
-			cursor: pointer;
 			content: '';
+			cursor: pointer;
 			.box-sizing(border-box);
 			position: absolute;
 			left: 0;
@@ -86,6 +85,7 @@
 
 		&:active + label::before {
 			background-color: @colorGray13;
+			border-color: @colorGray13;
 		}
 
 		&:focus + label::before {
@@ -95,11 +95,11 @@
 		// disabled checked boxes have a gray background
 		&:disabled + label::before {
 			cursor: default;
-			border-color: @colorGray14;
 			background-color: @colorGray14;
+			border-color: @colorGray14;
 		}
 
-		// disables and checked boxes have a white circle
+		// disabled and checked boxes have a white circle
 		&:disabled:checked + label::before {
 			.background-image-svg('images/radio_disabled.svg', 'images/radio_disabled.png');
 		}
