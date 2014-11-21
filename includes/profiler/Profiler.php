@@ -72,10 +72,10 @@ abstract class Profiler {
 		if ( self::$__instance === null ) {
 			global $wgProfiler;
 			if ( is_array( $wgProfiler ) ) {
-				if ( !isset( $wgProfiler['class'] ) ) {
+				$class = isset( $wgProfiler['class'] ) ? $wgProfiler['class'] : 'ProfilerStub';
+				$factor = isset( $wgProfiler['sampling'] ) ? $wgProfiler['sampling'] : 1;
+				if ( PHP_SAPI === 'cli' || mt_rand( 0, $factor - 1 ) != 0 ) {
 					$class = 'ProfilerStub';
-				} else {
-					$class = $wgProfiler['class'];
 				}
 				self::$__instance = new $class( $wgProfiler );
 			} else {
@@ -83,6 +83,21 @@ abstract class Profiler {
 			}
 		}
 		return self::$__instance;
+	}
+
+	/**
+	 * Replace the current profiler with $profiler if no non-stub profiler is set
+	 *
+	 * @param Profiler $profiler
+	 * @throws MWException
+	 * @since 1.25
+	 */
+	final public static function replaceStubInstance( Profiler $profiler ) {
+		if ( self::$__instance && !( self::$__instance instanceof ProfilerStub ) ) {
+			throw new MWException( 'Could not replace non-stub profiler instance.' );
+		} else {
+			self::$__instance = $profiler;
+		}
 	}
 
 	/**
@@ -144,8 +159,7 @@ abstract class Profiler {
 	 * @since 1.25
 	 */
 	public function logData() {
-		$output = isset( $this->params['output'] ) ?
-			$this->params['output'] : null;
+		$output = isset( $this->params['output'] ) ? $this->params['output'] : null;
 
 		if ( !$output || $this->isStub() ) {
 			// return early when no output classes defined or we're a stub
