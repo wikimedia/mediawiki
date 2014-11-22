@@ -1003,7 +1003,9 @@ class Article implements Page {
 					array( 'redirect' => 'no' )
 				);
 
-				$outputPage->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
+				$outputPage->addSubtitle( "<span id=\"mw-redirectedfrom\">" .
+					wfMessage( 'redirectedfrom' )->rawParams( $redir )
+				. "</span>" );
 
 				// Add the script to update the displayed URL and
 				// set the fragment if one was specified in the redirect
