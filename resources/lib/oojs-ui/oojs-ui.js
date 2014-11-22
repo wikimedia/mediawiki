@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (8f8896196f)
+ * OOjs UI v0.1.0-pre (9ed4cf2557)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-21T22:32:28Z
+ * Date: 2014-11-22T01:21:13Z
  */
 ( function ( OO ) {
 
@@ -723,6 +723,7 @@ OO.ui.ActionSet.prototype.organize = function () {
  * @cfg {string[]} [classes] CSS class names to add
  * @cfg {string} [text] Text to insert
  * @cfg {jQuery} [$content] Content elements to append (after text)
+ * @cfg {Mixed} [data] Element data
  */
 OO.ui.Element = function OoUiElement( config ) {
 	// Configuration initialization
@@ -730,6 +731,7 @@ OO.ui.Element = function OoUiElement( config ) {
 
 	// Properties
 	this.$ = config.$ || OO.ui.Element.getJQuery( document );
+	this.data = config.data;
 	this.$element = this.$( this.$.context.createElement( this.getTagName() ) );
 	this.elementGroup = null;
 	this.debouncedUpdateThemeClassesHandler = this.debouncedUpdateThemeClasses.bind( this );
@@ -1134,6 +1136,26 @@ OO.ui.Element.offDOMEvent = function ( el, event, callback ) {
 };
 
 /* Methods */
+
+/**
+ * Get element data.
+ *
+ * @return {Mixed} Element data
+ */
+OO.ui.Element.prototype.getData = function () {
+	return this.data;
+};
+
+/**
+ * Set element data.
+ *
+ * @param {Mixed} Element data
+ * @chainable
+ */
+OO.ui.Element.prototype.setData = function ( data ) {
+	this.data = data;
+	return this;
+};
 
 /**
  * Check if element supports one or more methods.
@@ -3863,6 +3885,51 @@ OO.ui.GroupElement.prototype.getItems = function () {
 };
 
 /**
+ * Get an item by its data.
+ *
+ * Data is compared by a hash of its value. Only the first item with matching data will be returned.
+ *
+ * @param {Object} data Item data to search for
+ * @return {OO.ui.Element|null} Item with equivalent data, `null` if none exists
+ */
+OO.ui.GroupElement.prototype.getItemFromData = function ( data ) {
+	var i, len, item,
+		hash = OO.getHash( data );
+
+	for ( i = 0, len = this.items.length; i < len; i++ ) {
+		item = this.items[i];
+		if ( hash === OO.getHash( item.getData() ) ) {
+			return item;
+		}
+	}
+
+	return null;
+};
+
+/**
+ * Get items by their data.
+ *
+ * Data is compared by a hash of its value. All items with matching data will be returned.
+ *
+ * @param {Object} data Item data to search for
+ * @return {OO.ui.Element[]} Items with equivalent data
+ */
+OO.ui.GroupElement.prototype.getItemsFromData = function ( data ) {
+	var i, len, item,
+		hash = OO.getHash( data ),
+		items = [];
+
+	for ( i = 0, len = this.items.length; i < len; i++ ) {
+		item = this.items[i];
+		if ( hash === OO.getHash( item.getData() ) ) {
+			items.push( item );
+		}
+	}
+
+	return items;
+};
+
+/**
  * Add an aggregate item event.
  *
  * Aggregated events are listened to on each item and then emitted by the group under a new name,
@@ -6519,7 +6586,7 @@ OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
 		name = page.getName();
 		this.pages[page.getName()] = page;
 		if ( this.outlined ) {
-			item = new OO.ui.OutlineOptionWidget( name, page, { $: this.$ } );
+			item = new OO.ui.OutlineOptionWidget( { $: this.$, data: name } );
 			page.setOutlineItem( item );
 			items.push( item );
 		}
@@ -9900,6 +9967,14 @@ OO.inheritClass( OO.ui.ComboBoxWidget, OO.ui.Widget );
 /* Methods */
 
 /**
+ * Get the combobox's menu.
+ * @return {OO.ui.TextInputMenuSelectWidget} Menu widget
+ */
+OO.ui.ComboBoxWidget.prototype.getMenu = function () {
+	return this.menu;
+};
+
+/**
  * Handle input change events.
  *
  * @param {string} value New value
@@ -10033,10 +10108,9 @@ OO.ui.LabelWidget.prototype.onClick = function () {
  * @mixins OO.ui.FlaggedElement
  *
  * @constructor
- * @param {Mixed} data Option data
  * @param {Object} [config] Configuration options
  */
-OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
+OO.ui.OptionWidget = function OoUiOptionWidget( config ) {
 	// Configuration initialization
 	config = config || {};
 
@@ -10049,7 +10123,6 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 	OO.ui.FlaggedElement.call( this, config );
 
 	// Properties
-	this.data = data;
 	this.selected = false;
 	this.highlighted = false;
 	this.pressed = false;
@@ -10214,15 +10287,6 @@ OO.ui.OptionWidget.prototype.flash = function () {
 };
 
 /**
- * Get option data.
- *
- * @return {Mixed} Option data
- */
-OO.ui.OptionWidget.prototype.getData = function () {
-	return this.data;
-};
-
-/**
  * Option widget with an option icon and indicator.
  *
  * Use together with OO.ui.SelectWidget.
@@ -10233,12 +10297,11 @@ OO.ui.OptionWidget.prototype.getData = function () {
  * @mixins OO.ui.IndicatorElement
  *
  * @constructor
- * @param {Mixed} data Option data
  * @param {Object} [config] Configuration options
  */
-OO.ui.DecoratedOptionWidget = function OoUiDecoratedOptionWidget( data, config ) {
+OO.ui.DecoratedOptionWidget = function OoUiDecoratedOptionWidget( config ) {
 	// Parent constructor
-	OO.ui.DecoratedOptionWidget.super.call( this, data, config );
+	OO.ui.DecoratedOptionWidget.super.call( this, config );
 
 	// Mixin constructors
 	OO.ui.IconElement.call( this, config );
@@ -10267,12 +10330,11 @@ OO.mixinClass( OO.ui.OptionWidget, OO.ui.IndicatorElement );
  * @mixins OO.ui.ButtonElement
  *
  * @constructor
- * @param {Mixed} data Option data
  * @param {Object} [config] Configuration options
  */
-OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( data, config ) {
+OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( config ) {
 	// Parent constructor
-	OO.ui.ButtonOptionWidget.super.call( this, data, config );
+	OO.ui.ButtonOptionWidget.super.call( this, config );
 
 	// Mixin constructors
 	OO.ui.ButtonElement.call( this, config );
@@ -10318,15 +10380,14 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
  * @mixins OO.ui.ButtonElement
  *
  * @constructor
- * @param {Mixed} data Option data
  * @param {Object} [config] Configuration options
  */
-OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( data, config ) {
+OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( config ) {
 	// Parent constructor
-	OO.ui.RadioOptionWidget.super.call( this, data, config );
+	OO.ui.RadioOptionWidget.super.call( this, config );
 
 	// Properties
-	this.radio = new OO.ui.RadioInputWidget( { value: data } );
+	this.radio = new OO.ui.RadioInputWidget( { value: config.data } );
 
 	// Initialization
 	this.$element
@@ -10364,15 +10425,14 @@ OO.ui.RadioOptionWidget.prototype.setSelected = function ( state ) {
  * @extends OO.ui.DecoratedOptionWidget
  *
  * @constructor
- * @param {Mixed} data Item data
  * @param {Object} [config] Configuration options
  */
-OO.ui.MenuOptionWidget = function OoUiMenuOptionWidget( data, config ) {
+OO.ui.MenuOptionWidget = function OoUiMenuOptionWidget( config ) {
 	// Configuration initialization
 	config = $.extend( { icon: 'check' }, config );
 
 	// Parent constructor
-	OO.ui.MenuOptionWidget.super.call( this, data, config );
+	OO.ui.MenuOptionWidget.super.call( this, config );
 
 	// Initialization
 	this.$element
@@ -10391,12 +10451,11 @@ OO.inheritClass( OO.ui.MenuOptionWidget, OO.ui.DecoratedOptionWidget );
  * @extends OO.ui.DecoratedOptionWidget
  *
  * @constructor
- * @param {Mixed} data Item data
  * @param {Object} [config] Configuration options
  */
-OO.ui.MenuSectionOptionWidget = function OoUiMenuSectionOptionWidget( data, config ) {
+OO.ui.MenuSectionOptionWidget = function OoUiMenuSectionOptionWidget( config ) {
 	// Parent constructor
-	OO.ui.MenuSectionOptionWidget.super.call( this, data, config );
+	OO.ui.MenuSectionOptionWidget.super.call( this, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-menuSectionOptionWidget' );
@@ -10419,17 +10478,16 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  * @extends OO.ui.DecoratedOptionWidget
  *
  * @constructor
- * @param {Mixed} data Item data
  * @param {Object} [config] Configuration options
  * @cfg {number} [level] Indentation level
  * @cfg {boolean} [movable] Allow modification from outline controls
  */
-OO.ui.OutlineOptionWidget = function OoUiOutlineOptionWidget( data, config ) {
+OO.ui.OutlineOptionWidget = function OoUiOutlineOptionWidget( config ) {
 	// Configuration initialization
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.OutlineOptionWidget.super.call( this, data, config );
+	OO.ui.OutlineOptionWidget.super.call( this, config );
 
 	// Properties
 	this.level = 0;
@@ -11053,8 +11111,8 @@ OO.ui.SearchWidget.prototype.getResults = function () {
 /**
  * Generic selection of options.
  *
- * Items can contain any rendering, and are uniquely identified by a hash of their data. Any widget
- * that provides options, from which the user must choose one, should be built on this class.
+ * Items can contain any rendering. Any widget that provides options, from which the user must
+ * choose one, should be built on this class.
  *
  * Use together with OO.ui.OptionWidget.
  *
@@ -11079,7 +11137,6 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	// Properties
 	this.pressed = false;
 	this.selecting = null;
-	this.hashes = {};
 	this.onMouseUpHandler = this.onMouseUp.bind( this );
 	this.onMouseMoveHandler = this.onMouseMove.bind( this );
 
@@ -11302,22 +11359,6 @@ OO.ui.SelectWidget.prototype.getHighlightedItem = function () {
 };
 
 /**
- * Get an existing item with equivalent data.
- *
- * @param {Object} data Item data to search for
- * @return {OO.ui.OptionWidget|null} Item with equivalent value, `null` if none exists
- */
-OO.ui.SelectWidget.prototype.getItemFromData = function ( data ) {
-	var hash = OO.getHash( data );
-
-	if ( Object.prototype.hasOwnProperty.call( this.hashes, hash ) ) {
-		return this.hashes[hash];
-	}
-
-	return null;
-};
-
-/**
  * Toggle pressed state.
  *
  * @param {boolean} pressed An option is being pressed
@@ -11482,31 +11523,12 @@ OO.ui.SelectWidget.prototype.getFirstSelectableItem = function () {
 /**
  * Add items.
  *
- * When items are added with the same values as existing items, the existing items will be
- * automatically removed before the new items are added.
- *
  * @param {OO.ui.OptionWidget[]} items Items to add
  * @param {number} [index] Index to insert items after
  * @fires add
  * @chainable
  */
 OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
-	var i, len, item, hash,
-		remove = [];
-
-	for ( i = 0, len = items.length; i < len; i++ ) {
-		item = items[i];
-		hash = OO.getHash( item.getData() );
-		if ( Object.prototype.hasOwnProperty.call( this.hashes, hash ) ) {
-			// Remove item with same value
-			remove.push( this.hashes[hash] );
-		}
-		this.hashes[hash] = item;
-	}
-	if ( remove.length ) {
-		this.removeItems( remove );
-	}
-
 	// Mixin method
 	OO.ui.GroupWidget.prototype.addItems.call( this, items, index );
 
@@ -11526,15 +11548,11 @@ OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
  * @chainable
  */
 OO.ui.SelectWidget.prototype.removeItems = function ( items ) {
-	var i, len, item, hash;
+	var i, len, item;
 
+	// Deselect items being removed
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
-		hash = OO.getHash( item.getData() );
-		if ( Object.prototype.hasOwnProperty.call( this.hashes, hash ) ) {
-			// Remove existing item
-			delete this.hashes[hash];
-		}
 		if ( item.isSelected() ) {
 			this.selectItem( null );
 		}
@@ -11559,10 +11577,10 @@ OO.ui.SelectWidget.prototype.removeItems = function ( items ) {
 OO.ui.SelectWidget.prototype.clearItems = function () {
 	var items = this.items.slice();
 
-	// Clear all items
-	this.hashes = {};
 	// Mixin method
 	OO.ui.GroupWidget.prototype.clearItems.call( this );
+
+	// Clear selection
 	this.selectItem( null );
 
 	this.emit( 'remove', items );
