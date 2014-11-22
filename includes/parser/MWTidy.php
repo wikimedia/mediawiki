@@ -260,18 +260,17 @@ class MWTidy {
 			return null;
 		}
 
-		$tidy = new tidy;
-		$tidy->parseString( $text, $wgTidyConf, 'utf8' );
+		$tidy = tidy_parse_string( $text, $wgTidyConf, 'utf8' );
 
 		if ( $stderr ) {
-			$retval = $tidy->getStatus();
+			$retval = tidy_get_status( $tidy );
 
 			wfProfileOut( __METHOD__ );
-			return $tidy->errorBuffer;
+			return tidy_get_error_buffer( $tidy );
 		}
 
-		$tidy->cleanRepair();
-		$retval = $tidy->getStatus();
+		tidy_clean_repair( $tidy );
+		$retval = tidy_get_status( $tidy );
 		if ( $retval == 2 ) {
 			// 2 is magic number for fatal error
 			// http://www.php.net/manual/en/function.tidy-get-status.php
@@ -280,7 +279,7 @@ class MWTidy {
 			$cleansource = tidy_get_output( $tidy );
 			if ( $wgDebugTidy && $retval > 0 ) {
 				$cleansource .= "<!--\nTidy reports:\n" .
-					str_replace( '-->', '--&gt;', $tidy->errorBuffer ) .
+					str_replace( '-->', '--&gt;', tidy_get_error_buffer( $tidy ) ) .
 					"\n-->";
 			}
 		}
