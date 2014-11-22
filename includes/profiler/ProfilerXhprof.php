@@ -122,6 +122,23 @@ class ProfilerXhprof extends Profiler {
 	public function profileOut( $functionname ) {
 	}
 
+	public function scopedProfileIn( $section ) {
+		static $exists = null;
+		// Only HHVM supports this, not the standard PECL extension
+		if ( $exists === null ) {
+			$exists = function_exists( 'xhprof_frame_begin' );
+		}
+
+		if ( $exists ) {
+			xhprof_frame_begin( $section );
+			return new ScopedCallback( function() use ( $section ) {
+				xhprof_frame_end( $section );
+			} );
+		}
+
+		return null;
+	}
+
 	/**
 	 * No-op for xhprof profiling.
 	 */
