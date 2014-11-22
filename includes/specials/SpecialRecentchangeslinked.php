@@ -240,7 +240,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$opts->consumeValues( array( 'showlinkedto', 'target' ) );
 
 		$extraOpts['target'] = array( $this->msg( 'recentchangeslinked-page' )->escaped(),
-			Xml::input( 'target', 40, str_replace( '_', ' ', $opts['target'] ) ) .
+			Xml::input( 'target', 40, str_replace( '_', ' ', $opts['target'] ), array( 'class' => 'mw-searchInput' ) ) .
 			Xml::check( 'showlinkedto', $opts['showlinkedto'], array( 'id' => 'showlinkedto' ) ) . ' ' .
 			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) );
 
@@ -261,5 +261,9 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		}
 
 		return $this->rclTargetTitle;
+	}
+
+	public function prefixSearchSubpages( $search, $limit = 10 ) {
+		return PrefixSearch::titleSearch( $search, $limit );
 	}
 }
