@@ -19,7 +19,8 @@
 		"php": ">=5.3.3",
 		"psr/log": "1.0.0",
 		"cssjanus/cssjanus": "1.1.1",
-		"cdb/cdb": "1.0.0"
+		"cdb/cdb": "1.0.0",
+		"oojs/oojs-ui": "0.2.4"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
