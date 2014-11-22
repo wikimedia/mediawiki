@@ -140,6 +140,23 @@ abstract class Profiler {
 	abstract public function profileOut( $functionname );
 
 	/**
+	 * Mark the start of a custom profiling frame (e.g. DB queries).
+	 * The frame ends when the result of this method falls out of scope.
+	 *
+	 * @param string $section
+	 * @return ScopedCallback|null
+	 * @since 1.25
+	 */
+	abstract public function scopedProfileIn( $section );
+
+	/**
+	 * @param ScopedCallback $section
+	 */
+	public function scopedProfileOut( ScopedCallback &$section ) {
+		$section = null;
+	}
+
+	/**
 	 * @return TransactionProfiler
 	 * @since 1.25
 	 */
