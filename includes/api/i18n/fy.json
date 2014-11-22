@@ -6,5 +6,6 @@
 	},
 	"apihelp-login-param-name": "Brûkersnamme.",
 	"apihelp-login-param-password": "Wachtwurd.",
-	"apihelp-userrights-param-user": "Brûkersnamme."
+	"apihelp-userrights-param-user": "Brûkersnamme.",
+	"api-help-examples": "{{PLURAL:$1|Foarbyld|Foarbylden}}:"
 }

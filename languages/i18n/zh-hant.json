@@ -887,7 +887,7 @@
 	"searchprofile-advanced-tooltip": "搜尋自訂命名空間",
 	"search-result-size": "$1 ($2 個字)",
 	"search-result-category-size": "$1 位成員 ($2 個子分類，$3 個檔案)",
-	"search-redirect": " (重新導向 $1)",
+	"search-redirect": "(重新導向 $1)",
 	"search-section": "(章節 $1)",
 	"search-category": "(分類 $1)",
 	"search-file-match": "(符合檔案內容)",
