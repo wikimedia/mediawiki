@@ -1003,7 +1003,9 @@ class Article implements Page {
 					array( 'redirect' => 'no' )
 				);
 
-				$outputPage->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
+				$outputPage->addSubtitle( "<span id=\"mw-redirectedfrom\">" .
+					wfMessage( 'redirectedfrom' )->rawParams( $redir )->parse()
+				. "</span>" );
 
 				// Add the script to update the displayed URL and
 				// set the fragment if one was specified in the redirect
@@ -1025,7 +1027,9 @@ class Article implements Page {
 			// If it was reported from a trusted site, supply a backlink.
 			if ( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
 				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
-				$outputPage->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
+				$outputPage->addSubtitle( "<span id=\"mw-redirectedfrom\">" .
+				wfMessage( 'redirectedfrom' )->rawParams( $redir )->parse()
+				. "</span>" );
 
 				// Add the script to update the displayed URL
 				$outputPage->addJsConfigVars( array(
