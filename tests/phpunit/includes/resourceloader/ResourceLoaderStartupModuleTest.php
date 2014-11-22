@@ -290,7 +290,7 @@ mw.loader.addSource( {
 
 	/**
 	 * @dataProvider provideGetModuleRegistrations
-	 * @covers ResourceLoaderStartupModule::optimizeDependencies
+	 * @covers ResourceLoaderStartupModule::compileUnresolvedDependencies
 	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
 	 * @covers ResourceLoader::makeLoaderSourcesScript
 	 * @covers ResourceLoader::makeLoaderRegisterScript
