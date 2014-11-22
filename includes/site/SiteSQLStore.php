@@ -52,14 +52,24 @@ class SiteSQLStore implements SiteStore {
 	private $cacheTimeout = 3600;
 
 	/**
+	 * @var BagOStuff
+	 */
+	private $cache;
+
+	/**
 	 * @since 1.21
 	 *
 	 * @param ORMTable|null $sitesTable
+	 * @param BagOStuff|null $cache
 	 *
 	 * @return SiteStore
 	 */
-	public static function newInstance( ORMTable $sitesTable = null ) {
-		return new static( $sitesTable );
+	public static function newInstance( ORMTable $sitesTable = null, BagOStuff $cache = null ) {
+		if ( $cache === null ) {
+			$cache = wfGetMainCache();
+		}
+
+		return new static( $sitesTable, $cache );
 	}
 
 	/**
@@ -69,12 +79,13 @@ class SiteSQLStore implements SiteStore {
 	 *
 	 * @param ORMTable|null $sitesTable
 	 */
-	protected function __construct( ORMTable $sitesTable = null ) {
+	protected function __construct( ORMTable $sitesTable = null, BagOStuff $cache ) {
 		if ( $sitesTable === null ) {
 			$sitesTable = $this->newSitesTable();
 		}
 
 		$this->sitesTable = $sitesTable;
+		$this->cache = $cache;
 	}
 
 	/**
@@ -123,8 +134,7 @@ class SiteSQLStore implements SiteStore {
 
 		if ( $source === 'cache' ) {
 			if ( $this->sites === null ) {
-				$cache = wfGetMainCache();
-				$sites = $cache->get( $this->getCacheKey() );
+				$sites = $this->cache->get( $this->getCacheKey() );
 
 				if ( is_object( $sites ) ) {
 					$this->sites = $sites;
@@ -257,8 +267,7 @@ class SiteSQLStore implements SiteStore {
 			}
 		}
 
-		$cache = wfGetMainCache();
-		$cache->set( $this->getCacheKey(), $this->sites, $this->cacheTimeout );
+		$this->cache->set( $this->getCacheKey(), $this->sites, $this->cacheTimeout );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -374,8 +383,7 @@ class SiteSQLStore implements SiteStore {
 	public function reset() {
 		wfProfileIn( __METHOD__ );
 		// purge cache
-		$cache = wfGetMainCache();
-		$cache->delete( $this->getCacheKey() );
+		$this->cache->delete( $this->getCacheKey() );
 		$this->sites = null;
 
 		wfProfileOut( __METHOD__ );
