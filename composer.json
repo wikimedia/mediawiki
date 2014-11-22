@@ -21,6 +21,7 @@
 		"psr/log": "1.0.0",
 		"cssjanus/cssjanus": "1.1.1",
 		"wikimedia/cdb": "1.0.1"
+		"oojs/oojs-ui": "0.2.4"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
