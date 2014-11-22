@@ -227,6 +227,15 @@ class ProfilerStandard extends Profiler {
 		}
 	}
 
+	public function scopedProfileIn( $section ) {
+		$this->profileIn( $section );
+
+		$that = $this;
+		return new ScopedCallback( function() use ( $that, $section ) {
+			$that->profileOut( $section );
+		} );
+	}
+
 	/**
 	 * Close opened profiling sections
 	 */
