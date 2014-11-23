@@ -667,7 +667,7 @@
 	"changepassword-summary": "{{ignored}}",
 	"resetpass_announce": "Used in [[Special:UserLogin]].",
 	"resetpass_text": "{{optional}}",
-	"resetpass_header": "Header on box on special page [[Special:ChangePassword]].\n\n{{Identical|Reset password}}",
+	"resetpass_header": "Header on box on special page [[Special:ChangePassword]].\n\n{{Identical|Change password}}",
 	"oldpassword": "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.\n{{Identical|Old password}}",
 	"newpassword": "{{Identical|New password}}",
 	"retypenew": "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",

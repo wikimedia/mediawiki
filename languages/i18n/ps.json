@@ -1054,6 +1054,7 @@
 	"download": "ښکته کول",
 	"unwatchedpages": "ناکتلي مخونه",
 	"listredirects": "د ورگرځېدنو لړليک",
+	"listduplicatedfiles": "د دوه گونو دوتنو لړليک",
 	"unusedtemplates": "ناکارېدلې کينډۍ",
 	"unusedtemplateswlh": "نور تړنونه",
 	"randompage": "ناټاکلی مخ",
@@ -2044,5 +2045,8 @@
 	"expand_templates_ok": "ښه",
 	"expand_templates_remove_nowiki": "په پايلو کې د <nowiki> نښلنونه ځپل",
 	"expand_templates_generate_rawhtml": "خام HTML ښکاره کول",
-	"expand_templates_preview": "مخکتنه"
+	"expand_templates_preview": "مخکتنه",
+	"mediastatistics": "د رسنيو شمار",
+	"mediastatistics-table-count": "د دوتنو شمېر",
+	"mediastatistics-header-audio": "غږ"
 }
