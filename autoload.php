@@ -1305,10 +1305,5 @@ $wgAutoloadLocalClasses = array(
 	'ZhConverter' => __DIR__ . '/languages/classes/LanguageZh.php',
 	'ZipDirectoryReader' => __DIR__ . '/includes/utils/ZipDirectoryReader.php',
 	'ZipDirectoryReaderError' => __DIR__ . '/includes/utils/ZipDirectoryReader.php',
-	'lessc' => __DIR__ . '/includes/libs/lessc.inc.php',
-	'lessc_formatter_classic' => __DIR__ . '/includes/libs/lessc.inc.php',
-	'lessc_formatter_compressed' => __DIR__ . '/includes/libs/lessc.inc.php',
-	'lessc_formatter_lessjs' => __DIR__ . '/includes/libs/lessc.inc.php',
-	'lessc_parser' => __DIR__ . '/includes/libs/lessc.inc.php',
 	'profile_point' => __DIR__ . '/profileinfo.php',
 );
