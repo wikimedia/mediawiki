@@ -2277,7 +2277,7 @@ abstract class ApiBase extends ContextSource {
 			' "' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) . '"' .
 			' "' . $request->getIP() . '"' .
 			' "' . addslashes( $request->getHeader( 'Referer' ) ) . '"' .
-			' "' . addslashes( $request->getHeader( 'User-agent' ) ) . '"';
+			' "' . addslashes( $this->getMain()->getUserAgent() ) . '"';
 		wfDebugLog( 'api-feature-usage', $s, 'private' );
 	}
 

@@ -1242,6 +1242,21 @@ class ApiMain extends ApiBase {
 		return $this->mModuleMgr;
 	}
 
+	/**
+	 * Fetches the user agent used for this request
+	 *
+	 * The value will be the combination of the 'Api-User-Agent' header (if
+	 * any) and the standard User-Agent header (if any).
+	 *
+	 * @return string
+	 */
+	public function getUserAgent() {
+		return trim(
+			$this->getRequest()->getHeader( 'Api-user-agent' ) . ' ' .
+			$this->getRequest()->getHeader( 'User-agent' )
+		);
+	}
+
 	/************************************************************************//**
 	 * @name   Deprecated
 	 * @{
