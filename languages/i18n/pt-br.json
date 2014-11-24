@@ -74,7 +74,8 @@
 			"아라",
 			"Jefersonmoraes",
 			"Marcos dias de oliveira",
-			"He7d3r"
+			"He7d3r",
+			"PauloEduardo"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -1959,7 +1960,7 @@
 	"autoblockid": "Autobloqueio #$1",
 	"block": "Bloquear usuário",
 	"unblock": "Desbloquear usuário",
-	"blockip": "Bloquear {{GENDER:$1|utilizador|utilizadora}}",
+	"blockip": "Bloquear {{GENDER:$1|usuário|usuária}}",
 	"blockip-legend": "Bloquear usuário",
 	"blockiptext": "Utilize o formulário abaixo para bloquear o acesso à escrita de um endereço específico de IP ou nome de usuário.\nIsto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWiki:Policy-url}}|política]]. Preencha com um motivo específico a seguir (por exemplo, citando páginas que sofreram vandalismo).",
 	"ipaddressorusername": "Endereço de IP ou nome de usuário:",

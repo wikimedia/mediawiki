@@ -3,9 +3,13 @@
 		"authors": [
 			"Macofe",
 			"Effy",
-			"Alan"
+			"Alan",
+			"Fitoschido"
 		]
 	},
+	"apihelp-main-param-action": "Qué acción se realizará.",
+	"apihelp-main-param-format": "El formato de la salida.",
+	"apihelp-main-param-curtimestamp": "Incluir la marca de tiempo actual en el resultado.",
 	"apihelp-block-description": "Bloquear usuario",
 	"apihelp-block-param-reason": "Razón para el bloqueo.",
 	"apihelp-block-param-nocreate": "Prevenir la creación de cuentas.",
@@ -16,12 +20,18 @@
 	"apihelp-delete-param-watch": "Añadir esta página a tu lista de seguimiento.",
 	"apihelp-delete-param-unwatch": "Borrar esta página de tu lista de seguimiento.",
 	"apihelp-delete-example-simple": "Borrar la Página Principal",
+	"apihelp-disabled-description": "Se desactivó este módulo.",
 	"apihelp-edit-description": "Crear y editar páginas.",
+	"apihelp-edit-param-sectiontitle": "El título de una sección nueva.",
+	"apihelp-edit-param-text": "Contenido de la página.",
 	"apihelp-edit-param-minor": "Edición menor.",
 	"apihelp-edit-param-notminor": "Edición no menor.",
 	"apihelp-edit-param-bot": "Marcar esta edición como de bot.",
 	"apihelp-edit-example-edit": "Editar una página",
 	"apihelp-expandtemplates-param-title": "Título de la página.",
+	"apihelp-expandtemplates-param-text": "Sintaxis wiki que se convertirá.",
+	"apihelp-feedcontributions-description": "Devuelve el canal de contribuciones de un usuario.",
+	"apihelp-feedcontributions-param-feedformat": "El formato del canal.",
 	"apihelp-feedrecentchanges-param-hideminor": "Ocultar cambios menores.",
 	"apihelp-login-param-name": "Nombre de usuario.",
 	"apihelp-login-param-password": "Contraseña.",
