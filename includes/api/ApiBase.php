@@ -284,7 +284,8 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Indicates whether this module is "internal" or unstable
+	 * Indicates whether this module is "internal"
+	 * Internal APIs are not intended for 3rd party use and may be unstable.
 	 * @since 1.25
 	 * @return bool
 	 */
