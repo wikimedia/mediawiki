@@ -4104,6 +4104,7 @@ function wfGetIP() {
  * @return bool
  */
 function wfIsTrustedProxy( $ip ) {
+	wfDeprecated( __METHOD__, '1.24' );
 	return IP::isTrustedProxy( $ip );
 }
 
@@ -4116,5 +4117,6 @@ function wfIsTrustedProxy( $ip ) {
  * @since 1.23 Supports CIDR ranges in $wgSquidServersNoPurge
  */
 function wfIsConfiguredProxy( $ip ) {
+	wfDeprecated( __METHOD__, '1.24' );
 	return IP::isConfiguredProxy( $ip );
 }
