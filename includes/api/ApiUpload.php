@@ -182,8 +182,6 @@ class ApiUpload extends ApiBase {
 		try {
 			$result['filekey'] = $this->performStash();
 			$result['sessionkey'] = $result['filekey']; // backwards compatibility
-		} catch ( UploadStashException $e ) {
-			$this->handleStashException( $e );
 		} catch ( MWException $e ) {
 			$result['warnings']['stashfailed'] = $e->getMessage();
 		}
