@@ -120,6 +120,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 */
 	public function execute( $par ) {
 		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.userSuggest' );
 
 		$this->setHeaders();
 		$this->outputHeader();
