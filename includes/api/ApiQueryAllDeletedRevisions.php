@@ -135,21 +135,64 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( $mode == 'all' ) {
 			if ( $params['namespace'] !== null ) {
-				$this->addWhereFld( 'ar_namespace', $params['namespace'] );
+				$namespaces = $params['namespace'];
+				$this->addWhereFld( 'ar_namespace', $namespaces );
+			} else {
+				$namespaces = MWNamespace::getValidNamespaces();
 			}
 
-			$from = $params['from'] === null
-				? null
-				: $this->titlePartToKey( $params['from'], $params['namespace'] );
-			$to = $params['to'] === null
-				? null
-				: $this->titlePartToKey( $params['to'], $params['namespace'] );
-			$this->addWhereRange( 'ar_title', $dir, $from, $to );
+			// For from/to/prefix, we have to consider the potential
+			// transformations of the title in all specified namespaces.
+			// Generally there will be only one transformation, but wikis with
+			// some namespaces case-sensitive could have two.
+			if ( $params['from'] !== null || $params['to'] !== null ) {
+				$isDirNewer = ( $dir === 'newer' );
+				$after = ( $isDirNewer ? '>=' : '<=' );
+				$before = ( $isDirNewer ? '<=' : '>=' );
+				$where = array();
+				foreach ( $namespaces as $ns ) {
+					$w = array();
+					if ( $params['from'] !== null ) {
+						$w[] = 'ar_title' . $after .
+							$db->addQuotes( $this->titlePartToKey( $params['from'], $ns ) );
+					}
+					if ( $params['to'] !== null ) {
+						$w[] = 'ar_title' . $before .
+							$db->addQuotes( $this->titlePartToKey( $params['to'], $ns ) );
+					}
+					$w = $db->makeList( $w, LIST_AND );
+					$where[$w][] = $ns;
+				}
+				if ( count( $where ) == 1 ) {
+					$where = key( $where );
+					$this->addWhere( $where );
+				} else {
+					$where2 = array();
+					foreach ( $where as $w => $ns ) {
+						$where2[] = $db->makeList( array( $w, 'ar_namespace' => $ns ), LIST_AND );
+					}
+					$this->addWhere( $db->makeList( $where2, LIST_OR ) );
+				}
+			}
 
 			if ( isset( $params['prefix'] ) ) {
-				$this->addWhere( 'ar_title' . $db->buildLike(
-					$this->titlePartToKey( $params['prefix'], $params['namespace'] ),
-					$db->anyString() ) );
+				$where = array();
+				foreach ( $namespaces as $ns ) {
+					$w = 'ar_title' . $db->buildLike(
+						$this->titlePartToKey( $params['prefix'], $ns ),
+						$db->anyString() );
+					$where[$w][] = $ns;
+				}
+				if ( count( $where ) == 1 ) {
+					$where = key( $where );
+					$this->addWhere( $where );
+				} else {
+					$where2 = array();
+					foreach ( $where as $w => $ns ) {
+						$where2[] = $db->makeList( array( $w, 'ar_namespace' => $ns ), LIST_AND );
+					}
+					$this->addWhere( $db->makeList( $where2, LIST_OR ) );
+				}
 			}
 		} else {
 			if ( $this->getConfig()->get( 'MiserMode' ) ) {
