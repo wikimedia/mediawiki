@@ -71,6 +71,7 @@ class ApiPageSet extends ApiBase {
 	private $mLiveRevIDs = array();
 	private $mDeletedRevIDs = array();
 	private $mMissingRevIDs = array();
+	private $mGeneratorData = array(); // [ns][dbkey] => data array
 	private $mFakePageId = -1;
 	private $mCacheMode = 'public';
 	private $mRequestedPageFields = array();
@@ -1171,6 +1172,100 @@ class ApiPageSet extends ApiBase {
 		$genderCache->doQuery( $usernames, __METHOD__ );
 
 		return $linkBatch;
+	}
+
+	/**
+	 * Set data for a title.
+	 *
+	 * This data may be extracted into an ApiResult using
+	 * self::populateGeneratorData. This should generally be limited to
+	 * data that is likely to be particularly useful to end users rather than
+	 * just being a dump of everything returned in non-generator mode.
+	 *
+	 * Redirects here will *not* be followed, even if 'redirects' was
+	 * specified, since in the case of multiple redirects we can't know which
+	 * source's data to use on the target.
+	 *
+	 * @param Title $title
+	 * @param array $data
+	 */
+	public function setGeneratorData( Title $title, array $data ) {
+		$ns = $title->getNamespace();
+		$dbkey = $title->getDBkey();
+		$this->mGeneratorData[$ns][$dbkey] = $data;
+	}
+
+	/**
+	 * Populate the generator data for all titles in the result
+	 *
+	 * The page data may be inserted into an ApiResult object or into an
+	 * associative array. The $path parameter specifies the path within the
+	 * ApiResult or array to find the "pages" node.
+	 *
+	 * The "pages" node itself must be an associative array mapping the page ID
+	 * or fake page ID values returned by this pageset (see
+	 * self::getAllTitlesByNamespace() and self::getSpecialTitles()) to
+	 * associative arrays of page data. Each of those subarrays will have the
+	 * data from self::setGeneratorData() merged in.
+	 *
+	 * Data that was set by self::setGeneratorData() for pages not in the
+	 * "pages" node will be ignored.
+	 *
+	 * @param ApiResult|array &$result
+	 * @param array $path
+	 * @return boolean Whether the data fit
+	 */
+	public function populateGeneratorData( &$result, array $path = array() ) {
+		if ( $result instanceof ApiResult ) {
+			$data = $result->getData();
+		} else {
+			$data = &$result;
+		}
+		foreach ( $path as $key ) {
+			if ( !isset( $data[$key] ) ) {
+				// Path isn't in $result, so nothing to add, so everything
+				// "fits"
+				return true;
+			}
+			$data = &$data[$key];
+		}
+		foreach ( $this->mGeneratorData as $ns => $dbkeys ) {
+			if ( $ns === -1 ) {
+				$pages = array();
+				foreach ( $this->mSpecialTitles as $id => $title ) {
+					$pages[$title->getDBkey()] = $id;
+				}
+			} else {
+				if ( !isset( $this->mAllPages[$ns] ) ) {
+					// No known titles in the whole namespace. Skip it.
+					continue;
+				}
+				$pages = $this->mAllPages[$ns];
+			}
+			foreach ( $dbkeys as $dbkey => $genData ) {
+				if ( !isset( $pages[$dbkey] ) ) {
+					// Unknown title. Forget it.
+					continue;
+				}
+				$pageId = $pages[$dbkey];
+				if ( !isset( $data[$pageId] ) ) {
+					// $pageId didn't make it into the result. Ignore it.
+					continue;
+				}
+
+				if ( $result instanceof ApiResult ) {
+					$path2 = array_merge( $path, array( $pageId ) );
+					foreach ( $genData as $key => $value ) {
+						if ( !$result->addValue( $path2, $key, $value ) ) {
+							return false;
+						}
+					}
+				} else {
+					$data[$pageId] = array_merge( $data[$pageId], $genData );
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
