@@ -120,7 +120,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 */
 	public function execute( $par ) {
 		$out = $this->getOutput();
-		$out->addModules( 'mediawiki.userSuggest' );
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -200,6 +199,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected function form() {
 		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.userSuggest' );
+
 		// Consume values
 		$this->opts->consumeValue( 'offset' ); // don't carry offset, DWIW
 		$namespace = $this->opts->consumeValue( 'namespace' );
