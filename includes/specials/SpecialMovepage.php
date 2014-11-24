@@ -783,6 +783,21 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addHTML( "</ul>\n" );
 	}
 
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit = 10 ) {
+		if ( $search === '' ) {
+			return array( Title::newMainPage()->getPrefixedText() );
+		}
+		// Autocomplete subpage the same as a normal search
+		return PrefixSearch::titleSearch( $search, $limit );
+	}
+
 	protected function getGroupName() {
 		return 'pagetools';
 	}
