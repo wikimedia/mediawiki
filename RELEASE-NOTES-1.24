@@ -9,7 +9,7 @@ MediaWiki 1.24 is being prepared for release.  Please file bugs for
 any problems found.
 
 === Configuration changes in 1.24 ===
-* Setting $wgAllowSiteCSSOnRestrictedPages to true is necessary if you want to 
+* Setting $wgAllowSiteCSSOnRestrictedPages to true is necessary if you want to
   use on-wiki CSS modifications (e.g MediaWiki:Common.css) on
   Special:UserLogin or Special:Preferences.
 * MediaWiki will no longer run if register_globals is enabled. It has been
@@ -76,6 +76,8 @@ any problems found.
 * $wgResourceLoaderLESSFunctions has been deprecated and will be removed in the future.
 * $wgGoToEdit has been removed. Use the SpecialSearchNogomatch hook for similar
   functionality.
+* $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
+  might be a flash policy directive configurable.
 
 === New features in 1.24 ===
 * Added new hook WatchlistEditorBeforeFormRender, allowing subscribers to
