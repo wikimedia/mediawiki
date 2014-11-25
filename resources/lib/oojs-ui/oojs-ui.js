@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (9ed4cf2557)
+ * OOjs UI v0.2.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-22T01:21:13Z
+ * Date: 2014-11-25T01:13:13Z
  */
 ( function ( OO ) {
 
@@ -4541,7 +4541,6 @@ OO.ui.LabelElement.prototype.setLabelContent = function ( label ) {
 	} else {
 		this.$label.empty();
 	}
-	this.$label.css( 'display', !label ? 'none' : '' );
 };
 
 /**
@@ -5909,7 +5908,7 @@ OO.ui.MessageDialog.static.actions = [
  */
 OO.ui.MessageDialog.prototype.onActionResize = function ( action ) {
 	this.fitActions();
-	return OO.ui.ProcessDialog.super.prototype.onActionResize.call( this, action );
+	return OO.ui.MessageDialog.super.prototype.onActionResize.call( this, action );
 };
 
 /**
@@ -6035,10 +6034,9 @@ OO.ui.MessageDialog.prototype.attachActions = function () {
 		special.primary.toggleFramed( false );
 	}
 
+	this.manager.updateWindowSize( this );
 	this.fitActions();
-	if ( !this.isOpening() ) {
-		this.manager.updateWindowSize( this );
-	}
+
 	this.$body.css( 'bottom', this.$foot.outerHeight( true ) );
 };
 
@@ -6404,19 +6402,34 @@ OO.ui.BookletLayout.prototype.onStackLayoutFocus = function ( e ) {
  * @param {OO.ui.PanelLayout|null} page The page panel that is now the current panel
  */
 OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
-	var $input, layout = this;
+	var layout = this;
 	if ( page ) {
 		page.scrollElementIntoView( { complete: function () {
 			if ( layout.autoFocus ) {
-				// Set focus to the first input if nothing on the page is focused yet
-				if ( !page.$element.find( ':focus' ).length ) {
-					$input = page.$element.find( ':input:first' );
-					if ( $input.length ) {
-						$input[0].focus();
-					}
-				}
+				layout.focus();
 			}
 		} } );
+	}
+};
+
+/**
+ * Focus the first input in the current page.
+ *
+ * If no page is selected, the first selectable page will be selected.
+ * If the focus is already in an element on the current page, nothing will happen.
+ */
+OO.ui.BookletLayout.prototype.focus = function () {
+	var $input, page = this.stackLayout.getCurrentItem();
+	if ( !page ) {
+		this.selectFirstSelectablePage();
+		page = this.stackLayout.getCurrentItem();
+	}
+	// Only change the focus if is not already in the current page
+	if ( !page.$element.find( ':focus' ).length ) {
+		$input = page.$element.find( ':input:first' );
+		if ( $input.length ) {
+			$input[0].focus();
+		}
 	}
 };
 
@@ -6594,7 +6607,7 @@ OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
 
 	if ( this.outlined && items.length ) {
 		this.outlineSelectWidget.addItems( items, index );
-		this.updateOutlineSelectWidget();
+		this.selectFirstSelectablePage();
 	}
 	this.stackLayout.addItems( pages, index );
 	this.emit( 'add', pages, index );
@@ -6623,7 +6636,7 @@ OO.ui.BookletLayout.prototype.removePages = function ( pages ) {
 	}
 	if ( this.outlined && items.length ) {
 		this.outlineSelectWidget.removeItems( items );
-		this.updateOutlineSelectWidget();
+		this.selectFirstSelectablePage();
 	}
 	this.stackLayout.removeItems( pages );
 	this.emit( 'remove', pages );
@@ -6696,12 +6709,11 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 };
 
 /**
- * Call this after adding or removing items from the OutlineSelectWidget.
+ * Select the first selectable page.
  *
  * @chainable
  */
-OO.ui.BookletLayout.prototype.updateOutlineSelectWidget = function () {
-	// Auto-select first item when nothing is selected anymore
+OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
 	if ( !this.outlineSelectWidget.getSelectedItem() ) {
 		this.outlineSelectWidget.selectItem( this.outlineSelectWidget.getFirstSelectableItem() );
 	}
@@ -10053,6 +10065,7 @@ OO.ui.ComboBoxWidget.prototype.setDisabled = function ( disabled ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {OO.ui.InputWidget} [input] Input widget this label is for
  */
 OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 	// Configuration initialization
