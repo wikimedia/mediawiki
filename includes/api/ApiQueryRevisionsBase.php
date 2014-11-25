@@ -35,7 +35,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$parseContent, $fetchContent, $contentFormat, $setParsedLimit = true;
 
 	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
-		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
+		$fld_size = false, $fld_sha1 = false, $fld_sha1base36, $fld_comment = false,
 		$fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 		$fld_content = false, $fld_tags = false, $fld_contentmodel = false;
 
@@ -99,6 +99,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$this->fld_parsedcomment = isset( $prop['parsedcomment'] );
 		$this->fld_size = isset( $prop['size'] );
 		$this->fld_sha1 = isset( $prop['sha1'] );
+		$this->fld_sha1base36 = isset( $prop['sha1base36'] );
 		$this->fld_content = isset( $prop['content'] );
 		$this->fld_contentmodel = isset( $prop['contentmodel'] );
 		$this->fld_userid = isset( $prop['userid'] );
@@ -204,14 +205,19 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $this->fld_sha1 ) {
+		if ( $this->fld_sha1 || $this->fld_sha1base36 ) {
 			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
 				$vals['sha1hidden'] = '';
 				$anyHidden = true;
 			}
 			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) {
 				if ( $revision->getSha1() != '' ) {
-					$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
+					if ( $this->fld_sha1 ) {
+						$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
+					}
+					if ( $this->fld_sha1base36 ) {
+						$vals['sha1base36'] = $revision->getSha1();
+					}
 				} else {
 					$vals['sha1'] = '';
 				}
@@ -427,6 +433,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'userid',
 					'size',
 					'sha1',
+					'sha1base36',
 					'contentmodel',
 					'comment',
 					'parsedcomment',

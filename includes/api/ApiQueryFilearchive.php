@@ -53,6 +53,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$prop = array_flip( $params['prop'] );
 		$fld_sha1 = isset( $prop['sha1'] );
+		$fld_sha1base36 = isset( $prop['sha1base36'] );
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_user = isset( $prop['user'] );
 		$fld_size = isset( $prop['size'] );
@@ -68,7 +69,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$this->addFields( ArchivedFile::selectFields() );
 		$this->addFields( array( 'fa_id', 'fa_name', 'fa_timestamp', 'fa_deleted' ) );
-		$this->addFieldsIf( 'fa_sha1', $fld_sha1 );
+		$this->addFieldsIf( 'fa_sha1', $fld_sha1 || $fld_sha1base36 );
 		$this->addFieldsIf( array( 'fa_user', 'fa_user_text' ), $fld_user );
 		$this->addFieldsIf( array( 'fa_height', 'fa_width', 'fa_size' ), $fld_dimensions || $fld_size );
 		$this->addFieldsIf( 'fa_description', $fld_description );
@@ -185,6 +186,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $fld_sha1 ) {
 				$file['sha1'] = wfBaseConvert( $row->fa_sha1, 36, 16, 40 );
 			}
+			if ( $fld_sha1base36 ) {
+				$file['sha1base36'] = $row->fa_sha1;
+			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
 			}
@@ -262,6 +266,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'sha1',
+					'sha1base36',
 					'timestamp',
 					'user',
 					'size',

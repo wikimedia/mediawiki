@@ -124,6 +124,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->fld_loginfo = isset( $prop['loginfo'] );
 		$this->fld_tags = isset( $prop['tags'] );
 		$this->fld_sha1 = isset( $prop['sha1'] );
+		$this->fld_sha1base36 = isset( $prop['sha1base36'] );
 	}
 
 	public function execute() {
@@ -303,7 +304,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addFields( 'ts_tags' );
 		}
 
-		if ( $this->fld_sha1 ) {
+		if ( $this->fld_sha1 || $this->fld_sha1base36 ) {
 			$this->addTables( 'revision' );
 			$this->addJoinConds( array( 'revision' => array( 'LEFT JOIN',
 				array( 'rc_this_oldid=rev_id' ) ) ) );
@@ -556,14 +557,19 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $this->fld_sha1 && $row->rev_sha1 !== null ) {
+		if ( ( $this->fld_sha1 || $this->fld_sha1base36 ) && $row->rev_sha1 !== null ) {
 			if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
 				$vals['sha1hidden'] = '';
 				$anyHidden = true;
 			}
 			if ( Revision::userCanBitfield( $row->rev_deleted, Revision::DELETED_TEXT, $user ) ) {
 				if ( $row->rev_sha1 !== '' ) {
-					$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
+					if ( $this->fld_sha1 ) {
+						$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
+					}
+					if ( $this->fld_sha1base36 ) {
+						$vals['sha1base36'] = $row->rev_sha1;
+					}
 				} else {
 					$vals['sha1'] = '';
 				}
@@ -657,6 +663,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'loginfo',
 					'tags',
 					'sha1',
+					'sha1base36',
 				)
 			),
 			'token' => array(
