@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# This script generates a commit that updates our copy of OOjs
+
 if [ -n "$2" ]
 then
 	# Too many parameters
