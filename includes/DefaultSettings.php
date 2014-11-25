@@ -2688,6 +2688,19 @@ $wgResourceLoaderValidateStaticJS = false;
  */
 $wgResourceLoaderExperimentalAsyncLoading = false;
 
+/**
+ * Whether to allow site-wide CSS (MediaWiki:Common.css and friends) on
+ * restricted pages like Special:UserLogin or Special:Preferences where
+ * JavaScript is disabled for security reasons. As it is possible to
+ * execute JavaScript through CSS, setting this to true opens up a
+ * potential security hole. Some sites may "skin" their wiki by using
+ * site-wide CSS, causing restricted pages to look unstyled and different
+ * from the rest of the site.
+ *
+ * @since 1.25
+ */
+$wgAllowSiteCSSOnRestrictedPages = false;
+
 /** @} */ # End of resource loader settings }
 
 
