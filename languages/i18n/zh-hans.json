@@ -367,7 +367,7 @@
 	"nosuchaction": "无此操作",
 	"nosuchactiontext": "URL所指定的操作无效。你所输入的URL地址可能有误，或是使用了错误的链接。这也可能表示{{SITENAME}}所使用软件之中存在漏洞。",
 	"nosuchspecialpage": "此特殊页面不存在",
-	"nospecialpagetext": "<strong>您请求了一个无效的特殊页面。</strong>\n\n在[[Special:SpecialPages|{{int:specialpages}}]可以]找到有效的特殊页面的列表。",
+	"nospecialpagetext": "<strong>您请求了一个无效的特殊页面。</strong>\n\n在[[Special:SpecialPages|{{int:specialpages}}]]可以找到有效的特殊页面的列表。",
 	"error": "错误",
 	"databaseerror": "数据库错误",
 	"databaseerror-text": "出现数据库查询错误。这可能表示软件中存在漏洞。",
