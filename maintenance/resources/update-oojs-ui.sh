@@ -27,7 +27,7 @@ else
 	npm install oojs-ui || exit 1
 fi
 
-OOJSUI_VERSION=$(node -e 'console.log(JSON.parse(require("fs").readFileSync("./node_modules/oojs-ui/package.json")).version);')
+OOJSUI_VERSION=$(node -e 'console.log(require("./node_modules/oojs-ui/package.json").version);')
 if [ "$OOJSUI_VERSION" == "" ]
 then
 	echo 'Could not find OOjs UI version'
