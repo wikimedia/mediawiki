@@ -455,6 +455,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$canonicaltitle = isset( $prop['canonicaltitle'] );
 		$url = isset( $prop['url'] );
 		$sha1 = isset( $prop['sha1'] );
+		$sha1base36 = isset( $prop['sha1base36'] );
 		$meta = isset( $prop['metadata'] );
 		$extmetadata = isset( $prop['extmetadata'] );
 		$commonmeta = isset( $prop['commonmetadata'] );
@@ -518,6 +519,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( $sha1 ) {
 			$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
+		}
+		if ( $sha1base36 ) {
+			$vals['sha1base36'] = $file->getSha1();
 		}
 
 		if ( $meta ) {
@@ -717,6 +721,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				'its height and its width. Page count and duration are added if applicable',
 			'dimensions' =>     ' dimensions    - Alias for size', // B/C with Allimages
 			'sha1' =>           ' sha1          - Adds SHA-1 hash for the image',
+			'sha1base36' =>     ' sha1base36    - Adds SHA-1 hash for the image in base 36 (used in MediaWiki)',
 			'mime' =>           ' mime          - Adds MIME type of the image',
 			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail' .
 				' (requires url and param ' . $modulePrefix . 'urlwidth)',
