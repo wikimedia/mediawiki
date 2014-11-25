@@ -3397,6 +3397,14 @@ $wgResourceLoaderStorageVersion = 1;
  */
 $wgAllowSiteCSSOnRestrictedPages = false;
 
+/**
+ * When OutputHandler is used, mangle any output that contains
+ * <cross-domain-policy>. Without this, an attacker can send their own
+ * cross-domain policy unless it is prevented by the crossdomain.xml file at
+ * the domain root.
+ */
+$wgMangleFlashPolicy = true;
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
