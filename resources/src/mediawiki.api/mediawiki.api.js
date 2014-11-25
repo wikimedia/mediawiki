@@ -1,11 +1,5 @@
 ( function ( mw, $ ) {
 
-	function getTokenType( action ) {
-		// Token types from `action=tokens` that need to be mapped to the 'csrf' token type for backward-compatibility.
-		var csrfActions = [ 'block', 'delete', 'edit', 'email', 'import', 'move', 'options', 'protect', 'unblock' ];
-		return $.inArray( action, csrfActions ) === -1 ? action : 'csrf';
-	}
-
 	// We allow people to omit these default parameters from API requests
 	// there is very customizable error handling here, on a per-call basis
 	// wondering, would it be simpler to make it easy to clone the api object,
@@ -277,32 +271,26 @@
 		 * @return {string} return.done.token Received token.
 		 * @since 1.22
 		 */
-		getToken: function ( action, assert ) {
+		getToken: function ( type, assert ) {
 			var apiPromise,
-				type = getTokenType( action ),
 				promiseGroup = promises[ this.defaults.ajax.url ],
-				d = promiseGroup && promiseGroup[ action + 'Token' ];
+				d = promiseGroup && promiseGroup[ type + 'Token' ];
 
 			if ( !d ) {
-				apiPromise = this.get( {
-					action: 'query',
-					meta: 'tokens',
-					type: type,
-					assert: assert
-				} );
+				apiPromise = this.get( { action: 'tokens', type: type, assert: assert } );
 
 				d = apiPromise
-					.then( function ( res ) {
+					.then( function ( data ) {
 						// If token type is not available for this user,
 						// key '...token' is either missing or set to boolean false
-						if ( res.query && res.query.tokens && res.query.tokens[type + 'token'] ) {
-							return res.query.tokens[type + 'token'];
+						if ( data.tokens && data.tokens[type + 'token'] ) {
+							return data.tokens[type + 'token'];
 						}
 
-						return $.Deferred().reject( 'token-missing', res );
+						return $.Deferred().reject( 'token-missing', data );
 					}, function () {
 						// Clear promise. Do not cache errors.
-						delete promiseGroup[ action + 'Token' ];
+						delete promiseGroup[ type + 'Token' ];
 
 						// Pass on to allow the caller to handle the error
 						return this;
@@ -314,7 +302,7 @@
 				if ( !promiseGroup ) {
 					promiseGroup = promises[ this.defaults.ajax.url ] = {};
 				}
-				promiseGroup[ action + 'Token' ] = d;
+				promiseGroup[ type + 'Token' ] = d;
 			}
 
 			return d;

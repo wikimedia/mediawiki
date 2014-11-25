@@ -47,7 +47,6 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 			'editToken' => $user->getEditToken(),
 			'patrolToken' => $user->getEditToken( 'patrol' ),
 			'watchToken' => $user->getEditToken( 'watch' ),
-			'csrfToken' => $user->getEditToken()
 		);
 	}
 
