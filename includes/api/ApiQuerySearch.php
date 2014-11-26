@@ -204,47 +204,50 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 
 		$hasInterwikiResults = false;
+		$totalhits = null;
 		if ( $interwiki && $resultPageSet === null && $matches->hasInterwikiResults() ) {
-			$matches = $matches->getInterwikiResults();
-			$hasInterwikiResults = true;
+			foreach( $matches->getInterwikiResults() as $matches ) {
+				$matches = $matches->getInterwikiResults();
+				$hasInterwikiResults = true;
 
-			// Include number of results if requested
-			if ( $resultPageSet === null && isset( $searchInfo['totalhits'] ) ) {
-				$totalhits = $matches->getTotalHits();
-				if ( $totalhits !== null ) {
-					$apiResult->addValue( array( 'query', 'interwikisearchinfo' ),
-						'totalhits', $totalhits );
-				}
-			}
-
-			$result = $matches->next();
-			while ( $result ) {
-				$title = $result->getTitle();
-
-				if ( $resultPageSet === null ) {
-					$vals = array(
-						'namespace' => $result->getInterwikiNamespaceText(),
-						'title' => $title->getText(),
-						'url' => $title->getFullUrl(),
-					);
-
-					// Add item to results and see whether it fits
-					$fit = $apiResult->addValue(
-						array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
-						null,
-						$vals
-					);
-
-					if ( !$fit ) {
-						// We hit the limit. We can't really provide any meaningful
-						// pagination info so just bail out
-						break;
-					}
-				} else {
-					$titles[] = $title;
+				// Include number of results if requested
+				if ( $resultPageSet === null && isset( $searchInfo['totalhits'] ) ) {
+					$totalhits += $matches->getTotalHits();
 				}
 
 				$result = $matches->next();
+				while ( $result ) {
+					$title = $result->getTitle();
+
+					if ( $resultPageSet === null ) {
+						$vals = array(
+							'namespace' => $result->getInterwikiNamespaceText(),
+							'title' => $title->getText(),
+							'url' => $title->getFullUrl(),
+						);
+
+						// Add item to results and see whether it fits
+						$fit = $apiResult->addValue(
+							array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
+							null,
+							$vals
+						);
+
+						if ( !$fit ) {
+							// We hit the limit. We can't really provide any meaningful
+							// pagination info so just bail out
+							break;
+						}
+					} else {
+						$titles[] = $title;
+					}
+
+					$result = $matches->next();
+				}
+			}
+			if ( $totalhits !== null ) {
+				$apiResult->addValue( array( 'query', 'interwikisearchinfo' ),
+					'totalhits', $totalhits );
 			}
 		}
 
