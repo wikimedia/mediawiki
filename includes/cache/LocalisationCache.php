@@ -655,8 +655,13 @@ class LocalisationCache {
 	 * @param string $fileName
 	 */
 	protected function loadPluralFile( $fileName ) {
+		// Use file_get_contents instead of DOMDocument::load (T58439)
+		$xml = file_get_contents( $fileName );
+		if ( !$xml ) {
+			throw new MWException( "Unable to read plurals file $fileName" );
+		}
 		$doc = new DOMDocument;
-		$doc->load( $fileName );
+		$doc->loadXML( $xml );
 		$rulesets = $doc->getElementsByTagName( "pluralRules" );
 		foreach ( $rulesets as $ruleset ) {
 			$codes = $ruleset->getAttribute( 'locales' );
