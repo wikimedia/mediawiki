@@ -401,11 +401,12 @@ class SpecialListUsers extends IncludableSpecialPage {
 	 *
 	 * @param string $search Prefix to search for
 	 * @param int $limit Maximum number of results to return
+	 * @param int $offset Number of pages to offset
 	 * @return string[] Matching subpages
 	 */
-	public function prefixSearchSubpages( $search, $limit = 10 ) {
+	public function prefixSearchSubpages( $search, $limit = 10, $offset = 0 ) {
 		$subpages = User::getAllGroups();
-		return self::prefixSearchArray( $search, $limit, $subpages );
+		return self::prefixSearchArray( $search, $limit, $subpages, $offset );
 	}
 
 	protected function getGroupName() {
