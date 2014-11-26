@@ -488,6 +488,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		parent::addModules();
 		$out = $this->getOutput();
 		$out->addModules( 'mediawiki.special.recentchanges' );
+		if ( !$this->including() ) {
+			$out->addModules( 'mediawiki.tagSuggest' );
+		}
 	}
 
 	/**

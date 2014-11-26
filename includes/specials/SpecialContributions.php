@@ -473,6 +473,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			$form .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
+		$this->getOutput()->addModules( 'mediawiki.tagSuggest' );
+
 		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
 
 		if ( $tagFilter ) {

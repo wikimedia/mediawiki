@@ -952,6 +952,13 @@ return array(
 			'mediawiki.api',
 		),
 	),
+	'mediawiki.tagSuggest' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.tagSuggest.js',
+		'dependencies' => array(
+			'jquery.suggestions',
+			'mediawiki.api'
+		)
+	),
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.Title.js',
 		'dependencies' => array(
