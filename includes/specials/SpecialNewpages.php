@@ -200,6 +200,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected function form() {
 		$out = $this->getOutput();
 		$out->addModules( 'mediawiki.userSuggest' );
+		$out->addModules( 'mediawiki.tagSuggest' );
 
 		// Consume values
 		$this->opts->consumeValue( 'offset' ); // don't carry offset, DWIW

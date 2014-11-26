@@ -48,6 +48,7 @@ class SpecialLog extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+		$this->getOutput()->addModules( 'mediawiki.tagSuggest' );
 
 		$opts = new FormOptions;
 		$opts->add( 'type', '' );

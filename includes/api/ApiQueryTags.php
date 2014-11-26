@@ -47,6 +47,8 @@ class ApiQueryTags extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
+		$db = $this->getDB();
+
 		$prop = array_flip( $params['prop'] );
 
 		$this->fld_displayname = isset( $prop['displayname'] );
@@ -60,6 +62,13 @@ class ApiQueryTags extends ApiQueryBase {
 		$this->addFields( 'ct_tag' );
 
 		$this->addFieldsIf( array( 'hitcount' => 'COUNT(*)' ), $this->fld_hitcount );
+
+		if ( isset( $params['contains'] ) ) {
+			$this->addWhere( 'ct_tag' . $db->buildLike(
+				$db->anyString(),
+				$params['contains'],
+				$db->anyString() ) );
+		}
 
 		$this->addOption( 'LIMIT', $this->limit + 1 );
 		$this->addOption( 'GROUP BY', 'ct_tag' );
@@ -145,6 +154,7 @@ class ApiQueryTags extends ApiQueryBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
+			'contains' => null,
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'name',
 				ApiBase::PARAM_TYPE => array(
