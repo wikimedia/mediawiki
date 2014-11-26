@@ -1,6 +1,15 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.23.7 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.6 ==
+
+* $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
+  might be a flash policy directive configurable.
+
 == MediaWiki 1.23.6 ==
 
 This is a maintenance release of the MediaWiki 1.23 branch.
@@ -42,7 +51,7 @@ This is a maintenance release of the MediaWiki 1.23 branch.
 * (bug 64970) Fix support for blobs on DatabaseOracle::update.
 * (bug 66574) Display MediaWiki:Loginprompt on the login page.
 * (bug 67870) wfShellExec() cuts off stdout at multiples of 8192 bytes.
-* (bug 60629) Handle invalid language code gracefully in 
+* (bug 60629) Handle invalid language code gracefully in
   Language::fetchLanguageNames.
 * (bug 62017) Restore the number of rows shown on Special:Watchlist.
 * Check for boolean false result from database query in SqlBagOStuff.
@@ -57,7 +66,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 * (bug 66608) SECURITY: Fix for XSS issue in bug 66608: Generate the URL used
   for loading a new page in Javascript,instead of relying on the URL in the link
   that has been clicked.
-* (bug 65778) SECURITY: Copy prevent-clickjacking between OutputPage and 
+* (bug 65778) SECURITY: Copy prevent-clickjacking between OutputPage and
   ParserOutput.
 * (bug 68313) Preferences: Turn stubthreshold back into a combo box.
 * (bug 65214) Fix initSiteStats.php maintenance script.
