@@ -127,17 +127,11 @@ class MWTidy {
 	 * @return string Corrected HTML output
 	 */
 	public static function tidy( $text ) {
-		global $wgTidyInternal;
-
 		$wrapper = new MWTidyWrapper;
 		$wrappedtext = $wrapper->getWrapped( $text );
 
 		$retVal = null;
-		if ( $wgTidyInternal ) {
-			$correctedtext = self::execInternalTidy( $wrappedtext, false, $retVal );
-		} else {
-			$correctedtext = self::execExternalTidy( $wrappedtext, false, $retVal );
-		}
+		$correctedtext = self::clean( $wrappedtext, false, $retVal );
 
 		if ( $retVal < 0 ) {
 			wfDebug( "Possible tidy configuration error!\n" );
@@ -160,16 +154,33 @@ class MWTidy {
 	 * @return bool Whether the HTML is valid
 	 */
 	public static function checkErrors( $text, &$errorStr = null ) {
+		$retval = 0;
+		$errorStr = self::clean( $text, true, $retval );
+		return ( $retval < 0 && $errorStr == '' ) || $retval == 0;
+	}
+
+	/**
+	 * Perform a clean/repair operation
+	 * @param string $text HTML to check
+	 * @param bool $stderr Whether to read result from STDERR rather than STDOUT
+	 * @param int &$retval Exit code (-1 on internal error)
+	 * @return string|null
+	 */
+	private static function clean( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyInternal;
 
-		$retval = 0;
 		if ( $wgTidyInternal ) {
-			$errorStr = self::execInternalTidy( $text, true, $retval );
+			if ( defined( 'HHVM_VERSION' ) ) {
+				if ( $stderr ) {
+					throw new MWException( __METHOD__.": error text return from HHVM tidy is not supported" );
+				}
+				return self::hhvmClean( $text, $retval );
+			} else {
+				return self::phpClean( $text, $stderr, $retval );
+			}
 		} else {
-			$errorStr = self::execExternalTidy( $text, true, $retval );
+			return self::externalClean( $text, $stderr, $retval );
 		}
-
-		return ( $retval < 0 && $errorStr == '' ) || $retval == 0;
 	}
 
 	/**
@@ -181,7 +192,7 @@ class MWTidy {
 	 * @param int &$retval Exit code (-1 on internal error)
 	 * @return string|null
 	 */
-	private static function execExternalTidy( $text, $stderr = false, &$retval = null ) {
+	private static function externalClean( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
 		wfProfileIn( __METHOD__ );
 
@@ -248,7 +259,7 @@ class MWTidy {
 	 * @param int &$retval Exit code (-1 on internal error)
 	 * @return string|null
 	 */
-	private static function execInternalTidy( $text, $stderr = false, &$retval = null ) {
+	private static function phpClean( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgDebugTidy;
 		wfProfileIn( __METHOD__ );
 
@@ -285,6 +296,31 @@ class MWTidy {
 			}
 		}
 
+		wfProfileOut( __METHOD__ );
+		return $cleansource;
+	}
+
+	/**
+	 * Use the tidy extension for HHVM from
+	 * https://github.com/wikimedia/mediawiki-php-tidy
+	 *
+	 * This currently does not support the object-oriented interface, but
+	 * tidy_repair_string() can be used for the most common tasks.
+	 *
+	 * @param string $text HTML to check
+	 * @param int &$retval Exit code (-1 on internal error)
+	 * @return string|null
+	 */
+	private static function hhvmClean( $text, &$retval ) {
+		global $wgTidyConf;
+		wfProfileIn( __METHOD__ );
+		$cleansource = tidy_repair_string( $text, $wgTidyConf, 'utf8' );
+		if ( $cleansource === false ) {
+			$cleansource = null;
+			$retval = -1;
+		} else {
+			$retval = 0;
+		}
 		wfProfileOut( __METHOD__ );
 		return $cleansource;
 	}
