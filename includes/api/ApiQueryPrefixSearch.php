@@ -43,9 +43,10 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		$search = $params['search'];
 		$limit = $params['limit'];
 		$namespaces = $params['namespace'];
+		$offset = $params['offset'];
 
 		$searcher = new TitlePrefixSearch;
-		$titles = $searcher->searchWithVariants( $search, $limit, $namespaces );
+		$titles = $searcher->searchWithVariants( $search, $limit, $namespaces, $offset );
 		if ( $resultPageSet ) {
 			$resultPageSet->populateFromTitles( $titles );
 		} else {
@@ -96,6 +97,10 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 					// Non-standard value for compatibility with action=opensearch
 					ApiBase::PARAM_MAX => 100,
 					ApiBase::PARAM_MAX2 => 200,
+				),
+				'offset' => array(
+					ApiBase::PARAM_DFLT => 0,
+					ApiBase::PARAM_TYPE => 'integer',
 				),
 			);
 	}

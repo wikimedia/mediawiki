@@ -138,6 +138,23 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideSearch
+	 * @covers PrefixSearch::search
+	 * @covers PrefixSearch::searchBackend
+	 */
+	public function testSearchWithOffset( Array $case ) {
+		$this->searchProvision( null );
+		$searcher = new StringPrefixSearch;
+		$results = $searcher->search( $case['query'], 3, array(), 1 );
+		array_shift( $case['results'] ); // We don't expect the first result
+		$this->assertEquals(
+			$case['results'],
+			$results,
+			$case[0]
+		);
+	}
+
 	public static function provideSearchBackend() {
 		return array(
 			array( array(
