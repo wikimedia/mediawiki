@@ -2,6 +2,82 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.24.
 
 == MediaWiki 1.23 ==
 
+== MediaWiki 1.23.6 ==
+
+This is a maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.5 ===
+* (Bug 72274) Job queue not running (HTTP 411) due to missing
+  Content-Length: header
+* (Bug 67440) Allow classes to be registered properly from installer
+
+== MediaWiki 1.23.5 ==
+
+This is a security release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.4 ===
+* (bug 70672) SECURITY: OutputPage: Remove separation of css and js module
+  allowance.
+
+== MediaWiki 1.23.4 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.3 ===
+
+* (bug 69008) SECURITY: Enhance CSS filtering in SVG files. Filter <style>
+  elements; normalize style elements and attributes before filtering; add
+  checks for attributes that contain css; add unit tests for html5sec and
+  reported bugs.
+* (bug 65998) Make MySQLi work with non-standard socket.
+* (bug 66986) GlobalVarConfig shouldn't throw exceptions for null-valued config
+  settings.
+
+== MediaWiki 1.23.3 ==
+
+This is a maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.2 ===
+
+* (bug 68501) Correctly handle incorrect namespace in cleanupTitles.php.
+* (bug 64970) Fix support for blobs on DatabaseOracle::update.
+* (bug 66574) Display MediaWiki:Loginprompt on the login page.
+* (bug 67870) wfShellExec() cuts off stdout at multiples of 8192 bytes.
+* (bug 60629) Handle invalid language code gracefully in
+  Language::fetchLanguageNames.
+* (bug 62017) Restore the number of rows shown on Special:Watchlist.
+* Check for boolean false result from database query in SqlBagOStuff.
+
+== MediaWiki 1.23.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.1 ===
+
+* (bug 68187) SECURITY: Prepend jsonp callback with comment.
+* (bug 66608) SECURITY: Fix for XSS issue in bug 66608: Generate the URL used
+  for loading a new page in Javascript,instead of relying on the URL in the link
+  that has been clicked.
+* (bug 65778) SECURITY: Copy prevent-clickjacking between OutputPage and
+  ParserOutput.
+* (bug 68313) Preferences: Turn stubthreshold back into a combo box.
+* (bug 65214) Fix initSiteStats.php maintenance script.
+* (bug 67594) Special:ActiveUsers: Fix to work with PostgreSQL.
+
+== MediaWiki 1.23.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.0 ===
+
+* (bug 65839) SECURITY: Prevent external resources in SVG files.
+* (bug 67025) Special:Watchlist: Don't try to render empty row.
+* (bug 66922) Don't allow some E_NOTICE messages to end up in the LocalSettings.php.
+* (bug 66467) FileBackend: Avoid using popen() when "parallelize" is disabled.
+* (bug 66428) MimeMagic: Don't seek before BOF. This has weird side effects
+  like only extracting the tail of the file partially or not at all.
+* (bug 66182) Removed -x flag on some php files.
+
 === Configuration changes in 1.23 ===
 * (bug 13250) Restored method for clearing a watchlist in web UI
   so that users with large watchlists don't have to perform
