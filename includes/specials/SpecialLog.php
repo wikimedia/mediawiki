@@ -123,13 +123,14 @@ class SpecialLog extends SpecialPage {
 	 *
 	 * @param string $search Prefix to search for
 	 * @param int $limit Maximum number of results to return
+	 * @param int $offset Number of pages to skip
 	 * @return string[] Matching subpages
 	 */
-	public function prefixSearchSubpages( $search, $limit = 10 ) {
+	public function prefixSearchSubpages( $search, $limit = 10, $offset = 0 ) {
 		$subpages = $this->getConfig()->get( 'LogTypes' );
 		$subpages[] = 'all';
 		sort( $subpages );
-		return self::prefixSearchArray( $search, $limit, $subpages );
+		return self::prefixSearchArray( $search, $limit, $subpages, $offset );
 	}
 
 	private function parseParams( FormOptions $opts, $par ) {

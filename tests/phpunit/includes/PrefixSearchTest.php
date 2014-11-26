@@ -63,6 +63,10 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 					'Example/Baz',
 					'Example Bar',
 				),
+				// Third result when testing offset
+				'offsetresult' => array(
+					'Example Foo',
+				),
 			) ),
 			array( array(
 				'Talk namespace prefix',
@@ -87,6 +91,10 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 					'Special:AllMessages',
 					'Special:AllMyFiles',
 				),
+				// Third result when testing offset
+				'offsetresult' => array(
+					'Special:AllMyUploads',
+				),
 			) ),
 			array( array(
 				'Special namespace with prefix',
@@ -95,6 +103,10 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 					'Special:Unblock',
 					'Special:UncategorizedCategories',
 					'Special:UncategorizedFiles',
+				),
+				// Third result when testing offset
+				'offsetresult' => array(
+					'Special:UncategorizedImages',
 				),
 			) ),
 			array( array(
@@ -133,6 +145,30 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		$results = $searcher->search( $case['query'], 3 );
 		$this->assertEquals(
 			$case['results'],
+			$results,
+			$case[0]
+		);
+	}
+
+	/**
+	 * @dataProvider provideSearch
+	 * @covers PrefixSearch::search
+	 * @covers PrefixSearch::searchBackend
+	 */
+	public function testSearchWithOffset( Array $case ) {
+		$this->searchProvision( null );
+		$searcher = new StringPrefixSearch;
+		$results = $searcher->search( $case['query'], 3, array(), 1 );
+
+		// We don't expect the first result when offsetting
+		array_shift( $case['results'] );
+		// And sometimes we expect a different last result
+		$expected = isset( $case['offsetresult'] ) ?
+			array_merge( $case['results'], $case['offsetresult'] ):
+			$case['results'];
+
+		$this->assertEquals(
+			$expected,
 			$results,
 			$case[0]
 		);

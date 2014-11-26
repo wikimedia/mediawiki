@@ -741,6 +741,7 @@
 	"apihelp-query+prefixsearch-param-search": "Search string.",
 	"apihelp-query+prefixsearch-param-namespace": "Namespaces to search.",
 	"apihelp-query+prefixsearch-param-limit": "Maximum number of results to return.",
+	"apihelp-query+prefixsearch-param-offset": "Number of results to skip.",
 	"apihelp-query+prefixsearch-example-simple": "Search for page titles beginning with \"meaning\"",
 
 	"apihelp-query+protectedtitles-description": "List all titles protected from creation.",
