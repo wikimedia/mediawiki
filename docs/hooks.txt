@@ -2166,6 +2166,7 @@ $ns : array of int namespace keys to search in
 $search : search term (not guaranteed to be conveniently normalized)
 $limit : maximum number of results to return
 &$results : out param: array of page names (strings)
+$offset : number of results to offset from the beginning
 
 'PrefixSearchExtractNamespace': Called if core was not able to extract a
 namespace from the search string so that extensions can attempt it.

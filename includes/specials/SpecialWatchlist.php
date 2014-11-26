@@ -79,22 +79,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Return an array of subpages beginning with $search that this special page will accept.
+	 * Return an array of subpages that this special page will accept.
 	 *
-	 * @param string $search Prefix to search for
-	 * @param int $limit Maximum number of results to return
-	 * @return string[] Matching subpages
+	 * @see also SpecialEditWatchlist::getSubpagesForPrefixSearch
+	 * @return string[] subpages
 	 */
-	public function prefixSearchSubpages( $search, $limit = 10 ) {
-		// See also SpecialEditWatchlist::prefixSearchSubpages
-		return self::prefixSearchArray(
-			$search,
-			$limit,
-			array(
-				'clear',
-				'edit',
-				'raw',
-			)
+	public function getSubpagesForPrefixSearch() {
+		return array(
+			'clear',
+			'edit',
+			'raw',
 		);
 	}
 

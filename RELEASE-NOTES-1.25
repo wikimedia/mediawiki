@@ -59,6 +59,9 @@ production.
 * Added a hook, "ApiOpenSearchSuggest", to allow extensions to provide extracts
   and images for ApiOpenSearch output. The semantics are identical to the
   "OpenSearchXml" hook provided by the OpenSearchXml extension.
+* PrefixSearchBackend hook now has an $offset parameter. Combined with $limit,
+  this allows for pagination of prefix results. Extensions using this hook are
+  encouraged to use it if applicable.
 
 === Bug fixes in 1.25 ===
 * (bug 71003) No additional code will be generated to try to load CSS-embedded
@@ -118,6 +121,7 @@ production.
   in JSON format.
 * (bug T76051) list=tags will now continue correctly.
 * (bug T76052) list=tags can now indicate whether a tag is defined.
+* (T75522) list=prefixsearch now supports continuation
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
