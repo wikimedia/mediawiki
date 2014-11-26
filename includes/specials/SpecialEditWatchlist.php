@@ -705,6 +705,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$form->setWrapperLegendMsg( 'watchlistedit-clear-legend' );
 		$form->addHeaderText( $this->msg( 'watchlistedit-clear-explain' )->parse() );
 		$form->setSubmitCallback( array( $this, 'submitClear' ) );
+		$form->setSubmitDestructive();
 
 		return $form;
 	}
