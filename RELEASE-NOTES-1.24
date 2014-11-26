@@ -3,10 +3,13 @@ turn it off. MediaWiki will no longer work with it enabled.
 
 == MediaWiki 1.24 ==
 
-THIS IS A RELEASE CANDIDATE
+MediaWiki 1.24.0 is the stable branch and is recommended for use in production.
 
-MediaWiki 1.24 is being prepared for release.  Please file bugs for
-any problems found.
+MediaWiki 1.24 is a large release that contains many new features and bug
+fixes. This is the full list of changes in this version.
+
+Our thanks go to everyone who helped to improve MediaWiki by testing the beta
+release and submitting bug reports.
 
 === Configuration changes in 1.24 ===
 * Setting $wgAllowSiteCSSOnRestrictedPages to true is necessary if you want to
@@ -243,6 +246,29 @@ any problems found.
   characters decoded in the query string.
 * (bug 67368) LESS mixins like .background-image() correctly flip image
   references for RTL stylesheets now.
+* (bugs 66776, 71478) SECURITY:  User PleaseStand reported a way to inject code
+  into API clients that used format=php to process pages that underwent flash
+  policy mangling. This was fixed along with improving how the mangling was done
+  for format=json, and allowing sites to disable the mangling using
+  $wgMangleFlashPolicy.
+* (bug 70901) SECURITY: User Jackmcbarn reported that the ability to update
+  the content model for a page could allow an unprivileged attacker to edit
+  another user's common.js under certain circumstances. The user right
+  "editcontentmodel" was added, and is needed to change a revision's content
+  model.
+* (bug 71111) SECURITY: User PleaseStand reported that on wikis that allow raw
+  HTML, it is not safe to preview wikitext coming from an untrusted source such
+  as a cross-site request. Thus add an edit token to the form, and when raw HTML
+  is allowed, ensure the token is provided before showing the preview. This
+  check is not performed on wikis that both allow raw HTML and anonymous
+  editing, since there are easier ways to exploit that scenario.
+* (bug 72222) SECURITY: Do not show log action when the entry is revdeleted with
+  DELETED_ACTION. NOTICE: this may be reverted in a future release pending a
+  public RFC about the desired functionality. This issue was reported by user
+  Bawolff.
+* (bug 71621) Make allowing site-wide styles on restricted special pages a
+  config option.
+* (bug 42723) Added updated version history from 1.19.2 to 1.22.13
 
 === Action API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
