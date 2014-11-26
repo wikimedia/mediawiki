@@ -674,6 +674,7 @@
 	"apihelp-query+prefixsearch-param-search": "{{doc-apihelp-param|query+prefixsearch|search}}",
 	"apihelp-query+prefixsearch-param-namespace": "{{doc-apihelp-param|query+prefixsearch|namespace}}",
 	"apihelp-query+prefixsearch-param-limit": "{{doc-apihelp-param|query+prefixsearch|limit}}",
+	"apihelp-query+prefixsearch-param-offset": "{{doc-apihelp-param|query+prefixsearch|offset}}",
 	"apihelp-query+prefixsearch-example-simple": "{{doc-apihelp-example|query+prefixsearch}}",
 	"apihelp-query+protectedtitles-description": "{{doc-apihelp-description|query+protectedtitles}}",
 	"apihelp-query+protectedtitles-param-namespace": "{{doc-apihelp-param|query+protectedtitles|namespace}}",
