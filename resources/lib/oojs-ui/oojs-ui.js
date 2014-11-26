@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.2.2
+ * OOjs UI v0.2.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-25T01:13:13Z
+ * Date: 2014-11-26T23:37:00Z
  */
 ( function ( OO ) {
 
@@ -1756,11 +1756,20 @@ OO.ui.Window.prototype.getSize = function () {
  * @return {number} Content height
  */
 OO.ui.Window.prototype.getContentHeight = function () {
-	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements
-	var bodyHeight, oldHeight = this.$frame[0].style.height;
-	this.$frame[0].style.height = '1px';
+	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
+	// Disable transitions first, otherwise we'll get values from when the window was animating.
+	var bodyHeight, oldHeight, oldTransition,
+		styleObj = this.$frame[0].style;
+	oldTransition = styleObj.transition || styleObj.OTransition || styleObj.MsTransition ||
+		styleObj.MozTransition || styleObj.WebkitTransition;
+	styleObj.transition = styleObj.OTransition = styleObj.MsTransition =
+		styleObj.MozTransition = styleObj.WebkitTransition = 'none';
+	oldHeight = styleObj.height;
+	styleObj.height = '1px';
 	bodyHeight = this.getBodyHeight();
-	this.$frame[0].style.height = oldHeight;
+	styleObj.height = oldHeight;
+	styleObj.transition = styleObj.OTransition = styleObj.MsTransition =
+		styleObj.MozTransition = styleObj.WebkitTransition = oldTransition;
 
 	return Math.round(
 		// Add buffer for border
@@ -2275,6 +2284,7 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 	this.actions = new OO.ui.ActionSet();
 	this.attachedActions = [];
 	this.currentAction = null;
+	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
 
 	// Events
 	this.actions.connect( this, {
@@ -2438,6 +2448,10 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 				);
 			}
 			this.actions.add( items );
+
+			if ( this.constructor.static.escapable ) {
+				this.$document.on( 'keydown', this.onDocumentKeyDownHandler );
+			}
 		}, this );
 };
 
@@ -2448,6 +2462,10 @@ OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
 	// Parent method
 	return OO.ui.Dialog.super.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
+			if ( this.constructor.static.escapable ) {
+				this.$document.off( 'keydown', this.onDocumentKeyDownHandler );
+			}
+
 			this.actions.clear();
 			this.currentAction = null;
 		}, this );
@@ -2462,11 +2480,6 @@ OO.ui.Dialog.prototype.initialize = function () {
 
 	// Properties
 	this.title = new OO.ui.LabelWidget( { $: this.$ } );
-
-	// Events
-	if ( this.constructor.static.escapable ) {
-		this.$document.on( 'keydown', this.onDocumentKeyDown.bind( this ) );
-	}
 
 	// Initialization
 	this.$content.addClass( 'oo-ui-dialog-content' );
@@ -3444,7 +3457,15 @@ OO.inheritClass( OO.ui.ToolFactory, OO.Factory );
 
 /* Methods */
 
-/** */
+/**
+ * Get tools from the factory
+ *
+ * @param {Array} include Included tools
+ * @param {Array} exclude Excluded tools
+ * @param {Array} promote Promoted tools
+ * @param {Array} demote Demoted tools
+ * @return {string[]} List of tools
+ */
 OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, demote ) {
 	var i, len, included, promoted, demoted,
 		auto = [],
@@ -5975,7 +5996,45 @@ OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
  * @inheritdoc
  */
 OO.ui.MessageDialog.prototype.getBodyHeight = function () {
-	return Math.round( this.text.$element.outerHeight( true ) );
+	var bodyHeight, oldOverflow,
+		$scrollable = this.container.$element;
+
+	oldOverflow = $scrollable[0].style.overflow;
+	$scrollable[0].style.overflow = 'hidden';
+
+	// Force… ugh… something to happen
+	$scrollable.contents().hide();
+	$scrollable.height();
+	$scrollable.contents().show();
+
+	bodyHeight = Math.round( this.text.$element.outerHeight( true ) );
+	$scrollable[0].style.overflow = oldOverflow;
+
+	return bodyHeight;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
+	var $scrollable = this.container.$element;
+	OO.ui.MessageDialog.super.prototype.setDimensions.call( this, dim );
+
+	// Twiddle the overflow property, otherwise an unnecessary scrollbar will be produced.
+	// Need to do it after transition completes (250ms), add 50ms just in case.
+	setTimeout( function () {
+		var oldOverflow = $scrollable[0].style.overflow;
+		$scrollable[0].style.overflow = 'hidden';
+
+		// Force… ugh… something to happen
+		$scrollable.contents().hide();
+		$scrollable.height();
+		$scrollable.contents().show();
+
+		$scrollable[0].style.overflow = oldOverflow;
+	}, 300 );
+
+	return this;
 };
 
 /**
@@ -6420,9 +6479,12 @@ OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
  */
 OO.ui.BookletLayout.prototype.focus = function () {
 	var $input, page = this.stackLayout.getCurrentItem();
-	if ( !page ) {
+	if ( !page && this.outlined ) {
 		this.selectFirstSelectablePage();
 		page = this.stackLayout.getCurrentItem();
+		if ( !page ) {
+			return;
+		}
 	}
 	// Only change the focus if is not already in the current page
 	if ( !page.$element.find( ':focus' ).length ) {
@@ -9744,7 +9806,7 @@ OO.ui.TextInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
  */
 OO.ui.TextInputWidget.prototype.onKeyPress = function ( e ) {
 	if ( e.which === OO.ui.Keys.ENTER && !this.multiline ) {
-		this.emit( 'enter' );
+		this.emit( 'enter', e );
 	}
 };
 
@@ -10390,7 +10452,6 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
  *
  * @class
  * @extends OO.ui.OptionWidget
- * @mixins OO.ui.ButtonElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
