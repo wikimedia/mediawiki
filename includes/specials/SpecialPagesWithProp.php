@@ -83,11 +83,13 @@ class SpecialPagesWithProp extends QueryPage {
 	 *
 	 * @param string $search Prefix to search for
 	 * @param int $limit Maximum number of results to return
+	 * @param int $offset Number of pages to skip
 	 * @return string[] Matching subpages
 	 */
-	public function prefixSearchSubpages( $search, $limit = 10 ) {
-		$subpages = array_keys( $this->getExistingPropNames() );
-		return self::prefixSearchArray( $search, $limit, $subpages );
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		$subpages = array_keys( $this->queryExistingProps( $limit, $offset ) );
+		// We've already limited and offsetted, set to N and 0 respectively.
+		return self::prefixSearchArray( $search, count( $subpages ), $subpages, 0 );
 	}
 
 	/**
@@ -154,21 +156,36 @@ class SpecialPagesWithProp extends QueryPage {
 
 	public function getExistingPropNames() {
 		if ( $this->existingPropNames === null ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select(
-				'page_props',
-				'pp_propname',
-				'',
-				__METHOD__,
-				array( 'DISTINCT', 'ORDER BY' => 'pp_propname' )
-			);
-			$propnames = array();
-			foreach ( $res as $row ) {
-				$propnames[$row->pp_propname] = $row->pp_propname;
-			}
-			$this->existingPropNames = $propnames;
+			$this->existingPropNames = $this->queryExistingProps();
 		}
 		return $this->existingPropNames;
+	}
+
+	protected function queryExistingProps( $limit = null, $offset = 0 ) {
+		$opts = array(
+			'DISTINCT', 'ORDER BY' => 'pp_propname'
+		);
+		if ( $limit ) {
+			$opts['LIMIT'] = $limit;
+		}
+		if ( $offset ) {
+			$opts['OFFSET'] = $offset;
+		}
+
+		$res = wfGetDB( DB_SLAVE )->select(
+			'page_props',
+			'pp_propname',
+			'',
+			__METHOD__,
+			$opts
+		);
+
+		$propnames = array();
+		foreach ( $res as $row ) {
+			$propnames[$row->pp_propname] = $row->pp_propname;
+		}
+
+		return $propnames;
 	}
 
 	protected function getGroupName() {
