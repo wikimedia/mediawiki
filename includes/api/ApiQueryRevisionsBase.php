@@ -204,13 +204,13 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $this->fld_sha1 ) {
+		if ( $this->fld_sha1 && $revision->getSha1() !== null ) {
 			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
 				$vals['sha1hidden'] = '';
 				$anyHidden = true;
 			}
 			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) {
-				if ( $revision->getSha1() != '' ) {
+				if ( $revision->getSha1() !== '' ) {
 					$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
 				} else {
 					$vals['sha1'] = '';
