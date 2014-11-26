@@ -63,6 +63,16 @@ class ApiFormatJson extends ApiFormatBase {
 			$this->getIsHtml(),
 			$params['utf8'] ? FormatJson::ALL_OK : FormatJson::XMLMETA_OK
 		);
+
+		// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+		// Flash, but what it does isn't friendly for the API, so we need to
+		// work around it.
+		if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
+			$json = preg_replace(
+				'/\<(\s*cross-domain-policy\s*)\>/i', '\\u003C$1\\u003E', $json
+			);
+		}
+
 		$callback = $params['callback'];
 		if ( $callback !== null ) {
 			$callback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback );
