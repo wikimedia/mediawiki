@@ -2913,6 +2913,7 @@
 	"specialpages-group-wiki": "Datos e instrumentos",
 	"specialpages-group-redirects": "Redirection de paginas special",
 	"specialpages-group-spam": "Instrumentos antispam",
+	"specialpages-group-developer": "Instrumentos pro disveloppatores",
 	"blankpage": "Pagina vacue",
 	"intentionallyblankpage": "Iste pagina es intentionalmente vacue",
 	"external_image_whitelist": "  #Lassa iste linea exactemente como illo es<pre>\n#Pone fragmentos de expressiones regular (solmente le parte que va inter //) infra\n#Istes correspondera con le adresses URL de imagines externe (a ligamine directe)\n#Le correspondentes se monstrara como imagines, le alteres solmente como ligamines a imagines\n#Le lineas comenciante con # essera tractate como commentos\n#Isto non es sensibile al differentia inter majusculas e minusculas\n\n#Insere omne fragmentos regex super iste linea. Lassa iste linea exactemente como illo es</pre>",

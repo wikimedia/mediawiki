@@ -2634,6 +2634,7 @@
 	"specialpages-group-wiki": "Għodda u informazzjoni fuq il-proġett",
 	"specialpages-group-redirects": "Paġni speċjali ta' rindirizz",
 	"specialpages-group-spam": "Għodda kontra l-ispam",
+	"specialpages-group-developer": "Għodda tal-iżviluppatur",
 	"blankpage": "Paġna vojta",
 	"intentionallyblankpage": "Din il-paġna tħalliet vojta ataposta",
 	"external_image_whitelist": "#Ħalli din il-linja eżattament kif inhi<pre>\n#Daħħal frammenti tal-espressjonijiet regolari (dik il-parti bejn // biss) hawn taħt\n#Dawn jiġu mqabbla mal-URLs ta' stampi esterni (''hotlinked'')\n#Dawk li jaqblu jidhru bħala stampi, inkella jintwera biss ħolqa lejn l-istampa\n#Linji li jibdew b'# huma kkunsidrati bħala kummenti\n#Id-differenza bejn ittri kapitali u dawk żgħar mhix importanti\n\n#Daħħal il-frammenti kollha tar-regex qabel din il-linja. Ħalli din il-linja hekk kif inhi</pre>",

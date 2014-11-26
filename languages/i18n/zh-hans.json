@@ -3023,6 +3023,7 @@
 	"specialpages-group-wiki": "数据与工具",
 	"specialpages-group-redirects": "重定向特殊页面",
 	"specialpages-group-spam": "反垃圾链接工具",
+	"specialpages-group-developer": "开发者工具",
 	"blankpage": "空白页面",
 	"intentionallyblankpage": "这个页面被故意留为空白",
 	"external_image_whitelist": " #请原样保留本行文字<pre>\n#请在下面输入正则表达式片段（//之间的部份）\n#这些项目将会匹配外部图像的URL\n#匹配的项目将显示为图像，否则只会显示图像的链接\n#以#开头的行被视为评论\n#不区分大小写\n\n#请在本行上面输入所有正则表达式片段。请原样保留本行文字</pre>",

@@ -3037,6 +3037,7 @@
 	"specialpages-group-wiki": "Data dan peralatan",
 	"specialpages-group-redirects": "Pencarian dan pengalihan",
 	"specialpages-group-spam": "Peralatan spam",
+	"specialpages-group-developer": "Alat Pengembang",
 	"blankpage": "Halaman kosong",
 	"intentionallyblankpage": "Halaman ini sengaja dibiarkan kosong dan digunakan di antaranya untuk pengukuran kinerja, dan lain-lain.",
 	"external_image_whitelist": "#Biarkan baris ini sebagaimana adanya<pre>\n#Gunakan fragmen-fragmen ekspresi regular (hanya bagian di antara //) di bawah ini\n#Fragmen-fragmen ini akan dicocokkan dengan URL dari gambar-gambar eksternal (yang dihubungkan langsung)\n#Fragmen yang cocok akan ditampilkan sebagai gambar, sisanya hanya sebagai pranala saja\n#Baris yang diawali dengan # akan diperlakukan sebagai baris komentar\n#Ini tidak membedakan huruf besar dan kecil\n#Letakkan semua fragmen ekspresi regular di bawah baris ini. Biarkan baris ini sebagaimana adanya</pre>",

@@ -4,8 +4,12 @@
 			"Robin0van0der0vliet"
 		]
 	},
+	"apihelp-createaccount-param-name": "Brûkersnamme.",
 	"apihelp-login-param-name": "Brûkersnamme.",
 	"apihelp-login-param-password": "Wachtwurd.",
 	"apihelp-userrights-param-user": "Brûkersnamme.",
+	"api-help-param-default": "Standert: $1",
+	"api-help-param-default-empty": "Standert: <span class=\"apihelp-empty\">(leech)</span>",
+	"api-help-param-no-description": "<span class=\"apihelp-empty\">(gjin beskriuwing)</span>",
 	"api-help-examples": "{{PLURAL:$1|Foarbyld|Foarbylden}}:"
 }

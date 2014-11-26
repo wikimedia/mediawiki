@@ -43,7 +43,8 @@
 			"아라",
 			"Calak",
 			"F3RaN",
-			"ESM"
+			"ESM",
+			"Loupeter"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -2946,6 +2947,7 @@
 	"specialpages-group-wiki": "Dades i eines",
 	"specialpages-group-redirects": "Pàgines especials de redirecció",
 	"specialpages-group-spam": "Eines de spam",
+	"specialpages-group-developer": "Eines de desenvolupador",
 	"blankpage": "Pàgina en blanc",
 	"intentionallyblankpage": "Pàgina intencionadament en blanc",
 	"external_image_whitelist": " #Deixeu aquesta línia exactament igual com està<pre>\n#Poseu fragments d'expressions regulars (regexps) (només la part entre els //) a sota\n#Aquests fragments es correspondran amb les URL d'imatges externes\n#Se'n mostraran com a imatges si coincideixen, i sinó es mostraran com a enllaços\n#Les línies que comencen amb un # es tracten com a comentaris\n#S'hi distingeixen majúscules i minúscules\n\n#Poseu tots els fragments regex al damunt d'aquesta línia. Deixeu aquesta línia exactament com està</pre>",

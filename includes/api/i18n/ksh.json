@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Purodha"
+		]
+	},
+	"apihelp-block-description": "Ene Metmaacher schpärre.",
+	"apihelp-block-param-reason": "Der Schpärrjrond.",
+	"apihelp-block-param-nocreate": "Et Neu-Aanmelde verbeede",
+	"apihelp-block-param-autoblock": "Dun automattesch de läzde <i lang=\"en\" xml:lang=\"en\">IP</i>-Adräß schpärre, di dä Metmaacher jehatt hät, un och all di <i lang=\"en\" xml:lang=\"en\">IP</i>-Adräße, vun wo dä versöhk, jet ze ändere.",
+	"apihelp-block-param-watchuser": "Donn de Metmaachersigg un de Klaafsigg dohzoh op mig Oppaßleß säze.",
+	"apihelp-createaccount-param-name": "Der Nahme för dä Metmaacher.",
+	"apihelp-delete-description": "Schmieß en Sigg fott."
+}

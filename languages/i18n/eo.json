@@ -2977,6 +2977,7 @@
 	"specialpages-group-wiki": "Datenoj kaj iloj",
 	"specialpages-group-redirects": "Alidirektantaj specialaj paĝoj",
 	"specialpages-group-spam": "Kontraŭspamiloj",
+	"specialpages-group-developer": "Disvolvistaj iloj",
 	"blankpage": "Malplena paĝo",
 	"intentionallyblankpage": "Ĉi tiu paĝo intencie estas malplena kaj estas uzata por testado, ktp.",
 	"external_image_whitelist": " #Lasu ĉi tiun linion senŝanĝe<pre>\n#Enmetu parto de regula esprimo (nur la parton enmetinda en //) suben\n#Ĝi estos kongruita kun la URL-o de eksteraj (ligeblaj) bildoj\n#Kongruantaĵoj estos montritaj kiel bildoj; se ne eble montri, nur ligilo estos montrita\n#Linioj komencantaj kun # estas traktata kiel komentoj.\n#Ĉi tiu estas usklecodistinga.\n\n#Enmetu ĉiujn koderojn de regulaj esprimoj super ĉi tiu linio. Lasu la linion senŝanĝe.</pre>",

@@ -2927,6 +2927,7 @@
 	"specialpages-group-wiki": "Andmed ja tööriistad",
 	"specialpages-group-redirects": "Ümbersuunavad erilehed",
 	"specialpages-group-spam": "Töö spämmiga",
+	"specialpages-group-developer": "Arendusriistad",
 	"blankpage": "Tühi leht",
 	"intentionallyblankpage": "See lehekülg on sihilikult tühjaks jäetud.",
 	"external_image_whitelist": "  #Jäta see rida muutmata kujule<pre>\n#Pane regulaaravaldise osad (vaid //-märkide vahel olev osa) allapoole\n#Need on vastavuses vikiväliste piltide internetiaadressidega\n#Vastavuses olevad kuvatakse piltidena, muul juhul kuvatakse ainult pildi link\n#Märgiga # algavad read on kommentaarid\n#See on tõstutundetu\n\n#Pane kõik regulaaravaldise osad selle joone kohale. Jäta see rida muutmata kujule</pre>",

@@ -2946,6 +2946,7 @@
 	"specialpages-group-wiki": "Dados e ferramentas",
 	"specialpages-group-redirects": "Páginas especiais redirecionadas",
 	"specialpages-group-spam": "Ferramentas anti-spam",
+	"specialpages-group-developer": "Ferramentas de desenvolvimento",
 	"blankpage": "Página em branco",
 	"intentionallyblankpage": "Esta página foi intencionalmente deixada em branco e é usada para medições de performance, etc.",
 	"external_image_whitelist": " # Deixe esta linha exatamente como ela está <pre>\n# Insira uma expressão regular (apenas a parte que vai entre o //) a seguir\n# Estas serão casadas com as URLs de imagens externas (''hotlinked'')\n# Aquelas que corresponderem serão exibidas como imagens; caso contrário, apenas um link para a imagem será mostrado\n# As linhas que começam com # são tratadas como comentários\n# Isto não é sensível à capitalização\n\n# Coloque todos os fragmentos de ''regex'' acima dessa linha. Deixe esta linha exatamente como ela está</pre>",
