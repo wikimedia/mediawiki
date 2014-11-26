@@ -166,6 +166,11 @@ class ApiMove extends ApiBase {
 			return $permStatus;
 		}
 
+		// Check suppressredirect permission
+		if ( !$this->getUser()->isAllowed( 'suppressredirect' ) ) {
+			$createRedirect = true;
+		}
+
 		return $mp->move( $this->getUser(), $reason, $createRedirect );
 	}
 
