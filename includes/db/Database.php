@@ -1028,7 +1028,12 @@ abstract class DatabaseBase implements IDatabase {
 			$lastErrno = $this->lastErrno();
 			if ( $this->ping() ) {
 				global $wgRequestTime;
+
 				wfDebug( "Reconnected\n" );
+				$server = $this->getServer();
+				$msg = __METHOD__ . ": lost connection to $server; reconnected";
+				wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
+
 				$sqlx = $wgDebugDumpSqlLength ? substr( $commentedSql, 0, $wgDebugDumpSqlLength )
 					: $commentedSql;
 				$sqlx = strtr( $sqlx, "\t\n", '  ' );
