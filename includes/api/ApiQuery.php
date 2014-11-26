@@ -437,6 +437,8 @@ class ApiQuery extends ApiBase {
 		}
 
 		if ( count( $pages ) ) {
+			$pageSet->populateGeneratorData( $pages );
+
 			if ( $this->mParams['indexpageids'] ) {
 				$pageIDs = array_keys( $pages );
 				// json treats all map keys as strings - converting to match

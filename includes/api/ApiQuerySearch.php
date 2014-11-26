@@ -259,6 +259,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			}
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
+			$offset = $params['offset'] + 1;
+			foreach ( $titles as $index => $title ) {
+				$resultPageSet->setGeneratorData( $title, array( 'index' => $index + $offset ) );
+			}
 		}
 	}
 

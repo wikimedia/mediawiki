@@ -101,6 +101,11 @@ production.
 * (bug 66776) format=json results will no longer be corrupted when
   $wgMangleFlashPolicy is in effect. format=php results will cleanly return an
   error instead of returning invalid serialized data.
+* Generators may now return data for the generated pages when used with
+  action=query.
+* Query page data for generator=search and generator=prefixsearch will now
+  include an "index" field, which may be used by the client for sorting the
+  search results.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -130,6 +135,8 @@ production.
   revisions as "good" if the user has the 'deletedhistory' right. New methods
   ApiPageSet::getLiveRevisionIDs() and ApiPageSet::getDeletedRevisionIDs() are
   provided to access just the live or just the deleted revids.
+* Added ApiPageSet::setGeneratorData() and ApiPageSet::populateGeneratorData()
+  to allow generators to include data in the action=query result.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
