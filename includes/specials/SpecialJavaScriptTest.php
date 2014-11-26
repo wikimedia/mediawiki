@@ -177,13 +177,15 @@ HTML;
 	 *
 	 * @param string $search Prefix to search for
 	 * @param int $limit Maximum number of results to return
+	 * @param int $offset Number of pages to skip
 	 * @return string[] Matching subpages
 	 */
-	public function prefixSearchSubpages( $search, $limit = 10 ) {
+	public function prefixSearchSubpages( $search, $limit = 10, $offset = 0 ) {
 		return self::prefixSearchArray(
 			$search,
 			$limit,
-			array_keys( self::$frameworks )
+			array_keys( self::$frameworks ),
+			$offset
 		);
 	}
 
