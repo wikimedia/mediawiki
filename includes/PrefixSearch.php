@@ -34,11 +34,12 @@ abstract class PrefixSearch {
 	 * @param string $search
 	 * @param int $limit
 	 * @param array $namespaces Used if query is not explicitly prefixed
+	 * @param int $offset How many results to offset from the beginning
 	 * @return array Array of strings
 	 */
-	public static function titleSearch( $search, $limit, $namespaces = array() ) {
+	public static function titleSearch( $search, $limit, $namespaces = array(), $offset = 0 ) {
 		$prefixSearch = new StringPrefixSearch;
-		return $prefixSearch->search( $search, $limit, $namespaces );
+		return $prefixSearch->search( $search, $limit, $namespaces, $offset );
 	}
 
 	/**
@@ -47,9 +48,10 @@ abstract class PrefixSearch {
 	 * @param string $search
 	 * @param int $limit
 	 * @param array $namespaces Used if query is not explicitly prefixed
+	 * @param int $offset How many results to offset from the beginning
 	 * @return array Array of strings or Title objects
 	 */
-	public function search( $search, $limit, $namespaces = array() ) {
+	public function search( $search, $limit, $namespaces = array(), $offset = 0 ) {
 		$search = trim( $search );
 		if ( $search == '' ) {
 			return array(); // Return empty result
@@ -65,7 +67,7 @@ abstract class PrefixSearch {
 				$ns = $namespaces; // no explicit prefix, use default namespaces
 				wfRunHooks( 'PrefixSearchExtractNamespace', array( &$ns, &$search ) );
 			}
-			return $this->searchBackend( $ns, $search, $limit );
+			return $this->searchBackend( $ns, $search, $limit, $offset );
 		}
 
 		// Is this a namespace prefix?
@@ -80,7 +82,7 @@ abstract class PrefixSearch {
 			wfRunHooks( 'PrefixSearchExtractNamespace', array( &$namespaces, &$search ) );
 		}
 
-		return $this->searchBackend( $namespaces, $search, $limit );
+		return $this->searchBackend( $namespaces, $search, $limit, $offset );
 	}
 
 	/**
@@ -88,12 +90,13 @@ abstract class PrefixSearch {
 	 * @param string $search
 	 * @param int $limit
 	 * @param array $namespaces
+	 * @param int $offset How many results to offset from the beginning
 	 *
 	 * @return array
 	 */
-	public function searchWithVariants( $search, $limit, array $namespaces ) {
+	public function searchWithVariants( $search, $limit, array $namespaces, $offset = 0 ) {
 		wfProfileIn( __METHOD__ );
-		$searches = $this->search( $search, $limit, $namespaces );
+		$searches = $this->search( $search, $limit, $namespaces, $offset );
 
 		// if the content language has variants, try to retrieve fallback results
 		$fallbackLimit = $limit - count( $searches );
@@ -141,20 +144,21 @@ abstract class PrefixSearch {
 	 * @param array $namespaces
 	 * @param string $search
 	 * @param int $limit
+	 * @param int $offset How many results to offset from the beginning
 	 * @return array Array of strings
 	 */
-	protected function searchBackend( $namespaces, $search, $limit ) {
+	protected function searchBackend( $namespaces, $search, $limit, $offset ) {
 		if ( count( $namespaces ) == 1 ) {
 			$ns = $namespaces[0];
 			if ( $ns == NS_MEDIA ) {
 				$namespaces = array( NS_FILE );
 			} elseif ( $ns == NS_SPECIAL ) {
-				return $this->titles( $this->specialSearch( $search, $limit ) );
+				return $this->titles( $this->specialSearch( $search, $limit, $offset ) );
 			}
 		}
 		$srchres = array();
-		if ( wfRunHooks( 'PrefixSearchBackend', array( $namespaces, $search, $limit, &$srchres ) ) ) {
-			return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit ) );
+		if ( wfRunHooks( 'PrefixSearchBackend', array( $namespaces, $search, $limit, &$srchres, $offset ) ) ) {
+			return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit, $offset ) );
 		}
 		return $this->strings( $this->handleResultFromHook( $srchres, $namespaces, $search, $limit ) );
 	}
@@ -189,8 +193,8 @@ abstract class PrefixSearch {
 				// returned match to the front.  This might look odd but the alternative
 				// is to put the redirect in front and drop the match.  The name of the
 				// found match is often more descriptive/better formed than the name of
-				// the redirec AND by definition they share a prefix.  Hopefully this
-				// choice is less confusing and more helpful.  But it might now be.  But
+				// the redirect AND by definition they share a prefix.  Hopefully this
+				// choice is less confusing and more helpful.  But it might not be.  But
 				// it is the choice we're going with for now.
 				return $this->pullFront( $key, $srchres );
 			}
@@ -266,9 +270,10 @@ abstract class PrefixSearch {
 	 *
 	 * @param string $search Term
 	 * @param int $limit Max number of items to return
+	 * @param int $offset Number of items to offset
 	 * @return array
 	 */
-	protected function specialSearch( $search, $limit ) {
+	protected function specialSearch( $search, $limit, $offset ) {
 		global $wgContLang;
 
 		$searchParts = explode( '/', $search, 2 );
@@ -284,7 +289,7 @@ abstract class PrefixSearch {
 			}
 			$special = SpecialPageFactory::getPage( $specialTitle->getText() );
 			if ( $special ) {
-				$subpages = $special->prefixSearchSubpages( $subpageSearch, $limit );
+				$subpages = $special->prefixSearchSubpages( $subpageSearch, $limit, $offset );
 				return array_map( function ( $sub ) use ( $specialTitle ) {
 					return $specialTitle->getSubpage( $sub );
 				}, $subpages );
@@ -316,12 +321,17 @@ abstract class PrefixSearch {
 		ksort( $keys );
 
 		$srchres = array();
+		$skipped = 0;
 		foreach ( $keys as $pageKey => $page ) {
 			if ( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
 				// bug 27671: Don't use SpecialPage::getTitleFor() here because it
 				// localizes its input leading to searches for e.g. Special:All
 				// returning Spezial:MediaWiki-Systemnachrichten and returning
 				// Spezial:Alle_Seiten twice when $wgLanguageCode == 'de'
+				if ( $offset > 0 && $skipped < $offset ) {
+					$skipped++;
+					continue;
+				}
 				$srchres[] = Title::makeTitleSafe( NS_SPECIAL, $page );
 			}
 
@@ -342,9 +352,10 @@ abstract class PrefixSearch {
 	 * @param array $namespaces Namespaces to search in
 	 * @param string $search Term
 	 * @param int $limit Max number of items to return
+	 * @param int $offset Number of items to skip
 	 * @return array Array of Title objects
 	 */
-	protected function defaultSearchBackend( $namespaces, $search, $limit ) {
+	protected function defaultSearchBackend( $namespaces, $search, $limit, $offset ) {
 		$ns = array_shift( $namespaces ); // support only one namespace
 		if ( in_array( NS_MAIN, $namespaces ) ) {
 			$ns = NS_MAIN; // if searching on many always default to main
@@ -360,7 +371,11 @@ abstract class PrefixSearch {
 				'page_title ' . $dbr->buildLike( $prefix, $dbr->anyString() )
 			),
 			__METHOD__,
-			array( 'LIMIT' => $limit, 'ORDER BY' => 'page_title' )
+			array(
+				'LIMIT' => $limit,
+				'ORDER BY' => 'page_title',
+				'OFFSET' => $offset
+			)
 		);
 		$srchres = array();
 		foreach ( $res as $row ) {

@@ -134,22 +134,17 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Return an array of subpages beginning with $search that this special page will accept.
+	 * Return an array of subpages that this special page will accept.
 	 *
-	 * @param string $search Prefix to search for
-	 * @param int $limit Maximum number of results to return
-	 * @return string[] Matching subpages
+	 * @see also SpecialWatchlist::getSubpagesForPrefixSearch
+	 * @return string[] subpages
 	 */
-	public function prefixSearchSubpages( $search, $limit = 10 ) {
-		return self::prefixSearchArray(
-			$search,
-			$limit,
-			// SpecialWatchlist uses SpecialEditWatchlist::getMode, so new types should be added
-			// here and there - no 'edit' here, because that the default for this page
-			array(
-				'clear',
-				'raw',
-			)
+	public function getSubpagesForPrefixSearch() {
+		// SpecialWatchlist uses SpecialEditWatchlist::getMode, so new types should be added
+		// here and there - no 'edit' here, because that the default for this page
+		return array(
+			'clear',
+			'raw',
 		);
 	}
 
