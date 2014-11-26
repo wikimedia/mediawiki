@@ -3487,6 +3487,7 @@
 	"specialpages-group-wiki": "{{doc-special-group|like=[[Special:Version]], [[Special:Statistics]], [[Special:LockDB]], etc}}",
 	"specialpages-group-redirects": "{{doc-special-group|that=redirect to another location|like=[[Special:Randompage]], [[Special:Mypage]], [[Special:Mytalk]], etc}}",
 	"specialpages-group-spam": "{{doc-special-group}}",
+	"specialpages-group-developer": "{{doc-special-group|that=are related to tools for developers}}",
 	"blankpage": "{{doc-special|BlankPage|unlisted=1}}\nSee also:\n* {{msg-mw|Intentionallyblankpage|text}}",
 	"intentionallyblankpage": "Text displayed in [[Special:BlankPage]].\n\nSee also:\n* {{msg-mw|Intentionallyblankpage|page title}}",
 	"external_image_whitelist": "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.\n\nSee definition of [[w:Regular_expression|regular expression]] on Wikipedia.",
