@@ -11,16 +11,20 @@
 //
 // Markup:
 // <div class="mw-ui-checkbox">
-//   <input type="checkbox" id="kss-example-5"><label for="kss-example-5">Standard checkbox</label>
+//   <input type="checkbox" id="kss-example-5">
+//   <label for="kss-example-5">Standard checkbox</label>
 // </div>
 // <div class="mw-ui-checkbox">
-//   <input type="checkbox" id="kss-example-5-checked" checked><label for="kss-example-5-checked">Standard checked checkbox</label>
+//   <input type="checkbox" id="kss-example-5-checked" checked>
+//   <label for="kss-example-5-checked">Standard checked checkbox</label>
 // </div>
 // <div class="mw-ui-checkbox">
-//   <input type="checkbox" id="kss-example-5-disabled" disabled><label for="kss-example-5-disabled">Disabled checkbox</label>
+//   <input type="checkbox" id="kss-example-5-disabled" disabled>
+//   <label for="kss-example-5-disabled">Disabled checkbox</label>
 // </div>
 // <div class="mw-ui-checkbox">
-//   <input type="checkbox" id="kss-example-5-disabled-checked" disabled checked><label for="kss-example-5-disabled-checked">Disabled checked checkbox</label>
+//   <input type="checkbox" id="kss-example-5-disabled-checked" disabled checked>
+//   <label for="kss-example-5-disabled-checked">Disabled checked checkbox</label>
 // </div>
 //
 // Styleguide 5.
@@ -52,12 +56,13 @@
 		height: @checkboxSize;
 		// This is needed for Firefox mobile (See bug 71750 to workaround default Firefox stylesheet)
 		max-width: none;
-		margin-right: .4em;
+		margin-right: 0.4em;
 
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label::before {
 			content: '';
 			cursor: pointer;
+			.box-sizing(border-box);
 			position: absolute;
 			left: 0;
 			border-radius: @borderRadius;
@@ -65,7 +70,6 @@
 			height: @checkboxSize;
 			background-color: #fff;
 			border: 1px solid @colorGray7;
-			.box-sizing(border-box);
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
@@ -86,6 +90,7 @@
 			border-width: 2px;
 		}
 
+		&:focus:hover + label::before,
 		&:hover + label::before {
 			border-bottom-width: 3px;
 		}
