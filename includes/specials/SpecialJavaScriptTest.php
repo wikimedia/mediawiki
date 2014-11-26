@@ -173,18 +173,12 @@ HTML;
 	}
 
 	/**
-	 * Return an array of subpages beginning with $search that this special page will accept.
+	 * Return an array of subpages that this special page will accept.
 	 *
-	 * @param string $search Prefix to search for
-	 * @param int $limit Maximum number of results to return
-	 * @return string[] Matching subpages
+	 * @return string[] subpages
 	 */
-	public function prefixSearchSubpages( $search, $limit = 10 ) {
-		return self::prefixSearchArray(
-			$search,
-			$limit,
-			array_keys( self::$frameworks )
-		);
+	public function getSubpagesForPrefixSearch() {
+		return array_keys( self::$frameworks );
 	}
 
 	protected function getGroupName() {

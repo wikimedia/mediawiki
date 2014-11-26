@@ -303,10 +303,28 @@ class SpecialPage {
 	 *   - `prefixSearchSubpages( "" )` should return `array( foo", "bar", "baz" )`
 	 *
 	 * @param string $search Prefix to search for
-	 * @param int $limit Maximum number of results to return
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
 	 * @return string[] Matching subpages
 	 */
-	public function prefixSearchSubpages( $search, $limit = 10 ) {
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		$subpages = $this->getSubpagesForPrefixSearch();
+		if ( !$subpages ) {
+			return array();
+		}
+
+		return self::prefixSearchArray( $search, $limit, $subpages, $offset );
+	}
+
+	/**
+	 * Return an array of subpages that this special page will accept for prefix
+	 * searches. If this method requires a query you might instead want to implement
+	 * prefixSearchSubpages() directly so you can support $limit and $offset. This
+	 * method is better for static-ish lists of things.
+	 *
+	 * @return string[] subpages to search from
+	 */
+	protected function getSubpagesForPrefixSearch() {
 		return array();
 	}
 
@@ -318,11 +336,13 @@ class SpecialPage {
 	 * @param string $search
 	 * @param int $limit
 	 * @param array $subpages
+	 * @param int $offset
 	 * @return string[]
 	 */
-	protected static function prefixSearchArray( $search, $limit, array $subpages ) {
+	protected static function prefixSearchArray( $search, $limit, array $subpages, $offset ) {
 		$escaped = preg_quote( $search, '/' );
-		return array_slice( preg_grep( "/^$escaped/i", $subpages ), 0, $limit );
+		return array_slice( preg_grep( "/^$escaped/i",
+			array_slice( $subpages, $offset ) ), 0, $limit );
 	}
 
 	/**
