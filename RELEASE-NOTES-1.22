@@ -8,6 +8,23 @@ have it on, turn it '''off''' if you can.
 This is a security and maintenance release of the MediaWiki 1.22 branch.
 
 === Changes since 1.22.13 ===
+
+* (bugs 66776, 71478) SECURITY:  User PleaseStand reported a way to inject code
+  into API clients that used format=php to process pages that underwent flash
+  policy mangling. This was fixed along with improving how the mangling was done
+  for format=json, and allowing sites to disable the mangling using
+  $wgMangleFlashPolicy.
+* (bug 70901) SECURITY: User Jackmcbarn reported that the ability to update
+  the content model for a page could allow an unprivileged attacker to edit
+  another user's common.js under certain circumstances. The user right
+  "editcontentmodel" was added, and is needed to change a revision's content
+  model.
+* (bug 72222) SECURITY: Do not show log action when the entry is revdeleted with
+  DELETED_ACTION. NOTICE: this may be reverted in a future release pending a
+  public RFC about the desired functionality. This issue was reported by user
+  Bawolff.
+* (bug 71621) Make allowing site-wide styles on restricted special pages a
+  config option.
 * $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
   might be a flash policy directive configurable.
 
