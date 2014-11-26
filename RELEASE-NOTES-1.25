@@ -116,6 +116,8 @@ production.
 * ApiOpenSearch now supports XML output.
 * ApiOpenSearch will now output descriptions and URLs as array indexes 2 and 3
   in JSON format.
+* (bug T76051) list=tags will now continue correctly.
+* (bug T76052) list=tags can now indicate whether a tag is defined.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
