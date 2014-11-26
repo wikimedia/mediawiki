@@ -848,7 +848,7 @@
 
 	"apihelp-query+tags-description": "List change tags.",
 	"apihelp-query+tags-param-limit": "The maximum number of tags to list.",
-	"apihelp-query+tags-param-prop": "Which properties to get:\n;name:Adds name of tag.\n;displayname:Adds system message for the tag.\n;description:Adds description of the tag.\n;hitcount:Adds the amount of revisions that have this tag.",
+	"apihelp-query+tags-param-prop": "Which properties to get:\n;name:Adds name of tag.\n;displayname:Adds system message for the tag.\n;description:Adds description of the tag.\n;hitcount:Adds the amount of revisions that have this tag.\n;defined:Indicate whether the tag is defined.",
 	"apihelp-query+tags-example-simple": "List available tags",
 
 	"apihelp-query+templates-description": "Returns all pages transcluded on the given pages.",

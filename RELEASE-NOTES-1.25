@@ -101,6 +101,8 @@ production.
 * (bug 66776) format=json results will no longer be corrupted when
   $wgMangleFlashPolicy is in effect. format=php results will cleanly return an
   error instead of returning invalid serialized data.
+* (bug T76051) list=tags will now continue correctly.
+* (bug T76052) list=tags can now indicate whether a tag is defined.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
