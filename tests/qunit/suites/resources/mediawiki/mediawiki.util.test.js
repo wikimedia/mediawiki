@@ -228,13 +228,6 @@
 		assert.equal( tbRLDMemptyjquery, $( '#p-test-tb li:last' )[0], 'Fallback to adding at the end (nextnode as empty jQuery object)' );
 	} );
 
-	QUnit.test( 'jsMessage', 1, function ( assert ) {
-		this.suppressWarnings();
-		var a = mw.util.jsMessage( 'MediaWiki is <b>Awesome</b>.' );
-		this.restoreWarnings();
-		assert.ok( a, 'Basic checking of return value' );
-	} );
-
 	QUnit.test( 'validateEmail', 6, function ( assert ) {
 		assert.strictEqual( mw.util.validateEmail( '' ), null, 'Should return null for empty string ' );
 		assert.strictEqual( mw.util.validateEmail( 'user@localhost' ), true, 'Return true for a valid e-mail address' );
