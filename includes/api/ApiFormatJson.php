@@ -67,9 +67,21 @@ class ApiFormatJson extends ApiFormatBase {
 			$prefix = ( "/**/$prefix" );
 			$suffix = ')';
 		}
+
+		$json = FormatJson::encode( $this->getResultData(), $this->getIsHtml() );
+
+		// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+		// Flash, but what it does isn't friendly for the API, so we need to
+		// work around it.
+		if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
+			$json = preg_replace(
+				'/\<(\s*cross-domain-policy\s*)\>/i', '\\u003C$1\\u003E', $json
+			);
+		}
+
 		$this->printText(
 			$prefix .
-			FormatJson::encode( $this->getResultData(), $this->getIsHtml() ) .
+			$json .
 			$suffix
 		);
 	}
