@@ -895,10 +895,10 @@ class TextPassDumper extends BackupDumper {
 				$this->thisPage .= $data;
 			}
 		}
-		elseif ( $this->lastName == "model"  ) {
+		elseif ( $this->lastName == "model" ) {
 			$this->thisRevModel .= $data;
 		}
-		elseif ( $this->lastName == "format"  ) {
+		elseif ( $this->lastName == "format" ) {
 			$this->thisRevFormat .= $data;
 		}
 

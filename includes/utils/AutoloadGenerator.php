@@ -227,7 +227,7 @@ class ClassCollector {
 		if ( is_string( $token ) ) {
 			return;
 		}
-		switch( $token[0] ) {
+		switch ( $token[0] ) {
 		case T_NAMESPACE:
 		case T_CLASS:
 		case T_INTERFACE:
@@ -241,7 +241,7 @@ class ClassCollector {
 	 * @param array
 	 */
 	protected function tryEndExpect( $token ) {
-		switch( $this->startToken[0] ) {
+		switch ( $this->startToken[0] ) {
 		case T_NAMESPACE:
 			if ( $token === ';' || $token === '{' ) {
 				$this->namespace = $this->implodeTokens() . '\\';

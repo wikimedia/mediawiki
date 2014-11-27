@@ -29,14 +29,17 @@
 /**
  * @deprecated since 1.25
  */
-abstract class CdbReader extends \Cdb\Reader {}
+abstract class CdbReader extends \Cdb\Reader {
+}
 
 /**
  * @deprecated since 1.25
  */
-abstract class CdbWriter extends \Cdb\Writer {}
+abstract class CdbWriter extends \Cdb\Writer {
+}
 
 /**
  * @deprecated since 1.25
  */
-class CdbException extends \Cdb\Exception {}
+class CdbException extends \Cdb\Exception {
+}

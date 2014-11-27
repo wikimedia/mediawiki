@@ -59,7 +59,7 @@ class SectionProfiler {
 		$this->profileInInternal( $section );
 
 		$that = $this;
-		return new ScopedCallback( function() use ( $that, $section ) {
+		return new ScopedCallback( function () use ( $that, $section ) {
 			$that->profileOutInternal( $section );
 		} );
 	}

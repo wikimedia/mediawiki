@@ -43,11 +43,11 @@ class ProfilerOutputText extends ProfilerOutput {
 
 			// Filter out really tiny entries
 			$min = $this->thresholdMs;
-			$stats = array_filter( $stats, function( $a ) use ( $min ) {
+			$stats = array_filter( $stats, function ( $a ) use ( $min ) {
 				return $a['real'] > $min;
 			} );
 			// Sort descending by time elapsed
-			usort( $stats, function( $a, $b ) {
+			usort( $stats, function ( $a, $b ) {
 				return $a['real'] < $b['real'];
 			} );
 
