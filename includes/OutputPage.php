@@ -1264,7 +1264,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function setAllowedModules( $type, $level ){
 		wfDeprecated( __METHOD__, '1.24' );
-		$this->reduceAllowedModules( type, $level );
+		$this->reduceAllowedModules( $type, $level );
 	}
 
 	/**
