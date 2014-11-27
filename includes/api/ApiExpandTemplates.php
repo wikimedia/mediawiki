@@ -98,7 +98,12 @@ class ApiExpandTemplates extends ApiBase {
 		if ( $prop || $params['prop'] === null ) {
 			$wgParser->startExternalParse( $title_obj, $options, Parser::OT_PREPROCESS );
 			$frame = $wgParser->getPreprocessor()->newFrame();
-			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, null, $frame );
+			$oldid = $params['oldid'];
+			if ( is_null($oldid) ) {
+				$rev = $wgParser->fetchCurrentRevisionOfTitle( $title_obj );
+				$oldid = $rev ? $rev->getId(): null;
+			}
+			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, $oldid, $frame );
 			if ( $params['prop'] === null ) {
 				// the old way
 				ApiResult::setContent( $retval, $wikitext );
@@ -140,6 +145,9 @@ class ApiExpandTemplates extends ApiBase {
 			'text' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
+			),
+			'oldid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'prop' => array(
 				ApiBase::PARAM_TYPE => array(
