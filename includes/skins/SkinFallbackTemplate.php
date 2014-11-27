@@ -17,7 +17,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 	 * @return array
 	 */
 	private function findInstalledSkins() {
-		$styleDirectory = $this->config->get( 'StyleDirectory' ); // @todo we should inject this directly?
+		$styleDirectory = $this->config->get( 'StyleDirectory' );
 		// Get all subdirectories which might contains skins
 		$possibleSkins = scandir( $styleDirectory );
 		$possibleSkins = array_filter( $possibleSkins, function ( $maybeDir ) use ( $styleDirectory ) {
