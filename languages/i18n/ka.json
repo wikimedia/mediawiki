@@ -645,6 +645,8 @@
 	"content-model-text": "ჩვეულებრივი ტექსტი",
 	"content-model-javascript": "ჯავასკრიპტი",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "გვერდები, რომლებიც იყენებენ დუბლიკატ არგუმენტებს თარგების გამოძახებისას",
+	"duplicate-args-category-desc": "გვერდები, რომლებიც იყენებენ დუბლიკატ არგუმენტებს თარგების გამოძახებისას, როგორებიც არის <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ან <code><nowiki>{{foo|bar|1=bar}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "ყურადღება. მოცემული გვერდი შეიცავს ძალიან ბევრ მძიმე ფუნქციას.\n\nგამოძახებათა რაოდენობა შეზღუდულია $2 დონეზე.ამ შემთხვევაში უნდა გაკეთდეს  $1 გამოძახება.",
 	"expensive-parserfunction-category": "გვერდი ძალიან ბევრი მძიმე ფუნქციის მოთხოვნით",
 	"post-expand-template-inclusion-warning": "ყურადღება. ჩართული თარგების ზომა ძალიან დიდია. ზოგი თარგი შეიძლება დარჩეს გათიშული.",

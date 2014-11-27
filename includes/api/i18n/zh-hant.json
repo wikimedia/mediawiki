@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Cwlin0416",
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"LNDDYL"
 		]
 	},
 	"apihelp-main-param-action": "要執行的動作。",
@@ -53,6 +54,8 @@
 	"apihelp-edit-param-sectiontitle": "新章節的標題。",
 	"apihelp-edit-param-text": "頁面內容。",
 	"apihelp-edit-param-summary": "編輯摘要。 當未設定 $1section=new 與 $1sectiontitle 時也會當做章節標題。",
+	"apihelp-edit-param-minor": "小編輯。",
+	"apihelp-edit-param-notminor": "非小編輯。",
 	"apihelp-edit-param-createonly": "若頁面已存在，則不編輯頁面。",
 	"apihelp-edit-param-nocreate": "若頁面不存在，則產生錯誤。",
 	"apihelp-edit-param-watch": "加入頁面至您的監視清單。",

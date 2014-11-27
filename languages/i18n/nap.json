@@ -2899,6 +2899,7 @@
 	"specialpages-group-wiki": "Data e strumiente",
 	"specialpages-group-redirects": "Redirezionamiente d' 'e paggene speciale",
 	"specialpages-group-spam": "Strumiente p' 'o spam",
+	"specialpages-group-developer": "Strumiente p' 'e sviluppature",
 	"blankpage": "Paggene abbacante",
 	"intentionallyblankpage": "Sta paggena s'è lassata abbacante apposta",
 	"external_image_whitelist": "  #Lassate sta linea accussì accussì comme sta<pre>\n#Mettete piezze 'espressione regolare (chilla parta nfra 'e //) sotto\n#Chille s'azzeccano ch' 'e ndirizze URL 'e l'immaggine 'e fore (collegamiente cavere)\n#Chille cu nu cunfronto positivo sarranno mmustate comme immaggene, o pure comme a nu link a l'immaggine ca mmustano\n#Linee c'accumenciano pe' # songo trattate comme commente\n#Chist'è insenzitivo p' 'e maiuscole e minuscole\n\n#Mettete tutt' 'e piezze regex ncopp' 'a stalinea. Lassate sta linea eguale eguale comme 'a verite</pre>",
