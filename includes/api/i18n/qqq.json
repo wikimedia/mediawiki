@@ -104,6 +104,7 @@
 	"apihelp-expandtemplates-description": "{{doc-apihelp-description|expandtemplates}}",
 	"apihelp-expandtemplates-param-title": "{{doc-apihelp-param|expandtemplates|title}}",
 	"apihelp-expandtemplates-param-text": "{{doc-apihelp-param|expandtemplates|text}}",
+	"apihelp-expandtemplates-param-oldid": "{{doc-apihelp-param|expandtemplates|oldid}}",
 	"apihelp-expandtemplates-param-prop": "{{doc-apihelp-param|expandtemplates|prop}}",
 	"apihelp-expandtemplates-param-includecomments": "{{doc-apihelp-param|expandtemplates|includecomments}}",
 	"apihelp-expandtemplates-param-generatexml": "{{doc-apihelp-param|expandtemplates|generatexml}}",
