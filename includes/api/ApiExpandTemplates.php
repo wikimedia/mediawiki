@@ -52,10 +52,19 @@ class ApiExpandTemplates extends ApiBase {
 			$prop = array_flip( $params['prop'] );
 		}
 
-		// Create title for parser
-		$title_obj = Title::newFromText( $params['title'] );
-		if ( !$title_obj || $title_obj->isExternal() ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+		// Get title and revision ID for parser
+		$revid = $params['revid'];
+		if ( $revid !== null ) {
+			$rev = Revision::newFromId( $revid );
+			if ( !$rev ) {
+				$this->dieUsage( "There is no revision ID $revid", 'missingrev' );
+			}
+			$title_obj = $rev->getTitle();
+		} else {
+			$title_obj = Title::newFromText( $params['title'] );
+			if ( !$title_obj || $title_obj->isExternal() ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
 		}
 
 		$result = $this->getResult();
@@ -98,7 +107,7 @@ class ApiExpandTemplates extends ApiBase {
 		if ( $prop || $params['prop'] === null ) {
 			$wgParser->startExternalParse( $title_obj, $options, Parser::OT_PREPROCESS );
 			$frame = $wgParser->getPreprocessor()->newFrame();
-			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, null, $frame );
+			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, $revid, $frame );
 			if ( $params['prop'] === null ) {
 				// the old way
 				ApiResult::setContent( $retval, $wikitext );
@@ -140,6 +149,9 @@ class ApiExpandTemplates extends ApiBase {
 			'text' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
+			),
+			'revid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'prop' => array(
 				ApiBase::PARAM_TYPE => array(
