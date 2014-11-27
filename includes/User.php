@@ -4476,7 +4476,7 @@ class User implements IDBAccessObject {
 		}
 		$title = self::getGroupPage( $group );
 		if ( $title ) {
-			$page = $title->getPrefixedText();
+			$page = $title->getFullText();
 			return "[[$page|$text]]";
 		} else {
 			return $text;
