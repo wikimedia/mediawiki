@@ -471,7 +471,7 @@ class TestFileIterator implements Iterator {
 		$hooksResult = $this->delayedParserTest->unleash( $this->parserTest );
 		if ( !$hooksResult ) {
 			# Some hook reported an issue. Abort.
-			throw new MWException( "Problem running hook" );
+			throw new MWException( "Problem running requested parser hook from the test file" );
 		}
 
 		$this->test = array(
