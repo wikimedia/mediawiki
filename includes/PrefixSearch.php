@@ -199,19 +199,19 @@ abstract class PrefixSearch {
 				return $this->pullFront( $key, $srchres );
 			}
 			$redirectTargetsToRedirect = $this->redirectTargetsToRedirect( $srchres );
-			if ( isset( $redirectTargetsToRedirect[ $target ] ) ) {
+			if ( isset( $redirectTargetsToRedirect[$target] ) ) {
 				// The exact match and something in the results list are both redirects
 				// to the same thing!  In this case we'll pull the returned match to the
 				// top following the same logic above.  Again, it might not be a perfect
 				// choice but it'll do.
-				return $this->pullFront( $redirectTargetsToRedirect[ $target ], $srchres );
+				return $this->pullFront( $redirectTargetsToRedirect[$target], $srchres );
 			}
 		} else {
 			$redirectTargetsToRedirect = $this->redirectTargetsToRedirect( $srchres );
-			if ( isset( $redirectTargetsToRedirect[ $string ] ) ) {
+			if ( isset( $redirectTargetsToRedirect[$string] ) ) {
 				// The exact match is the target of a redirect already in the results list so remove
 				// the redirect from the results list and push the exact match to the front
-				array_splice( $srchres, $redirectTargetsToRedirect[ $string ], 1 );
+				array_splice( $srchres, $redirectTargetsToRedirect[$string], 1 );
 				array_unshift( $srchres, $string );
 				return $srchres;
 			}
@@ -242,7 +242,7 @@ abstract class PrefixSearch {
 			if ( !$target ) {
 				continue;
 			}
-			$result[ $target ] = $key;
+			$result[$target] = $key;
 		}
 		return $result;
 	}

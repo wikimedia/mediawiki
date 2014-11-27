@@ -42,12 +42,12 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'Example Foo/Bar' );
 		$this->insertPage( 'Example/Baz' );
 		$this->insertPage( 'Redirect test', '#REDIRECT [[Redirect Test]]' );
-		$this->insertPage( 'Redirect Test');
-		$this->insertPage( 'Redirect Test Worse Result');
+		$this->insertPage( 'Redirect Test' );
+		$this->insertPage( 'Redirect Test Worse Result' );
 		$this->insertPage( 'Redirect test2', '#REDIRECT [[Redirect Test2]]' );
 		$this->insertPage( 'Redirect TEST2', '#REDIRECT [[Redirect Test2]]' );
-		$this->insertPage( 'Redirect Test2');
-		$this->insertPage( 'Redirect Test2 Worse Result');
+		$this->insertPage( 'Redirect Test2' );
+		$this->insertPage( 'Redirect Test2 Worse Result' );
 
 		$this->insertPage( 'Talk:Sandbox' );
 		$this->insertPage( 'Talk:Example' );
@@ -171,7 +171,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		array_shift( $case['results'] );
 		// And sometimes we expect a different last result
 		$expected = isset( $case['offsetresult'] ) ?
-			array_merge( $case['results'], $case['offsetresult'] ):
+			array_merge( $case['results'], $case['offsetresult'] ) :
 			$case['results'];
 
 		$this->assertEquals(

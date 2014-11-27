@@ -532,14 +532,14 @@ class Parser {
 
 			// Add on template profiling data
 			$dataByFunc = $this->mProfiler->getFunctionStats();
-			uasort( $dataByFunc, function( $a, $b ) {
+			uasort( $dataByFunc, function ( $a, $b ) {
 				return $a['real'] < $b['real']; // descending order
 			} );
 			$profileReport = "Transclusion expansion time report (%,ms,calls,template)\n";
 			foreach ( array_slice( $dataByFunc, 0, 10 ) as $item ) {
 				$profileReport .= sprintf( "%6.2f%% %8.3f %6d - %s\n",
 					$item['%real'], $item['real'], $item['calls'],
-					htmlspecialchars($item['name'] ) );
+					htmlspecialchars( $item['name'] ) );
 			}
 			$text .= "\n<!-- \n$profileReport-->\n";
 

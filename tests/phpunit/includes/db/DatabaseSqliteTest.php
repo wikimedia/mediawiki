@@ -297,7 +297,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			$out = $wgProfiler['output'];
 			if ( $out === 'db' ) {
 				$profileToDb = true;
-			} elseif( is_array( $out ) && in_array( 'db', $out ) ) {
+			} elseif ( is_array( $out ) && in_array( 'db', $out ) ) {
 				$profileToDb = true;
 			}
 		}

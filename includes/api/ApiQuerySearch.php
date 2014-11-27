@@ -206,7 +206,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$hasInterwikiResults = false;
 		$totalhits = null;
 		if ( $interwiki && $resultPageSet === null && $matches->hasInterwikiResults() ) {
-			foreach( $matches->getInterwikiResults() as $matches ) {
+			foreach ( $matches->getInterwikiResults() as $matches ) {
 				$matches = $matches->getInterwikiResults();
 				$hasInterwikiResults = true;
 

@@ -90,14 +90,14 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 			'multiValue' => array( array( 'first', 'second', 'third', '_type' => 'ol' ), 'first' ),
 			'noType' => array( array( 'first', 'second', 'third' ), 'first' ),
 			'typeFirst' => array( array( '_type' => 'ol', 'first', 'second', 'third' ), 'first' ),
-		    'multilang' => array(
-			    array( 'en' => 'first', 'de' => 'Erste', '_type' => 'lang' ),
-			    array( 'en' => 'first', 'de' => 'Erste', '_type' => 'lang' ),
-		    ),
-		    'multilang-multivalue' => array(
-			    array( 'en' => array( 'first', 'second' ), 'de' => array( 'Erste', 'Zweite' ), '_type' => 'lang' ),
-			    array( 'en' => 'first', 'de' => 'Erste', '_type' => 'lang' ),
-		    ),
+			'multilang' => array(
+				array( 'en' => 'first', 'de' => 'Erste', '_type' => 'lang' ),
+				array( 'en' => 'first', 'de' => 'Erste', '_type' => 'lang' ),
+			),
+			'multilang-multivalue' => array(
+				array( 'en' => array( 'first', 'second' ), 'de' => array( 'Erste', 'Zweite' ), '_type' => 'lang' ),
+				array( 'en' => 'first', 'de' => 'Erste', '_type' => 'lang' ),
+			),
 		);
 	}
 }

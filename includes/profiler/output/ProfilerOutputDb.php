@@ -38,7 +38,7 @@ class ProfilerOutputDb extends ProfilerOutput {
 		// Initialize per-host profiling from config, back-compat if available
 		if ( isset( $this->params['perHost'] ) ) {
 			$this->perHost = $this->params['perHost'];
-		} elseif( $wgProfilePerHost ) {
+		} elseif ( $wgProfilePerHost ) {
 			$this->perHost = $wgProfilePerHost;
 		}
 	}

@@ -23,6 +23,7 @@
 use Cdb\Exception as CdbException;
 use Cdb\Reader as CdbReader;
 use Cdb\Writer as CdbWriter;
+
 /**
  * Class for caching the contents of localisation files, Messages*.php
  * and *.i18n.php.

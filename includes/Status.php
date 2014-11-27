@@ -469,7 +469,7 @@ class Status {
 	public function __toString() {
 		$status = $this->isOK() ? "OK" : "Error";
 		if ( count( $this->errors ) ) {
-			$errorcount = "collected " . ( count($this->errors) ) . " error(s) on the way";
+			$errorcount = "collected " . ( count( $this->errors ) ) . " error(s) on the way";
 		} else {
 			$errorcount = "no errors detected";
 		}
@@ -486,16 +486,16 @@ class Status {
 			$errorcount,
 			$valstr
 		);
-		if ( count ($this->errors ) > 0 ) {
+		if ( count( $this->errors ) > 0 ) {
 			$hdr = sprintf( "+-%'-4s-+-%'-25s-+-%'-40s-+\n", "", "", "" );
 			$i = 1;
 			$out .= "\n";
 			$out .= $hdr;
-			foreach( $this->getStatusArray() as $stat ) {
+			foreach ( $this->getStatusArray() as $stat ) {
 				$out .= sprintf( "| %4d | %-25.25s | %-40.40s |\n",
 					$i,
 					$stat[0],
-					implode(" ", array_slice( $stat, 1 ) )
+					implode( " ", array_slice( $stat, 1 ) )
 				);
 				$i += 1;
 			}

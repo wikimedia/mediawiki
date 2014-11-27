@@ -298,7 +298,7 @@ class WebInstallerOutput {
 	</div>
 <?php
 	$message = wfMessage( 'config-sidebar' )->plain();
-	foreach( explode( '----', $message ) as $section ) {
+	foreach ( explode( '----', $message ) as $section ) {
 		echo '<div class="portal"><div class="body">';
 		echo $this->parent->parse( $section, true );
 		echo '</div></div>';

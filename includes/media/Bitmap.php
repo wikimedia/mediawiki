@@ -344,7 +344,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		$src_image = call_user_func( $loader, $params['srcPath'] );
 
-		$rotation = function_exists( 'imagerotate' ) && !isset( $params['disableRotation'] )  ? $this->getRotation( $image ) : 0;
+		$rotation = function_exists( 'imagerotate' ) && !isset( $params['disableRotation'] ) ? $this->getRotation( $image ) : 0;
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 		$dst_image = imagecreatetruecolor( $width, $height );
 

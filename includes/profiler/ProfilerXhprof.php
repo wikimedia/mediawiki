@@ -126,12 +126,12 @@ class ProfilerXhprof extends Profiler {
 
 		if ( $exists ) {
 			xhprof_frame_begin( $section );
-			return new ScopedCallback( function() {
+			return new ScopedCallback( function () {
 				xhprof_frame_end();
 			} );
 		}
 
-		return new ScopedCallback( function() {
+		return new ScopedCallback( function () {
 			// no-op
 		} );
 	}

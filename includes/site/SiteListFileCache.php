@@ -72,7 +72,7 @@ class SiteListFileCache {
 		$sites = new SiteList();
 
 		// @todo lazy initialize the site objects in the site list (e.g. only when needed to access)
-		foreach( $data['sites'] as $siteArray ) {
+		foreach ( $data['sites'] as $siteArray ) {
 			$sites[] = $this->newSiteFromArray( $siteArray );
 		}
 
@@ -116,7 +116,7 @@ class SiteListFileCache {
 		$site->setExtraData( $data['data'] );
 		$site->setExtraConfig( $data['config'] );
 
-		foreach( $data['identifiers'] as $identifier ) {
+		foreach ( $data['identifiers'] as $identifier ) {
 			$site->addLocalId( $identifier['type'], $identifier['key'] );
 		}
 

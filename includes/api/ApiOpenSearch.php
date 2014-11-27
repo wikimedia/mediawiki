@@ -59,7 +59,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getCustomPrinter() {
-		switch( $this->getFormat() ) {
+		switch ( $this->getFormat() ) {
 			case 'json':
 				return $this->getMain()->createPrinterByName( 'json' . $this->fm );
 

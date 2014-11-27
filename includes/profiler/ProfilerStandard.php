@@ -222,7 +222,7 @@ class ProfilerStandard extends Profiler {
 		$this->profileIn( $section );
 
 		$that = $this;
-		return new ScopedCallback( function() use ( $that, $section ) {
+		return new ScopedCallback( function () use ( $that, $section ) {
 			$that->profileOut( $section );
 		} );
 	}

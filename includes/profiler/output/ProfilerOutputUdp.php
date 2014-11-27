@@ -45,19 +45,19 @@ class ProfilerOutputUdp extends ProfilerOutput {
 		// Initialize port, host, and format from config, back-compat if available
 		if ( isset( $this->params['udpport'] ) ) {
 			$this->port = $this->params['udpport'];
-		} elseif( $wgUDPProfilerPort ) {
+		} elseif ( $wgUDPProfilerPort ) {
 			$this->port = $wgUDPProfilerPort;
 		}
 
 		if ( isset( $this->params['udphost'] ) ) {
 			$this->host = $this->params['udphost'];
-		} elseif( $wgUDPProfilerHost ) {
+		} elseif ( $wgUDPProfilerHost ) {
 			$this->host = $wgUDPProfilerHost;
 		}
 
 		if ( isset( $this->params['udpformat'] ) ) {
 			$this->format = $this->params['udpformat'];
-		} elseif( $wgUDPProfilerFormatString ) {
+		} elseif ( $wgUDPProfilerFormatString ) {
 			$this->format = $wgUDPProfilerFormatString;
 		}
 	}

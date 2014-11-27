@@ -81,7 +81,7 @@ class SiteListFileCacheBuilder {
 		$siteIdentifiers = $this->buildLocalIdentifiers( $site );
 		$identifiersArray = array();
 
-		foreach( $siteIdentifiers as $identifier ) {
+		foreach ( $siteIdentifiers as $identifier ) {
 			$identifiersArray[] = $identifier;
 		}
 
