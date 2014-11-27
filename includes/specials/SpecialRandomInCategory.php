@@ -117,7 +117,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			return Status::newFatal( $msg );
 
 		} elseif ( !$this->category ) {
-			return; // no data sent
+			return false; // no data sent
 		}
 
 		$title = $this->getRandomTitle();
