@@ -2207,6 +2207,16 @@ $out: OutputPage object
 'RecentChange_save': Called at the end of RecentChange::save().
 $recentChange: RecentChange object
 
+'RecentChangesRowsForDisplay': Called before displaying a set of RC rows.
+Returning false from the handler function has the same effect as
+setting $rows = false.
+&$rows: A ResultWrapper containing the rows, or the bool value false.
+  Hook handlers are free to inspect, modify, or replace the $rows.
+  Care should be taken to reset the result set's iterator state by calling
+  reset(), if needed.
+$opts: FormOptions that were used to generate the rows.
+$context: IContextSource of the page that will show the rows.
+
 'RedirectSpecialArticleRedirectParams': Lets you alter the set of parameter
 names such as "oldid" that are preserved when using redirecting special pages
 such as Special:MyPage and Special:MyTalk.
