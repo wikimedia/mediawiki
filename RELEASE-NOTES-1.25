@@ -220,6 +220,8 @@ changes to languages because of Bugzilla reports.
   fail for custom tokens registered only via the deprecated ApiTokensGetTokenTypes
   hook. The ApiQueryTokensRegisterTypes hook should be used for this to work.
 * Added wgRelevantArticleId to the client-side config, for use on special pages.
+* Added hook 'RecentChangesRowsForDisplay', called before displaying a set of RC
+  rows.
 
 == Compatibility ==
 

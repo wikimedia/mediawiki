@@ -82,7 +82,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts = $this->getOptions();
 		$conds = $this->buildMainQueryConds( $opts );
 
-		return $this->doMainQuery( $conds, $opts );
+		$rows = $this->doMainQuery( $conds, $opts );
+
+		if ( !wfRunHooks( 'RecentChangesRowsForDisplay', array( &$rows, $opts, $this->getContext() ) ) ) {
+			$rows = false;
+		}
+
+		return $rows;
 	}
 
 	/**
