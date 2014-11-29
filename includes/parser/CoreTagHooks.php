@@ -144,6 +144,6 @@ class CoreTagHooks {
 			Parser::stripOuterParagraph( $parser->recursiveTagParseFully( $content, $frame ) )
 		);
 
-		return '';
+		return array( '', 'markerType' => 'nowiki' );
 	}
 }
