@@ -5,5 +5,6 @@
 		]
 	},
 	"apihelp-main-param-action": "Qual action exequer.",
-	"apihelp-main-param-format": "Le formato del resultato."
+	"apihelp-main-param-format": "Le formato del resultato.",
+	"apihelp-main-param-maxlag": "Le latentia maximal pote esser usate quando MediaWiki es installate in un cluster de base de datos replicate. Pro evitar actiones que causa additional latentia de replication de sito, iste parametro pote facer le cliente attender usque le latentia de replication es minus que le valor specificate. In caso de latentia excessive, le codice de error \"maxlag\" es retornate con un message como \"Attende $host: $lag secundas de latentia\".<br />Vide https://www.mediawiki.org/wiki/Manual:Maxlag_parameter pro plus information."
 }

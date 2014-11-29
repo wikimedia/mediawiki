@@ -1771,7 +1771,7 @@
 	"ipb-confirm": "Бакъде блоктохар",
 	"badipaddress": "Магийна доцу IP адрес",
 	"blockipsuccesssub": "Блоктохар чакхдели",
-	"blockipsuccesstext": "[[Special:Contributions/$1|«$1»]] {{GENDER:$1|блоктоьхна}}.<br />\nХьажа. [[Special:BlockList|блоктоьхна IP-адресийнн могӀам]].",
+	"blockipsuccesstext": "[[Special:Contributions/$1|«$1»]] {{GENDER:$1|блоктоьхна}}.<br />\nХьажа. [[Special:BlockList|блоктоьхна IP-адресийн могӀам]].",
 	"ipb-blockingself": "Хьо хьайна блоктоха гӀерта! Лаьий хьона и кхочушдан?",
 	"ipb-edit-dropdown": "Бахьанин могӀам нисбар",
 	"ipb-unblock-addr": "ДӀаякхаблок $1",

@@ -3134,7 +3134,7 @@
 	"feedback-error1": "Galat: Hasil tidak dikenal dari API",
 	"feedback-error2": "Galat: Penyuntingan gagal",
 	"feedback-error3": "Error: API tidak merespons",
-	"feedback-thanks": "Terima kasih! Umpan balik Anda telah diposting ke halaman \"[$2 $1]\".",
+	"feedback-thanks": "Terima kasih! Umpan balik Anda telah dikirimkan ke halaman \"[$2 $1]\".",
 	"feedback-close": "Selesai",
 	"feedback-bugcheck": "Hebat! Hanya periksa bahwa itu bukan satu di antara [$1 bug yang telah dikenal].",
 	"feedback-bugnew": "Saya telah memeriksa. Laporkan bug baru",

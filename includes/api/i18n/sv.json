@@ -16,7 +16,7 @@
 	"apihelp-block-param-anononly": "Blockera endast anonyma användare (t.ex. inaktivera anonyma redigeringar för denna IP-adress).",
 	"apihelp-block-param-nocreate": "Förhindra registrering av användarkonton.",
 	"apihelp-block-param-hidename": "Döljer användarnamnet från blockeringsloggen. (Kräver rättigheten \"hideuser\").",
-	"apihelp-block-param-allowusertalk": "Låter användaren redigera sin egen diskussionssida (beror på $wgBlockAllowsUTEdit).",
+	"apihelp-block-param-allowusertalk": "Låt användaren redigera sin egen diskussionssida (beror på $wgBlockAllowsUTEdit).",
 	"apihelp-block-param-reblock": "Skriv över befintlig blockering om användaren redan är blockerad.",
 	"apihelp-block-param-watchuser": "Bevaka användarens eller IP-adressens användarsida och diskussionssida",
 	"apihelp-compare-param-fromtitle": "Första titeln att jämföra.",

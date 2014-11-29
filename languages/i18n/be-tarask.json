@@ -1055,6 +1055,7 @@
 	"right-protect": "зьмена ўзроўню абароны старонак і рэдагаваньне каскадна абароненых старонак",
 	"right-editprotected": "рэдагаваньне старонак, абароненых у рэжыме «{{int:protect-level-sysop}}»",
 	"right-editsemiprotected": "рэдагаваньне старонак, абароненых у рэжыме «{{int:protect-level-autoconfirmed}}»",
+	"right-editcontentmodel": "рэдагаваньне мадэлі зьместу старонкі",
 	"right-editinterface": "рэдагаваньне інтэрфэйса карыстальніка",
 	"right-editusercssjs": "рэдагаваньне CSS і JS файлаў іншых удзельнікаў",
 	"right-editusercss": "рэдагаваньне CSS файлаў іншых удзельнікаў",
