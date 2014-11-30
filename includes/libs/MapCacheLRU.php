@@ -74,7 +74,9 @@ class MapCacheLRU {
 	 * @return bool
 	 */
 	public function has( $key ) {
-		return array_key_exists( $key, $this->cache );
+		if ( is_string( $key ) || is_integer( $key ) ) {
+			return array_key_exists( $key, $this->cache );
+		}
 	}
 
 	/**
