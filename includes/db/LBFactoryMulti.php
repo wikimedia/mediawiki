@@ -77,82 +77,82 @@ class LBFactoryMulti extends LBFactory {
 	// Required settings
 
 	/** @var array A map of database names to section names */
-	protected $sectionsByDB;
+	private $sectionsByDB;
 
 	/**
 	 * @var array A 2-d map. For each section, gives a map of server names to
 	 * load ratios
 	 */
-	protected $sectionLoads;
+	private $sectionLoads;
 
 	/**
 	 * @var array A server info associative array as documented for
 	 * $wgDBservers. The host, hostName and load entries will be
 	 * overridden
 	 */
-	protected $serverTemplate;
+	private $serverTemplate;
 
 	// Optional settings
 
 	/** @var array A 3-d map giving server load ratios for each section and group */
-	protected $groupLoadsBySection = array();
+	private $groupLoadsBySection = array();
 
 	/** @var array A 3-d map giving server load ratios by DB name */
-	protected $groupLoadsByDB = array();
+	private $groupLoadsByDB = array();
 
 	/** @var array A map of hostname to IP address */
-	protected $hostsByName = array();
+	private $hostsByName = array();
 
 	/** @var array A map of external storage cluster name to server load map */
-	protected $externalLoads = array();
+	private $externalLoads = array();
 
 	/**
 	 * @var array A set of server info keys overriding serverTemplate for
 	 * external storage
 	 */
-	protected $externalTemplateOverrides;
+	private $externalTemplateOverrides;
 
 	/**
 	 * @var array A 2-d map overriding serverTemplate and
 	 * externalTemplateOverrides on a server-by-server basis. Applies to both
 	 * core and external storage
 	 */
-	protected $templateOverridesByServer;
+	private $templateOverridesByServer;
 
 	/** @var array A 2-d map overriding the server info by external storage cluster */
-	protected $templateOverridesByCluster;
+	private $templateOverridesByCluster;
 
 	/** @var array An override array for all master servers */
-	protected $masterTemplateOverrides;
+	private $masterTemplateOverrides;
 
 	/**
 	 * @var array|bool A map of section name to read-only message. Missing or
 	 * false for read/write
 	 */
-	protected $readOnlyBySection = array();
+	private $readOnlyBySection = array();
 
 	// Other stuff
 
 	/** @var array Load balancer factory configuration */
-	protected $conf;
+	private $conf;
 
 	/** @var LoadBalancer[] */
-	protected $mainLBs = array();
+	private $mainLBs = array();
 
 	/** @var LoadBalancer[] */
-	protected $extLBs = array();
+	private $extLBs = array();
 
 	/** @var string */
-	protected $lastWiki;
+	private $lastWiki;
 
 	/** @var string */
-	protected $lastSection;
+	private $lastSection;
 
 	/**
 	 * @param array $conf
 	 * @throws MWException
 	 */
-	function __construct( array $conf ) {
+	public function __construct( array $conf ) {
 		$this->chronProt = new ChronologyProtector;
 		$this->conf = $conf;
 		$required = array( 'sectionsByDB', 'sectionLoads', 'serverTemplate' );
@@ -186,7 +186,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return string
 	 */
-	function getSectionForWiki( $wiki = false ) {
+	private function getSectionForWiki( $wiki = false ) {
 		if ( $this->lastWiki === $wiki ) {
 			return $this->lastSection;
 		}
@@ -206,7 +206,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
-	function newMainLB( $wiki = false ) {
+	public function newMainLB( $wiki = false ) {
 		list( $dbName, ) = $this->getDBNameAndPrefix( $wiki );
 		$section = $this->getSectionForWiki( $wiki );
 		$groupLoads = array();
@@ -229,7 +229,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
-	function getMainLB( $wiki = false ) {
+	public function getMainLB( $wiki = false ) {
 		$section = $this->getSectionForWiki( $wiki );
 		if ( !isset( $this->mainLBs[$section] ) ) {
 			$lb = $this->newMainLB( $wiki, $section );
@@ -247,7 +247,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @throws MWException
 	 * @return LoadBalancer
 	 */
-	function newExternalLB( $cluster, $wiki = false ) {
+	protected function newExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->externalLoads[$cluster] ) ) {
 			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
@@ -267,7 +267,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	function &getExternalLB( $cluster, $wiki = false ) {
+	public function &getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
@@ -285,7 +285,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param array $groupLoads
 	 * @return LoadBalancer
 	 */
-	function newLoadBalancer( $template, $loads, $groupLoads ) {
+	private function newLoadBalancer( $template, $loads, $groupLoads ) {
 		$servers = $this->makeServerArray( $template, $loads, $groupLoads );
 		$lb = new LoadBalancer( array(
 			'servers' => $servers,
@@ -302,7 +302,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param array $groupLoads
 	 * @return array
 	 */
-	function makeServerArray( $template, $loads, $groupLoads ) {
+	private function makeServerArray( $template, $loads, $groupLoads ) {
 		$servers = array();
 		$master = true;
 		$groupLoadsByServer = $this->reindexGroupLoads( $groupLoads );
@@ -344,7 +344,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param array $groupLoads
 	 * @return array
 	 */
-	function reindexGroupLoads( $groupLoads ) {
+	private function reindexGroupLoads( $groupLoads ) {
 		$reindexed = array();
 		foreach ( $groupLoads as $group => $loads ) {
 			foreach ( $loads as $server => $load ) {
@@ -360,7 +360,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param bool|string $wiki
 	 * @return array
 	 */
-	function getDBNameAndPrefix( $wiki = false ) {
+	private function getDBNameAndPrefix( $wiki = false ) {
 		if ( $wiki === false ) {
 			global $wgDBname, $wgDBprefix;
 
@@ -377,7 +377,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	function forEachLB( $callback, array $params = array() ) {
+	public function forEachLB( $callback, array $params = array() ) {
 		foreach ( $this->mainLBs as $lb ) {
 			call_user_func_array( $callback, array_merge( array( $lb ), $params ) );
 		}
@@ -386,7 +386,7 @@ class LBFactoryMulti extends LBFactory {
 		}
 	}
 
-	function shutdown() {
+	public function shutdown() {
 		foreach ( $this->mainLBs as $lb ) {
 			$this->chronProt->shutdownLB( $lb );
 		}
