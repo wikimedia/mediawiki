@@ -74,7 +74,11 @@ class MapCacheLRU {
 	 * @return bool
 	 */
 	public function has( $key ) {
-		return array_key_exists( $key, $this->cache );
+		if ( is_string( $key ) || is_integer( $key ) ) {
+			return array_key_exists( $key, $this->cache );
+		}
+		wfWarn( "Key passed isn't a string or an integer: '$key'", 2 );
+		return false;
 	}
 
 	/**
