@@ -4,11 +4,23 @@
 			"Purodha"
 		]
 	},
+	"apihelp-main-param-action": "Wat för en Aufjahb.",
+	"apihelp-main-param-format": "Et Fommaht för ußzejävve.",
+	"apihelp-main-param-requestid": "Jehde Aanjahb vun heh weed widder med ußjejovve. Esuh kam_mer einzel Affrohre ussenein hallde.",
+	"apihelp-main-param-servedby": "Donn däm ẞööver, dä et jedonn hät, singe Nahme med ußjävve.",
+	"apihelp-main-param-curtimestamp": "Donn de aktoälle Zigg un et Dattum med ußjävve.",
 	"apihelp-block-description": "Ene Metmaacher schpärre.",
+	"apihelp-block-param-user": "Däm Nahme vun däm Metmaacher, de <i lang=\"en\" xml:lang=\"en\" title=\"Internet Protocol\">IP</i>-Addräß udder dä Berätt, dä De Schpärre wells.",
 	"apihelp-block-param-reason": "Der Schpärrjrond.",
+	"apihelp-block-param-anononly": "Bloß de nahmelohse Metmaaacher spärre, alsu donn et nahmelohse Beärbeide vun dä <i lang=\"en\" xml:lang=\"en\" title=\"Internet Protocol\">IP</i>-Addräß verhendere.",
 	"apihelp-block-param-nocreate": "Et Neu-Aanmelde verbeede",
 	"apihelp-block-param-autoblock": "Dun automattesch de läzde <i lang=\"en\" xml:lang=\"en\">IP</i>-Adräß schpärre, di dä Metmaacher jehatt hät, un och all di <i lang=\"en\" xml:lang=\"en\">IP</i>-Adräße, vun wo dä versöhk, jet ze ändere.",
 	"apihelp-block-param-watchuser": "Donn de Metmaachersigg un de Klaafsigg dohzoh op mig Oppaßleß säze.",
+	"apihelp-createaccount-description": "Ene neue Zohjang för ene Metmaacher aanlähje.",
 	"apihelp-createaccount-param-name": "Der Nahme för dä Metmaacher.",
-	"apihelp-delete-description": "Schmieß en Sigg fott."
+	"apihelp-createaccount-param-password": "Et Paßwoot (Weed ävver it jebruc un övverjange, wann <code lang=\"en\" xml:lang=\"en\">$1mailpassword</code> jesaz es)",
+	"apihelp-delete-description": "Schmieß en Sigg fott.",
+	"apihelp-delete-param-watch": "Donn die Sigg en Ding Oppassliss opnemme.",
+	"apihelp-delete-param-unwatch": "Schmiiß di Sigg us Dinge Oppassless erus.",
+	"apihelp-delete-example-simple": "Schmiiß de Houpsigg fott"
 }

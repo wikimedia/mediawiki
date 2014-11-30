@@ -41,7 +41,8 @@
 			"Infinity",
 			"Bluemersen",
 			"Revi",
-			"Namoroka"
+			"Namoroka",
+			"양념파닭"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -2963,6 +2964,7 @@
 	"specialpages-group-wiki": "데이터와 도구",
 	"specialpages-group-redirects": "넘겨주기 특수 문서",
 	"specialpages-group-spam": "스팸 처리 도구",
+	"specialpages-group-developer": "개발자 도구",
 	"blankpage": "빈 문서",
 	"intentionallyblankpage": "일부러 비워 둔 문서입니다.",
 	"external_image_whitelist": " #이 줄은 그대로 두십시오<pre>\n#정규 표현식(// 사이에 있는 부분)을 아래에 입력하세요.\n#이 목록은 바깥 그림의 URL과 대조할 것입니다.\n#이 목록과 일치하는 것은 그림이 직접 보여지지만, 그렇지 않은 경우 그림을 가리키는 링크만 보이게 될 것입니다.\n#\"#\" 문자에서 줄의 끝까지는 주석입니다\n#이 목록은 대소문자를 구별하지 않습니다\n\n#모든 정규 표현식은 이 줄 위에 넣어 주십시오. 그리고 이 줄은 그대로 두십시오.</pre>",
@@ -3102,6 +3104,7 @@
 	"api-error-stashfailed": "내부 오류: 서버가 임시 파일을 저장하지 못했습니다.",
 	"api-error-publishfailed": "내부 오류: 서버가 임시 파일을 게시하지 못했습니다.",
 	"api-error-stasherror": "파일을 안전한 곳으로 업로드 하는 동안 오류가 발생했습니다.",
+	"api-error-stashnotloggedin": "파일을 업로드하기 위해 로그인이 필요합니다.",
 	"api-error-timeout": "서버가 제 시간 내에 응답하지 않았습니다.",
 	"api-error-unclassified": "알 수 없는 오류가 발생했습니다.",
 	"api-error-unknown-code": "알 수 없는 오류: \"$1\"",
