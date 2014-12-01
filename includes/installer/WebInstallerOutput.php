@@ -296,11 +296,14 @@ class WebInstallerOutput {
 		href="https://www.mediawiki.org/"
 		title="Main Page"></a>
 	</div>
-	<div class="portal"><div class="body">
 <?php
-	echo $this->parent->parse( wfMessage( 'config-sidebar' )->plain(), true );
+	$message = wfMessage( 'config-sidebar' )->plain();
+	foreach( explode( '----', $message ) as $section ) {
+		echo '<div class="portal"><div class="body">';
+		echo $this->parent->parse( $section, true );
+		echo '</div></div>';
+	}
 ?>
-	</div></div>
 </div>
 
 <?php
