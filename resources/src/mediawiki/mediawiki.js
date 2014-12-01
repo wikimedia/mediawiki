@@ -2371,11 +2371,15 @@
 			 * @return {mw.hook}
 			 */
 			return function ( name ) {
-				var list = hasOwn.call( lists, name ) ?
-					lists[name] :
-					lists[name] = $.Callbacks( 'memory' );
+				var list, hook;
 
-				return {
+				if ( !hasOwn.call( lists, name ) ) {
+					lists[name] = $.Callbacks( 'memory' );
+				}
+
+				list = lists[name];
+
+				hook = {
 					/**
 					 * Register a hook handler
 					 * @param {Function...} handler Function to bind.
@@ -2396,9 +2400,11 @@
 					 * @chainable
 					 */
 					fire: function () {
-						return list.fireWith.call( this, null, slice.call( arguments ) );
+						return list.fireWith.call( hook, null, slice.call( arguments ) );
 					}
 				};
+
+				return hook;
 			};
 		}() )
 	};
