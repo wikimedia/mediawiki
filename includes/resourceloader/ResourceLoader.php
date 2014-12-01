@@ -1490,6 +1490,9 @@ class ResourceLoader {
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see bug 47564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
+		if ( !class_exists( 'lessc' ) ) {
+			throw new MWException( 'MediaWiki requires the lessphp compiler' );
+		}
 		if ( !function_exists( 'ctype_digit' ) ) {
 			throw new MWException( 'lessc requires the Ctype extension' );
 		}
