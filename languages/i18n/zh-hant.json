@@ -1587,7 +1587,7 @@
 	"protectedpages-performer": "保護使用者",
 	"protectedpages-params": "保護參數",
 	"protectedpages-reason": "原因",
-	"protectedpages-unknown-timestamp": "未知",
+	"protectedpages-unknown-timestamp": "不明",
 	"protectedpages-unknown-performer": "不明的使用者",
 	"protectedtitles": "受保護標題",
 	"protectedtitles-summary": "此頁面列出目前受保護的標題。 欲查詢受保護頁面清單，請參考 [[{{#special:ProtectedPages}}|{{int:protectedpages}}]]。",

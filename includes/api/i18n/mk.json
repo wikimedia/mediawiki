@@ -308,7 +308,7 @@
 	"apihelp-upload-param-url": "Од која URL-адреса да се преземе податотеката.",
 	"apihelp-upload-param-filekey": "Клуч на претходното подигање кое е привремено складирано.",
 	"apihelp-upload-param-sessionkey": "Исто што и $1filekey. Се одржува за назадна складност.",
-	"apihelp-upload-param-stash": "Ако е зададено, опслужувачот нема да ја стави податотеката во складиштето за привремено чување.",
+	"apihelp-upload-param-stash": "Ако е зададено, опслужувачот ќе ја стави податотеката на привремено чување наместо да го додаде во складиштето.",
 	"apihelp-upload-param-filesize": "Големина на целото подигање.",
 	"apihelp-upload-param-offset": "Зафатнина на делот во бајти.",
 	"apihelp-upload-param-chunk": "Содржина на делот.",
