@@ -2003,8 +2003,15 @@
 							return;
 						}
 
-						if ( !mw.config.get( 'wgResourceLoaderStorageEnabled' ) || mw.config.get( 'debug' ) ) {
-							// Disabled by configuration, or because debug mode is set
+						if ( !mw.config.get( 'wgResourceLoaderStorageEnabled' ) ) {
+							// Disabled by configuration.
+							// Clear any previous store to free up space. (T66721)
+							mw.loader.store.clear();
+							mw.loader.store.enabled = false;
+							return;
+						}
+						if ( mw.config.get( 'debug' ) ) {
+							// Disable module store in debug mode
 							mw.loader.store.enabled = false;
 							return;
 						}
