@@ -168,12 +168,12 @@ class DBConnectionError extends DBExpectedError {
 		if ( $wgShowHostnames || $wgShowSQLErrors ) {
 			$info = str_replace(
 				'$1', Html::element( 'span', array( 'dir' => 'ltr' ), $this->error ),
-				htmlspecialchars( $this->msg( 'dberr-info', '(Cannot contact the database server: $1)' ) )
+				htmlspecialchars( $this->msg( 'dberr-info', '(Cannot access the database: $1)' ) )
 			);
 		} else {
 			$info = htmlspecialchars( $this->msg(
 				'dberr-info-hidden',
-				'(Cannot contact the database server)'
+				'(Cannot access the database)'
 			) );
 		}
 
