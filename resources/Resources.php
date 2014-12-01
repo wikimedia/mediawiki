@@ -778,6 +778,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.hlist',
 		),
+		'position' => 'top',
 	),
 	'mediawiki.template' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.template.js',
@@ -786,6 +787,7 @@ return array(
 	'mediawiki.apipretty' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.apipretty.css',
 		'targets' => array( 'desktop', 'mobile' ),
+		'position' => 'top',
 	),
 	'mediawiki.api' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.js',
