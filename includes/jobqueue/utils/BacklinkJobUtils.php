@@ -72,6 +72,7 @@ class BacklinkJobUtils {
 		if ( isset( $params['pages'] ) || empty( $params['recursive'] ) ) {
 			$ranges = array(); // sanity; this is a leaf node
 			wfWarn( __METHOD__ . " called on {$job->getType()} leaf job (explosive recursion)." );
+			return array();
 		} elseif ( isset( $params['range'] ) ) {
 			// This is a range job to trigger the insertion of partitioned/title jobs...
 			$ranges = $params['range']['subranges'];
