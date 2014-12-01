@@ -382,10 +382,11 @@
 				};
 				img.src = dataURL;
 			}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
-				/*jshint camelcase:false, nomen:false */
 				try {
 					meta = mw.libs.jpegmeta( data, file.fileName );
+					// jscs:disable requireCamelCaseOrUpperCaseIdentifiers, disallowDanglingUnderscores
 					meta._binary_data = null;
+					// jscs:enable
 				} catch ( e ) {
 					meta = null;
 				}
