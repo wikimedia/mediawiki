@@ -249,6 +249,39 @@ class Title {
 	}
 
 	/**
+	 * Determines which local title best corresponds to the given foreign title.
+	 * If such a title can't be found or would be locally invalid, null is
+	 * returned.
+	 *
+	 * @param ForeignTitle $foreignTitle The ForeignTitle to convert
+	 * @param int|null $targetNs The target namespace, or null to smartly choose
+	 * the target namespace
+	 * @return Title|null
+	 */
+	public static function newFromForeignTitle( ForeignTitle $foreignTitle,
+			$targetNs = null ) {
+		global $wgContLang;
+
+		if (
+			$foreignTitle->isNamespaceIdKnown() &&
+			MWNamespace::exists( $foreignTitle->getNamespaceId() )
+		) {
+			# We have a matching namespace ID locally, so put the page there
+			return self::makeTitleSafe( $foreignTitle->getNamespaceId(),
+				$foreignTitle->getPageName() );
+		} else {
+			# Try for a matching local namespace name
+			$targetNs = $wgContLang->getNsIndex( $foreignTitle->getNamespaceName() );
+			if ( $targetNs !== false ) {
+				return self::makeTitleSafe( $targetNs, $foreignTitle->getPageName() );
+			} else {
+				# Just fall back to main namespace
+				return self::makeTitleSafe( 0, $foreignTitle->getFullText() );
+			}
+		}
+	}
+
+	/**
 	 * Create a new Title from text, such as what one would find in a link. De-
 	 * codes any HTML entities in the text.
 	 *
