@@ -59,6 +59,7 @@ production.
 * Added a hook, "ApiOpenSearchSuggest", to allow extensions to provide extracts
   and images for ApiOpenSearch output. The semantics are identical to the
   "OpenSearchXml" hook provided by the OpenSearchXml extension.
+* Added mw.hook "wikipage.content.change".
 
 === Bug fixes in 1.25 ===
 * (bug 71003) No additional code will be generated to try to load CSS-embedded
