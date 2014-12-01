@@ -3,4 +3,5 @@
 	RewriteEngine On
 	RewriteCond %{QUERY_STRING} \.[^\\/:*?\x22<>|%]+(#|\?|$) [nocase]
 	RewriteRule . - [forbidden]
+	Options +FollowSymLinks
 </IfModule>
