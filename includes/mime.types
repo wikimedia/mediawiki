@@ -21,7 +21,8 @@ application/vnd.wap.wmlc wmlc
 application/vnd.wap.wmlscriptc wmlsc
 application/voicexml+xml vxml
 application/x-bcpio bcpio
-application/x-bzip gz bz2
+application/x-bzip bz
+application/x-bzip2 bz2
 application/x-cdlink vcd
 application/x-chess-pgn pgn
 application/x-cpio cpio
