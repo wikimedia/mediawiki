@@ -63,6 +63,7 @@ production.
   this allows for pagination of prefix results. Extensions using this hook
   should implement supporting behavior. Not doing so can result in undefined
   behavior from API clients trying to continue through prefix results.
+* Added mw.hook "editing.content.changed".
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
