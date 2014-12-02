@@ -41,6 +41,13 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'Example Foo' );
 		$this->insertPage( 'Example Foo/Bar' );
 		$this->insertPage( 'Example/Baz' );
+		$this->insertPage( 'Redirect test', '#REDIRECT [[Redirect Test]]' );
+		$this->insertPage( 'Redirect Test');
+		$this->insertPage( 'Redirect Test Worse Result');
+		$this->insertPage( 'Redirect test2', '#REDIRECT [[Redirect Test2]]' );
+		$this->insertPage( 'Redirect TEST2', '#REDIRECT [[Redirect Test2]]' );
+		$this->insertPage( 'Redirect Test2');
+		$this->insertPage( 'Redirect Test2 Worse Result');
 
 		$this->insertPage( 'Talk:Sandbox' );
 		$this->insertPage( 'Talk:Example' );
@@ -194,6 +201,55 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 					'Exile',
 					'Exist',
 					'External',
+				),
+			) ),
+			array( array(
+				"Exact match shouldn't override already found match if " .
+					"exact is redirect and found isn't",
+				'provision' => array(
+					// Target of the exact match is low in the list
+					'Redirect Test Worse Result',
+					'Redirect Test',
+				),
+				'query' => 'redirect test',
+				'results' => array(
+					// Redirect target is pulled up and exact match isn't added
+					'Redirect Test',
+					'Redirect Test Worse Result',
+				),
+			) ),
+			array( array(
+				"Exact match shouldn't override already found match if " .
+					"both exact match and found match are redirect",
+				'provision' => array(
+					// Another redirect to the same target as the exact match
+					// is low in the list
+					'Redirect Test2 Worse Result',
+					'Redirect test2',
+				),
+				'query' => 'redirect TEST2',
+				'results' => array(
+					// Found redirect is pulled to the top and exact match isn't
+					// added
+					'Redirect test2',
+					'Redirect Test2 Worse Result',
+				),
+			) ),
+			array( array(
+				"Exact match should override any already found matches that " .
+					"are redirects to it",
+				'provision' => array(
+					// Another redirect to the same target as the exact match
+					// is low in the list
+					'Redirect Test Worse Result',
+					'Redirect test',
+				),
+				'query' => 'Redirect Test',
+				'results' => array(
+					// Found redirect is pulled to the top and exact match isn't
+					// added
+					'Redirect Test',
+					'Redirect Test Worse Result',
 				),
 			) ),
 		);
