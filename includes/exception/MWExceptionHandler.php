@@ -437,6 +437,11 @@ TXT;
 			'message' => $e->getMessage(),
 		);
 
+		if ( $e instanceof ErrorException && ( error_reporting() & $e->getSeverity() ) === 0 ) {
+			// Flag surpressed errors
+			$exceptionData['suppressed'] = true;
+		}
+
 		// Because MediaWiki is first and foremost a web application, we set a
 		// 'url' key unconditionally, but set it to null if the exception does
 		// not occur in the context of a web request, as a way of making that
@@ -482,18 +487,23 @@ TXT;
 	 * Log an exception that wasn't thrown but made to wrap an error.
 	 *
 	 * @since 1.25
-	 * @param Exception $e
+	 * @param ErrorException $e
 	*/
-	protected static function logError( Exception $e ) {
+	protected static function logError( ErrorException $e ) {
 		global $wgLogExceptionBacktrace;
 
-		$log = self::getLogMessage( $e );
-		if ( $wgLogExceptionBacktrace ) {
-			wfDebugLog( 'error', $log . "\n" . $e->getTraceAsString() );
-		} else {
-			wfDebugLog( 'error', $log );
+		// The set_error_handler callkback is independent from error_reporting.
+		// Filter out unwanted errors manually (e.g. when wfSuppressWarnings is active).
+		if ( ( error_reporting() & $e->getSeverity() ) !== 0 ) {
+			$log = self::getLogMessage( $e );
+			if ( $wgLogExceptionBacktrace ) {
+				wfDebugLog( 'error', $log . "\n" . $e->getTraceAsString() );
+			} else {
+				wfDebugLog( 'error', $log );
+			}
 		}
 
+		// Include all errors in the json log (surpressed errors will be flagged)
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 		if ( $json !== false ) {
 			wfDebugLog( 'error-json', $json, 'private' );
