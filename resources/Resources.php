@@ -288,6 +288,9 @@ return array(
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
 		'dependencies' => 'json',
 	),
+	'jquery.serializeObject' => array(
+		'scripts' => 'resources/src/jquery/jquery.serializeObject.js',
+	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/src/jquery/jquery.suggestions.js',
 		'styles' => 'resources/src/jquery/jquery.suggestions.css',
@@ -951,6 +954,7 @@ return array(
 			'jquery.client',
 			'jquery.placeholder',
 			'jquery.suggestions',
+			'jquery.serializeObject',
 			'mediawiki.api',
 		),
 	),
