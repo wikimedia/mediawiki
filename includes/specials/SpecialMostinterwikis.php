@@ -71,7 +71,7 @@ class MostinterwikisPage extends QueryPage {
 	/**
 	 * Pre-fill the link cache
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
