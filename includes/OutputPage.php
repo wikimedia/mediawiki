@@ -3136,7 +3136,7 @@ class OutputPage extends ContextSource {
 	 * have to be purged on configuration changes.
 	 * @return array
 	 */
-	private function getJSVars() {
+	public function getJSVars() {
 		global $wgContLang;
 
 		$curRevisionId = 0;
