@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.2.3
+ * OOjs UI v0.2.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-26T23:37:00Z
+ * Date: 2014-12-02T18:45:19Z
  */
 ( function ( OO ) {
 
@@ -1751,25 +1751,46 @@ OO.ui.Window.prototype.getSize = function () {
 };
 
 /**
- * Get the height of the dialog contents.
+ * Disable transitions on window's frame for the duration of the callback function, then enable them
+ * back.
  *
- * @return {number} Content height
+ * @private
+ * @param {Function} callback Function to call while transitions are disabled
  */
-OO.ui.Window.prototype.getContentHeight = function () {
+OO.ui.Window.prototype.withoutSizeTransitions = function ( callback ) {
 	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
 	// Disable transitions first, otherwise we'll get values from when the window was animating.
-	var bodyHeight, oldHeight, oldTransition,
+	var oldTransition,
 		styleObj = this.$frame[0].style;
 	oldTransition = styleObj.transition || styleObj.OTransition || styleObj.MsTransition ||
 		styleObj.MozTransition || styleObj.WebkitTransition;
 	styleObj.transition = styleObj.OTransition = styleObj.MsTransition =
 		styleObj.MozTransition = styleObj.WebkitTransition = 'none';
-	oldHeight = styleObj.height;
-	styleObj.height = '1px';
-	bodyHeight = this.getBodyHeight();
-	styleObj.height = oldHeight;
+	callback();
+	// Force reflow to make sure the style changes done inside callback really are not transitioned
+	this.$frame.height();
 	styleObj.transition = styleObj.OTransition = styleObj.MsTransition =
 		styleObj.MozTransition = styleObj.WebkitTransition = oldTransition;
+};
+
+/**
+ * Get the height of the dialog contents.
+ *
+ * @return {number} Content height
+ */
+OO.ui.Window.prototype.getContentHeight = function () {
+	var bodyHeight,
+		win = this,
+		styleObj = this.$frame[0].style;
+
+	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
+	// Disable transitions first, otherwise we'll get values from when the window was animating.
+	this.withoutSizeTransitions( function () {
+		var oldHeight = styleObj.height;
+		styleObj.height = '1px';
+		bodyHeight = win.getBodyHeight();
+		styleObj.height = oldHeight;
+	} );
 
 	return Math.round(
 		// Add buffer for border
@@ -1965,17 +1986,31 @@ OO.ui.Window.prototype.setSize = function ( size ) {
  * @chainable
  */
 OO.ui.Window.prototype.setDimensions = function ( dim ) {
-	// Apply width before height so height is not based on wrapping content using the wrong width
+	var height,
+		win = this,
+		styleObj = this.$frame[0].style;
+
+	// Calculate the height we need to set using the correct width
+	if ( dim.height === undefined ) {
+		this.withoutSizeTransitions( function () {
+			var oldWidth = styleObj.width;
+			win.$frame.css( 'width', dim.width || '' );
+			height = win.getContentHeight();
+			styleObj.width = oldWidth;
+		} );
+	} else {
+		height = dim.height;
+	}
+
 	this.$frame.css( {
 		width: dim.width || '',
 		minWidth: dim.minWidth || '',
-		maxWidth: dim.maxWidth || ''
-	} );
-	this.$frame.css( {
-		height: ( dim.height !== undefined ? dim.height : this.getContentHeight() ) || '',
+		maxWidth: dim.maxWidth || '',
+		height: height || '',
 		minHeight: dim.minHeight || '',
 		maxHeight: dim.maxHeight || ''
 	} );
+
 	return this;
 };
 
@@ -5927,9 +5962,35 @@ OO.ui.MessageDialog.static.actions = [
 /**
  * @inheritdoc
  */
+OO.ui.MessageDialog.prototype.setManager = function ( manager ) {
+	OO.ui.MessageDialog.super.prototype.setManager.call( this, manager );
+
+	// Events
+	this.manager.connect( this, {
+		resize: 'onResize'
+	} );
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
 OO.ui.MessageDialog.prototype.onActionResize = function ( action ) {
 	this.fitActions();
 	return OO.ui.MessageDialog.super.prototype.onActionResize.call( this, action );
+};
+
+/**
+ * Handle window resized events.
+ */
+OO.ui.MessageDialog.prototype.onResize = function () {
+	var dialog = this;
+	dialog.fitActions();
+	// Wait for CSS transition to finish and do it again :(
+	setTimeout( function () {
+		dialog.fitActions();
+	}, 300 );
 };
 
 /**
@@ -6093,10 +6154,11 @@ OO.ui.MessageDialog.prototype.attachActions = function () {
 		special.primary.toggleFramed( false );
 	}
 
-	this.manager.updateWindowSize( this );
-	this.fitActions();
-
-	this.$body.css( 'bottom', this.$foot.outerHeight( true ) );
+	if ( !this.isOpening() ) {
+		// If the dialog is currently opening, this will be called automatically soon.
+		// This also calls #fitActions.
+		this.manager.updateWindowSize( this );
+	}
 };
 
 /**
@@ -6106,6 +6168,7 @@ OO.ui.MessageDialog.prototype.attachActions = function () {
  */
 OO.ui.MessageDialog.prototype.fitActions = function () {
 	var i, len, action,
+		previous = this.verticalActionLayout,
 		actions = this.actions.get();
 
 	// Detect clipping
@@ -6116,6 +6179,12 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
 			this.toggleVerticalActionLayout( true );
 			break;
 		}
+	}
+
+	if ( this.verticalActionLayout !== previous ) {
+		this.$body.css( 'bottom', this.$foot.outerHeight( true ) );
+		// We changed the layout, window height might need to be updated.
+		this.manager.updateWindowSize( this );
 	}
 };
 
@@ -9874,12 +9943,13 @@ OO.ui.TextInputWidget.prototype.setReadOnly = function ( state ) {
 OO.ui.TextInputWidget.prototype.adjustSize = function () {
 	var $clone, scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError, idealHeight;
 
-	if ( this.multiline && this.autosize ) {
+	if ( this.multiline && this.autosize && this.$input.val() !== this.valCache ) {
 		$clone = this.$input.clone()
 			.val( this.$input.val() )
 			// Set inline height property to 0 to measure scroll height
-			.css( { height: 0 } )
+			.css( 'height', 0 )
 			.insertAfter( this.$input );
+		this.valCache = this.$input.val();
 		scrollHeight = $clone[0].scrollHeight;
 		// Remove inline height property to measure natural heights
 		$clone.css( 'height', '' );
