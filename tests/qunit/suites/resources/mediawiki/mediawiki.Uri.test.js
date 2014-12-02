@@ -314,6 +314,66 @@
 		assert.equal( uri.toString(), 'http://www.example.com/dir/', 'empty array value is ommitted' );
 	} );
 
+	QUnit.test( 'Variable defaultUri', 2, function ( assert ) {
+		var uri,
+			href = 'http://example.org/w/index.php#here',
+			UriClass = mw.UriRelative( function () {
+				return href;
+			} );
+
+		uri = new UriClass();
+		assert.deepEqual(
+			{
+				protocol: uri.protocol,
+				user: uri.user,
+				password: uri.password,
+				host: uri.host,
+				port: uri.port,
+				path: uri.path,
+				query: uri.query,
+				fragment: uri.fragment
+			},
+			{
+				protocol: 'http',
+				user: undefined,
+				password: undefined,
+				host: 'example.org',
+				port: undefined,
+				path: '/w/index.php',
+				query: {},
+				fragment: 'here'
+			},
+			'basic object properties'
+		);
+
+		// Default URI may change, e.g. via history.replaceState, pushState or location.hash (T74334)
+		href = 'https://example.com/wiki/Foo?v=2';
+		uri = new UriClass();
+		assert.deepEqual(
+			{
+				protocol: uri.protocol,
+				user: uri.user,
+				password: uri.password,
+				host: uri.host,
+				port: uri.port,
+				path: uri.path,
+				query: uri.query,
+				fragment: uri.fragment
+			},
+			{
+				protocol: 'https',
+				user: undefined,
+				password: undefined,
+				host: 'example.com',
+				port: undefined,
+				path: '/wiki/Foo',
+				query: { 'v': '2' },
+				fragment: undefined
+			},
+			'basic object properties'
+		);
+	} );
+
 	QUnit.test( 'Advanced URL', 11, function ( assert ) {
 		var uri, queryString, relativePath;
 
@@ -429,6 +489,5 @@
 		uri = new UriClass( testPath );
 		href = uri.toString();
 		assert.equal( href, testProtocol + testServer + ':' + testPort + testPath, 'Root-relative URL gets host, protocol, and port supplied' );
-
 	} );
 }( mediaWiki, jQuery ) );
