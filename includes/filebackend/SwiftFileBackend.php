@@ -937,6 +937,7 @@ class SwiftFileBackend extends FileBackendStore {
 					// Convert various random Swift dates to TS_MW
 					'mtime'  => $this->convertSwiftDate( $object->last_modified, TS_MW ),
 					'size'   => (int)$object->bytes,
+					'sha1'   => null,
 					// Note: manifiest ETags are not an MD5 of the file
 					'md5'    => ctype_xdigit( $object->hash ) ? $object->hash : null,
 					'latest' => false // eventually consistent
@@ -1064,6 +1065,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$tmpFiles[$path] = $tmpFile;
 		}
 
+		$isLatest = ( $this->isRGW || !empty( $params['latest'] ) );
 		$opts = array( 'maxConnsPerHost' => $params['concurrency'] );
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
@@ -1078,6 +1080,10 @@ class SwiftFileBackend extends FileBackendStore {
 					$this->onError( null, __METHOD__,
 						array( 'src' => $path ) + $ep, $rerr, $rcode, $rdesc );
 				}
+				// Set the file stat process cache in passing
+				$stat = $this->getStatFromHeaders( $rhdrs );
+				$stat['latest'] = $isLatest;
+				$this->cheapCache->set( $path, 'stat', $stat );
 			} elseif ( $rcode === 404 ) {
 				$tmpFiles[$path] = false;
 			} else {
@@ -1510,25 +1516,8 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( $rcode === 200 || $rcode === 204 ) {
 				// Update the object if it is missing some headers
 				$rhdrs = $this->addMissingMetadata( $rhdrs, $path );
-				// Fetch all of the custom metadata headers
-				$metadata = array();
-				foreach ( $rhdrs as $name => $value ) {
-					if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
-						$metadata[substr( $name, strlen( 'x-object-meta-' ) )] = $value;
-					}
-				}
-				// Fetch all of the custom raw HTTP headers
-				$headers = $this->sanitizeHdrs( array( 'headers' => $rhdrs ) );
-				$stat = array(
-					// Convert various random Swift dates to TS_MW
-					'mtime' => $this->convertSwiftDate( $rhdrs['last-modified'], TS_MW ),
-					// Empty objects actually return no content-length header in Ceph
-					'size'  => isset( $rhdrs['content-length'] ) ? (int)$rhdrs['content-length'] : 0,
-					'sha1'  => $rhdrs['x-object-meta-sha1base36'],
-					// Note: manifiest ETags are not an MD5 of the file
-					'md5'   => ctype_xdigit( $rhdrs['etag'] ) ? $rhdrs['etag'] : null,
-					'xattr' => array( 'metadata' => $metadata, 'headers' => $headers )
-				);
+				// Load the stat array from the headers
+				$stat = $this->getStatFromHeaders( $rhdrs );
 				if ( $this->isRGW ) {
 					$stat['latest'] = true; // strong consistency
 				}
@@ -1542,6 +1531,34 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $stats;
+	}
+
+	/**
+	 * @param array $rhdrs
+	 * @return array
+	 */
+	protected function getStatFromHeaders( array $rhdrs ) {
+		// Fetch all of the custom metadata headers
+		$metadata = array();
+		foreach ( $rhdrs as $name => $value ) {
+			if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
+				$metadata[substr( $name, strlen( 'x-object-meta-' ) )] = $value;
+			}
+		}
+		// Fetch all of the custom raw HTTP headers
+		$headers = $this->sanitizeHdrs( array( 'headers' => $rhdrs ) );
+		return array(
+			// Convert various random Swift dates to TS_MW
+			'mtime' => $this->convertSwiftDate( $rhdrs['last-modified'], TS_MW ),
+			// Empty objects actually return no content-length header in Ceph
+			'size'  => isset( $rhdrs['content-length'] ) ? (int)$rhdrs['content-length'] : 0,
+			'sha1'  => isset( $rhdrs['x-object-meta-sha1base36'] )
+				? $rhdrs['x-object-meta-sha1base36']
+				: null,
+			// Note: manifiest ETags are not an MD5 of the file
+			'md5'   => ctype_xdigit( $rhdrs['etag'] ) ? $rhdrs['etag'] : null,
+			'xattr' => array( 'metadata' => $metadata, 'headers' => $headers )
+		);
 	}
 
 	/**
@@ -1598,7 +1615,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 			// Ceph RGW does not use <account> in URLs (OpenStack Swift uses "/v1/<account>")
 			if ( substr( $this->authCreds['storage_url'], -3 ) === '/v1' ) {
-				$this->isRGW = true; // take advantage of strong consistency
+				$this->isRGW = true; // take advantage of strong consistency in Ceph
 			}
 		}
 
