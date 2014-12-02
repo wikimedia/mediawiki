@@ -2632,7 +2632,7 @@ $templates
 	 * @param bool $loadCall If true, output an (asynchronous) mw.loader.load() call rather than a "<script src='...'>" tag
 	 * @return string The html "<script>", "<link>" and "<style>" tags
 	 */
-	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
+	public function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
 		global $wgResourceLoaderUseESI;
 
 		$modules = (array)$modules;
