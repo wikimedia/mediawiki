@@ -658,7 +658,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	public $mDb;
 	public $preventClickjacking = false;
 
-	/** @var DatabaseBase */
+	/** @var IDatabase */
 	public $mDbSecondary;
 
 	/**

@@ -94,7 +94,7 @@ class PageArchive {
 	}
 
 	/**
-	 * @param DatabaseBase $dbr
+	 * @param IDatabase $dbr
 	 * @param string|array $condition
 	 * @return bool|ResultWrapper
 	 */

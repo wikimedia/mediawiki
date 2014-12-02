@@ -99,7 +99,7 @@ class MediaStatisticsPage extends QueryPage {
 	 *
 	 * @param $out OutputPage
 	 * @param $skin Skin (deprecated presumably)
-	 * @param $dbr DatabaseBase
+	 * @param $dbr IDatabase
 	 * @param $res ResultWrapper Results from query
 	 * @param $num integer Number of results
 	 * @param $offset integer Paging offset (Should always be 0 in our case)
@@ -314,7 +314,7 @@ class MediaStatisticsPage extends QueryPage {
 	/**
 	 * Initialize total values so we can figure out percentages later.
 	 *
-	 * @param $dbr DatabaseBase
+	 * @param $dbr IDatabase
 	 * @param $res ResultWrapper
 	 */
 	public function preprocessResults( $dbr, $res ) {

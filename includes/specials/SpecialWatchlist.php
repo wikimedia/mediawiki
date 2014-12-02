@@ -300,9 +300,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Return a DatabaseBase object for reading
+	 * Return a IDatabase object for reading
 	 *
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	protected function getDB() {
 		return wfGetDB( DB_SLAVE, 'watchlist' );
@@ -607,7 +607,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
 	 * Count the number of items on a user's watchlist
 	 *
-	 * @param DatabaseBase $dbr A database connection
+	 * @param IDatabase $dbr A database connection
 	 * @return int
 	 */
 	protected function countItems( $dbr ) {

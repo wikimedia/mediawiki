@@ -314,10 +314,10 @@ class SpecialActiveUsers extends SpecialPage {
 	}
 
 	/**
-	 * @param DatabaseBase $dbw Passed in from updateSpecialPages.php
+	 * @param IDatabase $dbw Passed in from updateSpecialPages.php
 	 * @return void
 	 */
-	public static function cacheUpdate( DatabaseBase $dbw ) {
+	public static function cacheUpdate( IDatabase $dbw ) {
 		global $wgActiveUserDays;
 
 		self::doQueryCacheUpdate( $dbw, $wgActiveUserDays, $wgActiveUserDays * 86400 );
@@ -326,12 +326,12 @@ class SpecialActiveUsers extends SpecialPage {
 	/**
 	 * Update the query cache as needed
 	 *
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @param int $days How many days user must be idle before he is considered inactive
 	 * @param int $window Maximum time range of new data to scan (in seconds)
 	 * @return int|bool UNIX timestamp the cache is now up-to-date as of (false on error)
 	 */
-	protected static function doQueryCacheUpdate( DatabaseBase $dbw, $days, $window ) {
+	protected static function doQueryCacheUpdate( IDatabase $dbw, $days, $window ) {
 		$dbw->startAtomic( __METHOD__ );
 
 		$lockKey = wfWikiID() . '-activeusers';
