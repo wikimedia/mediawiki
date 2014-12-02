@@ -195,9 +195,9 @@ class ApiEditPage extends ApiBase {
 					list( $params['undo'], $params['undoafter'] ) =
 						array( $params['undoafter'], $params['undo'] );
 				}
-				$undoafterRev = Revision::newFromID( $params['undoafter'] );
+				$undoafterRev = Revision::newFromId( $params['undoafter'] );
 			}
-			$undoRev = Revision::newFromID( $params['undo'] );
+			$undoRev = Revision::newFromId( $params['undo'] );
 			if ( is_null( $undoRev ) || $undoRev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$this->dieUsageMsg( array( 'nosuchrevid', $params['undo'] ) );
 			}
