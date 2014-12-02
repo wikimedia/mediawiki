@@ -31,7 +31,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * the 'unknownframework' error is served.
 	 */
 	private static $frameworks = array(
-		'qunit' => 'initQUnitTesting',
+		'qunit',
 	);
 
 	public function __construct() {
@@ -46,12 +46,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		$out->addModules( 'mediawiki.special.javaScriptTest' );
 
-		// Determine framework
-		$pars = explode( '/', $par );
-		$framework = strtolower( $pars[0] );
-
 		// No framework specified
 		if ( $par == '' ) {
+			// TODO: HTTP 404
 			$out->setPageTitle( $this->msg( 'javascripttest' ) );
 			$summary = $this->wrapSummaryHtml(
 				$this->msg( 'javascripttest-pagetext-noframework' )->escaped() .
@@ -59,17 +56,15 @@ class SpecialJavaScriptTest extends SpecialPage {
 				'noframework'
 			);
 			$out->addHtml( $summary );
-		} elseif ( isset( self::$frameworks[$framework] ) ) {
-			// Matched! Display proper title and initialize the framework
-			$out->setPageTitle( $this->msg(
-				'javascripttest-title',
-				// Messages: javascripttest-qunit-name
-				$this->msg( "javascripttest-$framework-name" )->plain()
-			) );
-			$out->setSubtitle( $this->msg( 'javascripttest-backlink' )
-				->rawParams( Linker::linkKnown( $this->getPageTitle() ) ) );
-			$this->{self::$frameworks[$framework]}();
-		} else {
+			return;
+		}
+
+		// Determine framework
+		$pars = explode( '/', $par, 2 );
+		$framework = $pars[0];
+
+		if ( !in_array( $framework, self::$frameworks ) ) {
+			// TODO: HTTP 404
 			// Framework not found, display error
 			$out->setPageTitle( $this->msg( 'javascripttest' ) );
 			$summary = $this->wrapSummaryHtml(
@@ -80,7 +75,32 @@ class SpecialJavaScriptTest extends SpecialPage {
 				'unknownframework'
 			);
 			$out->addHtml( $summary );
+			return;
 		}
+
+		if ( isset( $pars[1] ) && $pars[1] === 'debug' ) {
+			$method = $pars[1] . ucfirst( $framework );
+			$this->$method();
+			return;
+		}
+
+		if ( isset( $pars[1] ) && $pars[1] === 'export' ) {
+			$method = 'export' . ucfirst( $framework );
+			$this->$method();
+			return;
+		}
+
+		$method = 'view' . ucfirst( $framework );
+		$this->$method();
+		$out->setPageTitle( $this->msg(
+			'javascripttest-title',
+			// Messages: javascripttest-qunit-name
+			$this->msg( "javascripttest-$framework-name" )->plain()
+		) );
+		$out->setSubtitle(
+			$this->msg( 'javascripttest-backlink' )
+				->rawParams( Linker::linkKnown( $this->getPageTitle() ) )
+		);
 	}
 
 	/**
@@ -91,7 +111,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 */
 	private function getFrameworkListHtml() {
 		$list = '<ul>';
-		foreach ( self::$frameworks as $framework => $initFn ) {
+		foreach ( self::$frameworks as $framework ) {
 			$list .= Html::rawElement(
 				'li',
 				array(),
@@ -118,7 +138,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * @return string
 	 */
 	private function wrapSummaryHtml( $html, $state ) {
-		$validStates = array( 'noframework', 'unknownframework', 'frameworkfound' );
+		static $validStates = array( 'noframework', 'unknownframework', 'frameworkfound' );
 
 		if ( !in_array( $state, $validStates ) ) {
 			throw new MWException( __METHOD__
@@ -131,9 +151,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 	}
 
 	/**
-	 * Initialize the page for QUnit.
+	 * Initialize QUnit page.
 	 */
-	private function initQUnitTesting() {
+	private function viewQUnit() {
 		$out = $this->getOutput();
 		$testConfig = $this->getConfig()->get( 'JavaScriptTestConfig' );
 
@@ -144,17 +164,11 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$summary = $this->msg( 'javascripttest-qunit-intro' )
 			->params( $testConfig['qunit']['documentation'] )
 			->parseAsBlock();
-		$header = $this->msg( 'javascripttest-qunit-heading' )->escaped();
-		$userDir = $this->getLanguage()->getDir();
 
 		$baseHtml = <<<HTML
 <div class="mw-content-ltr">
-<div id="qunit-header"><span dir="$userDir">$header</span></div>
-<div id="qunit-banner"></div>
-<div id="qunit-testrunner-toolbar"></div>
-<div id="qunit-userAgent"></div>
-<ol id="qunit-tests"></ol>
-<div id="qunit-fixture">test markup, will be hidden</div>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
 </div>
 HTML;
 		$out->addHtml( $this->wrapSummaryHtml( $summary, 'frameworkfound' ) . $baseHtml );
@@ -172,13 +186,83 @@ HTML;
 		);
 	}
 
+	private function debugQUnit() {
+		$out = $this->getOutput();
+		$out->disable();
+		header( 'Content-Type: text/html; charset=utf-8' );
+		echo '
+<!DOCTYPE html>
+<title>MediaWiki</title>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<script src="./export?debug=true"></script>';
+
+	}
+
+	private function exportQUnit() {
+		$out = $this->getOutput();
+
+		$out->disable();
+
+		$rl = $out->getResourceLoader();
+
+		$query = ResourceLoader::makeLoaderQuery(
+			array(), // modules
+			$this->getLanguage()->getCode(),
+			$this->getSkin()->getSkinName(),
+			null, // user
+			null, // version
+			ResourceLoader::inDebugMode(),
+			'scripts',
+			$out->isPrintable(),
+			$this->getRequest()->getBool( 'handheld' )
+		);
+
+		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
+		unset( $query['only'] );
+		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
+
+		$modules = array( 'test.mediawiki.qunit.testrunner' );
+		$modules = array_merge( $modules, $rl->getTestModuleNames( 'qunit' ) );
+
+		header( 'Content-Type: text/javascript; charset=utf-8' );
+		// Don't cache
+		header( 'Cache-Control: private, no-cache, must-revalidate' );
+		header( 'Pragma: no-cache' );
+
+		echo $rl->makeModuleResponse( $startupContext, array(
+			'startup' => $rl->getModule( 'startup' ),
+		) );
+		echo "\n";
+
+		// The following has to be in a script tag because the startup module also writes
+		// a script tag. Script tags execute synchronously. Which means the code directly
+		// following 'document.write()' within this script runs before the html added by
+		// 'document.write' is parsed (and executed).
+		$scriptTag = Html::inlineScript(
+			// Embed page-specific mw.config variables.
+			// FIXME: Tests should mock the variables they rely on.
+			#ResourceLoader::makeConfigSetScript( $out->getJSVars() ) .
+			# ^ Doesn't actually work since it's private.
+
+			// Embed these private modules as they're not allowed to be loaded dynamically
+			$rl->makeModuleResponse( $embedContext, array(
+				'user.options' => $rl->getModule( 'user.options' ),
+				'user.tokens' => $rl->getModule( 'user.tokens' ),
+			) ) .
+
+			Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
+		);
+		echo Xml::encodeJsCall( 'document.write', array( $scriptTag ) );
+	}
+
 	/**
 	 * Return an array of subpages that this special page will accept.
 	 *
 	 * @return string[] subpages
 	 */
 	public function getSubpagesForPrefixSearch() {
-		return array_keys( self::$frameworks );
+		return self::$frameworks;
 	}
 
 	protected function getGroupName() {
