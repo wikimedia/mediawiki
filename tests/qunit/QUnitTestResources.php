@@ -25,9 +25,9 @@ return array(
 			'tests/qunit/data/testrunner.js',
 		),
 		'dependencies' => array(
+			// Test runner configures QUnit but can't have it as dependency,
+			// see SpecialJavaScriptTest::viewQUnit.
 			'jquery.getAttrs',
-			'jquery.qunit',
-			'jquery.qunit.completenessTest',
 			'mediawiki.page.ready',
 			'mediawiki.page.startup',
 			'test.sinonjs',

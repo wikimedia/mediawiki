@@ -6,7 +6,7 @@
 
 		// Create useskin dropdown menu and reload onchange to the selected skin
 		// (only if a framework was found, not on error pages).
-		$( '#mw-javascripttest-summary.mw-javascripttest-frameworkfound' ).append( function () {
+		$( '#mw-javascripttest-summary' ).append( function () {
 
 			var $html = $( '<p><label for="useskin">'
 					+ mw.message( 'javascripttest-pagetext-skins' ).escaped()
@@ -25,7 +25,8 @@
 			// Bind onchange event handler and append to form
 			$html.append(
 				$( select ).change( function () {
-					window.location = QUnit.url( { useskin: $( this ).val() } );
+					var url = new mw.Uri();
+					location.href = url.extend( { useskin: $( this ).val() } );
 				} )
 			);
 

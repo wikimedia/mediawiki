@@ -2743,7 +2743,7 @@ $templates
 	 *   call rather than a "<script src='...'>" tag.
 	 * @return string The html "<script>", "<link>" and "<style>" tags
 	 */
-	protected function makeResourceLoaderLink( $modules, $only, $useESI = false,
+	public function makeResourceLoaderLink( $modules, $only, $useESI = false,
 		array $extraQuery = array(), $loadCall = false
 	) {
 		$modules = (array)$modules;
@@ -3153,7 +3153,7 @@ $templates
 	 * have to be purged on configuration changes.
 	 * @return array
 	 */
-	private function getJSVars() {
+	public function getJSVars() {
 		global $wgContLang;
 
 		$curRevisionId = 0;
