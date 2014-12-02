@@ -488,7 +488,7 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 	$forms_whitelist['worldpay'] = array(
 		'file' => $form_dirs['worldpay'] . '/worldpay.html',
 		'gateway' => 'worldpay',
-		'countries' => array( '+' => array( 'BE', 'FR', 'US' ) ),
+		'countries' => array( '+' => array( 'AU', 'BE', 'CA', 'FR', 'GB', 'NZ', 'US' ) ),
 		'currencies' => array( '+' => 'ALL' ),
 		'payment_methods' => array( 'cc' => 'ALL' ),
 		'selection_weight' => 10
@@ -502,6 +502,9 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 		'file' => $form_dirs['worldpay'] . '/worldpay-test.html',
 		'selection_weight' => 0,
 	) + $forms_whitelist['worldpay'];
+
+	//until we are ready for US testing with the other test forms, we have to limit to the old list.
+	$worldpay_test_spec['countries'] = array( '+' => array( 'BE', 'FR', 'US' ) );
 
 	$forms_whitelist['wp-sn'] = $worldpay_test_spec;
 	$forms_whitelist['wp-sw'] = $worldpay_test_spec;
