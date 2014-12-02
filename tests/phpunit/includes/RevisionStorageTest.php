@@ -334,7 +334,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
 		}
 
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.',
+		$orig = $this->makeRevision( array( 'text' => 'var some = "text";',
 			'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
@@ -352,7 +352,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		}
 
 		$orig = $this->makeRevision( array(
-			'text' => 'hello hello.',
+			'text' => 'var some = "text";',
 			'content_model' => CONTENT_MODEL_JAVASCRIPT,
 			'content_format' => CONTENT_FORMAT_JAVASCRIPT
 		) );
