@@ -33,11 +33,26 @@
 class JavaScriptContent extends TextContent {
 
 	/**
-	 * @param string $text JavaScript code.
-	 * @param string $modelId the content model name
+	 * @param string $text JavaScript code
 	 */
-	public function __construct( $text, $modelId = CONTENT_MODEL_JAVASCRIPT ) {
-		parent::__construct( $text, $modelId );
+	public function __construct( $text ) {
+		parent::__construct( $text, CONTENT_MODEL_JAVASCRIPT );
+	}
+
+	/**
+	 * @since 1.26
+	 * @return bool
+	 */
+	public function isValid() {
+		return $this->getContentHandler()->validateContent( $this )->isOK();
+	}
+
+	/**
+	 * @since 1.26
+	 * @return Status
+	 */
+	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user ) {
+		return $this->getContentHandler()->validateContent( $this, $page->getTitle()->getSubpageText() );
 	}
 
 	/**

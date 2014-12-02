@@ -27,6 +27,8 @@
  * @ingroup Content
  */
 class JavaScriptContentHandler extends CodeContentHandler {
+	/** @var JSParser */
+	private $jsParser;
 
 	/**
 	 * @param string $modelId
@@ -40,5 +42,33 @@ class JavaScriptContentHandler extends CodeContentHandler {
 	 */
 	protected function getContentClass() {
 		return 'JavaScriptContent';
+	}
+
+	/**
+	 * @since 1.26
+	 * @return JSParser
+	 */
+	private function getParser() {
+		if ( !$this->jsParser ) {
+			$this->jsParser = new JSParser();
+		}
+		return $this->jsParser;
+	}
+
+	/**
+	 * @since 1.26
+	 * @param Content $content
+	 * @param string $fileName Used for display purposes in any error message (e.g. "foo.js")
+	 * @return Status
+	 */
+	public function validateContent( Content $content, $fileName = '[inline]' ) {
+		$parser = $this->getParser();
+		try {
+			$parser->parse( $content->getNativeData(), $fileName, /* lineNr */ 1 );
+		} catch ( Exception $e ) {
+			$err = $e->getMessage();
+			return Status::newFatal( 'javascript-error-syntax', $err );
+		}
+		return Status::newGood();
 	}
 }

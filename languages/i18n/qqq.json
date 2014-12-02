@@ -3927,6 +3927,7 @@
 	"json-error-recursion": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"json-error-inf-or-nan": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"json-error-unsupported-type": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
+	"javascript-error-syntax": "Warning indicating that submitted JavaScript content contains a syntax error.\n* $1 - The syntax error from the Parser in English (including line number).",
 	"headline-anchor-title": "Title tooltip for the section anchor symbol, which is a link to the current section. Can be interpreted both as a noun (\"this is a link\") or as a verb (\"use this to link\").",
 	"special-characters-group-latin": "This is the name of a script, or alphabet, not a language.",
 	"special-characters-group-latinextended": "The name of the Latin Extended character set.",
