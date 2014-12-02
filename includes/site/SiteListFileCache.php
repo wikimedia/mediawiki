@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +15,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.25
- *
  * @file
  *
  * @license GNU GPL v2+
+ */
+
+/**
+ * Provides a file-based cache of a SiteStore, stored as a json file.
+ * The cache can be built with the rebuildSitesCache.php maintenance script,
+ * and a MediaWiki instance can be setup to use this by setting the
+ * 'wgSitesCacheFile' configuration to the cache file location.
+ *
+ * @since 1.25
  */
 class SiteListFileCache {
 
@@ -55,7 +61,11 @@ class SiteListFileCache {
 	}
 
 	/**
+	 * @param string $globalId
+	 *
 	 * @since 1.25
+	 *
+	 * @return Site
 	 */
 	public function getSite( $globalId ) {
 		$sites = $this->getSites();
