@@ -10,16 +10,16 @@ jQuery( document ).ready( function ( $ ) {
 			expires: 30,
 			path: '/'
 		},
-		isCollapsed = $.cookie( cookieName ) === 'collapsed';
+		isCollapsed = mw.cookie( cookieName ) === 'collapsed';
 
 	$( '.mw-changeslist-legend' )
 		.makeCollapsible( {
 			collapsed: isCollapsed
 		} )
 		.on( 'beforeExpand.mw-collapsible', function () {
-			$.cookie( cookieName, 'expanded', cookieOptions );
+			mw.cookie( cookieName, 'expanded', cookieOptions );
 		} )
 		.on( 'beforeCollapse.mw-collapsible', function () {
-			$.cookie( cookieName, 'collapsed', cookieOptions );
+			mw.cookie( cookieName, 'collapsed', cookieOptions );
 		} );
 } );

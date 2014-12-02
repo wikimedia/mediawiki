@@ -21,7 +21,7 @@ jQuery( document ).ready( function ( $ ) {
 	];
 
 	handleOne = function ( $list, $toggler, cookieName ) {
-		var isCollapsed = $.cookie( cookieName ) !== 'expanded';
+		var isCollapsed = mw.cookie( cookieName ) !== 'expanded';
 
 		// Style the toggler with an arrow icon and add a tabIndex and a role for accessibility
 		$toggler.addClass( 'mw-editfooter-toggler' ).prop( 'tabIndex', 0 ).attr( 'role', 'button' );
@@ -38,12 +38,12 @@ jQuery( document ).ready( function ( $ ) {
 
 		$list.on( 'beforeExpand.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-collapsed' ).addClass( 'mw-icon-arrow-expanded' );
-			$.cookie( cookieName, 'expanded' );
+			mw.cookie( cookieName, 'expanded' );
 		} );
 
 		$list.on( 'beforeCollapse.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-expanded' ).addClass( 'mw-icon-arrow-collapsed' );
-			$.cookie( cookieName, 'collapsed' );
+			mw.cookie( cookieName, 'collapsed' );
 		} );
 	};
 
