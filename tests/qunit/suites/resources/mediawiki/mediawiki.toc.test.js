@@ -1,7 +1,7 @@
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.toc', QUnit.newMwEnvironment( {
 		setup: function () {
-			// Prevent live cookies like mw_hidetoc=1 from interferring with the test
+			// Prevent live cookies from interferring with the test
 			this.stub( $, 'cookie' ).returns( null );
 		}
 	} ) );
