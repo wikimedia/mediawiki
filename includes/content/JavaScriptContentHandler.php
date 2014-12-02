@@ -1,7 +1,5 @@
 <?php
 /**
- * Content handler for JavaScript pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,9 +21,10 @@
 /**
  * Content handler for JavaScript pages.
  *
+ * @todo Create a ScriptContentHandler base class, do highlighting stuff there?
+ *
  * @since 1.21
  * @ingroup Content
- * @todo make ScriptContentHandler base class, do highlighting stuff there?
  */
 class JavaScriptContentHandler extends CodeContentHandler {
 
@@ -36,6 +35,9 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_JAVASCRIPT ) );
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function getContentClass() {
 		return 'JavaScriptContent';
 	}
