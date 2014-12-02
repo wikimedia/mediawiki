@@ -31,6 +31,8 @@
  * @ingroup Content
  */
 class JavaScriptContent extends TextContent {
+	/** @var JSParser */
+	private static $jsParser;
 
 	/**
 	 * @param string $text JavaScript code.
@@ -38,6 +40,48 @@ class JavaScriptContent extends TextContent {
 	 */
 	public function __construct( $text, $modelId = CONTENT_MODEL_JAVASCRIPT ) {
 		parent::__construct( $text, $modelId );
+	}
+
+	/**
+	 * @since 1.25
+	 * @return JSParser
+	 */
+	protected static function getParser() {
+		if ( !self::$jsParser ) {
+			self::$jsParser = new JSParser();
+		}
+		return self::$jsParser;
+	}
+
+	/**
+	 * @since 1.25
+	 * @return Status
+	 */
+	protected function validate( $fileName = '[inline]' ) {
+		$parser = self::getParser();
+		try {
+			$parser->parse( $this->getNativeData(), $fileName, /* lineNr */ 1 );
+		} catch ( Exception $e ) {
+			$err = $e->getMessage();
+			return Status::newFatal( 'javascript-error-syntax', $err );
+		}
+		return Status::newGood();
+	}
+
+	/**
+	 * @since 1.25
+	 * @return bool Whether content is valid javascript.
+	 */
+	public function isValid() {
+		return $this->validate()->isOK();
+	}
+
+	/**
+	 * @since 1.25
+	 * @return Status
+	 */
+	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user ) {
+		return $this->validate( $page->getTitle()->getSubpageText() );
 	}
 
 	/**
