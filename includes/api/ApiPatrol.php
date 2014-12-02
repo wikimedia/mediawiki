@@ -38,7 +38,7 @@ class ApiPatrol extends ApiBase {
 		$this->requireOnlyOneParameter( $params, 'rcid', 'revid' );
 
 		if ( isset( $params['rcid'] ) ) {
-			$rc = RecentChange::newFromID( $params['rcid'] );
+			$rc = RecentChange::newFromId( $params['rcid'] );
 			if ( !$rc ) {
 				$this->dieUsageMsg( array( 'nosuchrcid', $params['rcid'] ) );
 			}

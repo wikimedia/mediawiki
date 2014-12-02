@@ -78,7 +78,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			// DifferenceEngine returns a rather ambiguous empty
 			// string if that's not the case
 			if ( $params['diffto'] != 0 ) {
-				$difftoRev = Revision::newFromID( $params['diffto'] );
+				$difftoRev = Revision::newFromId( $params['diffto'] );
 				if ( !$difftoRev ) {
 					$this->dieUsageMsg( array( 'nosuchrevid', $params['diffto'] ) );
 				}

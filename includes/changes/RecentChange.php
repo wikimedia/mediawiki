@@ -257,7 +257,7 @@ class RecentChange {
 	public function getPerformer() {
 		if ( $this->mPerformer === false ) {
 			if ( $this->mAttribs['rc_user'] ) {
-				$this->mPerformer = User::newFromID( $this->mAttribs['rc_user'] );
+				$this->mPerformer = User::newFromId( $this->mAttribs['rc_user'] );
 			} else {
 				$this->mPerformer = User::newFromName( $this->mAttribs['rc_user_text'], false );
 			}

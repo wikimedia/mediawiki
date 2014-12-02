@@ -113,7 +113,7 @@ class Block {
 			$this->forcedTargetID = $user; // needed for foreign users
 		}
 		if ( $by ) { // local user
-			$this->setBlocker( User::newFromID( $by ) );
+			$this->setBlocker( User::newFromId( $by ) );
 		} else { // foreign user
 			$this->setBlocker( $byText );
 		}
@@ -366,7 +366,7 @@ class Block {
 	protected function initFromRow( $row ) {
 		$this->setTarget( $row->ipb_address );
 		if ( $row->ipb_by ) { // local user
-			$this->setBlocker( User::newFromID( $row->ipb_by ) );
+			$this->setBlocker( User::newFromId( $row->ipb_by ) );
 		} else { // foreign user
 			$this->setBlocker( $row->ipb_by_text );
 		}
