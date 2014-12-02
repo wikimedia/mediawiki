@@ -211,12 +211,12 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.cookie' => array(
-        'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
-        'dependencies' => array(
-            'jquery.cookie',
-        ),
-        'targets' => array( 'desktop', 'mobile' ),
-    ),
+		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
+		'dependencies' => array(
+			'jquery.cookie',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'jquery.expandableField' => array(
 		'scripts' => 'resources/src/jquery/jquery.expandableField.js',
 	),
