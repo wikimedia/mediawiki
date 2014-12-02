@@ -30,6 +30,8 @@ production.
 * (T68699) The expiration of the UserID and Token login cookies
   ($wgExtendedLoginCookieExpiration) can be configured independently of the
   expiration of all other cookies ($wgCookieExpiration).
+* Pages with a JavaScript content model are now validated on submission.
+  Script pages containing parse errors are prevented from being saved.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
@@ -178,4 +180,3 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 == IRC help ==
 
 There's usually someone online in #mediawiki on irc.freenode.net.
-

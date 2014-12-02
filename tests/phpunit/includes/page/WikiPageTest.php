@@ -404,8 +404,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		}
 
 		$page = $this->createPage(
-			"WikiPageTest_testGetContentModel",
-			"some text",
+			'WikiPageTest_testGetContentModel',
+			'var some = "text";',
 			CONTENT_MODEL_JAVASCRIPT
 		);
 
@@ -424,8 +424,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		}
 
 		$page = $this->createPage(
-			"WikiPageTest_testGetContentHandler",
-			"some text",
+			'WikiPageTest_testGetContentHandler',
+			'var some = "text";',
 			CONTENT_MODEL_JAVASCRIPT
 		);
 
