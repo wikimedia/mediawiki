@@ -1466,7 +1466,6 @@ return array(
 			'colon-separator',
 			'javascripttest-pagetext-skins',
 		) ),
-		'dependencies' => array( 'jquery.qunit' ),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
