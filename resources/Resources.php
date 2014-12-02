@@ -951,6 +951,7 @@ return array(
 			'jquery.client',
 			'jquery.placeholder',
 			'jquery.suggestions',
+			'jquery.getAttrs',
 			'mediawiki.api',
 		),
 	),

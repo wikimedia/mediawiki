@@ -41,10 +41,7 @@
 			baseHref = $form.attr( 'action' );
 			baseHref += baseHref.indexOf( '?' ) > -1 ? '&' : '?';
 
-			linkParams = {};
-			$.each( $form.serializeArray(), function ( idx, obj ) {
-				linkParams[ obj.name ] = obj.value;
-			} );
+			linkParams = $form.serializeObject();
 
 			return {
 				textParam: context.data.$textbox.attr( 'name' ),
