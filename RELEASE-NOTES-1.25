@@ -16,7 +16,7 @@ production.
   validity must be checked by passing the user-supplied token to
   User::matchEditToken rather than by testing for equality with a
   newly-generated token.
-* (bug 72951) The UserGetLanguageObject hook may be passed any IContextSource
+* (T74951) The UserGetLanguageObject hook may be passed any IContextSource
   for its $context parameter. Formerly it was documented as receiving a
   RequestContext specifically.
 * Profiling was restructured and $wgProfiler now requires an 'output' parameter.
@@ -29,17 +29,17 @@ production.
 * $wgOpenSearchTemplate is deprecated in favor of $wgOpenSearchTemplates.
 
 === New features in 1.25 ===
-* (bug 62861) Updated plural rules to CLDR 26. Includes incompatible changes
+* (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
   for plural forms in Russian, Prussian, Tagalog, Manx and several languages
   that fall back to Russian.
-* (bug 58139) ResourceLoaderFileModule now supports language fallback
+* (T60139) ResourceLoaderFileModule now supports language fallback
   for 'languageScripts'.
 * Added a new hook, "ContentAlterParserOutput", to allow extensions to modify the
   parser output for a content object before links update.
-* (bug 35785) Enhanced recent changes and extended watchlist are now default.
+* (T37785) Enhanced recent changes and extended watchlist are now default.
   Documentation: https://meta.wikimedia.org/wiki/Help:Enhanced_recent_changes
   and https://www.mediawiki.org/wiki/Manual:$wgDefaultUserOptions.
-* (bug 67341) SVG images will no longer be base64-encoded when being embedded
+* (T69341) SVG images will no longer be base64-encoded when being embedded
   in CSS. This results in slight size increase before gzip compression (due to
   percent-encoding), but up to 20% decrease after it.
 * Upgrade jStorage to v0.4.12.
@@ -61,9 +61,9 @@ production.
   "OpenSearchXml" hook provided by the OpenSearchXml extension.
 
 === Bug fixes in 1.25 ===
-* (bug 71003) No additional code will be generated to try to load CSS-embedded
+* (T73003) No additional code will be generated to try to load CSS-embedded
   SVG images in Internet Explorer 6 and 7, as they don't support them anyway.
-* (bug 67021) On Special:BookSources, corrected validation of ISBNs (both
+* (T69021) On Special:BookSources, corrected validation of ISBNs (both
   10- and 13-digit forms) containing "X".
 * Page moving was refactored into a MovePage class. As part of that:
 ** The AbortMove hook was removed.
@@ -77,7 +77,7 @@ production.
    and MovePage::checkPermissions().
 
 === Action API changes in 1.25 ===
-* (bug 65403) XML tag highlighting is now only performed for formats
+* (T67403) XML tag highlighting is now only performed for formats
   "xmlfm" and "wddxfm".
 * action=paraminfo supports generalized submodules (modules=query+value),
   querymodules and formatmodules are deprecated
@@ -105,7 +105,7 @@ production.
 * If the user has the 'deletedhistory' right, action=query's revids parameter
   will now recognize deleted revids.
 * prop=revisions may be used as a generator, generating revids.
-* (bug 66776) format=json results will no longer be corrupted when
+* (T68776) format=json results will no longer be corrupted when
   $wgMangleFlashPolicy is in effect. format=php results will cleanly return an
   error instead of returning invalid serialized data.
 * Generators may now return data for the generated pages when used with
@@ -116,8 +116,8 @@ production.
 * ApiOpenSearch now supports XML output.
 * ApiOpenSearch will now output descriptions and URLs as array indexes 2 and 3
   in JSON format.
-* (bug T76051) list=tags will now continue correctly.
-* (bug T76052) list=tags can now indicate whether a tag is defined.
+* (T76051) list=tags will now continue correctly.
+* (T76052) list=tags can now indicate whether a tag is defined.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -177,7 +177,7 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-* (bug 64440) Kazakh (kk) wikis should no longer forcefully reset the user's
+* (T66440) Kazakh (kk) wikis should no longer forcefully reset the user's
   interface language to kk where unexpected.
 
 === Other changes in 1.25 ===
@@ -185,7 +185,7 @@ changes to languages because of Bugzilla reports.
   removed. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for
   migration guide for creators and users of custom skins that relied on it.
 * Javascript variable 'wgFileCanRotate' now only available on Special:Upload.
-* (bug 56257) Set site logo from mediawiki.skinning.interface module instead of
+* (T58257) Set site logo from mediawiki.skinning.interface module instead of
   inline styles in the HTML.
 * Removed ApiQueryUsers::getAutoGroups(). (deprecated since 1.20)
 * Removed XmlDumpWriter::schemaVersion(). (deprecated since 1.20)
