@@ -1831,11 +1831,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$changed = !$content->equals( $old_content );
 
 			if ( $changed ) {
-				if ( !$content->isValid() ) {
-					wfProfileOut( __METHOD__ );
-					throw new MWException( "New content failed validity check!" );
-				}
-
 				$dbw->begin( __METHOD__ );
 				try {
 
