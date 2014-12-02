@@ -440,5 +440,10 @@ class MWExceptionHandler {
 		} else {
 			wfDebugLog( 'error', $log );
 		}
+
+		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
+		if ( $json !== false ) {
+			wfDebugLog( 'error-json', $json, 'private' );
+		}
 	}
 }
