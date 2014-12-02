@@ -471,7 +471,7 @@ class RecompressTracked {
 	 * @param int $pageId
 	 */
 	function doPage( $pageId ) {
-		$title = Title::newFromId( $pageId );
+		$title = Title::newFromID( $pageId );
 		if ( $title ) {
 			$titleText = $title->getPrefixedText();
 		} else {
