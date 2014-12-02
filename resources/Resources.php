@@ -202,9 +202,15 @@ return array(
 		'styles' => 'resources/src/jquery/jquery.confirmable.css',
 		'dependencies' => 'mediawiki.jqueryMsg',
 	),
-	// Use mediawiki.cookie in new code, rather than jquery.cookie.
 	'jquery.cookie' => array(
 		'scripts' => 'resources/lib/jquery/jquery.cookie.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.cookie' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
+		'dependencies' => array(
+			'jquery.cookie',
+		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.expandableField' => array(
@@ -964,7 +970,7 @@ return array(
 	'mediawiki.toc' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
 		'dependencies' => array(
-			'jquery.cookie',
+			'mediawiki.cookie',
 		),
 		'messages' => array( 'showtoc', 'hidetoc' ),
 		'targets' => array( 'desktop', 'mobile' ),
@@ -977,7 +983,7 @@ return array(
 	'mediawiki.user' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.user.js',
 		'dependencies' => array(
-			'jquery.cookie',
+			'mediawiki.cookie',
 			'mediawiki.api',
 			'user.options',
 			'user.tokens',
@@ -999,13 +1005,6 @@ return array(
 			'mediawiki.notify',
 		),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'mediawiki.cookie' => array(
-		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
-		'dependencies' => array(
-			'jquery.cookie',
-		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.toolbar' => array(
