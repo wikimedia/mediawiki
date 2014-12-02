@@ -159,10 +159,10 @@
 		 * @return {string} Random session ID
 		 */
 		sessionId: function () {
-			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
-			if ( sessionId === undefined || sessionId === null ) {
+			var sessionId = mw.cookie.get( 'mwuser-sessionId' );
+			if ( sessionId === null ) {
 				sessionId = mw.user.generateRandomSessionId();
-				$.cookie( 'mediaWiki.user.sessionId', sessionId, { expires: null, path: '/' } );
+				mw.cookie.set( 'mwuser-sessionId', sessionId, { expires: null } );
 			}
 			return sessionId;
 		},
@@ -208,7 +208,7 @@
 				expires: 30
 			}, options || {} );
 
-			cookie = $.cookie( 'mediaWiki.user.bucket:' + key );
+			cookie = mw.cookie.get( 'mwuser-bucket:' + key );
 
 			// Bucket information is stored as 2 integers, together as version:bucket like: "1:2"
 			if ( typeof cookie === 'string' && cookie.length > 2 && cookie.indexOf( ':' ) !== -1 ) {
@@ -245,10 +245,10 @@
 					}
 				}
 
-				$.cookie(
-					'mediaWiki.user.bucket:' + key,
+				mw.cookie.set(
+					'mwuser-bucket:' + key,
 					version + ':' + bucket,
-					{ path: '/', expires: Number( options.expires ) }
+					{ expires: Number( options.expires ) * 86400 }
 				);
 			}
 
