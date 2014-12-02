@@ -90,6 +90,7 @@
 	"apihelp-expandtemplates-description": "展开维基文本中的所有模板。",
 	"apihelp-expandtemplates-param-title": "页面标题。",
 	"apihelp-expandtemplates-param-text": "要转换的wiki文本。",
+	"apihelp-expandtemplates-param-revid": "修订版本ID，用于<nowiki>{{REVISIONID}}</nowiki>和类似变体。",
 	"apihelp-expandtemplates-example-simple": "展开wiki文本“<nowiki>{{Project:Sandbox}}</nowiki>”",
 	"apihelp-feedcontributions-description": "返回用户贡献纲要。",
 	"apihelp-feedcontributions-param-feedformat": "纲要的格式。",

@@ -916,7 +916,7 @@
 	"apihelp-upload-example-filekey": "{{doc-apihelp-example|upload}}",
 	"apihelp-userrights-description": "{{doc-apihelp-description|userrights}}",
 	"apihelp-userrights-param-user": "{{doc-apihelp-param|userrights|user}}\n{{Identical|Username}}",
-	"apihelp-userrights-param-userid": "{{doc-apihelp-param|userrights|userid}}",
+	"apihelp-userrights-param-userid": "{{doc-apihelp-param|userrights|userid}}\n{{Identical|User ID}}",
 	"apihelp-userrights-param-add": "{{doc-apihelp-param|userrights|add}}",
 	"apihelp-userrights-param-remove": "{{doc-apihelp-param|userrights|remove}}",
 	"apihelp-userrights-param-reason": "{{doc-apihelp-param|userrights|reason}}",
