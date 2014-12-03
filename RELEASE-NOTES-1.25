@@ -250,6 +250,10 @@ changes to languages because of Bugzilla reports.
   fail for custom tokens registered only via the deprecated ApiTokensGetTokenTypes
   hook. The ApiQueryTokensRegisterTypes hook should be used for this to work.
 * Added wgRelevantArticleId to the client-side config, for use on special pages.
+* Deprecated the TitleIsCssOrJsPage hook. Superseded by the
+  ContentHandlerDefaultModelFor hook since MediaWiki 1.21.
+* Deprecated the TitleIsWikitextPage hook. Superseded by the
+  ContentHandlerDefaultModelFor hook since MediaWiki 1.21.
 
 == Compatibility ==
 
