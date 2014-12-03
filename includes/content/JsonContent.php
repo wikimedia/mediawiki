@@ -2,6 +2,8 @@
 /**
  * JSON Content Model
  *
+ * This class considers primitives and arrays invalid.
+ *
  * @file
  *
  * @author Ori Livneh <ori@wikimedia.org>
@@ -13,6 +15,7 @@
  * @since 1.24
  */
 class JsonContent extends TextContent {
+	protected $parsedJson;
 
 	public function __construct( $text, $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $text, $modelId );
@@ -20,35 +23,51 @@ class JsonContent extends TextContent {
 
 	/**
 	 * Decodes the JSON into a PHP associative array.
-	 * @return array
+	 * @return array|null
 	 */
-	public function getJsonData() {
-		return FormatJson::decode( $this->getNativeData(), true );
+	protected function getJsonData() {
+		if ( $this->parsedJson === null ) {
+			// Use parse() and its Status instead of decode() so that we can
+			// distinguish its null return value from uninitialised.
+			$this->parsedJson = FormatJson::parse( $this->getNativeData(), FormatJson::FORCE_ASSOC );
+		}
+		return $this->parsedJson->getValue();
 	}
 
 	/**
 	 * @return bool Whether content is valid JSON.
 	 */
 	public function isValid() {
-		return $this->getJsonData() !== null;
+		return is_array( $this->getJsonData() );
 	}
 
 	/**
-	 * Pretty-print JSON
+	 * Pretty-print JSON.
 	 *
-	 * @return bool|null|string
+	 * If called before validation, it may return false to invidate the
+	 * content is invalid.
+	 *
+	 * @return null|string
 	 */
 	public function beautifyJSON() {
-		$decoded = FormatJson::decode( $this->getNativeData(), true );
-		if ( !is_array( $decoded ) ) {
+		if ( !$this->isValid() ) {
 			return null;
 		}
-		return FormatJson::encode( $decoded, true );
-
+		if ( !count( $this->getJsonData() ) ) {
+			// Don't transform {} to array. These are supposed to be JSON objects, we don't
+			// even support arrays.
+			return FormatJson::encode( new stdClass(), true );
+		}
+		return FormatJson::encode( $this->getJsonData(), true );
 	}
 
 	/**
 	 * Beautifies JSON prior to save.
+	 *
+	 * WikiPage::doEditContent invokes chain WikiPage::prepareContentForEdit ->
+	 * Content::preSaveTransform, before validation. As such, the native data here
+	 * may be invalid.
+	 *
 	 * @param Title $title Title
 	 * @param User $user User
 	 * @param ParserOptions $popts
@@ -61,6 +80,9 @@ class JsonContent extends TextContent {
 	/**
 	 * Set the HTML and add the appropriate styles
 	 *
+	 * WikiPage::doEditContent invokes chain WikiPage::prepareContentForEdit ->
+	 * Content::getParserOutput -> Content::fillParserOutput, before validation.
+	 * As such, the native data here may be invalid.
 	 *
 	 * @param Title $title
 	 * @param int $revId
@@ -71,7 +93,7 @@ class JsonContent extends TextContent {
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		if ( $generateHtml ) {
+		if ( $this->isValid() && $generateHtml ) {
 			$output->setText( $this->objectTable( $this->getJsonData() ) );
 			$output->addModuleStyles( 'mediawiki.content.json' );
 		} else {
