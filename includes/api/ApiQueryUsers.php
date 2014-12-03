@@ -255,13 +255,13 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 			} else {
 				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) ) {
-					$result->setIndexedTagName( $data[$u]['groups'], 'g' );
+					ApiResult::setIndexedTagName( $data[$u]['groups'], 'g' );
 				}
 				if ( isset( $this->prop['implicitgroups'] ) && isset( $data[$u]['implicitgroups'] ) ) {
-					$result->setIndexedTagName( $data[$u]['implicitgroups'], 'g' );
+					ApiResult::setIndexedTagName( $data[$u]['implicitgroups'], 'g' );
 				}
 				if ( isset( $this->prop['rights'] ) && isset( $data[$u]['rights'] ) ) {
-					$result->setIndexedTagName( $data[$u]['rights'], 'r' );
+					ApiResult::setIndexedTagName( $data[$u]['rights'], 'r' );
 				}
 			}
 
@@ -274,7 +274,7 @@ class ApiQueryUsers extends ApiQueryBase {
 			}
 			$done[] = $u;
 		}
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'user' );
+		$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'user' );
 	}
 
 	public function getCacheMode( $params ) {

@@ -453,14 +453,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Get the result data array (read-only)
-	 * @return array
-	 */
-	public function getResultData() {
-		return $this->getResult()->getData();
-	}
-
-	/**
 	 * Gets a default slave database connection object
 	 * @return DatabaseBase
 	 */
@@ -853,7 +845,7 @@ abstract class ApiBase extends ContextSource {
 							$value = $this->getMain()->canApiHighLimits()
 								? $paramSettings[self::PARAM_MAX2]
 								: $paramSettings[self::PARAM_MAX];
-							$this->getResult()->setParsedLimit( $this->getModuleName(), $value );
+							$this->getResult()->addParsedLimit( $this->getModuleName(), $value );
 						} else {
 							$value = intval( $value );
 							$this->validateLimit(
@@ -1229,28 +1221,9 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $warning Warning message
 	 */
 	public function setWarning( $warning ) {
-		$result = $this->getResult();
-		$data = $result->getData();
-		$moduleName = $this->getModuleName();
-		if ( isset( $data['warnings'][$moduleName] ) ) {
-			// Don't add duplicate warnings
-			$oldWarning = $data['warnings'][$moduleName]['*'];
-			$warnPos = strpos( $oldWarning, $warning );
-			// If $warning was found in $oldWarning, check if it starts at 0 or after "\n"
-			if ( $warnPos !== false && ( $warnPos === 0 || $oldWarning[$warnPos - 1] === "\n" ) ) {
-				// Check if $warning is followed by "\n" or the end of the $oldWarning
-				$warnPos += strlen( $warning );
-				if ( strlen( $oldWarning ) <= $warnPos || $oldWarning[$warnPos] === "\n" ) {
-					return;
-				}
-			}
-			// If there is a warning already, append it to the existing one
-			$warning = "$oldWarning\n$warning";
-		}
-		$msg = array();
-		ApiResult::setContent( $msg, $warning );
-		$result->addValue( 'warnings', $moduleName,
-			$msg, ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
+		$msg = new RawMessage( $warning );
+		$msg->apiMessageCode = 'warning';
+		$this->getResult()->addWarning( $this->getModuleName(), $msg );
 	}
 
 	/**
@@ -2776,6 +2749,15 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get the result data array (read-only)
+	 * @deprecated since 1.25, use $this->getResult() methods instead
+	 * @return array
+	 */
+	public function getResultData() {
+		return $this->getResult()->getData();
 	}
 
 	/**@}*/
