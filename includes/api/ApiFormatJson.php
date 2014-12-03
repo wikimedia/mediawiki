@@ -30,11 +30,12 @@
  */
 class ApiFormatJson extends ApiFormatBase {
 
-	private $mIsRaw;
+	private $isRaw, $isBC;
 
 	public function __construct( ApiMain $main, $format ) {
 		parent::__construct( $main, $format );
-		$this->mIsRaw = ( $format === 'rawfm' );
+		$this->isRaw = ( $format === 'rawfm' );
+		$this->isBC = ( $format !== 'json2' && $format !== 'json2fm' && $format !== 'rawfm' );
 	}
 
 	public function getMimeType() {
@@ -47,8 +48,11 @@ class ApiFormatJson extends ApiFormatBase {
 		return 'application/json';
 	}
 
+	/**
+	 * @deprecated since 1.25
+	 */
 	public function getNeedsRawData() {
-		return $this->mIsRaw;
+		return $this->isRaw;
 	}
 
 	/**
@@ -60,13 +64,33 @@ class ApiFormatJson extends ApiFormatBase {
 		return false;
 	}
 
+	// For now, mark json2 as "internal". Eventually we'll remove this and make
+	// format=json "unstable" instead.
+	public function isInternal() {
+		return !$this->isBC;
+	}
+
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$json = FormatJson::encode(
-			$this->getResultData(),
-			$this->getIsHtml(),
-			$params['utf8'] ? FormatJson::ALL_OK : FormatJson::XMLMETA_OK
-		);
+		$data = $this->getResult()->getResultData();
+		if ( !$this->isRaw ) {
+			if ( $this->isBC ) {
+				$data = ApiResult::transformForBC( $data );
+				$data = ApiResult::transformForTypes( $data,
+					array( 'BC' => true, 'assocAsObject' => true ) );
+			} else {
+				$data = ApiResult::transformForTypes( $data, array( 'assocAsObject' => true ) );
+			}
+			$data = ApiResult::removeMetadata( $data );
+		}
+
+		$opt = 0;
+		if ( $this->isBC ) {
+			$opt |= $params['utf8'] ? FormatJson::ALL_OK : FormatJson::XMLMETA_OK;
+		} else {
+			$opt |= $params['ascii'] ? FormatJson::XMLMETA_OK : FormatJson::ALL_OK;
+		}
+		$json = FormatJson::encode( $data, $this->getIsHtml(), $opt );
 
 		// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
 		// Flash, but what it does isn't friendly for the API, so we need to
@@ -89,7 +113,11 @@ class ApiFormatJson extends ApiFormatBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		if ( $this->isRaw ) {
+			return array();
+		}
+
+		$ret = array(
 			'callback' => array(
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
 			),
@@ -97,6 +125,16 @@ class ApiFormatJson extends ApiFormatBase {
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-utf8',
 			),
+			'ascii' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-json2-param-ascii',
+			),
 		);
+		if ( $this->isBC ) {
+			unset( $ret['ascii'] );
+		} else {
+			unset( $ret['utf8'] );
+		}
+		return $ret;
 	}
 }
