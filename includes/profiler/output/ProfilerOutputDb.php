@@ -28,19 +28,28 @@
  * @since 1.25
  */
 class ProfilerOutputDb extends ProfilerOutput {
+	/** @var bool Whether to store host data with profiling calls */
+	private $perHost = false;
+
+	public function __construct( Profiler $collector, array $params ) {
+		parent::__construct( $collector, $params );
+		global $wgProfilePerHost;
+
+		// Initialize per-host profiling from config, back-compat if available
+		if ( isset( $this->params['perHost'] ) ) {
+			$this->perHost = $this->params['perHost'];
+		} elseif( $wgProfilePerHost ) {
+			$this->perHost = $wgProfilePerHost;
+		}
+	}
+
 	public function canUse() {
 		# Do not log anything if database is readonly (bug 5375)
 		return !wfReadOnly();
 	}
 
 	public function log( array $stats ) {
-		global $wgProfilePerHost;
-
-		if ( $wgProfilePerHost ) {
-			$pfhost = wfHostname();
-		} else {
-			$pfhost = '';
-		}
+		$pfhost = $this->perHost ? wfHostname() : '';
 
 		try {
 			$dbw = wfGetDB( DB_MASTER );

@@ -5378,8 +5378,10 @@ $wgProfileCallTree = false;
 
 /**
  * Should application server host be put into profiling table
+ *
+ * @deprecated set $wgProfiler['perhost'] = true instead
  */
-$wgProfilePerHost = false;
+$wgProfilePerHost = null;
 
 /**
  * Host for UDP profiler.
