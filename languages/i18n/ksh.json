@@ -658,7 +658,7 @@
 	"post-expand-template-argument-category": "Sigge met övverjange Parrammeeter fun Schablone",
 	"parser-template-loop-warning": "Schablon roofe sesch em Kringel op: [[$1]]",
 	"parser-template-recursion-depth-warning": "Schablone refe sesch zo öff sellver op ($1)",
-	"language-converter-depth-warning": "Zoh vill Verschachtelunge (övver $1) beim Täx-Ömwandelle vun ein Shprooch en andere.",
+	"language-converter-depth-warning": "Zoh vill Verschachtelonge (övver $1) beim Täx-Ömwandelle vun eine Schprohch udder Schrevv en en anndere.",
 	"node-count-exceeded-category": "Sigge, woh dä <i lang=\"en\" xml:lang=\"en\">node-count</i> övverschredde es",
 	"node-count-exceeded-warning": "Heh di Sigg hät dä <i lang=\"en\" xml:lang=\"en\">node-count</i> övverschredde",
 	"expansion-depth-exceeded-category": "Sigge, woh de <i lang=\"en\" xml:lang=\"en\">expansion depth</i> övverschredde es",
