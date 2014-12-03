@@ -154,7 +154,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'll' );
+			$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'll' );
 		} else {
 			$resultPageSet->populateFromTitles( $pages );
 		}

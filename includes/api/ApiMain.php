@@ -95,6 +95,8 @@ class ApiMain extends ApiBase {
 	private static $Formats = array(
 		'json' => 'ApiFormatJson',
 		'jsonfm' => 'ApiFormatJson',
+		'json2' => 'ApiFormatJson',
+		'json2fm' => 'ApiFormatJson',
 		'php' => 'ApiFormatPhp',
 		'phpfm' => 'ApiFormatPhp',
 		'wddx' => 'ApiFormatWddx',
@@ -763,7 +765,7 @@ class ApiMain extends ApiBase {
 			// User entered incorrect parameters - generate error response
 			$errMessage = $e->getMessageArray();
 			$link = wfExpandUrl( wfScript( 'api' ) );
-			ApiResult::setContent( $errMessage, "See $link for API usage" );
+			ApiResult::setContentValue( $errMessage, 'docref', "See $link for API usage" );
 		} else {
 			// Something is seriously wrong
 			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
@@ -777,16 +779,16 @@ class ApiMain extends ApiBase {
 				'info' => '[' . MWExceptionHandler::getLogId( $e ) . '] ' . $info,
 			);
 			if ( $config->get( 'ShowExceptionDetails' ) ) {
-				ApiResult::setContent(
+				ApiResult::setContentValue(
 					$errMessage,
+					'trace',
 					MWExceptionHandler::getRedactedTraceAsString( $e )
 				);
 			}
 		}
 
 		// Remember all the warnings to re-add them later
-		$oldResult = $result->getData();
-		$warnings = isset( $oldResult['warnings'] ) ? $oldResult['warnings'] : null;
+		$warnings = $result->getResultData( array( 'warnings' ) );
 
 		$result->reset();
 		// Re-add the id
