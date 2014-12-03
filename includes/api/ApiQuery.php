@@ -445,11 +445,11 @@ class ApiQuery extends ApiBase {
 				$pageIDs = array_keys( $pages );
 				// json treats all map keys as strings - converting to match
 				$pageIDs = array_map( 'strval', $pageIDs );
-				$result->setIndexedTagName( $pageIDs, 'id' );
+				ApiResult::setIndexedTagName( $pageIDs, 'id' );
 				$fit = $fit && $result->addValue( 'query', 'pageids', $pageIDs );
 			}
 
-			$result->setIndexedTagName( $pages, 'page' );
+			ApiResult::setIndexedTagName( $pages, 'page' );
 			$fit = $fit && $result->addValue( 'query', 'pages', $pages );
 		}
 
@@ -478,7 +478,7 @@ class ApiQuery extends ApiBase {
 	 */
 	public function setGeneratorContinue( $module, $paramName, $paramValue ) {
 		wfDeprecated( __METHOD__, '1.24' );
-		$this->getResult()->setGeneratorContinueParam( $module, $paramName, $paramValue );
+		$this->getResult()->addGeneratorContinueParam( $module, $paramName, $paramValue );
 		return $this->getParameter( 'continue' ) !== null;
 	}
 
@@ -521,7 +521,7 @@ class ApiQuery extends ApiBase {
 			$result->addValue( null, 'mime', 'text/xml', ApiResult::NO_SIZE_CHECK );
 		} else {
 			$r = array();
-			ApiResult::setContent( $r, $exportxml );
+			ApiResult::setContentValue( $r, 'xml', $exportxml );
 			$result->addValue( 'query', 'export', $r, ApiResult::NO_SIZE_CHECK );
 		}
 	}

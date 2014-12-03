@@ -120,7 +120,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			}
 		}
 
-		$this->getResult()->setIndexedTagName_internal(
+		$this->getResult()->defineIndexedTagName(
 			array( 'query', $this->getModuleName() ),
 			'item'
 		);
@@ -421,7 +421,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ( $this->fld_tags ) {
 			if ( $row->ts_tags ) {
 				$tags = explode( ',', $row->ts_tags );
-				$this->getResult()->setIndexedTagName( $tags, 'tag' );
+				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
 				$vals['tags'] = array();

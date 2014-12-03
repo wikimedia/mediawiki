@@ -460,7 +460,7 @@ class ApiPageSet extends ApiBase {
 			$values[] = $r;
 		}
 		if ( !empty( $values ) && $result ) {
-			$result->setIndexedTagName( $values, 'r' );
+			ApiResult::setIndexedTagName( $values, 'r' );
 		}
 
 		return $values;
@@ -491,7 +491,7 @@ class ApiPageSet extends ApiBase {
 			);
 		}
 		if ( !empty( $values ) && $result ) {
-			$result->setIndexedTagName( $values, 'n' );
+			ApiResult::setIndexedTagName( $values, 'n' );
 		}
 
 		return $values;
@@ -522,7 +522,7 @@ class ApiPageSet extends ApiBase {
 			);
 		}
 		if ( !empty( $values ) && $result ) {
-			$result->setIndexedTagName( $values, 'c' );
+			ApiResult::setIndexedTagName( $values, 'c' );
 		}
 
 		return $values;
@@ -559,7 +559,7 @@ class ApiPageSet extends ApiBase {
 			$values[] = $item;
 		}
 		if ( !empty( $values ) && $result ) {
-			$result->setIndexedTagName( $values, 'i' );
+			ApiResult::setIndexedTagName( $values, 'i' );
 		}
 
 		return $values;
@@ -651,7 +651,7 @@ class ApiPageSet extends ApiBase {
 			);
 		}
 		if ( !empty( $values ) && $result ) {
-			$result->setIndexedTagName( $values, 'rev' );
+			ApiResult::setIndexedTagName( $values, 'rev' );
 		}
 
 		return $values;
@@ -1226,17 +1226,20 @@ class ApiPageSet extends ApiBase {
 	 */
 	public function populateGeneratorData( &$result, array $path = array() ) {
 		if ( $result instanceof ApiResult ) {
-			$data = $result->getData();
-		} else {
-			$data = &$result;
-		}
-		foreach ( $path as $key ) {
-			if ( !isset( $data[$key] ) ) {
-				// Path isn't in $result, so nothing to add, so everything
-				// "fits"
+			$data = $result->getResultData( $path );
+			if ( $data === null ) {
 				return true;
 			}
-			$data = &$data[$key];
+		} else {
+			$data = &$result;
+			foreach ( $path as $key ) {
+				if ( !isset( $data[$key] ) ) {
+					// Path isn't in $result, so nothing to add, so everything
+					// "fits"
+					return true;
+				}
+				$data = &$data[$key];
+			}
 		}
 		foreach ( $this->mGeneratorData as $ns => $dbkeys ) {
 			if ( $ns === -1 ) {
