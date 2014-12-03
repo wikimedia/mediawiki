@@ -6,15 +6,6 @@
  */
 class JsonContentTest extends MediaWikiLangTestCase {
 
-	/**
-	 * @dataProvider provideValidConstruction
-	 */
-	public function testValidConstruct( $text, $modelId, $isValid, $expected ) {
-		$obj = new JsonContent( $text, $modelId );
-		$this->assertEquals( $isValid, $obj->isValid() );
-		$this->assertEquals( $expected, $obj->getJsonData() );
-	}
-
 	public static function provideValidConstruction() {
 		return array(
 			array( 'foo', CONTENT_MODEL_JSON, false, null ),
@@ -24,11 +15,12 @@ class JsonContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideDataToEncode
+	 * @dataProvider provideValidConstruction
 	 */
-	public function testBeautifyUsesFormatJson( $data ) {
-		$obj = new JsonContent( FormatJson::encode( $data ) );
-		$this->assertEquals( FormatJson::encode( $data, true ), $obj->beautifyJSON() );
+	public function testValidConstruct( $text, $modelId, $isValid, $expected ) {
+		$obj = new JsonContent( $text, $modelId );
+		$this->assertEquals( $isValid, $obj->isValid() );
+		$this->assertEquals( $expected, $obj->getJsonData() );
 	}
 
 	public static function provideDataToEncode() {
@@ -39,6 +31,14 @@ class JsonContentTest extends MediaWikiLangTestCase {
 			array( array( 'baz' => 'foo', 'bar' ) ),
 			array( array( 'baz' => 1000, 'bar' ) ),
 		);
+	}
+
+	/**
+	 * @dataProvider provideDataToEncode
+	 */
+	public function testBeautifyUsesFormatJson( $data ) {
+		$obj = new JsonContent( FormatJson::encode( $data ) );
+		$this->assertEquals( FormatJson::encode( $data, true ), $obj->beautifyJSON() );
 	}
 
 	/**
@@ -65,16 +65,6 @@ class JsonContentTest extends MediaWikiLangTestCase {
 		return $this->getMockBuilder( 'ParserOptions' )
 			->disableOriginalConstructor()
 			->getMock();
-	}
-
-	/**
-	 * @dataProvider provideDataAndParserText
-	 */
-	public function testFillParserOutput( $data, $expected ) {
-		$obj = new JsonContent( FormatJson::encode( $data ) );
-		$parserOutput = $obj->getParserOutput( $this->getMockTitle(), null, null, true );
-		$this->assertInstanceOf( 'ParserOutput', $parserOutput );
-		$this->assertEquals( $expected, $parserOutput->getText() );
 	}
 
 	public static function provideDataAndParserText() {
@@ -110,5 +100,15 @@ class JsonContentTest extends MediaWikiLangTestCase {
 				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;&lt;script&gt;alert(&quot;evil!&quot;)&lt;/script&gt;&quot;</td></tr></tbody></table>',
 			),
 		);
+	}
+
+	/**
+	 * @dataProvider provideDataAndParserText
+	 */
+	public function testFillParserOutput( $data, $expected ) {
+		$obj = new JsonContent( FormatJson::encode( $data ) );
+		$parserOutput = $obj->getParserOutput( $this->getMockTitle(), null, null, true );
+		$this->assertInstanceOf( 'ParserOutput', $parserOutput );
+		$this->assertEquals( $expected, $parserOutput->getText() );
 	}
 }
