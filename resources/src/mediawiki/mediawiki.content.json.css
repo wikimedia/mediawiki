@@ -18,19 +18,20 @@
 	padding: 0.5em 1em;
 }
 
-.mw-json td {
-	background-color: #eee;
-	font-style: italic;
-}
-
 .mw-json .value {
 	background-color: #dcfae3;
 	font-family: monospace, monospace;
 	white-space: pre-wrap;
 }
 
+.mw-json-empty {
+	background-color: #fff;
+	font-style: italic;
+}
+
 .mw-json tr {
 	margin-bottom: 0.5em;
+	background-color: #eee;
 }
 
 .mw-json th {
