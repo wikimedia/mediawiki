@@ -924,18 +924,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
-	protected function doEnableProfiling() {
-		global $wgProfileToDatabase;
-
-		if ( !$this->doTable( 'profiling' ) ) {
-			return true;
-		}
-
-		if ( $wgProfileToDatabase === true && !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
-			$this->applyPatch( 'patch-profiling.sql', false, 'Add profiling table' );
-		}
-	}
-
 	protected function doMaybeProfilingMemoryUpdate() {
 		if ( !$this->doTable( 'profiling' ) ) {
 			return true;

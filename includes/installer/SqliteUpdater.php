@@ -168,11 +168,4 @@ class SqliteUpdater extends DatabaseUpdater {
 			$this->output( "...fulltext search table appears to be in order.\n" );
 		}
 	}
-
-	protected function doEnableProfiling() {
-		global $wgProfileToDatabase;
-		if ( $wgProfileToDatabase === true && !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
-			$this->applyPatch( 'patch-profiling.sql', false, 'Add profiling table' );
-		}
-	}
 }
