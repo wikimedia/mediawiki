@@ -228,6 +228,7 @@ production.
   Title::userCan() via the API.
 * Default type param for query list=watchlist and list=recentchanges has
   been changed from all types (e.g. including 'external') to 'edit|new|log'.
+* Added formatversion to format=json, still experimental.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -261,6 +262,13 @@ production.
   to allow generators to include data in the action=query result.
 * New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
   used for conditional registration of API modules.
+* ApiResult was greatly overhauled. See inline documentation for details.
+* ApiResult will automatically convert objects to strings or arrays (depending
+  on whether a __toString() method exists on the object), and will refuse to
+  add unsupported value types.
+* ApiResult/ApiFormatBase "raw mode" is deprecated.
+* ApiFormatXml now assumes defaults and so on instead of throwing errors when
+  metadata isn't set.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
@@ -269,15 +277,28 @@ production.
   * ApiBase::makeHelpMsg
   * ApiBase::makeHelpArrayToString
   * ApiBase::makeHelpMsgParameters
+  * ApiBase::getResultData
   * ApiFormatBase::setUnescapeAmps
   * ApiFormatBase::getWantsHelp
   * ApiFormatBase::setHelp
   * ApiFormatBase::formatHTML
   * ApiFormatBase::setBufferResult
   * ApiFormatBase::getDescription
+  * ApiFormatBase::getNeedsRawData
   * ApiMain::setHelp
   * ApiMain::reallyMakeHelpMsg
   * ApiMain::makeHelpMsgHeader
+  * ApiResult::setRawMode
+  * ApiResult::getIsRawMode
+  * ApiResult::getData
+  * ApiResult::setElement
+  * ApiResult::setContent
+  * ApiResult::unsetValue
+  * ApiResult::setIndexedTagName_recursive
+  * ApiResult::setIndexedTagName_internal
+  * ApiResult::setParsedLimit
+  * ApiResult::setContinueParam
+  * ApiResult::setGeneratorContinueParam
   * ApiQueryImageInfo::getPropertyDescriptions
 * The following classes have been deprecated and may be removed in a future
   release:

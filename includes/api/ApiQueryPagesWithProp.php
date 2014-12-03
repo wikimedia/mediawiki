@@ -121,7 +121,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		}
 
 		if ( $resultPageSet === null ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'page' );
+			$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
 		}
 	}
 
