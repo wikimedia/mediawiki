@@ -12,8 +12,12 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 		return array(
 			// Basic types
 			array( array( null ), 'a:1:{i:0;N;}' ),
-			array( array( true ), 'a:1:{i:0;b:1;}' ),
-			array( array( false ), 'a:1:{i:0;b:0;}' ),
+			array( array( true ), 'a:1:{i:0;s:0:"";}' ),
+			array( array( false ), 'a:0:{}' ),
+			array( array( true, ApiResult::META_BC_BOOLS => array( 0 ) ),
+				'a:1:{i:0;b:1;}' ),
+			array( array( false, ApiResult::META_BC_BOOLS => array( 0 ) ),
+				'a:1:{i:0;b:0;}' ),
 			array( array( 42 ), 'a:1:{i:0;i:42;}' ),
 			array( array( 42.5 ), 'a:1:{i:0;d:42.5;}' ),
 			array( array( 1e42 ), 'a:1:{i:0;d:1.0E+42;}' ),
@@ -25,9 +29,21 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 			array( array( array( 1 ) ), 'a:1:{i:0;a:1:{i:0;i:1;}}' ),
 			array( array( array( 'x' => 1 ) ), 'a:1:{i:0;a:1:{s:1:"x";i:1;}}' ),
 			array( array( array( 2 => 1 ) ), 'a:1:{i:0;a:1:{i:2;i:1;}}' ),
+			array( array( (object)array() ), 'a:1:{i:0;a:0:{}}' ),
+			array( array( array( 1, ApiResult::META_TYPE => 'assoc' ) ), 'a:1:{i:0;a:1:{i:0;i:1;}}' ),
+			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'array' ) ), 'a:1:{i:0;a:1:{i:0;i:1;}}' ),
+			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'kvp' ) ), 'a:1:{i:0;a:1:{s:1:"x";i:1;}}' ),
+			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCkvp', ApiResult::META_KVP_KEY_NAME => 'key' ) ),
+				'a:1:{i:0;a:1:{i:0;a:2:{s:3:"key";s:1:"x";s:1:"*";i:1;}}}' ),
+			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCarray' ) ), 'a:1:{i:0;a:1:{s:1:"x";i:1;}}' ),
 
 			// Content
-			array( array( '*' => 'foo' ), 'a:1:{s:1:"*";s:3:"foo";}' ),
+			array( array( 'content' => 'foo', ApiResult::META_CONTENT => 'content' ),
+				'a:1:{s:1:"*";s:3:"foo";}' ),
+
+			// BC Subelements
+			array( array( 'foo' => 'foo', ApiResult::META_BC_SUBELEMENTS => array( 'foo' ) ),
+				'a:1:{s:3:"foo";a:1:{s:1:"*";s:3:"foo";}}' ),
 		);
 	}
 

@@ -35,7 +35,12 @@ class ApiFormatPhp extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$text = serialize( $this->getResultData() );
+		$data = $this->getResult()->getResultData();
+		$data = ApiResult::transformForBC( $data );
+		$data = ApiResult::transformForTypes( $data, array( 'BC' => true ) );
+		$data = ApiResult::removeMetadata( $data );
+
+		$text = serialize( $data );
 
 		// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
 		// Flash, but what it does isn't friendly for the API. There's nothing
