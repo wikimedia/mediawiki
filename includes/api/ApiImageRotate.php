@@ -122,7 +122,7 @@ class ApiImageRotate extends ApiBase {
 					$r['result'] = 'Success';
 				} else {
 					$r['result'] = 'Failure';
-					$r['errormessage'] = $this->getResult()->convertStatusToArray( $status );
+					$r['errormessage'] = ApiResult::convertStatusToArray( $status );
 				}
 			} else {
 				$r['result'] = 'Failure';
@@ -131,7 +131,7 @@ class ApiImageRotate extends ApiBase {
 			$result[] = $r;
 		}
 		$apiResult = $this->getResult();
-		$apiResult->setIndexedTagName( $result, 'page' );
+		ApiResult::setIndexedTagName( $result, 'page' );
 		$apiResult->addValue( null, $this->getModuleName(), $result );
 		$apiResult->endContinuation();
 	}

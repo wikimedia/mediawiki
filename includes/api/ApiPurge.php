@@ -89,7 +89,7 @@ class ApiPurge extends ApiBase {
 			$result[] = $r;
 		}
 		$apiResult = $this->getResult();
-		$apiResult->setIndexedTagName( $result, 'page' );
+		ApiResult::setIndexedTagName( $result, 'page' );
 		$apiResult->addValue( null, $this->getModuleName(), $result );
 
 		$values = $pageSet->getNormalizedTitlesAsResult( $apiResult );
