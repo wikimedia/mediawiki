@@ -160,7 +160,8 @@ class LoginForm extends SpecialPage {
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
-		$this->mFromHTTP = $request->getBool( 'fromhttp', false );
+		$this->mFromHTTP = $request->getBool( 'fromhttp', false )
+			|| $request->getBool( 'wpFromhttp', false );
 		$this->mStickHTTPS = ( !$this->mFromHTTP && $request->getProtocol() === 'https' )
 			|| $request->getBool( 'wpForceHttps', false );
 		$this->mLanguage = $request->getText( 'uselang' );
@@ -1436,6 +1437,11 @@ class LoginForm extends SpecialPage {
 			$template->set( 'signupend', $signupendHTTPS->parse() );
 		} else {
 			$template->set( 'signupend', $this->msg( 'signupend' )->parse() );
+		}
+
+		// If using HTTPS coming from HTTP, then the 'fromhttp' parameter must be preserved
+		if ( $usingHTTPS ) {
+			$template->set( 'fromhttp', $this->mFromHTTP );
 		}
 
 		// Give authentication and captcha plugins a chance to modify the form
