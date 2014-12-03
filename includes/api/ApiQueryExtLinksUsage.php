@@ -139,7 +139,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ),
+			$result->addIndexedTagName( array( 'query', $this->getModuleName() ),
 				$this->getModulePrefix() );
 		}
 	}

@@ -240,7 +240,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 		}
 
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'fa' );
+		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'fa' );
 	}
 
 	public function getAllowedParams() {

@@ -281,7 +281,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->setIndexedTagName_internal(
+			$this->getResult()->addIndexedTagName(
 				array( 'query', $this->getModuleName() ),
 				'item'
 			);

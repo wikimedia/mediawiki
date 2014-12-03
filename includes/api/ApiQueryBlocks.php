@@ -246,7 +246,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				break;
 			}
 		}
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'block' );
+		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'block' );
 	}
 
 	protected function prepareUsername( $user ) {
