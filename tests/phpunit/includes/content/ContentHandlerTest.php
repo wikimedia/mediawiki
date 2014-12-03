@@ -24,14 +24,12 @@ class ContentHandlerTest extends MediaWikiTestCase {
 			'wgNamespaceContentModels' => array(
 				12312 => 'testing',
 			),
-			'wgContentHandlers' => array(
-				CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler',
-				CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler',
-				CONTENT_MODEL_CSS => 'CssContentHandler',
-				CONTENT_MODEL_TEXT => 'TextContentHandler',
-				'testing' => 'DummyContentHandlerForTesting',
-			),
 		) );
+
+		$this->mergeMwGlobalArrayValue(
+			'wgContentHandlers',
+			array( 'testing' => 'DummyContentHandlerForTesting' )
+		);
 
 		// Reset namespace cache
 		MWNamespace::getCanonicalNamespaces( true );
@@ -65,6 +63,10 @@ class ContentHandlerTest extends MediaWikiTestCase {
 			array( 'MediaWiki:Foo.JS', CONTENT_MODEL_WIKITEXT ),
 			array( 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ),
 			array( 'MediaWiki:Foo.css.xxx', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo/bar.json', CONTENT_MODEL_JSON ),
+			array( 'User:Foo/bar.json.nope', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.json', CONTENT_MODEL_JSON ),
+			array( 'MediaWiki:Foo.JSON', CONTENT_MODEL_WIKITEXT ),
 		);
 	}
 
