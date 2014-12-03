@@ -118,7 +118,6 @@ class ApiParse extends ApiBase {
 			} else { // Not $oldid, but $pageid or $page
 				if ( $params['redirects'] ) {
 					$reqParams = array(
-						'action' => 'query',
 						'redirects' => '',
 					);
 					if ( !is_null( $pageid ) ) {
@@ -128,14 +127,12 @@ class ApiParse extends ApiBase {
 					}
 					$req = new FauxRequest( $reqParams );
 					$main = new ApiMain( $req );
-					$main->execute();
-					$data = $main->getResultData();
-					$redirValues = isset( $data['query']['redirects'] )
-						? $data['query']['redirects']
-						: array();
+					$pageSet = new ApiPageSet( $main );
+					$pageSet->execute();
+
 					$to = $page;
-					foreach ( (array)$redirValues as $r ) {
-						$to = $r['to'];
+					foreach ( $pageSet->getRedirectTitles() as $title ) {
+						$to = $title->getFullText();
 					}
 					$pageParams = array( 'title' => $to );
 				} elseif ( !is_null( $pageid ) ) {
@@ -213,10 +210,10 @@ class ApiParse extends ApiBase {
 				// Build a result and bail out
 				$result_array = array();
 				$result_array['text'] = array();
-				ApiResult::setContent( $result_array['text'], $this->pstContent->serialize( $format ) );
+				ApiResult::setContentValue( $result_array['text'], 'text', $this->pstContent->serialize( $format ) );
 				if ( isset( $prop['wikitext'] ) ) {
 					$result_array['wikitext'] = array();
-					ApiResult::setContent( $result_array['wikitext'], $this->content->serialize( $format ) );
+					ApiResult::setContentValue( $result_array['wikitext'], 'wikitext', $this->content->serialize( $format ) );
 				}
 				$result->addValue( null, $this->getModuleName(), $result_array );
 
@@ -249,13 +246,14 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['text'] ) ) {
 			$result_array['text'] = array();
-			ApiResult::setContent( $result_array['text'], $p_result->getText() );
+			ApiResult::setContentValue( $result_array['text'], 'text', $p_result->getText() );
 		}
 
 		if ( !is_null( $params['summary'] ) ) {
 			$result_array['parsedsummary'] = array();
-			ApiResult::setContent(
+			ApiResult::setContentValue(
 				$result_array['parsedsummary'],
+				'parsedsummary',
 				Linker::formatComment( $params['summary'], $titleObj )
 			);
 		}
@@ -282,7 +280,7 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['categorieshtml'] ) ) {
 			$categoriesHtml = $this->categoriesHtml( $p_result->getCategories() );
 			$result_array['categorieshtml'] = array();
-			ApiResult::setContent( $result_array['categorieshtml'], $categoriesHtml );
+			ApiResult::setContentValue( $result_array['categorieshtml'], 'categorieshtml', $categoriesHtml );
 		}
 		if ( isset( $prop['links'] ) ) {
 			$result_array['links'] = $this->formatLinks( $p_result->getLinks() );
@@ -323,8 +321,9 @@ class ApiParse extends ApiBase {
 
 			if ( isset( $prop['headhtml'] ) ) {
 				$result_array['headhtml'] = array();
-				ApiResult::setContent(
+				ApiResult::setContentValue(
 					$result_array['headhtml'],
+					'headhtml',
 					$context->getOutput()->headElement( $context->getSkin() )
 				);
 			}
@@ -340,7 +339,7 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['indicators'] ) ) {
 			foreach ( $p_result->getIndicators() as $name => $content ) {
 				$indicator = array( 'name' => $name );
-				ApiResult::setContent( $indicator, $content );
+				ApiResult::setContentValue( $indicator, 'content', $content );
 				$result_array['indicators'][] = $indicator;
 			}
 		}
@@ -351,10 +350,10 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['wikitext'] ) ) {
 			$result_array['wikitext'] = array();
-			ApiResult::setContent( $result_array['wikitext'], $this->content->serialize( $format ) );
+			ApiResult::setContentValue( $result_array['wikitext'], 'wikitext', $this->content->serialize( $format ) );
 			if ( !is_null( $this->pstContent ) ) {
 				$result_array['psttext'] = array();
-				ApiResult::setContent( $result_array['psttext'], $this->pstContent->serialize( $format ) );
+				ApiResult::setContentValue( $result_array['psttext'], 'psttext', $this->pstContent->serialize( $format ) );
 			}
 		}
 		if ( isset( $prop['properties'] ) ) {
@@ -368,7 +367,7 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['limitreporthtml'] ) ) {
 			$limitreportHtml = EditPage::getPreviewLimitReport( $p_result );
 			$result_array['limitreporthtml'] = array();
-			ApiResult::setContent( $result_array['limitreporthtml'], $limitreportHtml );
+			ApiResult::setContentValue( $result_array['limitreporthtml'], 'limitreporthtml', $limitreportHtml );
 		}
 
 		if ( $params['generatexml'] ) {
@@ -384,7 +383,7 @@ class ApiParse extends ApiBase {
 				$xml = $dom->__toString();
 			}
 			$result_array['parsetree'] = array();
-			ApiResult::setContent( $result_array['parsetree'], $xml );
+			ApiResult::setContentValue( $result_array['parsetree'], 'parsetree', $xml );
 		}
 
 		$result_mapping = array(
@@ -500,7 +499,7 @@ class ApiParse extends ApiBase {
 				// native language name
 				$entry['autonym'] = Language::fetchLanguageName( $title->getInterwiki() );
 			}
-			ApiResult::setContent( $entry, $bits[1] );
+			ApiResult::setContentValue( $entry, 'title', $bits[1] );
 			$result[] = $entry;
 		}
 
@@ -535,7 +534,7 @@ class ApiParse extends ApiBase {
 		foreach ( $links as $link => $sortkey ) {
 			$entry = array();
 			$entry['sortkey'] = $sortkey;
-			ApiResult::setContent( $entry, $link );
+			ApiResult::setContentValue( $entry, 'category', $link );
 			if ( !isset( $hiddencats[$link] ) ) {
 				$entry['missing'] = '';
 			} elseif ( $hiddencats[$link] ) {
@@ -560,7 +559,7 @@ class ApiParse extends ApiBase {
 			foreach ( $nslinks as $title => $id ) {
 				$entry = array();
 				$entry['ns'] = $ns;
-				ApiResult::setContent( $entry, Title::makeTitle( $ns, $title )->getFullText() );
+				ApiResult::setContentValue( $entry, 'title', Title::makeTitle( $ns, $title )->getFullText() );
 				if ( $id != 0 ) {
 					$entry['exists'] = '';
 				}
@@ -583,7 +582,7 @@ class ApiParse extends ApiBase {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				}
 
-				ApiResult::setContent( $entry, $title->getFullText() );
+				ApiResult::setContentValue( $entry, 'title', $title->getFullText() );
 				$result[] = $entry;
 			}
 		}
@@ -596,7 +595,7 @@ class ApiParse extends ApiBase {
 		foreach ( $headItems as $tag => $content ) {
 			$entry = array();
 			$entry['tag'] = $tag;
-			ApiResult::setContent( $entry, $content );
+			ApiResult::setContentValue( $entry, 'content', $content );
 			$result[] = $entry;
 		}
 
@@ -608,7 +607,7 @@ class ApiParse extends ApiBase {
 		foreach ( $properties as $name => $value ) {
 			$entry = array();
 			$entry['name'] = $name;
-			ApiResult::setContent( $entry, $value );
+			ApiResult::setContentValue( $entry, 'value', $value );
 			$result[] = $entry;
 		}
 
@@ -620,7 +619,7 @@ class ApiParse extends ApiBase {
 		foreach ( $css as $file => $link ) {
 			$entry = array();
 			$entry['file'] = $file;
-			ApiResult::setContent( $entry, $link );
+			ApiResult::setContentValue( $entry, 'link', $link );
 			$result[] = $entry;
 		}
 
@@ -637,8 +636,8 @@ class ApiParse extends ApiBase {
 			if ( !is_array( $value ) ) {
 				$value = array( $value );
 			}
-			$apiResult->setIndexedTagName( $value, 'param' );
-			$apiResult->setIndexedTagName_recursive( $value, 'param' );
+			ApiResult::setIndexedTagName( $value, 'param' );
+			ApiResult::setIndexedTagNameOnSubarrays( $value, 'param' );
 			$entry = array_merge( $entry, $value );
 			$result[] = $entry;
 		}
@@ -649,7 +648,7 @@ class ApiParse extends ApiBase {
 	private function setIndexedTagNames( &$array, $mapping ) {
 		foreach ( $mapping as $key => $name ) {
 			if ( isset( $array[$key] ) ) {
-				$this->getResult()->setIndexedTagName( $array[$key], $name );
+				ApiResult::setIndexedTagName( $array[$key], $name );
 			}
 		}
 	}
