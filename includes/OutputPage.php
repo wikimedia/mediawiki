@@ -364,6 +364,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Returns the current <meta> tags
+	 *
+	 * @since 1.25
+	 * @return array
+	 */
+	public function getMetaTags() {
+		return $this->mMetatags;
+	}
+
+	/**
 	 * Add a new \<link\> tag to the page header.
 	 *
 	 * Note: use setCanonicalUrl() for rel=canonical.
@@ -372,6 +382,16 @@ class OutputPage extends ContextSource {
 	 */
 	function addLink( array $linkarr ) {
 		array_push( $this->mLinktags, $linkarr );
+	}
+
+	/**
+	 * Returns the current <link> tags
+	 *
+	 * @since 1.25
+	 * @return array
+	 */
+	public function getLinkTags() {
+		return $this->mLinktags;
 	}
 
 	/**
@@ -393,6 +413,17 @@ class OutputPage extends ContextSource {
 	 */
 	function setCanonicalUrl( $url ) {
 		$this->mCanonicalUrl = $url;
+	}
+
+	/**
+	 * Returns the URL to be used for the <link rel=canonical> if
+	 * one is set.
+	 *
+	 * @since 1.25
+	 * @return bool|string
+	 */
+	public function getCanonicalUrl() {
+		return $this->mCanonicalUrl;
 	}
 
 	/**
