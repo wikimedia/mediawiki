@@ -526,6 +526,7 @@ class ApiMain extends ApiBase {
 		if ( $matchOrigin ) {
 			$response->header( "Access-Control-Allow-Origin: $originParam" );
 			$response->header( 'Access-Control-Allow-Credentials: true' );
+			$response->header( 'Access-Control-Allow-Headers: Api-User-Agent' );
 			$this->getOutput()->addVaryHeader( 'Origin' );
 		}
 
