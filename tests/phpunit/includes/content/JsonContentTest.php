@@ -8,46 +8,62 @@ class JsonContentTest extends MediaWikiLangTestCase {
 
 	public static function provideValidConstruction() {
 		return array(
-			array( 'foo', CONTENT_MODEL_JSON, false, null ),
-			array( FormatJson::encode( array() ), CONTENT_MODEL_JSON, true, array() ),
-			array( FormatJson::encode( array( 'foo' ) ), CONTENT_MODEL_JSON, true, array( 'foo' ) ),
+			array( 'foo', false, null ),
+			array( '{}', true, (object)array() ),
+			array( '{ "0": "bar" }', true, (object)array( 'bar' ) ),
 		);
 	}
 
 	/**
 	 * @dataProvider provideValidConstruction
 	 */
-	public function testValidConstruct( $text, $modelId, $isValid, $expected ) {
-		$obj = new JsonContent( $text, $modelId );
+	public function testIsValid( $text, $isValid, $expected ) {
+		$obj = new JsonContent( $text, CONTENT_MODEL_JSON );
 		$this->assertEquals( $isValid, $obj->isValid() );
-		$this->assertEquals( $expected, $obj->getJsonData() );
+		$this->assertEquals( $expected, $obj->getData()->getValue() );
 	}
 
 	public static function provideDataToEncode() {
 		return array(
-			array( array() ),
-			array( array( 'foo' ) ),
-			array( array( 'foo', 'bar' ) ),
-			array( array( 'baz' => 'foo', 'bar' ) ),
-			array( array( 'baz' => 1000, 'bar' ) ),
+			array(
+				'[]',
+				// Not important but test to track changes to this behaviour.
+				'[]',
+			),
+			array(
+				'{}',
+				'{}',
+			),
+			array(
+				'{"foo": "bar"}',
+				"{\n    \"foo\": \"bar\"\n}",
+			),
+			array(
+				'{"foo": 1000}',
+				"{\n    \"foo\": 1000\n}",
+			),
+			array(
+				'{"foo": 1000, "0": "bar"}',
+				"{\n    \"foo\": 1000,\n    \"0\": \"bar\"\n}",
+			),
 		);
 	}
 
 	/**
 	 * @dataProvider provideDataToEncode
 	 */
-	public function testBeautifyUsesFormatJson( $data ) {
-		$obj = new JsonContent( FormatJson::encode( $data ) );
-		$this->assertEquals( FormatJson::encode( $data, true ), $obj->beautifyJSON() );
+	public function testBeautifyJson( $input, $beautified ) {
+		$obj = new JsonContent( $input );
+		$this->assertEquals( $beautified, $obj->beautifyJSON() );
 	}
 
 	/**
 	 * @dataProvider provideDataToEncode
 	 */
-	public function testPreSaveTransform( $data ) {
-		$obj = new JsonContent( FormatJson::encode( $data ) );
+	public function testPreSaveTransform( $input, $transformed ) {
+		$obj = new JsonContent( $input );
 		$newObj = $obj->preSaveTransform( $this->getMockTitle(), $this->getMockUser(), $this->getMockParserOptions() );
-		$this->assertTrue( $newObj->equals( new JsonContent( FormatJson::encode( $data, true ) ) ) );
+		$this->assertTrue( $newObj->equals( new JsonContent( $transformed ) ) );
 	}
 
 	private function getMockTitle() {
@@ -70,33 +86,33 @@ class JsonContentTest extends MediaWikiLangTestCase {
 	public static function provideDataAndParserText() {
 		return array(
 			array(
-				array(),
+				(object)array(),
 				'<table class="mw-json"><tbody></tbody></table>'
 			),
 			array(
-				array( 'foo' ),
+				(object)array( 'foo' ),
 				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;foo&quot;</td></tr></tbody></table>'
 			),
 			array(
-				array( 'foo', 'bar' ),
+				(object)array( 'foo', 'bar' ),
 				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;foo&quot;</td></tr>' .
 				"\n" .
 				'<tr><th>1</th><td class="value">&quot;bar&quot;</td></tr></tbody></table>'
 			),
 			array(
-				array( 'baz' => 'foo', 'bar' ),
+				(object)array( 'baz' => 'foo', 'bar' ),
 				'<table class="mw-json"><tbody><tr><th>baz</th><td class="value">&quot;foo&quot;</td></tr>' .
 				"\n" .
 				'<tr><th>0</th><td class="value">&quot;bar&quot;</td></tr></tbody></table>'
 			),
 			array(
-				array( 'baz' => 1000, 'bar' ),
+				(object)array( 'baz' => 1000, 'bar' ),
 				'<table class="mw-json"><tbody><tr><th>baz</th><td class="value">1000</td></tr>' .
 				"\n" .
 				'<tr><th>0</th><td class="value">&quot;bar&quot;</td></tr></tbody></table>'
 			),
 			array(
-				array( '<script>alert("evil!")</script>'),
+				(object)array( '<script>alert("evil!")</script>'),
 				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;&lt;script&gt;alert(&quot;evil!&quot;)&lt;/script&gt;&quot;</td></tr></tbody></table>',
 			),
 		);
