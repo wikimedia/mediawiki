@@ -29,19 +29,45 @@
  * @since 1.25
  */
 class ProfilerOutputUdp extends ProfilerOutput {
+	private $port = 3811;
+	private $host = '127.0.0.1';
+	private $format = "%s - %d %f %f %f %f %s\n"
+
+	public function __construct( Profiler $collector, array $params ) {
+		parent::__construct( $collector, $params );
+		global $wgUDPProfilerPort, $wgUDPProfilerHost, $wgUDPProfilerFormatString;
+
+		// Initialize port, host, and format from config, back-compat if available
+		if ( isset( $this->params['udpport'] ) ) {
+			$this->port = $this->params['udpport'];
+		} elseif( $wgUDPProfilerPort ) {
+			$this->port = $wgUDPProfilerPort;
+		}
+
+		if ( isset( $this->params['udphost'] ) ) {
+			$this->host = $this->params['udphost'];
+		} elseif( $wgUDPProfilerHost ) {
+			$this->host = $wgUDPProfilerHost;
+		}
+
+		if ( isset( $this->params['udpformat'] ) ) {
+			$this->format = $this->params['udpformat'];
+		} elseif( $wgUDPProfilerFormatString ) {
+			$this->format = $wgUDPProfilerFormatString;
+		}
+	}
+
 	public function canUse() {
 		# Sockets are not enabled
 		return function_exists( 'socket_create' );
 	}
 
 	public function log( array $stats ) {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgUDPProfilerFormatString;
-
 		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 		$plength = 0;
 		$packet = "";
 		foreach ( $stats as $pfdata ) {
-			$pfline = sprintf( $wgUDPProfilerFormatString,
+			$pfline = sprintf( $this->format,
 				$this->collector->getProfileID(),
 				$pfdata['calls'],
 				$pfdata['cpu'] / 1000, // ms => sec
@@ -53,13 +79,13 @@ class ProfilerOutputUdp extends ProfilerOutput {
 			);
 			$length = strlen( $pfline );
 			if ( $length + $plength > 1400 ) {
-				socket_sendto( $sock, $packet, $plength, 0, $wgUDPProfilerHost, $wgUDPProfilerPort );
+				socket_sendto( $sock, $packet, $plength, 0, $this->host, $this->port );
 				$packet = "";
 				$plength = 0;
 			}
 			$packet .= $pfline;
 			$plength += $length;
 		}
-		socket_sendto( $sock, $packet, $plength, 0x100, $wgUDPProfilerHost, $wgUDPProfilerPort );
+		socket_sendto( $sock, $packet, $plength, 0x100, $this->host, $this->port );
 	}
 }

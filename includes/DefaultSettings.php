@@ -5387,14 +5387,18 @@ $wgProfilePerHost = false;
  * The host should be running a daemon which can be obtained from MediaWiki
  * Git at:
  * http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile
+ *
+ * @deprecated set $wgProfiler['udphost'] instead
  */
-$wgUDPProfilerHost = '127.0.0.1';
+$wgUDPProfilerHost = null;
 
 /**
  * Port for UDP profiler.
  * @see $wgUDPProfilerHost
+ *
+ * @deprecated set $wgProfiler['udpport'] instead
  */
-$wgUDPProfilerPort = '3811';
+$wgUDPProfilerPort = null;
 
 /**
  * Format string for the UDP profiler. The UDP profiler invokes sprintf() with
@@ -5404,8 +5408,10 @@ $wgUDPProfilerPort = '3811';
  *
  * @see $wgStatsFormatString
  * @since 1.22
+ *
+ * @deprecated set $wgProfiler['udpformat'] instead
  */
-$wgUDPProfilerFormatString = "%s - %d %f %f %f %f %s\n";
+$wgUDPProfilerFormatString = null;
 
 /**
  * Output debug message on every wfProfileIn/wfProfileOut
