@@ -4,7 +4,8 @@
 			"Jopparn",
 			"Lokal Profil",
 			"WikiPhoenix",
-			"Victorsa"
+			"Victorsa",
+			"Albinomamba"
 		]
 	},
 	"apihelp-main-param-action": "Vilken åtgärd som ska utföras.",
@@ -34,6 +35,7 @@
 	"apihelp-createaccount-param-realname": "Användarens riktiga namn (valfritt).",
 	"apihelp-createaccount-example-pass": "Skapa användaren \"testuser\" med lösenordet \"test123\"",
 	"apihelp-delete-description": "Radera en sida.",
+	"apihelp-delete-param-reason": "Orsak till radering. Om orsak inte ges kommer en orsak att automatiskt genereras och användas.",
 	"apihelp-delete-param-watch": "Lägg till sidan i din bevakningslista.",
 	"apihelp-delete-param-unwatch": "Ta bort sidan från din bevakningslista.",
 	"apihelp-delete-example-simple": "Radera huvudsidan",
