@@ -78,7 +78,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 			}
 		}
 
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'p' );
+		$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'p' );
 	}
 
 	public function getAllowedParams() {
