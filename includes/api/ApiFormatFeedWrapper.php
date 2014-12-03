@@ -46,8 +46,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 		// Disable size checking for this because we can't continue
 		// cleanly; size checking would cause more problems than it'd
 		// solve
-		$result->addValue( null, '_feed', $feed, ApiResult::NO_SIZE_CHECK );
-		$result->addValue( null, '_feeditems', $feedItems, ApiResult::NO_SIZE_CHECK );
+		$result->addValue( null, '_feed', $feed, ApiResult::NO_VALIDATE );
+		$result->addValue( null, '_feeditems', $feedItems, ApiResult::NO_VALIDATE );
 	}
 
 	/**
@@ -89,7 +89,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 			return;
 		}
 
-		$data = $this->getResultData();
+		$data = $this->getResult()->getResultData();
 		if ( isset( $data['_feed'] ) && isset( $data['_feeditems'] ) ) {
 			$data['_feed']->httpHeaders();
 		} else {
@@ -104,7 +104,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	 * $result['_feeditems'] - an array of FeedItem instances
 	 */
 	public function execute() {
-		$data = $this->getResultData();
+		$data = $this->getResult()->getResultData();
 		if ( isset( $data['_feed'] ) && isset( $data['_feeditems'] ) ) {
 			$feed = $data['_feed'];
 			$items = $data['_feeditems'];

@@ -116,7 +116,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 		// construct result
 		$results = array(
-			$module->getResultData(),
+			ApiResult::removeMetadata( $module->getResult()->getResultData() ),
 			$context->getRequest(),
 			$context->getRequest()->getSessionArray()
 		);
