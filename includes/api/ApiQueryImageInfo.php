@@ -599,7 +599,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$retval[] = $r;
 			}
 		}
-		$result->setIndexedTagName( $retval, 'metadata' );
+		ApiResult::setIndexedTagName( $retval, 'metadata' );
 
 		return $retval;
 	}

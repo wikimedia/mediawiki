@@ -100,7 +100,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			// no group with the given right(s) exists, no need for a query
 			if ( !count( $groups ) ) {
-				$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), '' );
+				$this->getResult()->defineIndexedTagName( array( 'query', $this->getModuleName() ), '' );
 
 				return;
 			}
@@ -279,17 +279,17 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 				if ( $fld_groups ) {
 					$data['groups'] = $groups;
-					$result->setIndexedTagName( $data['groups'], 'g' );
+					ApiResult::setIndexedTagName( $data['groups'], 'g' );
 				}
 
 				if ( $fld_implicitgroups ) {
 					$data['implicitgroups'] = $implicitGroups;
-					$result->setIndexedTagName( $data['implicitgroups'], 'g' );
+					ApiResult::setIndexedTagName( $data['implicitgroups'], 'g' );
 				}
 
 				if ( $fld_rights ) {
 					$data['rights'] = User::getGroupPermissions( $groups );
-					$result->setIndexedTagName( $data['rights'], 'r' );
+					ApiResult::setIndexedTagName( $data['rights'], 'r' );
 				}
 			}
 
@@ -300,7 +300,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 		}
 
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'u' );
+		$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'u' );
 	}
 
 	public function getCacheMode( $params ) {

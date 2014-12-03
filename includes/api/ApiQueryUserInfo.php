@@ -82,26 +82,26 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['groups'] ) ) {
 			$vals['groups'] = $user->getEffectiveGroups();
-			$result->setIndexedTagName( $vals['groups'], 'g' ); // even if empty
+			ApiResult::setIndexedTagName( $vals['groups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['implicitgroups'] ) ) {
 			$vals['implicitgroups'] = $user->getAutomaticGroups();
-			$result->setIndexedTagName( $vals['implicitgroups'], 'g' ); // even if empty
+			ApiResult::setIndexedTagName( $vals['implicitgroups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['rights'] ) ) {
 			// User::getRights() may return duplicate values, strip them
 			$vals['rights'] = array_values( array_unique( $user->getRights() ) );
-			$result->setIndexedTagName( $vals['rights'], 'r' ); // even if empty
+			ApiResult::setIndexedTagName( $vals['rights'], 'r' ); // even if empty
 		}
 
 		if ( isset( $this->prop['changeablegroups'] ) ) {
 			$vals['changeablegroups'] = $user->changeableGroups();
-			$result->setIndexedTagName( $vals['changeablegroups']['add'], 'g' );
-			$result->setIndexedTagName( $vals['changeablegroups']['remove'], 'g' );
-			$result->setIndexedTagName( $vals['changeablegroups']['add-self'], 'g' );
-			$result->setIndexedTagName( $vals['changeablegroups']['remove-self'], 'g' );
+			ApiResult::setIndexedTagName( $vals['changeablegroups']['add'], 'g' );
+			ApiResult::setIndexedTagName( $vals['changeablegroups']['remove'], 'g' );
+			ApiResult::setIndexedTagName( $vals['changeablegroups']['add-self'], 'g' );
+			ApiResult::setIndexedTagName( $vals['changeablegroups']['remove-self'], 'g' );
 		}
 
 		if ( isset( $this->prop['options'] ) ) {
@@ -157,10 +157,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$acceptLang = array();
 			foreach ( $langs as $lang => $val ) {
 				$r = array( 'q' => $val );
-				ApiResult::setContent( $r, $lang );
+				ApiResult::setContentValue( $r, 'code', $lang );
 				$acceptLang[] = $r;
 			}
-			$result->setIndexedTagName( $acceptLang, 'lang' );
+			ApiResult::setIndexedTagName( $acceptLang, 'lang' );
 			$vals['acceptlang'] = $acceptLang;
 		}
 

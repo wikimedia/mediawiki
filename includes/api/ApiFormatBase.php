@@ -61,14 +61,6 @@ abstract class ApiFormatBase extends ApiBase {
 	abstract public function getMimeType();
 
 	/**
-	 * Whether this formatter needs raw data such as _element tags
-	 * @return bool
-	 */
-	public function getNeedsRawData() {
-		return false;
-	}
-
-	/**
 	 * Get the internal format name
 	 * @return string
 	 */
@@ -348,6 +340,22 @@ abstract class ApiFormatBase extends ApiBase {
 	 * @param bool $value
 	 */
 	public function setBufferResult( $value ) {
+	}
+
+	/**
+	 * Formerly indicated whether the formatter needed metadata from ApiResult.
+	 *
+	 * ApiResult previously (indirectly) used this to decide whether to add
+	 * metadata or to ignore calls to metadata-setting methods, which
+	 * unfortunately made several methods that should have been static have to
+	 * be dynamic instead. Now ApiResult always stores metadata and formatters
+	 * are required to ignore it or filter it out.
+	 *
+	 * @deprecated since 1.25
+	 * @return bool
+	 */
+	public function getNeedsRawData() {
+		return false;
 	}
 
 	/**@}*/

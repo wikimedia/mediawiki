@@ -85,7 +85,7 @@ class ApiImport extends ApiBase {
 
 		$resultData = $reporter->getData();
 		$result = $this->getResult();
-		$result->setIndexedTagName( $resultData, 'page' );
+		ApiResult::setIndexedTagName( $resultData, 'page' );
 		$result->addValue( null, $this->getModuleName(), $resultData );
 	}
 
