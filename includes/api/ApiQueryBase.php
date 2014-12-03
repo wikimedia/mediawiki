@@ -461,7 +461,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	protected function addPageSubItems( $pageId, $data ) {
 		$result = $this->getResult();
-		$result->setIndexedTagName( $data, $this->getModulePrefix() );
+		ApiResult::setIndexedTagName( $data, $this->getModulePrefix() );
 
 		return $result->addValue( array( 'query', 'pages', intval( $pageId ) ),
 			$this->getModuleName(),
@@ -486,7 +486,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( !$fit ) {
 			return false;
 		}
-		$result->setIndexedTagName_internal( array( 'query', 'pages', $pageId,
+		$result->defineIndexedTagName( array( 'query', 'pages', $pageId,
 			$this->getModuleName() ), $elemname );
 
 		return true;
@@ -498,7 +498,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string|array $paramValue Parameter value
 	 */
 	protected function setContinueEnumParameter( $paramName, $paramValue ) {
-		$this->getResult()->setContinueParam( $this, $paramName, $paramValue );
+		$this->getResult()->addContinueParam( $this, $paramName, $paramValue );
 	}
 
 	/**
@@ -716,7 +716,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 */
 	protected function setContinueEnumParameter( $paramName, $paramValue ) {
 		if ( $this->mGeneratorPageSet !== null ) {
-			$this->getResult()->setGeneratorContinueParam( $this, $paramName, $paramValue );
+			$this->getResult()->addGeneratorContinueParam( $this, $paramName, $paramValue );
 		} else {
 			parent::setContinueEnumParameter( $paramName, $paramValue );
 		}

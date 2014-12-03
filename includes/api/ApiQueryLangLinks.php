@@ -124,7 +124,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			if ( isset( $prop['autonym'] ) ) {
 				$entry['autonym'] = Language::fetchLanguageName( $row->ll_lang );
 			}
-			ApiResult::setContent( $entry, $row->ll_title );
+			ApiResult::setContentValue( $entry, 'title', $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', "{$row->ll_from}|{$row->ll_lang}" );

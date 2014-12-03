@@ -155,7 +155,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'iw' );
+			$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'iw' );
 		} else {
 			$resultPageSet->populateFromTitles( $pages );
 		}
