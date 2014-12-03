@@ -237,23 +237,24 @@ class ApiOpenSearch extends ApiBase {
 				);
 				$items = array();
 				foreach ( $results as $r ) {
-					$item = array();
-					$result->setContent( $item, $r['title']->getPrefixedText(), 'Text' );
-					$result->setContent( $item, $r['url'], 'Url' );
+					$item = array(
+						'Text' => $r['title']->getPrefixedText(),
+						'Url' => $r['url'],
+					);
 					if ( is_string( $r['extract'] ) && $r['extract'] !== '' ) {
-						$result->setContent( $item, $r['extract'], 'Description' );
+						$item['Description'] = $r['extract'];
 					}
 					if ( is_array( $r['image'] ) && isset( $r['image']['source'] ) ) {
 						$item['Image'] = array_intersect_key( $r['image'], $imageKeys );
 					}
+					ApiResult::setSubelements( $item, array_keys( $item ) );
 					$items[] = $item;
 				}
-				$result->setIndexedTagName( $items, 'Item' );
+				ApiResult::setIndexedTagName( $items, 'Item' );
 				$result->addValue( null, 'version', '2.0' );
 				$result->addValue( null, 'xmlns', 'http://opensearch.org/searchsuggest2' );
-				$query = array();
-				$result->setContent( $query, strval( $search ) );
-				$result->addValue( null, 'Query', $query );
+				$result->addValue( null, 'Query', strval( $search ) );
+				$result->defineSubelements( null, 'Query' );
 				$result->addValue( null, 'Section', $items );
 				break;
 
