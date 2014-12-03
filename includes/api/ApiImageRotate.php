@@ -52,7 +52,8 @@ class ApiImageRotate extends ApiBase {
 		$params = $this->extractRequestParams();
 		$rotation = $params['rotation'];
 
-		$this->getResult()->beginContinuation( $params['continue'], array(), array() );
+		$continuationManager = new ApiContinuationManager( $this, array(), array() );
+		$this->setContinuationManager( $continuationManager );
 
 		$pageSet = $this->getPageSet();
 		$pageSet->execute();
@@ -122,7 +123,7 @@ class ApiImageRotate extends ApiBase {
 					$r['result'] = 'Success';
 				} else {
 					$r['result'] = 'Failure';
-					$r['errormessage'] = $this->getResult()->convertStatusToArray( $status );
+					$r['errormessage'] = $this->getErrorFormatter()->arrayFromStatus( $status );
 				}
 			} else {
 				$r['result'] = 'Failure';
@@ -131,9 +132,11 @@ class ApiImageRotate extends ApiBase {
 			$result[] = $r;
 		}
 		$apiResult = $this->getResult();
-		$apiResult->setIndexedTagName( $result, 'page' );
+		ApiResult::setIndexedTagName( $result, 'page' );
 		$apiResult->addValue( null, $this->getModuleName(), $result );
-		$apiResult->endContinuation();
+
+		$this->setContinuationManager( null );
+		$continuationManager->setContinuationIntoResult( $apiResult );
 	}
 
 	/**

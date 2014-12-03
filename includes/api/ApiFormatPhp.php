@@ -35,7 +35,26 @@ class ApiFormatPhp extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$text = serialize( $this->getResultData() );
+		$params = $this->extractRequestParams();
+		$data = $this->getResult()->getResultData();
+
+		switch ( $params['formatversion'] ) {
+			case 1:
+				$data = ApiResult::transformForBC( $data );
+				$data = ApiResult::transformForTypes( $data, array( 'BC' => true ) );
+				break;
+
+			case 2:
+			case 'latest':
+				$data = ApiResult::transformForTypes( $data );
+				break;
+
+			default:
+				self::dieUsage( __METHOD__ . ': Unknown value for \'formatversion\'' );
+		}
+		$data = ApiResult::stripMetadata( $data );
+
+		$text = serialize( $data );
 
 		// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
 		// Flash, but what it does isn't friendly for the API. There's nothing
@@ -52,5 +71,16 @@ class ApiFormatPhp extends ApiFormatBase {
 		}
 
 		$this->printText( $text );
+	}
+
+	public function getAllowedParams() {
+		$ret = array(
+			'formatversion' => array(
+				ApiBase::PARAM_TYPE => array( 1, 2, 'latest' ),
+				ApiBase::PARAM_DFLT => 1,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-php-param-formatversion',
+			),
+		);
+		return $ret;
 	}
 }

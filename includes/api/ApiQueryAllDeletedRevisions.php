@@ -319,7 +319,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 						'pageid' => $title->getArticleID(),
 						'revisions' => array( $rev ),
 					);
-					$result->setIndexedTagName( $a['revisions'], 'rev' );
+					ApiResult::setIndexedTagName( $a['revisions'], 'rev' );
 					ApiQueryBase::addTitleInfo( $a, $title );
 					$fit = $result->addValue( array( 'query', $this->getModuleName() ), $index, $a );
 				} else {
@@ -348,7 +348,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 				$resultPageSet->populateFromRevisionIDs( $generated );
 			}
 		} else {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'page' );
+			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
 		}
 	}
 

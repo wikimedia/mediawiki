@@ -135,7 +135,7 @@ class ApiQueryTags extends ApiQueryBase {
 			}
 		}
 
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'tag' );
+		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'tag' );
 	}
 
 	public function getCacheMode( $params ) {

@@ -257,11 +257,11 @@ class ApiQuery extends ApiBase {
 		$this->instantiateModules( $allModules, 'meta' );
 
 		// Filter modules based on continue parameter
-		list( $generatorDone, $modules ) = $this->getResult()->beginContinuation(
-			$this->mParams['continue'], $allModules, $propModules
-		);
+		$continuationManager = new ApiContinuationManager( $this, $allModules, $propModules );
+		$this->setContinuationManager( $continuationManager );
+		$modules = $continuationManager->getRunModules();
 
-		if ( !$generatorDone ) {
+		if ( !$continuationManager->isGeneratorDone() ) {
 			// Query modules may optimize data requests through the $this->getPageSet()
 			// object by adding extra fields from the page table.
 			foreach ( $modules as $module ) {
@@ -291,12 +291,19 @@ class ApiQuery extends ApiBase {
 		$this->getMain()->setCacheMode( $cacheMode );
 
 		// Write the continuation data into the result
-		$this->getResult()->endContinuation(
-			$this->mParams['continue'] === null ? 'raw' : 'standard'
-		);
+		$this->setContinuationManager( null );
+		if ( $this->mParams['continue'] === null ) {
+			$data = $continuationManager->getRawContinuation();
+			if ( $data ) {
+				$this->getResult()->addValue( null, 'query-continue', $data,
+					ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
+			}
+		} else {
+			$continuationManager->setContinuationIntoResult( $this->getResult() );
+		}
 
 		if ( $this->mParams['continue'] === null && !$this->mParams['rawcontinue'] &&
-			array_key_exists( 'query-continue', $this->getResult()->getData() )
+			$this->getResult()->getResultData( 'query-continue' ) !== null
 		) {
 			$this->logFeatureUsage( 'action=query&!rawcontinue&!continue' );
 			$this->setWarning(
@@ -443,11 +450,11 @@ class ApiQuery extends ApiBase {
 				$pageIDs = array_keys( $pages );
 				// json treats all map keys as strings - converting to match
 				$pageIDs = array_map( 'strval', $pageIDs );
-				$result->setIndexedTagName( $pageIDs, 'id' );
+				ApiResult::setIndexedTagName( $pageIDs, 'id' );
 				$fit = $fit && $result->addValue( 'query', 'pageids', $pageIDs );
 			}
 
-			$result->setIndexedTagName( $pages, 'page' );
+			ApiResult::setIndexedTagName( $pages, 'page' );
 			$fit = $fit && $result->addValue( 'query', 'pages', $pages );
 		}
 
@@ -476,7 +483,7 @@ class ApiQuery extends ApiBase {
 	 */
 	public function setGeneratorContinue( $module, $paramName, $paramValue ) {
 		wfDeprecated( __METHOD__, '1.24' );
-		$this->getResult()->setGeneratorContinueParam( $module, $paramName, $paramValue );
+		$this->getContinuationManager()->addGeneratorContinueParam( $module, $paramName, $paramValue );
 		return $this->getParameter( 'continue' ) !== null;
 	}
 
@@ -519,7 +526,7 @@ class ApiQuery extends ApiBase {
 			$result->addValue( null, 'mime', 'text/xml', ApiResult::NO_SIZE_CHECK );
 		} else {
 			$r = array();
-			ApiResult::setContent( $r, $exportxml );
+			ApiResult::setContentValue( $r, 'xml', $exportxml );
 			$result->addValue( 'query', 'export', $r, ApiResult::NO_SIZE_CHECK );
 		}
 	}

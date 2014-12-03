@@ -120,12 +120,12 @@ class ApiMove extends ApiBase {
 		if ( $params['movesubpages'] ) {
 			$r['subpages'] = $this->moveSubpages( $fromTitle, $toTitle,
 				$params['reason'], $params['noredirect'] );
-			$result->setIndexedTagName( $r['subpages'], 'subpage' );
+			ApiResult::setIndexedTagName( $r['subpages'], 'subpage' );
 
 			if ( $params['movetalk'] ) {
 				$r['subpages-talk'] = $this->moveSubpages( $fromTalk, $toTalk,
 					$params['reason'], $params['noredirect'] );
-				$result->setIndexedTagName( $r['subpages-talk'], 'subpage' );
+				ApiResult::setIndexedTagName( $r['subpages-talk'], 'subpage' );
 			}
 		}
 
