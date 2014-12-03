@@ -6236,6 +6236,8 @@ $wgExtensionMessagesFiles = array();
  * en.json, de.json, etc. Extensions with messages in multiple places may specify an array of
  * message directories.
  *
+ * Message directories in core should be added to LocalisationCache::getMessagesDirs()
+ *
  * @par Simple example:
  * @code
  *    $wgMessagesDirs['Example'] = __DIR__ . '/i18n';
@@ -6251,11 +6253,7 @@ $wgExtensionMessagesFiles = array();
  * @endcode
  * @since 1.23
  */
-$wgMessagesDirs = array(
-	'core' => "$IP/languages/i18n",
-	'api' => "$IP/includes/api/i18n",
-	'oojs-ui' => "$IP/resources/lib/oojs-ui/i18n",
-);
+$wgMessagesDirs = array();
 
 /**
  * Array of files with list(s) of extension entry points to be used in

@@ -36,7 +36,7 @@ use Cdb\Writer as CdbWriter;
  * as grammatical transformation, is done by the caller.
  */
 class LocalisationCache {
-	const VERSION = 2;
+	const VERSION = 3;
 
 	/** Configuration associative array */
 	private $conf;
@@ -793,13 +793,29 @@ class LocalisationCache {
 	}
 
 	/**
+	 * Gets the combined list of messages dirs from
+	 * core and extensions
+	 *
+	 * @since 1.25
+	 * @return array
+	 */
+	protected function getMessagesDirs() {
+		global $wgMessagesDirs, $IP;
+		return array(
+			'core' => "$IP/languages/i18n",
+			'api' => "$IP/includes/api/i18n",
+			'oojs-ui' => "$IP/resources/lib/oojs-ui/i18n",
+		) + $wgMessagesDirs;
+	}
+
+	/**
 	 * Load localisation data for a given language for both core and extensions
 	 * and save it to the persistent cache store and the process cache
 	 * @param string $code
 	 * @throws MWException
 	 */
 	public function recache( $code ) {
-		global $wgExtensionMessagesFiles, $wgMessagesDirs;
+		global $wgExtensionMessagesFiles;
 		wfProfileIn( __METHOD__ );
 
 		if ( !$code ) {
@@ -846,6 +862,7 @@ class LocalisationCache {
 		}
 
 		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
+		$messageDirs = $this->getMessagesDirs();
 
 		wfProfileIn( __METHOD__ . '-fallbacks' );
 
@@ -854,7 +871,7 @@ class LocalisationCache {
 			$codeSequence,
 			array_fill( 0, count( $codeSequence ), $initialData ) );
 		foreach ( $wgExtensionMessagesFiles as $extension => $fileName ) {
-			if ( isset( $wgMessagesDirs[$extension] ) ) {
+			if ( isset( $messageDirs[$extension] ) ) {
 				# This extension has JSON message data; skip the PHP shim
 				continue;
 			}
@@ -882,7 +899,7 @@ class LocalisationCache {
 			$csData = $initialData;
 
 			# Load core messages and the extension localisations.
-			foreach ( $wgMessagesDirs as $dirs ) {
+			foreach ( $messageDirs as $dirs ) {
 				foreach ( (array)$dirs as $dir ) {
 					$fileName = "$dir/$csCode.json";
 					$data = $this->readJSONFile( $fileName );
@@ -949,6 +966,7 @@ class LocalisationCache {
 
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
+		// $wgMessagesDirs is used in LocalisationCache::getMessagesDirs()
 		$deps['wgMessagesDirs'] = new GlobalDependency( 'wgMessagesDirs' );
 		$deps['version'] = new ConstantDependency( 'LocalisationCache::VERSION' );
 
