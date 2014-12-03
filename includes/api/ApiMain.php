@@ -139,7 +139,7 @@ class ApiMain extends ApiBase {
 	 */
 	private $mPrinter;
 
-	private $mModuleMgr, $mResult;
+	private $mModuleMgr, $mResult, $mErrorFormatter, $mContinuationManager;
 	private $mAction;
 	private $mEnableWrite;
 	private $mInternalMode, $mSquidMaxage, $mModule;
@@ -217,7 +217,11 @@ class ApiMain extends ApiBase {
 
 		Hooks::run( 'ApiMain::moduleManager', array( $this->mModuleMgr ) );
 
-		$this->mResult = new ApiResult( $this );
+		$this->mResult = new ApiResult( $this->getConfig()->get( 'APIMaxResultSize' ) );
+		$this->mErrorFormatter = new ApiErrorFormatter_BackCompat( $this->mResult );
+		$this->mResult->setErrorFormatter( $this->mErrorFormatter );
+		$this->mResult->setMainForContinuation( $this );
+		$this->mContinuationManager = null;
 		$this->mEnableWrite = $enableWrite;
 
 		$this->mSquidMaxage = -1; // flag for executeActionWithErrorHandling()
@@ -239,6 +243,43 @@ class ApiMain extends ApiBase {
 	 */
 	public function getResult() {
 		return $this->mResult;
+	}
+
+	/**
+	 * Get the ApiErrorFormatter object associated with current request
+	 * @return ApiErrorFormatter
+	 */
+	public function getErrorFormatter() {
+		return $this->mErrorFormatter;
+	}
+
+	/**
+	 * Get the continuation manager
+	 * @return ApiContinuationManager|null
+	 */
+	public function getContinuationManager() {
+		return $this->mContinuationManager;
+	}
+
+	/**
+	 * Set the continuation manager
+	 * @param ApiContinuationManager|null
+	 */
+	public function setContinuationManager( $manager ) {
+		if ( $manager !== null ) {
+			if ( !$manager instanceof ApiContinuationManager ) {
+				throw new InvalidArgumentException( __METHOD__ . ': Was passed ' .
+					is_object( $manager ) ? get_class( $manager ) : gettype( $manager )
+				);
+			}
+			if ( $this->mContinuationManager !== null ) {
+				throw new UnexpectedValueException(
+					__METHOD__ . ': tried to set manager from ' . $manager->getSource() .
+					' when a manager is already set from ' . $this->mContinuationManager->getSource()
+				);
+			}
+		}
+		$this->mContinuationManager = $manager;
 	}
 
 	/**
@@ -778,7 +819,7 @@ class ApiMain extends ApiBase {
 			// User entered incorrect parameters - generate error response
 			$errMessage = $e->getMessageArray();
 			$link = wfExpandUrl( wfScript( 'api' ) );
-			ApiResult::setContent( $errMessage, "See $link for API usage" );
+			ApiResult::setContentValue( $errMessage, 'docref', "See $link for API usage" );
 		} else {
 			// Something is seriously wrong
 			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
@@ -792,16 +833,16 @@ class ApiMain extends ApiBase {
 				'info' => '[' . MWExceptionHandler::getLogId( $e ) . '] ' . $info,
 			);
 			if ( $config->get( 'ShowExceptionDetails' ) ) {
-				ApiResult::setContent(
+				ApiResult::setContentValue(
 					$errMessage,
+					'trace',
 					MWExceptionHandler::getRedactedTraceAsString( $e )
 				);
 			}
 		}
 
 		// Remember all the warnings to re-add them later
-		$oldResult = $result->getData();
-		$warnings = isset( $oldResult['warnings'] ) ? $oldResult['warnings'] : null;
+		$warnings = $result->getResultData( array( 'warnings' ) );
 
 		$result->reset();
 		// Re-add the id
@@ -1184,9 +1225,7 @@ class ApiMain extends ApiBase {
 			$this->setWarning( 'SECURITY WARNING: $wgDebugAPI is enabled' );
 		}
 
-		$this->getResult()->cleanUpUTF8();
 		$printer = $this->mPrinter;
-
 		$printer->initPrinter( false );
 		$printer->execute();
 		$printer->closePrinter();

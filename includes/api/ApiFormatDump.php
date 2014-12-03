@@ -40,8 +40,13 @@ class ApiFormatDump extends ApiFormatBase {
 
 	public function execute() {
 		$this->markDeprecated();
+		$data = $this->getResult()->getResultData( null, array(
+			'BC' => array(),
+			'Types' => array(),
+			'Strip' => 'all',
+		) );
 		ob_start();
-		var_dump( $this->getResultData() );
+		var_dump( $data );
 		$result = ob_get_contents();
 		ob_end_clean();
 		$this->printText( $result );
