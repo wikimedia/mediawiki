@@ -1,10 +1,8 @@
 <?php
 /**
+ * Created on Feb 25, 2015
  *
- *
- * Created on Oct 22, 2006
- *
- * Copyright © 2008 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
+ * Copyright © 2015 Brad Jorsch "bjorsch@wikimedia.org"
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,30 +23,25 @@
  */
 
 /**
- * API PHP's var_export() output formatter
- * @deprecated since 1.24
+ * This interface allows for overriding the default conversion applied by
+ * ApiResult::validateValue().
+ *
+ * @note This is currently an informal interface; it need not be explicitly
+ *   implemented, as long as the method is provided. This allows for extension
+ *   code to maintain compatibility with older MediaWiki while still taking
+ *   advantage of this where it exists.
+ *
  * @ingroup API
+ * @since 1.25
  */
-class ApiFormatDbg extends ApiFormatBase {
-
-	public function getMimeType() {
-		// This looks like it should be text/plain, but IE7 is so
-		// brain-damaged it tries to parse text/plain as HTML if it
-		// contains HTML tags. Using MIME text/text works around this bug
-		return 'text/text';
-	}
-
-	public function execute() {
-		$this->markDeprecated();
-		$data = $this->getResult()->getResultData( null, array(
-			'BC' => array(),
-			'Types' => array(),
-			'Strip' => 'all',
-		) );
-		$this->printText( var_export( $data, true ) );
-	}
-
-	public function isDeprecated() {
-		return true;
-	}
+interface ApiSerializable {
+	/**
+	 * Return the value to be added to ApiResult in place of this object.
+	 *
+	 * The returned value must not be an object, and must pass
+	 * all checks done by ApiResult::validateValue().
+	 *
+	 * @return mixed
+	 */
+	public function serializeForApiResult();
 }

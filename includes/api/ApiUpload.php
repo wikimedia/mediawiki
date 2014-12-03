@@ -514,20 +514,20 @@ class ApiUpload extends ApiBase {
 					'filetype' => $verification['finalExt'],
 					'allowed' => array_values( array_unique( $this->getConfig()->get( 'FileExtensions' ) ) )
 				);
-				$this->getResult()->setIndexedTagName( $extradata['allowed'], 'ext' );
+				ApiResult::setIndexedTagName( $extradata['allowed'], 'ext' );
 
 				$msg = "Filetype not permitted: ";
 				if ( isset( $verification['blacklistedExt'] ) ) {
 					$msg .= join( ', ', $verification['blacklistedExt'] );
 					$extradata['blacklisted'] = array_values( $verification['blacklistedExt'] );
-					$this->getResult()->setIndexedTagName( $extradata['blacklisted'], 'ext' );
+					ApiResult::setIndexedTagName( $extradata['blacklisted'], 'ext' );
 				} else {
 					$msg .= $verification['finalExt'];
 				}
 				$this->dieUsage( $msg, 'filetype-banned', 0, $extradata );
 				break;
 			case UploadBase::VERIFICATION_ERROR:
-				$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );
+				ApiResult::setIndexedTagName( $verification['details'], 'detail' );
 				$this->dieUsage( 'This file did not pass file verification', 'verification-error',
 					0, array( 'details' => $verification['details'] ) );
 				break;
@@ -559,7 +559,7 @@ class ApiUpload extends ApiBase {
 		if ( $warnings ) {
 			// Add indices
 			$result = $this->getResult();
-			$result->setIndexedTagName( $warnings, 'warning' );
+			ApiResult::setIndexedTagName( $warnings, 'warning' );
 
 			if ( isset( $warnings['duplicate'] ) ) {
 				$dupes = array();
@@ -567,7 +567,7 @@ class ApiUpload extends ApiBase {
 				foreach ( $warnings['duplicate'] as $dupe ) {
 					$dupes[] = $dupe->getName();
 				}
-				$result->setIndexedTagName( $dupes, 'duplicate' );
+				ApiResult::setIndexedTagName( $dupes, 'duplicate' );
 				$warnings['duplicate'] = $dupes;
 			}
 
@@ -696,7 +696,7 @@ class ApiUpload extends ApiBase {
 					);
 				}
 
-				$this->getResult()->setIndexedTagName( $error, 'error' );
+				ApiResult::setIndexedTagName( $error, 'error' );
 				$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 			}
 			$result['result'] = 'Success';

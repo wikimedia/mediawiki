@@ -156,7 +156,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal(
+			$result->addIndexedTagName(
 				array( 'query', $this->getModuleName() ),
 				$this->getModulePrefix()
 			);

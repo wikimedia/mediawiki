@@ -138,7 +138,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		if ( $this->limit == 'max' ) {
 			$this->limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
 			if ( $this->setParsedLimit ) {
-				$this->getResult()->setParsedLimit( $this->getModuleName(), $this->limit );
+				$this->getResult()->addParsedLimit( $this->getModuleName(), $this->limit );
 			}
 		}
 
@@ -243,7 +243,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		if ( $this->fld_tags ) {
 			if ( $row->ts_tags ) {
 				$tags = explode( ',', $row->ts_tags );
-				$this->getResult()->setIndexedTagName( $tags, 'tag' );
+				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
 				$vals['tags'] = array();
@@ -347,7 +347,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 
 			if ( $text !== false ) {
-				ApiResult::setContent( $vals, $text );
+				ApiResult::setContentValue( $vals, 'content', $text );
 			}
 		}
 
@@ -389,7 +389,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				}
 				if ( $engine ) {
 					$difftext = $engine->getDiffBody();
-					ApiResult::setContent( $vals['diff'], $difftext );
+					ApiResult::setContentValue( $vals['diff'], 'body', $difftext );
 					if ( !$engine->wasCacheHit() ) {
 						$n++;
 					}
