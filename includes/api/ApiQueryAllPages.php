@@ -234,7 +234,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'p' );
+			$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'p' );
 		}
 	}
 

@@ -42,7 +42,7 @@ class ApiFormatRaw extends ApiFormatBase {
 	}
 
 	public function getMimeType() {
-		$data = $this->getResultData();
+		$data = $this->getResult()->getResultData();
 
 		if ( isset( $data['error'] ) ) {
 			return $this->errorFallback->getMimeType();
@@ -56,7 +56,7 @@ class ApiFormatRaw extends ApiFormatBase {
 	}
 
 	public function initPrinter( $unused = false ) {
-		$data = $this->getResultData();
+		$data = $this->getResult()->getResultData();
 		if ( isset( $data['error'] ) ) {
 			$this->errorFallback->initPrinter( $unused );
 		} else {
@@ -65,7 +65,7 @@ class ApiFormatRaw extends ApiFormatBase {
 	}
 
 	public function closePrinter() {
-		$data = $this->getResultData();
+		$data = $this->getResult()->getResultData();
 		if ( isset( $data['error'] ) ) {
 			$this->errorFallback->closePrinter();
 		} else {
@@ -74,7 +74,7 @@ class ApiFormatRaw extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$data = $this->getResultData();
+		$data = $this->getResult()->getResultData();
 		if ( isset( $data['error'] ) ) {
 			$this->errorFallback->execute();
 			return;

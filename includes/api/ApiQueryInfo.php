@@ -418,7 +418,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['protection'] =
 					$this->protections[$ns][$dbkey];
 			}
-			$this->getResult()->setIndexedTagName( $pageInfo['protection'], 'pr' );
+			ApiResult::setIndexedTagName( $pageInfo['protection'], 'pr' );
 		}
 
 		if ( $this->fld_watched && isset( $this->watched[$ns][$dbkey] ) ) {

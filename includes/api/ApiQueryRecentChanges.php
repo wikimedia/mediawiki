@@ -398,7 +398,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			/* Format the result */
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'rc' );
+			$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'rc' );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
@@ -549,7 +549,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( $this->fld_tags ) {
 			if ( $row->ts_tags ) {
 				$tags = explode( ',', $row->ts_tags );
-				$this->getResult()->setIndexedTagName( $tags, 'tag' );
+				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
 				$vals['tags'] = array();

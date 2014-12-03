@@ -72,7 +72,7 @@ class ApiComparePages extends ApiBase {
 			);
 		}
 
-		ApiResult::setContent( $vals, $difftext );
+		ApiResult::setContentValue( $vals, 'body', $difftext );
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $vals );
 	}
