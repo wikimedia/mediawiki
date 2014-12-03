@@ -252,11 +252,11 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 
 		if ( $resultPageSet === null ) {
-			$apiResult->setIndexedTagName_internal( array(
+			$apiResult->defineIndexedTagName( array(
 				'query', $this->getModuleName()
 			), 'p' );
 			if ( $hasInterwikiResults ) {
-				$apiResult->setIndexedTagName_internal( array(
+				$apiResult->defineIndexedTagName( array(
 					'query', 'interwiki' . $this->getModuleName()
 				), 'p' );
 			}

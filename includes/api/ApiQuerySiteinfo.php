@@ -155,7 +155,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 		if ( $allowException ) {
 			$data['externalimages'] = (array)$allowFrom;
-			$this->getResult()->setIndexedTagName( $data['externalimages'], 'prefix' );
+			ApiResult::setIndexedTagName( $data['externalimages'], 'prefix' );
 		}
 
 		if ( !$config->get( 'DisableLangConversion' ) ) {
@@ -207,7 +207,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$fallbacks[] = array( 'code' => $code );
 		}
 		$data['fallback'] = $fallbacks;
-		$this->getResult()->setIndexedTagName( $data['fallback'], 'lang' );
+		ApiResult::setIndexedTagName( $data['fallback'], 'lang' );
 
 		if ( $wgContLang->hasVariants() ) {
 			$variants = array();
@@ -218,7 +218,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				);
 			}
 			$data['variants'] = $variants;
-			$this->getResult()->setIndexedTagName( $data['variants'], 'lang' );
+			ApiResult::setIndexedTagName( $data['variants'], 'lang' );
 		}
 
 		if ( $wgContLang->isRTL() ) {
@@ -260,9 +260,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
 
 		$data['thumblimits'] = $config->get( 'ThumbLimits' );
-		$this->getResult()->setIndexedTagName( $data['thumblimits'], 'limit' );
+		ApiResult::setIndexedTagName( $data['thumblimits'], 'limit' );
 		$data['imagelimits'] = array();
-		$this->getResult()->setIndexedTagName( $data['imagelimits'], 'limit' );
+		ApiResult::setIndexedTagName( $data['imagelimits'], 'limit' );
 		foreach ( $config->get( 'ImageLimits' ) as $k => $limit ) {
 			$data['imagelimits'][$k] = array( 'width' => $limit[0], 'height' => $limit[1] );
 		}
@@ -287,7 +287,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'id' => intval( $ns ),
 				'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
 			);
-			ApiResult::setContent( $data[$ns], $title );
+			ApiResult::setContentValue( $data[$ns], 'name', $title );
 			$canonical = MWNamespace::getCanonicalName( $ns );
 
 			if ( MWNamespace::hasSubpages( $ns ) ) {
@@ -312,7 +312,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 		}
 
-		$this->getResult()->setIndexedTagName( $data, 'ns' );
+		ApiResult::setIndexedTagName( $data, 'ns' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -331,13 +331,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$item = array(
 				'id' => intval( $ns )
 			);
-			ApiResult::setContent( $item, strtr( $title, '_', ' ' ) );
+			ApiResult::setContentValue( $item, 'alias', strtr( $title, '_', ' ' ) );
 			$data[] = $item;
 		}
 
 		sort( $data );
 
-		$this->getResult()->setIndexedTagName( $data, 'ns' );
+		ApiResult::setIndexedTagName( $data, 'ns' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -349,11 +349,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach ( SpecialPageFactory::getNames() as $specialpage ) {
 			if ( isset( $aliases[$specialpage] ) ) {
 				$arr = array( 'realname' => $specialpage, 'aliases' => $aliases[$specialpage] );
-				$this->getResult()->setIndexedTagName( $arr['aliases'], 'alias' );
+				ApiResult::setIndexedTagName( $arr['aliases'], 'alias' );
 				$data[] = $arr;
 			}
 		}
-		$this->getResult()->setIndexedTagName( $data, 'specialpage' );
+		ApiResult::setIndexedTagName( $data, 'specialpage' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -367,10 +367,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( $caseSensitive ) {
 				$arr['case-sensitive'] = '';
 			}
-			$this->getResult()->setIndexedTagName( $arr['aliases'], 'alias' );
+			ApiResult::setIndexedTagName( $arr['aliases'], 'alias' );
 			$data[] = $arr;
 		}
-		$this->getResult()->setIndexedTagName( $data, 'magicword' );
+		ApiResult::setIndexedTagName( $data, 'magicword' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -439,7 +439,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $val;
 		}
 
-		$this->getResult()->setIndexedTagName( $data, 'iw' );
+		ApiResult::setIndexedTagName( $data, 'iw' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -474,7 +474,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$result = $this->getResult();
-		$result->setIndexedTagName( $data, 'db' );
+		ApiResult::setIndexedTagName( $data, 'db' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -530,16 +530,16 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$groups = array_intersect( $rights[$group], $allGroups );
 					if ( $groups ) {
 						$arr[$type] = $groups;
-						$result->setIndexedTagName( $arr[$type], 'group' );
+						ApiResult::setIndexedTagName( $arr[$type], 'group' );
 					}
 				}
 			}
 
-			$result->setIndexedTagName( $arr['rights'], 'permission' );
+			ApiResult::setIndexedTagName( $arr['rights'], 'permission' );
 			$data[] = $arr;
 		}
 
-		$result->setIndexedTagName( $data, 'group' );
+		ApiResult::setIndexedTagName( $data, 'group' );
 
 		return $result->addValue( 'query', $property, $data );
 	}
@@ -549,7 +549,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach ( array_unique( $this->getConfig()->get( 'FileExtensions' ) ) as $ext ) {
 			$data[] = array( 'ext' => $ext );
 		}
-		$this->getResult()->setIndexedTagName( $data, 'fe' );
+		ApiResult::setIndexedTagName( $data, 'fe' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -574,7 +574,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					if ( is_array( $ext['descriptionmsg'] ) ) {
 						$ret['descriptionmsg'] = $ext['descriptionmsg'][0];
 						$ret['descriptionmsgparams'] = array_slice( $ext['descriptionmsg'], 1 );
-						$this->getResult()->setIndexedTagName( $ret['descriptionmsgparams'], 'param' );
+						ApiResult::setIndexedTagName( $ret['descriptionmsgparams'], 'param' );
 					} else {
 						$ret['descriptionmsg'] = $ext['descriptionmsg'];
 					}
@@ -634,7 +634,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 		}
 
-		$this->getResult()->setIndexedTagName( $data, 'ext' );
+		ApiResult::setIndexedTagName( $data, 'ext' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -665,10 +665,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'semiprotectedlevels' => $config->get( 'SemiprotectedRestrictionLevels' ),
 		);
 
-		$this->getResult()->setIndexedTagName( $data['types'], 'type' );
-		$this->getResult()->setIndexedTagName( $data['levels'], 'level' );
-		$this->getResult()->setIndexedTagName( $data['cascadinglevels'], 'level' );
-		$this->getResult()->setIndexedTagName( $data['semiprotectedlevels'], 'level' );
+		ApiResult::setIndexedTagName( $data['types'], 'type' );
+		ApiResult::setIndexedTagName( $data['levels'], 'level' );
+		ApiResult::setIndexedTagName( $data['cascadinglevels'], 'level' );
+		ApiResult::setIndexedTagName( $data['semiprotectedlevels'], 'level' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -682,10 +682,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		foreach ( $langNames as $code => $name ) {
 			$lang = array( 'code' => $code );
-			ApiResult::setContent( $lang, $name );
+			ApiResult::setContentValue( $lang, 'name', $name );
 			$data[] = $lang;
 		}
-		$this->getResult()->setIndexedTagName( $data, 'lang' );
+		ApiResult::setIndexedTagName( $data, 'lang' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -706,7 +706,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				$displayName = $msg->text();
 			}
 			$skin = array( 'code' => $name );
-			ApiResult::setContent( $skin, $displayName );
+			ApiResult::setContentValue( $skin, 'name', $displayName );
 			if ( !isset( $allowed[$name] ) ) {
 				$skin['unusable'] = '';
 			}
@@ -715,7 +715,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 			$data[] = $skin;
 		}
-		$this->getResult()->setIndexedTagName( $data, 'skin' );
+		ApiResult::setIndexedTagName( $data, 'skin' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -724,7 +724,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		global $wgParser;
 		$wgParser->firstCallInit();
 		$tags = array_map( array( $this, 'formatParserTags' ), $wgParser->getTags() );
-		$this->getResult()->setIndexedTagName( $tags, 't' );
+		ApiResult::setIndexedTagName( $tags, 't' );
 
 		return $this->getResult()->addValue( 'query', $property, $tags );
 	}
@@ -733,14 +733,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		global $wgParser;
 		$wgParser->firstCallInit();
 		$hooks = $wgParser->getFunctionHooks();
-		$this->getResult()->setIndexedTagName( $hooks, 'h' );
+		ApiResult::setIndexedTagName( $hooks, 'h' );
 
 		return $this->getResult()->addValue( 'query', $property, $hooks );
 	}
 
 	public function appendVariables( $property ) {
 		$variables = MagicWord::getVariableIDs();
-		$this->getResult()->setIndexedTagName( $variables, 'v' );
+		ApiResult::setIndexedTagName( $variables, 'v' );
 
 		return $this->getResult()->addValue( 'query', $property, $variables );
 	}
@@ -748,7 +748,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function appendProtocols( $property ) {
 		// Make a copy of the global so we don't try to set the _element key of it - bug 45130
 		$protocols = array_values( $this->getConfig()->get( 'UrlProtocols' ) );
-		$this->getResult()->setIndexedTagName( $protocols, 'p' );
+		ApiResult::setIndexedTagName( $protocols, 'p' );
 
 		return $this->getResult()->addValue( 'query', $property, $protocols );
 	}
@@ -773,11 +773,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'subscribers' => array_map( array( 'SpecialVersion', 'arrayToString' ), $subscribers ),
 			);
 
-			$this->getResult()->setIndexedTagName( $arr['subscribers'], 's' );
+			ApiResult::setIndexedTagName( $arr['subscribers'], 's' );
 			$data[] = $arr;
 		}
 
-		$this->getResult()->setIndexedTagName( $data, 'hook' );
+		ApiResult::setIndexedTagName( $data, 'hook' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
