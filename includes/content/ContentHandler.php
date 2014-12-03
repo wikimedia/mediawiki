@@ -214,7 +214,7 @@ abstract class ContentHandler {
 		}
 
 		// Hook can force JS/CSS
-		wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage ) );
+		wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage ), '1.25' );
 
 		// Is this a .css subpage of a user page?
 		$isJsCssSubpage = NS_USER == $ns
@@ -229,7 +229,7 @@ abstract class ContentHandler {
 		$isWikitext = $isWikitext && !$isCssOrJsPage && !$isJsCssSubpage;
 
 		// Hook can override $isWikitext
-		wfRunHooks( 'TitleIsWikitextPage', array( $title, &$isWikitext ) );
+		wfRunHooks( 'TitleIsWikitextPage', array( $title, &$isWikitext ), '1.25' );
 
 		if ( !$isWikitext ) {
 			switch ( $ext ) {

@@ -1250,9 +1250,9 @@ class Title {
 
 		# @note This hook is also called in ContentHandler::getDefaultModel.
 		#   It's called here again to make sure hook functions can force this
-		#   method to return true even outside the mediawiki namespace.
+		#   method to return true even outside the MediaWiki namespace.
 
-		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ) );
+		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ), '1.25' );
 
 		return $isCssOrJsPage;
 	}
