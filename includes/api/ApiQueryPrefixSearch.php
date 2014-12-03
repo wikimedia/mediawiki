@@ -79,7 +79,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 					break;
 				}
 			}
-			$result->setIndexedTagName_internal(
+			$result->defineIndexedTagName(
 				array( 'query', $this->getModuleName() ), $this->getModulePrefix()
 			);
 		}

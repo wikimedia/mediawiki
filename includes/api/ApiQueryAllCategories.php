@@ -128,7 +128,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 				$pages[] = $titleObj;
 			} else {
 				$item = array();
-				ApiResult::setContent( $item, $titleObj->getText() );
+				ApiResult::setContentValue( $item, 'category', $titleObj->getText() );
 				if ( isset( $prop['size'] ) ) {
 					$item['size'] = intval( $row->cat_pages );
 					$item['pages'] = $row->cat_pages - $row->cat_subcats - $row->cat_files;
@@ -147,7 +147,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'c' );
+			$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'c' );
 		} else {
 			$resultPageSet->populateFromTitles( $pages );
 		}

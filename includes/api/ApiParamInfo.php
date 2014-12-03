@@ -105,7 +105,7 @@ class ApiParamInfo extends ApiBase {
 		$result->addValue( array( $this->getModuleName() ), 'helpformat', $this->helpFormat );
 
 		foreach ( $res as $key => $stuff ) {
-			$result->setIndexedTagName( $res[$key], 'module' );
+			ApiResult::setIndexedTagName( $res[$key], 'module' );
 		}
 
 		if ( $params['mainmodule'] ) {
@@ -171,7 +171,7 @@ class ApiParamInfo extends ApiBase {
 					}
 					$res[$key][] = $a;
 				}
-				$this->getResult()->setIndexedTagName( $res[$key], 'msg' );
+				ApiResult::setIndexedTagName( $res[$key], 'msg' );
 				break;
 		}
 	}
@@ -205,7 +205,7 @@ class ApiParamInfo extends ApiBase {
 		if ( isset( $ret['helpurls'][0] ) && $ret['helpurls'][0] === false ) {
 			$ret['helpurls'] = array();
 		}
-		$result->setIndexedTagName( $ret['helpurls'], 'helpurl' );
+		ApiResult::setIndexedTagName( $ret['helpurls'], 'helpurl' );
 
 		if ( $this->helpFormat !== 'none' ) {
 			$ret['examples'] = array();
@@ -224,12 +224,12 @@ class ApiParamInfo extends ApiBase {
 					if ( is_array( $item['description'] ) ) {
 						$item['description'] = $item['description'][0];
 					} else {
-						$result->setSubelements( $item, 'description' );
+						ApiResult::setSubelements( $item, 'description' );
 					}
 				}
 				$ret['examples'][] = $item;
 			}
-			$result->setIndexedTagName( $ret['examples'], 'example' );
+			ApiResult::setIndexedTagName( $ret['examples'], 'example' );
 		}
 
 		$ret['parameters'] = array();
@@ -313,7 +313,7 @@ class ApiParamInfo extends ApiBase {
 				if ( is_array( $item['type'] ) ) {
 					// To prevent sparse arrays from being serialized to JSON as objects
 					$item['type'] = array_values( $item['type'] );
-					$result->setIndexedTagName( $item['type'], 't' );
+					ApiResult::setIndexedTagName( $item['type'], 't' );
 				}
 			}
 			if ( isset( $settings[ApiBase::PARAM_MAX] ) ) {
@@ -335,7 +335,7 @@ class ApiParamInfo extends ApiBase {
 					);
 					if ( count( $i ) ) {
 						$info['values'] = $i;
-						$result->setIndexedTagName( $info['values'], 'v' );
+						ApiResult::setIndexedTagName( $info['values'], 'v' );
 					}
 					$this->formatHelpMessages( $info, 'text', array(
 						$this->context->msg( "apihelp-{$path}-paraminfo-{$tag}" )
@@ -343,15 +343,15 @@ class ApiParamInfo extends ApiBase {
 							->params( $this->context->getLanguage()->commaList( $i ) )
 							->params( $module->getModulePrefix() )
 					) );
-					$result->setSubelements( $info, 'text' );
+					ApiResult::setSubelements( $info, 'text' );
 					$item['info'][] = $info;
 				}
-				$result->setIndexedTagName( $item['info'], 'i' );
+				ApiResult::setIndexedTagName( $item['info'], 'i' );
 			}
 
 			$ret['parameters'][] = $item;
 		}
-		$result->setIndexedTagName( $ret['parameters'], 'param' );
+		ApiResult::setIndexedTagName( $ret['parameters'], 'param' );
 
 		return $ret;
 	}
