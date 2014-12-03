@@ -25,29 +25,53 @@ class JsonContentTest extends MediaWikiLangTestCase {
 
 	public static function provideDataToEncode() {
 		return array(
-			array( array() ),
-			array( array( 'foo' ) ),
-			array( array( 'foo', 'bar' ) ),
-			array( array( 'baz' => 'foo', 'bar' ) ),
-			array( array( 'baz' => 1000, 'bar' ) ),
+			array(
+				'[]',
+				// Not important but test to track changes to this behaviour.
+				'{}',
+			),
+			array(
+				'{}',
+				'{}',
+			),
+			array(
+				'["foo"]',
+				"[\n    \"foo\"\n]",
+			),
+			array(
+				'["foo", "bar"]',
+				"[\n    \"foo\",\n    \"bar\"\n]",
+			),
+			array(
+				'{"foo": "bar"}',
+				"{\n    \"foo\": \"bar\"\n}",
+			),
+			array(
+				'{"foo": 1000}',
+				"{\n    \"foo\": 1000\n}",
+			),
+			array(
+				'{"foo": 1000, "0": "bar"}',
+				"{\n    \"foo\": 1000,\n    \"0\": \"bar\"\n}",
+			),
 		);
 	}
 
 	/**
 	 * @dataProvider provideDataToEncode
 	 */
-	public function testBeautifyUsesFormatJson( $data ) {
-		$obj = new JsonContent( FormatJson::encode( $data ) );
-		$this->assertEquals( FormatJson::encode( $data, true ), $obj->beautifyJSON() );
+	public function testBeautifyJson( $input, $beautified ) {
+		$obj = new JsonContent( $input );
+		$this->assertEquals( $beautified, $obj->beautifyJSON() );
 	}
 
 	/**
 	 * @dataProvider provideDataToEncode
 	 */
-	public function testPreSaveTransform( $data ) {
-		$obj = new JsonContent( FormatJson::encode( $data ) );
+	public function testPreSaveTransform( $input, $transformed ) {
+		$obj = new JsonContent( $input );
 		$newObj = $obj->preSaveTransform( $this->getMockTitle(), $this->getMockUser(), $this->getMockParserOptions() );
-		$this->assertTrue( $newObj->equals( new JsonContent( FormatJson::encode( $data, true ) ) ) );
+		$this->assertTrue( $newObj->equals( new JsonContent( $transformed ) ) );
 	}
 
 	private function getMockTitle() {
