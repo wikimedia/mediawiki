@@ -63,8 +63,8 @@ class ApiUserrights extends ApiBase {
 		);
 
 		$result = $this->getResult();
-		$result->setIndexedTagName( $r['added'], 'group' );
-		$result->setIndexedTagName( $r['removed'], 'group' );
+		ApiResult::setIndexedTagName( $r['added'], 'group' );
+		ApiResult::setIndexedTagName( $r['removed'], 'group' );
 		$result->addValue( null, $this->getModuleName(), $r );
 	}
 
