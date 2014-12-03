@@ -27,6 +27,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 			'wgContentHandlers' => array(
 				CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler',
 				CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler',
+				CONTENT_MODEL_JSON => 'JsonContentHandler',
 				CONTENT_MODEL_CSS => 'CssContentHandler',
 				CONTENT_MODEL_TEXT => 'TextContentHandler',
 				'testing' => 'DummyContentHandlerForTesting',
@@ -52,19 +53,27 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		return array(
 			array( 'Help:Foo', CONTENT_MODEL_WIKITEXT ),
 			array( 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo.css', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo.json', CONTENT_MODEL_WIKITEXT ),
 			array( 'Help:Foo/bar.js', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo.css', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo.json', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ),
 			array( 'User:Foo/bar.css', CONTENT_MODEL_CSS ),
+			array( 'User:Foo/bar.json', CONTENT_MODEL_JSON ),
+			array( 'User:Foo/bar.json.nope', CONTENT_MODEL_WIKITEXT ),
 			array( 'User talk:Foo/bar.css', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo/bar.js.xxx', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo/bar.xxx', CONTENT_MODEL_WIKITEXT ),
 			array( 'MediaWiki:Foo.js', CONTENT_MODEL_JAVASCRIPT ),
-			array( 'MediaWiki:Foo.css', CONTENT_MODEL_CSS ),
 			array( 'MediaWiki:Foo.JS', CONTENT_MODEL_WIKITEXT ),
-			array( 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.css', CONTENT_MODEL_CSS ),
 			array( 'MediaWiki:Foo.css.xxx', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.json', CONTENT_MODEL_JSON ),
+			array( 'MediaWiki:Foo.JSON', CONTENT_MODEL_WIKITEXT ),
 		);
 	}
 
