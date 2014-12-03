@@ -2,6 +2,8 @@
 /**
  * JSON Content Model
  *
+ * This class requires the root structure to be an object (not primitives or arrays).
+ *
  * @file
  *
  * @author Ori Livneh <ori@wikimedia.org>
@@ -14,53 +16,76 @@
  */
 class JsonContent extends TextContent {
 
+	/**
+	 * @since 1.25
+	 * @var Status
+	 */
+	protected $parsedJson;
+
 	public function __construct( $text, $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $text, $modelId );
 	}
 
 	/**
 	 * Decodes the JSON into a PHP associative array.
-	 * @return array
+	 * @deprecated since 1.25
+	 * @return array|null
 	 */
 	public function getJsonData() {
 		return FormatJson::decode( $this->getNativeData(), true );
 	}
 
 	/**
-	 * @return bool Whether content is valid JSON.
+	 * Decodes the JSON string into a PHP object.
+	 *
+	 * @deprecated since 1.25
+	 * @return Status
 	 */
-	public function isValid() {
-		return $this->getJsonData() !== null;
+	public function getData() {
+		if ( $this->parsedJson === null ) {
+			$this->parsedJson = FormatJson::parse( $this->getNativeData() );
+		}
+		return $this->parsedJson;
 	}
 
 	/**
-	 * Pretty-print JSON
+	 * @return bool Whether content is valid.
+	 */
+	public function isValid() {
+		return $this->getData()->isGood() && is_object( $this->getData()->getValue() );
+	}
+
+	/**
+	 * Pretty-print JSON.
 	 *
-	 * @return bool|null|string
+	 * If called before validation, it may return JSON "null".
+	 *
+	 * @return string
 	 */
 	public function beautifyJSON() {
-		$decoded = FormatJson::decode( $this->getNativeData(), true );
-		if ( !is_array( $decoded ) ) {
-			return null;
-		}
-		return FormatJson::encode( $decoded, true );
-
+		return FormatJson::encode( $this->getData()->getValue(), true );
 	}
 
 	/**
 	 * Beautifies JSON prior to save.
+	 *
 	 * @param Title $title Title
 	 * @param User $user User
 	 * @param ParserOptions $popts
 	 * @return JsonContent
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
+		// FIXME: WikiPage::doEditContent invokes PST before validation. As such, native data
+		// may be invalid (though PST result is discarded later in that case).
+		if ( !$this->isValid() ) {
+			return $this;
+		}
+
 		return new static( $this->beautifyJSON() );
 	}
 
 	/**
 	 * Set the HTML and add the appropriate styles
-	 *
 	 *
 	 * @param Title $title
 	 * @param int $revId
@@ -71,50 +96,112 @@ class JsonContent extends TextContent {
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		if ( $generateHtml ) {
-			$output->setText( $this->objectTable( $this->getJsonData() ) );
+		// FIXME: WikiPage::doEditContent generates parser output before validation.
+		// As such, native data may be invalid (though output is discarded later in that case).
+		if ( $this->isValid() && $generateHtml ) {
+			$output->setText( $this->objectTable( $this->getData()->getValue() ) );
 			$output->addModuleStyles( 'mediawiki.content.json' );
 		} else {
 			$output->setText( '' );
 		}
 	}
+
 	/**
-	 * Constructs an HTML representation of a JSON object.
-	 * @param array $mapping
+	 * Construct an HTML representation of a JSON object.
+	 *
+	 * Called recursively via valueCell().
+	 *
+	 * @param stdClass $mapping
 	 * @return string HTML
 	 */
 	protected function objectTable( $mapping ) {
 		$rows = array();
+		$empty = true;
 
 		foreach ( $mapping as $key => $val ) {
 			$rows[] = $this->objectRow( $key, $val );
+			$empty = false;
 		}
-		return Xml::tags( 'table', array( 'class' => 'mw-json' ),
-			Xml::tags( 'tbody', array(), join( "\n", $rows ) )
+		if ( $empty ) {
+			$rows[] = Html::rawElement( 'tr', array(),
+				Html::element( 'td', array( 'colspan' => '2', 'class' => 'mw-json-empty' ),
+					wfMessage( 'content-json-empty-object' )->text()
+				)
+			);
+		}
+		return Html::rawElement( 'table', array( 'class' => 'mw-json' ),
+			Html::rawElement( 'tbody', array(), join( "\n", $rows ) )
 		);
 	}
 
 	/**
-	 * Constructs HTML representation of a single key-value pair.
+	 * Construct HTML representation of a single key-value pair.
 	 * @param string $key
 	 * @param mixed $val
 	 * @return string HTML.
 	 */
 	protected function objectRow( $key, $val ) {
 		$th = Xml::elementClean( 'th', array(), $key );
-		if ( is_array( $val ) ) {
-			$td = Xml::tags( 'td', array(), self::objectTable( $val ) );
-		} else {
-			if ( is_string( $val ) ) {
-				$val = '"' . $val . '"';
-			} else {
-				$val = FormatJson::encode( $val );
-			}
-
-			$td = Xml::elementClean( 'td', array( 'class' => 'value' ), $val );
-		}
-
-		return Xml::tags( 'tr', array(), $th . $td );
+		$td = self::valueCell( $val );
+		return Html::rawElement( 'tr', array(), $th . $td );
 	}
 
+	/**
+	 * Constructs an HTML representation of a JSON array.
+	 *
+	 * Called recursively via valueCell().
+	 *
+	 * @param array $mapping
+	 * @return string HTML
+	 */
+	protected function arrayTable( $mapping ) {
+		$rows = array();
+		$empty = true;
+
+		foreach ( $mapping as $val ) {
+			$rows[] = $this->arrayRow( $val );
+			$empty = false;
+		}
+		if ( $empty ) {
+			$rows[] = Html::rawElement( 'tr', array(),
+				Html::element( 'td', array( 'class' => 'mw-json-empty' ),
+					wfMessage( 'content-json-empty-array' )->text()
+				)
+			);
+		}
+		return Html::rawElement( 'table', array( 'class' => 'mw-json' ),
+			Html::rawElement( 'tbody', array(), join( "\n", $rows ) )
+		);
+	}
+
+	/**
+	 * Construct HTML representation of a single array value.
+	 * @param mixed $val
+	 * @return string HTML.
+	 */
+	protected function arrayRow( $val ) {
+		$td = self::valueCell( $val );
+		return Html::rawElement( 'tr', array(), $td );
+	}
+
+	/**
+	 * Construct HTML representation of a single value.
+	 * @param mixed $val
+	 * @return string HTML.
+	 */
+	protected function valueCell( $val ) {
+		if ( is_object( $val ) ) {
+			return Html::rawElement( 'td', array(), self::objectTable( $val ) );
+		}
+		if ( is_array( $val ) ) {
+			return Html::rawElement( 'td', array(), self::arrayTable( $val ) );
+		}
+		if ( is_string( $val ) ) {
+			$val = '"' . $val . '"';
+		} else {
+			$val = FormatJson::encode( $val );
+		}
+
+		return Xml::elementClean( 'td', array( 'class' => 'mw-json-primitive' ), $val );
+	}
 }
