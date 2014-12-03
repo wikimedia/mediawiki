@@ -28,6 +28,10 @@
  * @since 1.25
  */
 class SectionProfiler {
+	/** @var array Map of (mem,real,cpu) */
+	protected $start;
+	/** @var array Map of (mem,real,cpu) */
+	protected $end;
 	/** @var array List of resolved profile calls with start/end data */
 	protected $stack = array();
 	/** @var array Queue of open profile calls with start data */
@@ -37,9 +41,9 @@ class SectionProfiler {
 	protected $collated = array();
 	/** @var bool */
 	protected $collateDone = false;
+
 	/** @var bool Whether to collect the full stack trace or just aggregates */
 	protected $collateOnly = true;
-
 	/** @var array Cache of a standard broken collation entry */
 	protected $errorEntry;
 
@@ -93,14 +97,9 @@ class SectionProfiler {
 	public function getFunctionStats() {
 		$this->collateData();
 
-		$totalCpu = 0.0;
-		$totalReal = 0.0;
-		$totalMem = 0;
-		foreach ( $this->collated as $fname => $data ) {
-			$totalCpu += $data['cpu'];
-			$totalReal += $data['real'];
-			$totalMem += $data['memory'];
-		}
+		$totalCpu = max( $this->end['cpu'] - $this->start['cpu'], 0 );
+		$totalReal = max( $this->end['real'] - $this->start['real'], 0 );
+		$totalMem = max( $this->end['memory'] - $this->start['memory'], 0 );
 
 		$profile = array();
 		foreach ( $this->collated as $fname => $data ) {
@@ -128,6 +127,18 @@ class SectionProfiler {
 		);
 
 		return $profile;
+	}
+
+	/**
+	 * Clear all of the profiling data for another run
+	 */
+	public function reset() {
+		$this->start = null;
+		$this->end = null;
+		$this->stack = array();
+		$this->workStack = array();
+		$this->collated = array();
+		$this->collateDone = false;
 	}
 
 	/**
@@ -177,11 +188,25 @@ class SectionProfiler {
 	 * @param string $functionname
 	 */
 	public function profileInInternal( $functionname ) {
+		if ( $this->collateDone ) {
+			// Once the data is collated for reports, any future calls
+			// should clear the collation cache so the next report will
+			// reflect them. This matters when trace mode is used.
+			$this->collateDone = false;
+		}
+		$cpu = $this->getTime( 'cpu' );
+		$real = $this->getTime( 'wall' );
+		$memory = memory_get_usage();
+
+		if ( $this->start === null ) {
+			$this->start = array( 'cpu' => $cpu, 'real' => $real, 'memory' => $memory );
+		}
+
 		$this->workStack[] = array(
 			$functionname,
 			count( $this->workStack ),
-			$this->getTime( 'time' ),
-			$this->getTime( 'cpu' ),
+			$real,
+			$memory,
 			memory_get_usage()
 		);
 	}
@@ -217,17 +242,24 @@ class SectionProfiler {
 				$this->stack[] = array( $message, 0, 0.0, 0.0, 0, 0.0, 0.0, 0 );
 			}
 		}
+
 		$realTime = $this->getTime( 'wall' );
 		$cpuTime = $this->getTime( 'cpu' );
+		$memUsage = memory_get_usage();
 		if ( $this->collateOnly ) {
 			$elapsedcpu = $cpuTime - $octime;
 			$elapsedreal = $realTime - $ortime;
-			$memchange = memory_get_usage() - $omem;
+			$memchange = $memUsage - $omem;
 			$this->updateEntry( $functionname, $elapsedcpu, $elapsedreal, $memchange );
 		} else {
-			$this->stack[] = array_merge( $item,
-				array( $realTime, $cpuTime,	memory_get_usage() ) );
+			$this->stack[] = array_merge( $item, array( $realTime, $cpuTime, $memUsage ) );
 		}
+
+		$this->end = array(
+			'cpu'      => $cpuTime,
+			'real'     => $realTime,
+			'memory'   => $memUsage
+		);
 	}
 
 	/**
