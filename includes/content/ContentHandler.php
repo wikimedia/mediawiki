@@ -207,26 +207,26 @@ abstract class ContentHandler {
 			}
 		}
 
-		// Could this page contain custom CSS or JavaScript, based on the title?
-		$isCssOrJsPage = NS_MEDIAWIKI == $ns && preg_match( '!\.(css|js)$!u', $title->getText(), $m );
-		if ( $isCssOrJsPage ) {
+		// Could this page contain code based on the title?
+		$isCodePage = NS_MEDIAWIKI == $ns && preg_match( '!\.(css|js|json)$!u', $title->getText(), $m );
+		if ( $isCodePage ) {
 			$ext = $m[1];
 		}
 
 		// Hook can force JS/CSS
-		wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage ), '1.25' );
+		wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCodePage ), '1.25' );
 
-		// Is this a .css subpage of a user page?
-		$isJsCssSubpage = NS_USER == $ns
-			&& !$isCssOrJsPage
-			&& preg_match( "/\\/.*\\.(js|css)$/", $title->getText(), $m );
-		if ( $isJsCssSubpage ) {
+		// Is this a user subpage containing code?
+		$isCodeSubpage = NS_USER == $ns
+			&& !$isCodePage
+			&& preg_match( "/\\/.*\\.(js|css|json)$/", $title->getText(), $m );
+		if ( $isCodeSubpage ) {
 			$ext = $m[1];
 		}
 
 		// Is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
 		$isWikitext = is_null( $model ) || $model == CONTENT_MODEL_WIKITEXT;
-		$isWikitext = $isWikitext && !$isCssOrJsPage && !$isJsCssSubpage;
+		$isWikitext = $isWikitext && !$isCodePage && !$isCodeSubpage;
 
 		// Hook can override $isWikitext
 		wfRunHooks( 'TitleIsWikitextPage', array( $title, &$isWikitext ), '1.25' );
@@ -237,6 +237,8 @@ abstract class ContentHandler {
 					return CONTENT_MODEL_JAVASCRIPT;
 				case 'css':
 					return CONTENT_MODEL_CSS;
+				case 'json':
+					return CONTENT_MODEL_JSON;
 				default:
 					return is_null( $model ) ? CONTENT_MODEL_TEXT : $model;
 			}
