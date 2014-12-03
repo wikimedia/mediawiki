@@ -69,7 +69,7 @@ class ApiWatch extends ApiBase {
 				$r = $this->watchTitle( $title, $user, $params );
 				$res[] = $r;
 			}
-			$this->getResult()->setIndexedTagName( $res, 'w' );
+			ApiResult::setIndexedTagName( $res, 'w' );
 		} else {
 			// dont allow use of old title parameter with new pageset parameters.
 			$extraParams = array_keys( array_filter( $pageSet->extractRequestParams(), function ( $x ) {

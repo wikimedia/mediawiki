@@ -174,7 +174,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				}
 			}
 
-			$apiResult->setIndexedTagName( $result, 'page' );
+			ApiResult::setIndexedTagName( $result, 'page' );
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $result );
 
