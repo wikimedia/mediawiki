@@ -97,7 +97,7 @@ class ApiExpandTemplates extends ApiBase {
 			} else {
 				// the old way
 				$xml_result = array();
-				ApiResult::setContent( $xml_result, $xml );
+				ApiResult::setContentValue( $xml_result, 'xml', $xml );
 				$result->addValue( null, 'parsetree', $xml_result );
 			}
 		}
@@ -110,7 +110,7 @@ class ApiExpandTemplates extends ApiBase {
 			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, $revid, $frame );
 			if ( $params['prop'] === null ) {
 				// the old way
-				ApiResult::setContent( $retval, $wikitext );
+				ApiResult::setContentValue( $retval, 'wikitext', $wikitext );
 			} else {
 				if ( isset( $prop['categories'] ) ) {
 					$categories = $wgParser->getOutput()->getCategories();
@@ -119,10 +119,10 @@ class ApiExpandTemplates extends ApiBase {
 						foreach ( $categories as $category => $sortkey ) {
 							$entry = array();
 							$entry['sortkey'] = $sortkey;
-							ApiResult::setContent( $entry, $category );
+							ApiResult::setContentValue( $entry, 'category', $category );
 							$categories_result[] = $entry;
 						}
-						$result->setIndexedTagName( $categories_result, 'category' );
+						ApiResult::setIndexedTagName( $categories_result, 'category' );
 						$retval['categories'] = $categories_result;
 					}
 				}
@@ -133,10 +133,10 @@ class ApiExpandTemplates extends ApiBase {
 						foreach ( $properties as $name => $value ) {
 							$entry = array();
 							$entry['name'] = $name;
-							ApiResult::setContent( $entry, $value );
+							ApiResult::setContentValue( $entry, 'value', $value );
 							$properties_result[] = $entry;
 						}
-						$result->setIndexedTagName( $properties_result, 'property' );
+						ApiResult::setIndexedTagName( $properties_result, 'property' );
 						$retval['properties'] = $properties_result;
 					}
 				}
@@ -151,7 +151,7 @@ class ApiExpandTemplates extends ApiBase {
 				}
 			}
 		}
-		$result->setSubelements( $retval, array( 'wikitext', 'parsetree' ) );
+		ApiResult::setSubelements( $retval, array( 'wikitext', 'parsetree' ) );
 		$result->addValue( null, $this->getModuleName(), $retval );
 	}
 

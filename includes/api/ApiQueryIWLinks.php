@@ -129,7 +129,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 				}
 			}
 
-			ApiResult::setContent( $entry, $row->iwl_title );
+			ApiResult::setContentValue( $entry, 'title', $row->iwl_title );
 			$fit = $this->addPageSubItem( $row->iwl_from, $entry );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter(
