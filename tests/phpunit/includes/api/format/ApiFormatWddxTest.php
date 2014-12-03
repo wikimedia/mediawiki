@@ -24,8 +24,12 @@ class ApiFormatWddxTest extends ApiFormatTestBase {
 		return array(
 			// Basic types
 			array( array( null ), "{$p}<var name='0'><null/></var>{$s}" ),
-			array( array( true ), "{$p}<var name='0'><boolean value='true'/></var>{$s}" ),
-			array( array( false ), "{$p}<var name='0'><boolean value='false'/></var>{$s}" ),
+			array( array( true ), "{$p}<var name='0'><string></string></var>{$s}" ),
+			array( array( false ), "{$p}{$s}" ),
+			array( array( true, ApiResult::META_BC_BOOLS => array( 0 ) ),
+				"{$p}<var name='0'><boolean value='true'/></var>{$s}" ),
+			array( array( false, ApiResult::META_BC_BOOLS => array( 0 ) ),
+				"{$p}<var name='0'><boolean value='false'/></var>{$s}" ),
 			array( array( 42 ), "{$p}<var name='0'><number>42</number></var>{$s}" ),
 			array( array( 42.5 ), "{$p}<var name='0'><number>42.5</number></var>{$s}" ),
 			array( array( 1e42 ), "{$p}<var name='0'><number>1.0E+42</number></var>{$s}" ),
@@ -37,9 +41,22 @@ class ApiFormatWddxTest extends ApiFormatTestBase {
 			array( array( array( 1 ) ), "{$p}<var name='0'><array length='1'><number>1</number></array></var>{$s}" ),
 			array( array( array( 'x' => 1 ) ), "{$p}<var name='0'><struct><var name='x'><number>1</number></var></struct></var>{$s}" ),
 			array( array( array( 2 => 1 ) ), "{$p}<var name='0'><struct><var name='2'><number>1</number></var></struct></var>{$s}" ),
+			array( array( (object)array() ), "{$p}<var name='0'><struct></struct></var>{$s}" ),
+			array( array( array( 1, ApiResult::META_TYPE => 'assoc' ) ), "{$p}<var name='0'><struct><var name='0'><number>1</number></var></struct></var>{$s}" ),
+			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'array' ) ), "{$p}<var name='0'><array length='1'><number>1</number></array></var>{$s}" ),
+			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'kvp' ) ), "{$p}<var name='0'><struct><var name='x'><number>1</number></var></struct></var>{$s}" ),
+			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCkvp', ApiResult::META_KVP_KEY_NAME => 'key' ) ),
+				"{$p}<var name='0'><array length='1'><struct><var name='key'><string>x</string></var><var name='*'><number>1</number></var></struct></array></var>{$s}" ),
+			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCarray' ) ), "{$p}<var name='0'><struct><var name='x'><number>1</number></var></struct></var>{$s}" ),
+			array( array( array( 'a', 'b', ApiResult::META_TYPE => 'BCassoc' ) ), "{$p}<var name='0'><array length='2'><string>a</string><string>b</string></array></var>{$s}" ),
 
 			// Content
-			array( array( '*' => 'foo' ), "{$p}<var name='*'><string>foo</string></var>{$s}" ),
+			array( array( 'content' => 'foo', ApiResult::META_CONTENT => 'content' ),
+				"{$p}<var name='*'><string>foo</string></var>{$s}" ),
+
+			// BC Subelements
+			array( array( 'foo' => 'foo', ApiResult::META_BC_SUBELEMENTS => array( 'foo' ) ),
+				"{$p}<var name='foo'><struct><var name='*'><string>foo</string></var></struct></var>{$s}" ),
 		);
 	}
 

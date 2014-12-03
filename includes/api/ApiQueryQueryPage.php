@@ -119,7 +119,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal(
+			$result->defineIndexedTagName(
 				array( 'query', $this->getModuleName(), 'results' ),
 				'page'
 			);
