@@ -239,7 +239,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				break;
 			}
 		}
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
+		$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'item' );
 	}
 
 	/**
@@ -387,8 +387,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$logParam = explode( ':', $key, 3 );
 				$logParams[$logParam[2]] = $value;
 			}
-			$result->setIndexedTagName( $logParams, 'param' );
-			$result->setIndexedTagName_recursive( $logParams, 'param' );
+			ApiResult::setIndexedTagName( $logParams, 'param' );
+			ApiResult::setIndexedTagNameOnSubarrays( $logParams, 'param' );
 			$vals = array_merge( $vals, $logParams );
 		}
 
@@ -482,7 +482,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( $this->fld_tags ) {
 			if ( $row->ts_tags ) {
 				$tags = explode( ',', $row->ts_tags );
-				$this->getResult()->setIndexedTagName( $tags, 'tag' );
+				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
 				$vals['tags'] = array();
