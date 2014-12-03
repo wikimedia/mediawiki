@@ -1027,22 +1027,7 @@ abstract class DatabaseBase implements IDatabase {
 			$lastError = $this->lastError();
 			$lastErrno = $this->lastErrno();
 			if ( $this->ping() ) {
-				global $wgRequestTime;
 				wfDebug( "Reconnected\n" );
-				$sqlx = $wgDebugDumpSqlLength ? substr( $commentedSql, 0, $wgDebugDumpSqlLength )
-					: $commentedSql;
-				$sqlx = strtr( $sqlx, "\t\n", '  ' );
-				$elapsed = round( microtime( true ) - $wgRequestTime, 3 );
-				if ( $elapsed < 300 ) {
-					# Not a database error to lose a transaction after a minute or two
-					wfLogDBError(
-						"Connection lost and reconnected after {$elapsed}s, query: $sqlx",
-						$this->getLogContext( array(
-							'method' => __METHOD__,
-							'query' => $sqlx,
-						) )
-					);
-				}
 				if ( $hadTrx ) {
 					# Leave $ret as false and let an error be reported.
 					# Callers may catch the exception and continue to use the DB.
