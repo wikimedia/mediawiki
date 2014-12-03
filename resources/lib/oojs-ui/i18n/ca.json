@@ -15,6 +15,8 @@
 	"ooui-outline-control-move-down": "Baixa element",
 	"ooui-outline-control-move-up": "Puja element",
 	"ooui-toolbar-more": "Més",
+	"ooui-toolgroup-expand": "Més",
+	"ooui-toolgroup-collapse": "Menys",
 	"ooui-dialog-process-dismiss": "Descarta",
 	"ooui-dialog-process-retry": "Torneu-ho a provar"
 }
