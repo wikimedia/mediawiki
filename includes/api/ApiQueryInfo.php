@@ -421,14 +421,14 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['protection'] =
 					$this->protections[$ns][$dbkey];
 			}
-			$this->getResult()->setIndexedTagName( $pageInfo['protection'], 'pr' );
+			ApiResult::setIndexedTagName( $pageInfo['protection'], 'pr' );
 
 			$pageInfo['restrictiontypes'] = array();
 			if ( isset( $this->restrictionTypes[$ns][$dbkey] ) ) {
 				$pageInfo['restrictiontypes'] =
 					$this->restrictionTypes[$ns][$dbkey];
 			}
-			$this->getResult()->setIndexedTagName( $pageInfo['restrictiontypes'], 'rt' );
+			ApiResult::setIndexedTagName( $pageInfo['restrictiontypes'], 'rt' );
 		}
 
 		if ( $this->fld_watched && isset( $this->watched[$ns][$dbkey] ) ) {
