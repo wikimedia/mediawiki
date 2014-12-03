@@ -40,7 +40,11 @@ class ApiFormatDbg extends ApiFormatBase {
 
 	public function execute() {
 		$this->markDeprecated();
-		$this->printText( var_export( $this->getResultData(), true ) );
+		$data = $this->getResult()->getResultData();
+		$data = ApiResult::transformForBC( $data );
+		$data = ApiResult::transformForTypes( $data, array( 'BC' => true ) );
+		$data = ApiResult::removeMetadata( $data );
+		$this->printText( var_export( $data, true ) );
 	}
 
 	public function isDeprecated() {

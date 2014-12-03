@@ -165,7 +165,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 						$msgString = $msg->plain();
 					}
 					if ( !$params['nocontent'] ) {
-						ApiResult::setContent( $a, $msgString );
+						ApiResult::setContentValue( $a, 'content', $msgString );
 					}
 					if ( isset( $prop['default'] ) ) {
 						$default = wfMessage( $message )->inLanguage( $langObj )->useDatabase( false );
@@ -183,7 +183,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 				}
 			}
 		}
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'message' );
+		$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'message' );
 	}
 
 	public function getCacheMode( $params ) {

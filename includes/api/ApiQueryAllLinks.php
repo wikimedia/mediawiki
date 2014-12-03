@@ -230,7 +230,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), $this->indexTag );
+			$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), $this->indexTag );
 		} elseif ( $params['unique'] ) {
 			$resultPageSet->populateFromTitles( $titles );
 		} else {

@@ -122,6 +122,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiRevisionDelete' => __DIR__ . '/includes/api/ApiRevisionDelete.php',
 	'ApiRollback' => __DIR__ . '/includes/api/ApiRollback.php',
 	'ApiRsd' => __DIR__ . '/includes/api/ApiRsd.php',
+	'ApiSerializable' => __DIR__ . '/includes/api/ApiSerializable.php',
 	'ApiSetNotificationTimestamp' => __DIR__ . '/includes/api/ApiSetNotificationTimestamp.php',
 	'ApiStashEdit' => __DIR__ . '/includes/api/ApiStashEdit.php',
 	'ApiTokens' => __DIR__ . '/includes/api/ApiTokens.php',

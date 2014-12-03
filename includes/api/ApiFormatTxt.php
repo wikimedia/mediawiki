@@ -40,7 +40,11 @@ class ApiFormatTxt extends ApiFormatBase {
 
 	public function execute() {
 		$this->markDeprecated();
-		$this->printText( print_r( $this->getResultData(), true ) );
+		$data = $this->getResult()->getResultData();
+		$data = ApiResult::transformForBC( $data );
+		$data = ApiResult::transformForTypes( $data, array( 'BC' => true ) );
+		$data = ApiResult::removeMetadata( $data );
+		$this->printText( print_r( $data, true ) );
 	}
 
 	public function isDeprecated() {

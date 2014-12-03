@@ -177,7 +177,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $limit == 'max' ) {
 			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$this->getResult()->setParsedLimit( $this->getModuleName(), $limit );
+			$this->getResult()->addParsedLimit( $this->getModuleName(), $limit );
 		}
 
 		$this->validateLimit( 'limit', $limit, 1, $userMax, $botMax );
@@ -376,9 +376,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
 					if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 						// Pre-1.5 ar_text row (if condition from Revision::newFromArchiveRow)
-						ApiResult::setContent( $rev, Revision::getRevisionText( $row, 'ar_' ) );
+						ApiResult::setContentValue( $rev, 'text', Revision::getRevisionText( $row, 'ar_' ) );
 					} else {
-						ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
+						ApiResult::setContentValue( $rev, 'text', Revision::getRevisionText( $row ) );
 					}
 				}
 			}
@@ -386,7 +386,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $fld_tags ) {
 				if ( $row->ts_tags ) {
 					$tags = explode( ',', $row->ts_tags );
-					$this->getResult()->setIndexedTagName( $tags, 'tag' );
+					ApiResult::setIndexedTagName( $tags, 'tag' );
 					$rev['tags'] = $tags;
 				} else {
 					$rev['tags'] = array();
@@ -401,7 +401,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$pageID = $newPageID++;
 				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
 				$a['revisions'] = array( $rev );
-				$result->setIndexedTagName( $a['revisions'], 'rev' );
+				ApiResult::setIndexedTagName( $a['revisions'], 'rev' );
 				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 				ApiQueryBase::addTitleInfo( $a, $title );
 				if ( $fld_token ) {
@@ -425,7 +425,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				break;
 			}
 		}
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'page' );
+		$result->defineIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
 	}
 
 	public function isDeprecated() {
