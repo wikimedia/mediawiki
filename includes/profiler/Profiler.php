@@ -101,13 +101,6 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Return whether this a stub profiler
-	 *
-	 * @return bool
-	 */
-	abstract public function isStub();
-
-	/**
 	 * @param string $id
 	 */
 	public function setProfileID( $id ) {
@@ -178,7 +171,7 @@ abstract class Profiler {
 	public function logData() {
 		$output = isset( $this->params['output'] ) ? $this->params['output'] : null;
 
-		if ( !$output || $this->isStub() ) {
+		if ( !$output || $this instanceof ProfilerStub ) {
 			// return early when no output classes defined or we're a stub
 			return;
 		}
