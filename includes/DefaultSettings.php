@@ -5371,9 +5371,56 @@ $wgDeprecationReleaseLimit = false;
 $wgProfileLimit = 0.0;
 
 /**
+ * Don't put non-profiling info into log file
+ *
+ * @deprecated since 1.23, set the log file in
+ *   $wgDebugLogGroups['profileoutput'] instead.
+ */
+$wgProfileOnly = false;
+
+/**
  * If true, print a raw call tree instead of per-function report
  */
 $wgProfileCallTree = false;
+
+/**
+ * Should application server host be put into profiling table
+ *
+ * @deprecated set $wgProfiler['perhost'] = true instead
+ */
+$wgProfilePerHost = null;
+
+/**
+ * Host for UDP profiler.
+ *
+ * The host should be running a daemon which can be obtained from MediaWiki
+ * Git at:
+ * http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile
+ *
+ * @deprecated set $wgProfiler['udphost'] instead
+ */
+$wgUDPProfilerHost = null;
+
+/**
+ * Port for UDP profiler.
+ * @see $wgUDPProfilerHost
+ *
+ * @deprecated set $wgProfiler['udpport'] instead
+ */
+$wgUDPProfilerPort = null;
+
+/**
+ * Format string for the UDP profiler. The UDP profiler invokes sprintf() with
+ * (profile id, count, cpu, cpu_sq, real, real_sq, entry name, memory) as
+ * arguments. You can use sprintf's argument numbering/swapping capability to
+ * repeat, re-order or omit fields.
+ *
+ * @see $wgStatsFormatString
+ * @since 1.22
+ *
+ * @deprecated set $wgProfiler['udpformat'] instead
+ */
+$wgUDPProfilerFormatString = null;
 
 /**
  * Output debug message on every wfProfileIn/wfProfileOut

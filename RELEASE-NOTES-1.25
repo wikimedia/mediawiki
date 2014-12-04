@@ -19,15 +19,8 @@ production.
 * (T74951) The UserGetLanguageObject hook may be passed any IContextSource
   for its $context parameter. Formerly it was documented as receiving a
   RequestContext specifically.
-* BREAKING CHANGE: Profiling was restructured and $wgProfiler will require
-  reconfiguration. Notably, it now needs an 'output' parameter. Using normal
-  MediaWiki profiling requires setting the class to 'ProfilerStandard.'
-  Xhprof-backed profiling is also now available.
+* Profiling was restructured and $wgProfiler now requires an 'output' parameter.
   See StartProfiler.sample for details.
-* BREAKING CHANGE: $wgProfilePerHost, $wgUDPProfilerHost, $wgUDPProfilerPort
-  and $wgUDPProfilerFormatString have been removed in favor of similar parameters
-  to $wgProfiler. See StartProfiler.sample for details.
-* $wgProfileOnly was removed, deprecated in 1.23
 * $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
   might be a flash policy directive configurable.
 * ApiOpenSearch now supports XML output. The OpenSearchXml extension should no
