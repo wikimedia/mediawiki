@@ -40,25 +40,18 @@ class ProfilerOutputUdp extends ProfilerOutput {
 
 	public function __construct( Profiler $collector, array $params ) {
 		parent::__construct( $collector, $params );
-		global $wgUDPProfilerPort, $wgUDPProfilerHost, $wgUDPProfilerFormatString;
 
 		// Initialize port, host, and format from config, back-compat if available
 		if ( isset( $this->params['udpport'] ) ) {
 			$this->port = $this->params['udpport'];
-		} elseif( $wgUDPProfilerPort ) {
-			$this->port = $wgUDPProfilerPort;
 		}
 
 		if ( isset( $this->params['udphost'] ) ) {
 			$this->host = $this->params['udphost'];
-		} elseif( $wgUDPProfilerHost ) {
-			$this->host = $wgUDPProfilerHost;
 		}
 
 		if ( isset( $this->params['udpformat'] ) ) {
 			$this->format = $this->params['udpformat'];
-		} elseif( $wgUDPProfilerFormatString ) {
-			$this->format = $wgUDPProfilerFormatString;
 		}
 	}
 
