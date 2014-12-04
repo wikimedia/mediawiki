@@ -960,6 +960,7 @@ $wgAutoloadLocalClasses = array(
 	'ResourceLoaderUserCSSPrefsModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserCSSPrefsModule.php',
 	'ResourceLoaderUserGroupsModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserGroupsModule.php',
 	'ResourceLoaderUserModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserModule.php',
+	'ResourceLoaderDefaultOptionsModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderDefaultOptionsModule.php',
 	'ResourceLoaderUserOptionsModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserOptionsModule.php',
 	'ResourceLoaderUserTokensModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderUserTokensModule.php',
 	'ResourceLoaderWikiModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderWikiModule.php',

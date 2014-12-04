@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for user preference customizations.
+ * Resource loader module for default user preferences.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,30 +18,26 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Trevor Parscal
- * @author Roan Kattouw
+ * @author Ori Livneh
  */
 
 /**
- * Module for user preference customizations
+ * Module for default user preferences.
  */
-class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
+class ResourceLoaderDefaultOptionsModule extends ResourceLoaderModule {
 
 	/* Protected Members */
-
-	protected $modifiedTime = array();
-
-	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
 	protected $targets = array( 'desktop', 'mobile' );
 
 	/* Methods */
 
 	/**
-	 * @return array List of module names as strings
+	 * @param ResourceLoaderContext $context
+	 * @return string Hash
 	 */
-	public function getDependencies() {
-		return array( 'default.options' );
+	public function getModifiedHash( ResourceLoaderContext $context ) {
+		return md5( serialize( User::getDefaultOptions() ) );
 	}
 
 	/**
@@ -49,12 +45,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return array|int|mixed
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$hash = $context->getHash();
-		if ( !isset( $this->modifiedTime[$hash] ) ) {
-			$this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $context->getUserObj()->getTouched() );
-		}
-
-		return $this->modifiedTime[$hash];
+		return $this->getHashMtime( $context );
 	}
 
 	/**
@@ -62,23 +53,13 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.user.options.set',
-			array( $context->getUserObj()->getOptions( User::GETOPTIONS_EXCLUDE_DEFAULTS ) ),
-			ResourceLoader::inDebugMode()
-		);
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function supportsURLLoading() {
-		return false;
+		return Xml::encodeJsCall( 'mw.user.options.set', array( User::getDefaultOptions() ) );
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getGroup() {
-		return 'private';
+		return 'site';
 	}
 }
