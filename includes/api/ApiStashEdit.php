@@ -131,14 +131,14 @@ class ApiStashEdit extends ApiBase {
 				$ok = $wgMemc->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
 					$status = 'stashed';
-					wfDebugLog( 'PreparedEdit', "Cached parser output for key '$key'." );
+					wfDebugLog( 'StashEdit', "Cached parser output for key '$key'." );
 				} else {
 					$status = 'error';
-					wfDebugLog( 'PreparedEdit', "Failed to cache parser output for key '$key'." );
+					wfDebugLog( 'StashEdit', "Failed to cache parser output for key '$key'." );
 				}
 			} else {
 				$status = 'uncacheable';
-				wfDebugLog( 'PreparedEdit', "Uncacheable parser output for key '$key'." );
+				wfDebugLog( 'StashEdit', "Uncacheable parser output for key '$key'." );
 			}
 		}
 
@@ -196,7 +196,7 @@ class ApiStashEdit extends ApiBase {
 				$editInfo = $wgMemc->get( $key );
 				$wgMemc->unlock( $key );
 				$sec = microtime( true ) - $start;
-				wfDebugLog( 'PreparedEdit', "Waited $sec seconds on '$key'." );
+				wfDebugLog( 'StashEdit', "Waited $sec seconds on '$key'." );
 			}
 		}
 
@@ -206,7 +206,7 @@ class ApiStashEdit extends ApiBase {
 
 		$time = wfTimestamp( TS_UNIX, $editInfo->output->getTimestamp() );
 		if ( ( time() - $time ) <= 3 ) {
-			wfDebugLog( 'PreparedEdit', "Timestamp-based cache hit for key '$key'." );
+			wfDebugLog( 'StashEdit', "Timestamp-based cache hit for key '$key'." );
 			return $editInfo; // assume nothing changed
 		}
 
@@ -224,7 +224,7 @@ class ApiStashEdit extends ApiBase {
 		$change = $dbr->selectField( 'page', '1', $dbr->makeList( $cWhr, LIST_OR ), __METHOD__ );
 		$n = $dbr->selectField( 'page', 'COUNT(*)', $dbr->makeList( $dWhr, LIST_OR ), __METHOD__ );
 		if ( $change || $n != count( $dWhr ) ) {
-			wfDebugLog( 'PreparedEdit', "Stale cache for key '$key'; template changed." );
+			wfDebugLog( 'StashEdit', "Stale cache for key '$key'; template changed." );
 			return false;
 		}
 
@@ -239,11 +239,11 @@ class ApiStashEdit extends ApiBase {
 		$change = $dbr->selectField( 'image', '1', $dbr->makeList( $cWhr, LIST_OR ), __METHOD__ );
 		$n = $dbr->selectField( 'image', 'COUNT(*)', $dbr->makeList( $dWhr, LIST_OR ), __METHOD__ );
 		if ( $change || $n != count( $dWhr ) ) {
-			wfDebugLog( 'PreparedEdit', "Stale cache for key '$key'; file changed." );
+			wfDebugLog( 'StashEdit', "Stale cache for key '$key'; file changed." );
 			return false;
 		}
 
-		wfDebugLog( 'PreparedEdit', "Cache hit for key '$key'." );
+		wfDebugLog( 'StashEdit', "Cache hit for key '$key'." );
 
 		return $editInfo;
 	}
