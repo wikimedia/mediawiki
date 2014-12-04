@@ -2786,6 +2786,11 @@ $page: WikiPage object to be removed
 $user: user that watched
 $page: WikiPage object that was watched
 
+'UpdateUserMailerEmailBodyReplacements': Before replacements are made
+in the email.
+$replacements: a hashref where the keys will be replaced with the
+values.
+
 'UpdateUserMailerFormattedPageStatus': Before notification email gets sent.
 $formattedPageStatus: list of valid page states
 
