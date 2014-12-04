@@ -498,12 +498,28 @@ class ApiMain extends ApiBase {
 
 		$request = $this->getRequest();
 		$response = $request->response();
+
 		// Origin: header is a space-separated list of origins, check all of them
 		$originHeader = $request->getHeader( 'Origin' );
 		if ( $originHeader === false ) {
-			$origins = array();
+			// Origin header is required for any CORS headers on the response
+			return true;
 		} else {
 			$origins = explode( ' ', $originHeader );
+		}
+
+		$requestedMethod = $request->getHeader( 'Access-Control-Request-Method' );
+		if ( $request->getMethod() === 'OPTIONS' && $requestedMethod !== false ) {
+			// This is a CORS preflight request
+			if ( $requestedMethod === 'POST' || $requestedMethod === 'GET' ) {
+				// We only allow the actual request to be GET or POST
+				$response->header( 'Access-Control-Allow-Methods: POST, GET' );
+
+				// We allow the actual request to send the following headers
+				$response->header( 'Access-Control-Allow-Headers: Api-User-Agent' );
+			} else {
+				return true;
+			}
 		}
 
 		if ( !in_array( $originParam, $origins ) ) {
@@ -527,7 +543,6 @@ class ApiMain extends ApiBase {
 		if ( $matchOrigin ) {
 			$response->header( "Access-Control-Allow-Origin: $originParam" );
 			$response->header( 'Access-Control-Allow-Credentials: true' );
-			$response->header( 'Access-Control-Allow-Headers: Api-User-Agent' );
 			$this->getOutput()->addVaryHeader( 'Origin' );
 		}
 
