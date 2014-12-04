@@ -44,9 +44,9 @@ class RemoveInvalidEmails extends Maintenance {
 				if ( !Sanitizer::validateEmail( trim( $row->user_email ) ) ) {
 					$this->output( "Found bad email: {$row->user_email} for user #{$row->user_id}\n" );
 					$badIds[] = $row->user_id;
-					if ( $row->user_id > $lastId ) {
-						$lastId = $row->user_id;
-					}
+				}
+				if ( $row->user_id > $lastId ) {
+					$lastId = $row->user_id;
 				}
 			}
 
