@@ -471,14 +471,16 @@ class EmailNotification {
 		# $PAGEEDITDATE is the time and date of the page change
 		# expressed in terms of individual local time of the notification
 		# recipient, i.e. watching user
-		$body = str_replace(
-			array( '$WATCHINGUSERNAME',
-				'$PAGEEDITDATE',
-				'$PAGEEDITTIME' ),
-			array( $wgEnotifUseRealName && $watchingUser->getRealName() !== ''
+		$replacements = array(
+			'$WATCHINGUSERNAME' => $wgEnotifUseRealName && $watchingUser->getRealName() !== ''
 				? $watchingUser->getRealName() : $watchingUser->getName(),
-				$wgContLang->userDate( $this->timestamp, $watchingUser ),
-				$wgContLang->userTime( $this->timestamp, $watchingUser ) ),
+			'$PAGEEDITDATE' => $wgContLang->userDate( $this->timestamp, $watchingUser ),
+			'$PAGEEDITTIME' => $wgContLang->userTime( $this->timestamp, $watchingUser ) );
+		wfRunHooks( 'UpdateUserMailerEmailBodyReplacements', array( &$replacements ) );
+
+		$body = str_replace(
+			array_keys( $replacements ),
+			array_values( $replacements ),
 			$this->body );
 
 		return UserMailer::send( $to, $this->from, $this->subject, $body, $this->replyto );
@@ -497,13 +499,15 @@ class EmailNotification {
 			return null;
 		}
 
+		$replacements = array(
+			'$WATCHINGUSERNAME' => wfMessage( 'enotif_impersonal_salutation' )->inContentLanguage()->text(),
+			'$PAGEEDITDATE' => $wgContLang->date( $this->timestamp, false, false ),
+			'$PAGEEDITTIME' => $wgContLang->time( $this->timestamp, false, false ) );
+		wfRunHooks( 'UpdateUserMailerEmailBodyReplacements', array( &$replacements ) );
+
 		$body = str_replace(
-			array( '$WATCHINGUSERNAME',
-				'$PAGEEDITDATE',
-				'$PAGEEDITTIME' ),
-			array( wfMessage( 'enotif_impersonal_salutation' )->inContentLanguage()->text(),
-				$wgContLang->date( $this->timestamp, false, false ),
-				$wgContLang->time( $this->timestamp, false, false ) ),
+			array_keys( $replacements ),
+			array_values( $replacements ),
 			$this->body );
 
 		return UserMailer::send( $addresses, $this->from, $this->subject, $body, $this->replyto );
