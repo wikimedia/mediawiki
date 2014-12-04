@@ -89,6 +89,15 @@ class ProfilerXhprof extends Profiler {
 			),
 			$params
 		);
+
+		// The xhprof frame method closes the last entry when a profiled method exits.
+		// When scopedProfileIn() exits, we *dont* want the custom frame to close, so
+		// don't profile that method. Also blacklist the *Out() method for consistency.
+		$exclude = array( __CLASS__ . '::scopedProfileIn', 'Profiler::scopedProfileOut' );
+		$params['exclude'] = isset( $params['exclude'] )
+			? array_merge( $params['exclude'], $exclude )
+			: $exclude;
+
 		parent::__construct( $params );
 		$this->logType = $params['log'];
 		$this->visible = $params['visible'];
