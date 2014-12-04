@@ -266,7 +266,7 @@ class DeletedContribsPager extends IndexPager {
 	/**
 	 * Get the Database object in use
 	 *
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	public function getDatabase() {
 		return $this->mDb;
