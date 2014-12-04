@@ -2423,12 +2423,16 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Get the name of an index in a given table
+	 * Get the name of an index in a given table.
 	 *
+	 * @protected Don't use outside of DatabaseBase and childs
 	 * @param string $index
 	 * @return string
 	 */
-	protected function indexName( $index ) {
+	public function indexName( $index ) {
+		// @FIXME: Make this protected once we move away from PHP 5.3
+		// Needs to be public because of usage in closure (in DatabaseBase::replaceVars)
+
 		// Backwards-compatibility hack
 		$renamed = array(
 			'ar_usertext_timestamp' => 'usertext_timestamp',
