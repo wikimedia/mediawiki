@@ -1559,11 +1559,6 @@ abstract class Skin extends ContextSource {
 		}
 
 		wfRunHooks( 'SiteNoticeAfter', array( &$siteNotice, $this ) );
-
-		// Prevent Google from indexing announcements, cos this dilutes
-		// content results.
-		$siteNotice = "<!--googleoff: all-->{$siteNotice}<!--googleon: all-->";
-
 		wfProfileOut( __METHOD__ );
 		return $siteNotice;
 	}
