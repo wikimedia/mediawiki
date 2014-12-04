@@ -273,8 +273,13 @@ class Xhprof {
 							'mean' => $value->m1,
 							'max' => $value->max,
 							'variance' => $value->m2,
-							'percent' => 100 * $total / $main[$name],
 						);
+						if ( isset( $main[$name] ) && $main[$name] ) {
+							$this->inclusive[$func][$name]['percent'] =
+								100 * $total / $main[$name];
+						} else {
+							$this->inclusive[$func][$name]['percent'] = 0;
+						}
 					}
 				}
 			}
