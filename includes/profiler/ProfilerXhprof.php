@@ -95,10 +95,6 @@ class ProfilerXhprof extends Profiler {
 		$this->xhprof = new Xhprof( $params );
 	}
 
-	public function isStub() {
-		return false;
-	}
-
 	/**
 	 * No-op for xhprof profiling.
 	 *

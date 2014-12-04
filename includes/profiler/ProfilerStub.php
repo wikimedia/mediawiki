@@ -27,10 +27,6 @@
  * @ingroup Profiler
  */
 class ProfilerStub extends Profiler {
-	public function isStub() {
-		return true;
-	}
-
 	public function profileIn( $fn ) {
 	}
 

@@ -58,15 +58,6 @@ class ProfilerStandard extends Profiler {
 	}
 
 	/**
-	 * Return whether this a stub profiler
-	 *
-	 * @return bool
-	 */
-	public function isStub() {
-		return false;
-	}
-
-	/**
 	 * Add the inital item in the stack.
 	 */
 	protected function addInitialStack() {

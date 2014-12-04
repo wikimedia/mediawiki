@@ -963,7 +963,7 @@ abstract class DatabaseBase implements IDatabase {
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 
 		$profiler = Profiler::instance();
-		if ( !$profiler->isStub() ) {
+		if ( !$profiler instanceof ProfilerStub ) {
 			# generalizeSQL will probably cut down the query to reasonable
 			# logging size most of the time. The substr is really just a sanity check.
 			if ( $isMaster ) {
