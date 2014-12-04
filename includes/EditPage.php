@@ -3515,12 +3515,15 @@ HTML
 			# For CSS/JS pages, we should have called the ShowRawCssJs hook here.
 			# But it's now deprecated, so never mind
 
-			$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
-			$parserOutput = $content->getParserOutput(
-				$this->getArticle()->getTitle(),
-				null,
-				$parserOptions
-			);
+			$pstContent = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+			$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
+
+			# Try to stash the edit for the final submission step
+			if ( $this->section === null ) {
+				ApiStashEdit::stashEditFromPreview( $this->getArticle(), $content,
+					$pstContent, $parserOutput, $parserOptions, $parserOptions, wfTimestampNow()
+				);
+			}
 
 			$previewHTML = $parserOutput->getText();
 			$this->mParserOutput = $parserOutput;
