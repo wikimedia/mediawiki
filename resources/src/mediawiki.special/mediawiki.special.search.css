@@ -40,34 +40,34 @@ div.searchresult {
 	color: green;
 	font-size: 97%;
 }
-.mw-search-formheader {
+.mw-search-profile-tabs {
 	background-color: #f3f3f3;
 	margin-top: 1em;
 	border: 1px solid silver;
 }
-.mw-search-formheader div.search-types {
+.mw-search-profile-tabs div.search-types {
 	float: left;
 	padding-left: 0.25em;
 }
-.mw-search-formheader div.search-types ul {
+.mw-search-profile-tabs div.search-types ul {
 	margin: 0 !important;
 	padding: 0 !important;
 	list-style: none !important;
 }
-.mw-search-formheader div.search-types ul li {
+.mw-search-profile-tabs div.search-types ul li {
 	float: left;
 	margin: 0;
 	padding: 0;
 }
-.mw-search-formheader div.search-types ul li a {
+.mw-search-profile-tabs div.search-types ul li a {
 	display: block;
 	padding: 0.5em;
 }
-.mw-search-formheader div.search-types ul li.current a {
+.mw-search-profile-tabs div.search-types ul li.current a {
 	color: #333333;
 	cursor: default;
 }
-.mw-search-formheader div.search-types ul li.current a:hover {
+.mw-search-profile-tabs div.search-types ul li.current a:hover {
 	text-decoration: none;
 }
 #mw-search-top-table div.results-info {
