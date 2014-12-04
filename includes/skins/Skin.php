@@ -660,7 +660,7 @@ abstract class Skin extends ContextSource {
 			$n = $this->getTitle()->isDeleted();
 
 			if ( $n ) {
-				if ( $this->getTitle()->userCan( 'undelete', $this->getUser() ) ) {
+				if ( $this->getTitle()->quickUserCan( 'undelete', $this->getUser() ) ) {
 					$msg = 'thisisdeleted';
 				} else {
 					$msg = 'viewdeleted';
