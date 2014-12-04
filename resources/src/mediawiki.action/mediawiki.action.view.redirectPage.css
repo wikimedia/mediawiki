@@ -30,9 +30,16 @@
 
 /* @noflip */
 .mw-content-ltr .redirectText li:first-child {
+    /* SVG support using a transparent gradient to guarantee cross-browser
+    * compatibility (browsers able to understand gradient syntax support also SVG).
+    * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 	padding-left: 47px;
 	/* @embed */
 	background: url(images/redirect-ltr.png) bottom left no-repeat;
+	/* @embed */
+    background: -webkit-linear-gradient(transparent, transparent), url(images/redirect-ltr.svg);
+    /* @embed */
+    background: linear-gradient(transparent, transparent), url(images/redirect-ltr.svg);
 }
 
 /* @noflip */
@@ -47,7 +54,15 @@
 
 /* @noflip */
 .mw-content-rtl .redirectText li:first-child {
+    /* SVG support using a transparent gradient to guarantee cross-browser
+    * compatibility (browsers able to understand gradient syntax support also SVG).
+    * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 	padding-right: 47px;
 	/* @embed */
 	background: url(images/redirect-rtl.png) bottom right no-repeat;
+	/* @embed */
+    background: -webkit-linear-gradient(transparent, transparent), url(images/redirect-rtl.svg);
+    /* @embed */
+    background: linear-gradient(transparent, transparent), url(images/redirect-rtl.svg);
+
 }

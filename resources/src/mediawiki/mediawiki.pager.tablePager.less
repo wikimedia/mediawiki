@@ -36,49 +36,84 @@
 }
 
 .TablePager_nav td.TablePager_nav-first .TablePager_nav-disabled {
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+    	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 	padding-top: 25px;
 	/* @embed */
 	background: url(images/pager-arrow-disabled-fastforward-rtl.png) center top no-repeat;
+   	/* @embed */
+   	background: -webkit-linear-gradient(transparent, transparent), url(images/pager-arrow-disabled-fastforward-rtl.svg);
+   	/* @embed */
+  	background: linear-gradient(transparent, transparent), url(images/pager-arrow-disabled-fastforward-rtl.svg);
 }
 
 .TablePager_nav td.TablePager_nav-prev .TablePager_nav-disabled {
 	padding-top: 25px;
 	/* @embed */
 	background: url(images/pager-arrow-disabled-forward-rtl.png) center top no-repeat;
+   	/* @embed */
+   	background: -webkit-linear-gradient(transparent, transparent), url(images/pager-arrow-disabled-forward-rtl.svg);
+   	/* @embed */
+  	background: linear-gradient(transparent, transparent), url(images/pager-arrow-disabled-forward-rtl.svg);
 }
 
 .TablePager_nav td.TablePager_nav-next .TablePager_nav-disabled {
 	padding-top: 25px;
 	/* @embed */
 	background: url(images/pager-arrow-disabled-forward-ltr.png) center top no-repeat;
+	/* @embed */
+   	background: -webkit-linear-gradient(transparent, transparent), url(images/pager-arrow-disabled-forward-ltr.svg);
+   	/* @embed */
+  	background: linear-gradient(transparent, transparent), url(images/pager-arrow-disabled-forward-ltr.svg);
 }
 
 .TablePager_nav td.TablePager_nav-last .TablePager_nav-disabled {
 	padding-top: 25px;
 	/* @embed */
 	background: url(images/pager-arrow-disabled-fastforward-ltr.png) center top no-repeat;
+	/* @embed */
+   	background: -webkit-linear-gradient(transparent, transparent), url(images/pager-arrow-disabled-fastforward-ltr.svg);
+   	/* @embed */
+  	background: linear-gradient(transparent, transparent), url(images/pager-arrow-disabled-fastforward-ltr.svg);
 }
 
 .TablePager_nav td.TablePager_nav-first .TablePager_nav-enabled {
 	padding-top: 25px;
 	/* @embed */
 	background: url(images/pager-arrow-fastforward-rtl.png) center top no-repeat;
+	/* @embed */
+   	background: -webkit-linear-gradient(transparent, transparent), url(images/pager-arrow-fastforward-rtl.svg);
+   	/* @embed */
+  	background: linear-gradient(transparent, transparent), url(images/pager-arrow-fastforward-rtl.svg);
 }
 
 .TablePager_nav td.TablePager_nav-prev .TablePager_nav-enabled {
 	padding-top: 25px;
 	/* @embed */
 	background: url(images/pager-arrow-forward-rtl.png) center top no-repeat;
+	/* @embed */
+   	background: -webkit-linear-gradient(transparent, transparent), url(images/pager-arrow-forward-rtl.svg);
+   	/* @embed */
+  	background: linear-gradient(transparent, transparent), url(images/pager-arrow-forward-rtl.svg);
 }
 
 .TablePager_nav td.TablePager_nav-next .TablePager_nav-enabled {
 	padding-top: 25px;
 	/* @embed */
 	background: url(images/pager-arrow-forward-ltr.png) center top no-repeat;
+	/* @embed */
+   	background: -webkit-linear-gradient(transparent, transparent), url(images/pager-arrow-forward-ltr.svg);
+   	/* @embed */
+  	background: linear-gradient(transparent, transparent), url(images/pager-arrow-forward-ltr.svg);
 }
 
 .TablePager_nav td.TablePager_nav-last .TablePager_nav-enabled {
 	padding-top: 25px;
 	/* @embed */
 	background: url(images/pager-arrow-fastforward-ltr.png) center top no-repeat;
+	/* @embed */
+   	background: -webkit-linear-gradient(transparent, transparent), url(images/pager-arrow-fastforward-ltr.svg);
+   	/* @embed */
+  	background: linear-gradient(transparent, transparent), url(images/pager-arrow-fastforward-ltr.svg);
 }
