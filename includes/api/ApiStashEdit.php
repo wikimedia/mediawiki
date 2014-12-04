@@ -117,17 +117,10 @@ class ApiStashEdit extends ApiBase {
 		}
 
 		if ( $editInfo && $editInfo->output ) {
-			$parserOutput = $editInfo->output;
-			// If an item is renewed, mind the cache TTL determined by config and parser functions
-			$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getTimestamp() );
-			$ttl = min( $parserOutput->getCacheExpiry() - $since, 5 * 60 );
-			if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) ) {
-				// Only store what is actually needed
-				$stashInfo = (object)array(
-					'pstContent' => $editInfo->pstContent,
-					'output' => $editInfo->output,
-					'timestamp' => $editInfo->timestamp
-				);
+			list( $stashInfo, $ttl ) = self::buildStashValue(
+				$editInfo->pstContent, $editInfo->output, $editInfo->timestamp
+			);
+			if ( $stashInfo ) {
 				$ok = $wgMemc->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
 					$status = 'stashed';
@@ -146,24 +139,69 @@ class ApiStashEdit extends ApiBase {
 	}
 
 	/**
-	 * Get the temporary prepared edit stash key for a user
+	 * Attempt to cache PST content and corresponding parser output in passing
 	 *
-	 * @param Title $title
-	 * @param Content $content
-	 * @param User $user User to get parser options from
-	 * @return string
+	 * This method can be called when the output was already generated for other
+	 * reasons. Parsing should not be done just to call this method, however.
+	 * $pstOpts must be that of the user doing the edit preview. If $pOpts does
+	 * not match the options of WikiPage::makeParserOptions( 'canonical' ), this
+	 * will do nothing. Provided the values are cacheable, they will be stored
+	 * in memcached so that final edit submission might make use of them.
+	 *
+	 * @param Article|WikiPage $page Page title
+	 * @param Content $content Proposed page content
+	 * @param Content $pstContent The result of preSaveTransform() on $content
+	 * @param ParserOutput $pOut The result of getParserOutput() on $pstContent
+	 * @param ParserOptions $pstOpts Options for $pstContent (MUST be for prospective author)
+	 * @param ParserOptions $pOpts Options for $pOut
+	 * @param string $timestamp TS_MW timestamp of parser output generation
+	 * @return boolean Success
 	 */
-	protected static function getStashKey(
-		Title $title, Content $content, User $user
+	public static function stashEditFromPreview(
+		Page $page, Content $content, Content $pstContent, ParserOutput $pOut,
+		ParserOptions $pstOpts, ParserOptions $pOpts, $timestamp
 	) {
-		return wfMemcKey( 'prepared-edit',
-			md5( $title->getPrefixedDBkey() ), // handle rename races
-			$content->getModel(),
-			$content->getDefaultFormat(),
-			sha1( $content->serialize( $content->getDefaultFormat() ) ),
-			$user->getId() ?: md5( $user->getName() ), // account for user parser options
-			$user->getId() ? $user->getTouched() : '-' // handle preference change races
-		);
+		global $wgMemc;
+
+		// getIsPreview() controls parser function behavior that references things
+		// like user/revision that don't exists yet. The user/text should already
+		// be set correctly by callers, just double check the preview flag.
+		if ( !$pOpts->getIsPreview() ) {
+			return false; // sanity
+		} elseif ( $pOpts->getIsSectionPreview() ) {
+			return false; // short-circuit (need the full content)
+		}
+
+		// PST parser options are for the user (handles signatures, etc...)
+		$user = $pstOpts->getUser();
+		// Get a key based on the source text, format, and user preferences
+		$key = self::getStashKey( $page->getTitle(), $content, $user );
+
+		// Parser output options must match cannonical options.
+		// Treat some options as matching that are different but don't matter.
+		$canonicalPOpts = $page->makeParserOptions( 'canonical' );
+		$canonicalPOpts->setIsPreview( true ); // force match
+		$canonicalPOpts->setTimestamp( $pOpts->getTimestamp() ); // force match
+		if ( !$pOpts->matches( $canonicalPOpts ) ) {
+			wfDebugLog( 'StashEdit', "Uncacheable preview output for key '$key' (options)." );
+			return false;
+		}
+
+		// Build a value to cache with a proper TTL
+		list( $stashInfo, $ttl ) = self::buildStashValue( $pstContent, $pOut, $timestamp );
+		if ( !$stashInfo ) {
+			wfDebugLog( 'StashEdit', "Uncacheable parser output for key '$key' (rev/TTL)." );
+			return false;
+		}
+
+		$ok = $wgMemc->set( $key, $stashInfo, $ttl );
+		if ( !$ok ) {
+			wfDebugLog( 'StashEdit', "Failed to cache preview parser output for key '$key'." );
+		} else {
+			wfDebugLog( 'StashEdit', "Cached preview output for key '$key'." );
+		}
+
+		return $ok;
 	}
 
 	/**
@@ -246,6 +284,59 @@ class ApiStashEdit extends ApiBase {
 		wfDebugLog( 'StashEdit', "Cache hit for key '$key'." );
 
 		return $editInfo;
+	}
+
+	/**
+	 * Get the temporary prepared edit stash key for a user
+	 *
+	 * This key can be used for caching prepared edits provided:
+	 *   - a) The $user was used for PST options
+	 *   - b) The parser output was made from the PST using cannonical matching options
+	 *
+	 * @param Title $title
+	 * @param Content $content
+	 * @param User $user User to get parser options from
+	 * @return string
+	 */
+	protected static function getStashKey( Title $title, Content $content, User $user ) {
+		$hash = sha1( implode( ':', array(
+			$content->getModel(),
+			$content->getDefaultFormat(),
+			sha1( $content->serialize( $content->getDefaultFormat() ) ),
+			$user->getId() ?: md5( $user->getName() ), // account for user parser options
+			$user->getId() ? $user->getTouched() : '-' // handle preference change races
+		) ) );
+
+		return wfMemcKey( 'prepared-edit', md5( $title->getPrefixedDBkey() ), $hash );
+	}
+
+	/**
+	 * Build a value to store in memcached based on the PST content and parser output
+	 *
+	 * This makes a simple version of WikiPage::prepareContentForEdit() as stash info
+	 *
+	 * @param Content $pstContent
+	 * @param ParserOutput $parserOutput
+	 * @param string $timestamp TS_MW
+	 * @return array (stash info array, TTL in seconds) or (null, 0)
+	 */
+	protected static function buildStashValue(
+		Content $pstContent, ParserOutput $parserOutput, $timestamp
+	) {
+		// If an item is renewed, mind the cache TTL determined by config and parser functions
+		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getTimestamp() );
+		$ttl = min( $parserOutput->getCacheExpiry() - $since, 5 * 60 );
+		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) ) {
+			// Only store what is actually needed
+			$stashInfo = (object)array(
+				'pstContent' => $pstContent,
+				'output'     => $parserOutput,
+				'timestamp'  => $timestamp
+			);
+			return array( $stashInfo, $ttl );
+		}
+
+		return array( null, 0 );
 	}
 
 	public function getAllowedParams() {
