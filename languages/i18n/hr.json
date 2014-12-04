@@ -626,7 +626,7 @@
 	"templatesusedsection": "{{PLURAL:$1|Predložak koji se rabi|Predlošci koji se rabe}} u ovom odjeljku:",
 	"template-protected": "(zaštićen)",
 	"template-semiprotected": "(djelomično zaštićen)",
-	"hiddencategories": "Ova stranica je član {{PLURAL:$1|1 skrivene kategorija|$1 skrivene kategorije|$1 skrivenih kategorija}}:",
+	"hiddencategories": "Ova stranica je član {{PLURAL:$1|1 skrivene kategorije|$1 skrivene kategorije|$1 skrivenih kategorija}}:",
 	"nocreatetext": "Na ovom je projektu ograničeno otvaranje novih stranica.\nMožete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLogin|prijaviti ili otvoriti suradnički račun]].",
 	"nocreate-loggedin": "Nemate ovlasti za stvaranje novih stranica.",
 	"sectioneditnotsupported-title": "Uređivanje odjeljka nije podržano",

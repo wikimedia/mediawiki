@@ -1598,7 +1598,7 @@
 	"listusers-desc": "使用降冪排序",
 	"usereditcount": "$1 次{{PLURAL:$1|編輯}}",
 	"usercreated": "於 $1 $2 {{GENDER:$3|建立}}",
-	"newpages": "最新頁面",
+	"newpages": "新頁面",
 	"newpages-username": "使用者名稱：",
 	"ancientpages": "最舊頁面",
 	"move": "移動",
