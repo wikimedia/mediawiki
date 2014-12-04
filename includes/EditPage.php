@@ -3463,7 +3463,6 @@ HTML
 			}
 
 			$parserOptions = $this->mArticle->makeParserOptions( $this->mArticle->getContext() );
-			$parserOptions->setEditSection( false );
 			$parserOptions->setIsPreview( true );
 			$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
 
@@ -3515,13 +3514,18 @@ HTML
 			# For CSS/JS pages, we should have called the ShowRawCssJs hook here.
 			# But it's now deprecated, so never mind
 
-			$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
-			$parserOutput = $content->getParserOutput(
-				$this->getArticle()->getTitle(),
-				null,
-				$parserOptions
-			);
+			$pstContent = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+			$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
 
+			# Try to stash the edit for the final submission step
+			if ( (string)$this->section === '' ) {
+				# @todo: different date format preferences cause cache misses
+				ApiStashEdit::stashEditFromPreview( $this->getArticle(), $content,
+					$pstContent, $parserOutput, $parserOptions, $parserOptions, wfTimestampNow()
+				);
+			}
+
+			$parserOutput->setEditSectionTokens( false ); // no section edit links
 			$previewHTML = $parserOutput->getText();
 			$this->mParserOutput = $parserOutput;
 			$wgOut->addParserOutputMetadata( $parserOutput );
