@@ -332,7 +332,7 @@ class SpecialSearch extends SpecialPage {
 			Xml::closeElement( 'div' ) .
 			Xml::closeElement( 'form' ) .
 			$this->didYouMeanHtml .
-			$this->formHeader( $term )
+			$this->searchProfileTabs( $term )
 		);
 
 		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
@@ -994,8 +994,8 @@ class SpecialSearch extends SpecialPage {
 	 * @param string $term
 	 * @return string
 	 */
-	protected function formHeader( $term ) {
-		$out = Xml::openElement( 'div', array( 'class' => 'mw-search-formheader' ) );
+	protected function searchProfileTabs( $term ) {
+		$out = Xml::openElement( 'div', array( 'class' => 'mw-search-profile-tabs' ) );
 
 		$bareterm = $term;
 		if ( $this->startsWithImage( $term ) ) {
