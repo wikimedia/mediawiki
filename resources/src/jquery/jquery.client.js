@@ -87,11 +87,11 @@
 				// Tanslations for conforming browser names
 				nameTranslations = [],
 				// Names of known layout engines
-				layouts = ['gecko', 'konqueror', 'msie', 'trident', 'opera', 'webkit'],
+				layouts = ['gecko', 'konqueror', 'msie', 'trident', 'edge', 'opera', 'webkit'],
 				// Translations for conforming layout names
 				layoutTranslations = [ ['konqueror', 'khtml'], ['msie', 'trident'], ['opera', 'presto'] ],
 				// Names of supported layout engines for version number
-				layoutVersions = ['applewebkit', 'gecko', 'trident'],
+				layoutVersions = ['applewebkit', 'gecko', 'trident', 'edge'],
 				// Names of known operating systems
 				platforms = ['win', 'wow64', 'mac', 'linux', 'sunos', 'solaris', 'iphone'],
 				// Translations for conforming operating system names
@@ -172,6 +172,13 @@
 					name = 'msie';
 					version = match[1];
 				}
+			}
+			// And IE 12's different lies about not being IE
+			if ( name === 'chrome' && ( match = ua.match( /\bedge\/([0-9\.]*)/ ) ) ) {
+				name = 'msie';
+				version = match[1];
+				layout = 'edge';
+				layoutversion = parseInt( match[1], 10 );
 			}
 			// And Amazon Silk's lies about being Android on mobile or Safari on desktop
 			if ( match = ua.match( /\bsilk\/([0-9.\-_]*)/ ) ) {
