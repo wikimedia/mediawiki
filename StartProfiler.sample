@@ -19,11 +19,7 @@
  *  $wgProfiler['visible'] = true;
  *
  * The 'db' output expects a database table that can be created by applying
- * maintenance/archives/patch-profiling.sql to your database. You can also
- * set $wgProfiler['perHost'] to true to store this data on a per-host basis.
- *
- * 'udp' also has additional parameters of 'udphost', 'udpport' and 'udpformat'
- * for the destination host, port and line format.
+ * maintenance/archives/patch-profiling.sql to your database.
  *
  * For a rudimentary sampling profiler:
  *   $wgProfiler['class'] = 'ProfilerStandard';

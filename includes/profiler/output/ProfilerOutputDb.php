@@ -33,10 +33,13 @@ class ProfilerOutputDb extends ProfilerOutput {
 
 	public function __construct( Profiler $collector, array $params ) {
 		parent::__construct( $collector, $params );
+		global $wgProfilePerHost;
 
 		// Initialize per-host profiling from config, back-compat if available
 		if ( isset( $this->params['perHost'] ) ) {
 			$this->perHost = $this->params['perHost'];
+		} elseif( $wgProfilePerHost ) {
+			$this->perHost = $wgProfilePerHost;
 		}
 	}
 
