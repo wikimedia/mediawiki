@@ -135,7 +135,9 @@ class ProfilerXhprof extends Profiler {
 			} );
 		}
 
-		return null;
+		return new ScopedCallback( function() {
+			// no-op
+		} );
 	}
 
 	/**

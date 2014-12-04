@@ -38,7 +38,9 @@ class ProfilerStub extends Profiler {
 	}
 
 	public function scopedProfileIn( $section ) {
-		return null;
+		return new ScopedCallback( function() {
+			// no-op
+		} );
 	}
 
 	public function getFunctionStats() {
