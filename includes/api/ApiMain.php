@@ -487,6 +487,8 @@ class ApiMain extends ApiBase {
 	 * If the parameter and the header do match, the header is checked against $wgCrossSiteAJAXdomains
 	 * and $wgCrossSiteAJAXdomainExceptions, and if the origin qualifies, the appropriate CORS
 	 * headers are set.
+	 * http://www.w3.org/TR/cors/#resource-requests
+	 * http://www.w3.org/TR/cors/#resource-preflight-requests
 	 *
 	 * @return bool False if the caller should abort (403 case), true otherwise (all other cases)
 	 */
@@ -499,12 +501,14 @@ class ApiMain extends ApiBase {
 
 		$request = $this->getRequest();
 		$response = $request->response();
+
 		// Origin: header is a space-separated list of origins, check all of them
 		$originHeader = $request->getHeader( 'Origin' );
 		if ( $originHeader === false ) {
 			$origins = array();
 		} else {
-			$origins = explode( ' ', $originHeader );
+			$originHeader = trim( $originHeader );
+			$origins = preg_split( '/\s+/', $originHeader );
 		}
 
 		if ( !in_array( $originParam, $origins ) ) {
@@ -519,19 +523,43 @@ class ApiMain extends ApiBase {
 		}
 
 		$config = $this->getConfig();
-		$matchOrigin = self::matchOrigin(
+		$matchOrigin = count( $origins ) === 1 && self::matchOrigin(
 			$originParam,
 			$config->get( 'CrossSiteAJAXdomains' ),
 			$config->get( 'CrossSiteAJAXdomainExceptions' )
 		);
 
 		if ( $matchOrigin ) {
-			$response->header( "Access-Control-Allow-Origin: $originParam" );
+			$requestedMethod = $request->getHeader( 'Access-Control-Request-Method' );
+			$preflight = $request->getMethod() === 'OPTIONS' && $requestedMethod !== false;
+			if ( $preflight ) {
+				// This is a CORS preflight request
+				if ( $requestedMethod !== 'POST' || $requestedMethod !== 'GET' ) {
+					// If method is not a case-sensitive match, do not set any additional headers and terminate.
+					return true;
+				}
+				// We allow the actual request to send the following headers
+				$requestedHeaders = $request->getHeader( 'Access-Control-Request-Headers' );
+				if ( $requestedHeaders !== false ) {
+					if ( !self::matchRequestedHeaders( $requestedHeaders ) ) {
+						return true;
+					}
+					$response->header( 'Access-Control-Allow-Headers: ' . $requestedHeaders );
+				}
+
+				// We only allow the actual request to be GET or POST
+				$response->header( 'Access-Control-Allow-Methods: POST, GET' );
+			}
+
+			$response->header( "Access-Control-Allow-Origin: $originHeader" );
 			$response->header( 'Access-Control-Allow-Credentials: true' );
-			$response->header( 'Access-Control-Allow-Headers: Api-User-Agent' );
-			$this->getOutput()->addVaryHeader( 'Origin' );
+
+			if ( !$preflight ) {
+				$response->header( 'Access-Control-Expose-Headers: MediaWiki-API-Error, Retry-After, X-Database-Lag' );
+			}
 		}
 
+		$this->getOutput()->addVaryHeader( 'Origin' );
 		return true;
 	}
 
@@ -558,6 +586,38 @@ class ApiMain extends ApiBase {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Attempt to validate the value of Access-Control-Request-Headers against a list
+	 * of headers that we allow the follow up request to send.
+	 *
+	 * @param string $requestedHeaders Comma seperated list of HTTP headers
+	 * @return bool True if all requested headers are in the list of allowed headers
+	 */
+	protected static function matchRequestedHeaders( $requestedHeaders ) {
+		$requestedHeaders = explode( ',', $requestedHeaders );
+		$allowedAuthorHeaders = array(
+			/* simple headers (see spec) */
+			'accept',
+			'accept-language',
+			'content-language',
+			'content-type',
+			/* non-authorable headers in XHR, which are however requested by some UAs */
+			'accept-encoding',
+			'dnt',
+			'origin',
+			/* MediaWiki whitelist */
+			'api-user-agent',
+		);
+		foreach ( $requestedHeaders as $rHeader ) {
+			$rHeader = strtolower( trim( $rHeader ) );
+			if ( !in_array( $rHeader, $allowedAuthorHeaders ) ) {
+				wfDebugLog( 'api', 'CORS preflight failed on requested header: ' . $rHeader );
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
