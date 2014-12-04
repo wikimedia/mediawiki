@@ -144,12 +144,12 @@ function wfStreamThumb( array $params ) {
 		// Format is <timestamp>!<name>
 		$bits = explode( '!', $fileName, 2 );
 		if ( count( $bits ) != 2 ) {
-			wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
+			wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
 			return;
 		}
 		$title = Title::makeTitleSafe( NS_FILE, $bits[1] );
 		if ( !$title ) {
-			wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
+			wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
 			return;
 		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
@@ -159,7 +159,7 @@ function wfStreamThumb( array $params ) {
 
 	// Check the source file title
 	if ( !$img ) {
-		wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
+		wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
 		return;
 	}
 
@@ -311,10 +311,10 @@ function wfStreamThumb( array $params ) {
 
 	$user = RequestContext::getMain()->getUser();
 	if ( $user->pingLimiter( 'renderfile' ) ) {
-		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
+		wfThumbError( 500, wfMessage( 'actionthrottledtext' )->parse() );
 		return;
 	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, 5 ) ) {
-		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', 5 ) );
+		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', 5 )->parse() );
 		return;
 	}
 
@@ -500,7 +500,7 @@ function wfExtractThumbParams( $file, $params ) {
  * Output a thumbnail generation error message
  *
  * @param $status integer
- * @param $msg string
+ * @param string $msg HTML
  * @return void
  */
 function wfThumbError( $status, $msg ) {
