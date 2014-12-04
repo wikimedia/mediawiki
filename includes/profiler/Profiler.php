@@ -101,11 +101,13 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Return whether this a stub profiler
+	 * Return whether this a stub profiler. Most profilers aren't stubs.
 	 *
 	 * @return bool
 	 */
-	abstract public function isStub();
+	public function isStub() {
+		return false;
+	}
 
 	/**
 	 * @param string $id
