@@ -44,6 +44,7 @@ return array(
 	'user.cssprefs' => array( 'class' => 'ResourceLoaderUserCSSPrefsModule' ),
 
 	// Populate mediawiki.user placeholders with information about the current user
+	'user.defaults' => array( 'class' => 'ResourceLoaderUserDefaultsModule' ),
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
 	'user.tokens' => array( 'class' => 'ResourceLoaderUserTokensModule' ),
 
