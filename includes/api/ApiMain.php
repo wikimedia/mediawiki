@@ -498,12 +498,15 @@ class ApiMain extends ApiBase {
 
 		$request = $this->getRequest();
 		$response = $request->response();
+
 		// Origin: header is a space-separated list of origins, check all of them
 		$originHeader = $request->getHeader( 'Origin' );
 		if ( $originHeader === false ) {
+			// Origin header is required for any CORS headers on the response
 			$origins = array();
 		} else {
 			$origins = explode( ' ', $originHeader );
+			$originHeader = trim( $originHeader );
 		}
 
 		if ( !in_array( $originParam, $origins ) ) {
@@ -519,18 +522,37 @@ class ApiMain extends ApiBase {
 
 		$config = $this->getConfig();
 		$matchOrigin = self::matchOrigin(
-			$originParam,
+			$originHeader,
 			$config->get( 'CrossSiteAJAXdomains' ),
 			$config->get( 'CrossSiteAJAXdomainExceptions' )
 		);
 
 		if ( $matchOrigin ) {
-			$response->header( "Access-Control-Allow-Origin: $originParam" );
+			$requestedMethod = $request->getHeader( 'Access-Control-Request-Method' );
+			$preflight = $request->getMethod() === 'OPTIONS' && $requestedMethod !== false;
+			if ( $preflight ) {
+				// This is a CORS preflight request
+				if ( $requestedMethod === 'POST' || $requestedMethod === 'GET' ) {
+					// We only allow the actual request to be GET or POST
+					$response->header( 'Access-Control-Allow-Methods: POST, GET' );
+
+					// We allow the actual request to send the following headers
+					$response->header( 'Access-Control-Allow-Headers: Api-User-Agent' );
+				} else {
+					// If method is not a case-sensitive match, do not set any additional headers and terminate.
+					return true;
+				}
+			}
+
+			$response->header( "Access-Control-Allow-Origin: $originHeader" );
 			$response->header( 'Access-Control-Allow-Credentials: true' );
-			$response->header( 'Access-Control-Allow-Headers: Api-User-Agent' );
-			$this->getOutput()->addVaryHeader( 'Origin' );
+
+			if ( !$preflight ) {
+				$response->header( 'Access-Control-Expose-Headers: MediaWiki-API-Error, Retry-After, X-Database-Lag' );
+			}
 		}
 
+		$this->getOutput()->addVaryHeader( 'Origin' );
 		return true;
 	}
 
