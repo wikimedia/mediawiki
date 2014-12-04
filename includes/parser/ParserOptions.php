@@ -641,6 +641,7 @@ class ParserOptions {
 
 		wfProfileIn( __METHOD__ );
 
+		// *UPDATE* ParserOptions::matches() if any of this changes as needed
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
 		$this->mAllowExternalImagesFrom = $wgAllowExternalImagesFrom;
@@ -664,6 +665,32 @@ class ParserOptions {
 		$this->mUserLang = $lang;
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Check if these options match that of another options set
+	 *
+	 * This ignores report limit settings that only affect HTML comments
+	 *
+	 * @return bool
+	 * @since 1.25
+	 */
+	public function matches( ParserOptions $other ) {
+		$fields = array_keys( get_class_vars( __CLASS__ ) );
+		$fields = array_diff( $fields, array(
+			'mEnableLimitReport', // only effects HTML comments
+			'onAccessCallback', // only used for ParserOutput option tracking
+		) );
+		foreach ( $fields as $field ) {
+			if ( !is_object( $this->$field ) && $this->$field !== $other->$field ) {
+				return false;
+			}
+		}
+		// Check the object and lazy-loaded options
+		return (
+			$this->mUserLang->getCode() === $other->mUserLang->getCode() &&
+			$this->getDateFormat() === $other->getDateFormat()
+		);
 	}
 
 	/**
