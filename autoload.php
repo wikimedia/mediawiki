@@ -935,6 +935,7 @@ $wgAutoloadLocalClasses = array(
 	'RefreshLinksJob' => __DIR__ . '/includes/jobqueue/jobs/RefreshLinksJob.php',
 	'RefreshLinksJob2' => __DIR__ . '/includes/jobqueue/jobs/RefreshLinksJob2.php',
 	'RegexlikeReplacer' => __DIR__ . '/includes/utils/StringUtils.php',
+	'RemoveInvalidEmails' => __DIR__ . '/maintenance/removeInvalidEmails.php',
 	'RemoveUnusedAccounts' => __DIR__ . '/maintenance/removeUnusedAccounts.php',
 	'RenameDbPrefix' => __DIR__ . '/maintenance/renameDbPrefix.php',
 	'RenderAction' => __DIR__ . '/includes/actions/RenderAction.php',
