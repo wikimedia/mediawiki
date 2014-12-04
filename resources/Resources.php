@@ -1606,6 +1606,15 @@ return array(
 			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.js',
 			'minerva' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.js',
 		),
+		'dependencies' => array(
+			'es5-shim',
+			'oojs',
+			'oojs-ui.styling',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
+	'oojs-ui.styling' => array(
 		'skinStyles' => array(
 			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.svg.css',
 			'minerva' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.svg.css',
@@ -1623,10 +1632,6 @@ return array(
 			'ooui-toolbar-more',
 			'ooui-toolgroup-collapse',
 			'ooui-toolgroup-expand',
-		),
-		'dependencies' => array(
-			'es5-shim',
-			'oojs',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
