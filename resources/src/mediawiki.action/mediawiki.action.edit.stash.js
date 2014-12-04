@@ -13,7 +13,7 @@
 				token: token,
 				title: mw.config.get( 'wgPageName' ),
 				section: data.wpSection,
-				sectiontitle: data.wpSection === 'new' ? data.wpSummary : '',
+				sectiontitle: '',
 				text: data.wpTextbox1,
 				contentmodel: data.model,
 				contentformat: data.format,
@@ -21,11 +21,22 @@
 			} );
 		}
 
-		$form.on( 'change', function () {
+		function onEditChanged() {
+			// If a stash request is already in flight, abort it, since its
+			// payload has just been invalidated by this change.
 			if ( pending ) {
 				pending.abort();
 			}
 			api.getToken( 'edit' ).then( stashEdit );
-		} );
+		}
+
+		// We don't attempt to stash new section edits because in such cases
+		// the parser output varies on the edit summary (since it determines
+		// the new section's name).
+		if ( $form.find( 'input[name=wpSection]' ).val() === 'new' ) {
+			return;
+		}
+
+		$form.find( '#wpTextbox1' ).on( 'change', onEditChanged );
 	} );
 }( mediaWiki, jQuery ) );
