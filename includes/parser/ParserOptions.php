@@ -641,6 +641,7 @@ class ParserOptions {
 
 		wfProfileIn( __METHOD__ );
 
+		// *UPDATE* ParserOptions::matches() if any of this changes as needed
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
 		$this->mAllowExternalImagesFrom = $wgAllowExternalImagesFrom;
@@ -664,6 +665,44 @@ class ParserOptions {
 		$this->mUserLang = $lang;
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * @return bool Language and preference options match that of $other
+	 * @since 1.25
+	 */
+	public function matches( ParserOptions $other ) {
+		static $fields = array(
+			'mNumberHeadings',
+			'mThumbSize',
+			'mStubThreshold',
+			'mInterwikiMagic',
+			'mAllowExternalImages',
+			'mAllowExternalImagesFrom',
+			'mEnableImageWhitelist',
+			'mAllowSpecialInclusion',
+			'mMaxIncludeSize',
+			'mMaxPPNodeCount',
+			'mMaxGeneratedPPNodeCount',
+			'mMaxPPExpandDepth',
+			'mMaxTemplateDepth',
+			'mExpensiveParserFunctionLimit',
+			'mCleanSignatures',
+			'mExternalLinkTarget',
+			'mDisableContentConversion',
+			'mDisableTitleConversion'
+		);
+		// Check non-object options
+		foreach ( $fields as $field ) {
+			if ( $this->$field !== $other->$field ) {
+				return false;
+			}
+		}
+		// Check object options
+		return (
+			$this->mUserLang->getCode() === $other->mUserLang->getCode() &&
+			$this->getDateFormat() === $other->getDateFormat()
+		);
 	}
 
 	/**
