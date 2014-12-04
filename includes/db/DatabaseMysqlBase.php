@@ -813,10 +813,14 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @param array $options
 	 */
 	public function setSessionOptions( array $options ) {
-		if ( isset( $options['connTimeout'] ) ) {
-			$timeout = (int)$options['connTimeout'];
-			$this->query( "SET net_read_timeout=$timeout" );
-			$this->query( "SET net_write_timeout=$timeout" );
+		foreach ( $options as $name => $value ) {
+			if ( $name === 'connTimeout' ) {
+				$timeout = (int)$value;
+				$this->query( "SET net_read_timeout=$timeout" );
+				$this->query( "SET net_write_timeout=$timeout" );
+			} else {
+				$this->query( "SET SESSION $name = $value" );
+			}
 		}
 	}
 
