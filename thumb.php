@@ -107,13 +107,13 @@ function wfStreamThumb( array $params ) {
 		// Format is <timestamp>!<name>
 		$bits = explode( '!', $fileName, 2 );
 		if ( count( $bits ) != 2 ) {
-			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$title = Title::makeTitleSafe( NS_FILE, $bits[1] );
 		if ( !$title ) {
-			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -136,7 +136,7 @@ function wfStreamThumb( array $params ) {
 
 	// Check the source file storage path
 	if ( !$img ) {
-		wfThumbError( 404, wfMsg( 'badtitletext' ) );
+		wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
 		wfProfileOut( __METHOD__ );
 		return;
 	}
@@ -291,7 +291,7 @@ function wfExtractThumbParams( $uri ) {
  * Output a thumbnail generation error message
  *
  * @param $status integer
- * @param $msg string
+ * @param string $msg HTML
  * @return void
  */
 function wfThumbError( $status, $msg ) {
