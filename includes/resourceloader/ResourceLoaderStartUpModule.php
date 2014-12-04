@@ -395,12 +395,17 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				'mw.config.set',
 				array( $configuration )
 			);
+			$mwUserOptionsSetJsCall = Xml::encodeJsCall(
+				'mw.user.options.set',
+				array( User::getDefaultOptions() )
+			);
 
 			$out .= "var startUp = function () {\n" .
 				"\tmw.config = new " .
 				$mwMapJsCall . "\n" .
 				"\t$registrations\n" .
 				"\t" . $mwConfigSetJsCall .
+				"\t" . $mwUserOptionsSetJsCall .
 				"};\n";
 
 			// Conditional script injection

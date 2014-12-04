@@ -2547,9 +2547,11 @@ class User implements IDBAccessObject {
 	/**
 	 * Get all user's options
 	 *
+	 * @param bool $includeDefaults Whether to include preferences that are set
+	 *   to their default value (since 1.25).
 	 * @return array
 	 */
-	public function getOptions() {
+	public function getOptions( $includeDefaults = true ) {
 		global $wgHiddenPrefs;
 		$this->loadOptions();
 		$options = $this->mOptions;
@@ -2564,6 +2566,10 @@ class User implements IDBAccessObject {
 			if ( $default !== null ) {
 				$options[$pref] = $default;
 			}
+		}
+
+		if ( !$includeDefaults ) {
+			$options = array_diff_assoc( $options, self::getDefaultOptions() );
 		}
 
 		return $options;
