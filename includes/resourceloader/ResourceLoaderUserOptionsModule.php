@@ -56,7 +56,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall( 'mw.user.options.set',
-			array( $context->getUserObj()->getOptions() ),
+			array( $context->getUserObj()->getOptions( User::GETOPTIONS_EXCLUDE_DEFAULTS ) ),
 			ResourceLoader::inDebugMode()
 		);
 	}

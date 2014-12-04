@@ -59,6 +59,12 @@ class User implements IDBAccessObject {
 	const MAX_WATCHED_ITEMS_CACHE = 100;
 
 	/**
+	 * Exclude user options that are set to their default value.
+	 * @since 1.25
+	 */
+	const GETOPTIONS_EXCLUDE_DEFAULTS = 1;
+
+	/**
 	 * @var PasswordFactory Lazily loaded factory object for passwords
 	 */
 	private static $mPasswordFactory = null;
@@ -2547,9 +2553,12 @@ class User implements IDBAccessObject {
 	/**
 	 * Get all user's options
 	 *
+	 * @param int $flags Bitwise combination of:
+	 *   User::GETOPTIONS_EXCLUDE_DEFAULTS  Exclude user options that are set
+	 *                                      to the default value. (Since 1.25)
 	 * @return array
 	 */
-	public function getOptions() {
+	public function getOptions( $flags = 0 ) {
 		global $wgHiddenPrefs;
 		$this->loadOptions();
 		$options = $this->mOptions;
@@ -2564,6 +2573,10 @@ class User implements IDBAccessObject {
 			if ( $default !== null ) {
 				$options[$pref] = $default;
 			}
+		}
+
+		if ( $flags & self::GETOPTIONS_EXCLUDE_DEFAULTS ) {
+			$options = array_diff_assoc( $options, self::getDefaultOptions() );
 		}
 
 		return $options;
