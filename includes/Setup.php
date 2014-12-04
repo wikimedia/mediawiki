@@ -453,11 +453,6 @@ if ( $wgRateLimitLog && !array_key_exists( 'ratelimit', $wgDebugLogGroups ) ) {
 	$wgDebugLogGroups['ratelimit'] = $wgRateLimitLog;
 }
 
-if ( $wgProfileOnly ) {
-	$wgDebugLogGroups['profileoutput'] = $wgDebugLogFile;
-	$wgDebugLogFile = '';
-}
-
 wfProfileOut( $fname . '-defaults' );
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
