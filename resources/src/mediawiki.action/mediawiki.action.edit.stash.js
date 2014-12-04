@@ -5,6 +5,13 @@
 	$( function () {
 		var api = new mw.Api(), pending = null, $form = $( '#editform' );
 
+		// We don't attempt to stash new section edits because in such cases
+		// the parser output varies on the edit summary (since it determines
+		// the new section's name).
+		if ( $form.find( 'input[name=wpSection]' ).val() === 'new' ) {
+			return;
+		}
+
 		function stashEdit( token ) {
 			var data = $form.serializeObject();
 
@@ -13,7 +20,7 @@
 				token: token,
 				title: mw.config.get( 'wgPageName' ),
 				section: data.wpSection,
-				sectiontitle: data.wpSection === 'new' ? data.wpSummary : '',
+				sectiontitle: '',
 				text: data.wpTextbox1,
 				contentmodel: data.model,
 				contentformat: data.format,
@@ -22,6 +29,8 @@
 		}
 
 		$form.on( 'change', function () {
+			// If a stash request is already in flight, abort it, since its
+			// payload has just been invalidated by this change.
 			if ( pending ) {
 				pending.abort();
 			}
