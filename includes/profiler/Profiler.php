@@ -77,6 +77,7 @@ abstract class Profiler {
 				if ( PHP_SAPI === 'cli' || mt_rand( 0, $factor - 1 ) != 0 ) {
 					$class = 'ProfilerStub';
 				}
+				/** @var Profiler */
 				self::$__instance = new $class( $wgProfiler );
 			} else {
 				self::$__instance = new ProfilerStub( array() );
