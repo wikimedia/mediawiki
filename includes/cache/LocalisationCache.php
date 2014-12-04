@@ -799,7 +799,7 @@ class LocalisationCache {
 	 * @since 1.25
 	 * @return array
 	 */
-	protected function getMessagesDirs() {
+	public function getMessagesDirs() {
 		global $wgMessagesDirs, $IP;
 		return array(
 			'core' => "$IP/languages/i18n",
