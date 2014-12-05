@@ -23,7 +23,7 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "1388534400"
+        1388534400
     ]
 ] );',
 			) ),
@@ -40,17 +40,17 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "1388534400"
+        1388534400
     ],
     [
         "test.group.foo",
-        "1388534400",
+        1388534400,
         [],
         "x-foo"
     ],
     [
         "test.group.bar",
-        "1388534400",
+        1388534400,
         [],
         "x-bar"
     ]
@@ -68,7 +68,7 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "1388534400"
+        1388534400
     ]
 ] );'
 			) ),
@@ -90,7 +90,7 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "1388534400",
+        1388534400,
         [],
         null,
         "example"
@@ -126,11 +126,11 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.x.core",
-        "1388534400"
+        1388534400
     ],
     [
         "test.x.polyfill",
-        "1388534400",
+        1388534400,
         [],
         null,
         "local",
@@ -138,7 +138,7 @@ mw.loader.addSource( {
     ],
     [
         "test.y.polyfill",
-        "1388534400",
+        1388534400,
         [],
         null,
         "local",
@@ -146,7 +146,7 @@ mw.loader.addSource( {
     ],
     [
         "test.z.foo",
-        "1388534400",
+        1388534400,
         [
             "test.x.core",
             "test.x.polyfil",
@@ -222,36 +222,36 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "1388534400"
+        1388534400
     ],
     [
         "test.x.core",
-        "1388534400"
+        1388534400
     ],
     [
         "test.x.util",
-        "1388534400",
+        1388534400,
         [
             "test.x.core"
         ]
     ],
     [
         "test.x.foo",
-        "1388534400",
+        1388534400,
         [
             "test.x.core"
         ]
     ],
     [
         "test.x.bar",
-        "1388534400",
+        1388534400,
         [
             "test.x.util"
         ]
     ],
     [
         "test.x.quux",
-        "1388534400",
+        1388534400,
         [
             "test.x.foo",
             "test.x.bar",
@@ -260,25 +260,25 @@ mw.loader.addSource( {
     ],
     [
         "test.group.foo.1",
-        "1388534400",
+        1388534400,
         [],
         "x-foo"
     ],
     [
         "test.group.foo.2",
-        "1388534400",
+        1388534400,
         [],
         "x-foo"
     ],
     [
         "test.group.bar.1",
-        "1388534400",
+        1388534400,
         [],
         "x-bar"
     ],
     [
         "test.group.bar.2",
-        "1388534400",
+        1388534400,
         [],
         "x-bar",
         "example"
@@ -344,8 +344,8 @@ mw.loader.addSource( {
 		$this->assertEquals(
 'mw.loader.addSource({"local":"/w/load.php"});'
 . 'mw.loader.register(['
-. '["test.blank","1388534400"],'
-. '["test.min","1388534400",["test.blank"],null,"local",'
+. '["test.blank",1388534400],'
+. '["test.min",1388534400,["test.blank"],null,"local",'
 . '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
 . ']]);',
 			$module->getModuleRegistrations( $context ),
@@ -367,11 +367,11 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "1388534400"
+        1388534400
     ],
     [
         "test.min",
-        "1388534400",
+        1388534400,
         [
             "test.blank"
         ],
