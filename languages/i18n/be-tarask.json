@@ -321,7 +321,7 @@
 	"filecopyerror": "Немагчыма cкапіяваць файл «$1» у «$2».",
 	"filerenameerror": "Немагчыма перайменаваць файл «$1» у «$2».",
 	"filedeleteerror": "Немагчыма выдаліць файл «$1».",
-	"directorycreateerror": "Немагчыма стварыць дырэкторыю «$1».",
+	"directorycreateerror": "Немагчыма стварыць каталёг «$1».",
 	"directoryreadonlyerror": "Тэчка «$1» толькі для чытаньня.",
 	"directorynotreadableerror": "Тэчка «$1» не чытаецца.",
 	"filenotfound": "Немагчыма знайсьці файл «$1».",

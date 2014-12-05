@@ -158,6 +158,7 @@
 	"apihelp-opensearch-param-format": "فرمت خروجی.",
 	"apihelp-opensearch-example-te": "یافتن صفحه‌هایی که با «ته» آغاز می‌شوند",
 	"apihelp-options-example-reset": "بازنشانی همه تنظیمات.",
+	"apihelp-paraminfo-param-helpformat": "ساختار راهنمای رشته‌ها",
 	"apihelp-parse-example-page": "تجزیه یک صفحه.",
 	"apihelp-parse-example-text": "تجزیه متن ویکی.",
 	"apihelp-parse-example-summary": "تجزیه خلاصه.",
