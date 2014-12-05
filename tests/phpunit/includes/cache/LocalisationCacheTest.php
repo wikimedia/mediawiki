@@ -7,8 +7,6 @@
  */
 class LocalisationCacheTest extends MediaWikiTestCase {
 	protected function setUp() {
-		global $IP;
-
 		parent::setUp();
 		$this->setMwGlobals( array(
 			'wgExtensionMessagesFiles' => array(),
