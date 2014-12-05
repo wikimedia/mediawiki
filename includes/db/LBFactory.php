@@ -109,7 +109,7 @@ abstract class LBFactory {
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 * @param array $conf
 	 */
-	public abstract function __construct( array $conf );
+	abstract public function __construct( array $conf );
 
 	/**
 	 * Create a new load balancer object. The resulting object will be untracked,
@@ -118,7 +118,7 @@ abstract class LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	public abstract function newMainLB( $wiki = false );
+	abstract public function newMainLB( $wiki = false );
 
 	/**
 	 * Get a cached (tracked) load balancer object.
@@ -126,7 +126,7 @@ abstract class LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	public abstract function getMainLB( $wiki = false );
+	abstract public function getMainLB( $wiki = false );
 
 	/**
 	 * Create a new load balancer for external storage. The resulting object will be
@@ -137,7 +137,7 @@ abstract class LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	protected abstract function newExternalLB( $cluster, $wiki = false );
+	abstract protected function newExternalLB( $cluster, $wiki = false );
 
 	/**
 	 * Get a cached (tracked) load balancer for external storage
@@ -146,7 +146,7 @@ abstract class LBFactory {
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
-	public abstract function &getExternalLB( $cluster, $wiki = false );
+	abstract public function &getExternalLB( $cluster, $wiki = false );
 
 	/**
 	 * Execute a function for each tracked load balancer
@@ -156,7 +156,7 @@ abstract class LBFactory {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	public abstract function forEachLB( $callback, array $params = array() );
+	abstract public function forEachLB( $callback, array $params = array() );
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
