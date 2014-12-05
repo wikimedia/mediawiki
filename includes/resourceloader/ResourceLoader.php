@@ -140,7 +140,7 @@ class ResourceLoader {
 		foreach ( array_keys( $modulesWithoutMessages ) as $name ) {
 			$module = $this->getModule( $name );
 			if ( $module ) {
-				$module->setMsgBlobMtime( $lang, 0 );
+				$module->setMsgBlobMtime( $lang, 1 );
 			}
 		}
 	}
@@ -1225,7 +1225,7 @@ class ResourceLoader {
 				ResourceLoader::inDebugMode()
 			);
 		} else {
-			$version = (int)$version > 1 ? (int)$version : 1;
+			$version = (int) $version;
 			return Xml::encodeJsCall(
 				'mw.loader.register',
 				array( $name, $version, $dependencies, $group, $source, $skip ),
