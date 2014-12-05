@@ -1049,7 +1049,13 @@ abstract class DatabaseBase implements IDatabase {
 			$this->reportQueryError( $this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
 		}
 
-		return $this->resultObject( $ret );
+		$res = $this->resultObject( $ret );
+
+		// Destroy profile sections in the opposite order to their creation
+		$queryProfSection = false;
+		$totalProfSection = false;
+
+		return $res;
 	}
 
 	/**
