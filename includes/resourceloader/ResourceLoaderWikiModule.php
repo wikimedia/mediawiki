@@ -164,10 +164,10 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return int|mixed
+	 * @return int
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
+		$modifiedTime = 1;
 		$titleInfo = $this->getTitleInfo( $context );
 		if ( count( $titleInfo ) ) {
 			$mtimes = array_map( function ( $value ) {
@@ -226,8 +226,8 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * Get the modification times of all titles that would be loaded for
 	 * a given context.
 	 * @param ResourceLoaderContext $context Context object
-	 * @return array keyed by page dbkey, with value is an array with 'length' and 'timestamp'
-	 *               keys, where the timestamp is a unix one
+	 * @return array Keyed by page dbkey. Value is an array with 'length' and 'timestamp'
+	 *               keys, where the timestamp is a UNIX timestamp
 	 */
 	protected function getTitleInfo( ResourceLoaderContext $context ) {
 		$dbr = $this->getDB();

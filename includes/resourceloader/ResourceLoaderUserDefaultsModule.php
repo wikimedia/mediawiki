@@ -42,7 +42,7 @@ class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return array|int|mixed
+	 * @return int
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		return $this->getHashMtime( $context );
