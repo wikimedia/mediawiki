@@ -71,8 +71,10 @@ NEWCHANGES=$(git log $OLDHASH.. --oneline --no-merges --reverse --color=never)
 NEWCHANGESDISPLAY=$(git log $OLDHASH.. --oneline --no-merges --reverse --color=always)
 
 # Copy files
-# - Exclude the minimised distribution files and RTL sheets for non-CSSJanus environments
-rsync --recursive --delete --force --exclude 'oojs-ui*.min.*' --exclude 'oojs-ui*.rtl.css' ./dist/ "$TARGET_REPO/$TARGET_DIR" || exit 1
+# - Exclude the minimised distribution files, Apex theme, and RTL sheets for non-CSSJanus environments
+rsync --recursive --delete --force \
+	--exclude 'oojs-ui*.min.*' --exclude '*apex*' --exclude 'oojs-ui*.rtl.css' \
+	./dist/ "$TARGET_REPO/$TARGET_DIR" || exit 1
 
 # Read the new version
 NEWVERSION=$(oojsuiversion)
