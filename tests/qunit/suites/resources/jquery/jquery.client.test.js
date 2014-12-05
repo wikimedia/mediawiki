@@ -98,6 +98,24 @@
 					rtl: true
 				}
 			},
+			// Internet Explorer 12
+			'Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0': {
+				title: 'Internet Explorer 12',
+				platform: 'WOW64',
+				profile: {
+					name: 'msie',
+					layout: 'edge',
+					layoutVersion: 12,
+					platform: 'win',
+					version: '12.0',
+					versionBase: '12',
+					versionNumber: 12
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
 			// Firefox 2
 			// Firefox 3.5
 			'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1.19) Gecko/20110420 Firefox/3.5.19': {
