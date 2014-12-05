@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.2.4
+ * OOjs UI v0.3.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-12-02T18:45:30Z
+ * Date: 2014-12-05T00:54:15Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -302,6 +302,27 @@
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
+}
+.oo-ui-draggableElement {
+	cursor: -webkit-grab -moz-grab, url(https://mail.google.com/mail/images/2/openhand.cur), move;
+	/*
+	 * HACK: In order to style horizontally, we must override
+	 * OO.ui.OptionWidget's display rule that is currently set
+	 * to be 'block'
+	 */
+}
+.oo-ui-draggableElement-dragging {
+	cursor: -webkit-grabbing -moz-grabbing, url(https://mail.google.com/mail/images/2/closedhand.cur), move;
+	background: rgba(0, 0, 0, 0.2);
+	opacity: 0.4;
+}
+.oo-ui-draggableGroupElement-horizontal .oo-ui-draggableElement.oo-ui-optionWidget {
+	display: inline-block;
+}
+.oo-ui-draggableGroupElement-placeholder {
+	position: absolute;
+	display: block;
+	background: rgba(0, 0, 0, 0.4);
 }
 .oo-ui-bookletLayout-stackLayout.oo-ui-stackLayout-continuous .oo-ui-panelLayout-scrollable {
 	overflow-y: hidden;
