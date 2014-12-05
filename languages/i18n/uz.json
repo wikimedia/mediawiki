@@ -1311,6 +1311,8 @@
 	"exif-iimcategory-wea": "Ob-havo",
 	"namespacesall": "Barchasi",
 	"monthsall": "barchasi",
+	"confirmrecreate": "Ushbu sahifa siz tahrir qilayotganingizda foydalanuvchi [[User:$1|$1]] ([[User talk:$1|munozara]]) tomonidan quyidagi sababga binoan yoʻqotilgan:\n: <em>$2</em>\nIltimos, sahifani qaytadan yaratmoqchi ekanligingizni tasdiqlang.",
+	"confirmrecreate-noreason": "Ushbu sahifa siz tahrir qilayotganingizda foydalanuvchi [[User:$1|$1]] ([[User talk:$1|munozara]]) tomonidan yoʻqotilgan. Iltimos, sahifani qaytadan yaratmoqchi ekanligingizni tasdiqlang.",
 	"unit-pixel": " piksel",
 	"imgmultipageprev": "← oldingi sahifa",
 	"imgmultipagenext": "keyingi sahifa →",

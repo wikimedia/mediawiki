@@ -12,6 +12,7 @@
 	"apihelp-help-example-main": "Bantuan untuk modul utama",
 	"apihelp-help-example-recursive": "Segala bantuan dalam satu halaman",
 	"apihelp-help-example-help": "Bantuan untuk modul bantuan",
+	"apihelp-query+prefixsearch-param-offset": "Bilangan hasil untuk dilangkau.",
 	"apihelp-userrights-param-userid": "ID pengguna.",
 	"apihelp-dbgfm-description": "Data output dalam format var_export() PHP (''pretty-print'' dalam HTML).",
 	"apihelp-dump-description": "Output data dalam format var_dump() PHP.",
