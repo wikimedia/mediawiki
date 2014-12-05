@@ -807,7 +807,8 @@
 			}
 
 			/**
-			 * Generates an ISO8601 "basic" string from a UNIX timestamp
+			 * Convert UNIX timestamp to ISO8601 format
+			 * @param {number} timestamp UNIX timetamp
 			 * @private
 			 */
 			function formatVersionNumber( timestamp ) {
@@ -1877,27 +1878,29 @@
 				/**
 				 * Get the version of a module.
 				 *
-				 * @param {string} module Name of module to get version for
+				 * @param {string} module Name of module
 				 * @return {string|null} The version, or null if the module (or its version) is not
 				 *  in the registry.
 				 */
 				getVersion: function ( module ) {
-					if ( registry[module] !== undefined && registry[module].version !== undefined ) {
-						return formatVersionNumber( registry[module].version );
+					if ( !registry[module] || registry[module].version === undefined ) {
+						return null;
 					}
-					return null;
+					return formatVersionNumber( registry[module].version );
 				},
 
 				/**
 				 * Get the state of a module.
 				 *
-				 * @param {string} module Name of module to get state for
+				 * @param {string} module Name of module
+				 * @return {string|null} The state, or null if the module (or its version) is not
+				 *  in the registry.
 				 */
 				getState: function ( module ) {
-					if ( registry[module] !== undefined && registry[module].state !== undefined ) {
-						return registry[module].state;
+					if ( !registry[module] || registry[module].state === undefined ) {
+						return null;
 					}
-					return null;
+					return registry[module].state;
 				},
 
 				/**
