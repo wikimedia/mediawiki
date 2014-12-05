@@ -24,12 +24,24 @@
  */
 class MWExceptionHandler {
 
+	protected static $reservedMemory;
+	protected static $fatalErrorTypes = array(
+		E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR,
+		/* HHVM's FATAL_ERROR level */ 16777217,
+	);
+
 	/**
 	 * Install handlers with PHP.
 	 */
 	public static function installHandler() {
 		set_exception_handler( array( 'MWExceptionHandler', 'handleException' ) );
 		set_error_handler( array( 'MWExceptionHandler', 'handleError' ) );
+
+		// Reserve 16k of memory so we can report OOM fatals
+		self::$reservedMemory = str_repeat( ' ', 16384 );
+		register_shutdown_function(
+			array( 'MWExceptionHandler', 'handleFatalError' )
+		);
 	}
 
 	/**
@@ -194,6 +206,9 @@ class MWExceptionHandler {
 			case E_USER_DEPRECATED:
 				$levelName = 'Deprecated';
 				break;
+			case /* HHVM's FATAL_ERROR */ 16777217:
+				$levelName = 'Fatal';
+				break;
 			default:
 				$levelName = 'Unknown error';
 				break;
@@ -205,6 +220,44 @@ class MWExceptionHandler {
 		// This handler is for logging only. Return false will instruct PHP
 		// to continue regular handling.
 		return false;
+	}
+
+
+	/**
+	 * Look for a fatal error as the cause of the request termination and log
+	 * as an exception.
+	 *
+	 * Special handling is included for missing class errors as they may
+	 * indicate that the user needs to install 3rd-party libraries via
+	 * Composer or other means.
+	 *
+	 * @since 1.25
+	 */
+	public static function handleFatalError() {
+		self::$reservedMemory = null;
+		$lastError = error_get_last();
+
+		if ( $lastError &&
+			isset( $lastError['type'] ) &&
+			in_array( $lastError['type'], self::$fatalErrorTypes )
+		) {
+			$msg = "Fatal Error: {$lastError['message']}";
+			// HHVM: Class undefined: foo
+			// PHP5: Class 'foo' not found
+			if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/",
+				$lastError['message']
+			) ) {
+				$msg = <<<TXT
+{$msg}
+
+MediaWiki or an installed extension requires this class but it is not embedded directly in MediaWiki's git repository and must be installed separately by the end user.
+
+Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a> for help on installing the required components.
+TXT;
+			}
+			$e = new ErrorException( $msg, 0, $lastError['type'] );
+			self::logError( $e );
+		}
 	}
 
 	/**
