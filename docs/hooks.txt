@@ -1048,7 +1048,8 @@ This may be triggered by the EditPage or any other facility that modifies page c
 Use the $status object to indicate whether the edit should be allowed, and to provide
 a reason for disallowing it. Return false to abort the edit, and true to continue.
 Returning true if $status->isOK() returns false means "don't save but continue user
-interaction", e.g. show the edit form.
+interaction", e.g. show the edit form. $status->apiHookResult can be set to an array
+to be returned by api.php action=edit. This is used to deliver captchas.
 $context: object implementing the IContextSource interface.
 $content: content of the edit box, as a Content object.
 $status: Status object to represent errors, etc.
