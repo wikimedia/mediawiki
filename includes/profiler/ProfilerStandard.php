@@ -345,7 +345,9 @@ class ProfilerStandard extends Profiler {
 		$this->close(); // set "-total" entry
 
 		if ( $this->collateOnly ) {
-			return; // already collated as methods exited
+			// already collated as methods exited
+			$this->sortCollated();
+			return;
 		}
 
 		$this->collated = array();
@@ -400,7 +402,21 @@ class ProfilerStandard extends Profiler {
 		}
 
 		$this->collated['-overhead-total']['count'] = $profileCount;
-		arsort( $this->collated, SORT_NUMERIC );
+		$this->sortCollated();
+	}
+
+	protected function sortCollated() {
+		uksort( $this->collated, function ( $a, $b ) {
+			$ca = $this->collated[$a]['real'];
+			$cb = $this->collated[$b]['real'];
+			if ( $ca > $cb ) {
+				return -1;
+			} elseif ( $cb > $ca ) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} );
 	}
 
 	/**
