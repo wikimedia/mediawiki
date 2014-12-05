@@ -297,4 +297,30 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->isWikitextPage() );
 	}
+
+	public static function provideGetOtherPage() {
+		return array(
+			array( 'Main Page', 'Talk:Main Page' ),
+			array( 'Talk:Main Page', 'Main Page' ),
+			array( 'Help:Main Page', 'Help talk:Main Page' ),
+			array( 'Help talk:Main Page', 'Help:Main Page' ),
+			array( 'Special:FooBar', null ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetOtherpage
+	 * @covers Title::getOtherPage
+	 *
+	 * @param string $text
+	 * @param string|null $expected
+	 */
+	public function testGetOtherPage( $text, $expected ) {
+		if ( $expected === null ) {
+			$this->setExpectedException( 'MWException' );
+		}
+
+		$title = Title::newFromText( $text );
+		$this->assertEquals( $expected, $title->getOtherPage()->getPrefixedText() );
+	}
 }
