@@ -46,7 +46,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return array|int|mixed
+	 * @return int
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$hash = $context->getHash();

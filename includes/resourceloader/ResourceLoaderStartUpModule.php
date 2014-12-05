@@ -211,12 +211,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			// getModifiedTime() is supposed to return a UNIX timestamp, but it doesn't always
-			// seem to do that, and custom implementations might forget. Coerce it to TS_UNIX
+			// Coerce module timestamp to UNIX timestamp.
+			// getModifiedTime() is supposed to return a UNIX timestamp, but custom implementations
+			// might forget. TODO: Maybe emit warning?
 			$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
-			$mtime = max( $moduleMtime, wfTimestamp( TS_UNIX, $this->getConfig()->get( 'CacheEpoch' ) ) );
-
-			// FIXME: Convert to numbers, wfTimestamp always gives us stings, even for TS_UNIX
 
 			$skipFunction = $module->getSkipFunction();
 			if ( $skipFunction !== null && !ResourceLoader::inDebugMode() ) {
@@ -229,8 +227,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				);
 			}
 
+			$mtime = max(
+				$moduleMtime,
+				wfTimestamp( TS_UNIX, $this->getConfig()->get( 'CacheEpoch' ) )
+			);
+
 			$registryData[$name] = array(
-				'version' => $mtime,
+				// Convert to numbers as wfTimestamp always returns a string, even for TS_UNIX
+				'version' => (int) $mtime,
 				'dependencies' => $module->getDependencies(),
 				'group' => $module->getGroup(),
 				'source' => $module->getSource(),
@@ -352,7 +356,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Get the latest version
 		$loader = $context->getResourceLoader();
-		$version = 0;
+		$version = 1;
 		foreach ( $moduleNames as $moduleName ) {
 			$version = max( $version,
 				$loader->getModule( $moduleName )->getModifiedTime( $context )

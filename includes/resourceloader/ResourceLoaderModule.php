@@ -388,12 +388,12 @@ abstract class ResourceLoaderModule {
 	 * Get the last modification timestamp of the message blob for this
 	 * module in a given language.
 	 * @param string $lang Language code
-	 * @return int UNIX timestamp, or 0 if the module doesn't have messages
+	 * @return int UNIX timestamp
 	 */
 	public function getMsgBlobMtime( $lang ) {
 		if ( !isset( $this->msgBlobMtime[$lang] ) ) {
 			if ( !count( $this->getMessages() ) ) {
-				return 0;
+				return 1;
 			}
 
 			$dbr = wfGetDB( DB_SLAVE );
@@ -416,7 +416,7 @@ abstract class ResourceLoaderModule {
 	 * Set a preloaded message blob last modification timestamp. Used so we
 	 * can load this information for all modules at once.
 	 * @param string $lang Language code
-	 * @param int $mtime UNIX timestamp or 0 if there is no such blob
+	 * @param int $mtime UNIX timestamp
 	 */
 	public function setMsgBlobMtime( $lang, $mtime ) {
 		$this->msgBlobMtime[$lang] = $mtime;
@@ -443,7 +443,6 @@ abstract class ResourceLoaderModule {
 	 * @return int UNIX timestamp
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		// 0 would mean now
 		return 1;
 	}
 
@@ -451,13 +450,12 @@ abstract class ResourceLoaderModule {
 	 * Helper method for calculating when the module's hash (if it has one) changed.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp or 0 if no hash was provided
-	 *  by getModifiedHash()
+	 * @return int UNIX timestamp
 	 */
 	public function getHashMtime( ResourceLoaderContext $context ) {
 		$hash = $this->getModifiedHash( $context );
 		if ( !is_string( $hash ) ) {
-			return 0;
+			return 1;
 		}
 
 		$cache = wfGetCache( CACHE_ANYTHING );
@@ -469,7 +467,7 @@ abstract class ResourceLoaderModule {
 			return $data['timestamp'];
 		}
 
-		$timestamp = wfTimestamp();
+		$timestamp = time();
 		$cache->set( $key, array(
 			'hash' => $hash,
 			'timestamp' => $timestamp,
@@ -497,15 +495,14 @@ abstract class ResourceLoaderModule {
 	 * @since 1.23
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp or 0 if no definition summary was provided
-	 *  by getDefinitionSummary()
+	 * @return int UNIX timestamp
 	 */
 	public function getDefinitionMtime( ResourceLoaderContext $context ) {
 		wfProfileIn( __METHOD__ );
 		$summary = $this->getDefinitionSummary( $context );
 		if ( $summary === null ) {
 			wfProfileOut( __METHOD__ );
-			return 0;
+			return 1;
 		}
 
 		$hash = md5( json_encode( $summary ) );
@@ -640,16 +637,12 @@ abstract class ResourceLoaderModule {
 	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist
 	 * but returns 1 instead.
 	 * @param string $filename File name
-	 * @return int UNIX timestamp, or 1 if the file doesn't exist
+	 * @return int UNIX timestamp
 	 */
 	protected static function safeFilemtime( $filename ) {
-		if ( file_exists( $filename ) ) {
-			return filemtime( $filename );
-		} else {
-			// We only ever map this function on an array if we're gonna call max() after,
-			// so return our standard minimum timestamps here. This is 1, not 0, because
-			// wfTimestamp(0) == NOW
+		if ( !file_exists( $filename ) ) {
 			return 1;
 		}
+		return filemtime( $filename );
 	}
 }
