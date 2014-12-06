@@ -3403,10 +3403,10 @@ class Language {
 			return '';
 		}
 		if ( $m > 0 ) {
-			$and = $this->getMessageFromDB( 'and' );
-			$space = $this->getMessageFromDB( 'word-separator' );
+			$and = htmlspecialchars( $this->getMessageFromDB( 'and' ) );
+			$space = htmlspecialchars( $this->getMessageFromDB( 'word-separator' ) );
 			if ( $m > 1 ) {
-				$comma = $this->getMessageFromDB( 'comma-separator' );
+				$comma = htmlspecialchars( $this->getMessageFromDB( 'comma-separator' ) );
 			}
 		}
 		$s = $l[$m];

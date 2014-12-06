@@ -493,25 +493,32 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$language = $this->getLanguage();
-		$displayedList = $this->msg( 'userrights-groupsmember-type',
-			$language->listToText( $list ),
-			$language->listToText( $membersList )
-		)->plain();
-		$displayedAutolist = $this->msg( 'userrights-groupsmember-type',
-			$language->listToText( $autoList ),
-			$language->listToText( $autoMembersList )
-		)->plain();
+		$displayedList = $this->msg( 'userrights-groupsmember-type' )
+			->rawParams(
+				$language->listToText( $list ),
+				$language->listToText( $membersList )
+			)->escaped();
+		$displayedAutolist = $this->msg( 'userrights-groupsmember-type' )
+			->rawParams(
+				$language->listToText( $autoList ),
+				$language->listToText( $autoMembersList )
+			)->escaped();
 
 		$grouplist = '';
 		$count = count( $list );
 		if ( $count > 0 ) {
-			$grouplist = $this->msg( 'userrights-groupsmember', $count, $user->getName() )->parse();
+			$grouplist = $this->msg( 'userrights-groupsmember' )
+				->numParams( $count )
+				->params( $user->getName() )
+				->parse();
 			$grouplist = '<p>' . $grouplist . ' ' . $displayedList . "</p>\n";
 		}
 
 		$count = count( $autoList );
 		if ( $count > 0 ) {
-			$autogrouplistintro = $this->msg( 'userrights-groupsmember-auto', $count, $user->getName() )
+			$autogrouplistintro = $this->msg( 'userrights-groupsmember-auto' )
+				->numParams( $count )
+				->params( $user->getName() )
 				->parse();
 			$grouplist .= '<p>' . $autogrouplistintro . ' ' . $displayedAutolist . "</p>\n";
 		}
@@ -669,9 +676,9 @@ class UserrightsPage extends SpecialPage {
 
 				$member = User::getGroupMember( $group, $user->getName() );
 				if ( $checkbox['irreversible'] ) {
-					$text = $this->msg( 'userrights-irreversible-marker', $member )->escaped();
+					$text = $this->msg( 'userrights-irreversible-marker', $member )->text();
 				} else {
-					$text = htmlspecialchars( $member );
+					$text = $member;
 				}
 				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
 					"wpGroup-" . $group, $checkbox['set'], $attr );

@@ -4471,7 +4471,7 @@ class User implements IDBAccessObject {
 		if ( $title ) {
 			return Linker::link( $title, htmlspecialchars( $text ) );
 		} else {
-			return $text;
+			return htmlspecialchars( $text );
 		}
 	}
 
