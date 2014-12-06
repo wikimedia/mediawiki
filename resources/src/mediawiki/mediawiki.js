@@ -840,7 +840,7 @@
 			function sortDependencies( module, resolved, unresolved ) {
 				var n, deps, len, skip;
 
-				if ( registry[module] === undefined ) {
+				if ( !hasOwn.call( registry, module ) ) {
 					throw new Error( 'Unknown dependency: ' + module );
 				}
 
@@ -954,7 +954,7 @@
 				// Build a list of modules which are in one of the specified states
 				for ( s = 0; s < states.length; s += 1 ) {
 					for ( m = 0; m < modules.length; m += 1 ) {
-						if ( registry[modules[m]] === undefined ) {
+						if ( !hasOwn.call( registry, modules[m] ) ) {
 							// Module does not exist
 							if ( states[s] === 'unregistered' ) {
 								// OK, undefined
@@ -1098,7 +1098,7 @@
 				var key, value, media, i, urls, cssHandle, checkCssHandles,
 					cssHandlesRegistered = false;
 
-				if ( registry[module] === undefined ) {
+				if ( !hasOwn.call( registry, module ) ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
 				} else if ( registry[module].state === 'registered' ) {
 					throw new Error( 'Module has not been requested from the server yet: ' + module );
@@ -1406,7 +1406,7 @@
 					// Appends a list of modules from the queue to the batch
 					for ( q = 0; q < queue.length; q += 1 ) {
 						// Only request modules which are registered
-						if ( registry[queue[q]] !== undefined && registry[queue[q]].state === 'registered' ) {
+						if ( hasOwn.call( registry, queue[q] ) && registry[queue[q]].state === 'registered' ) {
 							// Prevent duplicate entries
 							if ( $.inArray( queue[q], batch ) === -1 ) {
 								batch[batch.length] = queue[q];
@@ -1469,10 +1469,10 @@
 					for ( b = 0; b < batch.length; b += 1 ) {
 						bSource = registry[batch[b]].source;
 						bGroup = registry[batch[b]].group;
-						if ( splits[bSource] === undefined ) {
+						if ( !hasOwn.call( splits, bSource ) ) {
 							splits[bSource] = {};
 						}
-						if ( splits[bSource][bGroup] === undefined ) {
+						if ( !hasOwn.call( splits[bSource], bGroup ) ) {
 							splits[bSource][bGroup] = [];
 						}
 						bSourceGroup = splits[bSource][bGroup];
@@ -1525,7 +1525,7 @@
 								prefix = modules[i].substr( 0, lastDotIndex );
 								suffix = modules[i].slice( lastDotIndex + 1 );
 
-								bytesAdded = moduleMap[prefix] !== undefined
+								bytesAdded = hasOwn.call( moduleMap, prefix )
 									? suffix.length + 3 // '%2C'.length == 3
 									: modules[i].length + 3; // '%7C'.length == 3
 
@@ -1539,7 +1539,7 @@
 									async = true;
 									l = currReqBaseLength + 9;
 								}
-								if ( moduleMap[prefix] === undefined ) {
+								if ( !hasOwn.call( moduleMap, prefix ) ) {
 									moduleMap[prefix] = [];
 								}
 								moduleMap[prefix].push( suffix );
@@ -1692,11 +1692,11 @@
 						throw new Error( 'templates must be an object, not a ' + typeof templates );
 					}
 					// Automatically register module
-					if ( registry[module] === undefined ) {
+					if ( !hasOwn.call( registry, module ) ) {
 						mw.loader.register( module );
 					}
 					// Check for duplicate implementation
-					if ( registry[module] !== undefined && registry[module].script !== undefined ) {
+					if ( hasOwn.call( registry, module ) && registry[module].script !== undefined ) {
 						throw new Error( 'module already implemented: ' + module );
 					}
 					// Attach components
@@ -1821,8 +1821,8 @@
 					// an array of unrelated modules, whereas the modules passed to
 					// using() are related and must all be loaded.
 					for ( filtered = [], m = 0; m < modules.length; m += 1 ) {
-						module = registry[modules[m]];
-						if ( module !== undefined ) {
+						if ( hasOwn.call( registry, modules[m] ) ) {
+							module = registry[modules[m]];
 							if ( $.inArray( module.state, ['error', 'missing'] ) === -1 ) {
 								filtered[filtered.length] = modules[m];
 							}
@@ -1861,7 +1861,7 @@
 						}
 						return;
 					}
-					if ( registry[module] === undefined ) {
+					if ( !hasOwn.call( registry, module ) ) {
 						mw.loader.register( module );
 					}
 					if ( $.inArray( state, ['ready', 'error', 'missing'] ) !== -1
@@ -1883,7 +1883,7 @@
 				 *  in the registry.
 				 */
 				getVersion: function ( module ) {
-					if ( !registry[module] || registry[module].version === undefined ) {
+					if ( !hasOwn.call( registry, module ) || registry[module].version === undefined ) {
 						return null;
 					}
 					return formatVersionNumber( registry[module].version );
@@ -1897,7 +1897,7 @@
 				 *  in the registry.
 				 */
 				getState: function ( module ) {
-					if ( !registry[module] || registry[module].state === undefined ) {
+					if ( !hasOwn.call( registry, module ) || registry[module].state === undefined ) {
 						return null;
 					}
 					return registry[module].state;
