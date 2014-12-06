@@ -1053,13 +1053,13 @@ class CoreParserFunctions {
 
 		// Check the link cache, maybe something already looked it up.
 		$linkCache = LinkCache::singleton();
-		$pdbk = $t->getPrefixedDBkey();
-		$id = $linkCache->getGoodLinkID( $pdbk );
+		$titleValue = $t->getTitleValue();
+		$id = $linkCache->getGoodLinkID( $titleValue );
 		if ( $id != 0 ) {
 			$parser->mOutput->addLink( $t, $id );
 			return $id;
 		}
-		if ( $linkCache->isBadLink( $pdbk ) ) {
+		if ( $linkCache->isBadLink( $titleValue ) ) {
 			$parser->mOutput->addLink( $t, 0 );
 			return $id;
 		}
