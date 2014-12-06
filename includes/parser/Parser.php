@@ -4035,7 +4035,7 @@ class Parser {
 			# If there is no current revision, there is no page
 			if ( $id === false && !$rev ) {
 				$linkCache = LinkCache::singleton();
-				$linkCache->addBadLinkObj( $title );
+				$linkCache->addBadLinkObj( $title->getTitleValue() );
 			}
 
 			$deps[] = array(
