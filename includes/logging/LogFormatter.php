@@ -355,8 +355,10 @@ class LogFormatter {
 				$element = $this->styleRestricedElement( $element );
 			}
 		} else {
-			$performer = $this->getPerformerElement() . $this->msg( 'word-separator' )->text();
-			$element = $performer . $this->getRestrictedElement( 'rev-deleted-event' );
+			$sep = $this->msg( 'word-separator' );
+			$sep = $this->plaintext ? $sep->text() : $sep->escaped();
+			$performer = $this->getPerformerElement();
+			$element = $performer . $sep . $this->getRestrictedElement( 'rev-deleted-event' );
 		}
 
 		return $element;
@@ -731,7 +733,9 @@ class LegacyLogFormatter extends LogFormatter {
 
 		$performer = $this->getPerformerElement();
 		if ( !$this->irctext ) {
-			$action = $performer . $this->msg( 'word-separator' )->text() . $action;
+			$sep = $this->msg( 'word-separator' );
+			$sep = $this->plaintext ? $sep->text() : $sep->escaped();
+			$action = $performer . $sep . $action;
 		}
 
 		return $action;
