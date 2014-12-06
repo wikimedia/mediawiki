@@ -516,7 +516,7 @@ class Parser {
 					}
 					if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
 						$valueMsg->params( $value );
-						$limitReport .= "{$keyMsg->text()}: {$valueMsg->text()}\n";
+						$limitReport .= "{$keyMsg->escaped()}: {$valueMsg->escaped()}\n";
 					}
 				}
 			}
