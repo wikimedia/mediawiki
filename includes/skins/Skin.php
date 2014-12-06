@@ -862,13 +862,13 @@ abstract class Skin extends ContextSource {
 		if ( $timestamp ) {
 			$d = $this->getLanguage()->userDate( $timestamp, $this->getUser() );
 			$t = $this->getLanguage()->userTime( $timestamp, $this->getUser() );
-			$s = ' ' . $this->msg( 'lastmodifiedat', $d, $t )->text();
+			$s = ' ' . $this->msg( 'lastmodifiedat', $d, $t )->escaped();
 		} else {
 			$s = '';
 		}
 
 		if ( wfGetLB()->getLaggedSlaveMode() ) {
-			$s .= ' <strong>' . $this->msg( 'laggedslavemode' )->text() . '</strong>';
+			$s .= ' <strong>' . $this->msg( 'laggedslavemode' )->escaped() . '</strong>';
 		}
 
 		return $s;
