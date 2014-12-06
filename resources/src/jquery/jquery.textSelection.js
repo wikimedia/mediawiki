@@ -243,7 +243,7 @@
 								selText = selText.replace( /\r?\n/g, '\r\n' );
 								post = post.replace( /\r?\n/g, '\r\n' );
 							}
-							if ( isSample && options.selectPeri && !options.splitlines ) {
+							if ( isSample && options.selectPeri && ( !options.splitlines || ( options.splitlines && selText.indexOf( '\n' ) === -1 ) ) ) {
 								this.selectionStart = startPos + pre.length;
 								this.selectionEnd = startPos + pre.length + selText.length;
 							} else {
