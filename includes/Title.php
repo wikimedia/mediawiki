@@ -295,6 +295,11 @@ class Title {
 			throw new MWException( 'Title::newFromTextThrow given an object' );
 		}
 
+		global $wgDebugMessageEscaping;
+		if ( $wgDebugMessageEscaping ) {
+			$text = preg_replace( '~<a "<">(?:[^<]+)</a>~', '', $text );
+		}
+
 		$cache = self::getTitleCache();
 
 		/**

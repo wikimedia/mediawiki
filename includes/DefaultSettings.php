@@ -5756,6 +5756,8 @@ $wgCachePrefix = false;
  */
 $wgDebugToolbar = false;
 
+$wgDebugMessageEscaping = false;
+
 /** @} */ # end of profiling, testing and debugging }
 
 /************************************************************************//**
