@@ -962,7 +962,17 @@ class Language {
 	 * @return string
 	 */
 	function getMessageFromDB( $msg ) {
-		return wfMessage( $msg )->inLanguage( $this )->text();
+		return $this->msg( $msg )->text();
+	}
+
+	/**
+	 * Get message object in this language. Only for use inside this class.
+	 *
+	 * @param string $msg Message name
+	 * @return Message
+	 */
+	protected function msg( $msg ) {
+		return wfMessage( $msg )->inLanguage( $this );
 	}
 
 	/**
@@ -3406,10 +3416,10 @@ class Language {
 			return '';
 		}
 		if ( $m > 0 ) {
-			$and = htmlspecialchars( $this->getMessageFromDB( 'and' ) );
-			$space = htmlspecialchars( $this->getMessageFromDB( 'word-separator' ) );
+			$and = $this->msg( 'and' )->escaped();
+			$space = $this->msg( 'word-separator' )->escaped();
 			if ( $m > 1 ) {
-				$comma = htmlspecialchars( $this->getMessageFromDB( 'comma-separator' ) );
+				$comma = $this->msg( 'comma-separator' )->escaped();
 			}
 		}
 		$s = $l[$m];
@@ -4643,17 +4653,22 @@ class Language {
 	 * Make a list item, used by various special pages
 	 *
 	 * @param string $page Page link
-	 * @param string $details Text between brackets
+	 * @param string $details HTML safe text between brackets
 	 * @param bool $oppositedm Add the direction mark opposite to your
 	 *   language, to display text properly
-	 * @return string
+	 * @return HTML escaped string
 	 */
 	function specialList( $page, $details, $oppositedm = true ) {
-		$dirmark = ( $oppositedm ? $this->getDirMark( true ) : '' ) .
-			$this->getDirMark();
-		$details = $details ? $dirmark . $this->getMessageFromDB( 'word-separator' ) .
-			wfMessage( 'parentheses' )->rawParams( $details )->inLanguage( $this )->escaped() : '';
-		return $page . $details;
+		if ( !$details ) {
+			return $page;
+		}
+
+		$dirmark = ( $oppositedm ? $this->getDirMark( true ) : '' ) . $this->getDirMark();
+		return
+			$page .
+			$dirmark .
+			$this->msg( 'word-separator' )->escaped() .
+			$this->msg( 'parentheses' )->rawParams( $details )->escaped();
 	}
 
 	/**
