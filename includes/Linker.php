@@ -1179,7 +1179,7 @@ class Linker {
 		Hooks::run( 'UserToolLinksEdit', array( $userId, $userText, &$items ) );
 
 		if ( $items ) {
-			return wfMessage( 'word-separator' )->plain()
+			return wfMessage( 'word-separator' )->escaped()
 				. '<span class="mw-usertoollinks">'
 				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
 				. '</span>';
@@ -1266,7 +1266,7 @@ class Linker {
 			$userId = $rev->getUser( Revision::FOR_THIS_USER );
 			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
 			$link = self::userLink( $userId, $userText )
-				. wfMessage( 'word-separator' )->plain()
+				. wfMessage( 'word-separator' )->escaped()
 				. self::userToolLinks( $userId, $userText );
 		} else {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
@@ -1812,7 +1812,7 @@ class Linker {
 		$inner = self::buildRollbackLink( $rev, $context, $editCount );
 
 		if ( !in_array( 'noBrackets', $options ) ) {
-			$inner = $context->msg( 'brackets' )->rawParams( $inner )->plain();
+			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
 
 		return '<span class="mw-rollback-link">' . $inner . '</span>';
