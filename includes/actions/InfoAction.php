@@ -297,7 +297,7 @@ class InfoAction extends FormlessAction {
 		// Content model of the page
 		$pageInfo['header-basic'][] = array(
 			$this->msg( 'pageinfo-content-model' ),
-			ContentHandler::getLocalizedName( $title->getContentModel() )
+			htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) )
 		);
 
 		// Search engine status
@@ -483,7 +483,7 @@ class InfoAction extends FormlessAction {
 				$this->msg( 'pageinfo-firsttime' ),
 				Linker::linkKnown(
 					$title,
-					$lang->userTimeAndDate( $firstRev->getTimestamp(), $user ),
+					htmlspecialchars( $lang->userTimeAndDate( $firstRev->getTimestamp(), $user ) ),
 					array(),
 					array( 'oldid' => $firstRev->getId() )
 				)
@@ -502,7 +502,7 @@ class InfoAction extends FormlessAction {
 				$this->msg( 'pageinfo-lasttime' ),
 				Linker::linkKnown(
 					$title,
-					$lang->userTimeAndDate( $this->page->getTimestamp(), $user ),
+					htmlspecialchars( $lang->userTimeAndDate( $this->page->getTimestamp(), $user ) ),
 					array(),
 					array( 'oldid' => $this->page->getLatest() )
 				)

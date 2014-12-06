@@ -2043,14 +2043,14 @@ class Linker {
 				if ( $titleObj->quickUserCan( 'edit' ) ) {
 					$editLink = self::link(
 						$titleObj,
-						wfMessage( 'editlink' )->text(),
+						wfMessage( 'editlink' )->escaped(),
 						array(),
 						array( 'action' => 'edit' )
 					);
 				} else {
 					$editLink = self::link(
 						$titleObj,
-						wfMessage( 'viewsourcelink' )->text(),
+						wfMessage( 'viewsourcelink' )->escaped(),
 						array(),
 						array( 'action' => 'edit' )
 					);
