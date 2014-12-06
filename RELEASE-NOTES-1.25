@@ -29,7 +29,7 @@ production.
 * $wgOpenSearchTemplate is deprecated in favor of $wgOpenSearchTemplates.
 * Edits are now prepared via AJAX as users type edit summaries. This behavior
   can be disabled via $wgAjaxEditStash.
-* (bug 44740) The temporary option $wgIncludejQueryMigrate was removed, along
+* (T46740) The temporary option $wgIncludejQueryMigrate was removed, along
   with the jQuery Migrate library, as indicated when this option was provided in
   MediaWiki 1.24.
 
