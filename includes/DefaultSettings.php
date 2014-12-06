@@ -6186,6 +6186,18 @@ $wgCachePrefix = false;
  */
 $wgDebugToolbar = false;
 
+/**
+ * Enable debugging to highlight unescaped and double-escaped messages in PHP
+ * error log as well as visible artifacts in the rendered pages. This works by
+ * appending some html all messages, but removing that in the most commonly used
+ * escaping functions as well as checking and cleaning up the final html. Does
+ * not yet work nicely for dynamically created messages in JavaScript and causes
+ * broken display there.
+ *
+ * @since Dragons
+ */
+$wgDebugMessageEscaping = false;
+
 /** @} */ # end of profiling, testing and debugging }
 
 /************************************************************************//**

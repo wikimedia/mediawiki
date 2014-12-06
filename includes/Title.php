@@ -288,6 +288,11 @@ class Title implements LinkTarget {
 			throw new MWException( '$text must be a string, given an object' );
 		}
 
+		global $wgDebugMessageEscaping;
+		if ( $wgDebugMessageEscaping ) {
+			$text = preg_replace( '~<a "<">(?:[^<]+)</a>~', '', $text );
+		}
+
 		$titleCache = self::getTitleCache();
 
 		// Wiki pages often contain multiple links to the same page.

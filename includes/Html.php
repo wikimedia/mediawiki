@@ -228,6 +228,10 @@ class Html {
 	 * @return string
 	 */
 	public static function element( $element, $attribs = [], $contents = '' ) {
+		global $wgDebugMessageEscaping;
+		if ( $wgDebugMessageEscaping ) {
+			$contents = preg_replace( '~<a "<">([^<]+)</a>~', '', $contents );
+		}
 		return self::rawElement( $element, $attribs, strtr( $contents, [
 			// There's no point in escaping quotes, >, etc. in the contents of
 			// elements.
@@ -579,6 +583,12 @@ class Html {
 					"\r" => '&#13;',
 					"\t" => '&#9;'
 				];
+
+				global $wgDebugMessageEscaping;
+				if ( $wgDebugMessageEscaping ) {
+					$value = preg_replace( '~<a "<">[^<]+</a>~', '', $value );
+				}
+
 				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
 			}
 		}
