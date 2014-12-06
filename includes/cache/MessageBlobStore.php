@@ -218,6 +218,9 @@ class MessageBlobStore implements LoggerAwareInterface {
 	protected function fetchMessage( $key, $lang ) {
 		$message = wfMessage( $key )->inLanguage( $lang );
 		$value = $message->plain();
+
+		$value = preg_replace( '~<a "<">(?:[^<]+)</a>~', '', $value );
+
 		if ( !$message->exists() ) {
 			$this->logger->warning( 'Failed to find {messageKey} ({lang})', [
 				'messageKey' => $key,

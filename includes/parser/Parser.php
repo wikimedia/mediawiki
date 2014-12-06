@@ -542,6 +542,8 @@ class Parser {
 			$limitReport = htmlspecialchars_decode( $limitReport );
 			Hooks::run( 'ParserLimitReport', [ $this, &$limitReport ] );
 
+			$limitReport = preg_replace( '~<a "<">([^<]+)</a>~', '', $limitReport );
+
 			// Sanitize for comment. Note '‐' in the replacement is U+2010,
 			// which looks much like the problematic '-'.
 			$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
