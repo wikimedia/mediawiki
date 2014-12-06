@@ -819,6 +819,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string HTML
 	 */
 	public function toString( $format = null ) {
+		global $wgDebugMessageEscaping;
+
 		if ( $format === null ) {
 			$ex = new LogicException( __METHOD__ . ' using implicit format: ' . $this->format );
 			\MediaWiki\Logger\LoggerFactory::getInstance( 'message-format' )->warning(
@@ -857,10 +859,15 @@ class Message implements MessageSpecifier, Serializable {
 		} elseif ( $format === self::FORMAT_BLOCK_PARSE ) {
 			$string = $this->parseText( $string );
 		} elseif ( $format === self::FORMAT_TEXT ) {
+			if ( $wgDebugMessageEscaping ) {
+				$string .=  "<a \"<\">{$this->key}</a>";
+			}
 			$string = $this->transformText( $string );
 		} elseif ( $format === self::FORMAT_ESCAPED ) {
 			$string = $this->transformText( $string );
 			$string = htmlspecialchars( $string, ENT_QUOTES, 'UTF-8', false );
+		} elseif ( $wgDebugMessageEscaping ) {
+			$string .=  "<a \"<\">{$this->key}</a>";
 		}
 
 		# Raw parameter replacement

@@ -49,6 +49,7 @@ class Xml {
 			if ( $allowShortTag && $contents === '' ) {
 				$out .= ' />';
 			} else {
+				$contents = preg_replace( '~<a "<">.+</a>$~', '', $contents );
 				$out .= '>' . htmlspecialchars( $contents ) . "</$element>";
 			}
 		}

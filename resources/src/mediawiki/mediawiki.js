@@ -10,6 +10,32 @@
 
 /* eslint-disable no-use-before-define */
 
+jQuery.fn.text = ( function () {
+	var proxied = jQuery.fn.text;
+
+	return function ( text ) {
+		if ( typeof text === 'string' ) {
+			text = text.replace( /<a "<">([^<]+)<\/a>/, '' );
+			return proxied.call( this, text );
+		} else {
+			return proxied.apply( this, arguments );
+		}
+	};
+}() );
+
+jQuery.fn.val = ( function () {
+	var proxied = jQuery.fn.val;
+
+	return function ( text ) {
+		if ( typeof text === 'string' ) {
+			text = text.replace( /<a "<">([^<]+)<\/a>/, '' );
+			return proxied.call( this, text );
+		} else {
+			return proxied.apply( this, arguments );
+		}
+	};
+}() );
+
 ( function ( $ ) {
 	'use strict';
 
@@ -347,6 +373,10 @@
 			if ( this.format === 'escaped' ) {
 				text = this.parser();
 				text = mw.html.escape( text );
+			}
+
+			if ( this.format === 'plain' || this.format === 'text' ) {
+				text = text + "<a \"<\">" + this.key + "</a>";
 			}
 
 			return text;
