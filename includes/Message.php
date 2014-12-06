@@ -720,6 +720,7 @@ class Message implements MessageSpecifier {
 	 * @return string HTML
 	 */
 	public function toString() {
+		global $wgDebugMessageEscaping;
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {
@@ -749,9 +750,14 @@ class Message implements MessageSpecifier {
 			$string = $this->parseText( $string );
 		} elseif ( $this->format === 'text' ) {
 			$string = $this->transformText( $string );
+			if ( $wgDebugMessageEscaping ) {
+				$string .=  "<a \"<\">{$this->key}</a>";
+			}
 		} elseif ( $this->format === 'escaped' ) {
 			$string = $this->transformText( $string );
 			$string = htmlspecialchars( $string, ENT_QUOTES, 'UTF-8', false );
+		} elseif ( $wgDebugMessageEscaping ) {
+			$string .=  "<a \"<\">{$this->key}</a>";
 		}
 
 		# Raw parameter replacement

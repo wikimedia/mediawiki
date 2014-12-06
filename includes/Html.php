@@ -235,6 +235,10 @@ class Html {
 	 * @return string
 	 */
 	public static function element( $element, $attribs = array(), $contents = '' ) {
+		global $wgDebugMessageEscaping;
+		if ( $wgDebugMessageEscaping ) {
+			$contents = preg_replace( '~<a "<">([^<]+)</a>~', '', $contents );
+		}
 		return self::rawElement( $element, $attribs, strtr( $contents, array(
 			// There's no point in escaping quotes, >, etc. in the contents of
 			// elements.
@@ -617,6 +621,11 @@ class Html {
 					// But reportedly it breaks some XML tools?
 					// @todo FIXME: Is this really true?
 					$map['<'] = '&lt;';
+				}
+
+				global $wgDebugMessageEscaping;
+				if ( $wgDebugMessageEscaping ) {
+					$value = preg_replace( '~<a "<">[^<]+</a>~', '', $value );
 				}
 				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
 			}

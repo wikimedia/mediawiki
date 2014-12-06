@@ -2316,7 +2316,28 @@ class OutputPage extends ContextSource {
 
 		$this->sendCacheControl();
 
-		ob_end_flush();
+		global $wgDebugMessageEscaping;
+		if ( $wgDebugMessageEscaping ) {
+			$out = ob_get_contents();
+			ob_clean();
+
+			$out = preg_replace( '~&lt;a (?:"|&quot;)&lt;(?:"|&quot;)&gt;(?:[^<]+)&lt;/a&gt;~', '', $out );
+			echo $out;
+
+			ob_end_flush();
+
+			$matches = array();
+			preg_match_all( '~<a "<">([^<]+)</a>~', $out, $matches, PREG_SET_ORDER );
+			foreach ( $matches as $m ) {
+				trigger_error( "Unescaped message $m[1]", E_USER_NOTICE );
+			}
+
+			$matches = array();
+			preg_match_all( '~&amp;lt;a (?:"|&amp;quot;)&amp;lt;(?:"|&amp;quot;)&amp;gt;([^&]+)&amp;lt;/a&amp;gt;~', $out, $matches, PREG_SET_ORDER );
+			foreach ( $matches as $m ) {
+				trigger_error( "Doubleescaped message $m[1]", E_USER_NOTICE );
+			}
+		}
 
 	}
 
