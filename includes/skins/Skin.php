@@ -482,9 +482,10 @@ abstract class Skin extends ContextSource {
 
 			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->escaped();
 			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
+			$title = Title::newFromText( $linkPage );
+			$link = $title ? Linker::link( $title, $msg ) : $msg;
 			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
-				Linker::link( Title::newFromText( $linkPage ), $msg )
-				. $colon . '<ul>' . $t . '</ul>' . '</div>';
+				$link . $colon . '<ul>' . $t . '</ul>' . '</div>';
 		}
 
 		# Hidden categories
@@ -950,6 +951,10 @@ abstract class Skin extends ContextSource {
 			// language (which may or may not be the same as the default language),
 			// but we make the link target be the one site-wide page.
 			$title = Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
+
+			if ( !$title ) {
+				return '';
+			}
 
 			return Linker::linkKnown(
 				$title,
