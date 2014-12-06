@@ -317,16 +317,18 @@ class LinkHolderArray {
 					continue;
 				}
 
+				$titleValue = $title->getTitleValue();
+
 				# Check if it's a static known link, e.g. interwiki
 				if ( $title->isAlwaysKnown() ) {
 					$colours[$pdbk] = '';
 				} elseif ( $ns == NS_SPECIAL ) {
 					$colours[$pdbk] = 'new';
-				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
+				} elseif ( ( $id = $linkCache->getGoodLinkID( $titleValue ) ) != 0 ) {
 					$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
 					$output->addLink( $title, $id );
 					$linkcolour_ids[$id] = $pdbk;
-				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
+				} elseif ( $linkCache->isBadLink( $titleValue ) ) {
 					$colours[$pdbk] = 'new';
 				} else {
 					# Not in the link cache, add it to the query
@@ -410,7 +412,7 @@ class LinkHolderArray {
 				}
 				$attribs = array();
 				if ( $colours[$pdbk] == 'new' ) {
-					$linkCache->addBadLinkObj( $title );
+					$linkCache->addBadLinkObj( $title->getTitleValue() );
 					$output->addLink( $title, 0 );
 					$type = array( 'broken' );
 				} else {

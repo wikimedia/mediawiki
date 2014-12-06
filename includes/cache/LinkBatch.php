@@ -158,7 +158,8 @@ class LinkBatch {
 		$remaining = $this->data;
 		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$cache->addGoodLinkObjFromRow( $title, $row );
+			$titleValue = new TitleValue( (int)$row->page_namespace, $row->page_title );
+			$cache->addGoodLinkObjFromRow( $titleValue, $row );
 			$ids[$title->getPrefixedDBkey()] = $row->page_id;
 			unset( $remaining[$row->page_namespace][$row->page_title] );
 		}
@@ -167,7 +168,8 @@ class LinkBatch {
 		foreach ( $remaining as $ns => $dbkeys ) {
 			foreach ( $dbkeys as $dbkey => $unused ) {
 				$title = Title::makeTitle( $ns, $dbkey );
-				$cache->addBadLinkObj( $title );
+				$titleValue = new TitleValue( $ns, $dbkey );
+				$cache->addBadLinkObj( $titleValue );
 				$ids[$title->getPrefixedDBkey()] = 0;
 			}
 		}
