@@ -1043,6 +1043,7 @@
 	"right-protect": "Câmbia i livē 'd prutesiòun e mudéfica 'l pàgini prutèti in ripetisiòun",
 	"right-editprotected": "Mudéfica 'l pàgini prutèti cun \"{{int:protect-level-sysop}}\"",
 	"right-editsemiprotected": "Mudéfica 'l pàgini prutèti cun \"{{int:protect-level-autoconfirmed}}\"",
+	"right-editcontentmodel": "Mudéfica al mudèl ed còl ché dèinter int 'na pàgina.",
 	"right-editinterface": "Mudéfica al colegamèint tra sistēma e utèint",
 	"right-editusercssjs": "Mudéfica i file CSS e JS 'd êter utèint",
 	"right-editusercss": "Mudéfica i file CSS 'd êter utèint",
