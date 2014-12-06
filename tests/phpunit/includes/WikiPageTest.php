@@ -706,7 +706,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		static $count = 0;
 		$count++;
 
-		$page = new WikiPage( new Title( "WikiPageTest_testGetParserOutput_nonexisting_$count" ) );
+		$page = new WikiPage( Title::newFromText( "WikiPageTest_testGetParserOutput_nonexisting_$count" ) );
 
 		$opt = new ParserOptions();
 		$po = $page->getParserOutput( $opt );
