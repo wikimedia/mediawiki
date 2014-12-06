@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 15" width="15" height="11">
+    <g id="magnify-clip" fill="#fff" stroke="#000">
+        <path id="bigbox" d="M9.491 1.865h-10.99v7.919h10.99z"/>
+        <path id="smallbox" d="M12.499 6.868h-5.943v4.904h5.943z"/>
+    </g>
+</svg>
