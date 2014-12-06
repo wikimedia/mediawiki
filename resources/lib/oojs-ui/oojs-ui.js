@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.2.4
+ * OOjs UI v0.4.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-12-02T18:45:19Z
+ * Date: 2014-12-06T00:33:09Z
  */
 ( function ( OO ) {
 
@@ -730,7 +730,7 @@ OO.ui.Element = function OoUiElement( config ) {
 	config = config || {};
 
 	// Properties
-	this.$ = config.$ || OO.ui.Element.getJQuery( document );
+	this.$ = config.$ || OO.ui.Element.static.getJQuery( document );
 	this.data = config.data;
 	this.$element = this.$( this.$.context.createElement( this.getTagName() ) );
 	this.elementGroup = null;
@@ -777,7 +777,7 @@ OO.ui.Element.static.tagName = 'div';
  *   not in an iframe
  * @return {Function} Bound jQuery function
  */
-OO.ui.Element.getJQuery = function ( context, $iframe ) {
+OO.ui.Element.static.getJQuery = function ( context, $iframe ) {
 	function wrapper( selector ) {
 		return $( selector, wrapper.context );
 	}
@@ -798,7 +798,7 @@ OO.ui.Element.getJQuery = function ( context, $iframe ) {
  * @param {jQuery|HTMLElement|HTMLDocument|Window} obj Object to get the document for
  * @return {HTMLDocument|null} Document object
  */
-OO.ui.Element.getDocument = function ( obj ) {
+OO.ui.Element.static.getDocument = function ( obj ) {
 	// jQuery - selections created "offscreen" won't have a context, so .context isn't reliable
 	return ( obj[0] && obj[0].ownerDocument ) ||
 		// Empty jQuery selections might have a context
@@ -819,7 +819,7 @@ OO.ui.Element.getDocument = function ( obj ) {
  * @param {jQuery|HTMLElement|HTMLDocument|Window} obj Context to get the window for
  * @return {Window} Window object
  */
-OO.ui.Element.getWindow = function ( obj ) {
+OO.ui.Element.static.getWindow = function ( obj ) {
 	var doc = this.getDocument( obj );
 	return doc.parentWindow || doc.defaultView;
 };
@@ -831,7 +831,7 @@ OO.ui.Element.getWindow = function ( obj ) {
  * @param {jQuery|HTMLElement|HTMLDocument|Window} obj Context to get the direction for
  * @return {string} Text direction, either 'ltr' or 'rtl'
  */
-OO.ui.Element.getDir = function ( obj ) {
+OO.ui.Element.static.getDir = function ( obj ) {
 	var isDoc, isWin;
 
 	if ( obj instanceof jQuery ) {
@@ -859,7 +859,7 @@ OO.ui.Element.getDir = function ( obj ) {
  * @param {Object} [offset] Offset to start with, used internally
  * @return {Object} Offset object, containing left and top properties
  */
-OO.ui.Element.getFrameOffset = function ( from, to, offset ) {
+OO.ui.Element.static.getFrameOffset = function ( from, to, offset ) {
 	var i, len, frames, frame, rect;
 
 	if ( !to ) {
@@ -904,7 +904,7 @@ OO.ui.Element.getFrameOffset = function ( from, to, offset ) {
  * @param {jQuery} $anchor Element to get $element's position relative to
  * @return {Object} Translated position coordinates, containing top and left properties
  */
-OO.ui.Element.getRelativePosition = function ( $element, $anchor ) {
+OO.ui.Element.static.getRelativePosition = function ( $element, $anchor ) {
 	var iframe, iframePos,
 		pos = $element.offset(),
 		anchorPos = $anchor.offset(),
@@ -934,7 +934,7 @@ OO.ui.Element.getRelativePosition = function ( $element, $anchor ) {
  * @param {HTMLElement} el Element to measure
  * @return {Object} Dimensions object with `top`, `left`, `bottom` and `right` properties
  */
-OO.ui.Element.getBorders = function ( el ) {
+OO.ui.Element.static.getBorders = function ( el ) {
 	var doc = el.ownerDocument,
 		win = doc.parentWindow || doc.defaultView,
 		style = win && win.getComputedStyle ?
@@ -961,7 +961,7 @@ OO.ui.Element.getBorders = function ( el ) {
  * @param {HTMLElement|Window} el Element to measure
  * @return {Object} Dimensions object with `borders`, `scroll`, `scrollbar` and `rect` properties
  */
-OO.ui.Element.getDimensions = function ( el ) {
+OO.ui.Element.static.getDimensions = function ( el ) {
 	var $el, $win,
 		doc = el.ownerDocument || el.document,
 		win = doc.parentWindow || doc.defaultView;
@@ -1010,7 +1010,7 @@ OO.ui.Element.getDimensions = function ( el ) {
  * @param {string} [dimension] Dimension of scrolling to look for; `x`, `y` or omit for either
  * @return {HTMLElement} Closest scrollable container
  */
-OO.ui.Element.getClosestScrollableContainer = function ( el, dimension ) {
+OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) {
 	var i, val,
 		props = [ 'overflow' ],
 		$parent = $( el ).parent();
@@ -1046,7 +1046,7 @@ OO.ui.Element.getClosestScrollableContainer = function ( el, dimension ) {
  *  to scroll in both directions
  * @param {Function} [config.complete] Function to call when scrolling completes
  */
-OO.ui.Element.scrollIntoView = function ( el, config ) {
+OO.ui.Element.static.scrollIntoView = function ( el, config ) {
 	// Configuration initialization
 	config = config || {};
 
@@ -1104,35 +1104,6 @@ OO.ui.Element.scrollIntoView = function ( el, config ) {
 			callback();
 		}
 	}
-};
-
-/**
- * Bind a handler for an event on a DOM element.
- *
- * Used to be for working around a jQuery bug (jqbug.com/14180),
- * but obsolete as of jQuery 1.11.0.
- *
- * @static
- * @deprecated Use jQuery#on instead.
- * @param {HTMLElement|jQuery} el DOM element
- * @param {string} event Event to bind
- * @param {Function} callback Callback to call when the event fires
- */
-OO.ui.Element.onDOMEvent = function ( el, event, callback ) {
-	$( el ).on( event, callback );
-};
-
-/**
- * Unbind a handler bound with #static-method-onDOMEvent.
- *
- * @deprecated Use jQuery#off instead.
- * @static
- * @param {HTMLElement|jQuery} el DOM element
- * @param {string} event Event to unbind
- * @param {Function} [callback] Callback to unbind
- */
-OO.ui.Element.offDOMEvent = function ( el, event, callback ) {
-	$( el ).off( event, callback );
 };
 
 /* Methods */
@@ -1224,7 +1195,7 @@ OO.ui.Element.prototype.isElementAttached = function () {
  * @return {HTMLDocument} Document object
  */
 OO.ui.Element.prototype.getElementDocument = function () {
-	return OO.ui.Element.getDocument( this.$element );
+	return OO.ui.Element.static.getDocument( this.$element );
 };
 
 /**
@@ -1233,14 +1204,14 @@ OO.ui.Element.prototype.getElementDocument = function () {
  * @return {Window} Window object
  */
 OO.ui.Element.prototype.getElementWindow = function () {
-	return OO.ui.Element.getWindow( this.$element );
+	return OO.ui.Element.static.getWindow( this.$element );
 };
 
 /**
  * Get closest scrollable container.
  */
 OO.ui.Element.prototype.getClosestScrollableElementContainer = function () {
-	return OO.ui.Element.getClosestScrollableContainer( this.$element[0] );
+	return OO.ui.Element.static.getClosestScrollableContainer( this.$element[0] );
 };
 
 /**
@@ -1269,29 +1240,7 @@ OO.ui.Element.prototype.setElementGroup = function ( group ) {
  * @param {Object} [config] Configuration options
  */
 OO.ui.Element.prototype.scrollElementIntoView = function ( config ) {
-	return OO.ui.Element.scrollIntoView( this.$element[0], config );
-};
-
-/**
- * Bind a handler for an event on this.$element
- *
- * @deprecated Use jQuery#on instead.
- * @param {string} event
- * @param {Function} callback
- */
-OO.ui.Element.prototype.onDOMEvent = function ( event, callback ) {
-	OO.ui.Element.onDOMEvent( this.$element, event, callback );
-};
-
-/**
- * Unbind a handler bound with #offDOMEvent
- *
- * @deprecated Use jQuery#off instead.
- * @param {string} event
- * @param {Function} callback
- */
-OO.ui.Element.prototype.offDOMEvent = function ( event, callback ) {
-	OO.ui.Element.offDOMEvent( this.$element, event, callback );
+	return OO.ui.Element.static.scrollIntoView( this.$element[0], config );
 };
 
 /**
@@ -1954,7 +1903,7 @@ OO.ui.Window.prototype.setManager = function ( manager ) {
 	this.toggle( false );
 
 	// Figure out directionality:
-	this.dir = OO.ui.Element.getDir( this.$iframe || this.$content ) || 'ltr';
+	this.dir = OO.ui.Element.static.getDir( this.$iframe || this.$content ) || 'ltr';
 
 	return this;
 };
@@ -2140,7 +2089,7 @@ OO.ui.Window.prototype.hold = function ( data ) {
 
 	this.getHoldProcess( data ).execute().done( function () {
 		// Get the focused element within the window's content
-		var $focus = win.$content.find( OO.ui.Element.getDocument( win.$content ).activeElement );
+		var $focus = win.$content.find( OO.ui.Element.static.getDocument( win.$content ).activeElement );
 
 		// Blur the focused element
 		if ( $focus.length ) {
@@ -2255,7 +2204,7 @@ OO.ui.Window.prototype.load = function () {
 	doc.close();
 
 	// Properties
-	this.$ = OO.ui.Element.getJQuery( doc, this.$iframe );
+	this.$ = OO.ui.Element.static.getJQuery( doc, this.$iframe );
 	this.$content = this.$( '.oo-ui-window-content' ).attr( 'tabIndex', 0 );
 	this.$document = this.$( doc );
 
@@ -3109,7 +3058,7 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
  * @throws {Error} If windows being removed are not being managed
  */
 OO.ui.WindowManager.prototype.removeWindows = function ( names ) {
-	var i, len, win, name,
+	var i, len, win, name, cleanupWindow,
 		manager = this,
 		promises = [],
 		cleanup = function ( name, win ) {
@@ -3123,7 +3072,8 @@ OO.ui.WindowManager.prototype.removeWindows = function ( names ) {
 		if ( !win ) {
 			throw new Error( 'Cannot remove window' );
 		}
-		promises.push( this.closeWindow( name ).then( cleanup.bind( null, name, win ) ) );
+		cleanupWindow = cleanup.bind( null, name, win );
+		promises.push( this.closeWindow( name ).then( cleanupWindow, cleanupWindow ) );
 	}
 
 	return $.when.apply( $, promises );
@@ -3153,7 +3103,7 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 		return;
 	}
 
-	var viewport = OO.ui.Element.getDimensions( win.getElementWindow() ),
+	var viewport = OO.ui.Element.static.getDimensions( win.getElementWindow() ),
 		sizes = this.constructor.static.sizes,
 		size = win.getSize();
 
@@ -4156,6 +4106,371 @@ OO.ui.GroupElement.prototype.clearItems = function () {
 };
 
 /**
+ * A mixin for an element that can be dragged and dropped.
+ * Use in conjunction with DragGroupWidget
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ */
+OO.ui.DraggableElement = function OoUiDraggableElement() {
+	// Properties
+	this.index = null;
+
+	// Initialize and events
+	this.$element
+		.attr( 'draggable', true )
+		.addClass( 'oo-ui-draggableElement' )
+		.on( {
+			dragstart: this.onDragStart.bind( this ),
+			dragover: this.onDragOver.bind( this ),
+			dragend: this.onDragEnd.bind( this ),
+			drop: this.onDrop.bind( this )
+		} );
+};
+
+/* Events */
+
+/**
+ * @event dragstart
+ * @param {OO.ui.DraggableElement} item Dragging item
+ */
+
+/**
+ * @event dragend
+ */
+
+/**
+ * @event drop
+ */
+
+/* Methods */
+
+/**
+ * Respond to dragstart event.
+ * @param {jQuery.Event} event jQuery event
+ * @fires dragstart
+ */
+OO.ui.DraggableElement.prototype.onDragStart = function ( e ) {
+	var dataTransfer = e.originalEvent.dataTransfer;
+	// Define drop effect
+	dataTransfer.dropEffect = 'none';
+	dataTransfer.effectAllowed = 'move';
+	// We must set up a dataTransfer data property or Firefox seems to
+	// ignore the fact the element is draggable.
+	try {
+		dataTransfer.setData( 'application-x/OOjs-UI-draggable', this.getIndex() );
+	} catch ( err ) {
+		// The above is only for firefox. No need to set a catch clause
+		// if it fails, move on.
+	}
+	// Add dragging class
+	this.$element.addClass( 'oo-ui-draggableElement-dragging' );
+	// Emit event
+	this.emit( 'dragstart', this );
+	return true;
+};
+
+/**
+ * Respond to dragend event.
+ * @fires dragend
+ */
+OO.ui.DraggableElement.prototype.onDragEnd = function () {
+	this.$element.removeClass( 'oo-ui-draggableElement-dragging' );
+	this.emit( 'dragend' );
+};
+
+/**
+ * Handle drop event.
+ * @param {jQuery.Event} event jQuery event
+ * @fires drop
+ */
+OO.ui.DraggableElement.prototype.onDrop = function ( e ) {
+	e.preventDefault();
+	this.emit( 'drop', e );
+};
+
+/**
+ * In order for drag/drop to work, the dragover event must
+ * return false and stop propogation.
+ */
+OO.ui.DraggableElement.prototype.onDragOver = function ( e ) {
+	e.preventDefault();
+};
+
+/**
+ * Set item index.
+ * Store it in the DOM so we can access from the widget drag event
+ * @param {number} Item index
+ */
+OO.ui.DraggableElement.prototype.setIndex = function ( index ) {
+	if ( this.index !== index ) {
+		this.index = index;
+		this.$element.data( 'index', index );
+	}
+};
+
+/**
+ * Get item index
+ * @return {number} Item index
+ */
+OO.ui.DraggableElement.prototype.getIndex = function () {
+	return this.index;
+};
+
+/**
+ * Element containing a sequence of child elements that can be dragged
+ * and dropped.
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$group] Container node, assigned to #$group, omit to use a generated `<div>`
+ * @cfg {string} [orientation] Item orientation, 'horizontal' or 'vertical'. Defaults to 'vertical'
+ */
+OO.ui.DraggableGroupElement = function OoUiDraggableGroupElement( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.GroupElement.call( this, config );
+
+	// Properties
+	this.orientation = config.orientation || 'vertical';
+	this.dragItem = null;
+	this.itemDragOver = null;
+	this.itemKeys = {};
+	this.sideInsertion = '';
+
+	// Events
+	this.aggregate( {
+		dragstart: 'itemDragStart',
+		dragend: 'itemDragEnd',
+		drop: 'itemDrop'
+	} );
+	this.connect( this, {
+		itemDragStart: 'onItemDragStart',
+		itemDrop: 'onItemDrop',
+		itemDragEnd: 'onItemDragEnd'
+	} );
+	this.$element.on( {
+		dragover: $.proxy( this.onDragOver, this ),
+		dragleave: $.proxy( this.onDragLeave, this )
+	} );
+
+	// Initialize
+	if ( $.isArray( config.items ) ) {
+		this.addItems( config.items );
+	}
+	this.$placeholder = $( '<div>' )
+		.addClass( 'oo-ui-draggableGroupElement-placeholder' );
+	this.$element
+		.addClass( 'oo-ui-draggableGroupElement' )
+		.append( this.$status )
+		.toggleClass( 'oo-ui-draggableGroupElement-horizontal', this.orientation === 'horizontal' )
+		.prepend( this.$placeholder );
+};
+
+/* Setup */
+OO.mixinClass( OO.ui.DraggableGroupElement, OO.ui.GroupElement );
+
+/* Events */
+
+/**
+ * @event reorder
+ * @param {OO.ui.DraggableElement} item Reordered item
+ * @param {number} [newIndex] New index for the item
+ */
+
+/* Methods */
+
+/**
+ * Respond to item drag start event
+ * @param {OO.ui.DraggableElement} item Dragged item
+ */
+OO.ui.DraggableGroupElement.prototype.onItemDragStart = function ( item ) {
+	var i, len;
+
+	// Map the index of each object
+	for ( i = 0, len = this.items.length; i < len; i++ ) {
+		this.items[i].setIndex( i );
+	}
+
+	if ( this.orientation === 'horizontal' ) {
+		// Set the height of the indicator
+		this.$placeholder.css( {
+			height: item.$element.outerHeight(),
+			width: 2
+		} );
+	} else {
+		// Set the width of the indicator
+		this.$placeholder.css( {
+			height: 2,
+			width: item.$element.outerWidth()
+		} );
+	}
+	this.setDragItem( item );
+};
+
+/**
+ * Respond to item drag end event
+ */
+OO.ui.DraggableGroupElement.prototype.onItemDragEnd = function () {
+	this.unsetDragItem();
+	return false;
+};
+
+/**
+ * Handle drop event and switch the order of the items accordingly
+ * @param {OO.ui.DraggableElement} item Dropped item
+ * @fires reorder
+ */
+OO.ui.DraggableGroupElement.prototype.onItemDrop = function ( item ) {
+	var toIndex = item.getIndex();
+	// Check if the dropped item is from the current group
+	// TODO: Figure out a way to configure a list of legally droppable
+	// elements even if they are not yet in the list
+	if ( this.getDragItem() ) {
+		// If the insertion point is 'after', the insertion index
+		// is shifted to the right (or to the left in RTL, hence 'after')
+		if ( this.sideInsertion === 'after' ) {
+			toIndex++;
+		}
+		// Emit change event
+		this.emit( 'reorder', this.getDragItem(), toIndex );
+	}
+	// Return false to prevent propogation
+	return false;
+};
+
+/**
+ * Handle dragleave event.
+ */
+OO.ui.DraggableGroupElement.prototype.onDragLeave = function () {
+	// This means the item was dragged outside the widget
+	this.$placeholder
+		.css( 'left', 0 )
+		.hide();
+};
+
+/**
+ * Respond to dragover event
+ * @param {jQuery.Event} event Event details
+ */
+OO.ui.DraggableGroupElement.prototype.onDragOver = function ( e ) {
+	var dragOverObj, $optionWidget, itemOffset, itemMidpoint, itemBoundingRect,
+		itemSize, cssOutput, dragPosition, itemIndex, itemPosition,
+		clientX = e.originalEvent.clientX,
+		clientY = e.originalEvent.clientY;
+
+	// Get the OptionWidget item we are dragging over
+	dragOverObj = this.getElementDocument().elementFromPoint( clientX, clientY );
+	$optionWidget = $( dragOverObj ).closest( '.oo-ui-draggableElement' );
+	if ( $optionWidget[0] ) {
+		itemOffset = $optionWidget.offset();
+		itemBoundingRect = $optionWidget[0].getBoundingClientRect();
+		itemPosition = $optionWidget.position();
+		itemIndex = $optionWidget.data( 'index' );
+	}
+
+	if (
+		itemOffset &&
+		this.isDragging() &&
+		itemIndex !== this.getDragItem().getIndex()
+	) {
+		if ( this.orientation === 'horizontal' ) {
+			// Calculate where the mouse is relative to the item width
+			itemSize = itemBoundingRect.width;
+			itemMidpoint = itemBoundingRect.left + itemSize / 2;
+			dragPosition = clientX;
+			// Which side of the item we hover over will dictate
+			// where the placeholder will appear, on the left or
+			// on the right
+			cssOutput = {
+				left: dragPosition < itemMidpoint ? itemPosition.left : itemPosition.left + itemSize,
+				top: itemPosition.top
+			};
+		} else {
+			// Calculate where the mouse is relative to the item height
+			itemSize = itemBoundingRect.height;
+			itemMidpoint = itemBoundingRect.top + itemSize / 2;
+			dragPosition = clientY;
+			// Which side of the item we hover over will dictate
+			// where the placeholder will appear, on the top or
+			// on the bottom
+			cssOutput = {
+				top: dragPosition < itemMidpoint ? itemPosition.top : itemPosition.top + itemSize,
+				left: itemPosition.left
+			};
+		}
+		// Store whether we are before or after an item to rearrange
+		// For horizontal layout, we need to account for RTL, as this is flipped
+		if (  this.orientation === 'horizontal' && this.$element.css( 'direction' ) === 'rtl' ) {
+			this.sideInsertion = dragPosition < itemMidpoint ? 'after' : 'before';
+		} else {
+			this.sideInsertion = dragPosition < itemMidpoint ? 'before' : 'after';
+		}
+		// Add drop indicator between objects
+		if ( this.sideInsertion ) {
+			this.$placeholder
+				.css( cssOutput )
+				.show();
+		} else {
+			this.$placeholder
+				.css( {
+					left: 0,
+					top: 0
+				} )
+				.hide();
+		}
+	} else {
+		// This means the item was dragged outside the widget
+		this.$placeholder
+			.css( 'left', 0 )
+			.hide();
+	}
+	// Prevent default
+	e.preventDefault();
+};
+
+/**
+ * Set a dragged item
+ * @param {OO.ui.DraggableElement} item Dragged item
+ */
+OO.ui.DraggableGroupElement.prototype.setDragItem = function ( item ) {
+	this.dragItem = item;
+};
+
+/**
+ * Unset the current dragged item
+ */
+OO.ui.DraggableGroupElement.prototype.unsetDragItem = function () {
+	this.dragItem = null;
+	this.itemDragOver = null;
+	this.$placeholder.hide();
+	this.sideInsertion = '';
+};
+
+/**
+ * Get the current dragged item
+ * @return {OO.ui.DraggableElement|null} item Dragged item or null if no item is dragged
+ */
+OO.ui.DraggableGroupElement.prototype.getDragItem = function () {
+	return this.dragItem;
+};
+
+/**
+ * Check if there's an item being dragged.
+ * @return {Boolean} Item is being dragged
+ */
+OO.ui.DraggableGroupElement.prototype.isDragging = function () {
+	return this.getDragItem() !== null;
+};
+
+/**
  * Element containing an icon.
  *
  * Icons are graphics, about the size of normal text. They can be used to aid the user in locating
@@ -4311,6 +4626,15 @@ OO.ui.IconElement.prototype.setIconTitle = function ( iconTitle ) {
  */
 OO.ui.IconElement.prototype.getIcon = function () {
 	return this.icon;
+};
+
+/**
+ * Get icon title.
+ *
+ * @return {string} Icon title text
+ */
+OO.ui.IconElement.prototype.getIconTitle = function () {
+	return this.iconTitle;
 };
 
 /**
@@ -4971,7 +5295,7 @@ OO.ui.ClippableElement.prototype.toggleClipping = function ( clipping ) {
 			// If the clippable container is the body, we have to listen to scroll events and check
 			// jQuery.scrollTop on the window because of browser inconsistencies
 			this.$clippableScroller = this.$clippableContainer.is( 'body' ) ?
-				this.$( OO.ui.Element.getWindow( this.$clippableContainer ) ) :
+				this.$( OO.ui.Element.static.getWindow( this.$clippableContainer ) ) :
 				this.$clippableContainer;
 			this.$clippableScroller.on( 'scroll', this.onClippableContainerScrollHandler );
 			this.$clippableWindow = this.$( this.getElementWindow() )
@@ -6460,7 +6784,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	}
 	if ( this.autoFocus ) {
 		// Event 'focus' does not bubble, but 'focusin' does
-		this.stackLayout.onDOMEvent( 'focusin', this.onStackLayoutFocus.bind( this ) );
+		this.stackLayout.$element.on( 'focusin', this.onStackLayoutFocus.bind( this ) );
 	}
 
 	// Initialization
@@ -6685,7 +7009,7 @@ OO.ui.BookletLayout.prototype.getPage = function ( name ) {
  *
  * @return {string|null} Current page name
  */
-OO.ui.BookletLayout.prototype.getPageName = function () {
+OO.ui.BookletLayout.prototype.getCurrentPageName = function () {
 	return this.currentPageName;
 };
 
@@ -7228,7 +7552,7 @@ OO.ui.GridLayout.prototype.update = function () {
 				top: Math.round( top * 100 ) + '%'
 			};
 			// If RTL, reverse:
-			if ( OO.ui.Element.getDir( this.$.context ) === 'rtl' ) {
+			if ( OO.ui.Element.static.getDir( this.$.context ) === 'rtl' ) {
 				dimensions.right = Math.round( left * 100 ) + '%';
 			} else {
 				dimensions.left = Math.round( left * 100 ) + '%';
@@ -7312,7 +7636,6 @@ OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
  * @constructor
  * @param {string} name Unique symbolic name of page
  * @param {Object} [config] Configuration options
- * @param {string} [outlineItem] Outline item widget
  */
 OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
 	// Configuration initialization
@@ -7323,7 +7646,7 @@ OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
 
 	// Properties
 	this.name = name;
-	this.outlineItem = config.outlineItem || null;
+	this.outlineItem = null;
 	this.active = false;
 
 	// Initialization
@@ -7427,7 +7750,6 @@ OO.ui.PageLayout.prototype.setActive = function ( active ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [continuous=false] Show all pages, one after another
- * @cfg {string} [icon=''] Symbolic icon name
  * @cfg {OO.ui.Layout[]} [items] Layouts to add
  */
 OO.ui.StackLayout = function OoUiStackLayout( config ) {
@@ -8154,7 +8476,7 @@ OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
 	this.lookupInput = input;
 	this.$overlay = config.$overlay || this.$element;
 	this.lookupMenu = new OO.ui.TextInputMenuSelectWidget( this, {
-		$: OO.ui.Element.getJQuery( this.$overlay ),
+		$: OO.ui.Element.static.getJQuery( this.$overlay ),
 		input: this.lookupInput,
 		$container: config.$container
 	} );
@@ -8669,7 +8991,7 @@ OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
  */
 OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	// Configuration initialization
-	config = $.extend( { target: '_blank' }, config );
+	config = config || {};
 
 	// Parent constructor
 	OO.ui.ButtonWidget.super.call( this, config );
@@ -9374,14 +9696,14 @@ OO.ui.InputWidget.prototype.setRTL = function ( isRTL ) {
  */
 OO.ui.InputWidget.prototype.setValue = function ( value ) {
 	value = this.cleanUpValue( value );
+	// Update the DOM if it has changed. Note that with cleanUpValue, it
+	// is possible for the DOM value to change without this.value changing.
+	if ( this.$input.val() !== value ) {
+		this.$input.val( value );
+	}
 	if ( this.value !== value ) {
 		this.value = value;
 		this.emit( 'change', this.value );
-	}
-	// Update the DOM if it has changed. Note that with cleanUpValue, it
-	// is possible for the DOM value to change without this.value changing.
-	if ( this.$input.val() !== this.value ) {
-		this.$input.val( this.value );
 	}
 	return this;
 };
@@ -9779,6 +10101,14 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.maxRows = config.maxRows !== undefined ? config.maxRows : 10;
 	this.validate = null;
 
+	// Clone for resizing
+	if ( this.autosize ) {
+		this.$clone = this.$input
+			.clone()
+			.insertAfter( this.$input )
+			.hide();
+	}
+
 	this.setValidation( config.validate );
 
 	// Events
@@ -9941,28 +10271,40 @@ OO.ui.TextInputWidget.prototype.setReadOnly = function ( state ) {
  * @chainable
  */
 OO.ui.TextInputWidget.prototype.adjustSize = function () {
-	var $clone, scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError, idealHeight;
+	var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError, idealHeight;
 
 	if ( this.multiline && this.autosize && this.$input.val() !== this.valCache ) {
-		$clone = this.$input.clone()
+		this.$clone
 			.val( this.$input.val() )
+			.attr( 'rows', '' )
 			// Set inline height property to 0 to measure scroll height
-			.css( 'height', 0 )
-			.insertAfter( this.$input );
+			.css( 'height', 0 );
+
+		this.$clone[0].style.display = 'block';
+
 		this.valCache = this.$input.val();
-		scrollHeight = $clone[0].scrollHeight;
+
+		scrollHeight = this.$clone[0].scrollHeight;
+
 		// Remove inline height property to measure natural heights
-		$clone.css( 'height', '' );
-		innerHeight = $clone.innerHeight();
-		outerHeight = $clone.outerHeight();
+		this.$clone.css( 'height', '' );
+		innerHeight = this.$clone.innerHeight();
+		outerHeight = this.$clone.outerHeight();
+
 		// Measure max rows height
-		$clone.attr( 'rows', this.maxRows ).css( 'height', 'auto' ).val( '' );
-		maxInnerHeight = $clone.innerHeight();
+		this.$clone
+			.attr( 'rows', this.maxRows )
+			.css( 'height', 'auto' )
+			.val( '' );
+		maxInnerHeight = this.$clone.innerHeight();
+
 		// Difference between reported innerHeight and scrollHeight with no scrollbars present
 		// Equals 1 on Blink-based browsers and 0 everywhere else
-		measurementError = maxInnerHeight - $clone[0].scrollHeight;
-		$clone.remove();
+		measurementError = maxInnerHeight - this.$clone[0].scrollHeight;
 		idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
+
+		this.$clone[0].style.display = 'none';
+
 		// Only apply inline height when expansion beyond natural height is needed
 		if ( idealHeight > innerHeight ) {
 			// Use the difference between the inner and outer height as a buffer
@@ -10078,7 +10420,7 @@ OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 	) );
 	this.menu = new OO.ui.TextInputMenuSelectWidget( this.input, $.extend(
 		{
-			$: OO.ui.Element.getJQuery( this.$overlay ),
+			$: OO.ui.Element.static.getJQuery( this.$overlay ),
 			widget: this,
 			input: this.input,
 			disabled: this.isDisabled()
@@ -11616,32 +11958,30 @@ OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
 /**
  * Get an item relative to another one.
  *
- * @param {OO.ui.OptionWidget} item Item to start at
- * @param {number} direction Direction to move in, -1 to look backward, 1 to move forward
+ * @param {OO.ui.OptionWidget|null} item Item to start at, null to get relative to list start
+ * @param {number} direction Direction to move in, -1 to move backward, 1 to move forward
  * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the menu
  */
 OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direction ) {
-	var inc = direction > 0 ? 1 : -1,
-		len = this.items.length,
-		index = item instanceof OO.ui.OptionWidget ?
-			$.inArray( item, this.items ) : ( inc > 0 ? -1 : 0 ),
-		stopAt = Math.max( Math.min( index, len - 1 ), 0 ),
-		i = inc > 0 ?
-			// Default to 0 instead of -1, if nothing is selected let's start at the beginning
-			Math.max( index, -1 ) :
-			// Default to n-1 instead of -1, if nothing is selected let's start at the end
-			Math.min( index, len );
+	var currentIndex, nextIndex, i,
+		increase = direction > 0 ? 1 : -1,
+		len = this.items.length;
 
-	while ( len !== 0 ) {
-		i = ( i + inc + len ) % len;
-		item = this.items[i];
+	if ( item instanceof OO.ui.OptionWidget ) {
+		currentIndex = $.inArray( item, this.items );
+		nextIndex = ( currentIndex + increase + len ) % len;
+	} else {
+		// If no item is selected and moving forward, start at the beginning.
+		// If moving backward, start at the end.
+		nextIndex = direction > 0 ? 0 : len - 1;
+	}
+
+	for ( i = 0; i < len; i++ ) {
+		item = this.items[nextIndex];
 		if ( item instanceof OO.ui.OptionWidget && item.isSelectable() ) {
 			return item;
 		}
-		// Stop iterating when we've looped all the way around
-		if ( i === stopAt ) {
-			break;
-		}
+		nextIndex = ( nextIndex + increase + len ) % len;
 	}
 	return null;
 };
@@ -12149,7 +12489,7 @@ OO.ui.TextInputMenuSelectWidget.prototype.toggle = function ( visible ) {
  */
 OO.ui.TextInputMenuSelectWidget.prototype.position = function () {
 	var $container = this.$container,
-		pos = OO.ui.Element.getRelativePosition( $container, this.$element.offsetParent() );
+		pos = OO.ui.Element.static.getRelativePosition( $container, this.$element.offsetParent() );
 
 	// Position under input
 	pos.top += $container.height();

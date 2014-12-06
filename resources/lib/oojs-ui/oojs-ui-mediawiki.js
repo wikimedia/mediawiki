@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.2.4
+ * OOjs UI v0.4.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-12-02T18:45:19Z
+ * Date: 2014-12-06T00:33:09Z
  */
 /**
  * @class
