@@ -960,7 +960,7 @@ class Title {
 		# Calling getArticleID() loads the field from cache as needed
 		if ( !$this->mContentModel && $this->getArticleID( $flags ) ) {
 			$linkCache = LinkCache::singleton();
-			$this->mContentModel = $linkCache->getGoodLinkFieldObj( $this, 'model' );
+			$this->mContentModel = $linkCache->getGoodLinkFieldObj( $this->getTitleValue(), 'model' );
 		}
 
 		if ( !$this->mContentModel ) {
@@ -3165,12 +3165,12 @@ class Title {
 		$linkCache = LinkCache::singleton();
 		if ( $flags & self::GAID_FOR_UPDATE ) {
 			$oldUpdate = $linkCache->forUpdate( true );
-			$linkCache->clearLink( $this );
-			$this->mArticleID = $linkCache->addLinkObj( $this );
+			$linkCache->clearLink( $this->getTitleValue() );
+			$this->mArticleID = $linkCache->addLinkObj( $this->getTitleValue() );
 			$linkCache->forUpdate( $oldUpdate );
 		} else {
 			if ( -1 == $this->mArticleID ) {
-				$this->mArticleID = $linkCache->addLinkObj( $this );
+				$this->mArticleID = $linkCache->addLinkObj( $this->getTitleValue() );
 			}
 		}
 		return $this->mArticleID;
@@ -3194,7 +3194,7 @@ class Title {
 		}
 
 		$linkCache = LinkCache::singleton();
-		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
+		$cached = $linkCache->getGoodLinkFieldObj( $this->getTitleValue(), 'redirect' );
 		if ( $cached === null ) {
 			# Trust LinkCache's state over our own
 			# LinkCache is telling us that the page doesn't exist, despite there being cached
@@ -3228,7 +3228,7 @@ class Title {
 			return $this->mLength;
 		}
 		$linkCache = LinkCache::singleton();
-		$cached = $linkCache->getGoodLinkFieldObj( $this, 'length' );
+		$cached = $linkCache->getGoodLinkFieldObj( $this->getTitleValue(), 'length' );
 		if ( $cached === null ) {
 			# Trust LinkCache's state over our own, as for isRedirect()
 			$this->mLength = 0;
@@ -3256,8 +3256,8 @@ class Title {
 			return $this->mLatestID;
 		}
 		$linkCache = LinkCache::singleton();
-		$linkCache->addLinkObj( $this );
-		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
+		$linkCache->addLinkObj( $this->getTitleValue() );
+		$cached = $linkCache->getGoodLinkFieldObj( $this->getTitleValue(), 'revision' );
 		if ( $cached === null ) {
 			# Trust LinkCache's state over our own, as for isRedirect()
 			$this->mLatestID = 0;
@@ -3281,7 +3281,7 @@ class Title {
 	 */
 	public function resetArticleID( $newid ) {
 		$linkCache = LinkCache::singleton();
-		$linkCache->clearLink( $this );
+		$linkCache->clearLink( $this->getTitleValue() );
 
 		if ( $newid === false ) {
 			$this->mArticleID = -1;
@@ -3399,11 +3399,9 @@ class Title {
 		if ( $res->numRows() ) {
 			$linkCache = LinkCache::singleton();
 			foreach ( $res as $row ) {
-				$titleObj = Title::makeTitle( $row->page_namespace, $row->page_title );
-				if ( $titleObj ) {
-					$linkCache->addGoodLinkObjFromRow( $titleObj, $row );
-					$retVal[] = $titleObj;
-				}
+				$titleValue = new TitleValue( $row->page_namespace, $row->page_title );
+				$linkCache->addGoodLinkObjFromRow( $titleValue, $row );
+				$retVal[] = Title::newFromTitleValue( $titleValue );
 			}
 		}
 		return $retVal;
@@ -3483,15 +3481,13 @@ class Title {
 		if ( $res->numRows() ) {
 			$linkCache = LinkCache::singleton();
 			foreach ( $res as $row ) {
-				$titleObj = Title::makeTitle( $row->$namespaceFiled, $row->$titleField );
-				if ( $titleObj ) {
-					if ( $row->page_id ) {
-						$linkCache->addGoodLinkObjFromRow( $titleObj, $row );
-					} else {
-						$linkCache->addBadLinkObj( $titleObj );
-					}
-					$retVal[] = $titleObj;
+				$titleValue = new TitleValue( $row->$namespaceFiled, $row->$titleField );
+				if ( $row->page_id ) {
+					$linkCache->addGoodLinkObjFromRow( $titleValue, $row );
+				} else {
+					$linkCache->addBadLinkObj( $titleValue );
 				}
+				$retVal[] = Title::newFromTitleValue( $titleValue );
 			}
 		}
 		return $retVal;

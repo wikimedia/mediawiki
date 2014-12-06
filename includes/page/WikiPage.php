@@ -400,10 +400,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function loadFromRow( $data, $from ) {
 		$lc = LinkCache::singleton();
-		$lc->clearLink( $this->mTitle );
+		$lc->clearLink( $this->mTitle->getTitleValue() );
 
 		if ( $data ) {
-			$lc->addGoodLinkObjFromRow( $this->mTitle, $data );
+			$lc->addGoodLinkObjFromRow( $this->mTitle->getTitleValue(), $data );
 
 			$this->mTitle->loadFromRow( $data );
 
@@ -422,7 +422,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$this->mTimestamp = '';
 			}
 		} else {
-			$lc->addBadLinkObj( $this->mTitle );
+			$lc->addBadLinkObj( $this->mTitle->getTitleValue() );
 
 			$this->mTitle->loadFromRow( false );
 
