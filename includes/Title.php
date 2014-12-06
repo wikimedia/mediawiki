@@ -266,6 +266,11 @@ class Title {
 			wfWarn( __METHOD__ . ': $text must be a string. This will throw an InvalidArgumentException in future.' );
 		}
 
+		global $wgDebugMessageEscaping;
+		if ( $wgDebugMessageEscaping ) {
+			$text = preg_replace( '~<a "<">(?:[^<]+)</a>~', '', $text );
+		}
+
 		$cache = self::getTitleCache();
 
 		/**
