@@ -380,7 +380,7 @@
 	"viewsourcetext": "Podeu visualitzar i copiar el codi font d’aquesta pàgina:",
 	"viewyourtext": "Vostè pot veure i copiar la font de ' ' les modificacions ' ' d'aquesta pàgina:",
 	"protectedinterface": "Aquesta pàgina proporciona el text de la interfície del software d'aquest wiki i està protegida per evitar els abusos.\nPer afegir o canviar les traduccions per a tots els wikis, feu servir [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
-	"editinginterface": "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Per afegir o modificar traduccions a totes les wikis, plantegeu-vos utilitzar la [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
+	"editinginterface": "'''Avís:''' esteu editant una pàgina que s'utilitza per proporcionar text d'interfície per al programari. Els canvis que es facin a la pàgina afectaran l'aparença de la interfície d'altres usuaris del wiki.",
 	"translateinterface": "Per afegir o canviar traduccions per a tots els wikis, utilitzeu [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
 	"cascadeprotected": "Aquesta pàgina està protegida i no es pot modificar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:\n$2",
 	"namespaceprotected": "No teniu permís per a modificar pàgines en l'espai de noms '''$1'''.",
