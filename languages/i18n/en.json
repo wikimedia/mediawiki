@@ -28,7 +28,7 @@
 	"tog-shownumberswatching": "Show the number of watching users",
 	"tog-oldsig": "Existing signature:",
 	"tog-fancysig": "Treat signature as wikitext (without an automatic link)",
-	"tog-uselivepreview": "Use live preview (experimental)",
+	"tog-uselivepreview": "Use live preview",
 	"tog-forceeditsummary": "Prompt me when entering a blank edit summary",
 	"tog-watchlisthideown": "Hide my edits from the watchlist",
 	"tog-watchlisthidebots": "Hide bot edits from the watchlist",

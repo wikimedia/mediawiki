@@ -1043,7 +1043,16 @@ return array(
 		'dependencies' => array(
 			'jquery.form',
 			'jquery.spinner',
+			'mediawiki.api',
 			'mediawiki.action.history.diff',
+			'mediawiki.util',
+			'mediawiki.jqueryMsg',
+		),
+		'messages' => array(
+			'otherlanguages',
+			'tooltip-p-lang',
+			'summary-preview',
+			'parentheses',
 		),
 	),
 	'mediawiki.action.edit.stash' => array(
