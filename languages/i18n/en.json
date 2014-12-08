@@ -590,6 +590,7 @@
 	"anoneditwarning": "<strong>Warning:</strong> You are not logged in. Your IP address will be publicly visible if you make any edits. If you <strong>[$1 log in]</strong> or <strong>[$2 create an account]</strong>, your edits will be attributed to your username, along with other benefits.",
 	"anonpreviewwarning": "<em>You are not logged in. Saving will record your IP address in this page's edit history.</em>",
 	"missingsummary": "<strong>Reminder:</strong> You have not provided an edit summary.\nIf you click \"{{int:savearticle}}\" again, your edit will be saved without one.",
+	"selfredirect": "<strong>Warning:</strong> You are creating redirect to the same article.\nIf you click \"{{int:savearticle}}\" again, you will create the self-redirect.",
 	"missingcommenttext": "Please enter a comment below.",
 	"missingcommentheader": "<strong>Reminder:</strong> You have not provided a subject/headline for this comment.\nIf you click \"{{int:savearticle}}\" again, your edit will be saved without one.",
 	"summary-preview": "Summary preview:",

@@ -151,6 +151,12 @@ class EditPage {
 	const AS_NO_CHANGE_CONTENT_MODEL = 235;
 
 	/**
+	 * Status: user tried to create self-redirect (redirect to the same article) and
+	 * wpIgnoreSelfRedirect == false
+	 */
+	const AS_SELF_REDIRECT = 236;
+
+	/**
 	 * Status: can't parse content
 	 */
 	const AS_PARSE_ERROR = 240;
@@ -255,6 +261,12 @@ class EditPage {
 
 	/** @var bool */
 	protected $allowBlankArticle = false;
+
+	/** @var bool */
+	protected $selfRedirect = false;
+
+	/** @var bool */
+	protected $allowSelfRedirect = false;
 
 	/** @var string */
 	public $autoSumm = '';
@@ -848,6 +860,7 @@ class EditPage {
 			$this->autoSumm = $request->getText( 'wpAutoSummary' );
 
 			$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
+			$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( __METHOD__ . ": Not a posted form.\n" );
@@ -1334,6 +1347,7 @@ class EditPage {
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_END:
 			case self::AS_BLANK_ARTICLE:
+			case self::AS_SELF_REDIRECT:
 				return true;
 
 			case self::AS_HOOK_ERROR:
@@ -1901,6 +1915,19 @@ class EditPage {
 			$status->value = self::AS_SUCCESS_UPDATE;
 		}
 
+		$redirectTarget = $content->getRedirectTarget()->getPrefixedText();
+		$title = $this->getTitle()->getPrefixedText();
+		if ( !$this->allowSelfRedirect
+			&& $content->isRedirect()
+			&& $redirectTarget == $title
+		) {
+			$this->selfRedirect = true;
+			$status->fatal( 'selfredirect' );
+			$status->value = self::AS_SELF_REDIRECT;
+			wfProfileOut( __METHOD__ );
+			return $status;
+		}
+
 		// Check for length errors again now that the section is merged in
 		$this->kblength = (int)( strlen( $this->toEditText( $content ) ) / 1024 );
 		if ( $this->kblength > $wgMaxArticleSize ) {
@@ -2429,7 +2456,7 @@ class EditPage {
 		if ( $this->nosummary ) {
 			$wgOut->addHTML( Html::hidden( 'nosummary', true ) );
 		}
-
+		
 		# If a blank edit summary was previously provided, and the appropriate
 		# user preference is active, pass a hidden tag as wpIgnoreBlankSummary. This will stop the
 		# user being bounced back more than once in the event that a summary
@@ -2443,6 +2470,10 @@ class EditPage {
 
 		if ( $this->undidRev ) {
 			$wgOut->addHTML( Html::hidden( 'wpUndidRevision', $this->undidRev ) );
+		}
+
+		if ( $this->selfRedirect ) {
+			$wgOut->addHTML( Html::hidden( 'wpIgnoreSelfRedirect', true ) );
 		}
 
 		if ( $this->hasPresetSummary ) {
@@ -2607,6 +2638,10 @@ class EditPage {
 
 			if ( $this->blankArticle ) {
 				$wgOut->wrapWikiMsg( "<div id='mw-blankarticle'>\n$1\n</div>", 'blankarticle' );
+			}
+
+			if ( $this->selfRedirect ) {
+				$wgOut->wrapWikiMsg( "<div id='mw-selfredirect'>\n$1\n</div>", 'selfredirect' );
 			}
 
 			if ( $this->hookError !== '' ) {
