@@ -93,6 +93,8 @@ class SectionProfiler {
 	 *   - %cpu    : percent real time
 	 *   - memory  : memory used (bytes)
 	 *   - %memory : percent memory used
+	 *   - min_real : min real time in a call (ms)
+	 *   - max_real : max real time in a call (ms)
 	 */
 	public function getFunctionStats() {
 		$this->collateData();
@@ -112,6 +114,8 @@ class SectionProfiler {
 				'%cpu' => $totalCpu ? 100 * $data['cpu'] / $totalCpu : 0,
 				'memory' => $data['memory'],
 				'%memory' => $totalMem ? 100 * $data['memory'] / $totalMem : 0,
+				'min_real' => 1000 * $data['min_real'],
+				'max_real' => 1000 * $data['max_real']
 			);
 		}
 
@@ -124,6 +128,8 @@ class SectionProfiler {
 			'%cpu' => 100,
 			'memory' => $totalMem,
 			'%memory' => 100,
+			'min_real' => 1000 * $totalReal,
+			'max_real' => 1000 * $totalReal
 		);
 
 		return $profile;
@@ -149,7 +155,9 @@ class SectionProfiler {
 			'cpu'      => 0.0,
 			'real'     => 0.0,
 			'memory'   => 0,
-			'count'    => 0
+			'count'    => 0,
+			'min_real' => 0.0,
+			'max_real' => 0.0
 		);
 	}
 
@@ -180,6 +188,8 @@ class SectionProfiler {
 		$entry['real'] += $elapsedReal;
 		$entry['memory'] += $memChange > 0 ? $memChange : 0;
 		$entry['count']++;
+		$entry['min_real'] = min( $entry['min_real'], $elapsedReal );
+		$entry['max_real'] = max( $entry['max_real'], $elapsedReal );
 	}
 
 	/**
