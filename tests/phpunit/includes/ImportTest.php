@@ -28,7 +28,8 @@ class ImportTest extends MediaWikiLangTestCase {
 		$source = $this->getInputStreamSource( $xml );
 
 		$redirect = null;
-		$callback = function ( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) use ( &$redirect ) {
+		$callback = function ( Title $title, ForeignTitle $foreignTitle, $revCount,
+			$sRevCount, $pageInfo ) use ( &$redirect ) {
 			if ( array_key_exists( 'redirect', $pageInfo ) ) {
 				$redirect = $pageInfo['redirect'];
 			}
