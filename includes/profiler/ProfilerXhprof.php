@@ -215,36 +215,4 @@ class ProfilerXhprof extends Profiler {
 		}
 		return implode( "\n", $out );
 	}
-
-	/**
-	 * Get a brief report of profiled functions sorted by inclusive wall clock
-	 * time in descending order.
-	 *
-	 * Each line of the report includes this data:
-	 * - Percentage of total wall clock time spent in function
-	 * - Total wall clock time spent in function in seconds
-	 * - Number of times function was called
-	 * - Function name
-	 *
-	 * @param string $header Header text to prepend to report
-	 * @param string $footer Footer text to append to report
-	 * @return string
-	 */
-	protected function getSummaryReport( $header = '', $footer = '' ) {
-		$data = $this->xhprof->getInclusiveMetrics();
-		uasort( $data, Xhprof::makeSortFunction( 'wt', 'total' ) );
-
-		$format = '%6.2f%% %3.6f %6d - %s';
-		$out = array( $header );
-		foreach ( $data as $func => $stats ) {
-			$out[] = sprintf( $format,
-				$stats['wt']['percent'],
-				$stats['wt']['total'] / 1e6,
-				$stats['ct'],
-				$func
-			);
-		}
-		$out[] = $footer;
-		return implode( "\n", $out );
-	}
 }
