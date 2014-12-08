@@ -11,6 +11,8 @@ This is a not yet released maintenance release of the MediaWiki 1.24 branch.
   loading these special pages when $wgAutoloadAttemptLowercase is false.
 * (bug T70087) Fix Special:ActiveUsers page for installations using
   PostgreSQL.
+* (bug T76254) Fix deleting of pages with PostgreSQL. Requires a schema change
+  and running update.php to fix.
 
 == MediaWiki 1.24.1 ==
 
