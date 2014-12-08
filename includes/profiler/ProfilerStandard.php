@@ -485,8 +485,8 @@ class ProfilerStandard extends Profiler {
 				'%cpu' => $totalCpu ? 100 * $data['cpu'] / $totalCpu : 0,
 				'memory' => $data['memory'],
 				'%memory' => $totalMem ? 100 * $data['memory'] / $totalMem : 0,
-				'min' => $data['min_real'] * 1000,
-				'max' => $data['max_real'] * 1000
+				'min_real' => $data['min_real'] * 1000,
+				'max_real' => $data['max_real'] * 1000
 			);
 		}
 

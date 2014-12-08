@@ -241,14 +241,16 @@ abstract class Profiler {
 	 * This makes filtering them out easier and follows the xhprof style.
 	 *
 	 * @return array List of method entries arrays, each having:
-	 *   - name    : method name
-	 *   - calls   : the number of invoking calls
-	 *   - real    : real time ellapsed (ms)
-	 *   - %real   : percent real time
-	 *   - cpu     : CPU time ellapsed (ms)
-	 *   - %cpu    : percent CPU time
-	 *   - memory  : memory used (bytes)
-	 *   - %memory : percent memory used
+	 *   - name     : method name
+	 *   - calls    : the number of invoking calls
+	 *   - real     : real time ellapsed (ms)
+	 *   - %real    : percent real time
+	 *   - cpu      : CPU time ellapsed (ms)
+	 *   - %cpu     : percent CPU time
+	 *   - memory   : memory used (bytes)
+	 *   - %memory  : percent memory used
+	 *   - min_real : min real time in a call (ms)
+	 *   - max_real : max real time in a call (ms)
 	 * @since 1.25
 	 */
 	abstract public function getFunctionStats();
