@@ -132,6 +132,7 @@ class ApiStashEdit extends ApiBase {
 				if ( $ok ) {
 					$status = 'stashed';
 					wfDebugLog( 'StashEdit', "Cached parser output for key '$key'." );
+					$this->getResult()->addValue( null, $this->getModuleName(), array( 'key' => $key ) );
 				} else {
 					$status = 'error';
 					wfDebugLog( 'StashEdit', "Failed to cache parser output for key '$key'." );
