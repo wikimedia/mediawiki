@@ -41,7 +41,8 @@
 			"아라",
 			"Syreeni",
 			"MrTapsa",
-			"SMAUG"
+			"SMAUG",
+			"SuperPete"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -69,7 +70,7 @@
 	"tog-shownumberswatching": "Näytä sivua tarkkailevien käyttäjien määrä",
 	"tog-oldsig": "Nykyinen allekirjoitus:",
 	"tog-fancysig": "Muotoilematon allekirjoitus ilman automaattista linkkiä",
-	"tog-uselivepreview": "Käytä välitöntä esikatselua (kokeellinen)",
+	"tog-uselivepreview": "Käytä välitöntä esikatselua",
 	"tog-forceeditsummary": "Huomauta minua, jos en ole kirjoittanut yhteenvetoa",
 	"tog-watchlisthideown": "Piilota omat muokkaukset tarkkailulistalta",
 	"tog-watchlisthidebots": "Piilota bottien muokkaukset tarkkailulistalta",

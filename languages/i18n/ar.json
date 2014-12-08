@@ -46,7 +46,8 @@
 			"Test Create account",
 			"Kuwaity26",
 			"Calak",
-			"Omda4wady"
+			"Omda4wady",
+			"Bibas"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -74,7 +75,7 @@
 	"tog-shownumberswatching": "اعرض عدد المستخدمين المراقبين",
 	"tog-oldsig": "التوقيع الحالي:",
 	"tog-fancysig": "وضع الوصلة يدويا واستعمال نص الويكي",
-	"tog-uselivepreview": "استعمال المعاينة المباشرة (تجريبي)",
+	"tog-uselivepreview": "استعمال المعاينة المباشرة",
 	"tog-forceeditsummary": "نبهني عند عدم إدخال ملخص تعديل",
 	"tog-watchlisthideown": "أخف تعديلاتي من قائمة المراقبة",
 	"tog-watchlisthidebots": "أخف تعديلات البوتات من قائمة المراقبة",

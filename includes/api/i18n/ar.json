@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Meno25"
+			"Meno25",
+			"أحمد المحمودي"
 		]
 	},
 	"apihelp-main-param-format": "صيغة الخرج.",
@@ -17,5 +18,6 @@
 	"apihelp-createaccount-param-name": "اسم المستخدم.",
 	"apihelp-delete-description": "حذف صفحة.",
 	"apihelp-delete-param-unwatch": "أزل الصفحة من قائمة مراقبتك.",
-	"apihelp-edit-description": "إنشاء وتعديل الصفحات."
+	"apihelp-edit-description": "إنشاء وتعديل الصفحات.",
+	"apihelp-query+prefixsearch-param-offset": "عدد النتائج المراد تخطيها."
 }

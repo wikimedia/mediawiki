@@ -112,7 +112,8 @@
 			"SnowedEarth",
 			"Orikrin1998",
 			"Automatik",
-			"Elodark"
+			"Elodark",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -140,7 +141,7 @@
 	"tog-shownumberswatching": "Afficher le nombre d'utilisateurs qui suivent la page",
 	"tog-oldsig": "Signature existante :",
 	"tog-fancysig": "Traiter la signature comme du wikitexte (sans lien automatique)",
-	"tog-uselivepreview": "Utiliser l’aperçu rapide (expérimental)",
+	"tog-uselivepreview": "Utiliser l’aperçu rapide",
 	"tog-forceeditsummary": "M'avertir lorsque je n'ai pas spécifié de résumé de modification",
 	"tog-watchlisthideown": "Masquer mes propres modifications dans la liste de suivi",
 	"tog-watchlisthidebots": "Masquer les modifications faites par des robots dans la liste de suivi",

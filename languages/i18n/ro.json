@@ -51,7 +51,7 @@
 	"tog-shownumberswatching": "Arată numărul utilizatorilor care urmăresc",
 	"tog-oldsig": "Semnătură actuală:",
 	"tog-fancysig": "Tratează semnătura ca wikitext (fără o legătură automată)",
-	"tog-uselivepreview": "Folosește previzualizarea în timp real (experimental)",
+	"tog-uselivepreview": "Folosește previzualizarea în timp real",
 	"tog-forceeditsummary": "Avertizează-mă când uit să descriu modificările",
 	"tog-watchlisthideown": "Ascunde modificările mele la lista mea de urmărire",
 	"tog-watchlisthidebots": "Ascunde modificările boților la lista mea de urmărire",

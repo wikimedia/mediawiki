@@ -44,7 +44,8 @@
 			"Calak",
 			"F3RaN",
 			"ESM",
-			"Loupeter"
+			"Loupeter",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -72,7 +73,7 @@
 	"tog-shownumberswatching": "Mostra el nombre d'usuaris que hi vigilen",
 	"tog-oldsig": "Signatura actual:",
 	"tog-fancysig": "Tractar la signatura com a text wiki (sense enllaç automàtic)",
-	"tog-uselivepreview": "Utilitza la previsualització automàtica (cal JavaScript) (experimental)",
+	"tog-uselivepreview": "Utilitza la previsualització automàtica",
 	"tog-forceeditsummary": "Avisa'm en deixar el resum de la modificació en blanc",
 	"tog-watchlisthideown": "Amaga les meues edicions de la llista de seguiment",
 	"tog-watchlisthidebots": "Amaga de la llista de seguiment les edicions fetes per usuaris bots",

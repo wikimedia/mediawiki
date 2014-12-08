@@ -76,7 +76,8 @@
 			"Taxandru",
 			"C.R.",
 			"Elitre",
-			"Laurentius"
+			"Laurentius",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -104,7 +105,7 @@
 	"tog-shownumberswatching": "Mostra il numero di utenti che hanno la pagina in osservazione",
 	"tog-oldsig": "Firma attuale:",
 	"tog-fancysig": "Gestisci la firma come wikitesto (senza collegamento automatico)",
-	"tog-uselivepreview": "Abilita la funzione ''Live preview'' (anteprima in diretta - sperimentale)",
+	"tog-uselivepreview": "Abilita la funzione ''Live preview'' (anteprima in diretta)",
 	"tog-forceeditsummary": "Chiedi conferma se il campo oggetto è vuoto",
 	"tog-watchlisthideown": "Nascondi le mie modifiche negli osservati speciali",
 	"tog-watchlisthidebots": "Nascondi le modifiche dei bot negli osservati speciali",

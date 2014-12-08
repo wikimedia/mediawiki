@@ -147,7 +147,7 @@
 	"tog-shownumberswatching": "Mostrar el número de usuarios que la vigilan",
 	"tog-oldsig": "Firma actual:",
 	"tog-fancysig": "Tratar la firma como wikitexto (sin un enlace automático)",
-	"tog-uselivepreview": "Usar previsualización dinámica (experimental)",
+	"tog-uselivepreview": "Usar previsualización dinámica",
 	"tog-forceeditsummary": "Avisarme cuando grabe la página sin introducir un resumen de edición",
 	"tog-watchlisthideown": "Ocultar mis ediciones en la lista de seguimiento",
 	"tog-watchlisthidebots": "Ocultar las ediciones de bots en la lista de seguimiento",

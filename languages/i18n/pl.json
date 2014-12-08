@@ -71,7 +71,8 @@
 			"Michał Sobkowski",
 			"Py64",
 			"Nanaki",
-			"Alan ffm"
+			"Alan ffm",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -99,7 +100,7 @@
 	"tog-shownumberswatching": "Pokaż liczbę użytkowników obserwujących stronę",
 	"tog-oldsig": "Twój obecny podpis:",
 	"tog-fancysig": "Traktuj podpis jako wikikod (nie linkuj automatycznie całości)",
-	"tog-uselivepreview": "Używaj dynamicznego podglądu (eksperymentalny)",
+	"tog-uselivepreview": "Używaj dynamicznego podglądu",
 	"tog-forceeditsummary": "Informuj o niewypełnieniu opisu zmian",
 	"tog-watchlisthideown": "Ukryj moje edycje na liście obserwowanych",
 	"tog-watchlisthidebots": "Ukryj edycje botów na liście obserwowanych",

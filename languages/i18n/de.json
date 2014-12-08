@@ -103,7 +103,7 @@
 	"tog-shownumberswatching": "Anzahl der beobachtenden Benutzer anzeigen",
 	"tog-oldsig": "Vorhandene Signatur:",
 	"tog-fancysig": "Signatur als Wikitext behandeln (ohne automatische Verlinkung)",
-	"tog-uselivepreview": "Vorschau sofort anzeigen (experimentell)",
+	"tog-uselivepreview": "Vorschau sofort anzeigen",
 	"tog-forceeditsummary": "Warnen, sofern beim Speichern die Zusammenfassung fehlt",
 	"tog-watchlisthideown": "Eigene Bearbeitungen in der Beobachtungsliste ausblenden",
 	"tog-watchlisthidebots": "Bearbeitungen durch Bots in der Beobachtungsliste ausblenden",
