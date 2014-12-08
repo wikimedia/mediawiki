@@ -48,11 +48,6 @@ $wgAutoloadClasses += array(
 	'TestUser' => "$testDir/phpunit/includes/TestUser.php",
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
 
-	# tests/phpunit/includes
-	'BlockTest' => "$testDir/phpunit/includes/BlockTest.php",
-	'RevisionStorageTest' => "$testDir/phpunit/includes/RevisionStorageTest.php",
-	'WikiPageTest' => "$testDir/phpunit/includes/WikiPageTest.php",
-
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
 	'ApiQueryTestBase' => "$testDir/phpunit/includes/api/query/ApiQueryTestBase.php",
