@@ -754,6 +754,7 @@
 	"anoneditwarning": "Shown when editing a page anonymously.\n\nParameters:\n* $1 – A link to log in, <nowiki>{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}}</nowiki>\n* $2 – A link to sign up, <nowiki>{{fullurl:Special:UserLogin/signup|returnto={{FULLPAGENAMEE}}}}</nowiki>\n\nSee also:\n* {{msg-mw|mobile-frontend-editor-anoneditwarning}}",
 	"anonpreviewwarning": "See also:\n* {{msg-mw|Anoneditwarning}}",
 	"missingsummary": "The text \"edit summary\" is in {{msg-mw|Summary}}.\n\nSee also:\n* {{msg-mw|Missingcommentheader}}\n* {{msg-mw|Savearticle}}",
+	"selfredirect": "Notice displayed once after the user tries to create a redirect to the same article.",
 	"missingcommenttext": "This message is shown, when the textbox by a new-section is empty.",
 	"missingcommentheader": "Edit summary that is shown if you enable \"Prompt me when entering a blank summary\" and add a new section without headline to a talk page.\n\nSee also:\n* {{msg-mw|Missingsummary}}\n* {{msg-mw|Savearticle}}",
 	"summary-preview": "Preview of the edit summary, shown under the edit summary itself.\nShould match: {{msg-mw|summary}}.",
