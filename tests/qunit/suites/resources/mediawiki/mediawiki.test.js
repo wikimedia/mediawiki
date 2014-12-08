@@ -396,6 +396,30 @@
 		} );
 	} );
 
+	QUnit.asyncTest( 'mw.loader with Object method as module name', 2, function ( assert ) {
+		var isAwesomeDone;
+
+		mw.loader.testCallback = function () {
+			QUnit.start();
+			assert.strictEqual( isAwesomeDone, undefined, 'Implementing module hasOwnProperty: isAwesomeDone should still be undefined' );
+			isAwesomeDone = true;
+		};
+
+		mw.loader.implement( 'hasOwnProperty', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )], {}, {} );
+
+		mw.loader.using( 'hasOwnProperty', function () {
+
+			// /sample/awesome.js declares the "mw.loader.testCallback" function
+			// which contains a call to start() and ok()
+			assert.strictEqual( isAwesomeDone, true, 'hasOwnProperty module should\'ve caused isAwesomeDone to be true' );
+			delete mw.loader.testCallback;
+
+		}, function () {
+			QUnit.start();
+			assert.ok( false, 'Error callback fired while loader.using "hasOwnProperty" module' );
+		} );
+	} );
+
 	QUnit.asyncTest( 'mw.loader.using( .. ).promise', 2, function ( assert ) {
 		var isAwesomeDone;
 
