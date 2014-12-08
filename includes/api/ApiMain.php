@@ -510,7 +510,7 @@ class ApiMain extends ApiBase {
 			array( '.*?', '.' ),
 			$wildcard
 		);
-		return "/https?:\/\/$wildcard/";
+		return "/^https?:\/\/$wildcard$/";
 	}
 
 	protected function sendCacheHeaders() {
