@@ -77,9 +77,11 @@ class Token {
 	 * @return string
 	 */
 	protected function toStringAtTimestamp( $timestamp ) {
-		return hash_hmac( 'md5', $timestamp . $this->salt, $this->secret, false ) .
-			dechex( $timestamp ) .
-			self::SUFFIX;
+		// Use only the left-most 128 bits from sha256 hmac. This is considered
+		// safe for hmac's, see https://tools.ietf.org/html/rfc2104
+		return substr(
+			hash_hmac( 'sha256', $timestamp . $this->salt, $this->secret, false ),
+		0, 32 ) . dechex( $timestamp ) . self::SUFFIX;
 	}
 
 	/**

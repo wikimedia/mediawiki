@@ -137,7 +137,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			$session['wsTokenSecrets']['default'] = $session['wsToken'];
 			// add token to request parameters
 			$timestamp = wfTimestamp();
-			$params['token'] = hash_hmac( 'md5', $timestamp, $session['wsToken'] ) .
+			$params['token'] = substr(
+					hash_hmac( 'sha256', $timestamp, $session['wsToken'] ),
+				0, 32 ) .
 				dechex( $timestamp ) .
 				MediaWiki\Session\Token::SUFFIX;
 
