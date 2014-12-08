@@ -59,11 +59,16 @@
  * @see https://github.com/facebook/hhvm/blob/master/hphp/doc/profiling.md
  */
 class ProfilerXhprof extends Profiler {
-
 	/**
 	 * @var Xhprof $xhprof
 	 */
 	protected $xhprof;
+
+	/**
+	 * Profiler for explicit, arbitrary, frame labels
+	 * @var SectionProfiler
+	 */
+	protected $sprofiler;
 
 	/**
 	 * Type of report to send when logData() is called.
@@ -93,6 +98,7 @@ class ProfilerXhprof extends Profiler {
 		$this->logType = $params['log'];
 		$this->visible = $params['visible'];
 		$this->xhprof = new Xhprof( $params );
+		$this->sprofiler = new SectionProfiler();
 	}
 
 	/**
@@ -118,22 +124,7 @@ class ProfilerXhprof extends Profiler {
 	}
 
 	public function scopedProfileIn( $section ) {
-		static $exists = null;
-		// Only HHVM supports this, not the standard PECL extension
-		if ( $exists === null ) {
-			$exists = function_exists( 'xhprof_frame_begin' );
-		}
-
-		if ( $exists ) {
-			xhprof_frame_begin( $section );
-			return new ScopedCallback( function () {
-				xhprof_frame_end();
-			} );
-		}
-
-		return new ScopedCallback( function () {
-			// no-op
-		} );
+		return $this->sprofiler->scopedProfileIn( $section );
 	}
 
 	/**
@@ -146,9 +137,10 @@ class ProfilerXhprof extends Profiler {
 		$metrics = $this->xhprof->getCompleteMetrics();
 		$profile = array();
 
+		$main = null; // units in ms
 		foreach ( $metrics as $fname => $stats ) {
 			// Convert elapsed times from μs to ms to match ProfilerStandard
-			$profile[] = array(
+			$entry = array(
 				'name' => $fname,
 				'calls' => $stats['ct'],
 				'real' => $stats['wt']['total'] / 1000,
@@ -160,6 +152,19 @@ class ProfilerXhprof extends Profiler {
 				'min_real' => $stats['wt']['min'] / 1000,
 				'max_real' => $stats['wt']['max'] / 1000
 			);
+			$profile[] = $entry;
+			if ( $fname === 'main()' ) {
+				$main = $entry;
+			}
+		}
+
+		// Merge in all of the custom profile sections
+		foreach ( $this->sprofiler->getFunctionStats() as $stats ) {
+			// @note: getFunctionStats() values already in ms
+			$stats['%real'] = $stats['real'] / $main['real'];
+			$stats['%cpu'] = $main['cpu'] ? $stats['cpu'] / $main['cpu'] * 100 : 0;
+			$stats['%memory'] = $main['memory'] ? $stats['memory'] / $main['memory'] * 100 : 0;
+			$profile[] = $stats; // assume no section names collide with $metrics
 		}
 
 		return $profile;
