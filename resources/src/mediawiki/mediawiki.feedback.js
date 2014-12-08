@@ -260,21 +260,22 @@
 				{ redirect: true }
 			)
 			.done( function ( result ) {
-				if ( result.edit !== undefined ) {
-					if ( result.edit.result === 'Success' ) {
-						fb.displayThanks();
-					} else {
-						// unknown API result
-						fb.displayError( 'feedback-error1' );
-					}
+				if ( result.edit.result === 'Success' ) {
+					fb.displayThanks();
 				} else {
-					// edit failed
-					fb.displayError( 'feedback-error2' );
+					// unknown API result
+					fb.displayError( 'feedback-error1' );
 				}
 			} )
-			.fail( function () {
-				// ajax request failed
-				fb.displayError( 'feedback-error3' );
+			.fail( function ( code, result ) {
+				if ( code === 'http' ) {
+					// ajax request failed
+					fb.displayError( 'feedback-error3' );
+					mw.log.warn( 'Feedback report failed with HTTP error: ' +  result.textStatus );
+				} else {
+					fb.displayError( 'feedback-error2' );
+					mw.log.warn( 'Feedback report failed with API error: ' +  code );
+				}
 			} );
 		},
 
