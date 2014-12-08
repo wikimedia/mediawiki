@@ -157,8 +157,8 @@ class ProfilerXhprof extends Profiler {
 				'%cpu' => isset( $stats['cpu'] ) ? $stats['cpu']['percent'] : 0,
 				'memory' => isset( $stats['mu'] ) ? $stats['mu']['total'] : 0,
 				'%memory' => isset( $stats['mu'] ) ? $stats['mu']['percent'] : 0,
-				'min' => $stats['wt']['min'] / 1000,
-				'max' => $stats['wt']['max'] / 1000
+				'min_real' => $stats['wt']['min'] / 1000,
+				'max_real' => $stats['wt']['max'] / 1000
 			);
 		}
 
@@ -191,8 +191,13 @@ class ProfilerXhprof extends Profiler {
 	 * @return string
 	 */
 	protected function getFunctionReport() {
-		$data = $this->xhprof->getInclusiveMetrics();
-		uasort( $data, Xhprof::makeSortFunction( 'wt', 'total' ) );
+		$data = $this->getFunctionStats();
+		usort( $data, function( $a, $b ) {
+			if ( $a['real'] === $b['real'] ) {
+				return 0;
+			}
+			return ( $a['real'] > $b['real'] ) ? -1 : 1; // descending
+		} );
 
 		$width = 140;
 		$nameWidth = $width - 65;
@@ -201,16 +206,16 @@ class ProfilerXhprof extends Profiler {
 		$out[] = sprintf( "%-{$nameWidth}s %6s %9s %9s %9s %9s %7s %9s",
 			'Name', 'Calls', 'Total', 'Min', 'Each', 'Max', '%', 'Mem'
 		);
-		foreach ( $data as $func => $stats ) {
+		foreach ( $data as $stats ) {
 			$out[] = sprintf( $format,
-				$func,
-				$stats['ct'],
-				$stats['wt']['total'],
-				$stats['wt']['min'],
-				$stats['wt']['mean'],
-				$stats['wt']['max'],
-				$stats['wt']['percent'],
-				isset( $stats['mu'] ) ? $stats['mu']['total'] : 0
+				$stats['name'],
+				$stats['calls'],
+				$stats['real'],
+				$stats['min_real'],
+				$stats['real'] / $stats['calls'],
+				$stats['max_real'],
+				$stats['%real'],
+				$stats['memory']
 			);
 		}
 		return implode( "\n", $out );
