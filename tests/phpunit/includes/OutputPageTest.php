@@ -175,7 +175,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
 				'<script>var _mwq = _mwq || []; _mwq.push( function ( mw ) {' .
 				' mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});}' .
-				',{"css":[".mw-icon{transition:none}\n"]},{},{});
+				',{"css":[".mw-icon{transition:none}\n"]});
 ' . ' } );</script>
 '
 			),
