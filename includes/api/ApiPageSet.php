@@ -1334,8 +1334,7 @@ class ApiPageSet extends ApiBase {
 		if ( !$this->mAllowGenerator ) {
 			unset( $result['generator'] );
 		} elseif ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
-			$result['generator'][ApiBase::PARAM_TYPE] = $this->getGenerators();
-			foreach ( $result['generator'][ApiBase::PARAM_TYPE] as $g ) {
+			foreach ( $this->getGenerators() as $g ) {
 				$result['generator'][ApiBase::PARAM_TYPE][] = $g;
 				$result['generator'][ApiBase::PARAM_VALUE_LINKS][$g] = "Special:ApiHelp/query+$g";
 			}
