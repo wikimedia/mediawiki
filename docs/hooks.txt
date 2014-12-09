@@ -2424,7 +2424,7 @@ after variants have been added.
 'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage() starts
 page output.
 &$sktemplate: SkinTemplate object
-&$tpl: Template engine object
+&$tpl: QuickTemplate engine object
 
 'SkinTemplatePreventOtherActiveTabs': Use this to prevent showing active tabs.
 $sktemplate: SkinTemplate object
