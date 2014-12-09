@@ -63,8 +63,11 @@ class ResourceLoader {
 	 */
 	protected $sources = array();
 
-	/** @var bool */
-	protected $hasErrors = false;
+	/**
+	 * Errors accumulated during current respond() call.
+	 * @var array
+	 */
+	protected $errors = array();
 
 	/**
 	 * Load information stored in the database about modules.
@@ -209,9 +212,7 @@ class ResourceLoader {
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
 			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $e" );
-			$this->hasErrors = true;
-			// Return exception as a comment
-			$result = self::formatException( $e );
+			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -579,7 +580,6 @@ class ResourceLoader {
 		ob_start();
 
 		wfProfileIn( __METHOD__ );
-		$errors = '';
 
 		// Find out which modules are missing and instantiate the others
 		$modules = array();
@@ -591,10 +591,7 @@ class ResourceLoader {
 				// This is a security issue, see bug 34907.
 				if ( $module->getGroup() === 'private' ) {
 					wfDebugLog( 'resourceloader', __METHOD__ . ": request for private module '$name' denied" );
-					$this->hasErrors = true;
-					// Add exception to the output as a comment
-					$errors .= self::makeComment( "Cannot show private module \"$name\"" );
-
+					$this->errors[] = "Cannot show private module \"$name\"";
 					continue;
 				}
 				$modules[$name] = $module;
@@ -609,9 +606,7 @@ class ResourceLoader {
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
 			wfDebugLog( 'resourceloader', __METHOD__ . ": preloading module info failed: $e" );
-			$this->hasErrors = true;
-			// Add exception to the output as a comment
-			$errors .= self::formatException( $e );
+			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
 		wfProfileIn( __METHOD__ . '-getModifiedTime' );
@@ -629,9 +624,7 @@ class ResourceLoader {
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				wfDebugLog( 'resourceloader', __METHOD__ . ": calculating maximum modified time failed: $e" );
-				$this->hasErrors = true;
-				// Add exception to the output as a comment
-				$errors .= self::formatException( $e );
+				$this->errors[] = self::formatExceptionNoComment( $e );
 			}
 		}
 
@@ -649,28 +642,11 @@ class ResourceLoader {
 		// Capture any PHP warnings from the output buffer and append them to the
 		// error list if we're in debug mode.
 		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
-			$errors .= self::makeComment( $warnings );
-			$this->hasErrors = true;
-		}
-
-		if ( $context->getImageObj() && !$response ) {
-			$errors .= self::makeComment( "Image generation failed." );
-			$this->hasErrors = true;
-		}
-
-		if ( $this->hasErrors ) {
-			if ( $context->getImageObj() ) {
-				// Bail, we can't show both the error messages and the response when it's not CSS or JS.
-				// sendResponseHeaders() will handle this sensibly.
-				$response = $errors;
-			} else {
-				// Prepend comments indicating exceptions
-				$response = $errors . $response;
-			}
+			$this->errors[] = $warnings;
 		}
 
 		// Save response to file cache unless there are errors
-		if ( isset( $fileCache ) && !$this->hasErrors && !count( $missing ) ) {
+		if ( isset( $fileCache ) && !$this->errors && !count( $missing ) ) {
 			// Cache single modules and images...and other requests if there are enough hits
 			if ( ResourceFileCache::useFileCache( $context ) ) {
 				if ( $fileCache->isCacheWorthy() ) {
@@ -682,10 +658,28 @@ class ResourceLoader {
 		}
 
 		// Send content type and cache related headers
-		$this->sendResponseHeaders( $context, $mtime, $this->hasErrors );
+		$this->sendResponseHeaders( $context, $mtime, (bool)$this->errors );
 
 		// Remove the output buffer and output the response
 		ob_end_clean();
+
+		if ( $context->getImageObj() && $this->errors ) {
+			// We can't show both the error messages and the response when it's an image.
+			$errorText = '';
+			foreach ( $this->errors as $error ) {
+				$errorText .= $error . "\n";
+			}
+			$response = $errorText;
+		} elseif ( $this->errors ) {
+			// Prepend comments indicating errors
+			$errorText = '';
+			foreach ( $this->errors as $error ) {
+				$errorText .= self::makeComment( $error );
+			}
+			$response = $errorText . $response;
+		}
+
+		$this->errors = array();
 		echo $response;
 
 		wfProfileOut( __METHOD__ );
@@ -695,7 +689,7 @@ class ResourceLoader {
 	 * Send content type and last modified headers to the client.
 	 * @param ResourceLoaderContext $context
 	 * @param string $mtime TS_MW timestamp to use for last-modified
-	 * @param bool $errors Whether there are commented-out errors in the response
+	 * @param bool $errors Whether there are errors in the response
 	 * @return void
 	 */
 	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime, $errors ) {
@@ -713,6 +707,7 @@ class ResourceLoader {
 			$smaxage = $rlMaxage['versioned']['server'];
 		}
 		if ( $context->getImageObj() ) {
+			// Output different headers if we're outputting textual errors.
 			if ( $errors ) {
 				header( 'Content-Type: text/plain; charset=utf-8' );
 			} else {
@@ -842,15 +837,26 @@ class ResourceLoader {
 	 * Handle exception display.
 	 *
 	 * @param Exception $e Exception to be shown to the user
-	 * @return string Sanitized text that can be returned to the user
+	 * @return string Sanitized text in a CSS/JS comment that can be returned to the user
 	 */
 	public static function formatException( $e ) {
+		return self::makeComment( self::formatExceptionNoComment( $e ) );
+	}
+
+	/**
+	 * Handle exception display.
+	 *
+	 * @since 1.25
+	 * @param Exception $e Exception to be shown to the user
+	 * @return string Sanitized text that can be returned to the user
+	 */
+	protected static function formatExceptionNoComment( $e ) {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
-			return self::makeComment( $e->__toString() );
+			return $e->__toString();
 		} else {
-			return self::makeComment( wfMessage( 'internalerror' )->text() );
+			return wfMessage( 'internalerror' )->text();
 		}
 	}
 
@@ -866,7 +872,6 @@ class ResourceLoader {
 		array $modules, array $missing = array()
 	) {
 		$out = '';
-		$exceptions = '';
 		$states = array();
 
 		if ( !count( $modules ) && !count( $missing ) ) {
@@ -880,6 +885,10 @@ class ResourceLoader {
 		$image = $context->getImageObj();
 		if ( $image ) {
 			$data = $image->getImageData( $context );
+			if ( $data === false ) {
+				$data = '';
+				$this->errors[] = 'Image generation failed';
+			}
 			wfProfileOut( __METHOD__ );
 			return $data;
 		}
@@ -894,9 +903,7 @@ class ResourceLoader {
 					'resourceloader',
 					__METHOD__ . ": pre-fetching blobs from MessageBlobStore failed: $e"
 				);
-				$this->hasErrors = true;
-				// Add exception to the output as a comment
-				$exceptions .= self::formatException( $e );
+				$this->errors[] = self::formatExceptionNoComment( $e );
 			}
 		} else {
 			$blobs = array();
@@ -1020,9 +1027,7 @@ class ResourceLoader {
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				wfDebugLog( 'resourceloader', __METHOD__ . ": generating module package failed: $e" );
-				$this->hasErrors = true;
-				// Add exception to the output as a comment
-				$exceptions .= self::formatException( $e );
+				$this->errors[] = self::formatExceptionNoComment( $e );
 
 				// Respond to client with error-state instead of module implementation
 				$states[$name] = 'error';
@@ -1048,9 +1053,8 @@ class ResourceLoader {
 			}
 		} else {
 			if ( count( $states ) ) {
-				$exceptions .= self::makeComment(
-					'Problematic modules: ' . FormatJson::encode( $states, ResourceLoader::inDebugMode() )
-				);
+				$this->errors[] = 'Problematic modules: ' .
+					FormatJson::encode( $states, ResourceLoader::inDebugMode() );
 			}
 		}
 
@@ -1063,7 +1067,7 @@ class ResourceLoader {
 		}
 
 		wfProfileOut( __METHOD__ );
-		return $exceptions . $out;
+		return $out;
 	}
 
 	/* Static Methods */
