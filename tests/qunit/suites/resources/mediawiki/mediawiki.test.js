@@ -406,7 +406,7 @@
 			isAwesomeDone = true;
 		};
 
-		mw.loader.implement( 'test.callback', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )], {}, {} );
+		mw.loader.implement( 'test.callback', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )] );
 
 		mw.loader.using( 'test.callback', function () {
 
@@ -454,7 +454,7 @@
 			isAwesomeDone = true;
 		};
 
-		mw.loader.implement( 'test.promise', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )], {}, {} );
+		mw.loader.implement( 'test.promise', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )] );
 
 		mw.loader.using( 'test.promise' )
 		.done( function () {
@@ -492,8 +492,7 @@
 			},
 			{
 				'all': '.mw-test-implement-a { float: right; }'
-			},
-			{}
+			}
 		);
 
 		mw.loader.load( [
@@ -555,8 +554,7 @@
 						urlStyleTest( '.mw-test-implement-b3', 'float', 'right' )
 					]
 				}
-			},
-			{}
+			}
 		);
 
 		mw.loader.load( [
@@ -586,8 +584,7 @@
 			},
 			{
 				'all': '.mw-test-implement-c { float: right; }'
-			},
-			{}
+			}
 		);
 
 		mw.loader.load( [
@@ -624,8 +621,7 @@
 			{
 				'all': [urlStyleTest( '.mw-test-implement-d', 'float', 'right' )],
 				'print': [urlStyleTest( '.mw-test-implement-d2', 'text-align', 'center' )]
-			},
-			{}
+			}
 		);
 
 		mw.loader.load( [
@@ -719,18 +715,15 @@
 			['test.module5', '0', ['test.module4']],
 			['test.module6', '0', ['test.module5']]
 		] );
-		mw.loader.implement( 'test.module4', function () {
-		}, {}, {} );
+		mw.loader.implement( 'test.module4', function () {} );
 		assert.strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
 		assert.strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'Expected "registered" state for test.module5' );
 		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'registered', 'Expected "registered" state for test.module6' );
-		mw.loader.implement( 'test.module6', function () {
-		}, {}, {} );
+		mw.loader.implement( 'test.module6', function () {} );
 		assert.strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
 		assert.strictEqual( mw.loader.getState( 'test.module5' ), 'registered', 'Expected "registered" state for test.module5' );
 		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'loaded', 'Expected "loaded" state for test.module6' );
-		mw.loader.implement( 'test.module5', function () {
-		}, {}, {} );
+		mw.loader.implement( 'test.module5', function () {} );
 		assert.strictEqual( mw.loader.getState( 'test.module4' ), 'ready', 'Expected "ready" state for test.module4' );
 		assert.strictEqual( mw.loader.getState( 'test.module5' ), 'ready', 'Expected "ready" state for test.module5' );
 		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'ready', 'Expected "ready" state for test.module6' );
@@ -742,8 +735,7 @@
 			['test.module8', '0', ['test.module7']],
 			['test.module9', '0', ['test.module8']]
 		] );
-		mw.loader.implement( 'test.module8', function () {
-		}, {}, {} );
+		mw.loader.implement( 'test.module8', function () {} );
 		assert.strictEqual( mw.loader.getState( 'test.module7' ), 'registered', 'Expected "registered" state for test.module7' );
 		assert.strictEqual( mw.loader.getState( 'test.module8' ), 'loaded', 'Expected "loaded" state for test.module8' );
 		assert.strictEqual( mw.loader.getState( 'test.module9' ), 'registered', 'Expected "registered" state for test.module9' );
@@ -751,8 +743,7 @@
 		assert.strictEqual( mw.loader.getState( 'test.module7' ), 'missing', 'Expected "missing" state for test.module7' );
 		assert.strictEqual( mw.loader.getState( 'test.module8' ), 'error', 'Expected "error" state for test.module8' );
 		assert.strictEqual( mw.loader.getState( 'test.module9' ), 'error', 'Expected "error" state for test.module9' );
-		mw.loader.implement( 'test.module9', function () {
-		}, {}, {} );
+		mw.loader.implement( 'test.module9', function () {} );
 		assert.strictEqual( mw.loader.getState( 'test.module7' ), 'missing', 'Expected "missing" state for test.module7' );
 		assert.strictEqual( mw.loader.getState( 'test.module8' ), 'error', 'Expected "error" state for test.module8' );
 		assert.strictEqual( mw.loader.getState( 'test.module9' ), 'error', 'Expected "error" state for test.module9' );
