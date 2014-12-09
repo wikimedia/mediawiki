@@ -28,7 +28,8 @@ class ImportTest extends MediaWikiLangTestCase {
 		$source = $this->getInputStreamSource( $xml );
 
 		$redirect = null;
-		$callback = function ( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) use ( &$redirect ) {
+		$callback = function ( Title $title, ForeignTitle $foreignTitle, $revCount,
+			$sRevCount, $pageInfo ) use ( &$redirect ) {
 			if ( array_key_exists( 'redirect', $pageInfo ) ) {
 				$redirect = $pageInfo['redirect'];
 			}
@@ -94,6 +95,61 @@ EOF
 EOF
 			,
 				null
+			),
+		);
+	}
+
+	/**
+	 * @covers WikiImporter::handleSiteInfo
+	 * @dataProvider getSiteInfoXML
+	 * @param string $xml
+	 * @param array|null $namespaces
+	 */
+	public function testSiteInfoContainsNamespaces( $xml, $namespaces ) {
+		$source = $this->getInputStreamSource( $xml );
+
+		$importNamespaces = null;
+		$callback = function ( array $siteinfo, $innerImporter ) use ( &$importNamespaces ) {
+			$importNamespaces = $siteinfo['_namespaces'];
+		};
+
+		$importer = new WikiImporter( $source, ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+		$importer->setSiteInfoCallback( $callback );
+		$importer->doImport();
+
+		$this->assertEquals( $importNamespaces, $namespaces );
+	}
+
+	public function getSiteInfoXML() {
+		return array(
+			array(
+				<<< EOF
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+  <siteinfo>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="100" case="first-letter">Portal</namespace>
+      <namespace key="101" case="first-letter">Portal talk</namespace>
+    </namespaces>
+  </siteinfo>
+</mediawiki>
+EOF
+			,
+				array(
+					'-2' => 'Media',
+					'-1' => 'Special',
+					'0' => '',
+					'1' => 'Talk',
+					'2' => 'User',
+					'3' => 'User talk',
+					'100' => 'Portal',
+					'101' => 'Portal talk',
+				)
 			),
 		);
 	}
