@@ -4154,17 +4154,19 @@ class Title {
 		}
 		// No DB query needed if $old and $new are the same or successive revisions:
 		if ( $old->getId() === $new->getId() ) {
-			return ( $old_cmp === '>' && $new_cmp === '<' ) ? array() : array( $old->getRawUserText() );
+			return ( $old_cmp === '>' && $new_cmp === '<' ) ?
+				array() :
+				array( $old->getUserText( Revision::RAW ) );
 		} elseif ( $old->getId() === $new->getParentId() ) {
 			if ( $old_cmp === '>=' && $new_cmp === '<=' ) {
-				$authors[] = $old->getRawUserText();
-				if ( $old->getRawUserText() != $new->getRawUserText() ) {
-					$authors[] = $new->getRawUserText();
+				$authors[] = $old->getUserText( Revision::RAW );
+				if ( $old->getUserText( Revision::RAW ) != $new->getUserText( Revision::RAW ) ) {
+					$authors[] = $new->getUserText( Revision::RAW );
 				}
 			} elseif ( $old_cmp === '>=' ) {
-				$authors[] = $old->getRawUserText();
+				$authors[] = $old->getUserText( Revision::RAW );
 			} elseif ( $new_cmp === '<=' ) {
-				$authors[] = $new->getRawUserText();
+				$authors[] = $new->getUserText( Revision::RAW );
 			}
 			return $authors;
 		}

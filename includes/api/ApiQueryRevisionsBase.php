@@ -179,9 +179,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 			if ( $revision->userCan( Revision::DELETED_USER, $user ) ) {
 				if ( $this->fld_user ) {
-					$vals['user'] = $revision->getRawUserText();
+					$vals['user'] = $revision->getUserText( Revision::RAW );
 				}
-				$userid = $revision->getRawUser();
+				$userid = $revision->getUser( Revision::RAW );
 				if ( !$userid ) {
 					$vals['anon'] = '';
 				}
@@ -228,7 +228,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$anyHidden = true;
 			}
 			if ( $revision->userCan( Revision::DELETED_COMMENT, $user ) ) {
-				$comment = $revision->getRawComment();
+				$comment = $revision->getComment( Revision::RAW );
 
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;

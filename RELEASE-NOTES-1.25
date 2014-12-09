@@ -316,6 +316,7 @@ changes to languages because of Bugzilla reports.
       $form->setDisplayFormat( 'vform' ); // throws exception
     Instead, do this:
       $form = HTMLForm::factory( 'vform', … );
+* Deprecated Revision methods getRawUser(), getRawUserText() and getRawComment().
 
 == Compatibility ==
 

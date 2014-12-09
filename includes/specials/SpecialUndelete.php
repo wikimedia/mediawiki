@@ -550,7 +550,7 @@ class PageArchive {
 				'title' => $article->getTitle(), // used to derive default content model
 			)
 		);
-		$user = User::newFromName( $revision->getRawUserText(), false );
+		$user = User::newFromName( $revision->getUserText( Revision::RAW ), false );
 		$content = $revision->getContent( Revision::RAW );
 
 		//NOTE: article ID may not be known yet. prepareSave() should not modify the database.
@@ -623,7 +623,7 @@ class PageArchive {
 		$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
 		if ( $created || $wasnew ) {
 			// Update site stats, link tables, etc
-			$user = User::newFromName( $revision->getRawUserText(), false );
+			$user = User::newFromName( $revision->getUserText( Revision::RAW ), false );
 			$article->doEditUpdates(
 				$revision,
 				$user,
