@@ -28,16 +28,20 @@
 class ScopedCallback {
 	/** @var callable */
 	protected $callback;
+	/** @var array */
+	protected $params;
 
 	/**
 	 * @param callable $callback
+	 * @param array $params Callback arguments (since 1.25)
 	 * @throws Exception
 	 */
-	public function __construct( $callback ) {
+	public function __construct( $callback, array $params = array() ) {
 		if ( !is_callable( $callback ) ) {
 			throw new InvalidArgumentException( "Provided callback is not valid." );
 		}
 		$this->callback = $callback;
+		$this->params = $params;
 	}
 
 	/**
@@ -67,7 +71,7 @@ class ScopedCallback {
 	 */
 	function __destruct() {
 		if ( $this->callback !== null ) {
-			call_user_func( $this->callback );
+			call_user_func_array( $this->callback, $this->params );
 		}
 	}
 }
