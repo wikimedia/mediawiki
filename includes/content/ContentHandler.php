@@ -201,7 +201,7 @@ abstract class ContentHandler {
 		$model = MWNamespace::getNamespaceContentModel( $ns );
 
 		// Hook can determine default model
-		if ( !wfRunHooks( 'ContentHandlerDefaultModelFor', array( $title, &$model ) ) ) {
+		if ( !Hooks::run( 'ContentHandlerDefaultModelFor', array( $title, &$model ) ) ) {
 			if ( !is_null( $model ) ) {
 				return $model;
 			}
@@ -214,7 +214,7 @@ abstract class ContentHandler {
 		}
 
 		// Hook can force JS/CSS
-		wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage ), '1.25' );
+		Hooks::run( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage ), '1.25' );
 
 		// Is this a .css subpage of a user page?
 		$isJsCssSubpage = NS_USER == $ns
@@ -229,7 +229,7 @@ abstract class ContentHandler {
 		$isWikitext = $isWikitext && !$isCssOrJsPage && !$isJsCssSubpage;
 
 		// Hook can override $isWikitext
-		wfRunHooks( 'TitleIsWikitextPage', array( $title, &$isWikitext ), '1.25' );
+		Hooks::run( 'TitleIsWikitextPage', array( $title, &$isWikitext ), '1.25' );
 
 		if ( !$isWikitext ) {
 			switch ( $ext ) {
@@ -318,7 +318,7 @@ abstract class ContentHandler {
 		if ( empty( $wgContentHandlers[$modelId] ) ) {
 			$handler = null;
 
-			wfRunHooks( 'ContentHandlerForModelID', array( $modelId, &$handler ) );
+			Hooks::run( 'ContentHandlerForModelID', array( $modelId, &$handler ) );
 
 			if ( $handler === null ) {
 				throw new MWException( "No handler for model '$modelId' registered in \$wgContentHandlers" );
@@ -660,7 +660,7 @@ abstract class ContentHandler {
 			$pageLang = wfGetLangObj( $lang );
 		}
 
-		wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );
+		Hooks::run( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );
 
 		return wfGetLangObj( $pageLang );
 	}
@@ -719,7 +719,7 @@ abstract class ContentHandler {
 	public function canBeUsedOn( Title $title ) {
 		$ok = true;
 
-		wfRunHooks( 'ContentModelCanBeUsedOn', array( $this->getModelID(), $title, &$ok ) );
+		Hooks::run( 'ContentModelCanBeUsedOn', array( $this->getModelID(), $title, &$ok ) );
 
 		return $ok;
 	}
@@ -1151,7 +1151,7 @@ abstract class ContentHandler {
 		}
 
 		// call the hook functions
-		$ok = wfRunHooks( $event, $args );
+		$ok = Hooks::run( $event, $args );
 
 		// see if the hook changed the text
 		foreach ( $contentTexts as $k => $orig ) {

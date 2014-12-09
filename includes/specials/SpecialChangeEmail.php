@@ -183,7 +183,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 			return $status;
 		}
 
-		wfRunHooks( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
+		Hooks::run( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
 
 		$user->saveSettings();
 

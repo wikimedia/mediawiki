@@ -1419,7 +1419,7 @@ class Revision implements IDBAccessObject {
 
 		$this->mId = $rev_id !== null ? $rev_id : $dbw->insertId();
 
-		wfRunHooks( 'RevisionInsertComplete', array( &$this, $data, $flags ) );
+		Hooks::run( 'RevisionInsertComplete', array( &$this, $data, $flags ) );
 
 		wfProfileOut( __METHOD__ );
 		return $this->mId;

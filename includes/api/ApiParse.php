@@ -267,7 +267,7 @@ class ApiParse extends ApiBase {
 				// Link flags are ignored for now, but may in the future be
 				// included in the result.
 				$linkFlags = array();
-				wfRunHooks( 'LanguageLinks', array( $titleObj, &$langlinks, &$linkFlags ) );
+				Hooks::run( 'LanguageLinks', array( $titleObj, &$langlinks, &$linkFlags ) );
 			}
 		} else {
 			$langlinks = false;

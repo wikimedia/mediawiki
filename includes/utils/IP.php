@@ -717,7 +717,7 @@ class IP {
 	 */
 	public static function isTrustedProxy( $ip ) {
 		$trusted = self::isConfiguredProxy( $ip );
-		wfRunHooks( 'IsTrustedProxy', array( &$ip, &$trusted ) );
+		Hooks::run( 'IsTrustedProxy', array( &$ip, &$trusted ) );
 		return $trusted;
 	}
 

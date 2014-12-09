@@ -945,7 +945,7 @@ class LocalisationCache {
 
 			# Allow extensions an opportunity to adjust the data for this
 			# fallback
-			wfRunHooks( 'LocalisationCacheRecacheFallback', array( $this, $csCode, &$csData ) );
+			Hooks::run( 'LocalisationCacheRecacheFallback', array( $this, $csCode, &$csData ) );
 
 			# Merge the data for this fallback into the final array
 			if ( $csCode === $code ) {
@@ -1003,7 +1003,7 @@ class LocalisationCache {
 		}
 		# Run hooks
 		$purgeBlobs = true;
-		wfRunHooks( 'LocalisationCacheRecache', array( $this, $code, &$allData, &$purgeBlobs ) );
+		Hooks::run( 'LocalisationCacheRecache', array( $this, $code, &$allData, &$purgeBlobs ) );
 
 		if ( is_null( $allData['namespaceNames'] ) ) {
 			wfProfileOut( __METHOD__ );

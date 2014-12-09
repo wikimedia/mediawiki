@@ -255,7 +255,7 @@ class BacklinkCache {
 			return $prefixes[$table];
 		} else {
 			$prefix = null;
-			wfRunHooks( 'BacklinkCacheGetPrefix', array( $table, &$prefix ) );
+			Hooks::run( 'BacklinkCacheGetPrefix', array( $table, &$prefix ) );
 			if ( $prefix ) {
 				return $prefix;
 			} else {
@@ -303,7 +303,7 @@ class BacklinkCache {
 				break;
 			default:
 				$conds = null;
-				wfRunHooks( 'BacklinkCacheGetConditions', array( $table, $this->title, &$conds ) );
+				Hooks::run( 'BacklinkCacheGetConditions', array( $table, $this->title, &$conds ) );
 				if ( !$conds ) {
 					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
 				}

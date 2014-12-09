@@ -96,7 +96,7 @@ class Preferences {
 		self::searchPreferences( $user, $context, $defaultPreferences );
 		self::miscPreferences( $user, $context, $defaultPreferences );
 
-		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
+		Hooks::run( 'GetPreferences', array( $user, &$defaultPreferences ) );
 
 		self::loadPreferenceValues( $user, $context, $defaultPreferences );
 		self::$defaultPreferences = $defaultPreferences;
@@ -1433,7 +1433,7 @@ class Preferences {
 				$user->setOption( $key, $value );
 			}
 
-			wfRunHooks( 'PreferencesFormPreSave', array( $formData, $form, $user, &$result ) );
+			Hooks::run( 'PreferencesFormPreSave', array( $formData, $form, $user, &$result ) );
 			$user->saveSettings();
 		}
 
@@ -1575,7 +1575,7 @@ class PreferencesForm extends HTMLForm {
 	 */
 	function getLegend( $key ) {
 		$legend = parent::getLegend( $key );
-		wfRunHooks( 'PreferencesGetLegend', array( $this, $key, &$legend ) );
+		Hooks::run( 'PreferencesGetLegend', array( $this, $key, &$legend ) );
 		return $legend;
 	}
 }

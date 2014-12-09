@@ -191,7 +191,7 @@ class UserMailer {
 		$extraParams = $wgAdditionalMailParams;
 
 		// Hook to generate custom VERP address for 'Return-Path'
-		wfRunHooks( 'UserMailerChangeReturnPath', array( $to, &$returnPath ) );
+		Hooks::run( 'UserMailerChangeReturnPath', array( $to, &$returnPath ) );
 		# Add the envelope sender address using the -f command line option when PHP mail() is used.
 		# Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
 		# generated VERP address when the hook runs effectively.
@@ -250,7 +250,7 @@ class UserMailer {
 			$headers['Content-transfer-encoding'] = '8bit';
 		}
 
-		$ret = wfRunHooks( 'AlternateUserMailer', array( $headers, $to, $from, $subject, $body ) );
+		$ret = Hooks::run( 'AlternateUserMailer', array( $headers, $to, $from, $subject, $body ) );
 		if ( $ret === false ) {
 			// the hook implementation will return false to skip regular mail sending
 			return Status::newGood();

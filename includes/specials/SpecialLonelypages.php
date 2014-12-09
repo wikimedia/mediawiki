@@ -72,7 +72,7 @@ class LonelyPagesPage extends PageQueryPage {
 		);
 
 		// Allow extensions to modify the query
-		wfRunHooks( 'LonelyPagesQuery', array( &$tables, &$conds, &$joinConds ) );
+		Hooks::run( 'LonelyPagesQuery', array( &$tables, &$conds, &$joinConds ) );
 
 		return array(
 			'tables' => $tables,

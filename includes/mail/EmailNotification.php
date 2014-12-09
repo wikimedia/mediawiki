@@ -224,7 +224,7 @@ class EmailNotification {
 
 		$formattedPageStatus = array( 'deleted', 'created', 'moved', 'restored', 'changed' );
 
-		wfRunHooks( 'UpdateUserMailerFormattedPageStatus', array( &$formattedPageStatus ) );
+		Hooks::run( 'UpdateUserMailerFormattedPageStatus', array( &$formattedPageStatus ) );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
 			wfProfileOut( __METHOD__ );
 			throw new MWException( 'Not a valid page status!' );
@@ -251,7 +251,7 @@ class EmailNotification {
 						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getID() != $userTalkId
 					) {
-						if ( wfRunHooks( 'SendWatchlistEmailNotification', array( $watchingUser, $title, $this ) ) ) {
+						if ( Hooks::run( 'SendWatchlistEmailNotification', array( $watchingUser, $title, $this ) ) ) {
 							$this->compose( $watchingUser );
 						}
 					}
@@ -295,7 +295,7 @@ class EmailNotification {
 			) {
 				if ( !$targetUser->isEmailConfirmed() ) {
 					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
-				} elseif ( !wfRunHooks( 'AbortTalkPageEmailNotification', array( $targetUser, $title ) ) ) {
+				} elseif ( !Hooks::run( 'AbortTalkPageEmailNotification', array( $targetUser, $title ) ) ) {
 					wfDebug( __METHOD__ . ": talk page update notification is aborted for this user\n" );
 				} else {
 					wfDebug( __METHOD__ . ": sending talk page update notification\n" );

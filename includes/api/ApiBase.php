@@ -1957,7 +1957,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalDescription() {
 		$desc = $this->getDescription();
-		wfRunHooks( 'APIGetDescription', array( &$this, &$desc ) );
+		Hooks::run( 'APIGetDescription', array( &$this, &$desc ) );
 		$desc = self::escapeWikiText( $desc );
 		if ( is_array( $desc ) ) {
 			$desc = join( "\n", $desc );
@@ -1975,7 +1975,7 @@ abstract class ApiBase extends ContextSource {
 		}
 		$msgs = array( $msg );
 
-		wfRunHooks( 'APIGetDescriptionMessages', array( $this, &$msgs ) );
+		Hooks::run( 'APIGetDescriptionMessages', array( $this, &$msgs ) );
 
 		return $msgs;
 	}
@@ -2005,7 +2005,7 @@ abstract class ApiBase extends ContextSource {
 			) + ( isset( $params['token'] ) ? $params['token'] : array() );
 		}
 
-		wfRunHooks( 'APIGetAllowedParams', array( &$this, &$params, $flags ) );
+		Hooks::run( 'APIGetAllowedParams', array( &$this, &$params, $flags ) );
 
 		return $params;
 	}
@@ -2019,7 +2019,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalParamDescription() {
 		$desc = $this->getParamDescription();
-		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ) );
+		Hooks::run( 'APIGetParamDescription', array( &$this, &$desc ) );
 
 		if ( !$desc ) {
 			$desc = array();
@@ -2087,7 +2087,7 @@ abstract class ApiBase extends ContextSource {
 			}
 		}
 
-		wfRunHooks( 'APIGetParamDescriptionMessages', array( $this, &$msgs ) );
+		Hooks::run( 'APIGetParamDescriptionMessages', array( $this, &$msgs ) );
 
 		return $msgs;
 	}

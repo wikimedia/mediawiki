@@ -283,7 +283,7 @@ class Parser {
 			unset( $tmp );
 		}
 
-		wfRunHooks( 'ParserCloned', array( $this ) );
+		Hooks::run( 'ParserCloned', array( $this ) );
 	}
 
 	/**
@@ -301,7 +301,7 @@ class Parser {
 		CoreTagHooks::register( $this );
 		$this->initialiseVariables();
 
-		wfRunHooks( 'ParserFirstCallInit', array( &$this ) );
+		Hooks::run( 'ParserFirstCallInit', array( &$this ) );
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -369,7 +369,7 @@ class Parser {
 
 		$this->mProfiler = new SectionProfiler();
 
-		wfRunHooks( 'ParserClearState', array( &$this ) );
+		Hooks::run( 'ParserClearState', array( &$this ) );
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -428,11 +428,11 @@ class Parser {
 			$this->mRevisionSize = null;
 		}
 
-		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		# No more strip!
-		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->internalParse( $text );
-		wfRunHooks( 'ParserAfterParse', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserAfterParse', array( &$this, &$text, &$this->mStripState ) );
 
 		$text = $this->internalParseHalfParsed( $text, true, $linestart );
 
@@ -498,14 +498,14 @@ class Parser {
 			$this->mOutput->setLimitReportData( 'limitreport-expensivefunctioncount',
 				array( $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() )
 			);
-			wfRunHooks( 'ParserLimitReportPrepare', array( $this, $this->mOutput ) );
+			Hooks::run( 'ParserLimitReportPrepare', array( $this, $this->mOutput ) );
 
 			$limitReport = "NewPP limit report\n";
 			if ( $wgShowHostnames ) {
 				$limitReport .= 'Parsed by ' . wfHostname() . "\n";
 			}
 			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
-				if ( wfRunHooks( 'ParserLimitReportFormat',
+				if ( Hooks::run( 'ParserLimitReportFormat',
 					array( $key, &$value, &$limitReport, false, false )
 				) ) {
 					$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
@@ -523,7 +523,7 @@ class Parser {
 			// Since we're not really outputting HTML, decode the entities and
 			// then re-encode the things that need hiding inside HTML comments.
 			$limitReport = htmlspecialchars_decode( $limitReport );
-			wfRunHooks( 'ParserLimitReport', array( $this, &$limitReport ) );
+			Hooks::run( 'ParserLimitReport', array( $this, &$limitReport ) );
 
 			// Sanitize for comment. Note '‐' in the replacement is U+2010,
 			// which looks much like the problematic '-'.
@@ -587,8 +587,8 @@ class Parser {
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
 		wfProfileIn( __METHOD__ );
-		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
-		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->internalParse( $text, false, $frame );
 		wfProfileOut( __METHOD__ );
 		return $text;
@@ -637,8 +637,8 @@ class Parser {
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
-		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
-		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		wfProfileOut( __METHOD__ );
@@ -1223,7 +1223,7 @@ class Parser {
 		$origText = $text;
 
 		# Hook to suspend the parser in this state
-		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$this->mStripState ) ) ) {
+		if ( !Hooks::run( 'ParserBeforeInternalParse', array( &$this, &$text, &$this->mStripState ) ) ) {
 			wfProfileOut( __METHOD__ );
 			return $text;
 		}
@@ -1244,14 +1244,14 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
-		wfRunHooks( 'InternalParseBeforeSanitize', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'InternalParseBeforeSanitize', array( &$this, &$text, &$this->mStripState ) );
 		$text = Sanitizer::removeHTMLtags(
 			$text,
 			array( &$this, 'attributeStripCallback' ),
 			false,
 			array_keys( $this->mTransparentTagHooks )
 		);
-		wfRunHooks( 'InternalParseBeforeLinks', array( &$this, &$text, &$this->mStripState ) );
+		Hooks::run( 'InternalParseBeforeLinks', array( &$this, &$text, &$this->mStripState ) );
 
 		# Tables need to come after variable replacement for things to work
 		# properly; putting them before other transformations should keep
@@ -1329,7 +1329,7 @@ class Parser {
 		$text = $this->mStripState->unstripNoWiki( $text );
 
 		if ( $isMain ) {
-			wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
+			Hooks::run( 'ParserBeforeTidy', array( &$this, &$text ) );
 		}
 
 		$text = $this->replaceTransparentTags( $text );
@@ -1368,7 +1368,7 @@ class Parser {
 		}
 
 		if ( $isMain ) {
-			wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
+			Hooks::run( 'ParserAfterTidy', array( &$this, &$text ) );
 		}
 
 		return $text;
@@ -2318,7 +2318,7 @@ class Parser {
 				# Give extensions a chance to select the file revision for us
 				$options = array();
 				$descQuery = false;
-				wfRunHooks( 'BeforeParserFetchFileAndTitle',
+				Hooks::run( 'BeforeParserFetchFileAndTitle',
 					array( $this, $nt, &$options, &$descQuery ) );
 				# Fetch and register the file (file title may be different via hooks)
 				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $options );
@@ -2945,14 +2945,14 @@ class Parser {
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
 		 */
-		if ( wfRunHooks( 'ParserGetVariableValueVarCache', array( &$this, &$this->mVarCache ) ) ) {
+		if ( Hooks::run( 'ParserGetVariableValueVarCache', array( &$this, &$this->mVarCache ) ) ) {
 			if ( isset( $this->mVarCache[$index] ) ) {
 				return $this->mVarCache[$index];
 			}
 		}
 
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
-		wfRunHooks( 'ParserGetVariableValueTs', array( &$this, &$ts ) );
+		Hooks::run( 'ParserGetVariableValueTs', array( &$this, &$ts ) );
 
 		$pageLang = $this->getFunctionLang();
 
@@ -3260,7 +3260,7 @@ class Parser {
 				break;
 			default:
 				$ret = null;
-				wfRunHooks(
+				Hooks::run(
 					'ParserGetVariableValueSwitch',
 					array( &$this, &$this->mVarCache, &$index, &$ret, &$frame )
 				);
@@ -4011,7 +4011,7 @@ class Parser {
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$id = false; # Assume current
-			wfRunHooks( 'BeforeParserFetchTemplateAndtitle',
+			Hooks::run( 'BeforeParserFetchTemplateAndtitle',
 				array( $parser, $title, &$skip, &$id ) );
 
 			if ( $skip ) {
@@ -4820,7 +4820,7 @@ class Parser {
 			 * &$sectionContent : ref to the content of the section
 			 * $showEditLinks : boolean describing whether this section has an edit link
 			 */
-			wfRunHooks( 'ParserSectionCreate', array( $this, $i, &$sections[$i], $showEditLink ) );
+			Hooks::run( 'ParserSectionCreate', array( $this, $i, &$sections[$i], $showEditLink ) );
 
 			$i++;
 		}
@@ -5403,7 +5403,7 @@ class Parser {
 		}
 		$ig->setAdditionalOptions( $params );
 
-		wfRunHooks( 'BeforeParserrenderImageGallery', array( &$this, &$ig ) );
+		Hooks::run( 'BeforeParserrenderImageGallery', array( &$this, &$ig ) );
 
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {
@@ -5430,7 +5430,7 @@ class Parser {
 			# file (which potentially could be of a different type and have different handler).
 			$options = array();
 			$descQuery = false;
-			wfRunHooks( 'BeforeParserFetchFileAndTitle',
+			Hooks::run( 'BeforeParserFetchFileAndTitle',
 				array( $this, $title, &$options, &$descQuery ) );
 			# Don't register it now, as ImageGallery does that later.
 			$file = $this->fetchFileNoRegister( $title, $options );
@@ -5511,7 +5511,7 @@ class Parser {
 			$ig->add( $title, $label, $alt, $link, $handlerOptions );
 		}
 		$html = $ig->toHTML();
-		wfRunHooks( 'AfterParserFetchFileAndTitle', array( $this, $ig, &$html ) );
+		Hooks::run( 'AfterParserFetchFileAndTitle', array( $this, $ig, &$html ) );
 		wfProfileOut( __METHOD__ );
 		return $html;
 	}
@@ -5600,7 +5600,7 @@ class Parser {
 		# Give extensions a chance to select the file revision for us
 		$options = array();
 		$descQuery = false;
-		wfRunHooks( 'BeforeParserFetchFileAndTitle',
+		Hooks::run( 'BeforeParserFetchFileAndTitle',
 			array( $this, $title, &$options, &$descQuery ) );
 		# Fetch and register the file (file title may be different via hooks)
 		list( $file, $title ) = $this->fetchFileAndTitle( $title, $options );
@@ -5764,7 +5764,7 @@ class Parser {
 			$params['frame']['title'] = $this->stripAltText( $caption, $holders );
 		}
 
-		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params, $this ) );
+		Hooks::run( 'ParserMakeImageParams', array( $title, $file, &$params, $this ) );
 
 		# Linker does the rest
 		$time = isset( $options['time'] ) ? $options['time'] : false;

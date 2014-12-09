@@ -463,7 +463,7 @@ class EditPage {
 	function edit() {
 		global $wgOut, $wgRequest, $wgUser;
 		// Allow extensions to modify/prevent this form or submission
-		if ( !wfRunHooks( 'AlternateEdit', array( $this ) ) ) {
+		if ( !Hooks::run( 'AlternateEdit', array( $this ) ) ) {
 			return;
 		}
 
@@ -558,9 +558,9 @@ class EditPage {
 			}
 
 			if ( !$this->mTitle->getArticleID() ) {
-				wfRunHooks( 'EditFormPreloadText', array( &$this->textbox1, &$this->mTitle ) );
+				Hooks::run( 'EditFormPreloadText', array( &$this->textbox1, &$this->mTitle ) );
 			} else {
-				wfRunHooks( 'EditFormInitialText', array( $this ) );
+				Hooks::run( 'EditFormInitialText', array( $this ) );
 			}
 
 		}
@@ -627,7 +627,7 @@ class EditPage {
 			throw new PermissionsError( $action, $permErrors );
 		}
 
-		wfRunHooks( 'EditPage::showReadOnlyForm:initial', array( $this, &$wgOut ) );
+		Hooks::run( 'EditPage::showReadOnlyForm:initial', array( $this, &$wgOut ) );
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setPageTitle( wfMessage(
@@ -929,7 +929,7 @@ class EditPage {
 			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' );
 
 		// Allow extensions to modify form data
-		wfRunHooks( 'EditPage::importFormData', array( $this, $request ) );
+		Hooks::run( 'EditPage::importFormData', array( $this, $request ) );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -1368,7 +1368,7 @@ class EditPage {
 				$sectionanchor = $resultDetails['sectionanchor'];
 
 				// Give extensions a chance to modify URL query on update
-				wfRunHooks(
+				Hooks::run(
 					'ArticleUpdateBeforeRedirect',
 					array( $this->mArticle, &$sectionanchor, &$extraQuery )
 				);
@@ -1448,7 +1448,7 @@ class EditPage {
 		}
 
 		// Run new style post-section-merge edit filter
-		if ( !wfRunHooks( 'EditFilterMergedContent',
+		if ( !Hooks::run( 'EditFilterMergedContent',
 			array( $this->mArticle->getContext(), $content, $status, $this->summary,
 				$user, $this->minoredit ) ) ) {
 
@@ -1532,7 +1532,7 @@ class EditPage {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-checks' );
 
-		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) ) {
+		if ( !Hooks::run( 'EditPage::attemptSave', array( $this ) ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
@@ -1618,7 +1618,7 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return $status;
 		}
-		if ( !wfRunHooks(
+		if ( !Hooks::run(
 			'EditFilter',
 			array( $this, $this->textbox1, $this->section, &$this->hookError, $this->summary ) )
 		) {
@@ -2360,7 +2360,7 @@ class EditPage {
 			$previewOutput = $this->getPreviewText();
 		}
 
-		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this, &$wgOut ) );
+		Hooks::run( 'EditPage::showEditForm:initial', array( &$this, &$wgOut ) );
 
 		$this->setHeaders();
 
@@ -2426,7 +2426,7 @@ class EditPage {
 			. Xml::closeElement( 'div' )
 		);
 
-		wfRunHooks( 'EditPage::showEditForm:fields', array( &$this, &$wgOut ) );
+		Hooks::run( 'EditPage::showEditForm:fields', array( &$this, &$wgOut ) );
 
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$this->showFormBeforeText();
@@ -3072,7 +3072,7 @@ HTML
 		}
 		# This hook seems slightly odd here, but makes things more
 		# consistent for extensions.
-		wfRunHooks( 'OutputPageBeforeHTML', array( &$wgOut, &$text ) );
+		Hooks::run( 'OutputPageBeforeHTML', array( &$wgOut, &$text ) );
 		$wgOut->addHTML( $text );
 		if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
 			$this->mArticle->closeShowCategory();
@@ -3111,7 +3111,7 @@ HTML
 
 		if ( $newContent ) {
 			ContentHandler::runLegacyHooks( 'EditPageGetDiffText', array( $this, &$newContent ) );
-			wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) );
+			Hooks::run( 'EditPageGetDiffContent', array( $this, &$newContent ) );
 
 			$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
 			$newContent = $newContent->preSaveTransform( $this->mTitle, $wgUser, $popts );
@@ -3163,7 +3163,7 @@ HTML
 	 */
 	protected function showTosSummary() {
 		$msg = 'editpage-tos-summary';
-		wfRunHooks( 'EditPageTosSummary', array( $this->mTitle, &$msg ) );
+		Hooks::run( 'EditPageTosSummary', array( $this->mTitle, &$msg ) );
 		if ( !wfMessage( $msg )->isDisabled() ) {
 			global $wgOut;
 			$wgOut->addHTML( '<div class="mw-tos-summary">' );
@@ -3207,7 +3207,7 @@ HTML
 				'[[' . wfMessage( 'copyrightpage' )->inContentLanguage()->text() . ']]' );
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
-		wfRunHooks( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
+		Hooks::run( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
 
 		return "<div id=\"editpage-copywarn\">\n" .
 			call_user_func_array( 'wfMessage', $copywarnMsg )->$format() . "\n</div>";
@@ -3240,7 +3240,7 @@ HTML
 			Html::openElement( 'tbody' );
 
 		foreach ( $output->getLimitReportData() as $key => $value ) {
-			if ( wfRunHooks( 'ParserLimitReportFormat',
+			if ( Hooks::run( 'ParserLimitReportFormat',
 				array( $key, &$value, &$limitReport, true, true )
 			) ) {
 				$keyMsg = wfMessage( $key );
@@ -3308,7 +3308,7 @@ HTML
 		$wgOut->addHTML( "	<span class='editHelp'>{$edithelp}</span>\n" );
 		$wgOut->addHTML( "</div><!-- editButtons -->\n" );
 
-		wfRunHooks( 'EditPage::showStandardInputs:options', array( $this, $wgOut, &$tabindex ) );
+		Hooks::run( 'EditPage::showStandardInputs:options', array( $this, $wgOut, &$tabindex ) );
 
 		$wgOut->addHTML( "</div><!-- editOptions -->\n" );
 	}
@@ -3320,7 +3320,7 @@ HTML
 	protected function showConflict() {
 		global $wgOut;
 
-		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
+		if ( Hooks::run( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
 			$content1 = $this->toEditContent( $this->textbox1 );
@@ -3471,7 +3471,7 @@ HTML
 			$content = $this->toEditContent( $this->textbox1 );
 
 			$previewHTML = '';
-			if ( !wfRunHooks(
+			if ( !Hooks::run(
 				'AlternateEditPreview',
 				array( $this, &$content, &$previewHTML, &$this->mParserOutput ) )
 			) {
@@ -3541,7 +3541,7 @@ HTML
 
 			$hook_args = array( $this, &$content );
 			ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args );
-			wfRunHooks( 'EditPageGetPreviewContent', $hook_args );
+			Hooks::run( 'EditPageGetPreviewContent', $hook_args );
 
 			$parserOptions->enableLimitReport();
 
@@ -3735,7 +3735,7 @@ HTML
 
 		$toolbar = '<div id="toolbar"></div>';
 
-		wfRunHooks( 'EditPageBeforeEditToolbar', array( &$toolbar ) );
+		Hooks::run( 'EditPageBeforeEditToolbar', array( &$toolbar ) );
 
 		return $toolbar;
 	}
@@ -3802,7 +3802,7 @@ HTML
 				$checkboxes['watch'] = $watchThisHtml;
 			}
 		}
-		wfRunHooks( 'EditPageBeforeEditChecks', array( &$this, &$checkboxes, &$tabindex ) );
+		Hooks::run( 'EditPageBeforeEditChecks', array( &$this, &$checkboxes, &$tabindex ) );
 		return $checkboxes;
 	}
 
@@ -3843,7 +3843,7 @@ HTML
 		$buttons['diff'] = Html::submitButton( wfMessage( 'showdiff' )->text(),
 			$attribs );
 
-		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
+		Hooks::run( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
 	}
 
@@ -3887,7 +3887,7 @@ HTML
 		$wgOut->prepareErrorPage( wfMessage( 'nosuchsectiontitle' ) );
 
 		$res = wfMessage( 'nosuchsectiontext', $this->section )->parseAsBlock();
-		wfRunHooks( 'EditPageNoSuchSection', array( &$this, &$res ) );
+		Hooks::run( 'EditPageNoSuchSection', array( &$this, &$res ) );
 		$wgOut->addHTML( $res );
 
 		$wgOut->returnToMain( false, $this->mTitle );

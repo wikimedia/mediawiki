@@ -273,7 +273,7 @@ class LogEventsList extends ContextSource {
 			} else {
 				// Allow extensions to add their own extra inputs
 				$input = '';
-				wfRunHooks( 'LogEventsListGetExtraInputs', array( $types[0], $this, &$input ) );
+				Hooks::run( 'LogEventsListGetExtraInputs', array( $types[0], $this, &$input ) );
 				return $input;
 			}
 		}
@@ -632,7 +632,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		/* hook can return false, if we don't want the message to be emitted (Wikia BugId:7093) */
-		if ( wfRunHooks( 'LogEventsListShowLogExtract', array( &$s, $types, $page, $user, $param ) ) ) {
+		if ( Hooks::run( 'LogEventsListShowLogExtract', array( &$s, $types, $page, $user, $param ) ) ) {
 			// $out can be either an OutputPage object or a String-by-reference
 			if ( $out instanceof OutputPage ) {
 				$out->addHTML( $s );

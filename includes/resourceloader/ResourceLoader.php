@@ -246,7 +246,7 @@ class ResourceLoader {
 		// Register core modules
 		$this->register( include "$IP/resources/Resources.php" );
 		// Register extension modules
-		wfRunHooks( 'ResourceLoaderRegisterModules', array( &$this ) );
+		Hooks::run( 'ResourceLoaderRegisterModules', array( &$this ) );
 		$this->register( $config->get( 'ResourceModules' ) );
 
 		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
@@ -376,7 +376,7 @@ class ResourceLoader {
 		$testModules = array();
 		$testModules['qunit'] = array();
 		// Get other test suites (e.g. from extensions)
-		wfRunHooks( 'ResourceLoaderTestModules', array( &$testModules, &$this ) );
+		Hooks::run( 'ResourceLoaderTestModules', array( &$testModules, &$this ) );
 
 		// Add the testrunner (which configures QUnit) to the dependencies.
 		// Since it must be ready before any of the test suites are executed.

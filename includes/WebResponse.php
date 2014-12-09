@@ -105,7 +105,7 @@ class WebResponse {
 
 		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
 
-		if ( wfRunHooks( 'WebResponseSetCookie', array( &$name, &$value, &$expire, $options ) ) ) {
+		if ( Hooks::run( 'WebResponseSetCookie', array( &$name, &$value, &$expire, $options ) ) ) {
 			wfDebugLog( 'cookie',
 				$func . ': "' . implode( '", "',
 					array(

@@ -59,7 +59,7 @@ abstract class Collation {
 
 				# Provide a mechanism for extensions to hook in.
 				$collationObject = null;
-				wfRunHooks( 'Collation::factory', array( $collationName, &$collationObject ) );
+				Hooks::run( 'Collation::factory', array( $collationName, &$collationObject ) );
 
 				if ( $collationObject instanceof Collation ) {
 					return $collationObject;

@@ -1125,7 +1125,7 @@ abstract class File {
 				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $transformParams, $flags );
 			}
 			// Give extensions a chance to do something with this thumbnail...
-			wfRunHooks( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
+			Hooks::run( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
 		}
 
 		// Purge. Useful in the event of Core -> Squid connection failure or squid

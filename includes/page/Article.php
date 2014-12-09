@@ -120,7 +120,7 @@ class Article implements Page {
 		}
 
 		$page = null;
-		wfRunHooks( 'ArticleFromTitle', array( &$title, &$page, $context ) );
+		Hooks::run( 'ArticleFromTitle', array( &$title, &$page, $context ) );
 		if ( !$page ) {
 			switch ( $title->getNamespace() ) {
 				case NS_FILE:
@@ -428,7 +428,7 @@ class Article implements Page {
 		);
 		$this->mRevIdFetched = $this->mRevision->getId();
 
-		wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
+		Hooks::run( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
 
 		wfProfileOut( __METHOD__ );
 
@@ -602,7 +602,7 @@ class Article implements Page {
 		while ( !$outputDone && ++$pass ) {
 			switch ( $pass ) {
 				case 1:
-					wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ) );
+					Hooks::run( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ) );
 					break;
 				case 2:
 					# Early abort if the page doesn't exist
@@ -665,7 +665,7 @@ class Article implements Page {
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
-					} elseif ( !wfRunHooks( 'ArticleContentViewCustom',
+					} elseif ( !Hooks::run( 'ArticleContentViewCustom',
 							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
 
 						# Allow extensions do their own custom view for certain pages
@@ -995,7 +995,7 @@ class Article implements Page {
 		if ( isset( $this->mRedirectedFrom ) ) {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
-			if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
+			if ( Hooks::run( 'ArticleViewRedirect', array( &$this ) ) ) {
 				$redir = Linker::linkKnown(
 					$this->mRedirectedFrom,
 					null,
@@ -1073,7 +1073,7 @@ class Article implements Page {
 		// Show a footer allowing the user to patrol the shown revision or page if possible
 		$patrolFooterShown = $this->showPatrolFooter();
 
-		wfRunHooks( 'ArticleViewFooter', array( $this, $patrolFooterShown ) );
+		Hooks::run( 'ArticleViewFooter', array( $this, $patrolFooterShown ) );
 	}
 
 	/**
@@ -1244,12 +1244,12 @@ class Article implements Page {
 			}
 		}
 
-		wfRunHooks( 'ShowMissingArticle', array( $this ) );
+		Hooks::run( 'ShowMissingArticle', array( $this ) );
 
 		// Give extensions a chance to hide their (unrelated) log entries
 		$logTypes = array( 'delete', 'move' );
 		$conds = array( "log_action != 'revision'" );
-		wfRunHooks( 'Article::MissingArticleConditions', array( &$conds, $logTypes ) );
+		Hooks::run( 'Article::MissingArticleConditions', array( &$conds, $logTypes ) );
 
 		# Show delete and move logs
 		LogEventsList::showLogExtract( $outputPage, $logTypes, $title, '',
@@ -1270,7 +1270,7 @@ class Article implements Page {
 		$outputPage->setIndexPolicy( $policy['index'] );
 		$outputPage->setFollowPolicy( $policy['follow'] );
 
-		$hookResult = wfRunHooks( 'BeforeDisplayNoArticleText', array( $this ) );
+		$hookResult = Hooks::run( 'BeforeDisplayNoArticleText', array( $this ) );
 
 		if ( !$hookResult ) {
 			return;
@@ -1346,7 +1346,7 @@ class Article implements Page {
 	 * @param int $oldid Revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
-		if ( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
+		if ( !Hooks::run( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
 			return;
 		}
 
@@ -1697,7 +1697,7 @@ class Article implements Page {
 		}
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
-		wfRunHooks( 'ArticleConfirmDelete', array( $this, $outputPage, &$reason ) );
+		Hooks::run( 'ArticleConfirmDelete', array( $this, $outputPage, &$reason ) );
 
 		$user = $this->getContext()->getUser();
 
@@ -1808,7 +1808,7 @@ class Article implements Page {
 
 			$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 
-			wfRunHooks( 'ArticleDeleteAfterSuccess', array( $this->getTitle(), $outputPage ) );
+			Hooks::run( 'ArticleDeleteAfterSuccess', array( $this->getTitle(), $outputPage ) );
 
 			$outputPage->returnToMain( false );
 		} else {
@@ -1882,7 +1882,7 @@ class Article implements Page {
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
-				$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ) );
+				$cacheable = Hooks::run( 'IsFileCacheable', array( &$this ) );
 			}
 		}
 

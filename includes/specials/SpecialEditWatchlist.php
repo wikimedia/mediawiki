@@ -513,7 +513,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				);
 
 				$page = WikiPage::factory( $title );
-				wfRunHooks( 'UnwatchArticleComplete', array( $this->getUser(), &$page ) );
+				Hooks::run( 'UnwatchArticleComplete', array( $this->getUser(), &$page ) );
 			}
 		}
 	}
@@ -551,7 +551,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		// Allow subscribers to manipulate the list of watched pages (or use it
 		// to preload lots of details at once)
 		$watchlistInfo = $this->getWatchlistInfo();
-		wfRunHooks(
+		Hooks::run(
 			'WatchlistEditorBeforeFormRender',
 			array( &$watchlistInfo )
 		);
@@ -645,7 +645,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 		}
 
-		wfRunHooks(
+		Hooks::run(
 			'WatchlistEditorBuildRemoveLine',
 			array( &$tools, $title, $title->isRedirect(), $this->getSkin(), &$link )
 		);

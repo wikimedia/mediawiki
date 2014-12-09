@@ -322,7 +322,7 @@ class RequestContext implements IContextSource {
 				$code = $request->getVal( 'uselang', $user->getOption( 'language' ) );
 				$code = self::sanitizeLangCode( $code );
 
-				wfRunHooks( 'UserGetLanguageObject', array( $user, &$code, $this ) );
+				Hooks::run( 'UserGetLanguageObject', array( $user, &$code, $this ) );
 
 				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
 					$this->lang = $wgContLang;
@@ -362,7 +362,7 @@ class RequestContext implements IContextSource {
 			wfProfileIn( __METHOD__ . '-createskin' );
 
 			$skin = null;
-			wfRunHooks( 'RequestContextCreateSkin', array( $this, &$skin ) );
+			Hooks::run( 'RequestContextCreateSkin', array( $this, &$skin ) );
 			$factory = SkinFactory::getDefaultInstance();
 
 			// If the hook worked try to set a skin from it

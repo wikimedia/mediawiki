@@ -274,7 +274,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['favicon'] = wfExpandUrl( $favicon, PROTO_RELATIVE );
 		}
 
-		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
+		Hooks::run( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -490,7 +490,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['admins'] = intval( SiteStats::numberingroup( 'sysop' ) );
 		$data['jobs'] = intval( SiteStats::jobs() );
 
-		wfRunHooks( 'APIQuerySiteInfoStatisticsInfo', array( &$data ) );
+		Hooks::run( 'APIQuerySiteInfoStatisticsInfo', array( &$data ) );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}

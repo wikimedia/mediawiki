@@ -579,7 +579,7 @@ class ImportReporter extends ContextSource {
 				$page = WikiPage::factory( $title );
 				# Update page record
 				$page->updateRevisionOn( $dbw, $nullRevision );
-				wfRunHooks(
+				Hooks::run(
 					'NewRevisionFromEditComplete',
 					array( $page, $nullRevision, $latest, $this->getUser() )
 				);

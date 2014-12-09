@@ -210,7 +210,7 @@ class FileDeleteForm {
 		}
 
 		if ( $status->isOK() ) {
-			wfRunHooks( 'FileDeleteComplete', array( &$file, &$oldimage, &$page, &$user, &$reason ) );
+			Hooks::run( 'FileDeleteComplete', array( &$file, &$oldimage, &$page, &$user, &$reason ) );
 		}
 
 		return $status;

@@ -100,7 +100,7 @@ abstract class QueryPage extends SpecialPage {
 				array( 'UnusedtemplatesPage', 'Unusedtemplates' ),
 				array( 'WithoutInterwikiPage', 'Withoutinterwiki' ),
 			);
-			wfRunHooks( 'wgQueryPages', array( &$qp ) );
+			Hooks::run( 'wgQueryPages', array( &$qp ) );
 		}
 
 		return $qp;

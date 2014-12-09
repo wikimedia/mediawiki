@@ -138,7 +138,7 @@ class WebRequest {
 					);
 				}
 
-				wfRunHooks( 'WebRequestPathInfoRouter', array( $router ) );
+				Hooks::run( 'WebRequestPathInfoRouter', array( $router ) );
 
 				$matches = $router->parse( $path );
 			}
@@ -1118,7 +1118,7 @@ HTML;
 		}
 
 		# Allow extensions to improve our guess
-		wfRunHooks( 'GetIP', array( &$ip ) );
+		Hooks::run( 'GetIP', array( &$ip ) );
 
 		if ( !$ip ) {
 			throw new MWException( "Unable to determine IP." );

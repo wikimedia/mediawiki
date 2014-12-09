@@ -112,7 +112,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			$toolbox['info']['id'] = 't-info';
 		}
 
-		wfRunHooks( 'BaseTemplateToolbox', array( &$this, &$toolbox ) );
+		Hooks::run( 'BaseTemplateToolbox', array( &$this, &$toolbox ) );
 		wfProfileOut( __METHOD__ );
 		return $toolbox;
 	}
@@ -228,7 +228,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			ob_start();
 			// We pass an extra 'true' at the end so extensions using BaseTemplateToolbox
 			// can abort and avoid outputting double toolbox links
-			wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this, true ) );
+			Hooks::run( 'SkinTemplateToolboxEnd', array( &$this, true ) );
 			$hookContents = ob_get_contents();
 			ob_end_clean();
 			if ( !trim( $hookContents ) ) {
@@ -285,7 +285,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 */
 	protected function renderAfterPortlet( $name ) {
 		$content = '';
-		wfRunHooks( 'BaseTemplateAfterPortlet', array( $this, $name, &$content ) );
+		Hooks::run( 'BaseTemplateAfterPortlet', array( $this, $name, &$content ) );
 
 		if ( $content !== '' ) {
 			echo "<div class='after-portlet after-portlet-$name'>$content</div>";

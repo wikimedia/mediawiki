@@ -65,7 +65,7 @@ abstract class PrefixSearch {
 			$search = $title->getText();
 			if ( $ns[0] == NS_MAIN ) {
 				$ns = $namespaces; // no explicit prefix, use default namespaces
-				wfRunHooks( 'PrefixSearchExtractNamespace', array( &$ns, &$search ) );
+				Hooks::run( 'PrefixSearchExtractNamespace', array( &$ns, &$search ) );
 			}
 			return $this->searchBackend( $ns, $search, $limit, $offset );
 		}
@@ -79,7 +79,7 @@ abstract class PrefixSearch {
 			$namespaces = array( $title->getNamespace() );
 			$search = '';
 		} else {
-			wfRunHooks( 'PrefixSearchExtractNamespace', array( &$namespaces, &$search ) );
+			Hooks::run( 'PrefixSearchExtractNamespace', array( &$namespaces, &$search ) );
 		}
 
 		return $this->searchBackend( $namespaces, $search, $limit, $offset );
@@ -157,7 +157,7 @@ abstract class PrefixSearch {
 			}
 		}
 		$srchres = array();
-		if ( wfRunHooks( 'PrefixSearchBackend', array( $namespaces, $search, $limit, &$srchres, $offset ) ) ) {
+		if ( Hooks::run( 'PrefixSearchBackend', array( $namespaces, $search, $limit, &$srchres, $offset ) ) ) {
 			return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit, $offset ) );
 		}
 		return $this->strings( $this->handleResultFromHook( $srchres, $namespaces, $search, $limit ) );

@@ -44,7 +44,7 @@ class SpecialResetTokens extends FormSpecialPage {
 			$tokens = array(
 				array( 'preference' => 'watchlisttoken', 'label-message' => 'resettokens-watchlist-token' ),
 			);
-			wfRunHooks( 'SpecialResetTokensTokens', array( &$tokens ) );
+			Hooks::run( 'SpecialResetTokensTokens', array( &$tokens ) );
 
 			$hiddenPrefs = $this->getConfig()->get( 'HiddenPrefs' );
 			$tokens = array_filter( $tokens, function ( $tok ) use ( $hiddenPrefs ) {

@@ -229,7 +229,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 		$p['tablePrefix'] = strtoupper( $p['tablePrefix'] );
 		parent::__construct( $p );
-		wfRunHooks( 'DatabaseOraclePostInit', array( $this ) );
+		Hooks::run( 'DatabaseOraclePostInit', array( $this ) );
 	}
 
 	function __destruct() {

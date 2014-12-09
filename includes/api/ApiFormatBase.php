@@ -172,7 +172,7 @@ abstract class ApiFormatBase extends ApiBase {
 				)
 			);
 
-			if ( wfRunHooks( 'ApiFormatHighlight', array( $context, $result, $mime, $format ) ) ) {
+			if ( Hooks::run( 'ApiFormatHighlight', array( $context, $result, $mime, $format ) ) ) {
 				$out->addHTML(
 					Html::element( 'pre', array( 'class' => 'api-pretty-content' ), $result )
 				);

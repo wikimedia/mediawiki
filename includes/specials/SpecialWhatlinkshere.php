@@ -335,7 +335,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$props[] = $msgcache['isimage'];
 		}
 
-		wfRunHooks( 'WhatLinksHereProps', array( $row, $nt, $target, &$props ) );
+		Hooks::run( 'WhatLinksHereProps', array( $row, $nt, $target, &$props ) );
 
 		if ( count( $props ) ) {
 			$propsText = $this->msg( 'parentheses' )

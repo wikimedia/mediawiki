@@ -160,7 +160,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$form->setWrapperLegendMsg( 'email-legend' );
 		$form->loadData();
 
-		if ( !wfRunHooks( 'EmailUserForm', array( &$form ) ) ) {
+		if ( !Hooks::run( 'EmailUserForm', array( &$form ) ) ) {
 			return;
 		}
 
@@ -243,8 +243,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		$hookErr = false;
 
-		wfRunHooks( 'UserCanSendEmail', array( &$user, &$hookErr ) );
-		wfRunHooks( 'EmailUserPermissionsErrors', array( $user, $editToken, &$hookErr ) );
+		Hooks::run( 'UserCanSendEmail', array( &$user, &$hookErr ) );
+		Hooks::run( 'EmailUserPermissionsErrors', array( $user, $editToken, &$hookErr ) );
 
 		if ( $hookErr ) {
 			return $hookErr;
@@ -324,7 +324,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$from->name, $to->name )->inContentLanguage()->text();
 
 		$error = '';
-		if ( !wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$text, &$error ) ) ) {
+		if ( !Hooks::run( 'EmailUser', array( &$to, &$from, &$subject, &$text, &$error ) ) ) {
 			return $error;
 		}
 
@@ -367,12 +367,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			if ( $data['CCMe'] && $to != $from ) {
 				$cc_subject = $context->msg( 'emailccsubject' )->rawParams(
 					$target->getName(), $subject )->text();
-				wfRunHooks( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$text ) );
+				Hooks::run( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$text ) );
 				$ccStatus = UserMailer::send( $from, $from, $cc_subject, $text );
 				$status->merge( $ccStatus );
 			}
 
-			wfRunHooks( 'EmailUserComplete', array( $to, $from, $subject, $text ) );
+			Hooks::run( 'EmailUserComplete', array( $to, $from, $subject, $text ) );
 
 			return $status;
 		}

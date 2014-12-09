@@ -170,7 +170,7 @@ class SpecialBlockList extends SpecialPage {
 
 		# Check for other blocks, i.e. global/tor blocks
 		$otherBlockLink = array();
-		wfRunHooks( 'OtherBlockLogLink', array( &$otherBlockLink, $this->target ) );
+		Hooks::run( 'OtherBlockLogLink', array( &$otherBlockLink, $this->target ) );
 
 		$out = $this->getOutput();
 
