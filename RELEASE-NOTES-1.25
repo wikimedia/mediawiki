@@ -271,6 +271,7 @@ changes to languages because of Bugzilla reports.
 ** In source text of the form '{$A}'{$B}' or `{$A}`{$B}`, where variable A
    does not exist yet variable B does, the latter may not be replaced.
    However, this difference is unlikely to arise in practice.
+* Deprecated Revision methods getRawUser(), getRawUserText() and getRawComment().
 
 == Compatibility ==
 
