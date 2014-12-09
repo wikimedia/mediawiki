@@ -828,9 +828,11 @@ class Revision implements IDBAccessObject {
 	 * Fetch revision's user id without regard for the current user's permissions
 	 *
 	 * @return string
+	 * @deprecated since 1.25, use getUser( Revision::RAW )
 	 */
 	public function getRawUser() {
-		return $this->mUser;
+		wfDeprecated( __METHOD__, '1.25' );
+		return $this->getUser( self::RAW );
 	}
 
 	/**
@@ -852,7 +854,15 @@ class Revision implements IDBAccessObject {
 		} elseif ( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER, $user ) ) {
 			return '';
 		} else {
-			return $this->getRawUserText();
+			if ( $this->mUserText === null ) {
+				$this->mUserText = User::whoIs( $this->mUser ); // load on demand
+				if ( $this->mUserText === false ) {
+					# This shouldn't happen, but it can if the wiki was recovered
+					# via importing revs and there is no user table entry yet.
+					$this->mUserText = $this->mOrigUserText;
+				}
+			}
+			return $this->mUserText;
 		}
 	}
 
@@ -860,17 +870,11 @@ class Revision implements IDBAccessObject {
 	 * Fetch revision's username without regard for view restrictions
 	 *
 	 * @return string
+	 * @deprecated since 1.25, use getUserText( Revision::RAW )
 	 */
 	public function getRawUserText() {
-		if ( $this->mUserText === null ) {
-			$this->mUserText = User::whoIs( $this->mUser ); // load on demand
-			if ( $this->mUserText === false ) {
-				# This shouldn't happen, but it can if the wiki was recovered
-				# via importing revs and there is no user table entry yet.
-				$this->mUserText = $this->mOrigUserText;
-			}
-		}
-		return $this->mUserText;
+		wfDeprecated( __METHOD__, '1.25' );
+		return $this->getUserText( self::RAW );
 	}
 
 	/**
@@ -900,9 +904,11 @@ class Revision implements IDBAccessObject {
 	 * Fetch revision comment without regard for the current user's permissions
 	 *
 	 * @return string
+	 * @deprecated since 1.25, use getComment( Revision::RAW )
 	 */
 	public function getRawComment() {
-		return $this->mComment;
+		wfDeprecated( __METHOD__, '1.25' );
+		return $this->getComment( self::RAW );
 	}
 
 	/**
@@ -938,7 +944,7 @@ class Revision implements IDBAccessObject {
 		$dbr = wfGetDB( DB_SLAVE );
 		return RecentChange::newFromConds(
 			array(
-				'rc_user_text' => $this->getRawUserText(),
+				'rc_user_text' => $this->getUserText( Revision::RAW ),
 				'rc_timestamp' => $dbr->timestamp( $this->getTimestamp() ),
 				'rc_this_oldid' => $this->getId()
 			),
