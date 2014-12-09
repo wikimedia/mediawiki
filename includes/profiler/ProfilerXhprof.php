@@ -71,32 +71,11 @@ class ProfilerXhprof extends Profiler {
 	protected $sprofiler;
 
 	/**
-	 * Type of report to send when logData() is called.
-	 * @var string $logType
-	 */
-	protected $logType;
-
-	/**
-	 * Should profile report sent to in page content be visible?
-	 * @var bool $visible
-	 */
-	protected $visible;
-
-	/**
 	 * @param array $params
 	 * @see Xhprof::__construct()
 	 */
 	public function __construct( array $params = array() ) {
-		$params = array_merge(
-			array(
-				'log' => 'text',
-				'visible' => false
-			),
-			$params
-		);
 		parent::__construct( $params );
-		$this->logType = $params['log'];
-		$this->visible = $params['visible'];
 		$this->xhprof = new Xhprof( $params );
 		$this->sprofiler = new SectionProfiler();
 	}
