@@ -573,6 +573,7 @@
 	"anoneditwarning": "<strong>Atenție:</strong> Nu v-ați autentificat. Adresa dumneavoastră IP va fi vizibilă în mod public dacă efectuați modificări. Dacă vă <strong>[$1 autentificați]</strong> sau vă <strong>[$2 creați un cont]</strong>, modificările dumneavoastră vor fi asociate numelui de utilizator, pe lângă alte beneficii.",
 	"anonpreviewwarning": "''Nu v-ați autentificat. Dacă salvați pagina adresa dumneavoastră IP va fi înregistrată în istoric.''",
 	"missingsummary": "'''Atenție:''' Nu ați completat caseta „descriere modificări”. Dacă apăsați din nou butonul „salvează pagina” modificările vor fi salvate fără descriere.",
+	"selfredirect": "<strong>Atenție:</strong> Sunteți pe cale să creați o redirecționare către același articol.\nDacă apăsați din nou pe „{{int:savearticle}}”, redirecționarea va fi creată.",
 	"missingcommenttext": "Vă rugăm să introduceți un comentariu.",
 	"missingcommentheader": "'''Atenție,''' nu ați pus titlu sau subiect la acest comentariu.\nDacă dați din nou clic pe „{{int:savearticle}}” modificarea va fi salvată fără titlu.",
 	"summary-preview": "Previzualizare descriere:",

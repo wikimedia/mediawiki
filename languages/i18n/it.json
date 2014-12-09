@@ -627,6 +627,7 @@
 	"anoneditwarning": "<strong>Attenzione:</strong> Accesso non effettuato. Se effettuerai delle modifiche il tuo indirizzo IP sarà visibile pubblicamente. Se <strong>[$1 accedi]</strong> o <strong>[$2 crei un'utenza]</strong>, le tue modifiche saranno attribuite al tuo nome utente, insieme ad altri benefici.",
 	"anonpreviewwarning": "''Non è stato eseguito il login. Salvando la pagina, il proprio indirizzo IP sarà registrato nella cronologia.''",
 	"missingsummary": "'''Attenzione:''' non è stato specificato l'oggetto di questa modifica. Premendo di nuovo \"{{int:savearticle}}\" la modifica verrà salvata con l'oggetto vuoto.",
+	"selfredirect": "<strong>Attenzione:</strong> stai creando un redirect alla medesima voce.\nSe fai clic nuovamente su \"{{int:savearticle}}\", il redirect sarà creato.",
 	"missingcommenttext": "Inserire un commento qui sotto.",
 	"missingcommentheader": "'''Attenzione:''' non è stata specificato l'oggetto/l'intestazione di questo commento. Premendo di nuovo \"{{int:savearticle}}\" la modifica verrà salvata senza intestazione.",
 	"summary-preview": "Anteprima dell'oggetto:",

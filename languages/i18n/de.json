@@ -626,6 +626,7 @@
 	"anoneditwarning": "<strong>Warnung:</strong> Du bist nicht angemeldet. Deine IP-Adresse wird öffentlich sichtbar, falls du Bearbeitungen durchführst. Wenn du dich <strong>[$1 anmeldest]</strong> oder <strong>[$2 ein Benutzerkonto erstellst]</strong>, werden deine Bearbeitungen zusammen mit anderen Beiträgen deinem Benutzernamen zugeordnet.",
 	"anonpreviewwarning": "''Du bist nicht angemeldet. Beim Speichern wird deine IP-Adresse in der Versionsgeschichte aufgezeichnet.''",
 	"missingsummary": "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf „{{int:savearticle}}“ klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
+	"selfredirect": "<strong>Warnung:</strong> Du erstellst eine Weiterleitung auf den gleichen Artikel.\nWenn du erneut auf „{{int:savearticle}}“ klickst, wird die Weiterleitung erstellt.",
 	"missingcommenttext": "Dein Abschnitt enthält keinen Text.",
 	"missingcommentheader": "'''Achtung:''' Du hast kein Betreff/Überschrift eingegeben. Wenn du erneut auf „{{int:savearticle}}“ klickst, wird deine Bearbeitung ohne Überschrift gespeichert.",
 	"summary-preview": "Vorschau der Zusammenfassungszeile:",

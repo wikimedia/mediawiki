@@ -3,14 +3,18 @@
 		"authors": [
 			"පසිඳු කාවින්ද",
 			"Minh Nguyen",
-			"Withoutaname"
+			"Withoutaname",
+			"Dinhxuanduyet"
 		]
 	},
 	"config-desc": "Trình cài đặt MediaWiki",
 	"config-title": "Cài đặt MediaWiki $1",
 	"config-information": "Thông tin",
+	"config-localsettings-upgrade": "Một file <code>LocalSettings.php</code> đã được phát hiện.\nĐể nâng cấp cài đặt này, xin nhập giá trị của  <code>$wgUpgradeKey</code> trong hộp thoại bên dưới đây.\nBạn sẽ tìm thấy nó trong<code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "Một file <code>LocalSettings.php</code> đã được phát hiện.\nĐể nâng cấp cài đặt này, hãy chạy <code>update.php</code>",
 	"config-localsettings-key": "Chìa khóa nâng cấp:",
 	"config-localsettings-badkey": "Bạn đã cung cấp một chìa khóa sai.",
+	"config-upgrade-key-missing": "Có một bản cài đặt của MediaWiki sẵn trước đó đã được phát hiện.\nĐể nâng cấp cài đặt này, hãy đặt dòng sau vào dưới của của <code>LocalSettings.php</code>:\n\n$1",
 	"config-session-error": "Lỗi khi bắt đầu phiên làm việc: $1",
 	"config-your-language": "Ngôn ngữ của bạn:",
 	"config-your-language-help": "Chọn một ngôn ngữ để sử dụng trong quá trình cài đặt.",
