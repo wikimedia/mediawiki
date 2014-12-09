@@ -50,11 +50,22 @@ class AutoloadGenerator {
 		if ( !is_array( $flags ) ) {
 			$flags = array( $flags );
 		}
-		$this->basepath = realpath( $basepath );
+		$this->basepath = self::platformAgnosticRealpath( $basepath );
 		$this->collector = new ClassCollector;
 		if ( in_array( 'local', $flags ) ) {
 			$this->variableName = 'wgAutoloadLocalClasses';
 		}
+	}
+
+	/**
+	 * Wrapper for realpath() that returns the same results (using forward
+	 * slashes) on both Windows and *nix.
+	 *
+	 * @param string $path Parameter to realpath()
+	 * @return string
+	 */
+	protected static function platformAgnosticRealpath( $path ) {
+		return str_replace( '\\', '/', realpath( $path ) );
 	}
 
 	/**
@@ -65,7 +76,7 @@ class AutoloadGenerator {
 	 * @param string $inputPath Full path to the file containing the class
 	 */
 	public function forceClassPath( $fqcn, $inputPath ) {
-		$path = realpath( $inputPath );
+		$path = self::platformAgnosticRealpath( $inputPath );
 		if ( !$path ) {
 			throw new \Exception( "Invalid path: $inputPath" );
 		}
@@ -78,9 +89,10 @@ class AutoloadGenerator {
 	}
 
 	/**
-	 * @var string $inputPath Path to a php file to find classes within
+	 * @param string $inputPath Path to a php file to find classes within
 	 */
 	public function readFile( $inputPath ) {
+		$inputPath = self::platformAgnosticRealpath( $inputPath );
 		$len = strlen( $this->basepath );
 		if ( substr( $inputPath, 0, $len ) !== $this->basepath ) {
 			throw new \Exception( "Path is not within basepath: $inputPath" );
@@ -99,7 +111,8 @@ class AutoloadGenerator {
 	 *  for php files with either .php or .inc extensions
 	 */
 	public function readDir( $dir ) {
-		$it = new RecursiveDirectoryIterator( realpath( $dir ) );
+		$it = new RecursiveDirectoryIterator(
+			self::platformAgnosticRealpath( $dir ) );
 		$it = new RecursiveIteratorIterator( $it );
 
 		foreach ( $it as $path => $file ) {
