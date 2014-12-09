@@ -1044,7 +1044,6 @@ class Title {
 	 * Is this in a namespace that allows actual pages?
 	 *
 	 * @return bool
-	 * @internal note -- uses hardcoded namespace index instead of constants
 	 */
 	public function canExist() {
 		return $this->mNamespace >= NS_MAIN;
