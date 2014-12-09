@@ -1065,23 +1065,19 @@ class ResourceLoader {
 		} elseif ( !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
-
-		return Xml::encodeJsCall(
-			'mw.loader.implement',
-			array(
-				$name,
-				$scripts,
-				// Force objects. mw.loader.implement requires them to be javascript objects.
-				// Although these variables are associative arrays, which become javascript
-				// objects through json_encode. In many cases they will be empty arrays, and
-				// PHP/json_encode() consider empty arrays to be numerical arrays and
-				// output javascript "[]" instead of "{}". This fixes that.
-				(object)$styles,
-				(object)$messages,
-				(object)$templates,
-			),
-			ResourceLoader::inDebugMode()
+		// mw.loader.implement requires 'styles', 'messages' and 'templates' to be objects (not
+		// arrays). json_encode considers empty arrays to be numerical and outputs "[]" instead
+		// of "{}". Force them to objects.
+		$module = array(
+			$name,
+			$scripts,
+			(object) $styles,
+			(object) $messages,
+			(object) $templates,
 		);
+		self::trimArray( $module );
+
+		return Xml::encodeJsCall( 'mw.loader.implement', $module, ResourceLoader::inDebugMode() );
 	}
 
 	/**
@@ -1188,20 +1184,33 @@ class ResourceLoader {
 		);
 	}
 
+	private static function isEmptyObject( stdClass $obj ) {
+		foreach ( $obj as $key => &$value ) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Remove empty values from the end of an array.
 	 *
 	 * Values considered empty:
 	 *
 	 * - null
-	 * - empty array
+	 * - array()
+	 * - new XmlJsCode( '{}' )
+	 * - new stdClass() // (object) array()
 	 *
 	 * @param Array $array
 	 */
 	private static function trimArray( Array &$array ) {
 		$i = count( $array );
 		while ( $i-- ) {
-			if ( $array[$i] === null || $array[$i] === array() ) {
+			if ( $array[$i] === null
+				|| $array[$i] === array()
+				|| ( $array[$i] instanceof XmlJsCode && $array[$i]->value === '{}' )
+				|| ( $array[$i] instanceof stdClass && self::isEmptyObject( $array[$i] ) )
+			) {
 				unset( $array[$i] );
 			} else {
 				break;
