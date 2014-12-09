@@ -4100,6 +4100,31 @@ External links: with no contents
 !! end
 
 !! test
+External links: Free with trailing punctuation
+!! wikitext
+http://example.com,
+http://example.com;
+http://example.com\
+http://example.com.
+http://example.com:
+http://example.com!
+http://example.com?
+http://example.com)
+http://example.com/url_with_(brackets)
+!! html
+<p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>,
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>;
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>\
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>.
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>:
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>!
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>?
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>)
+<a rel="nofollow" class="external free" href="http://example.com/url_with_(brackets)">http://example.com/url_with_(brackets)</a>
+</p>
+!! end
+
+!! test
 External image
 !! wikitext
 External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
