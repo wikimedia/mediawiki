@@ -37,12 +37,18 @@ class UpdateArticleCount extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Count of the number of articles and update the site statistics table";
 		$this->addOption( 'update', 'Update the site_stats table with the new count' );
+		$this->addOption( 'use-master', 'Count using the master database' );
 	}
 
 	public function execute() {
 		$this->output( "Counting articles..." );
 
-		$counter = new SiteStatsInit( false );
+		if ( $this->hasOption( 'use-master' ) ) {
+			$dbr = wfGetDB( DB_MASTER );
+		} else {
+			$dbr = wfGetDB( DB_SLAVE, 'vslow' );
+		}
+		$counter = new SiteStatsInit( $dbr );
 		$result = $counter->articles();
 
 		$this->output( "found {$result}.\n" );
