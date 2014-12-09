@@ -317,9 +317,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Return a IDatabase object for reading
+	 * Return a DatabaseBase object for reading
 	 *
-	 * @return IDatabase
+	 * @return DatabaseBase
 	 */
 	protected function getDB() {
 		return wfGetDB( DB_SLAVE );

@@ -32,7 +32,7 @@ class RevDelArchivedFileList extends RevDelFileList {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {

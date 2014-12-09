@@ -55,7 +55,7 @@ class RevDelLogList extends RevDelList {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {

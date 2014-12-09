@@ -37,7 +37,7 @@ abstract class WantedQueryPage extends QueryPage {
 
 	/**
 	 * Cache page existence for performance
-	 * @param IDatabase $db
+	 * @param DatabaseBase $db
 	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
