@@ -54,7 +54,7 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {

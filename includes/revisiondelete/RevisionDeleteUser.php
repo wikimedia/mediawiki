@@ -36,14 +36,14 @@ class RevisionDeleteUser {
 	 * @param string $name Username
 	 * @param int $userId User id
 	 * @param string $op Operator '|' or '&'
-	 * @param null|DatabaseBase $dbw If you happen to have one lying around
+	 * @param null|IDatabase $dbw If you happen to have one lying around
 	 * @return bool
 	 */
 	private static function setUsernameBitfields( $name, $userId, $op, $dbw ) {
 		if ( !$userId || ( $op !== '|' && $op !== '&' ) ) {
 			return false; // sanity check
 		}
-		if ( !$dbw instanceof DatabaseBase ) {
+		if ( !$dbw instanceof IDatabase ) {
 			$dbw = wfGetDB( DB_MASTER );
 		}
 
