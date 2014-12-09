@@ -776,11 +776,9 @@ $out: OutputPage object
 'BeforeParserFetchFileAndTitle': Before an image is rendered by Parser.
 $parser: Parser object
 $nt: the image title
-&$options: array of options to RepoGroup::findFile
+&$options: array of options to RepoGroup::findFile. If it contains 'broken'
+  as a key then the file will appear as a broken thumbnail.
 &$descQuery: query string to add to thumbnail URL
-
-FIXME: Where does the below sentence fit in?
-If 'broken' is a key in $options then the file will appear as a broken thumbnail.
 
 'BeforeParserFetchTemplateAndtitle': Before a template is fetched by Parser.
 $parser: Parser object
