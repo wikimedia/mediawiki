@@ -492,7 +492,7 @@ abstract class File {
 		sort( $sortedBuckets );
 
 		foreach ( $sortedBuckets as $bucket ) {
-			if ( $bucket > $imageWidth ) {
+			if ( $bucket >= $imageWidth ) {
 				return false;
 			}
 
