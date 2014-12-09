@@ -462,9 +462,9 @@ changes to languages because of Bugzilla reports.
   meaning that JavaScript is no longer executed in these browser versions.
 * Browser support for Opera 11 lowered from Grade A to Grade C.
 * Removed IEFixes module which existed purely to provide support for MSIE versions
+  below 7 (conditionally loaded only for those browsers).
 * Deprecated SpecialPageFactory::getList() in favor of
   SpecialPageFactory::getNames()
-  below 7 (conditionally loaded only for those browsers).
 * Action::checkCanExecute() no longer has a return value.
 * Removed cleanupForIRC(), loadFromCurRow(), newFromCurRow(), notifyRC2UDP()
   and sendToUDP() from RecentChange.php. (deprecated since 1.22)
