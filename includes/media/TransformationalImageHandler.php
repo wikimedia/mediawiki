@@ -64,7 +64,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		# Check if the file is smaller than the maximum image area for thumbnailing
 		# For historical reasons, hook starts with BitmapHandler
 		$checkImageAreaHookResult = null;
-		wfRunHooks(
+		Hooks::run(
 			'BitmapHandlerCheckImageArea',
 			array( $image, &$params, &$checkImageAreaHookResult )
 		);
@@ -240,7 +240,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		# Try a hook. Called "Bitmap" for historical reasons.
 		/** @var $mto MediaTransformOutput */
 		$mto = null;
-		wfRunHooks( 'BitmapHandlerTransform', array( $this, $image, &$scalerParams, &$mto ) );
+		Hooks::run( 'BitmapHandlerTransform', array( $this, $image, &$scalerParams, &$mto ) );
 		if ( !is_null( $mto ) ) {
 			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto\n" );
 			$scaler = 'hookaborted';

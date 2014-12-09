@@ -410,7 +410,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			$attribs['srcset'] = Html::srcSet( $this->responsiveUrls );
 		}
 
-		wfRunHooks( 'ThumbnailBeforeProduceHTML', array( $this, &$attribs, &$linkAttribs ) );
+		Hooks::run( 'ThumbnailBeforeProduceHTML', array( $this, &$attribs, &$linkAttribs ) );
 
 		return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
 	}

@@ -446,7 +446,7 @@ abstract class AbstractContent implements Content {
 		$lossy = ( $lossy === 'lossy' ); // string flag, convert to boolean for convenience
 		$result = false;
 
-		wfRunHooks( 'ConvertContent', array( $this, $toModel, $lossy, &$result ) );
+		Hooks::run( 'ConvertContent', array( $this, $toModel, $lossy, &$result ) );
 
 		return $result;
 	}
@@ -480,7 +480,7 @@ abstract class AbstractContent implements Content {
 
 		$po = new ParserOutput();
 
-		if ( wfRunHooks( 'ContentGetParserOutput',
+		if ( Hooks::run( 'ContentGetParserOutput',
 			array( $this, $title, $revId, $options, $generateHtml, &$po ) ) ) {
 
 			// Save and restore the old value, just in case something is reusing
@@ -491,7 +491,7 @@ abstract class AbstractContent implements Content {
 			$options->setRedirectTarget( $oldRedir );
 		}
 
-		wfRunHooks( 'ContentAlterParserOutput', array( $this, $title, $po ) );
+		Hooks::run( 'ContentAlterParserOutput', array( $this, $title, $po ) );
 
 		return $po;
 	}

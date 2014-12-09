@@ -1614,7 +1614,7 @@ class FormatMetadata extends ContextSource {
 		$cachedValue = $wgMemc->get( $cacheKey );
 		if (
 			$cachedValue
-			&& wfRunHooks( 'ValidateExtendedMetadataCache', array( $cachedValue['timestamp'], $file ) )
+			&& Hooks::run( 'ValidateExtendedMetadataCache', array( $cachedValue['timestamp'], $file ) )
 		) {
 			$extendedMetadata = $cachedValue['data'];
 		} else {
@@ -1717,7 +1717,7 @@ class FormatMetadata extends ContextSource {
 	) {
 		wfProfileIn( __METHOD__ );
 
-		wfRunHooks( 'GetExtendedMetadata', array(
+		Hooks::run( 'GetExtendedMetadata', array(
 			&$extendedMetadata,
 			$file,
 			$this->getContext(),

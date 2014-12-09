@@ -350,7 +350,7 @@ class User implements IDBAccessObject {
 					// Loading from session failed. Load defaults.
 					$this->loadDefaults();
 				}
-				wfRunHooks( 'UserLoadAfterLoadFromSession', array( $this ) );
+				Hooks::run( 'UserLoadAfterLoadFromSession', array( $this ) );
 				break;
 			default:
 				wfProfileOut( __METHOD__ );
@@ -709,7 +709,7 @@ class User implements IDBAccessObject {
 		static $reservedUsernames = false;
 		if ( !$reservedUsernames ) {
 			$reservedUsernames = $wgReservedUsernames;
-			wfRunHooks( 'UserGetReservedNames', array( &$reservedUsernames ) );
+			Hooks::run( 'UserGetReservedNames', array( &$reservedUsernames ) );
 		}
 
 		// Certain names may be reserved for batch processes.
@@ -817,7 +817,7 @@ class User implements IDBAccessObject {
 
 		$result = false; //init $result to false for the internal checks
 
-		if ( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) ) {
+		if ( !Hooks::run( 'isValidPassword', array( $password, &$result, $this ) ) ) {
 			$status->error( $result );
 			return $status;
 		}
@@ -879,7 +879,7 @@ class User implements IDBAccessObject {
 			);
 		}
 		// Give extensions a chance to force an expiration
-		wfRunHooks( 'ResetPasswordExpiration', array( $this, &$newExpire ) );
+		Hooks::run( 'ResetPasswordExpiration', array( $this, &$newExpire ) );
 		$this->mPasswordExpires = $newExpire;
 	}
 
@@ -1049,7 +1049,7 @@ class User implements IDBAccessObject {
 		$this->mRegistration = wfTimestamp( TS_MW );
 		$this->mGroups = array();
 
-		wfRunHooks( 'UserLoadDefaults', array( $this, $name ) );
+		Hooks::run( 'UserLoadDefaults', array( $this, $name ) );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -1088,7 +1088,7 @@ class User implements IDBAccessObject {
 	 */
 	private function loadFromSession() {
 		$result = null;
-		wfRunHooks( 'UserLoadFromSession', array( $this, &$result ) );
+		Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
 		if ( $result !== null ) {
 			return $result;
 		}
@@ -1190,7 +1190,7 @@ class User implements IDBAccessObject {
 				: array()
 		);
 
-		wfRunHooks( 'UserLoadFromDatabase', array( $this, &$s ) );
+		Hooks::run( 'UserLoadFromDatabase', array( $this, &$s ) );
 
 		if ( $s !== false ) {
 			// Initialise user table data
@@ -1456,7 +1456,7 @@ class User implements IDBAccessObject {
 		}
 		$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );
 
-		wfRunHooks( 'UserGetDefaultOptions', array( &$defOpt ) );
+		Hooks::run( 'UserGetDefaultOptions', array( &$defOpt ) );
 
 		return $defOpt;
 	}
@@ -1562,7 +1562,7 @@ class User implements IDBAccessObject {
 		}
 
 		// Extensions
-		wfRunHooks( 'GetBlockedStatus', array( &$this ) );
+		Hooks::run( 'GetBlockedStatus', array( &$this ) );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -1702,7 +1702,7 @@ class User implements IDBAccessObject {
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
 		// Call the 'PingLimiter' hook
 		$result = false;
-		if ( !wfRunHooks( 'PingLimiter', array( &$this, $action, &$result, $incrBy ) ) ) {
+		if ( !Hooks::run( 'PingLimiter', array( &$this, $action, &$result, $incrBy ) ) ) {
 			return $result;
 		}
 
@@ -1846,7 +1846,7 @@ class User implements IDBAccessObject {
 			wfDebug( __METHOD__ . ": self-talk page, ignoring any blocks\n" );
 		}
 
-		wfRunHooks( 'UserIsBlockedFrom', array( $this, $title, &$blocked, &$allowUsertalk ) );
+		Hooks::run( 'UserIsBlockedFrom', array( $this, $title, &$blocked, &$allowUsertalk ) );
 
 		wfProfileOut( __METHOD__ );
 		return $blocked;
@@ -1898,7 +1898,7 @@ class User implements IDBAccessObject {
 			$ip = $this->getRequest()->getIP();
 		}
 		$blocked = false;
-		wfRunHooks( 'UserIsBlockedGlobally', array( &$this, $ip, &$blocked ) );
+		Hooks::run( 'UserIsBlockedGlobally', array( &$this, $ip, &$blocked ) );
 		$this->mBlockedGlobally = (bool)$blocked;
 		return $this->mBlockedGlobally;
 	}
@@ -2058,7 +2058,7 @@ class User implements IDBAccessObject {
 	 */
 	public function getNewMessageLinks() {
 		$talks = array();
-		if ( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
+		if ( !Hooks::run( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
 			return $talks;
 		} elseif ( !$this->getNewtalk() ) {
 			return array();
@@ -2435,7 +2435,7 @@ class User implements IDBAccessObject {
 	 */
 	public function getEmail() {
 		$this->load();
-		wfRunHooks( 'UserGetEmail', array( $this, &$this->mEmail ) );
+		Hooks::run( 'UserGetEmail', array( $this, &$this->mEmail ) );
 		return $this->mEmail;
 	}
 
@@ -2445,7 +2445,7 @@ class User implements IDBAccessObject {
 	 */
 	public function getEmailAuthenticationTimestamp() {
 		$this->load();
-		wfRunHooks( 'UserGetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
+		Hooks::run( 'UserGetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
 		return $this->mEmailAuthenticated;
 	}
 
@@ -2460,7 +2460,7 @@ class User implements IDBAccessObject {
 		}
 		$this->invalidateEmail();
 		$this->mEmail = $str;
-		wfRunHooks( 'UserSetEmail', array( $this, &$this->mEmail ) );
+		Hooks::run( 'UserSetEmail', array( $this, &$this->mEmail ) );
 	}
 
 	/**
@@ -2836,7 +2836,7 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		wfRunHooks( 'UserResetAllOptions', array( $this, &$newOptions, $this->mOptions, $resetKinds ) );
+		Hooks::run( 'UserResetAllOptions', array( $this, &$newOptions, $this->mOptions, $resetKinds ) );
 
 		$this->mOptions = $newOptions;
 		$this->mOptionsLoaded = true;
@@ -2872,7 +2872,7 @@ class User implements IDBAccessObject {
 			return false;
 		} else {
 			$https = $this->getBoolOption( 'prefershttps' );
-			wfRunHooks( 'UserRequiresHTTPS', array( $this, &$https ) );
+			Hooks::run( 'UserRequiresHTTPS', array( $this, &$https ) );
 			if ( $https ) {
 				$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
 			}
@@ -2903,7 +2903,7 @@ class User implements IDBAccessObject {
 	public function getRights() {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
-			wfRunHooks( 'UserGetRights', array( $this, &$this->mRights ) );
+			Hooks::run( 'UserGetRights', array( $this, &$this->mRights ) );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->mRights = array_values( array_unique( $this->mRights ) );
 		}
@@ -2936,7 +2936,7 @@ class User implements IDBAccessObject {
 				$this->getAutomaticGroups( $recache ) // implicit groups
 			) );
 			// Hook for additional groups
-			wfRunHooks( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
+			Hooks::run( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
 			// Force reindexation of groups when a hook has unset one of them
 			$this->mEffectiveGroups = array_values( array_unique( $this->mEffectiveGroups ) );
 			wfProfileOut( __METHOD__ );
@@ -3033,7 +3033,7 @@ class User implements IDBAccessObject {
 	 * @param string $group Name of the group to add
 	 */
 	public function addGroup( $group ) {
-		if ( wfRunHooks( 'UserAddGroup', array( $this, &$group ) ) ) {
+		if ( Hooks::run( 'UserAddGroup', array( $this, &$group ) ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			if ( $this->getId() ) {
 				$dbw->insert( 'user_groups',
@@ -3066,7 +3066,7 @@ class User implements IDBAccessObject {
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
-		if ( wfRunHooks( 'UserRemoveGroup', array( $this, &$group ) ) ) {
+		if ( Hooks::run( 'UserRemoveGroup', array( $this, &$group ) ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'user_groups',
 				array(
@@ -3290,7 +3290,7 @@ class User implements IDBAccessObject {
 
 		// If we're working on user's talk page, we should update the talk page message indicator
 		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
-			if ( !wfRunHooks( 'UserClearNewTalkNotification', array( &$this, $oldid ) ) ) {
+			if ( !Hooks::run( 'UserClearNewTalkNotification', array( &$this, $oldid ) ) ) {
 				return;
 			}
 
@@ -3435,7 +3435,7 @@ class User implements IDBAccessObject {
 			$cookies['Token'] = false;
 		}
 
-		wfRunHooks( 'UserSetCookies', array( $this, &$session, &$cookies ) );
+		Hooks::run( 'UserSetCookies', array( $this, &$session, &$cookies ) );
 
 		foreach ( $session as $name => $value ) {
 			$request->setSessionData( $name, $value );
@@ -3470,7 +3470,7 @@ class User implements IDBAccessObject {
 	 * Log this user out.
 	 */
 	public function logout() {
-		if ( wfRunHooks( 'UserLogout', array( &$this ) ) ) {
+		if ( Hooks::run( 'UserLogout', array( &$this ) ) ) {
 			$this->doLogout();
 		}
 	}
@@ -3535,7 +3535,7 @@ class User implements IDBAccessObject {
 
 		$this->saveOptions();
 
-		wfRunHooks( 'UserSaveSettings', array( $this ) );
+		Hooks::run( 'UserSaveSettings', array( $this ) );
 		$this->clearSharedCache();
 		$this->getUserPage()->invalidateCache();
 	}
@@ -4133,7 +4133,7 @@ class User implements IDBAccessObject {
 		// and fire the ConfirmEmailComplete hook on redundant confirmations.
 		if ( !$this->isEmailConfirmed() ) {
 			$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
-			wfRunHooks( 'ConfirmEmailComplete', array( $this ) );
+			Hooks::run( 'ConfirmEmailComplete', array( $this ) );
 		}
 		return true;
 	}
@@ -4151,7 +4151,7 @@ class User implements IDBAccessObject {
 		$this->mEmailTokenExpires = null;
 		$this->setEmailAuthenticationTimestamp( null );
 		$this->mEmail = '';
-		wfRunHooks( 'InvalidateEmailComplete', array( $this ) );
+		Hooks::run( 'InvalidateEmailComplete', array( $this ) );
 		return true;
 	}
 
@@ -4162,7 +4162,7 @@ class User implements IDBAccessObject {
 	public function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();
 		$this->mEmailAuthenticated = $timestamp;
-		wfRunHooks( 'UserSetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
+		Hooks::run( 'UserSetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
 	}
 
 	/**
@@ -4176,7 +4176,7 @@ class User implements IDBAccessObject {
 			return false;
 		}
 		$canSend = $this->isEmailConfirmed();
-		wfRunHooks( 'UserCanSendEmail', array( &$this, &$canSend ) );
+		Hooks::run( 'UserCanSendEmail', array( &$this, &$canSend ) );
 		return $canSend;
 	}
 
@@ -4203,7 +4203,7 @@ class User implements IDBAccessObject {
 		global $wgEmailAuthentication;
 		$this->load();
 		$confirmed = true;
-		if ( wfRunHooks( 'EmailConfirmed', array( &$this, &$confirmed ) ) ) {
+		if ( Hooks::run( 'EmailConfirmed', array( &$this, &$confirmed ) ) ) {
 			if ( $this->isAnon() ) {
 				return false;
 			}
@@ -4361,7 +4361,7 @@ class User implements IDBAccessObject {
 		}
 
 		// Allow extensions (e.g. OAuth) to say false
-		if ( !wfRunHooks( 'UserIsEveryoneAllowed', array( $right ) ) ) {
+		if ( !Hooks::run( 'UserIsEveryoneAllowed', array( $right ) ) ) {
 			$cache[$right] = false;
 			return false;
 		}
@@ -4419,7 +4419,7 @@ class User implements IDBAccessObject {
 			} else {
 				self::$mAllRights = self::$mCoreRights;
 			}
-			wfRunHooks( 'UserGetAllRights', array( &self::$mAllRights ) );
+			Hooks::run( 'UserGetAllRights', array( &self::$mAllRights ) );
 		}
 		return self::$mAllRights;
 	}
@@ -4433,7 +4433,7 @@ class User implements IDBAccessObject {
 
 		$groups = $wgImplicitGroups;
 		# Deprecated, use $wgImplicitGroups instead
-		wfRunHooks( 'UserGetImplicitGroups', array( &$groups ), '1.25' );
+		Hooks::run( 'UserGetImplicitGroups', array( &$groups ), '1.25' );
 
 		return $groups;
 	}
@@ -4867,7 +4867,7 @@ class User implements IDBAccessObject {
 
 		$this->mOptionsLoaded = true;
 
-		wfRunHooks( 'UserLoadOptions', array( $this, &$this->mOptions ) );
+		Hooks::run( 'UserLoadOptions', array( $this, &$this->mOptions ) );
 	}
 
 	/**
@@ -4883,7 +4883,7 @@ class User implements IDBAccessObject {
 
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
-		if ( !wfRunHooks( 'UserSaveOptions', array( $this, &$saveOptions ) ) ) {
+		if ( !Hooks::run( 'UserSaveOptions', array( $this, &$saveOptions ) ) ) {
 			return;
 		}
 

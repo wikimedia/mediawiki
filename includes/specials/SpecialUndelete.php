@@ -421,7 +421,7 @@ class PageArchive {
 		$logEntry->setTarget( $this->title );
 		$logEntry->setComment( $reason );
 
-		wfRunHooks( 'ArticleUndeleteLogEntry', array( $this, &$logEntry, $user ) );
+		Hooks::run( 'ArticleUndeleteLogEntry', array( $this, &$logEntry, $user ) );
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
@@ -605,7 +605,7 @@ class PageArchive {
 			$revision->insertOn( $dbw );
 			$restored++;
 
-			wfRunHooks( 'ArticleRevisionUndeleted', array( &$this->title, $revision, $row->ar_page_id ) );
+			Hooks::run( 'ArticleRevisionUndeleted', array( &$this->title, $revision, $row->ar_page_id ) );
 		}
 		# Now that it's safely stored, take it out of the archive
 		$dbw->delete( 'archive',
@@ -631,7 +631,7 @@ class PageArchive {
 			);
 		}
 
-		wfRunHooks( 'ArticleUndelete', array( &$this->title, $created, $comment, $oldPageId ) );
+		Hooks::run( 'ArticleUndelete', array( &$this->title, $created, $comment, $oldPageId ) );
 
 		if ( $this->title->getNamespace() == NS_FILE ) {
 			$update = new HTMLCacheUpdate( $this->title, 'imagelinks' );
@@ -908,7 +908,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
-		if ( !wfRunHooks( 'UndeleteForm::showRevision', array( &$archive, $this->mTargetObj ) ) ) {
+		if ( !Hooks::run( 'UndeleteForm::showRevision', array( &$archive, $this->mTargetObj ) ) ) {
 			return;
 		}
 		$rev = $archive->getRevision( $timestamp );
@@ -992,7 +992,7 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( $this->msg( 'undelete-revision' )->rawParams( $link )->params(
 			$time )->rawParams( $userLink )->params( $d, $t )->parse() . '</div>' );
 
-		if ( !wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) ) ) {
+		if ( !Hooks::run( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) ) ) {
 			return;
 		}
 
@@ -1215,7 +1215,7 @@ class SpecialUndelete extends SpecialPage {
 		);
 
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
-		wfRunHooks( 'UndeleteForm::showHistory', array( &$archive, $this->mTargetObj ) );
+		Hooks::run( 'UndeleteForm::showHistory', array( &$archive, $this->mTargetObj ) );
 		/*
 		$text = $archive->getLastRevisionText();
 		if( is_null( $text ) ) {
@@ -1640,7 +1640,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$out = $this->getOutput();
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
-		wfRunHooks( 'UndeleteForm::undelete', array( &$archive, $this->mTargetObj ) );
+		Hooks::run( 'UndeleteForm::undelete', array( &$archive, $this->mTargetObj ) );
 		$ok = $archive->undelete(
 			$this->mTargetTimestamp,
 			$this->mComment,
@@ -1651,7 +1651,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( is_array( $ok ) ) {
 			if ( $ok[1] ) { // Undeleted file count
-				wfRunHooks( 'FileUndeleteComplete', array(
+				Hooks::run( 'FileUndeleteComplete', array(
 					$this->mTargetObj, $this->mFileVersions,
 					$this->getUser(), $this->mComment ) );
 			}

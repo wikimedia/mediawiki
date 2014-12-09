@@ -252,7 +252,7 @@ class SpecialPageFactory {
 
 			// Run hooks
 			// This hook can be used to remove undesired built-in special pages
-			wfRunHooks( 'SpecialPage_initList', array( &self::$list ) );
+			Hooks::run( 'SpecialPage_initList', array( &self::$list ) );
 
 			wfProfileOut( __METHOD__ );
 		}

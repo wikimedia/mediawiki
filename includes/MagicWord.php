@@ -273,7 +273,7 @@ class MagicWord {
 	static function getVariableIDs() {
 		if ( !self::$mVariableIDsInitialised ) {
 			# Get variable IDs
-			wfRunHooks( 'MagicWordwgVariableIDs', array( &self::$mVariableIDs ) );
+			Hooks::run( 'MagicWordwgVariableIDs', array( &self::$mVariableIDs ) );
 			self::$mVariableIDsInitialised = true;
 		}
 		return self::$mVariableIDs;
@@ -308,7 +308,7 @@ class MagicWord {
 	 */
 	static function getDoubleUnderscoreArray() {
 		if ( is_null( self::$mDoubleUnderscoreArray ) ) {
-			wfRunHooks( 'GetDoubleUnderscoreIDs', array( &self::$mDoubleUnderscoreIDs ) );
+			Hooks::run( 'GetDoubleUnderscoreIDs', array( &self::$mDoubleUnderscoreIDs ) );
 			self::$mDoubleUnderscoreArray = new MagicWordArray( self::$mDoubleUnderscoreIDs );
 		}
 		return self::$mDoubleUnderscoreArray;

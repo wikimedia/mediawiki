@@ -221,7 +221,7 @@ class MWTimestamp {
 		$offsetRel = $relativeTo->offsetForUser( $user );
 
 		$ts = '';
-		if ( wfRunHooks( 'GetHumanTimestamp', array( &$ts, $this, $relativeTo, $user, $lang ) ) ) {
+		if ( Hooks::run( 'GetHumanTimestamp', array( &$ts, $this, $relativeTo, $user, $lang ) ) ) {
 			$ts = $lang->getHumanTimestamp( $this, $relativeTo, $user );
 		}
 
@@ -326,7 +326,7 @@ class MWTimestamp {
 
 		$ts = '';
 		$diff = $this->diff( $relativeTo );
-		if ( wfRunHooks(
+		if ( Hooks::run(
 			'GetRelativeTimestamp',
 			array( &$ts, &$diff, $this, $relativeTo, $user, $lang )
 		) ) {

@@ -137,7 +137,7 @@ class SearchEngine {
 	public static function getNearMatch( $searchterm ) {
 		$title = self::getNearMatchInternal( $searchterm );
 
-		wfRunHooks( 'SearchGetNearMatchComplete', array( $searchterm, &$title ) );
+		Hooks::run( 'SearchGetNearMatchComplete', array( $searchterm, &$title ) );
 		return $title;
 	}
 
@@ -170,7 +170,7 @@ class SearchEngine {
 		}
 
 		$titleResult = null;
-		if ( !wfRunHooks( 'SearchGetNearMatchBefore', array( $allSearchTerms, &$titleResult ) ) ) {
+		if ( !Hooks::run( 'SearchGetNearMatchBefore', array( $allSearchTerms, &$titleResult ) ) ) {
 			return $titleResult;
 		}
 
@@ -197,7 +197,7 @@ class SearchEngine {
 				return $title;
 			}
 
-			if ( !wfRunHooks( 'SearchAfterNoDirectMatch', array( $term, &$title ) ) ) {
+			if ( !Hooks::run( 'SearchAfterNoDirectMatch', array( $term, &$title ) ) ) {
 				return $title;
 			}
 
@@ -227,7 +227,7 @@ class SearchEngine {
 
 			// Give hooks a chance at better match variants
 			$title = null;
-			if ( !wfRunHooks( 'SearchGetNearMatch', array( $term, &$title ) ) ) {
+			if ( !Hooks::run( 'SearchGetNearMatch', array( $term, &$title ) ) ) {
 				return $title;
 			}
 		}
@@ -356,7 +356,7 @@ class SearchEngine {
 			}
 		}
 
-		wfRunHooks( 'SearchableNamespaces', array( &$arr ) );
+		Hooks::run( 'SearchableNamespaces', array( &$arr ) );
 		return $arr;
 	}
 

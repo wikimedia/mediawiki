@@ -63,7 +63,7 @@ class ApiQueryTokens extends ApiQueryBase {
 				'rollback' => 'rollback',
 				'userrights' => 'userrights',
 			);
-			wfRunHooks( 'ApiQueryTokensRegisterTypes', array( &$salts ) );
+			Hooks::run( 'ApiQueryTokensRegisterTypes', array( &$salts ) );
 			ksort( $salts );
 			wfProfileOut( __METHOD__ );
 		}

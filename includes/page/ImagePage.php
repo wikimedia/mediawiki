@@ -76,7 +76,7 @@ class ImagePage extends Article {
 		$this->fileLoaded = true;
 
 		$this->displayImg = $img = false;
-		wfRunHooks( 'ImagePageFindFile', array( $this, &$img, &$this->displayImg ) );
+		Hooks::run( 'ImagePageFindFile', array( $this, &$img, &$this->displayImg ) );
 		if ( !$img ) { // not set by hook?
 			$img = wfFindFile( $this->getTitle() );
 			if ( !$img ) {
@@ -196,7 +196,7 @@ class ImagePage extends Article {
 
 		# Allow extensions to add something after the image links
 		$html = '';
-		wfRunHooks( 'ImagePageAfterImageLinks', array( $this, &$html ) );
+		Hooks::run( 'ImagePageAfterImageLinks', array( $this, &$html ) );
 		if ( $html ) {
 			$out->addHTML( $html );
 		}
@@ -245,7 +245,7 @@ class ImagePage extends Article {
 			$r[] = '<li><a href="#metadata">' . wfMessage( 'metadata' )->escaped() . '</a></li>';
 		}
 
-		wfRunHooks( 'ImagePageShowTOC', array( $this, &$r ) );
+		Hooks::run( 'ImagePageShowTOC', array( $this, &$r ) );
 
 		return '<ul id="filetoc">' . implode( "\n", $r ) . '</ul>';
 	}
@@ -336,7 +336,7 @@ class ImagePage extends Article {
 			$filename = wfEscapeWikiText( $this->displayImg->getName() );
 			$linktext = $filename;
 
-			wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this, &$out ) );
+			Hooks::run( 'ImageOpenShowImageInlineBefore', array( &$this, &$out ) );
 
 			if ( $this->displayImg->allowInlineDisplay() ) {
 				# image
@@ -1384,7 +1384,7 @@ class ImageHistoryList extends ContextSource {
 		}
 
 		$rowClass = null;
-		wfRunHooks( 'ImagePageFileHistoryLine', array( $this, $file, &$row, &$rowClass ) );
+		Hooks::run( 'ImagePageFileHistoryLine', array( $this, $file, &$row, &$rowClass ) );
 		$classAttr = $rowClass ? " class='$rowClass'" : '';
 
 		return "<tr{$classAttr}>{$row}</tr>\n";

@@ -27,7 +27,7 @@ abstract class UserArray implements Iterator {
 	 */
 	static function newFromResult( $res ) {
 		$userArray = null;
-		if ( !wfRunHooks( 'UserArrayFromResult', array( &$userArray, $res ) ) ) {
+		if ( !Hooks::run( 'UserArrayFromResult', array( &$userArray, $res ) ) ) {
 			return null;
 		}
 		if ( $userArray === null ) {

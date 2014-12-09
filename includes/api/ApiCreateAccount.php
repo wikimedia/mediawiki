@@ -83,7 +83,7 @@ class ApiCreateAccount extends ApiBase {
 
 		$loginForm = new LoginForm();
 		$loginForm->setContext( $context );
-		wfRunHooks( 'AddNewAccountApiForm', array( $this, $loginForm ) );
+		Hooks::run( 'AddNewAccountApiForm', array( $this, $loginForm ) );
 		$loginForm->load();
 
 		$status = $loginForm->addNewaccountInternal();
@@ -113,7 +113,7 @@ class ApiCreateAccount extends ApiBase {
 			// Save settings (including confirmation token)
 			$user->saveSettings();
 
-			wfRunHooks( 'AddNewAccount', array( $user, $params['mailpassword'] ) );
+			Hooks::run( 'AddNewAccount', array( $user, $params['mailpassword'] ) );
 
 			if ( $params['mailpassword'] ) {
 				$logAction = 'byemail';
@@ -160,7 +160,7 @@ class ApiCreateAccount extends ApiBase {
 		}
 
 		// Give extensions a chance to modify the API result data
-		wfRunHooks( 'AddNewAccountApiResult', array( $this, $loginForm, &$result ) );
+		Hooks::run( 'AddNewAccountApiResult', array( $this, $loginForm, &$result ) );
 
 		$apiResult->addValue( null, 'createaccount', $result );
 	}

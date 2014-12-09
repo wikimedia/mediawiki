@@ -320,7 +320,7 @@ class ChangeTags {
 			$emptyTags[] = $row->vt_tag;
 		}
 
-		wfRunHooks( 'ListDefinedTags', array( &$emptyTags ) );
+		Hooks::run( 'ListDefinedTags', array( &$emptyTags ) );
 
 		$emptyTags = array_filter( array_unique( $emptyTags ) );
 

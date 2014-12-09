@@ -150,7 +150,7 @@ abstract class UploadBase {
 
 		// Give hooks the chance to handle this request
 		$className = null;
-		wfRunHooks( 'UploadCreateFromRequest', array( $type, &$className ) );
+		Hooks::run( 'UploadCreateFromRequest', array( $type, &$className ) );
 		if ( is_null( $className ) ) {
 			$className = 'UploadFrom' . $type;
 			wfDebug( __METHOD__ . ": class name: $className\n" );
@@ -335,7 +335,7 @@ abstract class UploadBase {
 		}
 
 		$error = '';
-		if ( !wfRunHooks( 'UploadVerification',
+		if ( !Hooks::run( 'UploadVerification',
 			array( $this->mDestName, $this->mTempPath, &$error ) )
 		) {
 			wfProfileOut( __METHOD__ );
@@ -469,7 +469,7 @@ abstract class UploadBase {
 			}
 		}
 
-		wfRunHooks( 'UploadVerifyFile', array( $this, $mime, &$status ) );
+		Hooks::run( 'UploadVerifyFile', array( $this, $mime, &$status ) );
 		if ( $status !== true ) {
 			wfProfileOut( __METHOD__ );
 
@@ -755,7 +755,7 @@ abstract class UploadBase {
 					WatchedItem::IGNORE_USER_RIGHTS
 				);
 			}
-			wfRunHooks( 'UploadComplete', array( &$this ) );
+			Hooks::run( 'UploadComplete', array( &$this ) );
 
 			$this->postProcessUpload();
 		}

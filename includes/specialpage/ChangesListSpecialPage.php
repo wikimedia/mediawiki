@@ -154,7 +154,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
 			$this->customFilters = array();
-			wfRunHooks( 'ChangesListSpecialPageFilters', array( $this, &$this->customFilters ) );
+			Hooks::run( 'ChangesListSpecialPageFilters', array( $this, &$this->customFilters ) );
 		}
 
 		return $this->customFilters;
@@ -310,7 +310,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) {
-		return wfRunHooks(
+		return Hooks::run(
 			'ChangesListSpecialPageQuery',
 			array( $this->getName(), &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts )
 		);

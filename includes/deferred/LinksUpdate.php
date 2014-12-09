@@ -140,16 +140,16 @@ class LinksUpdate extends SqlDataUpdate {
 
 		$this->mRecursive = $recursive;
 
-		wfRunHooks( 'LinksUpdateConstructed', array( &$this ) );
+		Hooks::run( 'LinksUpdateConstructed', array( &$this ) );
 	}
 
 	/**
 	 * Update link tables with outgoing links from an updated article
 	 */
 	public function doUpdate() {
-		wfRunHooks( 'LinksUpdate', array( &$this ) );
+		Hooks::run( 'LinksUpdate', array( &$this ) );
 		$this->doIncrementalUpdate();
-		wfRunHooks( 'LinksUpdateComplete', array( &$this ) );
+		Hooks::run( 'LinksUpdateComplete', array( &$this ) );
 	}
 
 	protected function doIncrementalUpdate() {
@@ -339,7 +339,7 @@ class LinksUpdate extends SqlDataUpdate {
 		}
 		if ( count( $insertions ) ) {
 			$this->mDb->insert( $table, $insertions, __METHOD__, 'IGNORE' );
-			wfRunHooks( 'LinksUpdateAfterInsert', array( $this, $table, $insertions ) );
+			Hooks::run( 'LinksUpdateAfterInsert', array( $this, $table, $insertions ) );
 		}
 	}
 

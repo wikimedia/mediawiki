@@ -913,7 +913,7 @@ class LocalFile extends File {
 		$files = $this->getThumbnails( $archiveName );
 
 		// Purge any custom thumbnail caches
-		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, $archiveName ) );
+		Hooks::run( 'LocalFilePurgeThumbnails', array( $this, $archiveName ) );
 
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
@@ -958,7 +958,7 @@ class LocalFile extends File {
 		}
 
 		// Purge any custom thumbnail caches
-		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, false ) );
+		Hooks::run( 'LocalFilePurgeThumbnails', array( $this, false ) );
 
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
@@ -1035,7 +1035,7 @@ class LocalFile extends File {
 		$opts['ORDER BY'] = "oi_timestamp $order";
 		$opts['USE INDEX'] = array( 'oldimage' => 'oi_name_timestamp' );
 
-		wfRunHooks( 'LocalFile::getHistory', array( &$this, &$tables, &$fields,
+		Hooks::run( 'LocalFile::getHistory', array( &$this, &$tables, &$fields,
 			&$conds, &$opts, &$join_conds ) );
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );
@@ -1423,7 +1423,7 @@ class LocalFile extends File {
 			if ( !is_null( $nullRevision ) ) {
 				$nullRevision->insertOn( $dbw );
 
-				wfRunHooks( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
+				Hooks::run( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
 			}
 		}
@@ -1484,7 +1484,7 @@ class LocalFile extends File {
 
 		# Hooks, hooks, the magic of hooks...
 		wfProfileIn( __METHOD__ . '-hooks' );
-		wfRunHooks( 'FileUpload', array( $this, $reupload, $descTitle->exists() ) );
+		Hooks::run( 'FileUpload', array( $this, $reupload, $descTitle->exists() ) );
 		wfProfileOut( __METHOD__ . '-hooks' );
 
 		# Invalidate cache for all pages using this file

@@ -259,7 +259,7 @@ abstract class Skin extends ContextSource {
 			$titles[] = $title->getTalkPage();
 		}
 
-		wfRunHooks( 'SkinPreloadExistence', array( &$titles, $this ) );
+		Hooks::run( 'SkinPreloadExistence', array( &$titles, $this ) );
 
 		if ( count( $titles ) ) {
 			$lb = new LinkBatch( $titles );
@@ -587,7 +587,7 @@ abstract class Skin extends ContextSource {
 	protected function afterContentHook() {
 		$data = '';
 
-		if ( wfRunHooks( 'SkinAfterContent', array( &$data, $this ) ) ) {
+		if ( Hooks::run( 'SkinAfterContent', array( &$data, $this ) ) ) {
 			// adding just some spaces shouldn't toggle the output
 			// of the whole <div/>, so we use trim() here
 			if ( trim( $data ) != '' ) {
@@ -624,7 +624,7 @@ abstract class Skin extends ContextSource {
 		// OutputPage::getBottomScripts() which takes a Skin param. This should be cleaned
 		// up at some point
 		$bottomScriptText = $this->getOutput()->getBottomScripts();
-		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
+		Hooks::run( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
 
 		return $bottomScriptText;
 	}
@@ -684,7 +684,7 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$subpages = '';
 
-		if ( !wfRunHooks( 'SkinSubPageSubtitle', array( &$subpages, $this, $out ) ) ) {
+		if ( !Hooks::run( 'SkinSubPageSubtitle', array( &$subpages, $this, $out ) ) ) {
 			return $subpages;
 		}
 
@@ -793,7 +793,7 @@ abstract class Skin extends ContextSource {
 		// @todo Remove deprecated $forContent param from hook handlers and then remove here.
 		$forContent = true;
 
-		wfRunHooks(
+		Hooks::run(
 			'SkinCopyrightFooter',
 			array( $this->getTitle(), $type, &$msg, &$link, &$forContent )
 		);
@@ -840,7 +840,7 @@ abstract class Skin extends ContextSource {
 		$url = htmlspecialchars( "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png" );
 		$text = '<a href="//www.mediawiki.org/"><img src="' . $url
 			. '" height="31" width="88" alt="Powered by MediaWiki" /></a>';
-		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $this ) );
+		Hooks::run( 'SkinGetPoweredBy', array( &$text, $this ) );
 		return $text;
 	}
 
@@ -1224,7 +1224,7 @@ abstract class Skin extends ContextSource {
 		if ( $wgEnableSidebarCache ) {
 			$cachedsidebar = $wgMemc->get( $key );
 			if ( $cachedsidebar ) {
-				wfRunHooks( 'SidebarBeforeOutput', array( $this, &$cachedsidebar ) );
+				Hooks::run( 'SidebarBeforeOutput', array( $this, &$cachedsidebar ) );
 
 				wfProfileOut( __METHOD__ );
 				return $cachedsidebar;
@@ -1234,12 +1234,12 @@ abstract class Skin extends ContextSource {
 		$bar = array();
 		$this->addToSidebar( $bar, 'sidebar' );
 
-		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
+		Hooks::run( 'SkinBuildSidebar', array( $this, &$bar ) );
 		if ( $wgEnableSidebarCache ) {
 			$wgMemc->set( $key, $bar, $wgSidebarCacheExpiry );
 		}
 
-		wfRunHooks( 'SidebarBeforeOutput', array( $this, &$bar ) );
+		Hooks::run( 'SidebarBeforeOutput', array( $this, &$bar ) );
 
 		wfProfileOut( __METHOD__ );
 		return $bar;
@@ -1379,7 +1379,7 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 
 		// Allow extensions to disable or modify the new messages alert
-		if ( !wfRunHooks( 'GetNewMessagesAlert', array( &$newMessagesAlert, $newtalks, $user, $out ) ) ) {
+		if ( !Hooks::run( 'GetNewMessagesAlert', array( &$newMessagesAlert, $newtalks, $user, $out ) ) ) {
 			return '';
 		}
 		if ( $newMessagesAlert ) {
@@ -1542,7 +1542,7 @@ abstract class Skin extends ContextSource {
 		wfProfileIn( __METHOD__ );
 		$siteNotice = '';
 
-		if ( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice, $this ) ) ) {
+		if ( Hooks::run( 'SiteNoticeBefore', array( &$siteNotice, $this ) ) ) {
 			if ( is_object( $this->getUser() ) && $this->getUser()->isLoggedIn() ) {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
@@ -1558,7 +1558,7 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
-		wfRunHooks( 'SiteNoticeAfter', array( &$siteNotice, $this ) );
+		Hooks::run( 'SiteNoticeAfter', array( &$siteNotice, $this ) );
 		wfProfileOut( __METHOD__ );
 		return $siteNotice;
 	}
@@ -1602,7 +1602,7 @@ abstract class Skin extends ContextSource {
 			. '<span class="mw-editsection-bracket">]</span>'
 			. '</span>';
 
-		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );
+		Hooks::run( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );
 		return $result;
 	}
 

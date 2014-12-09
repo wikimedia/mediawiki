@@ -118,7 +118,7 @@ class UploadFromUrl extends UploadBase {
 	public static function isAllowedUrl( $url ) {
 		if ( !isset( self::$allowedUrls[$url] ) ) {
 			$allowed = true;
-			wfRunHooks( 'IsUploadAllowedFromUrl', array( $url, &$allowed ) );
+			Hooks::run( 'IsUploadAllowedFromUrl', array( $url, &$allowed ) );
 			self::$allowedUrls[$url] = $allowed;
 		}
 

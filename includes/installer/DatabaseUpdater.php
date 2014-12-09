@@ -115,7 +115,7 @@ abstract class DatabaseUpdater {
 		$this->maintenance->setDB( $db );
 		$this->initOldGlobals();
 		$this->loadExtensions();
-		wfRunHooks( 'LoadExtensionSchemaUpdates', array( $this ) );
+		Hooks::run( 'LoadExtensionSchemaUpdates', array( $this ) );
 	}
 
 	/**

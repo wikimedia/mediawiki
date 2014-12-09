@@ -179,7 +179,7 @@ class ApiPageSet extends ApiBase {
 
 			if ( !$isDryRun ) {
 				$generator->executeGenerator( $this );
-				wfRunHooks( 'APIQueryGeneratorAfterExecute', array( &$generator, &$this ) );
+				Hooks::run( 'APIQueryGeneratorAfterExecute', array( &$generator, &$this ) );
 			} else {
 				// Prevent warnings from being reported on these parameters
 				$main = $this->getMain();

@@ -56,7 +56,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 				$query .= '&rcid=' . $attribs['rc_id'];
 			}
 			// HACK: We need this hook for WMF's secure server setup
-			wfRunHooks( 'IRCLineURL', array( &$url, &$query, $rc ) );
+			Hooks::run( 'IRCLineURL', array( &$url, &$query, $rc ) );
 			$url .= $query;
 		}
 

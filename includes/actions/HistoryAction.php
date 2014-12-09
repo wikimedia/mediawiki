@@ -204,7 +204,7 @@ class HistoryAction extends FormlessAction {
 			'</fieldset></form>'
 		);
 
-		wfRunHooks( 'PageHistoryBeforeList', array( &$this->page, $this->getContext() ) );
+		Hooks::run( 'PageHistoryBeforeList', array( &$this->page, $this->getContext() ) );
 
 		// Create and output the list.
 		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
@@ -420,7 +420,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$queryInfo['options'],
 			$this->tagFilter
 		);
-		wfRunHooks( 'PageHistoryPager::getQueryInfo', array( &$this, &$queryInfo ) );
+		Hooks::run( 'PageHistoryPager::getQueryInfo', array( &$this, &$queryInfo ) );
 
 		return $queryInfo;
 	}
@@ -710,7 +710,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			}
 		}
 		// Allow extension to add their own links here
-		wfRunHooks( 'HistoryRevisionTools', array( $rev, &$tools ) );
+		Hooks::run( 'HistoryRevisionTools', array( $rev, &$tools ) );
 
 		if ( $tools ) {
 			$s2 .= ' ' . $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
@@ -728,7 +728,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . $s2;
 		}
 
-		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row, &$s, &$classes ) );
+		Hooks::run( 'PageHistoryLineEnding', array( $this, &$row, &$s, &$classes ) );
 
 		$attribs = array();
 		if ( $classes ) {

@@ -1180,7 +1180,7 @@ class Title {
 		}
 
 		$result = true;
-		wfRunHooks( 'TitleIsMovable', array( $this, &$result ) );
+		Hooks::run( 'TitleIsMovable', array( $this, &$result ) );
 		return $result;
 	}
 
@@ -1252,7 +1252,7 @@ class Title {
 		#   It's called here again to make sure hook functions can force this
 		#   method to return true even outside the MediaWiki namespace.
 
-		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ), '1.25' );
+		Hooks::run( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ), '1.25' );
 
 		return $isCssOrJsPage;
 	}
@@ -1659,7 +1659,7 @@ class Title {
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
 
-		wfRunHooks( 'GetFullURL', array( &$this, &$url, $query ) );
+		Hooks::run( 'GetFullURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
@@ -1705,7 +1705,7 @@ class Title {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
 				$url = str_replace( '$1', $dbkey, $wgArticlePath );
-				wfRunHooks( 'GetLocalURL::Article', array( &$this, &$url ) );
+				Hooks::run( 'GetLocalURL::Article', array( &$this, &$url ) );
 			} else {
 				global $wgVariantArticlePath, $wgActionPaths, $wgContLang;
 				$url = false;
@@ -1750,7 +1750,7 @@ class Title {
 				}
 			}
 
-			wfRunHooks( 'GetLocalURL::Internal', array( &$this, &$url, $query ) );
+			Hooks::run( 'GetLocalURL::Internal', array( &$this, &$url, $query ) );
 
 			// @todo FIXME: This causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
@@ -1758,7 +1758,7 @@ class Title {
 				$url = $wgServer . $url;
 			}
 		}
-		wfRunHooks( 'GetLocalURL', array( &$this, &$url, $query ) );
+		Hooks::run( 'GetLocalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
@@ -1808,7 +1808,7 @@ class Title {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
 		$url = wfExpandUrl( $server . $this->getLocalURL( $query ), PROTO_HTTP );
-		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query ) );
+		Hooks::run( 'GetInternalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
@@ -1826,7 +1826,7 @@ class Title {
 	public function getCanonicalURL( $query = '', $query2 = false ) {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$url = wfExpandUrl( $this->getLocalURL( $query ) . $this->getFragmentForURL(), PROTO_CANONICAL );
-		wfRunHooks( 'GetCanonicalURL', array( &$this, &$url, $query ) );
+		Hooks::run( 'GetCanonicalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
@@ -1945,7 +1945,7 @@ class Title {
 	private function checkQuickPermissions( $action, $user, $errors,
 		$doExpensiveQueries, $short
 	) {
-		if ( !wfRunHooks( 'TitleQuickPermissions',
+		if ( !Hooks::run( 'TitleQuickPermissions',
 			array( $this, $user, $action, &$errors, $doExpensiveQueries, $short ) )
 		) {
 			return $errors;
@@ -2045,18 +2045,18 @@ class Title {
 	private function checkPermissionHooks( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		// Use getUserPermissionsErrors instead
 		$result = '';
-		if ( !wfRunHooks( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
+		if ( !Hooks::run( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
 			return $result ? array() : array( array( 'badaccess-group0' ) );
 		}
 		// Check getUserPermissionsErrors hook
-		if ( !wfRunHooks( 'getUserPermissionsErrors', array( &$this, &$user, $action, &$result ) ) ) {
+		if ( !Hooks::run( 'getUserPermissionsErrors', array( &$this, &$user, $action, &$result ) ) ) {
 			$errors = $this->resultToError( $errors, $result );
 		}
 		// Check getUserPermissionsErrorsExpensive hook
 		if (
 			$doExpensiveQueries
 			&& !( $short && count( $errors ) > 0 )
-			&& !wfRunHooks( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result ) )
+			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result ) )
 		) {
 			$errors = $this->resultToError( $errors, $result );
 		}
@@ -2389,7 +2389,7 @@ class Title {
 
 		if ( !$whitelisted ) {
 			# If the title is not whitelisted, give extensions a chance to do so...
-			wfRunHooks( 'TitleReadWhitelist', array( $this, $user, &$whitelisted ) );
+			Hooks::run( 'TitleReadWhitelist', array( $this, $user, &$whitelisted ) );
 			if ( !$whitelisted ) {
 				$errors[] = $this->missingPermissionError( $action, $short );
 			}
@@ -2523,7 +2523,7 @@ class Title {
 			$types = array_diff( $types, array( 'upload' ) );
 		}
 
-		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
+		Hooks::run( 'TitleGetRestrictionTypes', array( $this, &$types ) );
 
 		wfDebug( __METHOD__ . ': applicable restrictions to [[' .
 			$this->getPrefixedText() . ']] are {' . implode( ',', $types ) . "}\n" );
@@ -3576,7 +3576,7 @@ class Title {
 			$urls[] = $this->getInternalUrl( 'action=raw&ctype=text/css' );
 		}
 
-		wfRunHooks( 'TitleSquidURLs', array( $this, &$urls ) );
+		Hooks::run( 'TitleSquidURLs', array( $this, &$urls ) );
 		return $urls;
 	}
 
@@ -4247,7 +4247,7 @@ class Title {
 	 */
 	public function exists() {
 		$exists = $this->getArticleID() != 0;
-		wfRunHooks( 'TitleExists', array( $this, &$exists ) );
+		Hooks::run( 'TitleExists', array( $this, &$exists ) );
 		return $exists;
 	}
 
@@ -4280,7 +4280,7 @@ class Title {
 		 * @param Title $title
 		 * @param bool|null $isKnown
 		 */
-		wfRunHooks( 'TitleIsAlwaysKnown', array( $this, &$isKnown ) );
+		Hooks::run( 'TitleIsAlwaysKnown', array( $this, &$isKnown ) );
 
 		if ( !is_null( $isKnown ) ) {
 			return $isKnown;
@@ -4603,7 +4603,7 @@ class Title {
 		// on the Title object passed in, and should probably
 		// tell the users to run updateCollations.php --force
 		// in order to re-sort existing category relations.
-		wfRunHooks( 'GetDefaultSortkey', array( $this, &$unprefixed ) );
+		Hooks::run( 'GetDefaultSortkey', array( $this, &$unprefixed ) );
 		if ( $prefix !== '' ) {
 			# Separate with a line feed, so the unprefixed part is only used as
 			# a tiebreaker when two pages have the exact same prefix.
@@ -4724,7 +4724,7 @@ class Title {
 			}
 		}
 
-		wfRunHooks( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
+		Hooks::run( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
 	}
 }

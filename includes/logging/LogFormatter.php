@@ -812,7 +812,7 @@ class LegacyLogFormatter extends LogFormatter {
 
 		$params = $this->entry->getParameters();
 
-		wfRunHooks( 'LogLine', array( $type, $subtype, $title, $params,
+		Hooks::run( 'LogLine', array( $type, $subtype, $title, $params,
 			&$this->comment, &$this->revert, $this->entry->getTimestamp() ) );
 
 		return $this->revert;

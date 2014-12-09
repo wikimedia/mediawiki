@@ -93,7 +93,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	public function alterForm( HTMLForm $form ) {
 		$form->setDisplayFormat( 'vform' );
 		$form->setWrapperLegend( false );
-		wfRunHooks( 'LanguageSelector', array( $this->getOutput(), 'mw-languageselector' ) );
+		Hooks::run( 'LanguageSelector', array( $this->getOutput(), 'mw-languageselector' ) );
 	}
 
 	/**

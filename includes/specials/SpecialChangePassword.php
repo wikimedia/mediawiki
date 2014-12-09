@@ -118,7 +118,7 @@ class SpecialChangePassword extends FormSpecialPage {
 		}
 
 		$extraFields = array();
-		wfRunHooks( 'ChangePasswordForm', array( &$extraFields ) );
+		Hooks::run( 'ChangePasswordForm', array( &$extraFields ) );
 		foreach ( $extraFields as $extra ) {
 			list( $name, $label, $type, $default ) = $extra;
 			$fields[$name] = array(
@@ -248,7 +248,7 @@ class SpecialChangePassword extends FormSpecialPage {
 		}
 
 		if ( $newpass !== $retype ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ) );
+			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ) );
 			throw new PasswordError( $this->msg( 'badretype' )->text() );
 		}
 
@@ -264,7 +264,7 @@ class SpecialChangePassword extends FormSpecialPage {
 
 		// @todo Make these separate messages, since the message is written for both cases
 		if ( !$user->checkTemporaryPassword( $oldpass ) && !$user->checkPassword( $oldpass ) ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
+			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
 			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
 		}
 
@@ -276,8 +276,8 @@ class SpecialChangePassword extends FormSpecialPage {
 		// Do AbortChangePassword after checking mOldpass, so we don't leak information
 		// by possibly aborting a new password before verifying the old password.
 		$abortMsg = 'resetpass-abort-generic';
-		if ( !wfRunHooks( 'AbortChangePassword', array( $user, $oldpass, $newpass, &$abortMsg ) ) ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
+		if ( !Hooks::run( 'AbortChangePassword', array( $user, $oldpass, $newpass, &$abortMsg ) ) ) {
+			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
 			throw new PasswordError( $this->msg( $abortMsg )->text() );
 		}
 
@@ -288,9 +288,9 @@ class SpecialChangePassword extends FormSpecialPage {
 
 		try {
 			$user->setPassword( $newpass );
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
+			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
 		} catch ( PasswordError $e ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
+			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
 			throw new PasswordError( $e->getMessage() );
 		}
 

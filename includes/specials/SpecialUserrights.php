@@ -267,7 +267,7 @@ class UserrightsPage extends SpecialPage {
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) . "\n" );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );
-		wfRunHooks( 'UserRights', array( &$user, $add, $remove ) );
+		Hooks::run( 'UserRights', array( &$user, $add, $remove ) );
 
 		if ( $newGroups != $oldGroups ) {
 			$this->addLogEntry( $user, $oldGroups, $newGroups, $reason );

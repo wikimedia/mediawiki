@@ -123,7 +123,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
 			$this->customFilters = parent::getCustomFilters();
-			wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ), '1.23' );
+			Hooks::run( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ), '1.23' );
 		}
 
 		return $this->customFilters;
@@ -201,7 +201,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		} else {
 			# Top log Ids for a page are not stored
 			$nonRevisionTypes = array( RC_LOG );
-			wfRunHooks( 'SpecialWatchlistGetNonRevisionTypes', array( &$nonRevisionTypes ) );
+			Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', array( &$nonRevisionTypes ) );
 			if ( $nonRevisionTypes ) {
 				$conds[] = $dbr->makeList(
 					array(
@@ -286,7 +286,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		&$join_conds, $opts
 	) {
 		return parent::runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts )
-			&& wfRunHooks(
+			&& Hooks::run(
 				'SpecialWatchlistQuery',
 				array( &$conds, &$tables, &$join_conds, &$fields, $opts ),
 				'1.23'

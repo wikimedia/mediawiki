@@ -584,7 +584,7 @@ wfDebugLog( 'caches', 'main: ' . get_class( $wgMemc ) .
 wfProfileOut( $fname . '-memcached' );
 
 // Most of the config is out, some might want to run hooks here.
-wfRunHooks( 'SetupAfterCache' );
+Hooks::run( 'SetupAfterCache' );
 
 wfProfileIn( $fname . '-session' );
 
@@ -634,7 +634,7 @@ $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParser
 
 if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new AuthPlugin;
-	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
+	Hooks::run( 'AuthPluginSetup', array( &$wgAuth ) );
 }
 
 /**

@@ -99,7 +99,7 @@ class ApiRsd extends ApiBase {
 				)
 			),
 		);
-		wfRunHooks( 'ApiRsdServiceApis', array( &$apis ) );
+		Hooks::run( 'ApiRsdServiceApis', array( &$apis ) );
 
 		return $apis;
 	}

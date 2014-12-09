@@ -132,10 +132,10 @@ class WatchAction extends FormAction {
 		$page = WikiPage::factory( $title );
 
 		$status = Status::newFatal( 'hookaborted' );
-		if ( wfRunHooks( 'WatchArticle', array( &$user, &$page, &$status ) ) ) {
+		if ( Hooks::run( 'WatchArticle', array( &$user, &$page, &$status ) ) ) {
 			$status = Status::newGood();
 			$user->addWatch( $title, $checkRights );
-			wfRunHooks( 'WatchArticleComplete', array( &$user, &$page ) );
+			Hooks::run( 'WatchArticleComplete', array( &$user, &$page ) );
 		}
 
 		return $status;
@@ -156,10 +156,10 @@ class WatchAction extends FormAction {
 		$page = WikiPage::factory( $title );
 
 		$status = Status::newFatal( 'hookaborted' );
-		if ( wfRunHooks( 'UnwatchArticle', array( &$user, &$page, &$status ) ) ) {
+		if ( Hooks::run( 'UnwatchArticle', array( &$user, &$page, &$status ) ) ) {
 			$status = Status::newGood();
 			$user->removeWatch( $title );
-			wfRunHooks( 'UnwatchArticleComplete', array( &$user, &$page ) );
+			Hooks::run( 'UnwatchArticleComplete', array( &$user, &$page ) );
 		}
 
 		return $status;

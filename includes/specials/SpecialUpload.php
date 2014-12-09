@@ -186,7 +186,7 @@ class SpecialUpload extends SpecialPage {
 			$this->processUpload();
 		} else {
 			# Backwards compatibility hook
-			if ( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) ) {
+			if ( !Hooks::run( 'UploadForm:initial', array( &$this ) ) ) {
 				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form\n" );
 
 				return;
@@ -414,7 +414,7 @@ class SpecialUpload extends SpecialPage {
 			return;
 		}
 
-		if ( !wfRunHooks( 'UploadForm:BeforeProcessing', array( &$this ) ) ) {
+		if ( !Hooks::run( 'UploadForm:BeforeProcessing', array( &$this ) ) ) {
 			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
 			// This code path is deprecated. If you want to break upload processing
 			// do so by hooking into the appropriate hooks in UploadBase::verifyUpload
@@ -474,7 +474,7 @@ class SpecialUpload extends SpecialPage {
 
 		// Success, redirect to description page
 		$this->mUploadSuccessful = true;
-		wfRunHooks( 'SpecialUploadComplete', array( &$this ) );
+		Hooks::run( 'SpecialUploadComplete', array( &$this ) );
 		$this->getOutput()->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 	}
 
@@ -795,7 +795,7 @@ class UploadForm extends HTMLForm {
 			+ $this->getDescriptionSection()
 			+ $this->getOptionsSection();
 
-		wfRunHooks( 'UploadFormInitDescriptor', array( &$descriptor ) );
+		Hooks::run( 'UploadFormInitDescriptor', array( &$descriptor ) );
 		parent::__construct( $descriptor, $context, 'upload' );
 
 		# Add a link to edit MediaWik:Licenses
@@ -907,7 +907,7 @@ class UploadForm extends HTMLForm {
 				'checked' => $selectedSourceType == 'url',
 			);
 		}
-		wfRunHooks( 'UploadFormSourceDescriptors', array( &$descriptor, &$radio, $selectedSourceType ) );
+		Hooks::run( 'UploadFormSourceDescriptors', array( &$descriptor, &$radio, $selectedSourceType ) );
 
 		$descriptor['Extensions'] = array(
 			'type' => 'info',

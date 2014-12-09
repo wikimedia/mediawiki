@@ -575,7 +575,7 @@ class MessageCache {
 		global $wgContLang;
 		MessageBlobStore::getInstance()->updateMessage( $wgContLang->lcfirst( $msg ) );
 
-		wfRunHooks( 'MessageCacheReplace', array( $title, $text ) );
+		Hooks::run( 'MessageCacheReplace', array( $title, $text ) );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -736,7 +736,7 @@ class MessageCache {
 			$lckey = $wgContLang->lcfirst( $lckey );
 		}
 
-		wfRunHooks( 'MessageCache::get', array( &$lckey ) );
+		Hooks::run( 'MessageCache::get', array( &$lckey ) );
 
 		if ( ord( $lckey ) < 128 ) {
 			$uckey = ucfirst( $lckey );
@@ -909,7 +909,7 @@ class MessageCache {
 		} else {
 			// XXX: This is not cached in process cache, should it?
 			$message = false;
-			wfRunHooks( 'MessagesPreLoad', array( $title, &$message ) );
+			Hooks::run( 'MessagesPreLoad', array( $title, &$message ) );
 			if ( $message !== false ) {
 				return $message;
 			}

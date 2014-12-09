@@ -196,7 +196,7 @@ class SpecialSearch extends SpecialPage {
 		# No match, generate an edit URL
 		$title = Title::newFromText( $term );
 		if ( !is_null( $title ) ) {
-			wfRunHooks( 'SpecialSearchNogomatch', array( &$title ) );
+			Hooks::run( 'SpecialSearchNogomatch', array( &$title ) );
 		}
 		$this->showResults( $term );
 	}
@@ -214,7 +214,7 @@ class SpecialSearch extends SpecialPage {
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm( $term );
 
-		wfRunHooks( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ) );
+		Hooks::run( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ) );
 
 		$this->setupPage( $term );
 
@@ -293,7 +293,7 @@ class SpecialSearch extends SpecialPage {
 				. $this->msg( 'search-suggest' )->rawParams( $suggestLink )->text() . '</div>';
 		}
 
-		if ( !wfRunHooks( 'SpecialSearchResultsPrepend', array( $this, $out, $term ) ) ) {
+		if ( !Hooks::run( 'SpecialSearchResultsPrepend', array( $this, $out, $term ) ) ) {
 			# Hook requested termination
 			return;
 		}
@@ -361,7 +361,7 @@ class SpecialSearch extends SpecialPage {
 				);
 			}
 		}
-		wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
+		Hooks::run( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
 
 		$out->parserOptions()->setEditSection( false );
 		if ( $titleMatches ) {
@@ -444,7 +444,7 @@ class SpecialSearch extends SpecialPage {
 			wfEscapeWikiText( $title->getPrefixedText() ),
 			Message::numParam( $num )
 		);
-		wfRunHooks( 'SpecialSearchCreateLink', array( $title, &$params ) );
+		Hooks::run( 'SpecialSearchCreateLink', array( $title, &$params ) );
 
 		// Extensions using the hook might still return an empty $messageName
 		if ( $messageName ) {
@@ -595,7 +595,7 @@ class SpecialSearch extends SpecialPage {
 
 		$link_t = clone $title;
 
-		wfRunHooks( 'ShowSearchHitTitle',
+		Hooks::run( 'ShowSearchHitTitle',
 			array( &$link_t, &$titleSnippet, $result, $terms, $this ) );
 
 		$link = Linker::linkKnown(
@@ -713,7 +713,7 @@ class SpecialSearch extends SpecialPage {
 		$html = null;
 
 		$score = '';
-		if ( wfRunHooks( 'ShowSearchHit', array(
+		if ( Hooks::run( 'ShowSearchHit', array(
 			$this, $result, $terms,
 			&$link, &$redirect, &$section, &$extract,
 			&$score, &$size, &$date, &$related,
@@ -907,7 +907,7 @@ class SpecialSearch extends SpecialPage {
 
 		$showSections = array( 'namespaceTables' => $namespaceTables );
 
-		wfRunHooks( 'SpecialSearchPowerBox', array( &$showSections, $term, $opts ) );
+		Hooks::run( 'SpecialSearchPowerBox', array( &$showSections, $term, $opts ) );
 
 		$hidden = '';
 		foreach ( $opts as $key => $value ) {
@@ -978,7 +978,7 @@ class SpecialSearch extends SpecialPage {
 			)
 		);
 
-		wfRunHooks( 'SpecialSearchProfiles', array( &$profiles ) );
+		Hooks::run( 'SpecialSearchProfiles', array( &$profiles ) );
 
 		foreach ( $profiles as &$data ) {
 			if ( !is_array( $data['namespaces'] ) ) {
@@ -1044,7 +1044,7 @@ class SpecialSearch extends SpecialPage {
 			$out .= $this->powerSearchBox( $term, $opts );
 		} else {
 			$form = '';
-			wfRunHooks( 'SpecialSearchProfileForm', array( $this, &$form, $this->profile, $term, $opts ) );
+			Hooks::run( 'SpecialSearchProfileForm', array( $this, &$form, $this->profile, $term, $opts ) );
 			$out .= $form;
 		}
 

@@ -34,7 +34,7 @@ class XMPInfo {
 		if ( !self::$ranHooks ) {
 			// This is for if someone makes a custom metadata extension.
 			// For example, a medical wiki might want to decode DICOM xmp properties.
-			wfRunHooks( 'XMPGetInfo', array( &self::$items ) );
+			Hooks::run( 'XMPGetInfo', array( &self::$items ) );
 			self::$ranHooks = true; // Only want to do this once.
 		}
 

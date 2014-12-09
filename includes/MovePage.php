@@ -81,7 +81,7 @@ class MovePage {
 			}
 		}
 
-		wfRunHooks( 'MovePageCheckPermissions',
+		Hooks::run( 'MovePageCheckPermissions',
 			array( $this->oldTitle, $this->newTitle, $user, $reason, $status )
 		);
 
@@ -146,7 +146,7 @@ class MovePage {
 		}
 
 		// Hook for extensions to say a title can't be moved for technical reasons
-		wfRunHooks( 'MovePageIsValidMove', array( $this->oldTitle, $this->newTitle, $status ) );
+		Hooks::run( 'MovePageIsValidMove', array( $this->oldTitle, $this->newTitle, $status ) );
 
 		return $status;
 	}
@@ -231,7 +231,7 @@ class MovePage {
 	public function move( User $user, $reason, $createRedirect ) {
 		global $wgCategoryCollation;
 
-		wfRunHooks( 'TitleMove', array( $this->oldTitle, $this->newTitle, $user ) );
+		Hooks::run( 'TitleMove', array( $this->oldTitle, $this->newTitle, $user ) );
 
 		// If it is a file, move it first.
 		// It is done before all other moving stuff is done because it's hard to revert.
@@ -370,7 +370,7 @@ class MovePage {
 
 		$dbw->commit( __METHOD__ );
 
-		wfRunHooks( 'TitleMoveComplete', array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason ) );
+		Hooks::run( 'TitleMoveComplete', array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason ) );
 		return Status::newGood();
 	}
 
@@ -486,7 +486,7 @@ class MovePage {
 
 		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
-		wfRunHooks( 'NewRevisionFromEditComplete',
+		Hooks::run( 'NewRevisionFromEditComplete',
 			array( $newpage, $nullRevision, $nullRevision->getParentId(), $user ) );
 
 		$newpage->doEditUpdates( $nullRevision, $user,
@@ -513,7 +513,7 @@ class MovePage {
 				$redirectRevision->insertOn( $dbw );
 				$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 
-				wfRunHooks( 'NewRevisionFromEditComplete',
+				Hooks::run( 'NewRevisionFromEditComplete',
 					array( $redirectArticle, $redirectRevision, false, $user ) );
 
 				$redirectArticle->doEditUpdates( $redirectRevision, $user, array( 'created' => true ) );

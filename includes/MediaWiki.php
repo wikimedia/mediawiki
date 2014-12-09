@@ -169,7 +169,7 @@ class MediaWiki {
 		}
 
 		$unused = null; // To pass it by reference
-		wfRunHooks( 'BeforeInitialize', array( &$title, &$unused, &$output, &$user, $request, $this ) );
+		Hooks::run( 'BeforeInitialize', array( &$title, &$unused, &$output, &$user, $request, $this ) );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( is_null( $title ) || ( $title->getDBkey() == '' && !$title->isExternal() )
@@ -233,7 +233,7 @@ class MediaWiki {
 			&& ( $request->getVal( 'title' ) === null
 				|| $title->getPrefixedDBkey() != $request->getVal( 'title' ) )
 			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
-			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) )
+			&& Hooks::run( 'TestCanonicalRedirect', array( $request, $title, $output ) )
 		) {
 			if ( $title->isSpecialPage() ) {
 				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
@@ -342,7 +342,7 @@ class MediaWiki {
 			// Give extensions a change to ignore/handle redirects as needed
 			$ignoreRedirect = $target = false;
 
-			wfRunHooks( 'InitializeArticleMaybeRedirect',
+			Hooks::run( 'InitializeArticleMaybeRedirect',
 				array( &$title, &$request, &$ignoreRedirect, &$target, &$article ) );
 
 			// Follow redirects only for... redirects.
@@ -392,7 +392,7 @@ class MediaWiki {
 		$title = $this->context->getTitle();
 		$user = $this->context->getUser();
 
-		if ( !wfRunHooks( 'MediaWikiPerformAction',
+		if ( !Hooks::run( 'MediaWikiPerformAction',
 				array( $output, $page, $title, $user, $request, $this ) )
 		) {
 			wfProfileOut( __METHOD__ );
@@ -416,7 +416,7 @@ class MediaWiki {
 			return;
 		}
 
-		if ( wfRunHooks( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ) ) ) {
+		if ( Hooks::run( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ) ) ) {
 			$output->setStatusCode( 404 );
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
@@ -530,7 +530,7 @@ class MediaWiki {
 			$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
 
 			// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
-			if ( wfRunHooks( 'BeforeHttpsRedirect', array( $this->context, &$redirUrl ) ) ) {
+			if ( Hooks::run( 'BeforeHttpsRedirect', array( $this->context, &$redirUrl ) ) ) {
 
 				if ( $request->wasPosted() ) {
 					// This is weird and we'd hope it almost never happens. This

@@ -95,7 +95,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
 			$this->customFilters = parent::getCustomFilters();
-			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ), '1.23' );
+			Hooks::run( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ), '1.23' );
 		}
 
 		return $this->customFilters;
@@ -254,7 +254,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) {
 		return parent::runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts )
-			&& wfRunHooks(
+			&& Hooks::run(
 				'SpecialRecentChangesQuery',
 				array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ),
 				'1.23'
@@ -475,7 +475,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		// Don't fire the hook for subclasses. (Or should we?)
 		if ( $this->getName() === 'Recentchanges' ) {
-			wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
+			Hooks::run( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
 		}
 
 		return $extraOpts;

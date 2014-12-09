@@ -96,7 +96,7 @@ class ApiOpenSearch extends ApiBase {
 			$this->search( $search, $limit, $namespaces, $resolveRedir, $results );
 
 			// Allow hooks to populate extracts and images
-			wfRunHooks( 'ApiOpenSearchSuggest', array( &$results ) );
+			Hooks::run( 'ApiOpenSearchSuggest', array( &$results ) );
 
 			// Trim extracts, if necessary
 			$length = $this->getConfig()->get( 'OpenSearchDescriptionLength' );

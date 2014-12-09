@@ -609,7 +609,7 @@ class ApiHelp extends ApiBase {
 
 			$module->modifyHelp( $help, $options );
 
-			wfRunHooks( 'APIHelpModifyOutput', array( $module, &$help, $options ) );
+			Hooks::run( 'APIHelpModifyOutput', array( $module, &$help, $options ) );
 
 			$out .= join( "\n", $help );
 		}

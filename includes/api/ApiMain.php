@@ -192,7 +192,7 @@ class ApiMain extends ApiBase {
 		if ( $uselang === 'user' ) {
 			$uselang = $this->getUser()->getOption( 'language' );
 			$uselang = RequestContext::sanitizeLangCode( $uselang );
-			wfRunHooks( 'UserGetLanguageObject', array( $this->getUser(), &$uselang, $this ) );
+			Hooks::run( 'UserGetLanguageObject', array( $this->getUser(), &$uselang, $this ) );
 		} elseif ( $uselang === 'content' ) {
 			global $wgContLang;
 			$uselang = $wgContLang->getCode();
@@ -418,7 +418,7 @@ class ApiMain extends ApiBase {
 		}
 
 		// Allow extra cleanup and logging
-		wfRunHooks( 'ApiMain::onException', array( $this, $e ) );
+		Hooks::run( 'ApiMain::onException', array( $this, $e ) );
 
 		// Log it
 		if ( !( $e instanceof UsageException ) ) {
@@ -878,7 +878,7 @@ class ApiMain extends ApiBase {
 
 		// Allow extensions to stop execution for arbitrary reasons.
 		$message = false;
-		if ( !wfRunHooks( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
+		if ( !Hooks::run( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
 			$this->dieUsageMsg( $message );
 		}
 	}
@@ -952,7 +952,7 @@ class ApiMain extends ApiBase {
 		// Execute
 		$module->profileIn();
 		$module->execute();
-		wfRunHooks( 'APIAfterExecute', array( &$module ) );
+		Hooks::run( 'APIAfterExecute', array( &$module ) );
 		$module->profileOut();
 
 		$this->reportUnusedParams();

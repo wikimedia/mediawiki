@@ -86,7 +86,7 @@ class WantedPagesPage extends WantedQueryPage {
 			)
 		);
 		// Replacement for the WantedPages::getSQL hook
-		wfRunHooks( 'WantedPages::getQueryInfo', array( &$this, &$query ) );
+		Hooks::run( 'WantedPages::getQueryInfo', array( &$this, &$query ) );
 
 		return $query;
 	}

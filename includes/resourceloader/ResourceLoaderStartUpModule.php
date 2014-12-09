@@ -106,7 +106,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 		);
 
-		wfRunHooks( 'ResourceLoaderGetConfigVars', array( &$vars ) );
+		Hooks::run( 'ResourceLoaderGetConfigVars', array( &$vars ) );
 
 		$this->configVars[$hash] = $vars;
 		return $this->configVars[$hash];

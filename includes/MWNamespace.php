@@ -72,7 +72,7 @@ class MWNamespace {
 		/**
 		 * @since 1.20
 		 */
-		wfRunHooks( 'NamespaceIsMovable', array( $index, &$result ) );
+		Hooks::run( 'NamespaceIsMovable', array( $index, &$result ) );
 
 		return $result;
 	}
@@ -213,7 +213,7 @@ class MWNamespace {
 			if ( is_array( $wgExtraNamespaces ) ) {
 				$namespaces += $wgExtraNamespaces;
 			}
-			wfRunHooks( 'CanonicalNamespaces', array( &$namespaces ) );
+			Hooks::run( 'CanonicalNamespaces', array( &$namespaces ) );
 		}
 		return $namespaces;
 	}

@@ -485,7 +485,7 @@ class SpecialMergeHistory extends SpecialPage {
 			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText() )->numParams(
 			$count )->text() );
 
-		wfRunHooks( 'ArticleMergeComplete', array( $targetTitle, $destTitle ) );
+		Hooks::run( 'ArticleMergeComplete', array( $targetTitle, $destTitle ) );
 
 		return true;
 	}

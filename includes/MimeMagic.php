@@ -200,7 +200,7 @@ class MimeMagic {
 		global $IP;
 
 		# Allow media handling extensions adding MIME-types and MIME-info
-		wfRunHooks( 'MimeMagicInit', array( $this ) );
+		Hooks::run( 'MimeMagicInit', array( $this ) );
 
 		$types = MM_WELL_KNOWN_MIME_TYPES;
 
@@ -569,7 +569,7 @@ class MimeMagic {
 		}
 
 		# Media handling extensions can improve the MIME detected
-		wfRunHooks( 'MimeMagicImproveFromExtension', array( $this, $ext, &$mime ) );
+		Hooks::run( 'MimeMagicImproveFromExtension', array( $this, $ext, &$mime ) );
 
 		if ( isset( $this->mMimeTypeAliases[$mime] ) ) {
 			$mime = $this->mMimeTypeAliases[$mime];
@@ -802,7 +802,7 @@ class MimeMagic {
 		# people will hopefully nag and submit patches :)
 		$mime = false;
 		# Some strings by reference for performance - assuming well-behaved hooks
-		wfRunHooks(
+		Hooks::run(
 			'MimeMagicGuessFromContent',
 			array( $this, &$head, &$tail, $file, &$mime )
 		);

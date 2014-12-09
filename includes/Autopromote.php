@@ -43,7 +43,7 @@ class Autopromote {
 			}
 		}
 
-		wfRunHooks( 'GetAutoPromoteGroups', array( $user, &$promote ) );
+		Hooks::run( 'GetAutoPromoteGroups', array( $user, &$promote ) );
 
 		return $promote;
 	}
@@ -197,7 +197,7 @@ class Autopromote {
 				return in_array( 'bot', User::getGroupPermissions( $user->getGroups() ) );
 			default:
 				$result = null;
-				wfRunHooks( 'AutopromoteCondition', array( $cond[0],
+				Hooks::run( 'AutopromoteCondition', array( $cond[0],
 					array_slice( $cond, 1 ), $user, &$result ) );
 				if ( $result === null ) {
 					throw new MWException( "Unrecognized condition {$cond[0]} for autopromotion!" );

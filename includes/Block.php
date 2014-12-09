@@ -580,7 +580,7 @@ class Block {
 		if ( $this->isAutoblocking() && $this->getType() == self::TYPE_USER ) {
 			wfDebug( "Doing retroactive autoblocks for " . $this->getTarget() . "\n" );
 
-			$continue = wfRunHooks(
+			$continue = Hooks::run(
 				'PerformRetroactiveAutoblock', array( $this, &$blockIds ) );
 
 			if ( $continue ) {
@@ -693,7 +693,7 @@ class Block {
 		}
 
 		# Allow hooks to cancel the autoblock.
-		if ( !wfRunHooks( 'AbortAutoblock', array( $autoblockIP, &$this ) ) ) {
+		if ( !Hooks::run( 'AbortAutoblock', array( $autoblockIP, &$this ) ) ) {
 			wfDebug( "Autoblock aborted by hook.\n" );
 			return false;
 		}

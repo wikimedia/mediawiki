@@ -209,7 +209,7 @@ class Linker {
 		$dummy = new DummyLinker; // dummy linker instance for bc on the hooks
 
 		$ret = null;
-		if ( !wfRunHooks( 'LinkBegin',
+		if ( !Hooks::run( 'LinkBegin',
 			array( $dummy, $target, &$html, &$customAttribs, &$query, &$options, &$ret ) )
 		) {
 			wfProfileOut( __METHOD__ );
@@ -251,7 +251,7 @@ class Linker {
 		}
 
 		$ret = null;
-		if ( wfRunHooks( 'LinkEnd', array( $dummy, $target, $options, &$html, &$attribs, &$ret ) ) ) {
+		if ( Hooks::run( 'LinkEnd', array( $dummy, $target, $options, &$html, &$attribs, &$ret ) ) ) {
 			$ret = Html::rawElement( 'a', $attribs, $html );
 		}
 
@@ -411,7 +411,7 @@ class Linker {
 	 */
 	public static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
 		$ret = "<strong class=\"selflink\">{$prefix}{$html}</strong>{$trail}";
-		if ( !wfRunHooks( 'SelfLinkBegin', array( $nt, &$html, &$trail, &$prefix, &$ret ) ) ) {
+		if ( !Hooks::run( 'SelfLinkBegin', array( $nt, &$html, &$trail, &$prefix, &$ret ) ) ) {
 			return $ret;
 		}
 
@@ -497,7 +497,7 @@ class Linker {
 			$alt = self::fnamePart( $url );
 		}
 		$img = '';
-		$success = wfRunHooks( 'LinkerMakeExternalImage', array( &$url, &$alt, &$img ) );
+		$success = Hooks::run( 'LinkerMakeExternalImage', array( &$url, &$alt, &$img ) );
 		if ( !$success ) {
 			wfDebug( "Hook LinkerMakeExternalImage changed the output of external image "
 				. "with url {$url} and alt text {$alt} to {$img}\n", true );
@@ -551,7 +551,7 @@ class Linker {
 	) {
 		$res = null;
 		$dummy = new DummyLinker;
-		if ( !wfRunHooks( 'ImageBeforeProduceHTML', array( &$dummy, &$title,
+		if ( !Hooks::run( 'ImageBeforeProduceHTML', array( &$dummy, &$title,
 			&$file, &$frameParams, &$handlerParams, &$time, &$res ) ) ) {
 			return $res;
 		}
@@ -1031,7 +1031,7 @@ class Linker {
 			'title' => $alt
 		);
 
-		if ( !wfRunHooks( 'LinkerMakeMediaLinkFile',
+		if ( !Hooks::run( 'LinkerMakeMediaLinkFile',
 			array( $title, $file, &$html, &$attribs, &$ret ) ) ) {
 			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link "
 				. "with url {$url} and text {$html} to {$ret}\n", true );
@@ -1090,7 +1090,7 @@ class Linker {
 		}
 		$attribs['rel'] = Parser::getExternalLinkRel( $url, $title );
 		$link = '';
-		$success = wfRunHooks( 'LinkerMakeExternalLink',
+		$success = Hooks::run( 'LinkerMakeExternalLink',
 			array( &$url, &$text, &$link, &$attribs, $linktype ) );
 		if ( !$success ) {
 			wfDebug( "Hook LinkerMakeExternalLink changed the output of link "
@@ -1176,7 +1176,7 @@ class Linker {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 
-		wfRunHooks( 'UserToolLinksEdit', array( $userId, $userText, &$items ) );
+		Hooks::run( 'UserToolLinksEdit', array( $userId, $userText, &$items ) );
 
 		if ( $items ) {
 			return wfMessage( 'word-separator' )->plain()
@@ -1333,7 +1333,7 @@ class Linker {
 				$auto = $match[2];
 				$post = $match[3];
 				$comment = null;
-				wfRunHooks( 'FormatAutocomments', array( &$comment, $pre, $auto, $post, $title, $local ) );
+				Hooks::run( 'FormatAutocomments', array( &$comment, $pre, $auto, $post, $title, $local ) );
 				if ( $comment === null ) {
 					$link = '';
 					if ( $title ) {
