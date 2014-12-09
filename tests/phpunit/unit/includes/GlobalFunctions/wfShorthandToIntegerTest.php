@@ -1,10 +1,14 @@
 <?php
+if ( !defined ( 'MEDIAWIKI' ) ) {
+	define( "MEDIAWIKI", true );
+}
+require_once __DIR__ . '/../../../../../includes/GlobalFunctions.php';
 
 /**
  * @group GlobalFunctions
  * @covers ::wfShorthandToInteger
  */
-class WfShorthandToIntegerTest extends MediaWikiTestCase {
+class WfShorthandToIntegerTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideABunchOfShorthands
 	 */
