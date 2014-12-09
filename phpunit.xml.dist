@@ -1,0 +1,18 @@
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         cacheTokens="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnError="false"
+         stopOnFailure="false"
+         stopOnIncomplete="false"
+         stopOnSkipped="false"
+         verbose="true">
+    <testsuites>
+        <testsuite name="mwunit">
+			<directory>tests/phpunit/unit</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
