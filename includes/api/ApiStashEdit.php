@@ -108,8 +108,8 @@ class ApiStashEdit extends ApiBase {
 			$editInfo = false;
 			$status = 'ratelimited';
 		} elseif ( $wgMemc->lock( $key, 0, 30 ) ) {
-			$contentFormat = $content->getDefaultFormat();
-			$editInfo = $page->prepareContentForEdit( $content, null, $user, $contentFormat );
+			$format = $content->getDefaultFormat();
+			$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
 			$status = 'error'; // default
 			$unlocker = new ScopedCallback( function() use ( $key ) {
 				global $wgMemc;
