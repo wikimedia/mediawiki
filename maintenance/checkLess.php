@@ -22,7 +22,6 @@
  */
 
 require_once __DIR__ . '/Maintenance.php';
-require_once 'PHPUnit/Autoload.php';
 
 /**
  * @ingroup Maintenance
@@ -42,6 +41,17 @@ class CheckLess extends Maintenance {
 		// by either of the dependencies at the top of the file, so
 		// require it here.
 		require_once __DIR__ . '/../tests/TestsAutoLoader.php';
+
+		// If phpunit isn't available by autoloader try pulling it in
+		if ( !class_exists( 'PHPUnit_Framework_TestCase' ) ) {
+			require_once 'PHPUnit/Autoload.php';
+		}
+
+		// RequestContext::resetMain() will print warnings unless this
+		// is defined.
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			define( 'MW_PHPUNIT_TEST', true );
+		}
 
 		$textUICommand = new PHPUnit_TextUI_Command();
 		$argv = array(
