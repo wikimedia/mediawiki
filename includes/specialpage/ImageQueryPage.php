@@ -35,7 +35,7 @@ abstract class ImageQueryPage extends QueryPage {
 	 *
 	 * @param OutputPage $out OutputPage to print to
 	 * @param Skin $skin User skin to use [unused]
-	 * @param DatabaseBase $dbr (read) connection to use
+	 * @param IDatabase $dbr (read) connection to use
 	 * @param ResultWrapper $res Result pointer
 	 * @param int $num Number of available result rows
 	 * @param int $offset Paging offset
