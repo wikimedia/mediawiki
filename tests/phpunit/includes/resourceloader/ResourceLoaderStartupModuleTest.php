@@ -133,7 +133,7 @@ mw.loader.addSource( {
         1388534400,
         [],
         null,
-        "local",
+        null,
         "return true;"
     ],
     [
@@ -141,7 +141,7 @@ mw.loader.addSource( {
         1388534400,
         [],
         null,
-        "local",
+        null,
         "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
     ],
     [
@@ -345,7 +345,7 @@ mw.loader.addSource( {
 'mw.loader.addSource({"local":"/w/load.php"});'
 . 'mw.loader.register(['
 . '["test.blank",1388534400],'
-. '["test.min",1388534400,[0],null,"local",'
+. '["test.min",1388534400,[0],null,null,'
 . '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
 . ']]);',
 			$module->getModuleRegistrations( $context ),
@@ -376,7 +376,7 @@ mw.loader.addSource( {
             0
         ],
         null,
-        "local",
+        null,
         "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
     ]
 ] );',
