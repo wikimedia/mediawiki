@@ -1189,6 +1189,27 @@ class ResourceLoader {
 	}
 
 	/**
+	 * Remove empty values from the end of an array.
+	 *
+	 * Values considered empty:
+	 *
+	 * - null
+	 * - empty array
+	 *
+	 * @param Array $array
+	 */
+	private static function trimArray( Array &$array ) {
+		$i = count( $array );
+		while ( $i-- ) {
+			if ( $array[$i] === null || $array[$i] === array() ) {
+				unset( $array[$i] );
+			} else {
+				break;
+			}
+		}
+	}
+
+	/**
 	 * Returns JS code which calls mw.loader.register with the given
 	 * parameters. Has three calling conventions:
 	 *
@@ -1221,7 +1242,7 @@ class ResourceLoader {
 		if ( is_array( $name ) ) {
 			// Build module name index
 			$index = array();
-			foreach ( $name as $i => $module ) {
+			foreach ( $name as $i => &$module ) {
 				$index[$module[0]] = $i;
 			}
 
@@ -1237,16 +1258,19 @@ class ResourceLoader {
 				}
 			}
 
+			array_walk( $name, array( 'self', 'trimArray' ) );
+
 			return Xml::encodeJsCall(
 				'mw.loader.register',
 				array( $name ),
 				ResourceLoader::inDebugMode()
 			);
 		} else {
-			$version = (int) $version;
+			$registration = array( $name, $version, $dependencies, $group, $source, $skip );
+			self::trimArray( $registration );
 			return Xml::encodeJsCall(
 				'mw.loader.register',
-				array( $name, $version, $dependencies, $group, $source, $skip ),
+				$registration,
 				ResourceLoader::inDebugMode()
 			);
 		}

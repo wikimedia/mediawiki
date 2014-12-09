@@ -264,61 +264,16 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			if (
-				!count( $data['dependencies'] ) &&
-				$data['group'] === null &&
-				$data['source'] === 'local' &&
-				$data['skip'] === null
-			) {
-				// Modules with no dependencies, group, foreign source or skip function;
-				// call mw.loader.register(name, timestamp)
-				$registrations[] = array( $name, $data['version'] );
-			} elseif (
-				$data['group'] === null &&
-				$data['source'] === 'local' &&
-				$data['skip'] === null
-			) {
-				// Modules with dependencies but no group, foreign source or skip function;
-				// call mw.loader.register(name, timestamp, dependencies)
-				$registrations[] = array(
-					$name,
-					$data['version'],
-					$data['dependencies']
-				);
-			} elseif (
-				$data['source'] === 'local' &&
-				$data['skip'] === null
-			) {
-				// Modules with a group but no foreign source or skip function;
-				// call mw.loader.register(name, timestamp, dependencies, group)
-				$registrations[] = array(
-					$name,
-					$data['version'],
-					$data['dependencies'],
-					$data['group']
-				);
-			} elseif ( $data['skip'] === null ) {
-				// Modules with a foreign source but no skip function;
-				// call mw.loader.register(name, timestamp, dependencies, group, source)
-				$registrations[] = array(
-					$name,
-					$data['version'],
-					$data['dependencies'],
-					$data['group'],
-					$data['source']
-				);
-			} else {
-				// Modules with a skip function;
-				// call mw.loader.register(name, timestamp, dependencies, group, source, skip)
-				$registrations[] = array(
-					$name,
-					$data['version'],
-					$data['dependencies'],
-					$data['group'],
-					$data['source'],
-					$data['skip']
-				);
-			}
+			// Call mw.loader.register(name, timestamp, dependencies, group, source, skip)
+			$registrations[] = array(
+				$name,
+				$data['version'],
+				$data['dependencies'],
+				$data['group'],
+				// Swap default (local) for null
+				$data['source'] === 'local' ? null : $data['source'],
+				$data['skip']
+			);
 		}
 
 		// Register modules
