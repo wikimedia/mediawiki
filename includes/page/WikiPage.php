@@ -1783,7 +1783,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$summary = $handler->getAutosummary( $old_content, $content, $flags );
 		}
 
-		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat, true );
+		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat );
 		$serialized = $editInfo->pst;
 
 		/**
@@ -2076,7 +2076,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.21
 	 */
 	public function prepareContentForEdit(
-		Content $content, $revid = null, User $user = null, $serialFormat = null, $useCache = false
+		Content $content, $revid = null, User $user = null, $serialFormat = null, $useCache = true
 	) {
 		global $wgContLang, $wgUser;
 
