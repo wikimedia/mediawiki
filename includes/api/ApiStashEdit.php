@@ -48,7 +48,8 @@ class ApiStashEdit extends ApiBase {
 			$this->dieUsage( "Unsupported content model/format", 'badmodelformat' );
 		}
 
-		$text = trim( $params['text'] ); // needed so the key SHA1's match
+		// Trim and fix newlines so the key SHA1's match (see RequestContext::getText())
+		$text = rtrim( str_replace( "\r\n", "\n", $params['text'] ) );
 		$textContent = ContentHandler::makeContent(
 			$text, $title, $params['contentmodel'], $params['contentformat'] );
 
@@ -109,8 +110,11 @@ class ApiStashEdit extends ApiBase {
 		} elseif ( $wgMemc->lock( $key, 0, 30 ) ) {
 			$contentFormat = $content->getDefaultFormat();
 			$editInfo = $page->prepareContentForEdit( $content, null, $user, $contentFormat );
-			$wgMemc->unlock( $key );
 			$status = 'error'; // default
+			$unlocker = new ScopedCallback( function() use ( $key ) {
+				global $wgMemc;
+				$wgMemc->unlock( $key );
+			} );
 		} else {
 			$editInfo = false;
 			$status = 'busy';
@@ -195,12 +199,13 @@ class ApiStashEdit extends ApiBase {
 			if ( $wgMemc->lock( $key, 30, 30 ) ) {
 				$editInfo = $wgMemc->get( $key );
 				$wgMemc->unlock( $key );
-				$sec = microtime( true ) - $start;
-				wfDebugLog( 'StashEdit', "Waited $sec seconds on '$key'." );
 			}
+			$sec = microtime( true ) - $start;
+			wfDebugLog( 'StashEdit', "Waited $sec seconds on '$key'." );
 		}
 
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
+			wfDebugLog( 'StashEdit', "No cache value for key '$key'." );
 			return false;
 		}
 
