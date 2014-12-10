@@ -271,6 +271,17 @@ class Linker {
 		return self::link( $target, $html, $customAttribs, $query, $options );
 	}
 
+	public static function makeEditLink(
+		Title &$target, array &$query = array(), array $options = array()
+	) {
+		if ( Hooks::run( 'LinkerMakeEditLink', array( &$target, &$query, &$options ) ) ) {
+			$query['action'] = 'edit';
+			if ( in_array( 'redlink', $options ) ) {
+				$query['redlink'] = '1';
+			}
+		}
+	}
+
 	/**
 	 * Returns the Url used to link to a Title
 	 *
@@ -293,8 +304,7 @@ class Linker {
 		# (i.e., for a nonexistent special page).
 		if ( in_array( 'broken', $options ) && empty( $query['action'] )
 			&& !$target->isSpecialPage() ) {
-			$query['action'] = 'edit';
-			$query['redlink'] = '1';
+			self::makeEditLink( $target, $query, array( 'redlink' ) );
 		}
 
 		if ( in_array( 'http', $options ) ) {
@@ -2030,19 +2040,22 @@ class Linker {
 							->rawParams( $wgLang->commaList( $msgs ) )->escaped();
 					}
 				}
+				$editLinkTarget = clone $titleObj; // Prevent changes by hooks
+				$editLinkQuery = array();
+				self::makeEditLink( $editLinkTarget, $editLinkQuery );
 				if ( $titleObj->quickUserCan( 'edit' ) ) {
 					$editLink = self::link(
-						$titleObj,
+						$editLinkTarget,
 						wfMessage( 'editlink' )->text(),
 						array(),
-						array( 'action' => 'edit' )
+						$editLinkQuery
 					);
 				} else {
 					$editLink = self::link(
-						$titleObj,
+						$editLinkTarget,
 						wfMessage( 'viewsourcelink' )->text(),
 						array(),
-						array( 'action' => 'edit' )
+						$editLinkQuery
 					);
 				}
 				$outText .= '<li>' . self::link( $titleObj )

@@ -1625,6 +1625,15 @@ $options: the options.  Will always include either 'known' or 'broken', and may
   associative array form.
 &$ret: the value to return if your hook returns false.
 
+'LinkerMakeEditLink': Used in Linker::makeEditLink() when generating 'edit'
+links.  If you return true, the usual parameters (e.g. action=edit) will be
+added to the query.  If you return false, the values will be left as
+manipulated by the hook function.
+&$target: the link target as Title object
+&$query: array of parameters for the querystring
+&$options: array of options (such as 'redlink' to redirect the user to the
+  view mode if the page already exists)
+
 'LinkerMakeExternalImage': At the end of Linker::makeExternalImage() just
 before the return.
 &$url: the image url
