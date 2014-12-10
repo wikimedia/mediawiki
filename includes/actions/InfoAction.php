@@ -102,14 +102,6 @@ class InfoAction extends FormlessAction {
 			$content .= $this->msg( 'pageinfo-header' )->parse();
 		}
 
-		// Hide "This page is a member of # hidden categories" explanation
-		$content .= Html::element( 'style', array(),
-			'.mw-hiddenCategoriesExplanation { display: none; }' ) . "\n";
-
-		// Hide "Templates used on this page" explanation
-		$content .= Html::element( 'style', array(),
-			'.mw-templatesUsedExplanation { display: none; }' ) . "\n";
-
 		// Get page information
 		$pageInfo = $this->pageInfo();
 
@@ -579,7 +571,7 @@ class InfoAction extends FormlessAction {
 				$pageInfo['header-properties'][] = array(
 					$this->msg( 'pageinfo-hidden-categories' )
 						->numParams( count( $hiddenCategories ) ),
-					Linker::formatHiddenCategories( $hiddenCategories )
+					Linker::formatHiddenCategories( $hiddenCategories, false )
 				);
 			}
 
@@ -598,7 +590,8 @@ class InfoAction extends FormlessAction {
 						$transcludedTemplates,
 						false,
 						false,
-						$more )
+						$more,
+						false )
 				);
 			}
 
@@ -621,7 +614,8 @@ class InfoAction extends FormlessAction {
 						$transcludedTargets,
 						false,
 						false,
-						$more )
+						$more,
+						false )
 				);
 			}
 		}
