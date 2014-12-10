@@ -109,6 +109,8 @@ production.
 ** Title::moveTo() was deprecated. Use the MovePage class instead.
 ** Title::isValidMoveOperation() broken down into MovePage::isValidMove()
    and MovePage::checkPermissions().
+* The Special:WhatLinksHere page linked from 'Number of redirects to this page'
+  on action=info about a file page does not list file links anymore.
 
 === Action API changes in 1.25 ===
 * (T67403) XML tag highlighting is now only performed for formats
