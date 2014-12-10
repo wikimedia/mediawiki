@@ -39,6 +39,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	protected $images = array();
 	protected $variants = array();
 	protected $prefix = array();
+	protected $targets = array( 'desktop', 'mobile' );
 
 	/**
 	 * Constructs a new module from an options array.
