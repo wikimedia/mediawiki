@@ -124,6 +124,9 @@ class ApiOpenSearch extends ApiBase {
 		// Find matching titles as Title objects
 		$searcher = new TitlePrefixSearch;
 		$titles = $searcher->searchWithVariants( $search, $limit, $namespaces );
+		if ( !$titles ) {
+			return;
+		}
 
 		if ( $resolveRedir ) {
 			// Query for redirects
