@@ -1074,6 +1074,26 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Validate and normalize of parameters of type 'show'
+	 * @param string $value Parameter value
+	 * @return string Validated and normalized parameter
+	 */
+	protected function validateShowSwitch( $value ) {
+		$keys = array();
+		foreach ( $value as $key => $val ) {
+			if ( $val !== null ) {
+				if ( substr( $key, 0, 1 ) === '!' ) {
+					$key = substr( $key, 1 );
+				}
+				if ( isset( $keys[$key] ) ) {
+					$this->dieUsageMsg( 'show' );
+				}
+				$keys[$key] = true;
+			}
+		}
+	}
+
+	/**
 	 * Validate and normalize of parameters of type 'user'
 	 * @param string $value Parameter value
 	 * @param string $encParamName Parameter name
