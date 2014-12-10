@@ -164,14 +164,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */
-			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
-				|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
-				|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
-				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
-				|| ( isset( $show['unread'] ) && isset( $show['!unread'] ) )
-			) {
-				$this->dieUsageMsg( 'show' );
-			}
+			$this->validateShowSwitch( $show );
 
 			// Check permissions.
 			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
