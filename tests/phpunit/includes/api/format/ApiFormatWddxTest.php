@@ -8,10 +8,11 @@
  */
 class ApiFormatWddxTest extends ApiFormatTestBase {
 
-	/**
-	 * @requires function wddx_deserialize
-	 */
 	public function testValidSyntax( ) {
+		if ( !function_exists( 'wddx_deserialize' ) ) {
+			$this->markTestSkipped( "Function 'wddx_deserialize' not exist, skipping." );
+		}
+
 		$data = $this->apiRequest( 'wddx', array( 'action' => 'query', 'meta' => 'siteinfo' ) );
 
 		$this->assertInternalType( 'array', wddx_deserialize( $data ) );
