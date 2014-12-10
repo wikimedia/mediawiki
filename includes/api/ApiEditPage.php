@@ -253,7 +253,8 @@ class ApiEditPage extends ApiBase {
 			'model' => $contentHandler->getModelID(),
 			'wpEditToken' => $params['token'],
 			'wpIgnoreBlankSummary' => '',
-			'wpIgnoreBlankArticle' => true
+			'wpIgnoreBlankArticle' => true,
+			'wpIgnoreSelfRedirect' => true,
 		);
 
 		if ( !is_null( $params['summary'] ) ) {
