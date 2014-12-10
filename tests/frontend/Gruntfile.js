@@ -9,8 +9,12 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
+	grunt.loadNpmTasks( 'grunt-karma' );
 
 	grunt.file.setBase(  __dirname + '/../..' );
+
+	var wgServer = process.env.MW_SERVER,
+		wgScriptPath = process.env.MW_SCRIPT_PATH;
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( __dirname + '/package.json' ),
@@ -61,10 +65,53 @@ module.exports = function ( grunt ) {
 				'.jshintrc'
 			],
 			tasks: 'test'
+		},
+		karma: {
+			options: {
+				proxies: ( function () {
+					var obj = {};
+					// Set up a proxy for requests to relative urls inside wgScriptPath. Uses a
+					// property accessor instead of plain obj[wgScriptPath] assignment as throw if
+					// unset. Running grunt normally (e.g. npm test), should not fail over this.
+					// This ensures 'npm test' works out of the box, statically, on a git clone
+					// without MediaWiki fully installed or some environment variables set.
+					Object.defineProperty( obj, wgScriptPath, {
+						enumerable: true,
+						get: function () {
+							if ( !wgServer ) {
+								grunt.fail.fatal( 'MW_SERVER is not set' );
+							}
+							if ( !wgScriptPath ) {
+								grunt.fail.fatal( 'MW_SCRIPT_PATH is not set' );
+							}
+							return wgServer + wgScriptPath;
+						}
+					} );
+					return obj;
+				}() ),
+				files: [ {
+					pattern: wgServer + wgScriptPath + '/index.php?title=Special:JavaScriptTest/qunit/export',
+					watched: false,
+					included: true,
+					served: false
+				} ],
+				frameworks: [ 'qunit' ],
+				reporters: [ 'dots' ],
+				singleRun: true,
+				autoWatch: false
+			},
+			main: {
+				browsers: [ 'Chrome' ]
+			},
+			more: {
+				browsers: [ 'Chrome', 'Firefox' ]
+			}
 		}
 	} );
 
 	grunt.registerTask( 'lint', ['jshint', 'jscs', 'jsonlint', 'banana'] );
+	grunt.registerTask( 'qunit', 'karma:main' );
+
 	grunt.registerTask( 'test', ['lint'] );
-	grunt.registerTask( 'default', ['test'] );
+	grunt.registerTask( 'default', 'test' );
 };
