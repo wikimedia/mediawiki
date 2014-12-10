@@ -26,8 +26,9 @@ return array(
 		),
 		'dependencies' => array(
 			'jquery.getAttrs',
-			'jquery.qunit',
-			'jquery.qunit.completenessTest',
+			# Figure out a way to exclude these. See also SpecialJavaScriptTest::exportQUnit.
+			// 'jquery.qunit',
+			// 'jquery.qunit.completenessTest',
 			'mediawiki.page.ready',
 			'mediawiki.page.startup',
 			'test.sinonjs',

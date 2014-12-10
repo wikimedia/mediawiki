@@ -9,8 +9,12 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
+	grunt.loadNpmTasks( 'grunt-karma' );
 
 	grunt.file.setBase(  __dirname + '/../..' );
+
+	var wgServer = process.env.MW_SERVER,
+		wgScriptPath = process.env.MW_SCRIPT_PATH;
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( __dirname + '/package.json' ),
@@ -61,6 +65,46 @@ module.exports = function ( grunt ) {
 				'.jshintrc'
 			],
 			tasks: 'test'
+		},
+		karma: {
+			options: {
+				// logLevel: 'debug',
+				proxies: ( function () {
+					var obj = {};
+					Object.defineProperty( obj, wgScriptPath, {
+						enumerable: true,
+						get: function () {
+							// XXX: These are only needed for karma. When running grunt-test
+							// normally, there's no need to output these warnings.
+							// Use property accessors to determine when they're used.
+							if ( !wgServer ) {
+								grunt.fail.fatal( 'MW_SERVER is not set' );
+							}
+							if ( !wgScriptPath ) {
+								grunt.fail.fatal( 'MW_SCRIPT_PATH is not set' );
+							}
+							return wgServer + wgScriptPath;
+						}
+					} );
+					return obj;
+				}() ),
+				files: [ {
+					pattern: wgServer + wgScriptPath + '/index.php?title=Special:JavaScriptTest/qunit/export',
+					watched: false,
+					included: true,
+					served: false
+				} ],
+				frameworks: [ 'qunit' ],
+				reporters: [ 'dots' ],
+				singleRun: true,
+				autoWatch: false
+			},
+			main: {
+				browsers: [ 'Chrome' ]
+			},
+			other: {
+				browsers: [ 'Firefox' ]
+			}
 		}
 	} );
 
