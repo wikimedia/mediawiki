@@ -500,7 +500,7 @@ class Language {
 			# Re-order by namespace ID number...
 			ksort( $this->namespaceNames );
 
-			wfRunHooks( 'LanguageGetNamespaces', array( &$this->namespaceNames ) );
+			Hooks::run( 'LanguageGetNamespaces', array( &$this->namespaceNames ) );
 		}
 
 		return $this->namespaceNames;
@@ -898,7 +898,7 @@ class Language {
 
 		if ( $inLanguage ) {
 			# TODO: also include when $inLanguage is null, when this code is more efficient
-			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
+			Hooks::run( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
 		}
 
 		$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
@@ -3162,7 +3162,7 @@ class Language {
 		}
 		$this->mMagicHookDone = true;
 		wfProfileIn( 'LanguageGetMagic' );
-		wfRunHooks( 'LanguageGetMagic', array( &$this->mMagicExtensions, $this->getCode() ) );
+		Hooks::run( 'LanguageGetMagic', array( &$this->mMagicExtensions, $this->getCode() ) );
 		wfProfileOut( 'LanguageGetMagic' );
 	}
 
@@ -3218,7 +3218,7 @@ class Language {
 			// Initialise array
 			$this->mExtendedSpecialPageAliases =
 				self::$dataCache->getItem( $this->mCode, 'specialPageAliases' );
-			wfRunHooks( 'LanguageGetSpecialPageAliases',
+			Hooks::run( 'LanguageGetSpecialPageAliases',
 				array( &$this->mExtendedSpecialPageAliases, $this->getCode() ) );
 		}
 
@@ -4261,7 +4261,7 @@ class Language {
 	public static function getMessagesFileName( $code ) {
 		global $IP;
 		$file = self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
-		wfRunHooks( 'Language::getMessagesFileName', array( $code, &$file ) );
+		Hooks::run( 'Language::getMessagesFileName', array( $code, &$file ) );
 		return $file;
 	}
 
