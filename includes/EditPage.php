@@ -1434,8 +1434,8 @@ class EditPage {
 	protected function runPostMergeFilters( Content $content, Status $status, User $user ) {
 		// Run old style post-section-merge edit filter
 		if ( !ContentHandler::runLegacyHooks( 'EditFilterMerged',
-			array( $this, $content, &$this->hookError, $this->summary ) ) ) {
-
+			array( $this, $content, &$this->hookError, $this->summary ) ) )
+		{
 			# Error messages etc. could be handled within the hook...
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
@@ -1449,14 +1449,23 @@ class EditPage {
 
 		// Run new style post-section-merge edit filter
 		if ( !wfRunHooks( 'EditFilterMergedContent',
-			array( $this->mArticle->getContext(), $content, $status, $this->summary,
-				$user, $this->minoredit ) ) ) {
-
+				array( $this->mArticle->getContext(), $content, $status, $this->summary,
+				$user, $this->minoredit ) ) )
+		{
 			# Error messages etc. could be handled within the hook...
-			// XXX: $status->value may already be something informative...
-			$this->hookError = $status->getWikiText();
-			$status->fatal( 'hookaborted' );
-			$status->value = self::AS_HOOK_ERROR;
+			if ( $status->isGood() ) {
+				$status->fatal( 'hookaborted' );
+				// Not setting $this->hookError here is a hack to allow the hook
+				// to cause a return to the edit page without $this->hookError
+				// being set. This is used by ConfirmEdit to display a captcha
+				// without any error message cruft.
+			} else {
+				$this->hookError = $status->getWikiText();
+			}
+			// Use the existing $status->value if the hook set it
+			if ( !$status->value ) {
+				$status->value = self::AS_HOOK_ERROR;
+			}
 			return false;
 		} elseif ( !$status->isOK() ) {
 			# ...or the hook could be expecting us to produce an error
@@ -2345,6 +2354,9 @@ class EditPage {
 	 * Send the edit form and related headers to $wgOut
 	 * @param callable|null $formCallback That takes an OutputPage parameter; will be called
 	 *     during form output near the top, for captchas and the like.
+	 *
+	 * The $formCallback parameter is deprecated since MediaWiki 1.25. Please
+	 * use the EditPage::showEditForm:fields hook instead.
 	 */
 	function showEditForm( $formCallback = null ) {
 		global $wgOut, $wgUser;
@@ -2403,6 +2415,7 @@ class EditPage {
 		) );
 
 		if ( is_callable( $formCallback ) ) {
+			wfWarn( 'The $formCallback parameter to ' . __METHOD__ . 'is deprecated' );
 			call_user_func_array( $formCallback, array( &$wgOut ) );
 		}
 

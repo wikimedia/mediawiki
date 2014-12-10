@@ -407,7 +407,14 @@ class ApiEditPage extends ApiBase {
 		switch ( $status->value ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
-				$this->dieUsageMsg( 'hookaborted' );
+				if ( isset( $status->apiHookResult ) ) {
+					$r = $status->apiHookResult;
+					$r['result'] = 'Failure';
+					$apiResult->addValue( null, $this->getModuleName(), $r );
+					return;
+				} else {
+					$this->dieUsageMsg( 'hookaborted' );
+				}
 
 			case EditPage::AS_PARSE_ERROR:
 				$this->dieUsage( $status->getMessage(), 'parseerror' );

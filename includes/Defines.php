@@ -2,10 +2,6 @@
 /**
  * A few constants that might be needed during LocalSettings.php.
  *
- * Note: these constants must all be resolvable at compile time by HipHop,
- * since this file will not be executed during request startup for a compiled
- * MediaWiki.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -216,6 +212,7 @@ define( 'MW_SUPPORTS_EDITFILTERMERGED', 1 );
 define( 'MW_SUPPORTS_PARSERFIRSTCALLINIT', 1 );
 define( 'MW_SUPPORTS_LOCALISATIONCACHE', 1 );
 define( 'MW_SUPPORTS_CONTENTHANDLER', 1 );
+define( 'MW_EDITFILTERMERGED_SUPPORTS_API', 1 );
 /**@}*/
 
 /** Support for $wgResourceModules */
