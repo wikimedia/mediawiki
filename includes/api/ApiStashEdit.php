@@ -159,7 +159,7 @@ class ApiStashEdit extends ApiBase {
 	 * @param ParserOptions $pstOpts Options for $pstContent (MUST be for prospective author)
 	 * @param ParserOptions $pOpts Options for $pOut
 	 * @param string $timestamp TS_MW timestamp of parser output generation
-	 * @return boolean Success
+	 * @return bool Success
 	 */
 	public static function stashEditFromPreview(
 		Page $page, Content $content, Content $pstContent, ParserOutput $pOut,

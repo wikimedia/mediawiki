@@ -109,7 +109,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @note This will only be run if the page is cached (ie $wgMiserMode = true)
 	 *   unless forceExistenceCheck() is true.
 	 * @since 1.24
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function existenceCheck( Title $title ) {
 		return $title->isKnown();

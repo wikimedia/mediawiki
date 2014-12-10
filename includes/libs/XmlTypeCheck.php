@@ -70,7 +70,7 @@ class XmlTypeCheck {
 	 *        SAX element handler event. This gives you access to the element
 	 *        namespace, name, attributes, and text contents.
 	 *        Filter should return 'true' to toggle on $this->filterMatch
-	 * @param boolean $isFile (optional) indicates if the first parameter is a
+	 * @param bool $isFile (optional) indicates if the first parameter is a
 	 *        filename (default, true) or if it is a string (false)
 	 * @param array $options list of additional parsing options:
 	 *        processing_instruction_handler: Callback for xml_set_processing_instruction_handler

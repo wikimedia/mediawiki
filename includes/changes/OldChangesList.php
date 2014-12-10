@@ -73,7 +73,7 @@ class OldChangesList extends ChangesList {
 	/**
 	 * @param RecentChange $rc
 	 * @param string[] &$classes
-	 * @param boolean $watched
+	 * @param bool $watched
 	 *
 	 * @return string
 	 */
