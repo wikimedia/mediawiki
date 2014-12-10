@@ -560,6 +560,7 @@
 	"anoneditwarning": "<strong>Opozorilo:</strong> Niste prijavljeni. Vaš IP-naslov bo javno viden, če naredite kakršno koli urejanje. Če se <strong>[$1 prijavite]</strong> ali <strong>[$2 ustvarite račun]</strong>, bodo vaša urejanja pripisana vašemu uporabniškemu imenu skupaj z drugimi prednostmi.",
 	"anonpreviewwarning": "Niste prijavljeni. Ob spremembi strani se bo vaš IP-naslov zapisal v zgodovini urejanja te strani.",
 	"missingsummary": "'''Opozorilo:''' Niste napisali povzetka urejanja. Ob ponovnem kliku gumba ''Shrani'' se bo vaše urejanje shranilo brez njega.",
+	"selfredirect": "<strong>Opozorilo:</strong> Ustvarjate preusmeritev na isti članek.\nČe ponovno kliknete »{{int:savearticle}}«, bomo preusmeritev ustvarili.",
 	"missingcommenttext": "Prosimo, vpišite v spodnje polje komentar.",
 	"missingcommentheader": "'''Opozorilo:''' Niste vnesli zadeve/naslova za ta komentar.\nČe boste ponovno kliknili »{{int:savearticle}}«, bo vaše urejanje shranjeno brez le-tega.",
 	"summary-preview": "Predogled povzetka",
