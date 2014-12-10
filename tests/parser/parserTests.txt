@@ -5719,6 +5719,68 @@ Build table with {{!}}
 
 !! end
 
+!! test
+Build table with pipe as data
+!! wikitext
+{| class="wikitable"
+! header
+! second header
+|- style="color:red;"
+| data || style="color:red;" | second data
+|-
+| style="color:red;" | data with | || style="color:red;" | second data with |
+|-
+|| data with | ||| second data with |
+|}
+!! html
+<table class="wikitable">
+<tr>
+<th> header
+</th>
+<th> second header
+</th></tr>
+<tr style="color:red;">
+<td> data </td>
+<td style="color:red;"> second data
+</td></tr>
+<tr>
+<td style="color:red;"> data with | </td>
+<td style="color:red;"> second data with |
+</td></tr>
+<tr>
+<td> data with | </td>
+<td> second data with |
+</td></tr></table>
+
+!! end
+
+!! test
+Build table with wikilink
+!! wikitext
+{| class="wikitable"
+! header || second header
+|- style="color:red;"
+| data [[Main Page|linktext]] || second data [[Main Page|linktext]]
+|-
+| data || second data [[Main Page|link|text with pipe]]
+|}
+!! html
+<table class="wikitable">
+<tr>
+<th> header </th>
+<th> second header
+</th></tr>
+<tr style="color:red;">
+<td> data <a href="/wiki/Main_Page" title="Main Page">linktext</a> </td>
+<td> second data <a href="/wiki/Main_Page" title="Main Page">linktext</a>
+</td></tr>
+<tr>
+<td> data </td>
+<td> second data <a href="/wiki/Main_Page" title="Main Page">link|text with pipe</a>
+</td></tr></table>
+
+!! end
+
 # The expected HTML structure in this test is debatable. The PHP parser does
 # not parse this kind of table at all. The main focus for Parsoid is on
 # round-tripping, so this output is ok for now. TODO: revisit!
