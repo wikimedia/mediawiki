@@ -664,6 +664,7 @@
 	"anoneditwarning": "<strong>Attention :</strong> Vous n’êtes pas connecté. Votre adresse IP sera visible de tout le monde si vous faites des modifications. Si vous <strong>[$1 vous connectez]</strong> ou <strong>[$2 créez un compte]</strong>, vos modifications seront attribuées à votre nom d’utilisateur, entre autres avantages.",
 	"anonpreviewwarning": "''Vous n’êtes pas identifié(e). Sauvegarder enregistrera votre adresse IP dans l’historique des modifications de la page.''",
 	"missingsummary": "'''Rappel :''' vous n'avez pas encore fourni le résumé de votre modification.\nSi vous cliquez de nouveau sur le bouton « {{int:savearticle}} », la publication sera faite sans nouvel avertissement.",
+	"selfredirect": "<strong>Attention :</strong> Vous êtes en train de créer une redirection vers le même article.\nSi vous cliquez de nouveau sur « {{int:savearticle}} », la redirection sera créée.",
 	"missingcommenttext": "Veuillez entrer un commentaire ci-dessous.",
 	"missingcommentheader": "'''Rappel :''' vous n'avez pas fourni de sujet ou de titre à ce commentaire.\nSi vous cliquez de nouveau sur « {{int:Savearticle}} », votre modification sera enregistrée sans titre.",
 	"summary-preview": "Aperçu du résumé :",

@@ -272,7 +272,7 @@
 	"generic-pool-error": "抱歉，太多使用者正嘗試檢視此資源，伺服器超出負荷。\n請稍候片刻再嘗試。",
 	"pool-timeout": "正在等待取消鎖定",
 	"pool-queuefull": "程序序列已滿",
-	"pool-errorunknown": "未知錯誤",
+	"pool-errorunknown": "不明錯誤",
 	"pool-servererror": "無法使用程序計數服務 ($1)。",
 	"aboutsite": "關於 {{SITENAME}}",
 	"aboutpage": "Project:About",

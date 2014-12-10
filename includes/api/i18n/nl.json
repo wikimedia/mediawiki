@@ -4,7 +4,8 @@
 			"Siebrand",
 			"Sjoerddebruin",
 			"Robin0van0der0vliet",
-			"Mar(c)"
+			"Mar(c)",
+			"Valhallasw"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page Documentatie]\n* [https://www.mediawiki.org/wiki/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-maillijst]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aankondigingen]\n* [https://bugzilla.wikimedia.org/buglist.cgi?component=API&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts Bugs & verzoeken]\n</div>\n<strong>Status:</strong> Alle functies die op deze pagina worden weergegeven horen te werken. Aan de API wordt actief gewerkt, en deze kan gewijzigd worden. Abonneer u op  de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-maillijst mediawiki-api-announce] voor meldingen over aanpassingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en daarna worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie https://www.mediawiki.org/wiki/API:Errors_and_warnings voor meer informatie.",
@@ -13,6 +14,10 @@
 	"apihelp-main-param-maxlag": "De maximale vertraging kan gebruikt worden als MediaWiki is geïnstalleerd op een databasecluster die gebruik maakt van replicatie. Om te voorkomen dat handelingen nog meer databasereplicatievertraging veroorzaken, kan deze parameter er voor zorgen dat de client wacht totdat de replicatievertraging lager is dan de aangegeven waarde. In het geval van buitensporige vertraging, wordt de foutcode \"maxlag\" teruggegeven met een bericht als \"Waiting for $host: $lag seconds lagged\".<br />Zie https://www.mediawiki.org/wiki/Manual:Maxlag_parameter voor mee informatie.",
 	"apihelp-main-param-smaxage": "Stelt de header \"s-maxage\" in op het aangegeven aantal seconden. Foutmeldingen komen nooit in de cache.",
 	"apihelp-main-param-maxage": "Stelt de header \"max-age\" in op het aangegeven aantal seconden. Foutmeldingen komen nooit in de cache.",
+	"apihelp-main-param-assert": "Controleer of de gebruiker ingelogd is als \"user\" is meegegeven, en of de gebruiker het bot-gebruikersrecht heeft als \"bot\" is meegegeven.",
+	"apihelp-main-param-requestid": "Elke waarde die hier gegeven wordt wordt aan het antwoord toegevoegd. Dit kan gebruikt worden om verzoeken te onderscheiden.",
+	"apihelp-main-param-servedby": "Voeg de hostnaam van de server die de aanvraag heeft afgehandeld toe aan het antwoord.",
+	"apihelp-main-param-curtimestamp": "Voeg de huidige tijd toe aan het antwoord.",
 	"apihelp-block-description": "Gebruiker blokkeren.",
 	"apihelp-block-param-reason": "Reden voor blokkade.",
 	"apihelp-edit-example-edit": "Pagina bewerken",
