@@ -747,7 +747,7 @@ class Title {
 	 * @param string $title The DB key form the title
 	 * @param string $fragment The link fragment (after the "#")
 	 * @param string $interwiki The interwiki prefix
-	 * @param boolean $canoncialNamespace If true, use the canonical name for
+	 * @param bool $canoncialNamespace If true, use the canonical name for
 	 *   $ns instead of the localized version.
 	 * @return string The prefixed form of the title
 	 */
