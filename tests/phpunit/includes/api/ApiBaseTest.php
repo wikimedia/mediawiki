@@ -43,4 +43,26 @@ class ApiBaseTest extends ApiTestCase {
 		);
 	}
 
+	/**
+	 * @covers ApiBase::validateShowSwitch
+	 */
+	public function testValidateShowSwitchValid() {
+		$mock = new MockApi();
+		$mock->validateShowSwitch(
+			array( '!anon' => true, 'patrolled' => true, '!bot' => true )
+		);
+		$this->assertTrue( true );
+	}
+
+	/**
+	 * @expectedException UsageException
+	 * @covers ApiBase::validateShowSwitch
+	 */
+	public function testValidateShowSwitchInvalid() {
+		$mock = new MockApi();
+		$mock->validateShowSwitch(
+			array( '!anon' => true, 'patrolled' => true, 'anon' => true )
+		);
+	}
+
 }
