@@ -41,7 +41,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 
 	/**
 	 * @param $context ResourceLoaderContext
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
 		// Regardless of whether the files are specified, we always

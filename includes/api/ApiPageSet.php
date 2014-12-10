@@ -1213,7 +1213,7 @@ class ApiPageSet extends ApiBase {
 	 *
 	 * @param ApiResult|array &$result
 	 * @param array $path
-	 * @return boolean Whether the data fit
+	 * @return bool Whether the data fit
 	 */
 	public function populateGeneratorData( &$result, array $path = array() ) {
 		if ( $result instanceof ApiResult ) {
