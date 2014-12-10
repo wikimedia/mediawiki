@@ -3551,7 +3551,7 @@ function wfSplitWikiID( $wiki ) {
  *
  * @return DatabaseBase
  */
-function &wfGetDB( $db, $groups = array(), $wiki = false ) {
+function wfGetDB( $db, $groups = array(), $wiki = false ) {
 	return wfGetLB( $wiki )->getConnection( $db, $groups, $wiki );
 }
 
@@ -3570,7 +3570,7 @@ function wfGetLB( $wiki = false ) {
  *
  * @return LBFactory
  */
-function &wfGetLBFactory() {
+function wfGetLBFactory() {
 	return LBFactory::singleton();
 }
 
