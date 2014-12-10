@@ -1184,7 +1184,7 @@ abstract class Maintenance {
 	 * We default as considering stdin a tty (for nice readline methods)
 	 * but treating stout as not a tty to avoid color codes
 	 *
-	 * @param int $fd File descriptor
+	 * @param mixed $fd File descriptor
 	 * @return bool
 	 */
 	public static function posix_isatty( $fd ) {
