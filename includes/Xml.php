@@ -368,12 +368,10 @@ class Xml {
 	public static function label( $label, $id, $attribs = array() ) {
 		$a = array( 'for' => $id );
 
-		# FIXME avoid copy pasting below:
-		if ( isset( $attribs['class'] ) ) {
-				$a['class'] = $attribs['class'];
-		}
-		if ( isset( $attribs['title'] ) ) {
-				$a['title'] = $attribs['title'];
+		foreach ( array( 'class', 'title' ) as $attr ) {
+			if ( isset( $attribs[$attr] ) ) {
+				$a[$attr] = $attribs[$attr];
+			}
 		}
 
 		return self::element( 'label', $a, $label );
