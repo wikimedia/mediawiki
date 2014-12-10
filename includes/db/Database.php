@@ -1196,6 +1196,12 @@ abstract class DatabaseBase implements IDatabase {
 
 		if ( false === $ret ) {
 			$this->reportQueryError( $this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
+		} else {
+			$n = $this->affectedRows();
+			if ( $n > 300 && PHP_SAPI !== 'cli' ) {
+				wfDebugLog( 'DBPerformance',
+					"Query affected $n rows:\n$sql\n" . wfBacktrace( true ) );
+			}
 		}
 
 		return $this->resultObject( $ret );
