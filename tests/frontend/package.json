@@ -6,10 +6,15 @@
   },
   "devDependencies": {
     "grunt": "0.4.2",
+    "grunt-banana-checker": "0.2.0",
     "grunt-contrib-jshint": "0.10.0",
     "grunt-contrib-watch": "0.6.1",
-    "grunt-banana-checker": "0.2.0",
     "grunt-jscs": "0.8.1",
-    "grunt-jsonlint": "1.0.4"
+    "grunt-jsonlint": "1.0.4",
+    "grunt-karma": "0.9.0",
+    "karma": "0.12.28",
+    "karma-chrome-launcher": "0.1.7",
+    "karma-qunit": "0.1.4",
+    "qunitjs": "1.15.0"
   }
 }
