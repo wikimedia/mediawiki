@@ -672,10 +672,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$msgs = array(
 			'diff',
 			'hist',
-			'newarticle',
 			'pipe-separator',
-			'rev-delundel',
-			'rollbacklink',
 			'uctop'
 		);
 
