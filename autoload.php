@@ -238,6 +238,7 @@ $wgAutoloadLocalClasses = array(
 	'Config' => __DIR__ . '/includes/config/Config.php',
 	'ConfigException' => __DIR__ . '/includes/config/ConfigException.php',
 	'ConfigFactory' => __DIR__ . '/includes/config/ConfigFactory.php',
+	'ConsolidateComposerDependencies' => __DIR__ . '/maintenance/consolidateComposerDependencies.php',
 	'ConstantDependency' => __DIR__ . '/includes/cache/CacheDependency.php',
 	'Content' => __DIR__ . '/includes/content/Content.php',
 	'ContentHandler' => __DIR__ . '/includes/content/ContentHandler.php',
