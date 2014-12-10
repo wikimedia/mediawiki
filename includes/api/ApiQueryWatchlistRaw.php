@@ -57,9 +57,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
 		$prop = array_flip( (array)$params['prop'] );
 		$show = array_flip( (array)$params['show'] );
-		if ( isset( $show['changed'] ) && isset( $show['!changed'] ) ) {
-			$this->dieUsageMsg( 'show' );
-		}
+		$this->validateShowSwitch( $show );
 
 		$this->addTables( 'watchlist' );
 		$this->addFields( array( 'wl_namespace', 'wl_title' ) );

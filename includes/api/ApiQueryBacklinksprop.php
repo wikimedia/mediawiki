@@ -236,11 +236,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		if ( $params['show'] !== null ) {
 			// prop=redirects only
 			$show = array_flip( $params['show'] );
-			if ( isset( $show['fragment'] ) && isset( $show['!fragment'] ) ||
-				isset( $show['redirect'] ) && isset( $show['!redirect'] )
-			) {
-				$this->dieUsageMsg( 'show' );
-			}
+			$this->validateShowSwitch( $show );
 			$this->addWhereIf( "rd_fragment != $emptyString", isset( $show['fragment'] ) );
 			$this->addWhereIf(
 				"rd_fragment = $emptyString OR rd_fragment IS NULL",
