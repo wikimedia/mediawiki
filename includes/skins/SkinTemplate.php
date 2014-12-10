@@ -726,11 +726,10 @@ class SkinTemplate extends Skin {
 		}
 		if ( $checkEdit && !$title->isKnown() ) {
 			$classes[] = 'new';
-			if ( $query !== '' ) {
-				$query = 'action=edit&redlink=1&' . $query;
-			} else {
-				$query = 'action=edit&redlink=1';
-			}
+			// @todo FIXME: avoid string-array-string conversion
+			$query = wfCgiToArray( $query );
+			Linker::makeEditLink( $title, $query, array( 'redlink' ) );
+			$query = wfArrayToCgi( $query );
 		}
 
 		// wfMessageFallback will nicely accept $message as an array of fallbacks
