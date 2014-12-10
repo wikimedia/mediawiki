@@ -1974,10 +1974,11 @@ class Linker {
 	 * @param bool $preview Whether this is for a preview
 	 * @param bool $section Whether this is for a section edit
 	 * @param Title|Message|string|null $more An escaped link for "More..." of the templates
+	 * @param bool $explanation Whether to add an explanatory message
 	 * @return string HTML output
 	 */
 	public static function formatTemplates( $templates, $preview = false,
-		$section = false, $more = null
+		$section = false, $more = null, $explanation = true
 	) {
 		global $wgLang;
 		wfProfileIn( __METHOD__ );
@@ -1992,18 +1993,21 @@ class Linker {
 			$batch->execute();
 
 			# Construct the HTML
-			$outText = '<div class="mw-templatesUsedExplanation">';
-			if ( $preview ) {
-				$outText .= wfMessage( 'templatesusedpreview' )->numParams( count( $templates ) )
-					->parseAsBlock();
-			} elseif ( $section ) {
-				$outText .= wfMessage( 'templatesusedsection' )->numParams( count( $templates ) )
-					->parseAsBlock();
-			} else {
-				$outText .= wfMessage( 'templatesused' )->numParams( count( $templates ) )
-					->parseAsBlock();
+			if ( $explanation ) {
+				$outText = '<div class="mw-templatesUsedExplanation">';
+				if ( $preview ) {
+					$outText .= wfMessage( 'templatesusedpreview' )->numParams( count( $templates ) )
+						->parseAsBlock();
+				} elseif ( $section ) {
+					$outText .= wfMessage( 'templatesusedsection' )->numParams( count( $templates ) )
+						->parseAsBlock();
+				} else {
+					$outText .= wfMessage( 'templatesused' )->numParams( count( $templates ) )
+						->parseAsBlock();
+				}
+				$outText .= '</div>';
 			}
-			$outText .= "</div><ul>\n";
+			$outText .= "<ul>\n";
 
 			usort( $templates, 'Title::compare' );
 			foreach ( $templates as $titleObj ) {
@@ -2069,17 +2073,21 @@ class Linker {
 	 *
 	 * @param array $hiddencats Array of hidden categories from Article::getHiddenCategories
 	 *   or similar
+	 * @param bool $explanation Whether to add an explanatory message
 	 * @return string HTML output
 	 */
-	public static function formatHiddenCategories( $hiddencats ) {
+	public static function formatHiddenCategories( $hiddencats, $explanation = true ) {
 		wfProfileIn( __METHOD__ );
 
 		$outText = '';
 		if ( count( $hiddencats ) > 0 ) {
 			# Construct the HTML
-			$outText = '<div class="mw-hiddenCategoriesExplanation">';
-			$outText .= wfMessage( 'hiddencategories' )->numParams( count( $hiddencats ) )->parseAsBlock();
-			$outText .= "</div><ul>\n";
+			if ( $explanation ) {
+				$outText = '<div class="mw-hiddenCategoriesExplanation">';
+				$outText .= wfMessage( 'hiddencategories' )->numParams( count( $hiddencats ) )->parseAsBlock();
+				$outText .= '</div>';
+			}
+			$outText .= "<ul>\n";
 
 			foreach ( $hiddencats as $titleObj ) {
 				# If it's hidden, it must exist - no need to check with a LinkBatch
