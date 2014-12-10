@@ -1271,13 +1271,15 @@ class MySQLField implements Field {
 class MySQLMasterPos implements DBMasterPos {
 	/** @var string */
 	public $file;
-
-	/** @var int Timestamp */
+	/** @var int Position */
 	public $pos;
+	/** @var float UNIX timestamp */
+	public $asOfTime = 0.0;
 
 	function __construct( $file, $pos ) {
 		$this->file = $file;
 		$this->pos = $pos;
+		$this->asOfTime = microtime( true );
 	}
 
 	function __toString() {
@@ -1302,5 +1304,9 @@ class MySQLMasterPos implements DBMasterPos {
 		$thatPos = $pos->getCoordinates();
 
 		return ( $thisPos && $thatPos && $thisPos >= $thatPos );
+	}
+
+	function asOfTime() {
+		return $this->asOfTime;
 	}
 }
