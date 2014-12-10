@@ -3,10 +3,16 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var api = new mw.Api(), pending = null, $form = $( '#editform' );
+		var IDLE_TIMEOUT = 5000,
+			api = new mw.Api(),
+			pending = null,
+			$form = $( '#editform' ),
+			$text = $form.find( '#wpTextbox1' ),
+			data = {},
+			timer = null;
 
 		function stashEdit( token ) {
-			var data = $form.serializeObject();
+			data = $form.serializeObject();
 
 			pending = api.post( {
 				action: 'stashedit',
@@ -21,13 +27,40 @@
 			} );
 		}
 
+		/* Has the edit body text changed since the last stashEdit() call? */
+		function isChanged() {
+			// Normalize line endings to CRLF, like $.fn.serializeObject does.
+			var newText = $text.val().replace( /\r?\n/g, '\r\n' );
+			return newText !== data.wpTextbox1;
+		}
+
 		function onEditChanged() {
-			// If a stash request is already in flight, abort it, since its
-			// payload has just been invalidated by this change.
+			if ( !isChanged() ) {
+				return;
+			}
+
+			// If a request is in progress, abort it; its payload is stale.
 			if ( pending ) {
 				pending.abort();
 			}
+
 			api.getToken( 'edit' ).then( stashEdit );
+		}
+
+		function onKeyPress( e ) {
+			// Ignore keystrokes that don't modify text, like cursor movements.
+			// See <http://stackoverflow.com/q/2284844>.
+			if ( e.which === 0 || e.charCode === 0 ) {
+				return;
+			}
+
+			clearTimeout( timer );
+
+			if ( pending ) {
+				pending.abort();
+			}
+
+			timer = setTimeout( onEditChanged, IDLE_TIMEOUT );
 		}
 
 		// We don't attempt to stash new section edits because in such cases
@@ -37,6 +70,7 @@
 			return;
 		}
 
-		$form.find( '#wpTextbox1' ).on( 'change', onEditChanged );
+		$text.on( { change: onEditChanged, keypress: onKeyPress } );
+
 	} );
 }( mediaWiki, jQuery ) );
