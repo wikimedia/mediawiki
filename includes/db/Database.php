@@ -46,6 +46,9 @@ abstract class DatabaseBase implements IDatabase {
 	/** Maximum time to wait before retry */
 	const DEADLOCK_DELAY_MAX = 1500000;
 
+	/** How many row changes in a write query trigger a log entry */
+	const LOG_WRITE_THRESHOLD = 300;
+
 	protected $mLastQuery = '';
 	protected $mDoneWrites = false;
 	protected $mPHPError = false;
@@ -1062,7 +1065,9 @@ abstract class DatabaseBase implements IDatabase {
 		global $wgUser, $wgDebugDBTransactions, $wgDebugDumpSqlLength;
 
 		$this->mLastQuery = $sql;
-		if ( $this->isWriteQuery( $sql ) ) {
+
+		$isWriteQuery = $this->isWriteQuery( $sql );
+		if ( $isWriteQuery ) {
 			# Set a flag indicating that writes have been done
 			wfDebug( __METHOD__ . ': Writes done: ' . DatabaseBase::generalizeSQL( $sql ) . "\n" );
 			$this->mDoneWrites = microtime( true );
@@ -1101,7 +1106,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		# Keep track of whether the transaction has write queries pending
-		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
+		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $isWriteQuery ) {
 			$this->mTrxDoneWrites = true;
 			Profiler::instance()->getTransactionProfiler()->transactionWritingIn(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
@@ -1196,6 +1201,12 @@ abstract class DatabaseBase implements IDatabase {
 
 		if ( false === $ret ) {
 			$this->reportQueryError( $this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
+		} else {
+			$n = $this->affectedRows();
+			if ( $isWriteQuery && $n > self::LOG_WRITE_THRESHOLD && PHP_SAPI !== 'cli' ) {
+				wfDebugLog( 'DBPerformance',
+					"Query affected $n rows:\n$sql\n" . wfBacktrace( true ) );
+			}
 		}
 
 		return $this->resultObject( $ret );
