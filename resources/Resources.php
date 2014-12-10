@@ -758,6 +758,7 @@ return array(
 			'zh-cn' => 'resources/lib/moment/locale/zh-cn.js',
 			'zh-tw' => 'resources/lib/moment/locale/zh-tw.js',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki */
