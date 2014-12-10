@@ -151,17 +151,23 @@ class LoadBalancer {
 	/**
 	 * @param array $loads
 	 * @param bool|string $wiki Wiki to get non-lagged for
+	 * @param float $maxLag Restrict the maximum allowed lag to this many seconds
 	 * @return bool|int|string
 	 */
-	private function getRandomNonLagged( array $loads, $wiki = false ) {
-		# Unset excessively lagged servers
+	private function getRandomNonLagged( array $loads, $wiki = false, $maxLag = INF ) {
 		$lags = $this->getLagTimes( $wiki );
+
+		# Unset excessively lagged servers
 		foreach ( $lags as $i => $lag ) {
 			if ( $i != 0 ) {
+				$maxServerLag = $maxLag;
+				if ( isset( $this->mServers[$i]['max lag'] ) ) {
+					$maxServerLag = min( $maxServerLag, $this->mServers[$i]['max lag'] );
+				}
 				if ( $lag === false ) {
 					wfDebugLog( 'replication', "Server #$i is not replicating" );
 					unset( $loads[$i] );
-				} elseif ( isset( $this->mServers[$i]['max lag'] ) && $lag > $this->mServers[$i]['max lag'] ) {
+				} elseif ( $lag > $maxServerLag ) {
 					wfDebugLog( 'replication', "Server #$i is excessively lagged ($lag seconds)" );
 					unset( $loads[$i] );
 				}
@@ -252,7 +258,19 @@ class LoadBalancer {
 			if ( $wgReadOnly || $this->mAllowLagged || $laggedSlaveMode ) {
 				$i = ArrayUtils::pickRandom( $currentLoads );
 			} else {
-				$i = $this->getRandomNonLagged( $currentLoads, $wiki );
+				$i = false;
+				if ( $this->mWaitForPos && $this->mWaitForPos->asOfTime() ) {
+					# ChronologyProtecter causes mWaitForPos to be set via sessions.
+					# This triggers doWait() after connect, so it's especially good to
+					# avoid lagged servers so as to avoid just blocking in that method.
+					$ago = microtime( true ) - $this->mWaitForPos->asOfTime();
+					# Aim for <= 1 second of waiting (being too picky can backfire)
+					$i = $this->getRandomNonLagged( $currentLoads, $wiki, $ago + 1 );
+				}
+				if ( $i === false ) {
+					# Any server with less lag than it's 'max lag' param is preferable
+					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
+				}
 				if ( $i === false && count( $currentLoads ) != 0 ) {
 					# All slaves lagged. Switch to read-only mode
 					wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode" );

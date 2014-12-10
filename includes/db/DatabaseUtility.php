@@ -339,4 +339,8 @@ class LikeMatch {
  * The implementation details of this opaque type are up to the database subclass.
  */
 interface DBMasterPos {
+	/**
+	 * @return float UNIX timestamp
+	 */
+	public function asOfTime();
 }
