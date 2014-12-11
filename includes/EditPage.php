@@ -1434,8 +1434,8 @@ class EditPage {
 	protected function runPostMergeFilters( Content $content, Status $status, User $user ) {
 		// Run old style post-section-merge edit filter
 		if ( !ContentHandler::runLegacyHooks( 'EditFilterMerged',
-			array( $this, $content, &$this->hookError, $this->summary ) ) )
-		{
+			array( $this, $content, &$this->hookError, $this->summary ) )
+		) {
 			# Error messages etc. could be handled within the hook...
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
@@ -1450,8 +1450,8 @@ class EditPage {
 		// Run new style post-section-merge edit filter
 		if ( !Hooks::run( 'EditFilterMergedContent',
 				array( $this->mArticle->getContext(), $content, $status, $this->summary,
-				$user, $this->minoredit ) ) )
-		{
+				$user, $this->minoredit ) )
+		) {
 			# Error messages etc. could be handled within the hook...
 			if ( $status->isGood() ) {
 				$status->fatal( 'hookaborted' );
