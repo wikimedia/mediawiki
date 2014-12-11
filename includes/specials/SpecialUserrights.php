@@ -106,7 +106,7 @@ class UserrightsPage extends SpecialPage {
 			}
 		}
 
-		if ( User::getCanonicalName( $this->mTarget ) == $user->getName() ) {
+		if ( User::getCanonicalName( $this->mTarget ) === $user->getName() ) {
 			$this->isself = true;
 		}
 
@@ -228,7 +228,7 @@ class UserrightsPage extends SpecialPage {
 		global $wgAuth;
 
 		// Validate input set...
-		$isself = ( $user->getName() == $this->getUser()->getName() );
+		$isself = $user->equals( $this->getUser() );
 		$groups = $user->getGroups();
 		$changeable = $this->changeableGroups();
 		$addable = array_merge( $changeable['add'], $isself ? $changeable['add-self'] : array() );

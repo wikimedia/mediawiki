@@ -4764,7 +4764,7 @@ class User implements IDBAccessObject {
 		if ( $action === true ) {
 			$action = 'byemail';
 		} elseif ( $action === false ) {
-			if ( $this->getName() == $wgUser->getName() ) {
+			if ( $this->equals( $wgUser ) ) {
 				$action = 'create';
 			} else {
 				$action = 'create2';
@@ -5048,5 +5048,16 @@ class User implements IDBAccessObject {
 		} else {
 			return Status::newFatal( 'badaccess-group0' );
 		}
+	}
+
+	/**
+	 * Checks if two user objects point to the same user.
+	 *
+	 * @since 1.25
+	 * @param User $user
+	 * @return bool
+	 */
+	public function equals( User $user ) {
+		return $this->getName() === $user->getName();
 	}
 }

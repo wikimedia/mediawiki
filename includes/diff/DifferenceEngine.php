@@ -491,7 +491,7 @@ class DifferenceEngine extends ContextSource {
 					array( 'USE INDEX' => 'rc_timestamp' )
 				);
 
-				if ( $change && $change->getPerformer()->getName() !== $user->getName() ) {
+				if ( $change && !$change->getPerformer()->equals( $user ) ) {
 					$rcid = $change->getAttribute( 'rc_id' );
 				} else {
 					// None found or the page has been created by the current user.
