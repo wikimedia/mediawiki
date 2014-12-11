@@ -1485,6 +1485,13 @@ class Parser {
 		}
 
 		$numSepChars = strspn( strrev( $url ), $sep );
+		# Don't break a trailing HTML entity
+		if ( $numSepChars && substr( $url, -$numSepChars, 1 ) === ';') {
+			$chopped = substr( $url, 0, -$numSepChars );
+			if ( preg_match( '/&([a-z]+|#x[\da-f]+|#\d+)$/i', $chopped ) ) {
+				$numSepChars--;
+			}
+		}
 		if ( $numSepChars ) {
 			$trail = substr( $url, -$numSepChars ) . $trail;
 			$url = substr( $url, 0, -$numSepChars );
