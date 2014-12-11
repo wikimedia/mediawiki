@@ -114,13 +114,13 @@ class ApiQueryContributors extends ApiQueryBase {
 		$this->addWhereFld( 'rev_page', $pages );
 		$this->addWhere( 'rev_user != 0' );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
-		$this->addOption( 'GROUP BY', 'rev_page, rev_user' );
+		$this->addOption( 'GROUP BY', array( 'rev_page', 'rev_user' ) );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		// Force a sort order to ensure that properties are grouped by page
 		// But only if pp_page is not constant in the WHERE clause.
 		if ( count( $pages ) > 1 ) {
-			$this->addOption( 'ORDER BY', 'rev_page, rev_user' );
+			$this->addOption( 'ORDER BY', array( 'rev_page', 'rev_user' ) );
 		} else {
 			$this->addOption( 'ORDER BY', 'rev_user' );
 		}
