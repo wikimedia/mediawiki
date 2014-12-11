@@ -1850,7 +1850,7 @@
 	"protectlogtext": "下面是页面保护更改的列表。请见[[Special:ProtectedPages|受保护页面列表]]查看目前正在进行的页面保护的列表。",
 	"protectedarticle": "保护“[[$1]]”",
 	"modifiedarticleprotection": "更改“[[$1]]”的保护等级",
-	"unprotectedarticle": "移除保护自“[[$1]]”",
+	"unprotectedarticle": "移除页面“[[$1]]”的保护",
 	"movedarticleprotection": "移动保护设置自“[[$2]]”至“[[$1]]”",
 	"protect-title": "更改“$1”的保护等级",
 	"protect-title-notallowed": "查看“$1”的保护等级",

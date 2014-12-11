@@ -67,7 +67,7 @@
 	"apihelp-emailuser-param-text": "郵件內容。",
 	"apihelp-emailuser-param-ccme": "寄送一份此郵件的複本給我。",
 	"apihelp-emailuser-example-email": "寄送電子郵件給使用者 \"WikiSysop\" 使用內容 \"Content\"",
-	"apihelp-expandtemplates-description": "展開所有於 wikitext 中的樣板。",
+	"apihelp-expandtemplates-description": "展開所有於 wikitext 中模板。",
 	"apihelp-expandtemplates-param-title": "頁面標題。",
 	"apihelp-expandtemplates-param-text": "要轉換的 Wikitext。",
 	"apihelp-login-param-name": "使用者名稱。",

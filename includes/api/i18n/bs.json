@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Palapa"
+		]
+	},
+	"apihelp-block-description": "Blokiraj korisnika",
+	"apihelp-block-param-reason": "Razlog za blokadu",
+	"apihelp-delete-description": "Obriši stranicu.",
+	"apihelp-edit-param-minor": "Mala izmjena."
+}

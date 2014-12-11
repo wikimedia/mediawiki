@@ -352,7 +352,7 @@
 	"protectedpagetext": "Ova stranica je zaključana da bi se onemogućile izmjene.",
 	"viewsourcetext": "Možete pogledati i kopirati izvorni sadržaj ove stranice:",
 	"viewyourtext": "Možete vidjeti i kopirati tekst '''vaših uređivanja''' na ovoj stranici:",
-	"protectedinterface": "Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.\nAKo želite prevesti neprevedenu poruku ili popraviti prijevod neke druge poruke za sve MediaWiki wikije, posjetite [//translatewiki.net/  translatewiki.net], projekt za lokalizaciju MediaWiki softvera.",
+	"protectedinterface": "Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.\nAko želite prevesti neprevedenu poruku ili popraviti prijevod neke druge poruke za sve MediaWiki wikije, posjetite [//translatewiki.net/  translatewiki.net], projekt za lokalizaciju MediaWiki softvera.",
 	"editinginterface": "'''Upozorenje:''' Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici će se odraziti na izgled korisničkog sučelja kod drugih suradnika. Za prijevod, razmotrite uporabu [//translatewiki.net/wiki/Main_Page?setlang=hr translatewiki.net], projekta lokalizacije MedijeWiki.",
 	"translateinterface": "Za dodavanje ili promjenu prijevoda za sve wikije koristite [//translatewiki.net/ translatewiki.net], projekt za lokalizaciju MediaWikija.",
 	"cascadeprotected": "Ova je stranica zaključana za uređivanja jer je uključena u {{PLURAL:$1|slijedeću stranicu|slijedeće stranice}}, koje su zaštićene \"prenosivom zaštitom\":\n$2",
@@ -1401,6 +1401,8 @@
 	"download": "skidanje",
 	"unwatchedpages": "Nepraćene stranice",
 	"listredirects": "Popis preusmjeravanja",
+	"listduplicatedfiles": "Popis kopija datoteka",
+	"listduplicatedfiles-summary": "Ovo je popis datoteka kojima je zadnja inačica kopija zadnje inačice druge datoteke. Na popisu su samo lokalno postavljene datoteke.",
 	"unusedtemplates": "Nekorišteni predlošci",
 	"unusedtemplatestext": "Slijedi popis svih stranica imenskog prostora {{ns:template}}, koje nisu umetnute na drugim stranicama. Pripazite da prije brisanja provjerite druge poveznice koje vode na te predloške.",
 	"unusedtemplateswlh": "druge poveznice",
@@ -2984,5 +2986,7 @@
 	"expand_templates_remove_comments": "Ukloni komentare",
 	"expand_templates_remove_nowiki": "Ukloni <nowiki> tagove u rezultatima.",
 	"expand_templates_generate_xml": "Prikaži XML stablo",
-	"expand_templates_preview": "Vidi kako će izgledati"
+	"expand_templates_preview": "Vidi kako će izgledati",
+	"mediastatistics": "Statistika datoteka",
+	"mediastatistics-summary": "Slijede statistike postavljenih datoteka koje pokazuju zadnju inačicu datoteke. Starije ili izbrisane inačice nisu prikazane."
 }
