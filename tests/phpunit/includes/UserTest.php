@@ -355,4 +355,31 @@ class UserTest extends MediaWikiTestCase {
 				'false' => 'With / slash' ), 'With slash' ),
 		);
 	}
+
+	public function testEquals() {
+		$first = User::newFromName( 'EqualUser' );
+		$second = User::newFromName( 'EqualUser' );
+
+		$this->assertTrue( $first->equals( $first ) );
+		$this->assertTrue( $first->equals( $second ) );
+		$this->assertTrue( $second->equals( $first ) );
+
+		$third = User::newFromName( '0' );
+		$fourth = User::newFromName( '000' );
+
+		$this->assertFalse( $third->equals( $fourth ) );
+		$this->assertFalse( $fourth->equals( $third ) );
+
+		// Test users loaded from db with id
+		$user = User::newFromName( 'EqualUnitTestUser' );
+		if ( !$user->getId() ) {
+			$user->addToDatabase();
+		}
+
+		$id = $user->getId();
+
+		$fifth = User::newFromId( $id );
+		$sixth = User::newFromName( 'EqualUnitTestUser' );
+		$this->assetTrue( $fifth->equals( $sixth ) );
+	}
 }
