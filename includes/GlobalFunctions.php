@@ -1531,7 +1531,7 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
 function wfMsgGetKey( $key, $useDB = true, $langCode = false, $transform = true ) {
 	wfDeprecated( __METHOD__, '1.21' );
 
-	wfRunHooks( 'NormalizeMessageKey', array( &$key, &$useDB, &$langCode, &$transform ) );
+	Hooks::run( 'NormalizeMessageKey', array( &$key, &$useDB, &$langCode, &$transform ) );
 
 	$cache = MessageCache::singleton();
 	$message = $cache->get( $key, $useDB, $langCode );
@@ -2964,7 +2964,7 @@ function wfShellWikiCmd( $script, array $parameters = array(), array $options = 
 	global $wgPhpCli;
 	// Give site config file a chance to run the script in a wrapper.
 	// The caller may likely want to call wfBasename() on $script.
-	wfRunHooks( 'wfShellWikiCmd', array( &$script, &$parameters, &$options ) );
+	Hooks::run( 'wfShellWikiCmd', array( &$script, &$parameters, &$options ) );
 	$cmd = isset( $options['php'] ) ? array( $options['php'] ) : array( $wgPhpCli );
 	if ( isset( $options['wrapper'] ) ) {
 		$cmd[] = $options['wrapper'];
@@ -3416,7 +3416,7 @@ function wfResetSessionID() {
 		$_SESSION = $tmp;
 	}
 	$newSessionId = session_id();
-	wfRunHooks( 'ResetSessionID', array( $oldSessionId, $newSessionId ) );
+	Hooks::run( 'ResetSessionID', array( $oldSessionId, $newSessionId ) );
 }
 
 /**
@@ -4014,7 +4014,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 
 	# Run the extension hook
 	$bad = false;
-	if ( !wfRunHooks( 'BadImage', array( $name, &$bad ) ) ) {
+	if ( !Hooks::run( 'BadImage', array( $name, &$bad ) ) ) {
 		wfProfileOut( __METHOD__ );
 		return $bad;
 	}
@@ -4078,7 +4078,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
  */
 function wfCanIPUseHTTPS( $ip ) {
 	$canDo = true;
-	wfRunHooks( 'CanIPUseHTTPS', array( $ip, &$canDo ) );
+	Hooks::run( 'CanIPUseHTTPS', array( $ip, &$canDo ) );
 	return !!$canDo;
 }
 

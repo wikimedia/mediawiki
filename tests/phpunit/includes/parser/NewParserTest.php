@@ -434,7 +434,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$this->savedGlobals = array();
 
 		/** @since 1.20 */
-		wfRunHooks( 'ParserTestGlobals', array( &$settings ) );
+		Hooks::run( 'ParserTestGlobals', array( &$settings ) );
 
 		$langObj = Language::factory( $lang );
 		$settings['wgContLang'] = $langObj;
@@ -939,7 +939,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$class = $wgParserConf['class'];
 		$parser = new $class( array( 'preprocessorClass' => $preprocessor ) + $wgParserConf );
 
-		wfRunHooks( 'ParserTestParser', array( &$parser ) );
+		Hooks::run( 'ParserTestParser', array( &$parser ) );
 
 		return $parser;
 	}

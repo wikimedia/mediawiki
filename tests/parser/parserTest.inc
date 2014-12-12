@@ -559,7 +559,7 @@ class ParserTest {
 			$parser->setTransparentTagHook( $tag, $callback );
 		}
 
-		wfRunHooks( 'ParserTestParser', array( &$parser ) );
+		Hooks::run( 'ParserTestParser', array( &$parser ) );
 
 		return $parser;
 	}
@@ -901,7 +901,7 @@ class ParserTest {
 		$this->savedGlobals = array();
 
 		/** @since 1.20 */
-		wfRunHooks( 'ParserTestGlobals', array( &$settings ) );
+		Hooks::run( 'ParserTestGlobals', array( &$settings ) );
 
 		foreach ( $settings as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
@@ -954,7 +954,7 @@ class ParserTest {
 		// Allow extensions to add to the list of tables to duplicate;
 		// may be necessary if they hook into page save or other code
 		// which will require them while running tests.
-		wfRunHooks( 'ParserTestTables', array( &$tables ) );
+		Hooks::run( 'ParserTestTables', array( &$tables ) );
 
 		return $tables;
 	}

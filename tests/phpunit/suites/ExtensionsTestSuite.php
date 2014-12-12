@@ -10,7 +10,7 @@ class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
 		parent::__construct();
 		$paths = array();
 		// Extensions can return a list of files or directories
-		wfRunHooks( 'UnitTestsList', array( &$paths ) );
+		Hooks::run( 'UnitTestsList', array( &$paths ) );
 		foreach ( $paths as $path ) {
 			if ( is_dir( $path ) ) {
 				// If the path is a directory, search for test cases.
