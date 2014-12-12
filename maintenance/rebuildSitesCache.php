@@ -37,7 +37,7 @@ class RebuildSitesCache extends Maintenance {
 	}
 
 	public function execute() {
-		$siteListFileCacheBuilder = new SiteListFileCacheBuilder(
+		$siteListFileCacheBuilder = new SiteFileCacheBuilder(
 			SiteSQLStore::newInstance(),
 			$this->getCacheFile()
 		);
