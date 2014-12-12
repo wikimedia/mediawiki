@@ -2812,8 +2812,10 @@ class Title {
 	 * Accessor/initialisation for mRestrictions
 	 *
 	 * @param string $action Action that permission needs to be checked for
-	 * @return array Restriction levels needed to take the action. All levels
-	 *     are required.
+	 * @return array Restriction levels needed to take the action. All levels are
+	 *     required. Note that restriction levels are normally user rights, but 'sysop'
+	 *     and 'autoconfirmed' are also allowed for backwards compatibility. These should
+	 *     be mapped to 'editprotected' and 'editsemiprotected' respectively.
 	 */
 	public function getRestrictions( $action ) {
 		if ( !$this->mRestrictionsLoaded ) {
