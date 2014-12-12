@@ -11305,6 +11305,15 @@ thumbsize=220
 !! end
 
 !! test
+Titles in unlinked images (T23454)
+!! wikitext
+[[File:Foobar.jpg|link=|stuff]]
+!! html/php
+<p><img alt="stuff" src="http://example.com/images/3/3a/Foobar.jpg" title="stuff" width="1941" height="220" />
+</p>
+!! end
+
+!! test
 Link with empty target
 !! wikitext
 [[]]
