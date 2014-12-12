@@ -23,7 +23,7 @@
 /**
  * @todo document
  */
-class Revision implements IDBAccessObject {
+class Revision extends BasicRevision implements IDBAccessObject {
 	protected $mId;
 
 	/**
@@ -71,17 +71,8 @@ class Revision implements IDBAccessObject {
 	 */
 	protected $mQueryFlags = 0;
 
-	// Revision deletion constants
-	const DELETED_TEXT = 1;
-	const DELETED_COMMENT = 2;
-	const DELETED_USER = 4;
-	const DELETED_RESTRICTED = 8;
-	const SUPPRESSED_USER = 12; // convenience
-
-	// Audience options for accessors
-	const FOR_PUBLIC = 1;
-	const FOR_THIS_USER = 2;
-	const RAW = 3;
+	// Alias for DELETED_CONTENT
+	const DELETED_TEXT = parent::DELETED_CONTENT;
 
 	/**
 	 * Load a page revision from a given revision ID number.
@@ -1663,54 +1654,6 @@ class Revision implements IDBAccessObject {
 	 */
 	public function userCan( $field, User $user = null ) {
 		return self::userCanBitfield( $this->mDeleted, $field, $user );
-	}
-
-	/**
-	 * Determine if the current user is allowed to view a particular
-	 * field of this revision, if it's marked as deleted. This is used
-	 * by various classes to avoid duplication.
-	 *
-	 * @param int $bitfield Current field
-	 * @param int $field One of self::DELETED_TEXT = File::DELETED_FILE,
-	 *                               self::DELETED_COMMENT = File::DELETED_COMMENT,
-	 *                               self::DELETED_USER = File::DELETED_USER
-	 * @param User|null $user User object to check, or null to use $wgUser
-	 * @param Title|null $title A Title object to check for per-page restrictions on,
-	 *                          instead of just plain userrights
-	 * @return bool
-	 */
-	public static function userCanBitfield( $bitfield, $field, User $user = null,
-		Title $title = null
-	) {
-		if ( $bitfield & $field ) { // aspect is deleted
-			if ( $user === null ) {
-				global $wgUser;
-				$user = $wgUser;
-			}
-			if ( $bitfield & self::DELETED_RESTRICTED ) {
-				$permissions = array( 'suppressrevision', 'viewsuppressed' );
-			} elseif ( $field & self::DELETED_TEXT ) {
-				$permissions = array( 'deletedtext' );
-			} else {
-				$permissions = array( 'deletedhistory' );
-			}
-			$permissionlist = implode( ', ', $permissions );
-			if ( $title === null ) {
-				wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
-				return call_user_func_array( array( $user, 'isAllowedAny' ), $permissions );
-			} else {
-				$text = $title->getPrefixedText();
-				wfDebug( "Checking for $permissionlist on $text due to $field match on $bitfield\n" );
-				foreach ( $permissions as $perm ) {
-					if ( $title->userCan( $perm, $user ) ) {
-						return true;
-					}
-				}
-				return false;
-			}
-		} else {
-			return true;
-		}
 	}
 
 	/**
