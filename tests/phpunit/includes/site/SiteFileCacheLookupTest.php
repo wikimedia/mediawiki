@@ -22,54 +22,59 @@
  * @ingroup Site
  * @ingroup Test
  *
- * @covers SiteListFileCache
+ * @covers SiteFileCacheLookup
  * @group Site
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
+class SiteFileCacheLookupTest extends PHPUnit_Framework_TestCase {
 
 	public function testGetSites() {
-		$cacheFile = $this->getCacheFile();
-
 		$sites = $this->getSites();
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites, $cacheFile );
-		$cacheBuilder->build();
+		$lookup = $this->newSiteFileBasedLookup( $sites );
 
-		$cache = new SiteListFileCache( $cacheFile );
-		$this->assertEquals( $sites, $cache->getSites() );
+		$this->assertEquals( new SiteList( $sites ), $lookup->getSites() );
 	}
 
 	public function testGetSite() {
-		$cacheFile = $this->getCacheFile();
-
 		$sites = $this->getSites();
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites, $cacheFile );
-		$cacheBuilder->build();
-
-		$cache = new SiteListFileCache( $cacheFile );
-
-		$this->assertEquals( $sites->getSite( 'enwiktionary' ), $cache->getSite( 'enwiktionary' ) );
+		$lookup = $this->newSiteFileBasedLookup( $sites );
+		$this->assertEquals( $sites['enwiktionary'], $lookup->getSite( 'enwiktionary' ) );
 	}
 
-	private function newSiteListFileCacheBuilder( SiteList $sites, $cacheFile ) {
-		return new SiteListFileCacheBuilder(
-			$this->getSiteSQLStore( $sites ),
+	public function getGetSite_notFound() {
+		$lookup = $this->newSiteFileBasedLookup( array() );
+		$this->setExpectedException( 'OutOfBoundsException' );
+		$lookup->getSite( 'foowiki' );
+	}
+
+	private function newSiteFileBasedLookup( array $sites ) {
+		$cacheFile = $this->getCacheFile();
+
+		$cacheBuilder = $this->newSiteFileCacheBuilder( $sites, $cacheFile );
+		$cacheBuilder->build();
+
+		return new SiteFileCacheLookup( $cacheFile );
+	}
+
+	private function newSiteFileCacheBuilder( $sites, $cacheFile ) {
+		return new SiteFileCacheBuilder(
+			$this->getSiteStore( $sites ),
 			$cacheFile
 		);
 	}
 
-	private function getSiteSQLStore( SiteList $sites ) {
-		$siteSQLStore = $this->getMockBuilder( 'SiteSQLStore' )
+	private function getSiteStore( $sites ) {
+		$siteStore = $this->getMockBuilder( 'SiteStore' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$siteSQLStore->expects( $this->any() )
+		$siteStore->expects( $this->any() )
 			->method( 'getSites' )
-			->will( $this->returnValue( $sites ) );
+			->will( $this->returnValue( new SiteList( $sites ) ) );
 
-		return $siteSQLStore;
+		return $siteStore;
 	}
 
 	private function getSites() {
@@ -77,7 +82,11 @@ class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
 
 		$site = new Site();
 		$site->setGlobalId( 'foobar' );
-		$sites[] = $site;
+		$sites['foobar'] = $site;
+
+		$site = new Site();
+		$site->setGlobalId( 'mywiki' );
+		$sites['mywiki'] = $site;
 
 		$site = new MediaWikiSite();
 		$site->setGlobalId( 'enwiktionary' );
@@ -86,13 +95,13 @@ class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
 		$site->addNavigationId( 'enwiktionary' );
 		$site->setPath( MediaWikiSite::PATH_PAGE, "https://en.wiktionary.org/wiki/$1" );
 		$site->setPath( MediaWikiSite::PATH_FILE, "https://en.wiktionary.org/w/$1" );
-		$sites[] = $site;
+		$sites['enwiktionary'] = $site;
 
-		return new SiteList( $sites );
+		return $sites;
 	}
 
 	private function getCacheFile() {
-		return sys_get_temp_dir() . '/sites-' . time() . '.json';
+		return sys_get_temp_dir() . '/sites-' . mt_rand( 1, 10000000 ) . '.json';
 	}
 
 }
