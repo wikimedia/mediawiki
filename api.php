@@ -72,7 +72,7 @@ try {
 	// Last chance hook before executing the API
 	wfRunHooks( 'ApiBeforeMain', array( &$processor ) );
 	if ( !$processor instanceof ApiMain ) {
-		throw new MWException( 'ApiBeforMain hook set $processor to a non-ApiMain class' );
+		throw new MWException( 'ApiBeforeMain hook set $processor to a non-ApiMain class' );
 	}
 } catch ( Exception $e ) {
 	// Crap. Try to report the exception in API format to be friendly to clients.

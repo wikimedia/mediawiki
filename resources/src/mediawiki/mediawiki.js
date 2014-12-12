@@ -1,7 +1,7 @@
 /**
  * Base library for MediaWiki.
  *
- * Exposed as globally as `mediaWiki` with `mw` as shortcut.
+ * Exposed globally as `mediaWiki` with `mw` as shortcut.
  *
  * @class mw
  * @alternateClassName mediaWiki
@@ -89,7 +89,7 @@
 
 	Map.prototype = {
 		/**
-		 * Get the value of one or multiple a keys.
+		 * Get the value of one or multiple keys.
 		 *
 		 * If called with no arguments, all values will be returned.
 		 *
@@ -99,7 +99,7 @@
 		 *  If selection was an array, returns an object of key/values (value is null if not found),
 		 *  If selection was not passed or invalid, will return the 'values' object member (be careful as
 		 *  objects are always passed by reference in JavaScript!).
-		 * @return {string|Object|null} Values as a string or object, null if invalid/inexistant.
+		 * @return {string|Object|null} Values as a string or object, null if invalid/inexistent.
 		 */
 		get: function ( selection, fallback ) {
 			var results, i;

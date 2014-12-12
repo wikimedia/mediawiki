@@ -102,7 +102,7 @@ production.
 * Page moving was refactored into a MovePage class. As part of that:
 ** The AbortMove hook was removed.
 ** MovePageIsValidMove is for extensions to specify whether a page
-   cannot be moved for technical reasons, and should not be overriden.
+   cannot be moved for technical reasons, and should not be overridden.
 ** MovePageCheckPermissions is for checking whether the given user is
    allowed to make the move.
 ** Title::moveNoAuth() was deprecated. Use the MovePage class instead.

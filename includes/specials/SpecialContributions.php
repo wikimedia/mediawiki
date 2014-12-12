@@ -711,7 +711,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	/**
 	 * This method basically executes the exact same code as the parent class, though with
-	 * a hook added, to allow extentions to add additional queries.
+	 * a hook added, to allow extensions to add additional queries.
 	 *
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit

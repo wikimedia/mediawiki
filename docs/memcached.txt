@@ -1,5 +1,5 @@
-MediaWiki has optional support for memcached, a "high-performance, 
-distributed memory object caching system". For general information 
+MediaWiki has optional support for memcached, a "high-performance,
+distributed memory object caching system". For general information
 on it, see: http://www.danga.com/memcached/
 
 Memcached is likely more trouble than a small site will need, but
@@ -10,7 +10,7 @@ in memory.
 == Installation ==
 
 Packages are available for Fedora, Debian, Ubuntu and probably other
-Linux distributions. If you there's no package available for your 
+Linux distributions. If there's no package available for your
 distribution, you can compile it from source.
 
 == Compilation ==
@@ -25,7 +25,7 @@ distribution, you can compile it from source.
 
 * memcached: http://www.danga.com/memcached/download.bml
   (as of this writing, 1.1.9 is current)
-  
+
 Memcached and libevent are under BSD-style licenses.
 
 The server should run on Linux and other Unix-like systems... you
@@ -40,9 +40,9 @@ memcached servers are not publicly accessible. Otherwise, anyone on
 the internet can put data into and read data from your cache.
 
 An attacker familiar with MediaWiki internals could use this to steal
-passwords and email addresses, or to make themselves a sysop and 
-install malicious javascript on the site. There may be other types 
-of vulnerability, no audit has been done -- so be safe and keep it 
+passwords and email addresses, or to make themselves a sysop and
+install malicious javascript on the site. There may be other types
+of vulnerability, no audit has been done -- so be safe and keep it
 behind a firewall.
 ********************* W A R N I N G ! ! ! ! ! ***********************
 
@@ -247,5 +247,5 @@ User:
 	stores: instance of class User
 	set in: User::saveToCache()
 	cleared by: User::saveSettings(), User::clearSharedCache()
-	
+
 ... more to come ...
