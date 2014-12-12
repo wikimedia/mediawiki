@@ -10,7 +10,7 @@ abstract class HTMLFormField {
 	protected $mValidationCallback;
 	protected $mFilterCallback;
 	protected $mName;
-	protected $mLabel; # String label.  Set on construction
+	protected $mLabel; # String label, null or Message object.  Set on construction
 	protected $mID;
 	protected $mClass = '';
 	protected $mHelpClass = false;
@@ -354,7 +354,8 @@ abstract class HTMLFormField {
 				$msgInfo = array();
 			}
 
-			$this->mLabel = wfMessage( $msg, $msgInfo )->parse();
+			// Get parsed in getLabel when context is known
+			$this->mLabel = wfMessage( $msg, $msgInfo );
 		} elseif ( isset( $params['label'] ) ) {
 			if ( $params['label'] === '&#160;' ) {
 				// Apparently some things set &nbsp directly and in an odd format
@@ -671,7 +672,13 @@ abstract class HTMLFormField {
 	}
 
 	function getLabel() {
-		return is_null( $this->mLabel ) ? '' : $this->mLabel;
+		if ( is_null( $this->mLabel ) ) {
+			return '';
+		}
+		if ( $this->mLabel instanceof Message ) {
+			$this->mLabel->setContext( $this->mParent->getContext() )->parse();
+		}
+		return $this->mLabel;
 	}
 
 	function getLabelHtml( $cellAttributes = array() ) {
