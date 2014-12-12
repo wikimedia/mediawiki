@@ -21,7 +21,9 @@
 		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
 		var i = 0, units = [ '', ' kB', ' MB', ' GB', ' TB', ' PB' ];
 		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
-		return bytes.toFixed( 1 ) + units[i];
+		// Maintain one decimal for kB and above, but don't
+		// add ".0" for bytes.
+		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[i];
 	}
 
 	/**
