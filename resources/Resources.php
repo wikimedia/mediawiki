@@ -1628,8 +1628,7 @@ return array(
 			'resources/lib/oojs-ui/oojs-ui.js',
 		),
 		'skinScripts' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.js',
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.js',
+			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.js',
 		),
 		'dependencies' => array(
 			'es5-shim',
@@ -1656,8 +1655,7 @@ return array(
 	'oojs-ui.styles' => array(
 		'position' => 'top',
 		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-apex.svg.css',
-			'minerva' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.svg.css',
+			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.svg.css',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
