@@ -256,7 +256,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		// Do a batch existence check
 		$batch = new LinkBatch();
 		if ( count( $titles ) >= 100 ) {
-			$output = wfMessage( 'watchlistedit-too-many' )->parse();
+			$output = $this->msg( 'watchlistedit-too-many' )->parse();
 			return;
 		}
 		foreach ( $titles as $title ) {
