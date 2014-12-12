@@ -1928,11 +1928,15 @@ class EditPage {
 			&& $content->isRedirect()
 			&& $content->getRedirectTarget()->equals( $this->getTitle() )
 		) {
-			$this->selfRedirect = true;
-			$status->fatal( 'selfredirect' );
-			$status->value = self::AS_SELF_REDIRECT;
-			wfProfileOut( __METHOD__ );
-			return $status;
+			// If the page already redirects to itself, don't warn.
+			$currentTarget = $this->getCurrentContent()->getRedirectTarget();
+			if ( !$currentTarget || !$currentTarget->equals( $this->getTitle() ) ) {
+				$this->selfRedirect = true;
+				$status->fatal( 'selfredirect' );
+				$status->value = self::AS_SELF_REDIRECT;
+				wfProfileOut( __METHOD__ );
+				return $status;
+			}
 		}
 
 		// Check for length errors again now that the section is merged in
