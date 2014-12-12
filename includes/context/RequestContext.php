@@ -182,9 +182,8 @@ class RequestContext implements IContextSource {
 	 * @param WikiPage $p
 	 */
 	public function setWikiPage( WikiPage $p ) {
-		$contextTitle = $this->getTitle();
 		$pageTitle = $p->getTitle();
-		if ( !$contextTitle || !$pageTitle->equals( $contextTitle ) ) {
+		if ( !$this->hasTitle() || !$pageTitle->equals( $this->getTitle() ) ) {
 			$this->setTitle( $pageTitle );
 		}
 		// Defer this to the end since setTitle sets it to null.
