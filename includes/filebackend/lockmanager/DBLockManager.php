@@ -52,7 +52,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	/**
 	 * Construct a new instance from configuration.
 	 *
-	 * @param array $config Paramaters include:
+	 * @param array $config Parameters include:
 	 *   - dbServers   : Associative array of DB names to server configuration.
 	 *                   Configuration is an associative array that includes:
 	 *                     - host        : DB server name

@@ -10,7 +10,7 @@ in memory.
 == Installation ==
 
 Packages are available for Fedora, Debian, Ubuntu and probably other
-Linux distributions. If you there's no package available for your 
+Linux distributions. If there's no package available for your 
 distribution, you can compile it from source.
 
 == Compilation ==
