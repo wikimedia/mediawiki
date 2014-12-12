@@ -3345,7 +3345,7 @@ class Language {
 				// the string does not have any number part. Eg: .12345
 				return $sign . $groupedNumber;
 			}
-			$start = $end = strlen( $integerPart[0] );
+			$start = $end = ($integerPart) ? strlen( $integerPart[0] ) : 0;
 			while ( $start > 0 ) {
 				$match = $matches[0][$numMatches - 1];
 				$matchLen = strlen( $match );
