@@ -1,6 +1,9 @@
 <?php
 
 /**
+ * Builds a file-based cache, in json format, of a SiteStore.
+ * The cache can be used with SiteFileBasedCache which provides SiteLookup.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,7 +25,7 @@
  *
  * @license GNU GPL v2+
  */
-class SiteListFileCacheBuilder {
+class SiteFileCacheBuilder {
 
 	/**
 	 * @var SiteStore
