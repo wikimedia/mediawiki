@@ -161,7 +161,7 @@ class ApiOpenSearch extends ApiBase {
 				}
 				if ( !isset( $seen[$ns][$dbkey] ) ) {
 					$seen[$ns][$dbkey] = true;
-					$results[$title->getArticleId()] = array(
+					$results[$title->getPrefixedText()] = array(
 						'title' => $title,
 						'redirect from' => $from,
 						'extract' => false,
@@ -173,7 +173,7 @@ class ApiOpenSearch extends ApiBase {
 			}
 		} else {
 			foreach ( $titles as $title ) {
-				$results[$title->getArticleId()] = array(
+				$results[$title->getPrefixedText()] = array(
 					'title' => $title,
 					'redirect from' => null,
 					'extract' => false,
