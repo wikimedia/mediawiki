@@ -118,7 +118,7 @@ class ApiOpenSearch extends ApiBase {
 	 * @param int $limit Maximum items to return
 	 * @param array $namespaces Namespaces to search
 	 * @param bool $resolveRedir Whether to resolve redirects
-	 * @param array &$results Put results here
+	 * @param array &$results Put results here.  Keys have to be integers.
 	 */
 	protected function search( $search, $limit, $namespaces, $resolveRedir, &$results ) {
 		// Find matching titles as Title objects
@@ -127,6 +127,11 @@ class ApiOpenSearch extends ApiBase {
 		if ( !$titles ) {
 			return;
 		}
+
+		// Special pages need unique integer ids in the return list so we just
+		// assign them negative numbers because those won't class with the
+		// always positive articleIds that non-special pages get.
+		$nextSpecialPageId = -1;
 
 		if ( $resolveRedir ) {
 			// Query for redirects
@@ -161,7 +166,12 @@ class ApiOpenSearch extends ApiBase {
 				}
 				if ( !isset( $seen[$ns][$dbkey] ) ) {
 					$seen[$ns][$dbkey] = true;
-					$results[$title->getArticleId()] = array(
+					$resultId = $title->getArticleId();
+					if ( $resultId === 0 ) {
+						$resultId = $nextSpecialPageId;
+						$nextSpecialPageId -= 1;
+					}
+					$results[$resultId] = array(
 						'title' => $title,
 						'redirect from' => $from,
 						'extract' => false,
@@ -173,7 +183,12 @@ class ApiOpenSearch extends ApiBase {
 			}
 		} else {
 			foreach ( $titles as $title ) {
-				$results[$title->getArticleId()] = array(
+				$resultId = $title->getArticleId();
+				if ( $resultId === 0 ) {
+					$resultId = $nextSpecialPageId;
+					$nextSpecialPageId -= 1;
+				}
+				$results[$resultId] = array(
 					'title' => $title,
 					'redirect from' => null,
 					'extract' => false,
