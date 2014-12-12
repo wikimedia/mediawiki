@@ -919,7 +919,7 @@ class SpecialSearch extends SpecialPage {
 		$user = $this->getUser();
 		if ( $user->isLoggedIn() ) {
 			$remember .= Xml::checkLabel(
-				wfMessage( 'powersearch-remember' )->text(),
+				$this->msg( 'powersearch-remember' )->text(),
 				'nsRemember',
 				'mw-search-powersearch-remember',
 				false,

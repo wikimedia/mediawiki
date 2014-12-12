@@ -236,7 +236,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			'tagFilter' => array(
 				'type' => 'tagfilter',
 				'name' => 'tagfilter',
-				'label-raw' => wfMessage( 'tag-filter' )->parse(),
+				'label-raw' => $this->msg( 'tag-filter' )->parse(),
 				'default' => $tagFilterVal,
 			),
 			'username' => array(

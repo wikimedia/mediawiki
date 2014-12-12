@@ -731,7 +731,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		return '<li>' .
-			wfMessage( 'file-exists-duplicate' )->numParams( count( $dupes ) )->parse() .
+			$this->msg( 'file-exists-duplicate' )->numParams( count( $dupes ) )->parse() .
 			$gallery->toHTML() . "</li>\n";
 	}
 
