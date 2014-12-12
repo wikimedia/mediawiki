@@ -22,13 +22,15 @@
  * @ingroup Site
  * @ingroup Test
  *
- * @covers SiteListFileCache
+ * @covers SiteFileCacheLookup
  * @group Site
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
+class SiteFileCacheLookupTest extends PHPUnit_Framework_TestCase {
+
+	private $cacheFile;
 
 	protected function setUp() {
 		$this->cacheFile = $this->getCacheFile();
@@ -38,42 +40,66 @@ class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
 		unlink( $this->cacheFile );
 	}
 
-	public function testGetSites() {
-		$sites = $this->getSites();
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites );
-		$cacheBuilder->build();
+	/**
+	 * @dataProvider getSitesProvider
+	 */
+	public function testGetSites( array $expected, array $sites, $globalIds ) {
+		$lookup = $this->newSiteFileBasedLookup( $sites );
+		$this->assertEquals( $expected, $lookup->getSites( $globalIds ) );
+	}
 
-		$cache = new SiteListFileCache( $this->cacheFile );
-		$this->assertEquals( $sites, $cache->getSites() );
+	public function getSitesProvider() {
+		$sites = $this->getSites();
+
+		$cases = array();
+		$cases[] = array( $sites, $sites, null );
+
+		$expected = array(
+			'foobar' => $sites['foobar'],
+			'mywiki' => $sites['mywiki']
+		);
+
+		$cases[] = array( $expected, $sites, array( 'foobar', 'mywiki' ) );
+		$cases[] = array( array(), array(), array( 'foobar' ) );
+
+		return $cases;
 	}
 
 	public function testGetSite() {
 		$sites = $this->getSites();
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites );
-		$cacheBuilder->build();
-
-		$cache = new SiteListFileCache( $this->cacheFile );
-
-		$this->assertEquals( $sites->getSite( 'enwiktionary' ), $cache->getSite( 'enwiktionary' ) );
+		$lookup = $this->newSiteFileBasedLookup( $sites );
+		$this->assertEquals( $sites['enwiktionary'], $lookup->getSite( 'enwiktionary' ) );
 	}
 
-	private function newSiteListFileCacheBuilder( SiteList $sites ) {
-		return new SiteListFileCacheBuilder(
-			$this->getSiteSQLStore( $sites ),
+	public function getGetSite_notFound() {
+		$lookup = $this->newSiteFileBasedLookup( array() );
+		$this->assertIsNull( $lookup->getSite( 'foowiki' ) );
+	}
+
+	private function newSiteFileBasedLookup( array $sites ) {
+		$cacheBuilder = $this->newSiteFileCacheBuilder( $sites );
+		$cacheBuilder->build();
+
+		return new SiteFileCacheLookup( $this->cacheFile );
+	}
+
+	private function newSiteFileCacheBuilder( $sites ) {
+		return new SiteFileCacheBuilder(
+			$this->getSiteStore( $sites ),
 			$this->cacheFile
 		);
 	}
 
-	private function getSiteSQLStore( SiteList $sites ) {
-		$siteSQLStore = $this->getMockBuilder( 'SiteSQLStore' )
+	private function getSiteStore( $sites ) {
+		$siteStore = $this->getMockBuilder( 'SiteStore' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$siteSQLStore->expects( $this->any() )
+		$siteStore->expects( $this->any() )
 			->method( 'getSites' )
-			->will( $this->returnValue( $sites ) );
+			->will( $this->returnValue( new SiteList( $sites ) ) );
 
-		return $siteSQLStore;
+		return $siteStore;
 	}
 
 	private function getSites() {
@@ -81,7 +107,11 @@ class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
 
 		$site = new Site();
 		$site->setGlobalId( 'foobar' );
-		$sites[] = $site;
+		$sites['foobar'] = $site;
+
+		$site = new Site();
+		$site->setGlobalId( 'mywiki' );
+		$sites['mywiki'] = $site;
 
 		$site = new MediaWikiSite();
 		$site->setGlobalId( 'enwiktionary' );
@@ -90,9 +120,9 @@ class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
 		$site->addNavigationId( 'enwiktionary' );
 		$site->setPath( MediaWikiSite::PATH_PAGE, "https://en.wiktionary.org/wiki/$1" );
 		$site->setPath( MediaWikiSite::PATH_FILE, "https://en.wiktionary.org/w/$1" );
-		$sites[] = $site;
+		$sites['enwiktionary'] = $site;
 
-		return new SiteList( $sites );
+		return $sites;
 	}
 
 	private function getCacheFile() {
