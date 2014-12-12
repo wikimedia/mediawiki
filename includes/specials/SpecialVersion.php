@@ -1039,7 +1039,7 @@ class SpecialVersion extends SpecialPage {
 	 * Convert an array or object to a string for display.
 	 *
 	 * @param mixed $list Will convert an array to string if given and return
-	 *   the paramater unaltered otherwise
+	 *   the parameter unaltered otherwise
 	 *
 	 * @return mixed
 	 */

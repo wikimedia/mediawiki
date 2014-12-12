@@ -1897,7 +1897,7 @@ class Linker {
 	) {
 		global $wgShowRollbackEditCount, $wgMiserMode;
 
-		// To config which pages are effected by miser mode
+		// To config which pages are affected by miser mode
 		$disableRollbackEditCountSpecialPage = array( 'Recentchanges', 'Watchlist' );
 
 		if ( $context === null ) {

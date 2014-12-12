@@ -672,7 +672,7 @@ class LocalFile extends File {
 	/** getURL inherited */
 	/** getViewURL inherited */
 	/** getPath inherited */
-	/** isVisible inhereted */
+	/** isVisible inherited */
 
 	/**
 	 * @return bool
@@ -1987,7 +1987,7 @@ class LocalFileDeleteBatch {
 	/** @var array Items to be processed in the deletion batch */
 	private $deletionBatch;
 
-	/** @var bool Wether to suppress all suppressable fields when deleting */
+	/** @var bool Whether to suppress all suppressable fields when deleting */
 	private $suppress;
 
 	/** @var FileRepoStatus */
@@ -2368,7 +2368,7 @@ class LocalFileRestoreBatch {
 	/** @var bool Add all revisions of the file */
 	private $all;
 
-	/** @var bool Wether to remove all settings for suppressed fields */
+	/** @var bool Whether to remove all settings for suppressed fields */
 	private $unsuppress = false;
 
 	/**

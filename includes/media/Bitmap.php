@@ -204,7 +204,7 @@ class BitmapHandler extends TransformationalImageHandler {
 					/ ( $params['srcWidth'] + $params['srcHeight'] )
 					< $wgSharpenReductionThreshold
 				) {
-					// Hack, since $wgSharpenParamater is written specifically for the command line convert
+					// Hack, since $wgSharpenParameter is written specifically for the command line convert
 					list( $radius, $sigma ) = explode( 'x', $wgSharpenParameter );
 					$im->sharpenImage( $radius, $sigma );
 				}

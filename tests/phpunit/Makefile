@@ -83,7 +83,7 @@ help:
 	#                       You will need the Xdebug PHP extension for the later.
 	#   [no]parser          Skip or only run Parser tests
 	#
-	#   list-groups         List availabe Tests groups.
+	#   list-groups         List available Tests groups.
 	#
 	#  Options:
 	#   CONFIG_FILE         Path to a PHPUnit configuration file (default: suite.xml)

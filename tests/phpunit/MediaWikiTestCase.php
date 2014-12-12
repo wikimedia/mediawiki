@@ -634,7 +634,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( isset( $compatibility[$func] ) ) {
 			return call_user_func_array( array( $this, $compatibility[$func] ), $args );
 		} else {
-			throw new MWException( "Called non-existant $func method on "
+			throw new MWException( "Called non-existent $func method on "
 				. get_class( $this ) );
 		}
 	}

@@ -72,7 +72,7 @@ class JobQueueFederated extends JobQueue {
 	 *                          have explicitly defined sections.
 	 *  - configByPartition   : Map of queue partition names to configuration arrays.
 	 *                          These configuration arrays are passed to JobQueue::factory().
-	 *                          The options set here are overriden by those passed to this
+	 *                          The options set here are overridden by those passed to this
 	 *                          the federated queue itself (e.g. 'order' and 'claimTTL').
 	 *  - partitionsNoPush    : List of partition names that can handle pop() but not push().
 	 *                          This can be used to migrate away from a certain partition.

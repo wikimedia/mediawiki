@@ -66,7 +66,7 @@ email notification when an article is shown may add:
 		# code to actually show the article goes here
 
 		if ($wgNotifyArticle) {
-			wfNotifyArticleShow($article));
+			wfNotifyArticleShow($article);
 		}
 	}
 
