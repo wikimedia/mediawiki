@@ -1175,7 +1175,7 @@ class UploadSourceField extends HTMLTextField {
 	 */
 	function getLabelHtml( $cellAttributes = array() ) {
 		$id = $this->mParams['id'];
-		$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
+		$label = Html::rawElement( 'label', array( 'for' => $id ), $this->getLabel() );
 
 		if ( !empty( $this->mParams['radio'] ) ) {
 			if ( isset( $this->mParams['radio-id'] ) ) {
