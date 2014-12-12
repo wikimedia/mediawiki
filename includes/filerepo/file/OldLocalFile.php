@@ -320,7 +320,7 @@ class OldLocalFile extends LocalFile {
 	function userCan( $field, User $user = null ) {
 		$this->load();
 
-		return Revision::userCanBitfield( $this->deleted, $field, $user );
+		return self::userCanBitfield( $this->deleted, $field, $user );
 	}
 
 	/**
