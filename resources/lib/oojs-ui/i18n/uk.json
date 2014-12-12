@@ -14,13 +14,16 @@
 			"SteveR",
 			"Tel'et",
 			"Tifinaghes",
-			"Ата"
+			"Ата",
+			"Piramidion"
 		]
 	},
 	"ooui-outline-control-move-down": "Перемістити елемент униз",
 	"ooui-outline-control-move-up": "Перемістити елемент вгору",
 	"ooui-outline-control-remove": "Видалити елемент",
 	"ooui-toolbar-more": "Більше",
+	"ooui-toolgroup-expand": "Більше",
+	"ooui-toolgroup-collapse": "Менше",
 	"ooui-dialog-message-accept": "Готово",
 	"ooui-dialog-message-reject": "Скасувати",
 	"ooui-dialog-process-error": "Щось пішло не так",

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.4.0
+ * OOjs UI v0.5.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-12-06T00:33:09Z
+ * Date: 2014-12-12T20:13:09Z
  */
 ( function ( OO ) {
 
@@ -1000,6 +1000,38 @@ OO.ui.Element.static.getDimensions = function ( el ) {
 };
 
 /**
+ * Get scrollable object parent
+ *
+ * documentElement can't be used to get or set the scrollTop
+ * property on Blink. Changing and testing its value lets us
+ * use 'body' or 'documentElement' based on what is working.
+ *
+ * https://code.google.com/p/chromium/issues/detail?id=303131
+ *
+ * @static
+ * @param {HTMLElement} el Element to find scrollable parent for
+ * @return {HTMLElement} Scrollable parent
+ */
+OO.ui.Element.static.getRootScrollableElement = function ( el ) {
+	var scrollTop, body;
+
+	if ( OO.ui.scrollableElement === undefined ) {
+		body = el.ownerDocument.body;
+		scrollTop = body.scrollTop;
+		body.scrollTop = 1;
+
+		if ( body.scrollTop === 1 ) {
+			body.scrollTop = scrollTop;
+			OO.ui.scrollableElement = 'body';
+		} else {
+			OO.ui.scrollableElement = 'documentElement';
+		}
+	}
+
+	return el.ownerDocument[ OO.ui.scrollableElement ];
+};
+
+/**
  * Get closest scrollable container.
  *
  * Traverses up until either a scrollable element or the root is reached, in which case the window
@@ -1020,7 +1052,7 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 	}
 
 	while ( $parent.length ) {
-		if ( $parent[0] === el.ownerDocument.body ) {
+		if ( $parent[0] === this.getRootScrollableElement( el ) ) {
 			return $parent[0];
 		}
 		i = props.length;
@@ -1059,8 +1091,8 @@ OO.ui.Element.static.scrollIntoView = function ( el, config ) {
 		$win = $( this.getWindow( el ) );
 
 	// Compute the distances between the edges of el and the edges of the scroll viewport
-	if ( $sc.is( 'body' ) ) {
-		// If the scrollable container is the <body> this is easy
+	if ( $sc.is( 'html, body' ) ) {
+		// If the scrollable container is the root, this is easy
 		rel = {
 			top: eld.rect.top,
 			bottom: $win.innerHeight() - eld.rect.bottom,
@@ -1195,6 +1227,8 @@ OO.ui.Element.prototype.isElementAttached = function () {
  * @return {HTMLDocument} Document object
  */
 OO.ui.Element.prototype.getElementDocument = function () {
+	// Don't use this.$.context because subclasses can rebind this.$
+	// Don't cache this in other ways either because subclasses could can change this.$element
 	return OO.ui.Element.static.getDocument( this.$element );
 };
 
@@ -1730,15 +1764,19 @@ OO.ui.Window.prototype.withoutSizeTransitions = function ( callback ) {
 OO.ui.Window.prototype.getContentHeight = function () {
 	var bodyHeight,
 		win = this,
-		styleObj = this.$frame[0].style;
+		bodyStyleObj = this.$body[0].style,
+		frameStyleObj = this.$frame[0].style;
 
 	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
 	// Disable transitions first, otherwise we'll get values from when the window was animating.
 	this.withoutSizeTransitions( function () {
-		var oldHeight = styleObj.height;
-		styleObj.height = '1px';
+		var oldHeight = frameStyleObj.height, oldPosition = bodyStyleObj.position;
+		frameStyleObj.height = '1px';
+		// Force body to resize to new width
+		bodyStyleObj.position = 'relative';
 		bodyHeight = win.getBodyHeight();
-		styleObj.height = oldHeight;
+		frameStyleObj.height = oldHeight;
+		bodyStyleObj.position = oldPosition;
 	} );
 
 	return Math.round(
@@ -1897,7 +1935,7 @@ OO.ui.Window.prototype.setManager = function ( manager ) {
 	} else {
 		this.$content = this.$( '<div>' );
 		this.$document = $( this.getElementDocument() );
-		this.$content.addClass( 'oo-ui-window-content' );
+		this.$content.addClass( 'oo-ui-window-content' ).attr( 'tabIndex', 0 );
 		this.$frame.append( this.$content );
 	}
 	this.toggle( false );
@@ -2339,7 +2377,8 @@ OO.ui.Dialog.static.escapable = true;
 OO.ui.Dialog.prototype.onDocumentKeyDown = function ( e ) {
 	if ( e.which === OO.ui.Keys.ESCAPE ) {
 		this.close();
-		return false;
+		e.preventDefault();
+		e.stopPropagation();
 	}
 };
 
@@ -3700,7 +3739,7 @@ OO.ui.ButtonElement.prototype.setButtonElement = function ( $button ) {
 		this.$button
 			.removeClass( 'oo-ui-buttonElement-button' )
 			.removeAttr( 'role accesskey tabindex' )
-			.off( this.onMouseDownHandler );
+			.off( 'mousedown', this.onMouseDownHandler );
 	}
 
 	this.$button = $button
@@ -4968,7 +5007,8 @@ OO.ui.PopupElement.prototype.getPopup = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {string|string[]} [flags] Styling flags, e.g. 'primary', 'destructive' or 'constructive'
+ * @cfg {string|string[]} [flags] Flags describing importance and functionality, e.g. 'primary',
+ *   'safe', 'progressive', 'destructive' or 'constructive'
  * @cfg {jQuery} [$flagged] Flagged node, assigned to #$flagged, omit to use #$element
  */
 OO.ui.FlaggedElement = function OoUiFlaggedElement( config ) {
@@ -5292,9 +5332,9 @@ OO.ui.ClippableElement.prototype.toggleClipping = function ( clipping ) {
 		this.clipping = clipping;
 		if ( clipping ) {
 			this.$clippableContainer = this.$( this.getClosestScrollableElementContainer() );
-			// If the clippable container is the body, we have to listen to scroll events and check
+			// If the clippable container is the root, we have to listen to scroll events and check
 			// jQuery.scrollTop on the window because of browser inconsistencies
-			this.$clippableScroller = this.$clippableContainer.is( 'body' ) ?
+			this.$clippableScroller = this.$clippableContainer.is( 'html, body' ) ?
 				this.$( OO.ui.Element.static.getWindow( this.$clippableContainer ) ) :
 				this.$clippableContainer;
 			this.$clippableScroller.on( 'scroll', this.onClippableContainerScrollHandler );
@@ -5386,9 +5426,9 @@ OO.ui.ClippableElement.prototype.clip = function () {
 		return this;
 	}
 
-	var buffer = 10,
+	var buffer = 7, // Chosen by fair dice roll
 		cOffset = this.$clippable.offset(),
-		$container = this.$clippableContainer.is( 'body' ) ?
+		$container = this.$clippableContainer.is( 'html, body' ) ?
 			this.$clippableWindow : this.$clippableContainer,
 		ccOffset = $container.offset() || { top: 0, left: 0 },
 		ccHeight = $container.innerHeight() - buffer,
@@ -7200,6 +7240,8 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  * @cfg {string} [help] Explanatory text shown as a '?' icon.
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
+	var hasInputWidget = fieldWidget instanceof OO.ui.InputWidget;
+
 	// Configuration initialization
 	config = $.extend( { align: 'left' }, config );
 
@@ -7214,6 +7256,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 
 	// Properties
 	this.$field = this.$( '<div>' );
+	this.$body = this.$( '<' + ( hasInputWidget ? 'label' : 'div' ) + '>' );
 	this.align = null;
 	if ( config.help ) {
 		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
@@ -7234,17 +7277,21 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	}
 
 	// Events
-	if ( this.fieldWidget instanceof OO.ui.InputWidget ) {
+	if ( hasInputWidget ) {
 		this.$label.on( 'click', this.onLabelClick.bind( this ) );
 	}
 	this.fieldWidget.connect( this, { disable: 'onFieldDisable' } );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-fieldLayout' );
+	this.$element
+		.addClass( 'oo-ui-fieldLayout' )
+		.append( this.$help, this.$body );
+	this.$body.addClass( 'oo-ui-fieldLayout-body' );
 	this.$field
 		.addClass( 'oo-ui-fieldLayout-field' )
 		.toggleClass( 'oo-ui-fieldLayout-disable', this.fieldWidget.isDisabled() )
 		.append( this.fieldWidget.$element );
+
 	this.setAlignment( config.align );
 };
 
@@ -7254,17 +7301,6 @@ OO.inheritClass( OO.ui.FieldLayout, OO.ui.Layout );
 OO.mixinClass( OO.ui.FieldLayout, OO.ui.LabelElement );
 
 /* Methods */
-
-/**
- * @inheritdoc
- */
-OO.ui.FieldLayout.prototype.getTagName = function () {
-	if ( this.fieldWidget instanceof OO.ui.InputWidget ) {
-		return 'label';
-	} else {
-		return 'div';
-	}
-};
 
 /**
  * Handle field disable events.
@@ -7309,9 +7345,9 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 		}
 		// Reorder elements
 		if ( value === 'inline' ) {
-			this.$element.append( this.$field, this.$label, this.$help );
+			this.$body.append( this.$field, this.$label );
 		} else {
-			this.$element.append( this.$help, this.$label, this.$field );
+			this.$body.append( this.$label, this.$field );
 		}
 		// Set classes. The following classes can be used here:
 		// * oo-ui-fieldLayout-align-left
@@ -7547,15 +7583,15 @@ OO.ui.GridLayout.prototype.update = function () {
 			width = this.widths[x];
 			panel = this.panels[i];
 			dimensions = {
-				width: Math.round( width * 100 ) + '%',
-				height: Math.round( height * 100 ) + '%',
-				top: Math.round( top * 100 ) + '%'
+				width: ( width * 100 ) + '%',
+				height: ( height * 100 ) + '%',
+				top: ( top * 100 ) + '%'
 			};
 			// If RTL, reverse:
 			if ( OO.ui.Element.static.getDir( this.$.context ) === 'rtl' ) {
-				dimensions.right = Math.round( left * 100 ) + '%';
+				dimensions.right = ( left * 100 ) + '%';
 			} else {
-				dimensions.left = Math.round( left * 100 ) + '%';
+				dimensions.left = ( left * 100 ) + '%';
 			}
 			// HACK: Work around IE bug by setting visibility: hidden; if width or height is zero
 			if ( width === 0 || height === 0 ) {
@@ -9933,6 +9969,7 @@ OO.ui.ButtonInputWidget.prototype.onKeyPress = function ( e ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {boolean} [selected=false] Whether the checkbox is initially selected
  */
 OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 	// Parent constructor
@@ -9940,6 +9977,7 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-checkboxInputWidget' );
+	this.setSelected( config.selected !== undefined ? config.selected : false );
 };
 
 /* Setup */
@@ -9959,29 +9997,6 @@ OO.ui.CheckboxInputWidget.prototype.getInputElement = function () {
 };
 
 /**
- * Get checked state of the checkbox
- *
- * @return {boolean} If the checkbox is checked
- */
-OO.ui.CheckboxInputWidget.prototype.getValue = function () {
-	return this.value;
-};
-
-/**
- * Set checked state of the checkbox
- *
- * @param {boolean} value New value
- */
-OO.ui.CheckboxInputWidget.prototype.setValue = function ( value ) {
-	value = !!value;
-	if ( this.value !== value ) {
-		this.value = value;
-		this.$input.prop( 'checked', this.value );
-		this.emit( 'change', this.value );
-	}
-};
-
-/**
  * @inheritdoc
  */
 OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
@@ -9989,9 +10004,34 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
 	if ( !this.isDisabled() ) {
 		// Allow the stack to clear so the value will be updated
 		setTimeout( function () {
-			widget.setValue( widget.$input.prop( 'checked' ) );
+			widget.setSelected( widget.$input.prop( 'checked' ) );
 		} );
 	}
+};
+
+/**
+ * Set selection state of this checkbox.
+ *
+ * @param {boolean} state Whether the checkbox is selected
+ * @chainable
+ */
+OO.ui.CheckboxInputWidget.prototype.setSelected = function ( state ) {
+	state = !!state;
+	if ( this.selected !== state ) {
+		this.selected = state;
+		this.$input.prop( 'checked', this.selected );
+		this.emit( 'change', this.selected );
+	}
+	return this;
+};
+
+/**
+ * Check if this checkbox is selected.
+ *
+ * @return {boolean} Checkbox is selected
+ */
+OO.ui.CheckboxInputWidget.prototype.isSelected = function () {
+	return this.selected;
 };
 
 /**
@@ -10000,14 +10040,12 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
  * Radio buttons only make sense as a set, and you probably want to use the OO.ui.RadioSelectWidget
  * class instead of using this class directly.
  *
- * This class doesn't make it possible to learn whether the radio button is selected ("pressed").
- *
  * @class
  * @extends OO.ui.InputWidget
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @param {boolean} [config.selected=false] Whether the radio button is initially selected
+ * @cfg {boolean} [selected=false] Whether the radio button is initially selected
  */
 OO.ui.RadioInputWidget = function OoUiRadioInputWidget( config ) {
 	// Parent constructor

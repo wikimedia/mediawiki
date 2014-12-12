@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.4.0
+ * OOjs UI v0.5.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-12-06T00:33:19Z
+ * Date: 2014-12-12T20:13:21Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -127,8 +127,8 @@
 }
 .oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator,
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-	width: 2.2em;
-	height: 2.2em;
+	width: 1.9em;
+	height: 1.9em;
 }
 .oo-ui-buttonElement.oo-ui-widget-disabled > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
 .oo-ui-buttonElement.oo-ui-widget-disabled > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
@@ -151,16 +151,16 @@
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	color: #444444;
 }
-.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button:hover > .oo-ui-labelElement-label,
-.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button:focus > .oo-ui-labelElement-label {
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover > .oo-ui-labelElement-label,
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus > .oo-ui-labelElement-label {
 	color: #598ad1;
 }
-.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	color: #777777;
 }
-.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active > .oo-ui-labelElement-label,
-.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
-.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active > .oo-ui-labelElement-label,
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	color: #015ccc;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover > .oo-ui-labelElement-label,
@@ -189,8 +189,8 @@
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
 	margin: 0.1em 0;
-	padding: 0.3em 1.2em;
-	border-radius: 0.3em;
+	padding: 0.2em 0.8em;
+	border-radius: 2px;
 	-webkit-transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 	   -moz-transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 	    -ms-transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
@@ -202,8 +202,8 @@
 	outline: none;
 }
 .oo-ui-buttonElement-framed > input.oo-ui-buttonElement-button,
-.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-	line-height: 2.2em;
+.oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+	line-height: 1.9em;
 }
 .oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 	margin-left: -0.5em;
@@ -234,52 +234,76 @@
 	background-color: #d0d0d0;
 	border-color: #d0d0d0;
 }
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button {
-	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-	color: #ffffff;
-	background-color: #0274ff;
-	border-color: #0274ff;
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
+	color: #0274ff;
 }
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button:hover,
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button:focus {
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
 	box-shadow: inset 0 -0.2em 0 0 #015ccc, 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
 	border-bottom-color: #015ccc;
 }
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-widget-enabled .oo-ui-buttonElement-button:active,
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
-	background-color: #015ccc;
-}
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button {
-	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-	color: #ffffff;
-	background-color: #00af89;
-	border-color: #00af89;
+	color: #00af89;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:focus {
 	box-shadow: inset 0 -0.2em 0 0 #008c6d, 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
 	border-bottom-color: #008c6d;
 }
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled .oo-ui-buttonElement-button:active,
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
-	background-color: #008c6d;
-}
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
-	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-	color: #ffffff;
-	background-color: #d11d13;
-	border-color: #d11d13;
+	color: #d11d13;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:focus {
 	box-shadow: inset 0 -0.2em 0 0 #a7170f, 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
 	border-bottom-color: #a7170f;
 }
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-widget-enabled .oo-ui-buttonElement-button:active,
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
-.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+	color: #ffffff;
+	background-color: #0274ff;
+	border-color: #0274ff;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
+	box-shadow: inset 0 -0.2em 0 0 #015ccc, 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
+	border-bottom-color: #015ccc;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled .oo-ui-buttonElement-button:active,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
+	background-color: #015ccc;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button {
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+	color: #ffffff;
+	background-color: #00af89;
+	border-color: #00af89;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:focus {
+	box-shadow: inset 0 -0.2em 0 0 #008c6d, 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
+	border-bottom-color: #008c6d;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled .oo-ui-buttonElement-button:active,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
+	background-color: #008c6d;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+	color: #ffffff;
+	background-color: #d11d13;
+	border-color: #d11d13;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:hover,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:focus {
+	box-shadow: inset 0 -0.2em 0 0 #a7170f, 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
+	border-bottom-color: #a7170f;
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-widget-enabled .oo-ui-buttonElement-button:active,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	background-color: #a7170f;
 }
 .oo-ui-clippableElement-clippable {
@@ -358,60 +382,57 @@
 .oo-ui-fieldLayout:after {
 	clear: both;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-labelElement-label,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	display: block;
 	float: left;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-field,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-field {
-	display: block;
-	float: left;
-}
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	text-align: right;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-labelElement-label {
-	display: inline-block;
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
+	display: table;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+	display: table-cell;
 	vertical-align: middle;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-field {
-	display: inline-block;
-	vertical-align: middle;
-}
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	display: inline-block;
 }
-.oo-ui-fieldLayout > .oo-ui-popupButtonWidget > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
-	z-index: 1;
-}
-.oo-ui-fieldLayout .oo-ui-fieldLayout-help {
+.oo-ui-fieldLayout > .oo-ui-fieldLayout-help {
 	float: right;
 }
-.oo-ui-fieldLayout .oo-ui-fieldLayout-help-content {
+.oo-ui-fieldLayout > .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
+	z-index: 1;
+}
+.oo-ui-fieldLayout > .oo-ui-fieldLayout-help .oo-ui-fieldLayout-help-content {
 	padding: 0.5em 0.75em;
 	line-height: 1.5em;
 }
 .oo-ui-fieldLayout:last-child {
 	margin-bottom: 0;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-labelElement-label,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	padding-top: 0.5em;
 	margin-right: 5%;
 	width: 35%;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-field,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-field {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	width: 60%;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-labelElement-label {
-	padding: 0.75em 0.5em 0.5em 0.5em;
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+	padding: 0.5em;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-field {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	padding: 0.5em 0;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	padding: 0.5em 0;
 }
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
@@ -689,8 +710,12 @@
 .oo-ui-listToolGroup .oo-ui-tool-link {
 	padding-right: 0.5em;
 }
-.oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled {
+.oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-enabled:hover {
 	background-color: #eeeeee;
+}
+.oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled,
+.oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled:hover {
+	background-color: #d0d0d0;
 }
 .oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-tool-title {
 	color: #cccccc;
@@ -756,7 +781,7 @@
 	background-image: /* @embed */ url(themes/mediawiki/images/icons/check.svg);
 }
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-enabled:hover {
-	background-color: #e1f3ff;
+	background-color: #eeeeee;
 }
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-tool-title {
 	color: #cccccc;
@@ -808,7 +833,7 @@
 	pointer-events: none;
 }
 .oo-ui-toolbar-bar {
-	border-bottom: solid 1px #cccccc;
+	border-bottom: solid 4px rgba(0, 0, 0, 0.15);
 	background: #ffffff;
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
@@ -819,20 +844,20 @@
 	display: none;
 }
 .oo-ui-selectWidget {
-	border-radius: 0.3em;
+	border-radius: 2px;
 }
 .oo-ui-selectWidget .oo-ui-buttonOptionWidget .oo-ui-buttonElement-button {
 	border-radius: 0;
 	margin-left: -1px;
 }
 .oo-ui-selectWidget .oo-ui-buttonOptionWidget:first-child .oo-ui-buttonElement-button {
-	border-bottom-left-radius: 0.3em;
-	border-top-left-radius: 0.3em;
+	border-bottom-left-radius: 2px;
+	border-top-left-radius: 2px;
 	margin-left: 0;
 }
 .oo-ui-selectWidget .oo-ui-buttonOptionWidget:last-child .oo-ui-buttonElement-button {
-	border-bottom-right-radius: 0.3em;
-	border-top-right-radius: 0.3em;
+	border-bottom-right-radius: 2px;
+	border-top-right-radius: 2px;
 }
 .oo-ui-optionWidget {
 	position: relative;
@@ -858,7 +883,7 @@
 }
 .oo-ui-selectWidget-depressed .oo-ui-optionWidget-selected,
 .oo-ui-selectWidget-pressed .oo-ui-optionWidget-pressed {
-	background-color: #a7dcff;
+	background-color: #d0d0d0;
 }
 .oo-ui-optionWidget.oo-ui-widget-disabled {
 	color: #cccccc;
@@ -888,20 +913,20 @@
 .oo-ui-buttonSelectWidget {
 	display: inline-block;
 	white-space: nowrap;
-	border-radius: 0.3em;
+	border-radius: 2px;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget .oo-ui-buttonElement-button {
 	border-radius: 0;
 	margin-left: -1px;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:first-child .oo-ui-buttonElement-button {
-	border-bottom-left-radius: 0.3em;
-	border-top-left-radius: 0.3em;
+	border-bottom-left-radius: 2px;
+	border-top-left-radius: 2px;
 	margin-left: 0;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:last-child .oo-ui-buttonElement-button {
-	border-bottom-right-radius: 0.3em;
-	border-top-right-radius: 0.3em;
+	border-bottom-right-radius: 2px;
+	border-top-right-radius: 2px;
 }
 .oo-ui-radioSelectWidget {
 	padding: 0.75em 0 0.5em 0;
@@ -921,11 +946,11 @@
 	vertical-align: middle;
 }
 .oo-ui-buttonOptionWidget .oo-ui-buttonElement-button {
-	height: 2.2em;
+	height: 1.9em;
 }
 .oo-ui-buttonOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon,
 .oo-ui-buttonOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-	height: 2.2em;
+	height: 1.9em;
 	margin-top: 0;
 }
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected,
@@ -960,8 +985,8 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 	line-height: 2.5em;
-	height: 2.2em;
-	width: 2.2em;
+	height: 1.9em;
+	width: 1.9em;
 }
 .oo-ui-iconWidget.oo-ui-widget-disabled {
 	opacity: 0.2;
@@ -972,8 +997,8 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 	line-height: 2.5em;
-	height: 2.2em;
-	width: 2.2em;
+	height: 1.9em;
+	width: 1.9em;
 }
 .oo-ui-indicatorWidget.oo-ui-widget-disabled {
 	opacity: 0.2;
@@ -985,7 +1010,7 @@
 .oo-ui-buttonGroupWidget {
 	display: inline-block;
 	white-space: nowrap;
-	border-radius: 0.3em;
+	border-radius: 2px;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed .oo-ui-buttonElement-button {
 	border-radius: 0;
@@ -993,13 +1018,13 @@
 	margin-left: -1px;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:first-child .oo-ui-buttonElement-button {
-	border-bottom-left-radius: 0.3em;
-	border-top-left-radius: 0.3em;
+	border-bottom-left-radius: 2px;
+	border-top-left-radius: 2px;
 	margin-left: 0;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:last-child .oo-ui-buttonElement-button {
-	border-bottom-right-radius: 0.3em;
-	border-top-right-radius: 0.3em;
+	border-bottom-right-radius: 2px;
+	border-top-right-radius: 2px;
 }
 .oo-ui-toggleSwitchWidget {
 	position: relative;
@@ -1214,9 +1239,6 @@
 .oo-ui-popupWidget-head .oo-ui-labelElement-label {
 	margin: 0.75em 1em;
 }
-.oo-ui-popupWidget-body {
-	box-shadow: 0 0 0.66em rgba(0, 0, 0, 0.25);
-}
 .oo-ui-popupWidget-body-padded {
 	padding: 0 1em;
 }
@@ -1235,15 +1257,18 @@
 }
 .oo-ui-checkboxInputWidget {
 	position: relative;
-	line-height: 1.6em;
+	line-height: 2em;
+	white-space: nowrap;
 }
 .oo-ui-checkboxInputWidget * {
+	font: inherit;
 	vertical-align: middle;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"] {
 	opacity: 0;
-	width: 1.6em;
-	height: 1.6em;
+	margin: 0;
+	width: 2em;
+	height: 2em;
 	max-width: none;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"] + span {
@@ -1252,35 +1277,110 @@
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"] + span::before {
 	content: "";
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
 	position: absolute;
 	left: 0;
-	border-radius: 0.3em;
-	width: 1.6em;
-	height: 1.6em;
-	background-color: #ffffff;
-	border: 1px solid grey;
+	border-radius: 2px;
+	width: 2em;
+	height: 2em;
+	background-color: white;
+	border: 1px solid #777777;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"]:checked + span::before {
 	background-image: /* @embed */ url(themes/mediawiki/images/icons/check-constructive.svg);
-	background-size: 1.6em, 1.6em;
+	background-size: 2em, 2em;
 	background-repeat: no-repeat;
-	background-position: center top;
+	background-position: center center;
+	background-origin: border-box;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:active + span::after,
-.oo-ui-checkboxInputWidget input[type="checkbox"]:focus + span::after {
-	content: "";
-	position: absolute;
-	width: 1.6em;
-	height: 1.5em;
-	left: 1px;
-	border-bottom: solid 0.2em #d3d3d3;
+.oo-ui-checkboxInputWidget input[type="checkbox"]:active + span::before {
+	background-color: #dddddd;
+	border-color: #dddddd;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"]:focus + span::before {
+	border-width: 2px;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"]:focus:hover + span::before,
+.oo-ui-checkboxInputWidget input[type="checkbox"]:hover + span::before {
+	border-bottom-width: 3px;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"]:disabled + span::before {
 	cursor: default;
-	background-color: lightgrey;
+	background-color: #eeeeee;
+	border-color: #eeeeee;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled:checked + span::before {
+	background-image: /* @embed */ url(themes/mediawiki/images/icons/check-invert.svg);
+}
+.oo-ui-radioInputWidget {
+	position: relative;
+	line-height: 2em;
+}
+.oo-ui-radioInputWidget * {
+	font: inherit;
+	vertical-align: middle;
+}
+.oo-ui-radioInputWidget input[type="radio"] {
+	opacity: 0;
+	margin: 0;
+	width: 2em;
+	height: 2em;
+	max-width: none;
+}
+.oo-ui-radioInputWidget input[type="radio"] + span {
+	cursor: pointer;
+	margin: 0 0.4em;
+}
+.oo-ui-radioInputWidget input[type="radio"] + span::before {
+	        transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	   -moz-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	    -ms-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	     -o-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	-webkit-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	content: "";
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	position: absolute;
+	left: 0;
+	border-radius: 100%;
+	width: 2em;
+	height: 2em;
+	background: white;
+	border: 1px solid #777777;
+	background-image: /* @embed */ url(themes/mediawiki/images/icons/circle-constructive.svg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-origin: border-box;
+	background-size: 0 0;
+}
+.oo-ui-radioInputWidget input[type="radio"]:checked + span::before {
+	background-size: 100% 100%;
+}
+.oo-ui-radioInputWidget input[type="radio"]:active + span::before {
+	background-color: #dddddd;
+	border-color: #dddddd;
+}
+.oo-ui-radioInputWidget input[type="radio"]:focus + span::before {
+	border-width: 2px;
+}
+.oo-ui-radioInputWidget input[type="radio"]:focus:hover + span::before,
+.oo-ui-radioInputWidget input[type="radio"]:hover + span::before {
+	border-bottom-width: 3px;
+}
+.oo-ui-radioInputWidget input[type="radio"]:disabled + span::before {
+	cursor: default;
+	background-color: #eeeeee;
+	border-color: #eeeeee;
+}
+.oo-ui-radioInputWidget input[type="radio"]:disabled:checked + span::before {
+	background-image: /* @embed */ url(themes/mediawiki/images/icons/circle-invert.svg);
 }
 .oo-ui-textInputWidget {
 	position: relative;
+	vertical-align: middle;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1381,7 +1481,7 @@
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement input,
 .oo-ui-textInputWidget.oo-ui-indicatorElement textarea {
-	padding-right: 2.2em;
+	padding-right: 1.9em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
 	width: 1.6em;
@@ -1510,6 +1610,52 @@
 	   -moz-user-select: none;
 	    -ms-user-select: none;
 	        user-select: none;
+	font-size: 1.1em;
+	padding: 0.75em;
+}
+.oo-ui-outlineOptionWidget.oo-ui-indicatorElement .oo-ui-labelElement-label {
+	padding-right: 1.5em;
+}
+.oo-ui-outlineOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+	opacity: 0.5;
+}
+.oo-ui-outlineOptionWidget-level-0 {
+	padding-left: 3.5em;
+}
+.oo-ui-outlineOptionWidget-level-0 .oo-ui-iconElement-icon {
+	left: 1em;
+}
+.oo-ui-outlineOptionWidget-level-1 {
+	padding-left: 5em;
+}
+.oo-ui-outlineOptionWidget-level-1 .oo-ui-iconElement-icon {
+	left: 2.5em;
+}
+.oo-ui-outlineOptionWidget-level-2 {
+	padding-left: 6.5em;
+}
+.oo-ui-outlineOptionWidget-level-2 .oo-ui-iconElement-icon {
+	left: 4em;
+}
+.oo-ui-selectWidget-depressed .oo-ui-outlineOptionWidget.oo-ui-optionWidget-selected {
+	background-color: #d0d0d0;
+	text-shadow: 0 1px 1px #ffffff;
+}
+.oo-ui-outlineOptionWidget.oo-ui-flaggedElement-important {
+	font-weight: bold;
+}
+.oo-ui-outlineOptionWidget.oo-ui-flaggedElement-placeholder {
+	font-style: italic;
+}
+.oo-ui-outlineOptionWidget.oo-ui-flaggedElement-empty .oo-ui-iconElement-icon {
+	opacity: 0.5;
+}
+.oo-ui-outlineOptionWidget.oo-ui-flaggedElement-empty .oo-ui-labelElement-label {
+	color: #777777;
+}
+.oo-ui-outlineControlsWidget {
+	height: 3em;
+	background-color: #ffffff;
 }
 .oo-ui-outlineControlsWidget-items,
 .oo-ui-outlineControlsWidget-movers {
@@ -1535,6 +1681,18 @@
 .oo-ui-outlineControlsWidget-movers .oo-ui-buttonWidget {
 	float: right;
 }
+.oo-ui-outlineControlsWidget-items,
+.oo-ui-outlineControlsWidget-movers {
+	height: 2em;
+	margin: 0.5em 0.5em 0.5em 0;
+	padding: 0;
+}
+.oo-ui-outlineControlsWidget > .oo-ui-iconElement-icon {
+	width: 1.5em;
+	height: 2em;
+	margin: 0.5em 0 0.5em 0.5em;
+	opacity: 0.2;
+}
 .oo-ui-comboBoxWidget {
 	display: inline-block;
 	position: relative;
@@ -1550,16 +1708,19 @@
 	height: 2.35em;
 }
 .oo-ui-comboBoxWidget .oo-ui-textInputWidget.oo-ui-indicatorElement {
-	padding-right: 2.2em;
+	padding-right: 1.9em;
 }
 .oo-ui-comboBoxWidget .oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-	width: 2.2em;
+	width: 1.9em;
 	background-position: center center;
 	border: solid 1px #cccccc;
 	border-left: none;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
+}
+.oo-ui-searchWidget {
+	border: solid 1px #cccccc;
 }
 .oo-ui-searchWidget-query {
 	position: absolute;
@@ -1579,15 +1740,16 @@
 	overflow-y: auto;
 }
 .oo-ui-searchWidget-query {
-	height: 2.4em;
-	top: 1px;
+	height: 4em;
+	padding: 0 1em;
+	border-bottom: solid 1px #cccccc;
 }
-.oo-ui-searchWidget-query .oo-ui-textInputWidget input {
-	border-width: 1px 0;
+.oo-ui-searchWidget-query .oo-ui-textInputWidget {
+	margin: 0.75em 0;
 }
 .oo-ui-searchWidget-results {
-	top: 2.2em;
-	bottom: 0.2em;
+	top: 4em;
+	padding: 1em;
 	line-height: 0;
 }
 .oo-ui-window {
@@ -1741,13 +1903,13 @@
 .oo-ui-messageDialog-actions .oo-ui-actionWidget:active {
 	background-color: rgba(0, 0, 0, 0.1);
 }
-.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-primary:hover {
+.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:hover {
 	background-color: rgba(8, 126, 204, 0.05);
 }
-.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-primary:active {
+.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:active {
 	background-color: rgba(8, 126, 204, 0.1);
 }
-.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-primary .oo-ui-labelElement-label {
+.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label {
 	font-weight: bold;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-constructive:hover {
@@ -1868,16 +2030,16 @@
 	/* Adjust for border so text aligns with title */
 	margin: -1px;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-primary:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-primary:hover {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:hover,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:hover {
 	background-color: rgba(8, 126, 204, 0.05);
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-primary:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-primary:active {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:active,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:active {
 	background-color: rgba(8, 126, 204, 0.1);
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-primary .oo-ui-labelElement-label,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-primary .oo-ui-labelElement-label {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label {
 	font-weight: bold;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-constructive:hover,
@@ -2124,6 +2286,17 @@
 .oo-ui-image-invert .oo-ui-icon-previous,
 .oo-ui-image-invert.oo-ui-icon-previous {
 	background-image: /* @embed */ url(themes/mediawiki/images/icons/move-rtl-invert.png);
+}
+.oo-ui-icon-circle {
+	background-image: /* @embed */ url(themes/mediawiki/images/icons/circle.png);
+}
+.oo-ui-image-constructive .oo-ui-icon-circle,
+.oo-ui-image-constructive.oo-ui-icon-circle {
+	background-image: /* @embed */ url(themes/mediawiki/images/icons/circle-constructive.png);
+}
+.oo-ui-image-invert .oo-ui-icon-circle,
+.oo-ui-image-invert.oo-ui-icon-circle {
+	background-image: /* @embed */ url(themes/mediawiki/images/icons/circle-invert.png);
 }
 .oo-ui-icon-redo {
 	background-image: /* @embed */ url(themes/mediawiki/images/icons/arched-arrow-ltr.png);

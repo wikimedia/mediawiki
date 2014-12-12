@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.4.0
+ * OOjs UI v0.5.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-12-06T00:33:19Z
+ * Date: 2014-12-12T20:13:21Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -153,7 +153,7 @@
 .oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	margin-left: 0.25em;
 }
-.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	color: #087ecc;
 }
 .oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
@@ -194,7 +194,7 @@
 	outline: none;
 }
 .oo-ui-buttonElement-framed > input.oo-ui-buttonElement-button,
-.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+.oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	line-height: 1.9em;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
@@ -220,7 +220,7 @@
 	margin-left: -0.5em;
 	margin-right: 0.3em;
 }
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button {
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
 	border: solid 1px #a6cee1;
 	background: #cde7f4;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#eaf4fa', endColorstr='#b0d9ee');
@@ -231,13 +231,13 @@
 	background-image:      -o-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
 	background-image:         linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
 }
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button:hover,
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button:focus {
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover,
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
 	border-color: #9dc2d4;
 }
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-primary.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
 	border: solid 1px #a6cee1;
 	background: #cde7f4;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#b0d9ee', endColorstr='#eaf4fa');
@@ -374,60 +374,57 @@
 .oo-ui-fieldLayout:after {
 	clear: both;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-labelElement-label,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	display: block;
 	float: left;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-field,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-field {
-	display: block;
-	float: left;
-}
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	text-align: right;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-labelElement-label {
-	display: inline-block;
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
+	display: table;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+	display: table-cell;
 	vertical-align: middle;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-field {
-	display: inline-block;
-	vertical-align: middle;
-}
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	display: inline-block;
 }
-.oo-ui-fieldLayout > .oo-ui-popupButtonWidget > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
-	z-index: 1;
-}
-.oo-ui-fieldLayout .oo-ui-fieldLayout-help {
+.oo-ui-fieldLayout > .oo-ui-fieldLayout-help {
 	float: right;
 }
-.oo-ui-fieldLayout .oo-ui-fieldLayout-help-content {
+.oo-ui-fieldLayout > .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
+	z-index: 1;
+}
+.oo-ui-fieldLayout > .oo-ui-fieldLayout-help .oo-ui-fieldLayout-help-content {
 	padding: 0.5em 0.75em;
 	line-height: 1.5em;
 }
 .oo-ui-fieldLayout:last-child {
 	margin-bottom: 0;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-labelElement-label,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	padding-top: 0.5em;
 	margin-right: 5%;
 	width: 35%;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-field,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-field {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	width: 60%;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-labelElement-label {
-	padding: 0.75em 0.5em 0.5em 0.5em;
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+	padding: 0.5em;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-field {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	padding: 0.5em 0;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-labelElement-label {
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	padding: 0.5em 0;
 }
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
@@ -1338,9 +1335,6 @@
 .oo-ui-popupWidget-head .oo-ui-labelElement-label {
 	margin: 0.75em 1em;
 }
-.oo-ui-popupWidget-body {
-	box-shadow: 0 0 0.66em rgba(0, 0, 0, 0.25);
-}
 .oo-ui-popupWidget-body-padded {
 	padding: 0 1em;
 }
@@ -1359,6 +1353,7 @@
 }
 .oo-ui-textInputWidget {
 	position: relative;
+	vertical-align: middle;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1652,7 +1647,7 @@
 .oo-ui-outlineControlsWidget-items,
 .oo-ui-outlineControlsWidget-movers {
 	height: 2em;
-	margin: 0.5em;
+	margin: 0.5em 0.5em 0.5em 0;
 	padding: 0;
 }
 .oo-ui-outlineControlsWidget > .oo-ui-iconElement-icon {
@@ -1660,9 +1655,6 @@
 	height: 2em;
 	margin: 0.5em 0 0.5em 0.5em;
 	opacity: 0.2;
-}
-.oo-ui-outlineControlsWidget-items {
-	margin-left: 0;
 }
 .oo-ui-comboBoxWidget {
 	display: inline-block;
@@ -1874,13 +1866,13 @@
 .oo-ui-messageDialog-actions .oo-ui-actionWidget:active {
 	background-color: rgba(0, 0, 0, 0.1);
 }
-.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-primary:hover {
+.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:hover {
 	background-color: rgba(8, 126, 204, 0.05);
 }
-.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-primary:active {
+.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:active {
 	background-color: rgba(8, 126, 204, 0.1);
 }
-.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-primary .oo-ui-labelElement-label {
+.oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label {
 	font-weight: bold;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-constructive:hover {
@@ -2001,16 +1993,16 @@
 	/* Adjust for border so text aligns with title */
 	margin: -1px;
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-primary:hover,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-primary:hover {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:hover,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:hover {
 	background-color: rgba(8, 126, 204, 0.05);
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-primary:active,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-primary:active {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:active,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:active {
 	background-color: rgba(8, 126, 204, 0.1);
 }
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-primary .oo-ui-labelElement-label,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-primary .oo-ui-labelElement-label {
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label {
 	font-weight: bold;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-constructive:hover,
