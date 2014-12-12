@@ -43,7 +43,7 @@ abstract class LBFactory {
 	 *
 	 * @return LBFactory
 	 */
-	public static function &singleton() {
+	public static function singleton() {
 		global $wgLBFactoryConf;
 
 		if ( is_null( self::$instance ) ) {

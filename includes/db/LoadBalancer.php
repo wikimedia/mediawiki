@@ -456,7 +456,7 @@ class LoadBalancer {
 	 * @throws MWException
 	 * @return DatabaseBase
 	 */
-	public function &getConnection( $i, $groups = array(), $wiki = false ) {
+	public function getConnection( $i, $groups = array(), $wiki = false ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $i === null || $i === false ) {
@@ -469,17 +469,14 @@ class LoadBalancer {
 			$wiki = false;
 		}
 
-		# Query groups
+		$groups = ( $groups === false || $groups === array() )
+			? array( false ) // check one "group": the generic pool
+			: (array)$groups;
+
 		if ( $i == DB_MASTER ) {
 			$i = $this->getWriterIndex();
-		} elseif ( !is_array( $groups ) ) {
-			$groupIndex = $this->getReaderIndex( $groups, $wiki );
-			if ( $groupIndex !== false ) {
-				$serverName = $this->getServerName( $groupIndex );
-				wfDebug( __METHOD__ . ": using server $serverName for group $groups\n" );
-				$i = $groupIndex;
-			}
 		} else {
+			# Try to find an available server in any the query groups (in order)
 			foreach ( $groups as $group ) {
 				$groupIndex = $this->getReaderIndex( $group, $wiki );
 				if ( $groupIndex !== false ) {
@@ -494,7 +491,10 @@ class LoadBalancer {
 		# Operation-based index
 		if ( $i == DB_SLAVE ) {
 			$this->mLastError = 'Unknown error'; // reset error string
-			$i = $this->getReaderIndex( false, $wiki );
+			# Try the general server pool if $groups are unavailable.
+			$i = in_array( false, $groups, true )
+				? false // don't bother with this if that is what was tried above
+				: $this->getReaderIndex( false, $wiki );
 			# Couldn't find a working server in getReaderIndex()?
 			if ( $i === false ) {
 				$this->mLastError = 'No working slave server: ' . $this->mLastError;
