@@ -335,6 +335,7 @@ class ApiEditPage extends ApiBase {
 
 		$articleContext = new RequestContext;
 		$articleContext->setRequest( $req );
+		$articleContext->setTitle( $titleObj );
 		$articleContext->setWikiPage( $pageObj );
 		$articleContext->setUser( $this->getUser() );
 
