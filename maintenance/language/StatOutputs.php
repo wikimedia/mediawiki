@@ -23,7 +23,7 @@
  * @author Antoine Musso <hashar at free dot fr>
  */
 
-/** A general output object. Need to be overriden */
+/** A general output object. Need to be overridden */
 class StatsOutput {
 	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
 		wfSuppressWarnings();

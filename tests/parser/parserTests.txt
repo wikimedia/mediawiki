@@ -16474,8 +16474,8 @@ image4    |300px| centre
 Gallery (with options)
 !! wikitext
 <gallery widths='70px' heights='40px' perrow='2' caption='Foo [[Main Page]]' >
-File:Nonexistant.jpg|caption
-File:Nonexistant.jpg
+File:Nonexistent.jpg|caption
+File:Nonexistent.jpg
 image:foobar.jpg|some '''caption''' [[Main Page]]
 image:foobar.jpg
 image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
@@ -16484,14 +16484,14 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 <ul class="gallery mw-gallery-traditional" style="max-width: 226px;_width: 226px;">
 	<li class='gallerycaption'>Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 105px"><div style="width: 105px">
-			<div class="thumb" style="height: 70px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>
 			<div class="gallerytext">
 <p>caption
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 105px"><div style="width: 105px">
-			<div class="thumb" style="height: 70px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
@@ -16580,25 +16580,25 @@ File:foobar.jpg|{{Test|unamedParam|alt=param}}|alt=galleryalt
 gallery (with showfilename option)
 !! wikitext
 <gallery showfilename>
-File:Nonexistant.jpg|caption
-File:Nonexistant.jpg
+File:Nonexistent.jpg|caption
+File:Nonexistent.jpg
 image:foobar.jpg|some '''caption''' [[Main Page]]
 File:Foobar.jpg
 </gallery>
 !! html
 <ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="height: 150px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 150px;">Nonexistent.jpg</div>
 			<div class="gallerytext">
-<p><a href="/wiki/File:Nonexistant.jpg" title="File:Nonexistant.jpg">Nonexistant.jpg</a><br />
+<p><a href="/wiki/File:Nonexistent.jpg" title="File:Nonexistent.jpg">Nonexistent.jpg</a><br />
 caption
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="height: 150px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 150px;">Nonexistent.jpg</div>
 			<div class="gallerytext">
-<p><a href="/wiki/File:Nonexistant.jpg" title="File:Nonexistant.jpg">Nonexistant.jpg</a><br />
+<p><a href="/wiki/File:Nonexistent.jpg" title="File:Nonexistent.jpg">Nonexistent.jpg</a><br />
 </p>
 			</div>
 		</div></li>
@@ -16625,20 +16625,20 @@ some <b>caption</b> <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 Gallery (with namespace-less filenames)
 !! wikitext
 <gallery>
-File:Nonexistant.jpg
-Nonexistant.jpg
+File:Nonexistent.jpg
+Nonexistent.jpg
 image:foobar.jpg
 foobar.jpg
 </gallery>
 !! html
 <ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="height: 150px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 150px;">Nonexistent.jpg</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="height: 150px;">Nonexistant.jpg</div>
+			<div class="thumb" style="height: 150px;">Nonexistent.jpg</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>

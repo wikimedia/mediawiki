@@ -626,7 +626,7 @@ class SpecialBlock extends FormSpecialPage {
 			# permission anyway, although the code does allow for it.
 			# Note: Important to use $target instead of $data['Target']
 			# since both $data['PreviousTarget'] and $target are normalized
-			# but $data['target'] gets overriden by (non-normalized) request variable
+			# but $data['target'] gets overridden by (non-normalized) request variable
 			# from previous request.
 			if ( $target === $performer->getName() &&
 				( $data['PreviousTarget'] !== $target || !$data['Confirm'] )

@@ -884,7 +884,7 @@
 	"apihelp-query+usercontribs-param-userprefix": "Retrieve contributions for all users whose names begin with this value. Overrides $1user.",
 	"apihelp-query+usercontribs-param-namespace": "Only list contributions in these namespaces.",
 	"apihelp-query+usercontribs-param-prop": "Include additional pieces of information:\n;ids:Adds the page ID and revision ID.\n;title:Adds the title and namespace ID of the page.\n;timestamp:Adds the timestamp of the edit.\n;comment:Adds the comment of the edit.\n;parsedcomment:Adds the parsed comment of the edit.\n;size:Adds the new size of the edit.\n;sizediff:Adds the size delta of the edit against its parent.\n;flags:Adds flags of the edit.\n;patrolled:Tags patrolled edits.\n;tags:Lists tags for the edit.",
-	"apihelp-query+usercontribs-param-show": "Show only items that meet thse criteria, e.g. non minor edits only: $2show=!minor.\n\nIf $2show=patrolled or $2show=!patrolled is set, revisions older than [https://www.mediawiki.org/wiki/Manual:$wgRCMaxAge $wgRCMaxAge] ($1 {{PLURAL:$1|second|seconds}}) won't be shown.",
+	"apihelp-query+usercontribs-param-show": "Show only items that meet these criteria, e.g. non minor edits only: $2show=!minor.\n\nIf $2show=patrolled or $2show=!patrolled is set, revisions older than [https://www.mediawiki.org/wiki/Manual:$wgRCMaxAge $wgRCMaxAge] ($1 {{PLURAL:$1|second|seconds}}) won't be shown.",
 	"apihelp-query+usercontribs-param-tag": "Only list revisions tagged with this tag.",
 	"apihelp-query+usercontribs-param-toponly": "Only list changes which are the latest revision.",
 	"apihelp-query+usercontribs-example-user": "Show contributions of [[User:Example]]",

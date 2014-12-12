@@ -196,7 +196,7 @@
 		 * p-cactions (Content actions), p-personal (Personal tools),
 		 * p-navigation (Navigation), p-tb (Toolbox)
 		 *
-		 * The first three paramters are required, the others are optional and
+		 * The first three parameters are required, the others are optional and
 		 * may be null. Though providing an id and tooltip is recommended.
 		 *
 		 * By default the new link will be added to the end of the list. To

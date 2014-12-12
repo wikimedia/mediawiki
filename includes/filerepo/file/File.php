@@ -138,10 +138,10 @@ abstract class File {
 	/** @var Title */
 	protected $redirectTitle;
 
-	/** @var bool Wether the output of transform() for this file is likely to be valid. */
+	/** @var bool Whether the output of transform() for this file is likely to be valid. */
 	protected $canRender;
 
-	/** @var bool Wether this media file is in a format that is unlikely to
+	/** @var bool Whether this media file is in a format that is unlikely to
 	 *    contain viruses or malicious content
 	 */
 	protected $isSafeFile;
@@ -1460,7 +1460,7 @@ abstract class File {
 
 	/**
 	 * Get the path of the file relative to the public zone root.
-	 * This function is overriden in OldLocalFile to be like getArchiveRel().
+	 * This function is overridden in OldLocalFile to be like getArchiveRel().
 	 *
 	 * @return string
 	 */
@@ -1504,7 +1504,7 @@ abstract class File {
 
 	/**
 	 * Get urlencoded path of the file relative to the public zone root.
-	 * This function is overriden in OldLocalFile to be like getArchiveUrl().
+	 * This function is overridden in OldLocalFile to be like getArchiveUrl().
 	 *
 	 * @return string
 	 */

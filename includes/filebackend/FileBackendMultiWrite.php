@@ -299,7 +299,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * Check that a set of files are consistent across all internal backends
-	 * and re-synchronize those files againt the "multi master" if needed.
+	 * and re-synchronize those files against the "multi master" if needed.
 	 *
 	 * @param array $paths List of storage paths
 	 * @return Status
