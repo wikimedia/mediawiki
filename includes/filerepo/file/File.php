@@ -47,12 +47,9 @@
  *
  * @ingroup FileAbstraction
  */
-abstract class File {
-	// Bitfield values akin to the Revision deletion constants
-	const DELETED_FILE = 1;
-	const DELETED_COMMENT = 2;
-	const DELETED_USER = 4;
-	const DELETED_RESTRICTED = 8;
+abstract class File extends BasicRevision {
+	// Alias for DELETED_CONTENT
+	const DELETED_FILE = parent::DELETED_CONTENT;
 
 	/** Force rendering in the current process */
 	const RENDER_NOW = 1;
@@ -63,11 +60,6 @@ abstract class File {
 	const RENDER_FORCE = 2;
 
 	const DELETE_SOURCE = 1;
-
-	// Audience options for File::getDescription()
-	const FOR_PUBLIC = 1;
-	const FOR_THIS_USER = 2;
-	const RAW = 3;
 
 	// Options for File::thumbName()
 	const THUMB_FULL_NAME = 1;
@@ -1813,6 +1805,13 @@ abstract class File {
 	}
 
 	/**
+	 * Inverse of isOld(), for compatibility with BasicRevision
+	 */
+	public function isCurrent() {
+		return !$this->isOld();
+	}
+
+	/**
 	 * Is this file a "deleted" file in a private archive?
 	 * STUB
 	 *
@@ -2033,6 +2032,13 @@ abstract class File {
 	 */
 	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
 		return null;
+	}
+
+	/**
+	 * Alias for getDescription(), for compatibility with BasicRevision
+	 */
+	public function getComment( $audience = self::FOR_PUBLIC, User $user = null ) {
+		return $this->getDescription( $audience, $user );
 	}
 
 	/**

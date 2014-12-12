@@ -1599,24 +1599,24 @@ class Linker {
 	 * Wrap and format the given revision's comment block, if the current
 	 * user is allowed to view it.
 	 *
-	 * @param Revision $rev
+	 * @param IBasicRevision $rev
 	 * @param bool $local Whether section links should refer to local page
 	 * @param bool $isPublic Show only if all users can see it
 	 * @return string HTML fragment
 	 */
-	public static function revComment( Revision $rev, $local = false, $isPublic = false ) {
-		if ( $rev->getComment( Revision::RAW ) == "" ) {
+	public static function revComment( IBasicRevision $rev, $local = false, $isPublic = false ) {
+		if ( $rev->getComment( IBasicRevision::RAW ) == "" ) {
 			return "";
 		}
-		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
+		if ( $rev->isDeleted( IBasicRevision::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
-		} elseif ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
-			$block = self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER ),
+		} elseif ( $rev->userCan( IBasicRevision::DELETED_COMMENT ) ) {
+			$block = self::commentBlock( $rev->getComment( IBasicRevision::FOR_THIS_USER ),
 				$rev->getTitle(), $local );
 		} else {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}
-		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
+		if ( $rev->isDeleted( IBasicRevision::DELETED_COMMENT ) ) {
 			return " <span class=\"history-deleted\">$block</span>";
 		}
 		return $block;
