@@ -21,7 +21,7 @@
 		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
 		var i = 0, units = [ '', ' kB', ' MB', ' GB', ' TB', ' PB' ];
 		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
-		return bytes.toFixed( 1 ) + units[i];
+		return bytes.toFixed( i ? 1 : 0 ) + units[i];
 	}
 
 	/**
