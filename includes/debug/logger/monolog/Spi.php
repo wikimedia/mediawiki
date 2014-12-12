@@ -218,7 +218,11 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 		if ( !isset( $this->singletons['handlers'][$name] ) ) {
 			$spec = $this->config['handlers'][$name];
 			$handler = ObjectFactory::getObjectFromSpec( $spec );
-			$handler->setFormatter( $this->getFormatter( $spec['formatter'] ) );
+			if ( isset( $spec['formatter'] ) ) {
+				$handler->setFormatter(
+					$this->getFormatter( $spec['formatter'] )
+				);
+			}
 			$this->singletons['handlers'][$name] = $handler;
 		}
 		return $this->singletons['handlers'][$name];
