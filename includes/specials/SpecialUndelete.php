@@ -412,8 +412,7 @@ class PageArchive {
 		}
 
 		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 
 		$logEntry = new ManualLogEntry( 'delete', 'restore' );

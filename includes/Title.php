@@ -1892,8 +1892,7 @@ class Title {
 	 */
 	public function userCan( $action, $user = null, $doExpensiveQueries = true ) {
 		if ( !$user instanceof User ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 
 		return !count( $this->getUserPermissionsErrorsInternal(
@@ -4438,10 +4437,10 @@ class Title {
 	 * @return string|null
 	 */
 	public function getNotificationTimestamp( $user = null ) {
-		global $wgUser, $wgShowUpdatedMarker;
+		global $wgShowUpdatedMarker;
 		// Assume current user if none given
 		if ( !$user ) {
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 		// Check cache first
 		$uid = $user->getId();

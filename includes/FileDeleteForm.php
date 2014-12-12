@@ -157,8 +157,7 @@ class FileDeleteForm {
 		$suppress, User $user = null
 	) {
 		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 
 		if ( $oldimage ) {

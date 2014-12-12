@@ -1592,8 +1592,7 @@ class Revision implements IDBAccessObject {
 
 		if ( $current ) {
 			if ( !$user ) {
-				global $wgUser;
-				$user = $wgUser;
+				$user = RequestContext::getMainUserAndWarn();
 			}
 
 			$row = array(
@@ -1656,8 +1655,7 @@ class Revision implements IDBAccessObject {
 	) {
 		if ( $bitfield & $field ) { // aspect is deleted
 			if ( $user === null ) {
-				global $wgUser;
-				$user = $wgUser;
+				$user = RequestContext::getMainUserAndWarn();
 			}
 			if ( $bitfield & self::DELETED_RESTRICTED ) {
 				$permissions = array( 'suppressrevision', 'viewsuppressed' );

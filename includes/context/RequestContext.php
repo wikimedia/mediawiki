@@ -448,6 +448,19 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
+	 * Get the User object associated with the main request
+	 * and gives a warning to the log, to find places, where a user maybe is missing.
+	 *
+	 * @return User
+	 * @since 1.25
+	 */
+	public static function getMainUserAndWarn() {
+		wfDebugLog( 'GlobalUserFail', __METHOD__ . ' called by ' . wfGetAllCallers( 5 ) . ' with no user set.' );
+
+		return self::getMain()->getUser();
+	}
+
+	/**
 	 * Resets singleton returned by getMain(). Should be called only from unit tests.
 	 */
 	public static function resetMain() {

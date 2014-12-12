@@ -440,8 +440,7 @@ class LogPage {
 		$this->params = LogPage::makeParamBlob( $params );
 
 		if ( $doer === null ) {
-			global $wgUser;
-			$doer = $wgUser;
+			$doer = RequestContext::getMainUserAndWarn();
 		} elseif ( !is_object( $doer ) ) {
 			$doer = User::newFromId( $doer );
 		}

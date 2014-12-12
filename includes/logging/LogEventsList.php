@@ -439,8 +439,7 @@ class LogEventsList extends ContextSource {
 	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
 		if ( $bitfield & $field ) {
 			if ( $user === null ) {
-				global $wgUser;
-				$user = $wgUser;
+				$user = RequestContext::getMainUserAndWarn();
 			}
 			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
 				$permissions = array( 'suppressrevision', 'viewsuppressed' );
@@ -656,8 +655,7 @@ class LogEventsList extends ContextSource {
 		global $wgLogRestrictions;
 
 		if ( $audience != 'public' && $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 
 		// Reset the array, clears extra "where" clauses when $par is used

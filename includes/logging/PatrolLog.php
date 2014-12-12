@@ -52,8 +52,7 @@ class PatrolLog {
 		}
 
 		if ( !$user ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 
 		$entry = new ManualLogEntry( 'patrol', 'patrol' );

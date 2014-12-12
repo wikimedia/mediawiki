@@ -92,8 +92,7 @@ class UploadStash {
 		if ( $user ) {
 			$this->user = $user;
 		} else {
-			global $wgUser;
-			$this->user = $wgUser;
+			$this->user = RequestContext::getMainUserAndWarn();
 		}
 
 		if ( is_object( $this->user ) ) {

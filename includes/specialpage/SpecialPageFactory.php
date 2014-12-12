@@ -450,8 +450,7 @@ class SpecialPageFactory {
 	public static function getUsablePages( User $user = null ) {
 		$pages = array();
 		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 		foreach ( self::getPageList() as $name => $rec ) {
 			$page = self::getPage( $name );
@@ -495,8 +494,7 @@ class SpecialPageFactory {
 	public static function getRestrictedPages( User $user = null ) {
 		$pages = array();
 		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 		foreach ( self::getPageList() as $name => $rec ) {
 			$page = self::getPage( $name );

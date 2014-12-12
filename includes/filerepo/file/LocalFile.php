@@ -1206,8 +1206,7 @@ class LocalFile extends File {
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false, User $user = null ) {
 		if ( !$user ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 
 		$pageText = SpecialUpload::getInitialPageText( $desc, $license, $copyStatus, $source );
@@ -1239,8 +1238,7 @@ class LocalFile extends File {
 		wfProfileIn( __METHOD__ );
 
 		if ( is_null( $user ) ) {
-			global $wgUser;
-			$user = $wgUser;
+			$user = RequestContext::getMainUserAndWarn();
 		}
 
 		$dbw = $this->repo->getMasterDB();
@@ -2009,8 +2007,7 @@ class LocalFileDeleteBatch {
 		if ( $user ) {
 			$this->user = $user;
 		} else {
-			global $wgUser;
-			$this->user = $wgUser;
+			$this->user = RequestContext::getMainUserAndWarn();
 		}
 		$this->status = $file->repo->newGood();
 	}
