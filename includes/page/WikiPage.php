@@ -2029,7 +2029,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Returns a stdClass with source, pst and output members
 	 *
 	 * @param Content $content
-	 * @param int|null $revid
+	 * @param Revision|int|null $revision Revision object. For backwards compatibility, a
+	 *        revision ID is also accepted, but this is deprecated.
 	 * @param User|null $user
 	 * @param string|null $serialFormat
 	 * @param bool $useCache Check shared prepared edit cache
@@ -2039,9 +2040,22 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.21
 	 */
 	public function prepareContentForEdit(
-		Content $content, $revid = null, User $user = null, $serialFormat = null, $useCache = true
+		Content $content, $revision = null, User $user = null, $serialFormat = null, $useCache = true
 	) {
 		global $wgContLang, $wgUser, $wgAjaxEditStash;
+
+		if ( is_object( $revision ) ) {
+			$revid = $revision->getId();
+		} else {
+			$revid = $revision;
+			// This code path is deprecated, and nothing is known to
+			// use it, so performance here shouldn't be a worry.
+			if ( $revid !== null ) {
+				$revision = Revision::newFromId( $revid, Revision::READ_LATEST );
+			} else {
+				$revision = null;
+			}
+		}
 
 		$user = is_null( $user ) ? $wgUser : $user;
 		//XXX: check $user->getId() here???
@@ -2092,6 +2106,25 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $cachedEdit ) {
 			$edit->output = $cachedEdit->output;
 		} else {
+			if ( $revision ) {
+				// We get here if vary-revision is set. This means that this page references
+				// itself (such as via self-transclusion). In this case, we need to make sure
+				// that any such self-references refer to the newly-saved revision, and not
+				// to the previous one, which could otherwise happen due to slave lag.
+				$oldCallback = $edit->popts->setCurrentRevisionCallback(
+					function ( $title, $parser = false ) use ( $revision, &$oldCallback ) {
+						if ( $title->equals( $revision->getTitle() ) ) {
+							return $revision;
+						} else {
+							return call_user_func(
+								$oldCallback,
+								$title,
+								$parser
+							);
+						}
+					}
+				);
+			}
 			$edit->output = $edit->pstContent
 				? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
 				: null;
@@ -2142,7 +2175,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// already pre-save transformed once.
 		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
 			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
-			$editInfo = $this->prepareContentForEdit( $content, $revision->getId(), $user );
+			$editInfo = $this->prepareContentForEdit( $content, $revision, $user );
 		} else {
 			wfDebug( __METHOD__ . ": No vary-revision, using prepared edit...\n" );
 			$editInfo = $this->mPreparedEdit;
