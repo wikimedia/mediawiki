@@ -64,7 +64,7 @@ abstract class LockManager {
 	/**
 	 * Construct a new instance from configuration
 	 *
-	 * @param array $config Paramaters include:
+	 * @param array $config Parameters include:
 	 *   - domain  : Domain (usually wiki ID) that all resources are relative to [optional]
 	 *   - lockTTL : Age (in seconds) at which resource locks should expire.
 	 *               This only applies if locks are not tied to a connection/process.

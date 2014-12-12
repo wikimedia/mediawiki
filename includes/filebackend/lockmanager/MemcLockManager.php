@@ -55,7 +55,7 @@ class MemcLockManager extends QuorumLockManager {
 	/**
 	 * Construct a new instance from configuration.
 	 *
-	 * @param array $config Paramaters include:
+	 * @param array $config Parameters include:
 	 *   - lockServers  : Associative array of server names to "<IP>:<port>" strings.
 	 *   - srvsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                    each having an odd-numbered list of server names (peers) as values.
