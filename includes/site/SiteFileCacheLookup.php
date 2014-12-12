@@ -1,5 +1,8 @@
 <?php
 /**
+ * Implements SiteLookup interface, with a file cache-based store,
+ * allowing to get a Site, all sites or an array of sites by global id.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,24 +19,30 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup Site
  *
  * @license GNU GPL v2+
  */
 
 /**
- * Provides a file-based cache of a SiteStore, stored as a json file.
- * The cache can be built with the rebuildSitesCache.php maintenance script,
- * and a MediaWiki instance can be setup to use this by setting the
+ * Provides a file-based cache of a SiteStore or SiteList, stored as a json
+ * file. The cache can be built with the rebuildSitesCache.php maintenance
+ * script, and a MediaWiki instance can be setup to use this by setting the
  * 'wgSitesCacheFile' configuration to the cache file location.
  *
  * @since 1.25
  */
-class SiteListFileCache {
+class SiteFileCacheLookup implements SiteLookup {
+
+	/**
+	 * @var Site[]
+	 */
+	private $sites = null;
 
 	/**
 	 * @var SiteList
 	 */
-	private $sites = null;
+	private $siteList = null;
 
 	/**
 	 * @var string
@@ -48,29 +57,37 @@ class SiteListFileCache {
 	}
 
 	/**
+	 * @see SiteLookup::getSites
+	 *
 	 * @since 1.25
 	 *
 	 * @return SiteList
 	 */
 	public function getSites() {
 		if ( $this->sites === null ) {
-			$this->sites = $this->loadSitesFromCache();
+			$this->loadSitesFromCache();
+
+			if ( $this->siteList === null ) {
+				$this->siteList = new SiteList( $this->sites );
+			}
 		}
 
-		return $this->sites;
+		return $this->siteList;
 	}
 
 	/**
-	 * @param string $globalId
+	 * @see SiteLookup::getSite
 	 *
 	 * @since 1.25
+	 *
+	 * @param string $globalId
 	 *
 	 * @return Site|null
 	 */
 	public function getSite( $globalId ) {
 		$sites = $this->getSites();
 
-		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : null;
+		return array_key_exists( $globalId, $sites ) ? $sites[$globalId] : null;
 	}
 
 	/**
@@ -79,14 +96,16 @@ class SiteListFileCache {
 	private function loadSitesFromCache() {
 		$data = $this->loadJsonFile();
 
-		$sites = new SiteList();
+		$this->sites = array();
 
 		// @todo lazy initialize the site objects in the site list (e.g. only when needed to access)
 		foreach ( $data['sites'] as $siteArray ) {
-			$sites[] = $this->newSiteFromArray( $siteArray );
+			$site = $this->newSiteFromArray( $siteArray );
+			$globalId = $site->getGlobalId();
+			$this->sites[$globalId] = $site;
 		}
 
-		return $sites;
+		return $this->sites;
 	}
 
 	/**

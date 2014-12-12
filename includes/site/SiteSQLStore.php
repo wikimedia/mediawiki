@@ -57,6 +57,11 @@ class SiteSQLStore implements SiteStore {
 	private $cache;
 
 	/**
+	 * @var string
+	 */
+	private $cacheMode;
+
+	/**
 	 * @since 1.21
 	 *
 	 * @param ORMTable|null $sitesTable
@@ -87,6 +92,16 @@ class SiteSQLStore implements SiteStore {
 
 		$this->cache = $cache;
 		$this->sitesTable = $sitesTable;
+		$this->cacheMode = 'cache';
+	}
+
+	/**
+	 * @param string $cacheMode Set to 'recache' to force loading from sites table
+	 *                          and to refresh the cache. Default is 'cache' which
+	 *                          fetches Site data from the cache.
+	 */
+	public function setCacheMode( $cacheMode ) {
+		$this->cacheMode = $cacheMode;
 	}
 
 	/**
@@ -126,14 +141,16 @@ class SiteSQLStore implements SiteStore {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $source Either 'cache' or 'recache'
+	 * @param string[]|null $globalIds
 	 *
 	 * @return SiteList
 	 */
-	public function getSites( $source = 'cache' ) {
+	public function getSites( array $globalIds = null ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( $source === 'cache' ) {
+		if ( $this->cacheMode === 'recache' ) {
+			$this->loadSites();
+		} else {
 			if ( $this->sites === null ) {
 				$sites = $this->cache->get( $this->getCacheKey() );
 
@@ -143,9 +160,6 @@ class SiteSQLStore implements SiteStore {
 					$this->loadSites();
 				}
 			}
-		}
-		else {
-			$this->loadSites();
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -279,14 +293,13 @@ class SiteSQLStore implements SiteStore {
 	 * @since 1.21
 	 *
 	 * @param string $globalId
-	 * @param string $source
 	 *
 	 * @return Site|null
 	 */
-	public function getSite( $globalId, $source = 'cache' ) {
+	public function getSite( $globalId ) {
 		wfProfileIn( __METHOD__ );
 
-		$sites = $this->getSites( $source );
+		$sites = $this->getSites();
 
 		wfProfileOut( __METHOD__ );
 		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : null;
