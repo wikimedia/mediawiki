@@ -1,6 +1,9 @@
 <?php
 
 /**
+ * Implements SiteLookup interface, with a file cache-based store,
+ * allowing to get a Site, all sites or an array of sites by global id.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,13 +22,14 @@
  * @since 1.25
  *
  * @file
+ * @ingroup Site
  *
  * @license GNU GPL v2+
  */
-class SiteListFileCache {
+class SiteFileCacheLookup implements SiteLookup {
 
 	/**
-	 * @var SiteList
+	 * @var Site[]
 	 */
 	private $sites = null;
 
@@ -42,25 +46,44 @@ class SiteListFileCache {
 	}
 
 	/**
+	 * @see SiteLookup::getSites
+	 *
 	 * @since 1.25
 	 *
-	 * @return SiteList
+	 * @param string[]|null $globalIds
+	 *
+	 * @return Site[]
 	 */
-	public function getSites() {
+	public function getSites( array $globalIds = null ) {
 		if ( $this->sites === null ) {
-			$this->sites = $this->loadSitesFromCache();
+			$this->loadSitesFromCache();
+		}
+
+		if ( $globalIds !== null ) {
+			return array_intersect_key( $this->sites, array_flip( $globalIds ) );
 		}
 
 		return $this->sites;
 	}
 
 	/**
+	 * @see SiteLookup::getSite
+	 *
 	 * @since 1.25
+	 *
+	 * @param string $globalId
+	 *
+	 * @throws OutOfBoundsException
+	 * @return Site
 	 */
 	public function getSite( $globalId ) {
 		$sites = $this->getSites();
 
-		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : null;
+		if ( !isset( $sites[$globalId] ) ) {
+			throw new OutOfBoundsException( 'Site with global id: ' . $globalId . ' not found.' );
+		}
+
+		return $sites[$globalId];
 	}
 
 	/**
@@ -69,14 +92,16 @@ class SiteListFileCache {
 	private function loadSitesFromCache() {
 		$data = $this->loadJsonFile();
 
-		$sites = new SiteList();
+		$this->sites = array();
 
 		// @todo lazy initialize the site objects in the site list (e.g. only when needed to access)
 		foreach ( $data['sites'] as $siteArray ) {
-			$sites[] = $this->newSiteFromArray( $siteArray );
+			$site = $this->newSiteFromArray( $siteArray );
+			$globalId = $site->getGlobalId();
+			$this->sites[$globalId] = $site;
 		}
 
-		return $sites;
+		return $this->sites;
 	}
 
 	/**
