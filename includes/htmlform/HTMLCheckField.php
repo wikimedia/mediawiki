@@ -26,11 +26,11 @@ class HTMLCheckField extends HTMLFormField {
 				array(
 					'class' => 'mw-ui-checkbox-label'
 				),
-				Xml::check( $this->mName, $value, $attr ) . $this->mLabel );
+				Xml::check( $this->mName, $value, $attr ) . parent::getLabel() );
 		} else {
 			$chkLabel = Xml::check( $this->mName, $value, $attr )
 			. '&#160;'
-			. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+			. Html::rawElement( 'label', array( 'for' => $this->mID ), parent::getLabel() );
 
 			if ( $wgUseMediaWikiUIEverywhere ) {
 				$chkLabel = Html::rawElement(
