@@ -1335,7 +1335,7 @@ class LoginForm extends SpecialPage {
 				'mediawiki.special.userlogin.signup.styles'
 			) );
 
-			$template = new UsercreateTemplate();
+			$template = new UsercreateTemplate( $this->getConfig() );
 
 			// Must match number of benefits defined in messages
 			$template->set( 'benefitCount', 3 );
@@ -1348,7 +1348,7 @@ class LoginForm extends SpecialPage {
 				'mediawiki.special.userlogin.login.styles'
 			) );
 
-			$template = new UserloginTemplate();
+			$template = new UserloginTemplate( $this->getConfig() );
 
 			$q = 'action=submitlogin&type=login';
 			$linkq = 'type=signup';
