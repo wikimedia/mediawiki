@@ -73,11 +73,11 @@ $.fn.hidpi = function () {
 				match;
 			if ( typeof srcset === 'string' && srcset !== '' ) {
 				match = $.matchSrcSet( devicePixelRatio, srcset );
-				if (match !== null ) {
+				if ( match !== null ) {
 					$img.attr( 'src', match );
 				}
 			}
-		});
+		} );
 	}
 
 	return $target;

@@ -508,7 +508,7 @@
 
 		normalizeExtension = function ( extension ) {
 			// Remove only trailing space (that is removed by MW anyway)
-			extension = extension.toLowerCase().replace(/\s*$/, '');
+			extension = extension.toLowerCase().replace( /\s*$/, '' );
 			return extension;
 		};
 

@@ -125,7 +125,7 @@
 					newList = [];
 					$.each( response.parse.templates, function ( i, template ) {
 						li = $( '<li>' )
-							.append( $('<a>')
+							.append( $( '<a>' )
 								.attr( {
 									'href': mw.util.getUrl( template['*'] ),
 									'class': ( template.exists !== undefined ? '' : 'new' )

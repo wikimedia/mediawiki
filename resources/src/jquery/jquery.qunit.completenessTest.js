@@ -17,8 +17,8 @@
 
 	var util,
 		hasOwn = Object.prototype.hasOwnProperty,
-		log = (window.console && window.console.log)
-			? function () { return window.console.log.apply(window.console, arguments); }
+		log = ( window.console && window.console.log )
+			? function () { return window.console.log.apply( window.console, arguments ); }
 			: function () {};
 
 	// Simplified version of a few jQuery methods, except that they don't
@@ -91,7 +91,7 @@
 			// Restore warnings
 			mw.log.warn = warn;
 			warn = undefined;
-		});
+		} );
 
 		QUnit.done( function () {
 			that.populateMissingTests();
@@ -114,7 +114,7 @@
 					var elItem = document.createElement( 'li' );
 					elItem.textContent = key;
 					elList.appendChild( elItem );
-				});
+				} );
 
 				elFoot = document.createElement( 'p' );
 				elFoot.innerHTML = '<em>&mdash; CompletenessTest</em>';
@@ -133,7 +133,7 @@
 
 				util.each( style, function ( key, value ) {
 					elOutputWrapper.style[key] = value;
-				});
+				} );
 				return elOutputWrapper;
 			}
 
@@ -171,7 +171,7 @@
 			if ( toolbar ) {
 				toolbar.insertBefore( testResults, toolbar.firstChild );
 			}
-		});
+		} );
 
 		return this;
 	}
@@ -248,7 +248,7 @@
 			var ct = this;
 			util.each( ct.injectionTracker, function ( key ) {
 				ct.hasTest( key );
-			});
+			} );
 		},
 
 		/**

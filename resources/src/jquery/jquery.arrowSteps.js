@@ -80,7 +80,7 @@
 		$.each( $steps, function ( i, step ) {
 			var $step = $( step );
 			if ( $step.is( selector ) ) {
-				if ($previous) {
+				if ( $previous ) {
 					$previous.addClass( 'tail' );
 				}
 				$step.addClass( 'head' );

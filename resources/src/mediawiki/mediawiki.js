@@ -1199,7 +1199,7 @@
 							var check = checkCssHandles;
 							pending++;
 							return function () {
-								if (check) {
+								if ( check ) {
 									pending--;
 									check();
 									check = undefined; // Revoke

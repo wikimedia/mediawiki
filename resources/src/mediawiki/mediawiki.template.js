@@ -63,7 +63,7 @@
 			var compiledTemplate,
 				compilerName = this.getCompilerName( templateName );
 
-			if (!compiledTemplates[moduleName]) {
+			if ( !compiledTemplates[moduleName] ) {
 				compiledTemplates[moduleName] = {};
 			}
 

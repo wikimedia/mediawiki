@@ -339,7 +339,7 @@
 		// as each header can span over multiple columns (using colspan=N),
 		// we have to bidirectionally map headers to their columns and columns to their headers
 		$tableHeaders.each( function ( headerIndex ) {
-			$cell = $(this);
+			$cell = $( this );
 			columns = [];
 
 			for ( i = 0; i < this.colSpan; i++ ) {
@@ -354,7 +354,7 @@
 				headerIndex: headerIndex,
 				order: 0,
 				count: 0
-			});
+			} );
 
 			if ( $cell.hasClass( config.unsortableClass ) ) {
 				$cell.data( 'sortDisabled', true );
@@ -870,7 +870,7 @@
 										s = config.sortList[j];
 										o = config.headerList[s[0]];
 										if ( isValueInArray( s[0], newSortList ) ) {
-											$(o).data( 'count', s[1] + 1 );
+											$( o ).data( 'count', s[1] + 1 );
 											s[1] = $( o ).data( 'count' ) % 2;
 										}
 									}
