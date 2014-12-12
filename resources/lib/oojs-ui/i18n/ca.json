@@ -9,14 +9,20 @@
 			"SMP",
 			"Vriullop",
 			"Toniher",
-			"Edustus"
+			"Edustus",
+			"Davidpar"
 		]
 	},
-	"ooui-outline-control-move-down": "Baixa element",
-	"ooui-outline-control-move-up": "Puja element",
+	"ooui-outline-control-move-down": "Baixa l'element",
+	"ooui-outline-control-move-up": "Puja l'element",
+	"ooui-outline-control-remove": "Esborra l'ítem",
 	"ooui-toolbar-more": "Més",
 	"ooui-toolgroup-expand": "Més",
 	"ooui-toolgroup-collapse": "Menys",
+	"ooui-dialog-message-accept": "D'acord",
+	"ooui-dialog-message-reject": "Cancel·la",
+	"ooui-dialog-process-error": "Alguna cosa no ha funcionat",
 	"ooui-dialog-process-dismiss": "Descarta",
-	"ooui-dialog-process-retry": "Torneu-ho a provar"
+	"ooui-dialog-process-retry": "Torneu-ho a provar",
+	"ooui-dialog-process-continue": "Continua"
 }
