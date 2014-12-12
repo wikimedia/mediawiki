@@ -2243,23 +2243,7 @@ class LocalFileDeleteBatch {
 		wfProfileIn( __METHOD__ );
 
 		$this->file->lock();
-		// Leave private files alone
-		$privateFiles = array();
-		list( $oldRels, ) = $this->getOldRels();
-		$dbw = $this->file->repo->getMasterDB();
 
-		if ( !empty( $oldRels ) ) {
-			$res = $dbw->select( 'oldimage',
-				array( 'oi_archive_name' ),
-				array( 'oi_name' => $this->file->getName(),
-					'oi_archive_name' => array_keys( $oldRels ),
-					$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE ),
-				__METHOD__ );
-
-			foreach ( $res as $row ) {
-				$privateFiles[$row->oi_archive_name] = 1;
-			}
-		}
 		// Prepare deletion batch
 		$hashes = $this->getHashes();
 		$this->deletionBatch = array();
@@ -2267,9 +2251,8 @@ class LocalFileDeleteBatch {
 		$dotExt = $ext === '' ? '' : ".$ext";
 
 		foreach ( $this->srcRels as $name => $srcRel ) {
-			// Skip files that have no hash (missing source).
-			// Keep private files where they are.
-			if ( isset( $hashes[$name] ) && !array_key_exists( $name, $privateFiles ) ) {
+			// Skip files that have no hash (e.g. missing DB record, or sha1 field and file source)
+			if ( isset( $hashes[$name] ) ) {
 				$hash = $hashes[$name];
 				$key = $hash . $dotExt;
 				$dstRel = $this->file->repo->getDeletedHashPath( $key ) . $key;
@@ -2286,6 +2269,7 @@ class LocalFileDeleteBatch {
 		$this->doDBInserts();
 
 		// Removes non-existent file from the batch, so we don't get errors.
+		// This also handles files in the 'deleted' zone deleted via revision deletion.
 		$checkStatus = $this->removeNonexistentFiles( $this->deletionBatch );
 		if ( !$checkStatus->isGood() ) {
 			$this->status->merge( $checkStatus );
