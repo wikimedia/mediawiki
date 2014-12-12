@@ -386,7 +386,7 @@ class InfoAction extends FormlessAction {
 		// Page protection
 		$pageInfo['header-restrictions'] = array();
 
-		// Is this page effected by the cascading protection of something which includes it?
+		// Is this page affected by the cascading protection of something which includes it?
 		if ( $title->isCascadeProtected() ) {
 			$cascadingFrom = '';
 			$sources = $title->getCascadeProtectionSources(); // Array deferencing is in PHP 5.4 :(

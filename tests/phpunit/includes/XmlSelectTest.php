@@ -166,7 +166,7 @@ class XmlSelectTest extends MediaWikiTestCase {
 			'razor'
 		);
 
-		# inexistant keys should give us 'null'
+		# inexistent keys should give us 'null'
 		$this->assertEquals(
 			$this->select->getAttribute( 'I DO NOT EXIT' ),
 			null

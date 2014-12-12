@@ -247,7 +247,7 @@ abstract class RevDelList extends RevisionListBase {
 		} else {
 			$logType = 'delete';
 		}
-		// Add params for effected page and ids
+		// Add params for affected page and ids
 		$logParams = $this->getLogParams( $params );
 		// Actually add the deletion log entry
 		$log = new LogPage( $logType );

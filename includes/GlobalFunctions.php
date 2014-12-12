@@ -1081,7 +1081,7 @@ function wfDebugMem( $exact = false ) {
  * @param string|bool $dest Destination of the message:
  *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
  *     - 'log': only to the log and not in HTML
- *     - 'private': only to the specifc log if set in $wgDebugLogGroups and
+ *     - 'private': only to the specific log if set in $wgDebugLogGroups and
  *       discarded otherwise
  *   For backward compatibility, it can also take a boolean:
  *     - true: same as 'all'

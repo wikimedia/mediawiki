@@ -54,7 +54,7 @@ class ObjectFactory {
 	 * @throws InvalidArgumentException when object specification does not
 	 * contain 'class' or 'factory' keys
 	 * @throws ReflectionException when 'args' are supplied and 'class'
-	 * constructor is non-public or non-existant
+	 * constructor is non-public or non-existent
 	 */
 	public static function getObjectFromSpec( $spec ) {
 		$args = isset( $spec['args'] ) ? $spec['args'] : array();
