@@ -22,18 +22,18 @@
  * @ingroup Site
  * @ingroup Test
  *
- * @covers SiteListFileCacheBuilder
+ * @covers SiteFileCacheBuilder
  * @group Site
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
+class SiteFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
 
 	public function testBuild() {
 		$cacheFile = $this->getCacheFile();
 
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $this->getSites(), $cacheFile );
+		$cacheBuilder = $this->newSiteFileCacheBuilder( $this->getSites(), $cacheFile );
 		$cacheBuilder->build();
 
 		$contents = file_get_contents( $cacheFile );
@@ -85,21 +85,21 @@ class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	private function newSiteListFileCacheBuilder( SiteList $sites, $cacheFile ) {
-		return new SiteListFileCacheBuilder(
+	private function newSiteFileCacheBuilder( array $sites, $cacheFile ) {
+		return new SiteFileCacheBuilder(
 			$this->getSiteSQLStore( $sites ),
 			$cacheFile
 		);
 	}
 
-	private function getSiteSQLStore( SiteList $sites ) {
+	private function getSiteSQLStore( array $sites ) {
 		$siteSQLStore = $this->getMockBuilder( 'SiteSQLStore' )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$siteSQLStore->expects( $this->any() )
 			->method( 'getSites' )
-			->will( $this->returnValue( $sites ) );
+			->will( $this->returnValue( new SiteList( $sites ) ) );
 
 		return $siteSQLStore;
 	}
@@ -120,7 +120,7 @@ class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
 		$site->setPath( MediaWikiSite::PATH_FILE, "https://en.wiktionary.org/w/$1" );
 		$sites[] = $site;
 
-		return new SiteList( $sites );
+		return $sites;
 	}
 
 	private function getCacheFile() {
