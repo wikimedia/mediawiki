@@ -218,7 +218,7 @@ class MimeMagic {
 				wfDebug( __METHOD__ . ": can't load mime types from $mimeTypeFile\n" );
 			}
 		} else {
-			wfDebug( __METHOD__ . ": no mime types file defined, using build-ins only.\n" );
+			wfDebug( __METHOD__ . ": no mime types file defined, using built-ins only.\n" );
 		}
 
 		$types .= "\n" . $this->mExtraTypes;
@@ -295,7 +295,7 @@ class MimeMagic {
 				wfDebug( __METHOD__ . ": can't load mime info from $mimeInfoFile\n" );
 			}
 		} else {
-			wfDebug( __METHOD__ . ": no mime info file defined, using build-ins only.\n" );
+			wfDebug( __METHOD__ . ": no mime info file defined, using built-ins only.\n" );
 		}
 
 		$info .= "\n" . $this->mExtraInfo;

@@ -86,7 +86,7 @@ $.extend( mw.language, {
 	 * Usage in message text: `{{gender:[gender|user object]|masculine|feminine|neutral}}`.
 	 * If second or third parameter are not specified, masculine is used.
 	 *
-	 * These details may be overriden per language.
+	 * These details may be overridden per language.
 	 *
 	 * @param {string} gender 'male', 'female', or anything else for neutral.
 	 * @param {Array} forms List of gender forms

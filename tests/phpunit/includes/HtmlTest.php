@@ -637,7 +637,7 @@ class HtmlTest extends MediaWikiTestCase {
 				. 'Depending on compatibility mode IE might use "button", instead.',
 		);
 
-		# <select> specifc handling
+		# <select> specific handling
 		$cases[] = array( '<select multiple></select>',
 			'select', array( 'size' => '4', 'multiple' => true ),
 		);

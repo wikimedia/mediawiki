@@ -8,7 +8,7 @@
 // Cached access key prefix for used browser
 var cachedAccessKeyPrefix,
 
-	// Wether to use 'test-' instead of correct prefix (used for testing)
+	// Whether to use 'test-' instead of correct prefix (used for testing)
 	useTestPrefix = false,
 
 	// tag names which can have a label tag

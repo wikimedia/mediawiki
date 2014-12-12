@@ -102,7 +102,7 @@ abstract class Maintenance {
 	private $mDependantParameters = array();
 
 	/**
-	 * Used by getDD() / setDB()
+	 * Used by getDB() / setDB()
 	 * @var DatabaseBase
 	 */
 	private $mDb = null;
@@ -944,8 +944,8 @@ abstract class Maintenance {
 
 		$wgShowSQLErrors = true;
 
-		// @codingStandardsIgnoreStart Allow error supppression. wfSuppressWarnings()
-		// is not avaiable.
+		// @codingStandardsIgnoreStart Allow error suppression. wfSuppressWarnings()
+		// is not available.
 		@set_time_limit( 0 );
 		// @codingStandardsIgnoreStart
 

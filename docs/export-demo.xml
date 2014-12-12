@@ -55,7 +55,7 @@
     <!-- if a page is deleted and recreated.                          -->
     <id>1</id>
     
-    <!-- Tag wether this article is a redirect and its target -->
+    <!-- Tag whether this article is a redirect and its target -->
     <!-- This corresponds to the page_is_redirect in the page table -->
     <redirect title="Target" />
     

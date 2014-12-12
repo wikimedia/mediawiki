@@ -8,7 +8,7 @@
 	/**
 	 * @class mw.Title
 	 *
-	 * Parse titles into an object struture. Note that when using the constructor
+	 * Parse titles into an object structure. Note that when using the constructor
 	 * directly, passing invalid titles will result in an exception. Use #newFromText to use the
 	 * logic directly and get null for invalid titles which is easier to work with.
 	 *

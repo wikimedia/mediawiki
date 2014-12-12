@@ -330,7 +330,7 @@ class SpecialPage {
 
 	/**
 	 * Helper function for implementations of prefixSearchSubpages() that
-	 * filter the values in memory (as oppposed to making a query).
+	 * filter the values in memory (as opposed to making a query).
 	 *
 	 * @since 1.24
 	 * @param string $search

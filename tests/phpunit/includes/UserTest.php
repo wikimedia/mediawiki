@@ -342,7 +342,7 @@ class UserTest extends MediaWikiTestCase {
 	public static function provideGetCanonicalName() {
 		return array(
 			array( ' trailing space ', array( 'creatable' => 'Trailing space' ), 'Trailing spaces' ),
-			// @todo FIXME: Maybe the createable name should be 'Talk:Username' or false to reject?
+			// @todo FIXME: Maybe the creatable name should be 'Talk:Username' or false to reject?
 			array( 'Talk:Username', array( 'creatable' => 'Username', 'usable' => 'Username',
 				'valid' => 'Username', 'false' => 'Talk:Username' ), 'Namespace prefix' ),
 			array( ' name with # hash', array( 'creatable' => false, 'usable' => false ), 'With hash' ),
