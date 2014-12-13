@@ -365,6 +365,28 @@ class Message {
 	}
 
 	/**
+	 * Get a title object for a mediawiki message.
+	 * The title will be for a content language message, if the message key is in
+	 * $wgForceUIMsgAsContentMsg it will be append with the language code,
+	 * because Message::inContentLanguage will also return in user language.
+	 *
+	 * @see $wgForceUIMsgAsContentMsg
+	 * @param IContextSource $context
+	 * @param string $key Key of message to get the title for
+	 * @return Title
+	 * @since 1.25
+	 */
+	public static function makeTitle( $context, $key ) {
+		global $wgContLang;
+
+		if ( in_array( $key, (array)$context->getConfig()->get( 'ForceUIMsgAsContentMsg' ) ) ) {
+			$key .= '/' . $context->getLanguage()->getCode();
+		}
+
+		return Title::makeTitle( NS_MEDIAWIKI, $wgContLang->ucfirst( strtr( $key, ' ', '_' ) ) );
+	}
+
+	/**
 	 * Adds parameters to the parameter list of this message.
 	 *
 	 * @since 1.17

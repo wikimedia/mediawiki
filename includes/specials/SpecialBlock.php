@@ -385,7 +385,7 @@ class SpecialBlock extends FormSpecialPage {
 		# Link to edit the block dropdown reasons, if applicable
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$links[] = Linker::link(
-				Title::makeTitle( NS_MEDIAWIKI, 'Ipbreason-dropdown' ),
+				Message::makeTitle( $this->getContext(), 'ipbreason-dropdown' ),
 				$this->msg( 'ipb-edit-dropdown' )->escaped(),
 				array(),
 				array( 'action' => 'edit' )
