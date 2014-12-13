@@ -11,7 +11,10 @@ directory and make a symbolic link:
 
  mediawiki/skins$ ln -s ../../skins-trunk/FooBar
 
-Most skins are available through Git:
+The default skin Vector can be installed by cloning from Git:
+    git clone https://git.wikimedia.org/git/mediawiki/skins/Vector.git
+
+Other skins are also available:
     https://gerrit.wikimedia.org/r/#/admin/projects/?filter=mediawiki%252Fskins%252F
     https://git.wikimedia.org/project/mediawiki
 
