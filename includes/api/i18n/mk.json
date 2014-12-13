@@ -267,6 +267,7 @@
 	"apihelp-query+alllinks-example-unique-generator": "Ги дава сите наслови со врски, означувајќи ги отсутните",
 	"apihelp-query+alllinks-example-generator": "Дава страници што ги содржат врските",
 	"apihelp-query+allmessages-description": "Дава пораки од ова мрежно место.",
+	"apihelp-query+allmessages-param-prop": "Кои својства да се дадат.",
 	"apihelp-query+allmessages-param-filter": "Дај само пораки со називи што ја содржат оваа низа.",
 	"apihelp-query+allmessages-param-customised": "Дај само пораки во оваа состојба на прилагоденост.",
 	"apihelp-query+allmessages-param-lang": "Дај само пораки на овој јазик.",
