@@ -153,6 +153,8 @@ production.
 * (T76051) list=tags will now continue correctly.
 * (T76052) list=tags can now indicate whether a tag is defined.
 * (T75522) list=prefixsearch now supports continuation
+* The 'md5' parameter of the action=edit API has been deprecated. The new
+  parameters 'hash' and 'hashfunction' should be used instead.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.

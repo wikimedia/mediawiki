@@ -84,6 +84,8 @@
 	"apihelp-edit-param-unwatch": "{{doc-apihelp-param|edit|unwatch}}",
 	"apihelp-edit-param-watchlist": "{{doc-apihelp-param|edit|watchlist}}",
 	"apihelp-edit-param-md5": "{{doc-apihelp-param|edit|md5}}",
+	"apihelp-edit-param-hash": "{{doc-apihelp-param|edit|hash}}",
+	"apihelp-edit-param-hashfunction": "{{doc-apihelp-param|edit|hashfunction}}",
 	"apihelp-edit-param-prependtext": "{{doc-apihelp-param|edit|prependtext}}",
 	"apihelp-edit-param-appendtext": "{{doc-apihelp-param|edit|appendtext}}",
 	"apihelp-edit-param-undo": "{{doc-apihelp-param|edit|undo}}",

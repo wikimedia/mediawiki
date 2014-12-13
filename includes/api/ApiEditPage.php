@@ -123,7 +123,7 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( $errors[0] );
 		}
 
-		$toMD5 = $params['text'];
+		$toHash = $params['text'];
 		if ( !is_null( $params['appendtext'] ) || !is_null( $params['prependtext'] ) ) {
 			$content = $pageObj->getContent();
 
@@ -186,7 +186,7 @@ class ApiEditPage extends ApiBase {
 			}
 
 			$params['text'] = $params['prependtext'] . $text . $params['appendtext'];
-			$toMD5 = $params['prependtext'] . $params['appendtext'];
+			$toHash = $params['prependtext'] . $params['appendtext'];
 		}
 
 		if ( $params['undo'] > 0 ) {
@@ -241,9 +241,11 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// See if the MD5 hash checks out
-		if ( !is_null( $params['md5'] ) && md5( $toMD5 ) !== $params['md5'] ) {
+		if ( !is_null( $params['md5'] ) && md5( $toHash ) !== $params['md5'] ) {
 			$this->dieUsageMsg( array( 'hashcheckfailed', 'md5', 'MD5' ) );
 		}
+		// Check other hash functions if needed
+		$this->checkHash( $params['hash'], $params['hashfunction'], $toHash );
 
 		// EditPage wants to parse its stuff from a WebRequest
 		// That interface kind of sucks, but it's workable
@@ -508,7 +510,7 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		$params = array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
 			),
@@ -546,7 +548,10 @@ class ApiEditPage extends ApiBase {
 					'nochange'
 				),
 			),
-			'md5' => null,
+			'md5' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 			'prependtext' => null,
 			'appendtext' => null,
 			'undo' => array(
@@ -570,6 +575,23 @@ class ApiEditPage extends ApiBase {
 				ApiBase::PARAM_HELP_MSG_APPEND => array( 'apihelp-edit-param-token' ),
 			),
 		);
+		$hashFunctions = $this->getHashFunctions();
+		if ( count( $hashFunctions ) > 0 ) {
+			// Insert 'hash' and 'hashfunction' after 'md5'
+			$indexOfMd5 = array_search( 'md5', array_keys( $params ) );
+			$params = array_slice( $params, 0, $indexOfMd5 + 1 ) +
+				array(
+					'hash' => array(
+						ApiBase::PARAM_TYPE => 'string',
+					),
+					'hashfunction' => array(
+						// Intentionally without default value
+						ApiBase::PARAM_TYPE => array_keys( $hashFunctions ),
+					),
+				) +
+				array_slice( $params, $indexOfMd5 + 1 );
+		}
+		return $params;
 	}
 
 	public function needsToken() {

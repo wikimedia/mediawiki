@@ -90,6 +90,8 @@
 	"apihelp-edit-param-unwatch": "Remove the page from your watchlist.",
 	"apihelp-edit-param-watchlist": "Unconditionally add or remove the page from your watchlist, use preferences or do not change watch.",
 	"apihelp-edit-param-md5": "The MD5 hash of the $1text parameter, or the $1prependtext and $1appendtext parameters concatenated. If set, the edit won't be done unless the hash is correct.",
+	"apihelp-edit-param-hash": "The hash of the $1text parameter, or the $1prependtext and $1appendtext parameters concatenated, according to $1hashfunction. If set, the edit won't be done unless the hash is correct.",
+	"apihelp-edit-param-hashfunction": "The hashing function to use for $1hash.",
 	"apihelp-edit-param-prependtext": "Add this text to the beginning of the page. Overrides $1text.",
 	"apihelp-edit-param-appendtext": "Add this text to the end of the page. Overrides $1text.\n\nUse $1section=new to append a new section, rather than this parameter.",
 	"apihelp-edit-param-undo": "Undo this revision. Overrides $1text, $1prependtext and $1appendtext.",
