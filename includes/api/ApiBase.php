@@ -489,6 +489,43 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Return information about valid hashing functions for this class.
+	 *
+	 * @return array Array representing algorithms
+	 */
+	public function getHashFunctions() {
+		$hashFunctions = array();
+		foreach ( $this->getConfig()->get( 'APIHashFunctions' ) as $module => $config ) {
+			if ( $this instanceof $module ) {
+				$hashFunctions += $config;
+			}
+		}
+		return $hashFunctions;
+	}
+
+	/**
+	 * Check a string against a hash and call dieUsageMsg() if failing.
+	 *
+	 * @param string $hash The (usually fixed-length and hexadecimal) hash
+	 * @param string $hashFunction One of getHashFunctions()'s keys
+	 * @param string $content The string passed to the hashing function
+	 * @param bool $safe Whether to use hash_equals instead of comparison operator
+	 */
+	protected function checkHash( $hash, $hashFunction, $content, $safe = false ) {
+		if ( !is_null( $hash ) && !is_null( $hashFunction ) ) {
+			$funcs = $this->getHashFunctions();
+			if ( isset( $funcs[$hashFunction] ) ) { // should always be true
+				$expected = hash( $hashFunction, $content );
+				if ( !( $safe ? hash_equals( $expected, $hash ) : $expected === $hash ) ) {
+					$this->dieUsageMsg(
+						array( 'hashcheckfailed', $hashFunction, $funcs[$hashFunction] )
+					);
+				}
+			}
+		}
+	}
+
+	/**
 	 * Using getAllowedParams(), this function makes an array of the values
 	 * provided by the user, with key being the name of the variable, and
 	 * value - validated value from user or default. limits will not be
@@ -1765,7 +1802,7 @@ abstract class ApiBase extends ContextSource {
 			'info' => "Creating new, empty pages is not allowed"
 		),
 		'editconflict' => array( 'code' => 'editconflict', 'info' => "Edit conflict detected" ),
-		'hashcheckfailed' => array( 'code' => 'badmd5', 'info' => "The supplied MD5 hash was incorrect" ),
+		'hashcheckfailed' => array( 'code' => 'bad$1', 'info' => "The supplied \$2 hash was incorrect" ),
 		'missingtext' => array(
 			'code' => 'notext',
 			'info' => "One of the text, appendtext, prependtext and undo parameters must be set"
