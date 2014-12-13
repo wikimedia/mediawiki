@@ -997,7 +997,7 @@ class HTMLForm extends ContextSource {
 				$errorstr = $this->getOutput()->parse( $errors->getWikiText() );
 			}
 		} elseif ( is_array( $errors ) ) {
-			$errorstr = $this->formatErrors( $errors );
+			$errorstr = self::formatErrors( $errors, $this->getContext() );
 		} else {
 			$errorstr = $errors;
 		}
@@ -1011,11 +1011,15 @@ class HTMLForm extends ContextSource {
 	 * Format a stack of error messages into a single HTML string
 	 *
 	 * @param array $errors Array of message keys/values
-	 *
+	 * @param IContextSource|null $context
 	 * @return string HTML, a "<ul>" list of errors
 	 */
-	public static function formatErrors( $errors ) {
+	public static function formatErrors( $errors, IContextSource $context = null ) {
 		$errorstr = '';
+
+		if ( $context === null ) {
+			$context = RequestContext::getMainAndWarn( __METHOD__ );
+		}
 
 		foreach ( $errors as $error ) {
 			if ( is_array( $error ) ) {
@@ -1028,7 +1032,7 @@ class HTMLForm extends ContextSource {
 			$errorstr .= Html::rawElement(
 				'li',
 				array(),
-				wfMessage( $msg, $error )->parse()
+				$context->msg( $msg, $error )->parse()
 			);
 		}
 
