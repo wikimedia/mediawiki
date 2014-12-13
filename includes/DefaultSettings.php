@@ -3279,8 +3279,8 @@ $wgResourceModules = array();
  *     ),
  *   );
  *   // Note the '+' character:
- *   $wgResourceModuleSkinStyles['+foo'] = array(
- *     'bar' => 'skins/Foo/bar.css',
+ *   $wgResourceModuleSkinStyles['foo'] = array(
+ *     '+bar' => 'skins/Foo/bar.css',
  *   );
  * @endcode
  *
