@@ -184,6 +184,8 @@ production.
   provided to access just the live or just the deleted revids.
 * Added ApiPageSet::setGeneratorData() and ApiPageSet::populateGeneratorData()
   to allow generators to include data in the action=query result.
+* Added ApiBase::getHashFunctions() and ApiBase::checkHash()
+  to allow modules to validate user-provided data via hashing algorithms.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
