@@ -60,7 +60,7 @@ mw.log.deprecate( win, 'getInnerText', function () { return ''; }, msg );
 // Run a function after the window onload event is fired
 mw.log.deprecate( win, 'addOnloadHook', function ( hookFunct ) {
 	if ( onloadFuncts ) {
-		onloadFuncts.push(hookFunct);
+		onloadFuncts.push( hookFunct );
 	} else {
 		// If func queue is gone the event has happened already,
 		// run immediately instead of queueing.
@@ -197,7 +197,7 @@ win.importStylesheetURI = function ( url, media ) {
 	if ( media ) {
 		l.media = media;
 	}
-	document.getElementsByTagName('head')[0].appendChild( l );
+	document.getElementsByTagName( 'head' )[0].appendChild( l );
 	return l;
 };
 

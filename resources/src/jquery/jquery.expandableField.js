@@ -134,7 +134,7 @@
 			// Store the context for next time
 			$( this ).data( 'expandableField-context', context );
 		} );
-		return returnValue !== undefined ? returnValue : $(this);
+		return returnValue !== undefined ? returnValue : $( this );
 	};
 
 }( jQuery ) );
