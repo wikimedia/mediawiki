@@ -1740,7 +1740,7 @@ class Article implements Page {
 			Xml::closeElement( 'form' );
 
 			if ( $user->isAllowed( 'editinterface' ) ) {
-				$dropdownTitle = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
+				$dropdownTitle = Message::makeTitle( $ctx, 'deletereason-dropdown' );
 				$link = Linker::link(
 					$dropdownTitle,
 					wfMessage( 'delete-edit-reasonlist' )->escaped(),
