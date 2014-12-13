@@ -154,7 +154,7 @@ class SpecialTags extends SpecialPage {
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$disp .= ' ';
 			$editLink = Linker::link(
-				Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ),
+				$this->msg( "tag-$tag" )->inContentLanguage()->getTitle(),
 				$this->msg( 'tags-edit' )->escaped()
 			);
 			$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
@@ -166,7 +166,7 @@ class SpecialTags extends SpecialPage {
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$desc .= ' ';
 			$editDescLink = Linker::link(
-				Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ),
+				$this->msg( "tag-$tag-description" )->inContentLanguage()->getTitle(),
 				$this->msg( 'tags-edit' )->escaped()
 			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();

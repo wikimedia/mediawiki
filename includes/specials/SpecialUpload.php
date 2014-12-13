@@ -812,7 +812,7 @@ class UploadForm extends HTMLForm {
 		# Add a link to edit MediaWik:Licenses
 		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
 			$licensesLink = Linker::link(
-				Title::makeTitle( NS_MEDIAWIKI, 'Licenses' ),
+				$this->msg( 'licenses' )->inContentLanguage()->getTitle(),
 				$this->msg( 'licenses-edit' )->escaped(),
 				array(),
 				array( 'action' => 'edit' )
