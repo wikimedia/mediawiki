@@ -365,6 +365,21 @@ class Message {
 	}
 
 	/**
+	 * Get a title object for a mediawiki message
+	 *
+	 * @param IContextSource $context
+	 * @param string $key Key of message to get the title from
+	 * @return Title
+	 */
+	public static function makeTitle( $context, $key ) {
+		$lang = $context->getLanguage();
+		if ( in_array( $key, (array)$context->getConfig()->get( 'ForceUIMsgAsContentMsg' ) ) ) {
+			$key .= '/' . $lang->getCode();
+		}
+		return Title::makeTitle( NS_MEDIAWIKI, $lang->ucfirst( strtr( $key, ' ', '_' ) ) );
+	}
+
+	/**
 	 * Adds parameters to the parameter list of this message.
 	 *
 	 * @since 1.17

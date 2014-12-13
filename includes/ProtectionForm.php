@@ -542,7 +542,7 @@ class ProtectionForm {
 		$out .= Xml::closeElement( 'fieldset' );
 
 		if ( $user->isAllowed( 'editinterface' ) ) {
-			$title = Title::makeTitle( NS_MEDIAWIKI, 'Protect-dropdown' );
+			$title = Message::makeTitle( $this->mContext, 'protect-dropdown' );
 			$link = Linker::link(
 				$title,
 				wfMessage( 'protect-edit-reasonlist' )->escaped(),
