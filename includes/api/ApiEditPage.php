@@ -242,7 +242,7 @@ class ApiEditPage extends ApiBase {
 
 		// See if the MD5 hash checks out
 		if ( !is_null( $params['md5'] ) && md5( $toMD5 ) !== $params['md5'] ) {
-			$this->dieUsageMsg( 'hashcheckfailed' );
+			$this->dieUsageMsg( array( 'hashcheckfailed', 'md5', 'MD5' ) );
 		}
 
 		// EditPage wants to parse its stuff from a WebRequest

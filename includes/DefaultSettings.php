@@ -6997,6 +6997,31 @@ $wgAPIRequestLog = false;
 $wgAPICacheHelpTimeout = 60 * 60;
 
 /**
+ * API hashing functions.
+ *
+ * Associative array mapping module class name to hash specs;
+ * Each hash spec is an associative array mapping algorithms codes
+ * as understood by hash() to names used for error messages.
+ *
+ * @par Example adding SHA256 as algorithm for every API module:
+ * @code
+ *  $wgAPIHashFunctions['ApiBase']['sha256'] = 'SHA256';
+ * @endcode
+ *
+ * @par Example adding SHA512 as algorithm for the 'edit' module:
+ * @code
+ *  $wgAPIHashFunctions['ApiEditPage']['sha512'] = 'SHA512';
+ * @endcode
+ *
+ * @since 1.25
+ */
+$wgAPIHashFunctions = array(
+	'ApiBase' => array(
+		'sha1' => 'SHA1',
+	),
+);
+
+/**
  * The ApiQueryQueryPages module should skip pages that are redundant to true
  * API queries.
  */
