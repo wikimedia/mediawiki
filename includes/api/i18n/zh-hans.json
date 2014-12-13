@@ -481,6 +481,7 @@
 	"apihelp-yaml-description": "输出数据为YAML格式。",
 	"apihelp-yamlfm-description": "输出数据为YAML格式（HTML优质打印效果）。",
 	"api-format-title": "MediaWiki API 结果",
+	"api-format-prettyprint-header": "您正在查看$1格式的HTML表示。HTML对调试很有用，但不适合应用程序使用。\n\n指定格式参数以更改输出格式。要查看$1格式的非HTML表示，设置format=$2。\n\n参见[https://www.mediawiki.org/wiki/Special:MyLanguage/API 完整文档]，或[[Special:ApiHelp/main|API帮助]]以获取更多信息。",
 	"api-orm-param-props": "要查询的字段。",
 	"api-help-title": "MediaWiki API 帮助",
 	"api-help-lead": "这是自动生成的MediaWiki API文档页面。\n\n文档和例子：https://www.mediawiki.org/wiki/API:Main_page/zh",
