@@ -262,7 +262,6 @@ class BlockListPager extends TablePager {
 				'blocklist-nousertalk',
 				'unblocklink',
 				'change-blocklink',
-				'infiniteblock',
 			);
 			$msg = array_combine( $msg, array_map( array( $this, 'msg' ), $msg ) );
 		}
