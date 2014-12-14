@@ -1181,6 +1181,7 @@ $wgAutoloadLocalClasses = array(
 	'TransformParameterError' => __DIR__ . '/includes/media/MediaTransformOutput.php',
 	'TransformationalImageHandler' => __DIR__ . '/includes/media/TransformationalImageHandler.php',
 	'UDPRCFeedEngine' => __DIR__ . '/includes/rcfeed/UDPRCFeedEngine.php',
+	'UdpStreamWriter' => __DIR__ . '/includes/libs/UdpStreamWriter.php',
 	'UIDGenerator' => __DIR__ . '/includes/utils/UIDGenerator.php',
 	'UcdXmlReader' => __DIR__ . '/maintenance/language/generateCollationData.php',
 	'UncategorizedCategoriesPage' => __DIR__ . '/includes/specials/SpecialUncategorizedcategories.php',
