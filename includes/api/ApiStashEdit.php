@@ -239,7 +239,9 @@ class ApiStashEdit extends ApiBase {
 				$wgMemc->unlock( $key );
 			}
 			$sec = microtime( true ) - $start;
-			wfDebugLog( 'StashEdit', "Waited $sec seconds on '$key'." );
+			if ( $sec > .01 ) {
+				wfDebugLog( 'StashEdit', "Waited $sec seconds on '$key'." );
+			}
 		}
 
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
