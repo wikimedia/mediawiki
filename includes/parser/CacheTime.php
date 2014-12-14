@@ -34,7 +34,7 @@ class CacheTime {
 
 	public $mVersion = Parser::VERSION,  # Compatibility check
 		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
-		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncachable. Used in ParserCache.
+		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncacheable. Used in ParserCache.
 		$mContainsOldMagic,           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
 		$mCacheRevisionId = null;     # Revision ID that was parsed
 
@@ -123,7 +123,7 @@ class CacheTime {
 
 		if ( $this->mCacheTime < 0 ) {
 			return 0;
-		} // old-style marker for "not cachable"
+		} // old-style marker for "not cacheable"
 
 		$expire = $this->mCacheExpiry;
 
@@ -138,7 +138,7 @@ class CacheTime {
 		}
 
 		if ( $expire <= 0 ) {
-			return 0; // not cachable
+			return 0; // not cacheable
 		} else {
 			return $expire;
 		}
