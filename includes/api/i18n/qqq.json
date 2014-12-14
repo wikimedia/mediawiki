@@ -951,7 +951,7 @@
 	"apihelp-xmlfm-description": "{{doc-apihelp-description|xmlfm|seealso=* {{msg-mw|apihelp-xml-description}}}}",
 	"apihelp-yaml-description": "{{doc-apihelp-description|yaml|seealso=* {{msg-mw|apihelp-yamlfm-description}}}}",
 	"apihelp-yamlfm-description": "{{doc-apihelp-description|yamlfm|seealso=* {{msg-mw|apihelp-yaml-description}}}}",
-	"api-format-title": "Page title when API output is pretty-printed in HTML.",
+	"api-format-title": "{{technical}}\nPage title when API output is pretty-printed in HTML.",
 	"api-format-prettyprint-header": "{{technical}} Displayed as a header when API output is pretty-printed in HTML.\n\nParameters:\n* $1 - Format name\n* $2 - Non-pretty-printing module name",
 	"api-orm-param-props": "{{doc-apihelp-param|orm|props|description=the \"props\" parameter in subclasses of ApiQueryORM}}",
 	"api-orm-param-limit": "{{doc-apihelp-param|orm|limit|description=the \"limit\" parameter in subclasses of ApiQueryORM}}",

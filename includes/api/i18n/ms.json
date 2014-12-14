@@ -13,6 +13,7 @@
 	"apihelp-help-example-recursive": "Segala bantuan dalam satu halaman",
 	"apihelp-help-example-help": "Bantuan untuk modul bantuan",
 	"apihelp-query+prefixsearch-param-offset": "Bilangan hasil untuk dilangkau.",
+	"apihelp-query+usercontribs-param-show": "Hanya paparkan item-item yang mematuhi kriteria ini, cth. suntingan selain yang kecil sahaja: $2show=!minor.\n\nJika ditetapkannya $2show=patrolled atau $2show=!patrolled, maka semakan-semakan yang lebih lama daripada [https://www.mediawiki.org/wiki/Manual:$wgRCMaxAge $wgRCMaxAge] ($1 saat) tidak akan dipaparkan.",
 	"apihelp-userrights-param-userid": "ID pengguna.",
 	"apihelp-dbgfm-description": "Data output dalam format var_export() PHP (''pretty-print'' dalam HTML).",
 	"apihelp-dump-description": "Output data dalam format var_dump() PHP.",
