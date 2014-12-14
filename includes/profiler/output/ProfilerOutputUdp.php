@@ -68,11 +68,10 @@ class ProfilerOutputUdp extends ProfilerOutput {
 	}
 
 	public function log( array $stats ) {
-		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-		$plength = 0;
-		$packet = "";
+		$stream = fopen( "udp-line://{$this->host}:{$this->port}", 'w' );
+
 		foreach ( $stats as $pfdata ) {
-			$pfline = sprintf( $this->format,
+			fwrite( $stream, sprintf( $this->format,
 				$this->collector->getProfileID(),
 				$pfdata['calls'],
 				$pfdata['cpu'] / 1000, // ms => sec
@@ -81,16 +80,9 @@ class ProfilerOutputUdp extends ProfilerOutput {
 				0.0, // sum of real^2 for each invocation (unused)
 				$pfdata['name'],
 				$pfdata['memory']
-			);
-			$length = strlen( $pfline );
-			if ( $length + $plength > 1400 ) {
-				socket_sendto( $sock, $packet, $plength, 0, $this->host, $this->port );
-				$packet = "";
-				$plength = 0;
-			}
-			$packet .= $pfline;
-			$plength += $length;
+			) );
 		}
-		socket_sendto( $sock, $packet, $plength, 0x100, $this->host, $this->port );
+
+		fclose( $stream );
 	}
 }

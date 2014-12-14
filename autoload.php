@@ -1180,6 +1180,7 @@ $wgAutoloadLocalClasses = array(
 	'TransactionProfiler' => __DIR__ . '/includes/profiler/TransactionProfiler.php',
 	'TransformParameterError' => __DIR__ . '/includes/media/MediaTransformOutput.php',
 	'TransformationalImageHandler' => __DIR__ . '/includes/media/TransformationalImageHandler.php',
+	'UDPLineWriter' => __DIR__ . '/includes/libs/UDPLineWriter.php',
 	'UDPRCFeedEngine' => __DIR__ . '/includes/rcfeed/UDPRCFeedEngine.php',
 	'UIDGenerator' => __DIR__ . '/includes/utils/UIDGenerator.php',
 	'UcdXmlReader' => __DIR__ . '/maintenance/language/generateCollationData.php',
