@@ -144,6 +144,7 @@ class User implements IDBAccessObject {
 		'move-subpages',
 		'nominornewtalk',
 		'noratelimit',
+		'noratelimit-account',
 		'override-export-depth',
 		'pagelang',
 		'passwordreset',
@@ -1683,6 +1684,15 @@ class User implements IDBAccessObject {
 			return false;
 		}
 		return !$this->isAllowed( 'noratelimit' );
+	}
+
+	/**
+	 * Is this user subject to the account creation throttle?
+	 *
+	 * @return bool True if throttled
+	 */
+	public function isAccThrottled() {
+		return !$this->isAllowed( 'noratelimit-account' ) && $this->isPingLimitable();
 	}
 
 	/**

@@ -1288,6 +1288,7 @@
 	"right-rollback": "{{doc-right|rollback}}\n{{Identical|Rollback}}",
 	"right-markbotedits": "{{doc-right|markbotedits}}\nA user with this right can mark a roll-back edit as a bot edit by adding <code>&bot=1</code> to the URL (not by default).",
 	"right-noratelimit": "{{doc-right|noratelimit}}\nThe rate limits have no effect on the groups that have this right. Rate limits is a restriction that you can only do X actions (edits, moves, etc.) in Y number of seconds (set by [[mw:Manual:$wgRateLimits|$wgRateLimits]]).",
+	"right-noratelimit-account": "{{doc-right|noratelimit-account}}\nGroups with this user right may create more accounts in a 24-hour period than what is defined in [[mw:Manual:$wgAccountCreationThrottle|$wgAccountCreationThrottle]].",
 	"right-import": "{{doc-right|import}}",
 	"right-importupload": "{{doc-right|importupload}}",
 	"right-patrol": "{{doc-right|patrol}}",

@@ -597,7 +597,7 @@ class LoginForm extends SpecialPage {
 			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook " .
 				"allowed account creation w/o throttle\n" );
 		} else {
-			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
+			if ( ( $wgAccountCreationThrottle && $currentUser->isAccThrottled() ) ) {
 				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
 				$value = $wgMemc->get( $key );
 				if ( !$value ) {
