@@ -1056,6 +1056,10 @@ class MessageCache {
 		$popts->setInterfaceMessage( $interface );
 		$popts->setTargetLanguage( $language );
 
+		if ( $language ) {
+			$popts->setUserLang( $language );
+		}
+
 		wfProfileIn( __METHOD__ );
 		if ( !$title || !$title instanceof Title ) {
 			global $wgTitle;
