@@ -39,7 +39,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	/**
 	 * @return bool
 	 */
-	function isListed() {
+	public function isListed() {
 		global $wgAuth;
 
 		return $wgAuth->allowPropChange( 'emailaddress' );
@@ -54,7 +54,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$out->disallowUserJs();
 		$out->addModules( 'mediawiki.special.changeemail' );
 
-		return parent::execute( $par );
+		parent::execute( $par );
 	}
 
 	protected function checkExecutePermissions( User $user ) {
@@ -149,7 +149,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 * @param string $newaddr
 	 * @return Status
 	 */
-	protected function attemptChange( User $user, $pass, $newaddr ) {
+	private function attemptChange( User $user, $pass, $newaddr ) {
 		global $wgAuth;
 
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
