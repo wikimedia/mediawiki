@@ -47,7 +47,6 @@ class SpecialImport extends SpecialPage {
 	 */
 	public function __construct() {
 		parent::__construct( 'Import', 'import' );
-		$this->namespace = $this->getConfig()->get( 'ImportTargetNamespace' );
 	}
 
 	/**
@@ -57,6 +56,8 @@ class SpecialImport extends SpecialPage {
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+
+		$this->namespace = $this->getConfig()->get( 'ImportTargetNamespace' );
 
 		$this->getOutput()->addModules( 'mediawiki.special.import' );
 
