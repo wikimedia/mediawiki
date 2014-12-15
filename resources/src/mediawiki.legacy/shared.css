@@ -506,7 +506,7 @@ a.feedlink {
 table.wikitable {
 	margin: 1em 0;
 	background-color: #f9f9f9;
-	border: 1px #aaa solid;
+	border: 1px solid #aaa;
 	border-collapse: collapse;
 	color: black;
 }
@@ -515,7 +515,7 @@ table.wikitable > tr > th,
 table.wikitable > tr > td,
 table.wikitable > * > tr > th,
 table.wikitable > * > tr > td {
-	border: 1px #aaa solid;
+	border: 1px solid #aaa;
 	padding: 0.2em;
 }
 
