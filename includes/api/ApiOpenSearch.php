@@ -135,22 +135,24 @@ class ApiOpenSearch extends ApiBase {
 
 		if ( $resolveRedir ) {
 			// Query for redirects
-			$db = $this->getDb();
-			$lb = new LinkBatch( $titles );
-			$res = $db->select(
-				array( 'page', 'redirect' ),
-				array( 'page_namespace', 'page_title', 'rd_namespace', 'rd_title' ),
-				array(
-					'rd_from = page_id',
-					'rd_interwiki IS NULL OR rd_interwiki = ' . $db->addQuotes( '' ),
-					$lb->constructSet( 'page', $db ),
-				),
-				__METHOD__
-			);
 			$redirects = array();
-			foreach ( $res as $row ) {
-				$redirects[$row->page_namespace][$row->page_title] =
-					array( $row->rd_namespace, $row->rd_title );
+			$lb = new LinkBatch( $titles );
+			if ( !$lb->isEmpty() ) {
+				$db = $this->getDb();
+				$res = $db->select(
+					array( 'page', 'redirect' ),
+					array( 'page_namespace', 'page_title', 'rd_namespace', 'rd_title' ),
+					array(
+						'rd_from = page_id',
+						'rd_interwiki IS NULL OR rd_interwiki = ' . $db->addQuotes( '' ),
+						$lb->constructSet( 'page', $db ),
+					),
+					__METHOD__
+				);
+				foreach ( $res as $row ) {
+					$redirects[$row->page_namespace][$row->page_title] =
+						array( $row->rd_namespace, $row->rd_title );
+				}
 			}
 
 			// Bypass any redirects
