@@ -66,6 +66,16 @@ class ForeignDBViaLBRepo extends LocalRepo {
 		return wfGetDB( DB_SLAVE, array(), $this->wiki );
 	}
 
+	/**
+	 * @return Closure
+	 */
+	protected function getDBFactory() {
+		$wiki = $this->wiki;
+		return function( $index ) use ( $wiki ) {
+			return wfGetDB( $index, array(), $wiki );
+		};
+	}
+
 	function hasSharedCache() {
 		return $this->hasSharedCache;
 	}
