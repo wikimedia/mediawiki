@@ -589,14 +589,14 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @return bool
 	 * @since 1.25
 	 */
-	public function isImageAreaOkForThumbnaling( $file, $params ) {
+	public function isImageAreaOkForThumbnaling( $file, &$params ) {
 		global $wgMaxImageArea;
 
 		# For historical reasons, hook starts with BitmapHandler
 		$checkImageAreaHookResult = null;
 		Hooks::run(
 			'BitmapHandlerCheckImageArea',
-			array( $file, $params, &$checkImageAreaHookResult )
+			array( $file, &$params, &$checkImageAreaHookResult )
 		);
 
 		if ( !is_null( $checkImageAreaHookResult ) ) {
