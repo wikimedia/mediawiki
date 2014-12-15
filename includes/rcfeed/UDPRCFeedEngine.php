@@ -29,6 +29,7 @@ class UDPRCFeedEngine implements RCFeedEngine {
 	 * @see RCFeedEngine::send
 	 */
 	public function send( array $feed, $line ) {
-		wfErrorLog( $line, $feed['uri'] );
+		$transport = UDPTransport::newFromString( $feed['uri'] );
+		$transport->emit( $line );
 	}
 }
