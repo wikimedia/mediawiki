@@ -1559,7 +1559,8 @@ class Article implements Page {
 		# This code desperately needs to be totally rewritten
 
 		$title = $this->getTitle();
-		$user = $this->getContext()->getUser();
+		$context = $this->getContext();
+		$user = $context->getUser();
 
 		# Check permissions
 		$permissionErrors = $title->getUserPermissionsErrors( 'delete', $user );
@@ -1576,8 +1577,8 @@ class Article implements Page {
 		$this->mPage->loadPageData( 'fromdbmaster' );
 		if ( !$this->mPage->exists() ) {
 			$deleteLogPage = new LogPage( 'delete' );
-			$outputPage = $this->getContext()->getOutput();
-			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $title->getPrefixedText() ) );
+			$outputPage = $context->getOutput();
+			$outputPage->setPageTitle( $context->msg( 'cannotdelete-title', $title->getPrefixedText() ) );
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 					array( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) )
 				);
@@ -1593,7 +1594,7 @@ class Article implements Page {
 			return;
 		}
 
-		$request = $this->getContext()->getRequest();
+		$request = $context->getRequest();
 		$deleteReasonList = $request->getText( 'wpDeleteReasonList', 'other' );
 		$deleteReason = $request->getText( 'wpReason' );
 
@@ -1651,11 +1652,11 @@ class Article implements Page {
 			);
 
 			// @todo FIXME: i18n issue/patchwork message
-			$this->getContext()->getOutput()->addHTML(
+			$context->getOutput()->addHTML(
 				'<strong class="mw-delete-warning-revisions">' .
-				wfMessage( 'historywarning' )->numParams( $revisions )->parse() .
-				wfMessage( 'word-separator' )->plain() . Linker::linkKnown( $title,
-					wfMessage( 'history' )->escaped(),
+				$context->msg( 'historywarning' )->numParams( $revisions )->parse() .
+				$context->msg( 'word-separator' )->escaped() . Linker::linkKnown( $title,
+					$context->msg( 'history' )->escaped(),
 					array( 'rel' => 'archives' ),
 					array( 'action' => 'history' ) ) .
 				'</strong>'
@@ -1663,10 +1664,10 @@ class Article implements Page {
 
 			if ( $title->isBigDeletion() ) {
 				global $wgDeleteRevisionsLimit;
-				$this->getContext()->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
+				$context->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
 					array(
 						'delete-warning-toobig',
-						$this->getContext()->getLanguage()->formatNum( $wgDeleteRevisionsLimit )
+						$context->getLanguage()->formatNum( $wgDeleteRevisionsLimit )
 					)
 				);
 			}
