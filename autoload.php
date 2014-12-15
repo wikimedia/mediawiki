@@ -1182,6 +1182,7 @@ $wgAutoloadLocalClasses = array(
 	'TransformTooBigImageAreaError' => __DIR__ . '/includes/media/MediaTransformOutput.php',
 	'TransformationalImageHandler' => __DIR__ . '/includes/media/TransformationalImageHandler.php',
 	'UDPRCFeedEngine' => __DIR__ . '/includes/rcfeed/UDPRCFeedEngine.php',
+	'UDPTransport' => __DIR__ . '/includes/libs/UDPTransport.php',
 	'UIDGenerator' => __DIR__ . '/includes/utils/UIDGenerator.php',
 	'UcdXmlReader' => __DIR__ . '/maintenance/language/generateCollationData.php',
 	'UncategorizedCategoriesPage' => __DIR__ . '/includes/specials/SpecialUncategorizedcategories.php',
