@@ -488,7 +488,7 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 	$forms_whitelist['worldpay'] = array(
 		'file' => $form_dirs['worldpay'] . '/worldpay.html',
 		'gateway' => 'worldpay',
-		'countries' => array( '+' => array( 'AU', 'BE', 'CA', 'FR', 'GB', 'NZ', 'US' ) ),
+		'countries' => array( '+' => array( 'AU', 'BE', 'CA', 'FR', 'GB', 'IL', 'NZ', 'US' ) ),
 		'currencies' => array( '+' => 'ALL' ),
 		'payment_methods' => array( 'cc' => 'ALL' ),
 		'selection_weight' => 10
