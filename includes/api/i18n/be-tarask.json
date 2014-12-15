@@ -27,5 +27,6 @@
 	"apihelp-block-param-hidename": "Схаваць імя ўдзельніка з журналу блякаваньняў (патрабуе права «hideuser»).",
 	"apihelp-block-param-allowusertalk": "Дазволіць удзельніку рэдагаваць уласную старонку гутарак (залежыць ад $wgBlockAllowsUTEdit).",
 	"apihelp-block-param-reblock": "Калі ўдзельнік ужо заблякаваны, перапісаць дзейнае блякаваньне.",
-	"apihelp-block-param-watchuser": "Назіраць за старонкай удзельніка або старонкай IP-адрасу, а таксама старонкай гутарак."
+	"apihelp-block-param-watchuser": "Назіраць за старонкай удзельніка або старонкай IP-адрасу, а таксама старонкай гутарак.",
+	"apihelp-block-example-ip-simple": "Заблякаваць IP-адрас 192.0.2.5 на тры дні з прычынай «First strike»"
 }

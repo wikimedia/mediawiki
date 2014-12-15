@@ -2184,6 +2184,7 @@
 	"thumbnail-temp-create": "Kunde inte skapa temporär miniatyrfil",
 	"thumbnail-dest-create": "Kunde inte spara miniatyr till destinationen",
 	"thumbnail_invalid_params": "Ogiltiga parametrar för miniatyrbilden",
+	"thumbnail_toobigimagearea": "Fil med dimensioner som är större än $1",
 	"thumbnail_dest_directory": "Kan inte skapa målkatalogen",
 	"thumbnail_image-type": "Bildtypen stöds inte",
 	"thumbnail_gd-library": "Inkomplett GD library konfigurering: saknar funktionen $1",

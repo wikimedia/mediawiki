@@ -2559,5 +2559,21 @@
 	"duration-decades": "$1 {{PLURAL:$1|دەیە|دەیە}}",
 	"duration-centuries": "$1 {{PLURAL:$1|سەدە|سەدە}}",
 	"duration-millennia": "$1 {{PLURAL:$1|ھەزارە|ھەزارە}}",
-	"expand_templates_ok": "باشە"
+	"expand_templates_output": "ئاکام",
+	"expand_templates_ok": "باشە",
+	"expand_templates_preview": "پێشبینین",
+	"pagelang-name": "پەڕە",
+	"pagelang-language": "زمان",
+	"pagelang-select-lang": "زمان ھەڵبژێرە",
+	"right-pagelang": "زمانی پەڕە بگۆڕە",
+	"action-pagelang": "زمانی پەڕەکە بگۆڕە",
+	"mediastatistics": "ئامارەکانی میدیا",
+	"mediastatistics-nbytes": "{{PLURAL:$1|$1 بایت|$1 بایت}} ($2؛ $3%)",
+	"mediastatistics-table-mimetype": "جۆری MIME",
+	"mediastatistics-table-count": "ژمارەی پەڕگەکان",
+	"mediastatistics-header-unknown": "نەزانراو",
+	"mediastatistics-header-bitmap": "وێنەی Bitmap",
+	"mediastatistics-header-audio": "دەنگ",
+	"mediastatistics-header-video": "ڤیدیۆکان",
+	"json-error-syntax": "ھەڵەی ئیملایی"
 }
