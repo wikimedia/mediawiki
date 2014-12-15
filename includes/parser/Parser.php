@@ -4862,6 +4862,7 @@ class Parser {
 
 		$pairs = array(
 			"\r\n" => "\n",
+			"\r" => "\n",
 		);
 		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
 		if ( $options->getPreSaveTransform() ) {
