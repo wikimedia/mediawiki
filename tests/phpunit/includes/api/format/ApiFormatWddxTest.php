@@ -13,6 +13,16 @@ class ApiFormatWddxTest extends ApiFormatTestBase {
 			$this->markTestSkipped( "Function 'wddx_deserialize' not exist, skipping." );
 		}
 
+		wfSuppressWarnings();
+		if ( wfIsHHVM() && null === wddx_deserialize( wddx_serialize_value("Test for &") )) {
+			# Some version of HHVM is miss behaving when deserializing an
+			# ampersand, it returns NULL instead of the expected data.
+			#
+			# https://phabricator.wikimedia.org/T75531
+			$this->markTestSkipped( "wddx_deserialize is bugged under this version of HHVM" );
+		}
+		wfRestoreWarnings();
+
 		$data = $this->apiRequest( 'wddx', array( 'action' => 'query', 'meta' => 'siteinfo' ) );
 
 		$this->assertInternalType( 'array', wddx_deserialize( $data ) );
