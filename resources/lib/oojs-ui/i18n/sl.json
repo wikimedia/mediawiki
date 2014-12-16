@@ -11,9 +11,12 @@
 	"ooui-outline-control-move-up": "Prestavi predmet višje",
 	"ooui-outline-control-remove": "Odstrani vnos",
 	"ooui-toolbar-more": "Več",
+	"ooui-toolgroup-expand": "Več",
+	"ooui-toolgroup-collapse": "Manj",
 	"ooui-dialog-message-accept": "V redu",
 	"ooui-dialog-message-reject": "Prekliči",
 	"ooui-dialog-process-error": "Nekaj je šlo narobe",
 	"ooui-dialog-process-dismiss": "Skrij",
-	"ooui-dialog-process-retry": "Poskusi znova"
+	"ooui-dialog-process-retry": "Poskusi znova",
+	"ooui-dialog-process-continue": "Nadaljuj"
 }

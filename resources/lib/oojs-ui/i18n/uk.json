@@ -28,5 +28,6 @@
 	"ooui-dialog-message-reject": "Скасувати",
 	"ooui-dialog-process-error": "Щось пішло не так",
 	"ooui-dialog-process-dismiss": "Приховати",
-	"ooui-dialog-process-retry": "Спробуйте ще раз"
+	"ooui-dialog-process-retry": "Спробуйте ще раз",
+	"ooui-dialog-process-continue": "Продовжити"
 }

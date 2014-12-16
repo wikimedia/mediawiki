@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.5.0
+ * OOjs UI v0.6.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-12-12T20:13:09Z
+ * Date: 2014-12-16T21:00:55Z
  */
 ( function ( OO ) {
 
@@ -2730,10 +2730,9 @@ OO.ui.WindowManager.prototype.afterWindowResize = function () {
  *
  * @param {jQuery.Event} e Mouse wheel event
  */
-OO.ui.WindowManager.prototype.onWindowMouseWheel = function ( e ) {
-	// Kill all events in the parent window if the child window is isolated,
-	// or if the event didn't come from the child window
-	return !( this.shouldIsolate() || !$.contains( this.getCurrentWindow().$frame[0], e.target ) );
+OO.ui.WindowManager.prototype.onWindowMouseWheel = function () {
+	// Kill all events in the parent window if the child window is isolated
+	return !this.shouldIsolate();
 };
 
 /**
@@ -2751,9 +2750,8 @@ OO.ui.WindowManager.prototype.onDocumentKeyDown = function ( e ) {
 		case OO.ui.Keys.UP:
 		case OO.ui.Keys.RIGHT:
 		case OO.ui.Keys.DOWN:
-			// Kill all events in the parent window if the child window is isolated,
-			// or if the event didn't come from the child window
-			return !( this.shouldIsolate() || !$.contains( this.getCurrentWindow().$frame[0], e.target ) );
+			// Kill all events in the parent window if the child window is isolated
+			return !this.shouldIsolate();
 	}
 };
 
@@ -3183,6 +3181,10 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 				// Start listening for top-level window dimension changes
 				'orientationchange resize': this.onWindowResizeHandler
 			} );
+			// Disable window scrolling in isolated windows
+			if ( !this.shouldIsolate() ) {
+				$( this.getElementDocument().body ).css( 'overflow', 'hidden' );
+			}
 			this.globalEvents = true;
 		}
 	} else if ( this.globalEvents ) {
@@ -3197,6 +3199,9 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 			// Stop listening for top-level window dimension changes
 			'orientationchange resize': this.onWindowResizeHandler
 		} );
+		if ( !this.shouldIsolate() ) {
+			$( this.getElementDocument().body ).css( 'overflow', '' );
+		}
 		this.globalEvents = false;
 	}
 
@@ -5433,10 +5438,16 @@ OO.ui.ClippableElement.prototype.clip = function () {
 		ccOffset = $container.offset() || { top: 0, left: 0 },
 		ccHeight = $container.innerHeight() - buffer,
 		ccWidth = $container.innerWidth() - buffer,
+		cHeight = this.$clippable.outerHeight() + buffer,
+		cWidth = this.$clippable.outerWidth() + buffer,
 		scrollTop = this.$clippableScroller.scrollTop(),
 		scrollLeft = this.$clippableScroller.scrollLeft(),
-		desiredWidth = ( ccOffset.left + scrollLeft + ccWidth ) - cOffset.left,
-		desiredHeight = ( ccOffset.top + scrollTop + ccHeight ) - cOffset.top,
+		desiredWidth = cOffset.left < 0 ?
+			cWidth + cOffset.left :
+			( ccOffset.left + scrollLeft + ccWidth ) - cOffset.left,
+		desiredHeight = cOffset.top < 0 ?
+			cHeight + cOffset.top :
+			( ccOffset.top + scrollTop + ccHeight ) - cOffset.top,
 		naturalWidth = this.$clippable.prop( 'scrollWidth' ),
 		naturalHeight = this.$clippable.prop( 'scrollHeight' ),
 		clipWidth = desiredWidth < naturalWidth,
@@ -5493,7 +5504,6 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.toolbar = this.toolGroup.getToolbar();
 	this.active = false;
 	this.$title = this.$( '<span>' );
-	this.$titleText = this.$( '<span>' );
 	this.$accel = this.$( '<span>' );
 	this.$link = this.$( '<a>' );
 	this.title = null;
@@ -5502,7 +5512,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.toolbar.connect( this, { updateState: 'onUpdateState' } );
 
 	// Initialization
-	this.$titleText.addClass( 'oo-ui-tool-title-text' );
+	this.$title.addClass( 'oo-ui-tool-title' );
 	this.$accel
 		.addClass( 'oo-ui-tool-accel' )
 		.prop( {
@@ -5511,12 +5521,9 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 			dir: 'ltr',
 			lang: 'en'
 		} );
-	this.$title
-		.addClass( 'oo-ui-tool-title' )
-		.append( this.$titleText, this.$accel );
 	this.$link
 		.addClass( 'oo-ui-tool-link' )
-		.append( this.$icon, this.$title )
+		.append( this.$icon, this.$title, this.$accel )
 		.prop( 'tabIndex', 0 )
 		.attr( 'role', 'button' );
 	this.$element
@@ -5704,7 +5711,7 @@ OO.ui.Tool.prototype.updateTitle = function () {
 		accel = this.toolbar.getToolAccelerator( this.constructor.static.name ),
 		tooltipParts = [];
 
-	this.$titleText.text( this.title );
+	this.$title.text( this.title );
 	this.$accel.text( accel );
 
 	if ( titleTooltips && typeof this.title === 'string' && this.title.length ) {
@@ -8224,7 +8231,7 @@ OO.ui.ListToolGroup.prototype.populate = function () {
 	// 'display' attribute and restores it, and the tool uses a <span> and can be hidden and re-shown.
 	// Is this a jQuery bug? http://jsfiddle.net/gtj4hu3h/
 	if ( this.getExpandCollapseTool().$element.css( 'display' ) === 'inline' ) {
-		this.getExpandCollapseTool().$element.css( 'display', 'inline-block' );
+		this.getExpandCollapseTool().$element.css( 'display', 'block' );
 	}
 
 	this.updateCollapsibleState();
