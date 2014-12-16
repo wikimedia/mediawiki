@@ -1560,7 +1560,7 @@
 	"nimagelinks": "Używane na $1 {{PLURAL:$1|stronie|stronach}}",
 	"ntransclusions": "używany na $1 {{PLURAL:$1|stronie|stronach}}",
 	"specialpage-empty": "Ta strona raportu jest pusta.",
-	"lonelypages": "Porzucone strony",
+	"lonelypages": "Osierocone strony",
 	"lonelypagestext": "Do poniższych stron nie linkuje żadna inna strona lub nie są one dołączone do innych stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.",
 	"uncategorizedpages": "Nieskategoryzowane strony",
 	"uncategorizedcategories": "Nieskategoryzowane kategorie",
