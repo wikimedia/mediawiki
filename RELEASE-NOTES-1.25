@@ -89,7 +89,7 @@ production.
 ** leafo/lessphp 0.5.0
 *** This library was formerly bundled with MediaWiki core and has now been removed. It compiles LESS
     files into CSS.
-** cdb/cdb 1.0.0
+** wikimedia/cdb 1.0.1
 *** This library was formerly a part of MediaWiki core, and has now been split out into a separate library.
     It provides CDB functions which are used in the Interwiki and Localization caches. More information
     about the library can be found at <https://www.mediawiki.org/wiki/CDB>.
