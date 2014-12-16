@@ -36,7 +36,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	private $fld_ids = false, $fld_title = false, $fld_type = false,
-		$fld_action = false, $fld_user = false, $fld_userid = false,
+		$fld_user = false, $fld_userid = false,
 		$fld_timestamp = false, $fld_comment = false, $fld_parsedcomment = false,
 		$fld_details = false, $fld_tags = false;
 
@@ -49,7 +49,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_title = isset( $prop['title'] );
 		$this->fld_type = isset( $prop['type'] );
-		$this->fld_action = isset( $prop['action'] );
 		$this->fld_user = isset( $prop['user'] );
 		$this->fld_userid = isset( $prop['userid'] );
 		$this->fld_timestamp = isset( $prop['timestamp'] );
@@ -157,7 +156,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addOption( 'USE INDEX', $index );
 
 		// Paranoia: avoid brute force searches (bug 17342)
-		if ( !is_null( $title ) || !is_null( $params['action'] ) ) {
+		if ( !is_null( $title ) ) {
 			$this->addWhere( $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0' );
 		}
 		if ( !is_null( $user ) ) {
@@ -300,7 +299,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 		}
 
-		if ( $this->fld_title || $this->fld_ids || $this->fld_type ) {
+		if ( $this->fld_title || $this->fld_ids ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = '';
 			} else {
@@ -318,6 +317,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $this->fld_type ) {
 			$vals['type'] = $row->log_type;
+			$vals['action'] = $row->log_action;
 		}
 
 		if ( $this->fld_details && $row->log_params !== '' ) {

@@ -1657,7 +1657,7 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 # Revision deletion
 'rev-deleted-comment'         => '(edit summary removed)',
 'rev-deleted-user'            => '(username removed)',
-'rev-deleted-event'           => '(log action removed)',
+'rev-deleted-event'           => '(log details removed)',
 'rev-deleted-user-contribs'   => '[username or IP address removed - edit hidden from contributions]',
 'rev-deleted-text-permission' => "This page revision has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
@@ -1709,7 +1709,7 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 'revdelete-legend'            => 'Set visibility restrictions',
 'revdelete-hide-text'         => 'Revision text',
 'revdelete-hide-image'        => 'Hide file content',
-'revdelete-hide-name'         => 'Hide action and target',
+'revdelete-hide-name'         => 'Hide target and parameters',
 'revdelete-hide-comment'      => 'Edit summary',
 'revdelete-hide-user'         => "Editor's username/IP address",
 'revdelete-hide-restricted'   => 'Suppress data from administrators as well as others',
