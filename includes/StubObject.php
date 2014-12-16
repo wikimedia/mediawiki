@@ -183,6 +183,24 @@ class StubUserLang extends StubObject {
 	}
 
 	/**
+	 * Call Language::findVariantLink after unstubbing $wgLang.
+	 *
+	 * This method is implemented with a full signature rather than relying on
+	 * __call so that the pass-by-reference signature of the proxied method is
+	 * honored.
+	 *
+	 * @param string &$link The name of the link
+	 * @param Title &$nt The title object of the link
+	 * @param bool $ignoreOtherCond To disable other conditions when
+	 *   we need to transclude a template or update a category's link
+	 */
+	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+		global $wgLang;
+		$this->_unstub( 'findVariantLink', 3 );
+		return $wgLang->findVariantLink( $link, $nt, $ignoreOtherCond );
+	}
+
+	/**
 	 * @return Language
 	 */
 	public function _newObject() {
