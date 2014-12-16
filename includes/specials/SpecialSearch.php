@@ -330,9 +330,9 @@ class SpecialSearch extends SpecialPage {
 			Xml::openElement( 'div', array( 'id' => 'mw-search-top-table' ) ) .
 			$this->shortDialog( $term, $num, $totalRes ) .
 			Xml::closeElement( 'div' ) .
+			$this->searchProfileTabs( $term ) .
 			Xml::closeElement( 'form' ) .
-			$this->didYouMeanHtml .
-			$this->searchProfileTabs( $term )
+			$this->didYouMeanHtml
 		);
 
 		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
