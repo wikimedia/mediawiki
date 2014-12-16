@@ -3008,6 +3008,7 @@ class User implements IDBAccessObject {
 	 * Add the user to the given group.
 	 * This takes immediate effect.
 	 * @param string $group Name of the group to add
+	 * @return bool
 	 */
 	public function addGroup( $group ) {
 		if ( Hooks::run( 'UserAddGroup', array( $this, &$group ) ) ) {
@@ -3021,6 +3022,8 @@ class User implements IDBAccessObject {
 					__METHOD__,
 					array( 'IGNORE' ) );
 			}
+		} else {
+			return false;
 		}
 		$this->loadGroups();
 		$this->mGroups[] = $group;
@@ -3034,12 +3037,15 @@ class User implements IDBAccessObject {
 		$this->mRights = null;
 
 		$this->invalidateCache();
+
+		return true;
 	}
 
 	/**
 	 * Remove the user from the given group.
 	 * This takes immediate effect.
 	 * @param string $group Name of the group to remove
+	 * @return bool
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
@@ -3058,6 +3064,8 @@ class User implements IDBAccessObject {
 				),
 				__METHOD__,
 				array( 'IGNORE' ) );
+		} else {
+			return false;
 		}
 		$this->loadGroups();
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
@@ -3068,6 +3076,8 @@ class User implements IDBAccessObject {
 		$this->mRights = null;
 
 		$this->invalidateCache();
+
+		return true;
 	}
 
 	/**
