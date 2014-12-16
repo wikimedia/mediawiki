@@ -1075,7 +1075,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Set the page as printable, i.e. it'll be displayed with with all
+	 * Set the page as printable, i.e. it'll be displayed with all
 	 * print styles included
 	 */
 	public function setPrintable() {

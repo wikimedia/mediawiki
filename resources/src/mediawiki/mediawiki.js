@@ -780,7 +780,7 @@
 				if ( 'documentMode' in document && document.documentMode <= 9 ) {
 
 					$style = getMarker().prev();
-					// Verify that the the element before Marker actually is a
+					// Verify that the element before Marker actually is a
 					// <style> tag and one that came from ResourceLoader
 					// (not some other style tag or even a `<meta>` or `<script>`).
 					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {

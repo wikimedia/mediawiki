@@ -161,7 +161,7 @@ class WikiReference {
 	}
 
 	/**
-	 * Get the the URL in a way to de displayed to the user
+	 * Get the URL in a way to be displayed to the user
 	 * More or less Wikimedia specific
 	 *
 	 * @return string

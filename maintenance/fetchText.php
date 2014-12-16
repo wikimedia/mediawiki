@@ -44,7 +44,7 @@ class FetchText extends Maintenance {
 	 *   \n
 	 *   text  (may be empty)
 	 *
-	 * note that that the text string itself is *not* followed by newline
+	 * note that the text string itself is *not* followed by newline
 	 */
 	public function execute() {
 		$db = wfGetDB( DB_SLAVE );

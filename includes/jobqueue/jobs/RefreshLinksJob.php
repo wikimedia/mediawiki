@@ -26,9 +26,9 @@
  *
  * This job comes in a few variants:
  *   - a) Recursive jobs to update links for backlink pages for a given title.
- *        These jobs have have (recursive:true,table:<table>) set.
+ *        These jobs have (recursive:true,table:<table>) set.
  *   - b) Jobs to update links for a set of pages (the job title is ignored).
- *	      These jobs have have (pages:(<page ID>:(<namespace>,<title>),...) set.
+ *	      These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
  *   - c) Jobs to update links for a single page (the job title)
  *        These jobs need no extra fields set.
  *
@@ -86,7 +86,7 @@ class RefreshLinksJob extends Job {
 				array( 'params' => $extraParams )
 			);
 			JobQueueGroup::singleton()->push( $jobs );
-		// Job to update link tables for for a set of titles
+		// Job to update link tables for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
 			foreach ( $this->params['pages'] as $pageId => $nsAndKey ) {
 				list( $ns, $dbKey ) = $nsAndKey;
@@ -157,7 +157,7 @@ class RefreshLinksJob extends Job {
 			$ellapsed = microtime( true ) - $start;
 			// If it took a long time to render, then save this back to the cache to avoid
 			// wasted CPU by other apaches or job runners. We don't want to always save to
-			// cache as this cause cause high cache I/O and LRU churn when a template changes.
+			// cache as this causes high cache I/O and LRU churn when a template changes.
 			if ( $ellapsed >= self::PARSE_THRESHOLD_SEC
 				&& $page->isParserCacheUsed( $parserOptions, $revision->getId() )
 				&& $parserOutput->isCacheable()
