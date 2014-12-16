@@ -1177,8 +1177,10 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  * @param string $file Filename
  * @param array $context Additional logging context data
  * @throws MWException
+ * @deprecated since 1.25 Use MWLoggerLegacyLogger::emit or UDPTransport
  */
 function wfErrorLog( $text, $file, array $context = array() ) {
+	wfDeprecated( __METHOD__, '1.25' );
 	$logger = MWLogger::getInstance( 'wfErrorLog' );
 	$context['destination'] = $file;
 	$logger->info( trim( $text ), $context );
