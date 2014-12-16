@@ -262,7 +262,7 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
-	// For 404 handled thumbnails, we only use the the base name of the URI
+	// For 404 handled thumbnails, we only use the base name of the URI
 	// for the thumb params and the parent directory for the source file name.
 	// Check that the zone relative path matches up so squid caches won't pick
 	// up thumbs that would not be purged on source file deletion (bug 34231).

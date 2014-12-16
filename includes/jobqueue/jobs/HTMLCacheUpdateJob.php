@@ -26,9 +26,9 @@
  *
  * This job comes in a few variants:
  *   - a) Recursive jobs to purge caches for backlink pages for a given title.
- *        These jobs have have (recursive:true,table:<table>) set.
+ *        These jobs have (recursive:true,table:<table>) set.
  *   - b) Jobs to purge caches for a set of titles (the job title is ignored).
- *	      These jobs have have (pages:(<page ID>:(<namespace>,<title>),...) set.
+ *	      These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
  *
  * @ingroup JobQueue
  */
@@ -67,7 +67,7 @@ class HTMLCacheUpdateJob extends Job {
 				array( 'params' => $this->getRootJobParams() )
 			);
 			JobQueueGroup::singleton()->push( $jobs );
-		// Job to purge pages for for a set of titles
+		// Job to purge pages for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
 			$this->invalidateTitles( $this->params['pages'] );
 		// B/C for job to purge a range of backlink pages for a given page

@@ -806,7 +806,7 @@
 	"apihelp-query+revisions-example-last5": "Get last 5 revisions of the \"Main Page\"",
 	"apihelp-query+revisions-example-first5": "Get first 5 revisions of the \"Main Page\"",
 	"apihelp-query+revisions-example-first5-after": "Get first 5 revisions of the \"Main Page\" made after 2006-05-01",
-	"apihelp-query+revisions-example-first5-not-localhost": "Get first 5 revisions of the \"Main Page\" that were not made made by anonymous user \"127.0.0.1\"",
+	"apihelp-query+revisions-example-first5-not-localhost": "Get first 5 revisions of the \"Main Page\" that were not made by anonymous user \"127.0.0.1\"",
 	"apihelp-query+revisions-example-first5-user": "Get first 5 revisions of the \"Main Page\" that were made by the user \"MediaWiki default\"",
 
 	"apihelp-query+revisions+base-param-prop": "Which properties to get for each revision:\n;ids:The ID of the revision.\n;flags:Revision flags (minor).\n;timestamp:The timestamp of the revision.\n;user:User that made the revision.\n;userid:User ID of the revision creator.\n;size:Length (bytes) of the revision.\n;sha1:SHA-1 (base 16) of the revision.\n;contentmodel:Content model ID of the revision.\n;comment:Comment by the user for the revision.\n;parsedcomment:Parsed comment by the user for the revision.\n;content:Text of the revision.\n;tags:Tags for the revision.",

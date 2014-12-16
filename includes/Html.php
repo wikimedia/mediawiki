@@ -893,7 +893,7 @@ class Html {
 				continue;
 			}
 			if ( $nsId === NS_MAIN ) {
-				// For other namespaces use use the namespace prefix as label, but for
+				// For other namespaces use the namespace prefix as label, but for
 				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMessage( 'blanknamespace' )->text();
 			} elseif ( is_int( $nsId ) ) {

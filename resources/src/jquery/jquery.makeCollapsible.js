@@ -330,7 +330,7 @@
 								.prop( 'tabIndex', 0 );
 						}
 					} else {
-						// The toggle-link will be in one the the cells (td or th) of the first row
+						// The toggle-link will be in one of the cells (td or th) of the first row
 						$firstItem = $collapsible.find( 'tr:first th, tr:first td' );
 						$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
 

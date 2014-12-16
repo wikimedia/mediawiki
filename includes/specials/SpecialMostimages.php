@@ -25,7 +25,7 @@
  */
 
 /**
- * A special page page that list most used images
+ * A special page that lists most used images
  *
  * @ingroup SpecialPage
  */

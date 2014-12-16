@@ -190,7 +190,7 @@
 		// This causes further calls to addButton to go to insertion directly
 		// instead of to the queue.
 		// It is important that this is after the one and only loop through
-		// the the queue
+		// the queue
 		isReady = true;
 
 		// Apply to dynamically created textboxes as well as normal ones

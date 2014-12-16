@@ -395,7 +395,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string|int $from One of the following:
 	 *        - "fromdb" or WikiPage::READ_NORMAL if the data comes from a slave DB
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST if the data comes from the master DB
-	 *        - "forupdate"  or WikiPage::READ_LOCKING if the data comes from from
+	 *        - "forupdate"  or WikiPage::READ_LOCKING if the data comes from
 	 *          the master DB using SELECT FOR UPDATE
 	 */
 	public function loadFromRow( $data, $from ) {
@@ -975,7 +975,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$source = $this->mTitle->getFullURL( 'redirect=no' );
 				return $rt->getFullURL( array( 'rdfrom' => $source ) );
 			} else {
-				// External pages pages without "local" bit set are not valid
+				// External pages without "local" bit set are not valid
 				// redirect targets
 				return false;
 			}

@@ -293,7 +293,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Base modules required for the the base environment of ResourceLoader
+	 * Base modules required for the base environment of ResourceLoader
 	 *
 	 * @return array
 	 */
@@ -409,8 +409,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// ATTENTION!: Because of the line below, this is not going to cause
 		// infinite recursion - think carefully before making changes to this
 		// code!
-		// Pre-populate modifiedTime with something because the the loop over
-		// all modules below includes the the startup module (this module).
+		// Pre-populate modifiedTime with something because the loop over
+		// all modules below includes the startup module (this module).
 		$this->modifiedTime[$hash] = 1;
 
 		foreach ( $loader->getModuleNames() as $name ) {
