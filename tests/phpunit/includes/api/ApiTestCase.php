@@ -46,6 +46,17 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$this->apiContext = new ApiTestContext();
 	}
 
+	protected function tearDown() {
+		// Avoid leaking session over tests
+		if ( session_id() != '' ) {
+			global $wgUser;
+			$wgUser->logout();
+			session_destroy();
+		}
+
+		parent::tearDown();
+	}
+
 	/**
 	 * Edits or creates a page/revision
 	 * @param string $pageName Page title
