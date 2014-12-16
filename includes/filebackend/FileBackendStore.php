@@ -1372,7 +1372,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Check if a container name is valid.
-	 * This checks for for length and illegal characters.
+	 * This checks for length and illegal characters.
 	 *
 	 * @param string $container
 	 * @return bool

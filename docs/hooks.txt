@@ -1460,7 +1460,7 @@ $page: ImagePage object
 'ImgAuthBeforeStream': executed before file is streamed to user, but only when
 using img_auth.php.
 &$title: the Title object of the file as it would appear for the upload page
-&$path: the original file and path name when img_auth was invoked by the the web
+&$path: the original file and path name when img_auth was invoked by the web
   server
 &$name: the name only component of the file
 &$result: The location to pass back results of the hook routine (only used if

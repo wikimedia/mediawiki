@@ -861,7 +861,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Save space for for serialization by removing useless values
+	 * Save space for serialization by removing useless values
 	 * @return array
 	 */
 	public function __sleep() {

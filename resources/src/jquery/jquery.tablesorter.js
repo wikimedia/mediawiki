@@ -785,7 +785,7 @@
 						buildCollationTable();
 
 						// Legacy fix of .sortbottoms
-						// Wrap them inside inside a tfoot (because that's what they actually want to be) &
+						// Wrap them inside a tfoot (because that's what they actually want to be)
 						// and put the <tfoot> at the end of the <table>
 						var $tfoot,
 							$sortbottoms = $table.find( '> tbody > tr.sortbottom' );

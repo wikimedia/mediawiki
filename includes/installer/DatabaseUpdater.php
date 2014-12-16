@@ -612,7 +612,7 @@ abstract class DatabaseUpdater {
 	 * Append a line to the open filehandle.  The line is assumed to
 	 * be a complete SQL statement.
 	 *
-	 * This is used as a callback for for sourceLine().
+	 * This is used as a callback for sourceLine().
 	 *
 	 * @param string $line Text to append to the file
 	 * @return bool False to skip actually executing the file

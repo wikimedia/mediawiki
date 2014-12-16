@@ -177,13 +177,13 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 }</script>
 '
 			),
-			// Load module script with with ESI
+			// Load module script with ESI
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS, true ),
 				'<script><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=fallback&amp;*" /></script>
 '
 			),
-			// Load module styles with with ESI
+			// Load module styles with ESI
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_STYLES, true ),
 				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=fallback&amp;*" /></style>

@@ -2489,7 +2489,7 @@ class User implements IDBAccessObject {
 			$type = $oldaddr != '' ? 'changed' : 'set';
 			$result = $this->sendConfirmationMail( $type );
 			if ( $result->isGood() ) {
-				// Say the the caller that a confirmation mail has been sent
+				// Say to the caller that a confirmation mail has been sent
 				$result->value = 'eauth';
 			}
 		} else {

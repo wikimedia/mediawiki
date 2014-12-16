@@ -84,7 +84,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 						"rev_id < " . intval( $row->rev_id ) ),
 					__METHOD__,
 					array( 'ORDER BY' => 'rev_id DESC' ) );
-				# If there are none, check the the highest ID with a lower timestamp
+				# If there are none, check the highest ID with a lower timestamp
 				if ( !$previousID ) {
 					# Get the highest older timestamp
 					$lastTimestamp = $db->selectField(

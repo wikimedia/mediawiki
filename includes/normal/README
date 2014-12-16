@@ -29,7 +29,7 @@ have been changed or you remove it.
 == Testing ==
 
 'make test' will run the conformance test (UtfNormalTest.php), fetching the
-data from from the net if necessary. If it reports failure, something is
+data from the net if necessary. If it reports failure, something is
 going wrong!
 
 You may have to set up PHPUnit first.

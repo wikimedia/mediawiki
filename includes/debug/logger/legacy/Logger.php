@@ -107,7 +107,7 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 			// and no explicit wgDebugLogGroups configuration.
 			$shouldEmit = false;
 		} else {
-			// Default return value is the the same as the historic wfDebug
+			// Default return value is the same as the historic wfDebug
 			// method: emit if $wgDebugLogFile has been set.
 			$shouldEmit = $wgDebugLogFile != '';
 		}
