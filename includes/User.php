@@ -3008,20 +3008,24 @@ class User implements IDBAccessObject {
 	 * Add the user to the given group.
 	 * This takes immediate effect.
 	 * @param string $group Name of the group to add
+	 * @return bool
 	 */
 	public function addGroup( $group ) {
-		if ( Hooks::run( 'UserAddGroup', array( $this, &$group ) ) ) {
-			$dbw = wfGetDB( DB_MASTER );
-			if ( $this->getId() ) {
-				$dbw->insert( 'user_groups',
-					array(
-						'ug_user' => $this->getID(),
-						'ug_group' => $group,
-					),
-					__METHOD__,
-					array( 'IGNORE' ) );
-			}
+		if ( !Hooks::run( 'UserAddGroup', array( $this, &$group ) ) ) {
+			return false;
 		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		if ( $this->getId() ) {
+			$dbw->insert( 'user_groups',
+				array(
+					'ug_user' => $this->getID(),
+					'ug_group' => $group,
+				),
+				__METHOD__,
+				array( 'IGNORE' ) );
+		}
+
 		$this->loadGroups();
 		$this->mGroups[] = $group;
 		// In case loadGroups was not called before, we now have the right twice.
@@ -3034,31 +3038,39 @@ class User implements IDBAccessObject {
 		$this->mRights = null;
 
 		$this->invalidateCache();
+
+		return true;
 	}
 
 	/**
 	 * Remove the user from the given group.
 	 * This takes immediate effect.
 	 * @param string $group Name of the group to remove
+	 * @return bool
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
-		if ( Hooks::run( 'UserRemoveGroup', array( $this, &$group ) ) ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->delete( 'user_groups',
-				array(
-					'ug_user' => $this->getID(),
-					'ug_group' => $group,
-				), __METHOD__ );
-			// Remember that the user was in this group
-			$dbw->insert( 'user_former_groups',
-				array(
-					'ufg_user' => $this->getID(),
-					'ufg_group' => $group,
-				),
-				__METHOD__,
-				array( 'IGNORE' ) );
+		if ( !Hooks::run( 'UserRemoveGroup', array( $this, &$group ) ) ) {
+			return false;
 		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'user_groups',
+			array(
+				'ug_user' => $this->getID(),
+				'ug_group' => $group,
+			), __METHOD__
+		);
+		// Remember that the user was in this group
+		$dbw->insert( 'user_former_groups',
+			array(
+				'ufg_user' => $this->getID(),
+				'ufg_group' => $group,
+			),
+			__METHOD__,
+			array( 'IGNORE' )
+		);
+
 		$this->loadGroups();
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
 
@@ -3068,6 +3080,8 @@ class User implements IDBAccessObject {
 		$this->mRights = null;
 
 		$this->invalidateCache();
+
+		return true;
 	}
 
 	/**

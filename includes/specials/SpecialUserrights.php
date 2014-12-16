@@ -244,18 +244,22 @@ class UserrightsPage extends SpecialPage {
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
 
-		// remove then add groups
+		// Remove then add groups
 		if ( $remove ) {
-			$newGroups = array_diff( $newGroups, $remove );
-			foreach ( $remove as $group ) {
-				$user->removeGroup( $group );
+			foreach ( $remove as $index => $group ) {
+				if ( !$user->removeGroup( $group ) ) {
+					unset($remove[$index]);
+				}
 			}
+			$newGroups = array_diff( $newGroups, $remove );
 		}
 		if ( $add ) {
-			$newGroups = array_merge( $newGroups, $add );
-			foreach ( $add as $group ) {
-				$user->addGroup( $group );
+			foreach ( $add as $index => $group ) {
+				if ( !$user->addGroup( $group ) ) {
+					unset($add[$index]);
+				}
 			}
+			$newGroups = array_merge( $newGroups, $add );
 		}
 		$newGroups = array_unique( $newGroups );
 
