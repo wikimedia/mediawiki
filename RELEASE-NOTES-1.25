@@ -12,6 +12,7 @@ production.
 * $wgPageShowWatchingUsers was removed.
 * $wgLocalVirtualHosts has been added to replace $wgConf->localVHosts.
 * $wgAntiLockFlags was removed.
+* $wgJavaScriptTestConfig was removed.
 * Edit tokens returned from User::getEditToken may change on every call. Token
   validity must be checked by passing the user-supplied token to
   User::matchEditToken rather than by testing for equality with a

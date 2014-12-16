@@ -30,27 +30,14 @@
 	// and assuming failure.
 	QUnit.config.testTimeout = 30 * 1000;
 
+	QUnit.config.requireExpects = true;
+
 	// Add a checkbox to QUnit header to toggle MediaWiki ResourceLoader debug mode.
 	QUnit.config.urlConfig.push( {
 		id: 'debug',
 		label: 'Enable ResourceLoaderDebug',
 		tooltip: 'Enable debug mode in ResourceLoader'
 	} );
-
-	QUnit.config.requireExpects = true;
-
-	/**
-	 * Load TestSwarm agent
-	 */
-	// Only if the current url indicates that there is a TestSwarm instance watching us
-	// (TestSwarm appends swarmURL to the test suites url it loads in iframes).
-	// Otherwise this is just a simple view of Special:JavaScriptTest/qunit directly,
-	// no point in loading inject.js in that case. Also, make sure that this instance
-	// of MediaWiki has actually been configured with the required url to that inject.js
-	// script. By default it is false.
-	if ( QUnit.urlParams.swarmURL && mw.config.get( 'QUnitTestSwarmInjectJSPath' ) ) {
-		jQuery.getScript( QUnit.fixurl( mw.config.get( 'QUnitTestSwarmInjectJSPath' ) ) );
-	}
 
 	/**
 	 * CompletenessTest
