@@ -61,6 +61,7 @@ production.
 * The debug logging internals have been overhauled, and are now using the
   PSR-3 interfaces.
 * Update CSSJanus to v1.1.1.
+* Update lessphp to v0.5.0.
 * Added a hook, "ApiOpenSearchSuggest", to allow extensions to provide extracts
   and images for ApiOpenSearch output. The semantics are identical to the
   "OpenSearchXml" hook provided by the OpenSearchXml extension.
@@ -71,28 +72,29 @@ production.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
-  these were bundled inside the git repository of MediaWiki core, but now they
+  these were bundled inside the Git repository of MediaWiki core, but now they
   need to be installed separately. For users using the tarball, this will be taken
-  care of and no action will be required. Users using git will either need to use
+  care of and no action will be required. Users using Git will either need to use
   composer to fetch dependencies or use the mediawiki/vendor repository which includes
   all dependencies for MediaWiki core and ones used in Wikimedia deployment. Detailed
-  instructions can be found at <https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries>.
+  instructions can be found at:
+  https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries
 * The following libraries are now required:
-** psr/log 1.0.0
-*** This library provides the interfaces set by the PSR-3 standard (<http://www.php-fig.org/psr/psr-3/>)
-    which are used by MediaWiki interally by the MWLogger class.
-*** See the structured logging RfC (<https://www.mediawiki.org/wiki/Requests_for_comment/Structured_logging>)
-    for more background information.
-** cssjanus/cssjanus 1.1.1
-*** This library was formerly bundled with MediaWiki core and has now been removed. It automatically
-    flips CSS for RTL support.
-** leafo/lessphp 0.5.0
-*** This library was formerly bundled with MediaWiki core and has now been removed. It compiles LESS
-    files into CSS.
-** wikimedia/cdb 1.0.1
-*** This library was formerly a part of MediaWiki core, and has now been split out into a separate library.
-    It provides CDB functions which are used in the Interwiki and Localization caches. More information
-    about the library can be found at <https://www.mediawiki.org/wiki/CDB>.
+** psr/log
+   This library provides the interfaces set by the PSR-3 standard (http://www.php-fig.org/psr/psr-3/)
+   which are used by MediaWiki interally by the MWLogger class.
+   See the structured logging RfC (https://www.mediawiki.org/wiki/Requests_for_comment/Structured_logging)
+   for more background information.
+** cssjanus/cssjanus
+   This library was formerly bundled with MediaWiki core and has been removed.
+   It automatically flips CSS for RTL support.
+** leafo/lessphp
+   This library was formerly bundled with MediaWiki core and has been removed.
+   It compiles LESS files into CSS.
+** wikimedia/cdb
+   This library was formerly a part of MediaWiki core, and has been moved into a separate library.
+   It provides CDB functions which are used in the Interwiki and Localization caches.
+   More information about the library can be found at https://www.mediawiki.org/wiki/CDB.
 
 === Bug fixes in 1.25 ===
 * (T73003) No additional code will be generated to try to load CSS-embedded
@@ -243,8 +245,8 @@ changes to languages because of Bugzilla reports.
 * BREAKING CHANGE: In the XML dump format used by Special:Export and
   dumpBackup.php, the <model> and <format> tags now apprear before the <text>
   tag, instead of after the <text> and <sha1> tags.
-  The new schema version is 0.10, the new schema URI is
-  <https://www.mediawiki.org/xml/export-0.10.xsd>.
+  The new schema version is 0.10, the new schema URI is:
+  https://www.mediawiki.org/xml/export-0.10.xsd
 * MWFunction::call() and MWFunction::callArray() were removed, having being
   deprecated in 1.22.
 * Deprecated the getInternalLinkAttributes, getInternalLinkAttributesObj,
