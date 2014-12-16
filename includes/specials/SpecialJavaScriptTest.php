@@ -135,14 +135,13 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 */
 	private function initQUnitTesting() {
 		$out = $this->getOutput();
-		$testConfig = $this->getConfig()->get( 'JavaScriptTestConfig' );
 
 		$out->addModules( 'test.mediawiki.qunit.testrunner' );
 		$qunitTestModules = $out->getResourceLoader()->getTestModuleNames( 'qunit' );
 		$out->addModules( $qunitTestModules );
 
 		$summary = $this->msg( 'javascripttest-qunit-intro' )
-			->params( $testConfig['qunit']['documentation'] )
+			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
 			->parseAsBlock();
 		$header = $this->msg( 'javascripttest-qunit-heading' )->escaped();
 		$userDir = $this->getLanguage()->getDir();
@@ -160,16 +159,9 @@ HTML;
 		$out->addHtml( $this->wrapSummaryHtml( $summary, 'frameworkfound' ) . $baseHtml );
 
 		// This special page is disabled by default ($wgEnableJavaScriptTest), and contains
-		// no sensitive data. In order to allow TestSwarm to embed it into a test client window,
+		// no sensitive data. In order to allow test frameworks to embed it into a test client window,
 		// we need to allow iframing of this page.
 		$out->allowClickjacking();
-
-		// Used in ./tests/qunit/data/testrunner.js, see also documentation of
-		// $wgJavaScriptTestConfig in DefaultSettings.php
-		$out->addJsConfigVars(
-			'QUnitTestSwarmInjectJSPath',
-			$testConfig['qunit']['testswarm-injectjs']
-		);
 	}
 
 	/**
