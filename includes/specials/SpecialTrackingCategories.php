@@ -36,6 +36,24 @@ class SpecialTrackingCategories extends SpecialPage {
 		parent::__construct( 'TrackingCategories' );
 	}
 
+	/**
+	 * Tracking categories that exist in core
+	 *
+	 * @var array
+	 */
+	private static $coreTrackingCategories = array(
+		'index-category',
+		'noindex-category',
+		'duplicate-args-category',
+		'expensive-parserfunction-category',
+		'post-expand-template-argument-category',
+		'post-expand-template-inclusion-category',
+		'hidden-category-category',
+		'broken-file-category',
+		'node-count-exceeded-category',
+		'expansion-depth-exceeded-category',
+	);
+
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -120,8 +138,13 @@ class SpecialTrackingCategories extends SpecialPage {
 	 * @return array Array( 'msg' => Title, 'cats' => Title[] )
 	 */
 	private function prepareTrackingCategoriesData() {
+		$categories = array_merge(
+			self::$coreTrackingCategories,
+			ExtensionRegistry::getInstance()->getAttribute( 'TrackingCategories' ),
+			$this->getConfig()->get( 'TrackingCategories' ) // deprecated
+		);
 		$trackingCategories = array();
-		foreach ( $this->getConfig()->get( 'TrackingCategories' ) as $catMsg ) {
+		foreach ( $categories as $catMsg ) {
 			/*
 			 * Check if the tracking category varies by namespace
 			 * Otherwise only pages in the current namespace will be displayed
