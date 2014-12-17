@@ -382,7 +382,6 @@ class SearchMySQL extends SearchDatabase {
 	function normalizeText( $string ) {
 		global $wgContLang;
 
-		wfProfileIn( __METHOD__ );
 
 		$out = parent::normalizeText( $string );
 
@@ -416,7 +415,6 @@ class SearchMySQL extends SearchDatabase {
 			"$1u82e$2",
 			$out );
 
-		wfProfileOut( __METHOD__ );
 
 		return $out;
 	}

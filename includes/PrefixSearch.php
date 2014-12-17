@@ -95,7 +95,6 @@ abstract class PrefixSearch {
 	 * @return array
 	 */
 	public function searchWithVariants( $search, $limit, array $namespaces, $offset = 0 ) {
-		wfProfileIn( __METHOD__ );
 		$searches = $this->search( $search, $limit, $namespaces, $offset );
 
 		// if the content language has variants, try to retrieve fallback results
@@ -116,7 +115,6 @@ abstract class PrefixSearch {
 				}
 			}
 		}
-		wfProfileOut( __METHOD__ );
 		return $searches;
 	}
 

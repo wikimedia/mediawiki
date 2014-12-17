@@ -1132,7 +1132,7 @@ class ApiPageSet extends ApiBase {
 					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible
 					$titleText = is_string( $title ) ? $title : $titleObj->getPrefixedText();
-					$wgContLang->findVariantLink( $titleText, $titleObj );
+					$titleText = $wgContLang->findVariantLink( $titleText, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
 

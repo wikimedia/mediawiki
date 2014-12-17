@@ -82,13 +82,11 @@ class DeferredUpdates {
 	public static function doUpdates( $commit = '' ) {
 		global $wgDeferredUpdateList;
 
-		wfProfileIn( __METHOD__ );
 
 		$updates = array_merge( $wgDeferredUpdateList, self::$updates );
 
 		// No need to get master connections in case of empty updates array
 		if ( !count( $updates ) ) {
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -122,7 +120,6 @@ class DeferredUpdates {
 			$updates = array_merge( $wgDeferredUpdateList, self::$updates );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

@@ -133,7 +133,6 @@ class HtmlFormatter {
 	 * @return array Array of removed DOMElements
 	 */
 	public function filterContent() {
-		wfProfileIn( __METHOD__ );
 		$removals = $this->parseItemsToRemove();
 
 		// Bail out early if nothing to do
@@ -143,7 +142,6 @@ class HtmlFormatter {
 			},
 			true
 		) ) {
-			wfProfileOut( __METHOD__ );
 			return array();
 		}
 
@@ -202,7 +200,6 @@ class HtmlFormatter {
 			$removed = array_merge( $removed, $this->removeElements( $elements ) );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $removed;
 	}
 
@@ -235,7 +232,6 @@ class HtmlFormatter {
 	 * @return string
 	 */
 	private function fixLibXML( $html ) {
-		wfProfileIn( __METHOD__ );
 		static $replacements;
 		if ( !$replacements ) {
 			// We don't include rules like '&#34;' => '&amp;quot;' because entities had already been
@@ -249,7 +245,6 @@ class HtmlFormatter {
 		}
 		$html = $replacements->replace( $html );
 		$html = mb_convert_encoding( $html, 'UTF-8', 'HTML-ENTITIES' );
-		wfProfileOut( __METHOD__ );
 		return $html;
 	}
 
@@ -264,7 +259,6 @@ class HtmlFormatter {
 	 * @return string Processed HTML
 	 */
 	public function getText( $element = null ) {
-		wfProfileIn( __METHOD__ );
 
 		if ( $this->doc ) {
 			wfProfileIn( __METHOD__ . '-dom' );
@@ -309,7 +303,6 @@ class HtmlFormatter {
 		}
 		wfProfileOut( __METHOD__ . '-flatten' );
 
-		wfProfileOut( __METHOD__ );
 		return $html;
 	}
 
@@ -349,7 +342,6 @@ class HtmlFormatter {
 	 * @return array
 	 */
 	protected function parseItemsToRemove() {
-		wfProfileIn( __METHOD__ );
 		$removals = array(
 			'ID' => array(),
 			'TAG' => array(),
@@ -371,7 +363,6 @@ class HtmlFormatter {
 			$removals['TAG'][] = 'video';
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $removals;
 	}
 }

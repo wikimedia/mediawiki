@@ -175,7 +175,6 @@ class OldLocalFile extends LocalFile {
 	}
 
 	function loadFromDB( $flags = 0 ) {
-		wfProfileIn( __METHOD__ );
 
 		$this->dataLoaded = true;
 
@@ -194,14 +193,12 @@ class OldLocalFile extends LocalFile {
 			$this->fileExists = false;
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
 	 * Load lazy file metadata from the DB
 	 */
 	protected function loadExtraFromDB() {
-		wfProfileIn( __METHOD__ );
 
 		$this->extraDataLoaded = true;
 		$dbr = $this->repo->getSlaveDB();
@@ -226,11 +223,9 @@ class OldLocalFile extends LocalFile {
 				$this->$name = $value;
 			}
 		} else {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "Could not find data for image '{$this->archive_name}'." );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -260,13 +255,11 @@ class OldLocalFile extends LocalFile {
 	}
 
 	function upgradeRow() {
-		wfProfileIn( __METHOD__ );
 		$this->loadFromFile();
 
 		# Don't destroy file info of missing files
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": file does not exist, aborting\n" );
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -291,7 +284,6 @@ class OldLocalFile extends LocalFile {
 				'oi_archive_name' => $this->archive_name ),
 			__METHOD__
 		);
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

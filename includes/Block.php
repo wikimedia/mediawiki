@@ -752,7 +752,6 @@ class Block {
 	 * @return bool
 	 */
 	public function deleteIfExpired() {
-		wfProfileIn( __METHOD__ );
 
 		if ( $this->isExpired() ) {
 			wfDebug( "Block::deleteIfExpired() -- deleting\n" );
@@ -763,7 +762,6 @@ class Block {
 			$retVal = false;
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $retVal;
 	}
 
@@ -1055,7 +1053,6 @@ class Block {
 			return array();
 		}
 
-		wfProfileIn( __METHOD__ );
 		$conds = array();
 		foreach ( array_unique( $ipChain ) as $ipaddr ) {
 			# Discard invalid IP addresses. Since XFF can be spoofed and we do not
@@ -1077,7 +1074,6 @@ class Block {
 		}
 
 		if ( !count( $conds ) ) {
-			wfProfileOut( __METHOD__ );
 			return array();
 		}
 
@@ -1108,7 +1104,6 @@ class Block {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $blocks;
 	}
 
@@ -1140,7 +1135,6 @@ class Block {
 			return $blocks[0];
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		// Sort hard blocks before soft ones and secondarily sort blocks
 		// that disable account creation before those that don't.
@@ -1222,11 +1216,9 @@ class Block {
 		} elseif ( $blocksList['auto'] ) {
 			$chosenBlock = $blocksList['auto'];
 		} else {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "Proxy block found, but couldn't be classified." );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $chosenBlock;
 	}
 
