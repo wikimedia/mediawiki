@@ -1,7 +1,10 @@
 {
 	"name": "mediawiki/core",
 	"description": "Free software wiki application developed by the Wikimedia Foundation and others",
-	"keywords": ["mediawiki", "wiki"],
+	"keywords": [
+		"mediawiki",
+		"wiki"
+	],
 	"homepage": "https://www.mediawiki.org/",
 	"authors": [
 		{
