@@ -30,7 +30,7 @@
 class ApiCreateAccount extends ApiBase {
 	public function execute() {
 		// If we're in JSON callback mode, no tokens can be obtained
-		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
+		if ( $this->hasCallback() ) {
 			$this->dieUsage( 'Cannot create account when using a callback', 'aborted' );
 		}
 

@@ -68,7 +68,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		}
 
 		// If we're in JSON callback mode, no tokens can be obtained
-		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
+		if ( $this->hasCallback() ) {
 			return array();
 		}
 
