@@ -217,6 +217,8 @@ production.
   provided to access just the live or just the deleted revids.
 * Added ApiPageSet::setGeneratorData() and ApiPageSet::populateGeneratorData()
   to allow generators to include data in the action=query result.
+* Added ApiBase::hasCallback() to allow modules to easily check if the current
+  request was sent with the 'callback' parameter.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
