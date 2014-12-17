@@ -44,7 +44,6 @@ class LanguageBe_tarask extends Language {
 	 * @return string
 	 */
 	function normalizeForSearch( $string ) {
-		wfProfileIn( __METHOD__ );
 
 		# MySQL fulltext index doesn't grok utf-8, so we
 		# need to fold cases and convert to hex
@@ -54,7 +53,6 @@ class LanguageBe_tarask extends Language {
 
 		$s = parent::normalizeForSearch( $s );
 
-		wfProfileOut( __METHOD__ );
 		return $s;
 	}
 

@@ -121,19 +121,16 @@ class PoolCounterRedis extends PoolCounter {
 	}
 
 	function acquireForMe() {
-		$section = new ProfileSection( __METHOD__ );
 
 		return $this->waitForSlotOrNotif( self::AWAKE_ONE );
 	}
 
 	function acquireForAnyone() {
-		$section = new ProfileSection( __METHOD__ );
 
 		return $this->waitForSlotOrNotif( self::AWAKE_ALL );
 	}
 
 	function release() {
-		$section = new ProfileSection( __METHOD__ );
 
 		if ( $this->slot === null ) {
 			return Status::newGood( PoolCounter::NOT_LOCKED ); // not locked

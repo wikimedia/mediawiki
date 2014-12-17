@@ -309,15 +309,12 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function gender( $parser, $username ) {
-		wfProfileIn( __METHOD__ );
 		$forms = array_slice( func_get_args(), 2 );
 
 		// Some shortcuts to avoid loading user data unnecessarily
 		if ( count( $forms ) === 0 ) {
-			wfProfileOut( __METHOD__ );
 			return '';
 		} elseif ( count( $forms ) === 1 ) {
-			wfProfileOut( __METHOD__ );
 			return $forms[0];
 		}
 
@@ -341,7 +338,6 @@ class CoreParserFunctions {
 			$gender = GenderCache::singleton()->getGenderOf( $parser->getOptions()->getUser(), __METHOD__ );
 		}
 		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 

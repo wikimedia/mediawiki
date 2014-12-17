@@ -151,7 +151,6 @@ class DeletedContribsPager extends IndexPager {
 	 * @return string
 	 */
 	function formatRow( $row ) {
-		wfProfileIn( __METHOD__ );
 
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 
@@ -258,7 +257,6 @@ class DeletedContribsPager extends IndexPager {
 
 		$ret = Html::rawElement( 'li', array(), $ret ) . "\n";
 
-		wfProfileOut( __METHOD__ );
 
 		return $ret;
 	}
