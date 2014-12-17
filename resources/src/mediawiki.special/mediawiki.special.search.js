@@ -31,6 +31,13 @@
 				} )
 		);
 
+               // Remove focus from search if search parameter is entered
+                $( function () {
+                        if ( $( '#searchText' ).val() ) {
+                                $( '#searchText' ).blur();
+                        }
+                } );
+
 		// Change the header search links to what user entered
 		$headerLinks = $( '.search-types a' );
 		$( '#searchText, #powerSearchText' ).change( function () {
