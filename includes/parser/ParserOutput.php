@@ -489,9 +489,10 @@ class ParserOutput extends CacheTime {
 	 * Add a tracking category, getting the title from a system message,
 	 * or print a debug message if the title is invalid.
 	 *
-	 * Please add any message that you use with this function to
-	 * $wgTrackingCategories. That way they will be listed on
-	 * Special:TrackingCategories.
+	 * Any message used with this function should be registered so it will
+	 * show up on Special:TrackingCategories. Core messages should be added
+	 * to SpecialTrackingCategories::$coreTrackingCategories, and extensions
+	 * should add to "TrackingCategories" in their extension.json.
 	 *
 	 * @param string $msg Message key
 	 * @param Title $title title of the page which is being tracked
