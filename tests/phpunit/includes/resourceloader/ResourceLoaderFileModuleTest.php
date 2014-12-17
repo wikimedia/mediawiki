@@ -88,6 +88,40 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
+	public static function providerTemplateDependencies() {
+		$modules = self::getModules();
+
+		return array(
+			array(
+				$modules['noTemplateModule'],
+				array(),
+			),
+			array(
+				$modules['htmlTemplateModule'],
+				array(
+					'mediawiki.template',
+				),
+			),
+			array(
+				$modules['templateModuleHandlebars'],
+				array(
+					'mediawiki.template',
+					'mediawiki.template.handlebars',
+				),
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider providerTemplateDependencies
+	 * @covers ResourceLoaderFileModule::__construct
+	 * @covers ResourceLoaderFileModule::getDependencies
+	 */
+	public function testTemplateDependencies( $module, $expected ) {
+		$rl = new ResourceLoaderFileModule( $module );
+		$this->assertEquals( $rl->getDependencies(), $expected );
+	}
+
 	/**
 	 * @covers ResourceLoaderFileModule::getAllSkinStyleFiles
 	 */
