@@ -1018,6 +1018,7 @@ $wgAutoloadLocalClasses = array(
 	'SearchResultSet' => __DIR__ . '/includes/search/SearchResultSet.php',
 	'SearchSqlite' => __DIR__ . '/includes/search/SearchSqlite.php',
 	'SearchUpdate' => __DIR__ . '/includes/deferred/SearchUpdate.php',
+	'SectionProfileCallback' => __DIR__ . '/includes/profiler/SectionProfiler.php',
 	'SectionProfiler' => __DIR__ . '/includes/profiler/SectionProfiler.php',
 	'SevenZipStream' => __DIR__ . '/maintenance/7zip.inc',
 	'ShiConverter' => __DIR__ . '/languages/classes/LanguageShi.php',

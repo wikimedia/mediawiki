@@ -67,8 +67,7 @@ class SectionProfiler {
 	public function scopedProfileIn( $section ) {
 		$this->profileInInternal( $section );
 
-		$that = $this;
-		return new ScopedCallback( $this->profileOutCallback, array( $that, $section ) );
+		return new SectionProfileCallback( $this, $section );
 	}
 
 	/**
@@ -500,5 +499,31 @@ class SectionProfiler {
 		if ( function_exists( 'wfDebugLog' ) ) {
 			wfDebugLog( $group, $s );
 		}
+	}
+}
+
+/**
+ * Subclass ScopedCallback to avoid call_user_func_array(), which is slow
+ *
+ * This class should not be used outside of SectionProfiler
+ */
+class SectionProfileCallback extends ScopedCallback {
+	/** @var SectionProfiler */
+	protected $profiler;
+	/** @var string */
+	protected $section;
+
+	/**
+	 * @param SectionProfiler $profiler
+	 * @param string $section
+	 */
+	public function __construct( SectionProfiler $profiler, $section ) {
+		parent::__construct( null );
+		$this->profiler = $profiler;
+		$this->section = $section;
+	}
+
+	function __destruct() {
+		$this->profiler->profileOutInternal( $this->section );
 	}
 }

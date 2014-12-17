@@ -32,12 +32,12 @@ class ScopedCallback {
 	protected $params;
 
 	/**
-	 * @param callable $callback
+	 * @param callable|null $callback
 	 * @param array $params Callback arguments (since 1.25)
 	 * @throws Exception
 	 */
 	public function __construct( $callback, array $params = array() ) {
-		if ( !is_callable( $callback ) ) {
+		if ( $callback !== null && !is_callable( $callback ) ) {
 			throw new InvalidArgumentException( "Provided callback is not valid." );
 		}
 		$this->callback = $callback;
