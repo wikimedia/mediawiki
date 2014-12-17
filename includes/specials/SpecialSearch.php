@@ -63,7 +63,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * @var string
 	 */
-	protected $didYouMeanHtml, $fulltext;
+	protected $fulltext;
 
 	const NAMESPACES_CURRENT = 'sense';
 
@@ -165,7 +165,6 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
-		$this->didYouMeanHtml = ''; # html of did you mean... link
 		$this->fulltext = $request->getVal( 'fulltext' );
 		$this->profile = $profile;
 	}
@@ -213,6 +212,7 @@ class SpecialSearch extends SpecialPage {
 		$search->setNamespaces( $this->namespaces );
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm( $term );
+		$didYouMeanHtml = '';
 
 		Hooks::run( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ) );
 
@@ -289,8 +289,11 @@ class SpecialSearch extends SpecialPage {
 				$stParams
 			);
 
-			$this->didYouMeanHtml = '<div class="searchdidyoumean">'
-				. $this->msg( 'search-suggest' )->rawParams( $suggestLink )->text() . '</div>';
+			# html of did you mean... search suggestion link
+			$didYouMeanHtml =
+				Xml::openElement( 'div', array( 'class' => 'searchdidyoumean' ) ) .
+				$this->msg( 'search-suggest' )->rawParams( $suggestLink )->text() .
+				Xml::closeElement( 'div' );
 		}
 
 		if ( !Hooks::run( 'SpecialSearchResultsPrepend', array( $this, $out, $term ) ) ) {
@@ -303,7 +306,7 @@ class SpecialSearch extends SpecialPage {
 			Xml::openElement(
 				'form',
 				array(
-					'id' => ( $this->profile === 'advanced' ? 'powersearch' : 'search' ),
+					'id' => ( $this->isPowerSearch() ? 'powersearch' : 'search' ),
 					'method' => 'get',
 					'action' => wfScript(),
 				)
@@ -331,8 +334,9 @@ class SpecialSearch extends SpecialPage {
 			$this->shortDialog( $term, $num, $totalRes ) .
 			Xml::closeElement( 'div' ) .
 			$this->searchProfileTabs( $term ) .
+			$this->searchOptions( $term ) .
 			Xml::closeElement( 'form' ) .
-			$this->didYouMeanHtml
+			$didYouMeanHtml
 		);
 
 		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
@@ -459,8 +463,6 @@ class SpecialSearch extends SpecialPage {
 	 * @param string $term
 	 */
 	protected function setupPage( $term ) {
-		# Should advanced UI be used?
-		$this->searchAdvanced = ( $this->profile === 'advanced' );
 		$out = $this->getOutput();
 		if ( strval( $term ) !== '' ) {
 			$out->setPageTitle( $this->msg( 'searchresults' ) );
@@ -471,6 +473,15 @@ class SpecialSearch extends SpecialPage {
 		}
 		// add javascript specific to special:search
 		$out->addModules( 'mediawiki.special.search' );
+	}
+
+	/**
+	 * Return true if current search is a power (advanced) search
+	 *
+	 * @return bool
+	 */
+	protected function isPowerSearch() {
+		return $this->profile === 'advanced';
 	}
 
 	/**
@@ -498,7 +509,7 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function powerSearchOptions() {
 		$opt = array();
-		if ( $this->profile !== 'advanced' ) {
+		if ( !$this->isPowerSearch() ) {
 			$opt['profile'] = $this->profile;
 		} else {
 			foreach ( $this->namespaces as $n ) {
@@ -1036,11 +1047,19 @@ class SpecialSearch extends SpecialPage {
 		$out .= Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
 		$out .= Xml::closeElement( 'div' );
 
-		// Hidden stuff
+		return $out;
+	}
+
+	/**
+	 * @param string $term Search term
+	 * @return string
+	 */
+	protected function searchOptions( $term ) {
+		$out = '';
 		$opts = array();
 		$opts['profile'] = $this->profile;
 
-		if ( $this->profile === 'advanced' ) {
+		if ( $this->isPowerSearch() ) {
 			$out .= $this->powerSearchBox( $term, $opts );
 		} else {
 			$form = '';
@@ -1062,7 +1081,7 @@ class SpecialSearch extends SpecialPage {
 		$out .= Html::hidden( 'profile', $this->profile ) . "\n";
 		// Term box
 		$out .= Html::input( 'search', $term, 'search', array(
-			'id' => $this->profile === 'advanced' ? 'powerSearchText' : 'searchText',
+			'id' => $this->isPowerSearch() ? 'powerSearchText' : 'searchText',
 			'size' => '50',
 			'autofocus',
 			'class' => 'mw-ui-input mw-ui-input-inline',
