@@ -192,7 +192,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		// Paranoia: avoid brute force searches (bug 17342)
-		if ( !is_null( $title ) || !is_null( $user ) ) {
+		$hideActions = $params['namespace'] !== null || !is_null( $title ) || !is_null( $params['action'] );
+		if ( $hideActions || !is_null( $user ) ) {
 			if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
 				$titleBits = LogPage::DELETED_ACTION;
 				$userBits = LogPage::DELETED_USER;
@@ -203,7 +204,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$titleBits = 0;
 				$userBits = 0;
 			}
-			if ( !is_null( $title ) && $titleBits ) {
+			if ( $hideActions && $titleBits ) {
 				$this->addWhere( $db->bitAnd( 'log_deleted', $titleBits ) . " != $titleBits" );
 			}
 			if ( !is_null( $user ) && $userBits ) {
@@ -353,12 +354,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 		}
 
-		if ( $this->fld_title || $this->fld_ids || $this->fld_details && $row->log_params !== '' ) {
+		if ( $this->fld_title || $this->fld_ids || $this->fld_type
+			|| $this->fld_details && $row->log_params !== ''
+		) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = '';
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_ACTION, $user ) ) {
+
+				if ( $this->fld_type ) {
+					$vals['action'] = $row->log_action;
+				}
 				if ( $this->fld_title ) {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
@@ -379,9 +386,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->fld_type || $this->fld_action ) {
+		if ( $this->fld_type ) {
 			$vals['type'] = $row->log_type;
-			$vals['action'] = $row->log_action;
 		}
 
 		if ( $this->fld_user || $this->fld_userid ) {

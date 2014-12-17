@@ -123,6 +123,7 @@ class User {
 		'deletelogentry',
 		'deleterevision',
 		'edit',
+		'editcontentmodel',
 		'editinterface',
 		'editprotected',
 		'editmyoptions',

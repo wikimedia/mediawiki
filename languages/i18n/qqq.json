@@ -1280,6 +1280,7 @@
     "right-protect": "{{doc-right|protect}}",
     "right-editprotected": "{{doc-right|editprotected}}\nRefers to {{msg-mw|Protect-level-sysop}}.\n\nSee also:\n* {{msg-mw|Right-editsemiprotected}}",
     "right-editsemiprotected": "{{doc-right|editsemiprotected}}\nRefers to {{msg-mw|Protect-level-autoconfirmed}}.\n\nSee also:\n* {{msg-mw|Right-editprotected}}",
+    "right-editcontentmodel": "{{doc-right|editcontentmodel}}",
     "right-editinterface": "{{doc-right|editinterface}}",
     "right-editusercssjs": "{{doc-right|editusercssjs}}",
     "right-editusercss": "{{doc-right|editusercss}}\nSee also:\n* {{msg-mw|Right-editmyusercss}}",
@@ -1350,6 +1351,7 @@
     "action-viewmywatchlist": "{{doc-action|viewmywatchlist}}\n{{Identical|View your watchlist}}",
     "action-viewmyprivateinfo": "{{doc-action|viewmyprivateinfo}}",
     "action-editmyprivateinfo": "{{doc-action|editmyprivateinfo}}",
+    "action-editcontentmodel": "{{doc-action|editcontentmodel}}",
     "nchanges": "Appears on enhanced watchlist and recent changes when page has more than one change on given date, linking to a diff of the changes.\n\nParameters:\n* $1 - the number of changes on that day (2 or more)\nThree messages are shown side-by-side: ({{msg-mw|Nchanges}} | {{msg-mw|Enhancedrc-since-last-visit}} | {{msg-mw|Enhancedrc-history}}).",
     "enhancedrc-since-last-visit": "Appears on enhanced watchlist and recent changes when page has more than one change on given date and at least one that the user hasn't seen yet, linking to a diff of the unviewed changes.\n\nParameters:\n* $1 - the number of unviewed changes (1 or more)\nThree messages are shown side-by-side: ({{msg-mw|nchanges}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).",
     "enhancedrc-history": "Appears on enhanced watchlist and recent changes when page has more than one change on given date, linking to its history.\n\nThis is the same as {{msg-mw|hist}}, but not abbreviated.\n\nThree messages are shown side-by-side: ({{msg-mw|nchanges}} | {{msg-mw|enhancedrc-since-last-visit}} | {{msg-mw|enhancedrc-history}}).\n{{Identical|History}}",
@@ -3694,5 +3696,7 @@
     "expand_templates_remove_nowiki": "Option on [[Special:Expandtemplates]]\n\nHere's what the tick box does:\n\nFor:\n<pre>\n&lt;nowiki>test&lt;/nowiki>\n</pre>\n\nNot ticked:\n<pre>\n&lt;nowiki>test&lt;/nowiki>\n</pre>\n\nTicked:\n<pre>\ntest\n</pre>",
     "expand_templates_generate_xml": "Used as checkbox label.",
     "expand_templates_generate_rawhtml": "Used as checkbox label.",
-    "expand_templates_preview": "{{Identical|Preview}}"
+    "expand_templates_preview": "{{Identical|Preview}}",
+    "expand_templates_preview_fail_html": "Used as error message in Preview section of [[Special:ExpandTemplates]] page.",
+    "expand_templates_preview_fail_html_anon": "Used as error message in Preview section of [[Special:ExpandTemplates]] page."
 }
