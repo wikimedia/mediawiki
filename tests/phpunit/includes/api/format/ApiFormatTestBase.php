@@ -1,29 +1,60 @@
 <?php
 
-abstract class ApiFormatTestBase extends ApiTestCase {
+abstract class ApiFormatTestBase extends MediaWikiTestCase {
 
 	/**
-	 * @param string $format
-	 * @param array $params
-	 * @param array $data
-	 *
-	 * @return string
+	 * Name of the formatter being tested
+	 * @var string
 	 */
-	protected function apiRequest( $format, $params, $data = null ) {
-		$data = parent::doApiRequest( $params, $data, true );
+	protected $printerName;
 
-		/** @var ApiMain $module */
-		$module = $data[3];
+	/**
+	 * Return general data to be encoded for testing
+	 * @return array See self::testGeneralEncoding
+	 */
+	public static function provideGeneralEncoding() {
+		throw new Exception( 'Subclass must implement ' . __METHOD__ );
+	}
 
-		$printer = $module->createPrinterByName( $format );
+	/**
+	 * Get the formatter output for the given input data
+	 * @param array $params Query parameters
+	 * @param array $data Data to encode
+	 * @param string $class Printer class to use instead of the normal one
+	 */
+	protected function encodeData( array $params, array $data, $class = null ) {
+		$context = new RequestContext;
+		$context->setRequest( new FauxRequest( $params, true ) );
+		$main = new ApiMain( $context );
+		if ( $class !== null ) {
+			$main->getModuleManager()->addModule( $this->printerName, 'format', $class );
+		}
+		$result = $main->getResult();
+		foreach ( $data as $k => $v ) {
+			$result->addValue( null, $k, $v );
+		}
 
-		ob_start();
-		$printer->initPrinter( false );
+		$printer = $main->createPrinterByName( $this->printerName );
+		$printer->initPrinter();
 		$printer->execute();
-		$printer->closePrinter();
-		$out = ob_get_clean();
+		ob_start();
+		try {
+			$printer->closePrinter();
+			return ob_get_clean();
+		} catch ( Exception $ex ) {
+			ob_end_clean();
+			throw $ex;
+		}
+	}
 
-		return $out;
+	/**
+	 * @dataProvider provideGeneralEncoding
+	 */
+	public function testGeneralEncoding( array $data, $expect, array $params = array() ) {
+		if ( isset( $params['SKIP'] ) ) {
+			$this->markTestSkipped( $expect );
+		}
+		$this->assertSame( $expect, $this->encodeData( $params, $data ) );
 	}
 
 }
