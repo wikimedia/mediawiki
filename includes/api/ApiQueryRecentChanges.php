@@ -56,8 +56,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			return $this->tokenFunctions;
 		}
 
-		// If we're in JSON callback mode, no tokens can be obtained
-		if ( !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) ) ) {
+		// If we're in a mode that breaks the same-origin policy, no tokens can
+		// be obtained
+		if ( $this->lacksSameOriginSecurity() ) {
 			return array();
 		}
 

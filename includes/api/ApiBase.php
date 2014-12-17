@@ -381,6 +381,20 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Returns true if the current request breaks the same-origin policy.
+	 *
+	 * For example, json with callbacks.
+	 *
+	 * https://en.wikipedia.org/wiki/Same-origin_policy
+	 *
+	 * @since 1.25
+	 * @return bool
+	 */
+	public function lacksSameOriginSecurity() {
+		return $this->getMain()->getRequest()->getVal( 'callback' ) !== null;
+	}
+
+	/**
 	 * Get the path to this module
 	 *
 	 * @since 1.25
