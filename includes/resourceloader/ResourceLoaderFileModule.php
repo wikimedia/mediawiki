@@ -295,6 +295,18 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		if ( $hasTemplates ) {
 			$this->dependencies[] = 'mediawiki.template';
+			// Ensure relevant template compiler module gets loaded
+			foreach ( $this->templates as $alias => $templatePath ) {
+				if ( is_int( $alias ) ) {
+					$alias = $templatePath;
+				}
+				$suffix = explode( '.', $alias );
+				$suffix = end( $suffix );
+				$compilerModule = 'mediawiki.template.' . $suffix;
+				if ( $suffix !== 'html' && !in_array( $compilerModule, $this->dependencies ) ) {
+					$this->dependencies[] = $compilerModule;
+				}
+			}
 		}
 	}
 
