@@ -781,6 +781,15 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.template.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.template.mustache' => array(
+		'dependencies' => array(
+			'mediawiki.template',
+		),
+		'scripts' => array(
+			'resources/lib/mustache/mustache.js',
+			'resources/src/mediawiki/mediawiki.template.mustache.js',
+		),
+	),
 	'mediawiki.apipretty' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.apipretty.css',
 		'targets' => array( 'desktop', 'mobile' ),
