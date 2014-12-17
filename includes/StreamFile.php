@@ -39,10 +39,8 @@ class StreamFile {
 	 * @return bool Success
 	 */
 	public static function stream( $fname, $headers = array(), $sendErrors = true ) {
-		wfProfileIn( __METHOD__ );
 
 		if ( FileBackend::isStoragePath( $fname ) ) { // sanity
-			wfProfileOut( __METHOD__ );
 			throw new MWException( __FUNCTION__ . " given storage path '$fname'." );
 		}
 
@@ -61,7 +59,6 @@ class StreamFile {
 			$ok = false; // failed
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $ok;
 	}
 

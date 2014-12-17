@@ -93,7 +93,6 @@ class LoadMonitorMySQL implements LoadMonitor {
 			return array( 0 => 0 );
 		}
 
-		$section = new ProfileSection( __METHOD__ );
 
 		$expiry = 5;
 		$requestRate = 10;

@@ -68,13 +68,11 @@ class WikitextContent extends TextContent {
 	 * @see Content::replaceSection()
 	 */
 	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' ) {
-		wfProfileIn( __METHOD__ );
 
 		$myModelId = $this->getModel();
 		$sectionModelId = $with->getModel();
 
 		if ( $sectionModelId != $myModelId ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "Incompatible content model for section: " .
 				"document uses $myModelId but " .
 				"section uses $sectionModelId." );
@@ -84,7 +82,6 @@ class WikitextContent extends TextContent {
 		$text = $with->getNativeData();
 
 		if ( strval( $sectionId ) === '' ) {
-			wfProfileOut( __METHOD__ );
 
 			return $with; # XXX: copy first?
 		}
@@ -107,7 +104,6 @@ class WikitextContent extends TextContent {
 
 		$newContent = new static( $text );
 
-		wfProfileOut( __METHOD__ );
 
 		return $newContent;
 	}

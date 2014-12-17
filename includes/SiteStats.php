@@ -221,7 +221,6 @@ class SiteStats {
 	 * @return int
 	 */
 	static function pagesInNs( $ns ) {
-		wfProfileIn( __METHOD__ );
 		if ( !isset( self::$pageCount[$ns] ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			self::$pageCount[$ns] = (int)$dbr->selectField(
@@ -231,7 +230,6 @@ class SiteStats {
 				__METHOD__
 			);
 		}
-		wfProfileOut( __METHOD__ );
 		return self::$pageCount[$ns];
 	}
 

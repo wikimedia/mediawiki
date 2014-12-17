@@ -294,7 +294,6 @@ class MWCryptRand {
 	 * @see self::generate()
 	 */
 	public function realGenerate( $bytes, $forceStrong = false ) {
-		wfProfileIn( __METHOD__ );
 
 		wfDebug( __METHOD__ . ": Generating cryptographic random bytes for " .
 			wfGetAllCallers( 5 ) . "\n" );
@@ -431,7 +430,6 @@ class MWCryptRand {
 		wfDebug( __METHOD__ . ": " . strlen( $buffer ) .
 			" bytes of randomness leftover in the buffer.\n" );
 
-		wfProfileOut( __METHOD__ );
 
 		return $generated;
 	}

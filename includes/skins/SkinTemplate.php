@@ -175,7 +175,6 @@ class SkinTemplate extends Skin {
 	}
 
 	protected function setupTemplateForOutput() {
-		wfProfileIn( __METHOD__ );
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
@@ -210,7 +209,6 @@ class SkinTemplate extends Skin {
 
 		wfProfileOut( __METHOD__ . '-stuff' );
 
-		wfProfileOut( __METHOD__ );
 
 		return $tpl;
 	}
@@ -221,7 +219,6 @@ class SkinTemplate extends Skin {
 	 * @param OutputPage $out
 	 */
 	function outputPage( OutputPage $out = null ) {
-		wfProfileIn( __METHOD__ );
 		Profiler::instance()->setTemplated( true );
 
 		$oldContext = null;
@@ -250,7 +247,6 @@ class SkinTemplate extends Skin {
 			$this->setContext( $oldContext );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -265,7 +261,6 @@ class SkinTemplate extends Skin {
 			$wgShowCreditsIfMax, $wgArticlePath,
 			$wgScriptPath, $wgServer;
 
-		wfProfileIn( __METHOD__ );
 
 		$title = $this->getTitle();
 		$request = $this->getRequest();
@@ -507,7 +502,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'dataAfterContent', $this->afterContentHook() );
 		wfProfileOut( __METHOD__ . '-stuff5' );
 
-		wfProfileOut( __METHOD__ );
 		return $tpl;
 	}
 
@@ -571,7 +565,6 @@ class SkinTemplate extends Skin {
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
-		wfProfileIn( __METHOD__ );
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = array();
@@ -704,7 +697,6 @@ class SkinTemplate extends Skin {
 		}
 
 		Hooks::run( 'PersonalUrls', array( &$personal_urls, &$title, $this ) );
-		wfProfileOut( __METHOD__ );
 		return $personal_urls;
 	}
 
@@ -822,7 +814,6 @@ class SkinTemplate extends Skin {
 	protected function buildContentNavigationUrls() {
 		global $wgDisableLangConversion;
 
-		wfProfileIn( __METHOD__ );
 
 		// Display tabs for the relevant title rather than always the title itself
 		$title = $this->getRelevantTitle();
@@ -1138,7 +1129,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $content_navigation;
 	}
@@ -1150,7 +1140,6 @@ class SkinTemplate extends Skin {
 	 */
 	private function buildContentActionUrls( $content_navigation ) {
 
-		wfProfileIn( __METHOD__ );
 
 		// content_actions has been replaced with content_navigation for backwards
 		// compatibility and also for skins that just want simple tabs content_actions
@@ -1183,7 +1172,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $content_actions;
 	}
@@ -1195,7 +1183,6 @@ class SkinTemplate extends Skin {
 	protected function buildNavUrls() {
 		global $wgUploadNavigationUrl;
 
-		wfProfileIn( __METHOD__ );
 
 		$out = $this->getOutput();
 		$request = $this->getRequest();
@@ -1301,7 +1288,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $nav_urls;
 	}
 

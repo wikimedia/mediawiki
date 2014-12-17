@@ -80,7 +80,6 @@ class UserCache {
 	 * @param string $caller The calling method
 	 */
 	public function doQuery( array $userIds, $options = array(), $caller = '' ) {
-		wfProfileIn( __METHOD__ );
 
 		$usersToCheck = array();
 		$usersToQuery = array();
@@ -134,7 +133,6 @@ class UserCache {
 		}
 		$lb->execute();
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

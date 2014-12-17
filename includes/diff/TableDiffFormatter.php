@@ -190,7 +190,6 @@ class TableDiffFormatter extends DiffFormatter {
 	 * @param string[] $closing
 	 */
 	protected function changed( $orig, $closing ) {
-		wfProfileIn( __METHOD__ );
 
 		$diff = new WordLevelDiff( $orig, $closing );
 		$del = $diff->orig();
@@ -208,7 +207,6 @@ class TableDiffFormatter extends DiffFormatter {
 			echo '<tr>' . $this->emptyLine() .
 				$this->addedLine( $line ) . "</tr>\n";
 		}
-		wfProfileOut( __METHOD__ );
 	}
 
 }

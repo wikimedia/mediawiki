@@ -207,7 +207,6 @@ class SpecialSearch extends SpecialPage {
 	public function showResults( $term ) {
 		global $wgContLang;
 
-		$profile = new ProfileSection( __METHOD__ );
 		$search = $this->getSearchEngine();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
@@ -553,7 +552,6 @@ class SpecialSearch extends SpecialPage {
 	protected function showMatches( &$matches ) {
 		global $wgContLang;
 
-		$profile = new ProfileSection( __METHOD__ );
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 
 		$out = "<ul class='mw-search-results'>\n";
@@ -579,7 +577,6 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function showHit( $result, $terms ) {
-		$profile = new ProfileSection( __METHOD__ );
 
 		if ( $result->isBrokenTitle() ) {
 			return '';
@@ -738,7 +735,6 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function showInterwiki( $matches, $query ) {
 		global $wgContLang;
-		$profile = new ProfileSection( __METHOD__ );
 
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>" .
 			$this->msg( 'search-interwiki-caption' )->text() . "</div>\n";
@@ -789,7 +785,6 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function showInterwikiHit( $result, $lastInterwiki, $query, $customCaptions ) {
-		$profile = new ProfileSection( __METHOD__ );
 
 		if ( $result->isBrokenTitle() ) {
 			return '';

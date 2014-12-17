@@ -185,7 +185,6 @@ class MWTidy {
 	 */
 	private static function externalClean( $text, &$retval = null ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
-		wfProfileIn( __METHOD__ );
 
 		$opts = ' -utf8';
 
@@ -230,7 +229,6 @@ class MWTidy {
 			$retval = -1;
 		}
 
-		wfProfileOut( __METHOD__ );
 		return array( $outputBuffer, $errorBuffer );
 	}
 
@@ -244,7 +242,6 @@ class MWTidy {
 	 */
 	private static function internalClean( $text, &$retval = null ) {
 		global $wgTidyConf, $wgDebugTidy;
-		wfProfileIn( __METHOD__ );
 
 		if ( ( !wfIsHHVM() && !class_exists( 'tidy' ) ) ||
 			( wfIsHHVM() && !function_exists( 'tidy_repair_string' ) )
@@ -252,7 +249,6 @@ class MWTidy {
 			wfWarn( "Unable to load internal tidy class." );
 			$retval = -1;
 
-			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
@@ -285,7 +281,6 @@ class MWTidy {
 				"\n-->";
 		}
 
-		wfProfileOut( __METHOD__ );
 		return array( $outputBuffer, $errorBuffer );
 	}
 }

@@ -117,12 +117,10 @@ class StripState {
 			return $text;
 		}
 
-		wfProfileIn( __METHOD__ );
 		$oldType = $this->tempType;
 		$this->tempType = $type;
 		$text = preg_replace_callback( $this->regex, array( $this, 'unstripCallback' ), $text );
 		$this->tempType = $oldType;
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
