@@ -63,7 +63,6 @@ class ApiTokens extends ApiBase {
 		if ( $types ) {
 			return $types;
 		}
-		wfProfileIn( __METHOD__ );
 		$types = array( 'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' ) );
 		$names = array( 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
 			'email', 'import', 'watch', 'options' );
@@ -72,7 +71,6 @@ class ApiTokens extends ApiBase {
 		}
 		Hooks::run( 'ApiTokensGetTokenTypes', array( &$types ) );
 		ksort( $types );
-		wfProfileOut( __METHOD__ );
 
 		return $types;
 	}

@@ -312,7 +312,6 @@ class DjVuHandler extends ImageHandler {
 
 			return false;
 		}
-		wfProfileIn( __METHOD__ );
 
 		wfSuppressWarnings();
 		try {
@@ -338,7 +337,6 @@ class DjVuHandler extends ImageHandler {
 			wfDebug( "Bogus multipage XML metadata on '{$image->getName()}'\n" );
 		}
 		wfRestoreWarnings();
-		wfProfileOut( __METHOD__ );
 		if ( $gettext ) {
 			return $image->djvuTextTree;
 		} else {

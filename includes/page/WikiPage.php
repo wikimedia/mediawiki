@@ -557,7 +557,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getOldestRevision() {
-		wfProfileIn( __METHOD__ );
 
 		// Try using the slave database first, then try the master
 		$continue = 2;
@@ -588,7 +587,6 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $row ? Revision::newFromRow( $row ) : null;
 	}
 
@@ -1055,7 +1053,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return array Array of authors, duplicates not removed
 	 */
 	public function getLastNAuthors( $num, $revLatest = 0 ) {
-		wfProfileIn( __METHOD__ );
 		// First try the slave
 		// If that doesn't have the latest revision, try the master
 		$continue = 2;
@@ -1076,7 +1073,6 @@ class WikiPage implements Page, IDBAccessObject {
 			);
 
 			if ( !$res ) {
-				wfProfileOut( __METHOD__ );
 				return array();
 			}
 
@@ -1096,7 +1092,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$authors[] = $row->rev_user_text;
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $authors;
 	}
 
@@ -1129,7 +1124,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return ParserOutput|bool ParserOutput or false if the revision was not found
 	 */
 	public function getParserOutput( ParserOptions $parserOptions, $oldid = null ) {
-		wfProfileIn( __METHOD__ );
 
 		$useParserCache = $this->isParserCacheUsed( $parserOptions, $oldid );
 		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
@@ -1140,7 +1134,6 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $useParserCache ) {
 			$parserOutput = ParserCache::singleton()->get( $this, $parserOptions );
 			if ( $parserOutput !== false ) {
-				wfProfileOut( __METHOD__ );
 				return $parserOutput;
 			}
 		}
@@ -1152,7 +1145,6 @@ class WikiPage implements Page, IDBAccessObject {
 		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache );
 		$pool->execute();
 
-		wfProfileOut( __METHOD__ );
 
 		return $pool->getParserOutput();
 	}
@@ -1228,7 +1220,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return int The newly created page_id key, or false if the title already existed
 	 */
 	public function insertOn( $dbw ) {
-		wfProfileIn( __METHOD__ );
 
 		$page_id = $dbw->nextSequenceValue( 'page_page_id_seq' );
 		$dbw->insert( 'page', array(
@@ -1251,7 +1242,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mId = $newid;
 			$this->mTitle->resetArticleID( $newid );
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $affected ? $newid : false;
 	}
@@ -1274,7 +1264,6 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		global $wgContentHandlerUseDB;
 
-		wfProfileIn( __METHOD__ );
 
 		$content = $revision->getContent();
 		$len = $content ? $content->getSize() : 0;
@@ -1317,7 +1306,6 @@ class WikiPage implements Page, IDBAccessObject {
 													$this->mLatest, $revision->getContentModel() );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
@@ -1342,7 +1330,6 @@ class WikiPage implements Page, IDBAccessObject {
 			return true;
 		}
 
-		wfProfileIn( __METHOD__ );
 		if ( $isRedirect ) {
 			$this->insertRedirectEntry( $redirectTitle );
 		} else {
@@ -1354,7 +1341,6 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $this->getTitle()->getNamespace() == NS_FILE ) {
 			RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
 		}
-		wfProfileOut( __METHOD__ );
 
 		return ( $dbw->affectedRows() != 0 );
 	}
@@ -1370,7 +1356,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function updateIfNewerOn( $dbw, $revision ) {
-		wfProfileIn( __METHOD__ );
 
 		$row = $dbw->selectRow(
 			array( 'revision', 'page' ),
@@ -1382,7 +1367,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $row ) {
 			if ( wfTimestamp( TS_MW, $row->rev_timestamp ) >= $revision->getTimestamp() ) {
-				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			$prev = $row->rev_id;
@@ -1395,7 +1379,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$ret = $this->updateRevisionOn( $dbw, $revision, $prev, $lastRevIsRedirect );
 
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -1514,7 +1497,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function replaceSectionContent( $sectionId, Content $sectionContent, $sectionTitle = '',
 		$edittime = null ) {
-		wfProfileIn( __METHOD__ );
 
 		$baseRevId = null;
 		if ( $edittime && $sectionId !== 'new' ) {
@@ -1525,7 +1507,6 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $this->replaceSectionAtRev( $sectionId, $sectionContent, $sectionTitle, $baseRevId );
 	}
 
@@ -1545,14 +1526,12 @@ class WikiPage implements Page, IDBAccessObject {
 	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
 		$sectionTitle = '', $baseRevId = null
 	) {
-		wfProfileIn( __METHOD__ );
 
 		if ( strval( $sectionId ) === '' ) {
 			// Whole-page edit; let the whole text through
 			$newContent = $sectionContent;
 		} else {
 			if ( !$this->supportsSections() ) {
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "sections not supported for content model " .
 					$this->getContentHandler()->getModelID() );
 			}
@@ -1568,7 +1547,6 @@ class WikiPage implements Page, IDBAccessObject {
 				if ( !$rev ) {
 					wfDebug( __METHOD__ . " asked for bogus section (page: " .
 						$this->getId() . "; section: $sectionId)\n" );
-					wfProfileOut( __METHOD__ );
 					return null;
 				}
 
@@ -1577,14 +1555,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 			if ( !$oldContent ) {
 				wfDebug( __METHOD__ . ": no page text\n" );
-				wfProfileOut( __METHOD__ );
 				return null;
 			}
 
 			$newContent = $oldContent->replaceSection( $sectionId, $sectionContent, $sectionTitle );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $newContent;
 	}
 
@@ -1726,10 +1702,8 @@ class WikiPage implements Page, IDBAccessObject {
 			throw new MWException( 'Something is trying to edit an article with an empty title' );
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		if ( !$content->getContentHandler()->canBeUsedOn( $this->getTitle() ) ) {
-			wfProfileOut( __METHOD__ );
 			return Status::newFatal( 'content-not-allowed-here',
 				ContentHandler::getLocalizedName( $content->getModel() ),
 				$this->getTitle()->getPrefixedText() );
@@ -1758,7 +1732,6 @@ class WikiPage implements Page, IDBAccessObject {
 				$status->fatal( 'edit-hook-aborted' );
 			}
 
-			wfProfileOut( __METHOD__ );
 			return $status;
 		}
 
@@ -1805,11 +1778,9 @@ class WikiPage implements Page, IDBAccessObject {
 				wfDebug( __METHOD__ . ": EDIT_UPDATE specified but article doesn't exist\n" );
 				$status->fatal( 'edit-gone-missing' );
 
-				wfProfileOut( __METHOD__ );
 				return $status;
 			} elseif ( !$old_content ) {
 				// Sanity check for bug 37225
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "Could not find text for current revision {$oldid}." );
 			}
 
@@ -1840,7 +1811,6 @@ class WikiPage implements Page, IDBAccessObject {
 					if ( !$status->isOK() ) {
 						$dbw->rollback( __METHOD__ );
 
-						wfProfileOut( __METHOD__ );
 						return $status;
 					}
 					$revisionId = $revision->insertOn( $dbw );
@@ -1856,7 +1826,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 						$dbw->rollback( __METHOD__ );
 
-						wfProfileOut( __METHOD__ );
 						return $status;
 					}
 
@@ -1921,7 +1890,6 @@ class WikiPage implements Page, IDBAccessObject {
 				if ( !$status->isOK() ) {
 					$dbw->rollback( __METHOD__ );
 
-					wfProfileOut( __METHOD__ );
 					return $status;
 				}
 
@@ -1935,7 +1903,6 @@ class WikiPage implements Page, IDBAccessObject {
 					$dbw->rollback( __METHOD__ );
 					$status->fatal( 'edit-already-exists' );
 
-					wfProfileOut( __METHOD__ );
 					return $status;
 				}
 
@@ -2018,7 +1985,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$user->addAutopromoteOnceGroups( 'onEdit' );
 		} );
 
-		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -2166,7 +2132,6 @@ class WikiPage implements Page, IDBAccessObject {
 	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
 		global $wgEnableParserCache;
 
-		wfProfileIn( __METHOD__ );
 
 		$options += array(
 			'changed' => true,
@@ -2214,7 +2179,6 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( !$this->exists() ) {
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -2279,7 +2243,6 @@ class WikiPage implements Page, IDBAccessObject {
 			self::onArticleEdit( $this->mTitle );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -2315,7 +2278,6 @@ class WikiPage implements Page, IDBAccessObject {
 	public function doQuickEditContent( Content $content, User $user, $comment = '', $minor = false,
 		$serialFormat = null
 	) {
-		wfProfileIn( __METHOD__ );
 
 		$serialized = $content->serialize( $serialFormat );
 
@@ -2335,7 +2297,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

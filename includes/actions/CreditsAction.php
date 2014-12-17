@@ -42,7 +42,6 @@ class CreditsAction extends FormlessAction {
 	 * @return string HTML
 	 */
 	public function onView() {
-		wfProfileIn( __METHOD__ );
 
 		if ( $this->page->getID() == 0 ) {
 			$s = $this->msg( 'nocredits' )->parse();
@@ -50,7 +49,6 @@ class CreditsAction extends FormlessAction {
 			$s = $this->getCredits( -1 );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return Html::rawElement( 'div', array( 'id' => 'mw-credits' ), $s );
 	}
@@ -63,7 +61,6 @@ class CreditsAction extends FormlessAction {
 	 * @return string Html
 	 */
 	public function getCredits( $cnt, $showIfMax = true ) {
-		wfProfileIn( __METHOD__ );
 		$s = '';
 
 		if ( $cnt != 0 ) {
@@ -73,7 +70,6 @@ class CreditsAction extends FormlessAction {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $s;
 	}

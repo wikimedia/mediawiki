@@ -56,8 +56,6 @@ class AjaxDispatcher {
 	 * Load up our object with user supplied data
 	 */
 	function __construct( Config $config ) {
-		wfProfileIn( __METHOD__ );
-
 		$this->config = $config;
 
 		$this->mode = "";
@@ -88,13 +86,11 @@ class AjaxDispatcher {
 				}
 				break;
 			default:
-				wfProfileOut( __METHOD__ );
 				return;
 				# Or we could throw an exception:
 				# throw new MWException( __METHOD__ . ' called without any data (mode empty).' );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -110,11 +106,8 @@ class AjaxDispatcher {
 			return;
 		}
 
-		wfProfileIn( __METHOD__ );
-
 		if ( !in_array( $this->func_name, $this->config->get( 'AjaxExportList' ) ) ) {
 			wfDebug( __METHOD__ . ' Bad Request for unknown function ' . $this->func_name . "\n" );
-
 			wfHttpError(
 				400,
 				'Bad Request',
@@ -127,7 +120,6 @@ class AjaxDispatcher {
 				'You are not allowed to view pages.' );
 		} else {
 			wfDebug( __METHOD__ . ' dispatching ' . $this->func_name . "\n" );
-
 			try {
 				$result = call_user_func_array( $this->func_name, $this->args );
 
@@ -162,6 +154,5 @@ class AjaxDispatcher {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 }
