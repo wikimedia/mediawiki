@@ -39,7 +39,7 @@ class JsonContent extends TextContent {
 	 * @return bool|null|string
 	 */
 	public function beautifyJSON() {
-		$decoded = FormatJson::decode( $this->getNativeData(), true );
+		$decoded = $this->getJsonData();
 		if ( !is_array( $decoded ) ) {
 			return null;
 		}
