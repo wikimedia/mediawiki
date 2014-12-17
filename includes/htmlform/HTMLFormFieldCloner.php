@@ -96,8 +96,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			} else {
 				$info['id'] = Sanitizer::escapeId( "{$this->mID}--$key--$fieldname" );
 			}
-			$field = HTMLForm::loadInputFromParameters( $name, $info );
-			$field->mParent = $this->mParent;
+			$field = HTMLForm::loadInputFromParameters( $name, $info, $this->mParent );
 			$fields[$fieldname] = $field;
 		}
 		return $fields;
@@ -310,8 +309,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				'id' => Sanitizer::escapeId( "{$this->mID}--$key--delete" ),
 				'cssclass' => 'mw-htmlform-cloner-delete-button',
 				'default' => $this->msg( $label )->text(),
-			) );
-			$field->mParent = $this->mParent;
+			), $this->mParent );
 			$v = $field->getDefault();
 
 			if ( $displayFormat === 'table' ) {
@@ -383,8 +381,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			'id' => Sanitizer::escapeId( "{$this->mID}--create" ),
 			'cssclass' => 'mw-htmlform-cloner-create-button',
 			'default' => $this->msg( $label )->text(),
-		) );
-		$field->mParent = $this->mParent;
+		), $this->mParent );
 		$html .= $field->getInputHTML( $field->getDefault() );
 
 		return $html;

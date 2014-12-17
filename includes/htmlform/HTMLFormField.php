@@ -343,6 +343,10 @@ abstract class HTMLFormField {
 	function __construct( $params ) {
 		$this->mParams = $params;
 
+		if ( isset( $params['parent'] ) && $params['parent'] instanceof HTMLForm ) {
+			$this->mParent = $params['parent'];
+		}
+
 		# Generate the label from a message, if possible
 		if ( isset( $params['label-message'] ) ) {
 			$msgInfo = $params['label-message'];
@@ -354,7 +358,7 @@ abstract class HTMLFormField {
 				$msgInfo = array();
 			}
 
-			$this->mLabel = wfMessage( $msg, $msgInfo )->parse();
+			$this->mLabel = $this->msg( $msg, $msgInfo )->parse();
 		} elseif ( isset( $params['label'] ) ) {
 			if ( $params['label'] === '&#160;' ) {
 				// Apparently some things set &nbsp directly and in an odd format
