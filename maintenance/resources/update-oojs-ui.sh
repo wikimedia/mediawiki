@@ -15,6 +15,7 @@ NPM_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'update-oojs-ui') # e.g. /tmp/up
 
 # Prepare working tree
 cd "$REPO_DIR" &&
+git reset composer.json && git checkout composer.json &&
 git reset $TARGET_DIR && git checkout $TARGET_DIR && git fetch origin &&
 git checkout -B upstream-oojs-ui origin/master || exit 1
 
@@ -58,5 +59,8 @@ Release notes:
 END
 )
 
+# Update composer.json as well
+composer require oojs/oojs-ui $OOJSUI_VERSION --no-update
+
 # Stage deletion, modification and creation of files. Then commit.
-git add --update $TARGET_DIR && git add $TARGET_DIR && git commit -m "$COMMITMSG" || exit 1
+git add --update $TARGET_DIR && git add $TARGET_DIR && git add composer.json && git commit -m "$COMMITMSG" || exit 1
