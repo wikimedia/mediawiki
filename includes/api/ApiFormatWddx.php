@@ -38,29 +38,59 @@ class ApiFormatWddx extends ApiFormatBase {
 	public function execute() {
 		$this->markDeprecated();
 
-		// Some versions of PHP have a broken wddx_serialize_value, see
-		// PHP bug 45314. Test encoding an affected character (U+00A0)
-		// to avoid this.
-		$expected =
-			"<wddxPacket version='1.0'><header/><data><string>\xc2\xa0</string></data></wddxPacket>";
-		if ( function_exists( 'wddx_serialize_value' )
-			&& !$this->getIsHtml()
-			&& wddx_serialize_value( "\xc2\xa0" ) == $expected
-		) {
+		if ( !$this->getIsHtml() && !static::useSlowPrinter() ) {
 			$this->printText( wddx_serialize_value( $this->getResultData() ) );
 		} else {
 			// Don't do newlines and indentation if we weren't asked
 			// for pretty output
 			$nl = ( $this->getIsHtml() ? "\n" : '' );
-			$indstr = ' ';
+			$indstr = ( $this->getIsHtml() ? ' ' : '' );
 			$this->printText( "<?xml version=\"1.0\"?>$nl" );
 			$this->printText( "<wddxPacket version=\"1.0\">$nl" );
-			$this->printText( "$indstr<header/>$nl" );
+			$this->printText( "$indstr<header />$nl" );
 			$this->printText( "$indstr<data>$nl" );
 			$this->slowWddxPrinter( $this->getResultData(), 4 );
 			$this->printText( "$indstr</data>$nl" );
 			$this->printText( "</wddxPacket>$nl" );
 		}
+	}
+
+	public static function useSlowPrinter() {
+		if ( !function_exists( 'wddx_serialize_value' ) ) {
+			return true;
+		}
+
+		// Some versions of PHP have a broken wddx_serialize_value, see
+		// PHP bug 45314. Test encoding an affected character (U+00A0)
+		// to avoid this.
+		$expected =
+			"<wddxPacket version='1.0'><header/><data><string>\xc2\xa0</string></data></wddxPacket>";
+		if ( wddx_serialize_value( "\xc2\xa0" ) !== $expected ) {
+			return true;
+		}
+
+		// Some versions of HHVM don't correctly encode ampersands.
+		$expected =
+			"<wddxPacket version='1.0'><header/><data><string>&amp;</string></data></wddxPacket>";
+		if ( wddx_serialize_value( '&' ) !== $expected ) {
+			return true;
+		}
+
+		// Some versions of HHVM don't correctly encode empty arrays as subvalues.
+		$expected =
+			"<wddxPacket version='1.0'><header/><data><array length='1'><array length='0'></array></array></data></wddxPacket>";
+		if ( wddx_serialize_value( array( array() ) ) !== $expected ) {
+			return true;
+		}
+
+		// Some versions of HHVM don't correctly encode associative arrays with numeric keys.
+		$expected =
+			"<wddxPacket version='1.0'><header/><data><struct><var name='2'><number>1</number></var></struct></data></wddxPacket>";
+		if ( wddx_serialize_value( array( 2 => 1 ) ) !== $expected ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -104,6 +134,8 @@ class ApiFormatWddx extends ApiFormatBase {
 			$this->printText( $indstr . Xml::element( 'boolean',
 				array( 'value' => $elemValue ? 'true' : 'false' ) ) . $nl
 			);
+		} elseif ( $elemValue === null ) {
+			$this->printText( $indstr . Xml::element( 'null', array() ) . $nl );
 		} else {
 			ApiBase::dieDebug( __METHOD__, 'Unknown type ' . gettype( $elemValue ) );
 		}
