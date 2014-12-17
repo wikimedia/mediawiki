@@ -835,7 +835,7 @@ class Article implements Page {
 
 		if ( $showCacheHint ) {
 			$dir = $this->getContext()->getLanguage()->getDir();
-			$lang = $this->getContext()->getLanguage()->getCode();
+			$lang = $this->getContext()->getLanguage()->getHtmlCode();
 
 			$outputPage->wrapWikiMsg(
 				"<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
