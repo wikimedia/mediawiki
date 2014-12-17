@@ -43,7 +43,6 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	}
 
 	public function doUpdate() {
-		wfProfileIn( __METHOD__ );
 
 		$job = new HTMLCacheUpdateJob(
 			$this->mTitle,
@@ -65,6 +64,5 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 			} );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 }

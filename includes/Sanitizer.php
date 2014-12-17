@@ -372,7 +372,6 @@ class Sanitizer {
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
 
-		wfProfileIn( __METHOD__ );
 
 		// Base our staticInitialised variable off of the global config state so that if the globals
 		// are changed (like in the screwed up test system) we will re-initialise the settings.
@@ -600,7 +599,6 @@ class Sanitizer {
 				$text .= '&lt;' . str_replace( '>', '&gt;', $x );
 			}
 		}
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
@@ -615,7 +613,6 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function removeHTMLcomments( $text ) {
-		wfProfileIn( __METHOD__ );
 		while ( ( $start = strpos( $text, '<!--' ) ) !== false ) {
 			$end = strpos( $text, '-->', $start + 4 );
 			if ( $end === false ) {
@@ -646,7 +643,6 @@ class Sanitizer {
 				$text = substr_replace( $text, '', $start, $end - $start );
 			}
 		}
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 

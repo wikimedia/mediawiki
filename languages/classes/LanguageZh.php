@@ -170,7 +170,6 @@ class LanguageZh extends LanguageZh_hans {
 	 * @return string
 	 */
 	function normalizeForSearch( $string, $autoVariant = 'zh-hans' ) {
-		wfProfileIn( __METHOD__ );
 
 		// always convert to zh-hans before indexing. it should be
 		// better to use zh-hans for search, since conversion from
@@ -179,7 +178,6 @@ class LanguageZh extends LanguageZh_hans {
 		$s = $this->mConverter->autoConvert( $string, $autoVariant );
 		// LanguageZh_hans::normalizeForSearch
 		$s = parent::normalizeForSearch( $s );
-		wfProfileOut( __METHOD__ );
 		return $s;
 
 	}

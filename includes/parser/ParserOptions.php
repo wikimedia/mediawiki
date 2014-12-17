@@ -639,7 +639,6 @@ class ParserOptions {
 			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
 			$wgMaxGeneratedPPNodeCount, $wgDisableLangConversion, $wgDisableTitleConversion;
 
-		wfProfileIn( __METHOD__ );
 
 		// *UPDATE* ParserOptions::matches() if any of this changes as needed
 		$this->mInterwikiMagic = $wgInterwikiMagic;
@@ -664,7 +663,6 @@ class ParserOptions {
 		$this->mStubThreshold = $user->getStubThreshold();
 		$this->mUserLang = $lang;
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

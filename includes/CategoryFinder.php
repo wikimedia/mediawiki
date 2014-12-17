@@ -185,7 +185,6 @@ class CategoryFinder {
 	 * Scans a "parent layer" of the articles/categories in $this->next
 	 */
 	private function scanNextLayer() {
-		$profiler = new ProfileSection( __METHOD__ );
 
 		# Find all parents of the article currently in $this->next
 		$layer = array();

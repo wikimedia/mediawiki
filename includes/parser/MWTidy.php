@@ -195,7 +195,6 @@ class MWTidy {
 	 */
 	private static function externalClean( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
-		wfProfileIn( __METHOD__ );
 
 		$cleansource = '';
 		$opts = ' -utf8';
@@ -247,7 +246,6 @@ class MWTidy {
 			$cleansource = null;
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $cleansource;
 	}
 
@@ -262,7 +260,6 @@ class MWTidy {
 	 */
 	private static function phpClean( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgDebugTidy;
-		wfProfileIn( __METHOD__ );
 
 		if ( ( !wfIsHHVM() && !class_exists( 'tidy' ) ) ||
 			( wfIsHHVM() && !function_exists( 'tidy_repair_string' ) )
@@ -270,7 +267,6 @@ class MWTidy {
 			wfWarn( "Unable to load internal tidy class." );
 			$retval = -1;
 
-			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
@@ -279,8 +275,6 @@ class MWTidy {
 
 		if ( $stderr ) {
 			$retval = $tidy->getStatus();
-
-			wfProfileOut( __METHOD__ );
 			return $tidy->errorBuffer;
 		}
 
@@ -299,7 +293,6 @@ class MWTidy {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $cleansource;
 	}
 
@@ -316,7 +309,7 @@ class MWTidy {
 	 */
 	private static function hhvmClean( $text, &$retval ) {
 		global $wgTidyConf;
-		wfProfileIn( __METHOD__ );
+
 		$cleansource = tidy_repair_string( $text, $wgTidyConf, 'utf8' );
 		if ( $cleansource === false ) {
 			$cleansource = null;
@@ -324,7 +317,7 @@ class MWTidy {
 		} else {
 			$retval = 0;
 		}
-		wfProfileOut( __METHOD__ );
+
 		return $cleansource;
 	}
 }

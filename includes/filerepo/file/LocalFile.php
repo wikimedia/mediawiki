@@ -247,13 +247,11 @@ class LocalFile extends File {
 	function loadFromCache() {
 		global $wgMemc;
 
-		wfProfileIn( __METHOD__ );
 		$this->dataLoaded = false;
 		$this->extraDataLoaded = false;
 		$key = $this->getCacheKey();
 
 		if ( !$key ) {
-			wfProfileOut( __METHOD__ );
 
 			return false;
 		}
@@ -280,7 +278,6 @@ class LocalFile extends File {
 			wfIncrStats( 'image_cache_miss' );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $this->dataLoaded;
 	}
@@ -382,10 +379,6 @@ class LocalFile extends File {
 	 * @param int $flags
 	 */
 	function loadFromDB( $flags = 0 ) {
-		# Polymorphic function name to distinguish foreign and local fetches
-		$fname = get_class( $this ) . '::' . __FUNCTION__;
-		wfProfileIn( $fname );
-
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
@@ -402,8 +395,6 @@ class LocalFile extends File {
 		} else {
 			$this->fileExists = false;
 		}
-
-		wfProfileOut( $fname );
 	}
 
 	/**
@@ -411,10 +402,6 @@ class LocalFile extends File {
 	 * This covers fields that are sometimes not cached.
 	 */
 	protected function loadExtraFromDB() {
-		# Polymorphic function name to distinguish foreign and local fetches
-		$fname = get_class( $this ) . '::' . __FUNCTION__;
-		wfProfileIn( $fname );
-
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->extraDataLoaded = true;
 
@@ -428,11 +415,8 @@ class LocalFile extends File {
 				$this->$name = $value;
 			}
 		} else {
-			wfProfileOut( $fname );
 			throw new MWException( "Could not find data for image '{$this->getName()}'." );
 		}
-
-		wfProfileOut( $fname );
 	}
 
 	/**
@@ -587,7 +571,6 @@ class LocalFile extends File {
 	 * Fix assorted version-related problems with the image row by reloading it from the file
 	 */
 	function upgradeRow() {
-		wfProfileIn( __METHOD__ );
 
 		$this->lock(); // begin
 
@@ -597,7 +580,6 @@ class LocalFile extends File {
 		if ( !$this->fileExists ) {
 			$this->unlock();
 			wfDebug( __METHOD__ . ": file does not exist, aborting\n" );
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -607,7 +589,6 @@ class LocalFile extends File {
 
 		if ( wfReadOnly() ) {
 			$this->unlock();
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -633,7 +614,6 @@ class LocalFile extends File {
 
 		$this->unlock(); // done
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -889,7 +869,6 @@ class LocalFile extends File {
 	 * @note This used to purge old thumbnails by default as well, but doesn't anymore.
 	 */
 	function purgeCache( $options = array() ) {
-		wfProfileIn( __METHOD__ );
 		// Refresh metadata cache
 		$this->purgeMetadataCache();
 
@@ -898,7 +877,6 @@ class LocalFile extends File {
 
 		// Purge squid cache for this file
 		SquidUpdate::purge( array( $this->getURL() ) );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -907,7 +885,6 @@ class LocalFile extends File {
 	 */
 	function purgeOldThumbnails( $archiveName ) {
 		global $wgUseSquid;
-		wfProfileIn( __METHOD__ );
 
 		// Get a list of old thumbnails and URLs
 		$files = $this->getThumbnails( $archiveName );
@@ -927,7 +904,6 @@ class LocalFile extends File {
 			SquidUpdate::purge( $urls );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -936,7 +912,6 @@ class LocalFile extends File {
 	 */
 	function purgeThumbnails( $options = array() ) {
 		global $wgUseSquid;
-		wfProfileIn( __METHOD__ );
 
 		// Delete thumbnails
 		$files = $this->getThumbnails();
@@ -968,7 +943,6 @@ class LocalFile extends File {
 			SquidUpdate::purge( $urls );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -1236,7 +1210,6 @@ class LocalFile extends File {
 	function recordUpload2( $oldver, $comment, $pageText, $props = false, $timestamp = false,
 		$user = null
 	) {
-		wfProfileIn( __METHOD__ );
 
 		if ( is_null( $user ) ) {
 			global $wgUser;
@@ -1271,7 +1244,6 @@ class LocalFile extends File {
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": File " . $this->getRel() . " went missing!\n" );
 			$dbw->rollback( __METHOD__ );
-			wfProfileOut( __METHOD__ );
 
 			return false;
 		}
@@ -1497,7 +1469,6 @@ class LocalFile extends File {
 			LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return true;
 	}
@@ -2243,7 +2214,6 @@ class LocalFileDeleteBatch {
 	 * @return FileRepoStatus
 	 */
 	function execute() {
-		wfProfileIn( __METHOD__ );
 
 		$this->file->lock();
 
@@ -2292,7 +2262,6 @@ class LocalFileDeleteBatch {
 			// Roll back inserts, release lock and abort
 			// TODO: delete the defunct filearchive rows if we are using a non-transactional DB
 			$this->file->unlockAndRollback();
-			wfProfileOut( __METHOD__ );
 
 			return $this->status;
 		}
@@ -2302,7 +2271,6 @@ class LocalFileDeleteBatch {
 
 		// Commit and return
 		$this->file->unlock();
-		wfProfileOut( __METHOD__ );
 
 		return $this->status;
 	}
