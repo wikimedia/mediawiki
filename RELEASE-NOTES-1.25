@@ -111,6 +111,7 @@ production.
 ** Title::moveTo() was deprecated. Use the MovePage class instead.
 ** Title::isValidMoveOperation() broken down into MovePage::isValidMove()
    and MovePage::checkPermissions().
+* (T78637) Search bar is not autofocused unless it is empty so that proper scrolling using arrow keys is possible.
 
 === Action API changes in 1.25 ===
 * (T67403) XML tag highlighting is now only performed for formats
