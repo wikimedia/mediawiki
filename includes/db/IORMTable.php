@@ -94,7 +94,7 @@ interface IORMTable {
 	public function getSummaryFields();
 
 	/**
-	 * Selects the the specified fields of the records matching the provided
+	 * Selects the specified fields of the records matching the provided
 	 * conditions and returns them as DBDataObject. Field names get prefixed.
 	 *
 	 * @see DatabaseBase::select()
@@ -113,7 +113,7 @@ interface IORMTable {
 		array $options = array(), $functionName = null );
 
 	/**
-	 * Selects the the specified fields of the records matching the provided
+	 * Selects the specified fields of the records matching the provided
 	 * conditions and returns them as DBDataObject. Field names get prefixed.
 	 *
 	 * @since 1.20
@@ -145,7 +145,7 @@ interface IORMTable {
 		array $options = array(), $functionName = null );
 
 	/**
-	 * Selects the the specified fields of the records matching the provided
+	 * Selects the specified fields of the records matching the provided
 	 * conditions and returns them as associative arrays.
 	 * Provided field names get prefixed.
 	 * Returned field names will not have a prefix.
@@ -170,7 +170,7 @@ interface IORMTable {
 		array $options = array(), $collapse = true, $functionName = null );
 
 	/**
-	 * Selects the the specified fields of the first matching record.
+	 * Selects the specified fields of the first matching record.
 	 * Field names get prefixed.
 	 *
 	 * @since 1.20
@@ -186,7 +186,7 @@ interface IORMTable {
 		array $options = array(), $functionName = null );
 
 	/**
-	 * Selects the the specified fields of the records matching the provided
+	 * Selects the specified fields of the records matching the provided
 	 * conditions. Field names do NOT get prefixed.
 	 *
 	 * @since 1.20
@@ -202,7 +202,7 @@ interface IORMTable {
 		array $options = array(), $functionName = null );
 
 	/**
-	 * Selects the the specified fields of the first record matching the provided
+	 * Selects the specified fields of the first record matching the provided
 	 * conditions and returns it as an associative array, or false when nothing matches.
 	 * This method makes use of selectFields and expects the same parameters and
 	 * returns the same results (if there are any, if there are none, this method returns false).

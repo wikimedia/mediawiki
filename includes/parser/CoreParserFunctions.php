@@ -111,7 +111,7 @@ class CoreParserFunctions {
 
 		$pref = $parser->getOptions()->getDateFormat();
 
-		// Specify a different default date format other than the the normal default
+		// Specify a different default date format other than the normal default
 		// if the user has 'default' for their setting
 		if ( $pref == 'default' && $defaultPref ) {
 			$pref = $defaultPref;

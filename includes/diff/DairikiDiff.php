@@ -189,7 +189,7 @@ class DiffOpChange extends DiffOp {
  * More ideas are taken from:
  *     http://www.ics.uci.edu/~eppstein/161/960229.html
  *
- * Some ideas are (and a bit of code) are from from analyze.c, from GNU
+ * Some ideas (and a bit of code) are from analyze.c, from GNU
  * diffutils-2.7, which can be found at:
  *     ftp://gnudist.gnu.org/pub/gnu/diffutils/diffutils-2.7.tar.gz
  *

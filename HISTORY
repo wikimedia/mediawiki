@@ -809,7 +809,7 @@ of files that are no longer available follows.
 * HTMLForm 'select', 'selectandother', 'selectorother', 'multiselect', and
   'radio' fields can now use message keys as labels via the 'options-messages'
   parameter, which overrides the 'options' parameter.
-* Admins can expire users users passwords manually, or on a schedule using the
+* Admins can expire users passwords manually, or on a schedule using the
   $wgPasswordExpirationDays configuration setting.
 * Add new hook SendWatchlistEmailNotification, this will be used to determine
   whether to send a watchlist email notification.
@@ -1899,7 +1899,7 @@ This is a maintenance release of the MediaWiki 1.21 branch.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indices and
-  fields) can be now be done separately from from other changes that
+  fields) can be now be done separately from other changes that
   update.php makes.  This is useful in environments that use database
   permissions to restrict schema changes but allow the DB user that
   MediaWiki normally runs as to perform other changes that update.php
@@ -4300,7 +4300,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 20186) Allow filtering Special:Contributions for RevisionDeleted edits.
 * ajaxwatch now uses the API and JQuery, and can be used to animate arbitrary
   watch links, not just to watch the page the link is on.
-* (bug 20976) "searchmenu-new-nocreate" message now displayed when when there
+* (bug 20976) "searchmenu-new-nocreate" message now displayed when there
   is no title match in search and the user has no rights to create pages.
 * (bug 23429) Added new hook WatchlistEditorBuildRemoveLine.
 * (bug 22844) Added support for WinCache object caching (for IIS).
@@ -5270,7 +5270,7 @@ comment from another wiki.
 ** Note that this change will break some extensions which have not been adapted
    for it.
 * (bug 17020) Adding fallback encodings for Traditional and Simplified Chinese
-  languages while the the text is typed as URLs.
+  languages while the text is typed as URLs.
 * (bug 17614) Prev / Next links are not shown if all results are shown
 * (bug 18207) Strange spacing before [[irc:...]] links
 * Removed float from the user login form in RTL interface - caused display
@@ -5441,7 +5441,7 @@ comment from another wiki.
   enabled
 * (bug 19857) maintenance/deleteRevision.php on last revision no longer breaks
   target page
-* (bug 20365) Page name with with c/g/h/j/s/u + x are now correctly handled in
+* (bug 20365) Page name with c/g/h/j/s/u + x are now correctly handled in
   Special:MovePage with Esperanto as content language
 * (bug 20364) Fixed regression in GIF metadata loading
 * (bug 20299) MediaWiki:Move-subpages and MediaWiki:Move-talk-subpages can now
@@ -5451,7 +5451,7 @@ comment from another wiki.
 * (bug 19966) MediaWiki:License-header is now used for the licensing header in
   the file description page instead of MediaWiki:License
 * (bug 20380) Links to history/deleted edits at the top of
-  Special:RevisionDelete are no more displayed when when doing log suppression
+  Special:RevisionDelete are no more displayed when doing log suppression
 * (bug 8143) Localised parser function names are now correctly case insensitive
   if they contain non-ASCII characters
 * (bug 19055) maintenance/rebuildrecentchanges.php now purges
@@ -6236,7 +6236,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Extensions can use the SkinBuildSidebar hook to modify the content of the
   sidebar and add custom portlets to it
 * Added 'MakeGlobalVariablesScript' hook for extensions to be able to add vari-
-  ables into into the output of Skin::makeVariablesScript
+  ables into the output of Skin::makeVariablesScript
 * (bug 13846) Added $wgAddGroups and $wgRemoveGroups display on
   Special:ListGroupRights
 * (bug 14377) Add a date selector to history pages
@@ -9840,7 +9840,7 @@ they will be run along with the main tests by maintenance/parserTests.php
 * Fix formatting of titles on Special:Undelete
 * (bug 7026) Fix action=raw&templates=expand
 * (bug 6976) Add namespace and direction classes to classic skins
-* (bug 7144) Don't "return to main" from OutputPage::loginToUse() if the the user can't
+* (bug 7144) Don't "return to main" from OutputPage::loginToUse() if the user can't
   read the main page in the first place
 * (bug 7188) Fix minor borkage in HTMLForm
 * (bug 6675) Replaced message 'watchthis' with new message 'watchthisupload in Special:Upload

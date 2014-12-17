@@ -1321,7 +1321,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	}
 
 	/**
-	 * Message to show the the update log was unable to log the completion of this update
+	 * Message to show that the update log was unable to log the completion of this update
 	 * @return string
 	 */
 	protected function updatelogFailedMessage() {

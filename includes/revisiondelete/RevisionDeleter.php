@@ -115,7 +115,7 @@ class RevisionDeleter {
 	 * "revdelete-restricted", "revdelete-unrestricted" indicating (un)suppression
 	 * or null to indicate nothing in particular.
 	 * You can turn the keys in $arr[0] and $arr[1] into message keys by
-	 * appending -hid and and -unhid to the keys respectively.
+	 * appending -hid and -unhid to the keys respectively.
 	 *
 	 * @param int $n The new bitfield.
 	 * @param int $o The old bitfield.
