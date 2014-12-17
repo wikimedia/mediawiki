@@ -55,7 +55,6 @@ class TempFSFile extends FSFile {
 	 * @return TempFSFile|null
 	 */
 	public static function factory( $prefix, $extension = '' ) {
-		wfProfileIn( __METHOD__ );
 		$base = wfTempDir() . '/' . $prefix . wfRandomString( 12 );
 		$ext = ( $extension != '' ) ? ".{$extension}" : "";
 		for ( $attempt = 1; true; $attempt++ ) {
@@ -68,14 +67,12 @@ class TempFSFile extends FSFile {
 				break; // got it
 			}
 			if ( $attempt >= 5 ) {
-				wfProfileOut( __METHOD__ );
 
 				return null; // give up
 			}
 		}
 		$tmpFile = new self( $path );
 		$tmpFile->autocollect(); // safely instantiated
-		wfProfileOut( __METHOD__ );
 
 		return $tmpFile;
 	}

@@ -218,23 +218,19 @@ class LinkCache {
 	public function addLinkObj( $nt ) {
 		global $wgContentHandlerUseDB;
 
-		wfProfileIn( __METHOD__ );
 
 		$key = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
-			wfProfileOut( __METHOD__ );
 
 			return 0;
 		}
 		$id = $this->getGoodLinkID( $key );
 		if ( $id != 0 ) {
-			wfProfileOut( __METHOD__ );
 
 			return $id;
 		}
 
 		if ( $key === '' ) {
-			wfProfileOut( __METHOD__ );
 
 			return 0;
 		}
@@ -263,7 +259,6 @@ class LinkCache {
 			$id = 0;
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $id;
 	}

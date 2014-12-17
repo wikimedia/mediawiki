@@ -56,9 +56,7 @@ class MessageBlobStore {
 	 * @return array An array mapping module names to message blobs
 	 */
 	public function get( ResourceLoader $resourceLoader, $modules, $lang ) {
-		wfProfileIn( __METHOD__ );
 		if ( !count( $modules ) ) {
-			wfProfileOut( __METHOD__ );
 			return array();
 		}
 		// Try getting from the DB first
@@ -73,7 +71,6 @@ class MessageBlobStore {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $blobs;
 	}
 

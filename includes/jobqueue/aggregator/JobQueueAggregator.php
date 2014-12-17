@@ -73,9 +73,7 @@ abstract class JobQueueAggregator {
 	 * @return bool Success
 	 */
 	final public function notifyQueueEmpty( $wiki, $type ) {
-		wfProfileIn( __METHOD__ );
 		$ok = $this->doNotifyQueueEmpty( $wiki, $type );
-		wfProfileOut( __METHOD__ );
 
 		return $ok;
 	}
@@ -93,9 +91,7 @@ abstract class JobQueueAggregator {
 	 * @return bool Success
 	 */
 	final public function notifyQueueNonEmpty( $wiki, $type ) {
-		wfProfileIn( __METHOD__ );
 		$ok = $this->doNotifyQueueNonEmpty( $wiki, $type );
-		wfProfileOut( __METHOD__ );
 
 		return $ok;
 	}
@@ -111,9 +107,7 @@ abstract class JobQueueAggregator {
 	 * @return array (job type => (list of wiki IDs))
 	 */
 	final public function getAllReadyWikiQueues() {
-		wfProfileIn( __METHOD__ );
 		$res = $this->doGetAllReadyWikiQueues();
-		wfProfileOut( __METHOD__ );
 
 		return $res;
 	}
@@ -129,9 +123,7 @@ abstract class JobQueueAggregator {
 	 * @return bool Success
 	 */
 	final public function purge() {
-		wfProfileIn( __METHOD__ );
 		$res = $this->doPurge();
-		wfProfileOut( __METHOD__ );
 
 		return $res;
 	}

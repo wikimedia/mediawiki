@@ -110,7 +110,6 @@ class SquidUpdate {
 			self::HTCPPurge( $urlArr );
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		// Remove duplicate URLs
 		$urlArr = array_unique( $urlArr );
@@ -137,7 +136,6 @@ class SquidUpdate {
 		}
 		$pool->run();
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -148,7 +146,6 @@ class SquidUpdate {
 	 */
 	public static function HTCPPurge( $urlArr ) {
 		global $wgHTCPRouting, $wgHTCPMulticastTTL;
-		wfProfileIn( __METHOD__ );
 
 		// HTCP CLR operation
 		$htcpOpCLR = 4;
@@ -166,7 +163,6 @@ class SquidUpdate {
 			$errstr = socket_strerror( socket_last_error() );
 			wfDebugLog( 'squid', __METHOD__ .
 				": Error opening UDP socket: $errstr" );
-			wfProfileOut( __METHOD__ );
 
 			return;
 		}
@@ -188,7 +184,6 @@ class SquidUpdate {
 
 		foreach ( $urlArr as $url ) {
 			if ( !is_string( $url ) ) {
-				wfProfileOut( __METHOD__ );
 				throw new MWException( 'Bad purge URL' );
 			}
 			$url = self::expand( $url );
@@ -205,7 +200,6 @@ class SquidUpdate {
 			}
 			foreach ( $conf as $subconf ) {
 				if ( !isset( $subconf['host'] ) || !isset( $subconf['port'] ) ) {
-					wfProfileOut( __METHOD__ );
 					throw new MWException( "Invalid HTCP rule for URL $url\n" );
 				}
 			}
@@ -237,7 +231,6 @@ class SquidUpdate {
 					$subconf['host'], $subconf['port'] );
 			}
 		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

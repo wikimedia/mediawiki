@@ -106,7 +106,6 @@ class FeedUtils {
 		$comment, $actiontext = ''
 	) {
 		global $wgFeedDiffCutoff, $wgLang;
-		wfProfileIn( __METHOD__ );
 
 		// log entries
 		$completeText = '<p>' . implode( ' ',
@@ -124,7 +123,6 @@ class FeedUtils {
 		// Can't diff special pages, unreadable pages or pages with no new revision
 		// to compare against: just return the text.
 		if ( $title->getNamespace() < 0 || $accErrors || !$newid ) {
-			wfProfileOut( __METHOD__ );
 			return $completeText;
 		}
 
@@ -208,7 +206,6 @@ class FeedUtils {
 		}
 		$completeText .= $diffText;
 
-		wfProfileOut( __METHOD__ );
 		return $completeText;
 	}
 
