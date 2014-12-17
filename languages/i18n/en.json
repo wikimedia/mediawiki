@@ -1117,6 +1117,7 @@
     "right-protect": "Change protection levels and edit cascade-protected pages",
     "right-editprotected": "Edit pages protected as \"{{int:protect-level-sysop}}\"",
     "right-editsemiprotected": "Edit pages protected as \"{{int:protect-level-autoconfirmed}}\"",
+    "right-editcontentmodel": "Edit the content model of a page",
     "right-editinterface": "Edit the user interface",
     "right-editusercssjs": "Edit other users' CSS and JavaScript files",
     "right-editusercss": "Edit other users' CSS files",
@@ -1187,6 +1188,7 @@
     "action-viewmywatchlist": "view your watchlist",
     "action-viewmyprivateinfo": "view your private information",
     "action-editmyprivateinfo": "edit your private information",
+    "action-editcontentmodel": "edit the content model of a page",
     "nchanges": "$1 {{PLURAL:$1|change|changes}}",
     "enhancedrc-since-last-visit": "$1 {{PLURAL:$1|since last visit}}",
     "enhancedrc-history": "history",
@@ -3531,5 +3533,7 @@
     "expand_templates_remove_nowiki": "Suppress <nowiki> tags in result",
     "expand_templates_generate_xml": "Show XML parse tree",
     "expand_templates_generate_rawhtml": "Show raw HTML",
-    "expand_templates_preview": "Preview"
+    "expand_templates_preview": "Preview",
+    "expand_templates_preview_fail_html": "<em>Because {{SITENAME}} has raw HTML enabled and there was a loss of session data, the preview is hidden as a precaution against JavaScript attacks.</em>\n\n<strong>If this is a legitimate preview attempt, please try again.</strong>\nIf it still does not work, try [[Special:UserLogout|logging out]] and logging back in.",
+    "expand_templates_preview_fail_html_anon": "<em>Because {{SITENAME}} has raw HTML enabled and you are not logged in, the preview is hidden as a precaution against JavaScript attacks.</em>\n\n<strong>If this is a legitimate preview attempt, please [[Special:UserLogin|log in]] and try again.</strong>"
 }
