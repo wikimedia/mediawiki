@@ -11,7 +11,6 @@ class ExtensionProcessor implements Processor {
 		'ResourceLoaderSources',
 		'ResourceLoaderLESSVars',
 		'ResourceLoaderLESSImportPaths',
-		'TrackingCategories',
 		'DefaultUserOptions',
 		'HiddenPrefs',
 		'GroupPermissions',

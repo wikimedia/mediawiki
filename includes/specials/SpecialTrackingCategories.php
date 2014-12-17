@@ -120,8 +120,12 @@ class SpecialTrackingCategories extends SpecialPage {
 	 * @return array Array( 'msg' => Title, 'cats' => Title[] )
 	 */
 	private function prepareTrackingCategoriesData() {
+		$categories = array_merge(
+			$this->getConfig()->get( 'TrackingCategories' ),
+			ExtensionRegistry::getInstance()->getAttribute( 'TrackingCategories' )
+		);
 		$trackingCategories = array();
-		foreach ( $this->getConfig()->get( 'TrackingCategories' ) as $catMsg ) {
+		foreach ( $categories as $catMsg ) {
 			/*
 			 * Check if the tracking category varies by namespace
 			 * Otherwise only pages in the current namespace will be displayed
