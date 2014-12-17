@@ -187,9 +187,7 @@ abstract class JobQueue {
 	 * @throws JobQueueError
 	 */
 	final public function isEmpty() {
-		wfProfileIn( __METHOD__ );
 		$res = $this->doIsEmpty();
-		wfProfileOut( __METHOD__ );
 
 		return $res;
 	}
@@ -210,9 +208,7 @@ abstract class JobQueue {
 	 * @throws JobQueueError
 	 */
 	final public function getSize() {
-		wfProfileIn( __METHOD__ );
 		$res = $this->doGetSize();
-		wfProfileOut( __METHOD__ );
 
 		return $res;
 	}
@@ -233,9 +229,7 @@ abstract class JobQueue {
 	 * @throws JobQueueError
 	 */
 	final public function getAcquiredCount() {
-		wfProfileIn( __METHOD__ );
 		$res = $this->doGetAcquiredCount();
-		wfProfileOut( __METHOD__ );
 
 		return $res;
 	}
@@ -257,9 +251,7 @@ abstract class JobQueue {
 	 * @since 1.22
 	 */
 	final public function getDelayedCount() {
-		wfProfileIn( __METHOD__ );
 		$res = $this->doGetDelayedCount();
-		wfProfileOut( __METHOD__ );
 
 		return $res;
 	}
@@ -282,9 +274,7 @@ abstract class JobQueue {
 	 * @throws JobQueueError
 	 */
 	final public function getAbandonedCount() {
-		wfProfileIn( __METHOD__ );
 		$res = $this->doGetAbandonedCount();
-		wfProfileOut( __METHOD__ );
 
 		return $res;
 	}
@@ -336,9 +326,7 @@ abstract class JobQueue {
 			}
 		}
 
-		wfProfileIn( __METHOD__ );
 		$this->doBatchPush( $jobs, $flags );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -366,9 +354,7 @@ abstract class JobQueue {
 			throw new MWException( "Unrecognized job type '{$this->type}'." );
 		}
 
-		wfProfileIn( __METHOD__ );
 		$job = $this->doPop();
-		wfProfileOut( __METHOD__ );
 
 		// Flag this job as an old duplicate based on its "root" job...
 		try {
@@ -403,9 +389,7 @@ abstract class JobQueue {
 		if ( $job->getType() !== $this->type ) {
 			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
-		wfProfileIn( __METHOD__ );
 		$this->doAck( $job );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -449,9 +433,7 @@ abstract class JobQueue {
 		if ( $job->getType() !== $this->type ) {
 			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
-		wfProfileIn( __METHOD__ );
 		$ok = $this->doDeduplicateRootJob( $job );
-		wfProfileOut( __METHOD__ );
 
 		return $ok;
 	}
@@ -494,9 +476,7 @@ abstract class JobQueue {
 		if ( $job->getType() !== $this->type ) {
 			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
-		wfProfileIn( __METHOD__ );
 		$isDuplicate = $this->doIsRootJobOldDuplicate( $job );
-		wfProfileOut( __METHOD__ );
 
 		return $isDuplicate;
 	}
@@ -538,9 +518,7 @@ abstract class JobQueue {
 	 * @return void
 	 */
 	final public function delete() {
-		wfProfileIn( __METHOD__ );
 		$this->doDelete();
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -560,9 +538,7 @@ abstract class JobQueue {
 	 * @throws JobQueueError
 	 */
 	final public function waitForBackups() {
-		wfProfileIn( __METHOD__ );
 		$this->doWaitForBackups();
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -607,9 +583,7 @@ abstract class JobQueue {
 	 * @return void
 	 */
 	final public function flushCaches() {
-		wfProfileIn( __METHOD__ );
 		$this->doFlushCaches();
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -661,7 +635,6 @@ abstract class JobQueue {
 	 * @since 1.22
 	 */
 	final public function getSiblingQueuesWithJobs( array $types ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		return $this->doGetSiblingQueuesWithJobs( $types );
 	}
@@ -686,7 +659,6 @@ abstract class JobQueue {
 	 * @since 1.22
 	 */
 	final public function getSiblingQueueSizes( array $types ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		return $this->doGetSiblingQueueSizes( $types );
 	}

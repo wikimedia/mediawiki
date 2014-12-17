@@ -33,7 +33,6 @@ class MediaWikiI18N {
 	}
 
 	function translate( $value ) {
-		wfProfileIn( __METHOD__ );
 
 		// Hack for i18n:attributes in PHPTAL 1.0.0 dev version as of 2004-10-23
 		$value = preg_replace( '/^string:/', '', $value );
@@ -48,7 +47,6 @@ class MediaWikiI18N {
 			wfRestoreWarnings();
 			$value = str_replace( $src, $varValue, $value );
 		}
-		wfProfileOut( __METHOD__ );
 		return $value;
 	}
 }

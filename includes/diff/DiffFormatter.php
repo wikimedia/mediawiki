@@ -57,7 +57,6 @@ abstract class DiffFormatter {
 	 * @return string The formatted output.
 	 */
 	public function format( $diff ) {
-		wfProfileIn( __METHOD__ );
 
 		$xi = $yi = 1;
 		$block = false;
@@ -115,7 +114,6 @@ abstract class DiffFormatter {
 		}
 
 		$end = $this->endDiff();
-		wfProfileOut( __METHOD__ );
 
 		return $end;
 	}
@@ -130,7 +128,6 @@ abstract class DiffFormatter {
 	 * @throws MWException If the edit type is not known.
 	 */
 	protected function block( $xbeg, $xlen, $ybeg, $ylen, &$edits ) {
-		wfProfileIn( __METHOD__ );
 		$this->startBlock( $this->blockHeader( $xbeg, $xlen, $ybeg, $ylen ) );
 		foreach ( $edits as $edit ) {
 			if ( $edit->type == 'copy' ) {
@@ -146,7 +143,6 @@ abstract class DiffFormatter {
 			}
 		}
 		$this->endBlock();
-		wfProfileOut( __METHOD__ );
 	}
 
 	protected function startDiff() {

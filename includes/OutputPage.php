@@ -1685,7 +1685,6 @@ class OutputPage extends ContextSource {
 	) {
 		global $wgParser;
 
-		wfProfileIn( __METHOD__ );
 
 		$popts = $this->parserOptions();
 		$oldTidy = $popts->setTidy( $tidy );
@@ -1700,7 +1699,6 @@ class OutputPage extends ContextSource {
 
 		$this->addParserOutput( $parserOutput );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -2173,7 +2171,6 @@ class OutputPage extends ContextSource {
 			return;
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		$response = $this->getRequest()->response();
 		$config = $this->getConfig();
@@ -2209,7 +2206,6 @@ class OutputPage extends ContextSource {
 				}
 			}
 
-			wfProfileOut( __METHOD__ );
 			return;
 		} elseif ( $this->mStatusCode ) {
 			$message = HttpStatus::getMessage( $this->mStatusCode );
@@ -2264,9 +2260,7 @@ class OutputPage extends ContextSource {
 			// adding of CSS or Javascript by extensions.
 			Hooks::run( 'BeforePageDisplay', array( &$this, &$sk ) );
 
-			wfProfileIn( 'Output-skin' );
 			$sk->outputPage();
-			wfProfileOut( 'Output-skin' );
 		}
 
 		// This hook allows last minute changes to final overall output by modifying output buffer
@@ -2276,7 +2270,6 @@ class OutputPage extends ContextSource {
 
 		ob_end_flush();
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -2626,7 +2619,6 @@ class OutputPage extends ContextSource {
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgContLang;
 
-		$section = new ProfileSection( __METHOD__ );
 
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();

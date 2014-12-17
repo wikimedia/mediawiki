@@ -55,7 +55,6 @@ class FileOpBatch {
 	 * @return Status
 	 */
 	public static function attempt( array $performOps, array $opts, FileJournal $journal ) {
-		$section = new ProfileSection( __METHOD__ );
 		$status = Status::newGood();
 
 		$n = count( $performOps );

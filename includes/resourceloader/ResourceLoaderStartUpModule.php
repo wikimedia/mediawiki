@@ -187,7 +187,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return string JavaScript code for registering all modules with the client loader
 	 */
 	public function getModuleRegistrations( ResourceLoaderContext $context ) {
-		wfProfileIn( __METHOD__ );
 
 		$resourceLoader = $context->getResourceLoader();
 		$target = $context->getRequest()->getVal( 'target', 'desktop' );
@@ -278,7 +277,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// Register modules
 		$out .= ResourceLoader::makeLoaderRegisterScript( $registrations );
 
-		wfProfileOut( __METHOD__ );
 		return $out;
 	}
 

@@ -419,7 +419,6 @@ class ApiParse extends ApiBase {
 	 * @return ParserOptions
 	 */
 	protected function makeParserOptions( WikiPage $pageObj, array $params ) {
-		wfProfileIn( __METHOD__ );
 
 		$popts = $pageObj->makeParserOptions( $this->getContext() );
 		$popts->enableLimitReport( !$params['disablepp'] );
@@ -427,7 +426,6 @@ class ApiParse extends ApiBase {
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 		$popts->setEditSection( !$params['disableeditsection'] );
 
-		wfProfileOut( __METHOD__ );
 
 		return $popts;
 	}

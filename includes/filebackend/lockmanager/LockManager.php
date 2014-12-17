@@ -102,7 +102,6 @@ abstract class LockManager {
 	 * @since 1.22
 	 */
 	final public function lockByType( array $pathsByType, $timeout = 0 ) {
-		wfProfileIn( __METHOD__ );
 		$status = Status::newGood();
 		$pathsByType = $this->normalizePathsByType( $pathsByType );
 		$msleep = array( 0, 50, 100, 300, 500 ); // retry backoff times
@@ -116,7 +115,6 @@ abstract class LockManager {
 			usleep( 1e3 * ( next( $msleep ) ?: 1000 ) ); // use 1 sec after enough times
 			$elapsed = microtime( true ) - $start;
 		} while ( $elapsed < $timeout && $elapsed >= 0 );
-		wfProfileOut( __METHOD__ );
 
 		return $status;
 	}
@@ -140,10 +138,8 @@ abstract class LockManager {
 	 * @since 1.22
 	 */
 	final public function unlockByType( array $pathsByType ) {
-		wfProfileIn( __METHOD__ );
 		$pathsByType = $this->normalizePathsByType( $pathsByType );
 		$status = $this->doUnlockByType( $pathsByType );
-		wfProfileOut( __METHOD__ );
 
 		return $status;
 	}

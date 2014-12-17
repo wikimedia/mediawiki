@@ -104,7 +104,6 @@ class CategoryViewer extends ContextSource {
 	 * @return string HTML output
 	 */
 	public function getHTML() {
-		wfProfileIn( __METHOD__ );
 
 		$this->showGallery = $this->getConfig()->get( 'CategoryMagicGallery' )
 			&& !$this->getOutput()->mNoGallery;
@@ -140,7 +139,6 @@ class CategoryViewer extends ContextSource {
 		# put a div around the headings which are in the user language
 		$r = Html::openElement( 'div', $langAttribs ) . $r . '</div>';
 
-		wfProfileOut( __METHOD__ );
 		return $r;
 	}
 

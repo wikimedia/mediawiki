@@ -413,7 +413,6 @@ class MWMemcached {
 	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {
-		wfProfileIn( __METHOD__ );
 
 		if ( $this->_debug ) {
 			$this->_debugprint( "get($key)\n" );
@@ -421,19 +420,16 @@ class MWMemcached {
 
 		if ( !is_array( $key ) && strval( $key ) === '' ) {
 			$this->_debugprint( "Skipping key which equals to an empty string" );
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
 		if ( !$this->_active ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
 		$sock = $this->get_sock( $key );
 
 		if ( !is_resource( $sock ) ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -446,7 +442,6 @@ class MWMemcached {
 
 		$cmd = "gets $key\r\n";
 		if ( !$this->_fwrite( $sock, $cmd ) ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -463,7 +458,6 @@ class MWMemcached {
 		if ( isset( $val[$key] ) ) {
 			$value = $val[$key];
 		}
-		wfProfileOut( __METHOD__ );
 		return $value;
 	}
 

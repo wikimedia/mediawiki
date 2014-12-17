@@ -998,7 +998,6 @@ abstract class File {
 	function transform( $params, $flags = 0 ) {
 		global $wgThumbnailEpoch;
 
-		wfProfileIn( __METHOD__ );
 		do {
 			if ( !$this->canRender() ) {
 				$thumb = $this->iconThumb();
@@ -1071,7 +1070,6 @@ abstract class File {
 			}
 		} while ( false );
 
-		wfProfileOut( __METHOD__ );
 
 		return is_object( $thumb ) ? $thumb : false;
 	}

@@ -73,7 +73,6 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function getText() {
-		wfProfileIn( __METHOD__ );
 		$text = $this->mText;
 		if ( $this->mEditSectionTokens ) {
 			$text = preg_replace_callback(
@@ -111,7 +110,6 @@ class ParserOutput extends CacheTime {
 				$text
 			);
 		}
-		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
