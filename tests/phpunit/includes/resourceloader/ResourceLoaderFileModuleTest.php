@@ -45,7 +45,94 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 					'templates/template_awesome.handlebars',
 				),
 			),
+
+			'aliasFooFromBar' => $base + array(
+				'templates' => array(
+					'foo.foo' => 'templates/template.bar',
+				),
+			),
 		);
+	}
+
+	public static function providerGetTemplates() {
+		$modules = self::getModules();
+
+		return array(
+			array(
+				$modules['noTemplateModule'],
+				array(),
+			),
+			array(
+				$modules['templateModuleHandlebars'],
+				array(
+					'templates/template_awesome.handlebars' => "wow\n",
+				),
+			),
+			array(
+				$modules['htmlTemplateModule'],
+				array(
+					'templates/template.html' => "<strong>hello</strong>\n",
+					'templates/template2.html' => "<div>goodbye</div>\n",
+				),
+			),
+			array(
+				$modules['aliasedHtmlTemplateModule'],
+				array(
+					'foo.html' => "<strong>hello</strong>\n",
+					'bar.html' => "<div>goodbye</div>\n",
+				),
+			),
+		);
+	}
+
+	public static function providerGetModifiedTime() {
+		$modules = self::getModules();
+
+		return array(
+			// Check the default value when no templates present in module is 1
+			array( $modules['noTemplateModule'], 1 ),
+		);
+	}
+
+	public static function providerTemplateDependencies() {
+		$modules = self::getModules();
+
+		return array(
+			array(
+				$modules['noTemplateModule'],
+				array(),
+			),
+			array(
+				$modules['htmlTemplateModule'],
+				array(
+					'mediawiki.template',
+				),
+			),
+			array(
+				$modules['templateModuleHandlebars'],
+				array(
+					'mediawiki.template',
+					'mediawiki.template.handlebars',
+				),
+			),
+			array(
+				$modules['aliasFooFromBar'],
+				array(
+					'mediawiki.template',
+					'mediawiki.template.foo',
+				),
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider providerTemplateDependencies
+	 * @covers ResourceLoaderFileModule::__construct
+	 * @covers ResourceLoaderFileModule::getDependencies
+	 */
+	public function testTemplateDependencies( $module, $expected ) {
+		$rl = new ResourceLoaderFileModule( $module );
+		$this->assertEquals( $rl->getDependencies(), $expected );
 	}
 
 	/**
