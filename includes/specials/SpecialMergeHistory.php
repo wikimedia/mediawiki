@@ -521,7 +521,6 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	}
 
 	function getStartBody() {
-		wfProfileIn( __METHOD__ );
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();
@@ -544,7 +543,6 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$batch->execute();
 		$this->mResult->seek( 0 );
 
-		wfProfileOut( __METHOD__ );
 
 		return '';
 	}

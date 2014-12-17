@@ -330,15 +330,12 @@ class MagicWord {
 	 */
 	function load( $id ) {
 		global $wgContLang;
-		wfProfileIn( __METHOD__ );
 		$this->mId = $id;
 		$wgContLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
 			$this->mSynonyms = array( 'brionmademeputthishere' );
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "Error: invalid magic word '$id'" );
 		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

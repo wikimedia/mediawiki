@@ -112,7 +112,6 @@ class Preprocessor_Hash implements Preprocessor {
 	 * @return PPNode_Hash_Tree
 	 */
 	public function preprocessToObj( $text, $flags = 0 ) {
-		wfProfileIn( __METHOD__ );
 
 		// Check cache.
 		global $wgMemc, $wgPreprocessorCacheThreshold;
@@ -133,7 +132,6 @@ class Preprocessor_Hash implements Preprocessor {
 					wfDebugLog( "Preprocessor",
 						"Loaded preprocessor hash from memcached (key $cacheKey)" );
 					wfProfileOut( __METHOD__ . '-cacheable' );
-					wfProfileOut( __METHOD__ );
 					return $hash;
 				}
 			}
@@ -640,7 +638,6 @@ class Preprocessor_Hash implements Preprocessor {
 									wfProfileOut( __METHOD__ . '-cache-miss' );
 									wfProfileOut( __METHOD__ . '-cacheable' );
 								}
-								wfProfileOut( __METHOD__ );
 								throw new MWException( __METHOD__ . ': eqpos not found' );
 							}
 							if ( $node->name !== 'equals' ) {
@@ -648,7 +645,6 @@ class Preprocessor_Hash implements Preprocessor {
 									wfProfileOut( __METHOD__ . '-cache-miss' );
 									wfProfileOut( __METHOD__ . '-cacheable' );
 								}
-								wfProfileOut( __METHOD__ );
 								throw new MWException( __METHOD__ . ': eqpos is not equals' );
 							}
 							$equalsNode = $node;
@@ -753,7 +749,6 @@ class Preprocessor_Hash implements Preprocessor {
 			wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $rootNode;
 	}
 }

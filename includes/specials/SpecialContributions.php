@@ -954,7 +954,6 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function formatRow( $row ) {
-		wfProfileIn( __METHOD__ );
 
 		$ret = '';
 		$classes = array();
@@ -1118,7 +1117,6 @@ class ContribsPager extends ReverseChronologicalPager {
 			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $ret;
 	}

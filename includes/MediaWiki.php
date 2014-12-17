@@ -81,7 +81,7 @@ class MediaWiki {
 			if ( count( $wgContLang->getVariants() ) > 1
 				&& !is_null( $ret ) && $ret->getArticleID() == 0
 			) {
-				$wgContLang->findVariantLink( $title, $ret );
+				$title = $wgContLang->findVariantLink( $title, $ret );
 			}
 		}
 
@@ -157,7 +157,6 @@ class MediaWiki {
 	private function performRequest() {
 		global $wgTitle;
 
-		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
 		$requestTitle = $title = $this->context->getTitle();
@@ -176,7 +175,6 @@ class MediaWiki {
 			|| $title->isSpecial( 'Badtitle' )
 		) {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
-			wfProfileOut( __METHOD__ );
 			throw new BadTitleError();
 		}
 
@@ -201,7 +199,6 @@ class MediaWiki {
 			$this->context->setTitle( $badTitle );
 			$wgTitle = $badTitle;
 
-			wfProfileOut( __METHOD__ );
 			throw new PermissionsError( 'read', $permErrors );
 		}
 
@@ -225,7 +222,6 @@ class MediaWiki {
 				$output->redirect( $url, 301 );
 			} else {
 				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
-				wfProfileOut( __METHOD__ );
 				throw new BadTitleError();
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
@@ -283,7 +279,6 @@ class MediaWiki {
 			} elseif ( is_string( $article ) ) {
 				$output->redirect( $article );
 			} else {
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle()"
 					. " returned neither an object nor a URL" );
 			}
@@ -294,7 +289,6 @@ class MediaWiki {
 			$user->addAutopromoteOnceGroups( 'onView' );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -304,7 +298,6 @@ class MediaWiki {
 	 * @return mixed An Article, or a string to redirect to another URL
 	 */
 	private function initializeArticle() {
-		wfProfileIn( __METHOD__ );
 
 		$title = $this->context->getTitle();
 		if ( $this->context->canUseWikiPage() ) {
@@ -322,7 +315,6 @@ class MediaWiki {
 		// NS_MEDIAWIKI has no redirects.
 		// It is also used for CSS/JS, so performance matters here...
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
-			wfProfileOut( __METHOD__ );
 			return $article;
 		}
 
@@ -353,7 +345,6 @@ class MediaWiki {
 				if ( is_string( $target ) ) {
 					if ( !$this->config->get( 'DisableHardRedirects' ) ) {
 						// we'll need to redirect
-						wfProfileOut( __METHOD__ );
 						return $target;
 					}
 				}
@@ -374,7 +365,6 @@ class MediaWiki {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $article;
 	}
 
@@ -385,7 +375,6 @@ class MediaWiki {
 	 * @param Title $requestTitle The original title, before any redirects were applied
 	 */
 	private function performAction( Page $page, Title $requestTitle ) {
-		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
 		$output = $this->context->getOutput();
@@ -395,7 +384,6 @@ class MediaWiki {
 		if ( !Hooks::run( 'MediaWikiPerformAction',
 				array( $output, $page, $title, $user, $request, $this ) )
 		) {
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -412,7 +400,6 @@ class MediaWiki {
 			}
 
 			$action->show();
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -421,7 +408,6 @@ class MediaWiki {
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -456,7 +442,6 @@ class MediaWiki {
 	 * @return bool
 	 */
 	private function checkMaxLag() {
-		wfProfileIn( __METHOD__ );
 		$maxLag = $this->context->getRequest()->getVal( 'maxlag' );
 		if ( !is_null( $maxLag ) ) {
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
@@ -472,19 +457,16 @@ class MediaWiki {
 					echo "Waiting for a database server: $lag seconds lagged\n";
 				}
 
-				wfProfileOut( __METHOD__ );
 
 				exit;
 			}
 		}
-		wfProfileOut( __METHOD__ );
 		return true;
 	}
 
 	private function main() {
 		global $wgTitle;
 
-		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
 
@@ -498,7 +480,6 @@ class MediaWiki {
 
 			$dispatcher = new AjaxDispatcher( $this->config );
 			$dispatcher->performAction( $this->context->getUser() );
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -551,7 +532,6 @@ class MediaWiki {
 				$output->addVaryHeader( 'X-Forwarded-Proto' );
 				$output->redirect( $redirUrl );
 				$output->output();
-				wfProfileOut( __METHOD__ );
 				return;
 			}
 		}
@@ -573,7 +553,6 @@ class MediaWiki {
 					// Tell OutputPage that output is taken care of
 					$this->context->getOutput()->disable();
 					wfProfileOut( 'main-try-filecache' );
-					wfProfileOut( __METHOD__ );
 					return;
 				}
 			}
@@ -593,7 +572,6 @@ class MediaWiki {
 		// Output everything!
 		$this->context->getOutput()->output();
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -627,7 +605,6 @@ class MediaWiki {
 			return; // recursion guard
 		}
 
-		$section = new ProfileSection( __METHOD__ );
 
 		if ( $jobRunRate < 1 ) {
 			$max = mt_getrandmax();

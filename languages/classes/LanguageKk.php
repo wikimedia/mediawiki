@@ -454,7 +454,6 @@ class LanguageKk extends LanguageKk_cyrl {
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
-		wfProfileIn( __METHOD__ );
 
 		$variant = $this->getPreferredVariant();
 		switch ( $variant ) {
@@ -473,7 +472,6 @@ class LanguageKk extends LanguageKk_cyrl {
 				$word = parent::convertGrammarKk_cyrl( $word, $case );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $word;
 	}
 }
