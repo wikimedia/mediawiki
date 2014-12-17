@@ -731,7 +731,6 @@ class IP {
 	public static function isConfiguredProxy( $ip ) {
 		global $wgSquidServers, $wgSquidServersNoPurge;
 
-		wfProfileIn( __METHOD__ );
 		// Quick check of known singular proxy servers
 		$trusted = in_array( $ip, $wgSquidServers );
 
@@ -742,7 +741,6 @@ class IP {
 			}
 			$trusted = self::$proxyIpSet->match( $ip );
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $trusted;
 	}

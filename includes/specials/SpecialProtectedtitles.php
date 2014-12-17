@@ -72,7 +72,6 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string
 	 */
 	function formatRow( $row ) {
-		wfProfileIn( __METHOD__ );
 
 		static $infinity = null;
 
@@ -82,7 +81,6 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
 		if ( !$title ) {
-			wfProfileOut( __METHOD__ );
 
 			return Html::rawElement(
 				'li',
@@ -119,7 +117,6 @@ class SpecialProtectedtitles extends SpecialPage {
 			)->escaped();
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		// @todo i18n: This should use a comma separator instead of a hard coded comma, right?
 		return '<li>' . $lang->specialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
@@ -227,7 +224,6 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	}
 
 	function getStartBody() {
-		wfProfileIn( __METHOD__ );
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$lb = new LinkBatch;
@@ -237,7 +233,6 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		}
 
 		$lb->execute();
-		wfProfileOut( __METHOD__ );
 
 		return '';
 	}

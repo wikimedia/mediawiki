@@ -55,7 +55,6 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return array
 	 */
 	function getToolbox() {
-		wfProfileIn( __METHOD__ );
 
 		$toolbox = array();
 		if ( isset( $this->data['nav_urls']['whatlinkshere'] )
@@ -113,7 +112,6 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 
 		Hooks::run( 'BaseTemplateToolbox', array( &$this, &$toolbox ) );
-		wfProfileOut( __METHOD__ );
 		return $toolbox;
 	}
 

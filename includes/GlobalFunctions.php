@@ -1515,10 +1515,8 @@ function wfMsgForContentNoTrans( $key ) {
 function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform = true ) {
 	wfDeprecated( __METHOD__, '1.21' );
 
-	wfProfileIn( __METHOD__ );
 	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
 	$message = wfMsgReplaceArgs( $message, $args );
-	wfProfileOut( __METHOD__ );
 	return $message;
 }
 
@@ -4010,7 +4008,6 @@ function wfUnpack( $format, $data, $length = false ) {
  */
 function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 	static $badImageCache = null; // based on bad_image_list msg
-	wfProfileIn( __METHOD__ );
 
 	# Handle redirects
 	$redirectTitle = RepoGroup::singleton()->checkRedirect( Title::makeTitle( NS_FILE, $name ) );
@@ -4021,7 +4018,6 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 	# Run the extension hook
 	$bad = false;
 	if ( !Hooks::run( 'BadImage', array( $name, &$bad ) ) ) {
-		wfProfileOut( __METHOD__ );
 		return $bad;
 	}
 
@@ -4071,7 +4067,6 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 
 	$contextKey = $contextTitle ? $contextTitle->getPrefixedDBkey() : false;
 	$bad = isset( $badImages[$name] ) && !isset( $badImages[$name][$contextKey] );
-	wfProfileOut( __METHOD__ );
 	return $bad;
 }
 

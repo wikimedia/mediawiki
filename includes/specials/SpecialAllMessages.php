@@ -223,7 +223,6 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	function getAllMessages( $descending ) {
-		wfProfileIn( __METHOD__ );
 		$messageNames = Language::getLocalisationCache()->getSubitemList( 'en', 'messages' );
 		if ( $descending ) {
 			rsort( $messageNames );
@@ -234,7 +233,6 @@ class AllMessagesTablePager extends TablePager {
 		// Normalise message names so they look like page titles
 		$messageNames = array_map( array( $this->lang, 'ucfirst' ), $messageNames );
 
-		wfProfileOut( __METHOD__ );
 
 		return $messageNames;
 	}

@@ -205,7 +205,6 @@ class EmailNotification {
 		global $wgEnotifWatchlist;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
 
-		wfProfileIn( __METHOD__ );
 
 		# The following code is only run, if several conditions are met:
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
@@ -226,7 +225,6 @@ class EmailNotification {
 
 		Hooks::run( 'UpdateUserMailerFormattedPageStatus', array( &$formattedPageStatus ) );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( 'Not a valid page status!' );
 		}
 
@@ -270,7 +268,6 @@ class EmailNotification {
 		}
 
 		$this->sendMails();
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
