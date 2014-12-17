@@ -261,6 +261,9 @@ production.
   to allow generators to include data in the action=query result.
 * New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
   used for conditional registration of API modules.
+* Added ApiBase::lacksSameOriginSecurity() to allow modules to easily check if
+  the current request was sent with the 'callback' parameter (or any future
+  method that breaks the same-origin policy).
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
