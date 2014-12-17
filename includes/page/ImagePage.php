@@ -175,7 +175,7 @@ class ImagePage extends Article {
 
 		# Show shared description, if needed
 		if ( $this->mExtraDescription ) {
-			$fol = wfMessage( 'shareddescriptionfollows' );
+			$fol = $this->getContext()->msg( 'shareddescriptionfollows' );
 			if ( !$fol->isDisabled() ) {
 				$out->addWikiText( $fol->plain() );
 			}
@@ -188,7 +188,7 @@ class ImagePage extends Article {
 
 		$out->addHTML( Xml::element( 'h2',
 			array( 'id' => 'filelinks' ),
-			wfMessage( 'imagelinks' )->text() ) . "\n" );
+				$this->getContext()->msg( 'imagelinks' )->text() ) . "\n" );
 		$this->imageDupes();
 		# @todo FIXME: For some freaky reason, we can't redirect to foreign images.
 		# Yet we return metadata about the target. Definitely an issue in the FileRepo
@@ -205,7 +205,7 @@ class ImagePage extends Article {
 			$out->addHTML( Xml::element(
 				'h2',
 				array( 'id' => 'metadata' ),
-				wfMessage( 'metadata' )->text() ) . "\n" );
+					$this->getContext()->msg( 'metadata' )->text() ) . "\n" );
 			$out->addWikiText( $this->makeMetadataTable( $formattedMetadata ) );
 			$out->addModules( array( 'mediawiki.action.view.metadata' ) );
 		}
@@ -237,12 +237,12 @@ class ImagePage extends Article {
 	 */
 	protected function showTOC( $metadata ) {
 		$r = array(
-			'<li><a href="#file">' . wfMessage( 'file-anchor-link' )->escaped() . '</a></li>',
-			'<li><a href="#filehistory">' . wfMessage( 'filehist' )->escaped() . '</a></li>',
-			'<li><a href="#filelinks">' . wfMessage( 'imagelinks' )->escaped() . '</a></li>',
+			'<li><a href="#file">' . $this->getContext()->msg( 'file-anchor-link' )->escaped() . '</a></li>',
+			'<li><a href="#filehistory">' . $this->getContext()->msg( 'filehist' )->escaped() . '</a></li>',
+			'<li><a href="#filelinks">' . $this->getContext()->msg( 'imagelinks' )->escaped() . '</a></li>',
 		);
 		if ( $metadata ) {
-			$r[] = '<li><a href="#metadata">' . wfMessage( 'metadata' )->escaped() . '</a></li>';
+			$r[] = '<li><a href="#metadata">' . $this->getContext()->msg( 'metadata' )->escaped() . '</a></li>';
 		}
 
 		Hooks::run( 'ImagePageShowTOC', array( $this, &$r ) );
@@ -260,7 +260,7 @@ class ImagePage extends Article {
 	 */
 	protected function makeMetadataTable( $metadata ) {
 		$r = "<div class=\"mw-imagepage-section-metadata\">";
-		$r .= wfMessage( 'metadata-help' )->plain();
+		$r .= $this->getContext()->msg( 'metadata-help' )->plain();
 		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata\">\n";
 		foreach ( $metadata as $type => $stuff ) {
 			foreach ( $stuff as $v ) {
@@ -341,14 +341,14 @@ class ImagePage extends Article {
 			if ( $this->displayImg->allowInlineDisplay() ) {
 				# image
 				# "Download high res version" link below the image
-				# $msgsize = wfMessage( 'file-info-size', $width_orig, $height_orig,
+				# $msgsize = $this->getContext()->msg( 'file-info-size', $width_orig, $height_orig,
 				#   Linker::formatSize( $this->displayImg->getSize() ), $mime )->escaped();
 				# We'll show a thumbnail of this image
 				if ( $width > $maxWidth || $height > $maxHeight || $this->displayImg->isVectorized() ) {
 					list( $width, $height ) = $this->getDisplayWidthHeight(
 						$maxWidth, $maxHeight, $width, $height
 					);
-					$linktext = wfMessage( 'show-big-image' )->escaped();
+					$linktext = $this->getContext()->msg( 'show-big-image' )->escaped();
 
 					$thumbSizes = $this->getThumbSizes( $width, $height, $width_orig, $height_orig );
 					# Generate thumbnails or thumbnail links as needed...
@@ -377,14 +377,14 @@ class ImagePage extends Article {
 					$msgsmall = '';
 					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
 					if ( $sizeLinkBigImagePreview ) {
-						$msgsmall .= wfMessage( 'show-big-image-preview' )->
+						$msgsmall .= $this->getContext()->msg( 'show-big-image-preview' )->
 							rawParams( $sizeLinkBigImagePreview )->
 							parse();
 					}
 					if ( count( $otherSizes ) ) {
 						$msgsmall .= ' ' .
 						Html::rawElement( 'span', array( 'class' => 'mw-filepage-other-resolutions' ),
-							wfMessage( 'show-big-image-other' )->rawParams( $lang->pipeList( $otherSizes ) )->
+							$this->getContext()->msg( 'show-big-image-other' )->rawParams( $lang->pipeList( $otherSizes ) )->
 							params( count( $otherSizes ) )->parse()
 						);
 					}
@@ -394,7 +394,7 @@ class ImagePage extends Article {
 					$msgsmall = '';
 				} else {
 					# Image is small enough to show full size on image page
-					$msgsmall = wfMessage( 'file-nohires' )->parse();
+					$msgsmall = $this->getContext()->msg( 'file-nohires' )->parse();
 				}
 
 				$params['width'] = $width;
@@ -428,7 +428,7 @@ class ImagePage extends Article {
 					$count = $this->displayImg->pageCount();
 
 					if ( $page > 1 ) {
-						$label = $out->parse( wfMessage( 'imgmultipageprev' )->text(), false );
+						$label = $out->parse( $this->getContext()->msg( 'imgmultipageprev' )->text(), false );
 						// on the client side, this link is generated in ajaxifyPageNavigation()
 						// in the mediawiki.page.image.pagination module
 						$link = Linker::linkKnown(
@@ -450,7 +450,7 @@ class ImagePage extends Article {
 					}
 
 					if ( $page < $count ) {
-						$label = wfMessage( 'imgmultipagenext' )->text();
+						$label = $this->getContext()->msg( 'imgmultipagenext' )->text();
 						$link = Linker::linkKnown(
 							$this->getTitle(),
 							$label,
@@ -487,8 +487,8 @@ class ImagePage extends Article {
 						'</td><td><div class="multipageimagenavbox">' .
 						Xml::openElement( 'form', $formParams ) .
 						Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-							wfMessage( 'imgmultigoto' )->rawParams( $select )->parse() .
-						Xml::submitButton( wfMessage( 'imgmultigo' )->text() ) .
+						$this->getContext()->msg( 'imgmultigoto' )->rawParams( $select )->parse() .
+						Xml::submitButton( $this->getContext()->msg( 'imgmultigo' )->text() ) .
 						Xml::closeElement( 'form' ) .
 						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
 					);
@@ -502,12 +502,12 @@ class ImagePage extends Article {
 					"</div>\n" );
 			}
 
-			$longDesc = wfMessage( 'parentheses', $this->displayImg->getLongDesc() )->text();
+			$longDesc = $this->getContext()->msg( 'parentheses', $this->displayImg->getLongDesc() )->text();
 
 			$medialink = "[[Media:$filename|$linktext]]";
 
 			if ( !$this->displayImg->isSafeFile() ) {
-				$warning = wfMessage( 'mediawarning' )->plain();
+				$warning = $this->getContext()->msg( 'mediawarning' )->plain();
 				// dirmark is needed here to separate the file name, which
 				// most likely ends in Latin characters, from the description,
 				// which may begin with the file type. In RTL environment
@@ -619,7 +619,7 @@ EOT
 			return Html::rawElement( 'a', array(
 				'href' => $thumbnail->getUrl(),
 				'class' => 'mw-thumbnail-link'
-				), wfMessage( 'show-big-image-size' )->numParams(
+				), $this->getContext()->msg( 'show-big-image-size' )->numParams(
 					$thumbnail->getWidth(), $thumbnail->getHeight()
 				)->parse() );
 		} else {
@@ -645,9 +645,9 @@ EOT
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
 		$repo = $this->mPage->getFile()->getRepo()->getDisplayName();
 
-		if ( $descUrl && $descText && wfMessage( 'sharedupload-desc-here' )->plain() !== '-' ) {
+		if ( $descUrl && $descText && $this->getContext()->msg( 'sharedupload-desc-here' )->plain() !== '-' ) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-here', $repo, $descUrl ) );
-		} elseif ( $descUrl && wfMessage( 'sharedupload-desc-there' )->plain() !== '-' ) {
+		} elseif ( $descUrl && $this->getContext()->msg( 'sharedupload-desc-there' )->plain() !== '-' ) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-there', $repo, $descUrl ) );
 		} else {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload', $repo ), ''/*BACKCOMPAT*/ );
@@ -694,7 +694,7 @@ EOT
 		) {
 			$ulink = Linker::makeExternalLink(
 				$this->getUploadUrl(),
-				wfMessage( 'uploadnewversion-linktext' )->text()
+				$this->getContext()->msg( 'uploadnewversion-linktext' )->text()
 			);
 			$out->addHTML( "<li id=\"mw-imagepage-reupload-link\">"
 				. "<div class=\"plainlinks\">{$ulink}</div></li>\n" );
@@ -832,7 +832,7 @@ EOT
 				$liContents = $link;
 			} elseif ( count( $redirects[$element->page_title] ) === 0 ) {
 				# Redirect without usages
-				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams( $link, '' )->parse();
+				$liContents = $this->getContext()->msg( 'linkstoimage-redirect' )->rawParams( $link, '' )->parse();
 			} else {
 				# Redirect with usages
 				$li = '';
@@ -855,7 +855,7 @@ EOT
 					array( 'class' => 'mw-imagepage-redirectstofile' ),
 					$li
 					) . "\n";
-				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams(
+				$liContents = $this->getContext()->msg( 'linkstoimage-redirect' )->rawParams(
 					$link, $ul )->parse();
 			}
 			$out->addHTML( Html::rawElement(
@@ -901,7 +901,7 @@ EOT
 			} else {
 				$link = Linker::makeExternalLink( $file->getDescriptionUrl(),
 					$file->getTitle()->getPrefixedText() );
-				$fromSrc = wfMessage( 'shared-repo-from', $file->getRepo()->getDisplayName() )->text();
+				$fromSrc = $this->getContext()->msg( 'shared-repo-from', $file->getRepo()->getDisplayName() )->text();
 			}
 			$out->addHTML( "<li>{$link} {$fromSrc}</li>\n" );
 		}
@@ -930,7 +930,7 @@ EOT
 	 */
 	function showError( $description ) {
 		$out = $this->getContext()->getOutput();
-		$out->setPageTitle( wfMessage( 'internalerror' ) );
+		$out->setPageTitle( $this->getContext()->msg( 'internalerror' ) );
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setArticleRelated( false );
 		$out->enableClientCache( false );
@@ -1008,7 +1008,7 @@ EOT
 			$code = wfBCP47( $lang );
 			$name = Language::fetchLanguageName( $code, $this->getContext()->getLanguage()->getCode() );
 			if ( $name !== '' ) {
-				$display = wfMessage( 'img-lang-opt', $code, $name )->text();
+				$display = $this->getContext()->msg( 'img-lang-opt', $code, $name )->text();
 			} else {
 				$display = $code;
 			}
@@ -1024,7 +1024,7 @@ EOT
 			// Its hard to know if the content is really in the default language, or
 			// if its just unmarked content that could be in any language.
 			$opts = Xml::option(
-				wfMessage( 'img-lang-default' )->text(),
+					$this->getContext()->msg( 'img-lang-default' )->text(),
 				$defaultLang,
 				$defaultLang === $curLang
 			) . $opts;
@@ -1032,7 +1032,7 @@ EOT
 		if ( !$haveCurrentLang && $defaultLang !== $curLang ) {
 			$name = Language::fetchLanguageName( $curLang, $this->getContext()->getLanguage()->getCode() );
 			if ( $name !== '' ) {
-				$display = wfMessage( 'img-lang-opt', $curLang, $name )->text();
+				$display = $this->getContext()->msg( 'img-lang-opt', $curLang, $name )->text();
 			} else {
 				$display = $curLang;
 			}
@@ -1044,9 +1044,9 @@ EOT
 			array( 'id' => 'mw-imglangselector', 'name' => 'lang' ),
 			$opts
 		);
-		$submit = Xml::submitButton( wfMessage( 'img-lang-go' )->text() );
+		$submit = Xml::submitButton( $this->getContext()->msg( 'img-lang-go' )->text() );
 
-		$formContents = wfMessage( 'img-lang-info' )->rawParams( $select, $submit )->parse()
+		$formContents = $this->getContext()->msg( 'img-lang-info' )->rawParams( $select, $submit )->parse()
 			. Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() );
 
 		$langSelectLine = Html::rawElement( 'div', array( 'id' => 'mw-imglangselector-line' ),
