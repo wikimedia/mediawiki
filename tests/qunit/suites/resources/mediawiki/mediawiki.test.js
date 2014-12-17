@@ -649,6 +649,11 @@
 
 	} );
 
+	QUnit.test( 'mw.loader.implement( only scripts )', 1, function ( assert ) {
+		mw.loader.implement( 'test.onlyscripts', function () {} );
+		assert.strictEqual( mw.loader.getState( 'test.onlyscripts' ), 'ready' );
+	} );
+
 	QUnit.asyncTest( 'mw.loader.implement( only messages )', 2, function ( assert ) {
 		assert.assertFalse( mw.messages.exists( 'bug_29107' ), 'Verify that the test message doesn\'t exist yet' );
 
