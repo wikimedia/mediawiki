@@ -810,7 +810,7 @@
 	"revdelete-legend": "Ustaw ograniczenia widoczności",
 	"revdelete-hide-text": "Tekst wersji",
 	"revdelete-hide-image": "Ukryj zawartość pliku",
-	"revdelete-hide-name": "Ukryj akcję i cel",
+	"revdelete-hide-name": "Ukryj cel i parametry",
 	"revdelete-hide-comment": "Opis zmian",
 	"revdelete-hide-user": "Nazwa użytkownika/adres IP",
 	"revdelete-hide-restricted": "Ukryj informacje przed administratorami tak samo jak przed innymi",
