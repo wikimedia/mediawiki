@@ -1692,7 +1692,7 @@
 				 * @param {string} module Name of module
 				 * @param {Function|Array} script Function with module code or Array of URLs to
 				 *  be used as the src attribute of a new `<script>` tag.
-				 * @param {Object} style Should follow one of the following patterns:
+				 * @param {Object} [style] Should follow one of the following patterns:
 				 *
 				 *     { "css": [css, ..] }
 				 *     { "url": { <media>: [url, ..] } }
@@ -1705,25 +1705,25 @@
 				 * The reason css strings are not concatenated anymore is bug 31676. We now check
 				 * whether it's safe to extend the stylesheet (see #canExpandStylesheetWith).
 				 *
-				 * @param {Object} msgs List of key/value pairs to be added to mw#messages.
+				 * @param {Object} [msgs] List of key/value pairs to be added to mw#messages.
 				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
 				 */
 				implement: function ( module, script, style, msgs, templates ) {
 					// Validate input
 					if ( typeof module !== 'string' ) {
-						throw new Error( 'module must be a string, not a ' + typeof module );
+						throw new Error( 'module must be of type string, not ' + typeof module );
 					}
 					if ( !$.isFunction( script ) && !$.isArray( script ) ) {
-						throw new Error( 'script must be a function or an array, not a ' + typeof script );
+						throw new Error( 'script must be of type function or array, not ' + typeof script );
 					}
-					if ( !$.isPlainObject( style ) ) {
-						throw new Error( 'style must be an object, not a ' + typeof style );
+					if ( style && !$.isPlainObject( style ) ) {
+						throw new Error( 'style must be of type object, not ' + typeof style );
 					}
-					if ( !$.isPlainObject( msgs ) ) {
-						throw new Error( 'msgs must be an object, not a ' + typeof msgs );
+					if ( msgs && !$.isPlainObject( msgs ) ) {
+						throw new Error( 'msgs must be of type object, not a ' + typeof msgs );
 					}
-					if ( templates !== undefined && !$.isPlainObject( templates ) ) {
-						throw new Error( 'templates must be an object, not a ' + typeof templates );
+					if ( templates && !$.isPlainObject( templates ) ) {
+						throw new Error( 'templates must be of type object, not a ' + typeof templates );
 					}
 					// Automatically register module
 					if ( !hasOwn.call( registry, module ) ) {
@@ -1735,8 +1735,8 @@
 					}
 					// Attach components
 					registry[module].script = script;
-					registry[module].style = style;
-					registry[module].messages = msgs;
+					registry[module].style = style || {};
+					registry[module].messages = msgs || {};
 					// Templates are optional (for back-compat)
 					registry[module].templates = templates || {};
 					// The module may already have been marked as erroneous
