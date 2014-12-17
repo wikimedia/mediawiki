@@ -202,6 +202,9 @@ class MWTidy {
 		$process = proc_open(
 			"$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes );
 
+		stream_set_blocking( $pipes[1], 0 );
+		stream_set_blocking( $pipes[2], 0 );
+
 		//NOTE: At least on linux, the process will be created even if tidy is not installed.
 		//      This means that missing tidy will be treated as a validation failure.
 
@@ -214,15 +217,42 @@ class MWTidy {
 			fwrite( $pipes[0], $text );
 			fclose( $pipes[0] );
 
-			while ( !feof( $pipes[1] ) ) {
-				$outputBuffer .= fgets( $pipes[1], 1024 );
-			}
-			fclose( $pipes[1] );
+			$stdoutDone = false;
+			$stderrDone = false;
 
-			while ( !feof( $pipes[2] ) ) {
-				$errorBuffer .= fgets( $pipes[2], 1024 );
+			while ( true ) {
+				$readStreams = array();
+				if ( !$stdoutDone ) {
+					$readStreams[] = $pipes[1];
+				}
+				if ( !$stderrDone ) {
+					$readStreams[] = $pipes[2];
+				}
+				$otherStreams = array();
+
+				stream_select( $readStreams, $otherStreams, $otherStreams, null, null );
+
+				foreach ( $readStreams as $readStream ) {
+					if ( $readStream === $pipes[1] ) {
+						$outputBuffer .= fgets( $pipes[1], 1024 );
+						if ( feof( $pipes[1] ) ) {
+							fclose( $pipes[1] );
+							$stdoutDone = true;
+						}
+					}
+					if ( $readStream === $pipes[2] ) {
+						$errorBuffer .= fgets( $pipes[2], 1024 );
+						if ( feof( $pipes[2] ) ) {
+							fclose( $pipes[2] );
+							$stderrDone = true;
+						}
+					}
+				}
+
+				if ( !is_resource( $process ) || ( $stdoutDone && $stderrDone ) ) {
+					break;
+				}
 			}
-			fclose( $pipes[2] );
 
 			$retval = proc_close( $process );
 		} else {
