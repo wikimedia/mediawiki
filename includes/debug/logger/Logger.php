@@ -44,9 +44,8 @@ TXT;
  * change the service provider. If MWLogger::getInstance() is called before
  * any service provider has been registered, it will attempt to use the
  * $wgMWLoggerDefaultSpi global to bootstrap MWLoggerSpi registration.
- * $wgMWLoggerDefaultSpi can either be the name of a class implementing the
- * MWLoggerSpi interface with a zero argument constructor or a callable that
- * will return an MWLoggerSpi instance.
+ * $wgMWLoggerDefaultSpi is expected to be an array usable by
+ * ObjectFactory::getObjectFromSpec() to create a class.
  *
  * @see MWLoggerSpi
  * @since 1.25

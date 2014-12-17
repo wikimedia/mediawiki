@@ -1067,14 +1067,18 @@ function wfDebugMem( $exact = false ) {
 }
 
 /**
- * Send a line to a supplementary debug log file, if configured, or main debug log if not.
- * To configure a supplementary log file, set $wgDebugLogGroups[$logGroup] to a string
- * filename or an associative array mapping 'destination' to the desired filename. The
- * associative array may also contain a 'sample' key with an integer value, specifying
- * a sampling factor.
+ * Send a line to a supplementary debug log file, if configured, or main debug
+ * log if not.
+ *
+ * To configure a supplementary log file, set $wgDebugLogGroups[$logGroup] to
+ * a string filename or an associative array mapping 'destination' to the
+ * desired filename. The associative array may also contain a 'sample' key
+ * with an integer value, specifying a sampling factor. Sampled log events
+ * will be emitted with a 1 in N random chance.
  *
  * @since 1.23 support for sampling log messages via $wgDebugLogGroups.
  * @since 1.25 support for additional context data
+ * @since 1.25 sample behavior dependent on configured $wgMWLoggerDefaultSpi
  *
  * @param string $logGroup
  * @param string $text
@@ -1106,7 +1110,7 @@ function wfDebugLog(
 
 	$logger = MWLogger::getInstance( $logGroup );
 	$context['private'] = ( $dest === 'private' );
-	$logger->debug( $text, $context );
+	$logger->info( $text, $context );
 }
 
 /**

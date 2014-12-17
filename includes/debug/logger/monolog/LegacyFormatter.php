@@ -21,7 +21,7 @@
 /**
  * Log message formatter that mimics the legacy log message formatting of
  * `wfDebug`, `wfDebugLog`, `wfLogDBError` and `wfErrorLog` global functions by
- * deligating the formatting to MWLoggerLegacyLogger.
+ * delegating the formatting to MWLoggerLegacyLogger.
  *
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
