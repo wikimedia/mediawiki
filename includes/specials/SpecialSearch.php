@@ -1064,7 +1064,7 @@ class SpecialSearch extends SpecialPage {
 		$out .= Html::input( 'search', $term, 'search', array(
 			'id' => $this->profile === 'advanced' ? 'powerSearchText' : 'searchText',
 			'size' => '50',
-			'autofocus',
+			empty( $term ) === true ? 'autofocus' : null,
 			'class' => 'mw-ui-input mw-ui-input-inline',
 		) ) . "\n";
 		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
