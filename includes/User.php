@@ -4824,6 +4824,43 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Could the user account be deemed inactive?
+	 * (No edits, no deleted edits, no log entries, no current/old uploads)
+	 *
+	 * @param bool $master Perform checking on the master
+	 * @return bool
+	 */
+	public function isInactiveAccount( $master = false ) {
+		$dbo = wfGetDB( $master ? DB_MASTER : DB_SLAVE );
+		$checks = array(
+			'revision' => 'rev',
+			'archive' => 'ar',
+			'image' => 'img',
+			'oldimage' => 'oi',
+			'filearchive' => 'fa'
+		);
+		$count = 0;
+
+		$dbo->begin( __METHOD__ );
+		foreach ( $checks as $table => $fprefix ) {
+			$conds = array( $fprefix . '_user' => $this->getID() );
+			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds,
+				__METHOD__ );
+		}
+
+		$conds = array(
+			'log_user' => $this->getID(),
+			'log_type != ' . $dbo->addQuotes( 'newusers' )
+		);
+		$count += (int)$dbo->selectField( 'logging', 'COUNT(*)', $conds,
+			__METHOD__ );
+
+		$dbo->commit( __METHOD__ );
+
+		return $count == 0;
+	}
+
+	/**
 	 * Initialize user_editcount from data out of the revision table
 	 *
 	 * @param int $add Edits to add to the count from the revision table
