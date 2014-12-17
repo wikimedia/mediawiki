@@ -381,6 +381,16 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Returns true if the main module has a 'callback' parameter, false otherwise.
+	 *
+	 * @since 1.25
+	 * @return bool
+	 */
+	public function hasCallback() {
+		return !is_null( $this->getMain()->getRequest()->getVal( 'callback' ) );
+	}
+
+	/**
 	 * Get the path to this module
 	 *
 	 * @since 1.25
