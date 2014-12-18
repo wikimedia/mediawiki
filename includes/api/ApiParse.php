@@ -218,6 +218,14 @@ class ApiParse extends ApiBase {
 					$result_array['wikitext'] = array();
 					ApiResult::setContent( $result_array['wikitext'], $this->content->serialize( $format ) );
 				}
+				if ( !is_null( $params['summary'] ) ) {
+					$result_array['parsedsummary'] = array();
+					ApiResult::setContent(
+						$result_array['parsedsummary'],
+						Linker::formatComment( $params['summary'], $titleObj )
+					);
+				}
+
 				$result->addValue( null, $this->getModuleName(), $result_array );
 
 				return;
