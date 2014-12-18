@@ -1088,10 +1088,11 @@ abstract class DatabaseBase implements IDatabase {
 		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (bug 42598)
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname $userName */ ", $sql, 1 );
 
+		static $noTrxVerbs = array( 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW' );
+
+		$verb = substr( $sql, 0, strcspn( $sql, " \t\r\n" ) );
 		# If DBO_TRX is set, start a transaction
-		if ( ( $this->mFlags & DBO_TRX ) && !$this->mTrxLevel &&
-			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK'
-		) {
+		if ( $this->getFlag( DBO_TRX ) && !$this->mTrxLevel && !in_array( $verb, $noTrxVerbs ) ) {
 			# Avoid establishing transactions for SHOW and SET statements too -
 			# that would delay transaction initializations to once connection
 			# is really used by application
