@@ -829,7 +829,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			list( $show, $value ) = explode( ':', $option );
-			$a[htmlspecialchars( $show )] = htmlspecialchars( $value );
+			$a[$show] = $value;
 		}
 
 		return $a;
