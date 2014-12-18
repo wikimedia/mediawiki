@@ -4,6 +4,20 @@
  * @group HtmlFormatter
  */
 class HtmlFormatterTest extends MediaWikiTestCase {
+
+	/**
+	 * Use TidySupport to check whether we should use $wgTidyInternal.
+	 *
+	 * The Tidy extension in HHVM does not support error text return, so it is
+	 * nominally usable, but does not pass tests which require error text from
+	 * Tidy.
+	 */
+	protected function setUp() {
+		parent::setUp();
+		$tidySupport = new TidySupport();
+		$this->setMwGlobals( 'wgTidyInternal', $tidySupport->isInternal() );
+	}
+
 	/**
 	 * @dataProvider getHtmlData
 	 *
