@@ -276,6 +276,8 @@ changes to languages because of Bugzilla reports.
    However, this difference is unlikely to arise in practice.
 * (T67278) RFC, PMID, and ISBN "magic links" must be surrounded by non-word
   characters on both sides.
+* (T84937) &nbsp; and HTML entity encodings of it, <, and > will terminate
+  a free external link.
 
 == Compatibility ==
 
