@@ -487,6 +487,14 @@ class IP {
 	 * @return array(string, string)
 	 */
 	public static function parseRange( $range ) {
+		if ( is_array( $range ) ) {
+			wfDebugLog(
+				'T84894',
+				__METHOD__ . ' called by ' . wfGetAllCallers( 5 ) .
+				' with array of IPs: ' . implode( ', ', $range )
+			);
+			return array( false, false );
+		}
 		// CIDR notation
 		if ( strpos( $range, '/' ) !== false ) {
 			if ( self::isIPv6( $range ) ) {
