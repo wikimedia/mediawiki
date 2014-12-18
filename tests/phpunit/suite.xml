@@ -39,7 +39,6 @@ phpunit.php enables colors for other OSs at runtime
 			<file>suites/UploadFromUrlTestSuite.php</file>
 		</testsuite>
 		<testsuite name="extensions">
-			<directory>structure</directory>
 			<file>suites/ExtensionsTestSuite.php</file>
 			<file>suites/ExtensionsParserTestSuite.php</file>
 			<file>suites/LessTestSuite.php</file>
