@@ -2339,7 +2339,8 @@ OO.ui.Dialog.static.escapable = true;
 OO.ui.Dialog.prototype.onDocumentKeyDown = function ( e ) {
 	if ( e.which === OO.ui.Keys.ESCAPE ) {
 		this.close();
-		return false;
+		e.preventDefault();
+		e.stopPropagation();
 	}
 };
 
