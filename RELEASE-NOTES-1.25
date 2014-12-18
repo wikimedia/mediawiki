@@ -282,6 +282,8 @@ changes to languages because of Bugzilla reports.
   characters on both sides.
 * (T30950, T31025) RFC, PMID, and ISBN "magic links" can no longer contain
   newlines; but they can contain &nbsp; and other non-newline whitespace.
+* (T84937) Free external links ("autolinked" urls) will now be terminated
+  by &nbsp; and HTML entity encodings of &nbsp, <, and >.
 
 == Compatibility ==
 
