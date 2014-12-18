@@ -140,7 +140,7 @@ class ProfilerXhprof extends Profiler {
 		// Merge in all of the custom profile sections
 		foreach ( $this->sprofiler->getFunctionStats() as $stats ) {
 			// @note: getFunctionStats() values already in ms
-			$stats['%real'] = $stats['real'] / $main['real'];
+			$stats['%real'] = $main['real'] ? $stats['real'] / $main['real'] * 100 : 0;
 			$stats['%cpu'] = $main['cpu'] ? $stats['cpu'] / $main['cpu'] * 100 : 0;
 			$stats['%memory'] = $main['memory'] ? $stats['memory'] / $main['memory'] * 100 : 0;
 			$profile[] = $stats; // assume no section names collide with $metrics
