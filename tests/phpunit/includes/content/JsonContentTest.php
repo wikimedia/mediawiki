@@ -74,7 +74,11 @@ class JsonContentTest extends MediaWikiLangTestCase {
 	 */
 	public function testPreSaveTransform( $input, $transformed ) {
 		$obj = new JsonContent( $input );
-		$newObj = $obj->preSaveTransform( $this->getMockTitle(), $this->getMockUser(), $this->getMockParserOptions() );
+		$newObj = $obj->preSaveTransform(
+			$this->getMockTitle(),
+			$this->getMockUser(),
+			$this->getMockParserOptions()
+		);
 		$this->assertTrue( $newObj->equals( new JsonContent( $transformed ) ) );
 	}
 
@@ -99,11 +103,13 @@ class JsonContentTest extends MediaWikiLangTestCase {
 		return array(
 			array(
 				(object)array(),
-				'<table class="mw-json"><tbody><tr><td class="mw-json-empty">Empty object</td></tr></tbody></table>'
+				'<table class="mw-json"><tbody><tr><td class="mw-json-empty">Empty object</td></tr>' .
+				'</tbody></table>'
 			),
 			array(
 				(object)array( 'foo' ),
-				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;foo&quot;</td></tr></tbody></table>'
+				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;foo&quot;</td></tr>' .
+				'</tbody></table>'
 			),
 			array(
 				(object)array( 'foo', 'bar' ),
@@ -125,7 +131,9 @@ class JsonContentTest extends MediaWikiLangTestCase {
 			),
 			array(
 				(object)array( '<script>alert("evil!")</script>'),
-				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;&lt;script&gt;alert(&quot;evil!&quot;)&lt;/script&gt;&quot;</td></tr></tbody></table>',
+				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;' .
+				'&lt;script&gt;alert(&quot;evil!&quot;)&lt;/script&gt;&quot;' .
+				'</td></tr></tbody></table>',
 			),
 		);
 	}
