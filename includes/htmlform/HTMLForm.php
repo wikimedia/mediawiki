@@ -246,10 +246,7 @@ class HTMLForm extends ContextSource {
 				$this->mUseMultipart = true;
 			}
 
-			$field = self::loadInputFromParameters( $fieldname, $info );
-			// FIXME During field's construct, the parent form isn't available!
-			// could add a 'parent' name-value to $info, could add a third parameter.
-			$field->mParent = $this;
+			$field = self::loadInputFromParameters( $fieldname, $info, $this );
 
 			// vform gets too much space if empty labels generate HTML.
 			if ( $this->isVForm() ) {
@@ -359,14 +356,18 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param string $fieldname Name of the field
 	 * @param array $descriptor Input Descriptor, as described above
+	 * @param HTMLForm|null $parent Parent instance of HTMLForm
 	 *
 	 * @throws MWException
 	 * @return HTMLFormField Instance of a subclass of HTMLFormField
 	 */
-	public static function loadInputFromParameters( $fieldname, $descriptor ) {
+	public static function loadInputFromParameters( $fieldname, $descriptor, HTMLForm $parent = null ) {
 		$class = self::getClassFromDescriptor( $fieldname, $descriptor );
 
 		$descriptor['fieldname'] = $fieldname;
+		if ( $parent ) {
+			$descriptor['parent'] = $parent;
+		}
 
 		# @todo This will throw a fatal error whenever someone try to use
 		# 'class' to feed a CSS class instead of 'cssclass'. Would be
