@@ -139,4 +139,26 @@ class JsonContentTest extends MediaWikiLangTestCase {
 		$this->assertInstanceOf( 'ParserOutput', $parserOutput );
 		$this->assertEquals( $expected, $parserOutput->getText() );
 	}
+
+	public function testGetDataAsArray() {
+		$obj = new JsonContent( '{ "foo": { "bar": "baz", "qux": 1 }, "quux": 2}' );
+		$dataStatus = $obj->getData( true );
+
+		$this->assertTrue( $dataStatus->isGood() );
+
+		$data = $dataStatus->getValue();
+		$expected = array( 'foo' => array( 'bar' => 'baz', 'qux' => 1 ), 'quux' => 2 );
+		$this->assertEquals( $expected, $data );
+	}
+
+	public function testGetDataAsObject() {
+		$obj = new JsonContent( '{ "foo": { "bar": "baz", "qux": 1 }, "quux": 2}' );
+		$dataStatus = $obj->getData();
+
+		$this->assertTrue( $dataStatus->isGood() );
+
+		$data = $dataStatus->getValue();
+		$expected = (object) array( 'foo' => (object) array( 'bar' => 'baz', 'qux' => 1 ), 'quux' => 2 );
+		$this->assertEquals( $expected, $data );
+	}
 }

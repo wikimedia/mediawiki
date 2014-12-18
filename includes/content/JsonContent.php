@@ -43,9 +43,14 @@ class JsonContent extends TextContent {
 	/**
 	 * Decodes the JSON string into a PHP object.
 	 *
+	 * @param bool $assoc When true, returned objects will be converted into associative arrays.
+	 *
 	 * @return Status
 	 */
-	public function getData() {
+	public function getData( $assoc = false ) {
+		if ( $assoc ) {
+			return FormatJson::parse( $this->getNativeData(), FormatJson::FORCE_ASSOC );
+		}
 		if ( $this->jsonParse === null ) {
 			$this->jsonParse = FormatJson::parse( $this->getNativeData() );
 		}
