@@ -131,12 +131,12 @@ class MWTidy {
 		$wrappedtext = $wrapper->getWrapped( $text );
 
 		$retVal = null;
-		list( $correctedtext, $errors ) = self::clean( $wrappedtext, $retVal );
+		$correctedtext = self::clean( $wrappedtext, false, $retVal );
 
 		if ( $retVal < 0 ) {
 			wfDebug( "Possible tidy configuration error!\n" );
 			return $text . "\n<!-- Tidy was unable to run -->\n";
-		} elseif ( $correctedtext === '' && $text !== '' ) {
+		} elseif ( is_null( $correctedtext ) ) {
 			wfDebug( "Tidy error detected!\n" );
 			return $text . "\n<!-- Tidy found serious XHTML errors -->\n";
 		}
@@ -155,23 +155,31 @@ class MWTidy {
 	 */
 	public static function checkErrors( $text, &$errorStr = null ) {
 		$retval = 0;
-		list( $outputStr, $errorStr ) = self::clean( $text, $retval );
+		$errorStr = self::clean( $text, true, $retval );
 		return ( $retval < 0 && $errorStr == '' ) || $retval == 0;
 	}
 
 	/**
 	 * Perform a clean/repair operation
 	 * @param string $text HTML to check
+	 * @param bool $stderr Whether to read result from STDERR rather than STDOUT
 	 * @param int &$retval Exit code (-1 on internal error)
 	 * @return string|null
 	 */
-	private static function clean( $text, &$retval = null ) {
+	private static function clean( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyInternal;
 
 		if ( $wgTidyInternal ) {
-			return self::internalClean( $text, $retval );
+			if ( wfIsHHVM() ) {
+				if ( $stderr ) {
+					throw new MWException( __METHOD__ . ": error text return from HHVM tidy is not supported" );
+				}
+				return self::hhvmClean( $text, $retval );
+			} else {
+				return self::phpClean( $text, $stderr, $retval );
+			}
 		} else {
-			return self::externalClean( $text, $retval );
+			return self::externalClean( $text, $stderr, $retval );
 		}
 	}
 
@@ -180,23 +188,32 @@ class MWTidy {
 	 * Also called in OutputHandler.php for full page validation
 	 *
 	 * @param string $text HTML to check
+	 * @param bool $stderr Whether to read result from STDERR rather than STDOUT
 	 * @param int &$retval Exit code (-1 on internal error)
 	 * @return string|null
 	 */
-	private static function externalClean( $text, &$retval = null ) {
+	private static function externalClean( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
 		wfProfileIn( __METHOD__ );
 
+		$cleansource = '';
 		$opts = ' -utf8';
 
-		$descriptorspec = array(
-			0 => array( 'pipe', 'r' ),
-			1 => array( 'pipe', 'w' ),
-			2 => array( 'pipe', 'w' ),
-		);
+		if ( $stderr ) {
+			$descriptorspec = array(
+				0 => array( 'pipe', 'r' ),
+				1 => array( 'file', wfGetNull(), 'a' ),
+				2 => array( 'pipe', 'w' )
+			);
+		} else {
+			$descriptorspec = array(
+				0 => array( 'pipe', 'r' ),
+				1 => array( 'pipe', 'w' ),
+				2 => array( 'file', wfGetNull(), 'a' )
+			);
+		}
 
-		$outputBuffer = '';
-		$errorBuffer = '';
+		$readpipe = $stderr ? 2 : 1;
 		$pipes = array();
 
 		$process = proc_open(
@@ -213,25 +230,24 @@ class MWTidy {
 			// for tidyParseStdin and tidySaveStdout in console/tidy.c
 			fwrite( $pipes[0], $text );
 			fclose( $pipes[0] );
-
-			while ( !feof( $pipes[1] ) ) {
-				$outputBuffer .= fgets( $pipes[1], 1024 );
+			while ( !feof( $pipes[$readpipe] ) ) {
+				$cleansource .= fgets( $pipes[$readpipe], 1024 );
 			}
-			fclose( $pipes[1] );
-
-			while ( !feof( $pipes[2] ) ) {
-				$errorBuffer .= fgets( $pipes[2], 1024 );
-			}
-			fclose( $pipes[2] );
-
+			fclose( $pipes[$readpipe] );
 			$retval = proc_close( $process );
 		} else {
 			wfWarn( "Unable to start external tidy process" );
 			$retval = -1;
 		}
 
+		if ( !$stderr && $cleansource == '' && $text != '' ) {
+			// Some kind of error happened, so we couldn't get the corrected text.
+			// Just give up; we'll use the source text and append a warning.
+			$cleansource = null;
+		}
+
 		wfProfileOut( __METHOD__ );
-		return array( $outputBuffer, $errorBuffer );
+		return $cleansource;
 	}
 
 	/**
@@ -239,10 +255,11 @@ class MWTidy {
 	 * saving the overhead of spawning a new process.
 	 *
 	 * @param string $text HTML to check
+	 * @param bool $stderr Whether to read result from error status instead of output
 	 * @param int &$retval Exit code (-1 on internal error)
 	 * @return string|null
 	 */
-	private static function internalClean( $text, &$retval = null ) {
+	private static function phpClean( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgDebugTidy;
 		wfProfileIn( __METHOD__ );
 
@@ -254,36 +271,57 @@ class MWTidy {
 			return null;
 		}
 
-		$outputBuffer = '';
-		$errorBuffer = '';
+		$tidy = new tidy;
+		$tidy->parseString( $text, $wgTidyConf, 'utf8' );
 
-		if ( wfIsHHVM() ) {
-			// Use the tidy extension for HHVM from
-			// https://github.com/wikimedia/mediawiki-php-tidy
-			//
-			// This currently does not support the object-oriented interface, but
-			// tidy_repair_string() can be used for the most common tasks.
-			$result = tidy_repair_string( $text, $wgTidyConf, 'utf8' );
-			$outputBuffer .= $result;
-			$retval = $result === false ? -1 : 0;
-		} else {
-			$tidy = new tidy;
-			$tidy->parseString( $text, $wgTidyConf, 'utf8' );
-			$tidy->cleanRepair();
+		if ( $stderr ) {
 			$retval = $tidy->getStatus();
-			$outputBuffer .= tidy_get_output( $tidy );
-			if ( $retval > 0 ) {
-				$errorBuffer .= $tidy->errorBuffer;
+
+			wfProfileOut( __METHOD__ );
+			return $tidy->errorBuffer;
+		}
+
+		$tidy->cleanRepair();
+		$retval = $tidy->getStatus();
+		if ( $retval == 2 ) {
+			// 2 is magic number for fatal error
+			// http://www.php.net/manual/en/function.tidy-get-status.php
+			$cleansource = null;
+		} else {
+			$cleansource = tidy_get_output( $tidy );
+			if ( $wgDebugTidy && $retval > 0 ) {
+				$cleansource .= "<!--\nTidy reports:\n" .
+					str_replace( '-->', '--&gt;', $tidy->errorBuffer ) .
+					"\n-->";
 			}
 		}
 
-		if ( $wgDebugTidy && $errorBuffer && $retval > 0 ) {
-			$outputBuffer .= "<!--\nTidy reports:\n" .
-				str_replace( '-->', '--&gt;', $tidy->errorBuffer ) .
-				"\n-->";
-		}
-
 		wfProfileOut( __METHOD__ );
-		return array( $outputBuffer, $errorBuffer );
+		return $cleansource;
+	}
+
+	/**
+	 * Use the tidy extension for HHVM from
+	 * https://github.com/wikimedia/mediawiki-php-tidy
+	 *
+	 * This currently does not support the object-oriented interface, but
+	 * tidy_repair_string() can be used for the most common tasks.
+	 *
+	 * @param string $text HTML to check
+	 * @param int &$retval Exit code (-1 on internal error)
+	 * @return string|null
+	 */
+	private static function hhvmClean( $text, &$retval ) {
+		global $wgTidyConf;
+		wfProfileIn( __METHOD__ );
+		$cleansource = tidy_repair_string( $text, $wgTidyConf, 'utf8' );
+		if ( $cleansource === false ) {
+			$cleansource = null;
+			$retval = -1;
+		} else {
+			$retval = 0;
+		}
+		wfProfileOut( __METHOD__ );
+		return $cleansource;
 	}
 }
