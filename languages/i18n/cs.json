@@ -3142,7 +3142,7 @@
 	"api-error-stashzerolength": "Server nemohl soubor uložit do skrýše, protože má nulovou délku.",
 	"api-error-stashnotloggedin": "Pro ukládání souboru do skrýše musíte být přihlášeni.",
 	"api-error-stashwrongowner": "Soubor, ke kterému se ve skrýši pokoušíte přistoupit, vám nepatří.",
-	"api-error-stashnosuchfilekey": "Klíč souboru, ke kterém se ve skrýši pokoušíte přistoupit, neexistuje.",
+	"api-error-stashnosuchfilekey": "Klíč souboru, ke kterému se ve skrýši pokoušíte přistoupit, neexistuje.",
 	"api-error-timeout": "Server neodpověděl v očekávaném čase.",
 	"api-error-unclassified": "Došlo k neznámé chybě.",
 	"api-error-unknown-code": "Neznámá chyba: „$1“.",

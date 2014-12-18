@@ -61,7 +61,8 @@
 			"Arg",
 			"NCoppens",
 			"Josse.Cottenier",
-			"Macofe"
+			"Macofe",
+			"Mirolith"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -709,6 +710,7 @@
 	"content-model-text": "tekst zonder opmaak",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"content-json-empty-object": "Leeg object",
 	"duplicate-args-category": "Pagina's met dubbele sjabloonparameters",
 	"duplicate-args-category-desc": "De pagina bevat aanroepen van sjablonen waarin hetzelfde argument meerdere keren wordt gebruikt, bijvoorbeeld <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> of <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Waarschuwing:''' deze pagina gebruikt te veel kostbare parserfuncties.\n\nNu {{PLURAL:$1|is|zijn}} het er $1, terwijl het er minder dan $2 {{PLURAL:$2|moet|moeten}} zijn.",

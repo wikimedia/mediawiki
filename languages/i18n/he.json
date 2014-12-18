@@ -676,6 +676,8 @@
 	"content-model-text": "טקסט פשוט",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"content-json-empty-object": "אוביקט ריק",
+	"content-json-empty-array": "מערך ריק",
 	"duplicate-args-category": "דפים שמשתמשים בפרמטרים כפולים בקריאות לתבניות",
 	"duplicate-args-category-desc": "הדף מכיל קריאות לתבניות שמשתמשות בפרמטרים כפולים, כגון <code><nowiki>{{תאריך|יום=1|יום=2}}</nowiki></code> או <code><nowiki>{{שעה|חמש|1=שש}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''אזהרה:''' דף זה כולל יותר מדי קריאות לפונקציות מפענח שגוזלות משאבים.\n\nנדרש {{PLURAL:$2|שתהיה בו לכל היותר קריאה אחת|שתהיינה בו לכל היותר $2 קריאות}} לפונקציות כאלה, אך כרגע יש בו {{PLURAL:$1|קריאה אחת|$1 קריאות}}.",

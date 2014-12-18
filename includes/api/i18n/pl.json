@@ -86,5 +86,5 @@
 	"api-help-permissions": "{{PLURAL:$2|Uprawnienie|Uprawnienia}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Przydzielone dla}}: $2",
 	"api-credits-header": "Twórcy",
-	"api-credits": "Deweloperzy API:\n* Roan Kattouw (główny programista wrzesień 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (twórca, główny programista wrzesień 2006–wrzesień 2007)\n* Brad Jorsch (główny programista 2013–obecnie)\n\nProsimy wysyłać komentarze, sugestie i pytania do mediawiki-api@lists.wikimedia.org\nlub zgłoś błąd na https://bugzilla.wikimedia.org/."
+	"api-credits": "Deweloperzy API:\n* Roan Kattouw (główny programista wrzesień 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (twórca, główny programista wrzesień 2006–wrzesień 2007)\n* Brad Jorsch (główny programista 2013–obecnie)\n\nProsimy wysyłać komentarze, sugestie i pytania do mediawiki-api@lists.wikimedia.org\nlub zgłoś błąd na https://phabricator.wikimedia.org/."
 }

@@ -725,6 +725,8 @@
 	"content-model-text": "Klartext",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"content-json-empty-object": "Leeres Objekt",
+	"content-json-empty-array": "Leeres Array",
 	"duplicate-args-category": "Seiten, die doppelte Argumente in Vorlagenaufrufen verwenden",
 	"duplicate-args-category-desc": "Die Seite enthält Vorlagenaufrufe, die Duplikate von Argumenten verwenden, wie <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> oder <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Achtung:''' Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.\n\nSie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|ist aktuell $1 Aufruf|sind aktuell $1 Aufrufe}}.",

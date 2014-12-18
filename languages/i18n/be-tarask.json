@@ -662,6 +662,8 @@
 	"content-model-text": "просты тэкст",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"content-json-empty-object": "Пусты аб’ект",
+	"content-json-empty-array": "Пусты масіў",
 	"duplicate-args-category": "Старонкі, на якіх у шаблёнах выкарыстоўваюцца парамэтры-дублікаты",
 	"duplicate-args-category-desc": "Старонкі, якія ўтрымліваюць шаблёны з парамэтрамі-дублікатамі, напрыклад, <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> або <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Папярэджаньне: гэтая старонка ўтрымлівае зашмат працаёмістых зваротаў да функцыяў парсэра.\n\nПавінна быць ня болей за $2 {{PLURAL:$2|зварот|звароты|зваротаў}}, а цяпер ўтрымліваецца {{PLURAL:$1|$1 зварот|$1 звароты|$1 зваротаў}}.",

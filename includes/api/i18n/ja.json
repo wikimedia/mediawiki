@@ -123,5 +123,5 @@
 	"api-help-permissions": "{{PLURAL:$1|権限}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|権限を持つグループ}}: $2",
 	"api-credits-header": "クレジット",
-	"api-credits": "API の開発者:\n* Roan Kattouw (2007年9月-2009年の主任開発者)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (作成者、2006年9月-2007年9月の主任開発者)\n* Brad Jorsch (2013年-現在の主任開発者)\n\nコメント、提案、質問は mediawiki-api@lists.wikimedia.org にお送りください。\nバグはこちらへご報告ください: https://bugzilla.wikimedia.org/"
+	"api-credits": "API の開発者:\n* Roan Kattouw (2007年9月-2009年の主任開発者)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (作成者、2006年9月-2007年9月の主任開発者)\n* Brad Jorsch (2013年-現在の主任開発者)\n\nコメント、提案、質問は mediawiki-api@lists.wikimedia.org にお送りください。\nバグはこちらへご報告ください: https://phabricator.wikimedia.org/"
 }
