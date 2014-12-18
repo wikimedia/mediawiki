@@ -1040,6 +1040,20 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
+	 * Determine whether a SQL statement is sensitive to isolation level.
+	 * A SQL statement is considered transactable if its result could vary
+	 * depending on the transaction isolation level. Operational commands
+	 * such as 'SET' and 'SHOW' are not considered to be transactable.
+	 *
+	 * @param string $sql
+	 * @return bool
+	 */
+	public function isTransactableQuery( $sql ) {
+		$verb = substr( $sql, 0, strcspn( $sql, " \t\r\n" ) );
+		return !in_array( $verb, array( 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ) );
+	}
+
+	/**
 	 * Run an SQL query and return the result. Normally throws a DBQueryError
 	 * on failure. If errors are ignored, returns false instead.
 	 *
@@ -1088,21 +1102,12 @@ abstract class DatabaseBase implements IDatabase {
 		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (bug 42598)
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname $userName */ ", $sql, 1 );
 
-		# If DBO_TRX is set, start a transaction
-		if ( ( $this->mFlags & DBO_TRX ) && !$this->mTrxLevel &&
-			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK'
-		) {
-			# Avoid establishing transactions for SHOW and SET statements too -
-			# that would delay transaction initializations to once connection
-			# is really used by application
-			$sqlstart = substr( $sql, 0, 10 ); // very much worth it, benchmark certified(tm)
-			if ( strpos( $sqlstart, "SHOW " ) !== 0 && strpos( $sqlstart, "SET " ) !== 0 ) {
-				if ( $wgDebugDBTransactions ) {
-					wfDebug( "Implicit transaction start.\n" );
-				}
-				$this->begin( __METHOD__ . " ($fname)" );
-				$this->mTrxAutomatic = true;
+		if ( !$this->mTrxLevel && $this->getFlag( DBO_TRX ) && $this->isTransactableQuery( $sql ) ) {
+			if ( $wgDebugDBTransactions ) {
+				wfDebug( "Implicit transaction start.\n" );
 			}
+			$this->begin( __METHOD__ . " ($fname)" );
+			$this->mTrxAutomatic = true;
 		}
 
 		# Keep track of whether the transaction has write queries pending
