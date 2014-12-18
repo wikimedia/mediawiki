@@ -1205,7 +1205,8 @@ abstract class DatabaseBase implements IDatabase {
 			$n = $this->affectedRows();
 			if ( $isWriteQuery && $n > self::LOG_WRITE_THRESHOLD && PHP_SAPI !== 'cli' ) {
 				wfDebugLog( 'DBPerformance',
-					"Query affected $n rows:\n$sql\n" . wfBacktrace( true ) );
+					"Query affected $n rows:\n" .
+					DatabaseBase::generalizeSQL( $sql ) . "\n" . wfBacktrace( true ) );
 			}
 		}
 
