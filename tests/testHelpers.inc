@@ -805,7 +805,7 @@ class TidySupport {
 		global $wgTidyBin;
 
 		$this->internalTidy = extension_loaded( 'tidy' ) &&
-			class_exists( 'tidy' );
+			class_exists( 'tidy' ) && !wfIsHHVM();
 
 		$this->externalTidy = is_executable( $wgTidyBin ) ||
 			Installer::locateExecutableInDefaultPaths( array( $wgTidyBin ) )
