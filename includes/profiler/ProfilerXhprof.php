@@ -139,6 +139,11 @@ class ProfilerXhprof extends Profiler {
 
 		// Merge in all of the custom profile sections
 		foreach ( $this->sprofiler->getFunctionStats() as $stats ) {
+			if ( $stats['name'] == '-total' ) {
+				// Discard section profiler running totals
+				continue;
+			}
+
 			// @note: getFunctionStats() values already in ms
 			$stats['%real'] = $stats['real'] / $main['real'] * 100;
 			$stats['%cpu'] = $main['cpu'] ? $stats['cpu'] / $main['cpu'] * 100 : 0;
