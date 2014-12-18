@@ -3034,20 +3034,20 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function addGroup( $group ) {
-		if ( Hooks::run( 'UserAddGroup', array( $this, &$group ) ) ) {
-			$dbw = wfGetDB( DB_MASTER );
-			if ( $this->getId() ) {
-				$dbw->insert( 'user_groups',
-					array(
-						'ug_user' => $this->getID(),
-						'ug_group' => $group,
-					),
-					__METHOD__,
-					array( 'IGNORE' ) );
-			}
-		} else {
+		if ( !Hooks::run( 'UserAddGroup', array( $this, &$group ) ) ) {
 			return false;
 		}
+		$dbw = wfGetDB( DB_MASTER );
+		if ( $this->getId() ) {
+			$dbw->insert( 'user_groups',
+				array(
+					'ug_user' => $this->getID(),
+					'ug_group' => $group,
+				),
+				__METHOD__,
+				array( 'IGNORE' ) );
+		}
+
 		$this->loadGroups();
 		$this->mGroups[] = $group;
 		// In case loadGroups was not called before, we now have the right twice.
@@ -3072,24 +3072,24 @@ class User implements IDBAccessObject {
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
-		if ( Hooks::run( 'UserRemoveGroup', array( $this, &$group ) ) ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->delete( 'user_groups',
-				array(
-					'ug_user' => $this->getID(),
-					'ug_group' => $group,
-				), __METHOD__ );
-			// Remember that the user was in this group
-			$dbw->insert( 'user_former_groups',
-				array(
-					'ufg_user' => $this->getID(),
-					'ufg_group' => $group,
-				),
-				__METHOD__,
-				array( 'IGNORE' ) );
-		} else {
+		if ( !Hooks::run( 'UserRemoveGroup', array( $this, &$group ) ) ) {
 			return false;
 		}
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'user_groups',
+			array(
+				'ug_user' => $this->getID(),
+				'ug_group' => $group,
+			), __METHOD__ );
+		// Remember that the user was in this group
+		$dbw->insert( 'user_former_groups',
+			array(
+				'ufg_user' => $this->getID(),
+				'ufg_group' => $group,
+			),
+			__METHOD__,
+			array( 'IGNORE' ) );
+
 		$this->loadGroups();
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
 
