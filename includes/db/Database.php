@@ -1088,21 +1088,18 @@ abstract class DatabaseBase implements IDatabase {
 		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (bug 42598)
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname $userName */ ", $sql, 1 );
 
-		# If DBO_TRX is set, start a transaction
-		if ( ( $this->mFlags & DBO_TRX ) && !$this->mTrxLevel &&
-			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK'
-		) {
-			# Avoid establishing transactions for SHOW and SET statements too -
-			# that would delay transaction initializations to once connection
-			# is really used by application
-			$sqlstart = substr( $sql, 0, 10 ); // very much worth it, benchmark certified(tm)
-			if ( strpos( $sqlstart, "SHOW " ) !== 0 && strpos( $sqlstart, "SET " ) !== 0 ) {
-				if ( $wgDebugDBTransactions ) {
-					wfDebug( "Implicit transaction start.\n" );
-				}
-				$this->begin( __METHOD__ . " ($fname)" );
-				$this->mTrxAutomatic = true;
+		static $noTrxVerbs = array( 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' );
+		$verb = substr( $sql, 0, strcspn( $sql, " \t\r\n" ) );
+		# If DBO_TRX is set, start a transaction unless this was a transaction command.
+		# Avoid establishing transactions for SHOW and SET statements too -
+		# that would delay transaction initializations to once connection
+		# is really used by application.
+		if ( !$this->mTrxLevel && $this->getFlag( DBO_TRX ) && !in_array( $verb, $noTrxVerbs ) ) {
+			if ( $wgDebugDBTransactions ) {
+				wfDebug( "Implicit transaction start.\n" );
 			}
+			$this->begin( __METHOD__ . " ($fname)" );
+			$this->mTrxAutomatic = true;
 		}
 
 		# Keep track of whether the transaction has write queries pending
