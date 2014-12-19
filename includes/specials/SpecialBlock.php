@@ -105,7 +105,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Don't need to do anything if the form has been posted
 		if ( !$this->getRequest()->wasPosted() && $this->preErrors ) {
-			$s = HTMLForm::formatErrors( $this->preErrors );
+			$s = $form->formatErrors( $this->preErrors );
 			if ( $s ) {
 				$form->addHeaderText( Html::rawElement(
 					'div',

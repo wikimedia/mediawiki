@@ -1015,7 +1015,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @return string HTML, a "<ul>" list of errors
 	 */
-	public static function formatErrors( $errors ) {
+	public function formatErrors( $errors ) {
 		$errorstr = '';
 
 		foreach ( $errors as $error ) {
@@ -1029,7 +1029,7 @@ class HTMLForm extends ContextSource {
 			$errorstr .= Html::rawElement(
 				'li',
 				array(),
-				wfMessage( $msg, $error )->parse()
+				$this->msg( $msg, $error )->parse()
 			);
 		}
 
