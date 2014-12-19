@@ -12,7 +12,7 @@
 	/**
 	 * A Notification object for 1 message.
 	 *
-	 * The "_" in the name is to avoid a bug (http://github.com/senchalabs/jsduck/issues/304).
+	 * The underscore in the name is to avoid a bug <https://github.com/senchalabs/jsduck/issues/304>.
 	 * It is not part of the actual class name.
 	 *
 	 * @class mw.Notification_
