@@ -207,6 +207,9 @@ class VirtualRESTServiceClient {
 			if ( ++$rounds > 5 ) { // sanity
 				throw new Exception( "Too many replacement rounds detected. Aborting." );
 			}
+			// Track requests executed this round that have a prefix/service.
+			// Note that this also includes requests where 'response' was forced.
+			$checkReqIndexesByPrefix = array();
 			// Resolve the virtual URLs valid and qualified HTTP(S) URLs
 			// and add any required authentication headers for the backend.
 			// Services can also replace requests with new ones, either to
@@ -219,7 +222,7 @@ class VirtualRESTServiceClient {
 					if ( isset( $servReqs[$index] ) || isset( $origPending[$index] ) ) {
 						// A current or original request which was not modified
 					} else {
-						// Replacement requests with pre-set responses should not execute
+						// Replacement request that will convert to original requests
 						$newReplaceReqsByService[$prefix][$index] = $req;
 					}
 					if ( isset( $req['response'] ) ) {
@@ -231,6 +234,7 @@ class VirtualRESTServiceClient {
 						// Original or mangled request included
 						$executeReqs[$index] = $req;
 					}
+					$checkReqIndexesByPrefix[$prefix][$index] = 1;
 				}
 			}
 			// Update index of requests to inspect for replacement
@@ -245,12 +249,12 @@ class VirtualRESTServiceClient {
 			// defer the original or to set a proxy response to the original.
 			// Any replacement requests executed above will need to be replaced
 			// with new requests (eventually the original). The responses can be
-			// forced instead of having the request sent over the wire.
+			// forced by setting 'response' rather than actually be sent over the wire.
 			$newReplaceReqsByService = array();
-			foreach ( $replaceReqsByService as $prefix => $servReqs ) {
+			foreach ( $checkReqIndexesByPrefix as $prefix => $servReqIndexes ) {
 				$service = $this->instances[$prefix];
-				// Only the request copies stored in $doneReqs actually have the response
-				$servReqs = array_intersect_key( $doneReqs, $servReqs );
+				// $doneReqs actually has the requests (with 'response' set)
+				$servReqs = array_intersect_key( $doneReqs, $servReqIndexes );
 				foreach ( $service->onResponses( $servReqs, $idFunc ) as $index => $req ) {
 					// Services use unique IDs for replacement requests
 					if ( isset( $servReqs[$index] ) || isset( $origPending[$index] ) ) {
