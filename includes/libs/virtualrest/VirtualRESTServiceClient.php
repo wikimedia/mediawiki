@@ -152,7 +152,7 @@ class VirtualRESTServiceClient {
 	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $responses[0];
 	 *  </code>
 	 *
-	 * @param array $req Map of Virtual HTTP request arrays
+	 * @param array $reqs Map of Virtual HTTP request arrays
 	 * @return array $reqs Map of corresponding response values with the same keys/order
 	 */
 	public function runMulti( array $reqs ) {
