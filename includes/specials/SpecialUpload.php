@@ -268,7 +268,10 @@ class SpecialUpload extends SpecialPage {
 
 		# Add text to form
 		$form->addPreText( '<div id="uploadtext">' .
-			$this->msg( 'uploadtext', array( $this->mDesiredDestName ) )->parseAsBlock() .
+			$this->msg(
+				'uploadtext',
+				array( $this->mDesiredDestName, $this->mForReUpload )
+			)->parseAsBlock() .
 			'</div>' );
 		# Add upload error message
 		$form->addPreText( $message );
