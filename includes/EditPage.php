@@ -2118,11 +2118,19 @@ class EditPage {
 		$wgOut->addModules( 'mediawiki.action.edit' );
 		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
 
-		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
+		if ( $wgUser->getOption( 'showtoolbar' ) ) {
+			// The addition of default buttons is handled by getEditToolbar() which
+			// has its own dependency on this module. The call here ensures the module
+			// is loaded in time (it has position "top") for other modules to register
+			// buttons (e.g. extensions, gadgets, user scripts).
+			$wgOut->addModules( 'mediawiki.toolbar' );
+		}
+
+		if ( $wgUser->getOption( 'uselivepreview' ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.preview' );
 		}
 
-		if ( $wgUser->getOption( 'useeditwarning', false ) ) {
+		if ( $wgUser->getOption( 'useeditwarning' ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.editWarning' );
 		}
 
@@ -3747,7 +3755,7 @@ HTML
 				$tool['id'],
 			);
 
-			$script .= Xml::encodeJsCall( 'mw.toolbar.addButton', $params );
+			$script .= Xml::encodeJsCall( 'mw.toolbar.addButton', $params, ResourceLoader::inDebugMode() );
 		}
 
 		$script .= '});';
