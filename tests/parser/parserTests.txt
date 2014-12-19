@@ -540,24 +540,12 @@ Italics and bold: 2-quote opening sequence: (2,2)
 
 !! test
 Italics and bold: 2-quote opening sequence: (2,3)
-!! options
-parsoid=wt2html
 !! wikitext
 ''foo'''
 !! html/*
 <p><i>foo'</i>
 </p>
 !!end
-
-# same html as previous, but wikitext adjusted to match parsoid html2wt
-!! test
-Italics and bold: 2-quote opening sequence: (2,3) w/ nowiki
-!! wikitext
-''foo'<nowiki/>''
-!! html
-<p><i>foo'</i>
-</p>
-!! end
 
 !! test
 Italics and bold: 2-quote opening sequence: (2,4)
@@ -615,21 +603,9 @@ Italics and bold: 2-quote opening sequence: (2,5+3) w/ nowiki
 
 !! test
 Italics and bold: 3-quote opening sequence: (3,2)
-!! options
-parsoid=wt2html
 !! wikitext
 '''foo''
 !! html/*
-<p>'<i>foo</i>
-</p>
-!!end
-
-# same html as previous, but wikitext adjusted to match parsoid html2wt
-!! test
-Italics and bold: 3-quote opening sequence: (3,2) w/ nowiki
-!! wikitext
-'<nowiki/>''foo''
-!! html
 <p>'<i>foo</i>
 </p>
 !!end
@@ -645,24 +621,12 @@ Italics and bold: 3-quote opening sequence: (3,3)
 
 !! test
 Italics and bold: 3-quote opening sequence: (3,4)
-!! options
-parsoid=wt2html
 !! wikitext
 '''foo''''
 !! html/*
 <p><b>foo'</b>
 </p>
 !!end
-
-# same html as previous, but wikitext adjusted to match parsoid html2wt
-!! test
-Italics and bold: 3-quote opening sequence: (3,4) w/ nowiki
-!! wikitext
-'''foo'<nowiki/>'''
-!! html
-<p><b>foo'</b>
-</p>
-!! end
 
 # The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
@@ -720,21 +684,9 @@ Italics and bold: 4-quote opening sequence: (4,2) w/ nowiki
 
 !! test
 Italics and bold: 4-quote opening sequence: (4,3)
-!! options
-parsoid=wt2html
 !! wikitext
 ''''foo'''
 !! html/*
-<p>'<b>foo</b>
-</p>
-!!end
-
-# same html as previous, but wikitext adjusted to match parsoid html2wt
-!! test
-Italics and bold: 4-quote opening sequence: (4,3) w/ nowiki
-!! wikitext
-'<nowiki/>'''foo'''
-!! html
 <p>'<b>foo</b>
 </p>
 !!end
@@ -849,16 +801,6 @@ parsoid=wt2html
 </p>
 !!end
 
-# same html as previous, but wikitext adjusted to match parsoid html2wt
-!! test
-Italics and bold: 5-quote opening sequence: (5,4+2) w/ nowiki
-!! wikitext
-'''''foo'<nowiki/>'''''
-!! html
-<p><i><b>foo'</b></i>
-</p>
-!! end
-
 !! test
 Italics and bold: 5-quote opening sequence: (5,5)
 !! wikitext
@@ -867,6 +809,15 @@ Italics and bold: 5-quote opening sequence: (5,5)
 <p><i><b>foo</b></i>
 </p>
 !!end
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,6)
+!! wikitext
+'''''foo''''''
+!! html/*
+<p><i><b>foo'</b></i>
+</p>
+!! end
 
 ###
 ### multiple quote sequences in a line
@@ -1047,22 +998,9 @@ Italics and bold: other quote tests: (3,2,3+2+2,2)
 
 !! test
 Italics and bold: other quote tests: (3,2,3,3)
-!! options
-parsoid=wt2html
 !! wikitext
 '''this is about ''foo'''s family'''
 !! html/*
-<p>'<i>this is about </i>foo<b>s family</b>
-</p>
-!!end
-
-
-# same html as previous, but wikitext adjusted to match parsoid html2wt
-!! test
-Italics and bold: other quote tests: (3,2,3,3) w/ nowiki
-!! wikitext
-'<nowiki/>''this is about ''foo'''s family'''
-!! html
 <p>'<i>this is about </i>foo<b>s family</b>
 </p>
 !!end
@@ -1082,9 +1020,11 @@ Italics and bold: other quote tests: (3,(2,2),3)
 Italicized possessive
 !! wikitext
 The ''[[Main Page]]'''s talk page.
-!! html
+!! html/php
 <p>The <i><a href="/wiki/Main_Page" title="Main Page">Main Page</a>'</i>s talk page.
 </p>
+!! html/parsoid
+<p>The <i><a rel="mw:WikiLink"  href="Main_Page" title="Main Page">Main Page</a>'</i>s talk page.</p>
 !! end
 
 !! test
@@ -3965,6 +3905,76 @@ Definition Lists: Weird Ones: Test 1
 </ol></li>
 </ul>
 !! end
+
+!! test
+Definition Lists: colons occurring in tags
+!! wikitext
+;a:b
+;'''a:b'''
+;<i>a:b</i>
+;<span>a:b</span>
+;<div>a:b</div>
+;{{echo|a:b}}
+;{{echo|''a:b''}}
+!! html
+<dl><dt>a</dt>
+<dd>b</dd>
+<dt><b>a:b</b></dt>
+<dt><i>a:b</i></dt>
+<dt><span>a:b</span></dt>
+<dt><div>a:b</div></dt>
+<dt>a</dt>
+<dd>b</dd>
+<dt><i>a:b</i></dt></dl>
+
+!! end
+
+!! test
+Definition Lists: colons and tables 1
+!! wikitext
+:{|
+| x
+|}
+:{|
+| y
+|}
+!! html
+<dl><dd><table>
+<tr>
+<td> x
+</td></tr></table></dd></dl>
+<dl><dd><table>
+<tr>
+<td> y
+</td></tr></table></dd></dl>
+
+!! end
+
+# Parsoid's output (as documented below) differs from php's in this case.
+# This is probably a bug. If we fixup parsoid to match php's output, the
+# above test should pass and the below test case can be removed. It is
+# unclear which output is more desirable.
+
+!! test
+Definition Lists: colons and tables 2
+!! wikitext
+:{|
+| x
+|}
+:{|
+| y
+|}
+!! html/parsoid
+<dl><dd><table>
+<tr>
+<td> x
+</td></tr></table></dd>
+<dd><table>
+<tr>
+<td> y
+</td></tr></table></dd></dl>
+!! end
+
 
 ###
 ### External links
@@ -20004,17 +20014,15 @@ parsoid=html2wt
 !! test
 Headings: 3. Nested inside html with wikitext split by html tags
 !! options
-parsoid=html2wt
+parsoid=html2wt,wt2wt
 !! wikitext
 = ='''bold'''<nowiki>foo=</nowiki> =
-!! html
-<h1>=<b>bold</b><span typeof="mw:Nowiki">foo=</span></h1>
+!! html/parsoid
+<h1>=<b>bold</b>foo=</h1>
 !!end
 
 !! test
 Headings: 4a. No escaping needed (testing just h1 and h2)
-!! options
-parsoid=html2wt
 !! wikitext
 = =foo =
 
@@ -20028,19 +20036,27 @@ parsoid=html2wt
 
 == foo= ==
 
-= ''=''foo= =
-
-= <nowiki>=</nowiki> =
-!! html
+= = =
+!! html/parsoid
 <h1>=foo</h1>
 <h1>foo=</h1>
 <h1> =foo= </h1>
 <h1>=foo= bar</h1>
 <h2>=foo</h2>
 <h2>foo=</h2>
-<h1><i>=</i>foo=</h1>
-<h1><span typeof="mw:Nowiki">=</span></h1>
+<h1>=</h1>
 !!end
+
+!! test
+Headings: 4a'. No escaping needed (Parsoid bug T84903)
+!! wikitext
+= ''=''foo= =
+!! html/php
+<h1><span class="mw-headline" id=".3Dfoo.3D"><i>=</i>foo=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: =foo=">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+
+!! html/parsoid
+<h1><i>=</i>foo=</h1>
+!! end
 
 !! test
 Headings: 4b. No escaping needed (inside p-tags)
@@ -20288,33 +20304,36 @@ Lists: 5. No unnecessary escapes
 !! wikitext
 * bar <span><nowiki>[[foo]]</nowiki></span>
 
-*=bar <span><nowiki>[[foo]]</nowiki></span>
+* =bar <span><nowiki>[[foo]]</nowiki></span>
 
-*[[bar <span><nowiki>[[foo]]</nowiki></span>
+* [[bar <span><nowiki>[[foo]]</nowiki></span>
 
-*]]bar <span><nowiki>[[foo]]</nowiki></span>
+* ]]bar <span><nowiki>[[foo]]</nowiki></span>
 
-*=bar <span>foo]]</span>=
+* =bar <span>foo]]</span>=
 
 * <s></s>: a
+
+* ''* foo''
 !! html
 <ul><li> bar <span>[[foo]]</span></li></ul>
-<ul><li>=bar <span>[[foo]]</span></li></ul>
-<ul><li>[[bar <span>[[foo]]</span></li></ul>
-<ul><li>]]bar <span>[[foo]]</span></li></ul>
-<ul><li>=bar <span>foo]]</span>=</li></ul>
+<ul><li> =bar <span>[[foo]]</span></li></ul>
+<ul><li> [[bar <span>[[foo]]</span></li></ul>
+<ul><li> ]]bar <span>[[foo]]</span></li></ul>
+<ul><li> =bar <span>foo]]</span>=</li></ul>
 <ul><li> <s></s>: a</li></ul>
+<ul><li> <i>* foo</i></li></ul>
 
 !!end
 
 !! test
 Lists: 6. Escape bullets in SOL position
 !! options
-parsoid
+parsoid=html2wt
 !! wikitext
-<!--cmt--><nowiki>*foo</nowiki>
+<!--cmt--><nowiki>*</nowiki>foo
 !! html
-<p><!--cmt--><span typeof="mw:Nowiki">*foo</span></p>
+<p><!--cmt-->*foo</p>
 !!end
 
 !! test
@@ -20328,22 +20347,33 @@ a
 </p>
 !!end
 
+!! test
+Lists: 8. Escape colons only if not present in tags
+!! options
+parsoid=html2wt
+!! wikitext
+; <nowiki>a:b</nowiki>''c:d''
+!! html
+<dl><dt>a:b<i>c:d</i></dt></dl>
+!! end
+
 #### --------------- HRs ---------------
 #### 1. Single line
 #### -----------------------------------
 
 !! test
 HRs: 1. Single line
-!! options
-parsoid
 !! wikitext
 ----<nowiki>----</nowiki>
 ----=foo=
 ----*foo
-!! html
-<hr><p><span typeof="mw:Nowiki">----</span></p>
-<hr><p>=foo=</p>
-<hr><p>*foo</p>
+!! html+tidy
+<hr />
+<p>----</p>
+<hr />
+<p>=foo=</p>
+<hr />
+<p>*foo</p>
 !! end
 
 #### --------------- Tables ---------------
@@ -20407,127 +20437,196 @@ Tables: 1d. No escaping needed
 Tables: 2a. Nested in td
 !! options
 parsoid=html2wt
+!! html/parsoid
+<table><tbody><tr>
+<td>foo|bar</td></tr>
+<tr><td>x<div>a|b</div></td>
+</tbody></table>
 !! wikitext
 {|
 |<nowiki>foo|bar</nowiki>
 |-
 |x<div><nowiki>a|b</nowiki></div>
 |}
-!! html
-<table><tbody><tr>
-<td>foo|bar</td></tr>
-<tr><td>x<div>a|b</div></td>
-</tbody></table>
+!! html/php+tidy
+<table>
+<tr>
+<td>foo|bar</td>
+</tr>
+<tr>
+<td>x
+<div>a|b</div>
+</td>
+</tr>
+</table>
 !! end
 
 !! test
 Tables: 2b. Nested in td
 !! options
-parsoid
+parsoid=html2wt
+!! html/parsoid
+<table><tbody><tr>
+<td>foo||bar</td>
+<td>a<i>b||c</i></td>
+<td>a<i><div>b||c</div></i></td>
+</tr></tbody></table>
 !! wikitext
 {|
 |<nowiki>foo||bar</nowiki>
-|''it''<nowiki>foo||bar</nowiki>
+|a''<nowiki>b||c</nowiki>''
+|a''<div><nowiki>b||c</nowiki></div>''
 |}
-!! html
-<table><tbody><tr>
-<td><span typeof="mw:Nowiki">foo||bar</span></td>
-<td><i>it</i><span typeof="mw:Nowiki">foo||bar</span></td></tr></tbody></table>
+!! html/php
+<table>
+<tr>
+<td>foo||bar
+</td>
+<td>a<i>b||c</i>
+</td>
+<td>a<i><div>b||c</div></i>
+</td></tr></table>
+
 !! end
 
 !! test
 Tables: 2c. Nested in td -- no escaping needed
-!! options
-parsoid
 !! wikitext
 {|
+
 |foo!!bar
 |}
-!! html
-<table><tbody><tr><td>foo!!bar
-</td></tr></tbody></table>
+!! html/*
+<table>
+
+<tr>
+<td>foo!!bar
+</td></tr></table>
 
 !! end
 
 !! test
 Tables: 3a. Nested in th
-!! options
-parsoid
 !! wikitext
 {|
+
 !foo!bar
 |}
-!! html
-<table><tbody><tr><th>foo!bar
-</th></tr></tbody></table>
+!! html/*
+<table>
+
+<tr>
+<th>foo!bar
+</th></tr></table>
 
 !! end
 
 !! test
 Tables: 3b. Nested in th
 !! options
-parsoid
+parsoid=html2wt
+!! html/parsoid
+<table><tbody>
+<tr><th>foo!!bar</th>
+<th><i>foo|bar</i></th>
+<th><i>foo!!bar</i></th>
+<th><i><span>foo!!bar</span></i></th>
+</tr></tbody></table>
 !! wikitext
 {|
 !<nowiki>foo!!bar</nowiki>
+!''<nowiki>foo|bar</nowiki>''
+!''<nowiki>foo!!bar</nowiki>''
+!''<span><nowiki>foo!!bar</nowiki></span>''
 |}
-!! html
+!! html/php
 <table>
-<tbody><tr><th><span typeof="mw:Nowiki">foo!!bar</span></th></tr>
-</tbody></table>
+<tr>
+<th>foo!!bar
+</th>
+<th><i>foo|bar</i>
+</th>
+<th><i>foo!!bar</i>
+</th>
+<th><i><span>foo!!bar</span></i>
+</th></tr></table>
+
 !! end
 
 !! test
-Tables: 3c. Nested in th -- no escaping needed
+Tables: 3c. Nested in th
 !! options
-parsoid
+parsoid=html2wt
+!! html/parsoid
+<table><tbody>
+<tr><th>foo||bar</th>
+<th><span typeof="mw:Nowiki">foo||bar</span></th>
+</tr></tbody></table>
 !! wikitext
 {|
 !<nowiki>foo||bar</nowiki>
+!<nowiki>foo||bar</nowiki>
 |}
-!! html
-<table><tbody><tr>
-<th><span typeof="mw:Nowiki">foo||bar</span></th></tr></tbody></table>
+!! html/php
+<table>
+<tr>
+<th>foo||bar
+</th>
+<th>foo||bar
+</th></tr></table>
+
 !! end
 
 !! test
 Tables: 4a. Escape -
 !! options
-parsoid
+parsoid=html2wt
 !! wikitext
 {|
+
 !-bar
+
 |-
 |<nowiki>-bar</nowiki>
 |}
-!! html
-<table><tbody>
-<tr><th>-bar</th></tr>
+!! html/*
+<table>
+
 <tr>
-<td><span typeof="mw:Nowiki">-bar</span></td></tr></tbody></table>
+<th>-bar
+</th></tr>
+<tr>
+<td>-bar
+</td></tr></table>
+
 !! end
 
 !! test
 Tables: 4b. Escape +
 !! options
-parsoid
+parsoid=html2wt
 !! wikitext
 {|
+
 !+bar
+
 |-
 |<nowiki>+bar</nowiki>
 |}
-!! html
-<table><tbody>
-<tr><th>+bar</th></tr>
+!! html/*
+<table>
+
 <tr>
-<td><span typeof="mw:Nowiki">+bar</span></td></tr></tbody></table>
+<th>+bar
+</th></tr>
+<tr>
+<td>+bar
+</td></tr></table>
+
 !! end
 
 !! test
 Tables: 4c. No escaping needed
-!! options
-parsoid
 !! wikitext
 {|
 |foo-bar
@@ -20544,7 +20643,31 @@ bar|baz
 |x
 <div>a|b</div>
 |}
-!! html
+!! html/php
+<table>
+<tr>
+<td>foo-bar
+</td>
+<td>foo+bar
+</td></tr>
+<tr>
+<td><i>foo</i>-bar
+</td>
+<td><i>foo</i>+bar
+</td></tr>
+<tr>
+<td>foo
+<p>bar|baz
++bar
+-bar
+</p>
+</td></tr>
+<tr>
+<td>x
+<div>a|b</div>
+</td></tr></table>
+
+!! html/parsoid
 <table><tbody>
 <tr><td>foo-bar</td><td>foo+bar</td></tr>
 <tr><td><i>foo</i>-bar</td><td><i>foo</i>+bar</td></tr>
@@ -20559,15 +20682,23 @@ bar|baz
 
 !! test
 Tables: 4d. No escaping needed
-!! options
-parsoid
 !! wikitext
 {|
 |[[Foo]]-bar
 ||+1
 ||-2
 |}
-!! html
+!! html/php
+<table>
+<tr>
+<td><a href="/wiki/Foo" title="Foo">Foo</a>-bar
+</td>
+<td>+1
+</td>
+<td>-2
+</td></tr></table>
+
+!! html/parsoid
 <table>
 <tbody><tr><td><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a>-bar</td>
 <td data-parsoid='{"startTagSrc":"|","attrSepSrc":"|"}'>+1</td>
@@ -20814,6 +20945,18 @@ Links 12. Don't add spurious <nowiki/>s between text-nodes and ISBN-links (bug 6
 ISBN 1234567890's
 !! end
 
+!! test
+Links 13: Protect link-like plain text. (Parsoid bug T78425)
+!! options
+parsoid=html2wt
+!! html/*
+<p>this is not a link: http://example.com
+</p>
+!! wikitext
+this is not a link: <nowiki>http://example.com</nowiki>
+!! end
+
+
 #### --------------- Quotes ---------------
 #### 1. Quotes inside <b> and <i>
 #### 2. Link fragments separated by <i> and <b> tags
@@ -20821,7 +20964,7 @@ ISBN 1234567890's
 #### 4. No escaping needed
 #### --------------------------------------
 !! test
-1. Quotes inside <b> and <i>
+1a. Quotes inside <b> and <i>
 !! options
 parsoid=html2wt,wt2wt
 !! wikitext
@@ -20834,14 +20977,16 @@ parsoid=html2wt,wt2wt
 '''<nowiki>'''foo'''</nowiki>'''
 '''foo'<nowiki/>''bar'<nowiki/>''baz'''
 '''foo'''<nowiki/>'s
-'<nowiki/>''foo''
+'''foo''
 ''foo''<nowiki/>'
+''foo'<nowiki/>''<nowiki/>'
 '<nowiki/>''foo''<nowiki/>'
-'<nowiki/>'''foo'''
+''''foo'''
 '''foo'''<nowiki/>'
 '<nowiki/>'''foo'''<nowiki/>'
 ''fools'<span> errand</span>''
 ''<span>fool</span>'s errand''
+a|!*#-:;+-~[]{}b'''x''
 !! html/*
 <p><i>'foo'</i>
 <i>''foo''</i>
@@ -20854,13 +20999,31 @@ parsoid=html2wt,wt2wt
 <b>foo</b>'s
 '<i>foo</i>
 <i>foo</i>'
+<i>foo'</i>'
 '<i>foo</i>'
 '<b>foo</b>
 <b>foo</b>'
 '<b>foo</b>'
 <i>fools'<span> errand</span></i>
 <i><span>fool</span>'s errand</i>
+a|!*#-:;+-~[]{}b'<i>x</i>
 </p>
+!! end
+
+!! test
+1b. Quotes inside <b> and <i> with other chars
+!! options
+parsoid=html2wt,wt2wt
+!! wikitext
+'''a'' foo ''[[bar]]''
+''a''' foo ''[[bar]]''
+''a''' foo '''{{echo|[[bar]]}}'''
+[[foo]] x'''[[bar]]''
+!! html
+'<i>a</i> foo <i><a rel="mw:WikiLink" href="Bar" title="Bar">bar</a></i>
+<i>a'</i> foo <i><a rel="mw:WikiLink" href="Bar" title="Bar">bar</a></i>
+<i>a'</i> foo <b><a rel="mw:WikiLink" href="Bar" title="Bar" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[bar]]"}},"i":0}}]}'>bar</a></b>
+<a rel="mw:WikiLink" href="Foo" title="Foo">foo</a> x'<i><a href="Bar" rel="mw:WikiLink" title="Bar">bar</a></i>
 !! end
 
 !! test
@@ -20894,9 +21057,11 @@ parsoid=html2wt,wt2wt
 !! wikitext
 '<span>''bar''</span>'
 '<span>'''bar'''</span>'
+'a:b'foo
 !! html
 <p>'<span><i>bar</i></span>'
 '<span><b>bar</b></span>'
+'a:b'foo
 </p>
 !! end
 
@@ -22398,6 +22563,36 @@ parsoid=html2wt
 <p><i>A</i><i>B</i></p>
 <p><b>A</b><b>B</b></p>
 <p><i>A</i><b><i>B</i></b></p>
+!! end
+
+!! test
+5a. Merge adjacent quote nodes if they've been edited
+!! options
+parsoid={
+  "modes": ["wt2wt"],
+  "changes": [
+    ["p", "contents", "remove", ":contains('b')"]
+  ]
+}
+!! wikitext
+''a''b''c''
+!! wikitext/edited
+''ac''
+!! end
+
+!! test
+5b. Merge adjacent quote nodes if they've been edited
+!! options
+parsoid={
+  "modes": ["wt2wt"],
+  "changes": [
+    ["#x", "remove"]
+  ]
+}
+!! wikitext
+''a''<span id="x">b</span>''c''
+!! wikitext/edited
+''ac''
 !! end
 
 #------------------------------------
