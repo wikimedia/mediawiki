@@ -1279,6 +1279,10 @@ class Parser {
 
 		$text = $this->mStripState->unstripGeneral( $text );
 
+		if ( $isMain ) {
+			Hooks::run( 'ParserAfterUnstrip', array( &$this, &$text ) );
+		}
+
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
 		$fixtags = array(
 			# french spaces, last one Guillemet-left
