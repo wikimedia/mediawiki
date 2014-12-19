@@ -53,6 +53,10 @@ class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.user.options.set', array( User::getDefaultOptions() ) );
+		return Xml::encodeJsCall(
+			'mw.user.options.set',
+			array( User::getDefaultOptions() ),
+			ResourceLoader::inDebugMode()
+		);
 	}
 }

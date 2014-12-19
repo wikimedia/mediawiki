@@ -3747,7 +3747,11 @@ HTML
 				$tool['id'],
 			);
 
-			$script .= Xml::encodeJsCall( 'mw.toolbar.addButton', $params );
+			$script .= Xml::encodeJsCall(
+				'mw.toolbar.addButton',
+				$params,
+				ResourceLoader::inDebugMode()
+			);
 		}
 
 		$script .= '});';

@@ -356,7 +356,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			);
 			$mwConfigSetJsCall = Xml::encodeJsCall(
 				'mw.config.set',
-				array( $configuration )
+				array( $configuration ),
+				ResourceLoader::inDebugMode()
 			);
 
 			$out .= "var startUp = function () {\n" .
@@ -370,7 +371,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$scriptTag = Html::linkedScript( self::getStartupModulesUrl( $context ) );
 			$out .= "if ( isCompatible() ) {\n" .
 				"\t" . Xml::encodeJsCall( 'document.write', array( $scriptTag ) ) .
-				"}";
+				"\n}";
 		}
 
 		return $out;
