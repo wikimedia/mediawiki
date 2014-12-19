@@ -1259,6 +1259,8 @@ class Parser {
 		$text = $this->doMagicLinks( $text );
 		$text = $this->formatHeadings( $text, $origText, $isMain );
 
+		$text = $this->mStripState->unstripGeneral( $text );
+
 		return $text;
 	}
 
@@ -1273,8 +1275,6 @@ class Parser {
 	 */
 	private function internalParseHalfParsed( $text, $isMain = true, $linestart = true ) {
 		global $wgUseTidy, $wgAlwaysUseTidy;
-
-		$text = $this->mStripState->unstripGeneral( $text );
 
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
 		$fixtags = array(

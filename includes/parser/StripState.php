@@ -144,7 +144,11 @@ class StripState {
 			}
 			$this->circularRefGuard[$marker] = true;
 			$this->recursionLevel++;
-			$ret = $this->unstripType( $this->tempType, $this->data[$this->tempType][$marker] );
+			$value = $this->data[$this->tempType][$marker];
+			if ( $value instanceof Closure ) {
+				$value = $value();
+			}
+			$ret = $this->unstripType( $this->tempType, $value );
 			$this->recursionLevel--;
 			unset( $this->circularRefGuard[$marker] );
 			return $ret;
