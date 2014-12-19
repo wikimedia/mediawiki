@@ -125,7 +125,7 @@ class VirtualRESTServiceClient {
 	 *   - reason  : HTTP response reason (empty if there was a serious cURL error)
 	 *   - headers : <header name/value associative array>
 	 *   - body    : HTTP response body or resource (if "stream" was set)
-	 *   - err     : Any cURL error string
+	 *   - error   : Any cURL error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 *	<code>
 	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $client->run( $req );
@@ -146,7 +146,7 @@ class VirtualRESTServiceClient {
 	 *   - reason  : HTTP response reason (empty if there was a serious cURL error)
 	 *   - headers : <header name/value associative array>
 	 *   - body    : HTTP response body or resource (if "stream" was set)
-	 *   - err     : Any cURL error string
+	 *   - error   : Any cURL error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 *	<code>
 	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $responses[0];
