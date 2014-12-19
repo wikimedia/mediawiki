@@ -65,7 +65,10 @@ class ApiMainTest extends ApiTestCase {
 	 * Test if all classes in the main module manager exists
 	 */
 	public function testClassNamesInModuleManager() {
-		global $wgAutoloadLocalClasses;
+		global $wgAutoloadLocalClasses, $wgAutoloadClasses;
+
+		// wgAutoloadLocalClasses has precedence, just like in includes/AutoLoader.php
+		$classes = $wgAutoloadLocalClasses + $wgAutoloadClasses;
 
 		$api = new ApiMain(
 			new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ) )
@@ -74,7 +77,7 @@ class ApiMainTest extends ApiTestCase {
 		foreach( $modules as $name => $class ) {
 			$this->assertArrayHasKey(
 				$class,
-				$wgAutoloadLocalClasses,
+				$classes,
 				'Class ' . $class . ' for api module ' . $name . ' not in autoloader (with exact case)'
 			);
 		}
