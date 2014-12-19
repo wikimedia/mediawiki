@@ -49,11 +49,15 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.language.setData', array(
-			$context->getLanguage(),
-			'languageNames',
-			$this->getData( $context )
-		) );
+		return Xml::encodeJsCall(
+			'mw.language.setData',
+			array(
+				$context->getLanguage(),
+				'languageNames',
+				$this->getData( $context )
+			),
+			ResourceLoader::inDebugMode()
+		);
 	}
 
 	public function getDependencies() {
