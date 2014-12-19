@@ -34,9 +34,15 @@ then
 	exit 1
 fi
 
-# Copy files
-# - Exclude the minimised distribution files and RTL sheets for non-CSSJanus environments
-rsync --force --recursive --delete --exclude 'oojs-ui*.min.*' --exclude 'oojs-ui*.rtl.css' ./node_modules/oojs-ui/dist/ "$REPO_DIR/$TARGET_DIR" || exit 1
+# Copy files, excluding:
+# * the Apex theme files,
+# * the minimised distribution files, and
+# * the RTL sheets for non-CSSJanus environments
+rsync --force --recursive --delete \
+	--exclude '*apex*' \
+	--exclude 'oojs-ui*.min.*' \
+	--exclude 'oojs-ui*.rtl.css' \
+	./node_modules/oojs-ui/dist/ "$REPO_DIR/$TARGET_DIR" || exit 1
 
 # Clean up temporary area
 rm -rf "$NPM_DIR"
