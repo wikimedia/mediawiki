@@ -7,7 +7,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderFileModule::getDefinitionSummary
 	 */
 	public function testDefinitionSummary() {
-		$context = self::getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext();
 
 		$baseParams = array(
 			'scripts' => array( 'foo.js', 'bar.js' ),

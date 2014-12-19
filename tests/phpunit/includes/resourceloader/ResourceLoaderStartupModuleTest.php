@@ -300,7 +300,7 @@ mw.loader.addSource( {
 			$this->setMwGlobals( 'wgResourceLoaderSources', $case['sources'] );
 		}
 
-		$context = self::getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext();
 		$rl = $context->getResourceLoader();
 
 		$rl->register( $case['modules'] );
@@ -337,7 +337,7 @@ mw.loader.addSource( {
 	public function testRegistrationsMinified( $modules ) {
 		$this->setMwGlobals( 'wgResourceLoaderDebug', false );
 
-		$context = self::getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext();
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
@@ -357,7 +357,7 @@ mw.loader.addSource( {
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsUnminified( $modules ) {
-		$context = self::getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext();
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
