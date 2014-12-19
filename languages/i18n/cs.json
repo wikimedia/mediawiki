@@ -2916,7 +2916,6 @@
 	"hebrew-calendar-m11-gen": "avu",
 	"hebrew-calendar-m12-gen": "elulu",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskuse]])",
-	"unknown_extension_tag": "Neznámá značka rozšíření: „$1“",
 	"duplicate-defaultsort": "Upozornění: Implicitní klíč řazení (DEFAULTSORTKEY) „$2“ přepisuje dříve nastavenou hodnotu „$1“.",
 	"duplicate-displaytitle": "<strong>Upozornění:</strong> Předchozí zobrazovaný název „$1“ je nahrazen zobrazovaným názvem „$2“.",
 	"invalid-indicator-name": "<strong>Chyba:</strong> Atribut <code>name</code> indikátoru stavu stránky nesmí být prázdný.",

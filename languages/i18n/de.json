@@ -2936,7 +2936,6 @@
 	"hijri-calendar-m11": "Dhu l-qaʿda",
 	"hijri-calendar-m12": "Dhu l-hiddscha",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|Diskussion]])",
-	"unknown_extension_tag": "Unbekanntes Parsertag „$1“",
 	"duplicate-defaultsort": "Achtung: Der Sortierungsschlüssel „$2“ überschreibt den vorher verwendeten Schlüssel „$1“.",
 	"duplicate-displaytitle": "<strong>Warnung:</strong> Der Anzeigetitel „$2“ überschreibt den früheren Anzeigetitel „$1“.",
 	"invalid-indicator-name": "<strong>Fehler:</strong> Das Attribut <code>name</code> des Seitenstatusindikators darf nicht leer sein.",

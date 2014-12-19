@@ -2975,7 +2975,6 @@
 	"hebrew-calendar-m12-gen": "أيلول",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|نقاش]])",
 	"timezone-utc": "ت ع م",
-	"unknown_extension_tag": "وسم امتداد غير معروف \"$1\"",
 	"duplicate-defaultsort": "'''تحذير:''' مفتاح الترتيب الافتراضي \"$2\" يتجاوز مفتاح الترتيب الافتراضي السابق \"$1\".",
 	"duplicate-displaytitle": "<strong>تحذير:</strong> أعرض عنوان \"$2\" تجاهل العنوان المعروض سابقا \"$1\".",
 	"version": "نسخة",

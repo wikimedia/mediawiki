@@ -2884,7 +2884,6 @@
 	"watchlisttools-edit": "주시문서 목록 보기/편집하기",
 	"watchlisttools-raw": "주시문서 목록 직접 편집하기",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|토론]])",
-	"unknown_extension_tag": "알 수 없는 확장 기능 태그 \"$1\"",
 	"duplicate-defaultsort": "'''경고:''' 기본 정렬 키 \"$2\"가 이전의 기본 정렬 키 \"$1\"를 덮어쓰고 있습니다.",
 	"duplicate-displaytitle": "<strong>경고:</strong> \"$2\" 제목 표시는 기존의 표시되는 제목 \"$1\"을 덮어씁니다.",
 	"invalid-indicator-name": "<strong>오류:</strong> 문서 상태 표시기의 <code>name</code> 특성은 비어 있지 않아야 합니다.",

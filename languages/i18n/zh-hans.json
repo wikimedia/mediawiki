@@ -2949,7 +2949,6 @@
 	"watchlisttools-edit": "查看并编辑监视列表",
 	"watchlisttools-raw": "编辑原始监视列表",
 	"signature": "[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|讨论]]）",
-	"unknown_extension_tag": "未知扩展标签“$1”",
 	"duplicate-defaultsort": "'''警告：'''默认排序关键词“$2”覆盖了之前的默认排序关键词“$1”。",
 	"duplicate-displaytitle": "<strong>警告：</strong>显示的标题“$2”重写了此前显示的标题“$1”。",
 	"invalid-indicator-name": "<strong>错误：</strong>页面状态指示器的<code>name</code>属性必须不为空。",

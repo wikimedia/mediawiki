@@ -3038,7 +3038,6 @@
 	"hebrew-calendar-m12-gen": "Елула",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|обговорення]])",
 	"timezone-utc": "UTC",
-	"unknown_extension_tag": "Невідомий тег доповнення «$1»",
 	"duplicate-defaultsort": "Увага. Ключ сортування «$2» перекриває попередній ключ сортування «$1».",
 	"duplicate-displaytitle": "<strong>Увага:</strong> Відображений заголовок \"$2\" заміщує раніше відображений заголовок \"$1\".",
 	"invalid-indicator-name": "<strong>Помилка:</strong> Сторінка індикатора стану <code>name</code> атрибута не може бути пуста.",

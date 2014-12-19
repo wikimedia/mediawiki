@@ -164,6 +164,8 @@
 	"apihelp-patrol-example-revid": "Patrullera en sidversion",
 	"apihelp-protect-description": "Ändra skyddsnivån för en sida.",
 	"apihelp-protect-example-protect": "Skydda en sida",
+	"apihelp-query-param-list": "Vilka listor att hämta.",
+	"apihelp-query-param-meta": "Vilka metadata att hämta.",
 	"apihelp-query+alldeletedrevisions-paraminfo-useronly": "Kan endast användas med $3user.",
 	"apihelp-query+alldeletedrevisions-paraminfo-nonuseronly": "Kan inte användas med $3user.",
 	"apihelp-query+allfileusages-example-unique": "Lista unika filtitlar",

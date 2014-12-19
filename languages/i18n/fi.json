@@ -2901,7 +2901,6 @@
 	"watchlisttools-edit": "Katso ja muokkaa tarkkailulistaa",
 	"watchlisttools-raw": "Muokkaa listaa raakamuodossa",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|keskustelu]])",
-	"unknown_extension_tag": "Tuntematon laajennuskoodi ”$1”.",
 	"duplicate-defaultsort": "'''Varoitus:''' Oletuslajitteluavain ”$2” korvaa aiemman oletuslajitteluavaimen ”$1”.",
 	"duplicate-displaytitle": "<strong>Varoitus:</strong> Näytettävä otsikko \"$2\" päällekirjoittaa edellisen otsikon \"$1\".",
 	"invalid-indicator-name": "<strong>Virhe:</strong> Sivun tilan osoittimien attribuutti <code>name</code> ei saa olla tyhjä.",

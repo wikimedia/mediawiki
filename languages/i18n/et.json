@@ -2855,7 +2855,6 @@
 	"watchlisttools-edit": "Vaata ja redigeeri jälgimisloendit",
 	"watchlisttools-raw": "Muuda lähteteksti",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|arutelu]])",
-	"unknown_extension_tag": "Tundmatu lisa silt \"$1\".",
 	"duplicate-defaultsort": "'''Hoiatus:''' Järjestamisvõti \"$2\" tühistab eespool oleva järjestamisvõtme \"$1\".",
 	"duplicate-displaytitle": "<strong>Hoiatus:</strong> Kuvatava pealkirjaga \"$2\" kirjutatakse üle varasem kuvatav pealkiri \"$1\".",
 	"invalid-indicator-name": "<strong>Tõrge:</strong> Lehekülje olekunäidu juures ei tohi atribuudi <code>name</code> väärtus puududa.",

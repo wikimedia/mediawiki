@@ -2788,7 +2788,6 @@
 	"watchlisttools-edit": "A figyelőlista megtekintése és szerkesztése",
 	"watchlisttools-raw": "A nyers figyelőlista szerkesztése",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|vita]])",
-	"unknown_extension_tag": "Ismeretlen tag kiterjesztés: $1",
 	"duplicate-defaultsort": "Figyelem: a(z) „$2” rendezőkulcs felülírja a korábbit („$1”).",
 	"version": "Névjegy",
 	"version-extensions": "Telepített kiterjesztések",

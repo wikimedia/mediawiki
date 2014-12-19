@@ -15,5 +15,6 @@
 	"apihelp-main-param-curtimestamp": "Includer le data e hora actual in le resultato.",
 	"apihelp-block-description": "Blocar un usator.",
 	"apihelp-block-param-user": "Nomine de usator, adresse IP o intervallo IP que tu vole blocar.",
+	"apihelp-query+revisions-example-first5-not-localhost": "Obtener le prime 5 versiones del \"Pagina principal\" que non ha essite facite per le usator anonyme \"127.0.0.1\"",
 	"api-credits": "Programmatores del API:\n* Roan Kattouw (programmator dirigente Sept. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (creator, programmator dirigente Sept. 2006–Sept. 2007)\n* Brad Jorsch (programmator dirigente 2013–presente)\n\nInvia tu commentos, suggestiones e questiones a mediawiki-api@lists.wikimedia.org\no insere un reportage de bug a https://phabricator.wikimedia.org/."
 }

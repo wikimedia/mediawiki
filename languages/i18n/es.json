@@ -2959,7 +2959,6 @@
 	"watchlisttools-edit": "Ver y editar tu lista de seguimiento",
 	"watchlisttools-raw": "Editar lista de seguimiento en crudo",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discusión]])",
-	"unknown_extension_tag": "Etiqueta desconocida «$1»",
 	"duplicate-defaultsort": "'''Atención:''' La clave de ordenamiento predeterminada «$2» anula la clave de ordenamiento anterior «$1».",
 	"duplicate-displaytitle": "<strong>Advertencia:</strong> El título visualizado \"$2\" sobreescribe al anterior \"$1\".",
 	"invalid-indicator-name": "<strong>Error:</strong> el atributo <code>name</code> de los indicadores de estado de página no debe estar vacío.",

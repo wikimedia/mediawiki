@@ -2912,7 +2912,6 @@
 	"iranian-calendar-m11": "Elfde Perzische maand",
 	"iranian-calendar-m12": "Twaalfde Perzische maand",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|overleg]])",
-	"unknown_extension_tag": "Onbekende tag \"$1\"",
 	"duplicate-defaultsort": "'''Waarschuwing:''' de standaardsortering \"$2\" krijgt voorrang voor de sortering \"$1\".",
 	"duplicate-displaytitle": "<strong>Waarschuwing:</strong>Titelweergave \"$2\" overschrijft eerdere titelweergave \"$1\".",
 	"invalid-indicator-name": "<strong>Fout:</strong> de eigenschap <code>name</code> van de paginastatusindicators mag niet leeg zijn.",

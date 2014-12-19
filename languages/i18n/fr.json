@@ -3048,7 +3048,6 @@
 	"hebrew-calendar-m11-gen": "Av",
 	"hebrew-calendar-m12-gen": "Éloul",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussion]])",
-	"unknown_extension_tag": "Balise d’extension « $1 » inconnue",
 	"duplicate-defaultsort": "Attention : la clé de tri par défaut « $2 » écrase la précédente clé « $1 ».",
 	"duplicate-displaytitle": "<strong>Attention :</strong> Le titre d'affichage «$2» remplace l'ancien titre d'affichage «$1».",
 	"invalid-indicator-name": "<strong>Erreur :</strong> L’attribut <code>name</code> des indicateurs d’état de la page ne doit pas être vide.",

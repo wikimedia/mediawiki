@@ -2931,7 +2931,6 @@
 	"hebrew-calendar-m10": "Tammuz",
 	"hebrew-calendar-m10-gen": "Tammuz",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussioni]])",
-	"unknown_extension_tag": "Tag estensione sconosciuto: \"$1\"",
 	"duplicate-defaultsort": "Attenzione: la chiave di ordinamento predefinita \"$2\" sostituisce la precedente \"$1\".",
 	"duplicate-displaytitle": "<strong>Attenzione:</strong> il titolo visualizzato \"$2\" sostituisce il precedente titolo \"$1\".",
 	"invalid-indicator-name": "<strong>Errore:</strong> attributo <code>name</code> degli indicatori dello stato della pagina non può essere vuoto.",

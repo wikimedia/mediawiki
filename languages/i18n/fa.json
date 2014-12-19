@@ -2935,7 +2935,6 @@
 	"hebrew-calendar-m11-gen": "آب",
 	"hebrew-calendar-m12-gen": "ایلول",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|بحث]])",
-	"unknown_extension_tag": "برچسب ناشناختهٔ افزونه «$1»",
 	"duplicate-defaultsort": "هشدار: ترتیب پیش‌فرض «$2» ترتیب پیش‌فرض قبلی «$1» را باطل می‌کند.",
 	"duplicate-displaytitle": "<strong>هشدار:</strong> نمایش عنوان \" $2 \"باعث ابطال پیش نمایش عنوان\" $1 \" می‌شود.",
 	"invalid-indicator-name": "<strong>خطا:</strong>ویژگی های شاخص‌های وضعیت صفحهٔ <code>name</code> نباید خالی باشند.",

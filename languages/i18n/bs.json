@@ -2801,7 +2801,6 @@
 	"hebrew-calendar-m12-gen": "Elul",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|razgovor]])",
 	"timezone-utc": "KSV",
-	"unknown_extension_tag": "Nepoznata oznaka ekstenzije \"$1\"",
 	"duplicate-defaultsort": "Upozorenje: Postavljeni ključ sortiranja \"$2\" zamjenjuje raniji ključ \"$1\".",
 	"version": "Verzija",
 	"version-extensions": "Instalirana proširenja (ekstenzije)",

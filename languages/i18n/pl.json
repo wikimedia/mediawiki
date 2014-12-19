@@ -2944,7 +2944,6 @@
 	"hebrew-calendar-m9-gen": "Siwan",
 	"hebrew-calendar-m11-gen": "Aw",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|dyskusja]])",
-	"unknown_extension_tag": "Nieznany znacznik rozszerzenia „$1”",
 	"duplicate-defaultsort": "Uwaga: Domyślnym kluczem sortowania będzie „$2” i zastąpi on wcześniej wykorzystywany klucz „$1”.",
 	"duplicate-displaytitle": "<strong>Uwaga:</strong> Wyświetlenie tytułu „$2” powoduje nadpisanie wcześniej wyświetlanego tytułu „$1”.",
 	"version": "Wersja oprogramowania",

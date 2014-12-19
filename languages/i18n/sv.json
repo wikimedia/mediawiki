@@ -2907,7 +2907,6 @@
 	"watchlisttools-edit": "Visa och redigera bevakningslistan",
 	"watchlisttools-raw": "Redigera bevakningslistan i råformat",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskussion]])",
-	"unknown_extension_tag": "Okänd tagg \"$1\"",
 	"duplicate-defaultsort": "'''Varning:''' Standardsorteringsnyckeln \"$2\" tar över från den tidigare standardsorteringsnyckeln \"$1\".",
 	"duplicate-displaytitle": "<strong>Varning:</strong> Visningstiteln \"$2\" skriver över den tidigare visningstiteln \"$1\".",
 	"invalid-indicator-name": "<p>Fel:</strong> Sidstatus-indikatorernas <code>namn</code>-attributet får inte vara tomt.",

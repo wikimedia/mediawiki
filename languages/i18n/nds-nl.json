@@ -2716,7 +2716,6 @@
 	"watchlisttools-edit": "Volglieste bekieken en bewarken",
 	"watchlisttools-raw": "Roewe volglieste bewarken",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|overleg]])",
-	"unknown_extension_tag": "Onbekende tag \"$1\"",
 	"duplicate-defaultsort": "Waorschuwing: de standardsortering \"$2\" krig veurrang veur de sortering \"$1\".",
 	"version": "Versie",
 	"version-extensions": "Uutbreidingen die installeerd bin",
