@@ -34,7 +34,10 @@
  * minutes and hundreds of read hits.
  *
  * The PoolCounter provides semaphore semantics for restricting the number
- * of workers that may be concurrently performing such single task.
+ * of workers that may be concurrently performing such single task. Only one
+ * key can be locked by any PoolCounter instance of a process, except for keys
+ * that start with "nowait:". However, only 0 timeouts (non-blocking requests)
+ * can be used with "nowait:" keys.
  *
  * By default PoolCounter_Stub is used, which provides no locking. You
  * can get a useful one in the PoolCounter extension.
@@ -68,6 +71,15 @@ abstract class PoolCounter {
 	protected $timeout;
 
 	/**
+	 * @var boolean Whether the key is a "might wait" key
+	 */
+	private $isMightWaitKey;
+	/**
+	 * @var boolean Whether this process holds a "might wait" lock key
+	 */
+	private static $acquiredMightWaitKey = 0;
+
+	/**
 	 * @param array $conf
 	 * @param string $type
 	 * @param string $key
@@ -84,6 +96,7 @@ abstract class PoolCounter {
 			$key = $this->hashKeyIntoSlots( $key, $this->slots );
 		}
 		$this->key = $key;
+		$this->isMightWaitKey = !preg_match( '/^nowait:/', $this->key );
 	}
 
 	/**
@@ -135,6 +148,48 @@ abstract class PoolCounter {
 	 * @return Status Value is one of Released/NotLocked/Error
 	 */
 	abstract public function release();
+
+	/**
+	 * Checks that the lock request is sane.
+	 * @return Status - good for sane requests fatal for insane
+	 * @since 1.25
+	 */
+	final protected function precheckAcquire() {
+		if ( $this->isMightWaitKey ) {
+			if ( self::$acquiredMightWaitKey ) {
+				/*
+				 * The poolcounter itself is quite happy to allow you to wait
+				 * on another lock while you have a lock you waited on already
+				 * but we think that it is unlikely to be a good idea.  So we
+				 * made it an error.  If you are _really_ _really_ sure it is a
+				 * good idea then feel free to implement an unsafe flag or
+				 * something.
+				 */
+				return Status::newFatal( 'poolcounter-usage-error',
+					'You may only aquire a single non-nowait lock.' );
+			}
+		} elseif ( $this->timeout !== 0 ) {
+			return Status::newFatal( 'poolcounter-usage-error',
+				'Locks starting in nowait: must have 0 timeout.' );
+		}
+		return Status::newGood();
+	}
+
+	/**
+	 * Update any lock tracking information when the lock is acquired
+	 * @since 1.25
+	 */
+	final protected function onAcquire() {
+		self::$acquiredMightWaitKey |= $this->isMightWaitKey;
+	}
+
+	/**
+	 * Update any lock tracking information when the lock is released
+	 * @since 1.25
+	 */
+	final protected function onRelease() {
+		self::$acquiredMightWaitKey &= !$this->isMightWaitKey;
+	}
 
 	/**
 	 * Given a key (any string) and the number of lots, returns a slot number (an integer from the [0..($slots-1)] range).
