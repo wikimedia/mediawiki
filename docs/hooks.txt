@@ -2019,6 +2019,10 @@ $stripState: stripState used (object)
 $parser: Parser object being used
 $text: text that will be returned
 
+'ParserAfterUnstrip': Called after the first unstripGeneral() in Parser::internalParseHalfParsed()
+$parser: Parser object being used
+$text: text that will be returned
+
 'ParserBeforeInternalParse': Called at the beginning of Parser::internalParse().
 $parser: Parser object
 $text: text to parse
