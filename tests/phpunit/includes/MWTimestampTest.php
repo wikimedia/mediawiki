@@ -82,6 +82,17 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * Test an out of range timestamp
+	 * @dataProvider provideOutOfRangeTimestamps
+	 * @expectedException TimestampException
+	 * @covers MWTimestamp
+	 */
+	public function testOutOfRangeTimestamps( $format, $input ) {
+		$timestamp = new MWTimestamp( $input );
+		$timestamp->getTimestamp( $format );
+	}
+
+	/**
 	 * Test requesting an invalid output format.
 	 * @expectedException TimestampException
 	 * @covers MWTimestamp::getTimestamp
@@ -110,6 +121,18 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 			// Some extremes and weird values
 			array( TS_ISO_8601, '9999-12-31T23:59:59Z', '99991231235959' ),
 			array( TS_UNIX, '-62135596801', '00001231235959' )
+		);
+	}
+
+	/**
+	 * Returns a list of out of range timestamps in the format:
+	 * array( type, timestamp_of_type )
+	 */
+	public static function provideOutOfRangeTimestamps() {
+		return array(
+			// Various formats
+			array( TS_MW, '-62167219201' ), // -0001-12-31T23:59:59Z
+			array( TS_MW, '253402300800' ), // 10000-01-01T00:00:00Z
 		);
 	}
 

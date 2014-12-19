@@ -182,6 +182,11 @@ class MWTimestamp {
 			$output .= ' GMT';
 		}
 
+		if ( $style == TS_MW && strlen( $output ) !== 14 ) {
+			throw new TimestampException( __METHOD__ . ': The timestamp cannot be represented in ' .
+				'the specified format' );
+		}
+
 		return $output;
 	}
 
