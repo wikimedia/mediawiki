@@ -37,32 +37,6 @@ class UserrightsPage extends SpecialPage {
 		parent::__construct( 'Userrights' );
 	}
 
-	public function isRestricted() {
-		return true;
-	}
-
-	public function userCanExecute( User $user ) {
-		return $this->userCanChangeRights( $user, false );
-	}
-
-	/**
-	 * @param User $user
-	 * @param bool $checkIfSelf
-	 * @return bool
-	 */
-	public function userCanChangeRights( $user, $checkIfSelf = true ) {
-		$available = $this->changeableGroups();
-		if ( $user->getId() == 0 ) {
-			return false;
-		}
-
-		return !empty( $available['add'] )
-			|| !empty( $available['remove'] )
-			|| ( ( $this->isself || !$checkIfSelf ) &&
-				( !empty( $available['add-self'] )
-					|| !empty( $available['remove-self'] ) ) );
-	}
-
 	/**
 	 * Manage forms to be shown according to posted data.
 	 * Depending on the submit button used, call a form or a save function.
@@ -71,20 +45,7 @@ class UserrightsPage extends SpecialPage {
 	 * @throws UserBlockedError|PermissionsError
 	 */
 	public function execute( $par ) {
-		// If the visitor doesn't have permissions to assign or remove
-		// any groups, it's a bit silly to give them the user search prompt.
-
 		$user = $this->getUser();
-
-		/*
-		 * If the user is blocked and they only have "partial" access
-		 * (e.g. they don't have the userrights permission), then don't
-		 * allow them to use Special:UserRights.
-		 */
-		if ( $user->isBlocked() && !$user->isAllowed( 'userrights' ) ) {
-			throw new UserBlockedError( $user->getBlock() );
-		}
-
 		$request = $this->getRequest();
 
 		if ( $par !== null ) {
@@ -93,43 +54,6 @@ class UserrightsPage extends SpecialPage {
 			$this->mTarget = $request->getVal( 'user' );
 		}
 
-		$available = $this->changeableGroups();
-
-		if ( $this->mTarget === null ) {
-			/*
-			 * If the user specified no target, and they can only
-			 * edit their own groups, automatically set them as the
-			 * target.
-			 */
-			if ( !count( $available['add'] ) && !count( $available['remove'] ) ) {
-				$this->mTarget = $user->getName();
-			}
-		}
-
-		if ( User::getCanonicalName( $this->mTarget ) === $user->getName() ) {
-			$this->isself = true;
-		}
-
-		if ( !$this->userCanChangeRights( $user, true ) ) {
-			if ( $this->isself && $request->getCheck( 'success' ) ) {
-				// bug 48609: if the user just removed its own rights, this would
-				// leads it in a "permissions error" page. In that case, show a
-				// message that it can't anymore use this page instead of an error
-				$this->setHeaders();
-				$out = $this->getOutput();
-				$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", 'userrights-removed-self' );
-				$out->returnToMain();
-
-				return;
-			}
-
-			// @todo FIXME: There may be intermediate groups we can mention.
-			$msg = $user->isAnon() ? 'userrights-nologin' : 'userrights-notallowed';
-			throw new PermissionsError( null, array( array( $msg ) ) );
-		}
-
-		$this->checkReadOnly();
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -137,17 +61,26 @@ class UserrightsPage extends SpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 
 		// show the general form
-		if ( count( $available['add'] ) || count( $available['remove'] ) ) {
-			$this->switchForm();
-		}
+		$this->switchForm();
 
 		if (
 			$request->wasPosted() &&
 			$request->getCheck( 'saveusergroups' ) &&
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
 		) {
+			/*
+			 * If the user is blocked and they only have "partial" access
+			 * (e.g. they don't have the userrights permission), then don't
+			 * allow them to change any user rights.
+			 */
+			if ( $user->isBlocked() && !$user->isAllowed( 'userrights' ) ) {
+				throw new UserBlockedError( $user->getBlock() );
+			}
+
+			$this->checkReadOnly();
+
 			// save settings
-			$status = $this->fetchUser( $this->mTarget );
+			$status = $this->fetchUser( $this->mTarget, true );
 			if ( !$status->isOK() ) {
 				$this->getOutput()->addWikiText( $status->getWikiText() );
 
@@ -305,7 +238,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param string $username Name of the user.
 	 */
 	function editUserGroupsForm( $username ) {
-		$status = $this->fetchUser( $username );
+		$status = $this->fetchUser( $username, false );
 		if ( !$status->isOK() ) {
 			$this->getOutput()->addWikiText( $status->getWikiText() );
 
@@ -329,9 +262,10 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * Side effects: error output for invalid access
 	 * @param string $username
+	 * @param bool $writing
 	 * @return Status
 	 */
-	public function fetchUser( $username ) {
+	public function fetchUser( $username, $writing ) {
 		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
@@ -342,7 +276,7 @@ class UserrightsPage extends SpecialPage {
 			if ( $database == wfWikiID() ) {
 				$database = '';
 			} else {
-				if ( !$this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
+				if ( $writing && !$this->getUser()->isAllowed( 'userrights-interwiki' ) ) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
 				if ( !UserRightsProxy::validDatabase( $database ) ) {
@@ -534,6 +468,7 @@ class UserrightsPage extends SpecialPage {
 			Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
 		);
 
+		list( $groupCheckboxes, $canChangeAny ) = $this->groupCheckboxes( $groups, $user );
 		$this->getOutput()->addHTML(
 			Xml::openElement(
 				'form',
@@ -557,30 +492,38 @@ class UserrightsPage extends SpecialPage {
 				$this->msg( 'userrights-editusergroup', $user->getName() )->text()
 			) .
 			$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )
-				->rawParams( $userToolLinks )->parse() .
-			$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
-			$grouplist .
-			$this->groupCheckboxes( $groups, $user ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-userrights-table-outer' ) ) .
-				"<tr>
-					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
-					"</td>
-					<td class='mw-input'>" .
-						Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason', false ),
-							array( 'id' => 'wpReason', 'maxlength' => 255 ) ) .
-					"</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td class='mw-submit'>" .
-						Xml::submitButton( $this->msg( 'saveusergroups' )->text(),
-							array( 'name' => 'saveusergroups' ) +
-								Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
-						) .
-					"</td>
-				</tr>" .
-			Xml::closeElement( 'table' ) . "\n" .
+				->rawParams( $userToolLinks )->parse()
+		);
+		if ( $canChangeAny ) {
+			$this->getOutput()->addHTML(
+				$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
+				$grouplist .
+				$groupCheckboxes .
+				Xml::openElement( 'table', array( 'id' => 'mw-userrights-table-outer' ) ) .
+					"<tr>
+						<td class='mw-label'>" .
+							Xml::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
+						"</td>
+						<td class='mw-input'>" .
+							Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason', false ),
+								array( 'id' => 'wpReason', 'maxlength' => 255 ) ) .
+						"</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class='mw-submit'>" .
+							Xml::submitButton( $this->msg( 'saveusergroups' )->text(),
+								array( 'name' => 'saveusergroups' ) +
+									Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
+							) .
+						"</td>
+					</tr>" .
+				Xml::closeElement( 'table' ) . "\n"
+			);
+		} else {
+			$this->getOutput()->addHTML( $grouplist );
+		}
+		$this->getOutput()->addHTML(
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
@@ -620,7 +563,8 @@ class UserrightsPage extends SpecialPage {
 	 * @todo Just pass the username string?
 	 * @param array $usergroups Groups the user belongs to
 	 * @param User $user
-	 * @return string XHTML table element with checkboxes
+	 * @return Array with 2 elements: the XHTML table element with checkboxes, and
+	 * whether any groups are changeable
 	 */
 	private function groupCheckboxes( $usergroups, $user ) {
 		$allgroups = $this->getAllGroups();
@@ -695,7 +639,7 @@ class UserrightsPage extends SpecialPage {
 		}
 		$ret .= Xml::closeElement( 'tr' ) . Xml::closeElement( 'table' );
 
-		return $ret;
+		return array( $ret, (bool)$columns['changeable'] );
 	}
 
 	/**
