@@ -30,33 +30,37 @@
  */
 class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
 
-	public function testGetSites() {
-		$cacheFile = $this->getCacheFile();
+	protected function setUp() {
+		$this->cacheFile = $this->getCacheFile();
+	}
 
+	protected function tearDown() {
+		unlink( $this->cacheFile );
+	}
+
+	public function testGetSites() {
 		$sites = $this->getSites();
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites, $cacheFile );
+		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites );
 		$cacheBuilder->build();
 
-		$cache = new SiteListFileCache( $cacheFile );
+		$cache = new SiteListFileCache( $this->cacheFile );
 		$this->assertEquals( $sites, $cache->getSites() );
 	}
 
 	public function testGetSite() {
-		$cacheFile = $this->getCacheFile();
-
 		$sites = $this->getSites();
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites, $cacheFile );
+		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites );
 		$cacheBuilder->build();
 
-		$cache = new SiteListFileCache( $cacheFile );
+		$cache = new SiteListFileCache( $this->cacheFile );
 
 		$this->assertEquals( $sites->getSite( 'enwiktionary' ), $cache->getSite( 'enwiktionary' ) );
 	}
 
-	private function newSiteListFileCacheBuilder( SiteList $sites, $cacheFile ) {
+	private function newSiteListFileCacheBuilder( SiteList $sites ) {
 		return new SiteListFileCacheBuilder(
 			$this->getSiteSQLStore( $sites ),
-			$cacheFile
+			$this->cacheFile
 		);
 	}
 
@@ -92,7 +96,7 @@ class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
 	}
 
 	private function getCacheFile() {
-		return sys_get_temp_dir() . '/sites-' . time() . '.json';
+		return tempnam( sys_get_temp_dir(), 'mw-test-sitelist' );
 	}
 
 }

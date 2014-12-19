@@ -30,13 +30,19 @@
  */
 class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
 
-	public function testBuild() {
-		$cacheFile = $this->getCacheFile();
+	protected function setUp() {
+		$this->cacheFile = $this->getCacheFile();
+	}
 
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $this->getSites(), $cacheFile );
+	protected function tearDown() {
+		unlink( $this->cacheFile );
+	}
+
+	public function testBuild() {
+		$cacheBuilder = $this->newSiteListFileCacheBuilder( $this->getSites() );
 		$cacheBuilder->build();
 
-		$contents = file_get_contents( $cacheFile );
+		$contents = file_get_contents( $this->cacheFile );
 		$this->assertEquals( json_encode( $this->getExpectedData() ), $contents );
 	}
 
@@ -85,10 +91,10 @@ class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	private function newSiteListFileCacheBuilder( SiteList $sites, $cacheFile ) {
+	private function newSiteListFileCacheBuilder( SiteList $sites ) {
 		return new SiteListFileCacheBuilder(
 			$this->getSiteSQLStore( $sites ),
-			$cacheFile
+			$this->cacheFile
 		);
 	}
 
@@ -124,7 +130,7 @@ class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
 	}
 
 	private function getCacheFile() {
-		return sys_get_temp_dir() . '/sites-' . time() . '.json';
+		return tempnam( sys_get_temp_dir(), 'mw-test-sitelist' );
 	}
 
 }
