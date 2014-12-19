@@ -123,11 +123,21 @@ class PoolCounterRedis extends PoolCounter {
 	function acquireForMe() {
 		$section = new ProfileSection( __METHOD__ );
 
+		$status = $this->precheckAcquire();
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+
 		return $this->waitForSlotOrNotif( self::AWAKE_ONE );
 	}
 
 	function acquireForAnyone() {
 		$section = new ProfileSection( __METHOD__ );
+
+		$status = $this->precheckAcquire();
+		if ( !$status->isGood() ) {
+			return $status;
+		}
 
 		return $this->waitForSlotOrNotif( self::AWAKE_ALL );
 	}
@@ -207,6 +217,8 @@ LUA;
 		$this->onRelease = null;
 		unset( self::$active[$this->session] );
 
+		$this->onRelease();
+
 		return Status::newGood( PoolCounter::RELEASED );
 	}
 
@@ -265,6 +277,8 @@ LUA;
 			$this->onRelease = $doWakeup;
 			self::$active[$this->session] = $this;
 		}
+
+		$this->onAcquire();
 
 		return Status::newGood( $slot === 'w' ? PoolCounter::DONE : PoolCounter::LOCKED );
 	}
