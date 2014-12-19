@@ -79,7 +79,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderFileModule::compileLessFile
 	 */
 	public function testLessFileCompilation() {
-		$context = self::getResourceLoaderContext();
+		$context = $this->getResourceLoaderContext();
 		$basePath = __DIR__ . '/../../data/less/module';
 		$module = new ResourceLoaderFileModule( array(
 			'localBasePath' => $basePath,
@@ -113,8 +113,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			'styles' => array( 'expected.css' ),
 		) );
 
-		$contextLtr = self::getResourceLoaderContext( 'en' );
-		$contextRtl = self::getResourceLoaderContext( 'he' );
+		$contextLtr = $this->getResourceLoaderContext( 'en', 'ltr' );
+		$contextRtl = $this->getResourceLoaderContext( 'he', 'rtl' );
 
 		// Since we want to compare the effect of @noflip+@embed against the effect of just @embed, and
 		// the @noflip annotations are always preserved, we need to strip them first.

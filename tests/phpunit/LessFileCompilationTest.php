@@ -38,7 +38,7 @@ class LessFileCompilationTest extends ResourceLoaderTestCase {
 			"$thisString must refer to a readable file"
 		);
 
-		$rlContext = static::getResourceLoaderContext();
+		$rlContext = $this->getResourceLoaderContext();
 
 		// Bleh
 		$method = new ReflectionMethod( $this->module, 'getLessCompiler' );

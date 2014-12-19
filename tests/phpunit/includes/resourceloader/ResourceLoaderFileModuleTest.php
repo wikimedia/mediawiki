@@ -148,8 +148,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testGetModifiedTime( $module, $expected ) {
 		$rl = new ResourceLoaderFileModule( $module );
-		$ts = $rl->getModifiedTime( new ResourceLoaderContext(
-			new ResourceLoader, new FauxRequest() ) );
+		$ts = $rl->getModifiedTime( $this->getResourceLoaderContext() );
 		$this->assertEquals( $ts, $expected );
 	}
 }
