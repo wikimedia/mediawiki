@@ -17,12 +17,6 @@
 class JsonContent extends TextContent {
 
 	/**
-	 * @since 1.25
-	 * @var Status
-	 */
-	protected $jsonParse;
-
-	/**
 	 * @param string $text JSON
 	 */
 	public function __construct( $text ) {
@@ -46,10 +40,7 @@ class JsonContent extends TextContent {
 	 * @return Status
 	 */
 	public function getData() {
-		if ( $this->jsonParse === null ) {
-			$this->jsonParse = FormatJson::parse( $this->getNativeData() );
-		}
-		return $this->jsonParse;
+		return $this->jsonParse = FormatJson::parse( $this->getNativeData() );
 	}
 
 	/**
