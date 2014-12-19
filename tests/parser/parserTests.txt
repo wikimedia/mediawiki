@@ -4171,6 +4171,13 @@ http://example.com!
 http://example.com?
 http://example.com)
 http://example.com/url_with_(brackets)
+(http://example.com/url_without_brackets)
+http://example.com/url_with_entity&nbsp;
+http://example.com/url_with_entity&#xA0;
+http://example.com/url_with_entity&#160;
+http://example.com/url_with_entity&lt;
+http://example.com/url_with_entity&#x3C;
+http://example.com/url_with_entity&#60;
 !! html
 <p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>,
 <a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>;
@@ -4181,6 +4188,13 @@ http://example.com/url_with_(brackets)
 <a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>?
 <a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>)
 <a rel="nofollow" class="external free" href="http://example.com/url_with_(brackets)">http://example.com/url_with_(brackets)</a>
+(<a rel="nofollow" class="external free" href="http://example.com/url_without_brackets">http://example.com/url_without_brackets</a>)
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity ">http://example.com/url_with_entity </a>
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity ">http://example.com/url_with_entity </a>
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity ">http://example.com/url_with_entity </a>
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a>&lt;
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity%3C">http://example.com/url_with_entity%3C</a>
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity%3C">http://example.com/url_with_entity%3C</a>
 </p>
 !! end
 

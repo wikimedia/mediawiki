@@ -1484,7 +1484,20 @@ class Parser {
 			$sep .= ')';
 		}
 
-		$numSepChars = strspn( strrev( $url ), $sep );
+		$urlRev = strrev( $url );
+		$numSepChars = strspn( $urlRev, $sep );
+		# Don't break a trailing HTML entity by moving the ; into $trail
+		# This is in hot code, so use substr_compare to avoid having to
+		# create a new string object for the comparison
+		if ( $numSepChars && substr_compare( $url, ";", -$numSepChars, 1 ) === 0) {
+			# more optimization: instead of running preg_match with a $
+			# anchor, which can be slow, do the match on the reversed
+			# string starting at the desired offset.
+			# un-reversed regexp is: /&([a-z]+|#x[\da-f]+|#\d+)$/i
+			if ( preg_match( '/\G([a-z]+|[\da-f]+x#|\d+#)&/i', $urlRev, $m2, 0, $numSepChars ) ) {
+				$numSepChars--;
+			}
+		}
 		if ( $numSepChars ) {
 			$trail = substr( $url, -$numSepChars ) . $trail;
 			$url = substr( $url, 0, -$numSepChars );
