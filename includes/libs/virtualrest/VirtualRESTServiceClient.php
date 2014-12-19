@@ -134,8 +134,8 @@ class VirtualRESTServiceClient {
 	 * @return array Response array for request
 	 */
 	public function run( array $req ) {
-		$req = $this->runMulti( array( $req ) );
-		return $req[0]['response'];
+		$responses = $this->runMulti( array( $req ) );
+		return $responses[0];
 	}
 
 	/**
