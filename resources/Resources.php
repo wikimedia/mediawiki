@@ -1011,6 +1011,7 @@ return array(
 		'class' => 'ResourceLoaderEditToolbarModule',
 		'scripts' => 'resources/src/mediawiki.toolbar/toolbar.js',
 		'styles' => 'resources/src/mediawiki.toolbar/toolbar.less',
+		'position' => 'top',
 	),
 
 	/* MediaWiki Action */
@@ -1020,7 +1021,6 @@ return array(
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.css',
 		'dependencies' => array(
 			'mediawiki.action.edit.styles',
-			'mediawiki.toolbar',
 			'jquery.textSelection',
 			'jquery.byteLimit',
 		),
