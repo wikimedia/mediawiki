@@ -71,6 +71,7 @@ production.
   should implement supporting behavior. Not doing so can result in undefined
   behavior from API clients trying to continue through prefix results.
 * Update jQuery from v1.11.1 to v1.11.2.
+* Upgrade jQuery Validate to 1.9.0. It also adds jquery.validate.additional-methods.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
