@@ -50,22 +50,11 @@ class AutoloadGenerator {
 		if ( !is_array( $flags ) ) {
 			$flags = array( $flags );
 		}
-		$this->basepath = self::platformAgnosticRealpath( $basepath );
+		$this->basepath = self::normalizePathSeparator( realpath( $basepath ) );
 		$this->collector = new ClassCollector;
 		if ( in_array( 'local', $flags ) ) {
 			$this->variableName = 'wgAutoloadLocalClasses';
 		}
-	}
-
-	/**
-	 * Wrapper for realpath() that returns the same results (using forward
-	 * slashes) on both Windows and *nix.
-	 *
-	 * @param string $path Parameter to realpath()
-	 * @return string
-	 */
-	protected static function platformAgnosticRealpath( $path ) {
-		return str_replace( '\\', '/', realpath( $path ) );
 	}
 
 	/**
@@ -76,7 +65,7 @@ class AutoloadGenerator {
 	 * @param string $inputPath Full path to the file containing the class
 	 */
 	public function forceClassPath( $fqcn, $inputPath ) {
-		$path = self::platformAgnosticRealpath( $inputPath );
+		$path = self::normalizePathSeparator( realpath( $inputPath ) );
 		if ( !$path ) {
 			throw new \Exception( "Invalid path: $inputPath" );
 		}
@@ -92,7 +81,10 @@ class AutoloadGenerator {
 	 * @param string $inputPath Path to a php file to find classes within
 	 */
 	public function readFile( $inputPath ) {
-		$inputPath = self::platformAgnosticRealpath( $inputPath );
+		// NOTE: do NOT expand $inputPath using realpath(). It is perfectaly
+		// reasonable for LocalSettings.php and similiar files to be symlinks
+		// to files that are outside of $this->basepath.
+		$inputPath = self::normalizePathSeparator( $inputPath );
 		$len = strlen( $this->basepath );
 		if ( substr( $inputPath, 0, $len ) !== $this->basepath ) {
 			throw new \Exception( "Path is not within basepath: $inputPath" );
@@ -112,7 +104,7 @@ class AutoloadGenerator {
 	 */
 	public function readDir( $dir ) {
 		$it = new RecursiveDirectoryIterator(
-			self::platformAgnosticRealpath( $dir ) );
+			self::normalizePathSeparator( realpath( $dir ) ) );
 		$it = new RecursiveIteratorIterator( $it );
 
 		foreach ( $it as $path => $file ) {
@@ -182,6 +174,16 @@ global \${$this->variableName};
 
 EOD
 		);
+	}
+
+	/**
+	 * Ensure that Unix-style path separators ("/") are used in the path.
+	 *
+	 * @param string $path
+	 * @return string
+	 */
+	protected static function normalizePathSeparator( $path ) {
+		return str_replace( '\\', '/', $path );
 	}
 }
 
