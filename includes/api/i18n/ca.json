@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toniher"
+		]
+	},
+	"apihelp-main-param-format": "El format de la sortida.",
+	"apihelp-block-param-nocreate": "Evita la creació de comptes.",
+	"apihelp-createaccount-param-name": "Nom d'usuari.",
+	"apihelp-createaccount-param-password": "Contrasenya (ignorada si es defineix $1mailpassword)",
+	"apihelp-delete-description": "Suprimeix una pàgina."
+}

@@ -768,6 +768,7 @@
 	"content-model-text": "Texto sin formato",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"content-json-empty-object": "Objeto vacío",
 	"duplicate-args-category": "Páginas que usan argumentos duplicados en invocaciones de plantillas",
 	"duplicate-args-category-desc": "La página contiene invocaciones de plantillas que utilizan argumentos duplicados, como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Aviso: Esta página contiene demasiadas llamadas a funciones sintácticas costosas (#ifexist: y similares)\n\nTiene {{PLURAL:$1|una llamada|$1 llamadas}}, pero debería tener menos de $2.",

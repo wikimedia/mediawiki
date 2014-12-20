@@ -727,6 +727,7 @@
 	"content-model-text": "testo normale",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"content-json-empty-object": "Oggetto vuoto",
 	"duplicate-args-category": "Pagine contenenti chiamate a template con parametri duplicati",
 	"duplicate-args-category-desc": "La pagina contiene chiamate a template che utilizzano argomenti duplicati, come ad esempio <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Attenzione:''' Questa pagina contiene troppe chiamate alle parser functions.\n\nDovrebbe averne meno di $2, al momento ce {{PLURAL:$1|n'è $1|ne sono $1}}.",

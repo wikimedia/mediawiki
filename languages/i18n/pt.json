@@ -712,6 +712,7 @@
 	"content-model-text": "texto simples",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"content-json-empty-object": "Objeto vazio",
 	"duplicate-args-category": "Páginas que utilizam argumentos duplicados ao chamar predefinições",
 	"expensive-parserfunction-warning": "'''Aviso:''' Esta página contém demasiadas chamadas de funções exigentes do analisador sintático.\n\nDevia ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento tem $1 {{PLURAL:$1|chamada|chamadas}}.",
 	"expensive-parserfunction-category": "Páginas com demasiadas chamadas a funções exigentes",

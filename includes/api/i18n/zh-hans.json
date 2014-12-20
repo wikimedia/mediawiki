@@ -108,7 +108,7 @@
 	"apihelp-expandtemplates-param-title": "页面标题。",
 	"apihelp-expandtemplates-param-text": "要转换的wiki文本。",
 	"apihelp-expandtemplates-param-revid": "修订版本ID，用于<nowiki>{{REVISIONID}}</nowiki>和类似变体。",
-	"apihelp-expandtemplates-param-prop": "要获取的那条信息：\n;wikitext:展开的wiki文本。\n;categories:任何在不代表wiki文本输出的输入框出现的分类。\n;volatile:Whether the output is volatile and should not be reused elsewhere within the page.\n;ttl:The maximum time after which caches of the result should be invalidated.\n;parsetree:The XML parse tree of the input.",
+	"apihelp-expandtemplates-param-prop": "要获取的那条信息：\n;wikitext:展开的wiki文本。\n;categories:任何在不代表wiki文本输出的输入框出现的分类。\n;volatile:输出是否不稳定，并且不应在任何页面中再度使用。\n;ttl:结果的哪个缓存后等待最长时间应无效化。\n;parsetree:输入的XML解析树。\n注意如果没有选定值，结果将包含wiki文本，但将以弃用的格式显示。",
 	"apihelp-expandtemplates-example-simple": "展开wiki文本“<nowiki>{{Project:Sandbox}}</nowiki>”",
 	"apihelp-feedcontributions-description": "返回用户贡献纲要。",
 	"apihelp-feedcontributions-param-feedformat": "纲要的格式。",
