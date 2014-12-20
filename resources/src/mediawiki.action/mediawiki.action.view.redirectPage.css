@@ -47,7 +47,7 @@
 	margin: 0;
 	padding: 0;
 	padding-right: 42px;
-	background: transparent url(images/nextredirect-rtl.png) bottom left no-repeat;
+	background: transparent url(images/nextredirect-rtl.png) bottom right no-repeat;
 	/* @embed */
 	background-image: -webkit-linear-gradient(transparent, transparent), url(images/nextredirect-rtl.svg);
 	/* @embed */
@@ -57,7 +57,7 @@
 /* @noflip */
 .mw-content-rtl .redirectText li:first-child {
 	padding-right: 47px;
-	background: transparent url(images/redirect-rtl.png) bottom left no-repeat;
+	background: transparent url(images/redirect-rtl.png) bottom right no-repeat;
 	/* @embed */
 	background-image: -webkit-linear-gradient(transparent, transparent), url(images/redirect-rtl.svg);
 	/* @embed */
