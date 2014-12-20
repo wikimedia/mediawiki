@@ -58,8 +58,13 @@ class LoadBalancer {
 	private $mLaggedSlaveMode;
 	/** @var string The last DB selection or connection error */
 	private $mLastError = 'Unknown error';
+	/** @var integer Total connections opened */
+	private $connsOpened = 0;
 	/** @var ProcessCacheLRU */
 	private $mProcCache;
+
+	/** @var integer Warn when this many connection are held */
+	const CONN_HELD_WARN_THRESHOLD = 10;
 
 	/**
 	 * @param array $params Array with keys:
@@ -752,6 +757,14 @@ class LoadBalancer {
 			$server['dbname'] = $dbNameOverride;
 		}
 
+		// Log when many connection are made on requests
+		if ( ++$this->connsOpened >= self::CONN_HELD_WARN_THRESHOLD ) {
+			$masterAddr = $this->getServerName( 0 );
+			wfDebugLog( 'DBPerformance', __METHOD__ . ": " .
+				"{$this->connsOpened}+ connections made (master=$masterAddr)\n" .
+				wfBacktrace( true ) );
+		}
+
 		# Create object
 		try {
 			$db = DatabaseBase::factory( $server['type'], $server );
@@ -923,6 +936,7 @@ class LoadBalancer {
 			'foreignFree' => array(),
 			'foreignUsed' => array(),
 		);
+		$this->connsOpened = 0;
 	}
 
 	/**
@@ -939,6 +953,7 @@ class LoadBalancer {
 					if ( $conn === $candidateConn ) {
 						$conn->close();
 						unset( $this->mConns[$i1][$i2][$i3] );
+						--$this->connsOpened;
 						$done = true;
 						break;
 					}
