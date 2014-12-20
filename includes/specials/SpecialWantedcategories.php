@@ -109,6 +109,7 @@ class WantedCategoriesPage extends WantedQueryPage {
 			$currentValue = isset( $this->currentCategoryCounts[$result->title] )
 				? $this->currentCategoryCounts[$result->title]
 				: 0;
+			$cachedValue = intval( $result->value ); // T76910
 
 			// If the category has been created or emptied since the list was refreshed, strike it
 			if ( $nt->isKnown() || $currentValue === 0 ) {
@@ -116,11 +117,11 @@ class WantedCategoriesPage extends WantedQueryPage {
 			}
 
 			// Show the current number of category entries if it changed
-			if ( $currentValue !== $result->value ) {
+			if ( $currentValue !== $cachedValue ) {
 				$nlinks = $this->msg( 'nmemberschanged' )
-					->numParams( $result->value, $currentValue )->escaped();
+					->numParams( $cachedValue, $currentValue )->escaped();
 			} else {
-				$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
+				$nlinks = $this->msg( 'nmembers' )->numParams( $cachedValue )->escaped();
 			}
 		}
 
