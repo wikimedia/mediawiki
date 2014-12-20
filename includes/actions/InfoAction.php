@@ -338,7 +338,11 @@ class InfoAction extends FormlessAction {
 				$whatLinksHere,
 				$this->msg( 'pageinfo-redirects-name' )->escaped(),
 				array(),
-				array( 'hidelinks' => 1, 'hidetrans' => 1 )
+				array(
+					'hidelinks' => 1,
+					'hidetrans' => 1,
+					'hideimages' => $title->getNamespace() == NS_FILE
+				)
 			),
 			$this->msg( 'pageinfo-redirects-value' )
 				->numParams( count( $title->getRedirectsHere() ) )
