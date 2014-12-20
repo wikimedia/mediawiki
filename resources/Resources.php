@@ -311,6 +311,9 @@ return array(
 	'jquery.validate' => array(
 		'scripts' => 'resources/lib/jquery/jquery.validate.js',
 	),
+	'jquery.validate.additional-methods' => array(
+		'scripts' => 'resources/lib/jquery/jquery.validate.additional-methods.js',
+	),
 	'jquery.xmldom' => array(
 		'scripts' => 'resources/lib/jquery/jquery.xmldom.js',
 	),
