@@ -1069,7 +1069,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-usergroups": "Returns user groups and the associated permissions.",
 	"apihelp-query+siteinfo-paramvalue-prop-libraries": "Returns libraries installed on the wiki.",
 	"apihelp-query+siteinfo-paramvalue-prop-extensions": "Returns extensions installed on the wiki.",
-	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "Returns list of file extensions allowed to be uploaded.",
+	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "Returns list of file extensions (file types) allowed to be uploaded.",
 	"apihelp-query+siteinfo-paramvalue-prop-rightsinfo": "Returns wiki rights (license) information if available.",
 	"apihelp-query+siteinfo-paramvalue-prop-restrictions": "Returns information on available restriction (protection) types.",
 	"apihelp-query+siteinfo-paramvalue-prop-languages": "Returns a list of languages MediaWiki supports (optionally localised by using <var>$1inlanguagecode</var>).",
