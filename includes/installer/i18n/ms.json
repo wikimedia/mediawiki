@@ -5,7 +5,8 @@
 			"Pizza1016",
 			"SNN95",
 			"MaxSem",
-			"Aviator"
+			"Aviator",
+			"Macofe"
 		]
 	},
 	"config-desc": "Pemasang MediaWiki",
@@ -88,6 +89,7 @@
 	"config-oracle-def-ts": "Ruang jadual lalai:",
 	"config-oracle-temp-ts": "Ruang jadual sementara:",
 	"config-type-mysql": "MySQL (atau yang serasi)",
+	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "Keutamaan MySQL",
 	"config-header-postgres": "Keutamaan PostgreSQL",
 	"config-header-sqlite": "Keutamaan SQLite",

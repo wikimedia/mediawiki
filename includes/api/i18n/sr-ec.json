@@ -4,5 +4,8 @@
 			"Milicevic01"
 		]
 	},
-	"apihelp-block-param-reason": "Разлог блокирање."
+	"apihelp-block-description": "Блокирај корисника.",
+	"apihelp-block-param-reason": "Разлог за блокирање.",
+	"apihelp-delete-description": "Обриши страницу.",
+	"apihelp-edit-param-minor": "Мања измена."
 }
