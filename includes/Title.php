@@ -2537,7 +2537,7 @@ class Title {
 	 * @return array|bool An associative array representing any existent title
 	 *   protection, or false if there's none.
 	 */
-	public function getTitleProtection() {
+	protected function getTitleProtection() {
 		// Can't protect pages in special namespaces
 		if ( $this->getNamespace() < 0 ) {
 			return false;
@@ -2550,7 +2550,7 @@ class Title {
 
 		if ( $this->mTitleProtection === null ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select(
+			$row = $dbr->selectRow(
 				'protected_titles',
 				array(
 					'user' => 'pt_user',
@@ -2562,9 +2562,9 @@ class Title {
 				__METHOD__
 			);
 
-			// fetchRow returns false if there are no rows.
-			$row = $dbr->fetchRow( $res );
 			if ( $row ) {
+				$row = (array)$row;
+				// B/C: Map old values sysop/autoconfirmed to editprotected/editsemiprotected
 				if ( $row['permission'] == 'sysop' ) {
 					$row['permission'] = 'editprotected'; // B/C
 				}
@@ -2572,6 +2572,7 @@ class Title {
 					$row['permission'] = 'editsemiprotected'; // B/C
 				}
 			}
+
 			$this->mTitleProtection = $row;
 		}
 		return $this->mTitleProtection;
@@ -2639,9 +2640,20 @@ class Title {
 		# Check regular protection levels
 		foreach ( $restrictionTypes as $type ) {
 			if ( $action == $type || $action == '' ) {
-				$r = $this->getRestrictions( $type );
+				$restrictions = $this->getRestrictions( $type );
+
+				// B/C: Map new values editprotected/editsemiprotected to sysop/autoconfirmed
+				// which are still used in $wgRestrictionLevels
+				foreach( $restrictions as &$restriction ) {
+					if ( $restriction === 'editprotected' ) {
+						$restriction = 'sysop';
+					} elseif ( $restriction === 'editsemiprotected' ) {
+						$restriction = 'autoconfirmed';
+					}
+				}
+
 				foreach ( $wgRestrictionLevels as $level ) {
-					if ( in_array( $level, $r ) && $level != '' ) {
+					if ( in_array( $level, $restrictions ) && $level != '' ) {
 						return true;
 					}
 				}
@@ -3000,7 +3012,9 @@ class Title {
 					if ( !$expiry || $expiry > $now ) {
 						// Apply the restrictions
 						$this->mRestrictionsExpiry['create'] = $expiry;
-						$this->mRestrictions['create'] = explode( ',', trim( $title_protection['permission'] ) );
+
+						// BC: This always used to be an array, although it never had more than one entry
+						$this->mRestrictions['create'] = array( $title_protection['permission'] );
 					} else { // Get rid of the old restrictions
 						Title::purgeExpiredRestrictions();
 						$this->mTitleProtection = false;

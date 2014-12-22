@@ -2012,16 +2012,16 @@ class Linker {
 				if ( $restrictions ) {
 					// Check backwards-compatible messages
 					$msg = null;
-					if ( $restrictions === array( 'sysop' ) ) {
+					if ( $restrictions === array( 'editprotected' ) ) {
 						$msg = wfMessage( 'template-protected' );
-					} elseif ( $restrictions === array( 'autoconfirmed' ) ) {
+					} elseif ( $restrictions === array( 'editsemiprotected' ) ) {
 						$msg = wfMessage( 'template-semiprotected' );
 					}
 					if ( $msg && !$msg->isDisabled() ) {
 						$protected = $msg->parse();
 					} else {
 						// Construct the message from restriction-level-*
-						// e.g. restriction-level-sysop, restriction-level-autoconfirmed
+						// e.g. restriction-level-protected, restriction-level-semiprotected
 						$msgs = array();
 						foreach ( $restrictions as $r ) {
 							$msgs[] = wfMessage( "restriction-level-$r" )->parse();
