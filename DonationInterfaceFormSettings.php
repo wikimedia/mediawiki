@@ -99,6 +99,14 @@ $forms_whitelist['ew-yandex'] = array(
 	'currencies' => array( '+' => array( 'RUB', ), ),
 );
 
+$forms_whitelist['ew-alipay'] = array(
+	'file' => $form_dirs['gc'] . '/ew/ew-alipay.html',
+	'gateway' => 'globalcollect',
+	'payment_methods' => array('ew' => 'ew_alipay'),
+	'countries' => array( '+' => array( 'CN', ), ),
+	'currencies' => array( '+' => array( 'CNY', ), ),
+);
+
 
 /*******************************
  * RealTime Banking - Two Step *
