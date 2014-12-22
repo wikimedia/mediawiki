@@ -73,9 +73,9 @@ class MovePage {
 				$status->fatal( 'articleexists' );
 			}
 		} else {
-			$tp = $this->newTitle->getTitleProtection();
-			if ( $tp !== false ) {
-				if ( !$user->isAllowed( $tp['permission'] ) ) {
+			$right = $this->newTitle->getRestrictions( 'create' );
+			if ( $right ) {
+				if ( !$user->isAllowed( $right[0] ) ) {
 					$status->fatal( 'cantmove-titleprotected' );
 				}
 			}
