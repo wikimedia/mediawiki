@@ -228,7 +228,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			),
 			'nsinvert' => array(
 				'type' => 'check',
-				'name' => 'nsinvert',
+				'name' => 'invert',
 				'label-message' => 'invert',
 				'default' => $nsinvert,
 				'tooltip' => $this->msg( 'tooltip-invert' )->text(),
