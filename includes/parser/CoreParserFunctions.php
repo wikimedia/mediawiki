@@ -178,7 +178,7 @@ class CoreParserFunctions {
 			default:
 				$func = 'urlencode';
 		}
-		return $parser->markerSkipCallback( $s, $func );
+		return $func( $parser->mStripState->unstripBoth( $s ) );
 	}
 
 	public static function lcfirst( $parser, $s = '' ) {
