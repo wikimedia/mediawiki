@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	This is an XML Schema description of the format
+	used by MediaWiki's exportSites.php and importSites.php
+	scripts.
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		xmlns:mwsl="http://www.mediawiki.org/xml/sitelist-1.0/"
+		targetNamespace="http://www.mediawiki.org/xml/sitelist-1.0/"
+		elementFormDefault="qualified">
+
+	<annotation>
+		<documentation xml:lang="en">
+			MediaWiki's export format for site definitions.
+		</documentation>
+	</annotation>
+
+	<!-- Our root element -->
+	<element name="sites" type="mwsl:MediaWikiSiteListType">
+		<unique name="GlobalIDConstraint">
+			<selector xpath="mwsl:Site" />
+			<field xpath="mwsl:GlobalID" />
+		</unique>
+	</element>
+
+	<simpleType name="EmptyTagType">
+		<restriction base="string">
+			<length value="0"/>
+		</restriction>
+	</simpleType>
+
+	<complexType name="TypedIDType">
+		<simpleContent>
+			<extension base="NCName">
+				<attribute name="type" use="required" type="NCName" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="TypedURIType">
+		<simpleContent>
+			<extension base="anyURI">
+				<attribute name="type" use="required" type="NCName" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="MediaWikiSiteListType">
+		<sequence>
+			<element name="site" type="mwsl:SiteType"
+					 minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="version" type="string" use="optional" />
+	</complexType>
+
+	<complexType name="SiteType">
+		<choice maxOccurs="unbounded">
+			<element name="globalid" type="ID" minOccurs="1" maxOccurs="1" />
+			<element name="localid" type="mwsl:TypedIDType" minOccurs="0" />
+			<element name="group" type="NCName" minOccurs="0" maxOccurs="1" />
+			<element name="source" type="NCName" minOccurs="0" maxOccurs="1" />
+			<element name="forward" type="mwsl:EmptyTagType" minOccurs="0" maxOccurs="1" />
+			<element name="path" type="mwsl:TypedURIType" minOccurs="0" />
+		</choice>
+		<attribute name="type" use="optional" type="NCName" />
+	</complexType>
+
+</schema>
