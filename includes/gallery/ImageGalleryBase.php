@@ -120,7 +120,7 @@ abstract class ImageGalleryBase extends ContextSource {
 				'packed-overlay' => 'PackedOverlayImageGallery',
 			);
 			// Allow extensions to make a new gallery format.
-			Hooks::run( 'GalleryGetModes', self::$modeMapping );
+			Hooks::run( 'GalleryGetModes', array( &self::$modeMapping ) );
 		}
 	}
 
