@@ -75,6 +75,13 @@ class MovePage {
 		} else {
 			$tp = $this->newTitle->getTitleProtection();
 			if ( $tp !== false ) {
+				if ( $tp['permission'] === 'sysop' ) {
+					$tp['permission'] = 'editprotected'; // B/C
+				}
+				if ( $tp['permission'] === 'autoconfirmed' ) {
+					$tp['permission'] = 'editsemiprotected'; // B/C
+				}
+
 				if ( !$user->isAllowed( $tp['permission'] ) ) {
 					$status->fatal( 'cantmove-titleprotected' );
 				}
