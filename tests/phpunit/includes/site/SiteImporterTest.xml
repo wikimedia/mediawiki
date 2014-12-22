@@ -1,0 +1,8 @@
+<Sites>
+	<Site>
+		<GlobalID>acme.com</GlobalID>
+		<LocalID type="interwiki">acme</LocalID>
+		<Group>Test</Group>
+		<Path type="link">http://acme.com/</Path>
+	</Site>
+</Sites>
