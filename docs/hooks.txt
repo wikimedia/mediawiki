@@ -1261,7 +1261,7 @@ $reason: reason
 
 'GalleryGetModes': Get list of classes that can render different modes of a
  gallery
-$modeArray: An associative array mapping mode names to classes that implement
+&$modeArray: An associative array mapping mode names to classes that implement
  that mode. It is expected all registered classes are a subclass of
  ImageGalleryBase.
 
