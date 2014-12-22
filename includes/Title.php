@@ -2550,7 +2550,7 @@ class Title {
 
 		if ( $this->mTitleProtection === null ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select(
+			$row = $dbr->selectRow(
 				'protected_titles',
 				array(
 					'user' => 'pt_user',
@@ -2562,17 +2562,7 @@ class Title {
 				__METHOD__
 			);
 
-			// fetchRow returns false if there are no rows.
-			$row = $dbr->fetchRow( $res );
-			if ( $row ) {
-				if ( $row['permission'] == 'sysop' ) {
-					$row['permission'] = 'editprotected'; // B/C
-				}
-				if ( $row['permission'] == 'autoconfirmed' ) {
-					$row['permission'] = 'editsemiprotected'; // B/C
-				}
-			}
-			$this->mTitleProtection = $row;
+			$this->mTitleProtection = (array)$row;
 		}
 		return $this->mTitleProtection;
 	}
@@ -3000,7 +2990,9 @@ class Title {
 					if ( !$expiry || $expiry > $now ) {
 						// Apply the restrictions
 						$this->mRestrictionsExpiry['create'] = $expiry;
-						$this->mRestrictions['create'] = explode( ',', trim( $title_protection['permission'] ) );
+
+						// BC: This always used to be an array, although it never had more than one entry
+						$this->mRestrictions['create'] = array( $title_protection['permission'] );
 					} else { // Get rid of the old restrictions
 						Title::purgeExpiredRestrictions();
 						$this->mTitleProtection = false;
