@@ -686,7 +686,10 @@ class Site implements Serializable {
 		$fields = unserialize( $serialized );
 
 		$this->__construct( $fields['type'] );
+		$this->setFields( $fields );
+	}
 
+	public function setFields( array $fields ) {
 		$this->setGlobalId( $fields['globalid'] );
 		$this->setGroup( $fields['group'] );
 		$this->setSource( $fields['source'] );
