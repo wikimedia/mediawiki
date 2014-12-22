@@ -546,10 +546,10 @@ class ApiHelp extends ApiBase {
 					}
 
 					if ( $description ) {
-						$help['parameters'] .= Html::openElement( 'dd',
-							array( 'class' => 'description' ) );
-						$help['parameters'] .= join( '', $description );
-						$help['parameters'] .= Html::closeElement( 'dd' );
+						$description = join( '', $description );
+						$description = preg_replace( '!\s*</([oud]l)>\s*<\1>\s*!', "\n", $description );
+						$help['parameters'] .= Html::rawElement( 'dd',
+							array( 'class' => 'description' ), $description );
 					}
 
 					foreach ( $info as $i ) {

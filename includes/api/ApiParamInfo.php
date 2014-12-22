@@ -129,8 +129,9 @@ class ApiParamInfo extends ApiBase {
 	 * @param array $res Result array
 	 * @param string $key Result key
 	 * @param Message[] $msgs
+	 * @param bool $joinLists
 	 */
-	protected function formatHelpMessages( array &$res, $key, array $msgs ) {
+	protected function formatHelpMessages( array &$res, $key, array $msgs, $joinLists = false ) {
 		switch ( $this->helpFormat ) {
 			case 'none':
 				break;
@@ -141,6 +142,9 @@ class ApiParamInfo extends ApiBase {
 					$ret[] = $m->setContext( $this->context )->text();
 				}
 				$res[$key] = join( "\n\n", $ret );
+				if ( $joinLists ) {
+					$res[$key] = preg_replace( '!^(([*#:;])[^\n]*)\n\n(?=\2)!m', "$1\n", $res[$key] );
+				}
 				break;
 
 			case 'html':
@@ -148,16 +152,24 @@ class ApiParamInfo extends ApiBase {
 				foreach ( $msgs as $m ) {
 					$ret[] = $m->setContext( $this->context )->parseAsBlock();
 				}
-				$res[$key] = join( "\n", $ret );
+				$ret = join( "\n", $ret );
+				if ( $joinLists ) {
+					$ret = preg_replace( '!\s*</([oud]l)>\s*<\1>\s*!', "\n", $ret );
+				}
+				$res[$key] = $ret;
 				break;
 
 			case 'raw':
 				$res[$key] = array();
 				foreach ( $msgs as $m ) {
-					$res[$key][] = array(
+					$a = array(
 						'key' => $m->getKey(),
 						'params' => $m->getParams(),
 					);
+					if ( $m instanceof ApiHelpParamValueMessage ) {
+						$a['forvalue'] = $m->getParamValue();
+					}
+					$res[$key][] = $a;
 				}
 				$this->getResult()->setIndexedTagName( $res[$key], 'msg' );
 				break;
@@ -232,7 +244,7 @@ class ApiParamInfo extends ApiBase {
 				'name' => $name
 			);
 			if ( isset( $paramDesc[$name] ) ) {
-				$this->formatHelpMessages( $item, 'description', $paramDesc[$name] );
+				$this->formatHelpMessages( $item, 'description', $paramDesc[$name], true );
 			}
 
 			if ( !empty( $settings[ApiBase::PARAM_REQUIRED] ) ) {
