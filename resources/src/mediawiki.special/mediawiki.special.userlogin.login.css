@@ -7,16 +7,3 @@
 	margin: 0 auto;
 	padding-top: 4em;
 }
-
-#mw-createaccount-cta,
-#mw-createaccount-another {
-	font-size: 0.9em;
-	font-weight: normal;
-	text-align: center;
-}
-
-#mw-createaccount-join {
-	margin-left: 0.75em;
-	width: auto;
-	display: inline-block;
-}

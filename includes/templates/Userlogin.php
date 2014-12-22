@@ -90,14 +90,6 @@ class UserloginTemplate extends BaseTemplate {
 				<label for='wpPassword1'>
 					<?php
 					$this->msg( 'userlogin-yourpassword' );
-
-					if ( $this->data['useemail'] && $this->data['canreset'] && $this->data['resetlink'] === true ) {
-						echo ' ' . Linker::link(
-							SpecialPage::getTitleFor( 'PasswordReset' ),
-							$this->getMsg( 'userlogin-resetpassword-link' )->parse(),
-							array( 'class' => 'mw-ui-flush-right' )
-						);
-					}
 					?>
 				</label>
 				<?php
@@ -160,7 +152,7 @@ class UserloginTemplate extends BaseTemplate {
 				?>
 			</div>
 
-			<div class="mw-ui-vform-field" id="mw-userlogin-help">
+			<div class="mw-ui-vform-field mw-form-related-link-container" id="mw-userlogin-help">
 				<?php
 				echo Html::element(
 					'a',
@@ -173,14 +165,26 @@ class UserloginTemplate extends BaseTemplate {
 				);
 				?>
 			</div>
-
-			<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
-				<?php if ( $this->data['loggedin'] ) { ?>
-					<div id="mw-createaccount-another">
-						<a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button"><?php $this->msg( 'userlogin-createanother' ); ?></a>
+			<?php
+			if ( $this->haveData( 'createOrLoginHref' ) ) {
+				if ( $this->data['useemail'] && $this->data['canreset'] && $this->data['resetlink'] === true ) {
+					echo Html::openElement( 'div',
+							array(
+								'class' => 'mw-ui-vform-field mw-form-related-link-container',
+							)
+						) .
+						Linker::link(
+							SpecialPage::getTitleFor( 'PasswordReset' ),
+							$this->getMsg( 'userlogin-resetpassword-link' )->parse()
+						) .
+						Html::closeElement( 'div' );
+				}
+				if ( $this->data['loggedin'] ) { ?>
+					<div id="mw-createaccount-another" class="mw-form-related-link-container mw-ui-vform-field">
+						<a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"><?php $this->msg( 'userlogin-createanother' ); ?></a>
 					</div>
 				<?php } else { ?>
-					<div id="mw-createaccount-cta">
+					<div id="mw-createaccount-cta" class="mw-form-related-link-container mw-ui-vform-field">
 						<?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-progressive"><?php $this->msg( 'userlogin-joinproject' ); ?></a>
 					</div>
 				<?php } ?>
