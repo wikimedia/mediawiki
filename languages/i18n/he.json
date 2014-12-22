@@ -243,6 +243,7 @@
 	"pool-queuefull": "התור מלא",
 	"pool-errorunknown": "שגיאה בלתי ידועה",
 	"pool-servererror": "שירות המנייה אינו זמין ($1).",
+	"poolcounter-usage-error": "שגיאת שימוש: $1",
 	"aboutsite": "אודות {{SITENAME}}",
 	"aboutpage": "Project:אודות",
 	"copyright": "התוכן זמין לפי תנאי $1 אלא אם נאמר אחרת.",

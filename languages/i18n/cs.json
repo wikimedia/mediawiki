@@ -675,6 +675,8 @@
 	"content-model-text": "čistý text",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"content-json-empty-object": "Prázdný objekt",
+	"content-json-empty-array": "Prázdné pole",
 	"duplicate-args-category": "Stránky s duplicitními argumenty ve voláních šablon",
 	"duplicate-args-category-desc": "Stránka obsahuje volání šablony, které používá duplicitní argumenty, např. <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> nebo <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Varování:''' Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí syntaktického analyzátoru.\n\nPovolený limit je $2, v současné chvíli však {{PLURAL:$1|zde jedno volání je|zde jsou $1 volání|zde je $1 volání}}.",

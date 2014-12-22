@@ -38,7 +38,7 @@
 	"config-project-namespace": "Projekti nimeruum:",
 	"config-ns-generic": "Projekt",
 	"config-admin-box": "Administraatorikonto",
-	"config-admin-name": "Sinu nimi:",
+	"config-admin-name": "Sinu kasutajanimi:",
 	"config-admin-password": "Parool:",
 	"config-admin-password-confirm": "Parool uuesti:",
 	"config-admin-name-blank": "Sisesta administraatori kasutajanimi.",

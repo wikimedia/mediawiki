@@ -225,6 +225,7 @@
 	"pool-queuefull": "Čakalna vrsta zaloge je polna",
 	"pool-errorunknown": "Neznana napaka",
 	"pool-servererror": "Storitev založnega pulta ni na voljo ($1).",
+	"poolcounter-usage-error": "Napaka pri uporabi: $1",
 	"aboutsite": "O {{GRAMMAR:dajalnik|{{SITENAME}}}}",
 	"aboutpage": "Project:O {{GRAMMAR:dajalnik|{{SITENAME}}}}",
 	"copyright": "Razen, kjer je navedeno drugače, je besedilo na razpolago pod pogoji licence $1.",

@@ -279,6 +279,7 @@
 	"pool-queuefull": "A fila de processos está cheia",
 	"pool-errorunknown": "Erro desconhecido",
 	"pool-servererror": "O serviço ''pool counter'' não está disponível ($1).",
+	"poolcounter-usage-error": "Erro de uso: $1",
 	"aboutsite": "Sobre a {{SITENAME}}",
 	"aboutpage": "Project:Sobre",
 	"copyright": "Conteúdo disponibilizado nos termos da $1, salvo indicação em contrário.",

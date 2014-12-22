@@ -30,5 +30,7 @@
 	"apihelp-block-param-watchuser": "Назіраць за старонкай удзельніка або старонкай IP-адрасу, а таксама старонкай гутарак.",
 	"apihelp-block-example-ip-simple": "Заблякаваць IP-адрас 192.0.2.5 на тры дні з прычынай «First strike»",
 	"apihelp-block-example-user-complex": "Заблякаваць удзельніка Vandal назаўсёды з прычынай «Vandalism», а таксама забараніць стварэньне новых рахункаў і адсылку лістоў электроннай поштай",
-	"apihelp-clearhasmsg-description": "Ачышчае сьцяг hasmsg для актуальнага карыстальніка."
+	"apihelp-clearhasmsg-description": "Ачышчае сьцяг hasmsg для актуальнага карыстальніка.",
+	"apihelp-clearhasmsg-example-1": "Ачыстка сьцягу hasmsg для актуальнага карыстальніка",
+	"apihelp-compare-description": "Атрымаць розьніцу паміж 2 старонкамі.\n\nВы мусіце перадаць нумар вэрсіі, назву або ID старонкі для абодвух «from» і «to»."
 }

@@ -335,6 +335,7 @@
 	"pool-queuefull": "La cola de trabajo está llena",
 	"pool-errorunknown": "Error desconocido",
 	"pool-servererror": "El servicio de gestión de procesos agrupados no está disponible ($1).",
+	"poolcounter-usage-error": "Error de uso: $1",
 	"aboutsite": "Acerca de {{SITENAME}}",
 	"aboutpage": "Project:Acerca de",
 	"copyright": "El contenido está disponible bajo la licencia $1 a menos que se indique lo contrario.",

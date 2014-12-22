@@ -297,6 +297,7 @@
 	"pool-queuefull": "请求队列已满",
 	"pool-errorunknown": "未知错误",
 	"pool-servererror": "池计数器服务不可用（$1）。",
+	"poolcounter-usage-error": "用法错误：$1",
 	"aboutsite": "关于{{SITENAME}}",
 	"aboutpage": "Project:关于",
 	"copyright": "除非另有声明，本网站内容采用$1授权。",

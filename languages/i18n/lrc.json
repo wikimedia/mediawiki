@@ -220,6 +220,7 @@
 	"pool-queuefull": "اماییه کاری گی گرتن پر بیه",
 	"pool-errorunknown": "خطا نادیار",
 	"pool-servererror": "پول سنتر خذمتگه د دسرس نئ($1).",
+	"poolcounter-usage-error": "خطار وه کار گرتن:$1",
 	"aboutsite": "دباره {{SITENAME}}",
 	"aboutpage": "پروجه:دباره",
 	"copyright": "مینونه د دسرس هئ سی $1 مر وه شلک هنی نوشته بوئه",
