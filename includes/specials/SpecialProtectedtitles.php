@@ -34,6 +34,22 @@ class SpecialProtectedtitles extends SpecialPage {
 		parent::__construct( 'Protectedtitles' );
 	}
 
+	/**
+	 * Map a type to non legacy version.
+	 *
+	 * @param string $type
+	 * @return string
+	 */
+	private function mapLegacyRestrictionLevels( $type ) {
+		if ( $type === 'sysop' ) {
+			$type = 'editprotected';
+		} elseif ( $type === 'autoconfirmed' ) {
+			$type = 'editsemiprotected';
+		}
+
+		return $type;
+	}
+
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -102,7 +118,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		$link = Linker::link( $title );
 		$description_items = array();
 		// Messages: restriction-level-sysop, restriction-level-autoconfirmed
-		$protType = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
+		$protType = $this->msg( 'restriction-level-' . $this->mapLegacyRestrictionLevels( $row->pt_create_perm ) )->escaped();
 		$description_items[] = $protType;
 		$lang = $this->getLanguage();
 		$expiry = strlen( $row->pt_expiry ) ?
@@ -180,7 +196,8 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		// First pass to load the log names
 		foreach ( $this->getConfig()->get( 'RestrictionLevels' ) as $type ) {
-			if ( $type != '' && $type != '*' ) {
+			$type = $this->mapLegacyRestrictionLevels( $type );
+			if ( $type && $type != '*' ) {
 				// Messages: restriction-level-sysop, restriction-level-autoconfirmed
 				$text = $this->msg( "restriction-level-$type" )->text();
 				$m[$text] = $type;

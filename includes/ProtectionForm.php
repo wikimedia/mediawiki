@@ -60,6 +60,9 @@ class ProtectionForm {
 	/** @var IContextSource */
 	private $mContext;
 
+	/** @var Article */
+	private $mArticle;
+
 	function __construct( Article $article ) {
 		// Set instance variables.
 		$this->mArticle = $article;
@@ -84,12 +87,34 @@ class ProtectionForm {
 	}
 
 	/**
+	 * @param User|null $user
+	 *
+	 * @return string[]
+	 */
+	private function getLevels( User $user = null ) {
+		$levels = MWNamespace::getRestrictionLevels(
+			$this->mTitle->getNamespace(),
+			$user
+		);
+
+		foreach ( $levels as &$level ) {
+			// B/C: Map old values sysop/autoconfirmed to editprotected/editsemiprotected
+			if ( $level === 'sysop' ) {
+				$level = 'editprotected';
+			} elseif ( $level === 'autoconfirmed' ) {
+				$level = 'editsemiprotected';
+			}
+		}
+
+		return $levels;
+	}
+
+	/**
 	 * Loads the current state of protection into the object.
 	 */
 	function loadData() {
-		$levels = MWNamespace::getRestrictionLevels(
-			$this->mTitle->getNamespace(), $this->mContext->getUser()
-		);
+		$levels = $this->getLevels( $this->mContext->getUser() );
+
 		$this->mCascade = $this->mTitle->areRestrictionsCascading();
 
 		$request = $this->mContext->getRequest();
@@ -573,9 +598,7 @@ class ProtectionForm {
 	function buildSelector( $action, $selected ) {
 		// If the form is disabled, display all relevant levels. Otherwise,
 		// just show the ones this user can use.
-		$levels = MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace(),
-			$this->disabled ? null : $this->mContext->getUser()
-		);
+		$levels = $this->getLevels( $this->disabled ? null : $this->mContext->getUser() );
 
 		$id = 'mwProtect-level-' . $action;
 		$attribs = array(
@@ -602,7 +625,7 @@ class ProtectionForm {
 		if ( $permission == '' ) {
 			return wfMessage( 'protect-default' )->text();
 		} else {
-			// Messages: protect-level-autoconfirmed, protect-level-sysop
+			// Messages: protect-level-editprotected, protect-level-editsemiprotected
 			$msg = wfMessage( "protect-level-{$permission}" );
 			if ( $msg->exists() ) {
 				return $msg->text();
