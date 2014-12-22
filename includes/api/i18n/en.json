@@ -113,7 +113,7 @@
 	"apihelp-expandtemplates-param-title": "Title of page.",
 	"apihelp-expandtemplates-param-text": "Wikitext to convert.",
 	"apihelp-expandtemplates-param-revid": "Revision ID, for <nowiki>{{REVISIONID}}</nowiki> and similar variables.",
-	"apihelp-expandtemplates-param-prop": "Which pieces of information to get:\n;wikitext:The expanded wikitext.\n;categories:Any categories present in the input that are not represented in the wikitext output.\n;volatile:Whether the output is volatile and should not be reused elsewhere within the page.\n;ttl:The maximum time after which caches of the result should be invalidated.\n;parsetree:The XML parse tree of the input.\nNote that if no values are selected, the result will contain the wikitext, but the output will be in a deprecated format.",
+	"apihelp-expandtemplates-param-prop": "Which pieces of information to get:\n;wikitext:The expanded wikitext.\n;categories:Any categories present in the input that are not represented in the wikitext output.\n;properties:Page properties defined by expanded magic words in the wikitext.\n;volatile:Whether the output is volatile and should not be reused elsewhere within the page.\n;ttl:The maximum time after which caches of the result should be invalidated.\n;parsetree:The XML parse tree of the input.\nNote that if no values are selected, the result will contain the wikitext, but the output will be in a deprecated format.",
 	"apihelp-expandtemplates-param-includecomments": "Whether to include HTML comments in the output.",
 	"apihelp-expandtemplates-param-generatexml": "Generate XML parse tree (replaced by $1prop=parsetree).",
 	"apihelp-expandtemplates-example-simple": "Expand the wikitext \"<nowiki>{{Project:Sandbox}}</nowiki>\"",

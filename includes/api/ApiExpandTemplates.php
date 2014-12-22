@@ -114,7 +114,7 @@ class ApiExpandTemplates extends ApiBase {
 			} else {
 				if ( isset( $prop['categories'] ) ) {
 					$categories = $wgParser->getOutput()->getCategories();
-					if ( !empty( $categories ) ) {
+					if ( $categories ) {
 						$categories_result = array();
 						foreach ( $categories as $category => $sortkey ) {
 							$entry = array();
@@ -124,6 +124,20 @@ class ApiExpandTemplates extends ApiBase {
 						}
 						$result->setIndexedTagName( $categories_result, 'category' );
 						$retval['categories'] = $categories_result;
+					}
+				}
+				if ( isset( $prop['properties'] ) ) {
+					$properties = $wgParser->getOutput()->getProperties();
+					if ( $properties ) {
+						$properties_result = array();
+						foreach ( $properties as $name => $value ) {
+							$entry = array();
+							$entry['name'] = $name;
+							ApiResult::setContent( $entry, $value );
+							$properties_result[] = $entry;
+						}
+						$result->setIndexedTagName( $properties_result, 'property' );
+						$retval['properties'] = $properties_result;
 					}
 				}
 				if ( isset( $prop['volatile'] ) && $frame->isVolatile() ) {
@@ -157,6 +171,7 @@ class ApiExpandTemplates extends ApiBase {
 				ApiBase::PARAM_TYPE => array(
 					'wikitext',
 					'categories',
+					'properties',
 					'volatile',
 					'ttl',
 					'parsetree',
