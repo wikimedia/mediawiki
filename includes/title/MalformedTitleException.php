@@ -27,6 +27,7 @@
  *
  * @license GPL 2+
  * @author Daniel Kinzler
+ * @since 1.23
  */
 class MalformedTitleException extends Exception {
 }

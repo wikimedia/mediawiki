@@ -31,6 +31,7 @@
  * via parseTitle() or from a (semi)trusted source, such as the database.
  *
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
+ * @since 1.23
  */
 class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	/**
