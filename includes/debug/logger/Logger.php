@@ -199,12 +199,18 @@ class MWLogger implements \Psr\Log\LoggerInterface {
 
 
 	/**
-	 * Get a named logger instance from the currently configured logger factory.
+	 * Get the registered service provider.
 	 *
-	 * @param string $channel Logger channel (name)
-	 * @return MWLogger
+	 * If called before any service provider has been registered, it will
+	 * attempt to use the $wgMWLoggerDefaultSpi global to bootstrap
+	 * MWLoggerSpi registration. $wgMWLoggerDefaultSpi is expected to be an
+	 * array usable by ObjectFactory::getObjectFromSpec() to create a class.
+	 *
+	 * @return MWLoggerSpi
+	 * @see registerProvider()
+	 * @see ObjectFactory::getObjectFromSpec()
 	 */
-	public static function getInstance( $channel ) {
+	public static function getProvider() {
 		if ( self::$spi === null ) {
 			global $wgMWLoggerDefaultSpi;
 			$provider = ObjectFactory::getObjectFromSpec(
@@ -212,8 +218,17 @@ class MWLogger implements \Psr\Log\LoggerInterface {
 			);
 			self::registerProvider( $provider );
 		}
+		return self::$spi;
+	}
 
-		return self::$spi->getLogger( $channel );
+	/**
+	 * Get a named logger instance from the currently configured logger factory.
+	 *
+	 * @param string $channel Logger channel (name)
+	 * @return MWLogger
+	 */
+	public static function getInstance( $channel ) {
+		return self::getProvider()->getLogger( $channel );
 	}
 
 }

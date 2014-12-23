@@ -199,7 +199,7 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 	 * @param string $name Processor name
 	 * @return callable
 	 */
-	protected function getProcessor( $name ) {
+	public function getProcessor( $name ) {
 		if ( !isset( $this->singletons['processors'][$name] ) ) {
 			$spec = $this->config['processors'][$name];
 			$processor = ObjectFactory::getObjectFromSpec( $spec );
@@ -214,7 +214,7 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 	 * @param string $name Processor name
 	 * @return \Monolog\Handler\HandlerInterface
 	 */
-	protected function getHandler( $name ) {
+	public function getHandler( $name ) {
 		if ( !isset( $this->singletons['handlers'][$name] ) ) {
 			$spec = $this->config['handlers'][$name];
 			$handler = ObjectFactory::getObjectFromSpec( $spec );
@@ -234,7 +234,7 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 	 * @param string $name Formatter name
 	 * @return \Monolog\Formatter\FormatterInterface
 	 */
-	protected function getFormatter( $name ) {
+	public function getFormatter( $name ) {
 		if ( !isset( $this->singletons['formatters'][$name] ) ) {
 			$spec = $this->config['formatters'][$name];
 			$formatter = ObjectFactory::getObjectFromSpec( $spec );
