@@ -2160,16 +2160,36 @@ abstract class DatabaseBase implements IDatabase {
 			} elseif ( ( $mode == LIST_SET ) && is_numeric( $field ) ) {
 				$list .= "$value";
 			} elseif ( ( $mode == LIST_AND || $mode == LIST_OR ) && is_array( $value ) ) {
-				if ( count( $value ) == 0 ) {
+				// Remove null from array to be handled separately if found
+				$includeNull = false;
+				foreach ( array_keys( $value, null, true ) as $nullKey ) {
+					$includeNull = true;
+					unset( $value[$nullKey] );
+				}
+				if ( count( $value ) == 0 && !$includeNull ) {
 					throw new MWException( __METHOD__ . ": empty input for field $field" );
-				} elseif ( count( $value ) == 1 ) {
-					// Special-case single values, as IN isn't terribly efficient
-					// Don't necessarily assume the single key is 0; we don't
-					// enforce linear numeric ordering on other arrays here.
-					$value = array_values( $value );
-					$list .= $field . " = " . $this->addQuotes( $value[0] );
+				} elseif ( count( $value ) == 0 ) {
+					// only check if $field is null
+					$list .= "$field IS NULL";
 				} else {
-					$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
+					// IN clause contains at least one valid element
+					if ( $includeNull ) {
+						// Group subconditions to ensure correct precedence
+						$list .= '(';
+					}
+					if ( count( $value ) == 1 ) {
+						// Special-case single values, as IN isn't terribly efficient
+						// Don't necessarily assume the single key is 0; we don't
+						// enforce linear numeric ordering on other arrays here.
+						$value = array_values( $value );
+						$list .= $field . " = " . $this->addQuotes( $value[0] );
+					} else {
+						$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
+					}
+					// if null present in array, append IS NULL
+					if ( $includeNull ) {
+						$list .= " OR $field IS NULL)";
+					}
 				}
 			} elseif ( $value === null ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
