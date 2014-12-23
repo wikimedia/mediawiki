@@ -39,7 +39,7 @@
 .mw-ui-checkbox:not(#noop) {
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
-	line-height: @checkboxSize;
+	display: table;
 
 	* {
 		// reset font sizes (see bug 72727)
@@ -57,6 +57,11 @@
 		// This is needed for Firefox mobile (See bug 71750 to workaround default Firefox stylesheet)
 		max-width: none;
 		margin-right: 0.4em;
+		display: table-cell;
+
+		& + label {
+			display: table-cell;
+		}
 
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label::before {
@@ -68,8 +73,12 @@
 			border-radius: @borderRadius;
 			width: @checkboxSize;
 			height: @checkboxSize;
+			line-height: @checkboxSize;
 			background-color: #fff;
 			border: 1px solid @colorGray7;
+			// align to middle: evil!
+			top: 50%;
+			margin-top: -1em;
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
