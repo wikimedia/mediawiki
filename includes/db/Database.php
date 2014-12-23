@@ -2138,6 +2138,9 @@ abstract class DatabaseBase implements IDatabase {
 		$list = '';
 
 		foreach ( $a as $field => $value ) {
+			if($value === null && mode == LIST_COMMA){
+				continue;//do not process if array field is null while building IN clause
+			}
 			if ( !$first ) {
 				if ( $mode == LIST_AND ) {
 					$list .= ' AND ';
@@ -2165,6 +2168,10 @@ abstract class DatabaseBase implements IDatabase {
 					$list .= $field . " = " . $this->addQuotes( $value[0] );
 				} else {
 					$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
+					//if null is present in array, treat it separate from IN clause
+					if(in_array(null, $value)){
+						$list .=  " OR $field IS NULL";
+					}
 				}
 			} elseif ( $value === null ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
