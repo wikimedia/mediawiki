@@ -42,7 +42,7 @@
 .client-js .mw-ui-checkbox:not(#noop) {
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
-	line-height: @checkboxSize;
+	display: table;
 
 	* {
 		// reset font sizes (see bug 72727)
@@ -61,6 +61,11 @@
 		max-width: none;
 		margin: 0;
 		margin-right: 0.4em;
+		display: table-cell;
+
+		& + label {
+			display: table-cell;
+		}
 
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label::before {
@@ -73,8 +78,12 @@
 			border-radius: @borderRadius;
 			width: @checkboxSize;
 			height: @checkboxSize;
+			line-height: @checkboxSize;
 			background-color: #fff;
 			border: 1px solid @colorGray7;
+			// align the checkbox to middle of the text
+			top: 50%;
+			margin-top: -1em;
 			.background-image-svg('images/checked.svg', 'images/checked.png');
 			.background-size( @checkboxSize - 0.2em, @checkboxSize - 0.2em );
 			background-repeat: no-repeat;
