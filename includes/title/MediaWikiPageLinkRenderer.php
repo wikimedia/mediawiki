@@ -26,6 +26,7 @@
  * A service for generating links from page titles.
  *
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
+ * @since 1.23
  */
 class MediaWikiPageLinkRenderer implements PageLinkRenderer {
 	/**

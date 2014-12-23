@@ -32,6 +32,7 @@
  * It does not represent a link, and does not support interwiki prefixes etc.
  *
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
+ * @since 1.23
  */
 class TitleValue {
 	/**

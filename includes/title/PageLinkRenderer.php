@@ -29,6 +29,7 @@
  * URLs, and how links are encoded in a given output format.
  *
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
+ * @since 1.23
  */
 interface PageLinkRenderer {
 	/**
