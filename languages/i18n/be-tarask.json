@@ -230,6 +230,7 @@
 	"pool-queuefull": "Чарга запытаў поўная",
 	"pool-errorunknown": "Невядомая памылка",
 	"pool-servererror": "Служба лічыльніка пулу недаступная ($1).",
+	"poolcounter-usage-error": "Памылка выкарыстаньня: $1",
 	"aboutsite": "Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}",
 	"aboutpage": "Project:Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}",
 	"copyright": "Зьмест даступны на ўмовах $1, калі не пазначана іншае.",

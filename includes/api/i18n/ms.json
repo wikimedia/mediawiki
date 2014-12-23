@@ -12,6 +12,7 @@
 	"apihelp-help-example-main": "Bantuan untuk modul utama",
 	"apihelp-help-example-recursive": "Segala bantuan dalam satu halaman",
 	"apihelp-help-example-help": "Bantuan untuk modul bantuan",
+	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "Menambahkan jenis MIME thumbnail imej (memerlukan url dan param $1urlwidth).",
 	"apihelp-query+prefixsearch-param-offset": "Bilangan hasil untuk dilangkau.",
 	"apihelp-query+usercontribs-param-show": "Hanya paparkan item-item yang mematuhi kriteria ini, cth. suntingan selain yang kecil sahaja: $2show=!minor.\n\nJika ditetapkannya $2show=patrolled atau $2show=!patrolled, maka semakan-semakan yang lebih lama daripada [https://www.mediawiki.org/wiki/Manual:$wgRCMaxAge $wgRCMaxAge] ($1 saat) tidak akan dipaparkan.",
 	"apihelp-userrights-param-userid": "ID pengguna.",

@@ -241,6 +241,7 @@
 	"pool-queuefull": "Fronta ve fondu je plná",
 	"pool-errorunknown": "Neznámá chyba",
 	"pool-servererror": "Služba řídící přístup k serverům není dostupná ($1).",
+	"poolcounter-usage-error": "Chyba užití: $1",
 	"aboutsite": "O&nbsp;{{grammar:6sg|{{SITENAME}}}}",
 	"aboutpage": "Project:{{SITENAME}}",
 	"copyright": "Obsah je dostupný pod $1, pokud není uvedeno jinak.",
