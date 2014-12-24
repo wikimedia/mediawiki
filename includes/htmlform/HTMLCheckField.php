@@ -20,28 +20,19 @@ class HTMLCheckField extends HTMLFormField {
 			$attr['class'] = $this->mClass;
 		}
 
-		if ( $this->mParent->isVForm() ) {
-			// Nest checkbox inside label.
-			return Html::rawElement( 'label',
-				array(
-					'class' => 'mw-ui-checkbox-label'
-				),
-				Xml::check( $this->mName, $value, $attr ) . $this->mLabel );
-		} else {
-			$chkLabel = Xml::check( $this->mName, $value, $attr )
-			. '&#160;'
-			. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+		$chkLabel = Xml::check( $this->mName, $value, $attr )
+		. '&#160;'
+		. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 
-			if ( $wgUseMediaWikiUIEverywhere ) {
-				$chkLabel = Html::rawElement(
-					'div',
-					array( 'class' => 'mw-ui-checkbox' ),
-					$chkLabel
-				);
-			}
-
-			return $chkLabel;
+		if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
+			$chkLabel = Html::rawElement(
+				'div',
+				array( 'class' => 'mw-ui-checkbox' ),
+				$chkLabel
+			);
 		}
+
+		return $chkLabel;
 	}
 
 	/**
