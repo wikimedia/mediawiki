@@ -1253,6 +1253,7 @@ $wgAutoloadLocalClasses = array(
 	'UsersPager' => __DIR__ . '/includes/specials/SpecialListusers.php',
 	'UtfNormal' => __DIR__ . '/includes/normal/UtfNormal.php',
 	'UzConverter' => __DIR__ . '/languages/classes/LanguageUz.php',
+	'VFormHTMLForm' => __DIR__ . '/includes/htmlform/VFormHTMLForm.php',
 	'ViewAction' => __DIR__ . '/includes/actions/ViewAction.php',
 	'VirtualRESTService' => __DIR__ . '/includes/libs/virtualrest/VirtualRESTService.php',
 	'VirtualRESTServiceClient' => __DIR__ . '/includes/libs/virtualrest/VirtualRESTServiceClient.php',

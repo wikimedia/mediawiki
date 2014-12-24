@@ -106,11 +106,13 @@ class SpecialChangeEmail extends FormSpecialPage {
 		return $fields;
 	}
 
+	protected function getDisplayFormat() {
+		return 'vform';
+	}
+
 	protected function alterForm( HTMLForm $form ) {
-		$form->setDisplayFormat( 'vform' );
 		$form->setId( 'mw-changeemail-form' );
 		$form->setTableId( 'mw-changeemail-table' );
-		$form->setWrapperLegend( false );
 		$form->setSubmitTextMsg( 'changeemail-submit' );
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 	}
