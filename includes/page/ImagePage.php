@@ -389,6 +389,27 @@ class ImagePage extends Article {
 							params( count( $otherSizes ) )->parse()
 						);
 					}
+
+					// Get the file format (extension) of the preview and display it
+					$params['width'] = $width;
+					$params['height'] = $height;
+					$thumbnail = $this->displayImg->transform( $params );
+					if ( $thumbnail && !$thumbnail->isError()
+						&& $thumbnail->getExtension() !== $this->displayImg->getExtension() ) {
+						$format = strtoupper( $thumbnail->getExtension() );
+						if ( $format === 'JPG' ) {
+							$format = 'JPEG';
+						}
+						$msgsmall .= ' ' .
+							Html::rawElement( 'span', array( 'class' => 'mw-filepage-preview-format' ),
+								wfMessage( 'show-big-image-format' )->
+								params( $format,
+									// + 1 because we want to count both "other resolutions" and
+									// "main" preview
+									count( $otherSizes ) + 1
+								)->parse()
+							);
+					}
 				} elseif ( $width == 0 && $height == 0 ) {
 					# Some sort of audio file that doesn't have dimensions
 					# Don't output a no hi res message for such a file
