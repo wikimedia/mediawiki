@@ -19,6 +19,7 @@
  */
 
 use Monolog\Handler\HandlerInterface;
+use Monolog\Formatter\FormatterInterface;
 
 /**
  * Wrapper for another HandlerInterface that will only handle a percentage of
