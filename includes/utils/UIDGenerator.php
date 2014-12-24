@@ -119,6 +119,7 @@ class UIDGenerator {
 	/**
 	 * @param array $info (UIDGenerator::millitime(), counter, clock sequence)
 	 * @return string 88 bits
+	 * @throws MWException
 	 */
 	protected function getTimestampedID88( array $info ) {
 		list( $time, $counter ) = $info;
@@ -163,6 +164,7 @@ class UIDGenerator {
 	/**
 	 * @param array $info (UIDGenerator::millitime(), counter, clock sequence)
 	 * @return string 128 bits
+	 * @throws MWException
 	 */
 	protected function getTimestampedID128( array $info ) {
 		list( $time, $counter, $clkSeq ) = $info;
@@ -260,6 +262,7 @@ class UIDGenerator {
 	 * @param int $count Number of IDs to return (1 to 10000)
 	 * @param int $flags (supports UIDGenerator::QUICK_VOLATILE)
 	 * @return array Ordered list of float integer values
+	 * @throws MWException
 	 */
 	protected function getSequentialPerNodeIDs( $bucket, $bits, $count, $flags ) {
 		if ( $count <= 0 ) {
@@ -436,6 +439,7 @@ class UIDGenerator {
 	/**
 	 * @param array $time Result of UIDGenerator::millitime()
 	 * @return string 46 MSBs of "milliseconds since epoch" in binary (rolls over in 4201)
+	 * @throws MWException
 	 */
 	protected function millisecondsSinceEpochBinary( array $time ) {
 		list( $sec, $msec ) = $time;

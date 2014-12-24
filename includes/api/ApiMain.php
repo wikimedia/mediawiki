@@ -458,6 +458,7 @@ class ApiMain extends ApiBase {
 	 *
 	 * @since 1.23
 	 * @param Exception $e
+	 * @throws Exception
 	 */
 	public static function handleApiBeforeMainException( Exception $e ) {
 		ob_start();
@@ -778,6 +779,8 @@ class ApiMain extends ApiBase {
 	/**
 	 * Set up the module for response
 	 * @return ApiBase The module that will handle this action
+	 * @throws MWException
+	 * @throws UsageException
 	 */
 	protected function setupModule() {
 		// Instantiate the module requested by the user

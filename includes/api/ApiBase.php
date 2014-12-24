@@ -1045,6 +1045,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $token Supplied token
 	 * @param array $params All supplied parameters for the module
 	 * @return bool
+	 * @throws MWException
 	 */
 	final public function validateToken( $token, array $params ) {
 		$tokenType = $this->needsToken();
@@ -1294,6 +1295,7 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.23
 	 * @param Status $status
 	 * @return array Array of code and error string
+	 * @throws MWException
 	 */
 	public function getErrorFromStatus( $status ) {
 		if ( $status->isGood() ) {

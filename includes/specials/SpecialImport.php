@@ -52,6 +52,8 @@ class SpecialImport extends SpecialPage {
 	/**
 	 * Execute
 	 * @param string|null $par
+	 * @throws PermissionsError
+	 * @throws ReadOnlyError
 	 */
 	function execute( $par ) {
 		$this->setHeaders();

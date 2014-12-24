@@ -306,6 +306,8 @@ class MediaStatisticsPage extends QueryPage {
 	 *
 	 * @param $skin Skin
 	 * @param $result stdObject Result row
+	 * @return bool|string|void
+	 * @throws MWException
 	 */
 	public function formatResult( $skin, $result ) {
 		throw new MWException( "unimplemented" );

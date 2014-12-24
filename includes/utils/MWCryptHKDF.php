@@ -103,6 +103,7 @@ class MWCryptHKDF {
 	 * @param string $algorithm Name of hashing algorithm
 	 * @param BagOStuff $cache
 	 * @param string|array $context Context to mix into HKDF context
+	 * @throws MWException
 	 */
 	public function __construct( $secretKeyMaterial, $algorithm, $cache, $context ) {
 		if ( strlen( $secretKeyMaterial ) < 16 ) {
@@ -157,6 +158,7 @@ class MWCryptHKDF {
 	/**
 	 * Return a singleton instance, based on the global configs.
 	 * @return HKDF
+	 * @throws MWException
 	 */
 	protected static function singleton() {
 		global $wgHKDFAlgorithm, $wgHKDFSecret, $wgSecretKey;
@@ -271,14 +273,15 @@ class MWCryptHKDF {
 	 *
 	 * @param string $hash Hashing Algorithm
 	 * @param string $prk A pseudorandom key of at least HashLen octets
-	 * 	(usually, the output from the extract step)
+	 *    (usually, the output from the extract step)
 	 * @param string $info Optional context and application specific information
-	 * 	(can be a zero-length string)
+	 *    (can be a zero-length string)
 	 * @param int $bytes Length of output keying material in bytes
-	 * 	(<= 255*HashLen)
+	 *    (<= 255*HashLen)
 	 * @param string &$lastK Set by this function to the last block of the expansion.
-	 *	In MediaWiki, this is used to seed future Extractions.
+	 *    In MediaWiki, this is used to seed future Extractions.
 	 * @return string Cryptographically secure random string $bytes long
+	 * @throws MWException
 	 */
 	private static function HKDFExpand( $hash, $prk, $info, $bytes, &$lastK = '' ) {
 		$hashLen = MWCryptHKDF::$hashLength[$hash];

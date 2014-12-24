@@ -126,6 +126,7 @@ abstract class HTMLFormField {
 	 * @param array $alldata
 	 * @param array $params
 	 * @return bool
+	 * @throws MWException
 	 */
 	protected function isHiddenRecurse( array $alldata, array $params ) {
 		$origParams = $params;

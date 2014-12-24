@@ -1626,6 +1626,7 @@ class OutputPage extends ContextSource {
 	 * @param string $text
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $interface Is this text in the user interface language?
+	 * @throws MWException
 	 */
 	public function addWikiText( $text, $linestart = true, $interface = true ) {
 		$title = $this->getTitle(); // Work around E_STRICT

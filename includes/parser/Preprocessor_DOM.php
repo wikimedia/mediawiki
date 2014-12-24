@@ -68,6 +68,7 @@ class Preprocessor_DOM implements Preprocessor {
 	/**
 	 * @param array $values
 	 * @return PPNode_DOM
+	 * @throws MWException
 	 */
 	public function newPartNodeArray( $values ) {
 		//NOTE: DOM manipulation is slower than building & parsing XML! (or so Tim sais)

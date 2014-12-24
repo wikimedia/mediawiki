@@ -59,6 +59,7 @@ class MultiHttpClient {
 	 *   - reqTimeout      : default request timeout
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 * @throws Exception
 	 */
 	public function __construct( array $options ) {
 		if ( isset( $options['caBundlePath'] ) ) {
@@ -103,14 +104,14 @@ class MultiHttpClient {
 	 * Execute a set of HTTP(S) requests concurrently
 	 *
 	 * The maps are returned by this method with the 'response' field set to a map of:
- 	 *   - code    : HTTP response code or 0 if there was a serious cURL error
- 	 *   - reason  : HTTP response reason (empty if there was a serious cURL error)
- 	 *   - headers : <header name/value associative array>
- 	 *   - body    : HTTP response body or resource (if "stream" was set)
+	 *   - code    : HTTP response code or 0 if there was a serious cURL error
+	 *   - reason  : HTTP response reason (empty if there was a serious cURL error)
+	 *   - headers : <header name/value associative array>
+	 *   - body    : HTTP response body or resource (if "stream" was set)
 	 *   - error   : Any cURL error string
- 	 * The map also stores integer-indexed copies of these values. This lets callers do:
-	 *	<code>
-	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req['response'];
+	 * The map also stores integer-indexed copies of these values. This lets callers do:
+	 *    <code>
+	 *        list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req['response'];
 	 *  </code>
 	 * All headers in the 'headers' field are normalized to use lower case names.
 	 * This is true for the request headers and the response headers. Integer-indexed
@@ -123,6 +124,7 @@ class MultiHttpClient {
 	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 * @return array $reqs With response array populated for each
+	 * @throws Exception
 	 */
 	public function runMulti( array $reqs, array $opts = array() ) {
 		$chm = $this->getCurlMulti();
@@ -244,6 +246,7 @@ class MultiHttpClient {
 	 *   - connTimeout    : default connection timeout
 	 *   - reqTimeout     : default request timeout
 	 * @return resource
+	 * @throws Exception
 	 */
 	protected function getCurlHandle( array &$req, array $opts = array() ) {
 		$ch = curl_init();

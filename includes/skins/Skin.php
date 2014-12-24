@@ -1046,6 +1046,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @param string $name The name or path of a skin resource file
 	 * @return string The fully resolved style path url including styleversion
+	 * @throws MWException
 	 */
 	function getSkinStylePath( $name ) {
 		global $wgStylePath, $wgStyleVersion;

@@ -60,6 +60,7 @@ abstract class BloomCache {
 	 *               It should only consist of alphanumberic, '-', and '_' characters.
 	 *               This ID is what avoids collisions if multiple logical caches
 	 *               use the same storage system, so this should be set carefully.
+	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
 		$this->cacheID = $config['cacheId'];

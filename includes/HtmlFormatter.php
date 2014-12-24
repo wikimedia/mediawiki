@@ -322,6 +322,7 @@ class HtmlFormatter {
 	 * @param string $type The type of selector (ID, CLASS, TAG_CLASS, or TAG)
 	 * @param string $rawName The raw name of the selector
 	 * @return bool Whether the selector was successfully recognised
+	 * @throws MWException
 	 */
 	protected function parseSelector( $selector, &$type, &$rawName ) {
 		if ( strpos( $selector, '.' ) === 0 ) {

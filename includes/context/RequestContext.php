@@ -297,8 +297,8 @@ class RequestContext implements IContextSource {
 	/**
 	 * Get the Language object.
 	 * Initialization of user or request objects can depend on this.
-	 *
 	 * @return Language
+	 * @throws Exception
 	 * @since 1.19
 	 */
 	public function getLanguage() {

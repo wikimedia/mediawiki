@@ -63,6 +63,7 @@ class AutoloadGenerator {
 	 *
 	 * @param string $fqcn FQCN to force the location of
 	 * @param string $inputPath Full path to the file containing the class
+	 * @throws Exception
 	 */
 	public function forceClassPath( $fqcn, $inputPath ) {
 		$path = self::normalizePathSeparator( realpath( $inputPath ) );
@@ -79,6 +80,7 @@ class AutoloadGenerator {
 
 	/**
 	 * @param string $inputPath Path to a php file to find classes within
+	 * @throws Exception
 	 */
 	public function readFile( $inputPath ) {
 		// NOTE: do NOT expand $inputPath using realpath(). It is perfectly

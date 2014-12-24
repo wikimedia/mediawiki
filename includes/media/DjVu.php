@@ -266,6 +266,7 @@ class DjVuHandler extends ImageHandler {
 	 *
 	 * @param File $file The DjVu file in question
 	 * @return string XML metadata as a string.
+	 * @throws MWException
 	 */
 	private function getUnserializedMetadata( File $file ) {
 		$metadata = $file->getMetadata();

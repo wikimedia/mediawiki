@@ -127,11 +127,12 @@ class Hooks {
 	 * @param string|null $deprecatedVersion Optionally, mark hook as deprecated with version number
 	 * @return bool True if no handler aborted the hook
 	 *
+	 * @throws Exception
+	 * @throws FatalError
+	 * @throws MWException
 	 * @since 1.22 A hook function is not required to return a value for
 	 *   processing to continue. Not returning a value (or explicitly
 	 *   returning null) is equivalent to returning true.
-	 * @throws MWException
-	 * @throws FatalError
 	 */
 	public static function run( $event, array $args = array(), $deprecatedVersion = null ) {
 		$profiler = Profiler::instance();

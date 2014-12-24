@@ -34,6 +34,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * @param IContextSource|Skin $obj
+	 * @throws MWException
 	 */
 	public function __construct( $obj ) {
 		if ( $obj instanceof Skin ) {

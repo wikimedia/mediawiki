@@ -32,6 +32,7 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 	 *
 	 * @param string $value
 	 * @return string
+	 * @throws Exception
 	 */
 	private static function cssSerializeString( $value ) {
 		if ( strstr( $value, "\0" ) ) {

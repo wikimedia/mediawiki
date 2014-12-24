@@ -179,12 +179,12 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @param float $rand Random number between 0 and 1
 	 * @param int $offset Extra offset to fudge randomness
 	 * @param bool $up True to get the result above the random number, false for below
-	 *
+	 * @return array Query information.
+	 * @throws MWException
 	 * @note The $up parameter is supposed to counteract what would happen if there
 	 *   was a large gap in the distribution of cl_timestamp values. This way instead
 	 *   of things to the right of the gap being favoured, both sides of the gap
 	 *   are favoured.
-	 * @return array Query information.
 	 */
 	protected function getQueryInfo( $rand, $offset, $up ) {
 		$op = $up ? '>=' : '<=';

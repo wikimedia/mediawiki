@@ -148,12 +148,13 @@ class VirtualRESTServiceClient {
 	 *   - body    : HTTP response body or resource (if "stream" was set)
 	 *   - error   : Any cURL error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
-	 *	<code>
-	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $responses[0];
+	 *    <code>
+	 *        list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $responses[0];
 	 *  </code>
 	 *
 	 * @param array $reqs Map of Virtual HTTP request maps
 	 * @return array $reqs Map of corresponding response values with the same keys/order
+	 * @throws Exception
 	 */
 	public function runMulti( array $reqs ) {
 		foreach ( $reqs as $index => &$req ) {

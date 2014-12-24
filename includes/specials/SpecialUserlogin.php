@@ -1272,6 +1272,12 @@ class LoginForm extends SpecialPage {
 	/**
 	 * @param string $msg
 	 * @param string $msgtype
+	 * @throws ErrorPageError
+	 * @throws Exception
+	 * @throws FatalError
+	 * @throws MWException
+	 * @throws PermissionsError
+	 * @throws ReadOnlyError
 	 * @private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {

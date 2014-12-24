@@ -143,6 +143,13 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Special page entry point
 	 * @param string $par
+	 * @throws ErrorPageError
+	 * @throws Exception
+	 * @throws FatalError
+	 * @throws MWException
+	 * @throws PermissionsError
+	 * @throws ReadOnlyError
+	 * @throws UserBlockedError
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();

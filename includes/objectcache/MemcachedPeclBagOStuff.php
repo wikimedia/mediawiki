@@ -43,6 +43,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *                          values, but serialization is much slower unless the php.ini option
 	 *                          igbinary.compact_strings is off.
 	 * @param array $params
+	 * @throws MWException
 	 */
 	function __construct( $params ) {
 		$params = $this->applyDefaultParams( $params );

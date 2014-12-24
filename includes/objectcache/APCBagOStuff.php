@@ -70,6 +70,7 @@ class APCBagOStuff extends BagOStuff {
 	 * @param mixed $value
 	 * @param int $exptime
 	 * @return bool
+	 * @throws MWException
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
 		// APC's CAS functions only work on integers

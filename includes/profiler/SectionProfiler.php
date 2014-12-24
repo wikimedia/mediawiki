@@ -277,6 +277,7 @@ class SectionProfiler {
 	/**
 	 * Returns a tree of function calls with their real times
 	 * @return string
+	 * @throws Exception
 	 */
 	public function getCallTreeReport() {
 		if ( $this->collateOnly ) {

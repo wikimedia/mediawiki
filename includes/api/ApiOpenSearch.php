@@ -340,6 +340,7 @@ class ApiOpenSearch extends ApiBase {
 	 *
 	 * @param string $type MIME type
 	 * @return string
+	 * @throws MWException
 	 */
 	public static function getOpenSearchTemplate( $type ) {
 		global $wgOpenSearchTemplate, $wgCanonicalServer;

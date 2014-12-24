@@ -302,6 +302,7 @@ class ImageListPager extends TablePager {
 	 * @param int $limit
 	 * @param bool $asc
 	 * @return array
+	 * @throws MWException
 	 */
 	function reallyDoQuery( $offset, $limit, $asc ) {
 		$prevTableName = $this->mTableName;

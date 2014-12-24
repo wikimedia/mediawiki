@@ -118,6 +118,7 @@ class SqlBagOStuff extends BagOStuff {
 	 *
 	 * @param int $serverIndex
 	 * @return DatabaseBase
+	 * @throws MWException
 	 */
 	protected function getDB( $serverIndex ) {
 		global $wgDebugDBTransactions;

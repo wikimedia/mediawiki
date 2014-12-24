@@ -380,6 +380,9 @@ class DatabaseMssql extends DatabaseBase {
 	 *   (optional) (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return mixed Database result resource (feed to Database::fetchObject
 	 *   or whatever), or false on failure
+	 * @throws DBQueryError
+	 * @throws DBUnexpectedError
+	 * @throws Exception
 	 */
 	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = array(), $join_conds = array()
@@ -574,8 +577,8 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param array $arrToInsert
 	 * @param string $fname
 	 * @param array $options
-	 * @throws DBQueryError
 	 * @return bool
+	 * @throws Exception
 	 */
 	public function insert( $table, $arrToInsert, $fname = __METHOD__, $options = array() ) {
 		# No rows to insert, easy just return now
@@ -713,8 +716,8 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param string $fname
 	 * @param array $insertOptions
 	 * @param array $selectOptions
-	 * @throws DBQueryError
 	 * @return null|ResultWrapper
+	 * @throws Exception
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
 		$insertOptions = array(), $selectOptions = array()
@@ -761,6 +764,9 @@ class DatabaseMssql extends DatabaseBase {
 	 *                   - IGNORE: Ignore unique key conflicts
 	 *                   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
 	 * @return bool
+	 * @throws DBUnexpectedError
+	 * @throws Exception
+	 * @throws MWException
 	 */
 	function update( $table, $values, $conds, $fname = __METHOD__, $options = array() ) {
 		$table = $this->tableName( $table );
@@ -893,6 +899,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param int $limit The SQL limit
 	 * @param bool|int $offset The SQL offset (default false)
 	 * @return array|string
+	 * @throws DBUnexpectedError
 	 */
 	public function limitResult( $sql, $limit, $offset = false ) {
 		if ( $offset === false || $offset == 0 ) {

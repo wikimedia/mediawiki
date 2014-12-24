@@ -248,8 +248,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $options
 	 * @param null|string $functionName
 	 * @return ResultWrapper
-	 * @throws DBQueryError If the query failed (even if the database was in
-	 *   ignoreErrors mode).
+	 * @throws Exception
+	 * @throws MWException
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
 		array $options = array(), $functionName = null

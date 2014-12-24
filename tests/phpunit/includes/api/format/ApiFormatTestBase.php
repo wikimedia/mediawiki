@@ -11,6 +11,7 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 	/**
 	 * Return general data to be encoded for testing
 	 * @return array See self::testGeneralEncoding
+	 * @throws Exception
 	 */
 	public static function provideGeneralEncoding() {
 		throw new Exception( 'Subclass must implement ' . __METHOD__ );
@@ -21,6 +22,8 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 	 * @param array $params Query parameters
 	 * @param array $data Data to encode
 	 * @param string $class Printer class to use instead of the normal one
+	 * @return string
+	 * @throws Exception
 	 */
 	protected function encodeData( array $params, array $data, $class = null ) {
 		$context = new RequestContext;

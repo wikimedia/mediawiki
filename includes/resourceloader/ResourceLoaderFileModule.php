@@ -483,8 +483,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Get the skip function.
-	 *
-	 * @return string|null
+	 * @return null|string
+	 * @throws MWException
 	 */
 	public function getSkipFunction() {
 		if ( !$this->skipFunction ) {
@@ -979,8 +979,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Takes named templates by the module and returns an array mapping.
-	 *
 	 * @return array of templates mapping template alias to content
+	 * @throws MWException
 	 */
 	public function getTemplates() {
 		$templates = array();

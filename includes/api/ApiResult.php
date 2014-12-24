@@ -518,6 +518,7 @@ class ApiResult extends ApiBase {
 	 * @param ApiBase $module
 	 * @param string $paramName
 	 * @param string|array $paramValue
+	 * @throws MWException
 	 */
 	public function setContinueParam( ApiBase $module, $paramName, $paramValue ) {
 		$name = $module->getModuleName();

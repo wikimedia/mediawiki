@@ -37,6 +37,7 @@ class TextContent extends AbstractContent {
 	/**
 	 * @param string $text
 	 * @param string $model_id
+	 * @throws MWException
 	 */
 	public function __construct( $text, $model_id = CONTENT_MODEL_TEXT ) {
 		parent::__construct( $model_id );

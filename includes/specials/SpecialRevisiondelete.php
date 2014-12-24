@@ -293,6 +293,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * Show a deleted file version requested by the visitor.
 	 * @todo Mostly copied from Special:Undelete. Refactor.
 	 * @param string $archiveName
+	 * @throws MWException
+	 * @throws PermissionsError
 	 */
 	protected function tryShowFile( $archiveName ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();

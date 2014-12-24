@@ -81,6 +81,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @param mixed $value
 	 * @param mixed $exptime
 	 * @return bool
+	 * @throws MWException
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
 		throw new MWException( "CAS is not implemented in " . __CLASS__ );

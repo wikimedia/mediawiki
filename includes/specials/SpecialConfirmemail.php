@@ -38,6 +38,9 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	 * Main execution point
 	 *
 	 * @param null|string $code Confirmation code passed to the page
+	 * @throws PermissionsError
+	 * @throws ReadOnlyError
+	 * @throws UserNotLoggedIn
 	 */
 	function execute( $code ) {
 		$this->setHeaders();

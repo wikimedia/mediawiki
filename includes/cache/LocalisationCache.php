@@ -654,6 +654,7 @@ class LocalisationCache {
 	 * rules, and save the compiled rules in a process-local cache.
 	 *
 	 * @param string $fileName
+	 * @throws MWException
 	 */
 	protected function loadPluralFile( $fileName ) {
 		// Use file_get_contents instead of DOMDocument::load (T58439)

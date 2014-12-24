@@ -618,6 +618,7 @@ class TestFileIterator implements Iterator {
 	 * @param bool $fatal True iff an exception should be thrown if
 	 * the section is not found.
 	 * @return bool|string
+	 * @throws MWException
 	 */
 	private function checkSection( $tokens, $fatal = true ) {
 		if ( is_null( $this->section ) ) {
@@ -691,6 +692,7 @@ class DelayedParserTest {
 	 * Should be the case if we found the parserTest is not disabled
 	 * @param ParserTest|NewParserTest $parserTest
 	 * @return bool
+	 * @throws MWException
 	 */
 	public function unleash( &$parserTest ) {
 		if ( !( $parserTest instanceof ParserTest || $parserTest instanceof NewParserTest )	) {

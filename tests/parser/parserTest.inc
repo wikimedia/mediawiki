@@ -1493,8 +1493,10 @@ class ParserTest {
 	 * Insert a temporary test article
 	 * @param string $name The title, including any prefix
 	 * @param string $text The article text
-	 * @param int $line The input line number, for reporting errors
-	 * @param bool $ignoreDuplicate Whether to silently ignore duplicate pages
+	 * @param int|string $line The input line number, for reporting errors
+	 * @param bool|string $ignoreDuplicate Whether to silently ignore duplicate pages
+	 * @throws Exception
+	 * @throws MWException
 	 */
 	public static function addArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '' ) {
 		global $wgCapitalLinks;

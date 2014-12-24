@@ -186,6 +186,7 @@ class ZipDirectoryReader {
 	 * Throw an error, and log a debug message
 	 * @param mixed $code
 	 * @param string $debugMessage
+	 * @throws ZipDirectoryReaderError
 	 */
 	function error( $code, $debugMessage ) {
 		wfDebug( __CLASS__ . ": Fatal error: $debugMessage\n" );

@@ -164,7 +164,8 @@ class MWTidy {
 	 * @param string $text HTML to check
 	 * @param bool $stderr Whether to read result from STDERR rather than STDOUT
 	 * @param int &$retval Exit code (-1 on internal error)
-	 * @return string|null
+	 * @return null|string
+	 * @throws MWException
 	 */
 	private static function clean( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyInternal;

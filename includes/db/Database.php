@@ -3657,6 +3657,7 @@ abstract class DatabaseBase implements IDatabase {
 	 *   calling rollback when no transaction is in progress. This will silently
 	 *   break any ongoing explicit transaction. Only set the flush flag if you
 	 *   are sure that it is safe to ignore these warnings in your context.
+	 * @throws DBUnexpectedError
 	 * @since 1.23 Added $flush parameter
 	 */
 	final public function rollback( $fname = __METHOD__, $flush = '' ) {

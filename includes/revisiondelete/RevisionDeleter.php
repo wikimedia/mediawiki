@@ -78,6 +78,7 @@ class RevisionDeleter {
 	 * @param Title $title
 	 * @param array $ids
 	 * @return RevDelList
+	 * @throws MWException
 	 */
 	public static function createList( $typeName, IContextSource $context, Title $title, array $ids ) {
 		$typeName = self::getCanonicalTypeName( $typeName );
