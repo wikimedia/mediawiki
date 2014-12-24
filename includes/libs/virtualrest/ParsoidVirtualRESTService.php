@@ -1,0 +1,121 @@
+<?php
+/**
+ * Virtual HTTP service client for Parsoid
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+
+/**
+ * Virtual REST service for Parsoid
+ * @since 1.25
+ */
+class ParsoidVirtualRESTService extends VirtualRESTService {
+	/**
+	 * Example requests:
+	 *  GET /local/v1/page/$title/html/$oldid
+	 *   * $oldid is optional
+	 *  POST /local/v1/transform/html/to/wikitext/$title/$oldid
+	 *   * body: array( 'html' => ... )
+	 *   * $title and $oldid are optional
+	 *  POST /local/v1/transform/wikitext/to/html/$title
+	 *   * body: array( 'wt' => ... ) or array( 'wt' => ..., 'body' => true/false )
+	 *   * $title is optional
+	 * @param array $params Key/value map
+	 *   - URL            : Parsoid server URL
+	 *   - prefix         : Parsoid prefix for this wiki
+	 *   - timeout        : Parsoid timeout (optional)
+	 *   - forwardCookies : Cookies to forward to Parsoid, or false. (optional)
+	 *   - HTTPProxy      : Parsoid HTTP proxy (optional)
+	 */
+	public function __construct( array $params ) {
+		parent::__construct( $params );
+	}
+
+	public function onRequests( array $reqs, Closure $idGeneratorFunc ) {
+		global $wgVisualEditorParsoidPrefix; // TODO: Move this to core
+
+		$result = array();
+		foreach ( $reqs as $key => $req ) {
+			$parts = explode( '/', $req['url'] );
+
+			list(
+				$targetWiki, // 'local'
+				$version, // 'v1'
+				$reqType // 'page' or 'transform'
+			) = $parts;
+
+			if ( $targetWiki !== 'local' ) {
+				throw new MWException( "Only 'local' target wiki is currently supported" );
+			} elseif ( $version !== 'v1' ) {
+				throw new MWException( "Only version 1 exists" );
+			} else if ( $reqType !== 'page' && $reqType !== 'transform' ) {
+				throw new MWException( "Request type must be either 'page' or 'transform'" );
+			}
+
+			$req['url'] = $this->params['URL'] . '/' . urlencode( $this->params['prefix'] ) . '/';
+
+			if ( $reqType === 'page' ) {
+				$title = $parts[3];
+				if ( $parts[4] !== 'html' ) {
+					throw new MWException( "Only 'html' output format is currently supported" );
+				}
+				if ( isset( $parts[5] ) ) {
+					$req['url'] .= $title . '?oldid=' . $parts[5];
+				} else {
+					$req['url'] .= $title;
+				}
+			} elseif ( $reqType === 'transform' ) {
+				if ( $parts[4] !== 'to' ) {
+					throw new MWException( "Part index 4 is not 'to'" );
+				}
+
+				if ( isset( $parts[6] ) ) {
+					$req['url'] .= $parts[6];
+				}
+
+				if ( $parts[3] === 'html' & $parts[5] === 'wikitext' ) {
+					if ( !isset( $req['body']['html'] ) ) {
+						throw new MWException( "You must set an 'html' body key for this request" );
+					}
+					if ( isset( $parts[6] ) ) {
+						$req['body']['oldid'] = $parts[6];
+					}
+				} elseif ( $parts[3] == 'wikitext' && $parts[5] == 'html' ) {
+					if ( !isset( $req['body']['wt'] ) ) {
+						throw new MWException( "You must set a 'wt' body key for this request" );
+					}
+				} else {
+					throw new MWException( "Transformation unsupported" );
+				}
+			}
+
+			if ( isset( $this->params['HTTPProxy'] ) && $this->params['HTTPProxy'] ) {
+				$req['proxy'] = $this->params['HTTPProxy'];
+			}
+			if ( isset( $this->params['timeout'] ) ) {
+				$req['reqTimeout'] = $this->params['timeout'];
+			}
+
+			// Forward cookies
+			if ( isset( $this->params['forwardCookies'] ) ) {
+				$req['headers']['Cookie'] = $this->params['forwardCookies'];
+			}
+
+			$result[$key] = $req;
+		}
+		return $result;
+	}
+}
