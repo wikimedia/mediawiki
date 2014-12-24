@@ -241,11 +241,11 @@
 				fb = this;
 
 			// Get the values to submit.
-			subject = this.subjectInput.value;
+			subject = this.subjectInput.value.trim();
 
 			// We used to include "mw.html.escape( navigator.userAgent )" but there are legal issues
 			// with posting this without their explicit consent
-			message = this.messageInput.value;
+			message = this.messageInput.value.trim();
 			if ( message.indexOf( '~~~' ) === -1 ) {
 				message += ' ~~~~';
 			}
