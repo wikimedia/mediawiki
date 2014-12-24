@@ -513,9 +513,6 @@ abstract class HTMLFormField {
 			$inputHtml . "\n$errors"
 		);
 		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass );
-		if ( $this->mParent->isVForm() ) {
-			$divCssClasses[] = 'mw-ui-vform-field';
-		}
 
 		$wrapperAttributes = array(
 			'class' => $divCssClasses,
@@ -552,6 +549,20 @@ abstract class HTMLFormField {
 		$html .= $helptext;
 
 		return $html;
+	}
+
+	/**
+	 * Get the complete field for the input, including help text,
+	 * labels, and whatever. Fall back from 'vform' to 'div' when not overridden.
+	 *
+	 * @since 1.25
+	 * @param string $value The value to set the input to.
+	 * @return string Complete HTML field.
+	 */
+	public function getVForm( $value ) {
+		// Ewwww
+		$this->mClass .= ' mw-ui-vform-field';
+		return $this->getDiv( $value );
 	}
 
 	/**

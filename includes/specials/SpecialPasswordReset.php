@@ -103,15 +103,12 @@ class SpecialPasswordReset extends FormSpecialPage {
 		return $a;
 	}
 
+	protected function getDisplayFormat() {
+		return 'vform';
+	}
+
 	public function alterForm( HTMLForm $form ) {
 		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
-
-		$form->setDisplayFormat( 'vform' );
-		// Turn the old-school line around the form off.
-		// XXX This wouldn't be necessary here if we could set the format of
-		// the HTMLForm to 'vform' at its creation, but there's no way to do so
-		// from a FormSpecialPage class.
-		$form->setWrapperLegend( false );
 
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 

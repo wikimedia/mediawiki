@@ -90,9 +90,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return $this->showLogFragment( $this->par );
 	}
 
+	protected function getDisplayFormat() {
+		return 'vform';
+	}
+
 	public function alterForm( HTMLForm $form ) {
-		$form->setDisplayFormat( 'vform' );
-		$form->setWrapperLegend( false );
 		Hooks::run( 'LanguageSelector', array( $this->getOutput(), 'mw-languageselector' ) );
 	}
 

@@ -262,17 +262,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			? $this->mParams['format']
 			: $this->mParent->getDisplayFormat();
 
-		switch ( $displayFormat ) {
-			case 'table':
-				$getFieldHtmlMethod = 'getTableRow';
-				break;
-			case 'vform':
-				// Close enough to a div.
-				$getFieldHtmlMethod = 'getDiv';
-				break;
-			default:
-				$getFieldHtmlMethod = 'get' . ucfirst( $displayFormat );
-		}
+		// Conveniently, PHP method names are case-insensitive.
+		$getFieldHtmlMethod = $displayFormat == 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
 
 		$html = '';
 		$hidden = '';
@@ -336,7 +327,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				$html = Html::rawElement( 'table',
 					$attribs,
 					Html::rawElement( 'tbody', array(), "\n$html\n" ) ) . "\n";
-			} elseif ( $displayFormat === 'div' || $displayFormat === 'vform' ) {
+			} else {
 				$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
 			}
 		}
