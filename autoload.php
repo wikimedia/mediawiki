@@ -835,6 +835,7 @@ $wgAutoloadLocalClasses = array(
 	'ParserDiffTest' => __DIR__ . '/includes/parser/ParserDiffTest.php',
 	'ParserOptions' => __DIR__ . '/includes/parser/ParserOptions.php',
 	'ParserOutput' => __DIR__ . '/includes/parser/ParserOutput.php',
+	'ParsoidVirtualRESTService' => __DIR__ . '/includes/libs/virtualrest/ParsoidVirtualRESTService.php',
 	'Password' => __DIR__ . '/includes/password/Password.php',
 	'PasswordError' => __DIR__ . '/includes/password/PasswordError.php',
 	'PasswordFactory' => __DIR__ . '/includes/password/PasswordFactory.php',
