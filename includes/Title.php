@@ -1335,6 +1335,25 @@ class Title {
 	}
 
 	/**
+	 * Get the other title for this page, if this is a subject page
+	 * get the talk page, if it is a subject page get the talk page
+	 *
+	 * @since 1.25
+	 * @throws MWException
+	 * @return Title
+	 */
+	public function getOtherPage() {
+		if ( $this->isSpecialPage() ) {
+			throw new MWException( 'Special pages cannot have other pages' );
+		}
+		if ( $this->isTalkPage() ) {
+			return $this->getSubjectPage();
+		} else {
+			return $this->getTalkPage();
+		}
+	}
+
+	/**
 	 * Get the default namespace index, for when there is no namespace
 	 *
 	 * @return int Default namespace index

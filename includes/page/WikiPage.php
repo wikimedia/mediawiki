@@ -3158,11 +3158,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public static function onArticleCreate( $title ) {
 		// Update existence markers on article/talk tabs...
-		if ( $title->isTalkPage() ) {
-			$other = $title->getSubjectPage();
-		} else {
-			$other = $title->getTalkPage();
-		}
+		$other = $title->getOtherPage();
 
 		$other->invalidateCache();
 		$other->purgeSquid();
@@ -3179,11 +3175,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public static function onArticleDelete( $title ) {
 		// Update existence markers on article/talk tabs...
-		if ( $title->isTalkPage() ) {
-			$other = $title->getSubjectPage();
-		} else {
-			$other = $title->getTalkPage();
-		}
+		$other = $title->getOtherPage();
 
 		$other->invalidateCache();
 		$other->purgeSquid();
