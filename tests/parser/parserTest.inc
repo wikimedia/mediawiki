@@ -577,6 +577,8 @@ class ParserTest {
 	 * @return bool
 	 */
 	public function runTest( $desc, $input, $result, $opts, $config ) {
+		global $wgUseTidy, $wgAlwaysUseTidy;
+
 		if ( $this->showProgress ) {
 			$this->showTesting( $desc );
 		}
@@ -620,14 +622,21 @@ class ParserTest {
 		} elseif ( isset( $opts['preload'] ) ) {
 			$out = $parser->getPreloadText( $input, $title, $options );
 		} else {
-			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
-			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
-			$out = $output->getText();
 			if ( isset( $opts['tidy'] ) ) {
 				if ( !$this->tidySupport->isEnabled() ) {
 					return $this->showSkipped();
 				}
-				$out = MWTidy::tidy( $out );
+				$wgUseTidy = true;
+				$wgAlwaysUseTidy = true;
+			}
+
+			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
+			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
+			$out = $output->getText();
+
+			if ( isset( $opts['tidy'] ) ) {
+				$wgUseTidy = false;
+				$wgAlwaysUseTidy = false;
 				$out = preg_replace( '/\s+$/', '', $out );
 			}
 
