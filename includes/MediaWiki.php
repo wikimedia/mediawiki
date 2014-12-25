@@ -59,7 +59,7 @@ class MediaWiki {
 		$request = $this->context->getRequest();
 		$curid = $request->getInt( 'curid' );
 		$title = $request->getVal( 'title' );
-		$action = $request->getVal( 'action', 'view' );
+		$action = $request->getVal( 'action' );
 
 		if ( $request->getCheck( 'search' ) ) {
 			// Compatibility with old search URLs which didn't use Special:Search
@@ -489,8 +489,7 @@ class MediaWiki {
 		$request = $this->context->getRequest();
 
 		// Send Ajax requests to the Ajax dispatcher.
-		if ( $this->config->get( 'UseAjax' ) && $request->getVal( 'action', 'view' ) == 'ajax' ) {
-
+		if ( $this->config->get( 'UseAjax' ) && $request->getVal( 'action' ) === 'ajax' ) {
 			// Set a dummy title, because $wgTitle == null might break things
 			$title = Title::makeTitle( NS_MAIN, 'AJAX' );
 			$this->context->setTitle( $title );
