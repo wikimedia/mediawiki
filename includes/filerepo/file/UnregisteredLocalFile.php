@@ -166,6 +166,20 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
+	* @return int|bool
+	*/
+	function getBitDepth() {
+		$gis = $this->getImageSize( null );
+		// getImageSize asks for a filename that it doesn't use
+		// Will remove parameter and not pass null in a later patch
+
+		if ( empty( $gis ) || empty( $gis['bits'] ) ) {
+			return false;
+		}
+		return $gis['bits'];
+	}
+
+	/**
 	 * @return bool
 	 */
 	function getMetadata() {
