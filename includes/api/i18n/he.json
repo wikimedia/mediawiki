@@ -20,6 +20,7 @@
 	"apihelp-help-description": "הצגת עזרה עבור היחידות שצוינו.",
 	"apihelp-help-param-toc": "לכלול תוכן עניינים בפלט HTML.",
 	"apihelp-query+categories-param-limit": "כמה קטגוריות להחזיר.",
+	"apihelp-query+imageinfo-paramvalue-prop-comment": "תגובה על הגרסה.",
 	"apihelp-query+prefixsearch-param-offset": "מספר תוצאות לדילוג.",
 	"apihelp-query+tokens-example-types": "אחזור אסימון של רשימת המעקב ואסימון של ניטור",
 	"apihelp-xml-param-xslt": "אם צוין, מוסיף &lt;xslt&gt; כגליון סגנונות. זה צריך להיות דף ויקי במרחב השם מדיה ויקי ששמו מסתיים ב\".xsl\".",

@@ -231,6 +231,7 @@
 	"pool-queuefull": "A cola está chea",
 	"pool-errorunknown": "Erro descoñecido",
 	"pool-servererror": "O servidor de contador de recursos comúns non está dispoñible ($1).",
+	"poolcounter-usage-error": "Erro de uso: $1",
 	"aboutsite": "Acerca de {{SITENAME}}",
 	"aboutpage": "Project:Acerca de",
 	"copyright": "Todo o contido está dispoñible baixo a licenza $1, agás que se indique o contrario.",

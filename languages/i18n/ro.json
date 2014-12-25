@@ -239,6 +239,7 @@
 	"pool-queuefull": "Coada de așteptare este plină",
 	"pool-errorunknown": "Eroare necunoscută",
 	"pool-servererror": "Serviciul de contorizare a rezervei nu este disponibil ($1).",
+	"poolcounter-usage-error": "Eroare de utilizare: $1",
 	"aboutsite": "Despre {{SITENAME}}",
 	"aboutpage": "Project:Despre",
 	"copyright": "Conținutul este disponibil sub $1, exceptând cazurile în care se specifică altfel.",

@@ -2689,6 +2689,7 @@
 	"logentry-rights-rights": "$1 $3 үшін топ мүшелігін $4 дегеннен $5 дегенге {{GENDER:$2|өзгерті}}",
 	"logentry-rights-rights-legacy": "$1 $3 үшін топ мүшелігін {{GENDER:$2|өзгерті}}",
 	"logentry-upload-upload": "$1 $3 файлын {{GENDER:$2|жүктеді}}",
+	"logentry-upload-overwrite": "$1 $3 дегеннің жаңа нұсқасын {{GENDER:$2|жүктеді}}",
 	"rightsnone": "(ешқандай)",
 	"revdelete-summary": "өңдеменің қысқаша мазмұндамасы",
 	"feedback-subject": "Тақырып:",

@@ -329,6 +329,7 @@
 	"pool-queuefull": "La file d'attente est pleine",
 	"pool-errorunknown": "Erreur inconnue",
 	"pool-servererror": "Le service de comptage de la réserve n’est pas disponible ($1).",
+	"poolcounter-usage-error": "Erreur d’utilisation : $1",
 	"aboutsite": "À propos de {{SITENAME}}",
 	"aboutpage": "Project:À propos",
 	"copyright": "Le contenu est disponible sous licence $1 sauf mention contraire.",
