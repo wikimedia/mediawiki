@@ -95,6 +95,14 @@ class MapCacheLRU {
 	}
 
 	/**
+	 * @return array
+	 * @since 1.25
+	 */
+	public function getAllKeys() {
+		return array_keys( $this->cache );
+	}
+
+	/**
 	 * Clear one or several cache entries, or all cache entries
 	 *
 	 * @param string|array $keys
