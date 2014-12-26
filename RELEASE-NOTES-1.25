@@ -80,6 +80,9 @@ production.
   they will add the proper credits to the skins or extensions section.
 * Update QUnit from v1.14.0 to v1.16.0.
 * Update Moment.js from v2.8.3 to v2.8.4.
+* Added MWTimestamp::getTimezoneString() which returns the localized timezone
+  string, if available. To localize this string, see the comments of
+  $wgLocaltimezone in includes/DefaultSettings.php.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
@@ -322,6 +325,8 @@ changes to languages because of Bugzilla reports.
     Instead, do this:
       $form = HTMLForm::factory( 'vform', … );
 * Deprecated Revision methods getRawUser(), getRawUserText() and getRawComment().
+* (T36948) The default file revert message's timestamp is now in $wgLocaltimezone,
+  instead of UTC.
 
 == Compatibility ==
 

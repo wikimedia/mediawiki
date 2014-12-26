@@ -1659,7 +1659,7 @@
 	"filerevert-legend": "{{Identical|Revert}}",
 	"filerevert-intro": "Message displayed when you try to revert a version of a file.\n* $1 is the name of the media\n* $2 is a date\n* $3 is a time\n* $4 is a URL and must follow square bracket: [$4\n{{Identical|Revert}}",
 	"filerevert-comment": "{{Identical|Reason}}",
-	"filerevert-defaultcomment": "Parameters:\n* $1 - a date\n* $2 - a time\n{{Identical|Revert}}",
+	"filerevert-defaultcomment": "Parameters:\n* $1 - a date\n* $2 - a time\n* $3 - a timezone\n{{Identical|Revert}}",
 	"filerevert-submit": "{{Identical|Revert}}",
 	"filerevert-success": "Message displayed when you succeed in reverting a version of a file.\n* $1 is the name of the media\n* $2 is a date\n* $3 is a time\n* $4 is an URL and must follow square bracket: [$4\n{{Identical|Revert}}",
 	"filerevert-badversion": "Used as error message.",

@@ -4812,16 +4812,7 @@ class Parser {
 		$ts = $this->mOptions->getTimestamp();
 		$timestamp = MWTimestamp::getLocalInstance( $ts );
 		$ts = $timestamp->format( 'YmdHis' );
-		$tzMsg = $timestamp->format( 'T' );  # might vary on DST changeover!
-
-		# Allow translation of timezones through wiki. format() can return
-		# whatever crap the system uses, localised or not, so we cannot
-		# ship premade translations.
-		$key = 'timezone-' . strtolower( trim( $tzMsg ) );
-		$msg = wfMessage( $key )->inContentLanguage();
-		if ( $msg->exists() ) {
-			$tzMsg = $msg->text();
-		}
+		$tzMsg = $timestamp->getTimezoneMessage()->inContentLanguage()->text();
 
 		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tzMsg)";
 

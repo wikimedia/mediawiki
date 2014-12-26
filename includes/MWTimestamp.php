@@ -390,6 +390,26 @@ class MWTimestamp {
 	}
 
 	/**
+	 * Get the localized timezone message, if available.
+	 *
+	 * Premade translations are not shipped as format() may return whatever the
+	 * system uses, localized or not, so translation must be done through wiki.
+	 *
+	 * @since 1.25
+	 * @return Message The localized timezone message
+	 */
+	public function getTimezoneMessage() {
+		$tzMsg = $this->format( 'T' );  // might vary on DST changeover!
+		$key = 'timezone-' . strtolower( trim( $tzMsg ) );
+		$msg = wfMessage( $key );
+		if ( $msg->exists() ) {
+			return $msg;
+		} else {
+			return new RawMessage( $tzMsg );
+		}
+	}
+
+	/**
 	 * Format the timestamp in a given format.
 	 *
 	 * @since 1.22

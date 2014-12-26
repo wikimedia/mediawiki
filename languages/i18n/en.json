@@ -1495,7 +1495,7 @@
 	"filerevert-legend": "Revert file",
 	"filerevert-intro": "You are about to revert the file <strong>[[Media:$1|$1]]</strong> to the [$4 version as of $3, $2].",
 	"filerevert-comment": "Reason:",
-	"filerevert-defaultcomment": "Reverted to version as of $2, $1",
+	"filerevert-defaultcomment": "Reverted to version as of $2, $1 ($3)",
 	"filerevert-submit": "Revert",
 	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> has been reverted to the [$4 version as of $3, $2].",
 	"filerevert-badversion": "There is no previous local version of this file with the provided timestamp.",
