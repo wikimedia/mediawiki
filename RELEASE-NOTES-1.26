@@ -70,6 +70,9 @@ production.
 * Caches that need purging ability now use the WANObjectCache interface.
   This corresponds to a new $wgMainWANCache setting, which defaults to using
   the $wgMainCacheType settings.
+* Added MWTimestamp::getTimezoneString() which returns the localized timezone
+  string, if available. To localize this string, see the comments of
+  $wgLocaltimezone in includes/DefaultSettings.php.
 * Callers needing fast light-weight data stores use $wgMainStash to select
   the store type from $wgObjectCaches. The default is the local database.
 * Interface message overrides in the MediaWiki namespace will now be cached in
@@ -198,6 +201,8 @@ changes to languages because of Phabricator reports.
 * Watchlist tokens, SpecialResetTokens, and User::getTokenFromOption()
   are deprecated. Applications using those can work via the OAuth
   extension instead. New tokens types should not be added.
+* (T36948) The default file revert message's timestamp is now in $wgLocaltimezone,
+  instead of UTC.
 * DatabaseBase::errorCount() was removed (unused).
 * $wgDeferredUpdateList was removed.
 * DeferredUpdates::addHTMLCacheUpdate() was removed.
