@@ -84,6 +84,7 @@ class RevertAction extends FormAction {
 		$userTime = $lang->userTime( $timestamp, $user );
 		$siteDate = $wgContLang->date( $timestamp, false, false );
 		$siteTime = $wgContLang->time( $timestamp, false, false );
+		$siteTimezone = $this->msg( 'timezone-' . strtolower( $wgLocaltimezone ) )->text();
 
 		return array(
 			'intro' => array(
@@ -100,8 +101,8 @@ class RevertAction extends FormAction {
 			'comment' => array(
 				'type' => 'text',
 				'label-message' => 'filerevert-comment',
-				'default' => $this->msg( 'filerevert-defaultcomment', $siteDate, $siteTime
-					)->inContentLanguage()->text()
+				'default' => $this->msg( 'filerevert-defaultcomment', $siteDate, $siteTime,
+					$siteTimezone )->inContentLanguage()->text()
 			)
 		);
 	}
