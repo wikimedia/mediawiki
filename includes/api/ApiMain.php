@@ -821,7 +821,7 @@ class ApiMain extends ApiBase {
 			}
 
 			if ( !$module->validateToken( $moduleParams['token'], $moduleParams ) ) {
-				$this->dieUsageMsg( 'sessionfailure' );
+				$this->dieUsageMsg( 'sessionfailure-api' );
 			}
 		}
 
