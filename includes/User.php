@@ -773,15 +773,24 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if this is a valid password for this user. Status will be good if
-	 * the password is valid, or have an array of error messages if not.
+	 * Check if this is a valid password for this user
+	 *
+	 * Create a Status object based on the password's validity.
+	 * The Status should be set to fatal if the user should not
+	 * be allowed to log in, and should have any errors that
+	 * would block changing the password.
+	 *
+	 * If the return value of this is not OK, the password
+	 * should not be checked. If the return value is not Good,
+	 * the password can be checked, but the user should not be
+	 * able to set their password to this.
 	 *
 	 * @param string $password Desired password
 	 * @return Status
 	 * @since 1.23
 	 */
 	public function checkPasswordValidity( $password ) {
-		global $wgMinimalPasswordLength, $wgContLang;
+		global $wgMinimalPasswordLength, $wgMaximalPasswordLength, $wgContLang;
 
 		static $blockedLogins = array(
 			'Useruser' => 'Passpass', 'Useruser1' => 'Passpass1', # r75589
@@ -800,6 +809,10 @@ class User implements IDBAccessObject {
 		if ( $result === false ) {
 			if ( strlen( $password ) < $wgMinimalPasswordLength ) {
 				$status->error( 'passwordtooshort', $wgMinimalPasswordLength );
+				return $status;
+			} elseif ( strlen( $password ) > $wgMaximalPasswordLength ) {
+				// T64685: Password too long, might cause DoS attack
+				$status->fatal( 'passwordtoolong', $wgMaximalPasswordLength );
 				return $status;
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
 				$status->error( 'password-name-match' );
@@ -2300,17 +2313,9 @@ class User implements IDBAccessObject {
 				throw new PasswordError( wfMessage( 'password-change-forbidden' )->text() );
 			}
 
-			if ( !$this->isValidPassword( $str ) ) {
-				global $wgMinimalPasswordLength;
-				$valid = $this->getPasswordValidity( $str );
-				if ( is_array( $valid ) ) {
-					$message = array_shift( $valid );
-					$params = $valid;
-				} else {
-					$message = $valid;
-					$params = array( $wgMinimalPasswordLength );
-				}
-				throw new PasswordError( wfMessage( $message, $params )->text() );
+			$status = $this->checkPasswordValidity( $str );
+			if ( !$status->isGood() ) {
+				throw new PasswordError( $status->getMessage()->text() );
 			}
 		}
 
@@ -3791,6 +3796,13 @@ class User implements IDBAccessObject {
 		$section = new ProfileSection( __METHOD__ );
 
 		$this->loadPasswords();
+
+		// Some passwords will give a fatal Status, which means there is
+		// some sort of technical or security reason for this password to
+		// be completely invalid and should never be checked (e.g., T64685)
+		if ( !$this->checkPasswordValidity( $password )->isOK() ) {
+			return false;
+		}
 
 		// Certain authentication plugins do NOT want to save
 		// domain passwords in a mysql database, so we should

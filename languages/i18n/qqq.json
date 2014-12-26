@@ -612,6 +612,7 @@
 	"wrongpassword": "Used as error message when the provided password is wrong.\nThis message is used in html.\n{{Identical|Please try again}}",
 	"wrongpasswordempty": "Error message displayed when entering a blank password.\n{{Identical|Please try again}}",
 	"passwordtooshort": "This message is shown in [[Special:Preferences]] and [[Special:CreateAccount]].\n\nParameters:\n* $1 - the minimum number of characters in the password",
+	"passwordtoolong": "This message is shown in [[Special:Preferences]], [[Special:CreateAccount]], and [[Special:Userlogin]].\n\nParameters:\n* $1 - the maximum number of characters in the password",
 	"password-name-match": "Used as error message when password validity check failed.",
 	"password-login-forbidden": "Error message shown when the user has tried to log in using one of the special username/password combinations used for MediaWiki testing. (See [[mwr:75589]], [[mwr:75605]].)",
 	"mailmypassword": "Used as label for Submit button in [[Special:PasswordReset]].\n{{Identical|Reset password}}",

@@ -538,14 +538,11 @@ class LoginForm extends SpecialPage {
 				return Status::newFatal( 'badretype' );
 			}
 
-			# check for minimal password length
-			$valid = $u->getPasswordValidity( $this->mPassword );
-			if ( $valid !== true ) {
-				if ( !is_array( $valid ) ) {
-					$valid = array( $valid, $wgMinimalPasswordLength );
-				}
-
-				return call_user_func_array( 'Status::newFatal', $valid );
+			# check for password validity, return a fatal Status if invalid
+			$validity = $u->checkPasswordValidity( $this->mPassword );
+			if ( !$validity->isGood() ) {
+				$validity->ok = false; // make sure this Status is fatal
+				return $validity;
 			}
 		}
 

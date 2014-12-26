@@ -4146,6 +4146,18 @@ $wgPasswordSalt = true;
 $wgMinimalPasswordLength = 1;
 
 /**
+ * Specifies the maximal length of a user password (T64685).
+ *
+ * It is not recommended to make this greater than the default, as it can
+ * allow DoS attacks by users setting really long passwords. In addition,
+ * this should not be lowered too much, as it enforces weak passwords.
+ *
+ * @warning Unlike other password settings, user with passwords greater than
+ *      the maximum will not be able to log in.
+ */
+$wgMaximalPasswordLength = 4096;
+
+/**
  * Specifies if users should be sent to a password-reset form on login, if their
  * password doesn't meet the requirements of User::isValidPassword().
  * @since 1.23

@@ -305,7 +305,10 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::isValidPassword()
 	 */
 	public function testCheckPasswordValidity() {
-		$this->setMwGlobals( 'wgMinimalPasswordLength', 6 );
+		$this->setMwGlobals( array(
+			'wgMinimalPasswordLength' => 6,
+			'wgMaximalPasswordLength' => 30,
+		) );
 		$user = User::newFromName( 'Useruser' );
 		// Sanity
 		$this->assertTrue( $user->isValidPassword( 'Password1234' ) );
@@ -313,10 +316,19 @@ class UserTest extends MediaWikiTestCase {
 		// Minimum length
 		$this->assertFalse( $user->isValidPassword( 'a' ) );
 		$this->assertFalse( $user->checkPasswordValidity( 'a' )->isGood() );
+		$this->assertTrue( $user->checkPasswordValidity( 'a' )->isOK() );
 		$this->assertEquals( 'passwordtooshort', $user->getPasswordValidity( 'a' ) );
+
+		// Maximum length
+		$longPass = str_repeat( 'a', 31 );
+		$this->assertFalse( $user->isValidPassword( $longPass ) );
+		$this->assertFalse( $user->checkPasswordValidity( $longPass )->isGood() );
+		$this->assertFalse( $user->checkPasswordValidity( $longPass )->isOK() );
+		$this->assertEquals( 'passwordtoolong', $user->getPasswordValidity( $longPass ) );
 
 		// Matches username
 		$this->assertFalse( $user->checkPasswordValidity( 'Useruser' )->isGood() );
+		$this->assertTrue( $user->checkPasswordValidity( 'Useruser' )->isOK() );
 		$this->assertEquals( 'password-name-match', $user->getPasswordValidity( 'Useruser' ) );
 
 		// On the forbidden list
