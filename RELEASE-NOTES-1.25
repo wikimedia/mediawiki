@@ -71,6 +71,9 @@ production.
   should implement supporting behavior. Not doing so can result in undefined
   behavior from API clients trying to continue through prefix results.
 * Update jQuery from v1.11.1 to v1.11.2.
+* Added MWTimestamp::getTimezoneString() which returns the localized timezone
+  string, if available. To localize this string, see the comments of
+  $wgLocaltimezone in includes/DefaultSettings.php.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
@@ -283,6 +286,8 @@ changes to languages because of Bugzilla reports.
   characters on both sides.
 * (T30950, T31025) RFC, PMID, and ISBN "magic links" can no longer contain
   newlines; but they can contain &nbsp; and other non-newline whitespace.
+* (T36948) The default file revert message's timestamp is now in $wgLocaltimezone,
+  instead of UTC.
 
 == Compatibility ==
 
