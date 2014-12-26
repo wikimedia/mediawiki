@@ -42,7 +42,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
 
-	private $protections, $watched, $watchers, $notificationtimestamps,
+	private $protections, $applicableProtections, $watched, $watchers, $notificationtimestamps,
 		$talkids, $subjectids, $displaytitles;
 	private $showZeroWatchers = false;
 
@@ -419,6 +419,13 @@ class ApiQueryInfo extends ApiQueryBase {
 					$this->protections[$ns][$dbkey];
 			}
 			$this->getResult()->setIndexedTagName( $pageInfo['protection'], 'pr' );
+
+			$pageInfo['applicable-protection'] = array();
+			if ( isset( $this->applicableProtections[$ns][$dbkey] ) ) {
+				$pageInfo['applicable-protection'] =
+					$this->applicableProtections[$ns][$dbkey];
+			}
+			$this->getResult()->setIndexedTagName( $pageInfo['applicable-protection'], 'pr' );
 		}
 
 		if ( $this->fld_watched && isset( $this->watched[$ns][$dbkey] ) ) {
@@ -576,6 +583,9 @@ class ApiQueryInfo extends ApiQueryBase {
 			} else {
 				$others[] = $title;
 			}
+			// Applicable protections
+			$this->applicableProtections[$title->getNamespace()][$title->getDBkey()] =
+				array_values( $title->getRestrictionTypes() );
 		}
 
 		if ( count( $others ) ) {
