@@ -42,7 +42,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
 
-	private $protections, $watched, $watchers, $notificationtimestamps,
+	private $protections, $restrictionTypes, $watched, $watchers, $notificationtimestamps,
 		$talkids, $subjectids, $displaytitles;
 	private $showZeroWatchers = false;
 
@@ -419,6 +419,13 @@ class ApiQueryInfo extends ApiQueryBase {
 					$this->protections[$ns][$dbkey];
 			}
 			$this->getResult()->setIndexedTagName( $pageInfo['protection'], 'pr' );
+
+			$pageInfo['restrictiontypes'] = array();
+			if ( isset( $this->restrictionTypes[$ns][$dbkey] ) ) {
+				$pageInfo['restrictiontypes'] =
+					$this->restrictionTypes[$ns][$dbkey];
+			}
+			$this->getResult()->setIndexedTagName( $pageInfo['restrictiontypes'], 'rt' );
 		}
 
 		if ( $this->fld_watched && isset( $this->watched[$ns][$dbkey] ) ) {
@@ -568,7 +575,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		// Cascading protections
+		// Separate good and missing titles into files and other pages
+		// and populate $this->restrictionTypes
 		$images = $others = array();
 		foreach ( $this->everything as $title ) {
 			if ( $title->getNamespace() == NS_FILE ) {
@@ -576,6 +584,9 @@ class ApiQueryInfo extends ApiQueryBase {
 			} else {
 				$others[] = $title;
 			}
+			// Applicable protection types
+			$this->restrictionTypes[$title->getNamespace()][$title->getDBkey()] =
+				array_values( $title->getRestrictionTypes() );
 		}
 
 		if ( count( $others ) ) {
