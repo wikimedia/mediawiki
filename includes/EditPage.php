@@ -1666,15 +1666,27 @@ class EditPage {
 			return $status;
 		}
 
+		if ( wfReadOnly() ) {
+			$status->fatal( 'readonlytext' );
+			$status->value = self::AS_READ_ONLY_PAGE;
+			wfProfileOut( __METHOD__ . '-checks' );
+			wfProfileOut( __METHOD__ );
+			return $status;
+		}
+
 		if ( !$wgUser->isAllowed( 'edit' ) ) {
+			if ( User::isEveryoneAllowed( 'edit' ) ) {
+				// Potentially T85342
+				wfWarn( '$wgUser is not allowed to edit, although everyone is.' );
+			}
+
 			if ( $wgUser->isAnon() ) {
 				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 				wfProfileOut( __METHOD__ . '-checks' );
 				wfProfileOut( __METHOD__ );
 				return $status;
 			} else {
-				$status->fatal( 'readonlytext' );
-				$status->value = self::AS_READ_ONLY_PAGE_LOGGED;
+				$status->setResult( false, self::AS_READ_ONLY_PAGE_LOGGED );
 				wfProfileOut( __METHOD__ . '-checks' );
 				wfProfileOut( __METHOD__ );
 				return $status;
@@ -1690,13 +1702,6 @@ class EditPage {
 			return $status;
 		}
 
-		if ( wfReadOnly() ) {
-			$status->fatal( 'readonlytext' );
-			$status->value = self::AS_READ_ONLY_PAGE;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
-			return $status;
-		}
 		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
 			$status->fatal( 'actionthrottledtext' );
 			$status->value = self::AS_RATE_LIMITED;
