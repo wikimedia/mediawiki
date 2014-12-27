@@ -710,11 +710,13 @@ class ApiMain extends ApiBase {
 
 			$errMessage = array(
 				'code' => 'internal_api_error_' . get_class( $e ),
-				'info' => $info,
+				'info' => '[' . MWExceptionHandler::getLogId( $e ) . '] ' . $info,
 			);
 			ApiResult::setContent(
 				$errMessage,
-				$config->get( 'ShowExceptionDetails' ) ? "\n\n{$e->getTraceAsString()}\n\n" : ''
+				$config->get( 'ShowExceptionDetails' )
+					? "\n\n" . MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n\n"
+					: ''
 			);
 		}
 
