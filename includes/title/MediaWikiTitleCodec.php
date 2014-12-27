@@ -323,7 +323,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		}
 
 		# Reject illegal characters.
-		$rxTc = Title::getTitleInvalidRegex();
+		$rxTc = self::getTitleInvalidRegex();
 		if ( preg_match( $rxTc, $dbkey ) ) {
 			throw new MalformedTitleException( 'Illegal characters found in title: ' . $text );
 		}
@@ -397,5 +397,34 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		$parts['dbkey'] = $dbkey;
 
 		return $parts;
+	}
+
+	/**
+	 * Returns a simple regex that will match on characters and sequences invalid in titles.
+	 * Note that this doesn't pick up many things that could be wrong with titles, but that
+	 * replacing this regex with something valid will make many titles valid.
+	 * Previously Title::getTitleInvalidRegex()
+	 *
+	 * @return string Regex string
+	 * @since 1.25
+	 */
+	public static function getTitleInvalidRegex() {
+		static $rxTc = false;
+		if ( !$rxTc ) {
+			# Matching titles will be held as illegal.
+			$rxTc = '/' .
+				# Any character not allowed is forbidden...
+				'[^' . Title::legalChars() . ']' .
+				# URL percent encoding sequences interfere with the ability
+				# to round-trip titles -- you can't link to them consistently.
+				'|%[0-9A-Fa-f]{2}' .
+				# XML/HTML character references produce similar issues.
+				'|&[A-Za-z0-9\x80-\xff]+;' .
+				'|&#[0-9]+;' .
+				'|&#x[0-9A-Fa-f]+;' .
+				'/S';
+		}
+
+		return $rxTc;
 	}
 }

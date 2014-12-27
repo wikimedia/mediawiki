@@ -318,7 +318,7 @@ class Language {
 		// see bugs 37564, 37587, 36938
 		$cache[$code] =
 			strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code )
-			&& !preg_match( Title::getTitleInvalidRegex(), $code );
+			&& !preg_match( MediaWikiTitleCodec::getTitleInvalidRegex(), $code );
 
 		return $cache[$code];
 	}
