@@ -119,7 +119,7 @@
 
 	rSplit = /^(.+?)_*:_*(.*)$/,
 
-	// See Title.php#getTitleInvalidRegex
+	// See MediaWikiTitleCodec.php#getTitleInvalidRegex
 	rInvalid = new RegExp(
 		'[^' + mw.config.get( 'wgLegalTitleChars' ) + ']' +
 		// URL percent encoding sequences interfere with the ability
