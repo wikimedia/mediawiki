@@ -13,6 +13,9 @@
 
 		e.preventDefault();
 
+		// Deprecated: Use mw.hook instead
+		$( mw ).trigger( 'LivePreviewPrepare' );
+
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
 		$wikiDiff = $( '#wikiDiff' );
