@@ -2891,7 +2891,6 @@
 	"hebrew-calendar-m11-gen": "Ab",
 	"hebrew-calendar-m12-gen": "Elúl",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskusjon]])",
-	"unknown_extension_tag": "Ukjent tilleggsmerking «$1»",
 	"duplicate-defaultsort": "Advarsel: Standardsorteringen «$2» tar over for den tidligere sorteringen «$1».",
 	"duplicate-displaytitle": "<strong>Advarsel:</strong> Visningstittel \"$2\" erstatter tidligere visningstittel \"$1\".",
 	"invalid-indicator-name": "<p>Feil:</strong> Sidestatus-indikatornes <code>navn</code>-attributt kan ikke være tomt.",

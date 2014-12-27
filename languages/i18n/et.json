@@ -238,6 +238,7 @@
 	"pool-queuefull": "Protsessikogumi järjekord on täis.",
 	"pool-errorunknown": "Teadmata tõrge",
 	"pool-servererror": "Protsessikogumi loendurteenus pole saadaval ($1).",
+	"poolcounter-usage-error": "Kasutustõrge: $1",
 	"aboutsite": "{{GRAMMAR:genitive|{{SITENAME}}}} tiitelandmed",
 	"aboutpage": "Project:Tiitelandmed",
 	"copyright": "Sisu on kasutatav litsentsi $1 tingimustel, kui pole öeldud teisiti.",

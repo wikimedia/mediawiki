@@ -1805,6 +1805,7 @@
 	"protect-othertime": "Друго време:",
 	"protect-othertime-op": "друго време",
 	"protect-existing-expiry": "Постојеће време истека: $2 у $3",
+	"protect-existing-expiry-infinity": "Постојеће време истека: трајно",
 	"protect-otherreason": "Други/додатни разлог:",
 	"protect-otherreason-op": "Други разлог",
 	"protect-dropdown": "* Најчешћи разлози заштићивања\n** Прекомерни вандализам\n** Непожељне поруке\n** Непродуктивни рат измена\n** Страница великог промета",

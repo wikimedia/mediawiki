@@ -53,6 +53,7 @@
 	"apihelp-query+deletedrevisions-param-excludeuser": "Versioune vun dësem Benotzer net opzielen.",
 	"apihelp-query+deletedrevs-param-unique": "Nëmmen eng Versioun fir all Säit weisen.",
 	"apihelp-query+filearchive-example-simple": "Eng Lëscht vun alle geläschte Fichiere weisen",
+	"apihelp-query+imageinfo-paramvalue-prop-user": "Setzt fir all Versioun vum Fichier de Benotzer dobäi deen en eropgelueden huet.",
 	"apihelp-query+imageinfo-paramvalue-prop-comment": "Bemierkung iwwert d'Versioun.",
 	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "Alias fir Gréisst.",
 	"apihelp-query+imageinfo-param-urlheight": "Ähnlech wéi $1urlwidth.",

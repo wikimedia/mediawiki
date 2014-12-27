@@ -2557,7 +2557,6 @@
 	"watchlisttools-edit": "Shih dhe redakto listën mbikqyrëse.",
 	"watchlisttools-raw": "Redaktoje drejtpërdrejt listën",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskutimet]])",
-	"unknown_extension_tag": "Etiketë shtesë e panjohur \"$1\"",
 	"duplicate-defaultsort": "'''Kujdes:''' Renditja kryesore e çelësit \"$2\" refuzon renditjen e mëparshme kryesore të çelësit \"$1\".",
 	"version": "Versioni",
 	"version-extensions": "Zgjerime të instaluara",

@@ -2809,7 +2809,6 @@
 	"watchlisttools-raw": "კონტროლის სიის რედაქტირება ტექსტის ფორმატში",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|განხილვა]])",
 	"timezone-utc": "UTC",
-	"unknown_extension_tag": "უცნობი დამატების «$1» თეგი",
 	"duplicate-defaultsort": "'''ყურადღება.'''სორტირების გასაღებს «$2»-ს გააჭრის წინა გასაღებს «$1»-ს.",
 	"version": "ვერსია",
 	"version-extensions": "დაყენებული გაფართოებები",

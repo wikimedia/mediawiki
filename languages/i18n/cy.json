@@ -2750,7 +2750,6 @@
 	"watchlisttools-edit": "Gweld a golygu'r rhestr wylio",
 	"watchlisttools-raw": "Golygu'r rhestr wylio syml",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|sgwrs]])",
-	"unknown_extension_tag": "Tag estyniad anhysbys \"$1\"",
 	"duplicate-defaultsort": "Rhybudd: Mae'r allwedd trefnu diofyn \"$2\" yn gwrthwneud yr allwedd trefnu diofyn blaenorol \"$1\".",
 	"version": "Fersiwn",
 	"version-extensions": "Estyniadau gosodedig",

@@ -230,6 +230,7 @@
 	"pool-queuefull": "La coa ëd travaj a l'é pien-a",
 	"pool-errorunknown": "Eror pa conossù",
 	"pool-servererror": "Ël servissi ëd conteur dl'arzerva a l'é nen disponìbil ($1).",
+	"poolcounter-usage-error": "Eror d'utilisassion: $1",
 	"aboutsite": "A propòsit ëd {{SITENAME}}",
 	"aboutpage": "Project:A propòsit",
 	"copyright": "Ël contnù a resta disponìbil sota $1 gavà ch'a sia marcà an n'àutra manera.",

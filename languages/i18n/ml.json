@@ -243,6 +243,7 @@
 	"pool-queuefull": "പൂൾ ക്യൂ നിറഞ്ഞിരിക്കുന്നു",
 	"pool-errorunknown": "അപരിചിതമായ പിഴവ്",
 	"pool-servererror": "പൂൾ കൗണ്ടർ സേവനം ലഭ്യമല്ല ($1).",
+	"poolcounter-usage-error": "ഉപയോഗ പിഴവ്:  $1",
 	"aboutsite": "{{SITENAME}} സം‌രംഭത്തെക്കുറിച്ച്",
 	"aboutpage": "Project:വിവരണം",
 	"copyright": "പ്രത്യേകം പറയാത്ത പക്ഷം ഉള്ളടക്കം $1 പ്രകാരം ലഭ്യം.",

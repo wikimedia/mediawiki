@@ -226,6 +226,7 @@
 	"pool-queuefull": "A córa 'e fatiche è chiena",
 	"pool-errorunknown": "Errore scanusciuto",
 	"pool-servererror": "'O servizio contatore d''e fatiche nun è a disposizióne ($1).",
+	"poolcounter-usage-error": "Errore d'uso: $1",
 	"aboutsite": "'Nfrummazione ncòpp'a {{SITENAME}}",
 	"aboutpage": "Project:'Nfrummazione",
 	"copyright": "Cuntenute suggiette a licienza 'e auso $1 se nun fuje ritto atro.",

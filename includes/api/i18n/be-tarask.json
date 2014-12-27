@@ -34,5 +34,7 @@
 	"apihelp-clearhasmsg-example-1": "Ачыстка сьцягу hasmsg для актуальнага карыстальніка",
 	"apihelp-compare-description": "Атрымаць розьніцу паміж 2 старонкамі.\n\nВы мусіце перадаць нумар вэрсіі, назву або ID старонкі для абодвух «from» і «to».",
 	"apihelp-compare-param-fromtitle": "Першая назва для параўнаньня.",
-	"apihelp-compare-param-fromid": "ID першай старонкі для параўнаньня."
+	"apihelp-compare-param-fromid": "ID першай старонкі для параўнаньня.",
+	"apihelp-compare-param-fromrev": "Першая вэрсія для параўнаньня.",
+	"apihelp-compare-param-totitle": "Другая назва для параўнаньня."
 }

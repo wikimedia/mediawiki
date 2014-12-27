@@ -2680,7 +2680,6 @@
 	"watchlisttools-edit": "Skoða og breyta vaktlistanum",
 	"watchlisttools-raw": "Breyta opnum vaktlistanum",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|spjall]])",
-	"unknown_extension_tag": "Óþekkt tákn \"$1\"",
 	"duplicate-defaultsort": "'''Viðvörun:''' Sjálfgildur flýtihnappur \"$2\" tekur yfir fyrri flýtihnapp \"$1\".",
 	"version": "Útgáfa",
 	"version-extensions": "Uppsettar viðbætur",

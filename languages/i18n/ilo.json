@@ -2815,7 +2815,6 @@
 	"watchlisttools-edit": "Kitaen ken urnosen ti listaan ti bambantayan",
 	"watchlisttools-raw": "Urnosen ti naata a listaan ti bambantayan",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|tungtungan]])",
-	"unknown_extension_tag": "Di ammo a pagpaatiddog nga etiketa ti \"$1\"",
 	"duplicate-defaultsort": "<strong>Ballag:</strong> Kasisigud a panagilasin ti \"$2\" ket tuonana ti immuna a kasisigud a panagilasin ti \"$1\".",
 	"duplicate-displaytitle": "<strong>Ballaag:</strong> Ti maiparang a titulo ti \"$2\" ket tuonanna ti immmuna a maiparang a titulo ti \"$1\".",
 	"invalid-indicator-name": "<strong>Biddut:</strong> Ti gupit ti <code>name</code> a panangipakita ti kasasaad ti panid ket nasken nga adda linaon.",

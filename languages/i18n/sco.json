@@ -2832,7 +2832,6 @@
 	"watchlisttools-edit": "See n eedit watchleet",
 	"watchlisttools-raw": "Eedit raw watchleet",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|tauk]])",
-	"unknown_extension_tag": "Onkent extension tag \"$1\"",
 	"duplicate-defaultsort": "<strong>Warnishment:</strong> Defaut sort key \"$2\" owerrides earlier defaut sort key \"$1\".",
 	"duplicate-displaytitle": "<strong>Warnishment:</strong> Displey title \"$2\" owerrides the earlier displey title \"$1\".",
 	"invalid-indicator-name": "<strong>Mistak:</strong> Page status indicaters' <code>name</code> attreebute maunna be tuim.",

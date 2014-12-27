@@ -2909,7 +2909,6 @@
 	"watchlisttools-raw": "Deasaich còd a' chlàir-fhaire",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|an deasbaireachd]])",
 	"timezone-utc": "UTC",
-	"unknown_extension_tag": "Taga leudachain \"$1\" neo-aithnichte",
 	"duplicate-defaultsort": "<strong>Rabhadh:</strong> Tha an iuchair seòrsachaidh bhunaiteach \"$2\" a' dol thairis air seann iuchair eile, \"$1\".",
 	"duplicate-displaytitle": "<strong>Rabhadh:</strong> Tha an tiotal taisbeanaidh \"$2\" a' dol thairis air seann tiotal taisbeanaidh eile, \"$1\".",
 	"version": "Tionndadh",

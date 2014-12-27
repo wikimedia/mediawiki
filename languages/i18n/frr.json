@@ -2827,7 +2827,6 @@
 	"watchlisttools-edit": "Normool bewerke",
 	"watchlisttools-raw": "Uun't listenformoot bewerke",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|Diskuschuun]])",
-	"unknown_extension_tag": "Ünbekäänd ''tag'' „$1“",
 	"duplicate-defaultsort": "'''Paase üüb:''' Di sortiarkai \"$2\" auerskraft di ual sortiarkai \"$1\"",
 	"duplicate-displaytitle": "<strong>Paase üüb:</strong> Di uunwiset tiitel \"$2\" auerskraft di ual tiitel \"$1\".",
 	"invalid-indicator-name": "<strong>Feeler:</strong> Det atribut <code>name</code> faan di sidjenstaatusindikaator mut ei leesag wees.",

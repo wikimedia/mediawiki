@@ -2344,7 +2344,6 @@
 	"watchlisttools-view": "睇吓有關嘅更改",
 	"watchlisttools-edit": "睇吓同埋編輯監視清單",
 	"watchlisttools-raw": "編輯原始監視清單",
-	"unknown_extension_tag": "未知嘅擴展標籤 \"$1\"",
 	"duplicate-defaultsort": "警告: 預設嘅排序鍵 \"$2\" 覆蓋之前嘅預設排序鍵 \"$1\"。",
 	"version": "版本",
 	"version-extensions": "裝咗嘅擴展",

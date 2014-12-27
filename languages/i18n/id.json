@@ -2956,7 +2956,6 @@
 	"hebrew-calendar-m12-gen": "Elul",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|bicara]])",
 	"timezone-utc": "UTC",
-	"unknown_extension_tag": "Tag ekstensi tidak dikenal \"$1\"",
 	"duplicate-defaultsort": "Peringatan: Kunci pengurutan baku \"$2\" mengabaikan kunci pengurutan baku \"$1\" sebelumnya.",
 	"duplicate-displaytitle": "<strong>Peringatan:</strong> Menampilkan judul \"$2\" menimpa judul tampilan \"$1\" sebelumnya.",
 	"version": "Versi",

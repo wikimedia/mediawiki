@@ -67,6 +67,7 @@
 	"config-memory-bad": "<strong>Attenziò:</strong> 'o valore 'e PHP <code>memory_limit</code> è $1.\nProbabbilmente troppo basso.\n'A installazione se putesse scassà!",
 	"config-ctype": "'''Errore''': 'o PHP s'adda ghienchere c' 'o supporto pe' l'[http://www.php.net/manual/it/ctype.installation.php estensione Ctype].",
 	"config-iconv": "<strong>Fatale:</strong> PHP s'adda ghienchere c' 'o supporto pe' l'[http://www.php.net/manual/en/iconv.installation.php estensione iconv].",
+	"config-json": "'''Errore:''' PHP è stato compilato senza 'o supporto pe' JSON. E' necessario installà l'estensione PHP pe' JSON o l'estensione [http://pecl.php.net/package/jsonc PECL jsonc] apprimm' 'e installà MediaWiki.\n* L'estensione PHP sta dint'a Red Hat Enterprise Linux (CentOS) 5 e 6, ma s'avess'abbià 'n <code>/etc/php.ini</code> o <code>/etc/php.d/json.ini</code>.\n* Cocche distribuzione 'e Linux pubblicata aropp'a majo 'e 2013 lèvano l'estensione PHP, e a pizzo sujo aúsano l'estensione PECL comme <code>php5-json</code> o <code>php-pecl-jsonc</code>",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] è installato",
 	"config-apc": "[http://www.php.net/apc APC] è installato",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] è installato",

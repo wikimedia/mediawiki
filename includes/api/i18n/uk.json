@@ -1,9 +1,26 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ата"
+			"Ата",
+			"A1"
 		]
 	},
 	"apihelp-main-param-action": "Яку дію виконати.",
-	"apihelp-main-param-format": "Формат виводу."
+	"apihelp-main-param-format": "Формат виводу.",
+	"apihelp-createaccount-param-name": "Ім'я користувача.",
+	"apihelp-createaccount-param-password": "Пароль (ігнорується, якщо встановлено $1mailpassword).",
+	"apihelp-createaccount-param-domain": "Домен для зовнішньої аутентифікації (опціонально).",
+	"apihelp-edit-example-edit": "Редагувати сторінку",
+	"apihelp-edit-example-prepend": "Додати зміст на початок сторінки",
+	"apihelp-edit-example-undo": "Скасувати версії з 13579 по 13585 з автоматичним описом змін",
+	"apihelp-emailuser-description": "Надіслати електронного листа користувачеві",
+	"apihelp-emailuser-param-target": "Користувач, якому відправляється електронний лист.",
+	"apihelp-emailuser-param-subject": "Заголовок теми.",
+	"apihelp-emailuser-param-text": "Тіло листа.",
+	"apihelp-emailuser-param-ccme": "Надіслати копію цього повідомлення мені.",
+	"apihelp-emailuser-example-email": "Відправити листа користувачу \"WikiSysop\" з текстом \"Вміст\"",
+	"apihelp-expandtemplates-description": "Розгортає усі шаблони у вікітекст.",
+	"apihelp-expandtemplates-param-title": "Заголовок сторінки.",
+	"apihelp-expandtemplates-param-text": "Вікітекст для перетворення.",
+	"apihelp-move-param-ignorewarnings": "Ігнорувати всі попередження"
 }

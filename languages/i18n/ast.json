@@ -2835,7 +2835,6 @@
 	"watchlisttools-edit": "Ver y editar la llista de siguimientu",
 	"watchlisttools-raw": "Editar la llista de siguimientu (ensin formatu)",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|alderique]])",
-	"unknown_extension_tag": "Etiqueta d'estensión \"$1\" desconocida",
 	"duplicate-defaultsort": "Avisu: La clave d'ordenación predeterminada \"$2\" anula la clave d'ordenación anterior \"$1\".",
 	"duplicate-displaytitle": "<strong>Avisu:</strong> El títulu a amosar \"$2\" anula el títulu anterior \"$1\".",
 	"version": "Versión",

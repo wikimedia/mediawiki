@@ -3012,7 +3012,6 @@
 	"hebrew-calendar-m12-gen": "Elul",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|deede]])",
 	"timezone-utc": "UTC",
-	"unknown_extension_tag": "Dobuyan kanji šibayante \"$1\"",
 	"duplicate-defaultsort": "<strong>Yaamar:</strong> Tilasu fayyan kufal \"$2\" ga tilasu fayyan kufal bisante \"$1\" daaru.",
 	"duplicate-displaytitle": "<strong>Yaamar:</strong> Cebeyan maa \"$2\" ga cebeyan maa bisante \"$1\" daaru.",
 	"invalid-indicator-name": "<strong>Error:</strong> Moo assariya šilbaykey <code>name</code> alhaaloo ši hima ka koonu.",
