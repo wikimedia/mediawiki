@@ -614,11 +614,12 @@ class Title {
 	 * Note that this doesn't pick up many things that could be wrong with titles, but that
 	 * replacing this regex with something valid will make many titles valid.
 	 *
-	 * @todo move this into MediaWikiTitleCodec
+	 * @deprecated since 1.24.1, use MediaWikiTitleCodec::getTitleInvalidRegex() instead
 	 *
 	 * @return string Regex string
 	 */
 	static function getTitleInvalidRegex() {
+		wfDeprecated(__METHOD__, '1.24.1');
 		static $rxTc = false;
 		if ( !$rxTc ) {
 			# Matching titles will be held as illegal.
