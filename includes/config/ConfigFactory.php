@@ -99,7 +99,7 @@ class ConfigFactory {
 			if ( !isset( $this->factoryFunctions[$name] ) ) {
 				throw new ConfigException( "No registered builder available for $name." );
 			}
-			$conf = call_user_func( $this->factoryFunctions[$name], $this );
+			$conf = call_user_func( $this->factoryFunctions[$name], $this, $name );
 			if ( $conf instanceof Config ) {
 				$this->configs[$name] = $conf;
 			} else {

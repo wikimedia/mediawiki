@@ -35,6 +35,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $fname = 'Setup.php';
 $ps_setup = Profiler::instance()->scopedProfileIn( $fname );
 
+// Initialize configuration
+call_user_func( function() use ( $wgConfigRegistry ) {
+	$factory = ConfigFactory::getDefaultInstance();
+	foreach ( $wgConfigRegistry as $name => $callback ) {
+		$factory->register( $name, $callback );
+	}
+} );
+
 // If any extensions are still queued, force load them
 ExtensionRegistry::getInstance()->loadFromQueue();
 
