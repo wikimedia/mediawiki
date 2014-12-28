@@ -13236,6 +13236,31 @@ Some text
 
 !! end
 
+!! test
+TOC anchors don't collide
+!! wikitext
+__FORCETOC__
+== Headline 2 ==
+== Headline ==
+== Headline 2 ==
+== Headline ==
+!! html
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Headline_2"><span class="tocnumber">1</span> <span class="toctext">Headline 2</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Headline"><span class="tocnumber">2</span> <span class="toctext">Headline</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Headline_2_2"><span class="tocnumber">3</span> <span class="toctext">Headline 2</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Headline_3"><span class="tocnumber">4</span> <span class="toctext">Headline</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Headline_2">Headline 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Headline 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Headline">Headline</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Headline">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Headline_2_2">Headline 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Headline 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Headline_3">Headline</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Headline">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+
+!! end
+
 # perl -e 'print "="x$_," Level $_ heading","="x$_,"\n" for 1..10'
 !! test
 Handling of sections up to level 6 and beyond

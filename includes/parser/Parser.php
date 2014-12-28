@@ -4589,16 +4589,22 @@ class Parser {
 				$legacyArrayKey = strtolower( $legacyHeadline );
 			}
 
-			# count how many in assoc. array so we can track dupes in anchors
+			# Create the anchor for linking from the TOC to the section
+			$anchor = $safeHeadline;
+			$legacyAnchor = $legacyHeadline;
 			if ( isset( $refers[$arrayKey] ) ) {
-				$refers[$arrayKey]++;
+				for ( $i = 2; isset( $refers["${arrayKey}_$i"] ); ++$i );
+				$anchor .= "_$i";
+				$refers["${arrayKey}_$i"] = true;
 			} else {
-				$refers[$arrayKey] = 1;
+				$refers[$arrayKey] = true;
 			}
-			if ( isset( $refers[$legacyArrayKey] ) ) {
-				$refers[$legacyArrayKey]++;
+			if ( $legacyHeadline !== false && isset( $refers[$legacyArrayKey] ) ) {
+				for ( $i = 2; isset( $refers["${legacyArrayKey}_$i"] ); ++$i );
+				$legacyAnchor .= "_$i";
+				$refers["${legacyArrayKey}_$i"] = true;
 			} else {
-				$refers[$legacyArrayKey] = 1;
+				$refers[$legacyArrayKey] = true;
 			}
 
 			# Don't number the heading if it is the only one (looks silly)
@@ -4611,15 +4617,6 @@ class Parser {
 				) . ' ' . $headline;
 			}
 
-			# Create the anchor for linking from the TOC to the section
-			$anchor = $safeHeadline;
-			$legacyAnchor = $legacyHeadline;
-			if ( $refers[$arrayKey] > 1 ) {
-				$anchor .= '_' . $refers[$arrayKey];
-			}
-			if ( $legacyHeadline !== false && $refers[$legacyArrayKey] > 1 ) {
-				$legacyAnchor .= '_' . $refers[$legacyArrayKey];
-			}
 			if ( $enoughToc && ( !isset( $wgMaxTocLevel ) || $toclevel < $wgMaxTocLevel ) ) {
 				$toc .= Linker::tocLine( $anchor, $tocline,
 					$numbering, $toclevel, ( $isTemplate ? false : $sectionIndex ) );
