@@ -1268,24 +1268,6 @@ class Sanitizer {
 	}
 
 	/**
-	 * Normalize whitespace and character references in an XML source-
-	 * encoded text for an attribute value.
-	 *
-	 * See http://www.w3.org/TR/REC-xml/#AVNormalize for background,
-	 * but note that we're not returning the value, but are returning
-	 * XML source fragments that will be slapped into output.
-	 *
-	 * @param string $text
-	 * @return string
-	 * @todo Remove, unused?
-	 */
-	private static function normalizeAttributeValue( $text ) {
-		return str_replace( '"', '&quot;',
-			self::normalizeWhitespace(
-				Sanitizer::normalizeCharReferences( $text ) ) );
-	}
-
-	/**
 	 * @param string $text
 	 * @return string
 	 */
