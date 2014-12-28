@@ -1275,11 +1275,13 @@ class Sanitizer {
 	 * but note that we're not returning the value, but are returning
 	 * XML source fragments that will be slapped into output.
 	 *
+	 * @deprecated since 1.25, unused
+	 *
 	 * @param string $text
 	 * @return string
-	 * @todo Remove, unused?
 	 */
 	private static function normalizeAttributeValue( $text ) {
+		wfDeprecated( __METHOD__, '1.25' );
 		return str_replace( '"', '&quot;',
 			self::normalizeWhitespace(
 				Sanitizer::normalizeCharReferences( $text ) ) );
