@@ -168,7 +168,7 @@
 	"november-date": "$1 листопада",
 	"december-date": "$1 грудня",
 	"pagecategories": "{{PLURAL:$1|1=Категорія|Категорії}}",
-	"category_header": "Сторінок у категорії «$1»",
+	"category_header": "Сторінки в категорії «$1»",
 	"subcategories": "Підкатегорії",
 	"category-media-header": "Файли в категорії «$1»",
 	"category-empty": "''Ця категорія зараз порожня.''",

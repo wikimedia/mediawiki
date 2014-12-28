@@ -778,7 +778,7 @@
 	"history-feed-empty": "Wybrana strona nie istnieje.\nMogła zostać usunięta lub jej nazwa została zmieniona.\nSpróbuj [[Special:Search|poszukać]] tej strony.",
 	"rev-deleted-comment": "(usunięto opis zmian)",
 	"rev-deleted-user": "(nazwa użytkownika usunięta)",
-	"rev-deleted-event": "(wpis usunięty)",
+	"rev-deleted-event": "(szczegóły usunięte)",
 	"rev-deleted-user-contribs": "[nazwa użytkownika lub adres IP usunięte – edycja ukryta we wkładzie]",
 	"rev-deleted-text-permission": "Ta wersja strony została '''usunięta'''.\nSzczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 	"rev-suppressed-text-permission": "Ta wersja strony została <strong>ukryta</strong>.\nSzczegóły można odnaleźć w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze ukryć].",
