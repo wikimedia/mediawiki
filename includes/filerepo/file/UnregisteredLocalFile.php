@@ -154,10 +154,9 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @param string $filename
 	 * @return array|bool
 	 */
-	function getImageSize( $filename ) {
+	function getImageSize() {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
