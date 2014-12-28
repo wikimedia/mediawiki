@@ -40,7 +40,8 @@ class MergeLogFormatter extends LogFormatter {
 		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
 		$params[2] = Message::rawParam( $oldname );
 		$params[3] = Message::rawParam( $newname );
-		$params[4] = $this->context->getLanguage()->timeanddate( $params[4] );
+		$params[4] = $this->context->getLanguage()
+			->userTimeAndDate( $params[4], $this->context->getUser() );
 		return $params;
 	}
 
