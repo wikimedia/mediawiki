@@ -911,6 +911,7 @@ class Language {
 		}
 
 		if ( $include === 'all' ) {
+			ksort( $names );
 			return $names;
 		}
 
@@ -932,9 +933,11 @@ class Language {
 				}
 			}
 
+			ksort( $namesMwFile );
 			return $namesMwFile;
 		}
 
+		ksort( $returnMw );
 		# 'mw' option; default if it's not one of the other two options (all/mwfile)
 		return $returnMw;
 	}
