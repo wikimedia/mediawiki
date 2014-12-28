@@ -410,9 +410,10 @@ class SvgHandler extends ImageHandler {
 
 	/**
 	 * @param File $file
+	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array|bool
 	 */
-	function formatMetadata( $file ) {
+	function formatMetadata( $file, $context = false ) {
 		$result = array(
 			'visible' => array(),
 			'collapsed' => array()
