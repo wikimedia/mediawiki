@@ -655,7 +655,7 @@ class MagicWord {
 	 * This method uses the php feature to do several replacements at the same time,
 	 * thereby gaining some efficiency. The result is placed in the out variable
 	 * $result. The return value is true if something was replaced.
-	 * @todo Should this be static? It doesn't seem to be used at all
+	 * @deprecated since 1.25, unused
 	 *
 	 * @param array $magicarr
 	 * @param string $subject
@@ -664,6 +664,7 @@ class MagicWord {
 	 * @return bool
 	 */
 	function replaceMultiple( $magicarr, $subject, &$result ) {
+		wfDeprecated( __METHOD__, ' 1.25 ' );
 		$search = array();
 		$replace = array();
 		foreach ( $magicarr as $id => $replacement ) {
