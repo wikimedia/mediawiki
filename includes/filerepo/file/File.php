@@ -1777,7 +1777,7 @@ abstract class File {
 			return false;
 		}
 
-		return $this->getHandler()->formatMetadata( $this, $this->getMetadata() );
+		return $this->getHandler()->formatMetadata( $this );
 	}
 
 	/**
