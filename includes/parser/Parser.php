@@ -146,7 +146,8 @@ class Parser {
 	 * @var MagicWordArray
 	 */
 	public $mSubstWords;
-	public $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols; # Initialised in constructor
+	# Initialised in constructor
+	public $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols;
 
 	# Cleared with clearState():
 	/**
@@ -633,7 +634,9 @@ class Parser {
 	 * @param bool|PPFrame $frame
 	 * @return mixed|string
 	 */
-	public function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null, $frame = false ) {
+	public function preprocess( $text, Title $title = null,
+		ParserOptions $options, $revid = null, $frame = false
+	) {
 		wfProfileIn( __METHOD__ );
 		$magicScopeVariable = $this->lock();
 		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
