@@ -722,4 +722,69 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 			$this->database->dropTable( 'non_existing', __METHOD__ )
 		);
 	}
+
+	/**
+	 * @dataProvider provideMakeList
+	 * @covers DatabaseBase::makeList
+	 */
+	public function testMakeList( $list, $mode, $sqlText ) {
+		$this->assertEquals( trim( $this->database->makeList(
+			$list, $mode
+		) ), $sqlText );
+	}
+
+	public static function provideMakeList() {
+		return array(
+			array(
+				array( 'value', 'value2' ),
+				LIST_COMMA,
+				"'value','value2'"
+			),
+			array(
+				array( 'field', 'field2' ),
+				LIST_NAMES,
+				"field,field2"
+			),
+			array(
+				array( 'field' => 'value', 'field2' => 'value2' ),
+				LIST_AND,
+				"field = 'value' AND field2 = 'value2'"
+			),
+			array(
+				array( 'field' => null, "field2 != 'value2'" ),
+				LIST_AND,
+				"field IS NULL AND (field2 != 'value2')"
+			),
+			array(
+				array( 'field' => 'value', 'field2' => 'value2' ),
+				LIST_OR,
+				"field = 'value' OR field2 = 'value2'"
+			),
+			array(
+				array( 'field' => 'value', 'field2' => null ),
+				LIST_OR,
+				"field = 'value' OR field2 IS NULL"
+			),
+			array(
+				array( 'field' => array( 'value', 'value2' ), 'field2' => array( 'value' ) ),
+				LIST_OR,
+				"field IN ('value','value2')  OR field2 = 'value'"
+			),
+			array(
+				array( 'field' => 'value', 'field2' => 'value2' ),
+				LIST_SET,
+				"field = 'value',field2 = 'value2'"
+			),
+			array(
+				array( 'field' => 'value', 'field2' => null ),
+				LIST_SET,
+				"field = 'value',field2 = NULL"
+			),
+			array(
+				array( 'field' => 'value', "field2 != 'value2'" ),
+				LIST_SET,
+				"field = 'value',field2 != 'value2'"
+			),
+		);
+	}
 }
