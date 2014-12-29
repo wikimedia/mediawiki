@@ -365,10 +365,11 @@
 	"apihelp-query+allimages-param-sha1base36": "SHA1 hash of image in base 36 (used in MediaWiki).",
 	"apihelp-query+allimages-param-user": "Only return files uploaded by this user. Can only be used with $1sort=timestamp. Cannot be used together with $1filterbots.",
 	"apihelp-query+allimages-param-filterbots": "How to filter files uploaded by bots. Can only be used with $1sort=timestamp. Cannot be used together with $1user.",
-	"apihelp-query+allimages-param-mime": "What MIME type to search for. e.g. image/jpeg.",
+	"apihelp-query+allimages-param-mime": "What MIME type(s) to search for. E.g. <kbd>image/jpeg</kbd>.",
 	"apihelp-query+allimages-param-limit": "How many images in total to return.",
 	"apihelp-query+allimages-example-B": "Show a list of files starting at the letter \"B\"",
 	"apihelp-query+allimages-example-recent": "Show a list of recently uploaded files similar to [[Special:NewFiles]]",
+	"apihelp-query+allimages-example-mimetypes": "Show a list of files with MIME type <code>image/png</code> or <code>image/gif</code>",
 	"apihelp-query+allimages-example-generator": "Show info about 4 files starting at the letter \"T\"",
 
 	"apihelp-query+alllinks-description": "Enumerate all links that point to a given namespace.",
