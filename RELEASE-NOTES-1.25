@@ -161,6 +161,8 @@ production.
 * (T76052) list=tags can now indicate whether a tag is defined.
 * (T75522) list=prefixsearch now supports continuation
 * (T78737) action=expandtemplates can now return page properties.
+* (T78690) list=allimages now accepts multiple pipe-separated values
+  for the 'aimime' parameter.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
