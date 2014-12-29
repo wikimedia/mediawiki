@@ -132,6 +132,7 @@ class SpecialVersion extends SpecialPage {
 				$out->addHtml(
 					$this->getSkinCredits() .
 					$this->getExtensionCredits() .
+					$this->getExternalLibraries() .
 					$this->getParserTags() .
 					$this->getParserFunctionHooks()
 				);
@@ -499,6 +500,45 @@ class SpecialVersion extends SpecialPage {
 		$out .= $this->getExtensionCategory( 'skin', null );
 
 		$out .= Xml::closeElement( 'table' );
+
+		return $out;
+	}
+
+	/**
+	 * Generate an HTML table for external libraries that are installed
+	 *
+	 * @return string
+	 */
+	protected function getExternalLibraries() {
+		global $IP;
+		$path = "$IP/composer.lock";
+		if ( !file_exists( $path ) ) {
+			// Maybe they're using mediawiki/vendor?
+			$path = "$IP/vendor/composer.lock";
+			if ( !file_exists( $path ) ) {
+				return '';
+			}
+		}
+
+		$lock = new ComposerLock( $path );
+		$out = Html::element(
+			'h2',
+			array( 'id' => 'mw-version-libraries' ),
+			$this->msg( 'version-libraries' )->text()
+		);
+		$out .= Html::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries' ) );
+		$out .= Html::openElement( 'tr' )
+			. Html::element( 'th', array(), $this->msg( 'version-libraries-library' )->text() )
+			. Html::element( 'th', array(), $this->msg( 'version-libraries-version' )->text() )
+			. Html::closeElement( 'tr' );
+		;
+		foreach ( $lock->getInstalledDependencies() as $name => $version ) {
+			$out .= Html::openElement( 'tr' )
+				. Html::rawElement( 'td', array(), Linker::makeExternalLink( "https://packagist.org/packages/$name", $name ) )
+				. Html::element( 'td', array(), $version )
+				. Html::closeElement( 'tr' );
+		}
+		$out .= Html::closeElement( 'table' );
 
 		return $out;
 	}
