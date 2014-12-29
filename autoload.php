@@ -1156,6 +1156,7 @@ $wgAutoloadLocalClasses = array(
 	'TableCleanupTest' => __DIR__ . '/maintenance/cleanupTable.inc',
 	'TableDiffFormatter' => __DIR__ . '/includes/diff/TableDiffFormatter.php',
 	'TablePager' => __DIR__ . '/includes/pager/TablePager.php',
+	'TagManagementLogFormatter' => __DIR__ . '/includes/logging/TagManagementLogFormatter.php',
 	'TempFSFile' => __DIR__ . '/includes/filebackend/TempFSFile.php',
 	'TempFileRepo' => __DIR__ . '/includes/filerepo/FileRepo.php',
 	'TestFileOpPerformance' => __DIR__ . '/maintenance/fileOpPerfTest.php',
