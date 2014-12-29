@@ -339,6 +339,7 @@
 	"apihelp-query+allimages-param-limit": "{{doc-apihelp-param|query+allimages|limit}}",
 	"apihelp-query+allimages-example-B": "{{doc-apihelp-example|query+allimages}}",
 	"apihelp-query+allimages-example-recent": "{{doc-apihelp-example|query+allimages}}",
+	"apihelp-query+allimages-example-mimetypes": "{{doc-apihelp-example|query+allimages}}",
 	"apihelp-query+allimages-example-generator": "{{doc-apihelp-example|query+allimages}}",
 	"apihelp-query+alllinks-description": "{{doc-apihelp-description|query+alllinks}}",
 	"apihelp-query+alllinks-param-from": "{{doc-apihelp-param|query+alllinks|from}}",
