@@ -450,8 +450,8 @@ class Preferences {
 						array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
 
 					$emailAddress .= $emailAddress == '' ? $link : (
-						$context->msg( 'word-separator' )->plain()
-						. $context->msg( 'parentheses' )->rawParams( $link )->plain()
+						$context->msg( 'word-separator' )->escaped()
+						. $context->msg( 'parentheses' )->rawParams( $link )->escaped()
 					);
 				}
 
