@@ -86,13 +86,14 @@ class SpecialListGroupRights extends SpecialPage {
 			$grouppageLocalized = !$msg->isBlank() ?
 				$msg->text() :
 				MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $groupname;
+			$grouppageLocalizedTitle = Title::newFromText( $grouppageLocalized );
 
-			if ( $group == '*' ) {
-				// Do not make a link for the generic * group
+			if ( $group == '*' || !$grouppageLocalizedTitle ) {
+				// Do not make a link for the generic * group or group with invalid group page
 				$grouppage = htmlspecialchars( $groupnameLocalized );
 			} else {
 				$grouppage = Linker::link(
-					Title::newFromText( $grouppageLocalized ),
+					$grouppageLocalizedTitle,
 					htmlspecialchars( $groupnameLocalized )
 				);
 			}
