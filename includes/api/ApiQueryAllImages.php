@@ -232,10 +232,21 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				$this->dieUsage( 'MIME search disabled in Miser Mode', 'mimesearchdisabled' );
 			}
 
-			list( $major, $minor ) = File::splitMime( $params['mime'] );
-
-			$this->addWhereFld( 'img_major_mime', $major );
-			$this->addWhereFld( 'img_minor_mime', $minor );
+			$mimeConds = array();
+			foreach ( $params['mime'] as $mime ) {
+				list( $major, $minor ) = File::splitMime( $mime );
+				$mimeConds[] = $db->makeList(
+					array(
+						'img_major_mime' => $major,
+						'img_minor_mime' => $minor,
+					),
+					LIST_AND
+				);
+			}
+			if ( count( $mimeConds ) > 0 ) {
+				// safeguard against internal_api_error_DBQueryError
+				$this->addWhere( $db->makeList( $mimeConds, LIST_OR ) );
+			}
 		}
 
 		$limit = $params['limit'];
@@ -359,6 +370,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			),
 			'mime' => array(
 				ApiBase::PARAM_DFLT => null,
+				ApiBase::PARAM_ISMULTI => true,
 			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -385,6 +397,8 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			'action=query&list=allimages&aiprop=user|timestamp|url&' .
 				'aisort=timestamp&aidir=older'
 				=> 'apihelp-query+allimages-example-recent',
+			'action=query&list=allimages&aimime=image/png|image/gif'
+				=> 'apihelp-query+allimages-example-mimetypes',
 			'action=query&generator=allimages&gailimit=4&' .
 				'gaifrom=T&prop=imageinfo'
 				=> 'apihelp-query+allimages-example-generator',
