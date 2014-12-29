@@ -124,6 +124,8 @@ class ActiveUsersPager extends UsersPager {
 	}
 
 	function doBatchLookups() {
+		parent::doBatchLookups();
+
 		$uids = array();
 		foreach ( $this->mResult as $row ) {
 			$uids[] = $row->user_id;
@@ -172,7 +174,8 @@ class ActiveUsersPager extends UsersPager {
 		// Note: This is a different loop than for user rights,
 		// because we're reusing it to build the group links
 		// at the same time
-		foreach ( $user->getGroups() as $group ) {
+		$groups_list = self::getGroups( intval( $row->user_id ), $this->userGroupCache );
+		foreach ( $groups_list as $group ) {
 			if ( in_array( $group, $this->hideGroups ) ) {
 				return '';
 			}
