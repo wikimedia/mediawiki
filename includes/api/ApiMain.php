@@ -712,12 +712,12 @@ class ApiMain extends ApiBase {
 				'code' => 'internal_api_error_' . get_class( $e ),
 				'info' => '[' . MWExceptionHandler::getLogId( $e ) . '] ' . $info,
 			);
-			ApiResult::setContent(
-				$errMessage,
-				$config->get( 'ShowExceptionDetails' )
-					? "\n\n" . MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n\n"
-					: ''
-			);
+			if ( $config->get( 'ShowExceptionDetails' ) ) {
+				ApiResult::setContent(
+					$errMessage,
+					MWExceptionHandler::getRedactedTraceAsString( $e )
+				);
+			}
 		}
 
 		// Remember all the warnings to re-add them later
