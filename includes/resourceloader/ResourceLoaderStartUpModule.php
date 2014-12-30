@@ -90,6 +90,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgNamespaceIds' => $namespaceIds,
 			'wgContentNamespaces' => MWNamespace::getContentNamespaces(),
 			'wgSiteName' => $conf->get( 'Sitename' ),
+			'wgFileExtensions' => array_values( array_unique( $conf->get( 'FileExtensions' ) ) ),
 			'wgDBname' => $conf->get( 'DBname' ),
 			'wgAvailableSkins' => Skin::getSkinNames(),
 			'wgExtensionAssetsPath' => $conf->get( 'ExtensionAssetsPath' ),
