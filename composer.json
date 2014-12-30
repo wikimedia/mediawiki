@@ -16,12 +16,13 @@
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
+		"cssjanus/cssjanus": "1.1.1",
 		"leafo/lessphp": "0.5.0",
+		"oojs/oojs-ui": "0.6.0",
 		"php": ">=5.3.3",
 		"psr/log": "1.0.0",
-		"cssjanus/cssjanus": "1.1.1",
 		"wikimedia/cdb": "1.0.1",
-		"oojs/oojs-ui": "0.6.0"
+		"wikimedia/composer-merge-plugin": "0.5.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
@@ -45,5 +46,12 @@
 	"config": {
 		"prepend-autoloader": false,
 		"optimize-autoloader": true
+	},
+	"extra": {
+		"merge-plugin": {
+			"include": [
+				"composer.local.json"
+			]
+		}
 	}
 }
