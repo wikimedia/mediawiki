@@ -36,12 +36,32 @@
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
  */
-class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
+use Psr\Log\AbstractLogger;
+use Psr\Log\LogLevel;
+
+class MWLoggerLegacyLogger extends AbstractLogger {
 
 	/**
 	 * @var string $channel
 	 */
 	protected $channel;
+
+	/**
+	 * Convert Psr\Log\LogLevel constants into int for sane comparisons
+	 * These are the same values that Monlog uses
+	 *
+	 * @var array
+	 */
+	protected static $levelMapping = array(
+		LogLevel::DEBUG => 100,
+		LogLevel::INFO => 200,
+		LogLevel::NOTICE => 250,
+		LogLevel::WARNING => 300,
+		LogLevel::ERROR => 400,
+		LogLevel::CRITICAL => 500,
+		LogLevel::ALERT => 550,
+		LogLevel::EMERGENCY => 600,
+	);
 
 
 	/**
@@ -59,7 +79,7 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 	 * @param array $context
 	 */
 	public function log( $level, $message, array $context = array() ) {
-		if ( self::shouldEmit( $this->channel, $message, $context ) ) {
+		if ( self::shouldEmit( $this->channel, $message, $level, $context ) ) {
 			$text = self::format( $this->channel, $message, $context );
 			$destination = self::destination( $this->channel, $message, $context );
 			self::emit( $text, $destination );
@@ -72,11 +92,12 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 	 *
 	 * @param string $channel
 	 * @param string $message
+	 * @param string|int $level Psr\Log\LogEvent constant or Monlog level int
 	 * @param array $context
 	 * @return bool True if message should be sent to disk/network, false
 	 * otherwise
 	 */
-	public static function shouldEmit( $channel, $message, $context ) {
+	public static function shouldEmit( $channel, $message, $level, $context ) {
 		global $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups;
 
 		if ( $channel === 'wfLogDBError' ) {
@@ -91,10 +112,19 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 		} elseif ( isset( $wgDebugLogGroups[$channel] ) ) {
 			$logConfig = $wgDebugLogGroups[$channel];
 
-			if ( is_array( $logConfig ) && isset( $logConfig['sample'] ) ) {
-				// Emit randomly with a 1 in 'sample' chance for each message.
-				$shouldEmit = mt_rand( 1, $logConfig['sample'] ) === 1;
+			if ( is_array( $logConfig ) ) {
+				$shouldEmit = true;
+				if ( isset( $logConfig['sample'] ) ) {
+					// Emit randomly with a 1 in 'sample' chance for each message.
+					$shouldEmit = mt_rand( 1, $logConfig['sample'] ) === 1;
+				}
 
+				if ( isset( $logConfig['level'] ) ) {
+					if ( is_string( $level ) ) {
+						$level = self::$levelMapping[$level];
+					}
+					$shouldEmit = $level >= self::$levelMapping[$logConfig['level']];
+				}
 			} else {
 				// Emit unless the config value is explictly false.
 				$shouldEmit = $logConfig !== false;
