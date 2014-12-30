@@ -1528,7 +1528,7 @@ abstract class UploadBase {
 	private static function checkCssFragment( $value ) {
 
 		# Forbid external stylesheets, for both reliability and to protect viewer's privacy
-		if ( strpos( $value, '@import' ) !== false ) {
+		if ( stripos( $value, '@import' ) !== false ) {
 			return true;
 		}
 

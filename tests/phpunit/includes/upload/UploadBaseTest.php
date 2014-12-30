@@ -311,6 +311,12 @@ class UploadBaseTest extends MediaWikiTestCase {
 				'SVG with @import in style element and child element (bug 69008#c11)'
 			),
 			array(
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 3 177 153" xmlns:xlink="http://www.w3.org/1999/xlink"> <style>@imporT "https://fonts.googleapis.com/css?family=Bitter:700&amp;text=WebPlatform.org";</style> <g transform="translate(-.5,-.5)"> <text fill="#474747" x="95" y="150" text-anchor="middle" font-family="Bitter" font-size="20" font-weight="bold">WebPlatform.org</text> </g> </svg>',
+				true,
+				true,
+				'SVG with case-insensitive @import in style element (bug T85349)'
+			),
+			array(
 				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="background-image:url(https://www.google.com/images/srpr/logo11w.png)"/> </svg>',
 				true,
 				true,
