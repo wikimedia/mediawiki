@@ -108,7 +108,7 @@
 			}
 			request = api.post( postData );
 			request.done( function ( response ) {
-				var li, newList, $next, $parent, $list;
+				var li, newList, $parent, $list, $content;
 				if ( response.parse.modules ) {
 					mw.loader.load( response.parse.modules.concat(
 						response.parse.modulescripts,
@@ -162,23 +162,23 @@
 				}
 
 				if ( response.parse.text['*'] ) {
-					$next = $wikiPreview.next();
-					// If there is no next node, use parent instead.
-					// Only query parent if needed, false otherwise.
-					$parent = !$next.length && $wikiPreview.parent();
+					// Remove elements of the previous content preview
+					$wikiPreview.empty();
 
-					$wikiPreview
-						.detach()
-						.html( response.parse.text['*'] );
+					// Create a new element for the content preview
+					$content = $( '<div>' )
+					.attr( {
+						// TODO: Use 'rtl' for RTL languages
+						'class': 'mw-content-ltr',
+						'dir': 'ltr',
+						'lang': mw.config.get( 'wgPageContentLanguage' )
+					} )
+					.html( response.parse.text['*'] );
 
-					mw.hook( 'wikipage.content' ).fire( $wikiPreview );
+					mw.hook( 'wikipage.content' ).fire( $content );
 
-					// Reattach
-					if ( $parent ) {
-						$parent.append( $wikiPreview );
-					} else {
-						$next.before( $wikiPreview );
-					}
+					$content.appendTo( $wikiPreview );
+
 					$wikiPreview.show();
 
 				}
