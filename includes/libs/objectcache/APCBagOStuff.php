@@ -1,6 +1,6 @@
 <?php
 /**
- * Object caching using XCache.
+ * Object caching using PHP's APC accelerator.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,21 +22,20 @@
  */
 
 /**
- * Wrapper for XCache object caching functions; identical interface
- * to the APC wrapper
+ * This is a wrapper for APC's shared memory functions
  *
  * @ingroup Cache
  */
-class XCacheBagOStuff extends BagOStuff {
+class APCBagOStuff extends BagOStuff {
 	/**
-	 * Get a value from the XCache object cache
-	 *
-	 * @param string $key Cache key
-	 * @param mixed $casToken Cas token
+	 * @param string $key
+	 * @param int $casToken [optional]
 	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {
-		$val = xcache_get( $key );
+		$val = apc_fetch( $key );
+
+		$casToken = $val;
 
 		if ( is_string( $val ) ) {
 			if ( $this->isInteger( $val ) ) {
@@ -44,27 +43,24 @@ class XCacheBagOStuff extends BagOStuff {
 			} else {
 				$val = unserialize( $val );
 			}
-		} elseif ( is_null( $val ) ) {
-			return false;
 		}
 
 		return $val;
 	}
 
 	/**
-	 * Store a value in the XCache object cache
-	 *
-	 * @param string $key Cache key
-	 * @param mixed $value Object to store
-	 * @param int $expire Expiration time
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
-	public function set( $key, $value, $expire = 0 ) {
+	public function set( $key, $value, $exptime = 0 ) {
 		if ( !$this->isInteger( $value ) ) {
 			$value = serialize( $value );
 		}
 
-		xcache_set( $key, $value, $expire );
+		apc_store( $key, $value, $exptime );
+
 		return true;
 	}
 
@@ -74,30 +70,25 @@ class XCacheBagOStuff extends BagOStuff {
 	 * @param mixed $value
 	 * @param int $exptime
 	 * @return bool
-	 * @throws MWException
+	 * @throws ObjectCacheException
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
-		// Can't find any documentation on xcache cas
-		throw new MWException( "CAS is not implemented in " . __CLASS__ );
+		// APC's CAS functions only work on integers
+		throw new ObjectCacheException( "CAS is not implemented in " . __CLASS__ );
 	}
 
 	/**
-	 * Remove a value from the XCache object cache
-	 *
-	 * @param string $key Cache key
-	 * @param int $time Not used in this implementation
+	 * @param string $key
+	 * @param int $time
 	 * @return bool
 	 */
 	public function delete( $key, $time = 0 ) {
-		xcache_unset( $key );
+		apc_delete( $key );
+
 		return true;
 	}
 
 	/**
-	 * Merge an item.
-	 * XCache does not seem to support any way of performing CAS - this however will
-	 * provide a way to perform CAS-like functionality.
-	 *
 	 * @param string $key
 	 * @param Closure $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
@@ -109,10 +100,10 @@ class XCacheBagOStuff extends BagOStuff {
 	}
 
 	public function incr( $key, $value = 1 ) {
-		return xcache_inc( $key, $value );
+		return apc_inc( $key, $value );
 	}
 
 	public function decr( $key, $value = 1 ) {
-		return xcache_dec( $key, $value );
+		return apc_dec( $key, $value );
 	}
 }

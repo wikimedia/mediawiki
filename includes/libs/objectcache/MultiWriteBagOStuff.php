@@ -29,7 +29,7 @@
  * @ingroup Cache
  */
 class MultiWriteBagOStuff extends BagOStuff {
-	/** @var array BagOStuff[] */
+	/** @var BagOStuff[] */
 	protected $caches;
 
 	/**
@@ -40,12 +40,12 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *               the documentation of $wgObjectCaches for more detail.
 	 *
 	 * @param array $params
-	 * @throws MWException
+	 * @throws ObjectCacheException
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
 		if ( !isset( $params['caches'] ) ) {
-			throw new MWException( __METHOD__ . ': the caches parameter is required' );
+			throw new ObjectCacheException( __METHOD__ . ': the caches parameter is required' );
 		}
 
 		$this->caches = array();
@@ -82,10 +82,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @param mixed $value
 	 * @param mixed $exptime
 	 * @return bool
-	 * @throws MWException
+	 * @throws ObjectCacheException
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
-		throw new MWException( "CAS is not implemented in " . __CLASS__ );
+		throw new ObjectCacheException( "CAS is not implemented in " . __CLASS__ );
 	}
 
 	/**
