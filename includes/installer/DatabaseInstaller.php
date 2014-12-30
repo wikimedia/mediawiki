@@ -32,11 +32,11 @@ abstract class DatabaseInstaller {
 	/**
 	 * The Installer object.
 	 *
-	 * @todo Naming this parent is confusing, 'installer' would be clearer.
+	 * @todo Naming this installer is confusing, 'installer' would be clearer.
 	 *
 	 * @var WebInstaller
 	 */
-	public $parent;
+	public $installer;
 
 	/**
 	 * The database connection.
@@ -83,7 +83,7 @@ abstract class DatabaseInstaller {
 	 * at this time should be the minimum needed to connect and test
 	 * whether install or upgrade is required.
 	 *
-	 * If this is called, $this->parent can be assumed to be a WebInstaller.
+	 * If this is called, $this->installer can be assumed to be a WebInstaller.
 	 */
 	abstract public function getConnectForm();
 
@@ -92,7 +92,7 @@ abstract class DatabaseInstaller {
 	 * via the form returned by getConnectForm(). Validate the connection
 	 * settings by attempting to connect with them.
 	 *
-	 * If this is called, $this->parent can be assumed to be a WebInstaller.
+	 * If this is called, $this->installer can be assumed to be a WebInstaller.
 	 *
 	 * @return Status
 	 */
@@ -100,7 +100,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get HTML for a web form that retrieves settings used for installation.
-	 * $this->parent can be assumed to be a WebInstaller.
+	 * $this->installer can be assumed to be a WebInstaller.
 	 * If the DB type has no settings beyond those already configured with
 	 * getConnectForm(), this should return false.
 	 * @return bool
@@ -339,12 +339,12 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Construct and initialise parent.
+	 * Construct and initialise installer.
 	 * This is typically only called from Installer::getDBInstaller()
-	 * @param WebInstaller $parent
+	 * @param WebInstaller $installer
 	 */
-	public function __construct( $parent ) {
-		$this->parent = $parent;
+	public function __construct( $installer ) {
+		$this->installer = $installer;
 	}
 
 	/**
@@ -400,16 +400,16 @@ abstract class DatabaseInstaller {
 			$default = $internal[$var];
 		}
 
-		return $this->parent->getVar( $var, $default );
+		return $this->installer->getVar( $var, $default );
 	}
 
 	/**
-	 * Convenience alias for $this->parent->setVar()
+	 * Convenience alias for $this->installer->setVar()
 	 * @param string $name
 	 * @param mixed $value
 	 */
 	public function setVar( $name, $value ) {
-		$this->parent->setVar( $name, $value );
+		$this->installer->setVar( $name, $value );
 	}
 
 	/**
@@ -428,7 +428,7 @@ abstract class DatabaseInstaller {
 			$attribs = array();
 		}
 
-		return $this->parent->getTextBox( array(
+		return $this->installer->getTextBox( array(
 			'var' => $var,
 			'label' => $label,
 			'attribs' => $attribs,
@@ -455,7 +455,7 @@ abstract class DatabaseInstaller {
 			$attribs = array();
 		}
 
-		return $this->parent->getPasswordBox( array(
+		return $this->installer->getPasswordBox( array(
 			'var' => $var,
 			'label' => $label,
 			'attribs' => $attribs,
@@ -478,7 +478,7 @@ abstract class DatabaseInstaller {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
 
-		return $this->parent->getCheckBox( array(
+		return $this->installer->getCheckBox( array(
 			'var' => $var,
 			'label' => $label,
 			'attribs' => $attribs,
@@ -504,7 +504,7 @@ abstract class DatabaseInstaller {
 		$params['controlName'] = $this->getName() . '_' . $params['var'];
 		$params['value'] = $this->getVar( $params['var'] );
 
-		return $this->parent->getRadioSet( $params );
+		return $this->installer->getRadioSet( $params );
 	}
 
 	/**
@@ -515,7 +515,7 @@ abstract class DatabaseInstaller {
 	 * @return array
 	 */
 	public function setVarsFromRequest( $varNames ) {
-		return $this->parent->setVarsFromRequest( $varNames, $this->getName() . '_' );
+		return $this->installer->setVarsFromRequest( $varNames, $this->getName() . '_' );
 	}
 
 	/**
@@ -554,13 +554,13 @@ abstract class DatabaseInstaller {
 				'_InstallUser',
 				'config-db-username',
 				array( 'dir' => 'ltr' ),
-				$this->parent->getHelpBox( 'config-db-install-username' )
+				$this->installer->getHelpBox( 'config-db-install-username' )
 			) .
 			$this->getPasswordBox(
 				'_InstallPassword',
 				'config-db-password',
 				array( 'dir' => 'ltr' ),
-				$this->parent->getHelpBox( 'config-db-install-password' )
+				$this->installer->getHelpBox( 'config-db-install-password' )
 			) .
 			Html::closeElement( 'fieldset' );
 	}
@@ -593,9 +593,9 @@ abstract class DatabaseInstaller {
 			Html::openElement( 'div', array( 'id' => 'dbOtherAccount', 'style' => $wrapperStyle ) ) .
 			$this->getTextBox( 'wgDBuser', 'config-db-username' ) .
 			$this->getPasswordBox( 'wgDBpassword', 'config-db-password' ) .
-			$this->parent->getHelpBox( 'config-db-web-help' );
+			$this->installer->getHelpBox( 'config-db-web-help' );
 		if ( $noCreateMsg ) {
-			$s .= $this->parent->getWarningBox( wfMessage( $noCreateMsg )->plain() );
+			$s .= $this->installer->getWarningBox( wfMessage( $noCreateMsg )->plain() );
 		} else {
 			$s .= $this->getCheckBox( '_CreateDBAccount', 'config-db-web-create' );
 		}
