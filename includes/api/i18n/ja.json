@@ -3,7 +3,8 @@
 		"authors": [
 			"Shirayuki",
 			"2nd-player",
-			"Los688"
+			"Los688",
+			"Whym"
 		]
 	},
 	"apihelp-main-param-action": "実行する操作です。",
@@ -16,10 +17,13 @@
 	"apihelp-main-param-curtimestamp": "現在のタイムスタンプを結果に含めます。",
 	"apihelp-main-param-uselang": "メッセージの翻訳に使用する言語です。コードの一覧は [[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]] に siprop=languages を付けることで取得できます。\"user\" を指定することで現在の利用者の個人設定の言語を、\"content\" を指定することでこのウィキの本文の言語を使用することもできます。",
 	"apihelp-block-description": "利用者をブロックします。",
-	"apihelp-block-param-reason": "ブロックの理由:",
+	"apihelp-block-param-user": "ブロックする利用者名、IPアドレスまたはIPレンジ。",
+	"apihelp-block-param-reason": "ブロックの理由。",
 	"apihelp-block-param-nocreate": "アカウントの作成を禁止します。",
+	"apihelp-block-example-ip-simple": "IP 192.0.2.5 を \"First strike\" という理由で3日ブロックする",
+	"apihelp-block-example-user-complex": "利用者 \"Vandal\" を \"Vandalism\" という理由で無期限ブロックし、新たなアカウント作成とメールの送信を禁止する。",
 	"apihelp-createaccount-description": "新しい利用者アカウントを作成します。",
-	"apihelp-createaccount-param-name": "利用者名:",
+	"apihelp-createaccount-param-name": "利用者名。",
 	"apihelp-createaccount-param-password": "パスワード ($1mailpassword が設定されると無視されます)。",
 	"apihelp-createaccount-param-token": "最初のリクエストで得られたアカウント作成用トークンです。",
 	"apihelp-createaccount-param-email": "利用者の電子メールアドレス (任意)。",
@@ -32,6 +36,7 @@
 	"apihelp-delete-param-unwatch": "そのページをウォッチリストから除去します。",
 	"apihelp-delete-example-simple": "「Main Page」を削除する",
 	"apihelp-disabled-description": "このモジュールは無効化されています。",
+	"apihelp-edit-description": "ページを作成、編集します。",
 	"apihelp-edit-param-title": "編集するページ名です。$1pageid とは同時に使用できません。",
 	"apihelp-edit-param-pageid": "編集するページIDです。$1title とは同時に使用できません。",
 	"apihelp-edit-param-text": "ページの本文。",
@@ -94,7 +99,7 @@
 	"apihelp-yaml-description": "データを YAML 形式で出力します。",
 	"apihelp-yamlfm-description": "データを YAML 形式 (HTML に埋め込んだ形式) で出力します。",
 	"api-format-title": "MediaWiki API の結果",
-	"api-format-prettyprint-header": "このページは $1 形式を HTML で表現したものです。HTML はデバッグに役立ちますが、アプリケーションでの使用には適していません。\n\n出力形式を変更するには format パラメーターを指定します。$1 形式の非 HTML 版を閲覧するには、format=$2 を設定します。\n\n詳細情報については [https://www.mediawiki.org/wiki/API の完全な説明文書]または [[Special:ApiHelp/main|API のヘルプ]]を参照してください。",
+	"api-format-prettyprint-header": "このページは $1 形式を HTML で表現したものです。HTML はデバッグに役立ちますが、アプリケーションでの使用には適していません。\n\nformat パラメーターを指定すると出力形式を変更できます 。$1 形式の非 HTML 版を閲覧するには、format=$2 を設定してください。\n\n詳細情報については [https://www.mediawiki.org/wiki/API 完全な説明文書]または [[Special:ApiHelp/main|API のヘルプ]]を参照してください。",
 	"api-help-title": "MediaWiki API ヘルプ",
 	"api-help-lead": "このページは自動生成された MediaWiki API の説明文書ページです。\n\n説明文書と例: https://www.mediawiki.org/wiki/API",
 	"api-help-main-header": "メイン モジュール",

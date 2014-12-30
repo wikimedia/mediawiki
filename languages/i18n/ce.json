@@ -1310,7 +1310,7 @@
 	"filedelete-intro-old": "<span class=\"plainlinks\">Ахьа дӀайоккхуш ю верси '''[[Media:$1|$1]]''' цу [$4 $3, $2].</span>",
 	"filedelete-comment": "Бахьна:",
 	"filedelete-submit": "ДӀаяккха",
-	"filedelete-success": "$1 дӀаяккхи.",
+	"filedelete-success": "$1 дӀаяьккхи.",
 	"filedelete-success-old": "Верси '''[[Media:$1|$1]]''' цу $3 $2 дӀаяьккхина.",
 	"filedelete-nofile": "'''$1''' яц.",
 	"filedelete-otherreason": "Кхин бахьна:",

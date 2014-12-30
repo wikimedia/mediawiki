@@ -37,5 +37,6 @@
 	"apihelp-compare-param-fromid": "ID першай старонкі для параўнаньня.",
 	"apihelp-compare-param-fromrev": "Першая вэрсія для параўнаньня.",
 	"apihelp-compare-param-totitle": "Другая назва для параўнаньня.",
-	"apihelp-compare-param-toid": "ID другой старонкі для параўнаньня."
+	"apihelp-compare-param-toid": "ID другой старонкі для параўнаньня.",
+	"apihelp-compare-param-torev": "Другая вэрсія для параўнаньня."
 }

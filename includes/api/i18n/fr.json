@@ -3,7 +3,8 @@
 		"authors": [
 			"Gomoko",
 			"Windes",
-			"Orlodrim"
+			"Orlodrim",
+			"McDutchie"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page Documentation]\n* [https://www.mediawiki.org/wiki/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
@@ -16,7 +17,7 @@
 	"apihelp-main-param-requestid": "Toute valeur fournie ici sera incluse dans la réponse. Peut être utilisé pour distinguer des demandes.",
 	"apihelp-main-param-servedby": "Inclure le nom d’hôte qui a renvoyé la requête dans les résultats.",
 	"apihelp-main-param-curtimestamp": "Inclure l’horodatage actuel dans le résultat.",
-	"apihelp-main-param-origin": "En accédant à l’API en utilisant une requête AJAX inter-domaines (CORS), mettre le domaine d’origine dans ce paramètre. Il doit être inclus dans toute requête de pre-flight, et ne doit donc pas faire partie de l’URI de la requête (ni du corps du POST). Il doit correspondre exactement à une des origines dans l’entête Origin: header, donc il doit être fixé avec quelque chose comme http://en.wikipedia.org or https://meta.wikimedia.org. Si ce paramètre ne correspond pas à l’entête Origin:, une réponse 403 sera renvoyée. Si ce paramètre correspond à l’entête Origin: et que l’origine est en liste blanche, un entête Access-Control-Allow-Origin sera positionné.",
+	"apihelp-main-param-origin": "En accédant à l’API en utilisant une requête AJAX inter-domaines (CORS), mettre le domaine d’origine dans ce paramètre. Il doit être inclus dans toute requête de pre-flight, et doit donc faire partie de l’URI de la requête (pas du corps du POST). Il doit correspondre exactement à une des origines dans l’entête Origin: header, donc il doit être fixé avec quelque chose comme http://en.wikipedia.org or https://meta.wikimedia.org. Si ce paramètre ne correspond pas à l’entête Origin:, une réponse 403 sera renvoyée. Si ce paramètre correspond à l’entête Origin: et que l’origine est en liste blanche, un entête Access-Control-Allow-Origin sera positionné.",
 	"apihelp-main-param-uselang": "Langue à utiliser pour les traductions de message. Une liste de codes peut être analysée depuis [[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]] avec siprop=languages, ou en spécifiant « user » pour utiliser la préférence de langue de l’utilisateur actuel, ou en spécifiant « content » pour utiliser le langage du contenu de ce wiki.",
 	"apihelp-block-description": "Bloquer un utilisateur.",
 	"apihelp-block-param-user": "Nom d’utilisateur, adresse IP ou plage d’adresses IP que vous voulez bloquer.",
@@ -558,7 +559,7 @@
 	"apihelp-query+fileusage-param-prop": "Quelles propriétés obtenir :\n;pageid:ID de chaque page.\n;title:Titre de chaque page.\n;redirect:Marque si la page est une redirection.",
 	"apihelp-query+fileusage-param-namespace": "Inclure uniquement les pages dans ces espaces de nom.",
 	"apihelp-query+fileusage-param-limit": "Combien renvoyer.",
-	"apihelp-query+fileusage-param-show": "Afficher uniquement les éléments qui correspondent à ces critères :\n;redirect:Afficher uniquement les redirections.\n;!redirects:Afficher uniquement les non-redirections.",
+	"apihelp-query+fileusage-param-show": "Afficher uniquement les éléments qui correspondent à ces critères :\n;redirect:Afficher uniquement les redirections.\n;!redirect:Afficher uniquement les non-redirections.",
 	"apihelp-query+fileusage-example-simple": "Obtenir une liste des pages utilisant [[:File:Example.jpg]]",
 	"apihelp-query+fileusage-example-generator": "Obtenir l’information sur les pages utilisant [[:File:Example.jpg]]",
 	"apihelp-query+imageinfo-description": "Renvoyer l’information de fichier et l’historique de téléchargement.",
@@ -671,7 +672,7 @@
 	"apihelp-query+linkshere-param-prop": "Quelles propriétés obtenir :\n;pageid:ID de chaque page.\n;title:Titre de chaque page.\n;redirect:Indique si la page est une redirection.",
 	"apihelp-query+linkshere-param-namespace": "Inclure uniquement les pages dans ces espaces de nom.",
 	"apihelp-query+linkshere-param-limit": "Combien de résultats renvoyer.",
-	"apihelp-query+linkshere-param-show": "Afficher uniquement les éléments qui correspondent à ces critères :\n;redirect:Afficher uniquement les redirections.\n;!redirects:Afficher uniquement les non-redirections.",
+	"apihelp-query+linkshere-param-show": "Afficher uniquement les éléments qui correspondent à ces critères :\n;redirect:Afficher uniquement les redirections.\n;!redirect:Afficher uniquement les non-redirections.",
 	"apihelp-query+linkshere-example-simple": "Obtenir une liste des pages liées à  [[Main Page]]",
 	"apihelp-query+linkshere-example-generator": "Obtenir des informations sur les pages liées à [[Main Page]]",
 	"apihelp-query+logevents-description": "Obtenir des événements des journaux.",
@@ -818,7 +819,7 @@
 	"apihelp-query+transcludedin-param-prop": "Quelles propriétés obtenir :\n;pageid:ID de page de chaque page.\n;title:Titre de chaque page.\n;redirect:Marque si cette page est une redirection.",
 	"apihelp-query+transcludedin-param-namespace": "Inclure uniquement les pages dans ces espaces de nom.",
 	"apihelp-query+transcludedin-param-limit": "Combien en renvoyer.",
-	"apihelp-query+transcludedin-param-show": "Afficher uniquement les éléments qui correspondent à ces critères:\n;redirect:Afficher uniquement les redirections.\n;!redirects:Afficher uniquement les non-redirections.",
+	"apihelp-query+transcludedin-param-show": "Afficher uniquement les éléments qui correspondent à ces critères:\n;redirect:Afficher uniquement les redirections.\n;!redirect:Afficher uniquement les non-redirections.",
 	"apihelp-query+transcludedin-example-simple": "Obtenir une liste des pages incluant [[Main Page]]",
 	"apihelp-query+transcludedin-example-generator": "Obtenir des informations sur les pages incluant [[Main Page]]",
 	"apihelp-query+usercontribs-description": "Obtenir toutes les modifications par un utilisateur.",
