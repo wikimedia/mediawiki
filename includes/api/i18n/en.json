@@ -69,6 +69,11 @@
 	"apihelp-delete-example-simple": "Delete the Main Page",
 	"apihelp-delete-example-reason": "Delete the Main Page with the reason \"Preparing for move\"",
 
+	"apihelp-deletetag-description": "Remove a change tag from all revisions on which it is used.",
+	"apihelp-deletetag-param-tag": "Tag to remove.",
+	"apihelp-deletetag-param-reason": "An optional reason for removing the tag.",
+	"apihelp-deletetag-example-simple": "Delete the \"vandlaism\" tag with the reason \"Misspelt\"",
+
 	"apihelp-disabled-description": "This module has been disabled.",
 
 	"apihelp-edit-description": "Create and edit pages.",
