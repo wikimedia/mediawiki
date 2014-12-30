@@ -11,11 +11,13 @@ class ApiQueryAllPagesTest extends ApiTestCase {
 		parent::setUp();
 		$this->doLogin();
 	}
-
-	/**
-	 * @todo give this test a real name explaining what is being tested here
-	 */
-	public function testBug25702() {
+	
+	public function testPrefixNormalizationSearchBug() {
+		 /**
+		  *Test bug 25702
+		  *Prefixes of API search requests are not handled with case sensitivity and may result
+		  *in wrong search results
+		  */
 		$title = Title::newFromText( 'Category:Template:xyz' );
 		$page = WikiPage::factory( $title );
 		$page->doEdit( 'Some text', 'inserting content' );
