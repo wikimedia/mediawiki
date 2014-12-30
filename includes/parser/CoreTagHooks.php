@@ -36,6 +36,8 @@ class CoreTagHooks {
 		$parser->setHook( 'nowiki', array( __CLASS__, 'nowiki' ) );
 		$parser->setHook( 'gallery', array( __CLASS__, 'gallery' ) );
 		$parser->setHook( 'indicator', array( __CLASS__, 'indicator' ) );
+		$parser->setHook( 'lines', array( __CLASS__, 'lines' ) );
+		$parser->setHook( 'poem', array( __CLASS__, 'lines' ) ); # legacy alias
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', array( __CLASS__, 'html' ) );
 		}
@@ -145,5 +147,49 @@ class CoreTagHooks {
 		);
 
 		return '';
+	}
+
+	/**
+	 * Core parser tag hook function for 'lines', aka 'poem'.
+	 *
+	 * Outputs text, maintaining line breaks and providing a smaller, line-based
+	 * indentation for line-initial colons instead of the default <dl>. Suitable
+	 * for line-based text such as poetry and similar content.
+	 *
+	 * @param string $content The text inside the <lines> tag
+	 * @param array $tagAttributes
+	 * @param Parser $parser
+	 * @param boolean $frame
+	 * @return string
+	 */
+	static function lines( $content, $tagAttributes, $parser, $frame = false ) {
+		// replace colons with indented spans
+		// $m[1] consists of 1 or more colons
+		// $m[2] consists of the text after the colons
+		$text = preg_replace_callback( '/^(:+)(.+)$/m', function( $m ) {
+			$attribs = array(
+				'class' => 'mw-poem-indented mw-lines-indented',
+				'style' => 'margin-left: ' . strlen( $m[1] ) . 'em;'
+			);
+			return Html::rawElement( 'span', $attribs, $m[2] );
+		}, $content );
+
+		// replace spaces at the beginning of a line with non-breaking spaces
+		// $m[1] consists of 1 or more spaces
+		$text = preg_replace_callback( '/^( +)/m', function( $m ) {
+			return str_replace( ' ', '&#160;', $m[1] );
+		}, $text );
+
+		$text = $parser->recursiveTagParse( $text, $frame );
+
+		$outputAttribs = Sanitizer::validateTagAttributes( $tagAttributes, 'div' );
+
+		// Wrap output in a <pre> with appropriate class names.
+		$outputAttribs['class'] = array( 'poem', 'mw-lines' );
+		if ( isset( $attributes['class'] ) ) {
+			$outputAttribs['class'][] = $attributes['class'];
+		}
+
+		return Html::rawElement( 'pre', $outputAttribs, $text );
 	}
 }
