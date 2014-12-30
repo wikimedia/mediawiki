@@ -3,7 +3,7 @@
  * PHP Unit tests for RunningStat class.
  * @covers RunningStat
  */
-class RunningStatTest extends MediaWikiTestCase {
+class RunningStatTest extends PHPUnit_Framework_TestCase {
 
 	public $points = array(
 		49.7168, 74.3804,  7.0115, 96.5769, 34.9458,

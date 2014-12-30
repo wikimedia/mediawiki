@@ -1,6 +1,6 @@
 <?php
 
-class JavaScriptMinifierTest extends MediaWikiTestCase {
+class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 
 	public static function provideCases() {
 		return array(

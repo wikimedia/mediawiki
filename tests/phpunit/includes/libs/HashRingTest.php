@@ -3,7 +3,7 @@
 /**
  * @group HashRing
  */
-class HashRingTest extends MediaWikiTestCase {
+class HashRingTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers HashRing
 	 */

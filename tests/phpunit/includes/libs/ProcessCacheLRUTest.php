@@ -9,7 +9,7 @@
  *
  * @group Cache
  */
-class ProcessCacheLRUTest extends MediaWikiTestCase {
+class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Helper to verify emptiness of a cache object.

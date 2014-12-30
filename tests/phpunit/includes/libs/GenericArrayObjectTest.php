@@ -27,7 +27,7 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class GenericArrayObjectTest extends MediaWikiTestCase {
+abstract class GenericArrayObjectTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Returns objects that can serve as elements in the concrete

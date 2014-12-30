@@ -3,7 +3,7 @@
  * PHP Unit tests for MWMessagePack
  * @covers MWMessagePack
  */
-class MWMessagePackTest extends MediaWikiTestCase {
+class MWMessagePackTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Provides test cases for MWMessagePackTest::testMessagePack

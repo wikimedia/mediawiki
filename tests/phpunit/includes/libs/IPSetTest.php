@@ -3,7 +3,7 @@
 /**
  * @group IPSet
  */
-class IPSetTest extends MediaWikiTestCase {
+class IPSetTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * Provides test cases for IPSetTest::testIPSet
 	 *

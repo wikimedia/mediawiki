@@ -5,7 +5,7 @@
  * @group Database
  */
 
-class ArrayUtilsTest extends MediaWikiTestCase {
+class ArrayUtilsTest extends PHPUnit_Framework_TestCase {
 	private $search;
 
 	/**

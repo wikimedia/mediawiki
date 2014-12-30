@@ -5,7 +5,7 @@
  * @todo tests below for findIE6Extension should be split into...
  *    ...a dataprovider and test method.
  */
-class IEUrlExtensionTest extends MediaWikiTestCase {
+class IEUrlExtensionTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers IEUrlExtension::findIE6Extension
 	 */
