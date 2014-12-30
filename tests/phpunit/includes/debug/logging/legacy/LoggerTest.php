@@ -17,6 +17,7 @@
  *
  * @file
  */
+use Psr\Log\LogLevel;
 
 class MWLoggerLegacyLoggerTest extends MediaWikiTestCase {
 
@@ -64,6 +65,54 @@ class MWLoggerLegacyLoggerTest extends MediaWikiTestCase {
 				'{ not interpolated }',
 			),
 		);
+	}
+
+	/**
+	 * @covers MWLoggerLegacyLogger::shouldEmit
+	 * @dataProvider provideShouldEmit
+	 */
+	public function testShouldEmit( $level, $config, $expected ) {
+		$this->setMwGlobals( 'wgDebugLogGroups', array( 'fakechannel' => $config ) );
+		$this->assertEquals(
+			$expected,
+			MWLoggerLegacyLogger::shouldEmit( 'fakechannel', 'some message', $level, array() )
+		);
+	}
+
+	public static function provideShouldEmit() {
+		$dest = array( 'destination' => 'foobar' );
+		$tests = array(
+			array(
+				LogLevel::DEBUG,
+				$dest,
+				true
+			),
+			array(
+				LogLevel::WARNING,
+				$dest + array( 'level' => LogLevel::INFO ),
+				true,
+			),
+			array(
+				LogLevel::INFO,
+				$dest + array( 'level' => LogLevel::CRITICAL ),
+				false,
+			),
+		);
+
+		if ( class_exists( '\Monolog\Logger' ) ) {
+			$tests[] = array(
+				\Monolog\Logger::INFO,
+				$dest + array( 'level' => LogLevel::INFO ),
+				true,
+			);
+			$tests[] = array(
+				\Monolog\Logger::WARNING,
+				$dest + array( 'level' => LogLevel::EMERGENCY ),
+				false,
+			);
+		}
+
+		return $tests;
 	}
 
 }
