@@ -16733,6 +16733,226 @@ foobar.jpg
 !! end
 
 !! test
+<lines>
+!! input
+<lines>
+this
+is
+a
+test
+</lines>
+!! result
+<pre class="poem mw-lines">
+this
+is
+a
+test
+</pre>
+
+!! end
+
+!! test
+<poem> as alias for <lines>
+!! input
+<poem>
+this
+is
+a
+test
+</poem>
+!! result
+<pre class="poem mw-lines">
+this
+is
+a
+test
+</pre>
+
+!! end
+
+!! test
+<lines> with double line breaks inside
+!! input
+<lines>
+this
+is
+
+a
+test
+</lines>
+!! result
+<pre class="poem mw-lines">
+this
+is
+
+a
+test
+</pre>
+
+!! end
+
+!! test
+<lines> with indentation
+!! input
+<lines>
+this is
+:indented
+we hope
+</lines>
+!! result
+<pre class="poem mw-lines">
+this is
+<span class="mw-poem-indented mw-lines-indented" style="margin-left: 1em;">indented</span>
+we hope
+</pre>
+
+!! end
+
+!! test
+<lines> with multiple indentation
+!! input
+<lines>
+this is
+::::indented
+we hope
+</lines>
+!! result
+<pre class="poem mw-lines">
+this is
+<span class="mw-poem-indented mw-lines-indented" style="margin-left: 4em;">indented</span>
+we hope
+</pre>
+
+!! end
+
+!!test
+<lines> with recursive parsing
+!!input
+<lines>
+this ''is'' a '''test'''
+</lines>
+!! result
+<pre class="poem mw-lines">
+this <i>is</i> a <b>test</b>
+</pre>
+
+!!end
+
+
+!! test
+<lines> with internal whitespace
+!! input
+<lines>
+this     is
+a
+test
+</lines>
+!! result
+<pre class="poem mw-lines">
+this     is
+a
+test
+</pre>
+
+!! end
+
+!!test
+<lines> with leading whitespace
+!!input
+<lines>
+
+   test
+
+</lines>
+!! result
+<pre class="poem mw-lines">
+
+&#160;&#160;&#160;test
+
+</pre>
+
+!!end
+
+!! test
+<lines> with content on same line as tag
+!! input
+<lines>this
+is
+a
+test</lines>
+!! result
+<pre class="poem mw-lines">this
+is
+a
+test</pre>
+
+!! end
+
+!! test
+<lines> tag on a single line
+!! input
+<lines>spacesuit</lines>
+!! result
+<pre class="poem mw-lines">spacesuit</pre>
+
+!! end
+
+!!test
+<lines> with horizontal rule
+!!input
+<lines>
+some
+-----
+text
+</lines>
+!!result
+<pre class="poem mw-lines">
+some
+<hr />
+text
+</pre>
+
+!!end
+
+!! test
+nested <lines><nowiki>
+!! input
+<lines><nowiki>
+this
+is
+a
+test
+</nowiki></lines>
+!! result
+<pre class="poem mw-lines">
+this
+is
+a
+test
+</pre>
+
+!!end
+
+!! test
+nested <lines><nowiki> with formatting
+!! input
+<lines><nowiki>
+this
+'''is'''
+a
+test
+</nowiki></lines>
+!! result
+<pre class="poem mw-lines">
+this
+'''is'''
+a
+test
+</pre>
+
+!! end
+
+!! test
 HTML Hex character encoding (spells the word "JavaScript")
 !! options
 parsoid=wt2html,wt2wt,html2html

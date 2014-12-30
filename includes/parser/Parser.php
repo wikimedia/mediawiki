@@ -2693,7 +2693,9 @@ class Parser {
 				if ( $openmatch || $closematch ) {
 					$paragraphStack = false;
 					# @todo bug 5718: paragraph closed
-					$output .= $this->closeParagraph();
+					if ( !$this->mInPre || $preOpenMatch ) {
+						$output .= $this->closeParagraph();
+					}
 					if ( $preOpenMatch && !$preCloseMatch ) {
 						$this->mInPre = true;
 					}

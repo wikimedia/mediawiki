@@ -71,6 +71,12 @@ production.
   should implement supporting behavior. Not doing so can result in undefined
   behavior from API clients trying to continue through prefix results.
 * Update jQuery from v1.11.1 to v1.11.2.
+* (T54061) A new <lines> tag, preventing the automatic collapse of line
+  breaks, is now available, with the alias <poem>. This features supersedes the
+  Poem extension, which may now be uninstalled (unless your wiki relies on the
+  old "compact" attribute, which is no longer available). Note also that any CSS
+  changes made to the div.poem selector must be altered to use the pre.mw-lines
+  selector. (The .poem class selector is retained for backward compatibility.)
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past

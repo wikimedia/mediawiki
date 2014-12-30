@@ -863,6 +863,23 @@ ul.mw-gallery-packed {
 	text-align: center;
 }
 
+/* <lines> aka <poem> */
+pre.mw-lines {
+	font-family: sans-serif; /* for IE < 8, which does not support inherit here */
+	font: inherit;
+	border: none;
+	background: inherit;
+	color: inherit;
+	padding: 0;
+	white-space: pre-line;
+	/* see also p, pre.mw-lines declaration in commonElements.css */
+}
+
+.mw-lines-indented {
+	display: inline-block;
+}
+
+/* AJAX loader */
 .mw-ajax-loader {
 	/* @embed */
 	background-image: url(images/ajax-loader.gif);
