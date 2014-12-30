@@ -492,27 +492,25 @@ class SpecialUpload extends SpecialPage {
 	 * @param string $copyStatus
 	 * @param string $source
 	 * @return string
-	 * @todo Use Config obj instead of globals
+	 * TODO: Make this function not static
 	 */
 	public static function getInitialPageText( $comment = '', $license = '',
 		$copyStatus = '', $source = ''
 	) {
-		global $wgUseCopyrightUpload, $wgForceUIMsgAsContentMsg;
-
 		$msg = array();
 		/* These messages are transcluded into the actual text of the description page.
 		 * Thus, forcing them as content messages makes the upload to produce an int: template
 		 * instead of hardcoding it there in the uploader language.
 		 */
 		foreach ( array( 'license-header', 'filedesc', 'filestatus', 'filesource' ) as $msgName ) {
-			if ( in_array( $msgName, (array)$wgForceUIMsgAsContentMsg ) ) {
+			if ( in_array( $msgName, ConfigFactory::getDefaultInstance()->makeConfig( 'main' )->get( 'ForceUIMsgAsContentMsg' ) ) ) {
 				$msg[$msgName] = "{{int:$msgName}}";
 			} else {
 				$msg[$msgName] = wfMessage( $msgName )->inContentLanguage()->text();
 			}
 		}
 
-		if ( $wgUseCopyrightUpload ) {
+		if ( ConfigFactory::getDefaultInstance()->makeConfig( 'main' )->get( 'UseCopyrightUpload' ) ) {
 			$licensetxt = '';
 			if ( $license != '' ) {
 				$licensetxt = '== ' . $msg['license-header'] . " ==\n" . '{{' . $license . '}}' . "\n";
