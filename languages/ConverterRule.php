@@ -445,10 +445,11 @@ class ConverterRule {
 	}
 
 	/**
-	 * @todo FIXME: code this function :)
+	 * Checks if there are conversion rules.
+	 * @return bool
 	 */
 	public function hasRules() {
-		// TODO:
+		return $this->mRules !== '';
 	}
 
 	/**
