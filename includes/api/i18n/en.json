@@ -611,7 +611,7 @@
 	"apihelp-query+fileusage-param-prop": "Which properties to get:\n;pageid:Page ID of each page.\n;title:Title of each page.\n;redirect:Flag if the page is a redirect.",
 	"apihelp-query+fileusage-param-namespace": "Only include pages in these namespaces.",
 	"apihelp-query+fileusage-param-limit": "How many to return.",
-	"apihelp-query+fileusage-param-show": "Show only items that meet these criteria:\n;redirect:Only show redirects.\n;!redirects:Only show non-redirects.",
+	"apihelp-query+fileusage-param-show": "Show only items that meet these criteria:\n;redirect:Only show redirects.\n;!redirect:Only show non-redirects.",
 	"apihelp-query+fileusage-example-simple": "Get a list of pages using [[:File:Example.jpg]]",
 	"apihelp-query+fileusage-example-generator": "Get information about pages using [[:File:Example.jpg]]",
 
@@ -734,7 +734,7 @@
 	"apihelp-query+linkshere-param-prop": "Which properties to get:\n;pageid:Page ID of each page.\n;title:Title of each page.\n;redirect:Flag if the page is a redirect.",
 	"apihelp-query+linkshere-param-namespace": "Only include pages in these namespaces.",
 	"apihelp-query+linkshere-param-limit": "How many to return.",
-	"apihelp-query+linkshere-param-show": "Show only items that meet these criteria:\n;redirect:Only show redirects.\n;!redirects:Only show non-redirects.",
+	"apihelp-query+linkshere-param-show": "Show only items that meet these criteria:\n;redirect:Only show redirects.\n;!redirect:Only show non-redirects.",
 	"apihelp-query+linkshere-example-simple": "Get a list of pages linking to the [[Main Page]]",
 	"apihelp-query+linkshere-example-generator": "Get information about pages linking to the [[Main Page]]",
 
@@ -900,7 +900,7 @@
 	"apihelp-query+transcludedin-param-prop": "Which properties to get:\n;pageid:Page ID of each page.\n;title:Title of each page.\n;redirect:Flag if the page is a redirect.",
 	"apihelp-query+transcludedin-param-namespace": "Only include pages in these namespaces.",
 	"apihelp-query+transcludedin-param-limit": "How many to return.",
-	"apihelp-query+transcludedin-param-show": "Show only items that meet these criteria:\n;redirect:Only show redirects.\n;!redirects:Only show non-redirects.",
+	"apihelp-query+transcludedin-param-show": "Show only items that meet these criteria:\n;redirect:Only show redirects.\n;!redirect:Only show non-redirects.",
 	"apihelp-query+transcludedin-example-simple": "Get a list of pages transcluding the [[Main Page]]",
 	"apihelp-query+transcludedin-example-generator": "Get information about pages transcluding the [[Main Page]]",
 
