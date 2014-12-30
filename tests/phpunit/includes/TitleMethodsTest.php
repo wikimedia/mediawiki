@@ -7,7 +7,7 @@
  * @note We don't make assumptions about the main namespace.
  *       But we do expect the Help namespace to contain Wikitext.
  */
-class TitleMethodsTest extends MediaWikiTestCase {
+class TitleMethodsTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
 		global $wgContLang;
