@@ -1384,6 +1384,7 @@ class LocalFile extends File {
 		$logEntry->setPerformer( $user );
 		$logEntry->setComment( $comment );
 		$logEntry->setTarget( $descTitle );
+		$logEntry->setTimestamp( $timestamp );
 
 		// Allow people using the api to associate log entries with the upload.
 		// Log has a timestamp, but sometimes different from upload timestamp.
