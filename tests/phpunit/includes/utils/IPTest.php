@@ -9,7 +9,7 @@
  * dataprovider.
  */
 
-class IPTest extends MediaWikiTestCase {
+class IPTest extends PHPUnit_Framework_TestCase {
 	/**
 	 *  not sure it should be tested with boolean false. hashar 20100924
 	 * @covers IP::isIPAddress

@@ -1,6 +1,6 @@
 <?php
 
-class StringUtilsTest extends MediaWikiTestCase {
+class StringUtilsTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * This tests StringUtils::isUtf8 whenever we have the mbstring extension
