@@ -5239,9 +5239,10 @@ $wgDebugDumpSqlLength = 500;
  * Log destinations may be one of the following:
  * - false to completely remove from the output, including from $wgDebugLogFile.
  * - string values specifying a filename or URI.
- * - associative array mapping 'destination' key to the desired filename or URI.
- *   The associative array may also contain a 'sample' key with an integer value,
- *   specifying a sampling factor.
+ * - associative array with keys:
+ *   - 'destination' desired filename or URI.
+ *   - 'sample' an integer value, specifying a sampling factor
+ *   - 'level' A \Psr\Log\LogLevel constant, indicating the minimum level to log (since 1.25)
  *
  * @par Example:
  * @code
@@ -5253,6 +5254,7 @@ $wgDebugDumpSqlLength = 500;
  * $wgDebugLogGroups['memcached'] = array(
  *     'destination' => '/var/log/mediawiki/memcached.log',
  *     'sample' => 1000,  // log 1 message out of every 1,000.
+ *     'level' => \Psr\Log\LogLevel::WARNING
  * );
  * @endcode
  */

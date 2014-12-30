@@ -101,7 +101,7 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 		$levelOk = parent::isHandling( $record );
 		if ( $levelOk && $this->useLegacyFilter ) {
 			return MWLoggerLegacyLogger::shouldEmit(
-				$record['channel'], $record['message'], $record
+				$record['channel'], $record['message'], $record['level'], $record
 			);
 		}
 		return $levelOk;
