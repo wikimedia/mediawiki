@@ -1652,7 +1652,10 @@ class WikiRevision {
 }
 
 /**
- * @todo document (e.g. one-sentence class description).
+ * Used for importing XML dumps where the content of the dump is in a string.
+ * This class is ineffecient, and should only be used for small dumps.
+ * For larger dumps, ImportStreamSource should be used instead.
+ *
  * @ingroup SpecialPage
  */
 class ImportStringSource {
@@ -1681,7 +1684,7 @@ class ImportStringSource {
 }
 
 /**
- * @todo document (e.g. one-sentence class description).
+ * Imports a XML dump from a file (either from file upload, files on disk, or HTTP)
  * @ingroup SpecialPage
  */
 class ImportStreamSource {
