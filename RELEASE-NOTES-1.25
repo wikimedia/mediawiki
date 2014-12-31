@@ -94,6 +94,9 @@ production.
   tags.
 * Added 'ChangeTagsListActive' hook, to separate the concepts of "defined" and
   "active" formerly conflated by the 'ListDefinedTags' hook.
+* (T5593) $wgSVGConverter can now be set to 'native' to make web browsers render
+  SVG images directly, thus improving compatibility with high-density screens and
+  avoiding the need for third-party rasterization libraries.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
