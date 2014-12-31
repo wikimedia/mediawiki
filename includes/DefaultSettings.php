@@ -933,7 +933,7 @@ $wgExiv2Command = '/usr/bin/exiv2';
 
 /**
  * Scalable Vector Graphics (SVG) may be uploaded as images.
- * Since SVG support is not yet standard in browsers, it is
+ * Since SVG is only supported by newer browsers, it may be
  * necessary to rasterize SVGs to PNG as a fallback format.
  *
  * An external program is required to perform this conversion.
@@ -952,7 +952,8 @@ $wgSVGConverters = array(
 );
 
 /**
- * Pick a converter defined in $wgSVGConverters
+ * Pick a converter defined in $wgSVGConverters,
+ * or use 'native' to rely on web browsers.
  */
 $wgSVGConverter = 'ImageMagick';
 

@@ -71,6 +71,9 @@ production.
   should implement supporting behavior. Not doing so can result in undefined
   behavior from API clients trying to continue through prefix results.
 * Update jQuery from v1.11.1 to v1.11.2.
+* (T5593) $wgSVGConverter can now be set to 'native' to make web browsers render
+  SVG images directly, thus improving compatibility with high-density screens and
+  avoiding the need for third-party rasterization libraries.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
