@@ -18,6 +18,9 @@ production.
 * ':' (colon) is now invalid in usernames for new accounts. Existing accounts
   are not affected.
 * Added a new hook, 'LogException', to log exceptions in nonstandard ways.
+* (T5593) $wgSVGConverter can now be set to 'native' to make web browsers render
+  SVG images directly, thus improving compatibility with high-density screens and
+  avoiding the need for third-party rasterization libraries.
 
 ==== External libraries ====
 
