@@ -3,6 +3,7 @@
  */
 ( function ( mw, $ ) {
 
+	var submit = null;
 	/**
 	 * @ignore
 	 * @param {jQuery.Event} e
@@ -11,12 +12,14 @@
 		var isDiff, api, request, postData, copySelectors, section,
 			$wikiPreview, $wikiDiff, $editform, $copyElements, $spinner;
 
+		if ( !submit ) {
+			return;
+		}
+		isDiff = ( submit.name === 'wpDiff' );
+		submit = null;
+
 		e.preventDefault();
 
-		// Deprecated: Use mw.hook instead
-		$( mw ).trigger( 'LivePreviewPrepare' );
-
-		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
 		$wikiDiff = $( '#wikiDiff' );
 		$editform = $( '#editform' );
@@ -253,10 +256,14 @@
 			);
 		}
 
+		// Remember the clicked submit button
+		$( '#wpPreview, #wpDiff' ).click( function () {
+			submit = this;
+		} );
 		// This should be moved down to '#editform', but is kept on the body for now
 		// because the LiquidThreads extension is re-using this module with only half
 		// the EditPage (doesn't include #editform presumably, bug 55463).
-		$( document.body ).on( 'click', '#wpPreview, #wpDiff', doLivePreview );
+		$( document ).on( 'submit', '#editform', doLivePreview );
 	} );
 
 }( mediaWiki, jQuery ) );
