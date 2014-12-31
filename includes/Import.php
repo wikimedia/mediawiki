@@ -1652,7 +1652,7 @@ class WikiRevision {
 }
 
 /**
- * @todo document (e.g. one-sentence class description).
+ * Used for importing from simple import sources.
  * @ingroup SpecialPage
  */
 class ImportStringSource {
