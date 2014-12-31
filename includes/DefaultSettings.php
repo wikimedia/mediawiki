@@ -952,7 +952,8 @@ $wgSVGConverters = array(
 );
 
 /**
- * Pick a converter defined in $wgSVGConverters
+ * Pick a converter defined in $wgSVGConverters,
+ * or use 'native' to rely on web browsers.
  */
 $wgSVGConverter = 'ImageMagick';
 
