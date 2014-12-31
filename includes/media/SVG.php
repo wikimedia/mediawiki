@@ -42,6 +42,9 @@ class SvgHandler extends ImageHandler {
 
 	function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
+		if ( $wgSVGConverter === null ) {
+			return true;
+		}
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
 			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering.\n" );
 
@@ -52,7 +55,7 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function mustRender( $file ) {
-		return true;
+		return false;
 	}
 
 	function isVectorized( $file ) {
@@ -162,6 +165,7 @@ class SvgHandler extends ImageHandler {
 	 * @return bool|MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+		global $wgSVGConverter;
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
@@ -170,6 +174,10 @@ class SvgHandler extends ImageHandler {
 		$physicalWidth = $params['physicalWidth'];
 		$physicalHeight = $params['physicalHeight'];
 		$lang = isset( $params['lang'] ) ? $params['lang'] : $this->getDefaultRenderLanguage( $image );
+
+		if ( $wgSVGConverter === null ) {
+			return new ThumbnailImage( $image, $image->getURL(), $clientWidth, $clientHeight, null );
+		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
@@ -322,6 +330,10 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function getThumbType( $ext, $mime, $params = null ) {
+		global $wgSVGConverter;
+		if ( $wgSVGConverter === null ) {
+			return array( 'svg', 'image/xml+svg' );
+		}
 		return array( 'png', 'image/png' );
 	}
 
