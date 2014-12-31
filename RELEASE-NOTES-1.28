@@ -13,6 +13,9 @@ production.
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
 * Added a new hook, 'UserIsBot', to aid in determining if a user is a bot.
+* (T5593) $wgSVGConverter can now be set to 'native' to make web browsers render
+  SVG images directly, thus improving compatibility with high-density screens and
+  avoiding the need for third-party rasterization libraries.
 
 
 === External library changes in 1.28 ===
