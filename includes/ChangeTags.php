@@ -238,6 +238,75 @@ class ChangeTags {
 	}
 
 	/**
+	 * Permanently removes all traces of a tag from the DB. Good for removing
+	 * misspelt or temporary tags.
+	 *
+	 * @param string $tag Tag to remove
+	 * @return Status The returned status will be good unless a hook changed it
+	 */
+	public static function deleteTagEverywhere( $tag ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin( __METHOD__ );
+
+		// delete from valid_tag
+		$dbw->delete( 'valid_tag', array( 'vt_tag' => $tag ), __METHOD__ );
+
+		// find out which revisions use this tag, so we can delete from tag_summary
+		$result = $dbw->select( 'change_tag',
+			array( 'ct_rc_id', 'ct_log_id', 'ct_rev_id', 'ct_tag' ),
+			array( 'ct_tag' => $tag ),
+			__METHOD__ );
+		foreach ( $result as $row ) {
+			if ( $row->ct_rev_id ) {
+				$field = 'ts_rev_id';
+				$fieldValue = $row->ct_rev_id;
+			} elseif ( $row->ct_log_id ) {
+				$field = 'ts_log_id';
+				$fieldValue = $row->ct_log_id;
+			} elseif ( $row->ct_rc_id ) {
+				$field = 'ts_rc_id';
+				$fieldValue = $row->ct_rc_id;
+			} else {
+				// don't know what's up; just skip it
+				continue;
+			}
+
+			// remove the tag from the relevant row of tag_summary
+			$tsResult = $dbw->selectField( 'tag_summary',
+				'ts_tags',
+				array( $field => $fieldValue ),
+				__METHOD__ );
+			$tsValues = explode( ',', $tsResult );
+			$tsValues = array_values( array_diff( $tsValues, array( $tag ) ) );
+			if ( !$tsValues ) {
+				// no tags left, so delete the row altogether
+				$dbw->delete( 'tag_summary',
+					array( $field => $fieldValue ),
+					__METHOD__ );
+			} else {
+				$dbw->update( 'tag_summary',
+					array( 'ts_tags' => implode( ',', $tsValues ) ),
+					array( $field => $fieldValue ),
+					__METHOD__ );
+			}
+		}
+
+		// delete from change_tag
+		$dbw->delete( 'change_tag', array( 'ct_tag' => $tag ), __METHOD__ );
+
+		$dbw->commit( __METHOD__ );
+
+		// give extensions a chance
+		$status = Status::newGood();
+		Hooks::run( 'ChangeTagAfterDelete', array( $tag, $status ) );
+
+		// clear the memcache of defined tags
+		self::purgeTagCache();
+
+		return $status;
+	}
+
+	/**
 	 * Build a text box to select a change tag
 	 *
 	 * @param string $selected Tag to select by default
@@ -327,6 +396,14 @@ class ChangeTags {
 		// Short-term caching.
 		$wgMemc->set( $key, $emptyTags, 300 );
 		return $emptyTags;
+	}
+
+	/**
+	 * Invalidates the short-term cache of defined tags used by listDefinedTags.
+	 */
+	public static function purgeTagCache() {
+		global $wgMemc;
+		$wgMemc->delete( wfMemcKey( 'valid-tags' ) );
 	}
 
 	/**
