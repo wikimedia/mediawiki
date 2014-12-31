@@ -41,6 +41,9 @@ production.
 * Added new hooks 'EnhancedChangesListModifyLineData' &
   'EnhancedChangesListModifyBlockLineData', to modify the data used to build
   lines in enhanced recentchanges and watchlist.
+* (T5593) $wgSVGConverter can now be set to 'native' to make web browsers render
+  SVG images directly, thus improving compatibility with high-density screens and
+  avoiding the need for third-party rasterization libraries.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.

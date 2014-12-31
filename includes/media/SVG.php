@@ -40,8 +40,16 @@ class SvgHandler extends ImageHandler {
 		'title' => 'ObjectName',
 	);
 
+	function isNativeRenderingEnabled() {
+		global $wgSVGConverter;
+		return ( $wgSVGConverter === 'native' );
+	}
+
 	function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
+		if ( $this->isNativeRenderingEnabled() ) {
+			return true;
+		}
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
 			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering.\n" );
 
@@ -52,7 +60,7 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function mustRender( $file ) {
-		return true;
+		return !$this->isNativeRenderingEnabled();
 	}
 
 	function isVectorized( $file ) {
@@ -170,6 +178,10 @@ class SvgHandler extends ImageHandler {
 		$physicalWidth = $params['physicalWidth'];
 		$physicalHeight = $params['physicalHeight'];
 		$lang = isset( $params['lang'] ) ? $params['lang'] : $this->getDefaultRenderLanguage( $image );
+
+		if ( $this->isNativeRenderingEnabled() ) {
+			return new ThumbnailImage( $image, $image->getURL(), $clientWidth, $clientHeight, null );
+		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
@@ -321,6 +333,9 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function getThumbType( $ext, $mime, $params = null ) {
+		if ( $this->isNativeRenderingEnabled() ) {
+			return array( 'svg', 'image/xml+svg' );
+		}
 		return array( 'png', 'image/png' );
 	}
 
