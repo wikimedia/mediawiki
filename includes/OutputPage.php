@@ -247,8 +247,9 @@ class OutputPage extends ContextSource {
 	protected $mSquidMaxage = 0;
 
 	/**
-	 * @var bool
-	 * @todo Document
+	 * @var bool Controls if anti-clickjacking / frame-breaking headers will
+	 * be sent. This should be done for pages where edit actions are possible.
+	 * Setters: $this->preventClickjacking() and $this->allowClickjacking().
 	 */
 	protected $mPreventClickjacking = true;
 
