@@ -892,6 +892,19 @@ $name: name of the special page, e.g. 'Watchlist'
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
 
+'ChangeTagAfterDelete': Called after a change tag has been deleted (that is,
+removed from all revisions and log entries to which it was applied). This gives
+extensions a chance to take it off their books.
+$tag: name of the tag
+&$status: Status object. Add errors or warnings to this as required. There is
+  no difference between errors or warnings for this hook.
+
+'ChangeTagCanDelete': Tell whether a change tag should be able to be
+deleted from the UI (Special:Tags) or via the API.
+$tag: name of the tag
+&$status: Status object. Add your errors or warnings, which will be relayed
+  to the user. If you set an error, the user will be unable to delete the tag.
+
 'LoginUserMigrated': Called during login to allow extensions the opportunity to
 inform a user that their username doesn't exist for a specific reason, instead
 of letting the login form give the generic error message that the account does
