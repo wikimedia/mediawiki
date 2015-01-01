@@ -3156,7 +3156,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param Title $title
 	 */
-	public static function onArticleCreate( $title ) {
+	public static function onArticleCreate( Title $title ) {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
@@ -3173,7 +3173,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param Title $title
 	 */
-	public static function onArticleDelete( $title ) {
+	public static function onArticleDelete( Title $title ) {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
@@ -3214,10 +3214,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purge caches on page update etc
 	 *
 	 * @param Title $title
-	 * @todo Verify that $title is always a Title object (and never false or
-	 *   null), add Title hint to parameter $title.
 	 */
-	public static function onArticleEdit( $title ) {
+	public static function onArticleEdit( Title $title ) {
 		// Invalidate caches of articles which include this page
 		DeferredUpdates::addHTMLCacheUpdate( $title, 'templatelinks' );
 
