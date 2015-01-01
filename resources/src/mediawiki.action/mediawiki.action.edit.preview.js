@@ -13,9 +13,6 @@
 
 		e.preventDefault();
 
-		// Deprecated: Use mw.hook instead
-		$( mw ).trigger( 'LivePreviewPrepare' );
-
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
 		$wikiDiff = $( '#wikiDiff' );
@@ -64,8 +61,8 @@
 			action: 'parse',
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			title: mw.config.get( 'wgPageName' ),
-			text: $editform.find( '#wpTextbox1' ).val(),
-			summary: $editform.find( '#wpSummary' ).val()
+			text: $editform.find( '#wpTextbox1' ).textSelection( 'getContents' ),
+			summary: $editform.find( '#wpSummary' ).textSelection( 'getContents' )
 		};
 
 		if ( isDiff ) {

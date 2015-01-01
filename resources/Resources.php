@@ -1044,6 +1044,7 @@ return array(
 		'dependencies' => array(
 			'jquery.form',
 			'jquery.spinner',
+			'jquery.textSelection',
 			'mediawiki.api',
 			'mediawiki.action.history.diff',
 			'mediawiki.util',
