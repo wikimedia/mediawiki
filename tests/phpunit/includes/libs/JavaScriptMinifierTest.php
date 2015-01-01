@@ -164,7 +164,7 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public static function provideBug32548() {
+	public static function provideExponentLineBreaking() {
 		return array(
 			array(
 				// This one gets interpreted all together by the prior code;
@@ -183,14 +183,13 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider provideBug32548
+	 * @dataProvider provideExponentBreaking
 	 * @covers JavaScriptMinifier::minify
-	 * @todo give this test a real name explaining what is being tested here
 	 */
-	public function testBug32548Exponent( $num ) {
+	public function testExponentLineBreaking( $num ) {
 		// Long line breaking was being incorrectly done between the base and
 		// exponent part of a number, causing a syntax error. The line should
-		// instead break at the start of the number.
+		// instead break at the start of the number. (T34548)
 		$prefix = 'var longVarName' . str_repeat( '_', 973 ) . '=';
 		$suffix = ',shortVarName=0;';
 
