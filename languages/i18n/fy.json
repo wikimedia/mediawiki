@@ -1750,6 +1750,8 @@
 	"version-software": "Ynsteld software",
 	"version-software-product": "Produkt",
 	"version-software-version": "Ferzje",
+	"version-libraries-library": "Bibleteek",
+	"version-libraries-version": "Ferzje",
 	"redirect-value": "Wearde:",
 	"redirect-user": "Meidogger-ID",
 	"redirect-file": "Triemnamme",

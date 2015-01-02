@@ -9,11 +9,15 @@
 	"config-back": "Mohalingo",
 	"config-continue": "Turusi",
 	"config-page-language": "Bahasa",
+	"config-page-upgrade": "Popobohuwa umapilopohuli",
 	"config-page-name": "Tanggulo",
 	"config-page-options": "Tulawotolo",
+	"config-page-install": "Mopohuli",
 	"config-page-complete": "Yilapato",
 	"config-page-restart": "Ulangiya instalasi",
 	"config-page-releasenotes": "Tuladu mopolopato",
 	"config-page-copying": "Mohemi",
-	"config-page-upgradedoc": "Mopobohu"
+	"config-page-upgradedoc": "Mopobohu",
+	"config-page-existingwiki": "Wiki uwoluwo",
+	"config-restart": "Jo, potumula ulangi"
 }

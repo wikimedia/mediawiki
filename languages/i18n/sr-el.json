@@ -613,7 +613,7 @@
 	"editingsection": "Uređujete $1 (odeljak)",
 	"editingcomment": "Uređujete $1 (novi odeljak)",
 	"editconflict": "Sukobljene izmene: $1",
-	"explainconflict": "Neko drugi je u međuvremenu promenio ovu stranicu.\nGornji okvir sadrži tekst stranice.\nVaše izmene su prikazane u donjem polju.\nMoraćete da unesete svoje promene u postojeći tekst.\n'''Samo''' će tekst u gornjem tekstualnom okviru biti sačuvan kada kliknete na „{{int:savearticle}}“.",
+	"explainconflict": "Neko drugi je u međuvremenu promenio ovu stranicu.\nGornji okvir sadrži sadašnji tekst stranice.\nVaše izmene su prikazane u donjem polju.\nMoraćete da unesete svoje promene u sadašnji tekst stranice.\n<strong>Samo</strong> će tekst u gornjem tekstualnom okviru biti sačuvan kada kliknete na „{{int:savearticle}}“.",
 	"yourtext": "Vaš tekst",
 	"storedversion": "Uskladištena izmena",
 	"nonunicodebrowser": "'''Upozorenje: vaš pregledač ne podržava unikod.'''\nPromenite ga pre nego što počnete s uređivanjem.",

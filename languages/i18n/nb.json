@@ -41,7 +41,8 @@
 			"Wouterkoch",
 			"לערי ריינהארט",
 			"아라",
-			"Chameleon222"
+			"Chameleon222",
+			"Helland"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -69,7 +70,7 @@
 	"tog-shownumberswatching": "Vis antall brukere som overvåker",
 	"tog-oldsig": "Nåværende signatur:",
 	"tog-fancysig": "Behandle signaturen som wikitekst (uten automatisk lenke)",
-	"tog-uselivepreview": "Bruk levende forhåndsvisning (eksperimentelt)",
+	"tog-uselivepreview": "Bruk levende forhåndsvisning",
 	"tog-forceeditsummary": "Advar meg når jeg ikke gir noen redigeringsforklaring",
 	"tog-watchlisthideown": "Skjul mine endringer fra overvåkningslisten",
 	"tog-watchlisthidebots": "Skjul robotendringer fra overvåkningslisten",
