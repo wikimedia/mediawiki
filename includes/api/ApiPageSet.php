@@ -1326,7 +1326,12 @@ class ApiPageSet extends ApiBase {
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => array(
 					'api-pageset-param-converttitles',
-					$this->getLanguage()->commaList( LanguageConverter::$languagesWithVariants ),
+					new DeferredStringifier(
+						function( Language $lang ) {
+							return $lang->commaList( LanguageConverter::$languagesWithVariants );
+						},
+						array( $this->getLanguage() )
+					)
 				),
 			),
 		);
