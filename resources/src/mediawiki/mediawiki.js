@@ -1927,7 +1927,7 @@
 				 * Get the state of a module.
 				 *
 				 * @param {string} module Name of module
-				 * @return {string|null} The state, or null if the module (or its version) is not
+				 * @return {string|null} The state, or null if the module (or its state) is not
 				 *  in the registry.
 				 */
 				getState: function ( module ) {
