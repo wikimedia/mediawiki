@@ -474,8 +474,6 @@ $.suggestions = {
 						}
 					}
 				} else {
-					$.suggestions.highlight( context, selected, true );
-
 					if ( typeof context.config.result.select === 'function' ) {
 						// Allow the callback to decide whether to prevent default or not
 						if ( context.config.result.select.call( selected, context.data.$textbox ) === true ) {
