@@ -10,13 +10,16 @@ class ComposerLockTest extends MediaWikiTestCase {
 		$this->lock = "$IP/tests/phpunit/data/composer/composer.lock";
 	}
 
+	/**
+	 * @covers ComposerLock::getHash
+	 */
 	public function testGetHash() {
 		$lock = new ComposerLock( $this->lock );
 		$this->assertEquals( 'cc6e7fc565b246cb30b0cac103a2b31e', $lock->getHash() );
 	}
 
 	/**
-	 * @covers ComposerLockParser::getInstalledDependencies
+	 * @covers ComposerLock::getInstalledDependencies
 	 */
 	public function testGetInstalledDependencies() {
 		$lock = new ComposerLock( $this->lock );
