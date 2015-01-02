@@ -193,4 +193,49 @@ class LinkerTest extends MediaWikiLangTestCase {
 			),
 		);
 	}
+
+	/**
+	 * @covers Linker::formatLinksInComment
+	 * @dataProvider provideCasesForFormatLinksInComment
+	 */
+	public function testFormatLinksInComment( $expected, $input, $wiki ) {
+
+		$conf = new SiteConfiguration();
+		$conf->settings = array(
+			'wgServer' => array(
+				'enwiki' => '//en.example.org'
+			),
+			'wgArticlePath' => array(
+				'enwiki' => '/w/$1',
+			),
+		);
+		$conf->suffixes = array( 'wiki' );
+		$this->setMwGlobals( array(
+			'wgScript' => '/wiki/index.php',
+			'wgArticlePath' => '/wiki/$1',
+			'wgWellFormedXml' => true,
+			'wgCapitalLinks' => true,
+			'wgConf' => $conf,
+		) );
+
+		$this->assertEquals(
+			$expected,
+			Linker::formatLinksInComment( $input, Title::newFromText( 'Special:BlankPage' ), false, $wiki )
+		);
+	}
+
+	public static function provideCasesForFormatLinksInComment() {
+		return array(
+			array(
+				'foo bar <a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
+				'foo bar [[Special:BlankPage]]',
+				null,
+			),
+			array(
+				'foo bar <a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage">Special:BlankPage</a>',
+				'foo bar [[Special:BlankPage]]',
+				'enwiki',
+			),
+		);
+	}
 }
