@@ -1402,9 +1402,11 @@ class Linker {
 	 * @param string $comment Text to format links in
 	 * @param Title|null $title An optional title object used to links to sections
 	 * @param bool $local Whether section links should refer to local page
+	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki), as used by WikiMap
+	 *
 	 * @return string
 	 */
-	public static function formatLinksInComment( $comment, $title = null, $local = false ) {
+	public static function formatLinksInComment( $comment, $title = null, $local = false, $wikiId = null ) {
 		return preg_replace_callback(
 			'/
 				\[\[
@@ -1418,7 +1420,7 @@ class Linker {
 				\]\]
 				([^[]*) # 3. link trail (the text up until the next link)
 			/x',
-			function ( $match ) use ( $title, $local ) {
+			function ( $match ) use ( $title, $local, $wikiId ) {
 				global $wgContLang;
 
 				$medians = '(?:' . preg_quote( MWNamespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
@@ -1474,11 +1476,22 @@ class Linker {
 							$newTarget = clone ( $title );
 							$newTarget->setFragment( '#' . $target->getFragment() );
 							$target = $newTarget;
+
 						}
-						$thelink = Linker::link(
-							$target,
-							$linkText . $inside
-						) . $trail;
+
+						if ( $wikiId !== null ) {
+							$thelink = Linker::makeExternalLink(
+								WikiMap::getForeignURL( $wikiId, $target->getPrefixedURL() ),
+								$linkText . $inside,
+								true
+							) . $trail;
+						} else {
+							$thelink = Linker::link(
+								$target,
+								$linkText . $inside
+							) . $trail;
+						}
+
 					}
 				}
 				if ( $thelink ) {
