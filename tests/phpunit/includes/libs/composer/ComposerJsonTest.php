@@ -20,7 +20,7 @@ class ComposerJsonTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideGetHash
-	 * @covers ComposerJsonParser::getHash
+	 * @covers ComposerJson::getHash
 	 */
 	public function testIsHashUpToDate( $file, $expected ) {
 		$json = new ComposerJson( $this->$file );
@@ -28,7 +28,7 @@ class ComposerJsonTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ComposerLockComparer::getRequiredDependencies
+	 * @covers ComposerJson::getRequiredDependencies
 	 */
 	public function testGetRequiredDependencies() {
 		$json = new ComposerJson( $this->json );
@@ -49,7 +49,7 @@ class ComposerJsonTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideNormalizeVersion
-	 * @covers ComposerJsonParser::normalizeVersion
+	 * @covers ComposerJson::normalizeVersion
 	 */
 	public function testNormalizeVersion( $input, $expected ) {
 		$this->assertEquals( $expected, ComposerJson::normalizeVersion( $input ) );
