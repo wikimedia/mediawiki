@@ -315,8 +315,8 @@ class DateFormatter {
 	}
 
 	/**
-	 * @todo document
-	 * @return string
+	 * Return a regex that can be used to find month names in string
+	 * @return string regex to find the months with
 	 */
 	public function getMonthRegex() {
 		$names = array();
@@ -338,7 +338,7 @@ class DateFormatter {
 	}
 
 	/**
-	 * @todo document
+	 * Make an ISO year from a year name, for instance: '-1199' from '1200 BC'
 	 * @param string $year Year name
 	 * @return string ISO year name
 	 */
@@ -356,9 +356,10 @@ class DateFormatter {
 	}
 
 	/**
-	 * @todo document
-	 * @param string $iso
-	 * @return int|string
+	 * Make a year one from an ISO year, for instance: '400 BC' from '-0399'.
+	 * @param string $iso ISO year
+	 * @return int|string int representing year number in case of AD dates, or string containing
+	 *   year number and 'BC' at the end otherwise.
 	 */
 	public function makeNormalYear( $iso ) {
 		if ( $iso[0] == '-' ) {
