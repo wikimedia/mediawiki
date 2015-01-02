@@ -2,7 +2,7 @@
  * @class jQuery.plugin.footHovzer
  */
 ( function ( $ ) {
-	var $hovzer, footHovzer, prevHeight, newHeight;
+	var $hovzer, footHovzer, $spacer;
 
 	function getHovzer() {
 		if ( $hovzer === undefined ) {
@@ -46,15 +46,15 @@
 			var $body;
 
 			$body = $( 'body' );
-			if ( prevHeight === undefined ) {
-				prevHeight = getHovzer().outerHeight( /* includeMargin = */ true );
-				$body.css( 'paddingBottom', '+=' + prevHeight + 'px' );
-			} else {
-				newHeight = getHovzer().outerHeight( true );
-				$body.css( 'paddingBottom', ( parseFloat( $body.css( 'paddingBottom' ) ) - prevHeight ) + newHeight );
 
-				prevHeight = newHeight;
+			if ( $spacer === undefined ) {
+				$spacer = $( '<div>' ).attr( 'id', 'jquery-foot-hovzer-spacer' );
+				$spacer.appendTo( $body );
 			}
+			// Ensure CSS is applied by browser before using .outerHeight()
+			setTimeout( function () {
+				$spacer.css( 'height', getHovzer().outerHeight( /* includeMargin = */ true ) );
+			}, 0 );
 		}
 	};
 
