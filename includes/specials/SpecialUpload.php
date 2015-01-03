@@ -461,7 +461,7 @@ class SpecialUpload extends SpecialPage {
 		// Get the page text if this is not a reupload
 		if ( !$this->mForReUpload ) {
 			$pageText = self::getInitialPageText( $this->mComment, $this->mLicense,
-				$this->mCopyrightStatus, $this->mCopyrightSource );
+				$this->mCopyrightStatus, $this->mCopyrightSource, $this->getConfig() );
 		} else {
 			$pageText = false;
 		}
@@ -491,28 +491,32 @@ class SpecialUpload extends SpecialPage {
 	 * @param string $license
 	 * @param string $copyStatus
 	 * @param string $source
+	 * @param Config $config Configuration object to load data from
 	 * @return string
-	 * @todo Use Config obj instead of globals
 	 */
 	public static function getInitialPageText( $comment = '', $license = '',
-		$copyStatus = '', $source = ''
+		$copyStatus = '', $source = '', Config $config = null
 	) {
-		global $wgUseCopyrightUpload, $wgForceUIMsgAsContentMsg;
+		if ( $config === null ) {
+			wfDebug( __METHOD__ . ' called without a Config instance passed to it' );
+			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		}
 
 		$msg = array();
+		$forceUIMsgAsContentMsg = (array)$config->get( 'ForceUIMsgAsContentMsg' );
 		/* These messages are transcluded into the actual text of the description page.
 		 * Thus, forcing them as content messages makes the upload to produce an int: template
 		 * instead of hardcoding it there in the uploader language.
 		 */
 		foreach ( array( 'license-header', 'filedesc', 'filestatus', 'filesource' ) as $msgName ) {
-			if ( in_array( $msgName, (array)$wgForceUIMsgAsContentMsg ) ) {
+			if ( in_array( $msgName, $forceUIMsgAsContentMsg ) ) {
 				$msg[$msgName] = "{{int:$msgName}}";
 			} else {
 				$msg[$msgName] = wfMessage( $msgName )->inContentLanguage()->text();
 			}
 		}
 
-		if ( $wgUseCopyrightUpload ) {
+		if ( $config->get( 'UseCopyrightUpload' ) ) {
 			$licensetxt = '';
 			if ( $license != '' ) {
 				$licensetxt = '== ' . $msg['license-header'] . " ==\n" . '{{' . $license . '}}' . "\n";
