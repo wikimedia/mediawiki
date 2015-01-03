@@ -792,6 +792,10 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Makes an encoded list of strings from an array
+	 *
+	 * @todo If the custom parameter is in fact necessary, document why, and
+	 *   move the MS SQL specific code into a separate (private?) method.
+	 *
 	 * @param array $a Containing the data
 	 * @param int $mode Constant
 	 *      - LIST_COMMA:          comma separated, no field names
@@ -812,64 +816,23 @@ class DatabaseMssql extends DatabaseBase {
 				'DatabaseBase::makeList called with incorrect parameters' );
 		}
 
-		$first = true;
-		$list = '';
+		if ( $mode != LIST_NAMES ) {
+			foreach ( array_keys( $a ) as $field ) {
+				if ( !isset( $binaryColumns[$field] ) ) {
+					continue;
+				}
 
-		foreach ( $a as $field => $value ) {
-			if ( $mode != LIST_NAMES && isset( $binaryColumns[$field] ) ) {
-				if ( is_array( $value ) ) {
-					foreach ( $value as &$v ) {
+				if ( is_array( $a[$field] ) ) {
+					foreach ( $a[$field] as &$v ) {
 						$v = new MssqlBlob( $v );
 					}
 				} else {
-					$value = new MssqlBlob( $value );
+					$a[$field] = new MssqlBlob( $a[$field] );
 				}
-			}
-
-			if ( !$first ) {
-				if ( $mode == LIST_AND ) {
-					$list .= ' AND ';
-				} elseif ( $mode == LIST_OR ) {
-					$list .= ' OR ';
-				} else {
-					$list .= ',';
-				}
-			} else {
-				$first = false;
-			}
-
-			if ( ( $mode == LIST_AND || $mode == LIST_OR ) && is_numeric( $field ) ) {
-				$list .= "($value)";
-			} elseif ( ( $mode == LIST_SET ) && is_numeric( $field ) ) {
-				$list .= "$value";
-			} elseif ( ( $mode == LIST_AND || $mode == LIST_OR ) && is_array( $value ) ) {
-				if ( count( $value ) == 0 ) {
-					throw new MWException( __METHOD__ . ": empty input for field $field" );
-				} elseif ( count( $value ) == 1 ) {
-					// Special-case single values, as IN isn't terribly efficient
-					// Don't necessarily assume the single key is 0; we don't
-					// enforce linear numeric ordering on other arrays here.
-					$value = array_values( $value );
-					$list .= $field . " = " . $this->addQuotes( $value[0] );
-				} else {
-					$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
-				}
-			} elseif ( $value === null ) {
-				if ( $mode == LIST_AND || $mode == LIST_OR ) {
-					$list .= "$field IS ";
-				} elseif ( $mode == LIST_SET ) {
-					$list .= "$field = ";
-				}
-				$list .= 'NULL';
-			} else {
-				if ( $mode == LIST_AND || $mode == LIST_OR || $mode == LIST_SET ) {
-					$list .= "$field = ";
-				}
-				$list .= $mode == LIST_NAMES ? $value : $this->addQuotes( $value );
 			}
 		}
 
-		return $list;
+		return parent::makeList( $a, $mode );
 	}
 
 	/**
