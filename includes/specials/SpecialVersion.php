@@ -788,24 +788,23 @@ class SpecialVersion extends SpecialPage {
 		// ... and license information; if a license file exists we
 		// will link to it
 		$licenseLink = '';
-		if ( isset( $extension['license-name'] ) ) {
-			$licenseLink = Linker::link(
-				$this->getPageTitle( 'License/' . $extensionName ),
-				$out->parseInline( $extension['license-name'] ),
-				array(
-					'class' => 'mw-version-ext-license',
-					'dir' => 'auto',
-				)
-			);
-		} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
-			$licenseLink = Linker::link(
-				$this->getPageTitle( 'License/' . $extensionName ),
-				$this->msg( 'version-ext-license' ),
-				array(
-					'class' => 'mw-version-ext-license',
-					'dir' => 'auto',
-				)
-			);
+		if ( isset( $extension['name'] ) ) {
+			$licenseName = null;
+			if ( isset( $extension['license-name'] ) ) {
+				$licenseName = $out->parseInline( $extension['license-name'] );
+			} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
+				$licenseName = $this->msg( 'version-ext-license' );
+			}
+			if ( $licenseName !== null ) {
+				$licenseLink = Linker::link(
+					$this->getPageTitle( 'License/' . $extension['name'] ),
+					$licenseName,
+					array(
+						'class' => 'mw-version-ext-license',
+						'dir' => 'auto',
+					)
+				);
+			}
 		}
 
 		// ... and generate the description; which can be a parameterized l10n message
