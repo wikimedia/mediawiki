@@ -531,11 +531,16 @@ class SpecialVersion extends SpecialPage {
 			. Html::element( 'th', array(), $this->msg( 'version-libraries-library' )->text() )
 			. Html::element( 'th', array(), $this->msg( 'version-libraries-version' )->text() )
 			. Html::closeElement( 'tr' );
-		;
-		foreach ( $lock->getInstalledDependencies() as $name => $version ) {
+
+		foreach ( $lock->getInstalledDependencies() as $name => $info ) {
+			if ( strpos( $info['type'], 'mediawiki-' ) === 0 ) {
+				// Skip any extensions or skins since they'll be listed
+				// in their proper section
+				continue;
+			}
 			$out .= Html::openElement( 'tr' )
 				. Html::rawElement( 'td', array(), Linker::makeExternalLink( "https://packagist.org/packages/$name", $name ) )
-				. Html::element( 'td', array(), $version )
+				. Html::element( 'td', array(), $info['version'] )
 				. Html::closeElement( 'tr' );
 		}
 		$out .= Html::closeElement( 'table' );

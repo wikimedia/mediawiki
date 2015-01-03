@@ -15,7 +15,7 @@ class ComposerLockTest extends MediaWikiTestCase {
 	 */
 	public function testGetHash() {
 		$lock = new ComposerLock( $this->lock );
-		$this->assertEquals( 'cc6e7fc565b246cb30b0cac103a2b31e', $lock->getHash() );
+		$this->assertEquals( 'a3bb80b0ac4c4a31e52574d48c032923', $lock->getHash() );
 	}
 
 	/**
@@ -24,10 +24,38 @@ class ComposerLockTest extends MediaWikiTestCase {
 	public function testGetInstalledDependencies() {
 		$lock = new ComposerLock( $this->lock );
 		$this->assertArrayEquals( array(
-			'cdb/cdb' => '1.0.0',
-			'cssjanus/cssjanus' => '1.1.1',
-			'leafo/lessphp' => '0.5.0',
-			'psr/log' => '1.0.0',
+			'wikimedia/cdb' => array(
+				'version' => '1.0.1',
+				'type' => 'library',
+			),
+			'cssjanus/cssjanus' => array(
+				'version' => '1.1.1',
+				'type' => 'library',
+			),
+			'leafo/lessphp' => array(
+				'version' => '0.5.0',
+				'type' => 'library',
+			),
+			'psr/log' => array(
+				'version' => '1.0.0',
+				'type' => 'library',
+			),
+			'oojs/oojs-ui' => array(
+				'version' => '0.6.0',
+				'type' => 'library',
+			),
+			'composer/installers' => array(
+				'version' => '1.0.19',
+				'type' => 'composer-installer',
+			),
+			'mediawiki/translate' => array(
+				'version' => '2014.12',
+				'type' => 'mediawiki-extension',
+			),
+			'mediawiki/universal-language-selector' => array(
+				'version' => '2014.12',
+				'type' => 'mediawiki-extension',
+			),
 		), $lock->getInstalledDependencies(), false, true );
 	}
 
