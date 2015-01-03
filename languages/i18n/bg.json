@@ -855,6 +855,7 @@
 	"powersearch-togglelabel": "Избор:",
 	"powersearch-toggleall": "Всички",
 	"powersearch-togglenone": "Никои",
+	"powersearch-remember": "Запомняне на избора за бъдещи търсения",
 	"search-external": "Външно търсене",
 	"searchdisabled": "Търсенето в {{SITENAME}} е временно изключено. Междувременно можете да търсите чрез Google. Обърнете внимание, че съхранените при тях страници най-вероятно са остарели.",
 	"search-error": "Възникна грешка при търсене: $1",

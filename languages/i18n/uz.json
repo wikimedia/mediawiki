@@ -509,7 +509,7 @@
 	"post-expand-template-inclusion-warning": "'''Diqqat:''' Qo'llanilayotgan andozalarning jami hajmi juda katta.\nAyrim andozalar qo'shilmaydi.",
 	"post-expand-template-inclusion-category": "Qo'llaniladigan andozalarning mumkin bo'lgan miqdoridan oshgan sahifalar",
 	"post-expand-template-argument-category": "Andozalarning to'ldirilmagan o'zgaruvchilariga ega sahifalar",
-	"undo-summary": "[[Special:Contributions/$2|$2]] tomonidan qilingan $1 tahriri qaytarildi ([[User talk:$2|mun.]])",
+	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|mun.]]) tomonidan qilingan $1-sonli tahrir qaytarildi",
 	"viewpagelogs": "Ushbu sahifaga doir qaydlarni koʻrsat",
 	"nohistory": "Ushbu sahifa uchun oʻzgarishlar tarixi mavjud emas.",
 	"currentrev": "Hozirgi koʻrinishi",

@@ -327,6 +327,7 @@
 	"filerenameerror": "Ne mogu da preimenujem datoteku „$1“ u „$2“.",
 	"filedeleteerror": "Ne mogu da obrišem datoteku „$1“.",
 	"directorycreateerror": "Ne mogu da napravim fasciklu „$1“.",
+	"directorynotreadableerror": "Direktorijum „$1“ nije čitljiv.",
 	"filenotfound": "Ne mogu da pronađem datoteku „$1“.",
 	"unexpected": "Neočekivana vrednost: „$1“=„$2“.",
 	"formerror": "Greška: ne mogu da pošaljem obrazac",
@@ -2841,6 +2842,7 @@
 	"imgmultigo": "Idi!",
 	"imgmultigoto": "Idi na stranicu $1",
 	"img-lang-default": "(podrazumevani jezik)",
+	"img-lang-info": "Prikaži ovu sliku na $1. $2",
 	"img-lang-go": "Idi",
 	"ascending_abbrev": "rast.",
 	"descending_abbrev": "opad.",
@@ -3198,9 +3200,11 @@
 	"mediastatistics-table-extensions": "Moguće ekstenzije",
 	"mediastatistics-table-count": "Broj datoteka",
 	"mediastatistics-table-totalbytes": "Ukupna veličina",
+	"mediastatistics-header-unknown": "Nepoznato",
 	"mediastatistics-header-bitmap": "Bitmap slike",
 	"mediastatistics-header-drawing": "Crteži (vektorske slike)",
 	"mediastatistics-header-audio": "Audio",
 	"mediastatistics-header-video": "Video",
-	"mediastatistics-header-office": "Kancelarija"
+	"mediastatistics-header-office": "Kancelarija",
+	"json-error-syntax": "Greška u sintaksi"
 }

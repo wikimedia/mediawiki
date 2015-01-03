@@ -48,7 +48,8 @@
 			"Calak",
 			"Omda4wady",
 			"Bibas",
-			"Khaled"
+			"Khaled",
+			"Emara"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -2993,6 +2994,7 @@
 	"timezone-utc": "ت ع م",
 	"duplicate-defaultsort": "'''تحذير:''' مفتاح الترتيب الافتراضي \"$2\" يتجاوز مفتاح الترتيب الافتراضي السابق \"$1\".",
 	"duplicate-displaytitle": "<strong>تحذير:</strong> أعرض عنوان \"$2\" تجاهل العنوان المعروض سابقا \"$1\".",
+	"invalid-indicator-name": "<strong>خطأ:</strong> لا يجوز أن تبقى خاصية <code>name</code> لمؤشرات وضع الصفحة فارغةً.",
 	"version": "نسخة",
 	"version-extensions": "الامتدادات المثبتة",
 	"version-skins": "الواجهات المنصبة",
@@ -3036,6 +3038,7 @@
 	"version-entrypoints-header-url": "المسار",
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath مسار المقالات]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath مسار السكريبت]",
+	"version-libraries": "مكتبات مثبته",
 	"version-libraries-library": "المكتبة",
 	"version-libraries-version": "الإصدارة",
 	"redirect": "تحويل حسب رقم الملف أو رقم المستخدم أو رقم الصفحة أو رقم مراجعة",
@@ -3103,7 +3106,7 @@
 	"compare-revision-not-exists": "المراجعة التي حددتها غير موجودة.",
 	"dberr-problems": "عذرا! هذا الموقع يعاني من صعوبات تقنية.",
 	"dberr-again": "جرب الانتظار بضع دقائق وإعادة التحميل.",
-	"dberr-info": "(غير قادر على الاتصال بخادوم قاعدة البيانات: $1)",
+	"dberr-info": "(لا يمكن الوصول إلى خادوم قاعدة البيانات: $1)",
 	"dberr-info-hidden": "(لا يمكن الاتصال بخادم قاعدة البيانات)",
 	"dberr-usegoogle": "يمكنك محاولة البحث من خلال جوجل في الوقت الحاضر.",
 	"dberr-outofdate": "لاحظ أن فهارسهم لمحتوانا ربما تكون غير محدثة.",
@@ -3213,6 +3216,8 @@
 	"api-error-stashfailed": "خطأ داخلي: فشل الملقم في تخزين الملفات المؤقتة.",
 	"api-error-publishfailed": "خطأ داخلي: لم ينجح الخادوم في نشر ملف مؤقت",
 	"api-error-stasherror": "حدث خطأ أثناء رفع الملف لتخزينه.",
+	"api-error-stashedfilenotfound": "لم يعثر على الملف المحجوب عند محاولة رفعه من الحجب.",
+	"api-error-stashfilestorage": "حدث خطأ أثناء رفع الملف لتخزينه.",
 	"api-error-stashnotloggedin": "يجب عليك تسجيل الدخول لحفظ الملفات في مرفوعاتك.",
 	"api-error-stashwrongowner": "الملف الذي كنت تحاول الوصول اليه في مخبوائتك ليس لك.",
 	"api-error-stashnosuchfilekey": "الملف الذي كنت تحاول الوصول اليه في مخبوائتك غير موجود.",
