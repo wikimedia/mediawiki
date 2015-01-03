@@ -6675,7 +6675,10 @@ $wgLogActionsHandlers = array(
 	'upload/overwrite' => 'LogFormatter',
 	'upload/revert' => 'LogFormatter',
 	'merge/merge' => 'MergeLogFormatter',
+	'tagmanagement/create' => 'TagManagementLogFormatter',
 	'tagmanagement/delete' => 'TagManagementLogFormatter',
+	'tagmanagement/activate' => 'TagManagementLogFormatter',
+	'tagmanagement/deactivate' => 'TagManagementLogFormatter',
 );
 
 /**

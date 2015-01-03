@@ -58,6 +58,12 @@
 	"apihelp-createaccount-example-pass": "Create user \"testuser\" with password \"test123\"",
 	"apihelp-createaccount-example-mail": "Create user \"testmailuser\" and email a randomly-generated password",
 
+	"apihelp-createtag-description": "Create a new change tag for manual use.",
+	"apihelp-createtag-param-tag": "Tag to create.",
+	"apihelp-createtag-param-reason": "An optional reason for creating the tag.",
+	"apihelp-createtag-param-ignorewarnings": "Whether to ignore any warnings that are issued during the creation process.",
+	"apihelp-createtag-example-simple": "Create a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
+
 	"apihelp-delete-description": "Delete a page.",
 	"apihelp-delete-param-title": "Title of the page you want to delete. Cannot be used together with $1pageid.",
 	"apihelp-delete-param-pageid": "Page ID of the page you want to delete. Cannot be used together with $1title.",
