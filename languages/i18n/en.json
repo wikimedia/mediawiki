@@ -580,6 +580,7 @@
 	"sig_tip": "Your signature with timestamp",
 	"hr_tip": "Horizontal line (use sparingly)",
 	"summary": "Summary:",
+	"summary-placeholder": "Summary",
 	"subject": "Subject/headline:",
 	"minoredit": "This is a minor edit",
 	"watchthis": "Watch this page",

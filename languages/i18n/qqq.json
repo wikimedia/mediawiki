@@ -744,6 +744,7 @@
 	"sig_tip": "This is the text that appears when you hover the mouse over the second key from the right on the edit toolbar.\n{{Identical|Signature with timestamp}}",
 	"hr_tip": "This is the text that appears when you hover the mouse over the first button on the right on the edit toolbar.",
 	"summary": "The Summary text beside the edit summary field\n\nSee also:\n* {{msg-mw|Subject}}\nSee also:\n* {{msg-mw|Accesskey-summary}}\n* {{msg-mw|Tooltip-summary}}\n{{Identical|Summary}}",
+	"summary-placeholder": "The placeholder for the summary input field.\n\nSee also:\n* {{msg-mw|Summary}}",
 	"subject": "Used as label for input box in the EditPage page.\n\nSee also:\n* {{msg-mw|Summary}}",
 	"minoredit": "Text above Save page button in editor\n\nSee also:\n* {{msg-mw|Minoredit}}\n* {{msg-mw|Accesskey-minoredit}}\n* {{msg-mw|Tooltip-minoredit}}",
 	"watchthis": "Text of checkbox above {{msg-mw|Showpreview}} button in editor.\n\nSee also:\n* {{msg-mw|Watchthis}}\n* {{msg-mw|Accesskey-watch}}\n* {{msg-mw|Tooltip-watch}}\n{{Identical|Watch this page}}",

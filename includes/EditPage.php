@@ -2817,20 +2817,17 @@ class EditPage {
 	}
 
 	/**
-	 * Standard summary input and label (wgSummary), abstracted so EditPage
+	 * Standard summary input with placeholder (wgSummary), abstracted so EditPage
 	 * subclasses may reorganize the form.
-	 * Note that you do not need to worry about the label's for=, it will be
-	 * inferred by the id given to the input. You can remove them both by
-	 * passing array( 'id' => false ) to $userInputAttrs.
 	 *
 	 * @param string $summary The value of the summary input
-	 * @param string $labelText The html to place inside the label
+	 * @param string $placeholderText The html to use as a placeholder in input field
 	 * @param array $inputAttrs Array of attrs to use on the input
 	 * @param array $spanLabelAttrs Array of attrs to use on the span inside the label
 	 *
-	 * @return array An array in the format array( $label, $input )
+	 * @return String $input in Html
 	 */
-	function getSummaryInput( $summary = "", $labelText = null,
+	function getSummaryInput( $summary = "", $placeholderText = null,
 		$inputAttrs = null, $spanLabelAttrs = null
 	) {
 		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
@@ -2847,19 +2844,13 @@ class EditPage {
 			'id' => "wpSummaryLabel"
 		);
 
-		$label = null;
-		if ( $labelText ) {
-			$label = Xml::tags(
-				'label',
-				$inputAttrs['id'] ? array( 'for' => $inputAttrs['id'] ) : null,
-				$labelText
-			);
-			$label = Xml::tags( 'span', $spanLabelAttrs, $label );
+		if ( $placeholderText ) {
+			$inputAttrs['placeholder'] = $placeholderText;
 		}
 
 		$input = Html::input( 'wpSummary', $summary, 'text', $inputAttrs );
 
-		return array( $label, $input );
+		return $input;
 	}
 
 	/**
@@ -2882,14 +2873,15 @@ class EditPage {
 			}
 		}
 		$summary = $wgContLang->recodeForEdit( $summary );
-		$labelText = wfMessage( $isSubjectPreview ? 'subject' : 'summary' )->parse();
-		list( $label, $input ) = $this->getSummaryInput(
-			$summary,
-			$labelText,
-			array( 'class' => $summaryClass ),
-			array()
+		$placeholderText = wfMessage( $isSubjectPreview ? 'subject' : 'summary-placeholder' )->parse();
+		$wgOut->addHTML(
+			$this->getSummaryInput(
+				$summary,
+				$placeholderText,
+				array( 'class' => $summaryClass ),
+				array()
+			)
 		);
-		$wgOut->addHTML( "{$label} {$input}" );
 	}
 
 	/**
