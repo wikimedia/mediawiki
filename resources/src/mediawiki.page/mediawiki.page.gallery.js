@@ -27,13 +27,12 @@
 		}
 
 		// Now on to justification.
-		// We may still get ragged edges if someone resizes their window. Could bind to
-		// that event, otoh do we really want to constantly be resizing galleries?
-		$( galleries ).each( function () {
+		var justify = function () {
 			var lastTop,
 				$img,
 				imgWidth,
 				imgHeight,
+				captionWidth,
 				rows = [],
 				$gallery = $( this );
 
@@ -66,15 +65,22 @@
 					imgHeight = 0;
 				}
 
+				captionWidth = $this.children().children( 'div.gallerytextwrapper' ).width();
 				rows[rows.length - 1][rows[rows.length - 1].length] = {
 					$elm: $this,
 					width: $this.outerWidth(),
 					imgWidth: imgWidth,
 					// XXX: can divide by 0 ever happen?
 					aspect: imgWidth / imgHeight,
-					captionWidth: $this.children().children( 'div.gallerytextwrapper' ).width(),
+					captionWidth: captionWidth,
 					height: imgHeight
 				};
+
+				// Save all boundaries so we can restore them on window resize
+				$this.data( 'imgWidth', imgWidth );
+				$this.data( 'imgHeight', imgHeight );
+				$this.data( 'width', $this.outerWidth() );
+				$this.data( 'captionWidth', captionWidth );
 			} );
 
 			( function () {
@@ -207,6 +213,32 @@
 					}
 				}
 			}() );
-		} );
+		};
+
+		$( galleries ).each( justify );
+		$( window ).resize( $.debounce( 300, true, function () {
+			$( galleries ).children( 'li' ).each( function () {
+				var imgWidth = $( this ).data( 'imgWidth' ),
+					imgHeight = $( this ).data( 'imgHeight' ),
+					width = $( this ).data( 'width' ),
+					captionWidth = $( this ).data( 'captionWidth' );
+
+				// Restore original sizes so we can arrange the elements as on freshly loaded page
+				$( this ).width( width );
+				$( this ).children( 'div' ).first().width( width );
+				$( this ).children( 'div' ).first().children( 'div.thumb' ).width( imgWidth );
+				$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
+
+				var $imageElm = $( this ).find( 'img' ).first(),
+					imageElm = $imageElm.length ? $imageElm[0] : null;
+				if ( imageElm ) {
+					imageElm.width = imgWidth;
+					imageElm.height = imgHeight;
+				}
+			} );
+		} ) );
+		$( window ).resize( $.debounce( 300, function () {
+			$( galleries ).each( justify );
+		} ) );
 	} );
 }( jQuery ) );
