@@ -96,7 +96,7 @@ class MWDebug {
 	 * @since 1.19
 	 * @param string $str
 	 */
-	public static function log( $str ) {
+	public static function log( $str, MWDebug $obj ) {
 		if ( !self::$enabled ) {
 			return;
 		}
