@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Subi"
+		]
+	},
+	"apihelp-block-description": "Blokeatu erabiltzaile bat.",
+	"apihelp-edit-param-minor": "Aldaketa txikia.",
+	"apihelp-expandtemplates-param-title": "Orrialdearen izenburua.",
+	"apihelp-imagerotate-description": "Irudi bat edo gehiago biratu.",
+	"apihelp-login-param-password": "Pasahitza.",
+	"apihelp-login-param-domain": "Domeinua (hautazkoa).",
+	"apihelp-move-description": "Orrialde bat mugitu",
+	"apihelp-protect-example-protect": "Orrialde bat babestu",
+	"api-help-main-header": "Modulu nagusia",
+	"api-help-flag-deprecated": "Modulu hau zaharkitua dago.",
+	"api-help-param-deprecated": "Zaharkitua.",
+	"api-help-param-required": "Parametro hau beharrezkoa da.",
+	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Hutsik egon behar du|Hutsik egon daiteke edo $2}}",
+	"api-help-param-no-description": "<span class=\"apihelp-empty\">(deskribapenik gabe)</span>",
+	"api-help-examples": "{{PLURAL:$1|Adibidea|Adibideak}}:",
+	"api-credits-header": "Kredituak",
+	"api-credits": "API garatzaileak:\n* Roan Kattouw (garatzaile nagusia, 2007ko ira.–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (sortzailea, garatzaile nagusia, 2006ko ira.–2007ko ira.)\n* Brad Jorsch (garatzaile nagusia 2013–gaur egun)\n\nMesedez, bidal iezazkiguzu zure iruzkinak, iradokizunak eta galderak mediawiki-api@lists.wikimedia.org helbidera edo bete ezazu errore-txostena https://phabricator.wikimedia.org/ helbidean."
+}

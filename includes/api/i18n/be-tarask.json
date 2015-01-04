@@ -39,5 +39,6 @@
 	"apihelp-compare-param-totitle": "Другая назва для параўнаньня.",
 	"apihelp-compare-param-toid": "ID другой старонкі для параўнаньня.",
 	"apihelp-compare-param-torev": "Другая вэрсія для параўнаньня.",
-	"apihelp-compare-example-1": "Паказвае розьніцу паміж вэрсіямі 1 і 2"
+	"apihelp-compare-example-1": "Паказвае розьніцу паміж вэрсіямі 1 і 2",
+	"apihelp-createaccount-description": "Стварэньне новага рахунку ўдзельніка."
 }

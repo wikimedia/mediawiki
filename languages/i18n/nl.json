@@ -63,7 +63,8 @@
 			"Josse.Cottenier",
 			"Macofe",
 			"Mirolith",
-			"Akoopal"
+			"Akoopal",
+			"Sikjes"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -279,6 +280,7 @@
 	"pool-queuefull": "De wachtrij van de poel is vol",
 	"pool-errorunknown": "Er is een onbekende fout opgetreden",
 	"pool-servererror": "De dienst \"pool counter\" is niet beschikbaar ($1).",
+	"poolcounter-usage-error": "Gebruiksfout: $1",
 	"aboutsite": "Over {{SITENAME}}",
 	"aboutpage": "Project:Info",
 	"copyright": "De inhoud is beschikbaar onder de $1 tenzij anders aangegeven.",
@@ -713,6 +715,7 @@
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Leeg object",
+	"content-json-empty-array": "Lege reeks",
 	"duplicate-args-category": "Pagina's met dubbele sjabloonparameters",
 	"duplicate-args-category-desc": "De pagina bevat aanroepen van sjablonen waarin hetzelfde argument meerdere keren wordt gebruikt, bijvoorbeeld <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> of <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Waarschuwing:''' deze pagina gebruikt te veel kostbare parserfuncties.\n\nNu {{PLURAL:$1|is|zijn}} het er $1, terwijl het er minder dan $2 {{PLURAL:$2|moet|moeten}} zijn.",
@@ -2958,6 +2961,9 @@
 	"version-entrypoints-header-url": "URL",
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Paginapad]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Scriptpad]",
+	"version-libraries": "Geïnstalleerde bibliotheken",
+	"version-libraries-library": "Bibliotheek",
+	"version-libraries-version": "Versie",
 	"redirect": "Doorverwijzen op bestandsnaam, gebruikersnummer, paginanummer, of versienummer",
 	"redirect-legend": "Doorverwijzen naar een bestand of pagina",
 	"redirect-summary": "Deze speciale pagina verwijst door naar een bestand (als een bestandsnaam wordt opgegeven), een pagina (als een paginanummer of versienummer wordt opgegeven) of een gebruikerspagina (als een gebruikersnummer wordt opgegeven). Gebruik: [[{{#Special:Redirect}}/file/Voorbeeld.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] of [[{{#Special:Redirect}}/user/101]].",

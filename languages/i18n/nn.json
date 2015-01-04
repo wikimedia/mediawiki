@@ -20,7 +20,8 @@
 			"Pcoombe",
 			"Ranveig",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Gaute"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -2779,6 +2780,9 @@
 	"version-entrypoints": "URL-ar til inngangspunkt",
 	"version-entrypoints-header-entrypoint": "Inngangspunkt",
 	"version-entrypoints-header-url": "URL",
+	"version-libraries": "Installerte bibliotek",
+	"version-libraries-library": "Bibliotek",
+	"version-libraries-version": "Versjon",
 	"redirect": "Omdiriger etter filnamn, brukar- eller versjons-ID",
 	"redirect-legend": "Omdiriger til ei fil eller ei side",
 	"redirect-summary": "Denne spesialsida omdirigerer til ei fil (med eit filnamn), ei side (med ein versjons-ID) eller ei brukarside (med eit brukartal).",

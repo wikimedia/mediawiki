@@ -1590,5 +1590,9 @@
 	"pagelang-name": "Poslapis",
 	"pagelang-language": "Kalba",
 	"pagelang-use-default": "Nauduotė kalba kāp nustatīta",
-	"pagelang-select-lang": "Rinktėis kalba"
+	"pagelang-select-lang": "Rinktėis kalba",
+	"right-pagelang": "Mainītė poslapė kalba",
+	"mediastatistics-table-mimetype": "MIME tips",
+	"mediastatistics-header-unknown": "Nežėnuoms",
+	"json-error-syntax": "Sintaksės klaida"
 }

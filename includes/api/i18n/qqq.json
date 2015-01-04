@@ -4,7 +4,8 @@
 			"Liuxinyu970226",
 			"Robby",
 			"Shirayuki",
-			"Umherirrender"
+			"Umherirrender",
+			"McDutchie"
 		]
 	},
 	"apihelp-main-description": "{{doc-apihelp-description|main}}",
@@ -25,7 +26,7 @@
 	"apihelp-block-param-reason": "{{doc-apihelp-param|block|reason}}",
 	"apihelp-block-param-anononly": "{{doc-apihelp-param|block|anononly}}\n* See also {{msg-mw|ipb-hardblock}}",
 	"apihelp-block-param-nocreate": "{{doc-apihelp-param|block|nocreate}}\n* See also {{msg-mw|ipbcreateaccount}}",
-	"apihelp-block-param-autoblock": "{{doc-apihelp-param|block|autoblock}}\n* See also {{msg-mw|ipbenableautoblock}}",
+	"apihelp-block-param-autoblock": "{{doc-singularthey}}\n{{doc-apihelp-param|block|autoblock}}\n* See also {{msg-mw|ipbenableautoblock}}",
 	"apihelp-block-param-noemail": "{{doc-apihelp-param|block|noemail}}\n* See also {{msg-mw|ipbemailban}}",
 	"apihelp-block-param-hidename": "{{doc-apihelp-param|block|hidename}}",
 	"apihelp-block-param-allowusertalk": "{{doc-apihelp-param|block|allowusertalk}}\n* See also {{msg-mw|ipb-disableusertalk}}",

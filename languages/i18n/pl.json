@@ -3027,7 +3027,7 @@
 	"specialpages-group-spam": "Narzędzia do walki ze spamem",
 	"specialpages-group-developer": "Narzędzia dewelopera",
 	"blankpage": "Pusta strona",
-	"intentionallyblankpage": "Ta strona umyślnie pozostała pusta",
+	"intentionallyblankpage": "Tę stronę umyślnie pozostawiono pustą.",
 	"external_image_whitelist": " #Pozostaw tę linię dokładnie tak, jak jest.<pre>\n#Wstaw poniżej fragmenty wyrażeń regularnych (tylko to, co znajduje się między //).\n#Wyrażenia te zostaną dopasowane do adresów URL zewnętrznych (bezpośrednio linkowanych) grafik.\n#Dopasowane adresy URL zostaną wyświetlone jako grafiki, w przeciwnym wypadku będzie pokazany jedynie link do grafiki.\n#Linie zaczynające się od # są traktowane jako komentarze.\n#We wpisach ma znaczenie wielkość znaków.\n\n#Wstaw wszystkie deklaracje wyrażeniami regularnymi poniżej tej linii. Pozostaw tę linię dokładnie tak, jak jest.</pre>",
 	"tags": "Sprawdź zmiany w oparciu o wzorce tekstu",
 	"tag-filter": "Filtr [[Special:Tags|wzorców tekstu]]",
