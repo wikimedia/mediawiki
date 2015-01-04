@@ -4,7 +4,7 @@
  * @group Database
  * @group RequestContext
  */
-class RequestContextTest extends MediaWikiTestCase {
+class RequestContextWikiTest extends MediaWikiTestCase {
 
 	/**
 	 * Test the relationship between title and wikipage in RequestContext
