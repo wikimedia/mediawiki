@@ -4046,20 +4046,13 @@ class Title {
 		if ( $this->mIsBigDeletion === null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 
-			$innerQuery = $dbr->selectSQLText(
+			$revCount = $dbr->selectRowCount(
 				'revision',
 				'1',
 				array( 'rev_page' => $this->getArticleID() ),
 				__METHOD__,
 				array( 'LIMIT' => $wgDeleteRevisionsLimit + 1 )
 			);
-
-			$revCount = $dbr->query(
-				'SELECT COUNT(*) FROM (' . $innerQuery . ') AS innerQuery',
-				__METHOD__
-			);
-			$revCount = $revCount->fetchRow();
-			$revCount = $revCount['COUNT(*)'];
 
 			$this->mIsBigDeletion = $revCount > $wgDeleteRevisionsLimit;
 		}
