@@ -756,6 +756,16 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"field IS NULL AND (field2 != 'value2')"
 			),
 			array(
+				array( 'field' => array( 'value', null, 'value2' ), 'field2' => 'value2' ),
+				LIST_AND,
+				"(field IN ('value','value2')  OR field IS NULL) AND field2 = 'value2'"
+			),
+			array(
+				array( 'field' => array( null ), 'field2' => null ),
+				LIST_AND,
+				"field IS NULL AND field2 IS NULL"
+			),
+			array(
 				array( 'field' => 'value', 'field2' => 'value2' ),
 				LIST_OR,
 				"field = 'value' OR field2 = 'value2'"
@@ -769,6 +779,11 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				array( 'field' => array( 'value', 'value2' ), 'field2' => array( 'value' ) ),
 				LIST_OR,
 				"field IN ('value','value2')  OR field2 = 'value'"
+			),
+			array(
+				array( 'field' => array( null, 'value', null, 'value2' ), "field2 != 'value2'" ),
+				LIST_OR,
+				"(field IN ('value','value2')  OR field IS NULL) OR (field2 != 'value2')"
 			),
 			array(
 				array( 'field' => 'value', 'field2' => 'value2' ),
