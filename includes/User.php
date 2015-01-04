@@ -195,10 +195,9 @@ class User implements IDBAccessObject {
 	public $mPassword;
 
 	/**
-	 * @todo Make this actually private
 	 * @private
 	 */
-	public $mNewpassword;
+	private $mNewpassword;
 
 	public $mNewpassTime;
 
