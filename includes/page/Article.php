@@ -776,7 +776,7 @@ class Article implements Page {
 	 *
 	 * @todo Make protected
 	 */
-	public function showDiffPage() {
+	protected function showDiffPage() {
 		$request = $this->getContext()->getRequest();
 		$user = $this->getContext()->getUser();
 		$diff = $request->getVal( 'diff' );
