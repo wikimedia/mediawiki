@@ -91,21 +91,29 @@ class MWDebug {
 	/**
 	 * Adds a line to the log
 	 *
-	 * @todo Add support for passing objects
 	 *
 	 * @since 1.19
-	 * @param string $str
+	 * @param $str
 	 */
-	public static function log( $str ) {
+
+	public static function log( $str=null ){
 		if ( !self::$enabled ) {
 			return;
 		}
+		if ($str===null){
 
 		self::$log[] = array(
+			'msg' => htmlspecialchars( print_r( $obj, true ) ),
+			'type' => 'log',
+			'caller' => wfGetCaller(),
+			);
+		}
+		else { self::$log[] = array(
 			'msg' => htmlspecialchars( $str ),
 			'type' => 'log',
 			'caller' => wfGetCaller(),
-		);
+			);
+		}
 	}
 
 	/**
