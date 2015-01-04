@@ -119,7 +119,7 @@
 		];
 		$( searchboxesSelectors.join( ', ' ) )
 			.suggestions( {
-				fetch: function ( query, response ) {
+				fetch: function ( query, response, maxRows ) {
 					var node = this[0];
 
 					api = api || new mw.Api();
@@ -128,6 +128,7 @@
 						action: 'opensearch',
 						search: query,
 						namespace: 0,
+						limit: maxRows,
 						suggest: ''
 					} ).done( function ( data ) {
 						response( data[ 1 ] );

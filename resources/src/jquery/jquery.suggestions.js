@@ -28,7 +28,7 @@
  * suggestions: Suggestions to display
  *		Type: Array of strings
  * maxRows: Maximum number of suggestions to display at one time
- *		Type: Number, Range: 1 - 100, Default: 7
+ *		Type: Number, Range: 1 - 100, Default: 10
  * delay: Number of ms to wait for the user to stop typing
  *		Type: Number, Range: 0 - 1200, Default: 120
  * cache: Whether to cache results from a fetch
@@ -125,6 +125,7 @@ $.suggestions = {
 						context.data.$textbox,
 						val,
 						function ( suggestions ) {
+							suggestions = suggestions.slice( 0, context.config.maxRows );
 							context.data.$textbox.suggestions( 'suggestions', suggestions );
 							if ( context.config.cache ) {
 								cache[ val ] = {
@@ -132,7 +133,8 @@ $.suggestions = {
 									timestamp: +new Date()
 								};
 							}
-						}
+						},
+						context.config.maxRows
 					);
 				}
 			}
@@ -513,7 +515,7 @@ $.fn.suggestions = function () {
 					result: {},
 					$region: $( this ),
 					suggestions: [],
-					maxRows: 7,
+					maxRows: 10,
 					delay: 120,
 					cache: false,
 					cacheMaxAge: 60000,
