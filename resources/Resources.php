@@ -1221,6 +1221,9 @@ return array(
 
 	'mediawiki.page.gallery' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.gallery.js',
+		'dependencies' => array(
+			'jquery.throttle-debounce',
+		)
 	),
 	'mediawiki.page.ready' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.ready.js',
