@@ -91,12 +91,12 @@ class MWDebug {
 	/**
 	 * Adds a line to the log
 	 *
-	 * @todo Add support for passing objects
 	 *
 	 * @since 1.19
 	 * @param string $str
+	 * @param MWDebug $obj
 	 */
-	public static function log( $str ) {
+	public static function log( $str, MWDebug $obj ) {
 		if ( !self::$enabled ) {
 			return;
 		}
