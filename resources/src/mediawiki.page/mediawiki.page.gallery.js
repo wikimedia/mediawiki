@@ -27,9 +27,7 @@
 		}
 
 		// Now on to justification.
-		// We may still get ragged edges if someone resizes their window. Could bind to
-		// that event, otoh do we really want to constantly be resizing galleries?
-		$( galleries ).each( function () {
+		var justify = function () {
 			var lastTop,
 				$img,
 				imgWidth,
@@ -207,6 +205,23 @@
 					}
 				}
 			}() );
+		};
+
+		// Save the galleries in case we want to restore them
+		$( galleries ).each( function() {
+			$( this ).data( 'original-gallery', $( this ).clone() );
+		} );
+		$( galleries ).each( justify );
+
+		$( window ).resize( function () {
+			$( galleries ).each( function () {
+				// Restore the saved galleries, and save the original ones again in new instances
+				var $new = $( this ).data( 'original-gallery' );
+				$new.removeData( 'original-gallery' );
+				$new.data( 'original-gallery', $new.clone() );
+				$( this ).replaceWith( $new );
+			} );
+			$( galleries ).each( justify );
 		} );
 	} );
 }( jQuery ) );
