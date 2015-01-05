@@ -447,14 +447,85 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
+	 * Validates whether an account can be created using the loaded data.
+	 * @param string $username
+	 * @param string|null $password
+	 * @param string|null $email
+	 * @return Status
+	 * @since 1.25
+	 */
+	public static function createAndValidateUsername( $username, $password, $email ) {
+		global $wgMinimalPasswordLength, $wgEmailConfirmToEdit;
+
+		# Create a dummy user ($u) and check if it is valid
+		$u = User::newFromName( $username, 'creatable' );
+		if ( !is_object( $u ) ) {
+			return Status::newFatal( 'noname' );
+		} elseif ( 0 != $u->idForName() ) {
+			return Status::newFatal( 'userexists' );
+		}
+
+		# If the password is null, then this is account creation by email
+		# This means you don't need to check for minimum password length
+		if ($password !== null) {
+			# check for minimal password length
+			$valid = $u->getPasswordValidity( $password );
+			if ( $valid !== true ) {
+				if ( !is_array( $valid ) ) {
+					$valid = array( $valid, $wgMinimalPasswordLength );
+				}
+
+				return call_user_func_array( 'Status::newFatal', $valid );
+			}
+		}
+
+		# if you need a confirmed email address to edit, then obviously you
+		# need an email address.
+		if ( $wgEmailConfirmToEdit && strval( $email ) === '' ) {
+			return Status::newFatal( 'noemailtitle' );
+		}
+
+		if ( strval( $email ) !== '' && !Sanitizer::validateEmail( $email ) ) {
+			return Status::newFatal( 'invalidemailaddress' );
+		}
+
+		# Set some additional data so the AbortNewAccount hook can be used for
+		# more than just username validation
+		$u->setEmail( $email );
+
+		$abortError = '';
+		$abortStatus = null;
+		if ( !Hooks::run( 'AbortNewAccount', array( $u, &$abortError, &$abortStatus ) ) ) {
+			// Hook point to add extra creation throttles and blocks
+			wfDebug( "LoginForm::createAndValidateUsername: a hook blocked creation\n" );
+			if ( $abortStatus === null ) {
+				// Report back the old string as a raw message status.
+				// This will report the error back as 'createaccount-hook-aborted'
+				// with the given string as the message.
+				// To return a different error code, return a Status object.
+				$abortError = new Message( 'createaccount-hook-aborted', array( $abortError ) );
+				$abortError->text();
+
+				return Status::newFatal( $abortError );
+			} else {
+				// For MediaWiki 1.23+ and updated hooks, return the Status object
+				// returned from the hook.
+				return $abortStatus;
+			}
+		}
+
+		// If, after all of this, we've reached this point then
+		// the proposed username has passed the validation step
+		return Status::newGood( $u );
+	}
+
+	/**
 	 * Make a new user account using the loaded data.
-	 * @private
 	 * @throws PermissionsError|ReadOnlyError
 	 * @return Status
 	 */
 	public function addNewAccountInternal() {
-		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,
-			$wgMinimalPasswordLength, $wgEmailConfirmToEdit;
+		global $wgAuth, $wgMemc, $wgAccountCreationThrottle;
 
 		// If the user passes an invalid domain, something is fishy
 		if ( !$wgAuth->validDomain( $this->mDomain ) ) {
@@ -528,95 +599,59 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
 
-		# Now create a dummy user ($u) and check if it is valid
-		$u = User::newFromName( $this->mUsername, 'creatable' );
-		if ( !is_object( $u ) ) {
-			return Status::newFatal( 'noname' );
-		} elseif ( 0 != $u->idForName() ) {
-			return Status::newFatal( 'userexists' );
+		if ( $this->mPassword !== $this->mRetype ) {
+			return Status::newFatal( 'badretype' );
 		}
 
 		if ( $this->mCreateaccountMail ) {
 			# do not force a password for account creation by email
 			# set invalid password, it will be replaced later by a random generated password
 			$this->mPassword = null;
-		} else {
-			if ( $this->mPassword !== $this->mRetype ) {
-				return Status::newFatal( 'badretype' );
-			}
-
-			# check for minimal password length
-			$valid = $u->getPasswordValidity( $this->mPassword );
-			if ( $valid !== true ) {
-				if ( !is_array( $valid ) ) {
-					$valid = array( $valid, $wgMinimalPasswordLength );
-				}
-
-				return call_user_func_array( 'Status::newFatal', $valid );
-			}
 		}
 
-		# if you need a confirmed email address to edit, then obviously you
-		# need an email address.
-		if ( $wgEmailConfirmToEdit && strval( $this->mEmail ) === '' ) {
-			return Status::newFatal( 'noemailtitle' );
-		}
+		// Validate the credentials the user gave, to see if their username can be created
+		$usernameValidated = $this->createAndValidateUsername(
+			$this->mUsername,
+			$this->mPassword,
+			$this->mEmail
+		);
 
-		if ( strval( $this->mEmail ) !== '' && !Sanitizer::validateEmail( $this->mEmail ) ) {
-			return Status::newFatal( 'invalidemailaddress' );
-		}
-
-		# Set some additional data so the AbortNewAccount hook can be used for
-		# more than just username validation
-		$u->setEmail( $this->mEmail );
-		$u->setRealName( $this->mRealName );
-
-		$abortError = '';
-		$abortStatus = null;
-		if ( !Hooks::run( 'AbortNewAccount', array( $u, &$abortError, &$abortStatus ) ) ) {
-			// Hook point to add extra creation throttles and blocks
-			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
-			if ( $abortStatus === null ) {
-				// Report back the old string as a raw message status.
-				// This will report the error back as 'createaccount-hook-aborted'
-				// with the given string as the message.
-				// To return a different error code, return a Status object.
-				$abortError = new Message( 'createaccount-hook-aborted', array( $abortError ) );
-				$abortError->text();
-
-				return Status::newFatal( $abortError );
+		// If the username is valid for creation, then attempt creation
+		if ( $usernameValidated->isGood() ) {
+			// Extract user object from the result of the validation
+			$u = $usernameValidated->getValue();
+			// Set real name
+			$u->setRealName( $this->mRealName );
+			// Hook point to check for exempt from account creation throttle
+			if ( !Hooks::run( 'ExemptFromAccountCreationThrottle', array( $ip ) ) ) {
+				wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook " .
+					"allowed account creation w/o throttle\n" );
 			} else {
-				// For MediaWiki 1.23+ and updated hooks, return the Status object
-				// returned from the hook.
-				return $abortStatus;
-			}
-		}
-
-		// Hook point to check for exempt from account creation throttle
-		if ( !Hooks::run( 'ExemptFromAccountCreationThrottle', array( $ip ) ) ) {
-			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook " .
-				"allowed account creation w/o throttle\n" );
-		} else {
-			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
-				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
-				$value = $wgMemc->get( $key );
-				if ( !$value ) {
-					$wgMemc->set( $key, 0, 86400 );
+				if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
+					$key = wfMemcKey( 'acctcreate', 'ip', $ip );
+					$value = $wgMemc->get( $key );
+					if ( !$value ) {
+						$wgMemc->set( $key, 0, 86400 );
+					}
+					if ( $value >= $wgAccountCreationThrottle ) {
+						return Status::newFatal( 'acct_creation_throttle_hit', $wgAccountCreationThrottle );
+					}
+					$wgMemc->incr( $key );
 				}
-				if ( $value >= $wgAccountCreationThrottle ) {
-					return Status::newFatal( 'acct_creation_throttle_hit', $wgAccountCreationThrottle );
-				}
-				$wgMemc->incr( $key );
 			}
+
+			if ( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
+				return Status::newFatal( 'externaldberror' );
+			}
+
+			self::clearCreateaccountToken();
+
+			return $this->initUser( $u, false );
 		}
-
-		if ( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
-			return Status::newFatal( 'externaldberror' );
+		else {
+			//Validation failed for some reason, so return the reason the validation failed
+			return $usernameValidated;
 		}
-
-		self::clearCreateaccountToken();
-
-		return $this->initUser( $u, false );
 	}
 
 	/**
