@@ -71,10 +71,10 @@ production.
   should implement supporting behavior. Not doing so can result in undefined
   behavior from API clients trying to continue through prefix results.
 * Update jQuery from v1.11.1 to v1.11.2.
-* Installed external libraries installed via composer will now be displayed
-  on Special:Version in their own section. Extensions or skins that are installed
-  via composer will not be shown in this section as it is assumed they will add
-  the proper credits to the skins or extensions section.
+* External libraries installed via composer will now be displayed
+  on Special:Version in their own section. Extensions or skins that are
+  installed via composer will not be shown in this section as it is assumed
+  they will add the proper credits to the skins or extensions section.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
