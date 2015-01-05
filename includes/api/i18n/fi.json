@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Nike"
+			"Nike",
+			"MrTapsa"
 		]
 	},
+	"apihelp-query+linkshere-param-show": "Näytä vain kohteet, jotka täyttävät nämä kriteerit:\n;redirect:Näytä vain uudelleenohjaukset.\n;!redirect:Näytä vain ei-uudelleenohjaukset",
 	"apihelp-upload-param-stash": "Mikäli valittu, palvelin säilöö tiedoston väliaikaisesti tallentamisen sijaan."
 }

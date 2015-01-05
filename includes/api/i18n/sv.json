@@ -174,6 +174,8 @@
 	"apihelp-query+allmessages-example-ipb": "Visa meddelanden som börjar med \"ipb-\"",
 	"apihelp-query+allmessages-example-de": "Visa meddelandena \"august\" och \"mainpage\" på tyska",
 	"apihelp-query+allpages-param-filterredir": "Vilka sidor att lista.",
+	"apihelp-query+allusers-param-dir": "Riktning att sortera i.",
+	"apihelp-query+allusers-example-Y": "Lista användare som börjar på Y",
 	"apihelp-query+revisions-example-first5-not-localhost": "Hämta första 5 revideringarna av \"huvudsidan\" och som inte gjorts av anonym användare \"127.0.0.1\"",
 	"apihelp-query+stashimageinfo-description": "Returnerar filinformation för temporära filer.",
 	"apihelp-query+stashimageinfo-param-filekey": "Nyckel som identifierar en tidigare uppladdning som lagrats temporärt.",

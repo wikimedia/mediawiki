@@ -128,7 +128,7 @@
 	"category-subcat-count-limited": "In cla categoréia ché a gh'é{{PLURAL:$1|'na sòt-categoréia, nutêda|$1 sòt-categoréi, nutêdi}}ché 'd sègvit.",
 	"category-article-count": "{{PLURAL:$2|In cla categoréia ché a gh'é sōl 'na pàgina, sgnêda ché.|Cla categoréia ché la gh'à {{PLURAL:$1|la pàgina sgnêda| al pàgini $1 sgnêdi}} ed sègvit, in un totêl ed $2.}}",
 	"category-article-count-limited": "In cla categoréia ché a gh'é {{PLURAL:$1|la pàgina nutêda|al  $1 pàgini nutêdi ch'é 'd sègvit.}}",
-	"category-file-count": "{{PLURAL:$2|In cla categoréia ché a gh'é sōl un file, sgnê ché.|In cla categoréia ché gh'é{{PLURAL:$1|un file sgnê ché| i file $1, sgnê}} ed sègvit, in un totêl ed $2.}}",
+	"category-file-count": "{{PLURAL:$2|In cla categoréia ché a gh'é sōl un file, sgnê ché.|In cla categoréia ché gh'é{{PLURAL:$1|un file sgnê ché|$1 file , sgnê}} ed sègvit, in un totêl ed $2.}}",
 	"category-file-count-limited": "In cla categoréia ché a gh'é {{PLURAL:$1|al file nutê|i $1 file nutê}} ché 'd sègvit.",
 	"listingcontinuesabbrev": "cunt.",
 	"index-category": "Pàgini gancêdi",
