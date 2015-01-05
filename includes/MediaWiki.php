@@ -501,6 +501,9 @@ class MediaWiki {
 			return;
 		}
 
+		OOUI\Theme::setSingleton( new OOUI\MediaWikiTheme() );
+		OOUI\Element::setDefaultDir( $this->context->getLanguage()->getDir() );
+
 		// Get title from request parameters,
 		// is set on the fly by parseTitle the first time.
 		$title = $this->getTitle();
