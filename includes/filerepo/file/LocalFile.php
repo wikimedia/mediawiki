@@ -1411,7 +1411,10 @@ class LocalFile extends File {
 		if ( $exists ) {
 			# Create a null revision
 			$latest = $descTitle->getLatestRevID();
-			$editSummary = LogFormatter::newFromEntry( $logEntry )->getPlainActionText();
+			// Use own context to get the action text in content language
+			$formatter = LogFormatter::newFromEntry( $logEntry );
+			$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
+			$editSummary = $formatter->getPlainActionText();
 
 			$nullRevision = Revision::newNullRevision(
 				$dbw,
