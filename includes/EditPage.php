@@ -2162,6 +2162,7 @@ class EditPage {
 		if ( $displayTitle === false ) {
 			$displayTitle = $contextTitle->getPrefixedText();
 		}
+		$displayTitle = Html::rawElement( 'span', array( 'class' => 'mw-displaytitle' ), $displayTitle );
 		$wgOut->setPageTitle( wfMessage( $msg, $displayTitle ) );
 	}
 
