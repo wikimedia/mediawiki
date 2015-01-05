@@ -446,6 +446,148 @@ class LoginForm extends SpecialPage {
 		return true;
 	}
 
+    public function validateUsername() {
+        global $wgAuth, $wgMinimalPasswordLength, $wgEmailConfirmToEdit;
+        // If the user passes an invalid domain, something is fishy
+        if ( !$wgAuth->validDomain( $this->mDomain ) ) {
+            return Status::newFatal( 'wrongpassword' );
+        }
+
+        // If we are not allowing users to login locally, we should be checking
+        // to see if the user is actually able to authenticate to the authenti-
+        // cation server before they create an account (otherwise, they can
+        // create a local account and login as any domain user). We only need
+        // to check this for domains that aren't local.
+        if ( 'local' != $this->mDomain && $this->mDomain != '' ) {
+            if (
+                !$wgAuth->canCreateAccounts() &&
+                (
+                    !$wgAuth->userExists( $this->mUsername ) ||
+                    !$wgAuth->authenticate( $this->mUsername, $this->mPassword )
+                )
+            ) {
+                return Status::newFatal( 'wrongpassword' );
+            }
+        }
+
+        if ( wfReadOnly() ) {
+            throw new ReadOnlyError;
+        }
+
+        # Request forgery checks.
+        if ( !self::getCreateaccountToken() ) {
+            self::setCreateaccountToken();
+
+            return Status::newFatal( 'nocookiesfornew' );
+        }
+
+        # The user didn't pass a createaccount token
+        if ( !$this->mToken ) {
+            return Status::newFatal( 'sessionfailure' );
+        }
+
+        # Validate the createaccount token
+        if ( $this->mToken !== self::getCreateaccountToken() ) {
+            return Status::newFatal( 'sessionfailure' );
+        }
+
+        # Check permissions
+        $currentUser = $this->getUser();
+        $creationBlock = $currentUser->isBlockedFromCreateAccount();
+        if ( !$currentUser->isAllowed( 'createaccount' ) ) {
+            throw new PermissionsError( 'createaccount' );
+        } elseif ( $creationBlock instanceof Block ) {
+            // Throws an ErrorPageError.
+            $this->userBlockedMessage( $creationBlock );
+
+            // This should never be reached.
+            return false;
+        }
+
+        # Include checks that will include GlobalBlocking (Bug 38333)
+        $permErrors = $this->getPageTitle()->getUserPermissionsErrors(
+            'createaccount',
+            $currentUser,
+            true
+        );
+
+        if ( count( $permErrors ) ) {
+            throw new PermissionsError( 'createaccount', $permErrors );
+        }
+
+        $ip = $this->getRequest()->getIP();
+        if ( $currentUser->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
+            return Status::newFatal( 'sorbs_create_account_reason' );
+        }
+
+        # Now create a dummy user ($u) and check if it is valid
+        $u = User::newFromName( $this->mUsername, 'creatable' );
+        if ( !is_object( $u ) ) {
+            return Status::newFatal( 'noname' );
+        } elseif ( 0 != $u->idForName() ) {
+            return Status::newFatal( 'userexists' );
+        }
+
+        if ( $this->mCreateaccountMail ) {
+            # do not force a password for account creation by email
+            # set invalid password, it will be replaced later by a random generated password
+            $this->mPassword = null;
+        } else {
+            if ( $this->mPassword !== $this->mRetype ) {
+                return Status::newFatal( 'badretype' );
+            }
+
+            # check for minimal password length
+            $valid = $u->getPasswordValidity( $this->mPassword );
+            if ( $valid !== true ) {
+                if ( !is_array( $valid ) ) {
+                    $valid = array( $valid, $wgMinimalPasswordLength );
+                }
+
+                return call_user_func_array( 'Status::newFatal', $valid );
+            }
+        }
+
+        # if you need a confirmed email address to edit, then obviously you
+        # need an email address.
+        if ( $wgEmailConfirmToEdit && strval( $this->mEmail ) === '' ) {
+            return Status::newFatal( 'noemailtitle' );
+        }
+
+        if ( strval( $this->mEmail ) !== '' && !Sanitizer::validateEmail( $this->mEmail ) ) {
+            return Status::newFatal( 'invalidemailaddress' );
+        }
+
+        # Set some additional data so the AbortNewAccount hook can be used for
+        # more than just username validation
+        $u->setEmail( $this->mEmail );
+        $u->setRealName( $this->mRealName );
+
+        $abortError = '';
+        $abortStatus = null;
+        if ( !Hooks::run( 'AbortNewAccount', array( $u, &$abortError, &$abortStatus ) ) ) {
+            // Hook point to add extra creation throttles and blocks
+            wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
+            if ( $abortStatus === null ) {
+                // Report back the old string as a raw message status.
+                // This will report the error back as 'createaccount-hook-aborted'
+                // with the given string as the message.
+                // To return a different error code, return a Status object.
+                $abortError = new Message( 'createaccount-hook-aborted', array( $abortError ) );
+                $abortError->text();
+
+                return Status::newFatal( $abortError );
+            } else {
+                // For MediaWiki 1.23+ and updated hooks, return the Status object
+                // returned from the hook.
+                return $abortStatus;
+            }
+        }
+
+        //If, after all of this, we've reached this point, the proposed username has passed the validation step
+        return true;
+    }
+
 	/**
 	 * Make a new user account using the loaded data.
 	 * @private
@@ -453,170 +595,46 @@ class LoginForm extends SpecialPage {
 	 * @return Status
 	 */
 	public function addNewAccountInternal() {
-		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,
-			$wgMinimalPasswordLength, $wgEmailConfirmToEdit;
+        global $wgAuth, $wgMemc, $wgAccountCreationThrottle;
 
-		// If the user passes an invalid domain, something is fishy
-		if ( !$wgAuth->validDomain( $this->mDomain ) ) {
-			return Status::newFatal( 'wrongpassword' );
-		}
+        // Attempt to validate username
+        $usernameValidated = $this::validateUsername();
 
-		// If we are not allowing users to login locally, we should be checking
-		// to see if the user is actually able to authenticate to the authenti-
-		// cation server before they create an account (otherwise, they can
-		// create a local account and login as any domain user). We only need
-		// to check this for domains that aren't local.
-		if ( 'local' != $this->mDomain && $this->mDomain != '' ) {
-			if (
-				!$wgAuth->canCreateAccounts() &&
-				(
-					!$wgAuth->userExists( $this->mUsername ) ||
-					!$wgAuth->authenticate( $this->mUsername, $this->mPassword )
-				)
-			) {
-				return Status::newFatal( 'wrongpassword' );
-			}
-		}
+        // If the username is valid for creation, then attempt creation
+        if ($usernameValidated == true) {
+            // Hook point to check for exempt from account creation throttle
+            $ip = $this->getRequest()->getIP();
+            $currentUser = $this->getUser();
+            $u = User::newFromName($this->mUsername, 'creatable');
+            if (!Hooks::run('ExemptFromAccountCreationThrottle', array($ip))) {
+                wfDebug("LoginForm::exemptFromAccountCreationThrottle: a hook " .
+                    "allowed account creation w/o throttle\n");
+            } else {
+                if (($wgAccountCreationThrottle && $currentUser->isPingLimitable())) {
+                    $key = wfMemcKey('acctcreate', 'ip', $ip);
+                    $value = $wgMemc->get($key);
+                    if (!$value) {
+                        $wgMemc->set($key, 0, 86400);
+                    }
+                    if ($value >= $wgAccountCreationThrottle) {
+                        return Status::newFatal('acct_creation_throttle_hit', $wgAccountCreationThrottle);
+                    }
+                    $wgMemc->incr($key);
+                }
+            }
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+            if (!$wgAuth->addUser($u, $this->mPassword, $this->mEmail, $this->mRealName)) {
+                return Status::newFatal('externaldberror');
+            }
 
-		# Request forgery checks.
-		if ( !self::getCreateaccountToken() ) {
-			self::setCreateaccountToken();
+            self::clearCreateaccountToken();
 
-			return Status::newFatal( 'nocookiesfornew' );
-		}
-
-		# The user didn't pass a createaccount token
-		if ( !$this->mToken ) {
-			return Status::newFatal( 'sessionfailure' );
-		}
-
-		# Validate the createaccount token
-		if ( $this->mToken !== self::getCreateaccountToken() ) {
-			return Status::newFatal( 'sessionfailure' );
-		}
-
-		# Check permissions
-		$currentUser = $this->getUser();
-		$creationBlock = $currentUser->isBlockedFromCreateAccount();
-		if ( !$currentUser->isAllowed( 'createaccount' ) ) {
-			throw new PermissionsError( 'createaccount' );
-		} elseif ( $creationBlock instanceof Block ) {
-			// Throws an ErrorPageError.
-			$this->userBlockedMessage( $creationBlock );
-
-			// This should never be reached.
-			return false;
-		}
-
-		# Include checks that will include GlobalBlocking (Bug 38333)
-		$permErrors = $this->getPageTitle()->getUserPermissionsErrors(
-			'createaccount',
-			$currentUser,
-			true
-		);
-
-		if ( count( $permErrors ) ) {
-			throw new PermissionsError( 'createaccount', $permErrors );
-		}
-
-		$ip = $this->getRequest()->getIP();
-		if ( $currentUser->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
-			return Status::newFatal( 'sorbs_create_account_reason' );
-		}
-
-		# Now create a dummy user ($u) and check if it is valid
-		$u = User::newFromName( $this->mUsername, 'creatable' );
-		if ( !is_object( $u ) ) {
-			return Status::newFatal( 'noname' );
-		} elseif ( 0 != $u->idForName() ) {
-			return Status::newFatal( 'userexists' );
-		}
-
-		if ( $this->mCreateaccountMail ) {
-			# do not force a password for account creation by email
-			# set invalid password, it will be replaced later by a random generated password
-			$this->mPassword = null;
-		} else {
-			if ( $this->mPassword !== $this->mRetype ) {
-				return Status::newFatal( 'badretype' );
-			}
-
-			# check for minimal password length
-			$valid = $u->getPasswordValidity( $this->mPassword );
-			if ( $valid !== true ) {
-				if ( !is_array( $valid ) ) {
-					$valid = array( $valid, $wgMinimalPasswordLength );
-				}
-
-				return call_user_func_array( 'Status::newFatal', $valid );
-			}
-		}
-
-		# if you need a confirmed email address to edit, then obviously you
-		# need an email address.
-		if ( $wgEmailConfirmToEdit && strval( $this->mEmail ) === '' ) {
-			return Status::newFatal( 'noemailtitle' );
-		}
-
-		if ( strval( $this->mEmail ) !== '' && !Sanitizer::validateEmail( $this->mEmail ) ) {
-			return Status::newFatal( 'invalidemailaddress' );
-		}
-
-		# Set some additional data so the AbortNewAccount hook can be used for
-		# more than just username validation
-		$u->setEmail( $this->mEmail );
-		$u->setRealName( $this->mRealName );
-
-		$abortError = '';
-		$abortStatus = null;
-		if ( !Hooks::run( 'AbortNewAccount', array( $u, &$abortError, &$abortStatus ) ) ) {
-			// Hook point to add extra creation throttles and blocks
-			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
-			if ( $abortStatus === null ) {
-				// Report back the old string as a raw message status.
-				// This will report the error back as 'createaccount-hook-aborted'
-				// with the given string as the message.
-				// To return a different error code, return a Status object.
-				$abortError = new Message( 'createaccount-hook-aborted', array( $abortError ) );
-				$abortError->text();
-
-				return Status::newFatal( $abortError );
-			} else {
-				// For MediaWiki 1.23+ and updated hooks, return the Status object
-				// returned from the hook.
-				return $abortStatus;
-			}
-		}
-
-		// Hook point to check for exempt from account creation throttle
-		if ( !Hooks::run( 'ExemptFromAccountCreationThrottle', array( $ip ) ) ) {
-			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook " .
-				"allowed account creation w/o throttle\n" );
-		} else {
-			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
-				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
-				$value = $wgMemc->get( $key );
-				if ( !$value ) {
-					$wgMemc->set( $key, 0, 86400 );
-				}
-				if ( $value >= $wgAccountCreationThrottle ) {
-					return Status::newFatal( 'acct_creation_throttle_hit', $wgAccountCreationThrottle );
-				}
-				$wgMemc->incr( $key );
-			}
-		}
-
-		if ( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
-			return Status::newFatal( 'externaldberror' );
-		}
-
-		self::clearCreateaccountToken();
-
-		return $this->initUser( $u, false );
+            return $this->initUser($u, false);
+        }
+        else {
+            //Validation failed for some reason, so return the reason the validation failed
+            return $usernameValidated;
+        }
 	}
 
 	/**
