@@ -318,7 +318,10 @@ class RequestContext implements IContextSource {
 				$request = $this->getRequest();
 				$user = $this->getUser();
 
-				$code = $request->getVal( 'uselang', $user->getOption( 'language' ) );
+				$code = $request->getVal( 'uselang', 'user' );
+				if ( $code === 'user' ) {
+					$code = $user->getOption( 'language' );
+				}
 				$code = self::sanitizeLangCode( $code );
 
 				Hooks::run( 'UserGetLanguageObject', array( $user, &$code, $this ) );

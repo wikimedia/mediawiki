@@ -190,19 +190,20 @@ class ApiMain extends ApiBase {
 
 		$uselang = $this->getParameter( 'uselang' );
 		if ( $uselang === 'user' ) {
-			$uselang = $this->getUser()->getOption( 'language' );
-			$uselang = RequestContext::sanitizeLangCode( $uselang );
-			Hooks::run( 'UserGetLanguageObject', array( $this->getUser(), &$uselang, $this ) );
-		} elseif ( $uselang === 'content' ) {
-			global $wgContLang;
-			$uselang = $wgContLang->getCode();
-		}
-		$code = RequestContext::sanitizeLangCode( $uselang );
-		$this->getContext()->setLanguage( $code );
-		if ( !$this->mInternalMode ) {
-			global $wgLang;
-			$wgLang = $this->getContext()->getLanguage();
-			RequestContext::getMain()->setLanguage( $wgLang );
+			// Assume the parent context is going to return the user language
+			// for uselang=user (see T85635).
+		} else {
+			if ( $uselang === 'content' ) {
+				global $wgContLang;
+				$uselang = $wgContLang->getCode();
+			}
+			$code = RequestContext::sanitizeLangCode( $uselang );
+			$this->getContext()->setLanguage( $code );
+			if ( !$this->mInternalMode ) {
+				global $wgLang;
+				$wgLang = $this->getContext()->getLanguage();
+				RequestContext::getMain()->setLanguage( $wgLang );
+			}
 		}
 
 		$config = $this->getConfig();
