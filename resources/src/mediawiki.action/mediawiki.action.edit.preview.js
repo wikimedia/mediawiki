@@ -116,7 +116,7 @@
 						response.parse.modulemessages ) );
 				}
 				if ( response.parse.displaytitle ) {
-					$( '#firstHeading' ).html( '<span dir="auto">' + response.parse.displaytitle + '</span>' );
+					$( '#firstHeading' ).html( '<span dir="auto">' + mw.msg( 'editing', response.parse.displaytitle ) + '</span>' );
 				}
 				if ( response.parse.categorieshtml ) {
 					$( '#catlinks' ).replaceWith( response.parse.categorieshtml['*'] );
