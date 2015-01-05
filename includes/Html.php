@@ -467,6 +467,9 @@ class Html {
 	 * array, the attribute value may also be an associative array. See the
 	 * example below for how that works.
 	 *
+	 * In case there are more double quote than single quote characters in the string,
+	 * the attribute value will be wrapped in the single quote chars   foo='..."..."..."...'
+	 *
 	 * @par Numerical array
 	 * @code
 	 *     Html::element( 'em', array(
@@ -582,13 +585,11 @@ class Html {
 
 			// See the "Attributes" section in the HTML syntax part of HTML5,
 			// 9.1.2.3 as of 2009-08-10.  Most attributes can have quotation
-			// marks omitted, but not all.  (Although a literal " is not
-			// permitted, we don't check for that, since it will be escaped
-			// anyway.)
+			// marks omitted, but not all.
 
 			// See also research done on further characters that need to be
 			// escaped: http://code.google.com/p/html5lib/issues/detail?id=93
-			$badChars = "\\x00- '=<>`/\x{00a0}\x{1680}\x{180e}\x{180F}\x{2000}\x{2001}"
+			$badChars = "\\x00- \"'=<>`/\x{00a0}\x{1680}\x{180e}\x{180F}\x{2000}\x{2001}"
 				. "\x{2002}\x{2003}\x{2004}\x{2005}\x{2006}\x{2007}\x{2008}\x{2009}"
 				. "\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}";
 			if ( $wgWellFormedXml || $value === '' || preg_match( "![$badChars]!u", $value ) ) {
@@ -618,7 +619,6 @@ class Html {
 				// byte size from not having to encode unnecessary quotes.
 				$map = array(
 					'&' => '&amp;',
-					'"' => '&quot;',
 					"\n" => '&#10;',
 					"\r" => '&#13;',
 					"\t" => '&#9;'
@@ -629,6 +629,13 @@ class Html {
 					// @todo FIXME: Is this really true?
 					$map['<'] = '&lt;';
 				}
+				if ( substr_count( $value, "'" ) < substr_count( $value, '"' ) ) {
+					$map["'"] = '&#39;';
+					$quote = "'"; // $quote was set to " before.
+				} else {
+					$map['"'] = '&quot;';
+				}
+
 				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
 			}
 		}
