@@ -447,15 +447,12 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * Make a new user account using the loaded data.
-	 * @private
+	 * Validates whether an account can be created using the loaded data.
 	 * @throws PermissionsError|ReadOnlyError
 	 * @return Status
 	 */
-	public function addNewAccountInternal() {
-		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,
-			$wgMinimalPasswordLength, $wgEmailConfirmToEdit;
-
+	public function validateUsername() {
+		global $wgAuth, $wgMinimalPasswordLength, $wgEmailConfirmToEdit;
 		// If the user passes an invalid domain, something is fishy
 		if ( !$wgAuth->validDomain( $this->mDomain ) ) {
 			return Status::newFatal( 'wrongpassword' );
@@ -592,31 +589,56 @@ class LoginForm extends SpecialPage {
 			}
 		}
 
-		// Hook point to check for exempt from account creation throttle
-		if ( !Hooks::run( 'ExemptFromAccountCreationThrottle', array( $ip ) ) ) {
-			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook " .
-				"allowed account creation w/o throttle\n" );
-		} else {
-			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
-				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
-				$value = $wgMemc->get( $key );
-				if ( !$value ) {
-					$wgMemc->set( $key, 0, 86400 );
+		//If, after all of this, we've reached this point, the proposed username has passed the validation step
+		return Status::newGood();
+	}
+
+	/**
+	 * Make a new user account using the loaded data.
+	 * @throws PermissionsError|ReadOnlyError
+	 * @return Status
+	 */
+	public function addNewAccountInternal() {
+		global $wgAuth, $wgMemc, $wgAccountCreationThrottle;
+
+		// Attempt to validate username
+		$usernameValidated = $this::validateUsername();
+
+		// If the username is valid for creation, then attempt creation
+		if ( $usernameValidated->isGood() ) {
+			// Hook point to check for exempt from account creation throttle
+			$ip = $this->getRequest()->getIP();
+			$currentUser = $this->getUser();
+			$u = User::newFromName( $this->mUsername, 'creatable' );
+			if ( !Hooks::run( 'ExemptFromAccountCreationThrottle', array( $ip ) ) ) {
+				wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook " .
+					"allowed account creation w/o throttle\n" );
+			} else {
+				if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
+					$key = wfMemcKey( 'acctcreate', 'ip', $ip );
+					$value = $wgMemc->get( $key );
+					if ( !$value ) {
+						$wgMemc->set( $key, 0, 86400 );
+					}
+					if ( $value >= $wgAccountCreationThrottle ) {
+						return Status::newFatal( 'acct_creation_throttle_hit', $wgAccountCreationThrottle );
+					}
+					$wgMemc->incr( $key );
 				}
-				if ( $value >= $wgAccountCreationThrottle ) {
-					return Status::newFatal( 'acct_creation_throttle_hit', $wgAccountCreationThrottle );
-				}
-				$wgMemc->incr( $key );
 			}
+
+			if ( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
+				return Status::newFatal( 'externaldberror' );
+			}
+
+			self::clearCreateaccountToken();
+
+			return $this->initUser( $u, false );
 		}
-
-		if ( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
-			return Status::newFatal( 'externaldberror' );
+		else {
+			//Validation failed for some reason, so return the reason the validation failed
+			return $usernameValidated;
 		}
-
-		self::clearCreateaccountToken();
-
-		return $this->initUser( $u, false );
 	}
 
 	/**
