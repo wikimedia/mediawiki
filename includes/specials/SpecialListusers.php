@@ -37,7 +37,7 @@ class UsersPager extends AlphabeticPager {
 	/**
 	 * @var array A array with user ids as key and a array of groups as value
 	 */
-	private $userGroupCache;
+	protected $userGroupCache;
 
 	/**
 	 * @param IContextSource $context
