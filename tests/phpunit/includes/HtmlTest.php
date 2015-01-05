@@ -231,6 +231,31 @@ class HtmlTest extends MediaWikiTestCase {
 			Html::expandAttributes( array( 'zero' => 0 ) ),
 			'Attribute values are always quoted (wgWellFormedXml): Number 0'
 		);
+		$this->assertEquals(
+			' foo="a \' b"',
+			Html::expandAttributes( array( 'foo' => 'a \' b' ) ),
+			'Attribute values with single quotes should have double quote wrappers'
+		);
+		$this->assertEquals(
+			' foo=\'a " b\'',
+			Html::expandAttributes( array( 'foo' => 'a " b' ) ),
+			'Attribute values with double quotes should have single quote wrappers'
+		);
+		$this->assertEquals(
+			' foo=\'a "&#39;" b\'',
+			Html::expandAttributes( array( 'foo' => 'a "\'" b' ) ),
+			'Attribute values with single quotes fewer than double quotes should have single quote wrappers'
+		);
+		$this->assertEquals(
+			' foo="a &quot;\' b"',
+			Html::expandAttributes( array( 'foo' => 'a "\' b' ) ),
+			'Attribute values with single quotes count equal to double quotes should have double quote wrappers'
+		);
+		$this->assertEquals(
+			' foo="a \'&quot;\' b"',
+			Html::expandAttributes( array( 'foo' => 'a \'"\' b' ) ),
+			'Attribute values with single quotes count more than double quotes should have double quote wrappers'
+		);
 	}
 
 	/**
