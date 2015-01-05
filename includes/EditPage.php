@@ -2654,19 +2654,21 @@ class EditPage {
 						array( 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() )
 					);
 				}
-				if ( $this->formtype !== 'preview' ) {
-					if ( $this->isCssSubpage && $wgAllowUserCss ) {
-						$wgOut->wrapWikiMsg(
-							"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
-							array( 'usercssyoucanpreview' )
-						);
-					}
+				if ( $this->getTitle()->isSubpageOf( $wgUser->getUserPage() ) ) {
+					if ( $this->formtype !== 'preview' ) {
+						if ( $this->isCssSubpage && $wgAllowUserCss ) {
+							$wgOut->wrapWikiMsg(
+								"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
+								array( 'usercssyoucanpreview' )
+							);
+						}
 
-					if ( $this->isJsSubpage && $wgAllowUserJs ) {
-						$wgOut->wrapWikiMsg(
-							"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
-							array( 'userjsyoucanpreview' )
-						);
+						if ( $this->isJsSubpage && $wgAllowUserJs ) {
+							$wgOut->wrapWikiMsg(
+								"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
+								array( 'userjsyoucanpreview' )
+							);
+						}
 					}
 				}
 			}
