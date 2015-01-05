@@ -32,13 +32,16 @@
  */
 class WikiImporter {
 	private $reader = null;
+	private $foreignNamespaces = null;
 	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
-	private $mSiteInfoCallback, $mTargetNamespace, $mTargetRootPage, $mPageOutCallback;
+	private $mSiteInfoCallback, $mTargetNamespace, $mPageOutCallback;
 	private $mNoticeCallback, $mDebug;
 	private $mImportUploads, $mImageBasePath;
 	private $mNoUpdates = false;
 	/** @var Config */
 	private $config;
+	/** @var ImportTitleFactory */
+	private $importTitleFactory;
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
@@ -68,6 +71,8 @@ class WikiImporter {
 		$this->setUploadCallback( array( $this, 'importUpload' ) );
 		$this->setLogItemCallback( array( $this, 'importLogItem' ) );
 		$this->setPageOutCallback( array( $this, 'finishImportPage' ) );
+
+		$this->importTitleFactory = new NaiveImportTitleFactory();
 	}
 
 	/**
@@ -200,6 +205,15 @@ class WikiImporter {
 	}
 
 	/**
+	 * Sets the factory object to use to convert ForeignTitle objects into local
+	 * Title objects
+	 * @param ImportTitleFactory $factory
+	 */
+	public function setImportTitleFactory( $factory ) {
+		$this->importTitleFactory = $factory;
+	}
+
+	/**
 	 * Set a target namespace to override the defaults
 	 * @param null|int $namespace
 	 * @return bool
@@ -208,9 +222,16 @@ class WikiImporter {
 		if ( is_null( $namespace ) ) {
 			// Don't override namespaces
 			$this->mTargetNamespace = null;
-		} elseif ( $namespace >= 0 ) {
-			// @todo FIXME: Check for validity
-			$this->mTargetNamespace = intval( $namespace );
+			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
+			return true;
+		} elseif (
+			$namespace >= 0 &&
+			MWNamespace::exists( intval( $namespace ) )
+		) {
+			$namespace = intval( $namespace );
+			$this->mTargetNamespace = $namespace;
+			$this->setImportTitleFactory( new NamespaceImportTitleFactory( $namespace ) );
+			return true;
 		} else {
 			return false;
 		}
@@ -225,7 +246,7 @@ class WikiImporter {
 		$status = Status::newGood();
 		if ( is_null( $rootpage ) ) {
 			// No rootpage
-			$this->mTargetRootPage = null;
+			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 		} elseif ( $rootpage !== '' ) {
 			$rootpage = rtrim( $rootpage, '/' ); //avoid double slashes
 			$title = Title::newFromText( $rootpage, !is_null( $this->mTargetNamespace )
@@ -244,9 +265,9 @@ class WikiImporter {
 						: $wgContLang->getNsText( $title->getNamespace() );
 					$status->fatal( 'import-rootpage-nosubpage', $displayNSText );
 				} else {
-					// set namespace to 'all', so the namespace check in processTitle() can passed
+					// set namespace to 'all', so the namespace check in processTitle() can pass
 					$this->setTargetNamespace( null );
-					$this->mTargetRootPage = $title->getPrefixedDBkey();
+					$this->setImportTitleFactory( new SubpageImportTitleFactory( $title ) );
 				}
 			}
 		}
@@ -320,13 +341,14 @@ class WikiImporter {
 	/**
 	 * Mostly for hook use
 	 * @param Title $title
-	 * @param string $origTitle
+	 * @param ForeignTitle $foreignTitle
 	 * @param int $revCount
 	 * @param int $sRevCount
 	 * @param array $pageInfo
 	 * @return bool
 	 */
-	public function finishImportPage( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) {
+	public function finishImportPage( $title, $foreignTitle, $revCount,
+			$sRevCount, $pageInfo ) {
 		$args = func_get_args();
 		return Hooks::run( 'AfterImportPage', $args );
 	}
@@ -349,6 +371,20 @@ class WikiImporter {
 	}
 
 	/**
+	 * Notify the callback function of site info
+	 * @param array $siteInfo
+	 * @return bool|mixed
+	 */
+	private function siteInfoCallback( $siteInfo ) {
+		if ( isset( $this->mSiteInfoCallback ) ) {
+			return call_user_func_array( $this->mSiteInfoCallback,
+					array( $siteInfo, $this ) );
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * Notify the callback function when a new "<page>" is reached.
 	 * @param Title $title
 	 */
@@ -361,12 +397,13 @@ class WikiImporter {
 	/**
 	 * Notify the callback function when a "</page>" is closed.
 	 * @param Title $title
-	 * @param Title $origTitle
+	 * @param ForeignTitle $foreignTitle
 	 * @param int $revCount
 	 * @param int $sucCount Number of revisions for which callback returned true
 	 * @param array $pageInfo Associative array of page information
 	 */
-	private function pageOutCallback( $title, $origTitle, $revCount, $sucCount, $pageInfo ) {
+	private function pageOutCallback( $title, $foreignTitle, $revCount,
+			$sucCount, $pageInfo ) {
 		if ( isset( $this->mPageOutCallback ) ) {
 			$args = func_get_args();
 			call_user_func_array( $this->mPageOutCallback, $args );
@@ -493,18 +530,31 @@ class WikiImporter {
 		return true;
 	}
 
-	/**
-	 * @return bool
-	 * @throws MWException
-	 */
 	private function handleSiteInfo() {
-		// Site info is useful, but not actually used for dump imports.
-		// Includes a quick short-circuit to save performance.
-		if ( !$this->mSiteInfoCallback ) {
-			$this->reader->next();
-			return true;
+		$this->debug( "Enter site info handler." );
+		$siteInfo = array();
+
+		// Fields that can just be stuffed in the siteInfo object
+		$normalFields = array( 'sitename', 'base', 'generator', 'case' );
+
+		while ( $this->reader->read() ) {
+			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
+					$this->reader->name == 'siteinfo' ) {
+				break;
+			}
+
+			$tag = $this->reader->name;
+
+			if ( $tag == 'namespace' ) {
+				$this->foreignNamespaces[ $this->nodeAttribute( 'key' ) ] =
+					$this->nodeContents();
+			} elseif ( in_array( $tag, $normalFields ) ) {
+				$siteInfo[$tag] = $this->nodeContents();
+			}
 		}
-		throw new MWException( "SiteInfo tag is not yet handled, do not set mSiteInfoCallback" );
+
+		$siteInfo['_namespaces'] = $this->foreignNamespaces;
+		$this->siteInfoCallback( $siteInfo );
 	}
 
 	private function handleLogItem() {
@@ -574,7 +624,7 @@ class WikiImporter {
 		$pageInfo = array( 'revisionCount' => 0, 'successfulRevisionCount' => 0 );
 
 		// Fields that can just be stuffed in the pageInfo object
-		$normalFields = array( 'title', 'id', 'redirect', 'restrictions' );
+		$normalFields = array( 'title', 'ns', 'id', 'redirect', 'restrictions' );
 
 		$skip = false;
 		$badTitle = false;
@@ -584,6 +634,8 @@ class WikiImporter {
 					$this->reader->name == 'page' ) {
 				break;
 			}
+
+			$skip = false;
 
 			$tag = $this->reader->name;
 
@@ -605,29 +657,35 @@ class WikiImporter {
 					$pageInfo[$tag] = $this->nodeAttribute( 'title' );
 				} else {
 					$pageInfo[$tag] = $this->nodeContents();
-					if ( $tag == 'title' ) {
-						$title = $this->processTitle( $pageInfo['title'] );
+				}
+			} elseif ( $tag == 'revision' || $tag == 'upload' ) {
+				if ( !isset( $title ) ) {
+					$title = $this->processTitle( $pageInfo['title'],
+						isset( $pageInfo['ns'] ) ? $pageInfo['ns'] : null );
 
-						if ( !$title ) {
-							$badTitle = true;
-							$skip = true;
-						}
+					if ( !$title ) {
+						$badTitle = true;
+						$skip = true;
+					}
 
-						$this->pageCallback( $title );
-						list( $pageInfo['_title'], $origTitle ) = $title;
+					$this->pageCallback( $title );
+					list( $pageInfo['_title'], $foreignTitle ) = $title;
+				}
+
+				if ( $title ) {
+					if ( $tag == 'revision' ) {
+						$this->handleRevision( $pageInfo );
+					} else {
+						$this->handleUpload( $pageInfo );
 					}
 				}
-			} elseif ( $tag == 'revision' ) {
-				$this->handleRevision( $pageInfo );
-			} elseif ( $tag == 'upload' ) {
-				$this->handleUpload( $pageInfo );
 			} elseif ( $tag != '#text' ) {
 				$this->warn( "Unhandled page XML tag $tag" );
 				$skip = true;
 			}
 		}
 
-		$this->pageOutCallback( $pageInfo['_title'], $origTitle,
+		$this->pageOutCallback( $pageInfo['_title'], $foreignTitle,
 					$pageInfo['revisionCount'],
 					$pageInfo['successfulRevisionCount'],
 					$pageInfo );
@@ -852,28 +910,27 @@ class WikiImporter {
 
 	/**
 	 * @param string $text
+	 * @param string|null $ns
 	 * @return array|bool
 	 */
-	private function processTitle( $text ) {
-		$workTitle = $text;
-		$origTitle = Title::newFromText( $workTitle );
-
-		if ( !is_null( $this->mTargetNamespace ) && !is_null( $origTitle ) ) {
-			# makeTitleSafe, because $origTitle can have a interwiki (different setting of interwiki map)
-			# and than dbKey can begin with a lowercase char
-			$title = Title::makeTitleSafe( $this->mTargetNamespace,
-				$origTitle->getDBkey() );
+	private function processTitle( $text, $ns = null ) {
+		if ( is_null( $this->foreignNamespaces ) ) {
+			$foreignTitleFactory = new NaiveForeignTitleFactory();
 		} else {
-			if ( !is_null( $this->mTargetRootPage ) ) {
-				$workTitle = $this->mTargetRootPage . '/' . $workTitle;
-			}
-			$title = Title::newFromText( $workTitle );
+			$foreignTitleFactory = new NamespaceAwareForeignTitleFactory(
+				$this->foreignNamespaces );
 		}
+
+		$foreignTitle = $foreignTitleFactory->createForeignTitle( $text,
+			intval( $ns ) );
+
+		$title = $this->importTitleFactory->createTitleFromForeignTitle(
+			$foreignTitle );
 
 		$commandLineMode = $this->config->get( 'CommandLineMode' );
 		if ( is_null( $title ) ) {
 			# Invalid page title? Ignore the page
-			$this->notice( 'import-error-invalid', $workTitle );
+			$this->notice( 'import-error-invalid', $foreignTitle->getFullText() );
 			return false;
 		} elseif ( $title->isExternal() ) {
 			$this->notice( 'import-error-interwiki', $title->getPrefixedText() );
@@ -891,7 +948,7 @@ class WikiImporter {
 			return false;
 		}
 
-		return array( $title, $origTitle );
+		return array( $title, $foreignTitle );
 	}
 }
 
