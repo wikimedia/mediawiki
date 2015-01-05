@@ -1073,7 +1073,7 @@ abstract class Maintenance {
 	 *
 	 * @return DatabaseBase
 	 */
-	protected function &getDB( $db, $groups = array(), $wiki = false ) {
+	protected function getDB( $db, $groups = array(), $wiki = false ) {
 		if ( is_null( $this->mDb ) ) {
 			return wfGetDB( $db, $groups, $wiki );
 		} else {
@@ -1086,7 +1086,7 @@ abstract class Maintenance {
 	 *
 	 * @param DatabaseBase $db Database object to be used
 	 */
-	public function setDB( &$db ) {
+	public function setDB( $db ) {
 		$this->mDb = $db;
 	}
 
@@ -1094,7 +1094,7 @@ abstract class Maintenance {
 	 * Lock the search index
 	 * @param DatabaseBase &$db
 	 */
-	private function lockSearchindex( &$db ) {
+	private function lockSearchindex( $db ) {
 		$write = array( 'searchindex' );
 		$read = array( 'page', 'revision', 'text', 'interwiki', 'l10n_cache', 'user' );
 		$db->lockTables( $read, $write, __CLASS__ . '::' . __METHOD__ );
@@ -1104,7 +1104,7 @@ abstract class Maintenance {
 	 * Unlock the tables
 	 * @param DatabaseBase &$db
 	 */
-	private function unlockSearchindex( &$db ) {
+	private function unlockSearchindex( $db ) {
 		$db->unlockTables( __CLASS__ . '::' . __METHOD__ );
 	}
 
@@ -1113,7 +1113,7 @@ abstract class Maintenance {
 	 * Since the lock is low-priority, queued reads will be able to complete
 	 * @param DatabaseBase &$db
 	 */
-	private function relockSearchindex( &$db ) {
+	private function relockSearchindex( $db ) {
 		$this->unlockSearchindex( $db );
 		$this->lockSearchindex( $db );
 	}
