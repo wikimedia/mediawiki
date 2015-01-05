@@ -6,7 +6,8 @@
 			"Jeblad",
 			"Laaknor",
 			"Njardarlogar",
-			"Jdforrester"
+			"Jdforrester",
+			"Apple farmer"
 		]
 	},
 	"ooui-outline-control-move-down": "Flytt ned",
@@ -14,7 +15,7 @@
 	"ooui-outline-control-remove": "Fjern element",
 	"ooui-toolbar-more": "Mer",
 	"ooui-toolgroup-expand": "Mer",
-	"ooui-toolgroup-collapse": "Mindre",
+	"ooui-toolgroup-collapse": "Færre",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Avbryt",
 	"ooui-dialog-process-error": "Noe gikk galt",

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.6.0
+ * OOjs UI v0.6.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2014 OOjs Team and other contributors.
+ * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-12-16T21:01:07Z
+ * Date: 2015-01-05T13:04:47Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -66,7 +66,7 @@
 	cursor: pointer;
 	display: inline-block;
 	vertical-align: middle;
-	font-family: inherit;
+	font: inherit;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
@@ -460,9 +460,10 @@
 	margin-top: 2em;
 }
 .oo-ui-fieldsetLayout > .oo-ui-labelElement-label {
-	font-size: 1.5em;
+	font-size: 1.1em;
 	margin-bottom: 0.5em;
 	padding: 0.25em 0;
+	font-weight: bold;
 }
 .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-labelElement-label {
 	padding-left: 1.75em;
@@ -471,8 +472,8 @@
 .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-iconElement-icon {
 	left: 0;
 	top: 0.25em;
-	width: 2em;
-	height: 2em;
+	width: 1.5em;
+	height: 1.5em;
 }
 .oo-ui-gridLayout {
 	position: absolute;

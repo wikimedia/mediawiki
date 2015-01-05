@@ -15,9 +15,12 @@
 	"ooui-outline-control-move-up": "Μετακίνηση στοιχείου προς τα επάνω",
 	"ooui-outline-control-remove": "Αφαίρεση στοιχείου",
 	"ooui-toolbar-more": "Περισσότερα",
+	"ooui-toolgroup-expand": "Περισσότερα",
+	"ooui-toolgroup-collapse": "Λιγότερα",
 	"ooui-dialog-message-accept": "ΟΚ",
 	"ooui-dialog-message-reject": "Ακύρωση",
 	"ooui-dialog-process-error": "Κάτι πήγε στραβά",
 	"ooui-dialog-process-dismiss": "Απόρριψη",
-	"ooui-dialog-process-retry": "Δοκιμάστε ξανά"
+	"ooui-dialog-process-retry": "Δοκιμάστε ξανά",
+	"ooui-dialog-process-continue": "Συνέχεια"
 }

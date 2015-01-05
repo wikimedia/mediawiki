@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.6.0
+ * OOjs UI v0.6.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2014 OOjs Team and other contributors.
+ * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-12-16T21:00:55Z
+ * Date: 2015-01-05T13:04:40Z
  */
 ( function ( OO ) {
 
@@ -171,7 +171,8 @@ OO.ui.contains = function ( containers, contained, matchContainers ) {
 	 * @return {string} Translated message with parameters substituted
 	 */
 	OO.ui.msg = function ( key ) {
-		var message = messages[key], params = Array.prototype.slice.call( arguments, 1 );
+		var message = messages[key],
+			params = Array.prototype.slice.call( arguments, 1 );
 		if ( typeof message === 'string' ) {
 			// Perform $1 substitution
 			message = message.replace( /\$(\d+)/g, function ( unused, n ) {
@@ -947,10 +948,10 @@ OO.ui.Element.static.getBorders = function ( el ) {
 		right = parseFloat( style ? style.borderRightWidth : $el.css( 'borderRightWidth' ) ) || 0;
 
 	return {
-		top: Math.round( top ),
-		left: Math.round( left ),
-		bottom: Math.round( bottom ),
-		right: Math.round( right )
+		top: top,
+		left: left,
+		bottom: bottom,
+		right: right
 	};
 };
 
@@ -1770,7 +1771,8 @@ OO.ui.Window.prototype.getContentHeight = function () {
 	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
 	// Disable transitions first, otherwise we'll get values from when the window was animating.
 	this.withoutSizeTransitions( function () {
-		var oldHeight = frameStyleObj.height, oldPosition = bodyStyleObj.position;
+		var oldHeight = frameStyleObj.height,
+			oldPosition = bodyStyleObj.position;
 		frameStyleObj.height = '1px';
 		// Force body to resize to new width
 		bodyStyleObj.position = 'relative';
@@ -1779,7 +1781,7 @@ OO.ui.Window.prototype.getContentHeight = function () {
 		bodyStyleObj.position = oldPosition;
 	} );
 
-	return Math.round(
+	return (
 		// Add buffer for border
 		( this.$frame.outerHeight() - this.$frame.innerHeight() ) +
 		// Use combined heights of children
@@ -3246,7 +3248,6 @@ OO.ui.WindowManager.prototype.destroy = function () {
 };
 
 /**
- * @abstract
  * @class
  *
  * @constructor
@@ -4759,7 +4760,7 @@ OO.ui.IndicatorElement.prototype.setIndicatorElement = function ( $indicator ) {
 		.addClass( 'oo-ui-indicatorElement-indicator' )
 		.toggleClass( 'oo-ui-indicator-' + this.indicator, !!this.indicator );
 	if ( this.indicatorTitle !== null ) {
-		this.$indicatorTitle.attr( 'title', this.indicatorTitle );
+		this.$indicator.attr( 'title', this.indicatorTitle );
 	}
 };
 
@@ -6439,7 +6440,7 @@ OO.ui.MessageDialog.prototype.getBodyHeight = function () {
 	$scrollable.height();
 	$scrollable.contents().show();
 
-	bodyHeight = Math.round( this.text.$element.outerHeight( true ) );
+	bodyHeight = this.text.$element.outerHeight( true );
 	$scrollable[0].style.overflow = oldOverflow;
 
 	return bodyHeight;
@@ -11361,8 +11362,8 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	popupOffset = this.width * ( { left: 0, center: -0.5, right: -1 } )[this.align];
 
 	// Figure out if this will cause the popup to go beyond the edge of the container
-	originOffset = Math.round( this.$element.offset().left );
-	containerLeft = Math.round( this.$container.offset().left );
+	originOffset = this.$element.offset().left;
+	containerLeft = this.$container.offset().left;
 	containerWidth = this.$container.innerWidth();
 	containerRight = containerLeft + containerWidth;
 	popupLeft = popupOffset - this.containerPadding;
@@ -11436,7 +11437,7 @@ OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
 
 	// Initialization
 	this.setProgress( config.progress !== undefined ? config.progress : false );
-	this.$bar.addClass( 'oo-ui-progressBarWidget-bar');
+	this.$bar.addClass( 'oo-ui-progressBarWidget-bar' );
 	this.$element
 		.attr( {
 			role: 'progressbar',
