@@ -3776,7 +3776,7 @@ class Language {
 	}
 	/**
 	 * Provides an alternative text depending on specified gender.
-	 * Usage {{gender:username|masculine|feminine|unknown}}.
+	 * Usage {{gender:username|masculine|feminine|unknown|neutral}}.
 	 * username is optional, in which case the gender of current user is used,
 	 * but only in (some) interface messages; otherwise default gender is used.
 	 *
@@ -3794,6 +3794,8 @@ class Language {
 	 * @return string
 	 */
 	function gender( $gender, $forms ) {
+		global $wgNeutralGenderOption;
+
 		if ( !count( $forms ) ) {
 			return '';
 		}
@@ -3803,6 +3805,9 @@ class Language {
 		}
 		if ( $gender === 'female' ) {
 			return $forms[1];
+		}
+		if ( $wgNeutralGenderOption && $gender === 'neutral' && isset( $forms[3] ) ) {
+			return $forms[3];
 		}
 		return isset( $forms[2] ) ? $forms[2] : $forms[0];
 	}
