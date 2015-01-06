@@ -1721,6 +1721,10 @@ abstract class ApiBase extends ContextSource {
 			'code' => 'missingtitle',
 			'info' => "The article you tried to edit doesn't exist"
 		),
+		'cantchangecontentmodel' => array(
+			'code' => 'cantchangecontentmodel',
+			'info' => "You don't have permission to change the content model of a page"
+		),
 		'nosuchrcid' => array(
 			'code' => 'nosuchrcid',
 			'info' => "There is no change with rcid \"\$1\""
