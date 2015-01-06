@@ -160,7 +160,6 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$baseHtml = <<<HTML
 <div class="mw-content-ltr">
 <div id="qunit"></div>
-<div id="qunit-fixture"></div>
 </div>
 HTML;
 
@@ -254,7 +253,6 @@ HTML;
 <title>QUnit</title>
 $head
 <div id="qunit"></div>
-<div id="qunit-fixture"></div>
 HTML;
 		$html .= "\n" . Html::linkedScript( $url );
 
