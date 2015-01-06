@@ -1574,7 +1574,7 @@
 	"protectedpages-timestamp": "시간 기록",
 	"protectedpages-page": "문서",
 	"protectedpages-expiry": "만료 기한",
-	"protectedpages-performer": "사용자를 보호",
+	"protectedpages-performer": "보호한 사용자",
 	"protectedpages-params": "보호 변수",
 	"protectedpages-reason": "이유",
 	"protectedpages-unknown-timestamp": "알 수 없음",

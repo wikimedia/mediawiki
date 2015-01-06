@@ -2211,6 +2211,7 @@
 	"javascripttest": "Проба на JavaScript",
 	"javascripttest-pagetext-noframework": "Оваа страница е резервирана за вршење на проби со JavaScript.",
 	"javascripttest-pagetext-unknownframework": "Непозната рамка „$1“.",
+	"javascripttest-pagetext-unknownaction": "Непознато дејство „$1“.",
 	"javascripttest-pagetext-frameworks": "Изберете една од следниве рамки: $1",
 	"javascripttest-pagetext-skins": "Одберете со кое руво да ја направите пробата:",
 	"javascripttest-qunit-intro": "Вид. [$1 документација на испробувањето] на mediawiki.org.",

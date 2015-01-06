@@ -2211,6 +2211,7 @@
 	"javascripttest": "Testování JavaScriptu",
 	"javascripttest-pagetext-noframework": "Tato stránka je vyhrazena pro spouštění testů JavaScriptu.",
 	"javascripttest-pagetext-unknownframework": "Neznámá testovací knihovna „$1“.",
+	"javascripttest-pagetext-unknownaction": "Neznámá akce „$1“.",
 	"javascripttest-pagetext-frameworks": "Zvolte jednu z následujících testovacích knihoven: $1",
 	"javascripttest-pagetext-skins": "Zvolte vzhled, pod kterým se mají testy spustit:",
 	"javascripttest-qunit-intro": "Vizte [$1 dokumentaci testování] na mediawiki.org",

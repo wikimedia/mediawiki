@@ -1136,7 +1136,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (kuckt och [[Special:NewPages|Lëscht vun den neie Säiten]])",
 	"recentchanges-legend-plusminus": "''(±123)''",
 	"rcnotefrom": "Hei drënner {{PLURAL:$5|gëtt d'Ännerung|ginn d'Ännerungen}} zanter <strong>$3, $4</strong> (maximal <strong>$1</strong> Ännerunge gi gewisen).",
-	"rclistfrom": "Nei Ännerunge vu(n) $3 $2 u weisen",
+	"rclistfrom": "Nei Ännerunge vum $3 $2 u weisen",
 	"rcshowhideminor": "Kleng Ännerunge $1",
 	"rcshowhideminor-show": "Weisen",
 	"rcshowhideminor-hide": "Verstoppen",

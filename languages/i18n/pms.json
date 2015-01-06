@@ -2202,6 +2202,7 @@
 	"javascripttest": "Preuva ëd JavaScript",
 	"javascripttest-pagetext-noframework": "Costa pàgina a l'é arservà për fé dle preuve JavaScript.",
 	"javascripttest-pagetext-unknownframework": "Strutura ëd preuva pa conossùa «$1».",
+	"javascripttest-pagetext-unknownaction": "Assion nen conossùa «$1».",
 	"javascripttest-pagetext-frameworks": "Për piasì, ch'a serna un-a dle struture ëd preuva sì-dapress: $1",
 	"javascripttest-pagetext-skins": "Ch'a serna na pel për fé le preuve:",
 	"javascripttest-qunit-intro": "Vëdde [$1 la documentassion dle preuve] dzora a mediawiki.org.",

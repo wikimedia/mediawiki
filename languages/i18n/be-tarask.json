@@ -2197,6 +2197,7 @@
 	"javascripttest": "Тэставаньне JavaScript",
 	"javascripttest-pagetext-noframework": "Гэтая старонка трымаецца для правядзеньня тэстаў JavaScript.",
 	"javascripttest-pagetext-unknownframework": "Невядомая бібліятэка тэставаньня «$1».",
+	"javascripttest-pagetext-unknownaction": "Невядомае дзеяньне «$1».",
 	"javascripttest-pagetext-frameworks": "Калі ласка, выберыце адну з прапанаваных бібліятэка тэставаньня: $1",
 	"javascripttest-pagetext-skins": "Выберыце афармленьне для тэставаньня:",
 	"javascripttest-qunit-intro": "Глядзіце [$1 дакумэнтацыю па тэставаньні] на mediawiki.org.",

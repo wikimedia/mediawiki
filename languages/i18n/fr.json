@@ -2304,6 +2304,7 @@
 	"javascripttest": "Test de JavaScript",
 	"javascripttest-pagetext-noframework": "Cette page est réservée pour l'exécution des tests JavaScript.",
 	"javascripttest-pagetext-unknownframework": "Structure « $1 » inconnue.",
+	"javascripttest-pagetext-unknownaction": "Action « $1 » inconnue.",
 	"javascripttest-pagetext-frameworks": "Veuillez choisir l'une des structures de test suivantes : $1",
 	"javascripttest-pagetext-skins": "Choisissez un habillage avec lequel lancer les tests :",
 	"javascripttest-qunit-intro": "Voir [$1 la documentation de test] sur mediawiki.org.",

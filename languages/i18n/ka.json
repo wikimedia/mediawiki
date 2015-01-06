@@ -2129,6 +2129,7 @@
 	"javascripttest": "JavaScript-ის ტესტირება",
 	"javascripttest-pagetext-noframework": "ეს გვერდი დარეგისტრირებულია JavaScript-ის ტესტების გასაშვებად.",
 	"javascripttest-pagetext-unknownframework": "„$1-ის“ ტესტირების უცნობი გარემო.",
+	"javascripttest-pagetext-unknownaction": "უცნობი ქმედება „$1“.",
 	"javascripttest-pagetext-frameworks": "გთხოვთ, აირჩიეთ ტესტირების ერთ-ერთი შემდეგი გარემო: $1",
 	"javascripttest-pagetext-skins": "ტესტების გასაშვებად აირჩიეთ გაფორმების თემა:",
 	"javascripttest-qunit-intro": "იხილეთ [$1 ტესტირების დოკუმენტები] mediawiki.org-ზე.",

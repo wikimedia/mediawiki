@@ -2214,6 +2214,7 @@
 	"javascripttest": "בדיקת JavaScript",
 	"javascripttest-pagetext-noframework": "דף זה שמור להרצת בדיקות JavaScript.",
 	"javascripttest-pagetext-unknownframework": "סביבת הבדיקות \"$1\" אינה ידועה.",
+	"javascripttest-pagetext-unknownaction": "הפעולה \"$1\" אינה ידועה.",
 	"javascripttest-pagetext-frameworks": "נא לבחור אחת מסביבות הבדיקות הבאות: $1",
 	"javascripttest-pagetext-skins": "בחירת עיצוב שאיתו יורצו הבדיקות:",
 	"javascripttest-qunit-intro": "ראו את [$1 תיעוד הבדיקות] באתר mediawiki.org.",

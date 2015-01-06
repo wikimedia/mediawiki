@@ -2104,6 +2104,7 @@
 	"javascripttest": "JavaScript-utrøyning",
 	"javascripttest-pagetext-noframework": "Sida er reservert for køyring av JavaScript-utrøyningar.",
 	"javascripttest-pagetext-unknownframework": "Ukjent utrøyningsrammeverk: «$1».",
+	"javascripttest-pagetext-unknownaction": "Ukjend handling \"$1\".",
 	"javascripttest-pagetext-frameworks": "Vel eitt av dei fylgjande utrøyningsrammeverka: $1",
 	"javascripttest-pagetext-skins": "Vel ei drakt som utrøyningane skal køyrast med:",
 	"javascripttest-qunit-intro": "Sjå [$1 utrøyningsdokumentasjon] på mediawiki.org.",
