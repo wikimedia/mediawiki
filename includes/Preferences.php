@@ -205,7 +205,7 @@ class Preferences {
 	 * @return void
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgAuth, $wgContLang, $wgParser;
+		global $wgAuth, $wgContLang, $wgParser, $wgNeutralGenderOption;
 
 		$config = $context->getConfig();
 		// retrieving user name for GENDER and misc.
@@ -347,6 +347,10 @@ class Preferences {
 			'label-message' => 'yourgender',
 			'help-message' => 'prefs-help-gender',
 		);
+		if ( $wgNeutralGenderOption ) {
+			$genderNeutralLabel = $context->msg( 'gender-neutral' )->text();
+			$defaultPreferences['gender']['options'][$genderNeutralLabel] = 'neutral';
+		}
 
 		// see if there are multiple language variants to choose from
 		if ( !$config->get( 'DisableLangConversion' ) ) {
