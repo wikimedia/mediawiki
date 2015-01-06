@@ -243,10 +243,9 @@ class Preferences {
 			'type' => 'info',
 			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
 				count( $userGroups ) )->params( $userName )->parse(),
-			'default' => $context->msg( 'prefs-memberingroups-type',
-				$lang->commaList( $userGroups ),
-				$lang->commaList( $userMembers )
-			)->plain(),
+			'default' => $context->msg( 'prefs-memberingroups-type' )
+				->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
+				->escaped(),
 			'raw' => true,
 			'section' => 'personal/info',
 		);
@@ -338,11 +337,11 @@ class Preferences {
 			'type' => 'radio',
 			'section' => 'personal/i18n',
 			'options' => array(
-				$context->msg( 'parentheses',
-					$context->msg( 'gender-unknown' )->text()
-				)->text() => 'unknown',
-				$context->msg( 'gender-female' )->text() => 'female',
-				$context->msg( 'gender-male' )->text() => 'male',
+				$context->msg( 'parentheses' )
+					->params( $context->msg( 'gender-unknown' )->plain() )
+					->escaped() => 'unknown',
+				$context->msg( 'gender-female' )->escaped() => 'female',
+				$context->msg( 'gender-male' )->escaped() => 'male',
 			),
 			'label-message' => 'yourgender',
 			'help-message' => 'prefs-help-gender',
@@ -450,8 +449,8 @@ class Preferences {
 						array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
 
 					$emailAddress .= $emailAddress == '' ? $link : (
-						$context->msg( 'word-separator' )->plain()
-						. $context->msg( 'parentheses' )->rawParams( $link )->plain()
+						$context->msg( 'word-separator' )->escaped()
+						. $context->msg( 'parentheses' )->rawParams( $link )->escaped()
 					);
 				}
 
@@ -869,7 +868,7 @@ class Preferences {
 			'min' => 1,
 			'max' => ceil( $rcMaxAge / ( 3600 * 24 ) ),
 			'help' => $context->msg( 'recentchangesdays-max' )->numParams(
-				ceil( $rcMaxAge / ( 3600 * 24 ) ) )->text()
+				ceil( $rcMaxAge / ( 3600 * 24 ) ) )->escaped()
 		);
 		$defaultPreferences['rclimit'] = array(
 			'type' => 'int',
@@ -926,7 +925,7 @@ class Preferences {
 			'max' => $watchlistdaysMax,
 			'section' => 'watchlist/displaywatchlist',
 			'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
-				$watchlistdaysMax )->text(),
+				$watchlistdaysMax )->escaped(),
 			'label-message' => 'prefs-watchlist-days',
 		);
 		$defaultPreferences['wllimit'] = array(
@@ -1046,7 +1045,7 @@ class Preferences {
 		$ret = array();
 
 		$mptitle = Title::newMainPage();
-		$previewtext = $context->msg( 'skin-preview' )->text();
+		$previewtext = $context->msg( 'skin-preview' )->escaped();
 
 		# Only show skins that aren't disabled in $wgSkipSkins
 		$validSkinNames = Skin::getAllowedSkins();
@@ -1091,10 +1090,9 @@ class Preferences {
 				$linkTools[] = Linker::link( $jsPage, $context->msg( 'prefs-custom-js' )->escaped() );
 			}
 
-			$display = $sn . ' ' . $context->msg(
-				'parentheses',
-				$context->getLanguage()->pipeList( $linkTools )
-			)->text();
+			$display = $sn . ' ' . $context->msg( 'parentheses' )
+				->rawParams( $context->getLanguage()->pipeList( $linkTools ) )
+				->escaped();
 			$ret[$display] = $skinkey;
 		}
 
