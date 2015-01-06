@@ -1001,6 +1001,7 @@
 	"gender-unknown": "I prefer not to say",
 	"gender-male": "He edits wiki pages",
 	"gender-female": "She edits wiki pages",
+	"gender-neutral": "They edit wiki pages",
 	"prefs-help-gender": "Setting this preference is optional.\nThe software uses its value to address you and to mention you to others using the appropriate grammatical gender.\nThis information will be public.",
 	"email": "Email",
 	"prefs-help-realname": "Real name is optional.\nIf provided, it may be used to give you attribution for your work.",
