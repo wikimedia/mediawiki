@@ -837,7 +837,7 @@ class SpecialVersion extends SpecialPage {
 
 		// ... now get the authors for this extension
 		$authors = isset( $extension['author'] ) ? $extension['author'] : array();
-		$authors = $this->listAuthors( $authors, $extensionName, $extensionPath );
+		$authors = $this->listAuthors( $authors, $extension['name'], $extensionPath );
 
 		// Finally! Create the table
 		$html = Html::openElement( 'tr', array(
