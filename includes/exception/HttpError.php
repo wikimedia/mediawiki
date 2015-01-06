@@ -43,6 +43,19 @@ class HttpError extends MWException {
 	}
 
 	/**
+	 * We don't want the default exception logging as we got our own logging set
+	 * up in self::report.
+	 *
+	 * @see MWException::isLoggable
+	 *
+	 * @since 1.24
+	 * @return bool
+	 */
+	public function isLoggable() {
+		return false;
+	}
+
+	/**
 	 * Returns the HTTP status code supplied to the constructor.
 	 *
 	 * @return int
@@ -52,17 +65,42 @@ class HttpError extends MWException {
 	}
 
 	/**
-	 * Report the HTTP error.
+	 * Report and log the HTTP error.
 	 * Sends the appropriate HTTP status code and outputs an
 	 * HTML page with an error message.
 	 */
 	public function report() {
+		$this->doLog();
+
 		$httpMessage = HttpStatus::getMessage( $this->httpCode );
 
 		header( "Status: {$this->httpCode} {$httpMessage}", true, $this->httpCode );
 		header( 'Content-type: text/html; charset=utf-8' );
 
 		print $this->getHTML();
+	}
+
+	private function doLog() {
+		$logger = MWLoggerFactory::getInstance( 'HttpError' );
+		$content = $this->content;
+
+		if ( $content instanceof Message ) {
+			$content = $content->text();
+		}
+
+		$context = array(
+			'file' => $this->getFile(),
+			'line' => $this->getLine(),
+			'http_code' => $this->httpCode,
+		);
+
+		$logMsg = "$content ({http_code}) from {file}:{line}";
+
+		if ( $this->getStatusCode() < 500 ) {
+			$logger->info( $logMsg, $context );
+		} else {
+			$logger->error( $logMsg, $context );
+		}
 	}
 
 	/**
