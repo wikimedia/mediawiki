@@ -43,6 +43,14 @@
 		}
 	}
 
+	function format( fmt ) {
+		var parameters = slice.call( arguments, 1 );
+		return fmt.replace( /\$(\d+)/g, function ( str, match ) {
+			var index = parseInt( match, 10 ) - 1;
+			return parameters[index] !== undefined ? parameters[index] : '$' + match;
+		} );
+	}
+
 	/* Object constructors */
 
 	/**
@@ -297,11 +305,7 @@
 		 * This function will not be called for nonexistent messages.
 		 */
 		parser: function () {
-			var parameters = this.parameters;
-			return this.map.get( this.key ).replace( /\$(\d+)/g, function ( str, match ) {
-				var index = parseInt( match, 10 ) - 1;
-				return parameters[index] !== undefined ? parameters[index] : '$' + match;
-			} );
+			return format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
 		},
 
 		/**
@@ -434,6 +438,15 @@
 				function () { return navStart + perf.now(); } :
 				function () { return +new Date(); };
 		}() ),
+
+		/**
+		 * Format a string. Replace $1, $2 ... $N with positional arguments.
+		 *
+		 * @param {string} fmt Format string
+		 * @param {Mixed...} parameters Parameters for the $N replacements in messages.
+		 * @return {string} Formatted string
+		 */
+		format: format,
 
 		/**
 		 * Track an analytic event.
