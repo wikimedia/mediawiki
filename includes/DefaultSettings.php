@@ -4284,6 +4284,13 @@ $wgReservedUsernames = array(
 );
 
 /**
+ * Whether to provide a neutral gender option in the user preferences (in addition to
+ * male, female, and unknown).
+ * @since 1.25
+ */
+$wgNeutralGenderOption = false;
+
+/**
  * Settings added to this array will override the default globals for the user
  * preferences used by anonymous visitors and newly created accounts.
  * For instance, to disable editing on double clicks:

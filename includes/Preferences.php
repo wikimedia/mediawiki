@@ -347,6 +347,10 @@ class Preferences {
 			'label-message' => 'yourgender',
 			'help-message' => 'prefs-help-gender',
 		);
+		if ( $config->get( 'NeutralGenderOption' ) ) {
+			$genderNeutralLabel = $context->msg( 'gender-neutral' )->text();
+			$defaultPreferences['gender']['options'][$genderNeutralLabel] = 'neutral';
+		}
 
 		// see if there are multiple language variants to choose from
 		if ( !$config->get( 'DisableLangConversion' ) ) {

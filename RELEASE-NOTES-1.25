@@ -33,6 +33,8 @@ production.
 * (T46740) The temporary option $wgIncludejQueryMigrate was removed, along
   with the jQuery Migrate library, as indicated when this option was provided in
   MediaWiki 1.24.
+* $wgNeutralGenderOption was added, allowing a neutral gender option in the
+  preferences. Default is false (option not available).
 
 === New features in 1.25 ===
 * (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
