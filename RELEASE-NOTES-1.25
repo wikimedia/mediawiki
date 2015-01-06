@@ -172,6 +172,8 @@ production.
   for the 'aimime' parameter.
 * prop=info with inprop=protections will now return applicable protection types
   with the 'restrictiontypes' key.
+* action=import no longer allows both the namespace= and rootpage= parameters
+  to be set. If they are both set, the value of rootpage= will be ignored.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.

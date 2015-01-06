@@ -63,8 +63,7 @@ class ApiImport extends ApiBase {
 		$importer = new WikiImporter( $source->value, $this->getConfig() );
 		if ( isset( $params['namespace'] ) ) {
 			$importer->setTargetNamespace( $params['namespace'] );
-		}
-		if ( isset( $params['rootpage'] ) ) {
+		} elseif ( isset( $params['rootpage'] ) ) {
 			$statusRootPage = $importer->setTargetRootPage( $params['rootpage'] );
 			if ( !$statusRootPage->isGood() ) {
 				$this->dieStatus( $statusRootPage );
