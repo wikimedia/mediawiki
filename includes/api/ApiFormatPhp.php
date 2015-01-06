@@ -35,7 +35,23 @@ class ApiFormatPhp extends ApiFormatBase {
 	}
 
 	public function execute() {
-		$this->printText( serialize( $this->getResultData() ) );
+		$text = serialize( $this->getResultData() );
+
+		// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+		// Flash, but what it does isn't friendly for the API. There's nothing
+		// we can do here that isn't actively broken in some manner, so let's
+		// just be broken in a useful manner.
+		if ( $this->getConfig()->get( 'MangleFlashPolicy' ) &&
+			in_array( 'wfOutputHandler', ob_list_handlers(), true ) &&
+			preg_match( '/\<\s*cross-domain-policy\s*\>/i', $text )
+		) {
+			$this->dieUsage(
+				'This response cannot be represented using format=php. See https://bugzilla.wikimedia.org/show_bug.cgi?id=66776',
+				'internalerror'
+			);
+		}
+
+		$this->printText( $text );
 	}
 
 	public function getDescription() {

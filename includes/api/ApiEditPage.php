@@ -440,6 +440,9 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_NO_CREATE_PERMISSION:
 				$this->dieUsageMsg( 'nocreate-loggedin' );
 
+			case EditPage::AS_NO_CHANGE_CONTENT_MODEL:
+				$this->dieUsageMsg( 'cantchangecontentmodel' );
+
 			case EditPage::AS_BLANK_ARTICLE:
 				$this->dieUsageMsg( 'blankpage' );
 

@@ -1,6 +1,61 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.23.8 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.7 ==
+
+* (bug T76686) [SECURITY] thumb.php outputs wikitext message as raw HTML, which
+  could lead to xss. Permission to edit MediaWiki namespace is required to
+  exploit this.
+* (bug T77028) [SECURITY] Malicious site can bypass CORS restrictions in
+  $wgCrossSiteAJAXdomains in API calls if it only included an allowed domain as
+  part of its name.
+* (bug T74222) The original patch for T74222 was reverted as unnecessary.
+
+== MediaWiki 1.23.7 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.6 ==
+
+* (bugs 66776, 71478) SECURITY:  User PleaseStand reported a way to inject code
+  into API clients that used format=php to process pages that underwent flash
+  policy mangling. This was fixed along with improving how the mangling was done
+  for format=json, and allowing sites to disable the mangling using
+  $wgMangleFlashPolicy.
+* (bug 70901) SECURITY: User Jackmcbarn reported that the ability to update
+  the content model for a page could allow an unprivileged attacker to edit
+  another user's common.js under certain circumstances. The user right
+  "editcontentmodel" was added, and is needed to change a revision's content
+  model.
+* (bug 71111) SECURITY: User PleaseStand reported that on wikis that allow raw
+  HTML, it is not safe to preview wikitext coming from an untrusted source such
+  as a cross-site request. Thus add an edit token to the form, and when raw HTML
+  is allowed, ensure the token is provided before showing the preview. This
+  check is not performed on wikis that both allow raw HTML and anonymous
+  editing, since there are easier ways to exploit that scenario.
+* (bug 72222) SECURITY: Do not show log action when the entry is revdeleted with
+  DELETED_ACTION. NOTICE: this may be reverted in a future release pending a
+  public RFC about the desired functionality. This issue was reported by user
+  Bawolff.
+* (bug 71621) Make allowing site-wide styles on restricted special pages a
+  config option.
+* (bug 42723) Added updated version history from 1.19.2 to 1.22.13
+* $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
+  might be a flash policy directive configurable.
+
+== MediaWiki 1.23.6 ==
+
+This is a maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.5 ===
+* (Bug 72274) Job queue not running (HTTP 411) due to missing
+  Content-Length: header
+* (Bug 67440) Allow classes to be registered properly from installer
+
 == MediaWiki 1.23.5 ==
 
 This is a security release of the MediaWiki 1.23 branch.
@@ -33,7 +88,7 @@ This is a maintenance release of the MediaWiki 1.23 branch.
 * (bug 64970) Fix support for blobs on DatabaseOracle::update.
 * (bug 66574) Display MediaWiki:Loginprompt on the login page.
 * (bug 67870) wfShellExec() cuts off stdout at multiples of 8192 bytes.
-* (bug 60629) Handle invalid language code gracefully in 
+* (bug 60629) Handle invalid language code gracefully in
   Language::fetchLanguageNames.
 * (bug 62017) Restore the number of rows shown on Special:Watchlist.
 * Check for boolean false result from database query in SqlBagOStuff.
@@ -48,7 +103,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 * (bug 66608) SECURITY: Fix for XSS issue in bug 66608: Generate the URL used
   for loading a new page in Javascript,instead of relying on the URL in the link
   that has been clicked.
-* (bug 65778) SECURITY: Copy prevent-clickjacking between OutputPage and 
+* (bug 65778) SECURITY: Copy prevent-clickjacking between OutputPage and
   ParserOutput.
 * (bug 68313) Preferences: Turn stubthreshold back into a combo box.
 * (bug 65214) Fix initSiteStats.php maintenance script.

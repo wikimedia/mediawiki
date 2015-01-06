@@ -680,7 +680,7 @@ class MediaWiki {
 		}
 
 		$url = wfAppendQuery( wfScript( 'index' ), $query );
-		$req = "POST $url HTTP/1.1\r\nHost: {$info['host']}\r\nConnection: Close\r\n\r\n";
+		$req = "POST $url HTTP/1.1\r\nHost: {$info['host']}\r\nConnection: Close\r\nContent-Length: 0\r\n\r\n";
 
 		wfDebugLog( 'runJobs', "Running $n job(s) via '$url'\n" );
 		// Send a cron API request to be performed in the background.
