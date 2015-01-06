@@ -443,6 +443,19 @@
 
 			return address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) !== -1
 				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
+		},
+
+		/**
+		 * sprintf-like string formatter. Replaces '%s' with arguments.
+		 *
+		 * @param {string} format Format string.
+		 * @param {mixed...} [replacements...] Replacements for '%s' placeholders.
+		 **/
+		sprintf: function ( format ) {
+			var args = arguments, i = 1;
+			return format.replace( /%[%s]/g, function ( m ) {
+				return i < args.length && m !== '%%' ? args[i++] : m;
+			} );
 		}
 	};
 
