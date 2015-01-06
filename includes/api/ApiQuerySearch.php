@@ -332,7 +332,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		);
 
 		$alternatives = SearchEngine::getSearchTypes();
-		if ( count( $alternatives ) > 0 ) {
+		if ( count( $alternatives ) > 1 ) {
 			if ( $alternatives[0] === null ) {
 				$alternatives[0] = self::BACKEND_NULL_PARAM;
 			}
