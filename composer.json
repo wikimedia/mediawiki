@@ -26,8 +26,10 @@
 		"zordius/lightncandy": "0.18"
 	},
 	"require-dev": {
+		"jakub-onderka/php-parallel-lint": "~0.8",
 		"justinrainbow/json-schema": "~1.3",
-		"phpunit/phpunit": "~4.5"
+		"phpunit/phpunit": "~4.5",
+		"mediawiki/mediawiki-codesniffer": "0.1.0"
 	},
 	"suggest": {
 		"ext-fileinfo": "*",
@@ -42,6 +44,12 @@
 		}
 	},
 	"scripts": {
+		"lint": "parallel-lint --exclude vendor",
+		"phpcs": "phpcs $PHPCS_ARGS -s --standard=vendor/mediawiki/mediawiki-codesniffer/MediaWiki --ignore=vendor --encoding=utf-8 --extensions=php,php5,inc,sample",
+		"test": [
+			"composer lint",
+			"composer phpcs"
+		],
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall"
 	},
