@@ -680,6 +680,8 @@ class NewParserTest extends MediaWikiTestCase {
 	 * @param array $config
 	 */
 	public function testParserTest( $desc, $input, $result, $opts, $config ) {
+		global $wgUseTidy, $wgAlwaysUseTidy;
+
 		if ( $this->regex != '' && !preg_match( '/' . $this->regex . '/', $desc ) ) {
 			$this->assertTrue( true ); // XXX: don't flood output with "test made no assertions"
 			//$this->markTestSkipped( 'Filtered out by the user' );
@@ -749,16 +751,22 @@ class NewParserTest extends MediaWikiTestCase {
 		} elseif ( isset( $opts['preload'] ) ) {
 			$out = $parser->getPreloadText( $input, $title, $options );
 		} else {
+			if ( isset( $opts['tidy'] ) ) {
+				if ( !$this->tidySupport->isEnabled() ) {
+					return $this->showSkipped();
+				}
+				$wgUseTidy = true;
+				$wgAlwaysUseTidy = true;
+			}
+
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
+
 			if ( isset( $opts['tidy'] ) ) {
-				if ( !$this->tidySupport->isEnabled() ) {
-					$this->markTestSkipped( "SKIPPED: tidy extension is not installed.\n" );
-				} else {
-					$out = MWTidy::tidy( $out );
-					$out = preg_replace( '/\s+$/', '', $out );
-				}
+				$wgUseTidy = false;
+				$wgAlwaysUseTidy = false;
+				$out = preg_replace( '/\s+$/', '', $out );
 			}
 
 			if ( isset( $opts['showtitle'] ) ) {
