@@ -34,7 +34,7 @@ class WikiImporter {
 	private $reader = null;
 	private $foreignNamespaces = null;
 	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
-	private $mSiteInfoCallback, $mTargetNamespace, $mPageOutCallback;
+	private $mSiteInfoCallback, $mPageOutCallback;
 	private $mNoticeCallback, $mDebug;
 	private $mImportUploads, $mImageBasePath;
 	private $mNoUpdates = false;
@@ -221,7 +221,6 @@ class WikiImporter {
 	public function setTargetNamespace( $namespace ) {
 		if ( is_null( $namespace ) ) {
 			// Don't override namespaces
-			$this->mTargetNamespace = null;
 			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 			return true;
 		} elseif (
@@ -229,7 +228,6 @@ class WikiImporter {
 			MWNamespace::exists( intval( $namespace ) )
 		) {
 			$namespace = intval( $namespace );
-			$this->mTargetNamespace = $namespace;
 			$this->setImportTitleFactory( new NamespaceImportTitleFactory( $namespace ) );
 			return true;
 		} else {
@@ -249,10 +247,7 @@ class WikiImporter {
 			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 		} elseif ( $rootpage !== '' ) {
 			$rootpage = rtrim( $rootpage, '/' ); //avoid double slashes
-			$title = Title::newFromText( $rootpage, !is_null( $this->mTargetNamespace )
-				? $this->mTargetNamespace
-				: NS_MAIN
-			);
+			$title = Title::newFromText( $rootpage );
 
 			if ( !$title || $title->isExternal() ) {
 				$status->fatal( 'import-rootpage-invalid' );
