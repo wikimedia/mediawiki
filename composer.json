@@ -24,6 +24,7 @@
 		"oojs/oojs-ui": "0.6.1"
 	},
 	"require-dev": {
+		"mediawiki/mediawiki-codesniffer": "dev-master",
 		"phpunit/phpunit": "*"
 	},
 	"suggest": {
@@ -39,6 +40,7 @@
 		}
 	},
 	"scripts": {
+		"phpcs": "phpcs $PHPCS_ARGS --standard=vendor/mediawiki/mediawiki-codesniffer/MediaWiki --ignore=extensions,skins,vendor .",
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall"
 	},
