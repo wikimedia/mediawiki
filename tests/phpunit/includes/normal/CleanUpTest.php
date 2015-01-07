@@ -33,19 +33,18 @@
  *
  * @todo covers tags, will be UtfNormal::cleanUp once the below is resolved
  * @todo split me into test methods and providers per the below comment
+ * @todo Document individual tests
  *
  * We ignore code coverage for this test suite until they are rewritten
  * to use data providers (bug 46561).
  * @codeCoverageIgnore
  */
 class CleanUpTest extends MediaWikiTestCase {
-	/** @todo document */
 	public function testAscii() {
 		$text = 'This is plain ASCII text.';
 		$this->assertEquals( $text, UtfNormal::cleanUp( $text ) );
 	}
 
-	/** @todo document */
 	public function testNull() {
 		$text = "a \x00 null";
 		$expect = "a \xef\xbf\xbd null";
@@ -54,13 +53,11 @@ class CleanUpTest extends MediaWikiTestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
-	/** @todo document */
 	public function testLatin() {
 		$text = "L'\xc3\xa9cole";
 		$this->assertEquals( $text, UtfNormal::cleanUp( $text ) );
 	}
 
-	/** @todo document */
 	public function testLatinNormal() {
 		$text = "L'e\xcc\x81cole";
 		$expect = "L'\xc3\xa9cole";
@@ -69,7 +66,6 @@ class CleanUpTest extends MediaWikiTestCase {
 
 	/**
 	 * This test is *very* expensive!
-	 * @todo document
 	 */
 	function XtestAllChars() {
 		$rep = UTF8_REPLACEMENT;
@@ -109,7 +105,6 @@ class CleanUpTest extends MediaWikiTestCase {
 		}
 	}
 
-	/** @todo document */
 	public static function provideAllBytes() {
 		return array(
 			array( '', '' ),
@@ -121,7 +116,6 @@ class CleanUpTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideAllBytes
-	 * @todo document
 	 */
 	function testBytes( $head, $tail ) {
 		for ( $i = 0x0; $i < 256; $i++ ) {
@@ -156,7 +150,6 @@ class CleanUpTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideAllBytes
-	 * @todo document
 	 */
 	function testDoubleBytes( $head, $tail ) {
 		for ( $first = 0xc0; $first < 0x100; $first += 2 ) {
@@ -202,7 +195,6 @@ class CleanUpTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideAllBytes
-	 * @todo document
 	 */
 	function testTripleBytes( $head, $tail ) {
 		for ( $first = 0xc0; $first < 0x100; $first += 2 ) {
@@ -275,7 +267,6 @@ class CleanUpTest extends MediaWikiTestCase {
 		}
 	}
 
-	/** @todo document */
 	public function testChunkRegression() {
 		# Check for regression against a chunking bug
 		$text = "\x46\x55\xb8" .
@@ -298,7 +289,6 @@ class CleanUpTest extends MediaWikiTestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
-	/** @todo document */
 	public function testInterposeRegression() {
 		$text = "\x4e\x30" .
 			"\xb1" . # bad tail
@@ -333,7 +323,6 @@ class CleanUpTest extends MediaWikiTestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
-	/** @todo document */
 	public function testOverlongRegression() {
 		$text = "\x67" .
 			"\x1a" . # forbidden ascii
@@ -358,7 +347,6 @@ class CleanUpTest extends MediaWikiTestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
-	/** @todo document */
 	public function testSurrogateRegression() {
 		$text = "\xed\xb4\x96" . # surrogate 0xDD16
 			"\x83" . # bad tail
@@ -373,7 +361,6 @@ class CleanUpTest extends MediaWikiTestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
-	/** @todo document */
 	public function testBomRegression() {
 		$text = "\xef\xbf\xbe" . # U+FFFE, illegal char
 			"\xb2" . # bad tail
@@ -388,7 +375,6 @@ class CleanUpTest extends MediaWikiTestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
-	/** @todo document */
 	public function testForbiddenRegression() {
 		$text = "\xef\xbf\xbf"; # U+FFFF, illegal char
 		$expect = "\xef\xbf\xbd";
@@ -397,7 +383,6 @@ class CleanUpTest extends MediaWikiTestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
-	/** @todo document */
 	public function testHangulRegression() {
 		$text = "\xed\x9c\xaf" . # Hangul char
 			"\xe1\x87\x81"; # followed by another final jamo
