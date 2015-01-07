@@ -3,8 +3,6 @@
 /**
  * To use a profiler, copy this file to StartProfiler.php,
  * and add either:
- *  $wgProfiler['class'] = 'ProfilerStandard';
- *    or
  *  $wgProfiler['class'] = 'ProfilerXhprof';
  *
  * For output, add:
@@ -22,7 +20,7 @@
  * maintenance/archives/patch-profiling.sql to your database.
  *
  * For a rudimentary sampling profiler:
- *   $wgProfiler['class'] = 'ProfilerStandard';
+ *   $wgProfiler['class'] = 'ProfilerXhprof';
  *   $wgProfiler['output'] = array( 'db' );
  *   $wgProfiler['sampling'] = 50; // one every 50 requests
  * This will use ProfilerStub for non-sampled cases.
