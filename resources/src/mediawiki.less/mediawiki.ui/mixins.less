@@ -89,8 +89,10 @@
 	text-shadow: 0 1px rgba(0, 0, 0, .1);
 
 	&:disabled {
-		background: @colorGray12;
-		border-color: @colorGray12;
+		background: #fff;
+		text-shadow: none;
+		color: lighten( @bgColor, @colorLightenDisabledPercentage );
+		border-color: lighten( @bgColor, @colorLightenDisabledPercentage );
 
 		// make sure disabled buttons don't have hover and active states
 		&:hover,
