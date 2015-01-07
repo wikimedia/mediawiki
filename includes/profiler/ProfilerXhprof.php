@@ -21,9 +21,6 @@
 /**
  * Profiler wrapper for XHProf extension.
  *
- * Mimics the output of ProfilerStandard using data collected via the XHProf
- * PHP extension.
- *
  * @code
  * $wgProfiler['class'] = 'ProfilerXhprof';
  * $wgProfiler['flags'] = XHPROF_FLAGS_NO_BUILTINS;
@@ -118,7 +115,7 @@ class ProfilerXhprof extends Profiler {
 
 		$main = null; // units in ms
 		foreach ( $metrics as $fname => $stats ) {
-			// Convert elapsed times from μs to ms to match ProfilerStandard
+			// Convert elapsed times from μs to ms to match interface
 			$entry = array(
 				'name' => $fname,
 				'calls' => $stats['ct'],
