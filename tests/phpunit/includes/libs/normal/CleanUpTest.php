@@ -39,7 +39,7 @@
  * to use data providers (bug 46561).
  * @codeCoverageIgnore
  */
-class CleanUpTest extends MediaWikiTestCase {
+class CleanUpTest extends PHPUnit_Framework_TestCase {
 	public function testAscii() {
 		$text = 'This is plain ASCII text.';
 		$this->assertEquals( $text, UtfNormal::cleanUp( $text ) );

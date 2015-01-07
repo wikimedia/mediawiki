@@ -478,7 +478,7 @@ MWExceptionHandler::installHandler();
 wfProfileOut( $fname . '-exception' );
 
 wfProfileIn( $fname . '-includes' );
-require_once "$IP/includes/normal/UtfNormalUtil.php";
+require_once "$IP/includes/libs/normal/UtfNormalUtil.php";
 require_once "$IP/includes/GlobalFunctions.php";
 wfProfileOut( $fname . '-includes' );
 
