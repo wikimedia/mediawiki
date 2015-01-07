@@ -324,7 +324,6 @@ class User implements IDBAccessObject {
 		if ( $this->mLoadedItems === true ) {
 			return;
 		}
-		wfProfileIn( __METHOD__ );
 
 		// Set it now to avoid infinite recursion in accessors
 		$this->mLoadedItems = true;
@@ -353,10 +352,8 @@ class User implements IDBAccessObject {
 				Hooks::run( 'UserLoadAfterLoadFromSession', array( $this ) );
 				break;
 			default:
-				wfProfileOut( __METHOD__ );
 				throw new MWException( "Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
 		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -1019,7 +1016,6 @@ class User implements IDBAccessObject {
 	 * @param string|bool $name
 	 */
 	public function loadDefaults( $name = false ) {
-		wfProfileIn( __METHOD__ );
 
 		$passwordFactory = self::getPasswordFactory();
 
@@ -1051,7 +1047,6 @@ class User implements IDBAccessObject {
 
 		Hooks::run( 'UserLoadDefaults', array( $this, $name ) );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -1489,7 +1484,6 @@ class User implements IDBAccessObject {
 			return;
 		}
 
-		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . ": checking...\n" );
 
 		// Initialize data...
@@ -1564,7 +1558,6 @@ class User implements IDBAccessObject {
 		// Extensions
 		Hooks::run( 'GetBlockedStatus', array( &$this ) );
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -1596,7 +1589,6 @@ class User implements IDBAccessObject {
 	 * @return bool True if blacklisted.
 	 */
 	public function inDnsBlacklist( $ip, $bases ) {
-		wfProfileIn( __METHOD__ );
 
 		$found = false;
 		// @todo FIXME: IPv6 ???  (http://bugs.php.net/bug.php?id=33170)
@@ -1631,7 +1623,6 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $found;
 	}
 
@@ -1648,7 +1639,6 @@ class User implements IDBAccessObject {
 		if ( !$wgProxyList ) {
 			return false;
 		}
-		wfProfileIn( __METHOD__ );
 
 		if ( !is_array( $wgProxyList ) ) {
 			// Load from the specified file
@@ -1665,7 +1655,6 @@ class User implements IDBAccessObject {
 		} else {
 			$ret = false;
 		}
-		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
@@ -1717,7 +1706,6 @@ class User implements IDBAccessObject {
 		}
 
 		global $wgMemc;
-		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $action );
 
 		$limits = $wgRateLimits[$action];
@@ -1800,7 +1788,6 @@ class User implements IDBAccessObject {
 		}
 
 		wfProfileOut( __METHOD__ . '-' . $action );
-		wfProfileOut( __METHOD__ );
 		return $triggered;
 	}
 
@@ -1835,7 +1822,6 @@ class User implements IDBAccessObject {
 	 */
 	public function isBlockedFrom( $title, $bFromSlave = false ) {
 		global $wgBlockAllowsUTEdit;
-		wfProfileIn( __METHOD__ );
 
 		$blocked = $this->isBlocked( $bFromSlave );
 		$allowUsertalk = ( $wgBlockAllowsUTEdit ? $this->mAllowUsertalk : false );
@@ -1848,7 +1834,6 @@ class User implements IDBAccessObject {
 
 		Hooks::run( 'UserIsBlockedFrom', array( $this, $title, &$blocked, &$allowUsertalk ) );
 
-		wfProfileOut( __METHOD__ );
 		return $blocked;
 	}
 
@@ -2930,7 +2915,6 @@ class User implements IDBAccessObject {
 	 */
 	public function getEffectiveGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mEffectiveGroups ) ) {
-			wfProfileIn( __METHOD__ );
 			$this->mEffectiveGroups = array_unique( array_merge(
 				$this->getGroups(), // explicit groups
 				$this->getAutomaticGroups( $recache ) // implicit groups
@@ -2939,7 +2923,6 @@ class User implements IDBAccessObject {
 			Hooks::run( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
 			// Force reindexation of groups when a hook has unset one of them
 			$this->mEffectiveGroups = array_values( array_unique( $this->mEffectiveGroups ) );
-			wfProfileOut( __METHOD__ );
 		}
 		return $this->mEffectiveGroups;
 	}
@@ -2953,7 +2936,6 @@ class User implements IDBAccessObject {
 	 */
 	public function getAutomaticGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mImplicitGroups ) ) {
-			wfProfileIn( __METHOD__ );
 			$this->mImplicitGroups = array( '*' );
 			if ( $this->getId() ) {
 				$this->mImplicitGroups[] = 'user';
@@ -2968,7 +2950,6 @@ class User implements IDBAccessObject {
 				// as getEffectiveGroups() depends on this function
 				$this->mEffectiveGroups = null;
 			}
-			wfProfileOut( __METHOD__ );
 		}
 		return $this->mImplicitGroups;
 	}
@@ -3008,7 +2989,6 @@ class User implements IDBAccessObject {
 
 		if ( $this->mEditCount === null ) {
 			/* Populate the count, if it has not been populated yet */
-			wfProfileIn( __METHOD__ );
 			$dbr = wfGetDB( DB_SLAVE );
 			// check if the user_editcount field has been initialized
 			$count = $dbr->selectField(
@@ -3022,7 +3002,6 @@ class User implements IDBAccessObject {
 				$count = $this->initEditCount();
 			}
 			$this->mEditCount = $count;
-			wfProfileOut( __METHOD__ );
 		}
 		return (int)$this->mEditCount;
 	}
@@ -3815,7 +3794,6 @@ class User implements IDBAccessObject {
 	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
 
-		$section = new ProfileSection( __METHOD__ );
 
 		$this->loadPasswords();
 

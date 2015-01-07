@@ -220,12 +220,10 @@ class JobQueueGroup {
 	public function waitForBackups() {
 		global $wgJobTypeConf;
 
-		wfProfileIn( __METHOD__ );
 		// Try to avoid doing this more than once per queue storage medium
 		foreach ( $wgJobTypeConf as $type => $conf ) {
 			$this->get( $type )->waitForBackups();
 		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

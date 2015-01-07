@@ -436,7 +436,6 @@ class MWHttpRequest {
 	 * @return Status
 	 */
 	public function execute() {
-		wfProfileIn( __METHOD__ );
 
 		$this->content = "";
 
@@ -454,7 +453,6 @@ class MWHttpRequest {
 			$this->setUserAgent( Http::userAgent() );
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -463,7 +461,6 @@ class MWHttpRequest {
 	 * found in an array in the member variable headerList.
 	 */
 	protected function parseHeader() {
-		wfProfileIn( __METHOD__ );
 
 		$lastname = "";
 
@@ -482,7 +479,6 @@ class MWHttpRequest {
 
 		$this->parseCookies();
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -616,7 +612,6 @@ class MWHttpRequest {
 	 * Parse the cookies in the response headers and store them in the cookie jar.
 	 */
 	protected function parseCookies() {
-		wfProfileIn( __METHOD__ );
 
 		if ( !$this->cookieJar ) {
 			$this->cookieJar = new CookieJar;
@@ -629,7 +624,6 @@ class MWHttpRequest {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -717,12 +711,10 @@ class CurlHttpRequest extends MWHttpRequest {
 	}
 
 	public function execute() {
-		wfProfileIn( __METHOD__ );
 
 		parent::execute();
 
 		if ( !$this->status->isOK() ) {
-			wfProfileOut( __METHOD__ );
 			return $this->status;
 		}
 
@@ -768,7 +760,6 @@ class CurlHttpRequest extends MWHttpRequest {
 		$curlHandle = curl_init( $this->url );
 
 		if ( !curl_setopt_array( $curlHandle, $this->curlOptions ) ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "Error setting curl options." );
 		}
 
@@ -797,7 +788,6 @@ class CurlHttpRequest extends MWHttpRequest {
 		$this->parseHeader();
 		$this->setStatus();
 
-		wfProfileOut( __METHOD__ );
 
 		return $this->status;
 	}
@@ -834,7 +824,6 @@ class PhpHttpRequest extends MWHttpRequest {
 	}
 
 	public function execute() {
-		wfProfileIn( __METHOD__ );
 
 		parent::execute();
 
@@ -940,13 +929,11 @@ class PhpHttpRequest extends MWHttpRequest {
 
 		if ( $fh === false ) {
 			$this->status->fatal( 'http-request-error' );
-			wfProfileOut( __METHOD__ );
 			return $this->status;
 		}
 
 		if ( $result['timed_out'] ) {
 			$this->status->fatal( 'http-timed-out', $this->url );
-			wfProfileOut( __METHOD__ );
 			return $this->status;
 		}
 
@@ -968,7 +955,6 @@ class PhpHttpRequest extends MWHttpRequest {
 		}
 		fclose( $fh );
 
-		wfProfileOut( __METHOD__ );
 
 		return $this->status;
 	}

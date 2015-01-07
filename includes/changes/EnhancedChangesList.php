@@ -89,7 +89,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	public function recentChangesLine( &$baseRC, $watched = false ) {
-		wfProfileIn( __METHOD__ );
 
 		$date = $this->getLanguage()->userDate(
 			$baseRC->mAttribs['rc_timestamp'],
@@ -110,7 +109,6 @@ class EnhancedChangesList extends ChangesList {
 		$cacheEntry = $this->cacheEntryFactory->newFromRecentChange( $baseRC, $watched );
 		$this->addCacheEntry( $cacheEntry );
 
-		wfProfileOut( __METHOD__ );
 
 		return $ret;
 	}
@@ -161,7 +159,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	protected function recentChangesBlockGroup( $block ) {
-		wfProfileIn( __METHOD__ );
 
 		# Add the namespace and title of the block as part of the class
 		$classes = array( 'mw-collapsible', 'mw-collapsed', 'mw-enhanced-rc' );
@@ -469,7 +466,6 @@ class EnhancedChangesList extends ChangesList {
 
 		$this->rcCacheIndex++;
 
-		wfProfileOut( __METHOD__ );
 
 		return $r;
 	}
@@ -481,7 +477,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string A HTML formatted line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
-		wfProfileIn( __METHOD__ );
 		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
 
 		$type = $rcObj->mAttribs['rc_type'];
@@ -553,7 +548,6 @@ class EnhancedChangesList extends ChangesList {
 
 		$r .= "</td></tr></table>\n";
 
-		wfProfileOut( __METHOD__ );
 
 		return $r;
 	}
@@ -569,7 +563,6 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 
-		wfProfileIn( __METHOD__ );
 
 		$blockOut = '';
 		foreach ( $this->rc_cache as $block ) {
@@ -580,7 +573,6 @@ class EnhancedChangesList extends ChangesList {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return '<div>' . $blockOut . '</div>';
 	}

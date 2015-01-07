@@ -527,7 +527,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
 			return $this->modifiedTime[$context->getHash()];
 		}
-		wfProfileIn( __METHOD__ );
 
 		$files = array();
 
@@ -567,7 +566,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// giving max() an empty array
 		if ( count( $files ) === 0 ) {
 			$this->modifiedTime[$context->getHash()] = 1;
-			wfProfileOut( __METHOD__ );
 			return $this->modifiedTime[$context->getHash()];
 		}
 
@@ -581,7 +579,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->getDefinitionMtime( $context )
 		);
 
-		wfProfileOut( __METHOD__ );
 		return $this->modifiedTime[$context->getHash()];
 	}
 

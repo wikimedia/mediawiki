@@ -168,11 +168,9 @@ abstract class Skin extends ContextSource {
 	 * @param OutputPage $out
 	 */
 	function initPage( OutputPage $out ) {
-		wfProfileIn( __METHOD__ );
 
 		$this->preloadExistence();
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -942,7 +940,6 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML anchor
 	 */
 	public function footerLink( $desc, $page ) {
-		$section = new ProfileSection( __METHOD__ );
 		// if the link description has been set to "-" in the default language,
 		if ( $this->msg( $desc )->inContentLanguage()->isDisabled() ) {
 			// then it is disabled, for all languages.
@@ -1224,7 +1221,6 @@ abstract class Skin extends ContextSource {
 	 */
 	function buildSidebar() {
 		global $wgMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
-		wfProfileIn( __METHOD__ );
 
 		$key = wfMemcKey( 'sidebar', $this->getLanguage()->getCode() );
 
@@ -1233,7 +1229,6 @@ abstract class Skin extends ContextSource {
 			if ( $cachedsidebar ) {
 				Hooks::run( 'SidebarBeforeOutput', array( $this, &$cachedsidebar ) );
 
-				wfProfileOut( __METHOD__ );
 				return $cachedsidebar;
 			}
 		}
@@ -1248,7 +1243,6 @@ abstract class Skin extends ContextSource {
 
 		Hooks::run( 'SidebarBeforeOutput', array( $this, &$bar ) );
 
-		wfProfileOut( __METHOD__ );
 		return $bar;
 	}
 
@@ -1474,7 +1468,6 @@ abstract class Skin extends ContextSource {
 	private function getCachedNotice( $name ) {
 		global $wgRenderHashAppend, $parserMemc, $wgContLang;
 
-		wfProfileIn( __METHOD__ );
 
 		$needParse = false;
 
@@ -1483,13 +1476,11 @@ abstract class Skin extends ContextSource {
 			global $wgSiteNotice;
 			$notice = $wgSiteNotice;
 			if ( empty( $notice ) ) {
-				wfProfileOut( __METHOD__ );
 				return false;
 			}
 		} else {
 			$msg = $this->msg( $name )->inContentLanguage();
 			if ( $msg->isDisabled() ) {
-				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			$notice = $msg->plain();
@@ -1516,7 +1507,6 @@ abstract class Skin extends ContextSource {
 
 		$notice = Html::rawElement( 'div', array( 'id' => 'localNotice',
 			'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ), $notice );
-		wfProfileOut( __METHOD__ );
 		return $notice;
 	}
 
@@ -1526,7 +1516,6 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	function getNamespaceNotice() {
-		wfProfileIn( __METHOD__ );
 
 		$key = 'namespacenotice-' . $this->getTitle()->getNsText();
 		$namespaceNotice = $this->getCachedNotice( $key );
@@ -1536,7 +1525,6 @@ abstract class Skin extends ContextSource {
 			$namespaceNotice = '';
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $namespaceNotice;
 	}
 
@@ -1546,7 +1534,6 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	function getSiteNotice() {
-		wfProfileIn( __METHOD__ );
 		$siteNotice = '';
 
 		if ( Hooks::run( 'SiteNoticeBefore', array( &$siteNotice, $this ) ) ) {
@@ -1566,7 +1553,6 @@ abstract class Skin extends ContextSource {
 		}
 
 		Hooks::run( 'SiteNoticeAfter', array( &$siteNotice, $this ) );
-		wfProfileOut( __METHOD__ );
 		return $siteNotice;
 	}
 

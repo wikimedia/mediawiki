@@ -120,11 +120,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {
-		wfProfileIn( __METHOD__ );
 		$this->debugLog( "get($key)" );
 		$result = $this->client->get( $this->encodeKey( $key ), null, $casToken );
 		$result = $this->checkResult( $key, $result );
-		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
@@ -243,11 +241,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @return array
 	 */
 	public function getMulti( array $keys ) {
-		wfProfileIn( __METHOD__ );
 		$this->debugLog( 'getMulti(' . implode( ', ', $keys ) . ')' );
 		$callback = array( $this, 'encodeKey' );
 		$result = $this->client->getMulti( array_map( $callback, $keys ) );
-		wfProfileOut( __METHOD__ );
 		$result = $result ?: array(); // must be an array
 		return $this->checkResult( false, $result );
 	}
@@ -258,7 +254,6 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @return bool
 	 */
 	public function setMulti( array $data, $exptime = 0 ) {
-		wfProfileIn( __METHOD__ );
 		foreach ( $data as $key => $value ) {
 			$encKey = $this->encodeKey( $key );
 			if ( $encKey !== $key ) {
@@ -268,7 +263,6 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		}
 		$this->debugLog( 'setMulti(' . implode( ', ', array_keys( $data ) ) . ')' );
 		$result = $this->client->setMulti( $data, $this->fixExpiry( $exptime ) );
-		wfProfileOut( __METHOD__ );
 		return $this->checkResult( false, $result );
 	}
 }

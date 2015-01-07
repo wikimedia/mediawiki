@@ -121,7 +121,6 @@ class PoolCounterRedis extends PoolCounter {
 	}
 
 	function acquireForMe() {
-		$section = new ProfileSection( __METHOD__ );
 
 		$status = $this->precheckAcquire();
 		if ( !$status->isGood() ) {
@@ -132,7 +131,6 @@ class PoolCounterRedis extends PoolCounter {
 	}
 
 	function acquireForAnyone() {
-		$section = new ProfileSection( __METHOD__ );
 
 		$status = $this->precheckAcquire();
 		if ( !$status->isGood() ) {
@@ -143,7 +141,6 @@ class PoolCounterRedis extends PoolCounter {
 	}
 
 	function release() {
-		$section = new ProfileSection( __METHOD__ );
 
 		if ( $this->slot === null ) {
 			return Status::newGood( PoolCounter::NOT_LOCKED ); // not locked

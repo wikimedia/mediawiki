@@ -222,7 +222,6 @@ class DiffEngine {
 	 * @return DiffOp[]
 	 */
 	public function diff( $from_lines, $to_lines ) {
-		wfProfileIn( __METHOD__ );
 
 		// Diff and store locally
 		$this->diffLocal( $from_lines, $to_lines );
@@ -272,7 +271,6 @@ class DiffEngine {
 				$edits[] = new DiffOpAdd( $add );
 			}
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $edits;
 	}
@@ -283,7 +281,6 @@ class DiffEngine {
 	 */
 	private function diffLocal( $from_lines, $to_lines ) {
 		global $wgExternalDiffEngine;
-		wfProfileIn( __METHOD__ );
 
 		if ( $wgExternalDiffEngine == 'wikidiff3' ) {
 			// wikidiff3
@@ -346,7 +343,6 @@ class DiffEngine {
 			// Find the LCS.
 			$this->compareSeq( 0, count( $this->xv ), 0, count( $this->yv ) );
 		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -582,7 +578,6 @@ class DiffEngine {
 	 * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
 	 */
 	private function shiftBoundaries( $lines, &$changed, $other_changed ) {
-		wfProfileIn( __METHOD__ );
 		$i = 0;
 		$j = 0;
 
@@ -697,7 +692,6 @@ class DiffEngine {
 				assert( '$j >= 0 && !$other_changed[$j]' );
 			}
 		}
-		wfProfileOut( __METHOD__ );
 	}
 }
 
@@ -858,7 +852,6 @@ class MappedDiff extends Diff {
 	 */
 	public function __construct( $from_lines, $to_lines,
 		$mapped_from_lines, $mapped_to_lines ) {
-		wfProfileIn( __METHOD__ );
 
 		assert( 'count( $from_lines ) == count( $mapped_from_lines )' );
 		assert( 'count( $to_lines ) == count( $mapped_to_lines )' );
@@ -880,7 +873,6 @@ class MappedDiff extends Diff {
 				$yi += count( $closing );
 			}
 		}
-		wfProfileOut( __METHOD__ );
 	}
 }
 
@@ -981,14 +973,12 @@ class WordLevelDiff extends MappedDiff {
 	 * @param string[] $closing_lines
 	 */
 	public function __construct( $orig_lines, $closing_lines ) {
-		wfProfileIn( __METHOD__ );
 
 		list( $orig_words, $orig_stripped ) = $this->split( $orig_lines );
 		list( $closing_words, $closing_stripped ) = $this->split( $closing_lines );
 
 		parent::__construct( $orig_words, $closing_words,
 			$orig_stripped, $closing_stripped );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -997,7 +987,6 @@ class WordLevelDiff extends MappedDiff {
 	 * @return array[]
 	 */
 	private function split( $lines ) {
-		wfProfileIn( __METHOD__ );
 
 		$words = array();
 		$stripped = array();
@@ -1028,7 +1017,6 @@ class WordLevelDiff extends MappedDiff {
 				}
 			}
 		}
-		wfProfileOut( __METHOD__ );
 
 		return array( $words, $stripped );
 	}
@@ -1037,7 +1025,6 @@ class WordLevelDiff extends MappedDiff {
 	 * @return string[]
 	 */
 	public function orig() {
-		wfProfileIn( __METHOD__ );
 		$orig = new HWLDFWordAccumulator;
 
 		foreach ( $this->edits as $edit ) {
@@ -1048,7 +1035,6 @@ class WordLevelDiff extends MappedDiff {
 			}
 		}
 		$lines = $orig->getLines();
-		wfProfileOut( __METHOD__ );
 
 		return $lines;
 	}
@@ -1057,7 +1043,6 @@ class WordLevelDiff extends MappedDiff {
 	 * @return string[]
 	 */
 	public function closing() {
-		wfProfileIn( __METHOD__ );
 		$closing = new HWLDFWordAccumulator;
 
 		foreach ( $this->edits as $edit ) {
@@ -1068,7 +1053,6 @@ class WordLevelDiff extends MappedDiff {
 			}
 		}
 		$lines = $closing->getLines();
-		wfProfileOut( __METHOD__ );
 
 		return $lines;
 	}

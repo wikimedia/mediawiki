@@ -509,7 +509,6 @@ class LocalisationCache {
 	 * @return array
 	 */
 	protected function readPHPFile( $_fileName, $_fileType ) {
-		wfProfileIn( __METHOD__ );
 		// Disable APC caching
 		wfSuppressWarnings();
 		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
@@ -526,10 +525,8 @@ class LocalisationCache {
 		} elseif ( $_fileType == 'aliases' ) {
 			$data = compact( 'aliases' );
 		} else {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( __METHOD__ . ": Invalid file type: $_fileType" );
 		}
-		wfProfileOut( __METHOD__ );
 
 		return $data;
 	}
@@ -541,24 +538,20 @@ class LocalisationCache {
 	 * @return array Array with a 'messages' key, or empty array if the file doesn't exist
 	 */
 	public function readJSONFile( $fileName ) {
-		wfProfileIn( __METHOD__ );
 
 		if ( !is_readable( $fileName ) ) {
-			wfProfileOut( __METHOD__ );
 
 			return array();
 		}
 
 		$json = file_get_contents( $fileName );
 		if ( $json === false ) {
-			wfProfileOut( __METHOD__ );
 
 			return array();
 		}
 
 		$data = FormatJson::decode( $json, true );
 		if ( $data === null ) {
-			wfProfileOut( __METHOD__ );
 
 			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
 		}
@@ -570,7 +563,6 @@ class LocalisationCache {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		// The JSON format only supports messages, none of the other variables, so wrap the data
 		return array( 'messages' => $data );
@@ -697,7 +689,6 @@ class LocalisationCache {
 	 */
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
 		global $IP;
-		wfProfileIn( __METHOD__ );
 
 		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = Language::getMessagesFileName( $code );
@@ -718,7 +709,6 @@ class LocalisationCache {
 		$deps['plurals'] = new FileDependency( "$IP/languages/data/plurals.xml" );
 		$deps['plurals-mw'] = new FileDependency( "$IP/languages/data/plurals-mediawiki.xml" );
 
-		wfProfileOut( __METHOD__ );
 
 		return $data;
 	}
@@ -823,10 +813,8 @@ class LocalisationCache {
 	 */
 	public function recache( $code ) {
 		global $wgExtensionMessagesFiles;
-		wfProfileIn( __METHOD__ );
 
 		if ( !$code ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( "Invalid language code requested" );
 		}
 		$this->recachedLangs[$code] = true;
@@ -1012,7 +1000,6 @@ class LocalisationCache {
 		Hooks::run( 'LocalisationCacheRecache', array( $this, $code, &$allData, &$purgeBlobs ) );
 
 		if ( is_null( $allData['namespaceNames'] ) ) {
-			wfProfileOut( __METHOD__ );
 			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}
@@ -1048,7 +1035,6 @@ class LocalisationCache {
 			MessageBlobStore::getInstance()->clear();
 		}
 
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**

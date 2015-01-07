@@ -275,7 +275,6 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public static function batchAddWatch( array $items ) {
-		$section = new ProfileSection( __METHOD__ );
 
 		if ( wfReadOnly() ) {
 			return false;
@@ -331,11 +330,9 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public function removeWatch() {
-		wfProfileIn( __METHOD__ );
 
 		// Only loggedin user can have a watchlist
 		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
@@ -370,7 +367,6 @@ class WatchedItem {
 
 		$this->watched = false;
 
-		wfProfileOut( __METHOD__ );
 		return $success;
 	}
 

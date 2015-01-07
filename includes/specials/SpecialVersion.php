@@ -252,7 +252,6 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public static function getVersion( $flags = '' ) {
 		global $wgVersion, $IP;
-		wfProfileIn( __METHOD__ );
 
 		$gitInfo = self::getGitHeadSha1( $IP );
 		$svnInfo = self::getSvnInfo( $IP );
@@ -276,7 +275,6 @@ class SpecialVersion extends SpecialPage {
 				)->text();
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $version;
 	}
@@ -291,7 +289,6 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public static function getVersionLinked() {
 		global $wgVersion;
-		wfProfileIn( __METHOD__ );
 
 		$gitVersion = self::getVersionLinkedGit();
 		if ( $gitVersion ) {
@@ -305,7 +302,6 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		wfProfileOut( __METHOD__ );
 
 		return $v;
 	}
