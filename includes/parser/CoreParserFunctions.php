@@ -178,7 +178,9 @@ class CoreParserFunctions {
 			default:
 				$func = 'urlencode';
 		}
-		return $parser->markerSkipCallback( $s, $func );
+		// See T105242, where the choice to kill markers and various
+		// other options were discussed.
+		return $func( $parser->killMarkers( $s ) );
 	}
 
 	public static function lcfirst( $parser, $s = '' ) {
