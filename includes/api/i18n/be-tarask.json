@@ -41,5 +41,6 @@
 	"apihelp-compare-param-torev": "Другая вэрсія для параўнаньня.",
 	"apihelp-compare-example-1": "Паказвае розьніцу паміж вэрсіямі 1 і 2",
 	"apihelp-createaccount-description": "Стварэньне новага рахунку ўдзельніка.",
-	"apihelp-createaccount-param-name": "Імя ўдзельніка."
+	"apihelp-createaccount-param-name": "Імя ўдзельніка.",
+	"apihelp-createaccount-param-password": "Пароль (ігнаруецца, калі выстаўлена $1mailpassword)."
 }

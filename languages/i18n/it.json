@@ -2265,6 +2265,7 @@
 	"javascripttest": "Sperimentazione JavaScript",
 	"javascripttest-pagetext-noframework": "Questa pagina è riservata all'esecuzione di test di JavaScript.",
 	"javascripttest-pagetext-unknownframework": "Framework di test sconosciuto \"$1\".",
+	"javascripttest-pagetext-unknownaction": "Azione sconosciuta \"$1\".",
 	"javascripttest-pagetext-frameworks": "Per cortesia, scegli uno dei seguenti framework per i test: $1",
 	"javascripttest-pagetext-skins": "Scegli una skin con cui eseguire i test:",
 	"javascripttest-qunit-intro": "Vedi su mediawiki.org la [$1 documentazione riguardante i test].",

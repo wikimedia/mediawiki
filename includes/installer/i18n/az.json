@@ -23,7 +23,7 @@
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-utf8": "UTF-8",
 	"config-ns-generic": "Layihə",
-	"config-admin-name": "Sizin adınız:",
+	"config-admin-name": "Sizin istifadəçi adınız:",
 	"config-admin-password": "Parol:",
 	"config-admin-email": "E-poçt ünvanı",
 	"config-license-pd": "İctimai istifadə",

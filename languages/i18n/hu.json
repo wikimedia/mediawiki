@@ -2867,7 +2867,7 @@
 	"blankpage": "Üres lap",
 	"intentionallyblankpage": "Ez a lap szándékosan maradt üresen",
 	"external_image_whitelist": " #Ezt a sort hagyd pontosan így, ahogy van<pre>\n#Ide reguláris kifejezéseket írhatsz (azon részüket, amik a // közé mennek)\n#Ezek egyeztetve lesznek a külső képek URL-jeivel\n#Egyezés esetén képként fognak megjelenni, egyébként csak link fog rájuk mutatni\n#A #-tel kezdődő sorok megjegyzésnek számítanak\n#A kis- és nagybetűk nincsenek megkülönböztetve\n\n#A reguláris kifejezéseket ezen sor alá írd. Ezt a sort hagyd így, ahogy van.</pre>",
-	"tags": "Érvényes módosítási címkék",
+	"tags": "Lapváltozat-címkék",
 	"tag-filter": "[[Special:Tags|Címke]]szűrő:",
 	"tag-filter-submit": "Szűrő",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Címke|Címkék}}]]: $2)",

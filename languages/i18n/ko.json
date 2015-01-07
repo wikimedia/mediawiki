@@ -2980,7 +2980,7 @@
 	"tags-tag": "태그 이름",
 	"tags-display-header": "바뀜 목록의 모양",
 	"tags-description-header": "태그에 대한 설명",
-	"tags-active-header": "활성하겠습니까?",
+	"tags-active-header": "활성화 여부",
 	"tags-hitcount-header": "태그된 바뀜",
 	"tags-active-yes": "예",
 	"tags-active-no": "아니오",

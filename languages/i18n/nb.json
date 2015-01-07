@@ -605,7 +605,7 @@
 	"nosuchsectiontitle": "Finner ikke avsnittet",
 	"nosuchsectiontext": "Du prøvde å redigere et avsnitt som ikke eksisterer.\nDet kan ha blitt flyttet eller slettet mens du så på siden.",
 	"loginreqtitle": "Innlogging kreves",
-	"loginreqlink": "logge inn",
+	"loginreqlink": "logg inn",
 	"loginreqpagetext": "Du må $1 for å se andre sider.",
 	"accmailtitle": "Passord sendt.",
 	"accmailtext": "Et tilfeldig passord for [[User talk:$1|$1]] har blitt sendt til $2. Det kan endres på [[Special:ChangePassword|passordendringssiden]] under innlogging.",
