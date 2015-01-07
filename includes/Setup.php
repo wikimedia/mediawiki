@@ -33,12 +33,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 $fname = 'Setup.php';
-wfProfileIn( $fname );
+$ps_setup = Profiler::instance()->scopedProfileIn( $fname );
 
 // If any extensions are still queued, force load them
 ExtensionRegistry::getInstance()->loadFromQueue();
-
-wfProfileIn( $fname . '-defaults' );
 
 // Check to see if we are at the file scope
 if ( !isset( $wgVersion ) ) {
@@ -47,6 +45,7 @@ if ( !isset( $wgVersion ) ) {
 }
 
 // Set various default paths sensibly...
+$ps_default = Profiler::instance()->scopedProfileIn( $fname . '-defaults' );
 
 if ( $wgScript === false ) {
 	$wgScript = "$wgScriptPath/index$wgScriptExtension";
@@ -462,31 +461,25 @@ if ( $wgProfileOnly ) {
 	$wgDebugLogFile = '';
 }
 
-wfProfileOut( $fname . '-defaults' );
+Profiler::instance()->scopedProfileOut( $ps_default );
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
 // all the memory from logging SQL queries on maintenance scripts
 global $wgCommandLineMode;
 if ( $wgDebugToolbar && !$wgCommandLineMode ) {
-	wfProfileIn( $fname . '-debugtoolbar' );
 	MWDebug::init();
-	wfProfileOut( $fname . '-debugtoolbar' );
 }
 
 if ( !class_exists( 'AutoLoader' ) ) {
 	require_once "$IP/includes/AutoLoader.php";
 }
 
-wfProfileIn( $fname . '-exception' );
 MWExceptionHandler::installHandler();
-wfProfileOut( $fname . '-exception' );
 
-wfProfileIn( $fname . '-includes' );
 require_once "$IP/includes/normal/UtfNormalUtil.php";
 require_once "$IP/includes/normal/UtfNormalDefines.php";
-wfProfileOut( $fname . '-includes' );
 
-wfProfileIn( $fname . '-defaults2' );
+$ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
 
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
@@ -517,20 +510,20 @@ if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 		. 'HTTP or HTTPS. Disabling secure login.' );
 }
 
-// Now that GlobalFunctions is loaded, set defaults that depend
-// on it.
+// Now that GlobalFunctions is loaded, set defaults that depend on it.
 if ( $wgTmpDirectory === false ) {
-	wfProfileIn( $fname . '-tempDir' );
+	$ps_tmpdir = Profiler::instance()->scopedProfileIn( $fname . '-tempDir' );
 	$wgTmpDirectory = wfTempDir();
-	wfProfileOut( $fname . '-tempDir' );
+	Profiler::instance()->scopedProfileOut( $ps_tmpdir );
 }
 
 // We don't use counters anymore. Left here for extensions still
 // expecting this to exist. Should be removed sometime 1.26 or later.
 $wgDisableCounters = true;
 
-wfProfileOut( $fname . '-defaults2' );
-wfProfileIn( $fname . '-misc1' );
+Profiler::instance()->scopedProfileOut( $ps_default2 );
+
+$ps_misc = Profiler::instance()->scopedProfileIn( $fname . '-misc1' );
 
 // Raise the memory limit if it's too low
 wfMemoryLimit();
@@ -572,8 +565,8 @@ if ( $wgCommandLineMode ) {
 	wfDebug( $debug );
 }
 
-wfProfileOut( $fname . '-misc1' );
-wfProfileIn( $fname . '-memcached' );
+Profiler::instance()->scopedProfileOut( $ps_misc );
+$ps_memcached = Profiler::instance()->scopedProfileIn( $fname . '-memcached' );
 
 $wgMemc = wfGetMainCache();
 $messageMemc = wfGetMessageCacheStorage();
@@ -584,12 +577,12 @@ wfDebugLog( 'caches', 'main: ' . get_class( $wgMemc ) .
 	', message: ' . get_class( $messageMemc ) .
 	', parser: ' . get_class( $parserMemc ) );
 
-wfProfileOut( $fname . '-memcached' );
+Profiler::instance()->scopedProfileOut( $ps_memcached );
 
 // Most of the config is out, some might want to run hooks here.
 Hooks::run( 'SetupAfterCache' );
 
-wfProfileIn( $fname . '-session' );
+$ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
 
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	// If session.auto_start is there, we can't touch session name
@@ -602,8 +595,8 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	}
 }
 
-wfProfileOut( $fname . '-session' );
-wfProfileIn( $fname . '-globals' );
+Profiler::instance()->scopedProfileOut( $ps_session );
+$ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
 
 /**
  * @var Language $wgContLang
@@ -651,8 +644,8 @@ $wgTitle = null;
  */
 $wgDeferredUpdateList = array();
 
-wfProfileOut( $fname . '-globals' );
-wfProfileIn( $fname . '-extensions' );
+Profiler::instance()->scopedProfileOut( $ps_globals );
+$ps_extensions = Profiler::instance()->scopedProfileIn( $fname . '-extensions' );
 
 // Extension setup functions for extensions other than skins
 // Entries should be added to this variable during the inclusion
@@ -672,13 +665,14 @@ foreach ( $wgExtensionFunctions as $func ) {
 		$profName = $fname . '-extensions-' . strval( $func );
 	}
 
-	wfProfileIn( $profName );
+	$ps_ext_func = Profiler::instance()->scopedProfileIn( $profName );
 	call_user_func( $func );
-	wfProfileOut( $profName );
+	Profiler::instance()->scopedProfileOut( $ps_ext_func );
 }
 
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
-wfProfileOut( $fname . '-extensions' );
-wfProfileOut( $fname );
+Profiler::instance()->scopedProfileOut( $ps_extensions );
+Profiler::instance()->scopedProfileOut( $ps_setup );
+
