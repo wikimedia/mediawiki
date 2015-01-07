@@ -1201,13 +1201,12 @@ Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 <s.foo>s.foo</s.foo>
 
 <sub-ID#1>
-!! html
-<p>&lt;b→&gt; doesn't work! &lt;/b→&gt;
-</p><p>&lt;bä&gt; doesn't work! &lt;/bä&gt;
-</p><p>&lt;boo&gt; works fine &lt;/boo&gt;
-</p><p>&lt;s.foo&gt;s.foo&lt;/s.foo&gt;
-</p><p>&lt;sub-ID#1&gt;
-</p>
+!! html+tidy
+<p>&lt;b→&gt; doesn't work! &lt;/b→&gt;</p>
+<p>&lt;bä&gt; doesn't work! &lt;/bä&gt;</p>
+<p>&lt;boo&gt; works fine &lt;/boo&gt;</p>
+<p>&lt;s.foo&gt;s.foo&lt;/s.foo&gt;</p>
+<p>&lt;sub-ID#1&gt;</p>
 !! end
 
 !! test

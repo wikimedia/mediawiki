@@ -570,7 +570,7 @@ class Sanitizer {
 			# this might be possible using tidy itself
 			foreach ( $bits as $x ) {
 				preg_match(
-					'/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
+					'/^(\\/?)(\\s+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
 					$x,
 					$regs
 				);
