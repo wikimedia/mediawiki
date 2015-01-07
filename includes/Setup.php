@@ -479,7 +479,7 @@ if ( !class_exists( 'AutoLoader' ) ) {
 
 MWExceptionHandler::installHandler();
 
-require_once "$IP/includes/normal/UtfNormalUtil.php";
+require_once "$IP/includes/libs/normal/UtfNormalUtil.php";
 
 $ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
 
