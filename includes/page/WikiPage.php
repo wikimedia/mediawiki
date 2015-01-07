@@ -2158,10 +2158,12 @@ class WikiPage implements Page, IDBAccessObject {
 	 * - changed: boolean, whether the revision changed the content (default true)
 	 * - created: boolean, whether the revision created the page (default false)
 	 * - moved: boolean, whether the page was moved (default false)
-	 * - oldcountable: boolean or null (default null):
+	 * - oldcountable: boolean, null, or string 'no-change' (default null):
 	 *   - boolean: whether the page was counted as an article before that
 	 *     revision, only used in changed is true and created is false
-	 *   - null: don't change the article count
+	 *   - null: if created is false, don't update the article count; if created
+	 *     is true, do update the article count
+	 *   - 'no-change': don't update the article count, ever
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
 		global $wgEnableParserCache;
@@ -2222,7 +2224,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$title = $this->mTitle->getPrefixedDBkey();
 		$shortTitle = $this->mTitle->getDBkey();
 
-		if ( !$options['changed'] && !$options['moved'] ) {
+		if ( $options['oldcountable'] === 'no-change' ||
+			( !$options['changed'] && !$options['moved'] )
+		) {
 			$good = 0;
 		} elseif ( $options['created'] ) {
 			$good = (int)$this->isCountable( $editInfo );
