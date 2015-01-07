@@ -21,9 +21,6 @@ all : UtfNormalData.inc
 UtfNormalData.inc : UtfNormalGenerate.php UtfNormalUtil.php UnicodeData.txt CompositionExclusions.txt NormalizationCorrections.txt DerivedNormalizationProps.txt
 	$(PHP) UtfNormalGenerate.php
 
-test : UtfNormalTest.php UtfNormalData.inc NormalizationTest.txt
-	$(PHP) UtfNormalTest.php
-
 bench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdata/tokyo.txt testdata/young.txt testdata/bulgakov.txt
 	$(PHP) UtfNormalBench.php
 
