@@ -372,7 +372,6 @@ class Sanitizer {
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
 
-
 		// Base our staticInitialised variable off of the global config state so that if the globals
 		// are changed (like in the screwed up test system) we will re-initialise the settings.
 		$globalContext = implode( '-', compact( 'wgAllowMicrodataAttributes', 'wgAllowImageTag' ) );
@@ -442,11 +441,12 @@ class Sanitizer {
 			foreach ( $bits as $x ) {
 				$regs = array();
 				# $slash: Does the current element start with a '/'?
-				# $t: Current element name
+				# $t: Current element name. Acceptable charset from HTML5 parsing spec
+				#     http://dev.w3.org/html5/spec-preview/tokenization.html#tag-name-state
 				# $params: String between element name and >
 				# $brace: Ending '>' or '/>'
 				# $rest: Everything until the next element of $bits
-				if ( preg_match( '!^(/?)([^\\s/>]+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs ) ) {
+				if ( preg_match( '!^(/?)([A-Za-z][^\\t\\n\\v \\/>\\0]*)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs ) ) {
 					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 				} else {
 					$slash = $t = $params = $brace = $rest = null;
@@ -569,8 +569,10 @@ class Sanitizer {
 		} else {
 			# this might be possible using tidy itself
 			foreach ( $bits as $x ) {
+				# $t: Current element name. Acceptable charset from HTML5 parsing spec
+				#     http://dev.w3.org/html5/spec-preview/tokenization.html#tag-name-state
 				preg_match(
-					'/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
+					'/^(\\/?)([A-Za-z][^\\t\\n\\v \\/>\\0]*)([^>]*?)(\\/{0,1}>)([^<]*)$/',
 					$x,
 					$regs
 				);
