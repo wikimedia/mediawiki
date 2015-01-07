@@ -173,6 +173,10 @@ production.
   for the 'aimime' parameter.
 * prop=info with inprop=protections will now return applicable protection types
   with the 'restrictiontypes' key.
+* (T85417) When resolving redirects, ApiPageSet will now add the targets of
+  interwiki redirects to the list of interwiki titles.
+* (T85417) When outputting the list of redirect titles, a 'tointerwiki'
+  property (like the existing 'tofragment' property) will be set.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.

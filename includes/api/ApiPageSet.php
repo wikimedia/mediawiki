@@ -450,6 +450,9 @@ class ApiPageSet extends ApiBase {
 			if ( $titleTo->hasFragment() ) {
 				$r['tofragment'] = $titleTo->getFragment();
 			}
+			if ( $titleTo->isExternal() ) {
+				$r['tointerwiki'] = $titleTo->getInterwiki();
+			}
 			$values[] = $r;
 		}
 		if ( !empty( $values ) && $result ) {
@@ -1049,7 +1052,9 @@ class ApiPageSet extends ApiBase {
 				$row->rd_interwiki
 			);
 			unset( $this->mPendingRedirectIDs[$rdfrom] );
-			if ( !$to->isExternal() && !isset( $this->mAllPages[$row->rd_namespace][$row->rd_title] ) ) {
+			if ( $to->isExternal() ) {
+				$this->mInterwikiTitles[$to->getPrefixedText()] = $to->getInterwiki();
+			} elseif ( !isset( $this->mAllPages[$row->rd_namespace][$row->rd_title] ) ) {
 				$lb->add( $row->rd_namespace, $row->rd_title );
 			}
 			$this->mRedirectTitles[$from] = $to;
