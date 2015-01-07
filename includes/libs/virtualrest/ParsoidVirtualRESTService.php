@@ -45,8 +45,6 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	}
 
 	public function onRequests( array $reqs, Closure $idGeneratorFunc ) {
-		global $wgVisualEditorParsoidPrefix; // TODO: Move this to core
-
 		$result = array();
 		foreach ( $reqs as $key => $req ) {
 			$parts = explode( '/', $req['url'] );
@@ -58,11 +56,11 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 			) = $parts;
 
 			if ( $targetWiki !== 'local' ) {
-				throw new MWException( "Only 'local' target wiki is currently supported" );
+				throw new Exception( "Only 'local' target wiki is currently supported" );
 			} elseif ( $version !== 'v1' ) {
-				throw new MWException( "Only version 1 exists" );
+				throw new Exception( "Only version 1 exists" );
 			} else if ( $reqType !== 'page' && $reqType !== 'transform' ) {
-				throw new MWException( "Request type must be either 'page' or 'transform'" );
+				throw new Exception( "Request type must be either 'page' or 'transform'" );
 			}
 
 			$req['url'] = $this->params['URL'] . '/' . urlencode( $this->params['prefix'] ) . '/';
@@ -70,7 +68,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 			if ( $reqType === 'page' ) {
 				$title = $parts[3];
 				if ( $parts[4] !== 'html' ) {
-					throw new MWException( "Only 'html' output format is currently supported" );
+					throw new Exception( "Only 'html' output format is currently supported" );
 				}
 				if ( isset( $parts[5] ) ) {
 					$req['url'] .= $title . '?oldid=' . $parts[5];
@@ -79,7 +77,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 				}
 			} elseif ( $reqType === 'transform' ) {
 				if ( $parts[4] !== 'to' ) {
-					throw new MWException( "Part index 4 is not 'to'" );
+					throw new Exception( "Part index 4 is not 'to'" );
 				}
 
 				if ( isset( $parts[6] ) ) {
@@ -88,19 +86,19 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 
 				if ( $parts[3] === 'html' & $parts[5] === 'wikitext' ) {
 					if ( !isset( $req['body']['html'] ) ) {
-						throw new MWException( "You must set an 'html' body key for this request" );
+						throw new Exception( "You must set an 'html' body key for this request" );
 					}
 					if ( isset( $parts[6] ) ) {
 						$req['body']['oldid'] = $parts[6];
 					}
 				} elseif ( $parts[3] == 'wikitext' && $parts[5] == 'html' ) {
 					if ( !isset( $req['body']['wikitext'] ) ) {
-						throw new MWException( "You must set a 'wikitext' body key for this request" );
+						throw new Exception( "You must set a 'wikitext' body key for this request" );
 					}
 					$req['body']['wt'] = $req['body']['wikitext'];
 					unset( $req['body']['wikitext'] );
 				} else {
-					throw new MWException( "Transformation unsupported" );
+					throw new Exception( "Transformation unsupported" );
 				}
 			}
 
