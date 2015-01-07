@@ -44,7 +44,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	const EDIT_NORMAL = 3;
 
 	protected $successMessage;
-
+	protected $collection;
 	protected $toc;
 
 	private $badItems = array();
@@ -213,7 +213,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$this->showTitles( $toUnwatch, $this->successMessage );
 			}
 		} else {
-			$this->clearWatchlist();
+			$this->getWatchlistCollection()->clear();
 			$this->getUser()->invalidateCache();
 
 			if ( count( $current ) > 0 ) {
@@ -232,7 +232,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	public function submitClear( $data ) {
 		$current = $this->getWatchlist();
-		$this->clearWatchlist();
+		$this->getWatchlistCollection()->clear();
 		$this->getUser()->invalidateCache();
 		$this->successMessage = $this->msg( 'watchlistedit-clear-done' )->parse();
 		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-clear-removed' )
@@ -299,41 +299,20 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function getWatchlist() {
 		$list = array();
-		$dbr = wfGetDB( DB_MASTER );
+		$collection = $this->getWatchlistCollection();
+		$this->cleanupWatchlist();
+		foreach ( $collection as $item ) {
+			$list[] = $item->getTitle()->getPrefixedText();
+		}
+		return $list;
+	}
 
-		$res = $dbr->select(
-			'watchlist',
-			array(
-				'wl_namespace', 'wl_title'
-			), array(
-				'wl_user' => $this->getUser()->getId(),
-			),
-			__METHOD__
-		);
-
-		if ( $res->numRows() > 0 ) {
-			$titles = array();
-			foreach ( $res as $row ) {
-				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
-
-				if ( $this->checkTitle( $title, $row->wl_namespace, $row->wl_title )
-					&& !$title->isTalkPage()
-				) {
-					$titles[] = $title;
-				}
-			}
-			$res->free();
-
-			GenderCache::singleton()->doTitlesArray( $titles );
-
-			foreach ( $titles as $title ) {
-				$list[] = $title->getPrefixedText();
-			}
+	private function getWatchlistCollection() {
+		if ( !$this->collection ) {
+			$this->collection = new WatchlistCollection( $this->getUser() );
 		}
 
-		$this->cleanupWatchlist();
-
-		return $list;
+		return $this->collection;
 	}
 
 	/**
@@ -344,22 +323,16 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	protected function getWatchlistInfo() {
 		$titles = array();
-		$dbr = wfGetDB( DB_MASTER );
-
-		$res = $dbr->select(
-			array( 'watchlist' ),
-			array( 'wl_namespace', 'wl_title' ),
-			array( 'wl_user' => $this->getUser()->getId() ),
-			__METHOD__,
-			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
-		);
-
+		$collection = $this->getWatchlistCollection();
 		$lb = new LinkBatch();
 
-		foreach ( $res as $row ) {
-			$lb->add( $row->wl_namespace, $row->wl_title );
-			if ( !MWNamespace::isTalk( $row->wl_namespace ) ) {
-				$titles[$row->wl_namespace][$row->wl_title] = 1;
+		foreach ( $collection as $item ) {
+			$title = $item->getTitle();
+			$ns = $title->getNamespace();
+			$dbkey = $title->getDBKey();
+			$lb->add( $ns, $dbkey );
+			if ( !MWNamespace::isTalk( $ns ) ) {
+				$titles[$ns][$dbkey] = 1;
 			}
 		}
 
@@ -425,18 +398,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$user->addWatch( $title );
 			}
 		}
-	}
-
-	/**
-	 * Remove all titles from a user's watchlist
-	 */
-	private function clearWatchlist() {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete(
-			'watchlist',
-			array( 'wl_user' => $this->getUser()->getId() ),
-			__METHOD__
-		);
 	}
 
 	/**
