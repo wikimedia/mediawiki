@@ -94,7 +94,7 @@ abstract class BloomCache {
 	 * @return bool True if set, false if not (also returns true on error)
 	 */
 	final public function check( $domain, $type, $member ) {
-		$section = new ProfileSection( get_class( $this ) . '::' . __FUNCTION__ );
+		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
 		if ( method_exists( "BloomFilter{$type}", 'mergeAndCheck' ) ) {
 			try {
@@ -132,7 +132,7 @@ abstract class BloomCache {
 	 * @return bool Success
 	 */
 	final public function insert( $domain, $type, $members ) {
-		$section = new ProfileSection( get_class( $this ) . '::' . __FUNCTION__ );
+		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
 		if ( method_exists( "BloomFilter{$type}", 'mergeAndCheck' ) ) {
 			try {
@@ -161,7 +161,7 @@ abstract class BloomCache {
 	 * @return bool Success
 	 */
 	final public function init( $key, $size = 1000000, $precision = .001 ) {
-		$section = new ProfileSection( get_class( $this ) . '::' . __FUNCTION__ );
+		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
 		return $this->doInit( "{$this->cacheID}:$key", $size, min( .1, $precision ) );
 	}
@@ -174,7 +174,7 @@ abstract class BloomCache {
 	 * @return bool Success
 	 */
 	final public function add( $key, $members ) {
-		$section = new ProfileSection( get_class( $this ) . '::' . __FUNCTION__ );
+		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
 		return $this->doAdd( "{$this->cacheID}:$key", (array)$members );
 	}
@@ -193,7 +193,7 @@ abstract class BloomCache {
 	 * @return bool|null True if set, false if not, null on error
 	 */
 	final public function isHit( $key, $member ) {
-		$section = new ProfileSection( get_class( $this ) . '::' . __FUNCTION__ );
+		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
 		return $this->doIsHit( "{$this->cacheID}:$key", $member );
 	}
@@ -205,7 +205,7 @@ abstract class BloomCache {
 	 * @return bool Success
 	 */
 	final public function delete( $key ) {
-		$section = new ProfileSection( get_class( $this ) . '::' . __FUNCTION__ );
+		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
 		return $this->doDelete( "{$this->cacheID}:$key" );
 	}
@@ -218,7 +218,7 @@ abstract class BloomCache {
 	 * @return bool Success
 	 */
 	final public function setStatus( $virtualKey, array $values ) {
-		$section = new ProfileSection( get_class( $this ) . '::' . __FUNCTION__ );
+		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
 		return $this->doSetStatus( "{$this->cacheID}:$virtualKey", $values );
 	}
@@ -236,7 +236,7 @@ abstract class BloomCache {
 	 * @return array|bool False on failure
 	 */
 	final public function getStatus( $virtualKey ) {
-		$section = new ProfileSection( get_class( $this ) . '::' . __FUNCTION__ );
+		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
 		return $this->doGetStatus( "{$this->cacheID}:$virtualKey" );
 	}

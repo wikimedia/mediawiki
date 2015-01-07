@@ -224,8 +224,6 @@ class LoadBalancer {
 			return $this->mReadIndex;
 		}
 
-		new ProfileSection( __METHOD__ );
-
 		# Find the relevant load array
 		if ( $group !== false ) {
 			if ( isset( $this->mGroupLoads[$group] ) ) {

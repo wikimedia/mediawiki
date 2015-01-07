@@ -118,7 +118,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function createInternal( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		if ( strlen( $params['content'] ) > $this->maxFileSizeInternal() ) {
 			$status = Status::newFatal( 'backend-fail-maxsize',
 				$params['dst'], $this->maxFileSizeInternal() );
@@ -159,7 +159,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function storeInternal( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		if ( filesize( $params['src'] ) > $this->maxFileSizeInternal() ) {
 			$status = Status::newFatal( 'backend-fail-maxsize',
 				$params['dst'], $this->maxFileSizeInternal() );
@@ -201,7 +201,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function copyInternal( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
 		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
@@ -233,7 +233,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function deleteInternal( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = $this->doDeleteInternal( $params );
 		$this->clearCache( array( $params['src'] ) );
 		$this->deleteFileCache( $params['src'] ); // persistent cache
@@ -267,7 +267,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function moveInternal( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( array( $params['src'], $params['dst'] ) );
 		$this->deleteFileCache( $params['src'] ); // persistent cache
@@ -313,7 +313,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	final public function describeInternal( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		if ( count( $params['headers'] ) ) {
 			$status = $this->doDescribeInternal( $params );
 			$this->clearCache( array( $params['src'] ) );
@@ -346,7 +346,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function concatenate( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		// Try to lock the source files for the scope of this function
@@ -439,7 +439,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doPrepare( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
@@ -474,7 +474,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doSecure( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
@@ -509,7 +509,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doPublish( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
@@ -544,7 +544,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doClean( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		// Recursive: first delete all empty subdirs recursively
@@ -600,21 +600,21 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function fileExists( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
 
 		return ( $stat === null ) ? null : (bool)$stat; // null => failure
 	}
 
 	final public function getFileTimestamp( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
 
 		return $stat ? $stat['mtime'] : false;
 	}
 
 	final public function getFileSize( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$stat = $this->getFileStat( $params );
 
 		return $stat ? $stat['size'] : false;
@@ -625,7 +625,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return false; // invalid storage path
 		}
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( !$this->cheapCache->has( $path, 'stat', self::CACHE_TTL ) ) {
 			$this->primeFileCache( array( $path ) ); // check persistent cache
@@ -679,7 +679,7 @@ abstract class FileBackendStore extends FileBackend {
 	abstract protected function doGetFileStat( array $params );
 
 	public function getFileContentsMulti( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
 		$contents = $this->doGetFileContentsMulti( $params );
@@ -708,7 +708,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return false; // invalid storage path
 		}
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( $this->cheapCache->has( $path, 'xattr', self::CACHE_TTL ) ) {
 			$stat = $this->cheapCache->get( $path, 'xattr' );
@@ -742,7 +742,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return false; // invalid storage path
 		}
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$latest = !empty( $params['latest'] ); // use latest data?
 		if ( $this->cheapCache->has( $path, 'sha1', self::CACHE_TTL ) ) {
 			$stat = $this->cheapCache->get( $path, 'sha1' );
@@ -775,7 +775,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getFileProps( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$fsFile = $this->getLocalReference( $params );
 		$props = $fsFile ? $fsFile->getProps() : FSFile::placeholderProps();
 
@@ -783,7 +783,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getLocalReferenceMulti( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
 
@@ -826,7 +826,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function getLocalCopyMulti( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 
 		$params = $this->setConcurrencyFlags( $params );
 		$tmpFiles = $this->doGetLocalCopyMulti( $params );
@@ -851,7 +851,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function streamFile( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		$info = $this->getFileStat( $params );
@@ -1071,7 +1071,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doOperationsInternal( array $ops, array $opts ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		// Fix up custom header name/value pairs...
@@ -1137,7 +1137,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final protected function doQuickOperationsInternal( array $ops ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
 		// Fix up custom header name/value pairs...
@@ -1204,7 +1204,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return array Map of Status objects
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			if ( !( $fileOpHandle instanceof FileBackendStoreOpHandle ) ) {
@@ -1300,7 +1300,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	final public function preloadFileStat( array $params ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$success = true; // no network errors
 
 		$params['concurrency'] = ( $this->parallelize !== 'off' ) ? $this->concurrency : 1;
@@ -1623,7 +1623,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $items
 	 */
 	final protected function primeContainerCache( array $items ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 
 		$paths = array(); // list of storage paths
 		$contNames = array(); // (cache key => resolved container name)
@@ -1733,7 +1733,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $items List of storage paths
 	 */
 	final protected function primeFileCache( array $items ) {
-		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 
 		$paths = array(); // list of storage paths
 		$pathNames = array(); // (cache key => storage path)

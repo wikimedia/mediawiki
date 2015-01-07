@@ -664,7 +664,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $objHdrs; // nothing to do
 		}
 
-		$section = new ProfileSection( __METHOD__ . '-' . $this->name );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		trigger_error( "$path was not stored with SHA-1 metadata.", E_USER_WARNING );
 
 		$auth = $this->getAuthentication();
@@ -798,7 +798,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $dirs; // nothing more
 		}
 
-		$section = new ProfileSection( __METHOD__ . '-' . $this->name );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 
 		$prefix = ( $dir == '' ) ? null : "{$dir}/";
 		// Non-recursive: only list dirs right under $dir
@@ -878,7 +878,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $files; // nothing more
 		}
 
-		$section = new ProfileSection( __METHOD__ . '-' . $this->name );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 
 		$prefix = ( $dir == '' ) ? null : "{$dir}/";
 		// $objects will contain a list of unfiltered names or CF_Object items
@@ -1272,7 +1272,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return array|bool|null False on 404, null on failure
 	 */
 	protected function getContainerStat( $container, $bypassCache = false ) {
-		$section = new ProfileSection( __METHOD__ . '-' . $this->name );
+		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 
 		if ( $bypassCache ) { // purge cache
 			$this->containerStatCache->clear( $container );
