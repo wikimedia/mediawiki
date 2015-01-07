@@ -75,6 +75,7 @@ production.
   on Special:Version in their own section. Extensions or skins that are
   installed via composer will not be shown in this section as it is assumed
   they will add the proper credits to the skins or extensions section.
+* Update QUnit from v1.14.0 to v1.16.0.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past

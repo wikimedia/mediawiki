@@ -36,7 +36,8 @@
 	QUnit.config.urlConfig.push( {
 		id: 'debug',
 		label: 'Enable ResourceLoaderDebug',
-		tooltip: 'Enable debug mode in ResourceLoader'
+		tooltip: 'Enable debug mode in ResourceLoader',
+		value: 'true'
 	} );
 
 	/**
