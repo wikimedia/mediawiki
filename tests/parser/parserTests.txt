@@ -1191,26 +1191,47 @@ Ruby markup (W3C-style)
 </p>
 !! end
 
-# There is a tidy bug here: http://sourceforge.net/p/tidy/bugs/946/
+# The next two test different paths in the sanitizer.
 !! test
 Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 !! wikitext
-<b→> doesn't work! </b→>
+<b→> doesn't terminate </b→>
 
-<bä> doesn't work! </bä>
+<bä> doesn't terminate </bä>
 
-<boo> works fine </boo>
+<boo> doesn't terminate </boo>
 
 <s.foo>s.foo</s.foo>
 
 <sub-ID#1>
 !! html
-<p>&lt;b→&gt; doesn't work! &lt;/b→&gt;
-</p><p>&lt;bä&gt; doesn't work! &lt;/bä&gt;
-</p><p>&lt;boo&gt; works fine &lt;/boo&gt;
+<p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;
+</p><p>&lt;bä&gt; doesn't terminate &lt;/bä&gt;
+</p><p>&lt;boo&gt; doesn't terminate &lt;/boo&gt;
 </p><p>&lt;s.foo&gt;s.foo&lt;/s.foo&gt;
 </p><p>&lt;sub-ID#1&gt;
 </p>
+!! end
+
+# There is a tidy bug here: http://sourceforge.net/p/tidy/bugs/946/
+!! test
+Non-word characters don't terminate tag names + tidy
+!! wikitext
+<b→> doesn't terminate </b→>
+
+<bä> doesn't terminate </bä>
+
+<boo> doesn't terminate </boo>
+
+<s.foo>s.foo</s.foo>
+
+<sub-ID#1>
+!! html+tidy
+<p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;</p>
+<p>&lt;bä&gt; doesn't terminate &lt;/bä&gt;</p>
+<p>&lt;boo&gt; doesn't terminate &lt;/boo&gt;</p>
+<p>&lt;s.foo&gt;s.foo&lt;/s.foo&gt;</p>
+<p>&lt;sub-ID#1&gt;</p>
 !! end
 
 !! test
