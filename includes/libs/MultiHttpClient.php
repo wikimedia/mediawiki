@@ -34,6 +34,7 @@
  *                array bodies are encoded as multipart/form-data and strings
  *                use application/x-www-form-urlencoded (headers sent automatically)
  *   - stream   : resource to stream the HTTP response body to
+ *   - proxy    : HTTP proxy to use
  * Request maps can use integer index 0 instead of 'method' and 1 instead of 'url'.
  *
  * @author Aaron Schulz
@@ -52,11 +53,14 @@ class MultiHttpClient {
 	protected $usePipelining = false;
 	/** @var integer */
 	protected $maxConnsPerHost = 50;
+	/** @var string|null proxy */
+	protected $proxy;
 
 	/**
 	 * @param array $options
 	 *   - connTimeout     : default connection timeout
 	 *   - reqTimeout      : default request timeout
+	 *   - proxy           : HTTP proxy to use
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 * @throws Exception
@@ -68,7 +72,7 @@ class MultiHttpClient {
 				throw new Exception( "Cannot find CA bundle: " . $this->caBundlePath );
 			}
 		}
-		static $opts = array( 'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost' );
+		static $opts = array( 'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy' );
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
 				$this->$key = $options[$key];
@@ -253,6 +257,7 @@ class MultiHttpClient {
 
 		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT,
 			isset( $opts['connTimeout'] ) ? $opts['connTimeout'] : $this->connTimeout );
+		curl_setopt( $ch, CURLOPT_PROXY, isset( $req['proxy'] ) ? $req['proxy'] : $this->proxy );
 		curl_setopt( $ch, CURLOPT_TIMEOUT,
 			isset( $opts['reqTimeout'] ) ? $opts['reqTimeout'] : $this->reqTimeout );
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
