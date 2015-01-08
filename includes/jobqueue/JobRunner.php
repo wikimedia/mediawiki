@@ -129,7 +129,6 @@ class JobRunner {
 				$this->runJobsLog( $job->toString() . " STARTING" );
 
 				// Run the job...
-				wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
 				$jobStartTime = microtime( true );
 				try {
 					++$jobsRun;
@@ -143,7 +142,6 @@ class JobRunner {
 					MWExceptionHandler::logException( $e );
 				}
 				$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
-				wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
 				$timeMsTotal += $timeMs;
 
 				// Mark the job as done on success or when the job cannot be retried

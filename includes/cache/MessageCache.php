@@ -275,7 +275,6 @@ class MessageCache {
 		# Hash of the contents is stored in memcache, to detect if local cache goes
 		# out of date (e.g. due to replace() on some other server)
 		if ( $wgUseLocalMessageCache ) {
-			wfProfileIn( __METHOD__ . '-fromlocal' );
 
 			$hash = $this->mMemc->get( wfMemcKey( 'messages', $code, 'hash' ) );
 			if ( $hash ) {
@@ -291,7 +290,6 @@ class MessageCache {
 					$this->mCache[$code] = $cache;
 				}
 			}
-			wfProfileOut( __METHOD__ . '-fromlocal' );
 		}
 
 		if ( !$success ) {
@@ -299,7 +297,6 @@ class MessageCache {
 			# the lock can't be acquired, wait for the other thread to finish
 			# and then try the global cache a second time.
 			for ( $failedAttempts = 0; $failedAttempts < 2; $failedAttempts++ ) {
-				wfProfileIn( __METHOD__ . '-fromcache' );
 				$cache = $this->mMemc->get( $cacheKey );
 				if ( !$cache ) {
 					$where[] = 'global cache is empty';
@@ -313,7 +310,6 @@ class MessageCache {
 					$success = true;
 				}
 
-				wfProfileOut( __METHOD__ . '-fromcache' );
 
 				if ( $success ) {
 					# Done, no need to retry

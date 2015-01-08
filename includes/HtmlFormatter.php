@@ -261,7 +261,6 @@ class HtmlFormatter {
 	public function getText( $element = null ) {
 
 		if ( $this->doc ) {
-			wfProfileIn( __METHOD__ . '-dom' );
 			if ( $element !== null && !( $element instanceof DOMElement ) ) {
 				$element = $this->doc->getElementById( $element );
 			}
@@ -277,9 +276,7 @@ class HtmlFormatter {
 				$body->appendChild( $element );
 			}
 			$html = $this->doc->saveHTML();
-			wfProfileOut( __METHOD__ . '-dom' );
 
-			wfProfileIn( __METHOD__ . '-fixes' );
 			$html = $this->fixLibXml( $html );
 			if ( wfIsWindows() ) {
 				// Cleanup for CRLF misprocessing of unknown origin on Windows.
@@ -288,7 +285,6 @@ class HtmlFormatter {
 				// XML code paths if possible and fix there.
 				$html = str_replace( '&#13;', '', $html );
 			}
-			wfProfileOut( __METHOD__ . '-fixes' );
 		} else {
 			$html = $this->html;
 		}
@@ -296,12 +292,10 @@ class HtmlFormatter {
 		$html = preg_replace( '/<!--.*?-->|^.*?<body>|<\/body>.*$/s', '', $html );
 		$html = $this->onHtmlReady( $html );
 
-		wfProfileIn( __METHOD__ . '-flatten' );
 		if ( $this->elementsToFlatten ) {
 			$elements = implode( '|', $this->elementsToFlatten );
 			$html = preg_replace( "#</?($elements)\\b[^>]*>#is", '', $html );
 		}
-		wfProfileOut( __METHOD__ . '-flatten' );
 
 		return $html;
 	}

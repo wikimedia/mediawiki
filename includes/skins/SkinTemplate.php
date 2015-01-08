@@ -180,11 +180,8 @@ class SkinTemplate extends Skin {
 		$user = $this->getUser();
 		$title = $this->getTitle();
 
-		wfProfileIn( __METHOD__ . '-init' );
 		$tpl = $this->setupTemplate( $this->template, 'skins' );
-		wfProfileOut( __METHOD__ . '-init' );
 
-		wfProfileIn( __METHOD__ . '-stuff' );
 		$this->thispage = $title->getPrefixedDBkey();
 		$this->titletxt = $title->getPrefixedText();
 		$this->userpage = $user->getUserPage()->getPrefixedText();
@@ -207,7 +204,6 @@ class SkinTemplate extends Skin {
 			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
 		}
 
-		wfProfileOut( __METHOD__ . '-stuff' );
 
 
 		return $tpl;
@@ -231,14 +227,10 @@ class SkinTemplate extends Skin {
 
 		$out = $this->getOutput();
 
-		wfProfileIn( __METHOD__ . '-init' );
 		$this->initPage( $out );
-		wfProfileOut( __METHOD__ . '-init' );
 		$tpl = $this->prepareQuickTemplate( $out );
 		// execute template
-		wfProfileIn( __METHOD__ . '-execute' );
 		$res = $tpl->execute();
-		wfProfileOut( __METHOD__ . '-execute' );
 
 		// result may be an error
 		$this->printOrError( $res );
@@ -267,7 +259,6 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 		$tpl = $this->setupTemplateForOutput();
 
-		wfProfileIn( __METHOD__ . '-stuff2' );
 		$tpl->set( 'title', $out->getPageTitle() );
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
@@ -362,9 +353,7 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'userlangattributes', $attrs );
 		}
 
-		wfProfileOut( __METHOD__ . '-stuff2' );
 
-		wfProfileIn( __METHOD__ . '-stuff3' );
 		$tpl->set( 'newtalk', $this->getNewtalks() );
 		$tpl->set( 'logo', $this->logoText() );
 
@@ -385,9 +374,7 @@ class SkinTemplate extends Skin {
 			}
 			$tpl->set( 'copyright', $this->getCopyright() );
 		}
-		wfProfileOut( __METHOD__ . '-stuff3' );
 
-		wfProfileIn( __METHOD__ . '-stuff4' );
 		$tpl->set( 'copyrightico', $this->getCopyrightIcon() );
 		$tpl->set( 'poweredbyico', $this->getPoweredBy() );
 		$tpl->set( 'disclaimer', $this->disclaimerLink() );
@@ -458,9 +445,7 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set( 'language_urls', false );
 		}
-		wfProfileOut( __METHOD__ . '-stuff4' );
 
-		wfProfileIn( __METHOD__ . '-stuff5' );
 		# Personal toolbar
 		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
 		$content_navigation = $this->buildContentNavigationUrls();
@@ -500,7 +485,6 @@ class SkinTemplate extends Skin {
 		// allow extensions adding stuff after the page content.
 		// See Skin::afterContentHook() for further documentation.
 		$tpl->set( 'dataAfterContent', $this->afterContentHook() );
-		wfProfileOut( __METHOD__ . '-stuff5' );
 
 		return $tpl;
 	}
@@ -900,7 +884,6 @@ class SkinTemplate extends Skin {
 					);
 				}
 
-				wfProfileIn( __METHOD__ . '-edit' );
 
 				// Checks if user can edit the current page if it exists or create it otherwise
 				if ( $title->quickUserCan( 'edit', $user )
@@ -958,9 +941,7 @@ class SkinTemplate extends Skin {
 						'primary' => true, // don't collapse this in vector
 					);
 				}
-				wfProfileOut( __METHOD__ . '-edit' );
 
-				wfProfileIn( __METHOD__ . '-live' );
 				// Checks if the page exists
 				if ( $title->exists() ) {
 					// Adds history view link
@@ -1021,7 +1002,6 @@ class SkinTemplate extends Skin {
 					);
 				}
 
-				wfProfileOut( __METHOD__ . '-live' );
 
 				// Checks if the user is logged in
 				if ( $this->loggedin && $user->isAllowedAll( 'viewmywatchlist', 'editmywatchlist' ) ) {

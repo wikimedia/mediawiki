@@ -536,7 +536,6 @@ class MediaWiki {
 		}
 
 		if ( $this->config->get( 'UseFileCache' ) && $title->getNamespace() >= 0 ) {
-			wfProfileIn( 'main-try-filecache' );
 			if ( HTMLFileCache::useFileCache( $this->context ) ) {
 				// Try low-level file cache hit
 				$cache = new HTMLFileCache( $title, $action );
@@ -551,11 +550,9 @@ class MediaWiki {
 					$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
 					// Tell OutputPage that output is taken care of
 					$this->context->getOutput()->disable();
-					wfProfileOut( 'main-try-filecache' );
 					return;
 				}
 			}
-			wfProfileOut( 'main-try-filecache' );
 		}
 
 		// Actually do the work of the request and build up any output

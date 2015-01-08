@@ -272,10 +272,8 @@ class SvgHandler extends ImageHandler {
 					$env['LANG'] = $lang;
 				}
 
-				wfProfileIn( 'rsvg' );
 				wfDebug( __METHOD__ . ": $cmd\n" );
 				$err = wfShellExecWithStderr( $cmd, $retval, $env );
-				wfProfileOut( 'rsvg' );
 			}
 		}
 		$removed = $this->removeBadFile( $dstPath, $retval );

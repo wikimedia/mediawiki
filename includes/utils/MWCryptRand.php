@@ -313,7 +313,6 @@ class MWCryptRand {
 			// entropy so this is also preferable to just trying to read urandom because it may work
 			// on Windows systems as well.
 			if ( function_exists( 'mcrypt_create_iv' ) ) {
-				wfProfileIn( __METHOD__ . '-mcrypt' );
 				$rem = $bytes - strlen( $buffer );
 				$iv = mcrypt_create_iv( $rem, MCRYPT_DEV_URANDOM );
 				if ( $iv === false ) {
@@ -323,7 +322,6 @@ class MWCryptRand {
 					wfDebug( __METHOD__ . ": mcrypt_create_iv generated " . strlen( $iv ) .
 						" bytes of randomness.\n" );
 				}
-				wfProfileOut( __METHOD__ . '-mcrypt' );
 			}
 		}
 
@@ -336,7 +334,6 @@ class MWCryptRand {
 			if ( function_exists( 'openssl_random_pseudo_bytes' )
 				&& ( !wfIsWindows() || version_compare( PHP_VERSION, '5.3.4', '>=' ) )
 			) {
-				wfProfileIn( __METHOD__ . '-openssl' );
 				$rem = $bytes - strlen( $buffer );
 				$openssl_bytes = openssl_random_pseudo_bytes( $rem, $openssl_strong );
 				if ( $openssl_bytes === false ) {
@@ -352,7 +349,6 @@ class MWCryptRand {
 					// using it use it's say on whether the randomness is strong
 					$this->strong = !!$openssl_strong;
 				}
-				wfProfileOut( __METHOD__ . '-openssl' );
 			}
 		}
 
@@ -360,7 +356,6 @@ class MWCryptRand {
 		if ( strlen( $buffer ) < $bytes &&
 			( function_exists( 'stream_set_read_buffer' ) || $forceStrong )
 		) {
-			wfProfileIn( __METHOD__ . '-fopen-urandom' );
 			$rem = $bytes - strlen( $buffer );
 			if ( !function_exists( 'stream_set_read_buffer' ) && $forceStrong ) {
 				wfDebug( __METHOD__ . ": Was forced to read from /dev/urandom " .
@@ -399,7 +394,6 @@ class MWCryptRand {
 			} else {
 				wfDebug( __METHOD__ . ": /dev/urandom could not be opened.\n" );
 			}
-			wfProfileOut( __METHOD__ . '-fopen-urandom' );
 		}
 
 		// If we cannot use or generate enough data from a secure source
@@ -413,12 +407,10 @@ class MWCryptRand {
 				": Falling back to using a pseudo random state to generate randomness.\n" );
 		}
 		while ( strlen( $buffer ) < $bytes ) {
-			wfProfileIn( __METHOD__ . '-fallback' );
 			$buffer .= $this->hmac( $this->randomState(), mt_rand() );
 			// This code is never really cryptographically strong, if we use it
 			// at all, then set strong to false.
 			$this->strong = false;
-			wfProfileOut( __METHOD__ . '-fallback' );
 		}
 
 		// Once the buffer has been filled up with enough random data to fulfill

@@ -31,7 +31,6 @@ if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3
 
 require __DIR__ . '/includes/WebStart.php';
 
-wfProfileIn( 'load.php' );
 
 // URL safety checks
 if ( !$wgRequest->checkUrlExtension() ) {
@@ -44,7 +43,6 @@ $configFactory = ConfigFactory::getDefaultInstance();
 $resourceLoader = new ResourceLoader( $configFactory->makeConfig( 'main' ) );
 $resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
 
-wfProfileOut( 'load.php' );
 wfLogProfilingData();
 
 // Shut down the database.

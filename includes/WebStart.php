@@ -74,7 +74,6 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 	require "$IP/StartProfiler.php";
 }
 
-wfProfileIn( 'WebStart.php-conf' );
 
 # Load default settings
 require_once "$IP/includes/DefaultSettings.php";
@@ -107,9 +106,7 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	require_once MW_CONFIG_FILE;
 }
 
-wfProfileOut( 'WebStart.php-conf' );
 
-wfProfileIn( 'WebStart.php-ob_start' );
 # Initialise output buffering
 # Check that there is no previous output or previously set up buffers, because
 # that would cause us to potentially mix gzip and non-gzip output, creating a
@@ -118,7 +115,6 @@ if ( ob_get_level() == 0 ) {
 	require_once "$IP/includes/OutputHandler.php";
 	ob_start( 'wfOutputHandler' );
 }
-wfProfileOut( 'WebStart.php-ob_start' );
 
 if ( !defined( 'MW_NO_SETUP' ) ) {
 	require_once "$IP/includes/Setup.php";

@@ -289,7 +289,6 @@ class LinkHolderArray {
 		$linkCache = LinkCache::singleton();
 		$output = $this->parent->getOutput();
 
-		wfProfileIn( __METHOD__ . '-check' );
 		$dbr = wfGetDB( DB_SLAVE );
 		$threshold = $this->parent->getOptions()->getStubThreshold();
 
@@ -375,7 +374,6 @@ class LinkHolderArray {
 			//pass an array of page_ids to an extension
 			Hooks::run( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
 		}
-		wfProfileOut( __METHOD__ . '-check' );
 
 		# Do a second query for different language variants of links and categories
 		if ( $wgContLang->hasVariants() ) {
@@ -383,7 +381,6 @@ class LinkHolderArray {
 		}
 
 		# Construct search and replace arrays
-		wfProfileIn( __METHOD__ . '-construct' );
 		$replacePairs = array();
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $index => $entry ) {
@@ -419,17 +416,14 @@ class LinkHolderArray {
 			}
 		}
 		$replacer = new HashtableReplacer( $replacePairs, 1 );
-		wfProfileOut( __METHOD__ . '-construct' );
 
 		# Do the thing
-		wfProfileIn( __METHOD__ . '-replace' );
 		$text = preg_replace_callback(
 			'/(<!--LINK .*?-->)/',
 			$replacer->cb(),
 			$text
 		);
 
-		wfProfileOut( __METHOD__ . '-replace' );
 	}
 
 	/**

@@ -1124,7 +1124,6 @@ class LocalFile extends File {
 		}
 
 		if ( !$props ) {
-			wfProfileIn( __METHOD__ . '-getProps' );
 			if ( $this->repo->isVirtualUrl( $srcPath )
 				|| FileBackend::isStoragePath( $srcPath )
 			) {
@@ -1132,7 +1131,6 @@ class LocalFile extends File {
 			} else {
 				$props = FSFile::getPropsFromPath( $srcPath );
 			}
-			wfProfileOut( __METHOD__ . '-getProps' );
 		}
 
 		$options = array();
@@ -1224,9 +1222,7 @@ class LocalFile extends File {
 		$dbw->begin( __METHOD__ );
 
 		if ( !$props ) {
-			wfProfileIn( __METHOD__ . '-getProps' );
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
-			wfProfileOut( __METHOD__ . '-getProps' );
 		}
 
 		# Imports or such might force a certain timestamp; otherwise we generate
@@ -1382,7 +1378,6 @@ class LocalFile extends File {
 			// Page exists, do RC entry now (otherwise we wait for later).
 			$logEntry->publish( $logId );
 		}
-		wfProfileIn( __METHOD__ . '-edit' );
 
 		if ( $exists ) {
 			# Create a null revision
@@ -1449,22 +1444,17 @@ class LocalFile extends File {
 			$dbw->commit( __METHOD__ ); // commit before anything bad can happen
 		}
 
-		wfProfileOut( __METHOD__ . '-edit' );
 
 		if ( $reupload ) {
 			# Delete old thumbnails
-			wfProfileIn( __METHOD__ . '-purge' );
 			$this->purgeThumbnails();
-			wfProfileOut( __METHOD__ . '-purge' );
 
 			# Remove the old file from the squid cache
 			SquidUpdate::purge( array( $this->getURL() ) );
 		}
 
 		# Hooks, hooks, the magic of hooks...
-		wfProfileIn( __METHOD__ . '-hooks' );
 		Hooks::run( 'FileUpload', array( $this, $reupload, $descTitle->exists() ) );
-		wfProfileOut( __METHOD__ . '-hooks' );
 
 		# Invalidate cache for all pages using this file
 		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );

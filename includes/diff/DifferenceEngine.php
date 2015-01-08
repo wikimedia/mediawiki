@@ -842,10 +842,8 @@ class DifferenceEngine extends ContextSource {
 		if ( $wgExternalDiffEngine == 'wikidiff2' && function_exists( 'wikidiff2_do_diff' ) ) {
 			# Better external diff engine, the 2 may some day be dropped
 			# This one does the escaping and segmenting itself
-			wfProfileIn( 'wikidiff2_do_diff' );
 			$text = wikidiff2_do_diff( $otext, $ntext, 2 );
 			$text .= $this->debug( 'wikidiff2' );
-			wfProfileOut( 'wikidiff2_do_diff' );
 
 			return $text;
 		}
@@ -870,10 +868,8 @@ class DifferenceEngine extends ContextSource {
 			fclose( $tempFile1 );
 			fclose( $tempFile2 );
 			$cmd = wfEscapeShellArg( $wgExternalDiffEngine, $tempName1, $tempName2 );
-			wfProfileIn( __METHOD__ . "-shellexec" );
 			$difftext = wfShellExec( $cmd );
 			$difftext .= $this->debug( "external $wgExternalDiffEngine" );
-			wfProfileOut( __METHOD__ . "-shellexec" );
 			unlink( $tempName1 );
 			unlink( $tempName2 );
 

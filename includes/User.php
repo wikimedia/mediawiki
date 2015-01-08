@@ -1706,7 +1706,6 @@ class User implements IDBAccessObject {
 		}
 
 		global $wgMemc;
-		wfProfileIn( __METHOD__ . '-' . $action );
 
 		$limits = $wgRateLimits[$action];
 		$keys = array();
@@ -1787,7 +1786,6 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-' . $action );
 		return $triggered;
 	}
 

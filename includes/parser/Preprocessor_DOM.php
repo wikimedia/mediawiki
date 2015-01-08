@@ -86,7 +86,6 @@ class Preprocessor_DOM implements Preprocessor {
 
 		$xml .= "</list>";
 
-		wfProfileIn( __METHOD__ . '-loadXML' );
 		$dom = new DOMDocument();
 		wfSuppressWarnings();
 		$result = $dom->loadXML( $xml );
@@ -98,7 +97,6 @@ class Preprocessor_DOM implements Preprocessor {
 			// don't barf when the XML is >256 levels deep
 			$result = $dom->loadXML( $xml, 1 << 19 );
 		}
-		wfProfileOut( __METHOD__ . '-loadXML' );
 
 		if ( !$result ) {
 			throw new MWException( 'Parameters passed to ' . __METHOD__ . ' result in invalid XML' );
@@ -156,7 +154,6 @@ class Preprocessor_DOM implements Preprocessor {
 		$cacheable = ( $wgPreprocessorCacheThreshold !== false
 			&& strlen( $text ) > $wgPreprocessorCacheThreshold );
 		if ( $cacheable ) {
-			wfProfileIn( __METHOD__ . '-cacheable' );
 
 			$cacheKey = wfMemcKey( 'preprocess-xml', md5( $text ), $flags );
 			$cacheValue = $wgMemc->get( $cacheKey );
@@ -169,11 +166,9 @@ class Preprocessor_DOM implements Preprocessor {
 				}
 			}
 			if ( $xml === false ) {
-				wfProfileIn( __METHOD__ . '-cache-miss' );
 				$xml = $this->preprocessToXml( $text, $flags );
 				$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . $xml;
 				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
-				wfProfileOut( __METHOD__ . '-cache-miss' );
 				wfDebugLog( "Preprocessor", "Saved preprocessor XML to memcached (key $cacheKey)" );
 			}
 		} else {
@@ -186,12 +181,10 @@ class Preprocessor_DOM implements Preprocessor {
 		$max = $this->parser->mOptions->getMaxGeneratedPPNodeCount();
 		if ( $this->parser->mGeneratedPPNodeCount > $max ) {
 			if ( $cacheable ) {
-				wfProfileOut( __METHOD__ . '-cacheable' );
 			}
 			throw new MWException( __METHOD__ . ': generated node count limit exceeded' );
 		}
 
-		wfProfileIn( __METHOD__ . '-loadXML' );
 		$dom = new DOMDocument;
 		wfSuppressWarnings();
 		$result = $dom->loadXML( $xml );
@@ -206,10 +199,8 @@ class Preprocessor_DOM implements Preprocessor {
 		if ( $result ) {
 			$obj = new PPNode_DOM( $dom->documentElement );
 		}
-		wfProfileOut( __METHOD__ . '-loadXML' );
 
 		if ( $cacheable ) {
-			wfProfileOut( __METHOD__ . '-cacheable' );
 		}
 
 
