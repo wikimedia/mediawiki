@@ -1,8 +1,7 @@
 <?php
 
 /**
- * To use a profiler, copy this file to StartProfiler.php,
- * and add either:
+ * To use a profiler, copy this file to StartProfiler.php and add:
  *  $wgProfiler['class'] = 'ProfilerXhprof';
  *
  * For output, add:
