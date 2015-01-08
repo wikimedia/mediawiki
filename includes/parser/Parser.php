@@ -2271,13 +2271,9 @@ class Parser {
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
 						$s .= $prefix . $this->armorLinks(
 							$this->makeImage( $nt, $text, $holders ) ) . $trail;
-					} else {
-						$s .= $prefix . $trail;
+						continue;
 					}
-					continue;
-				}
-
-				if ( $ns == NS_CATEGORY ) {
+				} elseif ( $ns == NS_CATEGORY ) {
 					$s = rtrim( $s . "\n" ); # bug 87
 
 					if ( $wasblank ) {
