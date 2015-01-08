@@ -24,7 +24,6 @@
 		"oojs/oojs-ui": "0.6.1"
 	},
 	"require-dev": {
-		"justinrainbow/json-schema": "~1.3",
 		"phpunit/phpunit": "*"
 	},
 	"suggest": {

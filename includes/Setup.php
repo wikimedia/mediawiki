@@ -34,10 +34,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 $fname = 'Setup.php';
 wfProfileIn( $fname );
-
-// If any extensions are still queued, force load them
-ExtensionRegistry::getInstance()->loadFromQueue();
-
 wfProfileIn( $fname . '-defaults' );
 
 // Check to see if we are at the file scope
@@ -483,6 +479,7 @@ wfProfileOut( $fname . '-exception' );
 
 wfProfileIn( $fname . '-includes' );
 require_once "$IP/includes/normal/UtfNormalUtil.php";
+require_once "$IP/includes/GlobalFunctions.php";
 require_once "$IP/includes/normal/UtfNormalDefines.php";
 wfProfileOut( $fname . '-includes' );
 

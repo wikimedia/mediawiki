@@ -68,7 +68,6 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 // Some other requires
 require_once "$IP/includes/Defines.php";
 require_once "$IP/includes/DefaultSettings.php";
-require_once "$IP/includes/GlobalFunctions.php";
 
 # Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {
