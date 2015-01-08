@@ -2181,6 +2181,10 @@ abstract class ApiBase extends ContextSource {
 	 * Profiling: total module execution time
 	 */
 	private $mTimeIn = 0, $mModuleTime = 0;
+	/** @var ScopedCallback */
+	private $profile;
+	/** @var ScopedCallback */
+	private $dbProfile;
 
 	/**
 	 * Get the name of the module as shown in the profiler log
@@ -2205,7 +2209,7 @@ abstract class ApiBase extends ContextSource {
 			ApiBase::dieDebug( __METHOD__, 'Called twice without calling profileOut()' );
 		}
 		$this->mTimeIn = microtime( true );
-		wfProfileIn( $this->getModuleProfileName() );
+		$this->profile = Profiler::instance()->scopedProfileIn( $this->getModuleProfileName() );
 	}
 
 	/**
@@ -2224,7 +2228,7 @@ abstract class ApiBase extends ContextSource {
 
 		$this->mModuleTime += microtime( true ) - $this->mTimeIn;
 		$this->mTimeIn = 0;
-		wfProfileOut( $this->getModuleProfileName() );
+		Profiler::instance()->scopedProfileOut( $this->profile );
 	}
 
 	/**
@@ -2271,7 +2275,8 @@ abstract class ApiBase extends ContextSource {
 			ApiBase::dieDebug( __METHOD__, 'Called twice without calling profileDBOut()' );
 		}
 		$this->mDBTimeIn = microtime( true );
-		wfProfileIn( $this->getModuleProfileName( true ) );
+
+		$this->dbProfile = Profiler::instance()->scopedProfileIn( $this->getModuleProfileName( true ) );
 	}
 
 	/**
@@ -2291,7 +2296,7 @@ abstract class ApiBase extends ContextSource {
 
 		$this->mDBTime += $time;
 		$this->getMain()->mDBTime += $time;
-		wfProfileOut( $this->getModuleProfileName( true ) );
+		Profiler::instance()->scopedProfileOut( $this->dbProfile );
 	}
 
 	/**
