@@ -77,28 +77,6 @@ class ProfilerXhprof extends Profiler {
 		$this->sprofiler = new SectionProfiler();
 	}
 
-	/**
-	 * No-op for xhprof profiling.
-	 *
-	 * Use the 'include' configuration key instead if you need to constrain
-	 * the functions that are profiled.
-	 *
-	 * @param string $functionname
-	 */
-	public function profileIn( $functionname ) {
-	}
-
-	/**
-	 * No-op for xhprof profiling.
-	 *
-	 * Use the 'include' configuration key instead if you need to constrain
-	 * the functions that are profiled.
-	 *
-	 * @param string $functionname
-	 */
-	public function profileOut( $functionname ) {
-	}
-
 	public function scopedProfileIn( $section ) {
 		return $this->sprofiler->scopedProfileIn( $section );
 	}

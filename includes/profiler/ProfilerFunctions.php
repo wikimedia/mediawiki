@@ -42,27 +42,15 @@ function wfGetRusage() {
 /**
  * Begin profiling of a function
  * @param string $functionname Name of the function we will profile
+ * @deprecated 1.25
  */
 function wfProfileIn( $functionname ) {
-	// Use Profiler member variable directly to reduce overhead
-	if ( Profiler::$__instance === null ) {
-		Profiler::instance();
-	}
-	if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
-		Profiler::$__instance->profileIn( $functionname );
-	}
 }
 
 /**
  * Stop profiling of a function
  * @param string $functionname Name of the function we have profiled
+ * @deprecated 1.25
  */
 function wfProfileOut( $functionname = 'missing' ) {
-	// Use Profiler member variable directly to reduce overhead
-	if ( Profiler::$__instance === null ) {
-		Profiler::instance();
-	}
-	if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
-		Profiler::$__instance->profileOut( $functionname );
-	}
 }

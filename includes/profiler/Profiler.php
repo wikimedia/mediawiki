@@ -119,20 +119,6 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Called by wfProfieIn()
-	 *
-	 * @param string $functionname
-	 */
-	abstract public function profileIn( $functionname );
-
-	/**
-	 * Called by wfProfieOut()
-	 *
-	 * @param string $functionname
-	 */
-	abstract public function profileOut( $functionname );
-
-	/**
 	 * Mark the start of a custom profiling frame (e.g. DB queries).
 	 * The frame ends when the result of this method falls out of scope.
 	 *
