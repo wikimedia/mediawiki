@@ -2208,6 +2208,7 @@
 	"javascripttest": "Testare JavaScript",
 	"javascripttest-pagetext-noframework": "Această pagină este rezervată rulării testelor JavaScript.",
 	"javascripttest-pagetext-unknownframework": "Cadru de testare „$1” necunoscut.",
+	"javascripttest-pagetext-unknownaction": "Acțiunea „$1” necunoscută.",
 	"javascripttest-pagetext-frameworks": "Alegeți unul din următoarele cadre de testare: $1",
 	"javascripttest-pagetext-skins": "Alegeți un aspect pentru care să rulați teste:",
 	"javascripttest-qunit-intro": "A se vedea [$1 documentația de testare] pe mediawiki.org.",
