@@ -103,7 +103,7 @@ $forms_whitelist['ew-alipay'] = array(
 	'file' => $form_dirs['gc'] . '/ew/ew-alipay.html',
 	'gateway' => 'globalcollect',
 	'payment_methods' => array('ew' => 'ew_alipay'),
-	'countries' => array( '+' => array( 'CN', ), ),
+	'countries' => array( '+' => array( 'CN', 'HK', ), ),
 	'currencies' => array( '+' => array( 'CNY', ), ),
 );
 
