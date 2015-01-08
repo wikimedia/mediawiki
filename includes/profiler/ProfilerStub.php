@@ -27,12 +27,6 @@
  * @ingroup Profiler
  */
 class ProfilerStub extends Profiler {
-	public function profileIn( $fn ) {
-	}
-
-	public function profileOut( $fn ) {
-	}
-
 	public function scopedProfileIn( $section ) {
 		return new ScopedCallback( null ); // no-op
 	}

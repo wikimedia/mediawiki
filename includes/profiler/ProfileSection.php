@@ -25,13 +25,9 @@
  * Class for handling function-scope profiling
  *
  * @since 1.22
+ * @deprecated 1.25 No-op now
  */
 class ProfileSection {
-	/** @var string $name Method name */
-	protected $name;
-	/** @var boolean $enabled Is profiling enabled? */
-	protected $enabled = false;
-
 	/**
 	 * Begin profiling of a function and return an object that ends profiling
 	 * of the function when that object leaves scope. As long as the object is
@@ -43,21 +39,5 @@ class ProfileSection {
 	 *
 	 * @param string $name Name of the function to profile
 	 */
-	public function __construct( $name ) {
-		$this->name = $name;
-		// Use Profiler member variable directly to reduce overhead
-		if ( Profiler::$__instance === null ) {
-			Profiler::instance();
-		}
-		if ( !( Profiler::$__instance instanceof ProfilerStub ) ) {
-			$this->enabled = true;
-			Profiler::$__instance->profileIn( $this->name );
-		}
-	}
-
-	function __destruct() {
-		if ( $this->enabled ) {
-			Profiler::$__instance->profileOut( $this->name );
-		}
-	}
+	public function __construct( $name ) {}
 }
