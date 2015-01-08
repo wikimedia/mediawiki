@@ -1145,7 +1145,6 @@ class WikiPage implements Page, IDBAccessObject {
 		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache );
 		$pool->execute();
 
-
 		return $pool->getParserOutput();
 	}
 
@@ -1263,7 +1262,6 @@ class WikiPage implements Page, IDBAccessObject {
 		$lastRevIsRedirect = null
 	) {
 		global $wgContentHandlerUseDB;
-
 
 		$content = $revision->getContent();
 		$len = $content ? $content->getSize() : 0;
@@ -1702,7 +1700,6 @@ class WikiPage implements Page, IDBAccessObject {
 			throw new MWException( 'Something is trying to edit an article with an empty title' );
 		}
 
-
 		if ( !$content->getContentHandler()->canBeUsedOn( $this->getTitle() ) ) {
 			return Status::newFatal( 'content-not-allowed-here',
 				ContentHandler::getLocalizedName( $content->getModel() ),
@@ -2131,7 +2128,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
 		global $wgEnableParserCache;
-
 
 		$options += array(
 			'changed' => true,

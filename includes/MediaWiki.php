@@ -157,7 +157,6 @@ class MediaWiki {
 	private function performRequest() {
 		global $wgTitle;
 
-
 		$request = $this->context->getRequest();
 		$requestTitle = $title = $this->context->getTitle();
 		$output = $this->context->getOutput();
@@ -457,7 +456,6 @@ class MediaWiki {
 					echo "Waiting for a database server: $lag seconds lagged\n";
 				}
 
-
 				exit;
 			}
 		}
@@ -466,7 +464,6 @@ class MediaWiki {
 
 	private function main() {
 		global $wgTitle;
-
 
 		$request = $this->context->getRequest();
 
@@ -600,7 +597,6 @@ class MediaWiki {
 		} elseif ( $this->getTitle()->isSpecial( 'RunJobs' ) ) {
 			return; // recursion guard
 		}
-
 
 		if ( $jobRunRate < 1 ) {
 			$max = mt_getrandmax();

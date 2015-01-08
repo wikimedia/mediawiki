@@ -104,7 +104,6 @@ class WikitextContent extends TextContent {
 
 		$newContent = new static( $text );
 
-
 		return $newContent;
 	}
 

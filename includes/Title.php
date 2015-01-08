@@ -2717,7 +2717,6 @@ class Title {
 			return array( $this->mHasCascadingRestrictions, $pagerestrictions );
 		}
 
-
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if ( $this->getNamespace() == NS_FILE ) {

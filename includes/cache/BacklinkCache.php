@@ -230,7 +230,6 @@ class BacklinkCache {
 			}
 		}
 
-
 		return $res;
 	}
 

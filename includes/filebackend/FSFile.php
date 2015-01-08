@@ -145,7 +145,6 @@ class FSFile {
 			wfDebug( __METHOD__ . ": $this->path NOT FOUND!\n" );
 		}
 
-
 		return $info;
 	}
 
@@ -212,7 +211,6 @@ class FSFile {
 		if ( $this->sha1Base36 !== false ) {
 			$this->sha1Base36 = wfBaseConvert( $this->sha1Base36, 16, 36, 31 );
 		}
-
 
 		return $this->sha1Base36;
 	}

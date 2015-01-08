@@ -3792,7 +3792,6 @@ class User implements IDBAccessObject {
 	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
 
-
 		$this->loadPasswords();
 
 		// Certain authentication plugins do NOT want to save

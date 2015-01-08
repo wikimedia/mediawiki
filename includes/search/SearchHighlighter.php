@@ -131,7 +131,6 @@ class SearchHighlighter {
 
 		$all = $textExt + $otherExt; // these have disjunct key sets
 
-
 		// prepare regexps
 		foreach ( $terms as $index => $term ) {
 			// manually do upper/lowercase stuff for utf-8 since PHP won't do it
@@ -160,7 +159,6 @@ class SearchHighlighter {
 
 		$pat1 = "/(" . $phrase . ")/ui";
 		$pat2 = "/$patPre(" . $anyterm . ")$patPost/ui";
-
 
 		$left = $contextlines;
 
@@ -283,7 +281,6 @@ class SearchHighlighter {
 				$processed[$term] = true;
 			}
 		}
-
 
 		return $extract;
 	}

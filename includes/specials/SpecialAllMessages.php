@@ -233,7 +233,6 @@ class AllMessagesTablePager extends TablePager {
 		// Normalise message names so they look like page titles
 		$messageNames = array_map( array( $this->lang, 'ucfirst' ), $messageNames );
 
-
 		return $messageNames;
 	}
 
@@ -284,7 +283,6 @@ class AllMessagesTablePager extends TablePager {
 				$talkFlags[$exists] = true;
 			}
 		}
-
 
 		return array( 'pages' => $pageFlags, 'talks' => $talkFlags );
 	}

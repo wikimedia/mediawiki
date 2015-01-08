@@ -422,7 +422,6 @@ class MWCryptRand {
 		wfDebug( __METHOD__ . ": " . strlen( $buffer ) .
 			" bytes of randomness leftover in the buffer.\n" );
 
-
 		return $generated;
 	}
 

@@ -82,7 +82,6 @@ class DeferredUpdates {
 	public static function doUpdates( $commit = '' ) {
 		global $wgDeferredUpdateList;
 
-
 		$updates = array_merge( $wgDeferredUpdateList, self::$updates );
 
 		// No need to get master connections in case of empty updates array

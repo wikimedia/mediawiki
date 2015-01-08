@@ -426,7 +426,6 @@ class ApiParse extends ApiBase {
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 		$popts->setEditSection( !$params['disableeditsection'] );
 
-
 		return $popts;
 	}
 

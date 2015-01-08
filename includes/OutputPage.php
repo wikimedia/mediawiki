@@ -1685,7 +1685,6 @@ class OutputPage extends ContextSource {
 	) {
 		global $wgParser;
 
-
 		$popts = $this->parserOptions();
 		$oldTidy = $popts->setTidy( $tidy );
 		$popts->setInterfaceMessage( (bool)$interface );
@@ -2171,7 +2170,6 @@ class OutputPage extends ContextSource {
 			return;
 		}
 
-
 		$response = $this->getRequest()->response();
 		$config = $this->getConfig();
 
@@ -2618,7 +2616,6 @@ class OutputPage extends ContextSource {
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgContLang;
-
 
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();

@@ -271,7 +271,6 @@ class LinkHolderArray {
 		$this->replaceInternal( $text );
 		$this->replaceInterwiki( $text );
 
-
 	}
 
 	/**

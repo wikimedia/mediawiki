@@ -203,7 +203,6 @@ class Preprocessor_DOM implements Preprocessor {
 		if ( $cacheable ) {
 		}
 
-
 		if ( !$result ) {
 			throw new MWException( __METHOD__ . ' generated invalid XML' );
 		}
@@ -751,7 +750,6 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 		$stack->rootAccum .= '</root>';
 		$xml = $stack->rootAccum;
-
 
 		return $xml;
 	}

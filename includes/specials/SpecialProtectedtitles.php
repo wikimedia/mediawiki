@@ -117,7 +117,6 @@ class SpecialProtectedtitles extends SpecialPage {
 			)->escaped();
 		}
 
-
 		// @todo i18n: This should use a comma separator instead of a hard coded comma, right?
 		return '<li>' . $lang->specialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
 	}

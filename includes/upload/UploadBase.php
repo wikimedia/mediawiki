@@ -335,7 +335,6 @@ abstract class UploadBase {
 			return array( 'status' => self::HOOK_ABORTED, 'error' => $error );
 		}
 
-
 		return array( 'status' => self::OK );
 	}
 
@@ -400,7 +399,6 @@ abstract class UploadBase {
 				}
 			}
 		}
-
 
 		return true;
 	}
@@ -527,7 +525,6 @@ abstract class UploadBase {
 
 			return array( 'uploadvirus', $virus );
 		}
-
 
 		return true;
 	}
@@ -689,7 +686,6 @@ abstract class UploadBase {
 			}
 		}
 
-
 		return $warnings;
 	}
 
@@ -728,7 +724,6 @@ abstract class UploadBase {
 
 			$this->postProcessUpload();
 		}
-
 
 		return $status;
 	}
@@ -924,7 +919,6 @@ abstract class UploadBase {
 		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $user );
 		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType() );
 		$this->mLocalFile = $file;
-
 
 		return $file;
 	}
@@ -1690,7 +1684,6 @@ abstract class UploadBase {
 
 			wfDebug( __METHOD__ . ": FOUND VIRUS! scanner feedback: $output \n" );
 		}
-
 
 		return $output;
 	}

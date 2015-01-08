@@ -102,7 +102,6 @@ class HistoryAction extends FormlessAction {
 			return; // Client cache fresh and headers sent, nothing more to do.
 		}
 
-
 		$this->preCacheMessages();
 		$config = $this->context->getConfig();
 

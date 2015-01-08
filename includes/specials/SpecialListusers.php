@@ -246,7 +246,7 @@ class UsersPager extends AlphabeticPager {
 		$this->userGroupCache = $cache;
 
 		// Add page of groups to link batch
-		foreach( $groups as $group => $unused ) {
+		foreach ( $groups as $group => $unused ) {
 			$groupPage = User::getGroupPage( $group );
 			if ( $groupPage ) {
 				$batch->addObj( $groupPage );

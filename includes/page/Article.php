@@ -342,7 +342,6 @@ class Article implements Page {
 			return $this->mContent;
 		}
 
-
 		$content = $this->fetchContentObject();
 
 		if ( !$content ) {
@@ -352,7 +351,6 @@ class Article implements Page {
 		// @todo Get rid of mContent everywhere!
 		$this->mContent = ContentHandler::getContentText( $content );
 		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
-
 
 		return $this->mContent;
 	}
@@ -373,7 +371,6 @@ class Article implements Page {
 		if ( $this->mContentLoaded ) {
 			return $this->mContentObject;
 		}
-
 
 		$this->mContentLoaded = true;
 		$this->mContent = null;
@@ -420,7 +417,6 @@ class Article implements Page {
 		$this->mRevIdFetched = $this->mRevision->getId();
 
 		Hooks::run( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
-
 
 		return $this->mContentObject;
 	}
@@ -471,7 +467,6 @@ class Article implements Page {
 	 */
 	public function view() {
 		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar, $wgMaxRedirects;
-
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -1079,7 +1074,6 @@ class Article implements Page {
 			// Patrolling is disabled or the user isn't allowed to
 			return false;
 		}
-
 
 		// New page patrol: Get the timestamp of the oldest revison which
 		// the revision table holds for the given page. Then we look

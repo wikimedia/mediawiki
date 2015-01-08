@@ -1117,7 +1117,6 @@ class ContribsPager extends ReverseChronologicalPager {
 			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";
 		}
 
-
 		return $ret;
 	}
 

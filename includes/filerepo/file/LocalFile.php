@@ -278,7 +278,6 @@ class LocalFile extends File {
 			wfIncrStats( 'image_cache_miss' );
 		}
 
-
 		return $this->dataLoaded;
 	}
 
@@ -1444,7 +1443,6 @@ class LocalFile extends File {
 			$dbw->commit( __METHOD__ ); // commit before anything bad can happen
 		}
 
-
 		if ( $reupload ) {
 			# Delete old thumbnails
 			$this->purgeThumbnails();
@@ -1462,7 +1460,6 @@ class LocalFile extends File {
 		if ( !$reupload ) {
 			LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
 		}
-
 
 		return true;
 	}

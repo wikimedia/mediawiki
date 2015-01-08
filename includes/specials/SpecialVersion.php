@@ -275,7 +275,6 @@ class SpecialVersion extends SpecialPage {
 				)->text();
 		}
 
-
 		return $version;
 	}
 
@@ -301,7 +300,6 @@ class SpecialVersion extends SpecialPage {
 				$v = $wgVersion; // fallback
 			}
 		}
-
 
 		return $v;
 	}

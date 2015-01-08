@@ -2313,7 +2313,6 @@ class Linker {
 	) {
 		wfDeprecated( __METHOD__, '1.21' );
 
-
 		if ( $text == '' ) {
 			$text = self::linkText( $title );
 		}

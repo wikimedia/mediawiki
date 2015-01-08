@@ -543,7 +543,6 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$batch->execute();
 		$this->mResult->seek( 0 );
 
-
 		return '';
 	}
 

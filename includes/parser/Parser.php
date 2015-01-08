@@ -299,7 +299,6 @@ class Parser {
 		}
 		$this->mFirstCall = false;
 
-
 		CoreParserFunctions::register( $this );
 		CoreTagHooks::register( $this );
 		$this->initialiseVariables();
@@ -1188,7 +1187,6 @@ class Parser {
 		if ( $out === "<table>\n<tr><td></td></tr>\n</table>" ) {
 			$out = '';
 		}
-
 
 		return $out;
 	}

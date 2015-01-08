@@ -1325,7 +1325,6 @@ class Revision implements IDBAccessObject {
 	public function insertOn( $dbw ) {
 		global $wgDefaultExternalStore, $wgContentHandlerUseDB;
 
-
 		$this->checkContentModel();
 
 		$data = $this->mText;
@@ -1536,7 +1535,6 @@ class Revision implements IDBAccessObject {
 			$wgMemc->set( $key, $text, $wgRevisionCacheExpiry );
 		}
 
-
 		return $text;
 	}
 
@@ -1557,7 +1555,6 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
 		global $wgContentHandlerUseDB;
-
 
 		$fields = array( 'page_latest', 'page_namespace', 'page_title',
 						'rev_text_id', 'rev_len', 'rev_sha1' );

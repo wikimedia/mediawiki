@@ -1070,7 +1070,6 @@ abstract class File {
 			}
 		} while ( false );
 
-
 		return is_object( $thumb ) ? $thumb : false;
 	}
 

@@ -746,7 +746,6 @@ class InfoAction extends FormlessAction {
 			__METHOD__
 		);
 
-
 		return $result;
 	}
 

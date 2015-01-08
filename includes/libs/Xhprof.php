@@ -321,7 +321,7 @@ class Xhprof {
 				$this->complete[$func]['subcalls'] = array();
 			}
 
-			foreach( $this->hieraData as $key => $stats ) {
+			foreach ( $this->hieraData as $key => $stats ) {
 				list( $parent, $child ) = self::splitKey( $key );
 				if ( $parent !== null ) {
 					// Track call tree information

@@ -501,7 +501,6 @@ class LoadBalancer {
 			return $this->reportConnectionError();
 		}
 
-
 		return $conn;
 	}
 

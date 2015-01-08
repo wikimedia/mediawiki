@@ -1468,7 +1468,6 @@ abstract class Skin extends ContextSource {
 	private function getCachedNotice( $name ) {
 		global $wgRenderHashAppend, $parserMemc, $wgContLang;
 
-
 		$needParse = false;
 
 		if ( $name === 'default' ) {

@@ -109,7 +109,6 @@ class EnhancedChangesList extends ChangesList {
 		$cacheEntry = $this->cacheEntryFactory->newFromRecentChange( $baseRC, $watched );
 		$this->addCacheEntry( $cacheEntry );
 
-
 		return $ret;
 	}
 
@@ -466,7 +465,6 @@ class EnhancedChangesList extends ChangesList {
 
 		$this->rcCacheIndex++;
 
-
 		return $r;
 	}
 
@@ -548,7 +546,6 @@ class EnhancedChangesList extends ChangesList {
 
 		$r .= "</td></tr></table>\n";
 
-
 		return $r;
 	}
 
@@ -563,7 +560,6 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 
-
 		$blockOut = '';
 		foreach ( $this->rc_cache as $block ) {
 			if ( count( $block ) < 2 ) {
@@ -572,7 +568,6 @@ class EnhancedChangesList extends ChangesList {
 				$blockOut .= $this->recentChangesBlockGroup( $block );
 			}
 		}
-
 
 		return '<div>' . $blockOut . '</div>';
 	}

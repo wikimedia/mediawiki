@@ -559,7 +559,6 @@ class LocalisationCache {
 			}
 		}
 
-
 		// The JSON format only supports messages, none of the other variables, so wrap the data
 		return array( 'messages' => $data );
 	}
@@ -704,7 +703,6 @@ class LocalisationCache {
 
 		$deps['plurals'] = new FileDependency( "$IP/languages/data/plurals.xml" );
 		$deps['plurals-mw'] = new FileDependency( "$IP/languages/data/plurals-mediawiki.xml" );
-
 
 		return $data;
 	}
@@ -855,7 +853,6 @@ class LocalisationCache {
 		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
 		$messageDirs = $this->getMessagesDirs();
 
-
 		# Load non-JSON localisation data for extensions
 		$extensionData = array_combine(
 			$codeSequence,
@@ -951,7 +948,6 @@ class LocalisationCache {
 				}
 			}
 		}
-
 
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );

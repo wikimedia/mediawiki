@@ -310,7 +310,6 @@ class MessageCache {
 					$success = true;
 				}
 
-
 				if ( $success ) {
 					# Done, no need to retry
 					break;
@@ -617,7 +616,6 @@ class MessageCache {
 			$this->saveToLocal( $serialized, $hash, $code );
 		}
 
-
 		return $success;
 	}
 
@@ -694,7 +692,6 @@ class MessageCache {
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLang;
-
 
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints
@@ -1057,7 +1054,6 @@ class MessageCache {
 		$this->mInParser = true;
 		$res = $parser->parse( $text, $title, $popts, $linestart );
 		$this->mInParser = false;
-
 
 		return $res;
 	}

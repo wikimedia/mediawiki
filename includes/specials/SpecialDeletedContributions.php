@@ -257,7 +257,6 @@ class DeletedContribsPager extends IndexPager {
 
 		$ret = Html::rawElement( 'li', array(), $ret ) . "\n";
 
-
 		return $ret;
 	}
 

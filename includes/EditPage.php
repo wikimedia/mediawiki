@@ -515,7 +515,6 @@ class EditPage {
 			return;
 		}
 
-
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
 		$this->isCssJsSubpage = $this->mTitle->isCssJsSubpage();
@@ -720,7 +719,6 @@ class EditPage {
 	 */
 	function importFormData( &$request ) {
 		global $wgContLang, $wgUser;
-
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
@@ -974,7 +972,6 @@ class EditPage {
 	 */
 	protected function getContentObject( $def_content = null ) {
 		global $wgOut, $wgRequest, $wgUser, $wgContLang;
-
 
 		$content = false;
 
@@ -1519,7 +1516,6 @@ class EditPage {
 
 		$status = Status::newGood();
 
-
 		if ( !Hooks::run( 'EditPage::attemptSave', array( $this ) ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			$status->fatal( 'hookaborted' );
@@ -1564,7 +1560,6 @@ class EditPage {
 		) {
 				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
-
 
 				return $status;
 		}
@@ -1662,7 +1657,6 @@ class EditPage {
 			$status->setResult( false, self::AS_ARTICLE_WAS_DELETED );
 			return $status;
 		}
-
 
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
@@ -2301,7 +2295,6 @@ class EditPage {
 	 */
 	function showEditForm( $formCallback = null ) {
 		global $wgOut, $wgUser;
-
 
 		# need to parse the preview early so that we know which templates are used,
 		# otherwise users with "show preview after edit box" will get a blank list
@@ -3176,7 +3169,6 @@ HTML
 			return '';
 		}
 
-
 		$limitReport = Html::rawElement( 'div', array( 'class' => 'mw-limitReportExplanation' ),
 			wfMessage( 'limitreport-title' )->parseAsBlock()
 		);
@@ -3210,7 +3202,6 @@ HTML
 		$limitReport .= Html::closeElement( 'tbody' ) .
 			Html::closeElement( 'table' ) .
 			Html::closeElement( 'div' );
-
 
 		return $limitReport;
 	}
@@ -3396,7 +3387,6 @@ HTML
 	function getPreviewText() {
 		global $wgOut, $wgUser, $wgRawHtml, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
-
 
 		if ( $wgRawHtml && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if

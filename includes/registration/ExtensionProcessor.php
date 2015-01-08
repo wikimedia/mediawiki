@@ -133,8 +133,6 @@ class ExtensionProcessor implements Processor {
 			}
 		}
 
-
-
 	}
 
 	public function getExtractedInfo() {

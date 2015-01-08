@@ -78,7 +78,6 @@ class SearchUpdate implements DeferrableUpdate {
 			return;
 		}
 
-
 		$page = WikiPage::newFromID( $this->id, WikiPage::READ_LATEST );
 
 		foreach ( SearchEngine::getSearchTypes() as $type ) {

@@ -49,7 +49,6 @@ class CreditsAction extends FormlessAction {
 			$s = $this->getCredits( -1 );
 		}
 
-
 		return Html::rawElement( 'div', array( 'id' => 'mw-credits' ), $s );
 	}
 
@@ -69,7 +68,6 @@ class CreditsAction extends FormlessAction {
 				$s .= ' ' . $this->getContributors( $cnt - 1, $showIfMax );
 			}
 		}
-
 
 		return $s;
 	}

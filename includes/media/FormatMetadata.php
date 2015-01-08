@@ -1595,7 +1595,6 @@ class FormatMetadata extends ContextSource {
 	public function fetchExtendedMetadata( File $file ) {
 		global $wgMemc;
 
-
 		// If revision deleted, exit immediately
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
 
@@ -1632,7 +1631,6 @@ class FormatMetadata extends ContextSource {
 			$wgMemc->set( $cacheKey, $valueToCache, $maxCacheTime );
 		}
 
-
 		return $extendedMetadata;
 	}
 
@@ -1653,7 +1651,6 @@ class FormatMetadata extends ContextSource {
 			// Might or might not be a good idea.
 			return $file->getExtendedMetadata() ?: array();
 		}
-
 
 		$uploadDate = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
 
@@ -1693,7 +1690,6 @@ class FormatMetadata extends ContextSource {
 			}
 		}
 
-
 		return $fileMetadata;
 	}
 
@@ -1725,7 +1721,6 @@ class FormatMetadata extends ContextSource {
 				$extendedMetadata[$key]['hidden'] = '';
 			}
 		}
-
 
 		return $extendedMetadata;
 	}

@@ -60,7 +60,6 @@ class Category {
 			return true;
 		}
 
-
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			'category',
@@ -68,7 +67,6 @@ class Category {
 			$where,
 			__METHOD__
 		);
-
 
 		if ( !$row ) {
 			# Okay, there were no contents.  Nothing to initialize.
@@ -281,7 +279,6 @@ class Category {
 			)
 		);
 
-
 		return $result;
 	}
 
@@ -313,7 +310,6 @@ class Category {
 				return false;
 			}
 		}
-
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
@@ -357,7 +353,6 @@ class Category {
 			__METHOD__
 		);
 		$dbw->endAtomic( __METHOD__ );
-
 
 		# Now we should update our local counts.
 		$this->mPages = $result->pages;

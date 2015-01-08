@@ -212,7 +212,6 @@ class ResourceLoader {
 			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
-
 		return $result;
 	}
 
@@ -224,7 +223,6 @@ class ResourceLoader {
 	 */
 	public function __construct( Config $config = null ) {
 		global $IP;
-
 
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' was called without providing a Config instance' );
@@ -359,7 +357,6 @@ class ResourceLoader {
 				. 'but <code>$wgEnableJavaScriptTest</code> is false. '
 				. 'Edit your <code>LocalSettings.php</code> to enable it.' );
 		}
-
 
 		// Get core test suites
 		$testModules = array();
@@ -566,7 +563,6 @@ class ResourceLoader {
 		// See http://bugs.php.net/bug.php?id=36514
 		ob_start();
 
-
 		// Find out which modules are missing and instantiate the others
 		$modules = array();
 		$missing = array();
@@ -595,7 +591,6 @@ class ResourceLoader {
 			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
-
 		// To send Last-Modified and support If-Modified-Since, we need to detect
 		// the last modified time
 		$mtime = wfTimestamp( TS_UNIX, $this->config->get( 'CacheEpoch' ) );
@@ -612,7 +607,6 @@ class ResourceLoader {
 				$this->errors[] = self::formatExceptionNoComment( $e );
 			}
 		}
-
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		if ( $this->tryRespondLastModified( $context, $mtime ) ) {
@@ -861,7 +855,6 @@ class ResourceLoader {
    <https://www.mediawiki.org/wiki/ResourceLoader>. In this request,
    no modules were requested. Max made me put this here. */";
 		}
-
 
 		$image = $context->getImageObj();
 		if ( $image ) {

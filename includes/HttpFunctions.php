@@ -786,7 +786,6 @@ class CurlHttpRequest extends MWHttpRequest {
 		$this->parseHeader();
 		$this->setStatus();
 
-
 		return $this->status;
 	}
 
@@ -952,7 +951,6 @@ class PhpHttpRequest extends MWHttpRequest {
 			}
 		}
 		fclose( $fh );
-
 
 		return $this->status;
 	}

@@ -218,7 +218,6 @@ class LinkCache {
 	public function addLinkObj( $nt ) {
 		global $wgContentHandlerUseDB;
 
-
 		$key = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
 
@@ -258,7 +257,6 @@ class LinkCache {
 			$this->addBadLinkObj( $nt );
 			$id = 0;
 		}
-
 
 		return $id;
 	}

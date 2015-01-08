@@ -204,8 +204,6 @@ class SkinTemplate extends Skin {
 			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
 		}
 
-
-
 		return $tpl;
 	}
 
@@ -252,7 +250,6 @@ class SkinTemplate extends Skin {
 			$wgSitename, $wgLogo, $wgMaxCredits,
 			$wgShowCreditsIfMax, $wgArticlePath,
 			$wgScriptPath, $wgServer;
-
 
 		$title = $this->getTitle();
 		$request = $this->getRequest();
@@ -352,7 +349,6 @@ class SkinTemplate extends Skin {
 			$attrs = " lang=\"$escUserlang\" dir=\"$escUserdir\"";
 			$tpl->set( 'userlangattributes', $attrs );
 		}
-
 
 		$tpl->set( 'newtalk', $this->getNewtalks() );
 		$tpl->set( 'logo', $this->logoText() );
@@ -798,7 +794,6 @@ class SkinTemplate extends Skin {
 	protected function buildContentNavigationUrls() {
 		global $wgDisableLangConversion;
 
-
 		// Display tabs for the relevant title rather than always the title itself
 		$title = $this->getRelevantTitle();
 		$onPage = $title->equals( $this->getTitle() );
@@ -883,7 +878,6 @@ class SkinTemplate extends Skin {
 						'primary' => false,
 					);
 				}
-
 
 				// Checks if user can edit the current page if it exists or create it otherwise
 				if ( $title->quickUserCan( 'edit', $user )
@@ -1002,7 +996,6 @@ class SkinTemplate extends Skin {
 					);
 				}
 
-
 				// Checks if the user is logged in
 				if ( $this->loggedin && $user->isAllowedAll( 'viewmywatchlist', 'editmywatchlist' ) ) {
 					/**
@@ -1109,7 +1102,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-
 		return $content_navigation;
 	}
 
@@ -1119,7 +1111,6 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	private function buildContentActionUrls( $content_navigation ) {
-
 
 		// content_actions has been replaced with content_navigation for backwards
 		// compatibility and also for skins that just want simple tabs content_actions
@@ -1152,7 +1143,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-
 		return $content_actions;
 	}
 
@@ -1162,7 +1152,6 @@ class SkinTemplate extends Skin {
 	 */
 	protected function buildNavUrls() {
 		global $wgUploadNavigationUrl;
-
 
 		$out = $this->getOutput();
 		$request = $this->getRequest();

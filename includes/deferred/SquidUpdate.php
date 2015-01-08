@@ -110,7 +110,6 @@ class SquidUpdate {
 			self::HTCPPurge( $urlArr );
 		}
 
-
 		// Remove duplicate URLs
 		$urlArr = array_unique( $urlArr );
 		// Maximum number of parallel connections per squid

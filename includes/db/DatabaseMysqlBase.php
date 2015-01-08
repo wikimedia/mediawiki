@@ -71,7 +71,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 
-
 		# The kernel's default SYN retransmission period is far too slow for us,
 		# so we use a short timeout plus a manual retry. Retrying means that a small
 		# but finite rate of SYN packet loss won't cause user-visible errors.
@@ -84,7 +83,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			throw $ex;
 		}
 		$error = $this->restoreErrorHandler();
-
 
 		# Always log connection errors
 		if ( !$this->mConn ) {
@@ -102,7 +100,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				"Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 
-
 			$this->reportConnectionError( $error );
 		}
 
@@ -119,7 +116,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				);
 				wfDebug( "Error selecting database $dbName on server {$this->mServer} " .
 					"from client host " . wfHostname() . "\n" );
-
 
 				$this->reportConnectionError( "Error selecting database $dbName" );
 			}
@@ -697,7 +693,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				$this->lastKnownSlavePos = $pos;
 			}
 		}
-
 
 		return $status;
 	}

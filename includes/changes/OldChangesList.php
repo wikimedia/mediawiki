@@ -59,7 +59,6 @@ class OldChangesList extends ChangesList {
 			return false;
 		}
 
-
 		$dateheader = ''; // $html now contains only <li>...</li>, for hooks' convenience.
 		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
 
