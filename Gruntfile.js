@@ -1,7 +1,3 @@
-/*!
- * Grunt file
- */
-
 /*jshint node:true */
 module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
@@ -11,13 +7,11 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
 
-	grunt.file.setBase(  __dirname + '/../..' );
-
 	var wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH;
 
 	grunt.initConfig( {
-		pkg: grunt.file.readJSON( __dirname + '/package.json' ),
+		pkg: grunt.file.readJSON( 'package.json' ),
 		jshint: {
 			options: {
 				jshintrc: true
@@ -49,7 +43,7 @@ module.exports = function ( grunt ) {
 			all: [
 				'.jscsrc',
 				'{languages,maintenance,resources}/**/*.json',
-				'tests/frontend/package.json'
+				'package.json'
 			]
 		},
 		banana: {
