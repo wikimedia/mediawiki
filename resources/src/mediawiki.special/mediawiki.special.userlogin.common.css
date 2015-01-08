@@ -3,13 +3,6 @@
 	text-align: center;
 }
 
-.mw-ui-vform .mw-secure {
-	/* @embed */
-	background: url(images/icon-lock.png) no-repeat scroll left center transparent;
-	margin: 0 0 0 1px;
-	padding: 0 0 0 11px;
-}
-
 /*
  * When inside the VForm style, disable the border that Vector and other skins
  * put on the div surrounding the login/create account form.

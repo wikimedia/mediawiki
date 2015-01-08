@@ -1605,6 +1605,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		$out->disallowUserJs(); // just in case...
+		$out->enableOOUI();
 		$out->addTemplate( $template );
 	}
 
