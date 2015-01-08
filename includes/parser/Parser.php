@@ -87,7 +87,21 @@ class Parser {
 	# \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
 	# as well as U+3000 is IDEOGRAPHIC SPACE for bug 19052
 	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}]';
-	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
+	# Regexp to match IPv4 addresses (RFC2373, Appendix B)
+	const IPv4_ADDR = '(?:(?:\\d{1,3}\\.){3}\\d{1,3})';
+	# Regexp to match IPv6 addresses (RFC2373, Appendix B)
+	const IPv6_PART = '(?i:[0-9A-F]{1,4}(?:[:][0-9A-F]{1,4}){0,7})'; # "hexseq"
+	const IPv6_ADDR = '(?:' .
+		# addresses ending with IPv6_PART
+		'(?:' . self::IPv6_PART . '(?:::' . self::IPv6_PART . ')?|::' . self::IPv6_PART . ')(?::' . self::IPv4_ADDR . ')?|' .
+		# addresses ending with ::
+		self::IPv6_PART . '?::' . self::IPv4_ADDR . '?)';
+	# Regexp to match IPv4 or IPv6 address
+	const EXT_LINK_IP_ADDR = '(?:' . self::IPv4_ADDR . '|\\[' . self::IPv6_ADDR . '\\])';
+	# IP address or at least one character of hostname
+	const EXT_LINK_ADDR = '(?:' . self::EXT_LINK_IP_ADDR . '|' . self::EXT_LINK_URL_CLASS . ')';
+	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)(' . self::EXT_LINK_ADDR .
+		self::EXT_LINK_URL_CLASS . '*?)
 		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
 
 	# Regular expression for a non-newline space
@@ -237,7 +251,8 @@ class Parser {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
-			self::EXT_LINK_URL_CLASS . '+)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
+			self::EXT_LINK_ADDR .
+			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} elseif ( defined( 'HPHP_VERSION' ) ) {
@@ -1375,6 +1390,7 @@ class Parser {
 	public function doMagicLinks( $text ) {
 		$prots = wfUrlProtocolsWithoutProtRel();
 		$urlChar = self::EXT_LINK_URL_CLASS;
+		$addr = self::EXT_LINK_ADDR;
 		$space = self::SPACE_NOT_NL; #  non-newline space
 		$spdash = "(?:-|$space)"; # a dash or a non-newline space
 		$spaces = "$space++"; # possessive match of 1 or more spaces
@@ -1382,7 +1398,7 @@ class Parser {
 			'!(?:                           # Start cases
 				(<a[ \t\r\n>].*?</a>) |     # m[1]: Skip link text
 				(<.*?>) |                   # m[2]: Skip stuff inside HTML elements' . "
-				(\b(?i:$prots)$urlChar+) |  # m[3]: Free external links
+				(\b(?i:$prots)$addr$urlChar*) |  # m[3]: Free external links
 				\b(?:RFC|PMID) $spaces      # m[4]: RFC or PMID, capture number
 					([0-9]+)\b |
 				\bISBN $spaces (            # m[5]: ISBN, capture number
@@ -5440,9 +5456,10 @@ class Parser {
 						case 'gallery-internal-link':
 							$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
 							$chars = self::EXT_LINK_URL_CLASS;
+							$addr = self::EXT_LINK_ADDR;
 							$prots = $this->mUrlProtocols;
 							//check to see if link matches an absolute url, if not then it must be a wiki link.
-							if ( preg_match( "/^($prots)$chars+$/u", $linkValue ) ) {
+							if ( preg_match( "/^($prots)$addr$chars*$/u", $linkValue ) ) {
 								$link = $linkValue;
 							} else {
 								$localLinkTitle = Title::newFromText( $linkValue );
@@ -5624,13 +5641,14 @@ class Parser {
 							break;
 						case 'link':
 							$chars = self::EXT_LINK_URL_CLASS;
+							$addr = self::EXT_LINK_ADDR;
 							$prots = $this->mUrlProtocols;
 							if ( $value === '' ) {
 								$paramName = 'no-link';
 								$value = true;
 								$validated = true;
 							} elseif ( preg_match( "/^((?i)$prots)/", $value ) ) {
-								if ( preg_match( "/^((?i)$prots)$chars+$/u", $value, $m ) ) {
+								if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value, $m ) ) {
 									$paramName = 'link-url';
 									$this->mOutput->addExternalLink( $value );
 									if ( $this->mOptions->getExternalLinkTarget() ) {
