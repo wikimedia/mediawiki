@@ -499,7 +499,7 @@
 		 *
 		 * @property {mw.Map} config
 		 */
-		// Dummy placeholder. Re-assigned in ResourceLoaderStartupModule to an instance of `mw.Map`.
+		// Dummy placeholder. Re-assigned in ResourceLoaderStartUpModule to an instance of `mw.Map`.
 		config: null,
 
 		/**

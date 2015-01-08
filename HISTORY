@@ -437,7 +437,7 @@ changes to languages because of Bugzilla reports.
 * Removed MWInit class which contained functions related to a now discontinued
   PHP compiler called hphpc. (deprecated since 1.22)
 * ApiResult::enableSizeCheck() and disableSizeCheck() are now obsolete.
-* Removed ResourceLoaderGetStartupModules hook. (deprecated since 1.23)
+* Removed ResourceLoaderGetStartUpModules hook. (deprecated since 1.23)
 * Removed getFormFields(), onSubmit() and onSuccess() from FormlessAction, as
   these were meant specifically for FormAction instead.
 * Removed Action::execute().
@@ -744,7 +744,7 @@ of files that are no longer available follows.
 * $wgProfileOnly is now deprecated; set the log file in
   $wgDebugLogGroups['profileoutput'] to replace it.
 * $wgMaxBacklinksInvalidate was removed; use $wgJobBackoffThrottling instead
-* Deprecated ResourceLoaderGetStartupModules hook.
+* Deprecated ResourceLoaderGetStartUpModules hook.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.

@@ -1,6 +1,6 @@
 <?php
 
-class ResourceLoaderStartupModuleTest extends ResourceLoaderTestCase {
+class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 
 	public static function provideGetModuleRegistrations() {
 		return array(
@@ -290,7 +290,7 @@ mw.loader.addSource( {
 
 	/**
 	 * @dataProvider provideGetModuleRegistrations
-	 * @covers ResourceLoaderStartupModule::compileUnresolvedDependencies
+	 * @covers ResourceLoaderStartUpModule::compileUnresolvedDependencies
 	 * @covers ResourceLoaderStartUpModule::getModuleRegistrations
 	 * @covers ResourceLoader::makeLoaderSourcesScript
 	 * @covers ResourceLoader::makeLoaderRegisterScript
