@@ -231,8 +231,8 @@
 
 			return {
 				setup: function () {
-					log( 'MwEnvironment> SETUP    for "' + QUnit.config.current.module
-						+ ': ' + QUnit.config.current.testName + '"' );
+					log( mw.format( 'MwEnvironment> SETUP    for "$1: $2"',
+						QUnit.config.current.module, QUnit.config.current.testName ) );
 
 					// Greetings, mock environment!
 					mw.config.values = freshConfigCopy( localEnv.config );
@@ -245,8 +245,8 @@
 
 				teardown: function () {
 					var timers;
-					log( 'MwEnvironment> TEARDOWN for "' + QUnit.config.current.module
-						+ ': ' + QUnit.config.current.testName + '"' );
+					log( mw.format( 'MwEnvironment> TEARDOWN for "$1: $2"',
+						QUnit.config.current.module, QUnit.config.current.testName ) );
 
 					localEnv.teardown.call( this );
 
@@ -265,8 +265,8 @@
 						// Tests shoulld use fake timers or wait for animations to complete
 						$.each( $.timers, function ( i, timer ) {
 							var node = timer.elem;
-							mw.log.warn( 'Unfinished animation #' + i + ' in ' + timer.queue + ' queue on ' +
-								mw.html.element( node.nodeName.toLowerCase(), $(node).getAttrs() )
+							mw.log.warn( mw.format( 'Unfinished animation #$1 in $2 on $3', i, timer.queue,
+								mw.html.element( node.nodeName.toLowerCase(), $(node).getAttrs() ) )
 							);
 						} );
 						// Force animations to stop to give the next test a clean start
