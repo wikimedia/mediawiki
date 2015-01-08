@@ -3786,12 +3786,13 @@ class OutputPage extends ContextSource {
 	 * This function takes a number of message/argument specifications, wraps them in
 	 * some overall structure, and then parses the result and adds it to the output.
 	 *
-	 * In the $wrap, $1 is replaced with the first message, $2 with the second, and so
-	 * on. The subsequent arguments may either be strings, in which case they are the
-	 * message names, or arrays, in which case the first element is the message name,
-	 * and subsequent elements are the parameters to that message.
+	 * In the $wrap, $1 is replaced with the first message, $2 with the second,
+	 * and so on. The subsequent arguments may be either
+	 * 1) strings, in which case they are message names, or
+	 * 2) arrays, in which case, within each array, the first element is the message
+	 *    name, and subsequent elements are the parameters to that message.
 	 *
-	 * Don't use this for messages that are not in users interface language.
+	 * Don't use this for messages that are not in the user's interface language.
 	 *
 	 * For example:
 	 *
@@ -3802,7 +3803,7 @@ class OutputPage extends ContextSource {
 	 *    $wgOut->addWikiText( "<div class='error'>\n"
 	 *        . wfMessage( 'some-error' )->plain() . "\n</div>" );
 	 *
-	 * The newline after opening div is needed in some wikitext. See bug 19226.
+	 * The newline after the opening div is needed in some wikitext. See bug 19226.
 	 *
 	 * @param string $wrap
 	 */
