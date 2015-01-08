@@ -34,10 +34,9 @@
  * $wgProfiler['output'] = 'udp';
  * @endcode
  *
- * Rather than obeying wfProfileIn() and wfProfileOut() calls placed in the
- * application code, ProfilerXhprof profiles all functions using the XHProf
- * PHP extenstion. For PHP5 users, this extension can be installed via PECL or
- * your operating system's package manager. XHProf support is built into HHVM.
+ * ProfilerXhprof profiles all functions using the XHProf PHP extenstion.
+ * For PHP5 users, this extension can be installed via PECL or your operating
+ * system's package manager. XHProf support is built into HHVM.
  *
  * To restrict the functions for which profiling data is collected, you can
  * use either a whitelist ($wgProfiler['include']) or a blacklist
