@@ -71,7 +71,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 
-		wfProfileIn( "dbconnect-$server" );
 
 		# The kernel's default SYN retransmission period is far too slow for us,
 		# so we use a short timeout plus a manual retry. Retrying means that a small
@@ -81,13 +80,11 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		try {
 			$this->mConn = $this->mysqlConnect( $realServer );
 		} catch ( Exception $ex ) {
-			wfProfileOut( "dbconnect-$server" );
 			$this->restoreErrorHandler();
 			throw $ex;
 		}
 		$error = $this->restoreErrorHandler();
 
-		wfProfileOut( "dbconnect-$server" );
 
 		# Always log connection errors
 		if ( !$this->mConn ) {

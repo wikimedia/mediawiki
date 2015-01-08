@@ -120,7 +120,6 @@ class Preprocessor_Hash implements Preprocessor {
 			&& strlen( $text ) > $wgPreprocessorCacheThreshold;
 
 		if ( $cacheable ) {
-			wfProfileIn( __METHOD__ . '-cacheable' );
 
 			$cacheKey = wfMemcKey( 'preprocess-hash', md5( $text ), $flags );
 			$cacheValue = $wgMemc->get( $cacheKey );
@@ -131,11 +130,9 @@ class Preprocessor_Hash implements Preprocessor {
 					// From the cache
 					wfDebugLog( "Preprocessor",
 						"Loaded preprocessor hash from memcached (key $cacheKey)" );
-					wfProfileOut( __METHOD__ . '-cacheable' );
 					return $hash;
 				}
 			}
-			wfProfileIn( __METHOD__ . '-cache-miss' );
 		}
 
 		$rules = array(
@@ -635,15 +632,11 @@ class Preprocessor_Hash implements Preprocessor {
 							}
 							if ( !$node ) {
 								if ( $cacheable ) {
-									wfProfileOut( __METHOD__ . '-cache-miss' );
-									wfProfileOut( __METHOD__ . '-cacheable' );
 								}
 								throw new MWException( __METHOD__ . ': eqpos not found' );
 							}
 							if ( $node->name !== 'equals' ) {
 								if ( $cacheable ) {
-									wfProfileOut( __METHOD__ . '-cache-miss' );
-									wfProfileOut( __METHOD__ . '-cacheable' );
 								}
 								throw new MWException( __METHOD__ . ': eqpos is not equals' );
 							}
@@ -744,8 +737,6 @@ class Preprocessor_Hash implements Preprocessor {
 		if ( $cacheable ) {
 			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );
 			$wgMemc->set( $cacheKey, $cacheValue, 86400 );
-			wfProfileOut( __METHOD__ . '-cache-miss' );
-			wfProfileOut( __METHOD__ . '-cacheable' );
 			wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
 		}
 

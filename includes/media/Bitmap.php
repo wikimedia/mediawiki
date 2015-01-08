@@ -169,10 +169,8 @@ class BitmapHandler extends TransformationalImageHandler {
 			array( $this->escapeMagickOutput( $params['dstPath'] ) ) ) );
 
 		wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
-		wfProfileIn( 'convert' );
 		$retval = 0;
 		$err = wfShellExecWithStderr( $cmd, $retval, $env );
-		wfProfileOut( 'convert' );
 
 		if ( $retval !== 0 ) {
 			$this->logErrorForExternalProcess( $retval, $err, $cmd );
@@ -280,10 +278,8 @@ class BitmapHandler extends TransformationalImageHandler {
 		$cmd = str_replace( '%h', wfEscapeShellArg( $params['physicalHeight'] ),
 			str_replace( '%w', wfEscapeShellArg( $params['physicalWidth'] ), $cmd ) ); # Size
 		wfDebug( __METHOD__ . ": Running custom convert command $cmd\n" );
-		wfProfileIn( 'convert' );
 		$retval = 0;
 		$err = wfShellExecWithStderr( $cmd, $retval );
-		wfProfileOut( 'convert' );
 
 		if ( $retval !== 0 ) {
 			$this->logErrorForExternalProcess( $retval, $err, $cmd );
@@ -457,10 +453,8 @@ class BitmapHandler extends TransformationalImageHandler {
 					" -rotate " . wfEscapeShellArg( "-$rotation" ) . " " .
 					wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) );
 				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
-				wfProfileIn( 'convert' );
 				$retval = 0;
 				$err = wfShellExecWithStderr( $cmd, $retval );
-				wfProfileOut( 'convert' );
 				if ( $retval !== 0 ) {
 					$this->logErrorForExternalProcess( $retval, $err, $cmd );
 

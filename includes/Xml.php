@@ -94,9 +94,7 @@ class Xml {
 			$attribs = array_map( array( 'UtfNormal', 'cleanUp' ), $attribs );
 		}
 		if ( $contents ) {
-			wfProfileIn( __METHOD__ . '-norm' );
 			$contents = $wgContLang->normalize( $contents );
-			wfProfileOut( __METHOD__ . '-norm' );
 		}
 		return self::element( $element, $attribs, $contents );
 	}

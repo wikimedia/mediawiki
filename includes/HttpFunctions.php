@@ -59,7 +59,6 @@ class Http {
 	 */
 	public static function request( $method, $url, $options = array() ) {
 		wfDebug( "HTTP: $method: $url\n" );
-		wfProfileIn( __METHOD__ . "-$method" );
 
 		$options['method'] = strtoupper( $method );
 
@@ -77,7 +76,6 @@ class Http {
 		if ( $status->isOK() ) {
 			$content = $req->getContent();
 		}
-		wfProfileOut( __METHOD__ . "-$method" );
 		return $content;
 	}
 

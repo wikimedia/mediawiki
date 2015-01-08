@@ -515,7 +515,6 @@ class EditPage {
 			return;
 		}
 
-		wfProfileIn( __METHOD__ . "-business-end" );
 
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
@@ -537,7 +536,6 @@ class EditPage {
 
 		if ( 'save' == $this->formtype ) {
 			if ( !$this->attemptSave() ) {
-				wfProfileOut( __METHOD__ . "-business-end" );
 				return;
 			}
 		}
@@ -547,7 +545,6 @@ class EditPage {
 		if ( 'initial' == $this->formtype || $this->firsttime ) {
 			if ( $this->initialiseForm() === false ) {
 				$this->noSuchSectionPage();
-				wfProfileOut( __METHOD__ . "-business-end" );
 				return;
 			}
 
@@ -560,7 +557,6 @@ class EditPage {
 		}
 
 		$this->showEditForm();
-		wfProfileOut( __METHOD__ . "-business-end" );
 	}
 
 	/**
@@ -744,13 +740,10 @@ class EditPage {
 				// Skip this if wpTextbox2 has input, it indicates that we came
 				// from a conflict page with raw page text, not a custom form
 				// modified by subclasses
-				wfProfileIn( get_class( $this ) . "::importContentFormData" );
 				$textbox1 = $this->importContentFormData( $request );
 				if ( $textbox1 !== null ) {
 					$this->textbox1 = $textbox1;
 				}
-
-				wfProfileOut( get_class( $this ) . "::importContentFormData" );
 			}
 
 			# Truncate for whole multibyte characters
@@ -1526,13 +1519,11 @@ class EditPage {
 
 		$status = Status::newGood();
 
-		wfProfileIn( __METHOD__ . '-checks' );
 
 		if ( !Hooks::run( 'EditPage::attemptSave', array( $this ) ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 
@@ -1549,7 +1540,6 @@ class EditPage {
 			);
 			$status->fatal( 'spamprotectionmatch', false );
 			$status->value = self::AS_SPAM_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 
@@ -1564,7 +1554,6 @@ class EditPage {
 				$ex->getMessage()
 			);
 			$status->value = self::AS_PARSE_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 
@@ -1576,7 +1565,6 @@ class EditPage {
 				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
 
-				wfProfileOut( __METHOD__ . '-checks' );
 
 				return $status;
 		}
@@ -1606,7 +1594,6 @@ class EditPage {
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
 			$status->fatal( 'spamprotectionmatch', $match );
 			$status->value = self::AS_SPAM_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 		if ( !Hooks::run(
@@ -1616,13 +1603,11 @@ class EditPage {
 			# Error messages etc. could be handled within the hook...
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		} elseif ( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 
@@ -1631,7 +1616,6 @@ class EditPage {
 			$wgUser->spreadAnyEditBlock();
 			# Check block state against master, thus 'false'.
 			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 
@@ -1640,19 +1624,16 @@ class EditPage {
 			// Error will be displayed by showEditForm()
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 
 		if ( !$wgUser->isAllowed( 'edit' ) ) {
 			if ( $wgUser->isAnon() ) {
 				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
-				wfProfileOut( __METHOD__ . '-checks' );
 				return $status;
 			} else {
 				$status->fatal( 'readonlytext' );
 				$status->value = self::AS_READ_ONLY_PAGE_LOGGED;
-				wfProfileOut( __METHOD__ . '-checks' );
 				return $status;
 			}
 		}
@@ -1661,20 +1642,17 @@ class EditPage {
 			&& !$wgUser->isAllowed( 'editcontentmodel' )
 		) {
 			$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 
 		if ( wfReadOnly() ) {
 			$status->fatal( 'readonlytext' );
 			$status->value = self::AS_READ_ONLY_PAGE;
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 		if ( $wgUser->pingLimiter() || $wgUser->pingLimiter( 'linkpurge', 0 ) ) {
 			$status->fatal( 'actionthrottledtext' );
 			$status->value = self::AS_RATE_LIMITED;
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 
@@ -1682,11 +1660,9 @@ class EditPage {
 		# confirmation
 		if ( $this->wasDeletedSinceLastEdit() && !$this->recreate ) {
 			$status->setResult( false, self::AS_ARTICLE_WAS_DELETED );
-			wfProfileOut( __METHOD__ . '-checks' );
 			return $status;
 		}
 
-		wfProfileOut( __METHOD__ . '-checks' );
 
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
@@ -1859,7 +1835,6 @@ class EditPage {
 			}
 
 			# All's well
-			wfProfileIn( __METHOD__ . '-sectionanchor' );
 			$sectionanchor = '';
 			if ( $this->section == 'new' ) {
 				$this->summary = $this->newSectionSummary( $sectionanchor );
@@ -1876,7 +1851,6 @@ class EditPage {
 				}
 			}
 			$result['sectionanchor'] = $sectionanchor;
-			wfProfileOut( __METHOD__ . '-sectionanchor' );
 
 			// Save errors may fall down to the edit form, but we've now
 			// merged the section into full text. Clear the section field

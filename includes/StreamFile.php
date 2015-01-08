@@ -52,9 +52,7 @@ class StreamFile {
 		if ( $res == self::NOT_MODIFIED ) {
 			$ok = true; // use client cache
 		} elseif ( $res == self::READY_STREAM ) {
-			wfProfileIn( __METHOD__ . '-send' );
 			$ok = readfile( $fname );
-			wfProfileOut( __METHOD__ . '-send' );
 		} else {
 			$ok = false; // failed
 		}

@@ -1100,9 +1100,7 @@ abstract class File {
 		}
 
 		// Actually render the thumbnail...
-		wfProfileIn( __METHOD__ . '-doTransform' );
 		$thumb = $handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $transformParams );
-		wfProfileOut( __METHOD__ . '-doTransform' );
 		$tmpFile->bind( $thumb ); // keep alive with $thumb
 
 		if ( !$thumb ) { // bad params?

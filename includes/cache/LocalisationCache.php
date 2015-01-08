@@ -257,9 +257,7 @@ class LocalisationCache {
 	 */
 	public function getItem( $code, $key ) {
 		if ( !isset( $this->loadedItems[$code][$key] ) ) {
-			wfProfileIn( __METHOD__ . '-load' );
 			$this->loadItem( $code, $key );
-			wfProfileOut( __METHOD__ . '-load' );
 		}
 
 		if ( $key === 'fallback' && isset( $this->shallowFallbacks[$code] ) ) {
@@ -280,9 +278,7 @@ class LocalisationCache {
 		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) &&
 			!isset( $this->loadedItems[$code][$key] )
 		) {
-			wfProfileIn( __METHOD__ . '-load' );
 			$this->loadSubitem( $code, $key, $subkey );
-			wfProfileOut( __METHOD__ . '-load' );
 		}
 
 		if ( isset( $this->data[$code][$key][$subkey] ) ) {
@@ -859,7 +855,6 @@ class LocalisationCache {
 		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
 		$messageDirs = $this->getMessagesDirs();
 
-		wfProfileIn( __METHOD__ . '-fallbacks' );
 
 		# Load non-JSON localisation data for extensions
 		$extensionData = array_combine(
@@ -957,7 +952,6 @@ class LocalisationCache {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-fallbacks' );
 
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
@@ -1014,7 +1008,6 @@ class LocalisationCache {
 		}
 
 		# Save to the persistent cache
-		wfProfileIn( __METHOD__ . '-write' );
 		$this->store->startWrite( $code );
 		foreach ( $allData as $key => $value ) {
 			if ( in_array( $key, self::$splitKeys ) ) {
@@ -1026,7 +1019,6 @@ class LocalisationCache {
 			}
 		}
 		$this->store->finishWrite();
-		wfProfileOut( __METHOD__ . '-write' );
 
 		# Clear out the MessageBlobStore
 		# HACK: If using a null (i.e. disabled) storage backend, we

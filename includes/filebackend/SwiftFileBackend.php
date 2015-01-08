@@ -1285,13 +1285,11 @@ class SwiftFileBackend extends FileBackendStore {
 				return null;
 			}
 
-			wfProfileIn( __METHOD__ . "-{$this->name}-miss" );
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( array(
 				'method' => 'HEAD',
 				'url' => $this->storageUrl( $auth, $container ),
 				'headers' => $this->authTokenHeaders( $auth )
 			) );
-			wfProfileOut( __METHOD__ . "-{$this->name}-miss" );
 
 			if ( $rcode === 204 ) {
 				$stat = array(

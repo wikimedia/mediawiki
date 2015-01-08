@@ -277,28 +277,22 @@ class DjVuImage {
 		if ( isset( $wgDjvuDump ) ) {
 			# djvudump is faster as of version 3.5
 			# http://sourceforge.net/tracker/index.php?func=detail&aid=1704049&group_id=32953&atid=406583
-			wfProfileIn( 'djvudump' );
 			$cmd = wfEscapeShellArg( $wgDjvuDump ) . ' ' . wfEscapeShellArg( $this->mFilename );
 			$dump = wfShellExec( $cmd );
 			$xml = $this->convertDumpToXML( $dump );
-			wfProfileOut( 'djvudump' );
 		} elseif ( isset( $wgDjvuToXML ) ) {
-			wfProfileIn( 'djvutoxml' );
 			$cmd = wfEscapeShellArg( $wgDjvuToXML ) . ' --without-anno --without-text ' .
 				wfEscapeShellArg( $this->mFilename );
 			$xml = wfShellExec( $cmd );
-			wfProfileOut( 'djvutoxml' );
 		} else {
 			$xml = null;
 		}
 		# Text layer
 		if ( isset( $wgDjvuTxt ) ) {
-			wfProfileIn( 'djvutxt' );
 			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename );
 			wfDebug( __METHOD__ . ": $cmd\n" );
 			$retval = '';
 			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => self::DJVUTXT_MEMORY_LIMIT ) );
-			wfProfileOut( 'djvutxt' );
 			if ( $retval == 0 ) {
 				# Strip some control characters
 				$txt = preg_replace( "/[\013\035\037]/", "", $txt );

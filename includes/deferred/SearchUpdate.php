@@ -123,7 +123,6 @@ class SearchUpdate implements DeferrableUpdate {
 		$text = $wgContLang->normalizeForSearch( $text );
 		$lc = SearchEngine::legalSearchChars() . '&#;';
 
-		wfProfileIn( __METHOD__ . '-regexps' );
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
 			' ', $wgContLang->lc( " " . $text . " " ) ); # Strip HTML markup
 		$text = preg_replace( "/(^|\\n)==\\s*([^\\n]+)\\s*==(\\s)/sD",
@@ -170,7 +169,6 @@ class SearchUpdate implements DeferrableUpdate {
 
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
-		wfProfileOut( __METHOD__ . '-regexps' );
 
 		return $text;
 	}

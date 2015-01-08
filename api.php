@@ -42,7 +42,6 @@ if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3
 
 require __DIR__ . '/includes/WebStart.php';
 
-wfProfileIn( 'api.php' );
 $starttime = microtime( true );
 
 // URL safety checks
@@ -94,7 +93,6 @@ DeferredUpdates::doUpdates();
 
 // Log what the user did, for book-keeping purposes.
 $endtime = microtime( true );
-wfProfileOut( 'api.php' );
 
 wfLogProfilingData();
 

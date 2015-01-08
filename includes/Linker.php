@@ -218,7 +218,6 @@ class Linker {
 		$target = self::normaliseSpecialPage( $target );
 
 		# If we don't know whether the page exists, let's find out.
-		wfProfileIn( __METHOD__ . '-checkPageExistence' );
 		if ( !in_array( 'known', $options ) && !in_array( 'broken', $options ) ) {
 			if ( $target->isKnown() ) {
 				$options[] = 'known';
@@ -226,7 +225,6 @@ class Linker {
 				$options[] = 'broken';
 			}
 		}
-		wfProfileOut( __METHOD__ . '-checkPageExistence' );
 
 		$oldquery = array();
 		if ( in_array( "forcearticlepath", $options ) && $query ) {
@@ -319,7 +317,6 @@ class Linker {
 		$defaults = array();
 
 		if ( !in_array( 'noclasses', $options ) ) {
-			wfProfileIn( __METHOD__ . '-getClasses' );
 			# Now build the classes.
 			$classes = array();
 
@@ -340,7 +337,6 @@ class Linker {
 			if ( $classes != array() ) {
 				$defaults['class'] = implode( ' ', $classes );
 			}
-			wfProfileOut( __METHOD__ . '-getClasses' );
 		}
 
 		# Get a default title attribute.

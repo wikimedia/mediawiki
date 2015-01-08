@@ -67,7 +67,6 @@ class SearchHighlighter {
 		$spat .= '/';
 		$textExt = array(); // text extracts
 		$otherExt = array(); // other extracts
-		wfProfileIn( "$fname-split" );
 		$start = 0;
 		$textLen = strlen( $text );
 		$count = 0; // sequence number to maintain ordering
@@ -132,7 +131,6 @@ class SearchHighlighter {
 
 		$all = $textExt + $otherExt; // these have disjunct key sets
 
-		wfProfileOut( "$fname-split" );
 
 		// prepare regexps
 		foreach ( $terms as $index => $term ) {
@@ -163,7 +161,6 @@ class SearchHighlighter {
 		$pat1 = "/(" . $phrase . ")/ui";
 		$pat2 = "/$patPre(" . $anyterm . ")$patPost/ui";
 
-		wfProfileIn( "$fname-extract" );
 
 		$left = $contextlines;
 
@@ -287,7 +284,6 @@ class SearchHighlighter {
 			}
 		}
 
-		wfProfileOut( "$fname-extract" );
 
 		return $extract;
 	}
@@ -452,7 +448,6 @@ class SearchHighlighter {
 	 */
 	function removeWiki( $text ) {
 		$fname = __METHOD__;
-		wfProfileIn( $fname );
 
 		// $text = preg_replace( "/'{2,5}/", "", $text );
 		// $text = preg_replace( "/\[[a-z]+:\/\/[^ ]+ ([^]]+)\]/", "\\2", $text );
@@ -474,7 +469,6 @@ class SearchHighlighter {
 		$text = preg_replace( "/('''|<\/?[iIuUbB]>)/", "", $text );
 		$text = preg_replace( "/''/", "", $text );
 
-		wfProfileOut( $fname );
 		return $text;
 	}
 
@@ -523,7 +517,6 @@ class SearchHighlighter {
 		$lineno = 0;
 
 		$extract = "";
-		wfProfileIn( "$fname-extract" );
 		foreach ( $lines as $line ) {
 			if ( 0 == $contextlines ) {
 				break;
@@ -551,7 +544,6 @@ class SearchHighlighter {
 
 			$extract .= "${line}\n";
 		}
-		wfProfileOut( "$fname-extract" );
 
 		return $extract;
 	}

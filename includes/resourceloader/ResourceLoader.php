@@ -595,7 +595,6 @@ class ResourceLoader {
 			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
-		wfProfileIn( __METHOD__ . '-getModifiedTime' );
 
 		// To send Last-Modified and support If-Modified-Since, we need to detect
 		// the last modified time
@@ -614,7 +613,6 @@ class ResourceLoader {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-getModifiedTime' );
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		if ( $this->tryRespondLastModified( $context, $mtime ) ) {
@@ -902,7 +900,6 @@ class ResourceLoader {
 			 * @var $module ResourceLoaderModule
 			 */
 
-			wfProfileIn( __METHOD__ . '-' . $name );
 			try {
 				$scripts = '';
 				if ( $context->shouldIncludeScripts() ) {
@@ -1016,7 +1013,6 @@ class ResourceLoader {
 				unset( $modules[$name] );
 			}
 			$isRaw |= $module->isRaw();
-			wfProfileOut( __METHOD__ . '-' . $name );
 		}
 
 		// Update module states

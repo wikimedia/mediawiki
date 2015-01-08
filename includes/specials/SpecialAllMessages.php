@@ -250,7 +250,6 @@ class AllMessagesTablePager extends TablePager {
 	 */
 	public static function getCustomisedStatuses( $messageNames, $langcode = 'en', $foreign = false ) {
 		// FIXME: This function should be moved to Language:: or something.
-		wfProfileIn( __METHOD__ . '-db' );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page',
@@ -286,7 +285,6 @@ class AllMessagesTablePager extends TablePager {
 			}
 		}
 
-		wfProfileOut( __METHOD__ . '-db' );
 
 		return array( 'pages' => $pageFlags, 'talks' => $talkFlags );
 	}

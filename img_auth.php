@@ -39,7 +39,6 @@
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 require __DIR__ . '/includes/WebStart.php';
-wfProfileIn( 'img_auth.php' );
 
 # Set action base paths so that WebRequest::getPathInfo()
 # recognizes the "X" as the 'title' in ../img_auth.php/X urls.
@@ -47,7 +46,6 @@ $wgArticlePath = false; # Don't let a "/*" article path clober our action path
 $wgActionPaths = array( "$wgUploadPath/" );
 
 wfImageAuthMain();
-wfProfileOut( 'img_auth.php' );
 wfLogProfilingData();
 // Commit and close up!
 $factory = wfGetLBFactory();
