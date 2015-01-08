@@ -49,9 +49,6 @@ if ( isset( $options['d'] ) ) {
 			$lb->setServerInfo( $i, $server );
 		}
 	}
-	if ( $d > 2 ) {
-		$wgDebugFunctionEntry = true;
-	}
 }
 
 $__useReadline = function_exists( 'readline_add_history' )

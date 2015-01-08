@@ -5434,11 +5434,6 @@ $wgUDPProfilerPort = null;
 $wgUDPProfilerFormatString = null;
 
 /**
- * Output debug message on every wfProfileIn/wfProfileOut
- */
-$wgDebugFunctionEntry = false;
-
-/**
  * Destination for wfIncrStats() data...
  * 'cache' to go into the system cache, if enabled (memcached)
  * 'udp' to be sent to the UDP profiler (see $wgUDPProfilerHost)
