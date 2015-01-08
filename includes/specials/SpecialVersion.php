@@ -730,7 +730,7 @@ class SpecialVersion extends SpecialPage {
 			list( $vcsVersion, $vcsLink, $vcsDate ) = $cache->get( $memcKey );
 
 			if ( !$vcsVersion ) {
-				wfDebug( "Getting VCS info for extension $extensionName" );
+				wfDebug( "Getting VCS info for extension {$extension['name']}" );
 				$gitInfo = new GitInfo( $extensionPath );
 				$vcsVersion = $gitInfo->getHeadSHA1();
 				if ( $vcsVersion !== false ) {
@@ -746,7 +746,7 @@ class SpecialVersion extends SpecialPage {
 				}
 				$cache->set( $memcKey, array( $vcsVersion, $vcsLink, $vcsDate ), 60 * 60 * 24 );
 			} else {
-				wfDebug( "Pulled VCS info for extension $extensionName from cache" );
+				wfDebug( "Pulled VCS info for extension {$extension['name']} from cache" );
 			}
 		}
 
@@ -833,12 +833,12 @@ class SpecialVersion extends SpecialPage {
 
 		// ... now get the authors for this extension
 		$authors = isset( $extension['author'] ) ? $extension['author'] : array();
-		$authors = $this->listAuthors( $authors, $extensionName, $extensionPath );
+		$authors = $this->listAuthors( $authors, $extension['name'], $extensionPath );
 
 		// Finally! Create the table
 		$html = Html::openElement( 'tr', array(
 				'class' => 'mw-version-ext',
-				'id' => "mw-version-ext-{$extensionName}"
+				'id' => "mw-version-ext-{$extension['name']}"
 			)
 		);
 
