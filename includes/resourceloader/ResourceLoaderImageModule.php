@@ -158,10 +158,14 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 						isset( $options['variants'] ) ? $options['variants'] : array(),
 						$this->getGlobalVariants( $type )
 					);
-					$variantConfig = array_intersect_key(
-						$this->variants[$type],
-						array_fill_keys( $allowedVariants, true )
-					);
+					if ( isset( $this->variants[$type] ) ) {
+						$variantConfig = array_intersect_key(
+							$this->variants[$type],
+							array_fill_keys( $allowedVariants, true )
+						);
+					} else {
+						$variantConfig = array();
+					}
 
 					$image = new ResourceLoaderImage( $name, $this->getName(), $imageDesc, $this->localBasePath, $variantConfig );
 					$this->imageObjects[ $image->getName() ] = $image;
@@ -182,9 +186,11 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		if ( !isset( $this->globalVariants[$type] ) ) {
 			$this->globalVariants[$type] = array();
 
-			foreach ( $this->variants[$type] as $name => $config ) {
-				if ( isset( $config['global'] ) && $config['global'] ) {
-					$this->globalVariants[$type][] = $name;
+			if ( isset( $this->variants[$type] ) ) {
+				foreach ( $this->variants[$type] as $name => $config ) {
+					if ( isset( $config['global'] ) && $config['global'] ) {
+						$this->globalVariants[$type][] = $name;
+					}
 				}
 			}
 		}
