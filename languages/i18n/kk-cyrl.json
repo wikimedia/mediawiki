@@ -8,7 +8,8 @@
 			"Daniyar",
 			"GaiJin",
 			"Kaztrans",
-			"Balnur.s"
+			"Balnur.s",
+			"Нұрлан Рахымжанов"
 		]
 	},
 	"tog-underline": "Сілтеменің астын сызу:",
@@ -1798,7 +1799,7 @@
 	"blocklogtext": "Бұл қатысушыларды бұғаттау және бұғаттауынан босату әрекеттерінің журналы.\nӨздіктік бұғатталған IP мекенжайлар тізімделмеген.\nҚазіргі уақыттағы белсенді тиымдар мен бұғаттауларды [[Special:BlockList|бұғаттау тізімінен]] қараңыз.",
 	"unblocklogentry": "$1 есімді қатысушыны бұғаттауынан босатты",
 	"block-log-flags-anononly": "тек аноним қатысушылар",
-	"block-log-flags-nocreate": "тіркелуін өшіріді",
+	"block-log-flags-nocreate": "тіркелуін өшірді",
 	"block-log-flags-noautoblock": "автобұғаттау өшірілген",
 	"block-log-flags-noemail": "е-пошта өшірілген",
 	"block-log-flags-nousertalk": "өз талқылау бетін өңдей алмайтындай ету",
