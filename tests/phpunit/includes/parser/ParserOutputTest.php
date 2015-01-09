@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @group Database
+ *        ^--- trigger DB shadowing because we are using Title magic
+ */
 class ParserOutputTest extends MediaWikiTestCase {
 
 	public static function provideIsLinkInternal() {
@@ -84,4 +88,66 @@ class ParserOutputTest extends MediaWikiTestCase {
 		$this->assertEquals( $po->getProperty( 'foo' ), false );
 		$this->assertArrayNotHasKey( 'foo', $properties );
 	}
+
+	/**
+	 * @covers ParserOutput::hasCustomDataUpdates
+	 * @covers ParserOutput::addSecondaryDataUpdate
+	 */
+	public function testHasCustomDataUpdates() {
+		$po = new ParserOutput();
+		$this->assertFalse( $po->hasCustomDataUpdates() );
+
+		$dataUpdate = $this->getMock( 'DataUpdate' );
+		$po->addSecondaryDataUpdate( $dataUpdate );
+		$this->assertTrue( $po->hasCustomDataUpdates() );
+	}
+
+	/**
+	 * @covers ParserOutput::getSecondaryDataUpdate
+	 * @covers ParserOutput::addSecondaryDataUpdate
+	 */
+	public function testGetSecondaryDataUpdates() {
+		// NOTE: getSecondaryDataUpdates always returns a LinksUpdate object
+		// in addition to the DataUpdates registered via addSecondaryDataUpdate().
+
+		$title = Title::makeTitle( NS_MAIN, 'Dummy' );
+		$title->resetArticleID( 7777777 );
+
+		$po = new ParserOutput();
+		$this->assertCount( 1, $po->getSecondaryDataUpdates( $title ) );
+
+		$dataUpdate = $this->getMock( 'DataUpdate' );
+		$po->addSecondaryDataUpdate( $dataUpdate );
+		$this->assertCount( 2, $po->getSecondaryDataUpdates( $title ) );
+
+		// Test Fallback to getTitleText
+		$this->insertPage( 'Project:ParserOutputTestDummyPage' );
+		$po->setTitleText( 'Project:ParserOutputTestDummyPage' );
+		$this->assertCount( 2, $po->getSecondaryDataUpdates() );
+	}
+
+	/**
+	 * @covers ParserOutput::getSecondaryDataUpdate
+	 * @covers ParserOutput::__sleep
+	 */
+	public function testGetSecondaryDataUpdates_serialization() {
+		$title = Title::makeTitle( NS_MAIN, 'Dummy' );
+		$title->resetArticleID( 7777777 );
+
+		$po = new ParserOutput();
+
+		// Serializing is fine with no custom DataUpdates.
+		$po = unserialize( serialize( $po ) );
+		$this->assertCount( 1, $po->getSecondaryDataUpdates( $title ) );
+
+		// If there are custom DataUpdates, getSecondaryDataUpdates
+		// should fail after serialization.
+		$dataUpdate = $this->getMock( 'DataUpdate' );
+		$po->addSecondaryDataUpdate( $dataUpdate );
+		$po = unserialize( serialize( $po ) );
+
+		$this->setExpectedException( 'MWException' );
+		$po->getSecondaryDataUpdates( $title );
+	}
+
 }
