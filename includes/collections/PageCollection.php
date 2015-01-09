@@ -10,6 +10,12 @@
 class PageCollection implements IteratorAggregate, Countable {
 	/**
 	 * Maximum number of pages to show on single subpage.
+	 * The internal collection of removed pages.
+	 *
+	 * @var PageCollectionItem[]
+	 */
+	protected $removedItems;
+
 	 *
 	 * @var int $maxPerPage
 	 */
@@ -74,6 +80,15 @@ class PageCollection implements IteratorAggregate, Countable {
 	 */
 	public function clear() {
 		$this->items = array();
+	}
+
+	/**
+	 * Pop the last title from the collection
+	 */
+	public function pop() {
+		$item = array_pop( $this->items );
+		$this->removedItems[] = $item;
+		return $item;
 	}
 
 	/** @inheritdoc */

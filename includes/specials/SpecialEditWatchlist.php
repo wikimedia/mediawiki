@@ -193,8 +193,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if ( count( $wanted ) > 0 ) {
 			$toWatch = array_diff( $wanted, $current );
 			$toUnwatch = array_diff( $current, $wanted );
-			$this->watchTitles( $toWatch );
-			$this->unwatchTitles( $toUnwatch );
+			$this->updateCollectionInDatabase( $toWatch, $toUnwatch );
 			$this->getUser()->invalidateCache();
 
 			if ( count( $toWatch ) > 0 || count( $toUnwatch ) > 0 ) {
@@ -431,83 +430,32 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * is preferred, since Titles are very memory-heavy
 	 *
 	 * @param array $titles Array of strings, or Title objects
+	 * @param array $titlesToRemove Array of strings, or Title objects to remove
 	 */
-	private function watchTitles( $titles ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$rows = array();
-
+	private function updateCollectionInDatabase( $titles, $titlesToRemove ) {
+		$collection = $this->getWatchlistPageCollection();
 		foreach ( $titles as $title ) {
 			if ( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
 			}
-
-			if ( $title instanceof Title ) {
-				$rows[] = array(
-					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp' => null,
-				);
-				$rows[] = array(
-					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp' => null,
-				);
-			}
+			$collection->add( new PageCollectionItem( $title ) );
 		}
 
-		$dbw->insert( 'watchlist', $rows, __METHOD__, 'IGNORE' );
-	}
-
-	/**
-	 * Remove a list of titles from a user's watchlist
-	 *
-	 * $titles can be an array of strings or Title objects; the former
-	 * is preferred, since Titles are very memory-heavy
-	 *
-	 * @param array $titles Array of strings, or Title objects
-	 */
-	private function unwatchTitles( $titles ) {
-		$dbw = wfGetDB( DB_MASTER );
-
-		foreach ( $titles as $title ) {
+		foreach ( $titlesToRemove as $title ) {
 			if ( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
 			}
-
-			if ( $title instanceof Title ) {
-				$dbw->delete(
-					'watchlist',
-					array(
-						'wl_user' => $this->getUser()->getId(),
-						'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
-						'wl_title' => $title->getDBkey(),
-					),
-					__METHOD__
-				);
-
-				$dbw->delete(
-					'watchlist',
-					array(
-						'wl_user' => $this->getUser()->getId(),
-						'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
-						'wl_title' => $title->getDBkey(),
-					),
-					__METHOD__
-				);
-
-				$page = WikiPage::factory( $title );
-				Hooks::run( 'UnwatchArticleComplete', array( $this->getUser(), &$page ) );
-			}
+			$collection->add( new PageCollectionItem( $title ) );
+			$collection->pop();
 		}
+		$collection->saveToDatabase();
 	}
 
 	public function submitNormal( $data ) {
 		$removed = array();
 
 		foreach ( $data as $titles ) {
-			$this->unwatchTitles( $titles );
+			$this->updateCollectionInDatabase( array(), $titles );
 			$removed = array_merge( $removed, $titles );
 		}
 
