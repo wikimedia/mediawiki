@@ -8,7 +8,6 @@
  * A collection of items representing a set of pages that the user is watching.
  */
 class WatchlistPageCollection extends PageCollection {
-
 	/**
 	 * Get the database associated with the Watchlist.
 	 * @return DatabaseBase
@@ -66,5 +65,63 @@ class WatchlistPageCollection extends PageCollection {
 			array( 'wl_user' => $this->getOwner()->getId() ),
 			__METHOD__
 		);
+	}
+
+	/**
+	 * Save to database any changes to the model.
+	 */
+	public function saveToDatabase() {
+		$dbw = $this->getDatabase();
+		$rows = array();
+
+		foreach ( $this->items as $item ) {
+			$title = $item->getTitle();
+			// add page
+			$rows[] = array(
+				'wl_user' => $this->getOwner()->getId(),
+				'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
+				'wl_title' => $title->getDBkey(),
+				'wl_notificationtimestamp' => null,
+			);
+			// add talk page
+			$rows[] = array(
+				'wl_user' => $this->getOwner()->getId(),
+				'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
+				'wl_title' => $title->getDBkey(),
+				'wl_notificationtimestamp' => null,
+			);
+		}
+
+		if ( count( $rows ) > 0 ) {
+			$dbw->insert( 'watchlist', $rows, __METHOD__, 'IGNORE' );
+		}
+
+		foreach ( $this->removedItems as $item ) {
+			$title = $item->getTitle();
+			// delete page
+			$dbw->delete(
+				'watchlist',
+				array(
+					'wl_user' => $this->getOwner()->getId(),
+					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
+					'wl_title' => $title->getDBkey(),
+				),
+				__METHOD__
+			);
+
+			// delete talk page
+			$dbw->delete(
+				'watchlist',
+				array(
+					'wl_user' => $this->getOwner()->getId(),
+					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
+					'wl_title' => $title->getDBkey(),
+				),
+				__METHOD__
+			);
+
+			$page = WikiPage::factory( $title );
+			Hooks::run( 'UnwatchArticleComplete', array( $this->getOwner(), &$page ) );
+		}
 	}
 }
