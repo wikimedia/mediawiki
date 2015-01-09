@@ -291,6 +291,7 @@ class WatchedItem {
 				'wl_user' => $item->getUserId(),
 				'wl_namespace' => MWNamespace::getSubject( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
+				'wl_tag' => 'watchlist',
 				'wl_notificationtimestamp' => null,
 			);
 			// Every single watched page needs now to be listed in watchlist;
@@ -299,6 +300,7 @@ class WatchedItem {
 				'wl_user' => $item->getUserId(),
 				'wl_namespace' => MWNamespace::getTalk( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
+				'wl_tag' => 'watchlist',
 				'wl_notificationtimestamp' => null
 			);
 			$item->watched = true;
