@@ -335,10 +335,8 @@ class ApiStashEdit extends ApiBase {
 		$ttl = min( $parserOutput->getCacheExpiry() - $since, 5 * 60 );
 
 		// Note: ParserOutput with that contains secondary data update callbacks can not be
-		// stashed, since the callbacks are not serializable (see ParserOtput::__sleep).
-		// The first data update returned by getSecondaryDataUpdates() is always a LinksUpdate
-		// instance generated on the fly, so it can be ignored in this context.
-		$hasCustomDataUpdates = count( $parserOutput->getSecondaryDataUpdates() ) > 1;
+		// stashed, since the callbacks are not serializable (see ParserOutput::__sleep).
+		$hasCustomDataUpdates = $parserOutput->hasCustomDataUpdates();
 
 		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) && !$hasCustomDataUpdates ) {
 			// Only store what is actually needed
